@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "title": "期中選舉 選後 8 件事",
+    "brand_zh": "每日財經筆記",
+    "brand_handle": "@daily.finance.notes",
+    "tag": "美國期中選舉 選後解析",
+    "date": "2026/11/04",
+    "data_asof": "資料截至 2026/11/04",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "notes": "narration = 給 TTS 的口語稿（數字寫成中文）；subtitle_zh / subtitle_en = 畫面字幕（精簡、阿拉伯數字）。三者陣列一一對應，每一項是一句。keys = [字幕關鍵字, 旁白觸發詞]。kpis[].say = 旁白唸到該詞時 KPI 跳出。cues = 插圖動作觸發詞。"
+  },
+  "pages": [
+    {
+      "id": "p00",
+      "num": "00",
+      "kind": "cover",
+      "title": "期中選舉 選後 8 件事",
+      "desc": ["參眾兩院結果出爐，", "美國政策、全球市場、台灣怎麼看？"],
+      "visual": "capitol",
+      "narration": ["美國選完了，", "這跟你的股票有什麼關係？", "一次看懂，選後八件事。"],
+      "subtitle_zh": ["美國選完了", "這跟你的股票有什麼關係？", "一次看懂 選後 8 件事"],
+      "subtitle_en": ["The US midterms are over", "What does it mean for your stocks?", "8 things to know, one page each"],
+      "keys": [[["美國", "美國"]], [["股票", "股票"]], [["8 件事", "八件事"]]],
+      "kpis": [
+        {"value": "11/03", "label": "美東投票日", "say": "美國"},
+        {"value": "435", "label": "眾議院席次全數改選", "say": "股票"},
+        {"value": "8", "label": "件選後重點", "say": "八件事"}
+      ],
+      "cues": [{"say": "美國", "action": "draw"}]
+    },
+    {
+      "id": "p01",
+      "num": "01",
+      "kind": "point",
+      "title": "參院 民主黨過半",
+      "desc": ["民主黨至少 54 席、共和黨 44 席", "密西西比、阿拉斯加 2 州計票中"],
+      "visual": "senate",
+      "narration": ["第一，參議院。", "民主黨至少五十四席，", "共和黨四十四席，", "還有兩州在計票。"],
+      "subtitle_zh": ["01 參議院", "民主黨至少 54 席", "共和黨 44 席", "還有 2 州計票中"],
+      "subtitle_en": ["01 · The Senate", "Democrats: at least 54 seats", "Republicans: 44 seats", "2 races still being counted"],
+      "keys": [[["參議院", "參議院"]], [["54", "五十四席"]], [["44", "四十四席"]], [["2 州", "兩州"]]],
+      "kpis": [
+        {"value": "54", "suffix": "+", "label": "民主黨席次（至少）", "say": "五十四席", "count": true},
+        {"value": "44", "label": "共和黨席次", "say": "四十四席", "count": true},
+        {"value": "2", "label": "州計票中（MS、AK）", "say": "兩州", "count": true}
+      ],
+      "cues": [{"say": "參議院", "action": "seats"}]
+    },
+    {
+      "id": "p02",
+      "num": "02",
+      "kind": "point",
+      "title": "眾院 跨過 218",
+      "desc": ["AP 確認民主黨已拿下 218 席過半門檻", "最終席次仍在計票中"],
+      "visual": "house",
+      "narration": ["第二，眾議院。", "民主黨拿下兩百一十八席，", "也就是說，已經過半。"],
+      "subtitle_zh": ["02 眾議院", "民主黨已拿下 218 席", "也就是說，已經過半"],
+      "subtitle_en": ["02 · The House", "Democrats have won 218 seats", "That is a majority (final count pending)"],
+      "keys": [[["眾議院", "眾議院"]], [["218", "兩百一十八席"]], [["過半", "過半"]]],
+      "kpis": [
+        {"value": "218", "label": "民主黨已確定席次", "say": "兩百一十八席", "count": true},
+        {"value": "435", "label": "眾議院總席次", "say": "也就是說", "count": true},
+        {"value": "計票中", "label": "最終席次", "say": "過半"}
+      ],
+      "cues": [{"say": "眾議院", "action": "seats"}]
+    },
+    {
+      "id": "p03",
+      "num": "03",
+      "kind": "point",
+      "title": "分裂政府",
+      "desc": ["白宮：共和黨｜國會兩院：民主黨", "新國會 2027 年 1 月就任"],
+      "visual": "balance",
+      "narration": ["第三，這叫分裂政府。", "簡單說，國會像董事會，", "總統像執行長。", "董事會換人，執行長就要看臉色。"],
+      "subtitle_zh": ["03 分裂政府", "簡單說，國會像董事會", "總統像執行長", "董事會換人，執行長要看臉色"],
+      "subtitle_en": ["03 · Divided government", "Think of Congress as the board", "and the president as the CEO", "New board, the CEO must negotiate"],
+      "keys": [[["分裂政府", "分裂政府"]], [["董事會", "董事會"]], [["執行長", "執行長"]], [["換人", "換人"]]],
+      "kpis": [
+        {"value": "1", "label": "白宮｜共和黨", "say": "分裂政府", "count": true},
+        {"value": "2", "label": "國會兩院｜民主黨", "say": "董事會", "count": true},
+        {"value": "2027.01", "label": "新國會就任", "say": "換人"}
+      ],
+      "cues": [{"say": "分裂政府", "action": "tilt"}]
+    },
+    {
+      "id": "p04",
+      "num": "04",
+      "kind": "point",
+      "title": "預算 12/11 大限",
+      "desc": ["臨時預算只撐到 12/11，年度撥款未完成", "市場普遍預期：大規模減稅、加碼支出更難過關"],
+      "visual": "taxstack",
+      "narration": ["第四，預算。", "政府經費只撐到十二月十一號，", "市場預期，", "大減稅或加碼支出，都更難過關。"],
+      "subtitle_zh": ["04 預算與稅務", "政府經費只撐到 12/11", "市場普遍預期", "大減稅、加碼支出都更難過關"],
+      "subtitle_en": ["04 · Budget & taxes", "Stopgap funding runs out Dec 11", "Markets broadly expect", "big tax cuts or new spending get harder"],
+      "keys": [[["預算", "預算"]], [["12/11", "十二月十一號"]], [["市場", "市場預期"]], [["更難過關", "過關"]]],
+      "kpis": [
+        {"value": "12/11", "label": "臨時預算到期", "say": "十二月十一號"},
+        {"value": "0/12", "label": "年度撥款法案兩院通過", "say": "市場預期"},
+        {"value": "2", "label": "院都要同意才能過關", "say": "過關", "count": true}
+      ],
+      "cues": [{"say": "預算", "action": "stack"}]
+    },
+    {
+      "id": "p05",
+      "num": "05",
+      "kind": "point",
+      "title": "關稅 短期難改",
+      "desc": ["最高法院 2 月否決緊急關稅後，改以 301 條款等法源", "國會要推翻總統否決，需兩院各 2/3"],
+      "visual": "containers",
+      "narration": ["第五，關稅。", "其實，關稅主要由總統決定，", "國會要推翻否決，", "得要三分之二。"],
+      "subtitle_zh": ["05 關稅與貿易", "其實，關稅主要由總統決定", "國會要推翻總統否決", "得要 2/3 票數"],
+      "subtitle_en": ["05 · Tariffs & trade", "Tariffs are mostly set by the president", "To override a veto, Congress", "needs a two-thirds vote"],
+      "keys": [[["關稅", "關稅"]], [["總統決定", "總統決定"]], [["否決", "否決"]], [["2/3", "三分之二"]]],
+      "kpis": [
+        {"value": "6:3", "label": "最高法院否決緊急關稅", "say": "關稅"},
+        {"value": "301", "label": "條款｜現行主要法源", "say": "總統決定", "count": true},
+        {"value": "2/3", "label": "推翻否決門檻", "say": "三分之二"}
+      ],
+      "cues": [{"say": "關稅", "action": "stack"}]
+    },
+    {
+      "id": "p06",
+      "num": "06",
+      "kind": "point",
+      "title": "晶片 管制不轉彎",
+      "desc": ["232 條款：部分先進晶片 25% 關稅仍在", "對中科技管制屬兩黨共識，市場預期不會急轉"],
+      "visual": "chips",
+      "narration": ["第六，晶片。", "部分晶片，百分之二十五的關稅還在，", "對中科技管制，", "兩黨立場接近。"],
+      "subtitle_zh": ["06 科技與晶片", "部分先進晶片 25% 關稅仍在", "對中科技管制", "兩黨立場接近"],
+      "subtitle_en": ["06 · Tech & chips", "A 25% tariff on some advanced chips stays", "On China tech controls,", "both parties largely agree"],
+      "keys": [[["晶片", "晶片"]], [["25%", "百分之二十五"]], [["科技管制", "科技管制"]], [["兩黨", "兩黨"]]],
+      "kpis": [
+        {"value": "232", "label": "條款｜晶片關稅法源", "say": "部分晶片", "count": true},
+        {"value": "25%", "label": "部分先進晶片關稅", "say": "百分之二十五", "count": true},
+        {"value": "2", "label": "黨立場接近（對中管制）", "say": "兩黨", "count": true}
+      ],
+      "cues": [{"say": "晶片", "action": "stack"}]
+    },
+    {
+      "id": "p07",
+      "num": "07",
+      "kind": "point",
+      "title": "美股漲 債息降",
+      "desc": ["11/4 美股盤中：道瓊漲逾 1,000 點；美元小幅走弱", "1950 年以來，期中選後 12 個月美股每次都上漲"],
+      "visual": "candles",
+      "narration": ["第七，市場。", "道瓊盤中大漲，超過一千點，", "美債殖利率下滑。", "歷史上，選後一年，", "美股平均漲百分之十五。"],
+      "subtitle_zh": ["07 市場反應", "道瓊盤中大漲逾 1,000 點", "10 年期美債殖利率下滑", "歷史上，選後 12 個月", "美股平均漲約 15%"],
+      "subtitle_en": ["07 · Market reaction", "Dow up 1,000+ points intraday", "10-year Treasury yield falls", "Historically, 12 months after", "S&P 500 averaged about +15%"],
+      "keys": [[["市場", "市場"]], [["1,000", "一千點"]], [["殖利率", "殖利率"]], [["12 個月", "一年"]], [["15%", "百分之十五"]]],
+      "kpis": [
+        {"value": "1,000", "prefix": "+", "suffix": "", "label": "道瓊盤中漲點（以上）", "say": "一千點", "count": true},
+        {"value": "4.9%", "prefix": "≈", "label": "10 年期美債殖利率", "say": "殖利率", "count": true},
+        {"value": "15%", "prefix": "+", "label": "選後 12 個月平均（1950–）", "say": "百分之十五", "count": true}
+      ],
+      "cues": [{"say": "市場", "action": "stack"}]
+    },
+    {
+      "id": "p08",
+      "num": "08",
+      "kind": "point",
+      "title": "台灣 盯晶片關稅",
+      "desc": ["11/4 開票日 加權指數收 42,949｜台積電收 2,260 元", "市場關注：半導體、AI 伺服器供應鏈、對台法案"],
+      "visual": "taiwan",
+      "narration": ["第八，重點來了——台灣。", "計票當天，台股跌三百五十八點，", "台積電跌三十五元。", "接下來，盯緊晶片關稅。"],
+      "subtitle_zh": ["08 對台灣的影響", "計票當天 台股跌 358 點", "台積電跌 35 元", "接下來：盯緊晶片關稅"],
+      "subtitle_en": ["08 · What it means for Taiwan", "TAIEX fell 358 points on count day", "TSMC fell NT$35", "Next: watch chip tariffs"],
+      "keys": [[["台灣", "台灣"]], [["358", "三百五十八點"]], [["35", "三十五元"]], [["晶片關稅", "晶片關稅"]]],
+      "kpis": [
+        {"value": "358", "prefix": "−", "label": "加權指數（11/4 收盤）", "say": "三百五十八點", "count": true},
+        {"value": "42,949", "label": "收盤點位", "say": "台股", "count": true},
+        {"value": "35", "prefix": "−", "label": "台積電（元）", "say": "三十五元", "count": true}
+      ],
+      "cues": [{"say": "台灣", "action": "stack"}]
+    },
+    {
+      "id": "p09",
+      "num": "END",
+      "kind": "outro",
+      "title": "國會換手 政策放慢",
+      "desc": ["政策變慢、不急轉彎；仍在計票的席次請以官方結果為準", "內容僅供參考，不構成投資建議"],
+      "visual": "capitol",
+      "narration": ["一句話總結——", "國會換手，政策變慢，", "但不會急轉彎。", "追蹤每日財經筆記，", "每天三分鐘，看懂財經。"],
+      "subtitle_zh": ["一句話總結", "國會換手，政策變慢", "但不會急轉彎", "追蹤 @daily.finance.notes", "每天 3 分鐘看懂財經"],
+      "subtitle_en": ["In one line", "Congress flips, policy slows", "but no sharp U-turn", "Follow @daily.finance.notes", "Finance in 3 minutes a day"],
+      "keys": [[["總結", "總結"]], [["政策變慢", "政策變慢"]], [["急轉彎", "急轉彎"]], [["@daily.finance.notes", "每日財經筆記"]], [["3 分鐘", "三分鐘"]]],
+      "kpis": [
+        {"value": "54", "suffix": "+", "label": "參院民主黨（至少）", "say": "國會換手", "count": true},
+        {"value": "218", "suffix": "+", "label": "眾院民主黨（已確定）", "say": "政策變慢", "count": true},
+        {"value": "15%", "prefix": "+", "label": "歷史選後一年均值", "say": "急轉彎", "count": true}
+      ],
+      "cues": [{"say": "總結", "action": "draw"}]
+    }
+  ]
+}
