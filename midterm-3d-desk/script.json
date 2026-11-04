@@ -1,0 +1,415 @@
+{
+  "meta": {
+    "title": "美國期中選舉 8 件事影響你的錢包",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "dataAsOf": "2026/11/04",
+    "brand": {
+      "name": "每日財經筆記",
+      "handle": "@daily.finance.notes"
+    },
+    "voice": {
+      "engine": "zhtts (FastSpeech2 + MB-MelGAN, offline)",
+      "requested": "edge-tts zh-TW-YunJheNeural +5%",
+      "speed": 1.05
+    },
+    "tailPad": 0.3,
+    "chunkGap": 0.14,
+    "leadIn": 0.12,
+    "colors": {
+      "bg": "#10141C",
+      "rep": "#C8423B",
+      "dem": "#2F5DA8",
+      "accent": "#E0B33A",
+      "pending": "#6B7280"
+    },
+    "design": "資料長廊 Data Corridor：深藍暗場反光長廊，8 座幾何資料雕塑，無角色"
+  },
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "美國期中選舉",
+      "chunks": [
+        {
+          "sub": "美國選完了",
+          "tts": "美國選完了，"
+        },
+        {
+          "sub": "8 件事影響你的錢包",
+          "tts": "八件事，影響你的錢包。"
+        }
+      ],
+      "big": {
+        "type": "keyword",
+        "text": "8 件事"
+      },
+      "camera": {
+        "target": [
+          0,
+          0.8,
+          0
+        ],
+        "dist": 8.2,
+        "elevDeg": 12,
+        "azDeg": 0,
+        "orbitDeg": 5
+      },
+      "visual": "2026 立體字＋8 根預告柱"
+    },
+    {
+      "id": "senate",
+      "num": "01/08",
+      "title": "參議院結果",
+      "chunks": [
+        {
+          "sub": "參院 民主黨 54 席",
+          "tts": "參議院，民主黨五十四席，"
+        },
+        {
+          "sub": "共和黨 44 席",
+          "tts": "共和黨四十四席，"
+        },
+        {
+          "sub": "另 2 席仍在計票",
+          "tts": "另外兩席仍在計票。"
+        }
+      ],
+      "big": {
+        "type": "versus",
+        "left": 54,
+        "right": 44,
+        "leftParty": "dem",
+        "rightParty": "rep",
+        "label": "參議院席次｜過半 51",
+        "note": "阿拉斯加、密西西比 計票中"
+      },
+      "camera": {
+        "target": [
+          6,
+          0.2,
+          -0.35
+        ],
+        "dist": 8.6,
+        "elevDeg": 34,
+        "azDeg": 0,
+        "orbitDeg": 4
+      },
+      "visual": "100 席座位柱半圓"
+    },
+    {
+      "id": "house",
+      "num": "02/08",
+      "title": "眾議院結果",
+      "chunks": [
+        {
+          "sub": "眾院 民主黨已獲 228 席",
+          "tts": "眾議院，民主黨已獲兩百二十八席，"
+        },
+        {
+          "sub": "共和黨 139 席",
+          "tts": "共和黨一百三十九席，"
+        },
+        {
+          "sub": "其餘選區計票中",
+          "tts": "其餘選區計票中。"
+        }
+      ],
+      "big": {
+        "type": "versus",
+        "left": 228,
+        "right": 139,
+        "leftParty": "dem",
+        "rightParty": "rep",
+        "label": "眾議院已確定席次｜過半 218",
+        "note": "依 AP 11/4 中午計數，取保守值"
+      },
+      "camera": {
+        "target": [
+          12,
+          0.15,
+          -0.4
+        ],
+        "dist": 8.9,
+        "elevDeg": 36,
+        "azDeg": 0,
+        "orbitDeg": -4
+      },
+      "visual": "435 席座位方塊半圓"
+    },
+    {
+      "id": "divided",
+      "num": "03/08",
+      "title": "分裂政府",
+      "chunks": [
+        {
+          "sub": "明年 1 月起",
+          "tts": "明年一月起，"
+        },
+        {
+          "sub": "白宮與國會分屬不同政黨",
+          "tts": "白宮與國會分屬不同政黨，"
+        },
+        {
+          "sub": "形成分裂政府",
+          "tts": "形成分裂政府。"
+        }
+      ],
+      "big": {
+        "type": "keyword",
+        "text": "分裂政府",
+        "label": "2027/01/03 新國會就任"
+      },
+      "camera": {
+        "target": [
+          18,
+          0.85,
+          0
+        ],
+        "dist": 7.8,
+        "elevDeg": 12,
+        "azDeg": 0,
+        "orbitDeg": 4
+      },
+      "visual": "兩塊等大石碑（白宮／國會）＋金色光縫"
+    },
+    {
+      "id": "budget",
+      "num": "04/08",
+      "title": "預算與稅務",
+      "chunks": [
+        {
+          "sub": "市場普遍預期",
+          "tts": "市場普遍預期，"
+        },
+        {
+          "sub": "預算與減稅法案較難通過",
+          "tts": "預算與減稅法案較難通過，"
+        },
+        {
+          "sub": "財政容易陷入僵局",
+          "tts": "財政容易陷入僵局。"
+        }
+      ],
+      "big": {
+        "type": "keyword",
+        "text": "財政僵局",
+        "label": "UBS、ING 等機構預期"
+      },
+      "camera": {
+        "target": [
+          24,
+          0.7,
+          0
+        ],
+        "dist": 7.3,
+        "elevDeg": 16,
+        "azDeg": 0,
+        "orbitDeg": -4
+      },
+      "visual": "玻璃方塊凍結硬幣堆＋暫停符號"
+    },
+    {
+      "id": "tariff",
+      "num": "05/08",
+      "title": "關稅與貿易",
+      "chunks": [
+        {
+          "sub": "關稅主要由總統決定",
+          "tts": "關稅主要由總統決定，"
+        },
+        {
+          "sub": "國會要推翻否決",
+          "tts": "國會要推翻否決，"
+        },
+        {
+          "sub": "需要兩院 2/3 票數",
+          "tts": "需要兩院三分之二票數。"
+        }
+      ],
+      "big": {
+        "type": "fraction",
+        "text": "2/3",
+        "label": "推翻總統否決的門檻"
+      },
+      "camera": {
+        "target": [
+          30,
+          0.7,
+          0.1
+        ],
+        "dist": 7.7,
+        "elevDeg": 14,
+        "azDeg": 0,
+        "orbitDeg": 4
+      },
+      "visual": "三塊石板亮起兩塊（2/3）＋貨櫃"
+    },
+    {
+      "id": "chips",
+      "num": "06/08",
+      "title": "科技與晶片政策",
+      "chunks": [
+        {
+          "sub": "晶片出口管制是兩黨共識",
+          "tts": "晶片出口管制是兩黨共識，"
+        },
+        {
+          "sub": "預期國會監督更嚴格",
+          "tts": "預期國會監督會更嚴格。"
+        }
+      ],
+      "big": {
+        "type": "keyword",
+        "text": "出口管制",
+        "label": "AI 晶片｜國會兩黨關注"
+      },
+      "camera": {
+        "target": [
+          36,
+          0.7,
+          0
+        ],
+        "dist": 7.3,
+        "elevDeg": 16,
+        "azDeg": 0,
+        "orbitDeg": -4
+      },
+      "visual": "晶片＋檢查環"
+    },
+    {
+      "id": "market",
+      "num": "07/08",
+      "title": "市場反應",
+      "chunks": [
+        {
+          "sub": "道瓊盤中漲逾千點",
+          "tts": "道瓊盤中漲逾一千點，"
+        },
+        {
+          "sub": "美債殖利率下滑",
+          "tts": "美債殖利率下滑。"
+        },
+        {
+          "sub": "歷史上選後一年",
+          "tts": "歷史上，選後一年，"
+        },
+        {
+          "sub": "美股平均漲逾一成",
+          "tts": "美股平均漲逾一成。"
+        }
+      ],
+      "big": {
+        "type": "count",
+        "prefix": "+",
+        "value": 1000,
+        "suffix": " 點以上",
+        "plus": true,
+        "label": "道瓊 11/4 盤中漲點",
+        "stats": [
+          {
+            "k": "10 年債殖利率",
+            "v": "≈4.9% ↓"
+          },
+          {
+            "k": "美元",
+            "v": "走弱"
+          },
+          {
+            "k": "選後 12 個月",
+            "v": "平均漲逾一成"
+          }
+        ]
+      },
+      "camera": {
+        "target": [
+          42,
+          0.7,
+          0
+        ],
+        "dist": 7.7,
+        "elevDeg": 12,
+        "azDeg": 0,
+        "orbitDeg": 4
+      },
+      "visual": "上升柱狀圖＋箭頭"
+    },
+    {
+      "id": "taiwan",
+      "num": "08/08",
+      "title": "對台灣的影響",
+      "chunks": [
+        {
+          "sub": "台股 4 日收跌 358 點",
+          "tts": "台股四日收跌三百五十八點，"
+        },
+        {
+          "sub": "半導體關稅仍由行政部門決定",
+          "tts": "半導體關稅，仍由行政部門決定。"
+        }
+      ],
+      "big": {
+        "type": "count",
+        "prefix": "−",
+        "value": 358,
+        "suffix": " 點",
+        "label": "11/4 加權指數",
+        "stats": [
+          {
+            "k": "台積電",
+            "v": "−1.53%"
+          },
+          {
+            "k": "盤中高低差",
+            "v": "1,885 點"
+          }
+        ]
+      },
+      "camera": {
+        "target": [
+          48,
+          0.85,
+          0
+        ],
+        "dist": 7.3,
+        "elevDeg": 10,
+        "azDeg": 0,
+        "orbitDeg": -4
+      },
+      "visual": "台灣輪廓立牌＋晶片環繞"
+    },
+    {
+      "id": "outro",
+      "kind": "outro",
+      "title": "總結",
+      "chunks": [
+        {
+          "sub": "國會換手 政策進入新拉鋸",
+          "tts": "國會換手，政策進入新的拉鋸。"
+        },
+        {
+          "sub": "追蹤 @daily.finance.notes 看更多",
+          "tts": "追蹤每日財經筆記，看更多。"
+        }
+      ],
+      "big": {
+        "type": "outro",
+        "text": "追蹤 @daily.finance.notes",
+        "label": "內容僅供參考，不構成投資建議"
+      },
+      "camera": {
+        "target": [
+          38,
+          0.9,
+          0
+        ],
+        "dist": 15,
+        "elevDeg": 9,
+        "azDeg": 74,
+        "orbitDeg": -3
+      },
+      "visual": "沿長廊回望全部雕塑"
+    }
+  ]
+}

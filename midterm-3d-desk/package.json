@@ -1,0 +1,17 @@
+{
+  "name": "midterm-3d-desk",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audio": ".venv/bin/python tools/build_audio.py",
+    "render": "node tools/render.js",
+    "build": "bash tools/build_all.sh"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "@fontsource/noto-sans-tc": "^5.1.0",
+    "gsap": "^3.12.5",
+    "three": "^0.170.0"
+  }
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>Midterm Data Corridor</title>
+<link rel="stylesheet" href="/node_modules/@fontsource/noto-sans-tc/500.css">
+<link rel="stylesheet" href="/node_modules/@fontsource/noto-sans-tc/700.css">
+<link rel="stylesheet" href="/node_modules/@fontsource/noto-sans-tc/900.css">
+<link rel="stylesheet" href="/node_modules/@fontsource/jetbrains-mono/500.css">
+<link rel="stylesheet" href="/node_modules/@fontsource/jetbrains-mono/800.css">
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/",
+  "gsap": "/node_modules/gsap/index.js"
+} }
+</script>
+<style>
+  :root {
+    --bg: #10141C; --rep: #C8423B; --dem: #2F5DA8; --gold: #E0B33A; --pending: #6B7280;
+    --cjk: "Noto Sans TC", "Noto Sans CJK TC", sans-serif;
+    --mono: "JetBrains Mono", "Noto Sans TC", monospace;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--bg);
+           font-family: var(--cjk); color: #fff; }
+  #gl { position: absolute; inset: 0; width: 1080px; height: 1920px; display: block; }
+  .vignette { position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 60% at 50% 38%, rgba(0,0,0,0) 55%, rgba(4,6,10,0.55) 100%),
+      linear-gradient(to bottom, rgba(8,10,16,0.55) 0px, rgba(8,10,16,0) 360px),
+      linear-gradient(to top, rgba(8,10,16,0.82) 0px, rgba(8,10,16,0.0) 760px); }
+
+  /* brand */
+  #brand { position: absolute; left: 56px; top: 58px; display: flex; align-items: center; gap: 20px; }
+  #logo { width: 84px; height: 84px; }
+  #brand .name { font-weight: 900; font-size: 40px; letter-spacing: 2px; line-height: 1.1; }
+  #brand .handle { font-family: var(--mono); font-weight: 500; font-size: 25px; color: var(--gold); margin-top: 4px; letter-spacing: 0.5px; }
+
+  /* segment heading */
+  .head { position: absolute; left: 64px; top: 196px; right: 64px; }
+  .head .num { font-family: var(--mono); font-weight: 800; font-size: 46px; color: var(--gold); letter-spacing: 3px; }
+  .head .num .cursor { display: inline-block; width: 22px; height: 40px; background: var(--gold); margin-left: 6px; vertical-align: -4px; }
+  .head .ttl { font-weight: 900; font-size: 70px; line-height: 1.15; margin-top: 6px; text-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+  .head .ttl::after { content: ""; display: block; height: 5px; width: 120px; background: var(--gold); border-radius: 3px; margin-top: 16px; }
+
+  /* big number panel */
+  .panel { position: absolute; left: 64px; right: 64px; top: 1010px; box-sizing: border-box;
+    padding: 34px 40px 32px; border-radius: 30px; background: rgba(10, 14, 22, 0.68);
+    border: 1.5px solid rgba(255, 255, 255, 0.10); border-top: 4px solid var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px); }
+  .panel .label { font-weight: 700; font-size: 32px; color: rgba(255,255,255,0.86); text-align: center; margin-top: 14px; }
+  .panel .note { font-weight: 500; font-size: 27px; color: var(--gold); text-align: center; margin-top: 10px; }
+  .vs { display: flex; align-items: flex-end; justify-content: center; gap: 26px; }
+  .vs .side { text-align: center; min-width: 300px; }
+  .vs .party { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 32px; color: rgba(255,255,255,0.9); }
+  .vs .dot { width: 22px; height: 22px; border-radius: 6px; }
+  .vs .n { font-weight: 900; font-size: 168px; line-height: 1.0; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+  .vs .n small { font-size: 50px; font-weight: 700; margin-left: 6px; letter-spacing: 0; }
+  .vs .colon { font-weight: 900; font-size: 100px; color: rgba(255,255,255,0.45); padding-bottom: 26px; }
+  .bar { position: relative; height: 18px; border-radius: 9px; background: rgba(255,255,255,0.10); overflow: hidden; margin-top: 22px; display: flex; }
+  .bar i { display: block; height: 100%; }
+  .bar .mid { position: absolute; left: 50%; top: -6px; bottom: -6px; width: 3px; background: #fff; opacity: 0.85; }
+  .kw { font-weight: 900; font-size: 150px; line-height: 1.05; text-align: center; letter-spacing: 6px; }
+  .kw .u { display: block; height: 8px; width: 46%; margin: 14px auto 0; background: var(--gold); border-radius: 4px; transform-origin: center; }
+  .cnt { text-align: center; font-weight: 900; font-size: 180px; line-height: 1.0; font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+  .cnt small { font-size: 56px; font-weight: 700; margin-left: 10px; letter-spacing: 0; }
+  .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 22px; }
+  .pill { font-weight: 700; font-size: 29px; padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); }
+  .pill b { color: var(--gold); font-weight: 900; margin-left: 10px; }
+  .twin { display: flex; justify-content: center; gap: 18px; margin-top: 18px; }
+  .twin .pill { display: inline-flex; align-items: center; gap: 12px; }
+  .twin .dot { width: 20px; height: 20px; border-radius: 5px; }
+
+  /* subtitles */
+  .sub { position: absolute; left: 64px; right: 64px; bottom: 300px; text-align: center; }
+  .sub span { display: inline-block; max-width: 952px; box-sizing: border-box; padding: 14px 30px 18px; border-radius: 18px;
+    background: rgba(6, 8, 14, 0.62); font-weight: 900; font-size: 60px; line-height: 1.25; white-space: nowrap;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6); }
+
+  #wave { position: absolute; left: 64px; bottom: 150px; width: 952px; height: 100px; }
+  #asof { position: absolute; right: 64px; bottom: 70px; font-family: var(--mono); font-weight: 500; font-size: 26px;
+    color: rgba(255,255,255,0.72); letter-spacing: 0.5px; }
+  #asof b { font-family: var(--cjk); font-weight: 700; margin-right: 12px; }
+  #disc { position: absolute; left: 64px; bottom: 70px; font-weight: 500; font-size: 24px; color: rgba(255,255,255,0.55); }
+  .kw.outro { font-size: 66px; letter-spacing: 1px; line-height: 1.3; }
+  .kw.outro .h { font-family: var(--mono); font-weight: 800; color: var(--gold); font-size: 64px; }
+  .hidden { visibility: hidden; opacity: 0; }
+  #cover { position: absolute; left: 64px; right: 64px; top: 1010px; padding: 44px 48px 48px; border-radius: 32px;
+    background: rgba(10,14,22,0.74); border: 2px solid rgba(224,179,58,0.45); box-shadow: 0 24px 70px rgba(0,0,0,0.5); }
+  #cover .k { font-family: var(--mono); font-weight: 800; font-size: 40px; color: var(--gold); letter-spacing: 4px; }
+  #cover .l1 { font-weight: 900; font-size: 92px; line-height: 1.15; margin-top: 10px; }
+  #cover .l2 { font-weight: 900; font-size: 150px; line-height: 1.05; }
+  #cover .l2 span { color: var(--gold); font-size: 190px; }
+  #cover .l3 { font-weight: 900; font-size: 92px; line-height: 1.15; }
+  #cover .tags { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+  #cover .tags span { font-weight: 700; font-size: 30px; padding: 8px 22px; border-radius: 999px; border: 1.5px solid rgba(224,179,58,0.5); color: rgba(255,255,255,0.9); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div class="vignette"></div>
+  <div id="brand"><canvas id="logo" width="168" height="168"></canvas>
+    <div><div class="name">每日財經筆記</div><div class="handle">@daily.finance.notes</div></div></div>
+  <div id="heads"></div>
+  <div id="panels"></div>
+  <div id="subs"></div>
+  <canvas id="wave" width="952" height="100"></canvas>
+  <div id="disc">2026 美國期中選舉</div>
+  <div id="asof"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
