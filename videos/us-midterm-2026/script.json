@@ -1,0 +1,174 @@
+{
+  "slug": "us-midterm-2026",
+  "title": "美國期中選舉結果，對未來會帶來什麼變化？",
+  "asOf": "2026/11/4",
+  "cover": { "title": ["美國期中選舉", "國會換手了"], "sub": "台灣該看的 4 件事", "en": "2026 US Midterms: What changes next?" },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "美國人投完票了，為什麼台灣人也要關心？",
+      "subtitle": { "zh": "美國人投完票了，為什麼台灣人也要關心？", "en": "Americans have voted. Why should Taiwan care?" },
+      "keywords": ["台灣人"],
+      "component": "IconGrid",
+      "props": { "title": "美國期中選舉 × 台灣", "columns": 2, "items": [
+        { "icon": "container", "label": "關稅", "note": "出口成本", "color": "cyan" },
+        { "icon": "chip", "label": "晶片", "note": "半導體政策", "color": "pink" },
+        { "icon": "shield", "label": "台海", "note": "對台政策", "color": "yellow" },
+        { "icon": "chart", "label": "台股", "note": "市場情緒", "color": "purple" } ] },
+      "sources": [],
+      "durationSec": 6
+    },
+    {
+      "id": "what-is-midterm",
+      "narration": "期中選舉在總統任期中間舉行，改選國會和多州州長。",
+      "subtitle": { "zh": "期中選舉在總統任期中間舉行，改選國會和多州州長。", "en": "Midterms happen halfway through a presidential term, electing Congress and many governors." },
+      "keywords": ["期中選舉", "國會"],
+      "component": "TermCard",
+      "props": { "icon": "ballot", "term": "期中選舉", "termEn": "Midterm Election", "color": "cyan",
+        "definition": "總統四年任期的中間，改選全部眾議員、約三分之一參議員和多州州長。",
+        "points": ["2026 年 11 月 3 日投票", "新國會 2027 年 1 月就任"] },
+      "sources": ["NPR", "NBC News"]
+    },
+    {
+      "id": "two-chambers",
+      "narration": "參議院管人事和條約，稅收法案則要從眾議院開始。",
+      "subtitle": { "zh": "參議院管人事和條約，稅收法案則要從眾議院開始。", "en": "The Senate confirms officials and treaties; tax bills must start in the House." },
+      "keywords": ["參議院", "眾議院"],
+      "component": "CompareSplit",
+      "props": {
+        "left": { "title": "參議院", "titleEn": "Senate · 100 席", "icon": "capitol", "color": "purple",
+          "items": ["每州 2 席，任期 6 年", "審核內閣、法官人事", "批准國際條約"] },
+        "right": { "title": "眾議院", "titleEn": "House · 435 席", "icon": "users", "color": "cyan",
+          "items": ["依人口分配，任期 2 年", "稅收法案從這裡提出", "可提出彈劾"] },
+        "footer": "法案要兩院都通過，再交總統簽署" },
+      "sources": ["美國憲法"],
+      "durationSec": 8
+    },
+    {
+      "id": "results",
+      "narration": "AP判定民主黨拿下參議院，眾議院也被多家媒體推估過半。",
+      "subtitle": { "zh": "AP 判定民主黨拿下參議院，眾議院也被多家媒體推估過半。", "en": "AP called the Senate for Democrats; outlets project a House majority too." },
+      "keywords": ["參議院", "眾議院"],
+      "component": "SeatBar",
+      "props": { "chambers": [
+        { "name": "參議院", "nameEn": "Senate", "total": 100, "majority": 51, "status": "fact", "statusText": "AP 已判定控制權",
+          "segments": [ { "label": "民主黨", "seats": 54, "color": "dem" }, { "label": "未定", "seats": 2, "color": "undecided" }, { "label": "共和黨", "seats": 44, "color": "rep" } ],
+          "note": "選前：共和黨 53、民主黨 47｜阿拉斯加、密西西比尚未確定" },
+        { "name": "眾議院", "nameEn": "House", "total": 435, "majority": 218, "status": "pending", "statusText": "最終席次尚未確定",
+          "segments": [ { "label": "民主黨", "seats": 236, "color": "dem" }, { "label": "未定", "seats": 53, "color": "undecided" }, { "label": "共和黨", "seats": 146, "color": "rep" } ],
+          "note": "媒體計票快照，數字持續變動；NBC 推估民主黨已過半" } ] },
+      "sources": ["PBS/AP", "Fox News", "NBC News", "Babypips"],
+      "durationSec": 9
+    },
+    {
+      "id": "divided-government",
+      "narration": "白宮和國會分屬兩黨，就叫分裂政府，立法得靠協商。",
+      "subtitle": { "zh": "白宮和國會分屬兩黨，就叫分裂政府，立法得靠協商。", "en": "When the White House and Congress are split, it's a divided government." },
+      "keywords": ["分裂政府", "協商"],
+      "component": "CompareSplit",
+      "props": {
+        "left": { "title": "一致政府", "titleEn": "Unified · 選前", "icon": "gavel", "color": "cyan",
+          "items": ["總統與國會同黨", "法案較容易推進"] },
+        "right": { "title": "分裂政府", "titleEn": "Divided · 2027 起", "icon": "scale", "color": "yellow",
+          "items": ["總統共和黨、國會民主黨", "法案須兩黨協商", "總統可否決，國會可監督"] },
+        "footer": "媒體多解讀為對施政的反彈；副總統范斯歸因伊朗戰事" },
+      "sources": ["TIME", "Yahoo News"],
+      "durationSec": 8
+    },
+    {
+      "id": "budget",
+      "narration": "預算得兩黨談，分析師認為僵局可能抑制支出。",
+      "subtitle": { "zh": "預算得兩黨談，分析師認為僵局可能抑制支出。", "en": "Budgets need bipartisan deals; analysts say gridlock may curb spending." },
+      "keywords": ["預算", "僵局"],
+      "component": "ImpactCard",
+      "props": { "icon": "money", "title": "預算和財政", "titleEn": "Budget & Fiscal", "color": "cyan",
+        "rows": [
+          { "status": "fact", "text": "新國會 2027/1/3 就任，預算須兩院通過" },
+          { "status": "expected", "text": "投資人認為政策僵局可能抑制過度支出" },
+          { "status": "pending", "text": "預算規模與談判結果" } ],
+        "taiwan": "美國財政走向牽動美元與利率，間接影響資金流向" },
+      "sources": ["CNN", "Babypips"],
+      "durationSec": 8
+    },
+    {
+      "id": "tariffs",
+      "narration": "關稅多由總統行政權推動，國會想推翻並不容易。",
+      "subtitle": { "zh": "關稅多由總統行政權推動，國會想推翻並不容易。", "en": "Tariffs are driven by the executive; Congress can't easily reverse them." },
+      "keywords": ["關稅", "國會"],
+      "component": "ImpactCard",
+      "props": { "icon": "container", "title": "關稅和貿易", "titleEn": "Tariffs & Trade", "color": "yellow",
+        "rows": [
+          { "status": "fact", "text": "半導體 232 關稅由行政部門依法授權推動" },
+          { "status": "expected", "text": "國會可能推動豁免與監督，但難全面撤銷" },
+          { "status": "pending", "text": "稅率是否調整、何時調整" } ],
+        "taiwan": "對台出口相關關稅，短期內未必因選舉改變" },
+      "sources": ["Fortune", "Al Jazeera", "數位時代"],
+      "durationSec": 8
+    },
+    {
+      "id": "chips",
+      "narration": "對中科技管制是兩黨共識，晶片政策大方向預期不變。",
+      "subtitle": { "zh": "對中科技管制是兩黨共識，晶片政策大方向預期不變。", "en": "Tech controls on China are bipartisan; chip policy is expected to hold." },
+      "keywords": ["兩黨共識", "晶片"],
+      "component": "ImpactCard",
+      "props": { "icon": "chip", "title": "科技和晶片", "titleEn": "Tech & Chips", "color": "pink",
+        "rows": [
+          { "status": "expected", "text": "出口管制（如《晶片安全法》）預期延續" },
+          { "status": "expected", "text": "部分分析：國會可能捍衛 CHIPS 法案補助" },
+          { "status": "pending", "text": "補助與關稅政策如何搭配" } ],
+        "taiwan": "台廠在美投資，仍同時受補助與關稅影響" },
+      "sources": ["Al Jazeera", "Foreign Affairs Forum"],
+      "durationSec": 8
+    },
+    {
+      "id": "taiwan-china",
+      "narration": "對台支持是兩黨共識，國會對北京的施壓可能更多。",
+      "subtitle": { "zh": "對台支持是兩黨共識，國會對北京的施壓可能更多。", "en": "Support for Taiwan is bipartisan; pressure on Beijing may increase." },
+      "keywords": ["對台支持", "北京"],
+      "component": "ImpactCard",
+      "props": { "icon": "globe", "title": "對台、對中政策", "titleEn": "Taiwan & China", "color": "purple",
+        "rows": [
+          { "status": "expected", "text": "國防法案草案延續對台安全合作" },
+          { "status": "expected", "text": "學者預期國會在 AI、出口管制上施壓增加" },
+          { "status": "pending", "text": "整體對中戰略的具體細節" } ],
+        "taiwan": "對台政策大方向預期延續，不因選舉翻轉" },
+      "sources": ["Al Jazeera", "SCMP"],
+      "durationSec": 8
+    },
+    {
+      "id": "markets",
+      "narration": "選後美股大漲、台股震盪，分析師普遍認為不確定性下降。",
+      "subtitle": { "zh": "選後美股大漲、台股震盪，分析師普遍認為不確定性下降。", "en": "US stocks rallied, Taiwan swung; analysts broadly see less uncertainty." },
+      "keywords": ["美股", "台股"],
+      "component": "IconGrid",
+      "props": { "title": "11/4 市場紀錄（非投資建議）", "columns": 2, "items": [
+        { "icon": "chart", "label": "道瓊", "note": "漲約 1,240 點（+2.4%）", "color": "cyan" },
+        { "icon": "chart", "label": "台股加權", "note": "收 42,949 點，跌 359 點", "color": "yellow" },
+        { "icon": "scale", "label": "台股盤中", "note": "震盪 1,886 點", "color": "pink" },
+        { "icon": "chip", "label": "台積電", "note": "收 2,260 元，跌 1.53%", "color": "purple" } ] },
+      "sources": ["CNN", "中央社", "新頭殼"],
+      "durationSec": 8
+    },
+    {
+      "id": "summary",
+      "narration": "一句話：國會換手，台灣該看關稅、晶片和台海。",
+      "subtitle": { "zh": "一句話：國會換手，台灣該看關稅、晶片和台海。", "en": "In short: Congress flipped. For Taiwan, watch tariffs, chips and the Strait." },
+      "keywords": ["國會換手", "關稅", "晶片", "台海"],
+      "component": "TermCard",
+      "props": { "icon": "scale", "term": "一句話總結", "termEn": "Bottom line", "color": "yellow",
+        "definition": "國會換手不等於政策急轉彎：關稅難退、晶片管制延續、對台支持仍是共識。",
+        "points": ["尚未確定：參院 2 席、眾院最終席次", "新國會 2027 年 1 月才上路"] },
+      "sources": ["綜合本片來源"],
+      "durationSec": 8
+    },
+    {
+      "id": "end",
+      "narration": "白話國際，一支講透一件事。",
+      "subtitle": { "zh": "白話國際，一支講透一件事。", "en": "One video, one topic, explained." },
+      "keywords": [],
+      "component": "EndCard",
+      "props": { "next": "下一集：新國會上路後的第一場預算攻防", "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。" },
+      "sources": []
+    }
+  ]
+}
