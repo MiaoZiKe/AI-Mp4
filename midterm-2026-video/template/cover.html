@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant-TW"><head><meta charset="utf-8"><title>Midterm 2026 Cover</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .cv-title { position:absolute; left:64px; right:64px; top:480px; font-family:var(--serif); font-weight:900; font-size:116px; line-height:1.25; white-space:nowrap; }
+  .cv-sub { position:absolute; left:64px; top:900px; font-size:44px; color:var(--ink-2); }
+  .cv-chart { position:absolute; left:64px; top:990px; }
+  .cv-legend { position:absolute; left:64px; right:64px; top:1385px; display:flex; justify-content:space-between; font-size:34px; }
+  .cv-legend b { font-family:var(--mono); font-size:64px; display:block; }
+  .stamp.breaking { left:640px; top:368px; transform:rotate(-8deg); font-size:46px; }
+</style></head>
+<body><div id="stage">
+  <div id="bg"><div id="paper"></div>
+    <svg id="halftone" width="1400" height="2300"><defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="7" cy="7" r="1.6" fill="#1B2A41"/></pattern></defs><rect width="1400" height="2300" fill="url(#dots)"/></svg>
+    <svg id="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values="0"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg>
+    <div id="vignette"></div></div>
+  <header id="masthead">
+    <div class="brand"><svg class="logo" viewBox="0 0 96 96" id="logo"><rect x="18" y="8" width="66" height="80" rx="8" fill="#1B2A41"/><rect x="26" y="16" width="50" height="64" rx="3" fill="#F4F0E6"/><g fill="none" stroke="#1B2A41" stroke-width="5" stroke-linecap="round"><path d="M12 22h14M12 38h14M12 54h14M12 70h14"/></g><g stroke="#E0B33A" stroke-width="4" stroke-linecap="round"><path d="M35 30h32"/></g><g stroke="#1B2A41" stroke-width="3" stroke-linecap="round" opacity="0.75"><path d="M35 42h32M35 52h24M35 62h28"/></g><path d="M58 70l12-24 5 3-12 24-7 3z" fill="#E0B33A" stroke="#1B2A41" stroke-width="2" stroke-linejoin="round"/></svg>
+      <div class="brand-text"><div class="brand-name">每日財經筆記</div><div class="brand-handle">@daily.finance.notes</div></div></div>
+    <div class="tags"><span class="tag solid">美國政治</span><span class="tag">投資影響</span></div>
+    <div class="banner"><div class="rule thick"></div><div class="banner-row"><span class="banner-side mono">U.S. MIDTERMS 2026</span><span class="banner-title">期中選舉特刊</span><span class="banner-side mono right"><span class="datestamp">資料截至<br>2026/11/04</span></span></div><div class="rule double"></div></div>
+  </header>
+  <div class="stamp breaking">BREAKING</div>
+  <div class="cv-title">期中選舉結果<br>對你有<span class="hl"><i class="mark" style="transform:scaleX(1) skewX(-8deg)"></i>什麼影響</span>？</div>
+  <div class="cv-sub">參議院席次（2 席計票中）</div>
+  <svg class="cv-chart" id="chart" width="952" height="380" viewBox="0 0 952 380"></svg>
+  <div class="cv-legend"><span style="color:#2F5DA8"><b>54</b>民主黨</span><span style="color:#3A4659;text-align:center"><b>2</b>計票中</span><span style="color:#C8423B;text-align:right"><b>44</b>共和黨</span></div>
+</div>
+<script>
+  const svg=document.getElementById('chart'),NS='http://www.w3.org/2000/svg',rows=5,r0=170,r1=350,cx=476,cy=360,total=100;
+  const radii=[...Array(rows)].map((_,i)=>r0+(r1-r0)*i/(rows-1)),sum=radii.reduce((a,b)=>a+b);let fl=radii.map(r=>Math.floor(total*r/sum));
+  let rem=total-fl.reduce((a,b)=>a+b);radii.map((r,i)=>[total*r/sum-fl[i],i]).sort((a,b)=>b[0]-a[0]).slice(0,rem).forEach(([,i])=>fl[i]++);
+  const seats=[];radii.forEach((r,i)=>{for(let j=0;j<fl[i];j++){const th=Math.PI*(1-j/(fl[i]-1));seats.push({th,x:cx+r*Math.cos(th),y:cy-r*Math.sin(th)})}});
+  seats.sort((a,b)=>b.th-a.th);seats.forEach((s,i)=>{const c=document.createElementNS(NS,'circle');c.setAttribute('cx',s.x);c.setAttribute('cy',s.y);c.setAttribute('r',15);c.setAttribute('fill',i<54?'#2F5DA8':i<56?'#A3A7AE':'#C8423B');svg.appendChild(c)});
+  document.fonts.ready.then(()=>window.READY=true);
+</script></body></html>

@@ -1,0 +1,338 @@
+{
+  "meta": {
+    "title": "2026 美國期中選舉結果，對你有什麼影響？",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "dataAsOf": "2026/11/04",
+    "brand": {
+      "name": "每日財經筆記",
+      "handle": "@daily.finance.notes"
+    },
+    "tags": [
+      "美國政治",
+      "投資影響"
+    ],
+    "masthead": "期中選舉特刊",
+    "voice": {
+      "engine": "kokoro (sherpa-onnx)",
+      "speaker": "zm_yunjian",
+      "sid": 49,
+      "speed": 1.08,
+      "requested": "edge-tts zh-TW-YunJheNeural +5%"
+    },
+    "timing": {
+      "leadIn": 0.2,
+      "segmentGap": 0.1,
+      "tail": 0.3,
+      "transition": 0.4
+    },
+    "colors": {
+      "paper": "#F4F0E6",
+      "ink": "#1B2A41",
+      "rep": "#C8423B",
+      "dem": "#2F5DA8",
+      "gold": "#E0B33A"
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "card": "breaking",
+      "headline": "選完了，你的投資會被影響嗎？",
+      "visual": [
+        "簡化美國地圖（各州依序淡入）",
+        "BREAKING 印章",
+        "AK、MS 金黃標示＋計票中印章"
+      ],
+      "estSeconds": 5,
+      "segments": [
+        {
+          "sub": "美國期中選舉結果出爐",
+          "tts": "美國期中選舉結果出爐。"
+        },
+        {
+          "sub": "選完了，你的投資會被影響嗎？",
+          "tts": "選完了，你的投資會被影響嗎？"
+        }
+      ],
+      "seconds": 4.744
+    },
+    {
+      "id": "results",
+      "card": "seats",
+      "headline": "民主黨取得參眾兩院多數",
+      "visual": [
+        "參議院半圓席次圖 100 點",
+        "眾議院半圓席次圖 435 點",
+        "灰點＝計票中",
+        "count-up 席次數字"
+      ],
+      "data": {
+        "senate": {
+          "dem": 54,
+          "rep": 44,
+          "pending": 2,
+          "total": 100,
+          "majority": 51,
+          "pendingNote": "AK、MS 計票中"
+        },
+        "house": {
+          "dem": 235,
+          "rep": 146,
+          "pending": 54,
+          "total": 435,
+          "majority": 218,
+          "note": "已宣布席次（保守下限）"
+        }
+      },
+      "estSeconds": 7,
+      "segments": [
+        {
+          "sub": "參議院 民主黨54席、共和黨44席",
+          "tts": "參議院，民主黨五十四席，共和黨四十四席。"
+        },
+        {
+          "sub": "兩席計票中，眾議院民主黨也過半",
+          "tts": "兩席計票中，眾議院民主黨也過半。"
+        }
+      ],
+      "seconds": 7.188
+    },
+    {
+      "id": "power",
+      "card": "balance",
+      "headline": "分裂政府：總統與國會不同黨",
+      "visual": [
+        "國會大廈線稿",
+        "天平：左盤總統（共和黨）右盤國會（民主黨）",
+        "螢光筆強調「分裂政府」"
+      ],
+      "highlight": "分裂政府",
+      "estSeconds": 5,
+      "segments": [
+        {
+          "sub": "總統屬共和黨，國會由民主黨主導",
+          "tts": "總統屬共和黨，國會由民主黨主導，"
+        },
+        {
+          "sub": "這就是「分裂政府」",
+          "tts": "這就是分裂政府。"
+        }
+      ],
+      "seconds": 5.123
+    },
+    {
+      "id": "policy",
+      "card": "list",
+      "headline": "政策：立法節奏預期放慢",
+      "visual": [
+        "四張政策卡：預算、稅務、關稅、能源",
+        "每張卡附市場普遍預期"
+      ],
+      "items": [
+        {
+          "icon": "budget",
+          "title": "預算",
+          "text": "撥款、債限談判難度升高"
+        },
+        {
+          "icon": "tax",
+          "title": "稅務",
+          "text": "大型稅改不易通過"
+        },
+        {
+          "icon": "tariff",
+          "title": "關稅",
+          "text": "主導權仍在行政部門"
+        },
+        {
+          "icon": "energy",
+          "title": "能源",
+          "text": "綠能條款可能被調整"
+        }
+      ],
+      "estSeconds": 6,
+      "segments": [
+        {
+          "sub": "市場預期立法變慢，大型稅改難推",
+          "tts": "市場預期立法變慢，大型稅改難推，"
+        },
+        {
+          "sub": "但關稅主導權仍在行政部門",
+          "tts": "但關稅主導權，仍在行政部門。"
+        }
+      ],
+      "seconds": 6.751
+    },
+    {
+      "id": "market",
+      "card": "chart",
+      "headline": "市場：殖利率下滑、美元走弱",
+      "visual": [
+        "K 線示意圖（先震盪後回穩）",
+        "殖利率折線示意（stroke-dashoffset 畫出）",
+        "三個方向指標：美股、美債殖利率、美元"
+      ],
+      "indicators": [
+        {
+          "label": "美股",
+          "dir": "flat",
+          "text": "先震盪後回穩"
+        },
+        {
+          "label": "10年期美債殖利率",
+          "dir": "down",
+          "text": "下滑"
+        },
+        {
+          "label": "美元",
+          "dir": "down",
+          "text": "走弱"
+        }
+      ],
+      "note": "選後首個交易日（11/4）盤中初步走勢，示意圖非實際報價",
+      "estSeconds": 6,
+      "segments": [
+        {
+          "sub": "選後首日，美債殖利率下滑",
+          "tts": "選後首日，美債殖利率下滑，"
+        },
+        {
+          "sub": "美元走弱，美股先震盪後回穩",
+          "tts": "美元走弱，美股先震盪，後回穩。"
+        }
+      ],
+      "seconds": 5.537
+    },
+    {
+      "id": "industry",
+      "card": "trio",
+      "headline": "產業：AI、晶片、能源",
+      "visual": [
+        "晶片圖示",
+        "資料中心伺服器圖示",
+        "能源（太陽能板＋閃電）圖示"
+      ],
+      "items": [
+        {
+          "icon": "server",
+          "title": "AI／資料中心",
+          "text": "擔心監管審查增加"
+        },
+        {
+          "icon": "chip",
+          "title": "半導體",
+          "text": "出口管制屬兩黨共識"
+        },
+        {
+          "icon": "solar",
+          "title": "能源",
+          "text": "綠能條款可能被調整"
+        }
+      ],
+      "estSeconds": 6,
+      "segments": [
+        {
+          "sub": "AI股擔心資料中心監管增加",
+          "tts": "AI 股擔心資料中心監管增加，"
+        },
+        {
+          "sub": "晶片出口管制則是兩黨共識",
+          "tts": "晶片出口管制，則是兩黨共識。"
+        }
+      ],
+      "seconds": 5.886
+    },
+    {
+      "id": "taiwan",
+      "card": "taiwan",
+      "headline": "台灣：對台政策預期延續",
+      "visual": [
+        "台灣輪廓",
+        "台股加權指數 count-up 42,948.91",
+        "跌點 −358.63（−0.83%）"
+      ],
+      "highlight": "預期延續",
+      "data": {
+        "taiex": 42948.91,
+        "change": -358.63,
+        "pct": -0.83,
+        "date": "2026/11/04"
+      },
+      "estSeconds": 8,
+      "segments": [
+        {
+          "sub": "兩黨對台灣的支持度都高",
+          "tts": "兩黨對台灣的支持度都高，"
+        },
+        {
+          "sub": "半導體關稅仍看行政部門",
+          "tts": "半導體關稅，仍看行政部門。"
+        },
+        {
+          "sub": "台股4日收跌0.83%",
+          "tts": "台股四日收跌百分之零點八三。"
+        }
+      ],
+      "seconds": 7.92
+    },
+    {
+      "id": "history",
+      "card": "stat",
+      "headline": "歷史：選後一年美股表現",
+      "visual": [
+        "巨大 count-up 數字 +16.6%",
+        "19 個圓點依序點亮（19/19 次上漲）",
+        "來源標註 BNY、TradingView、Deutsche Bank"
+      ],
+      "highlight": "+16.6%",
+      "data": {
+        "avg": 16.6,
+        "up": 19,
+        "total": 19,
+        "since": 1950,
+        "source": "BNY Investments、TradingView（Benzinga）、Deutsche Bank"
+      },
+      "estSeconds": 8,
+      "segments": [
+        {
+          "sub": "1950年以來，期中選舉後一年",
+          "tts": "一九五零年以來，期中選舉後一年，"
+        },
+        {
+          "sub": "標普500平均漲約16.6%",
+          "tts": "標普指數平均漲約百分之十六點六，"
+        },
+        {
+          "sub": "19次都上漲，但不代表未來",
+          "tts": "十九次都上漲，但不代表未來。"
+        }
+      ],
+      "seconds": 9.548
+    },
+    {
+      "id": "outro",
+      "card": "summary",
+      "headline": "國會換手，政策步調變慢",
+      "visual": [
+        "一句話總結卡",
+        "筆記本 logo",
+        "追蹤 CTA"
+      ],
+      "highlight": "政策步調變慢",
+      "estSeconds": 6,
+      "segments": [
+        {
+          "sub": "總結：國會換手，政策步調變慢",
+          "tts": "總結：國會換手，政策步調變慢。"
+        },
+        {
+          "sub": "追蹤 @daily.finance.notes 看更多",
+          "tts": "追蹤每日財經筆記，看更多。"
+        }
+      ],
+      "seconds": 6.181
+    }
+  ]
+}

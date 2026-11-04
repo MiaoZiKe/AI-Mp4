@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>Midterm 2026 Video Template</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- background: paper + feTurbulence grain + halftone -->
+  <div id="bg">
+    <div id="paper"></div>
+    <svg id="halftone" width="1400" height="2300" viewBox="0 0 1400 2300">
+      <defs>
+        <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <circle cx="7" cy="7" r="1.6" fill="#1B2A41"/>
+        </pattern>
+        <radialGradient id="htfade" cx="0.75" cy="0.2" r="0.9">
+          <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0.15"/>
+        </radialGradient>
+        <mask id="htmask"><rect width="1400" height="2300" fill="url(#htfade)"/></mask>
+      </defs>
+      <rect width="1400" height="2300" fill="url(#dots)" mask="url(#htmask)"/>
+    </svg>
+    <svg id="grain" width="1080" height="1920" viewBox="0 0 1080 1920">
+      <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <filter id="paperFiber" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.09" numOctaves="2" seed="3"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="1080" height="1920" filter="url(#paperNoise)"/>
+      <rect width="1080" height="1920" filter="url(#paperFiber)" opacity="0.6"/>
+    </svg>
+    <div id="vignette"></div>
+  </div>
+
+  <!-- masthead -->
+  <header id="masthead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 96 96" aria-label="每日財經筆記 logo">
+        <rect x="18" y="8" width="66" height="80" rx="8" fill="#1B2A41"/>
+        <rect x="26" y="16" width="50" height="64" rx="3" fill="#F4F0E6"/>
+        <g fill="none" stroke="#1B2A41" stroke-width="5" stroke-linecap="round">
+          <path d="M12 22h14M12 38h14M12 54h14M12 70h14"/>
+        </g>
+        <g stroke="#E0B33A" stroke-width="4" stroke-linecap="round"><path d="M35 30h32"/></g>
+        <g stroke="#1B2A41" stroke-width="3" stroke-linecap="round" opacity="0.75"><path d="M35 42h32M35 52h24M35 62h28"/></g>
+        <path d="M58 70l12-24 5 3-12 24-7 3z" fill="#E0B33A" stroke="#1B2A41" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-text">
+        <div class="brand-name">每日財經筆記</div>
+        <div class="brand-handle">@daily.finance.notes</div>
+      </div>
+    </div>
+    <div class="tags" id="tags"></div>
+    <div class="banner">
+      <div class="rule thick"></div>
+      <div class="banner-row">
+        <span class="banner-side mono">U.S. MIDTERMS 2026</span>
+        <span class="banner-title" id="mastTitle"></span>
+        <span class="banner-side mono right" id="dateStamp"></span>
+      </div>
+      <div class="rule double"></div>
+    </div>
+  </header>
+
+  <main id="scenes"></main>
+
+  <div id="subtitle"><div class="sub-inner"><span id="subText"></span></div></div>
+</div>
+<script src="vendor/gsap.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
