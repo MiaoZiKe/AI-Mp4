@@ -132,7 +132,7 @@ const glowTex = canvasTex(64, 256, (g, w, h) => {
 const columns = [];
 for (let i = 0; i < 9; i++) {
   const m = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 9), new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.35 }));
-  m.position.set(i * 6, 4.5, -4.2); scene.add(m); columns.push(m);
+  m.position.set(i * 3.6, 4.5, -4.2); scene.add(m); columns.push(m);
 }
 
 // drifting dust
@@ -162,6 +162,7 @@ function mesh(geo, mat, x = 0, y = 0, z = 0, parent) {
   const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true;
   if (parent) parent.add(m); return m;
 }
+const SP = 3.6;   // station spacing: neighbours stay in frame during the 0.5 s camera move
 const stations = {};
 function station(id, x) {
   const root = new THREE.Group(); root.position.set(x, 0, 0); scene.add(root);
@@ -206,7 +207,6 @@ function poseHemi(h, dem, rep, k, hBase, hRow) {
 }
 
 // ───────────────────────────────────────── the eight (+ intro) sculptures
-const SP = 6;
 const font = new FontLoader().parse(fontJSON);
 
 { // hook — "2026" monument + eight pillars
@@ -372,7 +372,7 @@ function update(t, f) {
   // each sculpture rises out of its plinth at the start of its segment (hook is visible from frame 0)
   SEGS.forEach(s => {
     const st = stations[STATION_OF[s.id]]; if (!st) return;
-    const k = s.id === 'hook' ? 1 : prog(t, s.start + 0.2, 0.65);
+    const k = s.id === 'hook' ? 1 : prog(t, s.start - 0.15, 0.6);
     st.inner.scale.setScalar(Math.max(0.001, backOut(k)));
     st.inner.position.y = (1 - easeOut(k)) * -0.2;
     const ci = Object.keys(STATION_OF).indexOf(s.id);
@@ -384,8 +384,8 @@ function update(t, f) {
     st.txt.position.y = 0.9 + Math.sin(t * 1.4) * 0.03; st.txt.rotation.y = Math.sin(t * 0.7) * 0.12;
     st.pillars.forEach((m, i) => { const k = backOut(prog(t, 0.3 + i * 0.12, 0.5)); const h = Math.max(0.001, (0.35 + i * 0.05) * k); m.scale.y = h; m.position.y = h / 2; });
   }
-  { const s = segAt('senate'); poseHemi(stations.senate.hemi, 54, 44, prog(t, s.start + 0.55, 1.7), 0.16, 0.05); }
-  { const s = segAt('house'); poseHemi(stations.house.hemi, 228, 139, prog(t, s.start + 0.55, 1.9), 0.06, 0.018); }
+  { const s = segAt('senate'); poseHemi(stations.senate.hemi, 54, 44, prog(t, s.start + 0.25, 1.8), 0.16, 0.05); }
+  { const s = segAt('house'); poseHemi(stations.house.hemi, 228, 139, prog(t, s.start + 0.25, 2.0), 0.06, 0.018); }
   { const st = stations.divided, s = segAt('divided');
     const k = easeOut(prog(t, s.start + 0.9, 1.0));
     st.L.position.x = -0.44 - 0.08 * k; st.R.position.x = 0.44 + 0.08 * k;

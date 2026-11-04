@@ -81,15 +81,14 @@ export function setupOverlay(SEGS, META, tl) {
   const master = gsap.timeline({ paused: true });
   SEGS.forEach((s, i) => {
     const ui = segUI[i];
-    const inAt = i === 0 ? 0.0 : s.start - 0.05;
-    const outAt = i < SEGS.length - 1 ? SEGS[i + 1].start - 0.18 : 1e6;
-    master.fromTo(ui.head, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: 'power3.out', immediateRender: false }, inAt);
+    const outAt = i < SEGS.length - 1 ? SEGS[i + 1].start - 0.26 : 1e6;   // old heading is gone before the new one enters
+    master.fromTo(ui.head, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 0.45, ease: 'power3.out', immediateRender: false }, i === 0 ? 0 : s.start - 0.04);
     master.fromTo(ui.panel, { autoAlpha: 0, y: 40, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.6)', immediateRender: false }, s.start + 0.3);
     const u = ui.panel.querySelector('.u');
     if (u) master.fromTo(u, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: 'power3.out', immediateRender: false }, (s.countEnd ?? s.start + 1) - 0.2);
     if (i < SEGS.length - 1) {
-      master.to(ui.head, { autoAlpha: 0, x: 30, duration: 0.2, ease: 'power2.in' }, outAt);
-      master.to(ui.panel, { autoAlpha: 0, y: -24, duration: 0.2, ease: 'power2.in' }, outAt);
+      master.to(ui.head, { autoAlpha: 0, x: 30, duration: 0.18, ease: 'power2.in' }, outAt);
+      master.to(ui.panel, { autoAlpha: 0, y: -24, duration: 0.2, ease: 'power2.in' }, outAt + 0.06);
     }
     s.chunks.forEach((c, k) => {
       const d = ui.subs[k];
