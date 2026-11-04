@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Midterm Editorial</title>
+<style>
+@font-face{font-family:"NSerif";src:url(fonts/NotoSerifTC-900.ttf);font-weight:900}
+@font-face{font-family:"NSans";src:url(fonts/NotoSansTC-500.ttf);font-weight:500}
+@font-face{font-family:"NSans";src:url(fonts/NotoSansTC-700.ttf);font-weight:700}
+@font-face{font-family:"JBM";src:url(fonts/JetBrainsMono-Medium.ttf);font-weight:500}
+@font-face{font-family:"JBM";src:url(fonts/JetBrainsMono-Bold.ttf);font-weight:700}
+:root{
+  --bg:#111214; --ink:#EDE8DF; --mute:#8A8A8A; --gold:#E3B341;
+  --red:#C8574F; --blue:#4F72B8; --line:rgba(237,232,223,.055);
+  --M:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+body{font-family:"NSans",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--bg)}
+#grid{position:absolute;left:-80px;top:-80px;width:1240px;height:2080px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:40px 40px}
+#grid2{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px;
+  background-image:linear-gradient(rgba(237,232,223,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(237,232,223,.035) 1px,transparent 1px);
+  background-size:200px 200px}
+#vignette{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+#noise{position:absolute;inset:0;opacity:.07;mix-blend-mode:screen;background-size:256px 256px}
+/* chrome */
+#brand{position:absolute;left:var(--M);top:58px;display:flex;align-items:center;gap:18px}
+#brand .mark{width:46px;height:46px;border:2px solid var(--gold);display:grid;place-items:center;
+  font-family:"NSerif";font-weight:900;color:var(--gold);font-size:24px;line-height:1}
+#brand .n{font-weight:700;font-size:30px;letter-spacing:.04em;line-height:1.1}
+#brand .h{font-family:"JBM";font-weight:500;font-size:19px;color:var(--mute);letter-spacing:.02em;margin-top:4px}
+#tagrow{position:absolute;left:var(--M);right:var(--M);top:146px;display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(237,232,223,.16);padding-top:16px}
+#tag{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:700;letter-spacing:.08em}
+#tag i{display:block;width:10px;height:10px;background:var(--gold)}
+#tag .d{font-family:"JBM";font-weight:500;color:var(--mute);letter-spacing:.04em;font-size:22px}
+#asof{font-family:"JBM";font-size:20px;color:var(--mute);letter-spacing:.02em}
+.pnum{position:absolute;right:var(--M);top:52px;font-family:"JBM";font-weight:700;font-size:44px;letter-spacing:.02em;text-align:right;line-height:1}
+.pnum b{color:var(--gold);font-weight:700}
+.pnum span{color:var(--mute);font-size:30px}
+.pnum small{display:block;font-size:16px;color:var(--mute);letter-spacing:.2em;margin-top:8px;font-weight:500}
+/* page */
+.page{position:absolute;inset:0;will-change:transform,opacity}
+.title{position:absolute;left:var(--M);right:var(--M);top:228px;font-family:"NSerif";font-weight:900;font-size:112px;line-height:1.08;letter-spacing:.01em;white-space:nowrap}
+.title .ch{display:inline-block}
+.title .num{font-family:"JBM";font-weight:700;color:var(--gold);font-size:.9em}
+.desc{position:absolute;left:var(--M);right:var(--M);top:370px;font-size:33px;font-weight:500;line-height:1.5;color:#CFCAC1}
+.desc div{white-space:nowrap;width:max-content}
+.desc .rule{width:72px;height:4px;background:var(--gold);margin-bottom:18px}
+.cover .title{top:250px;font-size:150px;line-height:1.12;white-space:normal}
+.cover .desc{top:620px}
+.illu{position:absolute;left:var(--M);width:952px;top:520px;height:660px}
+.cover .illu{top:760px;height:520px}
+.illu svg{width:100%;height:100%;overflow:visible}
+.kpis{position:absolute;left:var(--M);right:var(--M);top:1196px;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.kpi{padding:22px 18px 0 22px;border-left:1px solid rgba(237,232,223,.18);min-height:200px}
+.kpi:first-child{border-left:none;padding-left:0}
+.kpi .v,.kpi .l{width:max-content}
+.kpi .v{font-family:"JBM";font-weight:700;font-size:74px;color:var(--gold);line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.kpi .v .ps{font-size:.62em;letter-spacing:0}
+.kpi .v .cj{font-family:"NSans";font-weight:700;font-size:.78em}
+.kpi .l{margin-top:16px;font-size:24px;color:var(--mute);font-weight:500;line-height:1.35;white-space:nowrap}
+.kpi .bar{height:3px;background:var(--gold);width:0;margin-top:14px;opacity:.85}
+.cover .kpis{top:1280px}
+/* subtitles */
+#subband{position:absolute;left:0;right:0;top:1468px;height:232px;
+  background:linear-gradient(180deg,rgba(10,10,11,0) 0,rgba(10,10,11,.92) 28px,rgba(10,10,11,.96) 100%);
+  border-top:1px solid rgba(227,179,65,.0)}
+#subband .hair{position:absolute;left:var(--M);right:var(--M);top:26px;height:1px;background:rgba(237,232,223,.12)}
+#subband .hair b{position:absolute;left:0;top:-1px;height:3px;background:var(--gold);width:0}
+.sub{position:absolute;left:var(--M);right:var(--M);top:62px;text-align:center}
+.sub .zh,.sub .en{width:max-content;margin-left:auto;margin-right:auto}
+.sub .zh{font-weight:700;font-size:54px;line-height:1.25;white-space:nowrap;letter-spacing:.02em}
+.sub .zh .k{color:var(--ink);display:inline-block}
+.sub .en{margin-top:14px;font-size:26px;color:var(--mute);font-weight:500;letter-spacing:.02em;white-space:nowrap}
+#foot{position:absolute;left:var(--M);right:var(--M);top:1716px;display:flex;justify-content:space-between;font-family:"JBM";font-size:17px;color:#8A8A8A;letter-spacing:.06em}
+</style>
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+</head>
+<body>
+<div id="stage">
+  <div id="grid2"></div><div id="grid"></div><div id="noise"></div><div id="vignette"></div>
+  <div id="brand"><div class="mark">財</div><div><div class="n">每日財經筆記</div><div class="h">@daily.finance.notes</div></div></div>
+  <div id="tagrow"><div id="tag"><i></i><span>美國期中選舉 選後解析</span><span class="d">2026.11.04</span></div><div id="asof"></div></div>
+  <div id="pages"></div>
+  <div id="subband"><div class="hair"><b></b></div><div id="subs"></div></div>
+  <div id="foot"><span>SOURCES · AP / NBC / CBS / CNBC / CNN / CRS</span><span>NOT INVESTMENT ADVICE</span></div>
+</div>
+<script>
+const SVGNS="http://www.w3.org/2000/svg";
+const GOLD="#E3B341", INK="#EDE8DF", MUTE="#8A8A8A";
+const PARTY={D:{top:"#4F72B8",l:"#3B568C",r:"#2E436D"},R:{top:"#C8574F",l:"#9A433D",r:"#77342F"},
+  N:{top:"#3A3936",l:"#2A2927",r:"#201F1E"},G:{top:"#3B331F",l:"#2B2517",r:"#211C12"}};
+const C30=Math.cos(Math.PI/6);
+const iso=(x,y,z=0)=>[(x-y)*C30,(x+y)*0.5-z];
+const P=pts=>pts.map(p=>iso(...p).map(v=>v.toFixed(2)).join(",")).join(" ");
+function el(tag,attrs={},parent){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function h(tag,cls,html,parent){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;if(parent)parent.appendChild(e);return e}
+
+/* iso box: returns group with faces; x,y,z world; w(d x) d(d y) hgt */
+function box(g,x,y,z,w,d,hh,col,opt={}){
+  const grp=el("g",{class:"box"},g);
+  const sw=opt.sw??1.6, so=opt.so??1, stroke=opt.stroke??GOLD;
+  const faces=[
+    ["l",[[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+hh],[x,y+d,z+hh]]],
+    ["r",[[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+hh],[x+w,y,z+hh]]],
+    ["top",[[x,y,z+hh],[x+w,y,z+hh],[x+w,y+d,z+hh],[x,y+d,z+hh]]]];
+  grp._faces={};
+  for(const [k,pts] of faces){
+    const f=el("polygon",{points:P(pts),fill:col[k],stroke,"stroke-width":sw,"stroke-opacity":so,"stroke-linejoin":"round",pathLength:1},grp);
+    grp._faces[k]=f;
+  }
+  grp._depth=x+y+z+ (w+d)/2;
+  return grp;
+}
+function sortDepth(g){[...g.children].sort((a,b)=>(a._depth??0)-(b._depth??0)).forEach(c=>g.appendChild(c))}
+function line(g,pts,attrs={}){return el("polyline",Object.assign({points:P(pts),fill:"none",stroke:GOLD,"stroke-width":2,pathLength:1,"stroke-linecap":"round","stroke-linejoin":"round"},attrs),g)}
+function svgRoot(parent,vb="-476 -360 952 660"){const s=el("svg",{viewBox:vb,preserveAspectRatio:"xMidYMid meet"});parent.appendChild(s);const f=el("g",{class:"float"},s);return [s,f]}
+function label(g,x,y,z,text,opt={}){const [sx,sy]=iso(x,y,z);const t=el("text",{x:sx,y:sy,fill:opt.fill||INK,"font-family":opt.font||"NSans","font-weight":opt.w||700,"font-size":opt.size||22,"text-anchor":opt.anchor||"middle","letter-spacing":".04em"},g);t.textContent=text;return t}
+
+/* ---------- drawing helpers for animation ---------- */
+function drawIn(tl,nodes,t0,dur=0.9,stagger=0.07){
+  nodes=[].concat(nodes);
+  tl.fromTo(nodes,{attr:{"stroke-dasharray":"1 1","stroke-dashoffset":1}},{attr:{"stroke-dashoffset":0},duration:dur,ease:"power3.out",stagger},t0);
+}
+function riseIn(tl,groups,t0,{dur=0.55,stagger=0.08,dy=46,each}={}){
+  groups=[].concat(groups);
+  tl.fromTo(groups,{opacity:0,y:dy},{opacity:1,y:0,duration:dur,ease:"expo.out",stagger:each?{each}:stagger},t0);
+}
+
+/* ---------- visuals ---------- */
+const VIS={};
+VIS.capitol=(root,tl,t0,page)=>{
+  const [s,g]=svgRoot(root,"-476 -420 952 640");
+  const parts=[];
+  // stepped plinth
+  parts.push(box(g,-230,-150,0,460,300,22,PARTY.G));
+  parts.push(box(g,-200,-120,22,400,240,22,PARTY.G));
+  parts.push(box(g,-170,-90,44,340,180,18,PARTY.N));
+  // colonnade
+  const cols=[];
+  for(let i=0;i<8;i++){const x=-150+i*40;cols.push(box(g,x,72,62,14,14,96,PARTY.N,{sw:1.3}))}
+  for(let i=0;i<5;i++){const y=-70+i*34;cols.push(box(g,152,y,62,14,14,96,PARTY.N,{sw:1.3}))}
+  // entablature
+  const ent=box(g,-170,-90,158,340,180,20,PARTY.G);
+  // drum + dome
+  const drum=box(g,-62,-62,178,124,124,58,PARTY.N);
+  sortDepth(g);
+  const dg=el("g",{},g);
+  const cx=0,cy=0,zb=236;
+  const ring=(r,z)=>{const pts=[];for(let a=0;a<=360;a+=10){const t=a*Math.PI/180;pts.push([cx+r*Math.cos(t),cy+r*Math.sin(t),z])}return pts};
+  const domeLines=[];
+  for(let k=0;k<6;k++){const r=78*Math.cos(k*Math.PI/12),z=zb+78*Math.sin(k*Math.PI/12)*1.15;domeLines.push(line(dg,ring(r,z),{"stroke-width":k?1.4:2.2,opacity:k?.8:1}))}
+  for(let m=0;m<12;m++){const a=m*Math.PI/6,pts=[];for(let k=0;k<=12;k++){const ph=k*Math.PI/24;pts.push([78*Math.cos(ph)*Math.cos(a),78*Math.cos(ph)*Math.sin(a),zb+78*Math.sin(ph)*1.15])}domeLines.push(line(dg,pts,{"stroke-width":1.1,opacity:.55}))}
+  const lantern=box(dg,-10,-10,zb+86,20,20,34,PARTY.G,{sw:1.4});
+  const spire=line(dg,[[0,0,zb+120],[0,0,zb+160]],{"stroke-width":2.4});
+  const plinth=parts, all=[...plinth,...cols,ent,drum];
+  riseIn(tl,plinth,t0,{stagger:0.08});
+  riseIn(tl,cols,t0+0.18,{each:0.04,dy:30});
+  riseIn(tl,[ent,drum],t0+0.6,{stagger:0.08});
+  drawIn(tl,all.flatMap(b=>Object.values(b._faces)),t0+0.05,1.1,0.004);
+  drawIn(tl,domeLines,t0+0.75,1.0,0.03);
+  riseIn(tl,[lantern],t0+1.1);drawIn(tl,[spire],t0+1.2,0.5);
+  // ground shadow ellipse
+  return {};
+};
+function hemicycle(root,tl,t0,{N,D,R,size,r0,r1,rows,cueT,label:lab}){
+  const [s,g]=svgRoot(root,"-476 -250 952 640");
+  // compute seats per row proportional to radius
+  const radii=[...Array(rows)].map((_,i)=>r0+(r1-r0)*i/(rows-1));
+  const tot=radii.reduce((a,b)=>a+b,0);
+  let counts=radii.map(r=>Math.round(N*r/tot));let diff=N-counts.reduce((a,b)=>a+b,0);counts[rows-1]+=diff;
+  const seats=[];
+  radii.forEach((r,ri)=>{const n=counts[ri];for(let k=0;k<n;k++){const th=Math.PI*(n===1?0.5:k/(n-1));seats.push({r,ri,th})}});
+  seats.sort((a,b)=>b.th-a.th||a.r-b.r);   // left (th=pi) -> right
+  const U=[Math.SQRT1_2,-Math.SQRT1_2],V=[Math.SQRT1_2,Math.SQRT1_2];
+  const boxes=seats.map((st,i)=>{
+    const u=st.r*Math.cos(st.th), v=-st.r*Math.sin(st.th)*0.92+40;
+    const x=u*U[0]+v*V[0], y=u*U[1]+v*V[1];
+    const b=box(g,x-size/2,y-size/2,0,size,size,size*0.9,PARTY.N,{sw:size>16?1.1:0.7,so:.55});
+    b._seat=st;b._i=i;return b});
+  sortDepth(g);
+  // assign party by angle order
+  const party=boxes.map((b,i)=>i<D?"D":(i>=N-R?"R":"P"));
+  // floor arc
+  const arc=[];for(let a=0;a<=180;a+=6){const t=a*Math.PI/180;const rr=r1+size*1.4;const u=rr*Math.cos(t),v=-rr*Math.sin(t)*0.92+40;arc.push([u*U[0]+v*V[0],u*U[1]+v*V[1],0])}
+  const floor=line(g,arc,{"stroke-width":1.4,opacity:.6});g.insertBefore(floor,g.firstChild);
+  drawIn(tl,floor,t0,1.2);
+  // rise inner->outer rows (bottom-up feel)
+  const byRow=[...boxes].sort((a,b)=>a._seat.ri-b._seat.ri||b._seat.th-a._seat.th);
+  riseIn(tl,byRow,t0+0.05,{dur:0.45,dy:24,each:Math.min(0.012,0.7/N)});
+  // fill at cue: D sweeps from left, R from right, pending gets gold outline
+  boxes.forEach((b,i)=>{
+    const p=party[i]; const c=p==="D"?PARTY.D:p==="R"?PARTY.R:PARTY.N;
+    const order=p==="D"?i:p==="R"?(N-1-i):0;
+    const at=cueT+ (p==="P"?0.55:order*Math.min(0.012,0.9/Math.max(D,R)));
+    tl.to(b._faces.top,{attr:{fill:c.top},duration:0.35,ease:"power3.out"},at);
+    tl.to(b._faces.l,{attr:{fill:c.l},duration:0.35,ease:"power3.out"},at);
+    tl.to(b._faces.r,{attr:{fill:c.r},duration:0.35,ease:"power3.out"},at);
+    if(p==="P") tl.to(Object.values(b._faces),{attr:{"stroke-opacity":1,stroke:GOLD},duration:.3,ease:"power3.out"},at);
+  });
+  // legend
+  const lg=el("g",{},s);
+  const items=[["D",PARTY.D.top,lab.D],["P","#3A3936",lab.P],["R",PARTY.R.top,lab.R]].filter(x=>x[2]);
+  items.forEach((it,k)=>{const x=-330+k*250,y=345;const outer=el("g",{transform:`translate(${x},${y})`},lg);const gg=el("g",{class:"lgi"},outer);
+    el("rect",{x:0,y:-16,width:20,height:20,fill:it[1],stroke:it[0]==="P"?GOLD:"none","stroke-width":1.5},gg);
+    const t=el("text",{x:32,y:0,fill:"#CFCAC1","font-family":"NSans","font-weight":500,"font-size":24},gg);t.textContent=it[2]});
+  riseIn(tl,[...lg.querySelectorAll(".lgi")],cueT+0.2,{stagger:0.08,dy:16});
+  return {};
+}
+VIS.senate=(root,tl,t0,page,cue)=>hemicycle(root,tl,t0,{N:100,D:54,R:44,size:21,r0:150,r1:360,rows:5,cueT:cue.seats,label:{D:"民主黨 54",P:"計票中 2",R:"共和黨 44"}});
+VIS.house=(root,tl,t0,page,cue)=>hemicycle(root,tl,t0,{N:435,D:218,R:0,size:11,r0:118,r1:372,rows:11,cueT:cue.seats,label:{D:"民主黨 已確定 218",P:"其他／計票中 217"}});
+VIS.balance=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -380 952 640");
+  const base=[box(g,-90,-90,0,180,180,26,PARTY.G),box(g,-26,-26,26,52,52,250,PARTY.N)];
+  sortDepth(g);
+  // beam group in screen space (2D rotate around pivot)
+  const [px,py]=iso(0,0,290);
+  const beam=el("g",{},s);
+  el("circle",{cx:px,cy:py,r:12,fill:"#111214",stroke:GOLD,"stroke-width":2.5},beam);
+  const beamLine=el("line",{x1:px-300,y1:py,x2:px+300,y2:py,stroke:GOLD,"stroke-width":5,"stroke-linecap":"round",pathLength:1},beam);
+  const pans=[];
+  [[-300,"R","白宮","共和黨",1],[300,"D","國會","民主黨",2]].forEach(([dx,p,a,b,n])=>{
+    const pg=el("g",{},beam);
+    const cx=px+dx, top=py;
+    const ropes=[el("line",{x1:cx,y1:top,x2:cx-80,y2:top+150,stroke:GOLD,"stroke-width":1.6,pathLength:1},pg),el("line",{x1:cx,y1:top,x2:cx+80,y2:top+150,stroke:GOLD,"stroke-width":1.6,pathLength:1},pg)];
+    const dish=el("path",{d:`M${cx-110},${top+150} Q${cx},${top+205} ${cx+110},${top+150} Z`,fill:"#1A1918",stroke:GOLD,"stroke-width":2,pathLength:1},pg);
+    // blocks on pan: draw iso boxes translated
+    const bg=el("g",{transform:`translate(${cx},${top+150})`},pg);
+    const blocks=[];
+    for(let k=0;k<n;k++){const off=n===1?0:(k===0?-34:34);
+      const bb=box(bg,-26+off*0.0,-26,0,52,52,52,PARTY[p],{sw:1.4});
+      bb.setAttribute("transform",`translate(${n===1?0:(k?38:-38)},${-0})`);blocks.push(bb)}
+    const t1=el("text",{x:cx,y:top+250,fill:INK,"font-family":"NSans","font-weight":700,"font-size":30,"text-anchor":"middle"},pg);t1.textContent=a;
+    const t2=el("text",{x:cx,y:top+286,fill:p==="D"?"#8FA6D6":"#E09A94","font-family":"NSans","font-weight":500,"font-size":24,"text-anchor":"middle"},pg);t2.textContent=b;
+    pans.push({pg,ropes,dish,blocks,txt:[t1,t2]});
+  });
+  riseIn(tl,base,t0,{stagger:0.09});
+  drawIn(tl,base.flatMap(b=>Object.values(b._faces)),t0+0.05,0.9,0.02);
+  drawIn(tl,beamLine,t0+0.25,0.8);
+  pans.forEach((pp,k)=>{drawIn(tl,[...pp.ropes,pp.dish],t0+0.35+k*0.08,0.8,0.06);riseIn(tl,pp.blocks,t0+0.55+k*0.08,{stagger:0.08});riseIn(tl,pp.txt,t0+0.6+k*0.08,{stagger:0.06,dy:14})});
+  // tilt at cue: board (Congress) side heavier
+  gsap.set(beam,{svgOrigin:`${px} ${py}`});
+  tl.to(beam,{rotation:7,svgOrigin:`${px} ${py}`,duration:1.1,ease:"expo.out"},cue.tilt);
+  pans.forEach(pp=>tl.to(pp.pg,{rotation:-7,svgOrigin:`${px+(pp===pans[0]?-300:300)} ${py}`,duration:1.1,ease:"expo.out"},cue.tilt));
+  return {};
+};
+VIS.taxstack=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -420 952 640");
+  const sheets=[];
+  const stacks=[[-330,-150,9],[-170,-150,13],[-330,40,6]];
+  stacks.forEach(([x,y,n],si)=>{for(let k=0;k<n;k++){const b=box(g,x+(k%2)*3,y-(k%3)*2,k*13,120,160,9,k===n-1?PARTY.G:PARTY.N,{sw:1.1});b._depth=x+y+k*13;sheets.push(b)}});
+  const cal=box(g,40,-60,0,200,200,110,PARTY.G,{sw:1.8});cal._depth=1e6;
+  sortDepth(g);
+  const lines=[];
+  stacks.forEach(([x,y,n])=>{const z=(n-1)*13+9;for(let r=0;r<4;r++)lines.push(line(g,[[x+18,y+30+r*28,z],[x+100,y+30+r*28,z]],{"stroke-width":1.4,opacity:.8}))});
+  // calendar face: text laid on top plane via matrix (iso top-face transform)
+  const [ox,oy]=iso(140,40,110);
+  const ct=el("text",{x:0,y:0,fill:GOLD,"font-family":"JBM","font-weight":700,"font-size":64,"text-anchor":"middle","dominant-baseline":"middle",
+    transform:`matrix(${C30} ${-0.5} ${C30} ${0.5} ${ox} ${oy})`},g);ct.textContent="12/11";
+  const ring=line(g,[[60,-40,110],[60,120,110]],{"stroke-width":3});
+  riseIn(tl,sheets,t0,{each:0.035,dy:40});
+  drawIn(tl,lines,t0+0.9,0.7,0.03);
+  riseIn(tl,[cal],cue.stack+0.5,{dy:60});
+  drawIn(tl,Object.values(cal._faces),cue.stack+0.5,0.9,0.05);
+  riseIn(tl,[ct,ring],cue.stack+0.8,{stagger:0.08,dy:20});
+  return {};
+};
+VIS.containers=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -400 952 640");
+  const L=240,W=96,H=92; const cs=[];
+  const layout=[[-260,-110,0],[-260,-10,0],[-260,90,0],[0,-110,0],[0,-10,0],[0,90,0],[-260,-110,1],[-260,-10,1],[0,-10,1],[-130,-110,2]];
+  layout.forEach(([x,y,lv],i)=>{const tone=(i===3||i===8)?PARTY.G:PARTY.N;const b=box(g,x,y,lv*H,L,W,H,tone,{sw:1.6});
+    for(let k=1;k<10;k++){const xx=x+k*L/10;line(b,[[xx,y+W,lv*H+8],[xx,y+W,lv*H+H-8]],{"stroke-width":1,opacity:.5})}
+    for(let k=1;k<4;k++){const yy=y+k*W/4;line(b,[[x+L,yy,lv*H+8],[x+L,yy,lv*H+H-8]],{"stroke-width":1,opacity:.5})}
+    b._depth=x+y+lv*H*2; b._lv=lv; cs.push(b)});
+  sortDepth(g);
+  const hook=line(g,[[-10,-60,3*H+80],[-10,-60,3*H+10]],{"stroke-width":2});
+  const order=[...cs].sort((a,b)=>a._lv-b._lv||a._depth-b._depth);
+  riseIn(tl,order,t0,{stagger:0.08,dy:60});
+  drawIn(tl,order.flatMap(b=>[...b.querySelectorAll("polygon,polyline")]),t0+0.05,1.0,0.004);
+  drawIn(tl,hook,cue.stack+0.3,0.8);
+  return {};
+};
+VIS.chips=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -380 952 640");
+  const sub=box(g,-210,-210,0,420,420,22,PARTY.N,{sw:1.8});
+  const pins=[];
+  for(let k=0;k<12;k++){const t=-180+k*32;
+    pins.push(box(g,t,214,4,12,26,6,PARTY.G,{sw:1}));pins.push(box(g,214,t,4,26,12,6,PARTY.G,{sw:1}))}
+  const die=box(g,-150,-60,22,170,170,26,PARTY.G,{sw:1.8});
+  const hbm=[];for(let k=0;k<8;k++){hbm.push(box(g,60,-150,22+k*18,100,120,16,k%2?PARTY.N:PARTY.G,{sw:1.3}))}
+  hbm.forEach((b,k)=>b._depth=900+k);die._depth=500;sub._depth=-100;
+  sortDepth(g);
+  // traces on die
+  const traces=[];for(let r=0;r<4;r++)traces.push(line(g,[[-130,-40+r*36,48],[-10,-40+r*36,48],[-10,-30+r*36,48]],{"stroke-width":1.4,opacity:.9}));
+  const tag=label(g,-65,25,52,"25%",{font:"JBM",size:44,fill:GOLD});
+  riseIn(tl,[sub],t0,{dy:40});drawIn(tl,Object.values(sub._faces),t0,0.9);
+  riseIn(tl,pins,t0+0.2,{each:0.012,dy:12});
+  riseIn(tl,[die],t0+0.4);drawIn(tl,traces,t0+0.6,0.7,0.06);
+  riseIn(tl,hbm,cue.stack+0.15,{each:0.08,dy:50});
+  riseIn(tl,[tag],cue.k25??(t0+1),{dy:20});
+  return {};
+};
+VIS.candles=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -470 952 680");
+  const plate=box(g,-300,-110,0,600,200,14,PARTY.N,{sw:1.4});plate._depth=-1000;
+  const vals=[[60,140],[110,90],[80,170],[150,120],[120,200],[170,150],[150,240],[210,190],[230,300]];
+  const bars=[],wicks=[];
+  vals.forEach(([lo,hi],i)=>{const x=-270+i*64,y=-28;
+    const up=i===vals.length-1||hi>(vals[i-1]?.[1]??0);
+    const col=up?PARTY.G:PARTY.N;
+    const b=box(g,x,y,14+lo*0.6,36,36,(hi-lo)*0.9+30,col,{sw:1.5});b._depth=x+y;
+    const w=line(g,[[x+18,y+18,14+lo*0.6-30],[x+18,y+18,14+lo*0.6+(hi-lo)*0.9+60]],{"stroke-width":1.6,opacity:.75});w._depth=x+y-1;
+    bars.push(b);wicks.push(w)});
+  sortDepth(g);
+  // trend line
+  const tr=line(g,vals.map(([lo,hi],i)=>[-270+i*64+18,-12,14+lo*0.6+(hi-lo)*0.9+30]),{"stroke-width":3});
+  g.appendChild(tr);
+  riseIn(tl,[plate],t0);drawIn(tl,Object.values(plate._faces),t0,0.8);
+  drawIn(tl,wicks,t0+0.2,0.6,0.07);
+  riseIn(tl,bars,cue.stack,{each:0.08,dy:70});
+  drawIn(tl,tr,cue.trend??(cue.stack+0.8),1.2);
+  return {};
+};
+const TW=[[121.53,25.30],[121.75,25.18],[121.93,25.03],[121.85,24.85],[121.83,24.60],[121.65,24.25],[121.60,23.85],[121.50,23.45],[121.35,23.05],[121.15,22.75],[120.98,22.45],[120.88,22.00],[120.74,21.90],[120.70,22.20],[120.55,22.40],[120.30,22.55],[120.20,22.80],[120.10,23.10],[120.12,23.45],[120.20,23.75],[120.35,24.10],[120.55,24.45],[120.75,24.70],[120.93,24.90],[121.05,25.05],[121.25,25.15],[121.40,25.27]];
+VIS.taiwan=(root,tl,t0,page,cue)=>{
+  const [s,g]=svgRoot(root,"-476 -400 952 660");
+  const sc=150, cx=120.95, cy=23.6;
+  const pts=TW.map(([lo,la])=>[(lo-cx)*sc, -(la-cy)*sc*1.08*0.62]);
+  // screen-space map: sx=e, sy=n  =>  x-y=e/C30, x+y=2n
+  const wp=pts.map(([e,n])=>[(e/C30+2*n)/2,(2*n-e/C30)/2]);
+  const Z=46;
+  const sides=el("g",{},g), topg=el("g",{},g);
+  const faces=[];
+  for(let i=0;i<wp.length;i++){const a=wp[i],b=wp[(i+1)%wp.length];
+    // only faces whose outward normal faces viewer (+x+y)
+    const nx=b[1]-a[1], ny=-(b[0]-a[0]);
+    if(nx+ny<0) continue;
+    faces.push(el("polygon",{points:P([[a[0],a[1],0],[b[0],b[1],0],[b[0],b[1],Z],[a[0],a[1],Z]]),fill:"#2B2517",stroke:GOLD,"stroke-width":1.2,"stroke-opacity":.7,pathLength:1},sides))}
+  const top=el("polygon",{points:P(wp.map(p=>[p[0],p[1],Z])),fill:"#3B331F",stroke:GOLD,"stroke-width":2.4,"stroke-linejoin":"round",pathLength:1},topg);
+  // chip on island + city dots
+  const chip=box(topg,-40,-40,Z,80,80,22,PARTY.G,{sw:1.6});
+  const pinsTop=[];for(let k=0;k<5;k++){pinsTop.push(line(topg,[[-40+k*20+10,40,Z+4],[-40+k*20+10,58,Z+4]],{"stroke-width":1.4}))}
+  const [lx,ly]=iso(0,0,Z+60);
+  const ring=el("ellipse",{cx:iso(0,0,Z)[0],cy:iso(0,0,Z)[1],rx:150,ry:80,fill:"none",stroke:GOLD,"stroke-width":1.4,"stroke-dasharray":"6 8",opacity:0},g);
+  const tx=el("text",{x:lx+150,y:ly-150,fill:GOLD,"font-family":"JBM","font-weight":700,"font-size":34},g);tx.textContent="TAIEX −358";
+  const tx2=el("text",{x:lx+150,y:ly-112,fill:MUTE,"font-family":"NSans","font-weight":500,"font-size":22},g);tx2.textContent="11/4 收 42,949";
+  const lead=el("polyline",{points:`${lx+10},${ly-20} ${lx+120},${ly-140} ${lx+146},${ly-140}`,fill:"none",stroke:GOLD,"stroke-width":1.5,pathLength:1},g);
+  riseIn(tl,[sides,topg],t0,{stagger:0.1,dy:50});
+  drawIn(tl,top,t0+0.05,1.4);drawIn(tl,faces,t0+0.3,0.8,0.02);
+  riseIn(tl,[chip],cue.stack+0.2,{dy:60});drawIn(tl,pinsTop,cue.stack+0.5,0.5,0.06);
+  tl.to(ring,{opacity:.7,duration:.6,ease:"power3.out"},cue.stack+0.4);
+  drawIn(tl,lead,cue.k358??(cue.stack+1),0.5);riseIn(tl,[tx,tx2],cue.k358??(cue.stack+1),{stagger:0.08,dy:16});
+  return {};
+};
+
+/* ---------- build ---------- */
+let master, DATA, TIMING;
+function fitWidth(node,maxW){let fs=parseFloat(getComputedStyle(node).fontSize);while(node.scrollWidth>maxW&&fs>10){fs-=1;node.style.fontSize=fs+"px"}}
+function fmt(n,dec,comma){let s=n.toFixed(dec);if(comma){const [a,b]=s.split(".");s=a.replace(/\B(?=(\d{3})+(?!\d))/g,",")+(b?"."+b:"")}return s}
+function wordTime(pageT,say,after=0,quiet=false){
+  // find first occurrence of `say` in concatenated chars (after time `after`)
+  const W=pageT.words; const s=W.map(w=>w.w).join("");
+  let idx=-1, from=0;
+  while(true){idx=s.indexOf(say,from);if(idx<0)break;if(W[idx].start>=after-1e-6)break;from=idx+1}
+  if(idx<0){if(!quiet)console.warn("say not found",say);return null}
+  return {start:W[idx].start,end:W[idx+say.length-1].end};
+}
+const CUES=[]; // for QA export
+async function build(){
+  DATA=await (await fetch("../script.json")).json();
+  TIMING=await (await fetch("../voice_timing.json")).json();
+  document.getElementById("asof").textContent=DATA.meta.data_asof;
+  // noise texture
+  const cv=document.createElement("canvas");cv.width=cv.height=256;const cx=cv.getContext("2d");const im=cx.createImageData(256,256);
+  let seed=12345;const rnd=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);
+  for(let i=0;i<im.data.length;i+=4){const v=rnd()*255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}
+  cx.putImageData(im,0,0);document.getElementById("noise").style.backgroundImage=`url(${cv.toDataURL()})`;
+  await document.fonts.ready;
+  master=gsap.timeline({paused:true});
+  const pagesEl=document.getElementById("pages"), subsEl=document.getElementById("subs");
+  const total=TIMING.total;
+  DATA.pages.forEach((pg,pi)=>{
+    const T=TIMING.pages[pi];
+    const pEl=h("div","page "+(pg.kind==="cover"?"cover":""),null,pagesEl);pEl.dataset.page=pg.id;
+    // page number
+    const num=pg.kind==="point"?`<b>${pg.num}</b><span>/08</span><small>POINT</small>`:(pg.kind==="cover"?`<b>08</b><span> 件事</span><small>OVERVIEW</small>`:`<b>END</b><small>SUMMARY</small>`);
+    h("div","pnum",num,pEl);
+    // title
+    const tEl=h("div","title","",pEl);
+    const chars=[];
+    const parts=pg.title.split(/(\d+(?:\/\d+)?)/);
+    parts.forEach(seg=>{if(!seg)return;if(/^\d/.test(seg)){const s=h("span","ch num",seg,tEl);chars.push(s)}else{[...seg].forEach(c=>{if(c===" "){tEl.appendChild(document.createTextNode(" "));return}const s=h("span","ch",c,tEl);chars.push(s)})}});
+    if(pg.kind==="cover"){tEl.innerHTML="";chars.length=0;["期中選舉","選後 8 件事"].forEach((line,li)=>{const d=h("div","",null,tEl);line.split(/(\d+)/).forEach(seg=>{if(!seg)return;if(/^\d+$/.test(seg))chars.push(h("span","ch num",seg,d));else [...seg].forEach(c=>{if(c===" "){d.appendChild(document.createTextNode(" "));return}chars.push(h("span","ch",c,d))})})})}
+    const dEl=h("div","desc","",pEl);const rule=h("div","rule","",dEl);
+    const dl=pg.desc.map(x=>h("div","",x,dEl));
+    const illu=h("div","illu","",pEl);
+    const kp=h("div","kpis","",pEl);
+    // timings
+    const t0=T.page_start, tEnd=T.page_end;
+    const enter=pi===0?0.0:(TIMING.pages[pi-1].voice_end+0.02);
+    const content0=pi===0?0.15:enter;
+    // visibility & transitions
+    if(pi>0){
+      master.fromTo(pEl,{y:140,opacity:0},{y:0,opacity:1,duration:0.35,ease:"power3.out",immediateRender:false},enter);
+      master.set(pEl,{visibility:"visible"},enter);
+    }
+    master.set(pEl,{visibility:pi===0?"visible":"hidden"},0);
+    if(pi<DATA.pages.length-1){
+      const leave=T.voice_end+0.02;
+      master.to(pEl,{y:-110,opacity:0,duration:0.35,ease:"power3.out"},leave);
+      master.set(pEl,{visibility:"hidden"},leave+0.36);
+    }
+    // title/desc entrance
+    if(pi===0){
+      master.fromTo(chars,{opacity:0,y:40},{opacity:1,y:0,duration:0.6,ease:"expo.out",stagger:0.06},content0);
+      master.fromTo(rule,{width:0},{width:72,duration:0.6,ease:"expo.out"},content0+0.1);
+      master.fromTo(dl,{opacity:0,y:18},{opacity:1,y:0,duration:0.55,ease:"power3.out",stagger:0.09},content0+0.18);
+    } else {
+      // text rides in with the page (never an empty frame); chars get a y-only stagger
+      master.fromTo(chars,{y:46},{y:0,duration:0.5,ease:"expo.out",stagger:0.035,immediateRender:false},enter);
+      master.fromTo(rule,{width:24},{width:72,duration:0.6,ease:"expo.out",immediateRender:false},enter+0.05);
+      master.fromTo(dl,{y:24},{y:0,duration:0.5,ease:"power3.out",stagger:0.07,immediateRender:false},enter+0.04);
+    }
+    // cues
+    const cue={};
+    (pg.cues||[]).forEach(c=>{const w=wordTime(T,c.say);cue[c.action]=w?w.start:content0+0.3;CUES.push({page:pg.id,say:c.say,action:c.action,t:cue[c.action]})});
+    if(cue.seats==null)cue.seats=content0+0.3;if(cue.stack==null)cue.stack=content0+0.3;if(cue.tilt==null)cue.tilt=content0+0.4;
+    // extra cues for illustrations
+    const k25=wordTime(T,"百分之二十五",0,true);if(k25)cue.k25=k25.start;
+    const k358=wordTime(T,"三百五十八點",0,true);if(k358)cue.k358=k358.start;
+    const ktr=wordTime(T,"百分之十五",0,true);if(ktr)cue.trend=ktr.start;
+    (VIS[pg.visual]||VIS.capitol)(illu,master,content0,pg,cue);
+    // KPIs
+    pg.kpis.forEach((k,ki)=>{
+      const box=h("div","kpi","",kp);box.dataset.v=k.value;box.dataset.page=pg.id;
+      const v=h("div","v","",box);const l=h("div","l",k.label,box);const bar=h("div","bar","",box);
+      const pre=k.prefix?`<span class="ps">${k.prefix}</span>`:"", suf=k.suffix?`<span class="ps">${k.suffix}</span>`:"";
+      const m=k.value.match(/^([^\d]*)([\d,]+(?:\.\d+)?)(.*)$/);
+      const isCJK=/[一-鿿]/.test(k.value);
+      const w=wordTime(T,k.say); const at=w?w.start:content0+0.6+ki*0.3;
+      CUES.push({page:pg.id,say:k.say,action:"kpi:"+k.value,t:at});
+      if(k.count&&m){
+        const raw=m[2], comma=raw.includes(","), num=parseFloat(raw.replace(/,/g,"")), dec=(raw.split(".")[1]||"").length;
+        const span=document.createElement("span");
+        v.innerHTML=pre+m[1];v.appendChild(span);v.insertAdjacentHTML("beforeend",m[3]+suf);
+        span.textContent=fmt(0,dec,comma);
+        const o={n:0};
+        master.to(o,{n:num,duration:0.7,ease:"expo.out",onUpdate:()=>{span.textContent=fmt(o.n,dec,comma)}},at);
+        master.set(o,{n:0},0); // reset when seeking back
+      } else {
+        v.innerHTML=pre+(isCJK?`<span class="cj">${k.value}</span>`:k.value)+suf;
+      }
+      master.fromTo(box,{opacity:0,y:36},{opacity:1,y:0,duration:0.5,ease:"expo.out"},at);
+      master.fromTo(bar,{width:0},{width:56,duration:0.6,ease:"expo.out"},at+0.08);
+    });
+    // after layout: fit
+    pEl._fit=()=>{dl.forEach(d=>fitWidth(d,952));[...kp.querySelectorAll(".l")].forEach(x=>fitWidth(x,290));[...kp.querySelectorAll(".v")].forEach(x=>fitWidth(x,300));fitWidth(tEl,952)};
+    // subtitles
+    T.sentences.forEach((s,si)=>{
+      const sEl=h("div","sub","",subsEl);
+      const zh=h("div","zh","",sEl);const en=h("div","en",pg.subtitle_en[si],sEl);
+      let txt=pg.subtitle_zh[si]; const keys=(pg.keys&&pg.keys[si])||[];
+      // wrap keys
+      let html=txt.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+      keys.forEach(([sub],ki)=>{html=html.replace(sub,`<span class="k" data-k="${ki}" data-page="${pg.id}">${sub}</span>`)});
+      zh.innerHTML=html;
+      const st=si===0?(pi===0?0.2:enter-0.03):s.start-0.08;
+      const nxt=T.sentences[si+1]; const en_=nxt?nxt.start-0.08:(pi<DATA.pages.length-1?TIMING.pages[pi].voice_end+0.02:total+1);
+      master.set(sEl,{opacity:0},0);
+      master.fromTo(sEl,{opacity:0,y:14},{opacity:1,y:0,duration:0.18,ease:"power3.out",immediateRender:false},st);
+      master.to(sEl,{opacity:0,y:-10,duration:0.1,ease:"power3.out"},en_-0.12);
+      keys.forEach(([sub,say],ki)=>{
+        const kEl=zh.querySelector(`[data-k="${ki}"]`); if(!kEl)return;
+        const w=wordTime(T,say,s.start-0.05); if(!w)return;
+        CUES.push({page:pg.id,say,action:"hl:"+sub,t:w.start});
+        master.fromTo(kEl,{color:INK,scale:1},{color:GOLD,scale:1.06,duration:0.22,ease:"power3.out",immediateRender:false},w.start);
+        master.to(kEl,{scale:1,duration:0.3,ease:"power3.out"},w.start+0.22);
+      });
+      sEl._fit=()=>{fitWidth(zh,952);fitWidth(en,952)};
+    });
+    // progress hairline per page
+  });
+  // global hairline progress
+  master.fromTo("#subband .hair b",{width:0},{width:952,duration:total,ease:"none"},0);
+  // fit all text now that fonts are loaded
+  document.querySelectorAll(".page").forEach(p=>{p.style.visibility="visible";p._fit&&p._fit()});
+  document.querySelectorAll(".sub").forEach(s=>s._fit&&s._fit());
+  master.seek(0.001);master.seek(0);
+  window.TOTAL=total; window.CUES=CUES; window.READY=true;
+}
+const grid=document.getElementById("grid"),grid2=document.getElementById("grid2");
+window.seek=t=>{
+  master.seek(t,false);
+  // ambient motion (pure function of t)
+  grid.style.transform=`translate(${(t*6)%40}px,${(t*9)%40}px)`;
+  grid2.style.transform=`translate(${-(t*3)%200}px,${(t*4)%200}px)`;
+  document.querySelectorAll(".float").forEach((f,i)=>f.setAttribute("transform",`translate(0 ${(Math.sin(t*0.9+i)*7).toFixed(2)})`));
+  return true;
+};
+build();
+</script>
+</body>
+</html>
