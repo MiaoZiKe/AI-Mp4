@@ -1,0 +1,270 @@
+{
+  "fps": 24,
+  "frames": 1584,
+  "duration_s": 66.0,
+  "size": [
+    1920,
+    804
+  ],
+  "data_date": "2026/11/04",
+  "brand": "每日財經筆記",
+  "handle": "@daily.finance.notes",
+  "tts_engine": "kokoro-82M-v1.1-zh (sherpa-onnx, local) sid=22",
+  "scenes": [
+    {
+      "id": 1,
+      "name": "片頭·星塵聚成議席",
+      "t0": 0.0,
+      "t1": 8.0,
+      "visual": "星空與星雲，100 顆光點從星塵中聚合成參議院半圓議席；片頭品牌與標題"
+    },
+    {
+      "id": 2,
+      "name": "參眾兩院結果",
+      "t0": 8.0,
+      "t1": 20.0,
+      "visual": "參院議席依實際結果上色（兩黨同速），標出過半線；鏡頭平移到眾院 435 席（開票快照）"
+    },
+    {
+      "id": 3,
+      "name": "分裂政府·權力制衡",
+      "t0": 20.0,
+      "t1": 32.0,
+      "visual": "行政（白宮·共和黨）與立法（國會·民主黨）兩座等大玻璃柱，上方天平擺盪後停在水平"
+    },
+    {
+      "id": 4,
+      "name": "政策與市場資料卡",
+      "t0": 32.0,
+      "t1": 46.0,
+      "visual": "鏡頭沿四張玻璃資料卡推移：預算與舉債上限、關稅、AI 與資料中心、選後市場長條圖"
+    },
+    {
+      "id": 5,
+      "name": "台灣",
+      "t0": 46.0,
+      "t1": 58.0,
+      "visual": "光筆描出台灣輪廓，半導體聚落亮起晶片光點；台股收盤數字與盤中震幅；焦點標籤"
+    },
+    {
+      "id": 6,
+      "name": "歷史與結尾",
+      "t0": 58.0,
+      "t1": 66.0,
+      "visual": "地平線晨光漸亮，期中選舉後 12 個月 S&P 500 平均漲幅長條圖；總結；品牌與資料日期"
+    }
+  ],
+  "cards": [
+    {
+      "kind": "brand_open",
+      "t0": 0.5,
+      "t1": 3.45
+    },
+    {
+      "kind": "brand_close",
+      "t0": 63.9,
+      "t1": 66.0
+    }
+  ],
+  "cues": [
+    {
+      "scene": 1,
+      "at": 3.7,
+      "caption": "美國期中選舉 選後的世界會怎麼走？",
+      "narration": "期中選舉落幕，選後的世界，會怎麼走？",
+      "vo_file": "build/vo/cue00.wav",
+      "vo_start_frame": 89,
+      "vo_start_s": 3.7083333333333335,
+      "vo_dur_s": 4.084,
+      "tts_speed": 1.0,
+      "caption_in_frame": 89,
+      "caption_out_frame": 194,
+      "caption_chars": 16,
+      "fits": true
+    },
+    {
+      "scene": 2,
+      "at": 8.25,
+      "caption": "參議院：民主黨至少54席 取得多數",
+      "narration": "參議院由民主黨取得多數，至少五十四席，兩席計票中。",
+      "vo_file": "build/vo/cue01.wav",
+      "vo_start_frame": 198,
+      "vo_start_s": 8.25,
+      "vo_dur_s": 5.974,
+      "tts_speed": 1.0,
+      "caption_in_frame": 198,
+      "caption_out_frame": 348,
+      "caption_chars": 16,
+      "fits": true
+    },
+    {
+      "scene": 2,
+      "at": 14.45,
+      "caption": "眾議院：民主黨過半 多席計票中",
+      "narration": "眾議院同樣由民主黨過半，仍有多個選區在計票。",
+      "vo_file": "build/vo/cue02.wav",
+      "vo_start_frame": 347,
+      "vo_start_s": 14.458333333333334,
+      "vo_dur_s": 4.715,
+      "tts_speed": 1.0,
+      "caption_in_frame": 347,
+      "caption_out_frame": 467,
+      "caption_chars": 14,
+      "fits": true
+    },
+    {
+      "scene": 3,
+      "at": 20.5,
+      "caption": "行政與立法分屬兩黨 形成分裂政府",
+      "narration": "白宮屬共和黨，國會由民主黨主導，形成分裂政府。",
+      "vo_file": "build/vo/cue03.wav",
+      "vo_start_frame": 492,
+      "vo_start_s": 20.5,
+      "vo_dur_s": 5.62,
+      "tts_speed": 1.0,
+      "caption_in_frame": 492,
+      "caption_out_frame": 633,
+      "caption_chars": 15,
+      "fits": true
+    },
+    {
+      "scene": 3,
+      "at": 26.320125,
+      "caption": "總統握否決權 國會握預算與監督",
+      "narration": "總統仍有否決權，國會則握有預算與監督的力量。",
+      "vo_file": "build/vo/cue04.wav",
+      "vo_start_frame": 632,
+      "vo_start_s": 26.333333333333332,
+      "vo_dur_s": 4.842,
+      "tts_speed": 1.0,
+      "caption_in_frame": 632,
+      "caption_out_frame": 755,
+      "caption_chars": 14,
+      "fits": true
+    },
+    {
+      "scene": 4,
+      "at": 32.05,
+      "caption": "預算與舉債上限 需兩黨協商",
+      "icon": "tax",
+      "narration": "預算與舉債上限，需兩黨協商。",
+      "vo_file": "build/vo/cue05.wav",
+      "vo_start_frame": 769,
+      "vo_start_s": 32.041666666666664,
+      "vo_dur_s": 3.563,
+      "tts_speed": 1.0,
+      "caption_in_frame": 769,
+      "caption_out_frame": 861,
+      "caption_chars": 12,
+      "fits": true
+    },
+    {
+      "scene": 4,
+      "at": 35.85,
+      "caption": "關稅仍由行政部門主導",
+      "icon": "container",
+      "narration": "關稅，仍由行政部門主導。",
+      "vo_file": "build/vo/cue06.wav",
+      "vo_start_frame": 860,
+      "vo_start_s": 35.833333333333336,
+      "vo_dur_s": 2.356,
+      "tts_speed": 1.0,
+      "caption_in_frame": 860,
+      "caption_out_frame": 923,
+      "caption_chars": 10,
+      "fits": true
+    },
+    {
+      "scene": 4,
+      "at": 38.55,
+      "caption": "AI與資料中心 恐受更多審查",
+      "icon": "chip",
+      "narration": "AI與資料中心，恐受更多審查。",
+      "vo_file": "build/vo/cue07.wav",
+      "vo_start_frame": 925,
+      "vo_start_s": 38.541666666666664,
+      "vo_dur_s": 3.6,
+      "tts_speed": 1.0,
+      "caption_in_frame": 925,
+      "caption_out_frame": 1018,
+      "caption_chars": 13,
+      "fits": true
+    },
+    {
+      "scene": 4,
+      "at": 42.4,
+      "caption": "美股大漲 殖利率與美元走低",
+      "icon": "kline",
+      "narration": "美股大漲，殖利率與美元走低。",
+      "vo_file": "build/vo/cue08.wav",
+      "vo_start_frame": 1018,
+      "vo_start_s": 42.416666666666664,
+      "vo_dur_s": 2.644,
+      "tts_speed": 1.0,
+      "caption_in_frame": 1018,
+      "caption_out_frame": 1088,
+      "caption_chars": 12,
+      "fits": true
+    },
+    {
+      "scene": 5,
+      "at": 46.5,
+      "caption": "台股開票日震盪 收在42,949點",
+      "narration": "台股在開票日劇烈震盪，終場收在四萬兩千九百四十九點。",
+      "vo_file": "build/vo/cue09.wav",
+      "vo_start_frame": 1116,
+      "vo_start_s": 46.5,
+      "vo_dur_s": 5.82,
+      "tts_speed": 1.0,
+      "caption_in_frame": 1116,
+      "caption_out_frame": 1262,
+      "caption_chars": 16,
+      "fits": true
+    },
+    {
+      "scene": 5,
+      "at": 52.6,
+      "caption": "晶片關稅與AI供應鏈 仍是焦點",
+      "narration": "對台灣而言，晶片關稅與AI供應鏈仍是焦點。",
+      "vo_file": "build/vo/cue10.wav",
+      "vo_start_frame": 1262,
+      "vo_start_s": 52.583333333333336,
+      "vo_dur_s": 4.235,
+      "tts_speed": 1.0,
+      "caption_in_frame": 1262,
+      "caption_out_frame": 1370,
+      "caption_chars": 14,
+      "fits": true
+    },
+    {
+      "scene": 6,
+      "at": 58.3,
+      "caption": "史上選後一年 美股平均漲約15%",
+      "narration": "歷史上，選後一年美股平均上漲約一成五。",
+      "vo_file": "build/vo/cue11.wav",
+      "vo_start_frame": 1399,
+      "vo_start_s": 58.291666666666664,
+      "vo_dur_s": 3.421,
+      "tts_speed": 1.0,
+      "caption_in_frame": 1399,
+      "caption_out_frame": 1488,
+      "caption_chars": 15,
+      "fits": true
+    },
+    {
+      "scene": 6,
+      "at": 62.6,
+      "caption": "制衡之下 世界繼續前行",
+      "narration": "制衡之下，世界繼續前行。",
+      "vo_file": "build/vo/cue12.wav",
+      "vo_start_frame": 1502,
+      "vo_start_s": 62.583333333333336,
+      "vo_dur_s": 2.391,
+      "tts_speed": 1.0,
+      "caption_in_frame": 1502,
+      "caption_out_frame": 1566,
+      "caption_chars": 10,
+      "fits": true
+    }
+  ]
+}
