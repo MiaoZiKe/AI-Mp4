@@ -7,6 +7,8 @@ export type Scene = {
   props: Record<string, any>;
   sources: string[];
   durationSec?: number;
+  sfx?: { t: number; name: string }[];
+  [extra: string]: any;
 };
 export type Script = {
   slug: string;
@@ -14,4 +16,6 @@ export type Script = {
   asOf: string;
   scenes: Scene[];
   audio?: string | null;
+  composition?: { video: string; cover: string };
+  [extra: string]: any;
 };

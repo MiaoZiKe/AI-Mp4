@@ -12,7 +12,7 @@ const outDir = path.join(ROOT, "out", slug, "stills");
 fs.mkdirSync(outDir, { recursive: true });
 const serveUrl = await makeBundle();
 const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiumOptions };
-const comp = await selectComposition({ ...opts, id: "Video" });
+const comp = await selectComposition({ ...opts, id: script.composition?.video ?? "Video" });
 
 let t = 0;
 const files = [];
@@ -25,7 +25,7 @@ for (const [i, s] of script.scenes.entries()) {
   files.push(file);
   console.log(`✔ ${path.relative(ROOT, file)} (frame ${frame})`);
 }
-const cover = await selectComposition({ ...opts, id: "Cover" });
+const cover = await selectComposition({ ...opts, id: script.composition?.cover ?? "Cover" });
 const coverFile = path.join(ROOT, "out", `${slug}-cover.png`);
 await renderStill({ ...opts, composition: cover, frame: 0, output: coverFile });
 console.log(`✔ ${path.relative(ROOT, coverFile)}`);

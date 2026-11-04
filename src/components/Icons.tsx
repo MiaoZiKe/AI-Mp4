@@ -46,6 +46,23 @@ const P: Record<string, React.ReactNode> = {
     <path d="M40 30l26 26M30 40l26 26" /><rect x="34" y="28" width="22" height="34" rx="3" transform="rotate(-45 45 45)" />
     <path d="M58 58l34 34" /><path d="M18 102h50" />
   </>),
+  whitehouse: (<>
+    <path d="M14 96h92M20 96V56h80v40M14 56l46-26 46 26" /><path d="M34 56v40M48 56v40M72 56v40M86 56v40" />
+    <path d="M52 96V78h16v18" /><path d="M60 30V16" /><path d="M60 16h12v8H60" />
+  </>),
+  calendar: (<>
+    <rect x="18" y="26" width="84" height="74" rx="10" /><path d="M18 46h84M40 16v20M80 16v20" />
+    <path d="M36 64h10M56 64h10M76 64h10M36 82h10M56 82h10" />
+  </>),
+  bill: (<>
+    <path d="M30 14h44l18 18v74H30z" /><path d="M74 14v18h18" /><path d="M42 50h38M42 64h38M42 78h24" />
+  </>),
+  tag: (<>
+    <path d="M18 60l42-42h40v40l-42 42z" /><circle cx="82" cy="36" r="7" /><path d="M48 68l8-8M56 76l14-14" />
+  </>),
+  bolt: (<>
+    <path d="M66 12L28 68h28l-6 40 40-58H60z" />
+  </>),
   users: (<>
     <circle cx="44" cy="44" r="14" /><path d="M18 96c0-16 12-28 26-28s26 12 26 28" />
     <circle cx="82" cy="48" r="11" /><path d="M76 72c14 0 26 10 26 24" />

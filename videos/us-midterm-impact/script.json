@@ -1,0 +1,837 @@
+{
+  "slug": "us-midterm-impact",
+  "title": "美國國會換人顧門，台積電要緊張嗎？期中選舉後的 3 個影響",
+  "asOf": "2026/11/4",
+  "composition": {
+    "video": "Explainer",
+    "cover": "ExplainerCover"
+  },
+  "music": {
+    "bpm": 96,
+    "seed": 1103
+  },
+  "tts": {
+    "voice": "marin",
+    "instructions": "以台灣華語口音、台灣用語發音，像台灣新聞台的解說主播。語氣冷靜、中立、清楚、親切，不誇張也不煽動。語速中等偏快，句末不拖長，數字和專有名詞放慢並稍加重音，問句結尾自然上揚。"
+  },
+  "cover": {
+    "kicker": "美國期中選舉 選後解析",
+    "title": [
+      "美國國會換人顧門",
+      "台積電",
+      "要緊張嗎？"
+    ],
+    "chips": [
+      {
+        "icon": "tag",
+        "text": "關稅",
+        "color": "cyan"
+      },
+      {
+        "icon": "chip",
+        "text": "晶片",
+        "color": "violet"
+      },
+      {
+        "icon": "shield",
+        "text": "台海",
+        "color": "amber"
+      },
+      {
+        "icon": "bill",
+        "text": "預算",
+        "color": "coral"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "總統沒改選，國會卻換人顧門。美國國會換手，台積電要緊張嗎？",
+      "subtitle": {
+        "zh": "期中選舉開完票，\n3 個影響一次看懂",
+        "en": "Congress just changed hands. Should Taiwan worry?"
+      },
+      "keywords": [
+        "3 個影響"
+      ],
+      "component": "Hook",
+      "tint": "amber",
+      "durationSec": 5.5,
+      "props": {
+        "beats": [
+          {
+            "t": 0,
+            "text": "總統\n沒改選",
+            "color": "text"
+          },
+          {
+            "t": 0.9,
+            "text": "國會\n換人顧門",
+            "color": "amber"
+          },
+          {
+            "t": 1.8,
+            "text": "參眾兩院\n都換手",
+            "color": "cyan"
+          }
+        ],
+        "question": [
+          "美國國會換人顧門",
+          "台積電",
+          "要緊張嗎？"
+        ],
+        "chips": [
+          {
+            "icon": "tag",
+            "text": "關稅",
+            "color": "cyan"
+          },
+          {
+            "icon": "chip",
+            "text": "晶片",
+            "color": "violet"
+          },
+          {
+            "icon": "shield",
+            "text": "台海",
+            "color": "amber"
+          },
+          {
+            "icon": "money",
+            "text": "錢包",
+            "color": "coral"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "hit"
+        },
+        {
+          "t": 0.9,
+          "name": "pop"
+        },
+        {
+          "t": 1.8,
+          "name": "pop"
+        },
+        {
+          "t": 1.6,
+          "name": "riser"
+        },
+        {
+          "t": 2.7,
+          "name": "hit"
+        }
+      ],
+      "sources": [
+        "AP 經 PBS、Axios"
+      ]
+    },
+    {
+      "id": "twist",
+      "narration": "總統還是同一位，但國會換民主黨主導。三個影響裡，第三點跟台灣最有關。",
+      "subtitle": {
+        "zh": "總統沒換，國會換人主導，\n第三點跟台灣最有關",
+        "en": "Same president, new Congress. Point 3 matters most for Taiwan."
+      },
+      "keywords": [
+        "國會",
+        "第三點"
+      ],
+      "component": "Twist",
+      "tint": "violet",
+      "durationSec": 7,
+      "props": {
+        "left": {
+          "icon": "whitehouse",
+          "title": "白宮",
+          "state": "沒改選",
+          "color": "amber"
+        },
+        "right": {
+          "icon": "capitol",
+          "title": "國會",
+          "state": "換人主導",
+          "color": "violet",
+          "changed": true
+        },
+        "teaser": "看到最後：第 3 點跟台灣最有關 ↓"
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.75,
+          "name": "pop"
+        },
+        {
+          "t": 1.15,
+          "name": "hit"
+        },
+        {
+          "t": 1.8,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "AP 經 PBS、Washington Examiner"
+      ]
+    },
+    {
+      "id": "what-is-midterm",
+      "narration": "期中選舉，就是總統任期過一半時的國會大考。",
+      "subtitle": {
+        "zh": "期中選舉，\n就是總統任期中間的國會大考",
+        "en": "Midterms: a check on Congress halfway through a presidential term."
+      },
+      "keywords": [
+        "期中選舉",
+        "國會大考"
+      ],
+      "component": "Term",
+      "tint": "cyan",
+      "durationSec": 7,
+      "props": {
+        "icon": "ballot",
+        "term": "期中選舉",
+        "en": "Midterm Elections",
+        "color": "cyan",
+        "def": "總統任期過一半時舉行，改選全部眾議員、約三分之一參議員和多州州長。",
+        "facts": [
+          {
+            "k": "眾議院",
+            "v": "435 席"
+          },
+          {
+            "k": "參議院",
+            "v": "約 1/3"
+          },
+          {
+            "k": "州長",
+            "v": "36 州"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 1.35,
+          "name": "pop"
+        },
+        {
+          "t": 1.6,
+          "name": "pop"
+        },
+        {
+          "t": 1.9,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "美國憲法、Stateline"
+      ]
+    },
+    {
+      "id": "results",
+      "narration": "AP判定民主黨拿下參眾兩院，部分席次還在計票。",
+      "subtitle": {
+        "zh": "民主黨拿下參眾兩院，\n部分席次還在計票",
+        "en": "AP: Democrats win both chambers; some races still being counted."
+      },
+      "keywords": [
+        "參眾兩院",
+        "還在計票"
+      ],
+      "component": "Seats",
+      "tint": "violet",
+      "durationSec": 9,
+      "props": {
+        "headline": "結果：兩院都過半",
+        "chambers": [
+          {
+            "name": "參議院",
+            "en": "Senate",
+            "total": 100,
+            "majority": 51,
+            "status": "fact",
+            "statusText": "AP 判定過半",
+            "segments": [
+              {
+                "label": "民主黨",
+                "seats": 54,
+                "color": "dem"
+              },
+              {
+                "label": "共和黨",
+                "seats": 44,
+                "color": "rep"
+              },
+              {
+                "label": "未定",
+                "seats": 2,
+                "color": "pending"
+              }
+            ],
+            "note": "未定：阿拉斯加、密西西比（截至 2026/11/4 尚未確定）"
+          },
+          {
+            "name": "眾議院",
+            "en": "House",
+            "total": 435,
+            "majority": 218,
+            "status": "fact",
+            "statusText": "AP 判定過半",
+            "segments": [
+              {
+                "label": "民主黨",
+                "seats": 240,
+                "color": "dem"
+              },
+              {
+                "label": "共和黨",
+                "seats": 146,
+                "color": "rep"
+              },
+              {
+                "label": "未定",
+                "seats": 49,
+                "color": "pending"
+              }
+            ],
+            "note": "席次為 11/4 媒體計票快照，仍有數十場未定"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.6,
+          "name": "tick"
+        },
+        {
+          "t": 0.9,
+          "name": "tick"
+        },
+        {
+          "t": 1.2,
+          "name": "tick"
+        },
+        {
+          "t": 1.5,
+          "name": "tick"
+        },
+        {
+          "t": 1.8,
+          "name": "pop"
+        },
+        {
+          "t": 2.4,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "AP 經 PBS、Newsweek、NBC"
+      ]
+    },
+    {
+      "id": "divided",
+      "narration": "白宮和國會分屬兩黨，這就叫分裂政府，法案得靠協商。",
+      "subtitle": {
+        "zh": "白宮和國會分屬兩黨，\n這就叫分裂政府",
+        "en": "White House and Congress split between parties: a divided government."
+      },
+      "keywords": [
+        "分裂政府"
+      ],
+      "component": "Standoff",
+      "tint": "cyan",
+      "durationSec": 7.5,
+      "props": {
+        "left": {
+          "icon": "whitehouse",
+          "title": "白宮",
+          "sub": "總統：共和黨"
+        },
+        "right": {
+          "icon": "capitol",
+          "title": "國會",
+          "sub": "明年起民主黨主導"
+        },
+        "arrows": [
+          {
+            "text": "送出法案",
+            "dir": "rl"
+          },
+          {
+            "text": "可以否決",
+            "dir": "lr"
+          }
+        ],
+        "term": "分裂政府",
+        "termDef": "白宮和國會分屬兩黨，法案要靠協商才過得了"
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.8,
+          "name": "pop"
+        },
+        {
+          "t": 1.25,
+          "name": "pop"
+        },
+        {
+          "t": 1.9,
+          "name": "hit"
+        }
+      ],
+      "sources": [
+        "美國憲法第 20 修正案、Axios"
+      ]
+    },
+    {
+      "id": "impact-budget",
+      "narration": "第一，預算：臨時撥款12月11日到期，兩黨得坐下來談。",
+      "subtitle": {
+        "zh": "第一，預算：\n12月11日撥款到期",
+        "en": "1) Budget: stopgap funding expires Dec 11."
+      },
+      "keywords": [
+        "預算",
+        "12月11日"
+      ],
+      "component": "Impact",
+      "chapter": {
+        "i": 1,
+        "n": 3,
+        "label": "預算與法案"
+      },
+      "tint": "coral",
+      "durationSec": 9,
+      "props": {
+        "icon": "bill",
+        "title": "預算",
+        "en": "Budget & bills",
+        "color": "coral",
+        "big": {
+          "v": "12/11",
+          "k": "臨時撥款到期"
+        },
+        "rows": [
+          {
+            "status": "fact",
+            "text": "臨時撥款 12/11 到期，年底前由現任國會先處理"
+          },
+          {
+            "status": "expect",
+            "text": "分析師普遍認為：分裂政府讓大規模擴張支出更難推動"
+          },
+          {
+            "status": "pending",
+            "text": "會不會政府關門？",
+            "note": "截至 2026/11/4 尚未確定"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.5,
+          "name": "hit"
+        },
+        {
+          "t": 0.6,
+          "name": "pop"
+        },
+        {
+          "t": 1.07,
+          "name": "pop"
+        },
+        {
+          "t": 1.53,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "NPR、Holland & Knight、CNN"
+      ]
+    },
+    {
+      "id": "impact-tariff",
+      "narration": "第二，關稅：國會能施壓，但要推翻總統否決，得兩院各三分之二。",
+      "subtitle": {
+        "zh": "第二，關稅：國會能施壓，\n但很難全面推翻",
+        "en": "2) Tariffs: Congress can push back, but a full reversal is hard."
+      },
+      "keywords": [
+        "關稅",
+        "很難全面推翻"
+      ],
+      "component": "Impact",
+      "chapter": {
+        "i": 2,
+        "n": 3,
+        "label": "關稅與貿易"
+      },
+      "tint": "cyan",
+      "durationSec": 9,
+      "props": {
+        "icon": "tag",
+        "title": "關稅",
+        "en": "Tariffs & trade",
+        "color": "cyan",
+        "big": {
+          "v": "2/3",
+          "k": "推翻否決門檻"
+        },
+        "rows": [
+          {
+            "status": "fact",
+            "text": "現行關稅多依 232、301 條，是國會早就授權給總統的權力"
+          },
+          {
+            "status": "fact",
+            "text": "要推翻總統否決，需參眾兩院各 2/3，民主黨席次不夠"
+          },
+          {
+            "status": "expect",
+            "text": "分析預期：國會改用聽證、限縮法案施壓"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.5,
+          "name": "hit"
+        },
+        {
+          "t": 0.6,
+          "name": "pop"
+        },
+        {
+          "t": 1.07,
+          "name": "pop"
+        },
+        {
+          "t": 1.53,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "CRS、Foreign Policy、Al Jazeera"
+      ]
+    },
+    {
+      "id": "impact-taiwan",
+      "narration": "第三，台灣：挺台和對中科技管制是兩黨共識，但軍售還卡在白宮。",
+      "subtitle": {
+        "zh": "第三，台灣：\n挺台有共識，軍售卡白宮",
+        "en": "3) Taiwan: bipartisan support, but arms sales still wait on the White House."
+      },
+      "keywords": [
+        "台灣",
+        "共識",
+        "軍售"
+      ],
+      "component": "Impact",
+      "chapter": {
+        "i": 3,
+        "n": 3,
+        "label": "晶片與台海"
+      },
+      "tint": "amber",
+      "durationSec": 9.5,
+      "props": {
+        "icon": "shield",
+        "title": "台灣",
+        "en": "Chips & the Taiwan Strait",
+        "color": "amber",
+        "big": {
+          "v": "140億",
+          "k": "美元軍售暫緩中"
+        },
+        "rows": [
+          {
+            "status": "expect",
+            "text": "晶片：對中科技管制是兩黨共識，分析預期大方向不變"
+          },
+          {
+            "status": "fact",
+            "text": "台海：約 140 億美元對台軍售，5 月起暫緩"
+          },
+          {
+            "status": "pending",
+            "text": "軍售何時放行由白宮決定",
+            "note": "截至 2026/11/4 尚未確定"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.5,
+          "name": "hit"
+        },
+        {
+          "t": 0.6,
+          "name": "pop"
+        },
+        {
+          "t": 1.07,
+          "name": "pop"
+        },
+        {
+          "t": 1.53,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "SCMP、Al Jazeera、ETtoday 引《紐時》、CRS"
+      ]
+    },
+    {
+      "id": "markets",
+      "narration": "市場第一反應：美股盤中大漲，美債殖利率走低；台股收盤時美國還在開票。",
+      "subtitle": {
+        "zh": "市場第一反應：\n美股漲、殖利率降",
+        "en": "First market reaction: US stocks up, yields down."
+      },
+      "keywords": [
+        "美股漲",
+        "殖利率降"
+      ],
+      "component": "Markets",
+      "tint": "cyan",
+      "durationSec": 9,
+      "props": {
+        "title": "市場第一反應（11/4）",
+        "tiles": [
+          {
+            "label": "美股道瓊",
+            "value": "盤中漲逾千點",
+            "dir": "up",
+            "note": "盤中快照，非收盤",
+            "status": "fact"
+          },
+          {
+            "label": "10年美債",
+            "value": "殖利率約 4.9%",
+            "dir": "down",
+            "note": "9 月初以來低點",
+            "status": "fact"
+          },
+          {
+            "label": "台股加權",
+            "value": "42,949 點",
+            "dir": "down",
+            "note": "跌 0.83%，收盤時仍在開票",
+            "status": "fact"
+          },
+          {
+            "label": "新台幣",
+            "value": "32.821 元",
+            "dir": "down",
+            "note": "貶 6.1 分，外資匯出為主因",
+            "status": "fact"
+          }
+        ],
+        "caveat": "分析師普遍認為：分裂政府讓政策急轉彎變少\n（僅為市場解讀，非投資建議）"
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.4,
+          "name": "pop"
+        },
+        {
+          "t": 0.67,
+          "name": "pop"
+        },
+        {
+          "t": 0.93,
+          "name": "pop"
+        },
+        {
+          "t": 1.2,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "Reuters、CNBC、鉅亨、中央社"
+      ]
+    },
+    {
+      "id": "timeline",
+      "narration": "接下來盯三個日期：11月18日、12月11日，和明年1月3日。",
+      "subtitle": {
+        "zh": "接下來，\n盯緊這三個日期",
+        "en": "Three dates to watch next."
+      },
+      "keywords": [
+        "三個日期"
+      ],
+      "component": "Timeline",
+      "tint": "violet",
+      "durationSec": 8,
+      "props": {
+        "title": "接下來盯這 3 天",
+        "events": [
+          {
+            "date": "2026/11/18",
+            "text": "阿拉斯加參議員：排序複選結果出爐",
+            "status": "pending"
+          },
+          {
+            "date": "2026/12/11",
+            "text": "臨時撥款到期：關不關門看這天",
+            "status": "fact"
+          },
+          {
+            "date": "2027/1/3",
+            "text": "新國會就任，民主黨正式主導兩院",
+            "status": "fact"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.33,
+          "name": "pop"
+        },
+        {
+          "t": 0.8,
+          "name": "pop"
+        },
+        {
+          "t": 1.27,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "Alaska Public Media、NPR、美國憲法"
+      ]
+    },
+    {
+      "id": "recap",
+      "narration": "回到開頭：台積電要緊張嗎？看三件事：晶片、關稅、軍售。",
+      "subtitle": {
+        "zh": "回到開頭的問題，\n答案看這三件事",
+        "en": "Back to the question: watch these three things."
+      },
+      "keywords": [
+        "三件事"
+      ],
+      "component": "Recap",
+      "tint": "amber",
+      "durationSec": 8,
+      "props": {
+        "question": "美國國會換人顧門，\n台積電要緊張嗎？",
+        "answers": [
+          {
+            "icon": "chip",
+            "text": "晶片：管制大方向，兩黨有共識",
+            "color": "violet"
+          },
+          {
+            "icon": "tag",
+            "text": "關稅：國會能施壓，難全面推翻",
+            "color": "cyan"
+          },
+          {
+            "icon": "shield",
+            "text": "台海：盯 140 億軍售何時放行",
+            "color": "amber"
+          }
+        ]
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 0.4,
+          "name": "hit"
+        },
+        {
+          "t": 0.8,
+          "name": "pop"
+        },
+        {
+          "t": 1.2,
+          "name": "pop"
+        },
+        {
+          "t": 1.6,
+          "name": "pop"
+        }
+      ],
+      "sources": [
+        "綜合本片資料"
+      ]
+    },
+    {
+      "id": "end",
+      "narration": "你覺得哪一點最影響台灣？留言告訴我們。白話國際，一支講透一件事。",
+      "subtitle": {
+        "zh": "你覺得哪一點最影響台灣？",
+        "en": "Which matters most for Taiwan? Tell us in the comments."
+      },
+      "keywords": [],
+      "component": "End",
+      "tint": "cyan",
+      "durationSec": 7,
+      "props": {
+        "ask": "你覺得哪一點\n最影響台灣？留言告訴我",
+        "options": [
+          "A｜關稅",
+          "B｜晶片",
+          "C｜台海"
+        ],
+        "slogan": "一支講透一件事"
+      },
+      "sfx": [
+        {
+          "t": 0,
+          "name": "whoosh"
+        },
+        {
+          "t": 1.5,
+          "name": "ding"
+        }
+      ],
+      "sources": []
+    }
+  ]
+}

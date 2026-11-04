@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Video } from "./Video";
 import { Cover } from "./Cover";
+import { Explainer, ExplainerCover } from "./explainer/Explainer";
 import { FPS, H, W } from "./theme";
 import { totalFrames } from "./timing";
 import type { Script } from "./types";
@@ -16,6 +17,10 @@ export const Root: React.FC = () => (
     <Composition id="Video" component={Video as any} width={W} height={H} fps={FPS} durationInFrames={150}
       defaultProps={placeholder as any}
       calculateMetadata={({ props }) => ({ durationInFrames: totalFrames((props as unknown as Script).scenes) })} />
+    <Composition id="Explainer" component={Explainer as any} width={W} height={H} fps={FPS} durationInFrames={150}
+      defaultProps={placeholder as any}
+      calculateMetadata={({ props }) => ({ durationInFrames: totalFrames((props as unknown as Script).scenes) })} />
+    <Composition id="ExplainerCover" component={ExplainerCover as any} width={W} height={H} fps={FPS} durationInFrames={1} defaultProps={placeholder as any} />
     <Composition id="Cover" component={Cover as any} width={W} height={H} fps={FPS} durationInFrames={1} defaultProps={placeholder as any} />
   </>
 );
