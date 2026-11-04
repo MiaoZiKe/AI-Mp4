@@ -134,7 +134,7 @@ export const Caption: React.FC<{ zh: string; en: string; keywords: string[] }> =
   const lines = splitLines(zh);
   return (
     <div style={{ position: "absolute", left: SAFE2.left, right: SAFE2.right, bottom: SAFE2.bottom + 20, textAlign: "center" }}>
-      <div style={{ display: "inline-block", padding: "18px 26px 20px", borderRadius: 22, background: "rgba(5,8,20,0.55)", backdropFilter: "blur(6px)" }}>
+      <div style={{ display: "inline-block", padding: "18px 26px 20px", borderRadius: 22, background: "rgba(5,8,20,0.62)" }}>
         <div style={{ fontFamily: FONT_ZH, fontWeight: 900, fontSize: 64, lineHeight: 1.28, color: K.text, textShadow: "0 4px 18px rgba(0,0,0,0.85)" }}>
           {lines.map((line, i) => (
             <div key={i} style={rise(f, 3 + i * 9, 26)}><Highlighted text={line} keywords={keywords} f={f} delay={3 + i * 9} /></div>
