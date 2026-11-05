@@ -43,7 +43,7 @@ export const Subtitle: React.FC<{ zh: string; en: string; keywords: string[]; li
   const startOf = (i: number) => (lineStarts && lineStarts[i] !== undefined ? lineStarts[i] : 4);
   return (
     <div style={{ position: "absolute", left: SAFE.x, right: SAFE.x, bottom: SAFE.bottom + 70, textAlign: "center" }}>
-      <div style={{ fontFamily: FONT_ZH, fontWeight: 900, fontSize: 64, lineHeight: 1.3, color: C.white, textShadow: "0 4px 18px rgba(0,0,0,0.8)" }}>
+      <div style={{ fontFamily: FONT_ZH, fontWeight: 900, fontSize: 64, lineHeight: 1.3, color: C.white, textShadow: "0 3px 8px rgba(0,0,0,0.85)" }}>
         {lines.map((line, li) => {
           const times = charTimes?.[li];
           let ci = 0;
@@ -62,7 +62,7 @@ export const Subtitle: React.FC<{ zh: string; en: string; keywords: string[]; li
                   return <span key={i} style={{ opacity: on ? 1 : 0.42 }}>{ch}</span>;
                 });
                 return (
-                  <span key={pi} style={{ display: "inline-block", whiteSpace: "nowrap", color: kwOn ? col : C.white, textShadow: kwOn ? `0 0 18px ${col}99, 0 4px 18px rgba(0,0,0,0.8)` : undefined, transform: `scale(${scale})`, transformOrigin: "50% 60%" }}>
+                  <span key={pi} style={{ display: "inline-block", whiteSpace: "nowrap", color: kwOn ? col : C.white, textShadow: kwOn ? `0 0 10px ${col}99` : undefined, transform: `scale(${scale})`, transformOrigin: "50% 60%" }}>
                     {chars}
                   </span>
                 );

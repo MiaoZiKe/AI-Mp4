@@ -1,6 +1,5 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { glow } from "../theme";
 
 /** 自繪霓虹描邊圖示（stroke 3px + 外發光），不使用外部圖片 */
 const P: Record<string, React.ReactNode> = {
@@ -166,14 +165,18 @@ const P: Record<string, React.ReactNode> = {
   </>),
 };
 
-/** 外發光會緩慢呼吸（±3px），讓圖示像霓虹燈一樣有生命 */
+/** 霓虹光暈：不用 CSS filter（軟體渲染太慢），改用三層描邊（粗半透明 → 中 → 3px 實線），粗層透明度緩慢呼吸 */
 export const Icon: React.FC<{ name: string; color: string; size?: number; draw?: number }> = ({ name, color, size = 120, draw = 1 }) => {
   const f = useCurrentFrame();
+  const breath = 0.26 + 0.1 * Math.sin(f / 9);
+  const dash = draw < 1 ? { strokeDasharray: 420, strokeDashoffset: 420 * (1 - draw) } : {};
+  const shape = P[name] ?? P.question;
+  const common = { fill: "none", stroke: color, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, ...dash };
   return (
-  <svg width={size} height={size} viewBox="0 0 120 120" style={{ filter: glow(color, 10 + 3 * Math.sin(f / 9)), overflow: "visible" }}>
-    <g fill="none" stroke={color} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={draw < 1 ? 420 : undefined} strokeDashoffset={draw < 1 ? 420 * (1 - draw) : undefined}>
-      {P[name] ?? P.question}
-    </g>
-  </svg>
+    <svg width={size} height={size} viewBox="0 0 120 120" style={{ overflow: "visible" }}>
+      <g {...common} strokeWidth={11} opacity={breath}>{shape}</g>
+      <g {...common} strokeWidth={6} opacity={0.4}>{shape}</g>
+      <g {...common} strokeWidth={3}>{shape}</g>
+    </svg>
   );
 };

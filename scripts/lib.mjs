@@ -27,7 +27,8 @@ export const loadScript = (slug) => {
 
 export const makeBundle = () => bundle({ entryPoint: path.join(ROOT, "src/index.ts"), publicDir: path.join(ROOT, "public") });
 
-export const chromiumOptions = { gl: "swangle" };
+// swiftshader 比預設的 swangle 快 2.5 倍（軟體渲染環境實測 194 vs 479 ms/frame）
+export const chromiumOptions = { gl: "swiftshader" };
 export const fps = 30;
 export const sceneFrames = (s, timeline) => {
   const tl = timeline?.scenes?.find((x) => x.id === s.id);

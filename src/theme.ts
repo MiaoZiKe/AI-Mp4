@@ -54,4 +54,4 @@ export type Accent = "cyan" | "pink" | "yellow" | "purple";
 export const accent = (a?: string) => (C as Record<string, string>)[a ?? "cyan"] ?? C.cyan;
 
 export const glow = (color: string, r = 12) => `drop-shadow(0 0 ${r / 2}px ${color}) drop-shadow(0 0 ${r}px ${color}88)`;
-export const boxGlow = (color: string) => `0 0 18px ${color}55, inset 0 0 12px ${color}22`;
+export const boxGlow = (color: string) => `0 0 12px ${color}55`;

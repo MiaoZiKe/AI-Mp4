@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { C, FONT_ZH, FONT_EN, accent, glow } from "../theme";
+import { C, FONT_ZH, FONT_EN, accent } from "../theme";
 import { Icon } from "./Icons";
 import { rise, progress, pop } from "./anim";
 
@@ -13,7 +13,7 @@ export const BigNumber: React.FC<{ icon?: string; label: string; value: number; 
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 900, textAlign: "center" }}>
       {icon && <div style={rise(f, 0)}><Icon name={icon} color={col} size={150} draw={progress(f, 0, 30)} /></div>}
       <div style={{ ...rise(f, 4), fontFamily: FONT_ZH, fontSize: 48, fontWeight: 700, color: C.white, marginTop: 16 }}>{label}</div>
-      <div style={{ fontFamily: FONT_EN, fontWeight: 800, fontSize: 150, color: col, filter: glow(col, 14), marginTop: 8, transform: `scale(${f < 50 ? 1 : pop(f, 50, 0.93)})`, transformOrigin: "50% 50%" }}>
+      <div style={{ fontFamily: FONT_EN, fontWeight: 800, fontSize: 150, color: col, textShadow: `0 0 12px ${col}99`, marginTop: 8, transform: `scale(${f < 50 ? 1 : pop(f, 50, 0.93)})`, transformOrigin: "50% 50%" }}>
         {prefix}{v.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}{suffix}
       </div>
       {note && <div style={{ ...rise(f, 30), fontFamily: FONT_ZH, fontSize: 36, color: "rgba(255,255,255,0.85)", lineHeight: 1.45 }}>{note}</div>}

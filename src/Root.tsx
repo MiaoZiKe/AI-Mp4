@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Video } from "./Video";
 import { Cover } from "./Cover";
+import { BackgroundStatic, GlowBlob } from "./components/Background";
 import { FPS, H, W } from "./theme";
 import { totalFrames } from "./timing";
 import type { Script } from "./types";
@@ -17,5 +18,7 @@ export const Root: React.FC = () => (
       defaultProps={placeholder as any}
       calculateMetadata={({ props }) => { const p = props as unknown as Script; return { durationInFrames: totalFrames(p.scenes, p.timeline) }; }} />
     <Composition id="Cover" component={Cover as any} width={W} height={H} fps={FPS} durationInFrames={1} defaultProps={placeholder as any} />
+    <Composition id="BackgroundStatic" component={BackgroundStatic} width={W} height={H} fps={FPS} durationInFrames={1} />
+    <Composition id="GlowBlob" component={GlowBlob} width={900} height={700} fps={FPS} durationInFrames={1} />
   </>
 );
