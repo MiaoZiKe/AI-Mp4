@@ -26,7 +26,7 @@ export type SceneTiming = {
   /** 相對音檔開始 */
   words: Word[];
   /** 相對幕開始：字幕每行出現時間 */
-  lines: { text: string; start: number }[];
+  lines: { text: string; start: number; chars?: number[] }[];
   /** 相對幕開始：關鍵詞被唸到的時間 */
   keywords: { text: string; start: number }[];
 };

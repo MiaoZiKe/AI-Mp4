@@ -113,8 +113,13 @@ for (const [i, s] of script.scenes.entries()) {
   let idx = 0;
   const lineStarts = lines.map((l, li) => {
     const start = li === 0 ? 0 : Math.max(0, (times[idx] ?? 0) + LEAD - 0.12);
-    idx += clean(l).length;
-    return { text: l, start: Number(start.toFixed(3)) };
+    // 每個字（含標點，標點跟前一個字）被唸到的時間，提前 0.05 秒點亮
+    let last = start;
+    const chars = [...l].map((ch) => {
+      if (clean(ch).length) { last = Math.max(start, (times[idx] ?? last) + LEAD - 0.05); idx++; }
+      return Number(last.toFixed(3));
+    });
+    return { text: l, start: Number(start.toFixed(3)), chars };
   });
   const cs = clean(s.subtitle.zh);
   const keywords = (s.keywords ?? []).map((k) => {
