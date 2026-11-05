@@ -7,7 +7,11 @@
     "fonts": "node scripts/fetch-fonts.mjs",
     "still": "node scripts/still.mjs",
     "render": "node scripts/render.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "validate": "node scripts/validate.mjs",
+    "tts": "NODE_USE_ENV_PROXY=1 node scripts/tts.mjs",
+    "voices": "NODE_USE_ENV_PROXY=1 node scripts/tts.mjs --samples",
+    "align": "NODE_USE_ENV_PROXY=1 node scripts/align.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.250",

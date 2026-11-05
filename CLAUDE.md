@@ -53,3 +53,15 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 每幕截圖檢查：安全區、溢出、缺字方框
 - 最後一幕是片尾卡；總長 70–100 秒；ffprobe 確認可播放
 - 影片與圖片不 commit（見 .gitignore）
+
+## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
+- 順序固定：研究 → 腳本 → 逐幕 TTS → 逐字時間戳（Whisper）→ 依時間軸渲染 → ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
+- `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
+- script.json 頂層 `voice: { voiceName, candidates?, style? }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
+- `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
+- Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
+
+## 停工線（額度保護）
+- 以台灣時間（Asia/Taipei）為準，**07:00 是停工線**。每個耗時步驟（研究工作流、TTS 批次、render）開始前先執行 `TZ=Asia/Taipei date`。
+- 若已超過 07:00：不開始新的耗時步驟；正在進行的 render 可讓它跑完但不再排下一支；把進度（已完成哪幾幕／哪一步）commit 並回報，等使用者再指示。
+- 每完成一支影片就先給使用者看（截圖總覽＋ MP4 路徑），再做下一支。

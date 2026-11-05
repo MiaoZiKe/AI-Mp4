@@ -1,4 +1,4 @@
-// npm run still <slug>：每幕截一張圖 + 封面 + 總覽圖
+// npm run still <slug>：每幕截一張圖 + 封面 + 總覽圖（有 timeline 時用配音長度）
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -9,6 +9,7 @@ await import("./fetch-fonts.mjs");
 const slug = process.argv[2];
 const script = loadScript(slug);
 const outDir = path.join(ROOT, "out", slug, "stills");
+fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 const serveUrl = await makeBundle();
 const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiumOptions };
@@ -17,8 +18,8 @@ const comp = await selectComposition({ ...opts, id: "Video" });
 let t = 0;
 const files = [];
 for (const [i, s] of script.scenes.entries()) {
-  const n = sceneFrames(s);
-  const frame = t + n - 12; // 動畫結束、淡出前
+  const n = sceneFrames(s, script.timeline);
+  const frame = t + n - 12; // 動畫結束、淡出前（配音版：字幕每行都已出現）
   t += n;
   const file = path.join(outDir, `${String(i + 1).padStart(2, "0")}-${s.id}.png`);
   await renderStill({ ...opts, composition: comp, frame, output: file });

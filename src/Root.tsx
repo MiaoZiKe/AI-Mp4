@@ -15,7 +15,7 @@ export const Root: React.FC = () => (
   <>
     <Composition id="Video" component={Video as any} width={W} height={H} fps={FPS} durationInFrames={150}
       defaultProps={placeholder as any}
-      calculateMetadata={({ props }) => ({ durationInFrames: totalFrames((props as unknown as Script).scenes) })} />
+      calculateMetadata={({ props }) => { const p = props as unknown as Script; return { durationInFrames: totalFrames(p.scenes, p.timeline) }; }} />
     <Composition id="Cover" component={Cover as any} width={W} height={H} fps={FPS} durationInFrames={1} defaultProps={placeholder as any} />
   </>
 );
