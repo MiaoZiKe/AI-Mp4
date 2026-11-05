@@ -56,23 +56,23 @@
 
 | # | id | 元件 | 主色 | 畫面重點與狀態標示 |
 |---|---|---|---|---|
-| 01 | hook | IconGrid 2×2 | 粉／黃／紫／青 | 標題「四個關鍵數字」；房價所得比、青年月薪、年總工時、公托覆蓋率四格（note 各 ≤24 字）；字幕關鍵詞「不敢生」黃、「不想生」青 |
+| 01 | hook | IconGrid 2×2 | 粉／黃／紫／青 | 標題「四個關鍵數字」；房價所得比、青年月薪、年總工時、公托覆蓋率四格（note 直接用白話解釋名詞：「不吃不喝 9.47 年」「一半的人不到 3 萬 2,492 元」，各 ≤24 字）；字幕關鍵詞「不敢生」黃、「不想生」青 |
 | 02 | what-is-tfr | TermCard | 青 | 圖示 baby；定義打字機；重點：2.1 門檻、1984 年起低於 |
-| 03 | marriage-bound | TermCard | 紫 | 圖示 ring；「婚育綁定」定義；重點：2025 結婚 10.4 萬對、20–49 歲女性有配偶 43.5% |
-| 04 | tfr-record-low | BigNumber | 粉 | 圖示 trendDown；數字 0.000→0.695（decimals 3）；note 含香港／南韓／日本對照；標籤 **已確定** |
-| 05 | births-2026 | ImpactCard | 青 | 4 列：已確定 ×2（1–9 月、2 月）、分析預期（國發會 9.4 萬）、**尚未確定（10 月數字截至 2026/11/6 尚未公布）** |
-| 06 | top-reasons | FlowRow 3 步 | 黃→粉→紫 | 標題「26.6% 女性不想生，為什麼？」；60.3%→49.4%→34.3% 依箭頭依序出現 |
-| 07 | wage-vs-housing | CompareSplit | 黃 vs 粉 | 左青年月薪（wallet，第 3 項一句話解釋「中位數」）、右房價所得比（house）；footer 黃字「內政部 2026 Q1；Q2 截至 11/6 尚未公布」 |
-| 08 | working-hours | BigNumber | 黃 | 圖示 clock；0→2,030 遞增；note 南韓 1,859、日本 1,636；標籤 **已確定**；不出現「全球第 5」 |
-| 09 | childcare-gap | IconGrid 2×2 | 青／粉／黃／紫 | 標題「公托（政府平價托嬰）有多難搶」；38.1 萬 vs 1.8 萬（不含準公共、保母）、164 個鄉鎮區、329 搶 1 |
+| 03 | tfr-record-low | BigNumber | 粉 | 圖示 trendDown；數字 0.000→0.695（decimals 3）；note 寫「比香港／南韓／日本（速報）都低」，不寫「東亞最低」；標籤 **已確定** |
+| 04 | births-2026 | ImpactCard | 青 | 4 列：已確定 ×2（1–9 月、2 月）、分析預期（國發會 9.4 萬）、**尚未確定（10 月數字截至 2026/11/6 尚未公布）** |
+| 05 | top-reasons | FlowRow 3 步 | 黃→粉→紫 | 標題「26.6% 女性不想生，為什麼？」；60.3%→49.4%→34.3% 依箭頭依序出現 |
+| 06 | wage-vs-housing | CompareSplit | 黃 vs 粉 | 左青年月薪（wallet，第 3 項一句話解釋「中位數」）、右房價所得比（house）；footer 黃字「內政部 2026 年第 1 季；第 2 季尚未公布」 |
+| 07 | working-hours | BigNumber | 黃 | 圖示 clock；0→2,030 遞增；note 南韓 1,859、日本 1,636；標籤 **已確定**；不出現「全球第 5」 |
+| 08 | childcare-gap | IconGrid 2×2 | 青／粉／黃／紫 | 標題「公托（政府平價托嬰）有多難搶」；38.1 萬 vs 1.8 萬（不含準公共、保母）、164 個鄉鎮區、329 搶 1 |
+| 09 | marriage-bound | TermCard | 紫 | 圖示 ring；「婚育綁定」定義；重點：2025 結婚 10.4 萬對、20–49 歲女性有配偶 43.5%；為第 10 幕「不婚」鋪陳 |
 | 10 | unmarried-trend | FlowRow 3 步 | 青→粉→紫 | 標題帶出處「中研院鄭雁馨」；1975 年 5.3% → 2024 年 41.4% → 未婚者約三分之二沒對象 |
 | 11 | policy-spending | ImpactCard | 黃 | 圖示 coins；已確定 ×3（5,839 億、1.125→0.695、12% 認為有用）、分析預期（立院預算中心：多生效果有限） |
 | 12 | two-cash-plans | CompareSplit | 青 vs 紫 | 行政院版（building）vs 立法院版（gavel），對稱版面；footer「兩版如何整合，截至 2026/11/6 尚未定案」 |
 | 13 | youth-voices | IconGrid 2×2 | 黃／粉／青／紫 | 四格：第 1 格 yes123 問卷數字（怕錢不夠養小孩 77.2%）、第 2 格 Dcard 原句加「」、第 3–4 格受訪者說法縮寫、不加「」；note 標「不敢生 ·／不想生 ·」＋出處；不畫人物，用 wallet／house／heart／question 圖示 |
-| 14 | summary | ImpactCard | 青 | 圖示 bulb；已確定 ×2、分析預期（不婚是關鍵）、**尚未確定（10 月出生數、0–18 歲津貼整合）** |
+| 14 | summary | ImpactCard | 青 | 圖示 bulb；已確定 ×1（2025 年出生數與總生育率新低）、分析預期 ×2（不敢生理由為多份調查交集、不婚是關鍵）、**尚未確定（10 月出生數、0–18 歲津貼整合）** |
 | 15 | end | EndCard | 青 | 下一集：南韓生育率為什麼連兩年回升？；聲明「本片使用 AI 輔助製作，由真人選題與審核。」 |
 
-元件順序：IconGrid→TermCard→TermCard→BigNumber→ImpactCard→FlowRow→CompareSplit→BigNumber→IconGrid→FlowRow→ImpactCard→CompareSplit→IconGrid→ImpactCard→EndCard（除第 2–3 幕名詞卡外，沒有連續兩幕同元件）。
+元件順序：IconGrid→TermCard→BigNumber→ImpactCard→FlowRow→CompareSplit→BigNumber→IconGrid→TermCard→FlowRow→ImpactCard→CompareSplit→IconGrid→ImpactCard→EndCard（沒有連續兩幕同元件）。
 
 ## 6. 封面（Cover.tsx，`npm run still` 輸出 `out/taiwan-youth-no-kids-cover.png`）
 - 圖示列：top 420，baby（青）＋ house（粉），各 200px、間距 40。
@@ -82,10 +82,11 @@
 - 狀態標籤：fact「資料截至 2026/11/6」（青）＋ pending「10 月出生數尚未公布」（粉）。
 
 ## 7. 製作前截圖檢查（`npm run still taiwan-youth-no-kids` → `out/taiwan-youth-no-kids/stills/`）
-- 第 05、11、14 幕 ImpactCard 四列：每列文字 36px 可能折 2 行，確認卡片總高 ≤1030、不壓到字幕。
-- 第 06、10 幕 FlowRow 三步＋標題：高度約 850px，確認最後一張卡不超出內容區。
-- 第 13 幕 IconGrid 標籤含「」與第 09 幕的「（不含準公共、保母）」：確認 Noto Sans TC 子集有這些標點、無方框。
-- 第 04、08 幕 BigNumber：「0.695」「2,030」用 Inter，皆 ≤9 字元；狀態標籤出現在 note 下方。
-- 第 07、12 幕 CompareSplit：titleEn 全英文（避免 FONT_EN 缺中文字形）；footer 黃字單行。
-- 來源列每幕單行不被省略：第 06 幕「衛福部 113 年婦女生活狀況調查、自由時報」最長，確認未截斷。
-- 10 月出生數公布後（預計 11/8–10）：更新第 05 幕第 4 列、第 14 幕第 4 列、封面 pending 標籤與 `asOf`，再重跑該兩幕 TTS。
+- 第 04、11、14 幕 ImpactCard 四列：每列文字 36px 可能折 2 行，確認卡片總高 ≤1030、不壓到字幕。
+- 第 05、10 幕 FlowRow 三步＋標題：高度約 850px，確認最後一張卡不超出內容區。
+- 第 13 幕 IconGrid 標籤含「」與第 08 幕的「（不含準公共、保母）」：確認 Noto Sans TC 子集有這些標點、無方框。
+- 第 03、07 幕 BigNumber：「0.695」「2,030」用 Inter，皆 ≤9 字元；狀態標籤出現在 note 下方。
+- 第 06、12 幕 CompareSplit：titleEn 全英文（避免 FONT_EN 缺中文字形）；footer 黃字單行。
+- 第 05、08、14 幕字幕：第 1 行各 14.0em（2026/11/6 審稿後精簡），確認置中後兩側離安全區仍有餘裕。
+- 來源列每幕單行不被省略：第 05 幕「衛福部 113 年婦女生活狀況調查、自由時報」最長，確認未截斷。
+- 10 月出生數公布後（預計 11/8–10）：更新第 04 幕第 4 列、第 14 幕第 4 列、封面 pending 標籤與 `asOf`，再重跑該兩幕 TTS。

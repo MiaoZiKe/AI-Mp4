@@ -7,7 +7,7 @@
       "比特幣越漲",
       "它越買？"
     ],
-    "sub": "全球最大持幣公司的飛輪與反轉",
+    "sub": "全球最大持幣上市公司的飛輪與反轉",
     "en": "MSTR & Bitcoin: why it kept buying, and what changed",
     "icons": [
       {
@@ -48,7 +48,7 @@
       },
       {
         "status": "pending",
-        "text": "MSCI 名單 11/11 公布"
+        "text": "MSCI 名單預計 11/11"
       }
     ]
   },
@@ -107,7 +107,7 @@
         "term": "Strategy",
         "termEn": "Formerly MicroStrategy · Nasdaq: MSTR",
         "color": "cyan",
-        "definition": "美國軟體公司，2020 年起把公司的錢拿去買比特幣，如今是全球持幣最多的上市公司，美股代號 MSTR。",
+        "definition": "美國軟體公司，原名 MicroStrategy，2020 年起把公司的錢拿去買比特幣，是全球持幣最多的上市公司。",
         "points": [
           "持幣 849,327 枚（2026/11/1）",
           "平均成本每枚約 75,451 美元",
@@ -120,47 +120,16 @@
       ]
     },
     {
-      "id": "what-is-mnav",
-      "narration": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
-      "tts": "M N A V 是市值除以持幣價值，大於一就代表有溢價。",
-      "subtitle": {
-        "zh": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
-        "en": "mNAV = market cap ÷ bitcoin held. Above 1 means the stock trades at a premium."
-      },
-      "keywords": [
-        "mNAV",
-        "溢價"
-      ],
-      "component": "TermCard",
-      "props": {
-        "icon": "scale",
-        "term": "mNAV",
-        "termEn": "Market cap ÷ bitcoin net asset value",
-        "color": "purple",
-        "definition": "公司股票總市值，除以手上比特幣的價值。大於 1，代表市場肯用比幣更貴的價格買它的股票，這就是溢價。",
-        "points": [
-          "2024/11 高峰約 3.4 倍",
-          "2026/11 初 0.85–1.2 倍，看算法",
-          "有的算法會把債和優先股加進去"
-        ]
-      },
-      "sources": [
-        "BitMEX Research",
-        "sec-api.io 2026/11/2",
-        "LookIntoBitcoin"
-      ]
-    },
-    {
       "id": "stock-vs-coin",
-      "narration": "股價跟幣價連動但更猛，11/5 幣跌 5%，它跌了 10%。",
-      "tts": "股價跟幣價連動但更猛，十一月五號幣跌五趴，它跌了十趴。",
+      "narration": "股價跟幣價連動但更猛，11/5 盤中幣跌 5%，它跌一成。",
+      "tts": "股價跟幣價連動但更猛，十一月五號盤中幣跌五趴，它跌一成。",
       "subtitle": {
-        "zh": "股價跟幣價連動但更猛，11/5 幣跌 5%，它跌了 10%。",
-        "en": "MSTR tracks bitcoin but swings harder: on Nov 5 BTC fell ~5%, MSTR ~10%."
+        "zh": "股價跟幣價連動但更猛，11/5 盤中幣跌 5%，它跌一成。",
+        "en": "MSTR tracks bitcoin but swings harder: on Nov 5 BTC fell ~5% intraday, MSTR ~10%."
       },
       "keywords": [
         "連動",
-        "10%"
+        "一成"
       ],
       "component": "CompareSplit",
       "props": {
@@ -196,9 +165,9 @@
     },
     {
       "id": "funding-tools",
-      "narration": "買幣的錢來自三種工具：增發股票、可轉債，和永續優先股。",
+      "narration": "買幣的錢來自三種工具：增發股票、可轉債和永續優先股。",
       "subtitle": {
-        "zh": "買幣的錢來自三種工具：增發股票、可轉債，和永續優先股。",
+        "zh": "買幣的錢來自三種工具：增發股票、可轉債和永續優先股。",
         "en": "Funded three ways: new shares, convertible bonds and perpetual preferred stock."
       },
       "keywords": [
@@ -225,8 +194,8 @@
           },
           {
             "icon": "coins",
-            "label": "優先股",
-            "note": "先領固定股息，名目約 133 億",
+            "label": "永續優先股",
+            "note": "沒到期日，先領股息，約 133 億",
             "color": "pink"
           }
         ]
@@ -237,11 +206,42 @@
       ]
     },
     {
-      "id": "flywheel",
-      "narration": "以前的玩法是：有溢價就發股買幣，每股含幣反而變多。",
+      "id": "what-is-mnav",
+      "narration": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
+      "tts": "M N A V 是市值除以持幣價值，大於一就代表有溢價。",
       "subtitle": {
-        "zh": "以前的玩法是：有溢價就發股買幣，每股含幣反而變多。",
-        "en": "The old playbook: at a premium, sell shares, buy bitcoin, and bitcoin per share rises."
+        "zh": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
+        "en": "mNAV = market cap ÷ bitcoin held. Above 1 means the stock trades at a premium."
+      },
+      "keywords": [
+        "mNAV",
+        "溢價"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "scale",
+        "term": "mNAV",
+        "termEn": "Market cap ÷ bitcoin net asset value",
+        "color": "purple",
+        "definition": "公司股票總市值，除以手上比特幣的價值。大於 1，代表市場肯用比幣更貴的價格買它的股票，這就是溢價。",
+        "points": [
+          "2024/11 高峰約 3.4 倍",
+          "2026/11 初 0.85–1.2 倍，看算法",
+          "有的算法會把債和優先股加進去"
+        ]
+      },
+      "sources": [
+        "BitMEX Research",
+        "sec-api.io 2026/11/2",
+        "LookIntoBitcoin"
+      ]
+    },
+    {
+      "id": "flywheel",
+      "narration": "以前的玩法像飛輪：溢價時發股買幣，每股含幣變多。",
+      "subtitle": {
+        "zh": "以前的玩法像飛輪：溢價時發股買幣，每股含幣變多。",
+        "en": "The old flywheel: at a premium, sell shares, buy bitcoin, and bitcoin per share rises."
       },
       "keywords": [
         "溢價",
@@ -266,7 +266,7 @@
           {
             "icon": "bitcoin",
             "label": "每股含幣增加",
-            "note": "舊股東沒被稀釋，叫「增厚」",
+            "note": "每股分到的幣變多，叫「增厚」",
             "color": "pink"
           },
           {
@@ -314,9 +314,9 @@
           "icon": "trendDown",
           "color": "pink",
           "items": [
-            "用 0.85 元的股權",
-            "只買到 1 元的幣",
-            "每股含幣反而變少"
+            "100 股、100 枚幣",
+            "增發 10 股只買到 8.5 枚",
+            "每股 1.00 降到 0.99 枚"
           ]
         },
         "footer": "依公開定義推算；溢價就是飛輪的燃料"
@@ -354,7 +354,7 @@
           },
           {
             "status": "expected",
-            "text": "批評者：前提是溢價撐得住，否則就是真稀釋"
+            "text": "批評者：前提是溢價撐得住，否則每股含幣就被稀釋"
           }
         ]
       },
@@ -378,7 +378,7 @@
       "component": "BigNumber",
       "props": {
         "icon": "scale",
-        "label": "mNAV（11/5 盤中，自算）",
+        "label": "mNAV（11/5 盤中，推算）",
         "value": 0.9,
         "decimals": 2,
         "note": "股價 127.9 美元 ÷ 每股含幣值約 142.7 美元；各家算法在 0.85–1.2 倍",
@@ -422,13 +422,13 @@
           {
             "icon": "coins",
             "label": "回購優先股、付股息",
-            "note": "STRC 回購約 20.4 億美元",
+            "note": "回購 STRC 優先股約 20.4 億美元",
             "color": "purple"
           },
           {
             "icon": "trendDown",
             "label": "賣幣約 4.3 億美元",
-            "note": "約 6,900 多枚，賣價多低於成本",
+            "note": "推算約 6,900 多枚，賣價多低於成本",
             "color": "pink"
           }
         ]
@@ -514,10 +514,10 @@
     },
     {
       "id": "risks",
-      "narration": "風險在哪？幣價貼近成本線，指數會不會剔除它還沒定。",
+      "narration": "風險有兩個：幣價貼近成本線，指數會不會剔除它還沒定。",
       "subtitle": {
-        "zh": "風險在哪？幣價貼近成本線，指數會不會剔除它還沒定。",
-        "en": "The risks: bitcoin sits near its cost basis, and an index removal is still undecided."
+        "zh": "風險有兩個：幣價貼近成本線，指數會不會剔除它還沒定。",
+        "en": "Two risks: bitcoin sits near its cost basis, and an index removal is still undecided."
       },
       "keywords": [
         "成本線",
@@ -536,11 +536,11 @@
           },
           {
             "status": "pending",
-            "text": "MSCI 指數 11/11 公布剔除名單，截至 2026/11/6 尚未確定"
+            "text": "指數公司 MSCI 預計 11/11 公布名單，截至 2026/11/6 未定"
           },
           {
             "status": "expected",
-            "text": "若被剔除，追蹤它的被動基金得賣股，摩根大通估約 28 億美元"
+            "text": "若被剔除，追蹤它的被動基金得賣股，摩根大通 2025/11 估 28 億美元"
           },
           {
             "status": "expected",
@@ -592,7 +592,7 @@
           {
             "icon": "question",
             "label": "MSCI 名單",
-            "note": "11/11 公布；截至 2026/11/6 尚未確定",
+            "note": "預計 11/11 公布，截至 2026/11/6 尚未確定",
             "color": "purple"
           }
         ]
@@ -611,7 +611,7 @@
       "keywords": [],
       "component": "EndCard",
       "props": {
-        "next": "下一集：比特幣現貨 ETF，台灣散戶為什麼買不到？",
+        "next": "下一集：比特幣現貨 ETF，台灣為什麼只開放專業投資人？",
         "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。"
       },
       "sources": []

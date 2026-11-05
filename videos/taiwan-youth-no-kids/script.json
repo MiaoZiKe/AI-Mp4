@@ -82,13 +82,13 @@
           {
             "icon": "house",
             "label": "房價所得比",
-            "note": "全國 9.47 倍、台北 14.72 倍",
+            "note": "不吃不喝 9.47 年，台北 14.72 年",
             "color": "pink"
           },
           {
             "icon": "wallet",
             "label": "青年月薪",
-            "note": "未滿 30 歲中位數 3 萬 2,492 元",
+            "note": "未滿 30 歲一半的人不到 3 萬 2,492 元",
             "color": "yellow"
           },
           {
@@ -140,36 +140,6 @@
       ]
     },
     {
-      "id": "marriage-bound",
-      "narration": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
-      "tts": "台灣非婚生育只有百分之二到四，所以不結婚，幾乎就等於不生。",
-      "subtitle": {
-        "zh": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
-        "en": "Just 2–4% of Taiwan's births are outside marriage: no marriage, almost no kids."
-      },
-      "keywords": [
-        "非婚生育",
-        "不結婚"
-      ],
-      "component": "TermCard",
-      "props": {
-        "icon": "ring",
-        "term": "婚育綁定",
-        "termEn": "Marriage-bound childbearing",
-        "color": "purple",
-        "definition": "台灣的小孩幾乎都生在婚姻裡，非婚生育只占 2–4%；找不到對象、不結婚，就很難有下一步。",
-        "points": [
-          "2025 年結婚 10.4 萬對，近 10 年新低",
-          "20–49 歲女性有配偶的比例只剩 43.5%"
-        ]
-      },
-      "sources": [
-        "內政部",
-        "國發會",
-        "中研院研之有物"
-      ]
-    },
-    {
       "id": "tfr-record-low",
       "narration": "去年總生育率只剩 0.695，跌到有統計以來最低。",
       "tts": "去年總生育率只剩零點六九五，跌到有統計以來最低。",
@@ -188,7 +158,7 @@
         "value": 0.695,
         "decimals": 3,
         "color": "pink",
-        "note": "一年掉 0.19、跌幅歷來最大；東亞最低：香港 0.733、南韓 0.80、日本 1.14",
+        "note": "一年掉 0.19、跌幅歷來最大；比香港 0.733、南韓 0.80、日本 1.14（速報）都低",
         "tag": "fact"
       },
       "sources": [
@@ -242,9 +212,9 @@
     },
     {
       "id": "top-reasons",
-      "narration": "衛福部調查，不想生的主因是錢，其次是不想改變生活。",
+      "narration": "衛福部調查，不想生主因是錢，其次是不想改變生活。",
       "subtitle": {
-        "zh": "衛福部調查，不想生的主因是錢，其次是不想改變生活。",
+        "zh": "衛福部調查，不想生主因是錢，其次是不想改變生活。",
         "en": "Health ministry survey: No.1 reason is money; No.2 is not wanting to change one's life."
       },
       "keywords": [
@@ -282,11 +252,11 @@
     },
     {
       "id": "wage-vs-housing",
-      "narration": "青年月薪中位數 3 萬 2 千多，買房要全家不吃不喝近 10 年。",
-      "tts": "青年月薪中位數三萬兩千多，買房要全家不吃不喝近十年。",
+      "narration": "青年月薪中位數 3 萬 2，房價卻要全家不吃不喝近 10 年。",
+      "tts": "青年月薪中位數三萬二，房價卻要全家不吃不喝近十年。",
       "subtitle": {
-        "zh": "青年月薪中位數 3 萬 2 千多，買房要全家不吃不喝近 10 年。",
-        "en": "Median pay under 30 is about NT$32,000; a home costs nearly 10 years of family income."
+        "zh": "青年月薪中位數 3 萬 2，房價卻要全家不吃不喝近 10 年。",
+        "en": "Median pay under 30 is about NT$32,000, yet a home costs nearly 10 years of family income."
       },
       "keywords": [
         "月薪中位數",
@@ -317,7 +287,7 @@
             "比去年同期略降，但仍偏高"
           ]
         },
-        "footer": "內政部 2026 Q1；Q2 截至 11/6 尚未公布"
+        "footer": "內政部 2026 年第 1 季；第 2 季尚未公布"
       },
       "sources": [
         "主計總處",
@@ -354,10 +324,10 @@
     },
     {
       "id": "childcare-gap",
-      "narration": "聯合報盤點，公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
+      "narration": "聯合報：公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
       "tts": "聯合報盤點，公托只夠百分之四點九的幼兒，一百六十四個鄉鎮區完全沒有。",
       "subtitle": {
-        "zh": "聯合報盤點，公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
+        "zh": "聯合報：公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
         "en": "Public daycare covers just 4.9% of under-3s; 164 townships have none (United Daily News)."
       },
       "keywords": [
@@ -400,12 +370,42 @@
       ]
     },
     {
-      "id": "unmarried-trend",
-      "narration": "學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
-      "tts": "學者認為關鍵是不婚，三十五到三十九歲未婚比例超過四成。",
+      "id": "marriage-bound",
+      "narration": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
+      "tts": "台灣非婚生育只有百分之二到四，所以不結婚，幾乎就等於不生。",
       "subtitle": {
-        "zh": "學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
-        "en": "Scholars say the key is not marrying: over 40% of Taiwanese aged 35–39 are unmarried."
+        "zh": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
+        "en": "Just 2–4% of Taiwan's births are outside marriage: no marriage, almost no kids."
+      },
+      "keywords": [
+        "非婚生育",
+        "不結婚"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "ring",
+        "term": "婚育綁定",
+        "termEn": "Marriage-bound childbearing",
+        "color": "purple",
+        "definition": "台灣的小孩幾乎都生在婚姻裡，非婚生育只占 2–4%；找不到對象、不結婚，就很難有下一步。",
+        "points": [
+          "2025 年結婚 10.4 萬對，近 10 年新低",
+          "20–49 歲女性有配偶的比例只剩 43.5%"
+        ]
+      },
+      "sources": [
+        "內政部",
+        "國發會",
+        "中研院研之有物"
+      ]
+    },
+    {
+      "id": "unmarried-trend",
+      "narration": "有學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
+      "tts": "有學者認為關鍵是不婚，三十五到三十九歲未婚比例超過四成。",
+      "subtitle": {
+        "zh": "有學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
+        "en": "Some scholars say the key is not marrying: over 40% of Taiwanese aged 35–39 are unmarried."
       },
       "keywords": [
         "不婚",
@@ -577,9 +577,9 @@
     },
     {
       "id": "summary",
-      "narration": "一句話：不敢生是錢、房和時間，不想生是選擇，而兩者都在增加。",
+      "narration": "總結：不敢生是錢、房和時間，不想生是選擇，兩者都在增加。",
       "subtitle": {
-        "zh": "一句話：不敢生是錢、房和時間，不想生是選擇，而兩者都在增加。",
+        "zh": "總結：不敢生是錢、房和時間，不想生是選擇，兩者都在增加。",
         "en": "In short: 'can't' is money, housing and time; 'won't' is a choice. Both are rising."
       },
       "keywords": [
@@ -598,8 +598,8 @@
             "text": "2025 年出生 10 萬 7,812 人、總生育率 0.695，都是歷史新低"
           },
           {
-            "status": "fact",
-            "text": "錢、房價、工時、托育：各調查排最前面的「不敢生」理由"
+            "status": "expected",
+            "text": "錢、房價、工時、托育：多份調查裡最常見的「不敢生」理由"
           },
           {
             "status": "expected",
