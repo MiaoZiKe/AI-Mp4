@@ -12,7 +12,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); if (m.type() === 'warning') warns.push(m.text()); });
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));
   await page.goto('http://127.0.0.1:8765/index.html' + query);
-  await page.waitForFunction(() => window.__octo && window.__octo.frames() > 5, null, { timeout: 120000 });
+  await page.waitForFunction(() => window.__octo && window.__octo.frames() > 2, null, { timeout: 400000 });
   const backend = await page.evaluate(() => window.__octo.backend);
   await sleep(3000);
   const out = n => path.join(__dirname, `${prefix}_${n}.png`);

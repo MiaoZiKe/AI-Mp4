@@ -60,7 +60,7 @@ const v3 = {
   len: a => Math.hypot(a[0], a[1], a[2]), norm: a => { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; },
 };
 const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-const radAt = s => 0.16 * Math.pow(1 - s, 0.7) + 0.022;
+const radAt = s => 0.165 * Math.pow(1 - s, 0.55) + 0.03;
 
 function icosphere(sub) {
   const t = (1 + Math.sqrt(5)) / 2;
@@ -115,9 +115,9 @@ for (let t = 0; t < NT; t++) {
     let p;
     if (k === 0) p = A.slice();
     else {
-      const rr = r0 + 1.85 * s - 0.42 * smooth(0.8, 1, s);
-      const ang = a0 + 0.22 * Math.sin(t * 2.3 + 1) * s + 0.35 * smooth(0.75, 1, s) * (t % 2 ? 1 : -1);
-      const y = A[1] + (-Y0 + radAt(s) - A[1]) * smooth(0, 0.42, s) + 0.5 * Math.pow(smooth(0.8, 1, s), 1.5);
+      const rr = r0 + 1.85 * s - 0.2 * smooth(0.8, 1, s);
+      const ang = a0 + 0.22 * Math.sin(t * 2.3 + 1) * s + 0.18 * smooth(0.7, 1, s) * (t % 2 ? 1 : -1);
+      const y = A[1] + (-Y0 + radAt(s) - A[1]) * smooth(0, 0.42, s) + 0.28 * Math.pow(smooth(0.78, 1, s), 1.5);
       p = [Math.cos(ang) * rr, y, Math.sin(ang) * rr];
     }
     const i = NH + t * NN + k;
@@ -319,7 +319,7 @@ struct U { vp: mat4x4f, cam: vec4f, t0: vec4f, t1: vec4f, grab: vec4f, t2: vec4f
 const NH: u32 = ${NH}u; const NP: u32 = ${NP}u; const NN: u32 = ${NN}u; const NTRI: u32 = ${NTRI}u;
 const NF: u32 = ${NF}u; const NV: u32 = ${NV}u; const RING: u32 = ${RING}u;
 const O_NBR: u32 = ${O_NBR}u; const O_VT: u32 = ${O_VT}u; const O_TRI: u32 = ${O_TRI}u; const O_ANC: u32 = ${O_ANC}u; const O_FT: u32 = ${O_FT}u; const O_FN: u32 = ${O_FN}u;
-fn radAt(s: f32) -> f32 { return 0.16 * pow(1.0 - s, 0.7) + 0.022; }
+fn radAt(s: f32) -> f32 { return 0.165 * pow(1.0 - s, 0.55) + 0.03; }
 `;
 const WGSL_SIM = WGSL_COMMON + /* wgsl */`
 const V0: f32 = ${V0.toFixed(6)}; const DEN0: f32 = ${DEN0.toFixed(6)};
@@ -1083,7 +1083,7 @@ const GLSL_COMMON = `#version 300 es
 precision highp float; precision highp int;
 uniform mat4 uVP; uniform vec4 uCam, uT0, uT1, uT2, uT3;
 const int NN = ${NN};
-float radAt(float s) { return 0.16 * pow(1.0 - s, 0.7) + 0.022; }
+float radAt(float s) { return 0.165 * pow(1.0 - s, 0.55) + 0.03; }
 `;
 const GLSL_FRAG_LIB = `
 uniform vec4 uC0;
