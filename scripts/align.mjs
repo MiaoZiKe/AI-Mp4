@@ -22,7 +22,7 @@ const tlPath = path.join(dir, "timeline.json");
 const prev = fs.existsSync(tlPath) ? JSON.parse(fs.readFileSync(tlPath, "utf8")) : null;
 const OPENAI_KEY = process.env.OPENAI_API_KEY || "injected-by-proxy";
 const GEMINI_KEY = process.env.GEMINI_API_KEY || "injected-by-proxy";
-const GEMINI_MODEL = process.env.ALIGN_GEMINI_MODEL || "gemini-2.5-flash";
+const GEMINI_MODEL = process.env.ALIGN_GEMINI_MODEL || "gemini-3.5-transcribe"; // 退場就改 gemini-3.8-flash
 let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -67,7 +67,7 @@ async function geminiTranscribe(file) {
   let lastErr;
   for (let i = 0; i < 4; i++) {
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY }, body: JSON.stringify(body) });
-    if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts ?? []).map((p) => p.text ?? "").join("").trim(); }
+    if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts ?? []).map((p) => p.audioTranscription?.text ?? p.text ?? "").join("").trim(); }
     const t = await r.text();
     lastErr = new Error(`${r.status} ${t.slice(0, 200)}`);
     if (r.status === 429 || r.status >= 500) { await sleep(8000 * (i + 1)); continue; }
