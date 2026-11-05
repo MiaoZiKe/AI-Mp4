@@ -6,13 +6,13 @@
 Strategy（原 MicroStrategy，美股代號 MSTR）2020 年起把公司的錢拿去買比特幣。截至 2026/11/1 持有 849,327 枚，約佔 2,100 萬枚上限的 4.04%，是全球持幣最多的上市公司；累計投入約 640.8 億美元，平均每枚成本約 75,451 美元。
 
 ② **飛輪怎麼轉（2024–2025 年的玩法）**
-關鍵字是 mNAV：公司市值除以手上比特幣的價值。大於 1 代表市場肯用比幣更貴的價格買它的股票（溢價，2024/11 高峰約 3.4 倍）。有溢價時，增發 1 股能買到超過 1 股的幣，舊股東每股含幣反而變多——例如 mNAV 2 倍時，100 股增發 10 股買 20 枚，每股從 1.00 升到 1.09 枚。所以創辦人 Michael Saylor 2022 年說「我會永遠買在頂部」：他看的不是美元成本，而是每股含幣量。買幣的錢來自三種工具：增發普通股、可轉換公司債（Q3 末約 67 億美元）、四檔永續優先股（名目約 133 億美元）。
+關鍵字是 mNAV：公司市值除以手上比特幣的價值。大於 1 代表市場肯用比幣更貴的價格買它的股票（溢價，2024/11 高峰約 3.4 倍）。有溢價時，增發 1 股能買到超過 1 股的幣，舊股東每股含幣反而變多——例如 mNAV 2 倍時，100 股增發 10 股買 20 枚，每股從 1.00 升到 1.09 枚。所以共同創辦人 Michael Saylor 2022 年說「我會永遠買在頂部」：他看的不是美元成本，而是每股含幣量。買幣的錢來自三種工具：增發普通股、可轉換公司債（Q3 末約 67 億美元）、四檔永續優先股（名目約 133 億美元）。
 
 ③ **2026 年飛輪反轉了**
 - 溢價幾乎歸零：各家算法在 0.85–1.2 倍之間（口徑不同、須標日期）；以每股含幣推算，11/5 盤中約 0.9 倍（分析預期）。
 - 2026 年至 10/25 募資 212.3 億美元，只有 143.3 億買幣，還賣了約 4.318 億美元的幣（約 6,900 多枚，枚數為推算）去付優先股股息與回購 STRC 優先股。
 - 2026 年至今 BTC Yield −3.7%：持幣多了 26%，假設稀釋股數卻多了 31%，每股含幣反而變少。
-- 說過「我們不是賣家」的公司，2026/5/26–31 首次賣出 32 枚，6/29 再授權最多賣 12.5 億美元補美元儲備。
+- 說過「我們不是賣家」的公司，2026/5/26–31 賣出 32 枚（2022 年以來首次淨賣出），6/29 再授權最多賣 12.5 億美元補美元儲備（截至 10/25 尚未動用）。
 
 ④ **風險與尚未確定的事**
 - 11/5 比特幣一度跌到約 75,600 美元，貼近 75,451 的平均成本；MSTR 當天盤中跌約 10%（11/4 收 142.54 美元），波動一向大於比特幣本身。
@@ -33,7 +33,7 @@ Strategy（原 MicroStrategy，美股代號 MSTR）2020 年起把公司的錢拿
 - sec-api.io — Strategy Q3 2026 分析（2026/11/2）：https://sec-api.io/insights/strategy-mstr-q3-2026-earnings-sec-filing-analysis
 - LookIntoBitcoin — MSTR Explained：https://www.lookintobitcoin.com/what-is-mstr/
 - The Block（2026/6/26）企業價值 mNAV 首次跌破 1：https://www.theblock.co/news/markets/2026-06-26-strategy-loses-bitcoin-premium-enterprise-mnav-dips-below-1-406438
-- CoinDesk（2026/6/1）首次賣出 32 枚：https://www.coindesk.com/markets/2026/06/01/strategy-sold-32-btc-for-usd2-5-million-in-late-may-filing-shows
+- CoinDesk（2026/6/1）2022 年以來首次淨賣出 32 枚：https://www.coindesk.com/markets/2026/06/01/strategy-sold-32-btc-for-usd2-5-million-in-late-may-filing-shows
 - Strategy 新聞稿（2026/6/29）Digital Credit Capital Framework：https://www.strategy.com/press/strategy-announces-digital-credit-capital-framework_06-29-2026
 - Cointelegraph — Strategy sells 1,638 Bitcoin：https://cointelegraph.com/news/strategy-sells-bitcoin-dividend-strc
 - CoinDesk（2026/11/5）比特幣與加密股下跌：https://www.coindesk.com/markets/2026/11/05/bitcoin-crypto-stocks-caught-in-ai-trade-meltdown-but-wintermute-trader-sees-glass-half-full
