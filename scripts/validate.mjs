@@ -1,4 +1,4 @@
-// npm run validate <slug>：檢查 script.json 結構、字數、元件 props、總長估算（配音版）
+// npm run validate <slug>：檢查 script.json 結構、字數、元件 props、來源列寬度、總長估算（配音版）
 import fs from "node:fs";
 import path from "node:path";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -78,7 +78,16 @@ export function validate(script) {
       s.keywords.forEach((k) => { if (!s.subtitle?.zh?.includes(k)) E(`${tag}: 關鍵詞「${k}」不在字幕裡`); if (k.length > 6) W(`${tag}: 關鍵詞「${k}」偏長`); if (PUNCT.test(k)) E(`${tag}: 關鍵詞「${k}」含標點`); });
     }
     if (!Array.isArray(s.sources)) E(`${tag}: sources 必須是陣列`);
-    else if (!s.sources.length && !isEnd && i !== 0) E(`${tag}: sources 不可為空`);
+    else {
+      if (!s.sources.length && !isEnd && i !== 0) E(`${tag}: sources 不可為空`);
+      // SourceFooter：22px、單行 nowrap、超出安全區寬 952px 會以「…」截斷（後面的來源與「截至」會消失）
+      if (s.sources.length && !isEnd) {
+        const footer = `資料來源：${s.sources.join("、")}${script.asOf ? `｜截至 ${script.asOf}` : ""}`;
+        const px = Math.round(emWidth(footer) * 22);
+        if (px > 952) E(`${tag}: 來源列估寬 ${px}px > 952，畫面會以「…」截斷：「${footer}」→ 縮短來源名稱（細節寫在卡片 note 或 research.md）`);
+        else if (px > 900) W(`${tag}: 來源列估寬 ${px}px，接近 952px 上限：「${footer}」`);
+      }
+    }
     if (s.durationSec !== undefined && (typeof s.durationSec !== "number" || s.durationSec < 3 || s.durationSec > 15)) E(`${tag}: durationSec 應為 3–15`);
     if (i === scenes.length - 1 && !isEnd) E("最後一幕必須是 EndCard");
     if (isEnd && i !== scenes.length - 1) E(`${tag}: EndCard 只能是最後一幕`);

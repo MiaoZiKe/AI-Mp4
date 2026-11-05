@@ -74,6 +74,7 @@
         "不敢生",
         "不想生"
       ],
+      "durationSec": 8,
       "component": "IconGrid",
       "props": {
         "title": "四個關鍵數字",
@@ -82,25 +83,25 @@
           {
             "icon": "house",
             "label": "房價所得比",
-            "note": "全家不吃不喝 9.47 年，台北 14.72 年",
+            "note": "9.47 年",
             "color": "pink"
           },
           {
             "icon": "wallet",
             "label": "青年月薪",
-            "note": "未滿 30 歲一半的人不到 32,492 元",
+            "note": "32,492 元",
             "color": "yellow"
           },
           {
             "icon": "clock",
             "label": "年總工時",
-            "note": "2024 年 2,030 小時",
+            "note": "2,030 小時",
             "color": "purple"
           },
           {
             "icon": "stroller",
             "label": "公托覆蓋率",
-            "note": "0–2 歲每 20 人只有 1 個名額",
+            "note": "每 20 人 1 個名額",
             "color": "cyan"
           }
         ]
@@ -221,27 +222,28 @@
         "錢",
         "不想改變生活"
       ],
-      "component": "FlowRow",
+      "component": "ImpactCard",
       "props": {
-        "title": "26.6% 女性不想生，為什麼？",
-        "steps": [
+        "icon": "wallet",
+        "title": "26.6% 女性不想生",
+        "titleEn": "MOHW 2024 survey: top reasons",
+        "color": "yellow",
+        "rows": [
           {
-            "icon": "wallet",
-            "label": "經濟負擔太重 60.3%",
-            "note": "2019 年調查是 56.9%",
-            "color": "yellow"
+            "status": "fact",
+            "text": "① 經濟負擔太重 60.3%（2019 年 56.9%）"
           },
           {
-            "icon": "heart",
-            "label": "不想改變現有生活 49.4%",
-            "note": "近五成，排第二",
-            "color": "pink"
+            "status": "fact",
+            "text": "② 不想因小孩改變現有生活 49.4%"
           },
           {
-            "icon": "graduation",
-            "label": "擔心教養與未來 34.3%",
-            "note": "2024 年調查、2025 年 8 月公布",
-            "color": "purple"
+            "status": "fact",
+            "text": "③ 擔心孩子教養與未來 34.3%"
+          },
+          {
+            "status": "fact",
+            "text": "不想生比例從 2019 年 19.2% 升到 26.6%"
           }
         ]
       },
@@ -284,7 +286,7 @@
           "items": [
             "全國 9.47 倍、台北市 14.72 倍",
             "白話：全家不吃不喝幾年買得起",
-            "比去年同期略降，但仍偏高"
+            "比去年同期下降，但仍偏高"
           ]
         },
         "footer": "內政部 2026 年第 1 季；第 2 季尚未公布"
@@ -455,7 +457,7 @@
       "component": "ImpactCard",
       "props": {
         "icon": "coins",
-        "title": "5,839 億花在哪",
+        "title": "編了 5,839 億，然後呢",
         "titleEn": "Spending vs. results",
         "color": "yellow",
         "rows": [
@@ -485,11 +487,11 @@
     },
     {
       "id": "two-cash-plans",
-      "narration": "朝野都主張發錢給 0 到 18 歲，但兩個版本並存，還沒定案。",
-      "tts": "朝野都主張發錢給零到十八歲，但兩個版本並存，還沒定案。",
+      "narration": "朝野都主張發錢給 0 到 18 歲，但兩版怎麼整合，還沒定案。",
+      "tts": "朝野都主張發錢給零到十八歲，但兩版怎麼整合，還沒定案。",
       "subtitle": {
-        "zh": "朝野都主張發錢給 0 到 18 歲，但兩個版本並存，還沒定案。",
-        "en": "Both camps back cash for ages 0–18, but two rival versions remain unreconciled."
+        "zh": "朝野都主張發錢給 0 到 18 歲，但兩版怎麼整合，還沒定案。",
+        "en": "Both camps back cash for ages 0–18; how to merge the two versions is still undecided."
       },
       "keywords": [
         "發錢",
@@ -516,7 +518,7 @@
           "items": [
             "0–7 歲每年 6 萬元",
             "7–18 歲每年 3 萬現金加 3 萬存帳戶",
-            "合計約 114 萬元（媒體報導），7/24 三讀"
+            "7/24 三讀；媒體估合計逾 100 萬元"
           ]
         },
         "footer": "兩版如何整合，截至 2026/11/6 尚未定案"
@@ -546,13 +548,13 @@
           {
             "icon": "wallet",
             "label": "怕錢不夠養小孩",
-            "note": "不敢生 · yes123 問卷 77.2%，1,397 份",
+            "note": "不敢生 · yes123 求職網問卷 77.2%，1,397 份",
             "color": "yellow"
           },
           {
             "icon": "house",
-            "label": "「不想讓孩子一起吃苦」",
-            "note": "不敢生 · Dcard 貼文，鏡週刊轉述",
+            "label": "不想讓孩子一起吃苦",
+            "note": "不敢生 · Dcard 原句，鏡週刊轉述",
             "color": "pink"
           },
           {
@@ -570,9 +572,9 @@
         ]
       },
       "sources": [
-        "鏡週刊（轉述 Dcard 貼文）",
-        "yes123 2025 調查（鉅亨網）",
-        "聯合新聞網 2026/11 訪談"
+        "鏡週刊",
+        "yes123／鉅亨網",
+        "聯合新聞網"
       ]
     },
     {
