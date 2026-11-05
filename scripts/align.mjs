@@ -55,25 +55,31 @@ async function whisper(file) {
   throw lastErr;
 }
 
-/** Gemini 聽寫（只要文字，做回讀校驗） */
+/** Gemini 聽寫（只要文字，做回讀校驗）。免費額度每模型每天有限：某模型當日額度用完就換下一個，全部用完就跳過（不影響時間軸） */
+const TRANSCRIBE_MODELS = [GEMINI_MODEL, "gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-3.1-flash-lite"].filter((m, i, a) => a.indexOf(m) === i);
+const dead = new Set();
 async function geminiTranscribe(file) {
-  const body = {
-    contents: [{ parts: [
-      { inlineData: { mimeType: "audio/wav", data: fs.readFileSync(file).toString("base64") } },
-      { text: "請逐字聽寫這段台灣國語語音。只輸出聽到的文字（繁體中文，可含標點），不要加任何說明或前綴。" },
-    ] }],
-    generationConfig: { temperature: 0 },
-  };
-  let lastErr;
-  for (let i = 0; i < 4; i++) {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY }, body: JSON.stringify(body) });
-    if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts ?? []).map((p) => p.audioTranscription?.text ?? p.text ?? "").join("").trim(); }
-    const t = await r.text();
-    lastErr = new Error(`${r.status} ${t.slice(0, 200)}`);
-    if (r.status === 429 || r.status >= 500) { await sleep(8000 * (i + 1)); continue; }
-    break;
+  const data = fs.readFileSync(file).toString("base64");
+  for (const model of TRANSCRIBE_MODELS) {
+    if (dead.has(model)) continue;
+    const body = {
+      contents: [{ parts: [
+        { inlineData: { mimeType: "audio/wav", data } },
+        { text: "請逐字聽寫這段台灣國語語音。只輸出聽到的文字（繁體中文，可含標點），不要加任何說明或前綴。" },
+      ] }],
+      generationConfig: { temperature: 0 },
+    };
+    for (let i = 0; i < 3; i++) {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY }, body: JSON.stringify(body) });
+      if (r.ok) { const j = await r.json(); return { model, text: (j.candidates?.[0]?.content?.parts ?? []).map((p) => p.audioTranscription?.text ?? p.text ?? "").join("").trim() }; }
+      const t = await r.text();
+      if (r.status === 429 && /PerDay|quota/i.test(t) && !/PerMinute/.test(t)) { dead.add(model); console.log(`\n  ℹ ${model} 今日額度用完 → 換下一個`); break; }
+      if (r.status === 404) { dead.add(model); break; }
+      if (r.status === 429 || r.status >= 500) { await sleep(5000 * (i + 1)); continue; }
+      dead.add(model); break;
+    }
   }
-  throw lastErr;
+  return { model: null, text: "" };
 }
 
 /** ffmpeg 靜音偵測 → 說話時段 [{s,e}] */
@@ -176,7 +182,8 @@ for (const [i, s] of script.scenes.entries()) {
   }
   if (!times) {
     transcript = "";
-    try { transcript = await geminiTranscribe(abs); } catch (e) { console.warn(`  ⚠ Gemini 聽寫失敗：${e.message.slice(0, 100)}`); }
+    try { const tr = await geminiTranscribe(abs); transcript = tr.text; if (!tr.model) console.log("  ℹ 無可用聽寫模型，略過回讀");
+    } catch (e) { console.warn(`  ⚠ Gemini 聽寫失敗：${e.message.slice(0, 100)}`); }
     const tb = norm(transcript).map((c) => ({ c }));
     cer = spoken.length && tb.length ? 1 - lcsAlign(spoken, tb).matched / spoken.length : (tb.length ? 0 : 1);
     const segs = speechSegments(abs, m.sec);
