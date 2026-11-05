@@ -6,6 +6,7 @@
 - 查詢方式：四位研究員共執行約 67 次中英文網路搜尋（WebSearch extended 模式）後彙整。本環境的網路政策封鎖直接開啟 CNBC、TechCrunch、Fortune、TIME、Reuters、Politico、Yahoo、CFR、各法律事務所（Foley、Baker McKenzie、Jenner、Wiley、Latham）、中央社、聯合新聞網、鉅亨網等網站（WebFetch 回 403 或 DNS 無法解析），**所有數字皆來自搜尋引擎摘要，無法逐頁核對原文**。影片引用前，製作端請再開原文確認關鍵數字（尤其國會席次、股市收盤）。
 - 原則：區分【已確定】【分析預期】【尚未確定】三類。凡席次數字皆為「截至 2026/11/5 的媒體統計快照」，最終以各州認證為準；新一屆國會 2027/1/3 才就任，**所有「選後政策走向」都是分析預期**。政治題材保持中立；市場段落只陳述事實與「分析師普遍認為…」，不構成投資建議。
 - 同一數字多個來源不一致時，一律並列並在「數字不一致紀錄」節整理。
+- 2026/11/6 事實查核補查：另執行 12 次 WebSearch extended，重點補強阿拉斯加／密西西比計票時程、AP 眾院判定、高盛 45% 的第二來源與 UBS 估計、喬治亞州長暫停令、馬斯克支持候選人勝率；WebFetch 對 prothomalo、kshb 等轉載站亦無法解析（DNS 被擋），**仍無法逐頁核對原文**。搜尋引擎索引截至美東 11/5 日間，因此美東 11/5 正式收盤與台股 11/6 盤勢皆「截至 2026/11/6 台灣時間早上查無」。
 
 ---
 
@@ -36,15 +37,16 @@
 | 席次 | 民主黨 54、共和黨 44、未定 2（阿拉斯加、密西西比）（NBC、CBS、Yahoo、France 24，2026/11/5） | 【媒體統計】 |
 | 其他寫法 | CNBC 寫「民主黨至少 54、共和黨至少 42」；congresscountdown 標題「53–47」疑為舊版或錯誤，不採用；工商時報 11/4 寫「民主黨取得控制參院所需 51 席」 | 口徑不同 |
 | 翻轉 7 州 | 愛荷華、堪薩斯、北卡、俄亥俄（Sherrod Brown 贏回）、南卡、德州（Talarico 擊敗 Paxton）、緬因（CBS、France 24、NBC） | 【媒體統計】 |
-| 阿拉斯加 | Peltola（民）領先 Sullivan（共）約 626–637 票、約 48.2% 比 47.9%、計票約 75.5%；採排序複選制，可能數週後才有結果 | 【尚未確定】 |
-| 密西西比 | Colom（民）領先現任 Hyde-Smith（共），領先票數各來源從 43、65、約 1,100 到 1,724 票（France 24，11/5 下午）不等，仍有數千張待驗票 | 【尚未確定】 |
-| 11/6 更新 | 截至 2026/11/6 查無兩州正式判定，亦查無 11/6 當日席次更新；最新可得數字為 11/5 | 【尚未確定】 |
+| 阿拉斯加 | Peltola（民）領先 Sullivan（共）約 626–637 票、約 48.2% 比 47.9%、計票約 75.5%；選舉夜 Sullivan 曾一度反超，11/4 早上 Peltola 重回領先（Alaska Public Media 11/3–11/4）；採排序複選制，可能數週後才有結果 | 【尚未確定】 |
+| 阿拉斯加時程 | 州選務處計票更新排在 11/10、11/13；排序複選重新分配 11/18；認證目標 11/25（Yahoo 直播、Newsweek 轉述，11/5）。Alaska Beacon 11/4 分析：若進入排序複選，Sullivan 從第三名候選人（含同名的另一位 Dan Sullivan、Eric Hafner）重新分配可多拿數百票，但以初步資料推算、結果仍不確定 | 【已確定】時程／【尚未確定】結果 |
+| 密西西比 | Colom（民）領先現任 Hyde-Smith（共），領先票數各來源從 43、65、約 1,000（ABC）、約 1,100 到 1,724 票（France 24，11/5 下午）不等；一份統計為 Colom 464,926 票（49.0%）比 Hyde-Smith 463,788 票（48.9%）、計票 95.6%（Magnolia Tribune 11/5）。待計：Colom 陣營估全州尚有 10,000–15,000 張宣誓票（affidavit，陣營估計、非官方）；州務卿辦公室稱約 3,600 張郵寄票未到，郵寄票最晚 11/10 可到；宣誓票須選民 5 個工作日內補驗身分（Democracy Docket、Magnolia Tribune 11/5）。Hyde-Smith 陣營已要求全州 82 郡分開保存所有宣誓票、不排除選舉爭議程序（Tippah News 11/5）；密西西比沒有正式重新計票制度（ABC 11/5）；一來源稱若爭議拖過 12/3 可能交由參院本身裁決 | 【尚未確定】 |
+| 11/6 更新 | 截至 2026/11/6 台灣時間早上查無兩州正式判定，亦查無 11/6 當日席次更新；最新可得數字為 11/5 | 【尚未確定】 |
 
 ### 1.2 眾議院（435 席，過半 218）
 
 | 項目 | 內容 | 狀態 |
 |---|---|---|
-| 控制權 | CNN、NBC、CBS、CNBC 皆推估民主黨過半；一說 AP 已於 11/4 清晨判定民主黨多數，另有 AP-based 報導稱 AP 仍在確認剩餘場次 | 多家媒體推估【已過半】；AP 正式判定時間【尚未確認】 |
+| 控制權 | CNN、NBC、CBS、CNBC 皆推估民主黨過半。AP 判定：Spectrum News 標題「AP：民主黨贏得參院、眾院控制權」（11/3 起更新）、ABC News 以 AP 資料標示眾院為民主黨多數、PollsterGraph 直播記錄「依 AP 判定民主黨達 218 席」；綜合說法為 AP 選舉夜判定參院、11/4 清晨判定眾院。TIME 11/3 直播「AP 尚未判定眾院」為更早時點，不衝突（11/6 補查） | 【已確定】（AP 與多家媒體皆已判定民主黨過半；最終席次未定） |
 | 選前 | 共和黨 218、民主黨 212 | 背景 |
 | AP 快照 | 11/4 中午：民主黨 229、共和黨 139、未定 67 | 【媒體統計快照】 |
 | 其他快照 | Yahoo/AP 11/5 下午 1 點：247–153、未定 35；某彙整站：251–157、未定 27（日期不明）；research.md（us-midterm-2026）11/4 Babypips 快照：236–146–53 | 【媒體統計快照】 |
@@ -77,6 +79,14 @@
 - HNGN（跛腳鴨復會日期）— https://www.hngn.com/articles/273714/20261105/lame-duck-congress-returns-funding-deadline-democrats-waiting.htm
 - Holland & Knight, "Beyond the Midterms" — https://www.hklaw.com/en/insights/publications/2026/10/beyond-the-midterms-congress-faces-converging-year-end-deadlines
 - ASTHO FY27 CR 摘要 — https://www.astho.org/advocacy/federal-government-affairs/leg-alerts/2026/summary-of-fy27-continuing-resolution/
+- （11/6 補查）Spectrum News「AP: Democrats win control of Senate, House」— https://spectrumlocalnews.com/us/snplus/politics/2026/11/03/balance-of-power-congress-2026-midterm-elections
+- （11/6 補查）ABC News 直播（AP 資料；密西西比約 1,000 票）— https://abcnews.com/Politics/live-updates/midterm-elections-live-updates/?id=137782085 ；ABC 密西西比重新計票說明 — https://abcnews.com/Politics/recounts-mississippi-razor-thin-margin-senate-race/story?id=137844445
+- （11/6 補查）Alaska Public Media（選舉夜拉鋸）— https://alaskapublic.org/news/politics/elections/2026-11-03/peltola-takes-early-lead-in-alaskas-u-s-senate-race
+- （11/6 補查）Alaska Beacon（排序複選分析，2026/11/4）— https://alaskabeacon.com/2026/11/04/ranked-choice-voting-may-help-republican-us-sen-dan-sullivan-analysis-finds/
+- （11/6 補查）Yahoo 阿拉斯加直播（11/10、11/13、11/18、11/25 時程）— https://www.yahoo.com/news/politics/articles/live-results-alaska-senate-election-142227368.html
+- （11/6 補查）Magnolia Tribune（密西西比宣誓票，2026/11/5）— https://magnoliatribune.com/2026/11/05/colom-extends-lead-over-hyde-smith-with-thousands-of-affidavit-and-mail-in-absentee-ballots-to-be-counted/
+- （11/6 補查）Democracy Docket（宣誓票規則）— https://www.democracydocket.com/news-alerts/mississippis-tight-senate-race-could-hinge-on-affidavit-ballots/
+- （11/6 補查）Tippah News（Hyde-Smith 陣營要求保存宣誓票）— https://tippahnews.com/mississippi-news/hyde-smith-campaign-demands-counties-separate-preserve-affidavit-ballots
 
 ---
 
@@ -182,13 +192,14 @@
 |---|---|---|---|
 | 德州 | Gina Hinojosa（民）擊敗現任 Abbott；逾 30 年來首位民主黨籍州長（工商時報） | 在州議會通過保障居民的法律前，暫停核發新資料中心許可；保護電費用戶。**州議會仍由共和黨掌控**，能否落實待協商。Abbott 早在 2026/8/3 已暫停新資料中心接入電網 | 【已確定】主張／【尚未確定】落實 |
 | 俄亥俄 | Amy Acton（民） | 「有條件暫停」：要求資料中心 100% 負擔公用事業成本、使用工會勞工 | 【已確定】主張 |
-| 喬治亞 | Keisha Lance Bottoms（民） | Fortune 稱承諾暫時全州暫停新建；Scientific American 等僅稱「加強課責」 | 說法不一 |
+| 喬治亞 | Keisha Lance Bottoms（民）；NPR 11/3：全美首位非裔女性州長 | 競選期間即承諾「全州暫時暫停（pause）新建資料中心」，以研究對電費、水資源、環境與社區的影響（Georgia Recorder 2026/9/29、WABE、Scripps/KSHB 選後報導、Fortune 11/5，共四來源一致；11/6 補查）；她本人曾表示不確定能用行政命令還是須經州議會立法；商界反應冷淡，對手 Rick Jackson 主張加強環境監督但反對一律禁止；喬治亞是全美新建資料中心最多的州。Scientific American「加強課責」為概括用語，不衝突 | 【已確定】承諾／【尚未確定】執行方式與時程 |
 
 ### 4.3 分析師估計（皆為【分析預期】）
 
 | 項目 | 內容 |
 |---|---|
-| 高盛 | 民主黨在州與地方勝選可能帶來短期資料中心暫停令，影響約 45% 美國規劃中的資料中心擴建容量；德州、喬治亞、密西根（另一說德州、俄亥俄、喬治亞）的民主黨州長可能實施有條件暫停、削減稅務優惠、加嚴環境／水／電規範；但暫停「不會維持太久」。僅見路透等二手轉述，未能核對高盛原始報告 |
+| 高盛 | 民主黨在州與地方勝選可能帶來短期資料中心暫停令，影響約 45% 美國規劃中的資料中心擴建容量；德州、喬治亞、密西根（另一說德州、俄亥俄、喬治亞）的民主黨州長可能實施有條件暫停、削減稅務優惠、加嚴環境／水／電規範；但暫停「不會維持太久」。11/6 補查：Reuters 分析稿〈Trump's midterm drubbing demonstrates the power of data center opponents〉經 U.S. News（11/4）、Lee Enterprises、MarketScreener 等多站轉載，皆寫「約 45%」，第二來源 Construction Review Online 亦同；CNN 11/5 提醒「這不代表美國一半規劃中的資料中心停擺」。**高盛原始報告仍未能核對** |
+| UBS（11/6 補查） | UBS 分析師估：若建設暫停擴散，約 30%（近三分之一）美國 2028 年預期新增資料中心容量有延後風險，德州一州約 18 GW；多數報導把它定性為「延後（2027 推到 2028）」而非取消（Finimize、Benzinga、Reuters 轉載，11/5）。另引 Citi Research（經 The Information）：至 2026/10 全美地方層級資料中心禁令與暫停已逾 500 件。皆為新聞轉述，未見原始報告 |
 | 德州占比 | 全美規劃中資料中心容量：高盛約 25%、Jefferies 約 26%、富國銀行約 27% |
 | HSBC | 較溫和：更可能是加強監管而非全面暫停，資料中心可能轉往其他州 |
 | 個別預估 | 有分析估德州許可暫停可能延續到 2027/5 才解凍（非官方時程） |
@@ -200,7 +211,7 @@
 | 項目 | 內容 | 狀態 |
 |---|---|---|
 | OpenAI | Reuters 11/5：選後啟動「魅力攻勢」，政策長 Chris Lehane 向社區推銷資料中心經濟效益（如俄亥俄約 2,500 個工作）、對未來場址提出自願承諾、呼籲立法者將其變為全產業強制規範；總裁 Brockman 坦言「需要更好地向當地社區溝通」。聯合報引述 Axios 選前即報導 OpenAI 準備選後大打公關戰、修補與民主黨關係 | 【已確定】 |
-| 馬斯克 | CNBC 11/4：本屆至少投入 4.74 億美元（德州約 2.24 億；BigGo 稱 4.46 億）；Reuters 統計其支持的 43 位眾院共和黨候選人僅 3 位勝選；力挺的德州參議員候選人 Paxton 敗給 Talarico。11/4 Tesla 收跌 3.3%、SpaceX 收跌 3.9%（盤前曾約 -5%／-7%）；分析師 Dan Ives 將跌勢連結到德州資料中心計畫；BigGo 稱兩日市值蒸發近 1,200 億美元（其他來源未證實） | 【已確定】 |
+| 馬斯克 | CNBC 11/4：本屆至少投入 4.74 億美元（德州約 2.24 億；BigGo 稱 4.46 億；NPR 11/4 引 OpenSecrets 聯邦申報分析為「逾 4.45 億」，與 BigGo 口徑一致；Fast Company 稱「近 5 億」）；Reuters（Yahoo、Detroit News 11/5 轉載）統計其支持的 43 位眾院共和黨候選人僅 3 位勝選、33 位落選、7 場至 11/4 深夜未判定——11/6 補查已有多站轉載，非單一來源，但為 11/4 快照。其他口徑：CNBC 統計 America PAC 支持的 44 場聯邦選舉中 3 勝 29 敗、12 場未定；Forbes 計入馬斯克所有支持對象 106 人，18 人勝選（皆為共和黨原本就穩贏的席次）、44 人落選；力挺的德州參議員候選人 Paxton 敗給 Talarico。11/4 Tesla 收跌 3.3%、SpaceX 收跌 3.9%（盤前曾約 -5%／-7%）；分析師 Dan Ives 將跌勢連結到德州資料中心計畫；BigGo 稱兩日市值蒸發近 1,200 億美元（其他來源未證實） | 【已確定】 |
 | 市場解讀 | 投資人擔憂民主黨國會將加強審查 Starlink 與其 AI 資料中心計畫；SpaceX 另將面臨 NASA 撥款換手後的新審查（SpaceQ） | 【分析預期】 |
 
 來源：
@@ -216,6 +227,18 @@
 - INSIDE — https://www.inside.com.tw/article/42826-us-midterms-ai-data-center-stocks-pacs
 - Yahoo 股市（元大翁祥維）— https://tw.stock.yahoo.com/news/%E7%BE%8E%E5%9C%8B%E6%B0%91%E4%B8%BB%E9%BB%A8%E5%A4%A7%E5%8B%9D%E6%81%90%E6%94%B6%E7%B7%8Aai%E7%9B%A3%E7%AE%A1-%E7%A7%91%E6%8A%80%E8%82%A1%E6%86%82%E5%8F%B0%E9%8F%88%E5%8F%97%E8%A1%9D%E6%93%8A-232813441.html
 - 中央社（轉載彭博，2026/11/2）— https://www.cna.com.tw/news/aopl/202611023002.aspx
+- （11/6 補查）U.S. News 轉載 Reuters 分析（高盛 45%，2026/11/4）— https://www.usnews.com/news/politics/articles/2026-11-04/analysis-trumps-midterm-drubbing-demonstrates-the-power-of-data-centre-opponents
+- （11/6 補查）CNN「America got the anti-data-center wave it voted for」（2026/11/5）— https://www.cnn.com/2026/11/05/economy/data-center-texas-election
+- （11/6 補查）Construction Review Online（高盛 45%）— https://constructionreviewonline.com/us-data-center-boom-faces-new-regulatory-headwinds-after-democratic-midterm-sweep/
+- （11/6 補查）Finimize（UBS 30%）— https://finimize.com/content/ubs-flags-a-post-midterms-speed-bump-for-data-centers
+- （11/6 補查）Benzinga（UBS 30%、CoreWeave／Nebius -15%，2026/11/5）— https://www.benzinga.com/markets/tech/26/11/62937542/coreweave-and-nebius-tumble-15-as-amazon-and-big-tech-hyperscalers-outlast-ai-data-center-selloff
+- （11/6 補查）Georgia Recorder（Lance Bottoms 暫停令主張，2026/9/29）— https://georgiarecorder.com/2026/09/29/debate-over-data-center-growth-in-georgia-heats-up-race-for-governor/
+- （11/6 補查）WABE（喬治亞州長選戰資料中心議題）— https://www.wabe.org/debate-over-data-centers-in-georgia-heats-up-governors-race/
+- （11/6 補查）Scripps／KSHB「Voters elected governors to curb data centers」— https://www.kshb.com/politics/america-votes/voters-elected-governors-to-curb-data-centers-lowering-bills-for-gas-and-groceries-is-harder
+- （11/6 補查）NPR（Lance Bottoms 當選，2026/11/3）— https://www.npr.org/2026/11/03/g-s1-151040/georgia-elects-the-nations-first-black-female-governor
+- （11/6 補查）Reuters 經 Detroit News 轉載（馬斯克 43 位中 3 位勝選，2026/11/5）— https://www.detroitnews.com/story/news/politics/2026/11/05/musk-has-little-show-his-record-spending-republican-campaigns-us-midterms/92624868007/
+- （11/6 補查）NPR（馬斯克逾 4.45 億美元，2026/11/4）— https://www.npr.org/2026/11/04/nx-s1-6029650/elon-musk-midterms-democrats-texas-congress
+- （11/6 補查）Fast Company（馬斯克近 5 億美元）— https://www.fastcompany.com/91634243/elon-musk-spent-nearly-500-million-on-the-midterms-it-bought-him-almost-nothing
 
 ---
 
@@ -377,7 +400,7 @@
 | 日期 | 內容 | 狀態 |
 |---|---|---|
 | 美東 11/4 收盤 | 道瓊 +1,569.40 點（+3.03%）；那斯達克 +1.44% 收 25,736.52 點；S&P 500 +1.6%（Reuters）；Amazon +7.4%；蘋果等大型科技股因「不確定性消除」上漲，鉅亨網稱五大科技巨頭市值合計增約 1 兆美元。**同日**費城半導體指數 -331.74 點（-3.13%）收 10,268.66；Nvidia -3.17%；台積電 ADR -9.05 美元（-2.24%）收 395.75 美元；CoreWeave、Nebius 等「新雲」業者跌逾 7%；Tesla -3.3%、SpaceX -3.9%。形成「大盤漲、晶片跌」分歧。（前集 research.md 的「道瓊 +1,240 點／+2.4%」為盤中數字） | 【已確定】 |
-| 美東 11/5 盤中 | 那斯達克較前高回落逾 10% 進入修正區間；費城半導體指數跌幅各家截稿不同：近 8.4%（鉅亨）、約 9%（格隆匯／TradingView）、近 10%（Reuters）、逾 11%（ABMedia）；Nvidia -7.7%、Tesla -9%、SpaceX -11.4%（Reuters）；台積電 ADR -7.6%（鉅亨）／約 -8%／-10.47% 至 354.32 美元（ABMedia，註明仍在交易中）；台指期夜盤由紅翻黑。**截至 2026/11/6 台灣時間早上尚未查到正式收盤數字** | 【尚未確定】（盤中） |
+| 美東 11/5 盤中 | 那斯達克較前高回落逾 10% 進入修正區間；費城半導體指數跌幅各家截稿不同：近 8.4%（鉅亨）、約 9%（格隆匯／TradingView）、近 10%（Reuters）、逾 11%（ABMedia）；Nvidia -7.7%、Tesla -9%、SpaceX -11.4%（Reuters）；台積電 ADR -7.6%（鉅亨）／約 -8%／-10.47% 至 354.32 美元（ABMedia，註明仍在交易中）；台指期夜盤由紅翻黑。11/6 補查新增盤中快照：CNBC 直播標題「道瓊跌 1,700 點、抹去選後漲幅；那指跌 5%」（另一處寫 -5.1%）；CNN「那指盤中最多跌 5.7%」；Reuters 午盤「那指 -1,173.62 點（-4.55%）」；Nvidia 各家 -7%（CNN）／-7.7%（Reuters）／-8%（CNBC）；CoreWeave、Nebius 盤中跌約 15%（Benzinga）；那指自 10/6 歷史收盤高點回落逾 10%、確認進入修正（CNBC、Reuters）。ABMedia 另指高通財測疲弱也是拖累因素之一，非全為選舉因素。**截至 2026/11/6 台灣時間早上，搜尋引擎索引仍停在美東 11/5 日間，尚未查到正式收盤數字** | 【尚未確定】（盤中） |
 | 解讀 | Reuters 歸因於市場擔憂民主黨橫掃後 AI 監管趨嚴與資料中心暫停令；另一派認為分裂政府降低劇烈立法變動可能，是 11/4 部分板塊上漲原因；Wedbush 的 Dan Ives 認為若民主黨勝選促使超大規模業者放緩資本支出，對科技股反而可能正面 | 【分析預期】 |
 
 ### 10.2 台股
@@ -406,6 +429,12 @@
 - Yahoo 股市盤後焦點（11/5）— https://tw.stock.yahoo.com/news/%E7%9B%A4%E5%BE%8C%E7%84%A6%E9%BB%9E-%E5%8F%B0%E8%82%A1%E7%BA%8C%E6%8C%AB1374%E9%BB%9E%E6%91%9C%E7%A0%B442000%E9%BB%9E-%E7%82%BA%E7%AC%AC13%E5%A4%A7%E6%94%B6%E7%9B%A4%E8%B7%8C%E9%BB%9E-065626499.html
 - TVBS（外資連 6 日）— https://news.tvbs.com.tw/money/4046410
 - 新頭殼（證交所喊話）— https://newtalk.tw/news/view/2026-11-05/1069549
+- （11/6 補查）CNBC 美股直播（道瓊 -1,700、那指 -5%）— https://cnbc.com/2026/11/04/stock-market-today-live-updates.html
+- （11/6 補查）CNN「Stocks plunge as midterm results send AI trade into a tailspin」（2026/11/5）— https://cnn.com/2026/11/05/investing/tech-heavy-nasdaq-plunges
+- （11/6 補查）Star-Advertiser 轉載 Reuters（那指午盤 -4.55%）— https://www.staradvertiser.com/2026/11/05/breaking-news/nasdaq-heads-for-correction-as-ai-stocks-plunge-after-midterms/
+- （11/6 補查）NOWnews（那指、費半盤中跌逾 700 點、台積電 ADR 挫逾 6%）— https://www.nownews.com/news/6889825
+
+> 台股 11/6：截至 2026/11/6 台灣時間早上，搜尋結果最新僅到 11/5 收盤（41,574.72 點），查無 11/6 開盤報導。
 
 ---
 
@@ -459,7 +488,7 @@
 ### 選舉結果
 1. **眾院最終席次推估**：CNN ≥250、NBC ≥258（共 177）、CBS 251–268、CNBC「至少 240」、Jeffries ≥255；AP 11/4 中午快照 229／139／未定 67；Yahoo/AP 11/5 下午 247／153／未定 35；彙整站 251／157／未定 27（日期不明）；前集 Babypips 11/4 快照 236／146／53；NBC 直播頁另出現「247 席」「83 席多數」。影片只說「已過半、最終席次未定」。
 2. **眾院未判定場次**：約 75（CNN 11/5）、67（AP 11/4）、逾 60（WaPo 11/3）、42（11/4 某報導）、36–68（前集彙整）。
-3. **AP 是否已正式判定眾院控制權**：一說 11/4 清晨已判定，另說 AP 仍在確認剩餘場次。
+3. **AP 是否已正式判定眾院控制權**：一說 11/4 清晨已判定，另說 AP 仍在確認剩餘場次。→ 11/6 補查：Spectrum News、ABC（AP 資料）、PollsterGraph 三處皆顯示 AP 已判定民主黨眾院多數（選舉夜判參院、11/4 清晨判眾院）；「AP 尚未判定」出自 TIME 11/3 更早時點的直播。視為已解決。
 4. **參院席次寫法**：多數 54–44、2 席未定；CNBC「至少 54／至少 42」；congresscountdown「53–47」疑誤，不採用。
 5. **密西西比 Colom 領先票數**：43（>95% 計票）、65、約 1,100（96% 計票）、1,724（France 24，11/5 下午）——隨計票變動，影片不列具體票數。
 6. **阿拉斯加 Peltola 領先票數**：626 vs 637 票（75.5% 計票），時點不同。
@@ -467,11 +496,11 @@
 
 ### AI、資料中心、政治獻金
 8. **資料中心公投**：CNBC／Ballotpedia「41 案中 40 案反對」；WaPo（Fox 轉述）「至少 38 個轄區」；另有 33–37 案；CNBC 早期「約兩打」（初步）。
-9. **喬治亞州長 Lance Bottoms 是否承諾「暫停令」**：Fortune 稱有；Scientific American 等僅稱「加強課責」。
+9. **喬治亞州長 Lance Bottoms 是否承諾「暫停令」**：Fortune 稱有；Scientific American 等僅稱「加強課責」。→ 11/6 補查：Georgia Recorder（9/29）、WABE、Scripps/KSHB、Fortune 四來源一致為「全州暫時暫停新建」，但執行方式（行政命令或立法）她本人未定。視為已解決（承諾確有、落實未定）。
 10. **高盛點名可能暫停的州**：一說德州、俄亥俄、喬治亞（三位新州長），一說德州、喬治亞、密西根。
-11. **德州占全美規劃資料中心容量**：高盛約 25%、Jefferies 約 26%、富國銀行約 27%。「45% 容量可能受影響」僅見二手轉述，未核對高盛原始研究。
+11. **德州占全美規劃資料中心容量**：高盛約 25%、Jefferies 約 26%、富國銀行約 27%。「45% 容量可能受影響」僅見二手轉述，未核對高盛原始研究。→ 11/6 補查：45% 已見 Reuters 分析（U.S. News、Lee、MarketScreener 轉載）與 Construction Review Online 等多處，口徑一致，但原始報告仍未見；另新增 UBS 不同口徑：「約 30% 的 2028 年預期新增容量有延後風險」（分母不同：高盛是「規劃中擴建容量」、UBS 是「2028 年新增容量」，不衝突但不可混用）。
 12. **AI 超級 PAC 總支出**：Tech Influence Watch 7,900 萬美元（68 席）；FourWeekMBA 依 FEC 至 10/30 為 8,130 萬（LtF 3,750 萬＋Public First 4,380 萬）；KuCoin 稱 LtF 單獨 1 億（可信度低）。
-13. **馬斯克支出**：CNBC 至少 4.74 億美元；BigGo 4.46 億。Tesla／SpaceX 11/4 跌幅：收盤 -3.3%／-3.9%，盤前約 -5%／-7%；BigGo「兩日市值蒸發近 1,200 億美元」其他來源未證實。
+13. **馬斯克支出**：CNBC 至少 4.74 億美元；BigGo 4.46 億；NPR／OpenSecrets 逾 4.45 億；Fast Company 近 5 億。勝率口徑三種：Reuters 眾院 43 人中 3 勝（11/4 快照）；CNBC America PAC 44 場聯邦選舉 3 勝 29 敗 12 未定；Forbes 全部 106 人中 18 勝 44 敗。影片若引用，須標明「Reuters 統計、11/4 快照」。Tesla／SpaceX 11/4 跌幅：收盤 -3.3%／-3.9%，盤前約 -5%／-7%；BigGo「兩日市值蒸發近 1,200 億美元」其他來源未證實。
 14. **加密產業政治獻金**：約 1.76 億美元（Coinpaper／KuCoin）vs 超過 2 億 vs 台媒「加密與 AI 等產業共逾 3.77 億」（含 AI 產業）。
 15. **民主黨呼籲 AI 高層「宣誓作證」**：僅見 CNBC 搜尋摘要一處，未找到第二來源。
 16. **鉅亨網引述摩根大通、高盛（經華爾街見聞轉述）**對 AI 監管／資料中心稅務優惠的看法：未能找到原始報告。
@@ -510,13 +539,13 @@
 
 ## 13. 尚未確定事項（截至 2026/11/6）
 
-1. 參議院阿拉斯加、密西西比 2 席結果（阿拉斯加排序複選制可能需數週）
+1. 參議院阿拉斯加、密西西比 2 席結果：阿拉斯加排序複選重新分配排在 11/18、認證目標 11/25；密西西比待計約 10,000–15,000 張宣誓票（陣營估計）與約 3,600 張郵寄票（郵寄票最晚 11/10 到），Hyde-Smith 陣營已預作選舉爭議準備——截至 2026/11/6 尚未確定
 2. 眾議院最終席次與未判定場次數；AP 正式判定眾院控制權的時間
 3. 州長選舉全國總數（含阿拉斯加州長，牽動台灣阿拉斯加天然氣案）
 4. 所有委員會主席名單（2027 年初由黨團決定）；DeLauro 接掌撥款委員會、Whitehouse 接掌司法委員會皆為推估
 5. 聯邦 AI 法是否、以何種形式凌駕州法；參院 Cruz 版 AI 法案是否完成委員會審查
 6. 科羅拉多 ADMT 法 2026/4「暫停執法」一說；紐約 RAISE 法確切生效日
-7. 德州州長 Hinojosa 的資料中心許可暫停能否在共和黨州議會落地；喬治亞是否真有「暫停令」承諾；高盛「45%」原始報告
+7. 德州州長 Hinojosa 的資料中心許可暫停能否在共和黨州議會落地；喬治亞 Lance Bottoms「全州暫停」要走行政命令或立法（承諾本身 11/6 已確認）；高盛「45%」與 UBS「30%」原始報告皆未能核對
 8. 半導體 232 關稅第二階段範圍與時程；台美 232 上限 15% 的細節與美方時程
 9. FY2027 NDAA 最終文本是否保留 Chip Security Act、AI OVERWATCH、GAIN AI 等晶片出口條文；conference 報告是否已提出
 10. 48D 稅額抵減是否在 2026/12/31 前獲延長；跛腳鴨會期有無載具
@@ -525,30 +554,39 @@
 13. H-1B 10 萬美元費用訴訟終局；DHS 103,265 美元提案是否屬實；民主黨是否提出廢除法案
 14. 12/11 政府撥款到期後的處理方式（全年綜合撥款／分批／再一次 CR）；FY2027 NSF、NASA、DOE 最終數字
 15. 債務上限 X-date
-16. 美股美東 11/5 正式收盤數字；台股 11/6 開盤與收盤
+16. 美股美東 11/5 正式收盤數字（截至 2026/11/6 台灣時間早上，搜尋索引僅到盤中：那指 -4.55%～-5.7%、費半約 -8%～-11%、Nvidia -7%～-8%）；台股 11/6 開盤與收盤（截至 2026/11/6 查無）
 17. 台積電德州 450 億美元投資案是否屬實
 18. 台美避免雙重課稅協定在參院的排程
 19. 「CHIPS 補助轉為政府股權」是否有選後新進展
 20. 國發會（主委葉俊顯）對期中選舉結果的正式回應（截至 2026/11/6 查無）
+21. 馬斯克支持的眾院候選人最終勝敗數（Reuters 43 人中 3 勝為 11/4 快照，7 場當時未定；截至 2026/11/6 查無更新統計）
+22. 眾院最終席次：AP 已判定民主黨過半，但截至 2026/11/6 仍有數十場未判定，最終席次尚未確定
+23. 花旗研究「H-1B 費用使 IT 業 EPS 下降約 6%」、CNBC「民主黨呼籲 AI 高層宣誓作證」、DHS「103,265 美元」提案——三項仍只有單一來源，截至 2026/11/6 未找到第二來源，影片不引用
 
 ---
 
 ## 給腳本的關鍵事實（10–14 條）
 
-1. 【尚未確定】截至 2026/11/5 媒體統計，參院民主黨 54 席、共和黨 44 席，阿拉斯加與密西西比 2 席未判定；眾院民主黨已過半（門檻 218），最終席次各家推估 250–268 席之間、仍在計票。
+1. 【已確定／尚未確定】AP 與各大媒體已判定民主黨拿下參、眾兩院。截至 2026/11/5 媒體統計，參院民主黨 54 席、共和黨 44 席，阿拉斯加（排序複選 11/18 重新分配、11/25 認證）與密西西比（Colom 領先約 1,000–1,700 票、尚有上萬張宣誓票待驗）2 席未判定；眾院民主黨已過半（門檻 218），最終席次各家推估 250–268 席之間、仍在計票。
 2. 【已確定】新國會 2027/1/3 才就任，之前由共和黨主導的跛腳鴨國會 11/9 復會、12/11 政府撥款到期；民主黨未達推翻否決的三分之二，川普仍握行政權與否決權。
 3. 【已確定／分析預期】232 關稅、出口管制、H-1B 費用、反壟斷訴訟由行政部門或法院主導，短期不因國會換手直接改變；國會主導的 AI 凌駕州法、CLARITY Act、48D 延長、對中晶片法案則方向與進度轉為「尚未確定」。
 4. 【分析預期】共和黨與 AI 業者推動的「聯邦 AI 法凌駕州法」在民主黨國會幾乎不可能通過（Foley、National Law Review 等），民主黨把聯邦規範視為「地板」而非「天花板」；加州 SB 53 已於 2026/1/1 生效，科羅拉多 ADMT 法與紐約 RAISE 法 2027/1/1 生效。
 5. 【已確定】2026/11/3 全美 10 州 41 項地方資料中心公投中，40 案選擇限制或否決（CNBC 引 Ballotpedia；WaPo 口徑為「至少 38 個轄區」）；俄亥俄一州就有 21 案。
-6. 【分析預期】高盛估約 45% 美國規劃中資料中心容量位於可能祭出暫停令的州，德州占全美約 25–27%；德州新任州長 Hinojosa 主張暫停核發新許可，但州議會仍由共和黨掌控，高盛也認為暫停「不會維持太久」。
-7. 【已確定】親 AI 超級 PAC 本屆花約 7,900 萬–8,130 萬美元、戰果「好壞參半」（TechCrunch）；馬斯克至少投入 4.74 億美元，Reuters 統計其支持的 43 位眾院共和黨候選人僅 3 位勝選。
+6. 【分析預期】高盛估約 45% 美國規劃中資料中心擴建容量位於可能祭出短期暫停令的州（Reuters 多站轉載，原始報告未核對）、UBS 估約 30% 的 2028 年新增容量有「延後」風險（兩者分母不同，不可混用）；德州占全美規劃容量約 25–27%。三位民主黨新州長——德州 Hinojosa（暫停核發新許可，但州議會仍由共和黨掌控）、俄亥俄 Acton（有條件暫停）、喬治亞 Lance Bottoms（全州暫時暫停新建，走行政命令或立法未定）——皆為主張、尚未落實；高盛與 UBS 都認為是「短期暫停／延後」而非取消。
+7. 【已確定】親 AI 超級 PAC 本屆花約 7,900 萬–8,130 萬美元、戰果「好壞參半」（TechCrunch）；馬斯克投入逾 4.45 億（NPR／OpenSecrets）至 4.74 億美元（CNBC），Reuters 11/4 快照統計其支持的 43 位眾院共和黨候選人僅 3 位勝選、33 位落選、7 場未定（多站轉載，非單一來源；最終數字待更新）。
 8. 【已確定】半導體 232 關稅 25% 自 2026/1/15 生效（第 11002 號公告），僅適用一小類先進運算晶片；由行政部門主導、國會只能監督，第二階段範圍截至 2026/11/6 未定。
 9. 【分析預期】對中晶片出口管制被視為兩黨共識，民主黨國會預期加強審查（Warren 2026/6 已邀黃仁勳作證、Politico 稱民主黨擬調查 Nvidia 對中銷售）；Chip Security Act（眾院外委會 42–0）等能否進入 FY2027 NDAA 截至 2026/11/6 尚未確定。
 10. 【尚未確定】晶片廠 48D 投資稅額抵減 35% 須在 2026/12/31 前開工才適用，延長法案（SEMI Investment Act 擬延至 2031）尚未過關——台積電等在美設廠業者直接相關。
 11. 【已確定／分析預期】加密貨幣 CLARITY Act 2026/9/15 參院程序表決 49–50 失敗、2027/1/3 失效；民主黨擬以 Waters 版本重提、加入官員倫理條款，CNBC 形容加密業「轉為防守」。
 12. 【已確定／分析預期】白宮 FY2027 預算要求 NSF 砍 55%（-48 億美元）、NASA 砍 23%（-56 億）；眾院委員會版仍砍約 20%；民主黨接掌撥款委員會後預期回補，最終數字未定；Lofgren 11/4 宣布爭取眾院科學委員會主席。
-13. 【已確定】美東 11/4 道瓊 +3.03% 但費半 -3.13%、台積電 ADR -2.24% 收 395.75 美元（大盤漲、晶片跌）；美東 11/5 盤中費半跌約 8–10%、那指進入修正——盤中數字，收盤待確認。
+13. 【已確定／尚未確定】美東 11/4 道瓊 +3.03% 但費半 -3.13%、台積電 ADR -2.24% 收 395.75 美元（大盤漲、晶片跌）；美東 11/5 盤中道瓊回吐選後漲幅（CNBC 一度 -1,700 點）、那指跌逾 4–5% 進入修正（自 10/6 高點回落逾 10%）、費半跌約 8–11%、Nvidia 跌約 7–8%——皆為盤中數字，截至 2026/11/6 台灣時間早上正式收盤待確認；影片只說「進入修正」「重挫」，不報具體收盤跌幅。
 14. 【已確定】台股 11/5 收 41,574.72 點、跌 1,374.19 點（-3.2%），歷年第 13 大跌點、連六黑；外資 11/4、11/5 分別賣超 1,499 億、1,024.6 億元（史上第 5、第 10 大）；台積電收 2,240 元（-0.88%）；經濟部長龔明鑫 11/5 稱關稅由美國行政權主導、台廠赴美投資要等最終選舉結果，台積電德州 450 億美元案屬傳聞、尚未宣布。
+
+### 腳本用詞提醒（11/6 事實查核）
+- 不要沿用來源標題的情緒字眼：「血洗」「崩了」「押錯邊」「AI 股遭錯殺」「Is it time to buy the dip」等皆不可進旁白；市場段落只說「重挫」「進入修正」並附日期與美東／台灣時間。
+- 「45%」與「30%」只能分開講、各附機構名與分母；不可說「近一半資料中心要停擺」（CNN 已特別澄清）。
+- 馬斯克、AI 超級 PAC 的戰果只陳述統計（附來源與快照日期），不下「失敗」「慘敗」等評價。
+- 州長的資料中心主張一律加「主張／承諾，尚未落實」；參院兩席一律加「尚未判定」。
 
 ---
 

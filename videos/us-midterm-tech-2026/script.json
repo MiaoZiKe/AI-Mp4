@@ -1,0 +1,642 @@
+{
+  "slug": "us-midterm-tech-2026",
+  "title": "美國期中選舉過後，對未來科技發展有什麼影響？",
+  "asOf": "2026/11/6",
+  "cover": {
+    "title": [
+      "美國國會換手",
+      "科技會怎麼變"
+    ],
+    "sub": "AI、晶片、資料中心、台股",
+    "en": "After the 2026 US Midterms: What changes for tech?",
+    "icons": [
+      {
+        "name": "capitol",
+        "color": "cyan"
+      },
+      {
+        "name": "chip",
+        "color": "pink"
+      }
+    ],
+    "tiles": [
+      {
+        "icon": "robot",
+        "label": "AI 監管",
+        "color": "purple"
+      },
+      {
+        "icon": "chip",
+        "label": "晶片",
+        "color": "pink"
+      },
+      {
+        "icon": "server",
+        "label": "資料中心",
+        "color": "yellow"
+      },
+      {
+        "icon": "chart",
+        "label": "台股",
+        "color": "cyan"
+      }
+    ],
+    "tags": [
+      {
+        "status": "fact",
+        "text": "資料截至 2026/11/6"
+      },
+      {
+        "status": "pending",
+        "text": "參院 2 席、眾院席次未定"
+      }
+    ]
+  },
+  "voice": {
+    "voiceName": "Charon",
+    "candidates": [
+      "Charon",
+      "Iapetus",
+      "Sadaltager",
+      "Kore"
+    ],
+    "style": "用資訊感、清晰、中立、語速中等偏快的台灣國語科技新聞口吻"
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "美國國會換手，AI 和晶片的規則會變嗎？",
+      "tts": "美國國會換手，A I 和晶片的規則會變嗎？",
+      "subtitle": {
+        "zh": "美國國會換手，AI 和晶片的規則會變嗎？",
+        "en": "Congress flipped. Will the rules for AI and chips change?"
+      },
+      "keywords": [
+        "國會換手",
+        "AI",
+        "晶片"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "國會換手 × 科技",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "robot",
+            "label": "AI 監管",
+            "note": "聯邦法 vs 州法",
+            "color": "purple"
+          },
+          {
+            "icon": "chip",
+            "label": "晶片",
+            "note": "關稅、管制、抵稅",
+            "color": "pink"
+          },
+          {
+            "icon": "server",
+            "label": "資料中心",
+            "note": "公投與暫停令",
+            "color": "yellow"
+          },
+          {
+            "icon": "chart",
+            "label": "台灣科技業",
+            "note": "台積電、供應鏈、台股",
+            "color": "cyan"
+          }
+        ]
+      },
+      "sources": []
+    },
+    {
+      "id": "term-divided-government",
+      "narration": "民主黨拿下國會兩院，白宮還是共和黨，這叫分裂政府。",
+      "subtitle": {
+        "zh": "民主黨拿下國會兩院，白宮還是共和黨，這叫分裂政府。",
+        "en": "Democrats took both chambers; the White House stays Republican: divided government."
+      },
+      "keywords": [
+        "國會兩院",
+        "分裂政府"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "capitol",
+        "term": "分裂政府",
+        "termEn": "Divided government",
+        "color": "cyan",
+        "definition": "白宮是共和黨、國會兩院由民主黨主導，法案要兩邊都點頭；總統可否決，民主黨席次未達推翻否決的三分之二。",
+        "points": [
+          "AP 判定民主黨拿下參、眾兩院",
+          "參院 54：44，2 席截至 11/5 未判定",
+          "新國會 2027/1/3 就任"
+        ]
+      },
+      "sources": [
+        "NBC News",
+        "CBS News",
+        "CFR"
+      ]
+    },
+    {
+      "id": "term-preemption",
+      "narration": "凌駕州法，是聯邦訂一套 AI 規則，直接取代各州的法。",
+      "tts": "凌駕州法，是聯邦訂一套 A I 規則，直接取代各州的法。",
+      "subtitle": {
+        "zh": "凌駕州法，是聯邦訂一套 AI 規則，直接取代各州的法。",
+        "en": "Preemption: one federal AI rulebook that overrides each state's own law."
+      },
+      "keywords": [
+        "凌駕州法",
+        "取代"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "scale",
+        "term": "凌駕州法",
+        "termEn": "Federal preemption",
+        "color": "purple",
+        "definition": "聯邦訂一套 AI 法，直接取代各州自己的規定；AI 業者希望全國一套規則，州政府不想放手。",
+        "points": [
+          "加州 SB 53 已於 2026/1/1 生效",
+          "科羅拉多、紐約新法 2027/1/1 生效",
+          "參院 2025 年曾以 99–1 刪除凍結州法條款"
+        ]
+      },
+      "sources": [
+        "Latham & Watkins",
+        "GC AI",
+        "National Law Review"
+      ]
+    },
+    {
+      "id": "who-decides",
+      "narration": "先看誰主導：行政和法院管的，國會換手短期不直接改變。",
+      "tts": "先看誰主導。行政和法院管的，國會換手短期不直接改變。",
+      "subtitle": {
+        "zh": "先看誰主導：行政和法院管的，國會換手短期不直接改變。",
+        "en": "First, who decides: what the executive and courts run won't change right away."
+      },
+      "keywords": [
+        "誰主導",
+        "不直接改變"
+      ],
+      "component": "CompareSplit",
+      "props": {
+        "left": {
+          "title": "行政、法院",
+          "titleEn": "Executive & courts",
+          "icon": "gavel",
+          "color": "cyan",
+          "items": [
+            "半導體 232 關稅 25%（總統依法授權）",
+            "對中晶片出口管制（商務部規則）",
+            "H-1B 費用、大型科技反壟斷訴訟"
+          ]
+        },
+        "right": {
+          "title": "國會立法",
+          "titleEn": "Congress",
+          "icon": "capitol",
+          "color": "yellow",
+          "items": [
+            "聯邦 AI 法凌駕州法",
+            "加密貨幣市場結構法（CLARITY）",
+            "48D 抵稅延長、對中晶片法案"
+          ]
+        },
+        "footer": "左：短期不因國會換手直接改變；右：轉為尚未確定"
+      },
+      "sources": [
+        "CFR",
+        "Baker McKenzie",
+        "EY"
+      ]
+    },
+    {
+      "id": "ai-regulation",
+      "narration": "聯邦 AI 法想凌駕州法，法律界多認為新國會很難過關。",
+      "tts": "聯邦 A I 法想凌駕州法，法律界多認為新國會很難過關。",
+      "subtitle": {
+        "zh": "聯邦 AI 法想凌駕州法，法律界多認為新國會很難過關。",
+        "en": "Lawyers broadly expect a federal AI law overriding states to stall in the new Congress."
+      },
+      "keywords": [
+        "凌駕州法",
+        "很難過關"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "robot",
+        "title": "AI 監管走向",
+        "titleEn": "Federal vs. state AI rules",
+        "color": "purple",
+        "rows": [
+          {
+            "status": "expected",
+            "text": "聯邦法全面凌駕州 AI 法，法律界普遍認為極難通過"
+          },
+          {
+            "status": "expected",
+            "text": "民主黨多視聯邦規範為「地板」而非「天花板」"
+          },
+          {
+            "status": "pending",
+            "text": "民主黨內部 AI 監管路線尚無共識（Politico）"
+          }
+        ],
+        "taiwan": "輸美 AI 產品短期仍要逐州對規則；加州法已生效"
+      },
+      "sources": [
+        "Foley & Lardner",
+        "National Law Review",
+        "Politico"
+      ]
+    },
+    {
+      "id": "data-center-ballots",
+      "narration": "選舉日全美 41 項資料中心公投，40 案選擇限制或否決。",
+      "tts": "選舉日全美四十一項資料中心公投，四十案選擇限制或否決。",
+      "subtitle": {
+        "zh": "選舉日全美 41 項資料中心公投，40 案選擇限制或否決。",
+        "en": "On election day, 40 of 41 local data-center ballot measures chose limits or rejection."
+      },
+      "keywords": [
+        "資料中心公投",
+        "限制或否決"
+      ],
+      "component": "BigNumber",
+      "props": {
+        "icon": "server",
+        "label": "資料中心公投：限制或否決",
+        "value": 40,
+        "suffix": "/41",
+        "note": "11/3 全美 10 州 41 案（CNBC 引 Ballotpedia）；俄亥俄一州 21 案",
+        "color": "yellow",
+        "tag": "fact"
+      },
+      "sources": [
+        "CNBC",
+        "Ballotpedia",
+        "Reuters"
+      ]
+    },
+    {
+      "id": "governors-pause",
+      "narration": "三位新州長想暫停新資料中心，分析多認為延後而非取消。",
+      "subtitle": {
+        "zh": "三位新州長想暫停新資料中心，分析多認為延後而非取消。",
+        "en": "Three new governors want a data-center pause; analysts see delay, not cancellation."
+      },
+      "keywords": [
+        "新州長",
+        "延後而非取消"
+      ],
+      "component": "FlowRow",
+      "props": {
+        "title": "資料中心暫停令",
+        "steps": [
+          {
+            "icon": "users",
+            "label": "三州新州長主張暫停",
+            "note": "德州、俄亥俄、喬治亞；皆尚未落實",
+            "color": "cyan"
+          },
+          {
+            "icon": "server",
+            "label": "高盛：約 45% 容量受影響",
+            "note": "指美國規劃中擴建容量；原始報告未核對",
+            "color": "pink"
+          },
+          {
+            "icon": "clock",
+            "label": "多數分析：延後非取消",
+            "note": "UBS：約 30% 的 2028 年新增容量恐延後",
+            "color": "yellow"
+          }
+        ]
+      },
+      "sources": [
+        "Fortune",
+        "Reuters",
+        "Finimize"
+      ]
+    },
+    {
+      "id": "chip-export-controls",
+      "narration": "對中晶片出口管制是兩黨共識，新國會預期審查更嚴。",
+      "subtitle": {
+        "zh": "對中晶片出口管制是兩黨共識，新國會預期審查更嚴。",
+        "en": "Chip export controls on China are bipartisan; expect tougher oversight in Congress."
+      },
+      "keywords": [
+        "出口管制",
+        "兩黨共識",
+        "審查更嚴"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "chip",
+        "title": "對中晶片管制",
+        "titleEn": "Export controls on China",
+        "color": "pink",
+        "rows": [
+          {
+            "status": "fact",
+            "text": "參院 Warren 2026/6 已邀黃仁勳就對中晶片銷售作證"
+          },
+          {
+            "status": "expected",
+            "text": "民主黨國會預期收緊豁免、加強審查（Baker McKenzie）"
+          },
+          {
+            "status": "pending",
+            "text": "Chip Security Act 等能否納入 FY2027 國防授權法"
+          }
+        ],
+        "taiwan": "台積電代工多數 Nvidia 晶片，合規成本可能升、非放鬆"
+      },
+      "sources": [
+        "Baker McKenzie",
+        "CNBC",
+        "Politico",
+        "眾院外交委員會"
+      ]
+    },
+    {
+      "id": "chip-credit-48d",
+      "narration": "美國蓋晶片廠可抵稅 35%，但要年底前開工，延長案還沒過。",
+      "tts": "美國蓋晶片廠可抵稅三十五趴，但要年底前開工，延長案還沒過。",
+      "subtitle": {
+        "zh": "美國蓋晶片廠可抵稅 35%，但要年底前開工，延長案還沒過。",
+        "en": "A 35% tax credit for US chip fabs needs construction by year-end; no extension yet."
+      },
+      "keywords": [
+        "35%",
+        "年底前開工",
+        "延長案"
+      ],
+      "component": "BigNumber",
+      "props": {
+        "icon": "building",
+        "label": "晶片廠 48D 投資稅額抵減",
+        "value": 35,
+        "suffix": "%",
+        "note": "須 2026/12/31 前開工才適用；延長案截至 2026/11/6 尚未過關",
+        "color": "pink",
+        "tag": "pending"
+      },
+      "sources": [
+        "Thomson Reuters Tax",
+        "SIA"
+      ]
+    },
+    {
+      "id": "crypto-clarity",
+      "narration": "加密貨幣由誰管的法案沒過，民主黨擬重提更嚴版本。",
+      "subtitle": {
+        "zh": "加密貨幣由誰管的法案沒過，民主黨擬重提更嚴版本。",
+        "en": "The bill deciding who regulates crypto failed; Democrats plan a stricter version."
+      },
+      "keywords": [
+        "由誰管",
+        "更嚴版本"
+      ],
+      "component": "FlowRow",
+      "props": {
+        "title": "加密貨幣市場結構法",
+        "steps": [
+          {
+            "icon": "bitcoin",
+            "label": "2025/7 眾院通過",
+            "note": "CLARITY Act：規定加密貨幣由誰管",
+            "color": "cyan"
+          },
+          {
+            "icon": "gavel",
+            "label": "9/15 參院 49–50 未過",
+            "note": "程序表決未達 60 票門檻",
+            "color": "pink"
+          },
+          {
+            "icon": "clock",
+            "label": "2027/1/3 失效",
+            "note": "隨本屆國會結束，須重新提案",
+            "color": "yellow"
+          },
+          {
+            "icon": "document",
+            "label": "民主黨擬重提新版",
+            "note": "加官員倫理條款；截至 11/6 尚未確定",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "American Banker",
+        "CoinDesk",
+        "CNBC",
+        "Decrypt"
+      ]
+    },
+    {
+      "id": "science-budget",
+      "narration": "白宮要砍科學基金會預算 55%，民主黨接手後預期回補。",
+      "tts": "白宮要砍科學基金會預算五十五趴，民主黨接手後預期回補。",
+      "subtitle": {
+        "zh": "白宮要砍科學基金會預算 55%，民主黨接手後預期回補。",
+        "en": "The White House wants a 55% NSF cut; Democrats are expected to restore funding."
+      },
+      "keywords": [
+        "科學基金會",
+        "55%",
+        "回補"
+      ],
+      "component": "CompareSplit",
+      "props": {
+        "left": {
+          "title": "白宮要求",
+          "titleEn": "FY2027 request",
+          "icon": "money",
+          "color": "pink",
+          "items": [
+            "NSF 砍 55%（約 48 億美元）",
+            "NASA 砍 23%（約 56 億美元）",
+            "眾院委員會版仍砍約 20%"
+          ]
+        },
+        "right": {
+          "title": "選後預期",
+          "titleEn": "After Jan 2027",
+          "icon": "atom",
+          "color": "cyan",
+          "items": [
+            "民主黨 2027/1 接掌撥款委員會",
+            "分析預期推動回補科研預算",
+            "最終數字截至 2026/11/6 未定"
+          ]
+        },
+        "footer": "NSF：國家科學基金會；NASA：太空總署"
+      },
+      "sources": [
+        "AAS",
+        "CRA",
+        "Senator Murray"
+      ]
+    },
+    {
+      "id": "markets",
+      "narration": "選後美股大盤漲、晶片股跌，那指進入修正，台股也重挫。",
+      "tts": "選後美股大盤漲、晶片股跌，那斯達克進入修正，台股也重挫。",
+      "subtitle": {
+        "zh": "選後美股大盤漲、晶片股跌，那指進入修正，台股也重挫。",
+        "en": "After the vote, the Dow rose but chips fell; Nasdaq entered a correction, Taiwan slid."
+      },
+      "keywords": [
+        "晶片股",
+        "修正",
+        "台股"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "選後市場紀錄（非投資建議）",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "trendUp",
+            "label": "道瓊 11/4",
+            "note": "+3.03%（美東收盤）",
+            "color": "cyan"
+          },
+          {
+            "icon": "trendDown",
+            "label": "費半 11/4",
+            "note": "費城半導體 -3.13%；台積電 ADR -2.24%",
+            "color": "pink"
+          },
+          {
+            "icon": "chart",
+            "label": "那斯達克 11/5",
+            "note": "盤中自高點回落逾 10%，進入修正；收盤待確認",
+            "color": "purple"
+          },
+          {
+            "icon": "trendDown",
+            "label": "台股 11/5",
+            "note": "收 41,574.72 點，跌 1,374.19 點（-3.2%）；連六黑",
+            "color": "yellow"
+          }
+        ]
+      },
+      "sources": [
+        "自由財經",
+        "中央社",
+        "經濟日報",
+        "CNBC"
+      ]
+    },
+    {
+      "id": "taiwan-tech",
+      "narration": "經濟部說關稅仍由美國行政主導，台廠赴美投資要等結果。",
+      "subtitle": {
+        "zh": "經濟部說關稅仍由美國行政主導，台廠赴美投資要等結果。",
+        "en": "Taiwan's economy minister: tariffs stay with the executive; US investment awaits results."
+      },
+      "keywords": [
+        "行政主導",
+        "等結果"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "island",
+        "title": "台灣科技業",
+        "titleEn": "Taiwan's tech sector",
+        "color": "cyan",
+        "rows": [
+          {
+            "status": "fact",
+            "text": "經濟部長 11/5：關稅由美國行政權主導，將鞏固台美成果"
+          },
+          {
+            "status": "pending",
+            "text": "台積電德州 450 億美元案屬傳聞，尚未宣布"
+          },
+          {
+            "status": "expected",
+            "text": "供應鏈看法分歧：資料中心延後 vs 需求可長可久"
+          }
+        ],
+        "taiwan": "鴻海、緯創表示德州投資計畫目前沒有改變（東森 11/5）"
+      },
+      "sources": [
+        "經濟日報",
+        "鉅亨網",
+        "世界日報",
+        "東森"
+      ]
+    },
+    {
+      "id": "summary",
+      "narration": "總結：行政主導的事不直接變，國會主導的事轉為未定。",
+      "tts": "總結，行政主導的事不直接變，國會主導的事轉為未定。",
+      "subtitle": {
+        "zh": "總結：行政主導的事不直接變，國會主導的事轉為未定。",
+        "en": "Bottom line: executive-run items hold; Congress-run items are now up in the air."
+      },
+      "keywords": [
+        "不直接變",
+        "轉為未定"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "選後科技政策三種狀態",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "lock",
+            "label": "不直接變",
+            "note": "232 關稅、出口管制、H-1B、反壟斷訴訟",
+            "color": "cyan"
+          },
+          {
+            "icon": "warning",
+            "label": "轉趨嚴格",
+            "note": "國會對 AI、晶片出口的監督（分析預期）",
+            "color": "pink"
+          },
+          {
+            "icon": "question",
+            "label": "尚未確定",
+            "note": "AI 凌駕州法、48D 延長、加密法、NDAA",
+            "color": "yellow"
+          },
+          {
+            "icon": "calendar",
+            "label": "時間點",
+            "note": "新國會 2027/1/3 就任；總統仍握否決權",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "綜合本片來源"
+      ]
+    },
+    {
+      "id": "end",
+      "narration": "白話國際，一支講透一件事。",
+      "subtitle": {
+        "zh": "白話國際，一支講透一件事。",
+        "en": "One video, one topic, explained."
+      },
+      "keywords": [],
+      "component": "EndCard",
+      "props": {
+        "next": "下一集：12/11 撥款到期，美國政府會停擺嗎？",
+        "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。"
+      },
+      "sources": []
+    }
+  ]
+}

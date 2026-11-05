@@ -1,0 +1,632 @@
+{
+  "slug": "taiwan-youth-no-kids",
+  "title": "台灣年輕人為什麼不生？他們面臨什麼難題？",
+  "asOf": "2026/11/6",
+  "cover": {
+    "title": [
+      "台灣年輕人",
+      "為什麼不生？"
+    ],
+    "sub": "不敢生，還是不想生？",
+    "en": "Why aren't young Taiwanese having kids?",
+    "icons": [
+      {
+        "name": "baby",
+        "color": "cyan"
+      },
+      {
+        "name": "house",
+        "color": "pink"
+      }
+    ],
+    "tiles": [
+      {
+        "icon": "house",
+        "label": "房價",
+        "color": "pink"
+      },
+      {
+        "icon": "wallet",
+        "label": "薪資",
+        "color": "yellow"
+      },
+      {
+        "icon": "clock",
+        "label": "工時",
+        "color": "purple"
+      },
+      {
+        "icon": "stroller",
+        "label": "托育",
+        "color": "cyan"
+      }
+    ],
+    "tags": [
+      {
+        "status": "fact",
+        "text": "資料截至 2026/11/6"
+      },
+      {
+        "status": "pending",
+        "text": "10 月出生數尚未公布"
+      }
+    ]
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "candidates": [
+      "Sulafat",
+      "Achernar",
+      "Schedar",
+      "Vindemiatrix"
+    ],
+    "style": "用溫暖沉穩、像朋友聊天的台灣國語，語速中等、每個數字唸清楚，不激動也不說教"
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "台灣年輕人為什麼不生，是不敢生，還是不想生？",
+      "subtitle": {
+        "zh": "台灣年輕人為什麼不生，是不敢生，還是不想生？",
+        "en": "Why aren't young Taiwanese having kids? Can't afford to, or don't want to?"
+      },
+      "keywords": [
+        "不敢生",
+        "不想生"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "四個關鍵數字",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "house",
+            "label": "房價所得比",
+            "note": "全國 9.47 倍、台北 14.72 倍",
+            "color": "pink"
+          },
+          {
+            "icon": "wallet",
+            "label": "青年月薪",
+            "note": "未滿 30 歲中位數 3 萬 2,492 元",
+            "color": "yellow"
+          },
+          {
+            "icon": "clock",
+            "label": "年總工時",
+            "note": "2024 年 2,030 小時",
+            "color": "purple"
+          },
+          {
+            "icon": "stroller",
+            "label": "公托覆蓋率",
+            "note": "0–2 歲每 20 人只有 1 個名額",
+            "color": "cyan"
+          }
+        ]
+      },
+      "sources": [
+        "內政部",
+        "主計總處",
+        "勞動部",
+        "聯合報"
+      ]
+    },
+    {
+      "id": "what-is-tfr",
+      "narration": "總生育率的意思是，一位女性一生平均生幾個小孩。",
+      "subtitle": {
+        "zh": "總生育率的意思是，一位女性一生平均生幾個小孩。",
+        "en": "Total fertility rate: how many children a woman has, on average, in her lifetime."
+      },
+      "keywords": [
+        "總生育率"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "baby",
+        "term": "總生育率",
+        "termEn": "Total Fertility Rate (TFR)",
+        "color": "cyan",
+        "definition": "平均一位女性一輩子會生幾個小孩；要到 2.1，人口才不會自然減少。",
+        "points": [
+          "人口不減少的門檻是 2.1",
+          "台灣 1984 年起就低於這條線"
+        ]
+      },
+      "sources": [
+        "內政部",
+        "國發會"
+      ]
+    },
+    {
+      "id": "marriage-bound",
+      "narration": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
+      "tts": "台灣非婚生育只有百分之二到四，所以不結婚，幾乎就等於不生。",
+      "subtitle": {
+        "zh": "台灣非婚生育只有 2 到 4%，所以不結婚，幾乎就等於不生。",
+        "en": "Just 2–4% of Taiwan's births are outside marriage: no marriage, almost no kids."
+      },
+      "keywords": [
+        "非婚生育",
+        "不結婚"
+      ],
+      "component": "TermCard",
+      "props": {
+        "icon": "ring",
+        "term": "婚育綁定",
+        "termEn": "Marriage-bound childbearing",
+        "color": "purple",
+        "definition": "台灣的小孩幾乎都生在婚姻裡，非婚生育只占 2–4%；找不到對象、不結婚，就很難有下一步。",
+        "points": [
+          "2025 年結婚 10.4 萬對，近 10 年新低",
+          "20–49 歲女性有配偶的比例只剩 43.5%"
+        ]
+      },
+      "sources": [
+        "內政部",
+        "國發會",
+        "中研院研之有物"
+      ]
+    },
+    {
+      "id": "tfr-record-low",
+      "narration": "去年總生育率只剩 0.695，跌到有統計以來最低。",
+      "tts": "去年總生育率只剩零點六九五，跌到有統計以來最低。",
+      "subtitle": {
+        "zh": "去年總生育率只剩 0.695，跌到有統計以來最低。",
+        "en": "Taiwan's 2025 fertility rate fell to 0.695, the lowest ever recorded."
+      },
+      "keywords": [
+        "總生育率",
+        "最低"
+      ],
+      "component": "BigNumber",
+      "props": {
+        "icon": "trendDown",
+        "label": "2025 年總生育率（內政部）",
+        "value": 0.695,
+        "decimals": 3,
+        "color": "pink",
+        "note": "一年掉 0.19、跌幅歷來最大；東亞最低：香港 0.733、南韓 0.80、日本 1.14",
+        "tag": "fact"
+      },
+      "sources": [
+        "內政部",
+        "公視新聞",
+        "各地官方統計"
+      ]
+    },
+    {
+      "id": "births-2026",
+      "narration": "今年前 9 個月新生兒不到 7 萬，國發會估全年會跌破 10 萬。",
+      "tts": "今年前九個月新生兒不到七萬，國發會估全年會跌破十萬。",
+      "subtitle": {
+        "zh": "今年前 9 個月新生兒不到 7 萬，國發會估全年會跌破 10 萬。",
+        "en": "Under 70,000 births in Jan–Sep 2026; the NDC projects the full year below 100,000."
+      },
+      "keywords": [
+        "新生兒",
+        "跌破"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "baby",
+        "title": "2026 年出生數",
+        "titleEn": "Births in 2026",
+        "color": "cyan",
+        "rows": [
+          {
+            "status": "fact",
+            "text": "1–9 月 6 萬 9,446 人，比去年同期少 14.67%"
+          },
+          {
+            "status": "fact",
+            "text": "2 月只有 6,523 人，首次單月跌破 7,000"
+          },
+          {
+            "status": "expected",
+            "text": "國發會（國家發展委員會）推估全年約 9.4 萬，首次跌破 10 萬"
+          },
+          {
+            "status": "pending",
+            "text": "10 月數字截至 2026/11/6 尚未公布"
+          }
+        ]
+      },
+      "sources": [
+        "內政部戶政司",
+        "國發會",
+        "中央社"
+      ]
+    },
+    {
+      "id": "top-reasons",
+      "narration": "衛福部調查，不想生的主因是錢，其次是不想改變生活。",
+      "subtitle": {
+        "zh": "衛福部調查，不想生的主因是錢，其次是不想改變生活。",
+        "en": "Health ministry survey: No.1 reason is money; No.2 is not wanting to change one's life."
+      },
+      "keywords": [
+        "錢",
+        "不想改變生活"
+      ],
+      "component": "FlowRow",
+      "props": {
+        "title": "26.6% 女性不想生，為什麼？",
+        "steps": [
+          {
+            "icon": "wallet",
+            "label": "經濟負擔太重 60.3%",
+            "note": "2019 年調查是 56.9%",
+            "color": "yellow"
+          },
+          {
+            "icon": "heart",
+            "label": "不想改變現有生活 49.4%",
+            "note": "近五成，增幅最快的選項",
+            "color": "pink"
+          },
+          {
+            "icon": "graduation",
+            "label": "擔心教養與未來 34.3%",
+            "note": "2024 年調查、2025 年 8 月公布",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "衛福部 113 年婦女生活狀況調查",
+        "自由時報"
+      ]
+    },
+    {
+      "id": "wage-vs-housing",
+      "narration": "青年月薪中位數 3 萬 2 千多，一間房要全家不吃不喝近 10 年。",
+      "tts": "青年月薪中位數三萬兩千多，一間房要全家不吃不喝近十年。",
+      "subtitle": {
+        "zh": "青年月薪中位數 3 萬 2 千多，一間房要全家不吃不喝近 10 年。",
+        "en": "Median pay under 30 is about NT$32,000; a home costs nearly 10 years of family income."
+      },
+      "keywords": [
+        "月薪中位數",
+        "不吃不喝"
+      ],
+      "component": "CompareSplit",
+      "props": {
+        "left": {
+          "title": "青年月薪",
+          "titleEn": "Median pay, under 30",
+          "icon": "wallet",
+          "color": "yellow",
+          "items": [
+            "未滿 30 歲中位數 32,492 元",
+            "全體中位數 41,054 元",
+            "主計總處 2026 年 1–7 月"
+          ]
+        },
+        "right": {
+          "title": "房價所得比",
+          "titleEn": "Price-to-income ratio",
+          "icon": "house",
+          "color": "pink",
+          "items": [
+            "全國 9.47 倍、台北市 14.72 倍",
+            "白話：全家不吃不喝幾年買得起",
+            "比去年同期略降，但仍偏高"
+          ]
+        },
+        "footer": "內政部 2026 Q1；Q2 截至 11/6 尚未公布"
+      },
+      "sources": [
+        "主計總處",
+        "內政部不動產資訊平台",
+        "聯合新聞網"
+      ]
+    },
+    {
+      "id": "working-hours",
+      "narration": "上班族一年工作 2,030 小時，比南韓、日本都多。",
+      "tts": "上班族一年工作兩千零三十小時，比南韓、日本都多。",
+      "subtitle": {
+        "zh": "上班族一年工作 2,030 小時，比南韓、日本都多。",
+        "en": "Taiwanese employees worked 2,030 hours in 2024, more than in South Korea or Japan."
+      },
+      "keywords": [
+        "一年工作",
+        "南韓",
+        "日本"
+      ],
+      "component": "BigNumber",
+      "props": {
+        "icon": "clock",
+        "label": "2024 年受僱者年總工時（小時）",
+        "value": 2030,
+        "color": "yellow",
+        "note": "南韓 1,859、日本 1,636；勞動部國際勞動統計，2025/11 公布",
+        "tag": "fact"
+      },
+      "sources": [
+        "勞動部國際勞動統計",
+        "ETtoday"
+      ]
+    },
+    {
+      "id": "childcare-gap",
+      "narration": "聯合報盤點，公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
+      "tts": "聯合報盤點，公托只夠百分之四點九的幼兒，一百六十四個鄉鎮區完全沒有。",
+      "subtitle": {
+        "zh": "聯合報盤點，公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
+        "en": "Public daycare covers just 4.9% of under-3s; 164 townships have none (UDN survey)."
+      },
+      "keywords": [
+        "公托",
+        "完全沒有"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "公托有多難搶（聯合報盤點）",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "baby",
+            "label": "0–2 歲幼兒",
+            "note": "約 38.1 萬人",
+            "color": "cyan"
+          },
+          {
+            "icon": "building",
+            "label": "公托名額",
+            "note": "約 1.8 萬個（不含準公共、保母）",
+            "color": "pink"
+          },
+          {
+            "icon": "warning",
+            "label": "沒有公托",
+            "note": "164 個鄉鎮區",
+            "color": "yellow"
+          },
+          {
+            "icon": "users",
+            "label": "搶名額",
+            "note": "台南安南區 329 人搶 1 個",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "聯合新聞網 2026/10 盤點"
+      ]
+    },
+    {
+      "id": "unmarried-trend",
+      "narration": "學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
+      "tts": "學者認為關鍵是不婚，三十五到三十九歲未婚比例超過四成。",
+      "subtitle": {
+        "zh": "學者認為關鍵是不婚，35 到 39 歲未婚比例超過四成。",
+        "en": "Scholars say the key is not marrying: over 40% of Taiwanese aged 35–39 are unmarried."
+      },
+      "keywords": [
+        "不婚",
+        "超過四成"
+      ],
+      "component": "FlowRow",
+      "props": {
+        "title": "中研院鄭雁馨：不婚才是關鍵",
+        "steps": [
+          {
+            "icon": "calendar",
+            "label": "1975 年",
+            "note": "35–39 歲未婚 5.3%",
+            "color": "cyan"
+          },
+          {
+            "icon": "trendUp",
+            "label": "2024 年",
+            "note": "35–39 歲未婚 41.4%，近 8 倍",
+            "color": "pink"
+          },
+          {
+            "icon": "users",
+            "label": "未婚者約三分之二沒對象",
+            "note": "20–49 歲調查；婚育綁定下等於不生",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "遠見雜誌",
+        "中研院研之有物"
+      ]
+    },
+    {
+      "id": "policy-spending",
+      "narration": "少子化預算 8 年編了 5,839 億，總生育率卻還在往下掉。",
+      "tts": "少子化預算八年編了五千八百三十九億，總生育率卻還在往下掉。",
+      "subtitle": {
+        "zh": "少子化預算 8 年編了 5,839 億，總生育率卻還在往下掉。",
+        "en": "NT$584 billion budgeted over 8 years to lift births; the fertility rate still fell."
+      },
+      "keywords": [
+        "少子化預算",
+        "往下掉"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "coins",
+        "title": "5,839 億花在哪",
+        "titleEn": "Spending vs. results",
+        "color": "yellow",
+        "rows": [
+          {
+            "status": "fact",
+            "text": "2018–2025 累計編列 5,839 億元，約八成五用在 0–6 歲育兒"
+          },
+          {
+            "status": "fact",
+            "text": "同期總生育率從 1.125（2017）降到 0.695（2025）"
+          },
+          {
+            "status": "fact",
+            "text": "中研院經濟所調查：僅 12% 認為每月 5,000 元津貼有用"
+          },
+          {
+            "status": "expected",
+            "text": "立院預算中心：齊頭式發錢，多生效果有限"
+          }
+        ]
+      },
+      "sources": [
+        "審計部",
+        "立法院預算中心",
+        "中研院經濟所"
+      ]
+    },
+    {
+      "id": "two-cash-plans",
+      "narration": "朝野都主張發錢給 0 到 18 歲，但兩個版本並存，還沒定案。",
+      "tts": "朝野都主張發錢給零到十八歲，但兩個版本並存，還沒定案。",
+      "subtitle": {
+        "zh": "朝野都主張發錢給 0 到 18 歲，但兩個版本並存，還沒定案。",
+        "en": "Both camps back cash for ages 0–18, but two rival versions remain unreconciled."
+      },
+      "keywords": [
+        "發錢",
+        "還沒定案"
+      ],
+      "component": "CompareSplit",
+      "props": {
+        "left": {
+          "title": "行政院版",
+          "titleEn": "Executive Yuan plan",
+          "icon": "building",
+          "color": "cyan",
+          "items": [
+            "每人每月 5,000 元成長津貼",
+            "6–17 歲一半存入未來帳戶",
+            "擬 2027 年上路，尚未發放"
+          ]
+        },
+        "right": {
+          "title": "立法院版",
+          "titleEn": "Legislative Yuan bill",
+          "icon": "gavel",
+          "color": "purple",
+          "items": [
+            "0–7 歲每年 6 萬元",
+            "7–18 歲每年 3 萬現金加 3 萬存帳戶",
+            "合計 114 萬元，2026/7/24 三讀"
+          ]
+        },
+        "footer": "兩版如何整合，截至 2026/11/6 尚未定案"
+      },
+      "sources": [
+        "Focus Taiwan",
+        "TVBS",
+        "今周刊"
+      ]
+    },
+    {
+      "id": "youth-voices",
+      "narration": "年輕人怎麼說？有人不敢生，有人不想生，理由都很真實。",
+      "subtitle": {
+        "zh": "年輕人怎麼說？有人不敢生，有人不想生，理由都很真實。",
+        "en": "In their own words: some say they can't afford to, others simply don't want to."
+      },
+      "keywords": [
+        "不敢生",
+        "不想生"
+      ],
+      "component": "IconGrid",
+      "props": {
+        "title": "網友與受訪者的話",
+        "columns": 2,
+        "items": [
+          {
+            "icon": "wallet",
+            "label": "「薪水只夠養活自己」",
+            "note": "不敢生 · Dcard 熱門理由",
+            "color": "yellow"
+          },
+          {
+            "icon": "house",
+            "label": "「不想讓孩子一起吃苦」",
+            "note": "不敢生 · Dcard 貼文，鏡週刊轉述",
+            "color": "pink"
+          },
+          {
+            "icon": "heart",
+            "label": "「先把自己過好」",
+            "note": "不想生 · 聯合報受訪年輕女性",
+            "color": "cyan"
+          },
+          {
+            "icon": "question",
+            "label": "「不確定能負責一輩子」",
+            "note": "不想生 · 聯合報受訪者：不是沒錢",
+            "color": "purple"
+          }
+        ]
+      },
+      "sources": [
+        "Dcard（鏡週刊轉述）",
+        "聯合新聞網 2026/11 訪談"
+      ]
+    },
+    {
+      "id": "summary",
+      "narration": "一句話：不敢生是錢、房和時間，不想生是選擇，而兩者都在增加。",
+      "subtitle": {
+        "zh": "一句話：不敢生是錢、房和時間，不想生是選擇，而兩者都在增加。",
+        "en": "In short: 'can't' is money, housing and time; 'won't' is a choice. Both are rising."
+      },
+      "keywords": [
+        "不敢生",
+        "不想生"
+      ],
+      "component": "ImpactCard",
+      "props": {
+        "icon": "bulb",
+        "title": "一句話總結",
+        "titleEn": "Bottom line",
+        "color": "cyan",
+        "rows": [
+          {
+            "status": "fact",
+            "text": "出生 10 萬 7,812 人、總生育率 0.695，都是歷史新低"
+          },
+          {
+            "status": "fact",
+            "text": "錢、房價、工時、托育、職涯：各調查前段的「不敢生」"
+          },
+          {
+            "status": "expected",
+            "text": "學者認為結構關鍵是「不婚」，而非已婚者不生"
+          },
+          {
+            "status": "pending",
+            "text": "10 月出生數、0–18 歲津貼整合，截至 2026/11/6 尚未確定"
+          }
+        ]
+      },
+      "sources": [
+        "綜合本片來源"
+      ]
+    },
+    {
+      "id": "end",
+      "narration": "白話國際，一支講透一件事。",
+      "subtitle": {
+        "zh": "白話國際，一支講透一件事。",
+        "en": "One video, one topic, explained."
+      },
+      "keywords": [],
+      "component": "EndCard",
+      "props": {
+        "next": "下一集：南韓生育率為什麼連兩年回升？",
+        "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。"
+      },
+      "sources": []
+    }
+  ]
+}
