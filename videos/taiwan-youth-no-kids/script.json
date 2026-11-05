@@ -203,7 +203,7 @@
       "tts": "今年前九個月新生兒不到七萬，國發會估全年會跌破十萬。",
       "subtitle": {
         "zh": "今年前 9 個月新生兒不到 7 萬，國發會估全年會跌破 10 萬。",
-        "en": "Under 70,000 births in Jan–Sep 2026; the NDC projects the full year below 100,000."
+        "en": "Under 70,000 births in Jan–Sep 2026; the National Development Council sees under 100,000."
       },
       "keywords": [
         "新生兒",
@@ -264,7 +264,7 @@
           {
             "icon": "heart",
             "label": "不想改變現有生活 49.4%",
-            "note": "近五成，增幅最快的選項",
+            "note": "近五成，排第二",
             "color": "pink"
           },
           {
@@ -282,10 +282,10 @@
     },
     {
       "id": "wage-vs-housing",
-      "narration": "青年月薪中位數 3 萬 2 千多，一間房要全家不吃不喝近 10 年。",
-      "tts": "青年月薪中位數三萬兩千多，一間房要全家不吃不喝近十年。",
+      "narration": "青年月薪中位數 3 萬 2 千多，買房要全家不吃不喝近 10 年。",
+      "tts": "青年月薪中位數三萬兩千多，買房要全家不吃不喝近十年。",
       "subtitle": {
-        "zh": "青年月薪中位數 3 萬 2 千多，一間房要全家不吃不喝近 10 年。",
+        "zh": "青年月薪中位數 3 萬 2 千多，買房要全家不吃不喝近 10 年。",
         "en": "Median pay under 30 is about NT$32,000; a home costs nearly 10 years of family income."
       },
       "keywords": [
@@ -302,6 +302,7 @@
           "items": [
             "未滿 30 歲中位數 32,492 元",
             "全體中位數 41,054 元",
+            "中位數＝排在正中間那個人的薪水",
             "主計總處 2026 年 1–7 月"
           ]
         },
@@ -357,7 +358,7 @@
       "tts": "聯合報盤點，公托只夠百分之四點九的幼兒，一百六十四個鄉鎮區完全沒有。",
       "subtitle": {
         "zh": "聯合報盤點，公托只夠 4.9% 幼兒，164 個鄉鎮區完全沒有。",
-        "en": "Public daycare covers just 4.9% of under-3s; 164 townships have none (UDN survey)."
+        "en": "Public daycare covers just 4.9% of under-3s; 164 townships have none (United Daily News)."
       },
       "keywords": [
         "公托",
@@ -365,7 +366,7 @@
       ],
       "component": "IconGrid",
       "props": {
-        "title": "公托有多難搶（聯合報盤點）",
+        "title": "公托（政府平價托嬰）有多難搶",
         "columns": 2,
         "items": [
           {
@@ -503,19 +504,19 @@
           "color": "cyan",
           "items": [
             "每人每月 5,000 元成長津貼",
-            "6–17 歲一半存入未來帳戶",
+            "6–17 歲一半存進孩子帳戶，18 歲才能動",
             "擬 2027 年上路，尚未發放"
           ]
         },
         "right": {
           "title": "立法院版",
-          "titleEn": "Legislative Yuan bill",
+          "titleEn": "Legislative Yuan act",
           "icon": "gavel",
           "color": "purple",
           "items": [
             "0–7 歲每年 6 萬元",
             "7–18 歲每年 3 萬現金加 3 萬存帳戶",
-            "合計 114 萬元，2026/7/24 三讀"
+            "合計約 114 萬元（媒體報導），7/24 三讀"
           ]
         },
         "footer": "兩版如何整合，截至 2026/11/6 尚未定案"
@@ -539,13 +540,13 @@
       ],
       "component": "IconGrid",
       "props": {
-        "title": "網友與受訪者的話",
+        "title": "網友、問卷與受訪者怎麼說",
         "columns": 2,
         "items": [
           {
             "icon": "wallet",
-            "label": "「薪水只夠養活自己」",
-            "note": "不敢生 · Dcard 熱門理由",
+            "label": "怕錢不夠養小孩",
+            "note": "不敢生 · yes123 問卷 77.2%，1,397 份",
             "color": "yellow"
           },
           {
@@ -556,20 +557,21 @@
           },
           {
             "icon": "heart",
-            "label": "「先把自己過好」",
+            "label": "先把自己過好更重要",
             "note": "不想生 · 聯合報受訪年輕女性",
             "color": "cyan"
           },
           {
             "icon": "question",
-            "label": "「不確定能負責一輩子」",
-            "note": "不想生 · 聯合報受訪者：不是沒錢",
+            "label": "不確定能負責一輩子",
+            "note": "不想生 · 聯合報受訪者：不一定是沒錢",
             "color": "purple"
           }
         ]
       },
       "sources": [
-        "Dcard（鏡週刊轉述）",
+        "鏡週刊（轉述 Dcard 貼文）",
+        "yes123 2025 調查（鉅亨網）",
         "聯合新聞網 2026/11 訪談"
       ]
     },
@@ -593,15 +595,15 @@
         "rows": [
           {
             "status": "fact",
-            "text": "出生 10 萬 7,812 人、總生育率 0.695，都是歷史新低"
+            "text": "2025 年出生 10 萬 7,812 人、總生育率 0.695，都是歷史新低"
           },
           {
             "status": "fact",
-            "text": "錢、房價、工時、托育、職涯：各調查前段的「不敢生」"
+            "text": "錢、房價、工時、托育：各調查排最前面的「不敢生」理由"
           },
           {
             "status": "expected",
-            "text": "學者認為結構關鍵是「不婚」，而非已婚者不生"
+            "text": "中研院鄭雁馨等學者認為關鍵是「不婚」，而非已婚者不生"
           },
           {
             "status": "pending",

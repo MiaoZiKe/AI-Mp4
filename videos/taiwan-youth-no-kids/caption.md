@@ -3,7 +3,7 @@
 **台灣年輕人為什麼不生？是不敢生，還是不想生？👶🏠**
 
 ① **數字先講清楚**
-2025 年全台新生兒 10 萬 7,812 人，比前一年少 2 萬 7,044 人（約 -20%），連續 10 年下降、首次跌破 11 萬；總生育率 0.695（平均一位女性一生生幾個小孩）是有統計以來最低，也是東亞最低（香港 0.733、南韓 0.80、新加坡 0.87、日本 1.14）。2026 年 1–9 月只有 6 萬 9,446 人（年減 14.67%），2 月 6,523 人首次單月跌破 7,000；國發會中推估全年約 9.4 萬、首次跌破 10 萬（分析預期）。10 月數字截至 2026/11/6 尚未公布。
+2025 年全台新生兒 10 萬 7,812 人，比前一年少 2 萬 7,044 人（約 -20%），連續 10 年下降、首次跌破 11 萬；總生育率 0.695（平均一位女性一生生幾個小孩）是有統計以來最低，也是東亞最低（香港 0.733、南韓 0.80、日本 1.14；東南亞的新加坡 0.87 也高於台灣）。2026 年 1–9 月只有 6 萬 9,446 人（年減 14.67%），2 月 6,523 人首次單月跌破 7,000；國發會中推估全年約 9.4 萬、首次跌破 10 萬（分析預期）。10 月數字截至 2026/11/6 尚未公布。
 
 ② **不想生的理由，官方調查這樣排**
 衛福部 113 年婦女生活狀況調查（2025/8 公布）：26.6% 女性不想生（2019 年 19.2%），15–24 歲高達 45.9%。前三名：經濟負擔太重 60.3%、不想因小孩改變現有生活 49.4%、擔心孩子教養與未來 34.3%。上班族問卷（yes123 2025 年，網路問卷 1,397 份、非隨機抽樣）第一名同樣是「怕錢不夠養小孩」77.2%，第二「買不起房」逾六成，第三「工作忙沒時間」約四成；受訪者自估至少要存 668 萬元才敢生，這是問卷裡的主觀估計，不是官方養育成本。
@@ -18,7 +18,7 @@
 審計部：少子女化對策 2018–2025 累計編列 5,839 億元、約八成五用在 0–6 歲育兒，同期總生育率從 2017 年 1.125 降到 2025 年 0.695；立法院預算中心認為齊頭式現金給付多生的效果有限。中研院經濟所 2026/7 調查，僅 12% 認為每月 5,000 元津貼有用、35% 認為補到 1 萬元都不夠。目前朝野都主張發錢給 0–18 歲：行政院版每人每月 5,000 元（擬 2027 年上路，尚未發放）、立法院 2026/7/24 三讀版 0–18 歲合計 114 萬元；兩版如何整合、產假延長至 12 週等修法，截至 2026/11/6 尚未定案。本片不評價任何一方。
 
 ⑥ **年輕人自己的話**
-「薪水只夠養活自己」「不想讓孩子一起吃苦」（Dcard，鏡週刊轉述）；「先把自己過好比較重要」「不是沒錢，是不確定能不能為孩子負責一輩子」（聯合報受訪者）。不敢生是錢、房和時間，不想生是選擇，兩種聲音都值得被聽見。
+「不想讓孩子一起吃苦」（Dcard 貼文，鏡週刊 2026/3 轉述）；「薪水只夠養活自己」是 Dcard 上常見的說法（媒體整理，原文未逐條核對）；「先把自己過好比較重要」（聯合報 2026/11 受訪年輕女性），另一位受訪者說不生不一定是沒錢，而是不確定能否為孩子負責一輩子。不敢生是錢、房和時間，不想生是選擇，兩種聲音都值得被聽見。
 
 📚 資料來源
 - 中央社 2025 年出生數：https://www.cna.com.tw/news/ahel/202601090067.aspx
@@ -49,6 +49,6 @@
 本片只整理公開數據與調查，不構成任何投資或購屋建議，對各政策方案不表立場。
 本片使用 AI 輔助製作，由真人選題與審核。
 
-**EN:** Taiwan's fertility rate fell to a record 0.695 in 2025 and births dropped 20% to 107,812. Surveys rank money, housing, long hours and scarce public childcare as the top reasons young people say they can't have kids, while a growing share say they simply don't want to; scholars argue the real bottleneck is that fewer people marry at all. Despite NT$584 billion spent since 2018, two rival cash-for-kids plans remain unreconciled as of Nov 6, 2026.
+**EN:** Taiwan's fertility rate fell to a record 0.695 in 2025 and births dropped 20% to 107,812. Surveys rank money, housing, long hours and scarce public childcare as the top reasons young people say they can't have kids, while a growing share say they simply don't want to; scholars argue the real bottleneck is that fewer people marry at all. Despite NT$584 billion budgeted (about NT$554 billion spent) for pro-natal measures since 2018, two rival cash-for-kids plans remain unreconciled as of Nov 6, 2026.
 
 #少子化 #生育率 #台灣年輕人 #不婚不生 #房價 #薪資 #托育 #白話國際 #國際白話講
