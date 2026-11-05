@@ -48,7 +48,7 @@ export const Subtitle: React.FC<{ zh: string; en: string; keywords: string[]; li
           const times = charTimes?.[li];
           let ci = 0;
           return (
-            <div key={li} style={rise(f, startOf(li), 20)}>
+            <div key={li} style={{ ...rise(f, startOf(li), 20), whiteSpace: "nowrap" }}>
               {splitParts(line, keywords).map((p, pi) => {
                 const start = ci;
                 ci += [...p.text].length;

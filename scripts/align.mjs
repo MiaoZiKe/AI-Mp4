@@ -156,7 +156,7 @@ for (const [i, s] of script.scenes.entries()) {
   const subChars = norm(s.subtitle.zh);
   const spoken = norm(m.text);
   let times, transcript, words, cer, provider, unmatched = 0;
-  if (!force && cached && cached.hash === m.hash && cached.lines?.[0]?.chars && cached.provider) {
+  if (!force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.lines?.[0]?.chars && cached.provider) {
     console.log(`= ${s.id}（沿用時間戳）`);
     scenes.push(cached); report.push({ id: s.id, spoken: m.text, transcript: cached.transcript ?? "", cer: cached.cer ?? 0, unmatched: 0, n: subChars.length, provider: cached.provider });
     continue;
@@ -212,7 +212,7 @@ for (const [i, s] of script.scenes.entries()) {
   });
   const isEnd = s.component === "EndCard";
   const durationSec = Number(Math.max(MIN, LEAD + m.sec + (isEnd ? TAIL_END : TAIL)).toFixed(3));
-  scenes.push({ id: s.id, audio: m.file, audioSec: m.sec, leadSec: LEAD, durationSec, hash: m.hash, provider, cer: Number(cer.toFixed(3)), transcript, words, lines: lineStarts, keywords });
+  scenes.push({ id: s.id, audio: m.file, audioSec: m.sec, leadSec: LEAD, durationSec, hash: m.hash, sub: s.subtitle.zh, provider, cer: Number(cer.toFixed(3)), transcript, words, lines: lineStarts, keywords });
   report.push({ id: s.id, spoken: m.text, transcript, cer, unmatched, n: subChars.length, provider });
 }
 const totalSec = Number(scenes.reduce((a, x) => a + Math.round(x.durationSec * FPS) / FPS, 0).toFixed(2));

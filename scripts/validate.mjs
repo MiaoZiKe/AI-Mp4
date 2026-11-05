@@ -18,6 +18,8 @@ export const splitLines = (zh) => {
   for (let i = 0; i < zh.length - 1; i++) if ("，；：、".includes(zh[i]) && (best < 0 || Math.abs(i + 1 - mid) < Math.abs(best - mid))) best = i + 1;
   return best > 0 ? [zh.slice(0, best), zh.slice(best)] : [zh];
 };
+/** 字幕一行的估算寬度（em）：全形字與全形標點 1、英數 0.6、半形標點 0.4、空白 0.3；字幕框 952px / 64px ≈ 14.9em；行內不換行，置中後最多可到 15.6em 仍在安全區 */
+export const emWidth = (line) => [...line].reduce((w, ch) => w + (/\s/.test(ch) ? 0.3 : /[A-Za-z0-9%$.,:;!?()'"\-–]/.test(ch) ? 0.6 : 1), 0);
 /** 配音版每幕秒數估算：每秒約 4.3 字 + 0.9 秒間隔 */
 export const voicedSeconds = (s) => s.component === "EndCard" ? 4.5 : len(s.tts ?? s.narration) / 4.3 + 0.9;
 
@@ -66,7 +68,7 @@ export function validate(script) {
     else {
       const lines = splitLines(s.subtitle.zh);
       if (lines.length > 2) E(`${tag}: 中文字幕超過 2 行`);
-      lines.forEach((l, li) => { const n = len(l); if (n > 14) E(`${tag}: 字幕第 ${li + 1} 行 ${n} 字 > 14：「${l}」`); });
+      lines.forEach((l, li) => { const n = len(l), w = emWidth(l); if (n > 14) E(`${tag}: 字幕第 ${li + 1} 行 ${n} 字 > 14：「${l}」`); else if (w > 15.6) E(`${tag}: 字幕第 ${li + 1} 行含標點寬 ${w.toFixed(1)}em > 15.6（會超出安全區）：「${l}」→ 用 \\n 改斷行或精簡字幕`); else if (w > 15.0) W(`${tag}: 字幕第 ${li + 1} 行寬 ${w.toFixed(1)}em 略超出字幕框（置中後仍在安全區內）：「${l}」`); });
       if (clean(s.subtitle.zh) !== clean(s.narration)) W(`${tag}: 字幕與旁白文字不同（允許，但請確認是刻意的）`);
       if (s.subtitle.en.length > 110) E(`${tag}: 英文字幕太長（${s.subtitle.en.length}）`); else if (s.subtitle.en.length > 90) W(`${tag}: 英文字幕偏長（${s.subtitle.en.length}）`);
     }
