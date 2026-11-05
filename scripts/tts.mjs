@@ -96,41 +96,44 @@ const polish = (raw, out, ss, to) => execFileSync("ffmpeg", ["-y", "-loglevel", 
   "-ar", "24000", "-ac", "1", out]);
 /** 靜音清單 [{s,e,d}] */
 const silences = (file) => {
-  const out = spawnSync("ffmpeg", ["-i", file, "-af", "silencedetect=noise=-38dB:d=0.2", "-f", "null", "-"], { encoding: "utf8" }).stderr ?? "";
+  const out = spawnSync("ffmpeg", ["-i", file, "-af", "silencedetect=noise=-38dB:d=0.12", "-f", "null", "-"], { encoding: "utf8" }).stderr ?? "";
   const st = [...out.matchAll(/silence_start: ([\d.]+)/g)].map((m) => Number(m[1]));
   const en = [...out.matchAll(/silence_end: ([\d.]+)/g)].map((m) => Number(m[1]));
   return st.map((s, i) => ({ s, e: en[i] ?? s, d: (en[i] ?? s) - s }));
 };
 /**
- * 把一段合成音檔切成每幕：依各幕字數比例算出「預期分界時間」，在分界附近（±視窗）挑最長的停頓當切點；
- * 找不到停頓就回傳 null（呼叫端會拆半重做）。
+ * 把一段合成音檔切成每幕：候選切點 = 所有停頓的中點；用動態規劃挑 n−1 個切點，
+ * 讓每段長度最接近「該幕字數 × 整段平均語速」（同時偏好較長的停頓）。切不出來回傳 null（呼叫端會拆半重做）。
  */
 const splitSegments = (raw, texts) => {
   const n = texts.length;
   const total = dur(raw);
   if (n === 1) return [[0, total]];
-  const sil = silences(raw).filter((x) => x.s > 0.1 && x.e < total - 0.1);
+  const sil = silences(raw).filter((x) => x.s > 0.15 && x.e < total - 0.15).sort((a, b) => a.s - b.s);
   if (sil.length < n - 1) return null;
   const counts = texts.map(nchars);
   const sum = counts.reduce((a, b) => a + b, 0);
-  const cuts = [];
-  let acc = 0, from = 0;
-  for (let k = 0; k < n - 1; k++) {
-    acc += counts[k];
-    const target = (acc / sum) * total;
-    const win = Math.max(1.0, 0.18 * (counts[k] / 4) + 0.6); // 視窗隨該幕長度放大
-    let best = null;
-    for (const w of [win, win * 2, win * 3]) {
-      const cands = sil.filter((x) => x.s > from + 0.3 && Math.abs((x.s + x.e) / 2 - target) <= w);
-      if (cands.length) { best = cands.sort((a, b) => b.d - a.d)[0]; break; }
-    }
-    if (!best) return null;
-    const c = (best.s + best.e) / 2;
-    cuts.push(c);
-    from = c;
+  const expect = counts.map((c) => (c / sum) * total);
+  const mids = sil.map((x) => (x.s + x.e) / 2);
+  const bonus = sil.map((x) => -0.25 * Math.min(x.d, 1.2));
+  const segCost = (len, k) => Math.pow((len - expect[k]) / expect[k], 2);
+  // dp[k][j]：第 k 個分界放在第 j 個停頓的最小成本；prev 記回溯
+  const K = n - 1, J = mids.length;
+  const dp = Array.from({ length: K }, () => new Array(J).fill(Infinity));
+  const prev = Array.from({ length: K }, () => new Array(J).fill(-1));
+  for (let j = 0; j < J; j++) dp[0][j] = segCost(mids[j], 0) + bonus[j];
+  for (let k = 1; k < K; k++) for (let j = k; j < J; j++) {
+    let best = Infinity, bi = -1;
+    for (let i = k - 1; i < j; i++) { if (dp[k - 1][i] === Infinity) continue; const c = dp[k - 1][i] + segCost(mids[j] - mids[i], k) + bonus[j]; if (c < best) { best = c; bi = i; } }
+    dp[k][j] = best; prev[k][j] = bi;
   }
+  let bestJ = -1, bestC = Infinity;
+  for (let j = K - 1; j < J; j++) { const c = dp[K - 1][j] + segCost(total - mids[j], K); if (c < bestC) { bestC = c; bestJ = j; } }
+  if (bestJ < 0) return null;
+  const cuts = [];
+  for (let k = K - 1, j = bestJ; k >= 0; k--) { cuts.unshift(mids[j]); j = prev[k][j]; }
   const segs = [];
-  from = 0;
+  let from = 0;
   for (const c of cuts) { segs.push([from, c]); from = c; }
   segs.push([from, total]);
   return segs;
