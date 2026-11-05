@@ -189,7 +189,7 @@ function initialPositions() {
 // ═════════════════════════════════════════════════════════════════════════════
 //  Camera, input, UI
 // ═════════════════════════════════════════════════════════════════════════════
-const canvas = document.getElementById('c');
+let canvas = document.getElementById('c');
 const cam = { yaw: 0.32, pitch: 0.26, dist: 6.3, target: [0, 0.92, 0], fov: 40 * Math.PI / 180 };
 const ui = { layers: 32, soft: 0.55, damp: 0.30 };
 const live = { grab: -1, grabDepth: 0, grabTarget: [0, 0, 0], joy: 0, hop: 0, blink: 0, nextBlink: 2.2, blinkT: -1, gaze: [0, 0], mouse: null };
@@ -238,6 +238,7 @@ function project(i) {
 // pointer handling (mouse + touch): grab particle, else orbit; right button orbits; pinch zooms
 const pointers = new Map();
 let orbit = null, pinch = null, lastTap = 0;
+function bindInput() {
 canvas.addEventListener('contextmenu', e => e.preventDefault());
 canvas.addEventListener('pointerdown', e => {
   canvas.setPointerCapture(e.pointerId);
@@ -266,6 +267,7 @@ canvas.addEventListener('pointerup', endPointer);
 canvas.addEventListener('pointercancel', endPointer);
 canvas.addEventListener('wheel', e => { e.preventDefault(); cam.dist = Math.min(14, Math.max(3, cam.dist * Math.exp(e.deltaY * 0.0012))); }, { passive: false });
 canvas.addEventListener('dblclick', () => triggerJoy());
+}
 function triggerJoy() { live.joy = 1; live.hop = 0.022; }
 
 const $ = id => document.getElementById(id);
@@ -417,9 +419,9 @@ fn tentDelta(i: u32, c: vec3f, R: mat3x3f, kT: f32, kBs: f32, time: f32) -> vec3
 }
 
 // stretch limit that moves prev along with the particle, so it never injects velocity
-fn ftl(k: u32, from: u32, L: f32) {
-  let e = P[k] - P[from]; let l = length(e);
-  if (l > L) { let np = P[from] + e * (L / l); prv[k] = vec4f(prv[k].xyz + (np - P[k]), 0.0); P[k] = np; }
+fn ftl(k: u32, src: u32, L: f32) {
+  let e = P[k] - P[src]; let l = length(e);
+  if (l > L) { let np = P[src] + e * (L / l); prv[k] = vec4f(prv[k].xyz + (np - P[k]), 0.0); P[k] = np; }
 }
 @compute @workgroup_size(256)
 fn sim(@builtin(local_invocation_index) li: u32) {
@@ -661,7 +663,7 @@ fn surface(stat: vec4f) -> Surf {
   if (stat.w < 0.5) {
     let d = normalize(stat.xyz);
     let lav = vec3f(0.80, 0.66, 0.96); let pink = vec3f(0.99, 0.72, 0.86); let peach = vec3f(1.0, 0.80, 0.80);
-    var col = mix(pink, lav, smoothstep(-0.1, 0.85, d.y));
+    var col = mix(pink, lav, smoothstep(0.2, 1.0, d.y));
     col = mix(peach, col, smoothstep(-0.9, -0.2, d.y));
     // cheeks
     for (var sgn = -1.0; sgn < 2.0; sgn += 2.0) {
@@ -1128,7 +1130,7 @@ void surface(vec4 stat, out vec3 colOut, out float nofur, out float gloss) {
   if (stat.w < 0.5) {
     vec3 d = normalize(stat.xyz);
     vec3 lav = vec3(0.80, 0.66, 0.96), pink = vec3(0.99, 0.72, 0.86), peach = vec3(1.0, 0.80, 0.80);
-    vec3 col = mix(pink, lav, smoothstep(-0.1, 0.85, d.y));
+    vec3 col = mix(pink, lav, smoothstep(0.2, 1.0, d.y));
     col = mix(peach, col, smoothstep(-0.9, -0.2, d.y));
     for (float sgn = -1.0; sgn < 2.0; sgn += 2.0) {
       vec2 cl = eyeLocal(d, normalize(vec3(0.58 * sgn, -0.20, 0.79)), 0.16);
@@ -1368,12 +1370,17 @@ async function boot() {
   addEventListener('resize', resize);
   if (!qs.has('gl')) {
     try { backend = await initWebGPU(); }
-    catch (e) { console.warn('WebGPU unavailable → WebGL2 fallback:', e.message); toast('你的瀏覽器尚未支援 WebGPU，已自動切換為 WebGL2 版本（物理改在 CPU 計算）', 5000); }
+    catch (e) {
+      console.warn('WebGPU unavailable → WebGL2 fallback:', e.message);
+      toast('你的瀏覽器尚未支援 WebGPU，已自動切換為 WebGL2 版本（物理改在 CPU 計算）', 5000);
+      const fresh = canvas.cloneNode(false); canvas.replaceWith(fresh); canvas = fresh; resize();   // a canvas can only ever hold one context type
+    }
   }
   if (!backend) {
     try { backend = initWebGL2(); }
     catch (e) { console.error(e); toast('抱歉，這個瀏覽器不支援 WebGPU 或 WebGL2，無法顯示章魚 🐙'); return; }
   }
+  bindInput();
   $('meta').innerHTML = `渲染：<b>${backend.name}</b>${backend.name === 'WebGPU' ? '（compute 物理）' : '（CPU 物理）'}<br>質點 ${NP}（頭 ${NH}＋觸手 ${NT}×${NN}）· 子步 1/120 s`;
   let last = performance.now(), acc = 0, fpsT = last, fpsN = 0;
   function loop(now) {
