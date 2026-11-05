@@ -8,7 +8,7 @@
 | 音色 | 官方特色 | 聽感定位 | 適合度 |
 |---|---|---|---|
 | **Sulafat** | 溫暖 | 有溫度但不甜膩，咬字清楚，念 0.695、5,839 億這類數字時不會顯得冰冷 | ★★★★★ 主選 |
-| Achernar | 柔和 | 更軟、更貼近耳邊，第 13 幕年輕人的話很適合，但第 04–08 幕的數字段落容易顯得沒有力氣 | ★★★★ 第一備選（若 Sulafat 試聽太像播報） |
+| Achernar | 柔和 | 更軟、更貼近耳邊，第 13 幕年輕人的話很適合，但第 03–08 幕的數字段落容易顯得沒有力氣 | ★★★★ 第一備選（若 Sulafat 試聽太像播報） |
 | Schedar | 平穩 | 中性、穩定、資訊感強，像晨間新聞；中立度最高，但共鳴感較弱 | ★★★ 第二備選（若審核要求更客觀） |
 | Vindemiatrix | 溫柔 | 四個裡最柔，全集用會太軟、可能讓人覺得在「安慰」 | ★★★ 備選 |
 
@@ -29,5 +29,5 @@ tts.mjs 對 gemini-2.5 系列會送成「…不激動也不說教說：＜旁白
 ## 試聽與回讀流程
 1. `npm run voices taiwan-youth-no-kids` → 用第 1 幕試聽 4 個候選，輸出到 `out/taiwan-youth-no-kids/voice-samples/`，看 `samples.json` 的 `charsPerSec` 是否落在 4–5。
 2. 選定後 `npm run tts taiwan-youth-no-kids`，再 `npm run align taiwan-youth-no-kids`。
-3. 打開 `videos/taiwan-youth-no-kids/tts-check.md`：CER > 20% 的幕重跑；重點聽第 12 幕「朝野」、各幕「率」、第 09 幕「百分之四點九」有沒有念對（規則見 pronunciation.md）。
+3. 打開 `videos/taiwan-youth-no-kids/tts-check.md`：CER > 20% 的幕重跑；重點聽第 12 幕「朝野」、各幕「率」、第 08 幕「百分之四點九」有沒有念對（規則見 pronunciation.md）。
 4. 若改了任何一幕的文字，從 TTS 重跑該幕（`--only=<id>`），配音是整支影片的時鐘。
