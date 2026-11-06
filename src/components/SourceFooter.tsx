@@ -7,7 +7,8 @@ const footerText = (sources: string[], asOf?: string) => `資料來源：${sourc
 const style: React.CSSProperties = { position: "absolute", left: SAFE.x, right: SAFE.x, bottom: SAFE.bottom, textAlign: "center", fontFamily: FONT_ZH, fontSize: 22, color: "rgba(255,255,255,0.5)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" };
 
 export const SourceFooter: React.FC<{ sources: string[]; asOf?: string }> = ({ sources, asOf }) =>
-  sources.length ? <div style={style}>{footerText(sources, asOf)}</div> : null;
+  // v1：保持原本的 JSX 結構（多個文字節點），像素與舊片完全相同
+  sources.length ? <div style={style}>資料來源：{sources.join("、")}{asOf ? `｜截至 ${asOf}` : ""}</div> : null;
 
 // styleVersion 2：全片來源列軌道。相鄰幕來源相同就合併（不閃）；換內容時舊的 2 幀淡出、新的 3 幀淡入
 export type SourceCue = { sources: string[]; window: [number, number] };
