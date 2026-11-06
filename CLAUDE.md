@@ -23,6 +23,7 @@
 - 安全區：上下各留 220px、左右各留 64px
 
 ## 視覺設計系統
+以下是 v1（舊片，沒有 styleVersion）的規範；`styleVersion: 2` 改用下一節「A 奶油編輯」。
 - 背景：深藍 #0B1026，加 6% 透明度細格線（每格 60px），中心有微弱的藍紫光暈
 - 主色：青 #22E5D4、粉 #FF4FA3、黃 #FFD54A、紫 #8B7CFF；文字白
 - 政治主題配色要中立：不用強烈的紅藍對立；需要區分兩黨時，用低飽和紅藍並列（`C.dem` / `C.rep`），並加文字標示
@@ -34,8 +35,19 @@
 - 動畫：元素淡入加上移（spring）、箭頭描線、打字機效果、數字和席次條遞增、換幕 0.3 秒淡入淡出
 - 隨機效果用固定 seed
 
+## styleVersion 2（A 奶油編輯）
+- token 全部在 `src/theme.ts` 的 `THEME_V2`（顏色、陰影、圓角、狀態標籤、關鍵詞色序）與 `LAYOUT_V2`（格線、尺寸下限、空白帶上限、水印）；v2 元件在 `src/components/v2/`，**元件裡不寫死色碼、不用霓虹 glow**，換主題只改 theme.ts。設計理由與樣稿：`docs/style-v2/`；版面規則：`docs/layout-rules.md`。
+- 色彩：背景米白 `#FBF5EA`＋4% 海軍藍圓點紙紋（預渲染 `public/bg/base-v2.png`）；主文字 `#14213D`、次要 `#4B5675`、輔助 `#5F6673`；強調：珊瑚 `#E8613C`（文字 `#C2441F`）、暖黃 `#F5B83D`（文字 `#8A5E00`）、深青 `#2A7F8F`（文字 `#1F6A78`）；script.json 仍寫 cyan／pink／yellow／purple，v2 對應到深青／珊瑚／暖黃／灰紫。
+- 狀態標籤淡底深字：已確定 `#E2F0E7/#1E6544`、分析預期 `#FCEBCB/#8A5300`、尚未確定 `#ECE7F3/#5A4D7A`，圓角 8px。
+- 卡片：暖白 `#FFFDF8`、2px `#E6D9C2` 邊框、圓角 14px、紙張陰影（不發光），頂端 6px 色條；圖示＝海軍藍方角線稿＋錯位色塊（套印風），不發光。
+- 版面格線（1080×1920）：頁首 220–310（下方 4px 報頭線兼全片進度）｜主視覺 330–1250（撐滿 952 寬，≥856×814）｜字幕 1270–1560｜出處 1580–1690｜1700–1920 只放背景色帶。每幕背景層＝米色色塊＋出血色帶＋大字水印（`bg.mark`，預設第一個關鍵詞）。
+- 字幕（短語模式）：中文 76px 900 字重、一次一段單行（≤11.5em，約 11 個全形字；`\n` 可指定斷點），關鍵詞依序：珊瑚字／海軍藍字＋黃色螢光筆底／深青字；英文 30px 實色次要文字，跟著中文的句顯示、每段 ≤42 字元；右側留 120px（x ≤960）。
+- 動畫：元素依 `cues` 進場（cue−4 幀）、多項目 focus（其他降到 0.35）、念到時 punch、鏡頭在 cue 推拉（0.965↔1，12 幀後固定）；讀秒保護＝落定後至少 0.8 秒才出場；不做連續縮放、不用 3D（最多 2.5D）。
+- 鉤子：第 1 幕 `HookTitle`，第 0 幀就是完整主張（≤10 字＋數字、≥120px），數字附 `claims`（指向 research.md）；骨架 `beat: hook｜you｜mechanism｜twist｜payoff｜cta`；片尾卡前一幕 `CtaCard` 具體提問（不寫「分享給／傳給／標記」）。
+
 ## 可重用元件（src/components/）
 Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、BigNumber、SeatBar（席次條，含過半門檻線）、IconGrid、ImpactCard（含「已確定／分析預期／尚未確定」標籤）、SourceFooter
+- v2（`src/components/v2/`）：HookTitle、CtaCard、BigNumberV2（from、對照小標 ref、資料條 bars）、CompareSplitV2、FlowRowV2、ImpactCardV2、IconGridV2、TermCardV2、EndCardV2、SubtitleTrackV2／SourceTrackV2、CoverV2；SeatBar 尚無 v2 版
 
 ## 資料驅動
 - `videos/<slug>/` 底下放：research.md、script.json（每幕的 id、旁白、中英字幕、關鍵詞、元件、參數、來源）、caption.md
