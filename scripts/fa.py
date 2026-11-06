@@ -20,6 +20,8 @@ import json, os, re, subprocess, sys, statistics
 
 import numpy as np
 
+os.environ.setdefault("HF_HUB_DISABLE_XET", "1")  # xet CDN 在部分網路環境被擋；走一般 HTTP 下載
+
 MODEL = os.environ.get("FA_MODEL", "MahmoudAshraf/mms-300m-1130-forced-aligner")
 SR = 16000
 STRIDE = 320  # wav2vec2：每個 emission 幀 20ms
@@ -101,7 +103,7 @@ def ctc_viterbi(logp, targets, blank=0):
     path = np.zeros(T, dtype=np.int64)
     for t in range(T - 1, -1, -1):
         path[t] = s
-        s -= bp[t, s]
+        s -= int(bp[t, s])
     return path
 
 
@@ -114,6 +116,18 @@ def onset_check(wav, units_t):
     rms = np.sqrt(np.mean(wav[: n * hop].reshape(n, hop) ** 2, axis=1) + 1e-12)
     db = 20 * np.log10(rms)
     quiet = db < -40
+    # 短於 60ms 的有聲片段（呼吸聲、雜音）視為仍在停頓中
+    k = 0
+    while k < n:
+        if not quiet[k]:
+            j = k
+            while j < n and not quiet[j]:
+                j += 1
+            if j - k < 6 and k > 0 and j < n:
+                quiet[k:j] = True
+            k = j
+        else:
+            k += 1
     res = []
     k = 0
     while k < n:
@@ -121,7 +135,7 @@ def onset_check(wav, units_t):
             j = k
             while j < n and quiet[j]:
                 j += 1
-            if j < n and (j - k) >= 12:
+            if j < n and (j - k) >= 12 and k > 0:  # 不算檔頭（切檔留下的 40ms 不是停頓）
                 onset = j * 0.01
                 after = [u for u in units_t if u["start"] >= k * 0.01 - 0.05]
                 if after:

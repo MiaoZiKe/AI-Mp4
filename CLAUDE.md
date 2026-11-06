@@ -57,7 +57,8 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 影片與圖片不 commit（見 .gitignore）
 
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
-- 順序固定：研究 → 腳本 → 逐幕 TTS → 逐字時間戳（Whisper）→ 依時間軸渲染 → ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
+- 順序固定：研究 → 腳本 → 逐幕 TTS → 逐字時間戳（CTC 強制對齊）→ 依時間軸渲染 → ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
+- 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
 - script.json 頂層 `voice: { voiceName, candidates?, style? }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
 - `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
