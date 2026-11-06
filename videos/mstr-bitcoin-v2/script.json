@@ -1,55 +1,44 @@
 {
   "slug": "mstr-bitcoin-v2",
   "styleVersion": 2,
-  "title": "MSTR 和比特幣是什麼關係？為什麼比特幣漲它還一直加倉？",
+  "title": "說好不賣的 MSTR，為什麼開始賣比特幣？",
   "asOf": "2026/11/6",
   "cover": {
+    "kicker": "比特幣 × 美股｜STRATEGY (MSTR)",
     "title": [
-      "比特幣越漲",
-      "它越買？"
+      "說不賣幣",
+      "卻開始賣幣"
     ],
-    "sub": "全球最大持幣上市公司的飛輪與反轉",
-    "en": "MSTR & Bitcoin: why it kept buying, and what changed",
+    "mark": 1,
+    "sub": "全球最大持幣公司的飛輪與反轉",
+    "en": "MSTR said it wouldn't sell. Now it sells bitcoin.",
+    "chips": [
+      {
+        "value": "約 85 萬枚",
+        "label": "持幣上市公司第一",
+        "color": "pink"
+      },
+      {
+        "value": "≈ 0.90",
+        "label": "mNAV 溢價幾乎歸零",
+        "color": "yellow"
+      },
+      {
+        "value": "5 月起",
+        "label": "賣幣付優先股股息",
+        "color": "cyan"
+      }
+    ],
     "icons": [
       {
         "name": "bitcoin",
         "color": "yellow"
-      },
-      {
-        "name": "cycle",
-        "color": "cyan"
-      }
-    ],
-    "tiles": [
-      {
-        "icon": "bitcoin",
-        "label": "持幣",
-        "color": "yellow"
-      },
-      {
-        "icon": "scale",
-        "label": "溢價",
-        "color": "cyan"
-      },
-      {
-        "icon": "cycle",
-        "label": "飛輪",
-        "color": "purple"
-      },
-      {
-        "icon": "warning",
-        "label": "風險",
-        "color": "pink"
       }
     ],
     "tags": [
       {
         "status": "fact",
         "text": "資料截至 2026/11/6"
-      },
-      {
-        "status": "pending",
-        "text": "MSCI 名單預計 11/11"
       }
     ]
   },
@@ -66,24 +55,207 @@
   "scenes": [
     {
       "id": "hook",
-      "narration": "Strategy 這家軟體公司，怎麼握有全球 4% 的比特幣？",
-      "tts": "Strategy 這家軟體公司，怎麼握有全球四趴的比特幣？",
+      "beat": "hook",
+      "narration": "最愛囤幣的 Strategy，開始賣幣付股息了。",
+      "tts": "最愛囤幣的 Strategy，開始賣幣付股息了。",
       "subtitle": {
-        "zh": "Strategy 這家軟體公司，怎麼握有全球 4% 的比特幣？",
-        "en": "How does a software company called Strategy hold 4% of all bitcoin?"
+        "zh": "最愛囤幣的 Strategy，\n開始賣幣付股息了。",
+        "en": "Strategy, the biggest bitcoin hoarder, is now selling bitcoin to pay dividends."
       },
       "keywords": [
-        "軟體公司",
+        "囤幣",
+        "賣幣"
+      ],
+      "cues": [
+        {
+          "id": "hoard",
+          "text": "囤幣"
+        },
+        {
+          "id": "sell",
+          "text": "賣幣"
+        },
+        {
+          "id": "div",
+          "text": "股息"
+        }
+      ],
+      "component": "HookTitle",
+      "pauseAfter": 0.25,
+      "props": {
+        "kicker": "比特幣 × 美股｜STRATEGY (MSTR)",
+        "lines": [
+          "85萬枚大戶",
+          "開始賣幣"
+        ],
+        "mark": 1,
+        "slamAt": "sell",
+        "sub": "2022 說「我們不是賣家」，2026/5 起賣幣付優先股股息",
+        "subAt": "div",
+        "tag": "fact",
+        "claims": [
+          {
+            "text": "85萬枚",
+            "ref": "research.md §1 持幣數：2026/11/1 持有 849,327 枚（SEC 8-K 2026/11/2）"
+          },
+          {
+            "text": "2026/5",
+            "ref": "research.md §6.2：2026/5/26–31 首次淨賣出 32 枚（CoinDesk 2026/6/1）"
+          },
+          {
+            "text": "2022",
+            "ref": "research.md §5.6：2022/1/19 Saylor「We're not sellers」（Bloomberg）"
+          }
+        ]
+      },
+      "sources": [
+        "SEC 8-K 2026/11/2",
+        "CoinDesk"
+      ]
+    },
+    {
+      "id": "not-a-seller",
+      "beat": "hook",
+      "narration": "2022 年它說「我們不是賣家」，今年 5 月起卻開始賣。",
+      "tts": "二零二二年它說，我們不是賣家，今年五月起卻開始賣。",
+      "subtitle": {
+        "zh": "2022 年它說「我們不是賣家」，今年 5 月起卻開始賣。",
+        "en": "In 2022 it said “we're not sellers.” Since May 2026 it has been selling."
+      },
+      "keywords": [
+        "不是賣家",
+        "開始賣"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "不是賣家"
+        },
+        {
+          "id": "sell",
+          "text": "開始賣"
+        }
+      ],
+      "component": "CompareSplit",
+      "props": {
+        "left": {
+          "title": "2022 說法",
+          "titleEn": "Saylor, 2022",
+          "icon": "lock",
+          "color": "cyan",
+          "items": [
+            "「我們不是賣家」",
+            "「我會永遠買在頂部」"
+          ],
+          "at": "say"
+        },
+        "right": {
+          "title": "2026 行動",
+          "titleEn": "Strategy, 2026",
+          "icon": "trendDown",
+          "color": "pink",
+          "items": [
+            "5/26–31 首次賣出 32 枚",
+            "至 10/25 共賣約 4.3 億美元"
+          ],
+          "at": "sell"
+        },
+        "footer": "賣幣所得用來付優先股股息、回購優先股",
+        "footerAt": "sell"
+      },
+      "sources": [
+        "Bloomberg",
+        "CoinDesk",
+        "Strategy 新聞稿"
+      ]
+    },
+    {
+      "id": "amplified",
+      "beat": "you",
+      "narration": "很多人把它當比特幣放大版：11/5 幣跌 6%，它跌一成。",
+      "tts": "很多人把它當比特幣放大版，十一月五號幣跌六趴，它跌一成。",
+      "subtitle": {
+        "zh": "很多人把它當\n比特幣放大版：11/5 幣跌 6%，它跌一成。",
+        "en": "Many treat it as amplified bitcoin: on Nov 5, BTC fell ~6% and MSTR ~10%."
+      },
+      "keywords": [
+        "放大版",
+        "一成"
+      ],
+      "cues": [
+        {
+          "id": "amp",
+          "text": "放大版"
+        },
+        {
+          "id": "btc",
+          "text": "6%"
+        },
+        {
+          "id": "drop",
+          "text": "一成"
+        }
+      ],
+      "component": "BigNumber",
+      "props": {
+        "icon": "chart",
+        "label": "MSTR 11/5 盤中跌幅",
+        "labelEn": "MSTR intraday, Nov 5, 2026",
+        "value": -10,
+        "prefix": "約 ",
+        "suffix": "%",
+        "color": "pink",
+        "tag": "fact",
+        "ref": {
+          "label": "比特幣同日盤中",
+          "text": "約 −6%",
+          "at": "btc"
+        },
+        "startAt": "btc",
+        "at": "drop",
+        "note": "市場常形容它是「槓桿化的比特幣」；台灣可用複委託買到",
+        "noteAt": "drop"
+      },
+      "sources": [
+        "CoinDesk",
+        "Robinhood"
+      ]
+    },
+    {
+      "id": "holdings",
+      "beat": "mechanism",
+      "narration": "它從 2020 年一路買，現在囤了全球 4% 的比特幣。",
+      "tts": "它從二零二零年一路買，現在囤了全球四趴的比特幣。",
+      "subtitle": {
+        "zh": "它從 2020 年一路買，現在囤了全球 4% 的比特幣。",
+        "en": "It has bought since 2020 and now holds about 4% of all bitcoin."
+      },
+      "keywords": [
+        "一路買",
         "4%"
+      ],
+      "cues": [
+        {
+          "id": "buy",
+          "text": "一路買"
+        },
+        {
+          "id": "pct",
+          "text": "4%"
+        }
       ],
       "component": "BigNumber",
       "props": {
         "icon": "bitcoin",
-        "label": "Strategy 持有的比特幣（枚）",
+        "label": "持有比特幣（枚）",
+        "labelEn": "BTC held, as of Nov 1, 2026",
         "value": 849327,
-        "note": "約佔 2,100 萬枚上限的 4.04%，全球上市公司第一（2026/11/1）",
         "color": "yellow",
-        "tag": "fact"
+        "tag": "fact",
+        "startAt": "buy",
+        "at": "pct",
+        "note": "約佔 2,100 萬枚上限的 4.04%，全球上市公司第一（2026/11/1）",
+        "noteAt": "pct"
       },
       "sources": [
         "SEC 8-K 2026/11/2",
@@ -91,191 +263,60 @@
       ]
     },
     {
-      "id": "what-is-strategy",
-      "narration": "它的美股代號是 MSTR，2020 年起就一直在買比特幣。",
-      "tts": "它的美股代號是 M S T R，二零二零年起就一直在買比特幣。",
-      "subtitle": {
-        "zh": "它的美股代號是 MSTR，2020 年起就一直在買比特幣。",
-        "en": "Ticker MSTR. It has been buying bitcoin with corporate money since 2020."
-      },
-      "keywords": [
-        "MSTR",
-        "比特幣"
-      ],
-      "component": "TermCard",
-      "props": {
-        "icon": "building",
-        "term": "Strategy",
-        "termEn": "Formerly MicroStrategy · Nasdaq: MSTR",
-        "color": "cyan",
-        "definition": "美國軟體公司，原名 MicroStrategy，2020 年起把公司的錢拿去買比特幣，是全球持幣最多的上市公司。",
-        "points": [
-          "持幣 849,327 枚（2026/11/1）",
-          "平均成本每枚約 75,451 美元",
-          "本業軟體營收一季僅約 1.25 億美元"
-        ]
-      },
-      "sources": [
-        "SEC 8-K 2026/11/2",
-        "Strategy Q3 2026 新聞稿"
-      ]
-    },
-    {
-      "id": "stock-vs-coin",
-      "narration": "股價跟幣價連動但更猛，11/5 盤中幣跌 6%，它跌一成。",
-      "tts": "股價跟幣價連動但更猛，十一月五號盤中幣跌六趴，它跌一成。",
-      "subtitle": {
-        "zh": "股價跟幣價連動但更猛，11/5 盤中幣跌 6%，它跌一成。",
-        "en": "MSTR tracks bitcoin but swings harder: on Nov 5 BTC fell ~6% intraday, MSTR ~10%."
-      },
-      "keywords": [
-        "連動",
-        "一成"
-      ],
-      "component": "CompareSplit",
-      "props": {
-        "left": {
-          "title": "比特幣",
-          "titleEn": "Bitcoin · Nov 5, 2026",
-          "icon": "bitcoin",
-          "color": "yellow",
-          "items": [
-            "11/5 盤中跌約 6%",
-            "一度跌到約 75,600 美元",
-            "逼近 Strategy 的平均成本"
-          ]
-        },
-        "right": {
-          "title": "MSTR",
-          "titleEn": "MSTR · Nov 5, 2026",
-          "icon": "chart",
-          "color": "pink",
-          "items": [
-            "11/5 盤中跌約 10%",
-            "11/4 收 142.54 美元",
-            "52 週低點約 81.81 美元"
-          ]
-        },
-        "footer": "市場常形容它是「槓桿化的比特幣」"
-      },
-      "sources": [
-        "CoinDesk",
-        "Massive",
-        "Robinhood"
-      ]
-    },
-    {
-      "id": "funding-tools",
-      "narration": "買幣的錢來自三種工具：增發股票、可轉債和永續優先股。",
-      "subtitle": {
-        "zh": "買幣的錢來自三種工具：增發股票、可轉債和永續優先股。",
-        "en": "Funded three ways: new shares, convertible bonds and perpetual preferred stock."
-      },
-      "keywords": [
-        "增發股票",
-        "可轉債",
-        "永續優先股"
-      ],
-      "component": "IconGrid",
-      "props": {
-        "title": "買幣的錢從哪來？",
-        "columns": 3,
-        "items": [
-          {
-            "icon": "chart",
-            "label": "增發股票",
-            "note": "按市價賣新股換現金",
-            "color": "cyan"
-          },
-          {
-            "icon": "document",
-            "label": "可轉債",
-            "note": "能換成股票的債，約 67 億美元",
-            "color": "purple"
-          },
-          {
-            "icon": "coins",
-            "label": "永續優先股",
-            "note": "沒到期日、先領息，約 133 億美元",
-            "color": "pink"
-          }
-        ]
-      },
-      "sources": [
-        "Strategy Q3 2026 10-Q",
-        "Strategy Q3 2026 法說會"
-      ],
-      "transition": "slide"
-    },
-    {
-      "id": "what-is-mnav",
-      "narration": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
-      "tts": "M N A V 是市值除以持幣價值，大於一就代表有溢價。",
-      "subtitle": {
-        "zh": "mNAV 是市值除以持幣價值，大於 1 就代表有溢價。",
-        "en": "mNAV = market cap ÷ bitcoin held. Above 1 means the stock trades at a premium."
-      },
-      "keywords": [
-        "mNAV",
-        "溢價"
-      ],
-      "component": "TermCard",
-      "props": {
-        "icon": "scale",
-        "term": "mNAV",
-        "termEn": "Market cap ÷ bitcoin net asset value",
-        "color": "purple",
-        "definition": "公司股票總市值，除以手上比特幣的價值。大於 1，代表市場肯用比幣更貴的價格買它的股票，這就是溢價。",
-        "points": [
-          "2024/11 高峰約 3.4 倍",
-          "2026/11 初 0.85–1.2 倍，看算法",
-          "有的算法會把債和優先股加進去"
-        ]
-      },
-      "sources": [
-        "BitMEX Research",
-        "sec-api.io",
-        "LookIntoBitcoin"
-      ]
-    },
-    {
       "id": "flywheel",
-      "narration": "以前的玩法像飛輪：溢價時發股買幣，每股含幣變多。",
+      "beat": "mechanism",
+      "narration": "祕訣是溢價：股票比背後的幣還貴，就發新股去買幣。",
+      "tts": "祕訣是溢價，股票比背後的幣還貴，就發新股去買幣。",
       "subtitle": {
-        "zh": "以前的玩法像飛輪：溢價時發股買幣，每股含幣變多。",
-        "en": "The old flywheel: at a premium, sell shares, buy bitcoin, and bitcoin per share rises."
+        "zh": "祕訣是溢價：股票比背後的幣還貴，就發新股去買幣。",
+        "en": "The trick: when shares cost more than the bitcoin behind them, sell new shares, buy more."
       },
       "keywords": [
         "溢價",
-        "每股含幣"
+        "發新股"
+      ],
+      "cues": [
+        {
+          "id": "prem",
+          "text": "溢價"
+        },
+        {
+          "id": "pricier",
+          "text": "還貴"
+        },
+        {
+          "id": "issue",
+          "text": "發新股"
+        },
+        {
+          "id": "buy",
+          "text": "買幣"
+        }
       ],
       "component": "FlowRow",
       "props": {
-        "title": "2024–2025 年的飛輪",
+        "title": "2024–25 年的飛輪",
         "steps": [
           {
             "icon": "trendUp",
             "label": "股價有溢價",
-            "note": "mNAV 大於 1",
-            "color": "yellow"
+            "note": "股票比背後的幣還貴",
+            "color": "yellow",
+            "at": "prem"
           },
           {
             "icon": "chart",
-            "label": "增發股票買幣",
-            "note": "1 股的錢買到超過 1 股的幣",
-            "color": "cyan"
+            "label": "發新股換現金",
+            "note": "按市價賣新股",
+            "color": "cyan",
+            "at": "issue"
           },
           {
             "icon": "bitcoin",
-            "label": "每股含幣增加",
-            "note": "每股分到的幣變多，叫「增厚」",
-            "color": "pink"
-          },
-          {
-            "icon": "cycle",
-            "label": "股價再漲，溢價更高",
-            "note": "回到第一步，循環下去",
-            "color": "purple"
+            "label": "拿去買比特幣",
+            "note": "每股分到的幣跟著變多",
+            "color": "pink",
+            "at": "buy"
           }
         ]
       },
@@ -286,77 +327,101 @@
     },
     {
       "id": "premium-math",
-      "narration": "溢價 2 倍時，發 10 股買 20 枚，每股含幣從 1 升到 1.09。",
-      "tts": "溢價兩倍時，發十股買二十枚，每股含幣從一枚升到一點零九枚。",
+      "beat": "mechanism",
+      "narration": "溢價 2 倍時，發 10 股能買 20 枚，每股含幣反而變多。",
+      "tts": "溢價兩倍時，發十股能買二十枚，每股含幣反而變多。",
       "subtitle": {
-        "zh": "溢價 2 倍時，發 10 股買 20 枚，每股含幣從 1 升到 1.09。",
-        "en": "At 2x: issue 10 shares, buy 20 BTC, and bitcoin per share rises from 1.00 to 1.09."
+        "zh": "溢價 2 倍時，發 10 股能買 20 枚，每股含幣反而變多。",
+        "en": "At a 2x premium, 10 new shares buy 20 coins, so bitcoin per share goes up."
       },
       "keywords": [
-        "溢價",
-        "每股含幣"
+        "2 倍",
+        "變多"
       ],
-      "component": "CompareSplit",
+      "cues": [
+        {
+          "id": "x2",
+          "text": "2 倍"
+        },
+        {
+          "id": "c20",
+          "text": "20 枚"
+        },
+        {
+          "id": "more",
+          "text": "變多"
+        }
+      ],
+      "component": "BigNumber",
+      "pauseAfter": 0.4,
       "props": {
-        "left": {
-          "title": "溢價 2 倍",
-          "titleEn": "mNAV 2.0 · example",
-          "icon": "trendUp",
-          "color": "cyan",
-          "items": [
-            "100 股、100 枚幣",
-            "增發 10 股買 20 枚",
-            "每股 1.00 升到 1.09 枚"
-          ]
+        "icon": "coins",
+        "label": "每股含幣（枚，示意）",
+        "labelEn": "BTC per share, worked example",
+        "from": 1,
+        "value": 1.09,
+        "decimals": 2,
+        "color": "cyan",
+        "tag": "fact",
+        "ref": {
+          "label": "溢價",
+          "text": "2 倍",
+          "at": "x2"
         },
-        "right": {
-          "title": "折價 0.85",
-          "titleEn": "mNAV 0.85 · 2026",
-          "icon": "trendDown",
-          "color": "pink",
-          "items": [
-            "100 股、100 枚幣",
-            "增發 10 股只買到 8.5 枚",
-            "每股 1.00 降到 0.99 枚"
-          ]
-        },
-        "footer": "依公開定義推算；溢價就是飛輪的燃料"
+        "startAt": "c20",
+        "at": "more",
+        "note": "100 股、100 枚 → 增發 10 股買 20 枚 → 110 股、120 枚（依公開定義推算）",
+        "noteAt": "c20"
       },
       "sources": [
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
-      ],
-      "transition": "slide"
+      ]
     },
     {
-      "id": "saylor-logic",
-      "narration": "共同創辦人看的是每股含幣，才會說「我會永遠買在頂部」。",
+      "id": "buy-the-top",
+      "beat": "mechanism",
+      "narration": "共同創辦人 Saylor 說要永遠買在頂部，但這有個前提。",
+      "tts": "共同創辦人 Saylor 說要永遠買在頂部，但這有個前提。",
       "subtitle": {
-        "zh": "共同創辦人看的是每股含幣，才會說「我會永遠買在頂部」。",
-        "en": "Saylor: \"I'll be buying at the top forever.\" He tracks bitcoin per share, not price."
+        "zh": "共同創辦人 Saylor\n說要永遠買在頂部，但這有個前提。",
+        "en": "Co-founder Saylor vowed to “buy the top forever.” But it rested on one condition."
       },
       "keywords": [
-        "永遠買在頂部",
-        "每股含幣"
+        "買在頂部",
+        "前提"
+      ],
+      "cues": [
+        {
+          "id": "top",
+          "text": "買在頂部"
+        },
+        {
+          "id": "cond",
+          "text": "前提"
+        }
       ],
       "component": "ImpactCard",
       "props": {
         "icon": "megaphone",
         "title": "Saylor 的邏輯",
-        "titleEn": "Michael Saylor · co-founder & executive chairman",
+        "titleEn": "Michael Saylor · co-founder",
         "color": "yellow",
         "rows": [
           {
             "status": "fact",
-            "text": "2022：「我會永遠買在頂部」「我們不是賣家」"
+            "text": "2022：「我會永遠買在頂部」",
+            "at": "top"
           },
           {
             "status": "fact",
-            "text": "公司的成績單不看美元成本，只看每股含幣有沒有增加"
+            "text": "他看的不是美元成本，是每股含幣有沒有變多",
+            "at": "top"
           },
           {
             "status": "expected",
-            "text": "批評者：前提是溢價撐得住，否則每股含幣就被稀釋"
+            "text": "前提：股價要一直比背後的幣貴（有溢價）",
+            "at": "cond"
           }
         ]
       },
@@ -368,24 +433,51 @@
     },
     {
       "id": "premium-gone",
-      "narration": "但 2026 年溢價幾乎歸零，股價差不多只等於手上的幣。",
-      "tts": "但二零二六年溢價幾乎歸零，股價差不多只等於手上的幣。",
+      "beat": "twist",
+      "narration": "到了 2026 年，溢價幾乎歸零，股價差不多只等於手上的幣。",
+      "tts": "到了二零二六年，溢價幾乎歸零，股價差不多只等於手上的幣。",
       "subtitle": {
-        "zh": "但 2026 年溢價幾乎歸零，股價差不多只等於手上的幣。",
-        "en": "By 2026 the premium is nearly gone: the stock is worth about the bitcoin behind it."
+        "zh": "到了 2026 年，溢價幾乎歸零，股價差不多只等於手上的幣。",
+        "en": "By 2026 the premium had all but vanished: the stock is worth about its bitcoin."
       },
       "keywords": [
-        "溢價幾乎歸零"
+        "歸零",
+        "手上的幣"
+      ],
+      "cues": [
+        {
+          "id": "y2026",
+          "text": "2026 年"
+        },
+        {
+          "id": "zero",
+          "text": "歸零"
+        },
+        {
+          "id": "coins",
+          "text": "手上的幣"
+        }
       ],
       "component": "BigNumber",
       "props": {
         "icon": "scale",
-        "label": "mNAV（11/5 盤中，推算）",
+        "label": "mNAV＝股價÷每股含幣價值",
+        "labelEn": "Premium to bitcoin per share",
+        "from": 3.4,
         "value": 0.9,
         "decimals": 2,
-        "note": "股價 127.9 美元 ÷ 每股含幣值約 142.7 美元；各家算法在 0.85–1.2 倍",
+        "suffix": " 倍",
         "color": "pink",
-        "tag": "expected"
+        "tag": "expected",
+        "ref": {
+          "label": "2024/11 高峰",
+          "text": "約 3.4 倍",
+          "at": "y2026"
+        },
+        "startAt": "y2026",
+        "at": "zero",
+        "note": "11/5 盤中推算約 0.9 倍；各家算法在 0.85–1.2 倍之間",
+        "noteAt": "coins"
       },
       "sources": [
         "Strategy Q3 2026 法說會",
@@ -394,16 +486,96 @@
       ]
     },
     {
-      "id": "money-flow-2026",
-      "narration": "今年募到 212 億美元，六成多買幣，其餘多回購優先股。",
-      "tts": "今年募到兩百一十二億美元，六成多買幣，其餘多回購優先股。",
+      "id": "yield-negative",
+      "beat": "twist",
+      "narration": "幣多了 26%，股數卻多了 31%，每股含幣反而少 3.7%。",
+      "tts": "幣多了二十六趴，股數卻多了三十一趴，每股含幣反而少三點七趴。",
       "subtitle": {
-        "zh": "今年募到 212 億美元，六成多買幣，其餘多回購優先股。",
-        "en": "Raised $21.2B in 2026: 60%+ bought bitcoin, much of the rest bought back preferred stock."
+        "zh": "幣多了 26%，股數卻多了 31%，每股含幣反而少 3.7%。",
+        "en": "Coins rose 26% but diluted shares rose 31%, so bitcoin per share fell 3.7%."
       },
       "keywords": [
-        "六成多",
-        "回購優先股"
+        "26%",
+        "31%",
+        "3.7%"
+      ],
+      "cues": [
+        {
+          "id": "coins",
+          "text": "26%"
+        },
+        {
+          "id": "shares",
+          "text": "31%"
+        },
+        {
+          "id": "yield",
+          "text": "3.7%"
+        }
+      ],
+      "component": "BigNumber",
+      "pauseAfter": 0.45,
+      "props": {
+        "icon": "percent",
+        "label": "2026 年至今 BTC Yield",
+        "labelEn": "Bitcoin per share, YTD",
+        "value": -3.7,
+        "decimals": 1,
+        "suffix": "%",
+        "color": "pink",
+        "tag": "fact",
+        "at": "yield",
+        "startAt": "shares",
+        "bars": [
+          {
+            "label": "持幣數",
+            "value": 26,
+            "text": "+26%",
+            "color": "yellow",
+            "at": "coins"
+          },
+          {
+            "label": "股數",
+            "value": 31,
+            "text": "+31%",
+            "color": "pink",
+            "at": "shares"
+          }
+        ],
+        "note": "公司自創指標：每股所含比特幣的變化率（截至 10/25）",
+        "noteAt": "yield"
+      },
+      "sources": [
+        "Strategy Q3 2026 8-K",
+        "10-Q"
+      ]
+    },
+    {
+      "id": "selling-for-dividends",
+      "beat": "payoff",
+      "narration": "它已賣掉約 4.3 億美元的幣，拿去付優先股股息和回購。",
+      "tts": "它已賣掉約四點三億美元的幣，拿去付優先股股息和回購。",
+      "subtitle": {
+        "zh": "它已賣掉約 4.3 億美元的幣，\n拿去付優先股股息和回購。",
+        "en": "It has sold about $430M of bitcoin to pay preferred dividends and buy back preferreds."
+      },
+      "keywords": [
+        "4.3 億美元",
+        "優先股股息"
+      ],
+      "cues": [
+        {
+          "id": "sold",
+          "text": "賣掉"
+        },
+        {
+          "id": "div",
+          "text": "優先股股息"
+        },
+        {
+          "id": "buyback",
+          "text": "回購"
+        }
       ],
       "component": "FlowRow",
       "props": {
@@ -412,7 +584,7 @@
           {
             "icon": "bank",
             "label": "募資 212.3 億美元",
-            "note": "到 10/25；增發股票與優先股",
+            "note": "到 10/25；發普通股與優先股",
             "color": "cyan"
           },
           {
@@ -422,183 +594,119 @@
             "color": "yellow"
           },
           {
-            "icon": "coins",
-            "label": "回購優先股、付股息",
-            "note": "回購 STRC 優先股約 20.4 億美元",
-            "color": "purple"
-          },
-          {
             "icon": "trendDown",
             "label": "賣幣約 4.3 億美元",
-            "note": "推算約 6,900 多枚，賣價多低於成本",
-            "color": "pink"
+            "note": "推算約 6,900 多枚，多低於成本",
+            "color": "pink",
+            "at": "sold"
+          },
+          {
+            "icon": "coins",
+            "label": "付股息、回購優先股",
+            "note": "優先股：沒到期日、要先發股息",
+            "color": "purple",
+            "at": "div"
           }
         ]
       },
       "sources": [
         "Strategy Q3 2026 新聞稿",
         "CoinDesk"
-      ],
-      "transition": "slide"
-    },
-    {
-      "id": "btc-yield-negative",
-      "narration": "幣多了 26%，股數多了 31%，每股含幣反而少 3.7%。",
-      "tts": "幣多了二十六趴，股數多了三十一趴，每股含幣反而少三點七趴。",
-      "subtitle": {
-        "zh": "幣多了 26%，股數多了 31%，每股含幣反而少 3.7%。",
-        "en": "Bitcoin held rose 26%, but diluted shares rose 31%, so bitcoin per share fell 3.7%."
-      },
-      "keywords": [
-        "26%",
-        "31%",
-        "每股含幣"
-      ],
-      "component": "BigNumber",
-      "props": {
-        "icon": "percent",
-        "label": "2026 年至今 BTC Yield",
-        "value": -3.7,
-        "decimals": 1,
-        "suffix": "%",
-        "note": "公司自創指標：每股所含比特幣的變化率。截至 10/25，持幣 +26%、股數 +31%",
-        "color": "pink",
-        "tag": "fact"
-      },
-      "sources": [
-        "Strategy Q3 2026 8-K",
-        "Strategy Q3 2026 10-Q"
       ]
     },
     {
-      "id": "never-sell-to-selling",
-      "narration": "說過「不是賣家」的公司，今年 5 月起賣幣付股息。",
-      "tts": "說過「不是賣家」的公司，今年五月起賣幣付股息。",
+      "id": "watch-next",
+      "beat": "payoff",
+      "narration": "接下來看兩件事：幣價貼著成本線，指數去留還沒定。",
+      "tts": "接下來看兩件事，幣價貼著成本線，指數去留還沒定。",
       "subtitle": {
-        "zh": "說過「不是賣家」的公司，今年 5 月起賣幣付股息。",
-        "en": "\"We're not sellers,\" it once said. In May 2026 it began selling to pay dividends."
-      },
-      "keywords": [
-        "不是賣家",
-        "賣幣"
-      ],
-      "component": "CompareSplit",
-      "props": {
-        "left": {
-          "title": "2022 說法",
-          "titleEn": "Saylor, 2022",
-          "icon": "lock",
-          "color": "cyan",
-          "items": [
-            "「我們不是賣家」",
-            "「我會永遠買在頂部」",
-            "只買、只囤"
-          ]
-        },
-        "right": {
-          "title": "2026 行動",
-          "titleEn": "Strategy, 2026",
-          "icon": "trendDown",
-          "color": "pink",
-          "items": [
-            "5/26–31 賣 32 枚，2022 年來首次",
-            "6/29 授權最多賣 12.5 億美元（未動用）",
-            "至 10/25 累計賣約 4.3 億美元"
-          ]
-        },
-        "footer": "所得用於付股息；Saylor 稱過去是對個人說的"
-      },
-      "sources": [
-        "Bloomberg",
-        "CoinDesk",
-        "Strategy 新聞稿"
-      ]
-    },
-    {
-      "id": "risks",
-      "narration": "風險有兩個：幣價貼近成本線，指數會不會剔除它還沒定。",
-      "subtitle": {
-        "zh": "風險有兩個：幣價貼近成本線，指數會不會剔除它還沒定。",
-        "en": "Two risks: bitcoin sits near its cost basis, and an index removal is still undecided."
+        "zh": "接下來看兩件事：幣價貼著成本線，指數去留還沒定。",
+        "en": "Two things to watch: bitcoin near its cost line, and an index decision still pending."
       },
       "keywords": [
         "成本線",
-        "剔除"
+        "還沒定"
+      ],
+      "cues": [
+        {
+          "id": "cost",
+          "text": "成本線"
+        },
+        {
+          "id": "index",
+          "text": "指數"
+        }
       ],
       "component": "ImpactCard",
       "props": {
         "icon": "warning",
-        "title": "風險與批評",
-        "titleEn": "Risks & criticism",
+        "title": "接下來看兩件事",
+        "titleEn": "What to watch",
         "color": "pink",
         "rows": [
           {
             "status": "fact",
-            "text": "平均成本約 75,451 美元；11/5 幣價一度跌到約 75,600"
+            "text": "平均成本約 75,451 美元；11/5 幣價一度跌到約 75,600",
+            "at": "cost"
           },
           {
             "status": "pending",
-            "text": "MSCI 預計 11/11 公布名單，截至 2026/11/6 尚未確定"
-          },
-          {
-            "status": "expected",
-            "text": "若被剔除，追蹤它的被動基金得賣股，摩根大通 2025/11 估 28 億美元"
-          },
-          {
-            "status": "expected",
-            "text": "分析師看法分歧，目標價區間很寬（非投資建議）"
+            "text": "MSCI 預計 11/11 公布名單，截至 2026/11/6 尚未確定",
+            "at": "index"
           }
         ],
-        "taiwan": "複委託可買 MSTR；現貨 ETF 目前限專業投資人"
+        "taiwan": "分析師看法分歧，本片不構成投資建議",
+        "taiwanAt": "index"
       },
       "sources": [
         "SEC 8-K",
         "CoinDesk",
-        "MarketBeat"
-      ],
-      "transition": "slide"
+        "Trefis"
+      ]
     },
     {
-      "id": "summary",
-      "narration": "一句話：有溢價就發股買幣，沒溢價飛輪就停，還得賣幣付息。",
+      "id": "your-call",
+      "beat": "cta",
+      "narration": "你覺得，它該不該賣幣來付股息？留言說說看。",
+      "tts": "你覺得，它該不該賣幣來付股息？留言說說看。",
       "subtitle": {
-        "zh": "一句話：有溢價就發股買幣，沒溢價飛輪就停，還得賣幣付息。",
-        "en": "In short: with a premium it issues stock to buy bitcoin; without one the flywheel stalls."
+        "zh": "你覺得，它該不該賣幣來付股息？\n留言說說看。",
+        "en": "Should it sell bitcoin to pay dividends? Tell us in the comments."
       },
       "keywords": [
-        "有溢價",
-        "沒溢價"
+        "該不該"
       ],
-      "component": "IconGrid",
+      "cues": [
+        {
+          "id": "q",
+          "text": "該不該"
+        },
+        {
+          "id": "talk",
+          "text": "留言"
+        }
+      ],
+      "component": "CtaCard",
       "props": {
-        "title": "MSTR × 比特幣，一句話",
-        "columns": 2,
-        "items": [
+        "kicker": "換你說",
+        "question": [
+          "該不該賣幣",
+          "來付股息？"
+        ],
+        "options": [
           {
-            "icon": "bitcoin",
-            "label": "持幣約 85 萬枚",
-            "note": "全球上市公司第一（11/1）",
-            "color": "yellow"
-          },
-          {
-            "icon": "cycle",
-            "label": "飛輪靠溢價",
-            "note": "有溢價才發股買幣（2024–25）",
+            "label": "該：先顧好付息信用",
             "color": "cyan"
           },
           {
-            "icon": "trendDown",
-            "label": "2026 溢價歸零",
-            "note": "小額加碼、賣幣付息、每股含幣 −3.7%",
+            "label": "不該：留住比特幣",
             "color": "pink"
-          },
-          {
-            "icon": "question",
-            "label": "MSCI 名單",
-            "note": "預計 11/11 公布，截至 2026/11/6 尚未確定",
-            "color": "purple"
           }
-        ]
+        ],
+        "optionsAt": "q",
+        "prompt": "留言告訴我們",
+        "promptAt": "talk",
+        "episode": "國際白話講 #3"
       },
       "sources": [
         "綜合本片來源"
@@ -606,10 +714,11 @@
     },
     {
       "id": "end",
+      "beat": "cta",
       "narration": "白話國際，一支講透一件事。",
       "subtitle": {
         "zh": "白話國際，一支講透一件事。",
-        "en": "One video, one topic, explained."
+        "en": "Bai Hua International: one video, one topic, explained."
       },
       "keywords": [],
       "component": "EndCard",

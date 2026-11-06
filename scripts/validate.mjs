@@ -8,6 +8,14 @@ export const ICONS = ["capitol","ballot","scale","chip","container","globe","mon
 const COLORS = ["cyan","pink","yellow","purple"];
 const STATUS = ["fact","expected","pending"];
 const COMPONENTS = ["TermCard","FlowRow","CompareSplit","BigNumber","SeatBar","IconGrid","ImpactCard","EndCard"];
+/** styleVersion 2 可用元件（SeatBar 尚未做 v2 版） */
+const COMPONENTS_V2 = ["HookTitle","CtaCard","TermCard","FlowRow","CompareSplit","BigNumber","IconGrid","ImpactCard","EndCard"];
+const BEATS = ["hook","you","mechanism","twist","payoff","cta"];
+/** v2 字幕：短語每段上限（em），與 src/theme.ts 的 LAYOUT_V2.SUB_MAX_EM 一致 */
+export const SUB_MAX_EM_V2 = 11;
+/** props 裡引用 cue 的欄位 */
+const AT_KEYS = ["at","startAt","noteAt","footerAt","subAt","slamAt","optionsAt","promptAt","taiwanAt"];
+const FORBIDDEN_CTA = ["分享給","傳給","標記"];
 const PUNCT = /[\s，。、！？：；「」『』（）,.!?:;()"'“”‘’…—\-–·]/g;
 export const clean = (s) => String(s ?? "").replace(PUNCT, "");
 const len = (s) => clean(s).length;
@@ -20,6 +28,58 @@ export const splitLines = (zh) => {
 };
 /** 字幕一行的估算寬度（em）：全形字與全形標點 1、英數 0.6、半形標點 0.4、空白 0.3；字幕框 952px / 64px ≈ 14.9em；行內不換行，置中後最多可到 15.6em 仍在安全區 */
 export const emWidth = (line) => [...line].reduce((w, ch) => w + (/\s/.test(ch) ? 0.3 : /[A-Za-z0-9%$.,:;!?()'"\-–]/.test(ch) ? 0.6 : 1), 0);
+/**
+ * v2 字幕短語模式（P1-4）：一次只顯示一個短語（單行，≤ maxEm 寬；76px 時約 11 個全形字）。
+ * 先在「，。！？；：、」後切句，太長的句子依寬度平均切開（關鍵詞、英數連續段不拆），太短的（<3em）併入下一段。
+ * 回傳的每段都是 zh 的連續子字串（含標點），align.mjs 依此算每段出現的幀；畫面顯示時去掉段尾的「，、；：。」。
+ */
+export function splitPhrases(zh, keywords = [], maxEm = 11) {
+  const text = zh;
+  const toks = [];
+  const kws = [...keywords].filter(Boolean).sort((a, b) => b.length - a.length);
+  for (let i = 0; i < text.length;) {
+    if (text[i] === "\n") { toks.push("\n"); i++; continue; }
+    const kw = kws.find((k) => text.startsWith(k, i));
+    if (kw) { toks.push(kw); i += kw.length; continue; }
+    const q = /^「[^」\n]{1,10}」/.exec(text.slice(i)); // 短引號整段不拆
+    if (q) { toks.push(q[0]); i += q[0].length; continue; }
+    const m = /^[A-Za-z0-9%$.+/\-–]+/.exec(text.slice(i));
+    if (m) { toks.push(m[0]); i += m[0].length; continue; }
+    toks.push(text[i]); i++;
+  }
+  const BREAK = "，。！？；：、";
+  const clauses = [];
+  let cur = [];
+  for (const t of toks) {
+    if (t === "\n") { if (cur.length) clauses.push(cur); cur = []; continue; } // \n＝指定斷點
+    cur.push(t); if (t.length === 1 && BREAK.includes(t)) { clauses.push(cur); cur = []; }
+  }
+  if (cur.length) clauses.push(cur);
+  // 句首的收尾引號、標點併回上一句
+  for (let k = 1; k < clauses.length; k++) while (clauses[k].length && /^[」』）)]$/.test(clauses[k][0])) clauses[k - 1].push(clauses[k].shift());
+  const out = [];
+  for (const c of clauses.filter((x) => x.length)) {
+    const em = emWidth(c.join(""));
+    if (em <= maxEm) { out.push(c.join("")); continue; }
+    const n = Math.ceil(em / maxEm), target = em / n;
+    let acc = [], w = 0;
+    for (const t of c) {
+      const tw = emWidth(t);
+      const isPunct = t.length === 1 && /[，。！？；：、」』）)]/.test(t);
+      if (acc.length && !isPunct && w + tw > target + 0.5 && out.length < 99) { out.push(acc.join("")); acc = []; w = 0; }
+      acc.push(t); w += tw;
+    }
+    if (acc.length) out.push(acc.join(""));
+  }
+  // 太短（<3em）併入下一段（併完仍 ≤ maxEm）
+  for (let k = 0; k < out.length - 1; k++) {
+    if (emWidth(out[k]) < 3 && emWidth(out[k] + out[k + 1]) <= maxEm) { out[k + 1] = out[k] + out[k + 1]; out.splice(k, 1); k--; }
+  }
+  return out;
+}
+/** 畫面顯示：去掉段尾的逗號類標點 */
+export const phraseDisplay = (p) => p.replace(/[，、；：。]+$/, "");
+
 /** 配音版每幕秒數估算：每秒約 4.3 字 + 0.9 秒間隔（v1）；v2 換幕間隔約 0.15 秒＋殘留靜音 → +0.35 秒 */
 export const voicedSeconds = (s, v2 = false) => s.component === "EndCard" ? 4.5 : len(s.tts ?? s.narration) / 4.3 + (v2 ? 0.35 : 0.9);
 /** 片長規範：v1 舊片 70–100 秒；styleVersion 2 為 45–75 秒（鉤子幕與 CTA 幕可短到 3 秒） */
@@ -48,7 +108,7 @@ export function validateTimelineV2(script, tl) {
   if (!tl) { W("styleVersion 2 尚無 timeline.json（先 npm run tts && npm run align）"); return { errors, warns }; }
   if (tl.version !== 2) { E("styleVersion 2 但 timeline.json 不是 version 2，請重跑 npm run align"); return { errors, warns }; }
   const ids = script.scenes.map((x) => x.id), tids = tl.scenes.map((x) => x.id);
-  if (ids.join() !== tids.join()) E(`timeline 幕序與 script.json 不一致，請重跑 npm run align（script：${ids.length} 幕，timeline：${tids.length} 幕）`);
+  if (ids.join() !== tids.join()) { W(`timeline.json 已過期（幕序與 script.json 不一致：script ${ids.length} 幕、timeline ${tids.length} 幕）→ npm run tts && npm run align 後再驗；still／render 前必須一致`); return { errors, warns, stale: true }; }
   tl.scenes.forEach((x, i) => {
     const n = tl.scenes[i + 1];
     const sec = x.durationFrames / 30;
@@ -65,7 +125,8 @@ export function validateTimelineV2(script, tl) {
     const end = i === tl.scenes.length - 1;
     if (sec > 10.5) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 > 10`);
     if (sec < 3) E(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 3`);
-    else if (sec < 5 && i !== 0 && !end) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 5（只有鉤子幕與 CTA 幕可短到 3 秒）`);
+    else if (sec < 5 && i !== 0 && !end && !["hook", "cta"].includes(script.scenes.find((s) => s.id === x.id)?.beat)) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 5（只有鉤子幕與 CTA 幕可短到 3 秒）`);
+    if (i === 0 && script.scenes[0]?.beat === "hook" && (sec < 3 || sec > 5.2)) W(`timeline ${x.id}: 鉤子幕 ${sec.toFixed(1)} 秒（建議 3–5 秒）`);
   });
   const last = tl.scenes[tl.scenes.length - 1];
   if (last && last.startFrame + last.durationFrames !== tl.totalFrames) E(`timeline.totalFrames ${tl.totalFrames} ≠ 最後一幕結束 ${last.startFrame + last.durationFrames}`);
@@ -105,21 +166,26 @@ export function validate(script) {
   }
   if (!Array.isArray(script.scenes) || !script.scenes.length) { E("scenes 必須是非空陣列"); return { errors, warns }; }
   const scenes = script.scenes;
-  if (scenes.length < 11 || scenes.length > 18) W(`幕數 ${scenes.length}，建議 12–16（含片尾）`);
+  if (!v2 && (scenes.length < 11 || scenes.length > 18)) W(`幕數 ${scenes.length}，建議 12–16（含片尾）`);
   const ids = new Set();
   let total = 0;
   scenes.forEach((s, i) => {
     const tag = `scene[${i}] ${s.id ?? "?"}`;
     if (typeof s.id !== "string" || !/^[a-z0-9-]+$/.test(s.id)) E(`${tag}: id 必須是 kebab-case`);
     if (ids.has(s.id)) E(`${tag}: id 重複`); ids.add(s.id);
-    if (!COMPONENTS.includes(s.component)) E(`${tag}: 未知元件 ${s.component}`);
+    if (!(v2 ? COMPONENTS_V2 : COMPONENTS).includes(s.component)) E(`${tag}: 未知元件 ${s.component}${v2 ? "（v2 可用：" + COMPONENTS_V2.join(" ") + "）" : ""}`);
     const isEnd = s.component === "EndCard";
     if (typeof s.narration !== "string") E(`${tag}: 缺 narration`);
     else { const n = len(s.narration); if (!isEnd) { if (n < 8 || n > 32) E(`${tag}: 旁白 ${n} 字（應 15–25）：${s.narration}`); else if (n < 13 || n > 26) W(`${tag}: 旁白 ${n} 字（建議 15–25）：${s.narration}`); } }
     if (s.tts !== undefined && typeof s.tts !== "string") E(`${tag}: tts 必須是字串`);
     if (!s.subtitle || typeof s.subtitle.zh !== "string" || typeof s.subtitle.en !== "string") E(`${tag}: subtitle 需有 zh/en`);
     else {
-      const lines = splitLines(s.subtitle.zh);
+      const lines = v2 ? [] : splitLines(s.subtitle.zh);
+      if (v2) {
+        const ph = splitPhrases(s.subtitle.zh, s.keywords ?? [], SUB_MAX_EM_V2);
+        ph.forEach((l, li) => { const w = emWidth(phraseDisplay(l)); if (w > SUB_MAX_EM_V2) E(`${tag}: 字幕短語 ${li + 1}「${l}」寬 ${w.toFixed(1)}em > ${SUB_MAX_EM_V2}（76px 字幕會超出 x 64–960）→ 用 \\n 指定斷點或精簡`); });
+        if (ph.length > 6) W(`${tag}: 字幕切成 ${ph.length} 段，偏多`);
+      }
       if (lines.length > 2) E(`${tag}: 中文字幕超過 2 行`);
       lines.forEach((l, li) => { const n = len(l), w = emWidth(l); if (n > 14) E(`${tag}: 字幕第 ${li + 1} 行 ${n} 字 > 14：「${l}」`); else if (w > 15.6) E(`${tag}: 字幕第 ${li + 1} 行含標點寬 ${w.toFixed(1)}em > 15.6（會超出安全區）：「${l}」→ 用 \\n 改斷行或精簡字幕`); else if (w > 15.0) W(`${tag}: 字幕第 ${li + 1} 行寬 ${w.toFixed(1)}em 略超出字幕框（置中後仍在安全區內）：「${l}」`); });
       if (clean(s.subtitle.zh) !== clean(s.narration)) W(`${tag}: 字幕與旁白文字不同（允許，但請確認是刻意的）`);
@@ -128,11 +194,11 @@ export function validate(script) {
     if (!Array.isArray(s.keywords)) E(`${tag}: keywords 必須是陣列`);
     else {
       if (s.keywords.length > 3) W(`${tag}: 關鍵詞超過 3 個`);
-      s.keywords.forEach((k) => { if (!s.subtitle?.zh?.includes(k)) E(`${tag}: 關鍵詞「${k}」不在字幕裡`); if (k.length > 6) W(`${tag}: 關鍵詞「${k}」偏長`); if (PUNCT.test(k)) E(`${tag}: 關鍵詞「${k}」含標點`); });
+      s.keywords.forEach((k) => { if (!s.subtitle?.zh?.includes(k)) E(`${tag}: 關鍵詞「${k}」不在字幕裡`); if (k.length > (v2 ? 7 : 6)) W(`${tag}: 關鍵詞「${k}」偏長`); if (v2 ? /[，。！？；：、「」\n]/.test(k) : PUNCT.test(k)) E(`${tag}: 關鍵詞「${k}」含標點`); });
     }
     if (!Array.isArray(s.sources)) E(`${tag}: sources 必須是陣列`);
     else {
-      if (!s.sources.length && !isEnd && i !== 0) E(`${tag}: sources 不可為空`);
+      if (!s.sources.length && !isEnd && i !== 0 && s.beat !== "cta") E(`${tag}: sources 不可為空`);
       // SourceFooter：22px、單行 nowrap、超出安全區寬 952px 會以「…」截斷（後面的來源與「截至」會消失）
       if (s.sources.length && !isEnd) {
         const footer = `資料來源：${s.sources.join("、")}${script.asOf ? `｜截至 ${script.asOf}` : ""}`;
@@ -147,9 +213,41 @@ export function validate(script) {
     if (i === scenes.length - 1 && !isEnd) E("最後一幕必須是 EndCard");
     if (isEnd && i !== scenes.length - 1) E(`${tag}: EndCard 只能是最後一幕`);
     total += voicedSeconds(s, v2);
+    if (v2) {
+      if (!BEATS.includes(s.beat)) E(`${tag}: v2 每幕要有 beat（${BEATS.join("｜")}）`);
+      const cueIds = new Set();
+      const cl = clean(s.subtitle?.zh);
+      for (const q of s.cues ?? []) {
+        if (!q.id || cueIds.has(q.id)) E(`${tag}: cue id 缺少或重複：${q.id}`); cueIds.add(q.id);
+        let pos = -1; for (let k = 0; k < (q.occurrence ?? 1); k++) pos = cl.indexOf(clean(q.text), pos + 1);
+        if (pos < 0) E(`${tag}: cue「${q.text}」不在字幕裡（第 ${q.occurrence ?? 1} 次）`);
+      }
+      const walk = (o, path) => { if (!o || typeof o !== "object") return; for (const [k, v] of Object.entries(o)) { if (AT_KEYS.includes(k) && typeof v === "string" && !cueIds.has(v)) E(`${tag}: ${path}${k}「${v}」不是本幕的 cue id`); else walk(v, `${path}${k}.`); } };
+      walk(s.props, "props.");
+      if ((i === 1 || i === 2) && s.component === "TermCard") E(`${tag}: 第 2–3 幕不能是 TermCard（名詞課往後放，先鉤住觀眾）`);
+      const bad = FORBIDDEN_CTA.filter((w) => [s.narration, s.subtitle?.zh, JSON.stringify(s.props ?? {})].some((t) => String(t).includes(w)));
+      if (bad.length) E(`${tag}: 不要用「${bad.join("／")}」（engagement bait 會被降權）`);
+    }
     const p = s.props ?? {};
     if (typeof p !== "object") E(`${tag}: props 必須是物件`);
     switch (s.component) {
+      case "HookTitle": {
+        if (arr(p.lines, `${tag}.lines`, 1, 2)) {
+          const n = p.lines.reduce((a, x) => a + len(x), 0);
+          if (n > 10) E(`${tag}: 鉤子主張 ${n} 字 > 10（第 0 幀要一眼讀完）`);
+          const nums = p.lines.join("").match(/\d[\d,.]*/g) ?? [];
+          if (!nums.length) W(`${tag}: 鉤子主張最好帶一個數字`);
+          for (const d of nums) if (!(p.claims ?? []).some((c) => String(c.text).includes(d) && /research\.md/.test(String(c.ref)))) E(`${tag}: 鉤子數字「${d}」要在 props.claims 附 {text, ref}，ref 指向 research.md 的那一列`);
+        }
+        if (p.sub !== undefined) str(p.sub, `${tag}.sub`, 26, 1, 32);
+        for (const d of String(p.sub ?? "").match(/\d[\d,./]*/g) ?? []) if (!(p.claims ?? []).some((c) => String(c.text).includes(d) || String(d).includes(String(c.text)))) W(`${tag}: sub 的數字「${d}」沒有 claim`);
+        if (p.tag !== undefined && !STATUS.includes(p.tag)) E(`${tag}.tag 不合法`);
+        break;
+      }
+      case "CtaCard":
+        if (arr(p.question, `${tag}.question`, 1, 2)) p.question.forEach((x, j) => str(x, `${tag}.question[${j}]`, 7, 1, 8));
+        if (p.options && arr(p.options, `${tag}.options`, 2, 2)) p.options.forEach((o, j) => { str(o.label, `${tag}.options[${j}].label`, 10, 1, 12); color(o.color, `${tag}.options[${j}]`); });
+        break;
       case "TermCard":
         icon(p.icon, tag); str(p.term, `${tag}.term`, 8, 1, 10); str(p.definition, `${tag}.definition`, 54, 6, 66); color(p.color, tag);
         if (p.points && arr(p.points, `${tag}.points`, 1, 3)) p.points.forEach((x, j) => str(x, `${tag}.points[${j}]`, 20, 1, 24));
@@ -173,6 +271,8 @@ export function validate(script) {
         if (typeof p.value !== "number") E(`${tag}.value 必須是數字`);
         const shown = `${p.prefix ?? ""}${Number(p.value ?? 0).toLocaleString("en-US", { minimumFractionDigits: p.decimals ?? 0, maximumFractionDigits: p.decimals ?? 0 })}${p.suffix ?? ""}`;
         if (shown.length > 9) E(`${tag}: 大數字顯示「${shown}」超過 9 字元，會溢出（縮短 prefix/suffix 或改單位）`);
+        if (p.bars && (!v2 || !arr(p.bars, `${tag}.bars`, 1, 3))) { if (!v2) E(`${tag}.bars 只在 styleVersion 2 有效`); }
+        if (p.ref && (typeof p.ref.label !== "string" || typeof p.ref.text !== "string")) E(`${tag}.ref 需要 {label, text}`);
         if (p.note !== undefined) str(p.note, `${tag}.note`, 40, 1, 50);
         if (p.tag !== undefined && !STATUS.includes(p.tag)) E(`${tag}.tag 不合法`);
         break;
@@ -199,6 +299,18 @@ export function validate(script) {
     }
   });
   if (v2 && scenes.filter((x) => typeof x.pauseAfter === "number" && x.pauseAfter > 0).length > 3) E("pauseAfter 每支最多 3 處");
+  if (v2) {
+    for (const b of ["hook", "you", "twist", "cta"]) if (!scenes.some((x) => x.beat === b)) E(`敘事骨架缺 ${b} 幕`);
+    if (scenes[0]?.component !== "HookTitle") E("v2 第 1 幕要用 HookTitle（第 0 幀就是完整主張）");
+    if (/[？?]\s*$/.test(scenes[0]?.narration ?? "")) W("第 1 句以問句結尾：鉤子請用直述句");
+    const secs = scenes.map((x) => voicedSeconds(x, true)), tot = secs.reduce((a, b) => a + b, 0);
+    const ti = scenes.findIndex((x) => x.beat === "twist");
+    if (ti >= 0) { const at = secs.slice(0, ti).reduce((a, b) => a + b, 0) / tot; if (at < 0.4 || at > 0.7) W(`第一個 twist 幕落在 ${(at * 100).toFixed(0)}%（估算），建議 40–70%`); }
+    const cta = scenes.filter((x) => x.beat === "cta" && x.component !== "EndCard");
+    if (!cta.length) E("v2 片尾卡前要有一幕 cta（具體提問）");
+    cta.forEach((x) => { if (!/[？?]/.test(x.narration)) E(`${x.id}: cta 幕要有具體提問（含「？」）`); });
+    if (scenes.length < 8 || scenes.length > 15) W(`幕數 ${scenes.length}，v2 建議 9–14`);
+  }
   const est = Math.round(total);
   const L = LENGTH[v2 ? 2 : 1];
   if (est < L.hardMin || est > L.hardMax) E(`配音版總長估算 ${est} 秒，應在 ${L.min}–${L.max} 秒`); else if (est < L.min || est > L.max) W(`配音版總長估算 ${est} 秒，建議 ${L.min}–${L.max} 秒`);
@@ -220,7 +332,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
     const r = validateTimelineV2(script, fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null);
     errors.push(...r.errors); warns.push(...r.warns);
-    if (r.sec) {
+    if (r.sec && !r.stale) {
       console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);
       for (let k = errors.length - 1; k >= 0; k--) if (errors[k].startsWith("配音版總長估算")) warns.push(errors.splice(k, 1)[0].replace("應在", "（估算）建議"));
     }

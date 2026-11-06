@@ -20,6 +20,8 @@ export const loadScript = (slug) => {
     for (const sc of s.timeline.scenes) {
       if (sc.audio && !fs.existsSync(path.join(ROOT, "public", sc.audio))) throw new Error(`timeline 指到的音檔不存在：public/${sc.audio}（請先 npm run tts ${slug}）`);
     }
+    if (s.styleVersion === 2 && s.timeline.scenes.map((x) => x.id).join() !== s.scenes.map((x) => x.id).join())
+      throw new Error(`${slug} 的 timeline.json 已過期（幕序與 script.json 不同）：先 npm run tts ${slug} && npm run align ${slug}`);
     const ids = new Set(s.timeline.scenes.map((x) => x.id));
     const missing = s.scenes.filter((x) => !ids.has(x.id)).map((x) => x.id);
     if (missing.length) console.warn(`⚠ timeline 缺少幕：${missing.join(", ")}（這些幕會用字數估算長度、無聲）`);
