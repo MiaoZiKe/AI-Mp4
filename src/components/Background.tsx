@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import { C } from "../theme";
-import { seeded } from "./anim";
+import { seeded, AMBIENT } from "./anim";
 
 const rnd = seeded(20261103);
 const STARS = Array.from({ length: 40 }, () => ({ x: rnd() * 1080, y: rnd() * 1920, r: 1 + rnd() * 2, p: rnd() * 6 }));
@@ -35,7 +35,8 @@ export const GlowBlob: React.FC = () => (
 );
 
 export const Background: React.FC = () => {
-  const f = useCurrentFrame();
+  const fr = useCurrentFrame();
+  const f = AMBIENT ? fr : 0; // AUDIT=1：背景凍結
   const gx = 540 + 70 * Math.sin(f / 90), gy = 920 + 60 * Math.cos(f / 110);
   return (
     <AbsoluteFill style={{ background: C.bg }}>

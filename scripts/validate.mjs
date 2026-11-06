@@ -213,6 +213,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   for (const f of ["research.md"]) if (!fs.existsSync(path.join(ROOT, "videos", slug, f))) console.warn(`⚠ 缺 ${f}`);
   const { errors, warns, est } = validate(script);
   errors.push(...lintSource());
+  errors.push(...(await (await import("./check-motion.mjs")).checkMotion()).errors);
   if (script.styleVersion === 2) {
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
     const r = validateTimelineV2(script, fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null);

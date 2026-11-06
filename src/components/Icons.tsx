@@ -1,5 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
+import { useV2 } from "../style";
+import { AMBIENT } from "./anim";
 
 /** 自繪霓虹描邊圖示（stroke 3px + 外發光），不使用外部圖片 */
 const P: Record<string, React.ReactNode> = {
@@ -165,12 +167,22 @@ const P: Record<string, React.ReactNode> = {
   </>),
 };
 
+/** 每個子圖形加 pathLength=1：描線進度與實際路徑長度無關，所有筆畫同時從起點畫到終點 */
+const withPathLength = (shape: React.ReactNode): React.ReactNode => {
+  const kids = React.isValidElement(shape) ? (shape.props as { children?: React.ReactNode }).children : shape;
+  return React.Children.map(kids, (c) => (React.isValidElement(c) ? React.cloneElement(c as React.ReactElement<{ pathLength?: number }>, { pathLength: 1 }) : c));
+};
+const SHAPES_V2: Record<string, React.ReactNode> = {};
+const shapeV2 = (name: string) => (SHAPES_V2[name] ??= withPathLength(P[name] ?? P.question));
+
 /** 霓虹光暈：不用 CSS filter（軟體渲染太慢），改用三層描邊（粗半透明 → 中 → 3px 實線），粗層透明度緩慢呼吸 */
 export const Icon: React.FC<{ name: string; color: string; size?: number; draw?: number }> = ({ name, color, size = 120, draw = 1 }) => {
   const f = useCurrentFrame();
-  const breath = 0.26 + 0.1 * Math.sin(f / 9);
-  const dash = draw < 1 ? { strokeDasharray: 420, strokeDashoffset: 420 * (1 - draw) } : {};
-  const shape = P[name] ?? P.question;
+  const v2 = useV2();
+  const breath = 0.26 + 0.1 * Math.sin((AMBIENT ? f : 0) / 9);
+  // v1：固定 dasharray 420（短筆畫先畫完、長筆畫畫不滿）；v2：pathLength=1，畫完仍保留同一組 dash 設定（不切換渲染狀態）
+  const dash = v2 ? { strokeDasharray: "1 1", strokeDashoffset: 1 - Math.min(1, Math.max(0, draw)) } : draw < 1 ? { strokeDasharray: 420, strokeDashoffset: 420 * (1 - draw) } : {};
+  const shape = v2 ? shapeV2(name) : P[name] ?? P.question;
   const common = { fill: "none", stroke: color, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, ...dash };
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" style={{ overflow: "visible" }}>
