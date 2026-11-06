@@ -23,7 +23,7 @@
   "beatGapMaxSec": 2.77,
   "holdSecMedian": 1.33,
   "durationSec": 81.22,
-  "msPerFrame": null
+  "msPerFrame": 148
  },
  "event": {
   "scenes": [
@@ -474,7 +474,14 @@
   "cutPauseMaxSec": 1.011,
   "cutPauseMedianSec": 0.986
  },
- "bench": null,
+ "bench": {
+  "benchMsPerFrame": 148,
+  "benchRange": [
+   300,
+   359
+  ],
+  "benchNote": "scripts/bench.mjs，concurrency 4，swiftshader"
+ },
  "thresholds": {
   "DIFF_T": 20,
   "ACTIVE_T": 1.5,

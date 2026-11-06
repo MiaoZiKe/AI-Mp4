@@ -45,6 +45,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
   - `npm run render <slug>` → `out/<slug>.mp4`
   - `npm run fonts` → 把字型子集鏡像到 `public/fonts/`（still/render 會自動執行）。Remotion 啟動 Chrome 時帶 `--no-proxy-server`，在有 TLS 攔截代理的環境無法直連 Google Fonts，因此改讀本地鏡像；沒有鏡像時自動回退到 Google Fonts。
   - `npm run studio` 預覽
+  - `npm run audit <slug>` → 量測 out/<slug>.mp4 的流暢度（黑場、靜止比例、每幀位移、人聲靜音），輸出 `videos/<slug>/motion.json`（`-- --baseline` 寫基準）；說明見 `scripts/audit/README.md`
 - TTS：`scripts/tts.mjs` 讀環境變數 `TTS_PROVIDER`（目前支援 `openai`，需 `OPENAI_API_KEY`）；未設定或沒有 key 時自動產出無聲版
 - Chrome：預設使用 `/opt/pw-browsers` 的 headless shell，可用 `REMOTION_BROWSER` 覆寫
 
