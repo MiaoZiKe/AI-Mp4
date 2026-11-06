@@ -95,7 +95,7 @@ export const NoteBoxV2: React.FC<{ style?: React.CSSProperties; children: React.
 );
 
 /** 進場＋focus 合成：opacity 乘上 focus 值（focus 只改透明度，不移動文字） */
-export const reveal = (f: number, start: number, focus = 1, dist = 24) => {
+export const reveal = (f: number, start: number, focus = 1, dist = 40) => {
   const e = enter(f, start, dist);
   return { opacity: e.opacity * focus, transform: e.transform };
 };

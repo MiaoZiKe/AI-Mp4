@@ -4,7 +4,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, STAGGER, bump, tween, typeChars } from "../anim";
-import { cueAt, cueIn, focusLevel, hasCue, useCue } from "../../cue";
+import { cueAt, cueIn, firstEarly, focusLevel, hasCue, useCue } from "../../cue";
 import { CardV2, EN, IconV2, NoteBoxV2, StatusTagV2, drawIn, reveal } from "./base";
 
 const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: size, fontWeight: weight, color, lineHeight: 1.42 });
@@ -15,7 +15,7 @@ export const CompareSplitV2: React.FC<{ left: Side; right: Side; footer?: string
   const f = useCurrentFrame();
   const c = useCue();
   const sides = [left, right];
-  const starts = sides.map((s, i) => cueIn(c, s.at, i * 10));
+  const starts = firstEarly(sides.map((s, i) => cueIn(c, s.at, i * 10)));
   const cued = sides.map((s) => hasCue(c, s.at));
   return (
     <div style={{ width: 952 }}>
@@ -50,6 +50,7 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
   // 沒有 cue 的步驟：在第一個有 cue 的步驟之前依序出現（固定延遲）
   let fixed = 6;
   const starts = steps.map((s) => { if (hasCue(c, s.at)) return cueIn(c, s.at, 0); const v = fixed; fixed += 12; return v; });
+  starts.splice(0, starts.length, ...firstEarly(starts));
   for (let i = 1; i < starts.length; i++) starts[i] = Math.max(starts[i], starts[i - 1] + 6);
   const cued = steps.map((s) => hasCue(c, s.at));
   return (
@@ -116,7 +117,7 @@ type Item = { icon: string; label: string; note?: string; color?: string; at?: s
 export const IconGridV2: React.FC<{ title?: string; items: Item[]; columns?: number }> = ({ title, items, columns = 2 }) => {
   const f = useCurrentFrame();
   const c = useCue();
-  const starts = items.map((it, i) => cueIn(c, it.at, 8 + i * 7));
+  const starts = firstEarly(items.map((it, i) => cueIn(c, it.at, 8 + i * 7)));
   const cued = items.map((it) => hasCue(c, it.at));
   return (
     <div style={{ width: 952 }}>

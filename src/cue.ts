@@ -12,6 +12,12 @@ export type CueInfo = { cues: Record<string, number>; exit: number; voiceStart: 
 export const CueContext = createContext<CueInfo>({ cues: {}, exit: 1e9, voiceStart: 0, voiceEnd: 1e9 });
 export const useCue = () => useContext(CueContext);
 
+/** focus 切換時長（幀）：5 幀內完成，明暗變化清楚但不閃 */
+export const FOCUS_DUR = DUR.xs + 1;
+/** 第一個出場的項目不等 cue：最晚在本幕第 FIRST_MAX 幀進場（避免開場 1–2 秒內容區只剩空白） */
+export const FIRST_MAX = 10;
+export const firstEarly = (starts: number[]) => { const m = Math.min(...starts); const k = starts.indexOf(m); return starts.map((v, i) => (i === k ? Math.min(v, FIRST_MAX) : v)); };
+
 /** 畫面比聲音早到：進場從 cue − 4 幀開始（淡入 8 幀，cue 當下約 50%，−6～0 幀內可辨識） */
 export const CUE_LEAD = 4;
 export const hasCue = (c: CueInfo, at?: string) => Boolean(at && c.cues[at] !== undefined);
@@ -52,7 +58,7 @@ export const focusLevel = (f: number, c: CueInfo, starts: number[], cued: boolea
     const target = ev.focus < 0 || ev.focus === i ? 1 : THEME_V2.dim;
     const nextT = events[e + 1]?.t;
     const ff = nextT !== undefined ? Math.min(f, nextT) : f;
-    v = v + (target - v) * tween(ff, ev.t, DUR.s, EASE.move);
+    v = v + (target - v) * tween(ff, ev.t, FOCUS_DUR, EASE.move);
   }
   return v;
 };
