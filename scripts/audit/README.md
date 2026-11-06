@@ -14,6 +14,14 @@ npm run audit <slug> -- --bench              # 另跑 scripts/bench.mjs（第 30
 - `styleVersion: 2`：一律讀 `timeline.json`（`version: 2`）的 `startFrame / durationFrames / transitionFrames / voiceStartFrame / voiceEndFrame / subtitleWindow`，不自行計算。
 - v1：幕長 = `round(durationSec × 30)`，相鄰兩幕不重疊；字幕行、關鍵詞時間是「相對幕開始」的秒數。
 
+## styleVersion 2（A 奶油編輯）
+
+- 遮罩改讀 `src/theme.ts` 的 `LAYOUT_V2`：內容區 y 330–1250、字幕區 1270–出處帶（1580＋40）；覆蓋率背景改用 `public/bg/base-v2.png`。
+- 另外用舊遮罩（內容 330–1360）再量一次，記成 `ambientOnlyPctLegacyMask`，方便和 M1 的數字對照（舊遮罩在 v2 版面會把字幕的一部分算進內容區，只當參考）。
+- 聲音層量人聲 stem（`public/audio/<slug>/voice.wav`；最終 MP4 混了 BGM），`audio.mix` 附最終混音響度（`videos/<slug>/mix.json`）。
+- 亮色背景上，卡片底色和米白背景灰階差 <20，淡入的卡片本身幾乎不算變化，只有文字、數字、色條算；`framesOver24px` 在數字遞增時會把換數字誤判成位移（區塊比對假陽性），看 `over24` 的幀號對照 BigNumber 落定時間。
+- 版面佔用率另用 `scripts/audit/coverage/cov2.py out/<slug>/stills/*.png`（docs/layout-rules.md）。
+
 ## 遮罩與門檻（全解析度 1080×1920 座標）
 
 | 名稱 | 範圍 | 用途 |
