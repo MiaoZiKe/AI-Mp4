@@ -17,6 +17,11 @@ import { HookTitle } from "./components/v2/HookTitle";
 import { BigNumberV2 } from "./components/v2/BigNumber";
 import { CompareSplitV2, FlowRowV2, IconGridV2, ImpactCardV2, TermCardV2 } from "./components/v2/Cards";
 import { CtaCard, EndCardV2 } from "./components/v2/Closing";
+import { KineticText } from "./components/v2/KineticText";
+import { LineChart } from "./components/v2/LineChart";
+import { UnitGrid } from "./components/v2/UnitGrid";
+import { DepthStage } from "./components/v2/DepthStage";
+import { BarChart } from "./components/v2/BarChart";
 import { SubtitleTrackV2, SourceTrackV2 } from "./components/v2/Tracks";
 import { LAYOUT_V2 } from "./theme";
 
@@ -27,7 +32,11 @@ const REGISTRY: Record<string, React.FC<any>> = {
 /** styleVersion 2（A 奶油編輯）元件；SeatBar 尚無 v2 版（validate 會擋） */
 const REGISTRY_V2: Record<string, React.FC<any>> = {
   HookTitle, TermCard: TermCardV2, FlowRow: FlowRowV2, CompareSplit: CompareSplitV2, BigNumber: BigNumberV2, IconGrid: IconGridV2, ImpactCard: ImpactCardV2, EndCard: EndCardV2, CtaCard,
+  KineticText, LineChart, UnitGrid, DepthStage, BarChart,
 };
+/** 自帶水印（背景層不再放關鍵詞水印）／自帶背景面板（背景層不放米色色塊）的元件 */
+const OWN_MARK = new Set(["KineticText", "LineChart", "DepthStage"]);
+const OWN_BLOCK = new Set(["DepthStage"]);
 
 const IN = 10, OUT = 9; // 換幕：進場 0.33 秒（淡入＋上移＋縮放），出場 0.3 秒
 
@@ -86,14 +95,15 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
     cues: Object.fromEntries([...(timing.cues ?? []).filter((c) => c.frame !== null).map((c) => [c.id, loc(c.frame as number)]), ...(timing.keywords ?? []).map((k) => [`kw:${k.text}`, loc(k.start)])]),
     exit: loc(exitAbs), voiceStart: loc(timing.voiceStartFrame), voiceEnd: loc(timing.voiceEndFrame),
   };
-  const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SUB_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
+  // 片尾卡沒有字幕與出處：主視覺一路撐到出處帶底（SOURCE_BOTTOM）
+  const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SOURCE_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
   const frame = useCurrentFrame();
   const bg = scene.bg ?? {};
-  const mark = bg.mark ?? (isEnd ? undefined : scene.keywords?.[0]);
+  const mark = bg.mark ?? (isEnd || OWN_MARK.has(scene.component) ? undefined : scene.keywords?.[0]);
   return (
     <AbsoluteFill>
       {/* 背景層：色塊＋出血色帶＋大字水印（視差 0.2） */}
-      <SceneBackdropV2 mark={mark} color={bg.color ?? scene.props?.color ?? "pink"} drift={Math.min(1, frame / Math.max(1, timing.durationFrames))} />
+      <SceneBackdropV2 mark={mark} block={!OWN_BLOCK.has(scene.component)} color={bg.color ?? scene.props?.color ?? "pink"} drift={Math.min(1, frame / Math.max(1, timing.durationFrames))} />
       {/* 主視覺：撐滿主視覺區（952×920），元件自行把內容分布到整個高度 */}
       <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "stretch", justifyContent: "center" }}>
         <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>

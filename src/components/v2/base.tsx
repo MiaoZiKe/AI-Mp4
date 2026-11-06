@@ -114,12 +114,12 @@ export const drawIn = (f: number, start: number) => tween(f, start, DUR.l, EASE.
  *  ③ 大字水印（4–7% 透明、480px、右側出血），背景層視差：整幕緩慢漂移 12px（速度比 0.2）
  * 顏色、尺寸全部讀 THEME_V2／LAYOUT_V2；隨場景一起轉場。
  */
-export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: number }> = ({ mark, color, drift = 0 }) => {
+export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: number; block?: boolean }> = ({ mark, color, drift = 0, block = true }) => {
   const a = accentV2(color);
   const dx = AMBIENT ? Math.round(-12 * drift) : 0; // 背景層視差（裝飾，AUDIT=1 時關掉）
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <div style={{ position: "absolute", left: L.X + 40, top: L.CONTENT_TOP + 40, width: L.X_RIGHT - L.X, height: L.CONTENT_BOTTOM - L.CONTENT_TOP, borderRadius: L.BLOCK_RADIUS, background: T.block }} />
+      {block && <div style={{ position: "absolute", left: L.X + 40, top: L.CONTENT_TOP + 40, width: L.X_RIGHT - L.X, height: L.CONTENT_BOTTOM - L.CONTENT_TOP, borderRadius: L.BLOCK_RADIUS, background: T.block }} />}
       <div style={{ position: "absolute", left: 0, right: 0, top: L.SAFE_BOTTOM, bottom: 0, background: a.fill, opacity: T.blockTint }} />
       {mark && (
         <div style={{ position: "absolute", right: -120 + dx, top: L.CONTENT_TOP + 180, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY, whiteSpace: "nowrap" }}>{mark}</div>

@@ -118,7 +118,42 @@ export const THEME_V2 = {
   /** focus：其他項目降到這個透明度 */
   dim: 0.35,
   weight: { title: 900, body: 500, num: 800 },
+  /** 2.5D：長陰影（45°，全片只用這一種）、透視、視差、堆疊卡 */
+  depth: {
+    shadowInk: "rgba(20,33,61,0.12)",
+    shadowLen: 28,
+    perspective: 1900,
+    tiltX: 6,
+    tiltEnter: 12,
+    parallax: [0.2, 0.5, 1.0],
+    drift: 60,
+    stack: [{ dx: 24, dy: 24, scale: 0.96, opacity: 0.7 }, { dx: 48, dy: 48, scale: 0.92, opacity: 0.45 }],
+  },
+  /** 圖表：格線、軸標籤、未填格、非重點條透明度 */
+  chart: {
+    grid: "rgba(20,33,61,0.14)",
+    axis: "#14213D",
+    axisW: 3,
+    label: "#4B5675",
+    lineW: 9,
+    areaTop: 0.18,
+    areaBottom: 0.02,
+    bandOpacity: 0.55,
+    emptyCell: "rgba(20,33,61,0.25)",
+    mute: 0.35,
+  },
+  /** 等角長條三面明度：top 往卡片白混、side 往墨色混 */
+  iso: { top: 0.35, side: 0.28, skew: 30, depth: 56 },
 } as const;
+/** 色彩混合（#rrggbb）：t=0 → a，t=1 → b（等角三面明度、淡底用） */
+export const mixHex = (a: string, b: string, t: number) => {
+  const p = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [x, y] = [p(a), p(b)];
+  return `#${x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, "0")).join("")}`;
+};
+/** 45° 長陰影（多層位移 box-shadow，硬邊、墨色 12%） */
+export const longShadowCss = (len: number = THEME_V2.depth.shadowLen, ink: string = THEME_V2.depth.shadowInk) =>
+  Array.from({ length: Math.max(1, Math.round(len / 4)) }, (_, i) => `${(i + 1) * 4}px ${(i + 1) * 4}px 0 ${ink}`).join(", ");
 export const accentV2 = (a?: string): AccentV2 => THEME_V2.accent[a ?? "pink"] ?? THEME_V2.accent.pink;
 
 /**
@@ -160,4 +195,14 @@ export const LAYOUT_V2 = {
   WATERMARK_PX: 480,
   WATERMARK_OPACITY: 0.05,
   BLOCK_RADIUS: 40,
+  /** 新元件（KineticText／LineChart／UnitGrid／DepthStage／BarChart）的區塊：全解析度 y */
+  KT_TOP: 380,
+  KT_BOTTOM: 1200,
+  CHART_TITLE_TOP: 340,
+  PLOT_TOP: 440,
+  PLOT_BOTTOM: 1180,
+  BAR_TOP: 400,
+  DEPTH_TOP: 360,
+  DEPTH_BOTTOM: 1180,
+  FRONT_W: 900,
 } as const;

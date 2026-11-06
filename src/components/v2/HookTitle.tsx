@@ -17,7 +17,7 @@ export const HookTitle: React.FC<{ kicker?: string; lines: string[]; mark?: numb
   const slam = cueAt(c, slamAt, 40);
   const subIn = cueIn(c, subAt, 50);
   return (
-    <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: 10, transform: `scale(${whole})`, transformOrigin: "0% 50%" }}>
+    <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-evenly", gap: 10, transform: `scale(${whole})`, transformOrigin: "0% 50%" }}>
       {kicker && <KickerV2 text={kicker} />}
       <div style={{ marginTop: 34, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 168, lineHeight: 1.12, letterSpacing: "-0.01em", color: T.text }}>
         {lines.map((l, i) => {
