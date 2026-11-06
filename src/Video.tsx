@@ -11,7 +11,7 @@ import {
   BigNumber, SeatBar, IconGrid, ImpactCard, SubtitleTrack, SourceTrack,
 } from "./components";
 import { EASE } from "./components/anim";
-import { CueContext } from "./cue";
+import { CueContext, cameraScale } from "./cue";
 import { BackgroundV2, HeaderV2, SceneBackdropV2 } from "./components/v2/base";
 import { HookTitle } from "./components/v2/HookTitle";
 import { BigNumberV2 } from "./components/v2/BigNumber";
@@ -97,12 +97,18 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
       <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "stretch", justifyContent: "center" }}>
         <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>
           <CueContext.Provider value={cue}>
-            <Comp {...scene.props} />
+            <CameraV2 cue={cue}><Comp {...scene.props} /></CameraV2>
           </CueContext.Provider>
         </Sequence>
       </div>
     </AbsoluteFill>
   );
+};
+
+/** 主視覺鏡頭：依 cue 推近／拉回（cameraScale），本地幀由外層 Sequence 提供 */
+const CameraV2: React.FC<{ cue: React.ContextType<typeof CueContext>; children: React.ReactNode }> = ({ cue, children }) => {
+  const f = useCurrentFrame();
+  return <div style={{ display: "flex", alignItems: "stretch", justifyContent: "center", transform: `scale(${cameraScale(f, cue).toFixed(4)})`, transformOrigin: "50% 45%" }}>{children}</div>;
 };
 
 /** 轉場進度＝幀 / 總幀數（線性），曲線在 presentation 裡依 exit／enter 幀區間計算 */

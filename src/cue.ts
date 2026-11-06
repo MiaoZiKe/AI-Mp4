@@ -62,3 +62,17 @@ export const focusLevel = (f: number, c: CueInfo, starts: number[], cued: boolea
   }
   return v;
 };
+
+/**
+ * 2.5D 鏡頭推拉（P2-3 縮小版）：每個 cue 落定時，主視覺整體在 PULL_SCALE 與 1.00 之間交替推近／拉回（開場略遠），
+ * DUR.m 幀 ease-in-out 到位後固定（不連續縮放、不回彈）；最後 READ_HOLD 幀內不再推拉。
+ */
+/** 推拉在 [PULL_SCALE, 1] 之間：1 時寬 952（剛好貼齊安全區），不會出界 */
+export const PULL_SCALE = 0.965;
+export const cameraScale = (f: number, c: CueInfo) => {
+  const ts = Object.values(c.cues).map((t) => Math.min(t, c.exit - READ_HOLD - DUR.m)).filter((t) => t > 6).sort((a, b) => a - b)
+    .filter((t, i, a) => i === 0 || t - a[i - 1] >= DUR.m + 6);
+  let v = PULL_SCALE;
+  ts.forEach((t, i) => { const target = i % 2 === 0 ? 1 : PULL_SCALE; v = v + (target - v) * tween(f, t - 2, DUR.m, EASE.move); });
+  return v;
+};
