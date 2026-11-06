@@ -141,32 +141,63 @@
           "text": "開始賣"
         }
       ],
-      "component": "CompareSplit",
+      "component": "DepthStage",
       "props": {
-        "left": {
-          "title": "2022 說法",
-          "titleEn": "Saylor, 2022",
-          "icon": "lock",
-          "color": "cyan",
-          "items": [
-            "「我們不是賣家」",
-            "「我會永遠買在頂部」"
-          ],
-          "at": "say"
+        "color": "pink",
+        "front": {
+          "component": "CompareSplit",
+          "props": {
+            "left": {
+              "title": "2022",
+              "titleEn": "Saylor said",
+              "icon": "lock",
+              "color": "cyan",
+              "items": [
+                "「我們不是賣家」",
+                "「永遠買在頂部」"
+              ],
+              "at": "say"
+            },
+            "right": {
+              "title": "2026",
+              "titleEn": "Strategy did",
+              "icon": "trendDown",
+              "color": "pink",
+              "items": [
+                "5 月首次賣 32 枚",
+                "累計約 4.3 億美元"
+              ],
+              "at": "sell"
+            },
+            "footer": "錢拿去付股息、回購",
+            "footerAt": "sell"
+          }
         },
-        "right": {
-          "title": "2026 行動",
-          "titleEn": "Strategy, 2026",
-          "icon": "trendDown",
-          "color": "pink",
-          "items": [
-            "5/26–31 首次賣出 32 枚",
-            "至 10/25 共賣約 4.3 億美元"
+        "back": {
+          "icons": [
+            "lock",
+            "trendDown",
+            "bitcoin"
           ],
-          "at": "sell"
+          "color": "pink"
         },
-        "footer": "賣幣所得用來付優先股股息、回購優先股",
-        "footerAt": "sell"
+        "stack": [
+          {
+            "color": "cyan"
+          },
+          {
+            "color": "pink"
+          }
+        ],
+        "badges": [
+          {
+            "text": "說法 vs 行動",
+            "color": "pink",
+            "at": "sell",
+            "pos": "tr"
+          }
+        ],
+        "tilt": 5
       },
       "sources": [
         "Bloomberg",
@@ -201,25 +232,45 @@
           "text": "一成"
         }
       ],
-      "component": "BigNumber",
+      "component": "BarChart",
       "props": {
-        "icon": "chart",
-        "label": "MSTR 11/5 盤中跌幅",
-        "labelEn": "MSTR intraday, Nov 5, 2026",
-        "value": -10,
-        "prefix": "約 ",
-        "suffix": "%",
+        "mode": "flat",
+        "title": "11/5 盤中跌幅",
+        "titleEn": "Intraday drop, Nov 5, 2026",
         "color": "pink",
-        "tag": "fact",
-        "ref": {
-          "label": "比特幣同日盤中",
-          "text": "約 −6%",
+        "unit": "%",
+        "bars": [
+          {
+            "label": "比特幣",
+            "value": -6,
+            "text": "約 −6%",
+            "color": "cyan",
+            "icon": "bitcoin",
+            "highlight": false,
+            "at": "btc"
+          },
+          {
+            "label": "MSTR",
+            "value": -10,
+            "text": "約 −10%",
+            "color": "pink",
+            "icon": "chart",
+            "at": "drop"
+          }
+        ],
+        "refLine": {
+          "value": -6,
+          "label": "比特幣跌幅",
           "at": "btc"
         },
-        "startAt": "btc",
-        "at": "drop",
-        "note": "市場常形容它是「槓桿化的比特幣」；台灣可用複委託買到",
-        "noteAt": "amp"
+        "note": {
+          "text": "市場說它是「槓桿化比特幣」",
+          "bar": 1,
+          "at": "amp"
+        },
+        "max": 11,
+        "footnote": "盤中數字，收盤截至 2026/11/6 尚未確定；台灣可用複委託買到",
+        "source": "CoinDesk、Robinhood"
       },
       "sources": [
         "CoinDesk",
@@ -249,18 +300,39 @@
           "text": "4%"
         }
       ],
-      "component": "BigNumber",
+      "component": "KineticText",
       "props": {
-        "icon": "bitcoin",
-        "label": "持有比特幣（枚）",
-        "labelEn": "BTC held, as of Nov 1, 2026",
-        "value": 849327,
+        "kicker": "從 2020 年一路買",
         "color": "yellow",
-        "tag": "fact",
-        "startAt": "buy",
-        "at": "pct",
-        "note": "約佔 2,100 萬枚上限的 4.04%，全球上市公司第一（2026/11/1）",
-        "noteAt": "pct"
+        "flip": {
+          "from": 672500,
+          "value": 849327,
+          "startAt": "buy",
+          "at": "pct",
+          "unit": "枚",
+          "caption": "2025 年底 672,500 枚 → 2026/11/1"
+        },
+        "lines": [
+          {
+            "text": "全球 4%",
+            "at": "pct",
+            "size": 190,
+            "color": "pink",
+            "mark": true
+          }
+        ],
+        "aux": {
+          "type": "ring",
+          "value": 4.04,
+          "label": "2,100 萬枚上限",
+          "at": "pct",
+          "pos": "br",
+          "color": "yellow"
+        },
+        "note": "全球上市公司持幣第一",
+        "noteAt": "pct",
+        "watermark": "₿",
+        "source": "SEC 8-K 2026/11/2、CoinGecko"
       },
       "sources": [
         "SEC 8-K 2026/11/2",
@@ -298,32 +370,64 @@
           "text": "買幣"
         }
       ],
-      "component": "FlowRow",
+      "component": "DepthStage",
       "props": {
-        "title": "2024–25 年的飛輪",
-        "steps": [
-          {
-            "icon": "trendUp",
-            "label": "股價有溢價",
-            "note": "股票比背後的幣還貴",
-            "color": "yellow",
-            "at": "prem"
-          },
-          {
-            "icon": "chart",
-            "label": "發新股換現金",
-            "note": "按市價賣新股",
-            "color": "cyan",
-            "at": "issue"
-          },
-          {
-            "icon": "bitcoin",
-            "label": "拿去買比特幣",
-            "note": "每股分到的幣跟著變多",
-            "color": "pink",
-            "at": "buy"
+        "color": "yellow",
+        "front": {
+          "component": "FlowRow",
+          "props": {
+            "title": "2024–25 年的飛輪",
+            "steps": [
+              {
+                "icon": "trendUp",
+                "label": "股價有溢價",
+                "note": "股票比背後的幣還貴",
+                "color": "yellow",
+                "at": "prem"
+              },
+              {
+                "icon": "chart",
+                "label": "發新股換現金",
+                "note": "按市價賣新股",
+                "color": "cyan",
+                "at": "issue"
+              },
+              {
+                "icon": "bitcoin",
+                "label": "拿去買比特幣",
+                "note": "每股分到的幣跟著變多",
+                "color": "pink",
+                "at": "buy"
+              }
+            ]
           }
-        ]
+        },
+        "back": {
+          "icons": [
+            "trendUp",
+            "bitcoin",
+            "chart",
+            "coins"
+          ],
+          "color": "yellow"
+        },
+        "stack": [
+          {
+            "color": "cyan"
+          },
+          {
+            "color": "pink"
+          }
+        ],
+        "badges": [
+          {
+            "text": "溢價＝燃料",
+            "color": "pink",
+            "at": "prem",
+            "pos": "tr"
+          }
+        ],
+        "tilt": 6
       },
       "sources": [
         "Bitcoin Treasuries 電子報",
@@ -357,42 +461,60 @@
           "text": "變多"
         }
       ],
-      "component": "BigNumber",
+      "component": "UnitGrid",
       "pauseAfter": 0.4,
       "props": {
-        "icon": "coins",
-        "label": "每股含幣（枚，示意）",
-        "labelEn": "BTC per share, worked example",
-        "from": 1,
-        "value": 1.09,
-        "decimals": 2,
+        "title": "溢價 2 倍：發 10 股、買 20 枚",
+        "titleMark": "2 倍",
+        "titleAt": "x2",
+        "titleEn": "Worked example from the public definition (illustrative)",
+        "total": 120,
+        "cols": 12,
+        "order": "col",
+        "icon": "coin",
         "color": "cyan",
-        "tag": "fact",
-        "ref": {
-          "label": "溢價",
-          "text": "2 倍",
-          "at": "x2"
+        "groups": [
+          {
+            "count": 100,
+            "color": "yellow",
+            "label": "原有 100 枚"
+          },
+          {
+            "count": 20,
+            "color": "pink",
+            "label": "新買 20 枚",
+            "at": "c20"
+          }
+        ],
+        "frame": {
+          "group": 1,
+          "label": "+20 枚",
+          "at": "c20"
         },
-        "startAt": "c20",
-        "at": "more",
-        "note": "增發 10 股買到 20 枚：幣增加得比股數快（依公開定義推算）",
-        "noteAt": "c20",
-        "bars": [
+        "counters": [
           {
             "label": "持幣",
-            "value": 120,
-            "text": "100→120",
+            "from": 100,
+            "to": 120,
+            "unit": "枚",
             "color": "yellow",
-            "at": "c20"
+            "startAt": "c20",
+            "at": "more"
           },
           {
             "label": "股數",
-            "value": 110,
-            "text": "100→110",
+            "from": 100,
+            "to": 110,
+            "unit": "股",
             "color": "cyan",
-            "at": "c20"
+            "startAt": "c20",
+            "at": "more"
           }
-        ]
+        ],
+        "note": {
+          "text": "每股含幣 1.00 → 1.09 枚",
+          "at": "more"
+        }
       },
       "sources": [
         "Bitcoin Treasuries 電子報",
@@ -426,29 +548,66 @@
           "text": "前提"
         }
       ],
-      "component": "ImpactCard",
+      "component": "DepthStage",
       "props": {
-        "icon": "megaphone",
-        "title": "Saylor 的邏輯",
-        "titleEn": "Michael Saylor · co-founder",
         "color": "yellow",
-        "rows": [
-          {
-            "status": "fact",
-            "text": "2022：「我會永遠買在頂部」",
-            "at": "saylor"
-          },
-          {
-            "status": "fact",
-            "text": "他看的不是美元成本，是每股含幣有沒有變多",
-            "at": "top"
-          },
-          {
-            "status": "expected",
-            "text": "前提：股價要一直比背後的幣貴（有溢價）",
-            "at": "cond"
+        "front": {
+          "component": "ImpactCard",
+          "props": {
+            "icon": "megaphone",
+            "title": "Saylor 的邏輯",
+            "titleEn": "Michael Saylor · co-founder",
+            "color": "yellow",
+            "rows": [
+              {
+                "status": "fact",
+                "text": "2022：「我會永遠買在頂部」",
+                "at": "saylor"
+              },
+              {
+                "status": "fact",
+                "text": "他看的不是美元成本，是每股含幣有沒有變多",
+                "at": "top"
+              },
+              {
+                "status": "expected",
+                "text": "前提：股價要一直比背後的幣貴（有溢價）",
+                "at": "cond"
+              }
+            ]
           }
-        ]
+        },
+        "back": {
+          "icons": [
+            "megaphone",
+            "bitcoin",
+            "trendUp"
+          ],
+          "color": "yellow"
+        },
+        "stack": [
+          {
+            "color": "pink"
+          },
+          {
+            "color": "cyan"
+          }
+        ],
+        "badges": [
+          {
+            "text": "共同創辦人",
+            "color": "cyan",
+            "at": "saylor",
+            "pos": "tl"
+          },
+          {
+            "text": "有前提",
+            "color": "pink",
+            "at": "cond",
+            "pos": "br"
+          }
+        ],
+        "tilt": 5
       },
       "sources": [
         "The Daily Hodl",
@@ -483,26 +642,104 @@
           "text": "手上的幣"
         }
       ],
-      "component": "BigNumber",
+      "component": "LineChart",
       "props": {
-        "icon": "scale",
-        "label": "mNAV＝股價÷每股含幣價值",
-        "labelEn": "Premium to bitcoin per share",
-        "from": 3.4,
-        "value": 0.9,
+        "title": "mNAV：股價是手上幣值的幾倍",
+        "titleEn": "mNAV = market cap ÷ bitcoin held",
+        "unit": "倍",
         "decimals": 2,
-        "suffix": " 倍",
         "color": "pink",
-        "tag": "expected",
-        "ref": {
-          "label": "2024/11 高峰",
-          "text": "約 3.4 倍",
-          "at": "y2026"
+        "series": [
+          {
+            "points": [
+              {
+                "t": 0,
+                "v": 3.4
+              },
+              {
+                "t": 12,
+                "v": 1.23
+              },
+              {
+                "t": 19,
+                "v": 0.58
+              },
+              {
+                "t": 21,
+                "v": 0.68
+              },
+              {
+                "t": 22,
+                "v": 0.97
+              },
+              {
+                "t": 23,
+                "v": 0.87
+              },
+              {
+                "t": 24,
+                "v": 0.9
+              }
+            ]
+          }
+        ],
+        "xTicks": [
+          {
+            "t": 0,
+            "label": "2024/11"
+          },
+          {
+            "t": 12,
+            "label": "2025/11"
+          },
+          {
+            "t": 19,
+            "label": "2026/6"
+          },
+          {
+            "t": 24,
+            "label": "2026/11"
+          }
+        ],
+        "yMax": 3.8,
+        "yTicks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "refLine": {
+          "value": 1,
+          "label": "1 倍＝只值手上的幣",
+          "at": "coins"
         },
-        "startAt": "y2026",
-        "at": "zero",
-        "note": "11/5 盤中推算約 0.9 倍；各家算法在 0.85–1.2 倍之間",
-        "noteAt": "coins"
+        "band": {
+          "from": 14,
+          "to": 24,
+          "label": "2026 年",
+          "at": "y2026",
+          "color": "yellow"
+        },
+        "notes": [
+          {
+            "t": 0,
+            "text": "高峰約 3.4 倍",
+            "side": "right"
+          }
+        ],
+        "draw": [
+          {
+            "at": "y2026",
+            "t": 14
+          },
+          {
+            "at": "zero",
+            "t": 24
+          }
+        ],
+        "watermark": "0.9",
+        "footnote": "普通股口徑；各家算法 0.85–1.2 倍，11/5 盤中約 0.9",
+        "source": "research.md §6.1"
       },
       "sources": [
         "Strategy Q3 2026 法說會",
@@ -538,37 +775,72 @@
           "text": "3.7%"
         }
       ],
-      "component": "BigNumber",
+      "component": "KineticText",
       "pauseAfter": 0.45,
       "props": {
-        "icon": "percent",
-        "label": "2026 年至今 BTC Yield",
-        "labelEn": "Bitcoin per share, YTD",
-        "value": -3.7,
-        "decimals": 1,
-        "suffix": "%",
+        "kicker": "2026 年至今（截至 10/25）",
         "color": "pink",
-        "tag": "fact",
-        "at": "yield",
-        "startAt": "shares",
-        "bars": [
+        "lines": [
           {
-            "label": "持幣數",
-            "value": 26,
-            "text": "+26%",
-            "color": "yellow",
-            "at": "coins"
+            "text": "幣 +{n}%",
+            "count": {
+              "from": 0,
+              "to": 26,
+              "at": "coins"
+            },
+            "at": "coins",
+            "size": 150,
+            "color": "yellow"
           },
           {
-            "label": "股數",
-            "value": 31,
-            "text": "+31%",
+            "text": "股數 +{n}%",
+            "count": {
+              "from": 0,
+              "to": 31,
+              "at": "shares"
+            },
+            "at": "shares",
+            "size": 150,
+            "color": "cyan"
+          },
+          {
+            "text": "每股 −{n}%",
+            "count": {
+              "from": 0,
+              "to": 3.7,
+              "decimals": 1,
+              "at": "yield"
+            },
+            "at": "yield",
+            "size": 150,
             "color": "pink",
-            "at": "shares"
+            "mark": true
           }
         ],
-        "note": "公司自創指標：每股所含比特幣的變化率（截至 10/25）",
-        "noteAt": "yield"
+        "aux": {
+          "type": "sparkline",
+          "values": [
+            9.4,
+            13.3,
+            13.0,
+            12.8,
+            5.8,
+            4.5,
+            -3.7
+          ],
+          "ends": [
+            "5/3",
+            "10/25"
+          ],
+          "label": "BTC Yield 2026",
+          "at": "yield",
+          "pos": "tr",
+          "color": "pink"
+        },
+        "note": "BTC Yield：每股所含比特幣的變化率",
+        "noteAt": "yield",
+        "watermark": "−3.7%",
+        "source": "Strategy Q3 2026 8-K、10-Q"
       },
       "sources": [
         "Strategy Q3 2026 8-K",
@@ -602,42 +874,55 @@
           "text": "回購"
         }
       ],
-      "component": "FlowRow",
+      "component": "BarChart",
       "props": {
-        "title": "2026 年的錢去哪了？",
-        "steps": [
+        "mode": "iso",
+        "title": "2026 年的錢去哪了？（億美元）",
+        "titleEn": "Jan 1 – Oct 25, 2026 · US$100M",
+        "decimals": 1,
+        "color": "pink",
+        "bars": [
           {
-            "icon": "bank",
-            "label": "募資 212.3 億美元",
-            "note": "到 10/25；發普通股與優先股",
-            "color": "cyan"
+            "label": "募資",
+            "value": 212.3,
+            "color": "cyan",
+            "highlight": false
           },
           {
-            "icon": "bitcoin",
-            "label": "買幣 143.3 億美元",
-            "note": "約佔募資的三分之二",
-            "color": "yellow"
+            "label": "買幣",
+            "value": 143.3,
+            "color": "yellow",
+            "highlight": false
           },
           {
-            "icon": "trendDown",
-            "label": "賣幣約 4.3 億美元",
-            "note": "推算約 6,900 多枚，多低於成本",
+            "label": "賣幣",
+            "value": 4.3,
             "color": "pink",
             "at": "sold"
           },
           {
-            "icon": "coins",
-            "label": "付股息、回購優先股",
-            "note": "優先股：沒到期日、要先發股息",
+            "label": "回購優先股",
+            "value": 20.4,
             "color": "purple",
-            "at": "div"
+            "highlight": false,
+            "at": "buyback"
           }
-        ]
+        ],
+        "note": {
+          "text": "賣幣所得：付優先股股息、回購",
+          "bar": 2,
+          "at": "div"
+        },
+        "footnote": "截至 10/25；賣幣約 6,900 多枚，平均賣價低於成本",
+        "source": "Strategy Q3 2026 新聞稿"
       },
       "sources": [
         "Strategy Q3 2026 新聞稿",
         "CoinDesk"
-      ]
+      ],
+      "bg": {
+        "mark": "賣幣"
+      }
     },
     {
       "id": "watch-next",
@@ -662,26 +947,58 @@
           "text": "指數"
         }
       ],
-      "component": "ImpactCard",
+      "component": "DepthStage",
       "props": {
-        "icon": "warning",
-        "title": "接下來看兩件事",
-        "titleEn": "What to watch",
         "color": "pink",
-        "rows": [
+        "front": {
+          "component": "ImpactCard",
+          "props": {
+            "icon": "warning",
+            "title": "接下來看兩件事",
+            "titleEn": "What to watch",
+            "color": "pink",
+            "rows": [
+              {
+                "status": "fact",
+                "text": "平均成本約 75,451 美元；11/5 幣價一度跌到約 75,600",
+                "at": "cost"
+              },
+              {
+                "status": "pending",
+                "text": "MSCI 預計 11/11 公布名單，截至 2026/11/6 尚未確定",
+                "at": "index"
+              }
+            ],
+            "taiwan": "分析師看法分歧，本片不構成投資建議",
+            "taiwanAt": "index"
+          }
+        },
+        "back": {
+          "icons": [
+            "warning",
+            "bitcoin",
+            "document",
+            "calendar"
+          ],
+          "color": "pink"
+        },
+        "stack": [
           {
-            "status": "fact",
-            "text": "平均成本約 75,451 美元；11/5 幣價一度跌到約 75,600",
-            "at": "cost"
+            "color": "yellow"
           },
           {
-            "status": "pending",
-            "text": "MSCI 預計 11/11 公布名單，截至 2026/11/6 尚未確定",
-            "at": "index"
+            "color": "purple"
           }
         ],
-        "taiwan": "分析師看法分歧，本片不構成投資建議",
-        "taiwanAt": "index"
+        "badges": [
+          {
+            "text": "11/11 公布",
+            "color": "purple",
+            "at": "index",
+            "pos": "tr"
+          }
+        ],
+        "tilt": 5
       },
       "sources": [
         "SEC 8-K",
@@ -749,7 +1066,24 @@
       "component": "EndCard",
       "props": {
         "next": "下一集：比特幣現貨 ETF，台灣為什麼只開放專業投資人？",
-        "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。"
+        "disclaimer": "本片使用 AI 輔助製作，由真人選題與審核。",
+        "recap": [
+          {
+            "value": "約 85 萬枚",
+            "label": "持幣上市公司第一",
+            "color": "pink"
+          },
+          {
+            "value": "≈ 0.90",
+            "label": "mNAV 溢價幾乎歸零",
+            "color": "yellow"
+          },
+          {
+            "value": "5 月起",
+            "label": "賣幣付優先股股息",
+            "color": "cyan"
+          }
+        ]
       },
       "sources": []
     }
