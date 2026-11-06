@@ -57,6 +57,8 @@ export function validateTimelineV2(script, tl) {
       const gap = (n.voiceStartFrame - x.voiceEndFrame) / 30;
       if (gap < 0) E(`timeline ${x.id} → ${n.id}: 人聲重疊 ${(-gap).toFixed(2)} 秒`);
       else if (gap < 0.08) E(`timeline ${x.id} → ${n.id}: 人聲間隔 ${gap.toFixed(2)} 秒 < 0.08（轉場太長或停頓太短）`);
+      const want = script.scenes.find((s) => s.id === x.id)?.pauseAfter;
+      if (typeof want === "number" && want > 0 && Math.abs(gap - want) > 0.08) W(`timeline ${x.id}: pauseAfter ${want} 秒，實際人聲間隔 ${gap.toFixed(2)} 秒（請重跑 npm run align）`);
       const tail = (x.startFrame + x.durationFrames - x.voiceEndFrame) / 30;
       if (n.transitionFrames / 30 > tail + (n.voiceStartFrame - n.startFrame) / 30 + 1e-6) E(`timeline ${n.id}: 轉場 ${n.transitionFrames} 幀超過 TAIL＋LEAD`);
     }

@@ -190,15 +190,17 @@ function speechBounds(file, total) {
  */
 function buildV2(cs) {
   const out = [];
-  let prevEnd = null;
+  let prevEnd = null, prevGap = GAP;
   for (const [i, c] of cs.entries()) {
     const abs = path.join(ROOT, "public", c.audio);
     const b = speechBounds(abs, c.audioSec);
     const sc = script.scenes.find((x) => x.id === c.id);
     const pause = typeof sc?.pauseAfter === "number" ? sc.pauseAfter : 0;
-    const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + GAP - b.head) * FPS));
+    // P0-4：換幕人聲間隔＝上一幕的 pauseAfter（有設定時，是「整個間隔」秒數），否則預設 GAP（0.15 秒）
+    const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
     const vs = audioFrame / FPS + b.head, ve = audioFrame / FPS + b.tail;
-    prevEnd = ve + pause;
+    prevEnd = ve;
+    prevGap = pause > 0 ? pause : GAP;
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
     const transition = i === 0 ? null : { type: sc?.transition === "slide" ? "slide" : "fade", frames: TRANS, exit: EXIT, enter: ENTER };
     const prevStart = out[i - 1]?.startFrame ?? -Infinity;

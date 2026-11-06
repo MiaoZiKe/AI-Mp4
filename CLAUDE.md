@@ -61,6 +61,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
 - script.json 頂層 `voice: { voiceName, candidates?, style? }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
+- 停頓（v2）：換幕人聲間隔預設 0.15 秒；script.json 每幕可設 `pauseAfter`（本幕結束到下一幕開口的整段秒數；鉤子後約 0.25、數字或反轉前後 0.3–0.5），每支最多 3 處、每處 ≤0.7 秒。v2 切檔只去頭尾靜音（各留 40ms）不逐段 loudnorm，align 會把各段依時間軸疊成一條 `public/audio/<slug>/voice.wav` 再整條做兩段式 loudnorm（−16 LUFS），畫面只播這一條。
 - `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
