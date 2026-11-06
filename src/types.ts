@@ -16,6 +16,8 @@ export type Scene = {
   pauseAfter?: number;
   /** styleVersion 2：敘事骨架 */
   beat?: "hook" | "you" | "mechanism" | "twist" | "payoff" | "cta";
+  /** styleVersion 2：背景層（大字水印、色塊主色）；mark 預設＝第一個關鍵詞 */
+  bg?: { mark?: string; color?: string };
   /** styleVersion 2：念到某個詞時觸發畫面（元件以 at:"cueId" 引用） */
   cues?: { id: string; text: string; occurrence?: number }[];
 };

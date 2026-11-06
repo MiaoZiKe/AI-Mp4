@@ -18,26 +18,26 @@ export const CompareSplitV2: React.FC<{ left: Side; right: Side; footer?: string
   const starts = firstEarly(sides.map((s, i) => cueIn(c, s.at, i * 10)));
   const cued = sides.map((s) => hasCue(c, s.at));
   return (
-    <div style={{ width: 952 }}>
-      <div style={{ display: "flex", gap: 24 }}>
+    <div style={{ width: 952, display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", gap: 24, flex: 1 }}>
         {sides.map((s, i) => {
           const fo = focusLevel(f, c, starts, cued, i);
           const pun = cued[i] ? bump(f, cueAt(c, s.at, 0), 0.03) : 1;
           return (
-            <CardV2 key={i} topBar={s.color} style={{ ...reveal(f, starts[i], fo), flex: 1, padding: "30px 30px 26px", display: "flex", flexDirection: "column", alignItems: "center", transform: `${reveal(f, starts[i]).transform} scale(${pun})` }}>
-              <IconV2 name={s.icon} color={s.color} size={104} draw={drawIn(f, starts[i])} />
-              <div style={{ ...zh(52, T.weight.title, accentV2(s.color).text), marginTop: 8 }}>{s.title}</div>
+            <CardV2 key={i} topBar={s.color} style={{ ...reveal(f, starts[i], fo), flex: 1, padding: "36px 30px 30px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", transform: `${reveal(f, starts[i]).transform} scale(${pun})` }}>
+              <IconV2 name={s.icon} color={s.color} size={150} draw={drawIn(f, starts[i])} />
+              <div style={{ ...zh(60, T.weight.title, accentV2(s.color).text), marginTop: 8 }}>{s.title}</div>
               {s.titleEn && <div style={EN}>{s.titleEn}</div>}
-              <div style={{ marginTop: 16, alignSelf: "stretch" }}>
+              <div style={{ alignSelf: "stretch" }}>
                 {s.items.map((it, k) => (
-                  <div key={k} style={{ ...reveal(f, starts[i] + 4 + k * STAGGER, 1, 12), ...zh(34), padding: "12px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}>{it}</div>
+                  <div key={k} style={{ ...reveal(f, starts[i] + 4 + k * STAGGER, 1, 12), ...zh(40, 700), padding: "20px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}>{it}</div>
                 ))}
               </div>
             </CardV2>
           );
         })}
       </div>
-      {footer && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, footerAt, 40) + (footerAt ? 10 : 0), 1, 12), marginTop: 26 }}>{footer}</NoteBoxV2>}
+      {footer && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, footerAt, 40) + (footerAt ? 10 : 0), 1, 12), marginTop: 26, fontSize: 38 }}>{footer}</NoteBoxV2>}
     </div>
   );
 };
@@ -54,8 +54,8 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
   for (let i = 1; i < starts.length; i++) starts[i] = Math.max(starts[i], starts[i - 1] + 6);
   const cued = steps.map((s) => hasCue(c, s.at));
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 900 }}>
-      {title && <div style={{ ...reveal(f, 0), ...zh(52, T.weight.title), marginBottom: 20 }}>{title}</div>}
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 952 }}>
+      {title && <div style={{ ...reveal(f, 0), ...zh(58, T.weight.title), marginBottom: 16 }}>{title}</div>}
       {steps.map((s, i) => {
         const fo = focusLevel(f, c, starts, cued, i);
         const pun = cued[i] ? bump(f, cueAt(c, s.at, 0), 0.03) : 1;
@@ -67,11 +67,11 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
                 <path d="M30 4v40M16 32l14 16 14-16" fill="none" stroke={T.rule} strokeWidth={5} strokeLinecap="square" strokeLinejoin="miter" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - tween(f, starts[i] - 6, DUR.m, EASE.enter)} />
               </svg>
             )}
-            <CardV2 topBar={undefined} style={{ ...r, transform: `${r.transform} scale(${pun})`, width: "100%", padding: "20px 30px", display: "flex", alignItems: "center", gap: 26, borderLeft: `10px solid ${accentV2(s.color).fill}` }}>
-              <IconV2 name={s.icon} color={s.color} size={92} draw={drawIn(f, starts[i])} />
+            <CardV2 topBar={undefined} style={{ ...r, transform: `${r.transform} scale(${pun})`, width: "100%", flex: 1, padding: "18px 34px", display: "flex", alignItems: "center", gap: 30, borderLeft: `10px solid ${accentV2(s.color).fill}` }}>
+              <IconV2 name={s.icon} color={s.color} size={steps.length > 3 ? 104 : 128} draw={drawIn(f, starts[i])} />
               <div>
-                <div style={zh(46, T.weight.title)}>{s.label}</div>
-                {s.note && <div style={{ ...zh(32, T.weight.body, T.text2), marginTop: 4 }}>{s.note}</div>}
+                <div style={zh(steps.length > 3 ? 50 : 56, T.weight.title)}>{s.label}</div>
+                {s.note && <div style={{ ...zh(steps.length > 3 ? 34 : 38, T.weight.body, T.text2), marginTop: 4 }}>{s.note}</div>}
               </div>
             </CardV2>
           </React.Fragment>
@@ -90,24 +90,24 @@ export const ImpactCardV2: React.FC<{ icon: string; title: string; titleEn?: str
   const starts = rows.map((r, i) => { if (hasCue(c, r.at)) return cueIn(c, r.at, 0) + (i > 0 && rows[i - 1].at === r.at ? STAGGER * 3 : 0); const v = fixed; fixed += 10; return v; });
   const cued = rows.map((r) => hasCue(c, r.at));
   return (
-    <CardV2 topBar={color} style={{ ...reveal(f, 0), width: 952, padding: "36px 44px 36px" }}>
+    <CardV2 topBar={color} style={{ ...reveal(f, 0), width: 952, padding: "40px 48px 40px", display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 22, paddingBottom: 20, borderBottom: `${T.ruleW}px solid ${T.rule}` }}>
-        <IconV2 name={icon} color={color} size={92} draw={drawIn(f, 0)} />
+        <IconV2 name={icon} color={color} size={120} draw={drawIn(f, 0)} />
         <div>
-          <div style={zh(56, T.weight.title)}>{title}</div>
+          <div style={zh(64, T.weight.title)}>{title}</div>
           {titleEn && <div style={EN}>{titleEn}</div>}
         </div>
       </div>
       {rows.map((r, i) => {
         const fo = focusLevel(f, c, starts, cued, i);
         return (
-          <div key={i} style={{ ...reveal(f, starts[i], fo, 16), display: "flex", gap: 22, alignItems: "flex-start", padding: "20px 0", borderTop: i ? `2px dashed ${T.divider}` : "none" }}>
-            <span style={{ transform: `scale(${cued[i] ? bump(f, cueAt(c, r.at, 0), 0.06) : 1})` }}><StatusTagV2 status={r.status} /></span>
-            <div style={{ ...zh(34), paddingTop: 4 }}>{r.text}</div>
+          <div key={i} style={{ ...reveal(f, starts[i], fo, 16), display: "flex", gap: 24, alignItems: "center", flex: 1, padding: "16px 0", borderTop: i ? `2px dashed ${T.divider}` : "none" }}>
+            <span style={{ transform: `scale(${cued[i] ? bump(f, cueAt(c, r.at, 0), 0.06) : 1})` }}><StatusTagV2 status={r.status} size={32} /></span>
+            <div style={{ ...zh(rows.length > 3 ? 38 : 44, 700) }}>{r.text}</div>
           </div>
         );
       })}
-      {taiwan && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, taiwanAt, fixed) + (taiwanAt ? 12 : 0), 1, 12), marginTop: 12, fontSize: 30 }}>{taiwan}</NoteBoxV2>}
+      {taiwan && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, taiwanAt, fixed) + (taiwanAt ? 12 : 0), 1, 12), marginTop: 12, fontSize: 36 }}>{taiwan}</NoteBoxV2>}
     </CardV2>
   );
 };

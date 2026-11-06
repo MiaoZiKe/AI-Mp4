@@ -12,7 +12,7 @@ import {
 } from "./components";
 import { EASE } from "./components/anim";
 import { CueContext } from "./cue";
-import { BackgroundV2, HeaderV2 } from "./components/v2/base";
+import { BackgroundV2, HeaderV2, SceneBackdropV2 } from "./components/v2/base";
 import { HookTitle } from "./components/v2/HookTitle";
 import { BigNumberV2 } from "./components/v2/BigNumber";
 import { CompareSplitV2, FlowRowV2, IconGridV2, ImpactCardV2, TermCardV2 } from "./components/v2/Cards";
@@ -86,9 +86,15 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
     exit: loc(exitAbs), voiceStart: loc(timing.voiceStartFrame), voiceEnd: loc(timing.voiceEndFrame),
   };
   const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SUB_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
+  const frame = useCurrentFrame();
+  const bg = scene.bg ?? {};
+  const mark = bg.mark ?? (isEnd ? undefined : scene.keywords?.[0]);
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* 背景層：色塊＋出血色帶＋大字水印（視差 0.2） */}
+      <SceneBackdropV2 mark={mark} color={bg.color ?? scene.props?.color ?? "pink"} drift={Math.min(1, frame / Math.max(1, timing.durationFrames))} />
+      {/* 主視覺：撐滿主視覺區（952×920），元件自行把內容分布到整個高度 */}
+      <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "stretch", justifyContent: "center" }}>
         <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>
           <CueContext.Provider value={cue}>
             <Comp {...scene.props} />

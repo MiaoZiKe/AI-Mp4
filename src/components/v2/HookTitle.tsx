@@ -3,7 +3,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_ZH, THEME_V2 as T } from "../../theme";
 import { DUR, EASE, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { KickerV2, StatusTagV2, markerBg, reveal } from "./base";
+import { CardV2, KickerV2, StatusTagV2, markerBg, reveal } from "./base";
 
 /**
  * P0-10 鉤子：第 0 幀就是完整構圖（≤10 字主張＋數字，≥120px），不做進場淡入。
@@ -17,9 +17,9 @@ export const HookTitle: React.FC<{ kicker?: string; lines: string[]; mark?: numb
   const slam = cueAt(c, slamAt, 40);
   const subIn = cueIn(c, subAt, 50);
   return (
-    <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", transform: `scale(${whole})`, transformOrigin: "0% 50%" }}>
+    <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: 10, transform: `scale(${whole})`, transformOrigin: "0% 50%" }}>
       {kicker && <KickerV2 text={kicker} />}
-      <div style={{ marginTop: 34, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 150, lineHeight: 1.14, letterSpacing: "-0.01em", color: T.text }}>
+      <div style={{ marginTop: 34, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 168, lineHeight: 1.12, letterSpacing: "-0.01em", color: T.text }}>
         {lines.map((l, i) => {
           const isMark = i === mark;
           const s = isMark ? bump(f, slam - 2, 0.08) : 1;
@@ -32,8 +32,17 @@ export const HookTitle: React.FC<{ kicker?: string; lines: string[]; mark?: numb
           );
         })}
       </div>
-      {sub && <div style={{ ...reveal(f, subIn), marginTop: 40, fontFamily: FONT_ZH, fontSize: 44, lineHeight: 1.4, fontWeight: 700, color: T.text2 }}>{sub}</div>}
-      {tag && <div style={{ ...reveal(f, subIn + 4), marginTop: 30 }}><StatusTagV2 status={tag} /></div>}
+      {sub && (
+        <div style={{ ...reveal(f, subIn), marginTop: 44, alignSelf: "stretch", display: "flex", alignItems: "stretch", gap: 18 }}>
+          {sub.split(/[，,]/).map((part, i, arr) => (
+            <React.Fragment key={i}>
+              <CardV2 topBar={i === arr.length - 1 ? "pink" : "cyan"} style={{ flex: 1, padding: "24px 26px", fontFamily: FONT_ZH, fontSize: 40, lineHeight: 1.35, fontWeight: 700, color: T.text }}>{part.trim()}</CardV2>
+              {i < arr.length - 1 && <div style={{ alignSelf: "center", fontFamily: FONT_ZH, fontSize: 56, fontWeight: 900, color: T.accent.pink.text }}>→</div>}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+      {tag && <div style={{ ...reveal(f, subIn + 4), marginTop: 26 }}><StatusTagV2 status={tag} size={34} /></div>}
     </div>
   );
 };

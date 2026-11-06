@@ -86,6 +86,10 @@ export const THEME_V2 = {
   /** 提示框（台灣視角等） */
   noteBg: "#FFF3DA",
   track: "#F1E7D6",
+  /** 背景色塊：深一階米色；主色淡底（約 10%）；安全區外的出血色帶 */
+  block: "#F3E7D2",
+  blockTint: 0.1,
+  watermark: "#14213D",
   /** 色名 → 實際色（script.json 仍寫 cyan／pink／yellow／purple，v2 對應到 A 的語意色） */
   accent: {
     pink: { fill: "#E8613C", text: "#C2441F", soft: "#FBE4DB" },
@@ -118,23 +122,42 @@ export const THEME_V2 = {
 export const accentV2 = (a?: string): AccentV2 => THEME_V2.accent[a ?? "pink"] ?? THEME_V2.accent.pink;
 
 /**
- * v2 版面格線（全解析度座標）。元件、字幕、來源列、audit 遮罩都讀這裡（audit.py 以 regex 解析本段數字）。
- * 字幕底緣 ≤1470 避開 IG 底部 UI；右側留 120px 避開 IG 按鈕。
+ * v2 版面格線（全解析度座標；docs/layout-rules.md）。元件、字幕、來源列、audit 遮罩都讀這裡（audit.py 以 regex 解析本段數字，
+ * 只寫「名稱: 數字」）。之後的新元件（KineticText、LineChart、UnitGrid、DepthStage、BarChart）也沿用這組常數。
+ *  頁首帶 220–310｜主視覺區 330–1250｜字幕區 1270–1560｜出處帶 1580–1690｜1700–1920 只放背景層
  */
 export const LAYOUT_V2 = {
   X: 64,
+  X_RIGHT: 1016,
+  SAFE_TOP: 220,
+  SAFE_BOTTOM: 1700,
   HEADER_TOP: 220,
   RULE_Y: 310,
-  CONTENT_TOP: 340,
-  CONTENT_BOTTOM: 1290,
-  SUB_TOP: 1310,
-  SUB_BOTTOM: 1470,
+  CONTENT_TOP: 330,
+  CONTENT_BOTTOM: 1250,
+  SUB_TOP: 1270,
+  SUB_BOTTOM: 1560,
   SUB_RIGHT: 960,
-  SOURCE_TOP: 1486,
+  SOURCE_TOP: 1580,
+  SOURCE_BOTTOM: 1690,
   SUB_ZH_PX: 76,
   SUB_EN_PX: 30,
   /** 字幕短語每行上限（em；76px 時約 11 個全形字，874px < 896px） */
   SUB_MAX_EM: 11.5,
   /** 英文副字幕每段上限（字元） */
   SUB_EN_MAX: 42,
+  /** 主視覺外框尺寸下限（鉤子／CTA 幕高 ≥ 45% 安全區即可） */
+  MAIN_MIN_W: 856,
+  MAIN_MIN_H: 814,
+  /** 圖表繪圖區下限 */
+  CHART_MIN_W: 856,
+  CHART_MIN_H: 640,
+  /** 空白帶上限：主視覺區內、安全區內、主視覺與字幕間距 */
+  GAP_MAX_MAIN: 120,
+  GAP_MAX_SAFE: 160,
+  GAP_MAX_SUB: 140,
+  /** 背景層：大字水印尺寸與透明度、色塊圓角 */
+  WATERMARK_PX: 480,
+  WATERMARK_OPACITY: 0.05,
+  BLOCK_RADIUS: 40,
 } as const;

@@ -3,7 +3,7 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { iconShapeV2 } from "../Icons";
-import { DUR, EASE, enter, tween } from "../anim";
+import { AMBIENT, DUR, EASE, enter, tween } from "../anim";
 
 /** 卡片：暖白紙、2px 邊框、紙張陰影；topBar 傳色名時頂端加 6px 色條 */
 export const CardV2: React.FC<{ topBar?: string; style?: React.CSSProperties; children: React.ReactNode }> = ({ topBar, style, children }) => (
@@ -106,3 +106,24 @@ export const fmtNum = (v: number, decimals = 0) => {
 };
 export const EN: React.CSSProperties = { fontFamily: FONT_EN, color: T.text3, fontSize: 26, fontWeight: 400 };
 export const drawIn = (f: number, start: number) => tween(f, start, DUR.l, EASE.enter);
+
+/**
+ * 每幕背景層（docs/layout-rules.md 四層的第 1 層）：紙紋（全片 BackgroundV2）之上加
+ *  ① 深一階米色大色塊：在主視覺後方右下偏移 40px（2.5D 層次）
+ *  ② 主色淡底出血色帶：安全區外 1700–1920（不搶內容）
+ *  ③ 大字水印（4–7% 透明、480px、右側出血），背景層視差：整幕緩慢漂移 12px（速度比 0.2）
+ * 顏色、尺寸全部讀 THEME_V2／LAYOUT_V2；隨場景一起轉場。
+ */
+export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: number }> = ({ mark, color, drift = 0 }) => {
+  const a = accentV2(color);
+  const dx = AMBIENT ? Math.round(-12 * drift) : 0; // 背景層視差（裝飾，AUDIT=1 時關掉）
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <div style={{ position: "absolute", left: L.X + 40, top: L.CONTENT_TOP + 40, width: L.X_RIGHT - L.X, height: L.CONTENT_BOTTOM - L.CONTENT_TOP, borderRadius: L.BLOCK_RADIUS, background: T.block }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: L.SAFE_BOTTOM, bottom: 0, background: a.fill, opacity: T.blockTint }} />
+      {mark && (
+        <div style={{ position: "absolute", right: -120 + dx, top: L.CONTENT_TOP + 180, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY, whiteSpace: "nowrap" }}>{mark}</div>
+      )}
+    </AbsoluteFill>
+  );
+};

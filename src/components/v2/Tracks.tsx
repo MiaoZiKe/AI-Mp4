@@ -49,7 +49,7 @@ const PhraseView: React.FC<{ cue: PhraseCue; f: number }> = ({ cue, f }) => {
   const enStart = k === 0 ? a : ps[Math.ceil((ek * ps.length) / en.length)]?.start ?? a;
   const enOp = Math.min(enStart === 0 ? 1 : tween(f, enStart, IN, EASE.enter), (ek + 1 < en.length ? 1 - tween(f, (ps[Math.ceil(((ek + 1) * ps.length) / en.length)]?.start ?? b) - OUT, OUT, EASE.exit) : 1 - tween(f, b - OUT, OUT, EASE.exit)));
   return (
-    <div style={{ position: "absolute", left: L.X, width: L.SUB_RIGHT - L.X, bottom: 1920 - L.SUB_BOTTOM, textAlign: "center" }}>
+    <div style={{ position: "absolute", left: L.X, width: L.SUB_RIGHT - L.X, top: L.SUB_TOP, height: L.SUB_BOTTOM - L.SUB_TOP, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
       <div style={{ opacity: op, transform: `translateY(${dy}px)`, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.SUB_ZH_PX, lineHeight: 1.24, color: T.text, whiteSpace: "nowrap" }}>
         {splitParts(display(cur.text), cue.keywords).map((p, i) => {
           if (p.k < 0) return <span key={i}>{p.text}</span>;

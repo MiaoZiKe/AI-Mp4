@@ -214,7 +214,7 @@
         "startAt": "btc",
         "at": "drop",
         "note": "市場常形容它是「槓桿化的比特幣」；台灣可用複委託買到",
-        "noteAt": "drop"
+        "noteAt": "amp"
       },
       "sources": [
         "CoinDesk",
@@ -370,8 +370,24 @@
         },
         "startAt": "c20",
         "at": "more",
-        "note": "100 股、100 枚 → 增發 10 股買 20 枚 → 110 股、120 枚（依公開定義推算）",
-        "noteAt": "c20"
+        "note": "增發 10 股買到 20 枚：幣增加得比股數快（依公開定義推算）",
+        "noteAt": "c20",
+        "bars": [
+          {
+            "label": "持幣",
+            "value": 120,
+            "text": "100→120",
+            "color": "yellow",
+            "at": "c20"
+          },
+          {
+            "label": "股數",
+            "value": 110,
+            "text": "100→110",
+            "color": "cyan",
+            "at": "c20"
+          }
+        ]
       },
       "sources": [
         "Bitcoin Treasuries 電子報",
@@ -393,6 +409,10 @@
       ],
       "cues": [
         {
+          "id": "saylor",
+          "text": "Saylor"
+        },
+        {
           "id": "top",
           "text": "買在頂部"
         },
@@ -411,7 +431,7 @@
           {
             "status": "fact",
             "text": "2022：「我會永遠買在頂部」",
-            "at": "top"
+            "at": "saylor"
           },
           {
             "status": "fact",
