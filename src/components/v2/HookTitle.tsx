@@ -19,7 +19,7 @@ export const HookTitle: React.FC<{ kicker?: string; lines: string[]; mark?: numb
   return (
     <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-evenly", gap: 10, transform: `scale(${whole})`, transformOrigin: "0% 50%" }}>
       {kicker && <KickerV2 text={kicker} />}
-      <div style={{ marginTop: 34, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 168, lineHeight: 1.12, letterSpacing: "-0.01em", color: T.text }}>
+      <div style={{ transform: `translateX(${(40 * (1 - tween(f, 0, Math.max(1, c.exit), EASE.move))).toFixed(2)}px)`, marginTop: 34, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 168, lineHeight: 1.12, letterSpacing: "-0.01em", color: T.text }}>
         {lines.map((l, i) => {
           const isMark = i === mark;
           const s = isMark ? bump(f, slam - 2, 0.08) : 1;

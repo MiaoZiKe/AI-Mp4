@@ -2,7 +2,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
-import { STAGGER, bump } from "../anim";
+import { EASE, STAGGER, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
 import { CardV2, KickerV2, LogoV2, markerBg, reveal } from "./base";
 
@@ -16,7 +16,8 @@ export const CtaCard: React.FC<{ kicker?: string; question: string[]; options?: 
   return (
     <div style={{ width: 952, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-evenly" }}>
       {kicker && <div style={reveal(f, 0)}><KickerV2 text={kicker} /></div>}
-      <div style={{ ...reveal(f, 0), marginTop: 30, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 140, lineHeight: 1.14, color: T.text }}>
+      {/* 大字提問：整幕由右往左緩慢漂移 40px（2.5D 前景層，不縮放） */}
+      <div style={{ opacity: reveal(f, 0).opacity, transform: `translateX(${(40 * (1 - tween(f, 0, Math.max(1, c.exit), EASE.move))).toFixed(2)}px)`, marginTop: 30, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: 140, lineHeight: 1.14, color: T.text }}>
         {question.map((q, i) => <div key={i}><span style={i === 0 ? markerBg(0.35 + 0.65 * Math.min(1, Math.max(0, (f - cueAt(c, optionsAt, 10)) / 10))) : undefined}>{q}</span></div>)}
       </div>
       <div style={{ display: "flex", gap: 22, marginTop: 44, alignSelf: "stretch" }}>

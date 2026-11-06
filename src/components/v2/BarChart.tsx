@@ -8,7 +8,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2, mixHex } from "../../theme";
 import { DUR, EASE, STAGGER, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { EN, IconV2, fmtNum, reveal } from "./base";
+import { EN, IconV2, fmtNum, reveal, PanStage } from "./base";
 
 type Bar = { label: string; value: number; color?: string; at?: string; highlight?: boolean; icon?: string; text?: string };
 type Frame = { at?: string; frame?: number; label: string; values: Record<string, number> };
@@ -65,7 +65,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
   const neg = bars.every((b) => b.value <= 0);
   const vmax = max ?? Math.max(...bars.map((b) => Math.abs(b.value))) * 1.08;
   const base = neg ? P0 + 130 : P1 - 70; // 基準線（全負值：上方，標籤與圖示在基準線上）
-  const span = neg ? P1 - 150 - base : base - (P0 + 170);
+  const span = neg ? P1 - 120 - base : base - (P0 + 170);
   const Yv = (v: number) => base + (neg ? 1 : -1) * (Math.abs(v) / vmax) * span;
   const slot = 952 / bars.length;
   const bw = Math.max(110, Math.min(140, slot * 0.4));
@@ -73,7 +73,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
   const step = vmax > 8 ? 2 : 1;
   const ticks = Array.from({ length: Math.floor(vmax / step) }, (_, k) => (k + 1) * step);
   return (
-    <div style={{ position: "relative", width: 952, height: H }}>
+    <PanStage><div style={{ position: "relative", width: 952, height: H }}>
       <Title f={f} title={title} titleEn={titleEn} />
       <svg width={952} height={H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {ticks.map((v) => (
@@ -117,7 +117,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
       )}
       {note && <Callout x={cx(note.bar) - bw / 2} y={Yv(bars[note.bar].value) - 40} text={note.text} f={f} t={cueIn(c, note.at, 40)} side="left" />}
       {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
-    </div>
+    </div></PanStage>
   );
 };
 
@@ -135,7 +135,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
   const GROW = DUR.l + 6;
   const hOf = (i: number) => (bars[i].value / vmax) * (floor - top) * tween(f, st[i], GROW, EASE.move);
   return (
-    <div style={{ position: "relative", width: 952, height: H }}>
+    <PanStage><div style={{ position: "relative", width: 952, height: H }}>
       <Title f={f} title={title} titleEn={titleEn} />
       <svg width={952} height={H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {/* 背牆格線（量級刻度） */}
@@ -189,7 +189,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
         return <Callout x={x} ay={ay} y={Math.min(ay - 120, floor - 300)} text={note.text} f={f} t={t} side={x > 476 ? "left" : "right"} />;
       })()}
       {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
-    </div>
+    </div></PanStage>
   );
 };
 
@@ -214,7 +214,7 @@ const Race: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
   const LW = 230, BW = 952 - LW - 190;
   const label = u > 0.5 ? k1.label : k0.label;
   return (
-    <div style={{ position: "relative", width: 952, height: H }}>
+    <PanStage><div style={{ position: "relative", width: 952, height: H }}>
       <div style={{ position: "absolute", right: -40, bottom: 20, fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: 200, color: T.watermark, opacity: L.WATERMARK_OPACITY + 0.03, whiteSpace: "nowrap" }}>{label}</div>
       <Title f={f} title={title} titleEn={titleEn} />
       {bars.map((b, i) => {
@@ -230,7 +230,7 @@ const Race: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
         );
       })}
       {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
-    </div>
+    </div></PanStage>
   );
 };
 

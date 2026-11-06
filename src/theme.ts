@@ -127,7 +127,9 @@ export const THEME_V2 = {
     tiltEnter: 12,
     parallax: [0.2, 0.5, 1.0],
     drift: 60,
-    stack: [{ dx: 24, dy: 24, scale: 0.96, opacity: 0.7 }, { dx: 48, dy: 48, scale: 0.92, opacity: 0.45 }],
+    /** 圖表的 2.5D 平移：整張圖表隨整幕由下往上漂移的總量（px；主視覺區上下各留 20px 餘裕） */
+    panY: 36,
+    stack: [{ dx: 18, dy: 18, scale: 0.96, opacity: 0.7 }, { dx: 36, dy: 36, scale: 0.92, opacity: 0.45 }],
   },
   /** 圖表：格線、軸標籤、未填格、非重點條透明度 */
   chart: {
@@ -204,5 +206,5 @@ export const LAYOUT_V2 = {
   BAR_TOP: 400,
   DEPTH_TOP: 360,
   DEPTH_BOTTOM: 1180,
-  FRONT_W: 900,
+  FRONT_W: 856,
 } as const;

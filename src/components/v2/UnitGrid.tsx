@@ -5,7 +5,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, bump, countUp, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { EN, fmtNum, markerBg, reveal } from "./base";
+import { EN, fmtNum, markerBg, reveal, PanStage } from "./base";
 
 type Group = { count: number; color?: string; label: string; at?: string };
 type Counter = { label: string; from: number; to: number; unit?: string; color?: string; startAt?: string; at?: string };
@@ -70,7 +70,7 @@ export const UnitGrid: React.FC<UnitGridProps> = ({ title, titleEn, titleMark, t
   })() : null;
   const tAt = cueAt(c, titleAt, 0);
   return (
-    <div style={{ position: "relative", width: 952, height: H }}>
+    <PanStage><div style={{ position: "relative", width: 952, height: H }}>
       <div style={{ ...reveal(f, 0), position: "absolute", left: 0, right: 0, top: 4 }}>
         <div style={{ fontFamily: FONT_ZH, fontSize: 56, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap", lineHeight: 1.15 }}>
           {titleMark ? title.split(titleMark).map((part, i, arr) => (
@@ -128,6 +128,6 @@ export const UnitGrid: React.FC<UnitGridProps> = ({ title, titleEn, titleMark, t
           </div>
         );
       })()}
-    </div>
+    </div></PanStage>
   );
 };

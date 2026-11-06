@@ -31,7 +31,8 @@ export const mainBox = (s, Lt) => {
     case "LineChart": return { box: full, plot: [Lt.X, Lt.PLOT_TOP, Lt.X_RIGHT, Lt.PLOT_BOTTOM] };
     case "BarChart": return { box: full, plot: [Lt.X, Lt.BAR_TOP, Lt.X_RIGHT, Lt.PLOT_BOTTOM] };
     case "UnitGrid": return { box: full, plot: [Lt.X, Lt.CONTENT_TOP + 210, Lt.X_RIGHT, Lt.CONTENT_TOP + 780] };
-    case "DepthStage": { const fx = Lt.X + (952 - Lt.FRONT_W) / 2; return { box: [fx, Lt.DEPTH_TOP, fx + Lt.FRONT_W + 48, Lt.DEPTH_BOTTOM + 48], front: [fx, Lt.DEPTH_TOP, fx + Lt.FRONT_W, Lt.DEPTH_BOTTOM] }; }
+    // 前景 x 由 +60 漂到 0；堆疊卡往右下露出 18／36px → 外框右緣 = X + FRONT_W + 60（漂移）+ 36（堆疊）
+    case "DepthStage": return { box: [Lt.X, Lt.DEPTH_TOP, Lt.X + Lt.FRONT_W + 96, Lt.DEPTH_BOTTOM + 36], front: [Lt.X, Lt.DEPTH_TOP, Lt.X + Lt.FRONT_W, Lt.DEPTH_BOTTOM] };
     case "EndCard": return { box: [Lt.X, Lt.CONTENT_TOP, Lt.X_RIGHT, Lt.SOURCE_BOTTOM] };
     default: return { box: full };
   }
@@ -455,7 +456,7 @@ export function validate(script) {
       if (cats[k] === "card") { const t = cardText(x.props); if (t > 45) E(`規則9：${tg} 卡片畫面文字 ${t} 字 > 45（不含字幕）`); }
       const mb = mainBox(x, Lt);
       const [x0, y0, x1, y1] = mb.box;
-      if (x0 < Lt.X || x1 > Lt.X_RIGHT + 48 || y0 < Lt.SAFE_TOP || y1 > Lt.SAFE_BOTTOM) E(`規則10：${tg} 主視覺外框 [${mb.box}] 超出安全區 x ${Lt.X}–${Lt.X_RIGHT}、y ${Lt.SAFE_TOP}–${Lt.SAFE_BOTTOM}`);
+      if (x0 < Lt.X || x1 > Lt.X_RIGHT || y0 < Lt.SAFE_TOP || y1 > Lt.SAFE_BOTTOM) E(`規則10：${tg} 主視覺外框 [${mb.box}] 超出安全區 x ${Lt.X}–${Lt.X_RIGHT}、y ${Lt.SAFE_TOP}–${Lt.SAFE_BOTTOM}`);
       const loose = ["hook", "cta"].includes(x.beat);
       const minH = loose ? (Lt.SAFE_BOTTOM - Lt.SAFE_TOP) * 0.45 : Lt.MAIN_MIN_H;
       const fw = mb.front ? mb.front[2] - mb.front[0] : x1 - x0, fh = mb.front ? mb.front[3] - mb.front[1] : y1 - y0;

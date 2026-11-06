@@ -4,6 +4,7 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { iconShapeV2 } from "../Icons";
 import { AMBIENT, DUR, EASE, enter, tween } from "../anim";
+import { useCue } from "../../cue";
 
 /** 卡片：暖白紙、2px 邊框、紙張陰影；topBar 傳色名時頂端加 6px 色條 */
 export const CardV2: React.FC<{ topBar?: string; style?: React.CSSProperties; children: React.ReactNode }> = ({ topBar, style, children }) => (
@@ -126,4 +127,15 @@ export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: 
       )}
     </AbsoluteFill>
   );
+};
+
+/**
+ * 2.5D 平移（圖表用）：整張圖表隨整幕由下往上緩慢漂移 THEME_V2.depth.panY px（EASE.move，不回彈、不縮放），
+ * 從 +panY 漂回 0（最後對齊格線）：標題不碰報頭線（310），圖表底（約 1222＋36）不碰字幕區（1270）。
+ */
+export const PanStage: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const f = useCurrentFrame();
+  const c = useCue();
+  const y = T.depth.panY * (1 - tween(f, 0, Math.max(1, c.exit), EASE.move));
+  return <div style={{ transform: `translateY(${y.toFixed(2)}px)` }}>{children}</div>;
 };

@@ -6,7 +6,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { EN, fmtNum, reveal } from "./base";
+import { EN, fmtNum, reveal, PanStage } from "./base";
 
 type Pt = { t: number; v: number };
 type Series = { label?: string; color?: string; points: Pt[] };
@@ -15,7 +15,7 @@ export type LineChartProps = {
   title: string; titleEn?: string; unit?: string; decimals?: number; color?: string;
   series: Series[]; xTicks: { t: number; label: string }[]; yMax?: number; yTicks?: number[];
   refLine?: { value: number; label: string; at?: string };
-  band?: { from: number; to: number; label: string; at?: string; color?: string };
+  band?: { from: number; to: number; label: string; sub?: string; at?: string; color?: string };
   notes?: Note[]; draw?: { at?: string; frame?: number; t: number }[]; watermark?: string; footnote?: string; badgeLabel?: string;
 };
 
@@ -49,7 +49,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
   const refIn = refLine ? cueIn(c, refLine.at, 12) : 0;
   const bc = accentV2(band?.color ?? "yellow");
   return (
-    <div style={{ position: "relative", width: 952, height: L.CONTENT_BOTTOM - L.CONTENT_TOP }}>
+    <PanStage><div style={{ position: "relative", width: 952, height: L.CONTENT_BOTTOM - L.CONTENT_TOP }}>
       {watermark && (
         <div style={{ position: "absolute", right: -150, top: ly(L.PLOT_TOP) + 60, fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY, whiteSpace: "nowrap" }}>{watermark}</div>
       )}
@@ -72,6 +72,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
             <g opacity={tween(f, bandIn, DUR.s)}>
               <rect x={x0} y={PLOT.y0 - 20} width={(x1 - x0) * p} height={PLOT.y1 - PLOT.y0 + 20} fill={bc.soft} opacity={T.chart.bandOpacity + 0.3} />
               <text x={x0 + 16} y={PLOT.y0 + 22} fontFamily={FONT_ZH} fontSize={34} fontWeight={700} fill={bc.text}>{band.label}</text>
+              {band.sub && <text x={x0 + 16} y={PLOT.y0 + 72} fontFamily={FONT_ZH} fontSize={40} fontWeight={900} fill={T.text} opacity={tween(f, bandIn + DUR.s, DUR.s)}>{band.sub}</text>}
             </g>
           );
         })()}
@@ -162,6 +163,6 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
         );
       })()}
       {footnote && <div style={{ ...reveal(f, 10, 1, 8), position: "absolute", left: 0, right: 0, top: ly(L.PLOT_BOTTOM) + 14, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
-    </div>
+    </div></PanStage>
   );
 };

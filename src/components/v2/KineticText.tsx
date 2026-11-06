@@ -35,10 +35,10 @@ const FlipNumber: React.FC<{ v: number; final: number; color: string }> = ({ v, 
         const frac = k === 0 ? v % 1 : Math.max(0, (v % p) - (p - 1));
         const y = -(digit + frac) * h;
         return (
-          <div key={i} style={{ position: "relative", width: 118, height: h, overflow: "hidden", borderRadius: T.radius, background: T.card, border: `${T.cardBorderW}px solid ${T.cardBorder}`, boxShadow: T.shadow }}>
+          <div key={i} style={{ position: "relative", width: 104, height: h, overflow: "hidden", borderRadius: T.radius, background: T.card, border: `${T.cardBorderW}px solid ${T.cardBorder}`, boxShadow: T.shadow }}>
             <div style={{ position: "absolute", left: 0, right: 0, top: 0, transform: `translateY(${y.toFixed(1)}px)` }}>
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((d, j) => (
-                <div key={j} style={{ height: h, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: 168, color, fontVariantNumeric: "tabular-nums" }}>{d}</div>
+                <div key={j} style={{ height: h, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: 160, color, fontVariantNumeric: "tabular-nums" }}>{d}</div>
               ))}
             </div>
             <div style={{ position: "absolute", left: 0, right: 0, top: h / 2 - 1, height: 3, background: T.bg }} />
@@ -98,7 +98,7 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
   const cued = lines.map((l) => hasCue(c, l.at));
   // 前景層：整幕緩慢水平漂移（視差 1.0，40px）；水印反向漂移（0.2）
   const drift = tween(f, 0, Math.max(1, c.exit), EASE.move);
-  const fx = Math.round((20 - 40 * drift) * 10) / 10;
+  const fx = Math.round(56 * (1 - drift) * 10) / 10; // 56 → 0：只往左漂、最後對齊左側脊線，不出安全區
   const wx = Math.round((-8 + 16 * drift) * 10) / 10;
   const flipLand = flip ? cueAt(c, flip.at, 50) : 0;
   let flipStart = flip ? cueAt(c, flip.startAt, Math.max(6, flipLand - 40)) : 0;

@@ -48,6 +48,9 @@
 ## 可重用元件（src/components/）
 Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、BigNumber、SeatBar（席次條，含過半門檻線）、IconGrid、ImpactCard（含「已確定／分析預期／尚未確定」標籤）、SourceFooter
 - v2（`src/components/v2/`）：HookTitle、CtaCard、BigNumberV2（from、對照小標 ref、資料條 bars）、CompareSplitV2、FlowRowV2、ImpactCardV2、IconGridV2、TermCardV2、EndCardV2、SubtitleTrackV2／SourceTrackV2、CoverV2；SeatBar 尚無 v2 版
+- v2 畫面形式元件（只用 SVG＋CSS 2D／perspective，禁止 three.js／WebGL／預渲染 3D）：KineticText（全螢幕大字、翻牌 flip、count、角落 ring／sparkline／icon）、LineChart（描線關鍵幀 draw、跟隨徽章、引線註解 ≤3、參考線、重點期間色帶）、UnitGrid（waffle，row／col／wave 填色、框選一組、計數列）、DepthStage（2.5D 景深舞台，前景包 CompareSplit／FlowRow／ImpactCard／IconGrid／TermCard／BigNumber）、BarChart（flat／iso／race）。
+- 元件類別（validate 規則 1–10，見 docs/viz-research.md）：card（TermCard、FlowRow、CompareSplit、BigNumber、IconGrid、ImpactCard、CtaCard）／chart（LineChart、BarChart、UnitGrid）／kinetic（HookTitle、KineticText）／depth（DepthStage）／end。card ≤ 幕數÷3、第一幕不能是 card、同類不連續三幕。
+- `npm run still` 對 v2 會跑覆蓋率檢查（cov2.py；佔用率、空白帶、主視覺框、背景存在率），結果寫 `out/<slug>/coverage.json`，有 error 時非零結束。
 
 ## 資料驅動
 - `videos/<slug>/` 底下放：research.md、script.json（每幕的 id、旁白、中英字幕、關鍵詞、元件、參數、來源）、caption.md
