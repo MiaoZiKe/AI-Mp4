@@ -136,8 +136,8 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
         </TransitionSeries>
         <SubtitleTrack cues={subCues} />
         <SourceTrack cues={srcCues} asOf={asOf} />
-        {/* 人聲：最外層，依絕對幀擺放（不受轉場重疊影響） */}
-        {timeline.scenes.filter((t) => t.audio).map((t) => (
+        {/* 人聲：最外層，依絕對幀擺放（不受轉場重疊影響）。有 voice.wav（整條 loudnorm 的人聲軌）就只播這一條 */}
+        {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
           <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none">
             <Audio src={staticFile(t.audio as string)} />
           </Sequence>

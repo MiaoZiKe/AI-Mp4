@@ -42,6 +42,7 @@ if (!slug) { console.error("用法：npm run tts <slug> [--force] [--only=id1,id
 const dir = path.join(ROOT, "videos", slug);
 const script = JSON.parse(fs.readFileSync(path.join(dir, "script.json"), "utf8"));
 const voice = script.voice ?? {};
+const V2 = script.styleVersion === 2;
 if (!voice.voiceName) { console.error("script.json 缺 voice.voiceName"); process.exit(2); }
 const MODEL = process.env.TTS_MODEL || voice.model || "gemini-3.8-flash-tts";
 // 語氣指示：2.5 系列 TTS 會把「XXX說：」當成指示而不唸出；3.x 會整段唸出，所以 3.x 一律只送純文字
@@ -90,9 +91,14 @@ const wavHeader = (dataLen, rate) => {
 };
 const writeRaw = (file, res) => fs.writeFileSync(file, res.wav ?? Buffer.concat([wavHeader(res.pcm.length, res.rate), res.pcm]));
 const dur = (file) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", file]).toString().trim());
-/** 去頭尾靜音（各留 0.08/0.12 秒）+ 響度正規化 → 24kHz mono；可指定 ss/to 只取一段 */
+/**
+ * 去頭尾靜音 → 24kHz mono；可指定 ss/to 只取一段。
+ *  v1：頭尾各留 0.08/0.12 秒，每段各自 loudnorm（舊片保持原樣）
+ *  v2（P0-4）：頭尾各留 0.04 秒，不逐段 loudnorm（批次合成本來就同一個音量），整條人聲軌在 align 時統一做兩段式 loudnorm → voice.wav
+ */
 const polish = (raw, out, ss, to) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...(ss !== undefined ? ["-ss", String(ss), "-to", String(to)] : []), "-i", raw, "-af",
-  "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.08,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.12,areverse,loudnorm=I=-16:TP=-1.5:LRA=11",
+  V2 ? "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.04,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.04,areverse"
+    : "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.08,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.12,areverse,loudnorm=I=-16:TP=-1.5:LRA=11",
   "-ar", "24000", "-ac", "1", out]);
 /** 靜音清單 [{s,e,d}] */
 const silences = (file) => {

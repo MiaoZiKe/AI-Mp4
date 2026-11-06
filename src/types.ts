@@ -12,6 +12,12 @@ export type Scene = {
   durationSec?: number;
   /** styleVersion 2：進入本幕的轉場（預設 fade） */
   transition?: TransitionType;
+  /** styleVersion 2：本幕人聲結束後多停幾秒（數字、反轉前後 0.3–0.5） */
+  pauseAfter?: number;
+  /** styleVersion 2：敘事骨架 */
+  beat?: "hook" | "you" | "mechanism" | "twist" | "payoff" | "cta";
+  /** styleVersion 2：念到某個詞時觸發畫面（元件以 at:"cueId" 引用） */
+  cues?: { id: string; text: string; occurrence?: number }[];
 };
 
 export type TransitionType = "fade" | "slide";
@@ -69,9 +75,13 @@ export type SceneTimingV2 = {
   lines: { text: string; start: number; chars: number[] }[];
   /** 絕對幀：關鍵詞被唸到 */
   keywords: { text: string; start: number }[];
+  /** P0-8：cue 被唸到的絕對幀（找不到為 null） */
+  cues?: { id: string; text: string; frame: number | null }[];
   [k: string]: unknown;
 };
-export type TimelineV2 = { version: 2; slug: string; fps: number; totalFrames: number; totalSec: number; gapSec?: number; scenes: SceneTimingV2[] };
+export type TimelineV2 = { version: 2; slug: string; fps: number; totalFrames: number; totalSec: number; gapSec?: number; scenes: SceneTimingV2[];
+  /** P0-4：整條人聲軌（public/ 底下相對路徑，已做整條 loudnorm） */
+  voice?: { file: string; lufs: number; lufsIn?: number; sec: number } | null };
 
 export type CoverSpec = {
   title: string[];
