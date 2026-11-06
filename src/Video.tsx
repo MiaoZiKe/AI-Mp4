@@ -82,7 +82,8 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
   // P0-8：cue 絕對幀 → 元件本地幀（元件時間比 Sequence 快 lead 幀）
   const loc = (abs: number) => abs - timing.startFrame + lead;
   const cue = {
-    cues: Object.fromEntries((timing.cues ?? []).filter((c) => c.frame !== null).map((c) => [c.id, loc(c.frame as number)])),
+    // 關鍵詞被唸到的幀也當成 beat（id 以 kw: 開頭，只給鏡頭推拉用，元件的 at 不會引用到）
+    cues: Object.fromEntries([...(timing.cues ?? []).filter((c) => c.frame !== null).map((c) => [c.id, loc(c.frame as number)]), ...(timing.keywords ?? []).map((k) => [`kw:${k.text}`, loc(k.start)])]),
     exit: loc(exitAbs), voiceStart: loc(timing.voiceStartFrame), voiceEnd: loc(timing.voiceEndFrame),
   };
   const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SUB_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
