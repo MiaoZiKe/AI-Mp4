@@ -1,4 +1,4 @@
-import sys, numpy as np
+import sys, os, json, numpy as np
 from PIL import Image, ImageFilter
 from collections import deque
 SX0,SX1,SY0,SY1=64,1016,220,1700
@@ -53,8 +53,19 @@ def analyze(path):
     comps.sort(reverse=True)
     m=comps[0] if comps else (0,0,0,0,0)
     sw,sh=SX1-SX0,SY1-SY0
+    # 背景存在率：主視覺區內與純紙紋背景（public/bg/base-v2.png）色差 ≥6 的像素比例（背景色塊、水印、色帶、內容都算）
+    bgp=None
+    base=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..','..','public','bg','base-v2.png')
+    if light and os.path.exists(base):
+        b=np.asarray(Image.open(base).convert('RGB').resize((540,960))).astype(np.int16)
+        bgp=float((np.abs(a-b).max(axis=2)[330//2:1250//2,x0:x1]>=6).mean()*100)  # 主視覺區 y 330–1250
     return dict(ink=inkS.mean()*100,occ=occS.mean()*100,longest=longest,totalempty=totalempty,
-        mv_w=(m[4]-m[3])/sw*100,mv_h=(m[2]-m[1])/sh*100,mv_y=(m[1],m[2]),light=light)
+        mv_w=(m[4]-m[3])/sw*100,mv_h=(m[2]-m[1])/sh*100,mv_y=(int(m[1]),int(m[2])),light=bool(light),bg=bgp)
+if '--json' in sys.argv:
+    out=[]
+    for p in [a for a in sys.argv[1:] if a!='--json']:
+        r=analyze(p); r.update(file=os.path.basename(p)); r={k:(round(float(v),2) if isinstance(v,(float,np.floating)) else v) for k,v in r.items()}; r['longest']=int(r['longest']); r['totalempty']=int(r['totalempty']); out.append(r)
+    print(json.dumps(out)); sys.exit(0)
 print(f"{'file':38s} ink% occ% longestGap totalGap  MVw% MVh%  MVy")
 for p in sys.argv[1:]:
     r=analyze(p)

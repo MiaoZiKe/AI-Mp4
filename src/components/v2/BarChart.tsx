@@ -32,7 +32,7 @@ const Title: React.FC<{ f: number; title: string; titleEn?: string }> = ({ f, ti
 /** 刻度：1／2／5 × 10^n，3–4 格 */
 const niceTicks = (vmax: number) => {
   const raw = vmax / 4, p = 10 ** Math.floor(Math.log10(raw));
-  const step = [1, 2, 5, 10].map((k) => k * p).find((k) => k >= raw) ?? raw;
+  const step = [10, 5, 2.5, 2, 1].map((k) => k * p).find((k) => k <= raw) ?? raw;
   return Array.from({ length: Math.floor(vmax / step) }, (_, i) => (i + 1) * step);
 };
 /** 每條的進場幀：有 cue 用 cue；沒有就依序 */
@@ -143,8 +143,8 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
           const y = floor - (v / vmax) * (floor - top) - dy;
           return (
             <g key={v}>
-              <line x1={dx + 70} x2={952} y1={y} y2={y} stroke={T.chart.grid} strokeWidth={2} strokeDasharray="6 10" />
-              <text x={0} y={y + 10} fontFamily={FONT_EN} fontSize={28} fontWeight={600} fill={T.chart.label}>{fmtNum(v)}</text>
+              <line x1={0} x2={952} y1={y} y2={y} stroke={T.chart.grid} strokeWidth={2} strokeDasharray="6 10" />
+              <text x={952} y={y - 10} textAnchor="end" fontFamily={FONT_EN} fontSize={28} fontWeight={600} fill={T.chart.label}>{fmtNum(v)}</text>
             </g>
           );
         })}

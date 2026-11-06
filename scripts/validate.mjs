@@ -9,12 +9,41 @@ const COLORS = ["cyan","pink","yellow","purple"];
 const STATUS = ["fact","expected","pending"];
 const COMPONENTS = ["TermCard","FlowRow","CompareSplit","BigNumber","SeatBar","IconGrid","ImpactCard","EndCard"];
 /** styleVersion 2 可用元件（SeatBar 尚未做 v2 版） */
-const COMPONENTS_V2 = ["HookTitle","CtaCard","TermCard","FlowRow","CompareSplit","BigNumber","IconGrid","ImpactCard","EndCard"];
+const COMPONENTS_V2 = ["HookTitle","CtaCard","TermCard","FlowRow","CompareSplit","BigNumber","IconGrid","ImpactCard","EndCard","KineticText","LineChart","UnitGrid","DepthStage","BarChart"];
+/**
+ * v2 元件類別（docs/viz-research.md）：card／chart／kinetic／depth／metaphor／end。
+ * DepthStage 包的卡片算 depth；HookTitle 是全螢幕大字主張，算 kinetic；CtaCard 有選項卡片，算 card。
+ */
+export const CATEGORY_V2 = { HookTitle: "kinetic", KineticText: "kinetic", CtaCard: "card", TermCard: "card", FlowRow: "card", CompareSplit: "card", BigNumber: "card", IconGrid: "card", ImpactCard: "card",
+  LineChart: "chart", BarChart: "chart", UnitGrid: "chart", DepthStage: "depth", EndCard: "end" };
+const DEPTH_FRONTS = ["CompareSplit","FlowRow","ImpactCard","IconGrid","TermCard","BigNumber"];
+/** LAYOUT_V2（src/theme.ts）：以 regex 讀「名稱: 數字」，與 audit.py 相同 */
+export const layoutV2 = () => {
+  const src = fs.readFileSync(path.join(ROOT, "src", "theme.ts"), "utf8");
+  const blk = src.slice(src.indexOf("export const LAYOUT_V2"));
+  return Object.fromEntries([...blk.slice(0, blk.indexOf("} as const")).matchAll(/^\s*([A-Z_]+):\s*([\d.]+)/gm)].map((m) => [m[1], Number(m[2])]));
+};
+/** 規則 10：由元件與 props 算出主視覺宣告外框（全解析度 [x0, y0, x1, y1]）；chart＝繪圖區 */
+export const mainBox = (s, Lt) => {
+  const full = [Lt.X, Lt.CONTENT_TOP, Lt.X_RIGHT, Lt.CONTENT_BOTTOM];
+  switch (s.component) {
+    case "KineticText": return { box: [Lt.X, Lt.KT_TOP, Lt.X_RIGHT, Lt.KT_BOTTOM] };
+    case "LineChart": return { box: full, plot: [Lt.X, Lt.PLOT_TOP, Lt.X_RIGHT, Lt.PLOT_BOTTOM] };
+    case "BarChart": return { box: full, plot: [Lt.X, Lt.BAR_TOP, Lt.X_RIGHT, Lt.PLOT_BOTTOM] };
+    case "UnitGrid": return { box: full, plot: [Lt.X, Lt.CONTENT_TOP + 210, Lt.X_RIGHT, Lt.CONTENT_TOP + 780] };
+    case "DepthStage": { const fx = Lt.X + (952 - Lt.FRONT_W) / 2; return { box: [fx, Lt.DEPTH_TOP, fx + Lt.FRONT_W + 48, Lt.DEPTH_BOTTOM + 48], front: [fx, Lt.DEPTH_TOP, fx + Lt.FRONT_W, Lt.DEPTH_BOTTOM] }; }
+    case "EndCard": return { box: [Lt.X, Lt.CONTENT_TOP, Lt.X_RIGHT, Lt.SOURCE_BOTTOM] };
+    default: return { box: full };
+  }
+};
+/** 規則 9：卡片畫面文字（不含字幕、英文副標、色名、圖示、cue id 等欄位）字數 */
+const TEXT_SKIP = new Set(["icon", "color", "status", "at", "startAt", "noteAt", "footerAt", "subAt", "slamAt", "optionsAt", "promptAt", "taiwanAt", "titleAt", "component", "pos", "mode", "order", "source", "ref", "claims"]);
+export const cardText = (o) => { let n = 0; const w = (v, k) => { if (k && (TEXT_SKIP.has(k) || /En$/.test(k))) return; if (typeof v === "string") n += clean(v).length; else if (Array.isArray(v)) v.forEach((x) => w(x)); else if (v && typeof v === "object") for (const [kk, vv] of Object.entries(v)) w(vv, kk); }; w(o); return n; };
 const BEATS = ["hook","you","mechanism","twist","payoff","cta"];
 /** v2 字幕：短語每段上限（em），與 src/theme.ts 的 LAYOUT_V2.SUB_MAX_EM 一致 */
 export const SUB_MAX_EM_V2 = 11.5;
 /** props 裡引用 cue 的欄位 */
-const AT_KEYS = ["at","startAt","noteAt","footerAt","subAt","slamAt","optionsAt","promptAt","taiwanAt"];
+const AT_KEYS = ["at","startAt","noteAt","footerAt","subAt","slamAt","optionsAt","promptAt","taiwanAt","titleAt"];
 const FORBIDDEN_CTA = ["分享給","傳給","標記"];
 const PUNCT = /[\s，。、！？：；「」『』（）,.!?:;()"'“”‘’…—\-–·]/g;
 export const clean = (s) => String(s ?? "").replace(PUNCT, "");
@@ -96,8 +125,14 @@ export function lintSource() {
       if (/^\s*(\/\/|\*)/.test(line)) return;
       if (/Math\.random\s*\(|Date\.now\s*\(/.test(line)) errors.push(`${rel}:${i + 1} 禁用 Math.random／Date.now（隨機要用固定 seed）`);
       if (/src\/components\/(?!anim\.ts)/.test(rel) && /\bspring\s*\(|\binterpolate\s*\(/.test(line)) errors.push(`${rel}:${i + 1} 元件內不要直接呼叫 spring／interpolate，改用 anim.ts 的 motion token`);
+      // 規則 8（效能與 2.5D 上限）：v2 元件不得用 filter（只有 DepthStage 背景層的 dof 例外）；禁止 3D 引擎；rotateY ≤ 20°
+      if (/src\/components\/v2\//.test(rel) && /\bfilter\s*:/.test(line) && !/\bdof\b/.test(line)) errors.push(`${rel}:${i + 1} 規則8：v2 元件不得用 CSS filter（軟體渲染很貴；景深只能用 DepthStage 背景層的 dof）`);
+      if (/ThreeCanvas|@remotion\/three|from\s+["']three["']|WebGL|getContext\(\s*["']webgl/.test(line)) errors.push(`${rel}:${i + 1} 規則8：主片不得使用 3D 引擎（three.js／@remotion/three／WebGL）`);
+      for (const m of line.matchAll(/rotateY\(\s*(-?[\d.]+)/g)) if (Math.abs(Number(m[1])) > 20) errors.push(`${rel}:${i + 1} 規則8：rotateY ${m[1]}° > 20°`);
     });
   }
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
+  for (const d of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) if (/^(three|@remotion\/three|@react-three\/)/.test(d)) errors.push(`package.json 規則8：不得依賴 3D 引擎 ${d}`);
   return errors;
 }
 
@@ -123,6 +158,14 @@ export function validateTimelineV2(script, tl) {
       if (n.transitionFrames / 30 > tail + (n.voiceStartFrame - n.startFrame) / 30 + 1e-6) E(`timeline ${n.id}: 轉場 ${n.transitionFrames} 幀超過 TAIL＋LEAD`);
     }
     const end = i === tl.scenes.length - 1;
+    // 規則 5：cue 一定要在逐字時間軸裡找得到；超過 5 秒的幕，開口→各 cue→收聲 的間距 ≤ 3 秒
+    const sc = script.scenes.find((s) => s.id === x.id);
+    for (const q of x.cues ?? []) if (q.frame === null || q.frame === undefined) E(`規則5：timeline ${x.id}: cue「${q.text}」不在逐字時間軸裡`);
+    if (sec > 5 && sc && sc.component !== "EndCard") {
+      const pts = [x.voiceStartFrame, ...(x.cues ?? []).map((q) => q.frame).filter((v) => typeof v === "number"), x.voiceEndFrame].sort((a, b) => a - b);
+      const gmax = Math.max(...pts.slice(1).map((v, k) => v - pts[k]));
+      if (gmax > 90) W(`規則5：timeline ${x.id}: beat 間距最大 ${(gmax / 30).toFixed(1)} 秒 > 3 秒（加 cue 讓畫面跟著念）`);
+    }
     if (sec > 10.5) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 > 10`);
     if (sec < 3) E(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 3`);
     else if (sec < 5 && i !== 0 && !end && !["hook", "cta"].includes(script.scenes.find((s) => s.id === x.id)?.beat)) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 5（只有鉤子幕與 CTA 幕可短到 3 秒）`);
@@ -232,7 +275,79 @@ export function validate(script) {
     }
     const p = s.props ?? {};
     if (typeof p !== "object") E(`${tag}: props 必須是物件`);
-    switch (s.component) {
+    const checkProps = (component, p, tag) => { switch (component) {
+      case "KineticText": {
+        if (arr(p.lines, `${tag}.lines`, 1, 3)) p.lines.forEach((l, j) => {
+          str(String(l.text).replace("{n}", "0"), `${tag}.lines[${j}].text`, 8, 1, 10); color(l.color, `${tag}.lines[${j}]`);
+          if (l.size !== undefined && (l.size < 100 || l.size > 200)) E(`${tag}.lines[${j}].size ${l.size}，應 100–200（關鍵詞 140–200）`);
+          if (l.count && (typeof l.count.from !== "number" || typeof l.count.to !== "number")) E(`${tag}.lines[${j}].count 需要 from／to 數字`);
+          if (l.count && !String(l.text).includes("{n}")) E(`${tag}.lines[${j}]：有 count 但 text 沒有 {n}`);
+        });
+        if (!(p.lines ?? []).some((l) => (l.size ?? 160) >= 140) && !p.flip) W(`${tag}: KineticText 至少要有一行 ≥140px 或翻牌數字`);
+        if (p.flip && (typeof p.flip.value !== "number" || typeof p.flip.from !== "number")) E(`${tag}.flip 需要 value／from 數字`);
+        if (p.flip && String(Math.round(p.flip.value)).length > 7) E(`${tag}.flip 數字超過 7 位，翻牌會超出 952px`);
+        if (p.aux) { if (!["ring", "sparkline", "icon"].includes(p.aux.type)) E(`${tag}.aux.type 只能 ring／sparkline／icon`); if (p.aux.type === "icon") icon(p.aux.name, `${tag}.aux`); if (p.aux.type === "sparkline" && !(p.aux.values?.length >= 3)) E(`${tag}.aux.values 至少 3 點`); }
+        if (p.kicker !== undefined) str(p.kicker, `${tag}.kicker`, 16, 1, 18);
+        if (p.note !== undefined) str(p.note, `${tag}.note`, 24, 1, 28);
+        break;
+      }
+      case "LineChart": {
+        str(p.title, `${tag}.title`, 16, 1, 18); color(p.color, tag);
+        if (arr(p.series, `${tag}.series`, 1, 3)) p.series.forEach((sr, j) => {
+          if (!Array.isArray(sr.points) || sr.points.length < 3) E(`${tag}.series[${j}] 至少 3 點`);
+          else if (sr.points.some((q, k) => typeof q.t !== "number" || typeof q.v !== "number" || (k && q.t <= sr.points[k - 1].t))) E(`${tag}.series[${j}].points 的 t 要是遞增數字、v 要是數字`);
+          color(sr.color, `${tag}.series[${j}]`);
+        });
+        const pts = (p.series ?? []).flatMap((x) => x.points ?? []);
+        const t0 = Math.min(...pts.map((q) => q.t)), t1 = Math.max(...pts.map((q) => q.t)), vM = Math.max(...pts.map((q) => q.v));
+        if (pts.some((q) => q.v < 0)) W(`${tag}: LineChart y 軸從 0 起算，負值不會正確顯示`);
+        if (p.yMax !== undefined && p.yMax < vM) E(`${tag}.yMax ${p.yMax} 小於資料最大值 ${vM}`);
+        if (arr(p.xTicks, `${tag}.xTicks`, 2, 6)) p.xTicks.forEach((x) => { if (x.t < t0 || x.t > t1) E(`${tag}.xTicks t=${x.t} 超出資料範圍`); });
+        if (p.notes && arr(p.notes, `${tag}.notes`, 0, 3)) p.notes.forEach((n, j) => { if (n.t < t0 || n.t > t1) E(`${tag}.notes[${j}] t=${n.t} 超出資料範圍 ${t0}–${t1}`); str(n.text, `${tag}.notes[${j}].text`, 9, 1, 11); });
+        if (p.band && (p.band.from < t0 || p.band.to > t1 || p.band.from >= p.band.to)) E(`${tag}.band 範圍不合法`);
+        if (p.refLine && (typeof p.refLine.value !== "number" || p.refLine.value > (p.yMax ?? vM * 1.12))) E(`${tag}.refLine 超出 y 軸`);
+        for (const k of p.draw ?? []) if (k.t < t0 || k.t > t1) E(`${tag}.draw t=${k.t} 超出資料範圍`);
+        break;
+      }
+      case "BarChart": {
+        const mode = p.mode ?? "flat";
+        if (!["flat", "iso", "race"].includes(mode)) E(`${tag}.mode 只能 flat／iso／race`);
+        str(p.title, `${tag}.title`, 16, 1, 18);
+        const maxN = mode === "race" ? 7 : 6;
+        if (arr(p.bars, `${tag}.bars`, 2, maxN)) p.bars.forEach((b, j) => { if (typeof b.value !== "number") E(`${tag}.bars[${j}].value 必須是數字`); str(b.label, `${tag}.bars[${j}].label`, mode === "race" ? 6 : 5, 1, mode === "race" ? 7 : 6); color(b.color, `${tag}.bars[${j}]`); if (b.icon) icon(b.icon, `${tag}.bars[${j}]`); });
+        const vals = (p.bars ?? []).map((b) => b.value);
+        if (mode === "flat" && vals.some((v) => v > 0) && vals.some((v) => v < 0)) E(`${tag}: flat 不支援正負混合（全正或全負）`);
+        if (mode === "iso" && vals.some((v) => v < 0)) E(`${tag}: iso 只能畫正值（等角柱只表量級）`);
+        if (p.max !== undefined && p.max < Math.max(...vals.map(Math.abs))) E(`${tag}.max 小於資料最大值`);
+        if (p.note && (p.note.bar < 0 || p.note.bar >= (p.bars ?? []).length)) E(`${tag}.note.bar 超出範圍`);
+        if (mode === "race") {
+          if (!Array.isArray(p.frames) || p.frames.length < 2) E(`${tag}: race 至少要 2 個 frames`);
+          const names = (p.bars ?? []).map((b) => b.label).sort().join("|");
+          (p.frames ?? []).forEach((fr, j) => { if (Object.keys(fr.values ?? {}).sort().join("|") !== names) E(`${tag}.frames[${j}] 的標籤與 bars 不一致`); });
+        }
+        break;
+      }
+      case "UnitGrid": {
+        str(p.title, `${tag}.title`, 16, 1, 18);
+        if (p.titleMark && !String(p.title).includes(p.titleMark)) E(`${tag}.titleMark 不在 title 裡`);
+        if (typeof p.total !== "number" || typeof p.cols !== "number") E(`${tag}: 需要 total／cols 數字`);
+        else { const rows = Math.ceil(p.total / p.cols); if (p.cols < 5 || p.cols > 12 || rows > 12) E(`${tag}: 格子 ${p.cols}×${rows} 超出 5–12 欄、≤12 列`); }
+        if (arr(p.groups, `${tag}.groups`, 1, 4)) { const sum = p.groups.reduce((a, g) => a + (g.count ?? 0), 0); if (sum > p.total) E(`${tag}: groups 合計 ${sum} > total ${p.total}`); p.groups.forEach((g, j) => { color(g.color, `${tag}.groups[${j}]`); str(g.label, `${tag}.groups[${j}].label`, 10, 1, 12); }); }
+        if (p.frame && (p.frame.group < 0 || p.frame.group >= (p.groups ?? []).length)) E(`${tag}.frame.group 超出範圍`);
+        if (p.counters && arr(p.counters, `${tag}.counters`, 1, 2)) p.counters.forEach((k, j) => color(k.color, `${tag}.counters[${j}]`));
+        if (!["coin", "person", "square", undefined].includes(p.icon)) E(`${tag}.icon 只能 coin／person／square`);
+        break;
+      }
+      case "DepthStage": {
+        if (!p.front || !DEPTH_FRONTS.includes(p.front.component)) E(`${tag}.front.component 只能是 ${DEPTH_FRONTS.join("／")}`);
+        else checkProps(p.front.component, p.front.props ?? {}, `${tag}.front`);
+        if (p.tilt !== undefined && (p.tilt < 4 || p.tilt > 8)) E(`${tag}.tilt ${p.tilt}°，應 4–8°`);
+        if (p.dof !== undefined && (typeof p.dof !== "number" || p.dof < 0 || p.dof > 4)) E(`${tag}.dof 只能是 0–4（px，只套背景層）`);
+        if (p.stack && arr(p.stack, `${tag}.stack`, 0, 2)) p.stack.forEach((x, j) => color(x.color, `${tag}.stack[${j}]`));
+        if (p.badges && arr(p.badges, `${tag}.badges`, 0, 2)) p.badges.forEach((b, j) => { str(b.text, `${tag}.badges[${j}].text`, 8, 1, 10); color(b.color, `${tag}.badges[${j}]`); });
+        if (p.back?.icons && arr(p.back.icons, `${tag}.back.icons`, 0, 5)) p.back.icons.forEach((n) => icon(n, `${tag}.back`));
+        break;
+      }
       case "HookTitle": {
         if (arr(p.lines, `${tag}.lines`, 1, 2)) {
           const n = p.lines.reduce((a, x) => a + len(x), 0);
@@ -297,8 +412,10 @@ export function validate(script) {
       case "EndCard":
         if (p.next !== undefined) str(p.next, `${tag}.next`, 24, 1, 28);
         if (p.disclaimer !== undefined) str(p.disclaimer, `${tag}.disclaimer`, 30, 1, 36);
+        if (p.recap && arr(p.recap, `${tag}.recap`, 2, 3)) p.recap.forEach((r, j) => { str(r.value, `${tag}.recap[${j}].value`, 7, 1, 8); str(r.label, `${tag}.recap[${j}].label`, 10, 1, 12); color(r.color, `${tag}.recap[${j}]`); });
         break;
-    }
+    } };
+    checkProps(s.component, p, tag);
   });
   if (v2 && scenes.filter((x) => typeof x.pauseAfter === "number" && x.pauseAfter > 0).length > 3) E("pauseAfter 每支最多 3 處");
   if (v2) {
@@ -312,6 +429,39 @@ export function validate(script) {
     if (!cta.length) E("v2 片尾卡前要有一幕 cta（具體提問）");
     cta.forEach((x) => { if (!/[？?]/.test(x.narration)) E(`${x.id}: cta 幕要有具體提問（含「？」）`); });
     if (scenes.length < 8 || scenes.length > 15) W(`幕數 ${scenes.length}，v2 建議 9–14`);
+    // ── 畫面類別規則（docs/viz-research.md validate 規則 1–4、6、7、9、10） ──
+    const cats = scenes.map((x) => CATEGORY_V2[x.component] ?? "card");
+    const n = scenes.length, cards = cats.filter((c) => c === "card").length;
+    if (cards > Math.floor(n / 3)) E(`規則1：card 類 ${cards} 幕 > 總幕數÷3（${Math.floor(n / 3)}）；改用 chart／kinetic／depth，或用 DepthStage 包卡片`);
+    for (let k = 1; k < n; k++) {
+      if (cats[k] === "end" || cats[k] !== cats[k - 1]) continue;
+      if (k >= 2 && cats[k - 2] === cats[k]) E(`規則2：${scenes[k - 2].id}、${scenes[k - 1].id}、${scenes[k].id} 連續三幕都是 ${cats[k]}`);
+      else W(`規則2：${scenes[k - 1].id} → ${scenes[k].id} 相鄰同類別（${cats[k]}）`);
+    }
+    if (cats[0] === "card") E(`規則3：第一幕不能是 card（${scenes[0].component}）`);
+    const estSec = scenes.reduce((a, x) => a + voicedSeconds(x, true), 0);
+    const cnt = (c) => cats.filter((x) => x === c).length;
+    if (estSec >= 45) {
+      if (cnt("chart") < 3) W(`規則4：chart 只有 ${cnt("chart")} 幕（≥45 秒建議 ≥3）`);
+      if (cnt("kinetic") < 2) W(`規則4：kinetic 只有 ${cnt("kinetic")} 幕（建議 ≥2）`);
+      if (cnt("depth") + cnt("metaphor") < 2) W(`規則4：depth／metaphor 只有 ${cnt("depth") + cnt("metaphor")} 幕（建議 ≥2）`);
+    }
+    const Lt = layoutV2();
+    scenes.forEach((x, k) => {
+      const tg = `scene[${k}] ${x.id}`;
+      const nums = String(x.narration).match(/\d[\d,.]*/g) ?? [];
+      if (cats[k] === "card" && nums.length >= 2 && /比|對|卻|反而|更|多了|少了|vs/i.test(x.narration)) W(`規則6：${tg} 旁白有 ${nums.length} 個數字且是比較語氣，卻用卡片 → 建議改圖表`);
+      if (cats[k] === "chart" && !(x.sources ?? []).length) E(`規則7：${tg} 圖表要有 sources`);
+      if (cats[k] === "card") { const t = cardText(x.props); if (t > 45) E(`規則9：${tg} 卡片畫面文字 ${t} 字 > 45（不含字幕）`); }
+      const mb = mainBox(x, Lt);
+      const [x0, y0, x1, y1] = mb.box;
+      if (x0 < Lt.X || x1 > Lt.X_RIGHT + 48 || y0 < Lt.SAFE_TOP || y1 > Lt.SAFE_BOTTOM) E(`規則10：${tg} 主視覺外框 [${mb.box}] 超出安全區 x ${Lt.X}–${Lt.X_RIGHT}、y ${Lt.SAFE_TOP}–${Lt.SAFE_BOTTOM}`);
+      const loose = ["hook", "cta"].includes(x.beat);
+      const minH = loose ? (Lt.SAFE_BOTTOM - Lt.SAFE_TOP) * 0.45 : Lt.MAIN_MIN_H;
+      const fw = mb.front ? mb.front[2] - mb.front[0] : x1 - x0, fh = mb.front ? mb.front[3] - mb.front[1] : y1 - y0;
+      if (fw < Lt.MAIN_MIN_W || fh < minH) E(`規則10：${tg} 主視覺 ${fw}×${fh} 小於下限 ${Lt.MAIN_MIN_W}×${Math.round(minH)}`);
+      if (mb.plot && (mb.plot[2] - mb.plot[0] < Lt.CHART_MIN_W || mb.plot[3] - mb.plot[1] < Lt.CHART_MIN_H * (x.component === "UnitGrid" ? 0.85 : 1))) E(`規則10：${tg} 繪圖區 ${mb.plot[2] - mb.plot[0]}×${mb.plot[3] - mb.plot[1]} 小於 ${Lt.CHART_MIN_W}×${Lt.CHART_MIN_H}`);
+    });
   }
   const est = Math.round(total);
   const L = LENGTH[v2 ? 2 : 1];

@@ -111,9 +111,9 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
         <div style={{ position: "absolute", right: -180, top: ly(L.KT_TOP) + 160, transform: `translateX(${wx}px)`, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.WATERMARK_PX + 60, lineHeight: 1, whiteSpace: "nowrap", color: T.watermark, opacity: L.WATERMARK_OPACITY + 0.01 }}>{watermark}</div>
       )}
       {/* 左側主色直條：串起每一行（版面的脊線），隨進場由上往下畫出 */}
-      <div style={{ position: "absolute", left: 0, top: ly(L.KT_TOP), width: 10, height: (L.KT_BOTTOM - L.KT_TOP) * tween(f, 0, DUR.l * 2, EASE.move), background: acc.fill, borderRadius: 2, transform: `translateX(${fx}px)` }} />
+      <div style={{ position: "absolute", left: 0, top: ly(L.KT_TOP) - 30, width: 10, height: (L.KT_BOTTOM - L.KT_TOP + 30) * tween(f, 0, DUR.l * 2, EASE.move), background: acc.fill, borderRadius: 2, transform: `translateX(${fx}px)` }} />
       <div style={{ position: "absolute", left: 30, width: 922, top: ly(L.KT_TOP), height: L.KT_BOTTOM - L.KT_TOP, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", transform: `translateX(${fx}px)` }}>
-        {kicker && <div style={{ ...reveal(f, 0), fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}>{kicker}</div>}
+        {kicker && <div style={{ ...reveal(f, 0), alignSelf: "stretch", fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}>{kicker}</div>}
         {flip && (
           <div style={{ ...reveal(f, Math.min(flipStart - 6, 8)), display: "flex", alignItems: "flex-end", gap: 22 }}>
             <div style={{ transform: `scale(${bump(f, flipLand, 0.04).toFixed(4)})`, transformOrigin: "0% 100%" }}><FlipNumber v={flipV} final={flip.value} color={acc.text} /></div>
