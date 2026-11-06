@@ -87,6 +87,11 @@ export type TimelineV2 = { version: 2; slug: string; fps: number; totalFrames: n
 
 export type CoverSpec = {
   title: string[];
+  /** v2（A-1 版型）：kicker、螢光筆行、三格重點、插圖標籤 */
+  kicker?: string;
+  mark?: number;
+  chips?: { value: string; label: string; color?: string }[];
+  illus?: { up?: string; down?: string; icon?: string };
   sub: string;
   en: string;
   icons?: { name: string; color?: string }[];

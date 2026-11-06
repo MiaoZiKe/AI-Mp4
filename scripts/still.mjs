@@ -29,6 +29,12 @@ const cover = await selectComposition({ ...opts, id: "Cover" });
 const coverFile = path.join(ROOT, "out", `${slug}-cover.png`);
 await renderStill({ ...opts, composition: cover, frame: 0, output: coverFile });
 console.log(`✔ ${path.relative(ROOT, coverFile)}`);
+// P1-10：個人頁網格是 3:4（1080×1440，畫面中央）裁切；另附 1:1（1080×1080）預覽，確認主標題兩種裁切都看得到
+for (const [tag, h] of [["3x4", 1440], ["1x1", 1080]]) {
+  const f = path.join(ROOT, "out", `${slug}-cover-${tag}.png`);
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", coverFile, "-vf", `crop=1080:${h}:0:${(1920 - h) / 2}`, f]);
+  console.log(`✔ ${path.relative(ROOT, f)}`);
+}
 
 // 總覽圖（ffmpeg tile）
 const sheet = path.join(ROOT, "out", `${slug}-overview.png`);

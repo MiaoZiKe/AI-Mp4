@@ -158,6 +158,8 @@ export function validate(script) {
   if (!c) E("頂層缺少 cover");
   else {
     if (arr(c.title, "cover.title", 1, 2)) c.title.forEach((t, i) => str(t, `cover.title[${i}]`, 7, 2, 8));
+    if (v2 && Array.isArray(c.title) && c.title.reduce((a, t) => a + len(t), 0) > 10) E(`cover.title 共 ${c.title.reduce((a, t) => a + len(t), 0)} 字 > 10（P1-10：封面 ≤10 字）`);
+    if (v2 && c.chips && arr(c.chips, "cover.chips", 2, 3)) c.chips.forEach((ch, i) => { str(ch.value, `cover.chips[${i}].value`, 7, 1, 8); str(ch.label, `cover.chips[${i}].label`, 10, 1, 12); color(ch.color, `cover.chips[${i}]`); });
     str(c.sub ?? "", "cover.sub", 16, 0, 20);
     if (c.en !== undefined && String(c.en).length > 60) W("cover.en 偏長");
     if (c.icons && arr(c.icons, "cover.icons", 1, 3)) c.icons.forEach((ic, i) => { icon(ic.name, `cover.icons[${i}]`); color(ic.color, `cover.icons[${i}]`); });
