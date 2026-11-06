@@ -10,7 +10,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { splitLines, clean } from "./validate.mjs";
+import { splitLines, splitPhrases, SUB_MAX_EM_V2, clean } from "./validate.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const slug = process.argv.slice(2).find((a) => !a.startsWith("--"));
@@ -211,7 +211,8 @@ function buildV2(cs) {
     const lines = [];
     if (!c.isEnd) {
       let idx = 0;
-      for (const [li, l] of splitLines(c.sub).entries()) {
+      // P1-4：v2 字幕是短語模式（一次一段），每段從第一個字被唸到前 0.12 秒出現
+      for (const [li, l] of splitPhrases(c.sub, sc?.keywords ?? [], SUB_MAX_EM_V2).entries()) {
         const start = li === 0 ? subIn : Math.max(subIn, af(c.charTimes[idx] ?? 0, 0.12));
         let last = start;
         const chars = [...l].map((ch) => { if (clean(ch).length) { last = Math.max(start, af(c.charTimes[idx] ?? 0, 0.05)); idx++; } return last; });

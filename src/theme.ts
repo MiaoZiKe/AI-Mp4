@@ -81,6 +81,8 @@ export const THEME_V2 = {
   rule: "#14213D",
   ruleW: 4,
   divider: "#E6D9C2",
+  /** 色塊上的字（≥24px 粗體才可用白字，對比 3.38:1） */
+  onAccent: "#FFFFFF",
   /** 提示框（台灣視角等） */
   noteBg: "#FFF3DA",
   track: "#F1E7D6",
@@ -131,8 +133,8 @@ export const LAYOUT_V2 = {
   SOURCE_TOP: 1486,
   SUB_ZH_PX: 76,
   SUB_EN_PX: 30,
-  /** 字幕短語每行上限（em；76px 時約 11 個全形字） */
-  SUB_MAX_EM: 11,
+  /** 字幕短語每行上限（em；76px 時約 11 個全形字，874px < 896px） */
+  SUB_MAX_EM: 11.5,
   /** 英文副字幕每段上限（字元） */
   SUB_EN_MAX: 42,
 } as const;

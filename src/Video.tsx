@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Audio, Easing, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { TransitionSeries } from "@remotion/transitions";
 import type { TransitionPresentation, TransitionPresentationComponentProps, TransitionTiming } from "@remotion/transitions";
-import type { Scene, SceneTiming, Script, TimelineV2, TransitionSpec } from "./types";
+import type { Scene, SceneTiming, SceneTimingV2, Script, TimelineV2, TransitionSpec } from "./types";
 import { C, FPS, SAFE } from "./theme";
 import { isV2, sceneFrames, sceneStarts } from "./timing";
 import { StyleV2Context } from "./style";
@@ -11,9 +11,22 @@ import {
   BigNumber, SeatBar, IconGrid, ImpactCard, SubtitleTrack, SourceTrack,
 } from "./components";
 import { EASE } from "./components/anim";
+import { CueContext } from "./cue";
+import { BackgroundV2, HeaderV2 } from "./components/v2/base";
+import { HookTitle } from "./components/v2/HookTitle";
+import { BigNumberV2 } from "./components/v2/BigNumber";
+import { CompareSplitV2, FlowRowV2, IconGridV2, ImpactCardV2, TermCardV2 } from "./components/v2/Cards";
+import { CtaCard, EndCardV2 } from "./components/v2/Closing";
+import { SubtitleTrackV2, SourceTrackV2 } from "./components/v2/Tracks";
+import { LAYOUT_V2 } from "./theme";
 
 const REGISTRY: Record<string, React.FC<any>> = {
   TermCard, FlowRow, CompareSplit, BigNumber, SeatBar, IconGrid, ImpactCard, EndCard,
+};
+
+/** styleVersion 2（A 奶油編輯）元件；SeatBar 尚無 v2 版（validate 會擋） */
+const REGISTRY_V2: Record<string, React.FC<any>> = {
+  HookTitle, TermCard: TermCardV2, FlowRow: FlowRowV2, CompareSplit: CompareSplitV2, BigNumber: BigNumberV2, IconGrid: IconGridV2, ImpactCard: ImpactCardV2, EndCard: EndCardV2, CtaCard,
 };
 
 const IN = 10, OUT = 9; // 換幕：進場 0.33 秒（淡入＋上移＋縮放），出場 0.3 秒
@@ -62,15 +75,24 @@ const ProgressBar: React.FC = () => {
 /** 內容層（不含字幕、來源列）：沒有整幕縮放、沒有 Ken Burns；進出場由轉場負責 */
 /** 有轉場的幕：元件時間比 Sequence 快 ENTER_LEAD 幀，讓元件第一批元素在進場淡入（轉場第 3–8 幀）時就已經在動，不會只剩背景 */
 const ENTER_LEAD = 6;
-const SceneBodyV2: React.FC<{ scene: Scene; lead: number }> = ({ scene, lead }) => {
-  const Comp = REGISTRY[scene.component];
-  if (!Comp) throw new Error(`Unknown component: ${scene.component}`);
+const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2; exitAbs: number }> = ({ scene, lead, timing, exitAbs }) => {
+  const Comp = REGISTRY_V2[scene.component];
+  if (!Comp) throw new Error(`Unknown component (styleVersion 2): ${scene.component}`);
   const isEnd = scene.component === "EndCard";
+  // P0-8：cue 絕對幀 → 元件本地幀（元件時間比 Sequence 快 lead 幀）
+  const loc = (abs: number) => abs - timing.startFrame + lead;
+  const cue = {
+    cues: Object.fromEntries((timing.cues ?? []).filter((c) => c.frame !== null).map((c) => [c.id, loc(c.frame as number)])),
+    exit: loc(exitAbs), voiceStart: loc(timing.voiceStartFrame), voiceEnd: loc(timing.voiceEndFrame),
+  };
+  const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SUB_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", left: SAFE.x, right: SAFE.x, top: 330, height: isEnd ? 1370 : 1030, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>
-          <Comp {...scene.props} />
+          <CueContext.Provider value={cue}>
+            <Comp {...scene.props} />
+          </CueContext.Provider>
         </Sequence>
       </div>
     </AbsoluteFill>
@@ -114,19 +136,21 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
   const ordered = scenes.filter((s) => byId[s.id]);
   const subCues = ordered.filter((s) => byId[s.id].subtitleWindow).map((s) => {
     const t = byId[s.id];
-    return { id: s.id, zh: s.subtitle.zh, en: s.subtitle.en, keywords: s.keywords, window: t.subtitleWindow as [number, number], lines: t.lines, keywords_at: t.keywords };
+    return { id: s.id, en: s.subtitle.en, keywords: s.keywords, window: t.subtitleWindow as [number, number], phrases: t.lines, keywords_at: t.keywords };
   });
   const srcCues = ordered.filter((s) => s.component !== "EndCard").map((s) => ({ sources: s.sources, window: byId[s.id].sourceWindow }));
   return (
     <StyleV2Context.Provider value>
       <AbsoluteFill>
-        <Background />
+        <BackgroundV2 />
         <TransitionSeries>
           {ordered.flatMap((s, i) => {
             const t = byId[s.id];
+            const nt = byId[ordered[i + 1]?.id];
+            const exitAbs = nt ? nt.startFrame : t.startFrame + t.durationFrames;
             const seq = (
               <TransitionSeries.Sequence key={s.id} durationInFrames={t.durationFrames} name={s.id}>
-                <SceneBodyV2 scene={s} lead={i === 0 ? 0 : ENTER_LEAD} />
+                <SceneBodyV2 scene={s} lead={i === 0 ? 0 : ENTER_LEAD} timing={t} exitAbs={exitAbs} />
               </TransitionSeries.Sequence>
             );
             if (i === 0 || !t.transitionFrames) return [seq];
@@ -134,16 +158,15 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
             return [<TransitionSeries.Transition key={`${s.id}-tr`} timing={frameTiming(t.transitionFrames)} presentation={stagger(spec)} />, seq];
           })}
         </TransitionSeries>
-        <SubtitleTrack cues={subCues} />
-        <SourceTrack cues={srcCues} asOf={asOf} />
+        <SubtitleTrackV2 cues={subCues} />
+        <SourceTrackV2 cues={srcCues} asOf={asOf} />
         {/* 人聲：最外層，依絕對幀擺放（不受轉場重疊影響）。有 voice.wav（整條 loudnorm 的人聲軌）就只播這一條 */}
         {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
           <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none">
             <Audio src={staticFile(t.audio as string)} />
           </Sequence>
         ))}
-        <Header />
-        <ProgressBar />
+        <HeaderV2 />
       </AbsoluteFill>
     </StyleV2Context.Provider>
   );

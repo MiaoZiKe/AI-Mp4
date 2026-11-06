@@ -12,7 +12,7 @@ const COMPONENTS = ["TermCard","FlowRow","CompareSplit","BigNumber","SeatBar","I
 const COMPONENTS_V2 = ["HookTitle","CtaCard","TermCard","FlowRow","CompareSplit","BigNumber","IconGrid","ImpactCard","EndCard"];
 const BEATS = ["hook","you","mechanism","twist","payoff","cta"];
 /** v2 字幕：短語每段上限（em），與 src/theme.ts 的 LAYOUT_V2.SUB_MAX_EM 一致 */
-export const SUB_MAX_EM_V2 = 11;
+export const SUB_MAX_EM_V2 = 11.5;
 /** props 裡引用 cue 的欄位 */
 const AT_KEYS = ["at","startAt","noteAt","footerAt","subAt","slamAt","optionsAt","promptAt","taiwanAt"];
 const FORBIDDEN_CTA = ["分享給","傳給","標記"];

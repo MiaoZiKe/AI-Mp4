@@ -7,7 +7,10 @@ const dir = path.join(ROOT, "public", "bg");
 fs.mkdirSync(dir, { recursive: true });
 const serveUrl = await makeBundle();
 const opts = { serveUrl, browserExecutable: BROWSER, chromiumOptions };
-for (const [id, file] of [["BackgroundStatic", "base.png"], ["GlowBlob", "blob.png"]]) {
+// v1：base.png、blob.png；styleVersion 2（A 奶油編輯）：base-v2.png（米白＋圓點紙紋）
+const only = process.argv[2];
+const all = [["BackgroundStatic", "base.png"], ["GlowBlob", "blob.png"], ["BackgroundStaticV2", "base-v2.png"]];
+for (const [id, file] of all.filter(([, f]) => !only || f === only)) {
   const comp = await selectComposition({ ...opts, id });
   await renderStill({ ...opts, composition: comp, frame: 0, output: path.join(dir, file), imageFormat: "png" });
   console.log(`✔ public/bg/${file}`);

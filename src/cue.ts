@@ -15,10 +15,15 @@ export const useCue = () => useContext(CueContext);
 /** 畫面比聲音早到：進場從 cue − 4 幀開始（淡入 8 幀，cue 當下約 50%，−6～0 幀內可辨識） */
 export const CUE_LEAD = 4;
 export const hasCue = (c: CueInfo, at?: string) => Boolean(at && c.cues[at] !== undefined);
-/** 進場幀：at 有對應 cue → cue − CUE_LEAD；否則用 fallback（舊的固定延遲） */
-export const cueIn = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? c.cues[at] - CUE_LEAD : fallback);
-/** cue 本身的幀（數字落定、punch 用） */
-export const cueAt = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? c.cues[at] : fallback);
+/**
+ * 讀秒保護：資訊落定後至少留 READ_HOLD 幀（0.8 秒）才出場。cue 太靠近句尾時，畫面提早出現（最多比聲音早到出場前 0.8 秒），
+ * 寧可畫面先到、不讓觀眾來不及讀。
+ */
+export const READ_HOLD = 24;
+/** 進場幀：at 有對應 cue → cue − CUE_LEAD（且不晚於 出場 − READ_HOLD − 8）；否則用 fallback（舊的固定延遲） */
+export const cueIn = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? Math.min(c.cues[at] - CUE_LEAD, c.exit - READ_HOLD - 8) : fallback);
+/** cue 本身的幀（數字落定、punch 用；不晚於 出場 − READ_HOLD） */
+export const cueAt = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? Math.min(c.cues[at], c.exit - READ_HOLD) : fallback);
 
 /**
  * 讀秒保護：最後一個 beat 之後，至少留 0.6 秒（18 幀）不再變化才出場。
