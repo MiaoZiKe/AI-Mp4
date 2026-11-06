@@ -316,7 +316,14 @@ def main():
         # 與 M1 對照：v2 也用舊遮罩（內容 330–1360）再量一次靜止比例（舊遮罩會把字幕的變化算進內容區，只當參考）
         lg, _, _ = pixel_layer(video, layout, version, legacy=True)
         px["ambientOnlyPctLegacyMask"] = lg["ambientOnlyPct"]
-    au = audio_layer(video, layout, version)
+    # 聲音層：v2 有 voice.wav（人聲 stem）就量 stem（最終 MP4 混了 BGM，silencedetect 會失真）；另記最終混音響度
+    stem = (tl or {}).get("voice", {}) if version == 2 else {}
+    stem_path = os.path.join(ROOT, "public", stem["file"]) if stem and stem.get("file") else None
+    au = audio_layer(stem_path if stem_path and os.path.exists(stem_path) else video, layout, version)
+    au["source"] = "voice stem" if stem_path and os.path.exists(stem_path) else "mp4"
+    mx = os.path.join(ROOT, "videos", slug, "mix.json")
+    if os.path.exists(mx):
+        au["mix"] = json.load(open(mx)).get("final")
     bench = None
     rj = os.path.join(ROOT, "out", f"{slug}.render.json")
     if os.path.exists(rj):

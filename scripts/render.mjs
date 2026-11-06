@@ -2,7 +2,7 @@
 // 有 videos/<slug>/timeline.json（npm run tts + npm run align 產生）→ 配音版；否則無聲版（字數估算長度）
 import path from "node:path";
 import fs from "node:fs";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, assertFrames } from "./lib.mjs";
 
@@ -16,7 +16,9 @@ const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiu
 const comp = await selectComposition({ ...opts, id: "Video" });
 assertFrames(script, comp);
 fs.mkdirSync(path.join(ROOT, "out"), { recursive: true });
-const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}.mp4`);
+// styleVersion 2：Remotion 只輸出畫面＋參考人聲（.video.mp4），再由 scripts/mix.mjs 混音輸出 out/<slug>.mp4（P1-1）；v1 照舊直接輸出
+const V2MIX = script.styleVersion === 2 && script.timeline?.voice && !script.audit;
+const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}${V2MIX ? ".video" : ""}.mp4`);
 const t0 = Date.now();
 let last = -1;
 await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: 4,
@@ -28,3 +30,7 @@ const nFrames = Number(execFileSync("ffprobe", ["-v", "error", "-count_packets",
 if (nFrames !== comp.durationInFrames) console.warn(`⚠ ffprobe 幀數 ${nFrames} ≠ composition ${comp.durationInFrames}`);
 else console.log(`✔ ffprobe 幀數 ${nFrames} ＝ composition ＝ timeline`);
 console.log(`✔ ${path.relative(ROOT, out)}  ${(comp.durationInFrames / comp.fps).toFixed(1)}s（${comp.durationInFrames} 幀，${Math.round(ms / comp.durationInFrames)} ms/幀）\n  ffprobe: ${probe}`);
+if (V2MIX) {
+  const r = spawnSync("node", [path.join(ROOT, "scripts", "mix.mjs"), slug], { stdio: "inherit" });
+  if (r.status !== 0) { console.error("✖ 混音失敗"); process.exit(1); }
+}
