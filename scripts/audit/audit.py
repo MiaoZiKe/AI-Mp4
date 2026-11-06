@@ -26,6 +26,15 @@ ACTIVE_T = 1.5                    # 內容區變化像素 > 1.5% 視為「有結
 COVER_T = 40                      # 與背景亮度差 > 40 視為「有內容」
 BLACK_RATIO = 0.15                # 覆蓋率 < 相鄰幕中位數 × 15% → 黑場幀
 V1_OUT = 9                        # v1 每幕最後 9 幀是出場（舊 an3 的 body 排除）
+# styleVersion 2：遮罩讀 src/theme.ts 的 LAYOUT_V2（內容區 CONTENT_TOP–CONTENT_BOTTOM、字幕區 SUB_TOP–來源列底），背景用 base-v2.png
+def layout_v2():
+    src = open(os.path.join(ROOT, "src", "theme.ts"), encoding="utf8").read()
+    m = re.search(r"export const LAYOUT_V2 = \{(.*?)\} as const", src, re.S)
+    vals = dict((k, float(v)) for k, v in re.findall(r"(\w+):\s*([\d.]+)", m.group(1))) if m else {}
+    bg = re.search(r'bgImage:\s*"([^"]+)"', src)
+    return vals, (bg.group(1) if bg else "bg/base-v2.png")
+
+
 BLK = 16                          # 位移估計：半解析度 16×16 區塊（全解析度 32px）
 SHIFT = 24                        # 半解析度最大搜尋 ±24（全解析度 ±48px）
 
@@ -49,7 +58,7 @@ def load_layout(slug):
     out = []
     if tl and tl.get("version") == 2:
         for s in tl["scenes"]:
-            ev = [l["start"] for l in s.get("lines", [])] + [k["start"] for k in s.get("keywords", [])] + [c["frame"] for c in s.get("cues", [])]
+            ev = [l["start"] for l in s.get("lines", [])] + [k["start"] for k in s.get("keywords", [])] + [c["frame"] for c in s.get("cues", []) if c.get("frame") is not None]
             out.append(dict(id=s["id"], start=s["startFrame"], dur=s["durationFrames"], trans=s.get("transitionFrames", 0),
                             transition=s.get("transition"), voiceStart=s.get("voiceStartFrame"), voiceEnd=s.get("voiceEndFrame"),
                             events=sorted(ev), sub=s.get("subtitleWindow")))
@@ -190,10 +199,21 @@ def displacement(a, b):
     return 0
 
 
-def pixel_layer(video, layout, version):
-    bg = next(gray_frames(os.path.join(ROOT, "public", "bg", "base.png"), single=True)).astype(np.int16)
-    c0, c1 = CONTENT[0] - CROP_Y0, CONTENT[1] - CROP_Y0
-    s0, s1 = SUB[0] - CROP_Y0, SUB[1] - CROP_Y0
+def masks(version, legacy=False):
+    """回傳 (內容區 y0,y1, 字幕區 y0,y1, 背景圖)。v2 讀 LAYOUT_V2；legacy=True 時 v2 也用 v1 遮罩（與 M1 數字對照用）"""
+    if version == 2:
+        L, bgimg = layout_v2()
+        if legacy:
+            return CONTENT, SUB, bgimg
+        return (int(L.get("CONTENT_TOP", 340)), int(L.get("CONTENT_BOTTOM", 1290))), (int(L.get("SUB_TOP", 1310)), int(L.get("SOURCE_TOP", 1486)) + 40), bgimg
+    return CONTENT, SUB, "bg/base.png"
+
+
+def pixel_layer(video, layout, version, legacy=False):
+    (cy0, cy1), (sy0, sy1), bgimg = masks(version, legacy)
+    bg = next(gray_frames(os.path.join(ROOT, "public", bgimg), single=True)).astype(np.int16)
+    c0, c1 = cy0 - CROP_Y0, cy1 - CROP_Y0
+    s0, s1 = sy0 - CROP_Y0, sy1 - CROP_Y0
     bgc = bg[c0:c1]
     content, sub, cover, disp = [], [], [], []
     prev = None
@@ -292,6 +312,10 @@ def main():
     print(f"▶ {slug}（styleVersion {version}）{len(layout)} 幕，timeline {expect} 幀，MP4 {got} 幀")
     ev = event_layer(layout, version)
     px, _, _ = pixel_layer(video, layout, version)
+    if version == 2 and not arg("--no-legacy"):
+        # 與 M1 對照：v2 也用舊遮罩（內容 330–1360）再量一次靜止比例（舊遮罩會把字幕的變化算進內容區，只當參考）
+        lg, _, _ = pixel_layer(video, layout, version, legacy=True)
+        px["ambientOnlyPctLegacyMask"] = lg["ambientOnlyPct"]
     au = audio_layer(video, layout, version)
     bench = None
     rj = os.path.join(ROOT, "out", f"{slug}.render.json")
@@ -304,14 +328,14 @@ def main():
     res = dict(slug=slug, styleVersion=version, video=os.path.relpath(video, ROOT), measuredAt=time.strftime("%Y-%m-%d %H:%M"),
                timelineFrames=expect, mp4Frames=got, framesMatch=expect == got,
                summary=dict(
-                   ambientOnlyPct=px["ambientOnlyPct"], blackFramesTotal=px["blackFramesTotal"], blackFramesMaxPerCut=px["blackFramesMaxPerCut"],
+                   ambientOnlyPct=px["ambientOnlyPct"], ambientOnlyPctLegacyMask=px.get("ambientOnlyPctLegacyMask"), blackFramesTotal=px["blackFramesTotal"], blackFramesMaxPerCut=px["blackFramesMaxPerCut"],
                    doubleExposureFrames=ev["doubleExposureFrames"], maxSubtitleGroupsPerFrame=ev["maxSubtitleGroupsPerFrame"],
                    maxDisplacementPx=px["maxDisplacementPx"], p99DisplacementPx=px["p99DisplacementPx"], framesOver24px=px["framesOver24px"],
                    silencePct=au["silencePct"], headSilenceSec=au["headSilenceSec"], cutPauseMaxSec=au["cutPauseMaxSec"], cutPauseMedianSec=au["cutPauseMedianSec"],
                    voiceOverlaps=ev["voiceOverlaps"], beatGapMaxSec=ev["beatGapMaxSec"], holdSecMedian=ev["holdSecMedian"],
                    durationSec=au["durationSec"], msPerFrame=(bench or {}).get("msPerFrame") or (bench or {}).get("benchMsPerFrame")),
                event=ev, pixel=px, audio=au, bench=bench,
-               thresholds=dict(DIFF_T=DIFF_T, ACTIVE_T=ACTIVE_T, COVER_T=COVER_T, BLACK_RATIO=BLACK_RATIO, content=CONTENT, subtitle=SUB, x=[X0, X1]))
+               thresholds=dict(DIFF_T=DIFF_T, ACTIVE_T=ACTIVE_T, COVER_T=COVER_T, BLACK_RATIO=BLACK_RATIO, content=list(masks(version)[0]), subtitle=list(masks(version)[1]), background=masks(version)[2], x=[X0, X1]))
     out = arg("--out") or os.path.join(ROOT, "videos", slug, "baseline-motion.json" if arg("--baseline") else "motion.json")
     if not os.path.isabs(out):
         out = os.path.join(ROOT, out)
