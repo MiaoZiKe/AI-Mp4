@@ -25,6 +25,10 @@ const GEMINI_KEY = process.env.GEMINI_API_KEY || "injected-by-proxy";
 const GEMINI_MODEL = process.env.ALIGN_GEMINI_MODEL || "gemini-3.5-transcribe"; // 退場就改 gemini-3.8-flash
 let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
+// styleVersion 2（時間軸 v2）：換幕人聲間隔 GAP 秒；轉場 TRANS 幀＝前一幕出場與本幕進場重疊，轉場結束＝本幕開口
+const V2 = script.styleVersion === 2;
+const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 9, EXIT = [0, 5], ENTER = [3, 8], TAIL_END_F = 36, SUB_LEAD = 3, MIN_SCENE_F = 45;
+const SKIP_TRANSCRIBE = process.env.ALIGN_SKIP_TRANSCRIBE === "1"; // 不花 Gemini 文字額度：跳過回讀聽寫（時間戳仍用靜音偵測）
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // 簡→繁（聽寫偶爾輸出簡體），只為了對齊比對用
@@ -144,7 +148,82 @@ const interpolateTimes = (map, b, n, total) => {
   return t;
 };
 
+/** v1 快取沒有 charTimes：gemini+silence 的 words 就是逐字；否則從字幕點亮時間反推（chars = t + LEAD − 0.05） */
+function timesFromV1(c, subChars) {
+  if (c.words?.length === subChars.length) return c.words.map((w) => w.start);
+  const out = [];
+  for (const l of c.lines ?? []) [...l.text].forEach((ch, k) => { if (clean(ch).length) out.push(Math.max(0, Number((l.chars[k] - LEAD + 0.05).toFixed(3)))); });
+  return out;
+}
+/** 音檔頭尾靜音（−40dB）→ 實際開口、收聲時間（秒，相對音檔） */
+function speechBounds(file, total) {
+  const out = spawnSync("ffmpeg", ["-i", file, "-af", "silencedetect=noise=-40dB:d=0.02", "-f", "null", "-"], { encoding: "utf8" }).stderr ?? "";
+  const st = [...out.matchAll(/silence_start: (-?[\d.e-]+)/g)].map((m) => Number(m[1]));
+  const en = [...out.matchAll(/silence_end: ([\d.e-]+)/g)].map((m) => Number(m[1]));
+  let head = 0, tail = total;
+  if (st.length && st[0] <= 0.01 && en[0] !== undefined) head = en[0];
+  const k = st.length - 1;
+  if (k >= 0 && (en[k] === undefined || en[k] >= total - 0.02) && st[k] > head) tail = st[k];
+  return { head: Number(head.toFixed(3)), tail: Number(tail.toFixed(3)) };
+}
+/**
+ * 時間軸 v2：唯一的排版計算。全部輸出絕對幀。
+ *  - 第一幕音檔從第 0 幀開始；之後每幕「開口」＝前一幕「收聲」＋ GAP 秒（扣掉音檔頭尾靜音後的實際說話區間）
+ *  - 本幕 startFrame ＝ 開口 − TRANS（轉場剛好在開口時完成：畫面比聲音早 0–200ms）
+ *  - 前一幕 durationFrames 延伸到本幕轉場結束（重疊 TRANS 幀）
+ *  - 限制：TRANS/30 ≤ TAIL + LEAD + 殘留靜音 − 0.08 ⇔ 相鄰人聲間隔 ≥ 0.08 秒（validate 檢查）
+ */
+function buildV2(cs) {
+  const out = [];
+  let prevEnd = null;
+  for (const [i, c] of cs.entries()) {
+    const abs = path.join(ROOT, "public", c.audio);
+    const b = speechBounds(abs, c.audioSec);
+    const sc = script.scenes.find((x) => x.id === c.id);
+    const pause = typeof sc?.pauseAfter === "number" ? sc.pauseAfter : 0;
+    const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + GAP - b.head) * FPS));
+    const vs = audioFrame / FPS + b.head, ve = audioFrame / FPS + b.tail;
+    prevEnd = ve + pause;
+    const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
+    const transition = i === 0 ? null : { type: sc?.transition === "slide" ? "slide" : "fade", frames: TRANS, exit: EXIT, enter: ENTER };
+    const prevStart = out[i - 1]?.startFrame ?? -Infinity;
+    const startFrame = i === 0 ? 0 : Math.max(prevStart + MIN_SCENE_F, voiceStartFrame - TRANS);
+    // 字幕：每行、每個字（絕對幀；比聲音早 0.05 秒點亮，下一行早 0.12 秒出現）
+    const subIn = i === 0 ? 0 : voiceStartFrame - SUB_LEAD;
+    const af = (t, lead) => audioFrame + Math.round((t - lead) * FPS);
+    const lines = [];
+    if (!c.isEnd) {
+      let idx = 0;
+      for (const [li, l] of splitLines(c.sub).entries()) {
+        const start = li === 0 ? subIn : Math.max(subIn, af(c.charTimes[idx] ?? 0, 0.12));
+        let last = start;
+        const chars = [...l].map((ch) => { if (clean(ch).length) { last = Math.max(start, af(c.charTimes[idx] ?? 0, 0.05)); idx++; } return last; });
+        lines.push({ text: l, start, chars });
+      }
+    }
+    const cl = clean(c.sub);
+    const keywords = (sc?.keywords ?? []).map((k) => { const p = cl.indexOf(clean(k)); return { text: k, start: p < 0 ? subIn : Math.max(subIn, af(c.charTimes[p], 0.05)) }; });
+    out.push({ id: c.id, audio: c.audio, audioFrame, audioSec: c.audioSec, headSilSec: b.head, tailSilSec: Number((c.audioSec - b.tail).toFixed(3)),
+      startFrame, durationFrames: 0, transitionFrames: i === 0 ? 0 : TRANS, transition, voiceStartFrame, voiceEndFrame, stillFrame: 0,
+      subtitleWindow: c.isEnd ? null : [subIn, 0], sourceWindow: [i === 0 ? 0 : startFrame + Math.ceil(TRANS / 2), 0], pauseAfter: pause || undefined,
+      lines, keywords, isEnd: c.isEnd,
+      hash: c.hash, sub: c.sub, provider: c.provider, cer: c.cer, transcript: c.transcript, words: c.words, charTimes: c.charTimes });
+  }
+  for (const [i, x] of out.entries()) {
+    const n = out[i + 1];
+    x.durationFrames = n ? n.startFrame + n.transitionFrames - x.startFrame : Math.max(MIN_SCENE_F, x.voiceEndFrame + TAIL_END_F - x.startFrame);
+    x.stillFrame = n ? n.startFrame : x.startFrame + x.durationFrames - 12; // 下一幕轉場第 0 幀：本幕仍完全不透明、字幕全亮
+    if (x.subtitleWindow) x.subtitleWindow[1] = n ? (n.subtitleWindow ? n.subtitleWindow[0] : n.startFrame + n.transitionFrames) : x.startFrame + x.durationFrames;
+    x.sourceWindow[1] = n ? n.sourceWindow[0] : x.startFrame + x.durationFrames;
+    delete x.isEnd;
+  }
+  const last = out[out.length - 1];
+  const totalFrames = last.startFrame + last.durationFrames;
+  return { version: 2, slug, fps: FPS, totalFrames, totalSec: Number((totalFrames / FPS).toFixed(2)), gapSec: GAP, transitionFrames: TRANS, scenes: out };
+}
+
 const scenes = [];
+const cores = []; // v2：每幕的音檔＋逐字時間（相對音檔），最後統一排版
 const report = [];
 let usedProvider = null;
 for (const [i, s] of script.scenes.entries()) {
@@ -156,7 +235,13 @@ for (const [i, s] of script.scenes.entries()) {
   const subChars = norm(s.subtitle.zh);
   const spoken = norm(m.text);
   let times, transcript, words, cer, provider, unmatched = 0;
-  if (!force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.lines?.[0]?.chars && cached.provider) {
+  if (V2 && !force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.provider && (cached.charTimes || cached.words)) {
+    console.log(`= ${s.id}（沿用時間戳）`);
+    cores.push({ ...cached, isEnd: s.component === "EndCard", charTimes: cached.charTimes ?? timesFromV1(cached, subChars) });
+    report.push({ id: s.id, spoken: m.text, transcript: cached.transcript ?? "", cer: cached.cer ?? 0, unmatched: 0, n: subChars.length, provider: cached.provider });
+    continue;
+  }
+  if (!V2 && !force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.lines?.[0]?.chars && cached.provider) {
     console.log(`= ${s.id}（沿用時間戳）`);
     scenes.push(cached); report.push({ id: s.id, spoken: m.text, transcript: cached.transcript ?? "", cer: cached.cer ?? 0, unmatched: 0, n: subChars.length, provider: cached.provider });
     continue;
@@ -182,7 +267,8 @@ for (const [i, s] of script.scenes.entries()) {
   }
   if (!times) {
     transcript = "";
-    try { const tr = await geminiTranscribe(abs); transcript = tr.text; if (!tr.model) console.log("  ℹ 無可用聽寫模型，略過回讀");
+    if (SKIP_TRANSCRIBE) console.log("  ℹ ALIGN_SKIP_TRANSCRIBE=1，略過回讀聽寫");
+    else try { const tr = await geminiTranscribe(abs); transcript = tr.text; if (!tr.model) console.log("  ℹ 無可用聽寫模型，略過回讀");
     } catch (e) { console.warn(`  ⚠ Gemini 聽寫失敗：${e.message.slice(0, 100)}`); }
     const tb = norm(transcript).map((c) => ({ c }));
     cer = spoken.length && tb.length ? 1 - lcsAlign(spoken, tb).matched / spoken.length : (tb.length ? 0 : 1);
@@ -211,16 +297,28 @@ for (const [i, s] of script.scenes.entries()) {
     return { text: k, start: p < 0 ? 0 : Number(Math.max(0, times[p] + LEAD - 0.05).toFixed(3)) };
   });
   const isEnd = s.component === "EndCard";
+  if (V2) { report.push({ id: s.id, spoken: m.text, transcript, cer, unmatched, n: subChars.length, provider });
+    cores.push({ id: s.id, audio: m.file, audioSec: m.sec, hash: m.hash, sub: s.subtitle.zh, provider, cer: Number(cer.toFixed(3)), transcript, words, charTimes: times.map((t) => Number(t.toFixed(3))), isEnd });
+    continue; }
   const durationSec = Number(Math.max(MIN, LEAD + m.sec + (isEnd ? TAIL_END : TAIL)).toFixed(3));
   scenes.push({ id: s.id, audio: m.file, audioSec: m.sec, leadSec: LEAD, durationSec, hash: m.hash, sub: s.subtitle.zh, provider, cer: Number(cer.toFixed(3)), transcript, words, lines: lineStarts, keywords });
   report.push({ id: s.id, spoken: m.text, transcript, cer, unmatched, n: subChars.length, provider });
 }
-const totalSec = Number(scenes.reduce((a, x) => a + Math.round(x.durationSec * FPS) / FPS, 0).toFixed(2));
-fs.writeFileSync(tlPath, JSON.stringify({ slug, fps: FPS, totalSec, scenes }, null, 1));
+let totalSec;
+if (V2) {
+  const tl = buildV2(cores);
+  totalSec = tl.totalSec;
+  fs.writeFileSync(tlPath, JSON.stringify(tl, null, 1));
+  const gaps = tl.scenes.slice(1).map((x, k) => (x.voiceStartFrame - tl.scenes[k].voiceEndFrame) / FPS);
+  console.log(`ℹ 時間軸 v2：${tl.totalFrames} 幀；換幕人聲間隔 ${Math.min(...gaps).toFixed(2)}–${Math.max(...gaps).toFixed(2)}s（目標 ${GAP}s），轉場 ${TRANS} 幀`);
+} else {
+  totalSec = Number(scenes.reduce((a, x) => a + Math.round(x.durationSec * FPS) / FPS, 0).toFixed(2));
+  fs.writeFileSync(tlPath, JSON.stringify({ slug, fps: FPS, totalSec, scenes }, null, 1));
+}
 const flagged = report.filter((r) => r.cer > 0.2);
 const md = [`# 回讀校驗：${slug}`, "", `- 時間戳來源：${[...new Set(report.map((r) => r.provider))].join(", ")}；CER = 1 − LCS/稿長（簡繁已正規化、標點不計）`, `- 總長 ${totalSec}s，${scenes.length} 幕，CER > 20% 的幕：${flagged.length}`, "",
   "| 幕 | 念稿 | 聽寫 | CER | 字幕未對上字數 |", "|---|---|---|---|---|",
   ...report.map((r) => `| ${r.id} | ${r.spoken} | ${r.transcript} | ${(r.cer * 100).toFixed(0)}% ${r.cer > 0.2 ? "⚠" : ""} | ${r.unmatched}/${r.n} |`)].join("\n");
 fs.writeFileSync(path.join(dir, "tts-check.md"), md + "\n");
 for (const r of flagged) console.warn(`⚠ ${r.id} CER ${(r.cer * 100).toFixed(0)}%：念「${r.spoken}」聽寫「${r.transcript}」`);
-console.log(`✔ ${path.relative(ROOT, tlPath)}  總長 ${totalSec}s（${scenes.length} 幕，${usedProvider ?? "cache"}）；報告 videos/${slug}/tts-check.md`);
+console.log(`✔ ${path.relative(ROOT, tlPath)}  總長 ${totalSec}s（${(V2 ? cores : scenes).length} 幕，${usedProvider ?? "cache"}）；報告 videos/${slug}/tts-check.md`);

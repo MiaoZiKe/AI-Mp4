@@ -4,7 +4,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 import { renderMedia, selectComposition } from "@remotion/renderer";
-import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions } from "./lib.mjs";
+import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, assertFrames } from "./lib.mjs";
 
 await import("./fetch-fonts.mjs");
 const slug = process.argv[2];
@@ -14,6 +14,7 @@ if (!script.timeline) console.log(`ℹ 沒有 videos/${slug}/timeline.json → �
 const serveUrl = await makeBundle();
 const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiumOptions };
 const comp = await selectComposition({ ...opts, id: "Video" });
+assertFrames(script, comp);
 fs.mkdirSync(path.join(ROOT, "out"), { recursive: true });
 const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}.mp4`);
 const t0 = Date.now();

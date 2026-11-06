@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { renderStill, selectComposition } from "@remotion/renderer";
-import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, sceneFrames } from "./lib.mjs";
+import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, stillFrames, assertFrames } from "./lib.mjs";
 
 await import("./fetch-fonts.mjs");
 const slug = process.argv[2];
@@ -15,12 +15,11 @@ const serveUrl = await makeBundle();
 const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiumOptions };
 const comp = await selectComposition({ ...opts, id: "Video" });
 
-let t = 0;
+assertFrames(script, comp);
+const frames = stillFrames(script); // v1：動畫結束、淡出前；v2：timeline 的 stillFrame
 const files = [];
 for (const [i, s] of script.scenes.entries()) {
-  const n = sceneFrames(s, script.timeline);
-  const frame = t + n - 12; // 動畫結束、淡出前（配音版：字幕每行都已出現）
-  t += n;
+  const frame = frames[i];
   const file = path.join(outDir, `${String(i + 1).padStart(2, "0")}-${s.id}.png`);
   await renderStill({ ...opts, composition: comp, frame, output: file });
   files.push(file);

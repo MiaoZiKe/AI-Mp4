@@ -1,12 +1,16 @@
 import React from "react";
 import { AbsoluteFill, Audio, Easing, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import type { Scene, SceneTiming, Script } from "./types";
+import { TransitionSeries } from "@remotion/transitions";
+import type { TransitionPresentation, TransitionPresentationComponentProps, TransitionTiming } from "@remotion/transitions";
+import type { Scene, SceneTiming, Script, TimelineV2, TransitionSpec } from "./types";
 import { C, FPS, SAFE } from "./theme";
-import { sceneFrames, sceneStarts } from "./timing";
+import { isV2, sceneFrames, sceneStarts } from "./timing";
+import { StyleV2Context } from "./style";
 import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
-  BigNumber, SeatBar, IconGrid, ImpactCard,
+  BigNumber, SeatBar, IconGrid, ImpactCard, SubtitleTrack, SourceTrack,
 } from "./components";
+import { EASE } from "./components/anim";
 
 const REGISTRY: Record<string, React.FC<any>> = {
   TermCard, FlowRow, CompareSplit, BigNumber, SeatBar, IconGrid, ImpactCard, EndCard,
@@ -53,13 +57,110 @@ const ProgressBar: React.FC = () => {
   );
 };
 
-export const Video: React.FC<Script> = ({ scenes, asOf, audio, timeline }) => {
+// ───────────────────────── styleVersion 2 ─────────────────────────
+
+/** 內容層（不含字幕、來源列）：沒有整幕縮放、沒有 Ken Burns；進出場由轉場負責 */
+/** 有轉場的幕：元件時間比 Sequence 快 ENTER_LEAD 幀，讓元件第一批元素在進場淡入（轉場第 3–8 幀）時就已經在動，不會只剩背景 */
+const ENTER_LEAD = 6;
+const SceneBodyV2: React.FC<{ scene: Scene; lead: number }> = ({ scene, lead }) => {
+  const Comp = REGISTRY[scene.component];
+  if (!Comp) throw new Error(`Unknown component: ${scene.component}`);
+  const isEnd = scene.component === "EndCard";
+  return (
+    <AbsoluteFill>
+      <div style={{ position: "absolute", left: SAFE.x, right: SAFE.x, top: 330, height: isEnd ? 1370 : 1030, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>
+          <Comp {...scene.props} />
+        </Sequence>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** 轉場進度＝幀 / 總幀數（線性），曲線在 presentation 裡依 exit／enter 幀區間計算 */
+const frameTiming = (frames: number): TransitionTiming => ({
+  getDurationInFrames: () => frames,
+  getProgress: ({ frame }) => Math.min(1, Math.max(0, frame / frames)),
+});
+const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+const outQuad = (u: number) => 1 - (1 - u) * (1 - u);
+// 位移：fade 走垂直、slide 走水平；出場 ease-in、進場 ease-out(quad)，每幀位移 ≤ 24px（5 幀：出 40px 最大 16px/幀、進 48px 最大 19px/幀）
+const DIST = { fade: { exit: -24, enter: 32 }, slide: { exit: -40, enter: 48 } } as const;
+
+/** 錯位轉場：出場在 exit 幀區間快速淡出＋位移，進場在 enter 幀區間才淡入（兩者不同時 >40% 不透明 → 沒有雙重曝光；也不會整片只剩背景） */
+const Stagger: React.FC<TransitionPresentationComponentProps<TransitionSpec>> = ({ children, presentationDirection, presentationProgress, passedProps }) => {
+  const k = presentationProgress * passedProps.frames;
+  const d = DIST[passedProps.type] ?? DIST.fade;
+  let opacity: number, shift: number;
+  if (presentationDirection === "exiting") {
+    const [a, b] = passedProps.exit;
+    const u = clamp01((k - a) / Math.max(1, b - a));
+    opacity = 1 - u;
+    shift = d.exit * EASE.exit(u);
+  } else {
+    const [a, b] = passedProps.enter;
+    const u = clamp01((k - a) / Math.max(1, b - a));
+    opacity = outQuad(u);
+    shift = d.enter * (1 - outQuad(u));
+  }
+  const px = Math.round(shift);
+  const transform = passedProps.type === "slide" ? `translateX(${px}px)` : `translateY(${px}px)`;
+  return <AbsoluteFill style={{ opacity, transform }}>{children}</AbsoluteFill>;
+};
+const stagger = (spec: TransitionSpec): TransitionPresentation<TransitionSpec> => ({ component: Stagger, props: spec });
+
+const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, timeline }) => {
+  const byId = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
+  const ordered = scenes.filter((s) => byId[s.id]);
+  const subCues = ordered.filter((s) => byId[s.id].subtitleWindow).map((s) => {
+    const t = byId[s.id];
+    return { id: s.id, zh: s.subtitle.zh, en: s.subtitle.en, keywords: s.keywords, window: t.subtitleWindow as [number, number], lines: t.lines, keywords_at: t.keywords };
+  });
+  const srcCues = ordered.filter((s) => s.component !== "EndCard").map((s) => ({ sources: s.sources, window: byId[s.id].sourceWindow }));
+  return (
+    <StyleV2Context.Provider value>
+      <AbsoluteFill>
+        <Background />
+        <TransitionSeries>
+          {ordered.flatMap((s, i) => {
+            const t = byId[s.id];
+            const seq = (
+              <TransitionSeries.Sequence key={s.id} durationInFrames={t.durationFrames} name={s.id}>
+                <SceneBodyV2 scene={s} lead={i === 0 ? 0 : ENTER_LEAD} />
+              </TransitionSeries.Sequence>
+            );
+            if (i === 0 || !t.transitionFrames) return [seq];
+            const spec: TransitionSpec = t.transition ?? { type: "fade", frames: t.transitionFrames, exit: [0, 5], enter: [3, 8] };
+            return [<TransitionSeries.Transition key={`${s.id}-tr`} timing={frameTiming(t.transitionFrames)} presentation={stagger(spec)} />, seq];
+          })}
+        </TransitionSeries>
+        <SubtitleTrack cues={subCues} />
+        <SourceTrack cues={srcCues} asOf={asOf} />
+        {/* 人聲：最外層，依絕對幀擺放（不受轉場重疊影響） */}
+        {timeline.scenes.filter((t) => t.audio).map((t) => (
+          <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none">
+            <Audio src={staticFile(t.audio as string)} />
+          </Sequence>
+        ))}
+        <Header />
+        <ProgressBar />
+      </AbsoluteFill>
+    </StyleV2Context.Provider>
+  );
+};
+
+export const Video: React.FC<Script> = (props) => {
+  if (isV2(props)) return <VideoV2 {...props} timeline={props.timeline as TimelineV2} />;
+  return <VideoV1 {...props} />;
+};
+
+const VideoV1: React.FC<Script> = ({ scenes, asOf, audio, timeline }) => {
   const starts = sceneStarts(scenes, timeline);
   return (
     <AbsoluteFill>
       <Background />
       {scenes.map((s, i) => {
-        const tl = timeline?.scenes?.find((x) => x.id === s.id);
+        const tl = (timeline?.scenes as SceneTiming[] | undefined)?.find((x) => x.id === s.id);
         return (
           <Sequence key={s.id} from={starts[i]} durationInFrames={sceneFrames(s, timeline)} name={s.id}>
             <SceneView scene={s} asOf={asOf} timing={tl} />

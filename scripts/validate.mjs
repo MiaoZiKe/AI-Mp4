@@ -20,8 +20,57 @@ export const splitLines = (zh) => {
 };
 /** 字幕一行的估算寬度（em）：全形字與全形標點 1、英數 0.6、半形標點 0.4、空白 0.3；字幕框 952px / 64px ≈ 14.9em；行內不換行，置中後最多可到 15.6em 仍在安全區 */
 export const emWidth = (line) => [...line].reduce((w, ch) => w + (/\s/.test(ch) ? 0.3 : /[A-Za-z0-9%$.,:;!?()'"\-–]/.test(ch) ? 0.6 : 1), 0);
-/** 配音版每幕秒數估算：每秒約 4.3 字 + 0.9 秒間隔 */
-export const voicedSeconds = (s) => s.component === "EndCard" ? 4.5 : len(s.tts ?? s.narration) / 4.3 + 0.9;
+/** 配音版每幕秒數估算：每秒約 4.3 字 + 0.9 秒間隔（v1）；v2 換幕間隔約 0.15 秒＋殘留靜音 → +0.35 秒 */
+export const voicedSeconds = (s, v2 = false) => s.component === "EndCard" ? 4.5 : len(s.tts ?? s.narration) / 4.3 + (v2 ? 0.35 : 0.9);
+/** 片長規範：v1 舊片 70–100 秒；styleVersion 2 為 45–75 秒（鉤子幕與 CTA 幕可短到 3 秒） */
+export const LENGTH = { 1: { min: 70, max: 100, hardMin: 65, hardMax: 105 }, 2: { min: 45, max: 75, hardMin: 40, hardMax: 80 } };
+
+/** P0-7：程式碼規則（grep）。src 內禁用 Math.random／Date.now；元件內不寫字面的 spring／interpolate（一律走 anim.ts 的 token） */
+export function lintSource() {
+  const errors = [];
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [path.join(d, e.name)] : []);
+  for (const f of walk(path.join(ROOT, "src"))) {
+    const rel = path.relative(ROOT, f);
+    const src = fs.readFileSync(f, "utf8");
+    src.split("\n").forEach((line, i) => {
+      if (/^\s*(\/\/|\*)/.test(line)) return;
+      if (/Math\.random\s*\(|Date\.now\s*\(/.test(line)) errors.push(`${rel}:${i + 1} 禁用 Math.random／Date.now（隨機要用固定 seed）`);
+      if (/src\/components\/(?!anim\.ts)/.test(rel) && /\bspring\s*\(|\binterpolate\s*\(/.test(line)) errors.push(`${rel}:${i + 1} 元件內不要直接呼叫 spring／interpolate，改用 anim.ts 的 motion token`);
+    });
+  }
+  return errors;
+}
+
+/** 時間軸 v2 檢查：幀數接續、人聲不重疊且間隔 ≥ 0.08 秒、總長 */
+export function validateTimelineV2(script, tl) {
+  const errors = [], warns = [];
+  const E = (m) => errors.push(m), W = (m) => warns.push(m);
+  if (!tl) { W("styleVersion 2 尚無 timeline.json（先 npm run tts && npm run align）"); return { errors, warns }; }
+  if (tl.version !== 2) { E("styleVersion 2 但 timeline.json 不是 version 2，請重跑 npm run align"); return { errors, warns }; }
+  const ids = script.scenes.map((x) => x.id), tids = tl.scenes.map((x) => x.id);
+  if (ids.join() !== tids.join()) E(`timeline 幕序與 script.json 不一致，請重跑 npm run align（script：${ids.length} 幕，timeline：${tids.length} 幕）`);
+  tl.scenes.forEach((x, i) => {
+    const n = tl.scenes[i + 1];
+    const sec = x.durationFrames / 30;
+    if (n && n.startFrame !== x.startFrame + x.durationFrames - n.transitionFrames) E(`timeline ${n.id}: startFrame ${n.startFrame} ≠ 前一幕結束 ${x.startFrame + x.durationFrames} − 轉場 ${n.transitionFrames}`);
+    if (n && x.voiceEndFrame != null && n.voiceStartFrame != null) {
+      const gap = (n.voiceStartFrame - x.voiceEndFrame) / 30;
+      if (gap < 0) E(`timeline ${x.id} → ${n.id}: 人聲重疊 ${(-gap).toFixed(2)} 秒`);
+      else if (gap < 0.08) E(`timeline ${x.id} → ${n.id}: 人聲間隔 ${gap.toFixed(2)} 秒 < 0.08（轉場太長或停頓太短）`);
+      const tail = (x.startFrame + x.durationFrames - x.voiceEndFrame) / 30;
+      if (n.transitionFrames / 30 > tail + (n.voiceStartFrame - n.startFrame) / 30 + 1e-6) E(`timeline ${n.id}: 轉場 ${n.transitionFrames} 幀超過 TAIL＋LEAD`);
+    }
+    const end = i === tl.scenes.length - 1;
+    if (sec > 10.5) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 > 10`);
+    if (sec < 3) E(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 3`);
+    else if (sec < 5 && i !== 0 && !end) W(`timeline ${x.id}: 幕長 ${sec.toFixed(1)} 秒 < 5（只有鉤子幕與 CTA 幕可短到 3 秒）`);
+  });
+  const last = tl.scenes[tl.scenes.length - 1];
+  if (last && last.startFrame + last.durationFrames !== tl.totalFrames) E(`timeline.totalFrames ${tl.totalFrames} ≠ 最後一幕結束 ${last.startFrame + last.durationFrames}`);
+  const L = LENGTH[2], sec = tl.totalFrames / 30;
+  if (sec < L.min || sec > L.max) E(`配音版實際總長 ${sec.toFixed(1)} 秒，應在 ${L.min}–${L.max} 秒`);
+  return { errors, warns, sec };
+}
 
 export function validate(script) {
   const errors = [], warns = [];
@@ -40,6 +89,8 @@ export function validate(script) {
   for (const k of ["slug", "title", "asOf"]) if (typeof script[k] !== "string" || !script[k]) E(`頂層缺少 ${k}`);
   if (script.asOf && !/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(script.asOf)) E(`asOf 格式應為 YYYY/M/D：${script.asOf}`);
   if (!script.voice || typeof script.voice.voiceName !== "string") E("頂層缺少 voice.voiceName（Gemini 音色名）");
+  if (script.styleVersion !== undefined && ![1, 2].includes(script.styleVersion)) E(`styleVersion 只能是 1 或 2：${script.styleVersion}`);
+  const v2 = script.styleVersion === 2;
   const c = script.cover;
   if (!c) E("頂層缺少 cover");
   else {
@@ -88,10 +139,12 @@ export function validate(script) {
         else if (px > 900) W(`${tag}: 來源列估寬 ${px}px，接近 952px 上限：「${footer}」`);
       }
     }
+    if (s.transition !== undefined && (!v2 || !["fade", "slide"].includes(s.transition))) E(`${tag}: transition 只能是 fade／slide，且只在 styleVersion 2 有效`);
+    if (s.pauseAfter !== undefined && (!v2 || typeof s.pauseAfter !== "number" || s.pauseAfter < 0 || s.pauseAfter > 0.7)) E(`${tag}: pauseAfter 應為 0–0.7 秒，且只在 styleVersion 2 有效`);
     if (s.durationSec !== undefined && (typeof s.durationSec !== "number" || s.durationSec < 3 || s.durationSec > 15)) E(`${tag}: durationSec 應為 3–15`);
     if (i === scenes.length - 1 && !isEnd) E("最後一幕必須是 EndCard");
     if (isEnd && i !== scenes.length - 1) E(`${tag}: EndCard 只能是最後一幕`);
-    total += voicedSeconds(s);
+    total += voicedSeconds(s, v2);
     const p = s.props ?? {};
     if (typeof p !== "object") E(`${tag}: props 必須是物件`);
     switch (s.component) {
@@ -143,8 +196,10 @@ export function validate(script) {
         break;
     }
   });
+  if (v2 && scenes.filter((x) => typeof x.pauseAfter === "number" && x.pauseAfter > 0).length > 3) E("pauseAfter 每支最多 3 處");
   const est = Math.round(total);
-  if (est < 65 || est > 105) E(`配音版總長估算 ${est} 秒，應在 70–100 秒`); else if (est < 70 || est > 100) W(`配音版總長估算 ${est} 秒，建議 70–100 秒`);
+  const L = LENGTH[v2 ? 2 : 1];
+  if (est < L.hardMin || est > L.hardMax) E(`配音版總長估算 ${est} 秒，應在 ${L.min}–${L.max} 秒`); else if (est < L.min || est > L.max) W(`配音版總長估算 ${est} 秒，建議 ${L.min}–${L.max} 秒`);
   return { errors, warns, est };
 }
 
@@ -157,6 +212,16 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   try { script = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { console.error(`JSON 解析失敗：${e.message}`); process.exit(1); }
   for (const f of ["research.md"]) if (!fs.existsSync(path.join(ROOT, "videos", slug, f))) console.warn(`⚠ 缺 ${f}`);
   const { errors, warns, est } = validate(script);
+  errors.push(...lintSource());
+  if (script.styleVersion === 2) {
+    const tp = path.join(ROOT, "videos", slug, "timeline.json");
+    const r = validateTimelineV2(script, fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null);
+    errors.push(...r.errors); warns.push(...r.warns);
+    if (r.sec) {
+      console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);
+      for (let k = errors.length - 1; k >= 0; k--) if (errors[k].startsWith("配音版總長估算")) warns.push(errors.splice(k, 1)[0].replace("應在", "（估算）建議"));
+    }
+  }
   warns.forEach((w) => console.log(`⚠ ${w}`));
   errors.forEach((e) => console.log(`✖ ${e}`));
   console.log(`${errors.length} error(s), ${warns.length} warning(s)，${script.scenes?.length ?? 0} 幕，配音版估 ${est ?? "?"} 秒`);

@@ -19,6 +19,7 @@
 ## 影片規格
 - 1080×1920、30fps、H.264 MP4
 - 每幕 5–10 秒；無配音時長依中文字數估算（每秒約 5 字，再加 1 秒），資訊卡較密的幕可在 script.json 用 `durationSec` 指定
+- 片長：`styleVersion: 2` 新片總長 45–75 秒；鉤子幕與 CTA 幕可短到 3 秒，其他幕仍 5–10 秒。v1 舊片（沒有 styleVersion）維持總長 70–100 秒
 - 安全區：上下各留 220px、左右各留 64px
 
 ## 視覺設計系統
@@ -51,7 +52,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 數字與 research.md 來源一致；未定事項已標示
 - 用詞中立、無投資建議
 - 每幕截圖檢查：安全區、溢出、缺字方框
-- 最後一幕是片尾卡；總長 70–100 秒；ffprobe 確認可播放
+- 最後一幕是片尾卡；總長符合規範（v2 45–75 秒、v1 70–100 秒）；ffprobe 確認可播放
 - 影片與圖片不 commit（見 .gitignore）
 
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
