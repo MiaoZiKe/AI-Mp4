@@ -174,6 +174,8 @@ const withPathLength = (shape: React.ReactNode): React.ReactNode => {
 };
 const SHAPES_V2: Record<string, React.ReactNode> = {};
 const shapeV2 = (name: string) => (SHAPES_V2[name] ??= withPathLength(P[name] ?? P.question));
+/** styleVersion 2 元件共用：圖示路徑（每個子圖形 pathLength=1） */
+export const iconShapeV2 = shapeV2;
 
 /** 霓虹光暈：不用 CSS filter（軟體渲染太慢），改用三層描邊（粗半透明 → 中 → 3px 實線），粗層透明度緩慢呼吸 */
 export const Icon: React.FC<{ name: string; color: string; size?: number; draw?: number }> = ({ name, color, size = 120, draw = 1 }) => {
