@@ -326,6 +326,18 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   try { script = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) { console.error(`JSON 解析失敗：${e.message}`); process.exit(1); }
   for (const f of ["research.md"]) if (!fs.existsSync(path.join(ROOT, "videos", slug, f))) console.warn(`⚠ 缺 ${f}`);
   const { errors, warns, est } = validate(script);
+  // P1-9：caption.md 第一行放搜尋關鍵詞（≤40 字、含主關鍵詞），hashtag ≤5，要有提問；不用 engagement bait 用語
+  const cp = path.join(ROOT, "videos", slug, "caption.md");
+  if (script.styleVersion === 2 && fs.existsSync(cp)) {
+    const cap = fs.readFileSync(cp, "utf8");
+    const first = cap.split("\n").find((l) => l.trim()) ?? "";
+    if (/^#|^\*\*|^貼文文案/.test(first.trim())) errors.push("caption.md 第一行要是搜尋關鍵詞句（不要放標題標記或粗體）");
+    if (first.length > 40) errors.push(`caption.md 第一行 ${first.length} 字 > 40：「${first}」`);
+    const tags = cap.match(/(^|\s)#[^\s#]+/g) ?? [];
+    if (tags.length > 5) errors.push(`caption.md hashtag ${tags.length} 個 > 5`);
+    if (!/[？?]/.test(cap)) warns.push("caption.md 沒有提問句（建議放一個具體問題）");
+    for (const w of ["分享給", "傳給", "標記"]) if (cap.includes(w)) errors.push(`caption.md 不要用「${w}」`);
+  }
   errors.push(...lintSource());
   errors.push(...(await (await import("./check-motion.mjs")).checkMotion()).errors);
   if (script.styleVersion === 2) {
