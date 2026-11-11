@@ -137,6 +137,45 @@ export function lintSource() {
   return errors;
 }
 
+/**
+ * 讀法規則（亞里方法論：只改送配音的版本，字幕維持原文）。對「送去 TTS 的文字」（tts ?? narration）檢查：
+ *  1. 兩個標點之間超過 26 字 → 加逗號（TTS 一口氣念太長會亂換氣、吞字）
+ *  2. 阿拉伯數字、%／$ 符號 → 改寫成唸法（二零二六年、四趴、兩百一十二億美元）
+ *  3. 英文縮寫（連續 ≥2 個大寫字母，例如 MSTR、AP）→ 字母分開（M S T R）或改中文；英文單字跟中文之間要留半形空白
+ * 例外：videos/<slug>/pronunciation.md 裡標題含「白名單」的一節，反引號包住的詞（例如 `ETF`）不警告。
+ */
+export const READ_SPAN_MAX = 26;
+export const readingWhitelist = (slug) => {
+  const p = path.join(ROOT, "videos", String(slug ?? ""), "pronunciation.md");
+  if (!slug || !fs.existsSync(p)) return new Set();
+  const md = fs.readFileSync(p, "utf8");
+  const out = new Set();
+  let on = false;
+  for (const line of md.split("\n")) {
+    if (/^#{1,6}\s/.test(line)) { on = /白名單/.test(line); continue; }
+    if (on) for (const m of line.matchAll(/`([^`]+)`/g)) out.add(m[1].trim());
+  }
+  return out;
+};
+export function readingIssues(text, whitelist = new Set()) {
+  const out = [];
+  const t = String(text ?? "");
+  for (const seg of t.split(/[，。、！？：；,.!?;:「」『』（）()\n…—]+/)) {
+    const n = clean(seg).length;
+    if (n > READ_SPAN_MAX) out.push(`兩個標點之間 ${n} 字 > ${READ_SPAN_MAX}，請加逗號：「${seg.trim()}」`);
+  }
+  const listed = (w) => [...whitelist].some((x) => x === w || (x.length > 1 && w.includes(x) && /\d/.test(x)));
+  const digits = [...new Set(t.match(/[0-9０-９][0-9０-９.,:/]*/g) ?? [])].filter((w) => !listed(w));
+  if (digits.length) out.push(`阿拉伯數字未轉唸法：${digits.join("、")}（例：2026 → 二零二六、212 億 → 兩百一十二億）`);
+  const sym = [...new Set(t.match(/[%％$＄]/g) ?? [])].filter((w) => !listed(w));
+  if (sym.length) out.push(`符號未轉唸法：${sym.join(" ")}（% → 趴、$ → 美元）`);
+  const abbr = [...new Set(t.match(/[A-Z]{2,}/g) ?? [])].filter((w) => !listed(w));
+  if (abbr.length) out.push(`英文縮寫未轉唸法：${abbr.join("、")}（字母分開寫成 ${abbr[0].split("").join(" ")}，或改中文；確定 TTS 念得對就加進 pronunciation.md 白名單）`);
+  const glued = [...new Set(t.match(/[一-鿿][A-Za-z]+|[A-Za-z]+(?=[一-鿿])/g) ?? [])].filter((w) => !listed(w.replace(/[一-鿿]/g, "")));
+  if (glued.length) out.push(`英文與中文之間沒留空白：${glued.join("、")}（前後各留一個半形空白，TTS 才不會黏著念）`);
+  return out;
+}
+
 /** 時間軸 v2 檢查：幀數接續、人聲不重疊且間隔 ≥ 0.08 秒、總長 */
 export function validateTimelineV2(script, tl) {
   const errors = [], warns = [];
@@ -215,6 +254,7 @@ export function validate(script) {
   if (!v2 && (scenes.length < 11 || scenes.length > 18)) W(`幕數 ${scenes.length}，建議 12–16（含片尾）`);
   const ids = new Set();
   let total = 0;
+  const readWL = readingWhitelist(script.slug);
   scenes.forEach((s, i) => {
     const tag = `scene[${i}] ${s.id ?? "?"}`;
     if (typeof s.id !== "string" || !/^[a-z0-9-]+$/.test(s.id)) E(`${tag}: id 必須是 kebab-case`);
@@ -224,6 +264,7 @@ export function validate(script) {
     if (typeof s.narration !== "string") E(`${tag}: 缺 narration`);
     else { const n = len(s.narration); if (!isEnd) { if (n < 8 || n > 32) E(`${tag}: 旁白 ${n} 字（應 15–25）：${s.narration}`); else if (n < 13 || n > 26) W(`${tag}: 旁白 ${n} 字（建議 15–25）：${s.narration}`); } }
     if (s.tts !== undefined && typeof s.tts !== "string") E(`${tag}: tts 必須是字串`);
+    else if (!isEnd || s.tts !== undefined) for (const m of readingIssues(s.tts ?? s.narration, readWL)) W(`${tag}: 念稿${s.tts === undefined ? "（無 tts，用 narration）" : " tts"} ${m}`);
     if (!s.subtitle || typeof s.subtitle.zh !== "string" || typeof s.subtitle.en !== "string") E(`${tag}: subtitle 需有 zh/en`);
     else {
       const lines = v2 ? [] : splitLines(s.subtitle.zh);
