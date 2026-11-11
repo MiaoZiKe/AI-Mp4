@@ -5,6 +5,7 @@ import fs from "node:fs";
 import { execFileSync, spawnSync } from "node:child_process";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, assertFrames } from "./lib.mjs";
+import { writeSrt, writeStoryboard } from "./subs.mjs";
 
 await import("./fetch-fonts.mjs");
 const slug = process.argv[2];
@@ -30,6 +31,8 @@ const nFrames = Number(execFileSync("ffprobe", ["-v", "error", "-count_packets",
 if (nFrames !== comp.durationInFrames) console.warn(`⚠ ffprobe 幀數 ${nFrames} ≠ composition ${comp.durationInFrames}`);
 else console.log(`✔ ffprobe 幀數 ${nFrames} ＝ composition ＝ timeline`);
 console.log(`✔ ${path.relative(ROOT, out)}  ${(comp.durationInFrames / comp.fps).toFixed(1)}s（${comp.durationInFrames} 幀，${Math.round(ms / comp.durationInFrames)} ms/幀）\n  ffprobe: ${probe}`);
+// 字幕檔（out/<slug>.srt／.zh.srt／.en.srt）與分鏡表：時間取 timeline、文字取稿子原文
+if (!script.audit) { writeSrt(slug, script, script.timeline); writeStoryboard(slug, script, script.timeline); }
 if (V2MIX) {
   const r = spawnSync("node", [path.join(ROOT, "scripts", "mix.mjs"), slug], { stdio: "inherit" });
   if (r.status !== 0) { console.error("✖ 混音失敗"); process.exit(1); }
