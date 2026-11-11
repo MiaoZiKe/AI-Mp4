@@ -57,6 +57,14 @@
 
 備選 Achird：如果人耳覺得 Callirrhoe 太輕、不夠可信，就換 Achird，同時把 style 的「語速自然」改成「語速稍快」。Iapetus 留作延續備案。
 
+## 整篇配音結果（2026/11/11 20:00）
+
+- `npm run tts mstr-bitcoin-v2`：Callirrhoe＋`gemini-2.5-flash-preview-tts`，13 幕整篇一次生成，**1 次 TTS 請求**，一次就切成 13 段（沒有拆半重做）。
+- 人聲合計 66.5 秒；align 後時間軸 68.73 秒（2062 幀，v2 規定 45–75 秒內），不需要把 style 改成「語速稍快」。
+- 回讀校驗（`--verify=fa`，本機）：13 幕對齊信心 0.744–0.985，全部 ≥ 0.5，自動重生 0 幕、0 次請求。最低是 yield-negative（0.744，三個百分比連念）。
+- fa.py 已加多音字覆寫（囤 → tun），hook 與 holdings 的「囤」不再被當成 dun 對齊。
+- 舊版 Iapetus 音檔備份在 scratchpad（不進 repo）。
+
 ## 需要人耳確認（機器量不到）
 
 聽寫模型一律回簡體字，看不出口音，**台灣腔還是大陸腔只能靠人耳判斷**。請打開 `out/mstr-bitcoin-v2/voice-samples/*.wav` 聽以下幾點：

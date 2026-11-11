@@ -19,11 +19,11 @@ export const HookTitle: React.FC<{ kicker?: string; lines: string[]; mark?: numb
   const f = useCurrentFrame();
   const c = useCue();
   const slam = cueAt(c, slamAt, 58);
-  // sub：有 subAt 就照 cue；有 reverse 而沒有 subAt 時，接在箭頭之後依序進場（第 1 張 r0+16、每張再 +12 幀，補滿 0–2 秒的變化）
-  const subIn = subAt ? cueIn(c, subAt, 50) : reverse ? cueAt(c, reverse.fromAt, 8) + 14 : 50;
+  // sub：有 subAt 就照 cue；有 reverse 而沒有 subAt 時，接在箭頭之後依序進場（第 1 張 r0+14、每張再 +12 幀，補滿 0–2 秒的變化）
   const n = count ? Math.round(count.from + (count.to - count.from) * countUp(f, count.start ?? 2, count.land ?? 44)) : 0;
   // 反轉列時間：左塊在 fromAt 填色（8 幀）、箭頭接著畫（16 幀）、右塊在 toAt 前 4 幀填滿（22 幀 wipe）
-  const r0 = reverse ? cueAt(c, reverse.fromAt, 8) - 2 : 0;
+  const r0 = reverse ? cueIn(c, reverse.fromAt, 8) - 2 : 0; // 左塊與其他元素同規則：cue − CUE_LEAD 起動，補 0–15 幀的變化
+  const subIn = subAt ? cueIn(c, subAt, 50) : reverse ? r0 + 14 : 50;
   const r2end = reverse ? Math.max(r0 + 44, cueAt(c, reverse.toAt, 62) - 4) : 0;
   const fillL = reverse ? tween(f, r0, DUR.m, EASE.enter) : 0;
   const arrow = reverse ? tween(f, r0 + 10, 16, EASE.move) : 0;
