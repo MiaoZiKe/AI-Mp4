@@ -30,14 +30,16 @@ const valueAt = (pts: Pt[], t: number) => {
 };
 
 export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "", decimals = 2, color, series, xTicks, yMax, yTicks, refLine, band, notes = [], draw, watermark, footnote, badgeLabel }) => {
+  // 沒有 footnote（v3 移到出處列）時，繪圖區往下延伸 56px（主視覺撐滿、不留空白帶）
+  const PL = { ...PLOT, y1: PLOT.y1 + (footnote ? 0 : 56) };
   const f = useCurrentFrame();
   const c = useCue();
   const acc = accentV2(color);
   const all = series.flatMap((s) => s.points);
   const tMin = Math.min(...all.map((p) => p.t)), tMax = Math.max(...all.map((p) => p.t));
   const vMax = yMax ?? Math.max(...all.map((p) => p.v)) * 1.12;
-  const X = (t: number) => PLOT.x0 + ((t - tMin) / (tMax - tMin || 1)) * (PLOT.x1 - PLOT.x0);
-  const Y = (v: number) => PLOT.y1 - (v / vMax) * (PLOT.y1 - PLOT.y0);
+  const X = (t: number) => PL.x0 + ((t - tMin) / (tMax - tMin || 1)) * (PL.x1 - PL.x0);
+  const Y = (v: number) => PL.y1 - (v / vMax) * (PL.y1 - PL.y0);
   // 描線關鍵幀 → 線頭的 t
   const keys = [{ frame: 6, t: tMin }, ...(draw ?? [{ frame: 70, t: tMax }]).map((k) => ({ frame: k.at ? cueAt(c, k.at, k.frame ?? 60) : k.frame ?? 60, t: k.t }))];
   for (let i = 1; i < keys.length; i++) keys[i].frame = Math.max(keys[i].frame, keys[i - 1].frame + 6);
@@ -70,27 +72,27 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
           const x0 = X(band.from), x1 = X(band.to);
           return (
             <g opacity={tween(f, bandIn, DUR.s)}>
-              <rect x={x0} y={PLOT.y0 - 20} width={(x1 - x0) * p} height={PLOT.y1 - PLOT.y0 + 20} fill={bc.soft} opacity={T.chart.bandOpacity + 0.3} />
-              <text x={x0 + 16} y={PLOT.y0 + 22} fontFamily={FONT_ZH} fontSize={34} fontWeight={700} fill={bc.text}>{band.label}</text>
-              {band.sub && <text x={x0 + 16} y={PLOT.y0 + 72} fontFamily={FONT_ZH} fontSize={40} fontWeight={900} fill={T.text} opacity={tween(f, bandIn + DUR.s, DUR.s)}>{band.sub}</text>}
+              <rect x={x0} y={PL.y0 - 20} width={(x1 - x0) * p} height={PL.y1 - PL.y0 + 20} fill={bc.soft} opacity={T.chart.bandOpacity + 0.3} />
+              <text x={x0 + 16} y={PL.y0 + 22} fontFamily={FONT_ZH} fontSize={34} fontWeight={700} fill={bc.text}>{band.label}</text>
+              {band.sub && <text x={x0 + 16} y={PL.y0 + 72} fontFamily={FONT_ZH} fontSize={40} fontWeight={900} fill={T.text} opacity={tween(f, bandIn + DUR.s, DUR.s)}>{band.sub}</text>}
             </g>
           );
         })()}
         {/* y 格線與標籤 */}
         {ticks.map((v) => (
           <g key={v}>
-            <line x1={PLOT.x0} x2={PLOT.x1 + 40} y1={Y(v)} y2={Y(v)} stroke={v === 0 ? T.chart.axis : T.chart.grid} strokeWidth={v === 0 ? T.chart.axisW : 2} strokeDasharray={v === 0 ? undefined : "6 10"} />
-            <text x={PLOT.x0 - 16} y={Y(v) + 10} textAnchor="end" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{fmtNum(v, v % 1 ? 1 : 0)}</text>
+            <line x1={PL.x0} x2={PL.x1 + 40} y1={Y(v)} y2={Y(v)} stroke={v === 0 ? T.chart.axis : T.chart.grid} strokeWidth={v === 0 ? T.chart.axisW : 2} strokeDasharray={v === 0 ? undefined : "6 10"} />
+            <text x={PL.x0 - 16} y={Y(v) + 10} textAnchor="end" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{fmtNum(v, v % 1 ? 1 : 0)}</text>
           </g>
         ))}
         {/* x 標籤（≤6） */}
         {xTicks.slice(0, 6).map((x) => (
-          <text key={x.t} x={X(x.t)} y={PLOT.y1 + 44} textAnchor="middle" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{x.label}</text>
+          <text key={x.t} x={X(x.t)} y={PL.y1 + 44} textAnchor="middle" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{x.label}</text>
         ))}
         {/* 參考線 */}
         {refLine && (
           <g opacity={tween(f, refIn, DUR.s)}>
-            <line x1={PLOT.x0} x2={PLOT.x0 + (PLOT.x1 + 40 - PLOT.x0) * tween(f, refIn, DUR.l, EASE.move)} y1={Y(refLine.value)} y2={Y(refLine.value)} stroke={T.accent.pink.text} strokeWidth={5} strokeDasharray="16 10" />
+            <line x1={PL.x0} x2={PL.x0 + (PL.x1 + 40 - PL.x0) * tween(f, refIn, DUR.l, EASE.move)} y1={Y(refLine.value)} y2={Y(refLine.value)} stroke={T.accent.pink.text} strokeWidth={5} strokeDasharray="16 10" />
           </g>
         )}
         {series.map((s, si) => {
@@ -99,7 +101,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
           const hv = valueAt(s.points, headT);
           pts.push([X(headT), Y(hv)]);
           const d = "M" + pts.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join("L");
-          const area = `${d}L${X(headT).toFixed(1)},${PLOT.y1}L${PLOT.x0},${PLOT.y1}Z`;
+          const area = `${d}L${X(headT).toFixed(1)},${PL.y1}L${PL.x0},${PL.y1}Z`;
           return (
             <g key={si}>
               {si === 0 && <path d={area} fill="url(#lc-area)" />}
@@ -145,7 +147,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
       </svg>
       {/* 參考線標籤 */}
       {refLine && (
-        <div style={{ ...reveal(f, refIn + 4, 1, 12), position: "absolute", left: PLOT.x0 + 16, top: Y(refLine.value) + 14, fontFamily: FONT_ZH, fontSize: 36, fontWeight: 900, color: T.accent.pink.text, background: T.card, border: `2px solid ${T.accent.pink.fill}`, borderRadius: T.radiusTag, padding: "4px 14px", transform: `${reveal(f, refIn + 4, 1, 12).transform} scale(${bump(f, cueAt(c, refLine.at, refIn + 4), 0.06).toFixed(4)})`, transformOrigin: "0% 0%" }}>{refLine.label}</div>
+        <div style={{ ...reveal(f, refIn + 4, 1, 12), position: "absolute", left: PL.x0 + 16, top: Y(refLine.value) + 14, fontFamily: FONT_ZH, fontSize: 36, fontWeight: 900, color: T.accent.pink.text, background: T.card, border: `2px solid ${T.accent.pink.fill}`, borderRadius: T.radiusTag, padding: "4px 14px", transform: `${reveal(f, refIn + 4, 1, 12).transform} scale(${bump(f, cueAt(c, refLine.at, refIn + 4), 0.06).toFixed(4)})`, transformOrigin: "0% 0%" }}>{refLine.label}</div>
       )}
       {/* 終點數字徽章：跟著線頭走，數字跟著變 */}
       {(() => {
@@ -154,7 +156,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
         const hx = X(headT), hy = Y(hv);
         const bw = 250;
         const left = Math.min(Math.max(hx - bw / 2, 0), 952 - bw);
-        const top = hy - 170 < PLOT.y0 - 60 ? hy + 40 : hy - 170;
+        const top = hy - 170 < PL.y0 - 60 ? hy + 40 : hy - 170;
         return (
           <div style={{ position: "absolute", left, top, width: bw, height: 124, borderRadius: T.radius, background: acc.fill, color: T.onAccent, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: T.shadow, opacity: tween(f, 4, DUR.s), transform: `scale(${bump(f, land, 0.06).toFixed(4)})` }}>
             <div style={{ fontFamily: FONT_EN, fontSize: 84, fontWeight: T.weight.num, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{fmtNum(hv, decimals)}<span style={{ fontSize: 40, marginLeft: 6, fontFamily: FONT_ZH }}>{unit}</span></div>

@@ -76,7 +76,8 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
   const neg = bars.every((b) => b.value <= 0);
   const vmax = max ?? Math.max(...bars.map((b) => Math.abs(b.value))) * 1.08;
   const base = neg ? P0 + 130 : P1 - 70; // 基準線（全負值：上方，標籤與圖示在基準線上）
-  const span = neg ? P1 - 120 - base : base - (P0 + 170);
+  // 沒有 footnote 時長條可以再往下長 60px（不留空白帶；數字底仍在主視覺區內）
+  const span = neg ? P1 - (footnote ? 120 : 60) - base : base - (P0 + 170);
   const Yv = (v: number) => base + (neg ? 1 : -1) * (Math.abs(v) / vmax) * span;
   const slot = 952 / bars.length;
   const bw = Math.max(110, Math.min(140, slot * 0.4));
