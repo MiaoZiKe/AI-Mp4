@@ -1,6 +1,6 @@
 {
  "slug": "mstr-bitcoin-v2",
- "at": "2026-11-11T11:50:27.839Z",
+ "at": "2026-11-11T12:32:07.775Z",
  "sample": false,
  "gates": {
   "determinism": true,
@@ -10,145 +10,145 @@
   "hookDiffs>3": true,
   "jumpFrames==0": true,
   "transitionOccupancy>=60%": true,
-  "review>=8": null
+  "review>=8": true
  },
  "determinism": {
-  "frame": 940,
+  "frame": 1031,
   "same": true
  },
  "grid9": {
   "frames": [
    30,
-   249,
-   541,
-   707,
-   981,
-   1158,
-   1498,
-   1632,
-   1831
+   286,
+   608,
+   782,
+   1095,
+   1282,
+   1659,
+   1794,
+   2012
   ],
   "file": "out/mstr-bitcoin-v2/selfcheck/grid9.png"
  },
  "strip": {
   "frames": [
-   96,
-   251,
-   420,
-   554,
-   709,
-   862,
-   996,
-   1160,
-   1345,
-   1500,
-   1662,
-   1782,
-   1868
+   114,
+   291,
+   476,
+   624,
+   784,
+   955,
+   1117,
+   1290,
+   1492,
+   1661,
+   1827,
+   1961,
+   2050
   ],
   "file": "out/mstr-bitcoin-v2/selfcheck/strip.png"
  },
  "pixel": {
-  "frames": 1880,
-  "fastMotionRatio": 0.17,
+  "frames": 2062,
+  "fastMotionRatio": 0.155,
   "midEmptyFrames": [],
   "staticRunsOver1_5s": [],
   "hookDiffs": {
-   "0-15": 6.28,
-   "0-30": 8.39,
-   "0-45": 16.84,
-   "0-60": 25.15,
-   "15-30": 4.09,
-   "15-45": 12.32,
-   "15-60": 20.62,
-   "30-45": 6.59,
-   "30-60": 14.89,
-   "45-60": 6.35
+   "0-15": 5.94,
+   "0-30": 8.5,
+   "0-45": 15.28,
+   "0-60": 16.83,
+   "15-30": 4.54,
+   "15-45": 11.1,
+   "15-60": 12.65,
+   "30-45": 6.68,
+   "30-60": 8.23,
+   "45-60": 3.11
   },
   "jumpFrames": [],
   "transitionOccupancy": [
    {
-    "start": 96,
-    "minOcc": 8.77,
-    "ref": 11.56,
-    "ratio": 0.76,
+    "start": 114,
+    "minOcc": 8.78,
+    "ref": 11.72,
+    "ratio": 0.75,
     "ok": true
    },
    {
-    "start": 251,
+    "start": 291,
     "minOcc": 8.29,
-    "ref": 8.7,
+    "ref": 8.73,
     "ratio": 0.95,
     "ok": true
    },
    {
-    "start": 420,
-    "minOcc": 9.2,
-    "ref": 10.11,
+    "start": 476,
+    "minOcc": 9.19,
+    "ref": 10.1,
     "ratio": 0.91,
     "ok": true
    },
    {
-    "start": 554,
-    "minOcc": 8.34,
-    "ref": 13.53,
-    "ratio": 0.62,
-    "ok": true
-   },
-   {
-    "start": 709,
-    "minOcc": 15.86,
-    "ref": 17.47,
-    "ratio": 0.91,
-    "ok": true
-   },
-   {
-    "start": 862,
-    "minOcc": 9.41,
-    "ref": 15.39,
+    "start": 624,
+    "minOcc": 8.33,
+    "ref": 13.66,
     "ratio": 0.61,
     "ok": true
    },
    {
-    "start": 996,
-    "minOcc": 9.97,
-    "ref": 10.28,
-    "ratio": 0.97,
+    "start": 784,
+    "minOcc": 15.86,
+    "ref": 17.48,
+    "ratio": 0.91,
     "ok": true
    },
    {
-    "start": 1160,
-    "minOcc": 9.6,
-    "ref": 10.79,
+    "start": 955,
+    "minOcc": 9.42,
+    "ref": 15.51,
+    "ratio": 0.61,
+    "ok": true
+   },
+   {
+    "start": 1117,
+    "minOcc": 11.21,
+    "ref": 11.35,
+    "ratio": 0.99,
+    "ok": true
+   },
+   {
+    "start": 1290,
+    "minOcc": 9.61,
+    "ref": 10.75,
     "ratio": 0.89,
     "ok": true
    },
    {
-    "start": 1345,
-    "minOcc": 17,
+    "start": 1492,
+    "minOcc": 17.17,
     "ref": 21.97,
-    "ratio": 0.77,
+    "ratio": 0.78,
     "ok": true
    },
    {
-    "start": 1500,
+    "start": 1661,
     "minOcc": 11.42,
     "ref": 14.25,
     "ratio": 0.8,
     "ok": true
    },
    {
-    "start": 1662,
-    "minOcc": 12.39,
+    "start": 1827,
+    "minOcc": 12.42,
     "ref": 13.49,
     "ratio": 0.92,
     "ok": true
    },
    {
-    "start": 1782,
-    "minOcc": 11.35,
-    "ref": 13.7,
-    "ratio": 0.83,
+    "start": 1961,
+    "minOcc": 11.3,
+    "ref": 13.2,
+    "ratio": 0.86,
     "ok": true
    }
   ],
@@ -161,6 +161,14 @@
    "transitionOccupancy>=60%": true
   },
   "pass": true
+ },
+ "review": {
+  "前 2 秒抓人": 8,
+  "手機上看得清": 8,
+  "動作自然": 8,
+  "畫面變化": 8,
+  "構圖": 8,
+  "聲畫匹配": 8
  },
  "pass": true
 }
