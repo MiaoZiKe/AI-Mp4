@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { splitLines, splitPhrases, SUB_MAX_EM_V2, clean } from "./validate.mjs";
+import { writeStoryboard } from "./subs.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const slug = process.argv.slice(2).find((a) => !a.startsWith("--"));
@@ -401,6 +402,7 @@ if (V2) {
   totalSec = Number(scenes.reduce((a, x) => a + Math.round(x.durationSec * FPS) / FPS, 0).toFixed(2));
   fs.writeFileSync(tlPath, JSON.stringify({ slug, fps: FPS, totalSec, scenes }, null, 1));
 }
+writeStoryboard(slug, script, JSON.parse(fs.readFileSync(tlPath, "utf8")));
 const flagged = report.filter((r) => r.cer != null && r.cer > 0.2);
 const lowConf = report.filter((r) => r.fa && r.fa.confidence < 0.5);
 const onsetErr = report.flatMap((r) => (r.fa?.onsetCheck ?? []).map((o) => Math.abs(o.errMs)));
