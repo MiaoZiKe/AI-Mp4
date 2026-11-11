@@ -36,6 +36,10 @@ def load_audio(path):
     return np.frombuffer(raw, dtype=np.float32).copy()
 
 
+# pypinyin 在台灣讀音／本頻道用法上常選錯的多音字（字 → 正確無聲調拼音）
+POLY = {"囤": "tun"}
+
+
 def units_of(text):
     """念稿文字 → [(字元索引, 羅馬拼寫)]；只保留會念出聲的字元"""
     from pypinyin import lazy_pinyin, Style
@@ -51,6 +55,7 @@ def units_of(text):
             py = lazy_pinyin(run, style=Style.NORMAL, errors=lambda x: ["*"] * len(x))
             if len(py) != len(run):  # 保險：逐字轉
                 py = [lazy_pinyin(c, style=Style.NORMAL)[0] for c in run]
+            py = [POLY.get(run[k], p) for k, p in enumerate(py)]
             for k, p in enumerate(py):
                 out.append((i + k, re.sub(r"[^a-z']", "", p.lower().replace("ü", "v"))))
             i = j
