@@ -72,12 +72,16 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 影片與圖片不 commit（見 .gitignore）
 
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
-- 順序固定：研究 → 腳本 → 逐幕 TTS → 逐字時間戳（CTC 強制對齊）→ 依時間軸渲染 → ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
+- 順序固定：研究 → 腳本 → validate（含讀法規則）→ TTS（整篇一次生成＋回讀校驗自動重生）→ 逐字時間戳（CTC 強制對齊，寫 timeline.json＋storyboard.json）→ 依時間軸渲染（＋SRT）→ ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
 - script.json 頂層 `voice: { voiceName, candidates?, style? }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
 - 停頓（v2）：換幕人聲間隔預設 0.15 秒；script.json 每幕可設 `pauseAfter`（本幕結束到下一幕開口的整段秒數；鉤子後約 0.25、數字或反轉前後 0.3–0.5），每支最多 3 處、每處 ≤0.7 秒。v2 切檔只去頭尾靜音（各留 40ms）不逐段 loudnorm，align 會把各段依時間軸疊成一條 `public/audio/<slug>/voice.wav` 再整條做兩段式 loudnorm（−16 LUFS），畫面只播這一條。
 - `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
+- 讀法規則（只改送配音的 `tts`，字幕維持原文）：兩個標點之間 ≤26 字（超過加逗號）；數字、%、$ 寫成唸法（二零二六、四趴、四點三億美元），英文縮寫拆字母（M S T R）或改中文，英文與中文之間留半形空白；會念錯的多音字換同義詞；整篇一次生成、各幕空一行（tts.mjs 自動）。validate 對念稿版逐條警告，確定念得對的詞放 pronunciation.md 標題含「白名單」的一節（反引號包住）。
+- 回讀校驗＋自動重生：`npm run tts` 合成完自動校驗新做的幕——CTC 對齊信心 < 0.5（預設 `--verify=fa`，本機不花請求）或 Gemini 聽寫 CER > 15%（`--verify=asr|both`，花文字模型請求）的幕自動重生一次（等同 `--only`，合併成一次 TTS 請求；每支最多 `--regen-max=3` 幕），重生後再校驗、變差就還原原音檔；音色／模型／念稿已改的幕不單獨重生。`--no-regen` 只校驗、`--verify=off` 全關、`--check` 不合成只校驗現有音檔。結果寫 `videos/<slug>/tts-verify.json` 與 tts-check.md 的「自動重生紀錄」。仍不合格的幕要人耳試聽。
+- 字幕檔：`npm run render <slug>` 後自動輸出 `out/<slug>.srt`（中英雙行）、`.zh.srt`、`.en.srt`；時間取 timeline.json 的字幕短語（v1 用舊時間軸逐行），文字用 script.json 的 subtitle 原文，不用辨識結果。不重渲只要字幕：`npm run subs <slug>`。
+- 分鏡表：`npm run align`／`render`／`subs` 會寫 `videos/<slug>/storyboard.json`（每幕 id、startFrame、durationFrames、component、beat、轉場、人聲區間、cues 絕對幀與幕內幀、字幕短語時間），自查拼圖與聲畫匹配以它為準。
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
 ## 停工線（額度保護）
