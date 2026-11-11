@@ -14,18 +14,25 @@ const SUB_EN_MAX = 42;
 /** 與 src/components/v2/Tracks.tsx 的 display() 相同：去掉手動斷點與段尾逗號類標點 */
 const display = (p) => p.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
 /** 與 Tracks.tsx 的 enChunks 相同：英文副字幕依中文句顯示，每段 ≤42 字元 */
+const EN_WEAK = /^(a|an|the|is|are|was|to|of|on|in|and|or|but|so|its|it|has|have|at|by|for|with|about)$/i;
 export const enChunks = (en, max = SUB_EN_MAX) => {
-  const words = String(en ?? "").split(/\s+/).filter(Boolean);
-  const out = [];
-  let cur = "";
-  for (const w of words) { if (cur && (cur + " " + w).length > max) { out.push(cur); cur = w; } else cur = cur ? `${cur} ${w}` : w; }
-  if (cur) out.push(cur);
-  if (out.length > 1 && out[out.length - 1].length < max * 0.35) {
-    const all = (out[out.length - 2] + " " + out[out.length - 1]).split(" ");
-    const half = Math.ceil(all.length / 2);
-    out.splice(out.length - 2, 2, all.slice(0, half).join(" "), all.slice(half).join(" "));
+  const w = String(en ?? "").split(/\s+/).filter(Boolean);
+  const n = w.length;
+  if (!n) return [""];
+  // 動態規劃挑斷點：優先斷在句讀後、避免斷在虛詞後、避免太短的段（與 Tracks.tsx 同一套）
+  const brk = (i) => (/[.?!”"]$/.test(w[i]) ? 0 : /[,:;]$/.test(w[i]) ? 0.3 : EN_WEAK.test(w[i]) ? 6 : 2.5);
+  const len = (i, j) => w.slice(i, j).join(" ").length;
+  const best = new Array(n + 1).fill(Infinity), prev = new Array(n + 1).fill(-1);
+  best[0] = 0;
+  for (let j = 1; j <= n; j++) for (let i = j - 1; i >= 0; i--) {
+    const Ln = len(i, j);
+    if (Ln > max && j - i > 1) break;
+    const c = best[i] + 4 + (Ln < max * 0.35 ? 3 : 0) + (j < n ? brk(j - 1) : 0) + ((max - Ln) / max) ** 2;
+    if (c < best[j]) { best[j] = c; prev[j] = i; }
   }
-  return out.length ? out : [""];
+  const out = [];
+  for (let j = n; j > 0; j = prev[j]) out.unshift(w.slice(prev[j], j).join(" "));
+  return out;
 };
 
 const isV2 = (script, tl) => script.styleVersion === 2 && tl?.version === 2;

@@ -77,7 +77,7 @@
 | 7 | buy-the-top | mechanism | DepthStage＋ImpactCard（depth） | yellow | 「Saylor 的邏輯」三列：名言（已確定）、看每股含幣（已確定）、前提＝有溢價（分析預期，`cond`）；中段鉤子 |
 | 8 | premium-gone | twist | LineChart（chart） | pink | mNAV 2024/11 約 3.4 倍 → 2026/11 約 0.9 倍：描線分兩段（`y2026`、`zero`），2026 年色帶，1 倍參考線（`coins`）；水印 0.9 |
 | 9 | yield-negative | twist | KineticText（kinetic） | pink | 三行計數「幣 +26%」（`coins`）「股數 +31%」（`shares`）「每股 −3.7%」（`yield`，螢光筆）；右上 sparkline BTC Yield 2026 |
-| 10 | selling-for-dividends | payoff | BarChart iso（chart） | pink | 2026 年的錢去哪：募資 212.3、買幣 143.3、賣幣 4.3（`sold`）、回購優先股 20.4（億美元）；註解「賣幣所得：付優先股股息、回購」（`div`） |
+| 10 | selling-for-dividends | payoff | BarChart iso（chart） | pink | 2026 年的錢去哪：募資 212.3、買幣 143.3、賣幣 4.3（`sold`）、回購優先股 20.4（億美元）；註解「賣幣所得：付股息、回購」（`div`） |
 | 11 | watch-next | payoff | DepthStage＋ImpactCard（depth） | pink | 兩件事：成本線約 75,451 美元（已確定，`cost`）、MSCI 11/11 公布（尚未確定，畫面寫「截至 2026/11/6 尚未確定」，`index`）；「本片不構成投資建議」 |
 | 12 | your-call | cta | CtaCard（card） | — | 「該不該賣幣來付股息？」兩個選項（`q`）＋「留言告訴我們」（`talk`）；不寫分享／標記 |
 | 13 | end | cta | EndCardV2（end） | — | 白話國際／一支講透一件事；三格 recap；下一集預告；AI 輔助製作聲明 |
