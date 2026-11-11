@@ -90,14 +90,12 @@
       "props": {
         "kicker": "比特幣 × 美股｜STRATEGY (MSTR)",
         "lines": [
-          "85萬枚大戶",
+          "囤幣{n}萬枚",
           "開始賣幣"
         ],
         "mark": 1,
         "slamAt": "sell",
         "sub": "2022 說「我們不是賣家」，2026/5 起賣幣付優先股股息",
-        "subAt": "div",
-        "tag": "fact",
         "claims": [
           {
             "text": "85萬枚",
@@ -111,7 +109,20 @@
             "text": "2022",
             "ref": "research.md §5.6：2022/1/19 Saylor「We're not sellers」（Bloomberg）"
           }
-        ]
+        ],
+        "count": {
+          "from": 67,
+          "to": 85,
+          "line": 0
+        },
+        "reverse": {
+          "from": "囤幣",
+          "to": "賣幣",
+          "fromAt": "hoard",
+          "toAt": "sell",
+          "fromColor": "cyan",
+          "toColor": "pink"
+        }
       },
       "sources": [
         "SEC 8-K 2026/11/2",
@@ -276,12 +287,13 @@
           "at": "amp"
         },
         "max": 11,
-        "footnote": "盤中數字，收盤截至 2026/11/6 尚未確定；台灣可用複委託買到",
-        "source": "CoinDesk、Robinhood"
+        "source": "CoinDesk、Robinhood",
+        "ticks": false
       },
       "sources": [
         "CoinDesk",
-        "Robinhood"
+        "Robinhood",
+        "收盤數字尚未確定"
       ],
       "transition": "push",
       "camera": {
@@ -333,16 +345,6 @@
             "mark": true
           }
         ],
-        "aux": {
-          "type": "ring",
-          "value": 4.04,
-          "label": "2,100 萬枚上限",
-          "at": "pct",
-          "pos": "br",
-          "color": "yellow"
-        },
-        "note": "全球上市公司持幣第一",
-        "noteAt": "pct",
         "watermark": "₿",
         "source": "SEC 8-K 2026/11/2、CoinGecko"
       },
@@ -742,13 +744,6 @@
           "color": "yellow",
           "sub": "溢價幾乎歸零"
         },
-        "notes": [
-          {
-            "t": 0,
-            "text": "高峰約 3.4 倍",
-            "side": "right"
-          }
-        ],
         "draw": [
           {
             "at": "y2026",
@@ -759,14 +754,12 @@
             "t": 24
           }
         ],
-        "watermark": "0.9",
-        "footnote": "普通股口徑；各家算法 0.85–1.2 倍，11/5 盤中約 0.9",
         "source": "research.md §6.1"
       },
       "sources": [
-        "Strategy Q3 2026 法說會",
-        "CoinDesk",
-        "sec-api.io"
+        "Strategy Q3 法說會",
+        "sec-api.io",
+        "各家算法 0.85–1.2 倍"
       ],
       "transition": "flip",
       "camera": {
@@ -844,29 +837,6 @@
             "mark": true
           }
         ],
-        "aux": {
-          "type": "sparkline",
-          "values": [
-            9.4,
-            13.3,
-            13.0,
-            12.8,
-            5.8,
-            4.5,
-            -3.7
-          ],
-          "ends": [
-            "5/3",
-            "10/25"
-          ],
-          "label": "BTC Yield 2026",
-          "at": "yield",
-          "pos": "tr",
-          "color": "pink"
-        },
-        "note": "BTC Yield：每股所含比特幣的變化率",
-        "noteAt": "yield",
-        "watermark": "−3.7%",
         "source": "Strategy Q3 2026 8-K、10-Q"
       },
       "sources": [
@@ -957,9 +927,6 @@
         "Strategy Q3 2026 新聞稿",
         "CoinDesk"
       ],
-      "bg": {
-        "mark": "賣幣"
-      },
       "transition": "push",
       "camera": {
         "move": "pull",

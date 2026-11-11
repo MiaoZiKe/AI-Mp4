@@ -15,7 +15,7 @@ type Frame = { at?: string; frame?: number; label: string; values: Record<string
 export type BarChartProps = {
   mode?: "flat" | "iso" | "race"; title: string; titleEn?: string; unit?: string; decimals?: number; color?: string;
   bars: Bar[]; refLine?: { value: number; label: string; at?: string }; note?: { text: string; bar: number; at?: string };
-  frames?: Frame[]; max?: number; footnote?: string;
+  frames?: Frame[]; max?: number; footnote?: string; ticks?: boolean;
 };
 
 const H = L.CONTENT_BOTTOM - L.CONTENT_TOP;
@@ -63,7 +63,7 @@ const Callout: React.FC<{ x: number; y: number; ay?: number; text: string; f: nu
   );
 };
 
-const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0, bars, refLine, note, max, footnote }) => {
+const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0, bars, refLine, note, max, footnote, ticks: showTicks = true }) => {
   const f = useCurrentFrame();
   const c = useCue();
   const st = barStarts(c, bars);
@@ -76,7 +76,8 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
   const bw = Math.max(110, Math.min(140, slot * 0.4));
   const cx = (i: number) => slot * i + slot / 2;
   const step = vmax > 8 ? 2 : 1;
-  const ticks = Array.from({ length: Math.floor(vmax / step) }, (_, k) => (k + 1) * step);
+  // ticks:false＝只留參考線（重點幕減量）
+  const ticks = showTicks ? Array.from({ length: Math.floor(vmax / step) }, (_, k) => (k + 1) * step) : [];
   return (
     <PanStage><div style={{ position: "relative", width: 952, height: H }}>
       <Title f={f} title={title} titleEn={titleEn} />
@@ -84,7 +85,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
         {ticks.map((v) => (
           <g key={v}>
             <line x1={70} x2={952} y1={Yv(v)} y2={Yv(v)} stroke={T.chart.grid} strokeWidth={2} strokeDasharray="6 10" />
-            <text x={0} y={Yv(v) + 10} fontFamily={FONT_EN} fontSize={28} fontWeight={600} fill={T.chart.label}>{neg ? "−" : ""}{fmtNum(v, v % 1 ? 1 : 0)}</text>
+            <text x={0} y={Yv(v) + 10} fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{neg ? "−" : ""}{fmtNum(v, v % 1 ? 1 : 0)}</text>
           </g>
         ))}
         <line x1={0} x2={952} y1={base} y2={base} stroke={T.chart.axis} strokeWidth={T.chart.axisW} />
@@ -130,7 +131,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
         const y = neg ? Math.max(base + 150, ...others.map((v) => v + 40), tip - 40) : Math.min(base - 150, tip + 40);
         return <Callout x={cx(note.bar) - bw / 2} ay={neg ? Math.max(base + 8, tip - 8) : tip} y={y} text={note.text} f={f} t={cueIn(c, note.at, 40)} side="left" />;
       })()}
-      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
+      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 32, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
     </div></PanStage>
   );
 };
@@ -157,7 +158,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
           return (
             <g key={v}>
               <line x1={0} x2={952} y1={y} y2={y} stroke={T.chart.grid} strokeWidth={2} strokeDasharray="6 10" />
-              <text x={952} y={y - 10} textAnchor="end" fontFamily={FONT_EN} fontSize={28} fontWeight={600} fill={T.chart.label}>{fmtNum(v)}</text>
+              <text x={952} y={y - 10} textAnchor="end" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{fmtNum(v)}</text>
             </g>
           );
         })}
@@ -189,7 +190,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
         return (
           <React.Fragment key={i}>
             <div style={{ position: "absolute", left: x0(i) - 40, width: bw + dx + 80, top: yt - (hi ? 96 : 70), textAlign: "center", opacity: tween(f, st[i], DUR.s) * (hi ? 1 : 0.8), fontFamily: FONT_EN, fontSize: hi ? 80 : 60, fontWeight: T.weight.num, color: hi ? a.text : T.text2, lineHeight: 1, whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", transform: hi ? `scale(${bump(f, land).toFixed(4)})` : undefined }}>
-              {fmtNum(b.value * p, decimals)}{unit && <span style={{ fontSize: 30, fontFamily: FONT_ZH, marginLeft: 4 }}>{unit}</span>}
+              {fmtNum(b.value * p, decimals)}{unit && <span style={{ fontSize: 32, fontFamily: FONT_ZH, marginLeft: 4 }}>{unit}</span>}
             </div>
             <div style={{ ...reveal(f, Math.min(st[i], 6 + i * STAGGER), 1, 8), position: "absolute", left: x0(i) - 30, width: bw + dx + 60, top: floor + 16, textAlign: "center", fontFamily: FONT_ZH, fontSize: 40, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap" }}>{b.label}</div>
           </React.Fragment>
@@ -201,7 +202,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
         const x = x0(b) + bw / 2 + dx / 2, ay = floor - hOf(b) - dy - (bars[b].highlight === false ? 80 : 104);
         return <Callout x={x} ay={ay} y={Math.min(ay - 120, floor - 300)} text={note.text} f={f} t={t} side={x > 476 ? "left" : "right"} />;
       })()}
-      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
+      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 32, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
     </div></PanStage>
   );
 };
@@ -242,7 +243,7 @@ const Race: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
           </div>
         );
       })}
-      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
+      {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 32, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
     </div></PanStage>
   );
 };

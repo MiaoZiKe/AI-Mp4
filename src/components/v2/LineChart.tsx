@@ -80,12 +80,12 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
         {ticks.map((v) => (
           <g key={v}>
             <line x1={PLOT.x0} x2={PLOT.x1 + 40} y1={Y(v)} y2={Y(v)} stroke={v === 0 ? T.chart.axis : T.chart.grid} strokeWidth={v === 0 ? T.chart.axisW : 2} strokeDasharray={v === 0 ? undefined : "6 10"} />
-            <text x={PLOT.x0 - 16} y={Y(v) + 10} textAnchor="end" fontFamily={FONT_EN} fontSize={30} fontWeight={600} fill={T.chart.label}>{fmtNum(v, v % 1 ? 1 : 0)}</text>
+            <text x={PLOT.x0 - 16} y={Y(v) + 10} textAnchor="end" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{fmtNum(v, v % 1 ? 1 : 0)}</text>
           </g>
         ))}
         {/* x 標籤（≤6） */}
         {xTicks.slice(0, 6).map((x) => (
-          <text key={x.t} x={X(x.t)} y={PLOT.y1 + 44} textAnchor="middle" fontFamily={FONT_EN} fontSize={30} fontWeight={600} fill={T.chart.label}>{x.label}</text>
+          <text key={x.t} x={X(x.t)} y={PLOT.y1 + 44} textAnchor="middle" fontFamily={FONT_EN} fontSize={32} fontWeight={600} fill={T.chart.label}>{x.label}</text>
         ))}
         {/* 參考線 */}
         {refLine && (
@@ -158,11 +158,11 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
         return (
           <div style={{ position: "absolute", left, top, width: bw, height: 124, borderRadius: T.radius, background: acc.fill, color: T.onAccent, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: T.shadow, opacity: tween(f, 4, DUR.s), transform: `scale(${bump(f, land, 0.06).toFixed(4)})` }}>
             <div style={{ fontFamily: FONT_EN, fontSize: 84, fontWeight: T.weight.num, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{fmtNum(hv, decimals)}<span style={{ fontSize: 40, marginLeft: 6, fontFamily: FONT_ZH }}>{unit}</span></div>
-            {badgeLabel && <div style={{ fontFamily: FONT_ZH, fontSize: 24, fontWeight: 700, opacity: f >= land ? 1 : 0 }}>{badgeLabel}</div>}
+            {badgeLabel && <div style={{ fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700, opacity: f >= land ? 1 : 0 }}>{badgeLabel}</div>}
           </div>
         );
       })()}
-      {footnote && <div style={{ ...reveal(f, 10, 1, 8), position: "absolute", left: 0, right: 0, top: ly(L.PLOT_BOTTOM) + 14, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
+      {footnote && <div style={{ ...reveal(f, 10, 1, 8), position: "absolute", left: 0, right: 0, top: ly(L.PLOT_BOTTOM) + 14, fontFamily: FONT_ZH, fontSize: 32, color: T.text3, whiteSpace: "nowrap" }}>{footnote}</div>}
     </div></PanStage>
   );
 };

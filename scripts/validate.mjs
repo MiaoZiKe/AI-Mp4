@@ -294,7 +294,7 @@ export function validate(script) {
         else if (px > 900) W(`${tag}: 來源列估寬 ${px}px，接近 952px 上限：「${footer}」`);
       }
     }
-    if (s.transition !== undefined && (!v2 || !["fade", "slide"].includes(s.transition))) E(`${tag}: transition 只能是 fade／slide，且只在 styleVersion 2 有效`);
+    if (s.transition !== undefined && (!v2 || !["fade", "slide", "push", "flip", "carry"].includes(s.transition))) E(`${tag}: transition 只能是 fade／slide／push／flip／carry，且只在 styleVersion 2 有效`);
     if (s.pauseAfter !== undefined && (!v2 || typeof s.pauseAfter !== "number" || s.pauseAfter < 0 || s.pauseAfter > 0.7)) E(`${tag}: pauseAfter 應為 0–0.7 秒，且只在 styleVersion 2 有效`);
     if (s.durationSec !== undefined && (typeof s.durationSec !== "number" || s.durationSec < 3 || s.durationSec > 15)) E(`${tag}: durationSec 應為 3–15`);
     if (i === scenes.length - 1 && !isEnd) E("最後一幕必須是 EndCard");
@@ -392,9 +392,20 @@ export function validate(script) {
       }
       case "HookTitle": {
         if (arr(p.lines, `${tag}.lines`, 1, 2)) {
-          const n = p.lines.reduce((a, x) => a + len(x), 0);
+          // {n}＝count 計數（以落定值 count.to 計字數與數字）
+          const shown = p.lines.map((l) => String(l).replace("{n}", String(p.count?.to ?? "")));
+          if (p.lines.some((l) => String(l).includes("{n}")) && !(p.count && typeof p.count.from === "number" && typeof p.count.to === "number")) E(`${tag}: 主張有 {n} 但沒有 count.from／count.to`);
+          const n = shown.reduce((a, x) => a + len(x), 0);
           if (n > 10) E(`${tag}: 鉤子主張 ${n} 字 > 10（第 0 幀要一眼讀完）`);
-          const nums = p.lines.join("").match(/\d[\d,.]*/g) ?? [];
+          // v3：畫面主張和第一句口白至少一半的字重疊（看到的＝聽到的）
+          const said = new Set([...clean(s.narration)]);
+          const cs = [...clean(shown.join(""))].filter((ch) => !/\d/.test(ch));
+          const ov = cs.length ? cs.filter((ch) => said.has(ch)).length / cs.length : 1;
+          if (ov < 0.5) E(`${tag}: 鉤子主張和口白只重疊 ${(ov * 100).toFixed(0)}% 的字（<50%）`);
+          // v3：0–2 秒內至少 2 個語意動作（count／reverse／slam 在 2 秒前）
+          const acts = (p.count ? 1 : 0) + (p.reverse ? 1 : 0) + (p.slamAt ? 1 : 0);
+          if (acts < 2) W(`${tag}: 鉤子前 2 秒建議 2 個語意動作（count 計數、reverse 反轉、slamAt）`);
+          const nums = shown.join("").match(/\d[\d,.]*/g) ?? [];
           if (!nums.length) W(`${tag}: 鉤子主張最好帶一個數字`);
           for (const d of nums) if (!(p.claims ?? []).some((c) => String(c.text).includes(d) && /research\.md/.test(String(c.ref)))) E(`${tag}: 鉤子數字「${d}」要在 props.claims 附 {text, ref}，ref 指向 research.md 的那一列`);
         }
@@ -505,6 +516,7 @@ export function validate(script) {
       if (mb.plot && (mb.plot[2] - mb.plot[0] < Lt.CHART_MIN_W || mb.plot[3] - mb.plot[1] < Lt.CHART_MIN_H * (x.component === "UnitGrid" ? 0.85 : 1))) E(`規則10：${tg} 繪圖區 ${mb.plot[2] - mb.plot[0]}×${mb.plot[3] - mb.plot[1]} 小於 ${Lt.CHART_MIN_W}×${Lt.CHART_MIN_H}`);
     });
   }
+  if (v2) v3Lint(scenes, E, W);
   const est = Math.round(total);
   const L = LENGTH[v2 ? 2 : 1];
   if (est < L.hardMin || est > L.hardMax) E(`配音版總長估算 ${est} 秒，應在 ${L.min}–${L.max} 秒`); else if (est < L.min || est > L.max) W(`配音版總長估算 ${est} 秒，建議 ${L.min}–${L.max} 秒`);
@@ -547,4 +559,67 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   errors.forEach((e) => console.log(`✖ ${e}`));
   console.log(`${errors.length} error(s), ${warns.length} warning(s)，${script.scenes?.length ?? 0} 幕，配音版估 ${est ?? "?"} 秒`);
   process.exit(errors.length ? 1 : 0);
+}
+
+/**
+ * v3 storyboard lint（huashu storyboard_lint 的邏輯，規則寫在這裡而不是 align）：
+ *  轉場：type 由語意決定（carry／push／flip／fade／slide）；fade ≤4 且不連續；carry ≥3 處且要有 carry.text；同一轉場不連續三次；flip 只用在 twist
+ *  鏡頭：推拉類（push／pull）≤ 幕數 1/3，不可連續兩幕都推；pan 不計入
+ *  scale 脈衝：每幕 bump ≤2（依元件與 props 靜態估算）
+ *  水印：只在 kinetic／鉤子幕；不劇透（水印字在旁白後半段才出現＝劇透）
+ *  同屏群組：依 props 數主視覺可見群組（不含字幕），>4 警告
+ *  最後一幕要是 EndCard
+ */
+export function v3Lint(scenes, E, W) {
+  const n = scenes.length;
+  const tr = scenes.slice(1).map((x) => x.transition ?? "fade");
+  const okT = ["fade", "carry", "push", "flip", "slide"];
+  scenes.slice(1).forEach((x, i) => {
+    const t = tr[i];
+    if (!okT.includes(t)) E(`轉場：${x.id} transition「${t}」不支援（${okT.join("／")}）`);
+    if (t === "carry" && !(x.carry && x.carry.text)) E(`轉場：${x.id} 是 carry，要有 carry.text（從上一幕帶過來的主體）`);
+    if (t === "flip" && x.beat !== "twist") W(`轉場：${x.id} 用 flip（明暗翻轉）但不是 twist 幕`);
+    if (i >= 2 && tr[i - 1] === t && tr[i - 2] === t) E(`轉場：${scenes[i - 1].id}、${scenes[i].id}、${x.id} 連續三次 ${t}（像 PPT）`);
+    if (i >= 1 && t === "fade" && tr[i - 1] === "fade") E(`轉場：${scenes[i].id} → ${x.id} 連續兩次 fade`);
+  });
+  const fades = tr.filter((t) => t === "fade").length, carries = tr.filter((t) => t === "carry").length;
+  if (fades > 4) E(`轉場：fade ${fades} 處 > 4`);
+  if (n >= 9 && carries < 3) W(`轉場：carry 只有 ${carries} 處（建議 ≥3：同一主體延續就帶過切點）`);
+  const cams = scenes.map((x) => x.camera?.move ?? null);
+  const pp = cams.filter((m) => m === "push" || m === "pull").length;
+  if (pp > Math.floor(n / 3)) E(`鏡頭：推拉 ${pp} 幕 > 幕數÷3（${Math.floor(n / 3)}）`);
+  cams.forEach((m, i) => { if (i && m === "push" && cams[i - 1] === "push") E(`鏡頭：${scenes[i - 1].id}、${scenes[i].id} 連續兩幕都推`); });
+  scenes.forEach((x) => { if (x.camera && x.camera.at && !(x.cues ?? []).some((q) => q.id === x.camera.at)) E(`鏡頭：${x.id} camera.at「${x.camera.at}」不是本幕的 cue`); });
+  const bumps = { BarChart: (p) => (p.bars ?? []).filter((b) => b.highlight !== false).length, BigNumber: () => 1, LineChart: (p) => 1 + (p.refLine ? 1 : 0), UnitGrid: (p) => p.counters?.length ?? 0, KineticText: (p) => (p.flip ? 1 : 0), CtaCard: () => 1, HookTitle: () => 0 };
+  scenes.forEach((x) => { const b = bumps[x.component]?.(x.props ?? {}) ?? 0; if (b > 2) W(`scale 脈衝：${x.id} 約 ${b} 次 > 2（強調改用顏色／螢光筆）`); });
+  const markOK = new Set(["HookTitle", "KineticText"]);
+  scenes.forEach((x) => {
+    const mark = x.bg?.mark;
+    if (mark && !markOK.has(x.component)) W(`水印：${x.id} 指定了 bg.mark，但水印只在 kinetic／鉤子幕顯示`);
+    if (x.props?.watermark && !markOK.has(x.component)) W(`水印：${x.id} 的 props.watermark 不會顯示（水印只在 kinetic／鉤子幕）`);
+    const wm = x.props?.watermark ?? (markOK.has(x.component) ? mark ?? (x.component === "HookTitle" ? x.keywords?.[0] : undefined) : undefined);
+    if (wm) {
+      const strip = (v) => clean(v).replace(/[−+\-\s]/g, "");
+      const nar = strip(x.narration), k = nar.indexOf(strip(wm));
+      if (k > nar.length * 0.5) E(`水印：${x.id}「${wm}」在旁白後半段才念到（劇透）`);
+    }
+  });
+  scenes.forEach((x) => { const g = visibleGroups(x); if (g > 4) W(`同屏：${x.id} 主視覺約 ${g} 組（>4；亞里：同屏不超過三樣東西＋字幕）`); });
+  if (scenes[n - 1]?.component !== "EndCard") E("最後一幕要是 EndCard");
+}
+
+/** 主視覺可見群組數（靜態，依 props；不含字幕列、出處列） */
+export function visibleGroups(x) {
+  const p = x.props ?? {};
+  const has = (k) => (p[k] !== undefined && p[k] !== null && p[k] !== false ? 1 : 0);
+  switch (x.component) {
+    case "BarChart": return 1 + 1 + has("refLine") + has("note") + has("footnote") + (p.ticks === false || p.mode !== "flat" ? 0 : 1);
+    case "LineChart": return 1 + 1 + (p.notes?.length ?? 0) + has("refLine") + has("band") + has("footnote");
+    case "KineticText": return has("kicker") + has("flip") + (p.flip?.caption ? 1 : 0) + (p.lines?.length ?? 0) + has("aux") + has("note");
+    case "UnitGrid": return 1 + 1 + (p.counters?.length ? 1 : 0) + has("note") + has("legend");
+    case "DepthStage": return 1 + Math.min(2, p.badges?.length ?? 0) + (p.front?.props?.footer || p.front?.props?.taiwan ? 1 : 0);
+    case "HookTitle": return has("kicker") + 1 + has("reverse") + has("sub") + has("tag");
+    case "EndCard": return 0;
+    default: return 1 + has("footer") + has("taiwan") + has("note");
+  }
 }

@@ -34,8 +34,7 @@ const REGISTRY_V2: Record<string, React.FC<any>> = {
   HookTitle, TermCard: TermCardV2, FlowRow: FlowRowV2, CompareSplit: CompareSplitV2, BigNumber: BigNumberV2, IconGrid: IconGridV2, ImpactCard: ImpactCardV2, EndCard: EndCardV2, CtaCard,
   KineticText, LineChart, UnitGrid, DepthStage, BarChart,
 };
-/** 自帶水印（背景層不再放關鍵詞水印）／自帶背景面板（背景層不放米色色塊）的元件 */
-const OWN_MARK = new Set(["KineticText", "LineChart", "DepthStage"]);
+/** 自帶背景面板（背景層不放米色色塊）的元件 */
 const OWN_BLOCK = new Set(["DepthStage"]);
 
 const IN = 10, OUT = 9; // 換幕：進場 0.33 秒（淡入＋上移＋縮放），出場 0.3 秒
@@ -102,7 +101,8 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
   const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SOURCE_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
   const frame = useCurrentFrame();
   const bg = scene.bg ?? {};
-  const mark = bg.mark ?? (isEnd || OWN_MARK.has(scene.component) ? undefined : scene.keywords?.[0]);
+  // v3：大字水印只在鉤子幕（kinetic 幕自帶水印）；其他幕不放，避免穿過內容區、佔掉「同屏三樣」的名額
+  const mark = scene.component === "HookTitle" ? bg.mark ?? scene.keywords?.[0] : undefined;
   return (
     <AbsoluteFill>
       {/* 背景層：色塊＋出血色帶＋大字水印（視差 0.2） */}

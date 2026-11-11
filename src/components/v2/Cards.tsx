@@ -150,7 +150,7 @@ export const TermCardV2: React.FC<{ icon: string; term: string; termEn?: string;
         <IconV2 name={icon} color={color} size={120} draw={drawIn(f, 0)} />
         <div>
           <div style={zh(66, T.weight.title, accentV2(color).text)}>{term}</div>
-          {termEn && <div style={{ ...EN, fontSize: 28 }}>{termEn}</div>}
+          {termEn && <div style={{ ...EN, fontSize: 32 }}>{termEn}</div>}
         </div>
       </div>
       <div style={{ ...zh(42), lineHeight: 1.5, marginTop: 24 }}>

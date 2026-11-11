@@ -2,7 +2,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
-import { EASE, STAGGER, bump, tween } from "../anim";
+import { DUR, EASE, STAGGER, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
 import { CardV2, KickerV2, LogoV2, markerBg, reveal } from "./base";
 
@@ -38,7 +38,12 @@ export const CtaCard: React.FC<{ kicker?: string; question: string[]; options?: 
   );
 };
 
-/** 片尾卡（v2）：不寫「分享」，改「追蹤／收藏／留言」。recap＝本集三個重點（同封面 chips），撐滿主視覺區到出處帶 */
+/**
+ * 片尾卡（v2）：不寫「分享」，改「追蹤／收藏／留言」。recap＝本集三個重點（同封面 chips），撐滿主視覺區到出處帶。
+ * v3 兩段式（每 1.5 秒至少一個 beat）：A 段 0 幀 logo＋slogan、12 幀起 recap 依序進場；B 段 END_B 幀起行動列＋下一集卡進場、
+ * recap 降到 dim（焦點交給下一集），下一集標題螢光筆劃過；END_B＋30 幀 disclaimer。
+ */
+export const END_B = 42;
 export const EndCardV2: React.FC<{ next?: string; disclaimer?: string; recap?: { value: string; label: string; color?: string }[]; recapTitle?: string }> = ({ next, disclaimer, recap = [], recapTitle = "這集重點" }) => {
   const f = useCurrentFrame();
   return (
@@ -50,27 +55,27 @@ export const EndCardV2: React.FC<{ next?: string; disclaimer?: string; recap?: {
           <div style={{ fontFamily: FONT_ZH, fontSize: 56, fontWeight: 700, color: T.accent.pink.text, marginTop: 6 }}><span style={markerBg(1)}>一支講透一件事</span></div>
         </div>
       </div>
-      <div style={{ ...reveal(f, 8), fontFamily: FONT_EN, fontSize: 30, color: T.text2 }}>One video, one topic, explained.</div>
+      <div style={{ ...reveal(f, 8), fontFamily: FONT_EN, fontSize: 32, color: T.text2 }}>One video, one topic, explained.</div>
       {recap.length > 0 && (
         <div style={{ alignSelf: "stretch" }}>
           <div style={{ ...reveal(f, 10), display: "flex", justifyContent: "flex-start" }}><KickerV2 text={recapTitle} /></div>
           <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
             {recap.map((r, i) => (
-              <CardV2 key={i} topBar={r.color} style={{ ...reveal(f, 12 + i * STAGGER, 1, 16), flex: 1, padding: "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <CardV2 key={i} topBar={r.color} style={{ ...reveal(f, 12 + i * STAGGER, 1 - (1 - T.dim) * tween(f, END_B + 6, DUR.m, EASE.move), 16), flex: 1, padding: "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                 <div style={{ fontFamily: FONT_ZH, fontSize: 50, fontWeight: T.weight.title, color: accentV2(r.color).text, whiteSpace: "nowrap" }}>{r.value}</div>
-                <div style={{ fontFamily: FONT_ZH, fontSize: 30, fontWeight: 700, color: T.text2, lineHeight: 1.3 }}>{r.label}</div>
+                <div style={{ fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700, color: T.text2, lineHeight: 1.3 }}>{r.label}</div>
               </CardV2>
             ))}
           </div>
         </div>
       )}
-      <div style={{ ...reveal(f, 22), display: "flex", gap: 22 }}>
+      <div style={{ ...reveal(f, END_B), display: "flex", gap: 22 }}>
         {["追蹤", "收藏", "留言"].map((t, i) => (
           <span key={t} style={{ fontFamily: FONT_ZH, fontSize: 38, fontWeight: 700, color: T.text, background: T.card, border: `2px solid ${T.cardBorder}`, borderTop: `6px solid ${[T.accent.pink.fill, T.accent.yellow.fill, T.accent.cyan.fill][i]}`, borderRadius: T.radiusTag, padding: "10px 34px", boxShadow: T.shadow }}>{t}</span>
         ))}
       </div>
-      {next && <CardV2 topBar="yellow" style={{ ...reveal(f, 30), alignSelf: "stretch", padding: "26px 30px", fontFamily: FONT_ZH, fontSize: 38, lineHeight: 1.4, color: T.text, fontWeight: 700 }}>{next}</CardV2>}
-      {disclaimer && <div style={{ ...reveal(f, 34), fontFamily: FONT_ZH, fontSize: 28, color: T.text3 }}>{disclaimer}</div>}
+      {next && <CardV2 topBar="yellow" style={{ ...reveal(f, END_B + 4), alignSelf: "stretch", padding: "26px 30px", fontFamily: FONT_ZH, fontSize: 38, lineHeight: 1.4, color: T.text, fontWeight: 700 }}><span style={markerBg(tween(f, END_B + 14, DUR.l, EASE.enter))}>{next}</span></CardV2>}
+      {disclaimer && <div style={{ ...reveal(f, END_B + 30), fontFamily: FONT_ZH, fontSize: 32, color: T.text3 }}>{disclaimer}</div>}
     </div>
   );
 };

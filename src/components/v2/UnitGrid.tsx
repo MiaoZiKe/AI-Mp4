@@ -74,7 +74,7 @@ export const UnitGrid: React.FC<UnitGridProps> = ({ title, titleEn, titleMark, t
       <div style={{ ...reveal(f, 0), position: "absolute", left: 0, right: 0, top: 4 }}>
         <div style={{ fontFamily: FONT_ZH, fontSize: 56, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap", lineHeight: 1.15 }}>
           {titleMark ? title.split(titleMark).map((part, i, arr) => (
-            <React.Fragment key={i}>{part}{i < arr.length - 1 && <span style={{ ...markerBg(titleAt ? tween(f, tAt, DUR.m) : 1), display: "inline-block", transform: `scale(${bump(f, tAt, 0.06).toFixed(4)})` }}>{titleMark}</span>}</React.Fragment>
+            <React.Fragment key={i}>{part}{i < arr.length - 1 && <span style={{ ...markerBg(titleAt ? tween(f, tAt, DUR.m) : 1), display: "inline-block" }}>{titleMark}</span>}</React.Fragment>
           )) : title}
         </div>
         {titleEn && <div style={{ ...EN, marginTop: 2 }}>{titleEn}</div>}
@@ -123,7 +123,7 @@ export const UnitGrid: React.FC<UnitGridProps> = ({ title, titleEn, titleMark, t
         const t = cueIn(c, note.at, 100);
         const r = reveal(f, t, 1, 16);
         return (
-          <div style={{ ...r, position: "absolute", left: 0, right: 0, top: BOTTOM + 72, textAlign: "center", fontFamily: FONT_ZH, fontSize: 52, fontWeight: T.weight.title, color: T.text, transform: `${r.transform} scale(${bump(f, cueAt(c, note.at, t + 4), 0.05).toFixed(4)})` }}>
+          <div style={{ ...r, position: "absolute", left: 0, right: 0, top: BOTTOM + 72, textAlign: "center", fontFamily: FONT_ZH, fontSize: 52, fontWeight: T.weight.title, color: T.text, transform: r.transform }}>
             <span style={markerBg(tween(f, t + 2, DUR.m))}>{note.text}</span>
           </div>
         );

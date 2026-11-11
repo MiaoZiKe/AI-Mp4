@@ -63,7 +63,7 @@ const AuxView: React.FC<{ aux: Aux; f: number; start: number }> = ({ aux, f, sta
           <circle cx={110} cy={110} r={r} fill="none" stroke={a.fill} strokeWidth={30} strokeDasharray={`${(c * aux.value * p / 100).toFixed(1)} ${c}`} transform="rotate(-90 110 110)" />
           <text x={110} y={124} textAnchor="middle" fontFamily={FONT_EN} fontWeight={T.weight.num} fontSize={44} fill={a.text}>{fmtNum(aux.value * p, 2)}%</text>
         </svg>
-        <div style={{ fontFamily: FONT_ZH, fontSize: 28, fontWeight: 700, color: T.text2, marginTop: 2, whiteSpace: "nowrap" }}>{aux.label}</div>
+        <div style={{ fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700, color: T.text2, marginTop: 2, whiteSpace: "nowrap" }}>{aux.label}</div>
       </div>
     );
   }
@@ -79,13 +79,13 @@ const AuxView: React.FC<{ aux: Aux; f: number; start: number }> = ({ aux, f, sta
   const head = pts[pts.length - 1];
   return (
     <div style={{ ...box, background: T.card, border: `${T.cardBorderW}px solid ${T.cardBorder}`, borderRadius: T.radius, boxShadow: T.shadow, padding: "14px 0 0", boxSizing: "border-box" }}>
-      <div style={{ fontFamily: FONT_ZH, fontSize: 28, fontWeight: 700, color: T.text2, textAlign: "center" }}>{aux.label}</div>
+      <div style={{ fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700, color: T.text2, textAlign: "center" }}>{aux.label}</div>
       <svg width={w} height={hh} style={{ display: "block" }}>
         <line x1={pad} x2={w - pad} y1={Y(0)} y2={Y(0)} stroke={T.chart.grid} strokeWidth={3} strokeDasharray="8 8" />
         <polyline points={pts.map((q) => q.map((x) => x.toFixed(1)).join(",")).join(" ")} fill="none" stroke={a.fill} strokeWidth={7} strokeLinejoin="round" strokeLinecap="round" />
         <circle cx={head[0]} cy={head[1]} r={10} fill={a.fill} stroke={T.card} strokeWidth={4} />
       </svg>
-      {aux.ends && <div style={{ position: "absolute", left: 14, right: 14, bottom: 8, display: "flex", justifyContent: "space-between", fontFamily: FONT_EN, fontSize: 28, fontWeight: 700, color: T.text2 }}><span>{aux.ends[0]}</span><span style={{ color: a.text, opacity: p >= 1 ? 1 : 0 }}>{aux.ends[1]}</span></div>}
+      {aux.ends && <div style={{ position: "absolute", left: 14, right: 14, bottom: 8, display: "flex", justifyContent: "space-between", fontFamily: FONT_EN, fontSize: 32, fontWeight: 700, color: T.text2 }}><span>{aux.ends[0]}</span><span style={{ color: a.text, opacity: p >= 1 ? 1 : 0 }}>{aux.ends[1]}</span></div>}
     </div>
   );
 };

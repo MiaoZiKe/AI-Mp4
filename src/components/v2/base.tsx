@@ -79,7 +79,7 @@ export const HeaderV2: React.FC<{ progress?: boolean }> = ({ progress = true }) 
 
 /** kicker：大寫、粗、黃色底線 */
 export const KickerV2: React.FC<{ text: string; style?: React.CSSProperties }> = ({ text, style }) => (
-  <div style={{ display: "inline-flex", alignItems: "center", gap: 14, fontFamily: FONT_ZH, fontSize: 30, fontWeight: 700, color: T.text, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `4px solid ${T.accent.yellow.fill}`, paddingBottom: 8, ...style }}>
+  <div style={{ display: "inline-flex", alignItems: "center", gap: 14, fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700, color: T.text, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `4px solid ${T.accent.yellow.fill}`, paddingBottom: 8, ...style }}>
     <span style={{ width: 14, height: 14, borderRadius: 2, background: T.accent.pink.fill }} />{text}
   </div>
 );
@@ -95,22 +95,17 @@ export const NoteBoxV2: React.FC<{ style?: React.CSSProperties; children: React.
   <div style={{ background: T.noteBg, borderLeft: `8px solid ${T.accent.yellow.fill}`, borderRadius: 4, padding: "18px 24px", fontFamily: FONT_ZH, fontSize: 32, lineHeight: 1.45, fontWeight: T.weight.body, color: T.text, ...style }}>{children}</div>
 );
 
-/** focus 值（THEME_V2.dim～1）→ 換色：灰階＋淡（dim 時對比仍 ≥3:1），focus=1 時不加 filter */
-export const dimStyle = (focus: number): React.CSSProperties => {
-  const g = Math.min(1, Math.max(0, (1 - focus) / (1 - T.dim)));
-  return g > 0.001 ? { filter: `grayscale(${g.toFixed(3)})` } : {};
-};
-/** 進場＋focus 合成：opacity 乘上 focus 值、灰階換色（focus 不移動文字） */
+/** 進場＋focus 合成：opacity 乘上 focus 值（THEME_V2.dim 0.70，對比仍 ≥3:1；規則 8 不准用 CSS filter，所以不做灰階） */
 export const reveal = (f: number, start: number, focus = 1, dist = 40) => {
   const e = enter(f, start, dist);
-  return { opacity: e.opacity * focus, transform: e.transform, ...dimStyle(focus) };
+  return { opacity: e.opacity * focus, transform: e.transform };
 };
 /** 數字格式：負號用 U+2212 */
 export const fmtNum = (v: number, decimals = 0) => {
   const s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   return v < 0 && Number(s.replace(/,/g, "")) !== 0 ? `−${s}` : s;
 };
-export const EN: React.CSSProperties = { fontFamily: FONT_EN, color: T.text3, fontSize: 26, fontWeight: 400 };
+export const EN: React.CSSProperties = { fontFamily: FONT_EN, color: T.text3, fontSize: 32, fontWeight: 400 };
 export const drawIn = (f: number, start: number) => tween(f, start, DUR.l, EASE.enter);
 
 /**
