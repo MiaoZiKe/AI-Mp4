@@ -3,6 +3,11 @@
 //   npm run voices <slug>              → 用第 1 幕試聽所有候選音色 → out/<slug>/voice-samples/
 //   npm run tts <slug> -- --force      → 全部重做；--only=id1,id2 只重做指定幕；--resplit 用留存的原始批次音檔重切（不花請求）
 //   npm run tts -- --list-models       → 列出可用的 TTS 模型（順便測金鑰）
+// 回讀校驗＋自動重生（預設開）：新做的幕合成完立刻校驗——CTC 對齊信心 < 0.5（--verify=fa，預設，本機不花請求）
+//   或 Gemini 聽寫 CER > 15%（--verify=asr｜both，花 Gemini 文字模型請求）的幕，自動重生一次（等同 --only=那幾幕，
+//   合併成一次 TTS 請求），每支最多 --regen-max=3 幕（TTS_REGEN_MAX）；重生後再校驗，比原本差就還原原音檔。
+//   --no-regen 只校驗不重生；--verify=off 全關；--check 不合成，只校驗現有全部音檔（不合格的照樣自動重生）。
+//   結果寫 videos/<slug>/tts-verify.json，並附在 tts-check.md 的「自動重生紀錄」一節（align 重寫報告時保留）。
 // 批次：預設把整支影片的旁白合成成一次請求（各幕以空行分段），再用 ffmpeg 靜音偵測切成每幕；
 //   免費方案每個模型每天只有 10 次請求，所以一支影片只花 1 次。TTS_BATCH=1 可改回逐幕。
 // 模型：預設 gemini-3.8-flash-tts（3.x 系列只送純文字；2.5 系列可帶「語氣說：」指示）。TTS_MODEL 或 script.voice.model 可覆寫。
@@ -12,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
+import { verifyScenes, writeVerify, verifySection, CONF_MIN, CER_MAX } from "./verify.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const args = process.argv.slice(2);
@@ -50,7 +56,9 @@ const STYLE_DEFAULT = "用親切、清晰、語速稍快的台灣國語";
 const styled = /gemini-2\.5/.test(MODEL);
 const prompt = (text) => (styled ? `${(voice.style || STYLE_DEFAULT).replace(/[。：:]+$/, "")}說：\n${text}` : text);
 
+let REQUESTS = 0; // 本次執行送出的 TTS 合成請求數（含重試前的那一次）
 async function synth(text, voiceName) {
+  REQUESTS++;
   const body = {
     contents: [{ parts: [{ text: prompt(text) }] }],
     generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName } } } },
@@ -211,21 +219,25 @@ if (flags.has("--samples")) {
 
 const only = opt.only ? new Set(opt.only.split(",")) : null;
 const force = flags.has("--force");
+const CHECK = flags.has("--check");
 const outDir = path.join(ROOT, "public", "audio", slug);
 fs.mkdirSync(outDir, { recursive: true });
 const manifestPath = path.join(dir, "tts-manifest.json");
 const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : { scenes: [] };
 const entries = [];
 const todo = [];
+const hashes = {}; // 每幕「現行」雜湊（模型、音色、style、念稿）：自動重生只重做跟現行設定一致的幕，避免一支片混兩種音色
 for (const [i, s] of script.scenes.entries()) {
   const text = s.tts ?? s.narration;
   const hash = crypto.createHash("sha1").update([MODEL, voice.voiceName, styled ? voice.style ?? "" : "", text].join("\u0001")).digest("hex").slice(0, 12);
   const file = `audio/${slug}/${String(i + 1).padStart(2, "0")}-${s.id}.wav`;
   const abs = path.join(ROOT, "public", file);
   const prev = manifest.scenes.find((m) => m.id === s.id);
+  hashes[s.id] = hash;
   const reusable = prev && fs.existsSync(abs) && prev.hash === hash;
-  const wanted = force || (only ? only.has(s.id) : !reusable);
+  const wanted = !CHECK && (force || (only ? only.has(s.id) : !reusable));
   if (!wanted && prev && fs.existsSync(abs)) { entries.push({ ...prev, file }); console.log(`= ${s.id}（沿用${prev.hash === hash ? "" : "，但文字已改，建議重做"}）`); continue; }
+  if (CHECK) { console.log(`- ${s.id}（沒有音檔，--check 略過）`); continue; }
   const entry = { id: s.id, file, sec: 0, text, hash, voice: voice.voiceName, model: MODEL };
   entries.push(entry);
   todo.push({ n: i + 1, id: s.id, text, abs, entry });
@@ -247,3 +259,60 @@ try {
 const done = entries.filter((e) => e.sec > 0);
 const total = done.reduce((a, e) => a + e.sec, 0);
 console.log(`✔ ${done.length}/${entries.length} 幕（新做 ${todo.length}），配音合計 ${total.toFixed(1)} 秒 → ${path.relative(ROOT, manifestPath)}`);
+
+// ── 回讀校驗＋自動重生 ──────────────────────────────────────────────
+const VERIFY = opt.verify ?? process.env.TTS_VERIFY ?? "fa";
+const REGEN_MAX = Number(opt["regen-max"] ?? process.env.TTS_REGEN_MAX ?? 3);
+const NO_REGEN = flags.has("--no-regen") || !(REGEN_MAX > 0);
+const targets = (CHECK ? done : done.filter((e) => todo.some((t) => t.id === e.id)));
+if (VERIFY !== "off" && targets.length) {
+  if (!["fa", "asr", "both"].includes(VERIFY)) { console.error(`✖ --verify=${VERIFY} 不合法（fa｜asr｜both｜off）`); process.exit(2); }
+  const items = targets.map((e) => ({ id: e.id, file: path.join(ROOT, "public", e.file), text: e.text, n: script.scenes.findIndex((s) => s.id === e.id) + 1, entry: e }));
+  console.log(`\n▶ 回讀校驗 ${items.length} 幕（${VERIFY}；門檻：信心 < ${CONF_MIN}${VERIFY === "fa" ? "" : `、CER > ${CER_MAX * 100}%`}）`);
+  const before = await verifyScenes(items, VERIFY);
+  const usable = Object.values(before).some((r) => r.confidence != null || r.cer != null);
+  const score = (r) => (r.confidence ?? 1) - (r.cer ?? 0);
+  const bad = items.filter((x) => before[x.id].bad).sort((a, b) => score(before[a.id]) - score(before[b.id]));
+  const stale = (x) => x.entry.hash !== hashes[x.id]; // 這幕是用別的音色／模型／文字做的 → 不單獨重生
+  const pick = NO_REGEN ? [] : bad.filter((x) => !stale(x)).slice(0, REGEN_MAX);
+  const rec = { slug, at: new Date().toISOString(), method: VERIFY, confMin: CONF_MIN, cerMax: CER_MAX, regenMax: NO_REGEN ? 0 : REGEN_MAX, regenRequests: 0,
+    note: usable ? "" : "校驗工具不可用（fa.py 失敗或聽寫無額度），本次未判定",
+    scenes: items.map((x) => ({ id: x.id, before: before[x.id], regen: false, skipReason: before[x.id].bad ? (NO_REGEN ? "--no-regen" : stale(x) ? "音色／模型／念稿已改，請整支重做" : "超過重生上限") : undefined })) };
+  for (const x of items) { const r = before[x.id]; console.log(`  ${r.bad ? "⚠" : "✔"} ${x.id}：${r.confidence != null ? `信心 ${r.confidence}` : "信心 —"}${r.cer != null ? `、CER ${(r.cer * 100).toFixed(0)}%` : ""}${r.bad ? `（${r.why.join("；")}）` : ""}`); }
+  if (pick.length) {
+    console.log(`▶ 自動重生 ${pick.length} 幕（等同 --only=${pick.map((x) => x.id).join(",")}，合併成一次請求）`);
+    const bak = (x) => x.file.replace(/\.wav$/, ".prev.wav");
+    for (const x of pick) fs.copyFileSync(x.file, bak(x));
+    const req0 = REQUESTS;
+    let ok = true;
+    try {
+      const secs = await makeBatch(pick.map((x) => ({ n: x.n, id: x.id, text: x.text, abs: x.file })), voice.voiceName);
+      pick.forEach((x, k) => { x.newSec = Number(secs[k].toFixed(3)); });
+    } catch (e) {
+      ok = false;
+      console.warn(`⚠ 重生失敗：${e.message.slice(0, 200)}${e.daily ? "（今日額度用完）" : ""} → 保留原音檔`);
+      rec.note = `重生失敗：${e.daily ? "今日 TTS 額度用完" : e.message.slice(0, 80)}`;
+      for (const x of pick) fs.copyFileSync(bak(x), x.file);
+    }
+    rec.regenRequests = REQUESTS - req0;
+    const after = ok ? await verifyScenes(pick, VERIFY) : {};
+    for (const x of pick) {
+      const row = rec.scenes.find((r) => r.id === x.id);
+      row.regen = ok; if (!ok) { row.skipReason = "重生請求失敗"; fs.unlinkSync(bak(x)); continue; }
+      row.after = after[x.id];
+      if (after[x.id].bad && score(after[x.id]) < score(before[x.id])) {
+        fs.copyFileSync(bak(x), x.file); row.kept = "原音檔"; // 重生後更差 → 還原
+      } else { row.kept = "重生"; x.entry.sec = x.newSec; }
+      fs.unlinkSync(bak(x));
+      console.log(`  ${after[x.id].bad ? "⚠" : "✔"} ${x.id} 重生後：${after[x.id].confidence != null ? `信心 ${after[x.id].confidence}` : "信心 —"}${after[x.id].cer != null ? `、CER ${(after[x.id].cer * 100).toFixed(0)}%` : ""} → 保留${row.kept}`);
+    }
+    save();
+  }
+  for (const r of rec.scenes) if (r.before.bad && (!r.after || r.after.bad || r.kept === "原音檔")) console.warn(`⚠ ${r.id} 仍未通過回讀校驗，請試聽並檢查 pronunciation.md`);
+  writeVerify(slug, rec);
+  const cp = path.join(dir, "tts-check.md");
+  const old = fs.existsSync(cp) ? fs.readFileSync(cp, "utf8") : `# 回讀校驗：${slug}\n\n（npm run align ${slug} 會補上逐幕對齊表）\n`;
+  const k = old.indexOf("\n## 自動重生紀錄");
+  fs.writeFileSync(cp, (k < 0 ? old : old.slice(0, k + 1)).replace(/\n*$/, "\n") + verifySection(slug));
+  console.log(`✔ 回讀校驗 → videos/${slug}/tts-verify.json、tts-check.md（不合格 ${bad.length}、重生 ${rec.scenes.filter((r) => r.regen).length}、TTS 請求 ${rec.regenRequests}）`);
+}

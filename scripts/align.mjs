@@ -12,6 +12,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { splitLines, splitPhrases, SUB_MAX_EM_V2, clean } from "./validate.mjs";
 import { writeStoryboard } from "./subs.mjs";
+import { norm, lcsAlign, runFA, geminiTranscribe, verifySection, CER_MAX, CONF_MIN } from "./verify.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const slug = process.argv.slice(2).find((a) => !a.startsWith("--"));
@@ -25,8 +26,6 @@ const manifest = JSON.parse(fs.readFileSync(mp, "utf8"));
 const tlPath = path.join(dir, "timeline.json");
 const prev = fs.existsSync(tlPath) ? JSON.parse(fs.readFileSync(tlPath, "utf8")) : null;
 const OPENAI_KEY = process.env.OPENAI_API_KEY || "injected-by-proxy";
-const GEMINI_KEY = process.env.GEMINI_API_KEY || "injected-by-proxy";
-const GEMINI_MODEL = process.env.ALIGN_GEMINI_MODEL || "gemini-3.5-transcribe"; // 退場就改 gemini-3.8-flash
 let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 // styleVersion 2（時間軸 v2）：換幕人聲間隔 GAP 秒；轉場 TRANS 幀＝前一幕出場與本幕進場重疊，轉場結束＝本幕開口
@@ -34,13 +33,7 @@ const V2 = script.styleVersion === 2;
 const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 9, EXIT = [0, 5], ENTER = [3, 8], TAIL_END_F = 36, SUB_LEAD = 3, MIN_SCENE_F = 45;
 const SKIP_TRANSCRIBE = process.env.ALIGN_SKIP_TRANSCRIBE === "1";
 const TRANSCRIBE_WITH_FA = process.env.ALIGN_TRANSCRIBE === "1";
-const FA_PY = process.env.FA_PYTHON || [path.join(ROOT, ".venv/bin/python")].find((p) => fs.existsSync(p)) || "python3"; // 不花 Gemini 文字額度：跳過回讀聽寫（時間戳仍用靜音偵測）
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-// 簡→繁（聽寫偶爾輸出簡體），只為了對齊比對用
-const S2T = "台臺 湾灣 国國 会會 们們 这這 个個 说說 经經 济濟 选選 举舉 党黨 发發 时時 间間 为為 么麼 对對 后後 际際 币幣 买買 卖賣 价價 涨漲 亿億 万萬 点點 两兩 东東 产產 业業 关關 系係 还還 没沒 过過 从從 开開 长長 变變 来來 现現 实實 问問 题題 决決 议議 结結 层層 并並 连連 让讓 该該 将將 体體 应應 质質 术術 规規 则則 电電 车車 机機 构構 资資 费費 数數 据據 岁歲 养養 儿兒 难難 压壓 员員 众眾 参參 县縣 区區 总總 统統 领領 导導 计計 划劃 够夠 听聽 见見 觉覺 认認 识識 学學 习習 书書 读讀 写寫 门門 几幾 样樣 种種 类類 组組 织織 权權 义義 务務 场場 态態 势勢 热熱 处處 乐樂 药藥 医醫 疗療 护護 险險 税稅 贷貸 债債 储儲 备備 换換 转轉 输輸 运運 网網 络絡 线線 链鏈 块塊 锁鎖 钱錢 银銀 账賬 户戶 号號 单單 优優 级級 标標 准準 达達 预預 测測 报報 闻聞 调調 显顯 图圖 础礎 设設 环環 节節 约約 减減 龄齡 妇婦 爱愛 庆慶 园園 补補 贴貼 薪薪 贵貴 维維 诉訴 请請 届屆 办辦 临臨";
-const s2t = Object.fromEntries(S2T.split(" ").map((p) => [p[0], p[1]]));
-const norm = (s) => [...clean(s)].map((c) => s2t[c] ?? c);
 
 /** OpenAI Whisper（word timestamps） */
 async function whisper(file) {
@@ -65,33 +58,6 @@ async function whisper(file) {
   throw lastErr;
 }
 
-/** Gemini 聽寫（只要文字，做回讀校驗）。免費額度每模型每天有限：某模型當日額度用完就換下一個，全部用完就跳過（不影響時間軸） */
-const TRANSCRIBE_MODELS = [GEMINI_MODEL, "gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-3.1-flash-lite"].filter((m, i, a) => a.indexOf(m) === i);
-const dead = new Set();
-async function geminiTranscribe(file) {
-  const data = fs.readFileSync(file).toString("base64");
-  for (const model of TRANSCRIBE_MODELS) {
-    if (dead.has(model)) continue;
-    const body = {
-      contents: [{ parts: [
-        { inlineData: { mimeType: "audio/wav", data } },
-        { text: "請逐字聽寫這段台灣國語語音。只輸出聽到的文字（繁體中文，可含標點），不要加任何說明或前綴。" },
-      ] }],
-      generationConfig: { temperature: 0 },
-    };
-    for (let i = 0; i < 3; i++) {
-      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY }, body: JSON.stringify(body) });
-      if (r.ok) { const j = await r.json(); return { model, text: (j.candidates?.[0]?.content?.parts ?? []).map((p) => p.audioTranscription?.text ?? p.text ?? "").join("").trim() }; }
-      const t = await r.text();
-      if (r.status === 429 && /PerDay|quota/i.test(t) && !/PerMinute/.test(t)) { dead.add(model); console.log(`\n  ℹ ${model} 今日額度用完 → 換下一個`); break; }
-      if (r.status === 404) { dead.add(model); break; }
-      if (r.status === 429 || r.status >= 500) { await sleep(5000 * (i + 1)); continue; }
-      dead.add(model); break;
-    }
-  }
-  return { model: null, text: "" };
-}
-
 /** ffmpeg 靜音偵測 → 說話時段 [{s,e}] */
 function speechSegments(file, total) {
   const out = spawnSync("ffmpeg", ["-i", file, "-af", "silencedetect=noise=-35dB:d=0.16", "-f", "null", "-"], { encoding: "utf8" }).stderr ?? "";
@@ -113,16 +79,6 @@ function spreadChars(n, segs) {
   return Array.from({ length: n }, (_, i) => ({ t: at(i / n), e: at((i + 1) / n) }));
 }
 
-/** CTC 強制對齊：一次呼叫 fa.py 處理多幕（模型只載入一次）→ { id: {units, confidence, ...} }；失敗回傳 {} */
-function runFA(jobs) {
-  if (!jobs.length) return {};
-  console.log(`▶ CTC 強制對齊 ${jobs.length} 幕（${path.relative(ROOT, FA_PY) || FA_PY} scripts/fa.py）…`);
-  const r = spawnSync(FA_PY, [path.join(ROOT, "scripts/fa.py")], { input: JSON.stringify(jobs), encoding: "utf8", maxBuffer: 64 << 20, stdio: ["pipe", "pipe", "inherit"], env: { ...process.env, PYTHONNOUSERSITE: "1" } });
-  if (r.status !== 0) { console.warn(`⚠ fa.py 失敗（exit ${r.status}${r.error ? "，" + r.error.message : ""}）→ 回退 gemini+silence`); return {}; }
-  try { return Object.fromEntries(JSON.parse(r.stdout).filter((x) => x.ok).map((x) => [x.id, x])); }
-  catch (e) { console.warn(`⚠ fa.py 輸出無法解析：${e.message}`); return {}; }
-}
-
 /** 詞 → 字元序列（每個字在詞內線性內插時間） */
 const charsFromWords = (words) => {
   const out = [];
@@ -133,20 +89,6 @@ const charsFromWords = (words) => {
     cs.forEach((c, i) => out.push({ c, t: w.start + (span * i) / cs.length, e: w.start + (span * (i + 1)) / cs.length }));
   }
   return out;
-};
-/** LCS 對齊：a = 稿子字元，b = 轉錄字元（含時間）；回傳每個稿子字元對應的 b 索引（或 null）與配對數 */
-const lcsAlign = (a, b) => {
-  const n = a.length, m = b.length;
-  const dp = Array.from({ length: n + 1 }, () => new Int16Array(m + 1));
-  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === b[j].c ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
-  const map = new Array(n).fill(null);
-  let i = 0, j = 0;
-  while (i < n && j < m) {
-    if (a[i] === b[j].c) { map[i] = j; i++; j++; }
-    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
-    else j++;
-  }
-  return { map, matched: dp[0][0] };
 };
 /** 沒對上的字元用前後錨點線性內插 */
 const interpolateTimes = (map, b, n, total) => {
@@ -403,17 +345,17 @@ if (V2) {
   fs.writeFileSync(tlPath, JSON.stringify({ slug, fps: FPS, totalSec, scenes }, null, 1));
 }
 writeStoryboard(slug, script, JSON.parse(fs.readFileSync(tlPath, "utf8")));
-const flagged = report.filter((r) => r.cer != null && r.cer > 0.2);
-const lowConf = report.filter((r) => r.fa && r.fa.confidence < 0.5);
+const flagged = report.filter((r) => r.cer != null && r.cer > CER_MAX);
+const lowConf = report.filter((r) => r.fa && r.fa.confidence < CONF_MIN);
 const onsetErr = report.flatMap((r) => (r.fa?.onsetCheck ?? []).map((o) => Math.abs(o.errMs)));
 const med = (a) => { if (!a.length) return null; const b = [...a].sort((x, y) => x - y); return b[Math.floor(b.length / 2)]; };
-const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(0)}%${x > 0.2 ? " ⚠" : ""}`);
+const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(0)}%${x > CER_MAX ? " ⚠" : ""}`);
 const md = [`# 回讀校驗：${slug}`, "", `- 時間戳來源：${[...new Set(report.map((r) => r.provider))].join(", ")}；CER = 1 − LCS/稿長（簡繁已正規化、標點不計；ctc-fa 預設不做 Gemini 回讀聽寫，CER 以「—」表示）`,
-  `- 總長 ${totalSec}s，${(V2 ? cores : scenes).length} 幕，CER > 20% 的幕：${flagged.length}；對齊信心 < 0.5 的幕：${lowConf.length}`,
+  `- 總長 ${totalSec}s，${(V2 ? cores : scenes).length} 幕，CER > ${CER_MAX * 100}% 的幕：${flagged.length}；對齊信心 < 0.5 的幕：${lowConf.length}`,
   `- CTC 對齊信心＝每個念稿字的 CTC 後驗機率平均（0–1）。起音誤差＝停頓（≥0.12 秒、−40 dBFS）後第一個字的對齊起點 − 能量起音點：共 ${onsetErr.length} 點，中位數 ${med(onsetErr) ?? "—"}ms、最大 ${onsetErr.length ? Math.max(...onsetErr) : "—"}ms`, "",
   "| 幕 | 念稿 | 聽寫 | CER | 對齊信心（最低字） | 起音誤差 ms | 字幕未對上字數 |", "|---|---|---|---|---|---|---|",
   ...report.map((r) => `| ${r.id} | ${r.spoken} | ${r.transcript ?? ""} | ${pct(r.cer)} | ${r.fa ? `${r.fa.confidence}（${r.fa.minScore}）${r.fa.confidence < 0.5 ? " ⚠" : ""}` : "—"} | ${r.fa?.onsetCheck?.length ? r.fa.onsetCheck.map((o) => `${o.ch}${o.errMs >= 0 ? "+" : ""}${o.errMs}`).join(" ") : "—"} | ${r.unmatched}/${r.n} |`)].join("\n");
-fs.writeFileSync(path.join(dir, "tts-check.md"), md + "\n");
+fs.writeFileSync(path.join(dir, "tts-check.md"), md + "\n" + verifySection(slug));
 for (const r of lowConf) console.warn(`⚠ ${r.id} 對齊信心 ${r.fa.confidence}（念稿與音檔可能不符，請試聽）`);
 for (const r of flagged) console.warn(`⚠ ${r.id} CER ${(r.cer * 100).toFixed(0)}%：念「${r.spoken}」聽寫「${r.transcript}」`);
 console.log(`✔ ${path.relative(ROOT, tlPath)}  總長 ${totalSec}s（${(V2 ? cores : scenes).length} 幕，${usedProvider ?? "cache"}）；報告 videos/${slug}/tts-check.md`);
