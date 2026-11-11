@@ -1,117 +1,121 @@
-# 畫面規格：mstr-bitcoin
+# 畫面規格：mstr-bitcoin-v2（styleVersion 2・A 奶油編輯）
 
-所有數值對應 `src/theme.ts`、`src/components/anim.ts`、`src/Video.tsx`、`src/Cover.tsx` 的實作；本檔只是把它們寫成可核對的規格，不另外新增樣式。
+> 與 `script.json`、`timeline.json`、`storyboard.json` 同步（2026/11/11）。數值對應 `src/theme.ts`（`THEME_V2`／`LAYOUT_V2`）、`src/components/anim.ts`（motion token）、`src/Video.tsx`（v2 轉場）、`src/components/v2/`；本檔只把它們寫成可核對的規格，不另外新增樣式。動畫若再調整，以程式碼與 `storyboard.json` 為準，再回頭更新本檔。
 
 ## 1. 基本規格
 
 | 項目 | 規格 |
 |---|---|
-| 尺寸／幀率 | 1080 × 1920、30 fps（`W`/`H`/`FPS`） |
-| 輸出 | H.264 MP4，`npm run render mstr-bitcoin` → `out/mstr-bitcoin.mp4` |
-| 安全區 | 上下各 220 px、左右各 64 px（`SAFE = { top: 220, bottom: 220, x: 64 }`） |
-| 元件區 | `top: 330`、高 1030 px（片尾卡 1370 px）、左右貼安全區，內容置中；整幕有 2.5% 的 Ken Burns 緩慢推近 |
-| 幕數／長度 | 15 幕（含片尾），配音版估 94 秒；不填 `durationSec`，長度由 `scripts/align.mjs` 依音檔決定 |
-| 換幕 | 進場 10 幀（0.33 秒）：淡入 + 上移 36 px 歸位 + 縮放 1.03 → 1；出場 9 幀（0.3 秒）：淡出 + 上移 20 px + 縮放 1 → 0.985 |
-| 字型 | Noto Sans TC（400/700/900）＋ Inter（400/600/800），由 `npm run fonts` 鏡像到 `public/fonts/`；大數字用 Inter，所以 BigNumber 的 `prefix/suffix` 只放 ASCII（本集用 `%`，不放中文） |
+| 尺寸／幀率 | 1080 × 1920、30 fps、H.264 MP4 |
+| 輸出 | `npm run render mstr-bitcoin-v2` → `out/mstr-bitcoin-v2.video.mp4`（畫面＋參考人聲）→ `scripts/mix.mjs` 混音 → `out/mstr-bitcoin-v2.mp4`；同時輸出 `out/mstr-bitcoin-v2.srt`／`.zh.srt`／`.en.srt` 與 `videos/mstr-bitcoin-v2/storyboard.json` |
+| 長度 | 13 幕、1898 幀＝63.27 秒（`timeline.json` v2 的 `totalFrames`，唯一時間來源） |
+| 時間軸 | 第 1 幕音檔從第 0 幀開始；之後每幕開口＝前一幕收聲＋0.15 秒（或該幕 `pauseAfter`）；每幕 `startFrame`＝開口 − 9 幀（轉場剛好在開口時完成） |
+| 人聲 | `public/audio/mstr-bitcoin-v2/voice.wav`（整條兩段式 loudnorm −16 LUFS），畫面只播這一條 |
+| 字型 | Noto Sans TC（400／700／900）＋ Inter，由 `npm run fonts` 鏡像到 `public/fonts/` |
 
-## 2. 配色（沿用 CLAUDE.md 設計系統）
+## 2. 版面格線（`LAYOUT_V2`，全解析度 y）
 
-| Token | Hex | 用途 |
+| 帶 | 範圍 | 內容 |
 |---|---|---|
-| `C.bg` | `#0B1026` | 背景深藍 |
-| `C.cyan` | `#22E5D4` | 主色一 |
-| `C.pink` | `#FF4FA3` | 主色二 |
-| `C.yellow` | `#FFD54A` | 主色三 |
-| `C.purple` | `#8B7CFF` | 主色四 |
-| `C.white` | `#FFFFFF` | 文字 |
-| `C.card` | `rgba(18, 26, 60, 0.72)` | 卡片底 |
-| 格線 | `rgba(255,255,255,0.06)`、每格 60 px | 背景 |
-| 光暈 | `rgba(110,100,255,0.24)` 藍紫橢圓（隨幀緩慢漂移）＋ `rgba(255,79,163,0.10)` 粉色副光暈 | 背景 |
-| 星點／光點 | 40 顆白色星點、22 顆四色上飄光點，seed `20261103` | 背景（`seeded()` 固定，每次渲染一致） |
+| 頁首 | 220–310 | 左 logo＋「白話國際」、右「國際白話講」；310 處 4px 報頭線兼全片進度 |
+| 主視覺 | 330–1250（x 64–1016，952 寬） | 元件撐滿；外框 ≥ 856×814（圖表繪圖區 ≥ 856×640） |
+| 字幕 | 1270–1560（x ≤ 960） | 短語模式：中文 76px／900 一次一段單行（≤ 11.5em），英文 30px 次要文字（每段 ≤ 42 字元） |
+| 出處 | 1580–1690 | 24px 輔助色「資料來源：…｜截至 2026/11/6」 |
+| 底帶 | 1700–1920 | 只放背景色帶 |
 
-狀態標籤（`StatusTag`）固定對應，不可改：已確定 = cyan、分析預期 = yellow、尚未確定 = pink。
+背景層（每幕）：米色色塊＋出血色帶＋大字水印（`bg.mark`，預設第一個關鍵詞；480px、5% 透明度），視差 0.2。
+
+## 3. 色彩（`THEME_V2`）
+
+| 用途 | 色碼 |
+|---|---|
+| 背景 | `#FBF5EA`＋4% 海軍藍圓點紙紋（`public/bg/base-v2.png`） |
+| 文字 主／次／輔 | `#14213D`／`#4B5675`／`#5F6673` |
+| 卡片 | 暖白 `#FFFDF8`、2px `#E6D9C2` 邊框、圓角 14px、紙張陰影、頂端 6px 色條 |
+| pink → 珊瑚 | 填色 `#E8613C`、文字 `#C2441F` |
+| yellow → 暖黃 | 填色 `#F5B83D`、文字 `#8A5E00` |
+| cyan → 深青 | 填色 `#2A7F8F`、文字 `#1F6A78` |
+| purple → 灰紫 | 填色 `#7A6CA8`、文字 `#5A4D7A` |
+| 狀態標籤 | 已確定 `#E2F0E7/#1E6544`、分析預期 `#FCEBCB/#8A5300`、尚未確定 `#ECE7F3/#5A4D7A`，圓角 8px |
+| 字幕關鍵詞色序 | ① 珊瑚字 ② 海軍藍字＋黃色螢光筆底 ③ 深青字 |
+
+不用霓虹 glow、放射光、星點、暗角；圖示＝海軍藍方角線稿（6px）＋錯位色塊。
 
 ### 本集用色邏輯
 
-| 顏色 | 代表 | 用在 |
+| 色名 | 代表 | 用在 |
 |---|---|---|
-| **yellow** | 比特幣本體、持幣數量 | 第 1 幕大數字、第 4 幕左側比特幣、第 6 幕「股價有溢價」、第 8 幕 Saylor 卡、第 10 幕買幣、第 14 幕持幣格、封面 bitcoin 圖示與「持幣」格 |
-| **cyan** | 公司、股票、定義、2022 年說法 | 第 2 幕名詞卡、第 5 幕增發股票、第 6 幕增發買幣、第 7 幕溢價側、第 10 幕募資、第 12 幕 2022 側、第 14 幕飛輪格、封面「溢價」格 |
-| **purple** | 制度與工具：mNAV、可轉債、優先股、循環 | 第 3 幕 mNAV 卡、第 5 幕可轉債、第 6 幕「溢價更高」、第 10 幕回購優先股、第 14 幕 MSCI 格、封面「飛輪」格 |
-| **pink** | 下跌、折價、賣幣、風險、2026 年反轉、尚未確定 | 第 4 幕 MSTR 側、第 5 幕優先股、第 6 幕「每股含幣增加」（視覺對比用）、第 7 幕折價側、第 9 幕 mNAV 0.90、第 10 幕賣幣、第 11 幕 −3.7%、第 12 幕 2026 側、第 13 幕風險卡、第 14 幕 2026 格、封面「風險」格 |
+| yellow（暖黃） | 比特幣本體、持幣、溢價（飛輪燃料） | 第 4 幕持幣翻牌、第 5 幕飛輪、第 6 幕原有 100 枚、第 7 幕 Saylor 卡、第 8 幕 2026 色帶、第 9 幕「幣 +26%」 |
+| cyan（深青） | 2022 年說法、股票／股數、比特幣對照 | 第 2 幕 2022 側、第 3 幕比特幣跌幅、第 6 幕股數計數、第 9 幕「股數 +31%」、第 10 幕募資、第 12 幕「該」選項 |
+| pink（珊瑚） | 賣幣、下跌、反轉、風險 | 第 2 幕 2026 側、第 3 幕 MSTR 跌幅、第 6 幕新買 20 枚、第 8 幕 mNAV 線、第 9 幕「每股 −3.7%」、第 10 幕賣幣、第 11 幕風險卡 |
+| purple（灰紫） | 優先股、尚未確定 | 第 10 幕回購優先股、第 11 幕「11/11 公布」徽章 |
 
-政治中立配色（`C.dem`/`C.rep`）本集不涉及，不使用。
+## 4. 動畫與轉場
 
-## 3. 進場動畫參數（`src/components/anim.ts`）
-
-| 函式 | 參數 | 效果 |
-|---|---|---|
-| `rise(frame, delay, dist = 40)` | spring `{ damping: 14, stiffness: 110, mass: 0.7 }` | 淡入 + 從下方 `dist` px 彈上來，opacity = min(1, s × 1.15) |
-| `pop(frame, delay, from = 0.6)` | spring `{ damping: 10, stiffness: 160, mass: 0.6 }` | 從 `from` 倍放大、過衝後回到 1 |
-| `progress(frame, delay, dur)` | `Easing.out(Easing.cubic)`，clamp 0–1 | 描線、打字機、數字遞增用的進度 |
-| `linear(frame, delay, dur)` | 線性 | 本集元件未直接使用 |
-
-各元件固定時序（幀，相對本幕開始）：
-
-| 元件 | 時序 |
+| 項目 | 規格 |
 |---|---|
-| TermCard | 卡片 `rise(f, 0)`；圖示描線 `progress(f, 0, 30)`；定義打字機 `progress(f, 18, 45)`（第 18–63 幀逐字出現，游標 ▍ 打完消失）；要點 `rise(f, 50 + i × 8, 20)` |
-| FlowRow | 標題 `rise(f, 0)`；第 i 張卡 `rise(f, 8 + i × 22)`；箭頭描線 `progress(f, d − 10, 12)`（d 為該卡 delay），青色 3 px 線 + 外發光 |
-| CompareSplit | 左卡 `rise(f, 0)`、右卡 `rise(f, 8)`；每條項目 `rise(f, d + 12 + i × 7, 16)`；footer（黃字）`rise(f, 45)` |
-| BigNumber | 圖示 `rise(f, 0)` + 描線 `progress(f, 0, 30)`；標籤 `rise(f, 4)`；數字遞增 `value × (1 − (1 − progress(f, 10, 40))³)`（第 10–50 幀跑到定值）；第 50 幀 `pop(f, 50, 0.93)` 彈一下；註解 `rise(f, 30)`；狀態標籤 `rise(f, 36)` |
-| IconGrid | 標題 `rise(f, 0)`；第 i 格 `rise(f, 8 + i × 7)` |
-| ImpactCard | 卡片 `rise(f, 0)`；圖示描線 `progress(f, 0, 30)`；第 i 列 `rise(f, 14 + i × 9, 18)`；台灣視角框 `rise(f, 14 + rows × 9 + 6, 18)` |
-| EndCard | logo 圓 `progress(f, 0, 30)` 描線；「白話國際」`rise(f, 8)`；slogan `rise(f, 14)`；英文 `rise(f, 20)`；追蹤／分享／留言膠囊 `rise(f, 28)`；下集預告 `rise(f, 36)`；免責 `rise(f, 40)` |
-
-圖示一律 `src/components/Icons.tsx` 自繪 SVG 霓虹描邊（stroke 3 px + `glow()` 外發光），不使用外部圖片、不畫真人。
-
-## 4. 固定元素
-
-| 元素 | 位置 | 規格 |
-|---|---|---|
-| Header 左 | `top: 220, left: 64` | 64 px 地球 logo（青圈、粉赤道線）＋「白話國際」40 px / 900 |
-| Header 右 | `top: 220, right: 64` | 「國際白話講」膠囊：粉 1.5 px 邊框、30 px / 700、`0 0 14px #FF4FA355` 外光 |
-| 進度條 | `top: 306`（220 + 86）、高 4 px | 青 → 粉漸層，隨全片進度前進 |
-| 字幕 | `bottom: 290`（220 + 70）、左右 64 px、置中 | 中文 64 px / 900、行高 1.3、白字、黑色投影；關鍵詞依序上色 yellow → cyan → pink → purple，並加 `0 0 18px` 同色光；每行 `rise(f, lineStart, 20)`；有配音時間軸時逐字點亮（未唸到 42% 透明）、關鍵詞被唸到時 `pop(f, t, 0.86)`。英文 28 px、70% 透明、`marginTop: 14`。中文每行 ≤14 字、最多 2 行、在「，；：、」最靠中間處斷行 |
-| 資料來源 | `bottom: 220`、22 px、50% 白、單行省略 | 「資料來源：A、B、C｜截至 2026/11/6」；本集每幕 2–3 個來源名以免被截斷 |
+| motion token | `DUR` xs 4／s 8／m 12／l 18 幀；`STAGGER` 4 幀；出場＝進場 65%；`EASE.enter` out-cubic、`exit` in-quad、`move` inOut-cubic；spring 只有 `ui`（無過衝）與 `accent`（過衝 ≤ 3%） |
+| 元素進場 | 依 `cues` 進場（cue − 4 幀）：淡入 8 幀＋上移 24px（ui spring，整數 px） |
+| focus／punch | 多項目時念到的那項 1、其他降到 0.35；念到時 accent spring 從 0.9 彈回 1 |
+| 鏡頭 | 在 cue 推拉 0.965 ↔ 1（12 幀後固定），不做連續縮放 |
+| 讀秒保護 | 元素落定後至少 0.8 秒才出場 |
+| 換幕轉場 | `fade`（`timeline.transition`）9 幀：出場第 0–5 幀淡出＋上移 24px（ease-in），進場第 3–8 幀淡入＋自下 32px 升起（ease-out quad）；兩者不同時 > 40% 不透明，沒有雙重曝光。元件時間比 Sequence 快 6 幀（`ENTER_LEAD`），進場淡入時內容已在動 |
+| 字幕 | 每段在第一個字被唸到前 0.12 秒出現，淡入 3 幀＋上移 8px、淡出 2 幀；關鍵詞被唸到時上色 |
+| 2.5D | 只用 CSS 2D／perspective（DepthStage 傾斜 ≤ 6°、視差 0.2／0.5／1.0、堆疊卡），不用 3D 引擎 |
+| 確定性 | 不讀系統時間、不用 Math.random、不用 CSS 動畫；隨機用固定 seed |
 
 ## 5. 每幕規格
 
-| # | id | 元件 | 主色 | 圖示 | 畫面重點 | 進場 |
-|---|---|---|---|---|---|---|
-| 1 | hook | BigNumber | yellow | bitcoin | 849,327 遞增；標籤「Strategy 持有的比特幣（枚）」；註解佔 4.04%；標籤「已確定」 | 圖示描線 0–30 幀，數字 10–50 幀跑完，50 幀彈一下 |
-| 2 | what-is-strategy | TermCard | cyan | building | 名詞 Strategy／Formerly MicroStrategy · Nasdaq: MSTR；定義打字機；3 要點（持幣、成本、本業營收） | 打字 18–63 幀，要點 50/58/66 幀 |
-| 3 | what-is-mnav | TermCard | purple | scale | 名詞 mNAV；定義打字機；3 要點（3.4 倍高峰、0.85–1.2、企業價值口徑） | 同上 |
-| 4 | stock-vs-coin | CompareSplit | yellow / pink | bitcoin / chart | 左比特幣 11/5 −5%、右 MSTR −10%；footer「槓桿化的比特幣」 | 左 0 幀、右 8 幀、footer 45 幀 |
-| 5 | funding-tools | IconGrid（3 欄） | cyan / purple / pink | chart / document / coins | 增發股票、可轉債、優先股三格，各附一句白話解釋與規模 | 格 8/15/22 幀 |
-| 6 | flywheel | FlowRow（4 步） | yellow → cyan → pink → purple | trendUp / chart / bitcoin / cycle | 標題「2024–2025 年的飛輪」；溢價 → 增發買幣 → 每股含幣增加 → 股價再漲 | 卡 8/30/52/74 幀，箭頭在前一卡之後描線 |
-| 7 | premium-math | CompareSplit | cyan / pink | trendUp / trendDown | 左「溢價 2 倍」100 股→1.09 枚；右「折價 0.85」每股含幣變少；footer 註明依公開定義推算 | 左 0、右 8、footer 45 |
-| 8 | saylor-logic | ImpactCard | yellow | megaphone | 標題「Saylor 的邏輯」；2 列已確定（名言、KPI）+ 1 列分析預期（批評） | 列 14/23/32 幀 |
-| 9 | premium-gone | BigNumber | pink | scale | 0.90（2 位小數）遞增；標籤「mNAV（11/5 盤中，自算）」；標籤「分析預期」 | 數字 10–50 幀 |
-| 10 | money-flow-2026 | FlowRow（4 步） | cyan → yellow → purple → pink | bank / bitcoin / coins / trendDown | 標題「2026 年的錢去哪了？」；募資 212.3 億 → 買幣 143.3 億 → 回購優先股 → 賣幣 4.3 億 | 卡 8/30/52/74 幀 |
-| 11 | btc-yield-negative | BigNumber | pink | percent | −3.7% 遞減（1 位小數、suffix `%`）；註解解釋 BTC Yield；標籤「已確定」 | 數字 10–50 幀 |
-| 12 | never-sell-to-selling | CompareSplit | cyan / pink | lock / trendDown | 左 2022 說法三句；右 2026 行動三筆（32 枚、12.5 億授權、累計 4.3 億）；footer 註明所得用途與 Saylor 回應 | 左 0、右 8、footer 45 |
-| 13 | risks | ImpactCard | pink | warning | 4 列：成本線（已確定）、MSCI 11/11（尚未確定，畫面寫「截至 2026/11/6 尚未確定」）、摩根大通估值（分析預期）、分析師分歧（分析預期）；台灣視角框 | 列 14/23/32/41 幀，台灣框 56 幀 |
-| 14 | summary | IconGrid（2 欄） | yellow / cyan / pink / purple | bitcoin / cycle / trendDown / question | 標題「MSTR × 比特幣，一句話」；持幣、飛輪、2026 歸零、MSCI 名單四格 | 格 8/15/22/29 幀 |
-| 15 | end | EndCard | cyan | （logo） | 白話國際／一支講透一件事／下一集預告／免責聲明 | 見第 3 節 EndCard 時序 |
+| # | id | beat | 元件（類別） | 主色 | 畫面重點 |
+|---|---|---|---|---|---|
+| 1 | hook | hook | HookTitle（kinetic） | — | 第 0 幀即完整主張「85萬枚大戶／開始賣幣」（≥120px），`slamAt: sell` 落章；副標 2022 vs 2026/5；`claims` 指向 research.md |
+| 2 | not-a-seller | hook | DepthStage＋CompareSplit（depth） | pink | 左 2022「我們不是賣家」（cyan，`say`）、右 2026「5 月首次賣 32 枚／累計約 4.3 億美元」（pink，`sell`）；徽章「說法 vs 行動」 |
+| 3 | amplified | you | BarChart flat（chart） | pink | 11/5 盤中跌幅：比特幣約 −6%（`btc`，參考線）vs MSTR 約 −10%（`drop`）；註解「槓桿化比特幣」；註腳標收盤尚未確定 |
+| 4 | holdings | mechanism | KineticText（kinetic） | yellow | 翻牌計數 672,500 → 849,327 枚（`buy` 起跑、`pct` 落地）；大字「全球 4%」；右下 ring 4.04%／2,100 萬枚上限 |
+| 5 | flywheel | mechanism | DepthStage＋FlowRow（depth） | yellow | 三步飛輪：股價有溢價（`prem`）→ 發新股換現金（`issue`）→ 拿去買比特幣（`buy`）；徽章「溢價＝燃料」 |
+| 6 | premium-math | mechanism | UnitGrid（chart） | cyan | 12 欄 waffle：原有 100 枚（yellow）＋新買 20 枚（pink，`c20` 框選）；計數列持幣 100→120、股數 100→110；註解「每股含幣 1.00 → 1.09 枚」（`more`） |
+| 7 | buy-the-top | mechanism | DepthStage＋ImpactCard（depth） | yellow | 「Saylor 的邏輯」三列：名言（已確定）、看每股含幣（已確定）、前提＝有溢價（分析預期，`cond`）；中段鉤子 |
+| 8 | premium-gone | twist | LineChart（chart） | pink | mNAV 2024/11 約 3.4 倍 → 2026/11 約 0.9 倍：描線分兩段（`y2026`、`zero`），2026 年色帶，1 倍參考線（`coins`）；水印 0.9 |
+| 9 | yield-negative | twist | KineticText（kinetic） | pink | 三行計數「幣 +26%」（`coins`）「股數 +31%」（`shares`）「每股 −3.7%」（`yield`，螢光筆）；右上 sparkline BTC Yield 2026 |
+| 10 | selling-for-dividends | payoff | BarChart iso（chart） | pink | 2026 年的錢去哪：募資 212.3、買幣 143.3、賣幣 4.3（`sold`）、回購優先股 20.4（億美元）；註解「賣幣所得：付優先股股息、回購」（`div`） |
+| 11 | watch-next | payoff | DepthStage＋ImpactCard（depth） | pink | 兩件事：成本線約 75,451 美元（已確定，`cost`）、MSCI 11/11 公布（尚未確定，畫面寫「截至 2026/11/6 尚未確定」，`index`）；「本片不構成投資建議」 |
+| 12 | your-call | cta | CtaCard（card） | — | 「該不該賣幣來付股息？」兩個選項（`q`）＋「留言告訴我們」（`talk`）；不寫分享／標記 |
+| 13 | end | cta | EndCardV2（end） | — | 白話國際／一支講透一件事；三格 recap；下一集預告；AI 輔助製作聲明 |
 
-連續兩幕不用同一元件；BigNumber 出現在第 1、9、11 幕，CompareSplit 第 4、7、12 幕，FlowRow 第 6、10 幕，ImpactCard 第 8、13 幕，IconGrid 第 5、14 幕。
+元件類別檢查（validate 規則 1–10）：card 只有第 12 幕（≤ 13÷3）；第 1 幕不是 card；同類不連續三幕（depth 在 2、5、7、11 幕，kinetic 在 1、4、9 幕，chart 在 3、6、8、10 幕）。畫面變化：每幕 2–4 個 cue，平均每 2 秒左右有一次進場／focus／鏡頭推拉。
 
-## 6. 封面（`npm run still mstr-bitcoin` → `out/mstr-bitcoin-cover.png`）
+### 時間表（取自 `storyboard.json`，幀＝絕對幀，cue 與字幕為幕內幀）
+
+| # | id | 元件 | 開始 | 長度 | 轉場 | cue（幕內幀 → 念到的詞） | 字幕短語（出現幀） |
+|---|---|---|---|---|---|---|---|
+| 1 | hook | HookTitle | 0s（0） | 105 幀 | none | hoard 11「囤幣」、sell 62「賣幣」、div 82「股息」 | 最愛囤幣的 Strategy（0）／開始賣幣付股息了（49） |
+| 2 | not-a-seller | DepthStage | 3.2s（96） | 161 幀 | fade 9 幀 | say 67「不是賣家」、sell 141「開始賣」 | 2022 年它說（6）／「我們不是賣家」（54）／今年 5 月起卻開始賣（102） |
+| 3 | amplified | BarChart | 8.27s（248） | 178 幀 | fade 9 幀 | amp 60「放大版」、btc 132「6%」、drop 162「一成」 | 很多人把它當（6）／比特幣放大版（42）／11/5 幣跌 6%（81）／它跌一成（141） |
+| 4 | holdings | KineticText | 13.9s（417） | 143 幀 | fade 9 幀 | buy 58「一路買」、pct 112「4%」 | 它從 2020 年一路買（6）／現在囤了（79）／全球 4% 的比特幣（95） |
+| 5 | flywheel | DepthStage | 18.37s（551） | 164 幀 | fade 9 幀 | prem 33「溢價」、pricier 94「還貴」、issue 121「發新股」、buy 146「買幣」 | 祕訣是溢價（6）／股票比背後的幣還貴（55）／就發新股去買幣（112） |
+| 6 | premium-math | UnitGrid | 23.53s（706） | 166 幀 | fade 9 幀 | x2 31「2 倍」、c20 82「20 枚」、more 144「變多」 | 溢價 2 倍時（6）／發 10 股能買 20 枚（46）／每股含幣反而變多（103） |
+| 7 | buy-the-top | DepthStage | 28.77s（863） | 139 幀 | fade 9 幀 | saylor 28「Saylor」、top 66「買在頂部」、cond 121「前提」 | 共同創辦人 Saylor（6）／說要永遠買在頂部（33）／但這有個前提（103） |
+| 8 | premium-gone | LineChart | 33.1s（993） | 173 幀 | fade 9 幀 | y2026 31「2026 年」、zero 76「歸零」、coins 153「手上的幣」 | 到了 2026 年（6）／溢價幾乎歸零（52）／股價差不多（100）／只等於手上的幣（135） |
+| 9 | yield-negative | KineticText | 38.57s（1157） | 198 幀 | fade 9 幀 | coins 27「26%」、shares 85「31%」、yield 162「3.7%」 | 幣多了 26%（6）／股數卻多了 31%（46）／每股含幣反而少 3.7%（112） |
+| 10 | selling-for-dividends | BarChart | 44.87s（1346） | 160 幀 | fade 9 幀 | sold 31「賣掉」、div 107「優先股股息」、buyback 143「回購」 | 它已賣掉約 （6）／4.3 億美元的幣（47）／拿去付優先股股息（89）／和回購（135） |
+| 11 | watch-next | DepthStage | 49.9s（1497） | 171 幀 | fade 9 幀 | cost 90「成本線」、index 123「指數」 | 接下來看兩件事（6）／幣價貼著成本線（61）／指數去留還沒定（120） |
+| 12 | your-call | CtaCard | 55.3s（1659） | 129 幀 | fade 9 幀 | q 32「該不該」、talk 102「留言」 | 你覺得（6）／它該不該賣幣來付股息？（22）／留言說說看（98） |
+| 13 | end | EndCard | 59.3s（1779） | 119 幀 | fade 9 幀 | — | — |
+
+## 6. 封面（`npm run still mstr-bitcoin-v2` → `out/mstr-bitcoin-v2-cover.png`）
 
 | 元素 | 規格 |
 |---|---|
-| 背景、Header | 與影片相同 |
-| 圖示 | 兩個 200 px 霓虹圖示並排（間距 40）：bitcoin（yellow）、cycle（cyan），`top: 420` |
-| 標題 | 第 1 行「比特幣越漲」白色 132 px / 900；第 2 行「它越買？」黃色 132 px + `glow(#FFD54A, 10)`；行高 1.18 |
-| 副標 | 「全球最大持幣公司的飛輪與反轉」青色 56 px / 700，`marginTop: 40` |
-| 英文 | "MSTR & Bitcoin: why it kept buying, and what changed" 32 px、70% 白 |
-| 四格 | 2 × 2 格、總寬 820、間距 24：持幣（bitcoin／yellow）、溢價（scale／cyan）、飛輪（cycle／purple）、風險（warning／pink）；每格 70 px 圖示 + 52 px / 900 標籤、1.5 px 同色邊框與外光 |
-| 標籤 | 「資料截至 2026/11/6」（已確定／cyan）、「MSCI 名單 11/11 公布」（尚未確定／pink），30 px 膠囊 |
+| kicker | 「比特幣 × 美股｜STRATEGY (MSTR)」 |
+| 標題 | 「說不賣幣／卻開始賣幣」（≤ 10 字，第 2 行螢光筆 `mark: 1`） |
+| 副標／英文 | 「全球最大持幣公司的飛輪與反轉」／"MSTR said it wouldn't sell. Now it sells bitcoin." |
+| chips | 約 85 萬枚（pink）、≈ 0.90（yellow）、5 月起（cyan） |
+| 插圖 | 飛輪 2024–25 ↑ ／ 反轉 2026 ↓，bitcoin 圖示 |
+| 標籤 | 「資料截至 2026/11/6」（已確定） |
 
-## 7. 交付前畫面檢查（對應 CLAUDE.md 檢查清單）
+## 7. 交付前畫面檢查
 
-- `npm run still mstr-bitcoin` 逐幕看 `out/mstr-bitcoin/stills/*.png`：第 2、3 幕定義是否超過 3 行；第 13 幕 4 列 + 台灣框是否壓到字幕（估高約 840 px < 1030）；第 5 幕 3 欄註解換行後是否對齊。
-- 大數字：第 1 幕「849,327」7 字元、第 9 幕「0.90」、第 11 幕「-3.7%」皆 ≤ 9 字元，不會溢出。
-- 缺字檢查：全片未使用 →、≈、％ 等可能不在字型子集的符號；÷、×、−、– 皆在 Inter latin 子集內。
-- 來源列：每幕 2–3 個來源，單行不應被省略號截斷。
+- `npm run still mstr-bitcoin-v2`：逐幕看 `out/mstr-bitcoin-v2/stills/*.png`（截圖幀＝`timeline` 的 `stillFrame`），並看 `out/mstr-bitcoin-v2/coverage.json`（佔用率、空白帶、主視覺框、背景存在率，0 error）。
+- 安全區、溢出、缺字方框；字幕每段 ≤ 11.5em、x ≤ 960。
+- `npm run audit mstr-bitcoin-v2` → `motion.json`（黑場、靜止比例、每幀位移）。
+- 字幕檔：`out/mstr-bitcoin-v2.srt` 的文字要與本檔第 5 節字幕短語一致（稿子原文，不是聽寫）。
