@@ -94,7 +94,9 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
   const f = useCurrentFrame();
   const c = useCue();
   const acc = accentV2(color);
-  const starts = firstEarly(lines.map((l, i) => cueIn(c, l.at, 6 + i * 8)));
+  // 有翻牌數字時，第一個畫面元素是翻牌（不把 cue 行提早，避免劇透）
+  const starts0 = lines.map((l, i) => cueIn(c, l.at, 6 + i * 8));
+  const starts = flip ? starts0 : firstEarly(starts0);
   const cued = lines.map((l) => hasCue(c, l.at));
   // 前景層：整幕緩慢水平漂移（視差 1.0，40px）；水印反向漂移（0.2）
   const drift = tween(f, 0, Math.max(1, c.exit), EASE.move);
@@ -115,7 +117,7 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
       <div style={{ position: "absolute", left: 30, width: 922, top: ly(L.KT_TOP), height: L.KT_BOTTOM - L.KT_TOP, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", transform: `translateX(${fx}px)` }}>
         {kicker && <div style={{ ...reveal(f, 0), alignSelf: "stretch", fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}><KwText text={kicker} /></div>}
         {flip && (
-          <div style={{ ...reveal(f, Math.min(flipStart - 6, 8)), display: "flex", alignItems: "flex-end", gap: 22 }}>
+          <div style={{ ...reveal(f, Math.min(flipStart - 6, 2)), display: "flex", alignItems: "flex-end", gap: 22 }}>
             <div style={{ transform: `scale(${bump(f, flipLand).toFixed(4)})`, transformOrigin: "0% 100%" }}><FlipNumber v={flipV} final={flip.value} color={acc.text} /></div>
             {flip.unit && <div style={{ fontFamily: FONT_ZH, fontSize: 84, fontWeight: T.weight.title, color: T.text, lineHeight: 1 }}>{flip.unit}</div>}
           </div>

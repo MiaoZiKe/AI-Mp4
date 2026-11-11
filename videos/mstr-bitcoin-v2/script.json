@@ -148,6 +148,10 @@
           "text": "不是賣家"
         },
         {
+          "id": "may",
+          "text": "今年"
+        },
+        {
           "id": "sell",
           "text": "開始賣"
         }
@@ -178,7 +182,7 @@
                 "5 月首次賣 32 枚",
                 "累計約 4.3 億美元"
               ],
-              "at": "sell"
+              "at": "may"
             },
             "footer": "錢拿去付股息、回購",
             "footerAt": "sell"
@@ -242,6 +246,10 @@
           "text": "放大版"
         },
         {
+          "id": "date",
+          "text": "11/5"
+        },
+        {
           "id": "btc",
           "text": "6%"
         },
@@ -273,7 +281,8 @@
             "text": "約 −10%",
             "color": "pink",
             "icon": "chart",
-            "at": "drop"
+            "at": "drop",
+            "startAt": "date"
           }
         ],
         "refLine": {
@@ -295,7 +304,7 @@
         "Robinhood",
         "收盤數字尚未確定"
       ],
-      "transition": "push",
+      "transition": "fade",
       "camera": {
         "move": "push",
         "at": "drop"
@@ -453,7 +462,7 @@
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
       ],
-      "transition": "fade"
+      "transition": "push"
     },
     {
       "id": "premium-math",
@@ -541,7 +550,7 @@
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
       ],
-      "transition": "push"
+      "transition": "fade"
     },
     {
       "id": "buy-the-top",
@@ -636,7 +645,7 @@
         "Bloomberg",
         "Protos"
       ],
-      "transition": "fade"
+      "transition": "push"
     },
     {
       "id": "premium-gone",

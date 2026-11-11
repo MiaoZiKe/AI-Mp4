@@ -157,7 +157,7 @@ const Stagger: React.FC<TransitionPresentationComponentProps<TransitionSpec>> = 
   if (presentationDirection === "exiting") {
     const [a, b] = passedProps.exit;
     const u = clamp01((k - a) / Math.max(1, b - a));
-    opacity = 1 - u;
+    opacity = 1 - u * u * u; // v3：出場 ease-in(cubic)（先撐住再走），轉場中段內容區不掉空
     shift = d.exit * EASE.exit(u);
     // flip：色塊上緣從底部升到頂部（蓋住出場畫面）
     if (passedProps.type === "flip") { opacity = 1; shift = 0; block = <FlipBlock top={1 - EASE.move(u)} bottom={1} />; }
@@ -229,7 +229,7 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
               </TransitionSeries.Sequence>
             );
             if (i === 0 || !t.transitionFrames) return [seq];
-            const spec: TransitionSpec = t.transition ?? { type: "fade", frames: t.transitionFrames, exit: [0, 6], enter: [3, 9] };
+            const spec: TransitionSpec = t.transition ?? { type: "fade", frames: t.transitionFrames, exit: [0, 5], enter: [3, 8] };
             return [<TransitionSeries.Transition key={`${s.id}-tr`} timing={frameTiming(t.transitionFrames)} presentation={stagger(spec)} />, seq];
           })}
         </TransitionSeries>

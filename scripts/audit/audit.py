@@ -95,12 +95,16 @@ def total_frames(layout):
 def exit_opacity(k, tr):
     a, b = tr.get("exit", [0, 5])
     u = min(1, max(0, (k - a) / max(1, b - a)))
-    return 1 - u
+    if tr.get("type") == "flip":
+        return 1.0 if k < tr.get("enter", [5, 10])[0] else 0.0  # flip：色塊蓋住後才換（兩邊不同時出現）
+    return 1 - u * u * u  # v3：Easing.in(cubic)，出場先撐住再走（轉場中段不掉空）
 
 
 def enter_opacity(k, tr):
     a, b = tr.get("enter", [3, 8])
     u = min(1, max(0, (k - a) / max(1, b - a)))
+    if tr.get("type") == "flip":
+        return 1.0 if k >= a else 0.0
     return 1 - (1 - u) * (1 - u)  # Easing.out(quad)
 
 

@@ -1,0 +1,88 @@
+{
+ "slug": "mstr-bitcoin-v2",
+ "at": "2026-11-11T11:25:45.724Z",
+ "sample": true,
+ "gates": {
+  "determinism": true,
+  "fastMotionRatio>=0.06": true,
+  "midEmptyFrames==0": true,
+  "staticRunsOver1_5s==0": true,
+  "hookDiffs>3": true,
+  "jumpFrames==0": true,
+  "transitionOccupancy>=60%": true,
+  "review>=8": null
+ },
+ "determinism": {
+  "frame": 300,
+  "same": true
+ },
+ "grid9": {
+  "frames": [
+   30,
+   249,
+   404,
+   449
+  ],
+  "file": "out/mstr-bitcoin-v2/selfcheck/grid9.png"
+ },
+ "strip": {
+  "frames": [
+   96,
+   251,
+   420
+  ],
+  "file": "out/mstr-bitcoin-v2/selfcheck/strip.png"
+ },
+ "pixel": {
+  "frames": 450,
+  "fastMotionRatio": 0.109,
+  "midEmptyFrames": [],
+  "staticRunsOver1_5s": [],
+  "hookDiffs": {
+   "0-15": 6.28,
+   "0-30": 8.39,
+   "0-45": 16.84,
+   "0-60": 25.15,
+   "15-30": 4.09,
+   "15-45": 12.32,
+   "15-60": 20.62,
+   "30-45": 6.59,
+   "30-60": 14.89,
+   "45-60": 6.35
+  },
+  "jumpFrames": [],
+  "transitionOccupancy": [
+   {
+    "start": 96,
+    "minOcc": 6.16,
+    "ref": 8.96,
+    "ratio": 0.69,
+    "ok": true
+   },
+   {
+    "start": 251,
+    "minOcc": 6.94,
+    "ref": 8.1,
+    "ratio": 0.86,
+    "ok": true
+   },
+   {
+    "start": 420,
+    "minOcc": 7.91,
+    "ref": 8.99,
+    "ratio": 0.88,
+    "ok": true
+   }
+  ],
+  "gates": {
+   "fastMotionRatio>=0.06": true,
+   "midEmptyFrames==0": true,
+   "staticRunsOver1_5s==0": true,
+   "hookDiffs>3": true,
+   "jumpFrames==0": true,
+   "transitionOccupancy>=60%": true
+  },
+  "pass": true
+ },
+ "pass": true
+}

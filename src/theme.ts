@@ -142,7 +142,7 @@ export const THEME_V2 = {
     areaBottom: 0.02,
     bandOpacity: 0.55,
     emptyCell: "rgba(20,33,61,0.25)",
-    mute: 0.35,
+    mute: 0.5,
   },
   /** 等角長條三面明度：top 往卡片白混、side 往墨色混 */
   iso: { top: 0.35, side: 0.28, skew: 30, depth: 56 },
