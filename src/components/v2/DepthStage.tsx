@@ -43,7 +43,7 @@ export const DepthStage: React.FC<DepthStageProps> = ({ front, stack = [{}, {}],
   const d = tween(f, 0, Math.max(1, c.exit), EASE.move);
   const [pb, pm, pf] = T.depth.parallax;
   // 只往左漂（右側留給堆疊卡與徽章）：前景 x 60 → 0、中景 30 → 0、背景 12 → 0，始終在安全區內
-  const sh = (k: number) => T.depth.drift * (1 - d) * k;
+  const sh = (_k: number) => 0 * d; // v3：拿掉整幕漂移
   // 前景進場：rotateX 12° → tilt（ui spring，無過衝），上移 24px
   const s = springUi(f, 0);
   const rx = T.depth.tiltEnter + (Math.min(8, Math.max(4, tilt)) - T.depth.tiltEnter) * s;
@@ -84,7 +84,7 @@ export const DepthStage: React.FC<DepthStageProps> = ({ front, stack = [{}, {}],
           const pos = b.pos ?? (i ? "br" : "tr");
           const place: React.CSSProperties = { ...(pos[0] === "t" ? { top: -34 } : { bottom: -34 }), ...(pos[1] === "l" ? { left: 12 } : { right: -14 }) };
           return (
-            <div key={i} style={{ position: "absolute", ...place, ...r, transform: `${r.transform} translateX(${sh(pf).toFixed(2)}px) rotate(${pos[1] === "l" ? -3 : 3}deg) scale(${bump(f, cueAt(c, b.at, t + 4), 0.06).toFixed(4)})`,
+            <div key={i} style={{ position: "absolute", ...place, ...r, transform: `${r.transform} translateX(${sh(pf).toFixed(2)}px) rotate(${pos[1] === "l" ? -3 : 3}deg)`,
               background: a.fill, color: T.onAccent, fontFamily: FONT_ZH, fontSize: 40, fontWeight: 900, padding: "10px 26px", borderRadius: T.radiusTag, boxShadow: longShadowCss(12), whiteSpace: "nowrap", zIndex: 6 }}>{b.text}</div>
           );
         })}

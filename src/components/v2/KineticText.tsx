@@ -98,8 +98,8 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
   const cued = lines.map((l) => hasCue(c, l.at));
   // 前景層：整幕緩慢水平漂移（視差 1.0，40px）；水印反向漂移（0.2）
   const drift = tween(f, 0, Math.max(1, c.exit), EASE.move);
-  const fx = Math.round(56 * (1 - drift) * 10) / 10; // 56 → 0：只往左漂、最後對齊左側脊線，不出安全區
-  const wx = Math.round((-8 + 16 * drift) * 10) / 10;
+  // v3：拿掉整幕漂移（運動層只留元素進出場與 cue）
+  const fx = 0 * drift, wx = 0;
   const flipLand = flip ? cueAt(c, flip.at, 50) : 0;
   let flipStart = flip ? cueAt(c, flip.startAt, Math.max(6, flipLand - 40)) : 0;
   if (flip && flipLand - flipStart < 30) flipStart = flipLand - 36;
@@ -116,7 +116,7 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
         {kicker && <div style={{ ...reveal(f, 0), alignSelf: "stretch", fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}>{kicker}</div>}
         {flip && (
           <div style={{ ...reveal(f, Math.min(flipStart - 6, 8)), display: "flex", alignItems: "flex-end", gap: 22 }}>
-            <div style={{ transform: `scale(${bump(f, flipLand, 0.04).toFixed(4)})`, transformOrigin: "0% 100%" }}><FlipNumber v={flipV} final={flip.value} color={acc.text} /></div>
+            <div style={{ transform: `scale(${bump(f, flipLand).toFixed(4)})`, transformOrigin: "0% 100%" }}><FlipNumber v={flipV} final={flip.value} color={acc.text} /></div>
             {flip.unit && <div style={{ fontFamily: FONT_ZH, fontSize: 84, fontWeight: T.weight.title, color: T.text, lineHeight: 1 }}>{flip.unit}</div>}
           </div>
         )}
@@ -135,7 +135,7 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
           const col = l.color ? accentV2(l.color).text : T.text;
           const r = reveal(f, starts[i], fo, 24);
           return (
-            <div key={i} style={{ ...r, transform: `${r.transform} scale(${(cued[i] ? bump(f, land, 0.05) : 1).toFixed(4)})`, transformOrigin: "0% 70%", fontFamily: l.font === "num" ? FONT_EN : FONT_ZH, fontSize: sz, fontWeight: T.weight.title, lineHeight: 1.08, letterSpacing: "-0.02em", color: col, whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+            <div key={i} style={{ ...r, transform: r.transform, transformOrigin: "0% 70%", fontFamily: l.font === "num" ? FONT_EN : FONT_ZH, fontSize: sz, fontWeight: T.weight.title, lineHeight: 1.08, letterSpacing: "-0.02em", color: col, whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
               <span style={{ ...(l.mark ? markerBg(tween(f, land, DUR.m, EASE.enter)) : {}), paddingRight: 8 }}>{text}</span>
             </div>
           );

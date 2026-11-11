@@ -10,8 +10,8 @@ import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
   BigNumber, SeatBar, IconGrid, ImpactCard, SubtitleTrack, SourceTrack,
 } from "./components";
-import { EASE } from "./components/anim";
-import { CueContext, cameraScale } from "./cue";
+import { EASE, tween } from "./components/anim";
+import { CueContext, cameraMove, type CameraSpec } from "./cue";
 import { BackgroundV2, HeaderV2, SceneBackdropV2 } from "./components/v2/base";
 import { HookTitle } from "./components/v2/HookTitle";
 import { BigNumberV2 } from "./components/v2/BigNumber";
@@ -23,7 +23,7 @@ import { UnitGrid } from "./components/v2/UnitGrid";
 import { DepthStage } from "./components/v2/DepthStage";
 import { BarChart } from "./components/v2/BarChart";
 import { SubtitleTrackV2, SourceTrackV2 } from "./components/v2/Tracks";
-import { LAYOUT_V2 } from "./theme";
+import { LAYOUT_V2, THEME_V2, FONT_ZH, accentV2 } from "./theme";
 
 const REGISTRY: Record<string, React.FC<any>> = {
   TermCard, FlowRow, CompareSplit, BigNumber, SeatBar, IconGrid, ImpactCard, EndCard,
@@ -103,12 +103,12 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
   return (
     <AbsoluteFill>
       {/* 背景層：色塊＋出血色帶＋大字水印（視差 0.2） */}
-      <SceneBackdropV2 mark={mark} block={!OWN_BLOCK.has(scene.component)} color={bg.color ?? scene.props?.color ?? "pink"} drift={Math.min(1, frame / Math.max(1, timing.durationFrames))} />
+      <SceneBackdropV2 mark={mark} block={!OWN_BLOCK.has(scene.component)} color={bg.color ?? scene.props?.color ?? "pink"} fadeOut={tween(frame + lead, cue.exit - 12, 12, EASE.exit)} />
       {/* 主視覺：撐滿主視覺區（952×920），元件自行把內容分布到整個高度 */}
       <div style={{ position: "absolute", left: LAYOUT_V2.X, right: LAYOUT_V2.X, top, height: bottom - top, display: "flex", alignItems: "stretch", justifyContent: "center" }}>
         <Sequence from={-lead} layout="none" name={`${scene.id}-content`}>
           <CueContext.Provider value={cue}>
-            <CameraV2 cue={cue}><Comp {...scene.props} /></CameraV2>
+            <CameraV2 cue={cue} cam={scene.camera}><Comp {...scene.props} /></CameraV2>
           </CueContext.Provider>
         </Sequence>
       </div>
@@ -116,10 +116,11 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
   );
 };
 
-/** 主視覺鏡頭：依 cue 推近／拉回（cameraScale），本地幀由外層 Sequence 提供 */
-const CameraV2: React.FC<{ cue: React.ContextType<typeof CueContext>; children: React.ReactNode }> = ({ cue, children }) => {
+/** 主視覺鏡頭（v3 分級）：預設不動；scene.camera 指定的幕在 cue 推／拉／橫移一次（cameraMove），本地幀由外層 Sequence 提供 */
+const CameraV2: React.FC<{ cue: React.ContextType<typeof CueContext>; cam?: CameraSpec; children: React.ReactNode }> = ({ cue, cam, children }) => {
   const f = useCurrentFrame();
-  return <div style={{ display: "flex", alignItems: "stretch", justifyContent: "center", transform: `scale(${cameraScale(f, cue).toFixed(4)})`, transformOrigin: "50% 45%" }}>{children}</div>;
+  const m = cameraMove(f, cue, cam);
+  return <div style={{ display: "flex", alignItems: "stretch", justifyContent: "center", transform: m.scale !== 1 || m.x ? `translateX(${m.x.toFixed(1)}px) scale(${m.scale.toFixed(4)})` : undefined, transformOrigin: "50% 45%" }}>{children}</div>;
 };
 
 /** 轉場進度＝幀 / 總幀數（線性），曲線在 presentation 裡依 exit／enter 幀區間計算 */
@@ -129,30 +130,69 @@ const frameTiming = (frames: number): TransitionTiming => ({
 });
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const outQuad = (u: number) => 1 - (1 - u) * (1 - u);
-// 位移：fade 走垂直、slide 走水平；出場 ease-in、進場 ease-out(quad)，每幀位移 ≤ 24px（5 幀：出 40px 最大 16px/幀、進 48px 最大 19px/幀）
-const DIST = { fade: { exit: -24, enter: 32 }, slide: { exit: -40, enter: 48 } } as const;
+/**
+ * v3 語意轉場（type 寫在 script.json，由內容決定，不輪替）：
+ *  fade／carry：出場上移 40px 加速淡出（EASE.exit）、進場從下方 20px 升起淡入（亞里：進 0.3 秒 20px、退上移 40px）
+ *  push：上推（整幕往上推走 160px，新幕從下方 160px 推上來）
+ *  slide：水平版上推
+ *  flip：反轉＝明暗翻轉：海軍藍色塊由下往上蓋過主視覺區（出場），再由下往上掀開（進場）
+ */
+const DIST: Record<string, { exit: number; enter: number }> = { fade: { exit: -40, enter: 20 }, carry: { exit: -40, enter: 20 }, push: { exit: -160, enter: 160 }, slide: { exit: -160, enter: 160 }, flip: { exit: -24, enter: 24 } };
 
-/** 錯位轉場：出場在 exit 幀區間快速淡出＋位移，進場在 enter 幀區間才淡入（兩者不同時 >40% 不透明 → 沒有雙重曝光；也不會整片只剩背景） */
+/** flip 用的海軍藍色塊：只蓋主視覺區（330–1250），上下緣位置 0→1 */
+const FlipBlock: React.FC<{ top: number; bottom: number }> = ({ top, bottom }) => {
+  const y0 = LAYOUT_V2.CONTENT_TOP, y1 = LAYOUT_V2.CONTENT_BOTTOM, h = y1 - y0;
+  const t = Math.round(y0 + h * top), b = Math.round(y0 + h * bottom);
+  if (b - t < 1) return null;
+  return <div style={{ position: "absolute", left: LAYOUT_V2.X, right: 1080 - LAYOUT_V2.X_RIGHT, top: t, height: b - t, background: THEME_V2.text, borderRadius: LAYOUT_V2.BLOCK_RADIUS / 2 }} />;
+};
+
 const Stagger: React.FC<TransitionPresentationComponentProps<TransitionSpec>> = ({ children, presentationDirection, presentationProgress, passedProps }) => {
   const k = presentationProgress * passedProps.frames;
   const d = DIST[passedProps.type] ?? DIST.fade;
-  let opacity: number, shift: number;
+  let opacity: number, shift: number, block: React.ReactNode = null;
   if (presentationDirection === "exiting") {
     const [a, b] = passedProps.exit;
     const u = clamp01((k - a) / Math.max(1, b - a));
     opacity = 1 - u;
     shift = d.exit * EASE.exit(u);
+    // flip：色塊上緣從底部升到頂部（蓋住出場畫面）
+    if (passedProps.type === "flip") { opacity = 1; shift = 0; block = <FlipBlock top={1 - EASE.move(u)} bottom={1} />; }
   } else {
     const [a, b] = passedProps.enter;
     const u = clamp01((k - a) / Math.max(1, b - a));
     opacity = outQuad(u);
     shift = d.enter * (1 - outQuad(u));
+    // flip：新畫面在色塊後面，色塊下緣從底部升到頂部（掀開）
+    if (passedProps.type === "flip") { opacity = k >= a ? 1 : 0; shift = 0; block = k >= a ? <FlipBlock top={0} bottom={1 - EASE.move(u)} /> : null; }
   }
   const px = Math.round(shift);
   const transform = passedProps.type === "slide" ? `translateX(${px}px)` : `translateY(${px}px)`;
-  return <AbsoluteFill style={{ opacity, transform }}>{children}</AbsoluteFill>;
+  return <AbsoluteFill><AbsoluteFill style={{ opacity, transform }}>{children}</AbsoluteFill>{block}</AbsoluteFill>;
 };
 const stagger = (spec: TransitionSpec): TransitionPresentation<TransitionSpec> => ({ component: Stagger, props: spec });
+
+/**
+ * carry（版面對位 match cut）：上一幕的主體以貼紙形式出現在主視覺區右上（固定座標），跨過切點時完全不透明、座標不變，
+ * 進入下一幕 hold 幀後才上移 40px 淡出。依絕對幀畫在 TransitionSeries 外層（不受兩幕淡入淡出影響）。
+ */
+export const CARRY_BOX = { right: 1080 - LAYOUT_V2.X_RIGHT + 8, top: LAYOUT_V2.CONTENT_TOP + 6 } as const;
+const CarryLayer: React.FC<{ items: { text: string; color?: string; inAt: number; outAt: number }[] }> = ({ items }) => {
+  const f = useCurrentFrame();
+  return (
+    <>
+      {items.map((c, i) => {
+        if (f < c.inAt - 1 || f > c.outAt + 16) return null;
+        const ein = tween(f, c.inAt, 9, EASE.enter), eout = tween(f, c.outAt, 15, EASE.exit);
+        const a = accentV2(c.color);
+        return (
+          <div key={i} style={{ position: "absolute", right: CARRY_BOX.right, top: CARRY_BOX.top, opacity: ein * (1 - eout), transform: `translateY(${Math.round(20 * (1 - ein) - 40 * eout)}px) rotate(2deg)`,
+            background: a.fill, color: THEME_V2.onAccent, fontFamily: FONT_ZH, fontSize: 44, fontWeight: 900, padding: "10px 26px", borderRadius: THEME_V2.radiusTag, boxShadow: THEME_V2.shadow, whiteSpace: "nowrap", zIndex: 20 }}>{c.text}</div>
+        );
+      })}
+    </>
+  );
+};
 
 const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, timeline }) => {
   const byId = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
@@ -160,6 +200,15 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
   const subCues = ordered.filter((s) => byId[s.id].subtitleWindow).map((s) => {
     const t = byId[s.id];
     return { id: s.id, en: s.subtitle.en, keywords: s.keywords, window: t.subtitleWindow as [number, number], phrases: t.lines, keywords_at: t.keywords };
+  });
+  // carry：貼紙在上一幕 at 的 cue（預設最後一個 cue）出現，本幕 hold 幀（預設 45）後退場
+  const carries = ordered.flatMap((s, i) => {
+    const t = byId[s.id], p = byId[ordered[i - 1]?.id];
+    const spec = t.transition?.type === "carry" ? t.transition.carry : undefined;
+    if (!spec || !p) return [];
+    const pc = (p.cues ?? []).filter((q) => q.frame !== null);
+    const at = pc.find((q) => q.id === spec.at)?.frame ?? pc[pc.length - 1]?.frame ?? t.startFrame - 30;
+    return [{ text: spec.text, color: spec.color, inAt: Math.min(at as number, t.startFrame - 12), outAt: t.startFrame + t.transitionFrames + (spec.hold ?? 45) }];
   });
   const srcCues = ordered.filter((s) => s.component !== "EndCard").map((s) => ({ sources: s.sources, window: byId[s.id].sourceWindow }));
   return (
@@ -177,10 +226,11 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
               </TransitionSeries.Sequence>
             );
             if (i === 0 || !t.transitionFrames) return [seq];
-            const spec: TransitionSpec = t.transition ?? { type: "fade", frames: t.transitionFrames, exit: [0, 5], enter: [3, 8] };
+            const spec: TransitionSpec = t.transition ?? { type: "fade", frames: t.transitionFrames, exit: [0, 6], enter: [3, 9] };
             return [<TransitionSeries.Transition key={`${s.id}-tr`} timing={frameTiming(t.transitionFrames)} presentation={stagger(spec)} />, seq];
           })}
         </TransitionSeries>
+        <CarryLayer items={carries} />
         <SubtitleTrackV2 cues={subCues} />
         <SourceTrackV2 cues={srcCues} asOf={asOf} />
         {/* 人聲：最外層，依絕對幀擺放（不受轉場重疊影響）。有 voice.wav（整條 loudnorm 的人聲軌）就只播這一條 */}

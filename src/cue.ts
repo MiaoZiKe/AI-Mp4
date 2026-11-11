@@ -22,57 +22,64 @@ export const firstEarly = (starts: number[]) => { const m = Math.min(...starts);
 export const CUE_LEAD = 4;
 export const hasCue = (c: CueInfo, at?: string) => Boolean(at && c.cues[at] !== undefined);
 /**
- * 讀秒保護：資訊落定後至少留 READ_HOLD 幀（0.8 秒）才出場。cue 太靠近句尾時，畫面提早出現（最多比聲音早到出場前 0.8 秒），
- * 寧可畫面先到、不讓觀眾來不及讀。
+ * 讀秒保護（v3 幕尾編舞）：主體在上一幕收聲後才出場（align 把出場起點放在收聲 −2 幀之後），
+ * 所以句尾才念到的 cue 只需留 READ_HOLD 幀（0.4 秒）就能出場；畫面最多比聲音早到 CUE_EARLY_MAX 幀（validate／align 會報）。
  */
-export const READ_HOLD = 24;
-/** 進場幀：at 有對應 cue → cue − CUE_LEAD（且不晚於 出場 − READ_HOLD − 8）；否則用 fallback（舊的固定延遲） */
-export const cueIn = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? Math.min(c.cues[at] - CUE_LEAD, c.exit - READ_HOLD - 8) : fallback);
+export const READ_HOLD = 12;
+export const CUE_EARLY_MAX = 4;
+/** 進場幀：at 有對應 cue → cue − CUE_LEAD（且不晚於 出場 − READ_HOLD − CUE_LEAD）；否則用 fallback（舊的固定延遲） */
+export const cueIn = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? Math.min(c.cues[at] - CUE_LEAD, c.exit - READ_HOLD - CUE_LEAD) : fallback);
 /** cue 本身的幀（數字落定、punch 用；不晚於 出場 − READ_HOLD） */
 export const cueAt = (c: CueInfo, at: string | undefined, fallback: number) => (at && c.cues[at] !== undefined ? Math.min(c.cues[at], c.exit - READ_HOLD) : fallback);
 
-/**
- * 讀秒保護：最後一個 beat 之後，至少留 0.6 秒（18 幀）不再變化才出場。
- * release（focus 解除、全部恢復不透明）放在 max(最後事件 + 20, 出場 − 30)；若會落在出場前 18 幀內就不放。
- */
-export const releaseFrame = (c: CueInfo, lastEvent: number) => {
-  const r = Math.max(lastEvent + 20, c.exit - 30);
-  return r <= c.exit - 18 ? r : null;
-};
+/** 幕尾編舞：release（focus 解除、全部恢復）＝ min(最後事件 + 18, 出場 − 24)，一定釋放；切換 RELEASE_DUR 幀，出場前 9 幀全部 ≥0.95 */
+export const RELEASE_DUR = 10;
+export const releaseFrame = (c: CueInfo, lastEvent: number) => Math.min(lastEvent + 18, c.exit - 24);
 
 /**
- * focus：多個項目依 cue 依序出現時，念到的那一項保持 1，其他降到 THEME_V2.dim（0.35），每次切換 DUR.s 幀平滑過渡。
- * starts[i]＝第 i 項進場幀；cued[i]＝是否由 cue 觸發（只有 cue 觸發的項目會搶 focus）。只有一個 cue 項目時不做 focus。
+ * 靜止態先完整排版：多項目元件的每一項最晚在 FIRST_MAX + i×STAGGER 幀就排上版（dim＝灰階＋淡），
+ * 念到（cue）時才填入顏色、轉成 focus。回傳每項的「排版進場幀」。
  */
-export const focusLevel = (f: number, c: CueInfo, starts: number[], cued: boolean[], i: number) => {
+export const layoutStarts = (starts: number[], step = 4) => starts.map((s, i) => Math.min(s, FIRST_MAX + i * step));
+
+/**
+ * focus：多個項目依 cue 依序被念到時，念到的那一項保持 1，其他降到 THEME_V2.dim（以 dimStyle 換成灰階＋淡色，對比仍 ≥3:1）。
+ * starts[i]＝第 i 項的 cue 進場幀；cued[i]＝是否由 cue 觸發。staged＝true 時，cue 之前的項目先以 dim 排版（靜止態完整排版）。
+ * 最後一個 cue 之後 release：全部恢復 1。
+ */
+export const focusLevel = (f: number, c: CueInfo, starts: number[], cued: boolean[], i: number, staged = false) => {
   const order = starts.map((s, k) => ({ s, k })).filter((x) => cued[x.k]).sort((a, b) => a.s - b.s);
-  if (order.length < 2) return 1;
-  const events: { t: number; focus: number }[] = order.slice(1).map((x) => ({ t: x.s, focus: x.k }));
-  // 第二項出現時，第一項也算被「讓位」：focus 交給第二項
-  const rel = releaseFrame(c, events[events.length - 1].t);
-  if (rel !== null) events.push({ t: rel, focus: -1 });
-  let v = 1;
+  if (!cued[i]) return 1;
+  if (order.length < 2 && !staged) return 1;
+  const rel = releaseFrame(c, order[order.length - 1].s);
+  const events: { t: number; focus: number; dur: number }[] = order.slice(staged || order.length < 2 ? 0 : 1).map((x) => ({ t: x.s, focus: x.k, dur: FOCUS_DUR })).filter((e) => e.t < rel);
+  events.push({ t: rel, focus: -1, dur: RELEASE_DUR });
+  // 起始值：排版態（staged）一律 dim；否則第一項念到前是 1（它就是第一個 focus）
+  let v = staged ? THEME_V2.dim : (order[0].k === i ? 1 : THEME_V2.dim);
+  if (!staged && order.length >= 2 && f < order[0].s) v = 1;
   for (let e = 0; e < events.length; e++) {
     const ev = events[e];
     if (f < ev.t) break;
     const target = ev.focus < 0 || ev.focus === i ? 1 : THEME_V2.dim;
     const nextT = events[e + 1]?.t;
     const ff = nextT !== undefined ? Math.min(f, nextT) : f;
-    v = v + (target - v) * tween(ff, ev.t, FOCUS_DUR, EASE.move);
+    v = v + (target - v) * tween(ff, ev.t, ev.dur, EASE.move);
   }
   return v;
 };
 
 /**
- * 2.5D 鏡頭推拉（P2-3 縮小版）：每個 cue 落定時，主視覺整體在 PULL_SCALE 與 1.00 之間交替推近／拉回（開場略遠），
- * DUR.m 幀 ease-in-out 到位後固定（不連續縮放、不回彈）；最後 READ_HOLD 幀內不再推拉。
+ * 鏡頭分級（v3）：預設不動。只有 script.json 的 camera 指定的那一幕在指定 cue 動一次：
+ *  push＝0.97→1（推近）、pull＝1→0.97（拉回）、pan＝橫移 −16px；DUR.m 幀 ease-in-out 到位後固定（不連續縮放、不回彈）。
+ * validate／storyboard lint：推拉類 ≤ 幕數 1/3、不可連續兩幕都推。
  */
-/** 推拉在 [PULL_SCALE, 1] 之間：1 時寬 952（剛好貼齊安全區），不會出界 */
-export const PULL_SCALE = 0.965;
-export const cameraScale = (f: number, c: CueInfo) => {
-  const ts = Object.values(c.cues).map((t) => Math.min(t, c.exit - READ_HOLD - DUR.m)).filter((t) => t > 6).sort((a, b) => a - b)
-    .filter((t, i, a) => i === 0 || t - a[i - 1] >= DUR.m + 6);
-  let v = PULL_SCALE;
-  ts.forEach((t, i) => { const target = i % 2 === 0 ? 1 : PULL_SCALE; v = v + (target - v) * tween(f, t - 2, DUR.m, EASE.move); });
-  return v;
+export const PULL_SCALE = 0.97;
+export type CameraSpec = { move: "push" | "pull" | "pan"; at?: string };
+export const cameraMove = (f: number, c: CueInfo, cam?: CameraSpec) => {
+  if (!cam) return { scale: 1, x: 0 };
+  const t0 = Math.min(cueAt(c, cam.at, 12), c.exit - READ_HOLD - DUR.m);
+  const p = tween(f, t0 - 2, DUR.m, EASE.move);
+  if (cam.move === "push") return { scale: PULL_SCALE + (1 - PULL_SCALE) * p, x: 0 };
+  if (cam.move === "pull") return { scale: 1 - (1 - PULL_SCALE) * p, x: 0 };
+  return { scale: 1, x: -16 * p };
 };

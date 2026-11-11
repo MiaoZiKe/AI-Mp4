@@ -95,10 +95,15 @@ export const NoteBoxV2: React.FC<{ style?: React.CSSProperties; children: React.
   <div style={{ background: T.noteBg, borderLeft: `8px solid ${T.accent.yellow.fill}`, borderRadius: 4, padding: "18px 24px", fontFamily: FONT_ZH, fontSize: 32, lineHeight: 1.45, fontWeight: T.weight.body, color: T.text, ...style }}>{children}</div>
 );
 
-/** 進場＋focus 合成：opacity 乘上 focus 值（focus 只改透明度，不移動文字） */
+/** focus 值（THEME_V2.dim～1）→ 換色：灰階＋淡（dim 時對比仍 ≥3:1），focus=1 時不加 filter */
+export const dimStyle = (focus: number): React.CSSProperties => {
+  const g = Math.min(1, Math.max(0, (1 - focus) / (1 - T.dim)));
+  return g > 0.001 ? { filter: `grayscale(${g.toFixed(3)})` } : {};
+};
+/** 進場＋focus 合成：opacity 乘上 focus 值、灰階換色（focus 不移動文字） */
 export const reveal = (f: number, start: number, focus = 1, dist = 40) => {
   const e = enter(f, start, dist);
-  return { opacity: e.opacity * focus, transform: e.transform };
+  return { opacity: e.opacity * focus, transform: e.transform, ...dimStyle(focus) };
 };
 /** 數字格式：負號用 U+2212 */
 export const fmtNum = (v: number, decimals = 0) => {
@@ -115,15 +120,15 @@ export const drawIn = (f: number, start: number) => tween(f, start, DUR.l, EASE.
  *  ③ 大字水印（4–7% 透明、480px、右側出血），背景層視差：整幕緩慢漂移 12px（速度比 0.2）
  * 顏色、尺寸全部讀 THEME_V2／LAYOUT_V2；隨場景一起轉場。
  */
-export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: number; block?: boolean }> = ({ mark, color, drift = 0, block = true }) => {
+export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; fadeOut?: number; block?: boolean }> = ({ mark, color, fadeOut = 0, block = true }) => {
   const a = accentV2(color);
-  const dx = AMBIENT ? Math.round(-12 * drift) : 0; // 背景層視差（裝飾，AUDIT=1 時關掉）
+  const dx = 0; // v3：拿掉整幕漂移（運動層只留元素與 cue 鏡頭兩層）
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       {block && <div style={{ position: "absolute", left: L.X + 40, top: L.CONTENT_TOP + 40, width: L.X_RIGHT - L.X, height: L.CONTENT_BOTTOM - L.CONTENT_TOP, borderRadius: L.BLOCK_RADIUS, background: T.block }} />}
       <div style={{ position: "absolute", left: 0, right: 0, top: L.SAFE_BOTTOM, bottom: 0, background: a.fill, opacity: T.blockTint }} />
       {mark && (
-        <div style={{ position: "absolute", right: -120 + dx, top: L.CONTENT_TOP + 180, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY, whiteSpace: "nowrap" }}>{mark}</div>
+        <div style={{ position: "absolute", right: -120 + dx, top: L.CONTENT_TOP + 180, fontFamily: FONT_ZH, fontWeight: T.weight.title, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY * (1 - fadeOut), whiteSpace: "nowrap" }}>{mark}</div>
       )}
     </AbsoluteFill>
   );
@@ -134,8 +139,6 @@ export const SceneBackdropV2: React.FC<{ mark?: string; color?: string; drift?: 
  * 從 +panY 漂回 0（最後對齊格線）：標題不碰報頭線（310），圖表底（約 1222＋36）不碰字幕區（1270）。
  */
 export const PanStage: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const f = useCurrentFrame();
-  const c = useCue();
-  const y = T.depth.panY * (1 - tween(f, 0, Math.max(1, c.exit), EASE.move));
-  return <div style={{ transform: `translateY(${y.toFixed(2)}px)` }}>{children}</div>;
+  // v3：拿掉整幕漂移（漂移會被量成「變化」卻不帶資訊；變化改由 cue 與關鍵詞微節拍提供）
+  return <div>{children}</div>;
 };

@@ -86,9 +86,13 @@ export const typeChars = (frame: number, start: number, n: number, framesPerChar
   return Math.floor(interpolate(frame, [start, start + dur], [0, n], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
 };
 
-/** 落定強調：at 幀起 DUR.xs 幀放大到 1+amt，再 DUR.s 幀回到 1（平滑，不硬跳） */
-export const bump = (frame: number, at: number, amt = 0.05) =>
-  1 + amt * (tween(frame, at, DUR.xs, EASE.enter) - tween(frame, at + DUR.xs, DUR.s, EASE.move));
+/** v3：scale 脈衝上限（亞里：不彈跳）；強調改用顏色／螢光筆，bump 只留給每幕 ≤2 個關鍵數字 */
+export const BUMP_MAX = 0.02;
+/** 落定強調：at 幀起 DUR.s 幀放大到 1+amt（≤BUMP_MAX），再 DUR.m 幀回到 1（平滑，不硬跳） */
+export const bump = (frame: number, at: number, amt = BUMP_MAX) => {
+  const a = Math.min(amt, BUMP_MAX);
+  return 1 + a * (tween(frame, at, DUR.s, EASE.enter) - tween(frame, at + DUR.s, DUR.m, EASE.move));
+};
 
 /** 元件用：v1 保持 rise（彈性過衝）；v2 改 enter（無過衝、位移 ≤24px） */
 export const riseFor = (v2: boolean) => (v2 ? (frame: number, delay = 0, dist = 40) => enter(frame, delay, Math.min(dist, 24)) : rise);

@@ -10,8 +10,12 @@ export type Scene = {
   sources: string[];
   /** 無配音時可指定；有 timeline 時以 timeline 為準 */
   durationSec?: number;
-  /** styleVersion 2：進入本幕的轉場（預設 fade） */
+  /** styleVersion 2：進入本幕的轉場（語意決定：carry 同一主體延續、push 上推、flip 反轉明暗翻轉、fade；預設 fade） */
   transition?: TransitionType;
+  /** transition=carry：從上一幕帶過來的主體（貼紙），在上一幕 at（cue id，預設最後一個 cue）出現，跨過切點，本幕 hold 幀後退場 */
+  carry?: CarrySpec;
+  /** 鏡頭分級：只有指定的幕在 at（cue id）動一次；預設不動 */
+  camera?: { move: "push" | "pull" | "pan"; at?: string };
   /** styleVersion 2：本幕人聲結束後多停幾秒（數字、反轉前後 0.3–0.5） */
   pauseAfter?: number;
   /** styleVersion 2：敘事骨架 */
@@ -22,9 +26,10 @@ export type Scene = {
   cues?: { id: string; text: string; occurrence?: number }[];
 };
 
-export type TransitionType = "fade" | "slide";
+export type TransitionType = "fade" | "slide" | "push" | "flip" | "carry";
+export type CarrySpec = { text: string; color?: string; at?: string; hold?: number };
 /** 轉場曲線（幀，相對轉場開始）：出場在 exit 區間淡出，進場在 enter 區間淡入；兩者錯開避免雙重曝光 */
-export type TransitionSpec = { type: TransitionType; frames: number; exit: [number, number]; enter: [number, number] };
+export type TransitionSpec = { type: TransitionType; frames: number; exit: [number, number]; enter: [number, number]; carry?: CarrySpec };
 
 export type Word = { text: string; start: number; end: number };
 

@@ -1,10 +1,11 @@
 // styleVersion 2 卡片類元件：CompareSplit、FlowRow、ImpactCard、IconGrid、TermCard。
-// 元素依 cue 進場（at）；同一個元件裡多個 cue 項目時做 focus（其他項降到 THEME_V2.dim），念到時 punch 一次。
+// v3：靜止態先完整排版——每一項最晚在第 10 幀起就以 dim（灰階＋淡）排上版，念到（cue）時才換成全彩 focus；
+// 不再 scale 脈衝（bump），強調只用顏色；最後一個 cue 之後 release 全部恢復。
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
-import { DUR, EASE, STAGGER, bump, tween, typeChars } from "../anim";
-import { cueAt, cueIn, firstEarly, focusLevel, hasCue, useCue } from "../../cue";
+import { DUR, EASE, STAGGER, tween, typeChars } from "../anim";
+import { cueIn, firstEarly, focusLevel, hasCue, layoutStarts, useCue } from "../../cue";
 import { CardV2, EN, IconV2, NoteBoxV2, StatusTagV2, drawIn, reveal } from "./base";
 
 const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: size, fontWeight: weight, color, lineHeight: 1.42 });
@@ -15,22 +16,22 @@ export const CompareSplitV2: React.FC<{ left: Side; right: Side; footer?: string
   const f = useCurrentFrame();
   const c = useCue();
   const sides = [left, right];
-  const starts = firstEarly(sides.map((s, i) => cueIn(c, s.at, i * 10)));
+  const starts = sides.map((s, i) => cueIn(c, s.at, i * 10));
+  const lay = layoutStarts(starts, 6);
   const cued = sides.map((s) => hasCue(c, s.at));
   return (
     <div style={{ width: 952, display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", gap: 24, flex: 1 }}>
         {sides.map((s, i) => {
-          const fo = focusLevel(f, c, starts, cued, i);
-          const pun = cued[i] ? bump(f, cueAt(c, s.at, 0), 0.03) : 1;
+          const fo = focusLevel(f, c, starts, cued, i, true);
           return (
-            <CardV2 key={i} topBar={s.color} style={{ ...reveal(f, starts[i], fo), flex: 1, padding: "36px 30px 30px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", transform: `${reveal(f, starts[i]).transform} scale(${pun})` }}>
+            <CardV2 key={i} topBar={s.color} style={{ ...reveal(f, lay[i], fo), flex: 1, padding: "36px 30px 30px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
               <IconV2 name={s.icon} color={s.color} size={150} draw={drawIn(f, starts[i])} />
               <div style={{ ...zh(60, T.weight.title, accentV2(s.color).text), marginTop: 8 }}>{s.title}</div>
               {s.titleEn && <div style={EN}>{s.titleEn}</div>}
               <div style={{ alignSelf: "stretch" }}>
                 {s.items.map((it, k) => (
-                  <div key={k} style={{ ...reveal(f, starts[i] + 4 + k * STAGGER, 1, 12), ...zh(40, 700), padding: "20px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}>{it}</div>
+                  <div key={k} style={{ ...reveal(f, lay[i] + 4 + k * STAGGER, 1, 12), ...zh(40, 700), padding: "20px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}>{it}</div>
                 ))}
               </div>
             </CardV2>
@@ -53,13 +54,13 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
   starts.splice(0, starts.length, ...firstEarly(starts));
   for (let i = 1; i < starts.length; i++) starts[i] = Math.max(starts[i], starts[i - 1] + 6);
   const cued = steps.map((s) => hasCue(c, s.at));
+  const lay = layoutStarts(starts, 5);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 952 }}>
       {title && <div style={{ ...reveal(f, 0), ...zh(58, T.weight.title), marginBottom: 16 }}>{title}</div>}
       {steps.map((s, i) => {
-        const fo = focusLevel(f, c, starts, cued, i);
-        const pun = cued[i] ? bump(f, cueAt(c, s.at, 0), 0.03) : 1;
-        const r = reveal(f, starts[i], fo);
+        const fo = focusLevel(f, c, starts, cued, i, true);
+        const r = reveal(f, lay[i], fo);
         return (
           <React.Fragment key={i}>
             {i > 0 && (
@@ -67,7 +68,7 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
                 <path d="M30 4v40M16 32l14 16 14-16" fill="none" stroke={T.rule} strokeWidth={5} strokeLinecap="square" strokeLinejoin="miter" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - tween(f, starts[i] - 6, DUR.m, EASE.enter)} />
               </svg>
             )}
-            <CardV2 topBar={undefined} style={{ ...r, transform: `${r.transform} scale(${pun})`, width: "100%", flex: 1, padding: "18px 34px", display: "flex", alignItems: "center", gap: 30, borderLeft: `10px solid ${accentV2(s.color).fill}` }}>
+            <CardV2 topBar={undefined} style={{ ...r, width: "100%", flex: 1, padding: "18px 34px", display: "flex", alignItems: "center", gap: 30, borderLeft: `10px solid ${accentV2(s.color).fill}` }}>
               <IconV2 name={s.icon} color={s.color} size={steps.length > 3 ? 104 : 128} draw={drawIn(f, starts[i])} />
               <div>
                 <div style={zh(steps.length > 3 ? 50 : 56, T.weight.title)}>{s.label}</div>
@@ -89,6 +90,7 @@ export const ImpactCardV2: React.FC<{ icon: string; title: string; titleEn?: str
   let fixed = 14;
   const starts = rows.map((r, i) => { if (hasCue(c, r.at)) return cueIn(c, r.at, 0) + (i > 0 && rows[i - 1].at === r.at ? STAGGER * 3 : 0); const v = fixed; fixed += 10; return v; });
   const cued = rows.map((r) => hasCue(c, r.at));
+  const lay = layoutStarts(starts, 5);
   return (
     <CardV2 topBar={color} style={{ ...reveal(f, 0), width: 952, padding: "40px 48px 40px", display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 22, paddingBottom: 20, borderBottom: `${T.ruleW}px solid ${T.rule}` }}>
@@ -99,10 +101,10 @@ export const ImpactCardV2: React.FC<{ icon: string; title: string; titleEn?: str
         </div>
       </div>
       {rows.map((r, i) => {
-        const fo = focusLevel(f, c, starts, cued, i);
+        const fo = focusLevel(f, c, starts, cued, i, true);
         return (
-          <div key={i} style={{ ...reveal(f, starts[i], fo, 16), display: "flex", gap: 24, alignItems: "center", flex: 1, padding: "16px 0", borderTop: i ? `2px dashed ${T.divider}` : "none" }}>
-            <span style={{ transform: `scale(${cued[i] ? bump(f, cueAt(c, r.at, 0), 0.06) : 1})` }}><StatusTagV2 status={r.status} size={32} /></span>
+          <div key={i} style={{ ...reveal(f, lay[i], fo, 16), display: "flex", gap: 24, alignItems: "center", flex: 1, padding: "16px 0", borderTop: i ? `2px dashed ${T.divider}` : "none" }}>
+            <span><StatusTagV2 status={r.status} size={32} /></span>
             <div style={{ ...zh(rows.length > 3 ? 38 : 44, 700) }}>{r.text}</div>
           </div>
         );
@@ -117,14 +119,15 @@ type Item = { icon: string; label: string; note?: string; color?: string; at?: s
 export const IconGridV2: React.FC<{ title?: string; items: Item[]; columns?: number }> = ({ title, items, columns = 2 }) => {
   const f = useCurrentFrame();
   const c = useCue();
-  const starts = firstEarly(items.map((it, i) => cueIn(c, it.at, 8 + i * 7)));
+  const starts = items.map((it, i) => cueIn(c, it.at, 8 + i * 7));
+  const lay = layoutStarts(starts, 4);
   const cued = items.map((it) => hasCue(c, it.at));
   return (
     <div style={{ width: 952 }}>
       {title && <div style={{ ...reveal(f, 0), ...zh(54, T.weight.title), textAlign: "center", marginBottom: 26 }}>{title}</div>}
       <div style={{ display: "grid", gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 22 }}>
         {items.map((it, i) => (
-          <CardV2 key={i} topBar={it.color} style={{ ...reveal(f, starts[i], focusLevel(f, c, starts, cued, i)), padding: 24, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+          <CardV2 key={i} topBar={it.color} style={{ ...reveal(f, lay[i], focusLevel(f, c, starts, cued, i, true)), padding: 24, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             <IconV2 name={it.icon} color={it.color} size={92} draw={drawIn(f, starts[i])} />
             <div style={{ ...zh(40, T.weight.title, accentV2(it.color).text), marginTop: 8 }}>{it.label}</div>
             {it.note && <div style={{ ...zh(30, T.weight.body, T.text2), marginTop: 4, lineHeight: 1.35 }}>{it.note}</div>}

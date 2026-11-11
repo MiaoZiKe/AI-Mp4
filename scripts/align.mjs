@@ -30,7 +30,11 @@ let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 // styleVersion 2（時間軸 v2）：換幕人聲間隔 GAP 秒；轉場 TRANS 幀＝前一幕出場與本幕進場重疊，轉場結束＝本幕開口
 const V2 = script.styleVersion === 2;
-const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 9, EXIT = [0, 5], ENTER = [3, 8], TAIL_END_F = 36, SUB_LEAD = 3, MIN_SCENE_F = 45;
+const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 10, TAIL_END_F = 36, SUB_LEAD = 3, MIN_SCENE_F = 45;
+// v3 語意轉場（type 由 script.json 每幕 transition 決定，不由 align 輪替）：exit／enter＝出場淡出、進場淡入的幀區間（相對轉場開始）
+const TRANSITIONS = { fade: { exit: [0, 6], enter: [3, 9] }, carry: { exit: [0, 6], enter: [3, 9] }, push: { exit: [0, 7], enter: [2, 10] }, slide: { exit: [0, 7], enter: [2, 10] }, flip: { exit: [0, 5], enter: [5, 10] } };
+/** 幕尾編舞：出場起點不早於上一幕收聲 − EXIT_AFTER_VOICE 幀（主體在收聲後才走）；cue 早到上限（cue.ts READ_HOLD 12、CUE_LEAD 4） */
+const EXIT_AFTER_VOICE = 2, READ_HOLD = 12, CUE_EARLY_MAX = 4;
 const SKIP_TRANSCRIBE = process.env.ALIGN_SKIP_TRANSCRIBE === "1";
 const TRANSCRIBE_WITH_FA = process.env.ALIGN_TRANSCRIBE === "1";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -145,9 +149,11 @@ function buildV2(cs) {
     prevEnd = ve;
     prevGap = pause > 0 ? pause : GAP;
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
-    const transition = i === 0 ? null : { type: sc?.transition === "slide" ? "slide" : "fade", frames: TRANS, exit: EXIT, enter: ENTER };
+    const ttype = TRANSITIONS[sc?.transition] ? sc.transition : "fade";
+    const transition = i === 0 ? null : { type: ttype, frames: TRANS, ...TRANSITIONS[ttype], ...(ttype === "carry" && sc?.carry ? { carry: sc.carry } : {}) };
     const prevStart = out[i - 1]?.startFrame ?? -Infinity;
-    const startFrame = i === 0 ? 0 : Math.max(prevStart + MIN_SCENE_F, voiceStartFrame - TRANS);
+    // 幕尾編舞：轉場起點＝max(開口 − TRANS, 上一幕收聲 − 2)：上一幕最後一個字念完前，主體不走
+    const startFrame = i === 0 ? 0 : Math.max(prevStart + MIN_SCENE_F, voiceStartFrame - TRANS, (out[i - 1]?.voiceEndFrame ?? 0) - EXIT_AFTER_VOICE);
     // 字幕：每行、每個字（絕對幀；比聲音早 0.05 秒點亮，下一行早 0.12 秒出現）
     const subIn = i === 0 ? 0 : voiceStartFrame - SUB_LEAD;
     const af = (t, lead) => audioFrame + Math.round((t - lead) * FPS);
@@ -185,6 +191,17 @@ function buildV2(cs) {
     if (x.subtitleWindow) x.subtitleWindow[1] = n ? (n.subtitleWindow ? n.subtitleWindow[0] : n.startFrame + n.transitionFrames) : x.startFrame + x.durationFrames;
     x.sourceWindow[1] = n ? n.sourceWindow[0] : x.startFrame + x.durationFrames;
     delete x.isEnd;
+  }
+  // 幕尾編舞檢查：cue 早到（畫面比聲音早幾幀，受讀秒保護夾住）與出場起點
+  for (const [i, x] of out.entries()) {
+    const n = out[i + 1];
+    if (!n) continue;
+    if (n.startFrame < x.voiceEndFrame - EXIT_AFTER_VOICE) console.warn(`⚠ ${x.id}: 出場起點 ${n.startFrame} 早於收聲 ${x.voiceEndFrame} − ${EXIT_AFTER_VOICE}`);
+    for (const q of x.cues) if (q.frame !== null) {
+      const early = Math.max(0, q.frame - (n.startFrame - READ_HOLD));
+      q.early = early;
+      if (early > CUE_EARLY_MAX) console.warn(`⚠ ${x.id}: cue「${q.text}」離出場只剩 ${n.startFrame - q.frame} 幀，畫面會早到 ${early} 幀（上限 ${CUE_EARLY_MAX}）：把 cue 指向較早的詞`);
+    }
   }
   const last = out[out.length - 1];
   const totalFrames = last.startFrame + last.durationFrames;
