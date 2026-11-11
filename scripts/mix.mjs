@@ -119,7 +119,7 @@ const p1 = ff([...inputs, "-filter_complex", `${graphBase},loudnorm=${LN}:print_
 const j = JSON.parse(/\{[^{}]*"input_i"[^{}]*\}/s.exec(p1)[0]);
 const mixWav = path.join(ROOT, "out", `${slug}.mix.wav`);
 ff([...inputs, "-filter_complex", `${graphBase},loudnorm=${LN}:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true,aresample=48000`, "-ac", "2", "-c:a", "pcm_s16le", mixWav]);
-ff(["-i", video, "-i", mixWav, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-shortest", out]);
+ff(["-i", video, "-i", mixWav, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-t", DUR.toFixed(3), out]);
 
 // ───────── 量測 ─────────
 const ebur = (file, extra = []) => {

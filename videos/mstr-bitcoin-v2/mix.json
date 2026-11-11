@@ -1,11 +1,11 @@
 {
  "slug": "mstr-bitcoin-v2",
- "at": "2026-11-11T11:48:17.384Z",
- "durationSec": 62.67,
+ "at": "2026-11-11T12:02:27.748Z",
+ "durationSec": 68.73,
  "final": {
-  "lufs": -14.3,
-  "truePeakDbfs": -4.3,
-  "lra": 2,
+  "lufs": -14.1,
+  "truePeakDbfs": -4.4,
+  "lra": 1.8,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -18,7 +18,7 @@
   "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
   "lufsBeforeDuck": -27,
   "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
-  "underVoiceDuringSpeechLu": 20.1
+  "underVoiceDuringSpeechLu": 21.5
  },
  "sfx": {
   "meta": {
@@ -43,42 +43,42 @@
    "chime": 2,
    "whoosh": 3
   },
-  "perThreeSec": 0.24,
+  "perThreeSec": 0.22,
   "events": [
    {
     "type": "chime",
-    "frame": 62,
+    "frame": 77,
     "why": "hook slam",
-    "startSec": 2.062,
-    "peakSec": 2.067
+    "startSec": 2.562,
+    "peakSec": 2.567
    },
    {
     "type": "whoosh",
-    "frame": 256,
+    "frame": 296,
     "why": "hook→you",
-    "startSec": 8.138,
-    "peakSec": 8.467
+    "startSec": 9.471,
+    "peakSec": 9.8
    },
    {
     "type": "whoosh",
-    "frame": 1001,
+    "frame": 1122,
     "why": "mechanism→twist",
-    "startSec": 32.971,
-    "peakSec": 33.3
+    "startSec": 37.004,
+    "peakSec": 37.333
    },
    {
     "type": "whoosh",
-    "frame": 1667,
+    "frame": 1832,
     "why": "payoff→cta",
-    "startSec": 55.171,
-    "peakSec": 55.5
+    "startSec": 60.671,
+    "peakSec": 61
    },
    {
     "type": "chime",
-    "frame": 1761,
+    "frame": 1933,
     "why": "your-call prompt",
-    "startSec": 58.695,
-    "peakSec": 58.7
+    "startSec": 64.428,
+    "peakSec": 64.433
    }
   ]
  }
