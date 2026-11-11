@@ -53,9 +53,9 @@ const barStarts = (c: ReturnType<typeof useCue>, bars: Bar[]) => {
 };
 
 /** 引線註解：錨點 (x, ay) → 垂直到 y → 水平到註解框（ay 省略＝同高） */
-const Callout: React.FC<{ x: number; y: number; ay?: number; text: string; f: number; t: number; side?: "left" | "right"; focus?: number }> = ({ x, y, ay, text, f, t, side = "left", focus = 1 }) => {
-  const w = Math.min(600, text.length * 38 + 48);
-  const bx = side === "left" ? Math.max(0, x - 60 - w) : Math.min(952 - w, x + 60);
+const Callout: React.FC<{ x: number; y: number; ay?: number; text: string; f: number; t: number; side?: "left" | "right"; focus?: number; box?: [number, number] }> = ({ x, y, ay, text, f, t, side = "left", focus = 1, box }) => {
+  const w = box ? box[1] - box[0] : Math.min(600, text.length * 38 + 48);
+  const bx = box ? box[0] : side === "left" ? Math.max(0, x - 60 - w) : Math.min(952 - w, x + 60);
   const r = reveal(f, t, focus, 12);
   const a = ay ?? y;
   return (
@@ -159,7 +159,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
       <Title f={f} title={title} titleEn={titleEn} />
       <svg width={952} height={H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {/* 背牆格線（量級刻度） */}
-        {niceTicks(vmax).map((v) => {
+        {(note ? [] : niceTicks(vmax)).map((v) => { // 有註解時不畫刻度（數值已標在柱頂；減少同屏群組、避免壓字）
           const y = floor - (v / vmax) * (floor - top) - dy;
           return (
             <g key={v}>
@@ -206,7 +206,11 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
         const b = note.bar;
         const t = cueIn(c, note.at, 60);
         const x = x0(b) + bw / 2 + dx / 2, ay = floor - hOf(b) - dy - (bars[b].highlight === false ? 80 : 104);
-        return <Callout x={x} ay={ay} y={Math.min(ay - 120, floor - 300)} text={note.text} f={f} t={t} side={x > 476 ? "left" : "right"} />;
+        // 不壓其他長條：框放在右側、比右邊各條（含數字）都高的位置；寬度限在右邊空白內，文字可換行
+        const right = bars.map((o, k) => ({ o, k })).filter(({ k }) => x0(k) + bw / 2 > x - bw);
+        const leftEdge = Math.max(...bars.map((_, k) => k).filter((k) => x0(k) + bw / 2 < x - bw).map((k) => x0(k) + bw + dx), 0) + 24;
+        const topOfRight = Math.min(...right.map(({ o }) => floor - (o.value / vmax) * (floor - top) - dy - 110));
+        return <Callout x={x} ay={ay} y={Math.min(ay - 60, topOfRight - 70)} text={note.text} f={f} t={t} side="right" box={[leftEdge, 952]} />;
       })()}
       {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 32, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
     </div></PanStage>

@@ -224,6 +224,12 @@
    },
    "cues": [
     {
+     "id": "y2020",
+     "text": "2020 年",
+     "frame": 452,
+     "sceneFrame": 32
+    },
+    {
      "id": "buy",
      "text": "一路買",
      "frame": 475,
@@ -271,7 +277,10 @@
     "type": "push",
     "frames": 10
    },
-   "camera": null,
+   "camera": {
+    "move": "pan",
+    "at": "pricier"
+   },
    "cueEarly": [],
    "voice": {
     "startFrame": 560,
@@ -284,6 +293,12 @@
      "text": "溢價",
      "frame": 584,
      "sceneFrame": 30
+    },
+    {
+     "id": "stock",
+     "text": "股票",
+     "frame": 610,
+     "sceneFrame": 56
     },
     {
      "id": "pricier",
@@ -354,10 +369,22 @@
      "sceneFrame": 28
     },
     {
+     "id": "issue10",
+     "text": "發 10 股",
+     "frame": 756,
+     "sceneFrame": 47
+    },
+    {
      "id": "c20",
      "text": "20 枚",
      "frame": 788,
      "sceneFrame": 79
+    },
+    {
+     "id": "per2",
+     "text": "每股",
+     "frame": 813,
+     "sceneFrame": 104
     },
     {
      "id": "more",
@@ -423,9 +450,9 @@
     },
     {
      "id": "cond",
-     "text": "前提",
-     "frame": 984,
-     "sceneFrame": 122
+     "text": "但這",
+     "frame": 969,
+     "sceneFrame": 107
     }
    ],
    "stillFrame": 996,
@@ -485,6 +512,12 @@
      "text": "歸零",
      "frame": 1069,
      "sceneFrame": 73
+    },
+    {
+     "id": "eq",
+     "text": "股價",
+     "frame": 1097,
+     "sceneFrame": 101
     },
     {
      "id": "coins",
@@ -559,6 +592,12 @@
      "sceneFrame": 82
     },
     {
+     "id": "per",
+     "text": "每股",
+     "frame": 1272,
+     "sceneFrame": 112
+    },
+    {
      "id": "yield",
      "text": "3.7%",
      "frame": 1319,
@@ -602,7 +641,7 @@
    },
    "camera": {
     "move": "pull",
-    "at": "div"
+    "at": "amt"
    },
    "cueEarly": [
     {
@@ -621,6 +660,18 @@
      "text": "賣掉",
      "frame": 1377,
      "sceneFrame": 32
+    },
+    {
+     "id": "amt",
+     "text": "4.3 億美元",
+     "frame": 1396,
+     "sceneFrame": 51
+    },
+    {
+     "id": "take",
+     "text": "拿去",
+     "frame": 1439,
+     "sceneFrame": 94
     },
     {
      "id": "div",
@@ -676,7 +727,10 @@
     "type": "fade",
     "frames": 10
    },
-   "camera": null,
+   "camera": {
+    "move": "pan",
+    "at": "cost"
+   },
    "cueEarly": [],
    "voice": {
     "startFrame": 1506,
@@ -684,6 +738,12 @@
     "pauseAfterSec": null
    },
    "cues": [
+    {
+     "id": "price",
+     "text": "幣價",
+     "frame": 1562,
+     "sceneFrame": 62
+    },
     {
      "id": "cost",
      "text": "成本線",

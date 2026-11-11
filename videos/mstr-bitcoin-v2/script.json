@@ -325,6 +325,10 @@
       ],
       "cues": [
         {
+          "id": "y2020",
+          "text": "2020 年"
+        },
+        {
           "id": "buy",
           "text": "一路買"
         },
@@ -340,7 +344,7 @@
         "flip": {
           "from": 672500,
           "value": 849327,
-          "startAt": "buy",
+          "startAt": "y2020",
           "at": "pct",
           "unit": "枚",
           "caption": "2025 年底 672,500 枚 → 2026/11/1"
@@ -387,6 +391,10 @@
           "text": "溢價"
         },
         {
+          "id": "stock",
+          "text": "股票"
+        },
+        {
           "id": "pricier",
           "text": "還貴"
         },
@@ -412,7 +420,8 @@
                 "label": "股價有溢價",
                 "note": "股票比背後的幣還貴",
                 "color": "yellow",
-                "at": "prem"
+                "at": "prem",
+                "noteAt": "stock"
               },
               {
                 "icon": "chart",
@@ -452,7 +461,7 @@
           {
             "text": "溢價＝燃料",
             "color": "pink",
-            "at": "prem",
+            "at": "stock",
             "pos": "tr"
           }
         ],
@@ -462,7 +471,11 @@
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
       ],
-      "transition": "push"
+      "transition": "push",
+      "camera": {
+        "move": "pan",
+        "at": "pricier"
+      }
     },
     {
       "id": "premium-math",
@@ -483,8 +496,16 @@
           "text": "2 倍"
         },
         {
+          "id": "issue10",
+          "text": "發 10 股"
+        },
+        {
           "id": "c20",
           "text": "20 枚"
+        },
+        {
+          "id": "per2",
+          "text": "每股"
         },
         {
           "id": "more",
@@ -513,7 +534,7 @@
             "count": 20,
             "color": "pink",
             "label": "新買 20 枚",
-            "at": "c20"
+            "at": "issue10"
           }
         ],
         "frame": {
@@ -543,7 +564,7 @@
         ],
         "note": {
           "text": "每股含幣 1.00 → 1.09 枚",
-          "at": "more"
+          "at": "per2"
         }
       },
       "sources": [
@@ -576,7 +597,7 @@
         },
         {
           "id": "cond",
-          "text": "前提"
+          "text": "但這"
         }
       ],
       "component": "DepthStage",
@@ -670,13 +691,17 @@
           "text": "歸零"
         },
         {
+          "id": "eq",
+          "text": "股價"
+        },
+        {
           "id": "coins",
           "text": "手上的幣"
         }
       ],
       "component": "LineChart",
       "props": {
-        "title": "mNAV：股價是幣值幾倍",
+        "title": "mNAV 溢價倍數",
         "titleEn": "mNAV = market cap ÷ bitcoin held",
         "unit": "倍",
         "decimals": 2,
@@ -743,7 +768,7 @@
         "refLine": {
           "value": 1,
           "label": "1 倍＝只值手上的幣",
-          "at": "coins"
+          "at": "eq"
         },
         "band": {
           "from": 14,
@@ -800,6 +825,10 @@
           "text": "31%"
         },
         {
+          "id": "per",
+          "text": "每股"
+        },
+        {
           "id": "yield",
           "text": "3.7%"
         }
@@ -838,9 +867,10 @@
               "from": 0,
               "to": 3.7,
               "decimals": 1,
-              "at": "yield"
+              "at": "yield",
+              "startAt": "per"
             },
-            "at": "yield",
+            "at": "per",
             "size": 150,
             "color": "pink",
             "mark": true
@@ -882,6 +912,14 @@
           "text": "賣掉"
         },
         {
+          "id": "amt",
+          "text": "4.3 億美元"
+        },
+        {
+          "id": "take",
+          "text": "拿去"
+        },
+        {
           "id": "div",
           "text": "優先股股息"
         },
@@ -914,7 +952,8 @@
             "label": "賣幣",
             "value": 4.3,
             "color": "pink",
-            "at": "sold"
+            "at": "amt",
+            "startAt": "sold"
           },
           {
             "label": "回購優先股",
@@ -927,7 +966,7 @@
         "note": {
           "text": "賣幣所得：付優先股股息、回購",
           "bar": 2,
-          "at": "div"
+          "at": "take"
         },
         "footnote": "截至 10/25；賣幣約 6,900 多枚，平均賣價低於成本",
         "source": "Strategy Q3 2026 新聞稿"
@@ -939,7 +978,7 @@
       "transition": "push",
       "camera": {
         "move": "pull",
-        "at": "div"
+        "at": "amt"
       }
     },
     {
@@ -956,6 +995,10 @@
         "還沒定"
       ],
       "cues": [
+        {
+          "id": "price",
+          "text": "幣價"
+        },
         {
           "id": "cost",
           "text": "成本線"
@@ -979,7 +1022,7 @@
               {
                 "status": "fact",
                 "text": "平均成本約 75,451 美元；11/5 幣價一度跌到約 75,600",
-                "at": "cost"
+                "at": "price"
               },
               {
                 "status": "pending",
@@ -1023,7 +1066,11 @@
         "CoinDesk",
         "Trefis"
       ],
-      "transition": "fade"
+      "transition": "fade",
+      "camera": {
+        "move": "pan",
+        "at": "cost"
+      }
     },
     {
       "id": "your-call",

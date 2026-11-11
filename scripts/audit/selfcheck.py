@@ -20,28 +20,31 @@ DIFF_T = 20          # 灰階差 > 20 才算這個像素變了
 FAST_T = 2.0         # % 內容區像素變化 ≥ 2% ＝快速運動幀
 STATIC_T = 0.3       # % < 0.3 ＝沒有結構變化
 EMPTY_T = 5.0        # % 內容區佔用 < 5% ＝空畫面
-COVER_T = 40         # 與背景圖灰階差 > 40 ＝有內容
+COVER_T = 40         # 與背景圖任一色版差 > 40 ＝有內容
 JUMP_MIN = 8.0       # % 單幀跳變的最低變化量
 
 
-def frames(path, limit=None):
-    cmd = ["ffmpeg", "-v", "error", "-i", path, "-vf", f"scale={W}:{H},format=gray", "-f", "rawvideo", "-"]
+def frames(path, limit=None, rgb=False):
+    """解碼成 540×960；rgb=True 時回傳 (H, W, 3)（佔用率用色差：暖黃、淡青在灰階上和米白背景太接近）"""
+    ch = 3 if rgb else 1
+    cmd = ["ffmpeg", "-v", "error", "-i", path, "-vf", f"scale={W}:{H},format={'rgb24' if rgb else 'gray'}", "-f", "rawvideo", "-"]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     n = 0
     while True:
-        b = p.stdout.read(W * H)
-        if len(b) < W * H:
+        b = p.stdout.read(W * H * ch)
+        if len(b) < W * H * ch:
             break
-        yield np.frombuffer(b, np.uint8).reshape(H, W).astype(np.int16)
+        a = np.frombuffer(b, np.uint8)
+        yield (a.reshape(H, W, 3) if rgb else a.reshape(H, W)).astype(np.int16)
         n += 1
         if limit and n >= limit:
             p.kill()
             break
 
 
-def bg_gray(root):
-    out = subprocess.run(["ffmpeg", "-v", "error", "-i", f"{root}/public/bg/base-v2.png", "-vf", f"scale={W}:{H},format=gray", "-f", "rawvideo", "-"], capture_output=True).stdout
-    return np.frombuffer(out, np.uint8).reshape(H, W).astype(np.int16)
+def bg_rgb(root):
+    out = subprocess.run(["ffmpeg", "-v", "error", "-i", f"{root}/public/bg/base-v2.png", "-vf", f"scale={W}:{H},format=rgb24", "-f", "rawvideo", "-"], capture_output=True).stdout
+    return np.frombuffer(out, np.uint8).reshape(H, W, 3).astype(np.int16)
 
 
 def runs(mask):
@@ -61,12 +64,15 @@ def main():
     limit = int(sys.argv[sys.argv.index("--frames") + 1]) if "--frames" in sys.argv else None
     root = __file__.rsplit("/scripts/", 1)[0]
     tl = json.load(open(tl_path))
-    bg = bg_gray(root)[CY0:CY1, CX0:CX1]
+    bg = bg_rgb(root)[CY0:CY1, CX0:CX1]
     act, occ, keep = [], [], {}
     prev = None
-    for i, f in enumerate(frames(video, limit)):
+    for i, (fc, f) in enumerate(zip(frames(video, limit, rgb=True), frames(video, limit))):
+        cc = fc[CY0:CY1, CX0:CX1]
+        # 佔用：任一色版和背景差 > COVER_T（色差，不是灰階差）
+        occ.append(float((np.abs(cc - bg).max(axis=2) > COVER_T).mean() * 100))
+        # 變化：ffmpeg format=gray（與 audit.py 相同）
         c = f[CY0:CY1, CX0:CX1]
-        occ.append(float((np.abs(c - bg) > COVER_T).mean() * 100))
         act.append(0.0 if prev is None else float((np.abs(c - prev) > DIFF_T).mean() * 100))
         if i in (0, 15, 30, 45, 60):
             keep[i] = c

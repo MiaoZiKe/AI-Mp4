@@ -53,10 +53,11 @@ export const UnitGrid: React.FC<UnitGridProps> = ({ title, titleEn, titleMark, t
   if (order === "wave") seq = seq.map((k) => ({ k, d: (k % cols) + Math.floor(k / cols) })).sort((a, b) => a.d - b.d || a.k - b.k).map((x) => x.k);
   // 每組的填色時間：組內逐格錯開，整組在 ≤ 1.3 秒內填完
   const owner: { g: number; t: number }[] = Array(total).fill(null);
-  let idx = 0, prevEnd = 4;
+  let idx = 0, prevEnd = 0;
   groups.forEach((g, gi) => {
     const st = hasAt(g.at) ? cueIn(c, g.at, prevEnd) : prevEnd;
-    const dur = Math.min(40, Math.max(DUR.l, g.count * 0.5));
+    // 開場排版的第一組（沒有 cue）20 幀填完：進場轉場時格子已經在（等 cue 不留白）
+    const dur = gi === 0 && !hasAt(g.at) ? 20 : Math.min(40, Math.max(DUR.l, g.count * 0.5));
     for (let j = 0; j < g.count && idx < total; j++, idx++) owner[seq[idx]] = { g: gi, t: st + (j / Math.max(1, g.count)) * dur };
     prevEnd = st + dur + DUR.s;
     function hasAt(a?: string) { return Boolean(a && c.cues[a] !== undefined); }

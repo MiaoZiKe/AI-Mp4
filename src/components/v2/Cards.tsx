@@ -44,7 +44,7 @@ export const CompareSplitV2: React.FC<{ left: Side; right: Side; footer?: string
 };
 
 // ───────── FlowRow ─────────
-type Step = { icon: string; label: string; note?: string; color?: string; at?: string };
+type Step = { icon: string; label: string; note?: string; noteAt?: string; color?: string; at?: string };
 export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, steps }) => {
   const f = useCurrentFrame();
   const c = useCue();
@@ -72,7 +72,7 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
               <IconV2 name={s.icon} color={s.color} size={steps.length > 3 ? 104 : 128} draw={drawIn(f, starts[i])} />
               <div>
                 <div style={zh(steps.length > 3 ? 50 : 56, T.weight.title)}><KwText text={s.label} /></div>
-                {s.note && <div style={{ ...zh(steps.length > 3 ? 34 : 38, T.weight.body, T.text2), marginTop: 4 }}><KwText text={s.note} /></div>}
+                {s.note && <div style={{ ...zh(steps.length > 3 ? 34 : 38, T.weight.body, T.text2), marginTop: 4 }}>{s.noteAt && hasCue(c, s.noteAt) ? (() => { const n = typeChars(f, cueIn(c, s.noteAt, 0), s.note.length); return <>{s.note.slice(0, n)}<span style={{ opacity: 0 }}>{s.note.slice(n)}</span></>; })() : <KwText text={s.note} />}</div>}
               </div>
             </CardV2>
           </React.Fragment>

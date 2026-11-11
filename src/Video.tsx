@@ -82,7 +82,7 @@ const ProgressBar: React.FC = () => {
 
 /** 內容層（不含字幕、來源列）：沒有整幕縮放、沒有 Ken Burns；進出場由轉場負責 */
 /** 有轉場的幕：元件時間比 Sequence 快 ENTER_LEAD 幀，讓元件第一批元素在進場淡入（轉場第 3–8 幀）時就已經在動，不會只剩背景 */
-const ENTER_LEAD = 6;
+const ENTER_LEAD = 12; // v3：6→12，轉場進場段（第 3–8 幀）時元件已排好版，轉場每一幀內容區不掉空
 const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2; exitAbs: number }> = ({ scene, lead, timing, exitAbs }) => {
   const Comp = REGISTRY_V2[scene.component];
   if (!Comp) throw new Error(`Unknown component (styleVersion 2): ${scene.component}`);
