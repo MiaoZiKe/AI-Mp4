@@ -121,7 +121,9 @@ export function buildStoryboard(script, tl) {
       rows.push({
         id: t.id, startFrame: t.startFrame, durationFrames: t.durationFrames, startSec: +(t.startFrame / FPS).toFixed(2), durationSec: +(t.durationFrames / FPS).toFixed(2),
         component: s.component, beat: s.beat ?? null,
-        transition: t.transition ? { type: t.transition.type, frames: t.transition.frames ?? t.transitionFrames } : { type: "none", frames: 0 },
+        transition: t.transition ? { type: t.transition.type, frames: t.transition.frames ?? t.transitionFrames, ...(t.transition.carry ? { carry: t.transition.carry.text } : {}) } : { type: "none", frames: 0 },
+        camera: s.camera ?? null,
+        cueEarly: (t.cues ?? []).filter((q) => q.early).map((q) => ({ id: q.id, early: q.early })),
         voice: t.audio ? { startFrame: t.voiceStartFrame, endFrame: t.voiceEndFrame, pauseAfterSec: t.pauseAfter ?? null } : null,
         cues: (t.cues ?? []).map((q) => ({ id: q.id, text: q.text, frame: q.frame, sceneFrame: q.frame == null ? null : q.frame - t.startFrame })),
         stillFrame: t.stillFrame,

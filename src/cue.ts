@@ -8,7 +8,7 @@ import { THEME_V2 } from "./theme";
  *  - cues：script.json 每幕 cues[].id → 念到該詞的幀（align.mjs 由逐字時間算出）
  *  - exit：下一幕轉場開始（本幕開始出場）的幀；voiceStart／voiceEnd：本幕實際開口／收聲
  */
-export type CueInfo = { cues: Record<string, number>; exit: number; voiceStart: number; voiceEnd: number };
+export type CueInfo = { cues: Record<string, number>; exit: number; voiceStart: number; voiceEnd: number; words?: { text: string; frame: number }[] };
 export const CueContext = createContext<CueInfo>({ cues: {}, exit: 1e9, voiceStart: 0, voiceEnd: 1e9 });
 export const useCue = () => useContext(CueContext);
 

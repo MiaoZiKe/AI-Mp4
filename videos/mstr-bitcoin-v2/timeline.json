@@ -280,7 +280,7 @@
    "durationFrames": 165,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "carry",
     "frames": 10,
     "exit": [
      0,
@@ -289,7 +289,13 @@
     "enter": [
      3,
      9
-    ]
+    ],
+    "carry": {
+     "text": "開始賣幣",
+     "color": "pink",
+     "at": "sell",
+     "hold": 30
+    }
    },
    "voiceStartFrame": 105,
    "voiceEndFrame": 253,
@@ -576,15 +582,15 @@
    "durationFrames": 179,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10,
     "exit": [
      0,
-     6
+     5
     ],
     "enter": [
-     3,
-     9
+     4,
+     10
     ]
    },
    "voiceStartFrame": 257,
@@ -678,9 +684,9 @@
     },
     {
      "id": "drop",
-     "text": "一成",
-     "frame": 410,
-     "early": 2
+     "text": "它跌",
+     "frame": 392,
+     "early": 0
     }
    ],
    "hash": "d7080674cb4f",
@@ -910,7 +916,7 @@
    "durationFrames": 144,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "carry",
     "frames": 10,
     "exit": [
      0,
@@ -919,7 +925,12 @@
     "enter": [
      3,
      9
-    ]
+    ],
+    "carry": {
+     "text": "MSTR −10%",
+     "color": "pink",
+     "at": "drop"
+    }
    },
    "voiceStartFrame": 426,
    "voiceEndFrame": 556,
@@ -1501,15 +1512,15 @@
    "durationFrames": 163,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10,
     "exit": [
      0,
-     6
+     5
     ],
     "enter": [
-     3,
-     9
+     4,
+     10
     ]
    },
    "voiceStartFrame": 715,
@@ -2110,15 +2121,15 @@
    "durationFrames": 174,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "flip",
     "frames": 10,
     "exit": [
      0,
-     6
+     5
     ],
     "enter": [
-     3,
-     9
+     5,
+     10
     ]
    },
    "voiceStartFrame": 1002,
@@ -2452,7 +2463,7 @@
    "durationFrames": 195,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "carry",
     "frames": 10,
     "exit": [
      0,
@@ -2461,7 +2472,12 @@
     "enter": [
      3,
      9
-    ]
+    ],
+    "carry": {
+     "text": "mNAV ≈ 0.90",
+     "color": "pink",
+     "at": "coins"
+    }
    },
    "voiceStartFrame": 1166,
    "voiceEndFrame": 1342,
@@ -2799,15 +2815,15 @@
    "durationFrames": 165,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10,
     "exit": [
      0,
-     6
+     5
     ],
     "enter": [
-     3,
-     9
+     4,
+     10
     ]
    },
    "voiceStartFrame": 1355,
@@ -3403,15 +3419,15 @@
    "durationFrames": 130,
    "transitionFrames": 10,
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10,
     "exit": [
      0,
-     6
+     5
     ],
     "enter": [
-     3,
-     9
+     4,
+     10
     ]
    },
    "voiceStartFrame": 1668,

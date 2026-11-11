@@ -6,7 +6,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, STAGGER, tween, typeChars } from "../anim";
 import { cueIn, firstEarly, focusLevel, hasCue, layoutStarts, useCue } from "../../cue";
-import { CardV2, EN, IconV2, NoteBoxV2, StatusTagV2, drawIn, reveal } from "./base";
+import { CardV2, EN, IconV2, KwText, NoteBoxV2, StatusTagV2, drawIn, reveal } from "./base";
 
 const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: size, fontWeight: weight, color, lineHeight: 1.42 });
 
@@ -31,14 +31,14 @@ export const CompareSplitV2: React.FC<{ left: Side; right: Side; footer?: string
               {s.titleEn && <div style={EN}>{s.titleEn}</div>}
               <div style={{ alignSelf: "stretch" }}>
                 {s.items.map((it, k) => (
-                  <div key={k} style={{ ...reveal(f, lay[i] + 4 + k * STAGGER, 1, 12), ...zh(40, 700), padding: "20px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}>{it}</div>
+                  <div key={k} style={{ ...reveal(f, lay[i] + 4 + k * STAGGER, 1, 12), ...zh(40, 700), padding: "20px 0", borderTop: k ? `2px dashed ${T.divider}` : "none" }}><KwText text={it} /></div>
                 ))}
               </div>
             </CardV2>
           );
         })}
       </div>
-      {footer && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, footerAt, 40) + (footerAt ? 10 : 0), 1, 12), marginTop: 26, fontSize: 38 }}>{footer}</NoteBoxV2>}
+      {footer && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, footerAt, 40) + (footerAt ? 10 : 0), 1, 12), marginTop: 26, fontSize: 38 }}><KwText text={footer} /></NoteBoxV2>}
     </div>
   );
 };
@@ -57,7 +57,7 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
   const lay = layoutStarts(starts, 5);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 952 }}>
-      {title && <div style={{ ...reveal(f, 0), ...zh(58, T.weight.title), marginBottom: 16 }}>{title}</div>}
+      {title && <div style={{ ...reveal(f, 0), ...zh(58, T.weight.title), marginBottom: 16 }}><KwText text={title} /></div>}
       {steps.map((s, i) => {
         const fo = focusLevel(f, c, starts, cued, i, true);
         const r = reveal(f, lay[i], fo);
@@ -71,8 +71,8 @@ export const FlowRowV2: React.FC<{ title?: string; steps: Step[] }> = ({ title, 
             <CardV2 topBar={undefined} style={{ ...r, width: "100%", flex: 1, padding: "18px 34px", display: "flex", alignItems: "center", gap: 30, borderLeft: `10px solid ${accentV2(s.color).fill}` }}>
               <IconV2 name={s.icon} color={s.color} size={steps.length > 3 ? 104 : 128} draw={drawIn(f, starts[i])} />
               <div>
-                <div style={zh(steps.length > 3 ? 50 : 56, T.weight.title)}>{s.label}</div>
-                {s.note && <div style={{ ...zh(steps.length > 3 ? 34 : 38, T.weight.body, T.text2), marginTop: 4 }}>{s.note}</div>}
+                <div style={zh(steps.length > 3 ? 50 : 56, T.weight.title)}><KwText text={s.label} /></div>
+                {s.note && <div style={{ ...zh(steps.length > 3 ? 34 : 38, T.weight.body, T.text2), marginTop: 4 }}><KwText text={s.note} /></div>}
               </div>
             </CardV2>
           </React.Fragment>
@@ -96,7 +96,7 @@ export const ImpactCardV2: React.FC<{ icon: string; title: string; titleEn?: str
       <div style={{ display: "flex", alignItems: "center", gap: 22, paddingBottom: 20, borderBottom: `${T.ruleW}px solid ${T.rule}` }}>
         <IconV2 name={icon} color={color} size={120} draw={drawIn(f, 0)} />
         <div>
-          <div style={zh(64, T.weight.title)}>{title}</div>
+          <div style={zh(64, T.weight.title)}><KwText text={title} /></div>
           {titleEn && <div style={EN}>{titleEn}</div>}
         </div>
       </div>
@@ -105,11 +105,11 @@ export const ImpactCardV2: React.FC<{ icon: string; title: string; titleEn?: str
         return (
           <div key={i} style={{ ...reveal(f, lay[i], fo, 16), display: "flex", gap: 24, alignItems: "center", flex: 1, padding: "16px 0", borderTop: i ? `2px dashed ${T.divider}` : "none" }}>
             <span><StatusTagV2 status={r.status} size={32} /></span>
-            <div style={{ ...zh(rows.length > 3 ? 38 : 44, 700) }}>{r.text}</div>
+            <div style={{ ...zh(rows.length > 3 ? 38 : 44, 700) }}><KwText text={r.text} /></div>
           </div>
         );
       })}
-      {taiwan && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, taiwanAt, fixed) + (taiwanAt ? 12 : 0), 1, 12), marginTop: 12, fontSize: 36 }}>{taiwan}</NoteBoxV2>}
+      {taiwan && <NoteBoxV2 style={{ ...reveal(f, cueIn(c, taiwanAt, fixed) + (taiwanAt ? 12 : 0), 1, 12), marginTop: 12, fontSize: 36 }}><KwText text={taiwan} /></NoteBoxV2>}
     </CardV2>
   );
 };
@@ -124,12 +124,12 @@ export const IconGridV2: React.FC<{ title?: string; items: Item[]; columns?: num
   const cued = items.map((it) => hasCue(c, it.at));
   return (
     <div style={{ width: 952 }}>
-      {title && <div style={{ ...reveal(f, 0), ...zh(54, T.weight.title), textAlign: "center", marginBottom: 26 }}>{title}</div>}
+      {title && <div style={{ ...reveal(f, 0), ...zh(54, T.weight.title), textAlign: "center", marginBottom: 26 }}><KwText text={title} /></div>}
       <div style={{ display: "grid", gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 22 }}>
         {items.map((it, i) => (
           <CardV2 key={i} topBar={it.color} style={{ ...reveal(f, lay[i], focusLevel(f, c, starts, cued, i, true)), padding: 24, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             <IconV2 name={it.icon} color={it.color} size={92} draw={drawIn(f, starts[i])} />
-            <div style={{ ...zh(40, T.weight.title, accentV2(it.color).text), marginTop: 8 }}>{it.label}</div>
+            <div style={{ ...zh(40, T.weight.title, accentV2(it.color).text), marginTop: 8 }}><KwText text={it.label} /></div>
             {it.note && <div style={{ ...zh(30, T.weight.body, T.text2), marginTop: 4, lineHeight: 1.35 }}>{it.note}</div>}
           </CardV2>
         ))}

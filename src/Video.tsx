@@ -94,6 +94,9 @@ const SceneBodyV2: React.FC<{ scene: Scene; lead: number; timing: SceneTimingV2;
     // 關鍵詞被唸到的幀也當成 beat（id 以 kw: 開頭，只給鏡頭推拉用，元件的 at 不會引用到）
     cues: Object.fromEntries([...(timing.cues ?? []).filter((c) => c.frame !== null).map((c) => [c.id, loc(c.frame as number)]), ...(timing.keywords ?? []).map((k) => [`kw:${k.text}`, loc(k.start)])]),
     exit: loc(exitAbs), voiceStart: loc(timing.voiceStartFrame), voiceEnd: loc(timing.voiceEndFrame),
+    // 關鍵詞微節拍：念到關鍵詞／cue 詞時，主視覺裡同一個詞（KwText）螢光筆劃過
+    words: [...(timing.keywords ?? []).map((k) => ({ text: k.text, frame: loc(k.start) })), ...(timing.cues ?? []).filter((q) => q.frame !== null && q.text).map((q) => ({ text: q.text as string, frame: loc(q.frame as number) }))]
+      .filter((w) => w.text.replace(/\s/g, "").length >= 2),
   };
   // 片尾卡沒有字幕與出處：主視覺一路撐到出處帶底（SOURCE_BOTTOM）
   const top = LAYOUT_V2.CONTENT_TOP, bottom = isEnd ? LAYOUT_V2.SOURCE_BOTTOM : LAYOUT_V2.CONTENT_BOTTOM;
@@ -133,11 +136,11 @@ const outQuad = (u: number) => 1 - (1 - u) * (1 - u);
 /**
  * v3 語意轉場（type 寫在 script.json，由內容決定，不輪替）：
  *  fade／carry：出場上移 40px 加速淡出（EASE.exit）、進場從下方 20px 升起淡入（亞里：進 0.3 秒 20px、退上移 40px）
- *  push：上推（整幕往上推走 160px，新幕從下方 160px 推上來）
+ *  push：上推（整幕往上推走 120px 先淡出，新幕從下方 120px 推上來）
  *  slide：水平版上推
  *  flip：反轉＝明暗翻轉：海軍藍色塊由下往上蓋過主視覺區（出場），再由下往上掀開（進場）
  */
-const DIST: Record<string, { exit: number; enter: number }> = { fade: { exit: -40, enter: 20 }, carry: { exit: -40, enter: 20 }, push: { exit: -160, enter: 160 }, slide: { exit: -160, enter: 160 }, flip: { exit: -24, enter: 24 } };
+const DIST: Record<string, { exit: number; enter: number }> = { fade: { exit: -40, enter: 20 }, carry: { exit: -40, enter: 20 }, push: { exit: -120, enter: 120 }, slide: { exit: -120, enter: 120 }, flip: { exit: -24, enter: 24 } };
 
 /** flip 用的海軍藍色塊：只蓋主視覺區（330–1250），上下緣位置 0→1 */
 const FlipBlock: React.FC<{ top: number; bottom: number }> = ({ top, bottom }) => {

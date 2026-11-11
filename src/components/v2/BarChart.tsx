@@ -7,8 +7,8 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2, mixHex } from "../../theme";
 import { DUR, EASE, STAGGER, bump, tween } from "../anim";
-import { cueAt, cueIn, useCue } from "../../cue";
-import { EN, IconV2, fmtNum, reveal, PanStage } from "./base";
+import { cueAt, cueIn, firstEarly, useCue } from "../../cue";
+import { EN, IconV2, KwText, fmtNum, reveal, PanStage } from "./base";
 
 type Bar = { label: string; value: number; color?: string; at?: string; highlight?: boolean; icon?: string; text?: string };
 type Frame = { at?: string; frame?: number; label: string; values: Record<string, number> };
@@ -24,7 +24,7 @@ const P0 = ly(L.BAR_TOP), P1 = ly(L.PLOT_BOTTOM);
 
 const Title: React.FC<{ f: number; title: string; titleEn?: string }> = ({ f, title, titleEn }) => (
   <div style={{ ...reveal(f, 0), position: "absolute", left: 0, right: 0, top: 0 }}>
-    <div style={{ fontFamily: FONT_ZH, fontSize: 52, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap", lineHeight: 1.1 }}>{title}</div>
+    <div style={{ fontFamily: FONT_ZH, fontSize: 52, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap", lineHeight: 1.1 }}><KwText text={title} /></div>
     {titleEn && <div style={{ ...EN, marginTop: 2 }}>{titleEn}</div>}
   </div>
 );
@@ -35,10 +35,15 @@ const niceTicks = (vmax: number) => {
   const step = [10, 5, 2.5, 2, 1].map((k) => k * p).find((k) => k <= raw) ?? raw;
   return Array.from({ length: Math.floor(vmax / step) }, (_, i) => (i + 1) * step);
 };
-/** 每條的進場幀：有 cue 用 cue；沒有就依序 */
+/** 長條生長時長（幀） */
+const GROW = DUR.l + 6;
+/**
+ * 每條的「開始長」幀：有 cue → 剛好在念到時長完（cueAt − GROW，數字落定＝口播）；沒有就依序。
+ * firstEarly：第一條最晚第 10 幀開始長（等 cue 不留白）。
+ */
 const barStarts = (c: ReturnType<typeof useCue>, bars: Bar[]) => {
   let fixed = 6;
-  return bars.map((b) => { if (b.at && c.cues[b.at] !== undefined) return cueIn(c, b.at, 0); const v = fixed; fixed += STAGGER * 2; return v; });
+  return firstEarly(bars.map((b) => { if (b.at && c.cues[b.at] !== undefined) return Math.max(2, cueAt(c, b.at, 0) - GROW); const v = fixed; fixed += STAGGER * 2; return v; }));
 };
 
 /** 引線註解：錨點 (x, ay) → 垂直到 y → 水平到註解框（ay 省略＝同高） */
@@ -53,7 +58,7 @@ const Callout: React.FC<{ x: number; y: number; ay?: number; text: string; f: nu
         <path d={`M${x} ${a} L${x} ${y} L${side === "left" ? bx + w : bx} ${y}`} fill="none" stroke={T.text} strokeWidth={3} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - tween(f, t, DUR.m, EASE.enter)} />
         <circle cx={x} cy={a} r={8} fill={T.text} />
       </svg>
-      <div style={{ ...r, position: "absolute", left: bx, top: y - 40, width: w, boxSizing: "border-box", padding: "10px 18px", background: T.card, border: `2px solid ${T.cardBorder}`, borderLeft: `8px solid ${T.accent.yellow.fill}`, borderRadius: T.radiusTag, fontFamily: FONT_ZH, fontSize: 36, fontWeight: 700, color: T.text, lineHeight: 1.3 }}>{text}</div>
+      <div style={{ ...r, position: "absolute", left: bx, top: y - 40, width: w, boxSizing: "border-box", padding: "10px 18px", background: T.card, border: `2px solid ${T.cardBorder}`, borderLeft: `8px solid ${T.accent.yellow.fill}`, borderRadius: T.radiusTag, fontFamily: FONT_ZH, fontSize: 36, fontWeight: 700, color: T.text, lineHeight: 1.3 }}><KwText text={text} /></div>
     </>
   );
 };
@@ -85,7 +90,7 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
         <line x1={0} x2={952} y1={base} y2={base} stroke={T.chart.axis} strokeWidth={T.chart.axisW} />
         {bars.map((b, i) => {
           const a = accentV2(b.color);
-          const p = tween(f, st[i], DUR.l + 6, EASE.move);
+          const p = tween(f, st[i], GROW, EASE.move);
           const y = Yv(b.value * p);
           return <rect key={i} x={cx(i) - bw / 2} y={Math.min(base, y)} width={bw} height={Math.abs(y - base)} fill={a.fill} opacity={b.highlight === false ? T.chart.mute : 1} />;
         })}
@@ -96,9 +101,9 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
       </svg>
       {bars.map((b, i) => {
         const a = accentV2(b.color);
-        const p = tween(f, st[i], DUR.l + 6, EASE.move);
+        const p = tween(f, st[i], GROW, EASE.move);
         const hi = b.highlight !== false;
-        const land = st[i] + DUR.l + 6;
+        const land = st[i] + GROW;
         const lab = neg ? { top: base - 104 } : { top: base + 12 };
         return (
           <React.Fragment key={i}>
@@ -106,16 +111,25 @@ const Flat: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 0
               {neg && b.icon && <IconV2 name={b.icon} color={b.color} size={88} draw={tween(f, 0, DUR.l)} />}
               <div style={{ fontFamily: FONT_ZH, fontSize: 48, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap" }}>{b.label}</div>
             </div>
-            <div style={{ position: "absolute", left: cx(i) - slot / 2, width: slot, top: neg ? Yv(b.value * p) + 14 : Yv(b.value * p) - (hi ? 118 : 74), textAlign: "center", opacity: tween(f, st[i], DUR.s), fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: hi ? 100 : 60, whiteSpace: "nowrap", color: hi ? a.text : T.text2, fontVariantNumeric: "tabular-nums", lineHeight: 1, transform: `scale(${bump(f, cueAt(c, b.at, land), 0.06).toFixed(4)})` }}>
-              {b.text && p >= 1 ? b.text : `${fmtNum(b.value * p, decimals)}${unit}`}
+            <div style={{ position: "absolute", left: cx(i) - slot / 2, width: slot, top: neg ? Yv(b.value * p) + 14 : Yv(b.value * p) - (hi ? 118 : 74), textAlign: "center", opacity: tween(f, st[i], DUR.s), fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: hi ? 100 : 60, whiteSpace: "nowrap", color: hi ? a.text : T.text2, fontVariantNumeric: "tabular-nums", lineHeight: 1, transform: hi ? `scale(${bump(f, land).toFixed(4)})` : undefined }}>
+              {/* 負號與數字同一個 tabular span（不被引線或格線切開） */}
+              <span style={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{b.text && p >= 1 ? b.text : `${fmtNum(b.value * p, decimals)}${unit}`}</span>
             </div>
           </React.Fragment>
         );
       })}
       {refLine && (
-        <div style={{ ...reveal(f, cueIn(c, refLine.at, 30) + 4, 1, 8), position: "absolute", right: 0, top: Yv(refLine.value) - 50, fontFamily: FONT_ZH, fontSize: 34, fontWeight: 900, color: T.accent.pink.text, whiteSpace: "nowrap" }}>{refLine.label}</div>
+        <div style={{ ...reveal(f, cueIn(c, refLine.at, 30) + 4, 1, 8), position: "absolute", left: slot, transform: `${reveal(f, cueIn(c, refLine.at, 30) + 4, 1, 8).transform} translateX(-50%)`, top: Yv(refLine.value) - 50, fontFamily: FONT_ZH, fontSize: 34, fontWeight: 900, color: T.accent.pink.text, whiteSpace: "nowrap" }}>{refLine.label}</div>
       )}
-      {note && <Callout x={cx(note.bar) - bw / 2} y={Yv(bars[note.bar].value) - 40} text={note.text} f={f} t={cueIn(c, note.at, 40)} side="left" />}
+      {note && (() => {
+        // 引線框跟著長條目前的高度走（長條還沒長時停在基準線下方，不壓標籤列）
+        const pn = tween(f, st[note.bar], GROW, EASE.move);
+        const tip = Yv(bars[note.bar].value * pn);
+        // 不壓其他長條與它們的數字：負值圖表時框放在其他長條數字下緣（＋120）以下
+        const others = bars.filter((_, k) => k !== note.bar).map((o) => Yv(o.value) + 14 + 110);
+        const y = neg ? Math.max(base + 150, ...others.map((v) => v + 40), tip - 40) : Math.min(base - 150, tip + 40);
+        return <Callout x={cx(note.bar) - bw / 2} ay={neg ? Math.max(base + 8, tip - 8) : tip} y={y} text={note.text} f={f} t={cueIn(c, note.at, 40)} side="left" />;
+      })()}
       {footnote && <div style={{ position: "absolute", left: 0, right: 0, top: P1 + 12, fontFamily: FONT_ZH, fontSize: 28, color: T.text3, whiteSpace: "nowrap", opacity: tween(f, 8, DUR.s) }}>{footnote}</div>}
     </div></PanStage>
   );
@@ -132,7 +146,6 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
   const dx = T.iso.depth, dy = dx * Math.tan((T.iso.skew * Math.PI) / 180);
   const x0 = (i: number) => slot * i + (slot - bw - dx) / 2;
   const pts = (q: number[][]) => q.map((p) => p.map((v) => v.toFixed(1)).join(",")).join(" ");
-  const GROW = DUR.l + 6;
   const hOf = (i: number) => (bars[i].value / vmax) * (floor - top) * tween(f, st[i], GROW, EASE.move);
   return (
     <PanStage><div style={{ position: "relative", width: 952, height: H }}>
@@ -175,7 +188,7 @@ const Iso: React.FC<BarChartProps> = ({ title, titleEn, unit = "", decimals = 1,
         const land = st[i] + GROW;
         return (
           <React.Fragment key={i}>
-            <div style={{ position: "absolute", left: x0(i) - 40, width: bw + dx + 80, top: yt - (hi ? 96 : 70), textAlign: "center", opacity: tween(f, st[i], DUR.s) * (hi ? 1 : 0.8), fontFamily: FONT_EN, fontSize: hi ? 80 : 60, fontWeight: T.weight.num, color: hi ? a.text : T.text2, lineHeight: 1, whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", transform: `scale(${bump(f, land, 0.05).toFixed(4)})` }}>
+            <div style={{ position: "absolute", left: x0(i) - 40, width: bw + dx + 80, top: yt - (hi ? 96 : 70), textAlign: "center", opacity: tween(f, st[i], DUR.s) * (hi ? 1 : 0.8), fontFamily: FONT_EN, fontSize: hi ? 80 : 60, fontWeight: T.weight.num, color: hi ? a.text : T.text2, lineHeight: 1, whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", transform: hi ? `scale(${bump(f, land).toFixed(4)})` : undefined }}>
               {fmtNum(b.value * p, decimals)}{unit && <span style={{ fontSize: 30, fontFamily: FONT_ZH, marginLeft: 4 }}>{unit}</span>}
             </div>
             <div style={{ ...reveal(f, Math.min(st[i], 6 + i * STAGGER), 1, 8), position: "absolute", left: x0(i) - 30, width: bw + dx + 60, top: floor + 16, textAlign: "center", fontFamily: FONT_ZH, fontSize: 40, fontWeight: T.weight.title, color: T.text, whiteSpace: "nowrap" }}>{b.label}</div>

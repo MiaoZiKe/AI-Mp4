@@ -3,7 +3,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, bump, countUp, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { CardV2, EN, IconV2, StatusTagV2, fmtNum, reveal } from "./base";
+import { CardV2, EN, IconV2, KwText, StatusTagV2, fmtNum, reveal } from "./base";
 
 type Bar = { label: string; value: number; text: string; color?: string; at?: string };
 type Props = {
@@ -68,7 +68,7 @@ export const BigNumberV2: React.FC<Props> = ({ icon, label, labelEn, value, from
           })}
         </div>
       )}
-      {note && <div style={{ ...reveal(f, noteIn, 1, 12), fontFamily: FONT_ZH, fontSize: 38, lineHeight: 1.5, fontWeight: T.weight.body, color: T.text2 }}>{note}</div>}
+      {note && <div style={{ ...reveal(f, noteIn, 1, 12), fontFamily: FONT_ZH, fontSize: 38, lineHeight: 1.5, fontWeight: T.weight.body, color: T.text2 }}><KwText text={note} /></div>}
       {tag && <div style={{ ...reveal(f, noteIn + 4, 1, 12) }}><StatusTagV2 status={tag} size={32} /></div>}
     </CardV2>
   );

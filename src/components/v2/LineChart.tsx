@@ -6,7 +6,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, bump, tween } from "../anim";
 import { cueAt, cueIn, useCue } from "../../cue";
-import { EN, fmtNum, reveal, PanStage } from "./base";
+import { EN, KwText, fmtNum, reveal, PanStage } from "./base";
 
 type Pt = { t: number; v: number };
 type Series = { label?: string; color?: string; points: Pt[] };
@@ -54,7 +54,7 @@ export const LineChart: React.FC<LineChartProps> = ({ title, titleEn, unit = "",
         <div style={{ position: "absolute", right: -150, top: ly(L.PLOT_TOP) + 60, fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: L.WATERMARK_PX, lineHeight: 1, color: T.watermark, opacity: L.WATERMARK_OPACITY, whiteSpace: "nowrap" }}>{watermark}</div>
       )}
       <div style={{ ...reveal(f, 0), position: "absolute", left: 0, right: 0, top: ly(L.CHART_TITLE_TOP), height: L.PLOT_TOP - L.CHART_TITLE_TOP - 10 }}>
-        <div style={{ fontFamily: FONT_ZH, fontSize: 54, fontWeight: T.weight.title, color: T.text, lineHeight: 1.1, whiteSpace: "nowrap" }}>{title}</div>
+        <div style={{ fontFamily: FONT_ZH, fontSize: 54, fontWeight: T.weight.title, color: T.text, lineHeight: 1.1, whiteSpace: "nowrap" }}><KwText text={title} /></div>
         {titleEn && <div style={{ ...EN, marginTop: 4 }}>{titleEn}</div>}
       </div>
       <svg width={952} height={L.CONTENT_BOTTOM - L.CONTENT_TOP} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>

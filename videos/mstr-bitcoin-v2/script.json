@@ -203,7 +203,14 @@
         "Bloomberg",
         "CoinDesk",
         "Strategy 新聞稿"
-      ]
+      ],
+      "transition": "carry",
+      "carry": {
+        "text": "開始賣幣",
+        "color": "pink",
+        "at": "sell",
+        "hold": 30
+      }
     },
     {
       "id": "amplified",
@@ -229,7 +236,7 @@
         },
         {
           "id": "drop",
-          "text": "一成"
+          "text": "它跌"
         }
       ],
       "component": "BarChart",
@@ -275,7 +282,12 @@
       "sources": [
         "CoinDesk",
         "Robinhood"
-      ]
+      ],
+      "transition": "push",
+      "camera": {
+        "move": "push",
+        "at": "drop"
+      }
     },
     {
       "id": "holdings",
@@ -337,7 +349,13 @@
       "sources": [
         "SEC 8-K 2026/11/2",
         "CoinGecko"
-      ]
+      ],
+      "transition": "carry",
+      "carry": {
+        "text": "MSTR −10%",
+        "color": "pink",
+        "at": "drop"
+      }
     },
     {
       "id": "flywheel",
@@ -432,7 +450,8 @@
       "sources": [
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
-      ]
+      ],
+      "transition": "fade"
     },
     {
       "id": "premium-math",
@@ -519,7 +538,8 @@
       "sources": [
         "Bitcoin Treasuries 電子報",
         "BitMEX Research"
-      ]
+      ],
+      "transition": "push"
     },
     {
       "id": "buy-the-top",
@@ -613,7 +633,8 @@
         "The Daily Hodl",
         "Bloomberg",
         "Protos"
-      ]
+      ],
+      "transition": "fade"
     },
     {
       "id": "premium-gone",
@@ -644,7 +665,7 @@
       ],
       "component": "LineChart",
       "props": {
-        "title": "mNAV：股價是手上幣值的幾倍",
+        "title": "mNAV：股價是幣值幾倍",
         "titleEn": "mNAV = market cap ÷ bitcoin held",
         "unit": "倍",
         "decimals": 2,
@@ -746,7 +767,12 @@
         "Strategy Q3 2026 法說會",
         "CoinDesk",
         "sec-api.io"
-      ]
+      ],
+      "transition": "flip",
+      "camera": {
+        "move": "push",
+        "at": "zero"
+      }
     },
     {
       "id": "yield-negative",
@@ -846,7 +872,17 @@
       "sources": [
         "Strategy Q3 2026 8-K",
         "10-Q"
-      ]
+      ],
+      "transition": "carry",
+      "carry": {
+        "text": "mNAV ≈ 0.90",
+        "color": "pink",
+        "at": "coins"
+      },
+      "camera": {
+        "move": "pan",
+        "at": "yield"
+      }
     },
     {
       "id": "selling-for-dividends",
@@ -923,6 +959,11 @@
       ],
       "bg": {
         "mark": "賣幣"
+      },
+      "transition": "push",
+      "camera": {
+        "move": "pull",
+        "at": "div"
       }
     },
     {
@@ -1005,7 +1046,8 @@
         "SEC 8-K",
         "CoinDesk",
         "Trefis"
-      ]
+      ],
+      "transition": "fade"
     },
     {
       "id": "your-call",
@@ -1053,7 +1095,8 @@
       },
       "sources": [
         "綜合本片來源"
-      ]
+      ],
+      "transition": "push"
     },
     {
       "id": "end",
@@ -1086,7 +1129,8 @@
           }
         ]
       },
-      "sources": []
+      "sources": [],
+      "transition": "fade"
     }
   ]
 }

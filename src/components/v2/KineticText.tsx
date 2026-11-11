@@ -6,7 +6,7 @@ import { useCurrentFrame } from "remotion";
 import { FONT_EN, FONT_ZH, LAYOUT_V2 as L, THEME_V2 as T, accentV2 } from "../../theme";
 import { DUR, EASE, bump, countUp, tween } from "../anim";
 import { cueAt, cueIn, firstEarly, focusLevel, hasCue, useCue } from "../../cue";
-import { IconV2, fmtNum, markerBg, reveal } from "./base";
+import { IconV2, KwText, fmtNum, markerBg, reveal } from "./base";
 
 type Count = { from: number; to: number; decimals?: number; startAt?: string; at?: string };
 export type KLine = { text: string; at?: string; size?: number; color?: string; mark?: boolean; count?: Count; font?: "zh" | "num" };
@@ -113,14 +113,14 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
       {/* 左側主色直條：串起每一行（版面的脊線），隨進場由上往下畫出 */}
       <div style={{ position: "absolute", left: 0, top: ly(L.KT_TOP) - 30, width: 10, height: (L.KT_BOTTOM - L.KT_TOP + 30) * tween(f, 0, DUR.l * 2, EASE.move), background: acc.fill, borderRadius: 2, transform: `translateX(${fx}px)` }} />
       <div style={{ position: "absolute", left: 30, width: 922, top: ly(L.KT_TOP), height: L.KT_BOTTOM - L.KT_TOP, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", transform: `translateX(${fx}px)` }}>
-        {kicker && <div style={{ ...reveal(f, 0), alignSelf: "stretch", fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}>{kicker}</div>}
+        {kicker && <div style={{ ...reveal(f, 0), alignSelf: "stretch", fontFamily: FONT_ZH, fontSize: 44, fontWeight: 700, color: T.text2, letterSpacing: "0.04em", borderBottom: `5px solid ${acc.fill}`, paddingBottom: 6 }}><KwText text={kicker} /></div>}
         {flip && (
           <div style={{ ...reveal(f, Math.min(flipStart - 6, 8)), display: "flex", alignItems: "flex-end", gap: 22 }}>
             <div style={{ transform: `scale(${bump(f, flipLand).toFixed(4)})`, transformOrigin: "0% 100%" }}><FlipNumber v={flipV} final={flip.value} color={acc.text} /></div>
             {flip.unit && <div style={{ fontFamily: FONT_ZH, fontSize: 84, fontWeight: T.weight.title, color: T.text, lineHeight: 1 }}>{flip.unit}</div>}
           </div>
         )}
-        {flip?.caption && <div style={{ ...reveal(f, flipLand - 6, 1, 12), fontFamily: FONT_ZH, fontSize: 40, fontWeight: 700, color: T.text2 }}>{flip.caption}</div>}
+        {flip?.caption && <div style={{ ...reveal(f, flipLand - 6, 1, 12), fontFamily: FONT_ZH, fontSize: 40, fontWeight: 700, color: T.text2 }}><KwText text={flip.caption} /></div>}
         {lines.map((l, i) => {
           const fo = focusLevel(f, c, starts, cued, i);
           const land = cueAt(c, l.at, starts[i] + 4);
@@ -140,7 +140,7 @@ export const KineticText: React.FC<KineticProps> = ({ kicker, lines, flip, aux, 
             </div>
           );
         })}
-        {note && <div style={{ ...reveal(f, cueIn(c, noteAt, 30), 1, 12), fontFamily: FONT_ZH, fontSize: 38, fontWeight: T.weight.body, color: T.text2, lineHeight: 1.4, maxWidth: aux ? 952 - AUX - 24 : 952 }}>{note}</div>}
+        {note && <div style={{ ...reveal(f, cueIn(c, noteAt, 30), 1, 12), fontFamily: FONT_ZH, fontSize: 38, fontWeight: T.weight.body, color: T.text2, lineHeight: 1.4, maxWidth: aux ? 952 - AUX - 24 : 952 }}><KwText text={note} /></div>}
       </div>
       {aux && <AuxView aux={aux} f={f} start={auxIn} />}
     </div>

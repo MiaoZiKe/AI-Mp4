@@ -142,3 +142,30 @@ export const PanStage: React.FC<{ children: React.ReactNode }> = ({ children }) 
   // v3：拿掉整幕漂移（漂移會被量成「變化」卻不帶資訊；變化改由 cue 與關鍵詞微節拍提供）
   return <div>{children}</div>;
 };
+
+/**
+ * 關鍵詞微節拍（v3 P0-2）：文字裡出現本幕的關鍵詞／cue 詞時，念到那一刻螢光筆從左劃過（DUR.m，之後保持）。
+ * 填補 cue 之間 1.3–2.8 秒的靜止段；沒有命中時就是純文字。每段文字只標第一次出現。
+ */
+export const KwText: React.FC<{ text: string }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const c = useCue();
+  const words = (c.words ?? []).slice().sort((a, b) => b.text.length - a.text.length);
+  if (!words.length || !text) return <>{text}</>;
+  type Seg = { s: string; at?: number };
+  let segs: Seg[] = [{ s: text }];
+  for (const w of words) {
+    const next: Seg[] = [];
+    for (const g of segs) {
+      if (g.at !== undefined) { next.push(g); continue; }
+      const k = g.s.indexOf(w.text);
+      const len = w.text.length;
+      if (k < 0) { next.push(g); continue; }
+      if (k > 0) next.push({ s: g.s.slice(0, k) });
+      next.push({ s: g.s.slice(k, k + len), at: w.frame });
+      if (k + len < g.s.length) next.push({ s: g.s.slice(k + len) });
+    }
+    segs = next;
+  }
+  return <>{segs.map((g, i) => (g.at === undefined ? <React.Fragment key={i}>{g.s}</React.Fragment> : <span key={i} style={{ ...markerBg(tween(f, g.at - 1, DUR.m, EASE.enter)) }}>{g.s}</span>))}</>;
+};

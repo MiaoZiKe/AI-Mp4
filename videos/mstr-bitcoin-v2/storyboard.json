@@ -18,6 +18,8 @@
     "type": "none",
     "frames": 0
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 0,
     "endFrame": 98,
@@ -69,9 +71,12 @@
    "component": "DepthStage",
    "beat": "hook",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "carry",
+    "frames": 10,
+    "carry": "開始賣幣"
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 105,
     "endFrame": 253,
@@ -123,9 +128,14 @@
    "component": "BarChart",
    "beat": "you",
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10
    },
+   "camera": {
+    "move": "push",
+    "at": "drop"
+   },
+   "cueEarly": [],
    "voice": {
     "startFrame": 257,
     "endFrame": 422,
@@ -146,9 +156,9 @@
     },
     {
      "id": "drop",
-     "text": "一成",
-     "frame": 410,
-     "sceneFrame": 159
+     "text": "它跌",
+     "frame": 392,
+     "sceneFrame": 141
     }
    ],
    "stillFrame": 420,
@@ -189,9 +199,12 @@
    "component": "KineticText",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "carry",
+    "frames": 10,
+    "carry": "MSTR −10%"
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 426,
     "endFrame": 556,
@@ -246,6 +259,8 @@
     "type": "fade",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 560,
     "endFrame": 711,
@@ -309,9 +324,11 @@
    "component": "UnitGrid",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 715,
     "endFrame": 861,
@@ -372,6 +389,8 @@
     "type": "fade",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 872,
     "endFrame": 998,
@@ -429,9 +448,14 @@
    "component": "LineChart",
    "beat": "twist",
    "transition": {
-    "type": "fade",
+    "type": "flip",
     "frames": 10
    },
+   "camera": {
+    "move": "push",
+    "at": "zero"
+   },
+   "cueEarly": [],
    "voice": {
     "startFrame": 1002,
     "endFrame": 1162,
@@ -495,9 +519,15 @@
    "component": "KineticText",
    "beat": "twist",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "carry",
+    "frames": 10,
+    "carry": "mNAV ≈ 0.90"
    },
+   "camera": {
+    "move": "pan",
+    "at": "yield"
+   },
+   "cueEarly": [],
    "voice": {
     "startFrame": 1166,
     "endFrame": 1342,
@@ -555,9 +585,19 @@
    "component": "BarChart",
    "beat": "payoff",
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10
    },
+   "camera": {
+    "move": "pull",
+    "at": "div"
+   },
+   "cueEarly": [
+    {
+     "id": "buyback",
+     "early": 1
+    }
+   ],
    "voice": {
     "startFrame": 1355,
     "endFrame": 1502,
@@ -624,6 +664,8 @@
     "type": "fade",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 1506,
     "endFrame": 1664,
@@ -675,9 +717,11 @@
    "component": "CtaCard",
    "beat": "cta",
    "transition": {
-    "type": "fade",
+    "type": "push",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 1668,
     "endFrame": 1784,
@@ -732,6 +776,8 @@
     "type": "fade",
     "frames": 10
    },
+   "camera": null,
+   "cueEarly": [],
    "voice": {
     "startFrame": 1788,
     "endFrame": 1862,
