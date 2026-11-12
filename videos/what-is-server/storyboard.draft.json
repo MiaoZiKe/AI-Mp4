@@ -1,0 +1,1161 @@
+{
+ "slug": "what-is-server",
+ "title": "IG 打不開，先不要怪自己網路｜什麼是 Server（第 1 集）",
+ "status": "draft-v2-審查後修訂-待使用者確認",
+ "asOf": "2026-11-12",
+ "styleVersion": 3,
+ "estTotalSec": 66.8,
+ "voiceSecEst": 64.3,
+ "narrationChars": 269,
+ "rateCharsPerSec": 4.3,
+ "segmentsSec": {
+  "起": 6.5,
+  "承": 21.1,
+  "轉": 19.1,
+  "合": 17.6,
+  "片尾卡": 2.5
+ },
+ "hook": {
+  "claim": "IG 掛過約 6 小時｜那次不是你網路爛",
+  "frame0": "手機錯誤畫面＋大紙條主張，第 0 幀全在；0.3 秒起螢幕內下拉重新整理",
+  "claims": [
+   "約 6 小時 → research.md F7"
+  ]
+ },
+ "endCard": {
+  "channel": "白話國際",
+  "slogan": "一支講透一件事",
+  "next": "下一集：雲端，到底在哪？"
+ },
+ "directions": {
+  "A": "桌面紙拼貼（建議）",
+  "B": "實拍照片大字報"
+ },
+ "promptPrefixA": "cut-paper collage illustration of {X}, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+ "motionTiers": {
+  "一般貼上": "6 幀滑入貼上，不推鏡頭",
+  "重點": "s05 Server、s10 出事、s13 約 6 小時、s20 放在哪：先停 4–6 幀，4 幀重貼＋鏡頭推近 0.96→1",
+  "連續動作": "虛線、小單、照片、鐵捲門、雲：有快慢，不等速"
+ },
+ "bigTextShots": [
+  "s01",
+  "s05",
+  "s07",
+  "s10",
+  "s13",
+  "s20"
+ ],
+ "pauses": [
+  {
+   "after": "s02",
+   "sec": 0.25
+  },
+  {
+   "after": "s10",
+   "sec": 0.35
+  },
+  {
+   "after": "s13",
+   "sec": 0.3
+  }
+ ],
+ "assetsA": [
+  {
+   "id": "a01-phone",
+   "file": "public/assets/what-is-server/a01-phone-v1.png",
+   "content": "手機正面，螢幕全白留空（內容由 Remotion 疊）",
+   "prompt": "cut-paper collage illustration of a modern smartphone, front view, blank plain white screen, no icons, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s01–s03、s08、s09、s11、s13、s14、s17–s19"
+  },
+  {
+   "id": "a02-rack",
+   "file": "public/assets/what-is-server/a02-rack-v1.png",
+   "content": "伺服器機櫃正面，一格一格扁機器、有小燈",
+   "prompt": "cut-paper collage illustration of a tall server rack cabinet with stacked flat rack servers and small indicator lights, front view, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s04–s07、s20、s21"
+  },
+  {
+   "id": "a03-pass",
+   "file": "public/assets/what-is-server/a03-pass-v1.png",
+   "content": "餐廳出餐口：有檯面和服務鈴的窗口框，窗內留白（去背成中空）",
+   "prompt": "cut-paper collage illustration of a restaurant kitchen pass-through serving window with a counter ledge and a small service bell, empty opening filled with plain white, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s07–s12、s15、s18"
+  },
+  {
+   "id": "a05-photo",
+   "file": "public/assets/what-is-server/a05-photo-v1.png",
+   "content": "有白邊的沖印照片，內容是山和太陽",
+   "prompt": "cut-paper collage illustration of a printed photograph with white border showing a simple landscape of hills and a sun, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s03、s04、s06、s09"
+  },
+  {
+   "id": "a07-envelope",
+   "file": "public/assets/what-is-server/a07-envelope-v1.png",
+   "content": "一個封好的信封",
+   "prompt": "cut-paper collage illustration of a closed paper envelope, front view, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s06"
+  },
+  {
+   "id": "a08-lock",
+   "file": "public/assets/what-is-server/a08-lock-v1.png",
+   "content": "一把掛鎖",
+   "prompt": "cut-paper collage illustration of a simple padlock, front view, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s16"
+  },
+  {
+   "id": "a10-cloud",
+   "file": "public/assets/what-is-server/a10-cloud-v1.png",
+   "content": "一朵蓬蓬的雲",
+   "prompt": "cut-paper collage illustration of a single fluffy cloud, gouache and colored paper texture, visible paper grain, slightly uneven scissor-cut edges, flat front view, single object centered, limited palette of tomato red, mustard yellow, ink blue, mint green, cream, plain solid white background, no text, no letters, no numbers, no logo, no people, no hands",
+   "usedIn": "s21、s23"
+  }
+ ],
+ "paperKitLocal": [
+  {
+   "id": "p-strip",
+   "content": "撕邊紙條／大紙片（白、番茄紅、牛皮、深藍、淺黃、米白）",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-tape",
+   "content": "紙膠帶",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-label",
+   "content": "撕邊標籤紙",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-ticket",
+   "content": "小單（畫小相片圖樣；另一版畫勾選格當設定單）",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-dash",
+   "content": "紙虛線的單格小紙條",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-spinner",
+   "content": "載入圈／重新整理箭頭",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-marker",
+   "content": "麥克筆底、圈、叉（遮罩擦出用）",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-shutter",
+   "content": "鐵捲門（橫紋紙，可逐格下拉）",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-disc",
+   "content": "月亮、太陽圓紙片",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-heart",
+   "content": "愛心小紙片",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  },
+  {
+   "id": "p-bg",
+   "content": "米色桌面紙紋、深綠切割墊",
+   "dir": "public/assets/paper/",
+   "made": "Pillow＋numpy 本機生成，固定 seed"
+  }
+ ],
+ "assetsB": [
+  {
+   "id": "b01-phone",
+   "content": "桌上的手機特寫（無人手、暗背景），螢幕之後換成自製畫面",
+   "usedIn": "s01–s03、s08、s09、s14、s17–s19",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b02-aisle",
+   "content": "資料中心機房走道，無人",
+   "usedIn": "s04、s13、s20",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b03-rack-close",
+   "content": "機櫃正面特寫，有燈號",
+   "usedIn": "s05、s06、s20",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b04-kitchen-pass",
+   "content": "空無一人的餐廳出餐口／不鏽鋼檯面",
+   "usedIn": "s07–s10",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b05-phones-desk",
+   "content": "桌上三支手機俯拍，無人",
+   "usedIn": "s11",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b06-shutter",
+   "content": "拉下的鐵捲門，無招牌無文字",
+   "usedIn": "s12、s15、s16、s18",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  },
+  {
+   "id": "b08-sky",
+   "content": "天空與雲",
+   "usedIn": "s21",
+   "source": "優先圖庫真照片（Pexels／Unsplash／Pixabay），記網址、作者、授權、下載日"
+  }
+ ],
+ "shots": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "sentence": 1,
+   "narration": "IG 打不開，你是不是先怪自己網路爛？",
+   "tts": "I G 打不開，你是不是先怪自己網路爛？",
+   "trigger": "第 0 幀畫面已完整；0.3 秒螢幕被往下拉、重新整理；「怪自己」麥克筆劃「不是你」",
+   "visual": "手機螢幕是一個 App 內的錯誤畫面：灰色照片格＋「無法載入，請再試一次」。上方貼一張大紙條：大字「IG 掛過約 6 小時」，小字「那次不是你網路爛」。開口前螢幕內容就被往下拉一次（重新整理箭頭轉半圈、彈回，還是無法載入），約 1.6 秒再拉第二次。",
+   "assets": {
+    "A": {
+     "how": "米色桌面；手機紙片居中偏下（寬約 560px）；螢幕內容用 HTML 排，下拉動作只在螢幕裡，不出現人手；撕邊大紙條＋紙膠帶；芥末黃麥克筆底",
+     "files": [
+      "a01-phone",
+      "p-strip",
+      "p-tape",
+      "p-spinner",
+      "p-marker"
+     ]
+    },
+    "B": {
+     "how": "滿版照片：桌上的手機（無人手）；螢幕換成自製錯誤畫面；大字壓在照片上，「6 小時」螢光黃底",
+     "files": [
+      "b01-phone",
+      "p-spinner"
+     ]
+    }
+   },
+   "elements": [
+    "手機（錯誤畫面）",
+    "大紙條主張"
+   ],
+   "onScreenText": "IG 掛過約 6 小時｜那次不是你網路爛",
+   "subtitle": {
+    "zh": "IG 打不開\n你是不是\n先怪自己網路爛？",
+    "en": "IG won't load. Do you blame your own connection first?"
+   },
+   "motion": "進場：無（第 0 幀全在）。連續動作：螢幕下拉兩次，拉慢、彈快。強調：念到「怪自己」麥克筆底在「不是你」下擦出 8 幀。退場：紙條往上滑出 6 幀",
+   "transition": "紙條滑走，手機頂端開始長出紙虛線，接 s02",
+   "sources": [
+    "Meta 工程部落格 2021/10/4、10/5（research.md S9；原文尚未開啟核對）",
+    "ThousandEyes 事件時間軸（15:39–21:20 UTC）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "claims": [
+    "約 6 小時、2021/10/4 → research.md F7"
+   ],
+   "chars": 15,
+   "estSec": 3.5
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "sentence": 2,
+   "narration": "有時候，問題根本不在你這邊。",
+   "tts": "有時候，問題根本不在你這邊。",
+   "trigger": "「不在你這邊」虛線長到畫面上緣",
+   "visual": "一條紙虛線從手機頂端一格一格往斜上方長出去。長到畫面上緣時，鏡頭小幅往上帶一下（露出一點上面的桌面）再回來，暗示那一頭有東西。",
+   "assets": {
+    "A": {
+     "how": "紙虛線＝小紙條逐格貼上，前慢後快（3 幀一格→1 幀一格）",
+     "files": [
+      "a01-phone",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "同一張照片；螢光黃筆觸線從手機往畫面上緣擦出",
+     "files": [
+      "b01-phone",
+      "p-marker"
+     ]
+    }
+   },
+   "elements": [
+    "手機",
+    "紙虛線"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "有時候\n問題根本不在你這邊",
+    "en": "Sometimes the problem isn't on your side at all."
+   },
+   "motion": "進場：虛線逐格貼出。強調：鏡頭上帶 40px 再回，共 10 幀。退場：不退",
+   "transition": "虛線留在場上；手機螢幕內容換成照片格（螢幕裡捲動換頁），接 s03",
+   "pauseAfter": 0.25,
+   "chars": 12,
+   "estSec": 3.0
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "sentence": 3,
+   "narration": "你滑到的照片，原本都不在你手機裡喔。",
+   "tts": "你滑到的照片，原本都不在你手機裡喔。",
+   "trigger": "「照片」螢幕捲一下；「不在」照片被抽走",
+   "visual": "手機螢幕是三格照片。念到「照片」螢幕往上捲一下；念到「不在」三張照片依序被抽出螢幕，沿虛線往上滑走，螢幕只剩空白相框。",
+   "assets": {
+    "A": {
+     "how": "照片格用 a05 縮小三張；抽走後露出方格紙底空框",
+     "files": [
+      "a01-phone",
+      "a05-photo",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "手機照片上疊自製照片牆，照片逐格變灰色空框",
+     "files": [
+      "b01-phone"
+     ]
+    }
+   },
+   "elements": [
+    "手機",
+    "照片紙片 ×3",
+    "紙虛線"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "你滑到的照片\n原本都不在\n你手機裡喔",
+    "en": "The photos you scroll were never stored on your phone."
+   },
+   "motion": "進場：照片格已在。連續動作：三張照片間隔 5、3、2 幀滑出（越來越快）。退場：最後一張滑出上緣",
+   "transition": "鏡頭跟著最後一張照片沿虛線往上移，接 s04",
+   "chars": 16,
+   "estSec": 3.7
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "sentence": 4,
+   "narration": "那在哪？在別人的電腦裡。",
+   "tts": "那在哪？在別人的電腦裡。",
+   "trigger": "「那在哪」鏡頭上移；「別人的電腦」機櫃到位、照片貼上",
+   "visual": "鏡頭沿虛線一路往上，停在虛線終點的一座伺服器機櫃。剛剛那張照片貼到機櫃門上。",
+   "assets": {
+    "A": {
+     "how": "桌面直向平移約 1500px；機櫃紙片寬約 520px；照片貼在機櫃門上（轉 4 度）",
+     "files": [
+      "a02-rack",
+      "a05-photo",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "滿版機房走道照片，固定速度慢推近；一張小相片卡貼在角落",
+     "files": [
+      "b02-aisle"
+     ]
+    }
+   },
+   "elements": [
+    "機櫃",
+    "照片紙片",
+    "紙虛線"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "那在哪？\n在別人的電腦裡",
+    "en": "So where are they? On someone else's computers."
+   },
+   "motion": "進場：平移 10 幀（先快後慢）。一般貼上：照片 6 幀。退場：照片縮進機櫃",
+   "transition": "機櫃留在原位，下一鏡在它身上貼名牌",
+   "chars": 10,
+   "estSec": 2.3
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "sentence": "5–6a",
+   "narration": "那種電腦，就叫 Server。中文叫伺服器，",
+   "tts": "那種電腦，就叫 Server。中文叫伺服器，",
+   "trigger": "「Server」標籤貼上（對齊開口那一幀）；「伺服器」麥克筆劃底",
+   "visual": "一張撕邊標籤貼到機櫃上：大字 Server，下方小字 伺服器，一次貼上。念到「伺服器」，小字下面擦出麥克筆底。",
+   "assets": {
+    "A": {
+     "how": "標籤紙＋紙膠帶；Server 用 Inter 800、伺服器用 Noto Sans TC 900，都由 Remotion 排字",
+     "files": [
+      "a02-rack",
+      "p-label",
+      "p-tape",
+      "p-marker"
+     ]
+    },
+    "B": {
+     "how": "機櫃特寫照片；SERVER 大字從遮罩下推上，下方小字「伺服器」螢光黃底",
+     "files": [
+      "b03-rack-close",
+      "p-marker"
+     ]
+    }
+   },
+   "elements": [
+    "機櫃",
+    "標籤（Server／伺服器）"
+   ],
+   "onScreenText": "Server｜伺服器",
+   "subtitle": {
+    "zh": "那種電腦\n就叫 Server\n中文叫伺服器",
+    "en": "That kind of computer is called a server."
+   },
+   "motion": "重點貼法：念到「就叫」先停 5 幀，標籤 4 幀重貼下去＋鏡頭推近 0.96→1。麥克筆底 8 幀。退場：不退",
+   "transition": "同場繼續，下一鏡用動作示範它在做什麼",
+   "chars": 13,
+   "estSec": 3.2
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "sentence": "6b",
+   "narration": "說穿了，就是專門幫別人做事的電腦啦。",
+   "tts": "說穿了，就是專門幫別人做事的電腦啦。",
+   "trigger": "「幫別人做事」三張小紙片依序進出機櫃",
+   "visual": "不貼字。三張不同顏色的小紙片（照片、信封、愛心）依序從畫面外沿虛線送進機櫃，再從機櫃送出去。一進一出、一直在忙。",
+   "assets": {
+    "A": {
+     "how": "小紙片：照片 a05 縮小、信封 a07、愛心本機剪；同屏最多同時動 2 張",
+     "files": [
+      "a02-rack",
+      "a05-photo",
+      "a07-envelope",
+      "p-heart",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "機櫃照片續推近；三張自製小卡依序滑過畫面",
+     "files": [
+      "b03-rack-close"
+     ]
+    }
+   },
+   "elements": [
+    "機櫃（含標籤）",
+    "流動的小紙片",
+    "紙虛線"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "說穿了\n就是專門幫別人\n做事的電腦啦",
+    "en": "Simply put: a computer whose whole job is doing things for others."
+   },
+   "motion": "連續動作：三張紙片進出，節奏快—慢—快。機櫃每收一張輕壓一次。退場：紙片都送走",
+   "transition": "一張牛皮色紙從下往上蓋住機櫃（8 幀），接 s07",
+   "chars": 16,
+   "estSec": 3.7
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "sentence": 7,
+   "narration": "你可以把它想成餐廳的廚房。",
+   "tts": "你可以把它想成餐廳的廚房。",
+   "trigger": "「廚房」色紙掀開、標籤貼上",
+   "visual": "色紙掀開，機櫃的位置變成餐廳出餐口（有檯面、有服務鈴的小窗口），窗內隱約還看得到機櫃。貼上標籤「廚房」。",
+   "assets": {
+    "A": {
+     "how": "出餐口紙片是中空的框，疊在機櫃上；標籤「廚房」",
+     "files": [
+      "a03-pass",
+      "a02-rack",
+      "p-label"
+     ]
+    },
+    "B": {
+     "how": "空無一人的餐廳出餐口照片；大字「廚房」",
+     "files": [
+      "b04-kitchen-pass"
+     ]
+    }
+   },
+   "elements": [
+    "出餐口",
+    "窗內機櫃",
+    "標籤 廚房"
+   ],
+   "onScreenText": "廚房",
+   "subtitle": {
+    "zh": "你可以把它想成\n餐廳的廚房",
+    "en": "Think of it as a restaurant kitchen."
+   },
+   "motion": "進場：色紙掀開 8 幀。一般貼上：標籤 6 幀對齊「廚房」。退場：不退",
+   "transition": "鏡頭沿虛線往下拉回，拉成直向全景：手機在下方近處（大）、廚房在上方遠處（小），虛線斜著連起來",
+   "chars": 12,
+   "estSec": 2.8
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "sentence": "8a",
+   "narration": "你一邊滑，手機就一邊點餐，",
+   "tts": "你一邊滑，手機就一邊點餐，",
+   "trigger": "「滑」螢幕捲動；「點餐」小單出發",
+   "visual": "直向全景。手機螢幕往上捲一下，一張小單（上面只畫一個小相片圖樣，不寫字）從手機出發，沿斜虛線往上走到出餐口。再捲一下，第二張跟上。",
+   "assets": {
+    "A": {
+     "how": "手機寬約 520px 在下、出餐口寬約 420px 在上；小單本機做",
+     "files": [
+      "a01-phone",
+      "a03-pass",
+      "p-ticket",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "上下分割：下半手機照片、上半出餐口照片；自製小卡從下往上飛",
+     "files": [
+      "b01-phone",
+      "b04-kitchen-pass"
+     ]
+    }
+   },
+   "elements": [
+    "手機",
+    "小單",
+    "出餐口"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "你一邊滑\n手機就一邊點餐",
+    "en": "As you scroll, your phone keeps placing orders."
+   },
+   "motion": "連續動作：小單逐格移動，起步慢、中段快；到窗口時服務鈴點一下。退場：小單滑進窗口",
+   "transition": "構圖不動，同一條路線反方向送回照片（一去一回）",
+   "chars": 11,
+   "estSec": 2.6
+  },
+  {
+   "id": "s09",
+   "beat": "mechanism",
+   "sentence": "8b",
+   "narration": "廚房做好，馬上把照片送回來。",
+   "tts": "廚房做好，馬上把照片送回來。",
+   "trigger": "「做好」照片出現在檯面；「送回來」照片貼回手機",
+   "visual": "出餐口檯面上出現一張照片，沿同一條虛線滑下來，貼進手機螢幕的空框。第二張緊接著回來。",
+   "assets": {
+    "A": {
+     "how": "照片 a05 重用；手機空框被填滿",
+     "files": [
+      "a01-phone",
+      "a03-pass",
+      "a05-photo",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "上半出餐口照片上疊相片卡，往下滑進下半的手機畫面",
+     "files": [
+      "b01-phone",
+      "b04-kitchen-pass"
+     ]
+    }
+   },
+   "elements": [
+    "出餐口",
+    "照片紙片",
+    "手機"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "廚房做好\n馬上把照片送回來",
+    "en": "The kitchen plates it and sends the photo right back."
+   },
+   "motion": "連續動作：照片下滑比小單上去更快（「馬上」）。貼回時手機輕壓一次。退場：不退",
+   "transition": "深綠切割墊像大色紙由上蓋下（8 幀），只留出餐口，進入「轉」",
+   "chars": 12,
+   "estSec": 2.8
+  },
+  {
+   "id": "s10",
+   "beat": "twist",
+   "sentence": 9,
+   "narration": "那萬一，廚房出事了呢？",
+   "tts": "那萬一，廚房出事了呢？",
+   "trigger": "「出事」燈暗、紅紙條貼上",
+   "visual": "深綠切割墊上只剩出餐口，鏡頭推近。念到「出事」，窗口的燈暗掉，一張番茄紅紙條斜貼上去。",
+   "assets": {
+    "A": {
+     "how": "出餐口加一層暗色紙疊；番茄紅撕邊紙條",
+     "files": [
+      "a03-pass",
+      "p-strip"
+     ]
+    },
+    "B": {
+     "how": "出餐口照片壓暗，警示橘大字「出事？」（全片第 1 次用橘）",
+     "files": [
+      "b04-kitchen-pass"
+     ]
+    }
+   },
+   "elements": [
+    "出餐口（暗）",
+    "紅紙條"
+   ],
+   "onScreenText": "出事？",
+   "subtitle": {
+    "zh": "那萬一\n廚房出事了呢？",
+    "en": "But what if something goes wrong at the kitchen?"
+   },
+   "motion": "重點貼法：燈暗 6 幀後停 4 幀，紅紙條 4 幀重貼＋鏡頭推近 0.96→1。之後靜止到停頓結束",
+   "transition": "鏡頭往下拉，畫面下方露出一排手機，接「所有客人」",
+   "pauseAfter": 0.35,
+   "chars": 9,
+   "estSec": 2.4
+  },
+  {
+   "id": "s11",
+   "beat": "twist",
+   "sentence": 10,
+   "narration": "所有客人，通通沒飯吃。",
+   "tts": "所有客人，通通沒飯吃。",
+   "trigger": "「通通」三支手機同一幀跳出錯誤畫面",
+   "visual": "暗掉的出餐口在上，下面並排三支手機（每支寬約 290px）。念到「通通」，三支同時變成開場那個「無法載入」畫面。",
+   "assets": {
+    "A": {
+     "how": "手機紙片重複 3 個；螢幕用開場同一個 HTML 錯誤畫面",
+     "files": [
+      "a01-phone",
+      "a03-pass",
+      "p-spinner"
+     ]
+    },
+    "B": {
+     "how": "桌上三支手機的俯拍照片（無人），螢幕疊錯誤畫面",
+     "files": [
+      "b05-phones-desk",
+      "p-spinner"
+     ]
+    }
+   },
+   "elements": [
+    "出餐口（暗）",
+    "手機 ×3"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "所有客人\n通通沒飯吃",
+    "en": "Every customer goes hungry, all at once."
+   },
+   "motion": "進場：手機由左到右貼上（隔 3、2 幀）。強調：三個錯誤畫面同一幀出現。退場：手機排往下滑出",
+   "transition": "鏡頭回到出餐口，一張日期紙條貼進來，話題帶到真實事件",
+   "chars": 9,
+   "estSec": 2.1
+  },
+  {
+   "id": "s12",
+   "beat": "twist",
+   "sentence": "11a",
+   "narration": "2021 年就有一次，IG 跟臉書整個掛掉，",
+   "tts": "二零二一年就有一次，I G 跟臉書整個掛掉，",
+   "trigger": "「2021 年」日期紙條；「掛掉」鐵捲門拉下",
+   "visual": "出餐口上方貼上日期紙條「2021/10/4」。念到「掛掉」，出餐口自己的鐵捲門（橫紋紙）由上拉下，把窗口整個蓋住。畫面下緣出處帶：來源：Meta 工程部落格 2021/10。",
+   "assets": {
+    "A": {
+     "how": "日期用 Inter 800 排；鐵捲門＝本機做的橫紋紙，逐格下拉",
+     "files": [
+      "a03-pass",
+      "p-shutter",
+      "p-strip"
+     ]
+    },
+    "B": {
+     "how": "拉下的鐵捲門照片（無招牌）；日期小標 2021/10/4",
+     "files": [
+      "b06-shutter"
+     ]
+    }
+   },
+   "elements": [
+    "出餐口",
+    "日期紙條",
+    "鐵捲門"
+   ],
+   "onScreenText": "2021/10/4",
+   "subtitle": {
+    "zh": "2021 年就有一次\nIG 跟臉書\n整個掛掉",
+    "en": "It happened in 2021: Instagram and Facebook went down completely,"
+   },
+   "motion": "一般貼上：日期紙條 6 幀。連續動作：鐵捲門分四格下拉，最後一格最重。退場：不退",
+   "transition": "鐵捲門落到底的那一幀，大數字紙片從門後面推出來（因果相接）",
+   "sources": [
+    "Meta 工程部落格 2021/10/4、10/5（research.md S9；原文尚未開啟核對）",
+    "ThousandEyes 事件時間軸（15:39–21:20 UTC）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "chars": 17,
+   "estSec": 4.0
+  },
+  {
+   "id": "s13",
+   "beat": "twist",
+   "sentence": "11b",
+   "narration": "大概六個小時。",
+   "tts": "大概六個小時。",
+   "trigger": "「六個小時」大紙片推出",
+   "visual": "一張大紙片「約 6 小時」佔畫面上半。下方那排三支手機還停在錯誤畫面。出處帶續留。",
+   "assets": {
+    "A": {
+     "how": "大數字 Inter 800＋Noto Sans TC 900",
+     "files": [
+      "a01-phone",
+      "p-strip",
+      "p-spinner"
+     ]
+    },
+    "B": {
+     "how": "壓暗的機房照片上大字「約 6 小時」，「6」螢光黃底",
+     "files": [
+      "b02-aisle"
+     ]
+    }
+   },
+   "elements": [
+    "大紙片 約 6 小時",
+    "手機 ×3（錯誤畫面）"
+   ],
+   "onScreenText": "約 6 小時",
+   "subtitle": {
+    "zh": "大概六個小時",
+    "en": "for about six hours."
+   },
+   "motion": "重點貼法：前一鏡收尾停 5 幀，大紙片 4 幀由下推上＋鏡頭推近 0.96→1。之後靜止到停頓結束",
+   "transition": "大紙片縮小移到右上角；切割墊上滑進一條深藍色紙（夜晚），接 s14",
+   "pauseAfter": 0.3,
+   "sources": [
+    "Meta 工程部落格 2021/10/4、10/5（research.md S9；原文尚未開啟核對）",
+    "ThousandEyes 事件時間軸（15:39–21:20 UTC）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "chars": 6,
+   "estSec": 2.0
+  },
+  {
+   "id": "s14",
+   "beat": "twist",
+   "sentence": 12,
+   "narration": "台灣這邊，差不多從半夜掛到天亮。",
+   "tts": "台灣這邊，差不多從半夜掛到天亮。",
+   "trigger": "「半夜」月亮紙片；「天亮」色紙換成晨色、太陽升起",
+   "visual": "一支手機居中，一直是錯誤畫面。背後的色紙從深藍（月亮紙片）慢慢被淺黃色紙推走（太陽紙片升起）。右上角留著縮小的「約 6 小時」。小標：台灣時間。",
+   "assets": {
+    "A": {
+     "how": "月亮、太陽是本機剪的圓紙片；兩張色紙橫向推移",
+     "files": [
+      "a01-phone",
+      "p-disc",
+      "p-strip"
+     ]
+    },
+    "B": {
+     "how": "同一支手機照片，背景由夜色調漸換成晨色調（兩張預先處理的圖）",
+     "files": [
+      "b01-phone"
+     ]
+    }
+   },
+   "elements": [
+    "手機（錯誤畫面）",
+    "日夜色紙（月→日）",
+    "小紙片 約 6 小時"
+   ],
+   "onScreenText": "（小標）台灣時間",
+   "subtitle": {
+    "zh": "台灣這邊\n差不多從半夜\n掛到天亮",
+    "en": "In Taiwan, that was roughly midnight until dawn."
+   },
+   "motion": "連續動作：色紙推移貫穿整句（不停），月亮下、太陽上。手機不動。退場：色紙與手機往下滑出",
+   "transition": "鏡頭回到拉下的鐵捲門，接「原因呢」",
+   "sources": [
+    "時區換算：15:39 UTC＝台灣 10/4 23:39；DNS 於 21:20 UTC 恢復＝台灣 10/5 05:20（ThousandEyes，二手）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "chars": 14,
+   "estSec": 3.3
+  },
+  {
+   "id": "s15",
+   "beat": "twist",
+   "sentence": "13a",
+   "narration": "原因呢？他們公司自己改錯設定，",
+   "tts": "原因呢？他們公司自己改錯設定，",
+   "trigger": "「原因呢」推近鐵捲門；「改錯」設定單上的紅叉擦出",
+   "visual": "鐵捲門特寫。一張設定單小紙片（三個勾選格）貼到門上，念到「改錯」，其中一格被紅筆打叉。",
+   "assets": {
+    "A": {
+     "how": "設定單＝小單 p-ticket 換版面，勾選格由 Remotion 畫；紅叉用遮罩擦出",
+     "files": [
+      "a03-pass",
+      "p-shutter",
+      "p-ticket",
+      "p-marker"
+     ]
+    },
+    "B": {
+     "how": "鐵捲門照片；自製設定單小卡＋紅叉筆跡",
+     "files": [
+      "b06-shutter",
+      "p-marker"
+     ]
+    }
+   },
+   "elements": [
+    "鐵捲門",
+    "設定單",
+    "紅叉"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "原因呢？\n他們公司\n自己改錯設定",
+    "en": "The cause? The company botched its own configuration,"
+   },
+   "motion": "一般貼上：設定單 6 幀。強調：紅叉兩筆各 4 幀。退場：設定單留著",
+   "transition": "同場繼續，鎖頭扣上",
+   "sources": [
+    "Meta 工程部落格 2021/10/4、10/5（research.md S9；原文尚未開啟核對）",
+    "ThousandEyes 事件時間軸（15:39–21:20 UTC）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "chars": 13,
+   "estSec": 3.0
+  },
+  {
+   "id": "s16",
+   "beat": "twist",
+   "sentence": "13b",
+   "narration": "等於把廚房的門鎖死了。",
+   "tts": "等於把廚房的門鎖死了。",
+   "trigger": "「鎖死」鎖頭扣上；小單撞門彈回",
+   "visual": "一把紙鎖頭扣在鐵捲門下緣。兩張小單沿虛線送上來，撞到門、彈回去，堆在門口。廚房沒壞，是進不去。",
+   "assets": {
+    "A": {
+     "how": "鎖頭紙片；小單重用",
+     "files": [
+      "p-shutter",
+      "a08-lock",
+      "p-ticket",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "鐵捲門照片上疊鎖頭特寫；自製小卡在門前堆疊",
+     "files": [
+      "b06-shutter"
+     ]
+    }
+   },
+   "elements": [
+    "鐵捲門",
+    "鎖頭",
+    "被擋的小單"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "等於把廚房的門\n鎖死了",
+    "en": "which was like locking the kitchen door shut."
+   },
+   "motion": "強調：鎖頭 4 幀扣上、門輕震一次。連續動作：小單彈回要比送來慢。退場：切割墊連同所有紙片往上掀走",
+   "transition": "深綠切割墊往上掀開（8 幀），底下是開場的米色桌面和那支手機（回到起點）",
+   "sources": [
+    "Meta 工程部落格 2021/10/4、10/5（research.md S9；原文尚未開啟核對）",
+    "ThousandEyes 事件時間軸（15:39–21:20 UTC）"
+   ],
+   "sourceBand": "來源：Meta 工程部落格 2021/10",
+   "chars": 10,
+   "estSec": 2.3
+  },
+  {
+   "id": "s17",
+   "beat": "payoff",
+   "sentence": 14,
+   "narration": "所以下次 LINE 打不開，先不要怪自己網路。",
+   "tts": "所以下次 Line 打不開，先不要怪自己網路。",
+   "trigger": "「LINE」螢幕上方小標出現；「先不要怪」開場紙條貼回",
+   "visual": "回到第一鏡的構圖。手機螢幕是中性的聊天畫面（灰色泡泡＋「傳送中…」），螢幕上方一個小標 LINE（純文字，不用商標）。開場那張紙條貼回來，「不是你」被麥克筆圈起來。",
+   "assets": {
+    "A": {
+     "how": "重用 s01 的素材與構圖；多一圈麥克筆圈",
+     "files": [
+      "a01-phone",
+      "p-strip",
+      "p-tape",
+      "p-spinner",
+      "p-marker"
+     ]
+    },
+    "B": {
+     "how": "回到開場的手機照片，螢幕換聊天畫面",
+     "files": [
+      "b01-phone",
+      "p-spinner"
+     ]
+    }
+   },
+   "elements": [
+    "手機（聊天畫面）",
+    "大紙條（重用）"
+   ],
+   "onScreenText": "（重用開場紙條）",
+   "subtitle": {
+    "zh": "所以下次 LINE 打不開\n先不要怪自己網路",
+    "en": "Next time LINE won't open, don't blame your connection just yet."
+   },
+   "motion": "一般貼上：紙條 6 幀。強調：麥克筆圈 8 幀。退場：紙條滑走",
+   "transition": "鏡頭往後拉成直向全景：手機在下、虛線斜上、廚房在上",
+   "chars": 16,
+   "estSec": 3.7
+  },
+  {
+   "id": "s18",
+   "beat": "payoff",
+   "sentence": 15,
+   "narration": "搞不好，是人家的廚房出事了。",
+   "tts": "搞不好，是人家的廚房出事了。",
+   "trigger": "「廚房」全景到位；「出事」紅牌晃一下",
+   "visual": "直向全景。上方的出餐口鐵捲門拉著、掛一張紅牌；下方手機還在等。兩邊同時在畫面裡，一看就懂是哪一邊的問題。",
+   "assets": {
+    "A": {
+     "how": "重用 s16 的鐵捲門；紅牌寫「出事中」",
+     "files": [
+      "a01-phone",
+      "a03-pass",
+      "p-shutter",
+      "p-strip",
+      "p-dash"
+     ]
+    },
+    "B": {
+     "how": "上下分割：上半鐵捲門照片、下半手機照片",
+     "files": [
+      "b01-phone",
+      "b06-shutter"
+     ]
+    }
+   },
+   "elements": [
+    "手機",
+    "虛線",
+    "出餐口（鐵捲門＋紅牌）"
+   ],
+   "onScreenText": "（紅牌）出事中",
+   "subtitle": {
+    "zh": "搞不好\n是人家的廚房出事了",
+    "en": "It may well be their kitchen that's in trouble."
+   },
+   "motion": "進場：拉遠 8 幀。強調：紅牌晃一次（±2 度，6 幀）。退場：鏡頭推回手機",
+   "transition": "鏡頭沿虛線推回手機螢幕（不換景），螢幕裡跳出留言框",
+   "chars": 12,
+   "estSec": 2.8
+  },
+  {
+   "id": "s19",
+   "beat": "cta",
+   "sentence": 16,
+   "narration": "你印象最深的一次，是哪個 App 掛掉？",
+   "tts": "你印象最深的一次，是哪個 App 掛掉？",
+   "trigger": "「哪個 App」三個空白 App 方塊依序跳一下",
+   "visual": "還是同一支手機。螢幕裡跳出一個空白留言框，游標在閃；留言框上方三個沒有圖案的圓角方塊（代表 App，不畫任何商標），念到「哪個 App」依序輕跳。",
+   "assets": {
+    "A": {
+     "how": "全部用 HTML 排在手機螢幕裡",
+     "files": [
+      "a01-phone"
+     ]
+    },
+    "B": {
+     "how": "手機照片；螢幕疊自製留言框",
+     "files": [
+      "b01-phone"
+     ]
+    }
+   },
+   "elements": [
+    "手機",
+    "留言框（游標）",
+    "空白方塊 ×3"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "你印象最深的一次\n是哪個 App 掛掉？",
+    "en": "Which app outage do you remember most?"
+   },
+   "motion": "進場：留言框由螢幕下緣推上 6 幀。強調：方塊依序跳（隔 3 幀）。退場：不退",
+   "transition": "鏡頭離開手機，沿虛線一路往上（和 s04 同一個動作，觀眾認得這條路）",
+   "chars": 14,
+   "estSec": 3.3
+  },
+  {
+   "id": "s20",
+   "beat": "payoff",
+   "sentence": 17,
+   "narration": "對了，這麼多 Server，到底都放在哪裡？",
+   "tts": "對了，這麼多 Server，到底都放在哪裡？",
+   "trigger": "「這麼多」機櫃一排排貼上；「放在哪裡」問號紙片",
+   "visual": "鏡頭越過出餐口繼續往上，一個機櫃變成一整面機櫃（同一張圖排成 3×3）。中央貼上一張大問號紙片「放在哪？」。",
+   "assets": {
+    "A": {
+     "how": "機櫃紙片重複 9 個；問號紙片",
+     "files": [
+      "a02-rack",
+      "p-strip"
+     ]
+    },
+    "B": {
+     "how": "機櫃特寫拉遠到整排機房走道；大字「放在哪？」",
+     "files": [
+      "b02-aisle",
+      "b03-rack-close"
+     ]
+    }
+   },
+   "elements": [
+    "機櫃牆",
+    "問號紙片"
+   ],
+   "onScreenText": "放在哪？",
+   "subtitle": {
+    "zh": "對了\n這麼多 Server\n到底都放在哪裡？",
+    "en": "By the way, where do all these servers actually live?"
+   },
+   "motion": "連續動作：機櫃三排依序貼上（隔 4、2 幀）。重點貼法：問號停 4 幀再貼＋鏡頭推近 0.96→1。退場：機櫃牆往下滑出一半",
+   "transition": "機櫃牆往下滑，上方空出一片米色桌面當「天空」，雲從那裡進來",
+   "chars": 13,
+   "estSec": 3.0
+  },
+  {
+   "id": "s21",
+   "beat": "payoff",
+   "sentence": 18,
+   "narration": "大家說的雲端，根本不在天上。",
+   "tts": "大家說的雲端，根本不在天上。",
+   "trigger": "「雲端」紙雲滑入；「不在天上」雲往下掉出畫面",
+   "visual": "一朵紙雲掛在畫面上方。念到「不在天上」，雲一格一格往下掉，穿過機櫃牆前面，掉出畫面下緣。不讓觀眾看到它落在哪。",
+   "assets": {
+    "A": {
+     "how": "紙雲紙片",
+     "files": [
+      "a10-cloud",
+      "a02-rack"
+     ]
+    },
+    "B": {
+     "how": "天空與雲的照片往下搖，搖到一半就切",
+     "files": [
+      "b08-sky"
+     ]
+    }
+   },
+   "elements": [
+    "紙雲",
+    "機櫃牆（半露）"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "大家說的雲端\n根本不在天上",
+    "en": "The 'cloud' everyone talks about isn't up in the sky at all."
+   },
+   "motion": "進場：雲由上滑入 6 幀。連續動作：下落先慢後快，10 幀。退場：雲出畫",
+   "transition": "鏡頭跟著雲往下追",
+   "chars": 12,
+   "estSec": 2.8
+  },
+  {
+   "id": "s22",
+   "beat": "payoff",
+   "sentence": 19,
+   "narration": "下一集，帶你去看。",
+   "tts": "下一集，帶你去看。",
+   "trigger": "「帶你去看」片尾紙由下往上蓋住",
+   "visual": "鏡頭往下追那朵雲，剛要追到時，一張米白色大紙由下往上蓋住整個畫面。答案留到下一集。",
+   "assets": {
+    "A": {
+     "how": "米白大紙＝片尾卡的底",
+     "files": [
+      "p-strip",
+      "p-bg"
+     ]
+    },
+    "B": {
+     "how": "畫面被深色大色塊由下往上蓋住",
+     "files": []
+    }
+   },
+   "elements": [
+    "下移中的桌面",
+    "米白大紙"
+   ],
+   "onScreenText": "（無）",
+   "subtitle": {
+    "zh": "下一集\n帶你去看",
+    "en": "Next episode, I'll take you there."
+   },
+   "motion": "連續動作：鏡頭下移 8 幀，大紙 8 幀蓋上。退場：無",
+   "transition": "蓋上的那張紙就是片尾卡",
+   "chars": 7,
+   "estSec": 2.0
+  },
+  {
+   "id": "s23",
+   "beat": "end",
+   "sentence": null,
+   "narration": "（無旁白）",
+   "tts": "",
+   "trigger": "接在懸念後，無觸發詞",
+   "visual": "片尾卡：頻道名「白話國際」、slogan「一支講透一件事」、下一集預告用問句「下一集：雲端，到底在哪？」，角落一朵小紙雲。",
+   "assets": {
+    "A": {
+     "how": "米白紙底＋紙膠帶；紙雲縮小重用",
+     "files": [
+      "a10-cloud",
+      "p-tape",
+      "p-strip"
+     ]
+    },
+    "B": {
+     "how": "深底＋紙白大字；預告用螢光黃底",
+     "files": []
+    }
+   },
+   "elements": [
+    "頻道名",
+    "slogan",
+    "下一集預告"
+   ],
+   "onScreenText": "白話國際｜下一集：雲端，到底在哪？",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "motion": "進場：三行字依序由遮罩下推上（隔 5 幀）。停到結束",
+   "transition": "片尾，無下一鏡",
+   "chars": 0,
+   "estSec": 2.5
+  }
+ ]
+}
