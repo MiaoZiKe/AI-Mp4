@@ -16,7 +16,7 @@ export type MoveSpec = { at?: string; to?: Partial<Place>; path?: [number, numbe
 export type ItemSpec = Partial<Place> & {
   id?: string;
   ref?: string;
-  type?: "img" | "strip" | "phone" | "path" | "pass";
+  type?: "img" | "strip" | "phone" | "path" | "pass" | "num" | "stack" | "bars" | "line";
   asset?: string;
   layer?: Layer;
   z?: number;

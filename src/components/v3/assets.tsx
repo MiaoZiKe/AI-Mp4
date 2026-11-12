@@ -1,10 +1,17 @@
 // v3 紙材：public/v3/<slug>/*.png＋meta.json（scripts/make-paper.py 產生；lib.mjs 讀進 inputProps.v3.assets）
 import React, { createContext, useContext } from "react";
 import { Img, staticFile } from "remotion";
+import { channelV3, themeV3, type ChannelV3, type ThemeV3 } from "../../theme";
 
 export type AssetMeta = { w: number; h: number; body: [number, number, number, number]; [k: string]: any };
-export type AssetCtx = { slug: string; assets: Record<string, AssetMeta>; ambient: boolean };
-export const AssetContext = createContext<AssetCtx>({ slug: "", assets: {}, ambient: true });
+export type AssetCtx = { slug: string; assets: Record<string, AssetMeta>; ambient: boolean; theme: ThemeV3; channel: ChannelV3 };
+export const AssetContext = createContext<AssetCtx>({ slug: "", assets: {}, ambient: true, theme: themeV3(), channel: channelV3() });
+/** 套用 skin 後的色票（THEME_V3 ＋ script.json 的 skin）。v3 元件的顏色一律從這裡拿 */
+export const useT = () => useContext(AssetContext).theme;
+export const useChannel = () => useContext(AssetContext).channel;
+/** VideoV3／CoverV3 共用：把 script 的 slug、紙材 meta、skin、channel 包成 context 值 */
+export const makeCtx = (p: { slug: string; v3?: { assets: Record<string, any> }; skin?: string; channel?: Partial<ChannelV3> }, ambient: boolean): AssetCtx =>
+  ({ slug: p.slug, assets: (p.v3?.assets ?? {}) as Record<string, AssetMeta>, ambient, theme: themeV3(p.skin), channel: channelV3(p.channel) });
 export const useAssets = () => useContext(AssetContext);
 export const useAsset = (name: string) => {
   const c = useAssets();

@@ -1,11 +1,11 @@
 // v3 固定層：字幕紙條（PaperCaption）、出處紙條、頁首、片尾卡。座標讀 LAYOUT_V3，顏色讀 THEME_V3。
 import React from "react";
 import { Easing, useCurrentFrame } from "remotion";
-import { FONT_EN, FONT_ZH, LAYOUT_V3 as L, THEME_V3 as T } from "../../theme";
+import { FONT_EN, FONT_ZH, LAYOUT_V3 as L } from "../../theme";
 import { DUR, EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { enChunks, type PhraseCue } from "../v2/Tracks";
-import { Paper } from "./assets";
+import { Paper, useChannel, useT } from "./assets";
 import { MarkerHighlight, tidyQ } from "./Pieces";
 
 const IN = DUR.s - 2, OVERLAP = 2;
@@ -21,6 +21,7 @@ const display = (p: string) => p.replace(/\n/g, "").replace(/[，、；：。]+$
  */
 export const PaperCaption: React.FC<{ cues: PhraseCue[]; endAt?: number }> = ({ cues, endAt = Infinity }) => {
   const f = useCurrentFrame();
+  const T = useT();
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
   const first = act[0].window[0], last = Math.min(act[act.length - 1].window[1], endAt);   // 片尾卡一出來就連字一起滑走，不留空紙條
@@ -69,6 +70,7 @@ export const PaperCaption: React.FC<{ cues: PhraseCue[]; endAt?: number }> = ({ 
 /** 出處紙條：牛皮色撕邊小紙條貼在字幕下方；相鄰幕文字相同就不重貼。文字＝scene.sources（已是「來源：…」整句就照用） */
 export const SourceTrackV3: React.FC<{ cues: { sources: string[]; window: [number, number] }[] }> = ({ cues }) => {
   const f = useCurrentFrame();
+  const T = useT();
   const merged: { text: string; window: [number, number] }[] = [];
   for (const c of cues) {
     if (!c.sources?.length) continue;
@@ -90,23 +92,37 @@ export const SourceTrackV3: React.FC<{ cues: { sources: string[]; window: [numbe
 };
 
 /** 頁首：紅圓紙片＋「白話國際」、右上「國際白話講」膠囊；dark＝切割墊蓋到頁首時換成淺色字 */
-export const HeaderV3: React.FC<{ dark?: boolean; plate?: number; plateLeft?: number; top?: number }> = ({ dark, plate = -1, plateLeft = 99, top }) => (
+export const HeaderV3: React.FC<{ dark?: boolean; plate?: number; plateLeft?: number; top?: number }> = ({ dark: darkIn, plate: plateIn = -1, plateLeft: plateLeftIn = 99, top }) => {
+  const T = useT(), ch = useChannel();
+  // skin 的 headerPlate＝紙底一直墊著（軟木板這種花底）；deskDark＝桌面本身是深色，沒墊紙底時字用淺色
+  const plate = plateIn < 0 && T.headerPlate ? 99 : plateIn;
+  const plateLeft = plateIn < 0 && T.headerPlate ? 99 : plateLeftIn;
+  const dark = plate >= 0 ? false : darkIn;
+  // 紙底寬度跟著字數走（預設 4 字／5 字時就是原本的 290／258）
+  const dn = [...ch.name].length - 4, dt = [...ch.tag].length - 5;
+  const plates = [[-22, -14, 290 + dn * 42, -1.2], [L.W - 2 * L.X - 236 - dt * 28, -12, 258 + dt * 28, 1]] as const;
+  return (
   <div style={{ position: "absolute", left: L.X, right: L.X, top: top ?? L.HEADER_TOP, height: L.HEADER_H, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: FONT_ZH }}>
     {/* plate＝紙底已貼上幾幀（−1＝沒有）：兩張小白紙墊在字後面，4 幀壓下來 */}
-    {plate >= 0 ? ([[-22, -14, 290, -1.2], [L.W - 2 * L.X - 236, -12, 258, 1]] as const).map(([x, y, w, r], i) => { const p = tween(plate, i * 2, DUR.xs, EASE.enter), q = plateLeft <= 4 ? 1 - plateLeft / 4 : 0; return <div key={i} style={{ position: "absolute", left: x, top: y - Math.round(10 * (1 - p)), transform: `rotate(${r}deg) scale(${(1 + 0.06 * (1 - p)).toFixed(3)})`, clipPath: q > 0 ? `inset(-40px -40px -40px ${(100 * q).toFixed(0)}%)` : undefined }}><Paper asset="label-s" w={w} /></div>; }) : null}
+    {plate >= 0 ? plates.map(([x, y, w, r], i) => { const p = tween(plate, i * 2, DUR.xs, EASE.enter), q = plateLeft <= 4 ? 1 - plateLeft / 4 : 0; return <div key={i} style={{ position: "absolute", left: x, top: y - Math.round(10 * (1 - p)), transform: `rotate(${r}deg) scale(${(1 + 0.06 * (1 - p)).toFixed(3)})`, clipPath: q > 0 ? `inset(-40px -40px -40px ${(100 * q).toFixed(0)}%)` : undefined }}><Paper asset="label-s" w={w} /></div>; }) : null}
     <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14, fontWeight: T.weight.zh, fontSize: 40, letterSpacing: "0.04em", color: dark ? T.onDark : T.ink }}>
-      <Paper asset="dot" w={28} />白話國際
+      <Paper asset="dot" w={28} />{ch.name}
     </div>
-    <div style={{ position: "relative", fontWeight: T.weight.body, fontSize: 26, letterSpacing: "0.08em", color: dark ? T.onDark2 : T.blue, border: `3px solid ${dark ? T.onDark2 : T.blue}`, borderRadius: 6, padding: "6px 20px" }}>國際白話講</div>
+    <div style={{ position: "relative", fontWeight: T.weight.body, fontSize: 26, letterSpacing: "0.08em", color: dark ? T.onDark2 : T.blue, border: `3px solid ${dark ? T.onDark2 : T.blue}`, borderRadius: 6, padding: "6px 20px" }}>{ch.tag}</div>
   </div>
-);
+  );
+};
 
 /**
  * 片尾卡：米白大紙蓋滿畫面（接在前一幕由下蓋上來的那張紙之後），三行字依序由遮罩下推上（隔 5 幀）。
  * props：slogan（預設「一支講透一件事」）、next（下一集預告，問句）、cloud（角落小紙雲，預設 true）。start＝本幕開始的絕對幀。
  */
-export const EndCardV3: React.FC<{ start: number; slogan?: string; next?: string; cloud?: boolean }> = ({ start, slogan = "一支講透一件事", next, cloud = true }) => {
+export const EndCardV3: React.FC<{ start: number; slogan?: string; next?: string; cloud?: boolean }> = ({ start, slogan: sloganIn, next, cloud = true }) => {
   const f = useCurrentFrame();
+  const T = useT(), ch = useChannel();
+  const slogan = sloganIn ?? ch.slogan;
+  // 頻道名字級：4 個字以內 150px，再長就縮到一行放得下
+  const nameN = [...ch.name].length, nameSize = nameN <= 4 ? 150 : Math.floor(Math.min(150, (L.W - 2 * L.X - 98) / (nameN * 1.05)));
   const row = (i: number, child: React.ReactNode, h: number) => {
     const p = tween(f, start + (i === 2 ? 26 : i * 5), DUR.s, EASE.enter);   // 第三行（下一集預告）晚一拍才上來，片尾前 1 秒還有變化
     return <div style={{ height: h, overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}><div style={{ transform: `translateY(${Math.round(h * (1 - p))}px)` }}>{child}</div></div>;
@@ -117,7 +133,7 @@ export const EndCardV3: React.FC<{ start: number; slogan?: string; next?: string
     <div style={{ position: "absolute", inset: 0 }}>
       <div style={{ position: "absolute", left: -80, top: -120 }}><Paper asset="sheet-cream" /></div>
       <div style={{ position: "absolute", left: L.X, right: L.X, top: 640, fontFamily: FONT_ZH, color: T.ink, textAlign: "center" }}>
-        {row(0, <div style={{ display: "flex", alignItems: "center", gap: 28, fontWeight: T.weight.zh, fontSize: 150, letterSpacing: "0.04em", lineHeight: 1.2 }}><Paper asset="dot" w={70} />白話國際</div>, 200)}
+        {row(0, <div style={{ display: "flex", alignItems: "center", gap: 28, fontWeight: T.weight.zh, fontSize: nameSize, letterSpacing: "0.04em", lineHeight: 1.2 }}><Paper asset="dot" w={70} />{ch.name}</div>, 200)}
         {row(1, <div style={{ fontWeight: T.weight.zh, fontSize: 64, letterSpacing: "0.08em" }}><MarkerHighlight p={tween(f, start + 16, 44, Easing.linear)}>{slogan}</MarkerHighlight></div>, 120)}
         {next ? <div style={{ marginTop: 90 }}>{row(2, <div style={{ fontWeight: T.weight.zh, fontSize: 60, letterSpacing: "0.02em", color: T.blue, borderTop: `6px solid ${T.blue}`, borderBottom: `6px solid ${T.blue}`, padding: "26px 30px" }}>{next}</div>, 170)}</div> : null}
       </div>

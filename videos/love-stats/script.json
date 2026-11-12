@@ -1,0 +1,755 @@
+{
+  "slug": "love-stats",
+  "title": "一年少了 1.8 萬對新人，卡在哪一步？｜數字看感情（第 1 集）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "skin": "notebook",
+  "channel": {
+    "name": "感情",
+    "tag": "數字看感情",
+    "slogan": "先看數字，再談感情"
+  },
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "style": ""
+  },
+  "cover": {
+    "camera": {
+      "to": [
+        540,
+        960,
+        1
+      ]
+    },
+    "items": [
+      {
+        "type": "strip",
+        "layer": "screen",
+        "x": 540,
+        "y": 760,
+        "w": 900,
+        "lines": [
+          {
+            "t": "結婚的新人",
+            "size": 120
+          },
+          {
+            "t": "一年少 {1.8 萬對}",
+            "size": 120
+          },
+          {
+            "t": "卡在哪一步？",
+            "size": 64
+          }
+        ]
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "sentence": "1",
+      "para": 1,
+      "narration": "台灣去年結婚的新人，少了一萬八千多對。",
+      "tts": "台灣去年結婚的新人，少了一萬八千多對。",
+      "subtitle": {
+        "zh": "台灣去年\n結婚的新人\n少了一萬八千多對",
+        "en": "Last year in Taiwan, | newlywed couples | fell by more than 18,000."
+      },
+      "keywords": [
+        "一萬八千多對"
+      ],
+      "cues": [
+        {
+          "id": "last",
+          "text": "去年"
+        },
+        {
+          "id": "less",
+          "text": "少了"
+        },
+        {
+          "id": "num",
+          "text": "一萬八千"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "camera": {
+          "to": [
+            540,
+            960,
+            1
+          ]
+        },
+        "items": [
+          {
+            "id": "hook",
+            "type": "strip",
+            "layer": "screen",
+            "x": 540,
+            "y": 620,
+            "w": 900,
+            "lines": [
+              {
+                "t": "結婚的新人",
+                "size": 112
+              },
+              {
+                "t": "一年少 {1.8 萬對}",
+                "size": 112
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "來源：內政部戶政統計（2025 年）"
+      ]
+    },
+    {
+      "id": "s02",
+      "beat": "hook",
+      "sentence": "2",
+      "para": 1,
+      "narration": "而且，這還不是最讓人緊張的數字。",
+      "tts": "而且這還不是最讓人緊張的數字。",
+      "subtitle": {
+        "zh": "而且\n這還不是\n最讓人緊張的數字",
+        "en": "And that's not even | the most worrying number."
+      },
+      "keywords": [
+        "最讓人緊張"
+      ],
+      "cues": [
+        {
+          "id": "notyet",
+          "text": "還不是"
+        },
+        {
+          "id": "tense",
+          "text": "緊張"
+        }
+      ],
+      "pauseAfter": 0.25,
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s03",
+      "beat": "mechanism",
+      "sentence": "3",
+      "para": 2,
+      "narration": "去年登記結婚的，只有十萬四千多對。",
+      "tts": "去年登記結婚的，只有十萬四千多對。",
+      "subtitle": {
+        "zh": "去年登記結婚的\n只有\n十萬四千多對",
+        "en": "Only about 104,000 couples | registered a marriage last year."
+      },
+      "keywords": [
+        "十萬四千多對"
+      ],
+      "cues": [
+        {
+          "id": "reg",
+          "text": "登記結婚"
+        },
+        {
+          "id": "num",
+          "text": "十萬四千"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：內政部戶政統計（2025 年）"
+      ]
+    },
+    {
+      "id": "s04",
+      "beat": "mechanism",
+      "sentence": "4",
+      "para": 2,
+      "narration": "這是十年來最少，比十年前少了快三成。",
+      "tts": "這是十年來最少，比十年前少了快三成。",
+      "subtitle": {
+        "zh": "這是十年來最少\n比十年前\n少了快三成",
+        "en": "The lowest in ten years, | nearly 30% below a decade ago."
+      },
+      "keywords": [
+        "十年來最少",
+        "快三成"
+      ],
+      "cues": [
+        {
+          "id": "low",
+          "text": "最少"
+        },
+        {
+          "id": "ago",
+          "text": "十年前"
+        },
+        {
+          "id": "pct",
+          "text": "快三成"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：內政部戶政統計（2025 年）"
+      ]
+    },
+    {
+      "id": "s05",
+      "beat": "mechanism",
+      "sentence": "5a",
+      "para": 2,
+      "narration": "再看三十五到三十九歲的未婚率，",
+      "tts": "再看三十五到三十九歲的未婚率，",
+      "subtitle": {
+        "zh": "再看\n三十五到三十九歲\n的未婚率",
+        "en": "Now look at ages 35 to 39: | the never-married rate,"
+      },
+      "keywords": [
+        "未婚率"
+      ],
+      "cues": [
+        {
+          "id": "age",
+          "text": "三十五"
+        },
+        {
+          "id": "rate",
+          "text": "未婚率"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s06",
+      "beat": "mechanism",
+      "sentence": "5b",
+      "para": 2,
+      "narration": "也就是還沒結過婚的比例。",
+      "tts": "也就是還沒結過婚的比例。",
+      "subtitle": {
+        "zh": "也就是\n還沒結過婚的比例",
+        "en": "meaning the share | who have never married."
+      },
+      "keywords": [
+        "還沒結過婚"
+      ],
+      "cues": [
+        {
+          "id": "never",
+          "text": "還沒結過婚"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s07",
+      "beat": "mechanism",
+      "sentence": "6a",
+      "para": 2,
+      "narration": "五十年前大約百分之五，",
+      "tts": "五十年前大約百分之五，",
+      "subtitle": {
+        "zh": "五十年前\n大約百分之五",
+        "en": "Fifty years ago, | it was about 5%."
+      },
+      "keywords": [
+        "百分之五"
+      ],
+      "cues": [
+        {
+          "id": "old",
+          "text": "五十年前"
+        },
+        {
+          "id": "five",
+          "text": "百分之五"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：遠見 2026（引鄭雁馨，1975–2024）"
+      ]
+    },
+    {
+      "id": "s08",
+      "beat": "mechanism",
+      "sentence": "6b",
+      "para": 2,
+      "narration": "現在超過四成。",
+      "tts": "現在超過四成。",
+      "subtitle": {
+        "zh": "現在\n超過四成",
+        "en": "Now it's over 40%."
+      },
+      "keywords": [
+        "超過四成"
+      ],
+      "cues": [
+        {
+          "id": "now",
+          "text": "現在"
+        },
+        {
+          "id": "forty",
+          "text": "四成"
+        }
+      ],
+      "pauseAfter": 0.3,
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：遠見 2026（引鄭雁馨，1975–2024）"
+      ]
+    },
+    {
+      "id": "s09",
+      "beat": "twist",
+      "sentence": "7a",
+      "para": 3,
+      "narration": "那是不是大家都不想結婚了？",
+      "tts": "那是不是大家都不想結婚了？",
+      "subtitle": {
+        "zh": "那是不是大家\n都不想結婚了？",
+        "en": "So does nobody | want to marry anymore?"
+      },
+      "keywords": [
+        "不想結婚"
+      ],
+      "cues": [
+        {
+          "id": "all",
+          "text": "大家"
+        },
+        {
+          "id": "nowant",
+          "text": "不想結婚"
+        }
+      ],
+      "pauseAfter": 0.35,
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s10",
+      "beat": "twist",
+      "sentence": "7b",
+      "para": 3,
+      "narration": "數字說的是另一件事。",
+      "tts": "數字說的是另一件事。",
+      "subtitle": {
+        "zh": "數字說的\n是另一件事",
+        "en": "The numbers say | something else."
+      },
+      "keywords": [
+        "另一件事"
+      ],
+      "cues": [
+        {
+          "id": "num",
+          "text": "數字"
+        },
+        {
+          "id": "other",
+          "text": "另一件事"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s11",
+      "beat": "twist",
+      "sentence": "8",
+      "para": 3,
+      "narration": "中研院學者問了一萬名二十到四十九歲的人。",
+      "tts": "中研院學者問了一萬名二十到四十九歲的人。",
+      "subtitle": {
+        "zh": "中研院學者\n問了一萬名\n二十到四十九歲的人",
+        "en": "An Academia Sinica researcher | surveyed 10,000 people | aged 20 to 49."
+      },
+      "keywords": [
+        "一萬名"
+      ],
+      "cues": [
+        {
+          "id": "who",
+          "text": "中研院"
+        },
+        {
+          "id": "n",
+          "text": "一萬名"
+        },
+        {
+          "id": "age",
+          "text": "二十到四十九"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：中研院社會所鄭雁馨（媒體轉述）"
+      ]
+    },
+    {
+      "id": "s12",
+      "beat": "twist",
+      "sentence": "9a",
+      "para": 3,
+      "narration": "沒結婚的人，大約三分之二，",
+      "tts": "沒結婚的人，大約三分之二，",
+      "subtitle": {
+        "zh": "沒結婚的人\n大約三分之二",
+        "en": "Of those not married, | about two in three"
+      },
+      "keywords": [
+        "三分之二"
+      ],
+      "cues": [
+        {
+          "id": "single",
+          "text": "沒結婚"
+        },
+        {
+          "id": "frac",
+          "text": "三分之二"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：中研院社會所鄭雁馨（媒體轉述）"
+      ]
+    },
+    {
+      "id": "s13",
+      "beat": "twist",
+      "sentence": "9b",
+      "para": 3,
+      "narration": "沒有穩定交往或約會的對象。",
+      "tts": "沒有穩定交往或約會的對象。",
+      "subtitle": {
+        "zh": "沒有穩定交往\n或約會的對象",
+        "en": "have no steady partner | and no one they're dating."
+      },
+      "keywords": [
+        "沒有",
+        "對象"
+      ],
+      "cues": [
+        {
+          "id": "none",
+          "text": "沒有"
+        },
+        {
+          "id": "date",
+          "text": "約會"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：中研院社會所鄭雁馨（媒體轉述）"
+      ]
+    },
+    {
+      "id": "s14",
+      "beat": "twist",
+      "sentence": "10",
+      "para": 3,
+      "narration": "直接說不要結婚的人，反而只是少數。",
+      "tts": "直接說不要結婚的人，反而只是少數。",
+      "subtitle": {
+        "zh": "直接說\n不要結婚的人\n反而只是少數",
+        "en": "Those who flatly | reject marriage | are only a small minority."
+      },
+      "keywords": [
+        "少數"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "不要結婚"
+        },
+        {
+          "id": "few",
+          "text": "少數"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：中研院社會所鄭雁馨（媒體轉述）"
+      ]
+    },
+    {
+      "id": "s15",
+      "beat": "twist",
+      "sentence": "11",
+      "para": 3,
+      "narration": "學者的解讀是，很多人不是不要，是還沒遇到。",
+      "tts": "學者的解讀是，很多人不是不要，是還沒遇到。",
+      "subtitle": {
+        "zh": "學者的解讀是\n很多人不是不要\n是還沒遇到",
+        "en": "Her reading: | many don't refuse it. | They just haven't met someone."
+      },
+      "keywords": [
+        "不是不要",
+        "還沒遇到"
+      ],
+      "cues": [
+        {
+          "id": "read",
+          "text": "解讀"
+        },
+        {
+          "id": "notno",
+          "text": "不是不要"
+        },
+        {
+          "id": "meet",
+          "text": "還沒遇到"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "分析：中研院研之有物專訪鄭雁馨"
+      ]
+    },
+    {
+      "id": "s16",
+      "beat": "payoff",
+      "sentence": "12",
+      "para": 4,
+      "narration": "所以三十幾歲還沒結婚，在台灣很常見。",
+      "tts": "所以三十幾歲還沒結婚，在台灣很常見。",
+      "subtitle": {
+        "zh": "所以三十幾歲\n還沒結婚\n在台灣很常見",
+        "en": "So being unmarried | in your thirties | is common in Taiwan."
+      },
+      "keywords": [
+        "很常見"
+      ],
+      "cues": [
+        {
+          "id": "thirty",
+          "text": "三十幾歲"
+        },
+        {
+          "id": "normal",
+          "text": "很常見"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s17",
+      "beat": "payoff",
+      "sentence": "13",
+      "para": 4,
+      "narration": "只是時間，不會因為大家都慢就停下來。",
+      "tts": "只是時間，不會因為大家都慢就停下來。",
+      "subtitle": {
+        "zh": "只是時間\n不會因為大家都慢\n就停下來",
+        "en": "But time won't stop | just because | everyone is running late."
+      },
+      "keywords": [
+        "時間",
+        "停下來"
+      ],
+      "cues": [
+        {
+          "id": "time",
+          "text": "時間"
+        },
+        {
+          "id": "slow",
+          "text": "都慢"
+        },
+        {
+          "id": "stop",
+          "text": "停下來"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s18",
+      "beat": "cta",
+      "sentence": "14",
+      "para": 4,
+      "narration": "你身邊單身的朋友，是不想結，還是遇不到？",
+      "tts": "你身邊單身的朋友，是不想結，還是遇不到？",
+      "subtitle": {
+        "zh": "你身邊\n單身的朋友\n是不想結\n還是遇不到？",
+        "en": "Your single friends: | do they not want to marry, | or can't they meet anyone?"
+      },
+      "keywords": [
+        "不想結",
+        "遇不到"
+      ],
+      "cues": [
+        {
+          "id": "friend",
+          "text": "單身的朋友"
+        },
+        {
+          "id": "a",
+          "text": "不想結"
+        },
+        {
+          "id": "b",
+          "text": "遇不到"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s19",
+      "beat": "payoff",
+      "sentence": "15",
+      "para": 4,
+      "narration": "對了，同一年還有五萬兩千多對離婚。",
+      "tts": "對了，同一年還有五萬兩千多對離婚。",
+      "subtitle": {
+        "zh": "對了\n同一年還有\n五萬兩千多對離婚",
+        "en": "By the way, that same year | over 52,000 couples divorced."
+      },
+      "keywords": [
+        "五萬兩千多對"
+      ],
+      "cues": [
+        {
+          "id": "same",
+          "text": "同一年"
+        },
+        {
+          "id": "num",
+          "text": "五萬兩千"
+        },
+        {
+          "id": "div",
+          "text": "離婚"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "來源：內政部戶政統計（2025 年）"
+      ]
+    },
+    {
+      "id": "s20",
+      "beat": "payoff",
+      "sentence": "16",
+      "para": 4,
+      "narration": "結了婚之後，又發生什麼事？下一集看數字。",
+      "tts": "結了婚之後，又發生什麼事？下一集看數字。",
+      "subtitle": {
+        "zh": "結了婚之後\n又發生什麼事？\n下一集看數字",
+        "en": "What happens after the wedding? | Next episode, | we look at the numbers."
+      },
+      "keywords": [
+        "下一集"
+      ],
+      "cues": [
+        {
+          "id": "after",
+          "text": "結了婚之後"
+        },
+        {
+          "id": "what",
+          "text": "什麼事"
+        },
+        {
+          "id": "next",
+          "text": "下一集"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s21",
+      "beat": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "durationSec": 2.5,
+      "silent": true,
+      "component": "EndCard",
+      "props": {
+        "slogan": "先看數字，再談感情",
+        "next": "下一集：結了婚之後呢？"
+      },
+      "sources": []
+    }
+  ]
+}

@@ -1,0 +1,736 @@
+{
+  "slug": "stock-jensen",
+  "title": "黃仁勳沒辭職，那股價在跌什麼？｜關鍵人物風險",
+  "asOf": "2026/11/12",
+  "styleVersion": 3,
+  "skin": "newsprint",
+  "channel": {
+    "name": "股票",
+    "tag": "消息查到底",
+    "slogan": "先查證，再下結論"
+  },
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "style": ""
+  },
+  "cover": {
+    "camera": {
+      "to": [
+        540,
+        960,
+        1
+      ]
+    },
+    "items": [
+      {
+        "type": "strip",
+        "layer": "screen",
+        "x": 540,
+        "y": 760,
+        "w": 900,
+        "lines": [
+          {
+            "t": "黃仁勳辭職？",
+            "size": 120
+          },
+          {
+            "t": "{沒有}",
+            "size": 160
+          },
+          {
+            "t": "那股價在跌什麼",
+            "size": 64
+          }
+        ]
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "sentence": 1,
+      "para": 1,
+      "narration": "黃仁勳辭職了？先講答案，沒有。",
+      "tts": "黃仁勳辭職了？先講答案，沒有。",
+      "subtitle": {
+        "zh": "黃仁勳辭職了？\n先講答案\n沒有",
+        "en": "Did Jensen Huang resign? | Short answer: | no."
+      },
+      "keywords": [
+        "沒有"
+      ],
+      "cues": [
+        {
+          "id": "q",
+          "text": "辭職了"
+        },
+        {
+          "id": "ans",
+          "text": "先講答案"
+        },
+        {
+          "id": "no",
+          "text": "沒有"
+        }
+      ],
+      "pauseAfter": 0.25,
+      "component": "PaperScene",
+      "props": {
+        "camera": {
+          "to": [
+            540,
+            960,
+            1
+          ]
+        },
+        "items": [
+          {
+            "id": "hook",
+            "type": "strip",
+            "layer": "screen",
+            "x": 540,
+            "y": 620,
+            "w": 900,
+            "lines": [
+              {
+                "t": "黃仁勳辭職？",
+                "size": 120
+              },
+              {
+                "t": "{沒有}",
+                "size": 150
+              },
+              {
+                "t": "股價卻一天跌 4%",
+                "size": 60
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "輝達發言人聲明 2026/11/8"
+      ]
+    },
+    {
+      "id": "s02",
+      "beat": "hook",
+      "sentence": 2,
+      "para": 1,
+      "narration": "可是輝達股價，一天就跌超過 4%。",
+      "tts": "可是輝達股價，一天就跌超過百分之四。",
+      "subtitle": {
+        "zh": "可是輝達股價\n一天就跌\n超過 4%",
+        "en": "Yet Nvidia's stock | fell more than 4% | in one day."
+      },
+      "keywords": [
+        "超過 4%"
+      ],
+      "cues": [
+        {
+          "id": "stock",
+          "text": "股價"
+        },
+        {
+          "id": "day",
+          "text": "一天"
+        },
+        {
+          "id": "drop",
+          "text": "超過"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "那斯達克收盤價 2026/11/9"
+      ]
+    },
+    {
+      "id": "s03",
+      "beat": "mechanism",
+      "sentence": 3,
+      "para": 2,
+      "narration": "十月底有報導說，他可能被外國情報單位鎖定。",
+      "tts": "十月底有報導說，他可能被外國情報單位鎖定。",
+      "subtitle": {
+        "zh": "十月底有報導說\n他可能被\n外國情報單位鎖定",
+        "en": "A late-October report said | he may have been targeted | by foreign intelligence."
+      },
+      "keywords": [
+        "鎖定"
+      ],
+      "cues": [
+        {
+          "id": "oct",
+          "text": "十月底"
+        },
+        {
+          "id": "intel",
+          "text": "外國情報單位"
+        },
+        {
+          "id": "target",
+          "text": "鎖定"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "紐約時報 2026/10/29（匿名消息來源）"
+      ]
+    },
+    {
+      "id": "s04",
+      "beat": "mechanism",
+      "sentence": 4,
+      "para": 2,
+      "narration": "11 月 8 號，他發信給員工，承認對婚姻不忠。",
+      "tts": "十一月八號，他發信給員工，承認對婚姻不忠。",
+      "subtitle": {
+        "zh": "11 月 8 號\n他發信給員工\n承認對婚姻不忠",
+        "en": "On Nov. 8, | he emailed employees | and admitted being unfaithful."
+      },
+      "keywords": [
+        "11 月 8 號"
+      ],
+      "cues": [
+        {
+          "id": "date",
+          "text": "號"
+        },
+        {
+          "id": "mail",
+          "text": "發信"
+        },
+        {
+          "id": "admit",
+          "text": "承認"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "多家媒體報導 2026/11/8–9"
+      ]
+    },
+    {
+      "id": "s05",
+      "beat": "mechanism",
+      "sentence": 5,
+      "para": 2,
+      "narration": "同一天，董事會宣布獨立調查，請外部律師一起查。",
+      "tts": "同一天，董事會宣布獨立調查，請外部律師一起查。",
+      "subtitle": {
+        "zh": "同一天\n董事會宣布獨立調查\n請外部律師一起查",
+        "en": "The same day, the board announced | an independent investigation, | with outside lawyers."
+      },
+      "keywords": [
+        "獨立調查"
+      ],
+      "cues": [
+        {
+          "id": "same",
+          "text": "同一天"
+        },
+        {
+          "id": "probe",
+          "text": "獨立調查"
+        },
+        {
+          "id": "law",
+          "text": "外部律師"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "輝達董事會聲明 2026/11/8"
+      ]
+    },
+    {
+      "id": "s06",
+      "beat": "mechanism",
+      "sentence": 6,
+      "para": 2,
+      "narration": "董事會說，目前沒理由認為機密外洩。",
+      "tts": "董事會說，目前沒理由認為機密外洩。",
+      "subtitle": {
+        "zh": "董事會說\n目前沒理由\n認為機密外洩",
+        "en": "The board said | it has no reason to believe | secrets were leaked."
+      },
+      "keywords": [
+        "沒理由"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "董事會說"
+        },
+        {
+          "id": "noreason",
+          "text": "沒理由"
+        },
+        {
+          "id": "leak",
+          "text": "機密外洩"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "輝達董事會聲明 2026/11/8"
+      ]
+    },
+    {
+      "id": "s07",
+      "beat": "mechanism",
+      "sentence": 7,
+      "para": 2,
+      "narration": "公司也說，他會繼續當執行長。",
+      "tts": "公司也說，他會繼續當執行長。",
+      "subtitle": {
+        "zh": "公司也說\n他會繼續當執行長",
+        "en": "The company also says | he will stay on as CEO."
+      },
+      "keywords": [
+        "繼續"
+      ],
+      "cues": [
+        {
+          "id": "co",
+          "text": "公司也說"
+        },
+        {
+          "id": "stay",
+          "text": "繼續"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "輝達發言人聲明 2026/11/8"
+      ]
+    },
+    {
+      "id": "s08",
+      "beat": "twist",
+      "sentence": 8,
+      "para": 3,
+      "narration": "那股價到底在跌什麼？",
+      "tts": "那股價到底在跌什麼？",
+      "subtitle": {
+        "zh": "那股價\n到底在跌什麼？",
+        "en": "So what is the stock | actually reacting to?"
+      },
+      "keywords": [
+        "跌什麼"
+      ],
+      "cues": [
+        {
+          "id": "why",
+          "text": "到底"
+        },
+        {
+          "id": "what",
+          "text": "跌什麼"
+        }
+      ],
+      "pauseAfter": 0.35,
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s09",
+      "beat": "twist",
+      "sentence": 9,
+      "para": 3,
+      "narration": "市場怕的是個老問題，叫關鍵人物風險。",
+      "tts": "市場怕的是個老問題，叫關鍵人物風險。",
+      "subtitle": {
+        "zh": "市場怕的是\n個老問題\n叫關鍵人物風險",
+        "en": "The market fears | an old problem: | key-person risk."
+      },
+      "keywords": [
+        "關鍵人物風險"
+      ],
+      "cues": [
+        {
+          "id": "fear",
+          "text": "怕的"
+        },
+        {
+          "id": "old",
+          "text": "老問題"
+        },
+        {
+          "id": "term",
+          "text": "關鍵人物風險"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s10",
+      "beat": "twist",
+      "sentence": 10,
+      "para": 3,
+      "narration": "意思是公司太靠一個人，他一出狀況，大家就緊張。",
+      "tts": "意思是公司太靠一個人，他一出狀況，大家就緊張。",
+      "subtitle": {
+        "zh": "意思是公司\n太靠一個人\n他一出狀況\n大家就緊張",
+        "en": "A company leans too much | on one person. | If something happens to him, | everyone gets nervous."
+      },
+      "keywords": [
+        "太靠一個人"
+      ],
+      "cues": [
+        {
+          "id": "one",
+          "text": "太靠一個人"
+        },
+        {
+          "id": "trouble",
+          "text": "出狀況"
+        },
+        {
+          "id": "nervous",
+          "text": "緊張"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s11",
+      "beat": "twist",
+      "sentence": 11,
+      "para": 3,
+      "narration": "就像老店的醬汁，只有老闆知道配方。",
+      "tts": "就像老店的醬汁，只有老闆知道配方。",
+      "subtitle": {
+        "zh": "就像老店的醬汁\n只有老闆知道配方",
+        "en": "Like an old shop's sauce: | only the owner knows the recipe."
+      },
+      "keywords": [
+        "只有老闆"
+      ],
+      "cues": [
+        {
+          "id": "sauce",
+          "text": "醬汁"
+        },
+        {
+          "id": "boss",
+          "text": "只有老闆"
+        },
+        {
+          "id": "recipe",
+          "text": "配方"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s12",
+      "beat": "twist",
+      "sentence": 12,
+      "para": 3,
+      "narration": "輝達是他 33 年前共同創辦的，至今沒有公開的接班人。",
+      "tts": "輝達是他三十三年前共同創辦的，至今沒有公開的接班人。",
+      "subtitle": {
+        "zh": "輝達是他 33 年前\n共同創辦的\n至今沒有\n公開的接班人",
+        "en": "He co-founded Nvidia | 33 years ago. | To this day, | no public successor."
+      },
+      "keywords": [
+        "接班人"
+      ],
+      "cues": [
+        {
+          "id": "years",
+          "text": "年前"
+        },
+        {
+          "id": "found",
+          "text": "共同創辦"
+        },
+        {
+          "id": "now",
+          "text": "至今"
+        },
+        {
+          "id": "succ",
+          "text": "接班人"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "輝達公司資料；彭博 2026/1/27"
+      ]
+    },
+    {
+      "id": "s13",
+      "beat": "twist",
+      "sentence": 13,
+      "para": 3,
+      "narration": "有分析師估，換掉他，公司價值可能少兩成五到三成。",
+      "tts": "有分析師估，換掉他，公司價值可能少兩成五到三成。",
+      "subtitle": {
+        "zh": "有分析師估\n換掉他\n公司價值可能少\n兩成五到三成",
+        "en": "One analyst estimates | that replacing him | could cut the company's value | by 25% to 30%."
+      },
+      "keywords": [
+        "兩成五到三成"
+      ],
+      "cues": [
+        {
+          "id": "est",
+          "text": "分析師估"
+        },
+        {
+          "id": "if",
+          "text": "換掉他"
+        },
+        {
+          "id": "val",
+          "text": "公司價值"
+        },
+        {
+          "id": "num",
+          "text": "兩成五"
+        }
+      ],
+      "pauseAfter": 0.3,
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "分析師 Dan Ives（自由時報 2026/11/10）"
+      ]
+    },
+    {
+      "id": "s14",
+      "beat": "payoff",
+      "sentence": 14,
+      "para": 4,
+      "narration": "所以目前確定的是，他沒辭職，調查還在進行。",
+      "tts": "所以目前確定的是，他沒辭職，調查還在進行。",
+      "subtitle": {
+        "zh": "所以目前確定的是\n他沒辭職\n調查還在進行",
+        "en": "So what's confirmed so far: | he hasn't resigned, | and the probe is ongoing."
+      },
+      "keywords": [
+        "沒辭職"
+      ],
+      "cues": [
+        {
+          "id": "sure",
+          "text": "確定的"
+        },
+        {
+          "id": "noresign",
+          "text": "沒辭職"
+        },
+        {
+          "id": "probe",
+          "text": "調查還在"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "截至 2026/11/12"
+      ]
+    },
+    {
+      "id": "s15",
+      "beat": "payoff",
+      "sentence": 15,
+      "para": 4,
+      "narration": "還不確定的，是調查結果。",
+      "tts": "還不確定的，是調查結果。",
+      "subtitle": {
+        "zh": "還不確定的\n是調查結果",
+        "en": "What's still unknown | is the outcome."
+      },
+      "keywords": [
+        "不確定"
+      ],
+      "cues": [
+        {
+          "id": "unsure",
+          "text": "不確定"
+        },
+        {
+          "id": "result",
+          "text": "調查結果"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "截至 2026/11/12 尚未確定"
+      ]
+    },
+    {
+      "id": "s16",
+      "beat": "payoff",
+      "sentence": 16,
+      "para": 4,
+      "narration": "下一個觀察點，是下週的財報。",
+      "tts": "下一個觀察點，是下週的財報。",
+      "subtitle": {
+        "zh": "下一個觀察點\n是下週的財報",
+        "en": "The next thing to watch | is next week's earnings report."
+      },
+      "keywords": [
+        "財報"
+      ],
+      "cues": [
+        {
+          "id": "next",
+          "text": "下一個"
+        },
+        {
+          "id": "week",
+          "text": "下週"
+        },
+        {
+          "id": "call",
+          "text": "財報"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": [
+        "輝達投資人關係公告 2026/10/28"
+      ]
+    },
+    {
+      "id": "s17",
+      "beat": "cta",
+      "sentence": 17,
+      "para": 4,
+      "narration": "你還想得到哪間公司，也靠一個人撐著？",
+      "tts": "你還想得到哪間公司，也靠一個人撐著？",
+      "subtitle": {
+        "zh": "你還想得到\n哪間公司\n也靠一個人撐著？",
+        "en": "Which other company | can you think of | that leans on one person?"
+      },
+      "keywords": [
+        "哪間公司"
+      ],
+      "cues": [
+        {
+          "id": "which",
+          "text": "哪間公司"
+        },
+        {
+          "id": "hold",
+          "text": "撐著"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s18",
+      "beat": "payoff",
+      "sentence": 18,
+      "para": 4,
+      "narration": "對了，大公司真的換老闆，股價會怎麼走？下一集講。",
+      "tts": "對了，大公司真的換老闆，股價會怎麼走？下一集講。",
+      "subtitle": {
+        "zh": "對了，大公司\n真的換老闆\n股價會怎麼走？\n下一集講",
+        "en": "By the way, when a big company | really changes its boss, | what does the stock do? | Next episode."
+      },
+      "keywords": [
+        "換老闆"
+      ],
+      "cues": [
+        {
+          "id": "btw",
+          "text": "對了"
+        },
+        {
+          "id": "swap",
+          "text": "換老闆"
+        },
+        {
+          "id": "go",
+          "text": "怎麼走"
+        },
+        {
+          "id": "ep",
+          "text": "下一集"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": []
+      },
+      "sources": []
+    },
+    {
+      "id": "s19",
+      "beat": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "durationSec": 2.5,
+      "silent": true,
+      "component": "EndCard",
+      "props": {
+        "slogan": "先查證，再下結論",
+        "next": "下一集：大公司換老闆之後"
+      },
+      "sources": []
+    }
+  ]
+}

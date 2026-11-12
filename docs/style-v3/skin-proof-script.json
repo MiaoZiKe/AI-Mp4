@@ -1,0 +1,511 @@
+{
+ "slug": "_skin-blueprint",
+ "title": "v3 外觀打樣：blueprint",
+ "asOf": "2026/11/13",
+ "styleVersion": 3,
+ "skin": "blueprint",
+ "channel": {
+  "name": "白話科技",
+  "tag": "科技白話講"
+ },
+ "voice": {
+  "voiceName": "Iapetus",
+  "mode": "take"
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
+  },
+  "items": [
+   {
+    "type": "strip",
+    "layer": "screen",
+    "paper": "strip-hook",
+    "x": 540,
+    "y": 700,
+    "w": 880,
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     70,
+     26
+    ],
+    "lines": [
+     {
+      "t": "紙片打樣",
+      "size": 132,
+      "lh": 1.08
+     },
+     {
+      "t": "共 {5} 套外觀",
+      "size": 120,
+      "accentSize": 160,
+      "lh": 1.1
+     },
+     {
+      "t": "同一套[引擎]與版面",
+      "size": 54,
+      "color": "ink3",
+      "lh": 1.3,
+      "mt": 10
+     }
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-m",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "polaroid-aisle",
+    "caption": true,
+    "x": 310,
+    "y": 1180,
+    "w": 420,
+    "rot": -4,
+    "lines": [
+     {
+      "t": "實拍照片",
+      "size": 46
+     }
+    ],
+    "tape": [
+     {
+      "asset": "tape-r",
+      "x": 250,
+      "y": 4,
+      "rot": 3,
+      "w": 170
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "note-yellow",
+    "x": 800,
+    "y": 1190,
+    "w": 360,
+    "rot": 3,
+    "lines": [
+     {
+      "t": "便條",
+      "size": 92
+     },
+     {
+      "t": "寫[重點]",
+      "size": 72
+     }
+    ]
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "同一套引擎，換一張桌面，就是另一個頻道。",
+   "subtitle": {
+    "zh": "同一套引擎\n換一張桌面\n就是另一個頻道",
+    "en": "Same engine, | a different desk, | a different channel."
+   },
+   "keywords": [
+    "另一個頻道"
+   ],
+   "cues": [
+    {
+     "id": "desk",
+     "text": "桌面"
+    },
+    {
+     "id": "ch",
+     "text": "頻道"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "items": [
+     {
+      "type": "strip",
+      "layer": "screen",
+      "paper": "strip-hook",
+      "x": 540,
+      "y": 560,
+      "w": 880,
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       70,
+       26
+      ],
+      "lines": [
+       {
+        "t": "紙片打樣",
+        "size": 132,
+        "lh": 1.08
+       },
+       {
+        "t": "共 {5} 套外觀",
+        "size": 120,
+        "accentSize": 160,
+        "lh": 1.1
+       },
+       {
+        "t": "同一套[引擎]與版面",
+        "size": 54,
+        "color": "ink3",
+        "lh": 1.3,
+        "mt": 10
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-m",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "id": "title",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "ch",
+        "mark": 1
+       }
+      ],
+      "to": "top"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-aisle",
+      "caption": true,
+      "x": 310,
+      "y": 1035,
+      "w": 420,
+      "rot": -4,
+      "lines": [
+       {
+        "t": "實拍照片",
+        "size": 46
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 250,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ],
+      "id": "pol",
+      "at": "desk",
+      "from": "left",
+      "until": "s02"
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "x": 800,
+      "y": 1040,
+      "w": 360,
+      "rot": 3,
+      "lines": [
+       {
+        "t": "便條",
+        "size": 92
+       },
+       {
+        "t": "寫[重點]",
+        "size": 72
+       }
+      ],
+      "id": "note",
+      "at": "ch",
+      "from": "slam",
+      "until": "s02"
+     }
+    ]
+   },
+   "sources": [
+    "來源：打樣用，不是正式內容"
+   ]
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "方塊可以一層一層疊，數字、長條、折線，也都是紙拼的。",
+   "subtitle": {
+    "zh": "方塊可以\n一層一層疊\n數字、長條、折線\n也都是紙拼的",
+    "en": "Blocks stack layer by layer; | numbers, bars and lines | are all cut from paper."
+   },
+   "keywords": [
+    "一層一層疊",
+    "紙拼的"
+   ],
+   "cues": [
+    {
+     "id": "stack",
+     "text": "一層一層"
+    },
+    {
+     "id": "num",
+     "text": "數字"
+    },
+    {
+     "id": "bar",
+     "text": "長條"
+    },
+    {
+     "id": "line",
+     "text": "折線"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1740,
+      960,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        1010,
+        1180
+       ],
+       [
+        1130,
+        1230
+       ],
+       [
+        1250,
+        1200
+       ]
+      ],
+      "head": true,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start",
+        "grow": 1
+       }
+      ]
+     },
+     {
+      "id": "stack",
+      "type": "stack",
+      "x": 1470,
+      "y": 560,
+      "at": "stack",
+      "state": {
+       "n": 1
+      },
+      "set": [
+       {
+        "at": "stack+8",
+        "n": 2
+       },
+       {
+        "at": "stack+16",
+        "n": 3
+       }
+      ],
+      "layers": [
+       {
+        "asset": "block-kraft",
+        "w": 470,
+        "t": "基板"
+       },
+       {
+        "asset": "block-mint",
+        "w": 400,
+        "t": "中介層"
+       },
+       {
+        "row": [
+         {
+          "asset": "block-blue",
+          "w": 190,
+          "t": "晶片",
+          "onDark": true
+         },
+         {
+          "asset": "block-red",
+          "w": 190,
+          "t": "記憶體",
+          "onDark": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "arrow",
+      "asset": "arrow-yellow",
+      "x": 1745,
+      "y": 560,
+      "w": 120,
+      "at": "num-4",
+      "from": "left"
+     },
+     {
+      "id": "num",
+      "type": "num",
+      "x": 2010,
+      "y": 560,
+      "w": 390,
+      "at": "num",
+      "from": "slam",
+      "value": 62.5,
+      "decimals": 1,
+      "unit": "%",
+      "head": "大數字",
+      "lines": [
+       {
+        "t": "會跳的",
+        "size": 44,
+        "color": "ink2"
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-m",
+        "x": 320,
+        "y": 4,
+        "rot": 5,
+        "w": 160
+       }
+      ]
+     },
+     {
+      "id": "bars",
+      "type": "bars",
+      "x": 1470,
+      "y": 1030,
+      "w": 460,
+      "h": 420,
+      "at": "bar",
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "bar",
+        "grow": 1
+       }
+      ],
+      "bars": [
+       {
+        "v": 12,
+        "label": "甲",
+        "color": "blue"
+       },
+       {
+        "v": 20,
+        "label": "乙",
+        "color": "mint"
+       },
+       {
+        "v": 31,
+        "label": "丙",
+        "color": "red"
+       }
+      ]
+     },
+     {
+      "id": "line",
+      "type": "line",
+      "x": 2000,
+      "y": 1040,
+      "w": 440,
+      "h": 400,
+      "at": "line",
+      "vals": [
+       15,
+       13.5,
+       14,
+       12,
+       9
+      ],
+      "labels": [
+       "2015",
+       "",
+       "",
+       "",
+       "2025"
+      ],
+      "marks": [
+       {
+        "i": 0,
+        "t": "15"
+       },
+       {
+        "i": 4,
+        "t": "9",
+        "color": "red"
+       }
+      ]
+     }
+    ]
+   },
+   "sources": [
+    "來源：打樣用，不是正式內容"
+   ]
+  },
+  {
+   "id": "s03",
+   "beat": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "durationSec": 2.5,
+   "silent": true,
+   "component": "EndCard",
+   "props": {
+    "next": "下一集：正式開工"
+   },
+   "sources": []
+  }
+ ]
+}

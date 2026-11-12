@@ -3,13 +3,13 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill } from "remotion";
 import type { Script } from "../../types";
-import { AssetContext, type AssetMeta } from "./assets";
+import { AssetContext, makeCtx } from "./assets";
 import { buildStage, type PaperSceneProps } from "./engine";
 import { PaperStage } from "./Stage";
 import { HeaderV3 } from "./Tracks";
 
 export const CoverV3: React.FC<Script> = (props) => {
-  const { cover, slug, v3 } = props;
+  const { cover, slug, v3, skin, channel } = props;
   // coverCrop＝裁切後的高度（still.mjs 渲 3:4／1:1 版時傳入）：頁首移到裁切範圍的上緣內 28px
   const crop = (props as any).coverCrop as number | undefined;
   const stage = useMemo(() => {
@@ -18,12 +18,12 @@ export const CoverV3: React.FC<Script> = (props) => {
     const t = { id: "cover", startFrame: 0, durationFrames: 1, voiceStartFrame: 0, voiceEndFrame: 0, cues: [] } as any;
     return buildStage([scene], { scenes: [t], totalFrames: 1 } as any);
   }, [cover]);
-  const ctx = useMemo(() => ({ slug, assets: (v3?.assets ?? {}) as Record<string, AssetMeta>, ambient: false }), [slug, v3]);
+  const ctx = useMemo(() => makeCtx({ slug, v3, skin, channel }, false), [slug, v3, skin, channel]);
   return (
     <AssetContext.Provider value={ctx}>
       <AbsoluteFill>
         <PaperStage stage={stage} />
-        <HeaderV3 top={crop ? (1920 - crop) / 2 + 28 : undefined} />
+        <HeaderV3 dark={ctx.theme.deskDark} top={crop ? (1920 - crop) / 2 + 28 : undefined} />
       </AbsoluteFill>
     </AssetContext.Provider>
   );

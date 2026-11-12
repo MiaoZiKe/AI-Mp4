@@ -2,9 +2,9 @@
 // 每個元件都以「自然尺寸」（紙本體的原始 px）排版，由 Cutout 依 w 等比縮放；顏色讀 THEME_V3，動作用 anim.ts 的 token。
 import React from "react";
 import { Img } from "remotion";
-import { FONT_EN, FONT_ZH, THEME_V3 as T } from "../../theme";
+import { FONT_ZH } from "../../theme";
 import { DUR, EASE, tween } from "../anim";
-import { Paper, useAsset, useAssets } from "./assets";
+import { Paper, useAsset, useAssets, useT } from "./assets";
 
 /** 全形問號在 Noto Sans TC 是置中的，前面會像多一格空白：往左收，句尾再收掉右邊的空白 */
 export const tidyQ = (t: string): React.ReactNode => {
@@ -46,6 +46,7 @@ export const plainText = (t: string) => String(t ?? "").replace(/[[\]{}]/g, "");
 export type LineSpec = { t: string; size?: number; color?: string; accent?: string; accentSize?: number; weight?: number; lh?: number; ls?: number; mt?: number };
 /** 一行字：英數自動落到 Inter 800、中文 Noto Sans TC 900；麥克筆段依 state.mark（已畫幾段）與 since.mark 擦出 */
 export const RichLine: React.FC<{ line: LineSpec; n0: number; f: number; state: Record<string, any>; since: Record<string, number>; onDark?: boolean }> = ({ line, n0, f, state, since, onDark }) => {
+  const T = useT();
   const { segs } = parseRich(line.t, n0);
   const size = line.size ?? 72;
   const marked = state.mark as number | undefined;
@@ -100,7 +101,7 @@ export const stripSize = (spec: Record<string, any>, assets: Record<string, { bo
 export const ImgPiece: React.FC<PieceProps> = ({ spec, f, born }) => {
   const a = useAsset(spec.asset);
   const g = spec.grid as { cols: number; rows: number; dx: number; dy: number; stagger?: number; rev?: boolean } | undefined;   // rev＝由下排往上貼
-  if (!g) return <Paper asset={spec.asset} />;
+  if (!g) return spec.tape ? <Paper asset={spec.asset}>{(spec.tape as TapeSpec[]).map((t, i) => <Tape key={i} t={t} />)}</Paper> : <Paper asset={spec.asset} />;
   const [, , bw, bh] = a.body;
   const cells = [];
   for (let r = 0; r < g.rows; r++) for (let c = 0; c < g.cols; c++) {
@@ -121,6 +122,7 @@ const rnd = (seed: number) => { const x = Math.sin(seed * 91.7 + 13.1) * 43758.5
 export const DashedPath: React.FC<PieceProps> = ({ spec, f, state, since }) => {
   const { assets } = useAssets();
   const pts = spec.pts as [number, number][];
+  const head = spec.head ? assets[typeof spec.head === "string" ? spec.head : "arrowhead-y"] : undefined;   // head: true｜"arrowhead-r"＝虛線長完後在終點貼一個紙箭頭
   const ds = spec.dash ?? 1, dashW = assets["dash-0"].body[2] * ds, gap = spec.gap ?? 30 * ds, pitch = dashW + gap;
   const segs = pts.slice(1).map((q, i) => ({ a: pts[i], b: q, len: Math.hypot(q[0] - pts[i][0], q[1] - pts[i][1]) }));
   const total = segs.reduce((s, g) => s + g.len, 0);
@@ -139,6 +141,14 @@ export const DashedPath: React.FC<PieceProps> = ({ spec, f, state, since }) => {
     const p = tween(f, appear, 3, EASE.enter);
     dashes.push(<div key={i} style={{ position: "absolute", left: x - dashW / 2 + (rnd(i + 40) - 0.5) * 6, top: y - 11 * ds + (rnd(i + 80) - 0.5) * 6, transform: `rotate(${ang.toFixed(1)}deg) scale(${(1 + 0.25 * (1 - p)).toFixed(3)})` }}><Paper asset={`dash-${i % 6}`} w={dashW} /></div>);
   }
+  if (head) {
+    const done = state.grow === undefined ? -1e9 : state.grow ? since.grow + Math.round(t) : 1e9;
+    if (f >= done) {
+      const g = segs[segs.length - 1], hw = head.body[2] * ds, hh = head.body[3] * ds, p = tween(f, done, 4, EASE.enter);
+      const ang = (Math.atan2(g.b[1] - g.a[1], g.b[0] - g.a[0]) * 180) / Math.PI;
+      dashes.push(<div key="head" style={{ position: "absolute", left: g.b[0] - hw / 2, top: g.b[1] - hh / 2, transform: `rotate(${ang.toFixed(1)}deg) scale(${(1 + 0.3 * (1 - p)).toFixed(3)})` }}><Paper asset={typeof spec.head === "string" ? spec.head : "arrowhead-y"} w={hw} /></div>);
+    }
+  }
   return <>{dashes}</>;
 };
 
@@ -148,6 +158,7 @@ export const DashedPath: React.FC<PieceProps> = ({ spec, f, state, since }) => {
  *        lit false＝燈暗（6 幀）、shutter true＝鐵捲門分四格拉下（最後一格最重）。
  */
 export const PassWindow: React.FC<PieceProps> = ({ f, state, since }) => {
+  const T = useT();
   const { assets } = useAssets();
   const m = assets["pass"], [ox, oy, ow, oh] = m.window as number[];
   const kit = state.inside !== "rack";

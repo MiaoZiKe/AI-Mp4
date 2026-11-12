@@ -4,13 +4,13 @@ import fs from "node:fs";
 import path from "node:path";
 
 const LAYERS = ["desk", "mat", "near", "screen", "top"];
-const TYPES = ["img", "strip", "phone", "path", "pass"];
+const TYPES = ["img", "strip", "phone", "path", "pass", "num", "stack", "bars", "line"];
 const FROM = ["paste", "slam", "cut", "wipe", "left", "right", "top", "bottom"];
 const TO = ["lift", "cut", "left", "right", "top", "bottom"];
 const SCREENS = ["error", "error-big", "grid", "chat", "comment", "blank"];
 const AT_BASE = ["start", "voice", "end", "exit"];
 /** 不算「主要元素」的紙材：虛線、膠帶、筆觸、蓋場用的大色紙 */
-const MINOR = /^(dash|tape|mark|underline|circle|cross|dot|sheet-)/;
+const MINOR = /^(dash|tape|mark|underline|circle|cross|dot|sheet-|seg-|node-|rule|pin-|arrowhead-|arrow-)/;
 const plain = (t) => String(t ?? "").replace(/[[\]{}]/g, "");
 
 export function validateV3(script, h, ROOT) {
@@ -25,6 +25,45 @@ export function validateV3(script, h, ROOT) {
   const meta = fs.existsSync(mp) ? JSON.parse(fs.readFileSync(mp, "utf8")) : null;
   if (!meta) W(`沒有 public/v3/${script.slug}/meta.json（先 python3 scripts/make-paper.py ${script.slug}），略過紙材名稱檢查`);
   const hasAsset = (a, tag) => { if (meta && a && !meta[a]) E(`${tag}: 紙材「${a}」不存在（public/v3/${script.slug}/）`); };
+  // 外觀與頻道（頂層 skin／channel，都可省略）
+  const skins = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "theme-v3-skins.json"), "utf8"));
+  const skin = script.skin ?? "desk";
+  if (!skins[skin]) E(`skin「${skin}」不存在（${Object.keys(skins).join("／")}）`);
+  if (meta && (meta._info?.skin ?? "desk") !== skin) E(`public/v3/${script.slug}/ 的紙材是用 skin「${meta._info?.skin ?? "desk"}」產生的，但 script.json 寫的是「${skin}」→ 重跑 python3 scripts/make-paper.py ${script.slug}`);
+  if (script.channel !== undefined) {
+    const c = script.channel;
+    if (!c || typeof c !== "object" || Array.isArray(c)) E("channel 應為 { name, tag, slogan }");
+    else {
+      for (const k of Object.keys(c)) if (!["name", "tag", "slogan"].includes(k)) E(`channel.${k} 不認得（只有 name／tag／slogan）`);
+      for (const [k, max] of [["name", 8], ["tag", 8], ["slogan", 12]]) if (c[k] !== undefined) { if (typeof c[k] !== "string" || !c[k]) E(`channel.${k} 要是非空字串`); else if (h.emWidth(c[k]) > max) W(`channel.${k}「${c[k]}」偏長（建議 ≤${max} 個全形字，頁首／片尾卡才放得下）`); }
+    }
+  }
+  /** 通用紙片（num／stack／bars／line）的 props 與用到的紙材 */
+  const piece = (it, tag) => {
+    const type = it.type ?? "img";
+    if (type === "num") { if (typeof it.value !== "number") E(`${tag}: num 要有 value（數字）`); hasAsset(it.paper ?? "card-white", tag); for (const t of it.tape ?? []) hasAsset(t.asset ?? "tape-y", tag); if (it.unit !== undefined) noApp(it.unit, tag); }
+    if (type === "stack") {
+      if (!Array.isArray(it.layers) || !it.layers.length) return E(`${tag}: stack 要有 layers（由下到上）`);
+      for (const l of it.layers) for (const c of l.row ?? [l]) { hasAsset(c.asset ?? "block-blue", tag); if (c.t !== undefined) { noApp(c.t, tag); if (h.len(c.t) > 10) W(`${tag}: stack 的字「${c.t}」> 10 字`); } }
+    }
+    if (type === "bars") {
+      if (!Array.isArray(it.bars) || !it.bars.length || it.bars.some((b) => typeof b.v !== "number")) return E(`${tag}: bars 要有 bars: [{ v（數字）, label }]`);
+      if (it.bars.length > 6) W(`${tag}: bars 有 ${it.bars.length} 條 > 6（手機上看不清）`);
+      if (it.dir !== undefined && !["up", "right"].includes(it.dir)) E(`${tag}: bars 的 dir 只能是 up／right`);
+      for (const b of it.bars) hasAsset(`${(it.dir ?? "up") === "up" ? "barv" : "bar"}-${b.color ?? "blue"}`, tag);
+      hasAsset("rule", tag);
+    }
+    if (type === "line") {
+      if (!Array.isArray(it.vals) || it.vals.length < 2 || it.vals.some((v) => typeof v !== "number")) return E(`${tag}: line 要有 vals（至少 2 個數字）`);
+      if (it.labels !== undefined && it.labels.length !== it.vals.length) E(`${tag}: line 的 labels 要和 vals 一樣長（不標的寫空字串）`);
+      for (const m of it.marks ?? []) if (typeof m.i !== "number" || m.i < 0 || m.i >= it.vals.length) E(`${tag}: line 的 marks.i 超出範圍`);
+      hasAsset(`seg-${it.color ?? "red"}`, tag); hasAsset("rule", tag);
+    }
+    if (type === "path" && it.head) hasAsset(typeof it.head === "string" ? it.head : "arrowhead-y", tag);
+    if (type === "img") for (const t of it.tape ?? []) hasAsset(t.asset ?? "tape-y", tag);
+    if (type === "phone" && meta && !meta.phone) E(`${tag}: 沒有 phone 紙材`);
+    if (type === "pass" && meta && !meta.pass) E(`${tag}: 出餐口（pass）是 what-is-server 專用的紙材，這支片沒有`);
+  };
   const noApp = (t, tag) => { if (/(^|[^A-Za-z])apps?([^A-Za-z]|$)/i.test(String(t ?? ""))) E(`${tag}: 出現「App」字樣（使用者要求旁白與畫面不出現 App，改中文說法）：「${t}」`); };
   // 封面：cover＝{ camera, items }（和 PaperScene 同一套寫法；只有第 0 幀，不寫 at）
   const cv = script.cover;
@@ -36,6 +75,7 @@ export function validateV3(script, h, ROOT) {
     if (type === "img") hasAsset(it.asset, tag);
     if (type === "strip") { hasAsset(it.paper ?? it.asset ?? "strip-white", tag); for (const t of it.tape ?? []) hasAsset(t.asset ?? "tape-y", tag); }
     if (it.state?.screen !== undefined && !SCREENS.includes(it.state.screen)) E(`${tag}: 手機畫面「${it.state.screen}」不存在`);
+    piece(it, tag);
     for (const l of it.lines ?? []) { noApp(l.t, tag); if (h.len(plain(l.t)) > 14) E(`${tag}: 畫面字「${plain(l.t)}」> 14 字`); }
   });
   const ids = new Set(), sceneIds = scenes.map((s) => s.id);
@@ -60,7 +100,7 @@ export function validateV3(script, h, ROOT) {
     }
     if ((s.sources ?? []).length) { const j = s.sources.join("、"), t = /^(資料)?來源/.test(j) ? j : `來源：${j}`; const px = h.emWidth(t) * 24 + 44; if (px > 670) E(`${tag}: 出處「${t}」約 ${Math.round(px)}px > 670px（出處紙條放不下）→ 縮短`); }
     const p = s.props ?? {};
-    if (end) { for (const k of ["slogan", "next"]) if (p[k] !== undefined) { noApp(p[k], tag); if (h.len(p[k]) > 14) W(`${tag}: 片尾卡 ${k} ${h.len(p[k])} 字偏長`); } return; }
+    if (end) { if (meta && !meta["sheet-cream"]) E(`${tag}: 片尾卡需要紙材 sheet-cream`); for (const k of ["slogan", "next"]) if (p[k] !== undefined) { noApp(p[k], tag); if (h.len(p[k]) > 14) W(`${tag}: 片尾卡 ${k} ${h.len(p[k])} 字偏長`); } return; }
     const cueIds = new Set((s.cues ?? []).map((c) => c.id));
     const at = (a, what) => {
       if (a === undefined) return;
@@ -96,18 +136,19 @@ export function validateV3(script, h, ROOT) {
       if (type === "img") { if (!it.asset) E(`${tag}: ${what} 缺 asset`); hasAsset(it.asset, tag); }
       if (type === "strip") { hasAsset(it.paper ?? it.asset ?? "strip-white", tag); for (const t of it.tape ?? []) hasAsset(t.asset ?? "tape-y", tag); if (!Array.isArray(it.lines) || !it.lines.length) W(`${tag}: ${what} 沒有 lines（空白紙條）`); }
       if (type === "path" && (!Array.isArray(it.pts) || it.pts.length < 2)) E(`${tag}: ${what} path 要有 pts（至少兩點）`);
+      piece(it, `${tag}: ${what}`);
       if (type !== "path" && (typeof it.x !== "number" || typeof it.y !== "number")) E(`${tag}: ${what} 缺 x／y（紙本體中心）`);
       for (const l of it.lines ?? []) { noApp(l.t, tag); const n = h.len(plain(l.t)); if (n > 14) E(`${tag}: ${what} 畫面字「${plain(l.t)}」${n} 字 > 14`); else if (n > 10) W(`${tag}: ${what} 畫面字「${plain(l.t)}」${n} 字 > 10`); }
       if (it.id) { if (ids.has(it.id)) E(`${tag}: id「${it.id}」重複`); ids.add(it.id); }
       let until = i + 0.9;
       if (it.until === "end") until = Infinity;
       else if (it.until !== undefined) { const [sid, cue] = String(it.until).split("."); const k2 = sceneIds.indexOf(sid); if (k2 < 0) E(`${tag}: ${what} until 指到不存在的幕「${sid}」`); else { if (k2 < i) E(`${tag}: ${what} until「${it.until}」在本幕之前`); until = k2 - 0.1 + (cue ? 0.5 : 0); } }
-      const name = type === "img" ? it.asset : type === "strip" ? `strip:${it.id ?? k}:${tag}` : type;
+      const name = type === "img" ? it.asset : type === "strip" ? `strip:${it.id ?? k}:${tag}` : ["num", "stack", "bars", "line"].includes(type) ? `${type}:${it.id ?? k}:${tag}` : type;
       live.push({ id: it.id, group: type === "phone" ? "phone" : name, minor: type === "path" || (type === "img" && MINOR.test(it.asset ?? "")), from: i, until });
     }
     // 同屏主要元素：這一幕期間在場上的紙片（同一種紙材重複排列算一樣；虛線、膠帶、筆觸、蓋場色紙不算）。鏡頭外的也會被算進來，所以只警告
     const groups = [...new Set(live.filter((x) => !x.minor && x.from <= i && x.until > i + 0.2).map((x) => x.group))];
-    if (groups.length > 4) W(`${tag}: 場上同時有 ${groups.length} 樣主要元素（${groups.map((g) => g.replace(/^strip:.*/, "紙條")).join("、")}）；同屏 ≤3 樣，請確認鏡頭外的不算、或讓前面的先退場（until）`);
+    if (groups.length > 4) W(`${tag}: 場上同時有 ${groups.length} 樣主要元素（${groups.map((g) => g.replace(/^strip:.*/, "紙條").replace(/^(num|stack|bars|line):.*/, "$1")).join("、")}）；同屏 ≤3 樣，請確認鏡頭外的不算、或讓前面的先退場（until）`);
   });
   if (punches > 4) W(`punch（重點推近）用了 ${punches} 次 > 4`);
   const est = Math.round(scenes.reduce((a, s) => a + (s.component === "EndCard" ? s.durationSec ?? 2.5 : h.voicedSeconds(s, true)), 0));

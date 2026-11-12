@@ -1,9 +1,12 @@
 """styleVersion 3（桌面紙拼貼）素材產生器：全部點陣 PNG，固定 seed，可重現。
-用法：python3 scripts/make-paper.py [slug]      （預設 what-is-server）
+用法：python3 scripts/make-paper.py [slug] [--skin=desk|blueprint|newsprint|notebook|sticky] [--photos=DIR] [--only=函式,函式]
+      （slug 預設 what-is-server；skin 預設讀 videos/<slug>/script.json 的 skin，沒有就是 desk）
 輸出：public/v3/<slug>/*.png ＋ meta.json（每張圖的尺寸與「紙本體」在圖內的位置；圖四邊有烤好的落影留白）
-來源：紙材函式在 scripts/styleframes/paper.py；照片在 out/<slug>/assets-raw/photos/（Pexels，見 videos/<slug>/assets.md）。
+來源：紙材函式在 scripts/styleframes/paper.py；照片在 out/<slug>/assets-raw/photos/（Pexels，見 videos/<slug>/assets.md；做法見 docs/style-v3/photos-howto.md）。
+每支片自己的設定（可選）：videos/<slug>/assets.json＝{ "photos": { "<檔名不含副檔名>": { crop, focus, shape, frames, tone, lift, blur } }, "papers": { "<紙材名>": { w, h, color, torn, cut, radius, shadow } } }
+色票：預設（desk）寫在下面的 A；其他 skin 讀 src/theme-v3-skins.json（和 src/theme.ts 的 THEME_V3.skins 同一份）。
 public/v3/ 不 commit（.gitignore）。"""
-import os, sys, json, numpy as np
+import os, sys, json, glob, zlib, numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, 'styleframes'))
@@ -12,11 +15,27 @@ from paper import *  # noqa
 _args = [a for a in sys.argv[1:] if not a.startswith('--')]
 SLUG = _args[0] if _args else 'what-is-server'
 ROOT = os.path.abspath(os.path.join(HERE, '..'))
-RAW = os.path.join(ROOT, 'out', SLUG, 'assets-raw', 'photos')
+def _opt(k, d=None):
+    v = [a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith(f'--{k}=')]
+    return v[0] if v else d
+RAW = _opt('photos') or os.path.join(ROOT, 'out', SLUG, 'assets-raw', 'photos')
 O = os.path.join(ROOT, 'public', 'v3', SLUG); os.makedirs(O, exist_ok=True)
 # 色表＝src/theme.ts THEME_V3（兩邊要一致）
 A = dict(desk='#EFE6D4', mat='#2F4A3A', white='#FFFDF7', kraft='#C9A66B', red='#D9482B', yellow='#F2B632', blue='#1F3A5F', mint='#7DB7A0', ink='#1E1B16',
          navy2='#152B49', cream='#F6F0E0', night='#22304F', dawn='#F6DFA0', sky='#BFD9E6')
+# ---------- skin：換色票與桌面紙紋（src/theme-v3-skins.json；desk＝上面的預設值，一個字都不改） ----------
+_sp = os.path.join(ROOT, 'videos', SLUG, 'script.json')
+SKIN = _opt('skin') or (json.load(open(_sp)).get('skin') if os.path.exists(_sp) else None) or 'desk'
+SKINS = json.load(open(os.path.join(ROOT, 'src', 'theme-v3-skins.json')))
+if SKIN not in SKINS: sys.exit(f'✖ skin「{SKIN}」不存在（{"／".join(SKINS)}）')
+SK = SKINS[SKIN]
+if SKIN != 'desk':
+    for k in ('desk', 'mat', 'kraft', 'red', 'yellow', 'blue', 'mint', 'ink'): A[k] = SK.get(k, A[k])
+    A['white'] = SK.get('paper', A['white']); A.update(SK.get('extra', {}))
+_cp = os.path.join(ROOT, 'videos', SLUG, 'assets.json')
+CFG = json.load(open(_cp)) if os.path.exists(_cp) else {}
+# 舊片（what-is-server，desk）照原本的流程跑，產出的檔案一張都不變；其他片走通用流程（generic／photos／custom）
+LEGACY = SLUG == 'what-is-server' and SKIN == 'desk'
 meta = {}
 
 def save(img, name, body=None):
@@ -54,8 +73,46 @@ def tile_tex(w, h, color, seed, grain=5, blotch=6):
     lum += (np.asarray(fb.filter(ImageFilter.GaussianBlur(0.7))).astype(np.float32) - 128) * 0.55
     return np.clip(c[None, None, :] + lum[:, :, None], 0, 255)
 
+def tint(t, mask, color, k):
+    """把 t（RGB float）在 mask（0..1）的地方往 color 靠 k 成"""
+    m = (mask * k)[:, :, None]
+    return t * (1 - m) + np.array(hexrgb(color), np.float32)[None, None] * m
+
+def desk_tile():
+    """桌面紙紋（1080×1920 可平鋪）。線條、斑點的對比都壓在 30/255 以內：覆蓋率檢查（cov2.py）才不會把桌面紋路算成「有東西」"""
+    W, H = 1080, 1920; kind = SK.get('deskKind', 'plain')
+    if kind == 'plain': return tile_tex(W, H, A['desk'], 11)
+    if kind == 'grid':      # 藍圖方格紙：30px 細格、120px 粗格（兩個方向都整除）
+        t = tile_tex(W, H, A['desk'], 11, grain=4, blotch=5)
+        g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
+        for x in range(0, W, 30): d.line([(x, 0), (x, H)], fill=255 if x % 120 == 0 else 120, width=2 if x % 120 == 0 else 1)
+        for y in range(0, H, 30): d.line([(0, y), (W, y)], fill=255 if y % 120 == 0 else 120, width=2 if y % 120 == 0 else 1)
+        return tint(t, np.asarray(g).astype(np.float32) / 255 * (0.8 + 0.2 * tile_noise(W, H, 5, 120)), SK.get('deskLine', '#FFFFFF'), 0.17)
+    if kind == 'ruled':     # 橫線筆記本：每 60px 一條淡藍線
+        t = tile_tex(W, H, A['desk'], 11, grain=4, blotch=4)
+        g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
+        for y in range(30, H, 60): d.line([(0, y), (W, y)], fill=255, width=2)
+        return tint(t, np.asarray(g).astype(np.float32) / 255, SK.get('deskLine', '#9DB9DA'), 0.3)
+    if kind == 'cork':      # 軟木板：大塊色斑＋細碎顆粒（深、淺兩種）
+        t = tile_tex(W, H, A['desk'], 11, grain=6, blotch=9)
+        r = np.random.default_rng(13); sp = np.zeros((H, W), np.float32)
+        for n, amp, rad in ((5200, -13, 3), (3800, 9, 2), (900, -10, 5)):
+            xs, ys = r.integers(0, W, n), r.integers(0, H, n)
+            im = Image.new('L', (W, H), 0); d = ImageDraw.Draw(im)
+            for x, y in zip(xs, ys):
+                rr = int(r.integers(1, rad + 1))
+                for dx in (-W, 0, W):
+                    for dy in (-H, 0, H): d.ellipse((x + dx - rr, y + dy - rr, x + dx + rr, y + dy + rr), fill=255)
+            sp += np.asarray(im.filter(ImageFilter.GaussianBlur(0.8))).astype(np.float32) / 255 * amp
+        return np.clip(t + sp[:, :, None], 0, 255)
+    if kind == 'board':     # 白板：很細的紋理＋擦過的淡痕
+        t = tile_tex(W, H, A['desk'], 11, grain=2, blotch=2)
+        sm = np.clip(tile_noise(W, H, 14, 260) * 0.5 + tile_noise(W, H, 15, 70) * 0.5, 0, 1)
+        return np.clip(t - 9 * sm[:, :, None] * np.array([1.0, 0.95, 0.85], np.float32), 0, 255)
+    sys.exit(f'✖ deskKind「{kind}」不存在')
+
 def backgrounds():
-    save(Image.fromarray(tile_tex(1080, 1920, A['desk'], 11).astype(np.uint8)), 'desk')
+    save(Image.fromarray(desk_tile().astype(np.uint8)), 'desk')
     W, H = 1500, 1800   # 切割墊：60px 細格、300px 粗格，兩個方向都整除
     t = tile_tex(W, H, A['mat'], 12, grain=5, blotch=5)
     g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
@@ -377,12 +434,147 @@ def polaroids():
         sh(c, name=name, pad=40, off=(6, 12), blur=11, alpha=0.45)
         meta[name]['caption'] = [30, 372, 440, 80]
 
+# ====================== 通用紙片（每支新片都有；what-is-server 舊片不產生） ======================
+COLORS = ('white', 'yellow', 'red', 'blue', 'mint', 'kraft', 'ink')
+def col(c): return A[c] if c in A else c          # 色名（角色）或 #hex
+
+def rounded(w, h, color, seed, radius, grain=6, edge=1.2):
+    im, d, S = M(w, h); d.rounded_rectangle((2 * S, 2 * S, (w - 2) * S, (h - 2) * S), radius=radius * S, fill=255)
+    return shape(done(im, w, h), color, seed, grain=grain, edge=edge)
+
+def note(w, h, color, seed):
+    """便利貼：剪刀邊，上緣一條背膠略深、下緣微微翹起（較暗）"""
+    im = sheet(w, h, color, seed, cut=1.0, grain=5)
+    a = np.asarray(im).astype(np.float32); y = np.arange(h, dtype=np.float32)[:, None]
+    sh_ = -7 * (y < h * 0.13) - 20 * np.clip((y - h * 0.8) / (h * 0.2), 0, 1) ** 2
+    a[:, :, :3] = np.clip(a[:, :, :3] + sh_[:, :, None], 0, 255)
+    return Image.fromarray(a.astype(np.uint8), 'RGBA')
+
+def generic():
+    for i, c in enumerate(COLORS):
+        if c != 'ink':
+            sh(note(420, 420, A[c], 600 + i), name=f'note-{c}', pad=40, off=(5, 11), blur=10, alpha=0.36)      # 便條／便利貼
+            sh(sheet(640, 400, A[c], 610 + i, cut=1.6, grain=6), name=f'card-{c}', pad=40, off=(5, 10), blur=10, alpha=0.4)   # 大數字、重點卡
+        sh(sheet(640, 110, A[c], 620 + i, cut=1.6, grain=6), name=f'block-{c}', pad=24, off=(3, 7), blur=6, alpha=0.42)       # 堆疊方塊的一層
+        sh(sheet(900, 76, A[c], 630 + i, cut=1.4, grain=6), name=f'bar-{c}', pad=20, off=(3, 6), blur=5, alpha=0.4)            # 橫的長條
+        sh(sheet(76, 900, A[c], 640 + i, cut=1.4, grain=6), name=f'barv-{c}', pad=20, off=(3, 6), blur=5, alpha=0.4)           # 直的長條
+        sh(sheet(240, 14, A[c], 650 + i, cut=0.8, grain=4), name=f'seg-{c}', pad=10, off=(1, 3), blur=2, alpha=0.35)           # 折線的一段
+        im, d, S = M(34, 34); d.ellipse((2 * S, 2 * S, 32 * S, 32 * S), fill=255)
+        nd = shape(done(im, 34, 34), A['white'], 660 + i, edge=0)
+        im, d, S = M(34, 34); d.ellipse((7 * S, 7 * S, 27 * S, 27 * S), fill=255)
+        nd.alpha_composite(shape(done(im, 34, 34), A[c] if c != 'white' else A['ink'], 670 + i, edge=0))
+        sh(nd, name=f'node-{c}', pad=8, off=(1, 2), blur=2, alpha=0.4)                                                        # 折線的轉折點
+        # 紙箭頭（朝右）：箭身＋箭頭一刀剪成
+        w, h = 320, 130; im, d, S = M(w, h)
+        d.polygon([(4 * S, 44 * S), (196 * S, 44 * S), (196 * S, 6 * S), (316 * S, 65 * S), (196 * S, 124 * S), (196 * S, 86 * S), (4 * S, 86 * S)], fill=255)
+        sh(shape(done(im, w, h), A[c], 680 + i, edge=1.4), name=f'arrow-{c}', pad=24, off=(3, 7), blur=6, alpha=0.4)
+    sh(sheet(900, 10, A['ink'], 690, cut=0.6, grain=4), name='rule', pad=8, off=(1, 2), blur=1.5, alpha=0.3)                   # 圖表基線
+    sh(sheet(900, 10, A['white'], 691, cut=0.6, grain=4), name='rule-w', pad=8, off=(1, 2), blur=1.5, alpha=0.3)
+    for n, c, s in (('y', A['yellow'], 692), ('r', A['red'], 693), ('w', A['white'], 694)):                                    # 虛線終點的小箭頭（朝右）
+        im, d, S = M(64, 64); d.polygon([(6 * S, 6 * S), (60 * S, 32 * S), (6 * S, 58 * S)], fill=255)
+        sh(shape(done(im, 64, 64), c, s, edge=1.0), name=f'arrowhead-{n}', pad=10, off=(1, 3), blur=2, alpha=0.35)
+    for n, c, s in (('red', A['red'], 695), ('blue', A['blue'], 696), ('yellow', A['yellow'], 697)):                           # 圖釘
+        im, d, S = M(56, 56); d.ellipse((3 * S, 3 * S, 53 * S, 53 * S), fill=255)
+        pn = shape(done(im, 56, 56), c, s, grain=3, edge=0)
+        im, d, S = M(56, 56); d.ellipse((14 * S, 11 * S, 32 * S, 29 * S), fill=255)
+        hl = np.asarray(shape(done(im, 56, 56), A['white'], s + 20, grain=2, edge=0)).copy(); hl[:, :, 3] = (hl[:, :, 3] * 0.45).astype(np.uint8)
+        pn.alpha_composite(Image.fromarray(hl, 'RGBA'))
+        sh(pn, name=f'pin-{n}', pad=16, off=(4, 8), blur=5, alpha=0.5)
+    for n, c, s in (('b', A['blue'], 698), ('w', A['white'], 699), ('k', A['kraft'], 700)):                                    # 多兩三種膠帶
+        sh(tape(190, 56, c, s, 0.86), name=f'tape-{n}', pad=14, off=(1, 2), blur=2, alpha=0.22)
+
+def phone_paper():
+    """沒有手機實拍照片時的紙手機（深色圓角機身＋白色貼紙邊；螢幕由 PhoneMock 的 HTML 畫）"""
+    W, H = 600, 1164; bw = 13
+    body = rounded(W, H, A['ink'], 710, 56, grain=4, edge=0.6)
+    im, d, S = M(W, H); d.rounded_rectangle((26 * S, 26 * S, (W - 26) * S, (H - 26) * S), radius=36 * S, fill=255)
+    body.alpha_composite(shape(done(im, W, H), '#2E3338', 711, grain=3, edge=0))
+    st = rounded(W + 2 * bw, H + 2 * bw, A['white'], 712, 56 + bw, grain=4, edge=1.6)
+    st.alpha_composite(body, (bw, bw))
+    save(shadow(st, pad=50, off=(7, 13), blur=13, alpha=0.38), 'phone', (50 + bw, 50 + bw, W, H))
+
+def tone(a, kind, seed, lift=0):
+    """照片調色（a＝RGB float）：warm 沖印暖調（desk）、cool 偏冷去飽和（blueprint）、news 黑白報紙（newsprint）、soft 柔和粉暖（notebook）、plain 幾乎不動（sticky）"""
+    if lift: a = 255 * (a / 255) ** (1 / (1 + lift))
+    l = (a @ np.array([0.299, 0.587, 0.114], np.float32))[:, :, None]
+    if kind == 'news':
+        g = np.clip((l - 128) * 1.18 + 132, 0, 255)
+        a = g * (np.array(hexrgb(A['white']), np.float32) / 255)[None, None] * 0.97 + 6
+        return film_grain(a, seed, 7)
+    if kind == 'cool': a = (a * 0.62 + l * 0.38 - 128) * 1.04 + 128; a = a * np.array([0.95, 1.0, 1.06], np.float32)
+    elif kind == 'soft': a = a * 0.88 + 26; a = a * np.array([1.04, 0.99, 0.96], np.float32)
+    elif kind == 'plain': a = (a - 128) * 1.03 + 129
+    else: a = (a - 128) * 0.92 + 132; a = a * np.array([1.03, 1.0, 0.94], np.float32)
+    return film_grain(np.clip(a, 0, 255), seed, 3)
+
+def fit(im, tw, th, focus=(0.5, 0.5)):
+    w, h = im.size; r = tw / th
+    cw, ch = (int(h * r), h) if w / h > r else (w, int(w / r))
+    x = int((w - cw) * focus[0]); y = int((h - ch) * focus[1])
+    return im.crop((x, y, x + cw, y + ch)).resize((tw, th), Image.LANCZOS)
+
+SHAPES = dict(land=dict(pol=(440, 330), prt=(640, 440)), port=dict(pol=(380, 470), prt=(460, 620)), sq=dict(pol=(410, 410), prt=(520, 520)))
+def photos():
+    """out/<slug>/assets-raw/photos/ 裡每一張照片 → polaroid-<名>（拍立得，下方可寫字）、print-<名>（沖印照片，細白邊）；newsprint 另有 clip-<名>（撕下來的剪報）。
+    檔名（不含副檔名）就是紙材名的後半；每張的裁切、形狀、調色可在 videos/<slug>/assets.json 的 photos 指定。"""
+    files = sorted(f for f in glob.glob(os.path.join(RAW, '*')) if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')))
+    for f in files:
+        stem = os.path.splitext(os.path.basename(f))[0]
+        if LEGACY and stem in ('aisle', 'rack-close', 'kitchen', 'phone-desk'): continue
+        if stem == 'phone-desk': continue                                   # 手機去背用的原圖，不做成照片
+        c = CFG.get('photos', {}).get(stem, {})
+        seed = zlib.crc32(stem.encode()) % 100000
+        im = Image.open(f).convert('RGB')
+        if c.get('crop'): l, t, r_, b = c['crop']; im = im.crop((int(im.width * l), int(im.height * t), int(im.width * r_), int(im.height * b)))
+        for bx in c.get('blur', []):                                         # 要糊掉的區塊（人臉、商標、看得出字的招牌）：[左, 上, 右, 下]，都是 0–1 的比例
+            box = (int(im.width * bx[0]), int(im.height * bx[1]), int(im.width * bx[2]), int(im.height * bx[3]))
+            im.paste(im.crop(box).filter(ImageFilter.GaussianBlur(max(8, (box[2] - box[0]) // 8))), box[:2])
+        ar = im.width / im.height
+        shp = c.get('shape') or ('land' if ar > 1.15 else 'port' if ar < 0.87 else 'sq')
+        kind = c.get('tone') or SK.get('photo', 'warm'); focus = c.get('focus', (0.5, 0.5))
+        frames = c.get('frames') or (['polaroid', 'print'] + (['clip'] if kind == 'news' else []))
+        def pic(tw, th): return Image.fromarray(tone(np.asarray(fit(im, tw, th, focus)).astype(np.float32), kind, seed, c.get('lift', 0)).astype(np.uint8)).convert('RGBA')
+        if 'polaroid' in frames:
+            tw, th = SHAPES[shp]['pol']
+            s_ = sheet(tw + 60, th + 140, A['white'], seed + 1, cut=1.2); s_.alpha_composite(pic(tw, th), (30, 30))
+            ImageDraw.Draw(s_).rectangle((29, 29, 30 + tw, 30 + th), outline=(0, 0, 0, 40), width=1)
+            sh(s_, name=f'polaroid-{stem}', pad=40, off=(6, 12), blur=11, alpha=0.45)
+            meta[f'polaroid-{stem}']['caption'] = [30, th + 42, tw, 80]
+        if 'print' in frames:
+            tw, th = SHAPES[shp]['prt']
+            s_ = sheet(tw + 28, th + 28, A['white'], seed + 2, cut=1.2); s_.alpha_composite(pic(tw, th), (14, 14))
+            sh(s_, name=f'print-{stem}', pad=40, off=(6, 12), blur=11, alpha=0.45)
+        if 'clip' in frames:
+            tw, th = SHAPES[shp]['pol']; tw, th = int(tw * 1.1), int(th * 1.1)
+            s_ = sheet(tw + 48, th + 150, A['white'], seed + 3, torn='rb', tear=8); s_.alpha_composite(pic(tw, th), (24, 24))
+            d = ImageDraw.Draw(s_); r = np.random.default_rng(seed + 4); g = hexrgb(A['ink'])
+            for j in range(4):                                               # 假的內文（灰條，不寫字）
+                d.line([(24, th + 48 + j * 22), (24 + int(tw * (0.96 if j < 3 else r.uniform(0.4, 0.7))), th + 48 + j * 22)], fill=g + (70,), width=7)
+            sh(s_, name=f'clip-{stem}', pad=40, off=(6, 12), blur=11, alpha=0.45)
+            meta[f'clip-{stem}']['caption'] = [24, th + 30, tw, 100]
+
+def custom():
+    """videos/<slug>/assets.json 的 papers：自訂尺寸的色紙（堆疊方塊的每一層、特別大的標題條…）。
+    { "<名>": { "w": 520, "h": 90, "color": "blue"｜"#RRGGBB", "torn": "lr", "cut": 1.6, "radius": 12, "kind": "sheet"｜"note", "shadow": "s"｜"m"｜"l" } }"""
+    SH = dict(s=dict(pad=20, off=(2, 5), blur=4, alpha=0.4), m=dict(pad=40, off=(5, 9), blur=9, alpha=0.4), l=dict(pad=60, off=(8, 16), blur=16, alpha=0.45))
+    for name, c in CFG.get('papers', {}).items():
+        seed = zlib.crc32(name.encode()) % 100000; w, h = int(c['w']), int(c['h']); color = col(c.get('color', 'white'))
+        if c.get('radius'): im = rounded(w, h, color, seed, c['radius'])
+        elif c.get('kind') == 'note': im = note(w, h, color, seed)
+        else: im = sheet(w, h, color, seed, torn=c.get('torn', ''), cut=c.get('cut', 1.6), grain=c.get('grain', 6))
+        sh(im, name=name, **SH[c.get('shadow', 'm' if min(w, h) > 120 else 's')])
+
 if __name__ == '__main__':
     only = [a[7:].split(',') for a in sys.argv if a.startswith('--only=')]   # --only=phone,polaroids：只重做這幾組，其餘沿用現有 meta.json
     if only:
         meta.update(json.load(open(os.path.join(O, 'meta.json'))))
         for f in only[0]: globals()[f]()
-    else:
+    elif LEGACY:
         backgrounds(); papers(); phone(); rack(); pass_window(); small(); polaroids()
+    else:
+        backgrounds(); papers(); small(); generic()
+        phone() if os.path.exists(os.path.join(RAW, 'phone-desk.jpg')) else phone_paper()
+        photos(); custom()
+    if not LEGACY: meta['_info'] = dict(w=0, h=0, body=[0, 0, 0, 0], skin=SKIN)
     json.dump(meta, open(os.path.join(O, 'meta.json'), 'w'), indent=1)
     print(f'✔ {len(meta)} 項 → public/v3/{SLUG}/（meta.json）')

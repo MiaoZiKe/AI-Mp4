@@ -3,20 +3,24 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import type { Scene, Script, TimelineV2 } from "../../types";
-import { FPS, LAYOUT_V3 as L, THEME_V3 as T } from "../../theme";
+import { FPS, LAYOUT_V3 as L } from "../../theme";
 import { AMBIENT } from "../anim";
-import { AssetContext, Paper, useAsset, useAssets, type AssetMeta } from "./assets";
+import { AssetContext, Paper, makeCtx, useAsset, useAssets, useT, type AssetMeta } from "./assets";
+import { BarsPiece, LinePiece, NumPiece, StackPiece, barsSize, lineSize, stackSize } from "./Charts";
 import { alive, buildStage, cameraAt, matAt, placeAt, presence, resolveAt, stateAt, type Stage, type StageItem } from "./engine";
 import { DashedPath, ImgPiece, PassWindow, StripTitle, imgSize, stripSize, type PieceProps } from "./Pieces";
 import { PhoneMock } from "./PhoneMock";
 import { EndCardV3, HeaderV3, PaperCaption, SourceTrackV3 } from "./Tracks";
 
-const RENDER: Record<string, React.FC<PieceProps>> = { img: ImgPiece, strip: StripTitle, phone: PhoneMock, pass: PassWindow, path: DashedPath };
+const RENDER: Record<string, React.FC<PieceProps>> = { img: ImgPiece, strip: StripTitle, phone: PhoneMock, pass: PassWindow, path: DashedPath, num: NumPiece, stack: StackPiece, bars: BarsPiece, line: LinePiece };
 const natural = (it: StageItem, assets: Record<string, AssetMeta>): [number, number] => {
   const t = it.spec.type ?? "img";
   if (t === "phone") return [assets.phone.body[2], assets.phone.body[3]];
   if (t === "pass") return [assets.pass.w, assets.pass.h];
-  if (t === "strip") return stripSize(it.spec, assets);
+  if (t === "strip" || t === "num") return stripSize(t === "num" ? { paper: "card-white", ...it.spec } : it.spec, assets);
+  if (t === "stack") return stackSize(it.spec, assets);
+  if (t === "bars") return barsSize(it.spec);
+  if (t === "line") return lineSize(it.spec);
   if (t === "path") return [0, 0];
   return imgSize(it.spec, assets);
 };
@@ -56,6 +60,7 @@ const Items: React.FC<{ stage: Stage; layer: string; f: number }> = ({ stage, la
  */
 export const PaperStage: React.FC<{ stage: Stage }> = ({ stage }) => {
   const f = useCurrentFrame();
+  const T = useT();
   const { cx, cy, s } = cameraAt(stage, f);
   const tx = L.W / 2 - cx * s, ty = L.H / 2 - cy * s;
   const desk = useAsset("desk"), mat = useAsset("mat"), vig = useAsset("vignette");
@@ -88,7 +93,7 @@ const Special: React.FC<{ scenes: Scene[]; timeline: TimelineV2 }> = ({ scenes, 
   return <>{scenes.filter((s) => s.component === "EndCard" && by[s.id] && f >= by[s.id].startFrame).map((s) => <EndCardV3 key={s.id} start={by[s.id].startFrame} {...s.props} />)}</>;
 };
 
-export const VideoV3: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, slug, v3, audit }) => {
+export const VideoV3: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, slug, v3, audit, skin, channel }) => {
   const f = useCurrentFrame();
   const stage = useMemo(() => buildStage(scenes, timeline), [scenes, timeline]);
   if (stage.warnings.length && f === 0) console.warn(`[v3] ${stage.warnings.join("；")}`);
@@ -96,7 +101,7 @@ export const VideoV3: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, t
   const ordered = scenes.filter((s) => by[s.id]);
   const subCues = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ id: s.id, en: s.subtitle.en, keywords: s.keywords, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines, keywords_at: by[s.id].keywords }));
   const srcCues = ordered.filter((s) => s.component !== "EndCard").map((s) => ({ sources: s.sources, window: by[s.id].sourceWindow }));
-  const ctx = useMemo(() => ({ slug, assets: (v3?.assets ?? {}) as Record<string, AssetMeta>, ambient: AMBIENT && !audit }), [slug, v3, audit]);
+  const ctx = useMemo(() => makeCtx({ slug, v3, skin, channel }, AMBIENT && !audit), [slug, v3, audit, skin, channel]);
   // 頁首紙底：寫了 headerPlate 的幕，從開始到下一幕開始（片尾卡蓋上就不需要了）
   // headerPlate: true＝整幕；{ at, dur｜until: "幕 id.cue±n" }＝從 at 起 dur 幀或到 until（鏡頭帶著東西從頁首後面經過的那一段）。回傳 [已貼上幾幀, 還剩幾幀]
   const plateAt = (ff: number): [number, number] => ordered.reduce((v, s, i) => {
@@ -120,7 +125,7 @@ export const VideoV3: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, t
         {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
           <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
         ))}
-        <HeaderV3 dark={f < endStart && matAt(stage, f) > 0.17 && plateAt(f)[0] < 0} plate={plateAt(f)[0]} plateLeft={plateAt(f)[1]} />
+        <HeaderV3 dark={f < endStart && (ctx.theme.deskDark || matAt(stage, f) > 0.17) && plateAt(f)[0] < 0} plate={plateAt(f)[0]} plateLeft={plateAt(f)[1]} />
       </AbsoluteFill>
     </AssetContext.Provider>
   );

@@ -54,7 +54,17 @@
 - 配音：`voice.mode: "take"` 走 `scripts/tts-take.mjs`（整篇一次生成、強制對齊找切點、保留原始錄音的句間停頓，不能單幕重生）；`voice.style` 是提示句，程式自動接「說：」。提示不要寫成情境對話（會被念出來）。
 - 指令：`npm run validate`（v3 規則在 `scripts/v3/validate-v3.mjs`）→ `npm run still`（覆蓋率用 v3 門檻）→ `npm run selfcheck <slug> -- --sample`（前 15 秒樣片關口）→ `npm run render` → `npm run audit` → `npm run selfcheck <slug> -- --render`（全片；六項分數讀 `review.md` 第一張評分表，要由沒參與製作的評審填）→ `python3 scripts/v3/review-sheet.py <slug>`（`out/<slug>-review.png`）。看指定時刻：`node scripts/v3/peek.mjs <slug> <out.png> <幀或 s06:cue+10,...>`。
 - 規則：不用 3D、SVG 圖示卡、霓虹發光、漸層、透明度淡入淡出（紙只會貼上、滑動、被蓋住、被撕走）；同屏主要東西 ≤3 樣；每 2–4 秒有事件、內容幕不留 >1.5 秒靜止；轉場用蓋場紙、切割墊或沿虛線移鏡，不硬切；字幕換段不留空白紙條；深色紙片經過頁首時墊 `headerPlate`；不出現真實人物與真實商標圖案；片中不加 AI 標示。
-- 已知限制：selfcheck 的單幀跳變關口是照 v2 訂的，v3 紙片「貼上」那一幀會被算成跳變（what-is-server 有 13 幀）；audit 的 `blackFramesTotal` 會把蓋場大紙算進去，真正黑幀用 ffmpeg blackdetect 看。SeatBar、圖表類元件沒有 v3 版。
+- 外觀與頻道（頂層，都可省略）：`skin`＝`desk`（預設，what-is-server 的桌面）｜`blueprint`（藍圖方格紙＋白／青紙片，桌面是深色）｜`newsprint`（軟木板＋報紙色紙、黑白照片）｜`notebook`（橫線筆記本＋粉橘便條）｜`sticky`（白板＋彩色便利貼）；`channel: { name, tag, slogan }`（預設 白話國際／國際白話講／一支講透一件事）決定頁首左右兩處與片尾卡的字。skin 只換色票與桌面紙紋，版面與動作不變；色名（red／yellow／blue／mint／white／ink／ink2／ink3／kraft）是「角色」，每套 skin 對到不同顏色。數值在 `src/theme-v3-skins.json`（`THEME_V3.skins` 與 `make-paper.py` 讀同一份）；元件用 `useT()`／`useChannel()` 拿，不直接讀 `THEME_V3` 的色票。換 skin 要重跑 `make-paper.py`（validate／still／render 會檢查紙材是不是同一套 skin 做的）。深色桌面（blueprint）上直接放的圖表字會自動用淺色，圖表墊在白紙上時寫 `onDark: false`。
+- 通用紙片（每支新片的 `public/v3/<slug>/` 都有；what-is-server 舊片不產生）：便條 `note-<色>`、重點卡 `card-<色>`、方塊 `block-<色>`、紙箭頭 `arrow-<色>`（朝右，用 `rot` 轉）、圖釘 `pin-red｜blue｜yellow`、膠帶 `tape-y｜m｜r｜b｜w｜k`（色＝white／yellow／red／blue／mint／kraft／ink）。有字的都用 `type: "strip"` 加 `paper`；`img` 也可以加 `tape`。另外四種 type（`src/components/v3/Charts.tsx`）：
+  - `num` 大數字紙片：`value`、`fromValue`、`decimals`、`prefix`、`unit`、`head`、`lines`、`paper`（預設 `card-white`）；`state.count: 0` 加 `set: [{ at, count: 1 }]` 可以等念到才跳。
+  - `stack` 堆疊方塊：`layers` 由下到上，每層 `{ asset, w, t }` 或 `{ row: [...] }`（同一層並排）；`state.n` 控制疊到第幾層。
+  - `bars` 紙條長條圖：`bars: [{ v, label, color, val }]`、`dir: "up"｜"right"`、`w`／`h`、`unit`；`state.grow`。
+  - `line` 紙條折線：`vals`、`labels`、`marks: [{ i, t }]`、`color`；`state.grow`。
+  - `path` 加 `head: true`（或 `"arrowhead-r"`／`"arrowhead-w"`）＝虛線長完在終點貼一個紙箭頭。
+  - 自訂尺寸的色紙（堆疊的每一層、特大標題條）與照片的裁切寫在 `videos/<slug>/assets.json`（`papers`／`photos`）。手機沒有實拍原圖時自動改用紙手機；出餐口 `pass`、機櫃 `rack` 只有 what-is-server 有。
+  - 寫法範例：`docs/style-v3/skin-proof-script.json`；五套外觀的樣張：`node scripts/v3/skin-proof.mjs all` → `out/skin-proof/<skin>/sheet.png`。
+- 實拍照片：`python3 scripts/styleframes/find_pexels.py 關鍵字…` 找、`--fetch <slug> 名稱=md5` 抓，`make-paper.py` 自動做成 `polaroid-<名稱>`／`print-<名稱>`（newsprint 另有 `clip-<名稱>`）；流程與規則（不要有可辨識人臉、怎麼記 assets.md）見 `docs/style-v3/photos-howto.md`。
+- 已知限制：selfcheck 的單幀跳變關口是照 v2 訂的，v3 紙片「貼上」那一幀會被算成跳變（what-is-server 有 13 幀）；audit 的 `blackFramesTotal` 會把蓋場大紙算進去，真正黑幀用 ffmpeg blackdetect 看。SeatBar 沒有 v3 版；v3 的圖表只有紙條長條（bars）與紙條折線（line）。
 
 ## 可重用元件（src/components/）
 Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、BigNumber、SeatBar（席次條，含過半門檻線）、IconGrid、ImpactCard（含「已確定／分析預期／尚未確定」標籤）、SourceFooter

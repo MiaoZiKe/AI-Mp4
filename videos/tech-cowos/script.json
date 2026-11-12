@@ -1,0 +1,717 @@
+{
+ "slug": "tech-cowos",
+ "title": "AI 晶片卡在這三層｜CoWoS 是什麼",
+ "asOf": "2026/11/12",
+ "styleVersion": 3,
+ "skin": "blueprint",
+ "channel": {
+  "name": "科技",
+  "tag": "科技拆開看",
+  "slogan": "一次拆開一個名詞"
+ },
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "style": ""
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
+  },
+  "items": [
+   {
+    "type": "strip",
+    "layer": "screen",
+    "x": 540,
+    "y": 760,
+    "w": 900,
+    "lines": [
+     {
+      "t": "AI 晶片",
+      "size": 132
+     },
+     {
+      "t": "卡在這 {3 層}",
+      "size": 132
+     },
+     {
+      "t": "CoWoS 是什麼",
+      "size": 64
+     }
+    ]
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "sentence": 1,
+   "para": 1,
+   "narration": "AI 晶片老是不夠賣，問題不只在晶片本身。",
+   "tts": "A I 晶片老是不夠賣，問題不只在晶片本身。",
+   "subtitle": {
+    "zh": "AI 晶片老是不夠賣\n問題不只在\n晶片本身",
+    "en": "AI chips keep selling out. | The problem isn't only | the chip itself."
+   },
+   "keywords": [
+    "不夠賣",
+    "不只"
+   ],
+   "cues": [
+    {
+     "id": "short",
+     "text": "不夠賣"
+    },
+    {
+     "id": "notonly",
+     "text": "不只在"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "items": [
+     {
+      "id": "hook",
+      "type": "strip",
+      "layer": "screen",
+      "x": 540,
+      "y": 620,
+      "w": 900,
+      "lines": [
+       {
+        "t": "AI 晶片",
+        "size": 120
+       },
+       {
+        "t": "卡在這 {3 層}",
+        "size": 120
+       }
+      ]
+     }
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s02",
+   "beat": "hook",
+   "sentence": 2,
+   "para": 1,
+   "narration": "還有一關在後面，叫做 CoWoS。",
+   "tts": "還有一關在後面，叫做 CoWoS。",
+   "subtitle": {
+    "zh": "還有一關在後面\n叫做 CoWoS",
+    "en": "There's one more step after it, | called CoWoS."
+   },
+   "keywords": [
+    "CoWoS"
+   ],
+   "cues": [
+    {
+     "id": "gate",
+     "text": "還有一關"
+    },
+    {
+     "id": "name",
+     "text": "叫做"
+    }
+   ],
+   "pauseAfter": 0.25,
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "sentence": 3,
+   "para": 2,
+   "narration": "CoWoS 是台積電的先進封裝。",
+   "tts": "CoWoS 是台積電的先進封裝。",
+   "subtitle": {
+    "zh": "CoWoS 是台積電的\n先進封裝",
+    "en": "CoWoS is TSMC's | advanced packaging."
+   },
+   "keywords": [
+    "先進封裝"
+   ],
+   "cues": [
+    {
+     "id": "pkg",
+     "text": "先進封裝"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：台積電 3DFabric 技術頁"
+   ]
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "sentence": 4,
+   "para": 2,
+   "narration": "封裝，就是把晶片接上線路、包起來。",
+   "tts": "封裝，就是把晶片接上線路、包起來。",
+   "subtitle": {
+    "zh": "封裝\n就是把晶片接上線路\n包起來",
+    "en": "Packaging means | wiring up a finished chip | and sealing it."
+   },
+   "keywords": [
+    "接上線路",
+    "包起來"
+   ],
+   "cues": [
+    {
+     "id": "wire",
+     "text": "接上線路"
+    },
+    {
+     "id": "wrap",
+     "text": "包起來"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "sentence": 5,
+   "para": 2,
+   "narration": "它把東西疊成三層。",
+   "tts": "它把東西疊成三層。",
+   "subtitle": {
+    "zh": "它把東西\n疊成三層",
+    "en": "It stacks things | into three layers."
+   },
+   "keywords": [
+    "三層"
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "三層"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "sentence": 6,
+   "para": 2,
+   "narration": "最上層是運算晶片，旁邊排著記憶體。",
+   "tts": "最上層是運算晶片，旁邊排著記憶體。",
+   "subtitle": {
+    "zh": "最上層是運算晶片\n旁邊排著記憶體",
+    "en": "On top: the compute chip, | with memory lined up beside it."
+   },
+   "keywords": [
+    "運算晶片",
+    "記憶體"
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "運算晶片"
+    },
+    {
+     "id": "mem",
+     "text": "記憶體"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "sentence": 7,
+   "para": 2,
+   "narration": "最下層是基板，接到主機板。",
+   "tts": "最下層是基板，接到主機板。",
+   "subtitle": {
+    "zh": "最下層是基板\n接到主機板",
+    "en": "At the bottom: the substrate, | which connects to the motherboard."
+   },
+   "keywords": [
+    "基板"
+   ],
+   "cues": [
+    {
+     "id": "sub",
+     "text": "基板"
+    },
+    {
+     "id": "board",
+     "text": "主機板"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "sentence": 8,
+   "para": 2,
+   "narration": "中間那片叫中介層，通常用矽做，線路比基板細很多。",
+   "tts": "中間那片叫中介層，通常用矽做，線路比基板細很多。",
+   "subtitle": {
+    "zh": "中間那片叫中介層\n通常用矽做\n線路比基板細很多",
+    "en": "The middle piece is the interposer, | usually made of silicon, | and wired far more finely."
+   },
+   "keywords": [
+    "中介層",
+    "矽",
+    "細很多"
+   ],
+   "cues": [
+    {
+     "id": "mid",
+     "text": "中間那片"
+    },
+    {
+     "id": "ip",
+     "text": "中介層"
+    },
+    {
+     "id": "si",
+     "text": "矽"
+    },
+    {
+     "id": "fine",
+     "text": "細很多"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：台積電 3DFabric 技術頁"
+   ]
+  },
+  {
+   "id": "s09",
+   "beat": "twist",
+   "sentence": 9,
+   "para": 3,
+   "narration": "為什麼非要多這一片？",
+   "tts": "為什麼非要多這一片？",
+   "subtitle": {
+    "zh": "為什麼\n非要多這一片？",
+    "en": "Why add | this extra piece at all?"
+   },
+   "keywords": [
+    "多這一片"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼"
+    },
+    {
+     "id": "extra",
+     "text": "多這一片"
+    }
+   ],
+   "pauseAfter": 0.35,
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s10",
+   "beat": "twist",
+   "sentence": 10,
+   "para": 3,
+   "narration": "因為晶片接點太密，基板線路太粗，接不上。",
+   "tts": "因為晶片接點太密，基板線路太粗，接不上。",
+   "subtitle": {
+    "zh": "因為晶片接點太密\n基板線路太粗\n接不上",
+    "en": "The chip's contacts are too dense, | the substrate's wiring too coarse. | They can't meet directly."
+   },
+   "keywords": [
+    "太密",
+    "太粗",
+    "接不上"
+   ],
+   "cues": [
+    {
+     "id": "dense",
+     "text": "太密"
+    },
+    {
+     "id": "coarse",
+     "text": "太粗"
+    },
+    {
+     "id": "fail",
+     "text": "接不上"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：台積電 Hot Chips 2021 簡報"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "twist",
+   "sentence": 11,
+   "para": 3,
+   "narration": "中介層就像轉接板，讓兩邊靠得近、傳得快。",
+   "tts": "中介層就像轉接板，讓兩邊靠得近、傳得快。",
+   "subtitle": {
+    "zh": "中介層就像轉接板\n讓兩邊靠得近\n傳得快",
+    "en": "The interposer works like an adapter, | keeping the two sides close | and fast."
+   },
+   "keywords": [
+    "轉接板",
+    "靠得近",
+    "傳得快"
+   ],
+   "cues": [
+    {
+     "id": "adapter",
+     "text": "轉接板"
+    },
+    {
+     "id": "near",
+     "text": "靠得近"
+    },
+    {
+     "id": "fast",
+     "text": "傳得快"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s12",
+   "beat": "twist",
+   "sentence": 12,
+   "para": 3,
+   "narration": "這技術十幾年前就有了，一開始幾乎沒訂單。",
+   "tts": "這技術十幾年前就有了，一開始幾乎沒訂單。",
+   "subtitle": {
+    "zh": "這技術十幾年前就有了\n一開始幾乎沒訂單",
+    "en": "It has been around for over a decade. | At first, almost nobody ordered it."
+   },
+   "keywords": [
+    "十幾年前",
+    "沒訂單"
+   ],
+   "cues": [
+    {
+     "id": "old",
+     "text": "十幾年前"
+    },
+    {
+     "id": "noorder",
+     "text": "沒訂單"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：台積電新聞稿 2013/10、蔣尚義受訪"
+   ]
+  },
+  {
+   "id": "s13",
+   "beat": "twist",
+   "sentence": 13,
+   "para": 3,
+   "narration": "直到 AI 晶片要配一整排記憶體，它才變搶手。",
+   "tts": "直到 A I 晶片要配一整排記憶體，它才變搶手。",
+   "subtitle": {
+    "zh": "直到 AI 晶片\n要配一整排記憶體\n它才變搶手",
+    "en": "Then AI chips needed | a whole row of memory, | and it became hot property."
+   },
+   "keywords": [
+    "一整排記憶體",
+    "搶手"
+   ],
+   "cues": [
+    {
+     "id": "row",
+     "text": "一整排"
+    },
+    {
+     "id": "hot",
+     "text": "搶手"
+    }
+   ],
+   "pauseAfter": 0.3,
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s14",
+   "beat": "twist",
+   "sentence": 14,
+   "para": 3,
+   "narration": "法人估，台積電今年底產能，比去年底多一半以上。",
+   "tts": "法人估，台積電今年底產能，比去年底多一半以上。",
+   "subtitle": {
+    "zh": "法人估\n台積電今年底產能\n比去年底多一半以上",
+    "en": "Analysts estimate | TSMC's year-end capacity | is up more than half from last year."
+   },
+   "keywords": [
+    "法人估",
+    "一半以上"
+   ],
+   "cues": [
+    {
+     "id": "est",
+     "text": "法人估"
+    },
+    {
+     "id": "cap",
+     "text": "今年底"
+    },
+    {
+     "id": "half",
+     "text": "一半以上"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：中央社／商周 2026（法人估）"
+   ]
+  },
+  {
+   "id": "s15",
+   "beat": "twist",
+   "sentence": 15,
+   "para": 3,
+   "narration": "可是封裝越做越大，外界多半認為還不夠。",
+   "tts": "可是封裝越做越大，外界多半認為還不夠。",
+   "subtitle": {
+    "zh": "可是封裝越做越大\n外界多半認為\n還不夠",
+    "en": "But packages keep getting bigger, | and most observers think | it's still not enough."
+   },
+   "keywords": [
+    "越做越大",
+    "還不夠"
+   ],
+   "cues": [
+    {
+     "id": "big",
+     "text": "越做越大"
+    },
+    {
+     "id": "short2",
+     "text": "還不夠"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": [
+    "來源：台積電法說會 2026/10/15、媒體報導"
+   ]
+  },
+  {
+   "id": "s16",
+   "beat": "payoff",
+   "sentence": 16,
+   "para": 4,
+   "narration": "所以新聞說 CoWoS 產能，講的就是這三層一個月能疊多少。",
+   "tts": "所以新聞說 CoWoS 產能，講的就是這三層一個月能疊多少。",
+   "subtitle": {
+    "zh": "所以新聞說\nCoWoS 產能\n講的就是這三層\n一個月能疊多少",
+    "en": "So when the news says | \"CoWoS capacity,\" | it means how many of these stacks | can be built in a month."
+   },
+   "keywords": [
+    "產能",
+    "三層",
+    "疊多少"
+   ],
+   "cues": [
+    {
+     "id": "news",
+     "text": "新聞說"
+    },
+    {
+     "id": "cap2",
+     "text": "產能"
+    },
+    {
+     "id": "three2",
+     "text": "這三層"
+    },
+    {
+     "id": "month",
+     "text": "一個月"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s17",
+   "beat": "cta",
+   "sentence": 17,
+   "para": 4,
+   "narration": "還有哪個半導體名詞，你想搞懂？",
+   "tts": "還有哪個半導體名詞，你想搞懂？",
+   "subtitle": {
+    "zh": "還有哪個\n半導體名詞\n你想搞懂？",
+    "en": "Which other | chip term | do you want explained?"
+   },
+   "keywords": [
+    "半導體名詞"
+   ],
+   "cues": [
+    {
+     "id": "term",
+     "text": "半導體名詞"
+    },
+    {
+     "id": "ask",
+     "text": "想搞懂"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s18",
+   "beat": "payoff",
+   "sentence": 18,
+   "para": 4,
+   "narration": "對了，旁邊那排記憶體叫 HBM。",
+   "tts": "對了，旁邊那排記憶體叫 H B M。",
+   "subtitle": {
+    "zh": "對了\n旁邊那排記憶體\n叫 HBM",
+    "en": "By the way, | that row of memory | is called HBM."
+   },
+   "keywords": [
+    "HBM"
+   ],
+   "cues": [
+    {
+     "id": "memrow",
+     "text": "那排記憶體"
+    },
+    {
+     "id": "hbm",
+     "text": "叫"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s19",
+   "beat": "payoff",
+   "sentence": 19,
+   "para": 4,
+   "narration": "它為什麼要疊得像大樓？下一集講。",
+   "tts": "它為什麼要疊得像大樓？下一集講。",
+   "subtitle": {
+    "zh": "它為什麼要\n疊得像大樓？\n下一集講",
+    "en": "Why is it stacked | like a tower? | Next episode."
+   },
+   "keywords": [
+    "疊得像大樓"
+   ],
+   "cues": [
+    {
+     "id": "tower",
+     "text": "像大樓"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": []
+   },
+   "sources": []
+  },
+  {
+   "id": "s20",
+   "beat": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "durationSec": 2.5,
+   "silent": true,
+   "component": "EndCard",
+   "props": {
+    "slogan": "一次拆開一個名詞",
+    "next": "下一集：HBM 為什麼要疊"
+   },
+   "sources": []
+  }
+ ]
+}

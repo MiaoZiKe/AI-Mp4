@@ -19,6 +19,9 @@ export const loadScript = (slug) => {
     const mp = path.join(ROOT, "public", "v3", slug, "meta.json");
     if (!fs.existsSync(mp)) throw new Error(`找不到 ${path.relative(ROOT, mp)}：先 python3 scripts/make-paper.py ${slug}`);
     s.v3 = { assets: JSON.parse(fs.readFileSync(mp, "utf8")) };
+    // skin（頂層，可省略＝desk）：紙材要用同一套 skin 產生，否則顏色對不上
+    const made = s.v3.assets._info?.skin ?? "desk";
+    if (made !== (s.skin ?? "desk")) throw new Error(`${slug} 的 skin 是「${s.skin ?? "desk"}」，但 public/v3/${slug}/ 的紙材是用「${made}」產生的：重跑 python3 scripts/make-paper.py ${slug}`);
   }
   if ([2, 3].includes(s.styleVersion) && s.timeline?.version !== 2)
     throw new Error(`${slug} 是 styleVersion ${s.styleVersion}，需要時間軸 v2：先 npm run align ${slug}（timeline.json 要有 version: 2）`);

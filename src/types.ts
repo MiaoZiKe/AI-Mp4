@@ -115,6 +115,9 @@ export type Script = {
   scenes: Scene[];
   /** 2 = 新引擎（時間軸 v2、錯位轉場、全片字幕軌、motion token）；沒有 = v1 舊片 */
   styleVersion?: 1 | 2 | 3;
+  /** styleVersion 3：外觀（THEME_V3.skins 的鍵；預設 "desk"）與頻道頁首／片尾卡文字（預設 白話國際／國際白話講／一支講透一件事） */
+  skin?: string;
+  channel?: { name?: string; tag?: string; slogan?: string };
   /** styleVersion 3：紙材 meta（scripts/lib.mjs 從 public/v3/<slug>/meta.json 讀進來） */
   v3?: { assets: Record<string, { w: number; h: number; body: number[]; [k: string]: any }> };
   /** 量測用（AUDIT=1）：關掉 ambient 動作 */

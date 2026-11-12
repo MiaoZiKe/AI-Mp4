@@ -212,6 +212,7 @@ export const LAYOUT_V2 = {
 // ───────────────────────── styleVersion 3：桌面紙拼貼（Paper Collage） ─────────────────────────
 // v3 元件（src/components/v3/）的顏色、字級、版面一律讀這裡；紙材 PNG 由 scripts/make-paper.py 產生（色表兩邊要一致）。
 // 來源：docs/style-v3/viral-style-research.md 方向 A、docs/style-v3/styleframes.md。不用漸層、發光、SVG 圖示。
+import SKINS_V3 from "./theme-v3-skins.json";
 export const THEME_V3 = {
   name: "桌面紙拼貼",
   desk: "#EFE6D4",
@@ -237,7 +238,28 @@ export const THEME_V3 = {
   weight: { zh: 900, en: 800, body: 700, enBody: 600 },
   /** 動作（幀）：一般貼上、重點重貼、滑入、退場、鏡頭移動、逐格更新間隔、落定後抖動間隔與幅度 */
   motion: { paste: 6, slam: 4, slide: 8, exit: 6, wipe: 8, camera: 12, step: 2, jitterEvery: 9, jitterPx: 1, jitterDeg: 0.3, slideDist: 900, punch: 0.96 },
+  /** 外觀（script.json 頂層 skin）：每套只換色票與桌面紙紋，版面、動作不變。色名是「角色」：red＝強調、yellow＝螢光筆／便條、blue＝次要深色、mint＝第三色、kraft＝出處紙條。
+   *  數值在 src/theme-v3-skins.json（scripts/make-paper.py 讀同一份，兩邊不會不一致） */
+  skins: SKINS_V3 as Record<string, SkinV3>,
+  /** 頻道頁首與片尾卡的預設文字（script.json 頂層 channel 可覆寫） */
+  channel: { name: "白話國際", tag: "國際白話講", slogan: "一支講透一件事" },
 } as const;
+type V3Palette = { desk: string; mat: string; paper: string; kraft: string; red: string; yellow: string; blue: string; mint: string; ink: string; ink2: string; ink3: string; onDark: string; onDark2: string; srcInk: string };
+export type SkinV3 = Partial<V3Palette> & { label: string; deskKind: string; deskLine?: string; deskDark?: boolean; headerPlate?: boolean; photo?: string; extra?: Record<string, string> };
+export type ChannelV3 = { name: string; tag: string; slogan: string };
+/** 套用 skin 後的 v3 主題：元件一律用 useT()（src/components/v3/assets.tsx）拿，不直接讀 THEME_V3 的色票 */
+export type ThemeV3 = Omit<typeof THEME_V3, keyof V3Palette | "color" | "skins" | "channel"> & V3Palette & { color: Record<string, string>; skin: string; deskDark: boolean; headerPlate: boolean };
+const PALETTE_KEYS = ["desk", "mat", "paper", "kraft", "red", "yellow", "blue", "mint", "ink", "ink2", "ink3", "onDark", "onDark2", "srcInk"] as const;
+const themeCache: Record<string, ThemeV3> = {};
+export const themeV3 = (skin?: string): ThemeV3 => {
+  const name = skin && THEME_V3.skins[skin] ? skin : "desk";
+  if (themeCache[name]) return themeCache[name];
+  const sk = THEME_V3.skins[name] ?? { label: "", deskKind: "plain" };
+  const pal = Object.fromEntries(PALETTE_KEYS.map((k) => [k, sk[k] ?? THEME_V3[k]])) as V3Palette;
+  const color = name === "desk" ? THEME_V3.color : { ink: pal.ink, red: pal.red, yellow: pal.yellow, blue: pal.blue, mint: pal.mint, white: pal.paper, ink2: pal.ink2, ink3: pal.ink3, kraft: pal.kraft };
+  return (themeCache[name] = { ...THEME_V3, ...pal, color, skin: name, deskDark: !!sk.deskDark, headerPlate: !!sk.headerPlate });
+};
+export const channelV3 = (c?: Partial<ChannelV3> | null): ChannelV3 => ({ ...THEME_V3.channel, ...(c ?? {}) });
 /** v3 版面（1080×1920；安全區上下 220、左右 64） */
 export const LAYOUT_V3 = {
   W: 1080,
