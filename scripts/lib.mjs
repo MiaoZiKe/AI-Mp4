@@ -38,7 +38,12 @@ export const loadScript = (slug) => {
   return s;
 };
 
-export const makeBundle = () => bundle({ entryPoint: path.join(ROOT, "src/index.ts"), publicDir: path.join(ROOT, "public") });
+// bundle 寫到 out/.bundle/<pid>，結束時刪掉；以前寫在 /tmp 不清，會把磁碟塞滿
+export const makeBundle = () => {
+  const outDir = path.join(ROOT, "out/.bundle", String(process.pid));
+  process.on("exit", () => { try { fs.rmSync(outDir, { recursive: true, force: true }); } catch {} });
+  return bundle({ entryPoint: path.join(ROOT, "src/index.ts"), publicDir: path.join(ROOT, "public"), outDir });
+};
 
 // swiftshader 比預設的 swangle 快 2.5 倍（軟體渲染環境實測 194 vs 479 ms/frame）
 export const chromiumOptions = { gl: "swiftshader" };

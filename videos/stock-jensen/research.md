@@ -35,6 +35,7 @@
 | F13 | 美國眾議院三位委員會主席去函，請黃仁勳在 11/18 做閉門簡報（不是傳票、不是公開聽證） | 2026/11 | 已確定「有這封信」（單一彙整來源）；他是否出席＝尚未確定。**旁白不用** | https://letsdatascience.com/news/house-chairs-ask-nvidia-ceo-jensen-huang-for-closed-door-bri-d3ca0fdc |
 | F14 | 中國外交部否認相關間諜指控 | 2026/11 | 已確定（有此回應）。**旁白不用** | 搜尋摘要（港媒 SCMP https://www.scmp.com/tech/big-tech/article/3373825/nvidia-faces-defining-test-jensen-huang-probe-adds-chip-stock-turbulence ） |
 | F15 | 預測市場上「他年底前／明年初前離任」的機率，各平台報 13%–25% 不等 | 2026/11/9–10 | 分析預期（交易者下注的價格），各來源數字不一致、平台名稱對不上。**旁白與畫面都不用** | https://wccftech.com/nvidia-jensen-huang-board-probe-ceo-role-probability/ 等 |
+| F18 | 也有不同看法：有評論認為輝達的優勢在軟體、開發者工具與供貨承諾，不只靠一個人；耶魯管理學院 Jeffrey Sonnenfeld 估他續任機率約五成 | 2026/11/9–10 | 分析預期（個人看法，彼此不一致）。**旁白不引用數字**，只用來提醒「關鍵人物風險」是分析師的解讀、不是唯一解釋 | 科技新報 https://finance.technews.tw/2026/11/09/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/ ；https://cryptobriefing.com/nvidia-jensen-huang-key-man-risk/ |
 | F16 | 調查結果、調查何時結束、董事會下次何時說明 | — | **截至 2026/11/12 尚未確定** | 董事會聲明沒有給時間表 |
 | F17 | 黃仁勳最後會不會離開執行長職位 | — | **截至 2026/11/12 尚未確定** | — |
 
@@ -74,3 +75,15 @@
 - 私人事件只講一句、只講他本人承認的部分（F4），不提對方姓名、不描述細節、不評價。
 - 情報相關一律寫「報導說」「可能」，不寫成定論；不用「間諜」當旁白用詞。
 - 不出現真實人物肖像、公司商標；公司名只用文字「輝達」。
+
+## 8. 第二輪獨立查證（2026/11/13 凌晨 02:15 台灣時間）
+
+另一個人重新搜尋一次（中、英文各三組關鍵字），結果和上面的事實表一致，沒有發現新的變化：
+
+- **辭職**：英文、中文搜尋都找不到辭職、解任、停職的報導。中文多家（科技新報、自由時報、NOWnews、世界日報、財報狗）一致寫他仍是執行長、公司強調職務不中斷。→ F1 維持「已確定（截至 2026/11/12）」。
+- **11/9 收盤**：自由時報美股收盤報導（https://ec.ltn.com.tw/article/breakingnews/5635106 ）的搜尋摘要寫「盤中一度重挫近 9%，收盤跌幅收斂至 4.27%，收在 178.67 美元」，和 F7 一致。旁白只說「跌超過 4%」，沒有用盤中數字。
+- **Dan Ives 的估計**：多家英文轉述（例如 https://www.thewealthadvisor.com/article/nvidia-could-lose-30-its-value-without-jensen-huang-dan-ives-warns ）一致是 25%–30%、條件是「他離開」。有的寫「股價」、有的寫「價值」，旁白用「公司價值可能少」。→ F11 維持「分析預期」。
+- **11/10–11/12 的收盤價**：還是沒找到。旁白不提。
+- **國會閉門簡報的日期**：各來源說法不一致，維持不用（F13）。
+- **打不開的主機（沒有繞過）**：`nvidianews.nvidia.com`、`ec.ltn.com.tw`、`finance.technews.tw` 三個都不在這個工作環境的網路放行名單裡；第一輪另有 `www.axios.com`、`fortune.com`。所以到目前為止**沒有任何一篇原文是打開逐字讀過的**，全部是搜尋摘要交叉比對。配音前至少要放行 `nvidianews.nvidia.com` 核對董事會聲明（句 5、6、7）。
+- 這一輪因此改了旁白一處：句 9 加上「分析師說」（原本「市場怕的是…」像是我們自己的判斷）。

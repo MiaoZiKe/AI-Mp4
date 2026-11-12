@@ -13,7 +13,7 @@
   "voiceName": "Iapetus",
   "model": "gemini-2.5-flash-preview-tts",
   "mode": "take",
-  "style": ""
+  "style": "用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚"
  },
  "cover": {
   "camera": {
@@ -27,21 +27,173 @@
    {
     "type": "strip",
     "layer": "screen",
+    "paper": "strip-hook",
     "x": 540,
-    "y": 760,
+    "y": 640,
     "w": 900,
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     70,
+     26
+    ],
     "lines": [
      {
       "t": "AI 晶片",
-      "size": 132
+      "size": 132,
+      "lh": 1.08
      },
      {
       "t": "卡在這 {3 層}",
-      "size": 132
+      "size": 124,
+      "accentSize": 172,
+      "lh": 1.1
      },
      {
-      "t": "CoWoS 是什麼",
+      "t": "晶片、中介層、基板",
+      "size": 54,
+      "color": "ink3",
+      "lh": 1.3,
+      "mt": 10
+     }
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-m",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "chipb",
+    "x": 540,
+    "y": 1025,
+    "w": 320,
+    "lines": [
+     {
+      "t": "運算晶片",
+      "size": 56
+     }
+    ],
+    "pad": [
+     16,
+     16
+    ]
+   },
+   {
+    "asset": "mem",
+    "x": 258,
+    "y": 1025,
+    "w": 68,
+    "grid": {
+     "cols": 3,
+     "rows": 1,
+     "dx": 76,
+     "dy": 0
+    }
+   },
+   {
+    "asset": "mem",
+    "x": 822,
+    "y": 1025,
+    "w": 68,
+    "grid": {
+     "cols": 3,
+     "rows": 1,
+     "dx": 76,
+     "dy": 0
+    }
+   },
+   {
+    "asset": "dot-s",
+    "x": 540,
+    "y": 1112,
+    "w": 18,
+    "grid": {
+     "cols": 30,
+     "rows": 1,
+     "dx": 24,
+     "dy": 0
+    }
+   },
+   {
+    "type": "strip",
+    "paper": "ip",
+    "x": 540,
+    "y": 1180,
+    "w": 800,
+    "lines": [
+     {
+      "t": "中介層",
+      "size": 50
+     }
+    ],
+    "pad": [
+     20,
+     6
+    ]
+   },
+   {
+    "asset": "dot-l",
+    "x": 540,
+    "y": 1248,
+    "w": 40,
+    "grid": {
+     "cols": 7,
+     "rows": 1,
+     "dx": 116,
+     "dy": 0
+    }
+   },
+   {
+    "type": "strip",
+    "paper": "sub",
+    "x": 540,
+    "y": 1335,
+    "w": 900,
+    "lines": [
+     {
+      "t": "基板",
       "size": 64
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "strip-yellow",
+    "layer": "screen",
+    "x": 570,
+    "y": 1560,
+    "w": 760,
+    "rot": 2.5,
+    "z": 4,
+    "pad": [
+     26,
+     24
+    ],
+    "lines": [
+     {
+      "t": "CoWoS 是什麼？",
+      "size": 72,
+      "ls": 0
+     }
+    ],
+    "tape": [
+     {
+      "asset": "tape-m",
+      "x": 560,
+      "y": 6,
+      "rot": 8,
+      "w": 170
      }
     ]
    }
@@ -84,22 +236,141 @@
     },
     "items": [
      {
-      "id": "hook",
       "type": "strip",
       "layer": "screen",
+      "paper": "strip-hook",
       "x": 540,
-      "y": 620,
+      "y": 600,
       "w": 900,
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       70,
+       26
+      ],
       "lines": [
        {
         "t": "AI 晶片",
-        "size": 120
+        "size": 132,
+        "lh": 1.08
        },
        {
         "t": "卡在這 {3 層}",
-        "size": 120
+        "size": 124,
+        "accentSize": 172,
+        "lh": 1.1
+       },
+       {
+        "t": "問題[不只]在晶片本身",
+        "size": 54,
+        "color": "ink3",
+        "lh": 1.3,
+        "mt": 10
        }
-      ]
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-m",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "id": "hook",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "notonly",
+        "mark": 1
+       }
+      ],
+      "to": "top"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-aisle",
+      "caption": true,
+      "x": 330,
+      "y": 1085,
+      "w": 400,
+      "lines": [
+       {
+        "t": "AI 伺服器機房",
+        "size": 56
+       }
+      ],
+      "id": "aisle",
+      "rot": -4,
+      "z": 2,
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 250,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ],
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "tag-red",
+      "x": 745,
+      "y": 1050,
+      "w": 380,
+      "lines": [
+       {
+        "t": "缺貨中",
+        "size": 78,
+        "color": "white",
+        "ls": 0.08
+       }
+      ],
+      "rot": 5,
+      "z": 3,
+      "at": "short",
+      "from": "slam",
+      "to": "right"
+     },
+     {
+      "type": "path",
+      "pts": [
+       [
+        800,
+        1250
+       ],
+       [
+        880,
+        1500
+       ],
+       [
+        700,
+        1780
+       ],
+       [
+        540,
+        1900
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "end-6",
+        "grow": 1
+       }
+      ],
+      "until": "s03"
      }
     ]
    },
@@ -132,7 +403,156 @@
    "pauseAfter": 0.25,
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2575,
+      1
+     ],
+     "dur": 18
+    },
+    "punch": "name",
+    "items": [
+     {
+      "type": "path",
+      "id": "o-sub",
+      "pts": [
+       [
+        90,
+        2505
+       ],
+       [
+        990,
+        2505
+       ],
+       [
+        990,
+        2635
+       ],
+       [
+        90,
+        2635
+       ],
+       [
+        90,
+        2505
+       ]
+      ],
+      "dash": 0.45,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "gate",
+        "grow": 1
+       }
+      ],
+      "until": "s07.sub"
+     },
+     {
+      "type": "path",
+      "id": "o-ip",
+      "pts": [
+       [
+        140,
+        2375
+       ],
+       [
+        940,
+        2375
+       ],
+       [
+        940,
+        2455
+       ],
+       [
+        140,
+        2455
+       ],
+       [
+        140,
+        2375
+       ]
+      ],
+      "dash": 0.45,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "gate+8",
+        "grow": 1
+       }
+      ],
+      "until": "s08.ip"
+     },
+     {
+      "type": "path",
+      "id": "o-ch",
+      "pts": [
+       [
+        148,
+        2195
+       ],
+       [
+        932,
+        2195
+       ],
+       [
+        932,
+        2325
+       ],
+       [
+        148,
+        2325
+       ],
+       [
+        148,
+        2195
+       ]
+      ],
+      "dash": 0.45,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "gate+16",
+        "grow": 1
+       }
+      ],
+      "until": "s06.chip"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "x": 350,
+      "y": 2050,
+      "w": 440,
+      "lines": [
+       {
+        "t": "CoWoS",
+        "size": 150
+       }
+      ],
+      "id": "title",
+      "rot": -2,
+      "z": 7,
+      "at": "name",
+      "from": "slam",
+      "until": "s12",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -6,
+        "w": 170
+       }
+      ]
+     }
+    ]
    },
    "sources": []
   },
@@ -158,7 +578,70 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "items": [
+     {
+      "asset": "sheet-big",
+      "id": "sheet",
+      "x": 540,
+      "y": 2500,
+      "w": 940,
+      "z": 5,
+      "at": "start",
+      "from": "bottom",
+      "until": "s05",
+      "to": "bottom"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-chip2",
+      "caption": true,
+      "x": 320,
+      "y": 2500,
+      "w": 400,
+      "lines": [
+       {
+        "t": "封裝好的晶片",
+        "size": 56
+       }
+      ],
+      "rot": -3,
+      "z": 6,
+      "at": "voice+6",
+      "from": "left",
+      "to": "left",
+      "tape": [
+       {
+        "asset": "tape-m",
+        "x": 250,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "label",
+      "x": 770,
+      "y": 2450,
+      "w": 400,
+      "lines": [
+       {
+        "t": "台積電的",
+        "size": 64
+       },
+       {
+        "t": "[先進封裝]",
+        "size": 88
+       }
+      ],
+      "rot": 3,
+      "z": 6,
+      "at": "pkg",
+      "from": "slam",
+      "to": "right"
+     }
+    ]
    },
    "sources": [
     "來源：台積電 3DFabric 技術頁"
@@ -191,7 +674,84 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "items": [
+     {
+      "type": "strip",
+      "paper": "die",
+      "x": 540,
+      "y": 2420,
+      "w": 230,
+      "lines": [
+       {
+        "t": "晶片",
+        "size": 76
+       }
+      ],
+      "z": 6,
+      "at": "voice",
+      "pad": [
+       10,
+       10
+      ]
+     },
+     {
+      "asset": "dot-leg",
+      "x": 540,
+      "y": 2578,
+      "w": 16,
+      "z": 6,
+      "at": "wire",
+      "grid": {
+       "cols": 6,
+       "rows": 1,
+       "dx": 38,
+       "dy": 0
+      }
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 830,
+      "y": 2290,
+      "w": 300,
+      "lines": [
+       {
+        "t": "接上線路",
+        "size": 72
+       }
+      ],
+      "rot": 4,
+      "z": 7,
+      "at": "wire+4"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-chip",
+      "caption": true,
+      "x": 540,
+      "y": 2470,
+      "w": 470,
+      "lines": [
+       {
+        "t": "包起來，有腳可以接",
+        "size": 56
+       }
+      ],
+      "rot": -2,
+      "z": 8,
+      "at": "wrap",
+      "from": "slam",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 250,
+        "y": 4,
+        "rot": -3,
+        "w": 170
+       }
+      ]
+     }
+    ]
    },
    "sources": []
   },
@@ -217,7 +777,79 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "punch": "three",
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "x": 800,
+      "y": 2055,
+      "w": 320,
+      "lines": [
+       {
+        "t": "3 層",
+        "size": 150
+       }
+      ],
+      "rot": 3,
+      "z": 7,
+      "at": "three",
+      "from": "slam",
+      "until": "s06",
+      "to": "right"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 540,
+      "y": 2570,
+      "w": 270,
+      "lines": [
+       {
+        "t": "第 1 層",
+        "size": 86
+       }
+      ],
+      "z": 4,
+      "rot": -2,
+      "at": "three",
+      "until": "s07.sub"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 540,
+      "y": 2415,
+      "w": 270,
+      "lines": [
+       {
+        "t": "第 2 層",
+        "size": 86
+       }
+      ],
+      "z": 4,
+      "rot": 2,
+      "at": "three+4",
+      "until": "s08.ip"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 540,
+      "y": 2260,
+      "w": 270,
+      "lines": [
+       {
+        "t": "第 3 層",
+        "size": 86
+       }
+      ],
+      "z": 4,
+      "rot": -1,
+      "at": "three+8",
+      "until": "s06.chip"
+     }
+    ]
    },
    "sources": []
   },
@@ -248,7 +880,88 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2520,
+      1.05
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "chipb",
+      "x": 540,
+      "y": 2260,
+      "w": 320,
+      "lines": [
+       {
+        "t": "運算晶片",
+        "size": 56
+       }
+      ],
+      "id": "chip",
+      "z": 2,
+      "pad": [
+       16,
+       16
+      ],
+      "at": "chip",
+      "from": "slam",
+      "until": "end"
+     },
+     {
+      "asset": "mem",
+      "id": "memL",
+      "x": 258,
+      "y": 2260,
+      "w": 68,
+      "z": 2,
+      "at": "mem",
+      "grid": {
+       "cols": 3,
+       "rows": 1,
+       "dx": 76,
+       "dy": 0
+      },
+      "until": "end"
+     },
+     {
+      "asset": "mem",
+      "id": "memR",
+      "x": 822,
+      "y": 2260,
+      "w": 68,
+      "z": 2,
+      "at": "mem+3",
+      "grid": {
+       "cols": 3,
+       "rows": 1,
+       "dx": 76,
+       "dy": 0
+      },
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 215,
+      "y": 2148,
+      "w": 250,
+      "lines": [
+       {
+        "t": "記憶體",
+        "size": 90
+       }
+      ],
+      "id": "memlabel",
+      "rot": -3,
+      "z": 6,
+      "at": "mem+6",
+      "until": "end"
+     }
+    ]
    },
    "sources": []
   },
@@ -278,7 +991,62 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2640,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "sub",
+      "x": 540,
+      "y": 2570,
+      "w": 900,
+      "lines": [
+       {
+        "t": "基板",
+        "size": 64
+       }
+      ],
+      "id": "sub",
+      "z": 2,
+      "at": "sub",
+      "from": "bottom",
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-board",
+      "caption": true,
+      "x": 540,
+      "y": 2806,
+      "w": 360,
+      "lines": [
+       {
+        "t": "主機板",
+        "size": 56
+       }
+      ],
+      "rot": 3,
+      "z": 6,
+      "at": "board",
+      "from": "bottom",
+      "to": "bottom",
+      "tape": [
+       {
+        "asset": "tape-b",
+        "x": 250,
+        "y": 4,
+        "rot": -3,
+        "w": 170
+       }
+      ]
+     }
+    ]
    },
    "sources": []
   },
@@ -318,7 +1086,124 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2575,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "asset": "circle",
+      "x": 540,
+      "y": 2415,
+      "w": 330,
+      "z": 8,
+      "at": "mid",
+      "until": "s08.ip"
+     },
+     {
+      "type": "strip",
+      "paper": "ip",
+      "x": 540,
+      "y": 2415,
+      "w": 800,
+      "lines": [
+       {
+        "t": "中介層",
+        "size": 50
+       }
+      ],
+      "id": "ip",
+      "z": 2,
+      "pad": [
+       20,
+       6
+      ],
+      "at": "ip",
+      "from": "slam",
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "label",
+      "x": 540,
+      "y": 2790,
+      "w": 380,
+      "lines": [
+       {
+        "t": "通常用[矽]做",
+        "size": 84
+       }
+      ],
+      "rot": -2,
+      "z": 6,
+      "at": "si",
+      "until": "s08.fine"
+     },
+     {
+      "asset": "dot-fine",
+      "x": 290,
+      "y": 2745,
+      "w": 6,
+      "z": 5,
+      "at": "fine",
+      "grid": {
+       "cols": 16,
+       "rows": 1,
+       "dx": 16,
+       "dy": 0
+      }
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 290,
+      "y": 2850,
+      "w": 330,
+      "lines": [
+       {
+        "t": "中介層：細",
+        "size": 64
+       }
+      ],
+      "rot": -2,
+      "z": 6,
+      "at": "fine"
+     },
+     {
+      "asset": "dot-thick",
+      "x": 790,
+      "y": 2745,
+      "w": 26,
+      "z": 5,
+      "at": "fine+6",
+      "grid": {
+       "cols": 4,
+       "rows": 1,
+       "dx": 62,
+       "dy": 0
+      }
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 790,
+      "y": 2850,
+      "w": 330,
+      "lines": [
+       {
+        "t": "基板：粗",
+        "size": 64
+       }
+      ],
+      "rot": 2,
+      "z": 6,
+      "at": "fine+6"
+     }
+    ]
    },
    "sources": [
     "來源：台積電 3DFabric 技術頁"
@@ -351,7 +1236,34 @@
    "pauseAfter": 0.35,
    "component": "PaperScene",
    "props": {
-    "items": []
+    "items": [
+     {
+      "asset": "circle",
+      "x": 540,
+      "y": 2415,
+      "w": 480,
+      "z": 8,
+      "at": "why",
+      "until": "s09.extra"
+     },
+     {
+      "ref": "ip",
+      "at": "extra",
+      "x": 1500,
+      "dur": 10,
+      "ease": "exit"
+     },
+     {
+      "asset": "qmark",
+      "x": 540,
+      "y": 2415,
+      "w": 104,
+      "z": 8,
+      "at": "extra+6",
+      "from": "slam",
+      "until": "s10"
+     }
+    ]
    },
    "sources": []
   },
@@ -387,7 +1299,106 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2440,
+      1.15
+     ],
+     "dur": 12
+    },
+    "punch": "fail",
+    "items": [
+     {
+      "asset": "dot-s",
+      "id": "dense",
+      "x": 500,
+      "y": 2347,
+      "w": 18,
+      "z": 3,
+      "at": "dense",
+      "grid": {
+       "cols": 26,
+       "rows": 1,
+       "dx": 24,
+       "dy": 0
+      },
+      "until": "end"
+     },
+     {
+      "asset": "dot-stub",
+      "x": 500,
+      "y": 2383,
+      "w": 6,
+      "z": 3,
+      "at": "dense+6",
+      "grid": {
+       "cols": 26,
+       "rows": 1,
+       "dx": 24,
+       "dy": 0
+      }
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "x": 892,
+      "y": 2345,
+      "w": 104,
+      "lines": [
+       {
+        "t": "密",
+        "size": 240
+       }
+      ],
+      "rot": 5,
+      "z": 6,
+      "at": "dense",
+      "from": "slam"
+     },
+     {
+      "asset": "dot-l",
+      "id": "coarse",
+      "x": 500,
+      "y": 2483,
+      "w": 40,
+      "z": 3,
+      "at": "coarse",
+      "grid": {
+       "cols": 6,
+       "rows": 1,
+       "dx": 116,
+       "dy": 0
+      },
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "x": 892,
+      "y": 2485,
+      "w": 104,
+      "lines": [
+       {
+        "t": "粗",
+        "size": 240
+       }
+      ],
+      "rot": -4,
+      "z": 6,
+      "at": "coarse",
+      "from": "slam"
+     },
+     {
+      "asset": "cross-0",
+      "x": 500,
+      "y": 2428,
+      "w": 110,
+      "z": 9,
+      "at": "fail",
+      "from": "slam"
+     }
+    ]
    },
    "sources": [
     "來源：台積電 Hot Chips 2021 簡報"
@@ -425,7 +1436,158 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": [
+     {
+      "to": [
+       540,
+       2575,
+       1
+      ],
+      "dur": 12
+     },
+     {
+      "to": [
+       540,
+       2470,
+       1.12
+      ],
+      "at": "near",
+      "dur": 10
+     }
+    ],
+    "items": [
+     {
+      "ref": "ip",
+      "at": "adapter",
+      "x": 540,
+      "dur": 10,
+      "ease": "enter"
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "x": 800,
+      "y": 2048,
+      "w": 250,
+      "lines": [
+       {
+        "t": "像",
+        "size": 110
+       },
+       {
+        "t": "轉接板",
+        "size": 110
+       }
+      ],
+      "rot": 4,
+      "z": 7,
+      "at": "adapter+6",
+      "from": "slam"
+     },
+     {
+      "asset": "seg-bridge",
+      "x": 374,
+      "y": 2392,
+      "w": 150,
+      "z": 6,
+      "at": "near"
+     },
+     {
+      "asset": "seg-bridge",
+      "x": 706,
+      "y": 2392,
+      "w": 150,
+      "z": 6,
+      "at": "near+4"
+     },
+     {
+      "asset": "node-yellow",
+      "x": 318,
+      "y": 2392,
+      "w": 40,
+      "z": 8,
+      "step": false,
+      "at": "fast",
+      "moves": [
+       {
+        "at": "fast+1",
+        "to": {
+         "x": 430
+        },
+        "dur": 6
+       },
+       {
+        "at": "fast+8",
+        "to": {
+         "x": 318
+        },
+        "dur": 6
+       },
+       {
+        "at": "fast+15",
+        "to": {
+         "x": 430
+        },
+        "dur": 6
+       }
+      ]
+     },
+     {
+      "asset": "node-yellow",
+      "x": 762,
+      "y": 2392,
+      "w": 40,
+      "z": 8,
+      "step": false,
+      "at": "fast",
+      "moves": [
+       {
+        "at": "fast+1",
+        "to": {
+         "x": 650
+        },
+        "dur": 6
+       },
+       {
+        "at": "fast+8",
+        "to": {
+         "x": 762
+        },
+        "dur": 6
+       },
+       {
+        "at": "fast+15",
+        "to": {
+         "x": 650
+        },
+        "dur": 6
+       }
+      ]
+     },
+     {
+      "type": "path",
+      "pts": [
+       [
+        1040,
+        2415
+       ],
+       [
+        1330,
+        2415
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "end-6",
+        "grow": 1
+       }
+      ],
+      "until": "s13"
+     }
+    ]
    },
    "sources": []
   },
@@ -456,7 +1618,90 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      1900,
+      2575,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "num",
+      "x": 1670,
+      "y": 2330,
+      "w": 450,
+      "rot": -2,
+      "z": 3,
+      "at": "start+6",
+      "value": 2012,
+      "fromValue": 2026,
+      "comma": false,
+      "unit": "年",
+      "size": 170,
+      "head": "CoWoS 推出",
+      "state": {
+       "count": 0
+      },
+      "set": [
+       {
+        "at": "old",
+        "count": 1
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 320,
+        "y": 4,
+        "rot": 5,
+        "w": 160
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 1690,
+      "y": 2600,
+      "w": 460,
+      "lines": [
+       {
+        "t": "第一個客戶產品",
+        "size": 46
+       }
+      ],
+      "rot": 2,
+      "z": 4,
+      "at": "old+26"
+     },
+     {
+      "type": "strip",
+      "paper": "slip",
+      "x": 2160,
+      "y": 2440,
+      "w": 300,
+      "lines": [
+       {
+        "t": "訂單",
+        "size": 64
+       },
+       {
+        "t": "{幾乎沒有}",
+        "size": 50
+       }
+      ],
+      "rot": 4,
+      "z": 4,
+      "pad": [
+       14,
+       20
+      ],
+      "at": "noorder",
+      "from": "slam"
+     }
+    ]
    },
    "sources": [
     "來源：台積電新聞稿 2013/10、蔣尚義受訪"
@@ -490,7 +1735,194 @@
    "pauseAfter": 0.3,
    "component": "PaperScene",
    "props": {
-    "items": []
+    "items": [
+     {
+      "type": "strip",
+      "paper": "polaroid-aisle",
+      "caption": true,
+      "x": 1640,
+      "y": 2330,
+      "w": 400,
+      "lines": [
+       {
+        "t": "AI 伺服器",
+        "size": 56
+       }
+      ],
+      "rot": -3,
+      "z": 3,
+      "at": "voice",
+      "from": "left",
+      "to": "left",
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 250,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "die",
+      "x": 2150,
+      "y": 2330,
+      "w": 200,
+      "lines": [
+       {
+        "t": "AI 晶片",
+        "size": 52
+       }
+      ],
+      "z": 3,
+      "pad": [
+       8,
+       8
+      ],
+      "at": "row-16"
+     },
+     {
+      "asset": "sq1",
+      "x": 2012,
+      "y": 2330,
+      "w": 50,
+      "z": 3,
+      "at": "row",
+      "grid": {
+       "cols": 1,
+       "rows": 4,
+       "dx": 0,
+       "dy": 180,
+       "stagger": 3
+      }
+     },
+     {
+      "asset": "sq1",
+      "x": 2288,
+      "y": 2330,
+      "w": 50,
+      "z": 3,
+      "at": "row+12",
+      "grid": {
+       "cols": 1,
+       "rows": 4,
+       "dx": 0,
+       "dy": 180,
+       "stagger": 3
+      }
+     },
+     {
+      "type": "strip",
+      "paper": "slip",
+      "x": 1740,
+      "y": 2740,
+      "w": 200,
+      "lines": [
+       {
+        "t": "訂單",
+        "size": 70
+       }
+      ],
+      "rot": -6,
+      "z": 4,
+      "pad": [
+       14,
+       20
+      ],
+      "at": "hot-9",
+      "until": "s14.est",
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "slip",
+      "x": 1850,
+      "y": 2740,
+      "w": 200,
+      "lines": [
+       {
+        "t": "訂單",
+        "size": 70
+       }
+      ],
+      "rot": 3,
+      "z": 5,
+      "pad": [
+       14,
+       20
+      ],
+      "at": "hot-6",
+      "until": "s14.est",
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "slip",
+      "x": 1960,
+      "y": 2740,
+      "w": 200,
+      "lines": [
+       {
+        "t": "訂單",
+        "size": 70
+       }
+      ],
+      "rot": -3,
+      "z": 6,
+      "pad": [
+       14,
+       20
+      ],
+      "at": "hot-3",
+      "until": "s14.est",
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "slip",
+      "x": 2070,
+      "y": 2740,
+      "w": 200,
+      "lines": [
+       {
+        "t": "訂單",
+        "size": 70
+       }
+      ],
+      "rot": 5,
+      "z": 7,
+      "pad": [
+       14,
+       20
+      ],
+      "at": "hot",
+      "until": "s14.est",
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "tag-red",
+      "x": 2240,
+      "y": 2760,
+      "w": 290,
+      "lines": [
+       {
+        "t": "搶手",
+        "size": 84,
+        "color": "white",
+        "ls": 0.08
+       }
+      ],
+      "rot": -5,
+      "z": 8,
+      "at": "hot+4",
+      "from": "slam",
+      "until": "s14.est",
+      "to": "right"
+     }
+    ]
    },
    "sources": []
   },
@@ -525,7 +1957,100 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "punch": "half",
+    "items": [
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 1570,
+      "y": 2130,
+      "w": 280,
+      "lines": [
+       {
+        "t": "法人估",
+        "size": 84
+       }
+      ],
+      "rot": -4,
+      "z": 6,
+      "at": "est",
+      "from": "slam"
+     },
+     {
+      "type": "bars",
+      "x": 1900,
+      "y": 2540,
+      "w": 640,
+      "h": 640,
+      "z": 3,
+      "at": "cap-26",
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "cap-24",
+        "grow": 1
+       }
+      ],
+      "stagger": 24,
+      "max": 12.5,
+      "barW": 150,
+      "labelSize": 40,
+      "valSize": 56,
+      "bars": [
+       {
+        "v": 7,
+        "label": "2025 年底",
+        "color": "mint",
+        "val": "約 7 萬"
+       },
+       {
+        "v": 11.5,
+        "label": "2026 年底",
+        "color": "yellow",
+        "val": "約 11.5 萬"
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 2190,
+      "y": 2140,
+      "w": 300,
+      "lines": [
+       {
+        "t": "月產能（片）",
+        "size": 56
+       }
+      ],
+      "rot": 3,
+      "z": 6,
+      "at": "cap+22"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "x": 1735,
+      "y": 2335,
+      "w": 340,
+      "lines": [
+       {
+        "t": "多{一半}以上",
+        "size": 86
+       }
+      ],
+      "rot": -3,
+      "z": 7,
+      "pad": [
+       20,
+       20
+      ],
+      "at": "half",
+      "from": "slam"
+     }
+    ]
    },
    "sources": [
     "來源：中央社／商周 2026（法人估）"
@@ -558,7 +2083,126 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      1900,
+      1500,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "polaroid-chip2",
+      "caption": true,
+      "x": 2130,
+      "y": 1280,
+      "w": 380,
+      "lines": [
+       {
+        "t": "一顆封裝",
+        "size": 56
+       }
+      ],
+      "rot": 3,
+      "z": 3,
+      "at": "voice",
+      "from": "right",
+      "until": "s16.news",
+      "to": "right",
+      "tape": [
+       {
+        "asset": "tape-m",
+        "x": 250,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 1640,
+      "y": 1120,
+      "w": 280,
+      "lines": [
+       {
+        "t": "封裝面積",
+        "size": 64
+       }
+      ],
+      "rot": -2,
+      "z": 6,
+      "at": "big-10",
+      "until": "s16.news"
+     },
+     {
+      "asset": "sq1",
+      "x": 1560,
+      "y": 1480,
+      "w": 150,
+      "z": 5,
+      "at": "big",
+      "until": "s16.news"
+     },
+     {
+      "asset": "sq2",
+      "x": 1610,
+      "y": 1430,
+      "w": 250,
+      "z": 4,
+      "at": "big+7",
+      "until": "s16.news"
+     },
+     {
+      "asset": "sq3",
+      "x": 1665,
+      "y": 1375,
+      "w": 360,
+      "z": 3,
+      "at": "big+14",
+      "until": "s16.news"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 1570,
+      "y": 1655,
+      "w": 270,
+      "lines": [
+       {
+        "t": "外界看法",
+        "size": 64
+       }
+      ],
+      "rot": -3,
+      "z": 6,
+      "at": "short2-8",
+      "until": "s16.news"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-red",
+      "x": 1970,
+      "y": 1670,
+      "w": 520,
+      "lines": [
+       {
+        "t": "還是不夠用",
+        "size": 96,
+        "color": "white"
+       }
+      ],
+      "rot": 2,
+      "z": 7,
+      "at": "short2",
+      "from": "slam",
+      "until": "s16.news",
+      "to": "right"
+     }
+    ]
    },
    "sources": [
     "來源：台積電法說會 2026/10/15、媒體報導"
@@ -600,7 +2244,199 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": [
+     {
+      "to": [
+       540,
+       2575,
+       1
+      ],
+      "at": "news-8",
+      "dur": 14
+     },
+     {
+      "to": [
+       540,
+       2600,
+       1.04
+      ],
+      "at": "three2",
+      "dur": 10
+     }
+    ],
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "x": 620,
+      "y": 2068,
+      "w": 620,
+      "lines": [
+       {
+        "t": "新聞標題",
+        "size": 36,
+        "color": "ink3"
+       },
+       {
+        "t": "CoWoS [產能]吃緊",
+        "size": 84
+       }
+      ],
+      "rot": -1.5,
+      "z": 7,
+      "at": "news+6",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "cap2",
+        "mark": 1
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-b",
+        "x": 120,
+        "y": 6,
+        "rot": -6,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "note-white",
+      "x": 200,
+      "y": 2795,
+      "w": 200,
+      "lines": [
+       {
+        "t": "1 個月",
+        "size": 92
+       }
+      ],
+      "rot": -4,
+      "z": 6,
+      "at": "month",
+      "from": "slam"
+     },
+     {
+      "type": "stack",
+      "x": 410,
+      "y": 2800,
+      "z": 5,
+      "at": "month+4",
+      "stagger": 3,
+      "gap": 4,
+      "layers": [
+       {
+        "asset": "mini-sub",
+        "w": 120
+       },
+       {
+        "asset": "mini-ip",
+        "w": 104
+       },
+       {
+        "asset": "mini-chip",
+        "w": 84
+       }
+      ]
+     },
+     {
+      "type": "stack",
+      "x": 542,
+      "y": 2800,
+      "z": 5,
+      "at": "month+7",
+      "stagger": 3,
+      "gap": 4,
+      "layers": [
+       {
+        "asset": "mini-sub",
+        "w": 120
+       },
+       {
+        "asset": "mini-ip",
+        "w": 104
+       },
+       {
+        "asset": "mini-chip",
+        "w": 84
+       }
+      ]
+     },
+     {
+      "type": "stack",
+      "x": 674,
+      "y": 2800,
+      "z": 5,
+      "at": "month+10",
+      "stagger": 3,
+      "gap": 4,
+      "layers": [
+       {
+        "asset": "mini-sub",
+        "w": 120
+       },
+       {
+        "asset": "mini-ip",
+        "w": 104
+       },
+       {
+        "asset": "mini-chip",
+        "w": 84
+       }
+      ]
+     },
+     {
+      "type": "stack",
+      "x": 806,
+      "y": 2800,
+      "z": 5,
+      "at": "month+13",
+      "stagger": 3,
+      "gap": 4,
+      "layers": [
+       {
+        "asset": "mini-sub",
+        "w": 120
+       },
+       {
+        "asset": "mini-ip",
+        "w": 104
+       },
+       {
+        "asset": "mini-chip",
+        "w": 84
+       }
+      ]
+     },
+     {
+      "type": "stack",
+      "x": 938,
+      "y": 2800,
+      "z": 5,
+      "at": "month+16",
+      "stagger": 3,
+      "gap": 4,
+      "layers": [
+       {
+        "asset": "mini-sub",
+        "w": 120
+       },
+       {
+        "asset": "mini-ip",
+        "w": 104
+       },
+       {
+        "asset": "mini-chip",
+        "w": 84
+       }
+      ]
+     }
+    ]
    },
    "sources": []
   },
@@ -630,7 +2466,72 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      540,
+      2575,
+      1
+     ],
+     "dur": 8
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 230,
+      "y": 2060,
+      "w": 280,
+      "lines": [
+       {
+        "t": "良率？",
+        "size": 70
+       }
+      ],
+      "rot": -4,
+      "z": 7,
+      "at": "term"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 540,
+      "y": 2040,
+      "w": 280,
+      "lines": [
+       {
+        "t": "EUV？",
+        "size": 70
+       }
+      ],
+      "rot": 2,
+      "z": 7,
+      "at": "term+4"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": 850,
+      "y": 2064,
+      "w": 280,
+      "lines": [
+       {
+        "t": "2 奈米？",
+        "size": 70
+       }
+      ],
+      "rot": 4,
+      "z": 7,
+      "at": "term+8"
+     },
+     {
+      "asset": "circle",
+      "x": 540,
+      "y": 2040,
+      "w": 350,
+      "z": 9,
+      "at": "ask"
+     }
+    ]
    },
    "sources": []
   },
@@ -660,7 +2561,73 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      400,
+      2390,
+      1.3
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "asset": "circle",
+      "x": 258,
+      "y": 2260,
+      "w": 310,
+      "z": 9,
+      "at": "memrow"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "x": 500,
+      "y": 2085,
+      "w": 300,
+      "lines": [
+       {
+        "t": "HBM",
+        "size": 150
+       }
+      ],
+      "rot": 3,
+      "z": 8,
+      "at": "hbm",
+      "from": "slam",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -6,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "path",
+      "pts": [
+       [
+        110,
+        2260
+       ],
+       [
+        -230,
+        2300
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "end-4",
+        "grow": 1
+       }
+      ],
+      "until": "end"
+     }
+    ]
    },
    "sources": []
   },
@@ -690,9 +2657,150 @@
    ],
    "component": "PaperScene",
    "props": {
-    "items": []
+    "camera": {
+     "to": [
+      -560,
+      2560,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "stack",
+      "x": -800,
+      "y": 2440,
+      "z": 3,
+      "at": "start+8",
+      "gap": 6,
+      "layers": [
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       },
+       {
+        "asset": "hbm-l",
+        "w": 250
+       }
+      ],
+      "state": {
+       "n": 1
+      },
+      "set": [
+       {
+        "at": "tower-12",
+        "n": 2
+       },
+       {
+        "at": "tower-10",
+        "n": 3
+       },
+       {
+        "at": "tower-8",
+        "n": 4
+       },
+       {
+        "at": "tower-6",
+        "n": 5
+       },
+       {
+        "at": "tower-4",
+        "n": 6
+       },
+       {
+        "at": "tower-2",
+        "n": 7
+       },
+       {
+        "at": "tower+0",
+        "n": 8
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "x": -800,
+      "y": 2740,
+      "w": 220,
+      "lines": [
+       {
+        "t": "HBM",
+        "size": 84
+       }
+      ],
+      "rot": -2,
+      "z": 4,
+      "at": "start+8",
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-tower",
+      "caption": true,
+      "x": -330,
+      "y": 2410,
+      "w": 400,
+      "lines": [
+       {
+        "t": "像蓋大樓",
+        "size": 56
+       }
+      ],
+      "rot": 4,
+      "z": 4,
+      "at": "tower",
+      "from": "right",
+      "until": "end",
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 220,
+        "y": 4,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "asset": "sheet-cream",
+      "layer": "top",
+      "x": 540,
+      "y": 980,
+      "w": 1240,
+      "at": "end-8",
+      "from": "bottom",
+      "until": "end"
+     }
+    ]
    },
-   "sources": []
+   "sources": [],
+   "still": "next-8"
   },
   {
    "id": "s20",

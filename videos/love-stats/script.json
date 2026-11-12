@@ -13,7 +13,7 @@
     "voiceName": "Iapetus",
     "model": "gemini-2.5-flash-preview-tts",
     "mode": "take",
-    "style": ""
+    "style": "用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚"
   },
   "cover": {
     "camera": {
@@ -27,21 +27,90 @@
       {
         "type": "strip",
         "layer": "screen",
-        "x": 540,
-        "y": 760,
+        "paper": "strip-hook",
         "w": 900,
+        "rot": -1.2,
+        "pad": [
+          36,
+          26
+        ],
         "lines": [
           {
             "t": "結婚的新人",
-            "size": 120
+            "size": 124,
+            "lh": 1.1
           },
           {
             "t": "一年少 {1.8 萬對}",
-            "size": 120
+            "size": 104,
+            "accentSize": 138,
+            "lh": 1.15
           },
           {
-            "t": "卡在哪一步？",
-            "size": 64
+            "t": "卡在[哪一步]？",
+            "size": 60,
+            "color": "ink3",
+            "lh": 1.3,
+            "mt": 8
+          }
+        ],
+        "tape": [
+          {
+            "asset": "tape-y",
+            "x": 150,
+            "y": 8,
+            "rot": -5,
+            "w": 190
+          },
+          {
+            "asset": "tape-m",
+            "x": 790,
+            "y": 0,
+            "rot": 4,
+            "w": 190
+          }
+        ],
+        "x": 540,
+        "y": 700
+      },
+      {
+        "asset": "print-envelopes",
+        "x": 330,
+        "y": 1190,
+        "w": 480,
+        "rot": -5,
+        "tape": [
+          {
+            "asset": "tape-r",
+            "x": 334,
+            "y": 6,
+            "rot": 3,
+            "w": 170
+          }
+        ]
+      },
+      {
+        "type": "num",
+        "x": 780,
+        "y": 1200,
+        "w": 440,
+        "rot": 4,
+        "value": 41.4,
+        "fromValue": 41.4,
+        "decimals": 1,
+        "unit": "%",
+        "head": {
+          "t": "35–39 歲未婚",
+          "size": 50,
+          "color": "ink2"
+        },
+        "tape": [
+          {
+            "asset": "tape-y",
+            "x": 560,
+            "y": 4,
+            "rot": 5,
+            "w": 160
           }
         ]
       }
@@ -87,22 +156,114 @@
         },
         "items": [
           {
-            "id": "hook",
             "type": "strip",
             "layer": "screen",
-            "x": 540,
-            "y": 620,
+            "paper": "strip-hook",
             "w": 900,
+            "rot": -1.2,
+            "pad": [
+              36,
+              26
+            ],
             "lines": [
               {
                 "t": "結婚的新人",
-                "size": 112
+                "size": 124,
+                "lh": 1.1
               },
               {
                 "t": "一年少 {1.8 萬對}",
-                "size": 112
+                "size": 104,
+                "accentSize": 138,
+                "lh": 1.15
+              }
+            ],
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 150,
+                "y": 8,
+                "rot": -5,
+                "w": 190
+              },
+              {
+                "asset": "tape-m",
+                "x": 790,
+                "y": 0,
+                "rot": 4,
+                "w": 190
+              }
+            ],
+            "id": "hook",
+            "x": 540,
+            "y": 590,
+            "until": "s03",
+            "to": "left"
+          },
+          {
+            "id": "env2",
+            "asset": "print-envelopes",
+            "x": 330,
+            "y": 1060,
+            "w": 470,
+            "rot": -5,
+            "until": "s04"
+          },
+          {
+            "id": "env1",
+            "asset": "print-envelopes",
+            "x": 390,
+            "y": 1040,
+            "w": 470,
+            "rot": 4,
+            "z": 2,
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 334,
+                "y": 6,
+                "rot": 3,
+                "w": 170
               }
             ]
+          },
+          {
+            "ref": "env1",
+            "at": "less",
+            "exit": true,
+            "to": "right"
+          },
+          {
+            "type": "strip",
+            "paper": "note-yellow",
+            "lines": [
+              {
+                "t": "2025",
+                "size": 150
+              }
+            ],
+            "id": "y2025",
+            "x": 830,
+            "y": 1060,
+            "w": 250,
+            "rot": 5,
+            "z": 3,
+            "at": "last",
+            "from": "slam",
+            "until": "s02.note"
+          },
+          {
+            "id": "ul",
+            "asset": "underline",
+            "layer": "screen",
+            "x": 655,
+            "y": 742,
+            "w": 430,
+            "rot": -1.5,
+            "z": 5,
+            "at": "num",
+            "from": "wipe",
+            "until": "s02.note"
           }
         ]
       },
@@ -115,31 +276,100 @@
       "beat": "hook",
       "sentence": "2",
       "para": 1,
-      "narration": "而且，這還不是最讓人緊張的數字。",
-      "tts": "而且這還不是最讓人緊張的數字。",
+      "narration": "但最該注意的，其實還不是這個數字。",
+      "tts": "但最該注意的其實還不是這個數字。",
       "subtitle": {
-        "zh": "而且\n這還不是\n最讓人緊張的數字",
-        "en": "And that's not even | the most worrying number."
+        "zh": "但最該注意的\n其實還不是這個數字",
+        "en": "But what matters most | isn't this number."
       },
       "keywords": [
-        "最讓人緊張"
+        "不是這個數字"
       ],
       "cues": [
         {
-          "id": "notyet",
-          "text": "還不是"
+          "id": "note",
+          "text": "最該注意"
         },
         {
-          "id": "tense",
-          "text": "緊張"
+          "id": "not",
+          "text": "不是"
         }
       ],
-      "pauseAfter": 0.25,
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "ref": "hook",
+            "at": "note",
+            "y": 470,
+            "w": 600,
+            "rot": 2,
+            "dur": 10
+          },
+          {
+            "type": "strip",
+            "paper": "note-kraft",
+            "lines": [
+              {
+                "t": "還有",
+                "size": 96
+              },
+              {
+                "t": "[別的數字]",
+                "size": 96
+              }
+            ],
+            "id": "other",
+            "x": 760,
+            "y": 1010,
+            "w": 420,
+            "rot": 4,
+            "z": 4,
+            "at": "not",
+            "from": "slam",
+            "until": "s04",
+            "state": {
+              "mark": 0
+            },
+            "set": [
+              {
+                "at": "not+8",
+                "mark": 1
+              }
+            ]
+          },
+          {
+            "type": "path",
+            "pts": [
+              [
+                900,
+                1235
+              ],
+              [
+                1010,
+                1262
+              ],
+              [
+                1130,
+                1240
+              ]
+            ],
+            "z": 3,
+            "until": "s04",
+            "state": {
+              "grow": 0
+            },
+            "set": [
+              {
+                "at": "not+14",
+                "grow": 1
+              }
+            ]
+          }
+        ]
       },
-      "sources": []
+      "sources": [],
+      "pauseAfter": 0.25
     },
     {
       "id": "s03",
@@ -149,8 +379,8 @@
       "narration": "去年登記結婚的，只有十萬四千多對。",
       "tts": "去年登記結婚的，只有十萬四千多對。",
       "subtitle": {
-        "zh": "去年登記結婚的\n只有\n十萬四千多對",
-        "en": "Only about 104,000 couples | registered a marriage last year."
+        "zh": "去年登記結婚的\n只有十萬四千多對",
+        "en": "Couples who registered last year: | just over 104,000."
       },
       "keywords": [
         "十萬四千多對"
@@ -158,7 +388,7 @@
       "cues": [
         {
           "id": "reg",
-          "text": "登記結婚"
+          "text": "登記"
         },
         {
           "id": "num",
@@ -167,7 +397,100 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "camera": {
+          "to": [
+            1900,
+            960,
+            1
+          ],
+          "dur": 14
+        },
+        "items": [
+          {
+            "type": "strip",
+            "paper": "polaroid-rings",
+            "lines": [
+              {
+                "t": "登記結婚",
+                "size": 50
+              }
+            ],
+            "id": "rings",
+            "caption": true,
+            "x": 1650,
+            "y": 600,
+            "w": 440,
+            "rot": -4,
+            "at": "reg",
+            "until": "s05",
+            "tape": [
+              {
+                "asset": "tape-m",
+                "x": 250,
+                "y": 4,
+                "rot": 3,
+                "w": 170
+              }
+            ]
+          },
+          {
+            "id": "bars",
+            "type": "bars",
+            "x": 2160,
+            "y": 610,
+            "w": 440,
+            "h": 500,
+            "at": "num-6",
+            "until": "s04",
+            "to": "left",
+            "bars": [
+              {
+                "v": 12.3,
+                "label": "2024",
+                "color": "blue"
+              },
+              {
+                "v": 10.4,
+                "label": "2025",
+                "color": "red"
+              }
+            ],
+            "decimals": 1,
+            "max": 13.5,
+            "valSize": 56,
+            "labelSize": 38
+          },
+          {
+            "id": "n104",
+            "type": "num",
+            "x": 1900,
+            "y": 1075,
+            "w": 580,
+            "at": "num",
+            "from": "slam",
+            "until": "s04",
+            "to": "left",
+            "value": 10.4,
+            "fromValue": 12.3,
+            "decimals": 1,
+            "unit": "萬對",
+            "head": {
+              "t": "2025 年登記結婚",
+              "size": 50,
+              "color": "ink2"
+            },
+            "countDur": 24,
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 560,
+                "y": 4,
+                "rot": 5,
+                "w": 160
+              }
+            ]
+          }
+        ]
       },
       "sources": [
         "來源：內政部戶政統計（2025 年）"
@@ -178,48 +501,141 @@
       "beat": "mechanism",
       "sentence": "4",
       "para": 2,
-      "narration": "這是十年來最少，比十年前少了快三成。",
-      "tts": "這是十年來最少，比十年前少了快三成。",
+      "narration": "這是四十多年來，結婚對數最少的一年。",
+      "tts": "這是四十多年來，結婚對數最少的一年。",
       "subtitle": {
-        "zh": "這是十年來最少\n比十年前\n少了快三成",
-        "en": "The lowest in ten years, | nearly 30% below a decade ago."
+        "zh": "這是四十多年來\n結婚對數最少的一年",
+        "en": "That's the lowest | in more than forty years."
       },
       "keywords": [
-        "十年來最少",
-        "快三成"
+        "最少的一年"
       ],
       "cues": [
         {
-          "id": "low",
+          "id": "years",
+          "text": "四十多年"
+        },
+        {
+          "id": "least",
           "text": "最少"
-        },
-        {
-          "id": "ago",
-          "text": "十年前"
-        },
-        {
-          "id": "pct",
-          "text": "快三成"
         }
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "id": "line",
+            "type": "line",
+            "x": 1900,
+            "y": 1000,
+            "w": 940,
+            "h": 480,
+            "at": "years",
+            "until": "s05",
+            "seg": 6,
+            "padX": 80,
+            "labelSize": 30,
+            "markSize": 40,
+            "vals": [
+              16.5,
+              14.8,
+              13.5,
+              12.2,
+              11.5,
+              12.3,
+              10.4
+            ],
+            "labels": [
+              "2011",
+              "2016",
+              "2018",
+              "2020",
+              "2021",
+              "2024",
+              "2025"
+            ],
+            "marks": [
+              {
+                "i": 0,
+                "t": "約 16.5 萬對",
+                "dx": 70
+              },
+              {
+                "i": 6,
+                "t": "10.4 萬對",
+                "color": "red",
+                "dx": -40,
+                "dy": -112
+              }
+            ]
+          },
+          {
+            "id": "pin",
+            "asset": "pin-red",
+            "x": 2294,
+            "y": 1128,
+            "w": 64,
+            "z": 6,
+            "at": "least",
+            "from": "slam",
+            "until": "s05"
+          },
+          {
+            "type": "strip",
+            "paper": "note-kraft",
+            "lines": [
+              {
+                "t": "1981 年以來",
+                "size": 68
+              },
+              {
+                "t": "[最低]",
+                "size": 130
+              }
+            ],
+            "id": "low",
+            "x": 2160,
+            "y": 560,
+            "w": 340,
+            "rot": 4,
+            "z": 4,
+            "at": "least+4",
+            "until": "s05",
+            "state": {
+              "mark": 0
+            },
+            "set": [
+              {
+                "at": "least+14",
+                "mark": 1
+              }
+            ],
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 210,
+                "y": 4,
+                "rot": -4,
+                "w": 150
+              }
+            ]
+          }
+        ]
       },
       "sources": [
-        "來源：內政部戶政統計（2025 年）"
+        "來源：內政部統計（媒體彙整，1981 年起）"
       ]
     },
     {
       "id": "s05",
       "beat": "mechanism",
-      "sentence": "5a",
+      "sentence": "5",
       "para": 2,
-      "narration": "再看三十五到三十九歲的未婚率，",
-      "tts": "再看三十五到三十九歲的未婚率，",
+      "narration": "再看三十五到三十九歲的人，未婚率多少。",
+      "tts": "再看三十五到三十九歲的人，未婚率多少。",
       "subtitle": {
-        "zh": "再看\n三十五到三十九歲\n的未婚率",
-        "en": "Now look at ages 35 to 39: | the never-married rate,"
+        "zh": "再看\n三十五到三十九歲的人\n未婚率多少",
+        "en": "Now look at | people aged 35 to 39: | what's the never-married rate?"
       },
       "keywords": [
         "未婚率"
@@ -236,53 +652,184 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "camera": {
+          "to": [
+            1900,
+            2600,
+            1
+          ],
+          "dur": 14
+        },
+        "items": [
+          {
+            "type": "strip",
+            "paper": "label-s",
+            "lines": [
+              {
+                "t": "35–39 歲",
+                "size": 84
+              }
+            ],
+            "id": "age",
+            "x": 1630,
+            "y": 2055,
+            "w": 400,
+            "rot": -2,
+            "at": "age",
+            "until": "s10",
+            "tape": [
+              {
+                "asset": "tape-m",
+                "x": 60,
+                "y": 4,
+                "rot": -18,
+                "w": 140
+              }
+            ]
+          },
+          {
+            "id": "grid",
+            "asset": "cell-white",
+            "x": 1900,
+            "y": 2595,
+            "at": "age+4",
+            "until": "s10",
+            "grid": {
+              "cols": 10,
+              "rows": 10,
+              "dx": 58,
+              "dy": 58,
+              "stagger": 3
+            }
+          },
+          {
+            "type": "strip",
+            "paper": "note-yellow",
+            "lines": [
+              {
+                "t": "[未婚率]",
+                "size": 104
+              },
+              {
+                "t": "是多少？",
+                "size": 84
+              }
+            ],
+            "id": "q",
+            "x": 2170,
+            "y": 2120,
+            "w": 290,
+            "rot": 4,
+            "z": 3,
+            "at": "rate",
+            "from": "slam",
+            "until": "s07",
+            "state": {
+              "mark": 0
+            }
+          }
+        ]
       },
       "sources": []
     },
     {
       "id": "s06",
       "beat": "mechanism",
-      "sentence": "5b",
+      "sentence": "6",
       "para": 2,
-      "narration": "也就是還沒結過婚的比例。",
-      "tts": "也就是還沒結過婚的比例。",
+      "narration": "未婚率，就是從沒結過婚的人占多少。",
+      "tts": "未婚率，就是從沒結過婚的人占多少。",
       "subtitle": {
-        "zh": "也就是\n還沒結過婚的比例",
-        "en": "meaning the share | who have never married."
+        "zh": "未婚率\n就是從沒結過婚的人\n占多少",
+        "en": "That rate | is the share who have never married,| out of everyone that age."
       },
       "keywords": [
-        "還沒結過婚"
+        "從沒結過婚"
       ],
       "cues": [
         {
+          "id": "term",
+          "text": "未婚率"
+        },
+        {
           "id": "never",
-          "text": "還沒結過婚"
+          "text": "從沒結過婚"
         }
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "ref": "q",
+            "at": "term",
+            "set": [
+              {
+                "at": "term",
+                "mark": 1
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "strip-white",
+            "lines": [
+              {
+                "t": "從沒結過婚的人",
+                "size": 84
+              },
+              {
+                "t": "÷ 同年紀所有人",
+                "size": 66,
+                "color": "ink2",
+                "mt": 6
+              }
+            ],
+            "id": "def",
+            "x": 1900,
+            "y": 2650,
+            "w": 860,
+            "rot": -1.5,
+            "z": 5,
+            "at": "never",
+            "until": "s07",
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 120,
+                "y": 4,
+                "rot": -5,
+                "w": 170
+              },
+              {
+                "asset": "tape-r",
+                "x": 660,
+                "y": 2,
+                "rot": 4,
+                "w": 170
+              }
+            ]
+          }
+        ]
       },
       "sources": []
     },
     {
       "id": "s07",
       "beat": "mechanism",
-      "sentence": "6a",
+      "sentence": "7a",
       "para": 2,
       "narration": "五十年前大約百分之五，",
       "tts": "五十年前大約百分之五，",
       "subtitle": {
         "zh": "五十年前\n大約百分之五",
-        "en": "Fifty years ago, | it was about 5%."
+        "en": "Fifty years ago, | about 5 percent."
       },
       "keywords": [
         "百分之五"
       ],
       "cues": [
         {
-          "id": "old",
+          "id": "ago",
           "text": "五十年前"
         },
         {
@@ -292,22 +839,82 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "type": "strip",
+            "paper": "tag-red",
+            "lines": [
+              {
+                "t": "1975",
+                "size": 92
+              }
+            ],
+            "id": "y1975",
+            "onDark": true,
+            "x": 1630,
+            "y": 2205,
+            "w": 260,
+            "rot": 3,
+            "z": 3,
+            "at": "ago",
+            "from": "slam",
+            "until": "s08.now",
+            "to": "cut"
+          },
+          {
+            "id": "r5",
+            "asset": "cell-red",
+            "x": 1755.0,
+            "y": 2334.0,
+            "z": 2,
+            "at": "five",
+            "until": "s08.forty",
+            "to": "cut",
+            "grid": {
+              "cols": 5,
+              "rows": 1,
+              "dx": 58,
+              "dy": 58,
+              "stagger": 2
+            }
+          },
+          {
+            "id": "n5",
+            "type": "num",
+            "x": 2160,
+            "y": 2120,
+            "w": 430,
+            "z": 3,
+            "at": "five",
+            "from": "slam",
+            "until": "s08.forty",
+            "to": "cut",
+            "value": 5.3,
+            "decimals": 1,
+            "unit": "%",
+            "head": {
+              "t": "未婚率",
+              "size": 50,
+              "color": "ink2"
+            },
+            "countDur": 12
+          }
+        ]
       },
       "sources": [
-        "來源：遠見 2026（引鄭雁馨，1975–2024）"
+        "來源：遠見 2026/9（引中研院鄭雁馨）"
       ]
     },
     {
       "id": "s08",
       "beat": "mechanism",
-      "sentence": "6b",
+      "sentence": "7b",
       "para": 2,
       "narration": "現在超過四成。",
       "tts": "現在超過四成。",
       "subtitle": {
-        "zh": "現在\n超過四成",
-        "en": "Now it's over 40%."
+        "zh": "現在超過四成",
+        "en": "Now, more than 40 percent."
       },
       "keywords": [
         "超過四成"
@@ -322,64 +929,196 @@
           "text": "四成"
         }
       ],
-      "pauseAfter": 0.3,
       "component": "PaperScene",
       "props": {
-        "items": []
+        "punch": "forty",
+        "items": [
+          {
+            "type": "strip",
+            "paper": "tag-red",
+            "lines": [
+              {
+                "t": "2024",
+                "size": 92
+              }
+            ],
+            "id": "y2024",
+            "onDark": true,
+            "x": 1630,
+            "y": 2205,
+            "w": 260,
+            "rot": -3,
+            "z": 4,
+            "at": "now",
+            "from": "slam",
+            "until": "s10"
+          },
+          {
+            "id": "r40",
+            "asset": "cell-red",
+            "x": 1900.0,
+            "y": 2421.0,
+            "z": 2,
+            "at": "forty",
+            "until": "s10",
+            "grid": {
+              "cols": 10,
+              "rows": 4,
+              "dx": 58,
+              "dy": 58,
+              "stagger": 3
+            }
+          },
+          {
+            "id": "r41",
+            "asset": "cell-red",
+            "x": 1639.0,
+            "y": 2566.0,
+            "z": 2,
+            "at": "forty+12",
+            "until": "s10"
+          },
+          {
+            "id": "n41",
+            "type": "num",
+            "x": 2160,
+            "y": 2120,
+            "w": 430,
+            "z": 4,
+            "at": "forty",
+            "from": "slam",
+            "until": "s10",
+            "value": 41.4,
+            "fromValue": 5.3,
+            "decimals": 1,
+            "unit": "%",
+            "head": {
+              "t": "未婚率",
+              "size": 50,
+              "color": "ink2"
+            },
+            "countDur": 16,
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 560,
+                "y": 4,
+                "rot": 5,
+                "w": 160
+              }
+            ]
+          }
+        ]
       },
       "sources": [
-        "來源：遠見 2026（引鄭雁馨，1975–2024）"
-      ]
+        "來源：遠見 2026/9（引中研院鄭雁馨）"
+      ],
+      "pauseAfter": 0.3
     },
     {
       "id": "s09",
       "beat": "twist",
-      "sentence": "7a",
+      "sentence": "8",
       "para": 3,
-      "narration": "那是不是大家都不想結婚了？",
-      "tts": "那是不是大家都不想結婚了？",
+      "narration": "那是不是代表，大家都不想結婚了呢？",
+      "tts": "那是不是代表大家都不想結婚了呢？",
       "subtitle": {
-        "zh": "那是不是大家\n都不想結婚了？",
-        "en": "So does nobody | want to marry anymore?"
+        "zh": "那是不是代表\n大家都不想結婚了呢？",
+        "en": "So does that mean | nobody wants to marry anymore?"
       },
       "keywords": [
         "不想結婚"
       ],
       "cues": [
         {
-          "id": "all",
-          "text": "大家"
+          "id": "mean",
+          "text": "是不是"
         },
         {
           "id": "nowant",
           "text": "不想結婚"
         }
       ],
-      "pauseAfter": 0.35,
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "type": "strip",
+            "paper": "note-kraft",
+            "lines": [
+              {
+                "t": "大家都",
+                "size": 96
+              }
+            ],
+            "id": "big",
+            "box": [
+              30,
+              36,
+              360,
+              130
+            ],
+            "x": 2090,
+            "y": 2580,
+            "w": 600,
+            "rot": 3,
+            "z": 8,
+            "at": "mean",
+            "from": "right",
+            "until": "s11",
+            "tape": [
+              {
+                "asset": "tape-m",
+                "x": 210,
+                "y": 2,
+                "rot": -3,
+                "w": 150
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "strip-red",
+            "lines": [
+              {
+                "t": "不想結婚？",
+                "size": 132
+              }
+            ],
+            "id": "bigq",
+            "onDark": true,
+            "x": 2080,
+            "y": 2650,
+            "w": 560,
+            "rot": -2,
+            "z": 9,
+            "at": "nowant",
+            "from": "slam",
+            "until": "s11"
+          }
+        ]
       },
-      "sources": []
+      "sources": [],
+      "pauseAfter": 0.35
     },
     {
       "id": "s10",
       "beat": "twist",
-      "sentence": "7b",
+      "sentence": "9",
       "para": 3,
-      "narration": "數字說的是另一件事。",
-      "tts": "數字說的是另一件事。",
+      "narration": "中研院學者參與的調查，看到另一件事。",
+      "tts": "中研院學者參與的調查，看到另一件事。",
       "subtitle": {
-        "zh": "數字說的\n是另一件事",
-        "en": "The numbers say | something else."
+        "zh": "中研院學者參與的調查\n看到另一件事",
+        "en": "A survey with Academia Sinica scholars | found something else."
       },
       "keywords": [
         "另一件事"
       ],
       "cues": [
         {
-          "id": "num",
-          "text": "數字"
+          "id": "survey",
+          "text": "調查"
         },
         {
           "id": "other",
@@ -388,31 +1127,93 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "camera": {
+          "to": [
+            3300,
+            2600,
+            1
+          ],
+          "dur": 14
+        },
+        "items": [
+          {
+            "ref": "big",
+            "x": 3060,
+            "y": 2140,
+            "w": 360,
+            "rot": -4,
+            "dur": 14
+          },
+          {
+            "ref": "bigq",
+            "x": 3055,
+            "y": 2185,
+            "w": 336,
+            "rot": -7,
+            "dur": 14
+          },
+          {
+            "type": "strip",
+            "paper": "polaroid-survey",
+            "lines": [
+              {
+                "t": "萬人調查",
+                "size": 50
+              }
+            ],
+            "id": "survey",
+            "caption": true,
+            "x": 3400,
+            "y": 2500,
+            "w": 560,
+            "rot": 3,
+            "z": 3,
+            "at": "survey",
+            "until": "s15",
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 250,
+                "y": 4,
+                "rot": -3,
+                "w": 170
+              }
+            ]
+          },
+          {
+            "id": "x",
+            "asset": "cross-0",
+            "x": 3060,
+            "y": 2180,
+            "w": 230,
+            "z": 12,
+            "at": "other",
+            "from": "slam",
+            "until": "s11"
+          }
+        ]
       },
-      "sources": []
+      "sources": [
+        "來源：國科會萬人調查（鄭雁馨，媒體轉述）"
+      ]
     },
     {
       "id": "s11",
       "beat": "twist",
-      "sentence": "8",
+      "sentence": "10",
       "para": 3,
-      "narration": "中研院學者問了一萬名二十到四十九歲的人。",
-      "tts": "中研院學者問了一萬名二十到四十九歲的人。",
+      "narration": "他們問了大約一萬名二十到四十九歲的人。",
+      "tts": "他們問了大約一萬名二十到四十九歲的人。",
       "subtitle": {
-        "zh": "中研院學者\n問了一萬名\n二十到四十九歲的人",
-        "en": "An Academia Sinica researcher | surveyed 10,000 people | aged 20 to 49."
+        "zh": "他們問了大約一萬名\n二十到四十九歲的人",
+        "en": "They asked about 10,000 people | aged 20 to 49."
       },
       "keywords": [
         "一萬名"
       ],
       "cues": [
         {
-          "id": "who",
-          "text": "中研院"
-        },
-        {
-          "id": "n",
+          "id": "ten",
           "text": "一萬名"
         },
         {
@@ -422,94 +1223,292 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "ref": "survey",
+            "at": "start",
+            "x": 3060,
+            "y": 2220,
+            "w": 430,
+            "rot": -4,
+            "dur": 10
+          },
+          {
+            "id": "n10k",
+            "type": "num",
+            "x": 3350,
+            "y": 2660,
+            "w": 640,
+            "z": 4,
+            "at": "ten",
+            "from": "slam",
+            "until": "s12",
+            "to": "top",
+            "value": 10000,
+            "prefix": "約",
+            "unit": "人",
+            "size": 132,
+            "head": {
+              "t": "受訪者",
+              "size": 50,
+              "color": "ink2"
+            },
+            "countDur": 18,
+            "tape": [
+              {
+                "asset": "tape-m",
+                "x": 80,
+                "y": 4,
+                "rot": -5,
+                "w": 160
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "label-s",
+            "lines": [
+              {
+                "t": "20–49 歲",
+                "size": 84
+              }
+            ],
+            "id": "age2",
+            "x": 3560,
+            "y": 2200,
+            "w": 400,
+            "rot": 3,
+            "z": 4,
+            "at": "age",
+            "until": "s12",
+            "to": "top"
+          }
+        ]
       },
       "sources": [
-        "來源：中研院社會所鄭雁馨（媒體轉述）"
+        "來源：國科會萬人調查（鄭雁馨，媒體轉述）"
       ]
     },
     {
       "id": "s12",
       "beat": "twist",
-      "sentence": "9a",
+      "sentence": "11a",
       "para": 3,
-      "narration": "沒結婚的人，大約三分之二，",
-      "tts": "沒結婚的人，大約三分之二，",
+      "narration": "沒結婚的人裡面，",
+      "tts": "沒結婚的人裡面，",
       "subtitle": {
-        "zh": "沒結婚的人\n大約三分之二",
-        "en": "Of those not married, | about two in three"
+        "zh": "沒結婚的人裡面",
+        "en": "Among those who aren't married,"
+      },
+      "keywords": [],
+      "cues": [
+        {
+          "id": "single",
+          "text": "沒結婚"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": [
+          {
+            "ref": "survey",
+            "at": "start",
+            "x": 2970,
+            "y": 2120,
+            "w": 290,
+            "rot": -6,
+            "dur": 8
+          },
+          {
+            "type": "strip",
+            "paper": "strip-white",
+            "lines": [
+              {
+                "t": "沒結婚的人",
+                "size": 98
+              }
+            ],
+            "id": "single",
+            "x": 3460,
+            "y": 2110,
+            "w": 520,
+            "rot": 2,
+            "z": 3,
+            "at": "single",
+            "until": "s15",
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 380,
+                "y": 2,
+                "rot": 4,
+                "w": 160
+              }
+            ]
+          },
+          {
+            "id": "cup0",
+            "asset": "print-cup",
+            "x": 2960,
+            "y": 2480,
+            "w": 300,
+            "rot": -3,
+            "z": 2,
+            "at": "single",
+            "until": "s15.meet",
+            "to": "left"
+          },
+          {
+            "id": "cup1",
+            "asset": "print-cup",
+            "x": 3300,
+            "y": 2480,
+            "w": 300,
+            "rot": 2,
+            "z": 2,
+            "at": "single+5",
+            "until": "s15.meet",
+            "to": "left"
+          },
+          {
+            "id": "cup2",
+            "asset": "print-cup",
+            "x": 3640,
+            "y": 2480,
+            "w": 300,
+            "rot": -2,
+            "z": 2,
+            "at": "single+10",
+            "until": "s15.meet",
+            "to": "left"
+          }
+        ]
+      },
+      "sources": [
+        "來源：國科會萬人調查（鄭雁馨，媒體轉述）"
+      ]
+    },
+    {
+      "id": "s13",
+      "beat": "twist",
+      "sentence": "11b",
+      "para": 3,
+      "narration": "大約三分之二沒有交往對象。",
+      "tts": "大約三分之二沒有交往對象。",
+      "subtitle": {
+        "zh": "大約三分之二\n沒有交往對象",
+        "en": "about two in three | aren't dating anyone."
       },
       "keywords": [
         "三分之二"
       ],
       "cues": [
         {
-          "id": "single",
-          "text": "沒結婚"
-        },
-        {
-          "id": "frac",
+          "id": "two",
           "text": "三分之二"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "items": []
-      },
-      "sources": [
-        "來源：中研院社會所鄭雁馨（媒體轉述）"
-      ]
-    },
-    {
-      "id": "s13",
-      "beat": "twist",
-      "sentence": "9b",
-      "para": 3,
-      "narration": "沒有穩定交往或約會的對象。",
-      "tts": "沒有穩定交往或約會的對象。",
-      "subtitle": {
-        "zh": "沒有穩定交往\n或約會的對象",
-        "en": "have no steady partner | and no one they're dating."
-      },
-      "keywords": [
-        "沒有",
-        "對象"
-      ],
-      "cues": [
+        },
         {
           "id": "none",
           "text": "沒有"
-        },
-        {
-          "id": "date",
-          "text": "約會"
         }
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "punch": "two",
+        "items": [
+          {
+            "type": "strip",
+            "paper": "card-white",
+            "lines": [
+              {
+                "t": "{2/3}",
+                "size": 230
+              }
+            ],
+            "id": "two",
+            "x": 3300,
+            "y": 2775,
+            "w": 380,
+            "rot": -2,
+            "z": 5,
+            "at": "two",
+            "from": "slam",
+            "until": "s14.few",
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 320,
+                "y": 4,
+                "rot": 4,
+                "w": 160
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "tag-red",
+            "lines": [
+              {
+                "t": "沒有對象",
+                "size": 66
+              }
+            ],
+            "id": "no0",
+            "onDark": true,
+            "x": 2960,
+            "y": 2600,
+            "w": 260,
+            "rot": -4,
+            "z": 4,
+            "at": "none",
+            "from": "slam",
+            "until": "s15.meet",
+            "to": "left"
+          },
+          {
+            "type": "strip",
+            "paper": "tag-red",
+            "lines": [
+              {
+                "t": "沒有對象",
+                "size": 66
+              }
+            ],
+            "id": "no1",
+            "onDark": true,
+            "x": 3300,
+            "y": 2600,
+            "w": 260,
+            "rot": 3,
+            "z": 4,
+            "at": "none+5",
+            "from": "slam",
+            "until": "s15.meet",
+            "to": "left"
+          }
+        ]
       },
       "sources": [
-        "來源：中研院社會所鄭雁馨（媒體轉述）"
+        "來源：國科會萬人調查（鄭雁馨，媒體轉述）"
       ]
     },
     {
       "id": "s14",
       "beat": "twist",
-      "sentence": "10",
+      "sentence": "12",
       "para": 3,
-      "narration": "直接說不要結婚的人，反而只是少數。",
-      "tts": "直接說不要結婚的人，反而只是少數。",
+      "narration": "明確說不要結婚的人，反而只是少數。",
+      "tts": "明確說不要結婚的人，反而只是少數。",
       "subtitle": {
-        "zh": "直接說\n不要結婚的人\n反而只是少數",
-        "en": "Those who flatly | reject marriage | are only a small minority."
+        "zh": "明確說不要結婚的人\n反而只是少數",
+        "en": "Those who flatly reject marriage | are only a small minority."
       },
       "keywords": [
         "少數"
       ],
       "cues": [
         {
-          "id": "say",
+          "id": "refuse",
           "text": "不要結婚"
         },
         {
@@ -519,25 +1518,72 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "type": "strip",
+            "paper": "label-s",
+            "lines": [
+              {
+                "t": "不要結婚",
+                "size": 80
+              }
+            ],
+            "id": "refuse",
+            "x": 3630,
+            "y": 2600,
+            "w": 250,
+            "rot": 4,
+            "z": 4,
+            "at": "refuse",
+            "until": "s15.meet",
+            "to": "left"
+          },
+          {
+            "type": "strip",
+            "paper": "strip-yellow",
+            "lines": [
+              {
+                "t": "只是[少數]",
+                "size": 124
+              }
+            ],
+            "id": "few",
+            "x": 3300,
+            "y": 2775,
+            "w": 430,
+            "rot": 2,
+            "z": 5,
+            "at": "few",
+            "from": "slam",
+            "until": "s15",
+            "state": {
+              "mark": 0
+            },
+            "set": [
+              {
+                "at": "few+8",
+                "mark": 1
+              }
+            ]
+          }
+        ]
       },
       "sources": [
-        "來源：中研院社會所鄭雁馨（媒體轉述）"
+        "來源：國科會萬人調查（鄭雁馨，媒體轉述）"
       ]
     },
     {
       "id": "s15",
       "beat": "twist",
-      "sentence": "11",
+      "sentence": "13",
       "para": 3,
       "narration": "學者的解讀是，很多人不是不要，是還沒遇到。",
       "tts": "學者的解讀是，很多人不是不要，是還沒遇到。",
       "subtitle": {
         "zh": "學者的解讀是\n很多人不是不要\n是還沒遇到",
-        "en": "Her reading: | many don't refuse it. | They just haven't met someone."
+        "en": "The scholar's reading: | many aren't saying no. | They just haven't met someone."
       },
       "keywords": [
-        "不是不要",
         "還沒遇到"
       ],
       "cues": [
@@ -556,25 +1602,135 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "punch": "meet",
+        "items": [
+          {
+            "type": "strip",
+            "paper": "strip-yellow",
+            "lines": [
+              {
+                "t": "學者解讀",
+                "size": 112
+              }
+            ],
+            "id": "read",
+            "x": 3530,
+            "y": 2100,
+            "w": 380,
+            "rot": 3,
+            "z": 3,
+            "at": "read",
+            "from": "slam",
+            "until": "s16",
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 300,
+                "y": 2,
+                "rot": 5,
+                "w": 160
+              }
+            ]
+          },
+          {
+            "id": "strike",
+            "asset": "tape-r",
+            "x": 3630,
+            "y": 2600,
+            "w": 310,
+            "rot": -16,
+            "z": 6,
+            "at": "notno",
+            "from": "slam",
+            "until": "s15.meet",
+            "to": "left"
+          },
+          {
+            "type": "strip",
+            "paper": "strip-white",
+            "lines": [
+              {
+                "t": "還沒{遇到}",
+                "size": 176
+              }
+            ],
+            "id": "meet",
+            "pad": [
+              24,
+              20
+            ],
+            "x": 3300,
+            "y": 2360,
+            "w": 860,
+            "rot": -2,
+            "z": 5,
+            "at": "meet",
+            "from": "slam",
+            "until": "s18",
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 110,
+                "y": 4,
+                "rot": -5,
+                "w": 180
+              },
+              {
+                "asset": "tape-m",
+                "x": 660,
+                "y": 2,
+                "rot": 4,
+                "w": 180
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "polaroid-chairs",
+            "lines": [
+              {
+                "t": "位子還空著",
+                "size": 46
+              }
+            ],
+            "id": "chairs",
+            "caption": true,
+            "x": 3050,
+            "y": 2690,
+            "w": 300,
+            "rot": -5,
+            "z": 4,
+            "at": "meet+10",
+            "until": "s18",
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 220,
+                "y": 4,
+                "rot": 3,
+                "w": 150
+              }
+            ]
+          }
+        ]
       },
       "sources": [
-        "分析：中研院研之有物專訪鄭雁馨"
+        "來源：研之有物專訪鄭雁馨（學者解讀）"
       ]
     },
     {
       "id": "s16",
       "beat": "payoff",
-      "sentence": "12",
+      "sentence": "14",
       "para": 4,
-      "narration": "所以三十幾歲還沒結婚，在台灣很常見。",
-      "tts": "所以三十幾歲還沒結婚，在台灣很常見。",
+      "narration": "三十幾歲還沒結婚，在台灣一點都不奇怪。",
+      "tts": "三十幾歲還沒結婚，在台灣一點都不奇怪。",
       "subtitle": {
-        "zh": "所以三十幾歲\n還沒結婚\n在台灣很常見",
-        "en": "So being unmarried | in your thirties | is common in Taiwan."
+        "zh": "三十幾歲還沒結婚\n在台灣一點都不奇怪",
+        "en": "Unmarried in your thirties? | In Taiwan, that's not unusual at all."
       },
       "keywords": [
-        "很常見"
+        "一點都不奇怪"
       ],
       "cues": [
         {
@@ -583,60 +1739,85 @@
         },
         {
           "id": "normal",
-          "text": "很常見"
+          "text": "不奇怪"
         }
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "id": "n41b",
+            "type": "num",
+            "x": 3500,
+            "y": 2680,
+            "w": 480,
+            "z": 4,
+            "at": "thirty",
+            "from": "right",
+            "until": "s18",
+            "value": 41.4,
+            "fromValue": 41.4,
+            "decimals": 1,
+            "unit": "%",
+            "head": {
+              "t": "35–39 歲未婚",
+              "size": 50,
+              "color": "ink2"
+            }
+          },
+          {
+            "id": "pin2",
+            "asset": "pin-red",
+            "x": 3500,
+            "y": 2552,
+            "w": 64,
+            "z": 6,
+            "at": "thirty+36",
+            "from": "slam",
+            "until": "s18"
+          },
+          {
+            "type": "strip",
+            "paper": "note-kraft",
+            "lines": [
+              {
+                "t": "很[常見]",
+                "size": 120
+              }
+            ],
+            "id": "common",
+            "x": 3580,
+            "y": 2105,
+            "w": 290,
+            "rot": 5,
+            "z": 6,
+            "at": "normal",
+            "from": "slam",
+            "until": "s18",
+            "state": {
+              "mark": 0
+            },
+            "set": [
+              {
+                "at": "normal+8",
+                "mark": 1
+              }
+            ]
+          }
+        ]
       },
       "sources": []
     },
     {
       "id": "s17",
-      "beat": "payoff",
-      "sentence": "13",
-      "para": 4,
-      "narration": "只是時間，不會因為大家都慢就停下來。",
-      "tts": "只是時間，不會因為大家都慢就停下來。",
-      "subtitle": {
-        "zh": "只是時間\n不會因為大家都慢\n就停下來",
-        "en": "But time won't stop | just because | everyone is running late."
-      },
-      "keywords": [
-        "時間",
-        "停下來"
-      ],
-      "cues": [
-        {
-          "id": "time",
-          "text": "時間"
-        },
-        {
-          "id": "slow",
-          "text": "都慢"
-        },
-        {
-          "id": "stop",
-          "text": "停下來"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "items": []
-      },
-      "sources": []
-    },
-    {
-      "id": "s18",
       "beat": "cta",
-      "sentence": "14",
+      "sentence": "15",
       "para": 4,
       "narration": "你身邊單身的朋友，是不想結，還是遇不到？",
       "tts": "你身邊單身的朋友，是不想結，還是遇不到？",
       "subtitle": {
-        "zh": "你身邊\n單身的朋友\n是不想結\n還是遇不到？",
-        "en": "Your single friends: | do they not want to marry, | or can't they meet anyone?"
+        "zh": "你身邊單身的朋友\n是不想結\n還是遇不到？",
+        "en": "Your single friends: | don't want to marry, | or can't find someone?"
       },
       "keywords": [
         "不想結",
@@ -645,7 +1826,7 @@
       "cues": [
         {
           "id": "friend",
-          "text": "單身的朋友"
+          "text": "朋友"
         },
         {
           "id": "a",
@@ -658,28 +1839,112 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "camera": {
+          "to": [
+            3300,
+            4100,
+            1
+          ],
+          "dur": 16
+        },
+        "items": [
+          {
+            "id": "peach",
+            "asset": "sheet-kraft",
+            "x": 4700,
+            "y": 4100,
+            "w": 1240,
+            "z": -5,
+            "at": "start",
+            "from": "cut",
+            "until": "end"
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "layer": "near",
+            "x": 540,
+            "y": 810,
+            "w": 400,
+            "at": "friend-8",
+            "from": "bottom",
+            "until": "s18",
+            "to": "bottom",
+            "state": {
+              "screen": "comment",
+              "placeholder": "你覺得呢？"
+            },
+            "set": [
+              {
+                "at": "b+10",
+                "hop": 1
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "note-white",
+            "lines": [
+              {
+                "t": "不想結",
+                "size": 112
+              }
+            ],
+            "id": "optA",
+            "layer": "screen",
+            "x": 185,
+            "y": 640,
+            "w": 250,
+            "rot": -6,
+            "z": 3,
+            "at": "a",
+            "from": "slam",
+            "until": "s18",
+            "to": "left"
+          },
+          {
+            "type": "strip",
+            "paper": "note-kraft",
+            "lines": [
+              {
+                "t": "遇不到",
+                "size": 112
+              }
+            ],
+            "id": "optB",
+            "layer": "screen",
+            "x": 895,
+            "y": 800,
+            "w": 250,
+            "rot": 5,
+            "z": 3,
+            "at": "b",
+            "from": "slam",
+            "until": "s18",
+            "to": "right"
+          }
+        ]
       },
       "sources": []
     },
     {
-      "id": "s19",
+      "id": "s18",
       "beat": "payoff",
-      "sentence": "15",
+      "sentence": "16",
       "para": 4,
-      "narration": "對了，同一年還有五萬兩千多對離婚。",
-      "tts": "對了，同一年還有五萬兩千多對離婚。",
+      "narration": "對了，同一年還有大約五萬兩千對夫妻離婚。",
+      "tts": "對了，同一年還有大約五萬兩千對夫妻離婚。",
       "subtitle": {
-        "zh": "對了\n同一年還有\n五萬兩千多對離婚",
-        "en": "By the way, that same year | over 52,000 couples divorced."
+        "zh": "對了\n同一年還有大約\n五萬兩千對夫妻離婚",
+        "en": "By the way, | in that same year, about | 52,000 couples divorced."
       },
       "keywords": [
-        "五萬兩千多對"
+        "五萬兩千對"
       ],
       "cues": [
         {
-          "id": "same",
-          "text": "同一年"
+          "id": "btw",
+          "text": "對了"
         },
         {
           "id": "num",
@@ -692,35 +1957,237 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "camera": {
+          "to": [
+            4700,
+            4100,
+            1
+          ],
+          "dur": 14
+        },
+        "punch": "num",
+        "items": [
+          {
+            "type": "strip",
+            "paper": "label-s",
+            "lines": [
+              {
+                "t": "同一年",
+                "size": 96
+              }
+            ],
+            "id": "same",
+            "x": 4460,
+            "y": 3560,
+            "w": 340,
+            "rot": -3,
+            "z": 3,
+            "at": "btw",
+            "until": "s19",
+            "tape": [
+              {
+                "asset": "tape-y",
+                "x": 60,
+                "y": 4,
+                "rot": -18,
+                "w": 140
+              }
+            ]
+          },
+          {
+            "id": "n52",
+            "type": "num",
+            "x": 4720,
+            "y": 3830,
+            "w": 660,
+            "z": 4,
+            "at": "num",
+            "from": "slam",
+            "until": "end",
+            "value": 5.2,
+            "decimals": 1,
+            "prefix": "約",
+            "unit": "萬對",
+            "head": {
+              "t": "2025 年 離婚",
+              "size": 50,
+              "color": "ink2"
+            },
+            "countDur": 18,
+            "tape": [
+              {
+                "asset": "tape-r",
+                "x": 560,
+                "y": 4,
+                "rot": 5,
+                "w": 170
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "polaroid-rings-wood",
+            "lines": [
+              {
+                "t": "近 3 年最低",
+                "size": 46
+              }
+            ],
+            "id": "rw",
+            "caption": true,
+            "x": 4460,
+            "y": 4200,
+            "w": 270,
+            "rot": -5,
+            "z": 5,
+            "at": "div",
+            "until": "end",
+            "tape": [
+              {
+                "asset": "tape-m",
+                "x": 220,
+                "y": 4,
+                "rot": 3,
+                "w": 150
+              }
+            ]
+          }
+        ]
       },
       "sources": [
-        "來源：內政部戶政統計（2025 年）"
+        "來源：內政部統計月報（2025 年，約數）"
       ]
     },
     {
-      "id": "s20",
+      "id": "s19",
       "beat": "payoff",
-      "sentence": "16",
+      "sentence": "17a",
       "para": 4,
-      "narration": "結了婚之後，又發生什麼事？下一集看數字。",
-      "tts": "結了婚之後，又發生什麼事？下一集看數字。",
+      "narration": "結了婚之後，是另一組數字，",
+      "tts": "結了婚之後是另一組數字，",
       "subtitle": {
-        "zh": "結了婚之後\n又發生什麼事？\n下一集看數字",
-        "en": "What happens after the wedding? | Next episode, | we look at the numbers."
+        "zh": "結了婚之後\n是另一組數字",
+        "en": "After the wedding, | the numbers tell another story."
       },
       "keywords": [
-        "下一集"
+        "另一組數字"
       ],
       "cues": [
         {
           "id": "after",
-          "text": "結了婚之後"
+          "text": "之後"
         },
         {
-          "id": "what",
-          "text": "什麼事"
-        },
+          "id": "set",
+          "text": "另一組"
+        }
+      ],
+      "component": "PaperScene",
+      "props": {
+        "items": [
+          {
+            "type": "path",
+            "pts": [
+              [
+                4630,
+                4075
+              ],
+              [
+                4700,
+                4125
+              ],
+              [
+                4760,
+                4175
+              ]
+            ],
+            "z": 6,
+            "head": "arrowhead-r",
+            "until": "end",
+            "state": {
+              "grow": 0
+            },
+            "set": [
+              {
+                "at": "after",
+                "grow": 1
+              }
+            ]
+          },
+          {
+            "type": "strip",
+            "paper": "card-white",
+            "lines": [
+              {
+                "t": "{？}",
+                "size": 250
+              }
+            ],
+            "id": "card0",
+            "x": 4860,
+            "y": 4180,
+            "w": 300,
+            "rot": -7,
+            "z": 7,
+            "at": "set+0",
+            "from": "slam",
+            "until": "end"
+          },
+          {
+            "type": "strip",
+            "paper": "card-white",
+            "lines": [
+              {
+                "t": "{？}",
+                "size": 250
+              }
+            ],
+            "id": "card1",
+            "x": 4920,
+            "y": 4202,
+            "w": 300,
+            "rot": 2,
+            "z": 8,
+            "at": "set+5",
+            "from": "slam",
+            "until": "end"
+          },
+          {
+            "type": "strip",
+            "paper": "card-white",
+            "lines": [
+              {
+                "t": "{？}",
+                "size": 250
+              }
+            ],
+            "id": "card2",
+            "x": 4975,
+            "y": 4228,
+            "w": 300,
+            "rot": 8,
+            "z": 9,
+            "at": "set+10",
+            "from": "slam",
+            "until": "end"
+          }
+        ]
+      },
+      "sources": []
+    },
+    {
+      "id": "s20",
+      "beat": "payoff",
+      "sentence": "17b",
+      "para": 4,
+      "narration": "下一集來看。",
+      "tts": "下一集來看。",
+      "subtitle": {
+        "zh": "下一集來看",
+        "en": "Next episode."
+      },
+      "keywords": [],
+      "cues": [
         {
           "id": "next",
           "text": "下一集"
@@ -728,7 +2195,26 @@
       ],
       "component": "PaperScene",
       "props": {
-        "items": []
+        "items": [
+          {
+            "ref": "card2",
+            "at": "next",
+            "x": 5010,
+            "y": 4192,
+            "rot": 17,
+            "dur": 8
+          },
+          {
+            "asset": "sheet-cream",
+            "layer": "top",
+            "x": 540,
+            "y": 980,
+            "w": 1240,
+            "at": "end-8",
+            "from": "bottom",
+            "until": "end"
+          }
+        ]
       },
       "sources": []
     },
