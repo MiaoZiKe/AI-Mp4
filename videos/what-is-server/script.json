@@ -1,0 +1,529 @@
+{
+ "slug": "what-is-server",
+ "title": "IG 打不開，先不要怪自己網路｜什麼是 Server（第 1 集）",
+ "asOf": "2026/11/12",
+ "styleVersion": 3,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "style": "用台灣人平常講話的口音，像跟朋友聊天一樣，語氣自然平穩"
+ },
+ "cover": {
+  "camera": {"to":[-500,1860,1]},
+  "items": [
+   {"type":"phone","layer":"near","x":540,"y":1600,"w":640,"state":{"screen":"error"}},
+   {"type":"strip","layer":"screen","paper":"strip-hook","x":540,"y":790,"w":880,"rot":-1.6,"align":"left","pad":[70,26],"lines":[{"t":"IG 掛過","size":132,"lh":1.08},{"t":"約 {6 小時}","size":132,"accentSize":176,"lh":1.1},{"t":"那次[不是你]網路爛","size":54,"color":"ink3","lh":1.3,"mt":10}],"tape":[{"asset":"tape-y","x":150,"y":8,"rot":-5},{"asset":"tape-m","x":790,"y":0,"rot":4}],"state":{},"to":"top"},
+   {"type":"strip","paper":"strip-yellow","layer":"screen","x":580,"y":1200,"w":780,"rot":2.5,"z":4,"pad":[26,24],"lines":[{"t":"什麼是 Server？","size":68,"ls":0}],"tape":[{"asset":"tape-m","x":560,"y":6,"rot":8,"w":170}]}
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "sentence": 1,
+   "para": 1,
+   "narration": "IG 打不開，你是不是先怪自己網路爛？",
+   "tts": "I G 打不開，你是不是先怪自己網路爛？",
+   "subtitle": {"zh":"IG 打不開\n你是不是\n先怪自己網路爛？","en":"IG won't load. | Do you blame | your own connection first?"},
+   "keywords": ["怪自己"],
+   "cues": [{"id":"dead","text":"打不開"},{"id":"you","text":"你是不是"},{"id":"blame","text":"怪自己"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[-500,1860,1]},
+    "items": [
+     {"id":"path","type":"path","pts":[[-460,1700],[-380,1480],[-160,1380],[240,1420]],"dash":1.4,"state":{"grow":0},"until":"end"},
+     {"id":"rack","asset":"rack","x":540,"y":1500,"w":560,"until":"s07"},
+     {"id":"phone","type":"phone","layer":"near","x":540,"y":1352,"w":600,"state":{"screen":"error"},"set":[{"at":"start","pull":1},{"at":"dead+12","pull":2},{"at":"you+4","pull":3},{"at":"blame+10","pull":4}],"moves":[{"at":"you+12","to":{"y":1380,"rot":-1.6},"dur":5,"ease":"exit"}],"until":"end"},
+     {"id":"tag","type":"strip","paper":"tag-red","layer":"near","x":360,"y":925,"w":420,"rot":-7,"z":3,"at":"dead+2","from":"slam","lines":[{"t":"打不開","size":78,"color":"white","ls":0.08}],"moves":[{"at":"you+12","to":{"y":951,"rot":-8.6},"dur":5,"ease":"exit"}],"until":"s02"},
+     {"type":"strip","layer":"screen","paper":"strip-hook","x":540,"y":580,"w":920,"rot":-1.6,"align":"left","pad":[70,26],"lines":[{"t":"IG 掛過","size":132,"lh":1.08},{"t":"約 {6 小時}","size":132,"accentSize":176,"lh":1.1},{"t":"那次[不是你]網路爛","size":54,"color":"ink3","lh":1.3,"mt":10}],"tape":[{"asset":"tape-y","x":150,"y":8,"rot":-5},{"asset":"tape-m","x":790,"y":0,"rot":4}],"state":{"mark":0},"to":"top","set":[{"at":"blame","mark":1}]}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "sentence": 2,
+   "para": 1,
+   "narration": "有時候，問題不在你這邊。",
+   "tts": "有時候問題不在你這邊。",
+   "subtitle": {"zh":"有時候\n問題不在你這邊","en":"Sometimes, | the problem isn't on your side."},
+   "keywords": ["不在你這邊"],
+   "cues": [{"id":"notyou","text":"不在你這邊"}],
+   "pauseAfter": 0.25,
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[-500,1780,1],"at":"notyou","dur":10},
+    "items": [
+     {"ref":"phone","at":"start","y":1352,"rot":0,"dur":8,"set":[{"at":"start+12","pull":5}]},
+     {"ref":"path","at":"notyou-24","state":{"grow":1}}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "sentence": 3,
+   "para": 2,
+   "narration": "你滑到的照片，原本都不在你手機裡。",
+   "tts": "你滑到的照片，原本都不在你手機裡。",
+   "subtitle": {"zh":"你滑到的照片\n原本都不在\n你手機裡","en":"The photos you scroll past | were never really | on your phone."},
+   "keywords": ["照片","不在"],
+   "cues": [{"id":"photo","text":"照片"},{"id":"gone","text":"不在"}],
+   "still": "gone+7",
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[-500,2330,1],"at":"start","dur":12},
+    "items": [
+     {"ref":"phone","at":"start","y":880,"dur":12,"state":{"screen":"grid","photos":[1,1,1]},"set":[{"at":"photo","scroll":1},{"at":"gone","photos":[0,1,1]},{"at":"gone+5","photos":[0,0,1]},{"at":"gone+8","photos":[0,0,0]}]},
+     {"asset":"photo","layer":"near","x":540,"y":623,"w":280,"z":5,"at":"gone+0","from":"cut","moves":[{"path":[[760,520],[940,420],[1320,440]],"dur":14,"ease":"exit"}]},
+     {"asset":"photo","layer":"near","x":540,"y":889,"w":280,"z":5,"at":"gone+5","from":"cut","moves":[{"path":[[760,520],[940,420],[1320,440]],"dur":14,"ease":"exit"}]},
+     {"asset":"photo","layer":"near","x":540,"y":1155,"w":280,"z":5,"at":"gone+8","from":"cut","moves":[{"path":[[760,520],[940,420],[1320,440]],"dur":14,"ease":"exit"}]}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "sentence": 4,
+   "para": 2,
+   "narration": "那在哪？在別人的電腦裡。",
+   "tts": "那在哪？在別人的電腦裡。",
+   "subtitle": {"zh":"那在哪？\n在別人的電腦裡","en":"So where are they? | On someone else's computers."},
+   "keywords": ["那在哪","別人的電腦"],
+   "cues": [{"id":"where","text":"那在哪"},{"id":"others","text":"別人的電腦"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[630,1654,1],"at":"where","dur":18},
+    "items": [
+     {"ref":"phone","at":"where","x":-700,"y":1900,"w":600,"dur":16},
+     {"id":"doorphoto","asset":"photo","x":700,"y":1770,"w":300,"rot":4,"z":3,"at":"others+4","until":"s05.voice+16","to":"cut"},
+     {"asset":"tape-m","x":250,"y":2330,"w":150,"rot":-18,"at":"start","from":"cut","until":"end"},
+     {"asset":"tape-y","x":930,"y":2360,"w":130,"rot":24,"at":"start","from":"cut","until":"end"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "sentence": "5–6a",
+   "para": 2,
+   "narration": "那種電腦，就叫 Server。中文叫伺服器，",
+   "tts": "那種電腦，就叫 Server。中文叫伺服器，",
+   "subtitle": {"zh":"那種電腦\n就叫 Server\n中文叫伺服器","en":"That kind of computer | is called a server, | or sìfúqì in Chinese."},
+   "keywords": ["Server","伺服器"],
+   "cues": [{"id":"server","text":"Server"},{"id":"zh","text":"伺服器"}],
+   "component": "PaperScene",
+   "props": {
+    "punch": "server",
+    "items": [
+     {"ref":"doorphoto","at":"voice+4","x":540,"y":1610,"w":36,"rot":0,"dur":12},
+     {"id":"label","type":"strip","paper":"label","x":822,"y":1336,"w":560,"rot":-4,"z":5,"at":"server","from":"slam","align":"left","pad":[46,30],"lines":[{"t":"Server","size":128,"ls":-0.02,"lh":1},{"t":"[伺服器]","size":66,"ls":0.06,"lh":1.25,"mt":10}],"tape":[{"asset":"tape-m","x":300,"y":0,"rot":3}],"state":{"mark":0},"set":[{"at":"zh","mark":1}],"until":"s07"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "sentence": "6b",
+   "para": 2,
+   "narration": "說穿了，就是專門幫別人做事的電腦啦。",
+   "tts": "說穿了，就是專門幫別人做事的電腦啦。",
+   "subtitle": {"zh":"說穿了\n就是專門幫別人\n做事的電腦啦","en":"Put simply, | it's a computer whose whole job | is doing things for others."},
+   "keywords": ["幫別人做事"],
+   "cues": [{"id":"job","text":"專門"},{"id":"serve","text":"幫別人做事"}],
+   "still": "serve+24",
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[610,1660,0.94]},
+    "items": [
+     {"asset":"photo","x":110,"y":1400,"w":230,"z":2,"at":"voice+6","from":"left","moves":[{"at":"job+3","path":[[230,1420],[470,1580]],"dur":9},{"at":"job+14","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
+     {"asset":"envelope","x":-90,"y":1400,"w":230,"z":2,"at":"serve-6","from":"left","moves":[{"at":"serve+3","path":[[230,1420],[470,1580]],"dur":9},{"at":"serve+14","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
+     {"asset":"heart","x":-90,"y":1400,"w":230,"z":2,"at":"serve+7","from":"left","moves":[{"at":"serve+16","path":[[230,1420],[470,1580]],"dur":9},{"at":"serve+27","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
+     {"asset":"sheet-kraft","layer":"screen","x":540,"y":1000,"w":1240,"at":"exit-8","from":"bottom","enterDur":8,"until":"s07.start+1","to":"top","exitDur":7}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "sentence": 7,
+   "para": 2,
+   "narration": "你可以把它想成餐廳的廚房。",
+   "tts": "你可以把它想成餐廳的廚房。",
+   "subtitle": {"zh":"你可以把它想成\n餐廳的廚房","en":"Think of it | as a restaurant kitchen."},
+   "keywords": ["廚房"],
+   "cues": [{"id":"kitchen","text":"廚房"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,1659,1],"dur":1},
+    "items": [
+     {"id":"pass","type":"pass","layer":"mat","x":540,"y":1500,"w":900,"from":"cut","state":{"inside":"rack"},"set":[{"at":"kitchen+4","inside":"kitchen"}],"until":"end"},
+     {"id":"klabel","type":"strip","paper":"label-s","layer":"mat","x":770,"y":1760,"w":400,"rot":3,"z":5,"at":"kitchen","lines":[{"t":"廚房","size":100,"ls":0.1}],"tape":[{"asset":"tape-y","x":40,"y":6,"rot":-30,"w":150}],"until":"s10"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "sentence": "8a",
+   "para": 2,
+   "narration": "你一邊滑，手機就一邊點餐，",
+   "tts": "你一邊滑，手機就一邊點餐，",
+   "subtitle": {"zh":"你一邊滑\n手機就一邊點餐","en":"As you scroll, | your phone keeps placing orders."},
+   "keywords": ["滑","點餐"],
+   "cues": [{"id":"scroll","text":"滑"},{"id":"order","text":"點餐"}],
+   "still": "order+30",
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[226,1950,0.7],"dur":16},
+    "items": [
+     {"ref":"phone","x":215,"y":936,"w":360,"dur":16,"state":{"screen":"grid","photos":[0,0,0]},"set":[{"at":"scroll","scroll":1},{"at":"order+12","scroll":2}]},
+     {"ref":"klabel","x":610,"y":2130,"rot":-3,"dur":16},
+     {"asset":"ticket","x":-460,"y":1790,"w":380,"z":1,"at":"scroll+6","from":"cut","moves":[{"path":[[-460,1700],[-380,1480],[-160,1380],[240,1420],[360,1440]],"dur":24}],"until":"s09.done","to":"cut"},
+     {"asset":"ticket","x":-460,"y":1790,"w":380,"z":1,"at":"order-6","from":"cut","moves":[{"path":[[-460,1700],[-380,1480],[-160,1380],[240,1420],[360,1440]],"dur":24}],"until":"s09.done","to":"cut"},
+     {"asset":"ticket","x":-460,"y":1790,"w":380,"z":1,"at":"order+8","from":"cut","moves":[{"path":[[-460,1700],[-380,1480],[-160,1380],[240,1420],[360,1440]],"dur":24}],"until":"s09.done","to":"cut"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s09",
+   "beat": "mechanism",
+   "sentence": "8b",
+   "para": 2,
+   "narration": "廚房做好，馬上把照片送回來。",
+   "tts": "廚房做好，馬上把照片送回來。",
+   "subtitle": {"zh":"廚房做好\n馬上把照片送回來","en":"The kitchen gets it ready | and sends the photo right back."},
+   "keywords": ["做好","送回來"],
+   "cues": [{"id":"done","text":"做好"},{"id":"back","text":"送回來"}],
+   "still": "back+16",
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {"ref":"phone","set":[{"at":"back+2","photos":[1,0,0]},{"at":"back+14","photos":[1,1,0]}]},
+     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+0","from":"cut","moves":[{"to":{"x":100},"dur":10},{"at":"back-18","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]},
+     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+12","from":"cut","moves":[{"to":{"x":100},"dur":10},{"at":"back-6","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s10",
+   "beat": "twist",
+   "sentence": 9,
+   "para": 3,
+   "narration": "那萬一，廚房出事了呢？",
+   "tts": "那萬一廚房出事了呢？",
+   "subtitle": {"zh":"那萬一\n廚房出事了呢？","en":"But what if | the kitchen has a problem?"},
+   "keywords": ["出事"],
+   "cues": [{"id":"down","text":"出事"}],
+   "pauseAfter": 0.35,
+   "component": "PaperScene",
+   "props": {
+    "mat": true,
+    "camera": {"to":[540,1659,1]},
+    "punch": "down",
+    "items": [
+     {"ref":"phone","x":-700,"y":1900,"w":600},
+     {"ref":"pass","set":[{"at":"down-10","lit":false}]},
+     {"type":"strip","paper":"strip-red","layer":"mat","x":540,"y":1834,"w":760,"rot":4,"z":5,"at":"down","from":"slam","lines":[{"t":"出事？","size":172,"color":"white","ls":0.04}],"tape":[{"asset":"tape-y","x":16,"y":70,"rot":58}],"until":"s11"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s11",
+   "beat": "twist",
+   "sentence": 10,
+   "para": 3,
+   "narration": "所有客人，通通沒飯吃。",
+   "tts": "所有客人通通沒飯吃。",
+   "subtitle": {"zh":"所有客人\n通通沒飯吃","en":"Every customer | goes hungry, all at once."},
+   "keywords": ["通通"],
+   "cues": [{"id":"all","text":"通通"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,2085,0.6]},
+    "items": [
+     {"id":"row0","type":"phone","layer":"mat","x":60,"y":2290,"w":440,"at":"start+2","state":{"screen":"grid","photos":[1,1,1]},"set":[{"at":"all","screen":"error-big","swap":"cut"}],"until":"s14"},
+     {"id":"row1","type":"phone","layer":"mat","x":540,"y":2290,"w":440,"at":"start+5","state":{"screen":"grid","photos":[1,1,1]},"set":[{"at":"all","screen":"error-big","swap":"cut"}],"until":"s14"},
+     {"id":"row2","type":"phone","layer":"mat","x":1020,"y":2290,"w":440,"at":"start+7","state":{"screen":"grid","photos":[1,1,1]},"set":[{"at":"all","screen":"error-big","swap":"cut"}],"until":"s14"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s12",
+   "beat": "twist",
+   "sentence": "11a",
+   "para": 3,
+   "narration": "2021 年就有一次，IG 跟臉書整個掛掉，",
+   "tts": "二零二一年就有一次，I G 跟臉書整個掛掉，",
+   "subtitle": {"zh":"2021 年就有一次\nIG 跟臉書\n整個掛掉","en":"It happened in 2021: | IG and Facebook | went down completely,"},
+   "keywords": ["2021","掛掉"],
+   "cues": [{"id":"year","text":"2021"},{"id":"igfb","text":"IG 跟臉書"},{"id":"outage","text":"掛掉"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,1659,1]},
+    "items": [
+     {"ref":"row0","y":3300,"dur":10},
+     {"ref":"row1","y":3300,"dur":10},
+     {"ref":"row2","y":3300,"dur":10},
+     {"type":"strip","paper":"label-s","layer":"mat","x":330,"y":1130,"w":440,"rot":-3,"z":5,"at":"year","lines":[{"t":"2021/10/4","size":78,"weight":800}],"tape":[{"asset":"tape-m","x":380,"y":4,"rot":24,"w":150}],"until":"s13.six+8","to":"cut"},
+     {"type":"strip","paper":"label-s","layer":"mat","x":350,"y":1875,"w":300,"rot":-5,"z":6,"at":"igfb","lines":[{"t":"IG","size":110,"weight":800}],"until":"s13.six"},
+     {"type":"strip","paper":"label-s","layer":"mat","x":720,"y":1860,"w":320,"rot":4,"z":6,"at":"igfb+12","lines":[{"t":"臉書","size":100}],"until":"s13.six"},
+     {"ref":"pass","set":[{"at":"outage-9","shutter":true}]}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s13",
+   "beat": "twist",
+   "sentence": "11b",
+   "para": 3,
+   "narration": "大概六個小時。",
+   "tts": "大概六個小時。",
+   "subtitle": {"zh":"大概六個小時","en":"for about six hours."},
+   "keywords": ["六個小時"],
+   "cues": [{"id":"six","text":"六個小時"}],
+   "pauseAfter": 0.3,
+   "component": "PaperScene",
+   "props": {
+    "punch": "six",
+    "items": [
+     {"id":"six","type":"strip","paper":"sheet-big","layer":"screen","x":540,"y":600,"w":860,"rot":-1.2,"at":"six","from":"bottom","box":[50,60,800,400],"lines":[{"t":"約 {6} 小時","size":170,"accentSize":300,"lh":1.05}],"until":"s15","to":"top"},
+     {"id":"pol","type":"strip","paper":"polaroid-aisle","caption":true,"layer":"screen","x":310,"y":930,"w":440,"rot":-6,"z":2,"at":"six+6","lines":[{"t":"機房","size":60,"ls":0.2}],"tape":[{"asset":"tape-y","x":250,"y":4,"rot":6}],"until":"s14"}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s14",
+   "beat": "twist",
+   "sentence": 12,
+   "para": 3,
+   "narration": "台灣這邊，差不多從半夜掛到天亮。",
+   "tts": "台灣這邊，差不多從半夜掛到天亮。",
+   "subtitle": {"zh":"台灣這邊\n差不多從半夜\n掛到天亮","en":"In Taiwan, | from around midnight | until dawn."},
+   "keywords": ["半夜","天亮"],
+   "cues": [{"id":"night","text":"半夜"},{"id":"dawn","text":"天亮"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,2085,0.6]},
+    "headerPlate": {"at":"night+2","until":"s15.start+12"},
+    "items": [
+     {"ref":"six","x":800,"y":440,"w":400,"rot":5,"dur":10},
+     {"asset":"sheet-night","layer":"mat","x":540,"y":2046,"w":1750,"z":1,"at":"start","from":"left","step":false,"until":"s15","to":"cut"},
+     {"asset":"moon","layer":"mat","x":1150,"y":1900,"w":300,"z":3,"at":"start+10","moves":[{"at":"start+16","path":[[1090,1760],[980,1700]],"to":{"rot":-12},"dur":34,"ease":"linear"}],"until":"s15","to":"cut"},
+     {"asset":"sheet-dawn","layer":"mat","x":540,"y":2046,"w":1750,"z":4,"at":"night+2","from":"right","enterDur":20,"step":false,"until":"s15","to":"left","exitDur":10,"exitDist":2000},
+     {"asset":"sun","layer":"mat","x":1010,"y":1760,"w":340,"z":5,"at":"dawn","from":"bottom","until":"s15","to":"left","exitDur":10,"exitDist":2000},
+     {"ref":"phone","x":330,"y":870,"w":400,"state":{"screen":"error"}},
+     {"type":"strip","paper":"label-s","layer":"screen","x":290,"y":420,"w":380,"rot":-3,"at":"voice+6","lines":[{"t":"台灣時間","size":76}],"until":"s15","to":"left"}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s15",
+   "beat": "twist",
+   "sentence": "13a",
+   "para": 3,
+   "narration": "原因呢？他們公司自己改錯設定，",
+   "tts": "原因呢？他們公司自己改錯設定，",
+   "subtitle": {"zh":"原因呢？\n他們公司\n自己改錯設定","en":"The cause? | The company itself | botched a settings change,"},
+   "keywords": ["原因呢","改錯"],
+   "cues": [{"id":"why","text":"原因呢"},{"id":"config","text":"改錯"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,1560,1.12]},
+    "items": [
+     {"ref":"phone","x":-700,"y":1900,"w":600},
+     {"id":"cfg","asset":"ticket-config","layer":"mat","x":720,"y":1520,"w":320,"rot":5,"z":4,"at":"why+10","until":"s16"},
+     {"asset":"cross-0","layer":"mat","x":618,"y":1531,"w":96,"z":5,"at":"config","from":"wipe","until":"s16"},
+     {"asset":"cross-1","layer":"mat","x":618,"y":1531,"w":96,"z":5,"at":"config+5","from":"wipe","until":"s16"}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s16",
+   "beat": "twist",
+   "sentence": "13b",
+   "para": 3,
+   "narration": "等於把廚房的門鎖死了。",
+   "tts": "等於把廚房的門鎖死了。",
+   "subtitle": {"zh":"等於把廚房的門\n鎖死了","en":"which was like locking | the kitchen door shut."},
+   "keywords": ["鎖死"],
+   "cues": [{"id":"lock","text":"鎖死"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,1790,0.7]},
+    "items": [
+     {"asset":"lock","layer":"mat","x":540,"y":1720,"w":250,"z":6,"at":"lock","from":"slam","until":"end"},
+     {"asset":"ticket","layer":"mat","x":330,"y":3260,"w":230,"z":3,"at":"lock-9","from":"cut","moves":[{"to":{"x":400,"y":1990},"dur":10,"ease":"exit"},{"at":"lock+1","to":{"x":340,"y":2140,"rot":-14},"dur":8,"ease":"enter"}],"until":"end"},
+     {"asset":"ticket","layer":"mat","x":750,"y":3260,"w":230,"z":3,"at":"lock-5","from":"cut","moves":[{"to":{"x":680,"y":1990},"dur":10,"ease":"exit"},{"at":"lock+5","to":{"x":740,"y":2140,"rot":16},"dur":8,"ease":"enter"}],"until":"end"}
+    ]
+   },
+   "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
+  },
+  {
+   "id": "s17",
+   "beat": "payoff",
+   "sentence": 14,
+   "para": 4,
+   "narration": "所以下次 LINE 打不開，先不要怪自己網路。",
+   "tts": "所以下次 Line 打不開，先不要怪自己網路。",
+   "subtitle": {"zh":"所以下次 LINE 打不開\n先不要怪自己網路","en":"Next time LINE won't open, | don't blame your connection just yet."},
+   "keywords": ["LINE","先不要怪"],
+   "cues": [{"id":"line","text":"LINE"},{"id":"dontblame","text":"先不要怪"}],
+   "component": "PaperScene",
+   "props": {
+    "mat": {"on":false,"at":"start+14"},
+    "camera": {"to":[-500,1990,1],"at":"start+14"},
+    "items": [
+     {"ref":"phone","at":"start+14","x":540,"y":1215,"w":600,"state":{"screen":"chat","msgs":1},"set":[{"at":"start+26","msgs":2},{"at":"line-10","msgs":3},{"at":"line","title":"LINE","msgs":4},{"at":"line+16","fail":true}]},
+     {"id":"hook2","type":"strip","layer":"screen","paper":"strip-white","x":540,"y":486,"w":800,"rot":-1.6,"at":"dontblame","from":"top","lines":[{"t":"[先不要怪]自己網路","size":76}],"tape":[{"asset":"tape-y","x":120,"y":6,"rot":-5},{"asset":"tape-m","x":650,"y":0,"rot":4}],"state":{"mark":0},"set":[{"at":"dontblame+12","mark":1}],"moves":[{"at":"dontblame+26","to":{"y":502,"rot":0.8},"dur":5}],"until":"s18","to":"left"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s18",
+   "beat": "payoff",
+   "sentence": 15,
+   "para": 4,
+   "narration": "搞不好，是人家的廚房出事了。",
+   "tts": "搞不好是人家的廚房出事了。",
+   "subtitle": {"zh":"搞不好\n是人家的廚房出事了","en":"Maybe the problem | is in their kitchen."},
+   "keywords": ["廚房","出事"],
+   "cues": [{"id":"kitchen","text":"廚房"},{"id":"down","text":"出事"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[226,1950,0.7],"dur":14},
+    "items": [
+     {"ref":"phone","x":215,"y":936,"w":360,"dur":14},
+     {"type":"strip","paper":"tag-red","layer":"near","x":250,"y":840,"w":290,"rot":-7,"z":4,"at":"start+12","from":"slam","pad":[16,20],"lines":[{"t":"傳送失敗","size":66,"color":"white","ls":0.04}]},
+     {"type":"strip","paper":"tag-red","layer":"mat","x":590,"y":1400,"w":560,"rot":-5,"z":7,"at":"kitchen","lines":[{"t":"出事中","size":78,"color":"white","ls":0.08}],"moves":[{"at":"down","to":{"rot":3},"dur":6},{"at":"down+6","to":{"rot":-4},"dur":6}],"until":"end"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s19",
+   "beat": "cta",
+   "sentence": 16,
+   "para": 4,
+   "narration": "你印象最深的一次，是什麼東西掛掉？",
+   "tts": "你印象最深的一次，是什麼東西掛掉？",
+   "subtitle": {"zh":"你印象最深的一次\n是什麼東西掛掉？","en":"Which outage | do you remember most?"},
+   "keywords": ["什麼東西"],
+   "cues": [{"id":"what","text":"什麼東西"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[-500,2285,1]},
+    "headerPlate": {"at":"start","dur":18},
+    "items": [
+     {"ref":"phone","x":540,"y":945,"w":600,"state":{"screen":"comment"},"set":[{"at":"voice+2","hop":1},{"at":"voice+22","typing":"我印象最深的是"}]},
+     {"type":"strip","paper":"label-s","layer":"screen","x":330,"y":605,"w":300,"rot":-5,"z":3,"at":"voice+14","lines":[{"t":"IG？","size":104,"weight":800}],"to":"left"},
+     {"type":"strip","paper":"label-s","layer":"screen","x":735,"y":690,"w":330,"rot":4,"z":3,"at":"what-8","lines":[{"t":"LINE？","size":100,"weight":800}],"to":"right"},
+     {"type":"strip","paper":"label-s","layer":"screen","x":420,"y":805,"w":310,"rot":-2,"z":3,"at":"what+8","lines":[{"t":"遊戲？","size":100}],"to":"left"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s20",
+   "beat": "payoff",
+   "sentence": 17,
+   "para": 4,
+   "narration": "對了，這麼多 Server，到底都放在哪裡？",
+   "tts": "對了，這麼多 Server，到底都放在哪裡？",
+   "subtitle": {"zh":"對了，這麼多 Server\n到底都放在哪裡？","en":"By the way, | all these servers: | where are they kept?"},
+   "keywords": ["這麼多","放在哪裡"],
+   "cues": [{"id":"many","text":"這麼多"},{"id":"where","text":"放在哪裡"}],
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,-94,0.85],"dur":22},
+    "headerPlate": {"at":"start","dur":24},
+    "punch": "where",
+    "items": [
+     {"ref":"phone","x":-700,"y":1900,"w":600,"dur":16},
+     {"id":"wall0","asset":"rack-s","x":540,"y":92,"w":200,"grid":{"cols":5,"rows":1,"dx":322,"dy":532},"at":"start","from":"cut","until":"end"},
+     {"id":"wall","asset":"rack-s","x":540,"y":-478,"w":200,"grid":{"cols":5,"rows":2,"dx":322,"dy":532,"stagger":5,"rev":true},"at":"many","from":"cut","until":"end"},
+     {"type":"strip","paper":"polaroid-rack","caption":true,"x":270,"y":-560,"w":400,"rot":-4,"z":3,"at":"many+14","lines":[{"t":"Server","size":56,"weight":800}],"tape":[{"asset":"tape-y","x":250,"y":4,"rot":-4}],"until":"s21"},
+     {"type":"strip","paper":"strip-yellow","layer":"screen","x":700,"y":1060,"w":600,"rot":3,"z":4,"at":"where","from":"slam","pad":[30,24],"lines":[{"t":"放在哪？","size":128}],"until":"s21.cloud","to":"left"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s21",
+   "beat": "payoff",
+   "sentence": 18,
+   "para": 4,
+   "narration": "大家說的雲端，其實不在天上。",
+   "tts": "大家說的雲端，其實不在天上。",
+   "subtitle": {"zh":"大家說的雲端\n其實不在天上","en":"The 'cloud' people talk about | isn't really up in the sky."},
+   "keywords": ["雲端","不在天上"],
+   "cues": [{"id":"cloud","text":"雲端"},{"id":"notsky","text":"不在天上"}],
+   "still": "notsky+4",
+   "component": "PaperScene",
+   "props": {
+    "camera": {"to":[540,-1553,0.85],"dur":18},
+    "items": [
+     {"id":"cloud","asset":"cloud","layer":"mat","x":500,"y":-1930,"w":800,"z":5,"at":"cloud","from":"top","step":false,"moves":[{"at":"notsky","to":{"x":540,"y":-640,"rot":-5},"dur":26,"ease":"exit"}],"until":"s23"},
+     {"type":"strip","paper":"label-s","layer":"mat","x":770,"y":-1560,"w":380,"rot":4,"z":6,"at":"cloud+10","lines":[{"t":"雲端？","size":92}],"tape":[{"asset":"tape-m","x":60,"y":4,"rot":-20,"w":150}],"until":"s22","to":"right"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s22",
+   "beat": "payoff",
+   "sentence": 19,
+   "para": 4,
+   "narration": "下一集，帶你去看。",
+   "tts": "下一集帶你去看。",
+   "subtitle": {"zh":"下一集\n帶你去看","en":"Next episode, | I'll take you there."},
+   "keywords": ["帶你去看"],
+   "cues": [{"id":"next","text":"帶你去看"}],
+   "still": "next+6",
+   "component": "PaperScene",
+   "props": {
+    "camera": [
+     {"to":[540,-94,0.85],"dur":22},
+     {"to":[540,-105,0.9],"at":"next","dur":14}
+    ],
+    "items": [
+     {"asset":"sheet-cream","layer":"top","x":540,"y":980,"w":1240,"at":"end-8","from":"bottom","until":"end"}
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s23",
+   "beat": "end",
+   "narration": "",
+   "subtitle": {"zh":"","en":""},
+   "keywords": [],
+   "cues": [],
+   "durationSec": 2.5,
+   "silent": true,
+   "component": "EndCard",
+   "props": {
+    "slogan": "一支講透一件事",
+    "next": "下一集：雲端，到底在哪？"
+   },
+   "sources": []
+  }
+ ]
+}

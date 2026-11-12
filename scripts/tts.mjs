@@ -50,6 +50,11 @@ const script = JSON.parse(fs.readFileSync(path.join(dir, "script.json"), "utf8")
 const voice = script.voice ?? {};
 const V2 = script.styleVersion === 2;
 if (!voice.voiceName) { console.error("script.json 缺 voice.voiceName"); process.exit(2); }
+// 整篇一鏡到底模式（script.voice.mode === "take"，styleVersion 3 起用）：交給 tts-take.mjs，不走下面的逐幕切段
+if (voice.mode === "take") {
+  const r = spawnSync(process.execPath, [path.join(ROOT, "scripts", "tts-take.mjs"), ...args], { stdio: "inherit" });
+  process.exit(r.status ?? 1);
+}
 const MODEL = process.env.TTS_MODEL || voice.model || "gemini-3.8-flash-tts";
 // 語氣指示：2.5 系列 TTS 會把「XXX說：」當成指示而不唸出；3.x 會整段唸出，所以 3.x 一律只送純文字
 const STYLE_DEFAULT = "用親切、清晰、語速稍快的台灣國語";

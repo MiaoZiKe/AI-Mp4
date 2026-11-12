@@ -29,7 +29,13 @@ const OPENAI_KEY = process.env.OPENAI_API_KEY || "injected-by-proxy";
 let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 // styleVersion 2（時間軸 v2）：換幕人聲間隔 GAP 秒；轉場 TRANS 幀＝前一幕出場與本幕進場重疊，轉場結束＝本幕開口
-const V2 = script.styleVersion === 2;
+// styleVersion 3 沿用時間軸 v2 的格式（timeline.version 仍是 2），另外兩件事只在 v3 生效（v1／v2 舊片輸出不變）：
+//   1. 整篇一鏡到底的配音（tts-take.mjs）：換幕人聲間隔＝原始錄音裡的間隔（manifest 的 gapAfter，上限 GAP_MAX 秒）；
+//      pauseAfter 在 v3 是「至少停這麼久」（原始間隔比較短才拉長）
+//   2. 最後一幕可以沒有旁白（script 該幕 silent: true ＋ durationSec）：接在上一幕收聲之後，不放音檔
+const V3 = script.styleVersion === 3;
+const V2 = script.styleVersion === 2 || V3;
+const GAP_MAX = Number(process.env.ALIGN_GAP_MAX ?? 0.8);
 const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 10, TAIL_END_F = 18, SUB_LEAD = 3, MIN_SCENE_F = 45;
 // v3 語意轉場（type 由 script.json 每幕 transition 決定，不由 align 輪替）：exit／enter＝出場淡出、進場淡入的幀區間（相對轉場開始）
 const TRANSITIONS = { fade: { exit: [0, 5], enter: [3, 8] }, carry: { exit: [0, 5], enter: [3, 8] }, push: { exit: [0, 6], enter: [4, 10] }, slide: { exit: [0, 6], enter: [4, 10] }, flip: { exit: [0, 5], enter: [5, 10] } };
@@ -139,15 +145,26 @@ function buildV2(cs) {
   const out = [];
   let prevEnd = null, prevGap = GAP;
   for (const [i, c] of cs.entries()) {
+    if (c.silent) { // v3：無旁白的最後一幕（片尾卡）
+      const p = out[i - 1];
+      const startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+      out.push({ id: c.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(c.durationSec * FPS)),
+        transitionFrames: TRANS, transition: { type: "fade", frames: TRANS, ...TRANSITIONS.fade }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true, // 沒有人聲：兩個值都放在轉場結束那一幀，讀的人不會拿到 null
+        subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "" });
+      continue;
+    }
     const abs = path.join(ROOT, "public", c.audio);
-    const b = speechBounds(abs, c.audioSec);
+    // v3 整篇模式：開口／收聲用 tts-take 量好的值（和 gapAfter 同一把尺），不重新偵測 → 排出來的節奏和原始錄音一致
+    const b = V3 && c.take ? c.take : speechBounds(abs, c.audioSec);
     const sc = script.scenes.find((x) => x.id === c.id);
     const pause = typeof sc?.pauseAfter === "number" ? sc.pauseAfter : 0;
     // P0-4：換幕人聲間隔＝上一幕的 pauseAfter（有設定時，是「整個間隔」秒數），否則預設 GAP（0.15 秒）
     const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
     const vs = audioFrame / FPS + b.head, ve = audioFrame / FPS + b.tail;
-    prevEnd = ve;
+    // v3 整篇模式：下一幕從「沒有取整的」收聲時間往後排，取整誤差（≤ 半幀）不會一幕一幕累積
+    prevEnd = V3 && c.take ? (i === 0 ? b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
     prevGap = pause > 0 ? pause : GAP;
+    if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
     const ttype = TRANSITIONS[sc?.transition] ? sc.transition : "fade";
     const transition = i === 0 ? null : { type: ttype, frames: TRANS, ...TRANSITIONS[ttype], ...(ttype === "carry" && sc?.carry ? { carry: sc.carry } : {}) };
@@ -186,7 +203,7 @@ function buildV2(cs) {
   }
   for (const [i, x] of out.entries()) {
     const n = out[i + 1];
-    x.durationFrames = n ? n.startFrame + n.transitionFrames - x.startFrame : Math.max(MIN_SCENE_F, x.voiceEndFrame + TAIL_END_F - x.startFrame);
+    if (!x.silent) x.durationFrames = n ? n.startFrame + n.transitionFrames - x.startFrame : Math.max(MIN_SCENE_F, x.voiceEndFrame + TAIL_END_F - x.startFrame);
     x.stillFrame = n ? n.startFrame : x.startFrame + x.durationFrames - 12; // 下一幕轉場第 0 幀：本幕仍完全不透明、字幕全亮
     if (x.subtitleWindow) x.subtitleWindow[1] = n ? (n.subtitleWindow ? n.subtitleWindow[0] : n.startFrame + n.transitionFrames) : x.startFrame + x.durationFrames;
     x.sourceWindow[1] = n ? n.sourceWindow[0] : x.startFrame + x.durationFrames;
@@ -195,7 +212,7 @@ function buildV2(cs) {
   // 幕尾編舞檢查：cue 早到（畫面比聲音早幾幀，受讀秒保護夾住）與出場起點
   for (const [i, x] of out.entries()) {
     const n = out[i + 1];
-    if (!n) continue;
+    if (!n || x.silent) continue;
     if (n.startFrame < x.voiceEndFrame - EXIT_AFTER_VOICE) console.warn(`⚠ ${x.id}: 出場起點 ${n.startFrame} 早於收聲 ${x.voiceEndFrame} − ${EXIT_AFTER_VOICE}`);
     for (const q of x.cues) if (q.frame !== null) {
       const early = Math.max(0, q.frame - (n.startFrame - READ_HOLD));
@@ -253,6 +270,7 @@ const FA = runFA(faJobs);
 if (PROVIDER === "fa" && faJobs.some((j) => !FA[j.id])) { console.error("✖ ALIGN_PROVIDER=fa 但有幕對齊失敗"); process.exit(1); }
 for (const [i, s] of script.scenes.entries()) {
   const m = manifest.scenes.find((x) => x.id === s.id);
+  if (!m && V3 && s.silent && s.durationSec > 0 && i === script.scenes.length - 1) { cores.push({ id: s.id, silent: true, durationSec: s.durationSec }); continue; }
   if (!m) { console.warn(`⚠ ${s.id} 沒有配音（tts-manifest 缺），跳過`); continue; }
   const abs = path.join(ROOT, "public", m.file);
   if (!fs.existsSync(abs)) { console.warn(`⚠ ${s.id} 音檔不存在：${m.file}`); continue; }
@@ -262,7 +280,7 @@ for (const [i, s] of script.scenes.entries()) {
   let times, transcript, words, cer, provider, unmatched = 0;
   if (V2 && !force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.provider && (cached.charTimes || cached.words)) {
     console.log(`= ${s.id}（沿用時間戳）`);
-    cores.push({ ...cached, isEnd: s.component === "EndCard", charTimes: cached.charTimes ?? timesFromV1(cached, subChars) });
+    cores.push({ ...cached, isEnd: s.component === "EndCard", charTimes: cached.charTimes ?? timesFromV1(cached, subChars), ...(V3 && typeof m.gapAfter === "number" ? { gapAfter: m.gapAfter } : {}), ...(V3 && typeof m.headSec === "number" ? { take: { head: m.headSec, tail: m.tailSec } } : {}) });
     report.push({ id: s.id, spoken: m.text, transcript: cached.transcript ?? "", cer: cached.cer ?? null, unmatched: 0, n: subChars.length, provider: cached.provider, fa: cached.fa });
     continue;
   }
@@ -342,7 +360,7 @@ for (const [i, s] of script.scenes.entries()) {
   });
   const isEnd = s.component === "EndCard";
   if (V2) { report.push({ id: s.id, spoken: m.text, transcript, cer, unmatched, n: subChars.length, provider, fa });
-    cores.push({ id: s.id, audio: m.file, audioSec: m.sec, hash: m.hash, sub: s.subtitle.zh, provider, cer: cer == null ? null : Number(cer.toFixed(3)), transcript, words, charTimes: times.map((t) => Number(t.toFixed(3))), isEnd, fa });
+    cores.push({ id: s.id, audio: m.file, audioSec: m.sec, hash: m.hash, sub: s.subtitle.zh, provider, cer: cer == null ? null : Number(cer.toFixed(3)), transcript, words, charTimes: times.map((t) => Number(t.toFixed(3))), isEnd, fa, ...(V3 && typeof m.gapAfter === "number" ? { gapAfter: m.gapAfter } : {}), ...(V3 && typeof m.headSec === "number" ? { take: { head: m.headSec, tail: m.tailSec } } : {}) });
     continue; }
   const durationSec = Number(Math.max(MIN, LEAD + m.sec + (isEnd ? TAIL_END : TAIL)).toFixed(3));
   scenes.push({ id: s.id, audio: m.file, audioSec: m.sec, leadSec: LEAD, durationSec, hash: m.hash, sub: s.subtitle.zh, provider, cer: cer == null ? null : Number(cer.toFixed(3)), transcript, words, lines: lineStarts, keywords });
@@ -355,8 +373,8 @@ if (V2) {
   const voice = buildVoiceStem(tl);
   if (voice) tl.voice = voice;
   fs.writeFileSync(tlPath, JSON.stringify(tl, null, 1));
-  const gaps = tl.scenes.slice(1).map((x, k) => (x.voiceStartFrame - tl.scenes[k].voiceEndFrame) / FPS);
-  console.log(`ℹ 時間軸 v2：${tl.totalFrames} 幀；換幕人聲間隔 ${Math.min(...gaps).toFixed(2)}–${Math.max(...gaps).toFixed(2)}s（目標 ${GAP}s），轉場 ${TRANS} 幀`);
+  const gaps = tl.scenes.slice(1).filter((x) => !x.silent).map((x, k) => (x.voiceStartFrame - tl.scenes[k].voiceEndFrame) / FPS);
+  console.log(`ℹ 時間軸 v2：${tl.totalFrames} 幀；換幕人聲間隔 ${Math.min(...gaps).toFixed(2)}–${Math.max(...gaps).toFixed(2)}s（目標 ${V3 ? "原始錄音的間隔" : GAP + "s"}），轉場 ${TRANS} 幀`);
 } else {
   totalSec = Number(scenes.reduce((a, x) => a + Math.round(x.durationSec * FPS) / FPS, 0).toFixed(2));
   fs.writeFileSync(tlPath, JSON.stringify({ slug, fps: FPS, totalSec, scenes }, null, 1));

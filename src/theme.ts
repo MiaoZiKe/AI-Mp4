@@ -208,3 +208,62 @@ export const LAYOUT_V2 = {
   DEPTH_BOTTOM: 1180,
   FRONT_W: 856,
 } as const;
+
+// ───────────────────────── styleVersion 3：桌面紙拼貼（Paper Collage） ─────────────────────────
+// v3 元件（src/components/v3/）的顏色、字級、版面一律讀這裡；紙材 PNG 由 scripts/make-paper.py 產生（色表兩邊要一致）。
+// 來源：docs/style-v3/viral-style-research.md 方向 A、docs/style-v3/styleframes.md。不用漸層、發光、SVG 圖示。
+export const THEME_V3 = {
+  name: "桌面紙拼貼",
+  desk: "#EFE6D4",
+  mat: "#2F4A3A",
+  paper: "#FFFDF7",
+  kraft: "#C9A66B",
+  red: "#D9482B",
+  yellow: "#F2B632",
+  blue: "#1F3A5F",
+  mint: "#7DB7A0",
+  ink: "#1E1B16",
+  ink2: "#5B5245",
+  ink3: "#3A342B",
+  /** 深色底（切割墊）上的字 */
+  onDark: "#FFFDF7",
+  onDark2: "#F2E9D5",
+  /** 出處紙條上的字 */
+  srcInk: "#3A2F1C",
+  /** script.json 的色名 → 色 */
+  color: { ink: "#1E1B16", red: "#D9482B", yellow: "#F2B632", blue: "#1F3A5F", mint: "#7DB7A0", white: "#FFFDF7", ink2: "#5B5245" } as Record<string, string>,
+  /** 手機螢幕（HTML 自製的中性介面，不是任何真實軟體） */
+  screen: { bg: "#F4F2EC", card: "#FFFFFF", cardEdge: "#E4E1D8", ph: "#DDDBD4", ph2: "#E3E1DA", ph3: "#D5D3CC", text: "#1E1B16", text2: "#77746B", spin: "#7A7870", bubble: "#E6E3DA", bubbleMe: "#CFE3D8", fail: "#B3321A", failBg: "#FFFFFF" },
+  weight: { zh: 900, en: 800, body: 700, enBody: 600 },
+  /** 動作（幀）：一般貼上、重點重貼、滑入、退場、鏡頭移動、逐格更新間隔、落定後抖動間隔與幅度 */
+  motion: { paste: 6, slam: 4, slide: 8, exit: 6, wipe: 8, camera: 12, step: 2, jitterEvery: 9, jitterPx: 1, jitterDeg: 0.3, slideDist: 900, punch: 0.96 },
+} as const;
+/** v3 版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_V3 = {
+  W: 1080,
+  H: 1920,
+  X: 64,
+  SAFE_TOP: 220,
+  SAFE_BOTTOM: 1700,
+  HEADER_TOP: 228,
+  HEADER_H: 64,
+  /** 字幕紙條（紙本體）：1300–1532 */
+  CAP_X: 64,
+  CAP_TOP: 1300,
+  CAP_W: 952,
+  CAP_H: 232,
+  CAP_ZH_PX: 72,
+  CAP_EN_PX: 30,
+  /** 出處紙條（紙本體左上） */
+  SRC_X: 64,
+  SRC_TOP: 1601,
+  SRC_H: 62,
+  SRC_PX: 24,
+  /** 主視覺可用區（頁首下緣到字幕紙條上緣） */
+  MAIN_TOP: 310,
+  MAIN_BOTTOM: 1280,
+  /** 手機螢幕內容的設計寬度（px；PhoneMock 依手機寬度等比縮放） */
+  SCREEN_W: 526,
+  /** 手機螢幕在機身內的比例（左、上、右、下；make-paper.py 的 phone） */
+  SCREEN_BOX: [0.062, 0.088, 0.938, 0.868],
+} as const;

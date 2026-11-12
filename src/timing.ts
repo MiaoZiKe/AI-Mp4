@@ -6,6 +6,9 @@ type AnyTimeline = Timeline | TimelineV2 | null | undefined;
 export const isV2Timeline = (t: AnyTimeline): t is TimelineV2 => Boolean(t && (t as TimelineV2).version === 2);
 export const isV2 = (s: Pick<Script, "styleVersion" | "timeline">) => s.styleVersion === 2 && isV2Timeline(s.timeline);
 
+/** styleVersion 3（桌面紙拼貼）：沿用時間軸 v2 */
+export const isV3 = (s: Pick<Script, "styleVersion" | "timeline">) => s.styleVersion === 3 && isV2Timeline(s.timeline);
+
 const findTiming = (s: Scene, t?: AnyTimeline) => (isV2Timeline(t) ? undefined : (t?.scenes as SceneTiming[] | undefined)?.find((x) => x.id === s.id));
 
 /** v1：有 timeline（配音）→ 用配音長度；否則 durationSec；否則每秒約 5 字再加 1 秒，限制在 5–10 秒 */

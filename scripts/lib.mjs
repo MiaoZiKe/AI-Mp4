@@ -14,13 +14,19 @@ export const loadScript = (slug) => {
   const s = JSON.parse(fs.readFileSync(p, "utf8"));
   const tp = path.join(ROOT, "videos", slug, "timeline.json");
   s.timeline = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
-  if (s.styleVersion === 2 && s.timeline?.version !== 2)
-    throw new Error(`${slug} 是 styleVersion 2，需要時間軸 v2：先 npm run align ${slug}（timeline.json 要有 version: 2）`);
+  if (s.styleVersion === 3) {
+    // v3（桌面紙拼貼）：沿用時間軸 v2；紙材 meta 一併掛上（public/v3/<slug>/meta.json，scripts/make-paper.py 產生）
+    const mp = path.join(ROOT, "public", "v3", slug, "meta.json");
+    if (!fs.existsSync(mp)) throw new Error(`找不到 ${path.relative(ROOT, mp)}：先 python3 scripts/make-paper.py ${slug}`);
+    s.v3 = { assets: JSON.parse(fs.readFileSync(mp, "utf8")) };
+  }
+  if ([2, 3].includes(s.styleVersion) && s.timeline?.version !== 2)
+    throw new Error(`${slug} 是 styleVersion ${s.styleVersion}，需要時間軸 v2：先 npm run align ${slug}（timeline.json 要有 version: 2）`);
   if (s.timeline) {
     for (const sc of s.timeline.scenes) {
       if (sc.audio && !fs.existsSync(path.join(ROOT, "public", sc.audio))) throw new Error(`timeline 指到的音檔不存在：public/${sc.audio}（請先 npm run tts ${slug}）`);
     }
-    if (s.styleVersion === 2 && s.timeline.scenes.map((x) => x.id).join() !== s.scenes.map((x) => x.id).join())
+    if ([2, 3].includes(s.styleVersion) && s.timeline.scenes.map((x) => x.id).join() !== s.scenes.map((x) => x.id).join())
       throw new Error(`${slug} 的 timeline.json 已過期（幕序與 script.json 不同）：先 npm run tts ${slug} && npm run align ${slug}`);
     const ids = new Set(s.timeline.scenes.map((x) => x.id));
     const missing = s.scenes.filter((x) => !ids.has(x.id)).map((x) => x.id);
@@ -40,6 +46,18 @@ export const fps = 30;
 export const stillFrames = (script) => {
   if (script.timeline?.version === 2) {
     const by = Object.fromEntries(script.timeline.scenes.map((x) => [x.id, x]));
+    // v3：一鏡到底，下一幕一開始紙片就動，所以截圖不晚於下一幕開始前 1 幀；幕可用 still: "cue+N"（或 start／end ±N）指定代表畫面（v2 不變）
+    if (script.styleVersion === 3) return script.scenes.map((s, i) => {
+      const t = by[s.id], n = script.scenes[i + 1] && by[script.scenes[i + 1].id], cap = n ? n.startFrame - 1 : Infinity;
+      if (!t) return 0;
+      const m = /^([^\s+-]+)([+-]\d+)?$/.exec(String(s.still ?? ""));
+      if (m) {
+        const base = m[1] === "start" ? t.startFrame : m[1] === "end" ? t.voiceEndFrame : (t.cues ?? []).find((q) => q.id === m[1])?.frame;
+        if (base === undefined || base === null) throw new Error(`${s.id}: still「${s.still}」找不到 cue「${m[1]}」`);
+        return Math.max(t.startFrame, Math.min(base + Number(m[2] ?? 0), cap));
+      }
+      return Math.min(t.stillFrame ?? 0, cap);
+    });
     return script.scenes.map((s) => by[s.id]?.stillFrame ?? 0);
   }
   let t = 0;

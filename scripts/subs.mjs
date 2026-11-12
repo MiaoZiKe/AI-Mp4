@@ -35,7 +35,7 @@ export const enChunks = (en, max = SUB_EN_MAX) => {
   return out;
 };
 
-const isV2 = (script, tl) => script.styleVersion === 2 && tl?.version === 2;
+const isV2 = (script, tl) => (script.styleVersion === 2 || script.styleVersion === 3) && tl?.version === 2; // v3 沿用時間軸 v2 的格式
 /** v1 幕長（秒），與 src/timing.ts sceneSeconds 相同 */
 const v1Seconds = (s, tl) => {
   const t = tl?.scenes?.find((x) => x.id === s.id);
@@ -57,7 +57,8 @@ export function subtitleEvents(script, tl) {
       const s = script.scenes.find((x) => x.id === t.id);
       if (!s || !t.subtitleWindow || !t.lines?.length) continue;
       const [a, b] = t.subtitleWindow;
-      const en = enChunks(s.subtitle.en);
+      // v3：和 src/components/v3/Tracks.tsx 的 enSplitV3 相同（「|」＝手動斷點；否則自動斷、每段 ≤46 字元）；v2 不變
+      const en = script.styleVersion === 3 ? (s.subtitle.en.includes("|") ? s.subtitle.en.split("|").map((x) => x.trim()).filter(Boolean) : enChunks(s.subtitle.en, 46)) : enChunks(s.subtitle.en);
       t.lines.forEach((l, k) => {
         const start = Math.max(a, l.start), end = k + 1 < t.lines.length ? t.lines[k + 1].start : b;
         if (end <= start) return;
@@ -94,8 +95,26 @@ const srt = (cues) => cues.map((c, i) => `${i + 1}\n${ts(c.start)} --> ${ts(c.en
 /** 相鄰且文字相同的事件合併（英文一段常跨好幾個中文短語） */
 const merge = (cues) => cues.reduce((o, c) => { const l = o[o.length - 1]; if (l && l.text === c.text && l.end === c.start) l.end = c.end; else o.push({ ...c }); return o; }, []);
 
+/** v3 的 SRT：短於 0.7 秒的事件併進同一幕的下一段（沒有下一段就併進上一段），上傳平台字幕才不會一閃而過。畫面上的短語切法不變 */
+const MIN_CUE_V3 = Math.round(0.7 * FPS);
+const mergeShort = (script, ev) => {
+  const nar = Object.fromEntries(script.scenes.map((s) => [s.id, String(s.narration ?? "").replace(/\s/g, "")]));
+  const joinZh = (id, a, b) => (nar[id]?.includes(`${a}，${b}`.replace(/\s/g, "")) ? `${a}，${b}` : /[A-Za-z0-9]$/.test(a) || /^[A-Za-z0-9]/.test(b) ? `${a} ${b}` : a + b);
+  const joinEn = (a, b) => (!a || a === b ? b : !b ? a : `${a} ${b}`);
+  const out = ev.map((e) => ({ ...e }));
+  for (let i = 0; i < out.length; i++) {
+    const e = out[i];
+    if (e.end - e.start >= MIN_CUE_V3) continue;
+    const n = out[i + 1], p = out[i - 1];
+    if (n && n.sceneId === e.sceneId) { n.start = e.start; n.zh = joinZh(e.sceneId, e.zh, n.zh); n.en = joinEn(e.en, n.en); out.splice(i, 1); i--; }
+    else if (p && p.sceneId === e.sceneId) { p.end = e.end; p.zh = joinZh(e.sceneId, p.zh, e.zh); p.en = joinEn(p.en, e.en); out.splice(i, 1); i--; }
+  }
+  return out;
+};
+
 export function buildSrt(script, tl) {
-  const ev = subtitleEvents(script, tl);
+  let ev = subtitleEvents(script, tl);
+  if (script.styleVersion === 3) ev = mergeShort(script, ev);
   return {
     both: srt(ev.map((e) => ({ start: e.start, end: e.end, text: e.en ? `${e.zh}\n${e.en}` : e.zh }))),
     zh: srt(ev.map((e) => ({ start: e.start, end: e.end, text: e.zh }))),

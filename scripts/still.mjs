@@ -32,7 +32,11 @@ console.log(`✔ ${path.relative(ROOT, coverFile)}`);
 // P1-10：個人頁網格是 3:4（1080×1440，畫面中央）裁切；另附 1:1（1080×1080）預覽，確認主標題兩種裁切都看得到
 for (const [tag, h] of [["3x4", 1440], ["1x1", 1080]]) {
   const f = path.join(ROOT, "out", `${slug}-cover-${tag}.png`);
-  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", coverFile, "-vf", `crop=1080:${h}:0:${(1920 - h) / 2}`, f]);
+  // v3：裁切版另外渲一張，把頁首移進裁切範圍（否則 3:4 切到一半、1:1 整個不見）；v1／v2 照舊直接裁
+  let src = coverFile;
+  if (script.styleVersion === 3) { src = path.join(outDir, `_cover-${tag}.png`); await renderStill({ ...opts, inputProps: { ...script, coverCrop: h }, composition: { ...cover, props: { ...cover.props, coverCrop: h } }, frame: 0, output: src }); }
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", src, "-vf", `crop=1080:${h}:0:${(1920 - h) / 2}`, f]);
+  if (src !== coverFile) fs.rmSync(src);
   console.log(`✔ ${path.relative(ROOT, f)}`);
 }
 
@@ -46,6 +50,26 @@ console.log(`✔ ${path.relative(ROOT, sheet)}`);
 // ── styleVersion 2：覆蓋率檢查（docs/layout-rules.md「檢查」；scripts/audit/coverage/cov2.py） ──
 // 佔用率 warn <55%、error <40%（鉤子／CTA warn <45%、error <35%）；墨水率 <10% 或 >35% warn；
 // 主視覺框寬 <90% 或高 <55% warn、高 <40% error（鉤子／CTA 只看 45%）；最長空白帶 >120 warn、>200 error；背景存在率 <85% warn。
+// ── styleVersion 3：同一支量測（cov2.py），門檻另訂、只看佔用率與空白帶（v3 沒有 v2 的主視覺框與背景色帶；紙紋桌面本來就滿版） ──
+// 佔用率（安全區內有東西的比例）warn <40%、error <25%；最長空白帶 warn >260px、error >480px。片尾卡不檢查。
+if (script.styleVersion === 3) {
+  const res = JSON.parse(execFileSync("python3", [path.join(ROOT, "scripts", "audit", "coverage", "cov2.py"), "--json", ...files]).toString());
+  const rows = [], errs = [], warns = [];
+  res.forEach((r, i) => {
+    const s = script.scenes[i], tag = `${String(i + 1).padStart(2, "0")}-${s.id}`;
+    rows.push({ id: s.id, frame: frames[i], occ: r.occ, ink: r.ink, longest: r.longest, totalempty: r.totalempty });
+    if (s.component === "EndCard") return;
+    if (r.occ < 25) errs.push(`${tag}: 佔用率 ${r.occ}% < 25%`); else if (r.occ < 40) warns.push(`${tag}: 佔用率 ${r.occ}% < 40%`);
+    if (r.longest > 480) errs.push(`${tag}: 最長空白帶 ${r.longest}px > 480`); else if (r.longest > 260) warns.push(`${tag}: 最長空白帶 ${r.longest}px > 260`);
+  });
+  const occ = rows.filter((r, i) => script.scenes[i].component !== "EndCard").map((r) => r.occ).sort((a, b) => a - b);
+  const summary = { occMin: occ[0], occMedian: occ[Math.floor(occ.length / 2)], longestGapMax: Math.max(...rows.slice(0, -1).map((r) => r.longest)) };
+  fs.writeFileSync(path.join(ROOT, "out", slug, "coverage.json"), JSON.stringify({ slug, styleVersion: 3, summary, scenes: rows, errors: errs, warns }, null, 1));
+  console.log(`ℹ 覆蓋率（v3 門檻）：佔用率最低 ${summary.occMin}%、中位 ${summary.occMedian}%；最長空白帶 ${summary.longestGapMax}px → out/${slug}/coverage.json`);
+  warns.forEach((w) => console.log(`⚠ 覆蓋率 ${w}`));
+  errs.forEach((e) => console.log(`✖ 覆蓋率 ${e}`));
+  if (errs.length) { console.error(`✖ 覆蓋率檢查 ${errs.length} 個 error`); process.exit(1); }
+}
 if (script.styleVersion === 2) {
   const res = JSON.parse(execFileSync("python3", [path.join(ROOT, "scripts", "audit", "coverage", "cov2.py"), "--json", ...files]).toString());
   const rows = [], errs = [], warns = [];

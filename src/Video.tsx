@@ -4,7 +4,8 @@ import { TransitionSeries } from "@remotion/transitions";
 import type { TransitionPresentation, TransitionPresentationComponentProps, TransitionTiming } from "@remotion/transitions";
 import type { Scene, SceneTiming, SceneTimingV2, Script, TimelineV2, TransitionSpec } from "./types";
 import { C, FPS, SAFE } from "./theme";
-import { isV2, sceneFrames, sceneStarts } from "./timing";
+import { isV2, isV3, sceneFrames, sceneStarts } from "./timing";
+import { VideoV3 } from "./components/v3/Stage";
 import { StyleV2Context } from "./style";
 import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
@@ -249,6 +250,7 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
 };
 
 export const Video: React.FC<Script> = (props) => {
+  if (isV3(props)) return <VideoV3 {...props} timeline={props.timeline as TimelineV2} />;
   if (isV2(props)) return <VideoV2 {...props} timeline={props.timeline as TimelineV2} />;
   return <VideoV1 {...props} />;
 };

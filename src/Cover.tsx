@@ -4,9 +4,10 @@ import type { Script } from "./types";
 import { C, FONT_ZH, FONT_EN, SAFE, accent, glow } from "./theme";
 import { Background, Header, Icon, StatusTag } from "./components";
 import { CoverV2 } from "./components/v2/Cover";
+import { CoverV3 } from "./components/v3/Cover";
 
 /** 封面：大標 + 霓虹圖示 + 四格重點 + 狀態標籤；全部由 script.json 的 cover 決定 */
-export const Cover: React.FC<Script> = (props) => (props.styleVersion === 2 ? <CoverV2 {...props} /> : <CoverV1 {...props} />);
+export const Cover: React.FC<Script> = (props) => (props.styleVersion === 3 ? <CoverV3 {...props} /> : props.styleVersion === 2 ? <CoverV2 {...props} /> : <CoverV1 {...props} />);
 const CoverV1: React.FC<Script> = ({ cover, asOf }) => {
   const c = { title: ["—"], sub: "", en: "", ...(cover ?? {}) };
   const icons = c.icons?.length ? c.icons : [{ name: "globe", color: "cyan" }, { name: "chart", color: "pink" }];

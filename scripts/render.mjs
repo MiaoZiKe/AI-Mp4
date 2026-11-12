@@ -18,7 +18,7 @@ const comp = await selectComposition({ ...opts, id: "Video" });
 assertFrames(script, comp);
 fs.mkdirSync(path.join(ROOT, "out"), { recursive: true });
 // styleVersion 2：Remotion 只輸出畫面＋參考人聲（.video.mp4），再由 scripts/mix.mjs 混音輸出 out/<slug>.mp4（P1-1）；v1 照舊直接輸出
-const V2MIX = script.styleVersion === 2 && script.timeline?.voice && !script.audit;
+const V2MIX = [2, 3].includes(script.styleVersion) && script.timeline?.voice && !script.audit;
 const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}${V2MIX ? ".video" : ""}.mp4`);
 const t0 = Date.now();
 let last = -1;

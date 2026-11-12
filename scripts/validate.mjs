@@ -1,6 +1,7 @@
 // npm run validate <slug>：檢查 script.json 結構、字數、元件 props、來源列寬度、總長估算（配音版）
 import fs from "node:fs";
 import path from "node:path";
+import { validateV3, validateTimelineV3 } from "./v3/validate-v3.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 export const ICONS = ["capitol","ballot","scale","chip","container","globe","money","chart","shield","island","question","gavel","users",
@@ -219,6 +220,8 @@ export function validateTimelineV2(script, tl) {
 }
 
 export function validate(script) {
+  // styleVersion 3（桌面紙拼貼）走自己的規則（scripts/v3/validate-v3.mjs）；v1／v2 以下照舊
+  if (script.styleVersion === 3) return validateV3(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, LENGTH }, ROOT);
   const errors = [], warns = [];
   const E = (m) => errors.push(m), W = (m) => warns.push(m);
   const str = (v, what, max, min = 1, hard = max + 6) => {
@@ -546,9 +549,10 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   }
   errors.push(...lintSource());
   errors.push(...(await (await import("./check-motion.mjs")).checkMotion()).errors);
-  if (script.styleVersion === 2) {
+  if (script.styleVersion === 2 || script.styleVersion === 3) {
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
-    const r = validateTimelineV2(script, fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null);
+    const tlj = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
+    const r = script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
     errors.push(...r.errors); warns.push(...r.warns);
     if (r.sec && !r.stale) {
       console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);

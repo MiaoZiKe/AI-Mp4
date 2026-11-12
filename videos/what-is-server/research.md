@@ -45,7 +45,7 @@
 | F4 | 「超大型」的常見門檻 | 至少 5,000 台伺服器、約 1 萬平方英尺（IDC 的說法，非官方統一定義） | 估計／慣例 | — | S7 | 二手 |
 | F5 | 全球資料中心用電 | 2024 年約 415 TWh（太瓦時），約占全球用電 1.5% | 估計（IEA） | 2024；報告 2025/4 發布 | S8 | 二手，多來源一致 |
 | F6 | 用電預測 | 2030 年約 945 TWh，接近全球用電 3%（IEA 基準情境） | 預測 | 報告 2025/4 | S8 | 二手，多來源一致 |
-| F7 | Meta 大當機 | 2021/10/4，Facebook、IG、WhatsApp、Messenger 同時斷線約 6 小時；原因是自家網路設定改錯，不是被駭 | 已確定 | 2021/10/4 | S9 | 多來源一致；時長各家寫 5–7 小時，用「約 6 小時」。2026/11/12 事實審查再以 ThousandEyes、ZDNet、The Register、NetBlocks 比對一致；Meta 原文仍未開啟（主機被擋）。見第 7 節 |
+| F7 | Meta 大當機 | 2021/10/4，Facebook、IG、WhatsApp、Messenger 同時斷線約 6 小時；原因是自家網路設定改錯，不是被駭 | 已確定 | 2021/10/4 | S9 | 多來源一致；時長各家寫 5–7 小時，用「約 6 小時」。2026/11/12 事實審查再以 ThousandEyes、ZDNet、The Register、NetBlocks 比對一致；Meta 原文已於 2026/11/12 晚上讀到（第 7 節第 9 點）：原因確認；時長與起訖時間原文沒寫，仍是二手。見第 7 節 |
 | F8 | 同上，受影響人數 | 約 30–35 億用戶（路透 35 億、Facebook 自述 30 億） | 估計 | 2021/10 | S9 | 二手，寫「約 30 億」較保守 |
 | F9 | AWS 大當機 | 2025/10/20，亞馬遜雲端美國東部機房出問題，Snapchat、Fortnite、Airbnb、Reddit 等一起受影響 | 已確定 | 2025/10/20 | S10 | 多來源一致 |
 | F10 | 同上，災情規模 | Downdetector 全球累計超過 1,700 萬則回報，是 2025 年最大的一次（Ookla 年終統計；當天 18:00 GMT 為 1,100 萬） | 估計（使用者回報數，不等於受影響人數） | 2025 年底統計 | S10 | 二手 |
@@ -185,3 +185,8 @@
 6. **「伺服器」讀音。** 伺是多音字，這裡念 ㄙˋ。教育部辭典條目沒查到，依台灣通行讀法判斷。
 7. **「雲端在地上」。** 絕大多數正確，但有海底資料中心的實驗案例（微軟 Natick）；第 2 集寫稿用「幾乎都在地上的機房裡」。
 8. 補充來源：ThousandEyes https://www.thousandeyes.com/blog/facebook-outage-analysis ；ZDNet https://www.zdnet.com.au/article/facebooks-giant-outage-this-change-caused-all-the-problems/ ；The Register https://www.theregister.com/2021/10/06/facebook_outage_explained_in_detail/ ；NetBlocks https://netblocks.org/reports/facebook-whatsapp-instagram-messenger-down-globally-in-extended-service-outage-JA6pPkyQ ；Netify https://www.netify.ai/resources/cdn/meta-cdn/country/tw
+9. **Meta 原文核對（2026/11/12 晚上，engineering.fb.com 已放行）。** 兩篇都逐字讀過，作者 Santosh Janardhan。
+   - 2021/10/4〈Update about the October 4th outage〉https://engineering.fb.com/2021/10/04/networking-traffic/outage/ ：「configuration changes on the backbone routers that coordinate network traffic between our data centers caused issues that interrupted this communication」；「there was no malicious activity behind this outage — its root cause was a faulty configuration change on our end」；沒有證據顯示用戶資料外洩。
+   - 2021/10/5〈More details about the October 4 outage〉https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/ ：例行維護時下了一道評估骨幹容量的指令，「unintentionally took down all the connections in our backbone network, effectively disconnecting Facebook data centers globally」；稽核工具有 bug 沒擋下；DNS 伺服器「became unreachable even though they were still operational」；「an outage caused not by malicious activity, but an error of our own making」。
+   - 和旁白對照：句 13「他們公司自己改錯設定」「把廚房的門鎖死」（機器沒壞、連不進去）成立，不用改。
+   - **原文沒有的**：兩篇都沒寫中斷多久，也沒寫開始與恢復的時間。「約 6 小時」和「台灣 10/4 23:39 到 10/5 清晨」仍只來自第 4 點的二手來源。www.thousandeyes.com 今天被網路設定擋下（代理回 403），沒有重讀。畫面出處帶因此改成「來源：Meta 工程部落格、ThousandEyes 2021/10」。
