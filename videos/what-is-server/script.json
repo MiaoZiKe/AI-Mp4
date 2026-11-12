@@ -34,8 +34,8 @@
     "items": [
      {"id":"path","type":"path","pts":[[-460,1700],[-380,1480],[-160,1380],[240,1420]],"dash":1.4,"state":{"grow":0},"until":"end"},
      {"id":"rack","asset":"rack","x":540,"y":1500,"w":560,"until":"s07"},
-     {"id":"phone","type":"phone","layer":"near","x":540,"y":1352,"w":600,"state":{"screen":"error"},"set":[{"at":"start","pull":1},{"at":"dead+12","pull":2},{"at":"you+4","pull":3},{"at":"blame+10","pull":4}],"moves":[{"at":"you+12","to":{"y":1380,"rot":-1.6},"dur":5,"ease":"exit"}],"until":"end"},
-     {"id":"tag","type":"strip","paper":"tag-red","layer":"near","x":360,"y":925,"w":420,"rot":-7,"z":3,"at":"dead+2","from":"slam","lines":[{"t":"打不開","size":78,"color":"white","ls":0.08}],"moves":[{"at":"you+12","to":{"y":951,"rot":-8.6},"dur":5,"ease":"exit"}],"until":"s02"},
+     {"id":"phone","type":"phone","layer":"near","x":540,"y":1352,"w":600,"state":{"screen":"error"},"set":[{"at":"start","pull":1},{"at":"dead+12","pull":2},{"at":"you+4","pull":3},{"at":"blame+10","pull":4}],"moves":[{"at":"you+0","to":{"y":1380,"rot":-1.6},"dur":5,"ease":"exit"}],"until":"end"},
+     {"id":"tag","type":"strip","paper":"tag-red","layer":"near","x":360,"y":925,"w":420,"rot":-7,"z":3,"at":"dead+2","from":"slam","lines":[{"t":"打不開","size":78,"color":"white","ls":0.08}],"moves":[{"at":"you+0","to":{"y":951,"rot":-8.6},"dur":5,"ease":"exit"}],"until":"s02"},
      {"type":"strip","layer":"screen","paper":"strip-hook","x":540,"y":580,"w":920,"rot":-1.6,"align":"left","pad":[70,26],"lines":[{"t":"IG 掛過","size":132,"lh":1.08},{"t":"約 {6 小時}","size":132,"accentSize":176,"lh":1.1},{"t":"那次[不是你]網路爛","size":54,"color":"ink3","lh":1.3,"mt":10}],"tape":[{"asset":"tape-y","x":150,"y":8,"rot":-5},{"asset":"tape-m","x":790,"y":0,"rot":4}],"state":{"mark":0},"to":"top","set":[{"at":"blame","mark":1}]}
     ]
    },
@@ -122,7 +122,8 @@
     "punch": "server",
     "items": [
      {"ref":"doorphoto","at":"voice+4","x":540,"y":1610,"w":36,"rot":0,"dur":12},
-     {"id":"label","type":"strip","paper":"label","x":822,"y":1336,"w":560,"rot":-4,"z":5,"at":"server","from":"slam","align":"left","pad":[46,30],"lines":[{"t":"Server","size":128,"ls":-0.02,"lh":1},{"t":"[伺服器]","size":66,"ls":0.06,"lh":1.25,"mt":10}],"tape":[{"asset":"tape-m","x":300,"y":0,"rot":3}],"state":{"mark":0},"set":[{"at":"zh","mark":1}],"until":"s07"}
+     {"id":"label","type":"strip","paper":"label","x":822,"y":1336,"w":560,"rot":-4,"z":5,"at":"server","from":"slam","align":"left","pad":[46,30],"lines":[{"t":"Server","size":128,"ls":-0.02,"lh":1},{"t":"[伺服器]","size":66,"ls":0.06,"lh":1.25,"mt":10}],"tape":[{"asset":"tape-m","x":300,"y":0,"rot":3}],"state":{"mark":0},"set":[{"at":"zh","mark":1}],"until":"s07"},
+     {"asset":"tape-y","x":540,"y":1506,"w":120,"rot":40,"z":6,"at":"zh","until":"s07"}
     ]
    },
    "sources": []
@@ -145,7 +146,7 @@
      {"asset":"photo","x":110,"y":1400,"w":230,"z":2,"at":"voice+6","from":"left","moves":[{"at":"job+3","path":[[230,1420],[470,1580]],"dur":9},{"at":"job+14","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
      {"asset":"envelope","x":-90,"y":1400,"w":230,"z":2,"at":"serve-6","from":"left","moves":[{"at":"serve+3","path":[[230,1420],[470,1580]],"dur":9},{"at":"serve+14","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
      {"asset":"heart","x":-90,"y":1400,"w":230,"z":2,"at":"serve+7","from":"left","moves":[{"at":"serve+16","path":[[230,1420],[470,1580]],"dur":9},{"at":"serve+27","to":{"x":1400,"y":1560,"rot":20},"dur":9,"ease":"exit"}]},
-     {"asset":"sheet-kraft","layer":"screen","x":540,"y":1000,"w":1240,"at":"exit-8","from":"bottom","enterDur":8,"until":"s07.start+1","to":"top","exitDur":7}
+     {"asset":"sheet-kraft","layer":"screen","x":540,"y":840,"w":1240,"at":"exit-13","from":"bottom","enterDur":24,"enterEase":"enter","until":"s07.start","to":"top","exitDur":14,"exitDist":2000,"exitEase":"enter"}
     ]
    },
    "sources": []
@@ -209,8 +210,8 @@
    "props": {
     "items": [
      {"ref":"phone","set":[{"at":"back+2","photos":[1,0,0]},{"at":"back+14","photos":[1,1,0]}]},
-     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+0","from":"cut","moves":[{"to":{"x":100},"dur":10},{"at":"back-18","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]},
-     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+12","from":"cut","moves":[{"to":{"x":100},"dur":10},{"at":"back-6","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]}
+     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+0","from":"cut","moves":[{"to":{"x":-120},"dur":10},{"at":"back-18","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]},
+     {"asset":"photo","x":520,"y":1425,"w":400,"z":1,"at":"done+12","from":"cut","moves":[{"to":{"x":-120},"dur":10},{"at":"back-6","path":[[-160,1380],[-380,1480],[-460,1760]],"dur":20}]}
     ]
    },
    "sources": []
@@ -277,7 +278,8 @@
      {"ref":"row0","y":3300,"dur":10},
      {"ref":"row1","y":3300,"dur":10},
      {"ref":"row2","y":3300,"dur":10},
-     {"type":"strip","paper":"label-s","layer":"mat","x":330,"y":1130,"w":440,"rot":-3,"z":5,"at":"year","lines":[{"t":"2021/10/4","size":78,"weight":800}],"tape":[{"asset":"tape-m","x":380,"y":4,"rot":24,"w":150}],"until":"s13.six+8","to":"cut"},
+     {"type":"strip","paper":"label-s","layer":"mat","x":330,"y":1130,"w":440,"rot":-3,"z":5,"at":"year","lines":[{"t":"2021/10/4","size":78,"weight":800}],"until":"s13.six+8","to":"cut"},
+     {"asset":"tape-m","layer":"mat","x":508,"y":1054,"w":157,"rot":21,"z":6,"at":"year+22","until":"s13.six+8","to":"cut"},
      {"type":"strip","paper":"label-s","layer":"mat","x":350,"y":1875,"w":300,"rot":-5,"z":6,"at":"igfb","lines":[{"t":"IG","size":110,"weight":800}],"until":"s13.six"},
      {"type":"strip","paper":"label-s","layer":"mat","x":720,"y":1860,"w":320,"rot":4,"z":6,"at":"igfb+12","lines":[{"t":"臉書","size":100}],"until":"s13.six"},
      {"ref":"pass","set":[{"at":"outage-9","shutter":true}]}
@@ -349,7 +351,8 @@
      {"ref":"phone","x":-700,"y":1900,"w":600},
      {"id":"cfg","asset":"ticket-config","layer":"mat","x":720,"y":1520,"w":320,"rot":5,"z":4,"at":"why+10","until":"s16"},
      {"asset":"cross-0","layer":"mat","x":618,"y":1531,"w":96,"z":5,"at":"config","from":"wipe","until":"s16"},
-     {"asset":"cross-1","layer":"mat","x":618,"y":1531,"w":96,"z":5,"at":"config+5","from":"wipe","until":"s16"}
+     {"asset":"cross-1","layer":"mat","x":618,"y":1531,"w":96,"z":5,"at":"config+5","from":"wipe","until":"s16"},
+     {"type":"strip","paper":"tag-red","layer":"mat","x":470,"y":1650,"w":300,"rot":-6,"z":6,"at":"config+3","from":"slam","lines":[{"t":"改錯","size":78,"color":"white","ls":0.08}],"until":"s16"}
     ]
    },
    "sources": ["來源：Meta 工程部落格、ThousandEyes 2021/10"]
@@ -480,7 +483,7 @@
    "props": {
     "camera": {"to":[540,-1553,0.85],"dur":18},
     "items": [
-     {"id":"cloud","asset":"cloud","layer":"mat","x":500,"y":-1930,"w":800,"z":5,"at":"cloud","from":"top","step":false,"moves":[{"at":"notsky","to":{"x":540,"y":-640,"rot":-5},"dur":26,"ease":"exit"}],"until":"s23"},
+     {"id":"cloud","asset":"cloud","layer":"mat","x":500,"y":-1930,"w":800,"z":5,"at":"cloud","from":"top","step":false,"moves":[{"at":"notsky","to":{"x":540,"y":-570,"rot":-5},"dur":26,"ease":"exit"}],"until":"s23"},
      {"type":"strip","paper":"label-s","layer":"mat","x":770,"y":-1560,"w":380,"rot":4,"z":6,"at":"cloud+10","lines":[{"t":"雲端？","size":92}],"tape":[{"asset":"tape-m","x":60,"y":4,"rot":-20,"w":150}],"until":"s22","to":"right"}
     ]
    },

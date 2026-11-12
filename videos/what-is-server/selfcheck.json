@@ -1,28 +1,32 @@
 {
  "slug": "what-is-server",
- "at": "2026-11-12T12:44:19.232Z",
- "sample": true,
+ "at": "2026-11-12T14:24:34.736Z",
+ "sample": false,
  "gates": {
   "determinism": true,
   "fastMotionRatio>=0.06": true,
   "midEmptyFrames==0": true,
-  "staticRunsOver1_5s==0": true,
-  "hookDiffs>3": true,
-  "jumpFrames==0": true,
+  "staticRunsOver1_5s==0": false,
+  "hookDiffs>3": false,
+  "jumpFrames==0": false,
   "transitionOccupancy>=60%": true,
-  "review>=8": null
+  "review>=8": true
  },
  "determinism": {
-  "frame": 300,
+  "frame": 956,
   "same": true
  },
  "grid9": {
   "frames": [
    30,
    154,
-   245,
-   317,
-   446
+   446,
+   716,
+   917,
+   1186,
+   1426,
+   1706,
+   1876
   ],
   "file": "out/what-is-server/selfcheck/grid9.png"
  },
@@ -31,67 +35,305 @@
    103,
    166,
    264,
-   339
+   339,
+   457,
+   562,
+   640,
+   722,
+   804,
+   871,
+   938,
+   1053,
+   1098,
+   1194,
+   1279,
+   1344,
+   1454,
+   1531,
+   1624,
+   1715,
+   1793,
+   1838,
+   1901
   ],
   "file": "out/what-is-server/selfcheck/strip.png"
  },
  "pixel": {
-  "frames": 450,
-  "fastMotionRatio": 0.198,
+  "frames": 1913,
+  "fastMotionRatio": 0.255,
   "midEmptyFrames": [],
-  "staticRunsOver1_5s": [],
+  "staticRunsOver1_5s": [
+   {
+    "from": 390,
+    "to": 459,
+    "sec": 2.3,
+    "scene": "s05"
+   },
+   {
+    "from": 953,
+    "to": 1000,
+    "sec": 1.57,
+    "scene": "s12"
+   },
+   {
+    "from": 1217,
+    "to": 1280,
+    "sec": 2.1,
+    "scene": "s15"
+   }
+  ],
   "hookDiffs": {
-   "0-15": 9.47,
-   "0-30": 7.67,
-   "0-45": 13.68,
+   "0-15": 14.34,
+   "0-30": 12.23,
+   "0-45": 11.89,
    "0-60": 13.65,
-   "15-30": 14.08,
-   "15-45": 8.91,
-   "15-60": 16.17,
-   "30-45": 6.23,
-   "30-60": 11.34,
-   "45-60": 13.34
+   "15-30": 6.63,
+   "15-45": 7.68,
+   "15-60": 14.03,
+   "30-45": 2.17,
+   "30-60": 12.63,
+   "45-60": 12.34
   },
-  "jumpFrames": [],
+  "jumpFrames": [
+   {
+    "frame": 14,
+    "pct": 10.94,
+    "neighbor": 1.65
+   },
+   {
+    "frame": 518,
+    "pct": 12.18,
+    "neighbor": 0
+   },
+   {
+    "frame": 530,
+    "pct": 9.77,
+    "neighbor": 0
+   },
+   {
+    "frame": 532,
+    "pct": 8.89,
+    "neighbor": 0
+   },
+   {
+    "frame": 622,
+    "pct": 17.56,
+    "neighbor": 0
+   },
+   {
+    "frame": 624,
+    "pct": 13.58,
+    "neighbor": 0
+   },
+   {
+    "frame": 901,
+    "pct": 9.57,
+    "neighbor": 0.03
+   },
+   {
+    "frame": 1151,
+    "pct": 12.32,
+    "neighbor": 0.2
+   },
+   {
+    "frame": 1210,
+    "pct": 17.74,
+    "neighbor": 0
+   },
+   {
+    "frame": 1493,
+    "pct": 8.01,
+    "neighbor": 1.6
+   },
+   {
+    "frame": 1654,
+    "pct": 15.99,
+    "neighbor": 0
+   },
+   {
+    "frame": 1656,
+    "pct": 9.86,
+    "neighbor": 0
+   },
+   {
+    "frame": 1660,
+    "pct": 11.48,
+    "neighbor": 0
+   }
+  ],
   "transitionOccupancy": [
    {
     "start": 103,
-    "minOcc": 31.38,
-    "ref": 31.85,
-    "ratio": 0.99,
+    "minOcc": 31.08,
+    "ref": 31.7,
+    "ratio": 0.98,
     "ok": true
    },
    {
     "start": 166,
-    "minOcc": 31.61,
-    "ref": 32.86,
-    "ratio": 0.96,
+    "minOcc": 31.35,
+    "ref": 31.35,
+    "ratio": 1,
     "ok": true
    },
    {
     "start": 264,
-    "minOcc": 30.36,
-    "ref": 27.81,
-    "ratio": 1.09,
+    "minOcc": 30.08,
+    "ref": 26.59,
+    "ratio": 1.13,
     "ok": true
    },
    {
     "start": 339,
-    "minOcc": 58.02,
-    "ref": 58.69,
+    "minOcc": 58.04,
+    "ref": 58.67,
     "ratio": 0.99,
+    "ok": true
+   },
+   {
+    "start": 457,
+    "minOcc": 54.48,
+    "ref": 55.09,
+    "ratio": 0.99,
+    "ok": true
+   },
+   {
+    "start": 562,
+    "minOcc": 63.19,
+    "ref": 63.21,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 640,
+    "minOcc": 47.4,
+    "ref": 45.42,
+    "ratio": 1.04,
+    "ok": true
+   },
+   {
+    "start": 722,
+    "minOcc": 45.51,
+    "ref": 45.51,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 804,
+    "minOcc": 47.95,
+    "ref": 49.04,
+    "ratio": 0.98,
+    "ok": true
+   },
+   {
+    "start": 871,
+    "minOcc": 69.99,
+    "ref": 69.86,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 938,
+    "minOcc": 62.49,
+    "ref": 62.49,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1053,
+    "minOcc": 80.72,
+    "ref": 80.79,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1098,
+    "minOcc": 43.13,
+    "ref": 43.13,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1194,
+    "minOcc": 61.26,
+    "ref": 61.26,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1279,
+    "minOcc": 78.13,
+    "ref": 78.13,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1344,
+    "minOcc": 83.42,
+    "ref": 83.42,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1454,
+    "minOcc": 32.97,
+    "ref": 37.08,
+    "ratio": 0.89,
+    "ok": true
+   },
+   {
+    "start": 1531,
+    "minOcc": 31.11,
+    "ref": 34.49,
+    "ratio": 0.9,
+    "ok": true
+   },
+   {
+    "start": 1624,
+    "minOcc": 21.45,
+    "ref": 30.58,
+    "ratio": 0.7,
+    "ok": true
+   },
+   {
+    "start": 1715,
+    "minOcc": 41.05,
+    "ref": 37.46,
+    "ratio": 1.1,
+    "ok": true
+   },
+   {
+    "start": 1793,
+    "minOcc": 19.62,
+    "ref": 21.59,
+    "ratio": 0.91,
+    "ok": true
+   },
+   {
+    "start": 1838,
+    "minOcc": 0,
+    "ref": 0,
+    "ratio": null,
     "ok": true
    }
   ],
   "gates": {
    "fastMotionRatio>=0.06": true,
    "midEmptyFrames==0": true,
-   "staticRunsOver1_5s==0": true,
-   "hookDiffs>3": true,
-   "jumpFrames==0": true,
+   "staticRunsOver1_5s==0": false,
+   "hookDiffs>3": false,
+   "jumpFrames==0": false,
    "transitionOccupancy>=60%": true
   },
-  "pass": true
+  "pass": false
  },
- "pass": true
+ "review": {
+  "前 2 秒抓人": 8,
+  "手機上看得清": 8,
+  "動作自然": 8,
+  "畫面變化": 8,
+  "構圖": 8,
+  "聲畫匹配": 9
+ },
+ "pass": false
 }

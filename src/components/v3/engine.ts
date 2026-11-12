@@ -39,6 +39,10 @@ export type ItemSpec = Partial<Place> & {
   enterDur?: number;
   exitDur?: number;
   exitDist?: number;
+  enterDist?: number;
+  /** 滑入／滑出的緩動（預設：滑入 enter、有 enterDur 時 move；滑出 exit）。蓋場大紙用 "enter"：前快後慢，掃過主視覺約 6 幀 */
+  enterEase?: MoveSpec["ease"];
+  exitEase?: MoveSpec["ease"];
   [k: string]: any;
 };
 export type CameraKey = { to: [number, number, number]; at?: string; dur?: number };
@@ -163,10 +167,10 @@ export const cameraAt = (st: Stage, f: number) => {
   for (const p of st.punches) if (f >= p.start && f < p.end + DUR.s) mult *= 1 - (1 - M.punch) * (tween(f, p.start, p.camDur, EASE.move) - tween(f, p.at, DUR.s, EASE.enter));
   return { cx, cy, s: s * mult };
 };
-/** 切割墊蓋住的比例 0–1（由上蓋下 8 幀；掀開往上 8 幀）與目前方向 */
+/** 切割墊蓋住的比例 0–1（由上蓋下／往上掀開各 12 幀）與目前方向 */
 export const matAt = (st: Stage, f: number) => {
   let v = 0;
-  for (const k of st.mat) { if (f < k.f) break; v += ((k.on ? 1 : 0) - v) * tween(f, k.f, DUR.s + 2, EASE.move); }
+  for (const k of st.mat) { if (f < k.f) break; v += ((k.on ? 1 : 0) - v) * tween(f, k.f, DUR.m, EASE.move); }
   return v;
 };
 
@@ -218,11 +222,11 @@ export const presence = (it: StageItem, f: number, ambient: boolean) => {
   if (it.from === "paste") { const p = tween(ff, it.born, M.paste, EASE.enter); dy = -14 * (1 - p); scale = 1 + 0.06 * (1 - p); rot = sign * 2 * (1 - p); }
   else if (it.from === "slam") { const p = tween(ff, it.born, M.slam, EASE.exit); scale = 1 + 0.14 * (1 - p); rot = sign * 1.5 * (1 - p); }
   else if (it.from === "wipe") wipe = tween(f, it.born, M.wipe, EASE.move);
-  else if (DIR[it.from]) { const p = tween(ff, it.born, it.spec.enterDur ?? M.slide, it.spec.enterDur ? EASE.move : EASE.enter); const [ux, uy] = DIR[it.from]; const d = it.spec.enterDist ?? dist; dx = ux * d * (1 - p); dy = uy * d * (1 - p); rot = sign * (3 + 3 * rnd(it.idx + 7)) * (1 - p); scale = 1 + 0.04 * (1 - p); }
+  else if (DIR[it.from]) { const p = tween(ff, it.born, it.spec.enterDur ?? M.slide, it.spec.enterEase ? EASES[it.spec.enterEase as keyof typeof EASES] : it.spec.enterDur ? EASE.move : EASE.enter); const [ux, uy] = DIR[it.from]; const d = it.spec.enterDist ?? dist; dx = ux * d * (1 - p); dy = uy * d * (1 - p); rot = sign * (3 + 3 * rnd(it.idx + 7)) * (1 - p); scale = 1 + 0.04 * (1 - p); }
   if (f >= it.die) {
     if (typeof it.to === "object") { /* 往指定位置退場：由 Cutout 另外處理 */ }
     else if (it.to === "lift") { const p = tween(f, it.die, 4, EASE.move); wipeOut = p; dy -= 8 * p; rot += sign * 2 * p; }   // 撕走：由一側揭掉（遮罩），不用透明度
-    else if (DIR[it.to]) { const p = tween(ff, it.die, it.spec.exitDur ?? M.exit, EASE.exit); const [ux, uy] = DIR[it.to]; const d = it.spec.exitDist ?? dist; dx += ux * d * p; dy += uy * d * p; rot += sign * 4 * p; }
+    else if (DIR[it.to]) { const p = tween(ff, it.die, it.spec.exitDur ?? M.exit, it.spec.exitEase ? EASES[it.spec.exitEase as keyof typeof EASES] : EASE.exit); const [ux, uy] = DIR[it.to]; const d = it.spec.exitDist ?? dist; dx += ux * d * p; dy += uy * d * p; rot += sign * 4 * p; }
     else opacity = 0;
   }
   const settle = it.born + (it.spec.enterDur ?? M.slide);
