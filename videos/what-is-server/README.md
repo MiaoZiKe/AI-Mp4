@@ -1,6 +1,64 @@
-# what-is-server 前製確認包（第 1 集：什麼是 Server）
+# what-is-server（第 1 集：什麼是 Server）
 
-狀態：**你已回覆（2026/11/12 晚上），稿子與分鏡已照改成第 3 版。** 還沒做正式配音，也沒有渲染影片。
+狀態：**成片已出（2026/11/12 晚上）。** 下面先寫成片資訊；「前製確認包」的內容保留在後半當紀錄。
+
+## 成片
+
+| 項目 | 內容 |
+|---|---|
+| 影片 | `out/what-is-server.mp4`：1080×1920、30fps、H.264＋AAC、1913 幀、63.77 秒（人聲 61.2 秒＋片尾卡 2.5 秒） |
+| 字幕檔 | `out/what-is-server.srt`（中英 44 段）、`.zh.srt`、`.en.srt` |
+| 截圖 | 每鏡 `out/what-is-server/stills/01-s01.png`–`23-s23.png`；總覽 `out/what-is-server-overview.png`；封面 `out/what-is-server-cover.png`（另有 `-3x4`、`-1x1`） |
+| 評審圖 | `out/what-is-server-review.png`（9 個關鍵時刻＋獨立評審六項分數；`python3 scripts/v3/review-sheet.py what-is-server`） |
+| 人聲 | `out/what-is-server/voice-final.wav`（＝`public/audio/what-is-server/voice.wav`）；混音後 `out/what-is-server.mix.wav` |
+| 配音 | Iapetus／`gemini-2.5-flash-preview-tts`，整篇一次生成、沒有重生；提示「用台灣人平常講話的口音，像跟朋友聊天一樣，語氣自然平穩」 |
+| 風格 | styleVersion 3 桌面紙拼貼；s13、s20 各一張機房實拍拍立得 |
+
+### 檢查結果（2026/11/12 22:30 後重渲的版本）
+
+| 檢查 | 結果 |
+|---|---|
+| `npm run validate` | 0 error、12 warning（11 個是「同屏元素」把鏡頭外的紙片也算進去，1 個是字數估 76 秒；實際時間軸 63.8 秒） |
+| ffprobe | h264 1080×1920 30fps＋aac 48kHz 立體聲；1913 幀＝composition＝timeline |
+| 混音（`mix.json`） | −14.3 LUFS、真峰值 −4.4 dBFS、LRA 2.2；講話時 BGM 比人聲低 24.7 LU（門檻 15）；音效 3 個 whoosh |
+| SRT 對 storyboard.json | 中文、英文逐字相同；44 段的開始時間都落在字幕短語的開始幀；51 個短語裡 7 個短於 0.7 秒的併進下一段；沒有重疊 |
+| 黑幀 | ffmpeg blackdetect 0 段。`npm run audit` 的 `blackFramesTotal` 是 6（1834–1839 幀）：那是片尾米白大紙蓋住主視覺的 6 幀，不是黑畫面，字幕這時還在 |
+| 靜止 >1.5 秒 | selfcheck（關掉紙片抖動量）0 段；ffmpeg freezedetect（成片，1.5 秒）0 段 |
+| 覆蓋率（`coverage.json`） | 0 error、0 warning；佔用率最低 42.8%、中位 72.1%；最長空白帶 222px |
+| `npm run selfcheck` | 八關過七關：確定性、快動作比例 0.253、中段空畫面 0、靜止段 0、鉤子幀差最小 3.93%、轉場佔用、六項評分都過；**單幀跳變這一關沒過（13 幀）**，見「已知問題」 |
+| 獨立評審（`review.md` 第 2 輪） | 前 2 秒抓人 8、手機上看得清 8、動作自然 8、畫面變化 8、構圖 8、聲畫匹配 9 |
+
+第 2 輪評審之後又改了這幾處（評審沒有重看）：s06→s07 牛皮紙蓋場改成前快後慢；s01 手機被拉歪提早到「你是不是」；s05 念到「伺服器」時在標籤角落貼一段黃膠帶；s12 日期紙條的膠帶改成晚 22 幀才貼；s15 念到「改錯」時貼紅標「改錯」；s09 照片、s21 紙雲的位置微調。
+
+### 已知問題
+
+1. **selfcheck 的單幀跳變關口沒過**：第 14、518、530、532、622、624、901、1151、1210、1493、1654、1656、1660 幀。逐張看過，都是紙片「貼上」的那一幀（紅標、信封與愛心逐格移動、廚房照片換上、三支手機同時變無法載入、晨色紙、設定單、「出事中」、機櫃牆逐排貼上），不是硬切。這是拼貼風格每 2 幀更新一次造成的，門檻沒有為 v3 調過，也沒有改門檻讓它過。
+2. 斜向全景（s08、s09、s18）手機仍偏小、下緣被字幕紙條切到；s05–s07、s10–s13 字幕下方約 360px 是空桌面（評審列為應修／小修，沒改）。
+3. s13 機房拍立得照片偏灰暗；片尾卡最後約 1.4 秒幾乎不動。
+4. `storyboard.md`、`storyboard.draft.json` 是配音前的分鏡稿（寫 66.4 秒、s04 往上移），和成片不一致；成片以 `script.json`、`visual-spec.md`、`storyboard.json` 為準。
+5. Pexels 四張照片的授權與作者仍未核對：`www.pexels.com/license/` 今晚還是回 403（機器人驗證，沒有繞過）；`engineering.fb.com` 回 200。上片前請用瀏覽器開 `assets.md` 列的網址確認。
+6. `caption.md` 沒寫「本片使用 AI 輔助製作」；片中依指示不加 AI 標示，貼文要不要加請你決定。
+7. `docs/style-v3/proof-script.json`、`scripts/v3/proof-data.mjs` 是打樣時的舊座標，和正式稿不同。
+
+### 需要人耳確認（我和評審都聽不到音檔）
+
+聽 `out/what-is-server/voice-final.wav`（秒數是這個檔的時間），再聽一次成片確認 BGM 沒有蓋到人聲。
+
+1. 語氣是不是「正常說話」：有沒有哪句還是強調過頭，或反過來太平、像念稿。量測只能說音高起伏從 D2 的 17.2 半音降到 12.3 半音。
+2. 口音像不像台灣人。
+3. 46.2 秒「LINE」：尾音 n 有沒有出來，還是念成「賴」（對齊工具和聽寫模型說法不一致，最可疑）。
+4. 14.5 秒「伺服器」：是不是 ㄙˋ、有沒有被吞。
+5. 0.1 秒、33.5 秒「IG」；12.9 秒、55.4 秒「Server」。
+6. 31.7 秒「二零二一年」：五個字約 0.65 秒，偏快。
+7. 最後一句「下一集帶你去看」只有 1.2 秒，會不會太趕。
+
+任何一個字要改都得整篇重配（1 次 TTS 請求），再跑 align、render。改法寫在 `pronunciation.md`。
+
+### Gemini 請求次數
+
+- 正式配音階段：TTS 3 次（兩個提示各試聽 1 次、整篇 1 次，都成功）；文字模型聽寫 3 次、請模型聽單字 5 次（其中 1 次 503）。
+- 前製試聽階段：TTS 6 次（成功 4 次）、聽寫 4 次（見 `voice.md`）。
+- 出片（still、render、audit、selfcheck）沒有再花任何請求。
 
 ## 你的決定與我照做的事
 
@@ -24,7 +82,7 @@ IG 打不開，有時候不是你的網路爛，是「別人的電腦」（Serve
 | 風格 A／B 對照 | `out/what-is-server/styleframes-compare.png`；單張在 `out/what-is-server/styleframes/A-1…3.png`、`B-1…3.png` |
 | 配音試聽（四段，已調成同樣音量） | `out/what-is-server/voice-samples/same-loudness/` 裡的 E、A、C、D2 四個 wav |
 
-## 起承轉合（預估 66.4 秒）
+## 起承轉合（配音前預估 66.4 秒；成片 63.77 秒）
 
 | 段 | 秒 | 內容 | 留下的問題 |
 |---|---|---|---|
@@ -110,6 +168,8 @@ IG 打不開，有時候不是你的網路爛，是「別人的電腦」（Serve
 
 | 檔案 | 內容 |
 |---|---|
+| `script.json`／`visual-spec.md`／`storyboard.json` | 成片的 23 鏡資料、畫面規格、依配音時間軸產生的分鏡表 |
+| `review.md`／`selfcheck.json`／`motion.json`／`mix.json` | 獨立評審兩輪、自查關口、流暢度量測、混音紀錄 |
 | `script.md` | 定稿旁白、念稿版、改稿紀錄、事實對照 |
 | `storyboard.md`／`storyboard.draft.json` | 23 鏡分鏡（同一份資料的兩種格式） |
 | `research.md` | 研究、來源、系列規劃、審查後修正 |

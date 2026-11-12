@@ -1,13 +1,13 @@
 {
  "slug": "what-is-server",
- "at": "2026-11-12T14:24:34.736Z",
+ "at": "2026-11-12T14:32:50.133Z",
  "sample": false,
  "gates": {
   "determinism": true,
   "fastMotionRatio>=0.06": true,
   "midEmptyFrames==0": true,
-  "staticRunsOver1_5s==0": false,
-  "hookDiffs>3": false,
+  "staticRunsOver1_5s==0": true,
+  "hookDiffs>3": true,
   "jumpFrames==0": false,
   "transitionOccupancy>=60%": true,
   "review>=8": true
@@ -60,64 +60,45 @@
  },
  "pixel": {
   "frames": 1913,
-  "fastMotionRatio": 0.255,
+  "fastMotionRatio": 0.253,
   "midEmptyFrames": [],
-  "staticRunsOver1_5s": [
-   {
-    "from": 390,
-    "to": 459,
-    "sec": 2.3,
-    "scene": "s05"
-   },
-   {
-    "from": 953,
-    "to": 1000,
-    "sec": 1.57,
-    "scene": "s12"
-   },
-   {
-    "from": 1217,
-    "to": 1280,
-    "sec": 2.1,
-    "scene": "s15"
-   }
-  ],
+  "staticRunsOver1_5s": [],
   "hookDiffs": {
-   "0-15": 14.34,
-   "0-30": 12.23,
-   "0-45": 11.89,
-   "0-60": 13.65,
-   "15-30": 6.63,
-   "15-45": 7.68,
+   "0-15": 14.36,
+   "0-30": 12.22,
+   "0-45": 15.23,
+   "0-60": 13.63,
+   "15-30": 6.64,
+   "15-45": 11.51,
    "15-60": 14.03,
-   "30-45": 2.17,
+   "30-45": 10.27,
    "30-60": 12.63,
-   "45-60": 12.34
+   "45-60": 3.93
   },
   "jumpFrames": [
    {
     "frame": 14,
-    "pct": 10.94,
+    "pct": 10.95,
     "neighbor": 1.65
    },
    {
     "frame": 518,
-    "pct": 12.18,
+    "pct": 12,
     "neighbor": 0
    },
    {
     "frame": 530,
-    "pct": 9.77,
+    "pct": 9.76,
     "neighbor": 0
    },
    {
     "frame": 532,
-    "pct": 8.89,
+    "pct": 8.69,
     "neighbor": 0
    },
    {
     "frame": 622,
-    "pct": 17.56,
+    "pct": 17.54,
     "neighbor": 0
    },
    {
@@ -137,7 +118,7 @@
    },
    {
     "frame": 1210,
-    "pct": 17.74,
+    "pct": 17.73,
     "neighbor": 0
    },
    {
@@ -157,22 +138,22 @@
    },
    {
     "frame": 1660,
-    "pct": 11.48,
+    "pct": 11.46,
     "neighbor": 0
    }
   ],
   "transitionOccupancy": [
    {
     "start": 103,
-    "minOcc": 31.08,
-    "ref": 31.7,
+    "minOcc": 31.07,
+    "ref": 31.69,
     "ratio": 0.98,
     "ok": true
    },
    {
     "start": 166,
-    "minOcc": 31.35,
-    "ref": 31.35,
+    "minOcc": 31.33,
+    "ref": 31.33,
     "ratio": 1,
     "ok": true
    },
@@ -192,21 +173,21 @@
    },
    {
     "start": 457,
-    "minOcc": 54.48,
-    "ref": 55.09,
+    "minOcc": 54.77,
+    "ref": 55.32,
     "ratio": 0.99,
     "ok": true
    },
    {
     "start": 562,
-    "minOcc": 63.19,
-    "ref": 63.21,
+    "minOcc": 63.2,
+    "ref": 63.2,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 640,
-    "minOcc": 47.4,
+    "minOcc": 47.37,
     "ref": 45.42,
     "ratio": 1.04,
     "ok": true
@@ -220,36 +201,36 @@
    },
    {
     "start": 804,
-    "minOcc": 47.95,
+    "minOcc": 47.93,
     "ref": 49.04,
     "ratio": 0.98,
     "ok": true
    },
    {
     "start": 871,
-    "minOcc": 69.99,
-    "ref": 69.86,
+    "minOcc": 70.03,
+    "ref": 69.84,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 938,
-    "minOcc": 62.49,
-    "ref": 62.49,
+    "minOcc": 62.48,
+    "ref": 62.48,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 1053,
-    "minOcc": 80.72,
-    "ref": 80.79,
+    "minOcc": 80.78,
+    "ref": 80.86,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 1098,
-    "minOcc": 43.13,
-    "ref": 43.13,
+    "minOcc": 43.15,
+    "ref": 43.15,
     "ratio": 1,
     "ok": true
    },
@@ -262,29 +243,29 @@
    },
    {
     "start": 1279,
-    "minOcc": 78.13,
-    "ref": 78.13,
+    "minOcc": 78.16,
+    "ref": 78.16,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 1344,
-    "minOcc": 83.42,
-    "ref": 83.42,
+    "minOcc": 83.41,
+    "ref": 83.41,
     "ratio": 1,
     "ok": true
    },
    {
     "start": 1454,
-    "minOcc": 32.97,
-    "ref": 37.08,
+    "minOcc": 32.95,
+    "ref": 37.07,
     "ratio": 0.89,
     "ok": true
    },
    {
     "start": 1531,
-    "minOcc": 31.11,
-    "ref": 34.49,
+    "minOcc": 31.03,
+    "ref": 34.51,
     "ratio": 0.9,
     "ok": true
    },
@@ -298,14 +279,14 @@
    {
     "start": 1715,
     "minOcc": 41.05,
-    "ref": 37.46,
+    "ref": 37.45,
     "ratio": 1.1,
     "ok": true
    },
    {
     "start": 1793,
-    "minOcc": 19.62,
-    "ref": 21.59,
+    "minOcc": 19.63,
+    "ref": 21.58,
     "ratio": 0.91,
     "ok": true
    },
@@ -320,8 +301,8 @@
   "gates": {
    "fastMotionRatio>=0.06": true,
    "midEmptyFrames==0": true,
-   "staticRunsOver1_5s==0": false,
-   "hookDiffs>3": false,
+   "staticRunsOver1_5s==0": true,
+   "hookDiffs>3": true,
    "jumpFrames==0": false,
    "transitionOccupancy>=60%": true
   },

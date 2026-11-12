@@ -42,8 +42,19 @@
 - 卡片：暖白 `#FFFDF8`、2px `#E6D9C2` 邊框、圓角 14px、紙張陰影（不發光），頂端 6px 色條；圖示＝海軍藍方角線稿＋錯位色塊（套印風），不發光。
 - 版面格線（1080×1920）：頁首 220–310（下方 4px 報頭線兼全片進度）｜主視覺 330–1250（撐滿 952 寬，≥856×814）｜字幕 1270–1560｜出處 1580–1690｜1700–1920 只放背景色帶。每幕背景層＝米色色塊＋出血色帶＋大字水印（`bg.mark`，預設第一個關鍵詞）。
 - 字幕（短語模式）：中文 76px 900 字重、一次一段單行（≤11.5em，約 11 個全形字；`\n` 可指定斷點），關鍵詞依序：珊瑚字／海軍藍字＋黃色螢光筆底／深青字；英文 30px 實色次要文字，跟著中文的句顯示、每段 ≤42 字元；右側留 120px（x ≤960）。
-- 動畫：元素依 `cues` 進場（cue−4 幀）、多項目 focus（其他降到 0.35）、念到時 punch、鏡頭在 cue 推拉（0.965↔1，12 幀後固定）；讀秒保護＝落定後至少 0.8 秒才出場；不做連續縮放、不用 3D（最多 2.5D）。
+- 動畫：元素依 `cues` 進場（cue−4 幀）、多項目 focus（其他項目降到 `THEME_V2.dim`＝0.70，灰階＋淡色、對比仍 ≥3:1）、念到時 punch；鏡頭預設不動，只有 script.json 該幕寫了 `camera: { move: "push"｜"pull"｜"pan", at? }` 才在指定 cue 動一次（`src/cue.ts` 的 `cameraMove`）；讀秒保護＝落定後至少 0.8 秒才出場；不做連續縮放、不用 3D（最多 2.5D）。
 - 鉤子：第 1 幕 `HookTitle`，第 0 幀就是完整主張（≤10 字＋數字、≥120px），數字附 `claims`（指向 research.md）；骨架 `beat: hook｜you｜mechanism｜twist｜payoff｜cta`；片尾卡前一幕 `CtaCard` 具體提問（不寫「分享給／傳給／標記」）。
+
+## styleVersion 3（桌面紙拼貼）
+- 一句話：全片是同一張桌面上的一鏡到底，紙片依配音 cue 貼上、移動、撕走。第一支：`videos/what-is-server/`；設計理由與樣張：`docs/style-v3/`；每鏡規格寫在該片的 `visual-spec.md`。
+- token：`src/theme.ts` 的 `THEME_V3`（桌面 `#EFE6D4`、切割墊 `#2F4A3A`、紙 `#FFFDF7`、牛皮 `#C9A66B`、紅 `#D9482B`、黃 `#F2B632`、藍 `#1F3A5F`、薄荷 `#7DB7A0`、墨 `#1E1B16`；`motion`＝貼上 6 幀、重貼 4、滑入 8、退場 6、鏡頭 12、逐格每 2 幀、落定後每 9 幀抖 ±1px）與 `LAYOUT_V3`（字幕紙條 1300–1532、中文 72px／英文 30px、出處紙條 1601 起）。元件不寫死色碼；`make-paper.py` 的色表要和 `THEME_V3` 一致。
+- 元件（`src/components/v3/`）：`engine.ts`（把各幕 props 攤平成絕對時間軸：鏡頭、切割墊、紙片出生／移動／狀態／退場）、`Stage.tsx`（畫桌面與各層）、`Pieces.tsx`（StripTitle 撕邊紙條／TapeLabel／Polaroid、MarkerHighlight、DashedPath 紙虛線、PassWindow 出餐口、ImgPiece 含 grid）、`PhoneMock.tsx`（中性的自製手機畫面）、`Tracks.tsx`（頁首、字幕紙條、出處紙條、片尾卡）、`Cover.tsx`。
+- script.json：頂層 `styleVersion: 3`；每幕 `component: "PaperScene"`（最後一幕 `EndCard`，`silent: true`＋`durationSec`），props＝`camera`（世界座標 `[cx, cy, 縮放]`，可多段）、`punch`（念到 cue 推近一次，全片 ≤4 次）、`mat`（切割墊蓋上／掀開）、`headerPlate`、`items`。紙片的 `at` 只寫 cue id 或 `start｜voice｜end｜exit` 加減幾幀，不手填秒數；進場 `paste｜slam｜cut｜wipe｜left｜right｜top｜bottom`，退場 `until`＋`to`；跨幕沿用同一張紙片用 `id`／`ref`。`cover` 也是 `{ camera, items }`。
+- 素材：`python3 scripts/make-paper.py <slug>` 產生紙材 PNG 與 `meta.json` 到 `public/v3/<slug>/`（不 commit；固定 seed，紙材函式在 `scripts/styleframes/paper.py`）；實拍照片放 `out/<slug>/assets-raw/photos/`，來源與授權記在 `videos/<slug>/assets.md`。AI 生圖不用。
+- 配音：`voice.mode: "take"` 走 `scripts/tts-take.mjs`（整篇一次生成、強制對齊找切點、保留原始錄音的句間停頓，不能單幕重生）；`voice.style` 是提示句，程式自動接「說：」。提示不要寫成情境對話（會被念出來）。
+- 指令：`npm run validate`（v3 規則在 `scripts/v3/validate-v3.mjs`）→ `npm run still`（覆蓋率用 v3 門檻）→ `npm run selfcheck <slug> -- --sample`（前 15 秒樣片關口）→ `npm run render` → `npm run audit` → `npm run selfcheck <slug> -- --render`（全片；六項分數讀 `review.md` 第一張評分表，要由沒參與製作的評審填）→ `python3 scripts/v3/review-sheet.py <slug>`（`out/<slug>-review.png`）。看指定時刻：`node scripts/v3/peek.mjs <slug> <out.png> <幀或 s06:cue+10,...>`。
+- 規則：不用 3D、SVG 圖示卡、霓虹發光、漸層、透明度淡入淡出（紙只會貼上、滑動、被蓋住、被撕走）；同屏主要東西 ≤3 樣；每 2–4 秒有事件、內容幕不留 >1.5 秒靜止；轉場用蓋場紙、切割墊或沿虛線移鏡，不硬切；字幕換段不留空白紙條；深色紙片經過頁首時墊 `headerPlate`；不出現真實人物與真實商標圖案；片中不加 AI 標示。
+- 已知限制：selfcheck 的單幀跳變關口是照 v2 訂的，v3 紙片「貼上」那一幀會被算成跳變（what-is-server 有 13 幀）；audit 的 `blackFramesTotal` 會把蓋場大紙算進去，真正黑幀用 ffmpeg blackdetect 看。SeatBar、圖表類元件沒有 v3 版。
 
 ## 可重用元件（src/components/）
 Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、BigNumber、SeatBar（席次條，含過半門檻線）、IconGrid、ImpactCard（含「已確定／分析預期／尚未確定」標籤）、SourceFooter
@@ -68,7 +79,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 數字與 research.md 來源一致；未定事項已標示
 - 用詞中立、無投資建議
 - 每幕截圖檢查：安全區、溢出、缺字方框
-- 最後一幕是片尾卡；總長符合規範（v2 45–75 秒、v1 70–100 秒）；ffprobe 確認可播放
+- 最後一幕是片尾卡；總長符合規範（v2／v3 45–75 秒、v1 70–100 秒）；ffprobe 確認可播放
 - 影片與圖片不 commit（見 .gitignore）
 
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
