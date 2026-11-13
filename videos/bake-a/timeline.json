@@ -1,0 +1,545 @@
+{
+ "version": 2,
+ "slug": "bake-a",
+ "fps": 30,
+ "totalFrames": 445,
+ "totalSec": 14.83,
+ "gapSec": 0.25,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.25,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 105,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 97,
+   "stillFrame": 95,
+   "subtitleWindow": [
+    0,
+    101
+   ],
+   "sourceWindow": [
+    0,
+    100
+   ],
+   "lines": [
+    {
+     "text": "欸，降噪耳機會安靜",
+     "start": 0,
+     "chars": [
+      4,
+      4,
+      9,
+      15,
+      21,
+      26,
+      32,
+      38,
+      43
+     ]
+    },
+    {
+     "text": "其實是它在出聲",
+     "start": 54,
+     "chars": [
+      56,
+      61,
+      67,
+      73,
+      78,
+      84,
+      90
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "出聲",
+     "start": 84
+    }
+   ],
+   "cues": [
+    {
+     "id": "anc",
+     "text": "降噪",
+     "frame": 11
+    },
+    {
+     "id": "sound",
+     "text": "出聲",
+     "frame": 85
+    }
+   ],
+   "sub": "欸，降噪耳機會安靜\n其實是它在出聲",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 104,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 95,
+   "durationFrames": 79,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 104,
+   "voiceEndFrame": 166,
+   "stillFrame": 164,
+   "subtitleWindow": [
+    101,
+    170
+   ],
+   "sourceWindow": [
+    100,
+    169
+   ],
+   "lines": [
+    {
+     "text": "拆開外殼",
+     "start": 101,
+     "chars": [
+      103,
+      108,
+      113,
+      119
+     ]
+    },
+    {
+     "text": "電池、",
+     "start": 129,
+     "chars": [
+      131,
+      136,
+      136
+     ]
+    },
+    {
+     "text": "晶片、",
+     "start": 140,
+     "chars": [
+      142,
+      147,
+      147
+     ]
+    },
+    {
+     "text": "天線",
+     "start": 151,
+     "chars": [
+      153,
+      158
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "電池",
+     "start": 131
+    },
+    {
+     "text": "晶片",
+     "start": 142
+    },
+    {
+     "text": "天線",
+     "start": 153
+    }
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開",
+     "frame": 104
+    },
+    {
+     "id": "battery",
+     "text": "電池",
+     "frame": 132
+    },
+    {
+     "id": "chip",
+     "text": "晶片",
+     "frame": 143
+    },
+    {
+     "id": "antenna",
+     "text": "天線",
+     "frame": 154
+    }
+   ],
+   "sub": "拆開外殼\n電池、晶片、天線",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 173,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 164,
+   "durationFrames": 85,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 173,
+   "voiceEndFrame": 241,
+   "stillFrame": 239,
+   "subtitleWindow": [
+    170,
+    244
+   ],
+   "sourceWindow": [
+    169,
+    244
+   ],
+   "lines": [
+    {
+     "text": "還有喇叭",
+     "start": 170,
+     "chars": [
+      172,
+      177,
+      183,
+      188
+     ]
+    },
+    {
+     "text": "跟好幾顆麥克風",
+     "start": 198,
+     "chars": [
+      200,
+      206,
+      211,
+      217,
+      222,
+      228,
+      233
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "喇叭",
+     "start": 183
+    },
+    {
+     "text": "麥克風",
+     "start": 222
+    }
+   ],
+   "cues": [
+    {
+     "id": "speaker",
+     "text": "喇叭",
+     "frame": 184
+    },
+    {
+     "id": "mic",
+     "text": "麥克風",
+     "frame": 224
+    }
+   ],
+   "sub": "還有喇叭\n跟好幾顆麥克風",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 248,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 239,
+   "durationFrames": 115,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 247,
+   "voiceEndFrame": 346,
+   "stillFrame": 344,
+   "subtitleWindow": [
+    244,
+    350
+   ],
+   "sourceWindow": [
+    244,
+    349
+   ],
+   "lines": [
+    {
+     "text": "麥克風聽到噪音",
+     "start": 244,
+     "chars": [
+      247,
+      252,
+      258,
+      264,
+      269,
+      275,
+      281
+     ]
+    },
+    {
+     "text": "晶片算出相反的聲波",
+     "start": 291,
+     "chars": [
+      293,
+      299,
+      305,
+      310,
+      316,
+      322,
+      327,
+      333,
+      339
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "噪音",
+     "start": 275
+    },
+    {
+     "text": "相反",
+     "start": 316
+    }
+   ],
+   "cues": [
+    {
+     "id": "noise",
+     "text": "噪音",
+     "frame": 276
+    },
+    {
+     "id": "chip2",
+     "text": "晶片",
+     "frame": 295
+    },
+    {
+     "id": "anti",
+     "text": "相反",
+     "frame": 317
+    }
+   ],
+   "sub": "麥克風聽到噪音\n晶片算出相反的聲波",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.19,
+    0.38,
+    0.57,
+    0.759,
+    0.949,
+    1.139,
+    1.557,
+    1.747,
+    1.936,
+    2.126,
+    2.316,
+    2.506,
+    2.696,
+    2.886,
+    3.075
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 353,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 344,
+   "durationFrames": 101,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 353,
+   "voiceEndFrame": 427,
+   "stillFrame": 433,
+   "subtitleWindow": [
+    350,
+    445
+   ],
+   "sourceWindow": [
+    349,
+    445
+   ],
+   "lines": [
+    {
+     "text": "喇叭一放",
+     "start": 350,
+     "chars": [
+      352,
+      357,
+      363,
+      368
+     ]
+    },
+    {
+     "text": "兩邊一疊就抵消啦",
+     "start": 378,
+     "chars": [
+      380,
+      386,
+      392,
+      397,
+      403,
+      408,
+      414,
+      419
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "抵消",
+     "start": 408
+    }
+   ],
+   "cues": [
+    {
+     "id": "play",
+     "text": "放",
+     "frame": 370
+    },
+    {
+     "id": "stack",
+     "text": "一疊",
+     "frame": 393
+    },
+    {
+     "id": "cancel",
+     "text": "抵消",
+     "frame": 410
+    }
+   ],
+   "sub": "喇叭一放\n兩邊一疊就抵消啦",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.371,
+    0.557,
+    0.965,
+    1.15,
+    1.336,
+    1.521,
+    1.707,
+    1.892,
+    2.078,
+    2.263
+   ]
+  }
+ ]
+}

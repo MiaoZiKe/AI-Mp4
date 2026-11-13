@@ -13,16 +13,16 @@ import { Avatar, Caret, Cursor, Ripple, SendIcon, Window, px, rise, slam } from 
 import { CaptionUI, HeaderUI, SourceUI } from "./Tracks";
 
 /** 第 2 版版面：主視覺 330–1330（比第 1 版多 80px），字幕 1352–1588，出處 1612 起；安全區上下 220、左右 64 */
-const G = { TOP: L.MAIN_TOP, BOTTOM: 1330, CAP_TOP: 1352, SRC_TOP: 1612, MIN_PX: 28 };
-const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
-const Backdrop: React.FC = () => <AbsoluteFill style={{ background: T.bg, backgroundImage: `radial-gradient(${T.dot} 2px, transparent 2.5px)`, backgroundSize: "48px 48px", backgroundPosition: "16px 10px" }} />;
+export const G = { TOP: L.MAIN_TOP, BOTTOM: 1330, CAP_TOP: 1352, SRC_TOP: 1612, MIN_PX: 28 };
+export const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
+export const Backdrop: React.FC = () => <AbsoluteFill style={{ background: T.bg, backgroundImage: `radial-gradient(${T.dot} 2px, transparent 2.5px)`, backgroundSize: "48px 48px", backgroundPosition: "16px 10px" }} />;
 /** 估字寬（em）：全形 1、英數 0.6、空白 0.3 */
-const emW = (s: string) => [...s].reduce((w, ch) => w + (/\s/.test(ch) ? 0.3 : /[\x21-\x7e]/.test(ch) ? 0.6 : 1), 0);
+export const emW = (s: string) => [...s].reduce((w, ch) => w + (/\s/.test(ch) ? 0.3 : /[\x21-\x7e]/.test(ch) ? 0.6 : 1), 0);
 
 // ── 手繪記號：紅筆圈、打勾、底線（描線進場 motion.in＋2 幀） ──
-const draw = (f: number, at: number) => tween(f, at, T.motion.in + 2, EASE.move);
+export const draw = (f: number, at: number) => tween(f, at, T.motion.in + 2, EASE.move);
 const stroke = (p: number, color: string, w: number) => ({ fill: "none", stroke: color, strokeWidth: w, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, pathLength: 1, strokeDasharray: "1", strokeDashoffset: 1 - p, opacity: p > 0 ? 1 : 0 });
-const HandCircle: React.FC<{ w: number; h: number; p: number; color: string }> = ({ w, h, p, color }) => {
+export const HandCircle: React.FC<{ w: number; h: number; p: number; color: string }> = ({ w, h, p, color }) => {
   const W = w + 44, H = h + 20, x = (k: number) => (k * W).toFixed(1), y = (k: number) => (k * H).toFixed(1);
   return (
     <svg width={W} height={H} style={{ position: "absolute", left: -22, top: -10, overflow: "visible" }}>
@@ -30,17 +30,17 @@ const HandCircle: React.FC<{ w: number; h: number; p: number; color: string }> =
     </svg>
   );
 };
-const HandUnderline: React.FC<{ w: number; p: number; color: string }> = ({ w, p, color }) => (
+export const HandUnderline: React.FC<{ w: number; p: number; color: string }> = ({ w, p, color }) => (
   <svg width={w + 12} height={20} style={{ position: "absolute", left: -6, bottom: -14, overflow: "visible" }}>
     <path d={`M3 12 Q${(w * 0.25).toFixed(1)} 3 ${(w * 0.5).toFixed(1)} 10 T${(w + 8).toFixed(1)} 8`} {...stroke(p, color, 7)} />
   </svg>
 );
-const HandCheck: React.FC<{ size: number; p: number; color: string; style?: React.CSSProperties }> = ({ size, p, color, style }) => (
+export const HandCheck: React.FC<{ size: number; p: number; color: string; style?: React.CSSProperties }> = ({ size, p, color, style }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" style={{ overflow: "visible", ...style }}><path d="M7 26 L19 39 L43 9" {...stroke(p, color, 6.5)} /></svg>
 );
 
 /** 一段文字：**粗體**、只顯示前 n 個字（其餘佔位不顯示，版面不跳）、指定字串上畫圈或底線 */
-const Rich: React.FC<{ text: string; n?: number; size: number; mark?: { kind: Mark["kind"]; target?: string }; markP?: number; markColor?: string; boldColor?: string }> = ({ text, n = Infinity, size, mark, markP = 1, markColor = T.text, boldColor }) => {
+export const Rich: React.FC<{ text: string; n?: number; size: number; mark?: { kind: Mark["kind"]; target?: string }; markP?: number; markColor?: string; boldColor?: string }> = ({ text, n = Infinity, size, mark, markP = 1, markColor = T.text, boldColor }) => {
   const parts = text.split("**"), chars: { ch: string; b: boolean }[] = [];
   parts.forEach((seg, k) => [...seg].forEach((ch) => chars.push({ ch, b: k % 2 === 1 })));
   const plain = chars.map((c) => c.ch).join("");
@@ -75,8 +75,8 @@ const ToolTag: React.FC<{ m: Model2; f: number }> = ({ m, f }) => {
   const s = slam(f, m.toolTag.at, 1.25), b = accentUI("blue");
   return <div style={{ ...zh(G.MIN_PX, T.weight.body, b.text), background: b.soft, border: `2px solid ${b.fill}`, borderRadius: T.radius.pill, padding: "4px 20px", opacity: s.opacity, transform: `scale(${s.scale.toFixed(3)})`, transformOrigin: "100% 50%" }}>{m.toolTag.text}</div>;
 };
-const By: React.FC<{ text?: string }> = ({ text }) => (text ? <div style={zh(G.MIN_PX, T.weight.body, T.text2)}>{text}</div> : null);
-const Dots: React.FC<{ f: number; size?: number }> = ({ f, size = 14 }) => <>{[0, 1, 2].map((i) => <div key={i} style={{ width: size, height: size, borderRadius: T.radius.pill, background: T.text2, opacity: Math.floor(f / 4) % 3 === i ? 1 : 0.35 }} />)}</>;
+export const By: React.FC<{ text?: string }> = ({ text }) => (text ? <div style={zh(G.MIN_PX, T.weight.body, T.text2)}>{text}</div> : null);
+export const Dots: React.FC<{ f: number; size?: number }> = ({ f, size = 14 }) => <>{[0, 1, 2].map((i) => <div key={i} style={{ width: size, height: size, borderRadius: T.radius.pill, background: T.text2, opacity: Math.floor(f / 4) % 3 === i ? 1 : 0.35 }} />)}</>;
 
 // ── 第一段：大字鉤子＋聊天視窗（隨便問 → 真的回答，紅筆圈） ──
 const CHAT = { x: L.X, w: L.INNER_W, top0: 846, bar: 72 };
@@ -250,7 +250,7 @@ const EditorStage: React.FC<{ m: Model2; f: number }> = ({ m, f }) => {
 
 // ── 第三段：上下並排對照（兩個回答同時停在畫面上） ──
 const CMP = { h: 452, gap: 96 };
-const CompareCard: React.FC<{ s: CmpSide; by?: string; color: string; y: number }> = ({ s, by, color, y }) => {
+export const CompareCard: React.FC<{ s: CmpSide; by?: string; color: string; y: number }> = ({ s, by, color, y }) => {
   const a = accentUI(color);
   return (
     <div style={{ position: "absolute", left: L.X, top: y, width: L.INNER_W, height: CMP.h, boxSizing: "border-box", background: T.panel, border: `2px solid ${T.line}`, borderTop: `8px solid ${a.fill}`, borderRadius: T.radius.card, boxShadow: T.shadow, padding: "22px 30px" }}>
@@ -258,7 +258,7 @@ const CompareCard: React.FC<{ s: CmpSide; by?: string; color: string; y: number 
         <div style={{ ...zh(44, T.weight.zh, T.onAccent), background: a.fill, borderRadius: T.radius.chip, padding: "4px 24px", letterSpacing: "0.04em" }}>{s.label}</div>
         <By text={by} />
       </div>
-      <div style={{ marginTop: 18, height: 76, boxSizing: "border-box", display: "flex", alignItems: "center", padding: "0 30px", background: T.field, border: `2px solid ${T.line}`, borderRadius: T.radius.pill, ...zh(36, T.weight.light, T.text2) }}>{s.prompt}</div>
+      <div style={{ marginTop: 18, height: 76, boxSizing: "border-box", display: "flex", alignItems: "center", padding: "0 30px", background: T.field, border: `2px solid ${T.line}`, borderRadius: T.radius.pill, ...zh(s.promptPx ?? 36, T.weight.light, T.text2) }}>{s.prompt}</div>
       <div style={{ display: "flex", gap: 16, marginTop: 20, alignItems: "flex-start" }}>
         <Avatar size={60} />
         <div style={{ flex: 1, position: "relative", paddingRight: s.mark?.kind === "check" ? 92 : 0 }}>
@@ -292,7 +292,7 @@ const CompareStage: React.FC<{ m: Model2; f: number }> = ({ m, f }) => {
 
 // ── 第四段：可以截圖的範本卡＋提問 ──
 const TPL = { h: 836, askH: 120 };
-const tplLine = (t: string) => {
+export const tplLine = (t: string) => {
   const v = accentUI("violet"), am = accentUI("amber"), bl = accentUI("blue"), gr = accentUI("green");
   const num = /^(\d\.)\s*(.*)$/.exec(t);
   if (num) return <><span style={{ color: gr.text, fontWeight: T.weight.zh, marginRight: 14 }}>{num[1]}</span>{num[2]}</>;

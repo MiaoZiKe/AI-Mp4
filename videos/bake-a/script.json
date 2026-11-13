@@ -1,0 +1,93 @@
+{
+  "slug": "bake-a",
+  "title": "無線耳機裡面有什麼？拆開看主動降噪（科技風格試片：3D 產品台）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": { "name": "科技", "tag": "拆開來看", "slogan": "一支講透一件事" },
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": { "preset": "tech", "delivery": "chat", "scene": "下班後的小吃店，兩個人面對面坐著，邊吃邊聊，旁邊沒有別人在聽" }
+  },
+  "cover": { "title": ["降噪", "靠出聲？"], "sub": "拆開看主動降噪" },
+  "scenes": [
+    {
+      "id": "s1", "beat": "hook", "para": 1,
+      "narration": "欸，降噪耳機會安靜，其實是它在出聲。",
+      "subtitle": { "zh": "欸，降噪耳機會安靜\n其實是它在出聲", "en": "Noise-cancelling earbuds get quiet | because they make sound." },
+      "keywords": ["出聲"],
+      "cues": [ { "id": "anc", "text": "降噪" }, { "id": "sound", "text": "出聲" } ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": { "title": "降噪靠出聲？" },
+        "spin": { "at": "start+0", "until": "exit" }
+      },
+      "sources": []
+    },
+    {
+      "id": "s2", "beat": "mechanism", "para": 1,
+      "narration": "拆開外殼，電池、晶片、天線，",
+      "subtitle": { "zh": "拆開外殼\n電池、晶片、天線", "en": "Open the shell: | battery, chip, antenna," },
+      "keywords": ["電池", "晶片", "天線"],
+      "cues": [ { "id": "open", "text": "拆開" }, { "id": "battery", "text": "電池" }, { "id": "chip", "text": "晶片" }, { "id": "antenna", "text": "天線" } ],
+      "component": "ThreeScene",
+      "props": {
+        "explode": { "at": "open-6" },
+        "labels": [
+          { "part": "battery", "text": "電池", "color": "mint", "at": "battery", "until": "s3:speaker-4" },
+          { "part": "chip", "text": "藍牙晶片", "color": "coral", "at": "chip" },
+          { "part": "antenna", "text": "天線", "color": "amber", "at": "antenna", "until": "s3:speaker-4" }
+        ]
+      },
+      "sources": ["示意模型，非特定機型；零件形狀與層次順序各家不同"]
+    },
+    {
+      "id": "s3", "beat": "mechanism", "para": 1,
+      "narration": "還有喇叭跟好幾顆麥克風。",
+      "subtitle": { "zh": "還有喇叭\n跟好幾顆麥克風", "en": "plus a speaker | and several microphones." },
+      "keywords": ["喇叭", "麥克風"],
+      "cues": [ { "id": "speaker", "text": "喇叭" }, { "id": "mic", "text": "麥克風" } ],
+      "component": "ThreeScene",
+      "props": {
+        "labels": [
+          { "part": "speaker", "text": "喇叭單體", "color": "blue", "at": "speaker" },
+          { "part": "mic", "text": "麥克風", "color": "amber", "at": "mic" }
+        ]
+      },
+      "sources": ["示意模型，非特定機型；零件形狀與層次順序各家不同"]
+    },
+    {
+      "id": "s4", "beat": "twist", "para": 2,
+      "narration": "麥克風聽到噪音，晶片算出相反的聲波，",
+      "subtitle": { "zh": "麥克風聽到噪音\n晶片算出相反的聲波", "en": "The mics hear the noise, | the chip computes the opposite wave," },
+      "keywords": ["噪音", "相反"],
+      "cues": [ { "id": "noise", "text": "噪音" }, { "id": "chip2", "text": "晶片" }, { "id": "anti", "text": "相反" } ],
+      "component": "ThreeScene",
+      "props": {
+        "focus": { "layer": "anti", "at": "anti-8" },
+        "labels": [
+          { "part": "noise", "text": "噪音", "color": "coral", "at": "noise", "until": "s5:exit" },
+          { "part": "anti", "text": "反相聲波", "color": "blue", "at": "anti" }
+        ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測資料"]
+    },
+    {
+      "id": "s5", "beat": "payoff", "para": 2,
+      "narration": "喇叭一放，兩邊一疊就抵消啦。",
+      "subtitle": { "zh": "喇叭一放\n兩邊一疊就抵消啦", "en": "The speaker plays it, | and the two cancel out." },
+      "keywords": ["抵消"],
+      "cues": [ { "id": "play", "text": "放" }, { "id": "stack", "text": "一疊" }, { "id": "cancel", "text": "抵消" } ],
+      "component": "ThreeScene",
+      "props": {
+        "orbit": { "at": "play-2" },
+        "settle": { "at": "cancel-6" },
+        "labels": [ { "part": "cancel", "text": "互相抵消", "color": "mint", "at": "cancel" } ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測資料"]
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "slug": "bake-c",
+  "title": "無線耳機裡面有什麼？（科技風格試片：3D 產品台）",
+  "asOf": "2026/11/13",
+  "sample": true,
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": {
+    "name": "科技",
+    "tag": "拆開來看",
+    "slogan": "一支講透一件事"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "persona": "三十歲左右的台灣女生，在科技業做產品，平常就愛拆東西，把剛拆開看到的東西講給外行朋友聽",
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [
+        4.6,
+        5.0
+      ],
+      "tone": "輕快、有好奇心，句子之間不拖；像拆完一顆耳機順口跟朋友聊",
+      "arc": {
+        "起": "帶一點好奇，像要揭開一個小秘密",
+        "承": "邊指邊講，一句一個東西",
+        "轉": "講到降噪原理時語氣亮起來",
+        "合": "輕鬆收掉"
+      },
+      "avoid": [
+        "播新聞的腔調",
+        "一個字一個字慢慢念",
+        "平平的、像機器念稿的語調",
+        "句子中間拖長音",
+        "越講越慢"
+      ],
+      "voices": [
+        "Sulafat"
+      ]
+    }
+  },
+  "cover": {
+    "title": [
+      "耳機裡",
+      "有什麼？"
+    ],
+    "sub": "拆開看真無線耳機"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "欸，拆開一顆無線耳機看看？",
+      "subtitle": {
+        "zh": "欸，拆開一顆無線耳機看看？",
+        "en": "Hey, let's open up a wireless earbud."
+      },
+      "keywords": [
+        "無線耳機"
+      ],
+      "cues": [
+        {
+          "id": "open",
+          "text": "拆開"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": {
+          "title": "無線耳機裡面有什麼？"
+        },
+        "spin": {
+          "at": "start+0",
+          "until": "open+4"
+        },
+        "explode": {
+          "at": "open-4"
+        }
+      },
+      "sources": [
+        "示意模型，非特定機型；零件位置與形狀為示意"
+      ]
+    },
+    {
+      "id": "s2",
+      "beat": "mechanism",
+      "para": 1,
+      "narration": "外殼裡塞著電池、晶片和天線。",
+      "subtitle": {
+        "zh": "外殼裡塞著\n電池、晶片和天線",
+        "en": "Inside the shell: a battery, a chip, and an antenna."
+      },
+      "keywords": [
+        "電池",
+        "晶片",
+        "天線"
+      ],
+      "cues": [
+        {
+          "id": "shell",
+          "text": "外殼"
+        },
+        {
+          "id": "battery",
+          "text": "電池"
+        },
+        {
+          "id": "chip",
+          "text": "晶片"
+        },
+        {
+          "id": "antenna",
+          "text": "天線"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "sweep": [
+          {
+            "at": "shell-2"
+          },
+          {
+            "at": "antenna+2"
+          }
+        ],
+        "labels": [
+          {
+            "part": "battery",
+            "text": "電池",
+            "color": "amber",
+            "at": "battery"
+          },
+          {
+            "part": "chip",
+            "text": "晶片",
+            "color": "coral",
+            "at": "chip"
+          }
+        ]
+      },
+      "sources": [
+        "示意模型，非特定機型；各家耳機的電池與晶片位置不同"
+      ]
+    },
+    {
+      "id": "s3",
+      "beat": "mechanism",
+      "para": 1,
+      "narration": "喇叭單體負責把聲音送進耳朵。",
+      "subtitle": {
+        "zh": "喇叭單體負責\n把聲音送進耳朵",
+        "en": "The speaker driver sends sound into your ear."
+      },
+      "keywords": [
+        "喇叭單體"
+      ],
+      "cues": [
+        {
+          "id": "driver",
+          "text": "喇叭單體"
+        },
+        {
+          "id": "ear",
+          "text": "耳朵"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "focus": {
+          "layer": "driver",
+          "at": "driver-8"
+        },
+        "sweep": {
+          "at": "driver-2"
+        },
+        "labels": [
+          {
+            "part": "driver",
+            "text": "喇叭單體",
+            "color": "coral",
+            "at": "driver",
+            "until": "s5:cancel+10"
+          }
+        ]
+      },
+      "sources": [
+        "示意模型；一般真無線耳機的動圈單體約 6–14 毫米，依機型而異"
+      ]
+    },
+    {
+      "id": "s4",
+      "beat": "twist",
+      "para": 2,
+      "narration": "主動降噪靠麥克風先收外面的噪音，",
+      "subtitle": {
+        "zh": "主動降噪靠麥克風\n先收外面的噪音",
+        "en": "ANC starts with a mic that catches outside noise."
+      },
+      "keywords": [
+        "主動降噪",
+        "麥克風"
+      ],
+      "cues": [
+        {
+          "id": "anc",
+          "text": "主動降噪"
+        },
+        {
+          "id": "mic",
+          "text": "麥克風"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "orbit": {
+          "at": "anc-2"
+        },
+        "settle": {
+          "at": "mic+6"
+        },
+        "sweep": {
+          "at": "anc"
+        },
+        "labels": [
+          {
+            "part": "mic",
+            "text": "麥克風",
+            "color": "mint",
+            "at": "mic"
+          }
+        ]
+      },
+      "sources": [
+        "原理：外側麥克風收噪音，內側麥克風校正（示意）"
+      ]
+    },
+    {
+      "id": "s5",
+      "beat": "payoff",
+      "para": 2,
+      "narration": "再發出反相的聲波，把它抵消掉。",
+      "subtitle": {
+        "zh": "再發出反相的聲波\n把它抵消掉",
+        "en": "It plays back an inverted wave to cancel it out."
+      },
+      "keywords": [
+        "反相",
+        "抵消"
+      ],
+      "cues": [
+        {
+          "id": "anti",
+          "text": "反相"
+        },
+        {
+          "id": "cancel",
+          "text": "抵消"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "focus": {
+          "layer": "driver",
+          "at": "anti-6"
+        },
+        "rename": {
+          "part": "driver",
+          "text": "反相聲波",
+          "en": "Anti-noise wave",
+          "at": "anti"
+        },
+        "sweep": {
+          "at": "cancel-2"
+        }
+      },
+      "sources": [
+        "原理：相位相反的聲波互相抵消（示意）"
+      ]
+    }
+  ]
+}

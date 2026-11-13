@@ -224,8 +224,8 @@ export const makeMaterial = (m: ProductModel, name: string, fx: Fx, vertexColors
   // 自發光畫面不加環境反光（面積大、每個像素多查一次貼圖，看起來差很少）；要加就在材質寫 env
   if (fx.env && (isMetal || coat) && (kind !== "screen" || d.env !== undefined)) {
     p.envMap = studioEnv(!(coat || rough < 0.27));
-    if (coat) { p.combine = THREE.AddOperation; p.reflectivity = (d.env ?? 1) * K.envCoat * (d.clearcoat ?? 1) * (kind === "screen" ? 0.6 : 1); }
-    else { p.combine = THREE.MultiplyOperation; p.reflectivity = Math.min(1, (d.env ?? 1) * K.envMetal * (0.55 + 0.45 * metal)); }
+    if (isMetal) { p.combine = THREE.MultiplyOperation; p.reflectivity = Math.min(1, (d.env ?? 1) * K.envMetal * (0.55 + 0.45 * metal)); }
+    else { p.combine = THREE.AddOperation; p.reflectivity = (d.env ?? 1) * K.envCoat * (d.clearcoat ?? 1); }
   }
   return new THREE.MeshPhongMaterial(p);
 };

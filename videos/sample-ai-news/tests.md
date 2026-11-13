@@ -5,7 +5,7 @@
 | 項目 | 內容 |
 |---|---|
 | 工具 | Gemini（走 Gemini API 的 generateContent，**沒有開搜尋工具**，沒有系統提示，參數全用預設） |
-| 模型 | 請求寫 `gemini-3.5-flash`；回應的 `modelVersion` 是 `gemini-3.6-flash`（兩次都是） |
+| 模型 | 請求寫 `gemini-3.5-flash`；回應的 `modelVersion` 是 `gemini-3.6-flash`（三次都是） |
 | 為什麼不是 gemini-2.5-flash | 2026/11/13 送 `gemini-2.5-flash` 回 404（不再開放給新使用者）；`gemini-3.8-flash` 連續 503／502，所以落到下一個 |
 | 隨便問 | 台灣時間 2026-11-13 18:07:19 送出，`tests/01-casual.json` |
 | 隨便問再送一次 | 台灣時間 2026-11-13 18:38:24 送出，`tests/03-casual-repeat.json`。前三次嘗試回 502（上游失敗），第四次成功；失敗的沒有回答可存 |

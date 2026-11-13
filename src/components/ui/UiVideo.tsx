@@ -9,6 +9,7 @@ import { bez, buildModel, mix, type UiModel } from "./engine";
 import { Avatar, Caret, CheckIcon, Cursor, DocIcon, Ripple, SendIcon, Window, px, rise, slam, typedN } from "./parts";
 import { CaptionUI, HeaderUI, SourceUI } from "./Tracks";
 import { VideoUI2 } from "./UiVideo2";
+import { VideoUI3 } from "./UiVideo3";
 
 const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
 /** 背景：深色＋圓點格（每格 48px） */
@@ -225,8 +226,8 @@ const EditorStage: React.FC<{ m: UiModel; f: number }> = ({ m, f }) => {
   );
 };
 
-/** script.json 頂層 uiVersion: 2 → 第 2 版（UiVideo2.tsx）；沒寫＝第 1 版，畫面不變 */
-export const VideoUI: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as { uiVersion?: number }).uiVersion === 2 ? <VideoUI2 {...props} /> : <VideoUI1 {...props} />);
+/** script.json 頂層 uiVersion: 2 → 第 2 版（UiVideo2.tsx）；3 → 第 3 版（UiVideo3.tsx，完整長片）；沒寫＝第 1 版，畫面不變 */
+export const VideoUI: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as { uiVersion?: number }).uiVersion === 3 ? <VideoUI3 {...props} /> : (props as { uiVersion?: number }).uiVersion === 2 ? <VideoUI2 {...props} /> : <VideoUI1 {...props} />);
 const VideoUI1: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
   const f = useCurrentFrame();
   const m = useMemo(() => buildModel(scenes, timeline), [scenes, timeline]);
@@ -270,8 +271,8 @@ export const CoverUI: React.FC<Script & { coverCrop?: number }> = ({ cover, scen
           <div style={{ position: "absolute", right: 16, width: 92, height: 92, borderRadius: T.radius.pill, background: v.fill, display: "flex", alignItems: "center", justifyContent: "center" }}><SendIcon size={50} color={T.onAccent} /></div>
         </div>
       ) : null}
-      <div style={{ position: "absolute", left: L.X, top: 1220, width: L.INNER_W, display: "flex", gap: 24 }}>
-        {slots.map((s, i) => <div key={i} style={{ flex: 1, height: 96, borderRadius: T.radius.chip, background: accentUI(s.color).fill, display: "flex", alignItems: "center", justifyContent: "center", ...zh(50, T.weight.zh, T.onAccent), letterSpacing: "0.08em" }}>{s.label}</div>)}
+      <div style={{ position: "absolute", left: L.X, top: 1220, width: L.INNER_W, display: "flex", gap: slots.length > 4 ? 12 : 24 }}>
+        {slots.map((s, i) => <div key={i} style={{ flex: 1, height: 96, borderRadius: T.radius.chip, background: accentUI(s.color).fill, display: "flex", alignItems: "center", justifyContent: "center", ...zh(slots.length > 4 ? 38 : 50, T.weight.zh, T.onAccent), letterSpacing: slots.length > 4 ? "0.02em" : "0.08em" }}>{s.label}</div>)}
       </div>
     </AbsoluteFill>
   );

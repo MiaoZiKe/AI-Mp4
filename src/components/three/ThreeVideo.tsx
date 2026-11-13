@@ -24,7 +24,7 @@ const Backdrop: React.FC<{ lay: number; fo?: number; fx?: Fx }> = ({ lay, fo = 0
       {Array.from({ length: 9 }, (_, i) => { const x = 540 + (i - 4) * 150; return <line key={i} x1={x} y1={L.STAGE_TOP + 560} x2={540 + (i - 4) * 330} y2={L.CAP_TOP + 30} stroke={T.grid} strokeWidth={2} />; })}
       {[0, 70, 160, 280, 440].map((d, i) => <line key={`h${i}`} x1={0} x2={L.W} y1={L.STAGE_TOP + 560 + d} y2={L.STAGE_TOP + 560 + d} stroke={T.grid} strokeWidth={2} />)}
     </svg>
-    {fx?.vignette !== false && fo > 0.01 ? <div style={{ position: "absolute", inset: 0, opacity: fo, background: `linear-gradient(90deg, ${T.vignette[1]} 0%, ${T.vignette[0]} 30%, ${T.vignette[0]} 70%, ${T.vignette[1]} 100%)` }} /> : null}
+    {fx?.vignette !== false && fo > 0.01 ? <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP - 80, width: L.W, height: L.STAGE_H + 80, opacity: fo, maskImage: "linear-gradient(180deg, transparent 0%, black 22%, black 78%, transparent 100%)", WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 22%, black 78%, transparent 100%)", background: `linear-gradient(90deg, ${T.vignette[1]} 0%, ${T.vignette[0]} 30%, ${T.vignette[0]} 70%, ${T.vignette[1]} 100%)` }} /> : null}
   </AbsoluteFill>
 );
 
@@ -37,10 +37,11 @@ const Trails: React.FC<{ m: Model3D; s: State3D; f: number; fx: Fx }> = ({ m, s,
   const rect = (d: (typeof pr.layers)[number]) => { const [w, h, cx, cy] = d.outline ?? [pr.size.w, pr.size.h, 0, 0]; return [[cx - w / 2, cy - h / 2], [cx + w / 2, cy - h / 2], [cx + w / 2, cy + h / 2], [cx - w / 2, cy + h / 2]]; };
   const poly = (st: State3D, c: THREE.PerspectiveCamera, d: (typeof pr.layers)[number]) => rect(d).map((q) => { const p = projectPoint(st, c, d.id, [q[0], q[1], 0]); return `${p.x.toFixed(1)},${p.y.toFixed(1)}`; }).join(" ");
   const ghosts: React.ReactNode[] = [];
-  if (fx.ghost) [3, 6, 9].forEach((lag, gi) => {
+  // 殘影只在「躺平之後、各層分開」的時候畫（躺下的過程整支在轉，畫出來會像線框亂飛）
+  if (fx.ghost && s.lay >= 0.999) [3, 6, 9].forEach((lag, gi) => {
     const ps = stateAt(m, f - lag), pc = cameraFor(ps);
     pr.layers.forEach((d) => {
-      if (Math.abs(ps.layers[d.id].z - s.layers[d.id].z) < 0.12 || s.layers[d.id].opacity < 0.2) return;
+      if (ps.lay < 0.999 || Math.abs(ps.layers[d.id].z - s.layers[d.id].z) < 0.12 || s.layers[d.id].opacity < 0.2) return;
       ghosts.push(<polygon key={`${d.id}${lag}`} points={poly(ps, pc, d)} fill="none" stroke={T.ink3} strokeWidth={3} strokeLinejoin="round" opacity={[0.5, 0.32, 0.16][gi] * s.layers[d.id].opacity} />);
     });
   });

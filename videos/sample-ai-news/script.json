@@ -1,975 +1,1006 @@
 {
-  "slug": "sample-ai-news",
-  "title": "十月物價新聞丟給 AI：隨便問拿到兩年前的數字",
-  "asOf": "2026/11/13",
-  "styleVersion": 3,
-  "stage": "ui",
-  "uiVersion": 3,
-  "sample": false,
-  "channel": {
-    "name": "AI",
-    "tag": "AI 動手做",
-    "slogan": "看完就能照著做"
-  },
-  "audio": {
-    "bgm": true,
-    "sfx": true
-  },
-  "voice": {
-    "voiceName": "Sulafat",
-    "model": "gemini-2.5-flash-preview-tts",
-    "mode": "take",
-    "languageCode": "cmn-TW",
-    "profile": {
-      "preset": "ai",
-      "gender": "female",
-      "delivery": "chat",
-      "scene": "咖啡店裡兩個人並肩坐著，筆電開著，她湊過去看朋友的螢幕，一邊指一邊講",
-      "arc": {
-        "起": "像剛滑到一則新聞，轉頭問旁邊的朋友",
-        "承": "邊操作邊講，看到數字不對的地方愣一下才講",
-        "轉": "講到它也會出錯的地方，慢下來、小聲一點提醒",
-        "合": "鬆下來，隨口問對方一句，再順口提下一次要聊什麼"
-      },
-      "englishTerms": {
-        "A I": "英文字母 A 和 I，分開念",
-        "Gemini": "JEM-ih-nye，三個音節"
-      },
-      "voices": [
-        "Sulafat"
-      ]
-    }
-  },
-  "tests": {
-    "tool": "Gemini",
-    "model": "gemini-3.5-flash（回應的 modelVersion 是 gemini-3.6-flash）",
-    "via": "Gemini API，未開搜尋工具",
-    "date": "2026/11/13",
-    "files": [
-      "tests/01-casual.json",
-      "tests/02-better.json",
-      "tests/03-casual-repeat.json"
-    ]
-  },
-  "cover": {
-    "title": [
-      "物價新聞",
-      "丟給 AI？"
-    ],
-    "sub": "隨便問，拿到兩年前的數字"
-  },
-  "scenes": [
-    {
-      "id": "s01",
-      "beat": "hook",
-      "para": 1,
-      "narration": "欸，十月物價出來了，你有叫 AI 抓重點嗎？",
-      "tts": "欸，十月物價出來了，你有叫 A I 抓重點嗎？",
-      "subtitle": {
-        "zh": "十月物價出來了\n你有叫 AI 抓重點嗎？",
-        "en": "October prices are out. | Did you ask AI for the key points?"
-      },
-      "keywords": [
-        "抓重點"
-      ],
-      "cues": [
-        {
-          "id": "cpi",
-          "text": "物價"
-        },
-        {
-          "id": "key",
-          "text": "抓重點"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "hook": {
-          "title": "AI 抓對\n重點了嗎？",
-          "kicker": "10 月物價新聞",
-          "solid": true,
-          "size": "xl"
-        },
-        "draft": {
-          "text": "10月CPI的新聞幫我抓重點",
-          "typeAt": "cpi",
-          "typeEnd": "key+8",
-          "placeholder": "問 AI 任何事…",
-          "empty": {
-            "title": "今天想問什麼？",
-            "chips": [
-              "抓重點",
-              "看新聞",
-              "問物價"
-            ]
-          },
-          "pauses": [
-            6,
-            9
-          ]
-        }
-      },
-      "sources": [
-        "主計總處 2026/11/5 公布（經中央社等報導）"
-      ]
-    },
-    {
-      "id": "s02",
-      "beat": "you",
-      "para": 1,
-      "narration": "我們拿 Gemini 實測，只打一句話。",
-      "subtitle": {
-        "zh": "我們拿 Gemini 實測\n只打一句話",
-        "en": "We tested it on Gemini | with just one line."
-      },
-      "keywords": [
-        "實測",
-        "一句話"
-      ],
-      "cues": [
-        {
-          "id": "test",
-          "text": "實測"
-        },
-        {
-          "id": "one",
-          "text": "一句話"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "toolTag": {
-          "text": "Gemini｜2026/11/13 實測",
-          "at": "test-4"
-        },
-        "send": {
-          "at": "one"
-        },
-        "typing": {
-          "at": "one+8"
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s03",
-      "beat": "you",
-      "para": 2,
-      "narration": "它回了一大篇，說十月是 1.69%。",
-      "tts": "它回了一大篇，說十月是一點六九趴。",
-      "subtitle": {
-        "zh": "它回了一大篇\n說十月是 1.69%",
-        "en": "It wrote a long answer: | October was 1.69%."
-      },
-      "keywords": [
-        "1.69%"
-      ],
-      "cues": [
-        {
-          "id": "long",
-          "text": "一大篇"
-        },
-        {
-          "id": "old",
-          "text": "1.69"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "reply": {
-          "at": "start",
-          "excerpt": true,
-          "note": "（節錄）",
-          "lines": [
-            "台灣主計總處公布的 10 月 CPI 年增率為 **1.69%**。",
-            "跌破通膨警示線：年增率降至 1.69%，跌破了央行的 2% 通膨警戒線，創下近 3 年半（42 個月）以來的新低。"
-          ],
-          "more": "（下面還有美國 CPI 一大段，全文見貼文說明）",
-          "mark": {
-            "kind": "circle",
-            "target": "1.69%",
-            "at": "old"
-          },
-          "by": "Gemini 實測・2026/11/13（節錄）"
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s04",
-      "beat": "twist",
-      "para": 2,
-      "narration": "蛤？那是兩年前的啦，今年是 2.33%。",
-      "tts": "蛤？那是兩年前的啦，今年是二點三三趴。",
-      "pauseAfter": 0.4,
-      "subtitle": {
-        "zh": "蛤？那是兩年前的啦\n今年是 2.33%",
-        "en": "Huh? That was two years ago. | This year it's 2.33%."
-      },
-      "keywords": [
-        "兩年前",
-        "2.33%"
-      ],
-      "cues": [
-        {
-          "id": "huh",
-          "text": "蛤"
-        },
-        {
-          "id": "two",
-          "text": "兩年前"
-        },
-        {
-          "id": "now",
-          "text": "2.33"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "stamp": {
-          "text": "2024 年的數字",
-          "at": "two"
-        },
-        "fact": {
-          "text": "2026 年 10 月：2.33%",
-          "sub": "連 6 個月高於 2%｜主計總處 11/5 公布",
-          "at": "now-4"
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13",
-        "主計總處"
-      ]
-    },
-    {
-      "id": "s05",
-      "beat": "mechanism",
-      "para": 2,
-      "narration": "也不能怪它啦，沒開搜尋，又沒給它新聞。",
-      "subtitle": {
-        "zh": "也不能怪它啦\n沒開搜尋\n又沒給它新聞",
-        "en": "Can't blame it. | Search was off, | and we gave it no article."
-      },
-      "keywords": [
-        "沒開搜尋",
-        "沒給它新聞"
-      ],
-      "cues": [
-        {
-          "id": "blame",
-          "text": "不能怪"
-        },
-        {
-          "id": "search",
-          "text": "沒開搜尋"
-        },
-        {
-          "id": "news",
-          "text": "沒給它新聞"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "reply2": {
-          "at": "start",
-          "excerpt": true,
-          "note": "（節錄）",
-          "lines": [
-            "針對台灣2024年10月的CPI（消費者物價指數）新聞，為您整理出以下4大關鍵重點：",
-            "CPI年增率：1.69%"
-          ],
-          "mark": {
-            "kind": "underline",
-            "target": "2024年10月",
-            "at": "start+12"
-          },
-          "tag": "再送一次（第 2 次）",
-          "by": "Gemini 實測・2026/11/13（節錄）"
-        },
-        "why": {
-          "at": "blame",
-          "items": [
-            {
-              "label": "沒開搜尋",
-              "color": "amber",
-              "at": "search"
-            },
-            {
-              "label": "沒給它新聞",
-              "color": "coral",
-              "at": "news"
-            }
-          ],
-          "foot": "測試條件：Gemini API、未開搜尋、沒有系統提示"
-        }
-      },
-      "sources": [
-        "測試條件見 tests.md；App 連網時可能不同，沒有測"
-      ]
-    },
-    {
-      "id": "s06",
-      "beat": "mechanism",
-      "para": 3,
-      "narration": "所以啊，換個問法。",
-      "subtitle": {
-        "zh": "所以啊\n換個問法",
-        "en": "So, | ask it differently."
-      },
-      "keywords": [
-        "換個問法"
-      ],
-      "cues": [
-        {
-          "id": "so",
-          "text": "所以"
-        },
-        {
-          "id": "change",
-          "text": "換個問法"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "editor": {
-          "at": "so",
-          "title": "這樣問",
-          "slotsAt": "change"
-        }
-      },
-      "sources": [
-        "提示全文見貼文說明"
-      ]
-    },
-    {
-      "id": "s07",
-      "beat": "mechanism",
-      "para": 3,
-      "narration": "先貼新聞，叫它只看這一段。",
-      "subtitle": {
-        "zh": "先貼新聞\n叫它只看這一段",
-        "en": "Paste the news first | and tell it to use only that."
-      },
-      "keywords": [
-        "貼新聞",
-        "只看這一段"
-      ],
-      "cues": [
-        {
-          "id": "paste",
-          "text": "貼新聞"
-        },
-        {
-          "id": "only",
-          "text": "只看"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "slots": [
-          {
-            "label": "貼原文",
-            "color": "blue",
-            "text": "【新聞整理】主計總處 11 月 5 日公布…",
-            "at": "paste"
-          },
-          {
-            "label": "只看這段",
-            "color": "violet",
-            "text": "請只根據這段文字回答",
-            "at": "only"
-          }
-        ],
-        "sourcePlain": true
-      },
-      "sources": [
-        "提示全文見貼文說明"
-      ]
-    },
-    {
-      "id": "s08",
-      "beat": "mechanism",
-      "para": 3,
-      "narration": "沒寫到的就說原文沒寫。",
-      "subtitle": {
-        "zh": "沒寫到的\n就說原文沒寫",
-        "en": "If it's not in there, | say so."
-      },
-      "keywords": [
-        "原文沒寫"
-      ],
-      "cues": [
-        {
-          "id": "miss",
-          "text": "沒寫到"
-        },
-        {
-          "id": "say",
-          "text": "原文沒寫"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "slots": [
-          {
-            "label": "沒寫就說",
-            "color": "amber",
-            "text": "文字裡沒寫的就說「原文沒寫」",
-            "at": "say"
-          }
-        ],
-        "sourcePlain": true
-      },
-      "sources": [
-        "提示全文見貼文說明"
-      ]
-    },
-    {
-      "id": "s09",
-      "beat": "mechanism",
-      "para": 3,
-      "narration": "然後講你是誰，像我在台北租房、三餐外食。",
-      "subtitle": {
-        "zh": "然後講你是誰\n像我在台北租房\n三餐外食",
-        "en": "Then say who you are. | I rent in Taipei | and eat out every meal."
-      },
-      "keywords": [
-        "你是誰"
-      ],
-      "cues": [
-        {
-          "id": "who",
-          "text": "你是誰"
-        },
-        {
-          "id": "rent",
-          "text": "租房"
-        },
-        {
-          "id": "eat",
-          "text": "外食"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "slots": [
-          {
-            "label": "我是誰",
-            "color": "coral",
-            "text": "我是在台北租房子、三餐外食的上班族",
-            "at": "who"
-          }
-        ],
-        "sourcePlain": true
-      },
-      "sources": [
-        "提示全文見貼文說明"
-      ]
-    },
-    {
-      "id": "s10",
-      "beat": "mechanism",
-      "para": 3,
-      "narration": "最後分三段，確定的、還不確定的，還有跟我有關的。",
-      "subtitle": {
-        "zh": "最後分三段\n確定的、還不確定的\n還有跟我有關的",
-        "en": "Last, three parts: | confirmed, not yet confirmed, | and what matters to me."
-      },
-      "keywords": [
-        "分三段",
-        "確定的",
-        "還不確定的"
-      ],
-      "cues": [
-        {
-          "id": "three",
-          "text": "分三段"
-        },
-        {
-          "id": "sure",
-          "text": "確定的"
-        },
-        {
-          "id": "unsure",
-          "text": "還不確定"
-        },
-        {
-          "id": "me",
-          "text": "跟我有關"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "slots": [
-          {
-            "label": "分三段",
-            "color": "green",
-            "text": "已經確定的事／還不確定的事／跟我最有關的一點",
-            "at": "three",
-            "parts": [
-              {
-                "t": "已經確定的事",
-                "at": "sure"
-              },
-              {
-                "t": "還不確定的事",
-                "at": "unsure"
-              },
-              {
-                "t": "跟我最有關的一點",
-                "at": "me"
-              }
-            ]
-          }
-        ],
-        "sourcePlain": true
-      },
-      "sources": [
-        "提示全文見貼文說明"
-      ]
-    },
-    {
-      "id": "s11",
-      "beat": "payoff",
-      "para": 4,
-      "narration": "送出。你看，2.33%，數字對了。",
-      "tts": "送出。你看，二點三三趴，數字對了。",
-      "subtitle": {
-        "zh": "送出\n你看，2.33%\n數字對了",
-        "en": "Send. | Look, 2.33%. | The number is right."
-      },
-      "keywords": [
-        "2.33%",
-        "數字對了"
-      ],
-      "cues": [
-        {
-          "id": "go",
-          "text": "送出"
-        },
-        {
-          "id": "look",
-          "text": "你看"
-        },
-        {
-          "id": "right",
-          "text": "數字對了"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "send": {
-          "at": "go"
-        },
-        "result": {
-          "excerpt": true,
-          "note": "（節錄）",
-          "by": "Gemini 實測・2026/11/13（節錄）",
-          "at": "look",
-          "title": "1. 已經確定的事",
-          "titleColor": "green",
-          "lines": [
-            {
-              "t": "10月CPI年增2.33%，外食與房租持續上漲。",
-              "mark": {
-                "kind": "check",
-                "target": "2.33%",
-                "at": "right"
-              }
-            }
-          ]
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s12",
-      "beat": "payoff",
-      "para": 4,
-      "narration": "十一月會更高嗎？它放在還不確定。",
-      "subtitle": {
-        "zh": "十一月會更高嗎？\n它放在還不確定",
-        "en": "Will November be higher? | It filed that under not confirmed."
-      },
-      "keywords": [
-        "還不確定"
-      ],
-      "cues": [
-        {
-          "id": "nov",
-          "text": "十一月"
-        },
-        {
-          "id": "put",
-          "text": "還不確定"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "resultAdd": {
-          "at": "nov",
-          "lines": [
-            {
-              "t": "2. 還不確定的事",
-              "head": true,
-              "color": "amber"
-            },
-            {
-              "t": "預估11月CPI是否真會高於2%並比10月高。",
-              "focusAt": "put"
-            }
-          ]
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s13",
-      "beat": "payoff",
-      "para": 4,
-      "narration": "台北房租漲多少？它說原文沒寫。",
-      "subtitle": {
-        "zh": "台北房租漲多少？\n它說原文沒寫",
-        "en": "How much did Taipei rent rise? | It said the text doesn't say."
-      },
-      "keywords": [
-        "原文沒寫"
-      ],
-      "cues": [
-        {
-          "id": "rent",
-          "text": "台北房租"
-        },
-        {
-          "id": "none",
-          "text": "原文沒寫"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "resultAdd": {
-          "at": "rent",
-          "lines": [
-            {
-              "t": "台北市具體的房租與外食費漲幅，原文沒寫。",
-              "mark": {
-                "kind": "underline",
-                "target": "原文沒寫",
-                "at": "none"
-              }
-            }
-          ]
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s14",
-      "beat": "payoff",
-      "para": 4,
-      "narration": "一樣的 AI，問法不一樣而已。",
-      "tts": "一樣的 A I，問法不一樣而已。",
-      "pauseAfter": 0.5,
-      "subtitle": {
-        "zh": "一樣的 AI\n問法不一樣而已",
-        "en": "Same AI. | Only the way we asked changed."
-      },
-      "keywords": [
-        "一樣的",
-        "問法"
-      ],
-      "cues": [
-        {
-          "id": "same",
-          "text": "一樣的"
-        },
-        {
-          "id": "ask",
-          "text": "問法"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "compare": {
-          "at": "start",
-          "holdSec": 1.5,
-          "stamp": "Gemini｜2026/11/13 實測",
-          "top": {
-            "label": "隨便問",
-            "prompt": "10月CPI的新聞幫我抓重點",
-            "answer": "台灣主計總處公布的 10 月 CPI 年增率為 **1.69%**。",
-            "note": "（節錄）",
-            "mark": {
-              "kind": "circle",
-              "target": "1.69%"
-            },
-            "tag": "2024 年的數字"
-          },
-          "bottom": {
-            "label": "這樣問",
-            "prompt": "貼原文＋只看這段＋我是誰＋分三段",
-            "answer": "10月CPI年增2.33%，外食與房租持續上漲。",
-            "note": "（節錄）",
-            "mark": {
-              "kind": "check"
-            },
-            "tag": "和貼的原文一致"
-          },
-          "badge": {
-            "text": "同一個模型",
-            "at": "same"
-          },
-          "by": "Gemini 實測・2026/11/13（節錄）"
-        }
-      },
-      "sources": [
-        "Gemini API 實測（未開搜尋）2026/11/13"
-      ]
-    },
-    {
-      "id": "s15",
-      "beat": "twist",
-      "para": 5,
-      "narration": "不過齁，官方的看法，它也算進確定的。",
-      "subtitle": {
-        "zh": "不過齁\n官方的看法\n它也算進確定的",
-        "en": "But, | an official's opinion | also went under confirmed."
-      },
-      "keywords": [
-        "看法",
-        "確定的"
-      ],
-      "cues": [
-        {
-          "id": "but",
-          "text": "不過"
-        },
-        {
-          "id": "view",
-          "text": "看法"
-        },
-        {
-          "id": "as",
-          "text": "確定的"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "result": {
-          "excerpt": true,
-          "note": "（節錄）",
-          "by": "Gemini 實測・2026/11/13（節錄）",
-          "at": "but",
-          "title": "1. 已經確定的事",
-          "titleColor": "green",
-          "lines": [
-            {
-              "t": "前10月平均上漲1.98%，無輸入型通膨。",
-              "flag": {
-                "target": "無輸入型通膨",
-                "text": "這是主計總處的看法",
-                "color": "amber",
-                "at": "view"
-              }
-            }
-          ]
-        }
-      },
-      "sources": [
-        "Gemini 實測 2026/11/13；主計總處說法經自由時報報導"
-      ]
-    },
-    {
-      "id": "s16",
-      "beat": "twist",
-      "para": 5,
-      "narration": "所以重要的數字，自己再對原文。",
-      "subtitle": {
-        "zh": "所以重要的數字\n自己再對原文",
-        "en": "So for numbers that matter, | check the original yourself."
-      },
-      "keywords": [
-        "對原文"
-      ],
-      "cues": [
-        {
-          "id": "num",
-          "text": "重要的數字"
-        },
-        {
-          "id": "check",
-          "text": "對原文"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "remind": {
-          "at": "num",
-          "text": "AI 也會錯",
-          "sub": "數字、誰說的，回去對原文",
-          "pulseAt": "check"
-        }
-      },
-      "sources": [
-        "AI 也會錯，數字記得對原文"
-      ]
-    },
-    {
-      "id": "s17",
-      "beat": "cta",
-      "para": 6,
-      "narration": "範本在這，截圖存起來。",
-      "pauseAfter": 0.5,
-      "subtitle": {
-        "zh": "範本在這\n截圖存起來",
-        "en": "Here's the template. | Screenshot it."
-      },
-      "keywords": [
-        "範本",
-        "截圖"
-      ],
-      "cues": [
-        {
-          "id": "card",
-          "text": "範本"
-        },
-        {
-          "id": "shot",
-          "text": "截圖"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "template": {
-          "at": "start",
-          "title": "看新聞問 AI 範本",
-          "screenshot": true,
-          "lines": [
-            "下面是我貼的一段新聞。",
-            "請只根據這段文字回答，",
-            "文字裡沒寫的就說「原文沒寫」。",
-            "我是＿＿＿＿（你的處境）。",
-            "請分三段：",
-            "1. 已經確定的事",
-            "2. 還不確定的事",
-            "3. 跟我最有關的一點",
-            "【貼上新聞】"
-          ],
-          "pulseAt": "card",
-          "hint": "截圖存起來",
-          "hintAt": "shot"
-        },
-        "sourcePlain": true
-      },
-      "sources": [
-        "AI 也會錯，數字記得對原文"
-      ]
-    },
-    {
-      "id": "s18",
-      "beat": "cta",
-      "para": 6,
-      "narration": "你最想丟哪一則新聞給它？",
-      "subtitle": {
-        "zh": "你最想丟\n哪一則新聞給它？",
-        "en": "Which news story | would you give it?"
-      },
-      "keywords": [
-        "哪一則新聞"
-      ],
-      "cues": [
-        {
-          "id": "which",
-          "text": "哪一則"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "ask": {
-          "text": "你最想丟哪一則新聞？",
-          "at": "which-4"
-        },
-        "sourcePlain": true
-      },
-      "sources": [
-        "AI 也會錯，數字記得對原文"
-      ]
-    },
-    {
-      "id": "s19",
-      "beat": "cta",
-      "para": 6,
-      "narration": "下一集，兩篇新聞講的不一樣，怎麼辦？",
-      "subtitle": {
-        "zh": "下一集\n兩篇新聞講的不一樣\n怎麼辦？",
-        "en": "Next time: | two articles disagree. | Now what?"
-      },
-      "keywords": [
-        "下一集",
-        "不一樣"
-      ],
-      "cues": [
-        {
-          "id": "next",
-          "text": "下一集"
-        },
-        {
-          "id": "two",
-          "text": "兩篇新聞"
-        },
-        {
-          "id": "how",
-          "text": "怎麼辦"
-        }
-      ],
-      "component": "UiScene",
-      "props": {
-        "next": {
-          "at": "next",
-          "kicker": "下一集",
-          "title": "兩篇新聞\n講的不一樣？",
-          "left": "報導 A",
-          "right": "報導 B",
-          "splitAt": "two",
-          "askAt": "how"
-        }
-      },
-      "sources": [
-        "下一集預告"
-      ]
-    },
-    {
-      "id": "end",
-      "beat": "end",
-      "para": 6,
-      "silent": true,
-      "durationSec": 3,
-      "narration": "",
-      "subtitle": {
-        "zh": "",
-        "en": ""
-      },
-      "keywords": [],
-      "cues": [],
-      "component": "UiScene",
-      "props": {
-        "endCard": {
-          "title": "看新聞問 AI",
-          "sub": "先貼原文，再分確定與不確定",
-          "note": "Gemini｜2026/11/13 實測｜AI 也會錯，數字記得對原文"
-        }
-      },
-      "sources": []
-    }
+ "slug": "sample-ai-news",
+ "title": "十月物價新聞丟給 AI：隨便問拿到兩年前的數字",
+ "asOf": "2026/11/13",
+ "styleVersion": 3,
+ "stage": "ui",
+ "uiVersion": 3,
+ "sample": false,
+ "channel": {
+  "name": "AI",
+  "tag": "AI 動手做",
+  "slogan": "看完就能照著做"
+ },
+ "audio": {
+  "bgm": true,
+  "sfx": true
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": {
+   "preset": "ai",
+   "gender": "female",
+   "delivery": "chat",
+   "scene": "咖啡店裡兩個人並肩坐著，筆電開著，她湊過去看朋友的螢幕，一邊指一邊講",
+   "arc": {
+    "起": "像剛滑到一則新聞，轉頭問旁邊的朋友",
+    "承": "邊操作邊講，看到數字不對的地方愣一下才講",
+    "轉": "講到它也會出錯的地方，慢下來、小聲一點提醒",
+    "合": "鬆下來，隨口問對方一句，再順口提下一次要聊什麼"
+   },
+   "englishTerms": {
+    "A I": "英文字母 A 和 I，分開念",
+    "Gemini": "JEM-ih-nye，三個音節"
+   },
+   "voices": [
+    "Sulafat"
+   ]
+  }
+ },
+ "tests": {
+  "tool": "Gemini",
+  "model": "gemini-3.5-flash（回應的 modelVersion 是 gemini-3.6-flash）",
+  "via": "Gemini API，未開搜尋工具",
+  "date": "2026/11/13",
+  "files": [
+   "tests/01-casual.json",
+   "tests/02-better.json",
+   "tests/03-casual-repeat.json"
   ]
+ },
+ "cover": {
+  "title": [
+   "物價新聞",
+   "丟給 AI？"
+  ],
+  "sub": "隨便問，拿到兩年前的數字"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "para": 1,
+   "narration": "欸，十月物價出來了，你有叫 AI 抓重點嗎？",
+   "tts": "欸，十月物價出來了，你有叫 A I 抓重點嗎？",
+   "subtitle": {
+    "zh": "十月物價出來了\n你有叫 AI 抓重點嗎？",
+    "en": "October prices are out. | Did you ask AI for the key points?"
+   },
+   "keywords": [
+    "抓重點"
+   ],
+   "cues": [
+    {
+     "id": "cpi",
+     "text": "物價"
+    },
+    {
+     "id": "key",
+     "text": "抓重點"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "hook": {
+     "title": "問 AI 物價\n給我兩年前的",
+     "kicker": "10 月物價新聞｜Gemini 實測",
+     "solid": true,
+     "size": 136,
+     "nums": {
+      "wrong": "1.69%",
+      "tag": "2024 年的",
+      "right": "今年 2.33%",
+      "at": "start+10"
+     }
+    },
+    "draft": {
+     "text": "10月CPI的新聞幫我抓重點",
+     "typeAt": "cpi",
+     "typeEnd": "key+8",
+     "placeholder": "問 AI 任何事…",
+     "empty": {
+      "title": "今天想問什麼？",
+      "chips": [
+       "抓重點",
+       "看新聞",
+       "問物價"
+      ]
+     },
+     "pauses": [
+      6,
+      9
+     ]
+    }
+   },
+   "sources": [
+    "主計總處 2026/11/5 公布（經中央社等報導）"
+   ]
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "para": 1,
+   "narration": "我們拿 Gemini 實測，只打一句話。",
+   "subtitle": {
+    "zh": "我們拿 Gemini 實測\n只打一句話",
+    "en": "We tested it on Gemini | with just one line."
+   },
+   "keywords": [
+    "實測",
+    "一句話"
+   ],
+   "cues": [
+    {
+     "id": "test",
+     "text": "實測"
+    },
+    {
+     "id": "one",
+     "text": "一句話"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "toolTag": {
+     "text": "Gemini｜2026/11/13 實測",
+     "at": "test-4"
+    },
+    "send": {
+     "at": "one"
+    },
+    "typing": {
+     "at": "one+8"
+    },
+    "hook2": {
+     "title": "Gemini 實測\n只打一句話",
+     "kicker": "怎麼問的？",
+     "at": "voice"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s03",
+   "beat": "you",
+   "para": 2,
+   "narration": "它回了一大篇，說十月是 1.69%。",
+   "tts": "它回了一大篇，說十月是一點六九趴。",
+   "subtitle": {
+    "zh": "它回了一大篇\n說十月是 1.69%",
+    "en": "It wrote a long answer: | October was 1.69%."
+   },
+   "keywords": [
+    "1.69%"
+   ],
+   "cues": [
+    {
+     "id": "long",
+     "text": "一大篇"
+    },
+    {
+     "id": "old",
+     "text": "1.69"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "reply": {
+     "at": "start",
+     "excerpt": true,
+     "note": "（節錄）",
+     "lines": [
+      "台灣主計總處公布的 10 月 CPI 年增率為 **1.69%**。",
+      "跌破通膨警示線：年增率降至 1.69%，跌破了央行的 2% 通膨警戒線，創下近 3 年半（42 個月）以來的新低。"
+     ],
+     "more": "（下面還有美國 CPI 一大段，全文見貼文說明）",
+     "mark": {
+      "kind": "circle",
+      "target": "1.69%",
+      "at": "old"
+     },
+     "by": "Gemini 實測・2026/11/13（節錄）"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s04",
+   "beat": "twist",
+   "para": 2,
+   "narration": "蛤？那是兩年前的啦，今年是 2.33%。",
+   "tts": "蛤？那是兩年前的啦，今年是二點三三趴。",
+   "pauseAfter": 0.4,
+   "subtitle": {
+    "zh": "蛤？那是兩年前的啦\n今年是 2.33%",
+    "en": "Huh? That was two years ago. | This year it's 2.33%."
+   },
+   "keywords": [
+    "兩年前",
+    "2.33%"
+   ],
+   "cues": [
+    {
+     "id": "huh",
+     "text": "蛤"
+    },
+    {
+     "id": "two",
+     "text": "兩年前"
+    },
+    {
+     "id": "now",
+     "text": "2.33"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "stamp": {
+     "text": "2024 年的數字",
+     "at": "two"
+    },
+    "fact": {
+     "text": "2026 年 10 月：2.33%",
+     "sub": "連 6 個月高於 2%｜主計總處 11/5 公布",
+     "at": "now-4"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13",
+    "主計總處"
+   ]
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "也不能怪它嘛，沒開搜尋，又沒給它新聞。",
+   "subtitle": {
+    "zh": "也不能怪它嘛\n沒開搜尋\n又沒給它新聞",
+    "en": "Can't blame it. | Search was off, | and we gave it no article."
+   },
+   "keywords": [
+    "沒開搜尋",
+    "沒給它新聞"
+   ],
+   "cues": [
+    {
+     "id": "blame",
+     "text": "不能怪"
+    },
+    {
+     "id": "search",
+     "text": "沒開搜尋"
+    },
+    {
+     "id": "news",
+     "text": "沒給它新聞"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "reply2": {
+     "at": "start",
+     "excerpt": true,
+     "note": "（節錄）",
+     "lines": [
+      "針對台灣2024年10月的CPI（消費者物價指數）新聞，為您整理出以下4大關鍵重點："
+     ],
+     "mark": {
+      "kind": "underline",
+      "target": "2024年10月",
+      "at": "start+12"
+     },
+     "tag": "第 2 次，還是 2024 年",
+     "by": "Gemini 實測・2026/11/13（節錄）",
+     "compact": true
+    },
+    "why": {
+     "at": "blame",
+     "items": [
+      {
+       "label": "沒開搜尋",
+       "color": "amber",
+       "at": "search"
+      },
+      {
+       "label": "沒給它新聞",
+       "color": "coral",
+       "at": "news"
+      }
+     ],
+     "foot": "測試條件：Gemini API、未開搜尋、沒有系統提示"
+    }
+   },
+   "sources": [
+    "測的是 API、沒開搜尋；App 連網時可能不同，沒有測"
+   ]
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "所以啊，換個問法。",
+   "subtitle": {
+    "zh": "所以啊\n換個問法",
+    "en": "So, | ask it differently."
+   },
+   "keywords": [
+    "換個問法"
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "所以"
+    },
+    {
+     "id": "change",
+     "text": "換個問法"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "editor": {
+     "at": "so",
+     "title": "這樣問",
+     "slotsAt": "change"
+    }
+   },
+   "sources": [
+    "提示全文見貼文說明"
+   ]
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "貼上新聞，叫它只看這一段。",
+   "subtitle": {
+    "zh": "貼上新聞\n叫它只看這一段",
+    "en": "Paste in the news | and tell it to use only that."
+   },
+   "keywords": [
+    "貼上新聞",
+    "只看這一段"
+   ],
+   "cues": [
+    {
+     "id": "paste",
+     "text": "貼上新聞"
+    },
+    {
+     "id": "only",
+     "text": "只看"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "slots": [
+     {
+      "label": "貼原文",
+      "color": "blue",
+      "text": "【新聞整理】主計總處 11 月 5 日公布…",
+      "at": "paste"
+     },
+     {
+      "label": "只看這段",
+      "color": "violet",
+      "text": "請只根據這段文字回答",
+      "at": "only"
+     }
+    ],
+    "sourcePlain": true
+   },
+   "sources": [
+    "提示全文見貼文說明"
+   ]
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "沒寫到的就說原文沒寫。",
+   "subtitle": {
+    "zh": "沒寫到的\n就說原文沒寫",
+    "en": "If it's not in there, | say so."
+   },
+   "keywords": [
+    "原文沒寫"
+   ],
+   "cues": [
+    {
+     "id": "miss",
+     "text": "沒寫到"
+    },
+    {
+     "id": "say",
+     "text": "原文沒寫"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "slots": [
+     {
+      "label": "沒寫就說",
+      "color": "amber",
+      "text": "文字裡沒寫的就說「原文沒寫」",
+      "at": "miss"
+     }
+    ],
+    "sourcePlain": true
+   },
+   "sources": [
+    "提示全文見貼文說明"
+   ]
+  },
+  {
+   "id": "s09",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "然後講你是誰，像我在台北租房、三餐外食。",
+   "subtitle": {
+    "zh": "然後講你是誰\n像我在台北租房\n三餐外食",
+    "en": "Then say who you are. | I rent in Taipei | and eat out every meal."
+   },
+   "keywords": [
+    "你是誰"
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "你是誰"
+    },
+    {
+     "id": "rent",
+     "text": "租房"
+    },
+    {
+     "id": "eat",
+     "text": "外食"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "slots": [
+     {
+      "label": "我是誰",
+      "color": "coral",
+      "text": "我是在台北租房子、三餐外食的上班族",
+      "at": "who"
+     }
+    ],
+    "sourcePlain": true
+   },
+   "sources": [
+    "提示全文見貼文說明"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "最後分三段，確定的、還不確定的，還有跟我有關的。",
+   "subtitle": {
+    "zh": "最後分三段\n確定的、還不確定的\n還有跟我有關的",
+    "en": "Last, three parts: | confirmed, | not yet confirmed, | and what matters to me."
+   },
+   "keywords": [
+    "分三段",
+    "確定的",
+    "還不確定的"
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "分三段"
+    },
+    {
+     "id": "sure",
+     "text": "確定的"
+    },
+    {
+     "id": "unsure",
+     "text": "還不確定"
+    },
+    {
+     "id": "me",
+     "text": "跟我有關"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "slots": [
+     {
+      "label": "分三段",
+      "color": "green",
+      "text": "已經確定的事／還不確定的事／跟我最有關的一點",
+      "at": "three",
+      "parts": [
+       {
+        "t": "已經確定的事",
+        "at": "sure"
+       },
+       {
+        "t": "還不確定的事",
+        "at": "unsure"
+       },
+       {
+        "t": "跟我最有關的一點",
+        "at": "me"
+       }
+      ]
+     }
+    ],
+    "sourcePlain": true,
+    "capColors": [
+     "violet",
+     "green",
+     "amber"
+    ]
+   },
+   "sources": [
+    "提示全文見貼文說明"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "送出。你看，2.33%，數字對了耶。",
+   "tts": "送出。你看，二點三三趴，數字對了耶。",
+   "subtitle": {
+    "zh": "送出\n你看，2.33%\n數字對了耶",
+    "en": "Send. | Look, 2.33%. | The number is right."
+   },
+   "keywords": [
+    "2.33%",
+    "數字對了"
+   ],
+   "cues": [
+    {
+     "id": "go",
+     "text": "送出"
+    },
+    {
+     "id": "look",
+     "text": "你看"
+    },
+    {
+     "id": "right",
+     "text": "數字對了"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "send": {
+     "at": "go"
+    },
+    "result": {
+     "excerpt": true,
+     "note": "（節錄）",
+     "by": "Gemini 實測・2026/11/13（節錄）",
+     "at": "look",
+     "title": "1. 已經確定的事",
+     "titleColor": "green",
+     "lines": [
+      {
+       "t": "10月CPI年增2.33%，外食與房租持續上漲。",
+       "mark": {
+        "kind": "check",
+        "target": "2.33%",
+        "at": "right"
+       }
+      }
+     ]
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s12",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "十一月會更高嗎？它放在還不確定。",
+   "subtitle": {
+    "zh": "十一月會更高嗎？\n它放在還不確定",
+    "en": "Will November be higher? | It filed that under not confirmed."
+   },
+   "keywords": [
+    "還不確定"
+   ],
+   "cues": [
+    {
+     "id": "nov",
+     "text": "十一月"
+    },
+    {
+     "id": "put",
+     "text": "還不確定"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "resultAdd": {
+     "at": "nov",
+     "lines": [
+      {
+       "t": "2. 還不確定的事",
+       "head": true,
+       "color": "amber"
+      },
+      {
+       "t": "預估11月CPI是否真會高於2%並比10月高。",
+       "focusAt": "put"
+      }
+     ]
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s13",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "台北房租漲多少？它說原文沒寫。",
+   "subtitle": {
+    "zh": "台北房租漲多少？\n它說原文沒寫",
+    "en": "How much did Taipei rent rise? | It said the text doesn't say."
+   },
+   "keywords": [
+    "原文沒寫"
+   ],
+   "cues": [
+    {
+     "id": "rent",
+     "text": "台北房租"
+    },
+    {
+     "id": "none",
+     "text": "原文沒寫"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "resultAdd": {
+     "at": "rent",
+     "lines": [
+      {
+       "t": "台北市具體的房租與外食費漲幅，原文沒寫。",
+       "mark": {
+        "kind": "underline",
+        "target": "原文沒寫",
+        "at": "none"
+       }
+      }
+     ]
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s14",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "一樣的 AI 欸，問法不一樣而已。",
+   "tts": "一樣的 A I 欸，問法不一樣而已。",
+   "pauseAfter": 0.5,
+   "subtitle": {
+    "zh": "一樣的 AI 欸\n問法不一樣而已",
+    "en": "Same AI. | Only the way we asked changed."
+   },
+   "keywords": [
+    "一樣的",
+    "問法"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "一樣的"
+    },
+    {
+     "id": "ask",
+     "text": "問法"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "compare": {
+     "at": "start",
+     "holdSec": 1.5,
+     "stamp": "Gemini｜2026/11/13 實測",
+     "top": {
+      "label": "隨便問",
+      "prompt": "10月CPI的新聞幫我抓重點",
+      "answer": "台灣主計總處公布的 10 月 CPI 年增率為 **1.69%**。",
+      "note": "（節錄）",
+      "mark": {
+       "kind": "circle",
+       "target": "1.69%"
+      },
+      "tag": "2024 年的數字"
+     },
+     "bottom": {
+      "label": "這樣問",
+      "prompt": "摘要：貼原文＋只看這段＋沒寫就說＋我是誰＋分三段",
+      "answer": "10月CPI年增2.33%，外食與房租持續上漲。",
+      "note": "（節錄）",
+      "mark": {
+       "kind": "check"
+      },
+      "tag": "和貼上的文字一致",
+      "promptPx": 32
+     },
+     "badge": {
+      "text": "同一個模型",
+      "at": "same+14"
+     },
+     "by": "Gemini 實測・2026/11/13（節錄）"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/13"
+   ]
+  },
+  {
+   "id": "s15",
+   "beat": "twist",
+   "para": 5,
+   "narration": "不過齁，官方的看法，它也算進確定的。",
+   "subtitle": {
+    "zh": "不過齁\n官方的看法\n它也算進確定的",
+    "en": "But, | the agency's own view | also went under confirmed."
+   },
+   "keywords": [
+    "看法",
+    "確定的"
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "不過"
+    },
+    {
+     "id": "view",
+     "text": "看法"
+    },
+    {
+     "id": "as",
+     "text": "確定的"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "result": {
+     "excerpt": true,
+     "note": "（節錄）",
+     "by": "Gemini 實測・2026/11/13（節錄）",
+     "at": "but",
+     "title": "1. 已經確定的事",
+     "titleColor": "green",
+     "lines": [
+      {
+       "t": "10月CPI年增2.33%，外食與房租持續上漲。"
+      },
+      {
+       "t": "油料費上漲15.17%，機票上漲12.53%。"
+      },
+      {
+       "t": "前10月平均上漲1.98%，無輸入型通膨。",
+       "flag": {
+        "target": "無輸入型通膨",
+        "text": "這是主計總處的看法",
+        "color": "amber",
+        "at": "view",
+        "sub": "不是統計數字"
+       }
+      }
+     ],
+     "window": "這樣問"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/13；主計總處說法經自由時報報導"
+   ]
+  },
+  {
+   "id": "s16",
+   "beat": "twist",
+   "para": 5,
+   "narration": "所以重要的數字，自己再對一下原文喔。",
+   "subtitle": {
+    "zh": "所以重要的數字\n自己再對一下原文喔",
+    "en": "So for numbers that matter, | check the original yourself."
+   },
+   "keywords": [
+    "對一下原文"
+   ],
+   "cues": [
+    {
+     "id": "num",
+     "text": "重要的數字"
+    },
+    {
+     "id": "check",
+     "text": "原文"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "remind": {
+     "at": "num",
+     "text": "AI 也會錯",
+     "sub": "數字、誰說的，回去對原文",
+     "pulseAt": "check"
+    }
+   },
+   "sources": [
+    "AI 也會錯，數字記得對原文"
+   ]
+  },
+  {
+   "id": "s17",
+   "beat": "cta",
+   "para": 6,
+   "narration": "範本在這，截圖存起來。",
+   "pauseAfter": 0.5,
+   "subtitle": {
+    "zh": "範本在這\n截圖存起來",
+    "en": "Here's the template. | Screenshot it."
+   },
+   "keywords": [
+    "範本",
+    "截圖"
+   ],
+   "cues": [
+    {
+     "id": "card",
+     "text": "範本"
+    },
+    {
+     "id": "shot",
+     "text": "截圖"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "template": {
+     "at": "start",
+     "title": "看新聞問 AI 範本",
+     "screenshot": true,
+     "lines": [
+      "下面是我貼的一段新聞。",
+      "請只根據這段文字回答，",
+      "不要加文字裡沒有的數字；",
+      "文字裡沒寫的就說「原文沒寫」。",
+      "我是＿＿＿＿（你的處境）。",
+      "請分三段，每段最多三點、",
+      "每點不超過 25 個字：",
+      "1. 已經確定的事",
+      "2. 還不確定的事",
+      "3. 跟我最有關的一點",
+      "【貼上新聞】"
+     ],
+     "pulseAt": "card",
+     "hint": "截圖存起來",
+     "hintAt": "shot",
+     "linePx": 42,
+     "lineH": 62,
+     "foot": "實測用的完整提示與測試條件在貼文說明"
+    },
+    "sourcePlain": true
+   },
+   "sources": [
+    "AI 也會錯，數字記得對原文"
+   ]
+  },
+  {
+   "id": "s18",
+   "beat": "cta",
+   "para": 6,
+   "narration": "你最想丟哪一則新聞給它？",
+   "subtitle": {
+    "zh": "你最想丟\n哪一則新聞給它？",
+    "en": "Which news story | would you give it?"
+   },
+   "keywords": [
+    "哪一則新聞"
+   ],
+   "cues": [
+    {
+     "id": "which",
+     "text": "哪一則"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "ask": {
+     "text": "你最想丟哪一則新聞？",
+     "at": "which-4"
+    },
+    "sourcePlain": true
+   },
+   "sources": [
+    "AI 也會錯，數字記得對原文"
+   ]
+  },
+  {
+   "id": "s19",
+   "beat": "cta",
+   "para": 6,
+   "narration": "下一集，兩篇新聞講的不一樣，怎麼辦？",
+   "subtitle": {
+    "zh": "下一集\n兩篇新聞講的不一樣\n怎麼辦？",
+    "en": "Next time: | two articles disagree. | Now what?"
+   },
+   "keywords": [
+    "下一集",
+    "不一樣"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "two",
+     "text": "兩篇新聞"
+    },
+    {
+     "id": "how",
+     "text": "怎麼辦"
+    }
+   ],
+   "component": "UiScene",
+   "props": {
+    "next": {
+     "at": "next",
+     "kicker": "下一集",
+     "title": "兩篇新聞\n講的不一樣？",
+     "left": "報導 A",
+     "right": "報導 B",
+     "splitAt": "two",
+     "askAt": "how"
+    }
+   },
+   "sources": [
+    "下一集預告"
+   ]
+  },
+  {
+   "id": "end",
+   "beat": "end",
+   "para": 6,
+   "silent": true,
+   "durationSec": 3.6,
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "UiScene",
+   "props": {
+    "endCard": {
+     "title": "看新聞問 AI",
+     "sub": "先貼原文，再分確定與不確定",
+     "note": "Gemini｜2026/11/13 實測｜AI 也會錯，數字記得對原文",
+     "at": "start+18"
+    }
+   },
+   "sources": []
+  }
+ ]
 }

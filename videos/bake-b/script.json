@@ -1,0 +1,317 @@
+{
+ "slug": "bake-b",
+ "title": "無線耳機裡面有什麼？拆開看主動降噪（科技 3D 產品台）",
+ "asOf": "2026/11/13",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技",
+  "tag": "拆開來看",
+  "slogan": "一支講透一件事"
+ },
+ "audio": {
+  "bgm": false,
+  "sfx": false
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": {
+   "persona": "三十歲左右的台灣女生，在科技業做產品，平常就愛拆手機，把剛拆開看到的東西講給外行朋友聽",
+   "gender": "female",
+   "accent": "台灣華語",
+   "pace": [
+    4.6,
+    5.0
+   ],
+   "tone": "明快、有精神，講話偏快，一句接一句不拖尾音；像邊拆邊跟朋友聊天，不是在念稿",
+   "arc": {
+    "起": "帶一點神祕的好奇，像要爆一個小祕密",
+    "承": "乾脆俐落，邊拆邊講，句子之間不停太久",
+    "轉": "講到原理的地方語氣亮起來，節奏還是快",
+    "合": "輕鬆地收掉，不拖長"
+   },
+   "avoid": [
+    "播新聞的腔調",
+    "一個字一個字慢慢念",
+    "平平的、像機器念稿的語調",
+    "句子中間拖長音",
+    "越講越慢"
+   ],
+   "voices": [
+    "Sulafat"
+   ]
+  }
+ },
+ "cover": {
+  "title": [
+   "耳機裡",
+   "有什麼？"
+  ],
+  "sub": "拆開看主動降噪"
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "欸，你的無線耳機裡，塞滿了東西。",
+   "subtitle": {
+    "zh": "你的無線耳機裡\n塞滿了東西",
+    "en": "Your wireless earbuds | are packed with stuff."
+   },
+   "keywords": [
+    "塞滿"
+   ],
+   "cues": [
+    {
+     "id": "earbud",
+     "text": "無線耳機"
+    },
+    {
+     "id": "full",
+     "text": "塞滿"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "title": "耳機裡有什麼？"
+    },
+    "spin": {
+     "at": "start+0",
+     "until": "exit"
+    }
+   },
+   "sources": []
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 1,
+   "narration": "拆開外殼，有電池和喇叭單體。",
+   "subtitle": {
+    "zh": "拆開外殼\n有電池和喇叭單體",
+    "en": "Open the shell: | a battery and a speaker driver."
+   },
+   "keywords": [
+    "電池",
+    "喇叭單體"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "battery",
+     "text": "電池"
+    },
+    {
+     "id": "driver",
+     "text": "喇叭單體"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "explode": {
+     "at": "open-6"
+    },
+    "sweep": {
+     "at": "battery-6"
+    },
+    "labels": [
+     {
+      "part": "battery",
+      "text": "電池",
+      "color": "mint",
+      "at": "battery",
+      "until": "s3:mic-6"
+     },
+     {
+      "part": "speaker",
+      "text": "喇叭單體",
+      "color": "amber",
+      "at": "driver",
+      "until": "s3:mic-6"
+     }
+    ]
+   },
+   "sources": [
+    "示意模型，非特定機型；各家耳機的內部配置不同"
+   ]
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 1,
+   "narration": "還有麥克風、晶片，跟一條小天線。",
+   "subtitle": {
+    "zh": "還有麥克風、晶片\n跟一條小天線",
+    "en": "Plus microphones, a chip, | and a tiny antenna."
+   },
+   "keywords": [
+    "麥克風",
+    "天線"
+   ],
+   "cues": [
+    {
+     "id": "mic",
+     "text": "麥克風"
+    },
+    {
+     "id": "chip",
+     "text": "晶片"
+    },
+    {
+     "id": "ant",
+     "text": "天線"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "focus": {
+     "layer": "board",
+     "at": "mic-8"
+    },
+    "sweep": {
+     "at": "mic-2"
+    },
+    "labels": [
+     {
+      "part": "mic",
+      "text": "麥克風",
+      "color": "coral",
+      "at": "mic",
+      "until": "s4:noise-4"
+     },
+     {
+      "part": "chip",
+      "text": "晶片",
+      "color": "blue",
+      "at": "chip",
+      "until": "s4:mic4+6"
+     },
+     {
+      "part": "ant",
+      "text": "天線",
+      "color": "amber",
+      "at": "ant",
+      "until": "s4:mic4+6"
+     }
+    ]
+   },
+   "sources": [
+    "示意模型，非特定機型；各家耳機的內部配置不同"
+   ]
+  },
+  {
+   "id": "s4",
+   "beat": "twist",
+   "para": 1,
+   "narration": "降噪靠麥克風，先聽外面的噪音。",
+   "subtitle": {
+    "zh": "降噪靠麥克風\n先聽外面的噪音",
+    "en": "Noise cancelling starts | with mics hearing the outside noise."
+   },
+   "keywords": [
+    "麥克風",
+    "噪音"
+   ],
+   "cues": [
+    {
+     "id": "mic4",
+     "text": "麥克風"
+    },
+    {
+     "id": "noise",
+     "text": "噪音"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "cutaway": {
+     "at": "noise-12"
+    },
+    "heat": {
+     "at": "mic4+4"
+    },
+    "vapor": {
+     "at": "noise-4"
+    },
+    "orbit": {
+     "at": "noise-6"
+    },
+    "labels": [
+     {
+      "part": "noise",
+      "text": "外面噪音",
+      "color": "coral",
+      "at": "noise",
+      "until": "s5:cancel-4"
+     }
+    ]
+   },
+   "sources": [
+    "示意動畫，非特定機型；噪音顆粒與訊號顏色都是示意"
+   ]
+  },
+  {
+   "id": "s5",
+   "beat": "payoff",
+   "para": 1,
+   "narration": "喇叭再播出相反的聲波，兩邊抵消就安靜了。",
+   "subtitle": {
+    "zh": "喇叭再播出相反的聲波\n兩邊抵消就安靜了",
+    "en": "The speaker plays the opposite wave, | the two cancel out, and it goes quiet."
+   },
+   "keywords": [
+    "相反",
+    "抵消",
+    "安靜"
+   ],
+   "cues": [
+    {
+     "id": "play",
+     "text": "播出"
+    },
+    {
+     "id": "anti",
+     "text": "相反"
+    },
+    {
+     "id": "cancel",
+     "text": "抵消"
+    },
+    {
+     "id": "quiet",
+     "text": "安靜"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "spread": {
+     "at": "anti-4"
+    },
+    "condense": {
+     "at": "cancel-2"
+    },
+    "settle": {
+     "at": "cancel+6"
+    },
+    "labels": [
+     {
+      "part": "anti",
+      "text": "反相聲波",
+      "color": "mint",
+      "at": "anti"
+     }
+    ]
+   },
+   "sources": [
+    "示意動畫，非特定機型；噪音顆粒與訊號顏色都是示意"
+   ]
+  }
+ ]
+}

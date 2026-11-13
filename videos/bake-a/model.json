@@ -1,0 +1,1943 @@
+{
+ "name": "示意真無線耳機（單耳，非特定機型、沒有商標）",
+ "unit": "約 1.5 公釐",
+ "size": {
+  "w": 6.0,
+  "h": 14.4,
+  "r": 2.9,
+  "t": 2.6
+ },
+ "palette": {
+  "shell": "#2A303D",
+  "shellDeep": "#1B202B",
+  "housing": "#343B4A",
+  "accent": "#C99A6E",
+  "touch": "#3A4252",
+  "port": "#0E1117",
+  "gold": "#D2A640",
+  "tip": "#AAB3C0",
+  "tipDeep": "#7E8899",
+  "pcb": "#17694F",
+  "flex": "#C8792B",
+  "ic": "#1A202B",
+  "icTop": "#3A4352",
+  "chip": "#5C687C",
+  "chipLid": "#C4CCD9",
+  "shieldC": "#AEB7C4",
+  "cap": "#C9A46A",
+  "cell": "#B9C2D0",
+  "cellTop": "#DCE2EA",
+  "gasket": "#151922",
+  "kapton": "#E2A33A",
+  "nickel": "#C9CED6",
+  "frame": "#20252F",
+  "magnet": "#5E6778",
+  "surround": "#262B35",
+  "dome": "#C7CED9",
+  "coil": "#CF7F42",
+  "mesh": "#9AA4B4",
+  "sensor": "#0A0D12",
+  "micBody": "#B6BFCC",
+  "scope": "#1C2433",
+  "scopeLine": "#3E4A60",
+  "noise": "#FF6A47",
+  "anti": "#3E9BFF",
+  "noiseRim": "#F0553A",
+  "antiRim": "#2F80ED"
+ },
+ "materials": {
+  "shellGloss": {
+   "kind": "phys",
+   "color": "shell",
+   "rough": 0.16,
+   "metal": 0.1,
+   "clearcoat": 1,
+   "clearcoatRough": 0.05
+  },
+  "housing": {
+   "kind": "std",
+   "color": "housing",
+   "rough": 0.62,
+   "metal": 0.05
+  },
+  "accent": {
+   "kind": "std",
+   "color": "accent",
+   "rough": 0.26,
+   "metal": 0.95,
+   "tex": "brushed",
+   "texScale": 1.2
+  },
+  "touch": {
+   "kind": "std",
+   "color": "touch",
+   "rough": 0.7,
+   "metal": 0
+  },
+  "port": {
+   "kind": "std",
+   "color": "port",
+   "rough": 0.7,
+   "metal": 0.2
+  },
+  "gold": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.3,
+   "metal": 0.92
+  },
+  "goldTrace": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.35,
+   "metal": 0.9
+  },
+  "tip": {
+   "kind": "std",
+   "color": "tip",
+   "rough": 0.78,
+   "metal": 0
+  },
+  "tipDeep": {
+   "kind": "std",
+   "color": "tipDeep",
+   "rough": 0.8,
+   "metal": 0
+  },
+  "pcb": {
+   "kind": "std",
+   "color": "pcb",
+   "rough": 0.55,
+   "metal": 0.1,
+   "tex": "traces",
+   "texScale": 1.4
+  },
+  "flex": {
+   "kind": "std",
+   "color": "flex",
+   "rough": 0.45,
+   "metal": 0.25,
+   "tex": "traces",
+   "texScale": 0.7
+  },
+  "ic": {
+   "kind": "std",
+   "color": "ic",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "icTop": {
+   "kind": "std",
+   "color": "icTop",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "chip": {
+   "kind": "std",
+   "color": "chip",
+   "rough": 0.5,
+   "metal": 0.3
+  },
+  "chipLid": {
+   "kind": "std",
+   "color": "chipLid",
+   "rough": 0.26,
+   "metal": 0.9
+  },
+  "shield": {
+   "kind": "std",
+   "color": "shieldC",
+   "rough": 0.36,
+   "metal": 0.9,
+   "tex": "brushed",
+   "texScale": 0.9
+  },
+  "cap": {
+   "kind": "std",
+   "color": "cap",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "cell": {
+   "kind": "std",
+   "color": "cell",
+   "rough": 0.3,
+   "metal": 0.92,
+   "tex": "brushed",
+   "texScale": 1.5
+  },
+  "cellTop": {
+   "kind": "std",
+   "color": "cellTop",
+   "rough": 0.2,
+   "metal": 0.95
+  },
+  "gasket": {
+   "kind": "std",
+   "color": "gasket",
+   "rough": 0.75,
+   "metal": 0
+  },
+  "kapton": {
+   "kind": "phys",
+   "color": "kapton",
+   "rough": 0.3,
+   "metal": 0,
+   "clearcoat": 0.6,
+   "opacity": 0.92
+  },
+  "nickel": {
+   "kind": "std",
+   "color": "nickel",
+   "rough": 0.3,
+   "metal": 0.9
+  },
+  "frame": {
+   "kind": "std",
+   "color": "frame",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "magnet": {
+   "kind": "std",
+   "color": "magnet",
+   "rough": 0.35,
+   "metal": 0.9
+  },
+  "surround": {
+   "kind": "std",
+   "color": "surround",
+   "rough": 0.8,
+   "metal": 0
+  },
+  "dome": {
+   "kind": "phys",
+   "color": "dome",
+   "rough": 0.12,
+   "metal": 0.6,
+   "clearcoat": 1,
+   "clearcoatRough": 0.06
+  },
+  "coil": {
+   "kind": "std",
+   "color": "coil",
+   "rough": 0.3,
+   "metal": 0.95
+  },
+  "mesh": {
+   "kind": "std",
+   "color": "mesh",
+   "rough": 0.4,
+   "metal": 0.85,
+   "tex": "wick",
+   "texScale": 0.25
+  },
+  "sensor": {
+   "kind": "phys",
+   "color": "sensor",
+   "rough": 0.06,
+   "metal": 0.1,
+   "clearcoat": 1,
+   "clearcoatRough": 0.02
+  },
+  "micBody": {
+   "kind": "std",
+   "color": "micBody",
+   "rough": 0.3,
+   "metal": 0.9
+  },
+  "scope": {
+   "kind": "phys",
+   "color": "scope",
+   "rough": 0.2,
+   "metal": 0.1,
+   "clearcoat": 0.8,
+   "clearcoatRough": 0.08
+  },
+  "scopeLine": {
+   "kind": "std",
+   "color": "scopeLine",
+   "rough": 0.5,
+   "metal": 0.3
+  },
+  "noiseWave": {
+   "kind": "screen",
+   "color": "noise",
+   "ei": 1.0
+  },
+  "antiWave": {
+   "kind": "screen",
+   "color": "anti",
+   "ei": 1.0
+  },
+  "noiseRim": {
+   "kind": "std",
+   "color": "noiseRim",
+   "rough": 0.3,
+   "metal": 0.6
+  },
+  "antiRim": {
+   "kind": "std",
+   "color": "antiRim",
+   "rough": 0.3,
+   "metal": 0.6
+  }
+ },
+ "layers": [
+  {
+   "id": "noise",
+   "z": 0,
+   "k": -4,
+   "outline": [
+    5.4,
+    5.4,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "anti",
+   "z": 0,
+   "k": -3,
+   "outline": [
+    5.4,
+    5.4,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "tip",
+   "z": -1.2,
+   "k": -2,
+   "outline": [
+    2.6,
+    2.6,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "housing",
+   "z": -0.3,
+   "k": -1,
+   "outline": [
+    5.8,
+    5.8,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "driver",
+   "z": -0.25,
+   "k": 0,
+   "outline": [
+    4.8,
+    4.8,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "battery",
+   "z": 0.0,
+   "k": 1,
+   "outline": [
+    3.4,
+    3.4,
+    0,
+    3.0
+   ]
+  },
+  {
+   "id": "board",
+   "z": 0.25,
+   "k": 2,
+   "outline": [
+    4.6,
+    12.0,
+    0,
+    -1.0
+   ]
+  },
+  {
+   "id": "shell",
+   "z": 0.0,
+   "k": 3,
+   "outline": [
+    6.0,
+    14.2,
+    0,
+    -0.1
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "shellDome",
+   "layer": "shell",
+   "shape": "sphere",
+   "size": [
+    2.9
+   ],
+   "scale": [
+    1,
+    1,
+    0.36
+   ],
+   "pos": [
+    0,
+    3.0,
+    0.25
+   ],
+   "mat": "shellGloss"
+  },
+  {
+   "id": "shellRing",
+   "layer": "shell",
+   "shape": "tube",
+   "size": [
+    2.95,
+    2.62,
+    0.34
+   ],
+   "bevel": 0.04,
+   "pos": [
+    0,
+    3.0,
+    -0.05
+   ],
+   "mat": "accent"
+  },
+  {
+   "id": "stem",
+   "layer": "shell",
+   "shape": "cyl",
+   "size": [
+    0.78,
+    8.0
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    -3.2,
+    0
+   ],
+   "mat": "shellGloss"
+  },
+  {
+   "id": "stemCap",
+   "layer": "shell",
+   "shape": "sphere",
+   "size": [
+    0.78
+   ],
+   "pos": [
+    0,
+    -7.2,
+    0
+   ],
+   "mat": "shellGloss"
+  },
+  {
+   "id": "stemBand",
+   "layer": "shell",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    0.22
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    -6.35,
+    0
+   ],
+   "mat": "accent"
+  },
+  {
+   "id": "touchPad",
+   "layer": "shell",
+   "shape": "slab",
+   "size": [
+    0.6,
+    2.6,
+    0.05
+   ],
+   "r": 0.3,
+   "bevel": 0.01,
+   "pos": [
+    0,
+    -2.0,
+    0.765
+   ],
+   "mat": "touch"
+  },
+  {
+   "id": "micGrille",
+   "layer": "shell",
+   "shape": "cyl",
+   "size": [
+    0.26,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     1.25,
+     4.35,
+     1.1
+    ]
+   ],
+   "mat": "port"
+  },
+  {
+   "id": "micGrilleRing",
+   "layer": "shell",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.26,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     1.25,
+     4.35,
+     1.09
+    ]
+   ],
+   "mat": "accent"
+  },
+  {
+   "id": "talkMicHole",
+   "layer": "shell",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.06
+   ],
+   "pos": [
+    0,
+    -5.6,
+    0.765
+   ],
+   "mat": "port"
+  },
+  {
+   "id": "contacts",
+   "layer": "shell",
+   "shape": "cyl",
+   "size": [
+    0.15,
+    0.06
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    -7.96,
+    0
+   ],
+   "at": [
+    [
+     0.3,
+     0
+    ],
+    [
+     -0.3,
+     0
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pcbHead",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    4.4,
+    4.4,
+    0.1
+   ],
+   "r": 2.2,
+   "bevel": 0.015,
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "flexStem",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    0.62,
+    6.8,
+    0.05
+   ],
+   "r": 0.2,
+   "bevel": 0.01,
+   "pos": [
+    0,
+    -2.9,
+    0
+   ],
+   "mat": "flex"
+  },
+  {
+   "id": "antBar",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.48,
+    0.08,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    0.04
+   ],
+   "at": [
+    [
+     0,
+     -0.9
+    ],
+    [
+     0,
+     -1.22
+    ],
+    [
+     0,
+     -1.54
+    ],
+    [
+     0,
+     -1.86
+    ],
+    [
+     0,
+     -2.18
+    ],
+    [
+     0,
+     -2.5
+    ],
+    [
+     0,
+     -2.82
+    ],
+    [
+     0,
+     -3.14
+    ],
+    [
+     0,
+     -3.46
+    ],
+    [
+     0,
+     -3.78
+    ],
+    [
+     0,
+     -4.1
+    ],
+    [
+     0,
+     -4.42
+    ],
+    [
+     0,
+     -4.74
+    ]
+   ],
+   "mat": "goldTrace"
+  },
+  {
+   "id": "antLink",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.4,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    0.04
+   ],
+   "at": [
+    [
+     0.2,
+     -1.06
+    ],
+    [
+     -0.2,
+     -1.38
+    ],
+    [
+     0.2,
+     -1.7
+    ],
+    [
+     -0.2,
+     -2.02
+    ],
+    [
+     0.2,
+     -2.34
+    ],
+    [
+     -0.2,
+     -2.66
+    ],
+    [
+     0.2,
+     -2.98
+    ],
+    [
+     -0.2,
+     -3.3
+    ],
+    [
+     0.2,
+     -3.62
+    ],
+    [
+     -0.2,
+     -3.94
+    ],
+    [
+     0.2,
+     -4.26
+    ],
+    [
+     -0.2,
+     -4.58
+    ]
+   ],
+   "mat": "goldTrace"
+  },
+  {
+   "id": "soc",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.5,
+    1.5,
+    0.22
+   ],
+   "r": 0.1,
+   "bevel": 0.02,
+   "pos": [
+    -0.45,
+    3.35,
+    0.16
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "socLid",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.2,
+    1.2,
+    0.03
+   ],
+   "r": 0.06,
+   "bevel": 0.008,
+   "pos": [
+    -0.45,
+    3.35,
+    0.285
+   ],
+   "mat": "chipLid"
+  },
+  {
+   "id": "shieldCan",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.4,
+    1.0,
+    0.18
+   ],
+   "r": 0.08,
+   "bevel": 0.02,
+   "pos": [
+    1.15,
+    3.75,
+    0.14
+   ],
+   "mat": "shield"
+  },
+  {
+   "id": "pmic",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    0.8,
+    0.6,
+    0.15
+   ],
+   "r": 0.05,
+   "bevel": 0.02,
+   "pos": [
+    0.95,
+    2.45,
+    0.12
+   ],
+   "mat": "ic"
+  },
+  {
+   "id": "pmicTop",
+   "layer": "board",
+   "shape": "plane",
+   "size": [
+    0.6,
+    0.4
+   ],
+   "r": 0.04,
+   "pos": [
+    0.95,
+    2.45,
+    0.197
+   ],
+   "mat": "icTop"
+  },
+  {
+   "id": "caps",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.13,
+    0.24,
+    0.1
+   ],
+   "pos": [
+    0,
+    0,
+    0.1
+   ],
+   "at": [
+    [
+     0.55,
+     2.0
+    ],
+    [
+     0.75,
+     2.0
+    ],
+    [
+     0.95,
+     2.0
+    ],
+    [
+     -1.5,
+     2.3
+    ],
+    [
+     -1.5,
+     2.55
+    ],
+    [
+     -1.5,
+     2.8
+    ],
+    [
+     -1.0,
+     1.55
+    ],
+    [
+     -0.75,
+     1.55
+    ],
+    [
+     1.9,
+     3.1
+    ],
+    [
+     1.9,
+     3.35
+    ],
+    [
+     0.1,
+     4.75
+    ],
+    [
+     -0.15,
+     4.75
+    ],
+    [
+     -1.3,
+     4.5
+    ]
+   ],
+   "mat": "cap"
+  },
+  {
+   "id": "outerMic",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    0.62,
+    0.62,
+    0.22
+   ],
+   "r": 0.1,
+   "bevel": 0.02,
+   "pos": [
+    0,
+    0,
+    0.16
+   ],
+   "at": [
+    [
+     0.95,
+     4.4
+    ],
+    [
+     -1.3,
+     3.9
+    ]
+   ],
+   "mat": "micBody"
+  },
+  {
+   "id": "outerMicPort",
+   "layer": "board",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "pos": [
+    0,
+    0,
+    0.28
+   ],
+   "at": [
+    [
+     0.95,
+     4.4
+    ],
+    [
+     -1.3,
+     3.9
+    ]
+   ],
+   "mat": "port"
+  },
+  {
+   "id": "talkMic",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    0.5,
+    0.5,
+    0.18
+   ],
+   "r": 0.08,
+   "bevel": 0.02,
+   "pos": [
+    0,
+    -5.6,
+    0.1
+   ],
+   "mat": "micBody"
+  },
+  {
+   "id": "padRow",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.18,
+    0.14,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    0.06
+   ],
+   "at": [
+    [
+     -1.2,
+     1.4
+    ],
+    [
+     -0.9,
+     1.4
+    ],
+    [
+     -0.6,
+     1.4
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "cell",
+   "layer": "battery",
+   "shape": "cyl",
+   "size": [
+    1.55,
+    0.5
+   ],
+   "pos": [
+    0,
+    3.0,
+    -0.05
+   ],
+   "mat": "cell"
+  },
+  {
+   "id": "cellGasket",
+   "layer": "battery",
+   "shape": "tube",
+   "size": [
+    1.56,
+    1.12,
+    0.04
+   ],
+   "pos": [
+    0,
+    3.0,
+    0.215
+   ],
+   "mat": "gasket"
+  },
+  {
+   "id": "cellTop",
+   "layer": "battery",
+   "shape": "cyl",
+   "size": [
+    1.1,
+    0.04
+   ],
+   "pos": [
+    0,
+    3.0,
+    0.215
+   ],
+   "mat": "cellTop"
+  },
+  {
+   "id": "kapton",
+   "layer": "battery",
+   "shape": "plane",
+   "size": [
+    1.0,
+    0.42
+   ],
+   "r": 0.06,
+   "pos": [
+    0,
+    2.45,
+    0.24
+   ],
+   "mat": "kapton"
+  },
+  {
+   "id": "tabs",
+   "layer": "battery",
+   "shape": "slab",
+   "size": [
+    0.3,
+    1.1,
+    0.03
+   ],
+   "r": 0.05,
+   "bevel": 0.005,
+   "pos": [
+    0,
+    0,
+    0.2
+   ],
+   "at": [
+    [
+     1.35,
+     1.65
+    ],
+    [
+     -1.35,
+     1.65
+    ]
+   ],
+   "mat": "nickel"
+  },
+  {
+   "id": "drvFrame",
+   "layer": "driver",
+   "shape": "tube",
+   "size": [
+    2.3,
+    1.95,
+    0.32
+   ],
+   "bevel": 0.03,
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "frame"
+  },
+  {
+   "id": "drvMagnet",
+   "layer": "driver",
+   "shape": "cyl",
+   "size": [
+    1.35,
+    0.36
+   ],
+   "pos": [
+    0,
+    3.0,
+    -0.12
+   ],
+   "mat": "magnet"
+  },
+  {
+   "id": "drvCoil",
+   "layer": "driver",
+   "shape": "tube",
+   "size": [
+    1.0,
+    0.86,
+    0.14
+   ],
+   "pos": [
+    0,
+    3.0,
+    0.1
+   ],
+   "mat": "coil"
+  },
+  {
+   "id": "drvSurround",
+   "layer": "driver",
+   "shape": "tube",
+   "size": [
+    1.96,
+    1.3,
+    0.08
+   ],
+   "bevel": 0.02,
+   "pos": [
+    0,
+    3.0,
+    0.13
+   ],
+   "mat": "surround"
+  },
+  {
+   "id": "drvDome",
+   "layer": "driver",
+   "shape": "sphere",
+   "size": [
+    1.32
+   ],
+   "scale": [
+    1,
+    1,
+    0.2
+   ],
+   "pos": [
+    0,
+    3.0,
+    0.12
+   ],
+   "mat": "dome"
+  },
+  {
+   "id": "drvPads",
+   "layer": "driver",
+   "shape": "box",
+   "size": [
+    0.22,
+    0.16,
+    0.04
+   ],
+   "pos": [
+    0,
+    0,
+    0.0
+   ],
+   "at": [
+    [
+     2.38,
+     3.3
+    ],
+    [
+     2.38,
+     2.7
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "fbMic",
+   "layer": "driver",
+   "shape": "slab",
+   "size": [
+    0.5,
+    0.5,
+    0.18
+   ],
+   "r": 0.08,
+   "bevel": 0.02,
+   "pos": [
+    -1.75,
+    1.15,
+    0
+   ],
+   "mat": "micBody"
+  },
+  {
+   "id": "fbMicPort",
+   "layer": "driver",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.04
+   ],
+   "pos": [
+    -1.75,
+    1.15,
+    0.11
+   ],
+   "mat": "port"
+  },
+  {
+   "id": "backDome",
+   "layer": "housing",
+   "shape": "sphere",
+   "size": [
+    2.9
+   ],
+   "scale": [
+    1,
+    1,
+    0.36
+   ],
+   "pos": [
+    0,
+    3.0,
+    -0.25
+   ],
+   "mat": "housing"
+  },
+  {
+   "id": "nozzle",
+   "layer": "housing",
+   "shape": "cyl",
+   "size": [
+    0.72,
+    0.9
+   ],
+   "pos": [
+    0,
+    3.0,
+    -1.6
+   ],
+   "mat": "housing"
+  },
+  {
+   "id": "nozzleMesh",
+   "layer": "housing",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    0.03
+   ],
+   "pos": [
+    0,
+    3.0,
+    -2.06
+   ],
+   "mat": "mesh"
+  },
+  {
+   "id": "sensor",
+   "layer": "housing",
+   "shape": "slab",
+   "size": [
+    0.8,
+    0.42,
+    0.1
+   ],
+   "r": 0.2,
+   "bevel": 0.02,
+   "pos": [
+    1.45,
+    4.25,
+    -1.0
+   ],
+   "mat": "sensor"
+  },
+  {
+   "id": "vent",
+   "layer": "housing",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.08
+   ],
+   "pos": [
+    -1.4,
+    4.2,
+    -1.0
+   ],
+   "mat": "port"
+  },
+  {
+   "id": "tip",
+   "layer": "tip",
+   "shape": "sphere",
+   "size": [
+    1.3
+   ],
+   "scale": [
+    1,
+    1,
+    0.72
+   ],
+   "pos": [
+    0,
+    3.0,
+    -1.1
+   ],
+   "mat": "tip"
+  },
+  {
+   "id": "tipHole",
+   "layer": "tip",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    0.06
+   ],
+   "pos": [
+    0,
+    3.0,
+    -2.03
+   ],
+   "mat": "tipDeep"
+  },
+  {
+   "id": "noiseRim",
+   "layer": "noise",
+   "shape": "tube",
+   "size": [
+    2.62,
+    2.5,
+    0.06
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "noiseRim"
+  },
+  {
+   "id": "noiseAxis",
+   "layer": "noise",
+   "shape": "box",
+   "size": [
+    4.7,
+    0.05,
+    0.05
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "scopeLine"
+  },
+  {
+   "id": "noiseBeads",
+   "layer": "noise",
+   "shape": "sphere",
+   "size": [
+    0.14
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "at": [
+    [
+     -2.3,
+     0,
+     0.0
+    ],
+    [
+     -2.172,
+     0,
+     0.205
+    ],
+    [
+     -2.044,
+     0,
+     0.386
+    ],
+    [
+     -1.917,
+     0,
+     0.52
+    ],
+    [
+     -1.789,
+     0,
+     0.591
+    ],
+    [
+     -1.661,
+     0,
+     0.591
+    ],
+    [
+     -1.533,
+     0,
+     0.52
+    ],
+    [
+     -1.406,
+     0,
+     0.386
+    ],
+    [
+     -1.278,
+     0,
+     0.205
+    ],
+    [
+     -1.15,
+     0,
+     -0.0
+    ],
+    [
+     -1.022,
+     0,
+     -0.205
+    ],
+    [
+     -0.894,
+     0,
+     -0.386
+    ],
+    [
+     -0.767,
+     0,
+     -0.52
+    ],
+    [
+     -0.639,
+     0,
+     -0.591
+    ],
+    [
+     -0.511,
+     0,
+     -0.591
+    ],
+    [
+     -0.383,
+     0,
+     -0.52
+    ],
+    [
+     -0.256,
+     0,
+     -0.386
+    ],
+    [
+     -0.128,
+     0,
+     -0.205
+    ],
+    [
+     0.0,
+     0,
+     0.0
+    ],
+    [
+     0.128,
+     0,
+     0.205
+    ],
+    [
+     0.256,
+     0,
+     0.386
+    ],
+    [
+     0.383,
+     0,
+     0.52
+    ],
+    [
+     0.511,
+     0,
+     0.591
+    ],
+    [
+     0.639,
+     0,
+     0.591
+    ],
+    [
+     0.767,
+     0,
+     0.52
+    ],
+    [
+     0.894,
+     0,
+     0.386
+    ],
+    [
+     1.022,
+     0,
+     0.205
+    ],
+    [
+     1.15,
+     0,
+     0.0
+    ],
+    [
+     1.278,
+     0,
+     -0.205
+    ],
+    [
+     1.406,
+     0,
+     -0.386
+    ],
+    [
+     1.533,
+     0,
+     -0.52
+    ],
+    [
+     1.661,
+     0,
+     -0.591
+    ],
+    [
+     1.789,
+     0,
+     -0.591
+    ],
+    [
+     1.917,
+     0,
+     -0.52
+    ],
+    [
+     2.044,
+     0,
+     -0.386
+    ],
+    [
+     2.172,
+     0,
+     -0.205
+    ],
+    [
+     2.3,
+     0,
+     -0.0
+    ]
+   ],
+   "mat": "noiseWave"
+  },
+  {
+   "id": "antiRim",
+   "layer": "anti",
+   "shape": "tube",
+   "size": [
+    2.62,
+    2.5,
+    0.06
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "antiRim"
+  },
+  {
+   "id": "antiAxis",
+   "layer": "anti",
+   "shape": "box",
+   "size": [
+    4.7,
+    0.05,
+    0.05
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "mat": "scopeLine"
+  },
+  {
+   "id": "antiBeads",
+   "layer": "anti",
+   "shape": "sphere",
+   "size": [
+    0.14
+   ],
+   "pos": [
+    0,
+    3.0,
+    0
+   ],
+   "at": [
+    [
+     -2.3,
+     0,
+     -0.0
+    ],
+    [
+     -2.172,
+     0,
+     -0.205
+    ],
+    [
+     -2.044,
+     0,
+     -0.386
+    ],
+    [
+     -1.917,
+     0,
+     -0.52
+    ],
+    [
+     -1.789,
+     0,
+     -0.591
+    ],
+    [
+     -1.661,
+     0,
+     -0.591
+    ],
+    [
+     -1.533,
+     0,
+     -0.52
+    ],
+    [
+     -1.406,
+     0,
+     -0.386
+    ],
+    [
+     -1.278,
+     0,
+     -0.205
+    ],
+    [
+     -1.15,
+     0,
+     0.0
+    ],
+    [
+     -1.022,
+     0,
+     0.205
+    ],
+    [
+     -0.894,
+     0,
+     0.386
+    ],
+    [
+     -0.767,
+     0,
+     0.52
+    ],
+    [
+     -0.639,
+     0,
+     0.591
+    ],
+    [
+     -0.511,
+     0,
+     0.591
+    ],
+    [
+     -0.383,
+     0,
+     0.52
+    ],
+    [
+     -0.256,
+     0,
+     0.386
+    ],
+    [
+     -0.128,
+     0,
+     0.205
+    ],
+    [
+     0.0,
+     0,
+     -0.0
+    ],
+    [
+     0.128,
+     0,
+     -0.205
+    ],
+    [
+     0.256,
+     0,
+     -0.386
+    ],
+    [
+     0.383,
+     0,
+     -0.52
+    ],
+    [
+     0.511,
+     0,
+     -0.591
+    ],
+    [
+     0.639,
+     0,
+     -0.591
+    ],
+    [
+     0.767,
+     0,
+     -0.52
+    ],
+    [
+     0.894,
+     0,
+     -0.386
+    ],
+    [
+     1.022,
+     0,
+     -0.205
+    ],
+    [
+     1.15,
+     0,
+     -0.0
+    ],
+    [
+     1.278,
+     0,
+     0.205
+    ],
+    [
+     1.406,
+     0,
+     0.386
+    ],
+    [
+     1.533,
+     0,
+     0.52
+    ],
+    [
+     1.661,
+     0,
+     0.591
+    ],
+    [
+     1.789,
+     0,
+     0.591
+    ],
+    [
+     1.917,
+     0,
+     0.52
+    ],
+    [
+     2.044,
+     0,
+     0.386
+    ],
+    [
+     2.172,
+     0,
+     0.205
+    ],
+    [
+     2.3,
+     0,
+     0.0
+    ]
+   ],
+   "mat": "antiWave"
+  }
+ ],
+ "anchors": {
+  "battery": {
+   "layer": "battery",
+   "p": [
+    1.5,
+    3.0,
+    0.25
+   ],
+   "dx": 180,
+   "dy": 10
+  },
+  "chip": {
+   "layer": "board",
+   "p": [
+    -0.45,
+    3.35,
+    0.3
+   ],
+   "dx": -170,
+   "dy": -20
+  },
+  "antenna": {
+   "layer": "board",
+   "p": [
+    0,
+    -2.5,
+    0.05
+   ],
+   "dx": 190,
+   "dy": 30
+  },
+  "speaker": {
+   "layer": "driver",
+   "p": [
+    1.6,
+    3.0,
+    0.15
+   ],
+   "dx": 180,
+   "dy": 20
+  },
+  "mic": {
+   "layer": "board",
+   "p": [
+    -1.3,
+    3.9,
+    0.28
+   ],
+   "dx": -160,
+   "dy": 80
+  },
+  "noise": {
+   "layer": "noise",
+   "p": [
+    1.72,
+    3.0,
+    0.6
+   ],
+   "dx": 170,
+   "dy": 60
+  },
+  "anti": {
+   "layer": "anti",
+   "p": [
+    -1.72,
+    3.0,
+    0.6
+   ],
+   "dx": -160,
+   "dy": -70
+  },
+  "cancel": {
+   "layer": "anti",
+   "p": [
+    2.3,
+    3.0,
+    -0.5
+   ],
+   "dx": 150,
+   "dy": -110
+  }
+ },
+ "pose": {
+  "gap": 2.2,
+  "yawIso": 0.22
+ },
+ "camera": {
+  "stand": {
+   "d": 40,
+   "elev": 5,
+   "y": 1.3
+  },
+  "explode": {
+   "d": 42,
+   "elev": 24,
+   "y": 2.4
+  },
+  "focus": {
+   "d": 18,
+   "elev": 22,
+   "y": -4.3
+  },
+  "orbit": {
+   "d": 3,
+   "elev": -4,
+   "y": -0.3,
+   "yaw": -0.22
+  },
+  "settle": {
+   "d": -4,
+   "elev": 4,
+   "y": 0.3,
+   "yaw": 0.08
+  },
+  "outro": {
+   "d": 3
+  }
+ },
+ "fx": {
+  "dpr": 1
+ }
+}

@@ -32,7 +32,8 @@ export const HeaderUI: React.FC<{ name: string; tag: string; total: number; tagP
 };
 
 /** 字幕列：一次一段單行；關鍵詞念到時換成強調色並畫底線；英文跟著中文的句 */
-export const CaptionUI: React.FC<{ cues: PhraseCue[]; top?: number }> = ({ cues, top = L.CAP_TOP }) => {
+/** cue 可以帶 kwColors（該幕關鍵詞的顏色，依 keywords 順序；不給＝預設色序） */
+export const CaptionUI: React.FC<{ cues: (PhraseCue & { kwColors?: string[] })[]; top?: number }> = ({ cues, top = L.CAP_TOP }) => {
   const f = useCurrentFrame();
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
@@ -58,7 +59,7 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[]; top?: number }> = ({ cues,
           {splitParts(joined ? display(whole) : display(ps[k].text), cue.keywords).map((s, i) => {
             if (s.k < 0) return <span key={i}>{s.text}</span>;
             const q = kwAt[s.text] === undefined ? 1 : tween(f, kwAt[s.text] - 1, 8, EASE.move);
-            const c = accentUI(colors[s.k % colors.length]);
+            const c = accentUI(cue.kwColors?.[s.k] ?? colors[s.k % colors.length]);
             return (
               <span key={i} style={{ position: "relative", color: q > 0.5 ? c.text : joined ? T.text3 : T.text }}>
                 {s.text}
@@ -75,7 +76,8 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[]; top?: number }> = ({ cues,
 
 /** 出處：字幕列下方一行小字；相鄰幕相同就不重貼 */
 /** top：出處列的位置（不給＝LAYOUT_UI.SRC_TOP）；cue 的 plain＝這一行不是出處，不加「來源：」 */
-export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, number]; plain?: boolean }[]; top?: number }> = ({ cues, top = L.SRC_TOP }) => {
+/** size／weight：字級與字重（不給＝LAYOUT_UI.SRC_PX、細字；第 3 版放大一級） */
+export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, number]; plain?: boolean }[]; top?: number; size?: number; weight?: number }> = ({ cues, top = L.SRC_TOP, size = L.SRC_PX, weight = T.weight.light }) => {
   const f = useCurrentFrame();
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
@@ -83,7 +85,7 @@ export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, nu
   const first = cues.find((c) => c.sources?.join("、") === j) as { window: [number, number] };
   const p = tween(f, first.window[0], T.motion.in, EASE.enter);
   return (
-    <div style={{ position: "absolute", left: L.X + 8, top, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+    <div style={{ position: "absolute", left: L.X + 8, top, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
       <div style={{ width: 10, height: 10, borderRadius: T.radius.pill, background: T.text2 }} />
       {cur.plain || /^(資料)?來源/.test(j) ? j : `來源：${j}`}
     </div>

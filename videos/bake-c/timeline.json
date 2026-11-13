@@ -1,0 +1,524 @@
+{
+ "version": 2,
+ "slug": "bake-c",
+ "fps": 30,
+ "totalFrames": 444,
+ "totalSec": 14.8,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 5,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 2.2,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 80,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 71,
+   "stillFrame": 70,
+   "subtitleWindow": [
+    0,
+    77
+   ],
+   "sourceWindow": [
+    0,
+    75
+   ],
+   "lines": [
+    {
+     "text": "欸，",
+     "start": 0,
+     "chars": [
+      4,
+      4
+     ]
+    },
+    {
+     "text": "拆開一顆無線耳機看看？",
+     "start": 7,
+     "chars": [
+      10,
+      16,
+      21,
+      28,
+      34,
+      40,
+      45,
+      52,
+      58,
+      64,
+      64
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "無線耳機",
+     "start": 34
+    }
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開",
+     "frame": 11
+    }
+   ],
+   "sub": "欸，拆開一顆無線耳機看看？",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1,
+    1.2,
+    1.4,
+    1.6,
+    1.8,
+    2
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 80,
+   "audioSec": 2.4,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 70,
+   "durationFrames": 91,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 80,
+   "voiceEndFrame": 152,
+   "stillFrame": 151,
+   "subtitleWindow": [
+    77,
+    158
+   ],
+   "sourceWindow": [
+    75,
+    156
+   ],
+   "lines": [
+    {
+     "text": "外殼裡塞著",
+     "start": 77,
+     "chars": [
+      79,
+      84,
+      89,
+      95,
+      100
+     ]
+    },
+    {
+     "text": "電池、",
+     "start": 110,
+     "chars": [
+      112,
+      118,
+      118
+     ]
+    },
+    {
+     "text": "晶片和天線",
+     "start": 121,
+     "chars": [
+      123,
+      129,
+      134,
+      140,
+      145
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "電池",
+     "start": 112
+    },
+    {
+     "text": "晶片",
+     "start": 123
+    },
+    {
+     "text": "天線",
+     "start": 140
+    }
+   ],
+   "cues": [
+    {
+     "id": "shell",
+     "text": "外殼",
+     "frame": 80
+    },
+    {
+     "id": "battery",
+     "text": "電池",
+     "frame": 114
+    },
+    {
+     "id": "chip",
+     "text": "晶片",
+     "frame": 125
+    },
+    {
+     "id": "antenna",
+     "text": "天線",
+     "frame": 141
+    }
+   ],
+   "sub": "外殼裡塞著\n電池、晶片和天線",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.545,
+    0.727,
+    1.127,
+    1.309,
+    1.491,
+    1.673,
+    1.855,
+    2.036,
+    2.218
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 161,
+   "audioSec": 2.6,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 151,
+   "durationFrames": 97,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 161,
+   "voiceEndFrame": 239,
+   "stillFrame": 238,
+   "subtitleWindow": [
+    158,
+    245
+   ],
+   "sourceWindow": [
+    156,
+    243
+   ],
+   "lines": [
+    {
+     "text": "喇叭單體負責",
+     "start": 158,
+     "chars": [
+      160,
+      165,
+      170,
+      176,
+      181,
+      187
+     ]
+    },
+    {
+     "text": "把聲音送進耳朵",
+     "start": 197,
+     "chars": [
+      199,
+      205,
+      210,
+      216,
+      221,
+      227,
+      232
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "喇叭單體",
+     "start": 160
+    }
+   ],
+   "cues": [
+    {
+     "id": "driver",
+     "text": "喇叭單體",
+     "frame": 161
+    },
+    {
+     "id": "ear",
+     "text": "耳朵",
+     "frame": 228
+    }
+   ],
+   "sub": "喇叭單體負責\n把聲音送進耳朵",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.732,
+    0.915,
+    1.318,
+    1.501,
+    1.685,
+    1.868,
+    2.051,
+    2.234,
+    2.417
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 248,
+   "audioSec": 3,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 238,
+   "durationFrames": 109,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 248,
+   "voiceEndFrame": 338,
+   "stillFrame": 337,
+   "subtitleWindow": [
+    245,
+    344
+   ],
+   "sourceWindow": [
+    243,
+    342
+   ],
+   "lines": [
+    {
+     "text": "主動降噪靠麥克風",
+     "start": 245,
+     "chars": [
+      247,
+      252,
+      258,
+      263,
+      269,
+      274,
+      280,
+      285
+     ]
+    },
+    {
+     "text": "先收外面的噪音",
+     "start": 296,
+     "chars": [
+      298,
+      303,
+      309,
+      314,
+      320,
+      325,
+      331
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "主動降噪",
+     "start": 247
+    },
+    {
+     "text": "麥克風",
+     "start": 274
+    }
+   ],
+   "cues": [
+    {
+     "id": "anc",
+     "text": "主動降噪",
+     "frame": 248
+    },
+    {
+     "id": "mic",
+     "text": "麥克風",
+     "frame": 276
+    }
+   ],
+   "sub": "主動降噪靠麥克風\n先收外面的噪音",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.185,
+    0.37,
+    0.556,
+    0.741,
+    0.926,
+    1.111,
+    1.296,
+    1.704,
+    1.889,
+    2.074,
+    2.259,
+    2.444,
+    2.63,
+    2.815
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 347,
+   "audioSec": 2.6,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 337,
+   "durationFrames": 107,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 347,
+   "voiceEndFrame": 426,
+   "stillFrame": 432,
+   "subtitleWindow": [
+    344,
+    444
+   ],
+   "sourceWindow": [
+    342,
+    444
+   ],
+   "lines": [
+    {
+     "text": "再發出反相的聲波",
+     "start": 344,
+     "chars": [
+      346,
+      351,
+      356,
+      362,
+      367,
+      373,
+      378,
+      384
+     ]
+    },
+    {
+     "text": "把它抵消掉",
+     "start": 394,
+     "chars": [
+      396,
+      402,
+      407,
+      413,
+      418
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "反相",
+     "start": 362
+    },
+    {
+     "text": "抵消",
+     "start": 407
+    }
+   ],
+   "cues": [
+    {
+     "id": "anti",
+     "text": "反相",
+     "frame": 363
+    },
+    {
+     "id": "cancel",
+     "text": "抵消",
+     "frame": 409
+    }
+   ],
+   "sub": "再發出反相的聲波\n把它抵消掉",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.732,
+    0.915,
+    1.099,
+    1.282,
+    1.685,
+    1.868,
+    2.051,
+    2.234,
+    2.417
+   ]
+  }
+ ]
+}

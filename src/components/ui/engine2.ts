@@ -6,7 +6,7 @@ import { FPS, THEME_UI as T } from "../../theme";
 
 export type Mark = { kind: "circle" | "check" | "underline"; target?: string; at: number };
 export type Slot2 = { label: string; color: string; text: string; at: number };
-export type CmpSide = { label: string; prompt: string; answer: string; mark?: { kind: Mark["kind"]; target?: string }; tag: string };
+export type CmpSide = { label: string; prompt: string; answer: string; mark?: { kind: Mark["kind"]; target?: string }; tag: string; /** 提示列字級（不給 36；第 3 版放比較長的摘要時用） */ promptPx?: number };
 export type Model2 = {
   total: number;
   hook?: { title: string; kicker?: string };

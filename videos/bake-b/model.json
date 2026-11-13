@@ -1,0 +1,1376 @@
+{
+ "name": "示意真無線耳機（非特定機型、沒有商標）",
+ "unit": "約 1 公分（放大示意）",
+ "size": {
+  "w": 7.4,
+  "h": 13.5,
+  "r": 3.7,
+  "t": 1.4
+ },
+ "palette": {
+  "graphite": "#2A3342",
+  "face": "#3A4660",
+  "faceDeep": "#1E2532",
+  "alu": "#C3CBD8",
+  "steelDark": "#8A94A6",
+  "black": "#0A0D14",
+  "tip": "#7FB7C2",
+  "tipDark": "#5C97A5",
+  "mesh": "#4A5366",
+  "gold": "#D2A640",
+  "copper": "#CF7F42",
+  "copperDeep": "#A8642F",
+  "magnet": "#9AA3B2",
+  "diaph": "#E6EAF0",
+  "cellSteel": "#B4BCC9",
+  "cellLabel": "#1FB58A",
+  "pcb": "#17694F",
+  "ic": "#1A202B",
+  "icTop": "#3A4352",
+  "chip": "#5C687C",
+  "chipLid": "#C4CCD9",
+  "shield": "#AEB7C4",
+  "cap": "#C9A46A",
+  "flex": "#C8792B",
+  "mint": "#1FB58A",
+  "led": "#BFF5E6",
+  "white": "#F4F7FB",
+  "wire": "#D94B3A",
+  "wireB": "#2B2F3A",
+  "water": "#5FD6C2",
+  "vapor": "#FF9A7A",
+  "hot": "#FF5A3D",
+  "warm": "#FF9A7A",
+  "shimmer": "#FF9A7A",
+  "aqua": "#1FB5B0",
+  "signal": "#7FE6D4",
+  "signalHot": "#E6FFF8",
+  "amber": "#FFC24A"
+ },
+ "materials": {
+  "shell": {
+   "kind": "phys",
+   "color": "graphite",
+   "rough": 0.2,
+   "metal": 0.2,
+   "clearcoat": 1,
+   "clearcoatRough": 0.08
+  },
+  "face": {
+   "kind": "phys",
+   "color": "face",
+   "rough": 0.12,
+   "metal": 0.25,
+   "clearcoat": 1,
+   "clearcoatRough": 0.04
+  },
+  "faceDeep": {
+   "kind": "phys",
+   "color": "faceDeep",
+   "rough": 0.15,
+   "metal": 0.2,
+   "clearcoat": 1,
+   "clearcoatRough": 0.08
+  },
+  "alu": {
+   "kind": "std",
+   "color": "alu",
+   "rough": 0.3,
+   "metal": 0.92,
+   "tex": "brushed",
+   "texScale": 2.4
+  },
+  "aluPlain": {
+   "kind": "std",
+   "color": "alu",
+   "rough": 0.28,
+   "metal": 0.95
+  },
+  "steelDark": {
+   "kind": "std",
+   "color": "steelDark",
+   "rough": 0.35,
+   "metal": 0.9
+  },
+  "black": {
+   "kind": "std",
+   "color": "black",
+   "rough": 0.7,
+   "metal": 0.1
+  },
+  "tip": {
+   "kind": "std",
+   "color": "tip",
+   "rough": 0.8,
+   "metal": 0
+  },
+  "tipDark": {
+   "kind": "std",
+   "color": "tipDark",
+   "rough": 0.85,
+   "metal": 0
+  },
+  "meshM": {
+   "kind": "std",
+   "color": "mesh",
+   "rough": 0.6,
+   "metal": 0.5,
+   "tex": "traces",
+   "texScale": 0.35
+  },
+  "gold": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.35,
+   "metal": 0.9
+  },
+  "copper": {
+   "kind": "std",
+   "color": "copper",
+   "rough": 0.3,
+   "metal": 0.95
+  },
+  "copperDeep": {
+   "kind": "std",
+   "color": "copperDeep",
+   "rough": 0.45,
+   "metal": 0.85
+  },
+  "magnet": {
+   "kind": "std",
+   "color": "magnet",
+   "rough": 0.32,
+   "metal": 0.92,
+   "tex": "brushed",
+   "texScale": 1.8
+  },
+  "diaph": {
+   "kind": "std",
+   "color": "diaph",
+   "rough": 0.55,
+   "metal": 0.05
+  },
+  "cell": {
+   "kind": "std",
+   "color": "cellSteel",
+   "rough": 0.3,
+   "metal": 0.92,
+   "tex": "brushed",
+   "texScale": 2
+  },
+  "cellLabel": {
+   "kind": "std",
+   "color": "cellLabel",
+   "rough": 0.6,
+   "metal": 0
+  },
+  "pcb": {
+   "kind": "std",
+   "color": "pcb",
+   "rough": 0.55,
+   "metal": 0.1,
+   "tex": "traces",
+   "texScale": 2.2
+  },
+  "ic": {
+   "kind": "std",
+   "color": "ic",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "icTop": {
+   "kind": "std",
+   "color": "icTop",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "chip": {
+   "kind": "std",
+   "color": "chip",
+   "rough": 0.5,
+   "metal": 0.3
+  },
+  "chipLid": {
+   "kind": "std",
+   "color": "chipLid",
+   "rough": 0.28,
+   "metal": 0.9
+  },
+  "shield": {
+   "kind": "std",
+   "color": "shield",
+   "rough": 0.38,
+   "metal": 0.9,
+   "tex": "brushed",
+   "texScale": 1.6
+  },
+  "cap": {
+   "kind": "std",
+   "color": "cap",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "flex": {
+   "kind": "std",
+   "color": "flex",
+   "rough": 0.45,
+   "metal": 0.25,
+   "tex": "traces",
+   "texScale": 0.9
+  },
+  "led": {
+   "kind": "std",
+   "color": "led",
+   "rough": 0.3,
+   "metal": 0,
+   "emissive": "led",
+   "ei": 0.6
+  },
+  "wireR": {
+   "kind": "std",
+   "color": "wire",
+   "rough": 0.7,
+   "metal": 0
+  },
+  "wireB": {
+   "kind": "std",
+   "color": "wireB",
+   "rough": 0.7,
+   "metal": 0
+  },
+  "sensor": {
+   "kind": "std",
+   "color": "faceDeep",
+   "rough": 0.4,
+   "metal": 0.3
+  }
+ },
+ "layers": [
+  {
+   "id": "back",
+   "z": -0.85,
+   "k": -2,
+   "outline": [
+    7.4,
+    13.5,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "inner",
+   "z": -0.3,
+   "k": -1,
+   "outline": [
+    7.2,
+    13.2,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "board",
+   "z": 0.2,
+   "k": 0,
+   "outline": [
+    5.8,
+    9.8,
+    0,
+    0.9
+   ]
+  },
+  {
+   "id": "front",
+   "z": 0.7,
+   "k": 1,
+   "outline": [
+    7.4,
+    13.5,
+    0,
+    0
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "backShell",
+   "layer": "back",
+   "shape": "slab",
+   "size": [
+    7.4,
+    13.5,
+    0.5
+   ],
+   "r": 3.7,
+   "bevel": 0.12,
+   "mat": "shell"
+  },
+  {
+   "id": "backRim",
+   "layer": "back",
+   "shape": "ring",
+   "size": [
+    7.5,
+    13.6,
+    0.2
+   ],
+   "r": 3.75,
+   "wall": 0.2,
+   "bevel": 0.05,
+   "pos": [
+    0,
+    0,
+    0.2
+   ],
+   "mat": "alu"
+  },
+  {
+   "id": "nozCollar",
+   "layer": "back",
+   "shape": "tube",
+   "size": [
+    2.1,
+    1.55,
+    0.9
+   ],
+   "bevel": 0.05,
+   "pos": [
+    0,
+    -2.5,
+    -0.55
+   ],
+   "mat": "alu"
+  },
+  {
+   "id": "tipBase",
+   "layer": "back",
+   "shape": "cyl",
+   "size": [
+    1.7,
+    0.5
+   ],
+   "pos": [
+    0,
+    -2.5,
+    -1.1
+   ],
+   "mat": "tipDark"
+  },
+  {
+   "id": "eartip",
+   "layer": "back",
+   "shape": "sphere",
+   "size": [
+    2.4
+   ],
+   "scale": [
+    1,
+    1,
+    0.55
+   ],
+   "pos": [
+    0,
+    -2.5,
+    -1.45
+   ],
+   "mat": "tip"
+  },
+  {
+   "id": "tipMesh",
+   "layer": "back",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    0.1
+   ],
+   "pos": [
+    0,
+    -2.5,
+    -2.0
+   ],
+   "mat": "meshM"
+  },
+  {
+   "id": "vent",
+   "layer": "back",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.1
+   ],
+   "pos": [
+    2.4,
+    2.6,
+    -0.27
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "pin",
+   "layer": "back",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.12
+   ],
+   "pos": [
+    0,
+    5.4,
+    -0.3
+   ],
+   "at": [
+    [
+     -0.8,
+     0
+    ],
+    [
+     0.8,
+     0
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pinRing",
+   "layer": "back",
+   "shape": "tube",
+   "size": [
+    0.45,
+    0.3,
+    0.06
+   ],
+   "pos": [
+    0,
+    5.4,
+    -0.27
+   ],
+   "at": [
+    [
+     -0.8,
+     0
+    ],
+    [
+     0.8,
+     0
+    ]
+   ],
+   "mat": "aluPlain"
+  },
+  {
+   "id": "drvHousing",
+   "layer": "inner",
+   "shape": "tube",
+   "size": [
+    2.95,
+    2.5,
+    0.95
+   ],
+   "bevel": 0.05,
+   "pos": [
+    0,
+    -2.5,
+    0
+   ],
+   "mat": "alu"
+  },
+  {
+   "id": "drvBack",
+   "layer": "inner",
+   "shape": "cyl",
+   "size": [
+    2.5,
+    0.1
+   ],
+   "pos": [
+    0,
+    -2.5,
+    -0.4
+   ],
+   "mat": "steelDark"
+  },
+  {
+   "id": "magnet",
+   "layer": "inner",
+   "shape": "cyl",
+   "size": [
+    1.7,
+    0.45
+   ],
+   "pos": [
+    0,
+    -2.5,
+    -0.15
+   ],
+   "mat": "magnet"
+  },
+  {
+   "id": "coil",
+   "layer": "inner",
+   "shape": "tube",
+   "size": [
+    1.25,
+    0.95,
+    0.5
+   ],
+   "bevel": 0.03,
+   "pos": [
+    0,
+    -2.5,
+    0.2
+   ],
+   "mat": "copper"
+  },
+  {
+   "id": "diaph",
+   "layer": "inner",
+   "shape": "sphere",
+   "size": [
+    2.45
+   ],
+   "scale": [
+    1,
+    1,
+    0.1
+   ],
+   "pos": [
+    0,
+    -2.5,
+    0.4
+   ],
+   "mat": "diaph"
+  },
+  {
+   "id": "dustcap",
+   "layer": "inner",
+   "shape": "sphere",
+   "size": [
+    0.95
+   ],
+   "scale": [
+    1,
+    1,
+    0.5
+   ],
+   "pos": [
+    0,
+    -2.5,
+    0.45
+   ],
+   "mat": "copper"
+  },
+  {
+   "id": "drvScrew",
+   "layer": "inner",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.12
+   ],
+   "pos": [
+    0,
+    -2.5,
+    0.52
+   ],
+   "at": [
+    [
+     2.72,
+     0
+    ],
+    [
+     -2.72,
+     0
+    ],
+    [
+     0,
+     2.72
+    ],
+    [
+     0,
+     -2.72
+    ]
+   ],
+   "mat": "steelDark"
+  },
+  {
+   "id": "cell",
+   "layer": "inner",
+   "shape": "cyl",
+   "size": [
+    1.95,
+    0.95
+   ],
+   "pos": [
+    0,
+    3.75,
+    0
+   ],
+   "mat": "cell"
+  },
+  {
+   "id": "cellRing",
+   "layer": "inner",
+   "shape": "tube",
+   "size": [
+    1.95,
+    1.7,
+    0.1
+   ],
+   "bevel": 0.02,
+   "pos": [
+    0,
+    3.75,
+    0.5
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "cellLabel",
+   "layer": "inner",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.05
+   ],
+   "pos": [
+    0,
+    3.75,
+    0.52
+   ],
+   "mat": "cellLabel"
+  },
+  {
+   "id": "cellPlus",
+   "layer": "inner",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.14,
+    0.04
+   ],
+   "pos": [
+    0,
+    3.75,
+    0.56
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "cellPlus2",
+   "layer": "inner",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.7,
+    0.04
+   ],
+   "pos": [
+    0,
+    3.75,
+    0.56
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "wireR",
+   "layer": "inner",
+   "shape": "box",
+   "size": [
+    0.12,
+    2.3,
+    0.06
+   ],
+   "pos": [
+    1.3,
+    1.4,
+    0.1
+   ],
+   "mat": "wireR"
+  },
+  {
+   "id": "wireB",
+   "layer": "inner",
+   "shape": "box",
+   "size": [
+    0.12,
+    2.3,
+    0.06
+   ],
+   "pos": [
+    1.6,
+    1.4,
+    0.1
+   ],
+   "mat": "wireB"
+  },
+  {
+   "id": "spkWire",
+   "layer": "inner",
+   "shape": "box",
+   "size": [
+    0.1,
+    1.2,
+    0.05
+   ],
+   "pos": [
+    -3.1,
+    -0.6,
+    0.2
+   ],
+   "at": [
+    [
+     0,
+     0
+    ],
+    [
+     0.25,
+     0
+    ]
+   ],
+   "mat": "copperDeep"
+  },
+  {
+   "id": "pcbFloor",
+   "layer": "board",
+   "shape": "plane",
+   "size": [
+    5.4,
+    9.4
+   ],
+   "pos": [
+    0,
+    0.9,
+    0.075
+   ],
+   "mat": "pcb",
+   "role": "heatFloor"
+  },
+  {
+   "id": "pcb",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    5.6,
+    9.6,
+    0.14
+   ],
+   "r": 1.2,
+   "bevel": 0.03,
+   "pos": [
+    0,
+    0.9,
+    0
+   ],
+   "mat": "pcb",
+   "role": "xray"
+  },
+  {
+   "id": "soc",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    2.0,
+    2.0,
+    0.22
+   ],
+   "r": 0.12,
+   "bevel": 0.02,
+   "pos": [
+    -0.7,
+    2.0,
+    0.18
+   ],
+   "mat": "chip",
+   "role": "heatSource"
+  },
+  {
+   "id": "socLid",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.6,
+    1.6,
+    0.04
+   ],
+   "r": 0.08,
+   "bevel": 0.01,
+   "pos": [
+    -0.7,
+    2.0,
+    0.31
+   ],
+   "mat": "chipLid",
+   "role": "heatSource"
+  },
+  {
+   "id": "memChip",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.3,
+    1.0,
+    0.16
+   ],
+   "r": 0.06,
+   "bevel": 0.015,
+   "pos": [
+    1.4,
+    2.2,
+    0.14
+   ],
+   "mat": "icTop"
+  },
+  {
+   "id": "pmic",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    0.9,
+    0.9,
+    0.14
+   ],
+   "r": 0.05,
+   "bevel": 0.01,
+   "pos": [
+    1.5,
+    0.7,
+    0.14
+   ],
+   "mat": "ic"
+  },
+  {
+   "id": "btChip",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.1,
+    0.8,
+    0.14
+   ],
+   "r": 0.05,
+   "bevel": 0.01,
+   "pos": [
+    -1.5,
+    -0.1,
+    0.14
+   ],
+   "mat": "ic"
+  },
+  {
+   "id": "shieldCan",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    2.0,
+    1.5,
+    0.2
+   ],
+   "r": 0.06,
+   "bevel": 0.025,
+   "pos": [
+    0.4,
+    -1.3,
+    0.17
+   ],
+   "mat": "shield"
+  },
+  {
+   "id": "caps",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.38,
+    0.22,
+    0.16
+   ],
+   "pos": [
+    0,
+    0,
+    0.15
+   ],
+   "at": [
+    [
+     -2.2,
+     3.3
+    ],
+    [
+     -1.8,
+     3.3
+    ],
+    [
+     2.2,
+     0.5
+    ],
+    [
+     2.2,
+     -0.1
+    ],
+    [
+     -2.2,
+     1.0
+    ],
+    [
+     -2.2,
+     0.5
+    ],
+    [
+     1.8,
+     -0.9
+    ],
+    [
+     -1.6,
+     1.1
+    ],
+    [
+     2.2,
+     3.3
+    ],
+    [
+     1.6,
+     3.3
+    ]
+   ],
+   "mat": "cap"
+  },
+  {
+   "id": "micOut",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.8,
+    0.3
+   ],
+   "pos": [
+    -1.9,
+    4.4,
+    0.2
+   ],
+   "mat": "aluPlain",
+   "role": "heatSource"
+  },
+  {
+   "id": "micOutPort",
+   "layer": "board",
+   "shape": "cyl",
+   "size": [
+    0.17,
+    0.06
+   ],
+   "pos": [
+    -1.9,
+    4.4,
+    0.37
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "micIn",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.8,
+    0.3
+   ],
+   "pos": [
+    2.0,
+    -3.1,
+    0.2
+   ],
+   "mat": "aluPlain",
+   "role": "heatSource"
+  },
+  {
+   "id": "micInPort",
+   "layer": "board",
+   "shape": "cyl",
+   "size": [
+    0.17,
+    0.06
+   ],
+   "pos": [
+    2.0,
+    -3.1,
+    0.37
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "flex",
+   "layer": "board",
+   "shape": "slab",
+   "size": [
+    1.2,
+    0.7,
+    0.1
+   ],
+   "r": 0.04,
+   "bevel": 0.01,
+   "pos": [
+    0.1,
+    -3.6,
+    0.1
+   ],
+   "mat": "flex"
+  },
+  {
+   "id": "led",
+   "layer": "board",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.06
+   ],
+   "pos": [
+    2.4,
+    4.4,
+    0.18
+   ],
+   "mat": "led"
+  },
+  {
+   "id": "antH",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    2.4,
+    0.1,
+    0.05
+   ],
+   "pos": [
+    -1.3,
+    0,
+    0.1
+   ],
+   "at": [
+    [
+     0,
+     -3.3
+    ],
+    [
+     0,
+     -2.92
+    ],
+    [
+     0,
+     -2.54
+    ],
+    [
+     0,
+     -2.1599999999999997
+    ],
+    [
+     0,
+     -1.7799999999999998
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "antV",
+   "layer": "board",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.48,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    0.1
+   ],
+   "at": [
+    [
+     -2.5,
+     -3.11
+    ],
+    [
+     -0.1,
+     -2.73
+    ],
+    [
+     -2.5,
+     -2.35
+    ],
+    [
+     -0.1,
+     -1.9699999999999998
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "antFeed",
+   "layer": "board",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.07
+   ],
+   "pos": [
+    -2.5,
+    -3.3,
+    0.14
+   ],
+   "mat": "aluPlain"
+  },
+  {
+   "id": "frontShell",
+   "layer": "front",
+   "shape": "slab",
+   "size": [
+    7.4,
+    13.5,
+    0.5
+   ],
+   "r": 3.7,
+   "bevel": 0.12,
+   "mat": "face"
+  },
+  {
+   "id": "frontRim",
+   "layer": "front",
+   "shape": "ring",
+   "size": [
+    7.5,
+    13.6,
+    0.2
+   ],
+   "r": 3.75,
+   "wall": 0.2,
+   "bevel": 0.05,
+   "pos": [
+    0,
+    0,
+    -0.2
+   ],
+   "mat": "alu"
+  },
+  {
+   "id": "touch",
+   "layer": "front",
+   "shape": "plane",
+   "size": [
+    4.4,
+    6.2
+   ],
+   "r": 2.2,
+   "pos": [
+    0,
+    0.3,
+    0.26
+   ],
+   "mat": "faceDeep"
+  },
+  {
+   "id": "touchRing",
+   "layer": "front",
+   "shape": "tube",
+   "size": [
+    1.0,
+    0.86,
+    0.04
+   ],
+   "bevel": 0.01,
+   "pos": [
+    0,
+    0.3,
+    0.27
+   ],
+   "mat": "aluPlain"
+  },
+  {
+   "id": "micHole",
+   "layer": "front",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.06
+   ],
+   "pos": [
+    -1.9,
+    4.4,
+    0.27
+   ],
+   "mat": "black"
+  },
+  {
+   "id": "micMesh",
+   "layer": "front",
+   "shape": "tube",
+   "size": [
+    0.42,
+    0.22,
+    0.06
+   ],
+   "bevel": 0.01,
+   "pos": [
+    -1.9,
+    4.4,
+    0.26
+   ],
+   "mat": "aluPlain"
+  },
+  {
+   "id": "ledWin",
+   "layer": "front",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.05
+   ],
+   "pos": [
+    2.4,
+    4.4,
+    0.27
+   ],
+   "mat": "led"
+  },
+  {
+   "id": "sensor",
+   "layer": "front",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.05
+   ],
+   "pos": [
+    0,
+    -5.0,
+    0.27
+   ],
+   "at": [
+    [
+     -0.5,
+     0
+    ],
+    [
+     0.5,
+     0
+    ]
+   ],
+   "mat": "sensor"
+  }
+ ],
+ "anchors": {
+  "shell": {
+   "layer": "front",
+   "p": [
+    2.6,
+    -3.6,
+    0.3
+   ],
+   "dx": -150,
+   "dy": 60
+  },
+  "battery": {
+   "layer": "inner",
+   "p": [
+    1.5,
+    4.9,
+    0.5
+   ],
+   "dx": 170,
+   "dy": -20
+  },
+  "speaker": {
+   "layer": "inner",
+   "p": [
+    -2.6,
+    -3.6,
+    0.5
+   ],
+   "dx": -120,
+   "dy": 60
+  },
+  "mic": {
+   "layer": "board",
+   "p": [
+    -1.9,
+    4.4,
+    0.4
+   ],
+   "dx": -140,
+   "dy": -60
+  },
+  "chip": {
+   "layer": "board",
+   "p": [
+    -0.7,
+    2.0,
+    0.35
+   ],
+   "dx": -120,
+   "dy": 80
+  },
+  "ant": {
+   "layer": "board",
+   "p": [
+    -2.5,
+    -3.3,
+    0.2
+   ],
+   "dx": -130,
+   "dy": 110
+  },
+  "noise": {
+   "layer": "board",
+   "p": [
+    -1.9,
+    4.4,
+    1.4
+   ],
+   "dx": -100,
+   "dy": -110
+  },
+  "anti": {
+   "layer": "board",
+   "p": [
+    0.5,
+    -0.6,
+    0.5
+   ],
+   "dx": -150,
+   "dy": 130
+  }
+ },
+ "fx": {
+  "dpr": 1
+ },
+ "thermal": {
+  "layer": "board",
+  "center": [
+   0,
+   0.9
+  ],
+  "size": [
+   5.2,
+   9.0
+  ],
+  "floorZ": 0.09,
+  "hot": [
+   -1.9,
+   3.5
+  ],
+  "lanes": [
+   -2.3,
+   2.3
+  ],
+  "lidTravel": 0,
+  "particles": 30,
+  "shimmer": 14,
+  "ramp": [
+   "pcb",
+   "aqua",
+   "signal",
+   "signalHot"
+  ],
+  "water": "water",
+  "vapor": "vapor",
+  "shimmerColor": "shimmer",
+  "glow": "hot",
+  "sourceHot": "hot",
+  "sourceWarm": "warm"
+ }
+}

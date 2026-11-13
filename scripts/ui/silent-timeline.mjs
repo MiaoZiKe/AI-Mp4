@@ -23,6 +23,13 @@ const syllables = (t) => (String(t).match(/[A-Za-z]+|[0-9]|[一-鿿]/g) ?? []).r
 const out = [];
 let prevEnd = 0, prevGap = 0;
 for (const [i, s] of script.scenes.entries()) {
+  if (s.silent === true && s.durationSec > 0 && i === script.scenes.length - 1) { // 無旁白的最後一幕（片尾卡）：排法照 align.mjs 的 buildV2
+    const p = out[i - 1], startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+    out.push({ id: s.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(s.durationSec * FPS)), transitionFrames: TRANS,
+      transition: { type: "fade", frames: TRANS, exit: [0, 5], enter: [3, 8] }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true,
+      subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "", provider: "estimate", syllables: 0, words: [], charTimes: [] });
+    continue;
+  }
   const sub = s.subtitle.zh, syl = syllables(s.tts ?? s.narration), dur = syl / RATE;
   // 每個字幕字（去標點）的時間：平均分配，換行處多停一下
   const charTimes = [];
@@ -60,9 +67,9 @@ for (const [i, s] of script.scenes.entries()) {
 }
 for (const [i, x] of out.entries()) {
   const n = out[i + 1];
-  x.durationFrames = n ? n.startFrame + n.transitionFrames - x.startFrame : Math.max(MIN_SCENE_F, x.voiceEndFrame + TAIL_END_F - x.startFrame);
+  if (!x.silent) x.durationFrames = n ? n.startFrame + n.transitionFrames - x.startFrame : Math.max(MIN_SCENE_F, x.voiceEndFrame + TAIL_END_F - x.startFrame);
   x.stillFrame = n ? n.startFrame : x.startFrame + x.durationFrames - 12;
-  x.subtitleWindow[1] = n ? n.subtitleWindow[0] : x.startFrame + x.durationFrames;
+  if (x.subtitleWindow) x.subtitleWindow[1] = n ? (n.subtitleWindow ? n.subtitleWindow[0] : n.startFrame + n.transitionFrames) : x.startFrame + x.durationFrames;
   x.sourceWindow[1] = n ? n.sourceWindow[0] : x.startFrame + x.durationFrames;
 }
 const last = out[out.length - 1], totalFrames = last.startFrame + last.durationFrames;

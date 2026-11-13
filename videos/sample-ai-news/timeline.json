@@ -1,0 +1,2080 @@
+{
+ "version": 2,
+ "slug": "sample-ai-news",
+ "fps": 30,
+ "totalFrames": 1893,
+ "totalSec": 63.1,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 3.469,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 118,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 110,
+   "stillFrame": 108,
+   "subtitleWindow": [
+    0,
+    115
+   ],
+   "sourceWindow": [
+    0,
+    113
+   ],
+   "lines": [
+    {
+     "text": "十月物價出來了",
+     "start": 0,
+     "chars": [
+      4,
+      10,
+      16,
+      22,
+      28,
+      34,
+      40
+     ]
+    },
+    {
+     "text": "你有叫 AI 抓重點嗎？",
+     "start": 51,
+     "chars": [
+      53,
+      59,
+      65,
+      65,
+      71,
+      77,
+      77,
+      83,
+      89,
+      95,
+      102,
+      102
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "抓重點",
+     "start": 83
+    }
+   ],
+   "cues": [
+    {
+     "id": "cpi",
+     "text": "物價",
+     "frame": 17
+    },
+    {
+     "id": "key",
+     "text": "抓重點",
+     "frame": 85
+    }
+   ],
+   "sub": "十月物價出來了\n你有叫 AI 抓重點嗎？",
+   "provider": "estimate",
+   "syllables": 17,
+   "words": [],
+   "charTimes": [
+    0,
+    0.202,
+    0.403,
+    0.605,
+    0.807,
+    1.009,
+    1.21,
+    1.654,
+    1.856,
+    2.057,
+    2.259,
+    2.461,
+    2.663,
+    2.864,
+    3.066,
+    3.268
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 118,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 108,
+   "durationFrames": 98,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 118,
+   "voiceEndFrame": 198,
+   "stillFrame": 196,
+   "subtitleWindow": [
+    115,
+    203
+   ],
+   "sourceWindow": [
+    113,
+    201
+   ],
+   "lines": [
+    {
+     "text": "我們拿 Gemini 實測",
+     "start": 115,
+     "chars": [
+      117,
+      121,
+      126,
+      126,
+      130,
+      135,
+      140,
+      144,
+      149,
+      154,
+      154,
+      158,
+      163
+     ]
+    },
+    {
+     "text": "只打一句話",
+     "start": 171,
+     "chars": [
+      173,
+      178,
+      182,
+      187,
+      191
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "實測",
+     "start": 158
+    },
+    {
+     "text": "一句話",
+     "start": 182
+    }
+   ],
+   "cues": [
+    {
+     "id": "test",
+     "text": "實測",
+     "frame": 160
+    },
+    {
+     "id": "one",
+     "text": "一句話",
+     "frame": 184
+    }
+   ],
+   "sub": "我們拿 Gemini 實測\n只打一句話",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.154,
+    0.308,
+    0.463,
+    0.617,
+    0.771,
+    0.925,
+    1.08,
+    1.234,
+    1.388,
+    1.542,
+    1.882,
+    2.036,
+    2.19,
+    2.345,
+    2.499
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 207,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 196,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 206,
+   "voiceEndFrame": 299,
+   "stillFrame": 297,
+   "subtitleWindow": [
+    203,
+    304
+   ],
+   "sourceWindow": [
+    201,
+    302
+   ],
+   "lines": [
+    {
+     "text": "它回了一大篇",
+     "start": 203,
+     "chars": [
+      206,
+      212,
+      218,
+      224,
+      230,
+      236
+     ]
+    },
+    {
+     "text": "說十月是 1.69%",
+     "start": 247,
+     "chars": [
+      249,
+      255,
+      261,
+      267,
+      267,
+      273,
+      273,
+      279,
+      285,
+      291
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "1.69%",
+     "start": 273
+    }
+   ],
+   "cues": [
+    {
+     "id": "long",
+     "text": "一大篇",
+     "frame": 225
+    },
+    {
+     "id": "old",
+     "text": "1.69",
+     "frame": 275
+    }
+   ],
+   "sub": "它回了一大篇\n說十月是 1.69%",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.201,
+    0.403,
+    0.604,
+    0.806,
+    1.007,
+    1.45,
+    1.651,
+    1.853,
+    2.054,
+    2.256,
+    2.457,
+    2.658,
+    2.86
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 308,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 297,
+   "durationFrames": 120,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 307,
+   "voiceEndFrame": 406,
+   "stillFrame": 407,
+   "subtitleWindow": [
+    304,
+    414
+   ],
+   "sourceWindow": [
+    302,
+    412
+   ],
+   "pauseAfter": 0.4,
+   "lines": [
+    {
+     "text": "蛤？那是兩年前的啦",
+     "start": 304,
+     "chars": [
+      307,
+      307,
+      313,
+      319,
+      325,
+      331,
+      337,
+      343,
+      349
+     ]
+    },
+    {
+     "text": "今年是 2.33%",
+     "start": 360,
+     "chars": [
+      362,
+      368,
+      374,
+      374,
+      380,
+      380,
+      386,
+      392,
+      398
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩年前",
+     "start": 325
+    },
+    {
+     "text": "2.33%",
+     "start": 380
+    }
+   ],
+   "cues": [
+    {
+     "id": "huh",
+     "text": "蛤",
+     "frame": 308
+    },
+    {
+     "id": "two",
+     "text": "兩年前",
+     "frame": 326
+    },
+    {
+     "id": "now",
+     "text": "2.33",
+     "frame": 382
+    }
+   ],
+   "sub": "蛤？那是兩年前的啦\n今年是 2.33%",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.202,
+    0.403,
+    0.605,
+    0.806,
+    1.008,
+    1.209,
+    1.411,
+    1.854,
+    2.056,
+    2.257,
+    2.459,
+    2.661,
+    2.862,
+    3.064
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 417,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 407,
+   "durationFrames": 117,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 417,
+   "voiceEndFrame": 516,
+   "stillFrame": 514,
+   "subtitleWindow": [
+    414,
+    521
+   ],
+   "sourceWindow": [
+    412,
+    519
+   ],
+   "lines": [
+    {
+     "text": "也不能怪它嘛",
+     "start": 414,
+     "chars": [
+      416,
+      421,
+      426,
+      431,
+      437,
+      442
+     ]
+    },
+    {
+     "text": "沒開搜尋",
+     "start": 452,
+     "chars": [
+      454,
+      459,
+      464,
+      470
+     ]
+    },
+    {
+     "text": "又沒給它新聞",
+     "start": 479,
+     "chars": [
+      482,
+      487,
+      492,
+      497,
+      503,
+      508
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "沒開搜尋",
+     "start": 454
+    },
+    {
+     "text": "沒給它新聞",
+     "start": 487
+    }
+   ],
+   "cues": [
+    {
+     "id": "blame",
+     "text": "不能怪",
+     "frame": 422
+    },
+    {
+     "id": "search",
+     "text": "沒開搜尋",
+     "frame": 455
+    },
+    {
+     "id": "news",
+     "text": "沒給它新聞",
+     "frame": 488
+    }
+   ],
+   "sub": "也不能怪它嘛\n沒開搜尋\n又沒給它新聞",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.177,
+    0.355,
+    0.532,
+    0.71,
+    0.887,
+    1.278,
+    1.455,
+    1.633,
+    1.81,
+    2.201,
+    2.378,
+    2.555,
+    2.733,
+    2.91,
+    3.088
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": null,
+   "audioFrame": 524,
+   "audioSec": 1.429,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 514,
+   "durationFrames": 62,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 524,
+   "voiceEndFrame": 568,
+   "stillFrame": 566,
+   "subtitleWindow": [
+    521,
+    573
+   ],
+   "sourceWindow": [
+    519,
+    571
+   ],
+   "lines": [
+    {
+     "text": "所以啊",
+     "start": 521,
+     "chars": [
+      523,
+      528,
+      533
+     ]
+    },
+    {
+     "text": "換個問法",
+     "start": 542,
+     "chars": [
+      544,
+      550,
+      555,
+      560
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "換個問法",
+     "start": 544
+    }
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "所以",
+     "frame": 524
+    },
+    {
+     "id": "change",
+     "text": "換個問法",
+     "frame": 546
+    }
+   ],
+   "sub": "所以啊\n換個問法",
+   "provider": "estimate",
+   "syllables": 7,
+   "words": [],
+   "charTimes": [
+    0,
+    0.174,
+    0.348,
+    0.732,
+    0.906,
+    1.08,
+    1.254
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 576,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 566,
+   "durationFrames": 86,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 576,
+   "voiceEndFrame": 644,
+   "stillFrame": 642,
+   "subtitleWindow": [
+    573,
+    649
+   ],
+   "sourceWindow": [
+    571,
+    647
+   ],
+   "lines": [
+    {
+     "text": "貼上新聞",
+     "start": 573,
+     "chars": [
+      575,
+      580,
+      586,
+      591
+     ]
+    },
+    {
+     "text": "叫它只看這一段",
+     "start": 601,
+     "chars": [
+      603,
+      609,
+      614,
+      620,
+      625,
+      631,
+      636
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "貼上新聞",
+     "start": 575
+    },
+    {
+     "text": "只看這一段",
+     "start": 614
+    }
+   ],
+   "cues": [
+    {
+     "id": "paste",
+     "text": "貼上新聞",
+     "frame": 576
+    },
+    {
+     "id": "only",
+     "text": "只看",
+     "frame": 616
+    }
+   ],
+   "sub": "貼上新聞\n叫它只看這一段",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": null,
+   "audioFrame": 653,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 642,
+   "durationFrames": 80,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 652,
+   "voiceEndFrame": 714,
+   "stillFrame": 712,
+   "subtitleWindow": [
+    649,
+    719
+   ],
+   "sourceWindow": [
+    647,
+    717
+   ],
+   "lines": [
+    {
+     "text": "沒寫到的",
+     "start": 649,
+     "chars": [
+      652,
+      657,
+      662,
+      668
+     ]
+    },
+    {
+     "text": "就說原文沒寫",
+     "start": 678,
+     "chars": [
+      680,
+      685,
+      691,
+      696,
+      702,
+      707
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "原文沒寫",
+     "start": 691
+    }
+   ],
+   "cues": [
+    {
+     "id": "miss",
+     "text": "沒寫到",
+     "frame": 653
+    },
+    {
+     "id": "say",
+     "text": "原文沒寫",
+     "frame": 692
+    }
+   ],
+   "sub": "沒寫到的\n就說原文沒寫",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
+   ]
+  },
+  {
+   "id": "s09",
+   "audio": null,
+   "audioFrame": 723,
+   "audioSec": 3.469,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 712,
+   "durationFrames": 123,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 722,
+   "voiceEndFrame": 827,
+   "stillFrame": 825,
+   "subtitleWindow": [
+    719,
+    832
+   ],
+   "sourceWindow": [
+    717,
+    830
+   ],
+   "lines": [
+    {
+     "text": "然後講你是誰",
+     "start": 719,
+     "chars": [
+      722,
+      727,
+      732,
+      738,
+      743,
+      748
+     ]
+    },
+    {
+     "text": "像我在台北租房",
+     "start": 758,
+     "chars": [
+      760,
+      765,
+      771,
+      776,
+      782,
+      787,
+      792
+     ]
+    },
+    {
+     "text": "三餐外食",
+     "start": 802,
+     "chars": [
+      804,
+      809,
+      815,
+      820
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "你是誰",
+     "start": 738
+    }
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "你是誰",
+     "frame": 739
+    },
+    {
+     "id": "rent",
+     "text": "租房",
+     "frame": 788
+    },
+    {
+     "id": "eat",
+     "text": "外食",
+     "frame": 816
+    }
+   ],
+   "sub": "然後講你是誰\n像我在台北租房\n三餐外食",
+   "provider": "estimate",
+   "syllables": 17,
+   "words": [],
+   "charTimes": [
+    0,
+    0.179,
+    0.358,
+    0.537,
+    0.715,
+    0.894,
+    1.288,
+    1.466,
+    1.645,
+    1.824,
+    2.003,
+    2.182,
+    2.361,
+    2.754,
+    2.933,
+    3.112,
+    3.291
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 836,
+   "audioSec": 4.082,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 825,
+   "durationFrames": 142,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 835,
+   "voiceEndFrame": 959,
+   "stillFrame": 957,
+   "subtitleWindow": [
+    832,
+    964
+   ],
+   "sourceWindow": [
+    830,
+    962
+   ],
+   "lines": [
+    {
+     "text": "最後分三段",
+     "start": 832,
+     "chars": [
+      835,
+      840,
+      845,
+      851,
+      856
+     ]
+    },
+    {
+     "text": "確定的、",
+     "start": 866,
+     "chars": [
+      868,
+      874,
+      879,
+      879
+     ]
+    },
+    {
+     "text": "還不確定的",
+     "start": 883,
+     "chars": [
+      885,
+      890,
+      896,
+      901,
+      907
+     ]
+    },
+    {
+     "text": "還有跟我有關的",
+     "start": 917,
+     "chars": [
+      919,
+      924,
+      930,
+      935,
+      941,
+      946,
+      951
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "分三段",
+     "start": 845
+    },
+    {
+     "text": "確定的",
+     "start": 868
+    },
+    {
+     "text": "還不確定的",
+     "start": 885
+    }
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "分三段",
+     "frame": 847
+    },
+    {
+     "id": "sure",
+     "text": "確定的",
+     "frame": 870
+    },
+    {
+     "id": "unsure",
+     "text": "還不確定",
+     "frame": 886
+    },
+    {
+     "id": "me",
+     "text": "跟我有關",
+     "frame": 931
+    }
+   ],
+   "sub": "最後分三段\n確定的、還不確定的\n還有跟我有關的",
+   "provider": "estimate",
+   "syllables": 20,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.729,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859,
+    2.041,
+    2.223,
+    2.405,
+    2.806,
+    2.988,
+    3.171,
+    3.353,
+    3.535,
+    3.717,
+    3.899
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 967,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 957,
+   "durationFrames": 105,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 967,
+   "voiceEndFrame": 1054,
+   "stillFrame": 1052,
+   "subtitleWindow": [
+    964,
+    1059
+   ],
+   "sourceWindow": [
+    962,
+    1057
+   ],
+   "lines": [
+    {
+     "text": "送出你看，",
+     "start": 964,
+     "chars": [
+      966,
+      971,
+      983,
+      989,
+      989
+     ]
+    },
+    {
+     "text": "2.33%",
+     "start": 992,
+     "chars": [
+      994,
+      994,
+      1000,
+      1006,
+      1011
+     ]
+    },
+    {
+     "text": "數字對了耶",
+     "start": 1021,
+     "chars": [
+      1023,
+      1029,
+      1035,
+      1040,
+      1046
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "2.33%",
+     "start": 994
+    },
+    {
+     "text": "數字對了",
+     "start": 1023
+    }
+   ],
+   "cues": [
+    {
+     "id": "go",
+     "text": "送出",
+     "frame": 967
+    },
+    {
+     "id": "look",
+     "text": "你看",
+     "frame": 985
+    },
+    {
+     "id": "right",
+     "text": "數字對了",
+     "frame": 1025
+    }
+   ],
+   "sub": "送出\n你看，2.33%\n數字對了耶",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.594,
+    0.779,
+    0.965,
+    1.15,
+    1.336,
+    1.521,
+    1.929,
+    2.115,
+    2.301,
+    2.486,
+    2.672
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1062,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1052,
+   "durationFrames": 104,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1062,
+   "voiceEndFrame": 1148,
+   "stillFrame": 1146,
+   "subtitleWindow": [
+    1059,
+    1153
+   ],
+   "sourceWindow": [
+    1057,
+    1151
+   ],
+   "lines": [
+    {
+     "text": "十一月會更高嗎？",
+     "start": 1059,
+     "chars": [
+      1061,
+      1066,
+      1072,
+      1077,
+      1083,
+      1089,
+      1094,
+      1094
+     ]
+    },
+    {
+     "text": "它放在還不確定",
+     "start": 1105,
+     "chars": [
+      1107,
+      1112,
+      1118,
+      1124,
+      1129,
+      1135,
+      1141
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "還不確定",
+     "start": 1124
+    }
+   ],
+   "cues": [
+    {
+     "id": "nov",
+     "text": "十一月",
+     "frame": 1062
+    },
+    {
+     "id": "put",
+     "text": "還不確定",
+     "frame": 1125
+    }
+   ],
+   "sub": "十一月會更高嗎？\n它放在還不確定",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.188,
+    0.376,
+    0.564,
+    0.752,
+    0.94,
+    1.128,
+    1.541,
+    1.729,
+    1.917,
+    2.105,
+    2.293,
+    2.481,
+    2.669
+   ]
+  },
+  {
+   "id": "s13",
+   "audio": null,
+   "audioFrame": 1157,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1146,
+   "durationFrames": 99,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1156,
+   "voiceEndFrame": 1237,
+   "stillFrame": 1235,
+   "subtitleWindow": [
+    1153,
+    1242
+   ],
+   "sourceWindow": [
+    1151,
+    1240
+   ],
+   "lines": [
+    {
+     "text": "台北房租漲多少？",
+     "start": 1153,
+     "chars": [
+      1156,
+      1161,
+      1167,
+      1172,
+      1178,
+      1184,
+      1189,
+      1189
+     ]
+    },
+    {
+     "text": "它說原文沒寫",
+     "start": 1199,
+     "chars": [
+      1201,
+      1207,
+      1213,
+      1218,
+      1224,
+      1229
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "原文沒寫",
+     "start": 1213
+    }
+   ],
+   "cues": [
+    {
+     "id": "rent",
+     "text": "台北房租",
+     "frame": 1157
+    },
+    {
+     "id": "none",
+     "text": "原文沒寫",
+     "frame": 1214
+    }
+   ],
+   "sub": "台北房租漲多少？\n它說原文沒寫",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.121,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s14",
+   "audio": null,
+   "audioFrame": 1245,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1235,
+   "durationFrames": 104,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1245,
+   "voiceEndFrame": 1325,
+   "stillFrame": 1329,
+   "subtitleWindow": [
+    1242,
+    1336
+   ],
+   "sourceWindow": [
+    1240,
+    1334
+   ],
+   "pauseAfter": 0.5,
+   "lines": [
+    {
+     "text": "一樣的 AI 欸",
+     "start": 1242,
+     "chars": [
+      1244,
+      1249,
+      1255,
+      1255,
+      1260,
+      1266,
+      1266,
+      1272
+     ]
+    },
+    {
+     "text": "問法不一樣而已",
+     "start": 1282,
+     "chars": [
+      1284,
+      1289,
+      1295,
+      1301,
+      1306,
+      1312,
+      1317
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "一樣的",
+     "start": 1244
+    },
+    {
+     "text": "問法",
+     "start": 1284
+    }
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "一樣的",
+     "frame": 1245
+    },
+    {
+     "id": "ask",
+     "text": "問法",
+     "frame": 1285
+    }
+   ],
+   "sub": "一樣的 AI 欸\n問法不一樣而已",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s15",
+   "audio": null,
+   "audioFrame": 1340,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1329,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1339,
+   "voiceEndFrame": 1432,
+   "stillFrame": 1430,
+   "subtitleWindow": [
+    1336,
+    1437
+   ],
+   "sourceWindow": [
+    1334,
+    1435
+   ],
+   "lines": [
+    {
+     "text": "不過齁",
+     "start": 1336,
+     "chars": [
+      1339,
+      1344,
+      1349
+     ]
+    },
+    {
+     "text": "官方的看法",
+     "start": 1359,
+     "chars": [
+      1361,
+      1366,
+      1371,
+      1377,
+      1382
+     ]
+    },
+    {
+     "text": "它也算進確定的",
+     "start": 1391,
+     "chars": [
+      1393,
+      1399,
+      1404,
+      1409,
+      1414,
+      1420,
+      1425
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "看法",
+     "start": 1377
+    },
+    {
+     "text": "確定的",
+     "start": 1414
+    }
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "不過",
+     "frame": 1340
+    },
+    {
+     "id": "view",
+     "text": "看法",
+     "frame": 1378
+    },
+    {
+     "id": "as",
+     "text": "確定的",
+     "frame": 1416
+    }
+   ],
+   "sub": "不過齁\n官方的看法\n它也算進確定的",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.176,
+    0.352,
+    0.739,
+    0.915,
+    1.091,
+    1.267,
+    1.443,
+    1.83,
+    2.006,
+    2.182,
+    2.357,
+    2.533,
+    2.709,
+    2.885
+   ]
+  },
+  {
+   "id": "s16",
+   "audio": null,
+   "audioFrame": 1441,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1430,
+   "durationFrames": 117,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1440,
+   "voiceEndFrame": 1539,
+   "stillFrame": 1537,
+   "subtitleWindow": [
+    1437,
+    1544
+   ],
+   "sourceWindow": [
+    1435,
+    1542
+   ],
+   "lines": [
+    {
+     "text": "所以重要的數字",
+     "start": 1437,
+     "chars": [
+      1440,
+      1445,
+      1451,
+      1457,
+      1462,
+      1468,
+      1474
+     ]
+    },
+    {
+     "text": "自己再對一下原文喔",
+     "start": 1484,
+     "chars": [
+      1486,
+      1492,
+      1498,
+      1503,
+      1509,
+      1515,
+      1520,
+      1526,
+      1532
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "對一下原文",
+     "start": 1503
+    }
+   ],
+   "cues": [
+    {
+     "id": "num",
+     "text": "重要的數字",
+     "frame": 1452
+    },
+    {
+     "id": "check",
+     "text": "原文",
+     "frame": 1522
+    }
+   ],
+   "sub": "所以重要的數字\n自己再對一下原文喔",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.19,
+    0.38,
+    0.57,
+    0.759,
+    0.949,
+    1.139,
+    1.557,
+    1.747,
+    1.936,
+    2.126,
+    2.316,
+    2.506,
+    2.696,
+    2.886,
+    3.075
+   ]
+  },
+  {
+   "id": "s17",
+   "audio": null,
+   "audioFrame": 1548,
+   "audioSec": 1.837,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1537,
+   "durationFrames": 80,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1547,
+   "voiceEndFrame": 1603,
+   "stillFrame": 1607,
+   "subtitleWindow": [
+    1544,
+    1614
+   ],
+   "sourceWindow": [
+    1542,
+    1612
+   ],
+   "pauseAfter": 0.5,
+   "lines": [
+    {
+     "text": "範本在這",
+     "start": 1544,
+     "chars": [
+      1547,
+      1552,
+      1557,
+      1563
+     ]
+    },
+    {
+     "text": "截圖存起來",
+     "start": 1572,
+     "chars": [
+      1575,
+      1580,
+      1585,
+      1591,
+      1596
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "範本",
+     "start": 1547
+    },
+    {
+     "text": "截圖",
+     "start": 1575
+    }
+   ],
+   "cues": [
+    {
+     "id": "card",
+     "text": "範本",
+     "frame": 1548
+    },
+    {
+     "id": "shot",
+     "text": "截圖",
+     "frame": 1576
+    }
+   ],
+   "sub": "範本在這\n截圖存起來",
+   "provider": "estimate",
+   "syllables": 9,
+   "words": [],
+   "charTimes": [
+    0,
+    0.18,
+    0.36,
+    0.54,
+    0.936,
+    1.116,
+    1.297,
+    1.477,
+    1.657
+   ]
+  },
+  {
+   "id": "s18",
+   "audio": null,
+   "audioFrame": 1618,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1607,
+   "durationFrames": 87,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1617,
+   "voiceEndFrame": 1686,
+   "stillFrame": 1684,
+   "subtitleWindow": [
+    1614,
+    1691
+   ],
+   "sourceWindow": [
+    1612,
+    1689
+   ],
+   "lines": [
+    {
+     "text": "你最想丟",
+     "start": 1614,
+     "chars": [
+      1617,
+      1622,
+      1628,
+      1633
+     ]
+    },
+    {
+     "text": "哪一則新聞給它？",
+     "start": 1643,
+     "chars": [
+      1645,
+      1651,
+      1656,
+      1662,
+      1667,
+      1673,
+      1678,
+      1678
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "哪一則新聞",
+     "start": 1645
+    }
+   ],
+   "cues": [
+    {
+     "id": "which",
+     "text": "哪一則",
+     "frame": 1647
+    }
+   ],
+   "sub": "你最想丟\n哪一則新聞給它？",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s19",
+   "audio": null,
+   "audioFrame": 1694,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1684,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1694,
+   "voiceEndFrame": 1787,
+   "stillFrame": 1785,
+   "subtitleWindow": [
+    1691,
+    1795
+   ],
+   "sourceWindow": [
+    1689,
+    1790
+   ],
+   "lines": [
+    {
+     "text": "下一集",
+     "start": 1691,
+     "chars": [
+      1693,
+      1698,
+      1703
+     ]
+    },
+    {
+     "text": "兩篇新聞講的不一樣",
+     "start": 1713,
+     "chars": [
+      1715,
+      1720,
+      1725,
+      1731,
+      1736,
+      1741,
+      1746,
+      1752,
+      1757
+     ]
+    },
+    {
+     "text": "怎麼辦？",
+     "start": 1766,
+     "chars": [
+      1768,
+      1774,
+      1779,
+      1779
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "下一集",
+     "start": 1693
+    },
+    {
+     "text": "不一樣",
+     "start": 1746
+    }
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 1694
+    },
+    {
+     "id": "two",
+     "text": "兩篇新聞",
+     "frame": 1716
+    },
+    {
+     "id": "how",
+     "text": "怎麼辦",
+     "frame": 1770
+    }
+   ],
+   "sub": "下一集\n兩篇新聞講的不一樣\n怎麼辦？",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.176,
+    0.352,
+    0.739,
+    0.915,
+    1.091,
+    1.267,
+    1.443,
+    1.619,
+    1.795,
+    1.97,
+    2.146,
+    2.533,
+    2.709,
+    2.885
+   ]
+  },
+  {
+   "id": "end",
+   "audio": null,
+   "audioFrame": 1785,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1785,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1795,
+   "voiceEndFrame": 1795,
+   "stillFrame": 1881,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1790,
+    1893
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}
