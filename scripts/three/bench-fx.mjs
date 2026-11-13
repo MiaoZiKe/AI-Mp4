@@ -7,7 +7,7 @@ import { renderMedia, selectComposition } from "@remotion/renderer";
 import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions } from "../lib.mjs";
 const slug = process.argv[2];
 const opt = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
-const n = Number(opt("--frames", 12)), only = opt("--only", "") ? opt("--only", "").split(",") : null;
+const seg = opt("--seg", "AB"), n = Number(opt("--frames", 12)), only = opt("--only", "") ? opt("--only", "").split(",") : null;
 const script = loadScript(slug);
 const tl = script.timeline, by = Object.fromEntries(tl.scenes.map((x) => [x.id, x]));
 const cue = (id) => { for (const s of tl.scenes) for (const c of s.cues ?? []) if (c.id === id) return c.frame; return null; };
@@ -15,18 +15,21 @@ const A = (script.scenes.find((s) => s.props?.explode) ? by[script.scenes.find((
 const B = (cue("vapor") ?? Math.round(tl.totalFrames * 0.7)) + 8;
 const V = [
   ["全開（成片設定）", {}, "AB"],
-  ["dpr 1.5", { dpr: 1.5 }, "AB"], ["dpr 1", { dpr: 1 }, "AB"],
-  ["關：環境貼圖反光", { env: false }, "A"], ["關：清漆層（玻璃／烤漆）", { clearcoat: false }, "A"], ["關：程式紋理", { textures: false }, "A"],
-  ["關：陰影貼圖", { shadows: false }, "AB"], ["陰影貼圖 2048", { shadowSize: 2048 }, "A"], ["關：霧", { fog: false }, "A"],
+  ["dpr 2", { dpr: 2 }, "A"], ["dpr 1", { dpr: 1 }, "A"],
+  ["關：環境反光", { env: false }, "A"], ["關：清漆層（玻璃／烤漆）", { clearcoat: false }, "A"], ["關：程式紋理", { textures: false }, "A"],
+  ["關：陰影", { shadows: 0 }, "AB"], ["陰影只落在地面", { shadows: 1 }, "A"], ["陰影不柔化（PCF）", { shadowSoft: false }, "A"], ["陰影貼圖 2048", { shadowSize: 2048 }, "A"], ["關：霧", { fog: false }, "A"],
   ["關：殘影＋導引線", { ghost: false, guides: false }, "A"], ["關：微塵光斑", { dust: false }, "A"], ["開：背景模糊 6px", { backdropBlur: 6 }, "B"],
   ["關：蒸氣柔邊貼圖（改實心球）", { vaporSprites: false }, "B"], ["關：熱浪粒子", { shimmer: false }, "B"], ["關：熱點點光", { glow: false }, "B"],
   ["開：水滴折射（transmission）", { transmission: true }, "B"],
+  ["開：物理材質＋PMREM 環境貼圖（pbr）", { pbr: true }, "A"],
 ].filter((v) => !only || only.some((o) => v[0].includes(o)) || v[0].startsWith("全開"));
+// --base dpr=1,shadows=1：所有組合都先套這組設定（想在低解析度下快速比較時用）
+const baseFx = Object.fromEntries(String(opt("--base", "")).split(",").filter(Boolean).map((kv) => { const [k, v] = kv.split("="); return [k, v === "true" ? true : v === "false" ? false : Number(v)]; }));
 const serveUrl = await makeBundle();
 const out = path.join(ROOT, "out", slug, "bench-fx.mp4");
 fs.mkdirSync(path.dirname(out), { recursive: true });
 const run = async (fx, from) => {
-  const inputProps = { ...script, model: { ...script.model, fx: { ...(script.model.fx ?? {}), ...fx } } };
+  const inputProps = { ...script, model: { ...script.model, fx: { ...(script.model.fx ?? {}), ...baseFx, ...fx } } };
   const opts = { serveUrl, inputProps, browserExecutable: BROWSER, chromiumOptions, logLevel: "error" };
   const comp = await selectComposition({ ...opts, id: "Video" });
   let t1 = 0;
@@ -36,10 +39,10 @@ const run = async (fx, from) => {
 const res = [];
 for (const [name, fx, where] of V) {
   const r = { name, fx };
-  if (where.includes("A")) r.A = await run(fx, A);
-  if (where.includes("B")) r.B = await run(fx, B);
+  if (where.includes("A") && seg.includes("A")) r.A = await run(fx, A);
+  if (where.includes("B") && seg.includes("B")) r.B = await run(fx, B);
   res.push(r);
   console.log(`${name}：${r.A !== undefined ? `分解段 ${r.A} ms/幀` : ""}${r.B !== undefined ? `　熱循環段 ${r.B} ms/幀` : ""}`);
-  fs.writeFileSync(path.join(ROOT, "out", slug, "bench-fx.json"), JSON.stringify({ at: new Date().toISOString(), frames: n, A, B, gl: chromiumOptions.gl, concurrency: 1, results: res }, null, 1));
+  fs.writeFileSync(path.join(ROOT, "out", slug, `bench-fx${opt("--tag", "") ? "-" + opt("--tag", "") : ""}.json`), JSON.stringify({ at: new Date().toISOString(), frames: n, A, B, gl: chromiumOptions.gl, concurrency: 1, results: res }, null, 1));
 }
 fs.rmSync(out, { force: true });

@@ -8,6 +8,7 @@ import { EASE, tween } from "../anim";
 import { bez, buildModel, mix, type UiModel } from "./engine";
 import { Avatar, Caret, CheckIcon, Cursor, DocIcon, Ripple, SendIcon, Window, px, rise, slam, typedN } from "./parts";
 import { CaptionUI, HeaderUI, SourceUI } from "./Tracks";
+import { VideoUI2 } from "./UiVideo2";
 
 const zh = (size: number, weight: number = T.weight.body, color: string = T.text): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
 /** 背景：深色＋圓點格（每格 48px） */
@@ -224,7 +225,9 @@ const EditorStage: React.FC<{ m: UiModel; f: number }> = ({ m, f }) => {
   );
 };
 
-export const VideoUI: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
+/** script.json 頂層 uiVersion: 2 → 第 2 版（UiVideo2.tsx）；沒寫＝第 1 版，畫面不變 */
+export const VideoUI: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as { uiVersion?: number }).uiVersion === 2 ? <VideoUI2 {...props} /> : <VideoUI1 {...props} />);
+const VideoUI1: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
   const f = useCurrentFrame();
   const m = useMemo(() => buildModel(scenes, timeline), [scenes, timeline]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));

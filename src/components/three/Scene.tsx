@@ -15,12 +15,13 @@ const Rig: React.FC<{ s: State3D; fx: Fx }> = ({ s, fx }) => {
   cam.position.copy(c.position); cam.quaternion.copy(c.quaternion);
   cam.updateProjectionMatrix(); cam.updateMatrixWorld(true);
   // 環境貼圖只做一次（同一個分頁裡每一幀共用）
+  // 物理材質（fx.pbr）才需要預先過濾的環境貼圖；預設的 Phong 路線每個材質自己帶一張便宜的環境貼圖
   useMemo(() => {
-    if (!fx.env) { scene.environment = null; return; }
-    const src = studioEnv(), pm = new THREE.PMREMGenerator(gl);
-    scene.environment = pm.fromEquirectangular(src).texture;
-    pm.dispose(); src.dispose();
-  }, [scene, gl, fx.env]);
+    if (!fx.env || !fx.pbr) { scene.environment = null; return; }
+    const pm = new THREE.PMREMGenerator(gl);
+    scene.environment = pm.fromEquirectangular(studioEnv()).texture;
+    pm.dispose();
+  }, [scene, gl, fx.env, fx.pbr]);
   const fog = useMemo(() => new THREE.Fog(T.fog.color, 1, 100), []);
   if (fx.fog) {
     const F = T.fog, n = mix(mix(F.stand[0], F.explode[0], s.lay), F.focus[0], s.fo), fr = mix(mix(F.stand[1], F.explode[1], s.lay), F.focus[1], s.fo);
@@ -41,13 +42,16 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
       const key = `${p.layer}/${p.mat}/${p.role ?? ""}`;
       let mat = mats.get(key);
       if (!mat) { mat = makeMaterial(model, p.mat, fx, p.role === "heatFloor"); mats.set(key, mat); }
-      const sm = mat as THREE.MeshStandardMaterial;
+      const sm = mat as THREE.MeshPhongMaterial;
       return { p, geo: buildGeo(p), mat, base: { opacity: model.materials[p.mat]?.opacity ?? 1, color: sm.color.clone(), ei: sm.emissiveIntensity ?? 0 } };
     });
   }, [model, fx]);
   const fxm = useMemo(() => {
     if (!th) return null;
-    const water = new THREE.MeshPhysicalMaterial({ color: col(model, th.water), roughness: 0.08, metalness: 0, clearcoat: fx.clearcoat ? 1 : 0, clearcoatRoughness: 0.04, emissive: new THREE.Color(col(model, th.water)), emissiveIntensity: 0.3, envMapIntensity: 1.4, ...(fx.transmission ? { transmission: 0.85, thickness: 0.4, ior: 1.33 } : {}) });
+    const wc = new THREE.Color(col(model, th.water));
+    const water: THREE.Material = fx.pbr || fx.transmission
+      ? new THREE.MeshPhysicalMaterial({ color: wc, roughness: 0.08, metalness: 0, clearcoat: fx.clearcoat ? 1 : 0, clearcoatRoughness: 0.04, emissive: wc, emissiveIntensity: 0.3, envMapIntensity: 1.4, ...(fx.transmission ? { transmission: 0.85, thickness: 0.4, ior: 1.33 } : {}) })
+      : new THREE.MeshPhongMaterial({ color: wc, shininess: 120, specular: new THREE.Color(T.panel), emissive: wc, emissiveIntensity: 0.35, ...(fx.env ? { envMap: studioEnv(), combine: THREE.AddOperation, reflectivity: 0.35 } : {}) });
     const sprite = (c: string, blend: THREE.Blending) => new THREE.SpriteMaterial({ map: puff(), color: col(model, c), transparent: true, depthWrite: false, blending: blend, fog: false });
     const ramp = th.ramp.map((c) => new THREE.Color(col(model, c)));
     return {
@@ -67,7 +71,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
   for (const b of built) {
     if (seen.has(b.mat)) continue;
     seen.add(b.mat);
-    const m = b.mat as THREE.MeshStandardMaterial, L = s.layers[b.p.layer];
+    const m = b.mat as THREE.MeshPhongMaterial, L = s.layers[b.p.layer];
     let o = b.base.opacity * (L?.opacity ?? 1);
     if (b.p.role === "lid") o *= lidO;
     if (b.p.role === "xray" || b.p.role === "heatFloor") o *= 1 - T.xray * s.xray;
@@ -101,21 +105,21 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
   return (
     <>
       <Rig s={s} fx={fx} />
-      <ambientLight intensity={fx.env ? T.light.ambient : T.light.ambient + 0.9} />
-      <directionalLight position={[9, 22, 13]} intensity={T.light.key} castShadow={!!fx.shadows} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
+      <ambientLight intensity={T.light.ambient} />
+      <directionalLight position={[9, 22, 13]} intensity={T.light.key} castShadow={fx.shadows > 0} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
       <directionalLight position={[-12, 6, 8]} intensity={T.light.fill} />
       {/* 地面只接陰影（透明），背景的棚是 HTML */}
-      {fx.shadows ? <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, s.groundY, 0]} receiveShadow><planeGeometry args={[90, 90]} /><shadowMaterial transparent opacity={T.ground.shadow} fog={false} /></mesh> : null}
+      {fx.shadows > 0 ? <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, s.groundY, -4]} receiveShadow><planeGeometry args={[T.ground.size, T.ground.size]} /><shadowMaterial transparent opacity={T.ground.shadow} fog={false} /></mesh> : null}
       <group rotation={[0, s.yaw, 0]}>
         <group rotation={[s.pitch, 0, 0]}>
           {built.map((b, i) => {
             const L = s.layers[b.p.layer];
             if (!L) return null;
-            const m = b.mat as THREE.MeshStandardMaterial;
+            const m = b.mat as THREE.MeshPhongMaterial;
             if (m.opacity <= 0.01) return null;
             const q = b.p.pos ?? [0, 0, 0], off = b.p.role === "lid" ? lidOff : [0, 0, 0];
             const solid = m.opacity > 0.6 && b.p.shadow !== false;
-            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[q[0] + off[0], q[1] + off[1], (q[2] ?? 0) + L.z + off[2]]} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid} renderOrder={m.transparent ? 2 : 0} />;
+            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[q[0] + off[0], q[1] + off[1], (q[2] ?? 0) + L.z + off[2]]} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 2} renderOrder={m.transparent ? 2 : 0} />;
           })}
           {sw.on > 0.001 ? <><primitive object={spot} /><primitive object={spot.target} /></> : null}
           {/* 熱循環：熱點的點光、水滴（亮面小球）、蒸氣團與熱浪（柔邊貼圖） */}

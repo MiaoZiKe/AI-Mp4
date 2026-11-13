@@ -144,7 +144,7 @@ const texture = (kind: string, scale: number) => {
   let t = texCache.get(key);
   if (!t) {
     t = new THREE.CanvasTexture(drawTex(kind, 256));
-    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1 / scale, 1 / scale); t.anisotropy = 4; t.colorSpace = THREE.SRGBColorSpace;
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1 / scale, 1 / scale); t.colorSpace = THREE.SRGBColorSpace;
     texCache.set(key, t);
   }
   return t;
@@ -161,8 +161,13 @@ export const puff = () => {
   return (puffTex = new THREE.CanvasTexture(cv));
 };
 
-/** 攝影棚環境貼圖（程式畫的：上亮下暗＋幾塊柔光箱），給金屬與玻璃反光用。顏色讀 THEME_3D.env */
-export const studioEnv = () => {
+/** 攝影棚環境貼圖（程式畫的全景：上亮下暗＋幾塊柔光箱＋黑旗），給金屬與玻璃反光用。顏色讀 THEME_3D.env。
+ *  soft＝縮到很小再放大（等於模糊），給霧面金屬用；sharp 給玻璃與拋光面用 */
+const envCache = new Map<string, THREE.Texture>();
+export const studioEnv = (soft = false) => {
+  const key = soft ? "soft" : "sharp";
+  const hit = envCache.get(key);
+  if (hit) return hit;
   const E = T.env, cv = document.createElement("canvas"); cv.width = 256; cv.height = 128;
   const c = cv.getContext("2d") as CanvasRenderingContext2D, g = c.createLinearGradient(0, 0, 0, 128);
   g.addColorStop(0, E.sky); g.addColorStop(0.5, E.mid); g.addColorStop(0.56, E.ground); g.addColorStop(1, E.floor);
@@ -171,23 +176,42 @@ export const studioEnv = () => {
   for (const [x, y, w, h] of E.boxes) c.fillRect(x, y, w, h);
   c.fillStyle = E.dark;
   for (const [x, y, w, h] of E.flags) c.fillRect(x, y, w, h);
-  const t = new THREE.CanvasTexture(cv);
+  let src = cv;
+  if (soft) { src = document.createElement("canvas"); src.width = 32; src.height = 16; const c2 = src.getContext("2d") as CanvasRenderingContext2D; c2.imageSmoothingEnabled = true; c2.drawImage(cv, 0, 0, 32, 16); }
+  const t = new THREE.CanvasTexture(src);
   t.mapping = THREE.EquirectangularReflectionMapping; t.colorSpace = THREE.SRGBColorSpace;
+  envCache.set(key, t);
   return t;
 };
 
-/** 材質：資料 → three.js 材質 */
+/** 材質：資料 → three.js 材質。
+ *  預設走「便宜的」路（fx.pbr＝false）：Phong 光照＋一次查表的環境反光。金屬＝底色乘上環境（有色的反光）、玻璃／清漆＝底色加上環境（白色的反光）。
+ *  fx.pbr＝true 走物理材質（MeshStandard／Physical＋PMREM 環境貼圖），這台沒有顯示卡的機器每幀要多二十幾秒，只留著比較用。 */
 export const makeMaterial = (m: ProductModel, name: string, fx: Fx, vertexColors = false): THREE.Material => {
   const d = m.materials[name] ?? { color: T.ink };
-  const c = col(m, d.color);
-  if (d.kind === "unlit") return new THREE.MeshBasicMaterial({ color: c });
-  const common: THREE.MeshStandardMaterialParameters = { color: d.kind === "screen" ? T.part.screenBase : c, roughness: d.rough ?? (d.kind === "screen" ? 0.12 : 0.6), metalness: d.metal ?? 0.05, envMapIntensity: (d.env ?? (d.kind === "screen" ? 0.45 : 1)) * T.light.env, vertexColors };
-  if (d.kind === "screen") { common.emissive = new THREE.Color(c); common.emissiveIntensity = d.ei ?? 0.9; (common as any).toneMapped = false; }
-  else if (d.emissive) { common.emissive = new THREE.Color(col(m, d.emissive)); common.emissiveIntensity = d.ei ?? 0.3; }
-  if (d.tex && fx.textures) {
-    common.map = texture(d.tex, d.texScale ?? 1);
-    if (d.bump) { common.bumpMap = common.map; common.bumpScale = d.bump; }
+  const c = col(m, d.color), kind = d.kind ?? "std", rough = d.rough ?? (kind === "screen" ? 0.12 : 0.6), metal = d.metal ?? 0.05;
+  if (kind === "unlit") return new THREE.MeshBasicMaterial({ color: c });
+  const map = d.tex && fx.textures ? texture(d.tex, d.texScale ?? 1) : null;
+  if (fx.pbr) {
+    const common: THREE.MeshStandardMaterialParameters = { color: kind === "screen" ? T.part.screenBase : c, roughness: rough, metalness: metal, envMapIntensity: (d.env ?? (kind === "screen" ? 0.45 : 1)) * T.light.env, vertexColors };
+    if (kind === "screen") { common.emissive = new THREE.Color(c); common.emissiveIntensity = d.ei ?? 0.9; (common as any).toneMapped = false; }
+    else if (d.emissive) { common.emissive = new THREE.Color(col(m, d.emissive)); common.emissiveIntensity = d.ei ?? 0.3; }
+    if (map) { common.map = map; if (d.bump) { common.bumpMap = map; common.bumpScale = d.bump; } }
+    if ((kind === "phys" || kind === "screen") && fx.clearcoat) return new THREE.MeshPhysicalMaterial({ ...common, clearcoat: d.clearcoat ?? 1, clearcoatRoughness: d.clearcoatRough ?? 0.05 });
+    return new THREE.MeshStandardMaterial(common);
   }
-  if ((d.kind === "phys" || d.kind === "screen") && fx.clearcoat) return new THREE.MeshPhysicalMaterial({ ...common, clearcoat: d.clearcoat ?? 1, clearcoatRoughness: d.clearcoatRough ?? 0.05 });
-  return new THREE.MeshStandardMaterial(common);
+  const K = T.phong, gloss = 1 - rough, isMetal = metal >= 0.5, coat = (kind === "phys" || kind === "screen") && fx.clearcoat;
+  const base = new THREE.Color(kind === "screen" ? T.part.screenBase : c);
+  const p: THREE.MeshPhongMaterialParameters = { color: base.clone().multiplyScalar(isMetal ? K.metalBoost : 1), shininess: 4 + gloss * gloss * (coat ? K.shineCoat : K.shine), vertexColors };
+  // 高光顏色：金屬帶底色、非金屬是灰白；愈粗糙愈弱
+  p.specular = isMetal ? new THREE.Color(c).multiplyScalar(K.specMetal * (0.4 + 0.6 * gloss)) : new THREE.Color(T.panel).multiplyScalar((coat ? K.specCoat : K.specPlain) * gloss);
+  if (kind === "screen") { p.emissive = new THREE.Color(c); p.emissiveIntensity = d.ei ?? 0.9; p.toneMapped = false; }
+  else if (d.emissive) { p.emissive = new THREE.Color(col(m, d.emissive)); p.emissiveIntensity = d.ei ?? 0.3; }
+  if (map) p.map = map;
+  if (fx.env && (isMetal || coat)) {
+    p.envMap = studioEnv(!(coat || rough < 0.27));
+    if (coat) { p.combine = THREE.AddOperation; p.reflectivity = (d.env ?? 1) * K.envCoat * (d.clearcoat ?? 1) * (kind === "screen" ? 0.6 : 1); }
+    else { p.combine = THREE.MultiplyOperation; p.reflectivity = Math.min(1, (d.env ?? 1) * K.envMetal * (0.55 + 0.45 * metal)); }
+  }
+  return new THREE.MeshPhongMaterial(p);
 };

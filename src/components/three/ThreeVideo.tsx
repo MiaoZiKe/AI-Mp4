@@ -170,7 +170,7 @@ const Stage: React.FC<{ s: State3D; model: ProductModel }> = ({ s, model }) => {
   const fx = fxOf(model);
   return (
     <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H }}>
-      <ThreeCanvas linear={false} shadows={fx.shadows ? "soft" : false} width={L.W} height={L.STAGE_H} dpr={fx.dpr ?? T.dpr} gl={{ antialias: true, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
+      <ThreeCanvas linear={false} shadows={fx.shadows > 0 ? (fx.shadowSoft ? "soft" : "percentage") : false} width={L.W} height={L.STAGE_H} dpr={fx.dpr ?? T.dpr} gl={{ antialias: !!fx.msaa, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
         <ProductScene model={model} s={s} />
       </ThreeCanvas>
     </div>

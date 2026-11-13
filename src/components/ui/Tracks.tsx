@@ -9,7 +9,8 @@ import type { PhraseCue } from "../v2/Tracks";
 const display = (p: string) => p.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
 const enSplit = (en: string) => String(en ?? "").split("|").map((x) => x.trim()).filter(Boolean);
 
-export const HeaderUI: React.FC<{ name: string; tag: string; total: number }> = ({ name, tag, total }) => {
+/** tagPx：右上標籤字級（第 2 版用 28；不給＝第 1 版的 26） */
+export const HeaderUI: React.FC<{ name: string; tag: string; total: number; tagPx?: number }> = ({ name, tag, total, tagPx = 26 }) => {
   const f = useCurrentFrame();
   const a = accentUI("violet");
   return (
@@ -21,7 +22,7 @@ export const HeaderUI: React.FC<{ name: string; tag: string; total: number }> = 
           </div>
           <div style={{ fontWeight: T.weight.zh, fontSize: 40, color: T.text, letterSpacing: "0.04em" }}>{name}</div>
         </div>
-        <div style={{ fontWeight: T.weight.body, fontSize: 26, color: a.text, background: a.soft, borderRadius: T.radius.pill, padding: "8px 24px", letterSpacing: "0.08em" }}>{tag}</div>
+        <div style={{ fontWeight: T.weight.body, fontSize: tagPx, color: a.text, background: a.soft, borderRadius: T.radius.pill, padding: "8px 24px", letterSpacing: "0.08em" }}>{tag}</div>
       </div>
       <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP, width: L.INNER_W, height: 4, borderRadius: 2, background: T.lineSoft }}>
         <div style={{ width: `${(100 * Math.min(1, f / Math.max(1, total - 1))).toFixed(2)}%`, height: 4, borderRadius: 2, background: a.fill }} />
@@ -31,7 +32,7 @@ export const HeaderUI: React.FC<{ name: string; tag: string; total: number }> = 
 };
 
 /** 字幕列：一次一段單行；關鍵詞念到時換成強調色並畫底線；英文跟著中文的句 */
-export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
+export const CaptionUI: React.FC<{ cues: PhraseCue[]; top?: number }> = ({ cues, top = L.CAP_TOP }) => {
   const f = useCurrentFrame();
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
@@ -51,7 +52,7 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
   const colors = ["violet", "amber", "green", "blue"];
   void b;
   return (
-    <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: T.panel, border: `2px solid ${T.line}`, borderRadius: T.radius.window }}>
+    <div style={{ position: "absolute", left: L.X, top, width: L.INNER_W, height: L.CAP_H, background: T.panel, border: `2px solid ${T.line}`, borderRadius: T.radius.window }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: 30, height: 104, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_ZH, fontWeight: T.weight.zh, fontSize: L.CAP_ZH_PX, color: T.text, letterSpacing: "0.02em", whiteSpace: "nowrap", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
         <span>
           {splitParts(joined ? display(whole) : display(ps[k].text), cue.keywords).map((s, i) => {
@@ -73,7 +74,8 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
 };
 
 /** 出處：字幕列下方一行小字；相鄰幕相同就不重貼 */
-export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, number] }[] }> = ({ cues }) => {
+/** top：出處列的位置（不給＝LAYOUT_UI.SRC_TOP）；cue 的 plain＝這一行不是出處，不加「來源：」 */
+export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, number]; plain?: boolean }[]; top?: number }> = ({ cues, top = L.SRC_TOP }) => {
   const f = useCurrentFrame();
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
@@ -81,9 +83,9 @@ export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, nu
   const first = cues.find((c) => c.sources?.join("、") === j) as { window: [number, number] };
   const p = tween(f, first.window[0], T.motion.in, EASE.enter);
   return (
-    <div style={{ position: "absolute", left: L.X + 8, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+    <div style={{ position: "absolute", left: L.X + 8, top, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
       <div style={{ width: 10, height: 10, borderRadius: T.radius.pill, background: T.text2 }} />
-      {/^(資料)?來源/.test(j) ? j : `來源：${j}`}
+      {cur.plain || /^(資料)?來源/.test(j) ? j : `來源：${j}`}
     </div>
   );
 };

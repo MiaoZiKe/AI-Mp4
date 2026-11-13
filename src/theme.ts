@@ -459,14 +459,16 @@ export const THEME_3D = {
   },
   /** 特效開關（model.json 的 fx 可以蓋掉；node scripts/three/bench-fx.mjs 逐項量成本）。數字的意義見 docs/three-stage.md */
   fx: {
-    env: true, clearcoat: true, textures: true, shadows: true, shadowSize: 1024, fog: true, sweep: true, glow: true,
+    pbr: false, env: true, clearcoat: true, textures: true, shadows: 2, shadowSoft: true, shadowSize: 1024, fog: true, sweep: true, glow: true,
     vaporSprites: true, shimmer: true, ghost: true, guides: true, dust: true, sheen: true, backdropBlur: 0, vignette: true,
-    transmission: false, dpr: 2,
+    transmission: false, dpr: 2, msaa: true,
   },
   /** 霧（景深感的替代品）：遠處的零件往背景色靠。near／far 是「離鏡頭比模型中心遠多少」，立著／分解／聚焦三個狀態 */
   fog: { color: "#E6EAF0", stand: [2, 60], explode: [-2, 34], focus: [-1, 20] },
   /** 地面：陰影濃度、躺下後離地多高 */
-  ground: { shadow: 0.2, float: 1.1 },
+  ground: { shadow: 0.2, float: 1.1, size: 44 },
+  /** 便宜材質（Phong）的換算：金屬底色加亮、高光銳利度（一般／清漆）、高光強度（金屬／清漆／一般）、環境反光強度（清漆是加上去、金屬是乘上去） */
+  phong: { metalBoost: 1.35, shine: 160, shineCoat: 420, specMetal: 0.9, specCoat: 0.9, specPlain: 0.35, envCoat: 0.3, envMetal: 0.8 },
   /** 聚焦時四角壓暗的漸層（中間透明 → 邊緣） */
   vignette: ["rgba(17, 24, 39, 0)", "rgba(17, 24, 39, 0.16)"],
   /** 光掃（聚光燈）強度與張角、熱點的點光強度、熱浪粒子最大不透明度、蒸氣團不透明度 */
@@ -477,7 +479,7 @@ export const THEME_3D = {
   /** 微塵光斑：顆數、開場／收尾時與平常的不透明度 */
   dust: { n: 16, peak: 0.75, rest: 0.25, color: "#FFFFFF" },
   /** 燈光強度：環境、主燈、補燈 */
-  light: { ambient: 0.55, key: 2.4, fill: 0.5, env: 0.9 },
+  light: { ambient: 1.25, key: 2.5, fill: 0.8, env: 0.9 },
   /** 退到背景的零件透明度、地面假陰影透明度 */
   dim: 0.22,
   shadow: 0.07,
