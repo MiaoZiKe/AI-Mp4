@@ -122,6 +122,8 @@ export type Script = {
   channel?: { name?: string; tag?: string; slogan?: string };
   /** styleVersion 3：紙材 meta（scripts/lib.mjs 從 public/v3/<slug>/meta.json 讀進來） */
   v3?: { assets: Record<string, { w: number; h: number; body: number[]; [k: string]: any }> };
+  /** stage "three"：產品模型資料（scripts/lib.mjs 從 videos/<slug>/model.json 讀進來；也可以直接寫在 script.json）。格式見 docs/three-stage.md */
+  model?: any;
   /** 量測用（AUDIT=1）：關掉 ambient 動作 */
   audit?: boolean;
   /** 舊版：整段音檔 */

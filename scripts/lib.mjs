@@ -24,7 +24,15 @@ export const loadScript = (slug) => {
     if (made !== (s.skin ?? "desk")) throw new Error(`${slug} 的 skin 是「${s.skin ?? "desk"}」，但 public/v3/${slug}/ 的紙材是用「${made}」產生的：重跑 python3 scripts/make-paper.py ${slug}`);
   }
   // stage: "three"（3D 產品台）：swiftshader 開不出 WebGL，改用 swangle；一次只渲一幀（軟體算 3D 很吃 CPU 與記憶體）
-  if (s.stage === "three") { chromiumOptions.gl = "swangle"; renderTuning.concurrency = Number(process.env.THREE_CONCURRENCY ?? 1); }
+  if (s.stage === "three") {
+    chromiumOptions.gl = "swangle"; renderTuning.concurrency = Number(process.env.THREE_CONCURRENCY ?? 1);
+    // 產品模型資料：script.json 的 model，或 videos/<slug>/model.json（零件清單、材質、層、標註點；格式見 docs/three-stage.md）
+    const mp = path.join(ROOT, "videos", slug, "model.json");
+    if (!s.model && fs.existsSync(mp)) s.model = JSON.parse(fs.readFileSync(mp, "utf8"));
+    if (!s.model) throw new Error(`${slug} 是 stage "three"，需要產品模型資料：videos/${slug}/model.json（或 script.json 的 model）`);
+    // 量測用：THREE_FX="shadows=0,env=0" 暫時關掉幾種特效（scripts/three/bench-fx.mjs）
+    if (process.env.THREE_FX) s.model = { ...s.model, fx: { ...(s.model.fx ?? {}), ...Object.fromEntries(process.env.THREE_FX.split(",").map((kv) => { const [k, v] = kv.split("="); return [k, v === "true" ? true : v === "false" ? false : Number(v)]; })) } };
+  }
   if ([2, 3].includes(s.styleVersion) && s.timeline?.version !== 2)
     throw new Error(`${slug} 是 styleVersion ${s.styleVersion}，需要時間軸 v2：先 npm run align ${slug}（timeline.json 要有 version: 2）`);
   if (s.timeline) {

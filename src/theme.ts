@@ -448,9 +448,36 @@ export const THEME_3D = {
     plate: "#D9A066", plateRim: "#C48A4E", plateFloor: "#9A6B42", wick: "#B98556",
     frame: "#AEB8C8", screen: "#10151F", screenUi: "#2F80ED", screenUi2: "#7FB4FF", screenUi3: "#E8890C",
     water: "#3BA4FF", vapor: "#FFFFFF", hot: "#FF5230", warm: "#F29A5C", shadow: "#0B1220",
+    /** 自發光畫面（材質 kind: "screen"）的底色：近黑，玻璃反光才看得出來 */
+    screenBase: "#05070B",
   },
+  /** 程式畫的攝影棚環境貼圖（256×128 的全景）：天、中段、地平線下、地面的顏色；boxes＝柔光箱、flags＝黑旗（讓金屬有明暗對比），[x, y, 寬, 高] */
+  env: {
+    sky: "#FFFFFF", mid: "#DCE3EC", ground: "#8D97A6", floor: "#5B6575", box: "#FFFFFF", dark: "#1F2632",
+    boxes: [[20, 8, 60, 26], [150, 4, 44, 34], [222, 30, 26, 30], [96, 40, 20, 18]] as number[][],
+    flags: [[84, 30, 8, 36], [200, 40, 10, 30], [0, 44, 14, 22]] as number[][],
+  },
+  /** 特效開關（model.json 的 fx 可以蓋掉；node scripts/three/bench-fx.mjs 逐項量成本）。數字的意義見 docs/three-stage.md */
+  fx: {
+    env: true, clearcoat: true, textures: true, shadows: true, shadowSize: 1024, fog: true, sweep: true, glow: true,
+    vaporSprites: true, shimmer: true, ghost: true, guides: true, dust: true, sheen: true, backdropBlur: 0, vignette: true,
+    transmission: false, dpr: 2,
+  },
+  /** 霧（景深感的替代品）：遠處的零件往背景色靠。near／far 是「離鏡頭比模型中心遠多少」，立著／分解／聚焦三個狀態 */
+  fog: { color: "#E6EAF0", stand: [2, 60], explode: [-2, 34], focus: [-1, 20] },
+  /** 地面：陰影濃度、躺下後離地多高 */
+  ground: { shadow: 0.2, float: 1.1 },
+  /** 聚焦時四角壓暗的漸層（中間透明 → 邊緣） */
+  vignette: ["rgba(17, 24, 39, 0)", "rgba(17, 24, 39, 0.16)"],
+  /** 光掃（聚光燈）強度與張角、熱點的點光強度、熱浪粒子最大不透明度、蒸氣團不透明度 */
+  sweepLight: { intensity: 60, angle: 0.2, height: 9 },
+  glow: 14,
+  shimmer: 0.2,
+  puff: 0.42,
+  /** 微塵光斑：顆數、開場／收尾時與平常的不透明度 */
+  dust: { n: 16, peak: 0.75, rest: 0.25, color: "#FFFFFF" },
   /** 燈光強度：環境、主燈、補燈 */
-  light: { ambient: 1.5, key: 2.6, fill: 0.9 },
+  light: { ambient: 0.55, key: 2.4, fill: 0.5, env: 0.9 },
   /** 退到背景的零件透明度、地面假陰影透明度 */
   dim: 0.22,
   shadow: 0.07,
@@ -461,7 +488,7 @@ export const THEME_3D = {
   cardShadow: "0 18px 44px rgba(17, 24, 39, 0.10)",
   weight: { zh: 900, body: 700, light: 500 },
   /** 動作（幀）：進場 8、躺下 22、每層分開 22（層與層錯開 3）、聚焦 20、掀蓋 16、粒子 26 */
-  motion: { in: 8, lay: 22, explode: 22, stagger: 3, focus: 20, lid: 16, flow: 26, peek: 12, orbit: 34, cool: 18 },
+  motion: { in: 8, lay: 22, explode: 22, stagger: 3, focus: 20, lid: 16, flow: 26, peek: 12, orbit: 34, cool: 18, sweep: 18, outro: 20, leader: 9 },
   /** 鏡頭（視角 fov、距離 d、仰角 elev 度、看向的高度 y）：立著轉、分解、聚焦三個狀態 */
   camera: {
     fov: 26,
@@ -471,9 +498,11 @@ export const THEME_3D = {
     /** 後段的兩次鏡頭變化（加在聚焦狀態上的增量）：繞開拉遠看整片板子、再推回熱點 */
     orbit: { d: 6, elev: -5, y: -0.6, yaw: 0.3 },
     settle: { d: -7, elev: 4, y: 0.9, yaw: 0.14 },
+    /** 收尾時鏡頭往後退多少 */
+    outro: { d: 3 },
   },
   /** 模型姿態：起始偏轉、躺下後的俯仰與偏轉（弧度）、層距、每幀慢轉 */
-  pose: { yaw0: -0.42, pitch: -1.22, yawIso: 0.66, gap: 3.1, drift: 0.0009, peekYaw: -0.12 },
+  pose: { yaw0: -0.42, pitch: -1.22, yawIso: 0.66, gap: 3.1, drift: 0.0009, peekYaw: -0.12, focusUp: 7, focusDown: 3 },
 } as const;
 export const accent3D = (c?: string) => THEME_3D.accent[c ?? "amber"] ?? THEME_3D.accent.amber;
 /** 3D 產品台版面（1080×1920；安全區上下 220、左右 64）：頁首 228–308｜3D 舞台 300–1290（整個寬度）｜字幕卡 1296–1532｜出處 1560 */

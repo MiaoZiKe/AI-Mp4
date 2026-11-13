@@ -58,9 +58,10 @@
       "component": "ThreeScene",
       "props": {
         "explode": { "at": "open-6" },
+        "sweep": { "at": "plate-4" },
         "labels": [
           { "part": "chip", "text": "晶片", "color": "coral", "at": "chip" },
-          { "part": "plate", "text": "金屬板", "color": "amber", "at": "plate" }
+          { "part": "plate", "text": "金屬板", "color": "amber", "at": "plate", "until": "s4:hot-6" }
         ]
       },
       "sources": ["示意模型，非特定機型；各家手機的層次順序不同"]
@@ -73,11 +74,12 @@
       "cues": [ { "id": "name", "text": "均熱板" }, { "id": "inside", "text": "裡面" }, { "id": "pure", "text": "純水" } ],
       "component": "ThreeScene",
       "props": {
-        "focus": { "part": "plate", "at": "name-8" },
+        "focus": { "layer": "plate", "at": "name-8" },
+        "sweep": { "at": "name-2" },
         "rename": { "part": "plate", "text": "均熱板", "en": "Vapor Chamber", "at": "name" },
         "peek": { "at": "inside-2" },
         "cutaway": { "at": "pure-6" },
-        "labels": [ { "part": "water", "text": "純水", "color": "blue", "at": "pure" } ]
+        "labels": [ { "part": "water", "text": "純水", "color": "blue", "at": "pure", "until": "s4:vapor-6" } ]
       },
       "sources": ["示意動畫，非特定機型；水滴、蒸氣與銅色都是示意"]
     },
@@ -93,7 +95,7 @@
         "vapor": { "at": "vapor-4" },
         "spread": { "at": "spread-4" },
         "orbit": { "at": "spread-8" },
-        "labels": [ { "part": "vapor", "text": "蒸氣", "color": "coral", "at": "vapor" } ]
+        "labels": [ { "part": "vapor", "text": "蒸氣", "color": "coral", "at": "vapor", "until": "s5:cool-4" } ]
       },
       "sources": ["示意動畫，非特定機型；水滴、蒸氣與銅色都是示意"]
     },

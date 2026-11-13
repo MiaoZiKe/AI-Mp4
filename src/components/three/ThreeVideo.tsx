@@ -6,24 +6,77 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remo
 import { ThreeCanvas } from "@remotion/three";
 import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, accent3D } from "../../theme";
-import { EASE, tween } from "../anim";
-import { ANCHORS, G, buildModel, cameraFor, projectPoint, stateAt, type Model3D, type State3D } from "./engine";
-import { PhoneScene } from "./Scene";
+import type * as THREE from "three";
+import { EASE, seeded, tween } from "../anim";
+import { buildModel, cameraFor, projectPoint, stateAt, type Label3D, type Model3D, type State3D } from "./engine";
+import { fxOf, type Fx, type ProductModel } from "./model";
+import { ProductScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
 
 const px = (n: number) => Math.round(n);
 const zh = (size: number, weight: number = T.weight.body, color: string = T.ink): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
 
-/** 攝影棚背景：淺灰底＋下半部地面色帶＋細格線（躺下後地面才看得到透視格） */
-const Backdrop: React.FC<{ lay: number }> = ({ lay }) => (
+/** 攝影棚背景：淺灰底＋下半部地面色帶＋細格線（躺下後地面才看得到透視格）。鏡頭推近時格線跟著放大一點、四角壓暗（景深感的替代品） */
+const Backdrop: React.FC<{ lay: number; fo?: number; fx?: Fx }> = ({ lay, fo = 0, fx }) => (
   <AbsoluteFill style={{ background: T.bg }}>
     <div style={{ position: "absolute", left: 0, right: 0, top: L.STAGE_TOP + 560, bottom: 0, background: T.floor }} />
-    <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, opacity: 0.35 + 0.65 * lay }}>
+    <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, opacity: 0.35 + 0.65 * lay - 0.3 * fo, transform: `scale(${(1 + 0.07 * fo).toFixed(4)})`, transformOrigin: "50% 45%", filter: fx?.backdropBlur && fo > 0.01 ? `blur(${(fx.backdropBlur * fo).toFixed(1)}px)` : undefined }}>
       {Array.from({ length: 9 }, (_, i) => { const x = 540 + (i - 4) * 150; return <line key={i} x1={x} y1={L.STAGE_TOP + 560} x2={540 + (i - 4) * 330} y2={L.CAP_TOP + 30} stroke={T.grid} strokeWidth={2} />; })}
       {[0, 70, 160, 280, 440].map((d, i) => <line key={`h${i}`} x1={0} x2={L.W} y1={L.STAGE_TOP + 560 + d} y2={L.STAGE_TOP + 560 + d} stroke={T.grid} strokeWidth={2} />)}
     </svg>
+    {fx?.vignette !== false && fo > 0.01 ? <div style={{ position: "absolute", inset: 0, opacity: fo, background: `linear-gradient(90deg, ${T.vignette[1]} 0%, ${T.vignette[0]} 30%, ${T.vignette[0]} 70%, ${T.vignette[1]} 100%)` }} /> : null}
   </AbsoluteFill>
 );
+
+/** 分層時的殘影與導引線（畫在模型後面，所以只在層與層之間的空隙看得到）：
+ *  殘影＝每一層前 3／6／9 幀所在位置的外框；導引線＝把各層四個角連起來的虛線，分開多少就長多少 */
+const Trails: React.FC<{ m: Model3D; s: State3D; f: number; fx: Fx }> = ({ m, s, f, fx }) => {
+  const pr = m.product;
+  if (f < m.explode || s.fo >= 1 || (!fx.ghost && !fx.guides)) return null;
+  const cam = cameraFor(s);
+  const rect = (d: (typeof pr.layers)[number]) => { const [w, h, cx, cy] = d.outline ?? [pr.size.w, pr.size.h, 0, 0]; return [[cx - w / 2, cy - h / 2], [cx + w / 2, cy - h / 2], [cx + w / 2, cy + h / 2], [cx - w / 2, cy + h / 2]]; };
+  const poly = (st: State3D, c: THREE.PerspectiveCamera, d: (typeof pr.layers)[number]) => rect(d).map((q) => { const p = projectPoint(st, c, d.id, [q[0], q[1], 0]); return `${p.x.toFixed(1)},${p.y.toFixed(1)}`; }).join(" ");
+  const ghosts: React.ReactNode[] = [];
+  if (fx.ghost) [3, 6, 9].forEach((lag, gi) => {
+    const ps = stateAt(m, f - lag), pc = cameraFor(ps);
+    pr.layers.forEach((d) => {
+      if (Math.abs(ps.layers[d.id].z - s.layers[d.id].z) < 0.12 || s.layers[d.id].opacity < 0.2) return;
+      ghosts.push(<polygon key={`${d.id}${lag}`} points={poly(ps, pc, d)} fill="none" stroke={T.ink3} strokeWidth={3} strokeLinejoin="round" opacity={[0.5, 0.32, 0.16][gi] * s.layers[d.id].opacity} />);
+    });
+  });
+  const sorted = [...pr.layers].sort((a, b) => a.k - b.k);
+  const open = Math.max(...sorted.map((d) => s.layers[d.id].e)) * (1 - s.fo);
+  return (
+    <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
+      {fx.guides && open > 0.02 ? [0, 1, 2, 3].map((ci) => {
+        const full = rect({ id: "", z: 0, k: 0 });
+        const pts = sorted.map((d) => projectPoint(s, cam, d.id, [full[ci][0] * 0.86, full[ci][1] * 0.93, 0]));
+        return (
+          <g key={ci} opacity={0.75 * open}>
+            <polyline points={pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ")} fill="none" stroke={T.ink3} strokeWidth={3} strokeDasharray="4 12" strokeLinecap="round" />
+          </g>
+        );
+      }) : null}
+      {ghosts}
+    </svg>
+  );
+};
+
+/** 微塵光斑：開場與收尾比較明顯，中間很淡；固定 seed，慢慢飄 */
+const DUST = (() => { const r = seeded(77); return Array.from({ length: T.dust.n }, () => ({ x: r(), y: r(), r: 10 + r() * 34, vx: (r() - 0.5) * 0.9, vy: -0.2 - r() * 0.7, ph: r() * 6.28, o: 0.4 + r() * 0.6 })); })();
+const Dust: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => {
+  const env = T.dust.rest + (T.dust.peak - T.dust.rest) * Math.max(1 - tween(f, 16, 40, EASE.move), tween(f, m.total - 26, 22, EASE.move));
+  return (
+    <svg width={L.W} height={L.STAGE_H} style={{ position: "absolute", left: 0, top: L.STAGE_TOP }}>
+      <defs><radialGradient id="dust3d"><stop offset="0" stopColor={T.dust.color} stopOpacity={1} /><stop offset="0.5" stopColor={T.dust.color} stopOpacity={0.5} /><stop offset="1" stopColor={T.dust.color} stopOpacity={0} /></radialGradient></defs>
+      {DUST.map((d, i) => {
+        const x = (((d.x * L.W + d.vx * f) % L.W) + L.W) % L.W, y = (((d.y * L.STAGE_H + d.vy * f) % L.STAGE_H) + L.STAGE_H) % L.STAGE_H;
+        const edge = Math.min(1, y / 120, (L.STAGE_H - y) / 120);
+        return <circle key={i} cx={x.toFixed(1)} cy={y.toFixed(1)} r={d.r} fill="url(#dust3d)" opacity={(env * d.o * edge * (0.75 + 0.25 * Math.sin(f * 0.07 + d.ph))).toFixed(3)} />;
+      })}
+    </svg>
+  );
+};
 
 /** 鉤子：第 0 幀就在的大標；拆開時往上退場 */
 const Hook: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => {
@@ -50,29 +103,39 @@ const Hook: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => {
   );
 };
 
-/** 零件標籤：圓點釘在零件上（投影位置），一條引線接到標籤 */
-const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) => {
+/** 零件標籤：圓點釘在零件上（投影位置，先彈出一圈波紋），引線從圓點畫到標籤，標籤出現時一道光掃過 */
+const Labels: React.FC<{ m: Model3D; s: State3D; f: number; fx: Fx }> = ({ m, s, f, fx }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
+  const A = m.product.anchors;
   // 同一個零件只留最新的一張；rename 把那張的字換掉
   const shown = m.labels.filter((l) => f >= l.at - 2).filter((l, _, arr) => !arr.some((o) => o !== l && o.part === l.part && o.at > l.at));
-  // 聚焦之後，不在均熱板上的標籤（晶片）退場；蒸氣出現後水的標籤退場、循環出現後蒸氣的退場
-  const gone = (l: { part: string; at: number }) => (ANCHORS[l.part]?.layer !== "plate" ? m.focus : l.part === "water" ? m.vapor - 6 : l.part === "vapor" ? m.condense - 4 : l.part === "plate" ? m.heat - 6 : 1e9);
+  // 退場：標籤自己寫的 until；沒寫的話，聚焦之後不在主角那一層的標籤退場
+  const gone = (l: Label3D) => (l.until < 1e8 ? l.until : A[l.part]?.layer !== m.focusLayer ? m.focus : 1e9);
+  const geom = (l: Label3D) => {
+    const an = A[l.part], p = projectPoint(s, cam, an.layer, an.p);
+    const rn = m.rename && m.rename.part === l.part && f >= m.rename.at ? m.rename : null;
+    const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64 + L.LABEL_PAD;
+    const left = an.dx < 0;
+    const x = left ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx), y = p.y + an.dy;
+    return { an, p, rn, left, x, y };
+  };
   return (
     <>
       <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
         {shown.map((l, i) => {
-          const an = ANCHORS[l.part]; if (!an) return null;
-          const o = tween(f, l.at - 2, T.motion.in, EASE.enter) * (1 - tween(f, gone(l), 6, EASE.exit));
+          if (!A[l.part]) return null;
+          const out = 1 - tween(f, gone(l), 6, EASE.exit);
+          const o = tween(f, l.at - 2, 4, EASE.enter) * out;
           if (o <= 0) return null;
-          const p = projectPoint(s, cam, an.layer, an.p), c = accent3D(l.color);
-          const q = tween(f, l.at - 2, 10, EASE.move);
-          const rn = m.rename && m.rename.part === l.part && f >= m.rename.at ? m.rename : null;
-          const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64 + L.LABEL_PAD;
-          const tx = an.dx < 0 ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx);
-          const ex = p.x + (tx - p.x) * q, ey = p.y + an.dy * q;
+          const { p, x, y, left } = geom(l), c = accent3D(l.color);
+          // 引線：先斜著走到標籤的高度，再水平接到標籤；用 dashoffset 從圓點那端畫出去
+          const kx = x + (left ? 34 : -34), len = Math.hypot(kx - p.x, y - p.y) + 34;
+          const q = tween(f, l.at - 1, T.motion.leader, EASE.move);
+          const ring = tween(f, l.at - 2, 14, EASE.enter);
           return (
             <g key={i} opacity={o}>
-              <line x1={p.x} y1={p.y} x2={ex} y2={ey} stroke={T.ink} strokeWidth={4} strokeLinecap="round" />
+              <path d={`M${p.x.toFixed(1)} ${p.y.toFixed(1)} L${kx.toFixed(1)} ${y.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}`} fill="none" stroke={T.ink} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={`${len.toFixed(1)} ${len.toFixed(1)}`} strokeDashoffset={(len * (1 - q)).toFixed(1)} />
+              {ring < 1 ? <circle cx={p.x} cy={p.y} r={13 + 30 * ring} fill="none" stroke={c.fill} strokeWidth={5 * (1 - ring)} opacity={1 - ring} /> : null}
               <circle cx={p.x} cy={p.y} r={13} fill={T.panel} stroke={T.ink} strokeWidth={4} />
               <circle cx={p.x} cy={p.y} r={6} fill={c.fill} />
             </g>
@@ -80,21 +143,20 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) =>
         })}
       </svg>
       {shown.map((l, i) => {
-        const an = ANCHORS[l.part]; if (!an) return null;
-        const o = tween(f, l.at + 2, T.motion.in, EASE.enter) * (1 - tween(f, gone(l), 6, EASE.exit));
+        if (!A[l.part]) return null;
+        const o = tween(f, l.at + 3, T.motion.in, EASE.enter) * (1 - tween(f, gone(l), 6, EASE.exit));
         if (o <= 0) return null;
-        const p = projectPoint(s, cam, an.layer, an.p), c = accent3D(l.color);
-        const rn = m.rename && m.rename.part === l.part && f >= m.rename.at ? m.rename : null;
-        const bump = rn ? 1 + 0.08 * Math.sin(Math.PI * tween(f, rn.at, 10, EASE.move)) : 1 + 0.08 * Math.sin(Math.PI * tween(f, l.at, 10, EASE.move));
-        const left = an.dx < 0;
-        // 估標籤寬度，整張留在左右安全區裡
-        const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64 + L.LABEL_PAD;
-        const x = left ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx), y = p.y + an.dy;
+        const { rn, left, x, y } = geom(l), c = accent3D(l.color);
+        const t0 = rn ? rn.at : l.at + 3;
+        const bump = 1 + 0.08 * Math.sin(Math.PI * tween(f, t0, 10, EASE.move));
+        const sh = tween(f, t0 + 2, 14, EASE.move);
         return (
           <div key={i} style={{ position: "absolute", left: px(x), top: px(y), opacity: o, transform: `translate(${left ? "-100%" : "0"}, -50%) scale(${bump.toFixed(3)})`, transformOrigin: left ? "100% 50%" : "0 50%" }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start", background: T.panel, border: `4px solid ${T.ink}`, borderRadius: T.radius.chip, padding: "8px 26px 10px", boxShadow: T.cardShadow }}>
+            <div style={{ position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start", background: T.panel, border: `4px solid ${T.ink}`, borderRadius: T.radius.chip, padding: "8px 26px 10px", boxShadow: T.cardShadow }}>
               <div style={{ ...zh(rn ? 64 : 54, T.weight.zh, c.text), lineHeight: 1.25, letterSpacing: "0.04em" }}>{rn ? rn.text : l.text}</div>
               {rn?.en ? <div style={{ ...zh(26, T.weight.body, T.ink2), fontFamily: FONT_EN, letterSpacing: "0.04em", marginTop: -2 }}>{rn.en}</div> : null}
+              {/* 光掃：一道斜的亮帶從左掃到右 */}
+              {fx.sheen && sh > 0 && sh < 1 ? <div style={{ position: "absolute", top: -10, bottom: -10, width: 70, left: `${(-30 + 150 * sh).toFixed(1)}%`, transform: "skewX(-20deg)", background: c.soft, opacity: 0.9, mixBlendMode: "multiply" }} /> : null}
             </div>
           </div>
         );
@@ -104,23 +166,21 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) =>
 };
 
 /** 3D 舞台（1080×990，頁首下面到字幕卡上面） */
-const Stage: React.FC<{ s: State3D }> = ({ s }) => {
-  // 立著時腳下的橢圓影子：跟著手機底部的投影位置走
-  const foot = projectPoint(s, cameraFor(s), "frame", [0, -G.H / 2, -s.layers.frame.z]);
+const Stage: React.FC<{ s: State3D; model: ProductModel }> = ({ s, model }) => {
+  const fx = fxOf(model);
   return (
-  <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H }}>
-    {/* 立著的時候腳下的橢圓影子 */}
-    <div style={{ position: "absolute", left: 540 - L.FOOT_W / 2, top: foot.y - L.STAGE_TOP - 22, width: L.FOOT_W, height: 56, borderRadius: "50%", background: T.part.shadow, opacity: T.shadow * 1.4 * (1 - s.lay) }} />
-    <ThreeCanvas linear={false} width={L.W} height={L.STAGE_H} dpr={T.dpr} gl={{ antialias: true, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
-      <PhoneScene s={s} />
-    </ThreeCanvas>
-  </div>
+    <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H }}>
+      <ThreeCanvas linear={false} shadows={fx.shadows ? "soft" : false} width={L.W} height={L.STAGE_H} dpr={fx.dpr ?? T.dpr} gl={{ antialias: true, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
+        <ProductScene model={model} s={s} />
+      </ThreeCanvas>
+    </div>
   );
 };
 
-export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
+export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, model }) => {
   const f = useCurrentFrame();
-  const m = useMemo(() => buildModel(scenes, timeline), [scenes, timeline]);
+  const m = useMemo(() => buildModel(scenes, timeline, model as ProductModel), [scenes, timeline, model]);
+  const fx = useMemo(() => fxOf(model as ProductModel), [model]);
   const s = useMemo(() => stateAt(m, f), [m, f]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((x) => by[x.id]);
@@ -128,10 +188,12 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
   const srcCues = ordered.map((x) => ({ sources: x.sources, window: by[x.id].sourceWindow }));
   return (
     <AbsoluteFill>
-      <Backdrop lay={s.lay} />
-      <Stage s={s} />
+      <Backdrop lay={s.lay} fo={s.fo} fx={fx} />
+      <Trails m={m} s={s} f={f} fx={fx} />
+      {fx.dust ? <Dust m={m} f={f} /> : null}
+      <Stage s={s} model={m.product} />
       <Hook m={m} f={f} />
-      <Labels m={m} s={s} f={f} />
+      <Labels m={m} s={s} f={f} fx={fx} />
       <Caption3D cues={subCues} />
       <Source3D cues={srcCues} />
       <Header3D name={channel?.name ?? "科技"} tag={channel?.tag ?? "拆開來看"} total={timeline.totalFrames} />
@@ -143,16 +205,16 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
 };
 
 /** 封面：大標＋分解後的模型（停在聚焦前一幀，各層都看得到） */
-export const CoverThree: React.FC<Script & { coverCrop?: number }> = ({ cover, scenes, timeline, channel, coverCrop }) => {
+export const CoverThree: React.FC<Script & { coverCrop?: number }> = ({ cover, scenes, timeline, channel, coverCrop, model }) => {
   const c = (cover ?? {}) as { title?: string[]; sub?: string };
-  const m = useMemo(() => (timeline ? buildModel(scenes, timeline as TimelineV2) : null), [scenes, timeline]);
+  const m = useMemo(() => (timeline && model ? buildModel(scenes, timeline as TimelineV2, model as ProductModel) : null), [scenes, timeline, model]);
   const s = useMemo(() => (m ? stateAt(m, Math.min(m.focus - 1, m.total - 1)) : null), [m]);
   const shift = coverCrop ? (L.H - coverCrop) / 2 - 150 : 0;
   const a = accent3D("blue");
   return (
     <AbsoluteFill>
       <Backdrop lay={1} />
-      {s ? <div style={{ position: "absolute", inset: 0, transform: "translateY(330px)" }}><Stage s={s} /></div> : null}
+      {s && m ? <div style={{ position: "absolute", inset: 0, transform: "translateY(330px)" }}><Stage s={s} model={m.product} /></div> : null}
       <div style={{ position: "absolute", inset: 0, transform: `translateY(${shift}px)` }}><Header3D name={channel?.name ?? "科技"} tag={channel?.tag ?? "拆開來看"} total={1} /></div>
       <div style={{ position: "absolute", left: L.X + 4, top: 360 }}>
         {(c.title ?? []).map((t, i) => <div key={i} style={{ ...zh(150, T.weight.zh, i === 1 ? a.text : T.ink), lineHeight: 1.18 }}>{t}</div>)}
