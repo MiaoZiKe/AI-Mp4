@@ -161,6 +161,19 @@ export const puff = () => {
   return (puffTex = new THREE.CanvasTexture(cv));
 };
 
+/** 地面假陰影用的貼圖：一塊邊緣模糊的圓角方形（白色，透明度當陰影濃度） */
+let blobTex: THREE.Texture | null = null;
+export const SHADOW_PAD = 0.18;
+export const shadowBlob = () => {
+  if (blobTex) return blobTex;
+  const n = 128, cv = document.createElement("canvas"); cv.width = cv.height = n;
+  const c = cv.getContext("2d") as CanvasRenderingContext2D, pad = n * SHADOW_PAD, r = n * 0.09;
+  c.filter = `blur(${Math.round(n * 0.055)}px)`;
+  c.fillStyle = gray(255);
+  c.beginPath(); c.moveTo(pad + r, pad); c.arcTo(n - pad, pad, n - pad, n - pad, r); c.arcTo(n - pad, n - pad, pad, n - pad, r); c.arcTo(pad, n - pad, pad, pad, r); c.arcTo(pad, pad, n - pad, pad, r); c.closePath(); c.fill();
+  return (blobTex = new THREE.CanvasTexture(cv));
+};
+
 /** 攝影棚環境貼圖（程式畫的全景：上亮下暗＋幾塊柔光箱＋黑旗），給金屬與玻璃反光用。顏色讀 THEME_3D.env。
  *  soft＝縮到很小再放大（等於模糊），給霧面金屬用；sharp 給玻璃與拋光面用 */
 const envCache = new Map<string, THREE.Texture>();
@@ -208,7 +221,8 @@ export const makeMaterial = (m: ProductModel, name: string, fx: Fx, vertexColors
   if (kind === "screen") { p.emissive = new THREE.Color(c); p.emissiveIntensity = d.ei ?? 0.9; p.toneMapped = false; }
   else if (d.emissive) { p.emissive = new THREE.Color(col(m, d.emissive)); p.emissiveIntensity = d.ei ?? 0.3; }
   if (map) p.map = map;
-  if (fx.env && (isMetal || coat)) {
+  // 自發光畫面不加環境反光（面積大、每個像素多查一次貼圖，看起來差很少）；要加就在材質寫 env
+  if (fx.env && (isMetal || coat) && (kind !== "screen" || d.env !== undefined)) {
     p.envMap = studioEnv(!(coat || rough < 0.27));
     if (coat) { p.combine = THREE.AddOperation; p.reflectivity = (d.env ?? 1) * K.envCoat * (d.clearcoat ?? 1) * (kind === "screen" ? 0.6 : 1); }
     else { p.combine = THREE.MultiplyOperation; p.reflectivity = Math.min(1, (d.env ?? 1) * K.envMetal * (0.55 + 0.45 * metal)); }

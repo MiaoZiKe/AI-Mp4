@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { THEME_3D as T } from "../../theme";
 import { cameraFor, mix, type State3D } from "./engine";
-import { buildGeo, col, fxOf, makeMaterial, puff, studioEnv, type Fx, type PartDef, type ProductModel } from "./model";
+import { SHADOW_PAD, buildGeo, col, fxOf, makeMaterial, puff, shadowBlob, studioEnv, type Fx, type PartDef, type ProductModel } from "./model";
 
 /** 相機跟著狀態走（和標籤投影用同一組數字）；霧的遠近也跟著鏡頭距離 */
 const Rig: React.FC<{ s: State3D; fx: Fx }> = ({ s, fx }) => {
@@ -64,6 +64,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
   // 光掃用的聚光燈（目標要自己加進場景）
   const spot = useMemo(() => { const l = new THREE.SpotLight(T.panel, 0, 0, T.sweepLight.angle, 0.9, 0); l.castShadow = false; return l; }, []);
 
+  const flatGeo = useMemo(() => new THREE.PlaneGeometry(1, 1), []);
   const lidO = 1 - Math.max(0, (s.lid - 0.45) / 0.55);
   const tmp = useMemo(() => new THREE.Color(), []);
   // ── 這一幀：更新材質（淡出、變熱、透視）與底板的逐點顏色 ──
@@ -106,10 +107,20 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
     <>
       <Rig s={s} fx={fx} />
       <ambientLight intensity={T.light.ambient} />
-      <directionalLight position={[9, 22, 13]} intensity={T.light.key} castShadow={fx.shadows > 0} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
+      <directionalLight position={T.light.keyPos as unknown as [number, number, number]} intensity={T.light.key} castShadow={fx.shadows >= 2} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
       <directionalLight position={[-12, 6, 8]} intensity={T.light.fill} />
       {/* 地面只接陰影（透明），背景的棚是 HTML */}
-      {fx.shadows > 0 ? <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, s.groundY, -4]} receiveShadow><planeGeometry args={[T.ground.size, T.ground.size]} /><shadowMaterial transparent opacity={T.ground.shadow} fog={false} /></mesh> : null}
+      {fx.shadows >= 2 ? <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, s.groundY, -4]} receiveShadow><planeGeometry args={[T.ground.size, T.ground.size]} /><shadowMaterial transparent opacity={T.ground.shadow} fog={false} /></mesh> : null}
+      {/* 便宜的地面陰影（fx.shadows＝1）：每一層的外形沿主燈方向壓扁到地面上，一層一張邊緣模糊的貼圖，不用陰影貼圖 */}
+      {fx.shadows === 1 ? model.layers.map((d) => {
+        const q = s.layers[d.id];
+        if (!q || q.opacity < 0.05) return null;
+        const [w, h, cx, cy] = d.outline ?? [model.size.w, model.size.h, 0, 0], k = 1 / (1 - 2 * SHADOW_PAD);
+        const lp = T.light.keyPos, g = s.groundY + 0.01;
+        const P = new THREE.Matrix4().set(1, -lp[0] / lp[1], 0, (lp[0] / lp[1]) * g, 0, 0, 0, g, 0, -lp[2] / lp[1], 1, (lp[2] / lp[1]) * g, 0, 0, 0, 1);
+        const M = new THREE.Matrix4().makeRotationY(s.yaw).multiply(new THREE.Matrix4().makeRotationX(s.pitch)).multiply(new THREE.Matrix4().makeTranslation(cx, cy, q.z)).multiply(new THREE.Matrix4().makeScale(w * k, h * k, 1));
+        return <mesh key={`sh-${d.id}`} geometry={flatGeo} matrixAutoUpdate={false} matrix={P.multiply(M)} frustumCulled={false} renderOrder={1}><meshBasicMaterial color={T.part.shadow} map={shadowBlob()} transparent opacity={T.ground.blob * q.opacity} depthWrite={false} side={THREE.DoubleSide} fog={false} toneMapped={false} /></mesh>;
+      }) : null}
       <group rotation={[0, s.yaw, 0]}>
         <group rotation={[s.pitch, 0, 0]}>
           {built.map((b, i) => {
@@ -119,7 +130,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             if (m.opacity <= 0.01) return null;
             const q = b.p.pos ?? [0, 0, 0], off = b.p.role === "lid" ? lidOff : [0, 0, 0];
             const solid = m.opacity > 0.6 && b.p.shadow !== false;
-            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[q[0] + off[0], q[1] + off[1], (q[2] ?? 0) + L.z + off[2]]} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 2} renderOrder={m.transparent ? 2 : 0} />;
+            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[q[0] + off[0], q[1] + off[1], (q[2] ?? 0) + L.z + off[2]]} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
           })}
           {sw.on > 0.001 ? <><primitive object={spot} /><primitive object={spot.target} /></> : null}
           {/* 熱循環：熱點的點光、水滴（亮面小球）、蒸氣團與熱浪（柔邊貼圖） */}
