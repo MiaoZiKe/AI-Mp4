@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { validateV3, validateTimelineV3 } from "./v3/validate-v3.mjs";
+import { cnTermIssues } from "./voice-profile.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 export const ICONS = ["capitol","ballot","scale","chip","container","globe","money","chart","shield","island","question","gavel","users",
@@ -266,6 +267,7 @@ export function validate(script) {
     const isEnd = s.component === "EndCard";
     if (typeof s.narration !== "string") E(`${tag}: 缺 narration`);
     else { const n = len(s.narration); if (!isEnd) { if (n < 8 || n > 32) E(`${tag}: 旁白 ${n} 字（應 15–25）：${s.narration}`); else if (n < 13 || n > 26) W(`${tag}: 旁白 ${n} 字（建議 15–25）：${s.narration}`); } }
+    for (const m of cnTermIssues(s.tts ?? s.narration)) W(`${tag}: 念稿有${m}`);
     if (s.tts !== undefined && typeof s.tts !== "string") E(`${tag}: tts 必須是字串`);
     else if (!isEnd || s.tts !== undefined) for (const m of readingIssues(s.tts ?? s.narration, readWL)) W(`${tag}: 念稿${s.tts === undefined ? "（無 tts，用 narration）" : " tts"} ${m}`);
     if (!s.subtitle || typeof s.subtitle.zh !== "string" || typeof s.subtitle.en !== "string") E(`${tag}: subtitle 需有 zh/en`);

@@ -3,7 +3,10 @@
 //                                                   public/audio/<slug>/NN-<id>.wav ＋ videos/<slug>/tts-manifest.json
 //   … --resplit                                   → 沿用留存的整篇原始音檔重切（不花請求）
 //   … --force                                     → 即使念稿、音色、提示都沒變也重新生成（花 1 次請求）
-//   … --audition=<tag> --style="…" [--upto=<幕id>] → 只試聽：念到指定幕為止，存 out/<slug>/voice-samples/<tag>.wav（1 次請求，不切、不動 manifest）
+//   … --audition=<tag> [--upto=<幕id>] [--voice=音色] [--profile=tech|stock|love|ai] [--style="…"] [--lang=cmn-TW|off] [--out=資料夾]
+//                                                 → 只試聽：念到指定幕為止，存 out/<slug>/voice-samples/<tag>.wav（1 次請求，不切、不動 manifest）
+// 提示：script.json 有 voice.profile（docs/voice-profiles.md）就用 scripts/voice-profile.mjs 組「導演筆記」說明並送 languageCode cmn-TW；
+//       沒有的舊片照舊用 voice.style（`${voice.style}說：`），請求和以前完全一樣。
 // 和 tts.mjs（逐幕切段、換幕固定間隔）的差別：
 //   1. 送出的文字依 script.json 每幕的 para 分段：同一段的幕接成同一行，段與段之間空一行 → 句間換氣由模型決定，不會每句等距停頓
 //   2. 不靠靜音偵測猜切點：整篇先做 CTC 強制對齊，切點＝相鄰兩幕之間能量最低的地方
@@ -14,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { runFA, geminiTranscribe, writeVerify, CONF_MIN, CER_MAX } from "./verify.mjs";
+import { resolveProfile, profileIssues, buildDirection, takePrompt, LANGUAGE_CODE } from "./voice-profile.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const args = process.argv.slice(2);
@@ -27,13 +31,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const dir = path.join(ROOT, "videos", slug);
 const script = JSON.parse(fs.readFileSync(path.join(dir, "script.json"), "utf8"));
-const voice = script.voice ?? {};
+const voice = { ...(script.voice ?? {}) };
+if (opt.voice) voice.voiceName = opt.voice; // 只給試聽用：換音色不改 script.json
+if (opt.profile) voice.profile = opt.profile; // 只給試聽用：套某個頻道預設檔
+if ((opt.voice || opt.profile) && !opt.audition) { console.error("--voice／--profile 只能和 --audition 一起用（正式配音請改 script.json）"); process.exit(2); }
 if (!voice.voiceName) { console.error("script.json 缺 voice.voiceName"); process.exit(2); }
 const MODEL = process.env.TTS_MODEL || voice.model || "gemini-2.5-flash-preview-tts";
 const styled = /gemini-2\.5/.test(MODEL);
-const STYLE = (opt.style ?? voice.style ?? "").replace(/[。：:]+$/, "");
-if (styled && !STYLE) { console.error("script.json 缺 voice.style（或用 --style=）"); process.exit(2); }
-const prompt = (text) => (styled ? `${STYLE}說：\n${text}` : text);
+// 旁白設定檔（voice.profile，docs/voice-profiles.md）：有就用它組「導演筆記」說明；沒有的舊片照舊用 voice.style（提示與快取雜湊都不變）
+const profile = opt.style ? null : resolveProfile(voice);
+if (profile) { const bad = profileIssues(profile); if (bad.length) { console.error("✖ voice.profile 有問題：\n  " + bad.join("\n  ")); process.exit(2); } }
+const STYLE = profile ? buildDirection(profile) : (opt.style ?? voice.style ?? "").replace(/[。：:]+$/, "");
+if (styled && !STYLE) { console.error("script.json 缺 voice.profile 或 voice.style（或用 --style=）"); process.exit(2); }
+// 3.x 系列會把說明念出來 → 只送念稿，口音靠 languageCode；各段情緒在 3.x 目前不送（見 docs/voice-profiles.md）
+const prompt = (text) => (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
+// languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
+let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
 const SR = 24000, KEEP = 0.04, FADE = 0.004, VOICE_DB = -40;
 
 /** 有旁白的幕；同一個 para 接成同一行，換段空一行 */
@@ -46,10 +59,11 @@ const reqLog = path.join(dir, "tts-requests.json");
 const logReq = (row) => { const a = fs.existsSync(reqLog) ? JSON.parse(fs.readFileSync(reqLog, "utf8")) : []; a.push(row); fs.writeFileSync(reqLog, JSON.stringify(a, null, 1) + "\n"); };
 
 async function synth(text, purpose) {
-  const body = { contents: [{ parts: [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } };
+  const mk = () => ({ contents: [{ parts: [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
   for (let i = 0; i < 2; i++) {
+    const body = mk();
     const r = await fetch(`${API}/models/${MODEL}:generateContent`, { method: "POST", headers, body: JSON.stringify(body) });
-    const row = { at: new Date().toISOString(), purpose, model: MODEL, voice: voice.voiceName, status: r.status };
+    const row = { at: new Date().toISOString(), purpose, model: MODEL, voice: voice.voiceName, languageCode: LANG ?? undefined, status: r.status };
     if (r.ok) {
       const j = await r.json();
       const part = j.candidates?.[0]?.content?.parts?.find((p) => p.inlineData);
@@ -62,6 +76,8 @@ async function synth(text, purpose) {
     }
     const t = (await r.text()).replace(/\s+/g, " ");
     logReq({ ...row, error: t.slice(0, 300) });
+    // 這個模型不收 languageCode（400）→ 拿掉再送一次（多花 1 次請求），並提醒把 voice.languageCode 設成 "off"
+    if (r.status === 400 && LANG && /language/i.test(t) && i === 0) { console.warn(`  ⚠ ${MODEL} 不收 languageCode「${LANG}」（400）→ 拿掉重送一次`); LANG = null; continue; }
     if (r.status >= 500 && i === 0) { console.warn(`  ↻ ${r.status}，5 秒後重試一次`); await sleep(5000); continue; }
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;
   }
@@ -89,11 +105,11 @@ function levels(pcm, rate) {
   return db;
 }
 
-const takeHash = crypto.createHash("sha1").update([MODEL, voice.voiceName, STYLE, full].join("\u0001")).digest("hex").slice(0, 10);
+const takeHash = crypto.createHash("sha1").update([MODEL, voice.voiceName, STYLE, full, ...(LANG ? [LANG] : [])].join("\u0001")).digest("hex").slice(0, 10);
 
 // ── 試聽 ──────────────────────────────────────────────────────────────
 if (opt.audition) {
-  const sdir = path.join(ROOT, "out", slug, "voice-samples");
+  const sdir = opt.out ? path.resolve(ROOT, opt.out) : path.join(ROOT, "out", slug, "voice-samples");
   fs.mkdirSync(sdir, { recursive: true });
   const file = path.join(sdir, `${opt.audition}.wav`);
   console.log(`▶ 試聽 ${opt.audition}：${voice.voiceName}／${MODEL}，${spoken.length} 幕（1 次請求）\n--- 送出的全文 ---\n${prompt(full)}\n---`);
@@ -102,7 +118,7 @@ if (opt.audition) {
   writeWav(file, a.pcm, a.rate);
   const ap = path.join(sdir, "audition.json");
   const aj = fs.existsSync(ap) ? JSON.parse(fs.readFileSync(ap, "utf8")) : { requests: [], rows: {} };
-  aj.rows[opt.audition] = { id: opt.audition, voice: voice.voiceName, model: MODEL, tag: "take-audition", style: STYLE, prompt: prompt(full), text: full, file, sec: +(a.pcm.length / a.rate).toFixed(2) };
+  aj.rows[opt.audition] = { id: opt.audition, voice: voice.voiceName, model: MODEL, tag: "take-audition", profile: profile ? (profile.preset ?? "custom") : null, languageCode: LANG, style: STYLE, prompt: prompt(full), text: full, file, sec: +(a.pcm.length / a.rate).toFixed(2) };
   aj.requests.push({ at: new Date().toISOString(), id: opt.audition, model: MODEL, voice: voice.voiceName, tag: "take-audition", status: 200 });
   fs.writeFileSync(ap, JSON.stringify(aj, null, 2));
   console.log(`✔ ${path.relative(ROOT, file)}（${(a.pcm.length / a.rate).toFixed(2)}s）`);
@@ -166,7 +182,7 @@ for (const [k, x] of spoken.entries()) {
   writeWav(path.join(ROOT, "public", file), seg, rate);
   const sc = x.units.map((u) => u.score);
   // hash 的算法和 tts.mjs 相同（模型、音色、style、念稿）→ align 的快取判斷共用
-  const hash = crypto.createHash("sha1").update([MODEL, voice.voiceName, styled ? voice.style ?? "" : "", x.text].join("\u0001")).digest("hex").slice(0, 12);
+  const hash = crypto.createHash("sha1").update([MODEL, voice.voiceName, styled ? (profile ? STYLE : voice.style ?? "") : "", x.text].join("\u0001")).digest("hex").slice(0, 12);
   entries.push({ id: x.id, file, sec: +(seg.length / rate).toFixed(3), text: x.text, hash: `${hash}-${takeHash}`, voice: voice.voiceName, model: MODEL,
     takeStart: +x.vs.toFixed(3), takeEnd: +x.ve.toFixed(3), headSec: +(x.vs - Math.round(t0 * rate) / rate).toFixed(4), tailSec: +(x.ve - Math.round(t0 * rate) / rate).toFixed(4), confidence: +(sc.reduce((p, c) => p + c, 0) / sc.length).toFixed(3), minScore: Math.min(...sc) });
 }
@@ -174,7 +190,7 @@ for (const [k, e] of entries.entries()) e.gapAfter = k < entries.length - 1 ? +M
 // 提示有沒有被念出來：第一個字之前、最後一個字之後不該有說話聲
 const lead = spoken[0].vs, firstUnit = fa.units[0].start, tailExtra = total - spoken.at(-1).ve;
 const speechSec = spoken.at(-1).ve - spoken[0].vs;
-fs.writeFileSync(manifestPath, JSON.stringify({ slug, mode: "take", model: MODEL, voiceName: voice.voiceName, style: styled ? STYLE : null,
+fs.writeFileSync(manifestPath, JSON.stringify({ slug, mode: "take", model: MODEL, voiceName: voice.voiceName, style: styled ? STYLE : null, profile: profile ? (profile.preset ?? "custom") : null, languageCode: LANG,
   take: { file: rawRel, hash: takeHash, sec: +total.toFixed(3), speechSec: +speechSec.toFixed(3), leadSec: +lead.toFixed(3), firstCharSec: firstUnit, confidence: fa.confidence, minScore: fa.minScore, requests, prompt: prompt(full) },
   scenes: entries }, null, 2));
 console.log(`\n幕   秒    信心(最低)  之後停頓`);

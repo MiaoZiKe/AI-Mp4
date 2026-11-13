@@ -2,6 +2,7 @@
 // 不套 v2 的元件類別規則；保留：字數、字幕短語寬度、出處寬度、同屏 ≤3 主要元素、畫面字 ≤10 字、禁「App」字樣、cue／ref／until／紙材是否存在。
 import fs from "node:fs";
 import path from "node:path";
+import { resolveProfile, profileIssues, cnTermIssues, PRESET_NAMES } from "../voice-profile.mjs";
 
 const LAYERS = ["desk", "mat", "near", "screen", "top"];
 const TYPES = ["img", "strip", "phone", "path", "pass", "num", "stack", "bars", "line"];
@@ -25,6 +26,12 @@ export function validateV3(script, h, ROOT) {
   const meta = fs.existsSync(mp) ? JSON.parse(fs.readFileSync(mp, "utf8")) : null;
   if (!meta) W(`沒有 public/v3/${script.slug}/meta.json（先 python3 scripts/make-paper.py ${script.slug}），略過紙材名稱檢查`);
   const hasAsset = (a, tag) => { if (meta && a && !meta[a]) E(`${tag}: 紙材「${a}」不存在（public/v3/${script.slug}/）`); };
+  // 旁白設定檔（docs/voice-profiles.md）：有配音的 v3 片要先定 voice.profile；舊片沒有只警告、不擋
+  const hasVoice = scenes.some((x) => !x.silent && (x.tts ?? x.narration));
+  const prof = resolveProfile(script.voice);
+  if (hasVoice && !prof) W(`沒有 voice.profile：配音前先定旁白設定檔（預設檔 ${PRESET_NAMES.join("／")}，或整份自己寫；見 docs/voice-profiles.md）。舊片照舊用 voice.style`);
+  if (prof) for (const m of profileIssues(prof)) E(m);
+  for (const [i, x] of scenes.entries()) for (const [k, t] of [["念稿", x.tts ?? x.narration], ["字幕", x.subtitle?.zh]]) for (const m of cnTermIssues(t)) W(`第 ${i + 1} 幕 (${x.id ?? "?"}): ${k}有${m}`);
   // 外觀與頻道（頂層 skin／channel，都可省略）
   const skins = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "theme-v3-skins.json"), "utf8"));
   const skin = script.skin ?? "desk";

@@ -97,8 +97,12 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
 - 順序固定：研究 → 腳本 → validate（含讀法規則）→ TTS（整篇一次生成＋回讀校驗自動重生）→ 逐字時間戳（CTC 強制對齊，寫 timeline.json＋storyboard.json）→ 依時間軸渲染（＋SRT）→ ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
+- **配音前先定旁白設定檔**（`docs/voice-profiles.md`）：script.json 的 `voice.profile` 寫預設檔名字（`tech｜stock｜love｜ai`，在 `scripts/voice-profiles.json`）、`{ preset, …要改的欄位 }` 或整份自己寫；欄位＝`persona`（誰在講、對誰講）、`gender`、`accent`（固定「台灣華語」）、`pace`（目標音節/秒範圍）、`tone`、`arc`（起／承／轉／合各一句情緒指示）、`englishTerms`（英文詞與標準念法）、`avoid`。`tts-take.mjs` 用 `scripts/voice-profile.mjs` 把它組成「導演筆記」說明（只描述說話方式，**不放任何像台詞的句子、不引用稿子**，會被念出來）並送 `speechConfig.languageCode: "cmn-TW"`（模型不收就自動拿掉，之後寫 `voice.languageCode: "off"`）。各段情緒只能給整篇走向（Arc 一行），不能逐句控制；3.x 系列會把說明念出來，只送念稿與 languageCode。沒有 `voice.profile` 的舊片照舊用 `voice.style`，請求與快取不變。
+- 台灣口音與用語：口音句固定（台北人平常講話的台灣華語、捲舌輕帶、不兒化、詞尾不念輕聲；中文英文都要標準，英文用標準美式發音完整念出來），各片不改；提示不寫「咬字清楚、字正腔圓」（會推向播音腔）。稿子禁用中國用語與兒化（視頻、信息、軟件、質量、這兒…；清單在 `voice-profile.mjs` 的 `CN_TERMS`，validate 對念稿與字幕警告）；新聞題材也寫成「講給朋友聽」的句子，不寫新聞稿體。
+- 音色依頻道與內容選，**不限男性**（感情頻道預設女聲）；**每個新音色或新頻道第一次用，先做試聽給使用者聽過再整篇配音**：`node scripts/tts-take.mjs <slug> --audition=<名字> --upto=<幕id> --voice=<音色> [--profile=<預設檔>] [--out=out/voice-audition-v2]`（一次請求、不動正式音檔），比較表寫在 `docs/voice-audition-v2.md` 這一類文件。口音只有人耳能判斷；`scripts/voice-retro.py`（ㄓㄔㄕ 與 ㄗㄘㄙ 擦音重心差距）只是輔助數字。
+- 語速要讓模型自己念到 `pace` 範圍；**後製加速（atempo）上限 1.08，超過就重配（改稿或改設定檔），不硬加速**。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
-- script.json 頂層 `voice: { voiceName, candidates?, style? }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
+- script.json 頂層 `voice: { voiceName, profile, languageCode?, candidates?, style?（舊片） }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
 - 停頓（v2）：換幕人聲間隔預設 0.15 秒；script.json 每幕可設 `pauseAfter`（本幕結束到下一幕開口的整段秒數；鉤子後約 0.25、數字或反轉前後 0.3–0.5），每支最多 3 處、每處 ≤0.7 秒。v2 切檔只去頭尾靜音（各留 40ms）不逐段 loudnorm，align 會把各段依時間軸疊成一條 `public/audio/<slug>/voice.wav` 再整條做兩段式 loudnorm（−16 LUFS），畫面只播這一條。
 - `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
 - 讀法規則（只改送配音的 `tts`，字幕維持原文）：兩個標點之間 ≤26 字（超過加逗號）；數字、%、$ 寫成唸法（二零二六、四趴、四點三億美元），英文縮寫拆字母（M S T R）或改中文，英文與中文之間留半形空白；會念錯的多音字換同義詞；整篇一次生成、各幕空一行（tts.mjs 自動）。validate 對念稿版逐條警告，確定念得對的詞放 pronunciation.md 標題含「白名單」的一節（反引號包住）。
