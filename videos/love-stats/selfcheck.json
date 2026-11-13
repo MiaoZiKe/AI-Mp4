@@ -1,0 +1,374 @@
+{
+ "slug": "love-stats",
+ "at": "2026-11-12T21:19:56.595Z",
+ "sample": false,
+ "gates": {
+  "determinism": true,
+  "fastMotionRatio>=0.06": true,
+  "midEmptyFrames==0": false,
+  "staticRunsOver1_5s==0": false,
+  "hookDiffs>3": true,
+  "jumpFrames==0": false,
+  "transitionOccupancy>=60%": false,
+  "review>=8": false
+ },
+ "determinism": {
+  "frame": 934,
+  "same": true
+ },
+ "grid9": {
+  "frames": [
+   30,
+   159,
+   476,
+   648,
+   881,
+   1099,
+   1449,
+   1685,
+   1832
+  ],
+  "file": "out/love-stats/selfcheck/grid9.png"
+ },
+ "strip": {
+  "frames": [
+   93,
+   183,
+   281,
+   387,
+   497,
+   598,
+   654,
+   709,
+   796,
+   896,
+   1005,
+   1050,
+   1125,
+   1225,
+   1352,
+   1458,
+   1574,
+   1688,
+   1749,
+   1794,
+   1857
+  ],
+  "file": "out/love-stats/selfcheck/strip.png"
+ },
+ "pixel": {
+  "frames": 1869,
+  "fastMotionRatio": 0.126,
+  "midEmptyFrames": [
+   1578,
+   1579
+  ],
+  "staticRunsOver1_5s": [
+   {
+    "from": 411,
+    "to": 460,
+    "sec": 1.63,
+    "scene": "s05"
+   },
+   {
+    "from": 465,
+    "to": 532,
+    "sec": 2.23,
+    "scene": "s05"
+   },
+   {
+    "from": 539,
+    "to": 599,
+    "sec": 2,
+    "scene": "s06"
+   },
+   {
+    "from": 955,
+    "to": 1006,
+    "sec": 1.7,
+    "scene": "s11"
+   },
+   {
+    "from": 1093,
+    "to": 1149,
+    "sec": 1.87,
+    "scene": "s13"
+   },
+   {
+    "from": 1155,
+    "to": 1202,
+    "sec": 1.57,
+    "scene": "s14"
+   }
+  ],
+  "hookDiffs": {
+   "0-15": 7.44,
+   "0-30": 15.44,
+   "0-45": 19.47,
+   "0-60": 12.83,
+   "15-30": 8,
+   "15-45": 13.35,
+   "15-60": 6.71,
+   "30-45": 5.64,
+   "30-60": 14.32,
+   "45-60": 8.77
+  },
+  "jumpFrames": [
+   {
+    "frame": 7,
+    "pct": 9.63,
+    "neighbor": 0.2
+   },
+   {
+    "frame": 26,
+    "pct": 9.04,
+    "neighbor": 0
+   },
+   {
+    "frame": 50,
+    "pct": 9.19,
+    "neighbor": 0
+   },
+   {
+    "frame": 143,
+    "pct": 25.55,
+    "neighbor": 1.21
+   },
+   {
+    "frame": 244,
+    "pct": 8.79,
+    "neighbor": 0
+   },
+   {
+    "frame": 355,
+    "pct": 15.64,
+    "neighbor": 2.9
+   },
+   {
+    "frame": 532,
+    "pct": 15.74,
+    "neighbor": 0
+   },
+   {
+    "frame": 534,
+    "pct": 10.64,
+    "neighbor": 0
+   },
+   {
+    "frame": 724,
+    "pct": 26.06,
+    "neighbor": 0
+   },
+   {
+    "frame": 726,
+    "pct": 13.61,
+    "neighbor": 0
+   },
+   {
+    "frame": 757,
+    "pct": 15.42,
+    "neighbor": 0.74
+   },
+   {
+    "frame": 930,
+    "pct": 8.33,
+    "neighbor": 0
+   },
+   {
+    "frame": 1021,
+    "pct": 10.3,
+    "neighbor": 2.35
+   },
+   {
+    "frame": 1202,
+    "pct": 11.95,
+    "neighbor": 0
+   },
+   {
+    "frame": 1243,
+    "pct": 9.66,
+    "neighbor": 0.4
+   },
+   {
+    "frame": 1322,
+    "pct": 20.37,
+    "neighbor": 4.58
+   },
+   {
+    "frame": 1433,
+    "pct": 10.96,
+    "neighbor": 0.32
+   },
+   {
+    "frame": 1634,
+    "pct": 25.49,
+    "neighbor": 7.96
+   },
+   {
+    "frame": 1724,
+    "pct": 8.62,
+    "neighbor": 0
+   }
+  ],
+  "transitionOccupancy": [
+   {
+    "start": 93,
+    "minOcc": 39.37,
+    "ref": 38.49,
+    "ratio": 1.02,
+    "ok": true
+   },
+   {
+    "start": 183,
+    "minOcc": 15.26,
+    "ref": 15.62,
+    "ratio": 0.98,
+    "ok": true
+   },
+   {
+    "start": 281,
+    "minOcc": 15.98,
+    "ref": 15.98,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 387,
+    "minOcc": 10.56,
+    "ref": 11.92,
+    "ratio": 0.89,
+    "ok": true
+   },
+   {
+    "start": 497,
+    "minOcc": 17.63,
+    "ref": 17.63,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 598,
+    "minOcc": 7.43,
+    "ref": 10.3,
+    "ratio": 0.72,
+    "ok": true
+   },
+   {
+    "start": 654,
+    "minOcc": 13.27,
+    "ref": 13.72,
+    "ratio": 0.97,
+    "ok": true
+   },
+   {
+    "start": 709,
+    "minOcc": 26.04,
+    "ref": 26.05,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 796,
+    "minOcc": 20.42,
+    "ref": 29.98,
+    "ratio": 0.68,
+    "ok": true
+   },
+   {
+    "start": 896,
+    "minOcc": 8.52,
+    "ref": 8.72,
+    "ratio": 0.98,
+    "ok": true
+   },
+   {
+    "start": 1005,
+    "minOcc": 5.18,
+    "ref": 16.63,
+    "ratio": 0.31,
+    "ok": false
+   },
+   {
+    "start": 1050,
+    "minOcc": 33.15,
+    "ref": 35.09,
+    "ratio": 0.94,
+    "ok": true
+   },
+   {
+    "start": 1125,
+    "minOcc": 37.23,
+    "ref": 37.23,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1225,
+    "minOcc": 26.18,
+    "ref": 26.23,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1352,
+    "minOcc": 24.8,
+    "ref": 25.86,
+    "ratio": 0.96,
+    "ok": true
+   },
+   {
+    "start": 1458,
+    "minOcc": 13.31,
+    "ref": 26.78,
+    "ratio": 0.5,
+    "ok": false
+   },
+   {
+    "start": 1574,
+    "minOcc": 0.13,
+    "ref": 33.2,
+    "ratio": 0,
+    "ok": false
+   },
+   {
+    "start": 1688,
+    "minOcc": 77.09,
+    "ref": 77.09,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1749,
+    "minOcc": 70.73,
+    "ref": 70.73,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1794,
+    "minOcc": 0,
+    "ref": 0,
+    "ratio": null,
+    "ok": true
+   }
+  ],
+  "gates": {
+   "fastMotionRatio>=0.06": true,
+   "midEmptyFrames==0": false,
+   "staticRunsOver1_5s==0": false,
+   "hookDiffs>3": true,
+   "jumpFrames==0": false,
+   "transitionOccupancy>=60%": false
+  },
+  "pass": false
+ },
+ "review": {
+  "前 2 秒抓人": 8,
+  "手機上看得清": 8,
+  "動作自然": 8,
+  "畫面變化": 7,
+  "構圖": 7,
+  "聲畫匹配": 9
+ },
+ "pass": false
+}

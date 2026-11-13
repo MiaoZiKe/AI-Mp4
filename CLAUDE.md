@@ -63,6 +63,8 @@
   - `path` 加 `head: true`（或 `"arrowhead-r"`／`"arrowhead-w"`）＝虛線長完在終點貼一個紙箭頭。
   - 自訂尺寸的色紙（堆疊的每一層、特大標題條）與照片的裁切寫在 `videos/<slug>/assets.json`（`papers`／`photos`）。手機沒有實拍原圖時自動改用紙手機；出餐口 `pass`、機櫃 `rack` 只有 what-is-server 有。
   - 寫法範例：`docs/style-v3/skin-proof-script.json`；五套外觀的樣張：`node scripts/v3/skin-proof.mjs all` → `out/skin-proof/<skin>/sheet.png`。
+- 四支頻道樣片（各用一套 skin，寫法可互相參考）：`videos/tech-cowos/`（科技，`blueprint`）、`videos/stock-jensen/`（股票，`newsprint`；時事題材，上片當天要重查 research.md）、`videos/love-stats/`（感情，`notebook`）、`videos/ai-make-video/`（AI，`sticky`）。每支的成片資訊與人耳確認清單在各自的 `README.md`。
+- 打包暫存：`scripts/lib.mjs` 的 `makeBundle` 把 Remotion bundle 寫到 `out/.bundle/<pid>/`，跑完自動刪除（以前寫在 /tmp，堆到磁碟滿）。指令被中斷時會留下殘檔，確認該 pid 已不在後可以直接刪；`out/` 整個不 commit。跑 still／peek／render 前先 `df -h /`，可用不到 1GB 就先清 `out/<slug>/` 的舊中間檔。
 - 實拍照片：`python3 scripts/styleframes/find_pexels.py 關鍵字…` 找、`--fetch <slug> 名稱=md5` 抓，`make-paper.py` 自動做成 `polaroid-<名稱>`／`print-<名稱>`（newsprint 另有 `clip-<名稱>`）；流程與規則（不要有可辨識人臉、怎麼記 assets.md）見 `docs/style-v3/photos-howto.md`。
 - 已知限制：selfcheck 的單幀跳變關口是照 v2 訂的，v3 紙片「貼上」那一幀會被算成跳變（what-is-server 有 13 幀）；audit 的 `blackFramesTotal` 會把蓋場大紙算進去，真正黑幀用 ffmpeg blackdetect 看。SeatBar 沒有 v3 版；v3 的圖表只有紙條長條（bars）與紙條折線（line）。
 

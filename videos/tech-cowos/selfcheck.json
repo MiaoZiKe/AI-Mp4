@@ -1,0 +1,341 @@
+{
+ "slug": "tech-cowos",
+ "at": "2026-11-12T20:44:07.615Z",
+ "sample": false,
+ "gates": {
+  "determinism": true,
+  "fastMotionRatio>=0.06": true,
+  "midEmptyFrames==0": true,
+  "staticRunsOver1_5s==0": true,
+  "hookDiffs>3": true,
+  "jumpFrames==0": false,
+  "transitionOccupancy>=60%": true,
+  "review>=8": true
+ },
+ "determinism": {
+  "frame": 956,
+  "same": true
+ },
+ "grid9": {
+  "frames": [
+   30,
+   162,
+   405,
+   578,
+   888,
+   1116,
+   1456,
+   1674,
+   1876
+  ],
+  "file": "out/tech-cowos/selfcheck/grid9.png"
+ },
+ "strip": {
+  "frames": [
+   98,
+   186,
+   259,
+   348,
+   408,
+   506,
+   581,
+   733,
+   783,
+   890,
+   1008,
+   1118,
+   1234,
+   1354,
+   1458,
+   1597,
+   1676,
+   1759,
+   1838,
+   1901
+  ],
+  "file": "out/tech-cowos/selfcheck/strip.png"
+ },
+ "pixel": {
+  "frames": 1913,
+  "fastMotionRatio": 0.163,
+  "midEmptyFrames": [],
+  "staticRunsOver1_5s": [],
+  "hookDiffs": {
+   "0-15": 15.04,
+   "0-30": 15.47,
+   "0-45": 19.87,
+   "0-60": 28.55,
+   "15-30": 5.99,
+   "15-45": 9.9,
+   "15-60": 18.58,
+   "30-45": 6.31,
+   "30-60": 14.99,
+   "45-60": 14.38
+  },
+  "jumpFrames": [
+   {
+    "frame": 8,
+    "pct": 18.43,
+    "neighbor": 0
+   },
+   {
+    "frame": 12,
+    "pct": 9.01,
+    "neighbor": 0
+   },
+   {
+    "frame": 52,
+    "pct": 14.13,
+    "neighbor": 0
+   },
+   {
+    "frame": 54,
+    "pct": 10.34,
+    "neighbor": 0
+   },
+   {
+    "frame": 208,
+    "pct": 12.19,
+    "neighbor": 0
+   },
+   {
+    "frame": 331,
+    "pct": 14.58,
+    "neighbor": 2.84
+   },
+   {
+    "frame": 334,
+    "pct": 11.23,
+    "neighbor": 0
+   },
+   {
+    "frame": 336,
+    "pct": 9.64,
+    "neighbor": 0
+   },
+   {
+    "frame": 540,
+    "pct": 15.16,
+    "neighbor": 1.32
+   },
+   {
+    "frame": 542,
+    "pct": 26.39,
+    "neighbor": 0
+   },
+   {
+    "frame": 568,
+    "pct": 9.06,
+    "neighbor": 0
+   },
+   {
+    "frame": 658,
+    "pct": 8.84,
+    "neighbor": 0
+   },
+   {
+    "frame": 934,
+    "pct": 10.6,
+    "neighbor": 0
+   },
+   {
+    "frame": 1062,
+    "pct": 9.44,
+    "neighbor": 0
+   },
+   {
+    "frame": 1102,
+    "pct": 16.83,
+    "neighbor": 0
+   },
+   {
+    "frame": 1134,
+    "pct": 8.52,
+    "neighbor": 0
+   },
+   {
+    "frame": 1248,
+    "pct": 11.76,
+    "neighbor": 0
+   },
+   {
+    "frame": 1250,
+    "pct": 16.37,
+    "neighbor": 0
+   },
+   {
+    "frame": 1402,
+    "pct": 9.68,
+    "neighbor": 0
+   },
+   {
+    "frame": 1445,
+    "pct": 13.17,
+    "neighbor": 0.71
+   },
+   {
+    "frame": 1802,
+    "pct": 19.66,
+    "neighbor": 0
+   },
+   {
+    "frame": 1804,
+    "pct": 19.93,
+    "neighbor": 0
+   }
+  ],
+  "transitionOccupancy": [
+   {
+    "start": 98,
+    "minOcc": 55.83,
+    "ref": 55.83,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 186,
+    "minOcc": 26.12,
+    "ref": 26.44,
+    "ratio": 0.99,
+    "ok": true
+   },
+   {
+    "start": 259,
+    "minOcc": 26.43,
+    "ref": 33.27,
+    "ratio": 0.79,
+    "ok": true
+   },
+   {
+    "start": 348,
+    "minOcc": 37.73,
+    "ref": 37.87,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 408,
+    "minOcc": 85.25,
+    "ref": 85.23,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 506,
+    "minOcc": 86.29,
+    "ref": 86.3,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 581,
+    "minOcc": 88.13,
+    "ref": 88.13,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 733,
+    "minOcc": 83.54,
+    "ref": 83.54,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 783,
+    "minOcc": 93.34,
+    "ref": 93.32,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 890,
+    "minOcc": 91.01,
+    "ref": 91.01,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1008,
+    "minOcc": 86.9,
+    "ref": 87.72,
+    "ratio": 0.99,
+    "ok": true
+   },
+   {
+    "start": 1118,
+    "minOcc": 70.11,
+    "ref": 70.11,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1234,
+    "minOcc": 77.88,
+    "ref": 77.88,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1354,
+    "minOcc": 92.34,
+    "ref": 92.17,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1458,
+    "minOcc": 78.81,
+    "ref": 78.8,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1597,
+    "minOcc": 80.12,
+    "ref": 80.12,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1676,
+    "minOcc": 86.56,
+    "ref": 86.56,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1759,
+    "minOcc": 85.17,
+    "ref": 85.17,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1838,
+    "minOcc": 0,
+    "ref": 0,
+    "ratio": null,
+    "ok": true
+   }
+  ],
+  "gates": {
+   "fastMotionRatio>=0.06": true,
+   "midEmptyFrames==0": true,
+   "staticRunsOver1_5s==0": true,
+   "hookDiffs>3": true,
+   "jumpFrames==0": false,
+   "transitionOccupancy>=60%": true
+  },
+  "pass": false
+ },
+ "review": {
+  "前 2 秒抓人": 8,
+  "手機上看得清": 8,
+  "動作自然": 8,
+  "畫面變化": 8,
+  "構圖": 8,
+  "聲畫匹配": 8
+ },
+ "pass": false
+}

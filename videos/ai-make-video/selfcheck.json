@@ -1,0 +1,406 @@
+{
+ "slug": "ai-make-video",
+ "at": "2026-11-12T21:44:06.166Z",
+ "sample": false,
+ "gates": {
+  "determinism": true,
+  "fastMotionRatio>=0.06": true,
+  "midEmptyFrames==0": true,
+  "staticRunsOver1_5s==0": true,
+  "hookDiffs>3": true,
+  "jumpFrames==0": false,
+  "transitionOccupancy>=60%": true,
+  "review>=8": false
+ },
+ "determinism": {
+  "frame": 954,
+  "same": true
+ },
+ "grid9": {
+  "frames": [
+   30,
+   149,
+   491,
+   731,
+   1016,
+   1217,
+   1455,
+   1654,
+   1871
+  ],
+  "file": "out/ai-make-video/selfcheck/grid9.png"
+ },
+ "strip": {
+  "frames": [
+   73,
+   159,
+   260,
+   357,
+   498,
+   591,
+   740,
+   826,
+   890,
+   1035,
+   1123,
+   1223,
+   1316,
+   1399,
+   1466,
+   1577,
+   1669,
+   1761,
+   1833,
+   1896
+  ],
+  "file": "out/ai-make-video/selfcheck/strip.png"
+ },
+ "pixel": {
+  "frames": 1908,
+  "fastMotionRatio": 0.197,
+  "midEmptyFrames": [],
+  "staticRunsOver1_5s": [],
+  "hookDiffs": {
+   "0-15": 4.88,
+   "0-30": 4.43,
+   "0-45": 6.35,
+   "0-60": 10.19,
+   "15-30": 3.75,
+   "15-45": 5.22,
+   "15-60": 10.91,
+   "30-45": 6.59,
+   "30-60": 11.07,
+   "45-60": 9.46
+  },
+  "jumpFrames": [
+   {
+    "frame": 48,
+    "pct": 9.72,
+    "neighbor": 0
+   },
+   {
+    "frame": 177,
+    "pct": 9.09,
+    "neighbor": 1.53
+   },
+   {
+    "frame": 180,
+    "pct": 11.48,
+    "neighbor": 0.95
+   },
+   {
+    "frame": 183,
+    "pct": 9.45,
+    "neighbor": 2.97
+   },
+   {
+    "frame": 280,
+    "pct": 10.71,
+    "neighbor": 0
+   },
+   {
+    "frame": 526,
+    "pct": 10.92,
+    "neighbor": 0
+   },
+   {
+    "frame": 621,
+    "pct": 28.44,
+    "neighbor": 3.27
+   },
+   {
+    "frame": 772,
+    "pct": 9.21,
+    "neighbor": 0
+   },
+   {
+    "frame": 856,
+    "pct": 8.03,
+    "neighbor": 0
+   },
+   {
+    "frame": 864,
+    "pct": 12.08,
+    "neighbor": 0
+   },
+   {
+    "frame": 908,
+    "pct": 9.2,
+    "neighbor": 0
+   },
+   {
+    "frame": 910,
+    "pct": 13.18,
+    "neighbor": 0
+   },
+   {
+    "frame": 968,
+    "pct": 8.6,
+    "neighbor": 0.01
+   },
+   {
+    "frame": 1096,
+    "pct": 22.4,
+    "neighbor": 0
+   },
+   {
+    "frame": 1098,
+    "pct": 39.04,
+    "neighbor": 5.79
+   },
+   {
+    "frame": 1102,
+    "pct": 15.3,
+    "neighbor": 3.59
+   },
+   {
+    "frame": 1136,
+    "pct": 9.1,
+    "neighbor": 0
+   },
+   {
+    "frame": 1242,
+    "pct": 10.31,
+    "neighbor": 0
+   },
+   {
+    "frame": 1328,
+    "pct": 22.5,
+    "neighbor": 0
+   },
+   {
+    "frame": 1330,
+    "pct": 18.46,
+    "neighbor": 0
+   },
+   {
+    "frame": 1332,
+    "pct": 11.93,
+    "neighbor": 0
+   },
+   {
+    "frame": 1439,
+    "pct": 28.92,
+    "neighbor": 6.82
+   },
+   {
+    "frame": 1502,
+    "pct": 9.42,
+    "neighbor": 0
+   },
+   {
+    "frame": 1504,
+    "pct": 28.33,
+    "neighbor": 0
+   },
+   {
+    "frame": 1506,
+    "pct": 35.25,
+    "neighbor": 0
+   },
+   {
+    "frame": 1508,
+    "pct": 24.05,
+    "neighbor": 0
+   },
+   {
+    "frame": 1510,
+    "pct": 10.12,
+    "neighbor": 0
+   },
+   {
+    "frame": 1514,
+    "pct": 14.78,
+    "neighbor": 0
+   },
+   {
+    "frame": 1536,
+    "pct": 28.31,
+    "neighbor": 0
+   },
+   {
+    "frame": 1540,
+    "pct": 10.78,
+    "neighbor": 0
+   },
+   {
+    "frame": 1608,
+    "pct": 16.67,
+    "neighbor": 1.62
+   },
+   {
+    "frame": 1610,
+    "pct": 10.09,
+    "neighbor": 0
+   },
+   {
+    "frame": 1750,
+    "pct": 14.76,
+    "neighbor": 0
+   },
+   {
+    "frame": 1806,
+    "pct": 25.06,
+    "neighbor": 0
+   },
+   {
+    "frame": 1808,
+    "pct": 10.43,
+    "neighbor": 0
+   }
+  ],
+  "transitionOccupancy": [
+   {
+    "start": 73,
+    "minOcc": 39.26,
+    "ref": 38.87,
+    "ratio": 1.01,
+    "ok": true
+   },
+   {
+    "start": 159,
+    "minOcc": 9.4,
+    "ref": 8.45,
+    "ratio": 1.11,
+    "ok": true
+   },
+   {
+    "start": 260,
+    "minOcc": 27.12,
+    "ref": 25.95,
+    "ratio": 1.05,
+    "ok": true
+   },
+   {
+    "start": 357,
+    "minOcc": 19.1,
+    "ref": 18.7,
+    "ratio": 1.02,
+    "ok": true
+   },
+   {
+    "start": 498,
+    "minOcc": 17.08,
+    "ref": 17.05,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 591,
+    "minOcc": 14.52,
+    "ref": 17.78,
+    "ratio": 0.82,
+    "ok": true
+   },
+   {
+    "start": 740,
+    "minOcc": 14.78,
+    "ref": 15.51,
+    "ratio": 0.95,
+    "ok": true
+   },
+   {
+    "start": 826,
+    "minOcc": 26.59,
+    "ref": 26.59,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 890,
+    "minOcc": 16.41,
+    "ref": 13.98,
+    "ratio": 1.17,
+    "ok": true
+   },
+   {
+    "start": 1035,
+    "minOcc": 30.08,
+    "ref": 40.68,
+    "ratio": 0.74,
+    "ok": true
+   },
+   {
+    "start": 1123,
+    "minOcc": 82.27,
+    "ref": 79.65,
+    "ratio": 1.03,
+    "ok": true
+   },
+   {
+    "start": 1223,
+    "minOcc": 78.09,
+    "ref": 78.09,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1316,
+    "minOcc": 76.19,
+    "ref": 76.19,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1399,
+    "minOcc": 72.88,
+    "ref": 74.23,
+    "ratio": 0.98,
+    "ok": true
+   },
+   {
+    "start": 1466,
+    "minOcc": 38.51,
+    "ref": 38.39,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1577,
+    "minOcc": 21.74,
+    "ref": 21.74,
+    "ratio": 1,
+    "ok": true
+   },
+   {
+    "start": 1669,
+    "minOcc": 24.18,
+    "ref": 29.03,
+    "ratio": 0.83,
+    "ok": true
+   },
+   {
+    "start": 1761,
+    "minOcc": 24.65,
+    "ref": 32.46,
+    "ratio": 0.76,
+    "ok": true
+   },
+   {
+    "start": 1833,
+    "minOcc": 0,
+    "ref": 0,
+    "ratio": null,
+    "ok": true
+   }
+  ],
+  "gates": {
+   "fastMotionRatio>=0.06": true,
+   "midEmptyFrames==0": true,
+   "staticRunsOver1_5s==0": true,
+   "hookDiffs>3": true,
+   "jumpFrames==0": false,
+   "transitionOccupancy>=60%": true
+  },
+  "pass": false
+ },
+ "review": {
+  "前 2 秒抓人": 8,
+  "手機上看得清": 8,
+  "動作自然": 8,
+  "畫面變化": 8,
+  "構圖": 7,
+  "聲畫匹配": 8
+ },
+ "pass": false
+}

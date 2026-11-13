@@ -1,2766 +1,2996 @@
 {
-  "slug": "stock-jensen",
-  "title": "黃仁勳沒辭職，那股價在跌什麼？｜關鍵人物風險",
-  "asOf": "2026/11/12",
-  "styleVersion": 3,
-  "skin": "newsprint",
-  "channel": {
-    "name": "股票",
-    "tag": "消息查到底",
-    "slogan": "先查證，再下結論"
+ "slug": "stock-jensen",
+ "title": "黃仁勳為什麼辭職？｜關鍵人物風險",
+ "asOf": "2026/11/13",
+ "styleVersion": 3,
+ "skin": "newsprint",
+ "channel": {
+  "name": "股票",
+  "tag": "消息查到底",
+  "slogan": "先查證，再下結論"
+ },
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "style": "用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚"
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
   },
-  "voice": {
-    "voiceName": "Iapetus",
-    "model": "gemini-2.5-flash-preview-tts",
-    "mode": "take",
-    "style": "用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚"
-  },
-  "cover": {
+  "items": [
+   {
+    "type": "strip",
+    "paper": "strip-hook",
+    "lines": [
+     {
+      "t": "黃仁勳",
+      "size": 140,
+      "lh": 1.08
+     },
+     {
+      "t": "[為什麼辭職]",
+      "size": 136,
+      "lh": 1.14
+     },
+     {
+      "t": "官方聲明 {沒說原因}",
+      "size": 52,
+      "color": "ink3",
+      "lh": 1.3,
+      "mt": 8,
+      "accentSize": 64
+     }
+    ],
+    "x": 540,
+    "y": 640,
+    "w": 920,
+    "layer": "screen",
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     60,
+     24
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-r",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "stamp-red",
+    "lines": [
+     {
+      "t": "即刻生效",
+      "size": 84,
+      "ls": 0.06
+     }
+    ],
+    "x": 810,
+    "y": 930,
+    "w": 400,
+    "layer": "screen",
+    "rot": -8,
+    "onDark": true,
+    "z": 3
+   },
+   {
+    "type": "strip",
+    "paper": "polaroid-chair",
+    "lines": [
+     {
+      "t": "執行長的位子空了",
+      "size": 40
+     }
+    ],
+    "x": 320,
+    "y": 1190,
+    "w": 440,
+    "caption": true,
+    "rot": -4,
+    "tape": [
+     {
+      "asset": "tape-k",
+      "x": 250,
+      "y": 6,
+      "rot": 3,
+      "w": 170
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "strip-yellow",
+    "lines": [
+     {
+      "t": "更深一層：",
+      "size": 76
+     },
+     {
+      "t": "關鍵人物風險",
+      "size": 76
+     }
+    ],
+    "x": 770,
+    "y": 1270,
+    "w": 540,
+    "rot": 3
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "sentence": 1,
+   "para": 1,
+   "narration": "黃仁勳辭職了，而且即刻生效。",
+   "tts": "黃仁勳辭職了，而且即刻生效。",
+   "subtitle": {
+    "zh": "黃仁勳辭職了\n而且即刻生效",
+    "en": "Jensen Huang has resigned, | effective immediately."
+   },
+   "keywords": [
+    "即刻生效"
+   ],
+   "cues": [
+    {
+     "id": "resign",
+     "text": "辭職了"
+    },
+    {
+     "id": "now",
+     "text": "即刻生效"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
     "camera": {
-      "to": [
-        540,
-        960,
-        1
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "punch": "now",
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "黃仁勳",
+        "size": 140,
+        "lh": 1.08
+       },
+       {
+        "t": "[辭職了]",
+        "size": 150,
+        "lh": 1.12
+       },
+       {
+        "t": "輝達董事會 {11/12} 宣布",
+        "size": 50,
+        "color": "ink3",
+        "lh": 1.3,
+        "mt": 8,
+        "accentSize": 60
+       }
+      ],
+      "x": 540,
+      "y": 700,
+      "w": 940,
+      "layer": "screen",
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       70,
+       24
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "id": "hook",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "resign",
+        "mark": 1
+       }
+      ],
+      "moves": [
+       {
+        "at": "resign+14",
+        "to": {
+         "rot": -2.8,
+         "y": 688
+        },
+        "dur": 4
+       }
+      ],
+      "to": "top"
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-red",
+      "lines": [
+       {
+        "t": "即刻生效",
+        "size": 84,
+        "ls": 0.06
+       }
+      ],
+      "x": 800,
+      "y": 1040,
+      "w": 420,
+      "layer": "screen",
+      "rot": -8,
+      "onDark": true,
+      "z": 3,
+      "at": "now",
+      "from": "slam",
+      "to": "top"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-chair",
+      "lines": [
+       {
+        "t": "執行長的位子空了",
+        "size": 36
+       }
+      ],
+      "x": 290,
+      "y": 1105,
+      "w": 340,
+      "caption": true,
+      "layer": "screen",
+      "rot": -4,
+      "at": "start+5",
+      "from": "left",
+      "moves": [
+       {
+        "at": "resign+2",
+        "to": {
+         "rot": -9,
+         "y": 1112,
+         "x": 312
+        },
+        "dur": 4
+       }
+      ],
+      "to": "left",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 170,
+        "y": 6,
+        "rot": 3,
+        "w": 170
+       }
       ]
+     }
+    ]
+   },
+   "sources": [
+    "輝達新聞稿 2026/11/12"
+   ],
+   "still": "now+14"
+  },
+  {
+   "id": "s02",
+   "beat": "hook",
+   "sentence": 2,
+   "para": 1,
+   "narration": "可是輝達的聲明，沒說為什麼。",
+   "tts": "可是輝達的聲明，沒說為什麼。",
+   "subtitle": {
+    "zh": "可是輝達的聲明\n沒說為什麼",
+    "en": "But Nvidia's statement | didn't say why."
+   },
+   "keywords": [
+    "沒說為什麼"
+   ],
+   "cues": [
+    {
+     "id": "stmt",
+     "text": "聲明"
+    },
+    {
+     "id": "why",
+     "text": "沒說"
+    }
+   ],
+   "pauseAfter": 0.25,
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "doc",
+      "lines": [
+       {
+        "t": "董事會聲明",
+        "size": 52,
+        "color": "ink3"
+       },
+       {
+        "t": "執行長異動",
+        "size": 92,
+        "mt": 14
+       },
+       {
+        "t": "2026/11/12",
+        "size": 44,
+        "color": "ink3",
+        "mt": 18
+       }
+      ],
+      "x": 360,
+      "y": 720,
+      "w": 560,
+      "rot": -3,
+      "at": "stmt",
+      "from": "left",
+      "until": "s04",
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 300,
+        "y": 4,
+        "rot": 2,
+        "w": 180
+       }
+      ],
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "辭職原因",
+        "size": 50
+       }
+      ],
+      "x": 800,
+      "y": 520,
+      "w": 360,
+      "rot": 3,
+      "at": "stmt+12",
+      "from": "right",
+      "until": "s04",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "原因：[沒有說]",
+        "size": 88
+       }
+      ],
+      "x": 640,
+      "y": 1090,
+      "w": 760,
+      "rot": 1.5,
+      "at": "why",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "why+8",
+        "mark": 1
+       }
+      ],
+      "until": "s04",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       }
+      ],
+      "z": 3
+     },
+     {
+      "asset": "qmark",
+      "x": 830,
+      "y": 770,
+      "w": 200,
+      "rot": 8,
+      "at": "why+6",
+      "from": "slam",
+      "until": "s04",
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "輝達新聞稿 2026/11/12（未說明原因）"
+   ]
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "sentence": 3,
+   "para": 2,
+   "narration": "十月底有媒體報導，他可能被外國情報單位鎖定。",
+   "tts": "十月底有媒體報導，他可能被外國情報單位鎖定。",
+   "subtitle": {
+    "zh": "十月底有媒體報導\n他可能被\n外國情報單位鎖定",
+    "en": "In late October, media reported | he may have been targeted | by foreign intelligence."
+   },
+   "keywords": [
+    "鎖定"
+   ],
+   "cues": [
+    {
+     "id": "oct",
+     "text": "十月底"
+    },
+    {
+     "id": "intel",
+     "text": "外國情報單位"
+    },
+    {
+     "id": "target",
+     "text": "鎖定"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1700,
+      960,
+      1
+     ],
+     "dur": 14
     },
     "items": [
-      {
-        "type": "strip",
-        "paper": "strip-hook",
-        "lines": [
-          {
-            "t": "黃仁勳",
-            "size": 140,
-            "lh": 1.08
-          },
-          {
-            "t": "[辭職？]",
-            "size": 150,
-            "lh": 1.12
-          },
-          {
-            "t": "股價卻一天跌 {4%}",
-            "size": 52,
-            "color": "ink3",
-            "lh": 1.3,
-            "mt": 8,
-            "accentSize": 64
-          }
-        ],
-        "layer": "screen",
-        "x": 540,
-        "y": 640,
-        "w": 900,
-        "rot": -1.4,
-        "align": "left",
-        "pad": [
-          70,
-          24
-        ],
-        "tape": [
-          {
-            "asset": "tape-y",
-            "x": 150,
-            "y": 8,
-            "rot": -5
-          },
-          {
-            "asset": "tape-r",
-            "x": 790,
-            "y": 0,
-            "rot": 4
-          }
-        ]
+     {
+      "type": "path",
+      "pts": [
+       [
+        740,
+        380
+       ],
+       [
+        1780,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
       },
-      {
-        "type": "strip",
-        "paper": "stamp-red",
-        "lines": [
-          {
-            "t": "沒有",
-            "size": 150,
-            "ls": 0.06
-          }
-        ],
-        "layer": "screen",
-        "x": 800,
-        "y": 700,
-        "w": 380,
-        "rot": -8,
-        "onDark": true,
-        "z": 3
-      },
-      {
-        "type": "strip",
-        "paper": "polaroid-screen",
-        "lines": [
-          {
-            "t": "股價一天跌超過 4%",
-            "size": 40
-          }
-        ],
-        "caption": true,
-        "x": 320,
-        "y": 1190,
-        "w": 440,
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "asset": "pin-red",
+      "x": 1410,
+      "y": 380,
+      "w": 60,
+      "at": "oct",
+      "from": "slam",
+      "until": "s05",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "10/29",
+        "size": 72
+       }
+      ],
+      "x": 1410,
+      "y": 480,
+      "w": 230,
+      "rot": -3,
+      "at": "oct",
+      "from": "paste",
+      "until": "s05"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-papers",
+      "lines": [
+       {
+        "t": "十月底・媒體報導",
+        "size": 42
+       }
+      ],
+      "x": 1490,
+      "y": 790,
+      "w": 470,
+      "caption": true,
+      "rot": -3,
+      "at": "oct+10",
+      "from": "left",
+      "until": "s05",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
         "rot": -4,
-        "tape": [
-          {
-            "asset": "tape-k",
-            "x": 250,
-            "y": 6,
-            "rot": 3,
-            "w": 170
-          }
-        ]
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "外電報導",
+        "size": 48
+       }
+      ],
+      "x": 1870,
+      "y": 470,
+      "w": 400,
+      "rot": 3,
+      "at": "oct+38",
+      "from": "right",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "label",
+      "lines": [
+       {
+        "t": "報導說：他[可能]被",
+        "size": 52,
+        "color": "ink3"
+       },
+       {
+        "t": "外國情報單位鎖定",
+        "size": 58,
+        "mt": 6
+       }
+      ],
+      "x": 1880,
+      "y": 680,
+      "w": 560,
+      "rot": 2.5,
+      "pad": [
+       34,
+       24
+      ],
+      "at": "intel",
+      "from": "slam",
+      "state": {
+       "mark": 0
       },
-      {
-        "type": "strip",
-        "paper": "strip-yellow",
-        "lines": [
-          {
-            "t": "那股價",
-            "size": 84
-          },
-          {
-            "t": "在跌什麼？",
-            "size": 84
-          }
-        ],
-        "x": 790,
-        "y": 1200,
-        "w": 430,
-        "rot": 3
-      }
+      "set": [
+       {
+        "at": "target",
+        "mark": 1
+       }
+      ],
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "匿名消息・未證實",
+        "size": 44
+       }
+      ],
+      "x": 1900,
+      "y": 1090,
+      "w": 420,
+      "rot": -3,
+      "at": "target+6",
+      "from": "right",
+      "until": "s05",
+      "z": 3
+     }
     ]
+   },
+   "sources": [
+    "紐約時報 10/29（匿名消息，未證實）"
+   ]
   },
-  "scenes": [
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "sentence": 4,
+   "para": 2,
+   "narration": "11 月 8 號，他發信給員工，承認對婚姻不忠。",
+   "tts": "十一月八號，他發信給員工，承認對婚姻不忠。",
+   "subtitle": {
+    "zh": "11 月 8 號\n他發信給員工\n承認對婚姻不忠",
+    "en": "On Nov. 8, | he emailed employees | and admitted being unfaithful."
+   },
+   "keywords": [
+    "11 月 8 號"
+   ],
+   "cues": [
     {
-      "id": "s01",
-      "beat": "hook",
-      "sentence": 1,
-      "para": 1,
-      "narration": "黃仁勳辭職了？先講答案，沒有。",
-      "tts": "黃仁勳辭職了？先講答案，沒有。",
-      "subtitle": {
-        "zh": "黃仁勳辭職了？\n先講答案\n沒有",
-        "en": "Did Jensen Huang resign? | Short answer: | no."
-      },
-      "keywords": [
-        "沒有"
-      ],
-      "cues": [
-        {
-          "id": "q",
-          "text": "辭職了"
-        },
-        {
-          "id": "ans",
-          "text": "先講答案"
-        },
-        {
-          "id": "no",
-          "text": "沒有"
-        }
-      ],
-      "pauseAfter": 0.25,
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            540,
-            960,
-            1
-          ]
-        },
-        "punch": "no",
-        "items": [
-          {
-            "type": "strip",
-            "paper": "strip-hook",
-            "lines": [
-              {
-                "t": "黃仁勳",
-                "size": 140,
-                "lh": 1.08
-              },
-              {
-                "t": "[辭職？]",
-                "size": 150,
-                "lh": 1.12
-              },
-              {
-                "t": "股價卻一天跌 {4%}",
-                "size": 52,
-                "color": "ink3",
-                "lh": 1.3,
-                "mt": 8,
-                "accentSize": 64
-              }
-            ],
-            "layer": "screen",
-            "x": 540,
-            "y": 700,
-            "w": 940,
-            "rot": -1.4,
-            "align": "left",
-            "pad": [
-              70,
-              24
-            ],
-            "tape": [
-              {
-                "asset": "tape-y",
-                "x": 150,
-                "y": 8,
-                "rot": -5
-              },
-              {
-                "asset": "tape-r",
-                "x": 790,
-                "y": 0,
-                "rot": 4
-              }
-            ],
-            "id": "hook",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "q",
-                "mark": 1
-              }
-            ],
-            "to": "top"
-          },
-          {
-            "type": "strip",
-            "paper": "strip-yellow",
-            "lines": [
-              {
-                "t": "先講答案",
-                "size": 92
-              }
-            ],
-            "layer": "screen",
-            "x": 300,
-            "y": 1110,
-            "w": 420,
-            "rot": -4,
-            "at": "ans",
-            "from": "slam",
-            "to": "left"
-          },
-          {
-            "type": "strip",
-            "paper": "stamp-red",
-            "lines": [
-              {
-                "t": "沒有",
-                "size": 150,
-                "ls": 0.06
-              }
-            ],
-            "layer": "screen",
-            "x": 810,
-            "y": 770,
-            "w": 400,
-            "rot": -8,
-            "onDark": true,
-            "z": 3,
-            "id": "stamp",
-            "moves": [
-              {
-                "at": "ans",
-                "to": {
-                  "rot": -15,
-                  "y": 752
-                },
-                "dur": 5
-              },
-              {
-                "at": "ans+12",
-                "to": {
-                  "rot": -8,
-                  "y": 770
-                },
-                "dur": 4
-              },
-              {
-                "at": "no",
-                "to": {
-                  "w": 480
-                },
-                "dur": 2
-              },
-              {
-                "at": "no+3",
-                "to": {
-                  "w": 420,
-                  "rot": -6
-                },
-                "dur": 4
-              }
-            ],
-            "to": "top"
-          }
-        ]
-      },
-      "sources": [
-        "輝達發言人聲明 2026/11/8"
-      ],
-      "still": "no+14"
+     "id": "date",
+     "text": "號"
     },
     {
-      "id": "s02",
-      "beat": "hook",
-      "sentence": 2,
-      "para": 1,
-      "narration": "可是輝達股價，一天就跌超過 4%。",
-      "tts": "可是輝達股價，一天就跌超過百分之四。",
-      "subtitle": {
-        "zh": "可是輝達股價\n一天就跌\n超過 4%",
-        "en": "Yet Nvidia's stock | fell more than 4% | in one day."
-      },
-      "keywords": [
-        "超過 4%"
-      ],
-      "cues": [
-        {
-          "id": "stock",
-          "text": "股價"
-        },
-        {
-          "id": "day",
-          "text": "一天"
-        },
-        {
-          "id": "drop",
-          "text": "超過"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "items": [
-          {
-            "type": "strip",
-            "paper": "polaroid-screen",
-            "lines": [
-              {
-                "t": "輝達股價",
-                "size": 46
-              }
-            ],
-            "caption": true,
-            "x": 310,
-            "y": 600,
-            "w": 450,
-            "rot": -4,
-            "at": "stock",
-            "from": "left",
-            "until": "s04",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": 3,
-                "w": 170
-              }
-            ]
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "11/9",
-                "size": 84
-              }
-            ],
-            "x": 830,
-            "y": 470,
-            "w": 250,
-            "rot": 5,
-            "at": "day",
-            "from": "slam",
-            "until": "s04"
-          },
-          {
-            "type": "num",
-            "id": "drop",
-            "x": 650,
-            "y": 1010,
-            "w": 620,
-            "at": "drop",
-            "from": "slam",
-            "value": -4.27,
-            "fromValue": -0.01,
-            "decimals": 2,
-            "unit": "%",
-            "size": 170,
-            "head": "輝達一天收跌",
-            "until": "s04",
-            "tape": [
-              {
-                "asset": "tape-r",
-                "x": 560,
-                "y": 4,
-                "rot": -3,
-                "w": 150
-              }
-            ],
-            "z": 2
-          },
-          {
-            "asset": "arrow-red",
-            "x": 170,
-            "y": 1030,
-            "w": 210,
-            "rot": 90,
-            "at": "drop+8",
-            "from": "top",
-            "until": "s04"
-          }
-        ]
-      },
-      "sources": [
-        "輝達收盤價 2026/11/9（收跌 4.27%）"
-      ]
+     "id": "mail",
+     "text": "發信"
     },
     {
-      "id": "s03",
-      "beat": "mechanism",
-      "sentence": 3,
-      "para": 2,
-      "narration": "十月底有報導說，他可能被外國情報單位鎖定。",
-      "tts": "十月底有報導說，他可能被外國情報單位鎖定。",
-      "subtitle": {
-        "zh": "十月底有報導說\n他可能被\n外國情報單位鎖定",
-        "en": "A late-October report said | he may have been targeted | by foreign intelligence."
-      },
-      "keywords": [
-        "鎖定"
-      ],
-      "cues": [
-        {
-          "id": "oct",
-          "text": "十月底"
-        },
-        {
-          "id": "intel",
-          "text": "外國情報單位"
-        },
-        {
-          "id": "target",
-          "text": "鎖定"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            1700,
-            960,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "path",
-            "pts": [
-              [
-                740,
-                380
-              ],
-              [
-                1780,
-                380
-              ]
-            ],
-            "state": {
-              "grow": 0
-            },
-            "set": [
-              {
-                "at": "start+4",
-                "grow": 1
-              }
-            ],
-            "until": "s08"
-          },
-          {
-            "asset": "pin-red",
-            "x": 1410,
-            "y": 380,
-            "w": 60,
-            "at": "oct",
-            "from": "slam",
-            "until": "s05",
-            "z": 4
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "10/29",
-                "size": 72
-              }
-            ],
-            "x": 1410,
-            "y": 480,
-            "w": 230,
-            "rot": -3,
-            "at": "oct",
-            "from": "paste",
-            "until": "s05"
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-papers",
-            "lines": [
-              {
-                "t": "十月底・外電報導",
-                "size": 42
-              }
-            ],
-            "caption": true,
-            "x": 1490,
-            "y": 790,
-            "w": 470,
-            "rot": -3,
-            "at": "oct+10",
-            "from": "left",
-            "until": "s05",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": -4,
-                "w": 170
-              }
-            ]
-          },
-          {
-            "type": "strip",
-            "paper": "label",
-            "lines": [
-              {
-                "t": "報導說：他[可能]被",
-                "size": 52,
-                "color": "ink3"
-              },
-              {
-                "t": "外國情報單位鎖定",
-                "size": 58,
-                "mt": 6
-              }
-            ],
-            "x": 1880,
-            "y": 640,
-            "w": 560,
-            "rot": 2.5,
-            "pad": [
-              34,
-              24
-            ],
-            "at": "intel",
-            "from": "slam",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "target",
-                "mark": 1
-              }
-            ],
-            "until": "s05",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "匿名消息・未證實",
-                "size": 44
-              }
-            ],
-            "x": 1900,
-            "y": 1090,
-            "w": 420,
-            "rot": -3,
-            "at": "target+6",
-            "from": "right",
-            "until": "s05",
-            "z": 3
-          }
-        ]
-      },
-      "sources": [
-        "紐約時報 2026/10/29（匿名消息來源）"
-      ]
-    },
-    {
-      "id": "s04",
-      "beat": "mechanism",
-      "sentence": 4,
-      "para": 2,
-      "narration": "11 月 8 號，他發信給員工，承認對婚姻不忠。",
-      "tts": "十一月八號，他發信給員工，承認對婚姻不忠。",
-      "subtitle": {
-        "zh": "11 月 8 號\n他發信給員工\n承認對婚姻不忠",
-        "en": "On Nov. 8, | he emailed employees | and admitted being unfaithful."
-      },
-      "keywords": [
-        "11 月 8 號"
-      ],
-      "cues": [
-        {
-          "id": "date",
-          "text": "號"
-        },
-        {
-          "id": "mail",
-          "text": "發信"
-        },
-        {
-          "id": "admit",
-          "text": "承認"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            2860,
-            960,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "path",
-            "pts": [
-              [
-                1780,
-                380
-              ],
-              [
-                2940,
-                380
-              ]
-            ],
-            "state": {
-              "grow": 0
-            },
-            "set": [
-              {
-                "at": "start+4",
-                "grow": 1
-              }
-            ],
-            "until": "s08"
-          },
-          {
-            "asset": "pin-red",
-            "x": 2570,
-            "y": 380,
-            "w": 60,
-            "at": "date",
-            "from": "slam",
-            "until": "s06",
-            "z": 4
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "11/8",
-                "size": 84
-              }
-            ],
-            "x": 2570,
-            "y": 480,
-            "w": 230,
-            "rot": 4,
-            "at": "date",
-            "from": "paste",
-            "until": "s06"
-          },
-          {
-            "type": "strip",
-            "paper": "letter",
-            "lines": [],
-            "x": 2880,
-            "y": 700,
-            "w": 470,
-            "rot": 4,
-            "at": "mail+8",
-            "from": "bottom",
-            "until": "s06",
-            "z": 1
-          },
-          {
-            "asset": "rule",
-            "x": 2872,
-            "y": 640,
-            "w": 330,
-            "rot": 4,
-            "at": "mail+14",
-            "until": "s06",
-            "z": 1
-          },
-          {
-            "asset": "rule",
-            "x": 2868,
-            "y": 690,
-            "w": 330,
-            "rot": 4,
-            "at": "mail+16",
-            "until": "s06",
-            "z": 1
-          },
-          {
-            "asset": "rule",
-            "x": 2825,
-            "y": 738,
-            "w": 250,
-            "rot": 4,
-            "at": "mail+18",
-            "until": "s06",
-            "z": 1
-          },
-          {
-            "type": "strip",
-            "paper": "env",
-            "lines": [
-              {
-                "t": "全體員工　收",
-                "size": 54
-              }
-            ],
-            "x": 2770,
-            "y": 960,
-            "w": 600,
-            "rot": -3,
-            "at": "mail",
-            "from": "left",
-            "until": "s06",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "stamp-s",
-            "lines": [
-              {
-                "t": "本人承認",
-                "size": 58,
-                "ls": 0.06
-              }
-            ],
-            "x": 3110,
-            "y": 1090,
-            "w": 380,
-            "rot": -7,
-            "onDark": true,
-            "at": "admit",
-            "from": "slam",
-            "until": "s06",
-            "z": 3
-          }
-        ]
-      },
-      "sources": [
-        "多家媒體報導 2026/11/8–9"
-      ]
-    },
-    {
-      "id": "s05",
-      "beat": "mechanism",
-      "sentence": 5,
-      "para": 2,
-      "narration": "同一天，董事會宣布獨立調查，請外部律師一起查。",
-      "tts": "同一天，董事會宣布獨立調查，請外部律師一起查。",
-      "subtitle": {
-        "zh": "同一天\n董事會宣布獨立調查\n請外部律師一起查",
-        "en": "The same day, the board announced | an independent investigation, | with outside lawyers."
-      },
-      "keywords": [
-        "獨立調查"
-      ],
-      "cues": [
-        {
-          "id": "same",
-          "text": "同一天"
-        },
-        {
-          "id": "probe",
-          "text": "獨立調查"
-        },
-        {
-          "id": "law",
-          "text": "外部律師"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            4020,
-            960,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "path",
-            "pts": [
-              [
-                2940,
-                380
-              ],
-              [
-                4100,
-                380
-              ]
-            ],
-            "state": {
-              "grow": 0
-            },
-            "set": [
-              {
-                "at": "start+4",
-                "grow": 1
-              }
-            ],
-            "until": "s08"
-          },
-          {
-            "asset": "pin-red",
-            "x": 3730,
-            "y": 380,
-            "w": 60,
-            "at": "same",
-            "from": "slam",
-            "until": "s08",
-            "z": 4
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "同一天",
-                "size": 68
-              }
-            ],
-            "x": 3730,
-            "y": 480,
-            "w": 240,
-            "rot": -4,
-            "at": "same",
-            "from": "paste",
-            "until": "s07"
-          },
-          {
-            "type": "strip",
-            "paper": "doc",
-            "lines": [
-              {
-                "t": "董事會聲明",
-                "size": 56,
-                "color": "ink3"
-              },
-              {
-                "t": "[獨立調查]",
-                "size": 118,
-                "mt": 14
-              },
-              {
-                "t": "2026/11/8",
-                "size": 44,
-                "color": "ink3",
-                "mt": 18
-              }
-            ],
-            "id": "doc",
-            "x": 3820,
-            "y": 860,
-            "w": 540,
-            "rot": -2,
-            "at": "same+16",
-            "from": "top",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "probe",
-                "mark": 1
-              }
-            ],
-            "until": "s08",
-            "tape": [
-              {
-                "asset": "tape-w",
-                "x": 300,
-                "y": 4,
-                "rot": 2,
-                "w": 180
-              }
-            ],
-            "z": 1
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-binders",
-            "lines": [
-              {
-                "t": "外部律師一起查",
-                "size": 44
-              }
-            ],
-            "id": "bind",
-            "caption": true,
-            "x": 4300,
-            "y": 640,
-            "w": 400,
-            "rot": 4,
-            "at": "law",
-            "from": "right",
-            "until": "s07",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": -3,
-                "w": 170
-              }
-            ],
-            "z": 2
-          }
-        ]
-      },
-      "sources": [
-        "輝達董事會聲明 2026/11/8"
-      ]
-    },
-    {
-      "id": "s06",
-      "beat": "mechanism",
-      "sentence": 6,
-      "para": 2,
-      "narration": "董事會說，目前沒理由認為機密外洩。",
-      "tts": "董事會說，目前沒理由認為機密外洩。",
-      "subtitle": {
-        "zh": "董事會說\n目前沒理由\n認為機密外洩",
-        "en": "The board said | it has no reason to believe | secrets were leaked."
-      },
-      "keywords": [
-        "沒理由"
-      ],
-      "cues": [
-        {
-          "id": "say",
-          "text": "董事會說"
-        },
-        {
-          "id": "noreason",
-          "text": "沒理由"
-        },
-        {
-          "id": "leak",
-          "text": "機密外洩"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            4020,
-            990,
-            1.08
-          ],
-          "at": "say",
-          "dur": 14
-        },
-        "items": [
-          {
-            "ref": "bind",
-            "at": "start",
-            "exit": true,
-            "to": "right"
-          },
-          {
-            "type": "strip",
-            "paper": "strip-white",
-            "lines": [
-              {
-                "t": "目前[沒理由]",
-                "size": 84
-              },
-              {
-                "t": "認為機密外洩",
-                "size": 84
-              }
-            ],
-            "x": 4000,
-            "y": 1110,
-            "w": 640,
-            "rot": 1.5,
-            "at": "noreason",
-            "from": "slam",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "noreason+8",
-                "mark": 1
-              }
-            ],
-            "until": "s08",
-            "tape": [
-              {
-                "asset": "tape-y",
-                "x": 120,
-                "y": 6,
-                "rot": -5
-              }
-            ],
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-cabinet",
-            "lines": [
-              {
-                "t": "機密",
-                "size": 46
-              }
-            ],
-            "caption": true,
-            "x": 4290,
-            "y": 660,
-            "w": 390,
-            "rot": -3,
-            "at": "leak",
-            "from": "right",
-            "until": "s08",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": 3,
-                "w": 170
-              }
-            ],
-            "z": 2
-          }
-        ]
-      },
-      "sources": [
-        "輝達董事會聲明 2026/11/8"
-      ]
-    },
-    {
-      "id": "s07",
-      "beat": "mechanism",
-      "sentence": 7,
-      "para": 2,
-      "narration": "公司也說，他會繼續當執行長。",
-      "tts": "公司也說，他會繼續當執行長。",
-      "subtitle": {
-        "zh": "公司也說\n他會繼續當執行長",
-        "en": "The company also says | he will stay on as CEO."
-      },
-      "keywords": [
-        "繼續"
-      ],
-      "cues": [
-        {
-          "id": "co",
-          "text": "公司也說"
-        },
-        {
-          "id": "stay",
-          "text": "繼續"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            5180,
-            960,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "path",
-            "pts": [
-              [
-                4100,
-                380
-              ],
-              [
-                5200,
-                380
-              ]
-            ],
-            "state": {
-              "grow": 0
-            },
-            "set": [
-              {
-                "at": "start+4",
-                "grow": 1
-              }
-            ],
-            "until": "s08"
-          },
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "公司發言人",
-                "size": 50
-              }
-            ],
-            "x": 4940,
-            "y": 470,
-            "w": 400,
-            "rot": -2,
-            "at": "co",
-            "from": "slam"
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-chair",
-            "lines": [
-              {
-                "t": "位子沒有空出來",
-                "size": 44
-              }
-            ],
-            "caption": true,
-            "x": 5020,
-            "y": 850,
-            "w": 520,
-            "rot": -3,
-            "at": "co+12",
-            "from": "left",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": 3,
-                "w": 170
-              }
-            ]
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "執行長",
-                "size": 72,
-                "ls": 0.08
-              }
-            ],
-            "x": 5430,
-            "y": 620,
-            "w": 400,
-            "rot": 3,
-            "at": "stay",
-            "from": "slam",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "stamp-s",
-            "lines": [
-              {
-                "t": "繼續在任",
-                "size": 56,
-                "ls": 0.06
-              }
-            ],
-            "x": 5470,
-            "y": 760,
-            "w": 310,
-            "rot": -8,
-            "onDark": true,
-            "at": "stay+10",
-            "from": "slam",
-            "z": 3
-          },
-          {
-            "asset": "sheet-kraft",
-            "layer": "screen",
-            "x": 540,
-            "y": 840,
-            "w": 1240,
-            "at": "exit-13",
-            "from": "bottom",
-            "enterDur": 24,
-            "enterEase": "enter",
-            "until": "s08.start",
-            "to": "top",
-            "exitDur": 14,
-            "exitDist": 2000,
-            "exitEase": "enter"
-          }
-        ]
-      },
-      "sources": [
-        "輝達發言人聲明 2026/11/8"
-      ],
-      "still": "stay+26"
-    },
-    {
-      "id": "s08",
-      "beat": "twist",
-      "sentence": 8,
-      "para": 3,
-      "narration": "那股價到底在跌什麼？",
-      "tts": "那股價到底在跌什麼？",
-      "subtitle": {
-        "zh": "那股價\n到底在跌什麼？",
-        "en": "So what is the stock | actually reacting to?"
-      },
-      "keywords": [
-        "跌什麼"
-      ],
-      "cues": [
-        {
-          "id": "why",
-          "text": "到底"
-        },
-        {
-          "id": "what",
-          "text": "跌什麼"
-        }
-      ],
-      "pauseAfter": 0.35,
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            540,
-            2900,
-            1
-          ],
-          "at": "start-3",
-          "dur": 2
-        },
-        "items": [
-          {
-            "type": "num",
-            "id": "num2",
-            "x": 540,
-            "y": 2630,
-            "w": 640,
-            "at": "start-3",
-            "from": "cut",
-            "value": -4.27,
-            "fromValue": -4.27,
-            "decimals": 2,
-            "unit": "%",
-            "size": 170,
-            "head": "輝達一天收跌",
-            "until": "s09.old",
-            "z": 1
-          },
-          {
-            "id": "ring",
-            "asset": "circle",
-            "x": 540,
-            "y": 2680,
-            "w": 620,
-            "at": "why",
-            "from": "wipe",
-            "until": "s09.fear",
-            "z": 2
-          },
-          {
-            "id": "q8",
-            "asset": "qmark",
-            "x": 850,
-            "y": 2990,
-            "w": 210,
-            "rot": 8,
-            "at": "what",
-            "from": "slam",
-            "until": "s09.start+6",
-            "z": 3
-          }
-        ]
-      },
-      "sources": []
-    },
-    {
-      "id": "s09",
-      "beat": "twist",
-      "sentence": 9,
-      "para": 3,
-      "narration": "分析師說，市場怕的是個老問題，叫關鍵人物風險。",
-      "tts": "分析師說，市場怕的是個老問題，叫關鍵人物風險。",
-      "subtitle": {
-        "zh": "分析師說\n市場怕的是個老問題\n叫關鍵人物風險",
-        "en": "Analysts say | the market fears an old problem: | key-person risk."
-      },
-      "keywords": [
-        "關鍵人物風險"
-      ],
-      "cues": [
-        {
-          "id": "fear",
-          "text": "怕的"
-        },
-        {
-          "id": "old",
-          "text": "老問題"
-        },
-        {
-          "id": "term",
-          "text": "關鍵人物風險"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "punch": "term",
-        "items": [
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "分析師看法",
-                "size": 50
-              }
-            ],
-            "x": 300,
-            "y": 2370,
-            "w": 400,
-            "rot": -2,
-            "at": "start+8",
-            "from": "slam",
-            "until": "s10",
-            "z": 3
-          },
-          {
-            "ref": "num2",
-            "at": "fear",
-            "x": 260,
-            "y": 2580,
-            "w": 380,
-            "rot": -5,
-            "dur": 8
-          },
-          {
-            "type": "strip",
-            "paper": "oldclip",
-            "lines": [
-              {
-                "t": "老問題",
-                "size": 104
-              }
-            ],
-            "x": 790,
-            "y": 2560,
-            "w": 400,
-            "rot": 4,
-            "at": "old",
-            "from": "right",
-            "until": "s10",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 210,
-                "y": 4,
-                "rot": -3,
-                "w": 170
-              }
-            ]
-          },
-          {
-            "type": "strip",
-            "paper": "strip-hook",
-            "lines": [
-              {
-                "t": "[關鍵人物風險]",
-                "size": 132
-              },
-              {
-                "t": "Key-person risk",
-                "size": 50,
-                "color": "ink3",
-                "mt": 14
-              }
-            ],
-            "x": 540,
-            "y": 2930,
-            "w": 920,
-            "rot": -1.2,
-            "at": "term",
-            "from": "slam",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "term+10",
-                "mark": 1
-              }
-            ],
-            "until": "s10",
-            "tape": [
-              {
-                "asset": "tape-y",
-                "x": 150,
-                "y": 8,
-                "rot": -5
-              },
-              {
-                "asset": "tape-r",
-                "x": 790,
-                "y": 0,
-                "rot": 4
-              }
-            ],
-            "z": 4
-          }
-        ]
-      },
-      "sources": [
-        "MarketWatch、自由時報 2026/11"
-      ]
-    },
-    {
-      "id": "s10",
-      "beat": "twist",
-      "sentence": 10,
-      "para": 3,
-      "narration": "意思是公司太靠一個人，他一出狀況，大家就緊張。",
-      "tts": "意思是公司太靠一個人，他一出狀況，大家就緊張。",
-      "subtitle": {
-        "zh": "意思是公司\n太靠一個人\n他一出狀況\n大家就緊張",
-        "en": "A company leans too much | on one person. | If something happens to him, | everyone gets nervous."
-      },
-      "keywords": [
-        "太靠一個人"
-      ],
-      "cues": [
-        {
-          "id": "one",
-          "text": "太靠一個人"
-        },
-        {
-          "id": "trouble",
-          "text": "出狀況"
-        },
-        {
-          "id": "nervous",
-          "text": "緊張"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            1700,
-            2900,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "stack",
-            "id": "co",
-            "x": 1700,
-            "y": 2540,
-            "at": "start+12",
-            "stagger": 6,
-            "layers": [
-              {
-                "asset": "block-kraft",
-                "w": 560,
-                "t": "訂單"
-              },
-              {
-                "asset": "block-kraft",
-                "w": 560,
-                "t": "產品"
-              },
-              {
-                "asset": "block-kraft",
-                "w": 560,
-                "t": "團隊"
-              },
-              {
-                "asset": "block-blue",
-                "w": 660,
-                "t": "公司",
-                "onDark": true,
-                "size": 60
-              }
-            ],
-            "until": "s12",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "pole",
-            "lines": [],
-            "id": "pole",
-            "x": 1700,
-            "y": 2955,
-            "w": 88,
-            "at": "one",
-            "from": "bottom",
-            "until": "s12",
-            "z": 1
-          },
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "只靠一個人",
-                "size": 50
-              }
-            ],
-            "x": 1960,
-            "y": 2990,
-            "w": 380,
-            "rot": -3,
-            "at": "one+6",
-            "from": "right",
-            "until": "s12",
-            "z": 3
-          },
-          {
-            "ref": "pole",
-            "at": "trouble",
-            "x": 1716,
-            "rot": 10,
-            "dur": 6
-          },
-          {
-            "ref": "co",
-            "at": "trouble",
-            "x": 1750,
-            "y": 2555,
-            "rot": 8,
-            "dur": 6,
-            "moves": [
-              {
-                "at": "nervous",
-                "to": {
-                  "rot": 5
-                },
-                "dur": 3
-              },
-              {
-                "at": "nervous+5",
-                "to": {
-                  "rot": 9
-                },
-                "dur": 3
-              },
-              {
-                "at": "nervous+10",
-                "to": {
-                  "rot": 6
-                },
-                "dur": 3
-              },
-              {
-                "at": "nervous+15",
-                "to": {
-                  "rot": 8
-                },
-                "dur": 3
-              }
-            ]
-          },
-          {
-            "asset": "qmark",
-            "x": 1310,
-            "y": 2820,
-            "w": 150,
-            "rot": -10,
-            "at": "nervous",
-            "from": "slam",
-            "until": "s12",
-            "z": 3
-          },
-          {
-            "asset": "qmark",
-            "x": 2110,
-            "y": 2360,
-            "w": 130,
-            "rot": 12,
-            "at": "nervous+5",
-            "from": "slam",
-            "until": "s12",
-            "z": 3
-          },
-          {
-            "asset": "qmark",
-            "x": 1460,
-            "y": 3060,
-            "w": 120,
-            "rot": 6,
-            "at": "nervous+10",
-            "from": "slam",
-            "until": "s12",
-            "z": 3
-          }
-        ]
-      },
-      "sources": []
-    },
-    {
-      "id": "s11",
-      "beat": "twist",
-      "sentence": 11,
-      "para": 3,
-      "narration": "就像老店的醬汁，只有老闆知道配方。",
-      "tts": "就像老店的醬汁，只有老闆知道配方。",
-      "subtitle": {
-        "zh": "就像老店的醬汁\n只有老闆知道配方",
-        "en": "Like an old shop's sauce: | only the owner knows the recipe."
-      },
-      "keywords": [
-        "只有老闆"
-      ],
-      "cues": [
-        {
-          "id": "sauce",
-          "text": "醬汁"
-        },
-        {
-          "id": "boss",
-          "text": "只有老闆"
-        },
-        {
-          "id": "recipe",
-          "text": "配方"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            2860,
-            2900,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "type": "strip",
-            "paper": "polaroid-kitchen",
-            "lines": [
-              {
-                "t": "老店的醬汁",
-                "size": 46
-              }
-            ],
-            "caption": true,
-            "x": 2640,
-            "y": 2730,
-            "w": 450,
-            "rot": -4,
-            "at": "sauce",
-            "from": "left",
-            "until": "s13",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 235,
-                "y": 6,
-                "rot": 3,
-                "w": 170
-              }
-            ]
-          },
-          {
-            "type": "strip",
-            "paper": "recipe",
-            "lines": [
-              {
-                "t": "配方",
-                "size": 120,
-                "ls": 0.1
-              }
-            ],
-            "x": 3110,
-            "y": 2560,
-            "w": 400,
-            "rot": 4,
-            "at": "boss",
-            "from": "slam",
-            "until": "s13",
-            "tape": [
-              {
-                "asset": "tape-r",
-                "x": 190,
-                "y": 4,
-                "rot": -2,
-                "w": 170
-              }
-            ],
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "只有老闆知道",
-                "size": 50
-              }
-            ],
-            "x": 3090,
-            "y": 2800,
-            "w": 420,
-            "rot": -2,
-            "at": "boss+10",
-            "from": "right",
-            "until": "s13",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "stamp-s",
-            "lines": [
-              {
-                "t": "只有一份",
-                "size": 58,
-                "ls": 0.06
-              }
-            ],
-            "x": 3120,
-            "y": 2980,
-            "w": 320,
-            "rot": -7,
-            "onDark": true,
-            "at": "recipe",
-            "from": "slam",
-            "until": "s13",
-            "z": 3
-          }
-        ]
-      },
-      "sources": []
-    },
-    {
-      "id": "s12",
-      "beat": "twist",
-      "sentence": 12,
-      "para": 3,
-      "narration": "輝達是他 33 年前共同創辦的，至今沒有公開的接班人。",
-      "tts": "輝達是他三十三年前共同創辦的，至今沒有公開的接班人。",
-      "subtitle": {
-        "zh": "輝達是他 33 年前\n共同創辦的\n至今沒有\n公開的接班人",
-        "en": "He co-founded Nvidia | 33 years ago. | To this day, | no public successor."
-      },
-      "keywords": [
-        "接班人"
-      ],
-      "cues": [
-        {
-          "id": "years",
-          "text": "年前"
-        },
-        {
-          "id": "found",
-          "text": "共同創辦"
-        },
-        {
-          "id": "now",
-          "text": "至今"
-        },
-        {
-          "id": "succ",
-          "text": "接班人"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            4020,
-            2900,
-            1
-          ],
-          "dur": 14
-        },
-        "items": [
-          {
-            "id": "ruler",
-            "asset": "bar-kraft",
-            "x": 4020,
-            "y": 2440,
-            "w": 880,
-            "at": "years",
-            "from": "wipe",
-            "until": "s12.now",
-            "to": "left"
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "1993",
-                "size": 72
-              }
-            ],
-            "x": 3650,
-            "y": 2350,
-            "w": 220,
-            "rot": -3,
-            "at": "years",
-            "from": "slam",
-            "until": "s12.now",
-            "to": "left",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "datetag",
-            "lines": [
-              {
-                "t": "2026",
-                "size": 72
-              }
-            ],
-            "x": 4390,
-            "y": 2350,
-            "w": 220,
-            "rot": 3,
-            "at": "found",
-            "from": "slam",
-            "until": "s12.now",
-            "to": "left",
-            "z": 2
-          },
-          {
-            "type": "num",
-            "id": "y33",
-            "x": 4020,
-            "y": 2760,
-            "w": 600,
-            "at": "found",
-            "from": "slam",
-            "value": 33,
-            "unit": "年",
-            "size": 200,
-            "head": "共同創辦至今",
-            "until": "s14",
-            "z": 1
-          },
-          {
-            "ref": "y33",
-            "at": "now",
-            "x": 3750,
-            "y": 2440,
-            "w": 400,
-            "rot": -4,
-            "dur": 8
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "接班人：＿＿",
-                "size": 52
-              }
-            ],
-            "x": 4270,
-            "y": 2410,
-            "w": 440,
-            "rot": 3,
-            "at": "succ",
-            "from": "slam",
-            "until": "s14",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-room",
-            "lines": [
-              {
-                "t": "沒有公開的接班人",
-                "size": 42
-              }
-            ],
-            "caption": true,
-            "x": 4040,
-            "y": 2900,
-            "w": 560,
-            "rot": 2,
-            "at": "now+6",
-            "from": "right",
-            "until": "s14",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": -3,
-                "w": 170
-              }
-            ],
-            "z": 2
-          }
-        ]
-      },
-      "sources": [
-        "輝達公司資料；彭博 2026/1/27"
-      ]
-    },
-    {
-      "id": "s13",
-      "beat": "twist",
-      "sentence": 13,
-      "para": 3,
-      "narration": "有分析師估，換掉他，公司價值可能少兩成五到三成。",
-      "tts": "有分析師估，換掉他，公司價值可能少兩成五到三成。",
-      "subtitle": {
-        "zh": "有分析師估\n換掉他\n公司價值可能少\n兩成五到三成",
-        "en": "One analyst estimates | that replacing him | could cut the company's value | by 25% to 30%."
-      },
-      "keywords": [
-        "兩成五到三成"
-      ],
-      "cues": [
-        {
-          "id": "est",
-          "text": "分析師估"
-        },
-        {
-          "id": "if",
-          "text": "換掉他"
-        },
-        {
-          "id": "val",
-          "text": "公司價值"
-        },
-        {
-          "id": "num",
-          "text": "兩成五"
-        }
-      ],
-      "pauseAfter": 0.3,
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            5180,
-            2900,
-            1
-          ],
-          "dur": 14
-        },
-        "punch": "num",
-        "items": [
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "分析師估計・假設情境",
-                "size": 40
-              }
-            ],
-            "x": 5020,
-            "y": 2370,
-            "w": 560,
-            "rot": -2,
-            "at": "est",
-            "from": "slam",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "如果換掉執行長",
-                "size": 46
-              }
-            ],
-            "x": 5340,
-            "y": 2520,
-            "w": 460,
-            "rot": 3,
-            "at": "if",
-            "from": "right",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "val-main",
-            "lines": [
-              {
-                "t": "公司價值",
-                "size": 76,
-                "ls": 0.06
-              }
-            ],
-            "x": 5040,
-            "y": 2740,
-            "w": 520,
-            "onDark": true,
-            "at": "val",
-            "from": "wipe",
-            "z": 1
-          },
-          {
-            "id": "cut",
-            "asset": "val-cut",
-            "x": 5415,
-            "y": 2740,
-            "w": 230,
-            "at": "val+5",
-            "from": "wipe",
-            "z": 1
-          },
-          {
-            "ref": "cut",
-            "at": "num",
-            "x": 5490,
-            "y": 2790,
-            "rot": 11,
-            "dur": 6
-          },
-          {
-            "type": "strip",
-            "paper": "strip-white",
-            "lines": [
-              {
-                "t": "少 {25%～30%}",
-                "size": 110,
-                "accentSize": 128
-              }
-            ],
-            "x": 5180,
-            "y": 3020,
-            "w": 760,
-            "rot": -1.5,
-            "at": "num",
-            "from": "slam",
-            "tape": [
-              {
-                "asset": "tape-y",
-                "x": 120,
-                "y": 6,
-                "rot": -5
-              },
-              {
-                "asset": "tape-r",
-                "x": 650,
-                "y": 0,
-                "rot": 4
-              }
-            ],
-            "z": 4
-          },
-          {
-            "asset": "sheet-kraft",
-            "layer": "screen",
-            "x": 540,
-            "y": 840,
-            "w": 1240,
-            "at": "exit-13",
-            "from": "bottom",
-            "enterDur": 24,
-            "enterEase": "enter",
-            "until": "s14.start",
-            "to": "top",
-            "exitDur": 14,
-            "exitDist": 2000,
-            "exitEase": "enter"
-          }
-        ]
-      },
-      "sources": [
-        "分析師 Dan Ives（自由時報 2026/11/10）"
-      ],
-      "still": "num+30"
-    },
-    {
-      "id": "s14",
-      "beat": "payoff",
-      "sentence": 14,
-      "para": 4,
-      "narration": "所以目前確定的是，他沒辭職，調查還在進行。",
-      "tts": "所以目前確定的是，他沒辭職，調查還在進行。",
-      "subtitle": {
-        "zh": "所以目前確定的是\n他沒辭職\n調查還在進行",
-        "en": "So what's confirmed so far: | he hasn't resigned, | and the probe is ongoing."
-      },
-      "keywords": [
-        "沒辭職"
-      ],
-      "cues": [
-        {
-          "id": "sure",
-          "text": "確定的"
-        },
-        {
-          "id": "noresign",
-          "text": "沒辭職"
-        },
-        {
-          "id": "probe",
-          "text": "調查還在"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            540,
-            4840,
-            1
-          ],
-          "at": "start-3",
-          "dur": 2
-        },
-        "punch": "noresign",
-        "items": [
-          {
-            "type": "strip",
-            "paper": "colhead-mint",
-            "lines": [
-              {
-                "t": "目前確定",
-                "size": 64,
-                "ls": 0.06
-              }
-            ],
-            "x": 295,
-            "y": 4350,
-            "w": 470,
-            "at": "sure",
-            "from": "slam",
-            "until": "s16",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "row",
-            "lines": [
-              {
-                "t": "[沒辭職]",
-                "size": 88
-              }
-            ],
-            "x": 295,
-            "y": 4570,
-            "w": 470,
-            "rot": -1.5,
-            "at": "noresign",
-            "from": "slam",
-            "state": {
-              "mark": 0
-            },
-            "set": [
-              {
-                "at": "noresign+8",
-                "mark": 1
-              }
-            ],
-            "until": "s16",
-            "z": 1
-          },
-          {
-            "type": "strip",
-            "paper": "row",
-            "lines": [
-              {
-                "t": "調查進行中",
-                "size": 74
-              }
-            ],
-            "x": 295,
-            "y": 4780,
-            "w": 470,
-            "rot": 1,
-            "at": "probe",
-            "from": "slam",
-            "until": "s16",
-            "z": 1
-          },
-          {
-            "type": "strip",
-            "paper": "tag-red",
-            "lines": [
-              {
-                "t": "截至 11/12",
-                "size": 54
-              }
-            ],
-            "x": 790,
-            "y": 5010,
-            "w": 380,
-            "rot": -5,
-            "onDark": true,
-            "at": "probe+12",
-            "from": "slam",
-            "until": "s16",
-            "z": 3
-          }
-        ]
-      },
-      "sources": [
-        "截至 2026/11/12"
-      ]
-    },
-    {
-      "id": "s15",
-      "beat": "payoff",
-      "sentence": 15,
-      "para": 4,
-      "narration": "還不確定的，是調查結果。",
-      "tts": "還不確定的，是調查結果。",
-      "subtitle": {
-        "zh": "還不確定的\n是調查結果",
-        "en": "What's still unknown | is the outcome."
-      },
-      "keywords": [
-        "不確定"
-      ],
-      "cues": [
-        {
-          "id": "unsure",
-          "text": "不確定"
-        },
-        {
-          "id": "result",
-          "text": "調查結果"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "items": [
-          {
-            "type": "strip",
-            "paper": "colhead-yellow",
-            "lines": [
-              {
-                "t": "還不確定",
-                "size": 64,
-                "ls": 0.06
-              }
-            ],
-            "x": 790,
-            "y": 4350,
-            "w": 470,
-            "at": "unsure",
-            "from": "slam",
-            "until": "s16",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "row",
-            "lines": [
-              {
-                "t": "調查結果",
-                "size": 84
-              }
-            ],
-            "x": 790,
-            "y": 4570,
-            "w": 470,
-            "rot": 1.5,
-            "at": "result",
-            "from": "slam",
-            "until": "s16",
-            "z": 1
-          },
-          {
-            "asset": "qmark",
-            "x": 800,
-            "y": 4790,
-            "w": 160,
-            "rot": 8,
-            "at": "result+8",
-            "from": "slam",
-            "until": "s16",
-            "z": 2
-          }
-        ]
-      },
-      "sources": [
-        "截至 2026/11/12 尚未確定"
-      ]
-    },
-    {
-      "id": "s16",
-      "beat": "payoff",
-      "sentence": 16,
-      "para": 4,
-      "narration": "下一個觀察點，是下週的財報。",
-      "tts": "下一個觀察點，是下週的財報。",
-      "subtitle": {
-        "zh": "下一個觀察點\n是下週的財報",
-        "en": "The next thing to watch | is next week's earnings report."
-      },
-      "keywords": [
-        "財報"
-      ],
-      "cues": [
-        {
-          "id": "next",
-          "text": "下一個"
-        },
-        {
-          "id": "week",
-          "text": "下週"
-        },
-        {
-          "id": "call",
-          "text": "財報"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            1700,
-            4840,
-            1
-          ],
-          "dur": 12
-        },
-        "items": [
-          {
-            "type": "strip",
-            "paper": "cal",
-            "lines": [
-              {
-                "t": "2026 年 11 月",
-                "size": 58,
-                "color": "ink3"
-              },
-              {
-                "t": "16　{17}　18　19　20",
-                "size": 76,
-                "mt": 16
-              }
-            ],
-            "x": 1700,
-            "y": 4440,
-            "w": 880,
-            "rot": -1,
-            "at": "next",
-            "from": "top",
-            "until": "s18",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 140,
-                "y": 4,
-                "rot": -4,
-                "w": 170
-              },
-              {
-                "asset": "tape-k",
-                "x": 700,
-                "y": 4,
-                "rot": 3,
-                "w": 170
-              }
-            ],
-            "z": 1
-          },
-          {
-            "asset": "circle",
-            "x": 1528,
-            "y": 4480,
-            "w": 250,
-            "rot": -1,
-            "at": "week",
-            "from": "wipe",
-            "until": "s18",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "note-yellow",
-            "lines": [
-              {
-                "t": "財報",
-                "size": 120
-              }
-            ],
-            "x": 1460,
-            "y": 4840,
-            "w": 320,
-            "rot": -5,
-            "at": "call",
-            "from": "slam",
-            "until": "s18",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "polaroid-calc",
-            "lines": [
-              {
-                "t": "下一個觀察點",
-                "size": 44
-              }
-            ],
-            "caption": true,
-            "x": 1920,
-            "y": 4870,
-            "w": 440,
-            "rot": 3,
-            "at": "call+8",
-            "from": "right",
-            "until": "s18",
-            "tape": [
-              {
-                "asset": "tape-k",
-                "x": 250,
-                "y": 6,
-                "rot": -3,
-                "w": 170
-              }
-            ],
-            "z": 2
-          }
-        ]
-      },
-      "sources": [
-        "輝達投資人關係公告 2026/10/28"
-      ]
-    },
-    {
-      "id": "s17",
-      "beat": "cta",
-      "sentence": 17,
-      "para": 4,
-      "narration": "你還想得到哪間公司，也靠一個人撐著？",
-      "tts": "你還想得到哪間公司，也靠一個人撐著？",
-      "subtitle": {
-        "zh": "你還想得到\n哪間公司\n也靠一個人撐著？",
-        "en": "Which other company | can you think of | that leans on one person?"
-      },
-      "keywords": [
-        "哪間公司"
-      ],
-      "cues": [
-        {
-          "id": "which",
-          "text": "哪間公司"
-        },
-        {
-          "id": "hold",
-          "text": "撐著"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            2860,
-            4840,
-            1
-          ],
-          "dur": 12
-        },
-        "items": [
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "＿＿公司",
-                "size": 60
-              }
-            ],
-            "x": 2550,
-            "y": 4440,
-            "w": 300,
-            "rot": -3,
-            "at": "which",
-            "from": "slam",
-            "until": "s19"
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "＿＿公司",
-                "size": 60
-              }
-            ],
-            "x": 2860,
-            "y": 4400,
-            "w": 330,
-            "rot": 1,
-            "at": "which+6",
-            "from": "slam",
-            "until": "s19",
-            "z": 2
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "＿＿公司",
-                "size": 60
-              }
-            ],
-            "x": 3170,
-            "y": 4440,
-            "w": 300,
-            "rot": 3,
-            "at": "which+12",
-            "from": "slam",
-            "until": "s19"
-          },
-          {
-            "type": "strip",
-            "paper": "pole",
-            "lines": [],
-            "x": 2860,
-            "y": 4650,
-            "w": 76,
-            "at": "hold",
-            "from": "bottom",
-            "until": "s19",
-            "z": 1
-          },
-          {
-            "asset": "circle",
-            "x": 2860,
-            "y": 4400,
-            "w": 430,
-            "at": "hold+8",
-            "from": "wipe",
-            "until": "s19",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "strip-yellow",
-            "lines": [
-              {
-                "t": "你想到哪一間？",
-                "size": 70
-              }
-            ],
-            "x": 2860,
-            "y": 4970,
-            "w": 600,
-            "rot": -2,
-            "at": "hold+4",
-            "from": "slam",
-            "until": "s19",
-            "z": 3
-          }
-        ]
-      },
-      "sources": []
-    },
-    {
-      "id": "s18",
-      "beat": "payoff",
-      "sentence": 18,
-      "para": 4,
-      "narration": "對了，大公司換老闆，股價會怎麼走？下一集講。",
-      "tts": "對了，大公司換老闆，股價會怎麼走？下一集講。",
-      "subtitle": {
-        "zh": "對了\n大公司換老闆\n股價會怎麼走？\n下一集講",
-        "en": "By the way, when a big company | changes its boss, | what does the stock do? | Next episode."
-      },
-      "keywords": [
-        "換老闆"
-      ],
-      "cues": [
-        {
-          "id": "btw",
-          "text": "對了"
-        },
-        {
-          "id": "swap",
-          "text": "換老闆"
-        },
-        {
-          "id": "go",
-          "text": "怎麼走"
-        },
-        {
-          "id": "ep",
-          "text": "下一集"
-        }
-      ],
-      "component": "PaperScene",
-      "props": {
-        "camera": {
-          "to": [
-            4020,
-            4840,
-            1
-          ],
-          "dur": 12
-        },
-        "items": [
-          {
-            "type": "strip",
-            "paper": "tagk",
-            "lines": [
-              {
-                "t": "下一集預告",
-                "size": 50
-              }
-            ],
-            "x": 3780,
-            "y": 4310,
-            "w": 400,
-            "rot": -2,
-            "at": "btw",
-            "from": "slam",
-            "until": "end",
-            "z": 3
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "舊老闆",
-                "size": 64
-              }
-            ],
-            "x": 3740,
-            "y": 4480,
-            "w": 340,
-            "rot": -3,
-            "at": "swap",
-            "from": "slam",
-            "until": "end"
-          },
-          {
-            "asset": "arrow-red",
-            "x": 4020,
-            "y": 4480,
-            "w": 170,
-            "at": "swap+5",
-            "from": "left",
-            "until": "end"
-          },
-          {
-            "type": "strip",
-            "paper": "plate",
-            "lines": [
-              {
-                "t": "新老闆",
-                "size": 64
-              }
-            ],
-            "x": 4300,
-            "y": 4480,
-            "w": 340,
-            "rot": 3,
-            "at": "swap+10",
-            "from": "slam",
-            "until": "end"
-          },
-          {
-            "type": "line",
-            "x": 3930,
-            "y": 4840,
-            "w": 620,
-            "h": 400,
-            "at": "go",
-            "vals": [
-              5,
-              5.6,
-              5.2,
-              5.5
-            ],
-            "color": "blue",
-            "seg": 6,
-            "until": "end",
-            "z": 1
-          },
-          {
-            "asset": "qmark",
-            "x": 4360,
-            "y": 4810,
-            "w": 190,
-            "rot": 8,
-            "at": "go+26",
-            "from": "slam",
-            "until": "end",
-            "z": 2
-          },
-          {
-            "asset": "sheet-cream",
-            "layer": "top",
-            "x": 540,
-            "y": 980,
-            "w": 1240,
-            "at": "end-8",
-            "from": "bottom",
-            "until": "end"
-          }
-        ]
-      },
-      "sources": [],
-      "still": "go+40"
-    },
-    {
-      "id": "s19",
-      "beat": "end",
-      "narration": "",
-      "subtitle": {
-        "zh": "",
-        "en": ""
-      },
-      "keywords": [],
-      "cues": [],
-      "durationSec": 2.5,
-      "silent": true,
-      "component": "EndCard",
-      "props": {
-        "slogan": "先查證，再下結論",
-        "next": "下一集：大公司換老闆之後"
-      },
-      "sources": []
+     "id": "admit",
+     "text": "承認"
     }
-  ]
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      2860,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        1780,
+        380
+       ],
+       [
+        2940,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "asset": "pin-red",
+      "x": 2570,
+      "y": 380,
+      "w": 60,
+      "at": "date",
+      "from": "slam",
+      "until": "s06",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/8",
+        "size": 84
+       }
+      ],
+      "x": 2570,
+      "y": 480,
+      "w": 230,
+      "rot": 4,
+      "at": "date",
+      "from": "paste",
+      "until": "s06"
+     },
+     {
+      "type": "strip",
+      "paper": "letter",
+      "lines": [],
+      "x": 2880,
+      "y": 700,
+      "w": 470,
+      "rot": 4,
+      "at": "mail+8",
+      "from": "bottom",
+      "until": "s06",
+      "z": 1
+     },
+     {
+      "asset": "rule",
+      "x": 2872,
+      "y": 640,
+      "w": 330,
+      "rot": 4,
+      "at": "mail+14",
+      "until": "s06",
+      "z": 1
+     },
+     {
+      "asset": "rule",
+      "x": 2868,
+      "y": 690,
+      "w": 330,
+      "rot": 4,
+      "at": "mail+16",
+      "until": "s06",
+      "z": 1
+     },
+     {
+      "asset": "rule",
+      "x": 2825,
+      "y": 738,
+      "w": 250,
+      "rot": 4,
+      "at": "mail+18",
+      "until": "s06",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "env",
+      "lines": [
+       {
+        "t": "全體員工　收",
+        "size": 54
+       }
+      ],
+      "x": 2770,
+      "y": 960,
+      "w": 600,
+      "rot": -3,
+      "at": "start+8",
+      "from": "left",
+      "until": "s06",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "本人承認",
+        "size": 58,
+        "ls": 0.06
+       }
+      ],
+      "x": 3110,
+      "y": 1090,
+      "w": 380,
+      "rot": -7,
+      "onDark": true,
+      "at": "admit",
+      "from": "slam",
+      "until": "s06",
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "多家媒體報導 2026/11/8–9"
+   ]
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "sentence": 5,
+   "para": 2,
+   "narration": "同一天，董事會宣布獨立調查。",
+   "tts": "同一天，董事會宣布獨立調查。",
+   "subtitle": {
+    "zh": "同一天\n董事會宣布獨立調查",
+    "en": "The same day, the board announced | an independent investigation."
+   },
+   "keywords": [
+    "獨立調查"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同一天"
+    },
+    {
+     "id": "board",
+     "text": "董事會"
+    },
+    {
+     "id": "probe",
+     "text": "獨立調查"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      4020,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        2940,
+        380
+       ],
+       [
+        4100,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "asset": "pin-red",
+      "x": 3730,
+      "y": 380,
+      "w": 60,
+      "at": "same",
+      "from": "slam",
+      "until": "s07",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "同一天",
+        "size": 68
+       }
+      ],
+      "x": 3730,
+      "y": 480,
+      "w": 240,
+      "rot": -4,
+      "at": "same",
+      "from": "paste",
+      "until": "s07"
+     },
+     {
+      "type": "strip",
+      "paper": "doc",
+      "lines": [
+       {
+        "t": "董事會聲明",
+        "size": 56,
+        "color": "ink3"
+       },
+       {
+        "t": "[獨立調查]",
+        "size": 118,
+        "mt": 14
+       },
+       {
+        "t": "2026/11/8",
+        "size": 44,
+        "color": "ink3",
+        "mt": 18
+       }
+      ],
+      "x": 3820,
+      "y": 860,
+      "w": 540,
+      "rot": -2,
+      "at": "same+4",
+      "from": "left",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "probe",
+        "mark": 1
+       }
+      ],
+      "until": "s07",
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 300,
+        "y": 4,
+        "rot": 2,
+        "w": 180
+       }
+      ],
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-binders",
+      "lines": [
+       {
+        "t": "外部律師協助",
+        "size": 44
+       }
+      ],
+      "x": 4245,
+      "y": 640,
+      "w": 400,
+      "caption": true,
+      "rot": 4,
+      "at": "probe+8",
+      "from": "right",
+      "until": "s07",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": -3,
+        "w": 170
+       }
+      ],
+      "z": 2
+     }
+    ]
+   },
+   "sources": [
+    "輝達董事會聲明 2026/11/8"
+   ]
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "sentence": 6,
+   "para": 2,
+   "narration": "四天後，董事會宣布他辭去總裁、執行長和董事。",
+   "tts": "四天後，董事會宣布他辭去總裁、執行長和董事。",
+   "subtitle": {
+    "zh": "四天後\n董事會宣布他辭去\n總裁、執行長和董事",
+    "en": "Four days later, the board said | he had resigned as president, | CEO and director."
+   },
+   "keywords": [
+    "四天後"
+   ],
+   "cues": [
+    {
+     "id": "four",
+     "text": "四天後"
+    },
+    {
+     "id": "pres",
+     "text": "總裁"
+    },
+    {
+     "id": "ceo",
+     "text": "執行長"
+    },
+    {
+     "id": "dir",
+     "text": "和董事"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      5180,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        4100,
+        380
+       ],
+       [
+        5260,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "asset": "pin-red",
+      "x": 4890,
+      "y": 380,
+      "w": 60,
+      "at": "four",
+      "from": "slam",
+      "until": "s08",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/12",
+        "size": 72
+       }
+      ],
+      "x": 4890,
+      "y": 480,
+      "w": 240,
+      "rot": 3,
+      "at": "four",
+      "from": "paste",
+      "until": "s08"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "董事會宣布",
+        "size": 50,
+        "color": "ink3"
+       },
+       {
+        "t": "辭去 {3} 個職務",
+        "size": 92,
+        "mt": 4
+       }
+      ],
+      "x": 5180,
+      "y": 820,
+      "w": 820,
+      "rot": -1.5,
+      "at": "four+3",
+      "from": "right",
+      "until": "s08",
+      "z": 2,
+      "id": "ann6"
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "總裁",
+        "size": 76,
+        "ls": 0.1
+       }
+      ],
+      "x": 5080,
+      "y": 720,
+      "w": 440,
+      "rot": -2,
+      "at": "pres",
+      "from": "slam",
+      "until": "s08",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "執行長",
+        "size": 76,
+        "ls": 0.1
+       }
+      ],
+      "x": 5230,
+      "y": 880,
+      "w": 440,
+      "rot": 2,
+      "at": "ceo",
+      "from": "slam",
+      "until": "s08",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "董事",
+        "size": 76,
+        "ls": 0.1
+       }
+      ],
+      "x": 5100,
+      "y": 1040,
+      "w": 440,
+      "rot": -1.5,
+      "at": "dir",
+      "from": "slam",
+      "until": "s08",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "即刻生效",
+        "size": 56,
+        "ls": 0.06
+       }
+      ],
+      "x": 5470,
+      "y": 1150,
+      "w": 320,
+      "rot": -8,
+      "onDark": true,
+      "at": "dir+10",
+      "from": "slam",
+      "until": "s08",
+      "z": 4
+     },
+     {
+      "ref": "ann6",
+      "at": "pres-8",
+      "x": 5340,
+      "y": 530,
+      "w": 560,
+      "dur": 6
+     }
+    ]
+   },
+   "sources": [
+    "輝達新聞稿、8-K 2026/11/12"
+   ]
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "sentence": 7,
+   "para": 2,
+   "narration": "財務長暫代執行長，董事會開始找接班人。",
+   "tts": "財務長暫代執行長，董事會開始找接班人。",
+   "subtitle": {
+    "zh": "財務長暫代執行長\n董事會開始找接班人",
+    "en": "The CFO steps in as interim CEO, | and the board begins its search."
+   },
+   "keywords": [
+    "暫代"
+   ],
+   "cues": [
+    {
+     "id": "cfo",
+     "text": "財務長"
+    },
+    {
+     "id": "interim",
+     "text": "暫代"
+    },
+    {
+     "id": "search",
+     "text": "找接班人"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      6340,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        5260,
+        380
+       ],
+       [
+        6420,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-room",
+      "lines": [
+       {
+        "t": "執行長的位子",
+        "size": 44
+       }
+      ],
+      "x": 6140,
+      "y": 730,
+      "w": 480,
+      "caption": true,
+      "rot": -3,
+      "at": "start+8",
+      "from": "left",
+      "until": "s09",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": 3,
+        "w": 170
+       }
+      ],
+      "id": "room7"
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "財務長・續任",
+        "size": 46
+       }
+      ],
+      "x": 6600,
+      "y": 480,
+      "w": 400,
+      "rot": 2,
+      "at": "cfo",
+      "from": "slam",
+      "until": "s09",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "臨時執行長",
+        "size": 64,
+        "ls": 0.06
+       }
+      ],
+      "x": 6590,
+      "y": 650,
+      "w": 440,
+      "rot": 3,
+      "at": "interim",
+      "from": "slam",
+      "until": "s09",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "lines": [
+       {
+        "t": "徵：正式執行長",
+        "size": 72
+       }
+      ],
+      "x": 6380,
+      "y": 1105,
+      "w": 640,
+      "rot": -2,
+      "at": "search",
+      "from": "slam",
+      "until": "s09",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "內部、外部都考慮",
+        "size": 46
+       }
+      ],
+      "x": 6560,
+      "y": 900,
+      "w": 460,
+      "rot": -3,
+      "at": "search+10",
+      "from": "right",
+      "until": "s09",
+      "z": 2
+     },
+     {
+      "ref": "room7",
+      "at": "interim+24",
+      "x": 6150,
+      "y": 738,
+      "rot": -7,
+      "dur": 4
+     }
+    ]
+   },
+   "sources": [
+    "輝達新聞稿 2026/11/12"
+   ]
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "sentence": 8,
+   "para": 2,
+   "narration": "消息一出，股價盤中一度跌超過一成。",
+   "tts": "消息一出，股價盤中一度跌超過一成。",
+   "subtitle": {
+    "zh": "消息一出\n股價盤中一度\n跌超過一成",
+    "en": "After the news, the stock | at one point fell | more than 10% intraday."
+   },
+   "keywords": [
+    "超過一成"
+   ],
+   "cues": [
+    {
+     "id": "news",
+     "text": "消息一出"
+    },
+    {
+     "id": "stock",
+     "text": "股價"
+    },
+    {
+     "id": "drop",
+     "text": "超過一成"
+    }
+   ],
+   "pauseAfter": 0.35,
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      7500,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        6420,
+        380
+       ],
+       [
+        7600,
+        380
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+4",
+        "grow": 1
+       }
+      ],
+      "until": "s09"
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/12",
+        "size": 72
+       }
+      ],
+      "x": 7820,
+      "y": 480,
+      "w": 240,
+      "rot": 4,
+      "at": "news",
+      "from": "slam",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-screen",
+      "lines": [
+       {
+        "t": "看盤畫面（示意）",
+        "size": 40
+       }
+      ],
+      "x": 7290,
+      "y": 660,
+      "w": 460,
+      "caption": true,
+      "rot": -4,
+      "at": "news+3",
+      "from": "left",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "asset": "arrow-red",
+      "x": 7790,
+      "y": 760,
+      "w": 210,
+      "rot": 90,
+      "at": "drop-6",
+      "from": "top"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "盤中一度",
+        "size": 60,
+        "color": "ink3"
+       },
+       {
+        "t": "跌超過 {一成}",
+        "size": 112,
+        "accentSize": 128,
+        "mt": 6
+       }
+      ],
+      "x": 7540,
+      "y": 1080,
+      "w": 760,
+      "rot": -1.5,
+      "at": "drop",
+      "from": "slam",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 650,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "z": 4
+     },
+     {
+      "asset": "sheet-kraft",
+      "layer": "screen",
+      "x": 540,
+      "y": 840,
+      "w": 1240,
+      "at": "exit-13",
+      "from": "bottom",
+      "enterDur": 24,
+      "enterEase": "enter",
+      "until": "s09.start",
+      "to": "top",
+      "exitDur": 14,
+      "exitDist": 2000,
+      "exitEase": "enter"
+     }
+    ]
+   },
+   "sources": [
+    "各家盤中報價 11/12（尚未收盤）"
+   ],
+   "still": "drop+20"
+  },
+  {
+   "id": "s09",
+   "beat": "twist",
+   "sentence": 9,
+   "para": 3,
+   "narration": "但更深一層的問題，不是這則新聞。",
+   "tts": "但更深一層的問題，不是這則新聞。",
+   "subtitle": {
+    "zh": "但更深一層的問題\n不是這則新聞",
+    "en": "But the deeper issue | isn't this one headline."
+   },
+   "keywords": [
+    "更深一層"
+   ],
+   "cues": [
+    {
+     "id": "deep",
+     "text": "更深一層"
+    },
+    {
+     "id": "not",
+     "text": "不是"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      2900,
+      1
+     ],
+     "at": "start-3",
+     "dur": 2
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "oldclip",
+      "lines": [
+       {
+        "t": "這則新聞",
+        "size": 84
+       }
+      ],
+      "x": 540,
+      "y": 2560,
+      "w": 460,
+      "rot": -3,
+      "at": "start-3",
+      "from": "cut",
+      "id": "clip9",
+      "until": "s10.term",
+      "to": "left",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 210,
+        "y": 6,
+        "rot": -3,
+        "w": 170
+       }
+      ],
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "lines": [
+       {
+        "t": "[更深一層]的問題",
+        "size": 78
+       }
+      ],
+      "x": 540,
+      "y": 2960,
+      "w": 900,
+      "rot": -1.5,
+      "at": "deep",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "deep+8",
+        "mark": 1
+       }
+      ],
+      "until": "s10.term",
+      "to": "top",
+      "z": 3
+     },
+     {
+      "ref": "clip9",
+      "at": "not",
+      "x": 250,
+      "y": 2430,
+      "w": 320,
+      "rot": -12,
+      "dur": 8
+     },
+     {
+      "asset": "qmark",
+      "x": 820,
+      "y": 2580,
+      "w": 230,
+      "rot": 8,
+      "at": "not+4",
+      "from": "slam",
+      "until": "s10.fear",
+      "z": 3
+     }
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s10",
+   "beat": "twist",
+   "sentence": 10,
+   "para": 3,
+   "narration": "分析師說，市場怕的叫關鍵人物風險。",
+   "tts": "分析師說，市場怕的叫關鍵人物風險。",
+   "subtitle": {
+    "zh": "分析師說\n市場怕的叫\n關鍵人物風險",
+    "en": "Analysts say | what the market fears is called | key-person risk."
+   },
+   "keywords": [
+    "關鍵人物風險"
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "分析師說"
+    },
+    {
+     "id": "fear",
+     "text": "怕的"
+    },
+    {
+     "id": "term",
+     "text": "關鍵人物風險"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "punch": "term",
+    "items": [
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "分析師看法",
+        "size": 50
+       }
+      ],
+      "x": 745,
+      "y": 2370,
+      "w": 400,
+      "rot": -2,
+      "at": "say",
+      "from": "slam",
+      "until": "s11",
+      "z": 3
+     },
+     {
+      "asset": "arrow-ink",
+      "x": 830,
+      "y": 2540,
+      "w": 200,
+      "rot": 90,
+      "at": "fear",
+      "from": "top",
+      "until": "s10.term"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "[關鍵人物風險]",
+        "size": 132
+       },
+       {
+        "t": "Key-person risk",
+        "size": 50,
+        "color": "ink3",
+        "mt": 14
+       }
+      ],
+      "x": 540,
+      "y": 2760,
+      "w": 920,
+      "rot": -1.2,
+      "at": "term",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "term+10",
+        "mark": 1
+       }
+      ],
+      "until": "s11.start+5",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "label",
+      "lines": [
+       {
+        "t": "公司太靠[一個人]",
+        "size": 60
+       }
+      ],
+      "x": 600,
+      "y": 3085,
+      "w": 560,
+      "rot": 2,
+      "pad": [
+       34,
+       24
+      ],
+      "at": "term+22",
+      "from": "right",
+      "until": "s11",
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "Forbes、CNBC 2026/11（分析師看法）"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "twist",
+   "sentence": 11,
+   "para": 3,
+   "narration": "意思是公司太靠一個人，他一走，沒人知道誰接。",
+   "tts": "意思是公司太靠一個人，他一走，沒人知道誰接。",
+   "subtitle": {
+    "zh": "意思是公司\n太靠一個人\n他一走\n沒人知道誰接",
+    "en": "It means a company leans | too much on one person. | Once he leaves, | nobody knows who's next."
+   },
+   "keywords": [
+    "太靠一個人"
+   ],
+   "cues": [
+    {
+     "id": "one",
+     "text": "太靠一個人"
+    },
+    {
+     "id": "leave",
+     "text": "他一走"
+    },
+    {
+     "id": "who",
+     "text": "誰接"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1700,
+      2900,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "stack",
+      "id": "co",
+      "x": 1700,
+      "y": 2540,
+      "at": "start+6",
+      "stagger": 6,
+      "layers": [
+       {
+        "asset": "block-kraft",
+        "w": 560,
+        "t": "訂單"
+       },
+       {
+        "asset": "block-kraft",
+        "w": 560,
+        "t": "產品"
+       },
+       {
+        "asset": "block-kraft",
+        "w": 560,
+        "t": "團隊"
+       },
+       {
+        "asset": "block-blue",
+        "w": 660,
+        "t": "公司",
+        "onDark": true,
+        "size": 60
+       }
+      ],
+      "until": "s13",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "pole",
+      "lines": [],
+      "x": 1700,
+      "y": 2955,
+      "w": 88,
+      "id": "pole",
+      "at": "one",
+      "from": "bottom",
+      "until": "s13",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "只靠一個人",
+        "size": 50
+       }
+      ],
+      "x": 1960,
+      "y": 2990,
+      "w": 380,
+      "rot": -3,
+      "at": "one+6",
+      "from": "right",
+      "until": "s13",
+      "z": 3
+     },
+     {
+      "ref": "pole",
+      "at": "leave",
+      "x": 2070,
+      "y": 3010,
+      "rot": 62,
+      "dur": 7
+     },
+     {
+      "ref": "co",
+      "at": "leave+3",
+      "x": 1740,
+      "y": 2600,
+      "rot": 7,
+      "dur": 6,
+      "moves": [
+       {
+        "at": "who",
+        "to": {
+         "rot": 4
+        },
+        "dur": 3
+       },
+       {
+        "at": "who+5",
+        "to": {
+         "rot": 8
+        },
+        "dur": 3
+       },
+       {
+        "at": "who+10",
+        "to": {
+         "rot": 5
+        },
+        "dur": 3
+       },
+       {
+        "at": "who+15",
+        "to": {
+         "rot": 7
+        },
+        "dur": 3
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "誰來接：＿＿",
+        "size": 52
+       }
+      ],
+      "x": 1420,
+      "y": 3060,
+      "w": 440,
+      "rot": -3,
+      "at": "who",
+      "from": "slam",
+      "until": "s13",
+      "z": 3
+     },
+     {
+      "asset": "qmark",
+      "x": 2110,
+      "y": 2360,
+      "w": 140,
+      "rot": 12,
+      "at": "who+5",
+      "from": "slam",
+      "until": "s13",
+      "z": 3
+     },
+     {
+      "asset": "qmark",
+      "x": 1300,
+      "y": 2760,
+      "w": 130,
+      "rot": -10,
+      "at": "who+10",
+      "from": "slam",
+      "until": "s13",
+      "z": 3
+     }
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s12",
+   "beat": "twist",
+   "sentence": 12,
+   "para": 3,
+   "narration": "輝達成立 33 年，執行長只有他一個。",
+   "tts": "輝達成立三十三年，執行長只有他一個。",
+   "subtitle": {
+    "zh": "輝達成立 33 年\n執行長只有他一個",
+    "en": "In Nvidia's 33 years, | it has had only one CEO."
+   },
+   "keywords": [
+    "33 年"
+   ],
+   "cues": [
+    {
+     "id": "years",
+     "text": "年"
+    },
+    {
+     "id": "ceo",
+     "text": "執行長"
+    },
+    {
+     "id": "only",
+     "text": "只有他一個"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      2860,
+      2900,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "id": "ruler",
+      "asset": "bar-kraft",
+      "x": 2860,
+      "y": 2440,
+      "w": 880,
+      "at": "start+8",
+      "from": "wipe",
+      "until": "s14"
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "1993",
+        "size": 72
+       }
+      ],
+      "x": 2490,
+      "y": 2350,
+      "w": 220,
+      "rot": -3,
+      "at": "start+8",
+      "from": "slam",
+      "until": "s14",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "2026",
+        "size": 72
+       }
+      ],
+      "x": 3230,
+      "y": 2350,
+      "w": 220,
+      "rot": 3,
+      "at": "years",
+      "from": "slam",
+      "until": "s14",
+      "z": 2
+     },
+     {
+      "type": "num",
+      "id": "y33",
+      "x": 2650,
+      "y": 2780,
+      "w": 480,
+      "at": "years",
+      "from": "slam",
+      "value": 33,
+      "unit": "年",
+      "size": 190,
+      "head": "成立至今",
+      "until": "s14",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-chair",
+      "lines": [
+       {
+        "t": "執行長的位子",
+        "size": 44
+       }
+      ],
+      "x": 3105,
+      "y": 2740,
+      "w": 420,
+      "caption": true,
+      "rot": 3,
+      "at": "ceo",
+      "from": "right",
+      "until": "s14",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 220,
+        "y": 6,
+        "rot": -3,
+        "w": 170
+       }
+      ],
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "只有 1 位",
+        "size": 58,
+        "ls": 0.04
+       }
+      ],
+      "x": 3095,
+      "y": 3060,
+      "w": 340,
+      "rot": -7,
+      "onDark": true,
+      "at": "only",
+      "from": "slam",
+      "until": "s14",
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "輝達公司資料（1993 年成立）"
+   ]
+  },
+  {
+   "id": "s13",
+   "beat": "twist",
+   "sentence": 13,
+   "para": 3,
+   "narration": "而且公司一直沒有公開的接班人。",
+   "tts": "而且公司一直沒有公開的接班人。",
+   "subtitle": {
+    "zh": "而且公司一直\n沒有公開的接班人",
+    "en": "And the company never had | a publicly named successor."
+   },
+   "keywords": [
+    "接班人"
+   ],
+   "cues": [
+    {
+     "id": "co",
+     "text": "公司"
+    },
+    {
+     "id": "nopub",
+     "text": "沒有公開"
+    },
+    {
+     "id": "succ",
+     "text": "接班人"
+    }
+   ],
+   "pauseAfter": 0.3,
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      4020,
+      2900,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "辭職之前",
+        "size": 50
+       }
+      ],
+      "x": 3760,
+      "y": 2370,
+      "w": 360,
+      "rot": -2,
+      "at": "co",
+      "from": "slam",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "doc",
+      "lines": [
+       {
+        "t": "接班計畫",
+        "size": 96
+       },
+       {
+        "t": "對外公開版",
+        "size": 44,
+        "color": "ink3",
+        "mt": 16
+       }
+      ],
+      "x": 3840,
+      "y": 2720,
+      "w": 520,
+      "rot": -2,
+      "at": "co+2",
+      "from": "left",
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 290,
+        "y": 4,
+        "rot": 2,
+        "w": 180
+       }
+      ],
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "沒有公開",
+        "size": 58,
+        "ls": 0.06
+       }
+      ],
+      "x": 3960,
+      "y": 2960,
+      "w": 360,
+      "rot": -8,
+      "onDark": true,
+      "at": "nopub",
+      "from": "slam",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-cabinet",
+      "lines": [
+       {
+        "t": "沒有公開的名單",
+        "size": 40
+       }
+      ],
+      "x": 4330,
+      "y": 2700,
+      "w": 400,
+      "caption": true,
+      "rot": 4,
+      "at": "nopub+10",
+      "from": "right",
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 200,
+        "y": 6,
+        "rot": -3,
+        "w": 170
+       }
+      ],
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "接班人：＿＿",
+        "size": 52
+       }
+      ],
+      "x": 4300,
+      "y": 3080,
+      "w": 440,
+      "rot": 3,
+      "at": "succ",
+      "from": "slam",
+      "z": 3
+     },
+     {
+      "asset": "sheet-kraft",
+      "layer": "screen",
+      "x": 540,
+      "y": 840,
+      "w": 1240,
+      "at": "exit-13",
+      "from": "bottom",
+      "enterDur": 24,
+      "enterEase": "enter",
+      "until": "s14.start",
+      "to": "top",
+      "exitDur": 14,
+      "exitDist": 2000,
+      "exitEase": "enter"
+     }
+    ]
+   },
+   "sources": [
+    "彭博 2026/1/27、Newsweek 2026/11"
+   ],
+   "still": "nopub+16"
+  },
+  {
+   "id": "s14",
+   "beat": "payoff",
+   "sentence": 14,
+   "para": 4,
+   "narration": "目前確定的是，他已經離開，財務長暫代。",
+   "tts": "目前確定的是，他已經離開，財務長暫代。",
+   "subtitle": {
+    "zh": "目前確定的是\n他已經離開\n財務長暫代",
+    "en": "What's confirmed: | he is out, | and the CFO is filling in."
+   },
+   "keywords": [
+    "已經離開"
+   ],
+   "cues": [
+    {
+     "id": "sure",
+     "text": "確定的"
+    },
+    {
+     "id": "left",
+     "text": "已經離開"
+    },
+    {
+     "id": "cfo",
+     "text": "財務長"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      4840,
+      1
+     ],
+     "at": "start-3",
+     "dur": 2
+    },
+    "punch": "left",
+    "items": [
+     {
+      "asset": "sheet-big",
+      "x": 540,
+      "y": 4650,
+      "w": 950,
+      "at": "start-3",
+      "from": "cut",
+      "until": "s16.start+5",
+      "z": -1
+     },
+     {
+      "type": "strip",
+      "paper": "colhead-mint",
+      "lines": [
+       {
+        "t": "目前確定",
+        "size": 64,
+        "ls": 0.06
+       }
+      ],
+      "x": 295,
+      "y": 4350,
+      "w": 470,
+      "at": "voice",
+      "from": "slam",
+      "until": "s16",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "[已經辭職]",
+        "size": 80
+       }
+      ],
+      "x": 295,
+      "y": 4570,
+      "w": 470,
+      "rot": -1.5,
+      "at": "left",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "left+8",
+        "mark": 1
+       }
+      ],
+      "until": "s16.start+5",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "財務長暫代",
+        "size": 74
+       }
+      ],
+      "x": 295,
+      "y": 4780,
+      "w": 470,
+      "rot": 1,
+      "at": "cfo",
+      "from": "slam",
+      "until": "s16.start+5",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tag-red",
+      "lines": [
+       {
+        "t": "截至 11/13",
+        "size": 54
+       }
+      ],
+      "x": 300,
+      "y": 5010,
+      "w": 380,
+      "rot": -5,
+      "onDark": true,
+      "at": "cfo+12",
+      "from": "slam",
+      "until": "s16.start+5",
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "截至 2026/11/13"
+   ]
+  },
+  {
+   "id": "s15",
+   "beat": "payoff",
+   "sentence": 15,
+   "para": 4,
+   "narration": "還不確定的，是調查結果，和正式的接班人。",
+   "tts": "還不確定的，是調查結果，和正式的接班人。",
+   "subtitle": {
+    "zh": "還不確定的\n是調查結果\n和正式的接班人",
+    "en": "What's still unknown: | the investigation's outcome | and the permanent successor."
+   },
+   "keywords": [
+    "不確定"
+   ],
+   "cues": [
+    {
+     "id": "unsure",
+     "text": "不確定"
+    },
+    {
+     "id": "result",
+     "text": "調查結果"
+    },
+    {
+     "id": "who",
+     "text": "正式的接班人"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "colhead-yellow",
+      "lines": [
+       {
+        "t": "還不確定",
+        "size": 64,
+        "ls": 0.06
+       }
+      ],
+      "x": 790,
+      "y": 4350,
+      "w": 470,
+      "at": "unsure",
+      "from": "slam",
+      "until": "s16",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "調查結果",
+        "size": 80
+       }
+      ],
+      "x": 790,
+      "y": 4570,
+      "w": 470,
+      "rot": 1.5,
+      "at": "result",
+      "from": "slam",
+      "until": "s16",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "正式接班人",
+        "size": 74
+       }
+      ],
+      "x": 790,
+      "y": 4780,
+      "w": 470,
+      "rot": -1,
+      "at": "who",
+      "from": "slam",
+      "until": "s16",
+      "z": 1
+     },
+     {
+      "asset": "qmark",
+      "x": 800,
+      "y": 4990,
+      "w": 150,
+      "rot": 8,
+      "at": "who+8",
+      "from": "slam",
+      "until": "s16",
+      "z": 2
+     }
+    ]
+   },
+   "sources": [
+    "截至 2026/11/13 尚未確定"
+   ]
+  },
+  {
+   "id": "s16",
+   "beat": "payoff",
+   "sentence": 16,
+   "para": 4,
+   "narration": "聲明裡，也沒有他本人的說法。",
+   "tts": "聲明裡，也沒有他本人的說法。",
+   "subtitle": {
+    "zh": "聲明裡\n也沒有他本人的說法",
+    "en": "The statement also included | no comment from Huang himself."
+   },
+   "keywords": [
+    "他本人"
+   ],
+   "cues": [
+    {
+     "id": "stmt",
+     "text": "聲明裡"
+    },
+    {
+     "id": "self",
+     "text": "他本人"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1700,
+      4840,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "doc",
+      "lines": [
+       {
+        "t": "董事會聲明",
+        "size": 52,
+        "color": "ink3"
+       },
+       {
+        "t": "2026/11/12",
+        "size": 72,
+        "mt": 14
+       }
+      ],
+      "x": 1500,
+      "y": 4560,
+      "w": 520,
+      "rot": -3,
+      "at": "start+4",
+      "from": "left",
+      "until": "s18",
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 290,
+        "y": 4,
+        "rot": 2,
+        "w": 180
+       }
+      ],
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "letter",
+      "lines": [],
+      "x": 1980,
+      "y": 4480,
+      "w": 400,
+      "rot": 5,
+      "at": "self-6",
+      "from": "right",
+      "until": "s18",
+      "z": 1
+     },
+     {
+      "asset": "qmark",
+      "x": 1985,
+      "y": 4500,
+      "w": 150,
+      "rot": 6,
+      "at": "self+4",
+      "from": "slam",
+      "until": "s18",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "本人說法：[沒有]",
+        "size": 84
+       }
+      ],
+      "x": 1720,
+      "y": 4960,
+      "w": 800,
+      "rot": 1.5,
+      "at": "self",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "self+8",
+        "mark": 1
+       }
+      ],
+      "until": "s18",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       }
+      ],
+      "z": 3
+     }
+    ]
+   },
+   "sources": [
+    "CNN 2026/11/12；截至 2026/11/13"
+   ]
+  },
+  {
+   "id": "s17",
+   "beat": "cta",
+   "sentence": 17,
+   "para": 4,
+   "narration": "你還想得到哪間公司，也靠一個人撐著？",
+   "tts": "你還想得到哪間公司，也靠一個人撐著？",
+   "subtitle": {
+    "zh": "你還想得到\n哪間公司\n也靠一個人撐著？",
+    "en": "Which other company | can you think of | that leans on one person?"
+   },
+   "keywords": [
+    "哪間公司"
+   ],
+   "cues": [
+    {
+     "id": "which",
+     "text": "哪間公司"
+    },
+    {
+     "id": "hold",
+     "text": "撐著"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      2860,
+      4840,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "＿＿公司",
+        "size": 60
+       }
+      ],
+      "x": 2550,
+      "y": 4440,
+      "w": 300,
+      "rot": -3,
+      "at": "which",
+      "from": "slam",
+      "until": "s19"
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "＿＿公司",
+        "size": 60
+       }
+      ],
+      "x": 2860,
+      "y": 4400,
+      "w": 330,
+      "rot": 1,
+      "at": "which+6",
+      "from": "slam",
+      "until": "s19",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "＿＿公司",
+        "size": 60
+       }
+      ],
+      "x": 3170,
+      "y": 4440,
+      "w": 300,
+      "rot": 3,
+      "at": "which+12",
+      "from": "slam",
+      "until": "s19"
+     },
+     {
+      "type": "strip",
+      "paper": "pole",
+      "lines": [],
+      "x": 2860,
+      "y": 4650,
+      "w": 76,
+      "at": "hold",
+      "from": "bottom",
+      "until": "s19",
+      "z": 1
+     },
+     {
+      "asset": "circle",
+      "x": 2860,
+      "y": 4400,
+      "w": 430,
+      "at": "hold+8",
+      "from": "wipe",
+      "until": "s19",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "lines": [
+       {
+        "t": "你想到哪一間？",
+        "size": 70
+       }
+      ],
+      "x": 2860,
+      "y": 4940,
+      "w": 600,
+      "rot": -2,
+      "at": "hold+4",
+      "from": "slam",
+      "until": "s19",
+      "z": 3
+     }
+    ]
+   },
+   "sources": []
+  },
+  {
+   "id": "s18",
+   "beat": "payoff",
+   "sentence": 18,
+   "para": 4,
+   "narration": "下一集講，大公司換老闆，股價怎麼走。",
+   "tts": "下一集講，大公司換老闆，股價怎麼走。",
+   "subtitle": {
+    "zh": "下一集講\n大公司換老闆\n股價怎麼走",
+    "en": "Next episode: | when a big company changes its boss, | what does the stock do?"
+   },
+   "keywords": [
+    "換老闆"
+   ],
+   "cues": [
+    {
+     "id": "ep",
+     "text": "下一集"
+    },
+    {
+     "id": "swap",
+     "text": "換老闆"
+    },
+    {
+     "id": "go",
+     "text": "怎麼走"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      4020,
+      4840,
+      1
+     ],
+     "dur": 12
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "下一集預告",
+        "size": 50
+       }
+      ],
+      "x": 3780,
+      "y": 4310,
+      "w": 400,
+      "rot": -2,
+      "at": "ep",
+      "from": "slam",
+      "until": "end",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "舊老闆",
+        "size": 64
+       }
+      ],
+      "x": 3740,
+      "y": 4480,
+      "w": 340,
+      "rot": -3,
+      "at": "swap-20",
+      "from": "slam",
+      "until": "end"
+     },
+     {
+      "asset": "arrow-red",
+      "x": 4020,
+      "y": 4480,
+      "w": 170,
+      "at": "swap-12",
+      "from": "left",
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "plate",
+      "lines": [
+       {
+        "t": "新老闆",
+        "size": 64
+       }
+      ],
+      "x": 4300,
+      "y": 4480,
+      "w": 340,
+      "rot": 3,
+      "at": "swap-6",
+      "from": "slam",
+      "until": "end"
+     },
+     {
+      "type": "line",
+      "x": 3930,
+      "y": 4840,
+      "w": 620,
+      "h": 400,
+      "at": "swap-2",
+      "vals": [
+       5,
+       5.6,
+       5.2,
+       5.5
+      ],
+      "color": "blue",
+      "seg": 4,
+      "until": "end",
+      "z": 1
+     },
+     {
+      "asset": "qmark",
+      "x": 4360,
+      "y": 4810,
+      "w": 190,
+      "rot": 8,
+      "at": "go-12",
+      "from": "slam",
+      "until": "end",
+      "z": 2
+     },
+     {
+      "asset": "sheet-cream",
+      "layer": "top",
+      "x": 540,
+      "y": 980,
+      "w": 1240,
+      "at": "end-8",
+      "from": "bottom",
+      "until": "end",
+      "enterDur": 5,
+      "enterEase": "linear"
+     }
+    ]
+   },
+   "sources": [],
+   "still": "go+6"
+  },
+  {
+   "id": "s19",
+   "beat": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "durationSec": 2.5,
+   "silent": true,
+   "component": "EndCard",
+   "props": {
+    "slogan": "先查證，再下結論",
+    "next": "下一集：大公司換老闆之後"
+   },
+   "sources": []
+  }
+ ]
 }
