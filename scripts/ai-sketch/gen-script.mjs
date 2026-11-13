@@ -34,13 +34,13 @@ const props = {
       { type: "squiggle", box: [376, 708, 440, 0], color: "ink3", at: "back+3", dur: 5 },
       { type: "squiggle", box: [376, 748, 300, 0], color: "ink3", at: "back+6", dur: 4 },
       { type: "cross", box: [470, 640, 320, 132], color: "red", w: "bold", at: "plain-1", dur: 7 },
-      { type: "text", t: "很普通", x: 452, y: 800, size: 112, color: "red", rot: -3, at: "plain+3", per: 3 },
+      { type: "text", t: "很普通", x: 452, y: 800, size: 112, color: "red", rot: -3, at: "plain+2", per: 2 },
     ],
   },
   s3: {
-    origin: [0, 0], camera: { to: [0, 0, 1], at: "start+0", dur: 14 },
+    origin: [0, 0], camera: { to: [0, 0, 1], at: "start+3", dur: 13 },
     items: [
-      { type: "book", box: [8, 6, 118, 92], color: "ink", at: "start+10", dur: 10 },
+      { type: "book", box: [8, 6, 118, 92], color: "ink", at: "start+13", dur: 9 },
       { type: "text", t: "官方指南", x: 150, y: 16, size: 66, color: "ink", at: "guide-2", per: 2 },
       { type: "underline", box: [150, 92, 262, 0], color: "blue", at: "guide+7", dur: 5 },
       { type: "text", t: "Prompting guide 101", x: 444, y: 22, size: 54, font: "en", color: "ink2", at: "guide+10", per: 1 },

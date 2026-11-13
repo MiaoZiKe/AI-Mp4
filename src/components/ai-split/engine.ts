@@ -15,7 +15,7 @@ export type SplitModel = {
   steps: Step[];
   expandAt: number; runAt: number; fullAt: number;
   guide?: { text: string; by?: string; at: number };
-  pulseAt: number;
+  pulseAt: number; sweepAt: number;
   slots: Slot[];
   node?: { text: string; sub?: string; at: number };
   result?: { at: number; head: string; title: string; titleSlot?: number; lines: { t: string; slot?: number }[]; format?: { text: string; slot: number }; badge?: { text: string; at: number } };
@@ -23,7 +23,7 @@ export type SplitModel = {
 
 export const buildSplit = (scenes: Scene[], tl: TimelineV2): SplitModel => {
   const by = Object.fromEntries(tl.scenes.map((x) => [x.id, x]));
-  const m: SplitModel = { total: tl.totalFrames, labels: { bad: "", good: "" }, send: Infinity, steps: [], expandAt: Infinity, runAt: Infinity, fullAt: Infinity, pulseAt: Infinity, slots: [] };
+  const m: SplitModel = { total: tl.totalFrames, labels: { bad: "", good: "" }, send: Infinity, steps: [], expandAt: Infinity, runAt: Infinity, fullAt: Infinity, pulseAt: Infinity, sweepAt: Infinity, slots: [] };
   scenes.forEach((s, i) => {
     const t = by[s.id];
     if (!t) return;
@@ -47,6 +47,7 @@ export const buildSplit = (scenes: Scene[], tl: TimelineV2): SplitModel => {
     }
     if (p.guide) m.guide = { ...p.guide, at: at(p.guide.at, t.voiceStartFrame) };
     if (p.pulseAt) m.pulseAt = at(p.pulseAt, Infinity);
+    if (p.sweepAt) m.sweepAt = at(p.sweepAt, Infinity);
     for (const sl of p.slots ?? []) m.slots.push({ ...sl, at: at(sl.at, t.voiceStartFrame) });
     if (p.node) m.node = { ...p.node, at: at(p.node.at, t.voiceStartFrame) };
     if (p.result) m.result = { ...p.result, at: at(p.result.at, t.voiceStartFrame), badge: p.result.badge ? { text: p.result.badge.text, at: at(p.result.badge.at, t.voiceEndFrame) } : undefined };

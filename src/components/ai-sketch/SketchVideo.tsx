@@ -179,7 +179,7 @@ export const CoverSketch: React.FC<Script & { coverCrop?: number }> = ({ cover, 
   const c = (cover ?? {}) as { title?: string[]; sub?: string; chips?: { label: string; color: string }[] };
   const shift = coverCrop ? (L.H - coverCrop) / 2 - 150 : 0;
   const [t1, t2] = [c.title?.[0] ?? "", c.title?.[1] ?? ""];
-  const s1 = 210, s2 = Math.min(190, Math.floor(900 / Math.max(1, [...t2].length)));
+  const s1 = 210, s2 = Math.min(190, Math.floor(860 / Math.max(1, [...t2].length)));
   const w2 = [...t2].length * s2, chips = c.chips ?? [], cw = (L.INNER_W - 24 * (chips.length - 1)) / Math.max(1, chips.length);
   const F = HOLD;
   return (

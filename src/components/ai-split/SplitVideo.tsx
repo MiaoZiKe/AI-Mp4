@@ -62,8 +62,8 @@ const BadPanel: React.FC<{ f: number; m: SplitModel }> = ({ f, m }) => {
           <div style={{ width: r1(btn), height: r1(btn), borderRadius: T.radius.pill, background: sent ? B.pill : B.line, display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${(1 - 0.14 * press).toFixed(3)})` }}><Arrow size={r1(btn * 0.5)} color={T.onInk} /></div>
         </div>
       ) : null}
-      {r && f >= r.at ? (() => {
-        const en = tween(f, r.at, T.motion.in, EASE.enter);
+      {r && f >= Math.min(r.at, m.send + 8) ? (() => {
+        const en = tween(f, Math.min(r.at, m.send + 8), T.motion.in, EASE.enter);
         const [l1, l2] = r.lines, n1 = [...l1].length, n2 = [...l2].length;
         const c = Math.floor((n1 + n2) * linear(f, r.at + 3, 22));
         const p2 = rerun ? linear(f, replayAt, 24) : Math.max(0, c - n1) / n2;
@@ -71,12 +71,12 @@ const BadPanel: React.FC<{ f: number; m: SplitModel }> = ({ f, m }) => {
         const st = r.stamp, stAt = st ? (rerun ? replayAt + 24 : st.at) : Infinity;
         const sp = tween(f, stAt, 6, EASE.enter);
         return (
-          <div style={{ ...box([L.PAD, mix(262, 172, pe), IN, mix(290, 92, pe)]), background: B.card, borderRadius: T.radius.card, padding: `${r1(mix(26, 0, pe))}px ${r1(mix(32, 24, pe))}px`, opacity: en, transform: `translateY(${r1(16 * (1 - en))}px)`, display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
+          <div style={{ ...box([L.PAD, mix(262, 172, pe), IN, mix(290, 92, pe)]), background: B.card, borderRadius: T.radius.card, padding: `${r1(mix(26, 25, pe))}px ${r1(mix(32, 24, pe))}px 0`, opacity: en, transform: `translateY(${r1(16 * (1 - en))}px)`, overflow: "hidden" }}>
             <div style={{ height: r1(mix(52, 0, pe)), opacity: 1 - pe, overflow: "hidden" }}><Pill text={r.head} bg={B.line} color={B.text} size={24} h={40} /></div>
-            <div style={{ ...zh(40, T.weight.light), color: B.text2, height: r1(mix(62, 0, pe)), opacity: 1 - pe, overflow: "hidden" }}>{cut(l1, Math.min(1, c / n1))}</div>
+            <div style={{ ...zh(40, T.weight.light), color: B.text2, height: r1(mix(62, 0, pe)), opacity: 1 - pe, overflow: "hidden" }}>{f < r.at + 3 ? <Dots f={f} color={B.text2} size={12} /> : cut(l1, Math.min(1, c / n1))}</div>
             <div style={{ ...zh(mix(44, 34, pe), T.weight.light), color: B.text }}>{rerun && f < replayAt ? <Dots f={f} color={B.text2} size={12} /> : <>{cut(l2, p2)}<Caret on={typing} color={B.text} /></>}</div>
             {st && sp > 0 ? (
-              <div style={{ ...zh(mix(40, 28, pe), T.weight.zh), position: "absolute", right: r1(mix(28, 18, pe)), bottom: r1(mix(22, 20, pe)), color: B.stamp, border: `${r1(mix(4, 3, pe))}px solid ${B.stamp}`, borderRadius: 10, padding: `${r1(mix(8, 5, pe))}px ${r1(mix(18, 12, pe))}px`, background: B.card, letterSpacing: "0.1em", opacity: sp, transform: `rotate(-6deg) scale(${(1.5 - 0.5 * sp).toFixed(3)})` }}>{st.text}</div>
+              <div style={{ ...zh(mix(40, 28, pe), T.weight.zh), position: "absolute", right: r1(mix(28, 18, pe)), bottom: r1(mix(20, 20, pe)), color: B.stamp, border: `${r1(mix(4, 3, pe))}px solid ${B.stamp}`, borderRadius: 10, padding: `${r1(mix(8, 5, pe))}px ${r1(mix(18, 12, pe))}px`, background: B.card, letterSpacing: "0.1em", opacity: sp, transform: `rotate(-6deg) scale(${(1.5 - 0.5 * sp).toFixed(3)})` }}>{st.text}</div>
             ) : null}
           </div>
         );
@@ -128,7 +128,7 @@ const GoodPanel: React.FC<{ f: number; h: number; m: SplitModel }> = ({ f, h, m 
             ) : (
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", gap: 18, paddingLeft: 20 }}>
                 <div style={{ width: 44, height: 44, borderRadius: T.radius.pill, border: `3px solid ${pulse > 0.3 ? G.text : G.ghost}`, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_EN, fontWeight: T.weight.en, fontSize: 24, color: pulse > 0.3 ? G.text : G.ghost }}>{i + 1}</div>
-                <div style={{ width: r1(mix(200, 420, pe)), height: 14, borderRadius: 7, background: G.line }} />
+                <div style={{ width: r1(mix(200, mix(300, 560, tween(f, m.sweepAt + i * 5, 10, EASE.move)), pe)), height: 14, borderRadius: 7, background: G.line }} />
               </div>
             )}
           </div>

@@ -1,0 +1,323 @@
+{
+ "slug": "sample-ai-sketch",
+ "styleVersion": 3,
+ "fps": 30,
+ "timeline": "v2",
+ "totalFrames": 417,
+ "totalSec": 13.9,
+ "scenes": [
+  {
+   "id": "s1",
+   "startFrame": 0,
+   "durationFrames": 63,
+   "startSec": 0,
+   "durationSec": 2.1,
+   "component": "SketchScene",
+   "beat": "hook",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [
+    {
+     "id": "line",
+     "early": 1
+    }
+   ],
+   "voice": {
+    "startFrame": 1,
+    "endFrame": 55,
+    "pauseAfterSec": null
+   },
+   "cues": [
+    {
+     "id": "ask",
+     "text": "問",
+     "frame": 5,
+     "sceneFrame": 5
+    },
+    {
+     "id": "one",
+     "text": "只打",
+     "frame": 35,
+     "sceneFrame": 35
+    },
+    {
+     "id": "line",
+     "text": "一句話",
+     "frame": 42,
+     "sceneFrame": 42
+    }
+   ],
+   "stillFrame": 53,
+   "subtitles": [
+    {
+     "zh": "你問 AI",
+     "en": "When you ask AI,",
+     "startFrame": 0,
+     "endFrame": 20
+    },
+    {
+     "zh": "是不是都只打一句話？",
+     "en": "do you type just one line?",
+     "startFrame": 20,
+     "endFrame": 60
+    }
+   ],
+   "narration": "你問 AI，是不是都只打一句話？"
+  },
+  {
+   "id": "s2",
+   "startFrame": 53,
+   "durationFrames": 55,
+   "startSec": 1.77,
+   "durationSec": 1.83,
+   "component": "SketchScene",
+   "beat": "you",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": {
+    "startFrame": 63,
+    "endFrame": 100,
+    "pauseAfterSec": null
+   },
+   "cues": [
+    {
+     "id": "back",
+     "text": "回得",
+     "frame": 78,
+     "sceneFrame": 25
+    },
+    {
+     "id": "plain",
+     "text": "很普通",
+     "frame": 85,
+     "sceneFrame": 32
+    }
+   ],
+   "stillFrame": 98,
+   "subtitles": [
+    {
+     "zh": "難怪它回得很普通",
+     "en": "No wonder the answer is generic.",
+     "startFrame": 60,
+     "endFrame": 105
+    }
+   ],
+   "narration": "難怪它回得很普通。"
+  },
+  {
+   "id": "s3",
+   "startFrame": 98,
+   "durationFrames": 111,
+   "startSec": 3.27,
+   "durationSec": 3.7,
+   "component": "SketchScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [
+    {
+     "id": "four",
+     "early": 3
+    }
+   ],
+   "voice": {
+    "startFrame": 108,
+    "endFrame": 200,
+    "pauseAfterSec": null
+   },
+   "cues": [
+    {
+     "id": "guide",
+     "text": "官方指南",
+     "frame": 120,
+     "sceneFrame": 22
+    },
+    {
+     "id": "good",
+     "text": "好的",
+     "frame": 154,
+     "sceneFrame": 56
+    },
+    {
+     "id": "four",
+     "text": "四塊",
+     "frame": 190,
+     "sceneFrame": 92
+    }
+   ],
+   "stillFrame": 199,
+   "subtitles": [
+    {
+     "zh": "Google 的官方指南說",
+     "en": "Google's official guide says",
+     "startFrame": 105,
+     "endFrame": 151
+    },
+    {
+     "zh": "好的提示詞有四塊",
+     "en": "a good prompt has four parts:",
+     "startFrame": 151,
+     "endFrame": 206
+    }
+   ],
+   "narration": "Google 的官方指南說，好的提示詞有四塊："
+  },
+  {
+   "id": "s4",
+   "startFrame": 199,
+   "durationFrames": 98,
+   "startSec": 6.63,
+   "durationSec": 3.27,
+   "component": "SketchScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [
+    {
+     "id": "c4",
+     "early": 1
+    }
+   ],
+   "voice": {
+    "startFrame": 209,
+    "endFrame": 288,
+    "pauseAfterSec": null
+   },
+   "cues": [
+    {
+     "id": "c1",
+     "text": "角色",
+     "frame": 209,
+     "sceneFrame": 10
+    },
+    {
+     "id": "c2",
+     "text": "任務",
+     "frame": 234,
+     "sceneFrame": 35
+    },
+    {
+     "id": "c3",
+     "text": "背景",
+     "frame": 256,
+     "sceneFrame": 57
+    },
+    {
+     "id": "c4",
+     "text": "格式",
+     "frame": 276,
+     "sceneFrame": 77
+    }
+   ],
+   "stillFrame": 287,
+   "subtitles": [
+    {
+     "zh": "角色",
+     "en": "Persona, task, context, format.",
+     "startFrame": 206,
+     "endFrame": 230
+    },
+    {
+     "zh": "任務",
+     "en": "Persona, task, context, format.",
+     "startFrame": 230,
+     "endFrame": 252
+    },
+    {
+     "zh": "背景",
+     "en": "Persona, task, context, format.",
+     "startFrame": 252,
+     "endFrame": 273
+    },
+    {
+     "zh": "格式",
+     "en": "Persona, task, context, format.",
+     "startFrame": 273,
+     "endFrame": 294
+    }
+   ],
+   "narration": "角色、任務、背景、格式。"
+  },
+  {
+   "id": "s5",
+   "startFrame": 287,
+   "durationFrames": 130,
+   "startSec": 9.57,
+   "durationSec": 4.33,
+   "component": "SketchScene",
+   "beat": "payoff",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": {
+    "startFrame": 297,
+    "endFrame": 399,
+    "pauseAfterSec": null
+   },
+   "cues": [
+    {
+     "id": "fill",
+     "text": "補上去",
+     "frame": 307,
+     "sceneFrame": 20
+    },
+    {
+     "id": "same",
+     "text": "同一個",
+     "frame": 329,
+     "sceneFrame": 42
+    },
+    {
+     "id": "ans",
+     "text": "回答",
+     "frame": 358,
+     "sceneFrame": 71
+    },
+    {
+     "id": "close",
+     "text": "更貼近",
+     "frame": 372,
+     "sceneFrame": 85
+    }
+   ],
+   "stillFrame": 405,
+   "subtitles": [
+    {
+     "zh": "四塊補上去",
+     "en": "Fill in all four,",
+     "startFrame": 294,
+     "endFrame": 325
+    },
+    {
+     "zh": "同一個 AI",
+     "en": "same AI,",
+     "startFrame": 325,
+     "endFrame": 355
+    },
+    {
+     "zh": "回答更貼近你要的",
+     "en": "answers closer to what you need.",
+     "startFrame": 355,
+     "endFrame": 417
+    }
+   ],
+   "narration": "四塊補上去，同一個 AI，回答更貼近你要的。"
+  }
+ ]
+}
