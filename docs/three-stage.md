@@ -3,8 +3,8 @@
 科技頻道專用。畫面中間是一個 3D 舞台（`@remotion/three`），外面一圈（大標、標籤、字幕、出處）是 HTML。
 **產品模型是資料**：零件清單寫在 `videos/<slug>/model.json`（或 `script.json` 的 `model`），引擎讀資料建模。換產品只寫一份新的 `model.json`，不用改 `src/components/three/`。
 
-- 樣片：`videos/sample-tech-3d/`（手機均熱板；`model.json` 有 65 個零件）
-- 程式：`src/components/three/model.ts`（資料 → 幾何、材質、紋理）、`engine.ts`（時間與姿態）、`Scene.tsx`（3D 畫面）、`ThreeVideo.tsx`（HTML 外圈與 2D 特效）
+- 樣片：`videos/sample-tech-3d/`（手機均熱板；`model.json` 有 65 個零件）、`videos/sample-tech-anc/`（耳機主動降噪；示範第五節的「運作動畫」）
+- 程式：`src/components/three/model.ts`（資料 → 幾何、材質、紋理）、`engine.ts`（時間與姿態）、`Scene.tsx`（3D 畫面）、`Ops.tsx`（運作動畫的 3D 部分）、`ThreeVideo.tsx`（HTML 外圈、2D 特效、儀表）
 - 檢查：`npm run validate <slug>`（`scripts/three/validate-three.mjs`，會檢查 model.json 的形狀、材質、層、標註點）
 - 量成本：`node scripts/three/bench-fx.mjs <slug>`（逐項開關特效，量每幀毫秒）
 
@@ -19,6 +19,7 @@
   "parts": [ { "id": "frame", "layer": "frame", "shape": "ring", "size": [7.2, 15, 0.84], "r": 1.05, "wall": 0.28, "bevel": 0.07, "mat": "alu" } ],
   "anchors": { "chip": { "layer": "inner", "p": [-1.45, 4.3, 0.3], "dx": -150, "dy": -40 } },
   "thermal": { "layer": "plate", "center": [0, 1.7], "size": [4.6, 8.6], "hot": [-0.6, 2.6] },
+  "actions": { },                                           // 可省略：運作動畫的定義（第五節）
   "camera": {}, "pose": {}, "fx": {}                        // 都可省略：蓋掉 THEME_3D 的鏡頭、姿態、特效開關
 }
 ```
@@ -99,6 +100,10 @@
 | `orbit: { at }`／`settle: { at }` | 鏡頭繞開拉遠／推回去（增量在 `THEME_3D.camera`） |
 | `peek｜cutaway｜heat｜vapor｜spread｜condense｜flowBack: { at }` | 熱循環：上蓋微抬｜掀蓋｜發熱（晶片變紅、底板短暫透視）｜水滴變蒸氣｜蒸氣與熱擴散到整片｜冷卻凝結｜沿邊緣流回熱點 |
 
+| `run: [{ id, at, until?, speed?, gain?, ramp? }]` | 觸發運作動畫（`model.json` 的 `actions`；見第五節） |
+| `shot: { at, d?, elev?, y?, x?, yaw?, dur? }` | 鏡頭關鍵格（可寫陣列）：距離、仰角、看向的高度／左右是絕對值，`yaw` 是增量；`dur` 幀內補間過去（預設 34）。用來「跟著訊號走」 |
+| `shift: { layer, at, until?, opacity?, dx?, dy?, dz?, dur? }` | 把某一層變透明或移開（露出下面的零件），`until` 之後回來（可寫陣列） |
+
 收尾（最後 20 幀鏡頭慢慢後退、光斑變亮）是自動的。
 
 ## 三、特效清單與成本
@@ -142,3 +147,68 @@
 - `THREE_CONCURRENCY=4 npm run render <slug>`（預設平行數 1）。這台 4 核心、沒有顯示卡，3D 是 CPU 算的（Chrome 的 `swangle`）。
 - 成本幾乎和「3D 畫布的像素數」成正比，所以最有效的旋鈕是 `fx.dpr`（畫布倍率，渲完縮回 1080 寬）。不開 MSAA（很貴），靠倍率縮小來抗鋸齒。
 - 正式長片先 `node scripts/three/bench30.mjs <slug>` 估時間。
+
+## 五、運作動畫怎麼寫（`actions`＋`run`）
+
+拆解之外，讓產品「動起來給你看它怎麼運作」。做法分兩半：
+**動作的定義是資料**，寫在 `model.json` 的 `actions`（哪個零件、哪條路徑、什麼顏色、多快）；**什麼時候動**寫在 `script.json` 每幕的 `props.run`（由 cue 觸發）。
+引擎（`engine.ts` 算每一幀的強度與相位、`Ops.tsx` 畫 3D、`ThreeVideo.tsx` 畫儀表）不知道產品是什麼，換產品只換資料。樣片：`videos/sample-tech-anc/`（耳機主動降噪）。
+
+```jsonc
+// model.json
+"actions": {
+  "cone":     { "type": "vibrate", "parts": ["drvDome", "drvCoil"], "axis": [0, 0, 1], "amp": 0.16, "freq": 5 },
+  "fan":      { "type": "rotate",  "parts": ["blade"], "axis": [0, 0, 1], "rps": 1.5, "pivot": [0, 3] },
+  "chipPulse":{ "type": "pulse",   "parts": ["soc", "socLid"], "color": "anti", "freq": 3.5, "glow": 0.85, "halo": 2.3 },
+  "sigOut":   { "type": "flow",    "path": [{ "layer": "board", "p": [0.3, 3, 0.34] }, { "layer": "driver", "p": [2.38, 3, 0.05] }], "n": 5, "size": 0.2, "shape": "arrow", "rate": 0.75, "color": "anti" },
+  "antiWave": { "type": "wave",    "from": { "layer": "driver", "p": [0, 3, -0.4] }, "dir": [0, 0, -1], "reach": 7.4, "count": 5, "r0": 1.25, "spread": 0.04, "rate": 0.3, "phase": 0, "color": "anti" },
+  "tNoise":   { "type": "trace",   "layer": "ear", "from": [-2.8, 3, 0.9], "to": [2.8, 3, 0.9], "up": [0, 0, 1], "amp": 0.75, "cycles": 2.2, "rate": 0.8, "harmonics": [[1, 1], [2, 0.38]], "color": "noise" },
+  "tAnti":    { "type": "trace",   "…同一條線…": 0, "invert": true, "color": "anti" },
+  "tSum":     { "type": "sum",     "of": ["tNoise", "tAnti"], "layer": "ear", "from": [-2.8, 3, -1.5], "to": [2.8, 3, -1.5], "build": 26, "buildDelay": 8, "color": "quiet" },
+  "earLevel": { "type": "meter",   "anchor": "earMeter", "kind": "bar", "source": "tSum", "label": "耳內音量", "accent": "mint" }
+}
+// script.json 某一幕的 props
+"run": [ { "id": "cone", "at": "cone-2" }, { "id": "antiWave", "at": "wave-6", "until": "s6:stack" }, { "id": "tAnti", "at": "ear-8", "ramp": 14 } ]
+```
+
+### run（觸發）
+`id`＝`actions` 的鍵；`at`／`until`＝cue（寫法和其他 props 一樣，沒寫 `until` 就一直動到片尾）；`speed`＝速度倍率（預設 1）；`gain`＝強度倍率（預設 1）；`ramp`＝進出場幾幀（預設 `THEME_3D.ops.ramp`＝8）。同一個動作可以在不同幕再觸發一次（後面的蓋掉前面的）。
+
+### 八種 type
+點的寫法：`[x, y, z]`（在該動作 `layer` 那一層裡）或 `{ "layer": "…", "p": [x, y, z] }`（每個點可以在不同層，分解後路徑會跟著拉長）。顏色寫色票名。
+
+| `type` | 用途 | 欄位 |
+|---|---|---|
+| `vibrate` | 零件振動／往復（振膜、馬達、活塞） | `parts`（零件 id 陣列）、`axis` 方向、`amp` 幅度（模型單位）、`freq` 每秒幾下 |
+| `rotate` | 旋轉件（風扇、齒輪、轉盤） | `parts`、`axis`（預設 z）、`rps` 每秒幾圈、`pivot: [x, y]` 轉軸位置（預設零件自己的 `pos`）；`until` 之後停在原地 |
+| `pulse` | 零件發光／脈衝（晶片運算、麥克風收到聲音） | `parts`、`color`、`freq` 每秒閃幾下、`glow` 發光強度 0–1、`halo` 光暈大小（0＝不要）、`at` 光暈位置（預設第一個零件）。會發光的零件自動有自己的材質 |
+| `flow` | 沿路徑流動的光點或箭頭（電流、氣流、訊號） | `path`（≥2 點）、`n` 顆數、`size`、`shape: "dot"｜"arrow"`、`rate` 每秒跑幾趟、`track: false` 不畫軌道線。觸發後第一顆從起點出發 |
+| `wave` | 往外擴散的波紋／聲波圈 | `from` 起點、`dir` 方向、`reach` 走多遠、`count` 同時幾圈、`r0` 起始半徑、`spread` 每走 1 單位半徑多多少、`rate` 每秒走幾趟、`phase` 相位（0–1，兩組波錯開半拍寫 0.5）、`width` 線寬（相對半徑）、`arc`／`arcStart` 只畫一段弧（度） |
+| `trace` | 一條線上的行進波形 | `from`、`to`、`up` 振幅方向、`amp`、`cycles` 線上幾個波長、`rate` 每秒走幾個波長、`phase`、`invert: true` 反相、`harmonics: [[倍頻, 相對振幅], …]`（讓波形不是單純正弦）、`radius` 線粗、`axisLine: false` 不畫基準線、`hidden: true` 不畫在 3D 裡（只給儀表用） |
+| `sum` | 兩道（或多道）波疊加的結果 | `of`（trace 的 id 陣列）、`from`／`to`／`up`、`build`＝先畫第一道，再用幾幀把其他幾道加進來（看得到振幅縮小歸零的過程）、`buildDelay` |
+| `meter` | 跟著數值動的小儀表（HTML 小卡，釘在標註點旁邊） | `anchor`（`anchors` 的鍵）、`kind: "bar"`（音量條，跟著 `source` 的大小）｜`"wave"`（小波形，畫 `traces` 列的幾道）、`label`、`accent`（amber／blue／coral／mint）、`w` 寬度 |
+
+要點：
+- 波形的相位用「全片時間」算，所以兩道 `cycles`、`rate`、`harmonics` 相同的 trace 一道寫 `invert` 就剛好相消；`sum` 與 `meter` 讀的是同一份數值（`engine.ts` 的 `signalVal`／`signalLevel`），不是另外畫的假動畫。
+- `flow`、`wave`、`trace`、`sum`、光暈預設畫在最上層（不被零件擋住，像透視圖）；要被零件擋住就在該動作寫 `"depth": true`。
+- 這些都是**示意動畫**：出處列要寫明「波形是示意，不是量測」，儀表不要標沒有查證過的數字。
+- 熱循環（`thermal`）是另一組專用特效，和 `actions` 可以並存。
+
+### 每種的渲染成本
+量法：`node scripts/three/bench-fx.mjs sample-tech-anc --ops --rotate drvFrame --frames 4`（平行數 1、畫布倍率 1；每種找它正在動的一段，全開與拿掉這一種各渲一次，取差）。
+結果（2026/11/13，`out/sample-tech-anc/bench-ops.json`；每種渲 5 幀取後 4 幀平均）：
+
+| type | 量的那一段 | 全開（毫秒/幀） | 拿掉這一種 | 差 |
+|---|---|---|---|---|
+| `vibrate` 零件振動 | 第 381 幀起（振膜） | 2716 | 2569 | +147 |
+| `rotate` 旋轉件 | 第 221 幀起（臨時加的，轉喇叭外框） | 2241 | 2040 | +201 |
+| `pulse` 發光／脈衝＋光暈 | 第 254 幀起（麥克風） | 1992 | 1966 | +26 |
+| `flow` 流動的光點／箭頭 | 第 293 幀起（板子特寫） | 3354 | 3733 | −379 |
+| `wave` 聲波圈 | 第 235 幀起 | 2029 | 1972 | +57 |
+| `trace` 行進波形 | 第 412 幀起 | 1966 | 1921 | +45 |
+| `sum` 疊加相消 | 第 484 幀起 | 2148 | 1772 | +376 |
+| `meter` 小儀表 | 第 322 幀起（板子特寫） | 3548 | 3740 | −192 |
+
+怎麼讀：**八種都量不出穩定的成本**。差值從 −379 到 +376 毫秒，有正有負（拿掉反而變慢是不可能的），代表這次量測的雜訊就有 ±0.4 秒左右（量的時候機器上還有別的工作在跑）。
+合理的結論是「每種每幀最多多零點幾秒，和基準的 2–3.5 秒比起來不是重點」，而不是表上的個別數字。這些動作畫的東西都很少（幾個圈、幾顆球、一條管子、一張 HTML 小卡），沒有額外的光源或貼圖。
+真正決定時間的是**鏡頭離多近**：同樣的設定，全景約 2.0 秒/幀，推到板子特寫（零件佔滿畫面）約 3.5 秒/幀，因為軟體渲染的成本跟「有東西的像素數」成正比。`shot` 推太近、推太久會直接拉長渲染時間。

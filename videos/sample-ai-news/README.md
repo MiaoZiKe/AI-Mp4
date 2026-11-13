@@ -1,6 +1,6 @@
 # sample-ai-news：十月物價新聞丟給 AI（AI 教學頻道第一支完整版）
 
-現在的成片是**無聲版**（還沒配音）：`out/sample-ai-news.mp4`，1080×1920、30fps、H.264，63.1 秒（1893 幀），20 鏡，最後一鏡是片尾卡。
+現在的成片是**無聲版**（還沒配音）：`out/sample-ai-news.mp4`，1080×1920、30fps、H.264，63.1 秒（1893 幀），20 鏡，最後一鏡是片尾卡。**注意：這支 MP4 是 2026/11/13 改寫旁白（親和專業版）之前渲染的，字幕還是舊稿；新稿的估算時間軸是 65.9 秒（1978 幀），還沒重渲染。**
 時間軸是照念稿音節數估的（`videos/sample-ai-news/timeline.json`，裡面有 `estimated` 標記）。配音後重跑對齊，畫面會自動對上真的聲音，因為畫面的時間全部寫 cue id，沒有手填秒數。
 
 - 九格圖：`out/sample-ai-news-review.png`
@@ -71,10 +71,10 @@ ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_
 python3 scripts/ui/review9.py sample-ai-news 14,s03:old+14,s04:now+16,s10:me+14,s13:none+14,s14:ask+10,s15:view+16,s18:which+12,end:start+60   # 7. 重做九格圖
 ```
 
-- 第 3 步**不要帶 `ALIGN_GAP_MAX`**：這支片的旁白設定是聊天口氣（`delivery: "chat"`），句間停頓不壓成等距；要趕時間就刪字。
+- 第 3 步**不要帶 `ALIGN_GAP_MAX`**：這支片的旁白設定是親和專業（`delivery: "warm-pro"`），句間停頓不壓成等距；要趕時間就刪字。
 - 只想重出無聲版（改了稿子但還沒配音）：`node scripts/ui/silent-timeline.mjs sample-ai-news`，再跑第 5、6 步。已經有真的配音時間軸時它不會覆蓋。
 - 看指定時刻：`flock /tmp/aimp4-render.lock node scripts/v3/peek.mjs sample-ai-news <out.png> s14:same+10,s15:view+12,1700`
-- 配音後要人耳確認：欸、蛤、齁、嘛四個語助詞；「Gemini」的念法；1.69%、2.33% 的念法；s04、s14、s17 後面的停頓。
+- 配音後要人耳確認：s16 句尾的「喔」（全片唯一的語助詞）有沒有拖長；整體會不會太平、像朗讀；「Gemini」的念法；1.69%、2.33% 的念法；s04、s14、s17 後面的停頓。
 
 ## 配音後要重看的地方
 

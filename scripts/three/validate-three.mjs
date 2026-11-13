@@ -6,6 +6,8 @@ import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mj
 
 const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere"];
 const ROLES = ["lid", "heatFloor", "heatSource", "xray"];
+const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter"];
+const COLORS = ["amber", "blue", "coral", "mint"];
 const THERMAL_FX = ["peek", "cutaway", "heat", "vapor", "spread", "condense", "flowBack"];
 /** 產品模型資料（script.json 的 model 或 videos/<slug>/model.json）的檢查；回傳可以標註的點（anchors 的鍵） */
 function checkModel(script, E, W) {
@@ -30,12 +32,32 @@ function checkModel(script, E, W) {
   });
   for (const [k, a] of Object.entries(m.anchors ?? {})) if (!layers.has(a.layer)) E(`model.anchors「${k}」的 layer「${a.layer}」不在 layers 裡`);
   if (m.thermal && !layers.has(m.thermal.layer)) E(`model.thermal.layer「${m.thermal.layer}」不在 layers 裡`);
+  // 運作動畫（actions）：type、指到的零件／層／標註點／色票要存在
+  const partIds = new Set((m.parts ?? []).map((p) => p.id).filter(Boolean)), acts = m.actions ?? {};
+  const ptOk = (pt, d) => Array.isArray(pt) ? (d.layer ? layers.has(d.layer) : false) : pt && layers.has(pt.layer) && Array.isArray(pt.p);
+  for (const [k, d] of Object.entries(acts)) {
+    const tag = `model.actions「${k}」`;
+    if (!ACTION_TYPES.includes(d.type)) { E(`${tag} type「${d.type}」不存在（${ACTION_TYPES.join("／")}）`); continue; }
+    if (d.layer && !layers.has(d.layer)) E(`${tag} layer「${d.layer}」不在 layers 裡`);
+    if (["vibrate", "rotate", "pulse"].includes(d.type)) { if (!Array.isArray(d.parts) || !d.parts.length) E(`${tag} 要有 parts（作用在哪些零件的 id）`); for (const pid of d.parts ?? []) if (!partIds.has(pid)) E(`${tag} parts「${pid}」不在 model.parts 的 id 裡`); }
+    if (d.type === "flow") { if (!Array.isArray(d.path) || d.path.length < 2) E(`${tag} path 至少兩個點`); else d.path.forEach((pt, i) => { if (!ptOk(pt, d)) E(`${tag} path[${i}] 要是 [x, y, z]（加上動作的 layer）或 { layer, p }`); }); }
+    if (d.type === "wave" && !ptOk(d.from, d)) E(`${tag} from 要是 [x, y, z]（加上動作的 layer）或 { layer, p }`);
+    if ((d.type === "trace" || d.type === "sum") && !d.hidden) for (const q of ["from", "to"]) if (!ptOk(d[q], d)) E(`${tag} ${q} 要是 [x, y, z]（加上動作的 layer）或 { layer, p }；只給儀表用的波形寫 hidden: true`);
+    if (d.type === "sum") { if (!Array.isArray(d.of) || d.of.length < 2) E(`${tag} of 要列至少兩道 trace`); for (const t of d.of ?? []) if (acts[t]?.type !== "trace") E(`${tag} of「${t}」不是 trace`); }
+    if (d.type === "meter") {
+      if (!(m.anchors ?? {})[d.anchor]) E(`${tag} anchor「${d.anchor}」不在 model.anchors 裡`);
+      if (d.kind && !["bar", "wave"].includes(d.kind)) E(`${tag} kind「${d.kind}」不存在（bar／wave）`);
+      if (d.source && !acts[d.source]) E(`${tag} source「${d.source}」不在 actions 裡`);
+      for (const t of d.traces ?? []) if (!["trace", "sum"].includes(acts[t]?.type)) E(`${tag} traces「${t}」不是 trace／sum`);
+      if (d.accent && !COLORS.includes(d.accent)) E(`${tag} accent「${d.accent}」不存在（${COLORS.join("／")}）`);
+      if (d.label && [...d.label].length > 6) W(`${tag} label「${d.label}」超過 6 字（儀表的標題要短）`);
+    } else if (d.color && !(m.palette ?? {})[d.color] && !/^#/.test(d.color)) E(`${tag} color「${d.color}」不在 palette 裡`);
+  }
   if ((m.parts ?? []).length > 120) W(`model: 零件 ${m.parts.length} 個（軟體渲染下愈多愈慢，先 node scripts/three/bench-fx.mjs 量時間）`);
   return m;
 }
 
 const AT_BASE = ["start", "voice", "end", "exit"];
-const COLORS = ["amber", "blue", "coral", "mint"];
 
 export function validateThree(script, h) {
   const errors = [], warns = [];
@@ -88,6 +110,14 @@ export function validateThree(script, h) {
     };
     walk(s.props ?? {}, "props");
     for (const k of THERMAL_FX) if (s.props?.[k] && !model?.thermal) E(`${tag}: props.${k} 是熱循環特效，model 要有 thermal`);
+    // 運作動畫的觸發：id 要在 model.actions 裡；speed／gain 是倍率
+    for (const r of [].concat(s.props?.run ?? [])) {
+      if (!model?.actions?.[r.id]) E(`${tag}: props.run 的 id「${r.id}」不在 model.actions 裡（${Object.keys(model?.actions ?? {}).join("／") || "model 沒有 actions"}）`);
+      if (!r.at) E(`${tag}: props.run「${r.id}」要有 at（由哪個 cue 觸發）`);
+      for (const k of ["speed", "gain", "ramp"]) if (r[k] !== undefined && !(typeof r[k] === "number" && r[k] >= 0)) E(`${tag}: props.run「${r.id}」的 ${k} 要是 ≥0 的數字`);
+    }
+    for (const c of [].concat(s.props?.shot ?? [])) { if (!c.at) E(`${tag}: props.shot 要有 at`); for (const k of ["d", "elev", "y", "x", "yaw", "dur"]) if (c[k] !== undefined && typeof c[k] !== "number") E(`${tag}: props.shot.${k} 要是數字`); }
+    for (const c of [].concat(s.props?.shift ?? [])) { if (!c.at) E(`${tag}: props.shift 要有 at`); if (c.opacity !== undefined && !(c.opacity >= 0 && c.opacity <= 1)) E(`${tag}: props.shift.opacity 要在 0–1`); }
     if ((s.props?.labels ?? []).length > 2) W(`${tag}: 一幕新增的標籤建議 ≤2 個`);
     if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 24; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
   });

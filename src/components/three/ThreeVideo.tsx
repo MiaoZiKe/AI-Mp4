@@ -8,8 +8,8 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, accent3D } from "../../theme";
 import type * as THREE from "three";
 import { EASE, seeded, tween } from "../anim";
-import { buildModel, cameraFor, projectPoint, stateAt, type Label3D, type Model3D, type State3D } from "./engine";
-import { fxOf, type Fx, type ProductModel } from "./model";
+import { buildModel, cameraFor, projectPoint, signalLevel, signalVal, stateAt, type Label3D, type Model3D, type State3D } from "./engine";
+import { col, fxOf, type Fx, type ProductModel } from "./model";
 import { ProductScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
 
@@ -166,6 +166,49 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number; fx: Fx }> = ({ m, s,
   );
 };
 
+/** 運作動畫的小儀表（actions 裡 type: "meter"）：釘在標註點旁邊的小卡。bar＝音量條（跟著 source 的大小）、wave＝小波形（畫 traces 列的幾道波） */
+const Meters: React.FC<{ m: Model3D; s: State3D }> = ({ m, s }) => {
+  const cam = useMemo(() => cameraFor(s), [s]);
+  const pr = m.product, O = T.ops;
+  return (
+    <>
+      {Object.entries(pr.actions ?? {}).map(([id, d]) => {
+        const op = s.ops[id], an = pr.anchors[d.anchor ?? ""];
+        if (d.type !== "meter" || !op || !an || op.k <= 0.01) return null;
+        const p = projectPoint(s, cam, an.layer, an.p), c = accent3D(d.accent), W = d.w ?? 250, left = an.dx < 0;
+        const x = left ? Math.max(L.X + W + 44, p.x + an.dx) : Math.min(L.W - L.X - W - 44, p.x + an.dx), y = p.y + an.dy;
+        const lv = d.source ? signalLevel(pr, s, d.source) : op.g, H = 104, N = 40;
+        return (
+          <React.Fragment key={id}>
+            <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, opacity: op.k }}>
+              <path d={`M${p.x.toFixed(1)} ${p.y.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}`} stroke={T.ink} strokeWidth={4} strokeLinecap="round" />
+              <circle cx={p.x} cy={p.y} r={9} fill={c.fill} stroke={T.ink} strokeWidth={4} />
+            </svg>
+            <div style={{ position: "absolute", left: px(x), top: px(y), opacity: op.k, transform: `translate(${left ? "-100%" : "0"}, -50%) scale(${(0.9 + 0.1 * op.k).toFixed(3)})`, transformOrigin: left ? "100% 50%" : "0 50%", background: T.panel, border: `4px solid ${T.ink}`, borderRadius: T.radius.chip, padding: "8px 18px 12px", boxShadow: T.cardShadow, width: W }}>
+              {d.label ? <div style={{ ...zh(40, T.weight.zh, c.text), lineHeight: 1.3, letterSpacing: "0.04em" }}>{d.label}</div> : null}
+              {d.kind === "wave" ? (
+                <svg width={W} height={H} style={{ display: "block", marginTop: 4 }}>
+                  <line x1={0} x2={W} y1={H / 2} y2={H / 2} stroke={T.line} strokeWidth={3} />
+                  {(d.traces ?? []).map((tid) => {
+                    const td = pr.actions?.[tid], amp = td?.type === "sum" ? pr.actions?.[td.of?.[0] ?? ""]?.amp ?? 0.5 : td?.amp ?? 0.5;
+                    if (!td || !s.ops[tid]) return null;
+                    const pts = Array.from({ length: N + 1 }, (_, i) => `${((i / N) * W).toFixed(1)},${(H / 2 - (signalVal(pr, s, tid, i / N) / amp) * (H / 2 - 8)).toFixed(1)}`).join(" ");
+                    return <polyline key={tid} points={pts} fill="none" stroke={col(pr, td.color ?? T.ink)} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" opacity={s.ops[tid].k} />;
+                  })}
+                </svg>
+              ) : (
+                <div style={{ position: "relative", height: 30, marginTop: 8, background: T.line, borderRadius: T.radius.pill, overflow: "hidden" }}>
+                  <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * Math.max(O.meterMin, lv)).toFixed(1)}%`, background: c.fill, borderRadius: T.radius.pill }} />
+                </div>
+              )}
+            </div>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+};
+
 /** 3D 舞台（1080×990，頁首下面到字幕卡上面） */
 const Stage: React.FC<{ s: State3D; model: ProductModel }> = ({ s, model }) => {
   const fx = fxOf(model);
@@ -195,6 +238,7 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
       <Stage s={s} model={m.product} />
       <Hook m={m} f={f} />
       <Labels m={m} s={s} f={f} fx={fx} />
+      {m.product.actions ? <Meters m={m} s={s} /> : null}
       <Caption3D cues={subCues} />
       <Source3D cues={srcCues} />
       <Header3D name={channel?.name ?? "科技"} tag={channel?.tag ?? "拆開來看"} total={timeline.totalFrames} />

@@ -13,7 +13,7 @@
 - 口語白話，旁白一句 15–25 字
 - 專有名詞出現時，馬上用一句話解釋
 - 一幕只講一件事
-- 旁白寫成「對一個朋友講話時真的會說出口的字」（`docs/voice-natural.md`）：開頭有進場的字（欸、我跟你說）、句尾適量語助詞（啊、啦、喔、齁，大約每 15–25 字一個）、長短句交錯、可以半句話和自問自答（「有四塊。哪四塊？」）；不寫對稱排比、不用冒號帶條列、真人不會停的逗號拿掉。口語化不能改動事實與「已確定／分析預期／尚未確定」的分寸
+- 旁白寫成「對一個人講話時真的會說出口的字」（`docs/voice-natural.md`）：長短句交錯、可以半句話和自問自答（「有四塊。哪四塊？」）；不寫對稱排比、不用冒號帶條列、真人不會停的逗號拿掉。**語助詞多寡依頻道**：AI 教學＝親和專業（懂行又好相處的前輩在解釋；不用欸、蛤、齁、耶、嘛、啦，只留其實、所以、你會發現、我們來看這類連接，句尾的喔、呢全片最多一兩個）；談晴說礙＝輕聲聊天（開頭有進場的字，句尾語助詞大約每 15–25 字一個）；其他頻道在兩者之間，照 voice-natural.md 的分級。口語化不能改動事實與「已確定／分析預期／尚未確定」的分寸
 - 時事題材必須上網查證，不依賴訓練資料；區分「已確定／分析預期／尚未確定」，未定者標示「截至 YYYY/M/D 尚未確定」
 - 政治題材保持中立，不給投資建議（談市場用「分析師普遍認為…」）
 
@@ -75,6 +75,7 @@
   - `stage: "ui"`（AI 教學，仿介面動畫）：`src/components/ui/`，每幕 `component: "UiScene"`；token＝`THEME_UI`／`LAYOUT_UI`；檢查 `scripts/ui/validate-ui.mjs`；樣片 `videos/sample-ai-ui/`。自製聊天視窗、游標、打字、流程節點，不用真實產品介面。
   - `stage: "chat"`（感情，對話泡泡）：`src/components/chat/`，每幕 `component: "ChatScene"`，`props.events`＝`bubble｜compose｜read｜typing｜card｜stat｜react`；token＝`THEME_CHAT`／`LAYOUT_CHAT`；檢查 `scripts/chat/validate-chat.mjs`，音效 `scripts/chat/sfx.mjs`；樣片 `videos/sample-love-chat/`。畫面要標「情境示意，非真實對話」，不仿真實通訊軟體。
   - `stage: "three"`（科技，3D 產品台）：`src/components/three/`，每幕 `component: "ThreeScene"`（`spin`、`explode`、`labels`、`focus`、`sweep`…）；**產品模型是資料**：零件清單（形狀、尺寸、材質、所在層、標註點）寫在 `videos/<slug>/model.json`，引擎讀資料建模，換產品不改引擎；資料格式、可用的形狀／材質／特效／鏡頭動作與每種效果的渲染成本見 `docs/three-stage.md`。token＝`THEME_3D`／`LAYOUT_3D`（特效開關 `THEME_3D.fx`）；檢查 `scripts/three/validate-three.mjs`；量成本 `node scripts/three/bench-fx.mjs <slug>`；樣片 `videos/sample-tech-3d/`。
+    - **運作動畫**（不只拆解，還演「東西實際怎麼運作」）：動作的定義也是資料，寫在 `model.json` 的 `actions`（八種 type：`vibrate` 零件振動／往復、`rotate` 旋轉件、`pulse` 零件發光脈衝、`flow` 沿路徑流動的光點或箭頭、`wave` 往外擴散的聲波圈、`trace` 行進波形、`sum` 幾道波疊加相消、`meter` 跟著數值動的小儀表），每幕用 `props.run: [{ id, at, until?, speed?, gain? }]` 由 cue 觸發；另有 `props.shot`（鏡頭關鍵格，跟著訊號走）與 `props.shift`（把某一層變透明或移開）。程式在 `src/components/three/Ops.tsx`，線寬與不透明度在 `THEME_3D.ops`；寫法、範例與每種成本見 `docs/three-stage.md`「運作動畫怎麼寫」，量成本 `node scripts/three/bench-fx.mjs <slug> --ops`；樣片 `videos/sample-tech-anc/`（耳機主動降噪，拆解只佔約三分之一）。運作動畫都是示意，出處列要寫「波形是示意，不是量測」，儀表不標沒查證的數字。
   - `stage: "chart"`（股票，資料圖表主導）：`src/components/chartlead/`，每幕 `component: "ChartScene"`，資料寫在頂層 `chart`；token＝`THEME_CHARTLEAD`／`LAYOUT_CHARTLEAD`；檢查 `scripts/chartlead/validate-chart.mjs`；樣片 `videos/sample-stock-chart/`。只畫查證過的資料點，紅色代表上漲（台股習慣），不給投資建議。
 - 共同規則：元件不寫死色碼；事件的 `at` 只寫 cue id 或 `start｜voice｜end｜exit` 加減幾幀，不手填秒數；不出現真實商標與真人；這四種可以用淡入淡出（紙拼貼的「不用透明度」規則只管沒有 `stage` 的 v3）。
 - **3D 只開放給科技頻道**（使用者已同意）：全專案只有 `src/components/three/` 可以 import three.js／`@remotion/three`（validate 會擋其他資料夾）；v2、紙拼貼與其他 `stage` 仍禁止 3D。模型用基本形狀自己建，不畫真實商標、不仿特定機型。
@@ -112,7 +113,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
 - **配音前先定旁白設定檔**（`docs/voice-profiles.md`）：script.json 的 `voice.profile` 寫預設檔名字（`tech｜stock｜love｜ai`，在 `scripts/voice-profiles.json`）、`{ preset, …要改的欄位 }` 或整份自己寫；欄位＝`persona`（誰在講、對誰講）、`gender`、`accent`（固定「台灣華語」）、`pace`（目標音節/秒範圍）、`tone`、`arc`（起／承／轉／合各一句情緒指示）、`englishTerms`（英文詞與標準念法）、`avoid`。`tts-take.mjs` 用 `scripts/voice-profile.mjs` 把它組成「導演筆記」說明（只描述說話方式，**不放任何像台詞的句子、不引用稿子**，會被念出來）並送 `speechConfig.languageCode: "cmn-TW"`（模型不收就自動拿掉，之後寫 `voice.languageCode: "off"`）。各段情緒只能給整篇走向（Arc 一行），不能逐句控制；3.x 系列會把說明念出來，只送念稿與 languageCode。沒有 `voice.profile` 的舊片照舊用 `voice.style`，請求與快取不變。
 - 台灣口音與用語：口音句固定（台北人平常講話的台灣華語、捲舌輕帶、不兒化、詞尾不念輕聲；中文英文都要標準，英文用標準美式發音完整念出來），各片不改；提示不寫「咬字清楚、字正腔圓」（會推向播音腔）。稿子禁用中國用語與兒化（視頻、信息、軟件、質量、這兒…；清單在 `voice-profile.mjs` 的 `CN_TERMS`，validate 對念稿與字幕警告）；新聞題材也寫成「講給朋友聽」的句子，不寫新聞稿體。
-- 旁白要像聊天不要像演講（`docs/voice-natural.md`）：設定檔寫情境（誰、在哪裡、只對一個朋友講），不寫清楚、專業、沉穩、明快、俐落這類形容詞，也不在提示裡要求「快、不要停」；新片加 `delivery: "chat"`（換掉會導向朗讀的固定句）與 `scene`（各頻道的句子在 `voice-profiles.json` 的 `_chat`）。後製不把句間停頓壓成等距（要趕時間就刪字，不調 `ALIGN_GAP_MAX`）；句號停頓要比逗號長。換稿試聽用 `tts-take.mjs --audition=<名字> --script=<另一份稿.json>`。
+- 旁白不要像演講，也不要太輕浮（`docs/voice-natural.md`）：設定檔寫情境（誰、在哪裡、只對一個人講），不寫清楚、專業、沉穩、明快、俐落這類形容詞，也不在提示裡要求「快、不要停」；新片加 `delivery` 與 `scene`，**說話方式依頻道**：AI 教學＝`delivery: "warm-pro"`（親和專業，`ai` 預設檔已內建：茶水間帶同事／帶新人上手，句子講完整、不拖尾音）；談晴說礙等輕聲聊天的頻道＝`delivery: "chat"`（各頻道的場景句在 `voice-profiles.json` 的 `_chat`）。後製不把句間停頓壓成等距（要趕時間就刪字，不調 `ALIGN_GAP_MAX`）；句號停頓要比逗號長。換稿試聽用 `tts-take.mjs --audition=<名字> --script=<另一份稿.json>`；要給使用者在網頁版試聽的整段提示詞用 `node scripts/voice-prompts.mjs`（寫到 `docs/voice-prompts-full.md`，不送請求）。
 - 音色依頻道與內容選，**不限男性**（感情頻道預設女聲）；**每個新音色或新頻道第一次用，先做試聽給使用者聽過再整篇配音**：`node scripts/tts-take.mjs <slug> --audition=<名字> --upto=<幕id> --voice=<音色> [--profile=<預設檔>] [--out=out/voice-audition-v2]`（一次請求、不動正式音檔），比較表寫在 `docs/voice-audition-v2.md` 這一類文件。口音只有人耳能判斷；`scripts/voice-retro.py`（ㄓㄔㄕ 與 ㄗㄘㄙ 擦音重心差距）只是輔助數字。
 - 語速要讓模型自己念到 `pace` 範圍；**後製加速（atempo）上限 1.08，超過就重配（改稿或改設定檔），不硬加速**。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）

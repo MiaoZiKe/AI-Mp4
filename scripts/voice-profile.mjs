@@ -29,18 +29,21 @@ export function resolveProfile(voice) {
   return p;
 }
 
-/** delivery: "chat"（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換成「跟朋友講話」版；沒寫就和以前完全一樣 */
-export const DELIVERIES = ["chat"];
+/** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
+ * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間） */
+export const DELIVERIES = ["chat", "warm-pro"];
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
 export function buildDirection(profile) {
   const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, ...(profile.scene ? ["", "# SCENE", `${one(profile.scene)}。`] : []), "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
-  const chat = profile.delivery === "chat";
+  const chat = profile.delivery === "chat", warm = profile.delivery === "warm-pro";
   if (chat && Array.isArray(profile.pace)) L.push(`Pacing: 跟朋友講話的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。想到哪講到哪：有的地方一口氣帶過去，有的地方想一下才接下去；停頓有長有短，逗號不一定要停。`);
+  else if (warm && Array.isArray(profile.pace)) L.push(`Pacing: 當面跟同事解釋事情的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。一句一句講完整，步驟和步驟之間自然停一下，講到數字稍微慢一點；停頓有長有短，不用每一句都一樣。`);
   else if (Array.isArray(profile.pace)) L.push(`Pacing: 像平常講話的速度，大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字；有快有慢，重點前面留一口氣，句子講完才換氣。`);
   const arc = ARC_KEYS.filter((k) => profile.arc?.[k]).map((k) => `${ARC_WHERE[k]}${one(profile.arc[k])}`);
   if (arc.length) L.push(`Arc: 整篇的情緒依內容走：${arc.join("；")}。`);
   const en = Object.entries(profile.englishTerms ?? {}).map(([k, v]) => `${k}（${one(v)}）`);
   if (chat) L.push(`Articulation: 平常講話的咬字就好，虛字和語助詞輕輕帶過，不用每個字都一樣重；句尾不用每一句都收得很乾淨。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
+  else if (warm) L.push(`Articulation: 平常講話的咬字，虛字輕輕帶過；句子講完整，句尾自然收住，不拖長、不往上飄。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   else L.push(`Articulation: 每個字都講得出來，但是像平常講話，不是朗讀。${ENGLISH_STD}${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");

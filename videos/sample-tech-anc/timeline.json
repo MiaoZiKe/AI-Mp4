@@ -1,0 +1,716 @@
+{
+ "version": 2,
+ "slug": "sample-tech-anc",
+ "fps": 30,
+ "totalFrames": 577,
+ "totalSec": 19.23,
+ "gapSec": 0.25,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.25,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 105,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 97,
+   "stillFrame": 95,
+   "subtitleWindow": [
+    0,
+    101
+   ],
+   "sourceWindow": [
+    0,
+    100
+   ],
+   "lines": [
+    {
+     "text": "降噪耳機會安靜",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      21,
+      26,
+      32,
+      38
+     ]
+    },
+    {
+     "text": "是因為它也在出聲",
+     "start": 48,
+     "chars": [
+      50,
+      56,
+      61,
+      67,
+      73,
+      78,
+      84,
+      90
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "出聲",
+     "start": 84
+    }
+   ],
+   "cues": [
+    {
+     "id": "anc",
+     "text": "降噪",
+     "frame": 5
+    },
+    {
+     "id": "sound",
+     "text": "出聲",
+     "frame": 85
+    }
+   ],
+   "sub": "降噪耳機會安靜\n是因為它也在出聲",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.55,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 104,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 95,
+   "durationFrames": 104,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 104,
+   "voiceEndFrame": 191,
+   "stillFrame": 189,
+   "subtitleWindow": [
+    101,
+    194
+   ],
+   "sourceWindow": [
+    100,
+    194
+   ],
+   "lines": [
+    {
+     "text": "拆開看",
+     "start": 101,
+     "chars": [
+      103,
+      108,
+      113
+     ]
+    },
+    {
+     "text": "關鍵是麥克風",
+     "start": 122,
+     "chars": [
+      124,
+      130,
+      135,
+      140,
+      145,
+      151
+     ]
+    },
+    {
+     "text": "晶片和喇叭",
+     "start": 160,
+     "chars": [
+      162,
+      167,
+      173,
+      178,
+      183
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "麥克風",
+     "start": 140
+    },
+    {
+     "text": "晶片",
+     "start": 162
+    },
+    {
+     "text": "喇叭",
+     "start": 178
+    }
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開",
+     "frame": 104
+    },
+    {
+     "id": "mic",
+     "text": "麥克風",
+     "frame": 142
+    },
+    {
+     "id": "chip",
+     "text": "晶片",
+     "frame": 164
+    },
+    {
+     "id": "spk",
+     "text": "喇叭",
+     "frame": 179
+    }
+   ],
+   "sub": "拆開看\n關鍵是麥克風\n晶片和喇叭",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.174,
+    0.348,
+    0.732,
+    0.906,
+    1.08,
+    1.254,
+    1.429,
+    1.603,
+    1.986,
+    2.16,
+    2.334,
+    2.509,
+    2.683
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 198,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 189,
+   "durationFrames": 84,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 197,
+   "voiceEndFrame": 265,
+   "stillFrame": 263,
+   "subtitleWindow": [
+    194,
+    269
+   ],
+   "sourceWindow": [
+    194,
+    268
+   ],
+   "lines": [
+    {
+     "text": "外面的噪音",
+     "start": 194,
+     "chars": [
+      197,
+      202,
+      208,
+      213,
+      219
+     ]
+    },
+    {
+     "text": "麥克風先收到",
+     "start": 229,
+     "chars": [
+      231,
+      236,
+      242,
+      247,
+      253,
+      258
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "噪音",
+     "start": 213
+    },
+    {
+     "text": "麥克風",
+     "start": 231
+    }
+   ],
+   "cues": [
+    {
+     "id": "noise",
+     "text": "噪音",
+     "frame": 215
+    },
+    {
+     "id": "mic",
+     "text": "麥克風",
+     "frame": 232
+    }
+   ],
+   "sub": "外面的噪音\n麥克風先收到",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.736,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 272,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 263,
+   "durationFrames": 97,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 272,
+   "voiceEndFrame": 352,
+   "stillFrame": 350,
+   "subtitleWindow": [
+    269,
+    356
+   ],
+   "sourceWindow": [
+    268,
+    355
+   ],
+   "lines": [
+    {
+     "text": "訊號送進晶片",
+     "start": 269,
+     "chars": [
+      271,
+      276,
+      282,
+      287,
+      293,
+      299
+     ]
+    },
+    {
+     "text": "算出相反的波形",
+     "start": 309,
+     "chars": [
+      311,
+      316,
+      322,
+      328,
+      333,
+      339,
+      344
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "晶片",
+     "start": 293
+    },
+    {
+     "text": "相反",
+     "start": 322
+    }
+   ],
+   "cues": [
+    {
+     "id": "sig",
+     "text": "訊號",
+     "frame": 272
+    },
+    {
+     "id": "chip",
+     "text": "晶片",
+     "frame": 294
+    },
+    {
+     "id": "inv",
+     "text": "相反",
+     "frame": 324
+    }
+   ],
+   "sub": "訊號送進晶片\n算出相反的波形",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 359,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 350,
+   "durationFrames": 98,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 359,
+   "voiceEndFrame": 440,
+   "stillFrame": 438,
+   "subtitleWindow": [
+    356,
+    443
+   ],
+   "sourceWindow": [
+    355,
+    443
+   ],
+   "lines": [
+    {
+     "text": "振膜一振動",
+     "start": 356,
+     "chars": [
+      358,
+      363,
+      369,
+      374,
+      380
+     ]
+    },
+    {
+     "text": "反相聲波送進耳道",
+     "start": 390,
+     "chars": [
+      392,
+      398,
+      403,
+      409,
+      415,
+      420,
+      426,
+      431
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "振動",
+     "start": 374
+    },
+    {
+     "text": "反相聲波",
+     "start": 392
+    }
+   ],
+   "cues": [
+    {
+     "id": "cone",
+     "text": "振膜",
+     "frame": 359
+    },
+    {
+     "id": "wave",
+     "text": "反相",
+     "frame": 394
+    },
+    {
+     "id": "ear",
+     "text": "耳道",
+     "frame": 427
+    }
+   ],
+   "sub": "振膜一振動\n反相聲波送進耳道",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    1.158,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 447,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 438,
+   "durationFrames": 84,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 446,
+   "voiceEndFrame": 514,
+   "stillFrame": 512,
+   "subtitleWindow": [
+    443,
+    518
+   ],
+   "sourceWindow": [
+    443,
+    517
+   ],
+   "lines": [
+    {
+     "text": "兩道波疊在一起",
+     "start": 443,
+     "chars": [
+      446,
+      451,
+      457,
+      462,
+      468,
+      473,
+      479
+     ]
+    },
+    {
+     "text": "剛好抵消",
+     "start": 489,
+     "chars": [
+      491,
+      496,
+      502,
+      507
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "抵消",
+     "start": 502
+    }
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "兩道",
+     "frame": 447
+    },
+    {
+     "id": "stack",
+     "text": "疊",
+     "frame": 464
+    },
+    {
+     "id": "cancel",
+     "text": "抵消",
+     "frame": 503
+    }
+   ],
+   "sub": "兩道波疊在一起\n剛好抵消",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.736,
+    0.92,
+    1.104,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 521,
+   "audioSec": 1.224,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 512,
+   "durationFrames": 65,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 521,
+   "voiceEndFrame": 559,
+   "stillFrame": 565,
+   "subtitleWindow": [
+    518,
+    577
+   ],
+   "sourceWindow": [
+    517,
+    577
+   ],
+   "lines": [
+    {
+     "text": "你只聽到安靜",
+     "start": 518,
+     "chars": [
+      520,
+      526,
+      532,
+      538,
+      544,
+      550
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "安靜",
+     "start": 544
+    }
+   ],
+   "cues": [
+    {
+     "id": "quiet",
+     "text": "安靜",
+     "frame": 545
+    }
+   ],
+   "sub": "你只聽到安靜",
+   "provider": "estimate",
+   "syllables": 6,
+   "words": [],
+   "charTimes": [
+    0,
+    0.204,
+    0.408,
+    0.612,
+    0.816,
+    1.02
+   ]
+  }
+ ]
+}

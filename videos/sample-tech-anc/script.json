@@ -1,0 +1,146 @@
+{
+  "slug": "sample-tech-anc",
+  "title": "降噪耳機怎麼把噪音抵消掉？（科技頻道試片：3D 產品台＋運作動畫）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": { "name": "科技", "tag": "拆開來看", "slogan": "一支講透一件事" },
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": { "preset": "tech", "delivery": "warm-pro", "pace": [4.6, 5], "scene": "公司的實驗桌旁，工程師把拆開的耳機放在桌上，指著零件講給隔壁部門的同事聽，旁邊沒有別人在聽" }
+  },
+  "cover": { "title": ["降噪", "靠出聲？"], "sub": "看它怎麼把噪音抵消" },
+  "scenes": [
+    {
+      "id": "s1", "beat": "hook", "para": 1,
+      "narration": "降噪耳機會安靜，是因為它也在出聲。",
+      "subtitle": { "zh": "降噪耳機會安靜\n是因為它也在出聲", "en": "Noise-cancelling earbuds get quiet | because they make sound too." },
+      "keywords": ["出聲"],
+      "cues": [ { "id": "anc", "text": "降噪" }, { "id": "sound", "text": "出聲" } ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": { "title": "降噪靠出聲？" },
+        "spin": { "at": "start+0", "until": "exit" }
+      },
+      "sources": []
+    },
+    {
+      "id": "s2", "beat": "mechanism", "para": 1,
+      "narration": "拆開看，關鍵是麥克風、晶片和喇叭。",
+      "subtitle": { "zh": "拆開看\n關鍵是麥克風\n晶片和喇叭", "en": "Open it up: | the key parts are a mic, | a chip and a speaker." },
+      "keywords": ["麥克風", "晶片", "喇叭"],
+      "cues": [ { "id": "open", "text": "拆開" }, { "id": "mic", "text": "麥克風" }, { "id": "chip", "text": "晶片" }, { "id": "spk", "text": "喇叭" } ],
+      "component": "ThreeScene",
+      "props": {
+        "explode": { "at": "open-6" },
+        "labels": [
+          { "part": "mic", "text": "麥克風", "color": "amber", "at": "mic", "until": "s4:sig-2" },
+          { "part": "chip", "text": "晶片", "color": "coral", "at": "chip", "until": "s5:cone-6" },
+          { "part": "speaker", "text": "喇叭單體", "color": "blue", "at": "spk", "until": "s3:mic" }
+        ]
+      },
+      "sources": ["示意模型，非特定機型；零件形狀與位置各家不同"]
+    },
+    {
+      "id": "s3", "beat": "mechanism", "para": 2,
+      "narration": "外面的噪音，麥克風先收到。",
+      "subtitle": { "zh": "外面的噪音\n麥克風先收到", "en": "Outside noise | reaches the microphone first." },
+      "keywords": ["噪音", "麥克風"],
+      "cues": [ { "id": "noise", "text": "噪音" }, { "id": "mic", "text": "麥克風" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "start+0", "d": 27, "elev": 27, "y": 7.0, "dur": 26 },
+        "shift": { "layer": "shell", "at": "mic-12", "opacity": 0.14, "dz": 0.8 },
+        "run": [
+          { "id": "noiseIn", "at": "noise-4", "until": "s4:chip" },
+                    { "id": "micPulse", "at": "mic-2", "until": "s4:chip+8" }
+        ],
+        "labels": [ { "part": "noiseSrc", "text": "噪音", "color": "coral", "at": "noise", "until": "s4:sig-2" } ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+    },
+    {
+      "id": "s4", "beat": "mechanism", "para": 2,
+      "narration": "訊號送進晶片，算出相反的波形。",
+      "subtitle": { "zh": "訊號送進晶片\n算出相反的波形", "en": "The signal goes to the chip, | which computes the opposite waveform." },
+      "keywords": ["晶片", "相反"],
+      "cues": [ { "id": "sig", "text": "訊號" }, { "id": "chip", "text": "晶片" }, { "id": "inv", "text": "相反" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "sig-10", "d": 17, "elev": 36, "y": 5.3, "dur": 24 },
+        "run": [
+          { "id": "sigIn", "at": "sig-3", "until": "s5:cone" },
+          { "id": "mIn", "at": "sig" },
+          { "id": "chipPulse", "at": "chip", "until": "s5:wave" },
+          { "id": "chipScope", "at": "chip+4", "until": "s5:cone-4" },
+          { "id": "mOut", "at": "inv-2", "ramp": 14 }
+        ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+    },
+    {
+      "id": "s5", "beat": "twist", "para": 2,
+      "narration": "振膜一振動，反相聲波送進耳道。",
+      "subtitle": { "zh": "振膜一振動\n反相聲波送進耳道", "en": "The diaphragm vibrates, | sending an inverted wave into the ear canal." },
+      "keywords": ["振動", "反相聲波"],
+      "cues": [ { "id": "cone", "text": "振膜" }, { "id": "wave", "text": "反相" }, { "id": "ear", "text": "耳道" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          { "at": "start+0", "d": 24, "elev": 28, "y": 2.4, "dur": 26 },
+          { "at": "wave-2", "d": 30, "elev": 24, "y": -3.2, "dur": 34 }
+        ],
+        "shift": { "layer": "battery", "at": "start+0", "opacity": 0.12 },
+        "run": [
+          { "id": "sigOut", "at": "start+2", "until": "s6:two" },
+          { "id": "cone", "at": "cone-2" },
+          { "id": "antiWave", "at": "wave-6", "until": "s6:stack" },
+          { "id": "tNoise", "at": "wave-6", "ramp": 14 },
+          { "id": "tAnti", "at": "ear-8", "ramp": 14 }
+        ],
+        "labels": [
+          { "part": "speaker", "text": "振膜", "color": "blue", "at": "cone", "until": "s6:two-8" },
+          { "part": "antiOut", "text": "反相聲波", "color": "blue", "at": "wave+4", "until": "s6:two-8" }
+        ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+    },
+    {
+      "id": "s6", "beat": "payoff", "para": 3,
+      "narration": "兩道波疊在一起，剛好抵消，",
+      "subtitle": { "zh": "兩道波疊在一起\n剛好抵消", "en": "The two waves overlap | and cancel out," },
+      "keywords": ["抵消"],
+      "cues": [ { "id": "two", "text": "兩道" }, { "id": "stack", "text": "疊" }, { "id": "cancel", "text": "抵消" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "two-10", "d": 14, "elev": 16, "y": -5.7, "yaw": -0.5, "dur": 26 },
+        "shift": [ { "layer": "housing", "at": "two-10", "opacity": 0 }, { "layer": "driver", "at": "two-10", "opacity": 0 } ],
+        "run": [
+          { "id": "tSum", "at": "stack-4" },
+          { "id": "earLevel", "at": "stack" }
+        ],
+        "labels": [
+          { "part": "earNoise", "text": "噪音", "color": "coral", "at": "two" },
+          { "part": "earAnti", "text": "反相聲波", "color": "blue", "at": "two+8" },
+          { "part": "earSum", "text": "互相抵消", "color": "mint", "at": "cancel" }
+        ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+    },
+    {
+      "id": "s7", "beat": "payoff", "para": 3,
+      "narration": "你只聽到安靜。",
+      "subtitle": { "zh": "你只聽到安靜", "en": "so all you hear is quiet." },
+      "keywords": ["安靜"],
+      "cues": [ { "id": "quiet", "text": "安靜" } ],
+      "component": "ThreeScene",
+      "props": {
+        "labels": [ { "part": "earSum", "text": "安靜", "color": "mint", "at": "quiet" } ]
+      },
+      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+    }
+  ]
+}

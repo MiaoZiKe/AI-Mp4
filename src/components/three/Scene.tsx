@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { THEME_3D as T } from "../../theme";
 import { cameraFor, mix, type State3D } from "./engine";
+import { Ops, partFxAt, partOps } from "./Ops";
 import { SHADOW_PAD, buildGeo, col, fxOf, makeMaterial, puff, shadowBlob, studioEnv, type Fx, type PartDef, type ProductModel } from "./model";
 
 /** 相機跟著狀態走（和標籤投影用同一組數字）；霧的遠近也跟著鏡頭距離 */
@@ -30,22 +31,25 @@ const Rig: React.FC<{ s: State3D; fx: Fx }> = ({ s, fx }) => {
   return null;
 };
 
-type Built = { p: PartDef; geo: THREE.BufferGeometry; mat: THREE.Material; base: { opacity: number; color: THREE.Color; ei: number } };
+const IDENT = new THREE.Quaternion();
+type Built = { p: PartDef; geo: THREE.BufferGeometry; mat: THREE.Material; base: { opacity: number; color: THREE.Color; ei: number; em: THREE.Color } };
 
 export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s }) => {
   const fx = useMemo(() => fxOf(model), [model]);
   const th = model.thermal;
   // 每個零件一份幾何；材質依「層／材質名／角色」共用（淡出、變熱是整組一起變）
+  // 運作動畫會作用到的零件（vibrate／rotate／pulse）；會發光的零件要有自己的材質
+  const pops = useMemo(() => partOps(model), [model]);
   const built = useMemo(() => {
     const mats = new Map<string, THREE.Material>();
     return model.parts.map((p): Built => {
-      const key = `${p.layer}/${p.mat}/${p.role ?? ""}`;
+      const key = `${p.layer}/${p.mat}/${p.role ?? ""}${p.id && pops.get(p.id)?.some(([, d]) => d.type === "pulse") ? `/${p.id}` : ""}`;
       let mat = mats.get(key);
       if (!mat) { mat = makeMaterial(model, p.mat, fx, p.role === "heatFloor"); mats.set(key, mat); }
       const sm = mat as THREE.MeshPhongMaterial;
-      return { p, geo: buildGeo(p), mat, base: { opacity: model.materials[p.mat]?.opacity ?? 1, color: sm.color.clone(), ei: sm.emissiveIntensity ?? 0 } };
+      return { p, geo: buildGeo(p), mat, base: { opacity: model.materials[p.mat]?.opacity ?? 1, color: sm.color.clone(), ei: sm.emissiveIntensity ?? 0, em: sm.emissive ? sm.emissive.clone() : new THREE.Color(0) } };
     });
-  }, [model, fx]);
+  }, [model, fx, pops]);
   const fxm = useMemo(() => {
     if (!th) return null;
     const wc = new THREE.Color(col(model, th.water));
@@ -76,7 +80,17 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
     let o = b.base.opacity * (L?.opacity ?? 1);
     if (b.p.role === "lid") o *= lidO;
     if (b.p.role === "xray" || b.p.role === "heatFloor") o *= 1 - T.xray * s.xray;
+    // 有運作動畫的模型：不透明 ↔ 半透明切換時要重編著色器（three 把「不透明」編進著色器裡；連續渲染時同一個分頁會沿用舊的，零件就不會變透明）。
+    // 沒有 actions 的舊片維持原本的行為，畫面不變。
+    if (model.actions && m.transparent !== o < 0.995) m.needsUpdate = true;
     m.opacity = o; m.transparent = o < 0.995; m.depthWrite = o >= 0.995;
+    // 運作動畫 pulse：零件往指定顏色靠並自發光，跟著節拍一亮一暗
+    const pf = b.p.id ? partFxAt(pops.get(b.p.id), s) : null;
+    if (pf && m.emissive) {
+      // 每一幀都從原色算起（同一個分頁不一定照順序渲）
+      m.color.copy(b.base.color); m.emissive.copy(b.base.em); m.emissiveIntensity = b.base.ei;
+      if (pf.color && pf.glow > 0) { tmp.set(col(model, pf.color)); m.color.lerp(tmp, pf.glow * (1 - T.ops.keep)); m.emissive.copy(tmp); m.emissiveIntensity = b.base.ei + pf.glow; }
+    }
     if (b.p.role === "heatSource" && fxm) {
       m.color.copy(b.base.color).lerp(fxm.warm, s.heat * 0.75);
       m.emissive.copy(fxm.hot); m.emissiveIntensity = s.heat * 0.9;
@@ -118,7 +132,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
         const [w, h, cx, cy] = d.outline ?? [model.size.w, model.size.h, 0, 0], k = 1 / (1 - 2 * SHADOW_PAD);
         const lp = T.light.keyPos, g = s.groundY + 0.01;
         const P = new THREE.Matrix4().set(1, -lp[0] / lp[1], 0, (lp[0] / lp[1]) * g, 0, 0, 0, g, 0, -lp[2] / lp[1], 1, (lp[2] / lp[1]) * g, 0, 0, 0, 1);
-        const M = new THREE.Matrix4().makeRotationY(s.yaw).multiply(new THREE.Matrix4().makeRotationX(s.pitch)).multiply(new THREE.Matrix4().makeTranslation(cx, cy, q.z)).multiply(new THREE.Matrix4().makeScale(w * k, h * k, 1));
+        const M = new THREE.Matrix4().makeRotationY(s.yaw).multiply(new THREE.Matrix4().makeRotationX(s.pitch)).multiply(new THREE.Matrix4().makeTranslation(cx + q.x, cy + q.y, q.z)).multiply(new THREE.Matrix4().makeScale(w * k, h * k, 1));
         return <mesh key={`sh-${d.id}`} geometry={flatGeo} matrixAutoUpdate={false} matrix={P.multiply(M)} frustumCulled={false} renderOrder={1}><meshBasicMaterial color={T.part.shadow} map={shadowBlob()} transparent opacity={T.ground.blob * q.opacity} depthWrite={false} side={THREE.DoubleSide} fog={false} toneMapped={false} /></mesh>;
       }) : null}
       <group rotation={[0, s.yaw, 0]}>
@@ -130,9 +144,15 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             if (m.opacity <= 0.01) return null;
             const q = b.p.pos ?? [0, 0, 0], off = b.p.role === "lid" ? lidOff : [0, 0, 0];
             const solid = m.opacity > 0.6 && b.p.shadow !== false;
-            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[q[0] + off[0], q[1] + off[1], (q[2] ?? 0) + L.z + off[2]]} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
+            // 運作動畫：vibrate 加位移；rotate 繞轉軸轉（轉軸預設是零件自己的位置）
+            const pf = b.p.id ? partFxAt(pops.get(b.p.id), s) : null;
+            let px = q[0] + off[0] + L.x + (pf?.off[0] ?? 0), py = q[1] + off[1] + L.y + (pf?.off[1] ?? 0);
+            const pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
+            if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }
+            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[px, py, pz]} quaternion={pf?.quat ?? IDENT} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
           })}
           {sw.on > 0.001 ? <><primitive object={spot} /><primitive object={spot.target} /></> : null}
+          {model.actions ? <Ops model={model} s={s} /> : null}
           {/* 熱循環：熱點的點光、水滴（亮面小球）、蒸氣團與熱浪（柔邊貼圖） */}
           {th && fxm && thL ? (
             <group position={[th.center[0], th.center[1], thL.z + th.floorZ]}>

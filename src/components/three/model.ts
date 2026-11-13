@@ -32,11 +32,35 @@ export type ThermalDef = {
   layer: string; center: [number, number]; size: [number, number]; floorZ: number; hot: [number, number]; lanes: [number, number]; lidTravel: number;
   particles: number; shimmer: number; ramp: string[]; water: string; vapor: string; shimmerColor: string; glow: string; sourceHot: string; sourceWarm: string;
 };
+/** 一個點：[x, y, z]（在該動作的 layer 裡）或 { layer, p }（指定在哪一層；跨層的排線、聲波用） */
+export type Pt = number[] | { layer: string; p: number[] };
+/** 運作動畫（model.json 的 actions；script.json 每幕的 run 用 cue 觸發）。各種 type 用到的欄位見 docs/three-stage.md「運作動畫怎麼寫」 */
+export type ActionDef = {
+  type: "vibrate" | "rotate" | "pulse" | "flow" | "wave" | "trace" | "sum" | "meter";
+  layer?: string; color?: string;
+  /** vibrate／rotate／pulse：作用在哪些零件（parts 的 id） */
+  parts?: string[];
+  /** vibrate：方向、幅度（模型單位）、每秒幾下。rotate：軸、每秒幾圈、轉軸位置（預設零件自己的 pos） */
+  axis?: number[]; amp?: number; freq?: number; rps?: number; pivot?: number[];
+  /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
+  glow?: number; halo?: number; at?: Pt;
+  /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */
+  path?: Pt[]; n?: number; size?: number; shape?: "dot" | "arrow"; rate?: number; track?: boolean;
+  /** wave：從哪裡、往哪個方向、走多遠、同時幾圈、起始半徑、每走 1 單位半徑多多少、線寬、相位（0–1）、張角（度；360＝整圈） */
+  from?: Pt; dir?: number[]; reach?: number; count?: number; r0?: number; spread?: number; width?: number; phase?: number; arc?: number; arcStart?: number;
+  /** trace：from → to 一條線上的行進波；up＝振幅方向、cycles＝線上有幾個波長、invert＝反相、harmonics＝[[倍頻, 相對振幅], …] 讓波形不是單純正弦 */
+  to?: Pt; up?: number[]; cycles?: number; invert?: boolean; harmonics?: number[][]; radius?: number; axisLine?: boolean;
+  /** sum：把哪幾道 trace 加起來；build＝先畫第一道，再用幾幀把其他幾道加進來（看得到振幅縮小的過程）、buildDelay＝等幾幀才開始加 */
+  of?: string[]; build?: number; buildDelay?: number;
+  /** meter（HTML 小儀表）：釘在哪個標註點、bar＝音量條｜wave＝小波形、數值跟著哪個動作、標題、要畫的波形（wave 用） */
+  anchor?: string; kind?: "bar" | "wave"; source?: string; label?: string; traces?: string[]; accent?: string; w?: number;
+};
 export type ProductModel = {
   name?: string; size: { w: number; h: number; r: number; t: number };
   palette: Record<string, string>; materials: Record<string, MatDef>;
   layers: LayerDef[]; parts: PartDef[]; anchors: Record<string, AnchorDef>;
   thermal?: ThermalDef;
+  actions?: Record<string, ActionDef>;
   camera?: Record<string, any>; pose?: Record<string, number>; fx?: Record<string, any>;
 };
 export type Fx = { [K in keyof typeof T.fx]: (typeof T.fx)[K] extends boolean ? boolean : number };

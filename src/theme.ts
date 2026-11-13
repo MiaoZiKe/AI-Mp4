@@ -478,6 +478,8 @@ export const THEME_3D = {
   puff: 0.5,
   /** 微塵光斑：顆數、開場／收尾時與平常的不透明度 */
   dust: { n: 16, peak: 0.75, rest: 0.25, color: "#FFFFFF" },
+  /** 運作動畫（model.json 的 actions）：進出場幀數、軌道線粗細與不透明度、聲波圈線寬與不透明度、波形線粗細、光暈不透明度、發光時零件本色留多少、音量條最短留多少 */
+  ops: { ramp: 8, track: 0.05, trackO: 0.55, ring: 0.09, ringO: 0.85, trace: 0.07, axis: 0.02, axisO: 0.55, halo: 0.6, keep: 0.35, meterMin: 0.03 },
   /** 燈光強度：環境、主燈、補燈 */
   light: { ambient: 1.25, key: 2.5, fill: 0.8, env: 0.9, keyPos: [9, 22, 13] },
   /** 退到背景的零件透明度、地面假陰影透明度 */
@@ -669,4 +671,100 @@ export const LAYOUT_SPLIT = {
   STAGE_TOP: 326, STAGE_BOTTOM: 1296, GAP: 28, PAD: 36,
   CAP_ZH_TOP: 1336, CAP_ZH_PX: 68, CAP_EN_TOP: 1448, CAP_EN_PX: 30,
   SRC_TOP: 1624, SRC_PX: 26,
+} as const;
+
+// ───────────────────────── stage: "bright"：亮色產品發表風（AI 教學頻道風格試片；src/components/ai-bright/） ─────────────────────────
+/** 淺色底＋一個主色（靛藍）＋一個輔色（珊瑚橘）：圓角大卡片、柔和陰影、淡淡的光暈；提示詞與回答是大字卡，不是軟體視窗。元件只讀這裡的 token。 */
+export const THEME_BRIGHT = {
+  /** 底：暖白；card＝卡片白；line＝細線與虛線框 */
+  bg: "#F7F5F0", card: "#FFFFFF", line: "#E4E0D6",
+  /** 字：ink 主字、ink2 次要字、ink3 輔助字（在底色上對比 ≥4.5:1） */
+  ink: "#14162B", ink2: "#4E526B", ink3: "#6C7088",
+  /** 兩個顏色（script.json 的 color 寫 primary｜accent）：fill＝色塊、on＝色塊上的字、text＝白底上的字、soft＝螢光標記與淡色標籤底 */
+  color: {
+    primary: { fill: "#4F46FF", on: "#FFFFFF", text: "#3A31E0", soft: "#E3E1FF" },
+    accent: { fill: "#FF5C39", on: "#FFFFFF", text: "#D63A14", soft: "#FFDACF" },
+  } as Record<string, { fill: string; on: string; text: string; soft: string }>,
+  /** 背景光暈的透明度（主色在右上、輔色在左下，慢慢漂） */
+  glow: { primary: 0.2, accent: 0.16, drift: 46, period: 210 },
+  /** 陰影：card＝白卡片；lift＝浮在上面的色卡（陰影帶一點該卡的顏色，透明度在這裡） */
+  shadow: { card: "0 34px 80px rgba(20,22,43,0.10), 0 8px 20px rgba(20,22,43,0.05)", liftY: 30, liftBlur: 64, liftAlpha: 0.34 },
+  radius: { card: 52, inner: 28, pill: 999, mark: 16 },
+  weight: { title: 900, strong: 800, body: 600, num: 800 },
+  /** 動作（幀）：卡片滑入位移 150px、退場 8 幀往上 70px、螢光標記抹出 9、劃線 7、數字跳動 16、打字每字 2、卡片之間錯開 4 */
+  motion: { slide: 150, exit: 8, exitRise: 70, mark: 9, strike: 7, count: 16, step: 2, stagger: 4 },
+} as const;
+/** 亮色產品發表風版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_BRIGHT = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 60, PROGRESS_TOP: 304,
+  MAIN_TOP: 336, MAIN_BOTTOM: 1250,
+  CAP_TOP: 1290, CAP_H: 236, CAP_ZH_PX: 70, CAP_EN_PX: 32,
+  SRC_TOP: 1562, SRC_PX: 28, MIN_PX: 28,
+} as const;
+
+// ───────── 亮色雜誌編排（styleVersion 3 ＋ stage: "editorial"；src/components/ai-editorial/） ─────────
+export const THEME_EDITORIAL = {
+  /** 底：米白；clip＝被剪下的引文底（比底再白一階） */
+  paper: "#F3EFE6", clip: "#FFFFFF",
+  /** 字與線：ink 主字與粗線、ink2 次要字、ink3 輔助字（米白底上對比 ≥4.5:1）、hair＝細欄線 */
+  ink: "#111111", ink2: "#4A4741", ink3: "#6A665E", hair: "#CFC8B8",
+  /** 唯一的強調色（番茄紅）：fill＝色塊與色筆線、text＝米白底上的字、on＝色塊上的字、onDim＝色塊上的次要字 */
+  accent: { fill: "#E5351B", text: "#C22A12", on: "#FFFFFF", onDim: "#FFE1DA" },
+  weight: { title: 900, strong: 800, body: 600, light: 500 },
+  /** 線寬：粗線、細線、色筆線 */
+  rule: { thick: 6, hair: 2, pen: 14 },
+  /** 動作（幀）：線長出來 10、字從遮罩升起 9、色筆線 8、劃掉 7、整頁退場 6、數字跳動 14、打字每字 2、同頁元素錯開 3 */
+  motion: { rule: 10, rise: 9, pen: 8, strike: 7, exit: 6, count: 14, step: 2, stagger: 3 },
+} as const;
+/** 亮色雜誌編排版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_EDITORIAL = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952, COL_GAP: 48,
+  HEADER_TOP: 228, HEADER_H: 56, PROGRESS_TOP: 300,
+  MAIN_TOP: 336, MAIN_BOTTOM: 1250,
+  CAP_TOP: 1284, CAP_ZH_PX: 68, CAP_EN_PX: 30,
+  SRC_TOP: 1590, SRC_PX: 28, MIN_PX: 28,
+} as const;
+
+// ───────── 亮色 2.5D 小場景（styleVersion 3 ＋ stage: "iso"；src/components/ai-iso/） ─────────
+/** 粉彩等距（isometric）小桌面：一張桌子上有螢幕、鍵盤、新聞紙、放大鏡、便條；卡片從桌面飛起來轉正給觀眾看。只用 SVG／CSS 2D 矩陣，不用 3D 引擎。元件只讀這裡的 token。 */
+export const THEME_ISO = {
+  /** 底：淡天藍到淡紫的直向漸層；dot＝地面圓點格；floor＝桌子落在地上的影子色（配 shadowAlpha） */
+  bg: "#EEF3FF", bg2: "#F8F3FF", dot: "#C7D3EF", floor: "#1B2545", shadowAlpha: 0.1,
+  /** 字：ink 主字、ink2 次要字、ink3 輔助字（淡底上對比 ≥4.5:1） */
+  ink: "#1B2545", ink2: "#465074", ink3: "#5E6889",
+  /** 轉正的卡片：白面＋下緣一條厚度色 */
+  card: "#FFFFFF", cardSide: "#CBD4EA", line: "#DCE3F3",
+  /** 等距實體的三個面：top 頂面、l 左前面（受光）、r 右前面（背光） */
+  solid: {
+    desk: { top: "#FFF3DC", l: "#F8DDB6", r: "#EFC892" },
+    white: { top: "#FFFFFF", l: "#E1E7F5", r: "#C8D1E8" },
+    lav: { top: "#CFC9FB", l: "#B5ACF3", r: "#9B90E6" },
+    mint: { top: "#B2EAD9", l: "#8DD9C3", r: "#6CC5AB" },
+    yellow: { top: "#FFE08A", l: "#F7CE66", r: "#EBB944" },
+    coral: { top: "#FFAE9C", l: "#F98F78", r: "#EC7458" },
+  } as Record<string, { top: string; l: string; r: string }>,
+  /** 語意色（script.json 的 color／kw 寫這些名字）：fill 色塊、on 色塊上的字、text 白底上的字、soft 淡底、side 卡片厚度 */
+  color: {
+    primary: { fill: "#5566F0", on: "#FFFFFF", text: "#3D4BD1", soft: "#E1E5FF", side: "#3A48C2" },
+    wrong: { fill: "#FF7A5C", on: "#FFFFFF", text: "#C2381B", soft: "#FFE3DB", side: "#D9553A" },
+    right: { fill: "#19A88A", on: "#FFFFFF", text: "#0E775F", soft: "#D8F4EB", side: "#0F8169" },
+    note: { fill: "#FFD766", on: "#1B2545", text: "#765300", soft: "#FFF2C6", side: "#E3B23A" },
+  } as Record<string, { fill: string; on: string; text: string; soft: string; side: string }>,
+  /** 螢幕面（發亮的那一面）與螢幕上的灰階橫條 */
+  screen: { face: "#5566F0", glow: "#8E9BFF", on: "#FFFFFF", bar: "#AEB8FF" },
+  radius: { card: 32, chip: 999, tile: 36, mark: 14 },
+  weight: { title: 900, strong: 800, body: 600 },
+  /** 卡片厚度（px）與柔影 */
+  depth: { card: 10, tile: 14, soft: "0 28px 48px rgba(27,37,69,0.13)" },
+  /** 動作（幀）：鏡頭移動 18、卡片飛行 14、彈出／蓋章 5、退場 8、螢光標記 9、劃線 7、打字每字 2、錯開 4；飛行弧高 px */
+  motion: { cam: 18, fly: 14, slam: 5, exit: 8, mark: 9, strike: 7, step: 2, stagger: 4, arc: 110 },
+} as const;
+/** 亮色 2.5D 小場景版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_ISO = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 60, PROGRESS_TOP: 304,
+  MAIN_TOP: 336, MAIN_BOTTOM: 1250,
+  CAP_TOP: 1290, CAP_H: 226, CAP_ZH_PX: 70, CAP_EN_PX: 32,
+  SRC_TOP: 1560, SRC_PX: 28, MIN_PX: 28,
 } as const;

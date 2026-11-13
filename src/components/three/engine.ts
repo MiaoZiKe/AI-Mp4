@@ -3,9 +3,9 @@
 // 所以標籤的位置是用同一台相機投影出來的，會跟著模型走。產品本身（零件、層、標註點、熱循環的範圍）來自 model.json，這裡不寫死任何產品的尺寸。
 import * as THREE from "three";
 import type { Scene, TimelineV2 } from "../../types";
-import { LAYOUT_3D as L, THEME_3D as T } from "../../theme";
+import { FPS, LAYOUT_3D as L, THEME_3D as T } from "../../theme";
 import { EASE, seeded, tween } from "../anim";
-import type { ProductModel, ThermalDef } from "./model";
+import type { ActionDef, ProductModel, Pt, ThermalDef } from "./model";
 
 export type Label3D = { part: string; text: string; en?: string; color: string; at: number; until: number };
 export type Model3D = {
@@ -21,12 +21,17 @@ export type Model3D = {
   sweeps: number[];
   rename?: { part: string; text: string; en?: string; at: number };
   labels: Label3D[];
+  /** 運作動畫的觸發（props.run）、鏡頭關鍵格（props.shot）、把某一層移開或變透明（props.shift）；都依 at 排好 */
+  runs: Run3D[]; shots: Shot3D[]; shifts: Shift3D[];
 };
+export type Run3D = { id: string; at: number; until: number; speed: number; gain: number; ramp: number };
+export type Shot3D = { at: number; dur: number; d?: number; elev?: number; y?: number; x?: number; yaw?: number };
+export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number };
 
 const FAR = 1e9;
 export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductModel): Model3D => {
   const by = Object.fromEntries(tl.scenes.map((x, i) => [x.id, { ...x, exit: tl.scenes[i + 1]?.startFrame ?? tl.totalFrames }]));
-  const m: Model3D = { total: tl.totalFrames, product, spin: { t0: 0, t1: FAR }, drop: FAR, explode: FAR, focus: FAR, focusLayer: null, cutaway: FAR, heat: FAR, vapor: FAR, spread: FAR, condense: FAR, flowBack: FAR, peek: FAR, orbit: FAR, settle: FAR, sweeps: [], labels: [] };
+  const m: Model3D = { total: tl.totalFrames, product, spin: { t0: 0, t1: FAR }, drop: FAR, explode: FAR, focus: FAR, focusLayer: null, cutaway: FAR, heat: FAR, vapor: FAR, spread: FAR, condense: FAR, flowBack: FAR, peek: FAR, orbit: FAR, settle: FAR, sweeps: [], labels: [], runs: [], shots: [], shifts: [] };
   scenes.forEach((s) => {
     const own = by[s.id];
     if (!own) return;
@@ -46,7 +51,11 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     for (const sw of [].concat(p.sweep ?? [])) m.sweeps.push(at((sw as any).at, own.voiceStartFrame));
     if (p.rename) m.rename = { ...p.rename, at: at(p.rename.at, own.voiceStartFrame) };
     for (const l of p.labels ?? []) m.labels.push({ ...l, at: at(l.at, own.voiceStartFrame), until: l.until ? at(l.until, FAR) : FAR });
+    for (const r of [].concat(p.run ?? []) as any[]) if (product.actions?.[r.id]) m.runs.push({ id: r.id, at: at(r.at, own.voiceStartFrame), until: r.until ? at(r.until, FAR) : FAR, speed: r.speed ?? 1, gain: r.gain ?? 1, ramp: r.ramp ?? T.ops.ramp });
+    for (const c of [].concat(p.shot ?? []) as any[]) m.shots.push({ ...c, at: at(c.at, own.voiceStartFrame), dur: c.dur ?? T.motion.orbit });
+    for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity });
   });
+  m.runs.sort((a, b) => a.at - b.at); m.shots.sort((a, b) => a.at - b.at); m.shifts.sort((a, b) => a.at - b.at);
   return m;
 };
 
@@ -81,12 +90,12 @@ export const stateAt = (m: Model3D, f: number) => {
   const orb = tween(f, m.orbit, M.orbit, EASE.move), set = tween(f, m.settle, M.orbit, EASE.move);
   // 收尾：最後幾幀鏡頭慢慢往後退
   const outro = tween(f, m.total - M.outro, M.outro, EASE.move);
-  const yaw = mix(P.yaw0 + Math.PI * 2 * spin, Math.PI * 2 + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode) + P.peekYaw * pk + C.orbit.yaw * orb + C.settle.yaw * set;
+  let yaw = mix(P.yaw0 + Math.PI * 2 * spin, Math.PI * 2 + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode) + P.peekYaw * pk + C.orbit.yaw * orb + C.settle.yaw * set;
   const pitch = mix(0, P.pitch, lay);
   // 各層：分解時沿厚度方向分開；聚焦時，主角上面的層往鏡頭飛走並淡出、正下方那層靠近一點、更下面的往後退並淡出
   const fk = pr.layers.find((x) => x.id === m.focusLayer)?.k ?? null;
   const fade = 1 - tween(f, m.focus, M.focus * 0.7, EASE.move);
-  const layers: Record<string, { z: number; opacity: number; e: number }> = {};
+  const layers: Record<string, { z: number; opacity: number; e: number; x: number; y: number }> = {};
   for (const d of pr.layers) {
     const e = tween(f, m.explode + 8 + (2 - Math.min(2, Math.abs(d.k))) * M.stagger, M.explode, EASE.move);
     let z = d.z + d.k * P.gap * e, opacity = 1;
@@ -95,13 +104,29 @@ export const stateAt = (m: Model3D, f: number) => {
       else if (d.k === fk - 1) z += P.gap * 0.5 * fo;
       else if (d.k < fk - 1) { z -= P.focusDown * fo; opacity = fade; }
     }
-    layers[d.id] = { z, opacity, e };
+    layers[d.id] = { z, opacity, e, x: 0, y: 0 };
+  }
+  // props.shift：把某一層移開／變透明（露出下面的零件），until 之後回來
+  for (const sh of m.shifts) {
+    const q = layers[sh.layer], tw = tween(f, sh.at, sh.dur, EASE.move) * (1 - tween(f, sh.until, sh.dur, EASE.move));
+    if (!q || tw <= 0) continue;
+    q.x += sh.dx * tw; q.y += sh.dy * tw; q.z += sh.dz * tw;
+    if (sh.opacity !== undefined) q.opacity = mix(q.opacity, sh.opacity, tw);
   }
   const cam = {
-    d: mix(mix(C.stand.d, C.explode.d, lay), C.focus.d, fo) + C.orbit.d * orb + C.settle.d * set + C.outro.d * outro,
+    d: mix(mix(C.stand.d, C.explode.d, lay), C.focus.d, fo) + C.orbit.d * orb + C.settle.d * set,
     elev: mix(mix(C.stand.elev, C.explode.elev, lay), C.focus.elev, fo) + C.orbit.elev * orb + C.settle.elev * set,
     y: mix(mix(C.stand.y, C.explode.y, lay), C.focus.y, fo) + C.orbit.y * orb + C.settle.y * set,
+    x: 0,
   };
+  // props.shot：鏡頭關鍵格（距離、仰角、看向的高度／左右是絕對值，yaw 是增量），一格接一格補間過去
+  for (const c of m.shots) {
+    const tw = tween(f, c.at, c.dur, EASE.move);
+    if (tw <= 0) continue;
+    cam.d = mix(cam.d, c.d ?? cam.d, tw); cam.elev = mix(cam.elev, c.elev ?? cam.elev, tw); cam.y = mix(cam.y, c.y ?? cam.y, tw); cam.x = mix(cam.x, c.x ?? cam.x, tw);
+    yaw += (c.yaw ?? 0) * tw;
+  }
+  cam.d += C.outro.d * outro;
   // 地面：跟著看得見的最低一點走（立著時貼地，躺下分解後離地一點，陰影才有「浮著」的感覺）
   let low = 1e9;
   for (const d of pr.layers) {
@@ -156,22 +181,65 @@ export const stateAt = (m: Model3D, f: number) => {
       return { x: x + 0.12 * Math.sin(ph * 9 + q.ph * 30), y, z: 0.3 + ph * 2.4, o: heat * Math.sin(Math.PI * ph) * T.shimmer, s: q.size * (0.7 + ph * 0.9) };
     });
   }
-  return { f, yaw, pitch, lay, fo, layers, cam, groundY, lid, lidLift, xray, heat, heatAt, spreadP, sweep, parts, shimmer, outro };
+  // 運作動畫：每個動作這一幀的強度 g（0–1 的進出場 × gain）、k（只有進出場）、t（觸發後幾秒 × speed）、T（全片時間 × speed；波形用，兩道波才對得上相位）
+  const ops: Record<string, Op3D> = {};
+  for (const r of m.runs) {
+    if (f < r.at) continue;
+    const k = tween(f, r.at, r.ramp, EASE.move) * (1 - tween(f, r.until, r.ramp, EASE.move));
+    ops[r.id] = { g: k * r.gain, k, t: ((Math.min(f, r.until + r.ramp) - r.at) / FPS) * r.speed, T: (f / FPS) * r.speed, n: f - r.at };
+  }
+  return { f, yaw, pitch, lay, fo, layers, cam, groundY, lid, lidLift, xray, heat, heatAt, spreadP, sweep, parts, shimmer, outro, ops };
+};
+export type Op3D = { g: number; k: number; t: number; T: number; n: number };
+
+// ── 運作動畫的訊號（3D 畫面與 HTML 儀表讀同一份） ──
+/** 一道行進波在線上 u（0–1）的位移：amp × 強度 × Σ 各倍頻的正弦；invert＝反相（整個乘 −1） */
+export const traceVal = (d: ActionDef, op: Op3D | undefined, u: number) => {
+  if (!op) return 0;
+  const ph = (d.cycles ?? 2) * u - (d.rate ?? 1) * op.T + (d.phase ?? 0);
+  let v = 0, norm = 0;
+  for (const [mul, a] of d.harmonics ?? [[1, 1]]) { v += a * Math.sin(Math.PI * 2 * mul * ph); norm += Math.abs(a); }
+  return ((d.invert ? -1 : 1) * (d.amp ?? 0.5) * op.g * v) / Math.max(1e-6, norm);
+};
+/** 一條線上的值：trace 就是自己；sum＝把 of 列的幾道加起來（先只有第一道，build 幀內把其他幾道加進來） */
+export const signalVal = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id: string, u: number): number => {
+  const d = pr.actions?.[id], op = s.ops[id];
+  if (!d || !op) return 0;
+  if (d.type === "trace") return traceVal(d, op, u);
+  if (d.type !== "sum") return 0;
+  const b = tween(op.n, d.buildDelay ?? 0, d.build ?? 1, EASE.move);
+  return (d.of ?? []).reduce((a, tid, i) => a + (i === 0 ? 1 : b) * traceVal(pr.actions?.[tid] ?? ({} as ActionDef), s.ops[tid], u), 0) * op.k;
+};
+/** 動作的「大小」（0–1，儀表用）：波形＝線上最大位移 ÷ 第一道波的振幅；其他＝強度 */
+export const signalLevel = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id: string) => {
+  const d = pr.actions?.[id], op = s.ops[id];
+  if (!d || !op) return 0;
+  if (d.type !== "trace" && d.type !== "sum") return clamp01(op.g);
+  const ref = d.type === "trace" ? d.amp ?? 0.5 : pr.actions?.[d.of?.[0] ?? ""]?.amp ?? 0.5;
+  let mx = 0;
+  for (let i = 0; i <= 32; i++) mx = Math.max(mx, Math.abs(signalVal(pr, s, id, i / 32)));
+  return clamp01(mx / Math.max(1e-6, ref));
+};
+/** 動作裡的一個點 → 模型座標（加上那一層這一幀的位置） */
+export const opPoint = (s: { layers: Record<string, { x: number; y: number; z: number }> }, pt: Pt | undefined, layer?: string): [number, number, number] => {
+  const p = Array.isArray(pt) ? pt : pt?.p ?? [0, 0, 0], q = s.layers[(Array.isArray(pt) ? layer : pt?.layer ?? layer) ?? ""];
+  return [p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0)];
 };
 
 /** 相機（3D 畫面與標籤投影共用） */
 export const cameraFor = (s: State3D) => {
   const cam = new THREE.PerspectiveCamera(T.camera.fov, L.W / L.STAGE_H, 1, 400);
   const e = (s.cam.elev * Math.PI) / 180;
-  cam.position.set(0, s.cam.y + s.cam.d * Math.sin(e), s.cam.d * Math.cos(e));
-  cam.lookAt(0, s.cam.y, 0);
+  cam.position.set(s.cam.x, s.cam.y + s.cam.d * Math.sin(e), s.cam.d * Math.cos(e));
+  cam.lookAt(s.cam.x, s.cam.y, 0);
   cam.updateMatrixWorld(true);
   cam.updateProjectionMatrix();
   return cam;
 };
 /** 模型座標（某一層裡的一點）→ 整個畫面上的像素位置 */
 export const projectPoint = (s: State3D, cam: THREE.PerspectiveCamera, layer: string, p: number[]) => {
-  const v = new THREE.Vector3(p[0], p[1], (p[2] ?? 0) + (s.layers[layer]?.z ?? 0));
+  const q = s.layers[layer];
+  const v = new THREE.Vector3(p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0));
   v.applyEuler(new THREE.Euler(s.pitch, 0, 0)).applyEuler(new THREE.Euler(0, s.yaw, 0)).project(cam);
   return { x: ((v.x + 1) / 2) * L.W, y: L.STAGE_TOP + ((1 - v.y) / 2) * L.STAGE_H };
 };

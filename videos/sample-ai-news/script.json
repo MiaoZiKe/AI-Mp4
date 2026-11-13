@@ -23,13 +23,13 @@
   "profile": {
    "preset": "ai",
    "gender": "female",
-   "delivery": "chat",
-   "scene": "咖啡店裡兩個人並肩坐著，筆電開著，她湊過去看朋友的螢幕，一邊指一邊講",
+   "delivery": "warm-pro",
+   "scene": "辦公室的茶水間旁邊，兩個人並肩看同一台筆電，她一邊操作一邊跟剛來的同事解釋，旁邊沒有別人在聽",
    "arc": {
-    "起": "像剛滑到一則新聞，轉頭問旁邊的朋友",
-    "承": "邊操作邊講，看到數字不對的地方愣一下才講",
-    "轉": "講到它也會出錯的地方，慢下來、小聲一點提醒",
-    "合": "鬆下來，隨口問對方一句，再順口提下一次要聊什麼"
+    "起": "像看到同事在查這則新聞，平常地問他一句",
+    "承": "邊操作邊解釋，講到數字不對的地方放慢，平靜地指出來",
+    "轉": "講到它也會出錯的地方，放慢、認真一點提醒",
+    "合": "語氣放鬆，問對方一句，再順口提下一次要講什麼"
    },
    "englishTerms": {
     "A I": "英文字母 A 和 I，分開念",
@@ -63,10 +63,10 @@
    "id": "s01",
    "beat": "hook",
    "para": 1,
-   "narration": "欸，十月物價出來了，你有叫 AI 抓重點嗎？",
-   "tts": "欸，十月物價出來了，你有叫 A I 抓重點嗎？",
+   "narration": "十月物價出來了，你有請 AI 抓重點嗎？",
+   "tts": "十月物價出來了，你有請 A I 抓重點嗎？",
    "subtitle": {
-    "zh": "十月物價出來了\n你有叫 AI 抓重點嗎？",
+    "zh": "十月物價出來了\n你有請 AI 抓重點嗎？",
     "en": "October prices are out. | Did you ask AI for the key points?"
    },
    "keywords": [
@@ -123,10 +123,10 @@
    "id": "s02",
    "beat": "you",
    "para": 1,
-   "narration": "我們拿 Gemini 實測，只打一句話。",
+   "narration": "我們用 Gemini 實測，先只打一句話。",
    "subtitle": {
-    "zh": "我們拿 Gemini 實測\n只打一句話",
-    "en": "We tested it on Gemini | with just one line."
+    "zh": "我們用 Gemini 實測\n先只打一句話",
+    "en": "We tested it on Gemini, | starting with just one line."
    },
    "keywords": [
     "實測",
@@ -214,12 +214,12 @@
    "id": "s04",
    "beat": "twist",
    "para": 2,
-   "narration": "蛤？那是兩年前的啦，今年是 2.33%。",
-   "tts": "蛤？那是兩年前的啦，今年是二點三三趴。",
+   "narration": "其實那是兩年前的數字，今年是 2.33%。",
+   "tts": "其實那是兩年前的數字，今年是二點三三趴。",
    "pauseAfter": 0.4,
    "subtitle": {
-    "zh": "蛤？那是兩年前的啦\n今年是 2.33%",
-    "en": "Huh? That was two years ago. | This year it's 2.33%."
+    "zh": "其實那是兩年前的數字\n今年是 2.33%",
+    "en": "Actually, that's from two years ago. | This year it's 2.33%."
    },
    "keywords": [
     "兩年前",
@@ -228,7 +228,7 @@
    "cues": [
     {
      "id": "huh",
-     "text": "蛤"
+     "text": "其實"
     },
     {
      "id": "two",
@@ -260,10 +260,10 @@
    "id": "s05",
    "beat": "mechanism",
    "para": 2,
-   "narration": "也不能怪它嘛，沒開搜尋，又沒給它新聞。",
+   "narration": "這不能怪它，我們沒開搜尋，也沒給它新聞。",
    "subtitle": {
-    "zh": "也不能怪它嘛\n沒開搜尋\n又沒給它新聞",
-    "en": "Can't blame it. | Search was off, | and we gave it no article."
+    "zh": "這不能怪它\n我們沒開搜尋\n也沒給它新聞",
+    "en": "It's not the AI's fault. | Search was off, | and we gave it no article."
    },
    "keywords": [
     "沒開搜尋",
@@ -326,10 +326,10 @@
    "id": "s06",
    "beat": "mechanism",
    "para": 3,
-   "narration": "所以啊，換個問法。",
+   "narration": "所以，我們換個問法。",
    "subtitle": {
-    "zh": "所以啊\n換個問法",
-    "en": "So, | ask it differently."
+    "zh": "所以\n我們換個問法",
+    "en": "So, | let's ask it differently."
    },
    "keywords": [
     "換個問法"
@@ -360,10 +360,10 @@
    "id": "s07",
    "beat": "mechanism",
    "para": 3,
-   "narration": "貼上新聞，叫它只看這一段。",
+   "narration": "先貼上新聞，請它只看這一段。",
    "subtitle": {
-    "zh": "貼上新聞\n叫它只看這一段",
-    "en": "Paste in the news | and tell it to use only that."
+    "zh": "先貼上新聞\n請它只看這一段",
+    "en": "First paste in the news | and ask it to use only that."
    },
    "keywords": [
     "貼上新聞",
@@ -443,10 +443,10 @@
    "id": "s09",
    "beat": "mechanism",
    "para": 3,
-   "narration": "然後講你是誰，像我在台北租房、三餐外食。",
+   "narration": "再告訴它你是誰，像我在台北租房、三餐外食。",
    "subtitle": {
-    "zh": "然後講你是誰\n像我在台北租房\n三餐外食",
-    "en": "Then say who you are. | I rent in Taipei | and eat out every meal."
+    "zh": "再告訴它你是誰\n像我在台北租房\n三餐外食",
+    "en": "Then tell it who you are. | I rent in Taipei | and eat out every meal."
    },
    "keywords": [
     "你是誰"
@@ -485,10 +485,10 @@
    "id": "s10",
    "beat": "mechanism",
    "para": 3,
-   "narration": "最後分三段，確定的、還不確定的，還有跟我有關的。",
+   "narration": "最後請它分三段，確定的、還不確定的，還有跟我有關的。",
    "subtitle": {
-    "zh": "最後分三段\n確定的、還不確定的\n還有跟我有關的",
-    "en": "Last, three parts: | confirmed, | not yet confirmed, | and what matters to me."
+    "zh": "最後請它分三段\n確定的、還不確定的\n還有跟我有關的",
+    "en": "Last, ask for three parts: | confirmed, | not yet confirmed, | and what matters to me."
    },
    "keywords": [
     "分三段",
@@ -552,11 +552,11 @@
    "id": "s11",
    "beat": "payoff",
    "para": 4,
-   "narration": "送出。你看，2.33%，數字對了耶。",
-   "tts": "送出。你看，二點三三趴，數字對了耶。",
+   "narration": "送出。你看，2.33%，這次數字對了。",
+   "tts": "送出。你看，二點三三趴，這次數字對了。",
    "subtitle": {
-    "zh": "送出\n你看，2.33%\n數字對了耶",
-    "en": "Send. | Look, 2.33%. | The number is right."
+    "zh": "送出\n你看，2.33%\n這次數字對了",
+    "en": "Send. | Look, 2.33%. | This time the number is right."
    },
    "keywords": [
     "2.33%",
@@ -693,11 +693,11 @@
    "id": "s14",
    "beat": "payoff",
    "para": 4,
-   "narration": "一樣的 AI 欸，問法不一樣而已。",
-   "tts": "一樣的 A I 欸，問法不一樣而已。",
+   "narration": "一樣的 AI，只是問法不一樣。",
+   "tts": "一樣的 A I，只是問法不一樣。",
    "pauseAfter": 0.5,
    "subtitle": {
-    "zh": "一樣的 AI 欸\n問法不一樣而已",
+    "zh": "一樣的 AI\n只是問法不一樣",
     "en": "Same AI. | Only the way we asked changed."
    },
    "keywords": [
@@ -757,10 +757,10 @@
    "id": "s15",
    "beat": "twist",
    "para": 5,
-   "narration": "不過齁，官方的看法，它也算進確定的。",
+   "narration": "不過你會發現，官方的看法，它也算進確定的。",
    "subtitle": {
-    "zh": "不過齁\n官方的看法\n它也算進確定的",
-    "en": "But, | the agency's own view | also went under confirmed."
+    "zh": "不過你會發現\n官方的看法\n它也算進確定的",
+    "en": "But you'll notice | the agency's own view | also went under confirmed."
    },
    "keywords": [
     "看法",
@@ -853,11 +853,11 @@
    "id": "s17",
    "beat": "cta",
    "para": 6,
-   "narration": "範本在這，截圖存起來。",
+   "narration": "範本在這裡，可以截圖存起來。",
    "pauseAfter": 0.5,
    "subtitle": {
-    "zh": "範本在這\n截圖存起來",
-    "en": "Here's the template. | Screenshot it."
+    "zh": "範本在這裡\n可以截圖存起來",
+    "en": "Here's the template. | You can screenshot it."
    },
    "keywords": [
     "範本",

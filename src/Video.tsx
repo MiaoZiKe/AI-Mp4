@@ -13,6 +13,9 @@ import { VideoThree } from "./components/three/ThreeVideo";
 import { VideoType } from "./components/ai-type/TypeVideo";
 import { VideoSplit } from "./components/ai-split/SplitVideo";
 import { VideoSketch } from "./components/ai-sketch/SketchVideo";
+import { VideoBright } from "./components/ai-bright/BrightVideo";
+import { VideoIso } from "./components/ai-iso/IsoVideo";
+import { VideoEditorial } from "./components/ai-editorial/EditorialVideo";
 import { StyleV2Context } from "./style";
 import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
@@ -263,6 +266,9 @@ export const Video: React.FC<Script> = (props) => {
   if (isV3(props) && props.stage === "sketch") return <VideoSketch {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props) && props.stage === "type") return <VideoType {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props) && props.stage === "split") return <VideoSplit {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "editorial") return <VideoEditorial {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "iso") return <VideoIso {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "bright") return <VideoBright {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props) && props.stage === "ui") return <VideoUI {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props)) return <VideoV3 {...props} timeline={props.timeline as TimelineV2} />;
   if (isV2(props)) return <VideoV2 {...props} timeline={props.timeline as TimelineV2} />;

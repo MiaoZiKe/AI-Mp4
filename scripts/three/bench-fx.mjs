@@ -1,5 +1,6 @@
 // node scripts/three/bench-fx.mjs <slug> [--frames 12] [--only 名稱,名稱]：逐項量每種特效的渲染成本。
 // 打包一次，同一段畫面用不同的 fx 開關各渲一次（平行數 1），比較「每幀毫秒」（不含開瀏覽器，從第 1 幀渲完開始算）。
+// 加 --ops [--rotate <零件id>]＝改量運作動畫（actions）每一種的成本，結果寫 out/<slug>/bench-ops.json。
 // 三段畫面：A＝分解中（各層都在、殘影與導引線）、B＝熱循環（蒸氣、熱浪、熱點光）、C＝光掃＋標籤引線。結果寫 out/<slug>/bench-fx.json。
 import path from "node:path";
 import fs from "node:fs";
@@ -28,11 +29,40 @@ const V = [
 ].filter((v) => !only || only.some((o) => v[0].includes(o)) || v[0].startsWith("全開"));
 // --base dpr=1,shadows=1：所有組合都先套這組設定（想在低解析度下快速比較時用）
 const baseFx = Object.fromEntries(String(opt("--base", "")).split(",").filter(Boolean).map((kv) => { const [k, v] = kv.split("="); return [k, v === "true" ? true : v === "false" ? false : Number(v)]; }));
+// --ops：量「運作動畫」（model.json 的 actions）每一種的成本。每種 type 找它第一個 run 進行到一半的那一幀，
+// 同一段畫面渲兩次（全開／把這一種的 run 拿掉），差多少就是這一種的成本。--rotate <零件id>：模型沒有旋轉件時，臨時加一個 rotate 動作來量。
+const OPS = process.argv.includes("--ops");
+const frameOf = (sc, spec) => {
+  const r = /^(?:([^\s:+-]+):)?([^\s:+-]+)([+-]\d+)?$/.exec(String(spec ?? "")), i = tl.scenes.findIndex((x) => x.id === (r?.[1] ?? sc.id)), t = tl.scenes[i];
+  if (!r || !t) return null;
+  const base = r[2] === "start" ? t.startFrame : r[2] === "voice" ? t.voiceStartFrame : r[2] === "end" ? t.voiceEndFrame : r[2] === "exit" ? (tl.scenes[i + 1]?.startFrame ?? tl.totalFrames) : (t.cues ?? []).find((q) => q.id === r[2])?.frame;
+  return base == null ? null : base + Number(r[3] ?? 0);
+};
+const opsPlan = () => {
+  const acts = { ...(script.model.actions ?? {}) }, scenes = structuredClone(script.scenes);
+  const rot = opt("--rotate", "");
+  if (rot && !Object.values(acts).some((d) => d.type === "rotate")) {
+    acts.__benchRotate = { type: "rotate", parts: [rot], rps: 1 };
+    const sc = scenes.find((x) => x.props?.run) ?? scenes[scenes.length - 1];
+    sc.props = { ...sc.props, run: [...[].concat(sc.props?.run ?? []), { id: "__benchRotate", at: "voice" }] };
+  }
+  const plan = [];
+  for (const type of ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter"]) {
+    let hit = null;
+    for (const sc of scenes) for (const r of [].concat(sc.props?.run ?? [])) if (!hit && acts[r.id]?.type === type && !acts[r.id].hidden) hit = { sc, r };
+    if (!hit) continue;
+    const a = frameOf(hit.sc, hit.r.at) ?? 0, b = hit.r.until ? frameOf(hit.sc, hit.r.until) ?? tl.totalFrames : tl.totalFrames;
+    const from = Math.max(0, Math.min(tl.totalFrames - n - 1, a + Math.min(24, Math.floor((b - a) / 2))));
+    const without = scenes.map((sc) => ({ ...sc, props: { ...sc.props, run: [].concat(sc.props?.run ?? []).filter((r) => acts[r.id]?.type !== type) } }));
+    plan.push({ type, from, on: { scenes, actions: acts }, off: { scenes: without, actions: acts } });
+  }
+  return plan;
+};
 const serveUrl = await makeBundle();
 const out = path.join(ROOT, "out", slug, "bench-fx.mp4");
 fs.mkdirSync(path.dirname(out), { recursive: true });
-const run = async (fx, from) => {
-  const inputProps = { ...script, model: { ...script.model, fx: { ...(script.model.fx ?? {}), ...baseFx, ...fx } } };
+const run = async (fx, from, over) => {
+  const inputProps = { ...script, ...(over ? { scenes: over.scenes } : {}), model: { ...script.model, ...(over ? { actions: over.actions } : {}), fx: { ...(script.model.fx ?? {}), ...baseFx, ...fx } } };
   const opts = { serveUrl, inputProps, browserExecutable: BROWSER, chromiumOptions, logLevel: "error" };
   const comp = await selectComposition({ ...opts, id: "Video" });
   let t1 = 0;
@@ -40,6 +70,17 @@ const run = async (fx, from) => {
   return Math.round((Date.now() - t1) / (n - 1));
 };
 const res = [];
+if (OPS) {
+  const NAMES = { vibrate: "零件振動／往復", rotate: "旋轉件", pulse: "零件發光／脈衝＋光暈", flow: "沿路徑流動的光點／箭頭", wave: "往外擴散的聲波圈", trace: "行進波形", sum: "兩道波疊加相消", meter: "小儀表（HTML）" };
+  for (const p of opsPlan()) {
+    const on = await run({}, p.from, p.on), off = await run({}, p.from, p.off);
+    res.push({ type: p.type, name: NAMES[p.type], from: p.from, on, off, cost: on - off });
+    console.log(`${NAMES[p.type]}（${p.type}，第 ${p.from} 幀起）：開 ${on} ms/幀、關 ${off} ms/幀，差 ${on - off} ms`);
+    fs.writeFileSync(path.join(ROOT, "out", slug, "bench-ops.json"), JSON.stringify({ at: new Date().toISOString(), frames: n, base: baseFx, gl: chromiumOptions.gl, concurrency: 1, results: res }, null, 1));
+  }
+  fs.rmSync(out, { force: true });
+  process.exit(0);
+}
 for (const [name, fx, where] of V) {
   const r = { name, fx };
   if (where.includes("A") && seg.includes("A")) r.A = await run(fx, A);
