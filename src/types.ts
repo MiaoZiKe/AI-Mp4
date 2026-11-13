@@ -117,6 +117,8 @@ export type Script = {
   styleVersion?: 1 | 2 | 3;
   /** styleVersion 3：外觀（THEME_V3.skins 的鍵；預設 "desk"）與頻道頁首／片尾卡文字（預設 白話國際／國際白話講／一支講透一件事） */
   skin?: string;
+  /** styleVersion 3 的另一種舞台：沿用 v3 的時間軸與配音流程，但畫面不是紙拼貼。"ui"＝仿介面動畫（src/components/ui/）；"three"＝3D 產品台（src/components/three/） */
+  stage?: string;
   channel?: { name?: string; tag?: string; slogan?: string };
   /** styleVersion 3：紙材 meta（scripts/lib.mjs 從 public/v3/<slug>/meta.json 讀進來） */
   v3?: { assets: Record<string, { w: number; h: number; body: number[]; [k: string]: any }> };

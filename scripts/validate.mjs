@@ -3,6 +3,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { validateV3, validateTimelineV3 } from "./v3/validate-v3.mjs";
 import { cnTermIssues } from "./voice-profile.mjs";
+import { validateUI, validateTimelineUI } from "./ui/validate-ui.mjs";
+import { validateChat } from "./chat/validate-chat.mjs";
+import { validateChart, validateTimelineChart } from "./chartlead/validate-chart.mjs";
+import { validateThree } from "./three/validate-three.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 export const ICONS = ["capitol","ballot","scale","chip","container","globe","money","chart","shield","island","question","gavel","users",
@@ -130,12 +134,15 @@ export function lintSource() {
       if (/src\/components\/(?!anim\.ts)/.test(rel) && /\bspring\s*\(|\binterpolate\s*\(/.test(line)) errors.push(`${rel}:${i + 1} 元件內不要直接呼叫 spring／interpolate，改用 anim.ts 的 motion token`);
       // 規則 8（效能與 2.5D 上限）：v2 元件不得用 filter（只有 DepthStage 背景層的 dof 例外）；禁止 3D 引擎；rotateY ≤ 20°
       if (/src\/components\/v2\//.test(rel) && /\bfilter\s*:/.test(line) && !/\bdof\b/.test(line)) errors.push(`${rel}:${i + 1} 規則8：v2 元件不得用 CSS filter（軟體渲染很貴；景深只能用 DepthStage 背景層的 dof）`);
-      if (/ThreeCanvas|@remotion\/three|from\s+["']three["']|WebGL|getContext\(\s*["']webgl/.test(line)) errors.push(`${rel}:${i + 1} 規則8：主片不得使用 3D 引擎（three.js／@remotion/three／WebGL）`);
+      // 例外：src/components/three/（stage: "three" 的 3D 產品台；使用者 2026/11/13 同意科技頻道開放 3D）。其他資料夾仍然禁止
+      if (!/src\/components\/three\//.test(rel) && /ThreeCanvas|@remotion\/three|from\s+["']three["']|WebGL|getContext\(\s*["']webgl/.test(line)) errors.push(`${rel}:${i + 1} 規則8：主片不得使用 3D 引擎（three.js／@remotion/three／WebGL）`);
       for (const m of line.matchAll(/rotateY\(\s*(-?[\d.]+)/g)) if (Math.abs(Number(m[1])) > 20) errors.push(`${rel}:${i + 1} 規則8：rotateY ${m[1]}° > 20°`);
     });
   }
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
-  for (const d of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) if (/^(three|@remotion\/three|@react-three\/)/.test(d)) errors.push(`package.json 規則8：不得依賴 3D 引擎 ${d}`);
+  // three／@remotion/three／@react-three/fiber／@types/three 是 stage: "three" 用的（只准 src/components/three/ 引用，上面逐檔檢查）；其他 3D 引擎仍不准裝
+  const OK3D = ["three", "@remotion/three", "@react-three/fiber", "@types/three"];
+  for (const d of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) if (/^(three|@remotion\/three|@react-three\/|babylonjs|@babylonjs\/)/.test(d) && !OK3D.includes(d)) errors.push(`package.json 規則8：不得依賴 3D 引擎 ${d}`);
   return errors;
 }
 
@@ -222,6 +229,14 @@ export function validateTimelineV2(script, tl) {
 
 export function validate(script) {
   // styleVersion 3（桌面紙拼貼）走自己的規則（scripts/v3/validate-v3.mjs）；v1／v2 以下照舊
+  // stage: "ui"（仿介面動畫，沿用 v3 的時間軸與配音流程、不用紙材）走 scripts/ui/validate-ui.mjs
+  if (script.styleVersion === 3 && script.stage === "ui") return validateUI(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
+  // stage: "three"（3D 產品台，@remotion/three；同樣沿用 v3 的時間軸與配音流程）走 scripts/three/validate-three.mjs
+  if (script.styleVersion === 3 && script.stage === "three") return validateThree(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
+  // stage: "chat"（對話泡泡，同樣沿用 v3 的時間軸與配音流程）走 scripts/chat/validate-chat.mjs
+  // stage: "chart"（資料圖表主導，同樣沿用 v3 的時間軸與配音流程）走 scripts/chartlead/validate-chart.mjs
+  if (script.stage === "chart") return validateChart(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, readingIssues });
+  if (script.stage === "chat") return validateChat(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2 });
   if (script.styleVersion === 3) return validateV3(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, LENGTH }, ROOT);
   const errors = [], warns = [];
   const E = (m) => errors.push(m), W = (m) => warns.push(m);
@@ -554,7 +569,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   if (script.styleVersion === 2 || script.styleVersion === 3) {
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
     const tlj = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
-    const r = script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
+    const r = script.stage === "chart" ? validateTimelineChart(script, tlj) : script.stage === "ui" || script.stage === "three" ? validateTimelineUI(script, tlj) : script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
     errors.push(...r.errors); warns.push(...r.warns);
     if (r.sec && !r.stale) {
       console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);

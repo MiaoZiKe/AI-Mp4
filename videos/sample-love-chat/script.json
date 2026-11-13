@@ -1,0 +1,343 @@
+{
+  "slug": "sample-love-chat",
+  "title": "大家都有對象了，只剩我？｜風格試片：對話泡泡",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "chat",
+  "channel": {
+    "name": "感情",
+    "tag": "數字看感情"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "preset": "love",
+      "persona": "三十歲左右的台灣女生，跟好朋友聊天聊到一半，想到一個數字，馬上講給對方聽",
+      "pace": [
+        4.6,
+        5
+      ],
+      "tone": "溫暖、像朋友在聊天；講話偏快、很俐落，一句接一句，不拖尾音、不說教、不撒嬌",
+      "arc": {
+        "起": "輕快，帶一點好奇，像在問對方是不是也這樣",
+        "承": "維持一樣快的速度，乾脆地把數字帶出來",
+        "轉": "稍微加重語氣，但是不要放慢",
+        "合": "回暖，輕輕地安慰對方，收得乾淨"
+      },
+      "avoid": [
+        "娃娃音、撒嬌",
+        "深夜電台的氣音",
+        "播新聞的腔調",
+        "說教的口氣",
+        "慢慢念、拖長音",
+        "句子和句子之間停太久"
+      ]
+    }
+  },
+  "audio": {
+    "bgm": true,
+    "sfx": true,
+    "events": [
+      {
+        "type": "pop",
+        "frame": 53,
+        "why": "s02 bubble"
+      },
+      {
+        "type": "pop",
+        "frame": 92,
+        "why": "s02 bubble"
+      },
+      {
+        "type": "pop",
+        "frame": 126,
+        "why": "s03 bubble"
+      },
+      {
+        "type": "pop",
+        "frame": 172,
+        "why": "s03 card"
+      },
+      {
+        "type": "chime",
+        "frame": 284,
+        "why": "s04 統計卡上色"
+      },
+      {
+        "type": "pop",
+        "frame": 349,
+        "why": "s05 bubble"
+      },
+      {
+        "type": "pop",
+        "frame": 378,
+        "why": "s05 bubble"
+      }
+    ]
+  },
+  "chat": {
+    "contact": "阿凱",
+    "status": "上線中",
+    "note": "情境示意，非真實對話",
+    "history": [
+      {
+        "type": "date",
+        "text": "今天 晚上 9:40"
+      },
+      {
+        "type": "bubble",
+        "side": "them",
+        "text": "好久不見！"
+      },
+      {
+        "type": "bubble",
+        "side": "me",
+        "text": "對啊，超久沒聚了"
+      },
+      {
+        "type": "bubble",
+        "side": "them",
+        "text": "週末聚餐\n記得帶另一半來喔"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "para": 1,
+      "narration": "你也傳過這種訊息嗎？",
+      "subtitle": {
+        "zh": "你也傳過這種訊息嗎？",
+        "en": "Ever sent a text like this?"
+      },
+      "keywords": [
+        "這種訊息"
+      ],
+      "component": "ChatScene",
+      "props": {
+        "events": [
+          {
+            "type": "compose",
+            "text": "大家都有對象了",
+            "pre": 4,
+            "at": "start",
+            "until": "s02:all"
+          }
+        ]
+      },
+      "sources": [
+        "情境示意，非真實對話"
+      ]
+    },
+    {
+      "id": "s02",
+      "para": 1,
+      "narration": "大家都有對象了，只剩我。",
+      "subtitle": {
+        "zh": "大家都有對象了，只剩我。",
+        "en": "Everyone's seeing someone | except me."
+      },
+      "keywords": [
+        "只剩我"
+      ],
+      "cues": [
+        {
+          "id": "all",
+          "text": "大家"
+        },
+        {
+          "id": "only",
+          "text": "只剩我"
+        }
+      ],
+      "component": "ChatScene",
+      "props": {
+        "events": [
+          {
+            "type": "bubble",
+            "side": "me",
+            "text": "大家都有對象了",
+            "at": "all"
+          },
+          {
+            "type": "compose",
+            "text": "只剩我",
+            "at": "all+6",
+            "until": "only"
+          },
+          {
+            "type": "bubble",
+            "side": "me",
+            "text": "只剩我",
+            "at": "only"
+          },
+          {
+            "type": "read",
+            "at": "only+8"
+          },
+          {
+            "type": "typing",
+            "side": "them",
+            "at": "only+14",
+            "until": "s03:num"
+          }
+        ]
+      },
+      "sources": [
+        "情境示意，非真實對話"
+      ]
+    },
+    {
+      "id": "s03",
+      "para": 1,
+      "narration": "先看一個數字。國科會的萬人調查發現，",
+      "subtitle": {
+        "zh": "先看一個數字。國科會的萬人調查發現，",
+        "en": "Look at one number first. | A 10,000-person survey found:"
+      },
+      "keywords": [
+        "萬人調查"
+      ],
+      "cues": [
+        {
+          "id": "num",
+          "text": "先看"
+        },
+        {
+          "id": "nsc",
+          "text": "國科會"
+        },
+        {
+          "id": "wan",
+          "text": "萬人"
+        }
+      ],
+      "component": "ChatScene",
+      "props": {
+        "events": [
+          {
+            "type": "bubble",
+            "side": "them",
+            "text": "先看這個數字",
+            "at": "num"
+          },
+          {
+            "type": "card",
+            "side": "them",
+            "at": "nsc",
+            "kicker": "調查",
+            "title": "國科會\n萬人青年婚姻調查",
+            "value": 10000,
+            "prefix": "約 ",
+            "unit": " 人",
+            "meta": "20–49 歲",
+            "countAt": "wan"
+          }
+        ]
+      },
+      "sources": [
+        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+      ]
+    },
+    {
+      "id": "s04",
+      "para": 1,
+      "narration": "沒結婚的裡面，大約三分之二沒有對象。",
+      "subtitle": {
+        "zh": "沒結婚的裡面，大約三分之二沒有對象。",
+        "en": "Among unmarried people, | about two-thirds have no partner."
+      },
+      "keywords": [
+        "三分之二"
+      ],
+      "cues": [
+        {
+          "id": "unm",
+          "text": "沒結婚"
+        },
+        {
+          "id": "two",
+          "text": "三分之二"
+        },
+        {
+          "id": "none",
+          "text": "沒有對象"
+        }
+      ],
+      "component": "ChatScene",
+      "props": {
+        "events": [
+          {
+            "type": "stat",
+            "at": "unm",
+            "until": "s05:single-8",
+            "kicker": "國科會萬人青年婚姻調查",
+            "head": "沒結婚的人裡面",
+            "big": "2/3",
+            "label": "沒有交往對象",
+            "total": 30,
+            "on": 20,
+            "cols": 10,
+            "fillAt": "two",
+            "labelAt": "none",
+            "foot": "每 3 個人，有 2 個"
+          }
+        ]
+      },
+      "sources": [
+        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+      ]
+    },
+    {
+      "id": "s05",
+      "para": 1,
+      "narration": "單身的，不是只有你。",
+      "subtitle": {
+        "zh": "單身的，不是只有你。",
+        "en": "If you're single, | you're not the only one."
+      },
+      "keywords": [
+        "不是只有你"
+      ],
+      "cues": [
+        {
+          "id": "single",
+          "text": "單身"
+        },
+        {
+          "id": "notonly",
+          "text": "不是只有你"
+        }
+      ],
+      "component": "ChatScene",
+      "props": {
+        "events": [
+          {
+            "type": "bubble",
+            "side": "them",
+            "text": "單身的不是只有你",
+            "at": "single",
+            "id": "comfort"
+          },
+          {
+            "type": "bubble",
+            "side": "me",
+            "text": "好像有被安慰到",
+            "at": "notonly+6"
+          },
+          {
+            "type": "react",
+            "ref": "comfort",
+            "at": "notonly+16"
+          }
+        ]
+      },
+      "sources": [
+        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+      ]
+    }
+  ]
+}

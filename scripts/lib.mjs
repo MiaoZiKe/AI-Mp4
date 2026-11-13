@@ -14,7 +14,7 @@ export const loadScript = (slug) => {
   const s = JSON.parse(fs.readFileSync(p, "utf8"));
   const tp = path.join(ROOT, "videos", slug, "timeline.json");
   s.timeline = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
-  if (s.styleVersion === 3) {
+  if (s.styleVersion === 3 && !s.stage) { // stage（例如 "ui" 仿介面動畫）＝沿用 v3 時間軸但不用紙材
     // v3（桌面紙拼貼）：沿用時間軸 v2；紙材 meta 一併掛上（public/v3/<slug>/meta.json，scripts/make-paper.py 產生）
     const mp = path.join(ROOT, "public", "v3", slug, "meta.json");
     if (!fs.existsSync(mp)) throw new Error(`找不到 ${path.relative(ROOT, mp)}：先 python3 scripts/make-paper.py ${slug}`);
@@ -23,6 +23,8 @@ export const loadScript = (slug) => {
     const made = s.v3.assets._info?.skin ?? "desk";
     if (made !== (s.skin ?? "desk")) throw new Error(`${slug} 的 skin 是「${s.skin ?? "desk"}」，但 public/v3/${slug}/ 的紙材是用「${made}」產生的：重跑 python3 scripts/make-paper.py ${slug}`);
   }
+  // stage: "three"（3D 產品台）：swiftshader 開不出 WebGL，改用 swangle；一次只渲一幀（軟體算 3D 很吃 CPU 與記憶體）
+  if (s.stage === "three") { chromiumOptions.gl = "swangle"; renderTuning.concurrency = Number(process.env.THREE_CONCURRENCY ?? 1); }
   if ([2, 3].includes(s.styleVersion) && s.timeline?.version !== 2)
     throw new Error(`${slug} 是 styleVersion ${s.styleVersion}，需要時間軸 v2：先 npm run align ${slug}（timeline.json 要有 version: 2）`);
   if (s.timeline) {
@@ -47,6 +49,8 @@ export const makeBundle = () => {
 
 // swiftshader 比預設的 swangle 快 2.5 倍（軟體渲染環境實測 194 vs 479 ms/frame）
 export const chromiumOptions = { gl: "swiftshader" };
+/** render 的平行數（預設 4）；loadScript 依 stage 調整（3D 產品台＝1） */
+export const renderTuning = { concurrency: 4 };
 export const fps = 30;
 /**
  * 每幕截圖用的絕對幀。v2：timeline.json 的 stillFrame（單一時間來源）；v1：各幕結束前 12 幀（舊算法）

@@ -1,0 +1,98 @@
+{
+  "slug": "sample-stock-chart",
+  "title": "台股每一萬點走多久？35 年、1 年 9 個月、119 天（股票風格試片）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "chart",
+  "channel": { "name": "白話股市", "tag": "一張圖看懂", "slogan": "一張圖講透一件事" },
+  "audio": { "bgm": true, "sfx": true },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "persona": "三十歲左右的台灣女生，在財經媒體做數據圖表，下班後把今天看到的一張圖講給有在存股的朋友聽",
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [4.6, 5.0],
+      "tone": "就事論事但有精神，語速偏快；像指著圖表跟朋友講數字，句子之間不拖，不是播報",
+      "arc": {
+        "起": "直接把數字丟出來，帶一點不可思議",
+        "承": "一個數字接一個數字，越講越快一點，中間不停太久",
+        "轉": "語氣收一下，像在提醒朋友別只看表面",
+        "合": "平穩、肯定地把話講完，不拖長音"
+      },
+      "englishTerms": {},
+      "avoid": ["電視主播的播報腔", "一個字一個字慢慢念", "平平的、像機器念稿的語調", "像在報明牌的興奮感", "句子中間拖長音", "越講越慢"],
+      "voices": ["Sulafat"]
+    }
+  },
+  "cover": { "title": ["每一萬點", "走多久？"], "sub": "35 年 → 1 年 9 個月 → 119 天" },
+  "chart": {
+    "kicker": "台股加權指數｜收盤首次站上",
+    "title": "每一萬點，走多久？",
+    "note": "階梯＝收盤首次站上的整數關卡，不是每日走勢",
+    "barsTitle": "花的時間",
+    "steps": [
+      { "level": 10000, "label": "1 萬", "date": "1989-06-19", "close": 10105.81 },
+      { "level": 20000, "label": "2 萬", "date": "2024-03-21", "close": 20199.09 },
+      { "level": 30000, "label": "3 萬", "date": "2026-01-05", "close": 30105.04 },
+      { "level": 40000, "label": "4 萬", "date": "2026-05-04", "close": 40705.14 }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s1", "beat": "hook", "para": 1,
+      "narration": "台股從一萬點漲到兩萬點，花了快 35 年。",
+      "tts": "台股從一萬點漲到兩萬點，花了快三十五年。",
+      "subtitle": { "zh": "台股從一萬點漲到兩萬點\n花了快 35 年", "en": "From 10,000 to 20,000 points, | Taiwan stocks took nearly 35 years." },
+      "keywords": ["35 年"],
+      "cues": [ { "id": "from", "text": "一萬點" }, { "id": "to", "text": "兩萬點" }, { "id": "took", "text": "花了" }, { "id": "yr", "text": "年" } ],
+      "component": "ChartScene",
+      "props": {
+        "view": { "from": "1987-06-01", "to": "2027-09-01" },
+        "leg": { "i": 0, "drawAt": "from-2", "targetAt": "to", "landAt": "yr+2" }
+      },
+      "sources": ["金管會、證交所（媒體引述）"]
+    },
+    {
+      "id": "s2", "beat": "mechanism", "para": 1,
+      "narration": "兩萬到三萬呢？一年九個月。",
+      "subtitle": { "zh": "兩萬到三萬呢？\n一年九個月", "en": "20,000 to 30,000? | One year and nine months." },
+      "keywords": ["一年九個月"],
+      "cues": [ { "id": "q", "text": "三萬" }, { "id": "one", "text": "一年" }, { "id": "mon", "text": "個月" } ],
+      "component": "ChartScene",
+      "props": {
+        "view": { "from": "2023-09-01", "to": "2026-11-20", "at": "start+0" },
+        "leg": { "i": 1, "drawAt": "start+8", "targetAt": "q", "landAt": "mon" }
+      },
+      "sources": ["金管會、證交所（媒體引述）"]
+    },
+    {
+      "id": "s3", "beat": "mechanism", "para": 1,
+      "narration": "三萬到四萬，只用了 119 天。",
+      "tts": "三萬到四萬，只用了一百一十九天。",
+      "subtitle": { "zh": "三萬到四萬\n只用了 119 天", "en": "30,000 to 40,000 | took just 119 days." },
+      "keywords": ["119 天"],
+      "cues": [ { "id": "q", "text": "四萬" }, { "id": "only", "text": "只用了" }, { "id": "day", "text": "天" } ],
+      "component": "ChartScene",
+      "props": {
+        "leg": { "i": 2, "drawAt": "start+2", "targetAt": "q", "landAt": "day-4" }
+      },
+      "sources": ["證交所收盤資料（媒體引述）"]
+    },
+    {
+      "id": "s4", "beat": "twist", "para": 2,
+      "narration": "不過同樣是一萬點，漲幅從一倍，縮到三分之一。",
+      "subtitle": { "zh": "不過同樣是一萬點\n漲幅從一倍\n縮到三分之一", "en": "But the same 10,000 points | went from a 100% gain | to about one third." },
+      "keywords": ["一萬點", "一倍", "三分之一"],
+      "cues": [ { "id": "same", "text": "同樣" }, { "id": "gain", "text": "漲幅" }, { "id": "x2", "text": "一倍" }, { "id": "third", "text": "三分之一" } ],
+      "component": "ChartScene",
+      "props": {
+        "gain": { "title": "同樣一萬點，漲幅不同", "barsTitle": "漲幅（以整數關卡計算）", "bracketAt": "same", "at": "gain-2", "bars": [ { "at": "x2-2" }, { "at": "x2+10" }, { "at": "third-2" } ] }
+      },
+      "sources": ["漲幅＝本台以整數關卡自行計算"]
+    }
+  ]
+}

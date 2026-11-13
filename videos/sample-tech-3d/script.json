@@ -1,0 +1,113 @@
+{
+  "slug": "sample-tech-3d",
+  "title": "手機裡可能藏著一點水？拆開看均熱板（科技風格試片：3D 產品台）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": { "name": "科技", "tag": "拆開來看", "slogan": "一支講透一件事" },
+  "audio": { "bgm": true, "sfx": true },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "persona": "三十歲左右的台灣女生，在科技業做產品，平常就愛拆手機，把剛拆開看到的東西講給外行朋友聽",
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [4.6, 5.0],
+      "tone": "明快、有精神，講話偏快，一句接一句不拖尾音；像邊拆邊跟朋友聊天，不是在念稿",
+      "arc": {
+        "起": "帶一點神祕的好奇，像要爆一個小祕密",
+        "承": "乾脆俐落，邊拆邊講，句子之間不停太久",
+        "轉": "講到原理的地方語氣亮起來，節奏還是快",
+        "合": "輕鬆地收掉，不拖長"
+      },
+      "avoid": [
+        "播新聞的腔調",
+        "一個字一個字慢慢念",
+        "平平的、像機器念稿的語調",
+        "句子中間拖長音",
+        "越講越慢"
+      ],
+      "voices": ["Sulafat"]
+    }
+  },
+  "cover": { "title": ["手機裡", "藏著水？"], "sub": "拆開看均熱板" },
+  "scenes": [
+    {
+      "id": "s1", "beat": "hook", "para": 1,
+      "narration": "你的手機裡，可能藏著一點水。",
+      "subtitle": { "zh": "你的手機裡\n可能藏著一點水", "en": "Your phone | may be hiding a little water." },
+      "keywords": ["一點水"],
+      "cues": [ { "id": "phone", "text": "手機" }, { "id": "water", "text": "一點水" } ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": { "title": "手機裡有水？", "kicker": "拆開來看" },
+        "spin": { "at": "start+0", "until": "exit" },
+        "drop": { "at": "water" }
+      },
+      "sources": []
+    },
+    {
+      "id": "s2", "beat": "mechanism", "para": 1,
+      "narration": "拆開來看，晶片上面蓋著一片金屬板，",
+      "subtitle": { "zh": "拆開來看\n晶片上面蓋著一片金屬板", "en": "Open it up: | a metal plate covers the chip." },
+      "keywords": ["拆開", "金屬板"],
+      "cues": [ { "id": "open", "text": "拆開" }, { "id": "chip", "text": "晶片" }, { "id": "plate", "text": "金屬板" } ],
+      "component": "ThreeScene",
+      "props": {
+        "explode": { "at": "open-6" },
+        "labels": [
+          { "part": "chip", "text": "晶片", "color": "coral", "at": "chip" },
+          { "part": "plate", "text": "金屬板", "color": "amber", "at": "plate" }
+        ]
+      },
+      "sources": ["示意模型，非特定機型；各家手機的層次順序不同"]
+    },
+    {
+      "id": "s3", "beat": "mechanism", "para": 1,
+      "narration": "叫均熱板，裡面封著一點純水。",
+      "subtitle": { "zh": "叫均熱板\n裡面封著一點純水", "en": "It's a vapor chamber, | with a little pure water sealed inside." },
+      "keywords": ["均熱板", "純水"],
+      "cues": [ { "id": "name", "text": "均熱板" }, { "id": "pure", "text": "純水" } ],
+      "component": "ThreeScene",
+      "props": {
+        "focus": { "part": "plate", "at": "name-8" },
+        "rename": { "part": "plate", "text": "均熱板", "en": "Vapor Chamber", "at": "name" },
+        "cutaway": { "at": "pure-6" },
+        "labels": [ { "part": "water", "text": "純水", "color": "blue", "at": "pure" } ]
+      },
+      "sources": ["DNP 均熱板技術說明", "Apple 新聞稿 2025/9"]
+    },
+    {
+      "id": "s4", "beat": "twist", "para": 2,
+      "narration": "晶片一燙，水變成蒸氣，把熱帶到整片板子；",
+      "subtitle": { "zh": "晶片一燙，水變成蒸氣\n把熱帶到整片板子", "en": "When the chip heats up, water turns to vapor | and spreads the heat across the plate." },
+      "keywords": ["蒸氣", "整片"],
+      "cues": [ { "id": "hot", "text": "燙" }, { "id": "vapor", "text": "蒸氣" }, { "id": "spread", "text": "整片" } ],
+      "component": "ThreeScene",
+      "props": {
+        "heat": { "at": "hot-4" },
+        "vapor": { "at": "vapor-4" },
+        "spread": { "at": "spread-4" },
+        "labels": [ { "part": "vapor", "text": "蒸氣", "color": "coral", "at": "vapor" } ]
+      },
+      "sources": ["DNP 均熱板技術說明"]
+    },
+    {
+      "id": "s5", "beat": "payoff", "para": 2,
+      "narration": "涼了變回水，再流回來。",
+      "subtitle": { "zh": "涼了變回水\n再流回來", "en": "It cools back into water | and flows back again." },
+      "keywords": ["變回水", "流回來"],
+      "cues": [ { "id": "cool", "text": "涼了" }, { "id": "back", "text": "流回來" } ],
+      "component": "ThreeScene",
+      "props": {
+        "condense": { "at": "cool-2" },
+        "flowBack": { "at": "back-4" },
+        "labels": [ { "part": "loop", "text": "一直循環", "color": "blue", "at": "back+6" } ]
+      },
+      "sources": ["DNP 均熱板技術說明"]
+    }
+  ]
+}

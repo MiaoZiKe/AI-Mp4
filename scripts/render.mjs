@@ -4,7 +4,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { execFileSync, spawnSync } from "node:child_process";
 import { renderMedia, selectComposition } from "@remotion/renderer";
-import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, assertFrames } from "./lib.mjs";
+import { ROOT, BROWSER, loadScript, makeBundle, chromiumOptions, assertFrames, renderTuning } from "./lib.mjs";
 import { writeSrt, writeStoryboard } from "./subs.mjs";
 
 await import("./fetch-fonts.mjs");
@@ -22,10 +22,10 @@ const V2MIX = [2, 3].includes(script.styleVersion) && script.timeline?.voice && 
 const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}${V2MIX ? ".video" : ""}.mp4`);
 const t0 = Date.now();
 let last = -1;
-await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: 4,
+await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: renderTuning.concurrency,
   onProgress: ({ progress }) => { const p = Math.floor(progress * 10); if (p !== last) { last = p; console.log(`render ${p * 10}%`); } } });
 const ms = Date.now() - t0;
-if (!script.audit) fs.writeFileSync(path.join(ROOT, "out", `${slug}.render.json`), JSON.stringify({ frames: comp.durationInFrames, renderSec: Math.round(ms / 1000), msPerFrame: Math.round(ms / comp.durationInFrames), concurrency: 4, at: new Date().toISOString() }, null, 1));
+if (!script.audit) fs.writeFileSync(path.join(ROOT, "out", `${slug}.render.json`), JSON.stringify({ frames: comp.durationInFrames, renderSec: Math.round(ms / 1000), msPerFrame: Math.round(ms / comp.durationInFrames), concurrency: renderTuning.concurrency, at: new Date().toISOString() }, null, 1));
 const probe = execFileSync("ffprobe", ["-v", "error", "-show_entries", "stream=codec_type,codec_name,width,height,r_frame_rate:format=duration", "-of", "compact=p=0:nk=1", out]).toString().trim().replace(/\n/g, " | ");
 const nFrames = Number(execFileSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", out]).toString().trim());
 if (nFrames !== comp.durationInFrames) console.warn(`⚠ ffprobe 幀數 ${nFrames} ≠ composition ${comp.durationInFrames}`);

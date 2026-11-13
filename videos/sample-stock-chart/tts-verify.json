@@ -1,0 +1,63 @@
+{
+ "slug": "sample-stock-chart",
+ "at": "2026-11-13T08:40:02.744Z",
+ "method": "fa",
+ "confMin": 0.5,
+ "cerMax": 0.15,
+ "regenMax": 0,
+ "regenRequests": 0,
+ "note": "整篇一鏡到底（tts-take.mjs，原始音檔 c63691e73d，本次 TTS 請求 1 次）：信心取自整篇對齊；不單幕重生，要重做就整篇重來",
+ "scenes": [
+  {
+   "id": "s1",
+   "before": {
+    "confidence": 0.649,
+    "minScore": 0.001,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  },
+  {
+   "id": "s2",
+   "before": {
+    "confidence": 0.631,
+    "minScore": 0.035,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  },
+  {
+   "id": "s3",
+   "before": {
+    "confidence": 0.432,
+    "minScore": 0,
+    "cer": null,
+    "transcript": null,
+    "bad": true,
+    "why": [
+     "對齊信心 0.432 < 0.5"
+    ]
+   },
+   "regen": false,
+   "skipReason": "整篇模式不單幕重生"
+  },
+  {
+   "id": "s4",
+   "before": {
+    "confidence": 0.725,
+    "minScore": 0.027,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  }
+ ]
+}

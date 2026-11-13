@@ -6,6 +6,10 @@ import type { Scene, SceneTiming, SceneTimingV2, Script, TimelineV2, TransitionS
 import { C, FPS, SAFE } from "./theme";
 import { isV2, isV3, sceneFrames, sceneStarts } from "./timing";
 import { VideoV3 } from "./components/v3/Stage";
+import { VideoUI } from "./components/ui/UiVideo";
+import { VideoChat } from "./components/chat/ChatVideo";
+import { VideoChart } from "./components/chartlead/ChartVideo";
+import { VideoThree } from "./components/three/ThreeVideo";
 import { StyleV2Context } from "./style";
 import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
@@ -250,6 +254,10 @@ const VideoV2: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, asOf, ti
 };
 
 export const Video: React.FC<Script> = (props) => {
+  if (isV3(props) && props.stage === "chart") return <VideoChart {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "chat") return <VideoChat {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "three") return <VideoThree {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "ui") return <VideoUI {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props)) return <VideoV3 {...props} timeline={props.timeline as TimelineV2} />;
   if (isV2(props)) return <VideoV2 {...props} timeline={props.timeline as TimelineV2} />;
   return <VideoV1 {...props} />;

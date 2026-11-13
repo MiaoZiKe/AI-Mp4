@@ -1,0 +1,99 @@
+{
+ "slug": "sample-love-chat",
+ "at": "2026-11-13T08:30:59.948Z",
+ "durationSec": 13.97,
+ "final": {
+  "lufs": -14.2,
+  "truePeakDbfs": -4.4,
+  "lra": 1.8,
+  "codec": "aac 256k 48kHz stereo"
+ },
+ "target": {
+  "lufs": -14,
+  "truePeakDbfs": -1.5,
+  "lraMax": 8,
+  "bgmUnderVoiceLuMin": 15
+ },
+ "bgm": {
+  "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
+  "lufsBeforeDuck": -27,
+  "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
+  "underVoiceDuringSpeechLu": 22.4
+ },
+ "sfx": {
+  "meta": {
+   "whoosh": {
+    "file": "public/sfx/whoosh-ab3314c7.wav",
+    "peakOffsetMs": 329,
+    "gainDb": -17
+   },
+   "pop": {
+    "file": "public/sfx/pop-5f70a59a.wav",
+    "peakOffsetMs": 0,
+    "gainDb": -16
+   },
+   "chime": {
+    "file": "public/sfx/chime-dbfd1d27.wav",
+    "peakOffsetMs": 5,
+    "gainDb": -18
+   }
+  },
+  "notch": "−9dB @3kHz（避開 2–4kHz）",
+  "counts": {
+   "pop": 6,
+   "chime": 1
+  },
+  "perThreeSec": 1.5,
+  "events": [
+   {
+    "type": "pop",
+    "frame": 53,
+    "why": "s02 bubble",
+    "startSec": 1.767,
+    "peakSec": 1.767
+   },
+   {
+    "type": "pop",
+    "frame": 92,
+    "why": "s02 bubble",
+    "startSec": 3.067,
+    "peakSec": 3.067
+   },
+   {
+    "type": "pop",
+    "frame": 126,
+    "why": "s03 bubble",
+    "startSec": 4.2,
+    "peakSec": 4.2
+   },
+   {
+    "type": "pop",
+    "frame": 172,
+    "why": "s03 card",
+    "startSec": 5.733,
+    "peakSec": 5.733
+   },
+   {
+    "type": "chime",
+    "frame": 284,
+    "why": "s04 統計卡上色",
+    "startSec": 9.462,
+    "peakSec": 9.467
+   },
+   {
+    "type": "pop",
+    "frame": 349,
+    "why": "s05 bubble",
+    "startSec": 11.633,
+    "peakSec": 11.633
+   },
+   {
+    "type": "pop",
+    "frame": 378,
+    "why": "s05 bubble",
+    "startSec": 12.6,
+    "peakSec": 12.6
+   }
+  ]
+ }
+}

@@ -1,0 +1,327 @@
+{
+  "slug": "sample-ai-ui",
+  "title": "提示詞只打一句話？官方指南說要有四塊（AI 教學風格試片）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "ui",
+  "channel": {
+    "name": "AI",
+    "tag": "AI 動手做",
+    "slogan": "看完就能照著做"
+  },
+  "audio": {
+    "bgm": true,
+    "sfx": true
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "persona": "二十八歲左右的台灣女生，每天用 AI 工具接案做內容，把剛學會的小技巧講給剛入門的朋友聽",
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [
+        4.6,
+        5.0
+      ],
+      "tone": "明快、有精神，語速偏快，句子和句子之間不拖；像跟朋友分享一個馬上能用的小技巧",
+      "arc": {
+        "起": "帶一點調侃的好奇，像在問朋友",
+        "承": "乾脆俐落，直接講重點，不停太久",
+        "轉": "四個重點一個接一個點出來，節奏輕快",
+        "合": "輕鬆、肯定，帶一點鼓勵"
+      },
+      "englishTerms": {
+        "Google": "GOO-gull，兩個音節",
+        "A I": "英文字母 A 和 I，分開念"
+      },
+      "avoid": [
+        "播新聞的腔調",
+        "一個字一個字慢慢念",
+        "平平的、像機器念稿的語調",
+        "句子中間拖長音",
+        "越講越慢"
+      ],
+      "voices": [
+        "Sulafat"
+      ]
+    }
+  },
+  "cover": {
+    "title": [
+      "提示詞",
+      "只打一句？"
+    ],
+    "sub": "官方指南：要有四塊"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "你問 AI，是不是都只打一句話？",
+      "tts": "你問 A I，是不是都只打一句話？",
+      "subtitle": {
+        "zh": "你問 AI\n是不是都只打一句話？",
+        "en": "When you ask AI, | do you type just one line?"
+      },
+      "keywords": [
+        "一句話"
+      ],
+      "cues": [
+        {
+          "id": "ask",
+          "text": "問"
+        },
+        {
+          "id": "one",
+          "text": "只打"
+        },
+        {
+          "id": "line",
+          "text": "一句話"
+        }
+      ],
+      "component": "UiScene",
+      "props": {
+        "hook": {
+          "title": "只打一句話？",
+          "kicker": "你的提示詞"
+        },
+        "draft": {
+          "text": "幫我寫一篇貼文",
+          "typeAt": "start+4",
+          "typeEnd": "line+6",
+          "placeholder": "問 AI 任何事…"
+        }
+      },
+      "sources": []
+    },
+    {
+      "id": "s2",
+      "beat": "you",
+      "para": 1,
+      "narration": "難怪它回得很普通。",
+      "subtitle": {
+        "zh": "難怪它回得很普通",
+        "en": "No wonder the answer is generic."
+      },
+      "keywords": [
+        "很普通"
+      ],
+      "cues": [
+        {
+          "id": "back",
+          "text": "回得"
+        },
+        {
+          "id": "plain",
+          "text": "很普通"
+        }
+      ],
+      "component": "UiScene",
+      "props": {
+        "send": {
+          "at": "start+0"
+        },
+        "reply": {
+          "at": "back-6",
+          "lines": [
+            "當然可以！以下是一篇貼文：",
+            "今天天氣真好，祝大家有美好的一天。"
+          ],
+          "stamp": {
+            "text": "很普通",
+            "at": "plain"
+          }
+        }
+      },
+      "sources": []
+    },
+    {
+      "id": "s3",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "Google 的官方指南說，好的提示詞有四塊：",
+      "subtitle": {
+        "zh": "Google 的官方指南說\n好的提示詞有四塊",
+        "en": "Google's official guide says | a good prompt has four parts:"
+      },
+      "keywords": [
+        "四塊"
+      ],
+      "cues": [
+        {
+          "id": "guide",
+          "text": "官方指南"
+        },
+        {
+          "id": "good",
+          "text": "好的"
+        },
+        {
+          "id": "four",
+          "text": "四塊"
+        }
+      ],
+      "component": "UiScene",
+      "props": {
+        "editor": {
+          "at": "start",
+          "title": "提示詞編輯器",
+          "guide": {
+            "text": "Prompting guide 101",
+            "by": "Google Workspace",
+            "at": "guide"
+          },
+          "slotsAt": "good+2"
+        }
+      },
+      "sources": [
+        "Google Workspace《Prompting guide 101》"
+      ]
+    },
+    {
+      "id": "s4",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "角色、任務、背景、格式。",
+      "subtitle": {
+        "zh": "角色、任務、背景、格式",
+        "en": "Persona, task, context, format."
+      },
+      "keywords": [
+        "角色",
+        "任務",
+        "背景",
+        "格式"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "角色"
+        },
+        {
+          "id": "c2",
+          "text": "任務"
+        },
+        {
+          "id": "c3",
+          "text": "背景"
+        },
+        {
+          "id": "c4",
+          "text": "格式"
+        }
+      ],
+      "component": "UiScene",
+      "props": {
+        "slots": [
+          {
+            "label": "角色",
+            "en": "Persona",
+            "color": "violet",
+            "text": "你是咖啡店的社群小編",
+            "at": "c1"
+          },
+          {
+            "label": "任務",
+            "en": "Task",
+            "color": "blue",
+            "text": "寫一篇新品上市貼文",
+            "at": "c2"
+          },
+          {
+            "label": "背景",
+            "en": "Context",
+            "color": "green",
+            "text": "手沖豆新上架，客人是上班族",
+            "at": "c3"
+          },
+          {
+            "label": "格式",
+            "en": "Format",
+            "color": "amber",
+            "text": "標題加三行，口吻輕鬆",
+            "at": "c4"
+          }
+        ]
+      },
+      "sources": [
+        "Google Workspace《Prompting guide 101》"
+      ]
+    },
+    {
+      "id": "s5",
+      "beat": "payoff",
+      "para": 3,
+      "narration": "四塊補上去，同一個 AI，回答更貼近你要的。",
+      "tts": "四塊補上去，同一個 A I，回答更貼近你要的。",
+      "subtitle": {
+        "zh": "四塊補上去\n同一個 AI\n回答更貼近你要的",
+        "en": "Fill in all four, | same AI, | answers closer to what you need."
+      },
+      "keywords": [
+        "四塊",
+        "更貼近"
+      ],
+      "cues": [
+        {
+          "id": "fill",
+          "text": "補上去"
+        },
+        {
+          "id": "same",
+          "text": "同一個"
+        },
+        {
+          "id": "ans",
+          "text": "回答"
+        },
+        {
+          "id": "close",
+          "text": "更貼近"
+        }
+      ],
+      "component": "UiScene",
+      "props": {
+        "run": {
+          "at": "fill-4",
+          "node": {
+            "text": "AI",
+            "sub": "同一個",
+            "at": "same-4"
+          }
+        },
+        "result": {
+          "at": "ans-2",
+          "title": "早八救星｜新品手沖豆上架",
+          "lines": [
+            {
+              "t": "趕打卡也能喝到好咖啡",
+              "slot": 2
+            },
+            {
+              "t": "果香明亮，三分鐘沖好",
+              "slot": 1
+            },
+            {
+              "t": "本週到店試喝，第二包九折",
+              "slot": 0
+            }
+          ],
+          "badge": {
+            "text": "更貼近你要的",
+            "at": "close"
+          },
+          "titleSlot": 3
+        }
+      },
+      "sources": [
+        "示範文字為自編，非真實產品輸出"
+      ]
+    }
+  ]
+}

@@ -289,3 +289,225 @@ export const LAYOUT_V3 = {
   /** 手機螢幕在機身內的比例（左、上、右、下；make-paper.py 的 phone） */
   SCREEN_BOX: [0.062, 0.088, 0.938, 0.868],
 } as const;
+
+// ───────────────────────── 仿介面動畫（styleVersion 3 ＋ stage: "ui"；src/components/ui/） ─────────────────────────
+/** 深色的自製介面：視窗、輸入框、游標、欄位、流程節點。元件只讀這裡的 token，不寫死色碼；不用發光、不用 3D。 */
+export const THEME_UI = {
+  bg: "#0E1016",
+  dot: "#1B1F2A",
+  panel: "#171A23",
+  panel2: "#1F2330",
+  field: "#12141B",
+  line: "#2D3345",
+  lineSoft: "#232838",
+  text: "#F2F4F8",
+  text2: "#A3ABBD",
+  text3: "#6A7387",
+  onAccent: "#0E1016",
+  /** 強調色（角色）：script.json 的 color 寫這些名字；fill＝色塊、text＝深底上的字、soft＝淡底 */
+  accent: {
+    violet: { fill: "#8B7CFF", text: "#B9B0FF", soft: "#221F3D" },
+    blue: { fill: "#4DA8FF", text: "#8CC6FF", soft: "#152A40" },
+    green: { fill: "#3DD68C", text: "#7BE6B2", soft: "#12301F" },
+    amber: { fill: "#FFB84D", text: "#FFD08A", soft: "#382A12" },
+    coral: { fill: "#FF6B6B", text: "#FF9C9C", soft: "#3A1A1C" },
+  } as Record<string, { fill: string; text: string; soft: string }>,
+  radius: { window: 36, card: 24, chip: 16, pill: 999 },
+  shadow: "0 24px 60px rgba(0,0,0,0.45)",
+  weight: { zh: 900, body: 700, light: 500 },
+  /** 動作（幀）：進場 8、退場 6、游標移動 14、點擊波紋 10、鏡頭 14、每字打字 2 */
+  motion: { in: 8, out: 6, cursor: 14, click: 10, camera: 14, perChar: 2 },
+} as const;
+export const accentUI = (c?: string) => THEME_UI.accent[c ?? "violet"] ?? THEME_UI.accent.violet;
+/** 仿介面動畫版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_UI = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
+  MAIN_TOP: 330, MAIN_BOTTOM: 1250,
+  CAP_TOP: 1290, CAP_H: 236, CAP_ZH_PX: 70, CAP_EN_PX: 30,
+  SRC_TOP: 1556, SRC_PX: 24,
+} as const;
+
+// ───────────────────────── stage: "chat"：對話泡泡（感情頻道風格試片） ─────────────────────────
+// 元件在 src/components/chat/，顏色與版面一律讀這裡。整個畫面是一個自製的中性聊天介面（不仿任何真實通訊軟體、不放商標）：
+// 上面聯絡人列、中間對話串、下面輸入框，最下面深色面板放旁白字幕與出處。時間軸沿用 styleVersion 3 的整篇配音流程。
+export const THEME_CHAT = {
+  name: "對話泡泡",
+  /** 對話串底色與底紋圓點 */
+  screen: "#FFF4EE",
+  wall: "#F6E4DB",
+  /** 聯絡人列、輸入框 */
+  bar: "#FFFFFF",
+  barLine: "#F1E1D9",
+  field: "#F8EEE9",
+  ink: "#2B1E33",
+  ink2: "#7C6B83",
+  ink3: "#B3A5B8",
+  /** 自己的泡泡（珊瑚紅）、對方的泡泡（白） */
+  me: "#F0525A",
+  meText: "#FFFFFF",
+  them: "#FFFFFF",
+  themText: "#2B1E33",
+  /** 強調色：珊瑚、暖黃（深色面板上的關鍵詞）、淡紫（頭像）、薄荷（上線中） */
+  accent: "#F0525A",
+  gold: "#FFC857",
+  lilac: "#B7A3E6",
+  mint: "#4FC79A",
+  /** 統計卡：沒上色的人形、遮罩 */
+  dotOff: "#EADFE6",
+  scrim: "rgba(43, 30, 51, 0.42)",
+  /** 下方旁白面板（深梅子色） */
+  sheet: "#2B1E33",
+  sheetLine: "#4A3A54",
+  sheetText: "#FFFFFF",
+  sheetText2: "#CBBDD2",
+  shadow: "0 6px 0 rgba(43, 30, 51, 0.06), 0 14px 34px rgba(43, 30, 51, 0.10)",
+  shadowCard: "0 30px 80px rgba(43, 30, 51, 0.30)",
+  weight: { zh: 900, body: 700, en: 600 },
+} as const;
+/** 對話泡泡版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_CHAT = {
+  /** 聯絡人列：0–330（內容中線 276） */
+  BAR_H: 330,
+  BAR_MID: 276,
+  /** 對話串可視區：330–1150 */
+  VIEW_TOP: 330,
+  VIEW_H: 820,
+  PAD_X: 44,
+  PAD_BOTTOM: 26,
+  /** 輸入框：1150–1262 */
+  INPUT_TOP: 1150,
+  INPUT_H: 112,
+  /** 旁白面板：1262 到底；字幕中文 84px 中線 1407、英文 1484、出處 1596 */
+  SHEET_TOP: 1262,
+  SHEET_R: 44,
+  TAG_Y: 1294,
+  ZH_Y: 1352,
+  ZH_PX: 84,
+  EN_Y: 1484,
+  EN_PX: 30,
+  SRC_Y: 1596,
+  SRC_PX: 24,
+  /** 泡泡：字 54px、行高 70、內距 24×34、圓角 42；同一邊相鄰 14、換邊 30 */
+  BUBBLE_PX: 54,
+  BUBBLE_LH: 70,
+  BUBBLE_PAD_Y: 24,
+  BUBBLE_PAD_X: 34,
+  BUBBLE_R: 42,
+  GAP_SAME: 14,
+  GAP_TURN: 30,
+  AVATAR: 76,
+  DATE_H: 64,
+  CARD_W: 660,
+  CARD_H: 404,
+  /** 統計卡（蓋住對話串與輸入框） */
+  STAT_X: 40,
+  STAT_TOP: 352,
+  STAT_H: 888,
+} as const;
+
+// ───────────────────────── stage: "three"：3D 產品台（科技頻道風格試片；對外稱 v4） ─────────────────────────
+// 元件在 src/components/three/（全專案只有這個資料夾可以用 three.js／@remotion/three）。淺色攝影棚、風格化的實心模型：
+// 產品在轉盤上轉、躺下後沿厚度方向一層層分開、零件貼標籤。沒有擬真反光與陰影貼圖（這台機器沒有顯示卡）。時間軸沿用 styleVersion 3 的整篇配音流程。
+export const THEME_3D = {
+  name: "3D 產品台",
+  /** 攝影棚：背景、地面色帶、格線 */
+  bg: "#EEF1F5",
+  floor: "#E1E6ED",
+  grid: "#D5DCE5",
+  ink: "#111827",
+  ink2: "#4B5563",
+  ink3: "#8792A3",
+  panel: "#FFFFFF",
+  line: "#D5DBE4",
+  onAccent: "#FFFFFF",
+  /** 強調色（角色）：script.json 的 color 寫這些名字 */
+  accent: {
+    amber: { fill: "#E8890C", text: "#A85F00", soft: "#FDEFD3" },
+    blue: { fill: "#2F80ED", text: "#1B5FC0", soft: "#DCEBFF" },
+    coral: { fill: "#F0553A", text: "#C4381F", soft: "#FFE4DD" },
+    mint: { fill: "#1FB58A", text: "#0E7F5F", soft: "#D8F5EA" },
+  } as Record<string, { fill: string; text: string; soft: string }>,
+  /** 模型各零件的顏色 */
+  part: {
+    back: "#2C3648", island: "#232B3A", lens: "#0C1118", lensRing: "#9AA5B8",
+    battery: "#454E60", batteryBand: "#1FB58A", board: "#1E7B64", boardPart: "#141A24", chip: "#596579", chipTop: "#B8C2D2",
+    plate: "#D9A066", plateRim: "#C48A4E", plateFloor: "#9A6B42", wick: "#B98556",
+    frame: "#AEB8C8", screen: "#10151F", screenUi: "#2F80ED", screenUi2: "#7FB4FF", screenUi3: "#E8890C",
+    water: "#3BA4FF", vapor: "#FFFFFF", hot: "#FF5230", warm: "#F29A5C", shadow: "#0B1220",
+  },
+  /** 燈光強度：環境、主燈、補燈 */
+  light: { ambient: 1.5, key: 2.6, fill: 0.9 },
+  /** 退到背景的零件透明度、地面假陰影透明度 */
+  dim: 0.22,
+  shadow: 0.1,
+  radius: { card: 28, chip: 18, pill: 999 },
+  cardShadow: "0 18px 44px rgba(17, 24, 39, 0.10)",
+  weight: { zh: 900, body: 700, light: 500 },
+  /** 動作（幀）：進場 8、躺下 22、每層分開 22（層與層錯開 3）、聚焦 20、掀蓋 16、粒子 26 */
+  motion: { in: 8, lay: 22, explode: 22, stagger: 3, focus: 20, lid: 16, flow: 26 },
+  /** 鏡頭（視角 fov、距離 d、仰角 elev 度、看向的高度 y）：立著轉、分解、聚焦三個狀態 */
+  camera: {
+    fov: 26,
+    stand: { d: 50, elev: 5, y: 4.0 },
+    explode: { d: 56, elev: 26, y: 0.4 },
+    focus: { d: 35, elev: 38, y: -1.6 },
+  },
+  /** 模型姿態：起始偏轉、躺下後的俯仰與偏轉（弧度）、層距、每幀慢轉 */
+  pose: { yaw0: -0.42, pitch: -1.22, yawIso: 0.66, gap: 3.1, drift: 0.0009 },
+} as const;
+export const accent3D = (c?: string) => THEME_3D.accent[c ?? "amber"] ?? THEME_3D.accent.amber;
+/** 3D 產品台版面（1080×1920；安全區上下 220、左右 64）：頁首 228–308｜3D 舞台 300–1290（整個寬度）｜字幕卡 1296–1532｜出處 1560 */
+export const LAYOUT_3D = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
+  STAGE_TOP: 300, STAGE_H: 990,
+  CAP_TOP: 1296, CAP_H: 236, CAP_ZH_PX: 72, CAP_EN_PX: 30,
+  SRC_TOP: 1560, SRC_PX: 24,
+} as const;
+
+// ───────────────────────── stage: "chart"：資料圖表主導（股票頻道風格試片；src/components/chartlead/） ─────────────────────────
+/** 整個畫面是一張會動的圖表：深色看盤底、細格線、等寬數字。台股慣例紅色＝上漲。元件只讀這裡的 token，不寫死色碼；不用發光、不用 3D。 */
+export const THEME_CHARTLEAD = {
+  name: "資料圖表主導",
+  bg: "#0A0F0D",
+  grid: "#141D19",
+  panel: "#101714",
+  rule: "#26332D",
+  ruleSoft: "#1A2420",
+  text: "#EEF2EC",
+  text2: "#9DAAA2",
+  text3: "#66736C",
+  onAccent: "#0A0F0D",
+  /** 上漲（台股慣例紅色）：階梯線、漲幅長條 */
+  up: "#FF4D4F",
+  upText: "#FF8587",
+  upSoft: "#2A1213",
+  /** 讀數與時間長條（琥珀） */
+  amber: "#FFB000",
+  amberText: "#FFC94D",
+  amberSoft: "#2E2408",
+  radius: { chip: 6, bar: 3 },
+  weight: { zh: 900, body: 700, light: 500 },
+  stroke: { line: 7, lineDim: 4, grid: 2, target: 3 },
+  /** 沒被講到的東西降到這個不透明度 */
+  dim: 0.38,
+  /** 動作（幀）：進場 8、時間軸縮放 18、台階往上 6、長條長出 12、標籤 6 */
+  motion: { in: 8, zoom: 18, rise: 6, bar: 12, label: 6 },
+} as const;
+/** 資料圖表主導版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_CHARTLEAD = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
+  /** 圖表標題 330–470、讀數 478–582 */
+  KICKER_TOP: 330, KICKER_PX: 28, TITLE_TOP: 364, TITLE_PX: 88,
+  READ_TOP: 478, READ_H: 104, READ_PX: 92, READ_TAG_PX: 36,
+  /** 階梯圖繪圖區（y 軸標籤在左邊 64–160） */
+  PLOT_X0: 176, PLOT_X1: 1000, PLOT_TOP: 610, PLOT_BOTTOM: 970,
+  /** y 軸範圍留白：最低關卡下面、最高關卡上面各留 0.6 格 */
+  Y_PAD: 0.6, Y_LABEL_PX: 34, TICK_TOP: 974, TICK_PX: 28, NOTE_TOP: 1016, NOTE_PX: 24,
+  /** 長條區 1060–1248：小標＋三列 */
+  BARS_TOP: 1060, BARS_HEAD_PX: 28, ROW_TOP: 1102, ROW_GAP: 50, ROW_H: 46, BAR_X: 270, BAR_W: 440, ROW_PX: 38,
+  CAP_TOP: 1290, CAP_H: 236, CAP_ZH_PX: 74, CAP_EN_PX: 30,
+  SRC_TOP: 1556, SRC_PX: 24,
+} as const;
