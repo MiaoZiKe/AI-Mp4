@@ -449,7 +449,7 @@ export const THEME_3D = {
   /** 鏡頭（視角 fov、距離 d、仰角 elev 度、看向的高度 y）：立著轉、分解、聚焦三個狀態 */
   camera: {
     fov: 26,
-    stand: { d: 50, elev: 5, y: 4.0 },
+    stand: { d: 55, elev: 5, y: 3.3 },
     explode: { d: 56, elev: 26, y: 0.4 },
     focus: { d: 35, elev: 38, y: -1.6 },
   },
