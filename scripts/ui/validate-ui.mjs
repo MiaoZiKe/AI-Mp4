@@ -38,7 +38,7 @@ export function validateUI(script, h) {
       if (Array.isArray(v)) return v.forEach((x, k) => walk(x, `${where}[${k}]`));
       if (!v || typeof v !== "object") return;
       for (const [k, x] of Object.entries(v)) {
-        if (/^(at|typeAt|typeEnd|slotsAt)$/.test(k)) {
+        if (/^(at|typeAt|typeEnd|slotsAt|sweepAt|pulseAt)$/.test(k)) {
           const m = /^([^\s+-]+)([+-]\d+)?$/.exec(String(x));
           if (!m) E(`${tag}: ${where}.${k}「${x}」格式不對（cueId、start、voice、end、exit，可加 ±N 幀）`);
           else { if (!AT_BASE.includes(m[1]) && !cueIds.has(m[1])) E(`${tag}: ${where}.${k}「${x}」找不到 cue「${m[1]}」`); if (m[2] && Math.abs(Number(m[2])) > 30) W(`${tag}: ${where}.${k}「${x}」離觸發詞超過 30 幀（時間要跟著配音）`); }
@@ -49,7 +49,7 @@ export function validateUI(script, h) {
     };
     walk(s.props ?? {}, "props");
     if ((s.props?.slots ?? []).length > 4) E(`${tag}: slots 最多 4 個`);
-    if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 24; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
+    if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 28; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
   });
   if (!scenes[0].props?.hook?.title) E("第一幕要有 props.hook.title（第 0 幀就看得到的主張）");
   // 風格試片 10–20 秒；正式片 45–75 秒。兩種都不擋，只提醒

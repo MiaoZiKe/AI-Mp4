@@ -29,14 +29,19 @@ export function resolveProfile(voice) {
   return p;
 }
 
+/** delivery: "chat"（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換成「跟朋友講話」版；沒寫就和以前完全一樣 */
+export const DELIVERIES = ["chat"];
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
 export function buildDirection(profile) {
-  const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
-  if (Array.isArray(profile.pace)) L.push(`Pacing: 像平常講話的速度，大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字；有快有慢，重點前面留一口氣，句子講完才換氣。`);
+  const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, ...(profile.scene ? ["", "# SCENE", `${one(profile.scene)}。`] : []), "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
+  const chat = profile.delivery === "chat";
+  if (chat && Array.isArray(profile.pace)) L.push(`Pacing: 跟朋友講話的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。想到哪講到哪：有的地方一口氣帶過去，有的地方想一下才接下去；停頓有長有短，逗號不一定要停。`);
+  else if (Array.isArray(profile.pace)) L.push(`Pacing: 像平常講話的速度，大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字；有快有慢，重點前面留一口氣，句子講完才換氣。`);
   const arc = ARC_KEYS.filter((k) => profile.arc?.[k]).map((k) => `${ARC_WHERE[k]}${one(profile.arc[k])}`);
   if (arc.length) L.push(`Arc: 整篇的情緒依內容走：${arc.join("；")}。`);
   const en = Object.entries(profile.englishTerms ?? {}).map(([k, v]) => `${k}（${one(v)}）`);
-  L.push(`Articulation: 每個字都講得出來，但是像平常講話，不是朗讀。${ENGLISH_STD}${en.length ? `特別注意：${en.join("、")}。` : ""}`);
+  if (chat) L.push(`Articulation: 平常講話的咬字就好，虛字和語助詞輕輕帶過，不用每個字都一樣重；句尾不用每一句都收得很乾淨。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
+  else L.push(`Articulation: 每個字都講得出來，但是像平常講話，不是朗讀。${ENGLISH_STD}${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");
 }
@@ -52,8 +57,10 @@ export function profileIssues(profile) {
   for (const k of ARC_KEYS) if (typeof profile.arc?.[k] !== "string" || !profile.arc[k].trim()) out.push(`voice.profile.arc 缺「${k}」（起／承／轉／合各一句情緒指示）`);
   if (profile.englishTerms !== undefined && (typeof profile.englishTerms !== "object" || Array.isArray(profile.englishTerms))) out.push("voice.profile.englishTerms 要是 { 英文詞: 念法 }");
   if (profile.avoid !== undefined && !Array.isArray(profile.avoid)) out.push("voice.profile.avoid 要是陣列");
+  if (profile.delivery !== undefined && !DELIVERIES.includes(profile.delivery)) out.push(`voice.profile.delivery 只能是 ${DELIVERIES.join("／")}（或不寫）`);
+  if (profile.scene !== undefined && (typeof profile.scene !== "string" || !profile.scene.trim())) out.push("voice.profile.scene 要是一句話（在哪裡、對誰講），或不寫");
   // 說明裡不能有像台詞的句子（會被念出來）
-  const texts = [profile.persona, profile.tone, ...ARC_KEYS.map((k) => profile.arc?.[k]), ...(profile.avoid ?? []), ...Object.values(profile.englishTerms ?? {})].filter((t) => typeof t === "string");
+  const texts = [profile.persona, profile.scene, profile.tone, ...ARC_KEYS.map((k) => profile.arc?.[k]), ...(profile.avoid ?? []), ...Object.values(profile.englishTerms ?? {})].filter((t) => typeof t === "string");
   for (const t of texts) { if (/[「『“"][^」』”"]{4,}[」』”"]/.test(t)) out.push(`voice.profile 的說明「${t.slice(0, 16)}…」含引號裡的句子，可能被念出來：只描述說話方式，不放台詞`); if (t.length > 60) out.push(`voice.profile 的說明「${t.slice(0, 16)}…」超過 60 字：一句話就好`); }
   return out;
 }

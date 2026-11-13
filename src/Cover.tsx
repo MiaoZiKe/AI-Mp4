@@ -9,9 +9,12 @@ import { CoverUI } from "./components/ui/UiVideo";
 import { CoverChat } from "./components/chat/ChatVideo";
 import { CoverChart } from "./components/chartlead/ChartVideo";
 import { CoverThree } from "./components/three/ThreeVideo";
+import { CoverType } from "./components/ai-type/TypeVideo";
+import { CoverSplit } from "./components/ai-split/SplitVideo";
+import { CoverSketch } from "./components/ai-sketch/SketchVideo";
 
 /** 封面：大標 + 霓虹圖示 + 四格重點 + 狀態標籤；全部由 script.json 的 cover 決定 */
-export const Cover: React.FC<Script> = (props) => (props.stage === "chart" ? <CoverChart {...props} /> : props.stage === "three" ? <CoverThree {...props} /> : props.stage === "ui" ? <CoverUI {...props} /> : props.stage === "chat" ? <CoverChat {...props} /> : props.styleVersion === 3 ? <CoverV3 {...props} /> : props.styleVersion === 2 ? <CoverV2 {...props} /> : <CoverV1 {...props} />);
+export const Cover: React.FC<Script> = (props) => (props.stage === "sketch" ? <CoverSketch {...props} /> : props.stage === "split" ? <CoverSplit {...props} /> : props.stage === "type" ? <CoverType {...props} /> : props.stage === "chart" ? <CoverChart {...props} /> : props.stage === "three" ? <CoverThree {...props} /> : props.stage === "ui" ? <CoverUI {...props} /> : props.stage === "chat" ? <CoverChat {...props} /> : props.styleVersion === 3 ? <CoverV3 {...props} /> : props.styleVersion === 2 ? <CoverV2 {...props} /> : <CoverV1 {...props} />);
 const CoverV1: React.FC<Script> = ({ cover, asOf }) => {
   const c = { title: ["—"], sub: "", en: "", ...(cover ?? {}) };
   const icons = c.icons?.length ? c.icons : [{ name: "globe", color: "cyan" }, { name: "chart", color: "pink" }];

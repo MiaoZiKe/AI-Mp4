@@ -46,7 +46,7 @@ export const CaptionChart: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
   const p = a <= 0 && k === 0 ? 1 : tween(f, startOf(k), 5, EASE.enter);
   return (
     <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: T.panel, borderTop: `4px solid ${T.rule}`, borderBottom: `2px solid ${T.ruleSoft}` }}>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 30, height: 104, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_ZH, fontWeight: T.weight.zh, fontSize: L.CAP_ZH_PX, color: T.text, letterSpacing: "0.02em", whiteSpace: "nowrap", transform: `translateY(${Math.round(8 * (1 - p))}px)`, opacity: p }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 22, height: 104, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_ZH, fontWeight: T.weight.zh, fontSize: L.CAP_ZH_PX, color: T.text, letterSpacing: "0.02em", whiteSpace: "nowrap", transform: `translateY(${Math.round(8 * (1 - p))}px)`, opacity: p }}>
         <span>
           {splitParts(display(ps[k].text), cue.keywords).map((s, i) => {
             if (s.k < 0) return <span key={i}>{s.text}</span>;
@@ -60,7 +60,7 @@ export const CaptionChart: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
           })}
         </span>
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 158, textAlign: "center", fontFamily: FONT_EN, fontWeight: T.weight.light, fontSize: L.CAP_EN_PX, color: T.text2, whiteSpace: "nowrap" }}>{en[e]}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 146, textAlign: "center", fontFamily: FONT_EN, fontWeight: T.weight.light, fontSize: L.CAP_EN_PX, color: T.text2, whiteSpace: "nowrap" }}>{en[e]}</div>
     </div>
   );
 };
@@ -74,8 +74,8 @@ export const SourceChart: React.FC<{ cues: { sources: string[]; window: [number,
   const same = k > 0 && cues[k - 1].sources?.join("、") === j;
   const p = same || cur.window[0] <= 0 ? 1 : tween(f, cur.window[0], T.motion.in, EASE.enter);
   return (
-    <div style={{ position: "absolute", left: L.X + 4, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text3, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
-      <div style={{ width: 10, height: 10, background: T.text3 }} />
+    <div style={{ position: "absolute", left: L.X + 4, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+      <div style={{ width: 10, height: 10, background: T.text2 }} />
       {/^(資料)?來源/.test(j) ? j : `來源：${j}`}
     </div>
   );

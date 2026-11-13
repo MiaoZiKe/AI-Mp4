@@ -1,0 +1,48 @@
+{
+ "_說明": "只給試聽用（docs/voice-natural.md、videos/sample-ai-ui/voice-natural-candidates.md）。用 tts-take.mjs 的 --script 讀，不是成片的 script.json。",
+ "slug": "sample-ai-ui",
+ "voice": {
+  "voiceName": "Sulafat",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": {
+   "preset": "ai",
+   "gender": "female",
+   "pace": [
+    4.5,
+    5.0
+   ],
+   "delivery": "chat",
+   "scene": "咖啡店裡兩個人並肩坐著，筆電開著，她湊過去看朋友的螢幕，一邊指一邊講",
+   "englishTerms": {
+    "Google": "GOO-gull，兩個音節",
+    "A I": "英文字母 A 和 I，分開念"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "narration": "欸，你問 AI，是不是都只打一句話？",
+   "tts": "欸，你問 A I，是不是都只打一句話？"
+  },
+  {
+   "id": "s2",
+   "narration": "難怪它回得很普通啊。"
+  },
+  {
+   "id": "s3",
+   "narration": "Google 的官方指南有寫，好的提示詞有四塊："
+  },
+  {
+   "id": "s4",
+   "narration": "角色、任務、背景，還有格式。"
+  },
+  {
+   "id": "s5",
+   "narration": "四塊補上去，同一個 AI，回答就更貼近你要的。",
+   "tts": "四塊補上去，同一個 A I，回答就更貼近你要的。"
+  }
+ ]
+}

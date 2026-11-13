@@ -43,6 +43,10 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
   const enStart = (e: number) => (e === 0 ? a : ps[Math.ceil((e * ps.length) / en.length)]?.start ?? a);
   let e = 0; for (let i = 0; i < en.length; i++) if (f >= enStart(i)) e = i;
   const kwAt = Object.fromEntries(cue.keywords_at.map((x) => [x.text, x.start]));
+  // 整句很短（例如四個詞用頓號隔開）就整句同列，念到哪個詞哪個詞上色；不一次只放一個詞
+  const whole = ps.map((x) => x.text).join("");
+  const joined = ps.length > 1 && [...display(whole)].length <= 11;
+  if (joined) k = 0;
   const p = a <= 0 && k === 0 ? 1 : tween(f, startOf(k), 5, EASE.enter);
   const colors = ["violet", "amber", "green", "blue"];
   void b;
@@ -50,12 +54,12 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
     <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: T.panel, border: `2px solid ${T.line}`, borderRadius: T.radius.window }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: 30, height: 104, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_ZH, fontWeight: T.weight.zh, fontSize: L.CAP_ZH_PX, color: T.text, letterSpacing: "0.02em", whiteSpace: "nowrap", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
         <span>
-          {splitParts(display(ps[k].text), cue.keywords).map((s, i) => {
+          {splitParts(joined ? display(whole) : display(ps[k].text), cue.keywords).map((s, i) => {
             if (s.k < 0) return <span key={i}>{s.text}</span>;
             const q = kwAt[s.text] === undefined ? 1 : tween(f, kwAt[s.text] - 1, 8, EASE.move);
             const c = accentUI(colors[s.k % colors.length]);
             return (
-              <span key={i} style={{ position: "relative", color: q > 0.5 ? c.text : T.text }}>
+              <span key={i} style={{ position: "relative", color: q > 0.5 ? c.text : joined ? T.text3 : T.text }}>
                 {s.text}
                 <span style={{ position: "absolute", left: 0, bottom: -6, height: 8, width: `${(100 * q).toFixed(1)}%`, background: c.fill, borderRadius: 4 }} />
               </span>
@@ -63,7 +67,7 @@ export const CaptionUI: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
           })}
         </span>
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 156, textAlign: "center", fontFamily: FONT_EN, fontWeight: T.weight.light, fontSize: L.CAP_EN_PX, color: T.text2, whiteSpace: "nowrap" }}>{en[e]}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 156, textAlign: "center", fontFamily: FONT_EN, fontWeight: T.weight.light, fontSize: L.CAP_EN_PX, color: T.text2, whiteSpace: "nowrap" }}>{joined ? en.join(" ") : en[e]}</div>
     </div>
   );
 };
@@ -77,8 +81,8 @@ export const SourceUI: React.FC<{ cues: { sources: string[]; window: [number, nu
   const first = cues.find((c) => c.sources?.join("、") === j) as { window: [number, number] };
   const p = tween(f, first.window[0], T.motion.in, EASE.enter);
   return (
-    <div style={{ position: "absolute", left: L.X + 8, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text3, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
-      <div style={{ width: 10, height: 10, borderRadius: T.radius.pill, background: T.text3 }} />
+    <div style={{ position: "absolute", left: L.X + 8, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.text2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+      <div style={{ width: 10, height: 10, borderRadius: T.radius.pill, background: T.text2 }} />
       {/^(資料)?來源/.test(j) ? j : `來源：${j}`}
     </div>
   );

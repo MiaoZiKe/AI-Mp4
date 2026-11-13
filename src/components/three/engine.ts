@@ -20,6 +20,10 @@ export type Model3D = {
   spread: number;
   condense: number;
   flowBack: number;
+  /** 上蓋先微抬一下（念到「裡面」）、鏡頭繞開拉遠看整片板子、再推回熱點 */
+  peek: number;
+  orbit: number;
+  settle: number;
   rename?: { part: string; text: string; en?: string; at: number };
   labels: Label3D[];
 };
@@ -27,7 +31,7 @@ export type Model3D = {
 const FAR = 1e9;
 export const buildModel = (scenes: Scene[], tl: TimelineV2): Model3D => {
   const by = Object.fromEntries(tl.scenes.map((x) => [x.id, x]));
-  const m: Model3D = { total: tl.totalFrames, spin: { t0: 0, t1: FAR }, drop: FAR, explode: FAR, focus: FAR, cutaway: FAR, heat: FAR, vapor: FAR, spread: FAR, condense: FAR, flowBack: FAR, labels: [] };
+  const m: Model3D = { total: tl.totalFrames, spin: { t0: 0, t1: FAR }, drop: FAR, explode: FAR, focus: FAR, cutaway: FAR, heat: FAR, vapor: FAR, spread: FAR, condense: FAR, flowBack: FAR, peek: FAR, orbit: FAR, settle: FAR, labels: [] };
   scenes.forEach((s, i) => {
     const t = by[s.id];
     if (!t) return;
@@ -41,7 +45,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2): Model3D => {
     const p = (s.props ?? {}) as Record<string, any>;
     if (p.hook) m.hook = p.hook;
     if (p.spin) m.spin = { t0: at(p.spin.at, t.startFrame), t1: at(p.spin.until, next ? next.startFrame : tl.totalFrames) };
-    for (const k of ["drop", "explode", "focus", "cutaway", "heat", "vapor", "spread", "condense", "flowBack"] as const) if (p[k]) m[k] = at(p[k].at, t.voiceStartFrame);
+    for (const k of ["drop", "explode", "focus", "cutaway", "heat", "vapor", "spread", "condense", "flowBack", "peek", "orbit", "settle"] as const) if (p[k]) m[k] = at(p[k].at, t.voiceStartFrame);
     if (p.rename) m.rename = { ...p.rename, at: at(p.rename.at, t.voiceStartFrame) };
     for (const l of p.labels ?? []) m.labels.push({ ...l, at: at(l.at, t.voiceStartFrame) });
   });
@@ -81,8 +85,12 @@ export const stateAt = (m: Model3D, f: number) => {
   const M = T.motion, P = T.pose, C = T.camera;
   const lay = tween(f, m.explode, M.lay, EASE.move);
   const fo = tween(f, m.focus, M.focus, EASE.move);
-  const spin = tween(f, m.spin.t0, Math.max(1, Math.min(m.spin.t1, m.explode) - m.spin.t0), EASE.move);
-  const yaw = mix(P.yaw0 + Math.PI * 2 * spin, Math.PI * 2 + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode);
+  // 轉盤：第 0 幀就在轉（先快後慢），不用慢起步
+  const st = Math.max(0, Math.min(1, (f - m.spin.t0) / Math.max(1, Math.min(m.spin.t1, m.explode) - m.spin.t0)));
+  const spin = 1 - (1 - st) * (1 - st);
+  const pk = tween(f, m.peek, M.peek, EASE.move);
+  const orb = tween(f, m.orbit, M.orbit, EASE.move), set = tween(f, m.settle, M.orbit, EASE.move);
+  const yaw = mix(P.yaw0 + Math.PI * 2 * spin, Math.PI * 2 + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode) + P.peekYaw * pk + C.orbit.yaw * orb + C.settle.yaw * set;
   const pitch = mix(0, P.pitch, lay);
   const layers = {} as Record<LayerId, { z: number; opacity: number }>;
   LAYER_IDS.forEach((id) => {
@@ -94,10 +102,18 @@ export const stateAt = (m: Model3D, f: number) => {
     if (id === "inner") z += P.gap * 0.5 * fo;
     layers[id] = { z, opacity };
   });
-  const cam = { d: mix(mix(C.stand.d, C.explode.d, lay), C.focus.d, fo), elev: mix(mix(C.stand.elev, C.explode.elev, lay), C.focus.elev, fo), y: mix(mix(C.stand.y, C.explode.y, lay), C.focus.y, fo) };
+  const cam = {
+    d: mix(mix(C.stand.d, C.explode.d, lay), C.focus.d, fo) + C.orbit.d * orb + C.settle.d * set,
+    elev: mix(mix(C.stand.elev, C.explode.elev, lay), C.focus.elev, fo) + C.orbit.elev * orb + C.settle.elev * set,
+    y: mix(mix(C.stand.y, C.explode.y, lay), C.focus.y, fo) + C.orbit.y * orb + C.settle.y * set,
+  };
   const lid = tween(f, m.cutaway, M.lid, EASE.move);
+  const lidLift = pk * (1 - lid);
   const heat = tween(f, m.heat, 14, EASE.enter);
-  const cool = tween(f, m.condense + 6, 30, EASE.move);
+  // 念到「涼了」：M.cool 幀內整片退回金屬色
+  const cool = tween(f, m.condense, M.cool, EASE.move);
+  // 念到「燙」：板子短暫變透明，看得到下面的晶片先變紅；蒸氣出現前恢復
+  const xray = tween(f, m.heat, 6, EASE.enter) * (1 - tween(f, m.vapor - 4, 10, EASE.move));
   const parts = PARTICLES.map((p) => {
     const show = tween(f, m.cutaway + 4 + p.lag * 8, 8, EASE.enter);
     const vap = tween(f, m.vapor + p.lag * 10, 10, EASE.move);
@@ -110,12 +126,12 @@ export const stateAt = (m: Model3D, f: number) => {
     const y = mix(mix(p.near[1], p.far[1], spr), p.near[1], back);
     const gas = vap - con;
     const wob = gas * 0.12 * Math.sin(f * 0.21 + p.lag * 40);
-    return { x: x + wob, y, z: 0.2 + gas * (0.55 + 0.35 * p.lag), gas, scale: show * p.size * mix(1, 0.72, gas), flat: mix(0.55, 1, gas) };
+    return { x: x + wob, y, z: 0.2 + gas * (0.7 + 0.6 * p.lag) + gas * 0.1 * Math.sin(f * 0.13 + p.lag * 17), gas, scale: show * p.size * mix(1, 1.3, gas), flat: mix(0.55, 1, gas), opacity: mix(1, 0.78, gas) };
   });
   // 熱沿著板子擴散：0＝熱點那一端、1＝最遠端
   const spreadP = tween(f, m.spread - 2, M.flow + 10, EASE.move);
-  const heatAt = (u: number) => Math.max(0, Math.min(1, heat * (1 - cool * 0.75) * Math.max(0, Math.min(1, 1.15 - u * 1.25 + spreadP * 1.1 - (1 - spreadP) * u * 2.2)) * mix(1, 0.62, spreadP * u)));
-  return { f, yaw, pitch, lay, fo, layers, cam, lid, heat: heat * (1 - cool * 0.75), heatAt, parts };
+  const heatAt = (u: number) => Math.max(0, Math.min(1, heat * (1 - cool) * Math.max(0, Math.min(1, 1.15 - u * 1.25 + spreadP * 1.1 - (1 - spreadP) * u * 2.2)) * mix(1, 0.62, spreadP * u)));
+  return { f, yaw, pitch, lay, fo, layers, cam, lid, lidLift, xray, heat: heat * (1 - cool), heatAt, parts };
 };
 
 /** 相機（3D 畫面與標籤投影共用） */

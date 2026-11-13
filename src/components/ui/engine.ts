@@ -6,13 +6,13 @@ export type Slot = { label: string; en?: string; color: string; text: string; at
 export type UiModel = {
   total: number;
   hook?: { title: string; kicker?: string };
-  draft?: { text: string; placeholder: string; t0: number; t1: number };
+  draft?: { text: string; placeholder: string; t0: number; t1: number; empty?: { title: string; chips?: string[] } };
   send: number;
   reply?: { at: number; lines: string[]; stamp?: { text: string; at: number } };
-  editor?: { at: number; title: string; guide?: { text: string; by?: string; at: number }; slotsAt: number };
+  editor?: { at: number; title: string; guide?: { text: string; by?: string; at: number }; slotsAt: number; sweepAt: number; pulseAt: number };
   slots: Slot[];
   run?: { at: number; node: { text: string; sub?: string; at: number } };
-  result?: { at: number; title: string; titleSlot?: number; lines: { t: string; slot?: number }[]; badge?: { text: string; at: number } };
+  result?: { at: number; title: string; titleSlot?: number; lines: { t: string; slot?: number }[]; badge?: { text: string; at: number }; format?: { text: string; slot: number } };
 };
 
 export const buildModel = (scenes: Scene[], tl: TimelineV2): UiModel => {
@@ -30,10 +30,10 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2): UiModel => {
     };
     const p = (s.props ?? {}) as Record<string, any>;
     if (p.hook) m.hook = p.hook;
-    if (p.draft) m.draft = { text: p.draft.text, placeholder: p.draft.placeholder ?? "", t0: at(p.draft.typeAt, t.startFrame), t1: at(p.draft.typeEnd, t.voiceEndFrame) };
+    if (p.draft) m.draft = { text: p.draft.text, placeholder: p.draft.placeholder ?? "", t0: at(p.draft.typeAt, t.startFrame), t1: at(p.draft.typeEnd, t.voiceEndFrame), empty: p.draft.empty };
     if (p.send) m.send = at(p.send.at, t.startFrame);
     if (p.reply) m.reply = { at: at(p.reply.at, t.voiceStartFrame), lines: p.reply.lines ?? [], stamp: p.reply.stamp ? { text: p.reply.stamp.text, at: at(p.reply.stamp.at, t.voiceEndFrame) } : undefined };
-    if (p.editor) m.editor = { at: at(p.editor.at, t.startFrame), title: p.editor.title ?? "", guide: p.editor.guide ? { ...p.editor.guide, at: at(p.editor.guide.at, t.voiceStartFrame) } : undefined, slotsAt: at(p.editor.slotsAt, t.voiceStartFrame) };
+    if (p.editor) m.editor = { at: at(p.editor.at, t.startFrame), title: p.editor.title ?? "", guide: p.editor.guide ? { ...p.editor.guide, at: at(p.editor.guide.at, t.voiceStartFrame) } : undefined, slotsAt: at(p.editor.slotsAt, t.voiceStartFrame), sweepAt: at(p.editor.sweepAt, Infinity), pulseAt: at(p.editor.pulseAt, Infinity) };
     for (const sl of p.slots ?? []) m.slots.push({ ...sl, at: at(sl.at, t.voiceStartFrame) });
     if (p.run) m.run = { at: at(p.run.at, t.voiceStartFrame), node: { ...p.run.node, at: at(p.run.node?.at, t.voiceStartFrame) } };
     if (p.result) m.result = { ...p.result, at: at(p.result.at, t.voiceStartFrame), badge: p.result.badge ? { text: p.result.badge.text, at: at(p.result.badge.at, t.voiceEndFrame) } : undefined };

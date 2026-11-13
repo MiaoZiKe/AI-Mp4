@@ -37,7 +37,7 @@ export const ChartStage: React.FC<{ m: ChartModel; f: number; title?: string[] }
   const PW = L.PLOT_X1 - L.PLOT_X0, PH = L.PLOT_BOTTOM - L.PLOT_TOP;
   const X = (t: number) => L.PLOT_X0 + ((t - dom.from) / (dom.to - dom.from)) * PW;
   const gap = steps[1].level - steps[0].level;
-  const lo = steps[0].level - L.Y_PAD * gap, hi = steps[steps.length - 1].level + L.Y_PAD * gap;
+  const lo = steps[0].level - L.Y_PAD * gap, hi = steps[steps.length - 1].level + L.Y_PAD_TOP * gap;
   const Y = (v: number) => L.PLOT_BOTTOM - ((v - lo) / (hi - lo)) * PH;
   const pxPerYear = (PW * YEAR) / (dom.to - dom.from);
   // ── 每一段的進度：橫線（drawAt → landAt−rise）＋往上（landAt−rise → landAt） ──
@@ -90,13 +90,13 @@ export const ChartStage: React.FC<{ m: ChartModel; f: number; title?: string[] }
           {g && titleSwap > 0.5 ? <div style={{ position: "absolute", left: L.X, top: L.TITLE_TOP, ...zh(L.TITLE_PX, T.weight.zh), lineHeight: `${L.TITLE_PX + 14}px`, letterSpacing: "0.02em", opacity: titleSwap * 2 - 1, transform: `translateY(${(16 * (1 - titleSwap)).toFixed(1)}px)` }}>{g.title}</div> : null}
         </>
       )}
-      {/* 讀數：現在講的那一段＋花了多久（線畫到哪、數字就數到哪）；最後一幕換成「每一段都是 +1 萬點」 */}
-      <div style={{ position: "absolute", left: L.X, top: L.READ_TOP, height: L.READ_H, display: "flex", alignItems: "center", gap: 28 }}>
-        <div style={{ ...zh(L.READ_TAG_PX, T.weight.body, T.onAccent), background: bracket > 0.5 ? T.up : T.amber, borderRadius: T.radius.chip, padding: "8px 20px", letterSpacing: "0.04em" }}>
+      {/* 讀數（在繪圖區左上角的空位）：現在講的那一段＋花了多久（線畫到哪、數字就數到哪）；最後一幕換成「每一段都是 +1 萬點」 */}
+      <div style={{ position: "absolute", left: L.READ_X, top: L.READ_TOP }}>
+        <div style={{ display: "inline-block", ...zh(L.READ_TAG_PX, T.weight.body, T.onAccent), background: bracket > 0.5 ? T.up : T.amber, borderRadius: T.radius.chip, padding: "0 18px", height: L.READ_TAG_H, lineHeight: `${L.READ_TAG_H}px`, letterSpacing: "0.04em" }}>
           {bracket > 0.5 ? "每一段都是" : `${a.label} → ${b.label}`}
         </div>
-        <div style={{ transform: `scale(${readPop.toFixed(3)})`, transformOrigin: "left center" }}>
-          {bracket > 0.5 ? <Parts parts={[{ n: `+${comma(gap)}`, u: "點" }]} px={L.READ_PX} color={T.upText} /> : <Parts parts={parts} px={L.READ_PX} color={T.amberText} />}
+        <div style={{ height: L.READ_H, display: "flex", alignItems: "center", transform: `scale(${readPop.toFixed(3)})`, transformOrigin: "left center" }}>
+          {bracket > 0.5 ? <Parts parts={[{ n: "+1", u: "萬點" }]} px={L.READ_PX} color={T.upText} /> : <Parts parts={parts} px={L.READ_PX} color={T.amberText} />}
         </div>
       </div>
       {/* 階梯圖 */}
@@ -151,7 +151,7 @@ export const ChartStage: React.FC<{ m: ChartModel; f: number; title?: string[] }
         const p = steps[s.g.i], q = steps[s.g.i + 1], x = X(q.t), right = k === st.length - 1, w = 130;
         return <div key={k} style={{ position: "absolute", left: right ? x + 16 : x - 16 - w, width: w, top: (Y(p.level) + Y(q.level)) / 2 - 20, textAlign: right ? "left" : "right", ...zh(30, T.weight.zh, T.upText), opacity: bracket, lineHeight: "40px" }}><span style={num}>+1</span> 萬點</div>;
       }) : null}
-      <div style={{ position: "absolute", left: L.PLOT_X0, top: L.NOTE_TOP, ...zh(L.NOTE_PX, T.weight.light, T.text3), letterSpacing: "0.02em" }}>{m.note}</div>
+      <div style={{ position: "absolute", left: L.PLOT_X0, top: L.NOTE_TOP, ...zh(L.NOTE_PX, T.weight.light, T.text2), letterSpacing: "0.02em" }}>{m.note}</div>
       {/* 長條：每一段花的時間（依天數等比例）；最後一幕換成漲幅 */}
       <div style={{ position: "absolute", left: L.X, top: L.BARS_TOP, ...zh(L.BARS_HEAD_PX, T.weight.body, gainOn > 0.5 ? T.upText : T.amberText), letterSpacing: "0.08em" }}>{gainOn > 0.5 && g ? g.barsTitle : m.barsTitle}</div>
       <div style={{ position: "absolute", left: L.X + 150, right: L.X, top: L.BARS_TOP + 20, height: 2, background: T.ruleSoft, marginLeft: gainOn > 0.5 ? 220 : 0 }} />

@@ -50,7 +50,7 @@ export function validateChart(script, h) {
     for (const q of s.cues ?? []) { if (!h.clean(s.subtitle?.zh ?? "").includes(h.clean(q.text))) E(`${tag}: cue「${q.id}」的詞「${q.text}」不在字幕裡`); if (cueIds.has(q.id)) E(`${tag}: cue id「${q.id}」重複`); cueIds.add(q.id); }
     if (!(s.cues ?? []).length) W(`${tag}: 沒有 cue（畫面要對到旁白念到的詞）`);
     if (!Array.isArray(s.sources) || !s.sources.length) E(`${tag}: 缺 sources（圖表上的每個數字都要有出處）`);
-    else { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 24; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
+    else { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 28; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
     const walk = (v, where) => {
       if (Array.isArray(v)) return v.forEach((x, k) => walk(x, `${where}[${k}]`));
       if (!v || typeof v !== "object") return;

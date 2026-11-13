@@ -43,8 +43,8 @@
     "events": [
       {
         "type": "pop",
-        "frame": 53,
-        "why": "s02 bubble"
+        "frame": -5,
+        "why": "s01 bubble"
       },
       {
         "type": "pop",
@@ -120,11 +120,16 @@
       "props": {
         "events": [
           {
-            "type": "compose",
+            "type": "bubble",
+            "side": "me",
             "text": "大家都有對象了",
-            "pre": 4,
-            "at": "start",
-            "until": "s02:all"
+            "at": "start-5"
+          },
+          {
+            "type": "compose",
+            "text": "只剩我",
+            "at": "start+12",
+            "until": "s02:only"
           }
         ]
       },
@@ -159,18 +164,6 @@
           {
             "type": "bubble",
             "side": "me",
-            "text": "大家都有對象了",
-            "at": "all"
-          },
-          {
-            "type": "compose",
-            "text": "只剩我",
-            "at": "all+6",
-            "until": "only"
-          },
-          {
-            "type": "bubble",
-            "side": "me",
             "text": "只剩我",
             "at": "only"
           },
@@ -196,7 +189,7 @@
       "narration": "先看一個數字。國科會的萬人調查發現，",
       "subtitle": {
         "zh": "先看一個數字。國科會的萬人調查發現，",
-        "en": "Look at one number first. | A 10,000-person survey found:"
+        "en": "Look at one number first. | A 10,000-person NSTC survey found:"
       },
       "keywords": [
         "萬人調查"
@@ -239,7 +232,8 @@
         ]
       },
       "sources": [
-        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+        "來源：遠見雜誌 2026/9/11、工商時報 2026/10/4（轉載今周刊）",
+        "媒體轉述，分母寫法不一；原始報告未查到（截至 2026/11/13）"
       ]
     },
     {
@@ -288,7 +282,8 @@
         ]
       },
       "sources": [
-        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+        "來源：遠見雜誌 2026/9/11、工商時報 2026/10/4（轉載今周刊）",
+        "媒體轉述，分母寫法不一；原始報告未查到（截至 2026/11/13）"
       ]
     },
     {
@@ -336,7 +331,8 @@
         ]
       },
       "sources": [
-        "來源：遠見雜誌 2026/9/11（引中研院社會所鄭雁馨）"
+        "來源：遠見雜誌 2026/9/11、工商時報 2026/10/4（轉載今周刊）",
+        "媒體轉述，分母寫法不一；原始報告未查到（截至 2026/11/13）"
       ]
     }
   ]

@@ -7,7 +7,7 @@ import { ThreeCanvas } from "@remotion/three";
 import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, accent3D } from "../../theme";
 import { EASE, tween } from "../anim";
-import { ANCHORS, buildModel, cameraFor, projectPoint, stateAt, type Model3D, type State3D } from "./engine";
+import { ANCHORS, G, buildModel, cameraFor, projectPoint, stateAt, type Model3D, type State3D } from "./engine";
 import { PhoneScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
 
@@ -33,7 +33,7 @@ const Hook: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => {
   const a = accent3D("blue");
   const d = tween(f, m.drop - 2, 8, EASE.enter), under = tween(f, m.drop - 2, 10, EASE.move);
   return (
-    <div style={{ position: "absolute", left: L.X + 4, top: 344, opacity: 1 - out, transform: `translateY(${px(-36 * out)}px)` }}>
+    <div style={{ position: "absolute", left: L.X + 4, top: L.HOOK_TOP, opacity: 1 - out, transform: `translateY(${px(-36 * out)}px)` }}>
       {m.hook.kicker ? <div style={{ display: "inline-block", ...zh(30, T.weight.body, T.panel), background: T.ink, borderRadius: T.radius.pill, padding: "10px 26px", letterSpacing: "0.1em" }}>{m.hook.kicker}</div> : null}
       <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 10 }}>
         <div style={{ ...zh(132, T.weight.zh), lineHeight: 1.2, letterSpacing: "0.01em" }}>
@@ -67,7 +67,7 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) =>
           const p = projectPoint(s, cam, an.layer, an.p), c = accent3D(l.color);
           const q = tween(f, l.at - 2, 10, EASE.move);
           const rn = m.rename && m.rename.part === l.part && f >= m.rename.at ? m.rename : null;
-          const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64;
+          const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64 + L.LABEL_PAD;
           const tx = an.dx < 0 ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx);
           const ex = p.x + (tx - p.x) * q, ey = p.y + an.dy * q;
           return (
@@ -88,7 +88,7 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) =>
         const bump = rn ? 1 + 0.08 * Math.sin(Math.PI * tween(f, rn.at, 10, EASE.move)) : 1 + 0.08 * Math.sin(Math.PI * tween(f, l.at, 10, EASE.move));
         const left = an.dx < 0;
         // 估標籤寬度，整張留在左右安全區裡
-        const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64;
+        const txt = rn ? rn.text : l.text, estW = Math.max([...txt].length * (rn ? 68 : 58), rn?.en ? rn.en.length * 16 : 0) + 64 + L.LABEL_PAD;
         const x = left ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx), y = p.y + an.dy;
         return (
           <div key={i} style={{ position: "absolute", left: px(x), top: px(y), opacity: o, transform: `translate(${left ? "-100%" : "0"}, -50%) scale(${bump.toFixed(3)})`, transformOrigin: left ? "100% 50%" : "0 50%" }}>
@@ -104,15 +104,19 @@ const Labels: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) =>
 };
 
 /** 3D 舞台（1080×990，頁首下面到字幕卡上面） */
-const Stage: React.FC<{ s: State3D }> = ({ s }) => (
+const Stage: React.FC<{ s: State3D }> = ({ s }) => {
+  // 立著時腳下的橢圓影子：跟著手機底部的投影位置走
+  const foot = projectPoint(s, cameraFor(s), "frame", [0, -G.H / 2, -s.layers.frame.z]);
+  return (
   <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H }}>
     {/* 立著的時候腳下的橢圓影子 */}
-    <div style={{ position: "absolute", left: 300, top: 874, width: 480, height: 54, borderRadius: "50%", background: T.part.shadow, opacity: T.shadow * (1 - s.lay) }} />
-    <ThreeCanvas linear={false} width={L.W} height={L.STAGE_H} dpr={1} gl={{ antialias: true, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
+    <div style={{ position: "absolute", left: 540 - L.FOOT_W / 2, top: foot.y - L.STAGE_TOP - 22, width: L.FOOT_W, height: 56, borderRadius: "50%", background: T.part.shadow, opacity: T.shadow * 1.4 * (1 - s.lay) }} />
+    <ThreeCanvas linear={false} width={L.W} height={L.STAGE_H} dpr={T.dpr} gl={{ antialias: true, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 400, position: [0, 0, 60] }}>
       <PhoneScene s={s} />
     </ThreeCanvas>
   </div>
-);
+  );
+};
 
 export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
   const f = useCurrentFrame();

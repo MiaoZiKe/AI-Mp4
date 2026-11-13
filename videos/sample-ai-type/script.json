@@ -1,0 +1,826 @@
+{
+  "slug": "sample-ai-type",
+  "title": "提示詞只打一句話？官方指南說要有四塊（AI 教學風格試片：動態大字）",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "type",
+  "channel": {
+    "name": "AI",
+    "tag": "AI 動手做",
+    "slogan": "看完就能照著做"
+  },
+  "audio": {
+    "bgm": true,
+    "sfx": true
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "persona": "二十八歲左右的台灣女生，每天用 AI 工具接案做內容，把剛學會的小技巧講給剛入門的朋友聽",
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [
+        4.6,
+        5
+      ],
+      "tone": "明快、有精神，語速偏快，句子和句子之間不拖；像跟朋友分享一個馬上能用的小技巧",
+      "arc": {
+        "起": "帶一點調侃的好奇，像在問朋友",
+        "承": "乾脆俐落，直接講重點，不停太久",
+        "轉": "四個重點一個接一個點出來，節奏輕快",
+        "合": "輕鬆、肯定，帶一點鼓勵"
+      },
+      "englishTerms": {
+        "Google": "GOO-gull，兩個音節",
+        "A I": "英文字母 A 和 I，分開念"
+      },
+      "avoid": [
+        "播新聞的腔調",
+        "一個字一個字慢慢念",
+        "平平的、像機器念稿的語調",
+        "句子中間拖長音",
+        "越講越慢"
+      ],
+      "voices": [
+        "Sulafat"
+      ]
+    }
+  },
+  "cover": {
+    "title": [
+      "提示詞",
+      "只打一句？"
+    ],
+    "sub": "官方指南：要有四塊",
+    "chips": [
+      {
+        "label": "角色",
+        "color": "hot"
+      },
+      {
+        "label": "任務",
+        "color": "blue"
+      },
+      {
+        "label": "背景",
+        "color": "green"
+      },
+      {
+        "label": "格式",
+        "color": "yellow"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "你問 AI，是不是都只打一句話？",
+      "tts": "你問 A I，是不是都只打一句話？",
+      "subtitle": {
+        "zh": "你問 AI\n是不是都只打一句話？",
+        "en": "When you ask AI, | do you type just one line?"
+      },
+      "keywords": [
+        "一句話"
+      ],
+      "cues": [
+        {
+          "id": "ask",
+          "text": "問"
+        },
+        {
+          "id": "one",
+          "text": "只打"
+        },
+        {
+          "id": "line",
+          "text": "一句話"
+        }
+      ],
+      "component": "TypeScene",
+      "props": {
+        "ground": "ink",
+        "items": [
+          {
+            "t": "你問 AI，",
+            "y": 350,
+            "size": 128,
+            "until": "s2:start+4"
+          },
+          {
+            "t": "是不是都",
+            "y": 500,
+            "size": 128,
+            "until": "s2:start+5"
+          },
+          {
+            "t": "只打",
+            "y": 690,
+            "size": 236,
+            "mode": "ghost",
+            "until": "s2:start+6"
+          },
+          {
+            "t": "一句話？",
+            "y": 940,
+            "size": 236,
+            "mode": "ghost",
+            "color": "hot",
+            "until": "s2:start+7"
+          },
+          {
+            "t": "PROMPT",
+            "font": "en",
+            "size": 28,
+            "ls": "0.22em",
+            "color": "fg2",
+            "y": 1262,
+            "at": "one-8",
+            "mode": "rise",
+            "set": [
+              {
+                "at": "s2:start+6",
+                "y": 352
+              }
+            ]
+          },
+          {
+            "kind": "block",
+            "rect": [
+              64,
+              1440,
+              952,
+              4
+            ],
+            "color": "fg3",
+            "at": "one-8",
+            "enter": "wipe-r",
+            "set": [
+              {
+                "at": "s2:start+6",
+                "rect": [
+                  64,
+                  530,
+                  952,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "t": "幫我寫一篇貼文",
+            "y": 1312,
+            "size": 104,
+            "at": "one-3",
+            "caret": {
+              "color": "hot",
+              "until": "s2:start+2"
+            },
+            "set": [
+              {
+                "at": "s2:start+6",
+                "y": 402
+              },
+              {
+                "at": "s2:plain+8",
+                "color": "fg3"
+              }
+            ],
+            "strike": {
+              "at": "s2:plain+2",
+              "color": "hot"
+            }
+          }
+        ]
+      },
+      "sources": []
+    },
+    {
+      "id": "s2",
+      "beat": "you",
+      "para": 1,
+      "narration": "難怪它回得很普通。",
+      "subtitle": {
+        "zh": "難怪它回得很普通",
+        "en": "No wonder the answer is generic."
+      },
+      "keywords": [
+        "很普通"
+      ],
+      "cues": [
+        {
+          "id": "back",
+          "text": "回得"
+        },
+        {
+          "id": "plain",
+          "text": "很普通"
+        }
+      ],
+      "component": "TypeScene",
+      "props": {
+        "items": [
+          {
+            "t": "難怪它回得",
+            "y": 740,
+            "size": 150
+          },
+          {
+            "t": "很普通",
+            "y": 930,
+            "size": 310,
+            "color": "fg2"
+          }
+        ]
+      },
+      "sources": []
+    },
+    {
+      "id": "s3",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "Google 的官方指南說，好的提示詞有四塊：",
+      "subtitle": {
+        "zh": "Google 的官方指南說\n好的提示詞有四塊",
+        "en": "Google's official guide says | a good prompt has four parts:"
+      },
+      "keywords": [
+        "四塊"
+      ],
+      "cues": [
+        {
+          "id": "guide",
+          "text": "官方指南"
+        },
+        {
+          "id": "good",
+          "text": "好的"
+        },
+        {
+          "id": "four",
+          "text": "四塊"
+        }
+      ],
+      "component": "TypeScene",
+      "props": {
+        "ground": "paper",
+        "enter": "wipe-up",
+        "enterAt": "voice-9",
+        "items": [
+          {
+            "t": "Google 的",
+            "y": 345,
+            "size": 124,
+            "set": [
+              {
+                "at": "good-6",
+                "color": "fg3"
+              }
+            ],
+            "until": "exit+0"
+          },
+          {
+            "t": "官方指南說，",
+            "y": 496,
+            "size": 150,
+            "set": [
+              {
+                "at": "good-6",
+                "color": "fg3"
+              }
+            ],
+            "until": "exit+1"
+          },
+          {
+            "kind": "block",
+            "rect": [
+              64,
+              708,
+              22,
+              22
+            ],
+            "color": "hot",
+            "at": "guide+8",
+            "enter": "pop",
+            "until": "exit+2"
+          },
+          {
+            "t": "Prompting guide 101 — Google Workspace",
+            "font": "en",
+            "weight": 600,
+            "size": 34,
+            "color": "fg2",
+            "x": 104,
+            "y": 700,
+            "at": "guide+8",
+            "mode": "rise",
+            "until": "exit+2"
+          },
+          {
+            "t": "好的提示詞",
+            "y": 830,
+            "size": 176,
+            "until": "exit+2"
+          },
+          {
+            "t": "有",
+            "y": 1232,
+            "size": 176,
+            "until": "exit+3"
+          },
+          {
+            "t": "四塊",
+            "x": 270,
+            "y": 1040,
+            "size": 372,
+            "color": "hot",
+            "until": "exit+4"
+          },
+          {
+            "kind": "block",
+            "layer": "top",
+            "rect": [
+              64,
+              1456,
+              226,
+              56
+            ],
+            "color": "hot",
+            "at": "four+1",
+            "enter": "wipe-r",
+            "set": [
+              {
+                "at": "s4:c1-5",
+                "rect": [
+                  0,
+                  320,
+                  1080,
+                  305
+                ],
+                "dur": 9
+              },
+              {
+                "at": "s5:start+3",
+                "rect": [
+                  64,
+                  380,
+                  220,
+                  120
+                ],
+                "dur": 9
+              }
+            ]
+          },
+          {
+            "kind": "block",
+            "layer": "top",
+            "rect": [
+              306,
+              1456,
+              226,
+              56
+            ],
+            "color": "blue",
+            "at": "four+3",
+            "enter": "wipe-r",
+            "set": [
+              {
+                "at": "s4:c2-5",
+                "rect": [
+                  0,
+                  625,
+                  1080,
+                  305
+                ],
+                "dur": 9
+              },
+              {
+                "at": "s5:start+4",
+                "rect": [
+                  308,
+                  380,
+                  220,
+                  120
+                ],
+                "dur": 9
+              }
+            ]
+          },
+          {
+            "kind": "block",
+            "layer": "top",
+            "rect": [
+              548,
+              1456,
+              226,
+              56
+            ],
+            "color": "green",
+            "at": "four+5",
+            "enter": "wipe-r",
+            "set": [
+              {
+                "at": "s4:c3-5",
+                "rect": [
+                  0,
+                  930,
+                  1080,
+                  305
+                ],
+                "dur": 9
+              },
+              {
+                "at": "s5:start+5",
+                "rect": [
+                  552,
+                  380,
+                  220,
+                  120
+                ],
+                "dur": 9
+              }
+            ]
+          },
+          {
+            "kind": "block",
+            "layer": "top",
+            "rect": [
+              790,
+              1456,
+              226,
+              56
+            ],
+            "color": "yellow",
+            "at": "four+7",
+            "enter": "wipe-r",
+            "set": [
+              {
+                "at": "s4:c4-5",
+                "rect": [
+                  0,
+                  1235,
+                  1080,
+                  305
+                ],
+                "dur": 9
+              },
+              {
+                "at": "s5:start+6",
+                "rect": [
+                  796,
+                  380,
+                  220,
+                  120
+                ],
+                "dur": 9
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "Google Workspace《Prompting guide 101》"
+      ]
+    },
+    {
+      "id": "s4",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "角色、任務、背景、格式。",
+      "subtitle": {
+        "zh": "角色、任務、背景、格式",
+        "en": "Persona, task, context, format."
+      },
+      "keywords": [
+        "角色",
+        "任務",
+        "背景",
+        "格式"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "角色"
+        },
+        {
+          "id": "c2",
+          "text": "任務"
+        },
+        {
+          "id": "c3",
+          "text": "背景"
+        },
+        {
+          "id": "c4",
+          "text": "格式"
+        }
+      ],
+      "component": "TypeScene",
+      "props": {
+        "items": [
+          {
+            "t": "角色",
+            "layer": "top",
+            "y": 366,
+            "size": 208,
+            "color": "on:hot",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "PERSONA",
+            "layer": "top",
+            "font": "en",
+            "size": 30,
+            "ls": "0.2em",
+            "color": "on:hot",
+            "x": 520,
+            "y": 392,
+            "at": "c1+4",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "你是咖啡店的社群小編",
+            "layer": "top",
+            "weight": 700,
+            "size": 46,
+            "w": 496,
+            "color": "on:hot",
+            "x": 520,
+            "y": 444,
+            "at": "c1+6",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "任務",
+            "layer": "top",
+            "y": 671,
+            "size": 208,
+            "color": "on:blue",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "TASK",
+            "layer": "top",
+            "font": "en",
+            "size": 30,
+            "ls": "0.2em",
+            "color": "on:blue",
+            "x": 520,
+            "y": 697,
+            "at": "c2+4",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "寫一篇新品上市貼文",
+            "layer": "top",
+            "weight": 700,
+            "size": 46,
+            "w": 496,
+            "color": "on:blue",
+            "x": 520,
+            "y": 749,
+            "at": "c2+6",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "背景",
+            "layer": "top",
+            "y": 976,
+            "size": 208,
+            "color": "on:green",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "CONTEXT",
+            "layer": "top",
+            "font": "en",
+            "size": 30,
+            "ls": "0.2em",
+            "color": "on:green",
+            "x": 520,
+            "y": 1002,
+            "at": "c3+4",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "手沖豆新上架，客人是上班族",
+            "layer": "top",
+            "weight": 700,
+            "size": 46,
+            "w": 496,
+            "color": "on:green",
+            "x": 520,
+            "y": 1054,
+            "at": "c3+6",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "格式",
+            "layer": "top",
+            "y": 1281,
+            "size": 208,
+            "color": "on:yellow",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "FORMAT",
+            "layer": "top",
+            "font": "en",
+            "size": 30,
+            "ls": "0.2em",
+            "color": "on:yellow",
+            "x": 520,
+            "y": 1307,
+            "at": "c4+4",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          },
+          {
+            "t": "標題加三行，口吻輕鬆",
+            "layer": "top",
+            "weight": 700,
+            "size": 46,
+            "w": 496,
+            "color": "on:yellow",
+            "x": 520,
+            "y": 1359,
+            "at": "c4+6",
+            "mode": "rise",
+            "until": "s5:start+1",
+            "exit": "fade"
+          }
+        ]
+      },
+      "sources": [
+        "Google Workspace《Prompting guide 101》"
+      ]
+    },
+    {
+      "id": "s5",
+      "beat": "payoff",
+      "para": 3,
+      "narration": "四塊補上去，同一個 AI，回答更貼近你要的。",
+      "tts": "四塊補上去，同一個 A I，回答更貼近你要的。",
+      "subtitle": {
+        "zh": "四塊補上去\n同一個 AI\n回答更貼近你要的",
+        "en": "Fill in all four, | same AI, | answers closer to what you need."
+      },
+      "keywords": [
+        "四塊",
+        "更貼近"
+      ],
+      "cues": [
+        {
+          "id": "fill",
+          "text": "補上去"
+        },
+        {
+          "id": "same",
+          "text": "同一個"
+        },
+        {
+          "id": "ans",
+          "text": "回答"
+        },
+        {
+          "id": "close",
+          "text": "更貼近"
+        }
+      ],
+      "component": "TypeScene",
+      "props": {
+        "ground": "ink",
+        "enter": "wipe-up",
+        "enterAt": "start+0",
+        "items": [
+          {
+            "t": "角色",
+            "layer": "top",
+            "x": 114,
+            "y": 410,
+            "size": 60,
+            "color": "on:hot",
+            "at": "start+13",
+            "mode": "slam"
+          },
+          {
+            "t": "任務",
+            "layer": "top",
+            "x": 358,
+            "y": 410,
+            "size": 60,
+            "color": "on:blue",
+            "at": "start+14",
+            "mode": "slam"
+          },
+          {
+            "t": "背景",
+            "layer": "top",
+            "x": 602,
+            "y": 410,
+            "size": 60,
+            "color": "on:green",
+            "at": "start+15",
+            "mode": "slam"
+          },
+          {
+            "t": "格式",
+            "layer": "top",
+            "x": 846,
+            "y": 410,
+            "size": 60,
+            "color": "on:yellow",
+            "at": "start+16",
+            "mode": "slam"
+          },
+          {
+            "t": "四塊",
+            "layer": "top",
+            "ground": "ink",
+            "y": 620,
+            "size": 300,
+            "until": "same-6"
+          },
+          {
+            "t": "補上去，",
+            "y": 930,
+            "size": 200,
+            "until": "same-5"
+          },
+          {
+            "t": "同一個",
+            "y": 620,
+            "size": 250,
+            "until": "ans-6"
+          },
+          {
+            "t": "AI，",
+            "y": 880,
+            "size": 380,
+            "font": "en",
+            "until": "ans-5"
+          },
+          {
+            "t": "回答",
+            "y": 620,
+            "size": 230
+          },
+          {
+            "t": "很普通",
+            "y": 880,
+            "size": 300,
+            "color": "fg3",
+            "at": "ans-2",
+            "mode": "rise",
+            "strike": {
+              "at": "ans+1",
+              "color": "hot"
+            },
+            "until": "close-7",
+            "exit": "drop"
+          },
+          {
+            "t": "更貼近",
+            "y": 880,
+            "size": 300,
+            "color": "hot",
+            "underline": {
+              "at": "close+12",
+              "color": "hot"
+            }
+          },
+          {
+            "t": "你要的。",
+            "y": 1230,
+            "size": 200
+          }
+        ]
+      },
+      "sources": [
+        "示範文字為自編，非真實產品輸出"
+      ]
+    }
+  ]
+}

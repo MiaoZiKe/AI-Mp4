@@ -13,6 +13,7 @@
 - 口語白話，旁白一句 15–25 字
 - 專有名詞出現時，馬上用一句話解釋
 - 一幕只講一件事
+- 旁白寫成「對一個朋友講話時真的會說出口的字」（`docs/voice-natural.md`）：開頭有進場的字（欸、我跟你說）、句尾適量語助詞（啊、啦、喔、齁，大約每 15–25 字一個）、長短句交錯、可以半句話和自問自答（「有四塊。哪四塊？」）；不寫對稱排比、不用冒號帶條列、真人不會停的逗號拿掉。口語化不能改動事實與「已確定／分析預期／尚未確定」的分寸
 - 時事題材必須上網查證，不依賴訓練資料；區分「已確定／分析預期／尚未確定」，未定者標示「截至 YYYY/M/D 尚未確定」
 - 政治題材保持中立，不給投資建議（談市場用「分析師普遍認為…」）
 
@@ -99,6 +100,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
 - **配音前先定旁白設定檔**（`docs/voice-profiles.md`）：script.json 的 `voice.profile` 寫預設檔名字（`tech｜stock｜love｜ai`，在 `scripts/voice-profiles.json`）、`{ preset, …要改的欄位 }` 或整份自己寫；欄位＝`persona`（誰在講、對誰講）、`gender`、`accent`（固定「台灣華語」）、`pace`（目標音節/秒範圍）、`tone`、`arc`（起／承／轉／合各一句情緒指示）、`englishTerms`（英文詞與標準念法）、`avoid`。`tts-take.mjs` 用 `scripts/voice-profile.mjs` 把它組成「導演筆記」說明（只描述說話方式，**不放任何像台詞的句子、不引用稿子**，會被念出來）並送 `speechConfig.languageCode: "cmn-TW"`（模型不收就自動拿掉，之後寫 `voice.languageCode: "off"`）。各段情緒只能給整篇走向（Arc 一行），不能逐句控制；3.x 系列會把說明念出來，只送念稿與 languageCode。沒有 `voice.profile` 的舊片照舊用 `voice.style`，請求與快取不變。
 - 台灣口音與用語：口音句固定（台北人平常講話的台灣華語、捲舌輕帶、不兒化、詞尾不念輕聲；中文英文都要標準，英文用標準美式發音完整念出來），各片不改；提示不寫「咬字清楚、字正腔圓」（會推向播音腔）。稿子禁用中國用語與兒化（視頻、信息、軟件、質量、這兒…；清單在 `voice-profile.mjs` 的 `CN_TERMS`，validate 對念稿與字幕警告）；新聞題材也寫成「講給朋友聽」的句子，不寫新聞稿體。
+- 旁白要像聊天不要像演講（`docs/voice-natural.md`）：設定檔寫情境（誰、在哪裡、只對一個朋友講），不寫清楚、專業、沉穩、明快、俐落這類形容詞，也不在提示裡要求「快、不要停」；新片加 `delivery: "chat"`（換掉會導向朗讀的固定句）與 `scene`（各頻道的句子在 `voice-profiles.json` 的 `_chat`）。後製不把句間停頓壓成等距（要趕時間就刪字，不調 `ALIGN_GAP_MAX`）；句號停頓要比逗號長。換稿試聽用 `tts-take.mjs --audition=<名字> --script=<另一份稿.json>`。
 - 音色依頻道與內容選，**不限男性**（感情頻道預設女聲）；**每個新音色或新頻道第一次用，先做試聽給使用者聽過再整篇配音**：`node scripts/tts-take.mjs <slug> --audition=<名字> --upto=<幕id> --voice=<音色> [--profile=<預設檔>] [--out=out/voice-audition-v2]`（一次請求、不動正式音檔），比較表寫在 `docs/voice-audition-v2.md` 這一類文件。口音只有人耳能判斷；`scripts/voice-retro.py`（ㄓㄔㄕ 與 ㄗㄘㄙ 擦音重心差距）只是輔助數字。
 - 語速要讓模型自己念到 `pace` 範圍；**後製加速（atempo）上限 1.08，超過就重配（改稿或改設定檔），不硬加速**。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）

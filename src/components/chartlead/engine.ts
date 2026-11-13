@@ -53,6 +53,7 @@ export const span = (a: number, b: number) => {
 export const spanParts = (a: number, b: number, whole: number): { n: string; u: string }[] => {
   const s = span(a, b);
   if (Math.round((whole - a) / DAY) < 365) return [{ n: String(s.days), u: "天" }];
+  if (s.y === 0) return s.m ? [{ n: String(s.m), u: "個月" }] : [{ n: String(s.days), u: "天" }];   // 還沒數到一年：不顯示「0 年」
   return s.m ? [{ n: String(s.y), u: "年" }, { n: String(s.m), u: "個月" }] : [{ n: String(s.y), u: "年" }];
 };
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;

@@ -43,7 +43,7 @@
       "cues": [ { "id": "phone", "text": "手機" }, { "id": "water", "text": "一點水" } ],
       "component": "ThreeScene",
       "props": {
-        "hook": { "title": "手機裡有水？", "kicker": "拆開來看" },
+        "hook": { "title": "手機裡有水？" },
         "spin": { "at": "start+0", "until": "exit" },
         "drop": { "at": "water" }
       },
@@ -70,15 +70,16 @@
       "narration": "叫均熱板，裡面封著一點純水。",
       "subtitle": { "zh": "叫均熱板\n裡面封著一點純水", "en": "It's a vapor chamber, | with a little pure water sealed inside." },
       "keywords": ["均熱板", "純水"],
-      "cues": [ { "id": "name", "text": "均熱板" }, { "id": "pure", "text": "純水" } ],
+      "cues": [ { "id": "name", "text": "均熱板" }, { "id": "inside", "text": "裡面" }, { "id": "pure", "text": "純水" } ],
       "component": "ThreeScene",
       "props": {
         "focus": { "part": "plate", "at": "name-8" },
         "rename": { "part": "plate", "text": "均熱板", "en": "Vapor Chamber", "at": "name" },
+        "peek": { "at": "inside-2" },
         "cutaway": { "at": "pure-6" },
         "labels": [ { "part": "water", "text": "純水", "color": "blue", "at": "pure" } ]
       },
-      "sources": ["DNP 均熱板技術說明", "Apple 新聞稿 2025/9"]
+      "sources": ["示意動畫，非特定機型；水滴、蒸氣與銅色都是示意"]
     },
     {
       "id": "s4", "beat": "twist", "para": 2,
@@ -91,9 +92,10 @@
         "heat": { "at": "hot-4" },
         "vapor": { "at": "vapor-4" },
         "spread": { "at": "spread-4" },
+        "orbit": { "at": "spread-8" },
         "labels": [ { "part": "vapor", "text": "蒸氣", "color": "coral", "at": "vapor" } ]
       },
-      "sources": ["DNP 均熱板技術說明"]
+      "sources": ["示意動畫，非特定機型；水滴、蒸氣與銅色都是示意"]
     },
     {
       "id": "s5", "beat": "payoff", "para": 2,
@@ -105,9 +107,10 @@
       "props": {
         "condense": { "at": "cool-2" },
         "flowBack": { "at": "back-4" },
+        "settle": { "at": "back-6" },
         "labels": [ { "part": "loop", "text": "一直循環", "color": "blue", "at": "back+6" } ]
       },
-      "sources": ["DNP 均熱板技術說明"]
+      "sources": ["示意動畫，非特定機型；水滴、蒸氣與銅色都是示意"]
     }
   ]
 }

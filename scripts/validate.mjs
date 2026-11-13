@@ -7,6 +7,9 @@ import { validateUI, validateTimelineUI } from "./ui/validate-ui.mjs";
 import { validateChat } from "./chat/validate-chat.mjs";
 import { validateChart, validateTimelineChart } from "./chartlead/validate-chart.mjs";
 import { validateThree } from "./three/validate-three.mjs";
+import { validateType } from "./ai-type/validate-type.mjs";
+import { validateSplit } from "./ai-split/validate-split.mjs";
+import { validateSketch } from "./ai-sketch/validate-sketch.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 
 export const ICONS = ["capitol","ballot","scale","chip","container","globe","money","chart","shield","island","question","gavel","users",
@@ -230,6 +233,9 @@ export function validateTimelineV2(script, tl) {
 export function validate(script) {
   // styleVersion 3（桌面紙拼貼）走自己的規則（scripts/v3/validate-v3.mjs）；v1／v2 以下照舊
   // stage: "ui"（仿介面動畫，沿用 v3 的時間軸與配音流程、不用紙材）走 scripts/ui/validate-ui.mjs
+  if (script.stage === "sketch") return validateSketch(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
+  if (script.styleVersion === 3 && script.stage === "type") return validateType(script, { len, clean, emWidth, voicedSeconds, readingIssues });
+  if (script.styleVersion === 3 && script.stage === "split") return validateSplit(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
   if (script.styleVersion === 3 && script.stage === "ui") return validateUI(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
   // stage: "three"（3D 產品台，@remotion/three；同樣沿用 v3 的時間軸與配音流程）走 scripts/three/validate-three.mjs
   if (script.styleVersion === 3 && script.stage === "three") return validateThree(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, readingIssues });
@@ -569,7 +575,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   if (script.styleVersion === 2 || script.styleVersion === 3) {
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
     const tlj = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
-    const r = script.stage === "chart" ? validateTimelineChart(script, tlj) : script.stage === "ui" || script.stage === "three" ? validateTimelineUI(script, tlj) : script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
+    const r = script.stage === "chart" ? validateTimelineChart(script, tlj) : script.stage === "ui" || script.stage === "split" || script.stage === "three" || script.stage === "type" || script.stage === "sketch" ? validateTimelineUI(script, tlj) : script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
     errors.push(...r.errors); warns.push(...r.warns);
     if (r.sec && !r.stale) {
       console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);

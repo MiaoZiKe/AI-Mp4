@@ -37,13 +37,13 @@ const STRIPS = 12;
 const makeGeo = () => {
   const pl = G.plate;
   return {
-    back: slab(G.W, G.H, G.R, 0.14), island: slab(3.1, 3.3, 0.7, 0.16), lens: new THREE.CylinderGeometry(0.62, 0.62, 0.14, 28), lensRing: new THREE.CylinderGeometry(0.78, 0.78, 0.08, 28),
+    back: slab(G.W, G.H, G.R, 0.14), island: slab(1.9, 3.5, 0.9, 0.16), lens: new THREE.CylinderGeometry(0.62, 0.62, 0.14, 28), lensRing: new THREE.CylinderGeometry(0.78, 0.78, 0.08, 28),
     battery: slab(5.9, 8.2, 0.45, 0.3), band: slab(5.92, 1.1, 0.1, 0.31, 0.01), board: slab(6.3, 4.7, 0.5, 0.14), chip: slab(G.chip.s, G.chip.s, 0.14, 0.26), chipTop: flat(G.chip.s - 0.36, G.chip.s - 0.36, 0.08),
     partA: slab(1.5, 0.8, 0.1, 0.2), partB: slab(0.7, 1.6, 0.1, 0.18), partC: slab(2.2, 0.5, 0.08, 0.16),
     rim: ring(pl.w, pl.h, pl.r, 0.2, pl.t), lid: slab(pl.w, pl.h, pl.r, 0.07, 0.02), strip: new THREE.BoxGeometry(pl.w - 0.3, (pl.h - 0.3) / STRIPS + 0.01, 0.05),
     frame: ring(G.W, G.H, G.R, 0.3, G.TH), screen: slab(G.W - 0.24, G.H - 0.24, G.R - 0.1, 0.12),
-    wall: flat(G.W - 0.7, G.H - 0.7, G.R - 0.3), tileA: flat(2.7, 2.7, 0.5), tileB: flat(5.8, 1.5, 0.45), pill: flat(2.4, 0.5, 0.25),
-    shadow: flat(G.W * 1.08, G.H * 1.05, G.R), ball: new THREE.SphereGeometry(1, 14, 10),
+    wall: flat(G.W - 0.7, G.H - 0.7, G.R - 0.3), tileA: flat(2.7, 2.7, 0.5), tileB: flat(5.8, 1.5, 0.45), pill: flat(2.4, 0.5, 0.25), dot: flat(0.5, 0.5, 0.25),
+    shadow: flat(G.W * 0.94, G.H * 0.96, G.R), ball: new THREE.SphereGeometry(1, 14, 10),
   };
 };
 
@@ -77,14 +77,14 @@ export const PhoneScene: React.FC<{ s: State3D }> = ({ s }) => {
       <group rotation={[0, s.yaw, 0]}>
         <group rotation={[s.pitch, 0, 0]}>
           {/* 地面假陰影（躺下後才出現） */}
-          {s.lay > 0.02 ? <mesh geometry={g.shadow} position={[0, 0, Math.min(Ly.back.z, Ly.inner.z) - 1.4]}><meshBasicMaterial color={P.shadow} transparent opacity={T.shadow * s.lay} depthWrite={false} /></mesh> : null}
+          {s.lay > 0.02 ? <mesh geometry={g.shadow} position={[0, 0, (Ly.back.opacity > 0.5 ? Ly.back.z : Ly.inner.z) - 0.5]}><meshBasicMaterial color={P.shadow} transparent opacity={T.shadow * s.lay} depthWrite={false} /></mesh> : null}
 
           {/* 背蓋（鏡頭島在外側） */}
           {Ly.back.opacity > 0.01 ? (
             <group position={[0, 0, Ly.back.z]}>
               <mesh geometry={g.back}><Mat color={P.back} o={Ly.back.opacity} rough={0.5} /></mesh>
-              <mesh geometry={g.island} position={[-1.55, 5.15, -0.12]}><Mat color={P.island} o={Ly.back.opacity} /></mesh>
-              {[[-2.25, 5.85], [-0.85, 5.85], [-2.25, 4.45]].map(([x, y], i) => (
+              <mesh geometry={g.island} position={[-2.15, 5.05, -0.12]}><Mat color={P.island} o={Ly.back.opacity} /></mesh>
+              {[[-2.15, 5.85], [-2.15, 4.25]].map(([x, y], i) => (
                 <group key={i} position={[x, y, -0.22]} rotation={[Math.PI / 2, 0, 0]}>
                   <mesh geometry={g.lensRing}><Mat color={P.lensRing} o={Ly.back.opacity} metal={0.4} rough={0.35} /></mesh>
                   <mesh geometry={g.lens} position={[0, -0.05, 0]}><Mat color={P.lens} o={Ly.back.opacity} rough={0.2} /></mesh>
@@ -113,13 +113,13 @@ export const PhoneScene: React.FC<{ s: State3D }> = ({ s }) => {
               const yTop = pl.h / 2 - 0.15 - i * stripH, mid = yTop - stripH / 2;
               const u = Math.abs(pl.h / 2 - 0.15 - mid - hotV) / (pl.h - 0.3 - hotV);
               const h = s.heatAt(Math.min(1, u));
-              return <mesh key={i} geometry={g.strip} position={[0, mid, -pl.t / 2 + 0.03]}><Mat color={lerpHex(i % 2 ? P.plateFloor : P.wick, P.hot, h * 0.9)} emissive={P.hot} ei={h * 0.35} rough={0.7} /></mesh>;
+              return <mesh key={i} geometry={g.strip} position={[0, mid, -pl.t / 2 + 0.03]}><Mat color={lerpHex(i % 2 ? P.plateFloor : P.wick, P.hot, h * 0.9)} emissive={P.hot} ei={h * 0.35} rough={0.7} o={1 - T.xray * s.xray} /></mesh>;
             })}
-            {lidO > 0.01 ? <mesh geometry={g.lid} position={[-(pl.w + 1.6) * s.lid, 0, pl.t / 2 + 0.03 + 0.5 * Math.sin(Math.PI * Math.min(1, s.lid))]}><Mat color={P.plate} o={lidO} metal={0.45} rough={0.36} /></mesh> : null}
+            {lidO > 0.01 ? <mesh geometry={g.lid} position={[-(pl.w + 1.6) * s.lid - 0.9 * s.lidLift, 0, pl.t / 2 + 0.03 + 0.5 * Math.sin(Math.PI * Math.min(1, s.lid)) + 1.6 * s.lidLift]}><Mat color={P.plate} o={lidO} metal={0.45} rough={0.36} /></mesh> : null}
             {/* 水滴／蒸氣 */}
             {s.lid > 0.05 ? s.parts.map((p, i) => (p.scale > 0.01 ? (
               <mesh key={i} geometry={g.ball} position={[p.x, p.y, -pl.t / 2 + 0.06 + p.z]} scale={[p.scale, p.scale, p.scale * p.flat]}>
-                <Mat color={lerpHex(P.water, P.vapor, p.gas)} rough={0.25} emissive={lerpHex(P.water, P.vapor, p.gas)} ei={0.25 + 0.35 * p.gas} />
+                <Mat color={lerpHex(P.water, P.vapor, p.gas)} o={p.opacity} rough={0.25} emissive={lerpHex(P.water, P.vapor, p.gas)} ei={0.25 + 0.35 * p.gas} />
               </mesh>
             ) : null)) : null}
           </group>
@@ -131,7 +131,7 @@ export const PhoneScene: React.FC<{ s: State3D }> = ({ s }) => {
           {Ly.screen.opacity > 0.01 ? (
             <group position={[0, 0, Ly.screen.z]}>
               <mesh geometry={g.screen}><Mat color={P.screen} o={Ly.screen.opacity} rough={0.25} /></mesh>
-              {([[g.wall, 0, 0, P.screenUi, 0.065], [g.pill, 0, 6.3, P.screen, 0.07], [g.tileA, -1.55, 3.3, P.screenUi2, 0.07], [g.tileA, 1.55, 3.3, P.screenUi3, 0.07], [g.tileB, 0, 0.7, T.panel, 0.07], [g.tileB, 0, -1.2, P.screenUi2, 0.07], [g.pill, 0, -6.5, T.panel, 0.07]] as [THREE.BufferGeometry, number, number, string, number][]).map(([geo, x, y, c, z], i) => (
+              {([[g.wall, 0, 0, P.screenUi, 0.065], [g.dot, 0, 6.5, P.screen, 0.07], [g.tileA, -1.55, 3.3, P.screenUi2, 0.07], [g.tileA, 1.55, 3.3, P.screenUi3, 0.07], [g.tileB, 0, 0.7, T.panel, 0.07], [g.tileB, 0, -1.2, P.screenUi2, 0.07], [g.pill, 0, -6.5, T.panel, 0.07]] as [THREE.BufferGeometry, number, number, string, number][]).map(([geo, x, y, c, z], i) => (
                 <mesh key={i} geometry={geo} position={[x, y, z]}><meshBasicMaterial color={c} transparent={Ly.screen.opacity < 1} opacity={Ly.screen.opacity} depthWrite={Ly.screen.opacity >= 0.99} /></mesh>
               ))}
             </group>

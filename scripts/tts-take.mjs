@@ -3,7 +3,7 @@
 //                                                   public/audio/<slug>/NN-<id>.wav ＋ videos/<slug>/tts-manifest.json
 //   … --resplit                                   → 沿用留存的整篇原始音檔重切（不花請求）
 //   … --force                                     → 即使念稿、音色、提示都沒變也重新生成（花 1 次請求）
-//   … --audition=<tag> [--upto=<幕id>] [--voice=音色] [--profile=tech|stock|love|ai] [--style="…"] [--lang=cmn-TW|off] [--out=資料夾]
+//   … --audition=<tag> [--upto=<幕id>] [--voice=音色] [--profile=tech|stock|love|ai] [--style="…"] [--lang=cmn-TW|off] [--out=資料夾] [--script=另一份稿.json]
 //                                                 → 只試聽：念到指定幕為止，存 out/<slug>/voice-samples/<tag>.wav（1 次請求，不切、不動 manifest）
 // 提示：script.json 有 voice.profile（docs/voice-profiles.md）就用 scripts/voice-profile.mjs 組「導演筆記」說明並送 languageCode cmn-TW；
 //       沒有的舊片照舊用 voice.style（`${voice.style}說：`），請求和以前完全一樣。
@@ -30,7 +30,9 @@ const headers = { "Content-Type": "application/json", "x-goog-api-key": process.
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const dir = path.join(ROOT, "videos", slug);
-const script = JSON.parse(fs.readFileSync(path.join(dir, "script.json"), "utf8"));
+// --script=<檔>：只給試聽用，念另一份稿（同樣是 { voice, scenes:[{ id, narration, tts? }] }），不動該片的 script.json
+if (opt.script && !opt.audition) { console.error("--script 只能和 --audition 一起用"); process.exit(2); }
+const script = JSON.parse(fs.readFileSync(opt.script ? path.resolve(ROOT, opt.script) : path.join(dir, "script.json"), "utf8"));
 const voice = { ...(script.voice ?? {}) };
 if (opt.voice) voice.voiceName = opt.voice; // 只給試聽用：換音色不改 script.json
 if (opt.profile) voice.profile = opt.profile; // 只給試聽用：套某個頻道預設檔

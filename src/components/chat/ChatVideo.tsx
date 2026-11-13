@@ -25,13 +25,16 @@ const Avatar: React.FC<{ size: number }> = ({ size }) => (
     <Person w={Math.round(size * 0.62)} color={T.bar} />
   </div>
 );
-const Heart: React.FC<{ size: number }> = ({ size }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.300 3 4.500 6.600 4.500c2.100 0 3.700 1.100 5.400 3.100 1.700-2 3.300-3.100 5.400-3.100 3.600 0 5.700 3.800 4.200 7.200C19.500 16.400 12 21 12 21z" fill={T.accent} /></svg>
+const Heart: React.FC<{ size: number; color?: string }> = ({ size, color = T.accent }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.300 3 4.500 6.600 4.500c2.100 0 3.700 1.100 5.400 3.100 1.700-2 3.300-3.100 5.400-3.100 3.600 0 5.700 3.800 4.200 7.200C19.500 16.400 12 21 12 21z" fill={color} /></svg>
 );
 
 // ───────── 聯絡人列 ─────────
-const TopBar: React.FC<{ contact: string; status: string; note: string }> = ({ contact, status, note }) => (
+const TopBar: React.FC<{ contact: string; status: string; note: string; mark: string }> = ({ contact, status, note, mark }) => (
   <div style={{ position: "absolute", left: 0, top: 0, width: W, height: L.BAR_H, background: T.bar, borderBottom: `2px solid ${T.barLine}`, boxSizing: "border-box" }}>
+    <div style={{ position: "absolute", left: 0, top: 0, width: W, height: L.BAND_H, overflow: "hidden", background: T.band, backgroundImage: `radial-gradient(${T.bandDot} 5px, transparent 5.5px)`, backgroundSize: "46px 46px" }}>
+      <div style={{ position: "absolute", left: 64, bottom: 18, ...zh(124, T.weight.zh), color: T.bandMark, whiteSpace: "nowrap", lineHeight: "150px" }}>{mark}</div>
+    </div>
     <div style={{ position: "absolute", left: 64, right: 64, top: L.BAR_MID - 48, height: 96, display: "flex", alignItems: "center", gap: 22 }}>
       <svg width="28" height="48" viewBox="0 0 28 48"><path d="M22 6 L6 24 L22 42" stroke={T.ink} strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
       <Avatar size={92} />
@@ -95,12 +98,11 @@ const Thread: React.FC<{ plan: ChatPlan }> = ({ plan }) => {
         const pop = springAccent(f, it.at), op = tween(f, it.at, DUR.xs) * (it.until !== undefined ? 1 - tween(f, it.until - 1, DUR.xs) : 1);
         if (it.kind === "date") return <div key={i} style={{ position: "absolute", left: 0, right: 0, top: yy, height: it.h, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ ...zh(28), color: T.ink2, background: T.wall, borderRadius: 999, padding: "8px 26px" }}>{it.text}</span></div>;
         const me = it.side === "me";
-        const firstOfGroup = !me && plan.items[i - 1]?.side !== "them";
         const read = it.readAt !== undefined ? tween(f, it.readAt, DUR.s) : 0;
         const react = it.reactAt !== undefined && f >= it.reactAt ? springAccent(f, it.reactAt) : 0;
         return (
           <div key={i} style={{ position: "absolute", top: yy, ...(me ? { right: L.PAD_X } : { left: L.PAD_X }), display: "flex", flexDirection: me ? "row-reverse" : "row", alignItems: "flex-end", gap: 14, opacity: op }}>
-            {!me && <div style={{ width: L.AVATAR, alignSelf: "flex-start", opacity: firstOfGroup ? 1 : 0 }}><Avatar size={L.AVATAR} /></div>}
+            {!me && <div style={{ width: L.AVATAR }}><Avatar size={L.AVATAR} /></div>}
             <div style={{ transform: `scale(${(0.7 + 0.3 * pop).toFixed(4)})`, transformOrigin: me ? "100% 100%" : "0% 100%" }}>
               {it.kind === "card" ? <SurveyCard it={it} f={f} /> : (
                 <div style={bubbleBox(me ? "me" : "them")}>
@@ -146,15 +148,17 @@ const StatSheet: React.FC<{ s: Stat }> = ({ s }) => {
   const p = tween(f, s.at, DUR.m, EASE.enter);
   const hit = f >= s.fillAt;
   const punch = hit ? 0.6 + 0.4 * springAccent(f, s.fillAt) : 1;
-  const lab = tween(f, s.labelAt, DUR.s, EASE.enter), mark = tween(f, s.labelAt + 2, DUR.m, EASE.move), foot = tween(f, s.labelAt + DUR.m, DUR.s);
-  const pw = 64;
+  // 標籤跟著卡片進場（先是淡色，和問號一起讀成一個問題），念到時才換成深色、畫上螢光筆、彈一下；底下那行在兩者之間補上
+  const lab = tween(f, s.at + 10, DUR.s, EASE.enter), said = f >= s.labelAt, mark = tween(f, s.labelAt, DUR.m, EASE.move), foot = tween(f, s.fillAt + 14, DUR.s);
+  const labPunch = said ? 0.94 + 0.06 * springAccent(f, s.labelAt) : 1;
+  const pw = L.STAT_PERSON;
   return (
     <div style={{ position: "absolute", left: 0, top: L.VIEW_TOP, width: W, height: L.SHEET_TOP - L.VIEW_TOP, overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: T.scrim, opacity: p * (1 - q) }} />
       <div style={{ position: "absolute", left: L.STAT_X, top: L.STAT_TOP - L.VIEW_TOP, width: W - 2 * L.STAT_X, height: L.STAT_H, boxSizing: "border-box", background: T.bar, borderRadius: 48, boxShadow: T.shadowCard, padding: "42px 60px", transform: `translateY(${Math.round(980 * (1 - p) + 980 * q)}px)` }}>
         <div style={{ ...zh(30), color: T.ink2, display: "flex", alignItems: "center", gap: 14, height: 40 }}><i style={{ display: "block", width: 16, height: 16, borderRadius: 8, background: T.accent }} />{s.kicker}</div>
         <div style={{ ...zh(70, T.weight.zh), color: T.ink, lineHeight: "92px", marginTop: 6 }}>{s.head}</div>
-        <div style={{ display: "grid", gridTemplateColumns: `repeat(${s.cols}, ${pw}px)`, justifyContent: "space-between", rowGap: 16, marginTop: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${s.cols}, ${pw}px)`, justifyContent: "space-between", rowGap: 16, marginTop: 34 }}>
           {Array.from({ length: s.total }, (_, i) => {
             const on = i < s.on ? tween(f, s.fillAt + i, DUR.xs) : 0;
             return (
@@ -165,14 +169,14 @@ const StatSheet: React.FC<{ s: Stat }> = ({ s }) => {
             );
           })}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 34, marginTop: 30, height: 200 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 34, marginTop: 36, height: 200 }}>
           <div style={{ fontFamily: FONT_EN, fontWeight: 800, fontSize: 196, lineHeight: "200px", color: hit ? T.accent : T.ink3, transform: `scale(${punch.toFixed(4)})`, transformOrigin: "0% 60%", minWidth: 300 }}>{hit ? s.big : "?"}</div>
-          <div style={{ position: "relative", opacity: lab, transform: `translateX(${Math.round(24 * (1 - lab))}px)` }}>
+          <div style={{ position: "relative", opacity: lab, transform: `translateX(${Math.round(24 * (1 - lab))}px) scale(${labPunch.toFixed(4)})`, transformOrigin: "0% 60%" }}>
             <div style={{ position: "absolute", left: -8, right: -8, bottom: 6, height: 34, background: T.gold, borderRadius: 8, transform: `scaleX(${mark.toFixed(4)})`, transformOrigin: "0% 50%" }} />
-            <div style={{ ...zh(78, T.weight.zh), color: T.ink, lineHeight: "100px", position: "relative", whiteSpace: "nowrap" }}>{s.label}</div>
+            <div style={{ ...zh(78, T.weight.zh), color: said ? T.ink : T.ink3, lineHeight: "100px", position: "relative", whiteSpace: "nowrap" }}>{s.label}</div>
           </div>
         </div>
-        {s.foot && <div style={{ ...zh(38), color: T.ink2, marginTop: 14, opacity: foot }}>{s.foot}</div>}
+        {s.foot && <div style={{ ...zh(42), color: T.ink2, marginTop: 16, opacity: foot }}>{s.foot}</div>}
       </div>
     </div>
   );
@@ -195,7 +199,7 @@ const Sheet: React.FC<{ script: Script; tl: TimelineV2 }> = ({ script, tl }) => 
   const k = Math.max(0, rows.findIndex((r, i) => f >= r.from && (f < r.to || i === rows.length - 1)));
   const cur = rows[k];
   const p = cur.from <= 0 ? 1 : tween(f, cur.from, DUR.s - 2, EASE.enter);
-  const src = [...script.scenes].reverse().map((sc) => ({ sc, t: tl.scenes.find((x) => x.id === sc.id) })).find((x) => x.t && f >= x.t.sourceWindow[0])?.sc.sources.join("、") ?? "";
+  const src = [...script.scenes].reverse().map((sc) => ({ sc, t: tl.scenes.find((x) => x.id === sc.id) })).find((x) => x.t && f >= x.t.sourceWindow[0])?.sc.sources ?? [];
   return (
     <div style={{ position: "absolute", left: 0, top: L.SHEET_TOP, width: W, height: H - L.SHEET_TOP, background: T.sheet, borderRadius: `${L.SHEET_R}px ${L.SHEET_R}px 0 0` }}>
       <div style={{ position: "absolute", left: 64, right: 64, top: L.TAG_Y - L.SHEET_TOP, height: 44, display: "flex", alignItems: "center", gap: 14, ...zh(28), color: T.sheetText2 }}>
@@ -206,7 +210,9 @@ const Sheet: React.FC<{ script: Script; tl: TimelineV2 }> = ({ script, tl }) => 
       </div>
       <div style={{ position: "absolute", left: 40, right: 40, top: L.EN_Y - L.SHEET_TOP, textAlign: "center", fontFamily: FONT_EN, fontWeight: T.weight.en, fontSize: L.EN_PX, color: T.sheetText2, whiteSpace: "nowrap" }}>{cur.en}</div>
       <div style={{ position: "absolute", left: 64, right: 64, top: L.SRC_Y - L.SHEET_TOP - 22, height: 2, background: T.sheetLine }} />
-      <div style={{ position: "absolute", left: 64, right: 64, top: L.SRC_Y - L.SHEET_TOP, ...zh(L.SRC_PX, 400), color: T.sheetText2, whiteSpace: "nowrap" }}>{src}</div>
+      <div style={{ position: "absolute", left: 64, right: 64, top: L.SRC_Y - L.SHEET_TOP, ...zh(L.SRC_PX, T.weight.body), color: T.sheetText3, whiteSpace: "nowrap", lineHeight: `${L.SRC_LH}px` }}>{src.map((x, i) => <div key={i}>{x}</div>)}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: L.MARK_Y - L.SHEET_TOP - 90, height: 180, display: "flex", alignItems: "center", justifyContent: "center", gap: 30, ...zh(132, T.weight.zh), color: T.sheetMark, whiteSpace: "nowrap" }}><Heart size={110} color={T.sheetMark} />{ch.tag}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 14, background: T.accent }} />
     </div>
   );
 };
@@ -220,7 +226,7 @@ export const VideoChat: React.FC<Script & { timeline: TimelineV2; mute?: boolean
       <Thread plan={plan} />
       <InputBar composes={plan.composes} sends={plan.sends} />
       {plan.stats.map((s, i) => <StatSheet key={i} s={s} />)}
-      <TopBar contact={chat.contact ?? ""} status={chat.status ?? ""} note={chat.note ?? "情境示意"} />
+      <TopBar contact={chat.contact ?? ""} status={chat.status ?? ""} note={chat.note ?? "情境示意"} mark={props.channel?.tag ?? ""} />
       <Sheet script={props} tl={tl} />
       {!props.mute && tl.voice ? <Audio src={staticFile(tl.voice.file)} /> : null}
     </AbsoluteFill>

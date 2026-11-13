@@ -325,7 +325,7 @@ export const LAYOUT_UI = {
   HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
   MAIN_TOP: 330, MAIN_BOTTOM: 1250,
   CAP_TOP: 1290, CAP_H: 236, CAP_ZH_PX: 70, CAP_EN_PX: 30,
-  SRC_TOP: 1556, SRC_PX: 24,
+  SRC_TOP: 1552, SRC_PX: 28,
 } as const;
 
 // ───────────────────────── stage: "chat"：對話泡泡（感情頻道風格試片） ─────────────────────────
@@ -361,6 +361,13 @@ export const THEME_CHAT = {
   sheetLine: "#4A3A54",
   sheetText: "#FFFFFF",
   sheetText2: "#CBBDD2",
+  /** 出處列的字（比 sheetText2 亮）、面板底部的頻道水印 */
+  sheetText3: "#E9E1ED",
+  sheetMark: "#3A2B44",
+  /** 聯絡人列上方的色帶（安全區 0–214，只放底色、圓點與頻道水印） */
+  band: "#F0525A",
+  bandDot: "rgba(255, 255, 255, 0.16)",
+  bandMark: "rgba(255, 255, 255, 0.26)",
   shadow: "0 6px 0 rgba(43, 30, 51, 0.06), 0 14px 34px rgba(43, 30, 51, 0.10)",
   shadowCard: "0 30px 80px rgba(43, 30, 51, 0.30)",
   weight: { zh: 900, body: 700, en: 600 },
@@ -369,25 +376,31 @@ export const THEME_CHAT = {
 export const LAYOUT_CHAT = {
   /** 聯絡人列：0–330（內容中線 276） */
   BAR_H: 330,
-  BAR_MID: 276,
-  /** 對話串可視區：330–1150 */
+  BAR_MID: 272,
+  /** 上方色帶 0–214、下方水印中線 1800 */
+  BAND_H: 214,
+  MARK_Y: 1800,
+  SRC_LH: 38,
+  /** 統計卡人形寬 */
+  STAT_PERSON: 76,
+  /** 對話串可視區：330–1198 */
   VIEW_TOP: 330,
-  VIEW_H: 820,
-  PAD_X: 44,
+  VIEW_H: 868,
+  PAD_X: 64,
   PAD_BOTTOM: 26,
-  /** 輸入框：1150–1262 */
-  INPUT_TOP: 1150,
+  /** 輸入框：1198–1310 */
+  INPUT_TOP: 1198,
   INPUT_H: 112,
-  /** 旁白面板：1262 到底；字幕中文 84px 中線 1407、英文 1484、出處 1596 */
-  SHEET_TOP: 1262,
+  /** 旁白面板：1310 到底；字幕中文 84px 中線 1447、英文 1522、出處 1606 起（最多兩行，到 1682）；1700 以下只放水印 */
+  SHEET_TOP: 1310,
   SHEET_R: 44,
-  TAG_Y: 1294,
-  ZH_Y: 1352,
+  TAG_Y: 1338,
+  ZH_Y: 1392,
   ZH_PX: 84,
-  EN_Y: 1484,
+  EN_Y: 1522,
   EN_PX: 30,
-  SRC_Y: 1596,
-  SRC_PX: 24,
+  SRC_Y: 1606,
+  SRC_PX: 28,
   /** 泡泡：字 54px、行高 70、內距 24×34、圓角 42；同一邊相鄰 14、換邊 30 */
   BUBBLE_PX: 54,
   BUBBLE_LH: 70,
@@ -401,9 +414,9 @@ export const LAYOUT_CHAT = {
   CARD_W: 660,
   CARD_H: 404,
   /** 統計卡（蓋住對話串與輸入框） */
-  STAT_X: 40,
+  STAT_X: 64,
   STAT_TOP: 352,
-  STAT_H: 888,
+  STAT_H: 936,
 } as const;
 
 // ───────────────────────── stage: "three"：3D 產品台（科技頻道風格試片；對外稱 v4） ─────────────────────────
@@ -440,21 +453,27 @@ export const THEME_3D = {
   light: { ambient: 1.5, key: 2.6, fill: 0.9 },
   /** 退到背景的零件透明度、地面假陰影透明度 */
   dim: 0.22,
-  shadow: 0.1,
+  shadow: 0.07,
+  /** 念到「燙」時板子變透明的程度（露出下面的晶片）；3D 畫布的像素倍率（2＝兩倍渲染再縮小，邊緣比較平滑） */
+  xray: 0.72,
+  dpr: 2,
   radius: { card: 28, chip: 18, pill: 999 },
   cardShadow: "0 18px 44px rgba(17, 24, 39, 0.10)",
   weight: { zh: 900, body: 700, light: 500 },
   /** 動作（幀）：進場 8、躺下 22、每層分開 22（層與層錯開 3）、聚焦 20、掀蓋 16、粒子 26 */
-  motion: { in: 8, lay: 22, explode: 22, stagger: 3, focus: 20, lid: 16, flow: 26 },
+  motion: { in: 8, lay: 22, explode: 22, stagger: 3, focus: 20, lid: 16, flow: 26, peek: 12, orbit: 34, cool: 18 },
   /** 鏡頭（視角 fov、距離 d、仰角 elev 度、看向的高度 y）：立著轉、分解、聚焦三個狀態 */
   camera: {
     fov: 26,
-    stand: { d: 55, elev: 5, y: 3.3 },
+    stand: { d: 44, elev: 5, y: 2.05 },
     explode: { d: 56, elev: 26, y: 0.4 },
     focus: { d: 35, elev: 38, y: -1.6 },
+    /** 後段的兩次鏡頭變化（加在聚焦狀態上的增量）：繞開拉遠看整片板子、再推回熱點 */
+    orbit: { d: 6, elev: -5, y: -0.6, yaw: 0.3 },
+    settle: { d: -7, elev: 4, y: 0.9, yaw: 0.14 },
   },
   /** 模型姿態：起始偏轉、躺下後的俯仰與偏轉（弧度）、層距、每幀慢轉 */
-  pose: { yaw0: -0.42, pitch: -1.22, yawIso: 0.66, gap: 3.1, drift: 0.0009 },
+  pose: { yaw0: -0.42, pitch: -1.22, yawIso: 0.66, gap: 3.1, drift: 0.0009, peekYaw: -0.12 },
 } as const;
 export const accent3D = (c?: string) => THEME_3D.accent[c ?? "amber"] ?? THEME_3D.accent.amber;
 /** 3D 產品台版面（1080×1920；安全區上下 220、左右 64）：頁首 228–308｜3D 舞台 300–1290（整個寬度）｜字幕卡 1296–1532｜出處 1560 */
@@ -464,6 +483,8 @@ export const LAYOUT_3D = {
   STAGE_TOP: 300, STAGE_H: 990,
   CAP_TOP: 1296, CAP_H: 236, CAP_ZH_PX: 72, CAP_EN_PX: 30,
   SRC_TOP: 1560, SRC_PX: 24,
+  /** 鉤子大標的位置、標籤離右側安全區再多留的寬度、立著時腳下影子的寬度 */
+  HOOK_TOP: 322, LABEL_PAD: 30, FOOT_W: 560,
 } as const;
 
 // ───────────────────────── stage: "chart"：資料圖表主導（股票頻道風格試片；src/components/chartlead/） ─────────────────────────
@@ -499,15 +520,122 @@ export const THEME_CHARTLEAD = {
 export const LAYOUT_CHARTLEAD = {
   W: 1080, H: 1920, X: 64, INNER_W: 952,
   HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
-  /** 圖表標題 330–470、讀數 478–582 */
-  KICKER_TOP: 330, KICKER_PX: 28, TITLE_TOP: 364, TITLE_PX: 88,
-  READ_TOP: 478, READ_H: 104, READ_PX: 92, READ_TAG_PX: 36,
-  /** 階梯圖繪圖區（y 軸標籤在左邊 64–160） */
-  PLOT_X0: 176, PLOT_X1: 1000, PLOT_TOP: 610, PLOT_BOTTOM: 970,
-  /** y 軸範圍留白：最低關卡下面、最高關卡上面各留 0.6 格 */
-  Y_PAD: 0.6, Y_LABEL_PX: 34, TICK_TOP: 974, TICK_PX: 28, NOTE_TOP: 1016, NOTE_PX: 24,
-  /** 長條區 1060–1248：小標＋三列 */
-  BARS_TOP: 1060, BARS_HEAD_PX: 28, ROW_TOP: 1102, ROW_GAP: 50, ROW_H: 46, BAR_X: 270, BAR_W: 440, ROW_PX: 38,
-  CAP_TOP: 1290, CAP_H: 236, CAP_ZH_PX: 74, CAP_EN_PX: 30,
-  SRC_TOP: 1556, SRC_PX: 24,
+  /** 圖表標題 326–450（第 0 幀就是帶數字的主張） */
+  KICKER_TOP: 326, KICKER_PX: 28, TITLE_TOP: 360, TITLE_PX: 72,
+  /** 讀數放在繪圖區左上角的空位（階梯從左下走到右上）：標籤一行、數字一行 */
+  READ_X: 196, READ_TOP: 484, READ_H: 84, READ_PX: 80, READ_TAG_PX: 34, READ_TAG_H: 50,
+  /** 階梯圖繪圖區 470–1090（高 620；y 軸標籤在左邊 64–160） */
+  PLOT_X0: 176, PLOT_X1: 1000, PLOT_TOP: 470, PLOT_BOTTOM: 1090,
+  /** y 軸範圍留白：最低關卡下面留 0.45 格、最高關卡上面留 1.25 格（上面放讀數） */
+  Y_PAD: 0.45, Y_PAD_TOP: 1.25, Y_LABEL_PX: 36, TICK_TOP: 1094, TICK_PX: 28, NOTE_TOP: 1142, NOTE_PX: 28,
+  /** 長條區 1200–1392：小標＋三列 */
+  BARS_TOP: 1200, BARS_HEAD_PX: 30, ROW_TOP: 1246, ROW_GAP: 50, ROW_H: 46, BAR_X: 270, BAR_W: 440, ROW_PX: 38,
+  CAP_TOP: 1416, CAP_H: 220, CAP_ZH_PX: 74, CAP_EN_PX: 30,
+  SRC_TOP: 1650, SRC_PX: 28,
+} as const;
+
+// ───────────────────────── stage: "type"：動態大字（AI 教學頻道風格試片；src/components/ai-type/） ─────────────────────────
+/** 全螢幕大字跟著旁白一個字一個字出現：只有兩種底（墨黑／紙白）、一個主強調色（橘紅）、四個欄位色。元件只讀這裡的 token。不用漸層、發光、3D。 */
+export const THEME_TYPE = {
+  /** 底色（script.json 每幕的 ground）：fg＝主字、fg2＝次要字、fg3＝退下去的字與空心字描邊、rule＝細線 */
+  grounds: {
+    ink: { bg: "#0E0E10", fg: "#F4F1EA", fg2: "#A29F97", fg3: "#5F5D58", rule: "#2C2C30" },
+    paper: { bg: "#F2EEE6", fg: "#0E0E10", fg2: "#57544E", fg3: "#A9A49A", rule: "#D8D2C6" },
+  } as Record<string, { bg: string; fg: string; fg2: string; fg3: string; rule: string }>,
+  /** 強調色（script.json 的 color）：fill＝色塊、on＝色塊上的字、text＝直接放在墨黑／紙白底上的字 */
+  accent: {
+    hot: { fill: "#FF4D1A", on: "#0E0E10", text: { ink: "#FF5A2A", paper: "#E53A08" } },
+    blue: { fill: "#2F5BFF", on: "#F4F1EA", text: { ink: "#8AA2FF", paper: "#2447E0" } },
+    green: { fill: "#14B887", on: "#0E0E10", text: { ink: "#3FD6A6", paper: "#0B8560" } },
+    yellow: { fill: "#FFC61A", on: "#0E0E10", text: { ink: "#FFD145", paper: "#8A6500" } },
+  } as Record<string, { fill: string; on: string; text: Record<string, string> }>,
+  weight: { zh: 900, body: 700, en: 800, enBody: 600 },
+  /** 空心字描邊（px） */
+  stroke: 3,
+  /** 動作（幀）：單字落定 5、整詞砸下 7、退場 6、換底 9、移動 10、劃線 7、打字每字 2 */
+  motion: { char: 5, slam: 7, exit: 6, wipe: 9, move: 10, strike: 7, step: 2 },
+} as const;
+/** 動態大字版面（1080×1920；安全區上下 220、左右 64；所有字靠左對齊 x＝64） */
+export const LAYOUT_TYPE = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
+  MAIN_TOP: 320, MAIN_BOTTOM: 1540,
+  EN_TOP: 1586, EN_PX: 30, SRC_TOP: 1644, SRC_PX: 24,
+} as const;
+
+// ───────────────────────── stage: "sketch"：白板手繪（AI 教學頻道風格試片；src/components/ai-sketch/） ─────────────────────────
+/** 點點方格紙底＋麥克筆線條：線一筆一筆描出來、字一個一個寫出來。元件只讀這裡的 token，不寫死色碼；不用陰影、漸層、3D。 */
+export const THEME_SKETCH = {
+  board: "#F6F4EC",
+  dot: "#D9D5C7",
+  rule: "#CFCABA",
+  /** 筆的顏色（角色）：script.json 的 color 寫這些名字 */
+  pen: {
+    ink: "#20242C", ink2: "#5B6270", ink3: "#9A9FA8",
+    red: "#E0412F", blue: "#2563D9", green: "#1F9A55", amber: "#E08A00", violet: "#7A4FD6",
+  } as Record<string, string>,
+  /** 螢光筆（半透明塗色）：字的底、欄位的底 */
+  marker: {
+    yellow: "#FFE14D", red: "#FFB3A8", blue: "#A9C8FF", green: "#A8E3BF", amber: "#FFD48A", violet: "#D0BDFA",
+  } as Record<string, string>,
+  markerOpacity: 0.62,
+  /** 線寬：一般筆、粗筆、螢光筆 */
+  stroke: { pen: 7, bold: 10, marker: 30 },
+  /** 手抖：端點抖動 px、彎度（線長比例）、每個字的旋轉度數與上下位移 px */
+  wobble: { jitter: 3.2, bow: 0.012, charRot: 2.2, charDy: 3 },
+  /** 動作（幀）：描線速度 px/幀、每個字 2 幀、鏡頭 16；線畫完後每 6 幀輕微重描一次（±1.1px）讓畫面不死掉 */
+  motion: { drawSpeed: 150, drawMin: 5, drawMax: 16, perChar: 2, camera: 16, boilEvery: 6, boilAmp: 1.1, boilPhases: 3 },
+  /** 字加粗（text-stroke，px 佔字級比例）讓楷體像麥克筆 */
+  textStroke: 0.022,
+} as const;
+export const penSketch = (c?: string) => THEME_SKETCH.pen[c ?? "ink"] ?? THEME_SKETCH.pen.ink;
+export const markerSketch = (c?: string) => THEME_SKETCH.marker[c ?? "yellow"] ?? THEME_SKETCH.marker.yellow;
+export const FONT_SKETCH_ZH = `"SketchKai", ${FONT_ZH}`;
+export const FONT_SKETCH_EN = `"SketchHand", "SketchKai", ${FONT_EN}`;
+/** 白板手繪版面（1080×1920；安全區上下 220、左右 64）。主畫面是一塊比螢幕大的板子，鏡頭在上面移動 */
+export const LAYOUT_SKETCH = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 226, HEADER_H: 70, PROGRESS_TOP: 306,
+  MAIN_TOP: 336, MAIN_H: 920,
+  RULE_Y: 1276,
+  CAP_TOP: 1300, CAP_ZH_PX: 74, CAP_EN_TOP: 1420, CAP_EN_PX: 44,
+  SRC_TOP: 1600, SRC_PX: 30,
+  GRID: 40,
+} as const;
+
+// ───────────────────────── stage: "split"：前後對照分割畫面（AI 教學頻道風格試片；src/components/ai-split/） ───────────
+/** 淺色底上兩塊面板：上半「隨便問」是灰階、下半「這樣問」是白底加四個欄位色；中間一條可滑動的分隔線。元件只讀這裡的 token。不用發光、漸層、3D。 */
+export const THEME_SPLIT = {
+  bg: "#ECEEF3",
+  ink: "#10131A",
+  ink2: "#4A5162",
+  ink3: "#8A91A1",
+  onInk: "#FFFFFF",
+  /** 字幕關鍵詞的螢光筆底 */
+  key: "#FFD84A",
+  /** 上半（隨便問）：全部灰階 */
+  bad: { panel: "#D6DAE2", card: "#E9ECF1", line: "#B9BFCB", text: "#3C4352", text2: "#6C7384", pill: "#7C8494", stamp: "#4A5162" },
+  /** 下半（這樣問）：白底、墨色標籤 */
+  good: { panel: "#FFFFFF", card: "#F4F6FA", line: "#D9DEE7", text: "#10131A", text2: "#4A5162", pill: "#10131A", ghost: "#B4BBC8" },
+  /** 欄位色（script.json 的 color）：fill＝色塊、on＝色塊上的字、soft＝淡底、text＝白底上的字 */
+  accent: {
+    violet: { fill: "#6B4DFF", on: "#FFFFFF", soft: "#ECE8FF", text: "#4A2FD6" },
+    blue: { fill: "#1C7BEA", on: "#FFFFFF", soft: "#E3F0FF", text: "#0E5BB8" },
+    green: { fill: "#0FA36B", on: "#FFFFFF", soft: "#DFF5EA", text: "#0A7A4F" },
+    amber: { fill: "#F2A900", on: "#10131A", soft: "#FFF1D1", text: "#8F5E00" },
+  } as Record<string, { fill: string; on: string; soft: string; text: string }>,
+  radius: { panel: 36, card: 22, chip: 16, pill: 999 },
+  shadow: "0 18px 48px rgba(16,19,26,0.14)",
+  weight: { zh: 900, body: 700, light: 500, en: 800 },
+  /** 動作（幀）：進場 8、分隔線滑動 16、欄位變形 12、推滿 18、每字打字 1 */
+  motion: { in: 8, slide: 16, morph: 12, full: 18, perChar: 1 },
+} as const;
+export const accentSplit = (c?: string) => THEME_SPLIT.accent[c ?? "violet"] ?? THEME_SPLIT.accent.violet;
+/** 分割畫面版面（1080×1920；安全區上下 220、左右 64）。STAGE＝兩塊面板加分隔線；GAP＝分隔線佔的高度 */
+export const LAYOUT_SPLIT = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 228, HEADER_H: 64, PROGRESS_TOP: 304,
+  STAGE_TOP: 326, STAGE_BOTTOM: 1296, GAP: 28, PAD: 36,
+  CAP_ZH_TOP: 1336, CAP_ZH_PX: 68, CAP_EN_TOP: 1448, CAP_EN_PX: 30,
+  SRC_TOP: 1624, SRC_PX: 26,
 } as const;

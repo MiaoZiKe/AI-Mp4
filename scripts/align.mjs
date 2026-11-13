@@ -36,7 +36,7 @@ const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 const V3 = script.styleVersion === 3;
 const V2 = script.styleVersion === 2 || V3;
 const GAP_MAX = Number(process.env.ALIGN_GAP_MAX ?? 0.8);
-const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 10, TAIL_END_F = 18, SUB_LEAD = 3, MIN_SCENE_F = 45;
+const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 10, TAIL_END_F = Number(process.env.ALIGN_TAIL_END_F ?? 18), SUB_LEAD = 3, MIN_SCENE_F = 45;
 // v3 語意轉場（type 由 script.json 每幕 transition 決定，不由 align 輪替）：exit／enter＝出場淡出、進場淡入的幀區間（相對轉場開始）
 const TRANSITIONS = { fade: { exit: [0, 5], enter: [3, 8] }, carry: { exit: [0, 5], enter: [3, 8] }, push: { exit: [0, 6], enter: [4, 10] }, slide: { exit: [0, 6], enter: [4, 10] }, flip: { exit: [0, 5], enter: [5, 10] } };
 /** 幕尾編舞：出場起點不早於上一幕收聲 − EXIT_AFTER_VOICE 幀（主體在收聲後才走）；cue 早到上限（cue.ts READ_HOLD 12、CUE_LEAD 4） */

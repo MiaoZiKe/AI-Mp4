@@ -93,8 +93,16 @@
         "draft": {
           "text": "幫我寫一篇貼文",
           "typeAt": "start+4",
-          "typeEnd": "line+6",
-          "placeholder": "問 AI 任何事…"
+          "typeEnd": "one",
+          "placeholder": "問 AI 任何事…",
+          "empty": {
+            "title": "今天想問什麼？",
+            "chips": [
+              "寫貼文",
+              "想標題",
+              "改文案"
+            ]
+          }
         }
       },
       "sources": []
@@ -124,7 +132,7 @@
       "component": "UiScene",
       "props": {
         "send": {
-          "at": "start+0"
+          "at": "start-5"
         },
         "reply": {
           "at": "back-6",
@@ -176,7 +184,9 @@
             "by": "Google Workspace",
             "at": "guide"
           },
-          "slotsAt": "good+2"
+          "slotsAt": "start+4",
+          "sweepAt": "good",
+          "pulseAt": "four-2"
         }
       },
       "sources": [
@@ -304,19 +314,22 @@
               "slot": 2
             },
             {
-              "t": "果香明亮，三分鐘沖好",
-              "slot": 1
+              "t": "小編私心推薦：果香明亮",
+              "slot": 0
             },
             {
-              "t": "本週到店試喝，第二包九折",
-              "slot": 0
+              "t": "三分鐘沖好，今天就來試"
             }
           ],
           "badge": {
             "text": "更貼近你要的",
             "at": "close"
           },
-          "titleSlot": 3
+          "titleSlot": 1,
+          "format": {
+            "text": "標題＋三行",
+            "slot": 3
+          }
         }
       },
       "sources": [
