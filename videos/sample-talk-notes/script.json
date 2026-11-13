@@ -1,0 +1,310 @@
+{
+  "slug": "sample-talk-notes",
+  "title": "房價是年收入的九倍多｜風格試片：觀察者筆記",
+  "asOf": "2026/11/13",
+  "styleVersion": 3,
+  "stage": "notes",
+  "channel": {
+    "name": "談晴說礙",
+    "tag": "觀察者筆記",
+    "slogan": "說這一代的難，也說還在的光"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "preset": "love",
+      "delivery": "chat",
+      "persona": "三十歲左右的台灣女生，下班回到家，把今天看到的一個數字講給同年紀的好朋友聽",
+      "scene": "晚上在租來的小房間，窗戶開著，她坐在床邊跟好朋友講電話，旁邊沒有別人在聽",
+      "pace": [
+        4.5,
+        4.9
+      ],
+      "tone": "小聲跟好朋友講話的口氣，像在講一件大家都知道的事；不嘆氣、不安慰人，也不說教",
+      "arc": {
+        "起": "像剛想到一件事，隨口提一句",
+        "承": "講到數字想一下再說，其他地方順順帶過",
+        "轉": "聲音小一點，像在講自己人的事",
+        "合": "鬆下來，像抬頭看到窗外，帶一點笑意"
+      },
+      "avoid": [
+        "深夜電台的氣音",
+        "播新聞的腔調",
+        "朗讀文章的口氣",
+        "說教的口氣",
+        "心靈成長節目的口氣",
+        "娃娃音、撒嬌"
+      ]
+    }
+  },
+  "audio": {
+    "bgm": true,
+    "sfx": false
+  },
+  "notes": {
+    "status": "前製骨架（2026/11/13）：還沒配音、還沒選照片、NoteScene 元件還沒寫",
+    "hand": "手寫字的字型與筆跡動畫待定；照片名稱對到 out/sample-talk-notes/assets-raw/photos/<name>.jpg",
+    "disclaimer": "照片為情境示意"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "para": 1,
+      "beat": "hook",
+      "narration": "欸，最近看到一個數字。",
+      "tts": "欸，最近看到一個數字。",
+      "subtitle": {
+        "zh": "欸，最近看到一個數字。",
+        "en": "Hey, I saw a number recently."
+      },
+      "keywords": [
+        "一個數字"
+      ],
+      "cues": [
+        {
+          "id": "num",
+          "text": "數字"
+        }
+      ],
+      "component": "NoteScene",
+      "props": {
+        "photo": {
+          "name": "desk",
+          "keywords": [
+            "notebook pen desk window light",
+            "open notebook wooden desk cup"
+          ],
+          "need": "書桌一角：攤開的空白筆記本、一支筆、一杯茶，側面的窗光；沒有人、沒有螢幕與品牌字"
+        },
+        "notes": [
+          {
+            "kind": "hand",
+            "text": "11/13 下班後",
+            "at": "start"
+          },
+          {
+            "kind": "hand",
+            "text": "今天看到\n一個數字",
+            "at": "num"
+          }
+        ]
+      },
+      "sources": [
+        "照片為情境示意"
+      ]
+    },
+    {
+      "id": "s02",
+      "para": 1,
+      "beat": "mechanism",
+      "narration": "全台灣的房價，是家庭年收入的九倍多。",
+      "tts": "全台灣的房價，是家庭年收入的九倍多。",
+      "subtitle": {
+        "zh": "全台灣的房價，\n是家庭年收入的九倍多。",
+        "en": "Across Taiwan, a home costs | over 9 times a household's yearly income."
+      },
+      "keywords": [
+        "九倍多"
+      ],
+      "cues": [
+        {
+          "id": "tw",
+          "text": "全台灣"
+        },
+        {
+          "id": "income",
+          "text": "年收入"
+        },
+        {
+          "id": "nine",
+          "text": "九倍多"
+        }
+      ],
+      "component": "NoteScene",
+      "props": {
+        "photo": {
+          "name": "apartments",
+          "at": "tw",
+          "keywords": [
+            "old apartment building windows facade",
+            "residential building balconies"
+          ],
+          "need": "老公寓的外牆與一格一格的窗戶，平視或微仰；看不到人、門牌、招牌、車牌"
+        },
+        "notes": [
+          {
+            "kind": "hand",
+            "text": "房價 ÷ 家庭年收入",
+            "at": "income"
+          },
+          {
+            "kind": "number",
+            "text": "9.47 倍",
+            "at": "nine",
+            "claim": "F1"
+          },
+          {
+            "kind": "source",
+            "text": "全國・115 年第 1 季\n內政部 房價所得比",
+            "at": "nine+12"
+          }
+        ]
+      },
+      "sources": [
+        "來源：內政部不動產資訊平台 房價所得比（115 年第 1 季，全國）",
+        "經濟日報 2026/8 轉述；原始統計表未讀到（截至 2026/11/13）"
+      ]
+    },
+    {
+      "id": "s03",
+      "para": 1,
+      "beat": "twist",
+      "narration": "不吃不喝，也要九年多耶。",
+      "tts": "不吃不喝，也要九年多耶。",
+      "subtitle": {
+        "zh": "不吃不喝，也要九年多耶。",
+        "en": "Spending nothing at all, | that's still over nine years."
+      },
+      "keywords": [
+        "九年多"
+      ],
+      "cues": [
+        {
+          "id": "zero",
+          "text": "不吃不喝"
+        },
+        {
+          "id": "years",
+          "text": "九年多"
+        }
+      ],
+      "component": "NoteScene",
+      "props": {
+        "photo": {
+          "name": "apartments",
+          "hold": true,
+          "need": "沿用 s02 的照片，不換鏡（只把照片稍微推近或變暗一點，讓手寫筆畫清楚）"
+        },
+        "notes": [
+          {
+            "kind": "tally",
+            "text": "正正",
+            "at": "zero",
+            "count": 9,
+            "until": "years"
+          },
+          {
+            "kind": "hand",
+            "text": "＝ 九年多",
+            "at": "years"
+          }
+        ]
+      },
+      "sources": [
+        "來源：內政部不動產資訊平台 房價所得比（115 年第 1 季，全國）",
+        "換算說明：倍數＝全部所得都存下來要幾年"
+      ]
+    },
+    {
+      "id": "s04",
+      "para": 1,
+      "beat": "you",
+      "narration": "我們這一代，還在算下個月的房租。",
+      "tts": "我們這一代，還在算下個月的房租。",
+      "subtitle": {
+        "zh": "我們這一代，\n還在算下個月的房租。",
+        "en": "Our generation is still working out | next month's rent."
+      },
+      "keywords": [
+        "這一代",
+        "房租"
+      ],
+      "cues": [
+        {
+          "id": "gen",
+          "text": "這一代"
+        },
+        {
+          "id": "rent",
+          "text": "房租"
+        }
+      ],
+      "component": "NoteScene",
+      "props": {
+        "photo": {
+          "name": "keys",
+          "at": "gen",
+          "keywords": [
+            "keys on table calculator",
+            "house keys wooden table"
+          ],
+          "need": "桌上一串鑰匙，旁邊可以有計算機或零錢；沒有手、沒有鈔票上的人像特寫、沒有品牌字"
+        },
+        "notes": [
+          {
+            "kind": "hand",
+            "text": "下個月房租 ＝ ？",
+            "at": "rent"
+          }
+        ]
+      },
+      "sources": [
+        "觀察描寫，非統計"
+      ]
+    },
+    {
+      "id": "s05",
+      "para": 1,
+      "beat": "payoff",
+      "narration": "不過今天下班的夕陽，還是很漂亮啊。",
+      "tts": "不過今天下班的夕陽，還是很漂亮啊。",
+      "subtitle": {
+        "zh": "不過今天下班的夕陽，\n還是很漂亮啊。",
+        "en": "Still, the sunset after work today | was beautiful."
+      },
+      "keywords": [
+        "夕陽"
+      ],
+      "cues": [
+        {
+          "id": "sun",
+          "text": "夕陽"
+        },
+        {
+          "id": "pretty",
+          "text": "很漂亮"
+        }
+      ],
+      "component": "NoteScene",
+      "props": {
+        "photo": {
+          "name": "sunset",
+          "at": "start",
+          "keywords": [
+            "sunset city street power lines",
+            "sunset sky rooftops"
+          ],
+          "need": "下班時間的街景或屋頂上的夕陽，天空佔畫面一半以上；人只能是遠處看不出是誰的剪影，沒有招牌字"
+        },
+        "notes": [
+          {
+            "kind": "sunny",
+            "text": "今天的晴\n下班路上的夕陽",
+            "at": "sun"
+          },
+          {
+            "kind": "ask",
+            "text": "你今天的一小段晴\n是什麼？",
+            "at": "end-6"
+          }
+        ]
+      },
+      "sources": [
+        "照片為情境示意"
+      ]
+    }
+  ]
+}
