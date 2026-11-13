@@ -69,6 +69,18 @@
 - 實拍照片：`python3 scripts/styleframes/find_pexels.py 關鍵字…` 找、`--fetch <slug> 名稱=md5` 抓，`make-paper.py` 自動做成 `polaroid-<名稱>`／`print-<名稱>`（newsprint 另有 `clip-<名稱>`）；流程與規則（不要有可辨識人臉、怎麼記 assets.md）見 `docs/style-v3/photos-howto.md`。
 - 已知限制：selfcheck 的單幀跳變關口是照 v2 訂的，v3 紙片「貼上」那一幀會被算成跳變（what-is-server 有 13 幀）；audit 的 `blackFramesTotal` 會把蓋場大紙算進去，真正黑幀用 ffmpeg blackdetect 看。SeatBar 沒有 v3 版；v3 的圖表只有紙條長條（bars）與紙條折線（line）。
 
+## 風格試片的四種新畫面（`stage`）
+- 用途：四個頻道各一種和紙拼貼明顯不同的畫面，目前只有 10–15 秒試片（沒有片尾卡），讓使用者挑風格。每支的成片資訊、已知問題、人耳確認清單在各自的 `videos/<slug>/README.md`。
+- 開關：script.json 頂層 `styleVersion: 3` 加 `stage`。配音（`voice.mode: "take"`）、對齊、時間軸、字幕檔、混音都沿用 v3 流程，只有畫面換掉；有 `stage` 就不用跑 `make-paper.py`。原本規劃的 `styleVersion: 4` 沒有開，3D 也是走 `stage: "three"`。
+  - `stage: "ui"`（AI 教學，仿介面動畫）：`src/components/ui/`，每幕 `component: "UiScene"`；token＝`THEME_UI`／`LAYOUT_UI`；檢查 `scripts/ui/validate-ui.mjs`；樣片 `videos/sample-ai-ui/`。自製聊天視窗、游標、打字、流程節點，不用真實產品介面。
+  - `stage: "chat"`（感情，對話泡泡）：`src/components/chat/`，每幕 `component: "ChatScene"`，`props.events`＝`bubble｜compose｜read｜typing｜card｜stat｜react`；token＝`THEME_CHAT`／`LAYOUT_CHAT`；檢查 `scripts/chat/validate-chat.mjs`，音效 `scripts/chat/sfx.mjs`；樣片 `videos/sample-love-chat/`。畫面要標「情境示意，非真實對話」，不仿真實通訊軟體。
+  - `stage: "three"`（科技，3D 產品台）：`src/components/three/`，每幕 `component: "ThreeScene"`（`spin`、`explode`、`labels`、`focus`…）；token＝`THEME_3D`／`LAYOUT_3D`；檢查 `scripts/three/validate-three.mjs`；樣片 `videos/sample-tech-3d/`。
+  - `stage: "chart"`（股票，資料圖表主導）：`src/components/chartlead/`，每幕 `component: "ChartScene"`，資料寫在頂層 `chart`；token＝`THEME_CHARTLEAD`／`LAYOUT_CHARTLEAD`；檢查 `scripts/chartlead/validate-chart.mjs`；樣片 `videos/sample-stock-chart/`。只畫查證過的資料點，紅色代表上漲（台股習慣），不給投資建議。
+- 共同規則：元件不寫死色碼；事件的 `at` 只寫 cue id 或 `start｜voice｜end｜exit` 加減幾幀，不手填秒數；不出現真實商標與真人；這四種可以用淡入淡出（紙拼貼的「不用透明度」規則只管沒有 `stage` 的 v3）。
+- **3D 只開放給科技頻道**（使用者已同意）：全專案只有 `src/components/three/` 可以 import three.js／`@remotion/three`（validate 會擋其他資料夾）；v2、紙拼貼與其他 `stage` 仍禁止 3D。模型用基本形狀自己建，不畫真實商標、不仿特定機型。
+- 3D 的 GL 設定與限制：這台機器 4 核心、沒有 GPU，預設的 `gl: "swiftshader"` 開不出 WebGL；`stage: "three"` 時 `scripts/lib.mjs` 自動改用 `swangle`，平行數預設 1（`THREE_CONCURRENCY` 可調；`THEME_3D.dpr: 2` 兩倍渲染時平行數 3 會因記憶體不足失敗，最多 2）。實測 dpr 2 每幀約 2.5 秒（441 幀約 19 分鐘），dpr 1 每幀約 0.8 秒，一般畫面每幀約 0.05 秒；正式長片要先估時間。渲染前可用 `node scripts/three/bench30.mjs <slug>` 先渲 30 幀量速度。
+- 語速：使用者要的是 Sulafat、4.6–5.0 音節/秒。`voice.profile.pace` 寫 `[4.6, 5]`、語氣寫明「講話偏快、不拖尾音」，稿子用短句；對齊時可用 `ALIGN_GAP_MAX=0.3` 壓幕間停頓；還不夠才用 `atempo`，上限 1.08。生成後用 `scripts/voice-retro.py` 量語速與捲舌指標。
+
 ## 可重用元件（src/components/）
 Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、BigNumber、SeatBar（席次條，含過半門檻線）、IconGrid、ImpactCard（含「已確定／分析預期／尚未確定」標籤）、SourceFooter
 - v2（`src/components/v2/`）：HookTitle、CtaCard、BigNumberV2（from、對照小標 ref、資料條 bars）、CompareSplitV2、FlowRowV2、ImpactCardV2、IconGridV2、TermCardV2、EndCardV2、SubtitleTrackV2／SourceTrackV2、CoverV2；SeatBar 尚無 v2 版
