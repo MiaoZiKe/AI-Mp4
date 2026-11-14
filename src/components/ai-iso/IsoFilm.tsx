@@ -142,6 +142,13 @@ const Stamp: React.FC<{ text: string; color: string; px?: number }> = ({ text, c
 const Cross: React.FC<{ size: number; color: string }> = ({ size, color }) => (
   <svg width={size} height={size} viewBox="0 0 48 48"><path d="M13 13 L35 35 M35 13 L13 35" fill="none" stroke={color} strokeWidth={7} strokeLinecap="round" /></svg>
 );
+/** 卡片上的字：念到哪個詞，那個詞抹上螢光底（marks 依出現順序寫） */
+const hilite = (text: string, marks: { text: string; at: unknown }[], at: (a: unknown) => number, f: number, bg: string, fg: string): React.ReactNode => {
+  const outN: React.ReactNode[] = [];
+  let rest = text;
+  marks.forEach((mk, i) => { const k = rest.indexOf(mk.text); if (k < 0) return; outN.push(rest.slice(0, k), <K.Mark key={i} f={f} at={at(mk.at)} bg={bg} fg={fg}>{mk.text}</K.Mark>); rest = rest.slice(k + mk.text.length); });
+  return <>{outN}{rest}</>;
+};
 const hop = (f: number, at: number, h = 46, dur = 12) => (f < at || f > at + dur ? 0 : h * Math.sin((Math.PI * (f - at)) / dur));
 /** 卡片表頭：左邊色籤、右邊小字（實測標示） */
 const Head: React.FC<{ label: string; color?: string; by?: string; solid?: boolean }> = ({ label, color, by, solid = true }) => {
@@ -174,7 +181,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
   const rs = results[0], tGo = rs ? rs.at(rs.p.sendAt, rs.in) : FAR;
   // 「這樣問」的欄位：依序出現在正面的大卡上，下一個要出現前飛進托盤的格子
   const items = slots.flatMap((x) => ((x.p.items ?? []) as any[]).map((it) => ({ x, it, tIn: x.at(it.at, x.in) })));
-  const fields = items.map((q, i) => { const tFly = Math.min(items[i + 1] ? items[i + 1].tIn - 5 : FAR, tGo - M.fly - 4); return { ...q, i, tFly, tLand: tFly + M.fly }; });
+  const fields = items.map((q, i) => { const tFly = Math.min(items[i + 1] ? items[i + 1].tIn - M.fly - 2 : FAR, tGo - M.fly - 4); return { ...q, i, tFly, tLand: tFly + M.fly }; });
   const nB = fields.length, tArr2 = tGo + (nB - 1) * 3 + M.fly;
   const group = (r: Panel) => { const i = panels.indexOf(r), g = [r]; for (let k = i + 1; panels[k]?.kind === "add"; k++) g.push(panels[k]); return g; };
   const resT = results.map((r) => { const g = group(r), end = g[g.length - 1].out; return { r, g, out: Math.max(r.at(r.p.outAt, r.in + 6), r === rs ? tArr2 + 2 : 0), end }; });
@@ -422,10 +429,10 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
               <div style={{ width: 58, height: 58, borderRadius: 18, background: c.fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: 36, color: c.on }}>{q.i + 1}</div>
               <div style={{ ...zh, fontWeight: T.weight.title, fontSize: 46, color: c.text }}>{q.it.label}</div>
             </div>
-            {q.it.text ? <div style={{ ...wrap, fontWeight: T.weight.strong, fontSize: q.it.px ?? 56, color: T.ink, marginTop: 16 }}>{q.it.text}</div> : null}
+            {q.it.text ? <div style={{ ...wrap, fontWeight: T.weight.strong, fontSize: q.it.px ?? 56, color: T.ink, marginTop: 16 }}>{hilite(q.it.text, (q.it.marks ?? []) as any[], (a) => q.x.at(a, FAR), f, c.soft, c.text)}</div> : null}
             {q.it.parts ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 18 }}>
-                {(q.it.parts as any[]).map((pt, j) => { const pc = col(pt.color ?? q.it.color); return <div key={j} style={K.bounce(f, q.x.at(pt.at, q.tIn))}><K.Chip text={pt.t} bg={pc.soft} fg={pc.text} px={36} /></div>; })}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
+                {(q.it.parts as any[]).map((pt, j) => { const pc = col(pt.color ?? q.it.color); return <div key={j} style={K.bounce(f, q.x.at(pt.at, q.tIn))}><K.Chip text={pt.t} bg={pc.soft} fg={pc.text} px={34} /></div>; })}
               </div>
             ) : null}
           </div>
@@ -529,7 +536,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
             return <div key={i} style={{ ...zh, height: p.lineH ?? 60, display: "flex", alignItems: "center", fontWeight: isHead || isSlot ? T.weight.title : T.weight.body, fontSize: p.linePx ?? 42, color: isHead ? hc.text : isSlot ? c.text : T.ink }}>{isSlot ? <span style={{ background: c.soft, borderRadius: 12, padding: "2px 14px" }}>{ln}</span> : ln}</div>;
           })}
           <div style={{ ...zh, fontWeight: T.weight.body, fontSize: 36, color: T.ink3, marginTop: 8 }}>{p.foot}</div>
-          {fl > 0 ? <div style={{ position: "absolute", inset: 0, borderRadius: T.radius.card, background: T.color.primary.soft, opacity: 0.8 * fl }} /> : null}
+          {fl > 0 ? <div style={{ position: "absolute", inset: 0, borderRadius: T.radius.card, background: T.color.primary.soft, opacity: 0.45 * fl }} /> : null}
           {f >= tHint ? [[0, 0], [1, 0], [0, 1], [1, 1]].map(([a, b], i) => <div key={i} style={{ position: "absolute", [a ? "right" : "left"]: 14, [b ? "bottom" : "top"]: 14, width: 44, height: 44, [`border${b ? "Bottom" : "Top"}`]: `8px solid ${c.fill}`, [`border${a ? "Right" : "Left"}`]: `8px solid ${c.fill}`, borderRadius: 6, opacity: tween(f, tHint, 3) }} />) : null}
         </div>
       </K.Bb>,

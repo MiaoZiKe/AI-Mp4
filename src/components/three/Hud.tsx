@@ -120,15 +120,15 @@ export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z
 const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
   const A = H.art;
   if (kind === "phone") return (
-    // 手機：X 光線稿（看得到裡面的主機板外框與電池），正中央是晶片的位置
+    // 手機：X 光線稿（看得到裡面的主機板外框與電池），正中央是晶片的位置；高 840＝畫面寬 18cm 的約 15cm
     <g>
-      <rect x={-250} y={-500} width={500} height={1000} rx={70} fill={A.body} stroke={A.edge} strokeWidth={6} />
-      <rect x={-222} y={-470} width={444} height={940} rx={48} fill={H.bg2} stroke={H.lineSoft} strokeWidth={3} />
-      <rect x={-170} y={-420} width={340} height={380} rx={20} fill="none" stroke={A.trace} strokeWidth={4} strokeDasharray="14 10" />
-      <rect x={-170} y={40} width={340} height={380} rx={20} fill="none" stroke={H.lineSoft} strokeWidth={4} />
-      <text x={0} y={250} textAnchor="middle" style={mono(30, H.text3)}>BATTERY</text>
+      <rect x={-210} y={-420} width={420} height={840} rx={60} fill={A.body} stroke={A.edge} strokeWidth={6} />
+      <rect x={-186} y={-394} width={372} height={788} rx={40} fill={H.bg2} stroke={H.lineSoft} strokeWidth={3} />
+      <rect x={-150} y={-350} width={300} height={300} rx={18} fill="none" stroke={A.trace} strokeWidth={4} strokeDasharray="14 10" />
+      <rect x={-150} y={50} width={300} height={310} rx={18} fill="none" stroke={H.lineSoft} strokeWidth={4} />
+      <text x={0} y={215} textAnchor="middle" style={mono(28, H.text3)}>BATTERY</text>
       <rect x={-58} y={-58} width={116} height={116} fill="none" stroke={H.amber} strokeWidth={3} />
-      <circle cx={-150} cy={-430} r={22} fill="none" stroke={A.edge} strokeWidth={5} />
+      <circle cx={-125} cy={-360} r={20} fill="none" stroke={A.edge} strokeWidth={5} />
     </g>
   );
   if (kind === "board") return (
@@ -196,6 +196,9 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom }> = ({ f, hu
         {Array.from({ length: H.ruler.ticks + 1 }, (_, i) => <line key={i} x1={(rulerPx * i) / H.ruler.ticks} x2={(rulerPx * i) / H.ruler.ticks} y1={0} y2={i % 5 ? -H.ruler.h / 2 : -H.ruler.h} stroke={H.amber} strokeWidth={s.mid} />)}
         <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
       </g>
+      {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
+      <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={0.72} />
+      <rect x={x1 - 470} y={y0 + 10} width={460} height={196} fill={H.bg} opacity={0.72} />
       {sc ? <text x={x1 - 24} y={y0 + 40} textAnchor="end" style={mono(28, H.text2, 500)}>{sc.text}</text> : null}
       {sc?.zh ? <text x={x1 - 24} y={y0 + 76} textAnchor="end" style={zh(28, H.text2, 500)}>{sc.zh}</text> : null}
       <text x={x1 - 24} y={y0 + 150} textAnchor="end" style={mono(H.font.px.big, H.text, 700)} opacity={0.75 + 0.25 * lvF}>{magText(z.mag)}</text>

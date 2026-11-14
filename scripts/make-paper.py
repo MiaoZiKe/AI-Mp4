@@ -555,13 +555,21 @@ def photos():
 
 def custom():
     """videos/<slug>/assets.json 的 papers：自訂尺寸的色紙（堆疊方塊的每一層、特別大的標題條…）。
-    { "<名>": { "w": 520, "h": 90, "color": "blue"｜"#RRGGBB", "torn": "lr", "cut": 1.6, "radius": 12, "kind": "sheet"｜"note", "shadow": "s"｜"m"｜"l" } }"""
+    { "<名>": { "w": 520, "h": 90, "color": "blue"｜"#RRGGBB", "torn": "lr", "cut": 1.6, "radius": 12, "kind": "sheet"｜"note", "shadow": "s"｜"m"｜"l", "rules": { "top", "gap", "n", "skip" } } }"""
     SH = dict(s=dict(pad=20, off=(2, 5), blur=4, alpha=0.4), m=dict(pad=40, off=(5, 9), blur=9, alpha=0.4), l=dict(pad=60, off=(8, 16), blur=16, alpha=0.45))
     for name, c in CFG.get('papers', {}).items():
         seed = zlib.crc32(name.encode()) % 100000; w, h = int(c['w']), int(c['h']); color = col(c.get('color', 'white'))
         if c.get('radius'): im = rounded(w, h, color, seed, c['radius'])
         elif c.get('kind') == 'note': im = note(w, h, color, seed)
         else: im = sheet(w, h, color, seed, torn=c.get('torn', ''), cut=c.get('cut', 1.6), grain=c.get('grain', 6))
+        if c.get('rules'):                                                    # 假的內文（灰條，不寫字）：{ top, gap, n, x, w, width, skip: [第幾條不畫，留給真的字] }
+            ru = c['rules']; d = ImageDraw.Draw(im); r = np.random.default_rng(seed + 7); g = hexrgb(A['ink'])
+            x0 = ru.get('x', 48); fw = ru.get('w', w - 2 * x0)
+            for j in range(ru.get('n', 8)):
+                k = r.uniform(0.45, 0.75) if j % 5 == 4 else r.uniform(0.9, 1.0)
+                if j in ru.get('skip', []): continue
+                y = ru.get('top', 60) + j * ru.get('gap', 40)
+                d.line([(x0, y), (x0 + int(fw * k), y)], fill=g + (ru.get('alpha', 64),), width=ru.get('width', 10))
         sh(im, name=name, **SH[c.get('shadow', 'm' if min(w, h) > 120 else 's')])
 
 if __name__ == '__main__':

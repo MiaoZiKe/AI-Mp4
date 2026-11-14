@@ -419,7 +419,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
       <div key="nx-chips" style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.MAIN_BOTTOM - 96, display: "flex", justifyContent: "space-between" }}>
         {chips.map((t, i) => { const cc = col(tones[i % 3]); return (
           <div key={i} style={{ ...bounce(f, tChips + i * M.stagger) }}>
-            <div style={{ transform: i === chips.length - 1 && f >= tPulse ? `scale(${pop(f, tPulse, 1.3).toFixed(4)})` : undefined, display: "flex", alignItems: "center", gap: 10, background: T.card, borderRadius: 24, padding: "16px 24px 16px 18px", boxShadow: `0 8px 0 ${cc.fill}, ${T.depth.soft}` }}>
+            <div style={{ transform: i === chips.length - 1 && f >= tPulse ? `scale(${pop(f, tPulse, 1.3).toFixed(4)})` : undefined, transformOrigin: "100% 50%", display: "flex", alignItems: "center", gap: 10, background: T.card, borderRadius: 24, padding: "16px 24px 16px 18px", boxShadow: `0 8px 0 ${cc.fill}, ${T.depth.soft}` }}>
               <div style={{ width: 44, height: 44, borderRadius: 14, background: cc.soft, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: 30, color: cc.text }}>{i + 1}</div>
               <div style={{ ...zh, fontWeight: T.weight.title, fontSize: 44, color: T.ink }}>{t}</div>
             </div>

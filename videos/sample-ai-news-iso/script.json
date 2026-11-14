@@ -504,6 +504,12 @@
       "color": "sky",
       "tone": "sky",
       "text": "請只根據這段文字回答",
+      "marks": [
+       {
+        "text": "只根據這段文字",
+        "at": "only+8"
+       }
+      ],
       "at": "only"
      }
     ],
@@ -557,6 +563,12 @@
       "color": "note",
       "tone": "yellow",
       "text": "文字裡沒寫的就說「原文沒寫」",
+      "marks": [
+       {
+        "text": "原文沒寫",
+        "at": "say"
+       }
+      ],
       "at": "miss"
      }
     ],
@@ -613,6 +625,16 @@
       "color": "plum",
       "tone": "plum",
       "text": "我是在台北租房子、三餐外食的上班族",
+      "marks": [
+       {
+        "text": "台北租房子",
+        "at": "rent"
+       },
+       {
+        "text": "三餐外食",
+        "at": "eat"
+       }
+      ],
       "at": "who"
      }
     ],
@@ -674,6 +696,8 @@
       "label": "分三段",
       "color": "right",
       "tone": "mint",
+      "text": "請分三段，每段最多三點",
+      "px": 40,
       "at": "three",
       "parts": [
        {

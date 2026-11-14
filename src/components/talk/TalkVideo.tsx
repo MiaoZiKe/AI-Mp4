@@ -87,7 +87,9 @@ const Word: React.FC<{ w: TalkWord; f: number; slot: number }> = ({ w, f, slot }
     case "windows":
       return <div style={{ opacity: o }}><Windows w={w} f={f} top={L.WIN_TOP} /></div>;
     case "sunny":
-      return <div style={{ ...base, top: L.LINE_TOP + slot * 110, fontWeight: T.weight.zh, fontSize: L.LINE_PX, lineHeight: 1.3, color: T.warm }}>{w.text}</div>;
+      return <div style={{ ...base, top: L.LINE_TOP + slot * 110, fontWeight: T.weight.zh, fontSize: L.LINE_PX, lineHeight: 1.3, color: T.warm }}>
+        <span style={{ background: T.scrim, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone", padding: "0 12px" }}>{w.text}</span>
+      </div>;
     case "ask":
       return <div style={{ ...base, top: L.WIN_TOP + 40, fontWeight: T.weight.body, fontSize: 52, lineHeight: 1.35, color: T.fg }}>{w.text}</div>;
     default:
@@ -149,6 +151,7 @@ export const VideoTalk: React.FC<Script & { timeline: TimelineV2 }> = ({ slug, s
       <Grade m={m} f={f} />
       <Vignette />
       <Grain f={f} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: L.BAND_TOP, bottom: 0, background: T.capBand }} />
       <Header name={channel?.name ?? "談晴說礙"} tag={channel?.tag ?? "夜窗"} progress={progress} />
       {live.map((w, k) => <Word key={k} w={w} f={f} slot={Math.max(0, lines.indexOf(w))} />)}
       <Caption cues={caps} f={f} />

@@ -833,10 +833,12 @@ export const THEME_TALK = {
   /** 調色：照片上蓋一層色（mix-blend multiply）＋亮度；night＝礙、warm＝晴 */
   grade: {
     night: { tint: "#2B3D5C", tintAlpha: 0.55, brightness: 0.62, saturate: 0.55 },
-    warm: { tint: "#7A4A1E", tintAlpha: 0.32, brightness: 0.82, saturate: 0.9 },
+    warm: { tint: "#7A4A1E", tintAlpha: 0.32, brightness: 0.74, saturate: 0.9 },
   } as Record<string, { tint: string; tintAlpha: number; brightness: number; saturate: number }>,
   /** 字下面的暗帶（讓字在照片上可讀；不用發光） */
   scrim: "rgba(8,10,14,0.58)",
+  /** 字幕與出處底下的暗帶（由上往下變深；亮的照片上英文與出處才讀得到） */
+  capBand: "linear-gradient(180deg, rgba(8,10,14,0) 0%, rgba(8,10,14,0.62) 22%, rgba(8,10,14,0.72) 100%)",
   /** 暗角強度 0–1、顆粒強度 0–1（每 2 幀換一次 seed） */
   vignette: 0.55, grain: 0.10,
   /** 壓暗用的黑、頁首細線、字幕字影（照片上的字才讀得到；不是發光） */
@@ -852,7 +854,7 @@ export const LAYOUT_TALK = {
   W: 1080, H: 1920, X: 64, INNER_W: 952,
   HEADER_TOP: 232, HEADER_H: 56,
   /** 大數字區、句子區、窗格區 */
-  NUM_TOP: 470, NUM_PX: 260, LINE_TOP: 820, LINE_PX: 64, WIN_TOP: 1000, WIN_CELL: 78, WIN_GAP: 18,
+  NUM_TOP: 470, NUM_PX: 260, LINE_TOP: 820, BAND_TOP: 1180, LINE_PX: 64, WIN_TOP: 1000, WIN_CELL: 78, WIN_GAP: 18,
   CAP_TOP: 1300, CAP_ZH_PX: 66, CAP_EN_PX: 30,
   SRC_TOP: 1590, SRC_PX: 28, MIN_PX: 28,
 } as const;

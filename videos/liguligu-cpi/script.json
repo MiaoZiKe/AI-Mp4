@@ -1,0 +1,1164 @@
+{
+ "slug": "liguligu-cpi",
+ "title": "十月物價出來了，你有請 AI 抓重點嗎？",
+ "asOf": "2026/11/13",
+ "styleVersion": 3,
+ "skin": "newsprint",
+ "channel": {
+  "name": "哩股哩股",
+  "tag": "AI 實測",
+  "slogan": "數字，查過再信"
+ },
+ "voice": {
+  "voiceName": "user-recording",
+  "model": "user-recording",
+  "mode": "take",
+  "note": "旁白是另外配好的 Iapetus 錄音（out/liguligu-cpi/narration_iapetus.wav），用 tts-take.mjs --resplit 接進來；不要從這裡送 TTS 請求"
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
+  },
+  "items": [
+   {
+    "type": "strip",
+    "paper": "strip-hook",
+    "lines": [
+     {
+      "t": "消費者物價指數 {CPI}",
+      "size": 50,
+      "color": "ink3",
+      "lh": 1.3,
+      "accentSize": 58
+     },
+     {
+      "t": "十月物價",
+      "size": 168,
+      "lh": 1.1
+     },
+     {
+      "t": "[出來了]",
+      "size": 150,
+      "lh": 1.14
+     }
+    ],
+    "x": 540,
+    "y": 640,
+    "w": 940,
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     70,
+     24
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-r",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "strip-yellow",
+    "lines": [
+     {
+      "t": "你有請 {AI}",
+      "size": 80
+     },
+     {
+      "t": "抓重點嗎？",
+      "size": 80
+     }
+    ],
+    "x": 700,
+    "y": 1075,
+    "w": 600,
+    "rot": 3,
+    "z": 3
+   },
+   {
+    "type": "strip",
+    "paper": "polaroid-veg",
+    "lines": [
+     {
+      "t": "十月的菜價",
+      "size": 40
+     }
+    ],
+    "x": 285,
+    "y": 1075,
+    "w": 350,
+    "caption": true,
+    "rot": -5,
+    "z": 1
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "para": 1,
+   "narration": "十月物價出來了，你有請 AI 抓重點嗎？",
+   "tts": "十月物價出來了，你有請 A I 抓重點嗎？",
+   "subtitle": {
+    "zh": "十月物價出來了\n你有請 AI 抓重點嗎？",
+    "en": "October's CPI is out. | Did you ask AI for the key points?"
+   },
+   "keywords": [
+    "十月物價"
+   ],
+   "cues": [
+    {
+     "id": "out",
+     "text": "出來了"
+    },
+    {
+     "id": "you",
+     "text": "你有請"
+    },
+    {
+     "id": "point",
+     "text": "抓重點"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "消費者物價指數 {CPI}",
+        "size": 50,
+        "color": "ink3",
+        "lh": 1.3,
+        "accentSize": 58
+       },
+       {
+        "t": "十月物價",
+        "size": 168,
+        "lh": 1.1
+       },
+       {
+        "t": "[出來了]",
+        "size": 150,
+        "lh": 1.14
+       }
+      ],
+      "x": 540,
+      "y": 640,
+      "w": 940,
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       70,
+       24
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "id": "hook",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "out",
+        "mark": 1
+       }
+      ],
+      "moves": [
+       {
+        "at": "you-2",
+        "to": {
+         "rot": -2.6,
+         "y": 628
+        },
+        "dur": 4
+       }
+      ],
+      "until": "s03"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-veg",
+      "lines": [
+       {
+        "t": "十月的菜價",
+        "size": 40
+       }
+      ],
+      "x": 285,
+      "y": 1075,
+      "w": 350,
+      "caption": true,
+      "rot": -5,
+      "at": "start+6",
+      "from": "left",
+      "until": "s03",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": 3,
+        "w": 170
+       }
+      ],
+      "moves": [
+       {
+        "at": "you+2",
+        "to": {
+         "rot": -9,
+         "x": 262
+        },
+        "dur": 4
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "lines": [
+       {
+        "t": "你有請 {AI}",
+        "size": 80
+       },
+       {
+        "t": "抓重點嗎？",
+        "size": 80
+       }
+      ],
+      "x": 700,
+      "y": 1075,
+      "w": 600,
+      "rot": 3,
+      "at": "you",
+      "from": "slam",
+      "until": "s03",
+      "z": 3
+     },
+     {
+      "asset": "qmark",
+      "x": 930,
+      "y": 870,
+      "w": 170,
+      "rot": 10,
+      "at": "point",
+      "from": "slam",
+      "until": "s03",
+      "z": 4
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "hook"
+  },
+  {
+   "id": "s02",
+   "para": 1,
+   "narration": "我們用 Gemini 實測，先只打一句話。",
+   "tts": "我們用 Gemini 實測，先只打一句話。",
+   "subtitle": {
+    "zh": "我們用 Gemini 實測\n先只打一句話",
+    "en": "We tested it with Gemini, | typing just one sentence."
+   },
+   "keywords": [
+    "一句話"
+   ],
+   "cues": [
+    {
+     "id": "gem",
+     "text": "Gemini"
+    },
+    {
+     "id": "test",
+     "text": "實測"
+    },
+    {
+     "id": "type",
+     "text": "只打"
+    },
+    {
+     "id": "one",
+     "text": "一句話"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1720,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        1010,
+        400
+       ],
+       [
+        1560,
+        400
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "s04"
+     },
+     {
+      "type": "phone",
+      "x": 1475,
+      "y": 850,
+      "w": 400,
+      "rot": -3,
+      "at": "start+4",
+      "from": "bottom",
+      "until": "s04",
+      "z": 2,
+      "state": {
+       "screen": "comment",
+       "placeholder": "輸入問題…"
+      },
+      "set": [
+       {
+        "at": "type-6",
+        "typing": "台灣十月物價重點？"
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "用 Gemini 實測",
+        "size": 50
+       }
+      ],
+      "x": 1955,
+      "y": 500,
+      "w": 440,
+      "rot": 3,
+      "at": "gem",
+      "from": "right",
+      "until": "s04",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/13",
+        "size": 72
+       }
+      ],
+      "x": 1900,
+      "y": 660,
+      "w": 230,
+      "rot": -4,
+      "at": "test",
+      "from": "paste",
+      "until": "s04",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "只打[一句話]",
+        "size": 96
+       }
+      ],
+      "x": 1930,
+      "y": 900,
+      "w": 540,
+      "rot": 2,
+      "at": "type",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "one",
+        "mark": 1
+       }
+      ],
+      "until": "s04",
+      "z": 3,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-keyboard",
+      "lines": [
+       {
+        "t": "沒有附任何資料",
+        "size": 38
+       }
+      ],
+      "x": 1960,
+      "y": 1120,
+      "w": 300,
+      "caption": true,
+      "rot": 5,
+      "at": "one+10",
+      "from": "right",
+      "until": "s04",
+      "z": 1
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "mechanism"
+  },
+  {
+   "id": "s03",
+   "para": 2,
+   "narration": "它回了一大篇，說十月是 1.69%。",
+   "tts": "它回了一大篇，說十月是一點六九趴。",
+   "subtitle": {
+    "zh": "它回了一大篇\n說十月是 1.69%",
+    "en": "It wrote a long answer, | saying October was 1.69%."
+   },
+   "keywords": [
+    "1.69%"
+   ],
+   "cues": [
+    {
+     "id": "reply",
+     "text": "回了"
+    },
+    {
+     "id": "long",
+     "text": "一大篇"
+    },
+    {
+     "id": "num",
+     "text": "1.69%"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1720,
+      2260,
+      1
+     ],
+     "dur": 14
+    },
+    "punch": "num",
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        1975,
+        1330
+       ],
+       [
+        1975,
+        1640
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "s05"
+     },
+     {
+      "type": "strip",
+      "paper": "printout",
+      "lines": [
+       {
+        "t": "CPI 年增率是 {1.69%}",
+        "size": 46,
+        "accentSize": 50
+       }
+      ],
+      "x": 1560,
+      "y": 2100,
+      "w": 600,
+      "box": [
+       40,
+       280,
+       520,
+       90
+      ],
+      "rot": -1.5,
+      "at": "reply",
+      "from": "top",
+      "enterDur": 14,
+      "until": "s05",
+      "id": "print",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 300,
+        "y": 4,
+        "rot": 2,
+        "w": 180
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "Gemini 的回答",
+        "size": 50
+       }
+      ],
+      "x": 1985,
+      "y": 1760,
+      "w": 400,
+      "rot": 3,
+      "at": "reply+8",
+      "from": "right",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "lines": [
+       {
+        "t": "回了[一大篇]",
+        "size": 60
+       }
+      ],
+      "x": 1990,
+      "y": 1920,
+      "w": 400,
+      "rot": -3,
+      "at": "long",
+      "from": "slam",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "num",
+      "value": 1.69,
+      "fromValue": 0,
+      "decimals": 2,
+      "unit": "%",
+      "head": {
+       "t": "AI 說十月是",
+       "size": 46,
+       "color": "ink3"
+      },
+      "size": 170,
+      "paper": "card-white",
+      "x": 1985,
+      "y": 2260,
+      "w": 430,
+      "rot": 2,
+      "at": "num",
+      "from": "slam",
+      "until": "s05",
+      "id": "old",
+      "z": 3,
+      "countDur": 14,
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 320,
+        "y": 6,
+        "rot": 3
+       }
+      ]
+     },
+     {
+      "asset": "circle",
+      "x": 1712,
+      "y": 1982,
+      "w": 250,
+      "rot": -3,
+      "z": 4,
+      "at": "num+10",
+      "from": "wipe",
+      "until": "s05"
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "mechanism"
+  },
+  {
+   "id": "s04",
+   "para": 2,
+   "narration": "其實那是兩年前的數字，今年是 2.33%。",
+   "tts": "其實那是兩年前的數字，今年是二點三三趴。",
+   "subtitle": {
+    "zh": "其實那是兩年前的數字\n今年是 2.33%",
+    "en": "That figure is two years old. | This year it's 2.33%."
+   },
+   "keywords": [
+    "兩年前",
+    "2.33%"
+   ],
+   "cues": [
+    {
+     "id": "past",
+     "text": "兩年前"
+    },
+    {
+     "id": "fig",
+     "text": "數字"
+    },
+    {
+     "id": "now",
+     "text": "今年"
+    },
+    {
+     "id": "num",
+     "text": "2.33%"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": [
+     {
+      "to": [
+       1900,
+       2560,
+       1
+      ],
+      "at": "now",
+      "dur": 12
+     }
+    ],
+    "items": [
+     {
+      "type": "strip",
+      "paper": "stamp-red",
+      "lines": [
+       {
+        "t": "兩年前的數字",
+        "size": 62,
+        "ls": 0.04
+       },
+       {
+        "t": "2024 年 10 月",
+        "size": 46,
+        "mt": 6
+       }
+      ],
+      "x": 1620,
+      "y": 2330,
+      "w": 440,
+      "rot": -8,
+      "onDark": true,
+      "at": "past",
+      "from": "slam",
+      "until": "s05",
+      "z": 5
+     },
+     {
+      "asset": "cross-0",
+      "x": 1985,
+      "y": 2275,
+      "w": 250,
+      "z": 6,
+      "at": "fig",
+      "from": "wipe",
+      "until": "s05"
+     },
+     {
+      "asset": "cross-1",
+      "x": 1985,
+      "y": 2275,
+      "w": 250,
+      "z": 6,
+      "at": "fig+5",
+      "from": "wipe",
+      "until": "s05"
+     },
+     {
+      "type": "num",
+      "value": 2.33,
+      "fromValue": 1.69,
+      "decimals": 2,
+      "unit": "%",
+      "head": {
+       "t": "實際・今年 10 月",
+       "size": 54
+      },
+      "size": 230,
+      "lines": [
+       {
+        "t": "主計總處公布的年增率",
+        "size": 40,
+        "color": "ink3"
+       }
+      ],
+      "paper": "card-white",
+      "x": 1900,
+      "y": 2640,
+      "w": 740,
+      "rot": -1.5,
+      "at": "num",
+      "from": "slam",
+      "until": "s05",
+      "z": 7,
+      "countDur": 16,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-y",
+        "x": 500,
+        "y": 4,
+        "rot": 4
+       }
+      ]
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "twist"
+  },
+  {
+   "id": "s05",
+   "para": 3,
+   "narration": "這不能怪它，我們沒開搜尋，也沒給它新聞。",
+   "tts": "這不能怪它，我們沒開搜尋，也沒給它新聞。",
+   "subtitle": {
+    "zh": "這不能怪它\n我們沒開搜尋\n也沒給它新聞",
+    "en": "It's not the AI's fault. | We left search off | and gave it no news."
+   },
+   "keywords": [
+    "沒開搜尋",
+    "沒給它新聞"
+   ],
+   "cues": [
+    {
+     "id": "blame",
+     "text": "不能怪它"
+    },
+    {
+     "id": "search",
+     "text": "沒開搜尋"
+    },
+    {
+     "id": "news",
+     "text": "沒給它新聞"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      3080,
+      2560,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        2330,
+        2130
+       ],
+       [
+        2760,
+        2130
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "這[不能怪它]",
+        "size": 104
+       }
+      ],
+      "x": 3080,
+      "y": 2085,
+      "w": 680,
+      "rot": -1.5,
+      "at": "start+6",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "blame+6",
+        "mark": 1
+       }
+      ],
+      "until": "end",
+      "z": 2,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 640,
+        "y": 4,
+        "rot": 4
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-keyboard",
+      "lines": [
+       {
+        "t": "網路搜尋",
+        "size": 42
+       }
+      ],
+      "x": 2850,
+      "y": 2400,
+      "w": 400,
+      "caption": true,
+      "rot": -4,
+      "at": "blame+4",
+      "from": "left",
+      "until": "end",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-news",
+      "lines": [
+       {
+        "t": "十月的新聞",
+        "size": 42
+       }
+      ],
+      "x": 3310,
+      "y": 2410,
+      "w": 400,
+      "caption": true,
+      "rot": 4,
+      "at": "blame+10",
+      "from": "right",
+      "until": "end",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "lines": [
+       {
+        "t": "沒開",
+        "size": 120
+       },
+       {
+        "t": "搜尋",
+        "size": 120
+       }
+      ],
+      "x": 2870,
+      "y": 2660,
+      "w": 330,
+      "rot": -5,
+      "at": "search",
+      "from": "slam",
+      "until": "end",
+      "z": 3
+     },
+     {
+      "asset": "pin-red",
+      "x": 2870,
+      "y": 2520,
+      "w": 56,
+      "at": "search+3",
+      "from": "slam",
+      "until": "end",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "note-red",
+      "lines": [
+       {
+        "t": "沒給",
+        "size": 120
+       },
+       {
+        "t": "新聞",
+        "size": 120
+       }
+      ],
+      "x": 3300,
+      "y": 2670,
+      "w": 330,
+      "rot": 4,
+      "onDark": true,
+      "at": "news",
+      "from": "slam",
+      "until": "end",
+      "z": 3
+     },
+     {
+      "asset": "pin-blue",
+      "x": 3300,
+      "y": 2530,
+      "w": 56,
+      "at": "news+3",
+      "from": "slam",
+      "until": "end",
+      "z": 4
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "payoff"
+  },
+  {
+   "id": "s06",
+   "para": 3,
+   "narration": "所以，我們換個問法。",
+   "tts": "所以，我們換個問法。",
+   "subtitle": {
+    "zh": "所以\n我們換個問法",
+    "en": "So, | let's ask it differently."
+   },
+   "keywords": [
+    "換個問法"
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "所以"
+    },
+    {
+     "id": "ask",
+     "text": "換個問法"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      3080,
+      3760,
+      1
+     ],
+     "dur": 12
+    },
+    "punch": "ask",
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        3080,
+        2960
+       ],
+       [
+        3080,
+        3200
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start",
+        "grow": 1
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "所以，我們",
+        "size": 54
+       }
+      ],
+      "x": 2860,
+      "y": 3270,
+      "w": 400,
+      "rot": -4,
+      "at": "so",
+      "from": "left",
+      "until": "end",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "[換個問法]",
+        "size": 196,
+        "lh": 1.2
+       }
+      ],
+      "x": 3080,
+      "y": 3560,
+      "w": 940,
+      "rot": -1.5,
+      "at": "ask",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "ask+8",
+        "mark": 1
+       }
+      ],
+      "until": "end",
+      "z": 3,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ]
+     },
+     {
+      "asset": "arrow-red",
+      "x": 3330,
+      "y": 3900,
+      "w": 330,
+      "rot": -6,
+      "at": "ask+12",
+      "from": "left",
+      "until": "end",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-papers",
+      "lines": [
+       {
+        "t": "下一個問法",
+        "size": 40
+       }
+      ],
+      "x": 2800,
+      "y": 3930,
+      "w": 330,
+      "caption": true,
+      "rot": -6,
+      "at": "ask+4",
+      "from": "bottom",
+      "until": "end",
+      "z": 1
+     }
+    ]
+   },
+   "sources": [
+    "CPI：主計總處；Gemini 實測（2026/11/13）"
+   ],
+   "beat": "cta"
+  }
+ ]
+}
