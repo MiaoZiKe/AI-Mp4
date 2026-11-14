@@ -32,9 +32,15 @@ export function resolveProfile(voice) {
 /** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
  * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間）；
  * "probe"＝查證揭露版（哩股哩股：把查到的事一件一件攤給信得過的人聽；講到疑點放慢、講到查證結果乾脆收住，比 warm-pro 低、穩） */
-export const DELIVERIES = ["chat", "warm-pro", "probe"];
+export const DELIVERIES = ["chat", "warm-pro", "probe", "report"];
+/** "report"＝正常報導一件事（2026/11/14，使用者聽完 short-ai：「口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」）。
+ * 整段說明只有一句（和 what-is-server 被接受的 voice.style 同一種寫法：`…說：` 後面直接接念稿），不寫人設、場景、情緒弧線、Avoid。
+ * 原因：長篇導演筆記（AUDIO PROFILE＋SCENE＋Arc）會讓 Gemini 2.5 TTS「演」那個角色，短稿尤其明顯——又慢（short-ai 實測 3.3 音節/秒）又怪。
+ * persona／scene／tone／arc／avoid 就算寫了也不送；englishTerms 也不送（念法說明放在一句話的提示裡容易被念出來）。 */
+export const REPORT_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，正常語速、不拖尾音、不演，直接說：";
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
 export function buildDirection(profile) {
+  if (profile.delivery === "report") return REPORT_LINE;
   const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, ...(profile.scene ? ["", "# SCENE", `${one(profile.scene)}。`] : []), "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
   const chat = profile.delivery === "chat", warm = profile.delivery === "warm-pro", probe = profile.delivery === "probe";
   if (chat && Array.isArray(profile.pace)) L.push(`Pacing: 跟朋友講話的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。想到哪講到哪：有的地方一口氣帶過去，有的地方想一下才接下去；停頓有長有短，逗號不一定要停。`);
@@ -51,16 +57,17 @@ export function buildDirection(profile) {
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");
 }
-export const takePrompt = (profile, text) => `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`;
+export const takePrompt = (profile, text) => (profile.delivery === "report" ? `${REPORT_LINE}\n${text}` : `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`);
 
 export function profileIssues(profile) {
   const out = [];
   if (profile._unknown) return [`voice.profile 的預設檔「${profile.preset}」不存在（${PRESET_NAMES.join("／")}）`];
-  for (const k of ["persona", "tone"]) if (typeof profile[k] !== "string" || !profile[k].trim()) out.push(`voice.profile 缺 ${k}`);
+  const report = profile.delivery === "report"; // 只送一句固定的話：persona／tone／arc 不需要
+  if (!report) for (const k of ["persona", "tone"]) if (typeof profile[k] !== "string" || !profile[k].trim()) out.push(`voice.profile 缺 ${k}`);
   if (!GENDERS.includes(profile.gender)) out.push(`voice.profile.gender 要是 ${GENDERS.join("／")}`);
   if (profile.accent !== "台灣華語") out.push("voice.profile.accent 固定寫「台灣華語」");
   if (!Array.isArray(profile.pace) || profile.pace.length !== 2 || profile.pace.some((v) => typeof v !== "number") || profile.pace[0] >= profile.pace[1] || profile.pace[0] < 3 || profile.pace[1] > 5.5) out.push("voice.profile.pace 要是 [下限, 上限]（音節/秒，3–5.5 之間）");
-  for (const k of ARC_KEYS) if (typeof profile.arc?.[k] !== "string" || !profile.arc[k].trim()) out.push(`voice.profile.arc 缺「${k}」（起／承／轉／合各一句情緒指示）`);
+  if (!report) for (const k of ARC_KEYS) if (typeof profile.arc?.[k] !== "string" || !profile.arc[k].trim()) out.push(`voice.profile.arc 缺「${k}」（起／承／轉／合各一句情緒指示）`);
   if (profile.englishTerms !== undefined && (typeof profile.englishTerms !== "object" || Array.isArray(profile.englishTerms))) out.push("voice.profile.englishTerms 要是 { 英文詞: 念法 }");
   if (profile.avoid !== undefined && !Array.isArray(profile.avoid)) out.push("voice.profile.avoid 要是陣列");
   if (profile.delivery !== undefined && !DELIVERIES.includes(profile.delivery)) out.push(`voice.profile.delivery 只能是 ${DELIVERIES.join("／")}（或不寫）`);

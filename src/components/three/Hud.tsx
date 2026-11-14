@@ -450,7 +450,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   // 3D 段鏡頭推近拉遠時，尺標與倍率跟著鏡頭距離伸縮（以交棒那一刻的距離為準）
   const hand = keys.find((k) => hud.levels[k.to]?.handoff3D);
   const d0 = useMemo(() => (hand ? stateAt(m, hand.at + hand.dur).cam.d : 0), [m, hand]);
-  const camK = z.handoff >= 1 && d0 > 0 ? d0 / s.cam.d : 1;
+  const camK = z.handoff > 0.99 && d0 > 0 ? d0 / s.cam.d : 1;
   const card = (m.overlays ?? []).find((o) => o.type === "card");
   const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (

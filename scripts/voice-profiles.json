@@ -154,6 +154,19 @@
     "delivery": "probe",
     "scene": "下班後的報社資料室，桌上攤著幾份文件，他坐在老朋友對面，一份一份指給對方看，旁邊沒有別人在聽"
   },
+  "ai-report": {
+    "_說明": "AI 教學頻道 2026/11/14 起用這個：正常報導一件事（delivery: \"report\"）。送出去的說明只有一句固定的話（scripts/voice-profile.mjs 的 REPORT_LINE），沒有人設、場景、情緒弧線；這裡的欄位只給檢查與後製量語速用。原本的 ai（warm-pro）留給已配好音的舊片。",
+    "gender": "female",
+    "accent": "台灣華語",
+    "pace": [
+      4.6,
+      5.0
+    ],
+    "delivery": "report",
+    "voices": [
+      "Sulafat"
+    ]
+  },
   "_chat": {
     "_說明": "選填的「聊天版」寫法（docs/voice-natural.md）。不放進上面四個預設檔，是因為已配好音的片用到預設檔，多一個欄位會讓提示和快取跟著變。新片這樣寫：\"profile\": { \"preset\": \"ai\", \"delivery\": \"chat\", \"scene\": \"…\" }。 ai 這一格另外留著 2026/11/13 以前的聊天版 persona／tone／arc／avoid（想要輕鬆聊天的 AI 片：\"profile\": { \"preset\": \"ai\", …_chat.ai 的欄位 }）。",
     "tech": {
