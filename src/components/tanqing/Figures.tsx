@@ -133,7 +133,7 @@ type Bar = { label: string; v: number; val?: string; mark?: boolean };
 /** 直的線稿長條（從 0 開始畫）：一根一根長出來，標出來的那根填橘色；diff＝從第一根的頂畫一條橘色虛線到最後一根，旁邊兩行字 */
 const Bars: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   const bars = fig.bars as Bar[], n = bars.length, max = fig.max ?? Math.max(...bars.map((b) => b.v));
-  const ground = 500, maxH = 372, bw = n > 2 ? 150 : 170, pitch = n > 2 ? 200 : 250, x0 = fig.diff ? (n > 2 ? 16 : 50) : (L.INNER_W - ((n - 1) * pitch + bw)) / 2;
+  const ground = 500, maxH = 372, bw = n > 2 ? 150 : 170, pitch = n > 2 ? 200 : 250, x0 = fig.diff ? (n > 2 ? 30 : 50) : (L.INNER_W - ((n - 1) * pitch + bw)) / 2;
   const h = (b: Bar) => (b.v / max) * maxH, grow = (k: number) => drawP(f, fig.at + k * 9, 26);
   const diffAt = fig.times.diffAt ?? fig.at, dp = drawP(f, diffAt, M.draw * 1.8), yA = ground - h(bars[0]), yB = ground - h(bars[n - 1]), xr = x0 + (n - 1) * pitch + bw + 26;
   const lines = String(fig.diff?.text ?? "").split("\n");
@@ -153,7 +153,7 @@ const Bars: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
         const x = x0 + k * pitch, o = fadeP(f, fig.at + k * 9 + 16);
         return (
           <React.Fragment key={k}>
-            {b.val ? <div style={{ ...numStyle(52), left: x - 40, width: bw + 80, textAlign: "center", top: ground - h(b) + 22, opacity: o }}>{b.val}</div> : null}
+            {b.val ? <div style={{ ...numStyle(n > 2 ? 44 : 52), left: x - 40, width: bw + 80, textAlign: "center", top: ground - h(b) + 22, opacity: o }}>{b.val}</div> : null}
             <div style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), left: x - 40, width: bw + 80, textAlign: "center", top: ground + 28, opacity: fadeP(f, fig.at + k * 9) }}>{b.label}</div>
           </React.Fragment>
         );
