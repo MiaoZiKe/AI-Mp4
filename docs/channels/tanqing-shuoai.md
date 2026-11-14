@@ -33,7 +33,7 @@
 2. 一定上網查證，寫進該片的 `research.md`：來源、資料期間、查證日期、狀態（已確定／分析預期／尚未確定）。沒讀到原始統計表就照實寫，畫面上的精確值上片前要核對。
 3. 數字出現時馬上用一句白話解釋（九倍多＝不吃不喝也要九年多）。
 4. 不美化、不抱怨、不歸咎（不說是誰害的），不預測、不給投資或購屋建議。
-5. 已發過的題目不重複：失業率、近七成員工領不到平均月薪、房價所得比（sample-talk-notes）、30–34 歲未婚比例（short-talk）。新片先在這裡加一筆。
+5. 已發過的題目不重複：失業率、近七成員工領不到平均月薪、房價所得比（sample-talk-notes）、30–34 歲未婚比例（short-talk）、年總工時（talk-ep01，完整片）。新片先在這裡加一筆。
 
 ## 5. 晴怎麼說
 
@@ -82,6 +82,7 @@
 - **內容規則不變**：全片只放一個有來源的數字（寫 `claim` 指到 research.md）；結尾留一頁「晴」（`kind: "qing"`），最後一頁可以是提問；不出現真人、商標，不用 AI 生圖。
 - 程式與檢查：`src/components/tanqing/`、`src/theme.ts` 的 `THEME_TANQING`／`LAYOUT_TANQING`、`scripts/tanqing/validate-tanqing.mjs`、`scripts/tanqing/fetch-fonts.mjs`（襯線字型子集）。寫法看 `videos/short-talk/script.json` 與它的 README。
 - 2026/11/14 第 2 版加的三個寫法（都可省略，舊稿不受影響）：`props.caption: "en"`（這一頁不放中文字幕，大標就是正在念的那句）；`figure.scale`（1–1.3，圖整個放大，9:16 比貼文高）；`people` 第 0 幀先有淡線輪廓（`ghost: false` 可關），標籤接在橘色虛線右端。大數字 220px。
+- 完整片（45–75 秒；第一支 `videos/talk-ep01/`，使用者 2026/11/14：「給我完整影片吧，並且是要有題材的」）：script.json 頂層寫 `tanqing.film: true`。可以有多個數字，但每張資料圖都要寫 `claim`；要有「為什麼」、口徑提醒（數字不能怎麼讀）、晴、提問、下一集、片尾卡；18–24 鏡、旁白 230–290 字。多出來的 12 種圖形在 `src/components/tanqing/Figures.tsx`，寫法看該片的 README 與 storyboard.md。
 - 以前試過、使用者不要的：觀察者筆記（`stage: "notes"`，實景照片加手寫字）、夜窗（`stage: "talk"`，實拍照片加夜色）。程式留著，新片不用。
 
 ## 7-舊. 畫面（觀察者筆記風格；已不用，留作紀錄）
