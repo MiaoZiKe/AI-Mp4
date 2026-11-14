@@ -166,7 +166,7 @@ const Hook: React.FC<PanelProps> = ({ sh, f }) => {
           ) : null;
         })}
       </div>
-      <Note text={d.note} x={DX} y={DY + DH + 12} f={f} at={sh.start} />
+      <Note text={d.note} x={DX} y={DY + DH + 12} f={f} at={sh.start - M.fade} />
       <StageSvg>
         <RedFrame f={f} at={d.frameAt} flashAt={d.flashAt} x={fx} y={fy} w={FW} h={FH} />
         <path d={`M ${fx + FW} ${midY} H ${cx - 30} V ${DY + 76} H ${cx}`} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} {...pen(drawP(f, c.at))} opacity={drawP(f, c.at) > 0 ? 1 : 0} />
