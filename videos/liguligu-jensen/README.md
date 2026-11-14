@@ -1,13 +1,13 @@
 # liguligu-jensen — 33 年的執行長即刻辭職，公告為什麼沒寫原因？
 
-更新：台灣時間 2026/11/14 20:50。哩股哩股頻道「追問式」第一支（規則：`docs/channels/liguligu.md`）。`styleVersion: 3`、`skin: newsprint`。**目前是無聲版**。
+更新：台灣時間 2026/11/14 21:55。哩股哩股頻道「追問式」第一支（規則：`docs/channels/liguligu.md`）。`styleVersion: 3`、`skin: newsprint`。**目前是無聲版**。
 
 | 項目 | 內容 |
 |---|---|
 | 影片 | `out/liguligu-jensen.mp4`（1080×1920、30fps、H.264，772 幀＝25.7 秒，音軌是靜音） |
 | 九格圖 | `out/liguligu-jensen-review.png`；每鏡總覽 `out/liguligu-jensen-overview.png`；封面 `out/liguligu-jensen-cover.png` |
 | 字幕 | `out/liguligu-jensen.srt`（中英）、`.zh.srt`、`.en.srt` |
-| 旁白 | 110 字、7 鏡；音色未定（`docs/prompts/liguligu-男聲試聽.txt`） |
+| 旁白 | 110 字、7 鏡；音色未定（`docs/prompts/liguligu-男聲試聽.txt`）。使用者 11/14 上傳的錄音只有前 3 句、念了兩遍，沒辦法當全片旁白，量測與接錄音的步驟在 `voice.md` |
 
 ## 檢查結果
 
@@ -26,3 +26,5 @@
 5. 鏡頭往下移的兩次（s02→s03、s04→s05），上一幕的紙片會短暫從頁首後面經過。
 6. 沒有背景音樂與音效（配音後一起做）。
 7. 照片授權與作者未核對（`assets.md`）。
+8. **使用者上傳的旁白錄音不完整**（2026/11/14 21:11 產生的 25.04 秒男聲）：內容是 s01–s03 三句念兩遍，s04–s07 沒錄到，所以成片仍是無聲版，`timeline.json`／`storyboard.json` 仍是估算的時間軸。要一份 7 句念完一遍的錄音（`docs/prompts/liguligu-男聲試聽.txt` 的「完整版」），並請使用者告知音色名稱。詳見 `voice.md`。
+9. 11/14 21:55 只改了兩張照片的圖說（s06「獨立調查（示意照片）」、s07「國會想問什麼（示意）」），`out/liguligu-jensen.mp4` 還沒重渲，畫面上仍是舊圖說。第 4、5 點和 s05 左邊紙條的版面沒有動：進場時間要跟著真的配音走，等完整錄音接進來再一起調。
