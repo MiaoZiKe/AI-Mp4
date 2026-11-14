@@ -858,3 +858,42 @@ export const LAYOUT_TALK = {
   CAP_TOP: 1300, CAP_ZH_PX: 66, CAP_EN_PX: 30,
   SRC_TOP: 1590, SRC_PX: 28, MIN_PX: 28,
 } as const;
+
+// ───────────────────────── stage: "tanqing"：談晴說礙頻道貼文風格（src/components/tanqing/） ─────────────────────────
+// 依頻道實際發的輪播圖（docs/channels/tanqing-ref/）：暖米紙底、襯線粗體大標、棕墨字、只有一個橘色強調、線稿圓角圖形。
+/** 襯線字（Noto Serif TC 子集，scripts/tanqing/fetch-fonts.mjs 抓到 public/fonts/tanqing/）；內文用 FONT_ZH */
+export const FONT_TANQING_SERIF = `"TanqingSerif", "Noto Serif TC", "Noto Serif CJK TC", serif`;
+export const THEME_TANQING = {
+  /** 紙底：中間亮一點、四邊暗一點（貼文的紙感），底色 bg */
+  bg: "#FBF4EA", bgCenter: "#FCF9F2", bgEdge: "#F3ECE2",
+  /** 主字、次字（出處、英文字幕、圖上小字） */
+  ink: "#3B2F2A", ink2: "#6E5A4E",
+  /** 唯一的強調色：圖上的橘（線、框、點）與橘色字（對比 ≥4.5） */
+  orange: "#DB8C3D", orangeText: "#A34A30",
+  /** 字標與大標裡「晴」「礙」兩個字的顏色 */
+  qing: "#98622B", ai: "#8A5A44",
+  /** 線稿：外框線、淡線（表單裡的橫線、地面斜紋）、白紙填色、米色填色 */
+  line: "#6E6A66", hair: "#CDC4B6", fill: "#FCF9F2", fillB: "#EDE5D7",
+  /** 頁碼的圓點 */
+  dot: "#EBC79E",
+  /** 線寬（px）：外框、橘色重點、淡線 */
+  stroke: { line: 4, accent: 5, hair: 2 },
+  weight: { title: 900, mark: 500, num: 800, bold: 700, body: 500, en: 500 },
+  /** 動作（幀）：一筆畫完 draw、每個圖形錯開 stagger、橘框每個 mark、字淡入 fade、換頁 pan（平移 panPx＋淡入）、字幕換段 cap；慢推每頁放大 push */
+  motion: { draw: 14, stagger: 4, mark: 9, markStagger: 5, fade: 12, pan: 18, panPx: 96, cap: 6, push: 0.022 },
+} as const;
+/** 版面（1080×1920；安全區上下 220、左右 64；左右邊距照貼文留 96） */
+export const LAYOUT_TANQING = {
+  W: 1080, H: 1920, X: 96, INNER_W: 888,
+  /** 左上字標 */
+  MARK_TOP: 236, MARK_ICON: 62, MARK_PX: 42,
+  /** 圖區（線稿圖形）、大標、橘色一句 */
+  FIG_TOP: 360, FIG_H: 620, TITLE_TOP: 1030, TITLE_PX: 88, TITLE_LH: 1.3, NOTE_GAP: 26, NOTE_PX: 46,
+  /** 圖上的字：大數字、數字旁說明、圖上標籤、表單字 */
+  NUM_PX: 170, NUM_NOTE_PX: 38, LABEL_PX: 38, FIELD_PX: 44,
+  /** 字幕（內文樣式）：中文、英文 */
+  CAP_TOP: 1338, CAP_ZH_PX: 48, CAP_EN_PX: 28,
+  /** 左下資料來源、右下頁碼 */
+  SRC_TOP: 1604, SRC_PX: 28, SRC_W: 640, PAGER_Y: 1624, PAGER_GAP: 40,
+  MIN_PX: 28,
+} as const;

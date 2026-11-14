@@ -23,7 +23,7 @@
    "scene": "下班後的咖啡店，兩個老朋友坐在角落，手機放在桌上，隨口聊今天看到的新聞",
    "pace": [
     4.5,
-    5.0
+    5
    ],
    "tone": "像跑財經線的朋友私下講給有在存股的人聽，有話直說、不嚇人，也不帶播報的架勢；句子短，講完就停",
    "arc": {
@@ -594,16 +594,18 @@
       "rot": 1,
       "at": "start+4",
       "from": "bottom",
-      "to": "bottom"
+      "to": "bottom",
+      "until": "s05.bond"
      },
      {
       "type": "bars",
-      "id": "odds",
+      "id": "odds1",
       "dir": "right",
       "x": 540,
-      "y": 1000,
+      "y": 930,
       "w": 780,
-      "h": 380,
+      "h": 170,
+      "max": 87,
       "onDark": false,
       "layer": "screen",
       "at": "start+6",
@@ -614,7 +616,39 @@
         "label": "市場押一碼",
         "color": "blue",
         "val": "約 85–90%"
-       },
+       }
+      ],
+      "labelW": 250,
+      "valW": 270,
+      "valSize": 46,
+      "labelSize": 40,
+      "growDur": 10,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "one-4",
+        "grow": 1
+       }
+      ],
+      "until": "s05.bond",
+      "to": "bottom"
+     },
+     {
+      "type": "bars",
+      "id": "odds2",
+      "dir": "right",
+      "x": 540,
+      "y": 1110,
+      "w": 780,
+      "h": 170,
+      "max": 87,
+      "onDark": false,
+      "layer": "screen",
+      "at": "start+6",
+      "from": "paste",
+      "bars": [
        {
         "v": 12,
         "label": "押兩碼",
@@ -623,21 +657,40 @@
        }
       ],
       "labelW": 250,
-      "valW": 260,
-      "valSize": 44,
+      "valW": 270,
+      "valSize": 46,
+      "labelSize": 40,
+      "growDur": 10,
       "state": {
        "grow": 0
       },
       "set": [
        {
-        "at": "one",
-        "grow": 0.5
-       },
-       {
-        "at": "two",
+        "at": "two-4",
         "grow": 1
        }
       ],
+      "until": "s05.bond",
+      "to": "bottom"
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "分析預期",
+        "size": 44
+       }
+      ],
+      "x": 250,
+      "y": 775,
+      "w": 260,
+      "layer": "screen",
+      "rot": -5,
+      "onDark": true,
+      "at": "one-8",
+      "from": "slam",
+      "until": "s05.bond",
       "to": "bottom"
      }
     ]
@@ -692,7 +745,7 @@
        }
       ],
       "x": 540,
-      "y": 720,
+      "y": 500,
       "w": 900,
       "layer": "screen",
       "rot": -1.2,
@@ -721,7 +774,17 @@
         "rot": 5
        }
       ],
-      "until": "end"
+      "until": "end",
+      "moves": [
+       {
+        "at": "bond",
+        "to": {
+         "y": 700,
+         "rot": 1
+        },
+        "dur": 8
+       }
+      ]
      },
      {
       "type": "img",
