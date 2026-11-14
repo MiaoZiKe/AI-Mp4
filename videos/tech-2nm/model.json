@@ -1,0 +1,1449 @@
+{
+ "name": "示意奈米片電晶體（閘極全環繞 GAA）：比例照 IBM 2021 公開的 2 奈米試作晶片（片厚約 5nm、片寬約 40nm、閘極間距約 44nm、閘極長約 12nm）；其餘部位（高介電層、間隔層、接點、金屬連線、隔離層）的厚度與形狀是示意簡化；不是電子顯微鏡照片、不是特定廠商的量產尺寸",
+ "unit": "約 4 奈米",
+ "size": {
+  "w": 34,
+  "h": 18,
+  "r": 0.4,
+  "t": 16
+ },
+ "palette": {
+  "si": "#39475C",
+  "siFin": "#5B6F8A",
+  "oxide": "#1E3350",
+  "sheet": "#4FD1E8",
+  "sd": "#2F6FB0",
+  "hk": "#B58CFF",
+  "spacer": "#8FA3BC",
+  "inner": "#4FC79F",
+  "gate": "#E8A33C",
+  "w": "#B9C2CE",
+  "copper": "#D0794A",
+  "signal": "#9FF0FF",
+  "vg": "#FFE9A8",
+  "inv": "#D8FAFF",
+  "leak": "#FF6B4A"
+ },
+ "materials": {
+  "substrate": {
+   "kind": "std",
+   "color": "si",
+   "rough": 0.7,
+   "metal": 0.1
+  },
+  "subfin": {
+   "kind": "std",
+   "color": "siFin",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "sti": {
+   "kind": "phys",
+   "color": "oxide",
+   "rough": 0.25,
+   "metal": 0,
+   "clearcoat": 0.5,
+   "env": 0.3
+  },
+  "sheet": {
+   "kind": "phys",
+   "color": "sheet",
+   "rough": 0.2,
+   "metal": 0.3,
+   "clearcoat": 0.6,
+   "clearcoatRough": 0.1,
+   "env": 0.1
+  },
+  "sd": {
+   "kind": "std",
+   "color": "sd",
+   "rough": 0.45,
+   "metal": 0.2,
+   "env": 0.1
+  },
+  "hk": {
+   "kind": "std",
+   "color": "hk",
+   "rough": 0.3,
+   "metal": 0,
+   "opacity": 0.5
+  },
+  "spacer": {
+   "kind": "std",
+   "color": "spacer",
+   "rough": 0.5,
+   "metal": 0,
+   "opacity": 0.55
+  },
+  "inner": {
+   "kind": "std",
+   "color": "inner",
+   "rough": 0.5,
+   "metal": 0
+  },
+  "gate": {
+   "kind": "std",
+   "color": "gate",
+   "rough": 0.3,
+   "metal": 0.9,
+   "tex": "brushed",
+   "texScale": 1.6,
+   "env": 0.6
+  },
+  "contact": {
+   "kind": "std",
+   "color": "w",
+   "rough": 0.35,
+   "metal": 0.9,
+   "env": 0.5
+  },
+  "copper": {
+   "kind": "std",
+   "color": "copper",
+   "rough": 0.25,
+   "metal": 0.95,
+   "tex": "brushed",
+   "texScale": 2.2,
+   "env": 0.6
+  },
+  "inv": {
+   "kind": "unlit",
+   "color": "inv",
+   "opacity": 0.62
+  }
+ },
+ "partNames": {
+  "sub": "矽基板 Si substrate",
+  "subfin": "矽基板（片堆正下方）sub-fin",
+  "sti": "淺溝槽隔離 STI（氧化物）",
+  "ch": "奈米片通道 nanosheet channel（矽）",
+  "hk": "高介電層 high-k dielectric",
+  "epi": "源極／汲極磊晶 source / drain epi",
+  "sp": "閘極間隔層 gate spacer",
+  "in": "內側間隔層 inner spacer",
+  "g": "金屬閘極 metal gate",
+  "c": "接點 contact",
+  "via": "導孔 via",
+  "m1": "金屬連線 metal line（銅）",
+  "inv": "導通時的通道層（示意）"
+ },
+ "viewer": {
+  "hide": [
+   "inv"
+  ]
+ },
+ "layers": [
+  {
+   "id": "substrate",
+   "z": -6.4,
+   "k": -2.2,
+   "outline": [
+    34,
+    18,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sheet1",
+   "z": -2.5,
+   "k": -1,
+   "outline": [
+    28,
+    10,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sheet2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    28,
+    10,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sheet3",
+   "z": 2.5,
+   "k": 1,
+   "outline": [
+    28,
+    10,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sd",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    17,
+    11,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "inv",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    10,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "spacer",
+   "z": 0,
+   "k": 4.1,
+   "outline": [
+    28,
+    14,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "gate",
+   "z": 0,
+   "k": 5.6,
+   "outline": [
+    25,
+    14,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "contact",
+   "z": 0,
+   "k": 6.5,
+   "outline": [
+    14,
+    8,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "metal",
+   "z": 0,
+   "k": 7.5,
+   "outline": [
+    14,
+    17,
+    0,
+    0
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "sub",
+   "layer": "substrate",
+   "shape": "slab",
+   "size": [
+    34,
+    18,
+    2
+   ],
+   "r": 0.4,
+   "bevel": 0.1,
+   "mat": "substrate"
+  },
+  {
+   "id": "subfin",
+   "layer": "substrate",
+   "shape": "box",
+   "size": [
+    34,
+    10,
+    1.6
+   ],
+   "pos": [
+    0,
+    0,
+    1.8
+   ],
+   "mat": "subfin"
+  },
+  {
+   "id": "sti",
+   "layer": "substrate",
+   "shape": "box",
+   "size": [
+    34,
+    4,
+    1.6
+   ],
+   "pos": [
+    0,
+    0,
+    1.8
+   ],
+   "at": [
+    [
+     0,
+     -7
+    ],
+    [
+     0,
+     7
+    ]
+   ],
+   "mat": "sti"
+  },
+  {
+   "id": "chMid1",
+   "layer": "sheet1",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "mat": "sheet"
+  },
+  {
+   "id": "chSide1",
+   "layer": "sheet1",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "sheet"
+  },
+  {
+   "id": "hk1",
+   "layer": "sheet1",
+   "shape": "box",
+   "size": [
+    3.02,
+    10.6,
+    1.85
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "hk"
+  },
+  {
+   "id": "inv1",
+   "layer": "inv",
+   "shape": "box",
+   "size": [
+    3.0,
+    10.3,
+    1.5
+   ],
+   "pos": [
+    0,
+    0,
+    -2.5
+   ],
+   "mat": "inv"
+  },
+  {
+   "id": "chMid2",
+   "layer": "sheet2",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "mat": "sheet"
+  },
+  {
+   "id": "chSide2",
+   "layer": "sheet2",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "sheet"
+  },
+  {
+   "id": "hk2",
+   "layer": "sheet2",
+   "shape": "box",
+   "size": [
+    3.02,
+    10.6,
+    1.85
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "hk"
+  },
+  {
+   "id": "inv2",
+   "layer": "inv",
+   "shape": "box",
+   "size": [
+    3.0,
+    10.3,
+    1.5
+   ],
+   "pos": [
+    0,
+    0,
+    0.0
+   ],
+   "mat": "inv"
+  },
+  {
+   "id": "chMid3",
+   "layer": "sheet3",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "mat": "sheet"
+  },
+  {
+   "id": "chSide3",
+   "layer": "sheet3",
+   "shape": "slab",
+   "size": [
+    5.5,
+    10,
+    1.25
+   ],
+   "r": 0.3,
+   "bevel": 0.08,
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "sheet"
+  },
+  {
+   "id": "hk3",
+   "layer": "sheet3",
+   "shape": "box",
+   "size": [
+    3.02,
+    10.6,
+    1.85
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "hk"
+  },
+  {
+   "id": "inv3",
+   "layer": "inv",
+   "shape": "box",
+   "size": [
+    3.0,
+    10.3,
+    1.5
+   ],
+   "pos": [
+    0,
+    0,
+    2.5
+   ],
+   "mat": "inv"
+  },
+  {
+   "id": "epiS",
+   "layer": "sd",
+   "shape": "box",
+   "size": [
+    5.5,
+    11,
+    8.4
+   ],
+   "pos": [
+    -5.5,
+    0,
+    0
+   ],
+   "mat": "sd"
+  },
+  {
+   "id": "epiD",
+   "layer": "sd",
+   "shape": "box",
+   "size": [
+    5.5,
+    11,
+    8.4
+   ],
+   "pos": [
+    5.5,
+    0,
+    0
+   ],
+   "mat": "sd"
+  },
+  {
+   "id": "spTop",
+   "layer": "spacer",
+   "shape": "box",
+   "size": [
+    1.25,
+    14,
+    3.4
+   ],
+   "pos": [
+    0,
+    0,
+    4.825
+   ],
+   "at": [
+    [
+     -13.125,
+     0,
+     0
+    ],
+    [
+     -8.875,
+     0,
+     0
+    ],
+    [
+     -2.125,
+     0,
+     0
+    ],
+    [
+     2.125,
+     0,
+     0
+    ],
+    [
+     8.875,
+     0,
+     0
+    ],
+    [
+     13.125,
+     0,
+     0
+    ]
+   ],
+   "mat": "spacer"
+  },
+  {
+   "id": "spSide",
+   "layer": "spacer",
+   "shape": "box",
+   "size": [
+    1.25,
+    2,
+    10.325
+   ],
+   "pos": [
+    0,
+    0,
+    1.3625
+   ],
+   "at": [
+    [
+     -13.125,
+     -6,
+     0
+    ],
+    [
+     -13.125,
+     6,
+     0
+    ],
+    [
+     -8.875,
+     -6,
+     0
+    ],
+    [
+     -8.875,
+     6,
+     0
+    ],
+    [
+     -2.125,
+     -6,
+     0
+    ],
+    [
+     -2.125,
+     6,
+     0
+    ],
+    [
+     2.125,
+     -6,
+     0
+    ],
+    [
+     2.125,
+     6,
+     0
+    ],
+    [
+     8.875,
+     -6,
+     0
+    ],
+    [
+     8.875,
+     6,
+     0
+    ],
+    [
+     13.125,
+     -6,
+     0
+    ],
+    [
+     13.125,
+     6,
+     0
+    ]
+   ],
+   "mat": "spacer"
+  },
+  {
+   "id": "inMid",
+   "layer": "spacer",
+   "shape": "box",
+   "size": [
+    1.25,
+    10,
+    1.25
+   ],
+   "at": [
+    [
+     -13.125,
+     0,
+     -1.25
+    ],
+    [
+     -13.125,
+     0,
+     1.25
+    ],
+    [
+     -8.875,
+     0,
+     -1.25
+    ],
+    [
+     -8.875,
+     0,
+     1.25
+    ],
+    [
+     -2.125,
+     0,
+     -1.25
+    ],
+    [
+     -2.125,
+     0,
+     1.25
+    ],
+    [
+     2.125,
+     0,
+     -1.25
+    ],
+    [
+     2.125,
+     0,
+     1.25
+    ],
+    [
+     8.875,
+     0,
+     -1.25
+    ],
+    [
+     8.875,
+     0,
+     1.25
+    ],
+    [
+     13.125,
+     0,
+     -1.25
+    ],
+    [
+     13.125,
+     0,
+     1.25
+    ]
+   ],
+   "mat": "inner"
+  },
+  {
+   "id": "inBot",
+   "layer": "spacer",
+   "shape": "box",
+   "size": [
+    1.25,
+    10,
+    0.675
+   ],
+   "pos": [
+    0,
+    0,
+    -3.4625
+   ],
+   "at": [
+    [
+     -13.125,
+     0,
+     0
+    ],
+    [
+     -8.875,
+     0,
+     0
+    ],
+    [
+     -2.125,
+     0,
+     0
+    ],
+    [
+     2.125,
+     0,
+     0
+    ],
+    [
+     8.875,
+     0,
+     0
+    ],
+    [
+     13.125,
+     0,
+     0
+    ]
+   ],
+   "mat": "inner"
+  },
+  {
+   "id": "gMainTop",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    14,
+    3.075
+   ],
+   "pos": [
+    0,
+    0,
+    4.9875
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gMainSide",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    1.7,
+    10.325
+   ],
+   "pos": [
+    0,
+    0,
+    1.3625
+   ],
+   "at": [
+    [
+     0,
+     -6.15,
+     0
+    ],
+    [
+     0,
+     6.15,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gMainFill",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    10.6,
+    0.65
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -1.25
+    ],
+    [
+     0,
+     0,
+     1.25
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gMainBot",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    10.6,
+    0.375
+   ],
+   "pos": [
+    0,
+    0,
+    -3.6125
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gSideTop",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    14,
+    3.075
+   ],
+   "pos": [
+    0,
+    0,
+    4.9875
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gSideSide",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    1.7,
+    10.325
+   ],
+   "pos": [
+    0,
+    0,
+    1.3625
+   ],
+   "at": [
+    [
+     -11,
+     -6.15,
+     0
+    ],
+    [
+     -11,
+     6.15,
+     0
+    ],
+    [
+     11,
+     -6.15,
+     0
+    ],
+    [
+     11,
+     6.15,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gSideFill",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    10.6,
+    0.65
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     -1.25
+    ],
+    [
+     -11,
+     0,
+     1.25
+    ],
+    [
+     11,
+     0,
+     -1.25
+    ],
+    [
+     11,
+     0,
+     1.25
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "gSideBot",
+   "layer": "gate",
+   "shape": "box",
+   "size": [
+    3,
+    10.6,
+    0.375
+   ],
+   "pos": [
+    0,
+    0,
+    -3.6125
+   ],
+   "at": [
+    [
+     -11,
+     0,
+     0
+    ],
+    [
+     11,
+     0,
+     0
+    ]
+   ],
+   "mat": "gate"
+  },
+  {
+   "id": "cSD",
+   "layer": "contact",
+   "shape": "box",
+   "size": [
+    2.6,
+    8,
+    3.3
+   ],
+   "pos": [
+    0,
+    0,
+    5.85
+   ],
+   "at": [
+    [
+     -5.5,
+     0
+    ],
+    [
+     5.5,
+     0
+    ]
+   ],
+   "mat": "contact"
+  },
+  {
+   "id": "cG",
+   "layer": "contact",
+   "shape": "cyl",
+   "size": [
+    0.9,
+    1.0
+   ],
+   "pos": [
+    0,
+    4.5,
+    7.0
+   ],
+   "mat": "contact"
+  },
+  {
+   "id": "via",
+   "layer": "metal",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    0.5
+   ],
+   "pos": [
+    0,
+    0,
+    7.75
+   ],
+   "at": [
+    [
+     -5.5,
+     0
+    ],
+    [
+     5.5,
+     0
+    ],
+    [
+     0,
+     4.5
+    ]
+   ],
+   "mat": "copper"
+  },
+  {
+   "id": "m1SD",
+   "layer": "metal",
+   "shape": "box",
+   "size": [
+    3,
+    17,
+    1.2
+   ],
+   "pos": [
+    0,
+    0,
+    8.6
+   ],
+   "at": [
+    [
+     -5.5,
+     0
+    ],
+    [
+     5.5,
+     0
+    ]
+   ],
+   "mat": "copper"
+  },
+  {
+   "id": "m1G",
+   "layer": "metal",
+   "shape": "box",
+   "size": [
+    2.2,
+    7,
+    1.2
+   ],
+   "pos": [
+    0,
+    6,
+    8.6
+   ],
+   "mat": "copper"
+  }
+ ],
+ "anchors": {
+  "sheet": {
+   "layer": "sheet3",
+   "p": [
+    13.75,
+    4.6,
+    0.7
+   ],
+   "dx": 150,
+   "dy": 120
+  },
+  "gate": {
+   "layer": "gate",
+   "p": [
+    0,
+    7,
+    6.5
+   ],
+   "dx": -170,
+   "dy": -60
+  },
+  "gateL": {
+   "layer": "gate",
+   "p": [
+    -11,
+    7,
+    6.5
+   ],
+   "dx": -120,
+   "dy": -60
+  },
+  "sheetLo": {
+   "layer": "sheet3",
+   "p": [
+    -13.75,
+    -5,
+    -0.62
+   ],
+   "dx": -150,
+   "dy": 0
+  },
+  "sheetHi": {
+   "layer": "sheet3",
+   "p": [
+    -13.75,
+    -5,
+    0.62
+   ],
+   "dx": -150,
+   "dy": 0
+  },
+  "src": {
+   "layer": "sd",
+   "p": [
+    -5.5,
+    -5.5,
+    2.5
+   ],
+   "dx": -170,
+   "dy": 40
+  },
+  "drn": {
+   "layer": "sd",
+   "p": [
+    5.5,
+    -5.5,
+    2.5
+   ],
+   "dx": 130,
+   "dy": 150
+  }
+ },
+ "actions": {
+  "gateOn": {
+   "type": "pulse",
+   "parts": [
+    "gMainTop",
+    "gMainSide",
+    "gMainFill",
+    "gMainBot"
+   ],
+   "color": "vg",
+   "steady": true,
+   "glow": 0.75,
+   "halo": 0
+  },
+  "chanOn": {
+   "type": "pulse",
+   "parts": [
+    "chMid1",
+    "chMid2",
+    "chMid3"
+   ],
+   "color": "inv",
+   "steady": true,
+   "glow": 0.7,
+   "halo": 0
+  },
+  "e1": {
+   "type": "flow",
+   "path": [
+    {
+     "layer": "metal",
+     "p": [
+      -5.5,
+      -2.6,
+      8.6
+     ]
+    },
+    {
+     "layer": "sheet1",
+     "p": [
+      -5.5,
+      -2.6,
+      0
+     ]
+    },
+    {
+     "layer": "sheet1",
+     "p": [
+      5.5,
+      -2.6,
+      0
+     ]
+    },
+    {
+     "layer": "metal",
+     "p": [
+      5.5,
+      -2.6,
+      8.6
+     ]
+    }
+   ],
+   "n": 5,
+   "size": 0.5,
+   "shape": "dot",
+   "rate": 0.5,
+   "color": "signal",
+   "phase": 0.0
+  },
+  "e2": {
+   "type": "flow",
+   "path": [
+    {
+     "layer": "metal",
+     "p": [
+      -5.5,
+      0,
+      8.6
+     ]
+    },
+    {
+     "layer": "sheet2",
+     "p": [
+      -5.5,
+      0,
+      0
+     ]
+    },
+    {
+     "layer": "sheet2",
+     "p": [
+      5.5,
+      0,
+      0
+     ]
+    },
+    {
+     "layer": "metal",
+     "p": [
+      5.5,
+      0,
+      8.6
+     ]
+    }
+   ],
+   "n": 5,
+   "size": 0.5,
+   "shape": "dot",
+   "rate": 0.5,
+   "color": "signal",
+   "phase": 0.07
+  },
+  "e3": {
+   "type": "flow",
+   "path": [
+    {
+     "layer": "metal",
+     "p": [
+      -5.5,
+      2.6,
+      8.6
+     ]
+    },
+    {
+     "layer": "sheet3",
+     "p": [
+      -5.5,
+      2.6,
+      0
+     ]
+    },
+    {
+     "layer": "sheet3",
+     "p": [
+      5.5,
+      2.6,
+      0
+     ]
+    },
+    {
+     "layer": "metal",
+     "p": [
+      5.5,
+      2.6,
+      8.6
+     ]
+    }
+   ],
+   "n": 5,
+   "size": 0.5,
+   "shape": "dot",
+   "rate": 0.5,
+   "color": "signal",
+   "phase": 0.14
+  },
+  "vgMeter": {
+   "type": "meter",
+   "anchor": "gate",
+   "kind": "bar",
+   "source": "gateOn",
+   "label": "閘極電壓",
+   "accent": "amber",
+   "sym": "Vg",
+   "lo": "低",
+   "hi": "高",
+   "x": 92,
+   "y": 436
+  },
+  "idMeter": {
+   "type": "meter",
+   "anchor": "drn",
+   "kind": "bar",
+   "source": "e2",
+   "label": "通道電流",
+   "accent": "blue",
+   "sym": "Id",
+   "lo": "關",
+   "hi": "開",
+   "x": 92,
+   "y": 562
+  }
+ },
+ "pose": {
+  "gap": 2.4,
+  "yawIso": 0.32,
+  "yaw0": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 84,
+   "elev": 0,
+   "y": 0
+  },
+  "explode": {
+   "d": 150,
+   "elev": 28,
+   "y": 4
+  },
+  "outro": {
+   "d": 4
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "layDip": 0.8,
+  "srcPx": 30,
+  "shadows": 0,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ }
+}

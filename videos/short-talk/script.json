@@ -15,29 +15,13 @@
     "mode": "take",
     "languageCode": "cmn-TW",
     "profile": {
-      "preset": "love",
-      "delivery": "chat",
-      "persona": "三十出頭的台灣女生，自己也還沒結婚，晚上把今天看到的一個數字講給同年紀的好朋友聽",
-      "scene": "晚上十點多，在租來的小房間，燈只開一盞，窗外對面大樓還有幾格窗亮著；她靠在窗邊跟好朋友講電話，旁邊沒有別人在聽",
+      "gender": "female",
+      "accent": "台灣華語",
       "pace": [
-        4.6,
-        5
+        4.3,
+        4.7
       ],
-      "tone": "小聲跟好朋友講話的口氣，像在講自己也在裡面的事；有一點累，但不嘆氣、不抱怨，也不安慰人、不說教",
-      "arc": {
-        "起": "像剛想到一件事，隨口提一句，講到數字輕輕停一下",
-        "承": "聲音再小一點，像自己也被問過",
-        "轉": "鬆下來，想到一件小事，帶一點笑意",
-        "合": "輕輕收尾，像說好明天再聊"
-      },
-      "avoid": [
-        "深夜電台的氣音",
-        "播新聞的腔調",
-        "朗讀文章的口氣",
-        "說教的口氣",
-        "心靈成長節目的口氣",
-        "娃娃音、撒嬌"
-      ]
+      "delivery": "plain"
     }
   },
   "audio": {
@@ -55,11 +39,12 @@
     {
       "id": "s01",
       "beat": "hook",
-      "narration": "欸，三十出頭的人，十個有六個還沒結婚。",
-      "tts": "欸，三十出頭的人，十個有六個還沒結婚。",
+      "para": 0,
+      "narration": "三十出頭，十個有六個還沒結婚。",
+      "tts": "三十出頭，十個有六個還沒結婚。",
       "subtitle": {
-        "zh": "欸，三十出頭的人，\n十個有六個還沒結婚。",
-        "en": "Hey, people in their early thirties | six in ten aren't married."
+        "zh": "三十出頭，\n十個有六個還沒結婚。",
+        "en": "In our early thirties, | six in ten aren't married yet."
       },
       "keywords": [
         "十個有六個"
@@ -89,20 +74,21 @@
           "三十出頭，",
           "十個有六個還沒結婚"
         ],
+        "caption": "en",
         "figure": {
           "type": "people",
           "count": 10,
           "mark": 6,
-          "at": "start+8",
+          "at": "start+0",
+          "stagger": 4,
           "markAt": "six-4",
           "labelAt": "married-4",
-          "label": "十個裡的六個",
+          "label": "這六個",
           "number": {
             "text": "62%",
             "claim": "F1",
             "note": "30–34 歲\n還沒結婚"
-          },
-          "stagger": 8
+          }
         }
       },
       "sources": [
@@ -113,47 +99,53 @@
     {
       "id": "s02",
       "beat": "you",
-      "narration": "過年被問的那一題，很多人也還沒有答案啊。",
-      "tts": "過年被問的那一題，很多人也還沒有答案啊。",
+      "para": 0,
+      "narration": "年夜飯又被問，什麼時候結婚。我們笑笑，低頭夾菜。",
+      "tts": "年夜飯又被問，什麼時候結婚。我們笑笑，低頭夾菜。",
       "subtitle": {
-        "zh": "過年被問的那一題，\n很多人也還沒有答案啊。",
-        "en": "That question at New Year's dinner | a lot of us still don't have an answer."
+        "zh": "年夜飯又被問，\n什麼時候結婚。\n我們笑笑，低頭夾菜。",
+        "en": "Asked again at New Year's Eve dinner: | when are you getting married? | We just smile, | and reach for more food."
       },
       "keywords": [
-        "那一題",
-        "答案"
+        "又被問",
+        "低頭夾菜"
       ],
       "cues": [
         {
-          "id": "newyear",
-          "text": "過年"
+          "id": "dinner",
+          "text": "年夜飯"
         },
         {
-          "id": "question",
-          "text": "那一題"
+          "id": "asked",
+          "text": "被問"
         },
         {
-          "id": "many",
-          "text": "很多人"
+          "id": "when",
+          "text": "什麼時候"
         },
         {
-          "id": "answer",
-          "text": "答案"
+          "id": "we",
+          "text": "我們"
+        },
+        {
+          "id": "food",
+          "text": "夾菜"
         }
       ],
       "component": "TanqingScene",
       "props": {
         "kind": "ai",
         "title": [
-          "過年被問的那一題"
+          "又是那一題"
         ],
         "figure": {
           "type": "form",
-          "at": "start+14",
-          "askAt": "question-4",
+          "scale": 1.2,
+          "at": "start+10",
+          "askAt": "asked-4",
           "ask": "什麼時候結婚？",
-          "blankAt": "many-4",
-          "frameAt": "answer-4",
+          "blankAt": "we-4",
+          "frameAt": "food-4",
           "side": "還沒有\n答案"
         }
       },
@@ -164,11 +156,12 @@
     {
       "id": "s03",
       "beat": "payoff",
-      "narration": "不過樓下麵店的阿姨，還是記得我要加辣。",
-      "tts": "不過樓下麵店的阿姨，還是記得我要加辣。",
+      "para": 1,
+      "narration": "不過麵店阿姨，還記得我要加辣。",
+      "tts": "不過麵店阿姨，還記得我要加辣。",
       "subtitle": {
-        "zh": "不過樓下麵店的阿姨，\n還是記得我要加辣。",
-        "en": "Still, the lady at the noodle shop downstairs | remembers I like it spicy."
+        "zh": "不過麵店阿姨，\n還記得我要加辣。",
+        "en": "Still, the lady at the noodle shop | remembers I like it spicy."
       },
       "keywords": [
         "阿姨",
@@ -200,13 +193,10 @@
         ],
         "figure": {
           "type": "bowl",
-          "at": "start+14",
+          "scale": 1.2,
+          "at": "start+10",
           "steamAt": "aunt-4",
           "chiliAt": "spicy-4"
-        },
-        "note": {
-          "text": "阿姨還是記得我要加辣",
-          "at": "spicy-4"
         }
       },
       "sources": [
@@ -216,38 +206,43 @@
     {
       "id": "s04",
       "beat": "cta",
-      "narration": "明天，再講一個數字吧。",
-      "tts": "明天，再講一個數字吧。",
+      "para": 2,
+      "narration": "你最常被問哪一題？",
+      "tts": "你最常被問哪一題？",
       "subtitle": {
-        "zh": "明天，再講一個數字吧。",
-        "en": "Tomorrow, I'll tell you another number."
+        "zh": "你最常被問哪一題？",
+        "en": "Which question do you get asked the most?"
       },
       "keywords": [
-        "一個數字"
+        "哪一題"
       ],
       "cues": [
         {
-          "id": "tomorrow",
-          "text": "明天"
+          "id": "you",
+          "text": "你"
         },
         {
-          "id": "number",
-          "text": "數字"
+          "id": "which",
+          "text": "哪一題"
         }
       ],
       "component": "TanqingScene",
       "props": {
         "kind": "ask",
         "title": [
-          "你今天的一小段晴",
-          "是什麼？"
+          "你最常被問",
+          "哪一題？"
         ],
+        "caption": "en",
         "figure": {
-          "type": "mark",
-          "at": "start+14",
-          "sunAt": "tomorrow+12",
-          "lineAt": "number-4",
-          "line": "明天・下一個數字"
+          "type": "form",
+          "scale": 1.2,
+          "at": "start+8",
+          "askAt": "start+14",
+          "ask": "什麼時候結婚？",
+          "blankAt": "you+0",
+          "frameAt": "which-4",
+          "side": "你的\n那一題"
         }
       },
       "sources": [

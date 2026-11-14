@@ -7,10 +7,10 @@ import { execFileSync } from "node:child_process";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const slug = process.argv[2] ?? "liguligu-jensen-pro";
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "script.json"), "utf8"));
-const set = new Set(" 0123456789%，。、？！：；・｜「」（）—–-,.!?:/");
+const set = new Set(" ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%，。、？！：；・｜「」（）—–-,.!?:/");
 const walk = (v) => { if (typeof v === "string") for (const c of v) set.add(c); else if (v && typeof v === "object") Object.values(v).forEach(walk); };
 // 只收會用襯線字排的欄位：封面、各幕 props（大標等）、頻道名
-walk(script.cover); walk(script.channel); for (const s of script.scenes ?? []) walk(s.props);
+walk(script.cover); walk(script.channel); walk(script.news); for (const s of script.scenes ?? []) walk(s.props);
 for (const c of "哩股哩股查到底查證截至示意照片非文件原件來源") set.add(c);
 set.delete("\n");
 const text = [...set].sort().join("");

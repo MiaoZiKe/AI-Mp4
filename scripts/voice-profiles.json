@@ -167,6 +167,19 @@
       "Sulafat"
     ]
   },
+  "ai-report-lively": {
+    "_說明": "ai-report 的變體（delivery: \"report-lively\"，2026/11/14 使用者聽完 short-ai 第 3 版：「可以，但可以再快那麼一點點，並且有點起伏，依據內容變化」）。說明仍然只有一句（scripts/voice-profile.mjs 的 REPORT_LIVELY_LINE）：多了「再快一點點」和「語氣跟著內容起伏」；沒有人設、場景、情緒弧線。AI 教學新片用這個。",
+    "gender": "female",
+    "accent": "台灣華語",
+    "pace": [
+      4.6,
+      5.0
+    ],
+    "delivery": "report-lively",
+    "voices": [
+      "Sulafat"
+    ]
+  },
   "_chat": {
     "_說明": "選填的「聊天版」寫法（docs/voice-natural.md）。不放進上面四個預設檔，是因為已配好音的片用到預設檔，多一個欄位會讓提示和快取跟著變。新片這樣寫：\"profile\": { \"preset\": \"ai\", \"delivery\": \"chat\", \"scene\": \"…\" }。 ai 這一格另外留著 2026/11/13 以前的聊天版 persona／tone／arc／avoid（想要輕鬆聊天的 AI 片：\"profile\": { \"preset\": \"ai\", …_chat.ai 的欄位 }）。",
     "tech": {
@@ -205,6 +218,19 @@
     "場景例": [
       "辦公室的茶水間旁邊，兩個人並肩看同一台筆電，她一邊操作一邊跟剛來的同事解釋，旁邊沒有別人在聽",
       "新人報到第一週，前輩拉了張椅子坐到他旁邊，看著他的螢幕帶他做第一次"
+    ]
+  },
+  "tech-report": {
+    "_說明": "科技頻道正式片（2026/11/14，tech-2nm）：delivery report-tech，只送一句固定的話（voice-profile.mjs 的 REPORT_TECH_LINE），沒有人設、場景、情緒弧線。",
+    "gender": "male",
+    "accent": "台灣華語",
+    "pace": [
+      4.6,
+      5.0
+    ],
+    "delivery": "report-tech",
+    "voices": [
+      "Iapetus"
     ]
   }
 }

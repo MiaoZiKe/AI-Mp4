@@ -1,5 +1,27 @@
 # short-ai 配音紀錄
 
+## 第 4 版嘗試（report-lively）：2026/11/14 21:54（台北）送 1 次，**沒有拿到音訊，已停下**
+
+使用者聽完第 3 版（下面的「現行版本」）的原話：「可以，但可以再快那麼一點點，並且有點起伏，依據內容變化」。
+
+- 新做法：`delivery: "report-lively"`（預設檔 `ai-report-lively`，`scripts/voice-profile.mjs` 的 `REPORT_LIVELY_LINE`）。仍然只有一句、沒有人設場景；多了「再快一點點」和「語氣跟著內容起伏」。只描述哪一類句子怎麼講，不引用稿子。`report` 的輸出不變。
+- **實際送出的整段提示（一字不差）：**
+
+```
+用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，語速比平常再快一點點、不拖尾音、不演；語氣跟著內容有自然的起伏，問句自然上揚，數字講清楚，講到和預期不一樣的地方帶一點點意外，最後一句輕鬆收尾，直接說：
+明年基本工資多少？我們實測 Gemini，只打這一句。它回答兩萬八千五百九十。但那是去年的，明年是三萬零九百。先貼新聞，請它只看這段。下次再教一招。
+```
+
+另送 `languageCode: "cmn-TW"`、音色 Sulafat、模型 gemini-2.5-flash-preview-tts，`TTS_NO_RETRY=1`。
+
+- **結果**：HTTP 200，但回應沒有音訊（`finishReason: "OTHER"`，只算了 145 個輸入 token，沒有輸出）。紀錄在 `tts-requests.json` 最後一筆。照指示沒有重送。
+- 原因不確定：`finishReason: OTHER` 是模型端沒有產生內容，可能是偶發，也可能和說明變長有關（這次說明 100 字，第 3 版 50 字，念稿相同）。只有 1 次，分不出來。
+- 現況：正式音檔、時間軸、成片都還是第 3 版，沒有動。`script.json` 的 `voice.profile` 已改回 `ai-report`（和現有錄音一致）；要再送時改成 `ai-report-lively` 再跑 `TTS_NO_RETRY=1 NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs short-ai`。
+- 第 3 版備份：`videos/short-ai/_sulafat-v2/`、`public/audio/short-ai/_sulafat-v2/`；成片複本 `out/short-ai.v3.mp4`。
+- 這支片累計 TTS 請求 5 次（有音訊 3 次）。
+
+---
+
 ## 現行版本：Sulafat（女）第 2 版，「正常報導」提示，2026/11/14 21:00（台北）
 
 使用者聽完第 1 版 Sulafat 的原話：「AI 短片的女聲配音了，口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」。這一版依這句話重配，TTS 只送 1 次。

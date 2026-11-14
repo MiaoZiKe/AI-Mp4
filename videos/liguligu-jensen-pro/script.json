@@ -10,6 +10,29 @@
   "tag": "查到底",
   "slogan": "數字，查過再信"
  },
+ "news": {
+  "section": "國際",
+  "sectionEn": "INTERNATIONAL",
+  "places": {
+   "ca": {
+    "zh": "加州",
+    "en": "SANTA CLARA",
+    "lon": -121.95,
+    "lat": 37.35
+   },
+   "dc": {
+    "zh": "華盛頓",
+    "en": "D.C.",
+    "lon": -77.04,
+    "lat": 38.9
+   }
+  },
+  "link": {
+   "from": "ca",
+   "to": "dc",
+   "at": "s03:res+4"
+  }
+ },
  "voice": {
   "voiceName": "user-upload",
   "model": "gemini-2.5-flash-preview-tts",
@@ -88,7 +111,12 @@
     "tag": {
      "kind": "confirmed",
      "text": "已確定",
-     "at": "why+12"
+     "at": "why+2"
+    },
+    "news": {
+     "dateline": "SANTA CLARA, CALIF.・2026/11/12",
+     "place": "ca",
+     "lt": "事件"
     }
    },
    "sources": [
@@ -132,7 +160,7 @@
     "photo": {
      "name": "room",
      "caption": "董事會（示意照片）",
-     "at": "start+8"
+     "at": "start-20"
     },
     "axis": {
      "days": [
@@ -142,14 +170,16 @@
       "11/11",
       "11/12"
      ],
-     "at": "start+10"
+     "at": "start-24",
+     "label": "時間軸",
+     "labelEn": "TIMELINE"
     },
     "gap": {
      "pre": "只隔",
      "num": "4",
      "unit": "天",
      "at": "d4",
-     "flashAt": "leak+14"
+     "flashAt": "leak+10"
     },
     "left": {
      "title": "董事會聲明",
@@ -159,7 +189,7 @@
       "沒理由相信",
       "機密外洩"
      ],
-     "at": "start+14",
+     "at": "start-16",
      "subAt": "board-6",
      "typeAt": "board+6",
      "markAt": "leak",
@@ -172,12 +202,17 @@
       "辭職",
       "即刻生效"
      ],
-     "at": "start+18"
+     "at": "d4+8"
     },
     "tag": {
      "kind": "confirmed",
      "text": "已確定",
-     "at": "leak+8"
+     "at": "leak+4"
+    },
+    "news": {
+     "dateline": "SANTA CLARA, CALIF.・2026/11/8",
+     "place": "ca",
+     "lt": "四天前"
     }
    },
    "sources": [
@@ -224,14 +259,14 @@
      "big": "辭職",
      "src": "送證管會的 8-K 文件",
      "note": "示意，非文件原件",
-     "headAt": "start+8",
-     "at": "start+12",
+     "headAt": "start-20",
+     "at": "start-16",
      "bigAt": "res",
-     "srcAt": "res+10",
+     "srcAt": "res+8",
      "tag": {
       "kind": "confirmed",
       "text": "已確定",
-      "at": "res+18"
+      "at": "res+14"
      }
     },
     "right": {
@@ -241,21 +276,30 @@
       "要他走"
      ],
      "src": "CNBC 引述知情人士",
-     "headAt": "start+16",
+     "headAt": "start-20",
      "at": "med",
-     "bigAt": "out-12",
-     "srcAt": "out",
+     "bigAt": "out-16",
+     "srcAt": "out-6",
      "tag": {
       "kind": "report",
       "text": "公司未證實",
-      "at": "out+4"
+      "at": "out-2"
+     },
+     "masthead": {
+      "name": "CNBC",
+      "date": "11/12",
+      "at": "med+6"
      }
     },
     "mid": {
      "text": "？",
-     "at": "out+10"
+     "at": "out+2"
     },
-    "hold": 8
+    "news": {
+     "dateline": "SANTA CLARA, CALIF.・2026/11/12",
+     "place": "ca",
+     "lt": "兩種說法"
+    }
    },
    "sources": [
     "8-K 文件；CNBC 引述知情人士（公司未證實）"
@@ -298,29 +342,38 @@
     "head": {
      "text": "是政治操作嗎？",
      "mark": "政治操作",
-     "at": "start+8",
+     "at": "start-16",
      "markAt": "pol+6"
     },
     "photo": {
      "name": "papers",
      "caption": "華盛頓郵報報導（示意照片）",
      "date": "11/14",
-     "at": "start+14",
+     "at": "start-22",
      "dateAt": "wp"
     },
     "quote": {
      "by": "華盛頓郵報 11/14",
-     "byAt": "wp+8",
+     "byAt": "wp+4",
      "pre": "對中強硬派",
      "big": "樂見",
      "post": "他下台",
      "at": "hawk",
-     "bigAt": "glad"
+     "bigAt": "glad",
+     "masthead": {
+      "name": "華盛頓郵報",
+      "date": "11/14"
+     }
     },
     "tag": {
      "kind": "report",
      "text": "媒體報導",
      "at": "glad+10"
+    },
+    "news": {
+     "dateline": "WASHINGTON, D.C.・2026/11/14",
+     "place": "dc",
+     "lt": "外界懷疑"
     }
    },
    "sources": [
@@ -356,13 +409,12 @@
    "component": "DossierScene",
    "props": {
     "panel": "notequal",
-    "hold": 12,
     "a": "樂見",
     "op": "≠",
     "opLabel": "不等於",
     "b": "設局",
-    "aAt": "start+8",
-    "opAt": "glad+10",
+    "aAt": "start-16",
+    "opAt": "ne-4",
     "bAt": "ne+2",
     "rows": [
      {
@@ -376,14 +428,19 @@
      },
      {
       "text": "有人設局",
-      "at": "ne+2",
+      "at": "setup-8",
       "tag": {
        "kind": "none",
        "text": "查不到證據",
-       "at": "setup-6"
+       "at": "setup-2"
       }
      }
-    ]
+    ],
+    "news": {
+     "dateline": "WASHINGTON, D.C.・2026/11/14",
+     "place": "dc",
+     "lt": "查證"
+    }
    },
    "sources": [
     "截至 2026/11/14，查不到設局的證據"
@@ -427,25 +484,30 @@
      "photo": {
       "name": "binders",
       "caption": "董事會的獨立調查（示意照片）",
-      "at": "start+18"
+      "at": "start-20"
      },
      "row": "還沒結論",
-     "rowAt": "none+6"
+     "rowAt": "none"
     },
     "right": {
      "title": "本人的公開說明",
      "field": "（空白）",
      "note": "示意，非文件原件",
-     "at": "start+24",
+     "at": "start-16",
      "titleAt": "he-8",
      "frameAt": "quiet-2",
      "row": "還沒開口",
-     "rowAt": "quiet"
+     "rowAt": "quiet+4"
     },
     "tag": {
      "kind": "pending",
      "text": "截至 2026/11/14 尚未確定",
      "at": "quiet+8"
+    },
+    "news": {
+     "dateline": "SANTA CLARA, CALIF.・2026/11/14",
+     "place": "ca",
+     "lt": "還不知道"
     }
    },
    "sources": [
@@ -500,7 +562,7 @@
       "請辭",
       "被請走"
      ],
-     "at": "start+8",
+     "at": "start-18",
      "markAts": [
       "res+6",
       "out+2"
@@ -508,19 +570,24 @@
     },
     "cta": {
      "text": "留言說你的看法",
-     "at": "out+16"
+     "at": "res+12"
     },
     "next": {
      "label": "下一集",
-     "at": "next",
+     "at": "out",
      "photo": {
       "name": "cabinet",
       "caption": "示意照片",
-      "at": "next+6"
+      "at": "out+4"
      },
      "title": "國會想問他什麼？",
      "titleAt": "cong",
-     "frameAt": "ask"
+     "frameAt": "ask+10"
+    },
+    "news": {
+     "dateline": "WASHINGTON, D.C.・2026/11/14",
+     "place": "dc",
+     "lt": "提問"
     }
    },
    "sources": [

@@ -7,6 +7,10 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../.
 const slug = process.argv[2];
 const model = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "model.json"), "utf8"));
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "script.json"), "utf8"));
+// 頻道皮膚（script.json 頂層 hudSkin；沒寫＝和以前一樣的顏色）：蓋掉 CSS 變數、背景、格線與模型色票
+const SK = script.hudSkin ? (JSON.parse(fs.readFileSync(path.join(ROOT, "src/theme-hud-skins.json"), "utf8"))[script.hudSkin] ?? {}) : {};
+const V = { bg: SK.bg ?? "#070B12", line: SK.line ?? "#3FC8DC", amber: SK.amber ?? "#F2A93B", text: SK.text ?? "#E6F1F8", text2: SK.text2 ?? "#8FA6B8", panel: SK.panel ?? "#0B1724", lineSoft: SK.lineSoft ?? "#1E5E6E", grid: SK.grid ?? "#122030" };
+if (script.hudSkin && SK.parts) model.palette = { ...model.palette, ...SK.parts };
 const sch = script.hud?.schematic ?? { text: "Schematic – not to scale", zh: "示意圖，非實際比例" };
 const labelsV1 = { sub: "基板 substrate", fin: "絕緣層 isolation", sheetA: "奈米薄片 nanosheet", sheetB: "奈米薄片 nanosheet", sheetC: "奈米薄片 nanosheet", epi: "源極／汲極 source / drain", gateMain: "閘極 gate", gateSide: "閘極 gate", via: "接點 contact" };
 // model.partNames（可省略）：零件 id 的開頭 → 名稱（最長的開頭優先）；沒寫就用上面第一版的對照表。model.viewer.hide：檢視器裡不畫的層（只在運作動畫出現的示意層）
@@ -16,7 +20,7 @@ const html = `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${(script.title ?? slug).split("（")[0]} 3D 場景</title>
 <style>
-:root{--bg:#070B12;--line:#3FC8DC;--amber:#F2A93B;--text:#E6F1F8;--text2:#8FA6B8}
+:root{--bg:${V.bg};--line:${V.line};--amber:${V.amber};--text:${V.text};--text2:${V.text2}}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","PingFang TC",system-ui,sans-serif;overflow:hidden}
 #c{position:fixed;inset:0}
 .hud{position:fixed;pointer-events:none;font-size:14px;letter-spacing:.04em}
@@ -25,7 +29,7 @@ html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-famil
 #bt{left:16px;right:16px;bottom:16px;pointer-events:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 input[type=range]{flex:1;min-width:160px;accent-color:var(--amber)}
 button{background:transparent;color:var(--line);border:1.5px solid var(--line);padding:6px 14px;font:inherit;cursor:pointer}
-#tip{position:fixed;pointer-events:none;background:#0B1724;border:1.5px solid var(--line);padding:4px 10px;font-size:14px;display:none}
+#tip{position:fixed;pointer-events:none;background:${V.panel};border:1.5px solid var(--line);padding:4px 10px;font-size:14px;display:none}
 </style>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 </head><body>
@@ -44,7 +48,7 @@ const HIDE = ${JSON.stringify([...hide])};
 const col = (c) => M.palette[c] ?? c;
 const r = new THREE.WebGLRenderer({ canvas: document.getElementById("c"), antialias: true });
 r.setPixelRatio(Math.min(2, devicePixelRatio));
-const scene = new THREE.Scene(); scene.background = new THREE.Color("#070B12");
+const scene = new THREE.Scene(); scene.background = new THREE.Color("${V.bg}");
 const cam = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 const ctl = new OrbitControls(cam, r.domElement); ctl.enableDamping = true;
 const home = () => { cam.position.set(46, 70, 92); ctl.target.set(0, 0, 0); ctl.update(); };
@@ -52,7 +56,7 @@ home();
 scene.add(new THREE.HemisphereLight("#cfe8ff", "#1a2230", 1.1));
 const key = new THREE.DirectionalLight("#ffffff", 2.2); key.position.set(20, 40, 25); scene.add(key);
 const fill = new THREE.DirectionalLight("#7fd6e8", 0.6); fill.position.set(-25, 10, -10); scene.add(fill);
-const grid = new THREE.GridHelper(120, 30, "#1E5E6E", "#122030"); grid.position.y = -18; scene.add(grid);
+const grid = new THREE.GridHelper(120, 30, "${V.lineSoft}", "${V.grid}"); grid.position.y = -18; scene.add(grid);
 // 模型座標：x 寬、y 深、z 厚（往上）；整個轉成 three 的 y 朝上
 const root = new THREE.Group(); root.rotation.x = -Math.PI / 2; scene.add(root);
 const layerGroups = {};

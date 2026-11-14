@@ -12,7 +12,8 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
-import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, THEME_3D_HUD as H } from "../../theme";
+import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T } from "../../theme";
+import { H, setHudSkin, sm } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -148,8 +149,8 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
       </g>
       {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
-      <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={0.72 * rq} />
-      <rect x={x1 - 470} y={y0 + 10} width={460} height={86 + 110 * rq} fill={H.bg} opacity={0.72} />
+      <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={H.plateO * rq} />
+      <rect x={x1 - 470} y={y0 + 10} width={460} height={86 + 110 * rq} fill={H.bg} opacity={H.plateO} />
       {sc ? <text x={x1 - 24} y={y0 + 40} textAnchor="end" style={mono(28, H.text2, 500)}>{sc.text}</text> : null}
       {sc?.zh ? <text x={x1 - 24} y={y0 + 76} textAnchor="end" style={zh(28, H.text2, 500)}>{sc.zh}</text> : null}
       <text x={x1 - 24} y={y0 + 150} textAnchor="end" style={mono(H.font.px.big, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text>
@@ -182,7 +183,7 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
   return (
     <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: h.top ?? 560, opacity: 1 - k, transform: `translateY(${Math.round(-40 * k)}px)`, display: "flex", flexDirection: "column", alignItems: "center" }}>
       {h.kicker ? <div style={{ ...zh(40, H.onAccent, 900), background: H.line, padding: "6px 26px 8px", letterSpacing: "0.1em" }}>{h.kicker}</div> : null}
-      <div style={{ ...zh(h.size ?? 128, H.text), lineHeight: 1.18, marginTop: 14, padding: "6px 22px 14px", background: "rgba(7, 11, 18, 0.82)", borderTop: `3px solid ${H.line}`, borderBottom: `3px solid ${H.line}` }}>{h.title}</div>
+      <div style={{ ...zh(h.size ?? 128, H.text), lineHeight: 1.18, marginTop: 14, padding: "6px 22px 14px", background: H.hookPlate, borderTop: `3px solid ${H.line}`, borderBottom: `3px solid ${H.line}` }}>{h.title}</div>
     </div>
   );
 };
@@ -262,13 +263,13 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
   const A = H.art, W = L.INNER_W, hgt = o.h ?? 400, sides = (o.sides ?? []) as { kind: string; title: string; sub?: string; wrap?: string; note?: string; leak?: number; color?: string }[];
   const cw = W / Math.max(1, sides.length), n = f - o.at;
   return (
-    <div style={{ position: "absolute", left: L.X, top: o.y ?? 840, width: W, height: hgt, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: "rgba(11, 23, 36, 0.95)", border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
+    <div style={{ position: "absolute", left: L.X, top: o.y ?? 840, width: W, height: hgt, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
       {o.title ? <div style={{ position: "absolute", left: 20, top: 12, ...zh(30, H.onAccent, 800), background: H.amber, padding: "2px 16px 4px", letterSpacing: "0.06em" }}>{o.title}</div> : null}
-      {o.tag ? <div style={{ position: "absolute", right: 20, top: 16, ...zh(26, H.text2, 500) }}>{o.tag}</div> : null}
+      {o.tag ? <div style={{ position: "absolute", right: 20, top: 16, ...zh(sm(26), H.text2, 500) }}>{o.tag}</div> : null}
       <svg width={W} height={hgt} style={{ position: "absolute", inset: 0 }}>
         <line x1={cw} x2={cw} y1={64} y2={hgt - 16} stroke={H.lineSoft} strokeWidth={2} strokeDasharray="8 8" />
         {sides.map((sd, i) => {
-          const cx = cw * (i + 0.5), top = 150, base = hgt - 76, c = hudAccent(sd.color), show = tween(f, o.at + 4 + i * 8, 8, EASE.enter);
+          const cx = cw * (i + 0.5), top = 150, base = hgt - 76, c = hudAccent(sd.color), show = tween(f, (sd as any).at ?? o.at + 4 + i * 8, 8, EASE.enter);
           const leak = sd.leak ?? 0;
           return (
             <g key={i} opacity={show}>
@@ -292,9 +293,9 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
               )}
               {/* 關閉時的漏電（示意）：沒被閘極包到的地方有幾顆小點一明一滅地漏過去 */}
               {range(leak).map((j) => { const ph = ((n + j * 9) % 30) / 30, yy = sd.kind === "fin" ? base - 30 + (j % 3) * 9 : base - 22, xx = sd.kind === "fin" ? cx - 10 + ((j * 7) % 20) : cx - 8 + j * 12; return <circle key={j} cx={xx} cy={yy} r={3 + 4 * Math.sin(Math.PI * ph)} fill={A.leak} opacity={(sd.kind === "fin" ? 0.95 : 0.45) * Math.sin(Math.PI * ph)} />; })}
-              {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 108}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 114} y={base - 9} style={zh(26, A.leak, 700)}>{sd.note}</text></> : null}
+              {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 108}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 114} y={base - 9} style={zh(sm(26), A.leak, 700)}>{sd.note}</text></> : null}
               <text x={cx} y={98} textAnchor="middle" style={zh(40, c, 900)}>{sd.title}</text>
-              {sd.sub ? <text x={cx} y={132} textAnchor="middle" style={mono(24, H.text2, 500)}>{sd.sub}</text> : null}
+              {sd.sub ? <text x={cx} y={132} textAnchor="middle" style={mono(sm(24), H.text2, 500)}>{sd.sub}</text> : null}
               {sd.wrap ? <text x={cx} y={hgt - 14} textAnchor="middle" style={zh(32, H.text, 800)}>{sd.wrap}</text> : null}
             </g>
           );
@@ -325,8 +326,8 @@ const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) =>
               <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * Math.max(0.03, lv)).toFixed(1)}%`, background: c }} />
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}>
-              <div style={{ ...zh(24, lv < 0.5 ? H.text : H.text3, 700) }}>{d.lo ?? ""}</div>
-              <div style={{ ...zh(24, lv >= 0.5 ? c : H.text3, 700) }}>{d.hi ?? ""}</div>
+              <div style={{ ...zh(sm(24), lv < 0.5 ? H.text : H.text3, 700) }}>{d.lo ?? ""}</div>
+              <div style={{ ...zh(sm(24), lv >= 0.5 ? c : H.text3, 700) }}>{d.hi ?? ""}</div>
             </div>
           </div>
         );
@@ -357,7 +358,7 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
       }
       if (o.type === "legend") {
         // 圖例：色塊＋名稱（色塊顏色讀 model.palette 的名字，和 3D 零件同一份）
-        const items = (o.items ?? []) as { text: string; swatch: string }[], cols = o.cols ?? 2, px = o.size ?? 26, cw = o.colW ?? 222;
+        const items = (o.items ?? []) as { text: string; swatch: string }[], cols = o.cols ?? 2, px = sm(o.size ?? 26), cw = o.colW ?? 222;
         return (
           <div key={i} style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 1070, opacity: k, background: H.panel, border: `2px solid ${H.lineSoft}`, padding: "10px 14px 12px", display: "grid", gridTemplateColumns: `repeat(${cols}, ${cw}px)`, rowGap: 6, columnGap: 6 }}>
             {items.map((it, j) => (
@@ -370,11 +371,39 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
         );
       }
       if (o.type === "compare") return <HudCompare key={i} o={o} f={f} k={k} />;
+      if (o.type === "bars") {
+        // 橫條對照（示意或廠商公布值）：rows: [{ label, v（0–1）, v2?（範圍的另一端，畫成斜線段）, color?, text, at?, textAt? }]；字都來自 script.json
+        const rows = (o.rows ?? []) as { label: string; v: number; v2?: number; color?: string; text?: string; at?: number; textAt?: number }[], W = L.INNER_W, bw = W - 88;
+        return (
+          <div key={i} style={{ position: "absolute", left: L.X, top: o.y ?? 640, width: W, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", padding: "20px 44px 30px" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              {o.title ? <div style={{ ...zh(38, H.onAccent, 800), background: H.line, padding: "4px 20px 6px", letterSpacing: "0.04em" }}>{o.title}</div> : <div />}
+              {o.tag ? <div style={{ ...zh(30, H.text2, 500) }}>{o.tag}</div> : null}
+            </div>
+            {rows.map((r, j) => {
+              const at = r.at ?? o.at + 6 + j * 10, g = tween(f, at, 16, EASE.move), sh = tween(f, at - 2, 6, EASE.enter), cc = r.color ? hudAccent(r.color) : H.text2, tx = tween(f, r.textAt ?? at + 12, 6, EASE.enter);
+              const pop = 1 + 0.14 * Math.sin(Math.PI * tween(f, r.textAt ?? at + 12, 10, EASE.move));
+              return (
+                <div key={j} style={{ marginTop: 26, opacity: sh }}>
+                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
+                    <div style={{ ...zh(40, H.text, 800) }}>{r.label}</div>
+                    <div style={{ ...zh(r.color ? 60 : 44, cc, 900), opacity: tx, transform: `scale(${pop.toFixed(3)})`, transformOrigin: "right center" }}>{r.text ?? ""}</div>
+                  </div>
+                  <div style={{ position: "relative", width: bw, height: 44, marginTop: 10, background: H.bg, border: `2px solid ${H.text3}`, boxSizing: "border-box" }}>
+                    <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * r.v * g).toFixed(1)}%`, background: cc }} />
+                    {r.v2 !== undefined ? <div style={{ position: "absolute", left: `${(100 * r.v * g).toFixed(1)}%`, top: 0, bottom: 0, width: `${(100 * (r.v2 - r.v) * g).toFixed(1)}%`, background: `repeating-linear-gradient(135deg, ${cc} 0 6px, transparent 6px 12px)` }} /> : null}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
       if (o.type === "card") {
         const lines = (o.lines ?? []) as string[], size = o.size ?? 100, hiT = o.hiAt ?? o.at + 8, under = tween(f, hiT, 12, EASE.move);
         const W = L.INNER_W, bk = 44;
         return (
-          <div key={i} style={{ position: "absolute", left: L.X, top: o.y ?? 360, width: W, opacity: k, transform: `translateY(${Math.round(30 * (1 - k))}px)`, background: "rgba(11, 23, 36, 0.94)", border: `2px solid ${H.lineSoft}`, padding: "36px 44px 44px", boxSizing: "border-box" }}>
+          <div key={i} style={{ position: "absolute", left: L.X, top: o.y ?? 360, width: W, opacity: k, transform: `translateY(${Math.round(30 * (1 - k))}px)`, background: H.card, border: `2px solid ${H.lineSoft}`, padding: "36px 44px 44px", boxSizing: "border-box" }}>
             <svg width={W} height={20} style={{ position: "absolute", left: -2, top: -2, overflow: "visible" }}>
               <path d={`M0 ${bk} V0 H${bk}`} fill="none" stroke={H.line} strokeWidth={4} /><path d={`M${W - bk} 0 H${W} V${bk}`} fill="none" stroke={H.line} strokeWidth={4} />
             </svg>
@@ -412,6 +441,31 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
   </>
 );
 
+/** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌與名稱、slogan、下一支預告。
+ *  字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
+const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
+  const k = tween(f, at, 8, EASE.enter);
+  if (k <= 0) return null;
+  const n = f - at, b = 90, x0 = L.X + 40, x1 = L.W - L.X - 40, y0 = 520, y1 = 1400;
+  const draw = tween(f, at + 2, 14, EASE.move), pop = tween(f, at + 6, 10, EASE.enter), line = tween(f, at + 12, 14, EASE.move), nx = tween(f, at + 22, 8, EASE.enter);
+  return (
+    <AbsoluteFill style={{ background: H.bg, opacity: k }}>
+      <HudBackdrop f={f} lv={0} />
+      <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
+        {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={4} />)}
+        <g transform={`translate(${L.W / 2} 720) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
+          <rect x={-70} y={-70} width={140} height={140} fill="none" stroke={H.line} strokeWidth={6} />
+          <rect x={-26} y={-26} width={52} height={52} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} />
+        </g>
+      </svg>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 850, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(124, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
+      <div style={{ position: "absolute", left: (L.W - 520 * line) / 2, top: 1030, width: 520 * line, height: 4, background: H.amber }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: 1064, textAlign: "center", opacity: line, ...zh(54, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1210, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(44, H.onAccent, 800), background: H.amber, padding: "8px 34px 12px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+    </AbsoluteFill>
+  );
+};
+
 /** 字幕：深色框、一次一段單行；關鍵詞念到時上色加底線；英文跟著中文的句 */
 type Cue = { id: string; en: string; keywords: string[]; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
 const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
@@ -428,7 +482,7 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
   const cols = [H.line, H.amber, H.coral];
   const text = ps[k].text.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
   return (
-    <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: "rgba(11, 23, 36, 0.92)", borderTop: `2px solid ${H.lineSoft}`, borderBottom: `2px solid ${H.lineSoft}` }}>
+    <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: H.caption, borderTop: `2px solid ${H.lineSoft}`, borderBottom: `2px solid ${H.lineSoft}` }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: 30, height: 104, display: "flex", alignItems: "center", justifyContent: "center", ...zh(L.CAP_ZH_PX, H.text), letterSpacing: "0.02em", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
         <span>
           {splitParts(text, cue.keywords).map((sp, i) => {
@@ -457,8 +511,12 @@ const HudSource: React.FC<{ cues: { sources: string[]; window: [number, number] 
 
 /** 整支 HUD 片：背景 → 2D 縮放 → 3D（交棒後）→ 標籤／尺寸線／蓋章 → HUD 外框 → 頁首／字幕／出處 */
 export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => {
-  const { scenes, timeline, channel, model } = props;
+  const { scenes, timeline, channel } = props;
   const hud = (props as any).hud as HudSpec;
+  const skin = (props as any).hudSkin as string | undefined;
+  setHudSkin(skin, (hud as any).smallPx);
+  // 皮膚的 parts 蓋掉 model.json palette 裡同名的色（"deep" 的 parts 和 short-tech 的 palette 相同）
+  const model = useMemo(() => { const pm = props.model as ProductModel; return { ...pm, palette: { ...pm.palette, ...H.parts } }; }, [props.model, skin]);
   const f = useCurrentFrame();
   const m = useMemo(() => buildModel(scenes, timeline, model as ProductModel), [scenes, timeline, model]);
   const keys = useMemo(() => zoomKeys(scenes, timeline, hud), [scenes, timeline, hud]);
@@ -475,6 +533,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const hand = keys.find((k) => hud.levels[k.to]?.handoff3D);
   const d0 = useMemo(() => (hand ? stateAt(m, hand.at + hand.dur).cam.d : 0), [m, hand]);
   const camK = z.handoff > 0.99 && d0 > 0 ? d0 / s.cam.d : 1;
+  const endScene = scenes.find((x) => (x as any).silent === true && (x.props as any)?.endCard);
   const card = (m.overlays ?? []).find((o) => o.type === "card");
   const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (
@@ -491,6 +550,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <HudCaption cues={subCues as Cue[]} f={f} />
       <HudSource cues={srcCues} f={f} px={(m.product.fx as any)?.srcPx ?? 30} />
       <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} />
+      {endScene && by[endScene.id] ? <HudEndCard f={f} at={by[endScene.id].startFrame} spec={(endScene.props as any).endCard} channel={channel} /> : null}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}
@@ -503,6 +563,7 @@ export const CoverHud: React.FC<Script & { coverCrop?: number }> = (props) => {
   const { cover, scenes, timeline, channel, coverCrop } = props;
   const hud = (props as any).hud as HudSpec;
   const c = (cover ?? {}) as { title?: string[]; sub?: string; frame?: number };
+  setHudSkin((props as any).hudSkin, (hud as any).smallPx);
   const keys = useMemo(() => (timeline ? zoomKeys(scenes, timeline as TimelineV2, hud) : []), [scenes, timeline, hud]);
   const cf = keys.find((k) => !k.drift && k.at > 0);
   const z = zoomAt(hud, keys, cf ? cf.at + Math.round(cf.dur * 0.7) : 0);

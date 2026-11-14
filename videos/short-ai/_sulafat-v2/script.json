@@ -1,0 +1,471 @@
+{
+ "slug": "short-ai",
+ "title": "問 AI 明年基本工資，它給去年的（AI 教學短片）",
+ "asOf": "2026/11/14",
+ "styleVersion": 3,
+ "stage": "iso",
+ "sample": true,
+ "channel": {
+  "name": "AI",
+  "tag": "AI 動手做",
+  "slogan": "看完就能照著做"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report"
+ },
+ "cover": {
+  "title": [
+   "問 AI 基本工資",
+   "給我去年的"
+  ],
+  "sub": "只打一句話，拿到去年的數字"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "明年基本工資多少？",
+   "subtitle": {
+    "zh": "明年基本工資多少？",
+    "en": "How much is next year's minimum wage?"
+   },
+   "keywords": [
+    "基本工資"
+   ],
+   "cues": [
+    {
+     "id": "wage",
+     "text": "基本工資"
+    },
+    {
+     "id": "much",
+     "text": "多少"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "hook",
+    "kicker": "明年基本工資｜Gemini 實測",
+    "title": [
+     "問 AI 基本工資",
+     "給我去年的"
+    ],
+    "size": 128,
+    "mark": {
+     "text": "去年",
+     "color": "wrong",
+     "at": "wage+4"
+    },
+    "screen": {
+     "label": "AI 說明年",
+     "value": "28,590",
+     "size": 100
+    },
+    "stamp": {
+     "text": "2025 年的",
+     "at": "start+8"
+    },
+    "pin": {
+     "label": "2027 年 1 月起",
+     "value": "30,900",
+     "size": 76,
+     "tag": "行政院已核定",
+     "tagAt": "much+5",
+     "bumpAt": "much"
+    },
+    "camera": [
+     {
+      "look": [
+       320,
+       320,
+       60
+      ],
+      "zoom": 0.66,
+      "sy": 1050
+     },
+     {
+      "at": "start+2",
+      "dur": 44,
+      "look": [
+       300,
+       300,
+       80
+      ],
+      "zoom": 0.76,
+      "sy": 1050
+     }
+    ],
+    "kw": {
+     "基本工資": "primary"
+    }
+   },
+   "sources": [
+    "勞動部最低工資審議會 2026/9/24 決議（經媒體報導）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "narration": "我們實測 Gemini，只打這一句。",
+   "subtitle": {
+    "zh": "我們實測 Gemini\n只打這一句",
+    "en": "We tested Gemini | with just this one line."
+   },
+   "keywords": [
+    "實測",
+    "一句"
+   ],
+   "cues": [
+    {
+     "id": "test",
+     "text": "實測"
+    },
+    {
+     "id": "gem",
+     "text": "Gemini"
+    },
+    {
+     "id": "one",
+     "text": "一句"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "ask",
+    "label": "我這樣問",
+    "send": "送出",
+    "lines": [
+     "明年的基本工資",
+     "是多少？"
+    ],
+    "size": 68,
+    "typeAt": "voice",
+    "step": 4,
+    "tag": {
+     "text": "Gemini 實測・2026/11/14",
+     "at": "test",
+     "shineAt": "gem"
+    },
+    "note": {
+     "text": "只打這一句",
+     "sub": "沒貼新聞，也沒開搜尋",
+     "at": "one-10"
+    },
+    "sendAt": "one",
+    "camera": [
+     {
+      "look": [
+       258,
+       330,
+       12
+      ],
+      "zoom": 0.95,
+      "sy": 820,
+      "rot": -3,
+      "dur": 16
+     },
+     {
+      "at": "one",
+      "look": [
+       90,
+       310,
+       179
+      ],
+      "zoom": 1.2,
+      "sy": 680,
+      "rot": 0,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "實測": "primary",
+     "一句": "primary"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/14"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "you",
+   "narration": "它回答 28,590。",
+   "tts": "它回答兩萬八千五百九十。",
+   "subtitle": {
+    "zh": "它回答\n28,590",
+    "en": "Its answer: 28,590."
+   },
+   "keywords": [
+    "28,590"
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "它回答"
+    },
+    {
+     "id": "old",
+     "text": "28,590"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "answer",
+    "label": "AI 回答",
+    "by": "Gemini 實測・2026/11/14（節錄）",
+    "verbatim": "tests/01-casual.json",
+    "lines": [
+     "明年（2025 年／民國 114 年）的基本工資調整如下",
+     "每月基本工資（月薪）：由現行的 27,470 元調整至 28,590 元"
+    ],
+    "more": "（下面還有時薪和一段補充）",
+    "outAt": "say+4",
+    "stackAt": "old+30",
+    "lens": {
+     "text": "28,590",
+     "at": "old+4",
+     "dx": 420,
+     "dy": 90
+    },
+    "camera": [
+     {
+      "at": "say+4",
+      "look": [
+       200,
+       300,
+       160
+      ],
+      "zoom": 0.78,
+      "sy": 600,
+      "dur": 18
+     }
+    ],
+    "kw": {
+     "28,590": "wrong"
+    },
+    "mark2": {
+     "text": "2025 年",
+     "color": "note",
+     "at": "old+18"
+    }
+   },
+   "sources": [
+    "Gemini API 實測（未開搜尋）2026/11/14"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "twist",
+   "narration": "但那是去年的，明年是 30,900。",
+   "tts": "但那是去年的，明年是三萬零九百。",
+   "subtitle": {
+    "zh": "但那是去年的\n明年是 30,900",
+    "en": "But that was last year's. | Next year it's 30,900."
+   },
+   "keywords": [
+    "去年",
+    "30,900"
+   ],
+   "cues": [
+    {
+     "id": "last",
+     "text": "去年"
+    },
+    {
+     "id": "ming",
+     "text": "明年"
+    },
+    {
+     "id": "now",
+     "text": "30,900"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "compare",
+    "wrong": {
+     "label": "AI 回答",
+     "value": "28,590",
+     "size": 96,
+     "stamp": "2025 年的",
+     "stampAt": "last"
+    },
+    "right": {
+     "label": "2027 年 1 月起・月薪",
+     "value": "30,900",
+     "size": 168,
+     "sub": "時薪 205 元｜行政院已核定",
+     "at": "ming-2",
+     "landAt": "now",
+     "seal": "明年的",
+     "sealAt": "now+12"
+    },
+    "camera": [
+     {
+      "look": [
+       320,
+       320,
+       60
+      ],
+      "zoom": 0.58,
+      "sy": 1050,
+      "rot": 2,
+      "dur": 20
+     },
+     {
+      "at": "last",
+      "look": [
+       320,
+       320,
+       60
+      ],
+      "zoom": 0.62,
+      "sy": 1050,
+      "rot": 0,
+      "dur": 14
+     },
+     {
+      "at": "now",
+      "look": [
+       300,
+       300,
+       70
+      ],
+      "zoom": 0.68,
+      "sy": 1045,
+      "dur": 12
+     }
+    ],
+    "kw": {
+     "去年": "wrong",
+     "30,900": "right"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/14、勞動部審議會決議（經媒體報導）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "payoff",
+   "narration": "先貼新聞，請它只看這段。下次再教一招。",
+   "subtitle": {
+    "zh": "先貼新聞\n請它只看這段\n下次再教一招",
+    "en": "Paste the news first, | tell it to use only that. | Next time, one more trick."
+   },
+   "keywords": [
+    "貼新聞",
+    "只看這段"
+   ],
+   "cues": [
+    {
+     "id": "paste",
+     "text": "貼新聞"
+    },
+    {
+     "id": "only",
+     "text": "只看這段"
+    },
+    {
+     "id": "next",
+     "text": "再教一招"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "next",
+    "kicker": "所以",
+    "title": "先貼新聞",
+    "size": 176,
+    "mark": {
+     "text": "貼新聞",
+     "at": "paste"
+    },
+    "old": {
+     "label": "剛剛",
+     "text": "只打一句話",
+     "strikeAt": "paste+4"
+    },
+    "label": "新聞原文",
+    "flipAt": "start+6",
+    "flyAt": "paste+10",
+    "result": {
+     "label": "貼了新聞之後",
+     "by": "Gemini 實測・2026/11/14（節錄）",
+     "verbatim": "tests/02-better.json",
+     "lines": [
+      "明年1月1日起月薪為30900元、時薪205元。"
+     ],
+     "mark": "30900",
+     "size": 38,
+     "at": "only-4",
+     "markAt": "only+14"
+    },
+    "chips": [
+     "貼新聞",
+     "只看這段",
+     "再一招？"
+    ],
+    "chipsAt": "only+24",
+    "teaser": {
+     "label": "下次",
+     "text": "再教一招",
+     "at": "next"
+    },
+    "camera": [
+     {
+      "look": [
+       540,
+       110,
+       0
+      ],
+      "zoom": 1.2,
+      "sy": 1100,
+      "rot": -2,
+      "dur": 18
+     },
+     {
+      "at": "paste+10",
+      "look": [
+       240,
+       250,
+       90
+      ],
+      "zoom": 0.9,
+      "sy": 1010,
+      "rot": 0,
+      "dur": 22
+     },
+     {
+      "at": "next-8",
+      "look": [
+       320,
+       320,
+       40
+      ],
+      "zoom": 0.62,
+      "sy": 900,
+      "dur": 24
+     }
+    ],
+    "kw": {
+     "貼新聞": "primary",
+     "只看這段": "primary"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/14（tests/02-better.json）"
+   ],
+   "para": 1
+  }
+ ],
+ "isoVersion": 3
+}

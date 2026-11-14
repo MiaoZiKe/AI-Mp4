@@ -2,15 +2,17 @@
 // 墨藍炭灰底加細格線；襯線大標、黑體內文、等寬數字；白灰字只加一個深紅強調與一個「已確定」用的冷色。
 // 文件摹本是淺色紙面卡片，空白處用細紅框與引線標註；查證狀態是單色小標；照片黑白低對比、圖說都標「示意」。
 // 動作只有：遮罩擦入、線條描出、打字、淡入、紅框閃一下、每鏡慢推；不彈跳、不搖晃。
+// 「國際新聞」版（script.json 頂層有 news；沒有就是原本的樣子）：頂部新聞條與電頭、下三分之一標題條、點陣世界地圖、跑馬燈、報頭式小標、橫向擦切，見檔案後半。
 // 時間全部來自 timeline（engine.ts）；顏色與版面讀 THEME_DOSSIER／LAYOUT_DOSSIER。照片：public/dossier/<slug>/（scripts/dossier/make-photos.py）。
 import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
-import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, THEME_DOSSIER as T } from "../../theme";
+import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, THEME_DOSSIER as T } from "../../theme";
+import WORLD from "./worldDots.json";
 import { EASE, linear, tween } from "../anim";
 import { buildDossier, staticShot, type DsShot } from "./engine";
 
-const M = T.motion;
+const M = T.motion, N = T.news, NM = T.news.motion;
 const r1 = (v: number) => Math.round(v * 10) / 10;
 const NUM: React.CSSProperties = { fontFamily: FONT_EN, fontVariantNumeric: "tabular-nums" };
 /** 大字級的數字：用比例寬（等寬的 1 在大字級會太鬆）；小字的日期、鏡號才用等寬 */
@@ -57,8 +59,8 @@ const Rule: React.FC<{ f: number; at: number; x: number; y: number; len: number;
   return <div style={{ position: "absolute", left: x, top: y, width: vertical ? w : r1(len * p), height: vertical ? r1(len * p) : w, background: color }} />;
 };
 /** 打字機：字一個一個出現，還沒出現的字先佔位（版面不跳） */
-const Typed: React.FC<{ text: string; f: number; at: number }> = ({ text, f, at }) => {
-  const chars = [...text], n = Math.max(0, Math.min(chars.length, Math.floor((f - at) / M.type) + 1));
+const Typed: React.FC<{ text: string; f: number; at: number; per?: number }> = ({ text, f, at, per = M.type }) => {
+  const chars = [...text], n = Math.max(0, Math.min(chars.length, Math.floor((f - at) / per) + 1));
   return <>{chars.slice(0, f < at ? 0 : n).join("")}<span style={{ opacity: 0 }}>{chars.slice(f < at ? 0 : n).join("")}</span></>;
 };
 /** 字底下描一條強調線 */
@@ -131,7 +133,19 @@ const RedFrame: React.FC<{ f: number; at: number; flashAt?: number; x: number; y
   return <rect x={x} y={y} width={w} height={h} fill={T.accent} fillOpacity={o < 1 ? 0.16 : 0} stroke={T.accent} strokeWidth={T.stroke.frame} opacity={o < 1 ? 0.45 : 1} {...pen(p)} />;
 };
 
-type PanelProps = { sh: DsShot; f: number; slug: string };
+/** 報頭式小標（引述媒體時用）：上粗下細兩條線，中間是媒體名（襯線字，只有文字、不是商標）與日期 */
+const Masthead: React.FC<{ f: number; at: number; x: number; y: number; w: number; name: string; date?: string }> = ({ f, at, x, y, w, name, date }) => (
+  <>
+    <Rule f={f} at={at} x={x} y={y} len={w} color={T.text} w={T.stroke.mark - 2} dur={8} />
+    <Fade f={f} at={at + 3} style={{ left: x, top: y + 10, width: w, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+      <span style={{ ...serif(40, T.weight.serif), letterSpacing: "0.06em" }}>{name}</span>
+      {date ? <span style={{ ...NUM, fontWeight: 600, fontSize: 30, color: T.text2 }}>{date}</span> : null}
+    </Fade>
+    <Rule f={f} at={at + 3} x={x} y={y + 66} len={w} color={T.line} dur={8} />
+  </>
+);
+
+type PanelProps = { sh: DsShot; f: number; slug: string; news?: boolean };
 
 // ── 鏡 1 鉤子：大字＋公告摹本（掃描線、原因欄紅框、引線「公告：沒寫原因」） ──
 const Hook: React.FC<PanelProps> = ({ sh, f }) => {
@@ -179,7 +193,7 @@ const Hook: React.FC<PanelProps> = ({ sh, f }) => {
 };
 
 // ── 鏡 2 時間線：細線與刻度、兩個節點、中間的缺口；左邊聲明摹本、右邊辭職 ──
-const Timeline: React.FC<PanelProps> = ({ sh, f, slug }) => {
+const Timeline: React.FC<PanelProps> = ({ sh, f, slug, news }) => {
   const p = sh.p, ax = p.axis, days: string[] = ax.days, n = days.length;
   const X0 = 44, X1 = 876, AY = 376, CY = 446, CH = 400, LW = 520, RX = 550, RW = 370;
   const dx = (i: number) => X0 + ((X1 - X0) * i) / (n - 1);
@@ -187,7 +201,12 @@ const Timeline: React.FC<PanelProps> = ({ sh, f, slug }) => {
   const l = p.left, r = p.right;
   return (
     <>
-      <Photo slug={slug} name={p.photo.name} f={f} at={p.photo.at} x={0} y={0} w={L.INNER_W} h={206} caption={p.photo.caption} life={sh.end - sh.start} />
+      <Photo slug={slug} name={p.photo.name} f={f} at={p.photo.at} x={0} y={0} w={L.INNER_W} h={206} caption={p.photo.caption} life={sh.end - sh.start}>
+        {news && ax.label ? <div style={{ position: "absolute", left: 0, top: 0, padding: "10px 18px", background: T.bg, display: "flex", alignItems: "baseline", gap: 14, lineHeight: 1 }}>
+          <span style={{ ...sans(28, T.weight.bold), letterSpacing: "0.16em", lineHeight: 1 }}>{ax.label}</span>
+          {ax.labelEn ? <span style={{ ...NUM, fontWeight: 600, fontSize: 28, lineHeight: 1, color: T.text3, letterSpacing: "0.14em" }}>{ax.labelEn}</span> : null}
+        </div> : null}
+      </Photo>
       {/* 軸與刻度 */}
       <Rule f={f} at={ax.at} x={X0} y={AY} len={X1 - X0} color={T.line} dur={M.draw + 8} />
       {days.map((d, i) => {
@@ -195,7 +214,13 @@ const Timeline: React.FC<PanelProps> = ({ sh, f, slug }) => {
         return on ? (
           <React.Fragment key={d}>
             <div style={{ position: "absolute", left: dx(i) - 1, top: AY - (end ? 14 : 8), width: T.stroke.hair, height: end ? 30 : 18, background: end ? T.text : T.line }} />
-            {end ? <div style={{ position: "absolute", top: AY - 84, ...(i === 0 ? { left: dx(i) - 4 } : { right: L.INNER_W - dx(i) - 4 }), ...NUMB, fontWeight: T.weight.num, fontSize: 56, lineHeight: 1, color: T.text }}>{d}</div>
+            {end && news ? (
+              <>
+                {/* 新聞時間軸：兩端是日期籤（起點白底、終點紅底）加軸上的方形節點 */}
+                <div style={{ position: "absolute", top: AY - 88, ...(i === 0 ? { left: dx(i) - 8 } : { right: L.INNER_W - dx(i) - 8 }), padding: "6px 16px 8px", background: i === 0 ? T.text : N.red, ...NUMB, fontWeight: T.weight.num, fontSize: 48, lineHeight: 1, color: i === 0 ? T.bg : N.onRed }}>{d}</div>
+                <div style={{ position: "absolute", left: dx(i) - 9, top: AY - 8, width: 18, height: 18, background: i === 0 ? T.text : N.red }} />
+              </>
+            ) : end ? <div style={{ position: "absolute", top: AY - 84, ...(i === 0 ? { left: dx(i) - 4 } : { right: L.INNER_W - dx(i) - 4 }), ...NUMB, fontWeight: T.weight.num, fontSize: 56, lineHeight: 1, color: T.text }}>{d}</div>
               : <div style={{ position: "absolute", left: dx(i) - 60, width: 120, textAlign: "center", top: AY + 18, ...NUM, fontWeight: 400, fontSize: 28, lineHeight: 1, color: T.text3 }}>{d}</div>}
           </React.Fragment>
         ) : null;
@@ -261,9 +286,10 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
       {/* 右欄：先有一個空框（還沒有東西可放），媒體的說法念到才進來 */}
       <Fade f={f} at={r.headAt} style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", border: `${T.stroke.hair}px dashed ${T.hair}` }}>{null}</Fade>
       <Reveal f={f} at={r.at} dir="down" style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", background: T.panel, border: `${T.stroke.hair}px solid ${T.panelLine}`, padding: "18px 34px" }}>
-        <div style={{ marginTop: 16, width: 64, height: T.stroke.mark, background: T.text3 }} />
+        <div style={{ marginTop: 16, width: 64, height: T.stroke.mark, background: r.masthead ? "transparent" : T.text3 }} />
         {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(112), clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }}>{t}</div>)}
       </Reveal>
+      {r.masthead ? <Masthead f={f} at={r.masthead.at} x={RX + 34} y={CY + 30} w={CW - 68} name={r.masthead.name} date={r.masthead.date} /> : null}
       {src(0, l.src, l.srcAt)}
       {src(RX, r.src, r.srcAt)}
       <div style={{ position: "absolute", left: 0, top: CY + CH + 130 }}><Tag tag={l.tag} f={f} /></div>
@@ -286,8 +312,12 @@ const Claim: React.FC<PanelProps> = ({ sh, f, slug }) => {
       <Photo slug={slug} name={ph.name} f={f} at={ph.at} x={0} y={PY} w={PS} h={PS} caption={ph.caption} life={sh.end - sh.start}>
         {ph.date ? <div style={{ position: "absolute", left: 0, top: 0, padding: "10px 18px", background: T.bg, ...NUMB, fontWeight: T.weight.num, fontSize: 40, lineHeight: 1, color: T.text, opacity: fadeP(f, ph.dateAt) }}>{ph.date}</div> : null}
       </Photo>
-      <Rule f={f} at={q.byAt} x={QX} y={PY} len={L.INNER_W - QX} color={T.line} />
-      <Fade f={f} at={q.byAt + 4} style={{ left: QX, top: PY + 20, ...sans(34, T.weight.bold, T.text2) }}>{q.by}</Fade>
+      {q.masthead ? <Masthead f={f} at={q.byAt} x={QX} y={PY} w={L.INNER_W - QX} name={q.masthead.name} date={q.masthead.date} /> : (
+        <>
+          <Rule f={f} at={q.byAt} x={QX} y={PY} len={L.INNER_W - QX} color={T.line} />
+          <Fade f={f} at={q.byAt + 4} style={{ left: QX, top: PY + 20, ...sans(34, T.weight.bold, T.text2) }}>{q.by}</Fade>
+        </>
+      )}
       <Reveal f={f} at={q.at} style={{ left: QX, top: PY + 96, ...sans(64, T.weight.sub) }}>{q.pre}</Reveal>
       <Reveal f={f} at={q.bigAt} style={{ left: QX - 4, top: PY + 176, paddingBottom: 18, ...serif(176) }}><Marked f={f} at={q.bigAt + 8}>{q.big}</Marked></Reveal>
       <Fade f={f} at={q.bigAt + 4} style={{ left: QX, top: PY + 392, ...sans(64, T.weight.sub) }}>{q.post}</Fade>
@@ -373,10 +403,23 @@ const Ask: React.FC<PanelProps> = ({ sh, f, slug }) => {
 const PANELS: Record<string, React.FC<PanelProps>> = { hook: Hook, timeline: Timeline, versus: Versus, claim: Claim, notequal: NotEqual, pending: Pending, ask: Ask };
 
 /** 一鏡：內容畫在主舞台框裡，整鏡極慢推近；換鏡時舊鏡淡出 */
-const Shot: React.FC<{ sh: DsShot; f: number; slug: string }> = ({ sh, f, slug }) => {
-  if (f < sh.start || f >= sh.outAt + M.out) return null;
+const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = ({ sh, f, slug, cut }) => {
   const P = PANELS[sh.panel];
   if (!P) return null;
+  if (cut) {
+    // 「國際新聞」版：橫向擦切。新鏡從左邊露出來、舊鏡同時從左邊被切掉，中間一條條帶（SweepBand）掃過；沒有淡出，所以換鏡時畫面不會空。
+    const pin = sh.index === 0 ? 1 : tween(f, sh.start, NM.cut, EASE.move), pout = tween(f, sh.outAt, NM.cut, EASE.move);
+    if (f < sh.start || pout >= 1) return null;
+    const sc = 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start));
+    return (
+      <AbsoluteFill style={{ clipPath: pin >= 1 && pout <= 0 ? undefined : `inset(0 ${r1(100 * (1 - pin))}% 0 ${r1(100 * pout)}%)` }}>
+        <div style={{ position: "absolute", left: L.X, top: LN.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, transform: `scale(${sc.toFixed(4)})`, transformOrigin: "0 50%" }}>
+          <P sh={sh} f={f} slug={slug} news />
+        </div>
+      </AbsoluteFill>
+    );
+  }
+  if (f < sh.start || f >= sh.outAt + M.out) return null;
   const s = 1 + M.push * linear(f, sh.start, Math.max(1, sh.outAt + M.out - sh.start));
   return (
     <div style={{ position: "absolute", left: L.X, top: L.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, opacity: 1 - tween(f, sh.outAt, M.out, EASE.exit), transform: `scale(${s.toFixed(4)})`, transformOrigin: "50% 50%" }}>
@@ -454,13 +497,183 @@ const Footer: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots,
   );
 };
 
-export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = ({ slug, scenes, timeline, channel, asOf }) => {
+// ───────────────────────── 「國際新聞」版（script.json 頂層有 news） ─────────────────────────
+// 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
+// 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
+type Place = { zh: string; en: string; lon: number; lat: number };
+type NewsSpec = { section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
+type ShotNews = { dateline?: string; place?: string; lt?: string };
+const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
+const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
+const mapX = (lon: number) => L.W / 2 + (lon - LN.MAP_LON_C) * LN.MAP_K;
+const mapY = (lat: number) => LN.MAP_LAT_Y + (LN.MAP_LAT_REF - lat) * LN.MAP_K;
+/** 點陣陸地與經緯線（不會動，只算一次） */
+const MAP_STATIC = (() => {
+  let dots = "", grat = "";
+  const d = LN.MAP_DOT, h = d / 2;
+  WORLD.rows.forEach((row: string, r: number) => {
+    const y = mapY(WORLD.lat0 - r * WORLD.step);
+    if (y < LN.MAP_TOP || y > L.H + d) return;
+    for (let c = 0; c < row.length; c++) {
+      if (row[c] !== "1") continue;
+      const x = mapX(WORLD.lon0 + c * WORLD.step);
+      if (x > -d && x < L.W + d) dots += `M${r1(x - h)} ${r1(y - h)}h${d}v${d}h${-d}z`;
+    }
+  });
+  for (let lon = -180; lon <= 180; lon += 10) { const x = mapX(lon); if (x >= 0 && x <= L.W) grat += `M${r1(x)} ${LN.MAP_TOP}V${L.H}`; }
+  for (let lat = 80; lat >= -60; lat -= 10) { const y = mapY(lat); if (y >= LN.MAP_TOP && y <= L.H) grat += `M0 ${r1(y)}H${L.W}`; }
+  return { dots, grat };
+})();
+/** 淡背景世界地圖：地點（方點＋名稱）、目前這一鏡的地點有往外擴的脈衝圈、兩地之間的連線（描出來之後有光點沿線走） */
+const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: number }> = ({ news, shots, f, linkAt }) => {
+  const places = news.places ?? {}, active = shotNews(curShot(shots, f)).place, cur = curShot(shots, f);
+  const firstAt = (id: string) => {
+    const sh = shots.find((x) => shotNews(x).place === id), a = sh ? (sh.index === 0 ? -9999 : sh.start + 2) : Infinity;
+    return news.link && news.link.to === id ? Math.min(a, linkAt + M.draw - 4) : a;
+  };
+  const A = news.link ? places[news.link.from] : undefined, B = news.link ? places[news.link.to] : undefined;
+  const ax = A ? mapX(A.lon) : 0, ay = A ? mapY(A.lat) : 0, bx = B ? mapX(B.lon) : 0, by = B ? mapY(B.lat) : 0, cx = (ax + bx) / 2, cy = Math.min(ay, by) - 44;
+  const lp = drawP(f, linkAt), q = lp >= 1 ? ((f - linkAt - M.draw) % NM.pulse) / NM.pulse : -1;
+  const bez = (t: number) => [(1 - t) * (1 - t) * ax + 2 * (1 - t) * t * cx + t * t * bx, (1 - t) * (1 - t) * ay + 2 * (1 - t) * t * cy + t * t * by];
+  const ring = ((f - (cur.index === 0 ? 0 : cur.start)) % NM.ping) / NM.ping;
+  return (
+    <>
+      <svg width={L.W} height={L.H} viewBox={`0 0 ${L.W} ${L.H}`} style={{ position: "absolute", left: 0, top: 0 }}>
+        <path d={MAP_STATIC.grat} fill="none" stroke={N.mapGrat} strokeWidth={1} />
+        <path d={MAP_STATIC.dots} fill={N.mapDot} />
+        {A && B && lp > 0 ? <path d={`M ${r1(ax)} ${r1(ay)} Q ${r1(cx)} ${r1(cy)} ${r1(bx)} ${r1(by)}`} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} {...pen(lp)} /> : null}
+        {q >= 0 ? <circle cx={r1(bez(q)[0])} cy={r1(bez(q)[1])} r={5} fill={T.text} /> : null}
+        {Object.entries(places).map(([id, pl]) => {
+          if (f < firstAt(id)) return null;
+          const x = mapX(pl.lon), y = mapY(pl.lat), on = id === active;
+          return (
+            <React.Fragment key={id}>
+              {on ? <circle cx={r1(x)} cy={r1(y)} r={r1(8 + 24 * ring)} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} opacity={r1(1 - ring)} /> : null}
+              <rect x={r1(x - 7)} y={r1(y - 7)} width={14} height={14} fill={on ? T.accent : T.text2} />
+            </React.Fragment>
+          );
+        })}
+      </svg>
+      {Object.entries(places).map(([id, pl]) => {
+        const at = firstAt(id);
+        if (f < at) return null;
+        const on = id === active;
+        return (
+          <div key={id} style={{ position: "absolute", left: mapX(pl.lon) - 200, width: 400, top: mapY(pl.lat) + 16, display: "flex", justifyContent: "center", opacity: fadeP(f, at) }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 10, padding: "2px 10px", background: N.mapLabelBg }}>
+              <span style={{ ...sans(LN.MAP_LABEL_PX, T.weight.bold, on ? T.text : T.text2), lineHeight: 1.15 }}>{pl.zh}</span>
+              <span style={{ ...NUM, fontWeight: 600, fontSize: LN.MAP_LABEL_PX, lineHeight: 1.15, color: on ? T.text2 : T.text3, letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{pl.en}</span>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+/** 頂部新聞條：紅底頻道字標＋欄目（國際｜INTERNATIONAL）＋右邊頻道標語；下緣一條細線兼全片進度；再下面一行電頭（地點・日期，換鏡時重打）與鏡號 */
+const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsShot[]; f: number; progress: number }> = ({ name, tag, news, shots, f, progress }) => {
+  const cur = curShot(shots, f), dl = shotNews(cur).dateline, at = cur.index === 0 ? -9999 : cur.start + 2;
+  return (
+    <>
+      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP, width: L.INNER_W, height: LN.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
+        <div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(LN.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
+          <span style={{ ...sans(LN.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
+          {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: LN.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
+        </div>
+        <div style={{ marginLeft: "auto", paddingRight: 20, display: "flex", alignItems: "center", ...sans(L.TAG_PX, T.weight.bold, T.text3), letterSpacing: "0.3em" }}>{tag}</div>
+      </div>
+      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP + LN.BAR_H, width: L.INNER_W, height: LN.PROG_H, background: T.hair }} />
+      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP + LN.BAR_H, width: r1(L.INNER_W * progress), height: LN.PROG_H, background: T.text2 }} />
+      <div style={{ position: "absolute", left: L.X, top: LN.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
+        <span style={{ width: 12, height: 12, background: T.accent, opacity: f >= at && f < at + M.flash && Math.floor((f - at) / 4) % 2 === 0 ? 0.25 : 1 }} />
+        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: LN.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}><Typed text={dl} f={f} at={at} per={NM.dl} /></span> : null}
+      </div>
+      <div style={{ position: "absolute", right: L.X, top: LN.DL_TOP, height: 36, display: "flex", alignItems: "center", ...NUM, fontWeight: 600, fontSize: LN.DL_PX, color: T.text3, letterSpacing: "0.06em" }}>{String(cur.index + 1).padStart(2, "0")} / {String(shots.length).padStart(2, "0")}</div>
+    </>
+  );
+};
+/** 下三分之一標題條：紅色欄目籤（這一鏡在講什麼）＋深色條，左邊紅色粗邊；中文一次一段、英文跟著換，換段時從左邊擦出來。條本身一直在。 */
+const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string }> = ({ cues, shots, f, fixed }) => {
+  const cur = curShot(shots, f), label = shotNews(cur).lt;
+  const cue = cues.find((c) => f >= c.window[0] && f < c.window[1]) ?? cues[cues.length - 1];
+  let zh: React.ReactNode = fixed ?? null, en = "", p = 1;
+  if (!fixed && cue && cue.phrases.length) {
+    let k = 0; cue.phrases.forEach((ph, i) => { if (f >= ph.start) k = i; });
+    const ens = enSplit(cue.en), from = Math.max(cue.window[0], cue.phrases[k].start);
+    zh = kwSpans(cue.phrases[k].text.replace(/[，、；：]$/, ""), cue.keywords);
+    en = ens[Math.min(ens.length - 1, Math.floor((k * ens.length) / cue.phrases.length))] ?? "";
+    p = from === 0 ? 1 : 0.25 + 0.75 * tween(f, from, NM.lt, EASE.enter); // 換段的第一幀就露出四分之一，標題條不會空一格
+  }
+  const lp = cur.index === 0 ? 1 : tween(f, cur.start, NM.lt, EASE.enter);
+  return (
+    <>
+      {label ? <div style={{ position: "absolute", left: L.X, top: LN.LT_TAB_TOP, height: LN.LT_TAB_H, padding: "0 20px", background: N.red, display: "flex", alignItems: "center", clipPath: clip(lp, "right") }}><span style={{ ...sans(LN.LT_TAB_PX, T.weight.bold, N.onRed), letterSpacing: "0.2em", lineHeight: 1 }}>{label}</span></div> : null}
+      <div style={{ position: "absolute", left: L.X, top: LN.LT_TOP, width: L.INNER_W, height: LN.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${LN.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: LN.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ clipPath: clip(p, "right") }}>
+          <div style={fixed ? { ...serif(L.CAP_ZH_PX + 4), lineHeight: 1.3 } : { ...sans(L.CAP_ZH_PX, T.weight.sub), lineHeight: 1.3 }}>{zh}</div>
+          {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: 400, fontSize: L.CAP_EN_PX, lineHeight: 1.3, color: T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
+        </div>
+      </div>
+    </>
+  );
+};
+/** 出處（每鏡一行，換鏡時擦入）＋底部跑馬燈：左邊固定「查證截至」，右邊全片的來源一直往左走 */
+const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots, f, asOf }) => {
+  const cur = curShot(shots, f), sp = cur.index === 0 ? 1 : tween(f, cur.start + 2, NM.lt + 2, EASE.enter);
+  const items = [...new Set(shots.flatMap((sh) => sh.sources))];
+  const estW = items.reduce((a, t) => a + [...t].reduce((b, ch) => b + (ch.charCodeAt(0) < 256 ? 0.56 : 1), 0) * LN.TICK_PX + 64, 0);
+  const frac = ((f * NM.tick) % estW) / estW;
+  const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(LN.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
+  return (
+    <>
+      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: LN.SRC_TOP, clipPath: clip(sp, "right"), ...sans(L.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
+      <div style={{ position: "absolute", left: L.X, top: LN.TICK_TOP, width: L.INNER_W, height: LN.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
+        <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(LN.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
+        <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
+          <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", transform: `translateX(${r1(-50 * frac)}%)` }}>{row(0)}{row(1)}</div>
+        </div>
+      </div>
+    </>
+  );
+};
+/** 換鏡的條帶：一條紅線帶著一段暗影從左掃到右（和 Shot 的橫向擦切同步） */
+const SweepBand: React.FC<{ shots: DsShot[]; f: number }> = ({ shots, f }) => {
+  const sh = shots.find((x) => x.index > 0 && f >= x.start && f < x.start + NM.cut);
+  if (!sh) return null;
+  const x = L.W * tween(f, sh.start, NM.cut, EASE.move);
+  return (
+    <div style={{ position: "absolute", left: r1(x - NM.band), top: LN.STAGE_TOP - 10, width: NM.band + T.stroke.mark, height: L.STAGE_H + 20 }}>
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, ${N.bandShade0} 0%, ${N.bandShade} 100%)` }} />
+      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: T.stroke.mark, background: T.accent }} />
+    </div>
+  );
+};
+
+export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props) => {
+  const { slug, scenes, timeline, channel, asOf } = props;
+  const news = (props as { news?: NewsSpec }).news;
   useSerif();
   const f = useCurrentFrame();
-  const m = useMemo(() => buildDossier(scenes, timeline), [scenes, timeline]);
+  const m = useMemo(() => buildDossier(scenes, timeline, { cut: !!news }), [scenes, timeline, news]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
   const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, keywords: s.keywords ?? [], window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines }));
+  const audio = timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
+    <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
+  ));
+  if (news) return (
+    <AbsoluteFill style={{ background: T.bg }}>
+      <Backdrop />
+      <WorldMap news={news} shots={m.shots} f={f} linkAt={news.link ? m.time(news.link.at, 0) : 1e9} />
+      {m.shots.map((sh) => <Shot key={sh.id} sh={sh} f={f} slug={slug} cut />)}
+      <SweepBand shots={m.shots} f={f} />
+      <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
+      <LowerThird cues={caps} shots={m.shots} f={f} />
+      <SourceTicker shots={m.shots} f={f} asOf={asOf} />
+      {audio}
+    </AbsoluteFill>
+  );
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
@@ -476,10 +689,25 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = ({ slug
 };
 
 /** 封面：第一鏡做完的樣子＋一句副標 */
-export const CoverDossier: React.FC<Script> = ({ slug, scenes, cover, channel, asOf }) => {
+export const CoverDossier: React.FC<Script> = (props) => {
+  const { slug, scenes, cover, channel, asOf } = props;
+  const news = (props as { news?: NewsSpec }).news;
   useSerif();
   const c = (cover ?? {}) as { sub?: string };
   const sh = staticShot(scenes[0]);
+  if (news) {
+    const s0 = { ...sh, index: 0, start: 0 };
+    return (
+      <AbsoluteFill style={{ background: T.bg }}>
+        <Backdrop />
+        <WorldMap news={news} shots={[s0]} f={0} linkAt={1e9} />
+        <Shot sh={{ ...s0, start: -9999 }} f={0} slug={slug} cut />
+        <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={[s0]} f={0} progress={0} />
+        <LowerThird cues={[]} shots={[s0]} f={0} fixed={c.sub ?? ""} />
+        <SourceTicker shots={[s0]} f={0} asOf={asOf} />
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />

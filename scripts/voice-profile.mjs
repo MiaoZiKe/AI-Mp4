@@ -32,15 +32,27 @@ export function resolveProfile(voice) {
 /** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
  * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間）；
  * "probe"＝查證揭露版（哩股哩股：把查到的事一件一件攤給信得過的人聽；講到疑點放慢、講到查證結果乾脆收住，比 warm-pro 低、穩） */
-export const DELIVERIES = ["chat", "warm-pro", "probe", "report"];
+export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively", "report-tech", "plain"];
 /** "report"＝正常報導一件事（2026/11/14，使用者聽完 short-ai：「口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」）。
  * 整段說明只有一句（和 what-is-server 被接受的 voice.style 同一種寫法：`…說：` 後面直接接念稿），不寫人設、場景、情緒弧線、Avoid。
  * 原因：長篇導演筆記（AUDIO PROFILE＋SCENE＋Arc）會讓 Gemini 2.5 TTS「演」那個角色，短稿尤其明顯——又慢（short-ai 實測 3.3 音節/秒）又怪。
  * persona／scene／tone／arc／avoid 就算寫了也不送；englishTerms 也不送（念法說明放在一句話的提示裡容易被念出來）。 */
 export const REPORT_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，正常語速、不拖尾音、不演，直接說：";
+/** "report-lively"＝report 的變體（2026/11/14，使用者聽完 short-ai 第 3 版：「可以，但可以再快那麼一點點，並且有點起伏，依據內容變化」）。
+ * 仍然只有一句、沒有人設場景；多了「再快一點點」和「語氣跟著內容起伏」的描述。只描述哪一類句子怎麼講（問句、數字、和預期不一樣的地方、最後一句），
+ * 不引用稿子裡的字、不寫成逐句的表演指示。"report" 的輸出不變。 */
+export const REPORT_LIVELY_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，語速比平常再快一點點、不拖尾音、不演；語氣跟著內容有自然的起伏，問句自然上揚，數字講清楚，講到和預期不一樣的地方帶一點點意外，最後一句輕鬆收尾，直接說：";
+/** "report-tech"＝科技頻道版的 report（2026/11/14，tech-2nm）：同樣只有一句，語速稍快、語氣沉穩。 */
+export const REPORT_TECH_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，語速稍快、語氣沉穩、不拖尾音、不演，直接說：";
+/** "plain"＝正常說話（2026/11/14，談晴說礙 short-talk；使用者聽完第 1 版：「我覺得正常說話，不要太奇怪，那個氣音很奇怪」）。
+ * 一樣只有一句、沒有人設場景；不寫「小聲、放低、講心事」這類會引出氣音或耳語的描述，只要求平常的音量和聲音。其他 delivery 的輸出不變。 */
+export const PLAIN_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音，正常語速、不拖尾音、不用氣音、不演，直接說：";
+const REPORT_LINES = { report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
+/** 這個 delivery 是不是「只送一句話」的報導類 */
+export const isReport = (profile) => Object.hasOwn(REPORT_LINES, profile?.delivery ?? "");
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
 export function buildDirection(profile) {
-  if (profile.delivery === "report") return REPORT_LINE;
+  if (isReport(profile)) return REPORT_LINES[profile.delivery];
   const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, ...(profile.scene ? ["", "# SCENE", `${one(profile.scene)}。`] : []), "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
   const chat = profile.delivery === "chat", warm = profile.delivery === "warm-pro", probe = profile.delivery === "probe";
   if (chat && Array.isArray(profile.pace)) L.push(`Pacing: 跟朋友講話的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。想到哪講到哪：有的地方一口氣帶過去，有的地方想一下才接下去；停頓有長有短，逗號不一定要停。`);
@@ -57,12 +69,12 @@ export function buildDirection(profile) {
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");
 }
-export const takePrompt = (profile, text) => (profile.delivery === "report" ? `${REPORT_LINE}\n${text}` : `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`);
+export const takePrompt = (profile, text) => (isReport(profile) ? `${REPORT_LINES[profile.delivery]}\n${text}` : `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`);
 
 export function profileIssues(profile) {
   const out = [];
   if (profile._unknown) return [`voice.profile 的預設檔「${profile.preset}」不存在（${PRESET_NAMES.join("／")}）`];
-  const report = profile.delivery === "report"; // 只送一句固定的話：persona／tone／arc 不需要
+  const report = isReport(profile); // 只送一句固定的話：persona／tone／arc 不需要
   if (!report) for (const k of ["persona", "tone"]) if (typeof profile[k] !== "string" || !profile[k].trim()) out.push(`voice.profile 缺 ${k}`);
   if (!GENDERS.includes(profile.gender)) out.push(`voice.profile.gender 要是 ${GENDERS.join("／")}`);
   if (profile.accent !== "台灣華語") out.push("voice.profile.accent 固定寫「台灣華語」");

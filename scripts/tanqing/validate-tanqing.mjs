@@ -76,6 +76,10 @@ export function validateTanqing(script, h) {
     if (!Array.isArray(p.title) || !p.title.length || p.title.length > 2) E(`${tag}: props.title 要是 1–2 行的陣列（襯線大標）`);
     else for (const line of p.title) { if (h.emWidth(line) > 10) E(`${tag}: 大標一行「${line}」> 10 個全形字（88px 會超出版心）`); serif(line, `${tag}.title`); tone(line, tag, "大標"); }
     if (p.titleAt !== undefined) checkAt(p.titleAt, s, `${tag}.titleAt`);
+    // 大標和字幕不要是同一句話出現兩次：大標就是旁白那一句的頁寫 caption: "en"（只留英文副字幕）
+    if (p.caption !== undefined && p.caption !== "en") E(`${tag}: props.caption 只能是 "en"（不放中文字幕）或不寫`);
+    if (Array.isArray(p.title) && p.caption !== "en" && h.clean(p.title.join("")) === h.clean(s.subtitle?.zh ?? "")) W(`${tag}: 大標和字幕是同一句話，畫面上會出現兩次；大標換一句，或寫 caption: "en"`);
+    if (p.note?.text && h.clean(s.subtitle?.zh ?? "").includes(h.clean(p.note.text))) W(`${tag}: 橘色一句和字幕重複`);
     if (p.note) {
       if (typeof p.note.text !== "string" || !p.note.text) E(`${tag}.note: 缺 text`);
       else { if (h.emWidth(p.note.text) > 19) E(`${tag}.note:「${p.note.text}」> 19 個全形字`); tone(p.note.text, `${tag}.note`, "橘色一句"); }
@@ -87,6 +91,7 @@ export function validateTanqing(script, h) {
     else {
       for (const k of FIGS[fig.type]) if (fig[k] === undefined) E(`${tag}.figure(${fig.type}): 缺 ${k}`);
       for (const [k, v] of Object.entries(fig)) if (k === "at" || /At$/.test(k)) checkAt(v, s, `${tag}.figure.${k}`);
+      if (fig.scale !== undefined && !(typeof fig.scale === "number" && fig.scale >= 1 && fig.scale <= 1.3)) E(`${tag}.figure.scale 要是 1–1.3（圖整個放大的倍率）`);
       if (fig.type === "people") {
         if (!(Number.isInteger(fig.count) && fig.count >= 2 && fig.count <= 10)) E(`${tag}.figure: count 要是 2–10`);
         if (!(Number.isInteger(fig.mark) && fig.mark >= 0 && fig.mark <= fig.count)) E(`${tag}.figure: mark 要是 0–count`);
@@ -100,7 +105,7 @@ export function validateTanqing(script, h) {
   if (p0.titleAt !== undefined || !p0.figure?.number) E("第一幕要有 figure.number，大標不能寫 titleAt：第 0 幀就要有大標與數字");
   if (numbers !== 1) E(`全片有 ${numbers} 個 figure.number；這個頻道一支片只放一個有來源的數字`);
   if (!qing) E("全片沒有 kind: \"qing\" 的頁：結尾要留一小段「晴」");
-  if (chars < 50 || chars > 70) W(`旁白共 ${chars} 字，短片建議 50–70 字（約 10–15 秒）`);
+  if (chars < 45 || chars > 60) W(`旁白共 ${chars} 字，短片建議 45–60 字（約 10–15 秒）`);
   const est = Math.round(chars / 4.7 + 1.5);
   return { errors, warns, est };
 }

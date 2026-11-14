@@ -58,7 +58,7 @@ function checkModel(script, E, W) {
 }
 
 const AT_BASE = ["start", "voice", "end", "exit"];
-const OVERLAY_TYPES = ["scope", "stamp", "cross", "circle", "steps", "card", "ribbon", "legend", "compare"]; // legend／compare＝深色 HUD 片（Hud.tsx）的圖例與左右對照卡
+const OVERLAY_TYPES = ["scope", "stamp", "cross", "circle", "steps", "card", "ribbon", "legend", "compare", "bars"]; // legend／compare＝深色 HUD 片（Hud.tsx）的圖例與左右對照卡
 
 export function validateThree(script, h) {
   const errors = [], warns = [];
@@ -79,6 +79,14 @@ export function validateThree(script, h) {
   scenes.forEach((s, i) => {
     const tag = s.id ?? `#${i}`;
     if (!s.id || ids.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
+    // 正式片的片尾卡（深色 HUD 片）：最後一幕可以沒有旁白（silent: true ＋ durationSec ＋ props.endCard）；沒寫 silent 的片不受影響
+    if (s.silent === true) {
+      if (i !== scenes.length - 1) E(`${tag}: silent 只能用在最後一幕（片尾卡）`);
+      if (!(s.durationSec > 0)) E(`${tag}: silent 的幕要寫 durationSec`);
+      if (!s.props?.endCard) E(`${tag}: silent 的幕要有 props.endCard`);
+      if (!script.hud) E(`${tag}: 片尾卡目前只有深色 HUD 片（頂層 hud）有畫`);
+      return;
+    }
     if (s.component !== "ThreeScene") E(`${tag}: stage "three" 的 component 只能是 ThreeScene：${s.component}`);
     const n = h.len(s.narration); total += n;
     if (n < 4) E(`${tag}: 旁白太短（${n} 字）`); else if (n > 26) W(`${tag}: 旁白 ${n} 字 > 26（一鏡 2–4 秒，建議拆開）`);
@@ -136,7 +144,8 @@ export function validateThree(script, h) {
   });
   if (!scenes[0].props?.hook?.title) E("第一幕要有 props.hook.title（第 0 幀就看得到的主張）");
   if (!scenes.some((s) => s.props?.explode)) W("沒有 explode（產品台的主動作是沿一個軸一層層分開）");
-  const est = Math.round(scenes.reduce((a, s) => a + h.voicedSeconds(s, true), 0));
+  if (script.hudSkin !== undefined) { const sk = Object.keys(JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "../../src/theme-hud-skins.json"), "utf8"))).filter((k) => !k.startsWith("_")); if (!sk.includes(String(script.hudSkin))) E(`hudSkin「${script.hudSkin}」不存在（${sk.join("／")}；src/theme-hud-skins.json）`); }
+  const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
   if (script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
   return { errors, warns, est };
 }

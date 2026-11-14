@@ -1,6 +1,7 @@
 // 檔案室式（stage: "dossier"）的時間模型：把各幕 props 裡的時間（cue id 或 start｜voice｜end｜exit ±N 幀）換成絕對幀。
 // 一幕＝一鏡（panel）。props 裡名字是 at 或以 At 結尾的欄位都是時間；以 Ats 結尾的是時間陣列。元件不手填秒數。
 // 換鏡：舊鏡在下一鏡開始後 hold 幀開始淡出（淡 out 幀）；新鏡的東西最早在舊鏡淡完前 2 幀進場（比這更早的時間會被往後夾）。
+// 「國際新聞」版（頂層有 news）改用橫向擦切（opts.cut），見 DsOpts。
 import type { Scene, TimelineV2 } from "../../types";
 import { THEME_DOSSIER as T } from "../../theme";
 
@@ -8,7 +9,10 @@ export type DsShot = {
   id: string; index: number; start: number; inAt: number; outAt: number; end: number;
   panel: string; p: Record<string, any>; sources: string[];
 };
-export type DsModel = { total: number; shots: DsShot[] };
+export type DsModel = { total: number; shots: DsShot[]; /** 把頂層（不屬於某一幕）的時間寫法換成絕對幀，例如 "s03:res+4" */ time: (spec: unknown, fb?: number) => number };
+/** cut＝「國際新聞」版的換鏡：舊鏡不淡出，下一鏡開始時一條橫向擦切把它換掉（outAt＝下一鏡開始）；
+ *  新鏡的東西可以寫 start-N 提早做完（最多提早 news.motion.pre 幀），擦進來時畫面就是滿的。 */
+export type DsOpts = { cut?: boolean };
 
 const isAt = (k: string) => k === "at" || /At$/.test(k);
 const isAts = (k: string) => /Ats$/.test(k);
@@ -18,7 +22,7 @@ const mapTimes = (v: any, time: (spec: unknown) => number): any => {
   return v;
 };
 
-export const buildDossier = (scenes: Scene[], tl: TimelineV2): DsModel => {
+export const buildDossier = (scenes: Scene[], tl: TimelineV2, opts: DsOpts = {}): DsModel => {
   const by = Object.fromEntries(tl.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
   const M = T.motion;
@@ -38,12 +42,12 @@ export const buildDossier = (scenes: Scene[], tl: TimelineV2): DsModel => {
     const t = by[s.id], raw = (s.props ?? {}) as Record<string, any>;
     const next = ordered[i + 1] && by[ordered[i + 1].id];
     const start = i === 0 ? 0 : t.startFrame;
-    const inAt = i === 0 ? 0 : shots[i - 1].outAt + M.out - 2;
-    const outAt = next ? next.startFrame + Number(raw.hold ?? M.hold) : tl.totalFrames + 999;
+    const inAt = opts.cut ? start - T.news.motion.pre : i === 0 ? 0 : shots[i - 1].outAt + M.out - 2;
+    const outAt = !next ? tl.totalFrames + 999 : opts.cut ? next.startFrame : next.startFrame + Number(raw.hold ?? M.hold);
     const p = mapTimes(raw, (spec) => Math.max(inAt, resolve(spec, s.id, start)));
     shots.push({ id: s.id, index: i, start, inAt, outAt, end: next ? next.startFrame : tl.totalFrames, panel: String(raw.panel), p, sources: s.sources ?? [] });
   });
-  return { total: tl.totalFrames, shots };
+  return { total: tl.totalFrames, shots, time: (spec, fb = 0) => resolve(spec, ordered[0]?.id ?? "", fb) };
 };
 
 /** 封面／靜態用：所有動作都已經做完的一鏡 */

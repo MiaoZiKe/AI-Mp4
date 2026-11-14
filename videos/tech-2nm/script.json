@@ -1,0 +1,1264 @@
+{
+ "slug": "tech-2nm",
+ "title": "兩奈米不是尺寸（科技透明圈第一支完整片：Powers of Ten 縮放＋3D 爆炸圖＋開關運作＋新舊對比）",
+ "asOf": "2026/11/14",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "glass",
+ "_hudSkin說明": "換配色只改這一個欄位：deep（深海青藍＋琥珀）｜glass（透明冰藍＋單一強調色，科技透明圈提案）。色票在 src/theme.ts 的 HUD_SKINS。",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-report"
+ },
+ "hud": {
+  "_說明": "深色科技 HUD 與 Powers of Ten 縮放（src/components/three/Hud.tsx）。顏色由頂層 hudSkin 選（src/theme.ts 的 HUD_SKINS：deep｜glass）；smallPx＝小字下限。",
+  "levels": [
+   {
+    "id": "phone",
+    "label": "手機",
+    "en": "PHONE",
+    "field": "18 cm",
+    "ruler": "5 cm",
+    "art": "phone"
+   },
+   {
+    "id": "board",
+    "label": "主機板",
+    "en": "LOGIC BOARD",
+    "field": "60 mm",
+    "ruler": "20 mm",
+    "art": "board"
+   },
+   {
+    "id": "chip",
+    "label": "晶片",
+    "en": "DIE",
+    "field": "10 mm",
+    "ruler": "2 mm",
+    "art": "die"
+   },
+   {
+    "id": "cells",
+    "label": "電晶體陣列",
+    "en": "CELLS",
+    "field": "15 µm",
+    "ruler": "5 µm",
+    "art": "cells"
+   },
+   {
+    "id": "transistor",
+    "label": "一顆電晶體",
+    "en": "NANOSHEET FET",
+    "field": "150 nm",
+    "ruler": "50 nm",
+    "art": "gates",
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例",
+   "_說明": "使用者技能 3d-industry-explainer-video：右上角固定標示，全片都在（接 HudFrame 時畫在倍率讀數下方、頁首之下）"
+  },
+  "maxLabels": 2,
+  "smallPx": 30
+ },
+ "cover": {
+  "title": [
+   "2奈米",
+   "不是尺寸"
+  ],
+  "sub": "從手機放大到電晶體",
+  "frame": 230
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "手機晶片的兩奈米，其實不是尺寸。",
+   "tts": "手機晶片的兩奈米，其實不是尺寸。",
+   "subtitle": {
+    "zh": "手機晶片的兩奈米\n其實不是尺寸",
+    "en": "The \"2 nanometers\" in your phone chip | isn't actually a size."
+   },
+   "keywords": [
+    "兩奈米",
+    "不是尺寸"
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "兩奈米"
+    },
+    {
+     "id": "not",
+     "text": "不是尺寸"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "手機晶片的",
+     "title": "2奈米不是尺寸",
+     "size": 128,
+     "top": 560
+    },
+    "zoom": [
+     {
+      "to": "phone",
+      "at": "start-30",
+      "drift": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "two+14",
+      "until": "s2:zoom-6",
+      "x": 760,
+      "y": 1060,
+      "text": "≠ 2 nm",
+      "color": "amber",
+      "rot": -6,
+      "size": 84
+     },
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "not+10",
+      "until": "s2:zoom-6",
+      "x": 300,
+      "y": 1130,
+      "text": "量不到 2 奈米",
+      "color": "blue",
+      "size": 38
+     }
+    ],
+    "shift": [
+     {
+      "layer": "inv",
+      "at": "start-30",
+      "until": "s8:volt+6",
+      "opacity": 0,
+      "dur": 8
+     }
+    ]
+   },
+   "sources": [
+    "節點名稱是世代名，不是實際尺寸（IBM、WikiChip）"
+   ]
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 1,
+   "narration": "那它指的是什麼？放大來看。",
+   "tts": "那它指的是什麼？放大來看。",
+   "subtitle": {
+    "zh": "那它指的是什麼？\n放大來看",
+    "en": "So what does it refer to? | Let's zoom in."
+   },
+   "keywords": [
+    "什麼",
+    "放大"
+   ],
+   "cues": [
+    {
+     "id": "what",
+     "text": "指的是什麼"
+    },
+    {
+     "id": "zoom",
+     "text": "放大"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "zoom-6",
+      "dur": 44
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "what",
+      "until": "zoom-6",
+      "x": 540,
+      "y": 1180,
+      "text": "2 nm ＝ ？",
+      "color": "amber",
+      "size": 52
+     }
+    ]
+   },
+   "sources": [
+    "示意圖：手機內部配置為幾何示意，不仿任何機型"
+   ]
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "打開手機，找到主機板。",
+   "tts": "打開手機，找到主機板。",
+   "subtitle": {
+    "zh": "打開手機\n找到主機板",
+    "en": "Open the phone | and find the logic board."
+   },
+   "keywords": [
+    "主機板"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "打開"
+    },
+    {
+     "id": "board",
+     "text": "主機板"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "board",
+      "until": "s4:big-6",
+      "x": 300,
+      "y": 1190,
+      "text": "主機板・約 6 公分",
+      "color": "blue",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "示意圖：主機板配置為幾何示意"
+   ]
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "最大那顆是主晶片。",
+   "tts": "最大那顆是主晶片。",
+   "subtitle": {
+    "zh": "最大那顆\n是主晶片",
+    "en": "The biggest part on it | is the main chip."
+   },
+   "keywords": [
+    "主晶片"
+   ],
+   "cues": [
+    {
+     "id": "big",
+     "text": "最大"
+    },
+    {
+     "id": "chip",
+     "text": "主晶片"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chip",
+      "at": "big-6",
+      "dur": 34
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "chip+6",
+      "until": "s5:count-10",
+      "x": 330,
+      "y": 1190,
+      "text": "主晶片・約 1 公分",
+      "color": "blue",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "示意圖：晶片分區為幾何示意，不是任何一顆晶片的佈局"
+   ]
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "它只有指甲大，裡面有上百億個電晶體。",
+   "tts": "它只有指甲大，裡面有上百億個電晶體。",
+   "subtitle": {
+    "zh": "它只有指甲大\n裡面有上百億個電晶體",
+    "en": "It's the size of a fingernail, | with over ten billion transistors inside."
+   },
+   "keywords": [
+    "指甲大",
+    "上百億"
+   ],
+   "cues": [
+    {
+     "id": "nail",
+     "text": "指甲"
+    },
+    {
+     "id": "count",
+     "text": "上百億"
+    },
+    {
+     "id": "tr",
+     "text": "電晶體"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "cells",
+      "at": "count-10",
+      "dur": 34
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "count+10",
+      "until": "s6:each-8",
+      "x": 540,
+      "y": 1060,
+      "text": "上百億個",
+      "color": "blue",
+      "rot": -4,
+      "size": 84
+     }
+    ]
+   },
+   "sources": [
+    "某款 3 奈米世代手機晶片官方公布約 190 億個電晶體"
+   ]
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "每個電晶體都是一個開關。",
+   "tts": "每個電晶體都是一個開關。",
+   "subtitle": {
+    "zh": "每個電晶體\n都是一個開關",
+    "en": "Every transistor | is a switch."
+   },
+   "keywords": [
+    "電晶體",
+    "開關"
+   ],
+   "cues": [
+    {
+     "id": "each",
+     "text": "每個"
+    },
+    {
+     "id": "sw",
+     "text": "開關"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "transistor",
+      "at": "each-8",
+      "dur": 34
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "sw",
+      "until": "s7:open-2",
+      "x": 540,
+      "y": 1190,
+      "text": "一顆電晶體 ＝ 一個開關",
+      "color": "amber",
+      "size": 44
+     }
+    ]
+   },
+   "sources": [
+    "示意模型；比例照 IBM 2021 公開的 2 奈米試作晶片"
+   ]
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "拆開一顆。三片薄片疊著，外面包著閘極。",
+   "tts": "拆開一顆。三片薄片疊著，外面包著閘極。",
+   "subtitle": {
+    "zh": "拆開一顆\n三片薄片疊著\n外面包著閘極",
+    "en": "Take one apart: | three thin sheets, stacked, | wrapped by the gate."
+   },
+   "keywords": [
+    "三片薄片",
+    "閘極"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "three",
+     "text": "三片"
+    },
+    {
+     "id": "gate",
+     "text": "閘極"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "explode": {
+     "at": "open+2"
+    },
+    "spin": {
+     "at": "start+0",
+     "until": "open+2",
+     "turns": 0.03
+    },
+    "shot": [
+     {
+      "at": "open-4",
+      "d": 158,
+      "elev": 28,
+      "y": 4,
+      "x": 0,
+      "dur": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "sheet",
+      "text": "奈米薄片",
+      "en": "nanosheet",
+      "color": "blue",
+      "at": "three",
+      "until": "s8:start-8"
+     },
+     {
+      "part": "gate",
+      "text": "閘極",
+      "en": "gate",
+      "color": "amber",
+      "at": "gate-2",
+      "until": "s8:start-8"
+     }
+    ]
+   },
+   "sources": [
+    "示意模型；爆炸圖只是畫法，零件實際上不能這樣拆"
+   ]
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "閘極加上電壓，電子從這三片流過去，這是開。",
+   "tts": "閘極加上電壓，電子從這三片流過去，這是開。",
+   "subtitle": {
+    "zh": "閘極加上電壓\n電子從這三片流過去\n這是開",
+    "en": "Put voltage on the gate, | electrons flow through the three sheets: | on."
+   },
+   "keywords": [
+    "電壓",
+    "電子",
+    "開"
+   ],
+   "cues": [
+    {
+     "id": "gate",
+     "text": "閘極"
+    },
+    {
+     "id": "volt",
+     "text": "電壓"
+    },
+    {
+     "id": "e",
+     "text": "電子"
+    },
+    {
+     "id": "flow",
+     "text": "流過去"
+    },
+    {
+     "id": "on",
+     "text": "開"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "assemble": {
+     "at": "start-8"
+    },
+    "shot": [
+     {
+      "at": "start-8",
+      "d": 118,
+      "elev": 24,
+      "y": 1,
+      "x": 0,
+      "dur": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "gate",
+      "at": "start+2",
+      "until": "s12:start-6",
+      "opacity": 0.5,
+      "dur": 16
+     },
+     {
+      "layer": "spacer",
+      "at": "start+2",
+      "until": "s12:start-6",
+      "opacity": 0.1,
+      "dur": 16
+     },
+     {
+      "layer": "contact",
+      "at": "start+2",
+      "until": "s12:start-6",
+      "opacity": 0.0,
+      "dur": 16
+     },
+     {
+      "layer": "metal",
+      "at": "start+2",
+      "until": "s12:start-6",
+      "opacity": 0.0,
+      "dur": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "vgMeter",
+      "at": "gate",
+      "until": "s10:fin-10"
+     },
+     {
+      "id": "idMeter",
+      "at": "gate",
+      "until": "s10:fin-10"
+     },
+     {
+      "id": "gateOn",
+      "at": "volt-4",
+      "until": "s9:off+0",
+      "ramp": 12
+     },
+     {
+      "id": "chanOn",
+      "at": "volt+6",
+      "until": "s9:off+4",
+      "ramp": 8
+     },
+     {
+      "id": "e1",
+      "at": "e-2",
+      "until": "s9:off+6",
+      "ramp": 8
+     },
+     {
+      "id": "e2",
+      "at": "e-2",
+      "until": "s9:off+6",
+      "ramp": 8
+     },
+     {
+      "id": "e3",
+      "at": "e-2",
+      "until": "s9:off+6",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "src",
+      "text": "源極",
+      "en": "source",
+      "color": "blue",
+      "at": "e-6",
+      "until": "s9:shut+16"
+     },
+     {
+      "part": "drn",
+      "text": "汲極",
+      "en": "drain",
+      "color": "blue",
+      "at": "flow-4",
+      "until": "s9:shut+16"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "on-2",
+      "until": "s9:off-2",
+      "x": 800,
+      "y": 1150,
+      "text": "開 ON",
+      "color": "amber",
+      "rot": -5,
+      "size": 76
+     }
+    ]
+   },
+   "sources": [
+    "運作為示意：電壓只標高低；電子由源極流向汲極"
+   ]
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "電壓拿掉，電流停住，這是關。",
+   "tts": "電壓拿掉，電流停住，這是關。",
+   "subtitle": {
+    "zh": "電壓拿掉\n電流停住，這是關",
+    "en": "Remove the voltage, | the current stops: off."
+   },
+   "keywords": [
+    "電壓拿掉",
+    "關"
+   ],
+   "cues": [
+    {
+     "id": "off",
+     "text": "電壓拿掉"
+    },
+    {
+     "id": "stop",
+     "text": "停住"
+    },
+    {
+     "id": "shut",
+     "text": "關"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shift": [
+     {
+      "layer": "inv",
+      "at": "off+6",
+      "opacity": 0,
+      "dur": 10
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "shut-2",
+      "until": "s10:fin-10",
+      "x": 800,
+      "y": 1150,
+      "text": "關 OFF",
+      "color": "blue",
+      "rot": -5,
+      "size": 76
+     }
+    ]
+   },
+   "sources": [
+    "運作為示意：實際開關一次是皮秒等級"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "twist",
+   "para": 4,
+   "narration": "上一代的鰭式只包三面，關了還會漏電。",
+   "tts": "上一代的鰭式只包三面，關了還會漏電。",
+   "subtitle": {
+    "zh": "上一代的鰭式\n只包三面\n關了還會漏電",
+    "en": "The previous design, the fin, | is wrapped on three sides only, | so it still leaks when off."
+   },
+   "keywords": [
+    "鰭式",
+    "三面",
+    "漏電"
+   ],
+   "cues": [
+    {
+     "id": "fin",
+     "text": "鰭式"
+    },
+    {
+     "id": "three",
+     "text": "三面"
+    },
+    {
+     "id": "leak",
+     "text": "漏電"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "fin-10",
+      "d": 160,
+      "elev": 24,
+      "y": -13,
+      "x": 0,
+      "dur": 22
+     }
+    ],
+    "overlay": [
+     {
+      "type": "compare",
+      "at": "fin-8",
+      "until": "s12:start-4",
+      "y": 830,
+      "h": 440,
+      "title": "關閉時",
+      "tag": "剖面示意，非實測",
+      "sides": [
+       {
+        "kind": "fin",
+        "title": "鰭式",
+        "sub": "FinFET・上一代",
+        "wrap": "閘極包三面",
+        "leak": 5,
+        "note": "漏電",
+        "color": "amber",
+        "at": "fin-4"
+       },
+       {
+        "kind": "gaa",
+        "title": "奈米片",
+        "sub": "GAA nanosheet",
+        "wrap": "閘極包四面",
+        "leak": 1,
+        "note": "很少",
+        "color": "blue",
+        "at": "s11:ns-4"
+       }
+      ]
+     }
+    ]
+   },
+   "sources": [
+    "漏電為示意，不是量測（結構依據：IEEE Spectrum）"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "twist",
+   "para": 4,
+   "narration": "奈米片四面都包住，漏電更少。",
+   "tts": "奈米片四面都包住，漏電更少。",
+   "subtitle": {
+    "zh": "奈米片四面都包住\n漏電更少",
+    "en": "Nanosheets are wrapped on all four sides: | less leakage."
+   },
+   "keywords": [
+    "四面",
+    "更少"
+   ],
+   "cues": [
+    {
+     "id": "ns",
+     "text": "奈米片"
+    },
+    {
+     "id": "four",
+     "text": "四面"
+    },
+    {
+     "id": "less",
+     "text": "更少"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": [
+    "漏電為示意，不是零；少多少各來源不一，不給數字"
+   ]
+  },
+  {
+   "id": "s12",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "那二在哪裡？",
+   "tts": "那二在哪裡？",
+   "subtitle": {
+    "zh": "那二在哪裡？",
+    "en": "So where is the \"2\"?"
+   },
+   "keywords": [
+    "二"
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "二"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "reexplode": {
+     "at": "start-6"
+    },
+    "shot": [
+     {
+      "at": "start-6",
+      "d": 150,
+      "elev": 28,
+      "y": 5,
+      "x": 0,
+      "dur": 24
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "two",
+      "until": "s13:ibm-4",
+      "x": 540,
+      "y": 1170,
+      "text": "2 在哪？",
+      "color": "amber",
+      "rot": -4,
+      "size": 80
+     }
+    ]
+   },
+   "sources": [
+    "示意模型；比例照 IBM 2021 公開的 2 奈米試作晶片"
+   ]
+  },
+  {
+   "id": "s13",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "這顆試作晶片，薄片厚五奈米，閘極間距四十四奈米。",
+   "tts": "這顆試作晶片，薄片厚五奈米，閘極間距四十四奈米。",
+   "subtitle": {
+    "zh": "這顆試作晶片\n薄片厚五奈米\n閘極間距四十四奈米",
+    "en": "On this test chip, | each sheet is 5 nm thick | and gates sit 44 nm apart."
+   },
+   "keywords": [
+    "五奈米",
+    "四十四奈米"
+   ],
+   "cues": [
+    {
+     "id": "ibm",
+     "text": "試作晶片"
+    },
+    {
+     "id": "five",
+     "text": "五奈米"
+    },
+    {
+     "id": "pitch",
+     "text": "間距"
+    },
+    {
+     "id": "ff",
+     "text": "四十四"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "five-8",
+      "d": 140,
+      "elev": 22,
+      "y": 7,
+      "x": 0,
+      "dur": 18
+     },
+     {
+      "at": "pitch-6",
+      "d": 150,
+      "elev": 36,
+      "y": 5,
+      "x": 0,
+      "dur": 20
+     }
+    ],
+    "measure": [
+     {
+      "at": "five-2",
+      "until": "s15:start-8",
+      "from": "sheetLo",
+      "to": "sheetHi",
+      "text": "5 nm",
+      "color": "blue",
+      "off": -80
+     },
+     {
+      "at": "ff-4",
+      "until": "s15:start-8",
+      "from": "gateL",
+      "to": "gate",
+      "text": "44 nm",
+      "color": "amber",
+      "off": -70
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "ibm",
+      "until": "s15:start-8",
+      "x": 300,
+      "y": 1210,
+      "text": "IBM 2021 試作晶片",
+      "color": "amber",
+      "size": 38
+     }
+    ]
+   },
+   "sources": [
+    "IBM 2 奈米試作晶片公開數字；量產晶片的尺寸未公開"
+   ]
+  },
+  {
+   "id": "s14",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "都不是二。兩奈米只是世代的名字。",
+   "tts": "都不是二。兩奈米只是世代的名字。",
+   "subtitle": {
+    "zh": "都不是二\n兩奈米只是世代的名字",
+    "en": "Neither is 2. | \"2 nm\" is just the name of a generation."
+   },
+   "keywords": [
+    "都不是二",
+    "世代的名字"
+   ],
+   "cues": [
+    {
+     "id": "none",
+     "text": "都不是"
+    },
+    {
+     "id": "name",
+     "text": "世代"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "none-2",
+      "until": "name-4",
+      "x": 760,
+      "y": 1150,
+      "text": "都不是 2",
+      "color": "coral",
+      "rot": -5,
+      "size": 80
+     },
+     {
+      "type": "stamp",
+      "at": "name",
+      "until": "s15:start-8",
+      "x": 700,
+      "y": 1150,
+      "text": "2 奈米＝世代名",
+      "color": "amber",
+      "rot": -3,
+      "size": 64
+     }
+    ]
+   },
+   "sources": [
+    "節點名稱是世代名，不對應任何實際尺寸（IBM、WikiChip）"
+   ],
+   "pauseAfter": 0.35
+  },
+  {
+   "id": "s15",
+   "beat": "you",
+   "para": 6,
+   "narration": "對你的差別是省電。",
+   "tts": "對你的差別是省電。",
+   "subtitle": {
+    "zh": "對你的差別是省電",
+    "en": "For you, the difference is battery life."
+   },
+   "keywords": [
+    "省電"
+   ],
+   "cues": [
+    {
+     "id": "you",
+     "text": "對你"
+    },
+    {
+     "id": "save",
+     "text": "省電"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "phone",
+      "at": "start-8",
+      "dur": 40
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "save",
+      "until": "s16:target-4",
+      "x": 540,
+      "y": 1100,
+      "text": "更省電",
+      "color": "amber",
+      "rot": -4,
+      "size": 96
+     }
+    ]
+   },
+   "sources": [
+    "示意圖，非實際比例"
+   ]
+  },
+  {
+   "id": "s16",
+   "beat": "you",
+   "para": 6,
+   "narration": "照廠商的目標，跟上一代比，",
+   "tts": "照廠商的目標，跟上一代比，",
+   "subtitle": {
+    "zh": "照廠商的目標\n跟上一代比",
+    "en": "By the foundry's own target, | compared with the last generation,"
+   },
+   "keywords": [
+    "目標",
+    "上一代"
+   ],
+   "cues": [
+    {
+     "id": "target",
+     "text": "廠商"
+    },
+    {
+     "id": "prev",
+     "text": "上一代"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "bars",
+      "at": "target-2",
+      "until": "s18:small-6",
+      "y": 640,
+      "title": "同樣效能下的耗電",
+      "tag": "廠商目標值，非實測",
+      "rows": [
+       {
+        "label": "上一代（3 奈米）",
+        "v": 1,
+        "text": "100%",
+        "at": "prev-2"
+       },
+       {
+        "label": "這一代（2 奈米）",
+        "v": 0.7,
+        "v2": 0.75,
+        "color": "amber",
+        "text": "少 25–30%",
+        "at": "s17:power-2",
+        "textAt": "s17:less"
+       }
+      ]
+     }
+    ]
+   },
+   "sources": [
+    "台積電公布的 N2 目標值（對比 N3E），不是實測"
+   ]
+  },
+  {
+   "id": "s17",
+   "beat": "you",
+   "para": 6,
+   "narration": "同樣效能，耗電少兩成五到三成。",
+   "tts": "同樣效能，耗電少兩成五到三成。",
+   "subtitle": {
+    "zh": "同樣效能\n耗電少兩成五到三成",
+    "en": "same performance, | 25 to 30 percent less power."
+   },
+   "keywords": [
+    "同樣效能",
+    "兩成五到三成"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同樣效能"
+    },
+    {
+     "id": "power",
+     "text": "耗電"
+    },
+    {
+     "id": "less",
+     "text": "兩成五"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": [
+    "台積電公布的 N2 目標值（對比 N3E），不是實測"
+   ],
+   "pauseAfter": 0.3
+  },
+  {
+   "id": "s18",
+   "beat": "cta",
+   "para": 7,
+   "narration": "可是這麼小，怎麼印上去？",
+   "tts": "可是這麼小，怎麼印上去？",
+   "subtitle": {
+    "zh": "可是這麼小\n怎麼印上去？",
+    "en": "But at this size, | how do you print it?"
+   },
+   "keywords": [
+    "這麼小",
+    "怎麼印"
+   ],
+   "cues": [
+    {
+     "id": "small",
+     "text": "這麼小"
+    },
+    {
+     "id": "how",
+     "text": "怎麼印"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "card",
+      "at": "small-4",
+      "until": "s20:start+0",
+      "y": 420,
+      "kicker": "想一想",
+      "lines": [
+       "這麼小",
+       "怎麼印上去？"
+      ],
+      "hi": "怎麼印",
+      "hiAt": "how",
+      "size": 96
+     }
+    ]
+   },
+   "sources": [
+    "IBM 試作晶片前段用 EUV 曝光；下一支細講"
+   ]
+  },
+  {
+   "id": "s19",
+   "beat": "cta",
+   "para": 7,
+   "narration": "下一支，來看曝光機。",
+   "tts": "下一支，來看曝光機。",
+   "subtitle": {
+    "zh": "下一支\n來看曝光機",
+    "en": "Next time: | the lithography machine."
+   },
+   "keywords": [
+    "曝光機"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "litho",
+     "text": "曝光機"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "litho-2",
+      "until": "s20:start+0",
+      "x": 540,
+      "y": 1010,
+      "text": "下一支 ▸ 曝光機",
+      "color": "amber",
+      "rot": -3,
+      "size": 72
+     }
+    ]
+   },
+   "sources": [
+    "IBM 試作晶片前段用 EUV 曝光；下一支細講"
+   ]
+  },
+  {
+   "id": "s20",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 2.4,
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "曝光機"
+    }
+   },
+   "sources": []
+  }
+ ],
+ "sample": false
+}

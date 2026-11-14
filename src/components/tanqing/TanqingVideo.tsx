@@ -62,10 +62,10 @@ const Ground: React.FC<{ y: number; p: number; x0?: number; x1?: number }> = ({ 
 const Svg: React.FC<{ children: React.ReactNode }> = ({ children }) => <svg width={L.INNER_W} height={L.FIG_H} viewBox={`0 0 ${L.INNER_W} ${L.FIG_H}`} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>{children}</svg>;
 const figText = (px: number, weight: number, color: string): React.CSSProperties => ({ position: "absolute", fontFamily: FONT_ZH, fontWeight: weight, fontSize: px, lineHeight: 1.25, color, whiteSpace: "pre" });
 
-/** 十個圓角人形膠囊：一個一個描出來；mark 個再描成空心橘框，其餘填米色。左上是大數字 */
+/** 十個圓角人形膠囊：第 0 幀先有淡線輪廓（ghost），再一個一個描出來；mark 個再描成空心橘框，其餘填米色。左上是大數字；標籤接在橘色虛線的右端 */
 const People: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   const n = fig.count ?? 10, mark = fig.mark ?? 0, t = fig.times;
-  const bw = 64, bh = 150, hr = 24, pitch = 86, ground = 548;
+  const bw = 68, bh = 230, hr = 27, pitch = 88, ground = 600;
   const x0 = (L.INNER_W - ((n - 1) * pitch + bw)) / 2, top = ground - 3 - bh, headCy = top - 10 - hr;
   const markAt = t.markAt ?? fig.at, lineAt = t.labelAt ?? markAt;
   const lineY = headCy - hr - 20, lineX1 = x0 + (mark - 1) * pitch + bw + 12;
@@ -75,6 +75,15 @@ const People: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
     <>
       <Svg>
         <Ground y={ground} p={drawP(f, t.groundAt ?? fig.at, M.draw)} />
+        {fig.ghost === false ? null : Array.from({ length: n }, (_, k) => {
+          const x = x0 + k * pitch;
+          return (
+            <g key={`g${k}`} fill="none" stroke={T.hair} strokeWidth={T.stroke.hair}>
+              <circle cx={x + bw / 2} cy={headCy} r={hr} />
+              <rect x={x} y={top} width={bw} height={bh} rx={bw / 2} />
+            </g>
+          );
+        })}
         {Array.from({ length: n }, (_, k) => {
           const x = x0 + k * pitch, p = drawP(f, fig.at + k * (fig.stagger ?? M.stagger)), op = k < mark ? drawP(f, markAt + k * M.markStagger, M.mark) : 0;
           if (p <= 0) return null;
@@ -100,7 +109,7 @@ const People: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
           {fig.number.note ? <div style={{ ...figText(L.NUM_NOTE_PX, T.weight.body, T.ink2), position: "relative", lineHeight: 1.4 }}>{fig.number.note}</div> : null}
         </div>
       ) : null}
-      {fig.label ? <div style={{ ...figText(L.LABEL_PX, T.weight.bold, T.ink), left: x0 - 12, top: lineY - 62, opacity: fadeP(f, lineAt) }}>{fig.label}</div> : null}
+      {fig.label ? <div style={{ ...figText(L.LABEL_PX, T.weight.bold, T.ink), left: lineX1 + 18, top: lineY - L.LABEL_PX, opacity: fadeP(f, lineAt + M.draw) }}>{fig.label}</div> : null}
     </>
   );
 };
@@ -185,7 +194,10 @@ const Mark: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
 
 const Figure: React.FC<{ fig?: TqFigure; f: number }> = ({ fig, f }) => {
   if (!fig) return null;
-  return fig.type === "people" ? <People fig={fig} f={f} /> : fig.type === "form" ? <Form fig={fig} f={f} /> : fig.type === "bowl" ? <Bowl fig={fig} f={f} /> : fig.type === "mark" ? <Mark fig={fig} f={f} /> : null;
+  const el = fig.type === "people" ? <People fig={fig} f={f} /> : fig.type === "form" ? <Form fig={fig} f={f} /> : fig.type === "bowl" ? <Bowl fig={fig} f={f} /> : fig.type === "mark" ? <Mark fig={fig} f={f} /> : null;
+  // figure.scale（選填，預設 1）：9:16 比貼文高，圖可以整個放大（以圖區中心為準）
+  const sc = typeof fig.scale === "number" ? fig.scale : 1;
+  return sc === 1 ? el : <div style={{ position: "absolute", left: 0, top: 0, width: L.INNER_W, height: L.FIG_H, transform: `scale(${sc})`, transformOrigin: "50% 50%" }}>{el}</div>;
 };
 
 /** 一頁：圖區＋襯線大標＋橘色一句。換頁＝舊頁往左平移淡出、新頁從右邊平移淡入；整頁極慢推近 */
@@ -208,7 +220,7 @@ const Page: React.FC<{ pg: TqPage; f: number; first: boolean; last: boolean }> =
   );
 };
 
-type Cap = { en: string; window: [number, number]; phrases: { text: string; start: number }[] };
+type Cap = { en: string; zh: boolean; window: [number, number]; phrases: { text: string; start: number }[] };
 const enSplit = (en: string) => String(en ?? "").split("|").map((x) => x.trim()).filter(Boolean);
 /** 字幕：照貼文內文的樣式（黑體、靠左），中文一次一段、英文跟著換 */
 const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
@@ -221,8 +233,8 @@ const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
   const o = from === 0 ? 1 : tween(f, from, M.cap, EASE.enter); // 第 0 幀的字幕直接在
   return (
     <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.CAP_TOP, opacity: o }}>
-      <div style={{ fontFamily: FONT_ZH, fontWeight: T.weight.body, fontSize: L.CAP_ZH_PX, lineHeight: 1.3, color: T.ink, whiteSpace: "nowrap" }}>{zh}</div>
-      {en[ek] ? <div style={{ marginTop: 12, fontFamily: FONT_EN, fontWeight: T.weight.en, fontSize: L.CAP_EN_PX, color: T.ink2, whiteSpace: "nowrap" }}>{en[ek]}</div> : null}
+      {cue.zh ? <div style={{ fontFamily: FONT_ZH, fontWeight: T.weight.body, fontSize: L.CAP_ZH_PX, lineHeight: 1.3, color: T.ink, whiteSpace: "nowrap" }}>{zh}</div> : null}
+      {en[ek] ? <div style={{ marginTop: cue.zh ? 12 : 0, fontFamily: FONT_EN, fontWeight: T.weight.en, fontSize: L.CAP_EN_PX, color: T.ink2, whiteSpace: "nowrap" }}>{en[ek]}</div> : null}
     </div>
   );
 };
@@ -264,7 +276,7 @@ export const VideoTanqing: React.FC<Script & { timeline: TimelineV2 }> = ({ scen
   const m = useMemo(() => buildTanqing(scenes, timeline), [scenes, timeline]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
-  const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines }));
+  const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, zh: (s.props as any)?.caption !== "en", window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines }));
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Paper />

@@ -5,7 +5,8 @@
 // 都是幾何示意：沒有商標、不仿特定機型、區塊配置不是任何一顆真實晶片。顏色只讀 THEME_3D_HUD。
 // 每一級正中央都留著下一級（大小照 field 的比例），所以縮放是一路鑽進同一個點。
 import React from "react";
-import { FONT_EN, FONT_ZH, THEME_3D_HUD as H } from "../../theme";
+import { FONT_EN, FONT_ZH } from "../../theme";
+import { H } from "./hudSkin";
 
 const mono = (px: number, color: string = H.text2, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontSize: px, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text2, w = 700): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, fontWeight: w, whiteSpace: "nowrap" });

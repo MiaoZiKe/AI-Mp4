@@ -33,7 +33,14 @@ export function validateDossier(script, h) {
   if (!have) W(`還沒有襯線字型：先跑 node scripts/dossier/fetch-fonts.mjs ${script.slug}`);
   const missing = new Set();
   const serif = (v) => { if (typeof v === "string") { if (have) for (const c of v) if (c !== "\n" && !have.has(c)) missing.add(c); } else if (v && typeof v === "object") Object.values(v).forEach(serif); };
-  serif(script.cover); serif(script.channel);
+  serif(script.cover); serif(script.channel); serif(script.news);
+  // 「國際新聞」版（頂層 news，可省略）：欄目名、地點（經緯度）、連線；每鏡 props.news＝{ dateline, place, lt }
+  const news = script.news;
+  if (news !== undefined) {
+    if (!news || typeof news.section !== "string" || !news.section) E("news.section 要是字串（新聞條上的欄目名，例如「國際」）");
+    for (const [id, pl] of Object.entries(news?.places ?? {})) if (typeof pl?.zh !== "string" || typeof pl?.en !== "string" || !(Math.abs(pl?.lon) <= 180) || !(Math.abs(pl?.lat) <= 90)) E(`news.places.${id} 要有 zh、en、lon、lat`);
+    if (news?.link && (!news.places?.[news.link.from] || !news.places?.[news.link.to] || typeof news.link.at !== "string" || !/^[^:\s]+:/.test(news.link.at))) E("news.link 要有 from、to（都在 news.places 裡）與 at（寫「幕id:cue」）");
+  }
 
   const cueIds = new Map(scenes.map((s) => [s.id, new Set((s.cues ?? []).map((c) => c.id))]));
   const checkAt = (at, s, tag) => {
@@ -94,6 +101,13 @@ export function validateDossier(script, h) {
     if (!PANELS.includes(p.panel)) { E(`${tag}: props.panel 要是 ${PANELS.join("｜")}：${p.panel}`); continue; }
     if (i === 0 && p.panel !== "hook") E(`${tag}: 第一鏡要是 hook（第 0 幀就是完整大字加一個正在動的東西）`);
     if (p.hold !== undefined && !(Number.isInteger(p.hold) && p.hold >= 0 && p.hold <= 20)) E(`${tag}: hold 要是 0–20 的整數（下一鏡開始後多留幾幀）`);
+    if (news !== undefined) {
+      const n = p.news;
+      if (!n || typeof n.dateline !== "string" || !n.dateline) E(`${tag}: 國際新聞版每鏡要有 props.news.dateline（電頭：地點・日期）`);
+      else if (h.emWidth(n.dateline) > 22) E(`${tag}: 電頭「${n.dateline}」太長，會撞到右邊的鏡號`);
+      if (n?.place !== undefined && !news?.places?.[n.place]) E(`${tag}: props.news.place「${n.place}」不在 news.places 裡`);
+      if (typeof n?.lt !== "string" || !n.lt || h.len(n.lt) > 6) E(`${tag}: props.news.lt 要是 6 個字以內的欄目籤（這一鏡在講什麼）`);
+    }
     const found = { tags: [], photos: [], ats: 0 };
     walk(p, s, tag, "props", found);
     serif(p);

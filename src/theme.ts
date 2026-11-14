@@ -213,6 +213,7 @@ export const LAYOUT_V2 = {
 // v3 元件（src/components/v3/）的顏色、字級、版面一律讀這裡；紙材 PNG 由 scripts/make-paper.py 產生（色表兩邊要一致）。
 // 來源：docs/style-v3/viral-style-research.md 方向 A、docs/style-v3/styleframes.md。不用漸層、發光、SVG 圖示。
 import SKINS_V3 from "./theme-v3-skins.json";
+import hudSkinsJson from "./theme-hud-skins.json";
 export const THEME_V3 = {
   name: "桌面紙拼貼",
   desk: "#EFE6D4",
@@ -551,7 +552,24 @@ export const THEME_3D_HUD = {
   font: { mono: "'JetBrains Mono', 'Inter', monospace", px: { readout: 30, label: 34, big: 64 } },
   /** 動作（幀）：每一級縮放、交棒給 3D 的淡入、讀數跳字 */
   motion: { zoom: 20, handoff: 12, tick: 2, drift: 0.12 },
+  /** 2026/11/14（tech-2nm）：原本寫死在 Hud.tsx 的半透明底色也收進來（鉤子大字底板、提問卡、對照卡、字幕框）；讀數底板的不透明度；
+   *  parts＝3D 模型色票（model.json 的 palette）要被皮膚蓋掉的名字（空的＝照 model.json） */
+  hookPlate: "rgba(7, 11, 18, 0.82)", card: "rgba(11, 23, 36, 0.94)", cardCompare: "rgba(11, 23, 36, 0.95)", caption: "rgba(11, 23, 36, 0.92)", plateO: 0.72,
+  parts: {} as Record<string, string>,
 } as const;
+
+/** 深色 HUD 的「頻道皮膚」：script.json 頂層 hudSkin 選一套（沒寫＝"deep"，和 short-tech 完全一樣）。換色只改這裡或換 hudSkin 一個欄位。
+ *  每套皮膚只寫「和 THEME_3D_HUD 不同的顏色」，其餘（線寬、字級、動作）共用。角色名不變：line＝主線條色、amber＝品牌強調色、coral＝衝突／警示色。
+ *  parts＝3D 模型零件的顏色（蓋掉 model.json palette 裡同名的色），art＝2D 縮放圖與對照卡的顏色。 */
+/** 數值在 src/theme-hud-skins.json（deep＝現有的深海青藍＋琥珀｜glass＝「科技透明圈」提案：近黑底、冰藍與白、單一強調色）；scripts/three/scene-html.mjs 讀同一份 */
+export const HUD_SKINS = hudSkinsJson as unknown as Record<string, { name: string; note: string; [k: string]: any }>;
+type WidenHud<T> = T extends string ? string : T extends number ? number : T extends object ? { [K in keyof T]: WidenHud<T[K]> } : T;
+export type HudTheme = WidenHud<typeof THEME_3D_HUD>;
+/** 取一套皮膚：THEME_3D_HUD 當底，疊上 HUD_SKINS[name]（glow／art／parts 是逐項合併） */
+export const hudTheme = (name?: string): HudTheme => {
+  const B = THEME_3D_HUD as unknown as HudTheme, S = HUD_SKINS[name ?? "deep"] ?? HUD_SKINS.deep;
+  return { ...B, ...S, glow: { ...B.glow, ...(S.glow ?? {}) }, art: { ...B.art, ...(S.art ?? {}) }, parts: { ...B.parts, ...(S.parts ?? {}) } } as HudTheme;
+};
 
 // ───────────────────────── stage: "chart"：資料圖表主導（股票頻道風格試片；src/components/chartlead/） ─────────────────────────
 /** 整個畫面是一張會動的圖表：深色看盤底、細格線、等寬數字。台股慣例紅色＝上漲。元件只讀這裡的 token，不寫死色碼；不用發光、不用 3D。 */
@@ -892,7 +910,7 @@ export const LAYOUT_TANQING = {
   /** 圖區（線稿圖形）、大標、橘色一句 */
   FIG_TOP: 360, FIG_H: 620, TITLE_TOP: 1030, TITLE_PX: 88, TITLE_LH: 1.3, NOTE_GAP: 26, NOTE_PX: 46,
   /** 圖上的字：大數字、數字旁說明、圖上標籤、表單字 */
-  NUM_PX: 170, NUM_NOTE_PX: 38, LABEL_PX: 38, FIELD_PX: 44,
+  NUM_PX: 220, NUM_NOTE_PX: 40, LABEL_PX: 38, FIELD_PX: 44,
   /** 字幕（內文樣式）：中文、英文 */
   CAP_TOP: 1338, CAP_ZH_PX: 48, CAP_EN_PX: 28,
   /** 左下資料來源、右下頁碼 */
@@ -931,6 +949,17 @@ export const THEME_DOSSIER = {
   /** 動作（幀）：遮罩擦入 wipe、淡入 fade、描線 draw、打字每字 type、紅框閃一下 flash、掃描線走完 scan、
    *  換鏡（舊鏡在下一鏡開始後 hold 幀開始淡出、淡 out 幀）、字幕換段 cap；每鏡慢推放大 push、照片慢推 photoPush */
   motion: { wipe: 14, fade: 10, draw: 16, type: 2, flash: 14, scan: 44, hold: 2, out: 6, cap: 5, push: 0.03, photoPush: 0.05, caret: 12 },
+  /** 「國際新聞」版（script.json 頂層有 news 才用）：頂部新聞條、下三分之一標題條、跑馬燈、點陣世界地圖、報頭式小標、橫向擦切。
+   *  顏色仍是墨藍炭灰＋白灰＋一個紅；新聞條與標題籤的紅底比 accent 深一階（白字對比 ≥5:1）。 */
+  news: {
+    red: "#B8322A", onRed: "#FFFFFF", barBg: "#151B26", ltBg: "#161C28", tickBg: "#0A0D13",
+    mapDot: "rgba(236,238,241,0.22)", mapGrat: "rgba(236,238,241,0.09)", mapLabelBg: "rgba(13,17,24,0.82)",
+    bandShade: "rgba(13,17,24,0.55)", bandShade0: "rgba(13,17,24,0)",
+    /** 幀：換鏡橫向擦切 cut、新鏡的東西最多可以提早 pre 幀先做完（擦進來時已經在）、標題條換字 lt、電頭打字每字 dl、
+     *  跑馬燈每幀走 tick px、地點脈衝一圈 ping、連線上的光點走一趟 pulse；band＝擦切條帶的寬度（px）；
+     *  push＝每鏡慢推（比原版小，而且以左邊為準，內容才會和上下的新聞條對齊） */
+    motion: { cut: 8, pre: 24, lt: 6, dl: 1, tick: 2.4, ping: 36, pulse: 54, band: 56, push: 0.012 },
+  },
 } as const;
 /** 版面（1080×1920；安全區上下 220、左右 64；內容左右留 80，慢推 3% 後仍在安全區內） */
 export const LAYOUT_DOSSIER = {
@@ -946,4 +975,16 @@ export const LAYOUT_DOSSIER = {
   /** 標籤、圖說 */
   TAG_H: 56, TAG_TEXT_PX: 30, NOTE_PX: 28,
   MIN_PX: 28,
+} as const;
+/** 「國際新聞」版的版面（其餘沿用 LAYOUT_DOSSIER）：新聞條 224–288｜電頭 294–330｜主舞台 352–1272｜標題條 1284–1498｜出處 1510｜地圖地點 1560–1636｜跑馬燈 1640–1696 */
+export const LAYOUT_DOSSIER_NEWS = {
+  BAR_TOP: 224, BAR_H: 60, PROG_H: 4, MARK_PX: 36, SEC_PX: 30, SEC_EN_PX: 28,
+  DL_TOP: 294, DL_PX: 28,
+  STAGE_TOP: 352,
+  /** 下三分之一標題條：上面一個紅色欄目籤，下面深色條（左邊紅色粗邊）放中英字幕 */
+  LT_TAB_TOP: 1284, LT_TAB_H: 44, LT_TAB_PX: 28, LT_TOP: 1328, LT_H: 170, LT_EDGE: 12, LT_PAD: 30,
+  SRC_TOP: 1510,
+  /** 點陣世界地圖（只當背景，畫在標題條以下到畫面底）：中心經度 lonC 在 x=540、緯度 latRef 在 y=latY、每度 k px */
+  MAP_TOP: 1500, MAP_K: 7, MAP_LON_C: -78, MAP_LAT_REF: 38, MAP_LAT_Y: 1578, MAP_DOT: 5, MAP_LABEL_PX: 28,
+  TICK_TOP: 1640, TICK_H: 56, TICK_PX: 28,
 } as const;
