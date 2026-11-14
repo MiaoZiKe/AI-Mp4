@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 532,
- "totalSec": 17.73,
+ "totalFrames": 451,
+ "totalSec": 15.03,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 62,
+   "durationFrames": 55,
    "startSec": 0,
-   "durationSec": 2.07,
+   "durationSec": 1.83,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -22,7 +22,7 @@
    "cueEarly": [],
    "voice": {
     "startFrame": 1,
-    "endFrame": 54,
+    "endFrame": 44,
     "pauseAfterSec": null
    },
    "cues": [
@@ -35,27 +35,27 @@
     {
      "id": "much",
      "text": "多少",
-     "frame": 29,
-     "sceneFrame": 29
+     "frame": 31,
+     "sceneFrame": 31
     }
    ],
-   "stillFrame": 52,
+   "stillFrame": 45,
    "subtitles": [
     {
      "zh": "明年基本工資多少？",
      "en": "How much is next year's minimum wage?",
      "startFrame": 0,
-     "endFrame": 52
+     "endFrame": 50
     }
    ],
    "narration": "明年基本工資多少？"
   },
   {
    "id": "s02",
-   "startFrame": 52,
-   "durationFrames": 82,
-   "startSec": 1.73,
-   "durationSec": 2.73,
+   "startFrame": 45,
+   "durationFrames": 75,
+   "startSec": 1.5,
+   "durationSec": 2.5,
    "component": "IsoScene",
    "beat": "you",
    "transition": {
@@ -63,49 +63,54 @@
     "frames": 10
    },
    "camera": null,
-   "cueEarly": [],
+   "cueEarly": [
+    {
+     "id": "one",
+     "early": 2
+    }
+   ],
    "voice": {
-    "startFrame": 55,
-    "endFrame": 126,
+    "startFrame": 53,
+    "endFrame": 110,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "test",
      "text": "實測",
-     "frame": 78,
-     "sceneFrame": 26
+     "frame": 69,
+     "sceneFrame": 24
     },
     {
      "id": "one",
-     "text": "這一句",
-     "frame": 111,
-     "sceneFrame": 59
+     "text": "一句",
+     "frame": 100,
+     "sceneFrame": 55
     }
    ],
-   "stillFrame": 124,
+   "stillFrame": 110,
    "subtitles": [
     {
-     "zh": "用 Gemini 實測",
-     "en": "We tested Gemini",
-     "startFrame": 52,
-     "endFrame": 96
+     "zh": "Gemini 實測",
+     "en": "A Gemini test,",
+     "startFrame": 50,
+     "endFrame": 87
     },
     {
-     "zh": "只打這一句",
-     "en": "with just this one line.",
-     "startFrame": 96,
-     "endFrame": 127
+     "zh": "只打一句",
+     "en": "just one line.",
+     "startFrame": 87,
+     "endFrame": 117
     }
    ],
-   "narration": "用 Gemini 實測，只打這一句。"
+   "narration": "Gemini 實測，只打一句。"
   },
   {
    "id": "s03",
-   "startFrame": 124,
-   "durationFrames": 129,
-   "startSec": 4.13,
-   "durationSec": 4.3,
+   "startFrame": 110,
+   "durationFrames": 109,
+   "startSec": 3.67,
+   "durationSec": 3.63,
    "component": "IsoScene",
    "beat": "you",
    "transition": {
@@ -115,41 +120,41 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 130,
-    "endFrame": 245,
+    "startFrame": 120,
+    "endFrame": 209,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "say",
      "text": "它說",
-     "frame": 145,
-     "sceneFrame": 21
+     "frame": 120,
+     "sceneFrame": 10
     },
     {
      "id": "old",
      "text": "28,590",
-     "frame": 165,
-     "sceneFrame": 41
+     "frame": 147,
+     "sceneFrame": 37
     }
    ],
-   "stillFrame": 243,
+   "stillFrame": 209,
    "subtitles": [
     {
-     "zh": "它說28,590 元",
+     "zh": "它說28,590",
      "en": "Its answer:",
-     "startFrame": 127,
-     "endFrame": 247
+     "startFrame": 117,
+     "endFrame": 216
     }
    ],
-   "narration": "它說，28,590 元。"
+   "narration": "它說，28,590。"
   },
   {
    "id": "s04",
-   "startFrame": 243,
-   "durationFrames": 132,
-   "startSec": 8.1,
-   "durationSec": 4.4,
+   "startFrame": 209,
+   "durationFrames": 113,
+   "startSec": 6.97,
+   "durationSec": 3.77,
    "component": "IsoScene",
    "beat": "twist",
    "transition": {
@@ -159,47 +164,47 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 250,
-    "endFrame": 352,
+    "startFrame": 219,
+    "endFrame": 312,
     "pauseAfterSec": 0.35
    },
    "cues": [
     {
      "id": "last",
      "text": "去年",
-     "frame": 260,
-     "sceneFrame": 17
+     "frame": 228,
+     "sceneFrame": 19
     },
     {
      "id": "now",
      "text": "30,900",
-     "frame": 315,
-     "sceneFrame": 72
+     "frame": 282,
+     "sceneFrame": 73
     }
    ],
-   "stillFrame": 365,
+   "stillFrame": 312,
    "subtitles": [
     {
      "zh": "那是去年的",
      "en": "That was last year's.",
-     "startFrame": 247,
-     "endFrame": 290
+     "startFrame": 216,
+     "endFrame": 255
     },
     {
-     "zh": "明年是 30,900 元",
-     "en": "Next year it's NT$30,900.",
-     "startFrame": 290,
-     "endFrame": 372
+     "zh": "明年是 30,900",
+     "en": "Next year it's 30,900.",
+     "startFrame": 255,
+     "endFrame": 319
     }
    ],
-   "narration": "那是去年的，明年是 30,900 元。"
+   "narration": "那是去年的，明年是 30,900。"
   },
   {
    "id": "s05",
-   "startFrame": 365,
-   "durationFrames": 167,
-   "startSec": 12.17,
-   "durationSec": 5.57,
+   "startFrame": 312,
+   "durationFrames": 139,
+   "startSec": 10.4,
+   "durationSec": 4.63,
    "component": "IsoScene",
    "beat": "payoff",
    "transition": {
@@ -209,58 +214,52 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 375,
-    "endFrame": 514,
+    "startFrame": 322,
+    "endFrame": 433,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "paste",
      "text": "貼新聞",
-     "frame": 385,
-     "sceneFrame": 20
+     "frame": 329,
+     "sceneFrame": 17
     },
     {
      "id": "only",
      "text": "只看這段",
-     "frame": 425,
-     "sceneFrame": 60
+     "frame": 367,
+     "sceneFrame": 55
     },
     {
      "id": "next",
      "text": "再教一招",
-     "frame": 492,
-     "sceneFrame": 127
+     "frame": 415,
+     "sceneFrame": 103
     }
    ],
-   "stillFrame": 520,
+   "stillFrame": 439,
    "subtitles": [
     {
      "zh": "先貼新聞",
      "en": "Paste the news first,",
-     "startFrame": 372,
-     "endFrame": 408
+     "startFrame": 319,
+     "endFrame": 350
     },
     {
      "zh": "請它只看這段",
      "en": "then tell it to use only that.",
-     "startFrame": 408,
-     "endFrame": 465
+     "startFrame": 350,
+     "endFrame": 401
     },
     {
-     "zh": "下一支",
+     "zh": "下次再教一招",
      "en": "Next time,",
-     "startFrame": 465,
-     "endFrame": 489
-    },
-    {
-     "zh": "再教一招",
-     "en": "one more trick.",
-     "startFrame": 489,
-     "endFrame": 532
+     "startFrame": 401,
+     "endFrame": 451
     }
    ],
-   "narration": "先貼新聞，請它只看這段。下一支，再教一招。"
+   "narration": "先貼新聞，請它只看這段。下次再教一招。"
   }
  ]
 }
