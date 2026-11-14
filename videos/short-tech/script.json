@@ -126,7 +126,8 @@
         "hook": {
           "kicker": "手機晶片的",
           "title": "2奈米不是尺寸",
-          "size": 128
+          "size": 128,
+          "top": 560
         },
         "zoom": [
           {
@@ -142,10 +143,10 @@
         "overlay": [
           {
             "type": "stamp",
-            "at": "two+2",
+            "at": "two+26",
             "until": "s2:zoom-4",
             "x": 760,
-            "y": 980,
+            "y": 1060,
             "text": "≠ 2 nm",
             "color": "amber",
             "rot": -6,
@@ -196,6 +197,10 @@
           {
             "to": "cells",
             "at": "count-6"
+          },
+          {
+            "to": "transistor",
+            "at": "end-12"
           }
         ],
         "overlay": [
@@ -247,19 +252,13 @@
       ],
       "component": "ThreeScene",
       "props": {
-        "zoom": [
-          {
-            "to": "transistor",
-            "at": "start+0"
-          }
-        ],
         "explode": {
-          "at": "open-4"
+          "at": "open+2"
         },
         "spin": {
           "at": "start+0",
-          "until": "open",
-          "turns": 0.06
+          "until": "open+2",
+          "turns": 0.03
         },
         "shot": [
           {
@@ -360,20 +359,20 @@
           {
             "at": "five-2",
             "until": "s5:how-4",
-            "from": "sheetEdge",
-            "to": "sheet",
-            "axis": "z",
+            "from": "sheetLo",
+            "to": "sheetHi",
             "text": "5 nm",
-            "color": "blue"
+            "color": "blue",
+            "off": -80
           },
           {
             "at": "ff-4",
             "until": "s5:how-4",
             "from": "gateL",
             "to": "gate",
-            "axis": "x",
             "text": "44 nm",
-            "color": "amber"
+            "color": "amber",
+            "off": -70
           }
         ]
       },

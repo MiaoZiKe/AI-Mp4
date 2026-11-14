@@ -13,6 +13,7 @@ import { col, fxOf, type Fx, type ProductModel } from "./model";
 import { ProductScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
 import { Overlays } from "./Overlays";
+import { CoverHud, VideoHud } from "./Hud";
 
 const px = (n: number) => Math.round(n);
 const zh = (size: number, weight: number = T.weight.body, color: string = T.ink): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
@@ -222,7 +223,9 @@ const Stage: React.FC<{ s: State3D; model: ProductModel }> = ({ s, model }) => {
   );
 };
 
-export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, model }) => {
+/** script.json 頂層有 hud（深色 HUD＋Powers of Ten 縮放，videos/short-tech）就改走 Hud.tsx；沒有的舊片照舊 */
+export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).hud ? <VideoHud {...props} /> : <VideoThreeBase {...props} />);
+const VideoThreeBase: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, model }) => {
   const f = useCurrentFrame();
   const m = useMemo(() => buildModel(scenes, timeline, model as ProductModel), [scenes, timeline, model]);
   const fx = useMemo(() => fxOf(model as ProductModel), [model]);
@@ -252,7 +255,8 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
 };
 
 /** 封面：大標＋分解後的模型（停在聚焦前一幀，各層都看得到） */
-export const CoverThree: React.FC<Script & { coverCrop?: number }> = ({ cover, scenes, timeline, channel, coverCrop, model }) => {
+export const CoverThree: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).hud ? <CoverHud {...props} /> : <CoverThreeBase {...props} />);
+const CoverThreeBase: React.FC<Script & { coverCrop?: number }> = ({ cover, scenes, timeline, channel, coverCrop, model }) => {
   const c = (cover ?? {}) as { title?: string[]; sub?: string; frame?: number };
   const m = useMemo(() => (timeline && model ? buildModel(scenes, timeline as TimelineV2, model as ProductModel) : null), [scenes, timeline, model]);
   // cover.frame（可省略）：封面的模型停在第幾幀；沒寫就照舊停在聚焦前一幀

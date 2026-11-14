@@ -328,7 +328,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
                 {i > 0 ? (
                   <Mark f={f} at={tLens} bg={w.soft} fg={w.text} style={{ position: "relative", fontWeight: T.weight.title, whiteSpace: "nowrap" }}>
                     {target}
-                    {host ? <Lens f={f} at={tLens} text={target as string} /> : null}
+                    {host ? <Lens f={f} at={tLens} text={target as string} dx={p.lens?.dx} dy={p.lens?.dy} /> : null}
                   </Mark>
                 ) : null}
                 {s}
@@ -437,15 +437,15 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
 };
 
 /** 放大鏡：從桌面飛到被標記的字上面，鏡片裡是放大的同一個字 */
-export const Lens: React.FC<{ f: number; at: number; text: string }> = ({ f, at, text }) => {
+export const Lens: React.FC<{ f: number; at: number; text: string; dx?: number; dy?: number }> = ({ f, at, text, dx: ox = 150, dy: oy = 8 }) => {
   if (f < at) return null;
   const t = tween(f, at, 12, EASE.move), c = col("wrong"), D = 232;
-  const dx = 150 + (1 - t) * -330, dy = 8 + (1 - t) * -250 - 70 * Math.sin(Math.PI * t), k = 0.45 + 0.55 * t;
+  const dx = ox + (1 - t) * -330, dy = oy + (1 - t) * -250 - 70 * Math.sin(Math.PI * t), k = 0.45 + 0.55 * t;
   return (
     <span style={{ position: "absolute", left: "50%", top: "50%", width: 0, height: 0, zIndex: 5, opacity: tween(f, at, 3) }}>
       <span style={{ position: "absolute", left: -D / 2, top: -D / 2, width: D, height: D, transform: `translate(${dx.toFixed(1)}px,${dy.toFixed(1)}px) scale(${k.toFixed(4)})` }}>
         <span style={{ position: "absolute", left: D * 0.78, top: D * 0.78, width: 112, height: 30, borderRadius: 15, background: T.solid.lav.r, transform: "rotate(45deg)", transformOrigin: "0 50%", boxShadow: `0 6px 0 ${T.cardSide}` }} />
-        <span style={{ position: "absolute", inset: 0, boxSizing: "border-box", borderRadius: "50%", background: T.card, border: `14px solid ${T.solid.lav.r}`, boxShadow: T.depth.soft, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: 62, color: c.text }}>{text}</span>
+        <span style={{ position: "absolute", inset: 0, boxSizing: "border-box", borderRadius: "50%", background: T.card, border: `14px solid ${T.solid.lav.r}`, boxShadow: T.depth.soft, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: text.length > 5 ? Math.round(300 / text.length) : 62, color: c.text }}>{text}</span>
       </span>
     </span>
   );

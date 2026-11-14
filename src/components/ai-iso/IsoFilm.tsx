@@ -64,9 +64,10 @@ const World: React.FC<{ st: FW }> = ({ st }) => {
     <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
       <defs>
         <pattern id="isoDots2" width={80} height={80} patternUnits="userSpaceOnUse" patternTransform={K.css(K.mul(st.cam, K.ground(0, 0, -60)))}><circle cx={10} cy={10} r={5} fill={T.dot} /></pattern>
+        <clipPath id="ifClip"><rect x={-200} y={L.PROGRESS_TOP + 18} width={L.W + 400} height={L.H} /></clipPath>
       </defs>
       <rect x={0} y={L.HEADER_TOP + 90} width={L.W} height={L.CAP_TOP - L.HEADER_TOP - 90} fill="url(#isoDots2)" />
-      <g transform={K.css(st.cam)}>
+      <g clipPath="url(#ifClip)"><g transform={K.css(st.cam)}>
         <K.Shade x={50} y={50} w={D.desk} h={D.desk} r={56} z={-110} />
         <K.Slab id="ifDesk" x={0} y={0} w={D.desk} h={D.desk} t={40} r={48} c={S.desk} />
         {/* 螢幕 */}
@@ -128,7 +129,7 @@ const World: React.FC<{ st: FW }> = ({ st }) => {
             ))}
           </g>
         ) : null}
-      </g>
+      </g></g>
     </svg>
   );
 };
@@ -176,7 +177,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
   const fields = items.map((q, i) => { const tFly = Math.min(items[i + 1] ? items[i + 1].tIn - 5 : FAR, tGo - M.fly - 4); return { ...q, i, tFly, tLand: tFly + M.fly }; });
   const nB = fields.length, tArr2 = tGo + (nB - 1) * 3 + M.fly;
   const group = (r: Panel) => { const i = panels.indexOf(r), g = [r]; for (let k = i + 1; panels[k]?.kind === "add"; k++) g.push(panels[k]); return g; };
-  const resT = results.map((r) => { const g = group(r), end = g[g.length - 1].out; return { r, g, out: r.at(r.p.outAt, r.in + 6), end }; });
+  const resT = results.map((r) => { const g = group(r), end = g[g.length - 1].out; return { r, g, out: Math.max(r.at(r.p.outAt, r.in + 6), r === rs ? tArr2 + 2 : 0), end }; });
   const cmIn = cm?.in ?? FAR, rmIn = rm?.in ?? FAR, tpIn = tp?.in ?? FAR, qsIn = qs?.in ?? FAR, nxIn = nx?.in ?? FAR, edIn = ed?.in ?? FAR;
   const tLens2 = rm ? rm.at(rm.p.lensAt, rmIn + 8) : FAR;
 
@@ -421,7 +422,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
               <div style={{ width: 58, height: 58, borderRadius: 18, background: c.fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: 36, color: c.on }}>{q.i + 1}</div>
               <div style={{ ...zh, fontWeight: T.weight.title, fontSize: 46, color: c.text }}>{q.it.label}</div>
             </div>
-            {q.it.text ? <div style={{ ...wrap, fontWeight: T.weight.strong, fontSize: q.it.px ?? 50, color: T.ink, marginTop: 16 }}>{q.it.text}</div> : null}
+            {q.it.text ? <div style={{ ...wrap, fontWeight: T.weight.strong, fontSize: q.it.px ?? 56, color: T.ink, marginTop: 16 }}>{q.it.text}</div> : null}
             {q.it.parts ? (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 18 }}>
                 {(q.it.parts as any[]).map((pt, j) => { const pc = col(pt.color ?? q.it.color); return <div key={j} style={K.bounce(f, q.x.at(pt.at, q.tIn))}><K.Chip text={pt.t} bg={pc.soft} fg={pc.text} px={36} /></div>; })}
@@ -456,7 +457,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
                     {i0 < 0 || !mk ? row.t : <>{row.t.slice(0, i0)}<K.Mark f={f} at={mk.at} bg={mc.soft} fg={mc.text} style={{ fontWeight: T.weight.title, boxShadow: mk.box && f >= mk.at ? `0 0 0 5px ${mc.fill}` : mk.under && f >= mk.at ? `0 6px 0 ${mc.fill}` : undefined }}>{mk.text}</K.Mark>{row.t.slice(i0 + mk.text.length)}</>}
                   </div>
                 )}
-                {row.check !== undefined ? <div style={{ position: "absolute", right: -18, top: -34, width: 104, height: 104, ...K.slam(f, row.check, 10, 2.6) }}><div style={{ width: "100%", height: "100%", boxSizing: "border-box", borderRadius: "50%", background: T.card, border: `8px solid ${col("right").fill}`, boxShadow: T.depth.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><K.Check size={64} color={col("right").fill} /></div></div> : null}
+                {row.check !== undefined ? <div style={{ position: "absolute", right: -22, top: -98, width: 104, height: 104, ...K.slam(f, row.check, 10, 2.6) }}><div style={{ width: "100%", height: "100%", boxSizing: "border-box", borderRadius: "50%", background: T.card, border: `8px solid ${col("right").fill}`, boxShadow: T.depth.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><K.Check size={64} color={col("right").fill} /></div></div> : null}
               </div>
             );
           })}
@@ -551,7 +552,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number; channel?: { name?: string; t
     ([[news, p.left, 0], [newsB, p.right, 1]] as [Obj | null, string, number][]).forEach(([n, label, i]) => {
       if (!n || !label) return;
       const [sx, sy] = w2s(n.x + D.news.w / 2, n.y + D.news.h / 2, n.z);
-      out.push(<div key={`nx-l${i}`} style={{ position: "absolute", left: sx, top: sy - 130, opacity: 1 - e }}><div style={{ transform: "translateX(-50%)" }}><div style={K.bounce(f, nx.at(p.splitAt, nxIn + 20) + i * 3)}><K.Chip text={label} bg={T.ink} fg={T.card} px={40} /></div></div></div>);
+      out.push(<div key={`nx-l${i}`} style={{ position: "absolute", left: sx, top: i ? sy + 76 : sy - 130, opacity: 1 - e }}><div style={{ transform: "translateX(-50%)" }}><div style={K.bounce(f, nx.at(p.splitAt, nxIn + 20) + i * 3)}><K.Chip text={label} bg={T.ink} fg={T.card} px={40} /></div></div></div>);
     });
     if (newsB) {
       const [ax, ay] = w2s(news.x + D.news.w / 2, news.y + D.news.h / 2, news.z), [bx, by] = w2s(newsB.x + D.news.w / 2, newsB.y + D.news.h / 2, newsB.z), c = col("note");
@@ -589,7 +590,7 @@ export const FilmIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, t
   const panels = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
-  const caps: K.Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines, keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
+  const caps: K.Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines.map((l) => ({ ...l, text: l.text.replace(/[，、；：。]+$/, "") })), keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
   const capEnd = Math.max(0, ...caps.map((c) => c.window[1]));
   const srcs = ordered.map((s) => ({ sources: s.sources, window: by[s.id].sourceWindow }));
   return (

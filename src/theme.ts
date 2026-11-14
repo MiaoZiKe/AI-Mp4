@@ -534,8 +534,12 @@ export const THEME_3D_HUD = {
   text2: "#8FA6B8",
   text3: "#5D7488",
   panel: "#0B1724",
+  /** 第三個強調色（衝突點的蓋章）、實心色塊上的深色字、假光暈（3D 外圈的 drop-shadow 與舞台中心的柔光，不是 3D bloom） */
+  coral: "#FF6B4A",
+  onAccent: "#071018",
+  glow: { rim: "rgba(63, 200, 220, 0.55)", rimPx: 14, center: "rgba(63, 200, 220, 0.16)", warm: "rgba(242, 169, 59, 0.12)" },
   /** 2D 縮放圖層的畫法用色（手機、主機板、晶片、陣列） */
-  art: { body: "#1A2533", edge: "#3A4E66", board: "#123A33", trace: "#2E7D6E", part: "#22303F", die: "#1B2738", block: "#24405A", block2: "#3B2E1A", gate: "#C98A2E", sheet: "#3FC8DC" },
+  art: { body: "#1A2533", edge: "#3A4E66", board: "#123A33", trace: "#2E7D6E", part: "#22303F", die: "#1B2738", block: "#24405A", block2: "#3B2E1A", gate: "#C98A2E", sheet: "#3FC8DC", sd: "#2F6FB0", via: "#C8794A", sub: "#2A3646" },
   /** 線寬、掃描線（間距 px、不透明度、每秒往下掃幾 px）、角框長度、尺標高度 */
   stroke: { thin: 1.5, mid: 2, bold: 3 },
   scan: { gap: 6, opacity: 0.06, sweep: 420, bandH: 120, bandO: 0.08 },
@@ -544,7 +548,7 @@ export const THEME_3D_HUD = {
   /** 字：讀數用等寬英數、標題用中文 */
   font: { mono: "'JetBrains Mono', 'Inter', monospace", px: { readout: 30, label: 34, big: 64 } },
   /** 動作（幀）：每一級縮放、交棒給 3D 的淡入、讀數跳字 */
-  motion: { zoom: 20, handoff: 12, tick: 2 },
+  motion: { zoom: 20, handoff: 12, tick: 2, drift: 0.12 },
 } as const;
 
 // ───────────────────────── stage: "chart"：資料圖表主導（股票頻道風格試片；src/components/chartlead/） ─────────────────────────
