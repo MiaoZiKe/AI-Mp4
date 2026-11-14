@@ -1,0 +1,257 @@
+{
+  "slug": "short-talk",
+  "title": "三十出頭，十個有六個還沒結婚｜談晴說礙",
+  "asOf": "2026/11/14",
+  "styleVersion": 3,
+  "stage": "tanqing",
+  "channel": {
+    "name": "談晴說礙",
+    "tag": "數字裡的日子",
+    "slogan": "說這一代的難，也說還在的光"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "gender": "female",
+      "accent": "台灣華語",
+      "pace": [
+        4.3,
+        4.7
+      ],
+      "delivery": "plain"
+    }
+  },
+  "audio": {
+    "bgm": true,
+    "sfx": false
+  },
+  "cover": {
+    "title": [
+      "三十出頭，",
+      "十個有六個還沒結婚"
+    ],
+    "sub": "說這一代的難，也說還在的光"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "para": 0,
+      "narration": "三十出頭，十個有六個還沒結婚。",
+      "tts": "三十出頭，十個有六個還沒結婚。",
+      "subtitle": {
+        "zh": "三十出頭，\n十個有六個還沒結婚。",
+        "en": "In our early thirties, | six in ten aren't married yet."
+      },
+      "keywords": [
+        "十個有六個"
+      ],
+      "cues": [
+        {
+          "id": "thirty",
+          "text": "三十出頭"
+        },
+        {
+          "id": "ten",
+          "text": "十個"
+        },
+        {
+          "id": "six",
+          "text": "六個"
+        },
+        {
+          "id": "married",
+          "text": "結婚"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "三十出頭，",
+          "十個有六個還沒結婚"
+        ],
+        "caption": "en",
+        "figure": {
+          "type": "people",
+          "count": 10,
+          "mark": 6,
+          "at": "start+0",
+          "stagger": 4,
+          "markAt": "six-4",
+          "labelAt": "married-4",
+          "label": "這六個",
+          "number": {
+            "text": "62%",
+            "claim": "F1",
+            "note": "30–34 歲\n還沒結婚"
+          }
+        }
+      },
+      "sources": [
+        "資料：內政部戶政司 30–34 歲未婚比例（2025）",
+        "華視報導轉述，原始表待核對"
+      ]
+    },
+    {
+      "id": "s02",
+      "beat": "you",
+      "para": 0,
+      "narration": "年夜飯又被問，什麼時候結婚。我們笑笑，低頭夾菜。",
+      "tts": "年夜飯又被問，什麼時候結婚。我們笑笑，低頭夾菜。",
+      "subtitle": {
+        "zh": "年夜飯又被問，\n什麼時候結婚。\n我們笑笑，低頭夾菜。",
+        "en": "Asked again at New Year's Eve dinner: | when are you getting married? | We just smile, | and reach for more food."
+      },
+      "keywords": [
+        "又被問",
+        "低頭夾菜"
+      ],
+      "cues": [
+        {
+          "id": "dinner",
+          "text": "年夜飯"
+        },
+        {
+          "id": "asked",
+          "text": "被問"
+        },
+        {
+          "id": "when",
+          "text": "什麼時候"
+        },
+        {
+          "id": "we",
+          "text": "我們"
+        },
+        {
+          "id": "food",
+          "text": "夾菜"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "又是那一題"
+        ],
+        "figure": {
+          "type": "form",
+          "scale": 1.2,
+          "at": "start+10",
+          "askAt": "asked-4",
+          "ask": "什麼時候結婚？",
+          "blankAt": "we-4",
+          "frameAt": "food-4",
+          "side": "還沒有\n答案"
+        }
+      },
+      "sources": [
+        "觀察描寫，非統計"
+      ]
+    },
+    {
+      "id": "s03",
+      "beat": "payoff",
+      "para": 1,
+      "narration": "不過麵店阿姨，還記得我要加辣。",
+      "tts": "不過麵店阿姨，還記得我要加辣。",
+      "subtitle": {
+        "zh": "不過麵店阿姨，\n還記得我要加辣。",
+        "en": "Still, the lady at the noodle shop | remembers I like it spicy."
+      },
+      "keywords": [
+        "阿姨",
+        "加辣"
+      ],
+      "cues": [
+        {
+          "id": "still",
+          "text": "不過"
+        },
+        {
+          "id": "aunt",
+          "text": "阿姨"
+        },
+        {
+          "id": "remember",
+          "text": "記得"
+        },
+        {
+          "id": "spicy",
+          "text": "加辣"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "qing",
+        "title": [
+          "今天的一小段晴"
+        ],
+        "figure": {
+          "type": "bowl",
+          "scale": 1.2,
+          "at": "start+10",
+          "steamAt": "aunt-4",
+          "chiliAt": "spicy-4"
+        }
+      },
+      "sources": [
+        "觀察描寫，非統計"
+      ]
+    },
+    {
+      "id": "s04",
+      "beat": "cta",
+      "para": 2,
+      "narration": "你最常被問哪一題？",
+      "tts": "你最常被問哪一題？",
+      "subtitle": {
+        "zh": "你最常被問哪一題？",
+        "en": "Which question do you get asked the most?"
+      },
+      "keywords": [
+        "哪一題"
+      ],
+      "cues": [
+        {
+          "id": "you",
+          "text": "你"
+        },
+        {
+          "id": "which",
+          "text": "哪一題"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ask",
+        "title": [
+          "你最常被問",
+          "哪一題？"
+        ],
+        "caption": "en",
+        "figure": {
+          "type": "form",
+          "scale": 1.2,
+          "at": "start+8",
+          "askAt": "start+14",
+          "ask": "什麼時候結婚？",
+          "blankAt": "you+0",
+          "frameAt": "which-4",
+          "side": "你的\n那一題"
+        }
+      },
+      "sources": [
+        "資料：內政部戶政司（華視報導轉述）"
+      ]
+    }
+  ],
+  "tanqing": {
+    "ref": "docs/channels/tanqing-ref/（頻道 11/12 發的三張輪播圖）",
+    "fonts": "node scripts/tanqing/fetch-fonts.mjs short-talk（Noto Serif TC 子集，改了畫面上的字要重跑）"
+  }
+}
