@@ -414,12 +414,12 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
       const q = newsAt(g), [sx, sy] = ap(cam, iso(q.x + (NEWS.w * q.k) / 2, q.y + (NEWS.h * q.k) / 2, q.z));
       out.push(<div key="nx-label" style={{ position: "absolute", left: sx, top: sy - 96, opacity: 1 - tween(f, arrive2 - 5, 4) }}><div style={{ transform: "translateX(-50%)" }}><div style={bounce(f, nxIn + 8)}><Chip text={p.label} bg={T.ink} fg={T.card} px={32} /></div></div></div>);
     }
-    const chips = (p.chips ?? []) as string[], tChips = nx.at(p.chipsAt, tGo + 8), tones = ["right", "primary", "note"];
+    const chips = (p.chips ?? []) as string[], tChips = nx.at(p.chipsAt, tGo + 8), tones = ["right", "primary", "note"], tPulse = p.pulseAt ? nx.at(p.pulseAt, FAR) : FAR;
     out.push(
       <div key="nx-chips" style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.MAIN_BOTTOM - 96, display: "flex", justifyContent: "space-between" }}>
         {chips.map((t, i) => { const cc = col(tones[i % 3]); return (
           <div key={i} style={{ ...bounce(f, tChips + i * M.stagger) }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, background: T.card, borderRadius: 24, padding: "16px 24px 16px 18px", boxShadow: `0 8px 0 ${cc.fill}, ${T.depth.soft}` }}>
+            <div style={{ transform: i === chips.length - 1 && f >= tPulse ? `scale(${pop(f, tPulse, 1.3).toFixed(4)})` : undefined, display: "flex", alignItems: "center", gap: 10, background: T.card, borderRadius: 24, padding: "16px 24px 16px 18px", boxShadow: `0 8px 0 ${cc.fill}, ${T.depth.soft}` }}>
               <div style={{ width: 44, height: 44, borderRadius: 14, background: cc.soft, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.title, fontSize: 30, color: cc.text }}>{i + 1}</div>
               <div style={{ ...zh, fontWeight: T.weight.title, fontSize: 44, color: T.ink }}>{t}</div>
             </div>
@@ -509,7 +509,7 @@ const VideoIso1: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeli
   const panels = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
-  const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines, keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
+  const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines.map((l) => ({ ...l, text: l.text.replace(/[，、；：。]+$/, "") })), keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
   const srcs = ordered.map((s) => ({ sources: s.sources, window: by[s.id].sourceWindow }));
   return (
     <AbsoluteFill style={{ background: T.bg }}>

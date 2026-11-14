@@ -21,25 +21,59 @@
 6. 好提示的回答如果也有錯，照實記在 `tests.md`，換一個角度，或直接在片中點出「AI 也會錯，要對原文」。不能為了好看重測到滿意為止卻不講。
 7. 貼給 AI 的新聞文字用自己整理的一段（註明是自己整理的），不整篇照貼媒體原文。
 
-## 3. 介面自己畫，不碰商標
+## 3. 畫面固定用等距 2.5D，不碰商標
 
-1. 畫面是自製的仿介面（`stage: "ui"`，`src/components/ui/`）：視窗、游標、頭像、圖示都自己畫。
+**固定風格（使用者 2026/11/14 看完三種亮色試片後決定：「sample-ai-iso 這風格…以後拿來使用 AI 頻道用」）：等距 2.5D 插畫（isometric 2.5D）。** 細節在本節最後的「3.1 等距 2.5D 怎麼用」。深色仿介面（`stage: "ui"`，`src/components/ui/`）**不再用於新片**；`videos/sample-ai-ui/`、`videos/sample-ai-news/` 留著當紀錄，腳本與實測仍可沿用。
+
+1. 畫面是一張粉彩的等距小桌面（`stage: "iso"`，`src/components/ai-iso/`）：螢幕、鍵盤、新聞紙、放大鏡、卡片都自己畫；要讓觀眾讀的字放在「從桌面飛起來、轉正」的白色厚卡片上。
 2. 不出現真實產品的商標圖案、介面截圖、配色與版面的仿製；工具名稱只用文字寫。不出現真人肖像。不加 AI 標示。
-3. 正式片的骨架（45–75 秒、旁白 250–290 字、18–24 鏡、每鏡 2–4 秒）：
-   起：大字鉤子帶新聞 → 隨便問。
+3. 正式片的骨架（45–75 秒、旁白 250–290 字、18–24 鏡、每鏡 2–4 秒；等距 2.5D 對應的 panel 寫在括號裡）：
+   起：大字鉤子帶新聞（`hook`）→ 隨便問（`ask`）。
    承：真的回答被紅筆圈出問題 → 為什麼會這樣（照實講測試條件）。
    轉：這樣問的寫法一塊一塊出現 → 真的回答分幾鏡看 → 上下並排對照（兩個回答同時停至少 1.5 秒）→ 提醒「AI 也會錯，要對原文」（最好用這次實測裡真的出現的問題當例子）。
    合：可截圖的範本卡 → 具體提問 → 一句下一集的問題 → 片尾卡（無聲約 3 秒）。
    script.json 頂層寫 `sample: false`，最後一幕 `silent: true`＋`durationSec`＋`props.endCard`；validate 會檢查。10–20 秒的風格試片不寫 `sample: false`。
-4. 借來的手法各有上限：開頭大字 1 次（第 0 幀就是實心完整的字）；紅筆圈 1 次、打勾 1 次；上下對照 1 次。不整支做成大字片或手繪片。
+4. 手法各有上限：開頭大字 1 次（第 0 幀就是實心完整的字，而且是後果或數字，不是問句）；放大鏡找錯 1 次、打勾章 1 次；上下對照 1 次。不整支做成大字片。
 5. 每鏡只留一個會動的重點。打字有快慢和停頓。
+
+### 3.1 等距 2.5D 怎麼用
+
+- 開關：`script.json` 頂層 `styleVersion: 3`＋`stage: "iso"`；完整片再加 `isoVersion: 2`、`sample: false`（沒寫 `isoVersion` 的是 5 鏡試片的舊引擎，只給 `videos/sample-ai-iso/` 用）。每幕 `component: "IsoScene"`，`props.panel` 寫這一幕演什麼，`props.camera` 寫鏡頭看哪裡。
+- 程式：`src/components/ai-iso/IsoFilm.tsx`（完整片）、`IsoVideo.tsx`（基本零件與試片）、`engine.ts`（cue 換成幀）。token：`src/theme.ts` 的 `THEME_ISO`／`LAYOUT_ISO`，元件不寫死色碼。檢查：`scripts/ai-iso/validate-iso.mjs`。只用 SVG 與 CSS 2D 矩陣，不用 three.js／WebGL（每幀約 0.05 秒）。
+- 第一支完整片：`videos/sample-ai-news-iso/`（20 鏡、約 66 秒），寫法照它抄。
+- 同一張桌面演完整支片，鏡頭只平移縮放（`camera: { look: [x, y, z], zoom, sy, at? }`，一幕可以多段）。桌上固定的東西各有意思：**螢幕＝AI**（顯示數字／待機／思考中／回答好了／打勾）、**新聞紙＝原文**、**放大鏡＝搜尋／核對**、**五格托盤＝提示機**（「這樣問」的欄位一塊一塊插進去，送出時飛進螢幕）、**回答紙＝AI 的回答落回桌上**。鍵盤、鉛筆、盆栽是佈景。
+- 畫面種類（`props.panel`）：
+
+  | panel | 演什麼 | 主要欄位 |
+  |---|---|---|
+  | `hook` | 第 0 幀的實心大字＋螢幕上的數字＋對照數字卡＋蓋章 | `title[]`、`mark`、`screen`、`stamp`、`pin` |
+  | `ask` | 提示卡逐字打出來，沿虛線飛進螢幕 | `lines[]`、`typeAt`、`note`、`tag`、`sendAt` |
+  | `answer` | 螢幕吐出回答卡（節錄），後面疊出幾張紙，放大鏡飛到某個字上 | `lines[]`、`by`、`verbatim`、`more`、`stackAt`、`lens` |
+  | `bump` | 錯的數字卡被劃掉蓋章，對的大卡掉下來把它彈開，再蓋圓章 | `wrong`、`right` |
+  | `why` | 再吐一張回答卡（節錄）蓋章；桌上兩樣沒用到的東西各跳一下、冒出打叉的標籤 | `line`、`mark`、`tag`、`items[2]`、`foot` |
+  | `title` | 大字標題；可以讓五格托盤和欄位名出現 | `kicker`、`title`、`mark`、`old`、`trayAt`、`pills[]` |
+  | `slot` | 欄位的字在正面大卡上，講完飛進托盤的格子變成色塊；上面那排欄位名跟著亮 | `items[]`：`label`、`color`、`tone`、`text`、`parts[]`、`at` |
+  | `result` | 色塊飛進螢幕（`sendAt`），回答卡飛出來；每一列有自己的時間，可以螢光標記、畫底線、框起來、蓋打勾章、貼便條 | `rows[]`、`by`、`verbatim`、`outAt`、`sticker`、`exit: "sheet"` |
+  | `add` | 接在 `result` 後面：同一張卡往下再長幾列 | `rows[]`、`verbatim` |
+  | `compare` | 上下兩張卡同時停在畫面上，中間一個膠囊 | `top`、`bottom`（`label`、`prompt`、`answer`、`mark`、`tag`、`verbatim`）、`badge` |
+  | `remind` | 黃色大提醒卡；回答紙落回桌上，放大鏡飛到新聞紙上，兩張紙之間畫虛線 | `text`、`sub`、`pulseAt`、`lensAt`、`linkAt`、`tags[]` |
+  | `template` | 正面平視的範本卡（可截圖），念到時閃一下、出現截圖框角 | `title`、`lines[]`、`linePx`、`lineH`、`hint`、`hintAt`、`foot` |
+  | `question` | 接在 `template` 後面：範本卡縮到 0.78 倍讓位，下面跳出提問卡 | `kicker`、`text`、`at` |
+  | `next` | 大字標題＋桌上兩份報導浮起來分開、中間一個問號 | `kicker`、`title[]`、`left`、`right`、`splitAt`、`askAt` |
+  | `end` | 片尾卡（`silent: true`＋`durationSec`），鏡頭拉回整張桌面，螢幕打勾 | `title`、`sub`、`note` |
+
+- 動作：卡片在「螢幕面／桌面／正面」三種平面之間飛（矩陣內插加一個弧）、彈出、蓋章、螢光標記、劃掉、逐字打字、物件跳一下、沿虛線移動。所有時間寫 cue id 或 `start｜voice｜end｜exit` ±幀。
+- 顏色是角色，不是裝飾（`color`／`kw` 只能寫這些）：`primary` 長春花藍＝AI 與主標；`wrong` 珊瑚＝錯的、過期的；`right` 青綠＝對的、和原文一致；`note` 暖黃＝提醒、還不確定；`sky` 天藍、`plum` 梅紫＝中性，只給「這樣問」的欄位分色用。色塊（`tone`）用 `THEME_ISO.solid` 的名字：`lav｜sky｜yellow｜plum｜mint｜coral｜white`。
+- 讀得到的字一律放在轉正的卡片上、≥28px；桌面上斜著的東西不放要讀的字（等距變形後會小於 28px）。長文字（回答、範本）用正面平視的大卡。安全區上下 220、左右 64。
+- 放了 AI 回答的地方（`answer｜why｜result｜add｜compare`）都要寫 `verbatim`（指到 `tests/*.json`）與 `by`（「○○ 實測・日期（節錄）」）；validate 會逐行比對原文，只能刪節不能改字。
+- 無聲版：`node scripts/ui/silent-timeline.mjs <slug>` 先估時間軸，配音後跑 `tts-take` → `align` 會整份覆蓋，畫面自動對上。
 
 ## 4. 旁白：像跟朋友講
 
 1. 照 `../voice-natural.md` 第八節「親和專業」（使用者 2026/11/13 看完完整片的意見：旁白不要太輕浮，要親和專業）：像懂行又好相處的前輩在解釋。不用欸、蛤、齁、耶、嘛、啦；用其實、所以、你會發現、我們來看這類連接；句尾的喔、呢全片最多一兩個；句子完整但不書面，長短句交錯，不用冒號、不排比。
 2. 一定要有：一句帶到新聞的開頭、一句「我們拿 ○○ 實測」、一句提醒 AI 也會錯要對原文、結尾一個具體提問（不寫「分享給／傳給／標記」）、最後一句下一集要講什麼（下一集還沒做實測就只能用問句，不能先講結論）。
 3. 口語化不能改事實：年份不對就說年份不對，不說「亂編」；「更準」只能指「和貼的原文一致」。
-4. 設定：Sulafat、`gemini-2.5-flash-preview-tts`、`mode: "take"`、`cmn-TW`；`voice.profile` 用 `ai` 預設（已內建 `delivery: "warm-pro"` 與茶水間場景）。要短就刪字，不壓停頓。
+4. 設定：音色照 CLAUDE.md「各頻道音色」（2026/11/14 起 AI 教學＝Iapetus，男；更早的試片用 Sulafat）、`gemini-2.5-flash-preview-tts`、`mode: "take"`、`cmn-TW`；`voice.profile` 用 `ai` 預設（已內建 `delivery: "warm-pro"` 與茶水間場景）。要短就刪字，不壓停頓。
 
 ## 5. 片尾範本卡
 

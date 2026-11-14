@@ -72,7 +72,11 @@
 ## 風格試片的四種新畫面（`stage`）
 - 用途：四個頻道各一種和紙拼貼明顯不同的畫面，目前只有 10–15 秒試片（沒有片尾卡），讓使用者挑風格。每支的成片資訊、已知問題、人耳確認清單在各自的 `videos/<slug>/README.md`。
 - 開關：script.json 頂層 `styleVersion: 3` 加 `stage`。配音（`voice.mode: "take"`）、對齊、時間軸、字幕檔、混音都沿用 v3 流程，只有畫面換掉；有 `stage` 就不用跑 `make-paper.py`。原本規劃的 `styleVersion: 4` 沒有開，3D 也是走 `stage: "three"`。
-  - `stage: "ui"`（AI 教學，仿介面動畫）：`src/components/ui/`，每幕 `component: "UiScene"`；token＝`THEME_UI`／`LAYOUT_UI`；檢查 `scripts/ui/validate-ui.mjs`；樣片 `videos/sample-ai-ui/`。自製聊天視窗、游標、打字、流程節點，不用真實產品介面。
+  - `stage: "iso"`（**AI 教學頻道的固定風格**，使用者 2026/11/14 決定：等距 2.5D 插畫，isometric 2.5D）：粉彩亮色的斜角小桌面，只用 SVG 與 CSS 2D 矩陣（不用 three.js，每幀約 0.05 秒）。`src/components/ai-iso/`（`IsoFilm.tsx` 完整片引擎，頂層加 `isoVersion: 2`＋`sample: false`；`IsoVideo.tsx` 基本零件與 5 鏡試片；`engine.ts`），每幕 `component: "IsoScene"`＋`props.panel`＋`props.camera`（`look [x,y,z]`、`zoom`、`sy`）；token＝`THEME_ISO`／`LAYOUT_ISO`；檢查 `scripts/ai-iso/validate-iso.mjs`（回答逐行比對 `verbatim` 的實測原文、要標「實測…（節錄）」、第 0 幀要有數字、完整片要有對照／提醒／範本／提問／下一集／片尾卡）；無聲時間軸 `node scripts/ui/silent-timeline.mjs <slug>`。試片 `videos/sample-ai-iso/`，第一支完整片 `videos/sample-ai-news-iso/`（20 鏡）。
+    - 同一張桌面貫穿全片，鏡頭只平移縮放。桌上的東西各有意思：螢幕＝AI、新聞紙＝原文、放大鏡＝搜尋／核對、五格托盤＝提示機、回答紙＝落回桌上的回答。要讀的字放在「飛起來轉正」的白色厚卡片上（≥28px），桌面上斜著的東西不放要讀的字；範本卡這類長文字用正面平視的大卡。
+    - `props.panel`：`hook｜ask｜answer｜bump｜why｜title｜slot｜result｜add｜compare｜remind｜template｜question｜next｜end`（各自的欄位與動作見 `docs/channels/ai-tutorial.md` 3.1）。動作＝卡片在螢幕面／桌面／正面之間飛、彈出、蓋章、螢光標記、劃掉、打字、物件跳一下、沿虛線移動。
+    - 色票角色（`color`／`kw`）：`primary` 長春花藍＝AI 與主標、`wrong` 珊瑚＝錯的或過期的、`right` 青綠＝對的或和原文一致、`note` 暖黃＝提醒或還不確定、`sky`／`plum`＝中性（只給「這樣問」的欄位分色）；色塊 `tone`＝`lav｜sky｜yellow｜plum｜mint｜coral｜white`。
+  - `stage: "ui"`（AI 教學的舊風格，深色仿介面動畫；**2026/11/14 起不再用於新片**，改用上面的 `stage: "iso"`）：`src/components/ui/`，每幕 `component: "UiScene"`；token＝`THEME_UI`／`LAYOUT_UI`；檢查 `scripts/ui/validate-ui.mjs`；樣片 `videos/sample-ai-ui/`、`videos/sample-ai-news/`（留作紀錄，腳本與實測被 sample-ai-news-iso 沿用）。
   - `stage: "chat"`（感情，對話泡泡）：`src/components/chat/`，每幕 `component: "ChatScene"`，`props.events`＝`bubble｜compose｜read｜typing｜card｜stat｜react`；token＝`THEME_CHAT`／`LAYOUT_CHAT`；檢查 `scripts/chat/validate-chat.mjs`，音效 `scripts/chat/sfx.mjs`；樣片 `videos/sample-love-chat/`。畫面要標「情境示意，非真實對話」，不仿真實通訊軟體。
   - `stage: "three"`（科技，3D 產品台）：`src/components/three/`，每幕 `component: "ThreeScene"`（`spin`、`explode`、`labels`、`focus`、`sweep`…）；**產品模型是資料**：零件清單（形狀、尺寸、材質、所在層、標註點）寫在 `videos/<slug>/model.json`，引擎讀資料建模，換產品不改引擎；資料格式、可用的形狀／材質／特效／鏡頭動作與每種效果的渲染成本見 `docs/three-stage.md`。token＝`THEME_3D`／`LAYOUT_3D`（特效開關 `THEME_3D.fx`）；檢查 `scripts/three/validate-three.mjs`；量成本 `node scripts/three/bench-fx.mjs <slug>`；樣片 `videos/sample-tech-3d/`。
     - **運作動畫**（不只拆解，還演「東西實際怎麼運作」）：動作的定義也是資料，寫在 `model.json` 的 `actions`（八種 type：`vibrate` 零件振動／往復、`rotate` 旋轉件、`pulse` 零件發光脈衝、`flow` 沿路徑流動的光點或箭頭、`wave` 往外擴散的聲波圈、`trace` 行進波形、`sum` 幾道波疊加相消、`meter` 跟著數值動的小儀表），每幕用 `props.run: [{ id, at, until?, speed?, gain? }]` 由 cue 觸發；另有 `props.shot`（鏡頭關鍵格，跟著訊號走）與 `props.shift`（把某一層變透明或移開）。程式在 `src/components/three/Ops.tsx`，線寬與不透明度在 `THEME_3D.ops`；寫法、範例與每種成本見 `docs/three-stage.md`「運作動畫怎麼寫」，量成本 `node scripts/three/bench-fx.mjs <slug> --ops`；樣片 `videos/sample-tech-anc/`（耳機主動降噪，拆解只佔約三分之一）。運作動畫都是示意，出處列要寫「波形是示意，不是量測」，儀表不標沒查證的數字。
@@ -128,10 +132,10 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
 ## 各頻道音色（使用者 2026/11/14 決定）
-- 哩股哩股（股票、國際情勢、基金）：使用者在 Google AI Studio 生成的聲音（樣本＝CPI 那段旁白；音色與提示詞待使用者提供，提供前做無聲版）。
+- 哩股哩股（股票、國際情勢、基金）：Iapetus（男），照 love-stats 成片的聲音（使用者 2026/11/14 上傳 love-stats.mp4 指定：`voice.style`＝「用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚」，生成後 atempo 1.17；這個頻道是使用者聽過成品後指定的，1.08 上限不適用）。
 - AI 教學：Iapetus（男）。
 - 談晴說礙：Sulafat（女）。
-- 科技（Tech）：同哩股哩股，用使用者提供的那個聲音（2026/11/14 更正）。
+- 科技（Tech）：同哩股哩股（Iapetus，love-stats 成片的聲音）。
 - 白話國際：沿用 Iapetus（未另行指定）。
 - 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。
 

@@ -10,5 +10,30 @@
   "purpose": "key-check（新付費金鑰）",
   "model": "gemini-2.5-flash-preview-tts",
   "status": 200
+ },
+ {
+  "at": "2026-11-14T11:53:21.328Z",
+  "purpose": "liguligu-cpi 正式配音（Iapetus，使用者指定 love-stats 的聲音）",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 119,
+   "candidatesTokenCount": 566,
+   "totalTokenCount": 685,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 119
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 566
+    }
+   ],
+   "serviceTier": "standard"
+  }
  }
 ]
