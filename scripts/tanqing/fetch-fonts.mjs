@@ -12,6 +12,9 @@ const walk = (v) => { if (typeof v === "string") for (const c of v) set.add(c); 
 // 只收會用襯線字排的欄位：封面、各幕 props（大標等）、頻道名
 walk(script.cover); walk(script.channel); for (const s of script.scenes ?? []) walk(s.props);
 for (const c of "談晴說礙說這一代的難也說還在的光") set.add(c);
+// 子集是整個頻道共用的一份：把已經抓過的字也留著，換一支片重抓不會讓別支片缺字
+const prev = path.join(ROOT, "public/fonts/tanqing/chars.txt");
+if (fs.existsSync(prev)) for (const c of fs.readFileSync(prev, "utf8")) set.add(c);
 set.delete("\n");
 const text = [...set].sort().join("");
 const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";

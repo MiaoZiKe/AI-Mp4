@@ -1,0 +1,77 @@
+{
+ "slug": "tech-2nm",
+ "at": "2026-11-14T14:41:49.111Z",
+ "durationSec": 58.7,
+ "final": {
+  "lufs": -14.8,
+  "truePeakDbfs": -4.4,
+  "lra": 2.8,
+  "codec": "aac 256k 48kHz stereo"
+ },
+ "target": {
+  "lufs": -14,
+  "truePeakDbfs": -1.5,
+  "lraMax": 8,
+  "bgmUnderVoiceLuMin": 15
+ },
+ "bgm": {
+  "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
+  "lufsBeforeDuck": -27,
+  "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
+  "underVoiceDuringSpeechLu": 21.6
+ },
+ "sfx": {
+  "meta": {
+   "whoosh": {
+    "file": "public/sfx/whoosh-ab3314c7.wav",
+    "peakOffsetMs": 329,
+    "gainDb": -17
+   },
+   "pop": {
+    "file": "public/sfx/pop-5f70a59a.wav",
+    "peakOffsetMs": 0,
+    "gainDb": -16
+   },
+   "chime": {
+    "file": "public/sfx/chime-dbfd1d27.wav",
+    "peakOffsetMs": 5,
+    "gainDb": -18
+   }
+  },
+  "notch": "−9dB @3kHz（避開 2–4kHz）",
+  "counts": {
+   "whoosh": 4
+  },
+  "perThreeSec": 0.2,
+  "events": [
+   {
+    "type": "whoosh",
+    "frame": 84,
+    "why": "hook→you",
+    "startSec": 2.404,
+    "peakSec": 2.733
+   },
+   {
+    "type": "whoosh",
+    "frame": 820,
+    "why": "mechanism→twist",
+    "startSec": 26.938,
+    "peakSec": 27.267
+   },
+   {
+    "type": "whoosh",
+    "frame": 1340,
+    "why": "payoff→you",
+    "startSec": 44.271,
+    "peakSec": 44.6
+   },
+   {
+    "type": "whoosh",
+    "frame": 1573,
+    "why": "you→cta",
+    "startSec": 52.038,
+    "peakSec": 52.367
+   }
+  ]
+ }
+}

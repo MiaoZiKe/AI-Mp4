@@ -8,6 +8,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_TANQING_SERIF as SERIF, FONT_ZH, FPS, LAYOUT_TANQING as L, THEME_TANQING as T } from "../../theme";
 import { EASE, linear, tween } from "../anim";
 import { buildTanqing, staticPage, type TqFigure, type TqPage } from "./engine";
+import { FILM_FIGURES } from "./Figures";
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
 const M = T.motion;
@@ -25,9 +26,9 @@ const useSerif = () => {
 };
 
 // ── 一筆畫出來的線（pathLength 正規化成 1，用 dashoffset 長出來） ──
-const pen = (p: number) => ({ pathLength: 1, strokeDasharray: 1, strokeDashoffset: r1(1000 * (1 - p)) / 1000, strokeLinecap: "round" as const, strokeLinejoin: "round" as const });
-const drawP = (f: number, at: number, dur: number = M.draw) => tween(f, at, dur, EASE.move);
-const fadeP = (f: number, at: number, dur: number = M.fade) => tween(f, at, dur, EASE.enter);
+export const pen = (p: number) => ({ pathLength: 1, strokeDasharray: 1, strokeDashoffset: r1(1000 * (1 - p)) / 1000, strokeLinecap: "round" as const, strokeLinejoin: "round" as const });
+export const drawP = (f: number, at: number, dur: number = M.draw) => tween(f, at, dur, EASE.move);
+export const fadeP = (f: number, at: number, dur: number = M.fade) => tween(f, at, dur, EASE.enter);
 
 /** 太陽雲朵（頻道字標的圖形；logo-wordmark-day.svg 的兩筆，加貼文上的三道光） */
 const CLOUD = "M -120 120 H 110 A 40 40 0 0 0 110 40 A 67.5 67.5 0 0 0 -25 35 A 55 55 0 0 0 -120 120 Z";
@@ -52,15 +53,15 @@ const Wordmark: React.FC<{ name: string }> = ({ name }) => (
 );
 
 /** 地面線＋下面一排淡斜紋（貼文圖表的底） */
-const Ground: React.FC<{ y: number; p: number; x0?: number; x1?: number }> = ({ y, p, x0 = 0, x1 = L.INNER_W }) => p <= 0 ? null : (
+export const Ground: React.FC<{ y: number; p: number; x0?: number; x1?: number }> = ({ y, p, x0 = 0, x1 = L.INNER_W }) => p <= 0 ? null : (
   <g>
     <g opacity={p}>{Array.from({ length: Math.floor((x1 - x0 - 16) / 12) }, (_, k) => <line key={k} x1={x0 + 14 + k * 12} y1={y + 4} x2={x0 + 6 + k * 12} y2={y + 16} stroke={T.hair} strokeWidth={T.stroke.hair} />)}</g>
     <line x1={x0} y1={y} x2={x0 + (x1 - x0) * p} y2={y} stroke={T.line} strokeWidth={T.stroke.line} strokeLinecap="round" />
   </g>
 );
 
-const Svg: React.FC<{ children: React.ReactNode }> = ({ children }) => <svg width={L.INNER_W} height={L.FIG_H} viewBox={`0 0 ${L.INNER_W} ${L.FIG_H}`} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>{children}</svg>;
-const figText = (px: number, weight: number, color: string): React.CSSProperties => ({ position: "absolute", fontFamily: FONT_ZH, fontWeight: weight, fontSize: px, lineHeight: 1.25, color, whiteSpace: "pre" });
+export const Svg: React.FC<{ children: React.ReactNode }> = ({ children }) => <svg width={L.INNER_W} height={L.FIG_H} viewBox={`0 0 ${L.INNER_W} ${L.FIG_H}`} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>{children}</svg>;
+export const figText = (px: number, weight: number, color: string): React.CSSProperties => ({ position: "absolute", fontFamily: FONT_ZH, fontWeight: weight, fontSize: px, lineHeight: 1.25, color, whiteSpace: "pre" });
 
 /** 十個圓角人形膠囊：第 0 幀先有淡線輪廓（ghost），再一個一個描出來；mark 個再描成空心橘框，其餘填米色。左上是大數字；標籤接在橘色虛線的右端 */
 const People: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
@@ -185,7 +186,7 @@ const Mark: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
       {fig.line ? (
         <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 500, display: "flex", justifyContent: "center", alignItems: "center", gap: 18, opacity: fadeP(f, lineAt) }}>
           <div style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), position: "relative" }}>{fig.line}</div>
-          <svg width={44} height={28} viewBox="0 0 44 28"><path d="M 3 14 H 39 M 28 4 L 39 14 L 28 24" fill="none" stroke={T.ink2} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" /></svg>
+          {fig.arrow === false ? null : <svg width={44} height={28} viewBox="0 0 44 28"><path d="M 3 14 H 39 M 28 4 L 39 14 L 28 24" fill="none" stroke={T.ink2} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" /></svg>}
         </div>
       ) : null}
     </>
@@ -194,7 +195,7 @@ const Mark: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
 
 const Figure: React.FC<{ fig?: TqFigure; f: number }> = ({ fig, f }) => {
   if (!fig) return null;
-  const el = fig.type === "people" ? <People fig={fig} f={f} /> : fig.type === "form" ? <Form fig={fig} f={f} /> : fig.type === "bowl" ? <Bowl fig={fig} f={f} /> : fig.type === "mark" ? <Mark fig={fig} f={f} /> : null;
+  const el = fig.type === "people" ? <People fig={fig} f={f} /> : fig.type === "form" ? <Form fig={fig} f={f} /> : fig.type === "bowl" ? <Bowl fig={fig} f={f} /> : fig.type === "mark" ? <Mark fig={fig} f={f} /> : FILM_FIGURES[fig.type] ? React.createElement(FILM_FIGURES[fig.type], { fig, f }) : null;
   // figure.scale（選填，預設 1）：9:16 比貼文高，圖可以整個放大（以圖區中心為準）
   const sc = typeof fig.scale === "number" ? fig.scale : 1;
   return sc === 1 ? el : <div style={{ position: "absolute", left: 0, top: 0, width: L.INNER_W, height: L.FIG_H, transform: `scale(${sc})`, transformOrigin: "50% 50%" }}>{el}</div>;
@@ -252,13 +253,13 @@ const SourceLine: React.FC<{ pages: TqPage[]; f: number }> = ({ pages, f }) => (
 
 /** 右下頁碼：小太陽在目前這一頁，其他是圓點；不是最後一頁時右邊有箭頭 */
 const Pager: React.FC<{ pages: TqPage[]; f: number }> = ({ pages, f }) => {
-  const n = pages.length, gap = L.PAGER_GAP;
+  const n = pages.length, gap = n > 8 ? Math.max(14, Math.floor(300 / (n - 1))) : L.PAGER_GAP, dotR = n > 8 ? 4.5 : 7; // 頁數多（完整片）時把間距與圓點縮小，不壓到左下的出處
   let pos = 0; pages.forEach((pg, i) => { if (i > 0) pos += tween(f, pg.start, M.pan, EASE.move); });
   const w = (n - 1) * gap + 80, x0 = 22, cy = 22, sx = x0 + pos * gap;
   const arrow = 1 - Math.max(0, pos - (n - 2));
   return (
     <svg width={w} height={44} viewBox={`0 0 ${w} 44`} style={{ position: "absolute", left: L.W - L.X - w, top: L.PAGER_Y - cy, overflow: "visible" }}>
-      {pages.map((_, k) => <circle key={k} cx={x0 + k * gap} cy={cy} r={7} fill={T.dot} opacity={Math.min(1, Math.abs(pos - k))} />)}
+      {pages.map((_, k) => <circle key={k} cx={x0 + k * gap} cy={cy} r={dotR} fill={T.dot} opacity={Math.min(1, Math.abs(pos - k))} />)}
       <g transform={`translate(${r1(sx)} ${cy}) rotate(${r1(pos * 45)})`}>
         <circle r={9} fill={T.orange} />
         {Array.from({ length: 8 }, (_, k) => { const a = (k * Math.PI) / 4; return <line key={k} x1={r1(13 * Math.cos(a))} y1={r1(13 * Math.sin(a))} x2={r1(19 * Math.cos(a))} y2={r1(19 * Math.sin(a))} stroke={T.orange} strokeWidth={3} strokeLinecap="round" />; })}

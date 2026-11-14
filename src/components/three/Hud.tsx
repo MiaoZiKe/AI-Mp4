@@ -443,25 +443,27 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
 
 /** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌與名稱、slogan、下一支預告。
  *  字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
-const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
+const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
-  const n = f - at, b = 90, x0 = L.X + 40, x1 = L.W - L.X - 40, y0 = 520, y1 = 1400;
+  const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = 400, y1 = 1560;
   const draw = tween(f, at + 2, 14, EASE.move), pop = tween(f, at + 6, 10, EASE.enter), line = tween(f, at + 12, 14, EASE.move), nx = tween(f, at + 22, 8, EASE.enter);
+  const trail = spec?.trail ?? [];
   return (
     <AbsoluteFill style={{ background: H.bg, opacity: k }}>
       <HudBackdrop f={f} lv={0} />
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
-        {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={4} />)}
-        <g transform={`translate(${L.W / 2} 720) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
-          <rect x={-70} y={-70} width={140} height={140} fill="none" stroke={H.line} strokeWidth={6} />
-          <rect x={-26} y={-26} width={52} height={52} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} />
+        {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={5} />)}
+        <g transform={`translate(${L.W / 2} 640) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
+          <rect x={-100} y={-100} width={200} height={200} fill="none" stroke={H.line} strokeWidth={8} />
+          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} />
         </g>
       </svg>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 850, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(124, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
-      <div style={{ position: "absolute", left: (L.W - 520 * line) / 2, top: 1030, width: 520 * line, height: 4, background: H.amber }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1064, textAlign: "center", opacity: line, ...zh(54, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1210, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(44, H.onAccent, 800), background: H.amber, padding: "8px 34px 12px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      <div style={{ position: "absolute", left: 0, right: 0, top: 800, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
+      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1012, width: 760 * line, height: 5, background: H.amber }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: 1046, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
+      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1190, display: "flex", justifyContent: "center", gap: 14, opacity: line }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 14 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1330, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(60, H.onAccent, 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
     </AbsoluteFill>
   );
 };

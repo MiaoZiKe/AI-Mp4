@@ -11,9 +11,14 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../.
 const AT_BASE = ["start", "voice", "end", "exit"];
 const FIGS = { people: ["count", "mark"], form: ["ask"], bowl: [], mark: [] };
 const KINDS = ["ai", "qing", "ask"];
+// 完整片（頂層 tanqing.film: true，第一支 videos/talk-ep01/）多出來的圖形與頁種；短片不寫 film 就完全照舊
+const FIGS_FILM = { window: ["sky"], months: [], grid: ["count", "mark"], bars: ["bars"], line: ["points", "yMin", "yMax"], week: [], pair: ["a", "b"], hbars: ["bars", "max"], rows: ["rows"], phone: [], bento: [], key: [] };
+const KINDS_FILM = ["next", "end"];
 
 export function validateTanqing(script, h) {
   const errors = [], warns = [];
+  const film = script.tanqing?.film === true;
+  const figs = film ? { ...FIGS, ...FIGS_FILM } : FIGS, kinds = film ? [...KINDS, ...KINDS_FILM] : KINDS;
   const E = (m) => errors.push(m), W = (m) => warns.push(m);
   for (const k of ["slug", "title", "asOf"]) if (typeof script[k] !== "string" || !script[k]) E(`頂層缺少 ${k}`);
   if (script.asOf && !/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(script.asOf)) E(`asOf 格式應為 YYYY/M/D：${script.asOf}`);
@@ -48,13 +53,16 @@ export function validateTanqing(script, h) {
   };
   const ids = new Set();
   let chars = 0, numbers = 0, qing = 0;
+  const seen = new Set();
   for (const [i, s] of scenes.entries()) {
     const tag = `第 ${i + 1} 幕 (${s.id ?? "?"})`;
     if (!s.id || ids.has(s.id)) E(`${tag}: id 缺少或重複`); ids.add(s.id);
     if (s.component !== "TanqingScene") E(`${tag}: stage "tanqing" 的 component 只能是 TanqingScene：${s.component}`);
-    if (typeof s.narration !== "string" || !s.narration) E(`${tag}: 缺 narration`);
-    chars += h.len(s.narration);
-    if (!s.subtitle?.zh || !s.subtitle?.en) E(`${tag}: 缺 subtitle.zh／en`);
+    const silentEnd = film && s.silent === true && i === scenes.length - 1;
+    if (silentEnd) { if (!(s.durationSec > 0)) E(`${tag}: 無旁白的片尾卡要寫 durationSec`); }
+    else if (typeof s.narration !== "string" || !s.narration) E(`${tag}: 缺 narration`);
+    chars += h.len(s.narration ?? "");
+    if (!silentEnd && (!s.subtitle?.zh || !s.subtitle?.en)) E(`${tag}: 缺 subtitle.zh／en`);
     for (const [k, t] of [["念稿", s.tts ?? s.narration], ["字幕", s.subtitle?.zh]]) { for (const m of cnTermIssues(t)) W(`${tag}: ${k}有${m}`); tone(t, tag, k); }
     if (h.readingIssues) for (const m of h.readingIssues(s.tts ?? s.narration)) W(`${tag}: 念稿 ${m}`);
     if (/[：:；;]/.test(s.tts ?? s.narration ?? "")) W(`${tag}: 念稿有冒號或分號（會念成宣布；docs/voice-natural.md）`);
@@ -71,8 +79,9 @@ export function validateTanqing(script, h) {
       for (const x of s.sources.slice(0, 2)) if (h.emWidth(x) > 22.5) W(`${tag}: 來源「${x}」一行超過 22 個全形字，會碰到右下頁碼；拆成兩行`);
     }
     const p = s.props ?? {};
-    if (!KINDS.includes(p.kind)) E(`${tag}: props.kind 要是 ${KINDS.join("／")}（ai＝礙、qing＝晴、ask＝提問）`);
+    if (!kinds.includes(p.kind)) E(`${tag}: props.kind 要是 ${kinds.join("／")}（ai＝礙、qing＝晴、ask＝提問${film ? "、next＝下一集、end＝片尾卡" : ""}）`);
     if (p.kind === "qing") qing++;
+    seen.add(p.kind);
     if (!Array.isArray(p.title) || !p.title.length || p.title.length > 2) E(`${tag}: props.title 要是 1–2 行的陣列（襯線大標）`);
     else for (const line of p.title) { if (h.emWidth(line) > 10) E(`${tag}: 大標一行「${line}」> 10 個全形字（88px 會超出版心）`); serif(line, `${tag}.title`); tone(line, tag, "大標"); }
     if (p.titleAt !== undefined) checkAt(p.titleAt, s, `${tag}.titleAt`);
@@ -87,9 +96,9 @@ export function validateTanqing(script, h) {
       if (Array.isArray(p.title) && p.title.length > 1) W(`${tag}: 兩行大標再加橘色一句，會壓到字幕；大標改一行`);
     }
     const fig = p.figure;
-    if (!fig || !(fig.type in FIGS)) E(`${tag}: props.figure.type 要是 ${Object.keys(FIGS).join("／")}（線稿圖形）`);
+    if (!fig || !(fig.type in figs)) E(`${tag}: props.figure.type 要是 ${Object.keys(figs).join("／")}（線稿圖形）`);
     else {
-      for (const k of FIGS[fig.type]) if (fig[k] === undefined) E(`${tag}.figure(${fig.type}): 缺 ${k}`);
+      for (const k of figs[fig.type]) if (fig[k] === undefined) E(`${tag}.figure(${fig.type}): 缺 ${k}`);
       for (const [k, v] of Object.entries(fig)) if (k === "at" || /At$/.test(k)) checkAt(v, s, `${tag}.figure.${k}`);
       if (fig.scale !== undefined && !(typeof fig.scale === "number" && fig.scale >= 1 && fig.scale <= 1.3)) E(`${tag}.figure.scale 要是 1–1.3（圖整個放大的倍率）`);
       if (fig.type === "people") {
@@ -97,15 +106,27 @@ export function validateTanqing(script, h) {
         if (!(Number.isInteger(fig.mark) && fig.mark >= 0 && fig.mark <= fig.count)) E(`${tag}.figure: mark 要是 0–count`);
         if (fig.number) { numbers++; if (!fig.number.text) E(`${tag}.figure.number: 缺 text`); if (!fig.number.claim) E(`${tag}.figure.number: 要有 claim（指到 research.md 的事實編號，例如 F1）`); }
       }
+      if (fig.type !== "people" && fig.number) { numbers++; if (!fig.number.text) E(`${tag}.figure.number: 缺 text`); if (!fig.number.claim) E(`${tag}.figure.number: 要有 claim（指到 research.md 的事實編號，例如 F1）`); }
+      // 完整片的圖表：畫面上每一組資料都要寫 claim（指到 research.md 的事實編號）
+      if (film && ["grid", "bars", "line", "pair", "hbars", "phone"].includes(fig.type) && !fig.claim) E(`${tag}.figure(${fig.type}): 資料圖要有 claim（research.md 的事實編號）`);
+      if (fig.type === "line" && fig.yMin !== 0 && !(Array.isArray(fig.ticks) && fig.ticks.length)) E(`${tag}.figure(line): 縱軸不是從 0 開始，要寫 ticks（把刻度標出來）`);
       for (const k of ["label", "ask", "side", "line"]) if (fig[k] !== undefined) { tone(fig[k], `${tag}.figure.${k}`, "圖上的字"); for (const line of String(fig[k]).split("\n")) if (h.emWidth(line) > 12) W(`${tag}.figure.${k}:「${line}」> 12 個全形字`); }
     }
   }
   // 第 0 幀：第一頁要有大標和數字（大標沒有 titleAt＝第 0 幀就在；number 一開始就在）
   const p0 = scenes[0].props ?? {};
   if (p0.titleAt !== undefined || !p0.figure?.number) E("第一幕要有 figure.number，大標不能寫 titleAt：第 0 幀就要有大標與數字");
-  if (numbers !== 1) E(`全片有 ${numbers} 個 figure.number；這個頻道一支片只放一個有來源的數字`);
+  if (!film && numbers !== 1) E(`全片有 ${numbers} 個 figure.number；這個頻道一支片只放一個有來源的數字`);
+  if (film && numbers < 1) E("全片沒有 figure.number");
   if (!qing) E("全片沒有 kind: \"qing\" 的頁：結尾要留一小段「晴」");
-  if (chars < 45 || chars > 60) W(`旁白共 ${chars} 字，短片建議 45–60 字（約 10–15 秒）`);
-  const est = Math.round(chars / 4.7 + 1.5);
+  if (film) {
+    for (const k of ["ask", "next", "end"]) if (!seen.has(k)) E(`完整片要有 kind: "${k}" 的頁（提問／下一集／片尾卡）`);
+    const last = scenes[scenes.length - 1];
+    if (last.props?.kind !== "end") E("完整片最後一幕要是片尾卡（kind: \"end\"）");
+    if (qing / scenes.length > 1 / 3) W(`「晴」佔 ${qing}/${scenes.length} 頁，超過三分之一`);
+    if (scenes.length < 18 || scenes.length > 24) W(`完整片 ${scenes.length} 鏡，建議 18–24 鏡`);
+    if (chars < 230 || chars > 290) W(`旁白共 ${chars} 字，完整片建議 230–290 字（45–75 秒）`);
+  } else if (chars < 45 || chars > 60) W(`旁白共 ${chars} 字，短片建議 45–60 字（約 10–15 秒）`);
+  const est = Math.round(chars / 4.7 + 1.5) + (film ? Number(scenes[scenes.length - 1].durationSec ?? 0) : 0);
   return { errors, warns, est };
 }
