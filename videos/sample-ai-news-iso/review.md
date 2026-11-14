@@ -45,4 +45,5 @@
 | s14→s15、s13→s14 換鏡 | nit | 換鏡的 1–2 幀，舊卡和新卡半透明疊在頁首上 | 舊卡先退完新卡再進 |
 | 片尾卡 | nit | 頁首已有「AI 動手做」和「看完就能照著做」，卡片裡又各出現一次；最後約 2.8 秒完全不動 | 可接受；要改的話讓螢幕上的勾勾晚一點再彈一次 |
 | 全片 | nit | 每鏡 2.3–5.1 秒，短於規範的 5–10 秒 | 等距風格一鏡一動作，可接受；配音後再看一次 |
+| script.json `voice`、README.md | should-fix | CLAUDE.md 現在寫 AI 教學頻道的音色是 Sulafat（女），這支片的 `voice.voiceName` 還是 Iapetus（男），README 也寫 Iapetus。不影響無聲版畫面，但正式配音前要改 | 照 README「如果使用者試聽後要 Sulafat」那一段改四個欄位 |
 | research.md | nit | 還沒對過主計總處新聞稿原文 | 上片當天補查 |
