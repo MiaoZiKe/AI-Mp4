@@ -6,35 +6,36 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
+import { CoverFilm, FilmIso } from "./IsoFilm";
 
 const M = T.motion;
-const col = (name?: string) => T.color[name ?? "primary"] ?? T.color.primary;
+export const col = (name?: string) => T.color[name ?? "primary"] ?? T.color.primary;
 const zh: React.CSSProperties = { fontFamily: FONT_ZH, whiteSpace: "nowrap", lineHeight: 1.16 };
 const en: React.CSSProperties = { fontFamily: FONT_EN, whiteSpace: "nowrap", lineHeight: 1 };
 
 // ───────── 等距投影與 2D 矩陣 ─────────
-type M6 = [number, number, number, number, number, number];
+export type M6 = [number, number, number, number, number, number];
 const CX = 0.866, SY = 0.5;
 /** 世界座標（x 往右下、y 往左下、z 往上）→ 畫面座標 */
-const iso = (x: number, y: number, z = 0): [number, number] => [(x - y) * CX, (x + y) * SY - z];
-const mul = (m: M6, n: M6): M6 => [m[0] * n[0] + m[2] * n[1], m[1] * n[0] + m[3] * n[1], m[0] * n[2] + m[2] * n[3], m[1] * n[2] + m[3] * n[3], m[0] * n[4] + m[2] * n[5] + m[4], m[1] * n[4] + m[3] * n[5] + m[5]];
+export const iso = (x: number, y: number, z = 0): [number, number] => [(x - y) * CX, (x + y) * SY - z];
+export const mul = (m: M6, n: M6): M6 => [m[0] * n[0] + m[2] * n[1], m[1] * n[0] + m[3] * n[1], m[0] * n[2] + m[2] * n[3], m[1] * n[2] + m[3] * n[3], m[0] * n[4] + m[2] * n[5] + m[4], m[1] * n[4] + m[3] * n[5] + m[5]];
 /** 平躺在高度 z 的平面（原點＝x,y 最小的那一角） */
-const ground = (x: number, y: number, z = 0): M6 => [CX, SY, -CX, SY, ...iso(x, y, z)];
+export const ground = (x: number, y: number, z = 0): M6 => [CX, SY, -CX, SY, ...iso(x, y, z)];
 /** 朝右前方（+x）的直立面；原點＝畫面上的左上角（x, y 最大, z 最高） */
-const wallX = (x: number, y: number, z: number): M6 => [CX, -SY, 0, 1, ...iso(x, y, z)];
-const at2 = (x: number, y: number, k = 1): M6 => [k, 0, 0, k, x, y];
-const mix = (a: M6, b: M6, t: number): M6 => a.map((v, i) => v + (b[i] - v) * t) as M6;
-const css = (m: M6) => `matrix(${m.map((v) => v.toFixed(4)).join(",")})`;
-const ap = (m: M6, p: [number, number]): [number, number] => [m[0] * p[0] + m[2] * p[1] + m[4], m[1] * p[0] + m[3] * p[1] + m[5]];
+export const wallX = (x: number, y: number, z: number): M6 => [CX, -SY, 0, 1, ...iso(x, y, z)];
+export const at2 = (x: number, y: number, k = 1): M6 => [k, 0, 0, k, x, y];
+export const mix = (a: M6, b: M6, t: number): M6 => a.map((v, i) => v + (b[i] - v) * t) as M6;
+export const css = (m: M6) => `matrix(${m.map((v) => v.toFixed(4)).join(",")})`;
+export const ap = (m: M6, p: [number, number]): [number, number] => [m[0] * p[0] + m[2] * p[1] + m[4], m[1] * p[0] + m[3] * p[1] + m[5]];
 /** 從 a 飛到 b：矩陣內插＋一個往上的弧 */
-const fly = (a: M6, b: M6, t: number, arc: number = M.arc): M6 => { const m = mix(a, b, t); m[5] -= arc * Math.sin(Math.PI * t); return m; };
+export const fly = (a: M6, b: M6, t: number, arc: number = M.arc): M6 => { const m = mix(a, b, t); m[5] -= arc * Math.sin(Math.PI * t); return m; };
 /** 以 (x,y,w,h) 的中心縮放 k 倍 */
-const popM = (x: number, y: number, w: number, h: number, k: number): M6 => at2(x + (w / 2) * (1 - k), y + (h / 2) * (1 - k), k);
+export const popM = (x: number, y: number, w: number, h: number, k: number): M6 => at2(x + (w / 2) * (1 - k), y + (h / 2) * (1 - k), k);
 
 // ───────── 鏡頭 ─────────
-type Key = { frame: number; look: [number, number, number]; zoom: number; sy: number };
-const camKeys = (panels: Panel[]): Key[] => panels.flatMap((x) => ([] as any[]).concat(x.p.camera ?? []).map((c, i) => ({ frame: i === 0 && !c.at ? x.in : x.at(c.at, x.in), look: c.look, zoom: c.zoom, sy: c.sy }))).sort((a, b) => a.frame - b.frame);
-const camAt = (keys: Key[], f: number): M6 => {
+export type Key = { frame: number; look: [number, number, number]; zoom: number; sy: number };
+export const camKeys = (panels: Panel[]): Key[] => panels.flatMap((x) => ([] as any[]).concat(x.p.camera ?? []).map((c, i) => ({ frame: i === 0 && !c.at ? x.in : x.at(c.at, x.in), look: c.look, zoom: c.zoom, sy: c.sy }))).sort((a, b) => a.frame - b.frame);
+export const camAt = (keys: Key[], f: number): M6 => {
   if (!keys.length) return at2(L.W / 2, 900, 0.6);
   let [lx, ly] = iso(...keys[0].look), s = keys[0].zoom, sy = keys[0].sy;
   for (const k of keys.slice(1)) {
@@ -45,9 +46,9 @@ const camAt = (keys: Key[], f: number): M6 => {
 };
 
 // ───────── 世界裡的實體（SVG） ─────────
-type Tone = { top: string; l: string; r: string };
+export type Tone = { top: string; l: string; r: string };
 /** 圓角薄板：頂面＋往下的厚度（左前面受光、右前面背光） */
-const Slab: React.FC<{ id: string; x: number; y: number; z?: number; w: number; h: number; t: number; r?: number; c: Tone; children?: React.ReactNode }> = ({ id, x, y, z = 0, w, h, t, r = 0, c, children }) => {
+export const Slab: React.FC<{ id: string; x: number; y: number; z?: number; w: number; h: number; t: number; r?: number; c: Tone; children?: React.ReactNode }> = ({ id, x, y, z = 0, w, h, t, r = 0, c, children }) => {
   const Lp = iso(x, y + h, z), Rp = iso(x + w, y, z), Fp = iso(x + w, y + h, z), k = 0.507 * r, g = ground(x, y, z);
   const side = (fill: string) => (
     <>
@@ -65,7 +66,7 @@ const Slab: React.FC<{ id: string; x: number; y: number; z?: number; w: number; 
   );
 };
 /** 直立方塊：頂面、左前面（+y）、右前面（+x） */
-const Box: React.FC<{ x: number; y: number; z?: number; dx: number; dy: number; dz: number; c: Tone }> = ({ x, y, z = 0, dx, dy, dz, c }) => {
+export const Box: React.FC<{ x: number; y: number; z?: number; dx: number; dy: number; dz: number; c: Tone }> = ({ x, y, z = 0, dx, dy, dz, c }) => {
   const P = (a: number, b: number, h: number) => iso(a, b, h).join(","), X = x + dx, Y = y + dy, Z = z + dz;
   const face = (pts: string, fill: string) => <polygon points={pts} fill={fill} stroke={fill} strokeWidth={3} strokeLinejoin="round" />;
   return (
@@ -76,23 +77,23 @@ const Box: React.FC<{ x: number; y: number; z?: number; dx: number; dy: number; 
     </g>
   );
 };
-const Shade: React.FC<{ x: number; y: number; w: number; h: number; r?: number; z?: number; a?: number }> = ({ x, y, w, h, r = 12, z = 0, a = T.shadowAlpha }) => (
+export const Shade: React.FC<{ x: number; y: number; w: number; h: number; r?: number; z?: number; a?: number }> = ({ x, y, w, h, r = 12, z = 0, a = T.shadowAlpha }) => (
   <rect width={w} height={h} rx={r} transform={css(ground(x, y, z))} fill={T.floor} opacity={a} />
 );
 
 /** 桌上物件的位置（世界座標；桌面 640×640、頂面 z＝0） */
 const DESK = 640;
-const MON = { x: 64, y: 100, z: 44, dx: 26, dy: 420, dz: 270 };
-const SCR_W = MON.dy, SCR_H = MON.dz;
+export const MON = { x: 64, y: 100, z: 44, dx: 26, dy: 420, dz: 270 };
+export const SCR_W = MON.dy, SCR_H = MON.dz;
 /** 螢幕面的矩陣（局部座標 420×270） */
-const SCR: M6 = wallX(MON.x + MON.dx, MON.y + MON.dy, MON.z + MON.dz);
+export const SCR: M6 = wallX(MON.x + MON.dx, MON.y + MON.dy, MON.z + MON.dz);
 const NEWS = { x: 396, y: 56, w: 210, h: 150 };
 const LENS = { x: 340, y: 500 };
 
-type ScreenMode = "num" | "idle" | "think" | "done" | "ok";
-type WorldState = { f: number; cam: M6; mode: ScreenMode; flash: number; num?: { label: string; value: string; size?: number }; lensOnDesk: boolean; sheet: boolean; news: { x: number; y: number; z: number; k: number; o: number }; trail?: string | null };
+export type ScreenMode = "num" | "idle" | "think" | "done" | "ok";
+export type WorldState = { f: number; cam: M6; mode: ScreenMode; flash: number; num?: { label: string; value: string; size?: number }; lensOnDesk: boolean; sheet: boolean; news: { x: number; y: number; z: number; k: number; o: number }; trail?: string | null };
 
-const ScreenFace: React.FC<{ st: WorldState }> = ({ st }) => {
+export const ScreenFace: React.FC<{ st: WorldState }> = ({ st }) => {
   const { mode, f, flash } = st, S = T.screen;
   return (
     <g transform={css(SCR)}>
@@ -186,31 +187,31 @@ const World: React.FC<{ st: WorldState }> = ({ st }) => {
 };
 
 // ───────── 轉正的卡片（HTML，畫面座標） ─────────
-const Bb: React.FC<{ m: M6; w: number; h?: number; o?: number; children?: React.ReactNode; style?: React.CSSProperties }> = ({ m, w, h, o = 1, children, style }) => (
+export const Bb: React.FC<{ m: M6; w: number; h?: number; o?: number; children?: React.ReactNode; style?: React.CSSProperties }> = ({ m, w, h, o = 1, children, style }) => (
   o <= 0.001 ? null : <div style={{ position: "absolute", left: 0, top: 0, width: w, height: h, transformOrigin: "0 0", transform: css(m), opacity: o, ...style }}>{children}</div>
 );
-const face = (bg: string = T.card, side: string = T.cardSide, d: number = T.depth.card, r: number = T.radius.card): React.CSSProperties => ({ width: "100%", height: "100%", boxSizing: "border-box", background: bg, borderRadius: r, boxShadow: `0 ${d}px 0 ${side}, ${T.depth.soft}` });
-const Chip: React.FC<{ text: string; bg: string; fg: string; px?: number; side?: string; style?: React.CSSProperties }> = ({ text, bg, fg, px = 30, side, style }) => (
+export const face = (bg: string = T.card, side: string = T.cardSide, d: number = T.depth.card, r: number = T.radius.card): React.CSSProperties => ({ width: "100%", height: "100%", boxSizing: "border-box", background: bg, borderRadius: r, boxShadow: `0 ${d}px 0 ${side}, ${T.depth.soft}` });
+export const Chip: React.FC<{ text: string; bg: string; fg: string; px?: number; side?: string; style?: React.CSSProperties }> = ({ text, bg, fg, px = 30, side, style }) => (
   <div style={{ ...zh, display: "inline-block", fontWeight: T.weight.strong, fontSize: px, color: fg, background: bg, borderRadius: T.radius.chip, padding: `${Math.round(px * 0.34)}px ${Math.round(px * 0.8)}px`, boxShadow: side ? `0 6px 0 ${side}` : undefined, ...style }}>{text}</div>
 );
 /** 螢光標記：色塊從左往右抹到字的後面 */
-const Mark: React.FC<{ f: number; at: number; bg: string; fg?: string; children: React.ReactNode; style?: React.CSSProperties }> = ({ f, at, bg, fg, children, style }) => {
+export const Mark: React.FC<{ f: number; at: number; bg: string; fg?: string; children: React.ReactNode; style?: React.CSSProperties }> = ({ f, at, bg, fg, children, style }) => {
   const p = tween(f, at, M.mark, EASE.move);
   return <span style={{ color: p > 0.5 ? fg : undefined, backgroundImage: `linear-gradient(${bg},${bg})`, backgroundRepeat: "no-repeat", backgroundSize: `${(100 * p).toFixed(1)}% 84%`, backgroundPosition: "0 60%", borderRadius: T.radius.mark, padding: "0 0.08em", ...style }}>{children}</span>;
 };
-const marked = (text: string, target: string | undefined, f: number, at: number, bg: string, fg?: string) => {
+export const marked = (text: string, target: string | undefined, f: number, at: number, bg: string, fg?: string) => {
   const i = target ? text.indexOf(target) : -1;
   if (i < 0 || !target) return text;
   return <>{text.slice(0, i)}<Mark f={f} at={at} bg={bg} fg={fg}>{target}</Mark>{text.slice(i + target.length)}</>;
 };
-const Strike: React.FC<{ f: number; at: number; color: string; h?: number }> = ({ f, at, color, h = 12 }) => (
+export const Strike: React.FC<{ f: number; at: number; color: string; h?: number }> = ({ f, at, color, h = 12 }) => (
   <div style={{ position: "absolute", left: "-3%", top: "52%", height: h, marginTop: -h / 2, borderRadius: h, background: color, width: `${(106 * tween(f, at, M.strike, EASE.move)).toFixed(1)}%` }} />
 );
 /** 蓋章：從大縮到定位（M.slam 幀），蓋下去之前看不到 */
-const slam = (f: number, at: number, rot = 0, from = 2.2): React.CSSProperties => ({ opacity: f < at ? 0 : 1, transform: `rotate(${rot}deg) scale(${(1 + (from - 1) * (1 - tween(f, at, M.slam, EASE.exit))).toFixed(4)})` });
-const bounce = (f: number, at: number, rot = 0): React.CSSProperties => ({ opacity: tween(f, at, 3), transform: `scale(${(f < at ? 0.4 : pop(f, at, 0.4)).toFixed(4)}) rotate(${rot}deg)` });
-const riseIn = (f: number, at: number, dist = 90): React.CSSProperties => ({ opacity: tween(f, at, 6), transform: `translateY(${Math.round((1 - springAccent(f, at)) * dist)}px)` });
-const Check: React.FC<{ size: number; color: string }> = ({ size, color }) => (
+export const slam = (f: number, at: number, rot = 0, from = 2.2): React.CSSProperties => ({ opacity: f < at ? 0 : 1, transform: `rotate(${rot}deg) scale(${(1 + (from - 1) * (1 - tween(f, at, M.slam, EASE.exit))).toFixed(4)})` });
+export const bounce = (f: number, at: number, rot = 0): React.CSSProperties => ({ opacity: tween(f, at, 3), transform: `scale(${(f < at ? 0.4 : pop(f, at, 0.4)).toFixed(4)}) rotate(${rot}deg)` });
+export const riseIn = (f: number, at: number, dist = 90): React.CSSProperties => ({ opacity: tween(f, at, 6), transform: `translateY(${Math.round((1 - springAccent(f, at)) * dist)}px)` });
+export const Check: React.FC<{ size: number; color: string }> = ({ size, color }) => (
   <svg width={size} height={size} viewBox="0 0 48 48"><path d="M10 25 L20 35 L38 14" fill="none" stroke={color} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" /></svg>
 );
 
@@ -436,7 +437,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
 };
 
 /** 放大鏡：從桌面飛到被標記的字上面，鏡片裡是放大的同一個字 */
-const Lens: React.FC<{ f: number; at: number; text: string }> = ({ f, at, text }) => {
+export const Lens: React.FC<{ f: number; at: number; text: string }> = ({ f, at, text }) => {
   if (f < at) return null;
   const t = tween(f, at, 12, EASE.move), c = col("wrong"), D = 232;
   const dx = 150 + (1 - t) * -330, dy = 8 + (1 - t) * -250 - 70 * Math.sin(Math.PI * t), k = 0.45 + 0.55 * t;
@@ -450,7 +451,7 @@ const Lens: React.FC<{ f: number; at: number; text: string }> = ({ f, at, text }
   );
 };
 
-const Backdrop: React.FC = () => <AbsoluteFill style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }} />;
+export const Backdrop: React.FC = () => <AbsoluteFill style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }} />;
 export const HeaderIso: React.FC<{ name: string; tag: string; right?: string; progress: number }> = ({ name, tag, right, progress }) => (
   <>
     <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -466,10 +467,10 @@ export const HeaderIso: React.FC<{ name: string; tag: string; right?: string; pr
   </>
 );
 
-type Cap = { en: string; window: [number, number]; phrases: { text: string; start: number }[]; keywords: string[]; kw: Record<string, string> };
+export type Cap = { en: string; window: [number, number]; phrases: { text: string; start: number }[]; keywords: string[]; kw: Record<string, string> };
 const enSplit = (s: string) => String(s ?? "").split("|").map((x) => x.trim()).filter(Boolean);
 /** 字幕卡：一次一段中文大字（關鍵詞上色），下面一行英文跟著換 */
-const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
+export const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
   const cue = [...act].reverse().find((c) => f >= c.window[0]) ?? act[0];
@@ -496,14 +497,14 @@ const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
     </div>
   );
 };
-const SourceLine: React.FC<{ cues: { sources: string[]; window: [number, number] }[]; f: number }> = ({ cues, f }) => {
+export const SourceLine: React.FC<{ cues: { sources: string[]; window: [number, number] }[]; f: number }> = ({ cues, f }) => {
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
   const j = cur.sources.join("、");
   return <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.SRC_TOP, textAlign: "center", ...zh, fontWeight: T.weight.body, fontSize: L.SRC_PX, color: T.ink3 }}>{/^(資料)?來源/.test(j) ? j : `來源：${j}`}</div>;
 };
 
-export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
+const VideoIso1: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
   const f = useCurrentFrame();
   const panels = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
@@ -525,7 +526,7 @@ export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
 };
 
 /** 封面：鉤子那一鏡的落定畫面（大字＋桌面＋兩個數字） */
-export const CoverIso: React.FC<Script & { coverCrop?: number }> = ({ scenes, channel, coverCrop }) => {
+const CoverIso1: React.FC<Script & { coverCrop?: number }> = ({ scenes, channel, coverCrop }) => {
   const p = (scenes[0]?.props ?? {}) as Record<string, any>;
   const shift = coverCrop ? (L.H - coverCrop) / 2 - 150 : 0;
   const panel: Panel = { kind: "hook", sid: "cover", in: 0, out: 1e9, p, at: () => 0 };
@@ -537,3 +538,7 @@ export const CoverIso: React.FC<Script & { coverCrop?: number }> = ({ scenes, ch
     </AbsoluteFill>
   );
 };
+
+/** isoVersion: 2＝完整片引擎（IsoFilm.tsx：同一張桌面演完 20 鏡）；沒寫的照舊是 5 鏡試片 */
+export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : <VideoIso1 {...props} />);
+export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : <CoverIso1 {...props} />);

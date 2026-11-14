@@ -1,0 +1,742 @@
+{
+ "slug": "short-stock",
+ "title": "美國通膨超乎預期，台幣為什麼跟著動？（哩股哩股短片）",
+ "asOf": "2026/11/14",
+ "styleVersion": 3,
+ "skin": "newsprint",
+ "sample": true,
+ "channel": {
+  "name": "哩股哩股",
+  "tag": "國際看台股",
+  "slogan": "先查證，再下結論"
+ },
+ "voice": {
+  "voiceName": "TBD-user-voice",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "_note": "使用者 2026/11/14：哩股哩股改用他在 Google AI Studio 生成的聲音，音色名稱與提示詞還沒提供；提供前不送 TTS、做無聲版。",
+  "profile": {
+   "preset": "stock",
+   "gender": "any",
+   "delivery": "chat",
+   "scene": "下班後的咖啡店，兩個老朋友坐在角落，手機放在桌上，隨口聊今天看到的新聞",
+   "pace": [
+    4.5,
+    5.0
+   ],
+   "tone": "像跑財經線的朋友私下講給有在存股的人聽，有話直說、不嚇人，也不帶播報的架勢；句子短，講完就停",
+   "arc": {
+    "起": "像剛看到一則數字，平平地提一句，數字那裡稍微加重",
+    "承": "把因果順順講下去，講到台幣時語氣稍微認真",
+    "轉": "講到還沒定的地方，放慢半拍，語氣保留",
+    "合": "語氣放鬆，像順口約朋友下次再聊"
+   },
+   "voices": [
+    "TBD-user-voice"
+   ]
+  }
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
+  },
+  "items": [
+   {
+    "type": "strip",
+    "paper": "strip-hook",
+    "lines": [
+     {
+      "t": "美國物價",
+      "size": 120,
+      "lh": 1.08
+     },
+     {
+      "t": "[超乎預期]",
+      "size": 140,
+      "lh": 1.12
+     },
+     {
+      "t": "10 月 CPI {+0.4%}",
+      "size": 50,
+      "color": "ink3",
+      "lh": 1.3,
+      "mt": 8,
+      "accentSize": 60
+     }
+    ],
+    "x": 540,
+    "y": 620,
+    "w": 940,
+    "layer": "screen",
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     70,
+     24
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-r",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ],
+    "state": {
+     "mark": 1
+    }
+   },
+   {
+    "type": "num",
+    "value": 0.4,
+    "decimals": 1,
+    "prefix": "+",
+    "unit": "%",
+    "head": "10 月 CPI 月增",
+    "x": 760,
+    "y": 1100,
+    "w": 420,
+    "layer": "screen",
+    "rot": 3,
+    "paper": "card-white"
+   },
+   {
+    "type": "strip",
+    "paper": "polaroid-dollars",
+    "lines": [
+     {
+      "t": "台幣一度逼近 33",
+      "size": 34
+     }
+    ],
+    "caption": true,
+    "x": 300,
+    "y": 1110,
+    "w": 400,
+    "layer": "screen",
+    "rot": -4
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "美國物價超乎預期，十月漲了 0.4%。",
+   "tts": "美國物價超乎預期，十月漲了零點四趴。",
+   "subtitle": {
+    "zh": "美國物價超乎預期\n十月漲了 0.4%",
+    "en": "US prices rose faster than expected: | up 0.4% in October."
+   },
+   "keywords": [
+    "超乎預期",
+    "0.4%"
+   ],
+   "cues": [
+    {
+     "id": "over",
+     "text": "超乎預期"
+    },
+    {
+     "id": "num",
+     "text": "0.4%"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "punch": "num",
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "id": "hook",
+      "lines": [
+       {
+        "t": "美國物價",
+        "size": 120,
+        "lh": 1.08
+       },
+       {
+        "t": "[超乎預期]",
+        "size": 140,
+        "lh": 1.12
+       },
+       {
+        "t": "10 月 CPI {+0.4%}",
+        "size": 50,
+        "color": "ink3",
+        "lh": 1.3,
+        "mt": 8,
+        "accentSize": 60
+       }
+      ],
+      "x": 540,
+      "y": 560,
+      "w": 940,
+      "layer": "screen",
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       70,
+       24
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "over",
+        "mark": 1
+       }
+      ],
+      "to": "top"
+     },
+     {
+      "type": "num",
+      "id": "cpi",
+      "value": 0.4,
+      "decimals": 1,
+      "prefix": "+",
+      "unit": "%",
+      "head": "10 月 CPI 月增",
+      "lines": [
+       {
+        "t": "比市場預期高",
+        "size": 40,
+        "color": "ink2"
+       }
+      ],
+      "x": 770,
+      "y": 1040,
+      "w": 420,
+      "layer": "screen",
+      "rot": 3,
+      "paper": "card-white",
+      "tape": [
+       {
+        "asset": "tape-m",
+        "x": 300,
+        "y": 4,
+        "rot": 5,
+        "w": 150
+       }
+      ],
+      "moves": [
+       {
+        "at": "num",
+        "to": {
+         "rot": 1,
+         "y": 1028
+        },
+        "dur": 4
+       }
+      ],
+      "to": "right"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-produce",
+      "lines": [
+       {
+        "t": "菜價、房租都算",
+        "size": 34
+       }
+      ],
+      "caption": true,
+      "x": 290,
+      "y": 1060,
+      "w": 380,
+      "layer": "screen",
+      "rot": -4,
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 170,
+        "y": 6,
+        "rot": 3,
+        "w": 160
+       }
+      ],
+      "to": "left"
+     }
+    ]
+   },
+   "sources": [
+    "美國勞工統計局 CPI（11/10 公布，經媒體報導）"
+   ],
+   "still": "num+10"
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "美國央行十二月，可能再升息。",
+   "tts": "美國央行十二月，可能再升息。",
+   "pauseAfter": 0.3,
+   "subtitle": {
+    "zh": "美國央行十二月\n可能再升息",
+    "en": "The Fed may raise rates | again in December."
+   },
+   "keywords": [
+    "再升息"
+   ],
+   "cues": [
+    {
+     "id": "fed",
+     "text": "美國央行"
+    },
+    {
+     "id": "dec",
+     "text": "十二月"
+    },
+    {
+     "id": "hike",
+     "text": "升息"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "聯準會＝美國央行",
+        "size": 58
+       },
+       {
+        "t": "9 月已經升息一次",
+        "size": 38,
+        "color": "ink3",
+        "mt": 4
+       }
+      ],
+      "x": 520,
+      "y": 440,
+      "w": 700,
+      "layer": "screen",
+      "rot": -2,
+      "at": "start+2",
+      "from": "left",
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "12/8–9 開會",
+        "size": 46
+       }
+      ],
+      "x": 300,
+      "y": 760,
+      "w": 320,
+      "layer": "screen",
+      "rot": -5,
+      "at": "dec",
+      "from": "paste",
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 0,
+        "rot": 4,
+        "w": 120
+       }
+      ],
+      "to": "left"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-red",
+      "lines": [
+       {
+        "t": "再升息？",
+        "size": 150
+       }
+      ],
+      "x": 600,
+      "y": 1040,
+      "w": 780,
+      "layer": "screen",
+      "rot": 2,
+      "onDark": true,
+      "at": "hike",
+      "from": "slam",
+      "to": "right"
+     }
+    ]
+   },
+   "sources": [
+    "聯準會 10/28 聲明、12 月會議時程"
+   ],
+   "still": "hike+10"
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "美元變強，台幣一度逼近 33 元。",
+   "tts": "美元變強，台幣一度逼近三十三元。",
+   "subtitle": {
+    "zh": "美元變強\n台幣一度逼近 33 元",
+    "en": "The US dollar strengthened; | the NT dollar slid toward 33."
+   },
+   "keywords": [
+    "美元變強",
+    "33 元"
+   ],
+   "cues": [
+    {
+     "id": "usd",
+     "text": "美元變強"
+    },
+    {
+     "id": "twd",
+     "text": "33 元"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "polaroid-dollars",
+      "lines": [
+       {
+        "t": "美元",
+        "size": 36
+       }
+      ],
+      "caption": true,
+      "x": 330,
+      "y": 580,
+      "w": 460,
+      "layer": "screen",
+      "rot": -3,
+      "at": "start+2",
+      "from": "left",
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 200,
+        "y": 6,
+        "rot": -3,
+        "w": 160
+       }
+      ],
+      "to": "left"
+     },
+     {
+      "type": "img",
+      "asset": "arrow-red",
+      "x": 740,
+      "y": 520,
+      "w": 260,
+      "rot": -40,
+      "layer": "screen",
+      "at": "usd+4",
+      "from": "paste",
+      "to": "right"
+     },
+     {
+      "type": "num",
+      "id": "twd",
+      "value": 33,
+      "decimals": 0,
+      "unit": " 元",
+      "head": "1 美元換台幣",
+      "lines": [
+       {
+        "t": "盤中一度逼近",
+        "size": 40,
+        "color": "ink2"
+       },
+       {
+        "t": "收盤 32.838",
+        "size": 34,
+        "color": "ink3"
+       }
+      ],
+      "x": 700,
+      "y": 1030,
+      "w": 460,
+      "layer": "screen",
+      "rot": 2,
+      "paper": "card-white",
+      "at": "twd-4",
+      "from": "slam",
+      "tape": [
+       {
+        "asset": "tape-r",
+        "x": 320,
+        "y": 4,
+        "rot": 5,
+        "w": 150
+       }
+      ],
+      "to": "right"
+     }
+    ]
+   },
+   "sources": [
+    "工商時報、NOWnews 2026/11/13"
+   ],
+   "still": "twd+12"
+  },
+  {
+   "id": "s04",
+   "beat": "twist",
+   "narration": "還沒定的是，升一碼還是兩碼。",
+   "tts": "還沒定的是，升一碼還是兩碼。",
+   "pauseAfter": 0.3,
+   "subtitle": {
+    "zh": "還沒定的是\n升一碼還是兩碼",
+    "en": "What's not settled: | a quarter point, or a half?"
+   },
+   "keywords": [
+    "一碼",
+    "兩碼"
+   ],
+   "cues": [
+    {
+     "id": "notyet",
+     "text": "還沒定"
+    },
+    {
+     "id": "one",
+     "text": "一碼"
+    },
+    {
+     "id": "two",
+     "text": "兩碼"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-yellow",
+      "lines": [
+       {
+        "t": "[尚未確定]",
+        "size": 64
+       },
+       {
+        "t": "截至 11/14",
+        "size": 36,
+        "color": "ink3"
+       },
+       {
+        "t": "一碼＝0.25 個百分點",
+        "size": 40,
+        "mt": 6
+       }
+      ],
+      "x": 540,
+      "y": 480,
+      "w": 680,
+      "layer": "screen",
+      "rot": -1.5,
+      "at": "notyet-4",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "notyet+8",
+        "mark": 1
+       }
+      ],
+      "to": "top"
+     },
+     {
+      "type": "img",
+      "asset": "doc",
+      "x": 540,
+      "y": 1000,
+      "w": 900,
+      "layer": "screen",
+      "rot": 1,
+      "at": "start+4",
+      "from": "bottom",
+      "to": "bottom"
+     },
+     {
+      "type": "bars",
+      "id": "odds",
+      "dir": "right",
+      "x": 540,
+      "y": 1000,
+      "w": 780,
+      "h": 380,
+      "onDark": false,
+      "layer": "screen",
+      "at": "start+6",
+      "from": "paste",
+      "bars": [
+       {
+        "v": 87,
+        "label": "市場押一碼",
+        "color": "blue",
+        "val": "約 87%"
+       },
+       {
+        "v": 12,
+        "label": "押兩碼",
+        "color": "red",
+        "val": "約 12%"
+       }
+      ],
+      "labelW": 250,
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "one",
+        "grow": 0.5
+       },
+       {
+        "at": "two",
+        "grow": 1
+       }
+      ],
+      "to": "bottom"
+     }
+    ]
+   },
+   "sources": [
+    "CME FedWatch、Kalshi（11/13 前後）"
+   ],
+   "still": "two+12"
+  },
+  {
+   "id": "s05",
+   "beat": "payoff",
+   "narration": "下一支，講債券基金會怎樣。",
+   "tts": "下一支，講債券基金會怎樣。",
+   "subtitle": {
+    "zh": "下一支\n講債券基金會怎樣",
+    "en": "Next up: | what this means for bond funds."
+   },
+   "keywords": [
+    "債券基金"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "bond",
+     "text": "債券基金"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "items": [
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "下一支",
+        "size": 60,
+        "color": "ink3"
+       },
+       {
+        "t": "[債券基金]",
+        "size": 140,
+        "lh": 1.12
+       },
+       {
+        "t": "升息時會怎樣？",
+        "size": 70
+       }
+      ],
+      "x": 540,
+      "y": 720,
+      "w": 900,
+      "layer": "screen",
+      "rot": -1.2,
+      "at": "next-4",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "bond",
+        "mark": 1
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 140,
+        "y": 6,
+        "rot": -4
+       },
+       {
+        "asset": "tape-b",
+        "x": 780,
+        "y": 0,
+        "rot": 5
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "img",
+      "asset": "qmark",
+      "x": 860,
+      "y": 1080,
+      "w": 200,
+      "rot": 8,
+      "layer": "screen",
+      "at": "bond+6",
+      "from": "paste",
+      "until": "end"
+     }
+    ]
+   },
+   "sources": [],
+   "still": "bond+14"
+  }
+ ]
+}

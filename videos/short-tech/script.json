@@ -80,7 +80,13 @@
         "handoff3D": true
       }
     ],
-    "theme": "dark"
+    "theme": "dark",
+    "schematic": {
+      "text": "Schematic – not to scale",
+      "zh": "示意圖，非實際比例",
+      "_說明": "使用者技能 3d-industry-explainer-video：右上角固定標示，全片都在（接 HudFrame 時畫在倍率讀數下方、頁首之下）"
+    },
+    "maxLabels": 2
   },
   "cover": {
     "title": [
@@ -95,15 +101,15 @@
       "id": "s1",
       "beat": "hook",
       "para": 1,
-      "narration": "兩奈米，不是量得到的尺寸。",
-      "tts": "兩奈米，不是量得到的尺寸。",
+      "narration": "兩奈米，到底量的是哪裡？",
+      "tts": "兩奈米，到底量的是哪裡？",
       "subtitle": {
-        "zh": "兩奈米\n不是量得到的尺寸",
-        "en": "\"2 nanometers\" | isn't a size you can measure."
+        "zh": "兩奈米\n到底量的是哪裡？",
+        "en": "\"2 nanometers\"— | measured where, exactly?"
       },
       "keywords": [
         "兩奈米",
-        "尺寸"
+        "哪裡"
       ],
       "cues": [
         {
@@ -111,8 +117,8 @@
           "text": "兩奈米"
         },
         {
-          "id": "size",
-          "text": "尺寸"
+          "id": "where",
+          "text": "哪裡"
         }
       ],
       "component": "ThreeScene",
@@ -130,7 +136,7 @@
           },
           {
             "to": "board",
-            "at": "size-6"
+            "at": "where-6"
           }
         ],
         "overlay": [
@@ -149,7 +155,8 @@
       },
       "sources": [
         "節點名稱是世代名，不是實際尺寸（IBM、WikiChip）"
-      ]
+      ],
+      "durationSec": 2.8
     },
     {
       "id": "s2",
@@ -207,7 +214,8 @@
       },
       "sources": [
         "某款 3 奈米世代手機晶片官方公布約 190 億個電晶體"
-      ]
+      ],
+      "durationSec": 3.0
     },
     {
       "id": "s3",
@@ -276,7 +284,7 @@
             "en": "nanosheet",
             "color": "blue",
             "at": "three",
-            "until": "s5:start+0"
+            "until": "s4:five-4"
           },
           {
             "part": "gate",
@@ -284,13 +292,14 @@
             "en": "gate",
             "color": "amber",
             "at": "thin+4",
-            "until": "s4:pitch-4"
+            "until": "s4:five-4"
           }
         ]
       },
       "sources": [
         "示意模型；比例照 IBM 2021 公開的 2 奈米試作晶片"
-      ]
+      ],
+      "durationSec": 2.9
     },
     {
       "id": "s4",
@@ -366,39 +375,32 @@
             "text": "44 nm",
             "color": "amber"
           }
-        ],
-        "overlay": [
-          {
-            "type": "stamp",
-            "at": "ff+8",
-            "until": "s5:how-2",
-            "x": 540,
-            "y": 470,
-            "text": "都不是 2",
-            "color": "coral",
-            "rot": -5,
-            "size": 76
-          }
         ]
       },
       "sources": [
         "IBM 2 奈米試作晶片公開數字；台積電 N2 尺寸未公開"
-      ]
+      ],
+      "durationSec": 3.0
     },
     {
       "id": "s5",
       "beat": "cta",
       "para": 3,
-      "narration": "這麼小，怎麼印上去？",
-      "tts": "這麼小，怎麼印上去？",
+      "narration": "都不是二。這麼小，怎麼印？",
+      "tts": "都不是二。這麼小，怎麼印？",
       "subtitle": {
-        "zh": "這麼小\n怎麼印上去？",
-        "en": "Something this small— | how do you print it?"
+        "zh": "都不是二\n這麼小，怎麼印？",
+        "en": "Neither is 2. | So how do you print something this small?"
       },
       "keywords": [
+        "都不是二",
         "怎麼印"
       ],
       "cues": [
+        {
+          "id": "none",
+          "text": "都不是"
+        },
         {
           "id": "small",
           "text": "這麼小"
@@ -421,6 +423,17 @@
         ],
         "overlay": [
           {
+            "type": "stamp",
+            "at": "none-2",
+            "until": "how-4",
+            "x": 540,
+            "y": 470,
+            "text": "都不是 2",
+            "color": "coral",
+            "rot": -5,
+            "size": 76
+          },
+          {
             "type": "card",
             "at": "how-2",
             "y": 360,
@@ -436,8 +449,9 @@
         ]
       },
       "sources": [
-        "示意模型，不是電子顯微鏡照片"
-      ]
+        "IBM 試作晶片數字；台積電 N2 尺寸截至 2026/11/14 未公開"
+      ],
+      "durationSec": 3.0
     }
   ]
 }

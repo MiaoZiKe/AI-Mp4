@@ -91,3 +91,10 @@
 - `videos/sample-tech-anc/`：`script.json`、`model.json`（`make-model.py` 產生）、`research.md`、`script.md`、`timeline.json`（無聲估算）、`storyboard.json`。
 - `npm run validate sample-tech-anc` → `SILENT_GAP=0.25 node scripts/ui/silent-timeline.mjs sample-tech-anc`（還沒配音時）→ `npm run still sample-tech-anc` → `THREE_CONCURRENCY=4 npm run render sample-tech-anc` → `python3 scripts/ui/review9.py sample-tech-anc "…"`。
 - 看指定時刻：`node scripts/v3/peek.mjs sample-tech-anc <out.png> 0,30,90,…`。
+
+## 渲染紀錄（2026/11/14）
+
+- 整支渲了兩次（第一次看完前 3 秒與全片抽格後，改了開場藍色聲波圈的時間、加了圈、把第 2 句的章拆成兩張、提問卡的上色時間，再渲一次）。
+- 第一次：881 幀、1053 秒（17.6 分鐘），每幀 1195 毫秒。第二次（成片）：881 幀、**1097 秒（18.3 分鐘），每幀 1246 毫秒**；平行數 4、畫布倍率 1.25，機器上同時有另一支片在排隊用同一把鎖。
+- 自查：第二次的成片看了前 3 秒每 2 幀一格、0–10 秒每 0.25 秒一格與九格圖；10–29 秒的每 0.25 秒抽格是看第一次渲染的版本（這一段兩次之間只改了提問卡上色的時間，另外用單幀確認過）。
+- 封面的耳機握柄在 3D 畫布下緣被切掉（封面把舞台往下移了 330px）。

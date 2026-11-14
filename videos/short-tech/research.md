@@ -26,3 +26,7 @@
 - 台積電 N2 相對 N3E：同功耗效能 +10–15%、同效能功耗 −25–30%、混合設計密度 +15%（公司目標值）。
 - IBM 試作晶片「指甲大小放 500 億個電晶體」：是試作晶片，不是手機晶片，所以旁白不用。
 - 坊間常見「N2 閘極間距 45nm／48nm」：48nm 是台積電 CFET 研究，45nm 是 Intel RibbonFET 研究，都不是 N2，不用。
+
+## 2026/11/14 複查
+- F3／F4 再用 WebSearch 確認：三層奈米片、每片約 5nm 厚 × 40nm 寬、閘極長 12nm、間距 44nm、整疊約 75nm 高；IBM 也說「2nm」不對應晶片上任何實際尺寸。來源：Tom's Hardware https://www.tomshardware.com/news/ibm-unveils-worlds-first-2nm-chip-with-nanosheet-tech-intel-and-samsung-to-benefit ；Semiconductor Digest https://www.semiconductor-digest.com/ibm-unveils-worlds-first-2-nm-chip-technology/ ；SemiWiki https://semiwiki.com/semiconductor-manufacturers/tsmc/298875-is-ibms-2nm-announcement-actually-a-2nm-node/ 。另一篇 Semiconductor Digest 寫片寬約 14nm，和其他來源的 40nm 不合，判定為筆誤，不採用。
+- 同一批報導寫這顆試作晶片前段製程首次用 EUV 曝光：結尾預告「怎麼印？」（光刻）有根據，下一支再細查。

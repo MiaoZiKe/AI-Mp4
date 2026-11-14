@@ -2,18 +2,22 @@
 // 這個 composition 只畫畫面（無聲）；旁白由 run.mjs 用 ffmpeg 混進 MP4（AAC），不加任何音樂或音效。
 // 顏色與版面讀 THEME_CPI／LAYOUT_CPI；對話框自己畫，「Gemini」只用文字，不畫商標。
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, useCurrentFrame } from "remotion";
+import { tween } from "../anim";
 import { FONT_EN, FONT_ZH, LAYOUT_CPI as L, THEME_CPI as T } from "../../theme";
 
 export type CpiSeg = { id: string; from: number; to: number; cues: Record<string, number> };
 export type CpiLine = { text: string; from: number; to: number };
 export type CpiProps = { durationInFrames: number; segs: CpiSeg[]; lines: CpiLine[] };
 
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = Easing.bezier(0.2, 0.8, 0.2, 1);
-const prog = (f: number, at: number, dur: number) => interpolate(f, [at, at + dur], [0, 1], { ...clamp, easing: ease });
+const lin = (t: number) => t;
+const prog = (f: number, at: number, dur: number) => tween(f, at, dur, ease);
+/** 先放大到 peak（5 幀）再回到 1 */
+const overshoot = (f: number, at: number, from: number, peak: number, total: number) =>
+  f < at + 5 ? from + (peak - from) * tween(f, at, 5, ease) : peak + (1 - peak) * tween(f, at + 5, total - 5, ease);
 /** 數字強調：0.6 → 1.18 → 1 */
-const punch = (f: number, at: number) => interpolate(f, [at, at + 5, at + T.motion.punch], [0.6, 1.18, 1], { ...clamp, easing: ease });
+const punch = (f: number, at: number) => overshoot(f, at, 0.6, 1.18, T.motion.punch);
 /** 進場：淡入＋上移 */
 const rise = (f: number, at: number, dy = 36): React.CSSProperties => {
   const p = prog(f, at, 8);
@@ -113,8 +117,8 @@ const S1: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
 
 /** S2 模擬對話框：只打一句話 */
 const S2: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
-  const t0 = s.cues.type ?? s.from + 10, t1 = Math.max(t0 + 12, s.cues.typeEnd ?? s.to - 20);
-  const n = Math.round(interpolate(f, [t0, t1], [0, PROMPT.length], clamp));
+  const t0 = (s.cues.type ?? s.from) + 8, t1 = Math.max(t0 + 12, s.cues.typeEnd ?? s.to - 20);
+  const n = Math.round(tween(f, t0, t1 - t0, lin) * PROMPT.length);
   const sent = f >= t1 + 6;
   const bp = prog(f, t1 + 6, 8);
   return (
@@ -130,10 +134,10 @@ const S2: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
 };
 
 /** S3 AI 回一大篇、標出 1.69% */
-const SKEL = [0.92, 0.84, 0.97, 0.6, 0.9, 0.78, 0.95, 0.7, 0.88, 0.55, 0.93, 0.8];
+const SKEL = [0.92, 0.84, 0.97, 0.6, 0.9, 0.78, 0.95, 0.7, 0.55];
 const S3: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
   const num = s.cues.num ?? s.to - 30;
-  const shown = Math.floor(interpolate(f, [s.from + 4, num - 4], [0, SKEL.length], clamp));
+  const shown = Math.floor(tween(f, s.from + 4, num - 8 - s.from, lin) * SKEL.length);
   const hp = prog(f, num, 6);
   const big = punch(f, num);
   return (
@@ -151,7 +155,7 @@ const S3: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
           ))}
         </div>
       </ChatWindow>
-      <div style={{ position: "absolute", left: L.X + 40, top: L.MAIN_TOP + 610, width: 470, opacity: hp, transform: `scale(${big.toFixed(3)})`, transformOrigin: "50% 60%" }}>
+      <div style={{ position: "absolute", left: (L.INNER_W - 600) / 2 + L.X, top: L.MAIN_TOP + 560, width: 600, opacity: hp, transform: `scale(${big.toFixed(3)})`, transformOrigin: "50% 60%" }}>
         <Card border={T.num} style={{ padding: "22px 30px", textAlign: "center", boxShadow: `0 0 0 10px ${T.numGlow}, 0 30px 70px rgba(0,0,0,0.5)` }}>
           <div style={{ color: T.sub, fontFamily: FONT_ZH, fontSize: 32, fontWeight: 700 }}><span style={{ fontFamily: FONT_EN }}>AI</span> 說十月是</div>
           <div style={{ color: T.num, fontFamily: FONT_EN, fontWeight: 900, fontSize: 150, lineHeight: 1.1 }}>1.69%</div>
@@ -184,7 +188,7 @@ const S4: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
       </Card>
       <div style={{ opacity: prog(f, num - 2, 4), transform: `scale(${big.toFixed(3)})`, marginTop: 50 }}>
         <Card border={T.right} style={{ padding: "36px 40px", textAlign: "center", boxShadow: `0 0 0 10px ${T.rightSoft}, 0 30px 70px rgba(0,0,0,0.5)` }}>
-          <div style={{ color: T.right, fontSize: 48, fontWeight: 900 }}>實際</div>
+          <div style={{ color: T.right, fontSize: 48, fontWeight: 900 }}>實際：</div>
           <div style={{ color: T.num, fontFamily: FONT_EN, fontWeight: 900, fontSize: 200, lineHeight: 1.1 }}>2.33%</div>
           <div style={{ color: T.text, fontSize: 44, fontWeight: 800 }}>（今年 <span style={{ fontFamily: FONT_EN }}>10</span> 月）</div>
         </Card>
@@ -234,7 +238,7 @@ const S5: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
 /** S6 結尾字卡：換個問法 */
 const S6: React.FC<{ f: number; s: CpiSeg }> = ({ f, s }) => {
   const ask = s.cues.ask ?? s.from + 15;
-  const big = interpolate(f, [ask, ask + 6, ask + 14], [0.7, 1.08, 1], { ...clamp, easing: ease });
+  const big = overshoot(f, ask, 0.7, 1.08, 14);
   const u = prog(f, ask + 8, 12);
   return (
     <div style={{ position: "absolute", left: L.X, top: L.MAIN_TOP, width: L.INNER_W, height: L.MAIN_BOTTOM - L.MAIN_TOP, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontFamily: FONT_ZH }}>
@@ -254,7 +258,7 @@ const SCENES: Record<string, React.FC<{ f: number; s: CpiSeg }>> = { open: S1, a
 const Subtitle: React.FC<{ f: number; lines: CpiLine[] }> = ({ f, lines }) => {
   const ln = lines.find((l) => f >= l.from && f < l.to);
   if (!ln) return null;
-  const p = prog(f, ln.from, 4);
+  const p = 0.4 + 0.6 * prog(f, ln.from, 4); // 換行第一幀就看得到字（不留空白字幕）
   return (
     <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div style={{ opacity: p, transform: `translateY(${(1 - p) * 14}px)`, padding: "20px 34px", borderRadius: 22, background: "rgba(8,12,26,0.78)", border: `2px solid ${T.line}`, color: T.text, fontFamily: FONT_ZH, fontWeight: 900, fontSize: L.CAP_PX, lineHeight: 1.25, whiteSpace: "nowrap" }}>
@@ -273,7 +277,7 @@ export const CpiVideo: React.FC<CpiProps> = ({ segs, lines }) => {
       {segs.map((s) => {
         if (f < s.from || f >= s.to) return null;
         const Comp = SCENES[s.id];
-        const out = interpolate(f, [s.to - T.motion.exit, s.to], [1, 0], clamp);
+        const out = 1 - tween(f, s.to - T.motion.exit, T.motion.exit, lin);
         const last = s === segs[segs.length - 1];
         return Comp ? <AbsoluteFill key={s.id} style={{ opacity: last ? 1 : out }}><Comp f={f} s={s} /></AbsoluteFill> : null;
       })}

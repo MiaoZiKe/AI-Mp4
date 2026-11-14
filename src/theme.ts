@@ -770,6 +770,8 @@ export const THEME_ISO = {
     mint: { top: "#B2EAD9", l: "#8DD9C3", r: "#6CC5AB" },
     yellow: { top: "#FFE08A", l: "#F7CE66", r: "#EBB944" },
     coral: { top: "#FFAE9C", l: "#F98F78", r: "#EC7458" },
+    sky: { top: "#BFE3FA", l: "#9CD0F2", r: "#7BBAE6" },
+    plum: { top: "#E5C8F5", l: "#D5ACEC", r: "#C290E0" },
   } as Record<string, { top: string; l: string; r: string }>,
   /** 語意色（script.json 的 color／kw 寫這些名字）：fill 色塊、on 色塊上的字、text 白底上的字、soft 淡底、side 卡片厚度 */
   color: {
@@ -777,6 +779,9 @@ export const THEME_ISO = {
     wrong: { fill: "#FF7A5C", on: "#FFFFFF", text: "#C2381B", soft: "#FFE3DB", side: "#D9553A" },
     right: { fill: "#19A88A", on: "#FFFFFF", text: "#0E775F", soft: "#D8F4EB", side: "#0F8169" },
     note: { fill: "#FFD766", on: "#1B2545", text: "#765300", soft: "#FFF2C6", side: "#E3B23A" },
+    /** 完整片（isoVersion 2）的「這樣問」欄位多兩個中性色：天藍、梅紫（沒有對錯的意思） */
+    sky: { fill: "#2F9BE0", on: "#FFFFFF", text: "#17699F", soft: "#DCEFFC", side: "#1E7DBB" },
+    plum: { fill: "#B565D9", on: "#FFFFFF", text: "#8537AB", soft: "#F3E2FB", side: "#9247B8" },
   } as Record<string, { fill: string; on: string; text: string; soft: string; side: string }>,
   /** 螢幕面（發亮的那一面）與螢幕上的灰階橫條 */
   screen: { face: "#5566F0", glow: "#8E9BFF", on: "#FFFFFF", bar: "#AEB8FF" },
@@ -810,4 +815,40 @@ export const THEME_CPI = {
 export const LAYOUT_CPI = {
   X: 64, INNER_W: 952, HEADER_TOP: 232, MAIN_TOP: 330, MAIN_BOTTOM: 1250,
   CAP_TOP: 1300, CAP_H: 230, CAP_PX: 64, CAP_MAX: 14,
+} as const;
+
+// ───────────────────────── stage: "talk"：夜窗（談晴說礙；src/components/talk/） ─────────────────────────
+/** 全螢幕實拍照片＋慢推鏡＋底片顆粒＋一個大數字；礙的幕是冷的夜色，晴的幕調成暖燈色。元件只讀這裡的 token；不用 3D、霓虹發光。設計理由：docs/channels/tanqing-visual-research.md */
+export const THEME_TALK = {
+  /** 照片沒到位時的底色 */
+  bg: "#0D1117",
+  /** 主字、次要字、出處字 */
+  fg: "#F3EEE4", fg2: "#C9C2B5", fg3: "#9A9387",
+  /** 晴的字色（暖燈）、礙的數字色（冷白） */
+  warm: "#F2C27B", cold: "#DCE6F2",
+  /** 調色：照片上蓋一層色（mix-blend multiply）＋亮度；night＝礙、warm＝晴 */
+  grade: {
+    night: { tint: "#2B3D5C", tintAlpha: 0.55, brightness: 0.62, saturate: 0.55 },
+    warm: { tint: "#7A4A1E", tintAlpha: 0.32, brightness: 0.82, saturate: 0.9 },
+  } as Record<string, { tint: string; tintAlpha: number; brightness: number; saturate: number }>,
+  /** 字下面的暗帶（讓字在照片上可讀；不用發光） */
+  scrim: "rgba(8,10,14,0.58)",
+  /** 暗角強度 0–1、顆粒強度 0–1（每 2 幀換一次 seed） */
+  vignette: 0.55, grain: 0.10,
+  /** 壓暗用的黑、頁首細線、字幕字影（照片上的字才讀得到；不是發光） */
+  black: "#000000", rule: "rgba(243,238,228,0.18)", capShadow: "0 2px 10px rgba(0,0,0,0.6)",
+  /** 窗格（十格裡亮幾格）：亮的窗、暗的窗 */
+  window: { lit: "#F2C27B", dark: "rgba(220,230,242,0.16)", frame: "rgba(243,238,228,0.55)" },
+  weight: { num: 800, zh: 700, body: 500, en: 500 },
+  /** 動作（幀）：字淡入 12、字退場 10、換照片交疊 18、調色換 24、窗亮起每格 4；慢推鏡每幕放大 4% */
+  motion: { in: 12, out: 10, cross: 18, grade: 24, lit: 4, push: 0.04 },
+} as const;
+/** 夜窗版面（1080×1920；安全區上下 220、左右 64） */
+export const LAYOUT_TALK = {
+  W: 1080, H: 1920, X: 64, INNER_W: 952,
+  HEADER_TOP: 232, HEADER_H: 56,
+  /** 大數字區、句子區、窗格區 */
+  NUM_TOP: 470, NUM_PX: 260, LINE_TOP: 820, LINE_PX: 64, WIN_TOP: 1000, WIN_CELL: 78, WIN_GAP: 18,
+  CAP_TOP: 1300, CAP_ZH_PX: 66, CAP_EN_PX: 30,
+  SRC_TOP: 1590, SRC_PX: 28, MIN_PX: 28,
 } as const;

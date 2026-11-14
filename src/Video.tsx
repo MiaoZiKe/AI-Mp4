@@ -16,6 +16,7 @@ import { VideoSketch } from "./components/ai-sketch/SketchVideo";
 import { VideoBright } from "./components/ai-bright/BrightVideo";
 import { VideoIso } from "./components/ai-iso/IsoVideo";
 import { VideoEditorial } from "./components/ai-editorial/EditorialVideo";
+import { VideoTalk } from "./components/talk/TalkVideo";
 import { StyleV2Context } from "./style";
 import {
   Background, Header, Subtitle, SourceFooter, EndCard, TermCard, FlowRow, CompareSplit,
@@ -270,6 +271,7 @@ export const Video: React.FC<Script> = (props) => {
   if (isV3(props) && props.stage === "iso") return <VideoIso {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props) && props.stage === "bright") return <VideoBright {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props) && props.stage === "ui") return <VideoUI {...props} timeline={props.timeline as TimelineV2} />;
+  if (isV3(props) && props.stage === "talk") return <VideoTalk {...props} timeline={props.timeline as TimelineV2} />;
   if (isV3(props)) return <VideoV3 {...props} timeline={props.timeline as TimelineV2} />;
   if (isV2(props)) return <VideoV2 {...props} timeline={props.timeline as TimelineV2} />;
   return <VideoV1 {...props} />;

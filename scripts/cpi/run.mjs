@@ -32,7 +32,7 @@ fs.mkdirSync(path.join(WORK, "check"), { recursive: true });
 // ───────── 逐字稿（六段＝六個畫面）─────────
 const SEGS = [
   { id: "open", text: "十月物價出來了，你有請 AI 抓重點嗎？", cues: { q: ["你", "start"] } },
-  { id: "ask", text: "我們用 Gemini 實測，先只打一句話。", cues: { type: ["先", "start"], typeEnd: ["一句話", "end"] } },
+  { id: "ask", text: "我們用 Gemini 實測，先只打一句話。", cues: { type: ["我們", "start"], typeEnd: ["一句話", "end"] } },
   { id: "reply", text: "它回了一大篇，說十月是 1.69%。", cues: { num: ["1.69%", "start"] } },
   { id: "wrong", text: "其實那是兩年前的數字，今年是 2.33%。", cues: { past: ["兩年前", "start"], num: ["2.33%", "start"] } },
   { id: "why", text: "這不能怪它，我們沒開搜尋，也沒給它新聞。", cues: { search: ["搜尋", "start"], news: ["新聞", "start"] } },

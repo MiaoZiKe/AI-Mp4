@@ -1,0 +1,64 @@
+# short-stock 研究筆記：美國 10 月通膨超乎預期 → 12 月升息預期 → 美元強、台幣弱
+
+查證時間：台灣時間 2026/11/14 晚上（WebSearch）。頻道：哩股哩股（股票、國際情勢、基金）。
+限制：這個環境打不開 bloomberg.com、cnbc.com、nownews.com、stocktwits.com，所以**原文都沒有逐字讀過**，以下數字來自搜尋結果的摘要；上片前要再開原文核一次。
+
+## 為什麼選這則
+
+- 是本週（11/9–11/13）全球市場的主線：10/CPI 公布後，市場把 12 月升息當成主要劇本，美元走強、黃金跌、美債殖利率上升。
+- 和台灣存股族直接相關：美元強 → 新台幣一度逼近 33 元、外資連賣 11 天後才回頭，債券基金也跟利率走（下一支的題目）。
+- 有清楚的「已確定／分析預期／尚未確定」三段，適合 15 秒講完。
+- 使用者給的聲音樣本就是 CPI 那段旁白，題目接得上。
+
+## 已確定
+
+| 事實 | 數字 | 出處（搜尋摘要） | 用在 |
+|---|---|---|---|
+| 美國 10 月 CPI 月增，高於預期 | 整體 +0.4%、核心 +0.3% | CNBC 2026/11/10「CPI inflation report: October 2026」；InvestmentNews、Stocktitan 同日報導 | s01 |
+| BLS 這次沒有公布年增率（去年政府關門影響） | — | CNBC 2026/11/10 | 片中不講年增率 |
+| 聯準會 9/16 升息一次，10/28 按兵不動 | 目標區間 3.75%–4%；10/28 表決 10:2，兩位主張升息 | Advisor Perspectives 2026/10/28；聯準會 10/28 執行說明（federalreserve.gov monetary20261028a1.pdf） | s02 小字「9 月已經升息一次」 |
+| 下一次 FOMC 會議 | 12/8–9 | 多家報導（CNBC、搜尋摘要） | s02 |
+| 新台幣 11/13 收盤 | 32.838 元，升值 5.1 分；盤中一度逼近 33 元，央行尾盤調節、出口商賣匯穩住 | NOWnews 6892117、工商時報 20261113701611／20261113700086（標題「美升息預期增 台幣回貶」） | s03 |
+| 外資 11/13 終結連 11 個交易日賣超 | 買超約 288.37 億元 | NOWnews 6892117 | 片中沒講（字數不夠），可放說明欄 |
+| 美元本週走強 | Bloomberg 美元現貨指數週漲 0.7%，10/2 以來最大週漲幅 | Bloomberg 2026/11/13 | 說明欄 |
+
+## 分析預期（市場押注，不是決定）
+
+| 內容 | 數字 | 出處 | 備註 |
+|---|---|---|---|
+| 12 月升一碼（0.25 個百分點）的機率 | 約 85%–88% | Kalshi 87%、LSEG 88%、國內報導 85% | 各平台、時間點不同，片中寫「約 87%」並標出處 |
+| 12 月升兩碼（0.5 個百分點） | 約 12%–13.6% | Kalshi 12%、CME FedWatch 13.6%（CNBC）、IBTimes 13.2% | 片中寫「約 12%」 |
+| Waller 理事：核心 CPI 到 0.3% 就會考慮升兩碼 | — | Kalshi 新聞、Stocktitan、The Mortgage Reports | 片中沒點名 |
+| 匯銀主管：下週台幣仍看外資進出，美元指數 103 以上已提前反映 | — | 工商時報 11/13 | 說明欄 |
+
+## 尚未確定（截至 2026/11/14）
+
+- 聯準會 12 月**會不會升、升一碼還是兩碼**：截至 2026/11/14 尚未確定，12/8–9 會議才會決定。→ s04 標「尚未確定」。
+- 台股、台幣接下來的走向：片中不預測。
+
+## 有出入、沒用的數字
+
+- 台股 11/13 漲點：工商時報寫近 800 點，NOWnews 寫 583.25 點收 43,675.12 → 兩家不一致，片中不用。
+- 美元指數高點：102.8／103.24 各報導不同 → 片中不用。
+- 搜尋結果裡關於「台幣 11/12 收盤」沒有找到直接報導；由 11/13 收 32.838、升 5.1 分推回 11/12 約 32.889，沒有寫進片中。
+
+## 用詞與中立
+
+- 不給投資建議：不說買賣、不說「要不要換美元」，結尾只預告下一支講債券基金「會怎樣」。
+- 「一碼」在畫面上當場解釋：一碼＝0.25 個百分點。
+- 「聯準會」在畫面上當場解釋：聯準會＝美國央行（旁白直接說「美國央行」）。
+
+## 連結（搜尋結果）
+
+- https://www.cnbc.com/2026/11/10/cpi-inflation-report-october-2026.html
+- https://www.investmentnews.com/equities/october-cpi-comes-in-hot-raising-odds-of-a-bigger-than-expected-rate-hike/268961
+- https://news.kalshi.com/p/fed-interest-rate-odds-traders-see-87-chance-of-quarter-point-hike-in-december
+- https://www.stocktitan.net/articles/october-2026-cpi-inflation-report
+- https://www.advisorperspectives.com/dshort/updates/2026/10/28/feds-interest-rate-decision-october-28-2026
+- https://www.federalreserve.gov/monetarypolicy/files/monetary20261028a1.pdf
+- https://www.bloomberg.com/news/articles/2026-11-13/dollar-poised-for-best-week-in-over-a-month-on-fed-hike-bets
+- https://www.nownews.com/news/6892117
+- https://www.ctee.com.tw/news/20261113701611-430302
+- https://www.ctee.com.tw/news/20261113700086-430302
+- https://www.ctee.com.tw/news/20261113700281-430202
+- https://money.udn.com/money/story/5616/9866610

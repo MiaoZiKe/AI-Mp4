@@ -11,6 +11,7 @@ import { validateType } from "./ai-type/validate-type.mjs";
 import { validateSplit } from "./ai-split/validate-split.mjs";
 import { validateSketch } from "./ai-sketch/validate-sketch.mjs";
 import { validateNotes } from "./notes/validate-notes.mjs";
+import { validateTalk } from "./talk/validate-talk.mjs";
 import { validateBright } from "./ai-bright/validate-bright.mjs";
 import { validateIso } from "./ai-iso/validate-iso.mjs";
 import { validateEditorial } from "./ai-editorial/validate-editorial.mjs";
@@ -250,6 +251,8 @@ export function validate(script) {
   // stage: "chart"（資料圖表主導，同樣沿用 v3 的時間軸與配音流程）走 scripts/chartlead/validate-chart.mjs
   if (script.stage === "chart") return validateChart(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, readingIssues });
   // stage: "notes"（觀察者筆記，談晴說礙頻道；同樣沿用 v3 的時間軸與配音流程）走 scripts/notes/validate-notes.mjs
+  // stage: "talk"（夜窗，談晴說礙頻道；同樣沿用 v3 的時間軸與配音流程）走 scripts/talk/validate-talk.mjs
+  if (script.stage === "talk") return validateTalk(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, readingIssues });
   if (script.stage === "notes") return validateNotes(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, readingIssues });
   if (script.stage === "chat") return validateChat(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2 });
   if (script.styleVersion === 3) return validateV3(script, { len, clean, emWidth, splitPhrases, phraseDisplay, SUB_MAX_EM_V2, voicedSeconds, LENGTH }, ROOT);
@@ -584,7 +587,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   if (script.styleVersion === 2 || script.styleVersion === 3) {
     const tp = path.join(ROOT, "videos", slug, "timeline.json");
     const tlj = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
-    const r = script.stage === "chart" ? validateTimelineChart(script, tlj) : script.stage === "ui" || script.stage === "iso" || script.stage === "editorial" || script.stage === "bright" || script.stage === "split" || script.stage === "three" || script.stage === "type" || script.stage === "sketch" || script.stage === "notes" ? validateTimelineUI(script, tlj) : script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
+    const r = script.stage === "chart" ? validateTimelineChart(script, tlj) : script.stage === "ui" || script.stage === "iso" || script.stage === "editorial" || script.stage === "bright" || script.stage === "split" || script.stage === "three" || script.stage === "type" || script.stage === "sketch" || script.stage === "notes" || script.stage === "talk" ? validateTimelineUI(script, tlj) : script.styleVersion === 3 ? validateTimelineV3(script, tlj) : validateTimelineV2(script, tlj);
     errors.push(...r.errors); warns.push(...r.warns);
     if (r.sec && !r.stale) {
       console.log(`ℹ 時間軸 v2 實際總長 ${r.sec.toFixed(1)} 秒（以實際時間軸為準，字數估算只當參考）`);

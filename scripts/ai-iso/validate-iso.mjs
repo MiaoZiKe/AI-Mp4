@@ -9,9 +9,13 @@ import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mj
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const AT_BASE = ["start", "voice", "end", "exit"];
 const KINDS = ["hook", "ask", "answer", "compare", "next"];
-const COLORS = ["primary", "wrong", "right", "note"];
+/** isoVersion: 2（完整片引擎 IsoFilm.tsx）的畫面種類 */
+const KINDS2 = ["hook", "ask", "answer", "bump", "why", "title", "slot", "result", "add", "compare", "remind", "template", "question", "next", "end"];
+/** isoVersion 2：畫面上放了 AI 回答的種類（要標實測＋節錄，字要是實測原文） */
+const QUOTES2 = ["answer", "why", "result", "add", "compare"];
+const COLORS = ["primary", "wrong", "right", "note", "sky", "plum"];
 /** 這些鍵的值是時間 */
-const AT_KEYS = new Set(["at", "in", "from", "until", "typeAt", "stackAt", "restAt", "strikeAt", "stampAt", "tagAt", "popAt", "bumpAt", "chipsAt", "sendAt", "outAt", "sealAt", "flyAt"]);
+const AT_KEYS = new Set(["at", "in", "from", "until", "typeAt", "stackAt", "restAt", "strikeAt", "stampAt", "tagAt", "popAt", "bumpAt", "chipsAt", "sendAt", "outAt", "sealAt", "flyAt", "trayAt", "lensAt", "linkAt", "hintAt", "splitAt", "askAt", "checkAt", "focusAt", "pulseAt"]);
 const strip = (t) => String(t).replace(/[*\s]/g, "");
 
 export function validateIso(script, h) {
@@ -28,15 +32,21 @@ export function validateIso(script, h) {
   const ids = scenes.map((s) => s.id);
   const cuesOf = Object.fromEntries(scenes.map((s) => [s.id, new Set((s.cues ?? []).map((c) => c.id))]));
   let total = 0;
+  const film = script.isoVersion === 2;
   scenes.forEach((s, i) => {
     const tag = s.id ?? `#${i}`;
     if (!s.id || ids.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
     if (s.component !== "IsoScene") E(`${tag}: stage "iso" 的 component 只能是 IsoScene：${s.component}`);
     const n = h.len(s.narration); total += n;
-    if (n < 4) E(`${tag}: 旁白太短（${n} 字）`); else if (n > 26) W(`${tag}: 旁白 ${n} 字 > 26（建議拆開）`);
+    const silent = film && s.silent === true;
+    if (silent) {
+      if (i !== scenes.length - 1) E(`${tag}: silent 只能用在最後一幕（片尾卡）`);
+      if (!(s.durationSec > 0)) E(`${tag}: silent 的幕要寫 durationSec`);
+      if (s.props?.panel !== "end") E(`${tag}: silent 的幕要是 panel: "end"（片尾卡）`);
+    } else if (n < 4) E(`${tag}: 旁白太短（${n} 字）`); else if (n > 26) W(`${tag}: 旁白 ${n} 字 > 26（建議拆開）`);
     for (const [k, t] of [["念稿", s.tts ?? s.narration], ["字幕", s.subtitle?.zh]]) for (const m of cnTermIssues(t)) W(`${tag}: ${k}有${m}`);
     for (const m of h.readingIssues(s.tts ?? s.narration)) W(`${tag}: 念稿 ${m}`);
-    if (!s.subtitle?.zh || !s.subtitle?.en) E(`${tag}: 缺字幕（subtitle.zh／en）`);
+    if (!silent && (!s.subtitle?.zh || !s.subtitle?.en)) E(`${tag}: 缺字幕（subtitle.zh／en）`);
     for (const l of String(s.subtitle?.zh ?? "").split("\n")) if (h.emWidth(l) > 11.5) E(`${tag}: 字幕「${l}」超過 11.5 個字寬（字幕卡放不下）`);
     for (const l of String(s.subtitle?.en ?? "").split("|")) if (l.trim().length > 44) E(`${tag}: 英文字幕「${l.trim()}」超過 44 字元`);
     for (const c of s.cues ?? []) if (!h.clean(s.subtitle?.zh ?? "").includes(h.clean(c.text))) E(`${tag}: cue「${c.id}」的詞「${c.text}」不在字幕裡`);
@@ -50,7 +60,8 @@ export function validateIso(script, h) {
       if (m[3] && Math.abs(Number(m[3])) > 30) W(`${tag}: ${where}「${x}」離觸發詞超過 30 幀（時間要跟著配音）`);
     };
     const p = s.props ?? {};
-    if (!KINDS.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${KINDS.join("／")}）`);
+    const kinds = film ? KINDS2 : KINDS;
+    if (!kinds.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${kinds.join("／")}）`);
     // 走過整個 props：時間鍵檢查格式、color 檢查名稱
     const walk = (o, where) => {
       if (Array.isArray(o)) return o.forEach((v, k) => walk(v, `${where}[${k}]`));
@@ -65,8 +76,19 @@ export function validateIso(script, h) {
     walk(p, "props");
     const cams = [].concat(p.camera ?? []);
     if (!cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
-    for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < 1.6) || !(c.sy > 300 && c.sy < 1300)) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–1300）`);
-    if (p.panel === "answer") {
+    for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < 1.6) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
+    if (film && QUOTES2.includes(p.panel)) {
+      // 完整片：每一塊放了 AI 回答的地方都要有 verbatim（實測原始回答的 JSON），字只能刪節不能改；卡片要標「實測…（節錄）」
+      const check = (o, where) => {
+        const fp = o.verbatim ? path.join(ROOT, "videos", script.slug, o.verbatim) : null;
+        if (!fp || !fs.existsSync(fp)) return E(`${tag}: ${where} 要寫 verbatim（實測原始回答的 JSON 檔，相對於這支片的資料夾）`);
+        const ans = strip(JSON.parse(fs.readFileSync(fp, "utf8")).answer ?? "");
+        for (const l of [].concat(o.lines ?? [], o.line ?? [], o.answer ?? [], (o.rows ?? []).map((r) => r.t))) if (!ans.includes(strip(l))) E(`${tag}: 這一行不是實測原文（只能刪節，不能改字）：「${l}」`);
+        for (const v of [o.lens?.text, o.mark?.text, typeof o.mark === "string" ? o.mark : null, ...(o.rows ?? []).map((r) => r.mark?.text)]) if (v && !ans.includes(strip(v))) E(`${tag}: 「${v}」不在實測原文裡`);
+      };
+      if (p.panel === "compare") { check(p.top ?? {}, "props.top"); check(p.bottom ?? {}, "props.bottom"); } else check(p, "props");
+      if (p.panel !== "add" && (!/實測/.test(p.by ?? "") || !/節錄/.test(p.by ?? ""))) E(`${tag}: AI 回答要標示實測與節錄（props.by，例如「Gemini 實測・2026/11/13（節錄）」）`);
+    } else if (p.panel === "answer") {
       if (!/實測/.test(p.by ?? "") || !/節錄/.test(p.by ?? "")) E(`${tag}: AI 回答要標示實測與節錄（props.by，例如「Gemini 實測・2026/11/13（節錄）」）`);
       const fp = p.verbatim ? path.join(ROOT, "videos", script.slug, p.verbatim) : null;
       if (!fp || !fs.existsSync(fp)) E(`${tag}: AI 回答要寫 props.verbatim（實測原始回答的 JSON 檔，相對於這支片的資料夾）`);
@@ -76,6 +98,9 @@ export function validateIso(script, h) {
         for (const v of [p.lens?.text]) if (v && !ans.includes(strip(v))) E(`${tag}: 「${v}」不在實測原文裡`);
       }
     }
+    if (film && p.panel === "compare" && !(p.top?.answer && p.bottom?.answer)) E(`${tag}: 對照要有 top.answer 與 bottom.answer（兩個回答同時在畫面上）`);
+    if (film && p.panel === "template" && (p.linePx ?? 42) < 36) E(`${tag}: 範本卡的字 ${p.linePx}px 太小（提問那一鏡會縮到 0.78 倍，要 ≥36）`);
+    if (silent) return;
     if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 28; if (px > 940) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 940）`); }
     else W(`${tag}: 沒有出處`);
   });
@@ -86,7 +111,14 @@ export function validateIso(script, h) {
     if (hk.title.some((t) => /[？?]$/.test(t))) W("第一幕的大字是問句：第 0 幀要放後果或數字");
     for (const t of hk.title) if (h.emWidth(t) * (hk.size ?? 136) > 952) E(`第一幕大字「${t}」超出左右安全區`);
   }
-  const est = Math.round(scenes.reduce((a, s) => a + h.voicedSeconds(s, true), 0));
-  if (script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
+  const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
+  if (film) {
+    // 完整片：最後一幕片尾卡、要有對照／提醒／範本／提問／下一集，長度 45–75 秒
+    const has = (k) => scenes.some((s) => s.props?.panel === k);
+    if (scenes[scenes.length - 1].props?.panel !== "end" || scenes[scenes.length - 1].silent !== true) E("完整片（isoVersion: 2）最後一幕要是片尾卡（panel: \"end\"、silent: true、durationSec）");
+    for (const k of ["compare", "remind", "template", "question", "next"]) if (!has(k)) E(`完整片缺少 panel: "${k}"（對照／提醒對原文／範本卡／提問／下一集）`);
+    if (est < 45 || est > 78) W(`估算 ${est} 秒（旁白 ${total} 字）：完整片要 45–75 秒`);
+  }
+  if (!film && script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
   return { errors, warns, est };
 }

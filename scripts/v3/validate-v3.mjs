@@ -88,7 +88,9 @@ export function validateV3(script, h, ROOT) {
   const ids = new Set(), sceneIds = scenes.map((s) => s.id);
   const live = []; // { id, group, minor, from(index), until(index|Infinity) }
   let punches = 0, mat = false;
-  if (scenes[scenes.length - 1].component !== "EndCard") E("最後一幕必須是 EndCard（片尾卡）");
+  // 頂層 sample: true＝10–15 秒的風格試片（短片不需要片尾卡、總長看 9–20 秒）；沒寫＝正式片，規則照舊
+  const short = script.sample === true;
+  if (!short && scenes[scenes.length - 1].component !== "EndCard") E("最後一幕必須是 EndCard（片尾卡）");
   scenes.forEach((s, i) => {
     const tag = s.id ?? `#${i}`;
     if (!s.id || sceneIds.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
@@ -160,7 +162,8 @@ export function validateV3(script, h, ROOT) {
   if (punches > 4) W(`punch（重點推近）用了 ${punches} 次 > 4`);
   const est = Math.round(scenes.reduce((a, s) => a + (s.component === "EndCard" ? s.durationSec ?? 2.5 : h.voicedSeconds(s, true)), 0));
   const L = h.LENGTH[2];
-  if (est < L.hardMin || est > L.hardMax) E(`配音版總長估算 ${est} 秒，應在 ${L.min}–${L.max} 秒`); else if (est < L.min || est > L.max) W(`配音版總長估算 ${est} 秒，建議 ${L.min}–${L.max} 秒`);
+  if (short) { if (est < 9 || est > 20) W(`估算 ${est} 秒：風格試片（sample: true）建議 10–15 秒`); }
+  else if (est < L.hardMin || est > L.hardMax) E(`配音版總長估算 ${est} 秒，應在 ${L.min}–${L.max} 秒`); else if (est < L.min || est > L.max) W(`配音版總長估算 ${est} 秒，建議 ${L.min}–${L.max} 秒`);
   return { errors, warns, est };
 }
 
