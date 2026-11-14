@@ -17,6 +17,8 @@ export type Model3D = {
   cutaway: number; heat: number; vapor: number; spread: number; condense: number; flowBack: number;
   /** 上蓋先微抬一下、鏡頭繞開拉遠、再推回熱點 */
   peek: number; orbit: number; settle: number;
+  /** 分解之後再組回去（props.assemble: { at }；沒寫＝不組回去）。運作動畫要看「組好的樣子」時用 */
+  assemble?: number;
   /** 光掃過主角零件的時刻 */
   sweeps: number[];
   rename?: { part: string; text: string; en?: string; at: number };
@@ -50,6 +52,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     if (p.hook) m.hook = p.hook;
     if (p.spin) m.spin = { t0: at(p.spin.at, own.startFrame), t1: at(p.spin.until, own.exit), turns: p.spin.turns };
     for (const k of ["drop", "explode", "focus", "cutaway", "heat", "vapor", "spread", "condense", "flowBack", "peek", "orbit", "settle"] as const) if (p[k]) m[k] = at(p[k].at, own.voiceStartFrame);
+    if (p.assemble) m.assemble = at(p.assemble.at, own.voiceStartFrame);
     if (p.focus) m.focusLayer = p.focus.layer ?? product.anchors[p.focus.part]?.layer ?? p.focus.part ?? null;
     for (const sw of [].concat(p.sweep ?? [])) m.sweeps.push(at((sw as any).at, own.voiceStartFrame));
     if (p.rename) m.rename = { ...p.rename, at: at(p.rename.at, own.voiceStartFrame) };
@@ -105,7 +108,7 @@ export const stateAt = (m: Model3D, f: number) => {
   const fade = 1 - tween(f, m.focus, M.focus * 0.7, EASE.move);
   const layers: Record<string, { z: number; opacity: number; e: number; x: number; y: number }> = {};
   for (const d of pr.layers) {
-    const e = tween(f, m.explode + 8 + (2 - Math.min(2, Math.abs(d.k))) * M.stagger, M.explode, EASE.move);
+    const e = tween(f, m.explode + 8 + (2 - Math.min(2, Math.abs(d.k))) * M.stagger, M.explode, EASE.move) * (m.assemble === undefined ? 1 : 1 - tween(f, m.assemble + Math.min(2, Math.abs(d.k)) * M.stagger, M.explode, EASE.move));
     let z = d.z + d.k * P.gap * e, opacity = 1;
     if (fk !== null) {
       if (d.k > fk) { z += P.focusUp * fo; opacity = fade; }

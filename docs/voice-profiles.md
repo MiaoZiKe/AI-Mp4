@@ -37,7 +37,7 @@
 | `avoid` | 否 | 不要的講法（例如播報腔、叫賣） | 會（Avoid） |
 | `voices` | 否 | 這個頻道建議試聽的音色，給人看的 | 不會 |
 | `scene` | 否 | 一句話的場景（在哪裡、對哪一個人講）。寫了會多一段 `# SCENE`。見 `docs/voice-natural.md` | 會（SCENE） |
-| `delivery` | 否 | `"chat"`（跟朋友講話版）或 `"warm-pro"`（親和專業版，AI 教學頻道預設）：把固定的 Pacing／Articulation 兩句換掉。不寫就和以前一樣。見 `docs/voice-natural.md` 第八節 | 會（換掉兩句固定句） |
+| `delivery` | 否 | `"report"`（正常報導一件事：整段說明只有一句固定的話，其他欄位都不送；AI 教學頻道 2026/11/14 起用這個，預設檔 `ai-report`）、`"chat"`（跟朋友講話版）或 `"warm-pro"`（親和專業版，AI 教學頻道的舊預設）：把固定的 Pacing／Articulation 兩句換掉。不寫就和以前一樣。見 `docs/voice-natural.md` 第八節 | 會（換掉兩句固定句） |
 
 另外兩個頂層設定：`voice.languageCode`（有設定檔時預設送 `cmn-TW`；寫 `"off"` 以外的值會照送）與 `voice.voiceName`。
 

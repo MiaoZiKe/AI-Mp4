@@ -7,6 +7,7 @@ import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../th
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
 import { CoverFilm, FilmIso } from "./IsoFilm";
+import { CoverShort, ShortIso } from "./IsoShort";
 
 const M = T.motion;
 export const col = (name?: string) => T.color[name ?? "primary"] ?? T.color.primary;
@@ -539,6 +540,6 @@ const CoverIso1: React.FC<Script & { coverCrop?: number }> = ({ scenes, channel,
   );
 };
 
-/** isoVersion: 2＝完整片引擎（IsoFilm.tsx：同一張桌面演完 20 鏡）；沒寫的照舊是 5 鏡試片 */
-export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : <VideoIso1 {...props} />);
-export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : <CoverIso1 {...props} />);
+/** isoVersion: 2＝完整片引擎（IsoFilm.tsx：同一張桌面演完 20 鏡）；3＝短片引擎（IsoShort.tsx：每鏡不同構圖、物件會動）；沒寫的照舊是 5 鏡試片 */
+export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : (props as any).isoVersion === 3 ? <ShortIso {...props} /> : <VideoIso1 {...props} />);
+export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : (props as any).isoVersion === 3 ? <CoverShort {...props} /> : <CoverIso1 {...props} />);

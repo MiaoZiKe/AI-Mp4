@@ -15,8 +15,9 @@ import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, THEME_3D_HUD as H } from "../../theme";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
-import { buildModel, cameraFor, projectPoint, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
-import { fxOf, type ProductModel } from "./model";
+import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
+import { col, fxOf, type ProductModel } from "./model";
+import { Art } from "./HudArt";
 import { ProductScene } from "./Scene";
 
 export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean };
@@ -116,78 +117,7 @@ export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z
   );
 };
 
-/** 各級的圖（座標：寬 1000＝那一級的 field，以中心為原點）。都是幾何示意：沒有商標、不仿特定機型。
- *  每一級正中央都留著下一級（大小照實際比例 1/10、1/100），所以縮放是一路鑽進同一個點 */
-const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
-  const A = H.art;
-  if (kind === "phone") return (
-    // 手機：X 光線稿（看得到裡面的主機板外框與電池），正中央是晶片的位置；高 840＝畫面寬 18cm 的約 15cm
-    <g>
-      <rect x={-210} y={-420} width={420} height={840} rx={60} fill={A.body} stroke={H.line} strokeOpacity={0.75} strokeWidth={6} />
-      <rect x={-186} y={-394} width={372} height={788} rx={40} fill={H.bg2} stroke={H.lineSoft} strokeWidth={3} />
-      {/* 主機板那一級的圖會照實際比例疊在正中央（寬約 1/3）；上面是鏡頭與聽筒、下面是電池 */}
-      <rect x={-150} y={-350} width={300} height={200} rx={18} fill="none" stroke={H.lineSoft} strokeWidth={4} strokeDasharray="14 10" />
-      <rect x={-40} y={-384} width={80} height={10} rx={5} fill={H.lineSoft} />
-      <rect x={-150} y={150} width={300} height={220} rx={18} fill="none" stroke={H.line} strokeOpacity={0.6} strokeWidth={4} />
-      <text x={0} y={270} textAnchor="middle" style={mono(28, H.text2)}>BATTERY</text>
-      <rect x={-40} y={-40} width={80} height={80} fill="none" stroke={H.amber} strokeWidth={3} />
-      <circle cx={-105} cy={-290} r={22} fill="none" stroke={H.line} strokeOpacity={0.7} strokeWidth={5} />
-      <circle cx={-105} cy={-210} r={16} fill="none" stroke={H.line} strokeOpacity={0.5} strokeWidth={4} />
-    </g>
-  );
-  if (kind === "board") return (
-    <g>
-      <rect x={-500} y={-330} width={1000} height={660} rx={30} fill={A.board} stroke={A.trace} strokeWidth={4} />
-      {Array.from({ length: 14 }, (_, i) => <path key={i} d={`M ${-480 + i * 70} 320 V ${130 - (i % 4) * 30} H ${-60 + (i % 5) * 30} V 60`} fill="none" stroke={A.trace} strokeWidth={5} />)}
-      {Array.from({ length: 10 }, (_, i) => <path key={`t${i}`} d={`M ${-480 + i * 22} -320 V ${-140 + i * 12} H -60`} fill="none" stroke={A.trace} strokeWidth={4} />)}
-      {[[-420, -260, 160, 90], [250, -260, 200, 120], [-430, 130, 120, 160], [300, 150, 150, 110]].map(([x, y, w, h], i) => <rect key={i} x={x} y={y} width={w} height={h} rx={8} fill={A.part} stroke={A.edge} strokeWidth={2} />)}
-      {/* 晶片封裝（正中央；大小＝下一級的 1/10 畫面寬） */}
-      <rect x={-84} y={-84} width={168} height={168} rx={8} fill={A.die} stroke={H.line} strokeWidth={4} />
-    </g>
-  );
-  if (kind === "die") return (
-    <g>
-      <rect x={-500} y={-500} width={1000} height={1000} fill={A.die} stroke={H.line} strokeWidth={5} />
-      {[[-470, -470, 420, 420, A.block], [-30, -470, 500, 280, A.block2], [-470, -30, 300, 500, A.block], [-150, -170, 620, 640, A.block]].map(([x, y, w, h, c], i) => <rect key={i} x={x as number} y={y as number} width={w as number} height={h as number} fill={c as string} stroke={H.lineSoft} strokeWidth={3} />)}
-      {Array.from({ length: 9 }, (_, i) => <line key={i} x1={-150 + i * 70} x2={-150 + i * 70} y1={-170} y2={470} stroke={H.line} strokeOpacity={0.45} strokeWidth={2} />)}
-      {/* 分區線與分區名（示意）：亮一級，晶片這一級才有東西可看 */}
-      {[[-470, -470, 420, 420, "CPU"], [-30, -470, 500, 280, "MEMORY"], [-470, -30, 300, 500, "I/O"], [-150, -170, 620, 640, "LOGIC"]].map(([x, y, w, h, t], i) => (
-        <g key={`z${i}`}>
-          <rect x={x as number} y={y as number} width={w as number} height={h as number} fill="none" stroke={H.line} strokeOpacity={0.7} strokeWidth={3} />
-          <text x={(x as number) + 18} y={(y as number) + 46} style={mono(30, H.text2)}>{t as string}</text>
-        </g>
-      ))}
-      {[[-440, -440, 3, 3, 120], [0, -440, 4, 2, 110], [-440, 0, 2, 4, 110]].map(([x0, y0, nx, ny, sz], i) => Array.from({ length: (nx as number) * (ny as number) }, (_, j) => <rect key={`m${i}-${j}`} x={(x0 as number) + (j % (nx as number)) * ((sz as number) + 12)} y={(y0 as number) + 60 + Math.floor(j / (nx as number)) * ((sz as number) + 12) * 0.8} width={sz as number} height={(sz as number) * 0.7} fill="none" stroke={H.lineSoft} strokeWidth={2} />))}
-      {/* 正中央一層比一層細的格線：一路放大幾百倍，畫面都還有線條在流動 */}
-      {[100, 20, 4, 0.8, 0.16].map((sp, j) => { const hw = sp * 7.5, n = 15; return (
-        <g key={`g${j}`} stroke={H.line} strokeOpacity={0.4} strokeWidth={sp * 0.035}>
-          {Array.from({ length: n + 1 }, (_, i) => <line key={`a${i}`} x1={-hw + i * sp} x2={-hw + i * sp} y1={-hw} y2={hw} />)}
-          {Array.from({ length: n + 1 }, (_, i) => <line key={`b${i}`} y1={-hw + i * sp} y2={-hw + i * sp} x1={-hw} x2={hw} />)}
-        </g>
-      ); })}
-      <rect x={-10} y={-10} width={20} height={20} fill="none" stroke={H.amber} strokeWidth={3} vectorEffect="non-scaling-stroke" />
-    </g>
-  );
-  if (kind === "cells") return (
-    // 電晶體陣列：一排排的元件列（藍＝源極汲極、琥珀＝閘極線），密密麻麻；正中央一顆的大小是 1/100
-    <g>
-      {Array.from({ length: 14 }, (_, r) => <rect key={r} x={-500} y={-490 + r * 70} width={1000} height={44} fill={r % 2 ? A.block : A.sd} opacity={0.85} />)}
-      {Array.from({ length: 34 }, (_, c) => <rect key={c} x={-498 + c * 30} y={-500} width={6} height={1000} fill={A.gate} opacity={0.8} />)}
-      <rect x={-6} y={-6} width={12} height={12} fill="none" stroke={H.text} strokeWidth={2} vectorEffect="non-scaling-stroke" />
-    </g>
-  );
-  // gates：一顆奈米片電晶體的俯視（1 單位＝4nm，畫面寬 150nm＝37.5 單位）；和 model.json 的零件位置一致，交棒給 3D 時對得上
-  const u = 1000 / 37.5, R = (x: number, y: number, w: number, h: number) => ({ x: (x - w / 2) * u, y: (y - h / 2) * u, width: w * u, height: h * u });
-  return (
-    <g>
-      <rect {...R(0, 0, 34, 18)} rx={10} fill={A.sub} />
-      <rect {...R(0, 0, 30, 10)} fill={A.sheet} opacity={0.9} />
-      {[-5.5, 5.5].map((x) => <rect key={x} {...R(x, 0, 7.4, 12)} rx={4} fill={A.sd} />)}
-      {[-11, 0, 11].map((x) => <rect key={x} {...R(x, 0, 3, 14)} rx={3} fill={A.gate} />)}
-      {[[-5.5, 0], [5.5, 0], [0, 3.5]].map(([x, y], i) => <circle key={i} cx={x * u} cy={y * u} r={0.55 * u} fill={A.via} />)}
-    </g>
-  );
-};
+// 各級的圖在 HudArt.tsx（2026/11/14 第二版把每一級補細節）
 
 /** HUD 外框：四角括號、掃描線（一道亮帶往下掃）、左下尺標、右上倍率讀數＋示意圖標示、中間十字準星、左上層級名 */
 export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: number; quiet?: number }> = ({ f, hud, z, camK = 1, quiet = 0 }) => {
@@ -326,6 +256,85 @@ const HudMeasures: React.FC<{ m: Model3D; s: State3D; f: number; list: Measure[]
   );
 };
 
+/** 對照卡（示意）：左右各一張「順著電流方向看過去」的剖面，kind: "fin"＝鰭式（閘極包三面，底部連著基板）｜"gaa"＝奈米片（每一片四面都被閘極包住）。
+ *  關閉時的漏電用幾顆小點表示（leak＝顆數；不畫成零）；字都來自 script.json。顏色讀 THEME_3D_HUD.art */
+const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k }) => {
+  const A = H.art, W = L.INNER_W, hgt = o.h ?? 400, sides = (o.sides ?? []) as { kind: string; title: string; sub?: string; wrap?: string; note?: string; leak?: number; color?: string }[];
+  const cw = W / Math.max(1, sides.length), n = f - o.at;
+  return (
+    <div style={{ position: "absolute", left: L.X, top: o.y ?? 840, width: W, height: hgt, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: "rgba(11, 23, 36, 0.95)", border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
+      {o.title ? <div style={{ position: "absolute", left: 20, top: 12, ...zh(30, H.onAccent, 800), background: H.amber, padding: "2px 16px 4px", letterSpacing: "0.06em" }}>{o.title}</div> : null}
+      {o.tag ? <div style={{ position: "absolute", right: 20, top: 16, ...zh(26, H.text2, 500) }}>{o.tag}</div> : null}
+      <svg width={W} height={hgt} style={{ position: "absolute", inset: 0 }}>
+        <line x1={cw} x2={cw} y1={64} y2={hgt - 16} stroke={H.lineSoft} strokeWidth={2} strokeDasharray="8 8" />
+        {sides.map((sd, i) => {
+          const cx = cw * (i + 0.5), top = 150, base = hgt - 76, c = hudAccent(sd.color), show = tween(f, o.at + 4 + i * 8, 8, EASE.enter);
+          const leak = sd.leak ?? 0;
+          return (
+            <g key={i} opacity={show}>
+              {/* 基板與兩側的隔離氧化層 */}
+              <rect x={cx - 150} y={base} width={300} height={30} fill={A.sub} />
+              <rect x={cx - 150} y={base - 34} width={sd.kind === "fin" ? 132 : 100} height={34} fill={A.sti} /><rect x={cx + (sd.kind === "fin" ? 18 : 50)} y={base - 34} width={sd.kind === "fin" ? 132 : 100} height={34} fill={A.sti} />
+              {sd.kind === "fin" ? (
+                <>
+                  {/* 鰭：一片直立的矽，底部直接連著基板；閘極只蓋住上面和兩側 */}
+                  <rect x={cx - 18} y={top + 26} width={36} height={base - top - 26} fill={A.sheet} />
+                  <path d={`M ${cx - 96} ${base - 34} V ${top} H ${cx + 96} V ${base - 34} H ${cx + 24} V ${top + 20} H ${cx - 24} V ${base - 34} Z`} fill={A.gate} />
+                  <path d={`M ${cx - 21} ${base - 34} V ${top + 23} H ${cx + 21} V ${base - 34}`} fill="none" stroke={A.hk} strokeWidth={3} />
+                </>
+              ) : (
+                <>
+                  {/* 奈米片：三片橫躺的矽，每一片四面都被閘極包住；最下面那片和基板之間也隔著閘極 */}
+                  <rect x={cx - 50} y={base - 34} width={100} height={34} fill={A.fin} />
+                  <rect x={cx - 96} y={top} width={192} height={base - 34 - top} fill={A.gate} />
+                  {[0, 1, 2].map((j) => { const y = top + 24 + j * ((base - 34 - top - 40) / 3); return <rect key={j} x={cx - 62} y={y} width={124} height={22} rx={5} fill={A.sheet} stroke={A.hk} strokeWidth={3} />; })}
+                </>
+              )}
+              {/* 關閉時的漏電（示意）：沒被閘極包到的地方有幾顆小點一明一滅地漏過去 */}
+              {range(leak).map((j) => { const ph = ((n + j * 9) % 30) / 30, yy = sd.kind === "fin" ? base - 30 + (j % 3) * 9 : base - 22, xx = sd.kind === "fin" ? cx - 10 + ((j * 7) % 20) : cx - 8 + j * 12; return <circle key={j} cx={xx} cy={yy} r={3 + 4 * Math.sin(Math.PI * ph)} fill={A.leak} opacity={(sd.kind === "fin" ? 0.95 : 0.45) * Math.sin(Math.PI * ph)} />; })}
+              {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 108}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 114} y={base - 9} style={zh(26, A.leak, 700)}>{sd.note}</text></> : null}
+              <text x={cx} y={98} textAnchor="middle" style={zh(40, c, 900)}>{sd.title}</text>
+              {sd.sub ? <text x={cx} y={132} textAnchor="middle" style={mono(24, H.text2, 500)}>{sd.sub}</text> : null}
+              {sd.wrap ? <text x={cx} y={hgt - 14} textAnchor="middle" style={zh(32, H.text, 800)}>{sd.wrap}</text> : null}
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+};
+const range = (n: number) => Array.from({ length: n }, (_, i) => i);
+
+/** HUD 版的小儀表（model.actions 的 type: "meter"，由 props.run 觸發）：固定在畫面上的讀數條。條的長度＝source 那個動作這一幀的強度
+ *  （和 3D 裡零件發光、光點流動讀同一份 engine 數值）；只標「低／高」這種字，不標數值 */
+const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) => {
+  const acts = m.product.actions ?? {};
+  return (
+    <>
+      {Object.entries(acts).map(([id, d]) => {
+        const op = s.ops[id];
+        if (d.type !== "meter" || !op || op.k <= 0.01 || d.x === undefined || d.y === undefined) return null;
+        const lv = d.source ? signalLevel(m.product, s, d.source) : op.g, c = hudAccent(d.accent), w = d.w ?? 330;
+        return (
+          <div key={id} style={{ position: "absolute", left: d.x, top: d.y, width: w, opacity: op.k, background: H.panel, border: `2px solid ${H.lineSoft}`, padding: "8px 14px 10px", boxSizing: "border-box" }}>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
+              <div style={{ ...zh(30, H.text, 800) }}>{d.label}</div>
+              {d.sym ? <div style={mono(28, c, 700)}>{d.sym}</div> : null}
+            </div>
+            <div style={{ position: "relative", height: 16, marginTop: 6, background: H.bg, border: `1.5px solid ${H.text3}` }}>
+              <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * Math.max(0.03, lv)).toFixed(1)}%`, background: c }} />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}>
+              <div style={{ ...zh(24, lv < 0.5 ? H.text : H.text3, 700) }}>{d.lo ?? ""}</div>
+              <div style={{ ...zh(24, lv >= 0.5 ? c : H.text3, 700) }}>{d.hi ?? ""}</div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
 /** HUD 版的疊層：stamp 蓋章（實心色塊、微歪、先大後小）、card 下一支提問卡（深色框＋四角括號） */
 const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
   <>
@@ -346,6 +355,21 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
           </div>
         );
       }
+      if (o.type === "legend") {
+        // 圖例：色塊＋名稱（色塊顏色讀 model.palette 的名字，和 3D 零件同一份）
+        const items = (o.items ?? []) as { text: string; swatch: string }[], cols = o.cols ?? 2, px = o.size ?? 26, cw = o.colW ?? 222;
+        return (
+          <div key={i} style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 1070, opacity: k, background: H.panel, border: `2px solid ${H.lineSoft}`, padding: "10px 14px 12px", display: "grid", gridTemplateColumns: `repeat(${cols}, ${cw}px)`, rowGap: 6, columnGap: 6 }}>
+            {items.map((it, j) => (
+              <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, opacity: tween(f, o.at + j * 2, 5, EASE.enter) }}>
+                <div style={{ width: px * 0.8, height: px * 0.8, background: col(m.product, it.swatch), border: `1.5px solid ${H.text3}`, flex: "none" }} />
+                <div style={{ ...zh(px, H.text, 700), lineHeight: 1.2 }}>{it.text}</div>
+              </div>
+            ))}
+          </div>
+        );
+      }
+      if (o.type === "compare") return <HudCompare key={i} o={o} f={f} k={k} />;
       if (o.type === "card") {
         const lines = (o.lines ?? []) as string[], size = o.size ?? 100, hiT = o.hiAt ?? o.at + 8, under = tween(f, hiT, 12, EASE.move);
         const W = L.INNER_W, bk = 44;
@@ -462,6 +486,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <HudHook m={m} f={f} out={hookOut} />
       <HudLabels m={m} s={s} f={f} max={hud.maxLabels ?? 2} />
       <HudMeasures m={m} s={s} f={f} list={meas} />
+      <HudMeters m={m} s={s} f={f} />
       <HudOverlays m={m} f={f} />
       <HudCaption cues={subCues as Cue[]} f={f} />
       <HudSource cues={srcCues} f={f} px={(m.product.fx as any)?.srcPx ?? 30} />

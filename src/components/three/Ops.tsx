@@ -64,7 +64,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
       if (d.track !== false) { r.mat.opacity = O.trackO * op.k; pts.slice(1).forEach((p, i) => rod(`${id}-t${i}`, pts[i], p, O.track, r.mat)); }
       const n = d.n ?? 4, size = (d.size ?? 0.12) * (0.6 + 0.4 * Math.min(1, op.g));
       for (let i = 0; i < n; i++) {
-        const raw = op.t * (d.rate ?? 0.8) - i / n;
+        const raw = op.t * (d.rate ?? 0.8) - (d.phase ?? 0) - i / n; // flow 的 phase＝晚一點出發（幾條並排的路徑錯開）
         if (raw < 0) continue; // 還沒出發
         const u = frac(raw);
         let dist = u * total, k = 0;
@@ -102,7 +102,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
     } else if (d.type === "pulse" && r.halo) {
       const part = model.parts.find((p) => p.id === d.parts?.[0]);
       const c = d.at ? opPoint(s, d.at, d.layer) : opPoint(s, [(part?.pos?.[0] ?? 0) + (part?.at?.[0]?.[0] ?? 0), (part?.pos?.[1] ?? 0) + (part?.at?.[0]?.[1] ?? 0), (part?.pos?.[2] ?? 0) + (part?.at?.[0]?.[2] ?? 0)], part?.layer);
-      const beat = 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2), sz = (d.halo ?? 1) * (0.75 + 0.5 * beat);
+      const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2), sz = (d.halo ?? 1) * (0.75 + 0.5 * beat);
       r.halo.opacity = O.halo * Math.min(1, op.g) * (0.35 + 0.65 * beat);
       nodes.push(<sprite key={id} material={r.halo} position={c} scale={[sz, sz, 1]} renderOrder={10} />);
     }
@@ -131,7 +131,8 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): P
       fx.quat = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), Math.PI * 2 * (d.rps ?? 1) * op.t);
       fx.pivot = d.pivot ?? null;
     } else if (d.type === "pulse") {
-      const beat = 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
+      // steady＝不閃，穩定亮著（強度只跟著進出場 ramp；例如電壓維持在高的那段時間）
+      const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
       fx.glow = Math.max(fx.glow, (d.glow ?? 0.8) * Math.min(1, op.g) * (0.35 + 0.65 * beat)); fx.color = d.color ?? null;
     }
   }

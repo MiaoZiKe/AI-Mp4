@@ -153,3 +153,16 @@
 - Runware／Inworld TTS-2 指南（長短句交錯、口語縮寫）https://runware.ai/docs/models/inworld-tts-2/guides/llm-system-prompts
 - KTH 研究（Székely 等，2019）：用朗讀語料訓練的 TTS 念不好贅詞 https://people.kth.se/~ghe/pubs/pdf/szekely2019how.pdf
 - 台灣華語裡的台語語助詞（政論節目語料研究，臺大學位論文）https://tdr.lib.ntu.edu.tw/jspui/retrieve/ee17ec53-7eec-409d-b692-578dfee4e61a/ntu-111-2.pdf
+
+## 補充（2026/11/14）：正常報導一件事 `delivery: "report"`
+
+使用者聽完 short-ai（Sulafat、warm-pro）的原話：「口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」。
+
+- **發現**：長篇導演筆記（人設＋場景＋四段情緒弧線＋Avoid）會讓 Gemini 2.5 TTS 去「演」那個角色，句句帶表情、拖尾音，短稿最明顯；short-ai 用這種提示兩次都只有 3.3 音節/秒，說明裡寫「每秒 4.6 到 5 個字」也沒用。使用者接受過的 what-is-server 只送一句話。每幕空一行還會讓幕與幕之間各停 0.7 秒左右。比較表在 `videos/short-ai/voice.md`。
+- **做法**：`voice.profile: "ai-report"`（或任何設定檔加 `delivery: "report"`）。送出去的說明只有固定的一句（`scripts/voice-profile.mjs` 的 `REPORT_LINE`）：
+
+  > 用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，正常語速、不拖尾音、不演，直接說：
+
+  後面直接接念稿。persona／scene／tone／arc／avoid／englishTerms 寫了也不送。各幕加 `para: 1` 連成一段。
+- **實測**（short-ai，Sulafat，1 次請求）：含停頓 3.9、扣掉幕間停頓 4.4 音節/秒（原本 3.3／4.0）；仍不到 4.6，再用 atempo 1.08 補到 4.8。捲舌指標 3.6 kHz（原本 4.6）。口吻要人耳判斷。
+- AI 教學頻道新片用 `report`；`warm-pro` 與 `ai` 預設檔留給已配好音的舊片。稿子也配合寫成平實的陳述句（它回答…、但那是…），不寫表演性的短促句。

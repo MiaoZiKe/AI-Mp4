@@ -58,7 +58,7 @@ function checkModel(script, E, W) {
 }
 
 const AT_BASE = ["start", "voice", "end", "exit"];
-const OVERLAY_TYPES = ["scope", "stamp", "cross", "circle", "steps", "card", "ribbon"];
+const OVERLAY_TYPES = ["scope", "stamp", "cross", "circle", "steps", "card", "ribbon", "legend", "compare"]; // legend／compare＝深色 HUD 片（Hud.tsx）的圖例與左右對照卡
 
 export function validateThree(script, h) {
   const errors = [], warns = [];

@@ -43,7 +43,7 @@ export type ActionDef = {
   /** vibrate：方向、幅度（模型單位）、每秒幾下。rotate：軸、每秒幾圈、轉軸位置（預設零件自己的 pos） */
   axis?: number[]; amp?: number; freq?: number; rps?: number; pivot?: number[];
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
-  glow?: number; halo?: number; at?: Pt;
+  glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */
   path?: Pt[]; n?: number; size?: number; shape?: "dot" | "arrow"; rate?: number; track?: boolean;
   /** wave：從哪裡、往哪個方向、走多遠、同時幾圈、起始半徑、每走 1 單位半徑多多少、線寬、相位（0–1）、張角（度；360＝整圈） */
@@ -54,6 +54,8 @@ export type ActionDef = {
   of?: string[]; build?: number; buildDelay?: number;
   /** meter（HTML 小儀表）：釘在哪個標註點、bar＝音量條｜wave＝小波形、數值跟著哪個動作、標題、要畫的波形（wave 用） */
   anchor?: string; kind?: "bar" | "wave"; source?: string; label?: string; traces?: string[]; accent?: string; w?: number;
+  /** 深色 HUD 片（Hud.tsx）的 meter：固定在畫面像素 x、y（不跟著標註點）；sym＝符號（Vg）、lo／hi＝條兩端的字（低／高，不標數值） */
+  x?: number; y?: number; sym?: string; lo?: string; hi?: string;
 };
 export type ProductModel = {
   name?: string; size: { w: number; h: number; r: number; t: number };

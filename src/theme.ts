@@ -539,7 +539,9 @@ export const THEME_3D_HUD = {
   onAccent: "#071018",
   glow: { rim: "rgba(63, 200, 220, 0.55)", rimPx: 14, center: "rgba(63, 200, 220, 0.16)", warm: "rgba(242, 169, 59, 0.12)" },
   /** 2D 縮放圖層的畫法用色（手機、主機板、晶片、陣列） */
-  art: { body: "#1A2533", edge: "#3A4E66", board: "#123A33", trace: "#2E7D6E", part: "#22303F", die: "#1B2738", block: "#24405A", block2: "#3B2E1A", gate: "#C98A2E", sheet: "#3FC8DC", sd: "#2F6FB0", via: "#C8794A", sub: "#2A3646" },
+  art: { body: "#1A2533", edge: "#3A4E66", board: "#123A33", trace: "#2E7D6E", part: "#22303F", die: "#1B2738", block: "#24405A", block2: "#3B2E1A", gate: "#C98A2E", sheet: "#3FC8DC", sd: "#2F6FB0", via: "#C8794A", sub: "#2A3646",
+    /** 2026/11/14 補細節（short-tech 第二版）：銅線／錫球／屏蔽罩／被動元件／排線／封裝基板／凸塊／高介電層／間隔層／內側間隔層／接點金屬／隔離氧化層／矽（片堆下方）／漏電粒子 */
+    copper: "#D0794A", solder: "#B9C2CE", shield: "#5E7791", cap: "#C9A56A", flex: "#B5762E", substrate: "#16463C", bump: "#D9B36A", hk: "#B58CFF", spacer: "#8FA3BC", inner: "#4FC79F", contact: "#B9C2CE", sti: "#1E3350", fin: "#5B6F8A", leak: "#FF6B4A" },
   /** 線寬、掃描線（間距 px、不透明度、每秒往下掃幾 px）、角框長度、尺標高度 */
   stroke: { thin: 1.5, mid: 2, bold: 3 },
   scan: { gap: 6, opacity: 0.06, sweep: 420, bandH: 120, bandO: 0.08 },
@@ -895,5 +897,53 @@ export const LAYOUT_TANQING = {
   CAP_TOP: 1338, CAP_ZH_PX: 48, CAP_EN_PX: 28,
   /** 左下資料來源、右下頁碼 */
   SRC_TOP: 1604, SRC_PX: 28, SRC_W: 640, PAGER_Y: 1624, PAGER_GAP: 40,
+  MIN_PX: 28,
+} as const;
+
+// ───────────────────────── stage: "dossier"：檔案室式（哩股哩股的專業嚴肅版；src/components/dossier/） ─────────────────────────
+// 國際財經媒體的調查專題／紀錄片檔案室：墨藍炭灰底＋細格線、襯線大標配黑體內文與等寬數字、白灰字只加一個深紅強調與一個「已確定」用的冷色。
+// 文件摹本是淺色紙面卡片，空白處用細紅框與引線標註；動作只有遮罩擦入、描線、打字、淡入與慢推鏡，不彈跳。元件只讀這裡的 token。
+/** 襯線字（Noto Serif TC 子集，scripts/dossier/fetch-fonts.mjs 抓到 public/fonts/dossier/）；內文用 FONT_ZH，數字用 FONT_EN＋tabular-nums */
+export const FONT_DOSSIER_SERIF = `"DossierSerif", "Noto Serif TC", "Noto Serif CJK TC", serif`;
+export const THEME_DOSSIER = {
+  /** 底：墨藍炭灰；中央亮一點；細格線；四邊壓暗 */
+  bg: "#0D1118", bgHi: "#161D29", grid: "rgba(236,238,241,0.035)", gridPx: 60, vignette: "rgba(4,6,10,0.55)",
+  /** 字：白、灰、更淡的灰（都 ≥4.5:1） */
+  text: "#ECEEF1", text2: "#AEB6C2", text3: "#8A93A1",
+  /** 細線：一般、較亮（時間線、分隔線） */
+  hair: "rgba(236,238,241,0.16)", line: "rgba(236,238,241,0.42)",
+  /** 唯一的強調色（深紅）：線與框、深底上的紅字、紙面上的紅 */
+  accent: "#D8483A", accentText: "#F06A5A", accentOnPaper: "#B3261B",
+  /** 「已確定」用的冷色 */
+  cool: "#6FB7C6",
+  /** 深色卡片 */
+  panel: "#151B26", panelLine: "rgba(236,238,241,0.18)",
+  /** 文件摹本的紙面 */
+  paper: "#E8E4D8", paper2: "#DCD7C9", paperInk: "#1A1E26", paperInk2: "#5B6270", paperRule: "#BDB7A8", paperBar: "#CFC9BA", paperShadow: "0 18px 40px rgba(0,0,0,0.45)",
+  /** 照片上的壓色（讓黑白照片更低對比）與照片底部放字的漸層 */
+  photoTint: "rgba(13,17,24,0.28)", photoFade: "rgba(13,17,24,0.92)", photoFade0: "rgba(13,17,24,0)",
+  /** 掃描線 */
+  scan: "rgba(179,38,27,0.85)", scanTrail: "rgba(179,38,27,0.14)", scanTrail0: "rgba(179,38,27,0)",
+  /** 查證狀態標籤（單色小標）：已確定＝冷色、媒體報導／公司未證實＝灰、查不到證據與尚未確定＝紅 */
+  status: { confirmed: "#6FB7C6", report: "#AEB6C2", none: "#F06A5A", pending: "#F06A5A" },
+  stroke: { hair: 2, line: 3, mark: 6, frame: 3 },
+  weight: { head: 900, serif: 600, num: 800, bold: 700, body: 400, sub: 900 },
+  /** 動作（幀）：遮罩擦入 wipe、淡入 fade、描線 draw、打字每字 type、紅框閃一下 flash、掃描線走完 scan、
+   *  換鏡（舊鏡在下一鏡開始後 hold 幀開始淡出、淡 out 幀）、字幕換段 cap；每鏡慢推放大 push、照片慢推 photoPush */
+  motion: { wipe: 14, fade: 10, draw: 16, type: 2, flash: 14, scan: 44, hold: 2, out: 6, cap: 5, push: 0.03, photoPush: 0.05, caret: 12 },
+} as const;
+/** 版面（1080×1920；安全區上下 220、左右 64；內容左右留 80，慢推 3% 後仍在安全區內） */
+export const LAYOUT_DOSSIER = {
+  W: 1080, H: 1920, X: 80, INNER_W: 920,
+  /** 頁首：左上小字標、右上欄目名；下面一條細線兼全片進度 */
+  HEAD_TOP: 232, HEAD_H: 52, MARK_PX: 36, TAG_PX: 28, RULE_Y: 304,
+  /** 主舞台（各鏡的內容都畫在這個框裡，座標以框的左上角為原點） */
+  STAGE_TOP: 340, STAGE_H: 920,
+  /** 字幕（左邊一條紅線）：中文、英文 */
+  CAP_TOP: 1300, CAP_ZH_PX: 64, CAP_EN_PX: 30, CAP_BAR: 5, CAP_PAD: 28,
+  /** 出處、底部常駐的「查證截至」 */
+  SRC_TOP: 1556, SRC_PX: 28, FOOT_RULE_Y: 1618, FOOT_TOP: 1636, FOOT_PX: 32,
+  /** 標籤、圖說 */
+  TAG_H: 56, TAG_TEXT_PX: 30, NOTE_PX: 28,
   MIN_PX: 28,
 } as const;

@@ -1,6 +1,6 @@
 {
   "slug": "short-tech",
-  "title": "兩奈米不是尺寸（科技頻道短片：Powers of Ten 縮放＋3D 爆炸圖＋深色 HUD）",
+  "title": "兩奈米不是尺寸（科技頻道短片第二版：Powers of Ten 縮放＋3D 爆炸圖＋開關運作動畫＋深色 HUD）",
   "asOf": "2026/11/14",
   "styleVersion": 3,
   "stage": "three",
@@ -152,6 +152,15 @@
             "rot": -6,
             "size": 84
           }
+        ],
+        "shift": [
+          {
+            "layer": "inv",
+            "at": "start-30",
+            "until": "s5:volt+6",
+            "opacity": 0,
+            "dur": 8
+          }
         ]
       },
       "sources": [
@@ -263,17 +272,11 @@
         "shot": [
           {
             "at": "open-4",
-            "d": 118,
-            "elev": 30,
-            "y": 2.5,
+            "d": 150,
+            "elev": 28,
+            "y": 4,
+            "x": 3,
             "dur": 22
-          }
-        ],
-        "run": [
-          {
-            "id": "current",
-            "at": "thin",
-            "until": "s5:how"
           }
         ],
         "labels": [
@@ -293,6 +296,60 @@
             "at": "thin+4",
             "until": "s4:five-4"
           }
+        ],
+        "overlay": [
+          {
+            "type": "legend",
+            "at": "three-4",
+            "until": "s6:wrap-6",
+            "x": 552,
+            "y": 1062,
+            "cols": 2,
+            "colW": 210,
+            "size": 26,
+            "items": [
+              {
+                "text": "矽基板",
+                "swatch": "si"
+              },
+              {
+                "text": "隔離氧化層",
+                "swatch": "oxide"
+              },
+              {
+                "text": "奈米片通道",
+                "swatch": "sheet"
+              },
+              {
+                "text": "源極／汲極",
+                "swatch": "sd"
+              },
+              {
+                "text": "高介電層",
+                "swatch": "hk"
+              },
+              {
+                "text": "閘極金屬",
+                "swatch": "gate"
+              },
+              {
+                "text": "間隔層",
+                "swatch": "spacer"
+              },
+              {
+                "text": "內側間隔層",
+                "swatch": "inner"
+              },
+              {
+                "text": "接點",
+                "swatch": "w"
+              },
+              {
+                "text": "銅連線",
+                "swatch": "copper"
+              }
+            ]
+          }
         ]
       },
       "sources": [
@@ -304,15 +361,16 @@
       "id": "s4",
       "beat": "payoff",
       "para": 2,
-      "narration": "一片五奈米厚，間距四十四奈米。",
-      "tts": "一片五奈米厚，間距四十四奈米。",
+      "narration": "一片五奈米厚，間距四十四奈米。都不是二。",
+      "tts": "一片五奈米厚，間距四十四奈米。都不是二。",
       "subtitle": {
-        "zh": "一片五奈米厚\n間距四十四奈米",
-        "en": "Each sheet is 5 nm thick; | gates sit 44 nm apart."
+        "zh": "一片五奈米厚\n間距四十四奈米\n都不是二",
+        "en": "Each sheet is 5 nm thick; | gates sit 44 nm apart. | Neither is 2."
       },
       "keywords": [
         "五奈米",
-        "四十四奈米"
+        "四十四奈米",
+        "都不是二"
       ],
       "cues": [
         {
@@ -326,6 +384,10 @@
         {
           "id": "ff",
           "text": "四十四"
+        },
+        {
+          "id": "none",
+          "text": "都不是"
         }
       ],
       "component": "ThreeScene",
@@ -333,32 +395,25 @@
         "shot": [
           {
             "at": "five-6",
-            "d": 110,
+            "d": 138,
             "elev": 22,
-            "y": 6,
-            "x": -3,
+            "y": 7,
+            "x": 0,
             "dur": 18
           },
           {
             "at": "pitch-4",
-            "d": 112,
-            "elev": 38,
-            "y": 4,
-            "x": 0,
+            "d": 146,
+            "elev": 36,
+            "y": 5,
+            "x": 2,
             "dur": 20
-          }
-        ],
-        "run": [
-          {
-            "id": "gatePulse",
-            "at": "pitch",
-            "until": "s5:how"
           }
         ],
         "measure": [
           {
             "at": "five-2",
-            "until": "s5:how-4",
+            "until": "s5:start-4",
             "from": "sheetLo",
             "to": "sheetHi",
             "text": "5 nm",
@@ -367,7 +422,7 @@
           },
           {
             "at": "ff-4",
-            "until": "s5:how-4",
+            "until": "s5:start-4",
             "from": "gateL",
             "to": "gate",
             "text": "44 nm",
@@ -380,39 +435,298 @@
             "type": "stamp",
             "style": "tag",
             "at": "five-2",
-            "until": "s5:how-4",
-            "x": 850,
-            "y": 1232,
+            "until": "s5:start-4",
+            "x": 250,
+            "y": 1150,
             "text": "IBM 試作晶片",
             "color": "amber",
             "size": 34
+          },
+          {
+            "type": "stamp",
+            "at": "none-2",
+            "until": "s5:start+2",
+            "x": 300,
+            "y": 1010,
+            "text": "都不是 2",
+            "color": "coral",
+            "rot": -5,
+            "size": 76
           }
         ]
       },
       "sources": [
         "IBM 2 奈米試作晶片公開數字；台積電 N2 尺寸未公開"
       ],
-      "durationSec": 3.0
+      "durationSec": 3.7
     },
     {
       "id": "s5",
-      "beat": "cta",
+      "beat": "mechanism",
       "para": 3,
-      "narration": "都不是二。這麼小，怎麼印？",
-      "tts": "都不是二。這麼小，怎麼印？",
+      "narration": "閘極加上電壓，電子就穿過這三片。",
+      "tts": "閘極加上電壓，電子就穿過這三片。",
       "subtitle": {
-        "zh": "都不是二\n這麼小，怎麼印？",
-        "en": "Neither is 2. | So how do you print something this small?"
+        "zh": "閘極加上電壓\n電子就穿過這三片",
+        "en": "Put voltage on the gate, | and electrons cross all three sheets."
       },
       "keywords": [
-        "都不是二",
-        "怎麼印"
+        "電壓",
+        "電子"
       ],
       "cues": [
         {
-          "id": "none",
-          "text": "都不是"
+          "id": "gate",
+          "text": "閘極"
         },
+        {
+          "id": "volt",
+          "text": "電壓"
+        },
+        {
+          "id": "e",
+          "text": "電子"
+        },
+        {
+          "id": "pass",
+          "text": "穿過"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "assemble": {
+          "at": "start-6"
+        },
+        "shot": [
+          {
+            "at": "start-6",
+            "d": 104,
+            "elev": 24,
+            "y": -1,
+            "x": 0,
+            "dur": 28
+          }
+        ],
+        "shift": [
+          {
+            "layer": "gate",
+            "at": "start+4",
+            "opacity": 0.4,
+            "dur": 16
+          },
+          {
+            "layer": "spacer",
+            "at": "start+4",
+            "opacity": 0.22,
+            "dur": 16
+          },
+          {
+            "layer": "contact",
+            "at": "start+4",
+            "opacity": 0.3,
+            "dur": 16
+          },
+          {
+            "layer": "metal",
+            "at": "start+4",
+            "opacity": 0.2,
+            "dur": 16
+          }
+        ],
+        "run": [
+          {
+            "id": "vgMeter",
+            "at": "gate",
+            "until": "s6:wrap-6"
+          },
+          {
+            "id": "idMeter",
+            "at": "gate",
+            "until": "s6:wrap-6"
+          },
+          {
+            "id": "gateOn",
+            "at": "volt-4",
+            "until": "s6:off+2",
+            "ramp": 14
+          },
+          {
+            "id": "chanOn",
+            "at": "volt+6",
+            "until": "s6:off+8",
+            "ramp": 10
+          },
+          {
+            "id": "e1",
+            "at": "e-2",
+            "until": "s6:off+12",
+            "ramp": 12
+          },
+          {
+            "id": "e2",
+            "at": "e-2",
+            "until": "s6:off+12",
+            "ramp": 12
+          },
+          {
+            "id": "e3",
+            "at": "e-2",
+            "until": "s6:off+12",
+            "ramp": 12
+          }
+        ],
+        "labels": [
+          {
+            "part": "src",
+            "text": "源極",
+            "en": "source",
+            "color": "blue",
+            "at": "e-8",
+            "until": "s6:wrap-8"
+          },
+          {
+            "part": "drn",
+            "text": "汲極",
+            "en": "drain",
+            "color": "blue",
+            "at": "pass-8",
+            "until": "s6:wrap-8"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "e",
+            "until": "s6:off+16",
+            "x": 250,
+            "y": 1090,
+            "text": "電子 e⁻ →",
+            "color": "blue",
+            "size": 36
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "pass",
+            "until": "s6:off+16",
+            "x": 250,
+            "y": 1160,
+            "text": "電流方向 ←",
+            "color": "amber",
+            "size": 30
+          }
+        ]
+      },
+      "sources": [
+        "運作為示意：電壓只標高低；電子由源極流向汲極"
+      ],
+      "durationSec": 3.3
+    },
+    {
+      "id": "s6",
+      "beat": "twist",
+      "para": 3,
+      "narration": "電壓降下就關。四面包住，漏電更少。",
+      "tts": "電壓降下就關。四面包住，漏電更少。",
+      "subtitle": {
+        "zh": "電壓降下就關\n四面包住，漏電更少",
+        "en": "Drop the voltage and it shuts off. | Gate on all four sides: less leakage."
+      },
+      "keywords": [
+        "就關",
+        "漏電更少"
+      ],
+      "cues": [
+        {
+          "id": "off",
+          "text": "電壓降下"
+        },
+        {
+          "id": "shut",
+          "text": "就關"
+        },
+        {
+          "id": "wrap",
+          "text": "四面"
+        },
+        {
+          "id": "leak",
+          "text": "漏電"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shift": [
+          {
+            "layer": "inv",
+            "at": "off+6",
+            "opacity": 0,
+            "dur": 10
+          }
+        ],
+        "shot": [
+          {
+            "at": "wrap-10",
+            "d": 150,
+            "elev": 24,
+            "y": -11,
+            "x": 0,
+            "dur": 22
+          }
+        ],
+        "overlay": [
+          {
+            "type": "compare",
+            "at": "wrap-4",
+            "until": "s7:small+4",
+            "y": 850,
+            "h": 410,
+            "title": "關閉時",
+            "tag": "剖面示意，非實測",
+            "sides": [
+              {
+                "kind": "fin",
+                "title": "鰭式",
+                "sub": "FinFET・上一代",
+                "wrap": "閘極包三面",
+                "leak": 5,
+                "note": "漏電",
+                "color": "amber"
+              },
+              {
+                "kind": "gaa",
+                "title": "奈米片",
+                "sub": "GAA nanosheet",
+                "wrap": "閘極包四面",
+                "leak": 1,
+                "note": "很少",
+                "color": "blue"
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "運作與漏電為示意；四面包住、控制較好（IEEE Spectrum）"
+      ],
+      "durationSec": 3.4
+    },
+    {
+      "id": "s7",
+      "beat": "cta",
+      "para": 4,
+      "narration": "這麼小，怎麼印？",
+      "tts": "這麼小，怎麼印？",
+      "subtitle": {
+        "zh": "這麼小，怎麼印？",
+        "en": "So how do you print something this small?"
+      },
+      "keywords": [
+        "這麼小",
+        "怎麼印"
+      ],
+      "cues": [
         {
           "id": "small",
           "text": "這麼小"
@@ -426,43 +740,18 @@
       "props": {
         "shot": [
           {
-            "at": "start+0",
-            "d": 145,
-            "elev": 48,
-            "y": 4,
-            "dur": 30
-          },
-          {
-            "at": "small",
-            "d": 165,
-            "elev": 56,
-            "y": 4,
-            "dur": 24
-          },
-          {
-            "at": "how-4",
+            "at": "small+4",
             "d": 190,
-            "elev": 50,
-            "y": 38,
-            "yaw": 0.6,
+            "elev": 46,
+            "y": 40,
+            "yaw": 0.5,
             "dur": 30
           }
         ],
         "overlay": [
           {
-            "type": "stamp",
-            "at": "none-2",
-            "until": "how-4",
-            "x": 540,
-            "y": 1170,
-            "text": "都不是 2",
-            "color": "coral",
-            "rot": -5,
-            "size": 76
-          },
-          {
             "type": "card",
-            "at": "how-2",
+            "at": "small+8",
             "y": 410,
             "kicker": "下一支",
             "lines": [
@@ -477,9 +766,10 @@
         ]
       },
       "sources": [
-        "IBM 試作晶片數字；台積電 N2 尺寸截至 2026/11/14 未公開"
+        "IBM 試作晶片前段用 EUV 曝光；下一支細講"
       ],
-      "durationSec": 3.0
+      "durationSec": 2.9
     }
-  ]
+  ],
+  "sample": false
 }

@@ -1,0 +1,531 @@
+{
+ "slug": "liguligu-jensen-pro",
+ "title": "33 年的執行長即刻辭職，公告為什麼沒寫原因？",
+ "asOf": "2026/11/14",
+ "styleVersion": 3,
+ "stage": "dossier",
+ "contentFrom": "liguligu-jensen",
+ "channel": {
+  "name": "哩股哩股",
+  "tag": "查到底",
+  "slogan": "數字，查過再信"
+ },
+ "voice": {
+  "voiceName": "TBD",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "liguligu",
+  "note": "男聲音色還沒選：等使用者用 docs/prompts/liguligu-男聲試聽.txt 在 Google AI Studio 試聽後再填 voiceName；在那之前不要送 TTS 請求（Iapetus、Achird 已被否決）"
+ },
+ "cover": {
+  "title": [
+   "33 年執行長",
+   "辭職即刻生效"
+  ],
+  "sub": "公告為什麼沒寫原因？"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "narration": "33 年的執行長，辭職即刻生效。公告沒寫原因。",
+   "tts": "三十三年的執行長，辭職即刻生效。公告沒寫原因。",
+   "subtitle": {
+    "zh": "33 年的執行長\n辭職即刻生效\n公告沒寫原因",
+    "en": "CEO for 33 years. | Resigned, effective immediately. | The notice gave no reason."
+   },
+   "keywords": [
+    "即刻生效",
+    "沒寫原因"
+   ],
+   "cues": [
+    {
+     "id": "ceo",
+     "text": "執行長"
+    },
+    {
+     "id": "imm",
+     "text": "即刻生效"
+    },
+    {
+     "id": "ann",
+     "text": "公告"
+    },
+    {
+     "id": "why",
+     "text": "沒寫原因"
+    }
+   ],
+   "beat": "hook",
+   "component": "DossierScene",
+   "props": {
+    "panel": "hook",
+    "kicker": "輝達創辦人・黃仁勳",
+    "span": "1993–2026",
+    "num": "33",
+    "numText": "年執行長",
+    "line2": "辭職即刻生效",
+    "mark": "即刻生效",
+    "markAt": "imm",
+    "doc": {
+     "title": "董事會公告",
+     "date": "2026/11/12",
+     "field": "辭職原因：",
+     "note": "示意，非文件原件",
+     "scanAts": [
+      "start",
+      "ann-6"
+     ],
+     "frameAt": "start+10",
+     "flashAt": "why"
+    },
+    "callout": {
+     "label": "公告",
+     "text": "沒寫原因",
+     "at": "start+16",
+     "markAt": "why+4"
+    },
+    "tag": {
+     "kind": "confirmed",
+     "text": "已確定",
+     "at": "why+12"
+    }
+   },
+   "sources": [
+    "輝達公告 11/12（截至 2026/11/14）"
+   ]
+  },
+  {
+   "id": "s02",
+   "narration": "4 天前董事會才說，沒理由相信機密外洩。",
+   "tts": "四天前董事會才說，沒理由相信機密外洩。",
+   "subtitle": {
+    "zh": "4 天前董事會才說\n沒理由相信機密外洩",
+    "en": "Four days earlier, the board said | it had no reason to think secrets leaked."
+   },
+   "keywords": [
+    "4 天前",
+    "機密外洩"
+   ],
+   "cues": [
+    {
+     "id": "d4",
+     "text": "4 天前"
+    },
+    {
+     "id": "board",
+     "text": "董事會"
+    },
+    {
+     "id": "no",
+     "text": "沒理由"
+    },
+    {
+     "id": "leak",
+     "text": "機密外洩"
+    }
+   ],
+   "beat": "mechanism",
+   "component": "DossierScene",
+   "props": {
+    "panel": "timeline",
+    "photo": {
+     "name": "room",
+     "caption": "董事會（示意照片）",
+     "at": "start+8"
+    },
+    "axis": {
+     "days": [
+      "11/8",
+      "11/9",
+      "11/10",
+      "11/11",
+      "11/12"
+     ],
+     "at": "start+10"
+    },
+    "gap": {
+     "pre": "只隔",
+     "num": "4",
+     "unit": "天",
+     "at": "d4",
+     "flashAt": "leak+14"
+    },
+    "left": {
+     "title": "董事會聲明",
+     "date": "11/8",
+     "sub": "本人致歉・啟動調查",
+     "lines": [
+      "沒理由相信",
+      "機密外洩"
+     ],
+     "at": "start+14",
+     "subAt": "board-6",
+     "typeAt": "board+6",
+     "markAt": "leak",
+     "note": "示意，非文件原件"
+    },
+    "right": {
+     "label": "董事會公告",
+     "date": "11/12",
+     "lines": [
+      "辭職",
+      "即刻生效"
+     ],
+     "at": "start+18"
+    },
+    "tag": {
+     "kind": "confirmed",
+     "text": "已確定",
+     "at": "leak+8"
+    }
+   },
+   "sources": [
+    "輝達董事會聲明 2026/11/8、公告 11/12"
+   ]
+  },
+  {
+   "id": "s03",
+   "narration": "文件寫辭職，媒體卻說董事會要他走。",
+   "tts": "文件寫辭職，媒體卻說董事會要他走。",
+   "subtitle": {
+    "zh": "文件寫辭職\n媒體卻說\n董事會要他走",
+    "en": "The filing says he resigned. | Media reports say | the board pushed him out."
+   },
+   "keywords": [
+    "辭職",
+    "董事會要他走"
+   ],
+   "cues": [
+    {
+     "id": "doc",
+     "text": "文件"
+    },
+    {
+     "id": "res",
+     "text": "辭職"
+    },
+    {
+     "id": "med",
+     "text": "媒體"
+    },
+    {
+     "id": "out",
+     "text": "要他走"
+    }
+   ],
+   "beat": "mechanism",
+   "component": "DossierScene",
+   "props": {
+    "panel": "versus",
+    "left": {
+     "head": "官方文件",
+     "doc": "8-K 文件",
+     "big": "辭職",
+     "src": "送證管會的 8-K 文件",
+     "note": "示意，非文件原件",
+     "headAt": "start+8",
+     "at": "start+12",
+     "bigAt": "res",
+     "srcAt": "res+10",
+     "tag": {
+      "kind": "confirmed",
+      "text": "已確定",
+      "at": "res+18"
+     }
+    },
+    "right": {
+     "head": "媒體報導",
+     "big": [
+      "董事會",
+      "要他走"
+     ],
+     "src": "CNBC 引述知情人士",
+     "headAt": "start+16",
+     "at": "med",
+     "bigAt": "out-12",
+     "srcAt": "out",
+     "tag": {
+      "kind": "report",
+      "text": "公司未證實",
+      "at": "out+4"
+     }
+    },
+    "mid": {
+     "text": "？",
+     "at": "out+10"
+    },
+    "hold": 8
+   },
+   "sources": [
+    "8-K 文件；CNBC 引述知情人士（公司未證實）"
+   ]
+  },
+  {
+   "id": "s04",
+   "narration": "是政治操作嗎？華盛頓郵報說，對中強硬派樂見他下台。",
+   "tts": "是政治操作嗎？華盛頓郵報說，對中強硬派樂見他下台。",
+   "subtitle": {
+    "zh": "是政治操作嗎？\n華盛頓郵報說\n對中強硬派樂見他下台",
+    "en": "Was it political? | The Washington Post reports | China hawks welcomed his exit."
+   },
+   "keywords": [
+    "政治操作",
+    "樂見他下台"
+   ],
+   "cues": [
+    {
+     "id": "pol",
+     "text": "政治操作"
+    },
+    {
+     "id": "wp",
+     "text": "華盛頓郵報"
+    },
+    {
+     "id": "hawk",
+     "text": "對中強硬派"
+    },
+    {
+     "id": "glad",
+     "text": "樂見"
+    }
+   ],
+   "beat": "twist",
+   "component": "DossierScene",
+   "props": {
+    "panel": "claim",
+    "head": {
+     "text": "是政治操作嗎？",
+     "mark": "政治操作",
+     "at": "start+8",
+     "markAt": "pol+6"
+    },
+    "photo": {
+     "name": "papers",
+     "caption": "華盛頓郵報報導（示意照片）",
+     "date": "11/14",
+     "at": "start+14",
+     "dateAt": "wp"
+    },
+    "quote": {
+     "by": "華盛頓郵報 11/14",
+     "byAt": "wp+8",
+     "pre": "對中強硬派",
+     "big": "樂見",
+     "post": "他下台",
+     "at": "hawk",
+     "bigAt": "glad"
+    },
+    "tag": {
+     "kind": "report",
+     "text": "媒體報導",
+     "at": "glad+10"
+    }
+   },
+   "sources": [
+    "華盛頓郵報 11/14（轉述，因果未證實）"
+   ]
+  },
+  {
+   "id": "s05",
+   "narration": "但樂見，不等於設局。",
+   "tts": "但樂見，不等於設局。",
+   "subtitle": {
+    "zh": "但樂見\n不等於設局",
+    "en": "But welcoming it | isn't proof of a setup."
+   },
+   "keywords": [
+    "不等於設局"
+   ],
+   "cues": [
+    {
+     "id": "glad",
+     "text": "樂見"
+    },
+    {
+     "id": "ne",
+     "text": "不等於"
+    },
+    {
+     "id": "setup",
+     "text": "設局"
+    }
+   ],
+   "beat": "twist",
+   "component": "DossierScene",
+   "props": {
+    "panel": "notequal",
+    "hold": 12,
+    "a": "樂見",
+    "op": "≠",
+    "opLabel": "不等於",
+    "b": "設局",
+    "aAt": "start+8",
+    "opAt": "glad+10",
+    "bAt": "ne+2",
+    "rows": [
+     {
+      "text": "有人樂見",
+      "at": "glad",
+      "tag": {
+       "kind": "report",
+       "text": "媒體報導",
+       "at": "glad+8"
+      }
+     },
+     {
+      "text": "有人設局",
+      "at": "ne+2",
+      "tag": {
+       "kind": "none",
+       "text": "查不到證據",
+       "at": "setup-6"
+      }
+     }
+    ]
+   },
+   "sources": [
+    "截至 2026/11/14，查不到設局的證據"
+   ]
+  },
+  {
+   "id": "s06",
+   "narration": "調查還沒結論，他也還沒開口。",
+   "tts": "調查還沒結論，他也還沒開口。",
+   "subtitle": {
+    "zh": "調查還沒結論\n他也還沒開口",
+    "en": "The probe has no findings yet. | He hasn't spoken either."
+   },
+   "keywords": [
+    "還沒結論",
+    "還沒開口"
+   ],
+   "cues": [
+    {
+     "id": "probe",
+     "text": "調查"
+    },
+    {
+     "id": "none",
+     "text": "還沒結論"
+    },
+    {
+     "id": "he",
+     "text": "他也"
+    },
+    {
+     "id": "quiet",
+     "text": "還沒開口"
+    }
+   ],
+   "beat": "payoff",
+   "component": "DossierScene",
+   "props": {
+    "panel": "pending",
+    "left": {
+     "photo": {
+      "name": "binders",
+      "caption": "董事會的獨立調查（示意照片）",
+      "at": "start+18"
+     },
+     "row": "還沒結論",
+     "rowAt": "none+6"
+    },
+    "right": {
+     "title": "本人的公開說明",
+     "field": "（空白）",
+     "note": "示意，非文件原件",
+     "at": "start+24",
+     "titleAt": "he-8",
+     "frameAt": "quiet-2",
+     "row": "還沒開口",
+     "rowAt": "quiet"
+    },
+    "tag": {
+     "kind": "pending",
+     "text": "截至 2026/11/14 尚未確定",
+     "at": "quiet+8"
+    }
+   },
+   "sources": [
+    "截至 2026/11/14 尚未確定"
+   ]
+  },
+  {
+   "id": "s07",
+   "narration": "請辭還是被請走？下集看國會想問什麼。",
+   "tts": "請辭還是被請走？下集看國會想問什麼。",
+   "subtitle": {
+    "zh": "請辭還是被請走？\n下集看國會想問什麼",
+    "en": "Resigned, or pushed out? | Next: what Congress wants to ask."
+   },
+   "keywords": [
+    "請辭",
+    "被請走",
+    "國會"
+   ],
+   "cues": [
+    {
+     "id": "res",
+     "text": "請辭"
+    },
+    {
+     "id": "out",
+     "text": "被請走"
+    },
+    {
+     "id": "next",
+     "text": "下集"
+    },
+    {
+     "id": "cong",
+     "text": "國會"
+    },
+    {
+     "id": "ask",
+     "text": "想問什麼"
+    }
+   ],
+   "beat": "cta",
+   "component": "DossierScene",
+   "props": {
+    "panel": "ask",
+    "head": {
+     "lines": [
+      "是請辭",
+      "還是被請走？"
+     ],
+     "marks": [
+      "請辭",
+      "被請走"
+     ],
+     "at": "start+8",
+     "markAts": [
+      "res+6",
+      "out+2"
+     ]
+    },
+    "cta": {
+     "text": "留言說你的看法",
+     "at": "out+16"
+    },
+    "next": {
+     "label": "下一集",
+     "at": "next",
+     "photo": {
+      "name": "cabinet",
+      "caption": "示意照片",
+      "at": "next+6"
+     },
+     "title": "國會想問他什麼？",
+     "titleAt": "cong",
+     "frameAt": "ask"
+    }
+   },
+   "sources": [
+    "眾議院三個委員會致函（CNN、CBS 等報導）"
+   ]
+  }
+ ]
+}

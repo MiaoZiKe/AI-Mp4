@@ -58,7 +58,7 @@
     "mark": {
      "text": "去年",
      "color": "wrong",
-     "at": "wage"
+     "at": "wage+4"
     },
     "screen": {
      "label": "AI 說明年",
@@ -67,14 +67,14 @@
     },
     "stamp": {
      "text": "2025 年的",
-     "at": "start+10"
+     "at": "start+8"
     },
     "pin": {
      "label": "2027 年 1 月起",
      "value": "30,900",
      "size": 76,
      "tag": "行政院已核定",
-     "tagAt": "much",
+     "tagAt": "much+5",
      "bumpAt": "much"
     },
     "camera": [
@@ -84,11 +84,12 @@
        320,
        60
       ],
-      "zoom": 0.7,
+      "zoom": 0.66,
       "sy": 1050
      },
      {
-      "at": "much",
+      "at": "start+2",
+      "dur": 44,
       "look": [
        300,
        300,
@@ -137,31 +138,48 @@
    "props": {
     "panel": "ask",
     "label": "我這樣問",
+    "send": "送出",
     "lines": [
      "明年的基本工資",
      "是多少？"
     ],
     "size": 68,
     "typeAt": "voice",
+    "step": 4,
     "tag": {
      "text": "Gemini 實測・2026/11/14",
-     "at": "test"
+     "at": "test",
+     "shineAt": "gem"
     },
     "note": {
-     "text": "只打一句話",
+     "text": "只打這一句",
      "sub": "沒貼新聞，也沒開搜尋",
-     "at": "test+12"
+     "at": "one-10"
     },
-    "sendAt": "one+8",
+    "sendAt": "one",
     "camera": [
      {
       "look": [
-       200,
-       300,
-       120
+       258,
+       330,
+       12
       ],
-      "zoom": 0.9,
-      "sy": 730
+      "zoom": 0.95,
+      "sy": 820,
+      "rot": -3,
+      "dur": 16
+     },
+     {
+      "at": "one",
+      "look": [
+       90,
+       310,
+       179
+      ],
+      "zoom": 1.2,
+      "sy": 680,
+      "rot": 0,
+      "dur": 16
      }
     ],
     "kw": {
@@ -207,27 +225,34 @@
      "每月基本工資（月薪）：由現行的 27,470 元調整至 28,590 元"
     ],
     "more": "（下面還有時薪和一段補充）",
-    "outAt": "start+16",
-    "stackAt": "say",
+    "outAt": "say+4",
+    "stackAt": "old+30",
     "lens": {
      "text": "28,590",
-     "at": "old",
+     "at": "old+4",
      "dx": 420,
      "dy": 90
     },
     "camera": [
      {
+      "at": "say+4",
       "look": [
        200,
        300,
        160
       ],
       "zoom": 0.78,
-      "sy": 600
+      "sy": 600,
+      "dur": 18
      }
     ],
     "kw": {
      "28,590": "wrong"
+    },
+    "mark2": {
+     "text": "2025 年",
+     "color": "note",
+     "at": "old+18"
     }
    },
    "sources": [
@@ -277,9 +302,10 @@
      "value": "30,900",
      "size": 168,
      "sub": "時薪 205 元｜行政院已核定",
-     "at": "now-6",
+     "at": "ming-2",
+     "landAt": "now",
      "seal": "明年的",
-     "sealAt": "now+10"
+     "sealAt": "now+12"
     },
     "camera": [
      {
@@ -288,18 +314,33 @@
        320,
        60
       ],
-      "zoom": 0.6,
-      "sy": 1045
+      "zoom": 0.58,
+      "sy": 1050,
+      "rot": 2,
+      "dur": 20
      },
      {
       "at": "last",
+      "look": [
+       320,
+       320,
+       60
+      ],
+      "zoom": 0.62,
+      "sy": 1050,
+      "rot": 0,
+      "dur": 14
+     },
+     {
+      "at": "now",
       "look": [
        300,
        300,
        70
       ],
       "zoom": 0.68,
-      "sy": 1045
+      "sy": 1045,
+      "dur": 12
      }
     ],
     "kw": {
@@ -351,47 +392,80 @@
     "old": {
      "label": "剛剛",
      "text": "只打一句話",
-     "strikeAt": "paste-4"
+     "strikeAt": "paste+4"
     },
     "label": "新聞原文",
-    "flyAt": "paste-10",
+    "flipAt": "start+6",
+    "flyAt": "paste+10",
+    "result": {
+     "label": "貼了新聞之後",
+     "by": "Gemini 實測・2026/11/14（節錄）",
+     "verbatim": "tests/02-better.json",
+     "lines": [
+      "明年1月1日起月薪為30900元、時薪205元。"
+     ],
+     "mark": "30900",
+     "size": 38,
+     "at": "only-4",
+     "markAt": "only+14"
+    },
     "chips": [
      "貼新聞",
      "只看這段",
      "再一招？"
     ],
-    "chipsAt": "only-6",
+    "chipsAt": "only+24",
+    "teaser": {
+     "label": "下次",
+     "text": "再教一招",
+     "at": "next"
+    },
     "camera": [
      {
       "look": [
-       470,
-       150,
+       540,
+       110,
        0
       ],
-      "zoom": 0.8,
-      "sy": 1150
+      "zoom": 1.2,
+      "sy": 1100,
+      "rot": -2,
+      "dur": 18
      },
      {
-      "at": "paste-10",
+      "at": "paste+10",
       "look": [
-       280,
-       280,
-       80
+       240,
+       250,
+       90
       ],
-      "zoom": 0.74,
-      "sy": 1030
+      "zoom": 0.9,
+      "sy": 1010,
+      "rot": 0,
+      "dur": 22
+     },
+     {
+      "at": "next-8",
+      "look": [
+       320,
+       320,
+       40
+      ],
+      "zoom": 0.62,
+      "sy": 900,
+      "dur": 24
      }
     ],
     "kw": {
      "貼新聞": "primary",
      "只看這段": "primary"
-    },
-    "pulseAt": "next-4"
+    }
    },
    "sources": [
     "Gemini 實測 2026/11/14（tests/02-better.json）"
    ],
    "para": 1
   }
- ]
+ ],
+ "isoVersion": 3
 }

@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 441,
- "totalSec": 14.7,
+ "totalFrames": 660,
+ "totalSec": 22,
  "scenes": [
   {
    "id": "s1",
@@ -159,9 +159,9 @@
   {
    "id": "s4",
    "startFrame": 261,
-   "durationFrames": 90,
+   "durationFrames": 111,
    "startSec": 8.7,
-   "durationSec": 3,
+   "durationSec": 3.7,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
@@ -175,45 +175,179 @@
     {
      "id": "five",
      "text": "五奈米",
-     "frame": 277,
-     "sceneFrame": 16
+     "frame": 276,
+     "sceneFrame": 15
     },
     {
      "id": "pitch",
      "text": "間距",
-     "frame": 300,
-     "sceneFrame": 39
+     "frame": 299,
+     "sceneFrame": 38
     },
     {
      "id": "ff",
      "text": "四十四",
-     "frame": 312,
-     "sceneFrame": 51
+     "frame": 311,
+     "sceneFrame": 50
+    },
+    {
+     "id": "none",
+     "text": "都不是",
+     "frame": 339,
+     "sceneFrame": 78
     }
    ],
-   "stillFrame": 350,
+   "stillFrame": 371,
    "subtitles": [
     {
      "zh": "一片五奈米厚",
      "en": "Each sheet is 5 nm thick;",
      "startFrame": 262,
-     "endFrame": 296
+     "endFrame": 295
     },
     {
      "zh": "間距四十四奈米",
      "en": "gates sit 44 nm apart.",
-     "startFrame": 296,
-     "endFrame": 352
+     "startFrame": 295,
+     "endFrame": 335
+    },
+    {
+     "zh": "都不是二",
+     "en": "Neither is 2.",
+     "startFrame": 335,
+     "endFrame": 373
     }
    ],
-   "narration": "一片五奈米厚，間距四十四奈米。"
+   "narration": "一片五奈米厚，間距四十四奈米。都不是二。"
   },
   {
    "id": "s5",
-   "startFrame": 351,
-   "durationFrames": 90,
-   "startSec": 11.7,
-   "durationSec": 3,
+   "startFrame": 372,
+   "durationFrames": 99,
+   "startSec": 12.4,
+   "durationSec": 3.3,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "gate",
+     "text": "閘極",
+     "frame": 376,
+     "sceneFrame": 4
+    },
+    {
+     "id": "volt",
+     "text": "電壓",
+     "frame": 400,
+     "sceneFrame": 28
+    },
+    {
+     "id": "e",
+     "text": "電子",
+     "frame": 412,
+     "sceneFrame": 40
+    },
+    {
+     "id": "pass",
+     "text": "穿過",
+     "frame": 431,
+     "sceneFrame": 59
+    }
+   ],
+   "stillFrame": 470,
+   "subtitles": [
+    {
+     "zh": "閘極加上電壓",
+     "en": "Put voltage on the gate,",
+     "startFrame": 373,
+     "endFrame": 408
+    },
+    {
+     "zh": "電子就穿過這三片",
+     "en": "and electrons cross all three sheets.",
+     "startFrame": 408,
+     "endFrame": 472
+    }
+   ],
+   "narration": "閘極加上電壓，電子就穿過這三片。"
+  },
+  {
+   "id": "s6",
+   "startFrame": 471,
+   "durationFrames": 102,
+   "startSec": 15.7,
+   "durationSec": 3.4,
+   "component": "ThreeScene",
+   "beat": "twist",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "off",
+     "text": "電壓降下",
+     "frame": 475,
+     "sceneFrame": 4
+    },
+    {
+     "id": "shut",
+     "text": "就關",
+     "frame": 500,
+     "sceneFrame": 29
+    },
+    {
+     "id": "wrap",
+     "text": "四面",
+     "frame": 513,
+     "sceneFrame": 42
+    },
+    {
+     "id": "leak",
+     "text": "漏電",
+     "frame": 538,
+     "sceneFrame": 67
+    }
+   ],
+   "stillFrame": 572,
+   "subtitles": [
+    {
+     "zh": "電壓降下就關",
+     "en": "Drop the voltage and it shuts off.",
+     "startFrame": 472,
+     "endFrame": 509
+    },
+    {
+     "zh": "四面包住",
+     "en": "Drop the voltage and it shuts off.",
+     "startFrame": 509,
+     "endFrame": 534
+    },
+    {
+     "zh": "漏電更少",
+     "en": "Gate on all four sides: less leakage.",
+     "startFrame": 534,
+     "endFrame": 574
+    }
+   ],
+   "narration": "電壓降下就關。四面包住，漏電更少。"
+  },
+  {
+   "id": "s7",
+   "startFrame": 573,
+   "durationFrames": 87,
+   "startSec": 19.1,
+   "durationSec": 2.9,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
@@ -225,46 +359,34 @@
    "voice": null,
    "cues": [
     {
-     "id": "none",
-     "text": "都不是",
-     "frame": 355,
-     "sceneFrame": 4
-    },
-    {
      "id": "small",
      "text": "這麼小",
-     "frame": 385,
-     "sceneFrame": 34
+     "frame": 577,
+     "sceneFrame": 4
     },
     {
      "id": "how",
      "text": "怎麼印",
-     "frame": 408,
-     "sceneFrame": 57
+     "frame": 614,
+     "sceneFrame": 41
     }
    ],
-   "stillFrame": 429,
+   "stillFrame": 648,
    "subtitles": [
     {
-     "zh": "都不是二",
-     "en": "Neither is 2.",
-     "startFrame": 352,
-     "endFrame": 381
-    },
-    {
      "zh": "這麼小",
-     "en": "Neither is 2.",
-     "startFrame": 381,
-     "endFrame": 404
+     "en": "So how do you print something this small?",
+     "startFrame": 574,
+     "endFrame": 610
     },
     {
      "zh": "怎麼印？",
      "en": "So how do you print something this small?",
-     "startFrame": 404,
-     "endFrame": 441
+     "startFrame": 610,
+     "endFrame": 660
     }
    ],
-   "narration": "都不是二。這麼小，怎麼印？"
+   "narration": "這麼小，怎麼印？"
   }
  ]
 }

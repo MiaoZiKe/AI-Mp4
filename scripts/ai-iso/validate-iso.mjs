@@ -15,7 +15,7 @@ const KINDS2 = ["hook", "ask", "answer", "bump", "why", "title", "slot", "result
 const QUOTES2 = ["answer", "why", "result", "add", "compare"];
 const COLORS = ["primary", "wrong", "right", "note", "sky", "plum"];
 /** 這些鍵的值是時間 */
-const AT_KEYS = new Set(["at", "in", "from", "until", "typeAt", "stackAt", "restAt", "strikeAt", "stampAt", "tagAt", "popAt", "bumpAt", "chipsAt", "sendAt", "outAt", "sealAt", "flyAt", "trayAt", "lensAt", "linkAt", "hintAt", "splitAt", "askAt", "checkAt", "focusAt", "pulseAt"]);
+const AT_KEYS = new Set(["at", "in", "from", "until", "typeAt", "stackAt", "restAt", "strikeAt", "stampAt", "tagAt", "popAt", "bumpAt", "chipsAt", "sendAt", "outAt", "sealAt", "flyAt", "trayAt", "lensAt", "linkAt", "hintAt", "splitAt", "askAt", "checkAt", "focusAt", "pulseAt", "shineAt", "landAt", "flipAt", "markAt"]);
 const strip = (t) => String(t).replace(/[*\s]/g, "");
 
 export function validateIso(script, h) {
@@ -95,9 +95,17 @@ export function validateIso(script, h) {
       else {
         const ans = strip(JSON.parse(fs.readFileSync(fp, "utf8")).answer ?? "");
         for (const l of p.lines ?? []) if (!ans.includes(strip(l))) E(`${tag}: 回答的這一行不是實測原文（只能刪節，不能改字）：「${l}」`);
-        for (const v of [p.lens?.text]) if (v && !ans.includes(strip(v))) E(`${tag}: 「${v}」不在實測原文裡`);
+        for (const v of [p.lens?.text, p.mark2?.text]) if (v && !ans.includes(strip(v))) E(`${tag}: 「${v}」不在實測原文裡`);
       }
     }
+    // 短片引擎（isoVersion: 3，IsoShort.tsx）：最後一鏡如果放了「貼新聞之後的回答」，一樣要標實測＋節錄，字要是實測原文
+    if (script.isoVersion === 3 && p.panel === "next" && p.result) {
+      const r = p.result, fp = r.verbatim ? path.join(ROOT, "videos", script.slug, r.verbatim) : null;
+      if (!/實測/.test(r.by ?? "") || !/節錄/.test(r.by ?? "")) E(`${tag}: props.result 要標示實測與節錄（result.by）`);
+      if (!fp || !fs.existsSync(fp)) E(`${tag}: props.result 要寫 verbatim（實測原始回答的 JSON 檔）`);
+      else { const ans = strip(JSON.parse(fs.readFileSync(fp, "utf8")).answer ?? ""); for (const l of [].concat(r.lines ?? [], r.mark ?? [])) if (!ans.includes(strip(l))) E(`${tag}: 這一行不是實測原文（只能刪節，不能改字）：「${l}」`); }
+    }
+    if (script.isoVersion === 3) for (const c of cams) { if (c.dur !== undefined && !(c.dur >= 6 && c.dur <= 60)) E(`${tag}: props.camera 的 dur 要在 6–60 幀`); if (c.rot !== undefined && Math.abs(c.rot) > 6) E(`${tag}: props.camera 的 rot 最多 ±6 度`); }
     if (film && p.panel === "compare" && !(p.top?.answer && p.bottom?.answer)) E(`${tag}: 對照要有 top.answer 與 bottom.answer（兩個回答同時在畫面上）`);
     if (film && p.panel === "template" && (p.linePx ?? 42) < 36) E(`${tag}: 範本卡的字 ${p.linePx}px 太小（提問那一鏡會縮到 0.78 倍，要 ≥36）`);
     if (silent) return;
