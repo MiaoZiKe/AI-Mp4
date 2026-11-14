@@ -165,7 +165,7 @@ const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
           {Array.from({ length: n + 1 }, (_, i) => <line key={`b${i}`} y1={-hw + i * sp} y2={-hw + i * sp} x1={-hw} x2={hw} />)}
         </g>
       ); })}
-      <rect x={-10} y={-10} width={20} height={20} fill="none" stroke={H.amber} strokeWidth={4} />
+      <rect x={-10} y={-10} width={20} height={20} fill="none" stroke={H.amber} strokeWidth={3} vectorEffect="non-scaling-stroke" />
     </g>
   );
   if (kind === "cells") return (
@@ -173,7 +173,7 @@ const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
     <g>
       {Array.from({ length: 14 }, (_, r) => <rect key={r} x={-500} y={-490 + r * 70} width={1000} height={44} fill={r % 2 ? A.block : A.sd} opacity={0.85} />)}
       {Array.from({ length: 34 }, (_, c) => <rect key={c} x={-498 + c * 30} y={-500} width={6} height={1000} fill={A.gate} opacity={0.8} />)}
-      <rect x={-6} y={-6} width={12} height={12} fill="none" stroke={H.text} strokeWidth={2} />
+      <rect x={-6} y={-6} width={12} height={12} fill="none" stroke={H.text} strokeWidth={2} vectorEffect="non-scaling-stroke" />
     </g>
   );
   // gates：一顆奈米片電晶體的俯視（1 單位＝4nm，畫面寬 150nm＝37.5 單位）；和 model.json 的零件位置一致，交棒給 3D 時對得上

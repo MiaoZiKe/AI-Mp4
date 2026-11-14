@@ -1,11 +1,11 @@
 {
  "slug": "short-ai",
- "at": "2026-11-14T11:55:58.209Z",
- "durationSec": 17.73,
+ "at": "2026-11-14T12:47:17.407Z",
+ "durationSec": 14.87,
  "final": {
-  "lufs": -14.5,
+  "lufs": -14,
   "truePeakDbfs": -4.5,
-  "lra": 2.6,
+  "lra": 2.8,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -18,7 +18,7 @@
   "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
   "lufsBeforeDuck": -27,
   "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
-  "underVoiceDuringSpeechLu": 16.6
+  "underVoiceDuringSpeechLu": 24
  },
  "sfx": {
   "meta": {
@@ -42,21 +42,21 @@
   "counts": {
    "whoosh": 2
   },
-  "perThreeSec": 0.34,
+  "perThreeSec": 0.4,
   "events": [
    {
     "type": "whoosh",
-    "frame": 57,
+    "frame": 50,
     "why": "hook→you",
-    "startSec": 1.504,
-    "peakSec": 1.833
+    "startSec": 1.271,
+    "peakSec": 1.6
    },
    {
     "type": "whoosh",
-    "frame": 248,
+    "frame": 209,
     "why": "you→twist",
-    "startSec": 7.871,
-    "peakSec": 8.2
+    "startSec": 6.571,
+    "peakSec": 6.9
    }
   ]
  }

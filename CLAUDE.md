@@ -116,9 +116,9 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 ## 配音流程（Gemini TTS，依 ai-voiceover-explainer-video 技能）
 - 順序固定：研究 → 腳本 → validate（含讀法規則）→ TTS（整篇一次生成＋回讀校驗自動重生）→ 逐字時間戳（CTC 強制對齊，寫 timeline.json＋storyboard.json）→ 依時間軸渲染（＋SRT）→ ffprobe 檢查。配音是影片的時鐘，改稿就要從 TTS 重跑。
 - 對齊：`npm run align <slug>` 預設用 `scripts/fa.py`（MMS-300M forced-aligner，輸入念稿 tts 文字，LCS 映射回字幕字），需要 `.venv`（`python3 -m venv .venv && .venv/bin/pip install -r scripts/fa-requirements.txt`，模型第一次從 huggingface.co 下載約 1.2GB）；失敗才回退 gemini+silence。對齊信心與起音誤差寫在 timeline.json 的 `fa` 和 tts-check.md，信心 < 0.5 的幕要試聽。
-- **配音前先定旁白設定檔**（`docs/voice-profiles.md`）：script.json 的 `voice.profile` 寫預設檔名字（`tech｜stock｜love｜ai`，在 `scripts/voice-profiles.json`）、`{ preset, …要改的欄位 }` 或整份自己寫；欄位＝`persona`（誰在講、對誰講）、`gender`、`accent`（固定「台灣華語」）、`pace`（目標音節/秒範圍）、`tone`、`arc`（起／承／轉／合各一句情緒指示）、`englishTerms`（英文詞與標準念法）、`avoid`。`tts-take.mjs` 用 `scripts/voice-profile.mjs` 把它組成「導演筆記」說明（只描述說話方式，**不放任何像台詞的句子、不引用稿子**，會被念出來）並送 `speechConfig.languageCode: "cmn-TW"`（模型不收就自動拿掉，之後寫 `voice.languageCode: "off"`）。各段情緒只能給整篇走向（Arc 一行），不能逐句控制；3.x 系列會把說明念出來，只送念稿與 languageCode。沒有 `voice.profile` 的舊片照舊用 `voice.style`，請求與快取不變。
+- **配音前先定旁白設定檔**（`docs/voice-profiles.md`）：script.json 的 `voice.profile` 寫預設檔名字（`tech｜stock｜love｜ai｜liguligu`，在 `scripts/voice-profiles.json`）、`{ preset, …要改的欄位 }` 或整份自己寫；欄位＝`persona`（誰在講、對誰講）、`gender`、`accent`（固定「台灣華語」）、`pace`（目標音節/秒範圍）、`tone`、`arc`（起／承／轉／合各一句情緒指示）、`englishTerms`（英文詞與標準念法）、`avoid`。`tts-take.mjs` 用 `scripts/voice-profile.mjs` 把它組成「導演筆記」說明（只描述說話方式，**不放任何像台詞的句子、不引用稿子**，會被念出來）並送 `speechConfig.languageCode: "cmn-TW"`（模型不收就自動拿掉，之後寫 `voice.languageCode: "off"`）。各段情緒只能給整篇走向（Arc 一行），不能逐句控制；3.x 系列會把說明念出來，只送念稿與 languageCode。沒有 `voice.profile` 的舊片照舊用 `voice.style`，請求與快取不變。
 - 台灣口音與用語：口音句固定（台北人平常講話的台灣華語、捲舌輕帶、不兒化、詞尾不念輕聲；中文英文都要標準，英文用標準美式發音完整念出來），各片不改；提示不寫「咬字清楚、字正腔圓」（會推向播音腔）。稿子禁用中國用語與兒化（視頻、信息、軟件、質量、這兒…；清單在 `voice-profile.mjs` 的 `CN_TERMS`，validate 對念稿與字幕警告）；新聞題材也寫成「講給朋友聽」的句子，不寫新聞稿體。
-- 旁白不要像演講，也不要太輕浮（`docs/voice-natural.md`）：設定檔寫情境（誰、在哪裡、只對一個人講），不寫清楚、專業、沉穩、明快、俐落這類形容詞，也不在提示裡要求「快、不要停」；新片加 `delivery` 與 `scene`，**說話方式依頻道**：AI 教學＝`delivery: "warm-pro"`（親和專業，`ai` 預設檔已內建：茶水間帶同事／帶新人上手，句子講完整、不拖尾音）；談晴說礙等輕聲聊天的頻道＝`delivery: "chat"`（各頻道的場景句在 `voice-profiles.json` 的 `_chat`）。後製不把句間停頓壓成等距（要趕時間就刪字，不調 `ALIGN_GAP_MAX`）；句號停頓要比逗號長。換稿試聽用 `tts-take.mjs --audition=<名字> --script=<另一份稿.json>`；要給使用者在網頁版試聽的整段提示詞用 `node scripts/voice-prompts.mjs`（寫到 `docs/voice-prompts-full.md`，不送請求）。
+- 旁白不要像演講，也不要太輕浮（`docs/voice-natural.md`）：設定檔寫情境（誰、在哪裡、只對一個人講），不寫清楚、專業、沉穩、明快、俐落這類形容詞，也不在提示裡要求「快、不要停」；新片加 `delivery` 與 `scene`，**說話方式依頻道**：AI 教學＝`delivery: "warm-pro"`（親和專業，`ai` 預設檔已內建：茶水間帶同事／帶新人上手，句子講完整、不拖尾音）；談晴說礙等輕聲聊天的頻道＝`delivery: "chat"`（各頻道的場景句在 `voice-profiles.json` 的 `_chat`）；哩股哩股＝`delivery: "probe"`（查證揭露：講到疑點放慢、講到查證結果乾脆，`liguligu` 預設檔已內建）。後製不把句間停頓壓成等距（要趕時間就刪字，不調 `ALIGN_GAP_MAX`）；句號停頓要比逗號長。換稿試聽用 `tts-take.mjs --audition=<名字> --script=<另一份稿.json>`；要給使用者在網頁版試聽的整段提示詞用 `node scripts/voice-prompts.mjs`（寫到 `docs/voice-prompts-full.md`，不送請求）。
 - 音色依頻道與內容選，**不限男性**（感情頻道預設女聲）；**每個新音色或新頻道第一次用，先做試聽給使用者聽過再整篇配音**：`node scripts/tts-take.mjs <slug> --audition=<名字> --upto=<幕id> --voice=<音色> [--profile=<預設檔>] [--out=out/voice-audition-v2]`（一次請求、不動正式音檔），比較表寫在 `docs/voice-audition-v2.md` 這一類文件。口音只有人耳能判斷；`scripts/voice-retro.py`（ㄓㄔㄕ 與 ㄗㄘㄙ 擦音重心差距）只是輔助數字。
 - 語速要讓模型自己念到 `pace` 範圍；**後製加速（atempo）上限 1.08，超過就重配（改稿或改設定檔），不硬加速**。
 - `videos/<slug>/` 另放 script.md、pronunciation.md（念稿規則）、voice.md（音色設定與候選比較表）、visual-spec.md（可執行的畫面規格）
@@ -131,11 +131,16 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 分鏡表：`npm run align`／`render`／`subs` 會寫 `videos/<slug>/storyboard.json`（每幕 id、startFrame、durationFrames、component、beat、轉場、人聲區間、cues 絕對幀與幕內幀、字幕短語時間），自查拼圖與聲畫匹配以它為準。
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
+## 哩股哩股頻道（追問式）
+- 規則全文：`docs/channels/liguligu.md`（使用者 2026/11/14 要求）。題材＝國際情勢、國際大公司與市場、基金。**結構不是介紹，是追問**：前 3 秒丟出反常的事實或疑點（第 0 幀實心大字＋1 秒內一個蓋章或撕紙動作）→ 發生了什麼（只講已確定的）→ 哪裡不合理、外界懷疑什麼 → 逐一查證 → 目前最合理的解釋與還不知道的事 → 具體提問＋下一集鉤子。
+- 事實紀律是硬規則：可以問「這合理嗎？」「有人懷疑是…」，**不可以把沒有證據的陰謀寫成結論**；每個說法標「已確定／媒體報導（誰報的）／分析推測／查不到（截至日期）」；真實人物的私事只寫本人承認或官方文件有的部分，不提第三人姓名，不用定罪式用語；不給投資建議；不出現真人肖像（含替代物）與商標。
+- 口吻：冷靜、有把握，「我幫你把沒人講清楚的地方查出來」；不聳動、不喊口號。旁白設定檔 `liguligu`（男聲，`delivery: "probe"`）。畫面：紙拼貼 `skin: newsprint`，畫面常駐「查證截至 YYYY/M/D」。第一支：`videos/liguligu-jensen/`（約 26 秒短片，無聲版）。
+
 ## 各頻道音色（使用者 2026/11/14 決定）
-- 哩股哩股（股票、國際情勢、基金）：Iapetus（男），照 love-stats 成片的聲音（使用者 2026/11/14 上傳 love-stats.mp4 指定：`voice.style`＝「用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚」，生成後 atempo 1.17；這個頻道是使用者聽過成品後指定的，1.08 上限不適用）。
+- 哩股哩股（股票、國際情勢、基金）：**男聲，音色待定**。使用者 2026/11/14 聽過後否決 Iapetus 與 Achird（「聲音我不喜歡，需要男生旁白，且專業的介紹，帶點揭發以及解惑大家不知道的感覺」）；旁白設定檔用 `liguligu`（`delivery: "probe"`），候選音色與試聽提示詞在 `docs/prompts/liguligu-男聲試聽.txt`，等使用者在 Google AI Studio 試聽選定後再填 `voice.voiceName`、再配音。舊片 liguligu-cpi 是 Iapetus 錄音，不動。
 - AI 教學：Sulafat（女）（2026/11/14 使用者聽過 Iapetus 版 short-ai 後改回女聲）。
 - 談晴說礙：Sulafat（女）。畫面風格照頻道既有貼文（參考檔在 `docs/channels/tanqing-ref/`）：暖米紙底、襯線大標、棕墨字、一個橘色強調、線稿圓角圖表、左上太陽雲朵字標、右下小太陽頁碼。
-- 科技（Tech）：同哩股哩股（Iapetus，love-stats 成片的聲音）。
+- 科技（Tech）：Iapetus（男），照 love-stats 成片的聲音（使用者 2026/11/14 上傳 love-stats.mp4 指定：`voice.style`＝「用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚」，生成後 atempo 1.17；使用者聽過成品後指定的，1.08 上限不適用）。原本哩股哩股也用這個聲音，11/14 已被否決，只剩科技頻道沿用。
 - 白話國際：沿用 Iapetus（未另行指定）。
 - 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。
 

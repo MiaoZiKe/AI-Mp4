@@ -1,11 +1,58 @@
 # short-ai 配音紀錄
 
-> **2026/11/14 20:21（台北）狀態：改配 Sulafat 女聲，還沒配成。**
-> - 使用者聽完 Iapetus 版後指示「AI 教學短片用回原來的女旁白」。`script.json` 已改成 Sulafat（`ai` 預設檔、gender female、pace [4.6, 5]、warm-pro），旁白刪到 53 個中文字＋Gemini（約 56 音節），validate 0 error。
-> - 正式配音送了 **1 次** TTS 請求（gemini-2.5-flash-preview-tts、cmn-TW），回 **502 upstream request failed**，沒有拿到音訊（`tts-requests.json` 第 2 筆）。依指示沒有重送，等使用者同意後再送 1 次：`TTS_NO_RETRY=1 NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs short-ai`（`TTS_NO_RETRY=1`＝任何錯誤都不自動重送）。
-> - 目前 `public/audio/short-ai/`、`timeline.json`、`out/short-ai.mp4` 都還是 Iapetus 版（和新的 script.json 對不上，配好音之前不要 align／render）。Iapetus 版的稿、時間軸、音檔備份在 `videos/short-ai/_iapetus/` 與 `public/audio/short-ai/_iapetus/`。
-> - 以下是 Iapetus 版的紀錄。
+## 現行版本：Sulafat（女），2026/11/14
+- 使用者聽完 Iapetus 版後指示「AI 教學短片用回原來的女旁白」。
+- 模型 gemini-2.5-flash-preview-tts，`languageCode: cmn-TW`，整篇一次生成（`voice.mode: "take"`）。
+- 設定檔：`ai` 預設檔＋gender female、pace [4.6, 5]、delivery warm-pro；完整提示詞在 `tts-manifest.json` 的 `take.prompt`。
+- 念稿（53 個中文字＋Gemini，約 56 音節）：
+  明年基本工資多少？／Gemini 實測，只打一句。／它說，兩萬八千五百九十。／那是去年的，明年是三萬零九百。／先貼新聞，請它只看這段。下次再教一招。
 
+### 請求（`tts-requests.json`）
+- 第 1 次 20:21（台北）：HTTP 502 upstream request failed，沒有音訊。
+- 第 2 次 20:35：使用者同意後再送，HTTP 200，有音訊。之後沒有再送。
+- 另做 1 次整篇聽寫（文字模型，不是 TTS 額度）。
+- `TTS_NO_RETRY=1`：`tts-take.mjs` 新增的開關，任何錯誤都不自動重送。
+
+### 語速與後製
+- 原始錄音 17.61 秒，說話區間 17.01 秒，其中幕間停頓 4 處共 2.99 秒（每處 0.65–0.79 秒）。
+- 語速：含停頓 3.3 音節/秒；扣掉幕間停頓 4.0 音節/秒，低於設定的 4.6–5.0。
+- 後製兩步：
+  1. `atempo=1.08`（上限）：五個切檔加速，`tts-manifest.json` 的 sec／headSec／tailSec／gapAfter 同步除以 1.08，記 `atempo: 1.08`。
+  2. `ALIGN_GAP_MAX=0.3 npm run align short-ai -- --force`：幕間停頓壓到 0.27–0.33 秒（s04 後維持 0.35）。
+- 結果 **14.87 秒（446 幀）**；含停頓 3.8 音節/秒，扣掉停頓約 4.3。
+- 只加速、不壓停頓的話約 16.2 秒，超過 15 秒。壓停頓依 CLAUDE.md「語速」一節；`docs/voice-natural.md` 則說不要把停頓壓成等距，這一點請使用者聽過決定。
+- 注意：再跑 `tts-take.mjs short-ai`（含 `--resplit`、`--asr`）會用原始錄音重切、蓋掉加速版，要重做上面兩步。
+- 成品人聲：`public/audio/short-ai/voice.wav`（−16 LUFS），複本 `out/short-ai/voice-final.wav`。
+
+### 聽寫（gemini-3.5-transcribe）
+「明年基本工资多少？ Gemini 实测直打一句。她说 28590。那是去年的，明年是 30900。先贴新闻，请它只看这段，下次再讨价还价。」
+- 沒有漏句、沒有把說明念出來，數字正確。
+- 「只打」被聽成「直打」（對齊分數 只 0.94、打 0.99）。
+- 「再教一招」被聽成「再討價還價」（對齊分數 教 0.99、招 0.96，比較像聽寫誤判），要人耳確認。
+
+### 對齊信心（CTC，加速後）
+| 幕 | 信心 | 低分字 |
+|---|---|---|
+| s01 | 0.976 | — |
+| s02 | 0.619 | Gemini 的字母、實、一 |
+| s03 | **0.394** | 八千五百九（數字整段低） |
+| s04 | 0.704 | 三萬零九百 |
+| s05 | 0.904 | 一 |
+
+### 捲舌指標（`scripts/voice-retro.py`，原始錄音）
+- ㄓㄔㄕ 重心 5.2 kHz（10 個字）、ㄗㄘㄙ 9.8 kHz（5 個字），差距 **4.6 kHz**。
+- 對照（同一支程式的參考值）：what-is-server 0.9、tech-cowos 0.5、love-stats 2.9、ai-make-video 4.7、stock-jensen 4.4（被聽成中國口音）。
+- 這支落在偏高的一側，但 ㄗㄘㄙ 只有 5 個字（少於 8 個不可靠）。口音要人耳判斷。
+
+### 需要人耳確認
+1. s03「兩萬八千五百九十」、s04「三萬零九百」的念法。
+2. s05「下次再教一招」有沒有念清楚。
+3. s02「只打一句」、Gemini 的發音。
+4. 有沒有中國口音；加速 1.08 與停頓壓到 0.3 秒後自不自然。
+
+---
+
+# 上一版：Iapetus（男）紀錄（檔案備份在 `_iapetus/`）
 ## 設定
 - 音色：**Iapetus**（使用者 2026/11/14 指定 AI 教學頻道固定用 Iapetus）
 - 模型：gemini-2.5-flash-preview-tts，`languageCode: cmn-TW`，整篇一次生成（`voice.mode: "take"`）

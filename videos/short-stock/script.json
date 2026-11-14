@@ -263,7 +263,9 @@
         "dur": 4
        }
       ],
-      "to": "right"
+      "to": "right",
+      "at": "start+12",
+      "from": "slam"
      },
      {
       "type": "strip",
@@ -289,7 +291,9 @@
         "w": 160
        }
       ],
-      "to": "left"
+      "to": "left",
+      "at": "start+5",
+      "from": "left"
      }
     ]
    },
@@ -338,18 +342,18 @@
       "lines": [
        {
         "t": "聯準會＝美國央行",
-        "size": 58
+        "size": 72
        },
        {
         "t": "9 月已經升息一次",
-        "size": 38,
+        "size": 46,
         "color": "ink3",
         "mt": 4
        }
       ],
       "x": 520,
-      "y": 440,
-      "w": 700,
+      "y": 620,
+      "w": 860,
       "layer": "screen",
       "rot": -2,
       "at": "start+2",
@@ -362,20 +366,20 @@
       "lines": [
        {
         "t": "12/8–9 開會",
-        "size": 46
+        "size": 58
        }
       ],
-      "x": 300,
-      "y": 760,
-      "w": 320,
+      "x": 310,
+      "y": 870,
+      "w": 420,
       "layer": "screen",
       "rot": -5,
-      "at": "dec",
+      "at": "dec-6",
       "from": "paste",
       "tape": [
        {
         "asset": "tape-y",
-        "x": 150,
+        "x": 200,
         "y": 0,
         "rot": 4,
         "w": 120
@@ -393,7 +397,7 @@
        }
       ],
       "x": 600,
-      "y": 1040,
+      "y": 1100,
       "w": 780,
       "layer": "screen",
       "rot": 2,
@@ -407,7 +411,7 @@
         "at": "hike",
         "to": {
          "rot": -1,
-         "y": 1028
+         "y": 1088
         },
         "dur": 4
        }
@@ -496,7 +500,7 @@
       "value": 33,
       "decimals": 0,
       "unit": " 元",
-      "head": "1 美元換台幣",
+      "head": "1 美元換台幣 逼近",
       "lines": [
        {
         "t": "11/12 盤中逼近",
@@ -515,8 +519,8 @@
       "layer": "screen",
       "rot": 2,
       "paper": "card-white",
-      "at": "ntd-4",
-      "from": "slam",
+      "at": "usd+10",
+      "from": "paste",
       "tape": [
        {
         "asset": "tape-r",
@@ -622,10 +626,9 @@
       "w": 900,
       "layer": "screen",
       "rot": 1,
-      "at": "start+4",
-      "from": "bottom",
-      "to": "bottom",
-      "until": "s05.bond"
+      "at": "start+2",
+      "from": "paste",
+      "to": "bottom"
      },
      {
       "type": "bars",
@@ -638,7 +641,7 @@
       "max": 87,
       "onDark": false,
       "layer": "screen",
-      "at": "start+6",
+      "at": "start+10",
       "from": "paste",
       "bars": [
        {
@@ -662,7 +665,6 @@
         "grow": 1
        }
       ],
-      "until": "s05.bond",
       "to": "bottom"
      },
      {
@@ -676,7 +678,7 @@
       "max": 87,
       "onDark": false,
       "layer": "screen",
-      "at": "start+6",
+      "at": "start+10",
       "from": "paste",
       "bars": [
        {
@@ -700,7 +702,6 @@
         "grow": 1
        }
       ],
-      "until": "s05.bond",
       "to": "bottom"
      },
      {
@@ -720,7 +721,6 @@
       "onDark": true,
       "at": "one-8",
       "from": "slam",
-      "until": "s05.bond",
       "to": "bottom"
      }
     ]
@@ -813,6 +813,14 @@
          "rot": 1
         },
         "dur": 8
+       },
+       {
+        "at": "end-22",
+        "to": {
+         "rot": -1.2,
+         "y": 712
+        },
+        "dur": 4
        }
       ]
      },
@@ -824,9 +832,18 @@
       "w": 200,
       "rot": 8,
       "layer": "screen",
-      "at": "bond+6",
+      "at": "bond+20",
       "from": "paste",
-      "until": "end"
+      "until": "end",
+      "moves": [
+       {
+        "at": "end-22",
+        "to": {
+         "rot": -4
+        },
+        "dur": 4
+       }
+      ]
      }
     ]
    },

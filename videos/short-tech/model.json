@@ -39,7 +39,8 @@
       "rough": 0.2,
       "metal": 0.3,
       "clearcoat": 0.6,
-      "clearcoatRough": 0.1
+      "clearcoatRough": 0.1,
+      "env": 0.1
     },
     "gate": {
       "kind": "std",
@@ -47,19 +48,22 @@
       "rough": 0.3,
       "metal": 0.9,
       "tex": "brushed",
-      "texScale": 1.6
+      "texScale": 1.6,
+      "env": 0.6
     },
     "sd": {
       "kind": "std",
       "color": "sd",
       "rough": 0.45,
-      "metal": 0.2
+      "metal": 0.2,
+      "env": 0.1
     },
     "contact": {
       "kind": "std",
       "color": "metal",
       "rough": 0.25,
-      "metal": 0.95
+      "metal": 0.95,
+      "env": 0.6
     }
   },
   "layers": [
@@ -425,7 +429,7 @@
   },
   "fx": {
     "dpr": 1,
-    "layDip": 0.6,
+    "layDip": 0.8,
     "srcPx": 30,
     "shadows": 0,
     "fog": false,
