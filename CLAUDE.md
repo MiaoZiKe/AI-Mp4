@@ -133,8 +133,8 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 
 ## 各頻道音色（使用者 2026/11/14 決定）
 - 哩股哩股（股票、國際情勢、基金）：Iapetus（男），照 love-stats 成片的聲音（使用者 2026/11/14 上傳 love-stats.mp4 指定：`voice.style`＝「用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚」，生成後 atempo 1.17；這個頻道是使用者聽過成品後指定的，1.08 上限不適用）。
-- AI 教學：Iapetus（男）。
-- 談晴說礙：Sulafat（女）。
+- AI 教學：Sulafat（女）（2026/11/14 使用者聽過 Iapetus 版 short-ai 後改回女聲）。
+- 談晴說礙：Sulafat（女）。畫面風格照頻道既有貼文（參考檔在 `docs/channels/tanqing-ref/`）：暖米紙底、襯線大標、棕墨字、一個橘色強調、線稿圓角圖表、左上太陽雲朵字標、右下小太陽頁碼。
 - 科技（Tech）：同哩股哩股（Iapetus，love-stats 成片的聲音）。
 - 白話國際：沿用 Iapetus（未另行指定）。
 - 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。

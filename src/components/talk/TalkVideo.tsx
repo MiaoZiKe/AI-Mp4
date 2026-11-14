@@ -2,9 +2,9 @@
 // 礙的幕是冷的夜色、晴的幕換成暖燈色；畫面上只有一個大數字、一兩句字、一排十格窗（亮幾格）。
 // 時間全部來自 timeline（engine.ts）；顏色與版面讀 THEME_TALK／LAYOUT_TALK。沒有 3D、霓虹發光。
 // 照片：public/talk/<slug>/<name>.jpg（不 commit；原圖在 out/<slug>/assets-raw/photos/，來源記在 videos/<slug>/assets.md）。
-// 照片沒放好時用 CSS 背景（不會讓渲染失敗），畫面只剩底色。
+// 照片用 Remotion 的 Img（等載入完才截幀）；照片沒放好時渲染會報錯，先把照片放到 public/talk/<slug>/。
 import React, { useMemo } from "react";
-import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_TALK as L, THEME_TALK as T } from "../../theme";
 import { EASE, tween } from "../anim";
@@ -21,9 +21,10 @@ const Photo: React.FC<{ ph: TalkPhoto; slug: string; f: number; first: boolean }
   const op = first ? 1 : tween(f, ph.at, T.motion.cross, EASE.move);
   return (
     <AbsoluteFill style={{ opacity: op, overflow: "hidden" }}>
-      <AbsoluteFill style={{
-        backgroundImage: `url(${staticFile(`talk/${slug}/${ph.name}.jpg`)})`, backgroundSize: "cover",
-        backgroundPosition: `${ph.focus[0] * 100}% ${ph.focus[1] * 100}%`,
+      {/* Img（不是 CSS 背景）：Remotion 會等照片載入才截這一幀，第 0 幀不會是黑的 */}
+      <Img src={staticFile(`talk/${slug}/${ph.name}.jpg`)} style={{
+        position: "absolute", width: "100%", height: "100%", objectFit: "cover",
+        objectPosition: `${ph.focus[0] * 100}% ${ph.focus[1] * 100}%`,
         transform: `translateX(${r1(dx)}px) scale(${s.toFixed(4)})`, transformOrigin: `${ph.focus[0] * 100}% ${ph.focus[1] * 100}%`,
       }} />
     </AbsoluteFill>
@@ -120,7 +121,7 @@ const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
   let k = 0; cue.phrases.forEach((p, i) => { if (f >= p.start) k = i; });
   const zh = cue.phrases[k].text.replace(/[，、；：。]$/, "");
   const en = enSplit(cue.en); const ek = Math.min(en.length - 1, Math.floor((k * en.length) / cue.phrases.length));
-  const o = tween(f, cue.window[0], 6, EASE.enter);
+  const o = cue.window[0] === 0 ? 1 : tween(f, cue.window[0], 6, EASE.enter); // 第 0 幀的字幕直接在（鉤子幀不淡入）
   return (
     <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.CAP_TOP, opacity: o }}>
       <div style={{ fontFamily: FONT_ZH, fontWeight: T.weight.zh, fontSize: L.CAP_ZH_PX, color: T.fg, whiteSpace: "nowrap", textShadow: T.capShadow }}>{zh}</div>
@@ -172,7 +173,7 @@ export const CoverTalk: React.FC<Script> = ({ slug, scenes, cover, channel }) =>
   const g = T.grade.night;
   return (
     <AbsoluteFill style={{ background: T.bg }}>
-      {ph ? <AbsoluteFill style={{ backgroundImage: `url(${staticFile(`talk/${slug}/${ph.name}.jpg`)})`, backgroundSize: "cover", backgroundPosition: `${(ph.focus?.[0] ?? 0.5) * 100}% ${(ph.focus?.[1] ?? 0.5) * 100}%` }} /> : null}
+      {ph ? <Img src={staticFile(`talk/${slug}/${ph.name}.jpg`)} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", objectPosition: `${(ph.focus?.[0] ?? 0.5) * 100}% ${(ph.focus?.[1] ?? 0.5) * 100}%` }} /> : null}
       <AbsoluteFill style={{ background: g.tint, opacity: g.tintAlpha, mixBlendMode: "multiply" }} />
       <AbsoluteFill style={{ background: T.black, opacity: 1 - g.brightness }} />
       <Vignette />

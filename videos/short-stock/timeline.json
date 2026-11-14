@@ -1,0 +1,520 @@
+{
+ "version": 2,
+ "slug": "short-stock",
+ "fps": 30,
+ "totalFrames": 449,
+ "totalSec": 14.97,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 5,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 3.2,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 110,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 101,
+   "stillFrame": 100,
+   "subtitleWindow": [
+    0,
+    107
+   ],
+   "sourceWindow": [
+    0,
+    105
+   ],
+   "lines": [
+    {
+     "text": "美國物價超乎預期",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      21,
+      27,
+      33,
+      39,
+      45
+     ]
+    },
+    {
+     "text": "十月漲了 0.4%",
+     "start": 56,
+     "chars": [
+      58,
+      64,
+      70,
+      76,
+      76,
+      82,
+      82,
+      88,
+      94
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "超乎預期",
+     "start": 27
+    },
+    {
+     "text": "0.4%",
+     "start": 82
+    }
+   ],
+   "cues": [
+    {
+     "id": "over",
+     "text": "超乎預期",
+     "frame": 29
+    },
+    {
+     "id": "num",
+     "text": "0.4%",
+     "frame": 83
+    }
+   ],
+   "sub": "美國物價超乎預期\n十月漲了 0.4%",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.198,
+    0.395,
+    0.593,
+    0.79,
+    0.988,
+    1.185,
+    1.383,
+    1.817,
+    2.015,
+    2.212,
+    2.41,
+    2.607,
+    2.805,
+    3.002
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 110,
+   "audioSec": 2.4,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 100,
+   "durationFrames": 91,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 110,
+   "voiceEndFrame": 182,
+   "stillFrame": 181,
+   "subtitleWindow": [
+    107,
+    188
+   ],
+   "sourceWindow": [
+    105,
+    186
+   ],
+   "pauseAfter": 0.3,
+   "lines": [
+    {
+     "text": "美國央行十二月",
+     "start": 107,
+     "chars": [
+      109,
+      114,
+      119,
+      125,
+      130,
+      136,
+      141
+     ]
+    },
+    {
+     "text": "可能再升息",
+     "start": 151,
+     "chars": [
+      153,
+      159,
+      164,
+      170,
+      175
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "再升息",
+     "start": 164
+    }
+   ],
+   "cues": [
+    {
+     "id": "fed",
+     "text": "美國央行",
+     "frame": 110
+    },
+    {
+     "id": "dec",
+     "text": "十二月",
+     "frame": 132
+    },
+    {
+     "id": "hike",
+     "text": "升息",
+     "frame": 171
+    }
+   ],
+   "sub": "美國央行十二月\n可能再升息",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.545,
+    0.727,
+    0.909,
+    1.091,
+    1.491,
+    1.673,
+    1.855,
+    2.036,
+    2.218
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 191,
+   "audioSec": 2.8,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 181,
+   "durationFrames": 103,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 191,
+   "voiceEndFrame": 275,
+   "stillFrame": 274,
+   "subtitleWindow": [
+    188,
+    281
+   ],
+   "sourceWindow": [
+    186,
+    279
+   ],
+   "lines": [
+    {
+     "text": "美元變強",
+     "start": 188,
+     "chars": [
+      190,
+      195,
+      201,
+      207
+     ]
+    },
+    {
+     "text": "台幣一度逼近 33 元",
+     "start": 218,
+     "chars": [
+      220,
+      226,
+      232,
+      238,
+      244,
+      250,
+      250,
+      256,
+      262,
+      262,
+      268
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "美元變強",
+     "start": 190
+    },
+    {
+     "text": "33 元",
+     "start": 256
+    }
+   ],
+   "cues": [
+    {
+     "id": "usd",
+     "text": "美元變強",
+     "frame": 191
+    },
+    {
+     "id": "twd",
+     "text": "33 元",
+     "frame": 257
+    }
+   ],
+   "sub": "美元變強\n台幣一度逼近 33 元",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.197,
+    0.394,
+    0.592,
+    1.025,
+    1.223,
+    1.42,
+    1.617,
+    1.814,
+    2.011,
+    2.208,
+    2.406,
+    2.603
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 284,
+   "audioSec": 2.4,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 274,
+   "durationFrames": 91,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 284,
+   "voiceEndFrame": 356,
+   "stillFrame": 355,
+   "subtitleWindow": [
+    281,
+    362
+   ],
+   "sourceWindow": [
+    279,
+    360
+   ],
+   "pauseAfter": 0.3,
+   "lines": [
+    {
+     "text": "還沒定的是",
+     "start": 281,
+     "chars": [
+      283,
+      288,
+      293,
+      299,
+      304
+     ]
+    },
+    {
+     "text": "升一碼還是兩碼",
+     "start": 314,
+     "chars": [
+      316,
+      322,
+      327,
+      333,
+      338,
+      344,
+      349
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "一碼",
+     "start": 322
+    },
+    {
+     "text": "兩碼",
+     "start": 344
+    }
+   ],
+   "cues": [
+    {
+     "id": "notyet",
+     "text": "還沒定",
+     "frame": 284
+    },
+    {
+     "id": "one",
+     "text": "一碼",
+     "frame": 323
+    },
+    {
+     "id": "two",
+     "text": "兩碼",
+     "frame": 345
+    }
+   ],
+   "sub": "還沒定的是\n升一碼還是兩碼",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.545,
+    0.727,
+    1.127,
+    1.309,
+    1.491,
+    1.673,
+    1.855,
+    2.036,
+    2.218
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 365,
+   "audioSec": 2.2,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 355,
+   "durationFrames": 94,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 365,
+   "voiceEndFrame": 431,
+   "stillFrame": 437,
+   "subtitleWindow": [
+    362,
+    449
+   ],
+   "sourceWindow": [
+    360,
+    449
+   ],
+   "lines": [
+    {
+     "text": "下一支",
+     "start": 362,
+     "chars": [
+      364,
+      369,
+      374
+     ]
+    },
+    {
+     "text": "講債券基金會怎樣",
+     "start": 384,
+     "chars": [
+      386,
+      392,
+      397,
+      402,
+      408,
+      413,
+      419,
+      424
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "債券基金",
+     "start": 392
+    }
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一支",
+     "frame": 365
+    },
+    {
+     "id": "bond",
+     "text": "債券基金",
+     "frame": 393
+    }
+   ],
+   "sub": "下一支\n講債券基金會怎樣",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.18,
+    0.361,
+    0.757,
+    0.938,
+    1.118,
+    1.298,
+    1.479,
+    1.659,
+    1.839,
+    2.02
+   ]
+  }
+ ]
+}
