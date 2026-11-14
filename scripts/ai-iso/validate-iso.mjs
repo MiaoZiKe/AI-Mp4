@@ -22,7 +22,7 @@ export function validateIso(script, h) {
   const errors = [], warns = [];
   const E = (m) => errors.push(m), W = (m) => warns.push(m);
   for (const k of ["slug", "title", "asOf"]) if (typeof script[k] !== "string" || !script[k]) E(`頂層缺少 ${k}`);
-  if (script.styleVersion !== 3) E("stage: \"bright\" 要搭配 styleVersion: 3（沿用整篇配音與時間軸 v2 的流程）");
+  if (script.styleVersion !== 3) E("stage: \"iso\" 要搭配 styleVersion: 3（沿用整篇配音與時間軸 v2 的流程）");
   if (!script.voice || typeof script.voice.voiceName !== "string") E("頂層缺少 voice.voiceName");
   const prof = resolveProfile(script.voice);
   if (!prof) E("沒有 voice.profile：配音前要先定旁白設定檔（docs/voice-profiles.md）");
