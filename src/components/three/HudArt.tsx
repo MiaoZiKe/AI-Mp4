@@ -11,7 +11,8 @@ import { H } from "./hudSkin";
 const mono = (px: number, color: string = H.text2, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontSize: px, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text2, w = 700): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, fontWeight: w, whiteSpace: "nowrap" });
 const range = (n: number) => Array.from({ length: n }, (_, i) => i);
-const A = H.art;
+// 每次讀都拿目前皮膚的 art（H 會跟著 hudSkin 換）
+const A = new Proxy({} as typeof H.art, { get: (_, k) => (H.art as any)[k] });
 
 /** 一顆有接腳的晶片（俯視）：本體、四邊的接腳點、pin 1 圓點、印字 */
 const Ic: React.FC<{ x: number; y: number; w: number; h: number; t?: string; pins?: number }> = ({ x, y, w, h, t, pins = 6 }) => (
