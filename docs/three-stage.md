@@ -250,3 +250,13 @@
   - `overlay` 多兩種：`legend`（圖例；`items: [{ text, swatch }]`，`swatch` 寫 `model.palette` 的色名；`x`、`y`、`cols`、`colW`、`size`）、`compare`（左右對照卡；`y`、`h`、`title`、`tag`、`sides: [{ kind: "fin"｜"gaa", title, sub, wrap, leak, note, color }]`，`leak`＝漏電小點的顆數，不要寫 0）。
   - 2D 縮放圖層搬到 `HudArt.tsx`（每一級一張 SVG）；新增的顏色在 `THEME_3D_HUD.art`。
 - `scripts/three/scene-html.mjs`：`model.partNames`（零件 id 的開頭 → 名稱）、`model.viewer.hide`（檢視器裡不畫的層）。
+
+## 八、2026/11/14 為 tech-2nm（科技透明圈第一支完整片）加的（都向下相容，沒寫就不作用）
+
+- **頻道皮膚 `hudSkin`**（script.json 頂層）：深色 HUD 片的所有顏色集中在 `src/theme-hud-skins.json`，一套一個鍵；`src/theme.ts` 的 `hudTheme(name)` 把它疊在 `THEME_3D_HUD` 上，`Hud.tsx`／`HudArt.tsx` 透過 `src/components/three/hudSkin.ts` 的 `H` 讀。目前兩套：`deep`（深海青藍＋琥珀，short-tech 原本的樣子；沒寫 `hudSkin` 就是它）、`glass`（「科技透明圈」提案：近黑底、冰藍與白、單一強調色螢光萊姆）。每套可寫的鍵：`bg／grid／line／lineSoft／amber／coral／text／text2／text3／panel／onAccent／glow／hookPlate／card／cardCompare／caption／plateO`、`art`（2D 縮放圖與對照卡）、`parts`（3D 零件色，蓋掉 model.json `palette` 同名的色）。**換色只改 `hudSkin` 一個欄位；要新增一套就在 JSON 加一個鍵**（validate 自動認得）。`scripts/three/scene-html.mjs` 讀同一份。
+- `hud.smallPx`：小字下限（圖例、對照卡的副標與註記、儀表的低／高），tech-2nm 寫 30。
+- `props.reexplode: { at }`：`assemble` 組回去之後再拆開一次（運作完回頭量尺寸）。
+- `props.overlay` 的 `type: "bars"`：橫條對照卡，`rows: [{ label, v（0–1）, v2?（範圍另一端，斜線段）, color?, text, at?, textAt? }]`、`title`、`tag`、`y`。`compare` 的每一邊可寫自己的 `at`（念到才出現）。
+- 片尾卡：最後一幕 `silent: true`＋`durationSec`＋`props.endCard: { next?, kicker? }`（只有寫了頂層 `hud` 的片會畫；字讀 `channel.name`／`slogan`）。
+- 縮完再拉回去：`props.zoom` 可以 `to` 比較前面的一級（tech-2nm 的 s15 拉回手機），離開 `handoff3D` 那一級後 3D 畫布就不掛，後面每幀回到 2D 的成本。
+- 配音：`voice.profile: "tech-report"`（`delivery: "report-tech"`，只送一句：「…語速稍快、語氣沉穩、不拖尾音、不演，直接說：」）。

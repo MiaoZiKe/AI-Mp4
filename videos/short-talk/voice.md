@@ -1,5 +1,39 @@
 # short-talk 配音紀錄
 
+## 第 3 版（2026/11/14，同一份錄音，只改後製速度；TTS 請求 0 次）
+
+- 使用者聽完 1.08 版的話：「語速再加快，還是太慢」。
+- **放寬 1.08 上限的原因**：CLAUDE.md 的「atempo 上限 1.08」是為了避免失真；這次是使用者聽過成品後明確要求更快，所以放寬到 1.22（談晴說礙這個頻道之後可到約 1.2，以使用者聽過為準）。沒有重配，累計 TTS 請求仍是 2 次。
+
+### 怎麼做的
+
+1. 備份 1.08 版：`videos/short-talk/_tempo108/`（manifest、timeline、storyboard、script.json、README、voice.md…）、`public/audio/short-talk/_tempo108/`（四個切檔＋voice.wav）、`out/short-talk.v2.mp4`。
+2. 沒有跑 `tts-take.mjs`。照 `tts-manifest.raw-pace.json`（未加速的切點）從原始錄音 `.take-b823122382.raw.wav` 切出四段（起點＝takeStart−headSec、長度＝sec、頭尾 4ms 淡入淡出，和 tts-take 的切法一樣；用 1.08 重算長度核對過和舊切檔一致），再 `ffmpeg -af atempo=1.22` 蓋到 `public/audio/short-talk/0N-s0N.wav`。
+3. `tts-manifest.json`：以 raw-pace 版為底，sec 用實際長度、headSec／tailSec 除以 1.22、記 `atempo: 1.22`；`gapAfter` 手動寫 **0.40／0.45／0.45**（原始間隔除以 1.22 是 0.53／0.84／0.70，記在 `gapRawScaled`）。
+4. `ALIGN_TAIL_END_F=42 ALIGN_GAP_MAX=0.45 flock /tmp/aimp4-render.lock npm run align short-talk -- --force` → validate 0 error → render。
+5. 1.15 倍比較版 `out/short-talk/voice-tempo115.wav`：同樣四段 `atempo=1.15`、同樣的幕間停頓接起來、整條 loudnorm −16 LUFS，只有人聲。
+
+### 數字
+
+| | 原始錄音 | 1.08 版（第 2 版） | 1.15（只有音檔） | **1.22 版（成片）** |
+|---|---|---|---|---|
+| 語速，扣掉幕間停頓 | 4.2 音節/秒 | 4.5 | 4.8 | **5.1** |
+| 語速，含停頓 | 3.5 | 3.9 | 4.3 | **4.5** |
+| 幕間停頓 | 0.65／1.03／0.85 | 0.57／0.70／0.67 | 約 0.40／0.45／0.45 | **0.39／0.44／0.46** |
+| 人聲收完／成片長度 | 15.5 秒 | 約 14.0／15.03 秒 | 12.6／（13.1） | **12.0／13.37 秒** |
+| 切檔最大峰值（滿刻度 32767） | 32524 | 32475 | 32507 | 29553 |
+| 削波取樣數 | 0 | 0 | 0 | **0** |
+| 頻譜重心中位數 | 521 Hz | 526 | 526 | **519** |
+| 4–8 kHz 對 0.1–1 kHz 能量比 | −9.1 dB | −9.0 | −8.9 | **−9.0** |
+| 8 kHz 以上能量佔比 | −11.4 dB | −11.2 | −11.1 | **−11.1** |
+| 頻譜平坦度 | 0.0044 | 0.0045 | 0.0042 | **0.0044** |
+
+- **數字上沒有失真跡象**：沒有削波，頻譜重心與高頻能量幾乎不變（金屬聲通常會讓高頻變多）。但這些指標抓不到「字黏在一起、有機械感」這類問題，要人耳聽；所以另外給 1.15 版比較。
+- 同一幕內的停頓沒有另外剪：s02「什麼時候結婚。」到「我們」之間 0.58 秒（原始 0.71），現在是全片最長的停頓。
+- 對齊信心（加速 1.22 後）：s01 0.715（最低 0.06）、s02 0.952、s03 0.990、s04 0.784（最低 0.01）。s04 比 1.08 版（0.859）低。
+- 捲舌指標沒有重量（同一份錄音，加速不改變音色分布）。
+- 注意：再跑 `tts-take.mjs short-talk`（含 `--resplit`、`--asr`）會蓋掉 1.22 的切檔和手改的 gapAfter；要重做就照上面 2–4 步。
+
 ## 第 2 版（2026/11/14，Sulafat，`delivery: "plain"`）
 
 - 使用者的話：「給我聽聽，幫我調整成爆火影片，且符合這題材的語速音調」；聽完第 1 版又說：「我覺得正常說話，不要太奇怪，那個氣音很奇怪」。
@@ -69,7 +103,7 @@
 
 ### 檔案
 
-- 成品人聲 `public/audio/short-talk/voice.wav`，複本 `out/short-talk/voice-final.wav`；原始錄音 `public/audio/short-talk/.take-b823122382.raw.wav`。
+- （第 2 版當時的說明；現在的成品是 1.22 版）成品人聲 `public/audio/short-talk/voice.wav`，複本 `out/short-talk/voice-final.wav`；原始錄音 `public/audio/short-talk/.take-b823122382.raw.wav`。
 - 第 1 版備份：`videos/short-talk/_sulafat-v1/`、`public/audio/short-talk/_sulafat-v1/`（原始錄音 `.take-00577a4b34.orig.wav`）、成片 `out/short-talk.v1.mp4`。
 - 注意：再跑 `tts-take.mjs short-talk`（含 `--resplit`、`--asr`）會用原始錄音重切、蓋掉加速版，要重做 atempo 那一步再 `ALIGN_TAIL_END_F=30 ALIGN_GAP_MAX=0.7 npm run align short-talk -- --force`。
 
