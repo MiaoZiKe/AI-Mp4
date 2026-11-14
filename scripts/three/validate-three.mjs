@@ -58,6 +58,7 @@ function checkModel(script, E, W) {
 }
 
 const AT_BASE = ["start", "voice", "end", "exit"];
+const OVERLAY_TYPES = ["scope", "stamp", "cross", "circle", "steps", "card", "ribbon"];
 
 export function validateThree(script, h) {
   const errors = [], warns = [];
@@ -118,6 +119,14 @@ export function validateThree(script, h) {
     }
     for (const c of [].concat(s.props?.shot ?? [])) { if (!c.at) E(`${tag}: props.shot 要有 at`); for (const k of ["d", "elev", "y", "x", "yaw", "dur"]) if (c[k] !== undefined && typeof c[k] !== "number") E(`${tag}: props.shot.${k} 要是數字`); }
     for (const c of [].concat(s.props?.shift ?? [])) { if (!c.at) E(`${tag}: props.shift 要有 at`); if (c.opacity !== undefined && !(c.opacity >= 0 && c.opacity <= 1)) E(`${tag}: props.shift.opacity 要在 0–1`); }
+    // 2D 疊層（props.overlay；src/components/three/Overlays.tsx）
+    for (const o of [].concat(s.props?.overlay ?? [])) {
+      if (!OVERLAY_TYPES.includes(o.type)) E(`${tag}: props.overlay 的 type「${o.type}」不存在（${OVERLAY_TYPES.join("／")}）`);
+      if (!o.at) E(`${tag}: props.overlay「${o.type}」要有 at`);
+      if (["stamp", "cross", "circle"].includes(o.type) && !o.part && !(typeof o.x === "number" && typeof o.y === "number")) E(`${tag}: props.overlay「${o.type}」要有 part（標註點）或 x、y（畫面像素）`);
+      if (["scope", "steps", "card"].includes(o.type) && typeof o.y !== "number") E(`${tag}: props.overlay「${o.type}」要有 y（上緣的畫面像素）`);
+      if (o.type === "stamp" && !o.text) E(`${tag}: props.overlay 的 stamp 要有 text`);
+    }
     if ((s.props?.labels ?? []).length > 2) W(`${tag}: 一幕新增的標籤建議 ≤2 個`);
     if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 24; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
   });

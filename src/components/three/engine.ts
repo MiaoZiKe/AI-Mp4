@@ -12,7 +12,7 @@ export type Model3D = {
   total: number;
   product: ProductModel;
   hook?: { title: string; kicker?: string };
-  spin: { t0: number; t1: number };
+  spin: { t0: number; t1: number; turns?: number };
   drop: number; explode: number; focus: number; focusLayer: string | null;
   cutaway: number; heat: number; vapor: number; spread: number; condense: number; flowBack: number;
   /** 上蓋先微抬一下、鏡頭繞開拉遠、再推回熱點 */
@@ -23,7 +23,10 @@ export type Model3D = {
   labels: Label3D[];
   /** 運作動畫的觸發（props.run）、鏡頭關鍵格（props.shot）、把某一層移開或變透明（props.shift）；都依 at 排好 */
   runs: Run3D[]; shots: Shot3D[]; shifts: Shift3D[];
+  /** 2D 疊層（props.overlay）：蓋章、波形面板、叉叉、圈、步驟列、提問卡、底部波帶；畫在 3D 畫布上面，不增加 3D 成本（Overlays.tsx） */
+  overlays?: Overlay3D[];
 };
+export type Overlay3D = { type: string; at: number; until: number; [k: string]: any };
 export type Run3D = { id: string; at: number; until: number; speed: number; gain: number; ramp: number };
 export type Shot3D = { at: number; dur: number; d?: number; elev?: number; y?: number; x?: number; yaw?: number };
 export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number };
@@ -45,7 +48,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     };
     const p = (s.props ?? {}) as Record<string, any>;
     if (p.hook) m.hook = p.hook;
-    if (p.spin) m.spin = { t0: at(p.spin.at, own.startFrame), t1: at(p.spin.until, own.exit) };
+    if (p.spin) m.spin = { t0: at(p.spin.at, own.startFrame), t1: at(p.spin.until, own.exit), turns: p.spin.turns };
     for (const k of ["drop", "explode", "focus", "cutaway", "heat", "vapor", "spread", "condense", "flowBack", "peek", "orbit", "settle"] as const) if (p[k]) m[k] = at(p[k].at, own.voiceStartFrame);
     if (p.focus) m.focusLayer = p.focus.layer ?? product.anchors[p.focus.part]?.layer ?? p.focus.part ?? null;
     for (const sw of [].concat(p.sweep ?? [])) m.sweeps.push(at((sw as any).at, own.voiceStartFrame));
@@ -53,6 +56,9 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     for (const l of p.labels ?? []) m.labels.push({ ...l, at: at(l.at, own.voiceStartFrame), until: l.until ? at(l.until, FAR) : FAR });
     for (const r of [].concat(p.run ?? []) as any[]) if (product.actions?.[r.id]) m.runs.push({ id: r.id, at: at(r.at, own.voiceStartFrame), until: r.until ? at(r.until, FAR) : FAR, speed: r.speed ?? 1, gain: r.gain ?? 1, ramp: r.ramp ?? T.ops.ramp });
     for (const c of [].concat(p.shot ?? []) as any[]) m.shots.push({ ...c, at: at(c.at, own.voiceStartFrame), dur: c.dur ?? T.motion.orbit });
+    // props.overlay：裡面每一層的 at／until（含巢狀的，例如 anti.at、items[].at、keys[].at）都換成絕對幀
+    const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
+    for (const o of [].concat(p.overlay ?? []) as any[]) (m.overlays ??= []).push({ until: FAR, ...deep(o), at: at(o.at, own.startFrame) });
     for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity });
   });
   m.runs.sort((a, b) => a.at - b.at); m.shots.sort((a, b) => a.at - b.at); m.shifts.sort((a, b) => a.at - b.at);
@@ -90,7 +96,9 @@ export const stateAt = (m: Model3D, f: number) => {
   const orb = tween(f, m.orbit, M.orbit, EASE.move), set = tween(f, m.settle, M.orbit, EASE.move);
   // 收尾：最後幾幀鏡頭慢慢往後退
   const outro = tween(f, m.total - M.outro, M.outro, EASE.move);
-  let yaw = mix(P.yaw0 + Math.PI * 2 * spin, Math.PI * 2 + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode) + P.peekYaw * pk + C.orbit.yaw * orb + C.settle.yaw * set;
+  // spin.turns（預設 1 圈）：開場只想轉一點點就寫小數，躺下時就近轉到分解角度
+  const turns = m.spin.turns ?? 1;
+  let yaw = mix(P.yaw0 + Math.PI * 2 * turns * spin, Math.PI * 2 * Math.round(turns) + P.yawIso, lay) + P.drift * Math.max(0, f - m.explode) + P.peekYaw * pk + C.orbit.yaw * orb + C.settle.yaw * set;
   const pitch = mix(0, P.pitch, lay);
   // 各層：分解時沿厚度方向分開；聚焦時，主角上面的層往鏡頭飛走並淡出、正下方那層靠近一點、更下面的往後退並淡出
   const fk = pr.layers.find((x) => x.id === m.focusLayer)?.k ?? null;

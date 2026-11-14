@@ -12,6 +12,7 @@ import { buildModel, cameraFor, projectPoint, signalLevel, signalVal, stateAt, t
 import { col, fxOf, type Fx, type ProductModel } from "./model";
 import { ProductScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
+import { Overlays } from "./Overlays";
 
 const px = (n: number) => Math.round(n);
 const zh = (size: number, weight: number = T.weight.body, color: string = T.ink): React.CSSProperties => ({ fontFamily: FONT_ZH, fontWeight: weight, fontSize: size, color, whiteSpace: "nowrap" });
@@ -90,7 +91,7 @@ const Hook: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => {
     <div style={{ position: "absolute", left: L.X + 4, top: L.HOOK_TOP, opacity: 1 - out, transform: `translateY(${px(-36 * out)}px)` }}>
       {m.hook.kicker ? <div style={{ display: "inline-block", ...zh(30, T.weight.body, T.panel), background: T.ink, borderRadius: T.radius.pill, padding: "10px 26px", letterSpacing: "0.1em" }}>{m.hook.kicker}</div> : null}
       <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 10 }}>
-        <div style={{ ...zh(132, T.weight.zh), lineHeight: 1.2, letterSpacing: "0.01em" }}>
+        <div style={{ ...zh((m.hook as any).size ?? 132, T.weight.zh), lineHeight: 1.2, letterSpacing: "0.01em" }}>
           {m.hook.title}
           <div style={{ height: 12, width: `${(100 * under).toFixed(1)}%`, background: a.fill, borderRadius: 6, marginTop: 2 }} />
         </div>
@@ -177,7 +178,7 @@ const Meters: React.FC<{ m: Model3D; s: State3D }> = ({ m, s }) => {
         if (d.type !== "meter" || !op || !an || op.k <= 0.01) return null;
         const p = projectPoint(s, cam, an.layer, an.p), c = accent3D(d.accent), W = d.w ?? 250, left = an.dx < 0;
         const x = left ? Math.max(L.X + W + 44, p.x + an.dx) : Math.min(L.W - L.X - W - 44, p.x + an.dx), y = p.y + an.dy;
-        const lv = d.source ? signalLevel(pr, s, d.source) : op.g, H = 104, N = 40;
+        const lv = d.source ? signalLevel(pr, s, d.source) : op.g, H = (d as any).h ?? 104, N = (d as any).h ? 72 : 40;
         return (
           <React.Fragment key={id}>
             <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, opacity: op.k }}>
@@ -239,8 +240,9 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
       <Hook m={m} f={f} />
       <Labels m={m} s={s} f={f} fx={fx} />
       {m.product.actions ? <Meters m={m} s={s} /> : null}
+      {m.overlays?.length ? <Overlays m={m} s={s} f={f} /> : null}
       <Caption3D cues={subCues} />
-      <Source3D cues={srcCues} />
+      <Source3D cues={srcCues} px={m.product.fx?.srcPx} />
       <Header3D name={channel?.name ?? "科技"} tag={channel?.tag ?? "拆開來看"} total={timeline.totalFrames} />
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>

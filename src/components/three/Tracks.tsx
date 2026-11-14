@@ -71,7 +71,7 @@ export const Caption3D: React.FC<{ cues: PhraseCue[] }> = ({ cues }) => {
 };
 
 /** 出處：字幕卡下方一行小字；相鄰幕相同就不重貼 */
-export const Source3D: React.FC<{ cues: { sources: string[]; window: [number, number] }[] }> = ({ cues }) => {
+export const Source3D: React.FC<{ cues: { sources: string[]; window: [number, number] }[]; px?: number }> = ({ cues, px }) => {
   const f = useCurrentFrame();
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
@@ -79,7 +79,7 @@ export const Source3D: React.FC<{ cues: { sources: string[]; window: [number, nu
   const first = cues.find((c) => c.sources?.join("、") === j) as { window: [number, number] };
   const p = tween(f, first.window[0], T.motion.in, EASE.enter);
   return (
-    <div style={{ position: "absolute", left: L.X + 8, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: L.SRC_PX, color: T.ink2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+    <div style={{ position: "absolute", left: L.X + 8, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, opacity: p, fontFamily: FONT_ZH, fontWeight: T.weight.light, fontSize: px ?? L.SRC_PX, color: T.ink2, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
       <div style={{ width: 10, height: 10, borderRadius: T.radius.pill, background: T.ink3 }} />
       {/^(資料)?來源|示意/.test(j) ? j : `來源：${j}`}
     </div>

@@ -1,7 +1,7 @@
 {
   "slug": "sample-tech-anc",
-  "title": "降噪耳機怎麼把噪音抵消掉？（科技頻道試片：3D 產品台＋運作動畫）",
-  "asOf": "2026/11/13",
+  "title": "降噪耳機出聲才會安靜？（科技頻道試片：3D 產品台＋運作動畫，留存改版）",
+  "asOf": "2026/11/14",
   "styleVersion": 3,
   "stage": "three",
   "channel": { "name": "科技", "tag": "拆開來看", "slogan": "一支講透一件事" },
@@ -12,135 +12,236 @@
     "languageCode": "cmn-TW",
     "profile": { "preset": "tech", "delivery": "warm-pro", "pace": [4.6, 5], "scene": "公司的實驗桌旁，工程師把拆開的耳機放在桌上，指著零件講給隔壁部門的同事聽，旁邊沒有別人在聽" }
   },
-  "cover": { "title": ["降噪", "靠出聲？"], "sub": "看它怎麼把噪音抵消" },
+  "cover": { "title": ["出聲", "才會安靜"], "sub": "降噪耳機拆開來看" },
   "scenes": [
     {
       "id": "s1", "beat": "hook", "para": 1,
       "narration": "降噪耳機會安靜，是因為它也在出聲。",
       "subtitle": { "zh": "降噪耳機會安靜\n是因為它也在出聲", "en": "Noise-cancelling earbuds get quiet | because they make sound too." },
-      "keywords": ["出聲"],
-      "cues": [ { "id": "anc", "text": "降噪" }, { "id": "sound", "text": "出聲" } ],
+      "keywords": ["安靜", "出聲"],
+      "cues": [ { "id": "quiet", "text": "安靜" }, { "id": "sound", "text": "出聲" } ],
       "component": "ThreeScene",
       "props": {
-        "hook": { "title": "降噪靠出聲？" },
-        "spin": { "at": "start+0", "until": "exit" }
-      },
-      "sources": []
-    },
-    {
-      "id": "s2", "beat": "mechanism", "para": 1,
-      "narration": "拆開看，關鍵是麥克風、晶片和喇叭。",
-      "subtitle": { "zh": "拆開看\n關鍵是麥克風\n晶片和喇叭", "en": "Open it up: | the key parts are a mic, | a chip and a speaker." },
-      "keywords": ["麥克風", "晶片", "喇叭"],
-      "cues": [ { "id": "open", "text": "拆開" }, { "id": "mic", "text": "麥克風" }, { "id": "chip", "text": "晶片" }, { "id": "spk", "text": "喇叭" } ],
-      "component": "ThreeScene",
-      "props": {
-        "explode": { "at": "open-6" },
-        "labels": [
-          { "part": "mic", "text": "麥克風", "color": "amber", "at": "mic", "until": "s4:sig-2" },
-          { "part": "chip", "text": "晶片", "color": "coral", "at": "chip", "until": "s5:cone-6" },
-          { "part": "speaker", "text": "喇叭單體", "color": "blue", "at": "spk", "until": "s3:mic" }
+        "hook": { "kicker": "降噪耳機", "title": "出聲才會安靜" },
+        "spin": { "at": "start+0", "until": "s3:open", "turns": 0.07 },
+        "shot": { "at": "start-30", "d": 33, "elev": 6, "y": 2.3, "dur": 1 },
+        "run": [
+          { "id": "hookNoise", "at": "start-30", "until": "s3:open-8" },
+          { "id": "hookAnti", "at": "sound-12", "until": "s3:open-8" }
+        ],
+        "overlay": [
+          { "type": "ribbon", "at": "start-30", "keys": [
+            { "at": "quiet-8", "v": 0.3 }, { "at": "s7:talk-8", "v": 0.9, "fast": true }, { "at": "s8:low-4", "v": 0.3 },
+            { "at": "s8:fast-4", "v": 0.9, "fast": true }, { "at": "s9:start+0", "v": 0.3 }
+          ] },
+          { "type": "scope", "at": "start-30", "until": "s3:open-10", "y": 1056, "h": 226, "title": "耳朵聽到的", "anti": { "at": "quiet-8", "match": 0.74 } },
+          { "type": "stamp", "at": "quiet+5", "until": "s2:more-4", "x": 800, "y": 1196, "text": "安靜", "color": "mint", "rot": -7, "size": 84 },
+          { "type": "stamp", "at": "sound-3", "until": "s2:quiet-2", "part": "head", "dx": 230, "dy": 190, "text": "它在出聲", "color": "blue", "rot": 5, "size": 64 }
         ]
       },
-      "sources": ["示意模型，非特定機型；零件形狀與位置各家不同"]
+      "sources": ["示意動畫，不是量測"]
+    },
+    {
+      "id": "s2", "beat": "you", "para": 1,
+      "narration": "多一個聲音，怎麼會更安靜？",
+      "subtitle": { "zh": "多一個聲音\n怎麼會更安靜？", "en": "One more sound, | so how does it get quieter?" },
+      "keywords": ["更安靜"],
+      "cues": [ { "id": "more", "text": "多一個" }, { "id": "quiet", "text": "更安靜" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "start+0", "d": 29, "elev": 8, "y": 2.6, "dur": 40 },
+        "overlay": [
+          { "type": "stamp", "at": "quiet-2", "until": "s3:open-8", "part": "head", "dx": 0, "dy": 215, "text": "聲音＋聲音＝安靜？", "color": "amber", "rot": -4, "size": 66 }
+        ]
+      },
+      "sources": ["示意動畫，不是量測"]
     },
     {
       "id": "s3", "beat": "mechanism", "para": 2,
-      "narration": "外面的噪音，麥克風先收到。",
-      "subtitle": { "zh": "外面的噪音\n麥克風先收到", "en": "Outside noise | reaches the microphone first." },
+      "narration": "拆開看，噪音先被麥克風收到。",
+      "subtitle": { "zh": "拆開看\n噪音先被麥克風收到", "en": "Open it up: | the mic picks up the noise first." },
       "keywords": ["噪音", "麥克風"],
-      "cues": [ { "id": "noise", "text": "噪音" }, { "id": "mic", "text": "麥克風" } ],
+      "cues": [ { "id": "open", "text": "拆開" }, { "id": "noise", "text": "噪音" }, { "id": "mic", "text": "麥克風" } ],
       "component": "ThreeScene",
       "props": {
-        "shot": { "at": "start+0", "d": 27, "elev": 27, "y": 7.0, "dur": 26 },
+        "explode": { "at": "open-8" },
+        "shot": [
+          { "at": "open-8", "d": 42, "elev": 24, "y": 1.9, "dur": 22 },
+          { "at": "noise-2", "d": 27, "elev": 27, "y": 7.4, "dur": 24 }
+        ],
         "shift": { "layer": "shell", "at": "mic-12", "opacity": 0.14, "dz": 0.8 },
         "run": [
           { "id": "noiseIn", "at": "noise-4", "until": "s4:chip" },
-                    { "id": "micPulse", "at": "mic-2", "until": "s4:chip+8" }
+          { "id": "micPulse", "at": "mic-2", "until": "s4:chip+8" }
         ],
-        "labels": [ { "part": "noiseSrc", "text": "噪音", "color": "coral", "at": "noise", "until": "s4:sig-2" } ]
+        "labels": [
+          { "part": "noiseSrc", "text": "噪音", "color": "coral", "at": "noise+4", "until": "s4:start+4" },
+          { "part": "mic", "text": "麥克風", "color": "amber", "at": "mic", "until": "s4:chip-4" }
+        ],
+        "overlay": [
+          { "type": "steps", "at": "open+14", "until": "s9:start+0", "y": 326, "title": "3 個零件", "items": [
+            { "text": "麥克風", "at": "mic", "color": "amber" }, { "text": "晶片", "at": "s4:chip", "color": "coral" }, { "text": "喇叭", "at": "s5:spk", "color": "blue" }
+          ] }
+        ]
       },
-      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+      "sources": ["示意動畫，不是量測；模型不是特定機型"]
     },
     {
       "id": "s4", "beat": "mechanism", "para": 2,
-      "narration": "訊號送進晶片，算出相反的波形。",
-      "subtitle": { "zh": "訊號送進晶片\n算出相反的波形", "en": "The signal goes to the chip, | which computes the opposite waveform." },
+      "narration": "晶片馬上算出相反的波形。",
+      "subtitle": { "zh": "晶片馬上算出\n相反的波形", "en": "The chip quickly works out | the opposite waveform." },
       "keywords": ["晶片", "相反"],
-      "cues": [ { "id": "sig", "text": "訊號" }, { "id": "chip", "text": "晶片" }, { "id": "inv", "text": "相反" } ],
+      "cues": [ { "id": "chip", "text": "晶片" }, { "id": "inv", "text": "相反" } ],
       "component": "ThreeScene",
       "props": {
-        "shot": { "at": "sig-10", "d": 17, "elev": 36, "y": 5.3, "dur": 24 },
+        "shot": { "at": "start+0", "d": 17, "elev": 36, "y": 5.6, "dur": 22 },
         "run": [
-          { "id": "sigIn", "at": "sig-3", "until": "s5:cone" },
-          { "id": "mIn", "at": "sig" },
-          { "id": "chipPulse", "at": "chip", "until": "s5:wave" },
-          { "id": "chipScope", "at": "chip+4", "until": "s5:cone-4" },
+          { "id": "sigIn", "at": "start+0", "until": "s5:spk" },
+          { "id": "mIn", "at": "start+2" },
+          { "id": "chipPulse", "at": "chip", "until": "s5:spk+10" },
+          { "id": "chipScope", "at": "chip+4", "until": "s5:spk-4" },
           { "id": "mOut", "at": "inv-2", "ramp": 14 }
-        ]
+        ],
+        "labels": [ { "part": "chip", "text": "晶片", "color": "coral", "at": "chip", "until": "s5:spk-6" } ]
       },
-      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+      "sources": ["示意動畫，不是量測；模型不是特定機型"]
     },
     {
-      "id": "s5", "beat": "twist", "para": 2,
-      "narration": "振膜一振動，反相聲波送進耳道。",
-      "subtitle": { "zh": "振膜一振動\n反相聲波送進耳道", "en": "The diaphragm vibrates, | sending an inverted wave into the ear canal." },
-      "keywords": ["振動", "反相聲波"],
-      "cues": [ { "id": "cone", "text": "振膜" }, { "id": "wave", "text": "反相" }, { "id": "ear", "text": "耳道" } ],
+      "id": "s5", "beat": "mechanism", "para": 2,
+      "narration": "喇叭放出來，送進耳道。",
+      "subtitle": { "zh": "喇叭放出來\n送進耳道", "en": "The speaker plays it | into your ear canal." },
+      "keywords": ["喇叭", "耳道"],
+      "cues": [ { "id": "spk", "text": "喇叭" }, { "id": "ear", "text": "耳道" } ],
       "component": "ThreeScene",
       "props": {
         "shot": [
-          { "at": "start+0", "d": 24, "elev": 28, "y": 2.4, "dur": 26 },
-          { "at": "wave-2", "d": 30, "elev": 24, "y": -3.2, "dur": 34 }
+          { "at": "start+0", "d": 24, "elev": 28, "y": 2.8, "dur": 22 },
+          { "at": "spk+16", "d": 30, "elev": 24, "y": -2.6, "dur": 28 }
         ],
         "shift": { "layer": "battery", "at": "start+0", "opacity": 0.12 },
         "run": [
           { "id": "sigOut", "at": "start+2", "until": "s6:two" },
-          { "id": "cone", "at": "cone-2" },
-          { "id": "antiWave", "at": "wave-6", "until": "s6:stack" },
-          { "id": "tNoise", "at": "wave-6", "ramp": 14 },
-          { "id": "tAnti", "at": "ear-8", "ramp": 14 }
+          { "id": "cone", "at": "spk-2", "until": "s9:start+0" },
+          { "id": "antiWave", "at": "spk+6", "until": "s6:stack" },
+          { "id": "tNoise", "at": "ear-14", "ramp": 14, "until": "s7:talk-12" },
+          { "id": "tAnti", "at": "ear-4", "ramp": 14, "gain": 0.72, "until": "s7:talk-12" }
         ],
-        "labels": [
-          { "part": "speaker", "text": "振膜", "color": "blue", "at": "cone", "until": "s6:two-8" },
-          { "part": "antiOut", "text": "反相聲波", "color": "blue", "at": "wave+4", "until": "s6:two-8" }
-        ]
+        "labels": [ { "part": "speaker", "text": "喇叭", "color": "blue", "at": "spk", "until": "s6:two-8" } ]
       },
-      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+      "sources": ["示意動畫，不是量測；模型不是特定機型"]
     },
     {
       "id": "s6", "beat": "payoff", "para": 3,
-      "narration": "兩道波疊在一起，剛好抵消，",
-      "subtitle": { "zh": "兩道波疊在一起\n剛好抵消", "en": "The two waves overlap | and cancel out," },
-      "keywords": ["抵消"],
-      "cues": [ { "id": "two", "text": "兩道" }, { "id": "stack", "text": "疊" }, { "id": "cancel", "text": "抵消" } ],
+      "narration": "兩道波一疊，噪音抵消掉一大半。",
+      "subtitle": { "zh": "兩道波一疊\n噪音抵消掉一大半", "en": "Stack the two waves | and most of the noise cancels." },
+      "keywords": ["抵消", "一大半"],
+      "cues": [ { "id": "two", "text": "兩道" }, { "id": "stack", "text": "疊" }, { "id": "cancel", "text": "抵消" }, { "id": "most", "text": "一大半" } ],
       "component": "ThreeScene",
       "props": {
         "shot": { "at": "two-10", "d": 14, "elev": 16, "y": -5.7, "yaw": -0.5, "dur": 26 },
-        "shift": [ { "layer": "housing", "at": "two-10", "opacity": 0 }, { "layer": "driver", "at": "two-10", "opacity": 0 } ],
+        "shift": [
+          { "layer": "housing", "at": "two-10", "opacity": 0, "until": "s9:start+0" },
+          { "layer": "driver", "at": "two-10", "opacity": 0, "until": "s9:start+0" }
+        ],
         "run": [
-          { "id": "tSum", "at": "stack-4" },
-          { "id": "earLevel", "at": "stack" }
+          { "id": "tSum", "at": "stack-4", "until": "s7:talk-12" },
+          { "id": "earLevel", "at": "stack", "until": "s7:talk-12" }
         ],
         "labels": [
-          { "part": "earNoise", "text": "噪音", "color": "coral", "at": "two" },
-          { "part": "earAnti", "text": "反相聲波", "color": "blue", "at": "two+8" },
-          { "part": "earSum", "text": "互相抵消", "color": "mint", "at": "cancel" }
+          { "part": "earNoise", "text": "噪音", "color": "coral", "at": "two", "until": "s7:talk-12" },
+          { "part": "earAnti", "text": "耳機的聲音", "color": "blue", "at": "two+8", "until": "s9:start+0" },
+          { "part": "earSum", "text": "小聲很多", "color": "mint", "at": "most", "until": "s7:talk-12" }
         ]
       },
-      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+      "sources": ["示意動畫，不是量測；實際效果因機型與配戴而異"]
     },
     {
-      "id": "s7", "beat": "payoff", "para": 3,
-      "narration": "你只聽到安靜。",
-      "subtitle": { "zh": "你只聽到安靜", "en": "so all you hear is quiet." },
-      "keywords": ["安靜"],
-      "cues": [ { "id": "quiet", "text": "安靜" } ],
+      "id": "s7", "beat": "twist", "para": 4,
+      "narration": "可是有人講話，還是聽得到。",
+      "subtitle": { "zh": "可是有人講話\n還是聽得到", "en": "But when someone talks, | you still hear it." },
+      "keywords": ["講話", "聽得到"],
+      "cues": [ { "id": "but", "text": "可是" }, { "id": "talk", "text": "講話" }, { "id": "still", "text": "聽得到" } ],
       "component": "ThreeScene",
       "props": {
-        "labels": [ { "part": "earSum", "text": "安靜", "color": "mint", "at": "quiet" } ]
+        "run": [
+          { "id": "tVoice", "at": "talk-8", "until": "s8:low-8" },
+          { "id": "tAntiV", "at": "talk-2", "gain": 0.85, "until": "s8:low-8" },
+          { "id": "tSumV", "at": "talk-6", "until": "s8:low-8" },
+          { "id": "earLevelV", "at": "talk-6", "until": "s8:low-8" }
+        ],
+        "labels": [
+          { "part": "earNoise", "text": "人聲", "color": "coral", "at": "talk-4", "until": "s8:low-8" },
+          { "part": "earSum", "text": "還是聽得到", "color": "coral", "at": "still", "until": "s8:low-8" }
+        ],
+        "overlay": [ { "type": "cross", "part": "earCross", "at": "still-2", "until": "s8:low-8", "size": 150 } ]
       },
-      "sources": ["示意動畫：波形是示意，不是量測；實際只能抵消一部分噪音"]
+      "sources": ["示意動畫，不是量測；實際效果因機型與配戴而異"]
+    },
+    {
+      "id": "s8", "beat": "twist", "para": 4,
+      "narration": "它擅長低沉的嗡嗡聲，變化快的就對不準。",
+      "subtitle": { "zh": "它擅長低沉的嗡嗡聲\n變化快的就對不準", "en": "It's good at low, steady hums; | fast-changing sound is hard to match." },
+      "keywords": ["低沉", "對不準"],
+      "cues": [ { "id": "low", "text": "低沉" }, { "id": "fast", "text": "變化快" }, { "id": "miss", "text": "對不準" } ],
+      "component": "ThreeScene",
+      "props": {
+        "run": [
+          { "id": "tNoise", "at": "low-6", "until": "fast-8" },
+          { "id": "tAnti", "at": "low-3", "gain": 0.72, "until": "fast-8" },
+          { "id": "tSum", "at": "low-5", "until": "fast-8" },
+          { "id": "earLevel", "at": "low-5", "until": "fast-8" },
+          { "id": "tVoice", "at": "fast-6", "until": "s9:start+0" },
+          { "id": "tAntiV", "at": "fast-2", "gain": 0.85, "until": "s9:start+0" },
+          { "id": "tSumV", "at": "fast-4", "until": "s9:start+0" },
+          { "id": "earLevelV", "at": "fast-4", "until": "s9:start+0" }
+        ],
+        "labels": [
+          { "part": "earNoise", "text": "嗡嗡聲", "color": "coral", "at": "low-2", "until": "fast-8" },
+          { "part": "earNoise", "text": "變化快", "color": "coral", "at": "fast-2", "until": "s9:start+0" }
+        ],
+        "overlay": [
+          { "type": "stamp", "part": "earCross", "dy": 10, "at": "low+26", "until": "fast-8", "text": "壓得住", "color": "mint", "rot": -5, "size": 70 },
+          { "type": "cross", "part": "earCross", "at": "miss-2", "until": "s9:start+0", "size": 150 },
+          { "type": "stamp", "part": "earCross", "dy": 130, "at": "miss+3", "until": "s9:start+0", "text": "對不準", "color": "coral", "rot": -5, "size": 70 }
+        ]
+      },
+      "sources": ["示意動畫，不是量測；低頻較有效見 research.md"]
+    },
+    {
+      "id": "s9", "beat": "cta", "para": 5,
+      "narration": "你的耳機，最消不掉哪種聲音？",
+      "subtitle": { "zh": "你的耳機\n最消不掉哪種聲音？", "en": "Which sound | can't your earbuds cancel?" },
+      "keywords": ["哪種聲音"],
+      "cues": [ { "id": "you", "text": "你的" }, { "id": "which", "text": "哪種" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "start+0", "d": 30, "elev": 26, "y": 1.6, "yaw": 0.5, "dur": 30 },
+        "overlay": [
+          { "type": "card", "at": "start+2", "until": "s10:start+4", "y": 392, "kicker": "留言告訴我", "lines": ["你的耳機", "最消不掉", "哪種聲音？"], "hi": "哪種聲音", "color": "coral", "size": 124 }
+        ]
+      },
+      "sources": []
+    },
+    {
+      "id": "s10", "beat": "cta", "para": 5,
+      "narration": "對了，裡面還有一顆朝內的麥克風。下一集講。",
+      "subtitle": { "zh": "對了\n裡面還有一顆\n朝內的麥克風\n下一集講", "en": "Oh, and | there's one more mic inside, | facing your ear. | Next episode." },
+      "keywords": ["朝內的麥克風", "下一集"],
+      "cues": [ { "id": "btw", "text": "對了" }, { "id": "inner", "text": "朝內" }, { "id": "next", "text": "下一集" } ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": { "at": "start+0", "d": 21, "elev": 34, "y": 1.2, "x": -0.6, "dur": 26 },
+        "shift": [
+          { "layer": "board", "at": "start+0", "opacity": 0.1 },
+          { "layer": "battery", "at": "start+0", "opacity": 0.06 }
+        ],
+        "labels": [ { "part": "fbMic", "text": "朝內的麥克風", "color": "amber", "at": "inner" } ],
+        "overlay": [
+          { "type": "circle", "part": "fbMic", "at": "inner-6", "r": 84, "color": "amber" },
+          { "type": "stamp", "at": "next-2", "x": 540, "y": 470, "text": "下一集：它在聽什麼？", "color": "blue", "rot": -3, "size": 62 }
+        ]
+      },
+      "sources": ["示意模型，不是特定機型；零件位置各家不同"]
     }
   ]
 }

@@ -127,7 +127,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
 ## 試聽規則
-- 試聽不花 API 額度（使用者 2026/11/13 指示）：要比較音色、語氣或口語程度時，不要自己送 TTS 請求；把完整提示詞（含設定說明與念稿）寫成檔案交給使用者，由他在網頁版試聽後回覆選擇。API 只用在使用者選定之後的正式配音（每支片整篇 1 次）；需要重配先說明原因與次數，等使用者同意。
+- 試聽不花 API 額度（使用者 2026/11/13 指示）：要比較音色、語氣或口語程度時，不要自己送 TTS 請求；把完整提示詞（含設定說明與念稿）寫成檔案交給使用者，由他在 Google AI Studio 的語音生成頁（aistudio.google.com/generate-speech，模型 Gemini 2.5 Flash Preview TTS、音色照設定檔）試聽後回覆選擇；Claude 的網站不會產生語音，不要叫使用者貼到那裡。API 只用在使用者選定之後的正式配音（每支片整篇 1 次）；需要重配先說明原因與次數，等使用者同意。
 
 ## 停工線（額度保護）
 - 以台灣時間（Asia/Taipei）為準，**07:00 是停工線**。每個耗時步驟（研究工作流、TTS 批次、render）開始前先執行 `TZ=Asia/Taipei date`。
