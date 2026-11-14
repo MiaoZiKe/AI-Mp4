@@ -76,8 +76,8 @@ type Zoom = ReturnType<typeof zoomAt>;
 const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
 export const magText = (mag: number) => { const e = Math.round(Math.log10(Math.max(1, mag))); return e < 4 ? `×${Math.round(Math.pow(10, e))}` : `×10${String(e).split("").map((d) => SUP[Number(d)]).join("")}`; };
 
-const mono = (px: number, color: string = H.text, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontVariantNumeric: "tabular-nums", fontSize: px, color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
-const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, color, fontWeight: w, whiteSpace: "nowrap" });
+const mono = (px: number, color: string = H.text, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontVariantNumeric: "tabular-nums", fontSize: px, color, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
+const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, color, fill: color, fontWeight: w, whiteSpace: "nowrap" });
 export const hudAccent = (c?: string) => (c === "amber" ? H.amber : c === "coral" ? H.coral : c === "white" ? H.text : H.line);
 const CX = L.W / 2, CY = L.STAGE_TOP + L.STAGE_H / 2;
 

@@ -1,5 +1,11 @@
 # short-ai 配音紀錄
 
+> **2026/11/14 20:21（台北）狀態：改配 Sulafat 女聲，還沒配成。**
+> - 使用者聽完 Iapetus 版後指示「AI 教學短片用回原來的女旁白」。`script.json` 已改成 Sulafat（`ai` 預設檔、gender female、pace [4.6, 5]、warm-pro），旁白刪到 53 個中文字＋Gemini（約 56 音節），validate 0 error。
+> - 正式配音送了 **1 次** TTS 請求（gemini-2.5-flash-preview-tts、cmn-TW），回 **502 upstream request failed**，沒有拿到音訊（`tts-requests.json` 第 2 筆）。依指示沒有重送，等使用者同意後再送 1 次：`TTS_NO_RETRY=1 NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs short-ai`（`TTS_NO_RETRY=1`＝任何錯誤都不自動重送）。
+> - 目前 `public/audio/short-ai/`、`timeline.json`、`out/short-ai.mp4` 都還是 Iapetus 版（和新的 script.json 對不上，配好音之前不要 align／render）。Iapetus 版的稿、時間軸、音檔備份在 `videos/short-ai/_iapetus/` 與 `public/audio/short-ai/_iapetus/`。
+> - 以下是 Iapetus 版的紀錄。
+
 ## 設定
 - 音色：**Iapetus**（使用者 2026/11/14 指定 AI 教學頻道固定用 Iapetus）
 - 模型：gemini-2.5-flash-preview-tts，`languageCode: cmn-TW`，整篇一次生成（`voice.mode: "take"`）

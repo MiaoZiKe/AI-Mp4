@@ -79,6 +79,7 @@ async function synth(text, purpose) {
     const t = (await r.text()).replace(/\s+/g, " ");
     logReq({ ...row, error: t.slice(0, 300) });
     // 這個模型不收 languageCode（400）→ 拿掉再送一次（多花 1 次請求），並提醒把 voice.languageCode 設成 "off"
+    if (process.env.TTS_NO_RETRY === "1") { const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e; } // 嚴格只送 1 次：任何錯誤都不重送
     if (r.status === 400 && LANG && /language/i.test(t) && i === 0) { console.warn(`  ⚠ ${MODEL} 不收 languageCode「${LANG}」（400）→ 拿掉重送一次`); LANG = null; continue; }
     if (r.status >= 500 && i === 0) { console.warn(`  ↻ ${r.status}，5 秒後重試一次`); await sleep(5000); continue; }
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;

@@ -11,24 +11,24 @@
   "slogan": "看完就能照著做"
  },
  "voice": {
-  "voiceName": "Iapetus",
+  "voiceName": "Sulafat",
   "model": "gemini-2.5-flash-preview-tts",
   "mode": "take",
   "languageCode": "cmn-TW",
   "profile": {
    "preset": "ai",
-   "gender": "male",
+   "gender": "female",
    "delivery": "warm-pro",
    "pace": [
     4.6,
     5
    ],
    "tone": "像懂行又好相處的前輩跟同事解釋，平穩、有耐心、帶一點笑意；講話偏快、不拖尾音，句子講完整",
-   "scene": "辦公室的茶水間旁邊，兩個人並肩看同一台筆電，他一邊操作一邊跟剛來的同事解釋，旁邊沒有別人在聽",
+   "scene": "辦公室的茶水間旁邊，兩個人並肩看同一台筆電，她一邊操作一邊跟剛來的同事解釋，旁邊沒有別人在聽",
    "arc": {
     "起": "像看到同事在查明年薪水的新聞，平常地問他一句",
     "承": "邊操作邊說，講到 AI 給的數字時語氣平平的，不誇張",
-    "轉": "指出數字其實是去年的，放慢半拍，平靜帶過",
+    "轉": "指出數字其實是去年的，平靜、直接帶過",
     "合": "語氣放鬆，給一個馬上能用的做法，最後輕輕帶到下一次"
    },
    "englishTerms": {
@@ -36,7 +36,7 @@
     "Gemini": "JEM-ih-nye，三個音節"
    },
    "voices": [
-    "Iapetus"
+    "Sulafat"
    ]
   }
  },
@@ -132,14 +132,14 @@
   {
    "id": "s02",
    "beat": "you",
-   "narration": "用 Gemini 實測，只打這一句。",
+   "narration": "Gemini 實測，只打一句。",
    "subtitle": {
-    "zh": "用 Gemini 實測\n只打這一句",
-    "en": "We tested Gemini | with just this one line."
+    "zh": "Gemini 實測\n只打一句",
+    "en": "A Gemini test, | just one line."
    },
    "keywords": [
     "實測",
-    "這一句"
+    "一句"
    ],
    "cues": [
     {
@@ -148,7 +148,7 @@
     },
     {
      "id": "one",
-     "text": "這一句"
+     "text": "一句"
     }
    ],
    "component": "IsoScene",
@@ -184,7 +184,7 @@
     ],
     "kw": {
      "實測": "primary",
-     "這一句": "primary"
+     "一句": "primary"
     }
    },
    "sources": [
@@ -194,14 +194,14 @@
   {
    "id": "s03",
    "beat": "you",
-   "narration": "它說，28,590 元。",
-   "tts": "它說，兩萬八千五百九十元。",
+   "narration": "它說，28,590。",
+   "tts": "它說，兩萬八千五百九十。",
    "subtitle": {
-    "zh": "它說\n28,590 元",
-    "en": "Its answer: | NT$28,590."
+    "zh": "它說\n28,590",
+    "en": "Its answer: | 28,590."
    },
    "keywords": [
-    "28,590 元"
+    "28,590"
    ],
    "cues": [
     {
@@ -244,7 +244,7 @@
      }
     ],
     "kw": {
-     "28,590 元": "wrong"
+     "28,590": "wrong"
     }
    },
    "sources": [
@@ -254,16 +254,16 @@
   {
    "id": "s04",
    "beat": "twist",
-   "narration": "那是去年的，明年是 30,900 元。",
-   "tts": "那是去年的，明年是三萬零九百元。",
+   "narration": "那是去年的，明年是 30,900。",
+   "tts": "那是去年的，明年是三萬零九百。",
    "pauseAfter": 0.35,
    "subtitle": {
-    "zh": "那是去年的\n明年是 30,900 元",
-    "en": "That was last year's. | Next year it's NT$30,900."
+    "zh": "那是去年的\n明年是 30,900",
+    "en": "That was last year's. | Next year it's 30,900."
    },
    "keywords": [
     "去年",
-    "30,900 元"
+    "30,900"
    ],
    "cues": [
     {
@@ -317,7 +317,7 @@
     ],
     "kw": {
      "去年": "wrong",
-     "30,900 元": "right"
+     "30,900": "right"
     }
    },
    "sources": [
@@ -327,9 +327,9 @@
   {
    "id": "s05",
    "beat": "payoff",
-   "narration": "先貼新聞，請它只看這段。下一支，再教一招。",
+   "narration": "先貼新聞，請它只看這段。下次再教一招。",
    "subtitle": {
-    "zh": "先貼新聞\n請它只看這段\n下一支，再教一招",
+    "zh": "先貼新聞\n請它只看這段\n下次再教一招",
     "en": "Paste the news first, | then tell it to use only that. | Next time, | one more trick."
    },
    "keywords": [
