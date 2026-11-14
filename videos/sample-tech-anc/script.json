@@ -24,7 +24,7 @@
       "props": {
         "hook": { "kicker": "降噪耳機", "title": "出聲才會安靜" },
         "spin": { "at": "start+0", "until": "s3:open", "turns": 0.07 },
-        "shot": { "at": "start-30", "d": 33, "elev": 6, "y": 2.3, "dur": 1 },
+        "shot": { "at": "start-30", "d": 31, "elev": 6, "y": 2.2, "dur": 1 },
         "run": [
           { "id": "hookNoise", "at": "start-30", "until": "s3:open-8" },
           { "id": "hookAnti", "at": "sound-12", "until": "s3:open-8" }
@@ -49,7 +49,7 @@
       "cues": [ { "id": "more", "text": "多一個" }, { "id": "quiet", "text": "更安靜" } ],
       "component": "ThreeScene",
       "props": {
-        "shot": { "at": "start+0", "d": 29, "elev": 8, "y": 2.6, "dur": 40 },
+        "shot": { "at": "start+0", "d": 27, "elev": 8, "y": 2.4, "dur": 40 },
         "overlay": [
           { "type": "stamp", "at": "quiet-2", "until": "s3:open-8", "part": "head", "dx": 0, "dy": 215, "text": "聲音＋聲音＝安靜？", "color": "amber", "rot": -4, "size": 66 }
         ]
@@ -202,7 +202,7 @@
         "overlay": [
           { "type": "stamp", "part": "earCross", "dy": 10, "at": "low+26", "until": "fast-8", "text": "壓得住", "color": "mint", "rot": -5, "size": 70 },
           { "type": "cross", "part": "earCross", "at": "miss-2", "until": "s9:start+0", "size": 150 },
-          { "type": "stamp", "part": "earCross", "dy": 130, "at": "miss+3", "until": "s9:start+0", "text": "對不準", "color": "coral", "rot": -5, "size": 70 }
+          { "type": "stamp", "part": "earCross", "dx": 250, "dy": 120, "at": "miss+3", "until": "s9:start+0", "text": "對不準", "color": "coral", "rot": -5, "size": 70 }
         ]
       },
       "sources": ["示意動畫，不是量測；低頻較有效見 research.md"]
@@ -225,7 +225,7 @@
     {
       "id": "s10", "beat": "cta", "para": 5,
       "narration": "對了，裡面還有一顆朝內的麥克風。下一集講。",
-      "subtitle": { "zh": "對了\n裡面還有一顆\n朝內的麥克風\n下一集講", "en": "Oh, and | there's one more mic inside, | facing your ear. | Next episode." },
+      "subtitle": { "zh": "對了，裡面還有一顆\n朝內的麥克風\n下一集講", "en": "Oh, and there's one more mic inside, | facing your ear. | That's next episode." },
       "keywords": ["朝內的麥克風", "下一集"],
       "cues": [ { "id": "btw", "text": "對了" }, { "id": "inner", "text": "朝內" }, { "id": "next", "text": "下一集" } ],
       "component": "ThreeScene",
