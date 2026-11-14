@@ -212,3 +212,29 @@
 怎麼讀：**八種都量不出穩定的成本**。差值從 −379 到 +376 毫秒，有正有負（拿掉反而變慢是不可能的），代表這次量測的雜訊就有 ±0.4 秒左右（量的時候機器上還有別的工作在跑）。
 合理的結論是「每種每幀最多多零點幾秒，和基準的 2–3.5 秒比起來不是重點」，而不是表上的個別數字。這些動作畫的東西都很少（幾個圈、幾顆球、一條管子、一張 HTML 小卡），沒有額外的光源或貼圖。
 真正決定時間的是**鏡頭離多近**：同樣的設定，全景約 2.0 秒/幀，推到板子特寫（零件佔滿畫面）約 3.5 秒/幀，因為軟體渲染的成本跟「有東西的像素數」成正比。`shot` 推太近、推太久會直接拉長渲染時間。
+
+## 六、2D 疊層（`props.overlay`）與留存用的小開關
+
+2026/11/14 加的（專家評估後，見 `docs/tech-3d-expert-review.md`、檢查清單 `docs/channels/tech-3d.md`）。全部是 HTML／SVG，畫在 3D 畫布上面，**不增加 3D 渲染時間**；程式在 `src/components/three/Overlays.tsx`，顏色只讀 `THEME_3D`。沒有寫 `overlay` 的舊片畫面不變。
+
+每幕 `props.overlay: [ { type, at, until?, … } ]`。`at`／`until` 和其他地方一樣寫 cue（可以指到別幕，疊層可以跨幕留著）；巢狀的 `anti.at`、`items[].at`、`keys[].at` 也是 cue。位置寫畫面像素 `x`、`y`，或 `part`（`model.anchors` 的標註點，跟著 3D 投影走）加 `dx`、`dy`。
+
+| type | 作用 | 主要欄位 |
+|---|---|---|
+| `scope` | 波形面板（開場鉤子用）：粗線＝耳朵聽到的；`anti.at` 之後第二道波加進來，粗線是兩道**逐點相加**的結果 | `y`、`h`、`title`、`wave: "low"｜"fast"`、`anti: { at, match（抵消幾成，預設 0.75）, lag（慢多少，>0＝對不準）, label }` |
+| `stamp` | 蓋章：有顏色的標籤拍上去（先大後小、微歪） | `text`、`color`、`rot`、`size` |
+| `cross` | 紅色叉叉，兩筆依序畫出 | `size`、`color` |
+| `circle` | 圈起一個標註點（下一集鉤子） | `part`、`r`、`color` |
+| `steps` | 步驟列：幾個零件依序揭曉（還沒講到的是「？」），講到的亮起來並留著 | `y`、`title`、`items: [{ text, at, color }]` |
+| `card` | 蓋在舞台上的提問卡 | `y`、`kicker`、`lines`、`hi`（上色的詞）、`size`、`foot` |
+| `ribbon` | 字幕下面的底部波帶（背景裝飾，填下方空白） | `keys: [{ at, v（0–1 大小）, fast? }]` |
+
+其他向下相容的小開關：
+- `props.spin.turns`：開場轉幾圈（預設 1）；寫 0.07 這種小數＝只轉一點點就停，躺下時就近轉到分解角度。
+- 開場就要在動的動作：`run` 的 `at` 寫 `start-30`（第 0 幀已經進場完）；開場鏡頭用 `shot: { at: "start-30", dur: 1, … }`，拆開時再用一個 `shot` 回到分解的鏡位。
+- `props.hook.size`：鉤子大標字級（預設 132）；`hook.kicker` 是大標上面的小標。
+- `model.fx.srcPx`：這支片出處列的字級（預設 `LAYOUT_3D.SRC_PX`＝24；留存清單要求 ≥28）。
+- `meter` 動作可寫 `h`（小波形卡的高度，預設 104）。
+- `cover.frame`：封面的模型停在第幾幀（預設照舊停在聚焦前一幀）。
+
+範例：`videos/sample-tech-anc/script.json`（s1 的 scope＋兩張 stamp＋ribbon、s3 的 steps、s7／s8 的 cross、s9 的 card、s10 的 circle）。validate 會檢查 type、`at`、位置欄位。

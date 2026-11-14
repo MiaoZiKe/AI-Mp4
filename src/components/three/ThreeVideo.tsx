@@ -253,9 +253,10 @@ export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
 
 /** 封面：大標＋分解後的模型（停在聚焦前一幀，各層都看得到） */
 export const CoverThree: React.FC<Script & { coverCrop?: number }> = ({ cover, scenes, timeline, channel, coverCrop, model }) => {
-  const c = (cover ?? {}) as { title?: string[]; sub?: string };
+  const c = (cover ?? {}) as { title?: string[]; sub?: string; frame?: number };
   const m = useMemo(() => (timeline && model ? buildModel(scenes, timeline as TimelineV2, model as ProductModel) : null), [scenes, timeline, model]);
-  const s = useMemo(() => (m ? stateAt(m, Math.min(m.focus - 1, m.total - 1)) : null), [m]);
+  // cover.frame（可省略）：封面的模型停在第幾幀；沒寫就照舊停在聚焦前一幀
+  const s = useMemo(() => (m ? stateAt(m, c.frame ?? Math.min(m.focus - 1, m.total - 1)) : null), [m, c.frame]);
   const shift = coverCrop ? (L.H - coverCrop) / 2 - 150 : 0;
   const a = accent3D("blue");
   return (
