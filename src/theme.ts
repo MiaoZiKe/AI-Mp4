@@ -795,3 +795,19 @@ export const LAYOUT_ISO = {
   CAP_TOP: 1290, CAP_H: 226, CAP_ZH_PX: 70, CAP_EN_PX: 32,
   SRC_TOP: 1560, SRC_PX: 28, MIN_PX: 28,
 } as const;
+
+/** CPI 實測短片（src/components/cpi/，composition「CpiVideo」，scripts/cpi/run.mjs）：深色乾淨科技感、自畫對話框、數字放大強調 */
+export const THEME_CPI = {
+  bg: "#0A0F1E", grid: "rgba(140,170,255,0.05)", glow: "rgba(70,110,255,0.16)",
+  panel: "#121A2E", panel2: "#18223A", line: "#283655", skeleton: "#2A3756",
+  text: "#EEF2FF", sub: "#93A0BF", dim: "#5F6B89",
+  accent: "#3DDCFF", user: "#2D6BF0", num: "#FFD54A", wrong: "#FF5A5F", right: "#3BE38B",
+  numGlow: "rgba(255,213,74,0.35)", wrongSoft: "rgba(255,90,95,0.14)", rightSoft: "rgba(59,227,139,0.14)", accentSoft: "rgba(61,220,255,0.12)",
+  radius: { card: 28, bubble: 26, chip: 999 },
+  /** 幀：場景淡入 6、退場 4、數字強調（放大到 1.18 再回 1）14、打叉描線 8 */
+  motion: { enter: 6, exit: 4, punch: 14, strike: 8 },
+} as const;
+export const LAYOUT_CPI = {
+  X: 64, INNER_W: 952, HEADER_TOP: 232, MAIN_TOP: 330, MAIN_BOTTOM: 1250,
+  CAP_TOP: 1300, CAP_H: 230, CAP_PX: 64, CAP_MAX: 14,
+} as const;

@@ -128,10 +128,10 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
 ## 各頻道音色（使用者 2026/11/14 決定）
-- 哩股哩股（股票、國際情勢、基金）：Iapetus（男）。
+- 哩股哩股（股票、國際情勢、基金）：使用者在 Google AI Studio 生成的聲音（樣本＝CPI 那段旁白；音色與提示詞待使用者提供，提供前做無聲版）。
 - AI 教學：Iapetus（男）。
 - 談晴說礙：Sulafat（女）。
-- 科技（Tech）：Sulafat（女）。
+- 科技（Tech）：同哩股哩股，用使用者提供的那個聲音（2026/11/14 更正）。
 - 白話國際：沿用 Iapetus（未另行指定）。
 - 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。
 
