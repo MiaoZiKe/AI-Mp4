@@ -1,0 +1,1776 @@
+{
+ "slug": "liguligu-jensen",
+ "title": "33 年的執行長即刻辭職，公告為什麼沒寫原因？",
+ "asOf": "2026/11/14",
+ "styleVersion": 3,
+ "skin": "newsprint",
+ "channel": {
+  "name": "哩股哩股",
+  "tag": "查到底",
+  "slogan": "數字，查過再信"
+ },
+ "voice": {
+  "voiceName": "TBD",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "liguligu",
+  "note": "男聲音色還沒選：等使用者用 docs/prompts/liguligu-男聲試聽.txt 在 Google AI Studio 試聽後再填 voiceName；在那之前不要送 TTS 請求（Iapetus、Achird 已被否決）"
+ },
+ "cover": {
+  "camera": {
+   "to": [
+    540,
+    960,
+    1
+   ]
+  },
+  "items": [
+   {
+    "type": "strip",
+    "paper": "strip-hook",
+    "lines": [
+     {
+      "t": "輝達創辦人・黃仁勳",
+      "size": 46,
+      "color": "ink3",
+      "lh": 1.3
+     },
+     {
+      "t": "{33} 年執行長",
+      "size": 112,
+      "accentSize": 196,
+      "lh": 1.02
+     },
+     {
+      "t": "辭職[即刻生效]",
+      "size": 126,
+      "lh": 1.2
+     }
+    ],
+    "x": 540,
+    "y": 590,
+    "w": 940,
+    "rot": -1.4,
+    "align": "left",
+    "pad": [
+     60,
+     20
+    ],
+    "tape": [
+     {
+      "asset": "tape-y",
+      "x": 150,
+      "y": 8,
+      "rot": -5
+     },
+     {
+      "asset": "tape-r",
+      "x": 790,
+      "y": 0,
+      "rot": 4
+     }
+    ]
+   },
+   {
+    "type": "strip",
+    "paper": "stamp-red",
+    "lines": [
+     {
+      "t": "董事會公告",
+      "size": 44,
+      "ls": 0.04
+     },
+     {
+      "t": "沒寫原因",
+      "size": 84,
+      "mt": 4
+     }
+    ],
+    "x": 785,
+    "y": 1040,
+    "w": 410,
+    "rot": -7,
+    "onDark": true,
+    "z": 5
+   },
+   {
+    "type": "strip",
+    "paper": "datetag",
+    "lines": [
+     {
+      "t": "11/12",
+      "size": 72
+     }
+    ],
+    "x": 880,
+    "y": 372,
+    "w": 220,
+    "rot": 5,
+    "z": 4
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "narration": "33 年的執行長，辭職即刻生效。公告沒寫原因。",
+   "tts": "三十三年的執行長，辭職即刻生效。公告沒寫原因。",
+   "subtitle": {
+    "zh": "33 年的執行長\n辭職即刻生效\n公告沒寫原因",
+    "en": "CEO for 33 years. | Resigned, effective immediately. | The notice gave no reason."
+   },
+   "keywords": [
+    "即刻生效",
+    "沒寫原因"
+   ],
+   "cues": [
+    {
+     "id": "ceo",
+     "text": "執行長"
+    },
+    {
+     "id": "imm",
+     "text": "即刻生效"
+    },
+    {
+     "id": "ann",
+     "text": "公告"
+    },
+    {
+     "id": "why",
+     "text": "沒寫原因"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      540,
+      960,
+      1
+     ]
+    },
+    "items": [
+     {
+      "type": "strip",
+      "paper": "footer",
+      "lines": [
+       {
+        "t": "查證截至 {2026/11/14}・只講查得到的",
+        "size": 40
+       }
+      ],
+      "x": 540,
+      "y": 1790,
+      "w": 952,
+      "layer": "screen",
+      "until": "end",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "輝達創辦人・黃仁勳",
+        "size": 46,
+        "color": "ink3",
+        "lh": 1.3
+       },
+       {
+        "t": "{33} 年執行長",
+        "size": 112,
+        "accentSize": 196,
+        "lh": 1.02
+       },
+       {
+        "t": "辭職[即刻生效]",
+        "size": 126,
+        "lh": 1.2
+       }
+      ],
+      "x": 540,
+      "y": 590,
+      "w": 940,
+      "rot": -1.4,
+      "align": "left",
+      "pad": [
+       60,
+       20
+      ],
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ],
+      "id": "hook",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "imm",
+        "mark": 1
+       }
+      ],
+      "moves": [
+       {
+        "at": "ann-2",
+        "to": {
+         "rot": -2.4,
+         "y": 582
+        },
+        "dur": 4
+       }
+      ],
+      "until": "s03"
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/12",
+        "size": 72
+       }
+      ],
+      "x": 880,
+      "y": 372,
+      "w": 220,
+      "rot": 5,
+      "at": "start+4",
+      "from": "right",
+      "until": "s03",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-red",
+      "lines": [
+       {
+        "t": "董事會公告",
+        "size": 44,
+        "ls": 0.04
+       },
+       {
+        "t": "沒寫原因",
+        "size": 84,
+        "mt": 4
+       }
+      ],
+      "x": 785,
+      "y": 1040,
+      "w": 410,
+      "rot": -7,
+      "onDark": true,
+      "at": "start+14",
+      "from": "slam",
+      "until": "s03",
+      "z": 5,
+      "moves": [
+       {
+        "at": "why",
+        "to": {
+         "rot": -10,
+         "w": 440
+        },
+        "dur": 4
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "notice",
+      "lines": [
+       {
+        "t": "董事會公告・11/12",
+        "size": 40,
+        "color": "ink3"
+       },
+       {
+        "t": "辭職原因：",
+        "size": 50,
+        "mt": 96
+       }
+      ],
+      "x": 310,
+      "y": 1045,
+      "w": 470,
+      "rot": 2,
+      "align": "left",
+      "box": [
+       44,
+       50,
+       470,
+       250
+      ],
+      "at": "start+26",
+      "from": "left",
+      "until": "s03",
+      "z": 2,
+      "moves": [
+       {
+        "at": "ann",
+        "to": {
+         "rot": 0.5,
+         "y": 1038
+        },
+        "dur": 4
+       }
+      ],
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 280,
+        "y": 4,
+        "rot": 2,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "asset": "circle",
+      "x": 335,
+      "y": 1082,
+      "w": 400,
+      "rot": -3,
+      "z": 6,
+      "at": "why+4",
+      "from": "wipe",
+      "until": "s03"
+     },
+     {
+      "asset": "qmark",
+      "x": 560,
+      "y": 1150,
+      "w": 120,
+      "rot": 10,
+      "z": 7,
+      "at": "why+14",
+      "from": "slam",
+      "until": "s03"
+     }
+    ]
+   },
+   "sources": [
+    "輝達董事會公告 2026/11/12（截至 2026/11/14）"
+   ],
+   "beat": "hook"
+  },
+  {
+   "id": "s02",
+   "narration": "4 天前董事會才說，沒理由相信機密外洩。",
+   "tts": "四天前董事會才說，沒理由相信機密外洩。",
+   "subtitle": {
+    "zh": "4 天前董事會才說\n沒理由相信機密外洩",
+    "en": "Four days earlier, the board said | it had no reason to think secrets leaked."
+   },
+   "keywords": [
+    "4 天前",
+    "機密外洩"
+   ],
+   "cues": [
+    {
+     "id": "d4",
+     "text": "4 天前"
+    },
+    {
+     "id": "board",
+     "text": "董事會"
+    },
+    {
+     "id": "no",
+     "text": "沒理由"
+    },
+    {
+     "id": "leak",
+     "text": "機密外洩"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1720,
+      960,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        1010,
+        420
+       ],
+       [
+        2150,
+        420
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "s04"
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/8",
+        "size": 72
+       }
+      ],
+      "x": 1410,
+      "y": 420,
+      "w": 220,
+      "rot": -4,
+      "at": "start+8",
+      "from": "paste",
+      "until": "s04",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/12",
+        "size": 72
+       }
+      ],
+      "x": 2030,
+      "y": 420,
+      "w": 220,
+      "rot": 4,
+      "at": "start+5",
+      "from": "paste",
+      "until": "s04",
+      "z": 3
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "lines": [
+       {
+        "t": "只隔 [4 天]",
+        "size": 64
+       }
+      ],
+      "x": 1720,
+      "y": 425,
+      "w": 330,
+      "rot": -2,
+      "at": "d4",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "d4+8",
+        "mark": 1
+       }
+      ],
+      "until": "s04",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "note-red",
+      "lines": [
+       {
+        "t": "辭職",
+        "size": 112
+       },
+       {
+        "t": "即刻生效",
+        "size": 76
+       }
+      ],
+      "x": 1980,
+      "y": 745,
+      "w": 350,
+      "rot": 3,
+      "onDark": true,
+      "at": "start+8",
+      "from": "right",
+      "until": "s04",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "同日：本人發信致歉、啟動調查",
+        "size": 30
+       }
+      ],
+      "x": 1480,
+      "y": 560,
+      "w": 440,
+      "rot": -2,
+      "at": "board-6",
+      "from": "left",
+      "until": "s04",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "doc",
+      "lines": [
+       {
+        "t": "董事會聲明",
+        "size": 44,
+        "color": "ink3"
+       },
+       {
+        "t": "沒理由相信",
+        "size": 70,
+        "mt": 16
+       },
+       {
+        "t": "[機密外洩]",
+        "size": 88,
+        "mt": 10
+       }
+      ],
+      "x": 1480,
+      "y": 830,
+      "w": 420,
+      "rot": -2,
+      "at": "board",
+      "from": "left",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "leak",
+        "mark": 1
+       }
+      ],
+      "until": "s04",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 230,
+        "y": 4,
+        "rot": 2,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-room",
+      "lines": [
+       {
+        "t": "董事會（示意照片）",
+        "size": 38
+       }
+      ],
+      "x": 1970,
+      "y": 1095,
+      "w": 300,
+      "caption": true,
+      "rot": -4,
+      "at": "no",
+      "from": "right",
+      "until": "s04",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-mint",
+      "lines": [
+       {
+        "t": "已確定",
+        "size": 60
+       }
+      ],
+      "x": 1370,
+      "y": 1090,
+      "w": 230,
+      "rot": -6,
+      "at": "leak+8",
+      "from": "slam",
+      "until": "s04",
+      "z": 5
+     },
+     {
+      "asset": "circle",
+      "x": 1720,
+      "y": 425,
+      "w": 400,
+      "rot": 2,
+      "z": 6,
+      "at": "leak+14",
+      "from": "wipe",
+      "until": "s04"
+     },
+     {
+      "asset": "qmark",
+      "x": 1700,
+      "y": 1110,
+      "w": 130,
+      "rot": 8,
+      "z": 6,
+      "at": "leak+20",
+      "from": "slam",
+      "until": "s04"
+     }
+    ]
+   },
+   "sources": [
+    "輝達董事會聲明 2026/11/8、公告 11/12"
+   ],
+   "beat": "mechanism"
+  },
+  {
+   "id": "s03",
+   "narration": "文件寫辭職，媒體卻說是董事會要他走。",
+   "tts": "文件寫辭職，媒體卻說是董事會要他走。",
+   "subtitle": {
+    "zh": "文件寫辭職\n媒體卻說\n是董事會要他走",
+    "en": "The filing says he resigned. | Media reports say | the board pushed him out."
+   },
+   "keywords": [
+    "辭職",
+    "董事會要他走"
+   ],
+   "cues": [
+    {
+     "id": "doc",
+     "text": "文件"
+    },
+    {
+     "id": "res",
+     "text": "辭職"
+    },
+    {
+     "id": "med",
+     "text": "媒體"
+    },
+    {
+     "id": "out",
+     "text": "要他走"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      1720,
+      2260,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        2140,
+        970
+       ],
+       [
+        2140,
+        1600
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "s05"
+     },
+     {
+      "type": "strip",
+      "paper": "colhead-mint",
+      "lines": [
+       {
+        "t": "官方文件",
+        "size": 64,
+        "ls": 0.06
+       }
+      ],
+      "x": 1475,
+      "y": 1700,
+      "w": 460,
+      "at": "start+6",
+      "from": "slam",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "[辭職]",
+        "size": 100
+       }
+      ],
+      "x": 1475,
+      "y": 1910,
+      "w": 460,
+      "rot": -1.5,
+      "at": "res",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "res+8",
+        "mark": 1
+       }
+      ],
+      "until": "s05",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "送證管會的 8-K 文件",
+        "size": 38
+       }
+      ],
+      "x": 1475,
+      "y": 2100,
+      "w": 420,
+      "rot": 2,
+      "at": "res+10",
+      "from": "left",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-mint",
+      "lines": [
+       {
+        "t": "已確定",
+        "size": 60
+       }
+      ],
+      "x": 1420,
+      "y": 2260,
+      "w": 230,
+      "rot": -6,
+      "at": "res+18",
+      "from": "slam",
+      "until": "s05",
+      "z": 5
+     },
+     {
+      "type": "strip",
+      "paper": "colhead-yellow",
+      "lines": [
+       {
+        "t": "媒體報導",
+        "size": 64,
+        "ls": 0.06
+       }
+      ],
+      "x": 1965,
+      "y": 1700,
+      "w": 460,
+      "at": "med",
+      "from": "slam",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "董事會要他走",
+        "size": 58
+       }
+      ],
+      "x": 1965,
+      "y": 1910,
+      "w": 460,
+      "rot": 1.5,
+      "at": "out-8",
+      "from": "slam",
+      "until": "s05",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "CNBC 引述知情人士",
+        "size": 38
+       }
+      ],
+      "x": 1965,
+      "y": 2100,
+      "w": 420,
+      "rot": -2,
+      "at": "out+6",
+      "from": "right",
+      "until": "s05",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-yellow",
+      "lines": [
+       {
+        "t": "公司未證實",
+        "size": 52
+       }
+      ],
+      "x": 2010,
+      "y": 2260,
+      "w": 270,
+      "rot": 5,
+      "at": "out+14",
+      "from": "slam",
+      "until": "s05",
+      "z": 5
+     },
+     {
+      "asset": "qmark",
+      "x": 1720,
+      "y": 2420,
+      "w": 150,
+      "rot": -6,
+      "z": 6,
+      "at": "out+22",
+      "from": "slam",
+      "until": "s05"
+     }
+    ]
+   },
+   "sources": [
+    "8-K 文件；CNBC 引述知情人士（公司未證實）"
+   ],
+   "beat": "mechanism"
+  },
+  {
+   "id": "s04",
+   "narration": "是政治操作嗎？華盛頓郵報說，對中強硬派樂見他下台。",
+   "tts": "是政治操作嗎？華盛頓郵報說，對中強硬派樂見他下台。",
+   "subtitle": {
+    "zh": "是政治操作嗎？\n華盛頓郵報說\n對中強硬派樂見他下台",
+    "en": "Was it political? | The Washington Post reports | China hawks welcomed his exit."
+   },
+   "keywords": [
+    "政治操作",
+    "樂見他下台"
+   ],
+   "cues": [
+    {
+     "id": "pol",
+     "text": "政治操作"
+    },
+    {
+     "id": "wp",
+     "text": "華盛頓郵報"
+    },
+    {
+     "id": "hawk",
+     "text": "對中強硬派"
+    },
+    {
+     "id": "glad",
+     "text": "樂見"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      2900,
+      2260,
+      1
+     ],
+     "dur": 14
+    },
+    "punch": "pol",
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        2220,
+        1700
+       ],
+       [
+        2460,
+        1700
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "s06"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-white",
+      "lines": [
+       {
+        "t": "是[政治操作]嗎？",
+        "size": 94
+       }
+      ],
+      "x": 2900,
+      "y": 1775,
+      "w": 860,
+      "rot": -1.5,
+      "at": "start+3",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "pol+4",
+        "mark": 1
+       }
+      ],
+      "until": "s06",
+      "z": 3,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 120,
+        "y": 6,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 660,
+        "y": 4,
+        "rot": 4
+       }
+      ]
+     },
+     {
+      "asset": "qmark",
+      "x": 3300,
+      "y": 1650,
+      "w": 130,
+      "rot": 12,
+      "z": 5,
+      "at": "pol+10",
+      "from": "slam",
+      "until": "s06"
+     },
+     {
+      "type": "strip",
+      "paper": "clip-papers",
+      "lines": [
+       {
+        "t": "華盛頓郵報報導（示意）",
+        "size": 36
+       }
+      ],
+      "x": 2660,
+      "y": 2200,
+      "w": 430,
+      "caption": true,
+      "rot": -4,
+      "at": "wp",
+      "from": "left",
+      "until": "s06",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "datetag",
+      "lines": [
+       {
+        "t": "11/14",
+        "size": 72
+       }
+      ],
+      "x": 2530,
+      "y": 1990,
+      "w": 200,
+      "rot": -6,
+      "at": "wp+8",
+      "from": "paste",
+      "until": "s06",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "note-yellow",
+      "lines": [
+       {
+        "t": "對中強硬派",
+        "size": 64
+       },
+       {
+        "t": "[樂見]",
+        "size": 104,
+        "mt": 6
+       },
+       {
+        "t": "他下台",
+        "size": 64,
+        "mt": 6
+       }
+      ],
+      "x": 3155,
+      "y": 2150,
+      "w": 390,
+      "rot": 4,
+      "at": "hawk",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "glad",
+        "mark": 1
+       }
+      ],
+      "until": "s06",
+      "z": 2
+     },
+     {
+      "asset": "pin-red",
+      "x": 3155,
+      "y": 1972,
+      "w": 56,
+      "at": "hawk+3",
+      "from": "slam",
+      "until": "s06",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-yellow",
+      "lines": [
+       {
+        "t": "媒體報導",
+        "size": 56
+       }
+      ],
+      "x": 3160,
+      "y": 2440,
+      "w": 280,
+      "rot": -5,
+      "at": "glad+10",
+      "from": "slam",
+      "until": "s06",
+      "z": 5
+     }
+    ]
+   },
+   "sources": [
+    "華盛頓郵報 2026/11/14（經轉述；因果未證實）"
+   ],
+   "beat": "twist"
+  },
+  {
+   "id": "s05",
+   "narration": "但樂見，不等於設局。",
+   "tts": "但樂見，不等於設局。",
+   "subtitle": {
+    "zh": "但樂見\n不等於設局",
+    "en": "But welcoming it | isn't proof of a setup."
+   },
+   "keywords": [
+    "不等於設局"
+   ],
+   "cues": [
+    {
+     "id": "glad",
+     "text": "樂見"
+    },
+    {
+     "id": "ne",
+     "text": "不等於"
+    },
+    {
+     "id": "setup",
+     "text": "設局"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      2900,
+      3560,
+      1
+     ],
+     "dur": 12
+    },
+    "punch": "setup",
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        3320,
+        2270
+       ],
+       [
+        3320,
+        2900
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start",
+        "grow": 1
+       }
+      ],
+      "until": "s07"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "[樂見]",
+        "size": 150,
+        "lh": 1.12
+       },
+       {
+        "t": "不等於",
+        "size": 84,
+        "color": "ink3",
+        "lh": 1.2
+       },
+       {
+        "t": "{設局}",
+        "size": 150,
+        "lh": 1.12
+       }
+      ],
+      "x": 2900,
+      "y": 3190,
+      "w": 860,
+      "rot": -1.5,
+      "pad": [
+       60,
+       20
+      ],
+      "at": "start+2",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "glad+2",
+        "mark": 1
+       }
+      ],
+      "until": "s07",
+      "z": 3,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "有人樂見",
+        "size": 70
+       }
+      ],
+      "x": 2655,
+      "y": 3560,
+      "w": 440,
+      "rot": -1.5,
+      "at": "glad+6",
+      "from": "left",
+      "until": "s07",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-yellow",
+      "lines": [
+       {
+        "t": "媒體報導",
+        "size": 56
+       }
+      ],
+      "x": 2660,
+      "y": 3720,
+      "w": 270,
+      "rot": -5,
+      "at": "ne",
+      "from": "slam",
+      "until": "s07",
+      "z": 5
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "有人設局",
+        "size": 70
+       }
+      ],
+      "x": 3145,
+      "y": 3560,
+      "w": 440,
+      "rot": 1.5,
+      "at": "setup",
+      "from": "right",
+      "until": "s07",
+      "z": 1
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-s",
+      "lines": [
+       {
+        "t": "查不到證據",
+        "size": 52
+       }
+      ],
+      "x": 3150,
+      "y": 3720,
+      "w": 290,
+      "rot": 5,
+      "onDark": true,
+      "at": "setup+8",
+      "from": "slam",
+      "until": "s07",
+      "z": 5
+     },
+     {
+      "asset": "cross-0",
+      "x": 3320,
+      "y": 3490,
+      "w": 90,
+      "z": 6,
+      "at": "setup+14",
+      "from": "wipe",
+      "until": "s07"
+     },
+     {
+      "asset": "cross-1",
+      "x": 3320,
+      "y": 3490,
+      "w": 90,
+      "z": 6,
+      "at": "setup+18",
+      "from": "wipe",
+      "until": "s07"
+     }
+    ]
+   },
+   "sources": [
+    "截至 2026/11/14，查不到設局的證據"
+   ],
+   "beat": "twist"
+  },
+  {
+   "id": "s06",
+   "narration": "調查還沒結論，他也還沒開口。",
+   "tts": "調查還沒結論，他也還沒開口。",
+   "subtitle": {
+    "zh": "調查還沒結論\n他也還沒開口",
+    "en": "The probe has no findings yet. | He hasn't spoken either."
+   },
+   "keywords": [
+    "還沒結論",
+    "還沒開口"
+   ],
+   "cues": [
+    {
+     "id": "probe",
+     "text": "調查"
+    },
+    {
+     "id": "none",
+     "text": "還沒結論"
+    },
+    {
+     "id": "he",
+     "text": "他也"
+    },
+    {
+     "id": "quiet",
+     "text": "還沒開口"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      4080,
+      3560,
+      1
+     ],
+     "dur": 14
+    },
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        3400,
+        3000
+       ],
+       [
+        3600,
+        3000
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-binders",
+      "lines": [
+       {
+        "t": "董事會的獨立調查",
+        "size": 40
+       }
+      ],
+      "x": 3840,
+      "y": 3160,
+      "w": 430,
+      "caption": true,
+      "rot": -4,
+      "at": "start+4",
+      "from": "left",
+      "until": "end",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": 3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "[還沒結論]",
+        "size": 74
+       }
+      ],
+      "x": 3840,
+      "y": 3500,
+      "w": 450,
+      "rot": -1.5,
+      "at": "none",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "none+8",
+        "mark": 1
+       }
+      ],
+      "until": "end",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "notice",
+      "lines": [
+       {
+        "t": "本人的公開說明",
+        "size": 40,
+        "color": "ink3"
+       },
+       {
+        "t": "（空白）",
+        "size": 50,
+        "mt": 96,
+        "color": "ink3"
+       }
+      ],
+      "x": 4330,
+      "y": 3170,
+      "w": 440,
+      "rot": 3,
+      "box": [
+       44,
+       50,
+       470,
+       250
+      ],
+      "at": "he-6",
+      "from": "right",
+      "until": "end",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-w",
+        "x": 280,
+        "y": 4,
+        "rot": -2,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "row",
+      "lines": [
+       {
+        "t": "[還沒開口]",
+        "size": 74
+       }
+      ],
+      "x": 4330,
+      "y": 3500,
+      "w": 450,
+      "rot": 1.5,
+      "at": "quiet",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "quiet+8",
+        "mark": 1
+       }
+      ],
+      "until": "end",
+      "z": 2
+     },
+     {
+      "asset": "circle",
+      "x": 4330,
+      "y": 3205,
+      "w": 380,
+      "rot": 3,
+      "z": 6,
+      "at": "quiet+6",
+      "from": "wipe",
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "stamp-red",
+      "lines": [
+       {
+        "t": "截至 2026/11/14",
+        "size": 42
+       },
+       {
+        "t": "尚未確定",
+        "size": 76,
+        "mt": 4
+       }
+      ],
+      "x": 4080,
+      "y": 3720,
+      "w": 400,
+      "rot": -4,
+      "onDark": true,
+      "at": "quiet+14",
+      "from": "slam",
+      "until": "end",
+      "z": 5
+     }
+    ]
+   },
+   "sources": [
+    "截至 2026/11/14 尚未確定"
+   ],
+   "beat": "payoff"
+  },
+  {
+   "id": "s07",
+   "narration": "是請辭還是被請走？下集看國會想問什麼。",
+   "tts": "是請辭還是被請走？下集看國會想問什麼。",
+   "subtitle": {
+    "zh": "是請辭還是被請走？\n下集看國會想問什麼",
+    "en": "Resigned, or pushed out? | Next: what Congress wants to ask."
+   },
+   "keywords": [
+    "請辭",
+    "被請走",
+    "國會"
+   ],
+   "cues": [
+    {
+     "id": "res",
+     "text": "請辭"
+    },
+    {
+     "id": "out",
+     "text": "被請走"
+    },
+    {
+     "id": "next",
+     "text": "下集"
+    },
+    {
+     "id": "cong",
+     "text": "國會"
+    },
+    {
+     "id": "ask",
+     "text": "想問什麼"
+    }
+   ],
+   "component": "PaperScene",
+   "props": {
+    "camera": {
+     "to": [
+      5260,
+      3560,
+      1
+     ],
+     "dur": 14
+    },
+    "punch": "out",
+    "items": [
+     {
+      "type": "path",
+      "pts": [
+       [
+        4580,
+        3000
+       ],
+       [
+        4780,
+        3000
+       ]
+      ],
+      "state": {
+       "grow": 0
+      },
+      "set": [
+       {
+        "at": "start+2",
+        "grow": 1
+       }
+      ],
+      "until": "end"
+     },
+     {
+      "type": "strip",
+      "paper": "strip-hook",
+      "lines": [
+       {
+        "t": "是[請辭]",
+        "size": 140,
+        "lh": 1.15
+       },
+       {
+        "t": "還是[被請走]？",
+        "size": 112,
+        "lh": 1.25
+       }
+      ],
+      "x": 5260,
+      "y": 3160,
+      "w": 900,
+      "rot": -1.5,
+      "pad": [
+       60,
+       20
+      ],
+      "at": "start+2",
+      "from": "slam",
+      "state": {
+       "mark": 0
+      },
+      "set": [
+       {
+        "at": "res",
+        "mark": 1
+       },
+       {
+        "at": "out",
+        "mark": 2
+       }
+      ],
+      "until": "end",
+      "z": 3,
+      "tape": [
+       {
+        "asset": "tape-y",
+        "x": 150,
+        "y": 8,
+        "rot": -5
+       },
+       {
+        "asset": "tape-r",
+        "x": 790,
+        "y": 0,
+        "rot": 4
+       }
+      ]
+     },
+     {
+      "type": "strip",
+      "paper": "label-s",
+      "lines": [
+       {
+        "t": "留言說你的看法",
+        "size": 50
+       }
+      ],
+      "x": 5040,
+      "y": 3480,
+      "w": 430,
+      "rot": -3,
+      "at": "out+10",
+      "from": "left",
+      "until": "end",
+      "z": 2
+     },
+     {
+      "type": "strip",
+      "paper": "tagk",
+      "lines": [
+       {
+        "t": "下一集",
+        "size": 60
+       }
+      ],
+      "x": 4970,
+      "y": 3640,
+      "w": 330,
+      "rot": -4,
+      "at": "next",
+      "from": "left",
+      "until": "end",
+      "z": 2
+     },
+     {
+      "asset": "arrow-red",
+      "x": 5050,
+      "y": 3760,
+      "w": 280,
+      "rot": -6,
+      "at": "next+8",
+      "from": "left",
+      "until": "end",
+      "z": 4
+     },
+     {
+      "type": "strip",
+      "paper": "polaroid-cabinet",
+      "lines": [
+       {
+        "t": "國會想問他什麼？",
+        "size": 40
+       }
+      ],
+      "x": 5490,
+      "y": 3645,
+      "w": 400,
+      "caption": true,
+      "rot": 4,
+      "at": "cong",
+      "from": "right",
+      "until": "end",
+      "z": 1,
+      "tape": [
+       {
+        "asset": "tape-k",
+        "x": 250,
+        "y": 6,
+        "rot": -3,
+        "w": 170
+       }
+      ]
+     },
+     {
+      "asset": "qmark",
+      "x": 5685,
+      "y": 3460,
+      "w": 120,
+      "rot": 10,
+      "z": 5,
+      "at": "ask",
+      "from": "slam",
+      "until": "end"
+     }
+    ]
+   },
+   "sources": [
+    "眾議院三個委員會致函（CNN、CBS 等報導）"
+   ],
+   "beat": "cta"
+  }
+ ]
+}

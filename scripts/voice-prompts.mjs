@@ -26,7 +26,7 @@ for (const t of targets) {
   if (issues.length) { console.error(`✖ ${slug} 的旁白設定檔沒過檢查：\n  ${issues.join("\n  ")}`); process.exit(1); }
   const paras = script.scenes.filter((s) => s.silent !== true && (s.tts ?? s.narration)).map((s) => (s.tts ?? s.narration).trim());
   const model = /2\.5-flash/.test(script.voice.model ?? "") ? "Gemini 2.5 Flash TTS" : script.voice.model;
-  const how = profile.delivery === "warm-pro" ? "親和專業" : profile.delivery === "chat" ? "聊天" : "預設";
+  const how = profile.delivery === "warm-pro" ? "親和專業" : profile.delivery === "chat" ? "聊天" : profile.delivery === "probe" ? "查證揭露" : "預設";
   firstPrompt ??= takePrompt(profile, paras.join("\n\n"));
   L.push(`## ${slug}（${script.title}）`, "", `用法：Google AI Studio 語音生成頁面，模型選 ${model}、音色選 **${script.voice.voiceName}**，把下面整段貼進去。說話方式：${how}${profile.delivery ? `（\`delivery: "${profile.delivery}"\`）` : ""}；念稿 ${paras.length} 段。`, "", "```", takePrompt(profile, paras.join("\n\n")), "```", "");
   if (flag === "short") {

@@ -1,5 +1,5 @@
 {
-  "_說明": "四個頻道的旁白預設檔（docs/voice-profiles.md）。script.json 的 voice.profile 可以寫預設檔名字（tech／stock／love／ai）、寫 { preset, …要蓋掉的欄位 }，或整份自己寫。accent 一律是「台灣華語」，口音句固定在 scripts/voice-profile.mjs 的 ACCENT_TW，不在這裡改。語氣寫法依 docs/voice-natural.md：寫「在哪裡、對哪一個朋友講」的情境，不寫清楚、專業、沉穩、明快這類會導向朗讀或簡報的形容詞。新片建議再加 delivery 與 scene（見 _chat）。 AI 教學頻道（ai）2026/11/13 起改成「親和專業」（delivery: \"warm-pro\"，使用者聽完完整片的意見：旁白不要太輕浮）；原本的聊天版留在 _chat.ai。",
+  "_說明": "四個頻道的旁白預設檔（docs/voice-profiles.md），另有哩股哩股頻道的 liguligu（2026/11/14：男聲、查證揭露版 delivery: \"probe\"，規則在 docs/channels/liguligu.md）。script.json 的 voice.profile 可以寫預設檔名字（tech／stock／love／ai）、寫 { preset, …要蓋掉的欄位 }，或整份自己寫。accent 一律是「台灣華語」，口音句固定在 scripts/voice-profile.mjs 的 ACCENT_TW，不在這裡改。語氣寫法依 docs/voice-natural.md：寫「在哪裡、對哪一個朋友講」的情境，不寫清楚、專業、沉穩、明快這類會導向朗讀或簡報的形容詞。新片建議再加 delivery 與 scene（見 _chat）。 AI 教學頻道（ai）2026/11/13 起改成「親和專業」（delivery: \"warm-pro\"，使用者聽完完整片的意見：旁白不要太輕浮）；原本的聊天版留在 _chat.ai。",
   "tech": {
     "persona": "三十出頭、在台灣科技業上班的工程師，下班吃飯時把一件事講給不是本行的朋友聽",
     "gender": "male",
@@ -119,6 +119,40 @@
     ],
     "delivery": "warm-pro",
     "scene": "辦公室的茶水間旁邊，兩個人並肩看同一台筆電，她一邊操作一邊跟剛來的同事解釋，旁邊沒有別人在聽"
+  },
+  "liguligu": {
+    "persona": "跑國際財經線多年的台灣男記者，習慣把文件一份一份對過，下班後把查到的東西講給信得過的老朋友聽",
+    "gender": "male",
+    "accent": "台灣華語",
+    "pace": [
+      4.4,
+      4.9
+    ],
+    "tone": "像把查到的資料攤在桌上，一件一件指給朋友看；聲音低、不急，有把握的事直接講，沒把握的事照實說還不知道",
+    "arc": {
+      "起": "直接講出那件不對勁的事，語氣平、聲音低，像壓低聲音跟對方說",
+      "承": "照順序講查到的事，一件一件來，不加重語氣",
+      "轉": "講到外界的懷疑放慢一點，像自己也在想；接著講查證結果，乾脆收住",
+      "合": "回到平常的語氣，問對方一句，再順口提下次要查什麼"
+    },
+    "englishTerms": {},
+    "avoid": [
+      "電視主播的播報腔",
+      "陰謀論節目的誇張語氣",
+      "懸疑片預告的口氣",
+      "購物台叫賣",
+      "政論節目的激動口氣",
+      "朗讀文章的口氣"
+    ],
+    "voices": [
+      "Charon",
+      "Orus",
+      "Algenib",
+      "Rasalgethi",
+      "Alnilam"
+    ],
+    "delivery": "probe",
+    "scene": "下班後的報社資料室，桌上攤著幾份文件，他坐在老朋友對面，一份一份指給對方看，旁邊沒有別人在聽"
   },
   "_chat": {
     "_說明": "選填的「聊天版」寫法（docs/voice-natural.md）。不放進上面四個預設檔，是因為已配好音的片用到預設檔，多一個欄位會讓提示和快取跟著變。新片這樣寫：\"profile\": { \"preset\": \"ai\", \"delivery\": \"chat\", \"scene\": \"…\" }。 ai 這一格另外留著 2026/11/13 以前的聊天版 persona／tone／arc／avoid（想要輕鬆聊天的 AI 片：\"profile\": { \"preset\": \"ai\", …_chat.ai 的欄位 }）。",

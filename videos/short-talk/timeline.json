@@ -2,132 +2,249 @@
  "version": 2,
  "slug": "short-talk",
  "fps": 30,
- "totalFrames": 418,
- "totalSec": 13.93,
- "gapSec": 0.3,
+ "totalFrames": 555,
+ "totalSec": 18.5,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 3.265,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/short-talk/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 5.39,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 111,
+   "durationFrames": 184,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 103,
-   "stillFrame": 101,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 161,
+   "stillFrame": 174,
    "subtitleWindow": [
     0,
-    108
+    181
    ],
    "sourceWindow": [
     0,
-    106
+    179
    ],
    "lines": [
     {
      "text": "欸，三十出頭的人，",
      "start": 0,
      "chars": [
-      4,
-      4,
-      9,
-      15,
-      21,
-      26,
+      2,
+      2,
       32,
-      38,
-      38
+      40,
+      45,
+      51,
+      56,
+      61,
+      61
      ]
     },
     {
      "text": "十個有六個還沒結婚。",
-     "start": 48,
+     "start": 88,
      "chars": [
-      50,
-      56,
-      62,
-      67,
-      73,
-      79,
-      84,
       90,
-      96,
-      96
+      98,
+      108,
+      113,
+      120,
+      129,
+      134,
+      138,
+      145,
+      145
      ]
     }
    ],
    "keywords": [
     {
      "text": "十個有六個",
-     "start": 50
+     "start": 90
     }
    ],
    "cues": [
     {
      "id": "thirty",
      "text": "三十出頭",
-     "frame": 11
+     "frame": 34,
+     "early": 0
     },
     {
      "id": "ten",
      "text": "十個",
-     "frame": 52
+     "frame": 91,
+     "early": 0
     },
     {
      "id": "six",
      "text": "六個",
-     "frame": 69
+     "frame": 115,
+     "early": 0
     },
     {
      "id": "married",
      "text": "結婚",
-     "frame": 92
+     "frame": 140,
+     "early": 0
     }
    ],
+   "hash": "1fdd8a164838-00577a4b34",
    "sub": "欸，三十出頭的人，\n十個有六個還沒結婚。",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.708,
+    "minScore": 0.006,
+    "onsetMedianMs": 120,
+    "onsetMaxMs": 170,
+    "onsetCheck": [
+     {
+      "onset": 1.05,
+      "start": 1.12,
+      "ch": "三",
+      "errMs": 70
+     },
+     {
+      "onset": 2.87,
+      "start": 3.04,
+      "ch": "十",
+      "errMs": 170
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "欸",
+     "start": 0.12,
+     "end": 0.38,
+     "score": 0.006
+    },
+    {
+     "text": "三",
+     "start": 1.12,
+     "end": 1.3,
+     "score": 0.013
+    },
+    {
+     "text": "十",
+     "start": 1.38,
+     "end": 1.48,
+     "score": 0.963
+    },
+    {
+     "text": "出",
+     "start": 1.54,
+     "end": 1.66,
+     "score": 0.991
+    },
+    {
+     "text": "頭",
+     "start": 1.74,
+     "end": 1.9,
+     "score": 0.317
+    },
+    {
+     "text": "的",
+     "start": 1.92,
+     "end": 2,
+     "score": 0.996
+    },
+    {
+     "text": "人",
+     "start": 2.08,
+     "end": 2.38,
+     "score": 0.999
+    },
+    {
+     "text": "十",
+     "start": 3.04,
+     "end": 3.18,
+     "score": 0.312
+    },
+    {
+     "text": "個",
+     "start": 3.3,
+     "end": 3.4,
+     "score": 0.985
+    },
+    {
+     "text": "有",
+     "start": 3.66,
+     "end": 3.78,
+     "score": 0.996
+    },
+    {
+     "text": "六",
+     "start": 3.82,
+     "end": 4.02,
+     "score": 0.517
+    },
+    {
+     "text": "個",
+     "start": 4.06,
+     "end": 4.16,
+     "score": 0.977
+    },
+    {
+     "text": "還",
+     "start": 4.34,
+     "end": 4.46,
+     "score": 0.996
+    },
+    {
+     "text": "沒",
+     "start": 4.5,
+     "end": 4.62,
+     "score": 0.334
+    },
+    {
+     "text": "結",
+     "start": 4.66,
+     "end": 4.78,
+     "score": 0.983
+    },
+    {
+     "text": "婚",
+     "start": 4.88,
+     "end": 5.24,
+     "score": 0.95
+    }
+   ],
    "charTimes": [
-    0,
-    0.19,
-    0.38,
-    0.57,
-    0.759,
-    0.949,
-    1.139,
-    1.557,
-    1.747,
-    1.936,
-    2.126,
-    2.316,
-    2.506,
-    2.696,
-    2.886,
-    3.075
+    0.12,
+    1.12,
+    1.38,
+    1.54,
+    1.74,
+    1.92,
+    2.08,
+    3.04,
+    3.3,
+    3.66,
+    3.82,
+    4.06,
+    4.34,
+    4.5,
+    4.66,
+    4.88
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 112,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 101,
-   "durationFrames": 130,
+   "audio": "audio/short-talk/02-s02.wav",
+   "audioFrame": 183,
+   "audioSec": 3.9,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 174,
+   "durationFrames": 149,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -141,117 +258,246 @@
      8
     ]
    },
-   "voiceStartFrame": 111,
-   "voiceEndFrame": 223,
-   "stillFrame": 221,
+   "voiceStartFrame": 184,
+   "voiceEndFrame": 299,
+   "stillFrame": 313,
    "subtitleWindow": [
-    108,
-    228
+    181,
+    320
    ],
    "sourceWindow": [
-    106,
-    226
+    179,
+    318
    ],
    "lines": [
     {
      "text": "過年被問的那一題，",
-     "start": 108,
+     "start": 181,
      "chars": [
-      111,
-      116,
-      122,
-      128,
-      133,
-      139,
-      145,
-      151,
-      151
+      183,
+      188,
+      195,
+      200,
+      205,
+      209,
+      213,
+      217,
+      217
      ]
     },
     {
      "text": "很多人也還沒有答案啊。",
-     "start": 161,
+     "start": 239,
      "chars": [
-      163,
-      169,
-      175,
-      181,
-      186,
-      192,
-      198,
-      203,
-      209,
-      215,
-      215
+      242,
+      248,
+      254,
+      262,
+      266,
+      270,
+      272,
+      276,
+      284,
+      290,
+      290
      ]
     }
    ],
    "keywords": [
     {
      "text": "那一題",
-     "start": 139
+     "start": 209
     },
     {
      "text": "答案",
-     "start": 203
+     "start": 276
     }
    ],
    "cues": [
     {
      "id": "newyear",
      "text": "過年",
-     "frame": 112
+     "frame": 184,
+     "early": 0
     },
     {
      "id": "question",
      "text": "那一題",
-     "frame": 141
+     "frame": 211,
+     "early": 0
     },
     {
      "id": "many",
      "text": "很多人",
-     "frame": 165
+     "frame": 243,
+     "early": 0
     },
     {
      "id": "answer",
      "text": "答案",
-     "frame": 205
+     "frame": 277,
+     "early": 0
     }
    ],
+   "hash": "89366251d6ba-00577a4b34",
    "sub": "過年被問的那一題，\n很多人也還沒有答案啊。",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.828,
+    "minScore": 0.107,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 2,
+      "start": 2,
+      "ch": "很",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "過",
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.976
+    },
+    {
+     "text": "年",
+     "start": 0.22,
+     "end": 0.4,
+     "score": 0.964
+    },
+    {
+     "text": "被",
+     "start": 0.44,
+     "end": 0.56,
+     "score": 0.998
+    },
+    {
+     "text": "問",
+     "start": 0.62,
+     "end": 0.74,
+     "score": 0.802
+    },
+    {
+     "text": "的",
+     "start": 0.78,
+     "end": 0.84,
+     "score": 0.533
+    },
+    {
+     "text": "那",
+     "start": 0.92,
+     "end": 1,
+     "score": 0.984
+    },
+    {
+     "text": "一",
+     "start": 1.06,
+     "end": 1.1,
+     "score": 0.507
+    },
+    {
+     "text": "題",
+     "start": 1.18,
+     "end": 1.34,
+     "score": 0.997
+    },
+    {
+     "text": "很",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.995
+    },
+    {
+     "text": "多",
+     "start": 2.2,
+     "end": 2.32,
+     "score": 0.929
+    },
+    {
+     "text": "人",
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.999
+    },
+    {
+     "text": "也",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.973
+    },
+    {
+     "text": "還",
+     "start": 2.8,
+     "end": 2.92,
+     "score": 0.945
+    },
+    {
+     "text": "沒",
+     "start": 2.94,
+     "end": 3,
+     "score": 0.664
+    },
+    {
+     "text": "有",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.107
+    },
+    {
+     "text": "答",
+     "start": 3.14,
+     "end": 3.24,
+     "score": 0.997
+    },
+    {
+     "text": "案",
+     "start": 3.4,
+     "end": 3.56,
+     "score": 0.559
+    },
+    {
+     "text": "啊",
+     "start": 3.62,
+     "end": 3.64,
+     "score": 0.976
+    }
+   ],
    "charTimes": [
-    0,
-    0.191,
-    0.383,
-    0.574,
-    0.765,
-    0.957,
-    1.148,
-    1.339,
-    1.76,
-    1.952,
-    2.143,
-    2.334,
-    2.526,
-    2.717,
-    2.908,
-    3.099,
-    3.291,
-    3.482
+    0.04,
+    0.22,
+    0.44,
+    0.62,
+    0.78,
+    0.92,
+    1.06,
+    1.18,
+    2,
+    2.2,
+    2.42,
+    2.68,
+    2.8,
+    2.94,
+    3,
+    3.14,
+    3.4,
+    3.62
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 231,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 221,
-   "durationFrames": 123,
+   "audio": "audio/short-talk/03-s03.wav",
+   "audioFrame": 322,
+   "audioSec": 4.15,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 313,
+   "durationFrames": 156,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -265,115 +511,244 @@
      8
     ]
    },
-   "voiceStartFrame": 231,
-   "voiceEndFrame": 336,
-   "stillFrame": 334,
+   "voiceStartFrame": 323,
+   "voiceEndFrame": 446,
+   "stillFrame": 459,
    "subtitleWindow": [
-    228,
-    341
+    320,
+    466
    ],
    "sourceWindow": [
-    226,
-    339
+    318,
+    464
    ],
    "lines": [
     {
      "text": "不過樓下麵店的阿姨，",
-     "start": 228,
+     "start": 320,
      "chars": [
-      230,
-      235,
-      241,
-      247,
-      252,
-      258,
-      264,
-      270,
-      275,
-      275
+      321,
+      325,
+      348,
+      353,
+      358,
+      364,
+      370,
+      375,
+      379,
+      379
      ]
     },
     {
      "text": "還是記得我要加辣。",
-     "start": 286,
+     "start": 397,
      "chars": [
-      288,
-      294,
-      299,
-      305,
-      311,
-      316,
-      322,
-      328,
-      328
+      399,
+      404,
+      409,
+      413,
+      418,
+      421,
+      426,
+      433,
+      433
      ]
     }
    ],
    "keywords": [
     {
      "text": "阿姨",
-     "start": 270
+     "start": 375
     },
     {
      "text": "加辣",
-     "start": 322
+     "start": 426
     }
    ],
    "cues": [
     {
      "id": "still",
      "text": "不過",
-     "frame": 231
+     "frame": 323,
+     "early": 0
     },
     {
      "id": "aunt",
      "text": "阿姨",
-     "frame": 271
+     "frame": 376,
+     "early": 0
     },
     {
      "id": "remember",
      "text": "記得",
-     "frame": 301
+     "frame": 410,
+     "early": 0
     },
     {
      "id": "spicy",
      "text": "加辣",
-     "frame": 324
+     "frame": 428,
+     "early": 0
     }
    ],
+   "hash": "4922bb8d5bd0-00577a4b34",
    "sub": "不過樓下麵店的阿姨，\n還是記得我要加辣。",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.921,
+    "minScore": 0.48,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 0.9,
+      "start": 0.9,
+      "ch": "樓",
+      "errMs": 0
+     },
+     {
+      "onset": 2.62,
+      "start": 2.62,
+      "ch": "還",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.971
+    },
+    {
+     "text": "樓",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.974
+    },
+    {
+     "text": "下",
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "麵",
+     "start": 1.26,
+     "end": 1.42,
+     "score": 0.905
+    },
+    {
+     "text": "店",
+     "start": 1.46,
+     "end": 1.62,
+     "score": 0.992
+    },
+    {
+     "text": "的",
+     "start": 1.64,
+     "end": 1.7,
+     "score": 0.96
+    },
+    {
+     "text": "阿",
+     "start": 1.8,
+     "end": 1.82,
+     "score": 0.975
+    },
+    {
+     "text": "姨",
+     "start": 1.96,
+     "end": 2.08,
+     "score": 0.48
+    },
+    {
+     "text": "還",
+     "start": 2.62,
+     "end": 2.74,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 2.78,
+     "end": 2.88,
+     "score": 0.902
+    },
+    {
+     "text": "記",
+     "start": 2.94,
+     "end": 3.02,
+     "score": 0.997
+    },
+    {
+     "text": "得",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.967
+    },
+    {
+     "text": "我",
+     "start": 3.24,
+     "end": 3.3,
+     "score": 0.67
+    },
+    {
+     "text": "要",
+     "start": 3.36,
+     "end": 3.5,
+     "score": 0.94
+    },
+    {
+     "text": "加",
+     "start": 3.52,
+     "end": 3.64,
+     "score": 0.942
+    },
+    {
+     "text": "辣",
+     "start": 3.76,
+     "end": 3.86,
+     "score": 0.989
+    }
+   ],
    "charTimes": [
-    0,
-    0.191,
-    0.381,
-    0.572,
-    0.763,
-    0.953,
-    1.144,
-    1.334,
-    1.525,
-    1.944,
-    2.135,
-    2.326,
-    2.516,
-    2.707,
-    2.898,
-    3.088,
-    3.279
+    0.02,
+    0.14,
+    0.9,
+    1.08,
+    1.26,
+    1.46,
+    1.64,
+    1.8,
+    1.96,
+    2.62,
+    2.78,
+    2.94,
+    3.08,
+    3.24,
+    3.36,
+    3.52,
+    3.76
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 344,
-   "audioSec": 1.837,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 334,
-   "durationFrames": 84,
+   "audio": "audio/short-talk/04-s04.wav",
+   "audioFrame": 468,
+   "audioSec": 2.32,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 459,
+   "durationFrames": 96,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -387,75 +762,152 @@
      8
     ]
    },
-   "voiceStartFrame": 344,
-   "voiceEndFrame": 400,
-   "stillFrame": 406,
+   "voiceStartFrame": 469,
+   "voiceEndFrame": 537,
+   "stillFrame": 543,
    "subtitleWindow": [
-    341,
-    418
+    466,
+    555
    ],
    "sourceWindow": [
-    339,
-    418
+    464,
+    555
    ],
    "lines": [
     {
      "text": "明天，",
-     "start": 341,
+     "start": 466,
      "chars": [
-      343,
-      349,
-      349
+      467,
+      473,
+      473
      ]
     },
     {
      "text": "再講一個數字吧。",
-     "start": 353,
+     "start": 495,
      "chars": [
-      355,
-      361,
-      367,
-      373,
-      379,
-      385,
-      391,
-      391
+      497,
+      503,
+      507,
+      510,
+      516,
+      521,
+      527,
+      527
      ]
     }
    ],
    "keywords": [
     {
      "text": "一個數字",
-     "start": 367
+     "start": 507
     }
    ],
    "cues": [
     {
      "id": "tomorrow",
      "text": "明天",
-     "frame": 344
+     "frame": 469
     },
     {
      "id": "number",
      "text": "數字",
-     "frame": 381
+     "frame": 517
     }
    ],
+   "hash": "7a83be1f0013-00577a4b34",
    "sub": "明天，再講一個數字吧。",
-   "provider": "estimate",
-   "syllables": 9,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.873,
+    "minScore": 0.001,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.05,
+      "start": 1.02,
+      "ch": "再",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "明",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.926
+    },
+    {
+     "text": "天",
+     "start": 0.2,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "再",
+     "start": 1.02,
+     "end": 1.16,
+     "score": 0.999
+    },
+    {
+     "text": "講",
+     "start": 1.2,
+     "end": 1.36,
+     "score": 0.963
+    },
+    {
+     "text": "一",
+     "start": 1.36,
+     "end": 1.4,
+     "score": 0.001
+    },
+    {
+     "text": "個",
+     "start": 1.46,
+     "end": 1.54,
+     "score": 0.998
+    },
+    {
+     "text": "數",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.977
+    },
+    {
+     "text": "字",
+     "start": 1.82,
+     "end": 1.94,
+     "score": 0.999
+    },
+    {
+     "text": "吧",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.996
+    }
+   ],
    "charTimes": [
-    0,
-    0.204,
-    0.408,
-    0.612,
-    0.816,
+    0.02,
+    0.2,
     1.02,
-    1.224,
-    1.429,
-    1.633
+    1.2,
+    1.36,
+    1.46,
+    1.64,
+    1.82,
+    2.02
    ]
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/short-talk/voice.wav",
+  "lufsIn": -19.56,
+  "lufs": -16,
+  "sec": 18.5
+ }
 }

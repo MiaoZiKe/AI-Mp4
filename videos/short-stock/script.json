@@ -106,7 +106,7 @@
     "head": "10 月 CPI 月增",
     "x": 760,
     "y": 1100,
-    "w": 420,
+    "w": 480,
     "layer": "screen",
     "rot": 3,
     "paper": "card-white"
@@ -117,7 +117,7 @@
     "lines": [
      {
       "t": "台幣一度逼近 33",
-      "size": 34
+      "size": 40
      }
     ],
     "caption": true,
@@ -234,20 +234,20 @@
       "lines": [
        {
         "t": "比市場預期高",
-        "size": 40,
+        "size": 58,
         "color": "ink2"
        }
       ],
-      "x": 770,
+      "x": 760,
       "y": 1040,
-      "w": 420,
+      "w": 480,
       "layer": "screen",
       "rot": 3,
       "paper": "card-white",
       "tape": [
        {
         "asset": "tape-m",
-        "x": 300,
+        "x": 340,
         "y": 4,
         "rot": 5,
         "w": 150
@@ -271,7 +271,7 @@
       "lines": [
        {
         "t": "菜價、房租都算",
-        "size": 34
+        "size": 42
        }
       ],
       "caption": true,
@@ -319,6 +319,10 @@
     {
      "id": "dec",
      "text": "十二月"
+    },
+    {
+     "id": "maybe",
+     "text": "可能"
     },
     {
      "id": "hike",
@@ -394,9 +398,20 @@
       "layer": "screen",
       "rot": 2,
       "onDark": true,
-      "at": "hike",
+      "at": "maybe",
       "from": "slam",
-      "to": "right"
+      "to": "right",
+      "until": "s03.usd",
+      "moves": [
+       {
+        "at": "hike",
+        "to": {
+         "rot": -1,
+         "y": 1028
+        },
+        "dur": 4
+       }
+      ]
      }
     ]
    },
@@ -424,6 +439,10 @@
      "text": "美元變強"
     },
     {
+     "id": "ntd",
+     "text": "台幣"
+    },
+    {
      "id": "twd",
      "text": "33 元"
     }
@@ -437,7 +456,7 @@
       "lines": [
        {
         "t": "美元",
-        "size": 36
+        "size": 42
        }
       ],
       "caption": true,
@@ -481,33 +500,44 @@
       "lines": [
        {
         "t": "11/12 盤中逼近",
-        "size": 40,
+        "size": 46,
         "color": "ink2"
        },
        {
         "t": "隔天收 32.838",
-        "size": 34,
+        "size": 42,
         "color": "ink3"
        }
       ],
-      "x": 700,
+      "x": 680,
       "y": 1030,
-      "w": 460,
+      "w": 600,
       "layer": "screen",
       "rot": 2,
       "paper": "card-white",
-      "at": "twd-4",
+      "at": "ntd-4",
       "from": "slam",
       "tape": [
        {
         "asset": "tape-r",
-        "x": 320,
+        "x": 420,
         "y": 4,
         "rot": 5,
         "w": 150
        }
       ],
-      "to": "right"
+      "to": "right",
+      "fromValue": 33,
+      "moves": [
+       {
+        "at": "twd",
+        "to": {
+         "rot": -1,
+         "y": 1016
+        },
+        "dur": 4
+       }
+      ]
      }
     ]
    },
@@ -745,7 +775,7 @@
        }
       ],
       "x": 540,
-      "y": 500,
+      "y": 590,
       "w": 900,
       "layer": "screen",
       "rot": -1.2,
@@ -779,7 +809,7 @@
        {
         "at": "bond",
         "to": {
-         "y": 700,
+         "y": 720,
          "rot": 1
         },
         "dur": 8

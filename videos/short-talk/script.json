@@ -1,12 +1,12 @@
 {
   "slug": "short-talk",
-  "title": "三十出頭，十個有六個還沒結婚｜談晴說礙・夜窗",
+  "title": "三十出頭，十個有六個還沒結婚｜談晴說礙",
   "asOf": "2026/11/14",
   "styleVersion": 3,
-  "stage": "talk",
+  "stage": "tanqing",
   "channel": {
     "name": "談晴說礙",
-    "tag": "夜窗",
+    "tag": "數字裡的日子",
     "slogan": "說這一代的難，也說還在的光"
   },
   "voice": {
@@ -19,7 +19,10 @@
       "delivery": "chat",
       "persona": "三十出頭的台灣女生，自己也還沒結婚，晚上把今天看到的一個數字講給同年紀的好朋友聽",
       "scene": "晚上十點多，在租來的小房間，燈只開一盞，窗外對面大樓還有幾格窗亮著；她靠在窗邊跟好朋友講電話，旁邊沒有別人在聽",
-      "pace": [4.6, 5],
+      "pace": [
+        4.6,
+        5
+      ],
       "tone": "小聲跟好朋友講話的口氣，像在講自己也在裡面的事；有一點累，但不嘆氣、不抱怨，也不安慰人、不說教",
       "arc": {
         "起": "像剛想到一件事，隨口提一句，講到數字輕輕停一下",
@@ -41,13 +44,11 @@
     "bgm": true,
     "sfx": false
   },
-  "talk": {
-    "status": "前製（2026/11/14）：稿子、查證、分鏡、元件骨架完成；還沒配音、還沒渲染",
-    "photos": "原圖在 out/short-talk/assets-raw/photos/，渲染前縮成直式放 public/talk/short-talk/<name>.jpg；來源記在 videos/short-talk/assets.md",
-    "disclaimer": "照片為情境示意"
-  },
   "cover": {
-    "title": ["三十出頭", "十個有六個還沒結婚"],
+    "title": [
+      "三十出頭，",
+      "十個有六個還沒結婚"
+    ],
     "sub": "說這一代的難，也說還在的光"
   },
   "scenes": [
@@ -60,30 +61,53 @@
         "zh": "欸，三十出頭的人，\n十個有六個還沒結婚。",
         "en": "Hey, people in their early thirties | six in ten aren't married."
       },
-      "keywords": ["十個有六個"],
-      "cues": [
-        { "id": "thirty", "text": "三十出頭" },
-        { "id": "ten", "text": "十個" },
-        { "id": "six", "text": "六個" },
-        { "id": "married", "text": "結婚" }
+      "keywords": [
+        "十個有六個"
       ],
-      "component": "TalkScene",
-      "props": {
-        "photo": {
-          "name": "city-night",
-          "push": "in",
-          "focus": [0.42, 0.6],
-          "need": "夜裡的公寓大樓，一格一格亮著的窗；高處俯看，沒有人、招牌字、車牌"
+      "cues": [
+        {
+          "id": "thirty",
+          "text": "三十出頭"
         },
-        "grade": "night",
-        "words": [
-          { "kind": "number", "text": "62%", "at": "start", "claim": "F1" },
-          { "kind": "line", "text": "30–34 歲・還沒結婚", "at": "start" },
-          { "kind": "windows", "count": 10, "lit": 6, "at": "ten-4", "litAt": "six-6" }
-        ]
+        {
+          "id": "ten",
+          "text": "十個"
+        },
+        {
+          "id": "six",
+          "text": "六個"
+        },
+        {
+          "id": "married",
+          "text": "結婚"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "三十出頭，",
+          "十個有六個還沒結婚"
+        ],
+        "figure": {
+          "type": "people",
+          "count": 10,
+          "mark": 6,
+          "at": "start+8",
+          "markAt": "six-4",
+          "labelAt": "married-4",
+          "label": "十個裡的六個",
+          "number": {
+            "text": "62%",
+            "claim": "F1",
+            "note": "30–34 歲\n還沒結婚"
+          },
+          "stagger": 8
+        }
       },
       "sources": [
-        "內政部戶政司 30–34 歲未婚比例（2025）・華視報導轉述，原始表待核對"
+        "資料：內政部戶政司 30–34 歲未婚比例（2025）",
+        "華視報導轉述，原始表待核對"
       ]
     },
     {
@@ -95,28 +119,46 @@
         "zh": "過年被問的那一題，\n很多人也還沒有答案啊。",
         "en": "That question at New Year's dinner | a lot of us still don't have an answer."
       },
-      "keywords": ["那一題", "答案"],
-      "cues": [
-        { "id": "newyear", "text": "過年" },
-        { "id": "question", "text": "那一題" },
-        { "id": "many", "text": "很多人" },
-        { "id": "answer", "text": "答案" }
+      "keywords": [
+        "那一題",
+        "答案"
       ],
-      "component": "TalkScene",
-      "props": {
-        "photo": {
-          "name": "rain-window",
-          "push": "in",
-          "focus": [0.5, 0.5],
-          "need": "下雨的窗，玻璃上的水珠，窗外模糊；沒有人、沒有字"
+      "cues": [
+        {
+          "id": "newyear",
+          "text": "過年"
         },
-        "words": [
-          { "kind": "line", "text": "過年被問的那一題", "at": "question-4" },
-          { "kind": "line", "text": "還沒有答案", "at": "answer-4" }
-        ]
+        {
+          "id": "question",
+          "text": "那一題"
+        },
+        {
+          "id": "many",
+          "text": "很多人"
+        },
+        {
+          "id": "answer",
+          "text": "答案"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "過年被問的那一題"
+        ],
+        "figure": {
+          "type": "form",
+          "at": "start+14",
+          "askAt": "question-4",
+          "ask": "什麼時候結婚？",
+          "blankAt": "many-4",
+          "frameAt": "answer-4",
+          "side": "還沒有\n答案"
+        }
       },
       "sources": [
-        "觀察描寫，非統計・照片為情境示意"
+        "觀察描寫，非統計"
       ]
     },
     {
@@ -128,31 +170,47 @@
         "zh": "不過樓下麵店的阿姨，\n還是記得我要加辣。",
         "en": "Still, the lady at the noodle shop downstairs | remembers I like it spicy."
       },
-      "keywords": ["阿姨", "加辣"],
-      "cues": [
-        { "id": "still", "text": "不過" },
-        { "id": "aunt", "text": "阿姨" },
-        { "id": "remember", "text": "記得" },
-        { "id": "spicy", "text": "加辣" }
+      "keywords": [
+        "阿姨",
+        "加辣"
       ],
-      "component": "TalkScene",
-      "props": {
-        "photo": {
-          "name": "noodles",
-          "at": "still-4",
-          "push": "in",
-          "focus": [0.72, 0.5],
-          "need": "木桌上一碗湯麵，看得到辣椒；沒有人、沒有店名與品牌字"
+      "cues": [
+        {
+          "id": "still",
+          "text": "不過"
         },
-        "grade": "warm",
-        "gradeAt": "still-4",
-        "words": [
-          { "kind": "sunny", "text": "今天的一小段晴", "at": "aunt-4", "until": "exit-10" },
-          { "kind": "sunny", "text": "阿姨記得我要加辣", "at": "spicy-4", "until": "exit-10" }
-        ]
+        {
+          "id": "aunt",
+          "text": "阿姨"
+        },
+        {
+          "id": "remember",
+          "text": "記得"
+        },
+        {
+          "id": "spicy",
+          "text": "加辣"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "qing",
+        "title": [
+          "今天的一小段晴"
+        ],
+        "figure": {
+          "type": "bowl",
+          "at": "start+14",
+          "steamAt": "aunt-4",
+          "chiliAt": "spicy-4"
+        },
+        "note": {
+          "text": "阿姨還是記得我要加辣",
+          "at": "spicy-4"
+        }
       },
       "sources": [
-        "觀察描寫，非統計・照片為情境示意"
+        "觀察描寫，非統計"
       ]
     },
     {
@@ -164,28 +222,41 @@
         "zh": "明天，再講一個數字吧。",
         "en": "Tomorrow, I'll tell you another number."
       },
-      "keywords": ["一個數字"],
-      "cues": [
-        { "id": "tomorrow", "text": "明天" },
-        { "id": "number", "text": "數字" }
+      "keywords": [
+        "一個數字"
       ],
-      "component": "TalkScene",
-      "props": {
-        "photo": {
-          "name": "city-night",
-          "push": "out",
-          "focus": [0.42, 0.6],
-          "need": "回到第一鏡的窗（同一張照片），這次調成暖色"
+      "cues": [
+        {
+          "id": "tomorrow",
+          "text": "明天"
         },
-        "grade": "warm",
-        "words": [
-          { "kind": "line", "text": "明天・下一個數字", "at": "tomorrow-4" },
-          { "kind": "ask", "text": "你今天的一小段晴\n是什麼？", "at": "tomorrow+20" }
-        ]
+        {
+          "id": "number",
+          "text": "數字"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ask",
+        "title": [
+          "你今天的一小段晴",
+          "是什麼？"
+        ],
+        "figure": {
+          "type": "mark",
+          "at": "start+14",
+          "sunAt": "tomorrow+12",
+          "lineAt": "number-4",
+          "line": "明天・下一個數字"
+        }
       },
       "sources": [
-        "照片為情境示意"
+        "資料：內政部戶政司（華視報導轉述）"
       ]
     }
-  ]
+  ],
+  "tanqing": {
+    "ref": "docs/channels/tanqing-ref/（頻道 11/12 發的三張輪播圖）",
+    "fonts": "node scripts/tanqing/fetch-fonts.mjs short-talk（Noto Serif TC 子集，改了畫面上的字要重跑）"
+  }
 }

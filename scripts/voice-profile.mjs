@@ -30,20 +30,23 @@ export function resolveProfile(voice) {
 }
 
 /** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
- * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間） */
-export const DELIVERIES = ["chat", "warm-pro"];
+ * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間）；
+ * "probe"＝查證揭露版（哩股哩股：把查到的事一件一件攤給信得過的人聽；講到疑點放慢、講到查證結果乾脆收住，比 warm-pro 低、穩） */
+export const DELIVERIES = ["chat", "warm-pro", "probe"];
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
 export function buildDirection(profile) {
   const L = ["以下是給配音員的說明，不要念出來，只念 TRANSCRIPT 之後的內容。", "", "# AUDIO PROFILE", `${one(profile.persona)}。`, ...(profile.scene ? ["", "# SCENE", `${one(profile.scene)}。`] : []), "", "# PERFORMANCE", `Accent: ${ACCENT_TW}`, `Tone: ${one(profile.tone)}。`];
-  const chat = profile.delivery === "chat", warm = profile.delivery === "warm-pro";
+  const chat = profile.delivery === "chat", warm = profile.delivery === "warm-pro", probe = profile.delivery === "probe";
   if (chat && Array.isArray(profile.pace)) L.push(`Pacing: 跟朋友講話的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。想到哪講到哪：有的地方一口氣帶過去，有的地方想一下才接下去；停頓有長有短，逗號不一定要停。`);
   else if (warm && Array.isArray(profile.pace)) L.push(`Pacing: 當面跟同事解釋事情的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。一句一句講完整，步驟和步驟之間自然停一下，講到數字稍微慢一點；停頓有長有短，不用每一句都一樣。`);
+  else if (probe && Array.isArray(profile.pace)) L.push(`Pacing: 私下把查到的事講給對方聽的速度，平均大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字。一件一件講，講到還有疑問的地方放慢一點，講到查證的結果就乾脆講完；句號停得比逗號久，停頓有長有短。`);
   else if (Array.isArray(profile.pace)) L.push(`Pacing: 像平常講話的速度，大約每秒 ${profile.pace[0]} 到 ${profile.pace[1]} 個字；有快有慢，重點前面留一口氣，句子講完才換氣。`);
   const arc = ARC_KEYS.filter((k) => profile.arc?.[k]).map((k) => `${ARC_WHERE[k]}${one(profile.arc[k])}`);
   if (arc.length) L.push(`Arc: 整篇的情緒依內容走：${arc.join("；")}。`);
   const en = Object.entries(profile.englishTerms ?? {}).map(([k, v]) => `${k}（${one(v)}）`);
   if (chat) L.push(`Articulation: 平常講話的咬字就好，虛字和語助詞輕輕帶過，不用每個字都一樣重；句尾不用每一句都收得很乾淨。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   else if (warm) L.push(`Articulation: 平常講話的咬字，虛字輕輕帶過；句子講完整，句尾自然收住，不拖長、不往上飄。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
+  else if (probe) L.push(`Articulation: 平常講話的咬字，聲音放低、放穩，虛字輕輕帶過；句尾往下收住，不拖長、不往上飄，問句也只是平平地問。英文單字用標準美式發音完整念出來，念完自然接回中文。${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   else L.push(`Articulation: 每個字都講得出來，但是像平常講話，不是朗讀。${ENGLISH_STD}${en.length ? `特別注意：${en.join("、")}。` : ""}`);
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");

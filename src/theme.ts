@@ -879,8 +879,8 @@ export const THEME_TANQING = {
   /** 線寬（px）：外框、橘色重點、淡線 */
   stroke: { line: 4, accent: 5, hair: 2 },
   weight: { title: 900, mark: 500, num: 800, bold: 700, body: 500, en: 500 },
-  /** 動作（幀）：一筆畫完 draw、每個圖形錯開 stagger、橘框每個 mark、字淡入 fade、換頁 pan（平移 panPx＋淡入）、字幕換段 cap；慢推每頁放大 push */
-  motion: { draw: 14, stagger: 4, mark: 9, markStagger: 5, fade: 12, pan: 18, panPx: 96, cap: 6, push: 0.022 },
+  /** 動作（幀）：一筆畫完 draw、每個圖形錯開 stagger、橘框每個 mark、字淡入 fade、換頁 pan（新頁平移 panPx＋淡入；舊頁先用 panOut 幀淡出）、字幕換段 cap；慢推每頁放大 push */
+  motion: { draw: 14, stagger: 4, mark: 9, markStagger: 5, fade: 12, pan: 18, panOut: 8, panPx: 96, cap: 6, push: 0.022 },
 } as const;
 /** 版面（1080×1920；安全區上下 220、左右 64；左右邊距照貼文留 96） */
 export const LAYOUT_TANQING = {
