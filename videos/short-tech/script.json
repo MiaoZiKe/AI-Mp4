@@ -1,0 +1,441 @@
+{
+  "slug": "short-tech",
+  "title": "兩奈米不是尺寸（科技頻道短片：Powers of Ten 縮放＋3D 爆炸圖＋深色 HUD）",
+  "asOf": "2026/11/14",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": {
+    "name": "科技",
+    "tag": "放大來看",
+    "slogan": "一支講透一件事"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": {
+      "preset": "tech",
+      "gender": "female",
+      "persona": "三十出頭、在台灣半導體業上班的女工程師，把手機翻過來給不是本行的朋友看，講一件她自己也覺得很酷的事",
+      "delivery": "chat",
+      "scene": "下班後的小吃店，兩個人面對面坐著，她把手機放在桌上指給朋友看，旁邊沒有別人在聽",
+      "pace": [
+        4.6,
+        5
+      ],
+      "tone": "講話偏快、不拖尾音；帶一點考倒對方的小得意，講到數字時放慢半拍，像在等對方反應",
+      "arc": {
+        "起": "直接丟出反常識的一句，像在考對方",
+        "承": "邊放大邊講，語氣跟著越鑽越小、越來越好奇",
+        "轉": "講到兩個數字時停一下，讓對方發現都不是二",
+        "合": "收在一個問題上，像故意吊對方胃口"
+      }
+    }
+  },
+  "hud": {
+    "_說明": "深色科技 HUD 與 Powers of Ten 縮放（設計見 storyboard.md；token 在 src/theme.ts 的 THEME_3D_HUD，元件骨架 src/components/three/Hud.tsx，尚未接進 ThreeVideo）。theme: dark＝深色背景＋青藍／琥珀 HUD 線條。levels 由遠到近；field＝畫面寬度代表的實際尺寸，倍率由 field 算（第一級＝×1）；art＝2D 縮放圖層的畫法；handoff3D＝這一級交棒給 3D 模型。每幕 props.zoom: [{ to, at }] 由 cue 觸發；props.measure: [{ from, to, axis, text, color, at, until }] 畫 HUD 尺寸線。",
+    "levels": [
+      {
+        "id": "phone",
+        "label": "手機",
+        "en": "PHONE",
+        "field": "15 cm",
+        "ruler": "5 cm",
+        "art": "phone"
+      },
+      {
+        "id": "board",
+        "label": "主機板",
+        "en": "LOGIC BOARD",
+        "field": "15 mm",
+        "ruler": "5 mm",
+        "art": "board"
+      },
+      {
+        "id": "chip",
+        "label": "晶片",
+        "en": "DIE",
+        "field": "1.5 mm",
+        "ruler": "500 µm",
+        "art": "die"
+      },
+      {
+        "id": "cells",
+        "label": "電晶體陣列",
+        "en": "CELLS",
+        "field": "15 µm",
+        "ruler": "5 µm",
+        "art": "cells"
+      },
+      {
+        "id": "transistor",
+        "label": "一顆電晶體",
+        "en": "NANOSHEET FET",
+        "field": "150 nm",
+        "ruler": "50 nm",
+        "art": "gates",
+        "handoff3D": true
+      }
+    ],
+    "theme": "dark"
+  },
+  "cover": {
+    "title": [
+      "2奈米",
+      "不是尺寸"
+    ],
+    "sub": "從手機放大到電晶體",
+    "frame": 230
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "兩奈米，不是量得到的尺寸。",
+      "tts": "兩奈米，不是量得到的尺寸。",
+      "subtitle": {
+        "zh": "兩奈米\n不是量得到的尺寸",
+        "en": "\"2 nanometers\" | isn't a size you can measure."
+      },
+      "keywords": [
+        "兩奈米",
+        "尺寸"
+      ],
+      "cues": [
+        {
+          "id": "two",
+          "text": "兩奈米"
+        },
+        {
+          "id": "size",
+          "text": "尺寸"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": {
+          "kicker": "手機晶片的",
+          "title": "2奈米不是尺寸",
+          "size": 128
+        },
+        "zoom": [
+          {
+            "to": "phone",
+            "at": "start-30",
+            "drift": true
+          },
+          {
+            "to": "board",
+            "at": "size-6"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "at": "two+2",
+            "until": "s2:zoom-4",
+            "x": 760,
+            "y": 980,
+            "text": "≠ 2 nm",
+            "color": "amber",
+            "rot": -6,
+            "size": 84
+          }
+        ]
+      },
+      "sources": [
+        "節點名稱是世代名，不是實際尺寸（IBM、WikiChip）"
+      ]
+    },
+    {
+      "id": "s2",
+      "beat": "you",
+      "para": 1,
+      "narration": "放大晶片，裡頭上百億個電晶體。",
+      "tts": "放大晶片，裡頭上百億個電晶體。",
+      "subtitle": {
+        "zh": "放大晶片\n裡頭上百億個電晶體",
+        "en": "Zoom into the chip: | over ten billion transistors."
+      },
+      "keywords": [
+        "晶片",
+        "上百億"
+      ],
+      "cues": [
+        {
+          "id": "zoom",
+          "text": "放大"
+        },
+        {
+          "id": "chip",
+          "text": "晶片"
+        },
+        {
+          "id": "count",
+          "text": "上百億"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "zoom": [
+          {
+            "to": "chip",
+            "at": "zoom-4"
+          },
+          {
+            "to": "cells",
+            "at": "count-6"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "at": "count+2",
+            "until": "s3:open-6",
+            "x": 540,
+            "y": 1040,
+            "text": "上百億個",
+            "color": "blue",
+            "rot": -4,
+            "size": 80
+          }
+        ]
+      },
+      "sources": [
+        "某款 3 奈米世代手機晶片官方公布約 190 億個電晶體"
+      ]
+    },
+    {
+      "id": "s3",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "拆開一個，是三片疊起的薄片。",
+      "tts": "拆開一個，是三片疊起的薄片。",
+      "subtitle": {
+        "zh": "拆開一個\n是三片疊起的薄片",
+        "en": "Open one up: | three thin sheets, stacked."
+      },
+      "keywords": [
+        "三片",
+        "薄片"
+      ],
+      "cues": [
+        {
+          "id": "open",
+          "text": "拆開"
+        },
+        {
+          "id": "three",
+          "text": "三片"
+        },
+        {
+          "id": "thin",
+          "text": "薄片"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "zoom": [
+          {
+            "to": "transistor",
+            "at": "start+0"
+          }
+        ],
+        "explode": {
+          "at": "open-4"
+        },
+        "spin": {
+          "at": "start+0",
+          "until": "open",
+          "turns": 0.06
+        },
+        "shot": [
+          {
+            "at": "open-4",
+            "d": 120,
+            "elev": 30,
+            "y": 1,
+            "dur": 22
+          }
+        ],
+        "run": [
+          {
+            "id": "current",
+            "at": "thin",
+            "until": "s5:how"
+          }
+        ],
+        "labels": [
+          {
+            "part": "sheet",
+            "text": "奈米薄片",
+            "en": "nanosheet",
+            "color": "blue",
+            "at": "three",
+            "until": "s5:start+0"
+          },
+          {
+            "part": "gate",
+            "text": "閘極",
+            "en": "gate",
+            "color": "amber",
+            "at": "thin+4",
+            "until": "s4:pitch-4"
+          }
+        ]
+      },
+      "sources": [
+        "示意模型；比例照 IBM 2021 公開的 2 奈米試作晶片"
+      ]
+    },
+    {
+      "id": "s4",
+      "beat": "payoff",
+      "para": 2,
+      "narration": "一片五奈米厚，間距四十四奈米。",
+      "tts": "一片五奈米厚，間距四十四奈米。",
+      "subtitle": {
+        "zh": "一片五奈米厚\n間距四十四奈米",
+        "en": "Each sheet is 5 nm thick; | gates sit 44 nm apart."
+      },
+      "keywords": [
+        "五奈米",
+        "四十四奈米"
+      ],
+      "cues": [
+        {
+          "id": "five",
+          "text": "五奈米"
+        },
+        {
+          "id": "pitch",
+          "text": "間距"
+        },
+        {
+          "id": "ff",
+          "text": "四十四"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "five-6",
+            "d": 70,
+            "elev": 18,
+            "y": 2,
+            "x": 8,
+            "dur": 18
+          },
+          {
+            "at": "pitch-4",
+            "d": 105,
+            "elev": 40,
+            "y": 0,
+            "x": 0,
+            "dur": 20
+          }
+        ],
+        "run": [
+          {
+            "id": "gatePulse",
+            "at": "pitch",
+            "until": "s5:how"
+          }
+        ],
+        "measure": [
+          {
+            "at": "five-2",
+            "until": "s5:how-4",
+            "from": "sheetEdge",
+            "to": "sheet",
+            "axis": "z",
+            "text": "5 nm",
+            "color": "blue"
+          },
+          {
+            "at": "ff-4",
+            "until": "s5:how-4",
+            "from": "gateL",
+            "to": "gate",
+            "axis": "x",
+            "text": "44 nm",
+            "color": "amber"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "at": "ff+8",
+            "until": "s5:how-2",
+            "x": 540,
+            "y": 470,
+            "text": "都不是 2",
+            "color": "coral",
+            "rot": -5,
+            "size": 76
+          }
+        ]
+      },
+      "sources": [
+        "IBM 2 奈米試作晶片公開數字；台積電 N2 尺寸未公開"
+      ]
+    },
+    {
+      "id": "s5",
+      "beat": "cta",
+      "para": 3,
+      "narration": "這麼小，怎麼印上去？",
+      "tts": "這麼小，怎麼印上去？",
+      "subtitle": {
+        "zh": "這麼小\n怎麼印上去？",
+        "en": "Something this small— | how do you print it?"
+      },
+      "keywords": [
+        "怎麼印"
+      ],
+      "cues": [
+        {
+          "id": "small",
+          "text": "這麼小"
+        },
+        {
+          "id": "how",
+          "text": "怎麼印"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start+0",
+            "d": 150,
+            "elev": 50,
+            "y": 0,
+            "dur": 30
+          }
+        ],
+        "overlay": [
+          {
+            "type": "card",
+            "at": "how-2",
+            "y": 360,
+            "kicker": "下一支",
+            "lines": [
+              "這麼小",
+              "怎麼印上去？"
+            ],
+            "hi": "怎麼印",
+            "hiAt": "how",
+            "foot": "光刻機"
+          }
+        ]
+      },
+      "sources": [
+        "示意模型，不是電子顯微鏡照片"
+      ]
+    }
+  ]
+}

@@ -520,6 +520,33 @@ export const LAYOUT_3D = {
   HOOK_TOP: 322, LABEL_PAD: 30, FOOT_W: 560,
 } as const;
 
+/** stage "three" 的深色科技 HUD 與 Powers of Ten 縮放（script.json 頂層 hud: { theme: "dark", levels }；src/components/three/Hud.tsx）。
+ *  只是新增，沒寫 hud 的片完全不讀這裡。HUD 是細線 UI（1.5–3px、實色），不用發光濾鏡。 */
+export const THEME_3D_HUD = {
+  bg: "#070B12",
+  bg2: "#0C1420",
+  grid: "#122030",
+  line: "#3FC8DC",
+  lineSoft: "#1E5E6E",
+  amber: "#F2A93B",
+  amberSoft: "#6E4C1C",
+  text: "#E6F1F8",
+  text2: "#8FA6B8",
+  text3: "#5D7488",
+  panel: "#0B1724",
+  /** 2D 縮放圖層的畫法用色（手機、主機板、晶片、陣列） */
+  art: { body: "#1A2533", edge: "#3A4E66", board: "#123A33", trace: "#2E7D6E", part: "#22303F", die: "#1B2738", block: "#24405A", block2: "#3B2E1A", gate: "#C98A2E", sheet: "#3FC8DC" },
+  /** 線寬、掃描線（間距 px、不透明度、每秒往下掃幾 px）、角框長度、尺標高度 */
+  stroke: { thin: 1.5, mid: 2, bold: 3 },
+  scan: { gap: 6, opacity: 0.06, sweep: 420, bandH: 120, bandO: 0.08 },
+  bracket: 56,
+  ruler: { h: 18, ticks: 10 },
+  /** 字：讀數用等寬英數、標題用中文 */
+  font: { mono: "'JetBrains Mono', 'Inter', monospace", px: { readout: 30, label: 34, big: 64 } },
+  /** 動作（幀）：每一級縮放、交棒給 3D 的淡入、讀數跳字 */
+  motion: { zoom: 20, handoff: 12, tick: 2 },
+} as const;
+
 // ───────────────────────── stage: "chart"：資料圖表主導（股票頻道風格試片；src/components/chartlead/） ─────────────────────────
 /** 整個畫面是一張會動的圖表：深色看盤底、細格線、等寬數字。台股慣例紅色＝上漲。元件只讀這裡的 token，不寫死色碼；不用發光、不用 3D。 */
 export const THEME_CHARTLEAD = {

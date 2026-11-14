@@ -1,0 +1,61 @@
+{
+  "name": "示意奈米片電晶體（閘極全環繞 GAA）：比例照 IBM 2021 公開的 2 奈米試作晶片（片厚約 5nm、片寬約 40nm、閘極間距約 44nm、閘極長約 12nm）；不是電子顯微鏡照片、不是特定廠商的量產尺寸",
+  "unit": "約 4 奈米",
+  "size": { "w": 34, "h": 18, "r": 0.4, "t": 12 },
+  "palette": {
+    "si": "#3C4A5E",
+    "siTop": "#8FA3BC",
+    "sheet": "#4FD1E8",
+    "gate": "#E8A33C",
+    "gateDeep": "#B87A22",
+    "sd": "#2F6FB0",
+    "oxide": "#1C2A3A",
+    "metal": "#C9D3E0",
+    "signal": "#7FE7FF",
+    "noise": "#E8A33C",
+    "anti": "#7FE7FF"
+  },
+  "materials": {
+    "substrate": { "kind": "std", "color": "si", "rough": 0.7, "metal": 0.1 },
+    "sti": { "kind": "std", "color": "oxide", "rough": 0.8, "metal": 0 },
+    "sheet": { "kind": "phys", "color": "sheet", "rough": 0.2, "metal": 0.3, "clearcoat": 0.6, "clearcoatRough": 0.1 },
+    "gate": { "kind": "std", "color": "gate", "rough": 0.3, "metal": 0.9, "tex": "brushed", "texScale": 1.6 },
+    "sd": { "kind": "std", "color": "sd", "rough": 0.45, "metal": 0.2 },
+    "contact": { "kind": "std", "color": "metal", "rough": 0.25, "metal": 0.95 }
+  },
+  "layers": [
+    { "id": "substrate", "z": -5.2, "k": -3, "outline": [34, 18, 0, 0] },
+    { "id": "sheet1", "z": -2.5, "k": -1, "outline": [30, 10, 0, 0] },
+    { "id": "sheet2", "z": 0, "k": 0, "outline": [30, 10, 0, 0] },
+    { "id": "sheet3", "z": 2.5, "k": 1, "outline": [30, 10, 0, 0] },
+    { "id": "sd", "z": 0, "k": 0, "outline": [26, 12, 0, 0] },
+    { "id": "gate", "z": 0.4, "k": 3, "outline": [25, 14, 0, 0] },
+    { "id": "contact", "z": 5.6, "k": 4, "outline": [14, 6, 0, 0] }
+  ],
+  "parts": [
+    { "id": "sub", "layer": "substrate", "shape": "slab", "size": [34, 18, 2], "r": 0.4, "bevel": 0.1, "mat": "substrate" },
+    { "id": "fin", "layer": "substrate", "shape": "box", "size": [30, 10, 1.2], "pos": [0, 0, 1.6], "mat": "sti" },
+    { "id": "sheetA", "layer": "sheet1", "shape": "slab", "size": [30, 10, 1.25], "r": 0.3, "bevel": 0.08, "mat": "sheet" },
+    { "id": "sheetB", "layer": "sheet2", "shape": "slab", "size": [30, 10, 1.25], "r": 0.3, "bevel": 0.08, "mat": "sheet" },
+    { "id": "sheetC", "layer": "sheet3", "shape": "slab", "size": [30, 10, 1.25], "r": 0.3, "bevel": 0.08, "mat": "sheet" },
+    { "id": "epi", "layer": "sd", "shape": "box", "size": [7.4, 12, 9], "at": [[-5.5, 0], [5.5, 0]], "mat": "sd" },
+    { "id": "gateMain", "layer": "gate", "shape": "box", "size": [3, 14, 10], "mat": "gate" },
+    { "id": "gateSide", "layer": "gate", "shape": "box", "size": [3, 14, 10], "at": [[-11, 0], [11, 0]], "mat": "gate" },
+    { "id": "via", "layer": "contact", "shape": "cyl", "size": [1.1, 2.4], "at": [[-5.5, 0], [5.5, 0], [0, 3.5]], "mat": "contact" }
+  ],
+  "anchors": {
+    "sheet": { "layer": "sheet3", "p": [13, 4.6, 0.7], "dx": 170, "dy": -40 },
+    "sheetEdge": { "layer": "sheet3", "p": [-13, -5, 0.7], "dx": -150, "dy": 30 },
+    "gate": { "layer": "gate", "p": [0, 7, 5], "dx": 160, "dy": -70 },
+    "gateL": { "layer": "gate", "p": [-11, 7, 5], "dx": -120, "dy": -60 },
+    "gateR": { "layer": "gate", "p": [11, 7, 5], "dx": 120, "dy": -60 },
+    "sd": { "layer": "sd", "p": [5.5, -6, 4.5], "dx": 170, "dy": 40 }
+  },
+  "actions": {
+    "current": { "type": "flow", "layer": "sheet2", "path": [[-14, 0, 0.7], [14, 0, 0.7]], "n": 4, "size": 0.35, "shape": "dot", "rate": 0.9, "color": "signal" },
+    "gatePulse": { "type": "pulse", "parts": ["gateMain"], "color": "noise", "freq": 1.5, "glow": 0.6, "halo": 1.2 }
+  },
+  "pose": { "gap": 3.2, "yawIso": 0.32, "yaw0": -0.5 },
+  "camera": { "stand": { "d": 120, "elev": 30, "y": 0 }, "explode": { "d": 135, "elev": 30, "y": 1 }, "outro": { "d": 4 } },
+  "fx": { "dpr": 1, "srcPx": 30, "shadows": 0, "fog": true, "dust": false, "vaporSprites": false, "shimmer": false }
+}
