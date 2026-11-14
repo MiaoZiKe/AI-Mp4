@@ -35,11 +35,11 @@
  },
  "voice": {
   "voiceName": "user-upload",
-  "model": "gemini-2.5-flash-preview-tts",
+  "model": "user-recording",
   "mode": "take",
-  "languageCode": "cmn-TW",
   "profile": "liguligu",
-  "note": "旁白是使用者 2026/11/14 上傳的男聲錄音（Generated_Audio_November_14_2026_-_9_11PM.wav，25.04 秒），不是本專案送 TTS 生成的；音色名稱不明，voiceName 只是代號。原始錄音放 public/audio/liguligu-jensen-pro/，用 tts-take.mjs --resplit 切段、align 對齊，沒有送任何 TTS 請求。"
+  "file": "audio/liguligu-jensen-pro/user-take2.orig.wav",
+  "note": "旁白是使用者 2026/11/14 上傳的男聲錄音（Generated_Audio_November_14_2026_-_10_23PM.wav，23.16 秒，7 句完整），使用者說「這個是哩股哩股以後的旁白音檔」。不是本專案送 TTS 生成的；音色名稱與提示詞使用者尚未告知，voiceName 只是代號。時間軸用 scripts/dossier/recording-timeline.mjs 強制對齊，沒有送任何 TTS 請求。量測見 voice.md。 profile 欄位只是讓 validate 通過，這段錄音不是照它生成的。"
  },
  "cover": {
   "title": [
@@ -414,8 +414,8 @@
     "opLabel": "不等於",
     "b": "設局",
     "aAt": "start-16",
-    "opAt": "ne-4",
-    "bAt": "ne+2",
+    "opAt": "ne-6",
+    "bAt": "ne-2",
     "rows": [
      {
       "text": "有人樂見",
@@ -428,11 +428,11 @@
      },
      {
       "text": "有人設局",
-      "at": "ne+4",
+      "at": "ne-2",
       "tag": {
        "kind": "none",
        "text": "查不到證據",
-       "at": "ne+10"
+       "at": "ne+2"
       }
      }
     ],
@@ -513,7 +513,8 @@
    },
    "sources": [
     "截至 2026/11/14 尚未確定"
-   ]
+   ],
+   "cutDelayF": 15
   },
   {
    "id": "s07",

@@ -1,12 +1,13 @@
 # liguligu-jensen-pro — 專業嚴肅版（檔案室＋國際新聞）
 
-更新：台灣時間 2026/11/14 22:20。`videos/liguligu-jensen/`（貼紙式）的另一種畫面。`styleVersion: 3`、`stage: "dossier"`，加上頂層 `news`（國際新聞版）。
+更新：台灣時間 2026/11/14 22:55（第 3 版：接上使用者上傳的完整旁白錄音；畫面設計沒有改，只有時間軸換成真的聲音）。`videos/liguligu-jensen/`（貼紙式）的另一種畫面。`styleVersion: 3`、`stage: "dossier"`，加上頂層 `news`（國際新聞版）。
 使用者看完第 1 版（檔案室式，27.2 秒）的原話：「**帶點新聞、國際風格，語速要調整快點**」。這一版（第 2 版）照這句話改：畫面加國際新聞的語彙、節奏加快。
 **內容沒有改**：旁白、念稿、字幕、cue、出處、查證狀態都和 liguligu-jensen 一字不差（`contentFrom: "liguligu-jensen"`，validate 會逐幕比對）。沒有送任何 TTS 請求。
 
 | 項目 | 內容 |
 |---|---|
-| 成片（**無聲**） | `out/liguligu-jensen-pro.mp4`（1080×1920、30fps、H.264，681 幀＝**22.7 秒**；音軌是靜音） |
+| 成片（**有旁白**） | `out/liguligu-jensen-pro.mp4`（1080×1920、30fps、H.264，701 幀＝**23.37 秒**；音軌只有使用者上傳的旁白，−16.3 LUFS、真峰值 −1.9 dBTP，沒有背景音樂與音效） |
+| 第 2 版無聲（保留） | `out/liguligu-jensen-pro.silent-v2.mp4`（22.7 秒，估算時間軸；時間軸備份 `out/liguligu-jensen-pro/timeline-silent-v2.json`、九格圖 `review-silent-v2.png`） |
 | 第 1 版（保留） | `out/liguligu-jensen-pro.v1.mp4`（27.2 秒，前 3 鏡有使用者上傳的錄音）；`out/liguligu-jensen-pro-silent.mp4`（第 1 版無聲，25.7 秒） |
 | 九格圖 | `out/liguligu-jensen-pro-review.png`；每鏡總覽 `out/liguligu-jensen-pro-overview.png`；封面 `out/liguligu-jensen-pro-cover.png` |
 | 新舊對照 | `out/liguligu-jensen-pro-before-after.png`（上排第 1 版、下排這一版，同樣四句話念完的時刻） |
@@ -45,13 +46,17 @@
 
 5.2 音節/秒是畫面的估算，不是配音結果。真的配音要念到這個速度，靠短說明（見下）與模型自己的語速；後製加速上限仍是 1.08。
 
-## 旁白：這一版先不接聲音
+## 旁白：使用者上傳的完整錄音（第 3 版）
 
-- 使用者 2026/11/14 上傳的錄音（`public/audio/liguligu-jensen-pro/user-upload.orig.wav`，25.04 秒）**只有前 3 句、念了兩遍**（量測方法見 git 紀錄裡這份 README 的前一版），語速約每秒 4.4 個音節。第 1 版用它配了前 3 鏡；這一版使用者要求「語速調快」，所以先出無聲版，沒有硬把舊錄音加速接上。
+- 使用者 2026/11/14 上傳、說「這個是哩股哩股以後的旁白音檔」：`public/audio/liguligu-jensen-pro/user-take2.orig.wav`（23.16 秒）。**7 句都有、只念一遍、和稿子一致**，字幕沒有改；量測與確認方法在 `voice.md`。音色名稱與提示詞使用者尚未告知。沒有送任何 TTS 請求。
+- 時間軸＝錄音的真時間（`recording-timeline.mjs … 7`），不搬動、不加速。每鏡：s01 0–4.1 秒、s02 4.1–7.8、s03 7.8–10.7、s04 10.7–15.5、s05 15.5–18.1、s06 18.1–19.7、s07 19.7–23.4。
+- 為了讓 s05 的「查不到證據」小標停夠久，改了兩處（聲音沒動）：s05 的「≠／設局／第二列／小標」各提早 2–8 幀；s06 加 `cutDelayF: 15`（`recording-timeline.mjs` 新增的欄位：這一鏡的畫面比預設晚幾幀換進來）。結果小標第 519 幀落定、第 543 幀才開始擦切，完整停留 0.8 秒（擦切掃到它是第 549 幀左右，實際看得到約 1 秒）。代價：s06 的旁白在第 538 幀開口，畫面第 543–551 幀才換過去，字幕條會先換成 s06 的字約 0.3 秒。
+- 上一段錄音（`user-upload.orig.wav`，只有前 3 句、念了兩遍）沒有再用。
+- 之後的新片照下面的步驟接使用者上傳的錄音：
 - **拿到 7 句完整的錄音時**（用 `docs/prompts/liguligu-男聲試聽-短說明.txt` 在 Google AI Studio 生成、整段 21–24 秒為佳）：
   1. 檔案放 `public/audio/liguligu-jensen-pro/<檔名>.wav`。
   2. `node scripts/dossier/recording-timeline.mjs liguligu-jensen-pro audio/liguligu-jensen-pro/<檔名>.wav 7`（強制對齊，時間軸改成真的聲音；畫面的事件都寫 cue，會自動跟上）。
-  3. `npm run validate` → `flock /tmp/aimp4-render.lock npm run still` → `npm run render` → 用 ffmpeg 把錄音合進去（指令照第 1 版：`-map 0:v -map 1:a -c:v copy -c:a aac`）。
+  3. `npm run validate` → `flock /tmp/aimp4-render.lock npm run still` → `npm run render` → 用 ffmpeg 把錄音合進去（`-map 0:v -map 1:a -c:v copy -c:a aac`；合之前先把音量調到約 −16 LUFS、真峰值 ≤ −1.5 dBTP，指令在 `voice.md`）。`npm run render` 產生的是無聲畫面，合完要覆蓋 `out/<slug>.mp4`。
   4. 錄音如果比 24 秒長（語速不到每秒 4.6 個音節），先告訴使用者，再決定重錄或加速（上限 1.08）。
 - **只拿到音色名稱時**：`script.json` 的 `voice.voiceName` 改成那個名字、`voice.profile` 的說明改用短說明那一句（要在 `scripts/voice-profile.mjs` 加一個只有一句的 delivery，做法同 `report`），先說明會送 1 次請求、得到同意後再 `node scripts/tts-take.mjs liguligu-jensen-pro` → `npm run align` → render。
 
@@ -105,15 +110,15 @@ node scripts/dossier/short-voice-prompt.mjs                     # 短說明的�
 ## 檢查結果
 
 - `npm run validate`：**1 error、1 warning**。error 是「最後一幕必須是 EndCard」——短片沒有片尾卡，和 liguligu-jensen 一樣照實留著（`docs/channels/liguligu.md` 第 2 節）；warning 是總長（短片）。
-- `npm run still`：7 張逐張看過，沒有溢出、缺字方框；覆蓋率佔用率最低 60%、中位 77%、最長空白帶 102px（第 1 版 49%、124px）。
-- `npm run render`：ffprobe 681 幀＝時間軸；blackdetect 沒有黑幀；音軌是靜音。
+- `npm run still`：覆蓋率佔用率最低 61%、中位 75%、最長空白帶 102px。
+- `npm run render`：ffprobe 701 幀＝時間軸；blackdetect 沒有黑幀；合進旁白後影像 23.37 秒、聲音 23.37 秒。
 - 前 3 秒每 2 幀、全片每 0.25 秒抽格看過：換鏡沒有空畫面；每鏡最長靜止 1.0 秒以內（跑馬燈、地點脈衝一直在動）。
 - `npx tsc --noEmit`：通過。
 - 沒有跑 audit／selfcheck，沒有獨立評審的分數。
 
 ## 已知問題
 
-1. **沒有聲音。** 5.2 音節/秒與各鏡長度都是估算，真的錄音來了會重排；s05 只有 1.7 秒，「查不到證據」小標出現後只留約 0.5 秒。
+1. 旁白要人耳確認兩件事：開頭「三十三年」對齊模型沒把握（判斷有念到，見 `voice.md`）；捲舌指標 5.8 kHz 是專案裡量過最高的（只是輔助數字）。s06 只有 1.6 秒，畫面比旁白晚約 0.2–0.4 秒換過去；s04 大標出來後約 1.2 秒只有大標和照片。
 2. 地圖只是淡背景：美國本土那一段剛好在出處與地點名稱後面，看得出點陣但認不太出輪廓；兩個地點在畫面上只隔約 310px。1700 以下（平台介面會蓋到）只有地圖。
 3. 資訊比第 1 版密：電頭、欄目籤、出處、跑馬燈同時在，手機上跑馬燈的字（28px）只當氣氛，讀不完整——每鏡的出處另外有固定的一行。
 4. 電頭的地點（SANTA CLARA／WASHINGTON, D.C.）與 CNBC 的日期不是 research.md 事實表裡逐條查證的欄位（依據見上面「這一版加了什麼」）；上片前連同原文一起核對。

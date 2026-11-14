@@ -69,7 +69,8 @@ for (const [i, s] of script.scenes.entries()) {
   prevEnd = ve; prevGap = typeof s.pauseAfter === "number" && s.pauseAfter > 0 ? s.pauseAfter : GAP;
   const audioFrame = Math.round(vs * FPS), voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
   const p = out[i - 1];
-  const startFrame = i === 0 ? 0 : Math.max(p.startFrame + MIN_SCENE_F, voiceStartFrame - TRANS, p.voiceEndFrame - EXIT_AFTER_VOICE);
+  // cutDelayF（script.json 該幕）：這一鏡的畫面比預設晚幾幀才換進來（前一鏡最後一個標籤需要多停一下時用；聲音不動）
+  const startFrame = i === 0 ? 0 : Math.max(p.startFrame + MIN_SCENE_F, voiceStartFrame - TRANS, p.voiceEndFrame - EXIT_AFTER_VOICE) + Math.max(0, Math.round(Number(s.cutDelayF ?? 0)));
   const subIn = i === 0 ? 0 : voiceStartFrame - SUB_LEAD;
   const af = (t, lead) => audioFrame + Math.round((t - lead) * FPS);
   const lines = [];
@@ -103,7 +104,7 @@ for (const [i, x] of out.entries()) {
 }
 const last = out[out.length - 1], totalFrames = last.startFrame + last.durationFrames;
 const tl = { version: 2, slug, fps: FPS, totalFrames, totalSec: +(totalFrames / FPS).toFixed(2), gapSec: GAP, transitionFrames: TRANS,
-  estimated: { note: `前 ${N_REC} 幕＝使用者錄音的真時間（強制對齊）；其餘各幕錄音沒念到，是無聲估算（scripts/dossier/recording-timeline.mjs）`, rate: RATE, gap: GAP, tailEndFrames: TAIL_END_F, partial: true },
+  ...(N_REC >= out.filter((x) => !x.silent).length ? {} : { estimated: { note: `前 ${N_REC} 幕＝使用者錄音的真時間（強制對齊）；其餘各幕錄音沒念到，是無聲估算（scripts/dossier/recording-timeline.mjs）`, rate: RATE, gap: GAP, tailEndFrames: TAIL_END_F, partial: true } }),
   recording: { file: recRel, scenes: recScenes.map((s) => s.id), sec: fa.audioSec, confidence: fa.confidence, minScore: fa.minScore, lastVoiceSec: real.at(-1).ve }, scenes: out };
 fs.writeFileSync(tlPath, JSON.stringify(tl, null, 1));
 const syl = out.reduce((a, x) => a + x.syllables, 0);
