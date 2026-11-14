@@ -121,7 +121,8 @@ const Card: React.FC<{ o: Overlay3D; f: number }> = ({ o, f }) => {
   const k = life(o, f, 7, 6);
   if (k <= 0) return null;
   const c = accent3D(o.color ?? "coral"), lines = (o.lines ?? []) as string[], size = o.size ?? 104;
-  const under = tween(f, o.at + 8, 12, EASE.move);
+  // hiAt（可省略）：強調的詞在這個 cue 才畫底線並跳一下
+  const hiT = o.hiAt ?? o.at + 8, under = tween(f, hiT, 12, EASE.move), pop = 1 + 0.08 * Math.sin(Math.PI * tween(f, hiT, 10, EASE.move));
   return (
     <div style={{ position: "absolute", left: L.X, top: o.y, width: L.INNER_W, opacity: k, transform: `translateY(${Math.round(40 * (1 - k))}px) scale(${(0.94 + 0.06 * k).toFixed(3)})`, background: T.panel, border: `5px solid ${T.ink}`, borderRadius: T.radius.card, boxShadow: T.cardShadow, padding: "40px 44px 52px", boxSizing: "border-box" }}>
       {o.kicker ? <div style={{ display: "inline-block", ...zh(36, T.weight.body, T.onAccent), background: c.fill, borderRadius: T.radius.pill, padding: "8px 28px 10px", letterSpacing: "0.08em", marginBottom: 18 }}>{o.kicker}</div> : null}
@@ -129,7 +130,7 @@ const Card: React.FC<{ o: Overlay3D; f: number }> = ({ o, f }) => {
         const hi = o.hi && ln.includes(o.hi) ? ln.split(o.hi) : null;
         return (
           <div key={i} style={{ ...zh(size), lineHeight: 1.28, letterSpacing: "0.02em" }}>
-            {hi ? <>{hi[0]}<span style={{ position: "relative", color: c.text }}>{o.hi}<span style={{ position: "absolute", left: 0, bottom: 0, height: 12, width: `${(100 * under).toFixed(1)}%`, background: c.fill, borderRadius: 6 }} /></span>{hi[1]}</> : ln}
+            {hi ? <>{hi[0]}<span style={{ position: "relative", display: "inline-block", color: under > 0 ? c.text : T.ink, transform: `scale(${pop.toFixed(3)})`, transformOrigin: "0 80%" }}>{o.hi}<span style={{ position: "absolute", left: 0, bottom: 0, height: 12, width: `${(100 * under).toFixed(1)}%`, background: c.fill, borderRadius: 6 }} /></span>{hi[1]}</> : ln}
           </div>
         );
       })}

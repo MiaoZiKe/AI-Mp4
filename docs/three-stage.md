@@ -226,7 +226,7 @@
 | `cross` | 紅色叉叉，兩筆依序畫出 | `size`、`color` |
 | `circle` | 圈起一個標註點（下一集鉤子） | `part`、`r`、`color` |
 | `steps` | 步驟列：幾個零件依序揭曉（還沒講到的是「？」），講到的亮起來並留著 | `y`、`title`、`items: [{ text, at, color }]` |
-| `card` | 蓋在舞台上的提問卡 | `y`、`kicker`、`lines`、`hi`（上色的詞）、`size`、`foot` |
+| `card` | 蓋在舞台上的提問卡 | `y`、`kicker`、`lines`、`hi`（上色的詞）、`hiAt`（念到這個 cue 才上色畫底線）、`size`、`foot` |
 | `ribbon` | 字幕下面的底部波帶（背景裝飾，填下方空白） | `keys: [{ at, v（0–1 大小）, fast? }]` |
 
 其他向下相容的小開關：

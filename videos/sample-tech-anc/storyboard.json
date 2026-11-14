@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 577,
- "totalSec": 19.23,
+ "totalFrames": 881,
+ "totalSec": 29.37,
  "scenes": [
   {
    "id": "s1",
@@ -23,10 +23,10 @@
    "voice": null,
    "cues": [
     {
-     "id": "anc",
-     "text": "降噪",
-     "frame": 5,
-     "sceneFrame": 5
+     "id": "quiet",
+     "text": "安靜",
+     "frame": 33,
+     "sceneFrame": 33
     },
     {
      "id": "sound",
@@ -55,9 +55,55 @@
   {
    "id": "s2",
    "startFrame": 95,
-   "durationFrames": 104,
+   "durationFrames": 85,
    "startSec": 3.17,
-   "durationSec": 3.47,
+   "durationSec": 2.83,
+   "component": "ThreeScene",
+   "beat": "you",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "more",
+     "text": "多一個",
+     "frame": 104,
+     "sceneFrame": 9
+    },
+    {
+     "id": "quiet",
+     "text": "更安靜",
+     "frame": 155,
+     "sceneFrame": 60
+    }
+   ],
+   "stillFrame": 170,
+   "subtitles": [
+    {
+     "zh": "多一個聲音",
+     "en": "One more sound,",
+     "startFrame": 101,
+     "endFrame": 135
+    },
+    {
+     "zh": "怎麼會更安靜？",
+     "en": "so how does it get quieter?",
+     "startFrame": 135,
+     "endFrame": 176
+    }
+   ],
+   "narration": "多一個聲音，怎麼會更安靜？"
+  },
+  {
+   "id": "s3",
+   "startFrame": 170,
+   "durationFrames": 91,
+   "startSec": 5.67,
+   "durationSec": 3.03,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -71,103 +117,45 @@
     {
      "id": "open",
      "text": "拆開",
-     "frame": 104,
+     "frame": 179,
      "sceneFrame": 9
+    },
+    {
+     "id": "noise",
+     "text": "噪音",
+     "frame": 202,
+     "sceneFrame": 32
     },
     {
      "id": "mic",
      "text": "麥克風",
-     "frame": 142,
-     "sceneFrame": 47
-    },
-    {
-     "id": "chip",
-     "text": "晶片",
-     "frame": 164,
-     "sceneFrame": 69
-    },
-    {
-     "id": "spk",
-     "text": "喇叭",
-     "frame": 179,
-     "sceneFrame": 84
+     "frame": 225,
+     "sceneFrame": 55
     }
    ],
-   "stillFrame": 189,
+   "stillFrame": 251,
    "subtitles": [
     {
      "zh": "拆開看",
      "en": "Open it up:",
-     "startFrame": 101,
-     "endFrame": 122
+     "startFrame": 176,
+     "endFrame": 199
     },
     {
-     "zh": "關鍵是麥克風",
-     "en": "the key parts are a mic,",
-     "startFrame": 122,
-     "endFrame": 160
-    },
-    {
-     "zh": "晶片和喇叭",
-     "en": "a chip and a speaker.",
-     "startFrame": 160,
-     "endFrame": 194
+     "zh": "噪音先被麥克風收到",
+     "en": "the mic picks up the noise first.",
+     "startFrame": 199,
+     "endFrame": 257
     }
    ],
-   "narration": "拆開看，關鍵是麥克風、晶片和喇叭。"
-  },
-  {
-   "id": "s3",
-   "startFrame": 189,
-   "durationFrames": 84,
-   "startSec": 6.3,
-   "durationSec": 2.8,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "noise",
-     "text": "噪音",
-     "frame": 215,
-     "sceneFrame": 26
-    },
-    {
-     "id": "mic",
-     "text": "麥克風",
-     "frame": 232,
-     "sceneFrame": 43
-    }
-   ],
-   "stillFrame": 263,
-   "subtitles": [
-    {
-     "zh": "外面的噪音",
-     "en": "Outside noise",
-     "startFrame": 194,
-     "endFrame": 229
-    },
-    {
-     "zh": "麥克風先收到",
-     "en": "reaches the microphone first.",
-     "startFrame": 229,
-     "endFrame": 269
-    }
-   ],
-   "narration": "外面的噪音，麥克風先收到。"
+   "narration": "拆開看，噪音先被麥克風收到。"
   },
   {
    "id": "s4",
-   "startFrame": 263,
-   "durationFrames": 97,
-   "startSec": 8.77,
-   "durationSec": 3.23,
+   "startFrame": 251,
+   "durationFrames": 85,
+   "startSec": 8.37,
+   "durationSec": 2.83,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -179,49 +167,43 @@
    "voice": null,
    "cues": [
     {
-     "id": "sig",
-     "text": "訊號",
-     "frame": 272,
-     "sceneFrame": 9
-    },
-    {
      "id": "chip",
      "text": "晶片",
-     "frame": 294,
-     "sceneFrame": 31
+     "frame": 260,
+     "sceneFrame": 9
     },
     {
      "id": "inv",
      "text": "相反",
-     "frame": 324,
-     "sceneFrame": 61
+     "frame": 300,
+     "sceneFrame": 49
     }
    ],
-   "stillFrame": 350,
+   "stillFrame": 326,
    "subtitles": [
     {
-     "zh": "訊號送進晶片",
-     "en": "The signal goes to the chip,",
-     "startFrame": 269,
-     "endFrame": 309
+     "zh": "晶片馬上算出",
+     "en": "The chip quickly works out",
+     "startFrame": 257,
+     "endFrame": 296
     },
     {
-     "zh": "算出相反的波形",
-     "en": "which computes the opposite waveform.",
-     "startFrame": 309,
-     "endFrame": 356
+     "zh": "相反的波形",
+     "en": "the opposite waveform.",
+     "startFrame": 296,
+     "endFrame": 331
     }
    ],
-   "narration": "訊號送進晶片，算出相反的波形。"
+   "narration": "晶片馬上算出相反的波形。"
   },
   {
    "id": "s5",
-   "startFrame": 350,
-   "durationFrames": 98,
-   "startSec": 11.67,
-   "durationSec": 3.27,
+   "startFrame": 326,
+   "durationFrames": 73,
+   "startSec": 10.87,
+   "durationSec": 2.43,
    "component": "ThreeScene",
-   "beat": "twist",
+   "beat": "mechanism",
    "transition": {
     "type": "fade",
     "frames": 10
@@ -231,47 +213,41 @@
    "voice": null,
    "cues": [
     {
-     "id": "cone",
-     "text": "振膜",
-     "frame": 359,
+     "id": "spk",
+     "text": "喇叭",
+     "frame": 335,
      "sceneFrame": 9
-    },
-    {
-     "id": "wave",
-     "text": "反相",
-     "frame": 394,
-     "sceneFrame": 44
     },
     {
      "id": "ear",
      "text": "耳道",
-     "frame": 427,
-     "sceneFrame": 77
+     "frame": 379,
+     "sceneFrame": 53
     }
    ],
-   "stillFrame": 438,
+   "stillFrame": 389,
    "subtitles": [
     {
-     "zh": "振膜一振動",
-     "en": "The diaphragm vibrates,",
-     "startFrame": 356,
-     "endFrame": 390
+     "zh": "喇叭放出來",
+     "en": "The speaker plays it",
+     "startFrame": 331,
+     "endFrame": 365
     },
     {
-     "zh": "反相聲波送進耳道",
-     "en": "sending an inverted wave into the ear canal.",
-     "startFrame": 390,
-     "endFrame": 443
+     "zh": "送進耳道",
+     "en": "into your ear canal.",
+     "startFrame": 365,
+     "endFrame": 394
     }
    ],
-   "narration": "振膜一振動，反相聲波送進耳道。"
+   "narration": "喇叭放出來，送進耳道。"
   },
   {
    "id": "s6",
-   "startFrame": 438,
-   "durationFrames": 84,
-   "startSec": 14.6,
-   "durationSec": 2.8,
+   "startFrame": 389,
+   "durationFrames": 97,
+   "startSec": 12.97,
+   "durationSec": 3.23,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
@@ -285,47 +261,53 @@
     {
      "id": "two",
      "text": "兩道",
-     "frame": 447,
+     "frame": 398,
      "sceneFrame": 9
     },
     {
      "id": "stack",
      "text": "疊",
-     "frame": 464,
-     "sceneFrame": 26
+     "frame": 420,
+     "sceneFrame": 31
     },
     {
      "id": "cancel",
      "text": "抵消",
-     "frame": 503,
-     "sceneFrame": 65
-    }
-   ],
-   "stillFrame": 512,
-   "subtitles": [
-    {
-     "zh": "兩道波疊在一起",
-     "en": "The two waves overlap",
-     "startFrame": 443,
-     "endFrame": 489
+     "frame": 444,
+     "sceneFrame": 55
     },
     {
-     "zh": "剛好抵消",
-     "en": "and cancel out,",
-     "startFrame": 489,
-     "endFrame": 518
+     "id": "most",
+     "text": "一大半",
+     "frame": 461,
+     "sceneFrame": 72
     }
    ],
-   "narration": "兩道波疊在一起，剛好抵消，"
+   "stillFrame": 476,
+   "subtitles": [
+    {
+     "zh": "兩道波一疊",
+     "en": "Stack the two waves",
+     "startFrame": 394,
+     "endFrame": 429
+    },
+    {
+     "zh": "噪音抵消掉一大半",
+     "en": "and most of the noise cancels.",
+     "startFrame": 429,
+     "endFrame": 481
+    }
+   ],
+   "narration": "兩道波一疊，噪音抵消掉一大半。"
   },
   {
    "id": "s7",
-   "startFrame": 512,
-   "durationFrames": 65,
-   "startSec": 17.07,
-   "durationSec": 2.17,
+   "startFrame": 476,
+   "durationFrames": 85,
+   "startSec": 15.87,
+   "durationSec": 2.83,
    "component": "ThreeScene",
-   "beat": "payoff",
+   "beat": "twist",
    "transition": {
     "type": "fade",
     "frames": 10
@@ -335,22 +317,202 @@
    "voice": null,
    "cues": [
     {
-     "id": "quiet",
-     "text": "安靜",
-     "frame": 545,
-     "sceneFrame": 33
+     "id": "but",
+     "text": "可是",
+     "frame": 485,
+     "sceneFrame": 9
+    },
+    {
+     "id": "talk",
+     "text": "講話",
+     "frame": 507,
+     "sceneFrame": 31
+    },
+    {
+     "id": "still",
+     "text": "聽得到",
+     "frame": 536,
+     "sceneFrame": 60
     }
    ],
-   "stillFrame": 565,
+   "stillFrame": 551,
    "subtitles": [
     {
-     "zh": "你只聽到安靜",
-     "en": "so all you hear is quiet.",
-     "startFrame": 518,
-     "endFrame": 577
+     "zh": "可是有人講話",
+     "en": "But when someone talks,",
+     "startFrame": 481,
+     "endFrame": 521
+    },
+    {
+     "zh": "還是聽得到",
+     "en": "you still hear it.",
+     "startFrame": 521,
+     "endFrame": 556
     }
    ],
-   "narration": "你只聽到安靜。"
+   "narration": "可是有人講話，還是聽得到。"
+  },
+  {
+   "id": "s8",
+   "startFrame": 551,
+   "durationFrames": 121,
+   "startSec": 18.37,
+   "durationSec": 4.03,
+   "component": "ThreeScene",
+   "beat": "twist",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "low",
+     "text": "低沉",
+     "frame": 577,
+     "sceneFrame": 26
+    },
+    {
+     "id": "fast",
+     "text": "變化快",
+     "frame": 618,
+     "sceneFrame": 67
+    },
+    {
+     "id": "miss",
+     "text": "對不準",
+     "frame": 647,
+     "sceneFrame": 96
+    }
+   ],
+   "stillFrame": 662,
+   "subtitles": [
+    {
+     "zh": "它擅長低沉的嗡嗡聲",
+     "en": "It's good at low, steady hums;",
+     "startFrame": 556,
+     "endFrame": 615
+    },
+    {
+     "zh": "變化快的就對不準",
+     "en": "fast-changing sound is hard to match.",
+     "startFrame": 615,
+     "endFrame": 668
+    }
+   ],
+   "narration": "它擅長低沉的嗡嗡聲，變化快的就對不準。"
+  },
+  {
+   "id": "s9",
+   "startFrame": 662,
+   "durationFrames": 91,
+   "startSec": 22.07,
+   "durationSec": 3.03,
+   "component": "ThreeScene",
+   "beat": "cta",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "you",
+     "text": "你的",
+     "frame": 671,
+     "sceneFrame": 9
+    },
+    {
+     "id": "which",
+     "text": "哪種",
+     "frame": 722,
+     "sceneFrame": 60
+    }
+   ],
+   "stillFrame": 743,
+   "subtitles": [
+    {
+     "zh": "你的耳機",
+     "en": "Which sound",
+     "startFrame": 668,
+     "endFrame": 696
+    },
+    {
+     "zh": "最消不掉哪種聲音？",
+     "en": "can't your earbuds cancel?",
+     "startFrame": 696,
+     "endFrame": 749
+    }
+   ],
+   "narration": "你的耳機，最消不掉哪種聲音？"
+  },
+  {
+   "id": "s10",
+   "startFrame": 743,
+   "durationFrames": 138,
+   "startSec": 24.77,
+   "durationSec": 4.6,
+   "component": "ThreeScene",
+   "beat": "cta",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "btw",
+     "text": "對了",
+     "frame": 752,
+     "sceneFrame": 9
+    },
+    {
+     "id": "inner",
+     "text": "朝內",
+     "frame": 802,
+     "sceneFrame": 59
+    },
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 841,
+     "sceneFrame": 98
+    }
+   ],
+   "stillFrame": 869,
+   "subtitles": [
+    {
+     "zh": "對了",
+     "en": "Oh, and there's one more mic inside,",
+     "startFrame": 749,
+     "endFrame": 759
+    },
+    {
+     "zh": "裡面還有一顆",
+     "en": "Oh, and there's one more mic inside,",
+     "startFrame": 759,
+     "endFrame": 798
+    },
+    {
+     "zh": "朝內的麥克風",
+     "en": "facing your ear.",
+     "startFrame": 798,
+     "endFrame": 837
+    },
+    {
+     "zh": "下一集講",
+     "en": "That's next episode.",
+     "startFrame": 837,
+     "endFrame": 881
+    }
+   ],
+   "narration": "對了，裡面還有一顆朝內的麥克風。下一集講。"
   }
  ]
 }

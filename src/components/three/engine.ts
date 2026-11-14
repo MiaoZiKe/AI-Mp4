@@ -57,7 +57,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     for (const r of [].concat(p.run ?? []) as any[]) if (product.actions?.[r.id]) m.runs.push({ id: r.id, at: at(r.at, own.voiceStartFrame), until: r.until ? at(r.until, FAR) : FAR, speed: r.speed ?? 1, gain: r.gain ?? 1, ramp: r.ramp ?? T.ops.ramp });
     for (const c of [].concat(p.shot ?? []) as any[]) m.shots.push({ ...c, at: at(c.at, own.voiceStartFrame), dur: c.dur ?? T.motion.orbit });
     // props.overlay：裡面每一層的 at／until（含巢狀的，例如 anti.at、items[].at、keys[].at）都換成絕對幀
-    const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
+    const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" || k === "hiAt" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
     for (const o of [].concat(p.overlay ?? []) as any[]) (m.overlays ??= []).push({ until: FAR, ...deep(o), at: at(o.at, own.startFrame) });
     for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity });
   });

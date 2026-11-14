@@ -127,6 +127,14 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 分鏡表：`npm run align`／`render`／`subs` 會寫 `videos/<slug>/storyboard.json`（每幕 id、startFrame、durationFrames、component、beat、轉場、人聲區間、cues 絕對幀與幕內幀、字幕短語時間），自查拼圖與聲畫匹配以它為準。
 - Gemini 金鑰存在雲端環境的網路秘密（主機 generativelanguage.googleapis.com，標頭 x-goog-api-key），由代理自動注入；程式碼和 repo 裡不放金鑰
 
+## 各頻道音色（使用者 2026/11/14 決定）
+- 哩股哩股（股票、國際情勢、基金）：Iapetus（男）。
+- AI 教學：Iapetus（男）。
+- 談晴說礙：Sulafat（女）。
+- 科技（Tech）：Sulafat（女）。
+- 白話國際：沿用 Iapetus（未另行指定）。
+- 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。
+
 ## 試聽規則
 - 試聽不花 API 額度（使用者 2026/11/13 指示）：要比較音色、語氣或口語程度時，不要自己送 TTS 請求；把完整提示詞（含設定說明與念稿）寫成檔案交給使用者，由他在 Google AI Studio 的語音生成頁（aistudio.google.com/generate-speech，模型 Gemini 2.5 Flash Preview TTS、音色照設定檔）試聽後回覆選擇；Claude 的網站不會產生語音，不要叫使用者貼到那裡。API 只用在使用者選定之後的正式配音（每支片整篇 1 次）；需要重配先說明原因與次數，等使用者同意。
 

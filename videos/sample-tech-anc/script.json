@@ -27,7 +27,7 @@
         "shot": { "at": "start-30", "d": 31, "elev": 6, "y": 2.2, "dur": 1 },
         "run": [
           { "id": "hookNoise", "at": "start-30", "until": "s3:open-8" },
-          { "id": "hookAnti", "at": "sound-12", "until": "s3:open-8" }
+          { "id": "hookAnti", "at": "quiet-8", "until": "s3:open-8" }
         ],
         "overlay": [
           { "type": "ribbon", "at": "start-30", "keys": [
@@ -36,7 +36,8 @@
           ] },
           { "type": "scope", "at": "start-30", "until": "s3:open-10", "y": 1056, "h": 226, "title": "耳朵聽到的", "anti": { "at": "quiet-8", "match": 0.74 } },
           { "type": "stamp", "at": "quiet+5", "until": "s2:more-4", "x": 800, "y": 1196, "text": "安靜", "color": "mint", "rot": -7, "size": 84 },
-          { "type": "stamp", "at": "sound-3", "until": "s2:quiet-2", "part": "head", "dx": 230, "dy": 190, "text": "它在出聲", "color": "blue", "rot": 5, "size": 64 }
+          { "type": "stamp", "at": "sound-3", "until": "s2:more-3", "part": "head", "dx": 230, "dy": 190, "text": "它在出聲", "color": "blue", "rot": 5, "size": 64 },
+          { "type": "circle", "part": "antiOut", "dx": 40, "at": "sound-27", "until": "s2:more-3", "r": 120, "color": "blue" }
         ]
       },
       "sources": ["示意動畫，不是量測"]
@@ -51,7 +52,8 @@
       "props": {
         "shot": { "at": "start+0", "d": 27, "elev": 8, "y": 2.4, "dur": 40 },
         "overlay": [
-          { "type": "stamp", "at": "quiet-2", "until": "s3:open-8", "part": "head", "dx": 0, "dy": 215, "text": "聲音＋聲音＝安靜？", "color": "amber", "rot": -4, "size": 66 }
+          { "type": "stamp", "at": "more+2", "until": "s3:open-8", "x": 356, "y": 948, "text": "聲音＋聲音", "color": "blue", "rot": -4, "size": 66 },
+          { "type": "stamp", "at": "quiet-2", "until": "s3:open-8", "x": 764, "y": 962, "text": "＝更安靜？", "color": "amber", "rot": 3, "size": 66 }
         ]
       },
       "sources": ["示意動畫，不是量測"]
@@ -217,7 +219,7 @@
       "props": {
         "shot": { "at": "start+0", "d": 30, "elev": 26, "y": 1.6, "yaw": 0.5, "dur": 30 },
         "overlay": [
-          { "type": "card", "at": "start+2", "until": "s10:start+4", "y": 392, "kicker": "留言告訴我", "lines": ["你的耳機", "最消不掉", "哪種聲音？"], "hi": "哪種聲音", "color": "coral", "size": 124 }
+          { "type": "card", "at": "start+2", "until": "s10:start+4", "y": 392, "kicker": "留言告訴我", "lines": ["你的耳機", "最消不掉", "哪種聲音？"], "hi": "哪種聲音", "hiAt": "which-2", "color": "coral", "size": 124 }
         ]
       },
       "sources": []
