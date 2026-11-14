@@ -90,7 +90,7 @@ const NEWS = { x: 396, y: 56, w: 210, h: 150 };
 const LENS = { x: 340, y: 500 };
 
 type ScreenMode = "num" | "idle" | "think" | "done" | "ok";
-type WorldState = { f: number; cam: M6; mode: ScreenMode; flash: number; num?: { label: string; value: string }; lensOnDesk: boolean; sheet: boolean; news: { x: number; y: number; z: number; k: number; o: number }; trail?: string | null };
+type WorldState = { f: number; cam: M6; mode: ScreenMode; flash: number; num?: { label: string; value: string; size?: number }; lensOnDesk: boolean; sheet: boolean; news: { x: number; y: number; z: number; k: number; o: number }; trail?: string | null };
 
 const ScreenFace: React.FC<{ st: WorldState }> = ({ st }) => {
   const { mode, f, flash } = st, S = T.screen;
@@ -101,7 +101,7 @@ const ScreenFace: React.FC<{ st: WorldState }> = ({ st }) => {
       {mode === "num" && st.num ? (
         <>
           <text x={38} y={100} fontFamily={FONT_ZH} fontWeight={T.weight.title} fontSize={62} fill={S.on}>{st.num.label}</text>
-          <text x={36} y={216} fontFamily={FONT_EN} fontWeight={T.weight.title} fontSize={116} fill={S.on}>{st.num.value}</text>
+          <text x={36} y={216} fontFamily={FONT_EN} fontWeight={T.weight.title} fontSize={st.num.size ?? 116} fill={S.on}>{st.num.value}</text>
         </>
       ) : null}
       {mode === "idle" ? (
@@ -265,7 +265,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
         <Bb key="hk-pin" m={popM(q.x, q.y + up, q.w, q.h, k)} w={q.w} h={q.h} o={o}>
           <div style={{ ...face(c.fill, c.side, T.depth.tile, T.radius.tile), padding: "22px 30px" }}>
             <div style={{ ...zh, fontWeight: T.weight.strong, fontSize: 34, color: c.on }}>{p.pin.label}</div>
-            <div style={{ ...en, fontWeight: T.weight.title, fontSize: 92, color: c.on, marginTop: 12 }}>{p.pin.value}</div>
+            <div style={{ ...en, fontWeight: T.weight.title, fontSize: p.pin.size ?? 92, color: c.on, marginTop: 12 }}>{p.pin.value}</div>
           </div>
           {p.pin.tag ? <div style={{ position: "absolute", right: -6, top: q.h + 30, ...bounce(f, hk.at(p.pin.tagAt, FAR), -3), transformOrigin: "100% 0" }}><Chip text={p.pin.tag} bg={T.card} fg={c.text} px={32} side={T.cardSide} /></div> : null}
         </Bb>,
@@ -365,7 +365,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
         <div style={{ width: "100%", height: "100%", transform: `rotate(${(-14 * k).toFixed(2)}deg)` }}>
           <div style={{ ...face(wc.soft, wc.fill, T.depth.tile, T.radius.tile), padding: "22px 34px" }}>
             <div style={{ ...zh, fontWeight: T.weight.strong, fontSize: 34, color: wc.text }}>{p.wrong.label}</div>
-            <div style={{ position: "relative", display: "inline-block", ...en, fontWeight: T.weight.title, fontSize: 124, color: wc.text, marginTop: 10 }}>{p.wrong.value}<Strike f={f} at={tStamp} color={T.ink} /></div>
+            <div style={{ position: "relative", display: "inline-block", ...en, fontWeight: T.weight.title, fontSize: p.wrong.size ?? 124, color: wc.text, marginTop: 10 }}>{p.wrong.value}<Strike f={f} at={tStamp} color={T.ink} /></div>
           </div>
           <div style={{ position: "absolute", right: -70, bottom: -34, ...slam(f, tStamp + 3, -6), transformOrigin: "50% 50%" }}><div style={{ ...zh, fontWeight: T.weight.title, fontSize: 46, color: wc.text, background: T.card, border: `6px solid ${wc.fill}`, borderRadius: 16, padding: "8px 22px" }}>{p.wrong.stamp}</div></div>
         </div>
@@ -379,7 +379,7 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
         <Bb key="cp-right" m={[1, 0, 0, sq, rq.x, y + rq.h * (1 - sq)]} w={rq.w} h={rq.h} o={o}>
           <div style={{ ...face(rc.fill, rc.side, T.depth.tile, T.radius.tile), padding: "30px 44px" }}>
             <div style={{ ...zh, fontWeight: T.weight.strong, fontSize: 40, color: rc.on }}>{p.right.label}</div>
-            <div style={{ ...en, fontWeight: T.weight.title, fontSize: 190, color: rc.on, marginTop: 14 }}>{p.right.value}</div>
+            <div style={{ ...en, fontWeight: T.weight.title, fontSize: p.right.size ?? 190, color: rc.on, marginTop: 14 }}>{p.right.value}</div>
           </div>
           {p.right.seal ? (
             <div style={{ position: "absolute", right: -34, top: -70, width: 196, height: 196, ...slam(f, tSeal, 12, 2.6) }}>

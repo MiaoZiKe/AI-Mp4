@@ -119,6 +119,10 @@ export function validateThree(script, h) {
     }
     for (const c of [].concat(s.props?.shot ?? [])) { if (!c.at) E(`${tag}: props.shot 要有 at`); for (const k of ["d", "elev", "y", "x", "yaw", "dur"]) if (c[k] !== undefined && typeof c[k] !== "number") E(`${tag}: props.shot.${k} 要是數字`); }
     for (const c of [].concat(s.props?.shift ?? [])) { if (!c.at) E(`${tag}: props.shift 要有 at`); if (c.opacity !== undefined && !(c.opacity >= 0 && c.opacity <= 1)) E(`${tag}: props.shift.opacity 要在 0–1`); }
+    // 深色 HUD＋Powers of Ten 縮放（頂層 hud；src/components/three/Hud.tsx）：沒寫 hud 的片不檢查這兩項
+    const HUD_LV = (script.hud?.levels ?? []).map((l) => l.id);
+    for (const z of [].concat(s.props?.zoom ?? [])) { if (!script.hud) E(`${tag}: props.zoom 要配頂層 hud.levels`); else if (!HUD_LV.includes(z.to)) E(`${tag}: props.zoom 的 to「${z.to}」不在 hud.levels 裡（${HUD_LV.join("／")}）`); if (!z.at) E(`${tag}: props.zoom 要有 at`); }
+    for (const c of [].concat(s.props?.measure ?? [])) { if (!c.at) E(`${tag}: props.measure 要有 at`); for (const k of ["from", "to"]) if (!PARTS.includes(c[k])) E(`${tag}: props.measure.${k}「${c[k]}」不在 model.anchors 裡`); if (!c.text) E(`${tag}: props.measure 要有 text`); }
     // 2D 疊層（props.overlay；src/components/three/Overlays.tsx）
     for (const o of [].concat(s.props?.overlay ?? [])) {
       if (!OVERLAY_TYPES.includes(o.type)) E(`${tag}: props.overlay 的 type「${o.type}」不存在（${OVERLAY_TYPES.join("／")}）`);
