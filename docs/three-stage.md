@@ -238,3 +238,15 @@
 - `cover.frame`：封面的模型停在第幾幀（預設照舊停在聚焦前一幀）。
 
 範例：`videos/sample-tech-anc/script.json`（s1 的 scope＋兩張 stamp＋ribbon、s3 的 steps、s7／s8 的 cross、s9 的 card、s10 的 circle）。validate 會檢查 type、`at`、位置欄位。
+
+## 七、2026/11/14 為 short-tech 第二版加的（都向下相容，沒寫就不作用）
+
+- `props.assemble: { at }`：分解之後再組回去（`explode` 的反向；鏡頭仍是躺下的角度）。運作動畫要在「組好的樣子」上演時用，通常搭配 `shift` 把外層變半透明。
+- `pulse` 動作可寫 `steady: true`：不閃，穩定亮著，強度只跟著 `run` 的 `ramp` 進出場（例如電壓維持在高的那段時間）。
+- `flow` 動作可寫 `phase`（0–1）：晚一點出發，幾條並排的路徑才不會同時起跑。
+- 只在運作時出現的示意層：放在自己的 layer，用 `shift: { layer, at: "start-30", until: "<幕>:<cue>", opacity: 0 }` 先藏起來，到 cue 才浮現；之後再寫一個 `shift` 收掉。
+- 深色 HUD 片（頂層 `hud`，`Hud.tsx`）：
+  - `meter` 動作寫了 `x`、`y`（畫面像素）就畫成固定在畫面上的讀數條（`sym` 符號、`lo`／`hi` 兩端的字）；長度＝`source` 那個動作這一幀的強度，不標數值。
+  - `overlay` 多兩種：`legend`（圖例；`items: [{ text, swatch }]`，`swatch` 寫 `model.palette` 的色名；`x`、`y`、`cols`、`colW`、`size`）、`compare`（左右對照卡；`y`、`h`、`title`、`tag`、`sides: [{ kind: "fin"｜"gaa", title, sub, wrap, leak, note, color }]`，`leak`＝漏電小點的顆數，不要寫 0）。
+  - 2D 縮放圖層搬到 `HudArt.tsx`（每一級一張 SVG）；新增的顏色在 `THEME_3D_HUD.art`。
+- `scripts/three/scene-html.mjs`：`model.partNames`（零件 id 的開頭 → 名稱）、`model.viewer.hide`（檢視器裡不畫的層）。

@@ -11,12 +11,12 @@
   "slogan": "數字，查過再信"
  },
  "voice": {
-  "voiceName": "TBD",
+  "voiceName": "user-upload",
   "model": "gemini-2.5-flash-preview-tts",
   "mode": "take",
   "languageCode": "cmn-TW",
   "profile": "liguligu",
-  "note": "男聲音色還沒選：等使用者用 docs/prompts/liguligu-男聲試聽.txt 在 Google AI Studio 試聽後再填 voiceName；在那之前不要送 TTS 請求（Iapetus、Achird 已被否決）"
+  "note": "旁白是使用者 2026/11/14 上傳的男聲錄音（Generated_Audio_November_14_2026_-_9_11PM.wav，25.04 秒），不是本專案送 TTS 生成的；音色名稱不明，voiceName 只是代號。原始錄音放 public/audio/liguligu-jensen-pro/，用 tts-take.mjs --resplit 切段、align 對齊，沒有送任何 TTS 請求。"
  },
  "cover": {
   "title": [
@@ -527,5 +527,9 @@
     "眾議院三個委員會致函（CNN、CBS 等報導）"
    ]
   }
- ]
+ ],
+ "audio": {
+  "bgm": false,
+  "sfx": false
+ }
 }

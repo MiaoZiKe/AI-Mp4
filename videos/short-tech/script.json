@@ -301,7 +301,7 @@
           {
             "type": "legend",
             "at": "three-4",
-            "until": "s6:wrap-6",
+            "until": "s5:start-4",
             "x": 552,
             "y": 1062,
             "cols": 2,
@@ -500,10 +500,10 @@
         "shot": [
           {
             "at": "start-6",
-            "d": 104,
+            "d": 112,
             "elev": 24,
-            "y": -1,
-            "x": 0,
+            "y": 2,
+            "x": -5,
             "dur": 28
           }
         ],
@@ -511,25 +511,25 @@
           {
             "layer": "gate",
             "at": "start+4",
-            "opacity": 0.4,
+            "opacity": 0.45,
             "dur": 16
           },
           {
             "layer": "spacer",
             "at": "start+4",
-            "opacity": 0.22,
+            "opacity": 0.16,
             "dur": 16
           },
           {
             "layer": "contact",
             "at": "start+4",
-            "opacity": 0.3,
+            "opacity": 0.14,
             "dur": 16
           },
           {
             "layer": "metal",
             "at": "start+4",
-            "opacity": 0.2,
+            "opacity": 0.07,
             "dur": 16
           }
         ],
@@ -547,32 +547,32 @@
           {
             "id": "gateOn",
             "at": "volt-4",
-            "until": "s6:off+2",
-            "ramp": 14
+            "until": "s6:off+0",
+            "ramp": 12
           },
           {
             "id": "chanOn",
             "at": "volt+6",
-            "until": "s6:off+8",
-            "ramp": 10
+            "until": "s6:off+4",
+            "ramp": 8
           },
           {
             "id": "e1",
             "at": "e-2",
-            "until": "s6:off+12",
-            "ramp": 12
+            "until": "s6:off+6",
+            "ramp": 8
           },
           {
             "id": "e2",
             "at": "e-2",
-            "until": "s6:off+12",
-            "ramp": 12
+            "until": "s6:off+6",
+            "ramp": 8
           },
           {
             "id": "e3",
             "at": "e-2",
-            "until": "s6:off+12",
-            "ramp": 12
+            "until": "s6:off+6",
+            "ramp": 8
           }
         ],
         "labels": [
@@ -598,8 +598,8 @@
             "type": "stamp",
             "style": "tag",
             "at": "e",
-            "until": "s6:off+16",
-            "x": 250,
+            "until": "s6:off+14",
+            "x": 230,
             "y": 1090,
             "text": "電子 e⁻ →",
             "color": "blue",
@@ -609,9 +609,9 @@
             "type": "stamp",
             "style": "tag",
             "at": "pass",
-            "until": "s6:off+16",
-            "x": 250,
-            "y": 1160,
+            "until": "s6:off+14",
+            "x": 230,
+            "y": 1156,
             "text": "電流方向 ←",
             "color": "amber",
             "size": 30

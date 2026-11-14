@@ -8,7 +8,10 @@ const slug = process.argv[2];
 const model = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "model.json"), "utf8"));
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "script.json"), "utf8"));
 const sch = script.hud?.schematic ?? { text: "Schematic – not to scale", zh: "示意圖，非實際比例" };
-const labels = { sub: "基板 substrate", fin: "絕緣層 isolation", sheetA: "奈米薄片 nanosheet", sheetB: "奈米薄片 nanosheet", sheetC: "奈米薄片 nanosheet", epi: "源極／汲極 source / drain", gateMain: "閘極 gate", gateSide: "閘極 gate", via: "接點 contact" };
+const labelsV1 = { sub: "基板 substrate", fin: "絕緣層 isolation", sheetA: "奈米薄片 nanosheet", sheetB: "奈米薄片 nanosheet", sheetC: "奈米薄片 nanosheet", epi: "源極／汲極 source / drain", gateMain: "閘極 gate", gateSide: "閘極 gate", via: "接點 contact" };
+// model.partNames（可省略）：零件 id 的開頭 → 名稱（最長的開頭優先）；沒寫就用上面第一版的對照表。model.viewer.hide：檢視器裡不畫的層（只在運作動畫出現的示意層）
+const pn = model.partNames, labels = pn ? Object.fromEntries(model.parts.map((p) => [p.id, Object.entries(pn).sort((a, b) => b[0].length - a[0].length).find(([k]) => String(p.id).startsWith(k))?.[1] ?? p.id])) : labelsV1;
+const hide = new Set(model.viewer?.hide ?? []);
 const html = `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${(script.title ?? slug).split("（")[0]} 3D 場景</title>
@@ -37,13 +40,14 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 const M = ${JSON.stringify(model)};
 const NAMES = ${JSON.stringify(labels)};
+const HIDE = ${JSON.stringify([...hide])};
 const col = (c) => M.palette[c] ?? c;
 const r = new THREE.WebGLRenderer({ canvas: document.getElementById("c"), antialias: true });
 r.setPixelRatio(Math.min(2, devicePixelRatio));
 const scene = new THREE.Scene(); scene.background = new THREE.Color("#070B12");
 const cam = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 const ctl = new OrbitControls(cam, r.domElement); ctl.enableDamping = true;
-const home = () => { cam.position.set(38, 62, 72); ctl.target.set(0, 0, 0); ctl.update(); };
+const home = () => { cam.position.set(46, 70, 92); ctl.target.set(0, 0, 0); ctl.update(); };
 home();
 scene.add(new THREE.HemisphereLight("#cfe8ff", "#1a2230", 1.1));
 const key = new THREE.DirectionalLight("#ffffff", 2.2); key.position.set(20, 40, 25); scene.add(key);
@@ -56,6 +60,7 @@ for (const L of M.layers) { const g = new THREE.Group(); g.userData = L; root.ad
 const mat = (id) => { const d = M.materials[id] ?? {}; return new THREE.MeshStandardMaterial({ color: col(d.color ?? "#888"), roughness: d.rough ?? 0.5, metalness: d.metal ?? 0.2, transparent: (d.opacity ?? 1) < 1, opacity: d.opacity ?? 1 }); };
 const pick = [];
 for (const p of M.parts) {
+  if (HIDE.includes(p.layer)) continue;
   const [a, b, c] = p.size;
   let geo;
   if (p.shape === "cyl") { geo = new THREE.CylinderGeometry(a, a, b, 24); geo.rotateX(Math.PI / 2); }

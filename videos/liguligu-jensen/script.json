@@ -15,7 +15,7 @@
   "mode": "take",
   "languageCode": "cmn-TW",
   "profile": "liguligu",
-  "note": "男聲音色還沒選：等使用者用 docs/prompts/liguligu-男聲試聽.txt 在 Google AI Studio 試聽後再填 voiceName；在那之前不要送 TTS 請求（Iapetus、Achird 已被否決）"
+  "note": "男聲音色還沒定案。使用者 2026/11/14 上傳的錄音（public/audio/liguligu-jensen/user-recording.orig.wav，25.04 秒）只有前 3 句（s01–s03，試聽短版）而且念了兩遍，s04–s07 沒有錄到，不能當全片旁白；量測在 voice.md。拿到 7 句完整錄音後：voiceName／model 改成 user-recording、拿掉 profile 與 languageCode，照 voice.md「接錄音的步驟」用 tts-take.mjs --resplit 接進來。在那之前不要送 TTS 請求（Iapetus、Achird 已被否決）"
  },
  "cover": {
   "camera": {
@@ -1406,7 +1406,7 @@
       "paper": "polaroid-binders",
       "lines": [
        {
-        "t": "董事會的獨立調查",
+        "t": "獨立調查（示意照片）",
         "size": 40
        }
       ],
@@ -1742,7 +1742,7 @@
       "paper": "polaroid-cabinet",
       "lines": [
        {
-        "t": "國會想問他什麼？",
+        "t": "國會想問什麼（示意）",
         "size": 40
        }
       ],

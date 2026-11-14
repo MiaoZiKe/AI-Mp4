@@ -2,146 +2,163 @@
  "version": 2,
  "slug": "liguligu-jensen-pro",
  "fps": 30,
- "totalFrames": 772,
- "totalSec": 25.73,
- "gapSec": 0.3,
+ "totalFrames": 815,
+ "totalSec": 27.17,
+ "gapSec": 0.5,
  "transitionFrames": 10,
  "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "note": "前 3 幕＝使用者錄音的真時間（強制對齊）；其餘各幕錄音沒念到，是無聲估算（scripts/dossier/recording-timeline.mjs）",
   "rate": 4.75,
-  "gap": 0.3,
-  "tailEndFrames": 18
+  "gap": 0.5,
+  "tailEndFrames": 18,
+  "partial": true
+ },
+ "recording": {
+  "file": "audio/liguligu-jensen-pro/take1.wav",
+  "scenes": [
+   "s01",
+   "s02",
+   "s03"
+  ],
+  "sec": 12.8,
+  "confidence": 0.902,
+  "minScore": 0.003,
+  "lastVoiceSec": 12.34
  },
  "scenes": [
   {
    "id": "s01",
    "audio": null,
-   "audioFrame": 5,
-   "audioSec": 4.211,
+   "audioFrame": 7,
+   "audioSec": 4.92,
    "headSilSec": 0,
    "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 140,
+   "durationFrames": 174,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 132,
-   "stillFrame": 130,
+   "voiceStartFrame": 7,
+   "voiceEndFrame": 155,
+   "stillFrame": 164,
    "subtitleWindow": [
     0,
-    137
+    171
    ],
    "sourceWindow": [
     0,
-    135
+    169
    ],
    "lines": [
     {
      "text": "33 年的執行長",
      "start": 0,
      "chars": [
-      4,
-      9,
-      9,
-      15,
+      6,
+      14,
+      14,
       21,
-      27,
+      25,
+      28,
       33,
       39
      ]
     },
     {
      "text": "辭職即刻生效",
-     "start": 50,
+     "start": 51,
      "chars": [
-      52,
-      58,
-      64,
-      70,
-      76,
-      81
+      54,
+      62,
+      78,
+      85,
+      92,
+      97
      ]
     },
     {
      "text": "公告沒寫原因",
-     "start": 92,
+     "start": 121,
      "chars": [
-      94,
-      100,
-      106,
-      112,
-      118,
-      124
+      123,
+      129,
+      134,
+      139,
+      144,
+      149
      ]
     }
    ],
    "keywords": [
     {
      "text": "即刻生效",
-     "start": 64
+     "start": 78
     },
     {
      "text": "沒寫原因",
-     "start": 106
+     "start": 134
     }
    ],
    "cues": [
     {
      "id": "ceo",
      "text": "執行長",
-     "frame": 29
+     "frame": 30
     },
     {
      "id": "imm",
      "text": "即刻生效",
-     "frame": 65
+     "frame": 80
     },
     {
      "id": "ann",
      "text": "公告",
-     "frame": 96
+     "frame": 125
     },
     {
      "id": "why",
      "text": "沒寫原因",
-     "frame": 108
+     "frame": 135
     }
    ],
    "sub": "33 年的執行長\n辭職即刻生效\n公告沒寫原因",
-   "provider": "estimate",
+   "provider": "recording+fa",
    "syllables": 20,
    "words": [],
    "charTimes": [
     0,
-    0.197,
-    0.394,
-    0.59,
-    0.787,
-    0.984,
-    1.181,
-    1.613,
-    1.81,
-    2.007,
-    2.204,
-    2.4,
-    2.597,
-    3.03,
-    3.227,
-    3.424,
-    3.62,
-    3.817,
-    4.014
-   ]
+    0.289,
+    0.52,
+    0.66,
+    0.76,
+    0.9,
+    1.1,
+    1.6,
+    1.88,
+    2.42,
+    2.66,
+    2.88,
+    3.06,
+    3.92,
+    4.12,
+    4.28,
+    4.46,
+    4.62,
+    4.78
+   ],
+   "fa": {
+    "confidence": 0.818,
+    "minScore": 0.003
+   }
   },
   {
    "id": "s02",
    "audio": null,
-   "audioFrame": 140,
-   "audioSec": 3.579,
+   "audioFrame": 174,
+   "audioSec": 3.02,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 130,
-   "durationFrames": 126,
+   "startFrame": 164,
+   "durationFrames": 124,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -155,114 +172,118 @@
      8
     ]
    },
-   "voiceStartFrame": 140,
-   "voiceEndFrame": 248,
-   "stillFrame": 246,
+   "voiceStartFrame": 174,
+   "voiceEndFrame": 265,
+   "stillFrame": 278,
    "subtitleWindow": [
-    137,
-    253
+    171,
+    285
    ],
    "sourceWindow": [
-    135,
-    251
+    169,
+    283
    ],
    "lines": [
     {
      "text": "4 天前董事會才說",
-     "start": 137,
+     "start": 171,
      "chars": [
-      139,
-      139,
-      144,
-      150,
-      156,
-      162,
-      168,
-      174,
-      180
+      173,
+      173,
+      179,
+      185,
+      191,
+      197,
+      200,
+      204,
+      209
      ]
     },
     {
      "text": "沒理由相信機密外洩",
-     "start": 191,
+     "start": 216,
      "chars": [
-      193,
-      199,
-      205,
-      210,
-      216,
-      222,
-      228,
-      234,
-      240
+      218,
+      227,
+      230,
+      235,
+      240,
+      246,
+      250,
+      254,
+      260
      ]
     }
    ],
    "keywords": [
     {
      "text": "4 天前",
-     "start": 139
+     "start": 173
     },
     {
      "text": "機密外洩",
-     "start": 222
+     "start": 246
     }
    ],
    "cues": [
     {
      "id": "d4",
      "text": "4 天前",
-     "frame": 140
+     "frame": 174
     },
     {
      "id": "board",
      "text": "董事會",
-     "frame": 158
+     "frame": 193
     },
     {
      "id": "no",
      "text": "沒理由",
-     "frame": 194
+     "frame": 220
     },
     {
      "id": "leak",
      "text": "機密外洩",
-     "frame": 224
+     "frame": 247
     }
    ],
    "sub": "4 天前董事會才說\n沒理由相信機密外洩",
-   "provider": "estimate",
+   "provider": "recording+fa",
    "syllables": 17,
    "words": [],
    "charTimes": [
     0,
-    0.197,
-    0.393,
-    0.59,
-    0.787,
-    0.983,
-    1.18,
-    1.377,
-    1.809,
-    2.006,
-    2.202,
-    2.399,
-    2.596,
-    2.792,
-    2.989,
-    3.186,
-    3.382
-   ]
+    0.2,
+    0.4,
+    0.62,
+    0.8,
+    0.92,
+    1.04,
+    1.22,
+    1.52,
+    1.8,
+    1.92,
+    2.08,
+    2.24,
+    2.44,
+    2.58,
+    2.72,
+    2.9
+   ],
+   "fa": {
+    "confidence": 0.942,
+    "minScore": 0.359
+   }
   },
   {
    "id": "s03",
    "audio": null,
-   "audioFrame": 257,
-   "audioSec": 3.158,
+   "audioFrame": 289,
+   "audioSec": 2.72,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 246,
-   "durationFrames": 114,
+   "startFrame": 278,
+   "durationFrames": 107,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -276,115 +297,119 @@
      8
     ]
    },
-   "voiceStartFrame": 256,
-   "voiceEndFrame": 352,
-   "stillFrame": 350,
+   "voiceStartFrame": 288,
+   "voiceEndFrame": 371,
+   "stillFrame": 375,
    "subtitleWindow": [
-    253,
-    357
+    285,
+    382
    ],
    "sourceWindow": [
-    251,
-    355
+    283,
+    380
    ],
    "lines": [
     {
      "text": "文件寫辭職",
-     "start": 253,
+     "start": 285,
      "chars": [
-      256,
-      261,
-      266,
-      272,
-      277
+      288,
+      292,
+      297,
+      302,
+      308
      ]
     },
     {
      "text": "媒體卻說",
-     "start": 287,
+     "start": 322,
      "chars": [
-      289,
-      295,
-      300,
-      306
+      324,
+      328,
+      331,
+      336
      ]
     },
     {
      "text": "董事會要他走",
-     "start": 315,
+     "start": 340,
      "chars": [
-      318,
-      323,
-      328,
-      334,
-      339,
-      345
+      342,
+      347,
+      351,
+      355,
+      360,
+      364
      ]
     }
    ],
    "keywords": [
     {
      "text": "辭職",
-     "start": 272
+     "start": 302
     },
     {
      "text": "董事會要他走",
-     "start": 318
+     "start": 342
     }
    ],
    "cues": [
     {
      "id": "doc",
      "text": "文件",
-     "frame": 257
+     "frame": 289
     },
     {
      "id": "res",
      "text": "辭職",
-     "frame": 273
+     "frame": 303
     },
     {
      "id": "med",
      "text": "媒體",
-     "frame": 291
+     "frame": 326
     },
     {
      "id": "out",
      "text": "要他走",
-     "frame": 335
+     "frame": 357
     }
    ],
    "sub": "文件寫辭職\n媒體卻說\n董事會要他走",
-   "provider": "estimate",
+   "provider": "recording+fa",
    "syllables": 15,
    "words": [],
    "charTimes": [
     0,
-    0.181,
-    0.363,
-    0.544,
-    0.726,
-    1.125,
-    1.307,
-    1.488,
-    1.67,
-    2.069,
-    2.25,
-    2.432,
-    2.613,
-    2.795,
-    2.976
-   ]
+    0.16,
+    0.32,
+    0.48,
+    0.68,
+    1.22,
+    1.34,
+    1.46,
+    1.6,
+    1.82,
+    1.98,
+    2.1,
+    2.26,
+    2.4,
+    2.56
+   ],
+   "fa": {
+    "confidence": 0.967,
+    "minScore": 0.656
+   }
   },
   {
    "id": "s04",
    "audio": null,
-   "audioFrame": 360,
+   "audioFrame": 385,
    "audioSec": 4.632,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 350,
-   "durationFrames": 158,
+   "startFrame": 375,
+   "durationFrames": 164,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -398,90 +423,90 @@
      8
     ]
    },
-   "voiceStartFrame": 360,
-   "voiceEndFrame": 500,
-   "stillFrame": 498,
+   "voiceStartFrame": 385,
+   "voiceEndFrame": 525,
+   "stillFrame": 529,
    "subtitleWindow": [
-    357,
-    505
+    382,
+    536
    ],
    "sourceWindow": [
-    355,
-    503
+    380,
+    534
    ],
    "lines": [
     {
      "text": "是政治操作嗎？",
-     "start": 357,
+     "start": 382,
      "chars": [
-      359,
-      364,
-      370,
-      376,
-      381,
-      387,
-      387
+      384,
+      389,
+      395,
+      401,
+      406,
+      412,
+      412
      ]
     },
     {
      "text": "華盛頓郵報說",
-     "start": 397,
+     "start": 422,
      "chars": [
-      400,
-      405,
-      411,
-      417,
-      422,
-      428
+      425,
+      430,
+      436,
+      442,
+      447,
+      453
      ]
     },
     {
      "text": "對中強硬派樂見他下台",
-     "start": 438,
+     "start": 463,
      "chars": [
-      440,
-      446,
-      452,
-      458,
-      463,
-      469,
-      475,
-      480,
-      486,
-      492
+      465,
+      471,
+      477,
+      483,
+      488,
+      494,
+      500,
+      505,
+      511,
+      517
      ]
     }
    ],
    "keywords": [
     {
      "text": "政治操作",
-     "start": 364
+     "start": 389
     },
     {
      "text": "樂見他下台",
-     "start": 469
+     "start": 494
     }
    ],
    "cues": [
     {
      "id": "pol",
      "text": "政治操作",
-     "frame": 366
+     "frame": 391
     },
     {
      "id": "wp",
      "text": "華盛頓郵報",
-     "frame": 401
+     "frame": 426
     },
     {
      "id": "hawk",
      "text": "對中強硬派",
-     "frame": 442
+     "frame": 467
     },
     {
      "id": "glad",
      "text": "樂見",
-     "frame": 470
+     "frame": 495
     }
    ],
    "sub": "是政治操作嗎？\n華盛頓郵報說\n對中強硬派樂見他下台",
@@ -516,12 +541,12 @@
   {
    "id": "s05",
    "audio": null,
-   "audioFrame": 508,
+   "audioFrame": 539,
    "audioSec": 1.684,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 498,
-   "durationFrames": 69,
+   "startFrame": 529,
+   "durationFrames": 75,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -535,60 +560,60 @@
      8
     ]
    },
-   "voiceStartFrame": 508,
-   "voiceEndFrame": 559,
-   "stillFrame": 557,
+   "voiceStartFrame": 539,
+   "voiceEndFrame": 590,
+   "stillFrame": 594,
    "subtitleWindow": [
-    505,
-    564
+    536,
+    601
    ],
    "sourceWindow": [
-    503,
-    562
+    534,
+    599
    ],
    "lines": [
     {
      "text": "但樂見",
-     "start": 505,
+     "start": 536,
      "chars": [
-      507,
-      512,
-      517
+      538,
+      543,
+      548
      ]
     },
     {
      "text": "不等於設局",
-     "start": 527,
+     "start": 558,
      "chars": [
-      530,
-      535,
-      541,
-      546,
-      552
+      561,
+      566,
+      572,
+      577,
+      583
      ]
     }
    ],
    "keywords": [
     {
      "text": "不等於設局",
-     "start": 530
+     "start": 561
     }
    ],
    "cues": [
     {
      "id": "glad",
      "text": "樂見",
-     "frame": 513
+     "frame": 544
     },
     {
      "id": "ne",
      "text": "不等於",
-     "frame": 531
+     "frame": 562
     },
     {
      "id": "setup",
      "text": "設局",
-     "frame": 548
+     "frame": 579
     }
    ],
    "sub": "但樂見\n不等於設局",
@@ -609,12 +634,12 @@
   {
    "id": "s06",
    "audio": null,
-   "audioFrame": 568,
+   "audioFrame": 605,
    "audioSec": 2.526,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 557,
-   "durationFrames": 95,
+   "startFrame": 594,
+   "durationFrames": 101,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -628,73 +653,73 @@
      8
     ]
    },
-   "voiceStartFrame": 567,
-   "voiceEndFrame": 644,
-   "stillFrame": 642,
+   "voiceStartFrame": 604,
+   "voiceEndFrame": 681,
+   "stillFrame": 685,
    "subtitleWindow": [
-    564,
-    649
+    601,
+    692
    ],
    "sourceWindow": [
-    562,
-    647
+    599,
+    690
    ],
    "lines": [
     {
      "text": "調查還沒結論",
-     "start": 564,
+     "start": 601,
      "chars": [
-      567,
-      572,
-      578,
-      584,
-      589,
-      595
+      604,
+      609,
+      615,
+      621,
+      626,
+      632
      ]
     },
     {
      "text": "他也還沒開口",
-     "start": 606,
+     "start": 643,
      "chars": [
-      608,
-      614,
-      619,
-      625,
-      631,
-      637
+      645,
+      651,
+      656,
+      662,
+      668,
+      674
      ]
     }
    ],
    "keywords": [
     {
      "text": "還沒結論",
-     "start": 578
+     "start": 615
     },
     {
      "text": "還沒開口",
-     "start": 619
+     "start": 656
     }
    ],
    "cues": [
     {
      "id": "probe",
      "text": "調查",
-     "frame": 568
+     "frame": 605
     },
     {
      "id": "none",
      "text": "還沒結論",
-     "frame": 579
+     "frame": 616
     },
     {
      "id": "he",
      "text": "他也",
-     "frame": 609
+     "frame": 646
     },
     {
      "id": "quiet",
      "text": "還沒開口",
-     "frame": 621
+     "frame": 658
     }
    ],
    "sub": "調查還沒結論\n他也還沒開口",
@@ -719,11 +744,11 @@
   {
    "id": "s07",
    "audio": null,
-   "audioFrame": 653,
+   "audioFrame": 695,
    "audioSec": 3.368,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 642,
+   "startFrame": 685,
    "durationFrames": 130,
    "transitionFrames": 10,
    "transition": {
@@ -738,87 +763,87 @@
      8
     ]
    },
-   "voiceStartFrame": 652,
-   "voiceEndFrame": 754,
-   "stillFrame": 760,
+   "voiceStartFrame": 695,
+   "voiceEndFrame": 797,
+   "stillFrame": 803,
    "subtitleWindow": [
-    649,
-    772
+    692,
+    815
    ],
    "sourceWindow": [
-    647,
-    772
+    690,
+    815
    ],
    "lines": [
     {
      "text": "請辭還是被請走？",
-     "start": 649,
+     "start": 692,
      "chars": [
-      652,
-      657,
-      663,
-      669,
-      675,
-      681,
-      687,
-      687
-     ]
-    },
-    {
-     "text": "下集看國會想問什麼",
-     "start": 698,
-     "chars": [
-      700,
-      706,
+      694,
+      699,
+      705,
       711,
       717,
       723,
       729,
-      735,
-      741,
-      747
+      729
+     ]
+    },
+    {
+     "text": "下集看國會想問什麼",
+     "start": 740,
+     "chars": [
+      742,
+      748,
+      753,
+      759,
+      765,
+      771,
+      777,
+      783,
+      789
      ]
     }
    ],
    "keywords": [
     {
      "text": "請辭",
-     "start": 652
+     "start": 694
     },
     {
      "text": "被請走",
-     "start": 675
+     "start": 717
     },
     {
      "text": "國會",
-     "start": 717
+     "start": 759
     }
    ],
    "cues": [
     {
      "id": "res",
      "text": "請辭",
-     "frame": 653
+     "frame": 695
     },
     {
      "id": "out",
      "text": "被請走",
-     "frame": 676
+     "frame": 718
     },
     {
      "id": "next",
      "text": "下集",
-     "frame": 701
+     "frame": 743
     },
     {
      "id": "cong",
      "text": "國會",
-     "frame": 719
+     "frame": 761
     },
     {
      "id": "ask",
      "text": "想問什麼",
-     "frame": 731
+     "frame": 773
     }
    ],
    "sub": "請辭還是被請走？\n下集看國會想問什麼",
