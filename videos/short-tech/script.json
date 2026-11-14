@@ -50,16 +50,16 @@
         "id": "board",
         "label": "主機板",
         "en": "LOGIC BOARD",
-        "field": "15 mm",
-        "ruler": "5 mm",
+        "field": "60 mm",
+        "ruler": "20 mm",
         "art": "board"
       },
       {
         "id": "chip",
         "label": "晶片",
         "en": "DIE",
-        "field": "1.5 mm",
-        "ruler": "500 µm",
+        "field": "10 mm",
+        "ruler": "2 mm",
         "art": "die"
       },
       {
@@ -207,7 +207,7 @@
           {
             "type": "stamp",
             "at": "count+2",
-            "until": "s3:open-6",
+            "until": "end-14",
             "x": 540,
             "y": 1040,
             "text": "上百億個",
@@ -333,9 +333,9 @@
         "shot": [
           {
             "at": "five-6",
-            "d": 100,
+            "d": 110,
             "elev": 22,
-            "y": 4.5,
+            "y": 6,
             "x": -3,
             "dur": 18
           },
@@ -373,6 +373,19 @@
             "text": "44 nm",
             "color": "amber",
             "off": -70
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "five-2",
+            "until": "s5:how-4",
+            "x": 300,
+            "y": 470,
+            "text": "量的是 IBM 試作晶片",
+            "color": "white",
+            "size": 34
           }
         ]
       },
@@ -425,6 +438,14 @@
             "elev": 56,
             "y": 4,
             "dur": 24
+          },
+          {
+            "at": "how-4",
+            "d": 175,
+            "elev": 50,
+            "y": 16,
+            "yaw": 0.6,
+            "dur": 44
           }
         ],
         "overlay": [
@@ -442,7 +463,7 @@
           {
             "type": "card",
             "at": "how-2",
-            "y": 360,
+            "y": 410,
             "kicker": "下一支",
             "lines": [
               "這麼小",
@@ -450,7 +471,8 @@
             ],
             "hi": "怎麼印",
             "hiAt": "how",
-            "foot": "光刻機"
+            "foot": "曝光機",
+            "size": 92
           }
         ]
       },

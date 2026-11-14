@@ -74,7 +74,7 @@ type Zoom = ReturnType<typeof zoomAt>;
 
 /** 倍率讀數：×1、×10、×100、×10⁴…（≥10⁴ 用上標） */
 const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
-export const magText = (mag: number) => { const e = Math.round(Math.log10(Math.max(1, mag))); return e < 4 ? `×${Math.round(Math.pow(10, e))}` : `×10${String(e).split("").map((d) => SUP[Number(d)]).join("")}`; };
+export const magText = (mag: number) => { const e = Math.round(Math.log10(Math.max(1, mag))); if (mag < 9500) { const v = Math.max(1, mag), p = Math.pow(10, Math.floor(Math.log10(v))); return `×${Math.round(v / p) * p}`; } return e < 4 ? `×${Math.round(Math.pow(10, e))}` : `×10${String(e).split("").map((d) => SUP[Number(d)]).join("")}`; };
 
 const mono = (px: number, color: string = H.text, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontVariantNumeric: "tabular-nums", fontSize: px, color, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, color, fill: color, fontWeight: w, whiteSpace: "nowrap" });
@@ -105,9 +105,10 @@ export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z
       <g clipPath="url(#hudStage)">
         {hud.levels.map((lvl, i) => {
           const k = Math.pow(10, Math.log10(meters(lvl.field)) - z.logField);
-          if (k > 9 || k < 0.06) return null;
-          // 裡面那一級（還很小）慢慢浮現；外面那一級（已經放很大）慢慢退掉
-          const o = clamp01((k - 0.07) / 0.25) * clamp01((9 - k) / 5);
+          // 裡面那一級（還很小）慢慢浮現；外面那一級等「下一級長到 0.4–0.9 倍畫面寬」才退掉（兩級差 100 倍以上時中間也不會空掉）
+          const nx = hud.levels[i + 1], kin = nx ? Math.pow(10, Math.log10(meters(nx.field)) - z.logField) : k / 10;
+          if (kin > 0.9 || k < 0.06) return null;
+          const o = clamp01((k - 0.07) / 0.25) * clamp01((0.9 - kin) / 0.5);
           return <g key={lvl.id} transform={`translate(${CX} ${CY}) scale(${(L.INNER_W * k) / 1000})`} opacity={o}><Art kind={lvl.art} f={f} /></g>;
         })}
       </g>
@@ -122,13 +123,16 @@ const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
   if (kind === "phone") return (
     // 手機：X 光線稿（看得到裡面的主機板外框與電池），正中央是晶片的位置；高 840＝畫面寬 18cm 的約 15cm
     <g>
-      <rect x={-210} y={-420} width={420} height={840} rx={60} fill={A.body} stroke={A.edge} strokeWidth={6} />
+      <rect x={-210} y={-420} width={420} height={840} rx={60} fill={A.body} stroke={H.line} strokeOpacity={0.75} strokeWidth={6} />
       <rect x={-186} y={-394} width={372} height={788} rx={40} fill={H.bg2} stroke={H.lineSoft} strokeWidth={3} />
-      <rect x={-150} y={-350} width={300} height={300} rx={18} fill="none" stroke={A.trace} strokeWidth={4} strokeDasharray="14 10" />
-      <rect x={-150} y={50} width={300} height={310} rx={18} fill="none" stroke={H.lineSoft} strokeWidth={4} />
-      <text x={0} y={215} textAnchor="middle" style={mono(28, H.text3)}>BATTERY</text>
-      <rect x={-58} y={-58} width={116} height={116} fill="none" stroke={H.amber} strokeWidth={3} />
-      <circle cx={-125} cy={-360} r={20} fill="none" stroke={A.edge} strokeWidth={5} />
+      {/* 主機板那一級的圖會照實際比例疊在正中央（寬約 1/3）；上面是鏡頭與聽筒、下面是電池 */}
+      <rect x={-150} y={-350} width={300} height={200} rx={18} fill="none" stroke={H.lineSoft} strokeWidth={4} strokeDasharray="14 10" />
+      <rect x={-40} y={-384} width={80} height={10} rx={5} fill={H.lineSoft} />
+      <rect x={-150} y={150} width={300} height={220} rx={18} fill="none" stroke={H.line} strokeOpacity={0.6} strokeWidth={4} />
+      <text x={0} y={270} textAnchor="middle" style={mono(28, H.text2)}>BATTERY</text>
+      <rect x={-40} y={-40} width={80} height={80} fill="none" stroke={H.amber} strokeWidth={3} />
+      <circle cx={-105} cy={-290} r={22} fill="none" stroke={H.line} strokeOpacity={0.7} strokeWidth={5} />
+      <circle cx={-105} cy={-210} r={16} fill="none" stroke={H.line} strokeOpacity={0.5} strokeWidth={4} />
     </g>
   );
   if (kind === "board") return (
@@ -138,14 +142,29 @@ const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
       {Array.from({ length: 10 }, (_, i) => <path key={`t${i}`} d={`M ${-480 + i * 22} -320 V ${-140 + i * 12} H -60`} fill="none" stroke={A.trace} strokeWidth={4} />)}
       {[[-420, -260, 160, 90], [250, -260, 200, 120], [-430, 130, 120, 160], [300, 150, 150, 110]].map(([x, y, w, h], i) => <rect key={i} x={x} y={y} width={w} height={h} rx={8} fill={A.part} stroke={A.edge} strokeWidth={2} />)}
       {/* 晶片封裝（正中央；大小＝下一級的 1/10 畫面寬） */}
-      <rect x={-75} y={-75} width={150} height={150} rx={8} fill={A.die} stroke={H.line} strokeWidth={4} />
+      <rect x={-84} y={-84} width={168} height={168} rx={8} fill={A.die} stroke={H.line} strokeWidth={4} />
     </g>
   );
   if (kind === "die") return (
     <g>
       <rect x={-500} y={-500} width={1000} height={1000} fill={A.die} stroke={H.line} strokeWidth={5} />
       {[[-470, -470, 420, 420, A.block], [-30, -470, 500, 280, A.block2], [-470, -30, 300, 500, A.block], [-150, -170, 620, 640, A.block]].map(([x, y, w, h, c], i) => <rect key={i} x={x as number} y={y as number} width={w as number} height={h as number} fill={c as string} stroke={H.lineSoft} strokeWidth={3} />)}
-      {Array.from({ length: 9 }, (_, i) => <line key={i} x1={-150 + i * 70} x2={-150 + i * 70} y1={-170} y2={470} stroke={H.lineSoft} strokeWidth={2} />)}
+      {Array.from({ length: 9 }, (_, i) => <line key={i} x1={-150 + i * 70} x2={-150 + i * 70} y1={-170} y2={470} stroke={H.line} strokeOpacity={0.45} strokeWidth={2} />)}
+      {/* 分區線與分區名（示意）：亮一級，晶片這一級才有東西可看 */}
+      {[[-470, -470, 420, 420, "CPU"], [-30, -470, 500, 280, "MEMORY"], [-470, -30, 300, 500, "I/O"], [-150, -170, 620, 640, "LOGIC"]].map(([x, y, w, h, t], i) => (
+        <g key={`z${i}`}>
+          <rect x={x as number} y={y as number} width={w as number} height={h as number} fill="none" stroke={H.line} strokeOpacity={0.7} strokeWidth={3} />
+          <text x={(x as number) + 18} y={(y as number) + 46} style={mono(30, H.text2)}>{t as string}</text>
+        </g>
+      ))}
+      {[[-440, -440, 3, 3, 120], [0, -440, 4, 2, 110], [-440, 0, 2, 4, 110]].map(([x0, y0, nx, ny, sz], i) => Array.from({ length: (nx as number) * (ny as number) }, (_, j) => <rect key={`m${i}-${j}`} x={(x0 as number) + (j % (nx as number)) * ((sz as number) + 12)} y={(y0 as number) + 60 + Math.floor(j / (nx as number)) * ((sz as number) + 12) * 0.8} width={sz as number} height={(sz as number) * 0.7} fill="none" stroke={H.lineSoft} strokeWidth={2} />))}
+      {/* 正中央一層比一層細的格線：一路放大幾百倍，畫面都還有線條在流動 */}
+      {[100, 20, 4, 0.8, 0.16].map((sp, j) => { const hw = sp * 7.5, n = 15; return (
+        <g key={`g${j}`} stroke={H.line} strokeOpacity={0.4} strokeWidth={sp * 0.035}>
+          {Array.from({ length: n + 1 }, (_, i) => <line key={`a${i}`} x1={-hw + i * sp} x2={-hw + i * sp} y1={-hw} y2={hw} />)}
+          {Array.from({ length: n + 1 }, (_, i) => <line key={`b${i}`} y1={-hw + i * sp} y2={-hw + i * sp} x1={-hw} x2={hw} />)}
+        </g>
+      ); })}
       <rect x={-10} y={-10} width={20} height={20} fill="none" stroke={H.amber} strokeWidth={4} />
     </g>
   );
@@ -171,12 +190,14 @@ const Art: React.FC<{ kind: string; f: number }> = ({ kind, f }) => {
 };
 
 /** HUD 外框：四角括號、掃描線（一道亮帶往下掃）、左下尺標、右上倍率讀數＋示意圖標示、中間十字準星、左上層級名 */
-export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom }> = ({ f, hud, z }) => {
+export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: number; quiet?: number }> = ({ f, hud, z, camK = 1, quiet = 0 }) => {
   const x0 = L.X, x1 = L.W - L.X, y0 = L.STAGE_TOP + 14, y1 = L.STAGE_TOP + L.STAGE_H - 14, b = H.bracket, s = H.stroke;
   const band = (f * (H.scan.sweep / 30)) % (y1 - y0 + H.scan.bandH);
   const lvl = z.level ?? hud.levels[0];
   // 尺標長度：ruler ÷ 目前 field × 畫面寬（縮放途中跟著伸縮）；3D 之後固定在那一級
-  const rulerPx = Math.max(40, Math.min(L.INNER_W * 0.5, (meters(lvl.ruler) / Math.pow(10, z.logField)) * L.INNER_W));
+  const rulerPx = Math.max(40, Math.min(L.INNER_W * 0.5, (meters(lvl.ruler) / Math.pow(10, z.logField)) * L.INNER_W * camK));
+  // quiet＝提問卡出現時收掉層級名、倍率、FIELD（只留右上的示意圖標示，全片都在）
+  const rq = 1 - quiet;
   // 讀數換級時閃一下（換字的那幾幀亮起來）
   const lvF = Math.abs(z.lv - Math.round(z.lv)) < 0.5 ? 1 : 0;
   const sc = hud.schematic;
@@ -197,14 +218,14 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom }> = ({ f, hu
         <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
       </g>
       {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
-      <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={0.72} />
-      <rect x={x1 - 470} y={y0 + 10} width={460} height={196} fill={H.bg} opacity={0.72} />
+      <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={0.72 * rq} />
+      <rect x={x1 - 470} y={y0 + 10} width={460} height={86 + 110 * rq} fill={H.bg} opacity={0.72} />
       {sc ? <text x={x1 - 24} y={y0 + 40} textAnchor="end" style={mono(28, H.text2, 500)}>{sc.text}</text> : null}
       {sc?.zh ? <text x={x1 - 24} y={y0 + 76} textAnchor="end" style={zh(28, H.text2, 500)}>{sc.zh}</text> : null}
-      <text x={x1 - 24} y={y0 + 150} textAnchor="end" style={mono(H.font.px.big, H.text, 700)} opacity={0.75 + 0.25 * lvF}>{magText(z.mag)}</text>
-      <text x={x1 - 24} y={y0 + 192} textAnchor="end" style={mono(H.font.px.readout, H.text2)}>FIELD {lvl.field}</text>
-      <text x={x0 + 28} y={y0 + 56} style={zh(H.font.px.label, H.line, 700)}>{lvl.label}</text>
-      <text x={x0 + 28} y={y0 + 96} style={mono(H.font.px.readout, H.text2)}>{lvl.en ?? ""}</text>
+      <text x={x1 - 24} y={y0 + 150} textAnchor="end" style={mono(H.font.px.big, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text>
+      <text x={x1 - 24} y={y0 + 192} textAnchor="end" style={mono(H.font.px.readout, H.text2)} opacity={rq}>FIELD {lvl.field}</text>
+      <text x={x0 + 28} y={y0 + 56} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
+      <text x={x0 + 28} y={y0 + 96} style={mono(H.font.px.readout, H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
     </svg>
   );
 };
@@ -313,6 +334,10 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
       const k = tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
       if (k <= 0) return null;
       const c = hudAccent(o.color);
+      if (o.type === "stamp" && o.style === "tag") {
+        // 小標：細框深底（不是蓋章），說明這個數字是量誰的
+        return <div key={i} style={{ position: "absolute", left: o.x ?? CX, top: o.y ?? CY, opacity: k, transform: `translate(-50%, -50%) translateY(${Math.round(10 * (1 - k))}px)`, ...zh(o.size ?? 34, c, 700), background: H.panel, border: `2px solid ${c}`, padding: "6px 20px 8px", letterSpacing: "0.04em" }}>{o.text}</div>;
+      }
       if (o.type === "stamp") {
         const size = o.size ?? 76, slam = 1 + 0.6 * (1 - tween(f, o.at, 6, EASE.enter)) + 0.05 * Math.sin(Math.PI * tween(f, o.at + 6, 8, EASE.move));
         return (
@@ -384,7 +409,7 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
         <span>
           {splitParts(text, cue.keywords).map((sp, i) => {
             if (sp.k < 0) return <span key={i}>{sp.text}</span>;
-            const q = kwAt[sp.text] === undefined ? 1 : tween(f, kwAt[sp.text] - 1, 8, EASE.move), c = cols[sp.k % cols.length];
+            const q = kwAt[sp.text] === undefined || kwAt[sp.text] <= 1 ? 1 : tween(f, kwAt[sp.text] - 1, 8, EASE.move), c = cols[sp.k % cols.length];
             return <span key={i} style={{ position: "relative", color: q > 0.5 ? c : H.text }}>{sp.text}<span style={{ position: "absolute", left: 0, bottom: -4, height: 6, width: `${(100 * q).toFixed(1)}%`, background: c }} /></span>;
           })}
         </span>
@@ -422,12 +447,18 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const srcCues = ordered.map((x) => ({ sources: x.sources, window: by[x.id].sourceWindow as [number, number] }));
   // 鉤子在第一次真正縮放（不是 drift）時退場
   const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;
+  // 3D 段鏡頭推近拉遠時，尺標與倍率跟著鏡頭距離伸縮（以交棒那一刻的距離為準）
+  const hand = keys.find((k) => hud.levels[k.to]?.handoff3D);
+  const d0 = useMemo(() => (hand ? stateAt(m, hand.at + hand.dur).cam.d : 0), [m, hand]);
+  const camK = z.handoff >= 1 && d0 > 0 ? d0 / s.cam.d : 1;
+  const card = (m.overlays ?? []).find((o) => o.type === "card");
+  const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (
     <AbsoluteFill style={{ background: H.bg }}>
       <HudBackdrop f={f} lv={z.lv} warm={z.handoff * s.lay} />
       <ZoomArt hud={hud} z={z} f={f} />
       <Stage3D s={s} model={m.product} o={z.handoff} />
-      <HudFrame f={f} hud={hud} z={z} />
+      <HudFrame f={f} hud={hud} z={z} camK={camK} quiet={quiet} />
       <HudHook m={m} f={f} out={hookOut} />
       <HudLabels m={m} s={s} f={f} max={hud.maxLabels ?? 2} />
       <HudMeasures m={m} s={s} f={f} list={meas} />

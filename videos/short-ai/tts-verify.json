@@ -1,18 +1,18 @@
 {
  "slug": "short-ai",
- "at": "2026-11-14T11:40:42.711Z",
+ "at": "2026-11-14T12:37:07.516Z",
  "method": "fa",
  "confMin": 0.5,
  "cerMax": 0.15,
  "regenMax": 0,
  "regenRequests": 0,
- "note": "整篇一鏡到底（tts-take.mjs，原始音檔 a16ea05098，本次 TTS 請求 1 次）：信心取自整篇對齊；不單幕重生，要重做就整篇重來；整篇聽寫（gemini-3.5-transcribe）共 76 字，全文見 tts-take-asr.json",
+ "note": "整篇一鏡到底（tts-take.mjs，原始音檔 4f3faf6196，本次 TTS 請求 0 次）：信心取自整篇對齊；不單幕重生，要重做就整篇重來；整篇聽寫（gemini-3.5-transcribe）共 69 字，全文見 tts-take-asr.json",
  "scenes": [
   {
    "id": "s01",
    "before": {
-    "confidence": 0.976,
-    "minScore": 0.884,
+    "confidence": 0.983,
+    "minScore": 0.941,
     "cer": null,
     "transcript": null,
     "bad": false,
@@ -23,8 +23,8 @@
   {
    "id": "s02",
    "before": {
-    "confidence": 0.71,
-    "minScore": 0.002,
+    "confidence": 0.594,
+    "minScore": 0,
     "cer": null,
     "transcript": null,
     "bad": false,
@@ -35,13 +35,13 @@
   {
    "id": "s03",
    "before": {
-    "confidence": 0.363,
-    "minScore": 0.001,
+    "confidence": 0.365,
+    "minScore": 0.025,
     "cer": null,
     "transcript": null,
     "bad": true,
     "why": [
-     "對齊信心 0.363 < 0.5"
+     "對齊信心 0.365 < 0.5"
     ]
    },
    "regen": false,
@@ -51,7 +51,7 @@
    "id": "s04",
    "before": {
     "confidence": 0.636,
-    "minScore": 0.003,
+    "minScore": 0.015,
     "cer": null,
     "transcript": null,
     "bad": false,
@@ -62,8 +62,8 @@
   {
    "id": "s05",
    "before": {
-    "confidence": 0.863,
-    "minScore": 0.096,
+    "confidence": 0.908,
+    "minScore": 0.008,
     "cer": null,
     "transcript": null,
     "bad": false,

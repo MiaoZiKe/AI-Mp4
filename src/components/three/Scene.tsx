@@ -121,7 +121,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
     <>
       <Rig s={s} fx={fx} />
       <ambientLight intensity={T.light.ambient} />
-      <directionalLight position={T.light.keyPos as unknown as [number, number, number]} intensity={T.light.key} castShadow={fx.shadows >= 2} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
+      <directionalLight position={T.light.keyPos as unknown as [number, number, number]} intensity={T.light.key * (1 - ((fx as any).layDip ?? 0) * Math.sin(Math.PI * s.lay))} castShadow={fx.shadows >= 2} shadow-mapSize={[fx.shadowSize, fx.shadowSize]} shadow-camera-left={-13} shadow-camera-right={13} shadow-camera-top={13} shadow-camera-bottom={-13} shadow-camera-near={1} shadow-camera-far={70} shadow-bias={-0.0006} shadow-normalBias={0.04} />
       <directionalLight position={[-12, 6, 8]} intensity={T.light.fill} />
       {/* 地面只接陰影（透明），背景的棚是 HTML */}
       {fx.shadows >= 2 ? <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, s.groundY, -4]} receiveShadow><planeGeometry args={[T.ground.size, T.ground.size]} /><shadowMaterial transparent opacity={T.ground.shadow} fog={false} /></mesh> : null}
