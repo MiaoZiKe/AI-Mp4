@@ -430,7 +430,7 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
   <>
     <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>
+        {(H as any).mark === "ring" ? <svg width={46} height={46} viewBox="18 16 64 64"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></svg> : <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>}
         <div style={{ ...zh(40, H.text), letterSpacing: "0.04em" }}>{name}</div>
       </div>
       <div style={{ ...zh(28, H.line, 700), border: `2px solid ${H.line}`, padding: "6px 22px", letterSpacing: "0.08em" }}>{tag}</div>
