@@ -202,7 +202,7 @@ for (const [k, x] of spoken.entries()) {
   while (vs < ve && db[vs] < VOICE_DB) vs++;
   while (ve > vs && db[ve] < VOICE_DB) ve--;
   x.vs = vs / 100; x.ve = (ve + 1) / 100;
-  const t0 = Math.max(cuts[k], x.vs - KEEP), t1 = Math.min(cuts[k + 1], x.ve + KEEP);
+  const t0 = Math.max(cuts[k], x.vs - (k === 0 && script.voiceLeadIn ? 0.15 : KEEP)) // 第一幕多留 0.15 秒起音（有 voiceLeadIn 的片才會）, t1 = Math.min(cuts[k + 1], x.ve + KEEP);
   const seg = pcm.slice(Math.round(t0 * rate), Math.round(t1 * rate));
   const nf = Math.min(Math.round(FADE * rate), seg.length >> 1);
   for (let i = 0; i < nf; i++) { seg[i] = Math.round(seg[i] * (i / nf)); seg[seg.length - 1 - i] = Math.round(seg[seg.length - 1 - i] * (i / nf)); }

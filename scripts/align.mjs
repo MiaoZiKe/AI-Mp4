@@ -159,10 +159,12 @@ function buildV2(cs) {
     const sc = script.scenes.find((x) => x.id === c.id);
     const pause = typeof sc?.pauseAfter === "number" ? sc.pauseAfter : 0;
     // P0-4：換幕人聲間隔＝上一幕的 pauseAfter（有設定時，是「整個間隔」秒數），否則預設 GAP（0.15 秒）
-    const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
+    // 開頭保護（2026/11/15 使用者回饋「旁白剛開始的聲音被截一點點」）：script.json 頂層 voiceLeadIn（秒，預設 0＝舊行為）讓第一幕的人聲晚一點進來，不切起音
+    const LEAD_IN = Math.max(0, Number(script.voiceLeadIn ?? 0));
+    const audioFrame = i === 0 ? Math.round(LEAD_IN * FPS) : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
     const vs = audioFrame / FPS + b.head, ve = audioFrame / FPS + b.tail;
     // v3 整篇模式：下一幕從「沒有取整的」收聲時間往後排，取整誤差（≤ 半幀）不會一幕一幕累積
-    prevEnd = V3 && c.take ? (i === 0 ? b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
+    prevEnd = V3 && c.take ? (i === 0 ? audioFrame / FPS + b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
     prevGap = pause > 0 ? pause : GAP;
     if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
