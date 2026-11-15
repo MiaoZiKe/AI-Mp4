@@ -139,35 +139,45 @@ const Neural: React.FC<{ n: number }> = ({ n }) => {
   );
 };
 
-// ── 4 粒子聚合：一群資料點沿螺旋飛進來，依序排成圓弧，最後幾顆橘點聚成缺口上的圓點 ──
+// ── 4 粒子聚合（加強版，使用者 2026/11/15 選定並要求「效果加強」）：
+//    從畫面四周湧進 180 顆資料點（帶速度殘影），沿螺旋排成圓弧；橘色粒子聚成圓點；
+//    合體那一刻圓環一閃＋兩道衝擊波＋一圈粒子往外迸開；之後有粒子沿外圈繞行 ──
 const PARTS = (() => {
   const r = seeded(20261115);
-  return Array.from({ length: 64 }, (_, i) => { const t = i / 63; return { t, j: (r() - 0.5) * 5, r0: 62 + r() * 30, a0: -9 + 288 * t - 140 - r() * 80, at: 4 + 22 * t + r() * 4, s: 0.9 + r() * 0.8 }; });
+  return Array.from({ length: 180 }, (_, i) => { const t = i / 179; return { t, j: (r() - 0.5) * 6, r0: 95 + r() * 75, a0: -9 + 288 * t - 200 - r() * 140, at: 6 + 20 * t + r() * 5, s: 0.9 + r() * 1.3, o: r() < 0.12 }; });
 })();
-const DOTPARTS = (() => { const r = seeded(7); return Array.from({ length: 9 }, () => ({ r0: 50 + r() * 30, a0: r() * 360, at: 26 + r() * 6 })); })();
+const DOTPARTS = (() => { const r = seeded(7); return Array.from({ length: 22 }, () => ({ r0: 60 + r() * 70, a0: r() * 360, at: 26 + r() * 6, s: 1.2 + r() * 1.2 })); })();
+const BURST = (() => { const r = seeded(99); return Array.from({ length: 40 }, () => ({ a: r() * 360, d: 22 + r() * 40, s: 0.6 + r() * 1.1, o: r() < 0.3 })); })();
+const LOCK = 34;
 const Particles: React.FC<{ n: number }> = ({ n }) => {
-  const c = col(), draw = tween(n, 12, 22, EASE.move);
-  const fly = (r0: number, a0: number, r1: number, a1: number, k: number, cx = 50, cy = 50): [number, number] => {
+  const c = col(), draw = tween(n, 14, 20, EASE.move);
+  const fly = (r0: number, a0: number, r1: number, a1: number, k: number): [number, number] => {
     const rr = lerp(r0, r1, k), aa = rad(lerp(a0, a1, k));
-    return [cx + rr * Math.cos(aa), cy + rr * Math.sin(aa) * lerp(0.75, 1, k)];
+    return [50 + rr * Math.cos(aa), 50 + rr * Math.sin(aa) * lerp(0.8, 1, k)];
   };
+  const flash = n >= LOCK ? Math.exp(-(n - LOCK) / 4) : 0;
   return (
     <>
-      <Ring draw={draw} />
+      {[0, 6].map((d) => { const u = tween(n, LOCK + d, 22, EASE.move); return u > 0 && u < 1 ? <circle key={`w${d}`} cx={50} cy={50} r={27 + 48 * u} fill="none" stroke={d ? c.orange : c.blue} strokeWidth={2.4 * (1 - u)} opacity={0.75 * (1 - u)} /> : null; })}
+      {flash > 0.02 ? <Ring draw={1} color={c.soft} w={9 + 14 * flash} o={flash} /> : null}
+      <g transform={`translate(50 50) scale(${(1 + 0.12 * flash).toFixed(3)}) translate(-50 -50)`}><Ring draw={draw} /></g>
       {PARTS.map((p, i) => {
-        const k = tween(n, p.at - 16, 16, EASE.move), o = k <= 0 ? 0 : 1 - tween(n, p.at + 2, 5, EASE.exit);
+        const k = tween(n, p.at - 18, 18, EASE.move), o = k <= 0 ? 0 : 1 - tween(n, p.at + 1, 5, EASE.exit);
         if (o <= 0) return null;
-        const [x, y] = fly(p.r0, p.a0, 25 + p.j, -9 + 288 * p.t, k);
-        return <circle key={i} cx={x} cy={y} r={p.s * lerp(0.7, 1.2, k)} fill={i % 9 === 4 ? c.trace : c.blue} opacity={o} />;
+        const a1 = -9 + 288 * p.t, [x, y] = fly(p.r0, p.a0, 25 + p.j, a1, k), [px, py] = fly(p.r0, p.a0, 25 + p.j, a1, Math.max(0, k - 0.09));
+        const fill = p.o ? c.orange : i % 7 === 3 ? c.trace : c.blue, rr = p.s * lerp(0.8, 1.3, k);
+        return <g key={i} opacity={o}><line x1={px} y1={py} x2={x} y2={y} stroke={fill} strokeWidth={rr * 1.1} strokeLinecap="round" opacity={0.45} /><circle cx={x} cy={y} r={rr} fill={fill} /></g>;
       })}
       {DOTPARTS.map((p, i) => {
-        const k = tween(n, p.at - 12, 12, EASE.move), o = k <= 0 || n > 37 ? 0 : 1;
-        if (!o) return null;
-        const [x, y] = [DOT[0] + lerp(p.r0, 0, k) * Math.cos(rad(p.a0) + (1 - k) * 2), DOT[1] + lerp(p.r0, 0, k) * Math.sin(rad(p.a0) + (1 - k) * 2) * 0.75];
-        return <circle key={`d${i}`} cx={x} cy={y} r={1.6} fill={c.orange} />;
+        const k = tween(n, p.at - 14, 14, EASE.move);
+        if (k <= 0 || n > LOCK + 1) return null;
+        const a = rad(p.a0) + (1 - k) * 3, rr = lerp(p.r0, 0, k);
+        const [x, y] = [DOT[0] + rr * Math.cos(a), DOT[1] + rr * Math.sin(a) * 0.8];
+        return <circle key={`d${i}`} cx={x} cy={y} r={p.s} fill={c.orange} />;
       })}
-      <Dot s={n < 36 ? 0 : bounce(n, 36) * breathe(n, 52)} />
-      {n > 54 ? PARTS.filter((_, i) => i % 16 === 3).map((p, i) => { const u = ((n - 54 + i * 11) % 44) / 44, [x, y] = onArc((p.t + u * 0.25) % 1, 33 + 4 * u); return <circle key={`i${i}`} cx={x} cy={y} r={0.8} fill={c.blue} opacity={0.5 * Math.sin(Math.PI * u)} />; }) : null}
+      {n >= LOCK ? BURST.map((b, i) => { const u = tween(n, LOCK, 18, EASE.move); if (u >= 1) return null; const [x, y] = polar(b.a, 30 + b.d * u); return <circle key={`b${i}`} cx={x} cy={y} r={b.s * (1 - u)} fill={b.o ? c.orange : c.blue} opacity={1 - u} />; }) : null}
+      <Dot s={n < LOCK ? 0 : bounce(n, LOCK) * breathe(n, 52)} />
+      {n > 46 ? PARTS.filter((_, i) => i % 12 === 5).map((p, i) => { const u = ((n - 46 + i * 7) % 50) / 50, [x, y] = onArc((p.t + u * 0.35) % 1, 34 + 6 * Math.sin(Math.PI * u)); return <circle key={`i${i}`} cx={x} cy={y} r={1.1} fill={i % 4 === 1 ? c.orange : c.blue} opacity={0.75 * Math.sin(Math.PI * u)} />; }) : null}
     </>
   );
 };
