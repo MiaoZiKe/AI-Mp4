@@ -37,7 +37,6 @@ const camAt = (keys: Key[], f: number, shakes: number[]): M6 => {
   if (!keys.length) return at2(L.W / 2, 900, 0.6);
   let [lx, ly] = iso(...keys[0].look), s = keys[0].zoom, sy = keys[0].sy, rot = keys[0].rot;
   for (const k of keys.slice(1)) { const t = E(f, k.frame, k.dur), [tx, ty] = iso(...k.look); lx += (tx - lx) * t; ly += (ty - ly) * t; s += (k.zoom - s) * t; sy += (k.sy - sy) * t; rot += (k.rot - rot) * t; }
-  s *= 1 + 0.005 * Math.sin(f / 23); sy += 3 * Math.sin(f / 19);
   let dx = 2 * Math.sin(f / 27), dy = 0;
   for (const a of shakes) if (f >= a && f < a + 9) { const d = 1 - (f - a) / 9; dx += 10 * d * Math.sin((f - a) * 2.4); dy += 8 * d * Math.cos((f - a) * 3.1); }
   const r = (rot * Math.PI) / 180, c = Math.cos(r), n = Math.sin(r);
@@ -121,7 +120,7 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
         <polyline points={ringPts} fill="none" stroke={P.soft} strokeWidth={30} strokeLinejoin="round" opacity={0.9} />
         <polyline points={ringPts} fill="none" stroke={P.fill} strokeWidth={6} strokeDasharray="2 16" strokeLinecap="round" opacity={0.55} />
         {chevs}
-        {([["look", LK, lk], ["act", AC, ac], ["check", CK, ck]] as const).map(([k, p, pn]) => { const h = hl(k as any, pn as any); return h > 0.02 ? <g key={k} transform={css(ground(p.x, p.y, 2))}><circle r={92 + 8 * Math.sin(f / 5)} fill={P.soft} opacity={0.8 * h} /><circle r={92 + 8 * Math.sin(f / 5)} fill="none" stroke={P.fill} strokeWidth={6} opacity={0.7 * h} /></g> : null; })}
+        {([["look", LK, lk], ["act", AC, ac], ["check", CK, ck]] as const).map(([k, p, pn]) => { const h = hl(k as any, pn as any); return h > 0.02 ? <g key={k} transform={css(ground(p.x, p.y, 2))}><rect x={-96} y={-96} width={192} height={192} rx={28} fill={P.soft} opacity={0.8 * h} /><rect x={-96} y={-96} width={192} height={192} rx={28} fill="none" stroke={P.fill} strokeWidth={6} strokeDasharray="22 14" opacity={0.7 * h} /></g> : null; })}
 
         {/* 閘門（後左）：欄杆、柱、燈號、會升起的條桿 */}
         <g>
@@ -231,9 +230,9 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
     const h = Pn.hook, tS = h.at("stop", 8), tG = h.at("go", 34), a = O(f, h.in, 4);
     out.push(
       <div key="hk" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: 1 - O(f, h.out - 10, 8) }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
           <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 98, color: T.ink2 }}>聊天 AI <span style={{ color: T.ink }}>答完就停</span></div>
-          <div data-ov="停章" style={{ transform: `rotate(-8deg) scale(${f < tS ? 0 : 1 + 1.2 * (1 - O(f, tS, 5))})`, opacity: f < tS ? 0 : 1, ...zh, fontWeight: 900, fontSize: 66, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 14, background: T.card, padding: "2px 16px" }}>停</div>
+          <div data-ov="停章" style={{ transform: `rotate(-8deg) scale(${f < tS ? 0 : 1 + 0.3 * (1 - O(f, tS, 5))})`, opacity: f < tS ? 0 : 1, ...zh, fontWeight: 900, fontSize: 66, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 14, background: T.card, padding: "2px 16px" }}>停</div>
         </div>
         <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 112, color: f < tG ? T.ink3 : P.text, marginTop: 14, transform: `scale(${f < tG ? 1 : 1 + 0.12 * Math.exp(-(f - tG) / 5)})`, transformOrigin: "0 50%" }}>代理不會停</div>
       </div>,

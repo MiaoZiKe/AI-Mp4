@@ -15,7 +15,7 @@ ms = int(round(at * 1000))
 
 def build(g, dst):
     if src:
-        fc = f"[0:a]aresample=48000,apad=whole_dur={dur}[bg];[1:a]adelay={ms}|{ms},volume={g:.4f},alimiter=limit=0.85:attack=5:release=60:level=disabled:latency=1[s];[bg][s]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.89:attack=3:release=60:level=disabled[o]"
+        fc = f"[0:a]aresample=48000,apad=whole_dur={dur}[bg];[1:a]adelay={ms}|{ms},volume={g:.4f},alimiter=limit=0.85:attack=5:release=60:level=disabled:latency=1[s];[bg][s]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.85:attack=3:release=60:level=disabled[o]"
         cmd = ["ffmpeg", "-loglevel", "error", "-y", "-i", src, "-i", sting, "-filter_complex", fc, "-map", "[o]", "-t", str(dur), "-ar", "48000", "-c:a", "pcm_s16le", dst]
     else:
         fc = f"[0:a]volume={g:.4f},alimiter=limit=0.85:attack=5:release=60:level=disabled:latency=1[o]"
