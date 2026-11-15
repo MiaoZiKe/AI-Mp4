@@ -80,6 +80,8 @@ export const magText = (mag: number) => { const e = Math.round(Math.log10(Math.m
 
 const mono = (px: number, color: string = H.text, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontVariantNumeric: "tabular-nums", fontSize: px, color, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, color, fill: color, fontWeight: w, whiteSpace: "nowrap" });
+/** 色塊上的字色：橘色塊可另用 onAmber（淺色皮膚：藍／紅塊上白字、橘塊上深字） */
+const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
 export const hudAccent = (c?: string) => (c === "amber" ? H.amber : c === "coral" ? H.coral : c === "white" ? H.text : H.line);
 const CX = L.W / 2, CY = L.STAGE_TOP + L.STAGE_H / 2;
 
@@ -182,7 +184,7 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
   const h = m.hook as { title: string; kicker?: string; size?: number; top?: number };
   return (
     <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: h.top ?? 560, opacity: 1 - k, transform: `translateY(${Math.round(-40 * k)}px)`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-      {h.kicker ? <div style={{ ...zh(40, H.onAccent, 900), background: H.line, padding: "6px 26px 8px", letterSpacing: "0.1em" }}>{h.kicker}</div> : null}
+      {h.kicker ? <div style={{ ...zh(40, onC(H.line), 900), background: H.line, padding: "6px 26px 8px", letterSpacing: "0.1em" }}>{h.kicker}</div> : null}
       <div style={{ ...zh(h.size ?? 128, H.text), lineHeight: 1.18, marginTop: 14, padding: "6px 22px 14px", background: H.hookPlate, borderTop: `3px solid ${H.line}`, borderBottom: `3px solid ${H.line}` }}>{h.title}</div>
     </div>
   );
@@ -249,7 +251,7 @@ const HudMeasures: React.FC<{ m: Model3D; s: State3D; f: number; list: Measure[]
               {g > 0.98 ? <path d={tick(Q)} stroke={c} strokeWidth={4} /> : null}
               <circle cx={p.x} cy={p.y} r={5} fill={c} /><circle cx={q.x} cy={q.y} r={5} fill={c} opacity={g} />
             </svg>
-            <div style={{ position: "absolute", left: Math.round(mx), top: Math.round(my), opacity: tween(f, d.at + 6, 5, EASE.enter) * o, transform: `translate(-50%, -50%) scale(${pop.toFixed(3)})`, ...mono(60, H.onAccent, 800), background: c, padding: "2px 18px 4px" }}>{d.text}</div>
+            <div style={{ position: "absolute", left: Math.round(mx), top: Math.round(my), opacity: tween(f, d.at + 6, 5, EASE.enter) * o, transform: `translate(-50%, -50%) scale(${pop.toFixed(3)})`, ...mono(60, onC(c), 800), background: c, padding: "2px 18px 4px" }}>{d.text}</div>
           </React.Fragment>
         );
       })}
@@ -264,7 +266,7 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
   const cw = W / Math.max(1, sides.length), n = f - o.at;
   return (
     <div style={{ position: "absolute", left: L.X, top: o.y ?? 840, width: W, height: hgt, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
-      {o.title ? <div style={{ position: "absolute", left: 20, top: 12, ...zh(30, H.onAccent, 800), background: H.amber, padding: "2px 16px 4px", letterSpacing: "0.06em" }}>{o.title}</div> : null}
+      {o.title ? <div style={{ position: "absolute", left: 20, top: 12, ...zh(30, onC(H.amber), 800), background: H.amber, padding: "2px 16px 4px", letterSpacing: "0.06em" }}>{o.title}</div> : null}
       {o.tag ? <div style={{ position: "absolute", right: 20, top: 16, ...zh(sm(26), H.text2, 500) }}>{o.tag}</div> : null}
       <svg width={W} height={hgt} style={{ position: "absolute", inset: 0 }}>
         <line x1={cw} x2={cw} y1={64} y2={hgt - 16} stroke={H.lineSoft} strokeWidth={2} strokeDasharray="8 8" />
@@ -352,7 +354,7 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
         const size = o.size ?? 76, slam = 1 + 0.6 * (1 - tween(f, o.at, 6, EASE.enter)) + 0.05 * Math.sin(Math.PI * tween(f, o.at + 6, 8, EASE.move));
         return (
           <div key={i} style={{ position: "absolute", left: o.x ?? CX, top: o.y ?? CY, opacity: k, transform: `translate(-50%, -50%) rotate(${o.rot ?? -6}deg) scale(${slam.toFixed(3)})` }}>
-            <div style={{ ...zh(size, H.onAccent), background: c, outline: `3px solid ${c}`, outlineOffset: 8, padding: `${Math.round(size * 0.08)}px ${Math.round(size * 0.36)}px ${Math.round(size * 0.14)}px`, letterSpacing: "0.04em", lineHeight: 1.2 }}>{o.text}</div>
+            <div style={{ ...zh(size, onC(c)), background: c, outline: `3px solid ${c}`, outlineOffset: 8, padding: `${Math.round(size * 0.08)}px ${Math.round(size * 0.36)}px ${Math.round(size * 0.14)}px`, letterSpacing: "0.04em", lineHeight: 1.2 }}>{o.text}</div>
           </div>
         );
       }
@@ -377,7 +379,7 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
         return (
           <div key={i} style={{ position: "absolute", left: L.X, top: o.y ?? 640, width: W, opacity: k, transform: `translateY(${Math.round(24 * (1 - k))}px)`, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", padding: "20px 44px 30px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              {o.title ? <div style={{ ...zh(38, H.onAccent, 800), background: H.line, padding: "4px 20px 6px", letterSpacing: "0.04em" }}>{o.title}</div> : <div />}
+              {o.title ? <div style={{ ...zh(38, onC(H.line), 800), background: H.line, padding: "4px 20px 6px", letterSpacing: "0.04em" }}>{o.title}</div> : <div />}
               {o.tag ? <div style={{ ...zh(30, H.text2, 500) }}>{o.tag}</div> : null}
             </div>
             {rows.map((r, j) => {
@@ -407,7 +409,7 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
             <svg width={W} height={20} style={{ position: "absolute", left: -2, top: -2, overflow: "visible" }}>
               <path d={`M0 ${bk} V0 H${bk}`} fill="none" stroke={H.line} strokeWidth={4} /><path d={`M${W - bk} 0 H${W} V${bk}`} fill="none" stroke={H.line} strokeWidth={4} />
             </svg>
-            {o.kicker ? <div style={{ display: "inline-block", ...zh(36, H.onAccent, 800), background: H.amber, padding: "6px 24px 8px", letterSpacing: "0.1em", marginBottom: 16 }}>{o.kicker}</div> : null}
+            {o.kicker ? <div style={{ display: "inline-block", ...zh(36, onC(H.amber), 800), background: H.amber, padding: "6px 24px 8px", letterSpacing: "0.1em", marginBottom: 16 }}>{o.kicker}</div> : null}
             {lines.map((ln, j) => {
               const hi = o.hi && ln.includes(o.hi) ? ln.split(o.hi) : null;
               return (
@@ -431,10 +433,11 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
     <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         {(H as any).mark === "ring" ? <svg width={46} height={46} viewBox="18 16 64 64"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></svg> : <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>}
-        <div style={{ ...zh(40, H.text), letterSpacing: "0.04em" }}>{name}</div>
+        <div style={{ ...zh(40, H.text), letterSpacing: "0.04em" }}>{(H as any).light ? <>{name.slice(0, -1)}<span style={{ color: H.line }}>{name.slice(-1)}</span></> : name}</div>
       </div>
-      <div style={{ ...zh(28, H.line, 700), border: `2px solid ${H.line}`, padding: "6px 22px", letterSpacing: "0.08em" }}>{tag}</div>
+      <div style={{ ...zh(28, H.line, 700), ...((H as any).light ? { background: H.bg2, borderRadius: 14, padding: "8px 24px" } : { border: `2px solid ${H.line}`, padding: "6px 22px" }), letterSpacing: "0.08em" }}>{tag}</div>
     </div>
+    {(H as any).light ? <div style={{ position: "absolute", left: 0, top: 0, width: L.W, height: 14, background: `linear-gradient(90deg, ${H.line} 0 84%, ${H.amber} 84% 100%)` }} /> : null}
     <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP - 8, width: L.INNER_W, height: 3, background: H.lineSoft }}>
       <div style={{ width: `${(100 * Math.min(1, f / Math.max(1, total - 1))).toFixed(2)}%`, height: 3, background: H.amber }} />
     </div>
@@ -455,15 +458,16 @@ const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicke
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
         {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={5} />)}
         <g transform={`translate(${L.W / 2} 640) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
+          {(H as any).mark === "ring" ? <g transform="scale(4) translate(-50 -50)"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6 * (1 + 0.08 * Math.sin(n / 6))} fill={H.amber} /></g> : <>
           <rect x={-100} y={-100} width={200} height={200} fill="none" stroke={H.line} strokeWidth={8} />
-          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} />
+          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></>}
         </g>
       </svg>
       <div style={{ position: "absolute", left: 0, right: 0, top: 800, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1012, width: 760 * line, height: 5, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: 1046, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
       {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1190, display: "flex", justifyContent: "center", gap: 14, opacity: line }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 14 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1330, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(60, H.onAccent, 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1330, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
     </AbsoluteFill>
   );
 };
@@ -577,7 +581,7 @@ export const CoverHud: React.FC<Script & { coverCrop?: number }> = (props) => {
       <div style={{ position: "absolute", inset: 0, transform: `translateY(${shift}px)` }}><HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={1} f={0} /></div>
       <div style={{ position: "absolute", left: L.X, top: 360, width: L.INNER_W }}>
         {(c.title ?? []).map((t, i) => <div key={i} style={{ ...zh(150, i === 1 ? H.amber : H.text), lineHeight: 1.18 }}>{t}</div>)}
-        {c.sub ? <div style={{ display: "inline-block", ...zh(46, H.onAccent, 800), background: H.line, padding: "8px 30px", marginTop: 22 }}>{c.sub}</div> : null}
+        {c.sub ? <div style={{ display: "inline-block", ...zh(46, onC(H.line), 800), background: H.line, padding: "8px 30px", marginTop: 22 }}>{c.sub}</div> : null}
       </div>
     </AbsoluteFill>
   );
