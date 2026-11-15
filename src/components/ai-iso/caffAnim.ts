@@ -107,11 +107,17 @@ export const boxesAt = (f: number, hasKw = true, header = true, v: Variant = "A"
 // ───────── 五款效果（2026/11/16 Andy：「我想看其他效果」）─────────
 // A 現行版（白卡翻起、像素一列列長出、掃描光）｜B 咖啡倒進杯子｜C 打字游標（程式碼收攏成杯子、Enter 定格）｜D 資料流匯聚｜E 蓋章。
 // 時間表（caffaineTimeline.json）與招牌音全部共用：落地 16、鎖定 30、蓋章 62。
-export type Variant = "A" | "B" | "C" | "D" | "E";
+export type Variant = "A" | "B" | "C" | "D" | "E" | "S";
 const sM = (k: number): M6 => [k, 0, 0, k, 0, 0];
 /** 各款的卡片進場：B 從上面掉下來（16 幀落地）、C 在原地像視窗一樣彈開、D 沿用 A 的翻起、E 從右邊衝進來 */
 export const cardMatV = (i: number, f: number, v: Variant): M6 => {
   if (v === "A" || v === "D") return cardMat(i, f);
+  if (v === "S") { // 獨立片尾頁：三張卡從不同方向飛進來，先斜放成「爆炸圖」，第 10 幀起往中心撞合（第 16 幀撞擊）
+    const c = CARDS[i], EXP = [{ from: [-1000, -420], ex: [-215, -190], deg: -17 }, { from: [1000, -260], ex: [225, -125], deg: 15 }, { from: [60, 1000], ex: [0, 150], deg: -5 }][i];
+    const t1 = easeOut(clamp((f - c.delay * 0.4) / 9)), t2 = clamp((f - 10) / 6), e2 = t2 * t2 * (3 - 2 * t2);
+    const ox = (EXP.from[0] + (EXP.ex[0] - EXP.from[0]) * t1) * (1 - e2), oy = (EXP.from[1] + (EXP.ex[1] - EXP.from[1]) * t1) * (1 - e2), dg = EXP.deg * (1 - e2);
+    return mul(at2(CARD_C.x + c.dx + ox, CARD_C.y + c.dy + oy), mul(sM(0.86 + 0.14 * e2), mul(rot(c.deg + dg), at2(-CARD.w / 2, -CARD.h / 2))));
+  }
   const c = CARDS[i], t = clamp((f - 2 - c.delay) / 14);
   const base = (dx: number, dy: number, deg: number, k = 1): M6 => mul(at2(CARD_C.x + c.dx + dx, CARD_C.y + c.dy + dy), mul(sM(k), mul(rot(c.deg + deg), at2(-CARD.w / 2, -CARD.h / 2))));
   if (v === "B") return base(0, -760 * (1 - t * t), 0);

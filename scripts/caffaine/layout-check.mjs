@@ -8,7 +8,7 @@ await build({ entryPoints: [path.join(ROOT, "src/components/ai-iso/caffAnim.ts")
 const m = await import(outfile + "?t=" + Date.now());
 const kw = !process.argv.includes("--no-kw"), header = !process.argv.includes("--no-header");
 const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
-const props = m.propBoxes();
+const props = process.argv.includes("--standalone") ? [] : m.propBoxes(); // --standalone：獨立片尾頁沒有桌面小物
 // --variant A|B|C|D|E：換卡片進場與杯子成形的方式；進場前 20 幀卡片本來就從畫面外飛進來，不算「超出畫面」
 const V = (process.argv.find((a) => a.startsWith("--variant=")) ?? "--variant=A").split("=")[1];
 let bad = 0, n = 0; const seen = new Set();

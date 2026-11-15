@@ -5,7 +5,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import { FONT_ZH, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
-import { AICELLS, CARD, CARDS, CARD_C, CELL, CUPCELLS, DESK, KW_BOX, PROPS, TAG_BOX, TIMELINE as TL, WORD, WORD_X0, backOut, cardMat, clamp, cupCenter, cupX, cupY, easeInOut, easeOut, hash, landScale, lockScale, scanY, shakeAt, type M6 , CUPV, cardMatV, toStage, type Variant } from "./caffAnim";
+import { applyM, AICELLS, CARD, CARDS, CARD_C, CELL, CUPCELLS, DESK, KW_BOX, PROPS, TAG_BOX, TIMELINE as TL, WORD, WORD_X0, backOut, cardMat, clamp, cupCenter, cupX, cupY, easeInOut, easeOut, hash, landScale, lockScale, scanY, shakeAt, type M6 , CUPV, cardMatV, toStage, type Variant } from "./caffAnim";
 import { CAFF } from "./caffaineMark";
 import { Box, Shade, Slab, css } from "./IsoVideo";
 
@@ -60,7 +60,7 @@ const CardFace: React.FC<{ f: number; v: Variant }> = ({ f, v }) => {
           return <rect key={i} x={x} y={y} width={sz} height={sz} rx={u > 0.9 ? 0 : 3} fill={u > 0.7 ? S.desk.r : col} />;
         }) : null}
         {v === "C" && f < 26 ? (() => { const kk = Math.min(131, Math.floor((f - 4) / 0.17)), q = CUPV.find((c) => c.ty === kk); return q && Math.floor(f / 3) % 2 === 0 ? <rect x={q.code.x + 20} y={q.code.y - 2} width={5} height={19} fill={T.ink} /> : null; })() : null}
-        {v === "D" ? CUPV.filter((c) => f >= c.dAt).map((c, i) => { const t = backOut((f - c.dAt) / 4, 2.2), w = CELL * Math.max(0.01, t); return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
+        {v === "D" || v === "S" ? CUPV.filter((c) => f >= c.dAt).map((c, i) => { const t = backOut((f - c.dAt) / 4, 2.2), w = CELL * Math.max(0.01, t); return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
         {v === "E" ? CUPV.filter(() => f >= TL.lock).map((c, i) => { const t = backOut((f - TL.lock) / 5, 3), w = CELL * Math.max(0.01, Math.min(1.12, t)); return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
       </g>
       {v === "C" && f >= 22 && f < 42 ? (() => { const press = f >= 28 && f < 32 ? 7 : 0, o = 1 - clamp((f - 36) / 5); return <g opacity={o} transform={`translate(0 ${press})`}><rect x={150} y={494} width={220} height={64} rx={14} fill={T.cardSide} transform="translate(0 7)" /><rect x={150} y={494} width={220} height={64} rx={14} fill={T.card} stroke={T.ink3} strokeWidth={4} /><text x={260} y={537} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={34} fill={T.ink}>Enter ⏎</text></g>; })() : null}
@@ -87,6 +87,7 @@ const CardFace: React.FC<{ f: number; v: Variant }> = ({ f, v }) => {
   );
 };
 
+export type EndBgX = never;
 export type EndBg = "desk" | "light" | "dark" | "white";
 /** 獨立片尾頁的背景（不是內容片的桌面）：light 淡紫藍到奶油漸層＋淡點陣＋中央柔光；dark 深靛藍夜空＋星點＋發光；white 純白＋大面積柔光暈與景深粒子 */
 const EndBackdrop: React.FC<{ f: number; bg: Exclude<EndBg, "desk"> }> = ({ f, bg }) => {
@@ -106,12 +107,12 @@ const EndBackdrop: React.FC<{ f: number; bg: Exclude<EndBg, "desk"> }> = ({ f, b
           <radialGradient id="ebGlow"><stop offset="0" stopColor={bg === "dark" ? "#6F7DFF" : "#8E9BFF"} stopOpacity={bg === "dark" ? 0.55 : 0.5} /><stop offset="1" stopColor={bg === "dark" ? "#6F7DFF" : "#8E9BFF"} stopOpacity={0} /></radialGradient>
           <radialGradient id="ebWarm"><stop offset="0" stopColor="#FFC98A" stopOpacity={0.55} /><stop offset="1" stopColor="#FFC98A" stopOpacity={0} /></radialGradient>
           <radialGradient id="ebMint"><stop offset="0" stopColor="#9FE6CF" stopOpacity={0.5} /><stop offset="1" stopColor="#9FE6CF" stopOpacity={0} /></radialGradient>
-          <radialGradient id="ebVig"><stop offset="0.55" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#1B2545" stopOpacity={0.12} /></radialGradient>
+          <radialGradient id="ebVig"><stop offset="0.55" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#1B2545" stopOpacity={0.04} /></radialGradient>
           <pattern id="ebDots" width={54} height={54} patternUnits="userSpaceOnUse"><circle cx={27} cy={27} r={2.2} fill="#5566F0" opacity={0.13} /></pattern>
         </defs>
         {bg === "light" ? <rect width={1080} height={1920} fill="url(#ebDots)" /> : null}
         {bg === "dark" ? Array.from({ length: 70 }, (_, k) => <circle key={k} cx={hash(k * 2.3) * 1080} cy={hash(k * 4.7) * 1920} r={1 + 2.2 * hash(k * 9.1)} fill="#fff" opacity={(0.25 + 0.6 * hash(k * 1.3)) * (0.55 + 0.45 * Math.sin(f / (6 + 8 * hash(k)) + k))} />) : null}
-        {bg === "white" ? <g><circle cx={150 + 60 * Math.sin(f / 50)} cy={420} r={420} fill="url(#ebGlow)" opacity={0.55} /><circle cx={950 + 50 * Math.cos(f / 44)} cy={1000} r={460} fill="url(#ebWarm)" opacity={0.8} /><circle cx={300 + 40 * Math.sin(f / 37)} cy={1560} r={400} fill="url(#ebMint)" opacity={0.7} /><circle cx={840} cy={260} r={300} fill="url(#ebWarm)" opacity={0.5} /></g> : null}
+        {bg === "white" ? <g><circle cx={150 + 60 * Math.sin(f / 50)} cy={420} r={420} fill="url(#ebGlow)" opacity={0.4} /><circle cx={950 + 50 * Math.cos(f / 44)} cy={1000} r={460} fill="url(#ebWarm)" opacity={0.55} /><circle cx={300 + 40 * Math.sin(f / 37)} cy={1560} r={400} fill="url(#ebMint)" opacity={0.7} /><circle cx={840} cy={260} r={300} fill="url(#ebWarm)" opacity={0.5} /></g> : null}
         <circle cx={cx} cy={cy} r={(bg === "white" ? 560 : 640) * (0.9 + 0.1 * Math.sin(f / 14)) + 140 * burst} fill="url(#ebGlow)" opacity={glowIn * (0.7 + 0.6 * burst)} />
         {bg === "dark" ? <circle cx={cx} cy={cy} r={330 + 40 * burst} fill="none" stroke="#8E9BFF" strokeWidth={3} opacity={0.18 + 0.3 * burst} /> : null}
         {parts}
@@ -125,7 +126,7 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
   const dark = bg === "dark", INK = dark ? "#F4F6FF" : T.ink, INK2 = dark ? "#BCC5EE" : T.ink2;
   const sh = shakeAt(f), sc = landScale(f) * lockScale(f), cc = cupCenter();
   // 光掃過白卡（落地那一刻）：斜的淡藍色帶從左上滑到右下
-  const glossT = (f - (TL.flip[1] - 4)) / 10, gloss = glossT > 0 && glossT < 1;
+  const glossT1 = (f - (TL.flip[1] - 4)) / 10, glossT2 = v === "S" ? (f - 86) / 12 : -1, glossT = glossT1 > 0 && glossT1 < 1 ? glossT1 : glossT2, gloss = glossT > 0 && glossT < 1;
   const stampT = f - TL.stamp, cw = 0.6 * WORD.px;
   const cardTf = `translate(${sh.dx} ${sh.dy}) translate(${CARD_C.x} ${CARD_C.y}) scale(${sc}) translate(${-CARD_C.x} ${-CARD_C.y})`;
   const wordY = WORD.base;
@@ -151,7 +152,7 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
         ) : null}</g>; })}
       </g>
       {/* D：桌面四周的資料方塊沿弧線飛向白卡、到位就變成杯子的一格 */}
-      {v === "D" ? CUPV.map((c, i) => {
+      {v === "D" || v === "S" ? CUPV.map((c, i) => {
         if (f >= c.dAt) return null;
         const [tx, ty] = toStage(cupX(c.x) + CELL / 2, cupY(c.y) + CELL / 2, f, v), sx = 540 + Math.cos(c.ang) * c.rad, sy0 = 676 + Math.sin(c.ang) * c.rad * 0.8;
         const sgn = hash(i * 1.7) > 0.5 ? 1 : -1, nx = -(ty - sy0), ny = tx - sx, nl = Math.hypot(nx, ny) || 1;
@@ -210,6 +211,25 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
           <rect x={KW_BOX.x} y={KW_BOX.y + 8} width={KW_BOX.w} height={KW_BOX.h} rx={30} fill={T.cardSide} /><rect x={KW_BOX.x} y={KW_BOX.y} width={KW_BOX.w} height={KW_BOX.h} rx={30} fill={T.card} />
           <text x={540} y={KW_BOX.y + 68} textAnchor="middle" fontFamily={FONT_ZH} fontWeight={800} fontSize={50} fill={T.ink}>留言「<tspan fill={P.text}>{keyword}</tspan>」拿完整資料</text>
         </g>); })() : null}
+      {/* 獨立片尾頁的加強特效：掃描帶、電路連線、鎖定閃光、第二圈衝擊波、字標白光掃過、定格後的反光（上面的 gloss）與繞行粒子 */}
+      {v === "S" ? (() => {
+        const lt = f - TL.lock, flash = lt >= 0 && lt < 7 ? (1 - lt / 7) * (dark ? 0.3 : 0.5) : 0;
+        const ctr = [0, 1, 2].map((i) => applyM(cardMatV(i, f, v), CARD.w / 2, CARD.h / 2));
+        const scanX = -260 + 1600 * easeInOut((f - 7) / 10), sw = f >= 12 && f < 36 ? 0 : 0;
+        const wx0 = WORD_X0, wy = wordY - 0.9 * WORD.px, sT = (f - (TL.iPop + 4)) / 12;
+        const orbit = f >= 80 ? Array.from({ length: 9 }, (_, k) => { const a = (f * 0.035 + (k / 9) * Math.PI * 2), z = Math.sin(a), size = 16 + 16 * (z + 1) / 2; return <rect key={k} x={CARD_C.x + 400 * Math.cos(a) - size / 2} y={CARD_C.y + 150 * Math.sin(a) + 40 * Math.cos(a) * 0 - 20 + 60 * Math.sin(a * 2) - size / 2} width={size} height={size} rx={3} fill={[P.fill, "#8E9BFF", T.color.note.fill][k % 3]} opacity={clamp((f - 80) / 10) * (0.5 + 0.5 * (z + 1) / 2)} />; }) : null;
+        return (
+          <g>
+            {f >= 3 && f < 19 ? [[0, 1], [1, 2], [2, 0]].map(([a, b], i) => <line key={i} x1={ctr[a][0]} y1={ctr[a][1]} x2={ctr[b][0]} y2={ctr[b][1]} stroke={dark ? "#8E9BFF" : P.fill} strokeWidth={4} strokeDasharray="10 14" strokeDashoffset={-f * 3} strokeLinecap="round" opacity={0.7 * clamp((f - 3 - i * 2) / 4) * (1 - clamp((f - 14) / 4))} />) : null}
+            {f >= 7 && f < 18 ? <g transform={`translate(${scanX} 0) skewX(-16)`}><rect x={0} y={-300} width={90} height={2600} fill={dark ? "#8E9BFF" : "#FFFFFF"} opacity={dark ? 0.3 : 0.75} /><rect x={90} y={-300} width={8} height={2600} fill={P.fill} opacity={0.5} /></g> : null}
+            {lt >= 3 && lt < 22 ? <circle cx={CARD_C.x} cy={CARD_C.y} r={40 + 700 * easeOut((lt - 3) / 18)} fill="none" stroke={dark ? "#8E9BFF" : "#B6BEFF"} strokeWidth={Math.max(2, 10 * (1 - (lt - 3) / 19))} opacity={0.55 * (1 - (lt - 3) / 19)} /> : null}
+            {lt >= 0 && lt < 20 ? Array.from({ length: 30 }, (_, k) => { const life = 12 + 8 * hash(k * 2.9), u = lt / life; if (u >= 1) return null; const a = hash(k * 6.1) * Math.PI * 2, r = (180 + 520 * hash(k * 4.3)) * easeOut(u), size = 8 + 12 * hash(k * 8.1); return <rect key={k} x={CARD_C.x + r * Math.cos(a) - size / 2} y={CARD_C.y + r * Math.sin(a) * 0.9 - size / 2} width={size} height={size} rx={2} fill={[P.fill, T.color.note.fill, T.color.sky.fill, "#fff"][k % 4]} opacity={1 - u} />; }) : null}
+            {sT > 0 && sT < 1 ? <g><clipPath id="caWordSw"><rect x={wx0 - 20} y={wy} width={8 * 0.6 * WORD.px + 40} height={WORD.px * 1.25} /></clipPath><g clipPath="url(#caWordSw)"><g transform={`translate(${wx0 - 140 + (8 * 0.6 * WORD.px + 280) * easeInOut(sT)} 0) skewX(-18)`}><rect x={0} y={wy} width={70} height={WORD.px * 1.25} fill={dark ? "#8E9BFF" : "#FFFFFF"} opacity={0.9} /></g></g></g> : null}
+            {orbit}
+            {flash > 0 ? <rect x={0} y={-200} width={1080} height={2400} fill={dark ? "#8E9BFF" : "#fff"} opacity={flash} /> : null}
+          </g>
+        );
+      })() : null}
     </svg>
   );
   // 方形版（1080×1080）：整個場景縮一點、上移，讓卡片到標語落在正中

@@ -27,7 +27,7 @@ export const Root: React.FC = () => (
     <Composition id="CaffLogoClipTall" component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="tall" />; return C; })()} width={1080} height={1920} fps={FPS} durationInFrames={116} />
     <Composition id="CaffLogoClipSquare" component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="square" />; return C; })()} width={1080} height={1080} fps={FPS} durationInFrames={116} />
     {(["A", "B", "C", "D", "E"] as const).map((v) => <Composition key={v} id={`CaffLogoVar${v}`} component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="tall" variant={v} />; return C; })()} width={1080} height={1920} fps={FPS} durationInFrames={116} />)}
-    {(["light", "dark", "white"] as const).map((b) => <Composition key={b} id={`CaffEnd-${b}`} component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="tall" variant="D" bg={b} />; return C; })()} width={1080} height={1920} fps={FPS} durationInFrames={116} />)}
+    {(["light", "dark", "white"] as const).map((b) => <Composition key={b} id={`CaffEnd-${b}`} component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="tall" variant="S" bg={b} />; return C; })()} width={1080} height={1920} fps={FPS} durationInFrames={116} />)}
     <Composition id="BackgroundStatic" component={BackgroundStatic} width={W} height={H} fps={FPS} durationInFrames={1} />
     <Composition id="BackgroundStaticV2" component={BackgroundStaticV2} width={W} height={H} fps={FPS} durationInFrames={1} />
     {/* CPI 實測短片：使用者自備旁白，props 由 scripts/cpi/run.mjs 對齊後產生；長度＝props.durationInFrames（音檔長度） */}
