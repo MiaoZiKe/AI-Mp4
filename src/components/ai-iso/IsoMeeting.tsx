@@ -43,7 +43,7 @@ const camAt = (keys: Key[], f: number, shakes: number[]): M6 => {
 const stateColor = (t: string) => (/確定/.test(t) ? "right" : /查不到|尚未/.test(t) ? "plum" : /不符|不一致/.test(t) ? "wrong" : "note");
 const StatusChip: React.FC<{ f: number; at: number; text: string; color?: string; px?: number; name?: string }> = ({ f, at, text, color, px = 30, name = "狀態" }) => {
   const c = col(color ?? stateColor(text));
-  return <div data-ov={name} style={{ ...bounce(f, at), display: "inline-block" }}><Chip text={text} bg={c.soft} fg={c.text} px={px} /></div>;
+  return <div data-ov={name || undefined} style={{ ...bounce(f, at), display: "inline-block" }}><Chip text={text} bg={c.soft} fg={c.text} px={px} /></div>;
 };
 
 type PM = Record<string, Panel | undefined>;
@@ -265,7 +265,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
   }
   if (Pn.limit) {
     const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = l.at("known", l.in + 6), tQ = l.at("q", l.in + 50);
-    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: W0, top: y, width: L.INNER_W, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={32} name="卡內狀態" /><div style={{ marginTop: 6 }}>{lines.map((t, i) => <div key={i} style={{ ...zh, fontWeight: i ? 700 : 900, fontSize: i ? 34 : 40, color: i ? T.ink2 : T.ink, marginTop: 4 }}>{t}</div>)}</div></div></div>;
+    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: W0, top: y, width: L.INNER_W, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={30} name="" /><div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink, marginTop: 8 }}>{lines[0]}</div><div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 2 }}>{lines[1]}</div></div></div>;
     out.push(one("k", tK, p.known.status, "right", p.known.lines, TOP), one("u", tQ, p.unknown.status, "plum", p.unknown.lines, TOP + 214));
   }
   if (Pn.ask) {
@@ -283,7 +283,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     const c = Pn.cta, p = c.p, o = 1 - O(f, c.out - 8, 8), t1 = c.at("kw", c.in + 8);
     out.push(
       <div key="cta" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
-        <div data-ov="說明卡" style={{ ...slam(f, t1, -2, 1.2) }}>
+        <div data-ov="說明卡" style={{ ...slam(f, t1, -2, 1.04) }}>
           <div style={{ ...face(T.card, P.side, 14, 40), padding: "30px 40px 34px", height: "auto" }}>
             <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: T.ink2 }}>{p.kicker}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 10 }}><span style={{ ...zh, fontWeight: 900, fontSize: 70, color: T.ink }}>留言</span><span style={{ ...zh, fontWeight: 900, fontSize: 104, color: "#fff", background: P.fill, borderRadius: 26, padding: "2px 34px", boxShadow: `0 9px 0 ${P.side}` }}>{p.keyword}</span></div>
