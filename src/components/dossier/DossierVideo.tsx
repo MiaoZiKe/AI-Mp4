@@ -7,7 +7,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
-import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, LAYOUT_DOSSIER_NEWS_FILL as LNF, THEME_DOSSIER as T } from "../../theme";
+import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, LAYOUT_DOSSIER_NEWS_FILL as LNF, THEME_DOSSIER as T, DOSSIER_END as DE } from "../../theme";
 import WORLD from "./worldDots.json";
 import { EASE, linear, tween } from "../anim";
 import { buildDossier, staticShot, type DsShot } from "./engine";
@@ -505,6 +505,70 @@ const Footer: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots,
   );
 };
 
+
+// ───────────────────────── 哩股哩股 Li 字標與片尾卡 ─────────────────────────
+// Li 字標：深藍 L（檔案的直角邊）＋深藍 i 身＋銅紅 i 點。片尾動畫的意思＝「i 點落定」：資料（L、i 身）先就位，最後那一點（查證結果）落下、撞擊、定住。
+// 不轉、不繞圈、落定後沒有待機動作。座標 viewBox 0–100。
+type LiState = { lv: number; lh: number; stem: number; dotY: number; squash: number };
+const LI_DONE: LiState = { lv: 1, lh: 1, stem: 1, dotY: 0, squash: 0 };
+const LiMark: React.FC<{ size: number; s?: LiState }> = ({ size, s = LI_DONE }) => {
+  const sq = s.squash; // 0–1：撞擊瞬間點被壓扁
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" style={{ display: "block", overflow: "visible" }}>
+      <rect x={16} y={86 - 72 * s.lv} width={19} height={72 * s.lv} fill={DE.navy} />
+      <rect x={16} y={67} width={48 * s.lh} height={19} fill={DE.navy} opacity={s.lh > 0 ? 1 : 0} />
+      <rect x={70} y={86 - 46 * s.stem} width={15} height={46 * s.stem} fill={DE.navy} />
+      {s.dotY > -900 ? <ellipse cx={77.5} cy={22 + s.dotY + 3 * sq} rx={9.5 * (1 + 0.28 * sq)} ry={9.5 * (1 - 0.3 * sq)} fill={DE.copper} /> : null}
+    </svg>
+  );
+};
+/** 新聞條左邊的小字標（每一鏡、片尾卡都在同一個位置、同一個大小） */
+const LiTile: React.FC<{ size: number }> = ({ size }) => (
+  <div style={{ width: size, height: size, background: DE.paper, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+    <LiMark size={Math.round(size * 0.78)} />
+  </div>
+);
+type EndSpec = { comment?: string; next?: string };
+const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string }> = ({ sh, f, slogan, name }) => {
+  const e = f - sh.start, F = DE.f;
+  if (e < 0) return null;
+  const spec = (sh.p.endCard ?? {}) as EndSpec;
+  const pin = tween(f, sh.start, NM.cut, EASE.move);
+  const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
+  // i 點：16 幀起從卡片上方加速落下（重力感），28 幀撞到 i 身，壓扁後回彈一點，34 幀定住
+  let dotY = -900, squash = 0;
+  if (e >= F.drop) {
+    if (e < F.impact) { const q = (e - F.drop) / (F.impact - F.drop); dotY = -95 * (1 - q * q); }
+    else if (e < F.rebound) { const q = (e - F.impact) / (F.rebound - F.impact); dotY = -5 * Math.sin(Math.PI * q); squash = Math.max(0, 1 - q * 2.2); }
+    else dotY = 0;
+  }
+  const li: LiState = { lv: ease(F.lv, F.lvDur), lh: ease(F.lh, F.lhDur), stem: ease(F.stem, F.stemDur), dotY, squash };
+  // 撞擊震動：只有 28–38 幀，幅度遞減
+  const k = e >= F.impact && e < F.shakeEnd ? (1 - (e - F.impact) / (F.shakeEnd - F.impact)) : 0;
+  const sx = r1(k * 5 * Math.sin((e - F.impact) * 2.6)), sy = r1(k * 4 * Math.cos((e - F.impact) * 3.1));
+  const ringP = e >= F.ring ? Math.min(1, (e - F.ring) / F.ringDur) : 0;
+  const cardX = (L.W - DE.CARD_S) / 2;
+  const chars = [...name];
+  return (
+    <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)` }}>
+      <Backdrop />
+      <div style={{ position: "absolute", left: cardX + sx, top: DE.CARD_Y - DE.TOP + sy, width: DE.CARD_S, height: DE.CARD_S, background: DE.paper, boxShadow: T.paperShadow, border: `2px solid ${DE.paperEdge}`, boxSizing: "border-box", clipPath: F.cardDur > 0 ? clip(ease(F.card, F.cardDur), "down") : undefined, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <LiMark size={Math.round(DE.CARD_S * 0.74)} s={li} />
+        {ringP > 0 && ringP < 1 ? <div style={{ position: "absolute", left: DE.CARD_S / 2 + (77.5 - 50) * DE.CARD_S * 0.74 / 100 - 40 - 120 * ringP, top: DE.CARD_S / 2 + (22 - 50) * DE.CARD_S * 0.74 / 100 - 40 - 120 * ringP, width: 80 + 240 * ringP, height: 80 + 240 * ringP, borderRadius: "50%", border: `3px solid ${DE.copper}`, opacity: r1(1 - ringP), boxSizing: "border-box" }} /> : null}
+      </div>
+      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", gap: 6 }}>
+        {chars.map((c, i) => <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= F.name[Math.min(i, F.name.length - 1)] ? 1 : 0, transform: `translateY(${e >= F.name[Math.min(i, F.name.length - 1)] ? r1(10 * (1 - ease(F.name[Math.min(i, F.name.length - 1)], 5))) : 0}px)` }}>{c}</span>)}
+      </div>
+      <div style={{ position: "absolute", left: (L.W - 420) / 2, top: DE.RULE_Y - DE.TOP, width: r1(420 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.copper }} />
+      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.SLOGAN_Y - DE.TOP, textAlign: "center", ...sans(DE.SLOGAN_PX, T.weight.bold, T.text2), letterSpacing: "0.3em", opacity: ease(F.slogan, 8) }}>{slogan}</div>
+      {spec.next ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NEXT_Y - DE.TOP, textAlign: "center", ...sans(DE.NEXT_PX, T.weight.bold, T.text), opacity: ease(F.next, 6) }}><span style={{ color: T.accentText, letterSpacing: "0.2em" }}>下一集 ▸ </span>{spec.next}</div> : null}
+      {spec.comment ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.CMT_Y - DE.TOP, display: "flex", justifyContent: "center", opacity: ease(F.cmt, 6) }}>
+        <div style={{ padding: "16px 34px", border: `2px solid ${T.accent}`, ...sans(DE.CMT_PX, T.weight.bold, T.text) }}>留言「<span style={{ color: T.accentText }}>{spec.comment}</span>」拿完整資料</div>
+      </div> : null}
+    </div>
+  );
+};
+
 // ───────────────────────── 「國際新聞」版（script.json 頂層有 news） ─────────────────────────
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
@@ -588,7 +652,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
   return (
     <>
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
-        <div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
+        <LiTile size={ln.BAR_H} /><div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
         <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
           <span style={{ ...sans(ln.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
           {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: ln.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
@@ -609,6 +673,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
 const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string }> = ({ cues, shots, f, fixed }) => {
   const ln = useLN();
   const cur = curShot(shots, f), label = shotNews(cur).lt;
+  if (cur.panel === "end" && f >= cur.start) return null;
   const cue = cues.find((c) => f >= c.window[0] && f < c.window[1]) ?? cues[cues.length - 1];
   let zh: React.ReactNode = fixed ?? null, en = "", p = 1;
   if (!fixed && cue && cue.phrases.length) {
@@ -684,9 +749,10 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       <WorldMap news={news} shots={m.shots} f={f} linkAt={news.link ? m.time(news.link.at, 0) : 1e9} />
       {m.shots.map((sh) => <Shot key={sh.id} sh={sh} f={f} slug={slug} cut />)}
       <SweepBand shots={m.shots} f={f} />
-      <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       <LowerThird cues={caps} shots={m.shots} f={f} />
       <SourceTicker shots={m.shots} f={f} asOf={asOf} />
+      {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
+      <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       {audio}
     </AbsoluteFill>
     </LNC.Provider>

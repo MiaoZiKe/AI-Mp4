@@ -85,6 +85,15 @@ export function validateDossier(script, h) {
   for (const [i, s] of scenes.entries()) {
     const tag = `第 ${i + 1} 幕 (${s.id ?? "?"})`;
     if (!s.id || ids.has(s.id)) E(`${tag}: id 缺少或重複`); ids.add(s.id);
+    if (s.component === "EndCard") { // 片尾卡（2026/11/15 所有頻道規則：LOGO 動畫＋招牌音＋留言關鍵字）
+      if (i !== scenes.length - 1) E(`${tag}: EndCard 只能是最後一幕`);
+      if (s.silent !== true || !(s.durationSec >= 3)) E(`${tag}: 片尾卡要 silent: true、durationSec ≥ 3`);
+      if (s.props?.panel !== "end") E(`${tag}: 片尾卡 props.panel 要是 "end"`);
+      const c = s.props?.endCard?.comment;
+      if (typeof c !== "string" || h.len(c) < 2 || h.len(c) > 4) E(`${tag}: props.endCard.comment 要是 2–4 個字的留言關鍵字`);
+      else if (!String(scenes[i - 1]?.tts ?? scenes[i - 1]?.narration ?? "").includes(c)) W(`${tag}: 最後一句念稿沒有念到留言關鍵字「${c}」`);
+      continue;
+    }
     if (s.component !== "DossierScene") E(`${tag}: stage "dossier" 的 component 只能是 DossierScene：${s.component}`);
     if (typeof s.narration !== "string" || !s.narration) E(`${tag}: 缺 narration`);
     chars += h.len(s.narration ?? "");

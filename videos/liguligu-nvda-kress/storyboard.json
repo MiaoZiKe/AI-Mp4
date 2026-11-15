@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 716,
- "totalSec": 23.87,
+ "totalFrames": 807,
+ "totalSec": 26.9,
  "scenes": [
   {
    "id": "s01",
@@ -363,9 +363,9 @@
   {
    "id": "s07",
    "startFrame": 610,
-   "durationFrames": 106,
+   "durationFrames": 111,
    "startSec": 20.33,
-   "durationSec": 3.53,
+   "durationSec": 3.7,
    "component": "DossierScene",
    "beat": "cta",
    "transition": {
@@ -389,19 +389,19 @@
      "sceneFrame": 37
     },
     {
-     "id": "next",
-     "text": "下集",
-     "frame": 664,
-     "sceneFrame": 54
+     "id": "cmt",
+     "text": "留言輝達",
+     "frame": 665,
+     "sceneFrame": 55
     },
     {
-     "id": "num",
-     "text": "財報數字",
-     "frame": 680,
-     "sceneFrame": 70
+     "id": "full",
+     "text": "完整資料",
+     "frame": 692,
+     "sceneFrame": 82
     }
    ],
-   "stillFrame": 704,
+   "stillFrame": 711,
    "subtitles": [
     {
      "zh": "她是過渡",
@@ -416,13 +416,39 @@
      "endFrame": 661
     },
     {
-     "zh": "下集看財報數字",
-     "en": "Next: the numbers.",
+     "zh": "留言輝達",
+     "en": "Comment \"Nvidia\" for the full brief.",
      "startFrame": 661,
-     "endFrame": 716
+     "endFrame": 683
+    },
+    {
+     "zh": "拿完整資料",
+     "en": "Comment \"Nvidia\" for the full brief.",
+     "startFrame": 683,
+     "endFrame": 721
     }
    ],
-   "narration": "她是過渡，還是接班？下集看財報數字。"
+   "narration": "她是過渡，還是接班？留言輝達，拿完整資料。"
+  },
+  {
+   "id": "end",
+   "startFrame": 711,
+   "durationFrames": 96,
+   "startSec": 23.7,
+   "durationSec": 3.2,
+   "component": "EndCard",
+   "beat": "cta",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [],
+   "stillFrame": 795,
+   "subtitles": [],
+   "narration": ""
   }
  ]
 }

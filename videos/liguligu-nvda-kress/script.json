@@ -520,11 +520,11 @@
     },
     {
       "id": "s07",
-      "narration": "她是過渡，還是接班？下集看財報數字。",
-      "tts": "她是過渡，還是接班？下集看財報數字。",
+      "narration": "她是過渡，還是接班？留言輝達，拿完整資料。",
+      "tts": "她是過渡，還是接班？留言輝達，拿完整資料。",
       "subtitle": {
-        "zh": "她是過渡，還是接班？\n下集看財報數字",
-        "en": "Stopgap, or successor? | Next: the numbers."
+        "zh": "她是過渡，還是接班？\n留言輝達，拿完整資料",
+        "en": "Stopgap, or successor? | Comment \"Nvidia\" for the full brief."
       },
       "keywords": [
         "過渡",
@@ -540,12 +540,12 @@
           "text": "接班"
         },
         {
-          "id": "next",
-          "text": "下集"
+          "id": "cmt",
+          "text": "留言輝達"
         },
         {
-          "id": "num",
-          "text": "財報數字"
+          "id": "full",
+          "text": "完整資料"
         }
       ],
       "beat": "cta",
@@ -568,20 +568,20 @@
           ]
         },
         "cta": {
-          "text": "留言說你的看法",
-          "at": "succ+12"
+          "text": "留言「輝達」拿完整資料",
+          "at": "cmt"
         },
         "next": {
           "label": "下一集",
-          "at": "next-4",
+          "at": "succ+8",
           "photo": {
             "name": "screens",
             "caption": "示意照片",
-            "at": "next"
+            "at": "succ+12"
           },
           "title": "財報數字說了什麼？",
-          "titleAt": "num",
-          "frameAt": "num+16"
+          "titleAt": "cmt+4",
+          "frameAt": "full"
         },
         "news": {
           "dateline": "SANTA CLARA, CALIF.・2026/11/15",
@@ -592,6 +592,28 @@
       "sources": [
         "輝達：第三季財報 11/17（美西）照原訂公布"
       ]
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "beat": "cta",
+      "component": "EndCard",
+      "silent": true,
+      "durationSec": 3.2,
+      "props": {
+        "panel": "end",
+        "endCard": {
+          "comment": "輝達",
+          "next": "財報數字說了什麼？"
+        }
+      },
+      "sources": []
     }
   ]
 }

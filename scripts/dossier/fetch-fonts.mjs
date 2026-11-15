@@ -10,7 +10,10 @@ const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "scrip
 const set = new Set(" ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%，。、？！：；・｜「」（）—–-,.!?:/");
 const walk = (v) => { if (typeof v === "string") for (const c of v) set.add(c); else if (v && typeof v === "object") Object.values(v).forEach(walk); };
 // 只收會用襯線字排的欄位：封面、各幕 props（大標等）、頻道名
-walk(script.cover); walk(script.channel); walk(script.news); for (const s of script.scenes ?? []) walk(s.props);
+// public/fonts/dossier/ 是所有檔案室片共用的一份子集：收所有 stage "dossier" 的片的字（以前只收一支，做下一支會把上一支的字蓋掉）
+const all = fs.readdirSync(path.join(ROOT, "videos")).map((d) => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "videos", d, "script.json"), "utf8")); } catch { return null; } }).filter((x) => x && x.stage === "dossier");
+for (const sc of [script, ...all]) { walk(sc.cover); walk(sc.channel); walk(sc.news); for (const s of sc.scenes ?? []) walk(s.props); }
+for (const c of "下一集▸留言拿完整資料") set.add(c);
 for (const c of "哩股哩股查到底查證截至示意照片非文件原件來源") set.add(c);
 set.delete("\n");
 const text = [...set].sort().join("");

@@ -43,10 +43,10 @@
   "scenes": [
     {
       "id": "s01",
-      "narration": "11 倍。美東電網的備用電力價格，四次拍賣變 11 倍。",
-      "tts": "十一倍。美東電網的備用電力價格，四次拍賣變成十一倍。",
+      "narration": "11 倍。美東電網的備用電力，四次拍賣漲成 11 倍。",
+      "tts": "十一倍。美東電網的備用電力，四次拍賣漲成十一倍。",
       "subtitle": {
-        "zh": "11 倍\n美東電網的備用電力價格\n四次拍賣變 11 倍",
+        "zh": "11 倍\n美東電網的備用電力\n四次拍賣漲成 11 倍",
         "en": "Eleven times. | Backup power on a U.S. East grid | rose 11-fold in four auctions."
       },
       "keywords": [
@@ -63,7 +63,7 @@
         },
         {
           "id": "price",
-          "text": "備用電力價格"
+          "text": "備用電力"
         },
         {
           "id": "four",
@@ -119,11 +119,11 @@
     },
     {
       "id": "s02",
-      "narration": "這叫容量費，先付給電廠，保證尖峰有電。",
-      "tts": "這叫容量費，先付給電廠，保證尖峰有電。",
+      "narration": "這叫容量費，保證尖峰有電的錢。",
+      "tts": "這叫容量費，保證尖峰有電的錢。",
       "subtitle": {
-        "zh": "這叫容量費\n先付給電廠\n保證尖峰有電",
-        "en": "These are capacity payments, | paid to plants in advance | so power is there at peak."
+        "zh": "這叫容量費\n保證尖峰有電的錢",
+        "en": "It's called a capacity payment: | money that keeps power there at peak."
       },
       "keywords": [
         "容量費",
@@ -136,7 +136,7 @@
         },
         {
           "id": "plant",
-          "text": "電廠"
+          "text": "這叫"
         },
         {
           "id": "peak",
@@ -144,7 +144,7 @@
         },
         {
           "id": "money",
-          "text": "有電"
+          "text": "有電的錢"
         }
       ],
       "beat": "mechanism",
@@ -184,7 +184,7 @@
             "有電可用"
           ],
           "at": "start-16",
-          "subAt": "plant-4",
+          "subAt": "cap+2",
           "typeAt": "peak-6",
           "markAt": "money",
           "note": "示意，非文件原件"
@@ -372,10 +372,10 @@
     },
     {
       "id": "s05",
-      "narration": "但容量費 11 倍，不等於電費也漲 11 倍。",
-      "tts": "但容量費十一倍，不等於電費也漲十一倍。",
+      "narration": "但容量費 11 倍，不等於電費 11 倍。",
+      "tts": "但容量費十一倍，不等於電費十一倍。",
       "subtitle": {
-        "zh": "但容量費 11 倍\n不等於電費也漲 11 倍",
+        "zh": "但容量費 11 倍\n不等於電費 11 倍",
         "en": "But 11 times the capacity price | doesn't mean 11 times the bill."
       },
       "keywords": [
@@ -439,11 +439,11 @@
     },
     {
       "id": "s06",
-      "narration": "12 月還有一場拍賣，會再漲多少還不知道。",
-      "tts": "十二月還有一場拍賣，會再漲多少，還不知道。",
+      "narration": "12 月還有一場拍賣，結果還不知道。",
+      "tts": "十二月還有一場拍賣，結果還不知道。",
       "subtitle": {
-        "zh": "12 月還有一場拍賣\n會再漲多少還不知道",
-        "en": "Another auction comes in December. | How much more? Unknown."
+        "zh": "12 月還有一場拍賣\n結果還不知道",
+        "en": "Another auction comes in December. | The result is unknown."
       },
       "keywords": [
         "12 月",
@@ -460,7 +460,7 @@
         },
         {
           "id": "more",
-          "text": "再漲多少"
+          "text": "結果"
         },
         {
           "id": "unk",
@@ -507,11 +507,11 @@
     },
     {
       "id": "s07",
-      "narration": "資料中心該自己蓋電廠嗎？下集看 12 月拍賣。",
-      "tts": "資料中心該自己蓋電廠嗎？下集看十二月拍賣。",
+      "narration": "資料中心該自己蓋電廠嗎？留言電費，拿完整資料。",
+      "tts": "資料中心該自己蓋電廠嗎？留言電費，拿完整資料。",
       "subtitle": {
-        "zh": "資料中心該自己蓋電廠嗎？\n下集看 12 月拍賣",
-        "en": "Should data centers build their own plants? | Next: the December auction."
+        "zh": "資料中心該自己蓋電廠嗎？\n留言電費，拿完整資料",
+        "en": "Should data centers build their own plants? | Comment \"power bill\" for the full brief."
       },
       "keywords": [
         "自己蓋電廠"
@@ -526,12 +526,12 @@
           "text": "自己蓋電廠"
         },
         {
-          "id": "next",
-          "text": "下集"
+          "id": "cmt",
+          "text": "留言電費"
         },
         {
-          "id": "dec",
-          "text": "12 月拍賣"
+          "id": "full",
+          "text": "完整資料"
         }
       ],
       "beat": "cta",
@@ -554,20 +554,20 @@
           ]
         },
         "cta": {
-          "text": "留言說你的看法",
-          "at": "own+12"
+          "text": "留言「電費」拿完整資料",
+          "at": "cmt"
         },
         "next": {
           "label": "下一集",
-          "at": "next-4",
+          "at": "own+8",
           "photo": {
             "name": "pylons",
             "caption": "示意照片",
-            "at": "next"
+            "at": "own+12"
           },
           "title": "12 月拍賣結果",
-          "titleAt": "dec",
-          "frameAt": "dec+16"
+          "titleAt": "cmt+4",
+          "frameAt": "full"
         },
         "news": {
           "dateline": "VALLEY FORGE, PA.・2026/11/15",
@@ -578,6 +578,28 @@
       "sources": [
         "PJM 新聞稿 7/14；市場監察 2026 Q3"
       ]
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "beat": "cta",
+      "component": "EndCard",
+      "silent": true,
+      "durationSec": 3.2,
+      "props": {
+        "panel": "end",
+        "endCard": {
+          "comment": "電費",
+          "next": "12 月拍賣結果"
+        }
+      },
+      "sources": []
     }
   ]
 }

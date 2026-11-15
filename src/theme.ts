@@ -1008,6 +1008,16 @@ export const LAYOUT_DOSSIER_NEWS = {
   TICK_TOP: 1640, TICK_H: 56, TICK_PX: 28,
   STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30,
 } as const;
+/** 哩股哩股片尾卡與左上 LOGO（Li 字標：深藍 L＋深藍 i 身＋銅紅 i 點；「i 點落定」＝查證落定）。時間都是片尾卡開始後第幾幀。 */
+export const DOSSIER_END = {
+  navy: "#1D2B4A", copper: "#B5452B", paper: "#ECE7DA", paperEdge: "#C9C1AE",
+  /** 卡片與文字位置（1080×1920） */
+  TOP: 160, BOTTOM: 1790, CARD_Y: 280, CARD_S: 680, NAME_Y: 1020, NAME_PX: 132, RULE_Y: 1186, SLOGAN_Y: 1222, SLOGAN_PX: 48,
+  NEXT_Y: 1380, NEXT_PX: 52, CMT_Y: 1510, CMT_PX: 56, MINI: 64,
+  /** 動作（幀）：卡片擦入、L 豎畫／橫畫、i 身升起、i 點落下撞擊、回彈、震動、字標逐字、底線、slogan、下一集、留言 */
+  f: { card: 0, cardDur: 0, lv: 2, lvDur: 8, lh: 8, lhDur: 6, stem: 10, stemDur: 8, drop: 16, impact: 28, rebound: 34, shakeEnd: 38,
+       ring: 28, ringDur: 18, name: [30, 33, 36, 39], rule: 42, ruleDur: 8, slogan: 48, next: 54, cmt: 60 },
+} as const;
 /** 「國際新聞」填滿版（script.json `news.layout: "fill"`；使用者 2026/11/15「紅框處還有空間」）：上方留白 ≤60px、下方留白 ≤60px、標題條下緣 ≤1700、1700 以下放出處與跑馬燈頁尾帶。
  *  新聞條 44–108｜電頭 124–160｜主舞台 188 起放大 1.06 倍（到約 1163，左右約 52px）｜標題條 1192–1462｜地圖地點約 1600–1650｜出處 1706｜跑馬燈 1800–1860 */
 export const LAYOUT_DOSSIER_NEWS_FILL = {
