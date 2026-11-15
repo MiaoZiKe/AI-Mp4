@@ -256,7 +256,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
     out.push(
       <div key="lk" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
         <Step n="1" label="先看" c="right" on={1} f={f} at={k.in + 2} />
-        <div data-ov="細節" style={{ ...bounce(f, tRd), marginTop: 32, display: "inline-flex", alignItems: "center", gap: 14, background: T.card, borderRadius: 26, padding: "14px 28px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}` }}><span style={{ ...zh, fontWeight: 900, fontSize: 48, color: T.ink }}>讀你的檔案</span><span style={{ ...zh, fontWeight: 700, fontSize: 36, color: T.ink3 }}>搞清楚狀況</span></div>
+        <div data-ov="細節" style={{ ...bounce(f, tRd), marginLeft: 30, marginTop: 0, display: "inline-flex", alignItems: "center", gap: 14, background: T.card, borderRadius: 26, padding: "14px 28px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}` }}><span style={{ ...zh, fontWeight: 900, fontSize: 48, color: T.ink }}>讀你的檔案</span><span style={{ ...zh, fontWeight: 700, fontSize: 36, color: T.ink3 }}>搞清楚狀況</span></div>
       </div>,
       tag("lkT", LK, 120, "你的檔案", "right", k.in + 14, k.out - 8),
     );
@@ -267,7 +267,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
     out.push(
       <div key="ac" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
         <Step n="2" label="再做" c="note" on={1} f={f} at={k.in + 2} />
-        <div style={{ display: "flex", gap: 16, marginTop: 32 }}>{["用工具改檔案", "跑指令"].map((t, i) => <div key={t} data-ov="細節" style={{ ...bounce(f, tT + i * 12), background: T.card, borderRadius: 26, padding: "14px 28px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}`, ...zh, fontWeight: 900, fontSize: 46, color: T.ink }}>{t}</div>)}</div>
+        <div style={{ display: "flex", gap: 16, marginTop: 46 }}>{["用工具改檔案", "跑指令"].map((t, i) => <div key={t} data-ov="細節" style={{ ...bounce(f, tT + i * 12), background: T.card, borderRadius: 26, padding: "14px 28px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}`, ...zh, fontWeight: 900, fontSize: 46, color: T.ink }}>{t}</div>)}</div>
       </div>,
       tag("acT", AC, 150, "工具箱", "note", k.in + 14, k.out - 8),
     );
@@ -279,7 +279,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
     out.push(
       <div key="gt" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
         <div data-ov="標籤chip" style={{ ...bounce(f, k.in + 2), display: "inline-block" }}><Chip text="權限這一關" bg={T.color.note.fill} fg={T.ink} px={50} side={T.color.note.side} /></div>
-        <div data-ov="細節" style={{ ...bounce(f, tG), marginTop: 52, display: "inline-flex", alignItems: "center", gap: 18, background: T.card, borderRadius: 28, padding: "16px 22px 16px 30px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}` }}>
+        <div data-ov="細節" style={{ ...bounce(f, tG), marginLeft: 30, marginTop: 0, display: "inline-flex", alignItems: "center", gap: 18, background: T.card, borderRadius: 28, padding: "16px 22px 16px 30px", boxShadow: `0 8px 0 ${T.cardSide}, ${T.depth.soft}` }}>
           <span style={{ ...zh, fontWeight: 900, fontSize: 46, color: T.ink }}>要放行嗎？</span>
           <div style={{ transform: `scale(${1 - 0.12 * press})`, ...zh, fontWeight: 900, fontSize: 44, color: f >= tOk ? "#fff" : T.ink, background: f >= tOk ? T.color.right.fill : T.color.right.soft, borderRadius: 20, padding: "8px 26px", boxShadow: `0 ${f >= tOk ? 2 : 7}px 0 ${T.color.right.side}` }}>放行</div>
           <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: T.ink3, borderRadius: 20, padding: "8px 22px", background: T.line }}>不要</div>
@@ -294,7 +294,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
     out.push(
       <div key="ck" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
         <Step n="3" label="最後檢查" c="wrong" on={1} f={f} at={k.in + 2} />
-        <div style={{ display: "flex", gap: 16, marginTop: 32, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 16, marginTop: 46, alignItems: "center" }}>
           <div data-ov="細節" style={{ ...bounce(f, tC + 14), background: f >= tC + 14 ? T.color.wrong.soft : T.card, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${T.cardSide}`, ...zh, fontWeight: 900, fontSize: 44, color: T.color.wrong.text }}>第 1 圈　✗ 不對</div>
           {f >= tA && f < tA + 54 ? <div data-ov="細節" style={{ ...bounce(f, tA + 4), ...zh, fontWeight: 900, fontSize: 44, color: P.text, background: P.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${P.fill}` }}>再繞 · 更快</div> : null}
           {f >= tA + 54 ? <div data-ov="細節" style={{ ...bounce(f, tA + 54), background: T.color.right.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${T.color.right.side}`, ...zh, fontWeight: 900, fontSize: 44, color: T.color.right.text }}>第 2 圈　✓ 對了</div> : null}
