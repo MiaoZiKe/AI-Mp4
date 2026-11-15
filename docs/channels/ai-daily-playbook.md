@@ -145,3 +145,7 @@ CaffAIne 自己保留的：等距 2.5D 粉彩畫面、Sulafat 女聲（ai-report
 - 結尾：下一集必須是已有報導、確定會發生（或我們確定會做）的事；**留言關鍵字 CTA 放在片尾前**，片尾用頻道統一 LOGO 動畫＋招牌音。
 - 音訊：正片 −16 LUFS、片尾 −11.5 LUFS、真峰值 ≤ −1 dBTP；旁白若念出指令句要剪掉，但保留第一個音節的起音。
 - 紅線換成 CaffAIne 的：實測寫環境與日期、AI 回答與實測原文逐字一致、不寫沒測過的效果。
+
+## 十一、影片放進網站文章並可下載（使用者 2026/11/15，經主控轉達：「做好的影片 都需要放在 網站上對應的文章內 並且都具備下載功能」）
+- 每支要發的影片都有一篇 liguligu-puipui.com 精選文章（CaffAIne 隱藏分頁，`site/articles/caffaine/<id>.json`），影片用文章區塊 `{t:"mp4", src:"media/caffaine/<資料夾>/<檔名>.mp4", poster:"media/caffaine/<資料夾>/cover.jpg"}` 放進去（文章內播放＋下載鈕）；格式與上限照 tw-rotation `docs/marketing/channels/video_in_articles.md`（單檔 ≤20 MiB 建議，Cloudflare 上限 25 MiB）。不用「links 連到 mp4」。
+- 交件證據：文章網址＋截圖（能播放、下載鈕能下載）。
