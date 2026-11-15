@@ -150,3 +150,7 @@ CaffAIne 自己保留的：等距 2.5D 粉彩畫面、Sulafat 女聲（ai-report
 ## 十一、影片放進網站文章並可下載（使用者 2026/11/15，經主控轉達：「做好的影片 都需要放在 網站上對應的文章內 並且都具備下載功能」）
 - 每支要發的影片都有一篇 liguligu-puipui.com 精選文章（CaffAIne 隱藏分頁，`site/articles/caffaine/<id>.json`），影片用文章區塊 `{t:"mp4", src:"media/caffaine/<資料夾>/<檔名>.mp4", poster:"media/caffaine/<資料夾>/cover.jpg"}` 放進去（文章內播放＋下載鈕）；格式與上限照 tw-rotation `docs/marketing/channels/video_in_articles.md`（單檔 ≤20 MiB 建議，Cloudflare 上限 25 MiB）。不用「links 連到 mp4」。
 - 交件證據：文章網址＋截圖（能播放、下載鈕能下載）。
+
+## 十二、文案與開頭（使用者 2026/11/15，經主控轉達：「善用這些資訊變成自己的 skill」）
+- 每支片的說明文字、Reels 前 3 秒鉤子、輪播稿，寫之前照 tw-rotation main 的 `.claude/skills/ig-threads-copy/SKILL.md`（26 種開頭庫、去 AI 味 12 類、前 125 字、輪播 5～10 頁、Reels 前 3 秒；第六節 ③ CaffAIne 段落）。不在這裡複製一份。
+- 交件附「開頭類型＋去 AI 味自查」；佇列 `meta.json` 記 `hook_type`。
