@@ -260,3 +260,8 @@
 - 片尾卡：最後一幕 `silent: true`＋`durationSec`＋`props.endCard: { next?, kicker? }`（只有寫了頂層 `hud` 的片會畫；字讀 `channel.name`／`slogan`）。
 - 縮完再拉回去：`props.zoom` 可以 `to` 比較前面的一級（tech-2nm 的 s15 拉回手機），離開 `handoff3D` 那一級後 3D 畫布就不掛，後面每幀回到 2D 的成本。
 - 配音：`voice.profile: "tech-report"`（`delivery: "report-tech"`，只送一句：「…語速稍快、語氣沉穩、不拖尾音、不演，直接說：」）。
+
+### 2026/11/15 補充（使用者修正，HUD 片之後都照做）
+- 版面改讀 `LAYOUT_HUD`（`src/theme.ts`）：頁首 100、舞台 184–1404、字幕 1420、出處 1676、底部頻道色帶 1724–1920；`engine.ts` 的 `setStageGeo` 讓 3D 投影跟著新舞台（舊 3D 片仍用 `LAYOUT_3D`）。
+- 片尾卡 LOGO 動畫 `RingMarkAnim`（開口圈描線→橘點繞進缺口回彈→脈衝→呼吸），只在 `mark: "ring"` 的皮膚。
+- 新 action type `stream`：`{ type: "stream", lanes: [[Pt…]…], n, size, rate, drive: "<電壓動作 id>", color, field: { from: Pt } }`，由 `props.run` 觸發；在 Hud.tsx 用 2D SVG 畫（電子位置＝速度對時間的累加，減速停住不倒退）。`pulse` 可加 `stagger`（依序亮起的幀數）。meter 的 `source` 可以指向 stream。
