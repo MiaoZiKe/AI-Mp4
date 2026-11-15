@@ -107,7 +107,7 @@ export function validateDossier(script, h) {
     for (const ph of h.splitPhrases(s.subtitle?.zh ?? "", s.keywords ?? [], h.SUB_MAX_EM_V2)) if (h.emWidth(h.phraseDisplay ? h.phraseDisplay(ph) : ph) > 13) E(`${tag}: 字幕「${ph}」超過 13 個全形字`);
     for (const p of String(s.subtitle?.en ?? "").split("|")) if (p.trim().length > 46) W(`${tag}: 英文字幕「${p.trim()}」超過 46 字元`);
     if (!Array.isArray(s.sources) || !s.sources.length) E(`${tag}: 缺 sources（每鏡下面一行出處）`);
-    else if (h.emWidth(`來源：${s.sources.join("；")}`) > 32) E(`${tag}: 出處一行超過 32 個全形字，會超出安全區`);
+    else if (h.emWidth(`來源：${s.sources.join("；")}`) > (script.news?.layout === "fill" ? 30 : 32)) E(`${tag}: 出處一行超過 ${script.news?.layout === "fill" ? 30 : 32} 個全形字，會超出安全區（填滿版出處 30px）`);
     const p = s.props ?? {};
     if (!PANELS.includes(p.panel)) { E(`${tag}: props.panel 要是 ${PANELS.join("｜")}：${p.panel}`); continue; }
     if (i === 0 && p.panel !== "hook") E(`${tag}: 第一鏡要是 hook（第 0 幀就是完整大字加一個正在動的東西）`);

@@ -511,21 +511,24 @@ const Footer: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots,
 // 不轉、不繞圈、落定後沒有待機動作。座標 viewBox 0–100。
 type LiState = { lv: number; lh: number; stem: number; dotY: number; squash: number };
 const LI_DONE: LiState = { lv: 1, lh: 1, stem: 1, dotY: 0, squash: 0 };
+/** 正式字標 5C（viewBox 512，translate(27,0)）：L＝M118 104H190V330H340V400H118Z（拆成直邊與底邊兩段畫）；i 身 x276 y214 64×116；i 點 (308,154) r38 */
 const LiMark: React.FC<{ size: number; s?: LiState }> = ({ size, s = LI_DONE }) => {
-  const sq = s.squash; // 0–1：撞擊瞬間點被壓扁
+  const sq = s.squash;
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100" style={{ display: "block", overflow: "visible" }}>
-      <rect x={16} y={86 - 72 * s.lv} width={19} height={72 * s.lv} fill={DE.navy} />
-      <rect x={16} y={67} width={48 * s.lh} height={19} fill={DE.navy} opacity={s.lh > 0 ? 1 : 0} />
-      <rect x={70} y={86 - 46 * s.stem} width={15} height={46 * s.stem} fill={DE.navy} />
-      {s.dotY > -900 ? <ellipse cx={77.5} cy={22 + s.dotY + 3 * sq} rx={9.5 * (1 + 0.28 * sq)} ry={9.5 * (1 - 0.3 * sq)} fill={DE.copper} /> : null}
+    <svg width={size} height={size} viewBox="0 0 512 512" style={{ display: "block", overflow: "visible" }}>
+      <g transform="translate(27,0)">
+        <rect x={118} y={330 - 226 * s.lv} width={72} height={226 * s.lv} fill={DE.navy} />
+        <rect x={118} y={330} width={222 * s.lh} height={70} fill={DE.navy} opacity={s.lh > 0 ? 1 : 0} />
+        <rect x={276} y={330 - 116 * s.stem} width={64} height={116 * s.stem} fill={DE.copper} />
+        {s.dotY > -900 ? <ellipse cx={308} cy={154 + s.dotY * 4 + 12 * sq} rx={38 * (1 + 0.28 * sq)} ry={38 * (1 - 0.3 * sq)} fill={DE.copper} /> : null}
+      </g>
     </svg>
   );
 };
 /** 新聞條左邊的小字標（每一鏡、片尾卡都在同一個位置、同一個大小） */
 const LiTile: React.FC<{ size: number }> = ({ size }) => (
   <div style={{ width: size, height: size, background: DE.paper, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-    <LiMark size={Math.round(size * 0.78)} />
+    <LiMark size={Math.round(size * 0.92)} />
   </div>
 );
 type EndSpec = { comment?: string; next?: string };
@@ -553,8 +556,8 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
     <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)` }}>
       <Backdrop />
       <div style={{ position: "absolute", left: cardX + sx, top: DE.CARD_Y - DE.TOP + sy, width: DE.CARD_S, height: DE.CARD_S, background: DE.paper, boxShadow: T.paperShadow, border: `2px solid ${DE.paperEdge}`, boxSizing: "border-box", clipPath: F.cardDur > 0 ? clip(ease(F.card, F.cardDur), "down") : undefined, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <LiMark size={Math.round(DE.CARD_S * 0.74)} s={li} />
-        {ringP > 0 && ringP < 1 ? <div style={{ position: "absolute", left: DE.CARD_S / 2 + (77.5 - 50) * DE.CARD_S * 0.74 / 100 - 40 - 120 * ringP, top: DE.CARD_S / 2 + (22 - 50) * DE.CARD_S * 0.74 / 100 - 40 - 120 * ringP, width: 80 + 240 * ringP, height: 80 + 240 * ringP, borderRadius: "50%", border: `3px solid ${DE.copper}`, opacity: r1(1 - ringP), boxSizing: "border-box" }} /> : null}
+        <LiMark size={Math.round(DE.CARD_S * 0.86)} s={li} />
+        {ringP > 0 && ringP < 1 ? <div style={{ position: "absolute", left: DE.CARD_S / 2 + (335 - 256) * DE.CARD_S * 0.86 / 512 - 40 - 120 * ringP, top: DE.CARD_S / 2 + (154 - 256) * DE.CARD_S * 0.86 / 512 - 40 - 120 * ringP, width: 80 + 240 * ringP, height: 80 + 240 * ringP, borderRadius: "50%", border: `3px solid ${DE.copper}`, opacity: r1(1 - ringP), boxSizing: "border-box" }} /> : null}
       </div>
       <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", gap: 6 }}>
         {chars.map((c, i) => <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= F.name[Math.min(i, F.name.length - 1)] ? 1 : 0, transform: `translateY(${e >= F.name[Math.min(i, F.name.length - 1)] ? r1(10 * (1 - ease(F.name[Math.min(i, F.name.length - 1)], 5))) : 0}px)` }}>{c}</span>)}
@@ -706,7 +709,7 @@ const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ 
   const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(ln.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
   return (
     <>
-      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(L.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
+      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(ln.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
       <div style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
         <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(ln.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
         <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>

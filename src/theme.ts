@@ -1006,11 +1006,11 @@ export const LAYOUT_DOSSIER_NEWS = {
   /** 點陣世界地圖（只當背景，畫在標題條以下到畫面底）：中心經度 lonC 在 x=540、緯度 latRef 在 y=latY、每度 k px */
   MAP_TOP: 1500, MAP_K: 7, MAP_LON_C: -78, MAP_LAT_REF: 38, MAP_LAT_Y: 1578, MAP_DOT: 5, MAP_LABEL_PX: 28,
   TICK_TOP: 1640, TICK_H: 56, TICK_PX: 28,
-  STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30,
+  STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30, SRC_PX: 28,
 } as const;
-/** 哩股哩股片尾卡與左上 LOGO（Li 字標：深藍 L＋深藍 i 身＋銅紅 i 點；「i 點落定」＝查證落定）。時間都是片尾卡開始後第幾幀。 */
+/** 哩股哩股片尾卡與左上 LOGO（正式字標 5C「Li」，tw-rotation docs/brand/avatar_5C/icon_5C_light.svg：深藍 L＋銅紅 i 身與 i 點；「i 點落定」＝查證落定）。時間都是片尾卡開始後第幾幀。 */
 export const DOSSIER_END = {
-  navy: "#1D2B4A", copper: "#B5452B", paper: "#ECE7DA", paperEdge: "#C9C1AE",
+  navy: "#14213D", copper: "#A8482A", paper: "#FBFAF6", paperEdge: "#D9D3C4",
   /** 卡片與文字位置（1080×1920） */
   TOP: 160, BOTTOM: 1790, CARD_Y: 280, CARD_S: 680, NAME_Y: 1020, NAME_PX: 132, RULE_Y: 1186, SLOGAN_Y: 1222, SLOGAN_PX: 48,
   NEXT_Y: 1380, NEXT_PX: 52, CMT_Y: 1510, CMT_PX: 56, MINI: 64,
@@ -1029,5 +1029,5 @@ export const LAYOUT_DOSSIER_NEWS_FILL = {
   CAP_ZH_PX: 70, CAP_EN_PX: 32,
   SRC_TOP: 1706,
   MAP_TOP: 1462, MAP_LAT_Y: 1606,
-  TICK_TOP: 1800, TICK_H: 60,
+  TICK_TOP: 1800, TICK_H: 60, TICK_PX: 30, SRC_PX: 30, MAP_LABEL_PX: 30,
 } as const;
