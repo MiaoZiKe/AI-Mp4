@@ -8,10 +8,10 @@ import { H } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import { FONT_EN } from "../../theme";
 
-export const LOGO_ANIMS = ["draw", "circuit", "scan", "neural", "particles", "glitch", "loading", "orbit", "blueprint"] as const;
+export const LOGO_ANIMS = ["draw", "circuit", "scan", "neural", "particles", "transparent", "glitch", "loading", "orbit", "blueprint"] as const;
 export type LogoAnimName = (typeof LOGO_ANIMS)[number];
 export const LOGO_ANIM_LABEL: Record<LogoAnimName, string> = {
-  draw: "描線（現行）", circuit: "電路走線", scan: "掃描定位", neural: "神經網路", particles: "粒子聚合",
+  draw: "描線（現行）", circuit: "電路走線", scan: "掃描定位", neural: "神經網路", particles: "粒子聚合", transparent: "透明圈",
   glitch: "數位故障", loading: "載入進度", orbit: "電子軌道", blueprint: "藍圖作圖",
 };
 
@@ -282,7 +282,62 @@ const Blueprint: React.FC<{ n: number }> = ({ n }) => {
   );
 };
 
-const MAP: Record<string, React.FC<{ n: number }>> = { circuit: Circuit, scan: Scan, neural: Neural, particles: Particles, glitch: Glitch, loading: Loading, orbit: Orbit, blueprint: Blueprint };
+// ── 10 透明圈（使用者 2026/11/15：「做一個符合頻道名稱的」）：「科技＋透明＋圈」
+//    ① 一枚透明玻璃圈斜放著，像影片裡的爆炸圖分成五層（底板、電路層、晶片層、外框、玻璃面）浮在空中，
+//       看得穿每一層：裡面的電路、晶片格子都透出來＝「透明」；
+//    ② 一道掃描光由左到右掃過，五層依序收回疊成一片、轉正＝「把結構拆開看清楚，再組回來」；
+//    ③ 收齊時圓弧由透明變實心藍，裡面的電路從圓弧中心淡出，橘點在缺口點亮＝「圈」，之後外圈有一層透明的玻璃光環緩慢呼吸 ──
+const TC_LAYERS = [
+  { k: "base", dy: 54 }, { k: "trace", dy: 27 }, { k: "chip", dy: 0 }, { k: "frame", dy: -27 }, { k: "glass", dy: -54 },
+];
+const TC_TRACES: [number, number][][] = [
+  [[32, 50], [42, 50], [46, 44], [54, 44]], [[50, 30], [50, 40], [56, 46]], [[68, 50], [58, 50], [54, 56], [46, 56]],
+  [[50, 70], [50, 60], [44, 54]], [[36, 38], [42, 44]], [[64, 62], [58, 56]],
+];
+const Transparent: React.FC<{ n: number }> = ({ n }) => {
+  const c = col();
+  const appear = tween(n, 0, 10, EASE.enter);               // 五層浮現
+  const sweep = tween(n, 8, 18, EASE.move);                 // 掃描光
+  const close = tween(n, 12, 20, EASE.move);                // 層與層收攏
+  const tilt = 1 - tween(n, 16, 16, EASE.move);             // 斜放 → 轉正
+  const solid = tween(n, 26, 8, EASE.enter);                // 圓弧變實心
+  const inner = 1 - tween(n, 30, 10, EASE.exit);            // 內部結構淡出
+  const LOCK = 34;
+  const sy = lerp(1, 0.5, tilt), skew = -18 * tilt;         // 等距斜放
+  const layerG = (dy: number, children: React.ReactNode, o: number) =>
+    <g transform={`translate(50 ${50 + dy * (1 - close) * appear}) skewX(${skew.toFixed(2)}) scale(1 ${sy.toFixed(3)}) translate(-50 -50)`} opacity={o}>{children}</g>;
+  const sx = lerp(-40, 140, sweep), zoom = lerp(1.3, 1, close);
+  return (
+    <g transform={`translate(50 50) scale(${zoom.toFixed(3)}) translate(-50 -50)`}>
+      <defs>
+        <clipPath id="tc-in"><circle cx={50} cy={50} r={21} /></clipPath>
+        <clipPath id="tc-swept"><rect x={-60} y={-60} width={Math.max(0, sx + 60)} height={220} /></clipPath>
+      </defs>
+      {/* 每層的透明圓板（看得穿） */}
+      {TC_LAYERS.map((L, i) => {
+        const o = appear * (1 - tween(n, 28, 14, EASE.exit));
+        const body = L.k === "base" ? <circle cx={50} cy={50} r={31} fill={c.soft} opacity={0.6} stroke={c.blue} strokeWidth={1} />
+          : L.k === "trace" ? <g clipPath="url(#tc-in)">{TC_TRACES.map((pts, j) => <polyline key={j} points={pts.map((p) => p.join(",")).join(" ")} fill="none" stroke={c.blue} strokeWidth={1.8} strokeLinejoin="round" opacity={1} />)}{TC_TRACES.map((pts, j) => <circle key={`p${j}`} cx={pts[0][0]} cy={pts[0][1]} r={1.4} fill={c.orange} />)}</g>
+          : L.k === "chip" ? <g>{[0, 1, 2].map((a) => [0, 1, 2].map((b) => <rect key={`${a}${b}`} x={41 + a * 6.4} y={41 + b * 6.4} width={5} height={5} fill={c.blue} opacity={0.35 + 0.2 * ((a + b) % 2)} />))}<rect x={39.5} y={39.5} width={21} height={21} fill="none" stroke={c.blue} strokeWidth={0.8} /></g>
+          : L.k === "frame" ? <circle cx={50} cy={50} r={25} fill="none" stroke={c.blue} strokeWidth={9} opacity={0.4} />
+          : <><circle cx={50} cy={50} r={31} fill={c.paper} opacity={0.25} stroke={c.blue} strokeWidth={0.9} strokeDasharray="2 1.5" /><path d="M30 36 A24 24 0 0 1 44 27" fill="none" stroke="#FFFFFF" strokeWidth={2.2} strokeLinecap="round" opacity={0.9} /></>;
+        return <React.Fragment key={L.k}>{layerG(L.dy, body, o)}</React.Fragment>;
+      })}
+      {/* 層與層之間的虛線（爆炸圖的對位線），收攏後消失 */}
+      {close < 0.98 ? [-31, 31].map((x) => <line key={x} x1={50 + x} y1={50 - 30 * (1 - close) * appear * 0.5} x2={50 + x} y2={50 + 30 * (1 - close) * appear * 0.5} stroke={c.faint} strokeWidth={0.5} strokeDasharray="1.5 1.5" opacity={appear * (1 - close)} />) : null}
+      {/* 掃描光：掃過的地方圓弧先出現描邊 */}
+      {sweep > 0 && sweep < 1 ? <><rect x={sx - 6} y={-40} width={12} height={180} fill={c.blue} opacity={0.08} /><rect x={sx - 0.8} y={-40} width={1.6} height={180} fill={c.blue} opacity={0.7} /></> : null}
+      <g clipPath="url(#tc-swept)">{layerG(0, <path d={ARC} fill="none" stroke={c.blue} strokeWidth={9} strokeLinecap="round" opacity={0.25 + 0.75 * solid} />, 1)}</g>
+      {/* 收齊後：透明玻璃光環呼吸 */}
+      {n >= LOCK ? <circle cx={50} cy={50} r={32 + 2 * Math.sin((n - LOCK) / 8)} fill="none" stroke={c.blue} strokeWidth={0.8} opacity={0.35 * tween(n, LOCK, 8, EASE.enter)} /> : null}
+      {n >= LOCK ? (() => { const u = tween(n, LOCK, 20, EASE.move); return u < 1 ? <circle cx={50} cy={50} r={27 + 30 * u} fill="none" stroke={c.blue} strokeWidth={2 * (1 - u)} opacity={0.7 * (1 - u)} /> : null; })() : null}
+      {inner > 0.02 && solid > 0 ? <g opacity={inner * solid} clipPath="url(#tc-in)">{TC_TRACES.map((pts, j) => <polyline key={j} points={pts.map((p) => p.join(",")).join(" ")} fill="none" stroke={c.blue} strokeWidth={1} opacity={0.5} />)}</g> : null}
+      <Dot s={n < LOCK ? 0 : bounce(n, LOCK) * breathe(n, 52)} />
+    </g>
+  );
+};
+
+const MAP: Record<string, React.FC<{ n: number }>> = { circuit: Circuit, scan: Scan, neural: Neural, particles: Particles, transparent: Transparent, glitch: Glitch, loading: Loading, orbit: Orbit, blueprint: Blueprint };
 export const hasLogoAnim = (name?: string) => !!name && !!MAP[name];
 /** n＝片尾卡第幾幀；size＝標誌 100 單位對應幾 px（和 RingMarkAnim 一樣，畫在已平移到中心的 <g> 裡） */
 export const LogoAnim: React.FC<{ name: string; n: number; size: number }> = ({ name, n, size }) => {
