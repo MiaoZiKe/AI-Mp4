@@ -415,16 +415,35 @@ const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[] }> = ({ m
   );
 };
 
-/** 頻道標誌：開口圈（mark: "ring"）或方框；size＝外框邊長 px。draw（0–1）＝圈描到哪、dot＝圓點的位移與縮放（片尾卡動畫用；頁首都是 1） */
-const HudMark: React.FC<{ size: number; draw?: number; dotY?: number; dotS?: number; stroke?: number }> = ({ size, draw = 1, dotY = 0, dotS = 1, stroke = 9 }) =>
-  (H as any).mark === "ring" ? (
+/** 頻道標誌：開口圈（mark: "ring"）或方框；size＝外框邊長 px。頁首都用預設值（畫好、點在定位）。
+ *  片尾卡動畫用的參數（2026/11/15 使用者：「Logo 需要符合頻道設計的含義去想」——開口圈＝圈子，缺口的暖色點＝進來的你）：
+ *  draw（0–1）＝圓環從缺口對面（左下）同時往兩邊長，停在缺口兩端（不是沿一個方向繞，避免像載入圖示；圓環本身不轉）；
+ *  dot＝{ x, y }（viewBox 單位，點的位置）、dotS＝點的大小倍率；ring（0–1）＝圓環「接住」的回應：線條微微變粗再恢復＋一圈淡色細線往外擴 */
+const RING = { c: [50, 50], r: 25, dot: [67.68, 32.32], ends: [[74.69, 46.09], [53.91, 25.31]], far: [32.32, 67.68] } as const;
+const HudMark: React.FC<{ size: number; draw?: number; dot?: { x: number; y: number }; dotS?: number; ring?: number; stroke?: number }> = ({ size, draw = 1, dot, dotS = 1, ring = 0, stroke = 9 }) => {
+  if ((H as any).mark !== "ring") return <svg width={size} height={size} viewBox="0 0 46 46" style={{ display: "block" }}><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - draw} /><rect x={15} y={15} width={16} height={16} fill={H.amber} transform={`scale(${dotS})`} transform-origin="23 23" /></svg>;
+  const [fx, fy] = RING.far, [e1, e2] = RING.ends, sw = stroke * (1 + 0.28 * Math.sin(Math.PI * Math.min(1, ring)) * (ring > 0 && ring < 1 ? 1 : 0));
+  const half = (d: string) => <path d={d} pathLength={1} strokeDasharray="1 1" strokeDashoffset={(1 - draw).toFixed(4)} fill="none" stroke={H.line} strokeWidth={sw} strokeLinecap="round" />;
+  const d = dot ?? { x: RING.dot[0], y: RING.dot[1] };
+  return (
     <svg width={size} height={size} viewBox="18 16 64 64" style={{ overflow: "visible", display: "block" }}>
-      {draw > 0.01 ? <path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" pathLength={1} strokeDasharray="1 1" strokeDashoffset={(1 - draw).toFixed(4)} fill="none" stroke={H.line} strokeWidth={stroke} strokeLinecap="round" /> : null}
-      {dotS > 0.01 ? <circle cx={67.68} cy={32.32 + dotY} r={6.6 * dotS} fill={H.amber} /> : null}
+      {draw >= 0.999 ? <path d={`M${e1[0]} ${e1[1]} A25 25 0 1 1 ${e2[0]} ${e2[1]}`} fill="none" stroke={H.line} strokeWidth={sw} strokeLinecap="round" /> : draw > 0.01 ? <>
+        {half(`M${fx} ${fy} A25 25 0 0 0 ${e1[0]} ${e1[1]}`)}
+        {half(`M${fx} ${fy} A25 25 0 0 1 ${e2[0]} ${e2[1]}`)}
+      </> : null}
+      {ring > 0 && ring < 1 ? <circle cx={RING.c[0]} cy={RING.c[1]} r={RING.r + 10 * ring} fill="none" stroke={H.line} strokeWidth={2.4 * (1 - ring) + 0.4} opacity={0.45 * (1 - ring)} /> : null}
+      {dotS > 0.01 ? <circle cx={d.x} cy={d.y} r={6.6 * dotS} fill={H.amber} /> : null}
     </svg>
-  ) : (
-    <svg width={size} height={size} viewBox="0 0 46 46" style={{ display: "block" }}><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - draw} /><rect x={15} y={15 + dotY / 3} width={16} height={16} fill={H.amber} transform={`scale(${dotS})`} transform-origin="23 23" /></svg>
   );
+};
+/** 片尾卡的橘點路徑：從缺口外側沿一條短弧線進來，穿過缺口落在定稿位置；t＝落點前的進度（0–1，ease-out），after＝落定後幾秒（小回彈：沿進來的方向往圈內多走一點再回來） */
+const dotPath = (t: number, after: number) => {
+  const [Fx, Fy] = RING.dot, ux = 0.7071, uy = -0.7071, px = 0.7071, py = 0.7071; // u＝從圓心往缺口外、p＝順時針切線
+  const S = [Fx + ux * 34 + px * 14, Fy + uy * 34 + py * 14], Q = [Fx + ux * 12 + px * 12, Fy + uy * 12 + py * 12];
+  if (after <= 0) { const a = 1 - t; return { x: a * a * S[0] + 2 * a * t * Q[0] + t * t * Fx, y: a * a * S[1] + 2 * a * t * Q[1] + t * t * Fy }; }
+  const dx = Fx - Q[0], dy = Fy - Q[1], n = Math.hypot(dx, dy), k = 3.2 * Math.exp(-6 * after) * Math.sin(14 * after);
+  return { x: Fx + (dx / n) * k, y: Fy + (dy / n) * k };
+};
 
 /** 頁首：左＝頻道標誌＋頻道名（每一幕、包括片尾卡都在同一個位置、同樣大小；大小在 L.LOGO_PX／LOGO_NAME_PX），右＝標籤，下面一條進度線 */
 const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number; progress?: boolean }> = ({ name, tag, total, f, progress = true }) => (
@@ -453,14 +472,13 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
   const E = ENDCARD, n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 40, y1 = L.CAP_TOP + L.CAP_H;
   const frame = tween(f, at + 2, 14, EASE.move);
   const draw = tween(f, at + E.draw[0], E.draw[1] - E.draw[0], EASE.move);
-  // 圓點：從上方 70 單位掉下來，阻尼彈簧（越過落點再彈回）；縮放先小後微大再回 1
-  const td = Math.max(0, (n - E.dot) / FPS);
-  const dotIn = n >= E.dot;
-  const dotY = dotIn ? -70 * Math.exp(-7 * td) * Math.cos(13 * td) : 0;
-  const dotS = dotIn ? Math.min(1, td * 9) * (1 + 0.22 * Math.exp(-6 * td) * Math.sin(16 * td)) : 0;
-  const halo = tween(f, at + E.halo[0], E.halo[1], EASE.move);
+  // 橘點：E.dot[0] 從缺口外側出發，E.dot[1] 落定（ease-in-out，看得到它沿弧線移過來），之後小回彈；圓環在落定那一刻回應一次（E.land 幀）
+  const travel = clamp01((n - E.dot[0]) / (E.dot[1] - E.dot[0])), tEase = travel < 0.5 ? 4 * travel ** 3 : 1 - Math.pow(-2 * travel + 2, 3) / 2, after = Math.max(0, (n - E.dot[1]) / FPS);
+  const dotIn = n >= E.dot[0], dot = dotPath(tEase, after), dotS = dotIn ? (0.55 + 0.45 * tEase) * Math.min(1, (n - E.dot[0] + 1) / 3) : 0;
+  const ring = n >= E.dot[1] ? clamp01((n - E.dot[1]) / E.land) : 0;
   const name = tween(f, at + E.name, 8, EASE.enter), line = tween(f, at + E.line, 12, EASE.move), slogan = tween(f, at + E.slogan, 8, EASE.enter);
-  const nx = tween(f, nextAt ?? at + E.next, 7, EASE.enter), nxPop = 1 + 0.12 * Math.sin(Math.PI * tween(f, (nextAt ?? at + E.next) + 4, 8, EASE.move));
+  // 「下一支」一律等 LOGO 落定之後（at＋E.next）才出現；nextAt 只能更晚，不能搶在 LOGO 前面
+  const nAt = Math.max(at + E.next, nextAt ?? 0), nx = tween(f, nAt, 7, EASE.enter), nxPop = 1 + 0.12 * Math.sin(Math.PI * tween(f, nAt + 4, 8, EASE.move));
   const trail = spec?.trail ?? [];
   const LOGO = 300, cy = L.STAGE_TOP + 300;
   return (
@@ -468,9 +486,8 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
       <HudBackdrop f={f} lv={0} />
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
         {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * frame} V ${y} H ${x + sx * b * frame}`} fill="none" stroke={H.line} strokeWidth={5} />)}
-        {halo > 0 && halo < 1 ? <circle cx={L.W / 2} cy={cy} r={(LOGO / 2) * (0.82 + 0.55 * halo)} fill="none" stroke={H.lineSoft} strokeWidth={6 * (1 - halo) + 1} opacity={0.9 * (1 - halo)} /> : null}
       </svg>
-      <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dotY={dotY} dotS={dotS} /></div>
+      <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dot={dot} dotS={dotS} ring={ring} /></div>
       <div style={{ position: "absolute", left: 0, right: 0, top: cy + 210, textAlign: "center", opacity: name, transform: `translateY(${Math.round(24 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + 418, width: 760 * line, height: 6, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: cy + 450, textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
