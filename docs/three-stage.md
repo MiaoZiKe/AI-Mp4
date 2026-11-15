@@ -260,3 +260,19 @@
 - 片尾卡：最後一幕 `silent: true`＋`durationSec`＋`props.endCard: { next?, kicker? }`（只有寫了頂層 `hud` 的片會畫；字讀 `channel.name`／`slogan`）。
 - 縮完再拉回去：`props.zoom` 可以 `to` 比較前面的一級（tech-2nm 的 s15 拉回手機），離開 `handoff3D` 那一級後 3D 畫布就不掛，後面每幀回到 2D 的成本。
 - 配音：`voice.profile: "tech-report"`（`delivery: "report-tech"`，只送一句：「…語速稍快、語氣沉穩、不拖尾音、不演，直接說：」）。
+
+## 九、2026/11/15 使用者回饋後加的（都向下相容，沒寫就不作用）
+
+- **`hud.layout: "fill"`**（撐滿版面）：數字在 `src/theme.ts` 的 `LAYOUT_3D_FILL`（頁首 228、LOGO 80px、頻道名 64px、舞台 356–1356、字幕框 1372–1628（中文 76px、英文 36px）、出處 1648 起 34px）。`src/components/three/hudSkin.ts` 的 `setHudLayout` 切換，同時把 3D 舞台框告訴 `engine.ts`（`setStage`，標籤投影用）。沒寫＝原本的 `LAYOUT_3D`。
+- **版面計算拆到 `src/components/three/hudLayout.ts`**（純計算，不畫）：縮放級數、模型投影範圍（`modelRect`、`modelUnion`）、疊層整理（`arrangeOverlays`：蓋章自動避開模型／HUD 讀數／標籤／儀表，換幕重疊的自動延後進場）、標籤放置（`placeLabels`：整段固定在模型外的空位，只有引線跟著零件）、片尾卡時間表（`ENDCARD`）。疊層寫 `avoid: false` 就不自動挪。
+- **`scripts/three/layout-check.mjs <slug>`**：用 esbuild 把上面同一份程式打包到 node 裡逐幀檢查（不開瀏覽器，約 1 秒），validate 對有 `hud` 的片自動跑；寫了 `layout: "fill"` 的片 error 會擋，舊片只出 warning。
+- **片尾卡** `endCard.at`（提早開始的 cue）、`endCard.nextAt`（「下一支」跳出來的 cue）；中間大標誌的動畫：開口圈描線 → 橘點掉下來阻尼回彈 → 一圈淡色細線光暈 → 頻道名、底線、slogan、軌跡、下一支；頁首 LOGO 在片尾卡上也照畫。
+- **`flow` 動作的電流效果**（`src/components/three/Ops.tsx`，資料寫在 `model.json` 的 `actions`）：
+  - `drive: true`：位置用強度的積分（`engine.ts` 的 `op.u`），所以 `run` 的 `ramp` 就是加速／減速的幀數（tech-2nm 寫 13＝約 0.43 秒慢下來停住）；同時密度跟著強度（`minVisible`＝最慢時剩幾成，按固定亂數順序收掉）。
+  - `lanes`／`laneGap`／`laneDir`：同一條路徑並排幾道（一片薄片三道＝看起來是一片電子流）；`jitter`：垂直方向的小抖動。
+  - `trail`／`trailGap`／`trailColor`：每顆後面的拖尾，間距乘上當下速度（慢下來拖尾縮短、停住收成一點）。
+  - `rim`／`rimScale`／`rimO`：每顆外圈的淡光圈（實色球，不是發光濾鏡）。
+  - `rest`／`restO`：從開始減速起至少保持 `restO` 不透明度，停住後留 `rest` 幀再淡出。
+  - 成本：tech-2nm 第 600–629 幀（三片 × 三道 × 7 顆，各 3 格拖尾）每幀 1696 ms（平行數 1），原本稀疏版同一段 1188 ms；只在電流那 4 秒左右。
+  - 儀表的 `source` 指同一個 flow，讀數條和光點用同一份強度。
+- **對照卡的漏電**（`compare` 的 `leak`）：改成斷斷續續的小光點（每秒約 leak×0.75 顆、固定亂數間隔、帶 3 格拖尾往基板方向走、出生時一圈小波紋）；鰭式從鰭底部兩側漏，奈米片從最下面那片底下漏。`leak` 不要寫 0。

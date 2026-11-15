@@ -200,11 +200,14 @@ export const stateAt = (m: Model3D, f: number) => {
   for (const r of m.runs) {
     if (f < r.at) continue;
     const k = tween(f, r.at, r.ramp, EASE.move) * (1 - tween(f, r.until, r.ramp, EASE.move));
-    ops[r.id] = { g: k * r.gain, k, t: ((Math.min(f, r.until + r.ramp) - r.at) / FPS) * r.speed, T: (f / FPS) * r.speed, n: f - r.at };
+    // u＝「跟著強度走」的累積時間：∫ g dt（秒 × speed）。flow 寫 drive: true 時用它當位置，強度下降＝光點真的慢下來再停住（不是瞬間停）
+    let u = 0;
+    for (let g = r.at; g < Math.min(f, r.until + r.ramp); g++) u += tween(g, r.at, r.ramp, EASE.move) * (1 - tween(g, r.until, r.ramp, EASE.move)) * r.gain;
+    ops[r.id] = { g: k * r.gain, k, t: ((Math.min(f, r.until + r.ramp) - r.at) / FPS) * r.speed, T: (f / FPS) * r.speed, n: f - r.at, u: (u / FPS) * r.speed, end: r.until + r.ramp, until: r.until, f };
   }
   return { f, yaw, pitch, lay, fo, layers, cam, groundY, lid, lidLift, xray, heat, heatAt, spreadP, sweep, parts, shimmer, outro, ops };
 };
-export type Op3D = { g: number; k: number; t: number; T: number; n: number };
+export type Op3D = { g: number; k: number; t: number; T: number; n: number; u: number; end: number; until: number; f: number };
 
 // ── 運作動畫的訊號（3D 畫面與 HTML 儀表讀同一份） ──
 /** 一道行進波在線上 u（0–1）的位移：amp × 強度 × Σ 各倍頻的正弦；invert＝反相（整個乘 −1） */
@@ -240,9 +243,12 @@ export const opPoint = (s: { layers: Record<string, { x: number; y: number; z: n
   return [p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0)];
 };
 
+/** 3D 舞台框（畫面上的上緣與高度）：預設 LAYOUT_3D；HUD 片的 hud.layout 會改它（hudSkin.ts 的 setHudLayout） */
+export const STAGE = { top: L.STAGE_TOP as number, h: L.STAGE_H as number };
+export const setStage = (top: number, h: number) => { STAGE.top = top; STAGE.h = h; };
 /** 相機（3D 畫面與標籤投影共用） */
 export const cameraFor = (s: State3D) => {
-  const cam = new THREE.PerspectiveCamera(T.camera.fov, L.W / L.STAGE_H, 1, 400);
+  const cam = new THREE.PerspectiveCamera(T.camera.fov, L.W / STAGE.h, 1, 400);
   const e = (s.cam.elev * Math.PI) / 180;
   cam.position.set(s.cam.x, s.cam.y + s.cam.d * Math.sin(e), s.cam.d * Math.cos(e));
   cam.lookAt(s.cam.x, s.cam.y, 0);
@@ -255,5 +261,5 @@ export const projectPoint = (s: State3D, cam: THREE.PerspectiveCamera, layer: st
   const q = s.layers[layer];
   const v = new THREE.Vector3(p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0));
   v.applyEuler(new THREE.Euler(s.pitch, 0, 0)).applyEuler(new THREE.Euler(0, s.yaw, 0)).project(cam);
-  return { x: ((v.x + 1) / 2) * L.W, y: L.STAGE_TOP + ((1 - v.y) / 2) * L.STAGE_H };
+  return { x: ((v.x + 1) / 2) * L.W, y: STAGE.top + ((1 - v.y) / 2) * STAGE.h };
 };

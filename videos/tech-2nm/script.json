@@ -70,7 +70,9 @@
    "_說明": "使用者技能 3d-industry-explainer-video：右上角固定標示，全片都在（接 HudFrame 時畫在倍率讀數下方、頁首之下）"
   },
   "maxLabels": 2,
-  "smallPx": 30
+  "smallPx": 30,
+  "layout": "fill",
+  "_layout說明": "fill＝撐滿版面（2026/11/15 使用者回饋：LOGO 固定左上並放大、下方空白填滿）：頁首 LOGO 80px、舞台 356–1356、字幕框 1372–1628、出處到約 y1690（src/theme.ts 的 LAYOUT_3D_FILL）"
  },
  "cover": {
   "title": [
@@ -111,7 +113,7 @@
      "kicker": "手機晶片的",
      "title": "2奈米不是尺寸",
      "size": 128,
-     "top": 560
+     "top": 616
     },
     "zoom": [
      {
@@ -126,7 +128,7 @@
       "at": "two+14",
       "until": "s2:zoom-6",
       "x": 760,
-      "y": 1060,
+      "y": 1116,
       "text": "≠ 2 nm",
       "color": "amber",
       "rot": -6,
@@ -187,7 +189,7 @@
       "at": "what",
       "until": "zoom-8",
       "x": 330,
-      "y": 1110,
+      "y": 1166,
       "text": "2 nm ＝ ？",
       "color": "amber",
       "size": 52
@@ -230,7 +232,7 @@
       "at": "board",
       "until": "s4:big-6",
       "x": 720,
-      "y": 1150,
+      "y": 1206,
       "text": "主機板・約 6 公分",
       "color": "blue",
       "size": 40
@@ -280,7 +282,7 @@
       "at": "chip+6",
       "until": "s5:count-10",
       "x": 720,
-      "y": 1150,
+      "y": 1206,
       "text": "主晶片・約 1 公分",
       "color": "blue",
       "size": 40
@@ -334,7 +336,7 @@
       "at": "count+10",
       "until": "s6:each-8",
       "x": 540,
-      "y": 1060,
+      "y": 1116,
       "text": "上百億個",
       "color": "blue",
       "rot": -4,
@@ -386,7 +388,7 @@
       "at": "sw",
       "until": "s7:open-2",
       "x": 540,
-      "y": 1150,
+      "y": 1206,
       "text": "一顆電晶體 ＝ 一個開關",
       "color": "amber",
       "size": 44
@@ -513,9 +515,9 @@
     "shot": [
      {
       "at": "start-8",
-      "d": 118,
+      "d": 127,
       "elev": 24,
-      "y": 1,
+      "y": -4,
       "x": 0,
       "dur": 28
      }
@@ -570,26 +572,26 @@
      {
       "id": "chanOn",
       "at": "volt+6",
-      "until": "s9:off+4",
-      "ramp": 8
+      "until": "s9:off+8",
+      "ramp": 10
      },
      {
       "id": "e1",
       "at": "e-2",
-      "until": "s9:off+6",
-      "ramp": 8
+      "until": "s9:off+2",
+      "ramp": 13
      },
      {
       "id": "e2",
       "at": "e-2",
-      "until": "s9:off+6",
-      "ramp": 8
+      "until": "s9:off+2",
+      "ramp": 13
      },
      {
       "id": "e3",
       "at": "e-2",
-      "until": "s9:off+6",
-      "ramp": 8
+      "until": "s9:off+2",
+      "ramp": 13
      }
     ],
     "labels": [
@@ -616,7 +618,7 @@
       "at": "on-2",
       "until": "s9:off-2",
       "x": 800,
-      "y": 1150,
+      "y": 1206,
       "text": "開 ON",
       "color": "amber",
       "rot": -5,
@@ -672,7 +674,7 @@
       "at": "shut-2",
       "until": "s10:fin-10",
       "x": 800,
-      "y": 1150,
+      "y": 1206,
       "text": "關 OFF",
       "color": "blue",
       "rot": -5,
@@ -730,7 +732,7 @@
       "type": "compare",
       "at": "fin-8",
       "until": "s12:start-4",
-      "y": 830,
+      "y": 886,
       "h": 440,
       "title": "關閉時",
       "tag": "剖面示意，非實測",
@@ -824,9 +826,9 @@
     "shot": [
      {
       "at": "start-6",
-      "d": 150,
+      "d": 174,
       "elev": 28,
-      "y": 5,
+      "y": 1,
       "x": 0,
       "dur": 24
      }
@@ -837,7 +839,7 @@
       "at": "two",
       "until": "s13:ibm-4",
       "x": 540,
-      "y": 1170,
+      "y": 1226,
       "text": "2 在哪？",
       "color": "amber",
       "rot": -4,
@@ -886,17 +888,17 @@
     "shot": [
      {
       "at": "five-8",
-      "d": 140,
+      "d": 162,
       "elev": 22,
-      "y": 7,
+      "y": 3,
       "x": 0,
       "dur": 18
      },
      {
       "at": "pitch-6",
-      "d": 150,
+      "d": 174,
       "elev": 36,
-      "y": 5,
+      "y": 1,
       "x": 0,
       "dur": 20
      }
@@ -928,7 +930,7 @@
       "at": "ibm",
       "until": "s15:start-8",
       "x": 290,
-      "y": 1120,
+      "y": 1176,
       "text": "IBM 2021 試作晶片",
       "color": "amber",
       "size": 38
@@ -971,7 +973,7 @@
       "at": "none-2",
       "until": "name-4",
       "x": 760,
-      "y": 1150,
+      "y": 1206,
       "text": "都不是 2",
       "color": "coral",
       "rot": -5,
@@ -982,16 +984,16 @@
       "at": "name",
       "until": "s15:start-8",
       "x": 700,
-      "y": 1150,
+      "y": 1206,
       "text": "2 奈米＝世代名",
       "color": "amber",
       "rot": -3,
-      "size": 64
+      "size": 56
      }
     ]
    },
    "sources": [
-    "節點名稱是世代名，不對應任何實際尺寸（IBM、WikiChip）"
+    "節點名稱是世代名，不對應實際尺寸（IBM、WikiChip）"
    ],
    "pauseAfter": 0.35
   },
@@ -1033,7 +1035,7 @@
       "at": "save",
       "until": "s16:target-4",
       "x": 540,
-      "y": 1100,
+      "y": 1156,
       "text": "更省電",
       "color": "amber",
       "rot": -4,
@@ -1076,7 +1078,7 @@
       "type": "bars",
       "at": "target-2",
       "until": "s18:small-6",
-      "y": 640,
+      "y": 696,
       "title": "同樣效能下的耗電",
       "tag": "廠商目標值，非實測",
       "rows": [
@@ -1169,7 +1171,7 @@
       "type": "card",
       "at": "small-4",
       "until": "s20:start+0",
-      "y": 420,
+      "y": 476,
       "kicker": "想一想",
       "lines": [
        "這麼小",
@@ -1210,19 +1212,8 @@
    ],
    "component": "ThreeScene",
    "props": {
-    "overlay": [
-     {
-      "type": "stamp",
-      "at": "litho-2",
-      "until": "s20:start+0",
-      "x": 540,
-      "y": 1010,
-      "text": "下一支 ▸ 曝光機",
-      "color": "amber",
-      "rot": -3,
-      "size": 72
-     }
-    ]
+    "overlay": [],
+    "_overlay說明": "「下一支 ▸ 曝光機」蓋章拿掉：片尾卡提早在 s19:litho-12 開始（片尾卡要 ≥3 秒、不動配音時間軸），「下一支」標籤在念到「曝光機」時跳出"
    },
    "sources": [
     "IBM 試作晶片前段用 EUV 曝光；下一支細講"
@@ -1249,7 +1240,9 @@
       "主機板",
       "晶片",
       "電晶體"
-     ]
+     ],
+     "at": "s19:litho-12",
+     "nextAt": "s19:litho-2"
     }
    },
    "sources": []

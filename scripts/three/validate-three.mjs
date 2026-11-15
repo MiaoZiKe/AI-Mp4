@@ -2,6 +2,7 @@
 // 時間軸、配音、字幕沿用 v3 的整篇配音流程；畫面用 @remotion/three，不用紙材。時間軸檢查共用 scripts/ui/validate-ui.mjs 的 validateTimelineUI。
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mjs";
 
 const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere"];
@@ -145,6 +146,20 @@ export function validateThree(script, h) {
   if (!scenes[0].props?.hook?.title) E("第一幕要有 props.hook.title（第 0 幀就看得到的主張）");
   if (!scenes.some((s) => s.props?.explode)) W("沒有 explode（產品台的主動作是沿一個軸一層層分開）");
   if (script.hudSkin !== undefined) { const sk = Object.keys(JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "../../src/theme-hud-skins.json"), "utf8"))).filter((k) => !k.startsWith("_")); if (!sk.includes(String(script.hudSkin))) E(`hudSkin「${script.hudSkin}」不存在（${sk.join("／")}；src/theme-hud-skins.json）`); }
+  // 深色 HUD 片的版面檢查（2026/11/15 使用者回饋：LOGO 固定左上、下方空白、換幕字壓字、標籤與蓋章壓模型、小字）：
+  // 跑 scripts/three/layout-check.mjs（和畫面同一份的版面計算，逐幀），它的 error 算這裡的 error。沒有 timeline.json 時略過。
+  if (script.hud) {
+    if (script.hud.layout !== "fill") W("hud.layout 不是 \"fill\"：頁首 LOGO 小、下方空白沒填滿（docs/channels/tech-daily-playbook.md 第九節）");
+    // 11/15 之前做好的舊片（沒寫 layout: "fill"）只出 warning，不擋；新片一律照新規則
+    const HE = script.hud.layout === "fill" ? E : W;
+    if (!((script.hud.smallPx ?? 0) >= 30)) HE(`hud.smallPx 要 ≥30（目前 ${script.hud.smallPx ?? "沒寫"}）`);
+    const r = spawnSync("node", [path.join(path.dirname(new URL(import.meta.url).pathname), "layout-check.mjs"), String(script.slug), "--json"], { encoding: "utf8" });
+    try {
+      const res = JSON.parse(String(r.stdout).trim().split("\n").pop());
+      const fr = (x) => (x ? `（第 ${x[0]}–${x[1]} 幀）` : "");
+      for (const i of res.issues ?? []) (i.level === "error" ? HE : W)(`版面［${i.kind}］${i.msg}${fr(i.frames)}`);
+    } catch { W(`版面檢查沒跑成功（node scripts/three/layout-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 300)}`); }
+  }
   const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
   if (script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
   return { errors, warns, est };

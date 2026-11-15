@@ -12,8 +12,9 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
-import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T } from "../../theme";
-import { H, setHudSkin, sm } from "./hudSkin";
+import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
+import { H, L, setHudLayout, setHudSkin, sm } from "./hudSkin";
+import { ENDCARD, textW, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -21,56 +22,15 @@ import { col, fxOf, type ProductModel } from "./model";
 import { Art } from "./HudArt";
 import { ProductScene } from "./Scene";
 
-export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean };
-export type HudSpec = { theme?: "dark"; levels: HudLevel[]; schematic?: { text?: string; zh?: string }; maxLabels?: number };
-export type ZoomKey = { to: number; at: number; dur: number; drift?: boolean };
+export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
 export type Measure = { from: string; to: string; text: string; color?: string; at: number; until: number; off?: number };
-
-const UNIT: Record<string, number> = { m: 1, cm: 1e-2, mm: 1e-3, "µm": 1e-6, um: 1e-6, nm: 1e-9 };
-/** "15 cm" → 0.15（公尺） */
-export const meters = (s: string) => { const r = /^([\d.]+)\s*(m|cm|mm|µm|um|nm)$/.exec(s.trim()); return r ? Number(r[1]) * UNIT[r[2]] : NaN; };
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
-
-/** at（cue id 或 start｜voice｜end｜exit ±N，可寫「幕id:cue」）→ 絕對幀；規則和 engine.ts 的 at 一樣 */
-const atOf = (tl: TimelineV2) => {
-  const by = Object.fromEntries(tl.scenes.map((x, i) => [x.id, { ...x, exit: tl.scenes[i + 1]?.startFrame ?? tl.totalFrames }]));
-  return (sceneId: string, spec: unknown, fb: number) => {
-    const r = /^(?:([^\s:+-]+):)?([^\s:+-]+)([+-]\d+)?$/.exec(String(spec ?? ""));
-    const t = r?.[1] ? by[r[1]] : by[sceneId];
-    if (!r || !t) return fb;
-    const base = r[2] === "start" ? t.startFrame : r[2] === "voice" ? t.voiceStartFrame : r[2] === "end" ? t.voiceEndFrame : r[2] === "exit" ? t.exit : (t.cues ?? []).find((q) => q.id === r[2])?.frame;
-    return base === undefined || base === null ? fb : base + Number(r[3] ?? 0);
-  };
-};
-
-export const zoomKeys = (scenes: Scene[], tl: TimelineV2, hud: HudSpec): ZoomKey[] => {
-  const at = atOf(tl), keys: ZoomKey[] = [];
-  for (const s of scenes) for (const z of ([] as any[]).concat((s.props as any)?.zoom ?? [])) {
-    const to = hud.levels.findIndex((l) => l.id === z.to), a = at(s.id, z.at, NaN);
-    if (to < 0 || Number.isNaN(a)) continue;
-    keys.push({ to, at: a, dur: z.dur ?? H.motion.zoom, drift: !!z.drift });
-  }
-  keys.sort((a, b) => a.at - b.at);
-  // drift：這一級慢慢推近（＋H.motion.drift 級），一直推到下一個縮放開始
-  return keys.flatMap((k, i) => (k.drift ? [{ to: k.to, at: k.at - 1, dur: 1 }, { to: k.to + H.motion.drift, at: k.at, dur: Math.max(1, (keys[i + 1]?.at ?? k.at + 300) - k.at), drift: true }] : [k]));
-};
+export const zoomKeys = (scenes: Scene[], tl: TimelineV2, hud: HudSpec): ZoomKey[] => zoomKeysL(scenes, tl, hud, H.motion.zoom, H.motion.drift);
+export const zoomAt = zoomAtL;
 export const measuresOf = (scenes: Scene[], tl: TimelineV2): Measure[] => {
   const at = atOf(tl), out: Measure[] = [];
   for (const s of scenes) for (const m of ([] as any[]).concat((s.props as any)?.measure ?? [])) out.push({ ...m, at: at(s.id, m.at, 1e9), until: m.until ? at(s.id, m.until, 1e9) : 1e9 });
   return out;
-};
-
-/** 第 f 幀的縮放狀態：lv＝連續的級數（2.5＝第 2 和第 3 級中間），logField＝畫面寬度的 log10（公尺），mag＝相對第一級的倍率 */
-export const zoomAt = (hud: HudSpec, keys: ZoomKey[], f: number) => {
-  let lv = keys[0]?.to ?? 0;
-  for (const k of keys) { const t = tween(f, k.at, k.dur, k.drift ? (x: number) => x : EASE.move); if (t <= 0) break; lv = lv + (k.to - lv) * t; }
-  const lf = hud.levels.map((l) => Math.log10(meters(l.field)));
-  const i = Math.max(0, Math.min(lf.length - 2, Math.floor(lv))), u = lv - i;
-  const logField = lf.length > 1 ? lf[i] + (lf[i + 1] - lf[i]) * u : lf[0];
-  const last = hud.levels.findIndex((l) => l.handoff3D);
-  // 交棒：縮到 handoff3D 那一級的最後一段，3D 模型淡入、2D 圖層淡出
-  const handoff = last < 0 ? 0 : clamp01((lv - (last - 0.3)) / 0.3);
-  return { lv, logField, mag: Math.pow(10, lf[0] - logField), handoff, level: hud.levels[Math.max(0, Math.min(hud.levels.length - 1, Math.round(lv)))] };
 };
 type Zoom = ReturnType<typeof zoomAt>;
 
@@ -83,7 +43,7 @@ const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties =>
 /** 色塊上的字色：橘色塊可另用 onAmber（淺色皮膚：藍／紅塊上白字、橘塊上深字） */
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
 export const hudAccent = (c?: string) => (c === "amber" ? H.amber : c === "coral" ? H.coral : c === "white" ? H.text : H.line);
-const CX = L.W / 2, CY = L.STAGE_TOP + L.STAGE_H / 2;
+const cxy = () => ({ CX: L.W / 2, CY: L.STAGE_TOP + L.STAGE_H / 2 });
 
 /** 深色背景：底色＋細格線（每 60px，跟著縮放微微流動）＋舞台中心的柔光（3D 出場後加一點暖色） */
 export const HudBackdrop: React.FC<{ f: number; lv: number; warm?: number }> = ({ f, lv, warm = 0 }) => {
@@ -103,6 +63,7 @@ export const HudBackdrop: React.FC<{ f: number; lv: number; warm?: number }> = (
 /** 2D 縮放圖層：每一級一張圖，畫在舞台中心；大小＝那一級的 field ÷ 現在的 field。只畫在舞台框裡 */
 export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z, f }) => {
   if (z.handoff >= 1) return null;
+  const { CX, CY } = cxy();
   return (
     <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, opacity: 1 - z.handoff }}>
       <defs><clipPath id="hudStage"><rect x={0} y={L.STAGE_TOP} width={L.W} height={L.STAGE_H} /></clipPath></defs>
@@ -133,7 +94,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
   const rq = 1 - quiet;
   // 讀數換級時閃一下（換字的那幾幀亮起來）
   const lvF = Math.abs(z.lv - Math.round(z.lv)) < 0.5 ? 1 : 0;
-  const sc = hud.schematic;
+  const sc = hud.schematic, { CX, CY } = cxy();
   return (
     <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b} V ${y} H ${x + sx * b}`} fill="none" stroke={H.line} strokeWidth={s.bold} />)}
@@ -153,8 +114,8 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
       {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
       <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={H.plateO * rq} />
       <rect x={x1 - 470} y={y0 + 10} width={460} height={86 + 110 * rq} fill={H.bg} opacity={H.plateO} />
-      {sc ? <text x={x1 - 24} y={y0 + 40} textAnchor="end" style={mono(28, H.text2, 500)}>{sc.text}</text> : null}
-      {sc?.zh ? <text x={x1 - 24} y={y0 + 76} textAnchor="end" style={zh(28, H.text2, 500)}>{sc.zh}</text> : null}
+      {sc ? <text x={x1 - 24} y={y0 + 40} textAnchor="end" style={mono(sm(28), H.text2, 500)}>{sc.text}</text> : null}
+      {sc?.zh ? <text x={x1 - 24} y={y0 + 76} textAnchor="end" style={zh(sm(28), H.text2, 500)}>{sc.zh}</text> : null}
       <text x={x1 - 24} y={y0 + 150} textAnchor="end" style={mono(H.font.px.big, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text>
       <text x={x1 - 24} y={y0 + 192} textAnchor="end" style={mono(H.font.px.readout, H.text2)} opacity={rq}>FIELD {lvl.field}</text>
       <text x={x0 + 28} y={y0 + 56} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
@@ -190,18 +151,19 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
   );
 };
 
-/** 標籤：圓點釘在零件上、引線、深色小框（青藍或琥珀細框）。同畫面最多 max 張（多的照時間先後留最新的） */
-const HudLabels: React.FC<{ m: Model3D; s: State3D; f: number; max: number }> = ({ m, s, f, max }) => {
+/** 標籤：圓點釘在零件上、引線、小框。同畫面最多 max 張（多的照時間先後留最新的）。
+ *  2026/11/15：標籤一律放在模型外面（hudLayout.ts 的 placeLabel）：位置用標籤落定那一幀（at+8）的模型範圍算一次，之後跟著零件平移，引線拉到模型外 */
+const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number }> = ({ s, f, max, placed, enPx }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
-  const A = m.product.anchors;
-  const on = m.labels.filter((l) => A[l.part] && f >= l.at - 2 && f < l.until + 6).slice(-max);
+  const on = placed.filter(({ l }) => f >= l.at - 2 && f < l.until + 6).slice(-max);
   return (
     <>
-      {on.map((l, i) => {
-        const an = A[l.part], p = projectPoint(s, cam, an.layer, an.p), c = hudAccent(l.color);
+      {on.map(({ l, an, x: x0, y: y0, left }, i) => {
+        const p = projectPoint(s, cam, an.layer, an.p), c = hudAccent(l.color);
         const o = tween(f, l.at - 2, 5, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit));
-        const left = an.dx < 0, estW = Math.max([...l.text].length * 52, (l.en ?? "").length * 17) + 56;
-        const x = left ? Math.max(L.X + estW, p.x + an.dx) : Math.min(L.W - L.X - estW, p.x + an.dx), y = p.y + an.dy;
+        // 標籤卡整段固定在模型外的空位（hudLayout.ts 的 placeLabels），只有引線跟著零件走
+        const x = x0, y = y0;
+        // 引線：先拐到標籤那一側的高度再水平接上（標籤放在模型下方時，引線往下拉出模型）
         const q = tween(f, l.at - 1, 9, EASE.move), kx = x + (left ? 30 : -30), len = Math.hypot(kx - p.x, y - p.y) + 30;
         return (
           <React.Fragment key={i}>
@@ -212,7 +174,7 @@ const HudLabels: React.FC<{ m: Model3D; s: State3D; f: number; max: number }> = 
             </svg>
             <div style={{ position: "absolute", left: Math.round(x), top: Math.round(y), opacity: tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)`, background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
               <div style={{ ...zh(52, c), lineHeight: 1.25, letterSpacing: "0.04em" }}>{l.text}</div>
-              {l.en ? <div style={mono(28, H.text2, 500)}>{l.en}</div> : null}
+              {l.en ? <div style={mono(enPx, H.text2, 500)}>{l.en}</div> : null}
             </div>
           </React.Fragment>
         );
@@ -293,9 +255,10 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
                   {[0, 1, 2].map((j) => { const y = top + 24 + j * ((base - 34 - top - 40) / 3); return <rect key={j} x={cx - 62} y={y} width={124} height={22} rx={5} fill={A.sheet} stroke={A.hk} strokeWidth={3} />; })}
                 </>
               )}
-              {/* 關閉時的漏電（示意）：沒被閘極包到的地方有幾顆小點一明一滅地漏過去 */}
-              {range(leak).map((j) => { const ph = ((n + j * 9) % 30) / 30, yy = sd.kind === "fin" ? base - 30 + (j % 3) * 9 : base - 22, xx = sd.kind === "fin" ? cx - 10 + ((j * 7) % 20) : cx - 8 + j * 12; return <circle key={j} cx={xx} cy={yy} r={3 + 4 * Math.sin(Math.PI * ph)} fill={A.leak} opacity={(sd.kind === "fin" ? 0.95 : 0.45) * Math.sin(Math.PI * ph)} />; })}
-              {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 108}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 114} y={base - 9} style={zh(sm(26), A.leak, 700)}>{sd.note}</text></> : null}
+              {/* 關閉時的漏電（示意，2026/11/15 改）：沒被閘極包到的地方，小光點斷斷續續地漏出去（帶短拖尾、往基板方向走）；
+                  leak＝強度（每秒約 leak×0.75 顆，不是 0），鰭式從鰭底部兩側漏，奈米片從最下面那片底下偶爾漏一顆 */}
+              <LeakDots kind={sd.kind} leak={leak} cx={cx} base={base} n={n - ((sd as any).at ?? o.at)} seed={i * 97 + 13} />
+              {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 104}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 110} y={base - 6} style={zh(sm(30), A.leak, 800)}>{sd.note}</text></> : null}
               <text x={cx} y={98} textAnchor="middle" style={zh(40, c, 900)}>{sd.title}</text>
               {sd.sub ? <text x={cx} y={132} textAnchor="middle" style={mono(sm(24), H.text2, 500)}>{sd.sub}</text> : null}
               {sd.wrap ? <text x={cx} y={hgt - 14} textAnchor="middle" style={zh(32, H.text, 800)}>{sd.wrap}</text> : null}
@@ -307,6 +270,28 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
   );
 };
 const range = (n: number) => Array.from({ length: n }, (_, i) => i);
+/** 固定 seed 的亂數（同一個 k 永遠同一個值） */
+const hash01 = (k: number) => { const x = Math.sin(k * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+/** 漏電小光點：每秒約 leak×0.75 顆，出生時間有亂數間隔（斷斷續續），每顆活 LIFE 幀：從漏電處出現、帶 3 格短拖尾往基板方向走、淡出 */
+const LeakDots: React.FC<{ kind: string; leak: number; cx: number; base: number; n: number; seed: number }> = ({ kind, leak, cx, base, n, seed }) => {
+  if (leak <= 0 || n < 0) return null;
+  const A = H.art, rate = leak * 0.75, gap = 30 / rate, LIFE = 26, out: React.ReactNode[] = [];
+  const k1 = Math.floor(n / gap);
+  for (let k = Math.max(0, k1 - Math.ceil(LIFE / gap) - 2); k <= k1; k++) {
+    const born = k * gap + hash01(seed + k) * gap * 0.8, age = n - born;
+    if (age < 0 || age > LIFE) continue;
+    const u = age / LIFE, side = hash01(seed + k * 3.7) < 0.5 ? -1 : 1;
+    // 起點：鰭式＝鰭底部（閘極沒包到的那段）左右兩側；奈米片＝最下面那片底下
+    const x0 = kind === "fin" ? cx + side * 10 : cx + (hash01(seed + k * 5.1) - 0.5) * 30, y0 = kind === "fin" ? base - 40 + hash01(seed + k * 2.3) * 12 : base - 26;
+    const x1 = x0 + side * (kind === "fin" ? 40 + 30 * hash01(seed + k) : 18), y1 = base + 22;
+    const pos = (t: number) => { const e = 1 - Math.pow(1 - Math.max(0, t), 2); return [x0 + (x1 - x0) * e, y0 + (y1 - y0) * e]; };
+    const o = Math.min(1, u * 6) * (1 - Math.pow(u, 3)) * (kind === "fin" ? 1 : 0.8);
+    for (let tr = 3; tr >= 0; tr--) { const [x, y] = pos(u - tr * 0.06); out.push(<circle key={`${k}-${tr}`} cx={x} cy={y} r={tr ? 5 - tr : 6} fill={A.leak} opacity={o * (tr ? 0.5 - tr * 0.12 : 1)} />); }
+    // 出生時一圈小波紋：看得出「漏了一顆」
+    if (age < 10) out.push(<circle key={`${k}-r`} cx={x0} cy={y0} r={4 + age * 1.6} fill="none" stroke={A.leak} strokeWidth={2} opacity={(1 - age / 10) * 0.8} />);
+  }
+  return <>{out}</>;
+};
 
 /** HUD 版的小儀表（model.actions 的 type: "meter"，由 props.run 觸發）：固定在畫面上的讀數條。條的長度＝source 那個動作這一幀的強度
  *  （和 3D 裡零件發光、光點流動讀同一份 engine 數值）；只標「低／高」這種字，不標數值 */
@@ -322,7 +307,7 @@ const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) =>
           <div key={id} style={{ position: "absolute", left: d.x, top: d.y, width: w, opacity: op.k, background: H.panel, border: `2px solid ${H.lineSoft}`, padding: "8px 14px 10px", boxSizing: "border-box" }}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
               <div style={{ ...zh(30, H.text, 800) }}>{d.label}</div>
-              {d.sym ? <div style={mono(28, c, 700)}>{d.sym}</div> : null}
+              {d.sym ? <div style={mono(sm(28), c, 700)}>{d.sym}</div> : null}
             </div>
             <div style={{ position: "relative", height: 16, marginTop: 6, background: H.bg, border: `1.5px solid ${H.text3}` }}>
               <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * Math.max(0.03, lv)).toFixed(1)}%`, background: c }} />
@@ -339,9 +324,11 @@ const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) =>
 };
 
 /** HUD 版的疊層：stamp 蓋章（實心色塊、微歪、先大後小）、card 下一支提問卡（深色框＋四角括號） */
-const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
+const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[] }> = ({ m, f, list }) => {
+  const { CX, CY } = cxy();
+  return (
   <>
-    {(m.overlays ?? []).map((o: Overlay3D, i) => {
+    {list.map((o: Overlay3D, i) => {
       if (f < o.at - 1) return null;
       const k = tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
       if (k <= 0) return null;
@@ -425,49 +412,70 @@ const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
       return null;
     })}
   </>
-);
+  );
+};
 
-/** 頁首：左＝方框標誌＋頻道名，右＝細框標籤，下面一條琥珀進度線 */
-const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number }> = ({ name, tag, total, f }) => (
+/** 頻道標誌：開口圈（mark: "ring"）或方框；size＝外框邊長 px。draw（0–1）＝圈描到哪、dot＝圓點的位移與縮放（片尾卡動畫用；頁首都是 1） */
+const HudMark: React.FC<{ size: number; draw?: number; dotY?: number; dotS?: number; stroke?: number }> = ({ size, draw = 1, dotY = 0, dotS = 1, stroke = 9 }) =>
+  (H as any).mark === "ring" ? (
+    <svg width={size} height={size} viewBox="18 16 64 64" style={{ overflow: "visible", display: "block" }}>
+      {draw > 0.01 ? <path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" pathLength={1} strokeDasharray="1 1" strokeDashoffset={(1 - draw).toFixed(4)} fill="none" stroke={H.line} strokeWidth={stroke} strokeLinecap="round" /> : null}
+      {dotS > 0.01 ? <circle cx={67.68} cy={32.32 + dotY} r={6.6 * dotS} fill={H.amber} /> : null}
+    </svg>
+  ) : (
+    <svg width={size} height={size} viewBox="0 0 46 46" style={{ display: "block" }}><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - draw} /><rect x={15} y={15 + dotY / 3} width={16} height={16} fill={H.amber} transform={`scale(${dotS})`} transform-origin="23 23" /></svg>
+  );
+
+/** 頁首：左＝頻道標誌＋頻道名（每一幕、包括片尾卡都在同一個位置、同樣大小；大小在 L.LOGO_PX／LOGO_NAME_PX），右＝標籤，下面一條進度線 */
+const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number; progress?: boolean }> = ({ name, tag, total, f, progress = true }) => (
   <>
     <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        {(H as any).mark === "ring" ? <svg width={46} height={46} viewBox="18 16 64 64"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></svg> : <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>}
-        <div style={{ ...zh(40, H.text), letterSpacing: "0.04em" }}>{(H as any).light ? <>{name.slice(0, -1)}<span style={{ color: H.line }}>{name.slice(-1)}</span></> : name}</div>
+      <div style={{ display: "flex", alignItems: "center", gap: Math.round(L.LOGO_PX * 0.3) }}>
+        <HudMark size={L.LOGO_PX} />
+        <div style={{ ...zh(L.LOGO_NAME_PX, H.text), letterSpacing: "0.04em" }}>{(H as any).light ? <>{name.slice(0, -1)}<span style={{ color: H.line }}>{name.slice(-1)}</span></> : name}</div>
       </div>
-      <div style={{ ...zh(28, H.line, 700), ...((H as any).light ? { background: H.bg2, borderRadius: 14, padding: "8px 24px" } : { border: `2px solid ${H.line}`, padding: "6px 22px" }), letterSpacing: "0.08em" }}>{tag}</div>
+      <div style={{ ...zh(L.TAG_PX, H.line, 700), ...((H as any).light ? { background: H.bg2, borderRadius: 14, padding: "8px 24px" } : { border: `2px solid ${H.line}`, padding: "6px 22px" }), letterSpacing: "0.08em" }}>{tag}</div>
     </div>
     {(H as any).light ? <div style={{ position: "absolute", left: 0, top: 0, width: L.W, height: 14, background: `linear-gradient(90deg, ${H.line} 0 84%, ${H.amber} 84% 100%)` }} /> : null}
-    <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP - 8, width: L.INNER_W, height: 3, background: H.lineSoft }}>
+    {progress ? <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP - 8, width: L.INNER_W, height: 3, background: H.lineSoft }}>
       <div style={{ width: `${(100 * Math.min(1, f / Math.max(1, total - 1))).toFixed(2)}%`, height: 3, background: H.amber }} />
-    </div>
+    </div> : null}
   </>
 );
 
-/** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌與名稱、slogan、下一支預告。
- *  字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
-const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
+/** 片尾卡（最後一幕 silent: true ＋ props.endCard: { next?, kicker?, trail?, at?, nextAt? }）：整個畫面蓋上底色；頁首 LOGO 照常留在左上。
+ *  2026/11/15 使用者回饋「最後的結尾，我的 LOGO 需要有動畫特效」：中間的大標誌依序 ① 開口圈描線畫出來 ② 橘色圓點從上方彈進來落定（阻尼回彈）
+ *  ③ 落定時一圈淡色光暈往外擴一次（細線，不發光）④ 頻道名、底線、slogan、軌跡、下一支依序進場。全部在 ENDCARD 幀內落定，之後至少停 1 秒。
+ *  at（可省略）＝片尾卡提早開始的 cue（例如 "s19:litho-12"，讓片尾卡至少 3 秒而不動配音時間軸）；nextAt＝「下一支」標籤跳出來的 cue（對著旁白念到題目） */
+const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, nextAt, spec, channel }) => {
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
-  const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = 400, y1 = 1560;
-  const draw = tween(f, at + 2, 14, EASE.move), pop = tween(f, at + 6, 10, EASE.enter), line = tween(f, at + 12, 14, EASE.move), nx = tween(f, at + 22, 8, EASE.enter);
+  const E = ENDCARD, n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 40, y1 = L.CAP_TOP + L.CAP_H;
+  const frame = tween(f, at + 2, 14, EASE.move);
+  const draw = tween(f, at + E.draw[0], E.draw[1] - E.draw[0], EASE.move);
+  // 圓點：從上方 70 單位掉下來，阻尼彈簧（越過落點再彈回）；縮放先小後微大再回 1
+  const td = Math.max(0, (n - E.dot) / FPS);
+  const dotIn = n >= E.dot;
+  const dotY = dotIn ? -70 * Math.exp(-7 * td) * Math.cos(13 * td) : 0;
+  const dotS = dotIn ? Math.min(1, td * 9) * (1 + 0.22 * Math.exp(-6 * td) * Math.sin(16 * td)) : 0;
+  const halo = tween(f, at + E.halo[0], E.halo[1], EASE.move);
+  const name = tween(f, at + E.name, 8, EASE.enter), line = tween(f, at + E.line, 12, EASE.move), slogan = tween(f, at + E.slogan, 8, EASE.enter);
+  const nx = tween(f, nextAt ?? at + E.next, 7, EASE.enter), nxPop = 1 + 0.12 * Math.sin(Math.PI * tween(f, (nextAt ?? at + E.next) + 4, 8, EASE.move));
   const trail = spec?.trail ?? [];
+  const LOGO = 300, cy = L.STAGE_TOP + 300;
   return (
-    <AbsoluteFill style={{ background: H.bg, opacity: k }}>
+    <AbsoluteFill style={{ opacity: k }}>
       <HudBackdrop f={f} lv={0} />
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
-        {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={5} />)}
-        <g transform={`translate(${L.W / 2} 640) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
-          {(H as any).mark === "ring" ? <g transform="scale(4) translate(-50 -50)"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6 * (1 + 0.08 * Math.sin(n / 6))} fill={H.amber} /></g> : <>
-          <rect x={-100} y={-100} width={200} height={200} fill="none" stroke={H.line} strokeWidth={8} />
-          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></>}
-        </g>
+        {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * frame} V ${y} H ${x + sx * b * frame}`} fill="none" stroke={H.line} strokeWidth={5} />)}
+        {halo > 0 && halo < 1 ? <circle cx={L.W / 2} cy={cy} r={(LOGO / 2) * (0.82 + 0.55 * halo)} fill="none" stroke={H.lineSoft} strokeWidth={6 * (1 - halo) + 1} opacity={0.9 * (1 - halo)} /> : null}
       </svg>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 800, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
-      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1012, width: 760 * line, height: 5, background: H.amber }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1046, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
-      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1190, display: "flex", justifyContent: "center", gap: 14, opacity: line }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 14 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1330, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dotY={dotY} dotS={dotS} /></div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: cy + 210, textAlign: "center", opacity: name, transform: `translateY(${Math.round(24 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
+      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + 418, width: 760 * line, height: 6, background: H.amber }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: cy + 450, textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
+      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 600, display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + E.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + E.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 744, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
     </AbsoluteFill>
   );
 };
@@ -489,7 +497,7 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
   const text = ps[k].text.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
   return (
     <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: H.caption, borderTop: `2px solid ${H.lineSoft}`, borderBottom: `2px solid ${H.lineSoft}` }}>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 30, height: 104, display: "flex", alignItems: "center", justifyContent: "center", ...zh(L.CAP_ZH_PX, H.text), letterSpacing: "0.02em", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: Math.round(L.CAP_H * 0.12), height: Math.round(L.CAP_ZH_PX * 1.45), display: "flex", alignItems: "center", justifyContent: "center", ...zh(L.CAP_ZH_PX, H.text), letterSpacing: "0.02em", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
         <span>
           {splitParts(text, cue.keywords).map((sp, i) => {
             if (sp.k < 0) return <span key={i}>{sp.text}</span>;
@@ -498,7 +506,7 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
           })}
         </span>
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 156, textAlign: "center", ...mono(L.CAP_EN_PX, H.text2, 500), letterSpacing: "0.02em", fontFamily: FONT_EN }}>{en[e]}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: Math.round(L.CAP_H * 0.12 + L.CAP_ZH_PX * 1.45 + 18), textAlign: "center", ...mono(L.CAP_EN_PX, H.text2, 500), letterSpacing: "0.02em", fontFamily: FONT_EN }}>{en[e]}</div>
     </div>
   );
 };
@@ -506,11 +514,13 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
 const HudSource: React.FC<{ cues: { sources: string[]; window: [number, number] }[]; f: number; px: number }> = ({ cues, f, px }) => {
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
-  const j = cur.sources.join("、");
+  const j = cur.sources.join("、"), text = /^(資料)?來源|示意/.test(j) ? j : `來源：${j}`;
+  // 一行放不下就縮字（下限 L.SMALL_MIN／30px；再放不下由 layout-check 報錯，要改短出處）
+  const fit = Math.max(Math.min(px, L.SMALL_MIN || px), Math.min(px, Math.floor((px * (L.INNER_W - 30)) / Math.max(1, textW(text, px, 0.02)))));
   return (
-    <div style={{ position: "absolute", left: L.X + 4, top: L.SRC_TOP, display: "flex", alignItems: "center", gap: 12, ...zh(px, H.text2, 500), letterSpacing: "0.02em" }}>
+    <div style={{ position: "absolute", left: L.X + 4, top: L.SRC_TOP + Math.round((px - fit) / 2), display: "flex", alignItems: "center", gap: 12, ...zh(fit, H.text2, 500), letterSpacing: "0.02em" }}>
       <div style={{ width: 10, height: 10, background: H.lineSoft }} />
-      {/^(資料)?來源|示意/.test(j) ? j : `來源：${j}`}
+      {text}
     </div>
   );
 };
@@ -521,6 +531,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const hud = (props as any).hud as HudSpec;
   const skin = (props as any).hudSkin as string | undefined;
   setHudSkin(skin, (hud as any).smallPx);
+  setHudLayout(hud.layout);
   // 皮膚的 parts 蓋掉 model.json palette 裡同名的色（"deep" 的 parts 和 short-tech 的 palette 相同）
   const model = useMemo(() => { const pm = props.model as ProductModel; return { ...pm, palette: { ...pm.palette, ...H.parts } }; }, [props.model, skin]);
   const f = useCurrentFrame();
@@ -540,7 +551,15 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const d0 = useMemo(() => (hand ? stateAt(m, hand.at + hand.dur).cam.d : 0), [m, hand]);
   const camK = z.handoff > 0.99 && d0 > 0 ? d0 / s.cam.d : 1;
   const endScene = scenes.find((x) => (x as any).silent === true && (x.props as any)?.endCard);
-  const card = (m.overlays ?? []).find((o) => o.type === "card");
+  const ec = endScene ? ((endScene.props as any).endCard ?? {}) : null, atF = useMemo(() => atOf(timeline), [timeline]);
+  const ecAt = endScene && by[endScene.id] ? (ec.at ? atF(endScene.id, ec.at, by[endScene.id].startFrame) : by[endScene.id].startFrame) : null;
+  const ecNext = endScene && ec?.nextAt ? atF(endScene.id, ec.nextAt, NaN) : undefined;
+  // 版面整理（hudLayout.ts）：模型在畫面上的範圍（有快取）、蓋章避開模型、換幕時大卡片不疊
+  const is3D = useMemo(() => (g: number) => zoomAt(hud, keys, g).handoff > 0.5, [hud, keys]);
+  const mrAt = useMemo(() => { const cache = new Map<number, Rect | null>(); return (g: number) => { if (!cache.has(g)) cache.set(g, is3D(g) ? modelRect(m.product, stateAt(m, g)) : null); return cache.get(g) ?? null; }; }, [m, is3D]);
+  const enPx = sm(28), placed = useMemo(() => placeLabels(m, L as any, is3D, enPx, obstaclesOf(m, [])), [m, is3D, enPx]);
+  const overlays = useMemo(() => arrangeOverlays(m, L as any, is3D, obstaclesOf(m, placed)), [m, is3D, placed]);
+  const card = overlays.find((o) => o.type === "card");
   const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (
     <AbsoluteFill style={{ background: H.bg }}>
@@ -549,14 +568,15 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <Stage3D s={s} model={m.product} o={z.handoff} />
       <HudFrame f={f} hud={hud} z={z} camK={camK} quiet={quiet} />
       <HudHook m={m} f={f} out={hookOut} />
-      <HudLabels m={m} s={s} f={f} max={hud.maxLabels ?? 2} />
+      <HudLabels s={s} f={f} max={hud.maxLabels ?? 2} placed={placed} enPx={enPx} />
       <HudMeasures m={m} s={s} f={f} list={meas} />
       <HudMeters m={m} s={s} f={f} />
-      <HudOverlays m={m} f={f} />
+      <HudOverlays m={m} f={f} list={overlays} />
       <HudCaption cues={subCues as Cue[]} f={f} />
-      <HudSource cues={srcCues} f={f} px={(m.product.fx as any)?.srcPx ?? 30} />
+      <HudSource cues={srcCues} f={f} px={Math.max((m.product.fx as any)?.srcPx ?? 30, L.SRC_PX)} />
+      {ecAt !== null ? <HudEndCard f={f} at={ecAt} nextAt={ecNext} spec={ec} channel={channel} /> : null}
+      {/* 頁首（頻道 LOGO）畫在最上層：每一幕、包括片尾卡都在左上同一個位置 */}
       <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} />
-      {endScene && by[endScene.id] ? <HudEndCard f={f} at={by[endScene.id].startFrame} spec={(endScene.props as any).endCard} channel={channel} /> : null}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}
@@ -570,6 +590,7 @@ export const CoverHud: React.FC<Script & { coverCrop?: number }> = (props) => {
   const hud = (props as any).hud as HudSpec;
   const c = (cover ?? {}) as { title?: string[]; sub?: string; frame?: number };
   setHudSkin((props as any).hudSkin, (hud as any).smallPx);
+  setHudLayout(hud.layout);
   const keys = useMemo(() => (timeline ? zoomKeys(scenes, timeline as TimelineV2, hud) : []), [scenes, timeline, hud]);
   const cf = keys.find((k) => !k.drift && k.at > 0);
   const z = zoomAt(hud, keys, cf ? cf.at + Math.round(cf.dur * 0.7) : 0);

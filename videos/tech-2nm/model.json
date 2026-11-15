@@ -22,7 +22,10 @@
   "signal": "#9FF0FF",
   "vg": "#FFE9A8",
   "inv": "#D8FAFF",
-  "leak": "#FF6B4A"
+  "leak": "#FF6B4A",
+  "elec": "#FFFFFF",
+  "elecRim": "#1F6FEB",
+  "elecTrail": "#38B6FF"
  },
  "materials": {
   "substrate": {
@@ -1220,7 +1223,7 @@
     -5.5,
     2.5
    ],
-   "dx": -200,
+   "dx": -330,
    "dy": 190
   },
   "drn": {
@@ -1230,7 +1233,7 @@
     -5.5,
     2.5
    ],
-   "dx": 150,
+   "dx": 330,
    "dy": 200
   }
  },
@@ -1262,20 +1265,21 @@
   },
   "e1": {
    "type": "flow",
+   "_說明": "2026/11/15 電流效果：從源極沿三片薄片流到汲極；drive＝速度與密度跟著閘極電壓的強度（關的時候約 0.45 秒內慢下來、變稀疏、停住，停住的點留 0.7 秒再淡出）；每片三道並排，每顆白色核心＋藍色淡光圈＋青色拖尾",
    "path": [
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       -5.5,
-      -2.6,
-      8.6
+      0,
+      4.6
      ]
     },
     {
      "layer": "sheet1",
      "p": [
       -5.5,
-      -2.6,
+      0,
       0
      ]
     },
@@ -1283,35 +1287,55 @@
      "layer": "sheet1",
      "p": [
       5.5,
-      -2.6,
+      0,
       0
      ]
     },
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       5.5,
-      -2.6,
-      8.6
+      0,
+      4.6
      ]
     }
    ],
-   "n": 5,
-   "size": 0.5,
+   "n": 7,
+   "lanes": 3,
+   "laneGap": 2.9,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "jitter": 0.5,
+   "size": 0.36,
    "shape": "dot",
-   "rate": 0.5,
-   "color": "signal",
-   "phase": 0.0
+   "rate": 0.7,
+   "color": "elec",
+   "rim": "elecRim",
+   "rimScale": 1.9,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "elecTrail",
+   "drive": true,
+   "minVisible": 0.35,
+   "rest": 21,
+   "restO": 0.6,
+   "phase": 0.0,
+   "track": false,
+   "rimO": 0.45
   },
   "e2": {
    "type": "flow",
+   "_說明": "2026/11/15 電流效果：從源極沿三片薄片流到汲極；drive＝速度與密度跟著閘極電壓的強度（關的時候約 0.45 秒內慢下來、變稀疏、停住，停住的點留 0.7 秒再淡出）；每片三道並排，每顆白色核心＋藍色淡光圈＋青色拖尾",
    "path": [
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       -5.5,
       0,
-      8.6
+      4.6
      ]
     },
     {
@@ -1331,37 +1355,57 @@
      ]
     },
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       5.5,
       0,
-      8.6
+      4.6
      ]
     }
    ],
-   "n": 5,
-   "size": 0.5,
+   "n": 7,
+   "lanes": 3,
+   "laneGap": 2.9,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "jitter": 0.5,
+   "size": 0.36,
    "shape": "dot",
-   "rate": 0.5,
-   "color": "signal",
-   "phase": 0.07
+   "rate": 0.7,
+   "color": "elec",
+   "rim": "elecRim",
+   "rimScale": 1.9,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "elecTrail",
+   "drive": true,
+   "minVisible": 0.35,
+   "rest": 21,
+   "restO": 0.6,
+   "phase": 0.05,
+   "track": false,
+   "rimO": 0.45
   },
   "e3": {
    "type": "flow",
+   "_說明": "2026/11/15 電流效果：從源極沿三片薄片流到汲極；drive＝速度與密度跟著閘極電壓的強度（關的時候約 0.45 秒內慢下來、變稀疏、停住，停住的點留 0.7 秒再淡出）；每片三道並排，每顆白色核心＋藍色淡光圈＋青色拖尾",
    "path": [
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       -5.5,
-      2.6,
-      8.6
+      0,
+      4.6
      ]
     },
     {
      "layer": "sheet3",
      "p": [
       -5.5,
-      2.6,
+      0,
       0
      ]
     },
@@ -1369,25 +1413,44 @@
      "layer": "sheet3",
      "p": [
       5.5,
-      2.6,
+      0,
       0
      ]
     },
     {
-     "layer": "metal",
+     "layer": "sd",
      "p": [
       5.5,
-      2.6,
-      8.6
+      0,
+      4.6
      ]
     }
    ],
-   "n": 5,
-   "size": 0.5,
+   "n": 7,
+   "lanes": 3,
+   "laneGap": 2.9,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "jitter": 0.5,
+   "size": 0.36,
    "shape": "dot",
-   "rate": 0.5,
-   "color": "signal",
-   "phase": 0.14
+   "rate": 0.7,
+   "color": "elec",
+   "rim": "elecRim",
+   "rimScale": 1.9,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "elecTrail",
+   "drive": true,
+   "minVisible": 0.35,
+   "rest": 21,
+   "restO": 0.6,
+   "phase": 0.1,
+   "track": false,
+   "rimO": 0.45
   },
   "vgMeter": {
    "type": "meter",
@@ -1400,7 +1463,7 @@
    "lo": "低",
    "hi": "高",
    "x": 92,
-   "y": 436
+   "y": 492
   },
   "idMeter": {
    "type": "meter",
@@ -1413,7 +1476,7 @@
    "lo": "關",
    "hi": "開",
    "x": 92,
-   "y": 562
+   "y": 622
   }
  },
  "pose": {

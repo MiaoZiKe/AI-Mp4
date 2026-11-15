@@ -34,8 +34,18 @@
 17. 新畫面先用 2D 疊層（`props.overlay`：`scope｜stamp｜cross｜circle｜steps｜card｜ribbon`，`src/components/three/Overlays.tsx`）；3D 用在開場、拆解、訊號流。先估渲染時間。
 18. 上片後看留存曲線的第 3 秒、第 10 秒、結尾；一次只改一個變因。
 
+版面與小細節（2026/11/15 使用者回饋後加；細節與做法在 `tech-daily-playbook.md` 第九節，標「程式」的已進 `npm run validate`）
+19. 頻道 LOGO 固定左上、每一幕（含片尾卡）同位置同大小（`hud.layout: "fill"`）。程式
+20. 內容撐到約 y1650–1700，上下各留 220px 安全區。程式
+21. 小字 ≥30px（英文副字幕、出處、標籤英文、儀表、對照卡）。程式
+22. 換幕時兩張卡不半透明疊在一起：舊的退場完新的才進。程式
+23. 標籤、蓋章不壓模型與 HUD 讀數，引線拉到模型外。程式
+24. 片尾卡 ≥3 秒，LOGO 有動畫（描線、圓點回彈、名稱依序），落定後停 ≥1 秒。程式
+25. 運作動畫要像物理現象：電流是有拖尾的密集光點流，速度、密度跟著讀數，開關有加減速（不瞬間停）；漏電斷斷續續、不歸零。人工抽格
+
 ## 自查方法
 
 - 前 3 秒逐格：`ffmpeg -i out/<slug>.mp4 -vf "select='lt(n,90)*not(mod(n,6))',scale=270:-1,tile=5x3" -frames:v 1 out/<slug>-first3s.png`，數事件、看第 0 格。
 - 全片每 0.25 秒抽格，找連續 6 格以上沒變化的地方。
 - 九格圖：`python3 scripts/ui/review9.py <slug> "s1:start+0,…"`。
+- 版面（不渲染，幾秒）：`node scripts/three/layout-check.mjs <slug>`，結果寫 `out/<slug>/layout-check.json`（第 19–24 條）。

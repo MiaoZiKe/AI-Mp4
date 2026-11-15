@@ -46,6 +46,10 @@ export type ActionDef = {
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */
   path?: Pt[]; n?: number; size?: number; shape?: "dot" | "arrow"; rate?: number; track?: boolean;
+  /** flow 進階（2026/11/15，電流效果）：drive＝速度與密度跟著強度（強度降下來＝慢下來、變稀疏、停住）；trail＝每顆後面幾格拖尾、trailGap＝拖尾間距（路徑比例，乘上當下速度）、trailColor；
+   *  rim＝每顆外圈的顏色（白點加深色外圈，淺底深底都看得到）、rimScale；minVisible＝最慢時還看得到幾成的點；rest＝停住後留幾幀再淡出、restO＝停住時的不透明度；
+   *  jitter＝每顆垂直路徑方向的小抖動（模型單位，讓一群點看起來像流而不是排隊）；lanes＝同一條路徑上並排幾道（間距 laneGap，方向 laneDir） */
+  drive?: boolean; trail?: number; trailGap?: number; trailColor?: string; rim?: string; rimScale?: number; rimO?: number; minVisible?: number; rest?: number; restO?: number; jitter?: number; lanes?: number; laneGap?: number; laneDir?: number[];
   /** wave：從哪裡、往哪個方向、走多遠、同時幾圈、起始半徑、每走 1 單位半徑多多少、線寬、相位（0–1）、張角（度；360＝整圈） */
   from?: Pt; dir?: number[]; reach?: number; count?: number; r0?: number; spread?: number; width?: number; phase?: number; arc?: number; arcStart?: number;
   /** trace：from → to 一條線上的行進波；up＝振幅方向、cycles＝線上有幾個波長、invert＝反相、harmonics＝[[倍頻, 相對振幅], …] 讓波形不是單純正弦 */

@@ -521,6 +521,19 @@ export const LAYOUT_3D = {
   HOOK_TOP: 322, LABEL_PAD: 30, FOOT_W: 560,
 } as const;
 
+/** HUD 片的「撐滿版面」（script.json 頂層 hud.layout: "fill"；2026/11/15 使用者回饋「LOGO 需要固定在左上，並且整體版面空白處太多」）。
+ *  只蓋掉和 LAYOUT_3D 不同的數字：頁首放大（開口圈 LOGO 80px、頻道名 64px）、舞台下移、字幕框與出處往下撐到約 y1690（下方安全區 220px 以上留給背景）。
+ *  LOGO_*＝頁首 LOGO 的大小（每一幕、包括片尾卡都畫在同一個位置）。CONTENT_BOTTOM＝內容底部的目標下緣（validate 與 layout-check 用）。 */
+export const LAYOUT_3D_FILL = {
+  HEADER_TOP: 228, HEADER_H: 96, PROGRESS_TOP: 344,
+  STAGE_TOP: 356, STAGE_H: 1000,
+  CAP_TOP: 1372, CAP_H: 256, CAP_ZH_PX: 76, CAP_EN_PX: 36,
+  SRC_TOP: 1648, SRC_PX: 34,
+  LOGO_PX: 80, LOGO_NAME_PX: 64, TAG_PX: 34,
+  CONTENT_BOTTOM: 1700, SMALL_MIN: 30,
+} as const;
+export const LAYOUT_3D_DEFAULT_HUD = { LOGO_PX: 46, LOGO_NAME_PX: 40, TAG_PX: 28, CONTENT_BOTTOM: 1700, SMALL_MIN: 0 } as const;
+
 /** stage "three" 的深色科技 HUD 與 Powers of Ten 縮放（script.json 頂層 hud: { theme: "dark", levels }；src/components/three/Hud.tsx）。
  *  只是新增，沒寫 hud 的片完全不讀這裡。HUD 是細線 UI（1.5–3px、實色），不用發光濾鏡。 */
 export const THEME_3D_HUD = {

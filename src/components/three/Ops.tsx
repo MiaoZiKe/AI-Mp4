@@ -5,12 +5,15 @@
 import React, { useMemo } from "react";
 import * as THREE from "three";
 import { THEME_3D as T } from "../../theme";
+import { EASE, tween } from "../anim";
 import { opPoint, signalVal, type State3D } from "./engine";
 import { col, puff, type ActionDef, type ProductModel } from "./model";
 
 const O = T.ops, UP = new THREE.Vector3(0, 1, 0), ZP = new THREE.Vector3(0, 0, 1);
 const v3 = (a: number[]) => new THREE.Vector3(a[0], a[1], a[2] ?? 0);
 const frac = (x: number) => x - Math.floor(x);
+/** 固定 seed 的亂數（同一個 k 永遠同一個值）：電子流的稀疏順序與抖動 */
+const hash01 = (k: number) => { const x = Math.sin(k * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 /** 畫在最上層（不被零件擋住）的不受光材質；def.depth＝true 的動作才會被零件擋住 */
 const flat = (color: string, depth = false) => new THREE.MeshBasicMaterial({ color, transparent: true, depthTest: depth, depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false });
 const SAMPLES = 72, RADIAL = 6;
@@ -31,7 +34,11 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         const w = Math.min(0.5, d.width ?? O.ring), a0 = ((d.arcStart ?? 0) * Math.PI) / 180, al = ((d.arc ?? 360) * Math.PI) / 180;
         r.ring = new THREE.RingGeometry(1 - w, 1, 56, 1, a0, al);
       }
-      if (d.type === "flow") r.mats = Array.from({ length: d.n ?? 4 }, () => flat(c, dp));
+      if (d.type === "flow") {
+        // 每顆一份核心材質；有 rim／trail 時再加外圈與拖尾（各自淡入淡出）
+        const per = 2 + (d.trail ?? 0), tc = col(model, d.trailColor ?? d.color ?? T.ink), rc = col(model, d.rim ?? d.color ?? T.ink);
+        r.mats = Array.from({ length: (d.n ?? 4) * Math.max(1, d.lanes ?? 1) * per }, (_, j) => flat(j % per === 0 ? c : j % per === 1 ? rc : tc, dp));
+      }
       if (d.type === "pulse" && (d.halo ?? 0) > 0) r.halo = new THREE.SpriteMaterial({ map: puff(), color: c, transparent: true, depthTest: false, depthWrite: false, fog: false });
       if (d.type === "trace" || d.type === "sum") {
         // 一條管子：每一幀只改頂點位置（不重建幾何）
@@ -56,25 +63,58 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
 
   for (const [id, d] of Object.entries(acts)) {
     const op = s.ops[id], r = res[id];
-    if (!op || !r || op.k <= 0.004 || (d as any).hidden) continue;
+    if (!op || !r || (d as any).hidden) continue;
+    // drive 的 flow 停住後還要留 rest 幀（停住的點），其他動作強度歸零就不畫
+    if (op.k <= 0.004 && !(d.type === "flow" && d.drive && d.rest && op.f < op.end + d.rest + 8)) continue;
     if (d.type === "flow") {
-      const pts = (d.path ?? []).map((p) => v3(opPoint(s, p, d.layer)));
-      if (pts.length < 2) continue;
-      const seg = pts.slice(1).map((p, i) => p.distanceTo(pts[i])), total = seg.reduce((a, b) => a + b, 0);
-      if (d.track !== false) { r.mat.opacity = O.trackO * op.k; pts.slice(1).forEach((p, i) => rod(`${id}-t${i}`, pts[i], p, O.track, r.mat)); }
-      const n = d.n ?? 4, size = (d.size ?? 0.12) * (0.6 + 0.4 * Math.min(1, op.g));
-      for (let i = 0; i < n; i++) {
-        const raw = op.t * (d.rate ?? 0.8) - (d.phase ?? 0) - i / n; // flow 的 phase＝晚一點出發（幾條並排的路徑錯開）
-        if (raw < 0) continue; // 還沒出發
-        const u = frac(raw);
-        let dist = u * total, k = 0;
-        while (k < seg.length - 1 && dist > seg[k]) { dist -= seg[k]; k++; }
-        const dir = pts[k + 1].clone().sub(pts[k]).normalize(), pos = pts[k].clone().addScaledVector(dir, dist);
-        const e = Math.min(1, u * 10, (1 - u) * 10);
-        r.mats[i].opacity = op.k * e;
-        nodes.push(d.shape === "arrow"
-          ? <mesh key={`${id}-p${i}`} geometry={geo.cone} material={r.mats[i]} position={pos} quaternion={new THREE.Quaternion().setFromUnitVectors(UP, dir)} scale={size} renderOrder={9} frustumCulled={false} />
-          : <mesh key={`${id}-p${i}`} geometry={geo.ball} material={r.mats[i]} position={pos} scale={size * (0.7 + 0.3 * e)} renderOrder={9} frustumCulled={false} />);
+      const pts0 = (d.path ?? []).map((p) => v3(opPoint(s, p, d.layer)));
+      if (pts0.length < 2) continue;
+      const n = d.n ?? 4, lanes = Math.max(1, d.lanes ?? 1), trail = d.trail ?? 0, drive = !!d.drive;
+      // drive：位置用累積量 u（強度下降＝慢下來）；停住後留 rest 幀（restO 不透明度）再淡出
+      // 從開始減速（until）起，點至少保持 restO 的不透明度：看得到「慢下來、停住」，停住後留 rest 幀再淡出
+      const restK = drive && d.rest && op.f >= op.until ? (d.restO ?? 0.55) * (1 - tween(op.f, op.end + d.rest, 8, EASE.move)) : 0;
+      const vis = drive ? Math.max(op.k, restK) : op.k;
+      if (vis <= 0.004) continue;
+      const pos0 = drive ? op.u : op.t, speed = drive ? Math.min(1, op.g) : 1;
+      // 密度：最慢時只剩 minVisible 成的點（依固定亂數順序先收掉）
+      const keep = drive ? Math.max(d.minVisible ?? 0.35, speed) : 1;
+      const ld = v3(d.laneDir ?? [0, 1, 0]).normalize();
+      for (let ln = 0; ln < lanes; ln++) {
+        const off = ld.clone().multiplyScalar((ln - (lanes - 1) / 2) * (d.laneGap ?? 1));
+        const pts = pts0.map((p) => p.clone().add(off));
+        const seg = pts.slice(1).map((p, i) => p.distanceTo(pts[i])), total = seg.reduce((a, b) => a + b, 0);
+        if (d.track !== false && ln === 0) { r.mat.opacity = O.trackO * vis; pts0.slice(1).forEach((p, i) => rod(`${id}-t${i}`, pts0[i], p, O.track, r.mat)); }
+        const at = (u: number) => {
+          let dist = u * total, k = 0;
+          while (k < seg.length - 1 && dist > seg[k]) { dist -= seg[k]; k++; }
+          const dir = pts[k + 1].clone().sub(pts[k]).normalize();
+          return { pos: pts[k].clone().addScaledVector(dir, Math.min(dist, seg[k])), dir };
+        };
+        for (let i = 0; i < n; i++) {
+          const id2 = ln * n + i, rk = hash01(id2 * 7.13 + 1.7);
+          const raw = pos0 * (d.rate ?? 0.8) - (d.phase ?? 0) - i / n - ln * (0.5 / n); // flow 的 phase＝晚一點出發（幾條並排的路徑錯開）
+          if (raw < 0) continue; // 還沒出發
+          if (drive && rk > keep) continue;
+          const u = frac(raw), fadeK = drive ? Math.min(1, (keep - rk) * 8) : 1;
+          const { pos, dir } = at(u);
+          if (d.jitter) pos.addScaledVector(ld, (hash01(id2 * 3.1 + Math.floor(raw)) - 0.5) * d.jitter);
+          const e = Math.min(1, u * 10, (1 - u) * 10), size = (d.size ?? 0.12) * (drive ? 1 : 0.6 + 0.4 * Math.min(1, op.g));
+          const mats = r.mats.slice(id2 * (2 + trail), (id2 + 1) * (2 + trail));
+          const core = mats[0] ?? r.mats[i];
+          core.opacity = vis * e * fadeK;
+          if (d.shape === "arrow") { nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.cone} material={core} position={pos} quaternion={new THREE.Quaternion().setFromUnitVectors(UP, dir)} scale={size} renderOrder={9} frustumCulled={false} />); continue; }
+          nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.ball} material={core} position={pos} scale={size * (0.7 + 0.3 * e)} renderOrder={10} frustumCulled={false} />);
+          if (d.rim && mats[1]) { mats[1].opacity = vis * e * fadeK * (d.rimO ?? 0.9); nodes.push(<mesh key={`${id}-r${id2}`} geometry={geo.ball} material={mats[1]} position={pos} scale={size * (d.rimScale ?? 1.55) * (0.7 + 0.3 * e)} renderOrder={9} frustumCulled={false} />); }
+          // 拖尾：間距乘上當下速度（慢下來時拖尾縮短、停住時收成一點）
+          for (let j = 1; j <= trail; j++) {
+            const uj = u - j * (d.trailGap ?? 0.02) * speed;
+            if (uj <= 0 || speed < 0.05) continue;
+            const m2 = mats[1 + j];
+            if (!m2) continue;
+            m2.opacity = vis * fadeK * Math.min(1, uj * 10, (1 - uj) * 10) * (0.62 - (0.5 * j) / (trail + 1));
+            nodes.push(<mesh key={`${id}-q${id2}-${j}`} geometry={geo.ball} material={m2} position={at(uj).pos} scale={size * (1 - (0.55 * j) / (trail + 1))} renderOrder={8} frustumCulled={false} />);
+          }
+        }
       }
     } else if (d.type === "wave" && r.ring) {
       const from = v3(opPoint(s, d.from, d.layer)), dir = v3(d.dir ?? [0, 0, 1]).normalize(), q = new THREE.Quaternion().setFromUnitVectors(ZP, dir);
