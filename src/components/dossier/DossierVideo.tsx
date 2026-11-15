@@ -710,6 +710,9 @@ const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: n
 const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsShot[]; f: number; progress: number }> = ({ name, tag, news, shots, f, progress }) => {
   const ln = useLN();
   const cur = curShot(shots, f), dl = shotNews(cur).dateline, at = cur.index === 0 ? -9999 : cur.start + 2;
+  // 換鏡時只重打和上一鏡不同的部分（地點相同就只打日期），電頭不會有一大段時間只剩半句
+  const prevDl = cur.index > 0 ? shotNews(shots[cur.index - 1]).dateline ?? "" : "";
+  let keep = 0; if (dl) { while (keep < dl.length && keep < prevDl.length && dl[keep] === prevDl[keep]) keep++; const sep = dl.indexOf("・"); if (keep < dl.length) keep = sep >= 0 && keep > sep ? sep + 1 : 0; }
   return (
     <>
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
@@ -724,7 +727,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: r1(L.INNER_W * progress), height: ln.PROG_H, background: T.text2 }} />
       <div style={{ position: "absolute", left: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
         <span style={{ width: 12, height: 12, background: T.accent, opacity: f >= at && f < at + M.flash && Math.floor((f - at) / 4) % 2 === 0 ? 0.25 : 1 }} />
-        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}><Typed text={dl} f={f} at={at} per={NM.dl} /></span> : null}
+        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{dl.slice(0, keep)}<Typed text={dl.slice(keep)} f={f} at={at} per={NM.dl} /></span> : null}
       </div>
       <div style={{ position: "absolute", right: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", ...NUM, fontWeight: 600, fontSize: ln.DL_PX, color: T.text3, letterSpacing: "0.06em" }}>{String(cur.index + 1).padStart(2, "0")} / {String(shots.length).padStart(2, "0")}</div>
     </>
