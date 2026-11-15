@@ -96,9 +96,11 @@ const Tag: React.FC<{ tag: TagSpec; f: number; big?: boolean }> = ({ tag, f, big
 
 /** 黑白低對比照片：遮罩擦入、極慢推近、細框；圖說在照片下面（都要標「示意」） */
 const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: number; y: number; w: number; h: number; caption?: string; life: number; children?: React.ReactNode }> = ({ slug, name, f, at, x, y, w, h, caption, life, children }) => {
+  const noPush = useLN().STAGE_SCALE !== 1;
   const p = wipeP(f, at, M.wipe + 4);
   if (p <= 0) return null;
-  const s = 1 + M.photoPush * linear(f, at, Math.max(1, life));
+  // 填滿版不做「整張圖慢慢放大」（使用者 2026/11/15 禁止事項，改用物件本身的動作）
+  const s = noPush ? 1 : 1 + M.photoPush * linear(f, at, Math.max(1, life));
   return (
     <>
       <div style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
@@ -416,7 +418,7 @@ const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = (
     // 「國際新聞」版：橫向擦切。新鏡從左邊露出來、舊鏡同時從左邊被切掉，中間一條條帶（SweepBand）掃過；沒有淡出，所以換鏡時畫面不會空。
     const pin = sh.index === 0 ? 1 : tween(f, sh.start, NM.cut, EASE.move), pout = tween(f, sh.outAt, NM.cut, EASE.move);
     if (f < sh.start || pout >= 1) return null;
-    const sc = 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start));
+    const sc = ln.STAGE_SCALE !== 1 ? 1 : 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start)); // 填滿版不慢推整鏡
     return (
       <AbsoluteFill style={{ clipPath: pin >= 1 && pout <= 0 ? undefined : `inset(0 ${r1(100 * (1 - pin))}% 0 ${r1(100 * pout)}%)` }}>
         <div style={{ position: "absolute", left: L.X, top: ln.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, transform: ln.STAGE_SCALE === 1 ? undefined : `scale(${ln.STAGE_SCALE})`, transformOrigin: "50% 0" }}>
