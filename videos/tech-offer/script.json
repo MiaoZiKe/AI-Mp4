@@ -40,7 +40,9 @@
     },
     "maxLabels": 4,
     "smallPx": 30,
-    "layout": "fill"
+    "layout": "fill",
+    "scanBand": 0.3,
+    "_scanBand": "2026-11-16 美編：掃描亮帶 8% × 0.3 ≈ 2.4%（白底上不髒）"
   },
   "cover": {
     "title": [
@@ -93,10 +95,10 @@
         "shot": [
           {
             "at": "start-30",
-            "x": 0,
-            "d": 50,
+            "x": -2.2,
+            "d": 46,
             "elev": 15,
-            "y": 7.6,
+            "y": 7.4,
             "dur": 1
           }
         ],
@@ -136,7 +138,7 @@
           {
             "layer": "m5",
             "at": "start-40",
-            "until": "start+0",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -144,7 +146,7 @@
           {
             "layer": "m6",
             "at": "start-40",
-            "until": "start+3",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -152,7 +154,7 @@
           {
             "layer": "m7",
             "at": "start-40",
-            "until": "start+6",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -160,7 +162,7 @@
           {
             "layer": "m8",
             "at": "start-40",
-            "until": "start+9",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -168,7 +170,7 @@
           {
             "layer": "m9",
             "at": "start-40",
-            "until": "start+12",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -176,7 +178,7 @@
           {
             "layer": "m10",
             "at": "start-40",
-            "until": "start+15",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -184,7 +186,7 @@
           {
             "layer": "m11",
             "at": "start-40",
-            "until": "start+18",
+            "until": "start-30",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -192,7 +194,7 @@
           {
             "layer": "m12",
             "at": "start-40",
-            "until": "start+21",
+            "until": "start-3",
             "dy": 3.2,
             "opacity": 0,
             "dur": 5
@@ -200,18 +202,18 @@
           {
             "layer": "bonY",
             "at": "start-40",
-            "until": "start+26",
-            "dy": 4,
+            "until": "start+40",
+            "dy": 5,
             "opacity": 0,
-            "dur": 6
+            "dur": 7
           },
           {
             "layer": "bonD",
             "at": "start-40",
-            "until": "start+30",
-            "dy": 4,
+            "until": "start+58",
+            "dy": 5,
             "opacity": 0,
-            "dur": 6
+            "dur": 7
           },
           {
             "layer": "certs",
@@ -241,8 +243,8 @@
             "at": "start+20",
             "until": "s2:dgbas-4",
             "text": "主計總處 2025",
-            "x": 730,
-            "y": 1180,
+            "x": 760,
+            "y": 1090,
             "color": "blue",
             "size": 54,
             "rot": -6,
@@ -318,7 +320,7 @@
           {
             "type": "bars",
             "at": "dgbas+4",
-            "until": "s3:start+2",
+            "until": "s3:start-16",
             "y": 1100,
             "title": "電子零組件業 2025 平均",
             "tag": "已確定・主計總處",
@@ -329,7 +331,7 @@
                 "v": 0.515,
                 "text": "68.5 萬",
                 "color": "blue",
-                "at": "s2:m57-2"
+                "at": "s2:dgbas+4"
               },
               {
                 "label": "全年總薪資",
@@ -381,8 +383,8 @@
             "at": "start-8",
             "x": -30,
             "dur": 20,
-            "y": 6.4,
-            "d": 46
+            "y": 5.6,
+            "d": 60
           }
         ],
         "shift": [
@@ -406,7 +408,7 @@
           {
             "id": "tiltS3",
             "at": "double",
-            "until": "s4:start",
+            "until": "s4:start+2",
             "ramp": 14
           }
         ],
@@ -445,21 +447,21 @@
             "type": "stamp",
             "style": "tag",
             "at": "double+10",
-            "until": "s4:start",
+            "until": "s4:start+2",
             "text": "估算：133 ÷ 68.5",
-            "x": 540,
-            "y": 1340,
+            "x": 780,
+            "y": 1330,
             "color": "amber",
             "size": 30
           },
           {
             "type": "stamp",
-            "at": "where+4",
-            "until": "s4:start",
+            "at": "where-4",
+            "until": "s4:start+2",
             "text": "差在哪？",
-            "x": 760,
-            "y": 1190,
-            "color": "blue",
+            "x": 280,
+            "y": 1250,
+            "color": "coral",
             "size": 60,
             "rot": -4,
             "avoid": false
@@ -507,10 +509,10 @@
       "props": {
         "shot": [
           {
-            "at": "start-8",
+            "at": "start+2",
             "x": 0,
             "dur": 20,
-            "y": 6.6,
+            "y": 8.8,
             "d": 64
           }
         ],
@@ -546,7 +548,7 @@
             "type": "card",
             "at": "law-4",
             "until": "s5:start+4",
-            "y": 1130,
+            "y": 236,
             "kicker": "法規條文",
             "lines": [
               "年終、紅利：不算經常性給與"
@@ -745,6 +747,7 @@
       ],
       "component": "ThreeScene",
       "props": {
+        "kwMark": "240",
         "shot": [
           {
             "at": "start-8",
@@ -1272,8 +1275,8 @@
             "at": "start-8",
             "x": 90,
             "dur": 20,
-            "y": 4.6,
-            "d": 44
+            "y": 3.9,
+            "d": 41
           }
         ],
         "run": [
@@ -1624,8 +1627,8 @@
             "at": "start-8",
             "x": -30,
             "dur": 24,
-            "y": 5,
-            "d": 54
+            "y": 3.4,
+            "d": 56
           }
         ],
         "shift": [
@@ -1733,8 +1736,8 @@
             "layer": "m1",
             "at": "pkg+0",
             "until": "s14:end+200",
-            "dx": -2,
-            "dy": 1,
+            "dx": -1.5,
+            "dy": 3,
             "dz": -1,
             "dur": 16
           },
@@ -1742,26 +1745,26 @@
             "layer": "m2",
             "at": "pkg+1",
             "until": "s14:end+200",
-            "dx": 3,
-            "dy": 1.6,
-            "dz": 0,
+            "dx": 2.3,
+            "dy": 3.9,
+            "dz": -2,
             "dur": 16
           },
           {
             "layer": "m3",
             "at": "pkg+2",
             "until": "s14:end+200",
-            "dx": -4,
-            "dy": 2.2,
-            "dz": 1,
+            "dx": -3.1,
+            "dy": 4.8,
+            "dz": -3,
             "dur": 16
           },
           {
             "layer": "m4",
             "at": "pkg+3",
             "until": "s14:end+200",
-            "dx": 5,
-            "dy": 1,
+            "dx": 3.9000000000000004,
+            "dy": 5.7,
             "dz": -1,
             "dur": 16
           },
@@ -1769,26 +1772,26 @@
             "layer": "m5",
             "at": "pkg+4",
             "until": "s14:end+200",
-            "dx": -2,
-            "dy": 1.6,
-            "dz": 0,
+            "dx": -1.5,
+            "dy": 3,
+            "dz": -2,
             "dur": 16
           },
           {
             "layer": "m6",
             "at": "pkg+5",
             "until": "s14:end+200",
-            "dx": 3,
-            "dy": 2.2,
-            "dz": 1,
+            "dx": 2.3,
+            "dy": 3.9,
+            "dz": -3,
             "dur": 16
           },
           {
             "layer": "m7",
             "at": "pkg+6",
             "until": "s14:end+200",
-            "dx": -4,
-            "dy": 1,
+            "dx": -3.1,
+            "dy": 4.8,
             "dz": -1,
             "dur": 16
           },
@@ -1796,26 +1799,26 @@
             "layer": "m8",
             "at": "pkg+7",
             "until": "s14:end+200",
-            "dx": 5,
-            "dy": 1.6,
-            "dz": 0,
+            "dx": 3.9000000000000004,
+            "dy": 5.7,
+            "dz": -2,
             "dur": 16
           },
           {
             "layer": "m9",
             "at": "pkg+8",
             "until": "s14:end+200",
-            "dx": -2,
-            "dy": 2.2,
-            "dz": 1,
+            "dx": -1.5,
+            "dy": 3,
+            "dz": -3,
             "dur": 16
           },
           {
             "layer": "m10",
             "at": "pkg+9",
             "until": "s14:end+200",
-            "dx": 3,
-            "dy": 1,
+            "dx": 2.3,
+            "dy": 3.9,
             "dz": -1,
             "dur": 16
           },
@@ -1823,18 +1826,18 @@
             "layer": "m11",
             "at": "pkg+10",
             "until": "s14:end+200",
-            "dx": -4,
-            "dy": 1.6,
-            "dz": 0,
+            "dx": -3.1,
+            "dy": 4.8,
+            "dz": -2,
             "dur": 16
           },
           {
             "layer": "m12",
             "at": "pkg+11",
             "until": "s14:end+200",
-            "dx": 5,
-            "dy": 2.2,
-            "dz": 1,
+            "dx": 3.9000000000000004,
+            "dy": 5.7,
+            "dz": -3,
             "dur": 16
           },
           {
@@ -1861,7 +1864,7 @@
             "until": "s14:start+4",
             "text": "週四：拆整包",
             "x": 540,
-            "y": 1250,
+            "y": 1270,
             "color": "blue",
             "size": 58,
             "rot": -4,

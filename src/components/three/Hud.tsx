@@ -107,7 +107,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
     <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b} V ${y} H ${x + sx * b}`} fill="none" stroke={H.line} strokeWidth={s.bold} />)}
       {Array.from({ length: Math.ceil((y1 - y0) / H.scan.gap) }, (_, i) => <line key={i} x1={x0} x2={x1} y1={y0 + i * H.scan.gap} y2={y0 + i * H.scan.gap} stroke={H.line} strokeOpacity={H.scan.opacity} strokeWidth={1} />)}
-      <rect x={x0} y={y0 + band - H.scan.bandH} width={x1 - x0} height={Math.max(0, Math.min(H.scan.bandH, y1 - (y0 + band - H.scan.bandH)))} fill={H.line} opacity={H.scan.bandO} />
+      <rect x={x0} y={y0 + band - H.scan.bandH} width={x1 - x0} height={Math.max(0, Math.min(H.scan.bandH, y1 - (y0 + band - H.scan.bandH)))} fill={H.line} opacity={H.scan.bandO * ((hud as any).scanBand ?? 1)} />
       {/* 右側刻度柱：縮放時往上流動 */}
       {Array.from({ length: 26 }, (_, i) => { const yy = y0 + 170 + ((i * 26 + z.lv * 260) % 676); return <line key={`r${i}`} x1={x1 - 16} x2={x1 - (i % 5 ? 26 : 40)} y1={yy} y2={yy} stroke={H.lineSoft} strokeWidth={2} />; })}
       <g stroke={H.line} strokeWidth={s.thin} opacity={0.8}>
@@ -880,7 +880,8 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
         {/* 右下角淡淡的開口圈浮水印（Andy 的片尾參考圖第 7 點） */}
         {(H as any).mark === "ring" ? <g transform={`translate(${L.W - 150} ${L.CAP_TOP + L.CAP_H - 62}) scale(1.6) translate(-50 -50)`} opacity={0.16 * frame}><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></g> : null}
       </svg>
-      {TC ? <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, overflow: "visible" }}><g transform={`translate(${L.W / 2} ${cy})`}><LogoAnim name={spec.logoAnim as string} n={n} size={LOGO} /></g></svg>
+      {/* 2026/11/16 tech-offer 美編：飛入的圖層不准壓到出處與頁尾帶（fill 版面裁到片尾卡框下緣 y1 以上） */}
+      {TC ? <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, overflow: "hidden", clipPath: (L as any).FOOT_TOP ? `inset(0 0 ${L.H - y1}px 0)` : undefined }}><g transform={`translate(${L.W / 2} ${cy})`}><LogoAnim name={spec.logoAnim as string} n={n} size={LOGO} /></g></svg>
         : <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dot={dot} dotS={dotS} ring={ring} /></div>}
       {TC ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(210), height: 200, display: "flex", justifyContent: "center", overflow: "hidden", ...zh(148, H.text), letterSpacing: "0.06em" }}>
         {/* 頻道名逐字彈出（鎖定那一幀起每 2 幀一個字）＋一道白光掃過 */}
@@ -900,7 +901,7 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
 };
 
 /** 字幕：深色框、一次一段單行；關鍵詞念到時上色加底線；英文跟著中文的句 */
-type Cue = { id: string; en: string; keywords: string[]; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
+type Cue = { id: string; en: string; keywords: string[]; mark?: string; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
 const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
@@ -921,6 +922,8 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
           {splitParts(text, cue.keywords).map((sp, i) => {
             if (sp.k < 0) return <span key={i}>{sp.text}</span>;
             const q = kwAt[sp.text] === undefined || kwAt[sp.text] <= 1 ? 1 : tween(f, kwAt[sp.text] - 1, 8, EASE.move), c = cols[sp.k % cols.length];
+            // props.kwMark（2026/11/16 tech-offer）：這個關鍵詞改成橘色螢光底、深色粗字、放大 1.25 倍
+            if (cue.mark && sp.text === cue.mark) return <span key={i} style={{ position: "relative", display: "inline-block", color: H.text, fontSize: "1.25em", lineHeight: 1, padding: "0 6px", margin: "0 4px", background: `linear-gradient(transparent 38%, ${(H as any).amberSoft ?? H.amber} 38%)`, backgroundSize: `${(100 * q).toFixed(1)}% 100%`, backgroundRepeat: "no-repeat" }}>{sp.text}</span>;
             return <span key={i} style={{ position: "relative", color: q > 0.5 ? c : H.text }}>{sp.text}<span style={{ position: "absolute", left: 0, bottom: -4, height: 6, width: `${(100 * q).toFixed(1)}%`, background: c }} /></span>;
           })}
         </span>
@@ -961,7 +964,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const s = useMemo(() => stateAt(m, f), [m, f]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((x) => by[x.id]);
-  const subCues = ordered.filter((x) => by[x.id].subtitleWindow).map((x) => ({ id: x.id, en: x.subtitle.en, keywords: x.keywords, window: by[x.id].subtitleWindow as [number, number], phrases: by[x.id].lines, keywords_at: by[x.id].keywords }));
+  const subCues = ordered.filter((x) => by[x.id].subtitleWindow).map((x) => ({ id: x.id, en: x.subtitle.en, keywords: x.keywords, mark: (x.props as any)?.kwMark, window: by[x.id].subtitleWindow as [number, number], phrases: by[x.id].lines, keywords_at: by[x.id].keywords }));
   const srcCues = ordered.map((x) => ({ sources: x.sources, window: by[x.id].sourceWindow as [number, number] }));
   // 鉤子在第一次真正縮放（不是 drift）時退場
   const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;
