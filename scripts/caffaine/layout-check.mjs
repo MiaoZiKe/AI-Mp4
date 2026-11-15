@@ -9,14 +9,16 @@ const m = await import(outfile + "?t=" + Date.now());
 const kw = !process.argv.includes("--no-kw"), header = !process.argv.includes("--no-header");
 const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
 const props = m.propBoxes();
+// --variant A|B|C|D|E：換卡片進場與杯子成形的方式；進場前 20 幀卡片本來就從畫面外飛進來，不算「超出畫面」
+const V = (process.argv.find((a) => a.startsWith("--variant=")) ?? "--variant=A").split("=")[1];
 let bad = 0, n = 0; const seen = new Set();
 for (let f = 0; f < m.TIMELINE.total; f++) {
-  const bx = [...m.boxesAt(f, kw, header), ...props]; n++;
+  const bx = [...m.boxesAt(f, kw, header, V), ...props]; n++;
   for (let i = 0; i < bx.length; i++) {
     const b = bx[i];
-    if (b.x < 0 || b.y < 0 || b.x + b.w > m.W || b.y + b.h > m.H) { bad++; console.log(`f${f} ${b.name} 超出畫面`); }
+    if (f >= 20 && (b.x < 0 || b.y < 0 || b.x + b.w > m.W || b.y + b.h > m.H)) { bad++; console.log(`f${f} ${b.name} 超出畫面`); }
     for (let j = i + 1; j < bx.length; j++) { if (bx[j].name.startsWith("鍵盤") && b.name.startsWith("盆栽")) continue; if (hit(b, bx[j])) { const k = `${b.name}×${bx[j].name}`; bad++; if (!seen.has(k)) { seen.add(k); console.log(`f${f} ${k} 重疊`, JSON.stringify([b, bx[j]].map((q) => [q.x, q.y, q.w, q.h].map(Math.round)))); } } }
   }
 }
-console.log(`重疊檢查（程式）：${n} 幀，${bad} 筆`);
+console.log(`款 ${V} 重疊檢查（程式）：${n} 幀，${bad} 筆`);
 process.exit(bad ? 1 : 0);
