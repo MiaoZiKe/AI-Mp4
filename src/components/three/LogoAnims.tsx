@@ -140,20 +140,22 @@ const Neural: React.FC<{ n: number }> = ({ n }) => {
 };
 
 // ── 4 粒子聚合（加強版，使用者 2026/11/15 選定並要求「效果加強」）：
-//    從畫面四周湧進 180 顆資料點（帶速度殘影），沿螺旋排成圓弧；橘色粒子聚成圓點；
+//    從四面八方、不同方向湧進 180 顆資料點（帶速度殘影），集中排成圓弧（使用者 2026/11/15：「從四面八方不同方向集中」）；橘色粒子聚成圓點；
 //    合體那一刻圓環一閃＋兩道衝擊波＋一圈粒子往外迸開；之後有粒子沿外圈繞行 ──
 const PARTS = (() => {
   const r = seeded(20261115);
-  return Array.from({ length: 180 }, (_, i) => { const t = i / 179; return { t, j: (r() - 0.5) * 6, r0: 95 + r() * 75, a0: -9 + 288 * t - 200 - r() * 140, at: 6 + 20 * t + r() * 5, s: 0.9 + r() * 1.3, o: r() < 0.12 }; });
+  return Array.from({ length: 180 }, (_, i) => { const t = i / 179; return { t, j: (r() - 0.5) * 6, r0: 110 + r() * 80, a0: r() * 360, at: 8 + r() * 22, s: 0.9 + r() * 1.3, o: r() < 0.12, bend: (r() - 0.5) * 50 }; });
 })();
 const DOTPARTS = (() => { const r = seeded(7); return Array.from({ length: 22 }, () => ({ r0: 60 + r() * 70, a0: r() * 360, at: 26 + r() * 6, s: 1.2 + r() * 1.2 })); })();
 const BURST = (() => { const r = seeded(99); return Array.from({ length: 40 }, () => ({ a: r() * 360, d: 22 + r() * 40, s: 0.6 + r() * 1.1, o: r() < 0.3 })); })();
 const LOCK = 34;
 const Particles: React.FC<{ n: number }> = ({ n }) => {
   const c = col(), draw = tween(n, 14, 20, EASE.move);
-  const fly = (r0: number, a0: number, r1: number, a1: number, k: number): [number, number] => {
-    const rr = lerp(r0, r1, k), aa = rad(lerp(a0, a1, k));
-    return [50 + rr * Math.cos(aa), 50 + rr * Math.sin(aa) * lerp(0.8, 1, k)];
+  // 從四面八方（起點平均分布在一圈大圓上）幾乎直線衝向圓弧上自己的位置，路線微彎
+  const fly = (r0: number, a0: number, r1: number, a1: number, k: number, bend = 0): [number, number] => {
+    const [sx, sy] = polar(a0, r0), [ex, ey] = polar(a1, r1), mx = (sx + ex) / 2, my = (sy + ey) / 2;
+    const nx = -(ey - sy), ny = ex - sx, L = Math.hypot(nx, ny) || 1, cx = mx + (nx / L) * bend, cy = my + (ny / L) * bend, u = 1 - k;
+    return [u * u * sx + 2 * u * k * cx + k * k * ex, u * u * sy + 2 * u * k * cy + k * k * ey];
   };
   const flash = n >= LOCK ? Math.exp(-(n - LOCK) / 4) : 0;
   return (
@@ -164,15 +166,15 @@ const Particles: React.FC<{ n: number }> = ({ n }) => {
       {PARTS.map((p, i) => {
         const k = tween(n, p.at - 18, 18, EASE.move), o = k <= 0 ? 0 : 1 - tween(n, p.at + 1, 5, EASE.exit);
         if (o <= 0) return null;
-        const a1 = -9 + 288 * p.t, [x, y] = fly(p.r0, p.a0, 25 + p.j, a1, k), [px, py] = fly(p.r0, p.a0, 25 + p.j, a1, Math.max(0, k - 0.09));
+        const a1 = -9 + 288 * p.t, [x, y] = fly(p.r0, p.a0, 25 + p.j, a1, k, p.bend), [px, py] = fly(p.r0, p.a0, 25 + p.j, a1, Math.max(0, k - 0.12), p.bend);
         const fill = p.o ? c.orange : i % 7 === 3 ? c.trace : c.blue, rr = p.s * lerp(0.8, 1.3, k);
         return <g key={i} opacity={o}><line x1={px} y1={py} x2={x} y2={y} stroke={fill} strokeWidth={rr * 1.1} strokeLinecap="round" opacity={0.45} /><circle cx={x} cy={y} r={rr} fill={fill} /></g>;
       })}
       {DOTPARTS.map((p, i) => {
         const k = tween(n, p.at - 14, 14, EASE.move);
         if (k <= 0 || n > LOCK + 1) return null;
-        const a = rad(p.a0) + (1 - k) * 3, rr = lerp(p.r0, 0, k);
-        const [x, y] = [DOT[0] + rr * Math.cos(a), DOT[1] + rr * Math.sin(a) * 0.8];
+        const a = rad(p.a0) + (1 - k) * 0.4, rr = lerp(p.r0 + 40, 0, k);
+        const [x, y] = [DOT[0] + rr * Math.cos(a), DOT[1] + rr * Math.sin(a)];
         return <circle key={`d${i}`} cx={x} cy={y} r={p.s} fill={c.orange} />;
       })}
       {n >= LOCK ? BURST.map((b, i) => { const u = tween(n, LOCK, 18, EASE.move); if (u >= 1) return null; const [x, y] = polar(b.a, 30 + b.d * u); return <circle key={`b${i}`} cx={x} cy={y} r={b.s * (1 - u)} fill={b.o ? c.orange : c.blue} opacity={1 - u} />; }) : null}
