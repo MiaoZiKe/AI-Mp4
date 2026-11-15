@@ -1,0 +1,763 @@
+{
+ "name": "示意 EUV 曝光機（極紫外光掃描式曝光機）的光路：錫滴光源、收集鏡、照明反射鏡、反射式光罩、投影反射鏡、晶圓台。只畫光走的路與主要模組，配置與比例是示意，不仿任何廠商的機型；實際照明約 2 面以上、投影 6 面反射鏡，這裡投影段只畫 4 面",
+ "unit": "示意（整台約數公尺）",
+ "size": {
+  "w": 44,
+  "h": 32,
+  "r": 0.6,
+  "t": 14
+ },
+ "palette": {
+  "base": "#C9D4E6",
+  "stage": "#8FA3C4",
+  "steel": "#7D8CA6",
+  "vessel": "#DDE7F6",
+  "mirror": "#E8B04A",
+  "maskc": "#1F3A6B",
+  "wafer": "#5F7FB8",
+  "plasmaC": "#9B5CFF",
+  "euv": "#8B5CF6",
+  "euvRim": "#5B21B6",
+  "euvTrail": "#C4B5FD",
+  "tin": "#9AA6B8",
+  "laserC": "#E5484D",
+  "glassC": "#BFD3F2"
+ },
+ "materials": {
+  "base": {
+   "kind": "std",
+   "color": "base",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "stage": {
+   "kind": "std",
+   "color": "stage",
+   "rough": 0.45,
+   "metal": 0.5,
+   "tex": "brushed",
+   "texScale": 2.2,
+   "env": 0.4
+  },
+  "steel": {
+   "kind": "std",
+   "color": "steel",
+   "rough": 0.35,
+   "metal": 0.85,
+   "env": 0.5
+  },
+  "vessel": {
+   "kind": "phys",
+   "color": "vessel",
+   "rough": 0.15,
+   "metal": 0,
+   "clearcoat": 0.8,
+   "opacity": 0.32,
+   "env": 0.4
+  },
+  "glass": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.1,
+   "metal": 0,
+   "clearcoat": 0.8,
+   "opacity": 0.16,
+   "env": 0.3
+  },
+  "mirror": {
+   "kind": "std",
+   "color": "mirror",
+   "rough": 0.12,
+   "metal": 0.95,
+   "env": 1.4
+  },
+  "mask": {
+   "kind": "std",
+   "color": "maskc",
+   "rough": 0.2,
+   "metal": 0.7,
+   "tex": "traces",
+   "texScale": 1.2,
+   "env": 0.8
+  },
+  "wafer": {
+   "kind": "phys",
+   "color": "wafer",
+   "rough": 0.15,
+   "metal": 0.6,
+   "clearcoat": 0.9,
+   "tex": "traces",
+   "texScale": 0.8,
+   "env": 0.9
+  },
+  "plasma": {
+   "kind": "unlit",
+   "color": "plasmaC",
+   "opacity": 0.9
+  },
+  "laser": {
+   "kind": "std",
+   "color": "laserC",
+   "rough": 0.5,
+   "metal": 0.2
+  }
+ },
+ "partNames": {
+  "base": "機台底座（示意）",
+  "vessel": "光源腔體（真空）",
+  "collector": "收集鏡 collector",
+  "nozzle": "錫滴噴嘴",
+  "catcher": "錫滴回收",
+  "plasma": "電漿（發光點）",
+  "laserBox": "CO2 雷射（示意）",
+  "m1": "照明反射鏡",
+  "m2": "照明反射鏡",
+  "maskStage": "光罩台",
+  "mask": "反射式光罩 mask",
+  "po": "投影光學（真空）",
+  "pom": "投影反射鏡",
+  "waferStage": "晶圓台",
+  "wafer": "晶圓 wafer"
+ },
+ "layers": [
+  {
+   "id": "frame",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    44,
+    32,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "src",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    16,
+    14,
+    -13,
+    -6
+   ]
+  },
+  {
+   "id": "optics",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    26,
+    6,
+    2
+   ]
+  },
+  {
+   "id": "shell",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    12,
+    18,
+    8,
+    2
+   ]
+  },
+  {
+   "id": "mask",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    16,
+    3,
+    6,
+    14
+   ]
+  },
+  {
+   "id": "wafer",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    16,
+    3,
+    7,
+    -12
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "base",
+   "layer": "frame",
+   "shape": "slab",
+   "size": [
+    46,
+    2,
+    14
+   ],
+   "r": 0.6,
+   "bevel": 0.15,
+   "pos": [
+    0,
+    -15.2,
+    0
+   ],
+   "mat": "base"
+  },
+  {
+   "id": "laserBox",
+   "layer": "frame",
+   "shape": "slab",
+   "size": [
+    6,
+    3,
+    5
+   ],
+   "r": 0.5,
+   "bevel": 0.1,
+   "pos": [
+    -19.5,
+    -12.6,
+    0
+   ],
+   "mat": "laser"
+  },
+  {
+   "id": "vessel",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    5.2,
+    13
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -12.5,
+    -7,
+    0
+   ],
+   "mat": "vessel"
+  },
+  {
+   "id": "collector",
+   "layer": "src",
+   "shape": "sphere",
+   "size": [
+    4.2
+   ],
+   "scale": [
+    0.28,
+    1,
+    1
+   ],
+   "pos": [
+    -18.2,
+    -7,
+    0
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "nozzle",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.55,
+    2.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -13,
+    -0.9,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "catcher",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    1.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -13,
+    -13.1,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "plasma",
+   "layer": "src",
+   "shape": "sphere",
+   "size": [
+    0.9
+   ],
+   "pos": [
+    -13,
+    -7,
+    0
+   ],
+   "mat": "plasma"
+  },
+  {
+   "id": "m1",
+   "layer": "optics",
+   "shape": "slab",
+   "size": [
+    3.6,
+    0.5,
+    3.6
+   ],
+   "r": 0.2,
+   "rot": [
+    0,
+    0,
+    40
+   ],
+   "pos": [
+    0,
+    -7,
+    0
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "m2",
+   "layer": "optics",
+   "shape": "slab",
+   "size": [
+    3.6,
+    0.5,
+    3.6
+   ],
+   "r": 0.2,
+   "rot": [
+    0,
+    0,
+    62
+   ],
+   "pos": [
+    0.6,
+    10.6,
+    0
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "maskStage",
+   "layer": "mask",
+   "shape": "slab",
+   "size": [
+    16,
+    1.6,
+    9
+   ],
+   "r": 0.4,
+   "bevel": 0.1,
+   "pos": [
+    6.5,
+    15.2,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "mask",
+   "layer": "mask",
+   "shape": "slab",
+   "size": [
+    6.5,
+    0.5,
+    6.5
+   ],
+   "r": 0.2,
+   "pos": [
+    6.5,
+    14.1,
+    0
+   ],
+   "mat": "mask"
+  },
+  {
+   "id": "po",
+   "layer": "shell",
+   "shape": "box",
+   "size": [
+    11,
+    15.5,
+    9
+   ],
+   "pos": [
+    8.5,
+    2.4,
+    0
+   ],
+   "mat": "glass"
+  },
+  {
+   "id": "pom",
+   "layer": "optics",
+   "shape": "slab",
+   "size": [
+    3.2,
+    0.45,
+    3.2
+   ],
+   "r": 0.2,
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     11.6,
+     8.4
+    ],
+    [
+     5.8,
+     5.4
+    ],
+    [
+     12.2,
+     1.0
+    ],
+    [
+     6.4,
+     -3.6
+    ]
+   ],
+   "rot": [
+    0,
+    0,
+    -14
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "waferStage",
+   "layer": "wafer",
+   "shape": "slab",
+   "size": [
+    17,
+    1.6,
+    11
+   ],
+   "r": 0.4,
+   "bevel": 0.1,
+   "pos": [
+    8,
+    -12.9,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "wafer",
+   "layer": "wafer",
+   "shape": "cyl",
+   "size": [
+    5.2,
+    0.24
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    8,
+    -11.95,
+    0
+   ],
+   "mat": "wafer"
+  }
+ ],
+ "anchors": {
+  "tin": {
+   "layer": "src",
+   "p": [
+    -13,
+    -2.2,
+    0
+   ],
+   "dx": -150,
+   "dy": -150
+  },
+  "plasma": {
+   "layer": "src",
+   "p": [
+    -13,
+    -7,
+    0
+   ],
+   "dx": 150,
+   "dy": -110
+  },
+  "laser": {
+   "layer": "frame",
+   "p": [
+    -19.5,
+    -12.6,
+    2.5
+   ],
+   "dx": -40,
+   "dy": 150
+  },
+  "collector": {
+   "layer": "src",
+   "p": [
+    -18.6,
+    -4,
+    0
+   ],
+   "dx": -60,
+   "dy": -170
+  },
+  "mirror": {
+   "layer": "optics",
+   "p": [
+    11.6,
+    8.4,
+    0
+   ],
+   "dx": 140,
+   "dy": -120
+  },
+  "mask": {
+   "layer": "mask",
+   "p": [
+    6.5,
+    14.1,
+    3.2
+   ],
+   "dx": 170,
+   "dy": -60
+  },
+  "wafer": {
+   "layer": "wafer",
+   "p": [
+    8,
+    -11.9,
+    4.5
+   ],
+   "dx": 170,
+   "dy": 90
+  },
+  "vac": {
+   "layer": "src",
+   "p": [
+    -12.5,
+    -2,
+    0
+   ],
+   "dx": -60,
+   "dy": -190
+  }
+ },
+ "actions": {
+  "tin": {
+   "type": "flow",
+   "_說明": "錫滴：從噴嘴往下掉（每秒約 5 萬顆，畫面放慢成每秒幾顆）",
+   "path": [
+    {
+     "layer": "src",
+     "p": [
+      -13,
+      -2.3,
+      0
+     ]
+    },
+    {
+     "layer": "src",
+     "p": [
+      -13,
+      -12.2,
+      0
+     ]
+    }
+   ],
+   "n": 6,
+   "size": 0.38,
+   "shape": "dot",
+   "rate": 0.9,
+   "color": "tin",
+   "track": false
+  },
+  "laser": {
+   "type": "flow",
+   "_說明": "雷射脈衝打到錫滴（預脈衝＋主脈衝，示意成連續的箭頭）",
+   "path": [
+    {
+     "layer": "frame",
+     "p": [
+      -17,
+      -11.4,
+      0
+     ]
+    },
+    {
+     "layer": "src",
+     "p": [
+      -13.4,
+      -7.4,
+      0
+     ]
+    }
+   ],
+   "n": 3,
+   "size": 0.55,
+   "shape": "arrow",
+   "rate": 2,
+   "color": "laserC",
+   "track": true
+  },
+  "plasmaOn": {
+   "type": "pulse",
+   "parts": [
+    "plasma"
+   ],
+   "color": "plasmaC",
+   "freq": 3,
+   "glow": 0.9,
+   "halo": 2.2
+  },
+  "light": {
+   "type": "flow",
+   "_說明": "極紫外光走的路：電漿 → 收集鏡 → 中間焦點 → 照明反射鏡 → 光罩（反射）→ 投影反射鏡 → 晶圓（EUV 看不見，紫色光點是示意）",
+   "path": [
+    {
+     "layer": "src",
+     "p": [
+      -13,
+      -7,
+      0.6
+     ]
+    },
+    {
+     "layer": "src",
+     "p": [
+      -17.6,
+      -7,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      0,
+      -7,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      0.6,
+      10.6,
+      0.6
+     ]
+    },
+    {
+     "layer": "mask",
+     "p": [
+      6.5,
+      13.7,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      11.6,
+      8.4,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      5.8,
+      5.4,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      12.2,
+      1.0,
+      0.6
+     ]
+    },
+    {
+     "layer": "optics",
+     "p": [
+      6.4,
+      -3.6,
+      0.6
+     ]
+    },
+    {
+     "layer": "wafer",
+     "p": [
+      8,
+      -11.8,
+      0.6
+     ]
+    }
+   ],
+   "n": 12,
+   "size": 0.42,
+   "shape": "dot",
+   "rate": 0.35,
+   "color": "euv",
+   "rim": "euvRim",
+   "rimScale": 1.8,
+   "rimO": 0.4,
+   "trail": 3,
+   "trailGap": 0.012,
+   "trailColor": "euvTrail",
+   "track": true
+  }
+ },
+ "pose": {
+  "yaw0": -0.32,
+  "yawIso": -0.32,
+  "drift": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 150,
+   "elev": 12,
+   "y": 0
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "srcPx": 30,
+  "shadows": 0,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ }
+}

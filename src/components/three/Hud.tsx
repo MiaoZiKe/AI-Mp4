@@ -97,6 +97,8 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
   // 讀數換級時閃一下（換字的那幾幀亮起來）
   const lvF = Math.abs(z.lv - Math.round(z.lv)) < 0.5 ? 1 : 0;
   const sc = hud.schematic, { CX, CY } = cxy();
+  // readout: false 的那一級（例如曝光機示意模型）不畫倍率、FIELD、尺標，FIELD 那一行改顯示 note
+  const ro = lvl.readout !== false, roK = ro ? 1 : 0;
   return (
     <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b} V ${y} H ${x + sx * b}`} fill="none" stroke={H.line} strokeWidth={s.bold} />)}
@@ -108,7 +110,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         <line x1={CX - 30} x2={CX - 8} y1={CY} y2={CY} /><line x1={CX + 8} x2={CX + 30} y1={CY} y2={CY} />
         <line y1={CY - 30} y2={CY - 8} x1={CX} x2={CX} /><line y1={CY + 8} y2={CY + 30} x1={CX} x2={CX} />
       </g>
-      <g transform={`translate(${x0 + 28} ${L.BAND_TOP ? L.STAGE_TOP + L.STAGE_H - 22 : y1 - 34})`}>
+      <g opacity={roK} transform={`translate(${x0 + 28} ${L.BAND_TOP ? L.STAGE_TOP + L.STAGE_H - 22 : y1 - 34})`}>
         <line x1={0} x2={rulerPx} y1={0} y2={0} stroke={H.amber} strokeWidth={s.bold} />
         {Array.from({ length: H.ruler.ticks + 1 }, (_, i) => <line key={i} x1={(rulerPx * i) / H.ruler.ticks} x2={(rulerPx * i) / H.ruler.ticks} y1={0} y2={i % 5 ? -H.ruler.h / 2 : -H.ruler.h} stroke={H.amber} strokeWidth={s.mid} />)}
         <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
@@ -117,8 +119,9 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         {/* 2026/11/15 讀數帶版面：上帶＝左邊層級名、右邊倍率＋FIELD；下帶＝左邊尺標、右邊示意圖標示。主素材只畫在兩條帶子中間，讀數不會壓到它 */}
         <text x={x0 + 28} y={L.STAGE_TOP + 50} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
         <text x={x0 + 28} y={L.STAGE_TOP + 90} style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
-        <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={mono(56, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text>
-        <text x={x1 - 24} y={L.STAGE_TOP + 96} textAnchor="end" style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>FIELD {lvl.field}</text>
+        {ro ? <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={mono(56, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text> : null}
+        {ro ? <text x={x1 - 24} y={L.STAGE_TOP + 96} textAnchor="end" style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>FIELD {lvl.field}</text>
+          : <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={zh(sm(34), H.text2, 700)} opacity={rq}>{lvl.note ?? "示意"}</text>}
         {sc ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 52} textAnchor="end" style={mono(sm(28), H.text2, 500)}>{sc.text}</text> : null}
         {sc?.zh ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 16} textAnchor="end" style={zh(sm(28), H.text2, 500)}>{sc.zh}</text> : null}
       </> : <>
@@ -312,7 +315,57 @@ const LeakDots: React.FC<{ kind: string; leak: number; cx: number; base: number;
  *  沿電流方向切開：左源極、右汲極、中間 flows 列的幾片通道（由下到上）、閘極把通道包住；電子光點的位置、密度、停住都用 3D 那幾個 flow 動作的同一份數值
  *  （engine 的 op.u／op.k，和 Ops.tsx 同一套 drive 規則），閘極亮度跟 gate 動作、通道亮度跟 channel 動作；meters 列的儀表畫在右側。顏色只讀皮膚。 */
 const hash01s = (k: number) => { const x = Math.sin(k * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+/** 光路剖面（overlay section 加 kind: "path"；2026/11/15 tech-euv）：側面看光走的路。nodes＝[{ x, y（0–1，在圖框內的位置）, kind: "src"｜"mirror"｜"mask"｜"wafer", rot?（鏡面角度，度）, label?, note? }]；
+ *  flow＝model.json 的 flow 動作 id（光點的顆數、速度、出場都跟 3D 那一份一樣）；keep＝每經過一面鏡子（mirror／mask）剩下幾成（例如 0.7），光點越後面越淡、越小；endText＝終點旁的大字（例如「約 2%」） */
+const HudSectionPath: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: State3D }> = ({ o, f, k, m, s }) => {
+  const W = o.w ?? 600, Hh = o.h ?? 300, A = H.art, top = 56, pad = 34, bw = W - pad * 2, bh = Hh - top - 28;
+  const nodes = ((o as any).nodes ?? []) as { x: number; y: number; kind: string; rot?: number; label?: string; note?: string; textAt?: number }[];
+  const P = nodes.map((n) => [pad + n.x * bw, top + n.y * bh]);
+  const keep = (o as any).keep ?? 0.7, seg = P.slice(1).map((p, i) => Math.hypot(p[0] - P[i][0], p[1] - P[i][1])), tot = seg.reduce((a, b) => a + b, 0) || 1;
+  // 第 i 段之前經過幾面反射（起點是光源，不算）
+  const lossAt = (i: number) => Math.pow(keep, nodes.slice(1, i + 1).filter((n) => n.kind === "mirror" || n.kind === "mask").length);
+  const at = (u: number) => { let d = u * tot; for (let i = 0; i < seg.length; i++) { if (d <= seg[i]) { const t = d / seg[i]; return { x: P[i][0] + (P[i + 1][0] - P[i][0]) * t, y: P[i][1] + (P[i + 1][1] - P[i][1]) * t, i }; } d -= seg[i]; } return { x: P[P.length - 1][0], y: P[P.length - 1][1], i: seg.length - 1 }; };
+  const d = (m.product.actions ?? {})[(o as any).flow] as any, op = s.ops[(o as any).flow];
+  const dots: React.ReactNode[] = [];
+  if (d && op && op.k > 0.01) {
+    const n = d.n ?? 8;
+    for (let i = 0; i < n; i++) {
+      const raw = op.u * (d.rate ?? 0.5) - i / n;
+      if (raw < 0) continue;
+      const u = raw - Math.floor(raw), q = at(u), l = lossAt(q.i), e = Math.min(1, u * 20, (1 - u) * 20) * op.k;
+      dots.push(<circle key={i} cx={q.x} cy={q.y} r={4 + 7 * Math.sqrt(l)} fill={(H.parts as any).euv ?? "#8B5CF6"} opacity={e * (0.25 + 0.75 * l)} />);
+    }
+  }
+  const euv = (m.product.palette as any)?.euv ?? "#8B5CF6";
+  return (
+    <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
+      {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px" }}>{o.title}</div> : null}
+      {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600) }}>{o.tag}</div> : null}
+      <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <polyline points={P.map((p) => p.join(",")).join(" ")} fill="none" stroke={euv} strokeOpacity={0.35} strokeWidth={3} strokeDasharray="10 8" />
+        {nodes.map((n, i) => {
+          const [x, y] = P[i];
+          if (n.kind === "src") return <g key={i}><circle cx={x} cy={y} r={13} fill={euv} opacity={0.35 + 0.65 * (op?.k ?? 0)} /><circle cx={x} cy={y} r={22} fill="none" stroke={euv} strokeWidth={2} opacity={0.5} /></g>;
+          const w = n.kind === "wafer" ? 120 : n.kind === "mask" ? 84 : 52, hgt = n.kind === "wafer" ? 12 : 10;
+          return <rect key={i} x={x - w / 2} y={y - hgt / 2} width={w} height={hgt} rx={3} transform={`rotate(${n.rot ?? 0} ${x} ${y})`} fill={n.kind === "mask" ? A.edge : n.kind === "wafer" ? A.sd : A.gate} />;
+        })}
+        {dots}
+        {nodes.map((n, i) => {
+          if (!n.label && !n.note) return null;
+          const [x, y] = P[i], show = n.textAt === undefined ? 1 : tween(f, n.textAt, 6, EASE.enter);
+          return <g key={`t${i}`} opacity={show}>
+            {n.label ? <text x={x} y={y + (n.kind === "wafer" ? 44 : -22)} textAnchor="middle" style={zh(sm(30), H.text, 800)}>{n.label}</text> : null}
+            {n.note ? <text x={x} y={y + (n.kind === "wafer" ? -20 : 46)} textAnchor="middle" style={mono(sm(30), H.text2, 700)}>{n.note}</text> : null}
+          </g>;
+        })}
+      </svg>
+      {(o as any).endText ? <div style={{ position: "absolute", right: 22, bottom: 18, ...zh(64, H.amber, 900), letterSpacing: "0.02em", opacity: tween(f, (o as any).textAt ?? o.at, 8, EASE.enter), transform: `scale(${(1 + 0.14 * Math.sin(Math.PI * tween(f, (o as any).textAt ?? o.at, 10, EASE.move))).toFixed(3)})` }}>{(o as any).endText}</div> : null}
+    </div>
+  );
+};
+
 const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: State3D }> = ({ o, f, k, m, s }) => {
+  if ((o as any).kind === "path") return <HudSectionPath o={o} f={f} k={k} m={m} s={s} />;
   const A = H.art, acts = m.product.actions ?? {}, W = o.w ?? 600, Hh = o.h ?? 300, meters = (o.meters ?? []) as string[];
   const mw = meters.length ? 300 : 0, dw = W - mw - 24, top = 58, bot = Hh - 44, flows = (o.flows ?? []) as string[];
   const g = clamp01(s.ops[o.gate]?.g ?? 0), ch = clamp01(s.ops[o.channel]?.g ?? 0);

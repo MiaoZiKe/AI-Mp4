@@ -1,0 +1,1101 @@
+{
+ "slug": "tech-euv",
+ "title": "曝光機：光比線還粗，怎麼畫得出來？（科技透明圈 第 2 支）",
+ "asOf": "2026/11/15",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-report",
+  "_說明": "旁白由使用者在 AI Studio 用 Iapetus＋說明 B 生成上傳（docs/prompts/tech-euv-旁白.txt），不送 API"
+ },
+ "hud": {
+  "_說明": "深色科技 HUD 與 Powers of Ten 縮放（src/components/three/Hud.tsx）。顏色由頂層 hudSkin 選（src/theme.ts 的 HUD_SKINS：deep｜glass）；smallPx＝小字下限。",
+  "levels": [
+   {
+    "id": "phone",
+    "label": "手機",
+    "en": "PHONE",
+    "field": "18 cm",
+    "ruler": "5 cm",
+    "art": "phone"
+   },
+   {
+    "id": "chip",
+    "label": "晶片",
+    "en": "DIE",
+    "field": "10 mm",
+    "ruler": "2 mm",
+    "art": "die"
+   },
+   {
+    "id": "cells",
+    "label": "電路",
+    "en": "CIRCUIT",
+    "field": "15 µm",
+    "ruler": "5 µm",
+    "art": "cells"
+   },
+   {
+    "id": "lines",
+    "label": "線路圖案",
+    "en": "PATTERN",
+    "field": "150 nm",
+    "ruler": "50 nm",
+    "art": "gates"
+   },
+   {
+    "id": "machine",
+    "label": "曝光機（示意）",
+    "en": "EUV SCANNER",
+    "field": "100 nm",
+    "ruler": "50 nm",
+    "art": "gates",
+    "handoff3D": true,
+    "readout": false,
+    "note": "整台約數公尺・示意"
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例",
+   "_說明": "使用者技能 3d-industry-explainer-video：右上角固定標示，全片都在（接 HudFrame 時畫在倍率讀數下方、頁首之下）"
+  },
+  "maxLabels": 2,
+  "smallPx": 30,
+  "layout": "fill",
+  "_layout說明": "fill＝撐滿版面（2026/11/15 使用者回饋：LOGO 固定左上並放大、下方空白填滿）：頁首 LOGO 80px、舞台 356–1356、字幕框 1372–1628、出處到約 y1690（src/theme.ts 的 LAYOUT_3D_FILL）"
+ },
+ "cover": {
+  "title": [
+   "光比線",
+   "粗五倍"
+  ],
+  "sub": "曝光機怎麼畫出比光還細的線",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片上的線，比畫它的光還細。",
+   "tts": "晶片上的線，比畫它的光還細。",
+   "subtitle": {
+    "zh": "晶片上的線\n比畫它的光還細",
+    "en": "The lines on a chip | are thinner than the light that draws them."
+   },
+   "keywords": [
+    "線",
+    "光還細"
+   ],
+   "cues": [
+    {
+     "id": "line",
+     "text": "線"
+    },
+    {
+     "id": "thin",
+     "text": "還細"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "畫晶片的",
+     "title": "光比線粗五倍",
+     "size": 128,
+     "top": 200
+    },
+    "zoom": [
+     {
+      "to": "lines",
+      "at": "start-30",
+      "drift": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "line+10",
+      "until": "s2:wave-6",
+      "x": 760,
+      "y": 1250,
+      "text": "193 ＞ 40",
+      "color": "amber",
+      "rot": -6,
+      "size": 84
+     }
+    ]
+   },
+   "sources": [
+    "193 nm 對約 40 nm（業界約略值）；五倍為推算"
+   ]
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 1,
+   "narration": "以前的光，波長一百九十三奈米，",
+   "tts": "以前的光，波長一百九十三奈米，",
+   "subtitle": {
+    "zh": "以前的光\n波長 193 奈米",
+    "en": "The old light has a wavelength | of 193 nanometers,"
+   },
+   "keywords": [
+    "193 奈米"
+   ],
+   "cues": [
+    {
+     "id": "old",
+     "text": "以前"
+    },
+    {
+     "id": "wave",
+     "text": "波長"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "bars",
+      "at": "wave-4",
+      "until": "s6:air-6",
+      "y": 1090,
+      "title": "光與線的寬度",
+      "tag": "約略值",
+      "rows": [
+       {
+        "label": "以前的光（波長）",
+        "v": 1,
+        "text": "193 nm",
+        "at": "s2:wave-2"
+       },
+       {
+        "label": "一次能畫的線",
+        "v": 0.21,
+        "color": "blue",
+        "text": "約 40 nm",
+        "at": "s3:forty-4"
+       },
+       {
+        "label": "極紫外光（波長）",
+        "v": 0.07,
+        "color": "amber",
+        "text": "13.5 nm",
+        "at": "s5:euv-2",
+        "textAt": "s5:euv+12"
+       }
+      ],
+      "compact": true
+     }
+    ],
+    "zoom": [
+     {
+      "to": "cells",
+      "at": "old-4",
+      "dur": 34
+     }
+    ]
+   },
+   "sources": [
+    "浸潤式曝光波長 193 nm（ASML）"
+   ]
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 1,
+   "narration": "一次只畫得出約四十奈米寬的線。",
+   "tts": "一次只畫得出約四十奈米寬的線。",
+   "subtitle": {
+    "zh": "一次只畫得出\n約 40 奈米寬的線",
+    "en": "but in one pass it can only draw | lines about 40 nm wide."
+   },
+   "keywords": [
+    "40 奈米"
+   ],
+   "cues": [
+    {
+     "id": "once",
+     "text": "一次"
+    },
+    {
+     "id": "forty",
+     "text": "寬的線"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": [
+    "單次約 40 nm 半間距（SemiEngineering）"
+   ]
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "再細，就要同一層分好幾次畫。",
+   "tts": "再細，就要同一層分好幾次畫。",
+   "subtitle": {
+    "zh": "再細\n就要同一層分好幾次畫",
+    "en": "Anything finer has to be drawn | in several passes on the same layer."
+   },
+   "keywords": [
+    "分好幾次"
+   ],
+   "cues": [
+    {
+     "id": "finer",
+     "text": "再細"
+    },
+    {
+     "id": "multi",
+     "text": "好幾次"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "multi-2",
+      "until": "s5:euv-4",
+      "x": 800,
+      "y": 1050,
+      "text": "7 奈米世代：分 4 次",
+      "color": "amber",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "7nm 世代要四重曝光（SemiEngineering）"
+   ]
+  },
+  {
+   "id": "s5",
+   "beat": "twist",
+   "para": 2,
+   "narration": "所以換一種光，極紫外光，十三點五奈米。",
+   "tts": "所以換一種光，極紫外光，十三點五奈米。",
+   "subtitle": {
+    "zh": "所以換一種光\n極紫外光\n13.5 奈米",
+    "en": "So the light changes: | extreme ultraviolet, | 13.5 nanometers."
+   },
+   "keywords": [
+    "極紫外光",
+    "13.5"
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": [
+    "EUV 波長 13.5 nm（ASML、TRUMPF）"
+   ]
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "可是它連空氣都會吸掉，只能走真空。",
+   "tts": "可是它連空氣都會吸掉，只能走真空。",
+   "subtitle": {
+    "zh": "可是它連空氣都會吸掉\n只能走真空",
+    "en": "But even air absorbs it, | so it has to travel in a vacuum."
+   },
+   "keywords": [
+    "空氣",
+    "真空"
+   ],
+   "cues": [
+    {
+     "id": "air",
+     "text": "空氣"
+    },
+    {
+     "id": "vac",
+     "text": "真空"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "machine",
+      "at": "air-4",
+      "dur": 40
+     }
+    ],
+    "spin": {
+     "at": "air+10",
+     "until": "s9:start",
+     "turns": 0.04
+    },
+    "shot": [
+     {
+      "at": "air-4",
+      "d": 200,
+      "elev": 12,
+      "y": -2,
+      "x": 0,
+      "dur": 1
+     }
+    ],
+    "labels": [
+     {
+      "part": "vac",
+      "text": "真空腔體",
+      "en": "vacuum",
+      "color": "blue",
+      "at": "vac-2",
+      "until": "s7:start-4"
+     }
+    ]
+   },
+   "sources": [
+    "EUV 會被空氣吸收，光路在真空中"
+   ]
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "光要自己做。每秒五萬顆錫滴往下掉，",
+   "tts": "光要自己做。每秒五萬顆錫滴往下掉，",
+   "subtitle": {
+    "zh": "光要自己做\n每秒 5 萬顆錫滴往下掉",
+    "en": "The light is made on the spot: | 50,000 tin droplets fall every second,"
+   },
+   "keywords": [
+    "自己做",
+    "錫滴"
+   ],
+   "cues": [
+    {
+     "id": "make",
+     "text": "自己做"
+    },
+    {
+     "id": "tin",
+     "text": "錫滴"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "make-6",
+      "d": 84,
+      "elev": 10,
+      "y": -6,
+      "x": -12,
+      "dur": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "tin",
+      "at": "tin-6",
+      "until": "s18:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tin",
+      "text": "錫滴",
+      "en": "tin droplets",
+      "color": "blue",
+      "at": "tin-2",
+      "until": "s8:plasma-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "tin-2",
+      "until": "s8:twice-4",
+      "x": 800,
+      "y": 1240,
+      "text": "每秒 5 萬顆",
+      "color": "amber",
+      "rot": -5,
+      "size": 70
+     }
+    ],
+    "shift": [
+     {
+      "layer": "optics",
+      "at": "make-6",
+      "until": "s9:start-12",
+      "opacity": 0.15,
+      "dur": 14
+     },
+     {
+      "layer": "shell",
+      "at": "make-6",
+      "until": "s9:start-12",
+      "opacity": 0.15,
+      "dur": 14
+     },
+     {
+      "layer": "mask",
+      "at": "make-6",
+      "until": "s9:start-12",
+      "opacity": 0.15,
+      "dur": 14
+     },
+     {
+      "layer": "wafer",
+      "at": "make-6",
+      "until": "s9:start-12",
+      "opacity": 0.15,
+      "dur": 14
+     }
+    ]
+   },
+   "sources": [
+    "每秒約 5 萬顆（TRUMPF，約略值）；畫面放慢"
+   ]
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "雷射每顆打兩下，打成電漿，發出這種光。",
+   "tts": "雷射每顆打兩下，打成電漿，發出這種光。",
+   "subtitle": {
+    "zh": "雷射每顆打兩下\n打成電漿\n發出這種光",
+    "en": "A laser hits each one twice, | turning it into plasma | that gives off this light."
+   },
+   "keywords": [
+    "雷射",
+    "電漿"
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "雷射"
+    },
+    {
+     "id": "twice",
+     "text": "兩下"
+    },
+    {
+     "id": "plasma",
+     "text": "電漿"
+    },
+    {
+     "id": "glow",
+     "text": "發出"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "run": [
+     {
+      "id": "laser",
+      "at": "laser-4",
+      "until": "s18:start"
+     },
+     {
+      "id": "plasmaOn",
+      "at": "plasma-2",
+      "until": "s18:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "laser",
+      "text": "雷射",
+      "en": "CO2 laser",
+      "color": "coral",
+      "at": "laser-2",
+      "until": "s9:start-12"
+     },
+     {
+      "part": "plasma",
+      "text": "電漿",
+      "en": "plasma",
+      "color": "amber",
+      "at": "plasma",
+      "until": "s9:start-12"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "twice",
+      "until": "s9:start-12",
+      "x": 330,
+      "y": 1320,
+      "text": "先打扁，再打成電漿",
+      "color": "amber",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "兩道雷射脈衝（TRUMPF）；運作為示意"
+   ]
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "玻璃也會吸光，所以全部改用反射鏡。",
+   "tts": "玻璃也會吸光，所以全部改用反射鏡。",
+   "subtitle": {
+    "zh": "玻璃也會吸光\n所以全部改用反射鏡",
+    "en": "Glass absorbs it too, | so every lens becomes a mirror."
+   },
+   "keywords": [
+    "玻璃",
+    "反射鏡"
+   ],
+   "cues": [
+    {
+     "id": "glass",
+     "text": "玻璃"
+    },
+    {
+     "id": "mirror",
+     "text": "反射鏡"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "d": 185,
+      "elev": 12,
+      "y": -17,
+      "x": 0,
+      "dur": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "light",
+      "at": "glass-4",
+      "until": "s18:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mirror",
+      "text": "反射鏡",
+      "en": "mirrors",
+      "color": "amber",
+      "at": "mirror-2",
+      "until": "s10:layers+20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "path",
+      "at": "mirror",
+      "until": "s13:start-4",
+      "x": 64,
+      "y": 1100,
+      "w": 952,
+      "h": 256,
+      "title": "光路剖面",
+      "tag": "示意",
+      "flow": "light",
+      "keep": 0.7,
+      "nodes": [
+       {
+        "x": 0.04,
+        "y": 0.55,
+        "kind": "src",
+        "label": "光源"
+       },
+       {
+        "x": 0.17,
+        "y": 0.55,
+        "kind": "mirror",
+        "rot": 90
+       },
+       {
+        "x": 0.3,
+        "y": 0.2,
+        "kind": "mirror",
+        "rot": -30
+       },
+       {
+        "x": 0.45,
+        "y": 0.05,
+        "kind": "mask",
+        "label": "光罩"
+       },
+       {
+        "x": 0.56,
+        "y": 0.45,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.64,
+        "y": 0.12,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.72,
+        "y": 0.5,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.8,
+        "y": 0.15,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.86,
+        "y": 0.92,
+        "kind": "wafer",
+        "label": "晶圓"
+       }
+      ],
+      "endText": "約 2%",
+      "textAt": "s12:two"
+     }
+    ]
+   },
+   "sources": [
+    "鏡片與光罩都是反射式；運作為示意"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "鏡面是鉬和矽，一層層疊上幾十層，",
+   "tts": "鏡面是鉬和矽，一層層疊上幾十層，",
+   "subtitle": {
+    "zh": "鏡面是鉬和矽\n一層層疊上幾十層",
+    "en": "Each mirror is molybdenum and silicon, | stacked dozens of layers deep,"
+   },
+   "keywords": [
+    "鉬和矽",
+    "幾十層"
+   ],
+   "cues": [
+    {
+     "id": "mo",
+     "text": "鉬和矽"
+    },
+    {
+     "id": "layers",
+     "text": "幾十層"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "mo",
+      "until": "s11:seventy-4",
+      "x": 820,
+      "y": 330,
+      "text": "鉬／矽 多層膜",
+      "color": "blue",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "鉬／矽多層膜反射鏡（SPIE 等）"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "每一面最多只反射七成。",
+   "tts": "每一面最多只反射七成。",
+   "subtitle": {
+    "zh": "每一面\n最多只反射七成",
+    "en": "and each one reflects | 70 percent at most."
+   },
+   "keywords": [
+    "七成"
+   ],
+   "cues": [
+    {
+     "id": "each",
+     "text": "每一面"
+    },
+    {
+     "id": "seventy",
+     "text": "七成"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "seventy",
+      "until": "s12:bounce+10",
+      "x": 820,
+      "y": 440,
+      "text": "約 70%",
+      "color": "amber",
+      "rot": -5,
+      "size": 80
+     }
+    ]
+   },
+   "sources": [
+    "反射率約 70%（理論與實驗值）"
+   ]
+  },
+  {
+   "id": "s12",
+   "beat": "twist",
+   "para": 5,
+   "narration": "從光源到晶圓，反射十幾次，只剩大約百分之二。",
+   "tts": "從光源到晶圓，反射十幾次，只剩大約百分之二。",
+   "subtitle": {
+    "zh": "從光源到晶圓反射十幾次\n只剩大約 2%",
+    "en": "From source to wafer it bounces about a dozen times, | and only around 2% is left."
+   },
+   "keywords": [
+    "十幾次",
+    "2%"
+   ],
+   "cues": [
+    {
+     "id": "bounce",
+     "text": "十幾次"
+    },
+    {
+     "id": "two",
+     "text": "只剩"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "d": 185,
+      "elev": 12,
+      "y": -17,
+      "x": 0,
+      "dur": 30
+     }
+    ],
+    "labels": [
+     {
+      "part": "wafer",
+      "text": "晶圓",
+      "en": "wafer",
+      "color": "blue",
+      "at": "bounce",
+      "until": "s13:start-2"
+     }
+    ]
+   },
+   "sources": [
+    "約 11 次反射、約 2%（估算）"
+   ]
+  },
+  {
+   "id": "s13",
+   "beat": "payoff",
+   "para": 6,
+   "narration": "但光夠短，一次就印得出來。",
+   "tts": "但光夠短，一次就印得出來。",
+   "subtitle": {
+    "zh": "但光夠短\n一次就印得出來",
+    "en": "But the light is short enough | to print it in one pass."
+   },
+   "keywords": [
+    "夠短",
+    "一次"
+   ],
+   "cues": [
+    {
+     "id": "short",
+     "text": "夠短"
+    },
+    {
+     "id": "one",
+     "text": "一次"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "d": 115,
+      "elev": 28,
+      "y": -12,
+      "x": 5,
+      "dur": 34
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "one",
+      "until": "s14:start-2",
+      "x": 540,
+      "y": 1250,
+      "text": "一次印好",
+      "color": "amber",
+      "rot": -4,
+      "size": 84
+     }
+    ]
+   },
+   "sources": [
+    "關鍵層不必多次曝光（示意）"
+   ]
+  },
+  {
+   "id": "s14",
+   "beat": "payoff",
+   "para": 6,
+   "narration": "廠商標示，最細可以印十三奈米。",
+   "tts": "廠商標示，最細可以印十三奈米。",
+   "subtitle": {
+    "zh": "廠商標示\n最細可以印 13 奈米",
+    "en": "The maker's spec: | features as small as 13 nm."
+   },
+   "keywords": [
+    "13 奈米"
+   ],
+   "cues": [
+    {
+     "id": "spec",
+     "text": "廠商"
+    },
+    {
+     "id": "thirteen",
+     "text": "最細"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "thirteen",
+      "until": "s15:start-2",
+      "x": 540,
+      "y": 1250,
+      "text": "13 nm",
+      "color": "amber",
+      "rot": -4,
+      "size": 96
+     },
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "spec",
+      "until": "s15:start-2",
+      "x": 800,
+      "y": 1100,
+      "text": "廠商規格，非實測",
+      "color": "blue",
+      "size": 40
+     }
+    ]
+   },
+   "sources": [
+    "ASML 標示解析度 13 nm，非實測"
+   ]
+  },
+  {
+   "id": "s15",
+   "beat": "you",
+   "para": 7,
+   "narration": "二零一九年起，台積電關鍵幾層改用它來印。",
+   "tts": "二零一九年起，台積電關鍵幾層改用它來印。",
+   "subtitle": {
+    "zh": "2019 年起\n台積電關鍵幾層\n改用它來印",
+    "en": "Since 2019, TSMC prints | its most critical layers | with it."
+   },
+   "keywords": [
+    "2019",
+    "關鍵幾層"
+   ],
+   "cues": [
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "key",
+     "text": "關鍵幾層"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "phone",
+      "at": "start-8",
+      "dur": 40,
+      "out": 0.75
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "key",
+      "until": "s16:small-6",
+      "x": 540,
+      "y": 1250,
+      "text": "關鍵層",
+      "color": "amber",
+      "rot": -4,
+      "size": 90
+     }
+    ]
+   },
+   "sources": [
+    "台積電 N7+ 2019 年量產（新聞稿）"
+   ]
+  },
+  {
+   "id": "s16",
+   "beat": "cta",
+   "para": 8,
+   "narration": "可是一片晶圓印完，每一顆都能用嗎？",
+   "tts": "可是一片晶圓印完，每一顆都能用嗎？",
+   "subtitle": {
+    "zh": "可是一片晶圓印完\n每一顆都能用嗎？",
+    "en": "But once a wafer is printed, | does every chip actually work?"
+   },
+   "keywords": [
+    "每一顆"
+   ],
+   "cues": [
+    {
+     "id": "small",
+     "text": "晶圓印完"
+    },
+    {
+     "id": "every",
+     "text": "每一顆"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": [
+     {
+      "type": "card",
+      "at": "small-4",
+      "until": "s18:start+0",
+      "y": 1090,
+      "kicker": "想一想",
+      "lines": [
+       "每一顆都能用嗎？"
+      ],
+      "hi": "都能用",
+      "hiAt": "every",
+      "size": 64
+     }
+    ]
+   },
+   "sources": [
+    "良率定義見下一支（WikiChip）"
+   ]
+  },
+  {
+   "id": "s17",
+   "beat": "cta",
+   "para": 8,
+   "narration": "下一支，來看晶圓良率。想要完整資料，留言曝光機。",
+   "tts": "下一支，來看晶圓良率。想要完整資料，留言曝光機。",
+   "subtitle": {
+    "zh": "下一支，來看晶圓良率\n想要完整資料，留言曝光機",
+    "en": "Next time: wafer yield. | Comment \"曝光機\" for the full notes."
+   },
+   "keywords": [
+    "良率",
+    "曝光機"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "yield",
+     "text": "良率"
+    },
+    {
+     "id": "cm",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "overlay": []
+   },
+   "sources": [
+    "良率定義（WikiChip）"
+   ]
+  },
+  {
+   "id": "s18",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 2.4,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "晶圓良率",
+     "trail": [
+      "光源",
+      "反射鏡",
+      "光罩",
+      "晶圓"
+     ],
+     "at": "s17:yield-12",
+     "comment": "曝光機",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}

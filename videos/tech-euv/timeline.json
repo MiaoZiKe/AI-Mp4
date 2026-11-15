@@ -1,0 +1,1856 @@
+{
+ "version": 2,
+ "slug": "tech-euv",
+ "fps": 30,
+ "totalFrames": 1738,
+ "totalSec": 57.93,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 87,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 79,
+   "stillFrame": 77,
+   "subtitleWindow": [
+    0,
+    84
+   ],
+   "sourceWindow": [
+    0,
+    82
+   ],
+   "lines": [
+    {
+     "text": "晶片上的線",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      20,
+      26
+     ]
+    },
+    {
+     "text": "比畫它的光還細",
+     "start": 36,
+     "chars": [
+      38,
+      44,
+      49,
+      55,
+      60,
+      66,
+      71
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "線",
+     "start": 26
+    },
+    {
+     "text": "光還細",
+     "start": 60
+    }
+   ],
+   "cues": [
+    {
+     "id": "line",
+     "text": "線",
+     "frame": 27
+    },
+    {
+     "id": "thin",
+     "text": "還細",
+     "frame": 67
+    }
+   ],
+   "sub": "晶片上的線\n比畫它的光還細",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.371,
+    0.557,
+    0.742,
+    1.15,
+    1.336,
+    1.521,
+    1.707,
+    1.892,
+    2.078,
+    2.263
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 87,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 77,
+   "durationFrames": 99,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 87,
+   "voiceEndFrame": 168,
+   "stillFrame": 166,
+   "subtitleWindow": [
+    84,
+    173
+   ],
+   "sourceWindow": [
+    82,
+    171
+   ],
+   "lines": [
+    {
+     "text": "以前的光",
+     "start": 84,
+     "chars": [
+      86,
+      92,
+      99,
+      105
+     ]
+    },
+    {
+     "text": "波長 193 奈米",
+     "start": 117,
+     "chars": [
+      119,
+      126,
+      126,
+      132,
+      139,
+      146,
+      146,
+      152,
+      159
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "193 奈米",
+     "start": 132
+    }
+   ],
+   "cues": [
+    {
+     "id": "old",
+     "text": "以前",
+     "frame": 87
+    },
+    {
+     "id": "wave",
+     "text": "波長",
+     "frame": 121
+    }
+   ],
+   "sub": "以前的光\n波長 193 奈米",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.217,
+    0.435,
+    0.652,
+    1.131,
+    1.348,
+    1.566,
+    1.783,
+    2.001,
+    2.218,
+    2.436
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 176,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 166,
+   "durationFrames": 104,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 176,
+   "voiceEndFrame": 262,
+   "stillFrame": 260,
+   "subtitleWindow": [
+    173,
+    267
+   ],
+   "sourceWindow": [
+    171,
+    265
+   ],
+   "lines": [
+    {
+     "text": "一次只畫得出",
+     "start": 173,
+     "chars": [
+      175,
+      180,
+      186,
+      191,
+      197,
+      203
+     ]
+    },
+    {
+     "text": "約 40 奈米寬的線",
+     "start": 213,
+     "chars": [
+      215,
+      215,
+      221,
+      226,
+      226,
+      232,
+      238,
+      243,
+      249,
+      255
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "40 奈米",
+     "start": 221
+    }
+   ],
+   "cues": [
+    {
+     "id": "once",
+     "text": "一次",
+     "frame": 176
+    },
+    {
+     "id": "forty",
+     "text": "寬的線",
+     "frame": 245
+    }
+   ],
+   "sub": "一次只畫得出\n約 40 奈米寬的線",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.188,
+    0.376,
+    0.564,
+    0.752,
+    0.94,
+    1.353,
+    1.541,
+    1.729,
+    1.917,
+    2.105,
+    2.293,
+    2.481,
+    2.669
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 271,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 260,
+   "durationFrames": 93,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 270,
+   "voiceEndFrame": 345,
+   "stillFrame": 343,
+   "subtitleWindow": [
+    267,
+    350
+   ],
+   "sourceWindow": [
+    265,
+    348
+   ],
+   "lines": [
+    {
+     "text": "再細",
+     "start": 267,
+     "chars": [
+      270,
+      275
+     ]
+    },
+    {
+     "text": "就要同一層分好幾次畫",
+     "start": 285,
+     "chars": [
+      287,
+      293,
+      298,
+      304,
+      310,
+      315,
+      321,
+      326,
+      332,
+      337
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "分好幾次",
+     "start": 315
+    }
+   ],
+   "cues": [
+    {
+     "id": "finer",
+     "text": "再細",
+     "frame": 271
+    },
+    {
+     "id": "multi",
+     "text": "好幾次",
+     "frame": 322
+    }
+   ],
+   "sub": "再細\n就要同一層分好幾次畫",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.594,
+    0.779,
+    0.965,
+    1.15,
+    1.336,
+    1.521,
+    1.707,
+    1.892,
+    2.078,
+    2.263
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 353,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 343,
+   "durationFrames": 117,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 353,
+   "voiceEndFrame": 452,
+   "stillFrame": 450,
+   "subtitleWindow": [
+    350,
+    457
+   ],
+   "sourceWindow": [
+    348,
+    455
+   ],
+   "lines": [
+    {
+     "text": "所以換一種光",
+     "start": 350,
+     "chars": [
+      352,
+      357,
+      363,
+      368,
+      374,
+      380
+     ]
+    },
+    {
+     "text": "極紫外光",
+     "start": 390,
+     "chars": [
+      392,
+      398,
+      403,
+      409
+     ]
+    },
+    {
+     "text": "13.5 奈米",
+     "start": 419,
+     "chars": [
+      421,
+      427,
+      427,
+      433,
+      433,
+      438,
+      444
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "極紫外光",
+     "start": 392
+    },
+    {
+     "text": "13.5",
+     "start": 421
+    }
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光",
+     "frame": 394
+    }
+   ],
+   "sub": "所以換一種光\n極紫外光\n13.5 奈米",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.188,
+    0.375,
+    0.563,
+    0.751,
+    0.938,
+    1.351,
+    1.539,
+    1.726,
+    1.914,
+    2.327,
+    2.515,
+    2.702,
+    2.89,
+    3.078
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 460,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 450,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 460,
+   "voiceEndFrame": 553,
+   "stillFrame": 551,
+   "subtitleWindow": [
+    457,
+    558
+   ],
+   "sourceWindow": [
+    455,
+    556
+   ],
+   "lines": [
+    {
+     "text": "可是它連空氣都會吸掉",
+     "start": 457,
+     "chars": [
+      459,
+      464,
+      470,
+      476,
+      481,
+      487,
+      493,
+      498,
+      504,
+      510
+     ]
+    },
+    {
+     "text": "只能走真空",
+     "start": 520,
+     "chars": [
+      522,
+      528,
+      533,
+      539,
+      545
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "空氣",
+     "start": 481
+    },
+    {
+     "text": "真空",
+     "start": 539
+    }
+   ],
+   "cues": [
+    {
+     "id": "air",
+     "text": "空氣",
+     "frame": 483
+    },
+    {
+     "id": "vac",
+     "text": "真空",
+     "frame": 540
+    }
+   ],
+   "sub": "可是它連空氣都會吸掉\n只能走真空",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.512,
+    1.701,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 561,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 551,
+   "durationFrames": 110,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 561,
+   "voiceEndFrame": 653,
+   "stillFrame": 651,
+   "subtitleWindow": [
+    558,
+    658
+   ],
+   "sourceWindow": [
+    556,
+    656
+   ],
+   "lines": [
+    {
+     "text": "光要自己做",
+     "start": 558,
+     "chars": [
+      560,
+      565,
+      571,
+      577,
+      582
+     ]
+    },
+    {
+     "text": "每秒 5 萬顆錫滴往下掉",
+     "start": 593,
+     "chars": [
+      595,
+      600,
+      600,
+      606,
+      606,
+      612,
+      617,
+      623,
+      629,
+      634,
+      640,
+      646
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "自己做",
+     "start": 571
+    },
+    {
+     "text": "錫滴",
+     "start": 623
+    }
+   ],
+   "cues": [
+    {
+     "id": "make",
+     "text": "自己做",
+     "frame": 572
+    },
+    {
+     "id": "tin",
+     "text": "錫滴",
+     "frame": 624
+    }
+   ],
+   "sub": "光要自己做\n每秒 5 萬顆錫滴往下掉",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    1.172,
+    1.361,
+    1.55,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": null,
+   "audioFrame": 662,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 651,
+   "durationFrames": 117,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 661,
+   "voiceEndFrame": 760,
+   "stillFrame": 758,
+   "subtitleWindow": [
+    658,
+    765
+   ],
+   "sourceWindow": [
+    656,
+    763
+   ],
+   "lines": [
+    {
+     "text": "雷射每顆打兩下",
+     "start": 658,
+     "chars": [
+      661,
+      666,
+      671,
+      676,
+      682,
+      687,
+      692
+     ]
+    },
+    {
+     "text": "打成電漿",
+     "start": 702,
+     "chars": [
+      704,
+      709,
+      715,
+      720
+     ]
+    },
+    {
+     "text": "發出這種光",
+     "start": 730,
+     "chars": [
+      732,
+      737,
+      742,
+      748,
+      753
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "雷射",
+     "start": 661
+    },
+    {
+     "text": "電漿",
+     "start": 715
+    }
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "雷射",
+     "frame": 662
+    },
+    {
+     "id": "twice",
+     "text": "兩下",
+     "frame": 689
+    },
+    {
+     "id": "plasma",
+     "text": "電漿",
+     "frame": 716
+    },
+    {
+     "id": "glow",
+     "text": "發出",
+     "frame": 733
+    }
+   ],
+   "sub": "雷射每顆打兩下\n打成電漿\n發出這種光",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.177,
+    0.355,
+    0.532,
+    0.71,
+    0.887,
+    1.065,
+    1.455,
+    1.633,
+    1.81,
+    1.988,
+    2.378,
+    2.555,
+    2.733,
+    2.91,
+    3.088
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": null,
+   "audioFrame": 769,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 758,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 768,
+   "voiceEndFrame": 861,
+   "stillFrame": 859,
+   "subtitleWindow": [
+    765,
+    866
+   ],
+   "sourceWindow": [
+    763,
+    864
+   ],
+   "lines": [
+    {
+     "text": "玻璃也會吸光",
+     "start": 765,
+     "chars": [
+      768,
+      773,
+      779,
+      785,
+      790,
+      796
+     ]
+    },
+    {
+     "text": "所以全部改用反射鏡",
+     "start": 806,
+     "chars": [
+      808,
+      814,
+      820,
+      825,
+      831,
+      837,
+      842,
+      848,
+      854
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "玻璃",
+     "start": 768
+    },
+    {
+     "text": "反射鏡",
+     "start": 842
+    }
+   ],
+   "cues": [
+    {
+     "id": "glass",
+     "text": "玻璃",
+     "frame": 769
+    },
+    {
+     "id": "mirror",
+     "text": "反射鏡",
+     "frame": 844
+    }
+   ],
+   "sub": "玻璃也會吸光\n所以全部改用反射鏡",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.361,
+    1.55,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 870,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 859,
+   "durationFrames": 105,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 869,
+   "voiceEndFrame": 956,
+   "stillFrame": 954,
+   "subtitleWindow": [
+    866,
+    961
+   ],
+   "sourceWindow": [
+    864,
+    959
+   ],
+   "lines": [
+    {
+     "text": "鏡面是鉬和矽",
+     "start": 866,
+     "chars": [
+      869,
+      874,
+      880,
+      885,
+      891,
+      897
+     ]
+    },
+    {
+     "text": "一層層疊上幾十層",
+     "start": 907,
+     "chars": [
+      909,
+      915,
+      920,
+      926,
+      932,
+      937,
+      943,
+      949
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "鉬和矽",
+     "start": 885
+    },
+    {
+     "text": "幾十層",
+     "start": 937
+    }
+   ],
+   "cues": [
+    {
+     "id": "mo",
+     "text": "鉬和矽",
+     "frame": 887
+    },
+    {
+     "id": "layers",
+     "text": "幾十層",
+     "frame": 939
+    }
+   ],
+   "sub": "鏡面是鉬和矽\n一層層疊上幾十層",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.188,
+    0.376,
+    0.564,
+    0.752,
+    0.94,
+    1.353,
+    1.541,
+    1.729,
+    1.917,
+    2.105,
+    2.293,
+    2.481,
+    2.669
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 964,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 954,
+   "durationFrames": 80,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 964,
+   "voiceEndFrame": 1026,
+   "stillFrame": 1024,
+   "subtitleWindow": [
+    961,
+    1031
+   ],
+   "sourceWindow": [
+    959,
+    1029
+   ],
+   "lines": [
+    {
+     "text": "每一面",
+     "start": 961,
+     "chars": [
+      963,
+      968,
+      973
+     ]
+    },
+    {
+     "text": "最多只反射七成",
+     "start": 983,
+     "chars": [
+      985,
+      991,
+      996,
+      1002,
+      1007,
+      1013,
+      1018
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "七成",
+     "start": 1013
+    }
+   ],
+   "cues": [
+    {
+     "id": "each",
+     "text": "每一面",
+     "frame": 964
+    },
+    {
+     "id": "seventy",
+     "text": "七成",
+     "frame": 1014
+    }
+   ],
+   "sub": "每一面\n最多只反射七成",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.765,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1035,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1024,
+   "durationFrames": 135,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1034,
+   "voiceEndFrame": 1151,
+   "stillFrame": 1149,
+   "subtitleWindow": [
+    1031,
+    1156
+   ],
+   "sourceWindow": [
+    1029,
+    1154
+   ],
+   "lines": [
+    {
+     "text": "從光源到晶圓反射十幾次",
+     "start": 1031,
+     "chars": [
+      1034,
+      1040,
+      1046,
+      1053,
+      1059,
+      1065,
+      1072,
+      1078,
+      1085,
+      1091,
+      1097
+     ]
+    },
+    {
+     "text": "只剩大約 2%",
+     "start": 1109,
+     "chars": [
+      1111,
+      1118,
+      1124,
+      1131,
+      1131,
+      1137,
+      1143
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "十幾次",
+     "start": 1085
+    },
+    {
+     "text": "2%",
+     "start": 1137
+    }
+   ],
+   "cues": [
+    {
+     "id": "bounce",
+     "text": "十幾次",
+     "frame": 1086
+    },
+    {
+     "id": "two",
+     "text": "只剩",
+     "frame": 1113
+    }
+   ],
+   "sub": "從光源到晶圓反射十幾次\n只剩大約 2%",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
+   "charTimes": [
+    0,
+    0.213,
+    0.426,
+    0.639,
+    0.852,
+    1.065,
+    1.278,
+    1.491,
+    1.704,
+    1.917,
+    2.131,
+    2.599,
+    2.812,
+    3.025,
+    3.238,
+    3.451,
+    3.664
+   ]
+  },
+  {
+   "id": "s13",
+   "audio": null,
+   "audioFrame": 1160,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1149,
+   "durationFrames": 87,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1159,
+   "voiceEndFrame": 1228,
+   "stillFrame": 1226,
+   "subtitleWindow": [
+    1156,
+    1233
+   ],
+   "sourceWindow": [
+    1154,
+    1231
+   ],
+   "lines": [
+    {
+     "text": "但光夠短",
+     "start": 1156,
+     "chars": [
+      1159,
+      1164,
+      1170,
+      1175
+     ]
+    },
+    {
+     "text": "一次就印得出來",
+     "start": 1185,
+     "chars": [
+      1187,
+      1193,
+      1198,
+      1204,
+      1209,
+      1215,
+      1220
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "夠短",
+     "start": 1170
+    },
+    {
+     "text": "一次",
+     "start": 1187
+    }
+   ],
+   "cues": [
+    {
+     "id": "short",
+     "text": "夠短",
+     "frame": 1171
+    },
+    {
+     "id": "one",
+     "text": "一次",
+     "frame": 1189
+    }
+   ],
+   "sub": "但光夠短\n一次就印得出來",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s14",
+   "audio": null,
+   "audioFrame": 1236,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1226,
+   "durationFrames": 98,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1236,
+   "voiceEndFrame": 1316,
+   "stillFrame": 1314,
+   "subtitleWindow": [
+    1233,
+    1321
+   ],
+   "sourceWindow": [
+    1231,
+    1319
+   ],
+   "lines": [
+    {
+     "text": "廠商標示",
+     "start": 1233,
+     "chars": [
+      1235,
+      1240,
+      1246,
+      1251
+     ]
+    },
+    {
+     "text": "最細可以印 13 奈米",
+     "start": 1262,
+     "chars": [
+      1264,
+      1269,
+      1275,
+      1280,
+      1286,
+      1286,
+      1292,
+      1297,
+      1297,
+      1303,
+      1308
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "13 奈米",
+     "start": 1292
+    }
+   ],
+   "cues": [
+    {
+     "id": "spec",
+     "text": "廠商",
+     "frame": 1236
+    },
+    {
+     "id": "thirteen",
+     "text": "最細",
+     "frame": 1265
+    }
+   ],
+   "sub": "廠商標示\n最細可以印 13 奈米",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.972,
+    1.158,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s15",
+   "audio": null,
+   "audioFrame": 1325,
+   "audioSec": 3.673,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1314,
+   "durationFrames": 130,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1324,
+   "voiceEndFrame": 1436,
+   "stillFrame": 1434,
+   "subtitleWindow": [
+    1321,
+    1441
+   ],
+   "sourceWindow": [
+    1319,
+    1439
+   ],
+   "lines": [
+    {
+     "text": "2019 年起",
+     "start": 1321,
+     "chars": [
+      1324,
+      1329,
+      1334,
+      1340,
+      1340,
+      1345,
+      1351
+     ]
+    },
+    {
+     "text": "台積電關鍵幾層",
+     "start": 1360,
+     "chars": [
+      1362,
+      1368,
+      1373,
+      1379,
+      1384,
+      1389,
+      1395
+     ]
+    },
+    {
+     "text": "改用它來印",
+     "start": 1405,
+     "chars": [
+      1407,
+      1412,
+      1417,
+      1423,
+      1428
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "2019",
+     "start": 1324
+    },
+    {
+     "text": "關鍵幾層",
+     "start": 1379
+    }
+   ],
+   "cues": [
+    {
+     "id": "tsmc",
+     "text": "台積電",
+     "frame": 1364
+    },
+    {
+     "id": "key",
+     "text": "關鍵幾層",
+     "frame": 1380
+    }
+   ],
+   "sub": "2019 年起\n台積電關鍵幾層\n改用它來印",
+   "provider": "estimate",
+   "syllables": 18,
+   "words": [],
+   "charTimes": [
+    0,
+    0.18,
+    0.36,
+    0.54,
+    0.72,
+    0.9,
+    1.297,
+    1.477,
+    1.657,
+    1.837,
+    2.017,
+    2.197,
+    2.377,
+    2.773,
+    2.953,
+    3.133,
+    3.313,
+    3.493
+   ]
+  },
+  {
+   "id": "s16",
+   "audio": null,
+   "audioFrame": 1444,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1434,
+   "durationFrames": 110,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1444,
+   "voiceEndFrame": 1536,
+   "stillFrame": 1534,
+   "subtitleWindow": [
+    1441,
+    1541
+   ],
+   "sourceWindow": [
+    1439,
+    1539
+   ],
+   "lines": [
+    {
+     "text": "可是一片晶圓印完",
+     "start": 1441,
+     "chars": [
+      1443,
+      1448,
+      1454,
+      1460,
+      1465,
+      1471,
+      1477,
+      1482
+     ]
+    },
+    {
+     "text": "每一顆都能用嗎？",
+     "start": 1493,
+     "chars": [
+      1495,
+      1500,
+      1506,
+      1512,
+      1517,
+      1523,
+      1529,
+      1529
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "每一顆",
+     "start": 1495
+    }
+   ],
+   "cues": [
+    {
+     "id": "small",
+     "text": "晶圓印完",
+     "frame": 1467
+    },
+    {
+     "id": "every",
+     "text": "每一顆",
+     "frame": 1496
+    }
+   ],
+   "sub": "可是一片晶圓印完\n每一顆都能用嗎？",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s17",
+   "audio": null,
+   "audioFrame": 1545,
+   "audioSec": 4.082,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1534,
+   "durationFrames": 142,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1544,
+   "voiceEndFrame": 1668,
+   "stillFrame": 1666,
+   "subtitleWindow": [
+    1541,
+    1676
+   ],
+   "sourceWindow": [
+    1539,
+    1671
+   ],
+   "lines": [
+    {
+     "text": "下一支，",
+     "start": 1541,
+     "chars": [
+      1544,
+      1549,
+      1555,
+      1555
+     ]
+    },
+    {
+     "text": "來看晶圓良率",
+     "start": 1559,
+     "chars": [
+      1561,
+      1567,
+      1572,
+      1578,
+      1584,
+      1590
+     ]
+    },
+    {
+     "text": "想要完整資料，",
+     "start": 1600,
+     "chars": [
+      1602,
+      1608,
+      1614,
+      1620,
+      1626,
+      1631,
+      1631
+     ]
+    },
+    {
+     "text": "留言曝光機",
+     "start": 1635,
+     "chars": [
+      1637,
+      1643,
+      1649,
+      1654,
+      1660
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "良率",
+     "start": 1584
+    },
+    {
+     "text": "曝光機",
+     "start": 1649
+    }
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一支",
+     "frame": 1545
+    },
+    {
+     "id": "yield",
+     "text": "良率",
+     "frame": 1585
+    },
+    {
+     "id": "cm",
+     "text": "留言",
+     "frame": 1639
+    }
+   ],
+   "sub": "下一支，來看晶圓良率\n想要完整資料，留言曝光機",
+   "provider": "estimate",
+   "syllables": 20,
+   "words": [],
+   "charTimes": [
+    0,
+    0.193,
+    0.385,
+    0.578,
+    0.77,
+    0.963,
+    1.155,
+    1.348,
+    1.54,
+    1.964,
+    2.156,
+    2.349,
+    2.541,
+    2.734,
+    2.926,
+    3.119,
+    3.312,
+    3.504,
+    3.697,
+    3.889
+   ]
+  },
+  {
+   "id": "s18",
+   "audio": null,
+   "audioFrame": 1666,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1666,
+   "durationFrames": 72,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1676,
+   "voiceEndFrame": 1676,
+   "stillFrame": 1726,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1671,
+    1738
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}
