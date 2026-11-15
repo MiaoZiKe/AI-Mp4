@@ -72,7 +72,7 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
   const s = cometAt(panels, f), sp = Math.abs(speedAt(panels, f)), live = f >= (panels[0]?.in ?? 0) + 4, fast = clamp((sp - 0.55) / 0.6);
   const lk = Pn.look, ac = Pn.act, gt = Pn.gate, ck = Pn.check;
   const tRead = lk ? lk.at("read", FAR) : FAR, tTools = ac ? ac.at("tools", FAR) : FAR, tAct = ac ? ac.at("act", FAR) : FAR, tGate = gt ? gt.at("gate", FAR) : FAR, tChk = ck ? ck.at("check", FAR) : FAR, tAgain = ck ? ck.at("again", FAR) : FAR;
-  const tOpen = tGate + 34, gateOpen = E(f, tOpen, 16), gateOn = O(f, tGate - 4, 8);
+  const tOpen = tGate + 28, gateOpen = E(f, tOpen, 16), gateOn = O(f, tGate - 4, 8);
   const readP = clamp((f - tRead) / 50), lit = Math.floor(readP * 12.01);
   const toolsP = (i: number) => E(f, tTools + i * 9, 26);
   const tE = tTools + 44, edited = E(f, tE, 10), strike = E(f, tE - 12, 12), typedAt = tTools + 14;
@@ -304,7 +304,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
   }
   // ── 6 閘門：要放行嗎？按下「放行」，擋條升起 ──
   if (Pn.gate) {
-    const k = Pn.gate, tG = k.at("gate", 20), tOk = tG + 34, o = 1 - O(f, k.out - 8, 8), press = pulse(f, tOk, 8);
+    const k = Pn.gate, tG = k.at("gate", 20), tOk = tG + 28, o = 1 - O(f, k.out - 8, 8), press = pulse(f, tOk, 8);
     const [gx, gy] = ap(cam, iso(GT.x, GT.y, 130));
     out.push(
       <div key="gt" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
@@ -406,7 +406,7 @@ export const AgentIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
   const world = panels.filter((x) => x.kind !== "caffend");
   const Pn: PM = Object.fromEntries(world.map((x) => [x.kind, x]));
   const keys = useMemo(() => camKeys(world), [panels]);
-  const gateP = Pn.gate, shakes = [gateP ? gateP.at("gate", FAR) + 34 : FAR, Pn.hook ? Pn.hook.at("stop", FAR) + 4 : FAR, Pn.check ? Pn.check.at("again", FAR) + 54 : FAR].filter((t) => t < FAR / 2);
+  const gateP = Pn.gate, shakes = [gateP ? gateP.at("gate", FAR) + 28 : FAR, Pn.hook ? Pn.hook.at("stop", FAR) + 4 : FAR, Pn.check ? Pn.check.at("again", FAR) + 54 : FAR].filter((t) => t < FAR / 2);
   const cam = camAt(keys, f, shakes);
   const inEnd = !!endP && f >= endP.in;
   const deskPoly = [[0, 0], [DESKW, 0], [DESKW, DESKH], [0, DESKH]].map(([x, y]) => { const [px, py] = iso(x, y, 0); return [cam[0] * px + cam[2] * py + cam[4], cam[1] * px + cam[3] * py + cam[5]]; });
