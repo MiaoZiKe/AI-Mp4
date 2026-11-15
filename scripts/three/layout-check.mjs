@@ -36,6 +36,6 @@ else {
   const fr = (r) => (r ? `（第 ${r[0]}–${r[1]} 幀，${(r[0] / 30).toFixed(2)}–${(r[1] / 30).toFixed(2)} 秒）` : "");
   for (const i of res.issues) console.log(`${i.level === "error" ? "✖" : "⚠"} [${i.kind}] ${i.msg}${fr(i.frames)}`);
   const ne = res.issues.filter((i) => i.level === "error").length;
-  console.log(`${ne ? "✖" : "✔"} 版面檢查 ${slug}：${ne} error、${res.issues.length - ne} warning（${res.stats.frames} 幀、${res.stats.labels} 張標籤、${res.stats.overlays} 個疊層）`);
+  console.log(`${ne ? "✖" : "✔"} 版面檢查 ${slug}：${ne} error、${res.issues.length - ne} warning（${res.stats.frames} 幀、${res.stats.labels} 張標籤、${res.stats.overlays} 個疊層；頂端空白 ${res.stats.topBlank ?? "?"}px、底端空白 ${res.stats.bottomBlank ?? "?"}px）`);
 }
 process.exitCode = res.issues.some((i) => i.level === "error") ? 1 : 0;

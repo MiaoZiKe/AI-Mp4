@@ -13,9 +13,9 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remo
 import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
-import { H, L, setHudLayout, setHudSkin, sm } from "./hudSkin";
+import { H, L, canvasBox, setHudLayout, setHudSkin, sm } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
-import { BACKDROP_O, ENDCARD, ENDCARD_TC, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
+import { BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -141,10 +141,10 @@ const Stage3D: React.FC<{ s: State3D; model: ProductModel; o: number; y?: Yield 
   const fx = fxOf(model);
   if (o <= 0.001) return null;
   // 主素材讓位：整張 3D 畫布做同一個縮放平移（畫面點 p → p×s＋o；換成畫布自己的座標）
-  const T0 = L.STAGE_TOP, tr = y.s === 1 && !y.ox && !y.oy ? undefined : `translate(${y.ox.toFixed(2)}px, ${(y.s * T0 + y.oy - T0).toFixed(2)}px) scale(${y.s.toFixed(4)})`;
+  const C = canvasBox(), T0 = C.top, tr = y.s === 1 && !y.ox && !y.oy ? undefined : `translate(${y.ox.toFixed(2)}px, ${(y.s * T0 + y.oy - T0).toFixed(2)}px) scale(${y.s.toFixed(4)})`;
   return (
-    <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H, opacity: o, transform: tr, transformOrigin: "0 0", filter: `drop-shadow(0 0 ${H.glow.rimPx}px ${H.glow.rim})` }}>
-      <ThreeCanvas linear={false} shadows={false} width={L.W} height={L.STAGE_H} dpr={(fx.dpr ?? 1) * Math.max(1, y.s)} gl={{ antialias: !!fx.msaa, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 600, position: [0, 0, 60] }}>
+    <div style={{ position: "absolute", left: 0, top: C.top, width: L.W, height: C.h, opacity: o, transform: tr, transformOrigin: "0 0", filter: `drop-shadow(0 0 ${H.glow.rimPx}px ${H.glow.rim})` }}>
+      <ThreeCanvas linear={false} shadows={false} width={L.W} height={C.h} dpr={(fx.dpr ?? 1) * Math.max(1, y.s)} gl={{ antialias: !!fx.msaa, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 600, position: [0, 0, 60] }}>
         <ProductScene model={model} s={s} />
       </ThreeCanvas>
     </div>
@@ -546,6 +546,24 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number;
   </>
 );
 
+/** 頁尾帶（v7，L.FOOT_H 有寫才畫）：細線＋左邊頻道名與 slogan 小字＋右邊播放時間，最底一條 8px 色條（和頂端色條呼應）。
+ *  2026/11/15 Andy：「紅框處還有空間」——1700 以下 IG 介面會蓋住，只放出處與這條頁尾帶，不放要讀的內容 */
+const HudFooter: React.FC<{ name: string; slogan?: string; total: number; f: number }> = ({ name, slogan, total, f }) => {
+  if (!L.FOOT_H) return null;
+  const t = (x: number) => { const s = Math.floor(x / FPS); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; };
+  const y0 = L.FOOT_TOP, mid = y0 + (L.FOOT_H - 8) / 2, px = sm(30);
+  return (
+    <>
+      <div style={{ position: "absolute", left: L.X, top: y0, width: L.INNER_W, height: 2, background: H.lineSoft }} />
+      <div style={{ position: "absolute", left: L.X + 4, right: L.X + 4, top: mid - px * 0.7, height: px * 1.4, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ ...zh(px, H.text2, 700), letterSpacing: "0.06em" }}>{name}{slogan ? <span style={{ color: H.line, margin: "0 14px" }}>｜</span> : null}{slogan ?? ""}</div>
+        <div style={{ ...mono(px, H.text2, 600) }}>{t(f)} / {t(total)}</div>
+      </div>
+      <div style={{ position: "absolute", left: 0, top: y0 + L.FOOT_H - 8, width: L.W, height: 8, background: `linear-gradient(90deg, ${H.line} 0 84%, ${H.amber} 84% 100%)` }} />
+    </>
+  );
+};
+
 /** 片尾卡（最後一幕 silent: true ＋ props.endCard: { next?, kicker?, trail?, at?, nextAt? }）：整個畫面蓋上底色；頁首 LOGO 照常留在左上。
  *  2026/11/15 使用者回饋「最後的結尾，我的 LOGO 需要有動畫特效」：中間的大標誌依序 ① 開口圈描線畫出來 ② 橘色圓點從上方彈進來落定（阻尼回彈）
  *  ③ 落定時一圈淡色光暈往外擴一次（細線，不發光）④ 頻道名、底線、slogan、軌跡、下一支依序進場。全部在 ENDCARD 幀內落定，之後至少停 1 秒。
@@ -568,7 +586,7 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
   const nAt = Math.max(at + Et.next, nextAt ?? 0), nx = tween(f, nAt, 7, EASE.enter), nxPop = 1 + 0.12 * Math.sin(Math.PI * tween(f, nAt + 4, 8, EASE.move));
   const trail = spec?.trail ?? [];
   const cm = tween(f, at + Et.comment, 8, EASE.enter);
-  const LOGO = TC ? 400 : 300, cy = L.STAGE_TOP + (TC ? 330 : 300), dy = TC ? 40 : 0, nameStr = channel?.name ?? "科技", sweepX = TC ? tween(f, at + ENDCARD_TC.sweep, 12, EASE.move) : 0;
+  const G = endcardGeom(L as any, !!TC), LOGO = G.logo, cy = G.cy, o = G.o, nameStr = channel?.name ?? "科技", sweepX = TC ? tween(f, at + ENDCARD_TC.sweep, 12, EASE.move) : 0;
   return (
     <AbsoluteFill style={{ opacity: k }}>
       <HudBackdrop f={f} lv={0} />
@@ -579,19 +597,19 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
       </svg>
       {TC ? <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, overflow: "visible" }}><g transform={`translate(${L.W / 2} ${cy})`}><LogoAnim name={spec.logoAnim as string} n={n} size={LOGO} /></g></svg>
         : <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dot={dot} dotS={dotS} ring={ring} /></div>}
-      {TC ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 210 + dy, height: 200, display: "flex", justifyContent: "center", overflow: "hidden", ...zh(148, H.text), letterSpacing: "0.06em" }}>
+      {TC ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(210), height: 200, display: "flex", justifyContent: "center", overflow: "hidden", ...zh(148, H.text), letterSpacing: "0.06em" }}>
         {/* 頻道名逐字彈出（鎖定那一幀起每 2 幀一個字）＋一道白光掃過 */}
         {[...nameStr].map((ch, i) => { const q = tween(f, at + ENDCARD_TC.name + i * ENDCARD_TC.nameStep, 7, EASE.enter), pop = 1 + 0.25 * Math.sin(Math.PI * tween(f, at + ENDCARD_TC.name + i * ENDCARD_TC.nameStep, 9, EASE.move));
           return <span key={i} style={{ display: "inline-block", opacity: q, transform: `translateY(${Math.round(60 * (1 - q))}px) scale(${pop.toFixed(3)})` }}>{ch}</span>; })}
         {sweepX > 0 && sweepX < 1 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(-20 + 130 * sweepX).toFixed(1)}%`, width: 70, background: H.panel, opacity: 0.85, transform: "skewX(-20deg)" }} /> : null}
       </div>
-        : <div style={{ position: "absolute", left: 0, right: 0, top: cy + 210, textAlign: "center", opacity: name, transform: `translateY(${Math.round(24 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{nameStr}</div>}
-      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + 418 + dy, width: 760 * line, height: 6, background: H.amber }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: cy + 450 + dy, textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
-      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 600 + dy, display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + Et.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + Et.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 708 + dy, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+        : <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(210), textAlign: "center", opacity: name, transform: `translateY(${Math.round(24 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{nameStr}</div>}
+      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + o(418), width: 760 * line, height: 6, background: H.amber }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(450), textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
+      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(600), display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + Et.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + Et.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(708), display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
       {/* 留言關鍵字（2026/11/15 Andy：「往後製作影片後面可以補上 留言『XXXX』我就把資訊傳給他，IG Thread 都是」）：LOGO 落定後才出現，在「下一支」下方 */}
-      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 868 + dy, display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整資料</div></div> : null}
+      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(868), display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整資料</div></div> : null}
     </AbsoluteFill>
   );
 };
@@ -694,6 +712,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       {ecAt !== null ? <HudEndCard f={f} at={ecAt} nextAt={ecNext} spec={ec} channel={channel} /> : null}
       {/* 頁首（頻道 LOGO）畫在最上層：每一幕、包括片尾卡都在左上同一個位置 */}
       <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} corner={(hud as any).logoCorner} />
+      <HudFooter name={channel?.name ?? "科技"} slogan={channel?.slogan} total={timeline.totalFrames} f={f} />
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}

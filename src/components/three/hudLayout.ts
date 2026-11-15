@@ -395,6 +395,12 @@ export const planHud = (m: Model3D, b: Box, hud: HudSpec, keys: ZoomKey[], enPx:
   return { overlays, labels, yieldAt: (f: number) => (is3D(f) ? base3D : ID), base3D, mainAt: rawMain, rawMain, is3D, dimAt, triggers: [] as YieldTrigger[] };
 };
 export const BACKDROP_O = 0.28;
+/** 片尾卡的垂直配置（Hud.tsx 與 layout-check 共用）：v7 版面（有 FOOT_H）把整組 LOGO／名稱／slogan／下一支／留言等比拉開 15%，撐滿 y0（STAGE_TOP＋40）到字幕卡下緣 */
+export const endcardGeom = (b: { STAGE_TOP: number; FOOT_H?: number }, tc: boolean) => {
+  const sc = tc && b.FOOT_H ? 1.15 : 1, y0 = b.STAGE_TOP + 40, cy = tc && b.FOOT_H ? y0 + 334 : b.STAGE_TOP + (tc ? 330 : 300), dy = tc ? 40 : 0;
+  const o = (v: number) => Math.round((v + (v >= 210 ? dy : 0)) * sc);
+  return { sc, cy, o, logo: Math.round((tc ? 400 : 300) * (sc > 1 ? 1.1 : 1)), comment: cy + o(868) };
+};
 
 /** 片尾卡「透明圈」動畫（endCard.logoAnim: "transparent"，LogoAnims.tsx 的 Transparent）的時間表（片尾卡開始後第幾幀）：
  *  飛入 0–10、X 光掃描 11–25、各層撞合約 27／29／31／33、鎖定 lock＝34（橘點落進缺口＋粒子迸開，招牌音主音在這一幀）、橘點回彈約 39；

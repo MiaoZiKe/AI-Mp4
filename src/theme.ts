@@ -525,22 +525,29 @@ export const LAYOUT_3D = {
  *  只蓋掉和 LAYOUT_3D 不同的數字：頁首放大（開口圈 LOGO 80px、頻道名 64px）、舞台下移、字幕框與出處往下撐到約 y1690（下方安全區 220px 以上留給背景）。
  *  LOGO_*＝頁首 LOGO 的大小（每一幕、包括片尾卡都畫在同一個位置）。CONTENT_BOTTOM＝內容底部的目標下緣（validate 與 layout-check 用）。 */
 export const LAYOUT_3D_FILL = {
-  HEADER_TOP: 110, HEADER_H: 96, PROGRESS_TOP: 224,
-  STAGE_TOP: 236, STAGE_H: 1104,
-  CAP_TOP: 1352, CAP_H: 248, CAP_ZH_PX: 76, CAP_EN_PX: 36,
-  SRC_TOP: 1634, SRC_PX: 34,
-  /** 2026/11/15 v6（Andy：「畫面還是很多空白處…上下都太多」）：頁首上移到 y110（上方只留約 110px）、舞台 236–1340、出處到約 y1680；
-   *  ART_FIT＝2D 圖與 3D 畫布固定放大的倍率（繞主素材區中心，全片不變，不是移動），讓主素材接近撐滿舞台。SAFE_TOP＝頁首上緣下限 */
-  ART_FIT: 1.14, SAFE_TOP: 100,
+  /** 2026/11/15 v7（Andy：「紅框處還有空間，所以需要再調整，並每個頻道都要注意」）：上下空白都 ≤60px。
+   *  頂端＝14px 色條，頁首 LOGO 列 y28–112；舞台 128–1440；字幕卡 1452–1700（下緣 ≤1700，IG 取捨見 CLAUDE.md「所有頻道的版面規則」）；
+   *  出處 y1716 起；頁尾帶 FOOT_TOP–FOOT_TOP＋FOOT_H（細線＋頻道小字＋時間，底緣約 y1874） */
+  HEADER_TOP: 28, HEADER_H: 84, PROGRESS_TOP: 126,
+  STAGE_TOP: 128, STAGE_H: 1312,
+  CAP_TOP: 1452, CAP_H: 248, CAP_ZH_PX: 76, CAP_EN_PX: 36,
+  SRC_TOP: 1716, SRC_PX: 34,
+  FOOT_TOP: 1790, FOOT_H: 84,
+  /** 3D 畫布高度（和 v6 一樣 1104，置中在主素材區中心）：舞台變高時 3D 的透視比例不變，放大只由 ART_FIT 決定（2D 與 3D 一致） */
+  CANVAS_H: 1104,
+  /** ART_FIT＝2D 圖與 3D 畫布固定放大的倍率（繞主素材區中心，全片不變，不是移動）。v6 1.14 → v7 1.26（舞台多了約 210px）。SAFE_TOP＝頁首上緣下限 */
+  ART_FIT: 1.26, SAFE_TOP: 20,
   /** 2026/11/15 Andy：「避免中間重要的素材被遮擋」。舞台上下各留一條 HUD 讀數帶（BAND_TOP／BAND_BOTTOM px），主素材只畫在中間；
-   *  IG／Reels 底部介面會蓋住 y1600 以下：字幕卡與重要文字都要在 IG_SAFE_BOTTOM 之內（出處可以在下面） */
-  BAND_TOP: 96, BAND_BOTTOM: 80, IG_SAFE_BOTTOM: 1600,
-  LOGO_PX: 80, LOGO_NAME_PX: 64, TAG_PX: 34,
+   *  IG_SAFE_BOTTOM＝字幕卡與重要文字的下限（v7 起 1700：Andy 要上下填滿，IG 底部介面會蓋到 1700 以下，那裡只放出處與頁尾帶） */
+  BAND_TOP: 96, BAND_BOTTOM: 80, IG_SAFE_BOTTOM: 1700,
+  /** 頂端／底端空白帶上限（沒有任何內容的橫條，layout-check 超過就判 error） */
+  EDGE_BLANK_MAX: 60,
+  LOGO_PX: 76, LOGO_NAME_PX: 62, TAG_PX: 34,
   CONTENT_BOTTOM: 1700, SMALL_MIN: 30,
   /** 片尾卡「留言「關鍵字」拿完整資料」的字級（≥40） */
   ENDCARD_COMMENT_PX: 46,
 } as const;
-export const LAYOUT_3D_DEFAULT_HUD = { LOGO_PX: 46, LOGO_NAME_PX: 40, TAG_PX: 28, CONTENT_BOTTOM: 1700, SMALL_MIN: 0, ENDCARD_COMMENT_PX: 46, BAND_TOP: 0, BAND_BOTTOM: 0, IG_SAFE_BOTTOM: 1920, ART_FIT: 1, SAFE_TOP: 220 } as const;
+export const LAYOUT_3D_DEFAULT_HUD = { LOGO_PX: 46, LOGO_NAME_PX: 40, TAG_PX: 28, CONTENT_BOTTOM: 1700, SMALL_MIN: 0, ENDCARD_COMMENT_PX: 46, BAND_TOP: 0, BAND_BOTTOM: 0, IG_SAFE_BOTTOM: 1920, ART_FIT: 1, SAFE_TOP: 220, CANVAS_H: 0, FOOT_TOP: 0, FOOT_H: 0, EDGE_BLANK_MAX: 0 } as const;
 
 /** stage "three" 的深色科技 HUD 與 Powers of Ten 縮放（script.json 頂層 hud: { theme: "dark", levels }；src/components/three/Hud.tsx）。
  *  只是新增，沒寫 hud 的片完全不讀這裡。HUD 是細線 UI（1.5–3px、實色），不用發光濾鏡。 */

@@ -14,4 +14,6 @@ type Lay = { -readonly [K in keyof typeof LAYOUT_3D]: number } & { -readonly [K 
 const layoutOf = (name?: string): Lay => ({ ...LAYOUT_3D, ...LAYOUT_3D_DEFAULT_HUD, ...(name === "fill" ? LAYOUT_3D_FILL : {}) }) as Lay;
 /** HUD 片的版面（hud.layout；沒寫＝原本的 LAYOUT_3D） */
 export let L: Lay = layoutOf();
-export const setHudLayout = (name?: string) => { L = layoutOf(name); setStage(L.STAGE_TOP, L.STAGE_H); return L; };
+/** 3D 畫布框：CANVAS_H 有寫就是「置中在主素材區中心、固定高度」的框（舞台變高時透視比例不變）；沒寫＝整個舞台 */
+export const canvasBox = (l: Lay = L) => { if (!l.CANVAS_H) return { top: l.STAGE_TOP, h: l.STAGE_H }; const cy = (l.STAGE_TOP + l.BAND_TOP + l.STAGE_TOP + l.STAGE_H - l.BAND_BOTTOM) / 2; return { top: Math.round(cy - l.CANVAS_H / 2), h: l.CANVAS_H }; };
+export const setHudLayout = (name?: string) => { L = layoutOf(name); const c = canvasBox(L); setStage(c.top, c.h); return L; };
