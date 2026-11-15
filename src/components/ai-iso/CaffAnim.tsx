@@ -115,6 +115,28 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
           <g clipPath="url(#caClip)"><CardFace f={f} v={v} />{gloss ? <g transform={`translate(${-260 + 1000 * easeOut(glossT)} 0) skewX(-18)`}><rect x={0} y={-40} width={190} height={CARD.h + 80} fill="url(#caGloss)" /></g> : null}</g>
         ) : null}</g>; })}
       </g>
+      {/* D：桌面四周的資料方塊沿弧線飛向白卡、到位就變成杯子的一格 */}
+      {v === "D" ? CUPV.map((c, i) => {
+        if (f >= c.dAt) return null;
+        const [tx, ty] = toStage(cupX(c.x) + CELL / 2, cupY(c.y) + CELL / 2, f, v), sx = 540 + Math.cos(c.ang) * c.rad, sy0 = 676 + Math.sin(c.ang) * c.rad * 0.8;
+        const sgn = hash(i * 1.7) > 0.5 ? 1 : -1, nx = -(ty - sy0), ny = tx - sx, nl = Math.hypot(nx, ny) || 1;
+        const at = (t: number) => { const e = 1 - Math.pow(1 - clamp(t), 2.2), mx = (sx + tx) / 2 + (nx / nl) * 240 * sgn, my = (sy0 + ty) / 2 + (ny / nl) * 240 * sgn; return [(1 - e) * (1 - e) * sx + 2 * (1 - e) * e * mx + e * e * tx, (1 - e) * (1 - e) * sy0 + 2 * (1 - e) * e * my + e * e * ty]; };
+        const t = f / c.dAt, col = [P.fill, T.color.sky.fill, T.color.plum.fill, T.color.note.fill][i % 4];
+        return <g key={i}>{[0.07, 0.14, 0.21].map((b, k) => { const [gx, gy] = at(t - b); return <rect key={k} x={gx - 8} y={gy - 8} width={16} height={16} fill={col} opacity={0.32 - k * 0.09} />; })}{(() => { const [gx, gy] = at(t); return <rect x={gx - 9} y={gy - 9} width={18} height={18} fill={col} />; })()}</g>;
+      }) : null}
+      {/* E：蓋章。印章砸下來（和鎖定的撞擊同一幀）、抬起來，底下已經印好杯子 */}
+      {v === "E" && f >= 18 && f < 44 ? (() => {
+        const [cx, cy] = toStage(cupX(100), cupY(132), f, v), fall = clamp((f - 20) / 10), lift = clamp((f - 33) / 7), yo = f < TL.lock ? -560 * (1 - fall * fall) : -420 * lift * lift, sq = f >= TL.lock && f < TL.lock + 4 ? 0.9 : 1, o = f < 33 ? 1 : 1 - lift;
+        return (
+          <g opacity={o}>
+            <ellipse cx={cx} cy={cy + 10} rx={170 * fall} ry={46 * fall} fill={T.floor} opacity={0.2 * fall * (f < 34 ? 1 : 0)} />
+            <g transform={`translate(${cx} ${cy + yo}) scale(1 ${sq})`}>
+              <rect x={-190} y={-60} width={380} height={140} rx={26} fill={S.plum.r} /><rect x={-190} y={-74} width={380} height={140} rx={26} fill={S.plum.top} />
+              <rect x={-50} y={-170} width={100} height={104} rx={30} fill={S.plum.l} /><rect x={-50} y={-176} width={100} height={104} rx={30} fill={S.plum.top} />
+              <rect x={-150} y={-30} width={300} height={14} rx={7} fill={T.card} opacity={0.5} />
+            </g>
+          </g>);
+      })() : null}
       {/* 鎖定：像素迸開、擴散波 */}
       {(() => {
         const t = f - TL.lock; if (t < 0 || t > 24) return null;
