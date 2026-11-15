@@ -1,11 +1,11 @@
 {
  "slug": "caffaine-agent-loop",
- "at": "2026-11-15T15:21:57.732Z",
- "durationSec": 36.53,
+ "at": "2026-11-15T15:42:27.694Z",
+ "durationSec": 30.47,
  "final": {
   "lufs": -14.8,
   "truePeakDbfs": -4.4,
-  "lra": 2.7,
+  "lra": 2.5,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -18,7 +18,7 @@
   "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
   "lufsBeforeDuck": -27,
   "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
-  "underVoiceDuringSpeechLu": 22.8
+  "underVoiceDuringSpeechLu": 23.3
  },
  "sfx": {
   "meta": {
@@ -42,28 +42,28 @@
   "counts": {
    "whoosh": 3
   },
-  "perThreeSec": 0.25,
+  "perThreeSec": 0.3,
   "events": [
    {
     "type": "whoosh",
-    "frame": 97,
+    "frame": 93,
     "why": "hook→you",
-    "startSec": 2.838,
-    "peakSec": 3.167
+    "startSec": 2.704,
+    "peakSec": 3.033
    },
    {
     "type": "whoosh",
-    "frame": 643,
+    "frame": 541,
     "why": "mechanism→twist",
-    "startSec": 21.038,
-    "peakSec": 21.367
+    "startSec": 17.638,
+    "peakSec": 17.967
    },
    {
     "type": "whoosh",
-    "frame": 845,
+    "frame": 690,
     "why": "payoff→cta",
-    "startSec": 27.771,
-    "peakSec": 28.1
+    "startSec": 22.604,
+    "peakSec": 22.933
    }
   ]
  }

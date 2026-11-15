@@ -10,15 +10,15 @@
 | 1 選題（一則新聞配一招）、查證 | 自動 | `research.md` |
 | 2 對 AI 真的實測（隨便問、這樣問各一次，原文存檔） | 自動 | `tests/*.json`、`tests.md` |
 | 3 寫腳本、無聲預覽、念稿 | 自動 | `script.json`、九格圖、念稿 |
-| 4 生成旁白（呼叫 Gemini TTS API，`tts-take.mjs`，音色 Sulafat、`voice.profile: "ai-report-v4"`） | 自動（使用者 2026/11/15：「以後都用呼叫 API 方式生成旁白」） | 一個 wav 檔 |
+| 4 生成旁白（呼叫 Gemini TTS API，`tts-take.mjs`，音色 Sulafat、`voice.profile: "ai-report-v5"`） | 自動（使用者 2026/11/15：「以後都用呼叫 API 方式生成旁白」） | 一個 wav 檔 |
 | 5 接旁白、對時間、渲染、片尾 LOGO 動畫＋音效 | 自動 | `out/<slug>.mp4`、字幕檔、九格圖 |
 | 6 檢查、交片 | 自動，使用者看過才發布 | 成片＋已知問題清單 |
 
-~~旁白（第 4 步）：使用者到 Google AI Studio（aistudio.google.com/generate-speech），模型 Gemini 2.5 Flash Preview TTS、音色 **Sulafat**，整段貼上下面這句說明加念稿，生成後下載上傳。不呼叫配音 API。~~（2026/11/15 起改成 API 自動生成；送出的說明就是下面這句，程式常數 `REPORT_AI_LINE`。每支整篇送 1 次，生成後先人耳清單＋語速／捲舌量測；要重配先說明原因與次數。）
+旁白（第 4 步，**2026/11/15 起改為 API 自動生成**，使用者原話：「以後都用呼叫 API 方式生成旁白」）：`voice.profile: "ai-report-v5"`、音色 Sulafat、模型 Gemini 2.5 Flash Preview TTS，`NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs <slug>` 整篇送 1 次（沒音訊最多再送 1 次，不准無限重試）。說明只有一句（`REPORT_AI_V5_LINE`，不改、不加長，長篇導演筆記會變慢變演）：
 
-    用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人報告一件事那樣，語速比平常再快一點點，語氣跟著內容有起伏，問句上揚、講到答案肯定一點，不拖尾音、不演，直接說：
+    用台灣人平常講話的口音，不特別捲舌、不兒化，像在跟朋友分享一個實用的小知識，語速比平常快、輕快有精神，語氣跟著內容起伏，講到重點加重一點、問句上揚，不拖尾音、不演，直接說：
 
-錄音照原樣用，不加速、不壓停頓；先確認每一句都有、只念一遍、順序正確。接錄音的做法見 `videos/short-ai/voice.md`（第 4 版）。
+**語速與起伏（2026/11/15 使用者聽完 caffaine-agent-loop 第一版配音：「以後語速要調快點 Follow 之前的影片速度，並且旁白需要再有點起伏，有點太平淡，不像是在介紹小知識的感覺」）**：目標＝short-ai 第 4 版速度，成片扣停頓 ≥5.4（理想 5.4–5.8）、含停頓 ≥4.9 音節/秒；模型自己念不到就用 `TAKE_ATEMPO`（上限 1.15）先加速整篇再對齊（`TAKE_ATEMPO=1.15 node scripts/tts-take.mjs <slug> --resplit`），幕間停頓用 `ALIGN_GAP_MAX=0.35 node scripts/align.mjs <slug> --force` 壓到 ≤0.35 秒（script.json 不寫 `pauseAfter`）；兩邊都做了還不到就照實回報數字。配音後各幕變短，字幕每段仍要 ≥1.2 秒（字幕少分行、少用標點斷句）、動畫太擠時刪次要動作。量測與送出提示全文寫進 `videos/<slug>/voice.md`。
 
 ## 二、內容規格
 

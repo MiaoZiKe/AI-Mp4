@@ -16,6 +16,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { runFA, geminiTranscribe, writeVerify, CONF_MIN, CER_MAX } from "./verify.mjs";
 import { resolveProfile, profileIssues, buildDirection, takePrompt, LANGUAGE_CODE } from "./voice-profile.mjs";
 
@@ -146,11 +147,21 @@ if (fs.existsSync(rawAbs) && !flags.has("--force")) {
   writeWav(rawAbs, take.pcm, take.rate);
   console.log(`✔ public/${rawRel}（${(take.pcm.length / take.rate).toFixed(2)}s）`);
 }
-const { pcm, rate } = take;
+// 後製加速（使用者 2026/11/15 明確要求加快：上限 1.15）：TAKE_ATEMPO=1.1 → 整篇原始音檔先過 ffmpeg atempo（保音高）再對齊、切段；原始音檔不動
+const TEMPO = Number(process.env.TAKE_ATEMPO ?? 1);
+if (TEMPO > 1.15 + 1e-9) { console.error("✖ TAKE_ATEMPO 上限 1.15（超過會變聲，要重配）"); process.exit(2); }
+let faFile = rawAbs, pcm = take.pcm, rate = take.rate;
+if (TEMPO > 1) {
+  const tRel = `audio/${slug}/.take-${takeHash}.t${TEMPO}.wav`, tAbs = path.join(ROOT, "public", tRel);
+  const r = spawnSync("ffmpeg", ["-loglevel", "error", "-y", "-i", rawAbs, "-filter:a", `atempo=${TEMPO}`, "-ar", String(take.rate), "-ac", "1", "-c:a", "pcm_s16le", tAbs]);
+  if (r.status !== 0) { console.error("✖ atempo 失敗"); process.exit(1); }
+  const t2 = readWav(fs.readFileSync(tAbs)); pcm = t2.pcm; rate = t2.rate; faFile = tAbs;
+  console.log(`▶ 後製加速 ×${TEMPO}：${(take.pcm.length / take.rate).toFixed(2)}s → ${(pcm.length / rate).toFixed(2)}s`);
+}
 const total = pcm.length / rate;
 
 // ── 整篇 CTC 強制對齊 → 每幕的字 ───────────────────────────────────────
-const fa = runFA([{ id: "take", file: rawAbs, text: full }]).take;
+const fa = runFA([{ id: "take", file: faFile, text: full }]).take;
 if (!fa) { console.error("✖ 整篇強制對齊失敗（fa.py）；原始音檔已留存，修好後用 --resplit 重切"); process.exit(1); }
 for (const x of spoken) x.units = fa.units.filter((u) => u.i >= x.from && u.i < x.to);
 const empty = spoken.filter((x) => !x.units.length);
@@ -194,7 +205,7 @@ for (const [k, e] of entries.entries()) e.gapAfter = k < entries.length - 1 ? +M
 const lead = spoken[0].vs, firstUnit = fa.units[0].start, tailExtra = total - spoken.at(-1).ve;
 const speechSec = spoken.at(-1).ve - spoken[0].vs;
 fs.writeFileSync(manifestPath, JSON.stringify({ slug, mode: "take", model: MODEL, voiceName: voice.voiceName, style: styled ? STYLE : null, profile: profile ? (profile.preset ?? "custom") : null, languageCode: LANG,
-  take: { file: rawRel, hash: takeHash, sec: +total.toFixed(3), speechSec: +speechSec.toFixed(3), leadSec: +lead.toFixed(3), firstCharSec: firstUnit, confidence: fa.confidence, minScore: fa.minScore, requests, prompt: prompt(full) },
+  take: { file: rawRel, hash: takeHash, sec: +total.toFixed(3), speechSec: +speechSec.toFixed(3), leadSec: +lead.toFixed(3), firstCharSec: firstUnit, confidence: fa.confidence, minScore: fa.minScore, atempo: TEMPO, requests, prompt: prompt(full) },
   scenes: entries }, null, 2));
 console.log(`\n幕   秒    信心(最低)  之後停頓`);
 for (const e of entries) console.log(`${e.id}  ${e.sec.toFixed(2).padStart(5)}  ${e.confidence.toFixed(3)}(${e.minScore.toFixed(2)})  ${e.gapAfter == null ? "—" : e.gapAfter.toFixed(2)}${e.confidence < CONF_MIN ? "  ⚠ 信心偏低，請試聽" : ""}`);

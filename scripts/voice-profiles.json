@@ -245,5 +245,18 @@
     "voices": [
       "Iapetus"
     ]
+  },
+  "ai-report-v5": {
+    "_說明": "AI 教學（CaffAIne）以後都用（2026/11/15）。使用者聽完 caffaine-agent-loop 配音版：「以後語速要調快點 Follow 之前的影片速度，並且旁白需要再有點起伏，有點太平淡，不像是在介紹小知識的感覺」。說明仍只有一句（scripts/voice-profile.mjs 的 REPORT_AI_V5_LINE）。語速目標＝short-ai 第 4 版（含停頓 5.1、扣停頓 5.7 音節/秒）：成片扣停頓 ≥5.4、含停頓 ≥4.9；模型自己念不到就後製加速（TAKE_ATEMPO，上限 1.15）、幕間停頓壓到 ≤0.35 秒（ALIGN_GAP_MAX=0.35）。",
+    "gender": "female",
+    "accent": "台灣華語",
+    "pace": [
+      5.0,
+      5.5
+    ],
+    "delivery": "report-ai-v5",
+    "voices": [
+      "Sulafat"
+    ]
   }
 }

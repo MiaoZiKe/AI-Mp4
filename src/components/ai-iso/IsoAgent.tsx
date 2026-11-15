@@ -71,11 +71,11 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
   const s = cometAt(panels, f), sp = Math.abs(speedAt(panels, f)), live = f >= (panels[0]?.in ?? 0) + 4, fast = clamp((sp - 0.55) / 0.6);
   const lk = Pn.look, ac = Pn.act, gt = Pn.gate, ck = Pn.check;
   const tRead = lk ? lk.at("read", FAR) : FAR, tTools = ac ? ac.at("tools", FAR) : FAR, tAct = ac ? ac.at("act", FAR) : FAR, tGate = gt ? gt.at("gate", FAR) : FAR, tChk = ck ? ck.at("check", FAR) : FAR, tAgain = ck ? ck.at("again", FAR) : FAR;
-  const tOpen = tGate + 28, gateOpen = E(f, tOpen, 16), gateOn = O(f, tGate - 4, 8);
+  const tOpen = tGate + 8, gateOpen = E(f, tOpen, 14), gateOn = O(f, (gt ? gt.in : FAR) + 4, 8);
   const readP = clamp((f - tRead) / 50), lit = Math.floor(readP * 12.01);
   const toolsP = (i: number) => E(f, tTools + i * 9, 26);
   const tE = tTools + 44, edited = E(f, tE, 10), strike = E(f, tE - 12, 12), typedAt = tTools + 14;
-  const tOk = tAgain + 54, ok = f >= tOk, bad = f >= tChk + 16 && !ok;
+  const tLap2 = tChk + 30, tOk = tLap2 + 34, ok = f >= tOk, bad = f >= tChk + 16 && !ok;
   const hl = (k: keyof typeof ST, panel?: Panel) => Math.max(near(s, ST[k]) * (live ? 1 : 0), panel && f >= panel.in && f < panel.out ? 0.7 : 0);
   const coreGlow = 0.45 + 0.3 * Math.sin(f / 11) + 0.5 * pulse(f, tRead + 24, 30) + 0.5 * pulse(f, tOk, 20);
   const flow = (a: { x: number; y: number }, b: { x: number; y: number }, t0: number, t1: number, color: string, key: string, z0 = 40, z1 = 60) => {
@@ -303,7 +303,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
   }
   // ── 6 閘門：要放行嗎？按下「放行」，擋條升起 ──
   if (Pn.gate) {
-    const k = Pn.gate, tG = k.at("gate", 20), tOk = tG + 28, o = 1 - O(f, k.out - 8, 8), press = pulse(f, tOk, 8);
+    const k = Pn.gate, tG = k.at("gate", 20), tOk = tG + 8, o = 1 - O(f, k.out - 8, 8), press = pulse(f, tOk, 8);
     const [gx, gy] = ap(cam, iso(GT.x, GT.y, 130));
     out.push(
       <div key="gt" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
@@ -319,14 +319,14 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6; panels: Panel[] }> = ({ f,
   }
   // ── 7 檢查：第 1 圈 ✗ → 再繞一圈（更快）→ 第 2 圈 ✓ ──
   if (Pn.check) {
-    const k = Pn.check, tC = k.at("check", 20), tA = k.at("again", 90), o = 1 - O(f, k.out - 8, 8), laps = Math.max(0, Math.floor(s + 0.001));
+    const k = Pn.check, tC = k.at("check", 20), tA = tC + 30, o = 1 - O(f, k.out - 8, 8), laps = Math.max(0, Math.floor(s + 0.001));
     out.push(
       <div key="ck" style={{ position: "absolute", left: W0, top: TOP + 10, width: L.INNER_W, opacity: o }}>
         <Step n="3" label="最後檢查" c="wrong" on={1} f={f} at={k.in + 2} />
         <div style={{ display: "flex", gap: 16, marginTop: 24, alignItems: "center" }}>
           <div data-ov="細節" style={{ ...bounce(f, tC + 14), background: f >= tC + 14 ? T.color.wrong.soft : T.card, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${T.cardSide}`, ...zh, fontWeight: 900, fontSize: 44, color: T.color.wrong.text }}>第 1 圈　✗ 不對</div>
-          {f >= tA && f < tA + 54 ? <div data-ov="細節" style={{ ...bounce(f, tA + 4), ...zh, fontWeight: 900, fontSize: 44, color: P.text, background: P.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${P.fill}` }}>再繞 · 更快</div> : null}
-          {f >= tA + 54 ? <div data-ov="細節" style={{ ...bounce(f, tA + 54), background: T.color.right.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${T.color.right.side}`, ...zh, fontWeight: 900, fontSize: 44, color: T.color.right.text }}>第 2 圈　✓ 對了</div> : null}
+          {f >= tA && f < tA + 34 ? <div data-ov="細節" style={{ ...bounce(f, tA + 4), ...zh, fontWeight: 900, fontSize: 44, color: P.text, background: P.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${P.fill}` }}>再繞 · 更快</div> : null}
+          {f >= tA + 34 ? <div data-ov="細節" style={{ ...bounce(f, tA + 34), background: T.color.right.soft, borderRadius: 24, padding: "12px 26px", boxShadow: `0 8px 0 ${T.color.right.side}`, ...zh, fontWeight: 900, fontSize: 44, color: T.color.right.text }}>第 2 圈　✓ 對了</div> : null}
         </div>
       </div>,
     );
@@ -405,7 +405,7 @@ export const AgentIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
   const world = panels.filter((x) => x.kind !== "caffend");
   const Pn: PM = Object.fromEntries(world.map((x) => [x.kind, x]));
   const keys = useMemo(() => camKeys(world), [panels]);
-  const gateP = Pn.gate, shakes = [gateP ? gateP.at("gate", FAR) + 28 : FAR, Pn.hook ? Pn.hook.at("stop", FAR) + 4 : FAR, Pn.check ? Pn.check.at("again", FAR) + 54 : FAR].filter((t) => t < FAR / 2);
+  const gateP = Pn.gate, shakes = [gateP ? gateP.at("gate", FAR) + 8 : FAR, Pn.hook ? Pn.hook.at("stop", FAR) + 4 : FAR, Pn.check ? Pn.check.at("check", FAR) + 64 : FAR].filter((t) => t < FAR / 2);
   const cam = camAt(keys, f, shakes);
   const inEnd = !!endP && f >= endP.in;
   const deskPoly = [[0, 0], [DESKW, 0], [DESKW, DESKH], [0, DESKH]].map(([x, y]) => { const [px, py] = iso(x, y, 0); return [cam[0] * px + cam[2] * py + cam[4], cam[1] * px + cam[3] * py + cam[5]]; });

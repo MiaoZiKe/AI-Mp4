@@ -16,7 +16,7 @@ export const ACCENT_TW = "台灣華語（Taiwanese Mandarin），台北土生土
 export const ENGLISH_STD = "中文和英文都要念得標準、清楚。英文單字用標準美式發音完整念出來，尾音不省略，念完自然接回中文。";
 export const LANGUAGE_CODE = "cmn-TW";
 /** 後製加速上限：超過就重配，不硬加速 */
-export const ATEMPO_MAX = 1.08;
+export const ATEMPO_MAX = 1.08; // AI 教學 report-ai-v5 與談晴說礙另有放寬（使用者 2026/11/15 明確要求加快）：上限 1.15，見 tts-take.mjs 的 TAKE_ATEMPO
 export const ARC_KEYS = ["起", "承", "轉", "合"];
 const ARC_WHERE = { 起: "開頭", 承: "中段", 轉: "轉折的地方", 合: "結尾" };
 const GENDERS = ["female", "male", "any"];
@@ -32,7 +32,7 @@ export function resolveProfile(voice) {
 /** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
  * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間）；
  * "probe"＝查證揭露版（哩股哩股：把查到的事一件一件攤給信得過的人聽；講到疑點放慢、講到查證結果乾脆收住，比 warm-pro 低、穩） */
-export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively", "report-tech", "report-ai", "plain"];
+export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively", "report-tech", "report-ai", "report-ai-v5", "plain"];
 /** "report"＝正常報導一件事（2026/11/14，使用者聽完 short-ai：「口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」）。
  * 整段說明只有一句（和 what-is-server 被接受的 voice.style 同一種寫法：`…說：` 後面直接接念稿），不寫人設、場景、情緒弧線、Avoid。
  * 原因：長篇導演筆記（AUDIO PROFILE＋SCENE＋Arc）會讓 Gemini 2.5 TTS「演」那個角色，短稿尤其明顯——又慢（short-ai 實測 3.3 音節/秒）又怪。
@@ -49,7 +49,10 @@ export const REPORT_TECH_LINE = "用台灣人平常講話的口音，不特別�
 export const PLAIN_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音，正常語速、不拖尾音、不用氣音、不演，直接說：";
 // 2026/11/15 使用者：「以後都用呼叫 API 方式生成旁白」。AI 教學（CaffAIne）用使用者在 AI Studio 驗收過的那一句（short-ai 第 4 版，docs/prompts/short-ai-旁白.txt）。
 export const REPORT_AI_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人報告一件事那樣，語速比平常再快一點點，語氣跟著內容有起伏，問句上揚、講到答案肯定一點，不拖尾音、不演，直接說：";
-const REPORT_LINES = { "report-ai": REPORT_AI_LINE, report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
+// 2026/11/15 使用者聽完 caffaine-agent-loop 配音版：「以後語速要調快點 Follow 之前的影片速度，並且旁白需要再有點起伏，有點太平淡，不像是在介紹小知識的感覺」。
+// 仍然只有一句（長篇導演筆記會變慢、變演，見 videos/short-ai/voice.md）：多了「像在跟朋友分享一個實用的小知識」「輕快有精神」「講到重點加重一點」。AI 教學以後都用這句。
+export const REPORT_AI_V5_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像在跟朋友分享一個實用的小知識，語速比平常快、輕快有精神，語氣跟著內容起伏，講到重點加重一點、問句上揚，不拖尾音、不演，直接說：";
+const REPORT_LINES = { "report-ai-v5": REPORT_AI_V5_LINE, "report-ai": REPORT_AI_LINE, report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
 /** 這個 delivery 是不是「只送一句話」的報導類 */
 export const isReport = (profile) => Object.hasOwn(REPORT_LINES, profile?.delivery ?? "");
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();

@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1096,
- "totalSec": 36.53,
+ "totalFrames": 914,
+ "totalSec": 30.47,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 102,
+   "durationFrames": 98,
    "startSec": 0,
-   "durationSec": 3.4,
+   "durationSec": 3.27,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -29,39 +29,39 @@
     {
      "id": "stop",
      "text": "答完就停",
-     "frame": 24,
-     "sceneFrame": 24
+     "frame": 19,
+     "sceneFrame": 19
     },
     {
      "id": "go",
      "text": "不會停",
-     "frame": 70,
-     "sceneFrame": 70
+     "frame": 73,
+     "sceneFrame": 73
     }
    ],
-   "stillFrame": 92,
+   "stillFrame": 88,
    "subtitles": [
     {
      "zh": "聊天 AI 答完就停",
      "en": "Chat AI stops once it answers.",
      "startFrame": 0,
-     "endFrame": 43
+     "endFrame": 54
     },
     {
      "zh": "AI 代理不會停",
      "en": "An AI agent doesn't.",
-     "startFrame": 43,
-     "endFrame": 99
+     "startFrame": 54,
+     "endFrame": 95
     }
    ],
    "narration": "聊天 AI 答完就停。AI 代理不會停。"
   },
   {
    "id": "s02",
-   "startFrame": 92,
-   "durationFrames": 149,
-   "startSec": 3.07,
-   "durationSec": 4.97,
+   "startFrame": 88,
+   "durationFrames": 128,
+   "startSec": 2.93,
+   "durationSec": 4.27,
    "component": "IsoScene",
    "beat": "you",
    "transition": {
@@ -69,61 +69,54 @@
     "frames": 10
    },
    "camera": null,
-   "cueEarly": [],
+   "cueEarly": [
+    {
+     "id": "do",
+     "early": 4
+    }
+   ],
    "voice": {
-    "startFrame": 102,
-    "endFrame": 220,
+    "startFrame": 98,
+    "endFrame": 207,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "ask",
      "text": "你問它答",
-     "frame": 121,
-     "sceneFrame": 29
+     "frame": 122,
+     "sceneFrame": 34
     },
     {
      "id": "do",
      "text": "動手",
-     "frame": 210,
-     "sceneFrame": 118
+     "frame": 198,
+     "sceneFrame": 110
     }
    ],
-   "stillFrame": 231,
+   "stillFrame": 206,
    "subtitles": [
     {
-     "zh": "聊天 AI",
+     "zh": "聊天 AI 你問它答",
      "en": "Chat AI: you ask, it answers.",
-     "startFrame": 99,
-     "endFrame": 117
+     "startFrame": 95,
+     "endFrame": 149
     },
     {
-     "zh": "你問它答",
-     "en": "Chat AI: you ask, it answers.",
-     "startFrame": 117,
-     "endFrame": 153
-    },
-    {
-     "zh": "代理",
+     "zh": "代理你交代它動手",
      "en": "An agent: you hand it a task, it does it.",
-     "startFrame": 153,
-     "endFrame": 169
-    },
-    {
-     "zh": "你交代它動手",
-     "en": "An agent: you hand it a task, it does it.",
-     "startFrame": 169,
-     "endFrame": 238
+     "startFrame": 149,
+     "endFrame": 213
     }
    ],
    "narration": "聊天 AI 你問它答。代理你交代，它自己動手。"
   },
   {
    "id": "s03",
-   "startFrame": 231,
-   "durationFrames": 137,
-   "startSec": 7.7,
-   "durationSec": 4.57,
+   "startFrame": 206,
+   "durationFrames": 113,
+   "startSec": 6.87,
+   "durationSec": 3.77,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -133,65 +126,59 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 241,
-    "endFrame": 354,
-    "pauseAfterSec": 0.5
+    "startFrame": 216,
+    "endFrame": 309,
+    "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "loop",
      "text": "繞一個圈",
-     "frame": 270,
-     "sceneFrame": 39
+     "frame": 240,
+     "sceneFrame": 34
     },
     {
      "id": "see",
      "text": "看",
-     "frame": 304,
-     "sceneFrame": 73
+     "frame": 266,
+     "sceneFrame": 60
     },
     {
      "id": "act",
      "text": "做",
-     "frame": 322,
-     "sceneFrame": 91
+     "frame": 282,
+     "sceneFrame": 76
     },
     {
      "id": "chk",
      "text": "檢查",
-     "frame": 338,
-     "sceneFrame": 107
+     "frame": 295,
+     "sceneFrame": 89
     }
    ],
-   "stillFrame": 358,
+   "stillFrame": 309,
    "subtitles": [
     {
      "zh": "代理繞一個圈",
      "en": "An agent works in a loop:",
-     "startFrame": 238,
-     "endFrame": 300
+     "startFrame": 213,
+     "endFrame": 262
     },
     {
-     "zh": "看、做",
-     "en": "An agent works in a loop:",
-     "startFrame": 300,
-     "endFrame": 334
-    },
-    {
-     "zh": "檢查",
+     "zh": "看做檢查",
      "en": "see, do, check.",
-     "startFrame": 334,
-     "endFrame": 365
+     "startFrame": 262,
+     "endFrame": 316
     }
    ],
    "narration": "代理做事，繞一個圈：看、做、檢查。"
   },
   {
    "id": "s04",
-   "startFrame": 358,
-   "durationFrames": 107,
-   "startSec": 11.93,
-   "durationSec": 3.57,
+   "startFrame": 309,
+   "durationFrames": 88,
+   "startSec": 10.3,
+   "durationSec": 2.93,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -201,41 +188,41 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 368,
-    "endFrame": 450,
+    "startFrame": 319,
+    "endFrame": 388,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "see",
      "text": "先看",
-     "frame": 369,
+     "frame": 320,
      "sceneFrame": 11
     },
     {
      "id": "read",
      "text": "讀檔案",
-     "frame": 392,
-     "sceneFrame": 34
+     "frame": 337,
+     "sceneFrame": 28
     }
    ],
-   "stillFrame": 455,
+   "stillFrame": 387,
    "subtitles": [
     {
      "zh": "先看讀檔案搞清楚狀況",
      "en": "First, look:",
-     "startFrame": 365,
-     "endFrame": 462
+     "startFrame": 316,
+     "endFrame": 394
     }
    ],
    "narration": "先看：讀你的檔案，搞清楚狀況。"
   },
   {
    "id": "s05",
-   "startFrame": 455,
-   "durationFrames": 96,
-   "startSec": 15.17,
-   "durationSec": 3.2,
+   "startFrame": 387,
+   "durationFrames": 86,
+   "startSec": 12.9,
+   "durationSec": 2.87,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -245,41 +232,41 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 465,
-    "endFrame": 538,
+    "startFrame": 397,
+    "endFrame": 463,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "act",
      "text": "再做",
-     "frame": 465,
-     "sceneFrame": 10
+     "frame": 398,
+     "sceneFrame": 11
     },
     {
      "id": "tools",
      "text": "用工具",
-     "frame": 483,
-     "sceneFrame": 28
+     "frame": 416,
+     "sceneFrame": 29
     }
    ],
-   "stillFrame": 541,
+   "stillFrame": 463,
    "subtitles": [
     {
      "zh": "再做用工具改檔案跑指令",
      "en": "Then do:",
-     "startFrame": 462,
-     "endFrame": 548
+     "startFrame": 394,
+     "endFrame": 470
     }
    ],
    "narration": "再做：用工具改檔案、跑指令。"
   },
   {
    "id": "s06",
-   "startFrame": 541,
-   "durationFrames": 107,
-   "startSec": 18.03,
-   "durationSec": 3.57,
+   "startFrame": 463,
+   "durationFrames": 83,
+   "startSec": 15.43,
+   "durationSec": 2.77,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -289,41 +276,35 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 551,
-    "endFrame": 631,
-    "pauseAfterSec": 0.6
+    "startFrame": 473,
+    "endFrame": 536,
+    "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "gate",
      "text": "權限",
-     "frame": 603,
-     "sceneFrame": 62
+     "frame": 513,
+     "sceneFrame": 50
     }
    ],
-   "stillFrame": 638,
+   "stillFrame": 536,
    "subtitles": [
     {
-     "zh": "用工具要過權限",
-     "en": "Every tool goes through",
-     "startFrame": 548,
-     "endFrame": 613
-    },
-    {
-     "zh": "這一關",
-     "en": "a permission check first.",
-     "startFrame": 613,
-     "endFrame": 645
+     "zh": "用工具要過權限這一關",
+     "en": "Every tool needs permission first.",
+     "startFrame": 470,
+     "endFrame": 543
     }
    ],
    "narration": "用哪個工具，都要先過權限這一關。"
   },
   {
    "id": "s07",
-   "startFrame": 638,
-   "durationFrames": 125,
-   "startSec": 21.27,
-   "durationSec": 4.17,
+   "startFrame": 536,
+   "durationFrames": 92,
+   "startSec": 17.87,
+   "durationSec": 3.07,
    "component": "IsoScene",
    "beat": "twist",
    "transition": {
@@ -333,47 +314,47 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 648,
-    "endFrame": 742,
-    "pauseAfterSec": 0.7
+    "startFrame": 546,
+    "endFrame": 618,
+    "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "check",
      "text": "檢查結果",
-     "frame": 663,
-     "sceneFrame": 25
+     "frame": 556,
+     "sceneFrame": 20
     },
     {
      "id": "again",
      "text": "再繞一圈",
-     "frame": 720,
-     "sceneFrame": 82
+     "frame": 601,
+     "sceneFrame": 65
     }
    ],
-   "stillFrame": 753,
+   "stillFrame": 618,
    "subtitles": [
     {
      "zh": "最後檢查結果",
      "en": "Finally, check the result.",
-     "startFrame": 645,
-     "endFrame": 696
+     "startFrame": 543,
+     "endFrame": 579
     },
     {
      "zh": "不對就再繞一圈",
      "en": "Not right? Another lap.",
-     "startFrame": 696,
-     "endFrame": 760
+     "startFrame": 579,
+     "endFrame": 625
     }
    ],
    "narration": "最後檢查結果。不對，就再繞一圈。"
   },
   {
    "id": "s08",
-   "startFrame": 753,
-   "durationFrames": 97,
-   "startSec": 25.1,
-   "durationSec": 3.23,
+   "startFrame": 618,
+   "durationFrames": 77,
+   "startSec": 20.6,
+   "durationSec": 2.57,
    "component": "IsoScene",
    "beat": "payoff",
    "transition": {
@@ -383,47 +364,41 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 763,
-    "endFrame": 835,
+    "startFrame": 628,
+    "endFrame": 685,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "every",
      "text": "每一步",
-     "frame": 763,
+     "frame": 628,
      "sceneFrame": 10
     },
     {
      "id": "free",
      "text": "放手",
-     "frame": 808,
-     "sceneFrame": 55
+     "frame": 664,
+     "sceneFrame": 46
     }
    ],
-   "stillFrame": 840,
+   "stillFrame": 685,
    "subtitles": [
     {
-     "zh": "每一步都問你",
-     "en": "Ask you at every step,",
-     "startFrame": 760,
-     "endFrame": 794
-    },
-    {
-     "zh": "還是放手讓它做",
-     "en": "or let it run?",
-     "startFrame": 794,
-     "endFrame": 847
+     "zh": "每一步問你還是放手",
+     "en": "Ask you at every step, or let it run?",
+     "startFrame": 625,
+     "endFrame": 692
     }
    ],
    "narration": "每一步都問你，還是放手讓它做？"
   },
   {
    "id": "s09",
-   "startFrame": 840,
-   "durationFrames": 158,
-   "startSec": 28,
-   "durationSec": 5.27,
+   "startFrame": 685,
+   "durationFrames": 131,
+   "startSec": 22.83,
+   "durationSec": 4.37,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -433,58 +408,46 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 850,
-    "endFrame": 990,
+    "startFrame": 695,
+    "endFrame": 808,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "next",
      "text": "下一集",
-     "frame": 851,
+     "frame": 696,
      "sceneFrame": 11
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 967,
-     "sceneFrame": 127
+     "frame": 789,
+     "sceneFrame": 104
     }
    ],
-   "stillFrame": 988,
+   "stillFrame": 806,
    "subtitles": [
     {
-     "zh": "下一集",
-     "en": "Next: four permission modes.",
-     "startFrame": 847,
-     "endFrame": 877
+     "zh": "下一集四種權限模式",
+     "en": "Next episode: four permission modes.",
+     "startFrame": 692,
+     "endFrame": 764
     },
     {
-     "zh": "四種權限模式",
-     "en": "Next: four permission modes.",
-     "startFrame": 877,
-     "endFrame": 935
-    },
-    {
-     "zh": "完整步驟",
-     "en": "Full steps? Comment \"agent\".",
-     "startFrame": 935,
-     "endFrame": 964
-    },
-    {
-     "zh": "留言「代理」",
-     "en": "Full steps? Comment \"agent\".",
-     "startFrame": 964,
-     "endFrame": 998
+     "zh": "完整步驟留言「代理」",
+     "en": "Want the steps? Comment 「代理」.",
+     "startFrame": 764,
+     "endFrame": 816
     }
    ],
    "narration": "下一集，講四種權限模式。想要完整步驟，留言「代理」。"
   },
   {
    "id": "s10",
-   "startFrame": 988,
+   "startFrame": 806,
    "durationFrames": 108,
-   "startSec": 32.93,
+   "startSec": 26.87,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -496,7 +459,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1084,
+   "stillFrame": 902,
    "subtitles": [],
    "narration": ""
   }
