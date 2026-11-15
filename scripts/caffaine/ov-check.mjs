@@ -33,7 +33,7 @@ for (const f of frames) {
     if (a.ovf) issues.push(`f${f} ${a.n} 文字超出框`);
     if (a.x < -1 || a.x + a.w > 1081 || a.y < -1 || a.y + a.h > 1921) issues.push(`f${f} ${a.n} 超出畫面`);
     for (let j = i + 1; j < bx.length; j++) if (hit(a, bx[j])) issues.push(`f${f} ${a.n} × ${bx[j].n} 重疊`);
-    if (UI.has(a.n) && r.desk && polyHit(a, r.desk)) issues.push(`f${f} ${a.n} 壓到桌面`);
+    if (UI.has(a.n)) for (const o of r.objs ?? []) { const cx = Math.max(a.x, Math.min(o.x, a.x + a.w)), cy = Math.max(a.y, Math.min(o.y, a.y + a.h)); if (Math.hypot(cx - o.x, cy - o.y) < o.r) issues.push(`f${f} ${a.n} 壓到${o.n}`); }
     if (a.n === "LOGO") { const k = [a.x, a.y, a.w, a.h].map(Math.round).join(","); if (!logoRef) logoRef = k; else if (k !== logoRef) issues.push(`f${f} LOGO 位置改變 ${k} ≠ ${logoRef}`); }
   }
   for (const s of r.small) issues.push(`f${f} DOM 文字「${s.t}」${s.fs}px < 28px`);

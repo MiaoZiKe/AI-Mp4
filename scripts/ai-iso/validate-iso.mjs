@@ -84,7 +84,7 @@ export function validateIso(script, h) {
     walk(p, "props");
     const cams = [].concat(p.camera ?? []);
     if (!caff && !cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
-    for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < 1.6) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
+    for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < (script.isoVersion === 4 ? 2.4 : 1.6)) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
     if (film && QUOTES2.includes(p.panel)) {
       // 完整片：每一塊放了 AI 回答的地方都要有 verbatim（實測原始回答的 JSON），字只能刪節不能改；卡片要標「實測…（節錄）」
       const check = (o, where) => {
