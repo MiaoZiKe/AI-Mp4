@@ -1,5 +1,7 @@
 # 科技透明圈：每日一支影片的製作手冊
 
+> **範本定稿（2026/11/15）**：`videos/tech-2nm/` v8（分支 claude/nifty-goodall-syke8a-1548，成片 out/tech-2nm.v8.mp4）。使用者看完 v8：「非常好 太棒了」。新片的版面、片尾透明圈動畫、招牌音與震動音、留言關鍵字一律照 v8。
+
 範本片：`videos/tech-2nm/`（「兩奈米不是尺寸」，51.6 秒，使用者 2026/11/15 確認「影片非常棒」）。
 新片照這支做。規則細節另見 `docs/channels/tech-3d.md`（18 條檢查清單）、`docs/three-stage.md`（3D 引擎與 HUD 寫法）、`docs/skills/3d-industry-explainer-video.md`。
 
