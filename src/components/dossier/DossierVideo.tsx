@@ -7,7 +7,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
-import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, THEME_DOSSIER as T } from "../../theme";
+import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, LAYOUT_DOSSIER_NEWS_FILL as LNF, THEME_DOSSIER as T } from "../../theme";
 import WORLD from "./worldDots.json";
 import { EASE, linear, tween } from "../anim";
 import { buildDossier, staticShot, type DsShot } from "./engine";
@@ -144,6 +144,10 @@ const Masthead: React.FC<{ f: number; at: number; x: number; y: number; w: numbe
     <Rule f={f} at={at + 3} x={x} y={y + 66} len={w} color={T.line} dur={8} />
   </>
 );
+
+type LNT = { [K in keyof typeof LN]: number };
+const LNC = React.createContext<LNT>(LN as unknown as LNT);
+const useLN = () => React.useContext(LNC);
 
 type PanelProps = { sh: DsShot; f: number; slug: string; news?: boolean };
 
@@ -406,6 +410,7 @@ const PANELS: Record<string, React.FC<PanelProps>> = { hook: Hook, timeline: Tim
 /** 一鏡：內容畫在主舞台框裡，整鏡極慢推近；換鏡時舊鏡淡出 */
 const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = ({ sh, f, slug, cut }) => {
   const P = PANELS[sh.panel];
+  const ln = useLN();
   if (!P) return null;
   if (cut) {
     // 「國際新聞」版：橫向擦切。新鏡從左邊露出來、舊鏡同時從左邊被切掉，中間一條條帶（SweepBand）掃過；沒有淡出，所以換鏡時畫面不會空。
@@ -414,8 +419,10 @@ const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = (
     const sc = 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start));
     return (
       <AbsoluteFill style={{ clipPath: pin >= 1 && pout <= 0 ? undefined : `inset(0 ${r1(100 * (1 - pin))}% 0 ${r1(100 * pout)}%)` }}>
-        <div style={{ position: "absolute", left: L.X, top: LN.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, transform: `scale(${sc.toFixed(4)})`, transformOrigin: "0 50%" }}>
-          <P sh={sh} f={f} slug={slug} news />
+        <div style={{ position: "absolute", left: L.X, top: ln.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, transform: ln.STAGE_SCALE === 1 ? undefined : `scale(${ln.STAGE_SCALE})`, transformOrigin: "50% 0" }}>
+          <div style={{ position: "absolute", inset: 0, transform: `scale(${sc.toFixed(4)})`, transformOrigin: "0 50%" }}>
+            <P sh={sh} f={f} slug={slug} news />
+          </div>
         </div>
       </AbsoluteFill>
     );
@@ -502,51 +509,54 @@ const Footer: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots,
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
 type Place = { zh: string; en: string; lon: number; lat: number };
-type NewsSpec = { section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
+type NewsSpec = { layout?: "fill"; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
 type ShotNews = { dateline?: string; place?: string; lt?: string };
 const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
 const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
-const mapX = (lon: number) => L.W / 2 + (lon - LN.MAP_LON_C) * LN.MAP_K;
-const mapY = (lat: number) => LN.MAP_LAT_Y + (LN.MAP_LAT_REF - lat) * LN.MAP_K;
+const mapX = (lon: number, ln: LNT = LN as unknown as LNT) => L.W / 2 + (lon - ln.MAP_LON_C) * ln.MAP_K;
+const mapY = (lat: number, ln: LNT = LN as unknown as LNT) => ln.MAP_LAT_Y + (ln.MAP_LAT_REF - lat) * ln.MAP_K;
 /** 點陣陸地與經緯線（不會動，只算一次） */
-const MAP_STATIC = (() => {
+const MAP_CACHE = new Map<number, { dots: string; grat: string }>();
+const mapStatic = (ln: LNT) => {
+  const hit = MAP_CACHE.get(ln.MAP_LAT_Y * 10000 + ln.MAP_TOP); if (hit) return hit;
   let dots = "", grat = "";
-  const d = LN.MAP_DOT, h = d / 2;
+  const d = ln.MAP_DOT, h = d / 2;
   WORLD.rows.forEach((row: string, r: number) => {
-    const y = mapY(WORLD.lat0 - r * WORLD.step);
-    if (y < LN.MAP_TOP || y > L.H + d) return;
+    const y = mapY(WORLD.lat0 - r * WORLD.step, ln);
+    if (y < ln.MAP_TOP || y > L.H + d) return;
     for (let c = 0; c < row.length; c++) {
       if (row[c] !== "1") continue;
-      const x = mapX(WORLD.lon0 + c * WORLD.step);
+      const x = mapX(WORLD.lon0 + c * WORLD.step, ln);
       if (x > -d && x < L.W + d) dots += `M${r1(x - h)} ${r1(y - h)}h${d}v${d}h${-d}z`;
     }
   });
-  for (let lon = -180; lon <= 180; lon += 10) { const x = mapX(lon); if (x >= 0 && x <= L.W) grat += `M${r1(x)} ${LN.MAP_TOP}V${L.H}`; }
-  for (let lat = 80; lat >= -60; lat -= 10) { const y = mapY(lat); if (y >= LN.MAP_TOP && y <= L.H) grat += `M0 ${r1(y)}H${L.W}`; }
-  return { dots, grat };
-})();
+  for (let lon = -180; lon <= 180; lon += 10) { const x = mapX(lon, ln); if (x >= 0 && x <= L.W) grat += `M${r1(x)} ${ln.MAP_TOP}V${L.H}`; }
+  for (let lat = 80; lat >= -60; lat -= 10) { const y = mapY(lat, ln); if (y >= ln.MAP_TOP && y <= L.H) grat += `M0 ${r1(y)}H${L.W}`; }
+  const out = { dots, grat }; MAP_CACHE.set(ln.MAP_LAT_Y * 10000 + ln.MAP_TOP, out); return out;
+};
 /** 淡背景世界地圖：地點（方點＋名稱）、目前這一鏡的地點有往外擴的脈衝圈、兩地之間的連線（描出來之後有光點沿線走） */
 const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: number }> = ({ news, shots, f, linkAt }) => {
+  const ln = useLN(), MS = mapStatic(ln);
   const places = news.places ?? {}, active = shotNews(curShot(shots, f)).place, cur = curShot(shots, f);
   const firstAt = (id: string) => {
     const sh = shots.find((x) => shotNews(x).place === id), a = sh ? (sh.index === 0 ? -9999 : sh.start + 2) : Infinity;
     return news.link && news.link.to === id ? Math.min(a, linkAt + M.draw - 4) : a;
   };
   const A = news.link ? places[news.link.from] : undefined, B = news.link ? places[news.link.to] : undefined;
-  const ax = A ? mapX(A.lon) : 0, ay = A ? mapY(A.lat) : 0, bx = B ? mapX(B.lon) : 0, by = B ? mapY(B.lat) : 0, cx = (ax + bx) / 2, cy = Math.min(ay, by) - 44;
+  const ax = A ? mapX(A.lon, ln) : 0, ay = A ? mapY(A.lat, ln) : 0, bx = B ? mapX(B.lon, ln) : 0, by = B ? mapY(B.lat, ln) : 0, cx = (ax + bx) / 2, cy = Math.min(ay, by) - 44;
   const lp = drawP(f, linkAt), q = lp >= 1 ? ((f - linkAt - M.draw) % NM.pulse) / NM.pulse : -1;
   const bez = (t: number) => [(1 - t) * (1 - t) * ax + 2 * (1 - t) * t * cx + t * t * bx, (1 - t) * (1 - t) * ay + 2 * (1 - t) * t * cy + t * t * by];
   const ring = ((f - (cur.index === 0 ? 0 : cur.start)) % NM.ping) / NM.ping;
   return (
     <>
       <svg width={L.W} height={L.H} viewBox={`0 0 ${L.W} ${L.H}`} style={{ position: "absolute", left: 0, top: 0 }}>
-        <path d={MAP_STATIC.grat} fill="none" stroke={N.mapGrat} strokeWidth={1} />
-        <path d={MAP_STATIC.dots} fill={N.mapDot} />
+        <path d={MS.grat} fill="none" stroke={N.mapGrat} strokeWidth={1} />
+        <path d={MS.dots} fill={N.mapDot} />
         {A && B && lp > 0 ? <path d={`M ${r1(ax)} ${r1(ay)} Q ${r1(cx)} ${r1(cy)} ${r1(bx)} ${r1(by)}`} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} {...pen(lp)} /> : null}
         {q >= 0 ? <circle cx={r1(bez(q)[0])} cy={r1(bez(q)[1])} r={5} fill={T.text} /> : null}
         {Object.entries(places).map(([id, pl]) => {
           if (f < firstAt(id)) return null;
-          const x = mapX(pl.lon), y = mapY(pl.lat), on = id === active;
+          const x = mapX(pl.lon, ln), y = mapY(pl.lat, ln), on = id === active;
           return (
             <React.Fragment key={id}>
               {on ? <circle cx={r1(x)} cy={r1(y)} r={r1(8 + 24 * ring)} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} opacity={r1(1 - ring)} /> : null}
@@ -560,10 +570,10 @@ const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: n
         if (f < at) return null;
         const on = id === active;
         return (
-          <div key={id} style={{ position: "absolute", left: mapX(pl.lon) - 200, width: 400, top: mapY(pl.lat) + 16, display: "flex", justifyContent: "center", opacity: fadeP(f, at) }}>
+          <div key={id} style={{ position: "absolute", left: mapX(pl.lon, ln) - 200, width: 400, top: mapY(pl.lat, ln) + 16, display: "flex", justifyContent: "center", opacity: fadeP(f, at) }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 10, padding: "2px 10px", background: N.mapLabelBg }}>
-              <span style={{ ...sans(LN.MAP_LABEL_PX, T.weight.bold, on ? T.text : T.text2), lineHeight: 1.15 }}>{pl.zh}</span>
-              <span style={{ ...NUM, fontWeight: 600, fontSize: LN.MAP_LABEL_PX, lineHeight: 1.15, color: on ? T.text2 : T.text3, letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{pl.en}</span>
+              <span style={{ ...sans(ln.MAP_LABEL_PX, T.weight.bold, on ? T.text : T.text2), lineHeight: 1.15 }}>{pl.zh}</span>
+              <span style={{ ...NUM, fontWeight: 600, fontSize: ln.MAP_LABEL_PX, lineHeight: 1.15, color: on ? T.text2 : T.text3, letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{pl.en}</span>
             </div>
           </div>
         );
@@ -573,29 +583,31 @@ const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: n
 };
 /** 頂部新聞條：紅底頻道字標＋欄目（國際｜INTERNATIONAL）＋右邊頻道標語；下緣一條細線兼全片進度；再下面一行電頭（地點・日期，換鏡時重打）與鏡號 */
 const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsShot[]; f: number; progress: number }> = ({ name, tag, news, shots, f, progress }) => {
+  const ln = useLN();
   const cur = curShot(shots, f), dl = shotNews(cur).dateline, at = cur.index === 0 ? -9999 : cur.start + 2;
   return (
     <>
-      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP, width: L.INNER_W, height: LN.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
-        <div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(LN.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
+      <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
+        <div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
         <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
-          <span style={{ ...sans(LN.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
-          {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: LN.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
+          <span style={{ ...sans(ln.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
+          {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: ln.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
         </div>
         <div style={{ marginLeft: "auto", paddingRight: 20, display: "flex", alignItems: "center", ...sans(L.TAG_PX, T.weight.bold, T.text3), letterSpacing: "0.3em" }}>{tag}</div>
       </div>
-      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP + LN.BAR_H, width: L.INNER_W, height: LN.PROG_H, background: T.hair }} />
-      <div style={{ position: "absolute", left: L.X, top: LN.BAR_TOP + LN.BAR_H, width: r1(L.INNER_W * progress), height: LN.PROG_H, background: T.text2 }} />
-      <div style={{ position: "absolute", left: L.X, top: LN.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
+      <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: L.INNER_W, height: ln.PROG_H, background: T.hair }} />
+      <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: r1(L.INNER_W * progress), height: ln.PROG_H, background: T.text2 }} />
+      <div style={{ position: "absolute", left: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
         <span style={{ width: 12, height: 12, background: T.accent, opacity: f >= at && f < at + M.flash && Math.floor((f - at) / 4) % 2 === 0 ? 0.25 : 1 }} />
-        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: LN.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}><Typed text={dl} f={f} at={at} per={NM.dl} /></span> : null}
+        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}><Typed text={dl} f={f} at={at} per={NM.dl} /></span> : null}
       </div>
-      <div style={{ position: "absolute", right: L.X, top: LN.DL_TOP, height: 36, display: "flex", alignItems: "center", ...NUM, fontWeight: 600, fontSize: LN.DL_PX, color: T.text3, letterSpacing: "0.06em" }}>{String(cur.index + 1).padStart(2, "0")} / {String(shots.length).padStart(2, "0")}</div>
+      <div style={{ position: "absolute", right: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", ...NUM, fontWeight: 600, fontSize: ln.DL_PX, color: T.text3, letterSpacing: "0.06em" }}>{String(cur.index + 1).padStart(2, "0")} / {String(shots.length).padStart(2, "0")}</div>
     </>
   );
 };
 /** 下三分之一標題條：紅色欄目籤（這一鏡在講什麼）＋深色條，左邊紅色粗邊；中文一次一段、英文跟著換，換段時從左邊擦出來。條本身一直在。 */
 const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string }> = ({ cues, shots, f, fixed }) => {
+  const ln = useLN();
   const cur = curShot(shots, f), label = shotNews(cur).lt;
   const cue = cues.find((c) => f >= c.window[0] && f < c.window[1]) ?? cues[cues.length - 1];
   let zh: React.ReactNode = fixed ?? null, en = "", p = 1;
@@ -609,11 +621,11 @@ const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: st
   const lp = cur.index === 0 ? 1 : tween(f, cur.start, NM.lt, EASE.enter);
   return (
     <>
-      {label ? <div style={{ position: "absolute", left: L.X, top: LN.LT_TAB_TOP, height: LN.LT_TAB_H, padding: "0 20px", background: N.red, display: "flex", alignItems: "center", clipPath: clip(lp, "right") }}><span style={{ ...sans(LN.LT_TAB_PX, T.weight.bold, N.onRed), letterSpacing: "0.2em", lineHeight: 1 }}>{label}</span></div> : null}
-      <div style={{ position: "absolute", left: L.X, top: LN.LT_TOP, width: L.INNER_W, height: LN.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${LN.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: LN.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {label ? <div style={{ position: "absolute", left: L.X, top: ln.LT_TAB_TOP, height: ln.LT_TAB_H, padding: "0 20px", background: N.red, display: "flex", alignItems: "center", clipPath: clip(lp, "right") }}><span style={{ ...sans(ln.LT_TAB_PX, T.weight.bold, N.onRed), letterSpacing: "0.2em", lineHeight: 1 }}>{label}</span></div> : null}
+      <div style={{ position: "absolute", left: L.X, top: ln.LT_TOP, width: L.INNER_W, height: ln.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${ln.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: ln.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div style={{ clipPath: clip(p, "right") }}>
-          <div style={fixed ? { ...serif(L.CAP_ZH_PX + 4), lineHeight: 1.3 } : { ...sans(L.CAP_ZH_PX, T.weight.sub), lineHeight: 1.3 }}>{zh}</div>
-          {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: 400, fontSize: L.CAP_EN_PX, lineHeight: 1.3, color: T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
+          <div style={fixed ? { ...serif(ln.CAP_ZH_PX + 4), lineHeight: 1.3 } : { ...sans(ln.CAP_ZH_PX, T.weight.sub), lineHeight: 1.3 }}>{zh}</div>
+          {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: 400, fontSize: ln.CAP_EN_PX, lineHeight: 1.3, color: T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
         </div>
       </div>
     </>
@@ -621,16 +633,17 @@ const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: st
 };
 /** 出處（每鏡一行，換鏡時擦入）＋底部跑馬燈：左邊固定「查證截至」，右邊全片的來源一直往左走 */
 const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots, f, asOf }) => {
+  const ln = useLN();
   const cur = curShot(shots, f), sp = cur.index === 0 ? 1 : tween(f, cur.start + 2, NM.lt + 2, EASE.enter);
   const items = [...new Set(shots.flatMap((sh) => sh.sources))];
-  const estW = items.reduce((a, t) => a + [...t].reduce((b, ch) => b + (ch.charCodeAt(0) < 256 ? 0.56 : 1), 0) * LN.TICK_PX + 64, 0);
+  const estW = items.reduce((a, t) => a + [...t].reduce((b, ch) => b + (ch.charCodeAt(0) < 256 ? 0.56 : 1), 0) * ln.TICK_PX + 64, 0);
   const frac = ((f * NM.tick) % estW) / estW;
-  const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(LN.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
+  const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(ln.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
   return (
     <>
-      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: LN.SRC_TOP, clipPath: clip(sp, "right"), ...sans(L.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
-      <div style={{ position: "absolute", left: L.X, top: LN.TICK_TOP, width: L.INNER_W, height: LN.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
-        <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(LN.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
+      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(L.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
+      <div style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
+        <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(ln.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
         <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
           <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", transform: `translateX(${r1(-50 * frac)}%)` }}>{row(0)}{row(1)}</div>
         </div>
@@ -640,11 +653,12 @@ const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ 
 };
 /** 換鏡的條帶：一條紅線帶著一段暗影從左掃到右（和 Shot 的橫向擦切同步） */
 const SweepBand: React.FC<{ shots: DsShot[]; f: number }> = ({ shots, f }) => {
+  const ln = useLN();
   const sh = shots.find((x) => x.index > 0 && f >= x.start && f < x.start + NM.cut);
   if (!sh) return null;
   const x = L.W * tween(f, sh.start, NM.cut, EASE.move);
   return (
-    <div style={{ position: "absolute", left: r1(x - NM.band), top: LN.STAGE_TOP - 10, width: NM.band + T.stroke.mark, height: L.STAGE_H + 20 }}>
+    <div style={{ position: "absolute", left: r1(x - NM.band), top: ln.STAGE_TOP - 10, width: NM.band + T.stroke.mark, height: r1(L.STAGE_H * ln.STAGE_SCALE) + 20 }}>
       <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, ${N.bandShade0} 0%, ${N.bandShade} 100%)` }} />
       <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: T.stroke.mark, background: T.accent }} />
     </div>
@@ -664,6 +678,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
     <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
   ));
   if (news) return (
+    <LNC.Provider value={(news.layout === "fill" ? LNF : LN) as unknown as LNT}>
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
       <WorldMap news={news} shots={m.shots} f={f} linkAt={news.link ? m.time(news.link.at, 0) : 1e9} />
@@ -674,6 +689,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       <SourceTicker shots={m.shots} f={f} asOf={asOf} />
       {audio}
     </AbsoluteFill>
+    </LNC.Provider>
   );
   return (
     <AbsoluteFill style={{ background: T.bg }}>
@@ -699,6 +715,7 @@ export const CoverDossier: React.FC<Script> = (props) => {
   if (news) {
     const s0 = { ...sh, index: 0, start: 0 };
     return (
+      <LNC.Provider value={(news.layout === "fill" ? LNF : LN) as unknown as LNT}>
       <AbsoluteFill style={{ background: T.bg }}>
         <Backdrop />
         <WorldMap news={news} shots={[s0]} f={0} linkAt={1e9} />
@@ -707,6 +724,7 @@ export const CoverDossier: React.FC<Script> = (props) => {
         <LowerThird cues={[]} shots={[s0]} f={0} fixed={c.sub ?? ""} />
         <SourceTicker shots={[s0]} f={0} asOf={asOf} />
       </AbsoluteFill>
+      </LNC.Provider>
     );
   }
   return (

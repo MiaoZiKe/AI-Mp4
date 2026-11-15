@@ -40,6 +40,8 @@ export function validateDossier(script, h) {
     if (!news || typeof news.section !== "string" || !news.section) E("news.section 要是字串（新聞條上的欄目名，例如「國際」）");
     for (const [id, pl] of Object.entries(news?.places ?? {})) if (typeof pl?.zh !== "string" || typeof pl?.en !== "string" || !(Math.abs(pl?.lon) <= 180) || !(Math.abs(pl?.lat) <= 90)) E(`news.places.${id} 要有 zh、en、lon、lat`);
     if (news?.link && (!news.places?.[news.link.from] || !news.places?.[news.link.to] || typeof news.link.at !== "string" || !/^[^:\s]+:/.test(news.link.at))) E("news.link 要有 from、to（都在 news.places 裡）與 at（寫「幕id:cue」）");
+    if (news?.layout !== undefined && news.layout !== "fill") E("news.layout 只能是 \"fill\"（填滿版：上下留白各 ≤60px）或省略");
+    if (news && news.layout !== "fill") W("news 沒有 layout: \"fill\"：上方約 224px、1700 以下會留空（使用者 2026/11/15 要求上下留白 ≤60px，新片請加）");
   }
 
   const cueIds = new Map(scenes.map((s) => [s.id, new Set((s.cues ?? []).map((c) => c.id))]));

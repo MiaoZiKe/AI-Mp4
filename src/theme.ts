@@ -1002,4 +1002,18 @@ export const LAYOUT_DOSSIER_NEWS = {
   /** 點陣世界地圖（只當背景，畫在標題條以下到畫面底）：中心經度 lonC 在 x=540、緯度 latRef 在 y=latY、每度 k px */
   MAP_TOP: 1500, MAP_K: 7, MAP_LON_C: -78, MAP_LAT_REF: 38, MAP_LAT_Y: 1578, MAP_DOT: 5, MAP_LABEL_PX: 28,
   TICK_TOP: 1640, TICK_H: 56, TICK_PX: 28,
+  STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30,
+} as const;
+/** 「國際新聞」填滿版（script.json `news.layout: "fill"`；使用者 2026/11/15「紅框處還有空間」）：上方留白 ≤60px、下方留白 ≤60px、標題條下緣 ≤1700、1700 以下放出處與跑馬燈頁尾帶。
+ *  新聞條 44–108｜電頭 124–160｜主舞台 188 起放大 1.06 倍（到約 1163，左右約 52px）｜標題條 1192–1462｜地圖地點約 1600–1650｜出處 1706｜跑馬燈 1800–1860 */
+export const LAYOUT_DOSSIER_NEWS_FILL = {
+  ...LAYOUT_DOSSIER_NEWS,
+  BAR_TOP: 44, BAR_H: 64, MARK_PX: 38,
+  DL_TOP: 124,
+  STAGE_TOP: 188, STAGE_SCALE: 1.06,
+  LT_TAB_TOP: 1192, LT_TAB_H: 46, LT_TOP: 1238, LT_H: 224,
+  CAP_ZH_PX: 70, CAP_EN_PX: 32,
+  SRC_TOP: 1706,
+  MAP_TOP: 1462, MAP_LAT_Y: 1606,
+  TICK_TOP: 1800, TICK_H: 60,
 } as const;
