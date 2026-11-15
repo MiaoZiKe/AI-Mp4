@@ -1,0 +1,958 @@
+{
+ "version": 2,
+ "slug": "caffaine-agent-loop",
+ "fps": 30,
+ "totalFrames": 933,
+ "totalSec": 31.1,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 105,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 97,
+   "stillFrame": 95,
+   "subtitleWindow": [
+    0,
+    102
+   ],
+   "sourceWindow": [
+    0,
+    100
+   ],
+   "lines": [
+    {
+     "text": "聊天 AI 答完就停",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      9,
+      15,
+      21,
+      21,
+      26,
+      32,
+      38,
+      43
+     ]
+    },
+    {
+     "text": "AI 代理不會停",
+     "start": 54,
+     "chars": [
+      56,
+      61,
+      61,
+      67,
+      73,
+      78,
+      84,
+      90
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "答完就停",
+     "start": 26
+    },
+    {
+     "text": "不會停",
+     "start": 78
+    }
+   ],
+   "cues": [
+    {
+     "id": "stop",
+     "text": "答完就停",
+     "frame": 28
+    },
+    {
+     "id": "go",
+     "text": "不會停",
+     "frame": 80
+    }
+   ],
+   "sub": "聊天 AI 答完就停\nAI 代理不會停",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 106,
+   "audioSec": 3.673,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 95,
+   "durationFrames": 130,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 105,
+   "voiceEndFrame": 217,
+   "stillFrame": 215,
+   "subtitleWindow": [
+    102,
+    222
+   ],
+   "sourceWindow": [
+    100,
+    220
+   ],
+   "lines": [
+    {
+     "text": "聊天 AI：",
+     "start": 102,
+     "chars": [
+      105,
+      111,
+      111,
+      117,
+      124,
+      124
+     ]
+    },
+    {
+     "text": "你問它答",
+     "start": 128,
+     "chars": [
+      130,
+      137,
+      143,
+      149
+     ]
+    },
+    {
+     "text": "代理：",
+     "start": 161,
+     "chars": [
+      163,
+      170,
+      170
+     ]
+    },
+    {
+     "text": "你交代它動手",
+     "start": 174,
+     "chars": [
+      176,
+      183,
+      189,
+      195,
+      202,
+      208
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "你問它答",
+     "start": 130
+    },
+    {
+     "text": "動手",
+     "start": 202
+    }
+   ],
+   "cues": [
+    {
+     "id": "ask",
+     "text": "你問它答",
+     "frame": 132
+    },
+    {
+     "id": "do",
+     "text": "動手",
+     "frame": 203
+    }
+   ],
+   "sub": "聊天 AI：你問它答\n代理：你交代它動手",
+   "provider": "estimate",
+   "syllables": 18,
+   "words": [],
+   "charTimes": [
+    0,
+    0.214,
+    0.427,
+    0.641,
+    0.854,
+    1.068,
+    1.281,
+    1.495,
+    1.965,
+    2.178,
+    2.392,
+    2.606,
+    2.819,
+    3.033,
+    3.246,
+    3.46
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 225,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 215,
+   "durationFrames": 98,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 225,
+   "voiceEndFrame": 299,
+   "stillFrame": 303,
+   "subtitleWindow": [
+    222,
+    310
+   ],
+   "sourceWindow": [
+    220,
+    308
+   ],
+   "pauseAfter": 0.5,
+   "lines": [
+    {
+     "text": "代理繞一個圈",
+     "start": 222,
+     "chars": [
+      224,
+      230,
+      237,
+      243,
+      250,
+      256
+     ]
+    },
+    {
+     "text": "看、做、",
+     "start": 269,
+     "chars": [
+      271,
+      271,
+      277,
+      277
+     ]
+    },
+    {
+     "text": "檢查",
+     "start": 282,
+     "chars": [
+      284,
+      290
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "繞一個圈",
+     "start": 237
+    },
+    {
+     "text": "檢查",
+     "start": 284
+    }
+   ],
+   "cues": [
+    {
+     "id": "loop",
+     "text": "繞一個圈",
+     "frame": 238
+    },
+    {
+     "id": "see",
+     "text": "看",
+     "frame": 272
+    },
+    {
+     "id": "act",
+     "text": "做",
+     "frame": 279
+    },
+    {
+     "id": "chk",
+     "text": "檢查",
+     "frame": 285
+    }
+   ],
+   "sub": "代理繞一個圈\n看、做、檢查",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.219,
+    0.437,
+    0.656,
+    0.875,
+    1.093,
+    1.574,
+    1.793,
+    2.012,
+    2.23
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 314,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 303,
+   "durationFrames": 92,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 313,
+   "voiceEndFrame": 387,
+   "stillFrame": 385,
+   "subtitleWindow": [
+    310,
+    392
+   ],
+   "sourceWindow": [
+    308,
+    390
+   ],
+   "lines": [
+    {
+     "text": "先看讀檔案搞清楚狀況",
+     "start": 310,
+     "chars": [
+      313,
+      319,
+      333,
+      340,
+      347,
+      353,
+      360,
+      366,
+      373,
+      379
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "先看",
+     "start": 313
+    },
+    {
+     "text": "讀檔案",
+     "start": 333
+    }
+   ],
+   "cues": [
+    {
+     "id": "see",
+     "text": "先看",
+     "frame": 314
+    },
+    {
+     "id": "read",
+     "text": "讀檔案",
+     "frame": 335
+    }
+   ],
+   "sub": "先看\n讀檔案搞清楚狀況",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.219,
+    0.7,
+    0.918,
+    1.137,
+    1.356,
+    1.574,
+    1.793,
+    2.012,
+    2.23
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 396,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 385,
+   "durationFrames": 87,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 395,
+   "voiceEndFrame": 464,
+   "stillFrame": 462,
+   "subtitleWindow": [
+    392,
+    469
+   ],
+   "sourceWindow": [
+    390,
+    467
+   ],
+   "lines": [
+    {
+     "text": "再做用工具改檔案跑指令",
+     "start": 392,
+     "chars": [
+      395,
+      400,
+      412,
+      418,
+      423,
+      429,
+      434,
+      440,
+      445,
+      451,
+      456
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "再做",
+     "start": 395
+    },
+    {
+     "text": "用工具",
+     "start": 412
+    }
+   ],
+   "cues": [
+    {
+     "id": "act",
+     "text": "再做",
+     "frame": 396
+    },
+    {
+     "id": "tools",
+     "text": "用工具",
+     "frame": 414
+    }
+   ],
+   "sub": "再做\n用工具改檔案跑指令",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.589,
+    0.773,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": null,
+   "audioFrame": 472,
+   "audioSec": 2.857,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 462,
+   "durationFrames": 114,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 472,
+   "voiceEndFrame": 559,
+   "stillFrame": 566,
+   "subtitleWindow": [
+    469,
+    573
+   ],
+   "sourceWindow": [
+    467,
+    571
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "用工具要過權限",
+     "start": 469,
+     "chars": [
+      471,
+      478,
+      486,
+      493,
+      501,
+      509,
+      516
+     ]
+    },
+    {
+     "text": "這一關",
+     "start": 531,
+     "chars": [
+      533,
+      541,
+      549
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "權限",
+     "start": 509
+    }
+   ],
+   "cues": [
+    {
+     "id": "gate",
+     "text": "權限",
+     "frame": 510
+    }
+   ],
+   "sub": "用工具要過權限\n這一關",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.255,
+    0.51,
+    0.765,
+    1.02,
+    1.276,
+    1.531,
+    2.092,
+    2.347,
+    2.602
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 576,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 566,
+   "durationFrames": 110,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 576,
+   "voiceEndFrame": 656,
+   "stillFrame": 666,
+   "subtitleWindow": [
+    573,
+    673
+   ],
+   "sourceWindow": [
+    571,
+    671
+   ],
+   "pauseAfter": 0.7,
+   "lines": [
+    {
+     "text": "最後檢查結果",
+     "start": 573,
+     "chars": [
+      575,
+      580,
+      586,
+      591,
+      597,
+      603
+     ]
+    },
+    {
+     "text": "不對就再繞一圈",
+     "start": 613,
+     "chars": [
+      615,
+      620,
+      626,
+      632,
+      637,
+      643,
+      648
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "檢查結果",
+     "start": 586
+    },
+    {
+     "text": "再繞一圈",
+     "start": 632
+    }
+   ],
+   "cues": [
+    {
+     "id": "check",
+     "text": "檢查結果",
+     "frame": 587
+    },
+    {
+     "id": "again",
+     "text": "再繞一圈",
+     "frame": 633
+    }
+   ],
+   "sub": "最後檢查結果\n不對就再繞一圈",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": null,
+   "audioFrame": 677,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 666,
+   "durationFrames": 99,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 676,
+   "voiceEndFrame": 757,
+   "stillFrame": 755,
+   "subtitleWindow": [
+    673,
+    762
+   ],
+   "sourceWindow": [
+    671,
+    760
+   ],
+   "lines": [
+    {
+     "text": "每一步都問你",
+     "start": 673,
+     "chars": [
+      676,
+      681,
+      687,
+      692,
+      698,
+      704
+     ]
+    },
+    {
+     "text": "還是放手讓它做",
+     "start": 714,
+     "chars": [
+      716,
+      721,
+      727,
+      733,
+      738,
+      744,
+      749
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "每一步",
+     "start": 676
+    },
+    {
+     "text": "放手",
+     "start": 727
+    }
+   ],
+   "cues": [
+    {
+     "id": "every",
+     "text": "每一步",
+     "frame": 677
+    },
+    {
+     "id": "free",
+     "text": "放手",
+     "frame": 729
+    }
+   ],
+   "sub": "每一步都問你\n還是放手讓它做",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s09",
+   "audio": null,
+   "audioFrame": 765,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 755,
+   "durationFrames": 80,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 765,
+   "voiceEndFrame": 827,
+   "stillFrame": 825,
+   "subtitleWindow": [
+    762,
+    835
+   ],
+   "sourceWindow": [
+    760,
+    830
+   ],
+   "lines": [
+    {
+     "text": "下一集",
+     "start": 762,
+     "chars": [
+      764,
+      770,
+      776
+     ]
+    },
+    {
+     "text": "四種權限模式",
+     "start": 787,
+     "chars": [
+      789,
+      795,
+      801,
+      807,
+      813,
+      819
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "下一集",
+     "start": 764
+    },
+    {
+     "text": "權限模式",
+     "start": 801
+    }
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 765
+    }
+   ],
+   "sub": "下一集\n四種權限模式",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
+   "charTimes": [
+    0,
+    0.2,
+    0.4,
+    0.84,
+    1.04,
+    1.24,
+    1.441,
+    1.641,
+    1.841
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 825,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 825,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 835,
+   "voiceEndFrame": 835,
+   "stillFrame": 921,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    830,
+    933
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}

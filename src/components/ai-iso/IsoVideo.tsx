@@ -6,9 +6,10 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
-import { CaffHeaderLogo } from "./CaffEnd";
+import { CaffHeaderLogo } from "./CaffLogoV2";
 import { CoverFilm, FilmIso } from "./IsoFilm";
 import { CoverShort, ShortIso } from "./IsoShort";
+import { AgentIso, CoverAgent } from "./IsoAgent";
 
 const M = T.motion;
 export const col = (name?: string) => T.color[name ?? "primary"] ?? T.color.primary;
@@ -465,7 +466,7 @@ export const HeaderIso: React.FC<{ name: string; tag: string; right?: string; pr
       </div>
       {right ? <div style={{ ...zh, fontWeight: T.weight.body, fontSize: logo ? 30 : L.MIN_PX, color: T.ink3 }}>{right}</div> : null}
     </div>
-    <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP, width: L.INNER_W, height: 8, borderRadius: 8, background: T.line, overflow: "hidden" }}>
+    <div data-ov="進度條" style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP, width: L.INNER_W, height: 8, borderRadius: 8, background: T.line, overflow: "hidden" }}>
       <div style={{ width: `${(100 * progress).toFixed(2)}%`, height: 8, borderRadius: 8, background: T.color.primary.fill }} />
     </div>
   </>
@@ -493,7 +494,7 @@ export const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
   }
   const p = st <= 0 ? 1 : tween(f, st, 5);
   return (
-    <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H }}>
+    <div data-ov="字幕卡" style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H }}>
       <div style={{ ...face(), display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}>
         <div style={{ ...zh, fontWeight: T.weight.title, fontSize: L.CAP_ZH_PX, color: T.ink, opacity: 0.35 + 0.65 * p, transform: `translateY(${Math.round(12 * (1 - p))}px)` }}>{parts.map((x, i) => <span key={i} style={{ color: x.c }}>{x.t}</span>)}</div>
         <div style={{ ...en, fontWeight: 600, fontSize: L.CAP_EN_PX, color: T.ink2 }}>{enText}</div>
@@ -505,7 +506,7 @@ export const SourceLine: React.FC<{ cues: { sources: string[]; window: [number, 
   const cur = cues.find((c) => c.sources?.length && f >= c.window[0] && f < c.window[1]);
   if (!cur) return null;
   const j = cur.sources.join("、");
-  return <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.SRC_TOP, textAlign: "center", ...zh, fontWeight: T.weight.body, fontSize: L.SRC_PX, color: T.ink3 }}>{/^(資料)?來源/.test(j) ? j : `來源：${j}`}</div>;
+  return <div data-ov="出處" style={{ position: "absolute", left: L.X, width: L.INNER_W, top: L.SRC_TOP, textAlign: "center", ...zh, fontWeight: T.weight.body, fontSize: L.SRC_PX, color: T.ink3 }}>{/^(資料)?來源/.test(j) ? j : `來源：${j}`}</div>;
 };
 
 const VideoIso1: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
@@ -544,5 +545,5 @@ const CoverIso1: React.FC<Script & { coverCrop?: number }> = ({ scenes, channel,
 };
 
 /** isoVersion: 2＝完整片引擎（IsoFilm.tsx：同一張桌面演完 20 鏡）；3＝短片引擎（IsoShort.tsx：每鏡不同構圖、物件會動）；沒寫的照舊是 5 鏡試片 */
-export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : (props as any).isoVersion === 3 ? <ShortIso {...props} /> : <VideoIso1 {...props} />);
-export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : (props as any).isoVersion === 3 ? <CoverShort {...props} /> : <CoverIso1 {...props} />);
+export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : (props as any).isoVersion === 4 ? <AgentIso {...props} /> : (props as any).isoVersion === 3 ? <ShortIso {...props} /> : <VideoIso1 {...props} />);
+export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : (props as any).isoVersion === 4 ? <CoverAgent {...props} /> : (props as any).isoVersion === 3 ? <CoverShort {...props} /> : <CoverIso1 {...props} />);

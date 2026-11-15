@@ -7,6 +7,8 @@ import { BackgroundStaticV2 } from "./components/v2/base";
 import { FPS, H, W } from "./theme";
 import { totalFrames } from "./timing";
 import type { Script } from "./types";
+import { CaffAnim } from "./components/ai-iso/CaffAnim";
+import { useCurrentFrame } from "remotion";
 import { CaffLogoStill } from "./components/ai-iso/CaffLogoV2";
 import { CpiVideo, type CpiProps } from "./components/cpi/CpiVideo";
 
@@ -22,6 +24,8 @@ export const Root: React.FC = () => (
       calculateMetadata={({ props }) => { const p = props as unknown as Script; return { durationInFrames: totalFrames(p.scenes, p.timeline) }; }} />
     <Composition id="Cover" component={Cover as any} width={W} height={H} fps={FPS} durationInFrames={1} defaultProps={placeholder as any} />
     <Composition id="CaffLogoStill" component={CaffLogoStill as any} width={1080} height={1920} fps={FPS} durationInFrames={1} defaultProps={{ variant: "A", layout: "square" } as any} />
+    <Composition id="CaffLogoClipTall" component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="tall" />; return C; })()} width={1080} height={1920} fps={FPS} durationInFrames={116} />
+    <Composition id="CaffLogoClipSquare" component={(() => { const C: React.FC = () => <CaffAnim f={useCurrentFrame()} kw={false} format="square" />; return C; })()} width={1080} height={1080} fps={FPS} durationInFrames={116} />
     <Composition id="BackgroundStatic" component={BackgroundStatic} width={W} height={H} fps={FPS} durationInFrames={1} />
     <Composition id="BackgroundStaticV2" component={BackgroundStaticV2} width={W} height={H} fps={FPS} durationInFrames={1} />
     {/* CPI 實測短片：使用者自備旁白，props 由 scripts/cpi/run.mjs 對齊後產生；長度＝props.durationInFrames（音檔長度） */}

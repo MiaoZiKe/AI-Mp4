@@ -38,7 +38,7 @@ export function validateIso(script, h) {
     if (!s.id || ids.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
     if (s.component !== "IsoScene") E(`${tag}: stage "iso" 的 component 只能是 IsoScene：${s.component}`);
     const n = h.len(s.narration); total += n;
-    const caff = script.isoVersion === 3 && s.silent === true && s.props?.panel === "caffend"; // CaffAIne 片尾卡（短片引擎，src/components/ai-iso/CaffEnd.tsx）
+    const caff = (script.isoVersion === 3 || script.isoVersion === 4) && s.silent === true && s.props?.panel === "caffend"; // CaffAIne 片尾卡（短片引擎，src/components/ai-iso/CaffEnd.tsx）
     const silent = (film && s.silent === true) || caff;
     if (silent) {
       if (i !== scenes.length - 1) E(`${tag}: silent 只能用在最後一幕（片尾卡）`);
@@ -67,7 +67,9 @@ export function validateIso(script, h) {
     const p = s.props ?? {};
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
-    if (!caff && !kinds.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${kinds.join("／")}）`);
+    const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
+    if (script.isoVersion === 4 && !caff) { if (!KINDS4.includes(p.panel)) E(`${tag}: isoVersion 4 的 props.panel「${p.panel}」不存在（${KINDS4.join("／")}）`); }
+    else if (!caff && !kinds.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${kinds.join("／")}）`);
     // 走過整個 props：時間鍵檢查格式、color 檢查名稱
     const walk = (o, where) => {
       if (Array.isArray(o)) return o.forEach((v, k) => walk(v, `${where}[${k}]`));
@@ -120,6 +122,7 @@ export function validateIso(script, h) {
   });
   const hk = scenes[0].props ?? {};
   if (scenes.length === 1 && hk.panel === "caffend") { /* 只有片尾卡的測試片：不用鉤子 */ }
+  else if (script.isoVersion === 4) { if (hk.panel !== "hook") E("第一幕要是 panel: \"hook\"（第 0 幀就是實心大字）"); }
   else if (hk.panel !== "hook" || !Array.isArray(hk.title) || !hk.title.length) E("第一幕要是 panel: \"hook\"，而且有 title（第 0 幀就看得到的實心大字主張）");
   else {
     if (![hk.screen, hk.pin].some((n) => /\d/.test(n?.value ?? ""))) E("第一幕的 hook 要有數字（props.screen／props.pin 的 value）：第 0 幀放後果或數字，不能只有問句");

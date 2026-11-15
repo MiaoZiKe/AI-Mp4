@@ -2,15 +2,17 @@
 """CaffAIne 片尾招牌音（2026/11/15）：八位元／小機器人音色，溫暖不刺耳，全部用 numpy 合成（不用任何外部音檔、不加白噪音）。
 用法：python3 scripts/caffaine/sfx-caffaine.py <輸出.wav>
 - 時間全部讀 src/components/ai-iso/caffaineTimeline.json（畫面 CaffEnd.tsx 讀同一份）：撞擊音在 hits[].f 那一幀的開頭，和畫面震動同一幀。
-- 結構（幀＝片尾卡開始後第幾幀，30fps）：
-    0–24    方塊飛入：階梯式上升的「咻」＋方塊到位的小嗒聲（時間取自方塊到位幀）
-    18      拼合「啵」＋輕撞擊（hits close）
-    26      鎖定：重撞擊（音高往下掉的低音）＋C 大調脈衝和弦＋往上的亮晶晶琶音（hits lock）
-    31      回彈：小撞擊（hits rebound）
-    32–41   蒸氣：輕輕往上滑的泡泡音
-    36–57   「C a f f A I n e」八個字母一字一音＝固定招牌旋律 C5 E5 G5 E5 C6 E6 D6 G6（AI 兩字較亮較長，e 收尾拖長）
-    62／65  標語「叮叮」
-    74      留言列：一個小小的投幣音
+- 結構（幀＝LOGO 動畫開始後第幾幀，30fps；v2：白卡杯動畫）：
+    0       0.2 秒內抓耳朵：上揚掃頻＋亮的鐘聲
+    2–18    白卡翻起：階梯式上升的「咻」
+    16      落地：拍一下（hits land）
+    18–30   一格格拼杯子：逐列的小嗒聲＋上升掃頻
+    30      鎖定：低頻厚撞擊（hits lock）＋C 大調脈衝和弦＋掃描光的上滑音＋亮晶晶琶音
+    38      蒸氣：往上的泡泡音；42／45 游標閃兩下
+    44–59   C a f f n e：招牌旋律前六個音 C5 E5 G5 E5 C6 E6
+    62      AI 藍色塊「啪」蓋上（hits stamp）：撞擊＋咔＋第七音 D6
+    65      I 彈出：第八音 G6 拖長＋明亮收尾和弦
+    70／73  標語「叮叮」；80 留言列投幣音
 - 招牌旋律與音色參數固定，以後每支片都用同一段，不要改。輸出 48 kHz 立體聲 wav，峰值先正規化到 −3 dBFS，混音（mix-endsting.py）再調響度。
 """
 import json, sys, wave
@@ -19,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 TL = json.loads((ROOT / "src/components/ai-iso/caffaineTimeline.json").read_text())
-SR, FPS, DUR = 48000, float(TL["fps"]), 3.6
+SR, FPS, DUR = 48000, float(TL["fps"]), 3.9
 n_all = int(DUR * SR)
 L = np.zeros(n_all); R = np.zeros(n_all)
 fr = lambda n: n / FPS
@@ -64,55 +66,71 @@ def bell(f, dur, d):
     n = int(dur * SR); t = np.arange(n) / SR
     return (np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 2.76 * t) * np.exp(-t / 0.08) + 0.2 * np.sin(2 * np.pi * f * 4.1 * t) * np.exp(-t / 0.04)) * env(n, 0.002, d, 4.0)
 
-# 1. 飛入「咻」：階梯式上升（每 25 ms 一階、半音），越接近鎖定越大聲；到位的小嗒聲取自方塊到位幀
-fa = TL["frameArrive"]; ca = TL["cupArrive"]
-t0, t1 = 0.0, fr(ca[1])
-steps = int((t1 - t0) / 0.025)
+
+# 0. 0.2 秒內抓耳朵：上揚掃頻＋亮的鐘聲
+n = int(0.17 * SR); t = np.arange(n) / SR
+fsw = 320 * (2600 / 320) ** (t / 0.17); sw = np.sin(2 * np.pi * np.cumsum(fsw) / SR) * env(n, 0.01, 0.17, 2.0)
+add(sw, 0.0, gain=0.35)
+add(bell(2093.0, 0.8, 0.5), 0.0, pan=-0.15, gain=0.34); add(bell(2637.0, 0.6, 0.4), 0.035, pan=0.15, gain=0.24)
+
+# 1. 白卡翻起 f2–f18：階梯式上升的「咻」
+fl = TL["flip"]; a0, a1 = fr(fl[0]), fr(fl[1]); steps = int((a1 - a0) / 0.02)
 for k in range(steps):
-    u = k / steps; f = 196 * 2 ** (u * 3.6)
-    add(note(f, 0.04, a=0.002, d=0.03, duty=0.5, lp=2800), t0 + k * 0.025, pan=-0.6 + 1.2 * u, gain=0.05 + 0.1 * u * u)
-PENTA = [1568.0, 1760.0, 2093.0, 2349.0, 2637.0]
-for k in range(14):
-    at = fr(fa[0] + (ca[1] - fa[0]) * (k / 13.0))
-    add(note(PENTA[k % 5], 0.035, a=0.001, d=0.03, duty=0.5, lp=3600), at, pan=rng.uniform(-0.6, 0.6), gain=0.05)
+    u = k / steps; f = 240 * 2 ** (u * 3.2)
+    add(note(f, 0.035, a=0.002, d=0.03, duty=0.5, lp=2600), a0 + k * 0.02, pan=-0.5 + u, gain=0.05 + 0.07 * u)
 
-# 2. 撞擊（對準 hits 的幀）
+# 2. 拼杯子 f18–f30：逐列小嗒聲＋上升掃頻
+cs, st = TL["cupStart"], TL["cupRowStep"]
+PENTA = [1046.5, 1174.66, 1318.51, 1567.98, 1760.0, 2093.0]
+for r in range(11):
+    add(note(PENTA[r % 6], 0.04, a=0.001, d=0.03, duty=0.5, lp=3800), fr(cs + r * st), pan=-0.5 + r * 0.1, gain=0.06)
+b0, b1 = fr(cs), fr(TL["lock"]); n = int((b1 - b0) * SR); t = np.arange(n) / SR; u = t / (b1 - b0)
+fr_ = 220 * (1700 / 220) ** (u ** 1.5); rs = np.sin(2 * np.pi * np.cumsum(fr_) / SR) * (u ** 2.2); rs[-int(0.003 * SR):] = 0
+add(rs, b0, gain=0.10)
+
+# 3. 撞擊（對準 hits 的幀）：落地、鎖定、蓋章
 hit = {h["kind"]: h for h in TL["hits"]}
-c = hit["close"]; at = fr(c["f"])
-add(thud(120, 62, 0.22, 0.16), at, gain=0.55 * c["amp"] / 0.35 * 0.6)
-add(thud(900, 320, 0.07, 0.05, tau=0.02), at, gain=0.22)                       # 啵
-l = hit["lock"]; at = fr(l["f"])
-add(thud(135, 44, 0.9, 0.7, tau=0.04), at, gain=1.1)                            # 重撞擊：低音往下掉
-add(thud(420, 120, 0.12, 0.08, tau=0.015), at, gain=0.35)                       # 撞擊的「咚」邊
-for j, fq in enumerate([261.63, 329.63, 392.0, 523.25]):                        # C 大調脈衝和弦
-    add(note(fq, 1.3, a=0.006, d=1.0, duty=0.5, hmax=7, lp=2600, det=-0.0015), at, pan=-0.3, gain=0.2)
-    add(note(fq, 1.3, a=0.006, d=1.0, duty=0.5, hmax=7, lp=2600, det=+0.0015), at, pan=0.3, gain=0.2)
-for j, fq in enumerate([1046.5, 1318.51, 1567.98, 2093.0]):                     # 亮晶晶往上
-    add(note(fq, 0.18, a=0.002, d=0.14, duty=0.25, lp=5200), at + 0.02 + j * 0.035, pan=-0.3 + 0.2 * j, gain=0.17)
-r = hit["rebound"]; at = fr(r["f"])
-add(thud(105, 55, 0.3, 0.2), at, gain=0.9)
-add(note(784.0, 0.12, a=0.003, d=0.09, duty=0.5, lp=3000), at, gain=0.1)
+at = fr(hit["land"]["f"])
+add(thud(150, 70, 0.25, 0.18), at, gain=0.7); add(thud(900, 320, 0.06, 0.04, tau=0.02), at, gain=0.2)
+at = fr(hit["lock"]["f"])
+add(thud(150, 38, 1.1, 0.9, tau=0.045), at, gain=1.3)                           # 低頻厚度
+add(thud(70, 48, 0.9, 0.7, tau=0.2), at, gain=0.6)
+add(thud(430, 120, 0.12, 0.08, tau=0.015), at, gain=0.4)
+for fq in [261.63, 329.63, 392.0, 523.25, 587.33]:                              # C 大調九和弦的脈衝音
+    for det, pan in ((-0.0015, -0.3), (0.0015, 0.3)):
+        add(note(fq, 1.5, a=0.006, d=1.1, duty=0.5, hmax=7, lp=2800, det=det), at, pan=pan, gain=0.17)
+sa, sb = fr(TL["scan"][0]), fr(TL["scan"][1]); n = int((sb - sa) * SR); t = np.arange(n) / SR
+fs_ = 500 * (2800 / 500) ** (t / (sb - sa)); sc = np.sin(2 * np.pi * np.cumsum(fs_) / SR) * env(n, 0.02, sb - sa, 2.5) * (1 + 0.25 * np.sin(2 * np.pi * 28 * t))
+add(sc, sa, gain=0.16)                                                          # 掃描光
+for j, fq in enumerate([1046.5, 1318.51, 1567.98, 2093.0, 2637.0]):
+    add(note(fq, 0.2, a=0.002, d=0.15, duty=0.25, lp=5600), at + 0.02 + j * 0.04, pan=-0.4 + 0.2 * j, gain=0.17)
+at = fr(hit["stamp"]["f"])
+add(thud(220, 80, 0.4, 0.3, tau=0.02), at, gain=1.0); add(thud(1500, 300, 0.05, 0.03, tau=0.012), at, gain=0.45)
 
-# 3. 蒸氣：往上滑的泡泡音（很輕）
-a0 = fr(TL["steamStart"] + 2); n = int(0.36 * SR); t = np.arange(n) / SR
-f = 600 * (1500 / 600) ** (t / 0.36); sg = np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.03, 0.3, 3.0)
-add(sg, a0, gain=0.05)
+# 4. 蒸氣泡泡、游標閃兩下
+a0 = fr(TL["steamStart"]); n = int(0.42 * SR); t = np.arange(n) / SR
+f = 600 * (1700 / 600) ** (t / 0.42); add(np.sin(2 * np.pi * np.cumsum(f) / SR) * env(n, 0.04, 0.36, 3.0), a0, gain=0.05)
+for fm in (TL["cursor"][0], TL["cursor"][0] + 6):
+    add(note(1318.51, 0.05, a=0.002, d=0.04, duty=0.5, lp=3500), fr(fm), gain=0.09)
 
-# 4. 八個字母＝招牌旋律（固定）
+# 5. 招牌旋律八音（固定）：前六個對準 C a f f n e，第七個是 AI 蓋章，第八個是 I 彈出（拖長＋收尾和弦）
 NOTES = TL["notes"]
-for i, (fq, fm) in enumerate(zip(NOTES, TL["letters"])):
-    at = fr(fm); ai = i in (4, 5); last = i == 7
-    dur = 1.3 if last else (0.34 if ai else 0.2)
-    g = 0.30 if not ai else 0.38
-    if last: g = 0.40
-    pre = note(fq * 0.944, 0.016, a=0.001, d=0.012, duty=0.5, lp=3600)          # 起音前一個半音的小滑音，像八位元「嗶」
+for i, (fq, fm) in enumerate(zip(NOTES, TL["noteFrames"])):
+    at = fr(fm); bright = i >= 6; last = i == 7
+    dur = 1.5 if last else (0.4 if bright else 0.2); g = 0.40 if bright else 0.30
+    pre = note(fq * 0.944, 0.016, a=0.001, d=0.012, duty=0.5, lp=3600)
     add(pre, at - 0.002, pan=-0.35 + 0.1 * i, gain=g * 0.6)
-    add(note(fq, dur, a=0.003, d=dur * (0.9 if last else 0.75), duty=0.25, lp=4600, det=-0.001), at, pan=-0.35 + 0.1 * i, gain=g)
+    add(note(fq, dur, a=0.003, d=dur * (0.9 if last else 0.75), duty=0.25, lp=4800, det=-0.001), at, pan=-0.35 + 0.1 * i, gain=g)
     add(note(fq, dur, a=0.003, d=dur * (0.9 if last else 0.75), duty=0.5, hmax=5, lp=3600, det=0.001), at, pan=-0.35 + 0.1 * i, gain=g * 0.55)
-    if ai or last: add(note(fq * 2, dur * 0.7, a=0.003, d=dur * 0.5, duty=0.5, hmax=3, lp=6000), at, gain=0.16)   # AI 與收尾的字再疊高八度＝最亮
-    if i % 2 == 0 and not ai and not last: add(note(fq / 2, 0.16, a=0.004, d=0.12, duty=0.5, hmax=4, lp=900), at, gain=0.16)  # 底下一個很輕的低八度，旋律比較厚
+    if bright: add(note(fq * 2, dur * 0.7, a=0.003, d=dur * 0.5, duty=0.5, hmax=3, lp=6200), at, gain=0.18)
+    if i % 2 == 0 and not bright: add(note(fq / 2, 0.16, a=0.004, d=0.12, duty=0.5, hmax=4, lp=900), at, gain=0.16)
+at = fr(TL["noteFrames"][7])
+for fq in [523.25, 659.25, 783.99, 1174.66]:                                    # 明亮的收尾和弦 Cadd9
+    add(note(fq, 1.6, a=0.006, d=1.2, duty=0.5, hmax=7, lp=3200, det=-0.0012), at, pan=-0.25, gain=0.14)
+    add(note(fq, 1.6, a=0.006, d=1.2, duty=0.5, hmax=7, lp=3200, det=0.0012), at, pan=0.25, gain=0.14)
+for j, fq in enumerate([2093.0, 2637.0, 3136.0]): add(bell(fq, 0.7, 0.5), at + 0.05 + j * 0.06, gain=0.1)
 
-# 5. 標語叮叮、留言列投幣音
+# 6. 標語叮叮、留言列投幣音
 add(bell(1567.98, 0.5, 0.35), fr(TL["tagline"]), pan=-0.2, gain=0.28)
 add(bell(2093.0, 0.6, 0.45), fr(TL["tagline2"]), pan=0.2, gain=0.28)
 k0 = fr(TL["keyword"])
@@ -124,4 +142,4 @@ data = np.stack([L * sc, R * sc], axis=1)
 with wave.open(sys.argv[1], "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((np.clip(data, -1, 1) * 32767).astype("<i2").tobytes())
-print(f"✔ {sys.argv[1]}：{DUR} 秒、48 kHz 立體聲；撞擊音幀 " + "、".join(str(h["f"]) for h in TL["hits"]) + "；字母音幀 " + "、".join(map(str, TL["letters"])))
+print(f"✔ {sys.argv[1]}：{DUR} 秒、48 kHz 立體聲；撞擊音幀 " + "、".join(str(h["f"]) for h in TL["hits"]) + "；旋律音幀 " + "、".join(map(str, TL["noteFrames"])))

@@ -9,7 +9,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
-import { CaffEnd } from "./CaffEnd";
+import { CaffAnim } from "./CaffAnim";
 import { ap, at2, Backdrop, Bb, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, fly, ground, HeaderIso, iso, type M6, MON, mul, popM, SCR, SCR_H, SCR_W, Shade, Slab, slam, SourceLine, Strike } from "./IsoVideo";
 
 const M = T.motion;
@@ -212,7 +212,7 @@ const roll = (value: string, f: number, from: number, until: number) => {
   }).join("");
 };
 /** 前景漂浮的小東西（視差：比桌面動得多一點），只在主畫面區 */
-const Floaters: React.FC<{ f: number; cam: M6 }> = ({ f, cam }) => {
+export const Floaters: React.FC<{ f: number; cam: M6 }> = ({ f, cam }) => {
   const items = [[-520, -80, "plus", "primary"], [520, 40, "dot", "note"], [-430, 520, "dot", "right"], [470, 560, "plus", "wrong"], [40, -230, "spark", "note"], [-260, 700, "spark", "primary"]] as const;
   return (
     <div style={{ position: "absolute", left: 0, top: L.MAIN_TOP, width: L.W, height: L.MAIN_BOTTOM - L.MAIN_TOP, overflow: "hidden", pointerEvents: "none" }}>
@@ -231,7 +231,7 @@ const Floaters: React.FC<{ f: number; cam: M6 }> = ({ f, cam }) => {
   );
 };
 /** 背景兩團慢慢移動的光暈 */
-const Glow: React.FC<{ f: number }> = ({ f }) => (
+export const Glow: React.FC<{ f: number }> = ({ f }) => (
   <AbsoluteFill style={{ pointerEvents: "none" }}>
     {[[260, 700, T.color.primary.soft, 31], [820, 1000, T.color.note.soft, 43]].map(([x, y, c, p], i) => (
       <div key={i} style={{ position: "absolute", left: (x as number) + 90 * Math.sin(f / (p as number) + i) - 330, top: (y as number) + 70 * Math.cos(f / (p as number)) - 330, width: 660, height: 660, borderRadius: "50%", background: `radial-gradient(closest-side, ${c}, ${c}00)`, opacity: 0.85 }} />
@@ -578,7 +578,7 @@ export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
       <Stage panels={panels.filter((x) => x.kind !== "caffend")} f={f} />
-      {endP && f >= endP.in ? <CaffEnd f={f - endP.in} keyword={String(endP.p.keyword ?? "")} fadeIn={endP.in > 0} /> : null}
+      {endP && f >= endP.in ? <CaffAnim f={f - endP.in} keyword={String(endP.p.keyword ?? "")} /> : null}
       <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo={logo} />
       {endP && f >= endP.in ? null : <Caption cues={caps} f={f} />}
       {endP && f >= endP.in ? null : <SourceLine cues={srcs} f={f} />}

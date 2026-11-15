@@ -253,8 +253,20 @@ export const lockupWidth = (v: string, markH: number, wordPx: number) => { const
 const Bg: React.FC = () => <AbsoluteFill style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }} />;
 const GlowBlobs: React.FC<{ spots: [number, number, string][] }> = ({ spots }) => <>{spots.map(([x, y, c], i) => <div key={i} style={{ position: "absolute", left: x - 330, top: y - 330, width: 660, height: 660, borderRadius: "50%", background: `radial-gradient(closest-side, ${c}, ${c}00)`, opacity: 0.85 }} />)}</>;
 
-export const CaffLogoStill: React.FC<{ variant: string; layout: "square" | "phone" | "probe" }> = ({ variant: v, layout }) => {
+export const CaffLogoStill: React.FC<{ variant: string; layout: "square" | "phone" | "probe" | "avatar" | "avatar-dark" }> = ({ variant: v, layout }) => {
   if (layout === "probe") { const m = RAW[v](); return <AbsoluteFill style={{ background: "#fff" }}><svg width={1080} height={1080} viewBox="-900 -900 1800 1800"><rect x={-900} y={-900} width={1800} height={1800} fill="#fff" />{m.el}</svg></AbsoluteFill>; }
+  if (layout === "avatar" || layout === "avatar-dark") {
+    // IG／Threads 頭貼 1080×1080：圖形放在中央圓形安全區（直徑 1080），圖形寬約圓直徑的 68%
+    const dark = layout === "avatar-dark", m = MARKS[v](), mw = 1080 * 0.68, mh = (mw / m.vb[2]) * m.vb[3];
+    return (
+      <AbsoluteFill style={{ background: dark ? "linear-gradient(180deg,#2A3566 0%,#1B2545 100%)" : `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }}>
+        <GlowBlobs spots={dark ? [[300, 360, "#5566F0"], [800, 820, "#B565D9"]] : [[300, 360, P.soft], [820, 800, T.color.note.soft]]} />
+        <svg width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+          <svg x={(1080 - mw) / 2} y={(1080 - mh) / 2} width={mw} height={mh} viewBox={m.vb.join(" ")} style={{ overflow: "visible" }}>{m.el}</svg>
+        </svg>
+      </AbsoluteFill>
+    );
+  }
   if (layout === "square") {
     // 1080×1080 淺底大圖（畫在 1080×1920 畫布的上面 1080，之後裁切）：橫式組合置中＋標語
     const wordPx = 108, aspect = MARKS[v]().vb[2] / MARKS[v]().vb[3], markH = Math.min(470, (940 - wordWidth(wordPx)) / (aspect + 0.08)), w = lockupWidth(v, markH, wordPx), x0 = (1080 - w) / 2;
@@ -296,4 +308,10 @@ export const CaffLogoStill: React.FC<{ variant: string; layout: "square" | "phon
       </svg>
     </AbsoluteFill>
   );
+};
+
+/** 頁首左上角的小版本（C 款白卡杯＋字標），每幕同位置同大小：left 64、top 214、高 88 */
+export const CaffHeaderLogo: React.FC = () => {
+  const markH = 88, wordPx = 44, w = lockupWidth("C", markH, wordPx);
+  return <svg data-ov="LOGO" width={w + 4} height={markH} viewBox={`0 0 ${w + 4} ${markH}`} style={{ position: "absolute", left: 64, top: 214, overflow: "visible" }}><Lockup v="C" x={0} y={0} markH={markH} wordPx={wordPx} /></svg>;
 };

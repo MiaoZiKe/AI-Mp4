@@ -6,7 +6,7 @@ import { execFileSync } from "node:child_process";
 import { renderStill, selectComposition } from "@remotion/renderer";
 import { ROOT, BROWSER, makeBundle, chromiumOptions } from "../lib.mjs";
 await import("../fetch-fonts.mjs");
-const vs = process.argv.slice(2).filter((a) => /^[A-D]$/.test(a)), list = vs.length ? vs : ["A", "B", "C", "D"];
+const vs = process.argv.slice(2).filter((a) => /^[A-D]$/.test(a)), list = vs.length ? vs : (process.argv.includes("--avatar") ? ["C"] : ["A", "B", "C", "D"]);
 const out = path.join(ROOT, "out", "caffaine-logo-v2"); fs.mkdirSync(out, { recursive: true });
 const serveUrl = await makeBundle();
 if (process.argv.includes("--probe")) {
@@ -25,13 +25,16 @@ if (process.argv.includes("--probe")) {
   fs.writeFileSync(path.join(ROOT, "src/components/ai-iso/caffLogoVb.json"), JSON.stringify(vb));
   process.exit(0);
 }
-for (const v of list) for (const layout of ["square", "phone"]) {
+for (const v of list) for (const layout of (process.argv.includes("--avatar") ? ["avatar", "avatar-dark"] : ["square", "phone"])) {
   const inputProps = { variant: v, layout };
   const comp = await selectComposition({ serveUrl, id: "CaffLogoStill", inputProps, browserExecutable: BROWSER, chromiumOptions });
   const raw = path.join(out, `${v}-${layout}.raw.png`);
   await renderStill({ serveUrl, composition: comp, inputProps, frame: 0, output: raw, browserExecutable: BROWSER, chromiumOptions });
   const f = (a) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...a]);
-  if (layout === "square") f(["-i", raw, "-vf", "crop=1080:1080:0:0", path.join(out, `${v}-square.png`)]);
+  if (layout === "avatar" || layout === "avatar-dark") {
+    const o = path.join(out, `avatar-${v}${layout === "avatar" ? "" : "-dark"}`);
+    f(["-i", raw, "-vf", "crop=1080:1080:0:0", o + "-1080.png"]); f(["-i", o + "-1080.png", "-vf", "scale=320:320:flags=lanczos", o + "-320.png"]); f(["-i", o + "-1080.png", "-vf", "scale=110:110:flags=lanczos", o + "-110.png"]);
+  } else if (layout === "square") f(["-i", raw, "-vf", "crop=1080:1080:0:0", path.join(out, `${v}-square.png`)]);
   else { f(["-i", raw, path.join(out, `${v}-phone.png`)]); f(["-i", raw, "-vf", "crop=1080:150:0:200", path.join(out, `${v}-header.png`)]); }
   fs.rmSync(raw);
   console.log(`✔ ${v}-${layout}`);
