@@ -1011,12 +1011,16 @@ export const LAYOUT_DOSSIER_NEWS = {
 /** 哩股哩股片尾卡與左上 LOGO（正式字標 5C「Li」，tw-rotation docs/brand/avatar_5C/icon_5C_light.svg：深藍 L＋銅紅 i 身與 i 點；「i 點落定」＝查證落定）。時間都是片尾卡開始後第幾幀。 */
 export const DOSSIER_END = {
   navy: "#14213D", copper: "#A8482A", paper: "#FBFAF6", paperEdge: "#D9D3C4",
-  /** 卡片與文字位置（1080×1920） */
-  TOP: 160, BOTTOM: 1790, CARD_Y: 280, CARD_S: 680, NAME_Y: 1020, NAME_PX: 132, RULE_Y: 1186, SLOGAN_Y: 1222, SLOGAN_PX: 48,
+  /** 深色版字標（icon_5C_dark.svg）：片尾卡在深色底上用 */
+  darkL: "#FBFAF6", darkCopper: "#D0643F", glow: "rgba(208,100,63,0.55)", glowHi: "rgba(251,250,246,0.9)", dot: "rgba(174,182,194,0.16)", dotHi: "rgba(208,100,63,0.75)",
+  /** 版面（1080×1920）：字標中心與大小、字標下方各行 */
+  TOP: 160, BOTTOM: 1790, LOGO_CX: 540, LOGO_CY: 640, LOGO_S: 640, NAME_Y: 1010, NAME_PX: 132, TAG_PX: 64, RULE_Y: 1186, SLOGAN_Y: 1222, SLOGAN_PX: 48,
   NEXT_Y: 1380, NEXT_PX: 52, CMT_Y: 1510, CMT_PX: 56, MINI: 64,
-  /** 動作（幀）：卡片擦入、L 豎畫／橫畫、i 身升起、i 點落下撞擊、回彈、震動、字標逐字、底線、slogan、下一集、留言 */
-  f: { card: 0, cardDur: 0, lv: 2, lvDur: 8, lh: 8, lhDur: 6, stem: 10, stemDur: 8, drop: 16, impact: 28, rebound: 34, shakeEnd: 38,
-       ring: 28, ringDur: 18, name: [30, 33, 36, 39], rule: 42, ruleDur: 8, slogan: 48, next: 54, cmt: 60 },
+  /** 片尾卡第幾幀：資料粒子匯聚成 L（0–22）→ L 實心化 22 → i 身升起 24–32 → i 點像蓋章落下 28–36、36 撞擊（閃光、兩圈衝擊波、火花、掃描光、背景點陣波、震動）
+   *  → 字標逐字 40/43/46/49 → ｜查到底 54 → 底線 56 → slogan 60 → 下一集 66 → 留言 72（之後停 ≥1 秒）。不轉、不繞圈。 */
+  f: { gather: 0, gatherDur: 14, gatherSpread: 8, solid: 22, solidDur: 6, stem: 24, stemDur: 8, stamp: 28, impact: 36, shakeEnd: 44,
+       flashDur: 10, ring: [36, 40], ringDur: 20, spark: 36, sparkDur: 18, scan: 38, scanDur: 12, wave: 36, waveDur: 24,
+       name: [40, 43, 46, 49], tag: 54, rule: 56, ruleDur: 8, slogan: 60, next: 66, cmt: 72 },
 } as const;
 /** 「國際新聞」填滿版（script.json `news.layout: "fill"`；使用者 2026/11/15「紅框處還有空間」）：上方留白 ≤60px、下方留白 ≤60px、標題條下緣 ≤1700、1700 以下放出處與跑馬燈頁尾帶。
  *  新聞條 44–108｜電頭 124–160｜主舞台 188 起放大 1.06 倍（到約 1163，左右約 52px）｜標題條 1192–1462｜地圖地點約 1600–1650｜出處 1706｜跑馬燈 1800–1860 */

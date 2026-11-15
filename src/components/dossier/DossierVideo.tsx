@@ -532,37 +532,95 @@ const LiTile: React.FC<{ size: number }> = ({ size }) => (
   </div>
 );
 type EndSpec = { comment?: string; next?: string };
-const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string }> = ({ sh, f, slogan, name }) => {
+/** 固定 seed 的亂數（片尾粒子用；每一幀算出來都一樣） */
+const rng = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+const easeOut3 = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+/** 字標座標（viewBox 512，含 translate 27）→ 畫面座標 */
+const LX = (x: number) => DE.LOGO_CX - DE.LOGO_S / 2 + ((x + 27) * DE.LOGO_S) / 512;
+const LY = (y: number) => DE.LOGO_CY - DE.LOGO_S / 2 + (y * DE.LOGO_S) / 512;
+/** 匯聚粒子：起點散在整個畫面（像檔案室裡散落的資料點），終點均勻落在 L 的範圍裡；一部分是銅紅（之後進 i）*/
+const PARTS = (() => {
+  const r = rng(20261115), out: { sx: number; sy: number; tx: number; ty: number; d: number; c: 0 | 1 }[] = [];
+  for (let k = 0; k < 150; k++) {
+    const foot = r() < 0.42, copper = k % 9 === 0;
+    const tx = copper ? 276 + r() * 64 : foot ? 118 + r() * 222 : 118 + r() * 72;
+    const ty = copper ? 214 + r() * 116 : foot ? 330 + r() * 70 : 104 + r() * 226;
+    const ang = r() * Math.PI * 2, dist = 520 + r() * 620;
+    out.push({ sx: DE.LOGO_CX + Math.cos(ang) * dist, sy: DE.LOGO_CY + Math.sin(ang) * dist * 1.2, tx: LX(tx), ty: LY(ty), d: r() * DE.f.gatherSpread, c: copper ? 1 : 0 });
+  }
+  return out;
+})();
+const SPARKS = (() => { const r = rng(808); return Array.from({ length: 16 }, (_, k) => ({ a: (k / 16) * Math.PI * 2 + r() * 0.3, v: 160 + r() * 200 })); })();
+/** 背景點陣（片尾卡專用）：撞擊時從字標往外擴一圈波，經過的點變亮 */
+const ENDDOTS = (() => { const out: [number, number][] = []; for (let y = DE.TOP + 20; y < DE.BOTTOM; y += 36) for (let x = 18; x < L.W; x += 36) out.push([x, y]); return out; })();
+
+const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string; tag: string }> = ({ sh, f, slogan, name, tag }) => {
   const e = f - sh.start, F = DE.f;
   if (e < 0) return null;
   const spec = (sh.p.endCard ?? {}) as EndSpec;
   const pin = tween(f, sh.start, NM.cut, EASE.move);
   const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
-  // i 點：16 幀起從卡片上方加速落下（重力感），28 幀撞到 i 身，壓扁後回彈一點，34 幀定住
-  let dotY = -900, squash = 0;
-  if (e >= F.drop) {
-    if (e < F.impact) { const q = (e - F.drop) / (F.impact - F.drop); dotY = -95 * (1 - q * q); }
-    else if (e < F.rebound) { const q = (e - F.impact) / (F.rebound - F.impact); dotY = -5 * Math.sin(Math.PI * q); squash = Math.max(0, 1 - q * 2.2); }
-    else dotY = 0;
-  }
-  const li: LiState = { lv: ease(F.lv, F.lvDur), lh: ease(F.lh, F.lhDur), stem: ease(F.stem, F.stemDur), dotY, squash };
-  // 撞擊震動：只有 28–38 幀，幅度遞減
-  const k = e >= F.impact && e < F.shakeEnd ? (1 - (e - F.impact) / (F.shakeEnd - F.impact)) : 0;
-  const sx = r1(k * 5 * Math.sin((e - F.impact) * 2.6)), sy = r1(k * 4 * Math.cos((e - F.impact) * 3.1));
-  const ringP = e >= F.ring ? Math.min(1, (e - F.ring) / F.ringDur) : 0;
-  const cardX = (L.W - DE.CARD_S) / 2;
+  // 撞擊震動（36–44 幀，遞減）
+  const k = e >= F.impact && e < F.shakeEnd ? 1 - (e - F.impact) / (F.shakeEnd - F.impact) : 0;
+  const sx = r1(k * 7 * Math.sin((e - F.impact) * 2.7)), sy = r1(k * 6 * Math.cos((e - F.impact) * 3.3));
+  // 粒子位置（含三格拖尾）
+  const pos = (p: (typeof PARTS)[number], fr: number) => { const q = easeOut3((fr - F.gather - p.d) / F.gatherDur); return [p.sx + (p.tx - p.sx) * q, p.sy + (p.ty - p.sy) * q, q] as const; };
+  const solid = ease(F.solid, F.solidDur), partO = 1 - solid;
+  const stem = ease(F.stem, F.stemDur);
+  // i 點：28 幀從 2.4 倍大、淡淡的樣子縮下來，36 幀「蓋下去」定住（之後壓扁一下回彈）
+  const dq = e < F.stamp ? -1 : Math.min(1, (e - F.stamp) / (F.impact - F.stamp));
+  const dScale = dq < 0 ? 0 : dq < 1 ? 2.4 - 1.4 * dq * dq : 1 + 0.12 * Math.max(0, 1 - (e - F.impact) / 5) * Math.cos((e - F.impact) * 1.4);
+  const dOp = dq < 0 ? 0 : dq < 1 ? 0.25 + 0.75 * dq : 1;
+  const dcx = LX(308), dcy = LY(154), dr = (38 * DE.LOGO_S) / 512;
+  const flash = e >= F.impact ? Math.max(0, 1 - (e - F.impact) / F.flashDur) : 0;
+  const waveR = e >= F.wave ? 1300 * easeOut3((e - F.wave) / F.waveDur) : -1, waveOn = e >= F.wave && e < F.wave + F.waveDur + 6;
+  const scanP = e >= F.scan && e < F.scan + F.scanDur ? (e - F.scan) / F.scanDur : -1;
   const chars = [...name];
   return (
-    <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)` }}>
+    <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)`, overflow: "hidden" }}>
       <Backdrop />
-      <div style={{ position: "absolute", left: cardX + sx, top: DE.CARD_Y - DE.TOP + sy, width: DE.CARD_S, height: DE.CARD_S, background: DE.paper, boxShadow: T.paperShadow, border: `2px solid ${DE.paperEdge}`, boxSizing: "border-box", clipPath: F.cardDur > 0 ? clip(ease(F.card, F.cardDur), "down") : undefined, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <LiMark size={Math.round(DE.CARD_S * 0.86)} s={li} />
-        {ringP > 0 && ringP < 1 ? <div style={{ position: "absolute", left: DE.CARD_S / 2 + (335 - 256) * DE.CARD_S * 0.86 / 512 - 40 - 120 * ringP, top: DE.CARD_S / 2 + (154 - 256) * DE.CARD_S * 0.86 / 512 - 40 - 120 * ringP, width: 80 + 240 * ringP, height: 80 + 240 * ringP, borderRadius: "50%", border: `3px solid ${DE.copper}`, opacity: r1(1 - ringP), boxSizing: "border-box" }} /> : null}
+      <svg width={L.W} height={DE.BOTTOM - DE.TOP} style={{ position: "absolute", left: 0, top: 0 }}>
+        <g transform={`translate(0,${-DE.TOP})`}>
+          {ENDDOTS.map(([x, y], i) => {
+            const dd = Math.hypot(x - DE.LOGO_CX, y - DE.LOGO_CY), hit = waveOn ? Math.max(0, 1 - Math.abs(dd - waveR) / 70) : 0;
+            return <rect key={i} x={x - 2} y={y - 2} width={4} height={4} fill={hit > 0.05 ? DE.dotHi : DE.dot} opacity={hit > 0.05 ? r1(0.3 + 0.7 * hit) : 1} />;
+          })}
+        </g>
+      </svg>
+      <div style={{ position: "absolute", left: sx, top: sy - DE.TOP, width: L.W, height: L.H }}>
+        <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+          {/* 撞擊光暈（徑向漸層只用在這一下閃光） */}
+          <defs><radialGradient id="endglow"><stop offset="0%" stopColor={DE.glowHi} /><stop offset="35%" stopColor={DE.glow} /><stop offset="100%" stopColor="rgba(208,100,63,0)" /></radialGradient></defs>
+          {flash > 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * (2 + 6 * (1 - flash)))} fill="url(#endglow)" opacity={r1(flash)} /> : null}
+          {/* 資料粒子（匯聚中，三格拖尾） */}
+          {partO > 0 ? PARTS.map((p, i) => {
+            if (e < F.gather + p.d) return null;
+            const col = p.c ? DE.darkCopper : DE.darkL;
+            return <g key={i} opacity={r1(partO)}>{[3, 2, 1, 0].map((b) => { const [x, y, q] = pos(p, e - b * 1.2); return q > 0 ? <rect key={b} x={r1(x - 3)} y={r1(y - 3)} width={6} height={6} fill={col} opacity={b ? r1(0.12 * (4 - b)) : 1} /> : null; })}</g>;
+          }) : null}
+          {/* 實心 L 與 i 身 */}
+          <g opacity={r1(solid)}>
+            <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill={DE.darkL} />
+          </g>
+          <rect x={LX(276)} y={LY(330) - (LY(330) - LY(214)) * stem} width={LX(340) - LX(276)} height={(LY(330) - LY(214)) * stem} fill={DE.darkCopper} />
+          {/* 掃描光：撞擊後一道亮帶由上往下掃過字標 */}
+          {scanP >= 0 ? <rect x={LX(100)} y={LY(90) + (LY(420) - LY(90)) * scanP - 18} width={LX(360) - LX(100)} height={36} fill={DE.glowHi} opacity={r1(0.35 * Math.sin(Math.PI * scanP))} /> : null}
+          {/* i 點（蓋章） */}
+          {dq >= 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * dScale)} fill={DE.darkCopper} opacity={r1(dOp)} /> : null}
+          {/* 兩圈衝擊波 */}
+          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr + 420 * easeOut3(q))} fill="none" stroke={DE.darkCopper} strokeWidth={r1(6 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
+          {/* 火花：往外噴、減速、拖尾 */}
+          {e >= F.spark && e < F.spark + F.sparkDur ? SPARKS.map((s, j) => {
+            const q = (e - F.spark) / F.sparkDur, d1 = s.v * easeOut3(q), d0 = s.v * easeOut3(Math.max(0, q - 0.12));
+            return <line key={j} x1={r1(dcx + Math.cos(s.a) * (dr + d0))} y1={r1(dcy + Math.sin(s.a) * (dr + d0))} x2={r1(dcx + Math.cos(s.a) * (dr + d1))} y2={r1(dcy + Math.sin(s.a) * (dr + d1))} stroke={j % 2 ? DE.darkL : DE.darkCopper} strokeWidth={3} strokeLinecap="round" opacity={r1(1 - q)} />;
+          }) : null}
+        </svg>
       </div>
-      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", gap: 6 }}>
-        {chars.map((c, i) => <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= F.name[Math.min(i, F.name.length - 1)] ? 1 : 0, transform: `translateY(${e >= F.name[Math.min(i, F.name.length - 1)] ? r1(10 * (1 - ease(F.name[Math.min(i, F.name.length - 1)], 5))) : 0}px)` }}>{c}</span>)}
+      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 6 }}>
+        {chars.map((c, i) => { const a = F.name[Math.min(i, F.name.length - 1)]; return <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= a ? 1 : 0, transform: `translateY(${e >= a ? r1(12 * (1 - ease(a, 5))) : 0}px)` }}>{c}</span>; })}
+        <span style={{ ...serif(DE.TAG_PX, T.weight.serif, T.text2), lineHeight: 1, marginLeft: 18, opacity: ease(F.tag, 6) }}>｜{tag}</span>
       </div>
-      <div style={{ position: "absolute", left: (L.W - 420) / 2, top: DE.RULE_Y - DE.TOP, width: r1(420 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.copper }} />
+      <div style={{ position: "absolute", left: (L.W - 520) / 2, top: DE.RULE_Y - DE.TOP, width: r1(520 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.darkCopper }} />
       <div style={{ position: "absolute", left: 0, width: L.W, top: DE.SLOGAN_Y - DE.TOP, textAlign: "center", ...sans(DE.SLOGAN_PX, T.weight.bold, T.text2), letterSpacing: "0.3em", opacity: ease(F.slogan, 8) }}>{slogan}</div>
       {spec.next ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NEXT_Y - DE.TOP, textAlign: "center", ...sans(DE.NEXT_PX, T.weight.bold, T.text), opacity: ease(F.next, 6) }}><span style={{ color: T.accentText, letterSpacing: "0.2em" }}>下一集 ▸ </span>{spec.next}</div> : null}
       {spec.comment ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.CMT_Y - DE.TOP, display: "flex", justifyContent: "center", opacity: ease(F.cmt, 6) }}>
@@ -754,7 +812,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       <SweepBand shots={m.shots} f={f} />
       <LowerThird cues={caps} shots={m.shots} f={f} />
       <SourceTicker shots={m.shots} f={f} asOf={asOf} />
-      {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
+      {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
       <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       {audio}
     </AbsoluteFill>
