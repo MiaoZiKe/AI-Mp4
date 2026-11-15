@@ -466,7 +466,7 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number;
  *  2026/11/15 使用者回饋「最後的結尾，我的 LOGO 需要有動畫特效」：中間的大標誌依序 ① 開口圈描線畫出來 ② 橘色圓點從上方彈進來落定（阻尼回彈）
  *  ③ 落定時一圈淡色光暈往外擴一次（細線，不發光）④ 頻道名、底線、slogan、軌跡、下一支依序進場。全部在 ENDCARD 幀內落定，之後至少停 1 秒。
  *  at（可省略）＝片尾卡提早開始的 cue（例如 "s19:litho-12"，讓片尾卡至少 3 秒而不動配音時間軸）；nextAt＝「下一支」標籤跳出來的 cue（對著旁白念到題目） */
-const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, nextAt, spec, channel }) => {
+const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { next?: string; kicker?: string; trail?: string[]; comment?: string }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, nextAt, spec, channel }) => {
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
   const E = ENDCARD, n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 40, y1 = L.CAP_TOP + L.CAP_H;
@@ -480,6 +480,7 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
   // 「下一支」一律等 LOGO 落定之後（at＋E.next）才出現；nextAt 只能更晚，不能搶在 LOGO 前面
   const nAt = Math.max(at + E.next, nextAt ?? 0), nx = tween(f, nAt, 7, EASE.enter), nxPop = 1 + 0.12 * Math.sin(Math.PI * tween(f, nAt + 4, 8, EASE.move));
   const trail = spec?.trail ?? [];
+  const cm = tween(f, at + E.comment, 8, EASE.enter);
   const LOGO = 300, cy = L.STAGE_TOP + 300;
   return (
     <AbsoluteFill style={{ opacity: k }}>
@@ -492,7 +493,9 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + 418, width: 760 * line, height: 6, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: cy + 450, textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
       {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 600, display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + E.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + E.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 744, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 716, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {/* 留言關鍵字（2026/11/15 Andy：「往後製作影片後面可以補上 留言『XXXX』我就把資訊傳給他，IG Thread 都是」）：LOGO 落定後才出現，在「下一支」下方 */}
+      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 884, display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整資料</div></div> : null}
     </AbsoluteFill>
   );
 };

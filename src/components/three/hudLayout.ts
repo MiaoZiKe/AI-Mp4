@@ -253,7 +253,7 @@ export const placeLabel = (l: Label3D, p: { x: number; y: number }, an: { dx: nu
  *  draw 圓環從缺口對面往兩邊長、停在缺口（不轉）→ dot 橘點從缺口外側沿短弧線進來落定（[出發, 落定]，之後小回彈約 6 幀）→
  *  land 圓環接住的回應長度（線條微粗＋淡色細線往外擴一圈）→ name 頻道名 → line 底線 → slogan → trail 軌跡（每塊隔 2 幀）→ next「下一支」（LOGO 落定後才出）；
  *  settled＝全部落定（之後至少停 1 秒） */
-export const ENDCARD = { draw: [2, 18], dot: [14, 27], land: 12, name: 30, line: 35, slogan: 38, trail: 42, next: 52, settled: 64 } as const;
+export const ENDCARD = { draw: [2, 18], dot: [14, 27], land: 12, name: 30, line: 35, slogan: 38, trail: 42, next: 52, comment: 56, settled: 64 } as const;
 export const ENDCARD_SETTLED = ENDCARD.settled;
 
 /** 儀表（meter 動作寫了 x、y 的那種）的高度估算：標題列＋條＋低／高兩字 */

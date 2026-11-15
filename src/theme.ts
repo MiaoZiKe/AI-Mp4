@@ -531,8 +531,10 @@ export const LAYOUT_3D_FILL = {
   SRC_TOP: 1648, SRC_PX: 34,
   LOGO_PX: 80, LOGO_NAME_PX: 64, TAG_PX: 34,
   CONTENT_BOTTOM: 1700, SMALL_MIN: 30,
+  /** 片尾卡「留言「關鍵字」拿完整資料」的字級（≥40） */
+  ENDCARD_COMMENT_PX: 46,
 } as const;
-export const LAYOUT_3D_DEFAULT_HUD = { LOGO_PX: 46, LOGO_NAME_PX: 40, TAG_PX: 28, CONTENT_BOTTOM: 1700, SMALL_MIN: 0 } as const;
+export const LAYOUT_3D_DEFAULT_HUD = { LOGO_PX: 46, LOGO_NAME_PX: 40, TAG_PX: 28, CONTENT_BOTTOM: 1700, SMALL_MIN: 0, ENDCARD_COMMENT_PX: 46 } as const;
 
 /** stage "three" 的深色科技 HUD 與 Powers of Ten 縮放（script.json 頂層 hud: { theme: "dark", levels }；src/components/three/Hud.tsx）。
  *  只是新增，沒寫 hud 的片完全不讀這裡。HUD 是細線 UI（1.5–3px、實色），不用發光濾鏡。 */

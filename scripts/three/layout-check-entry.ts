@@ -1,7 +1,7 @@
 // scripts/three/layout-check.mjs 用 esbuild 打包這支（不開瀏覽器）：用和畫面同一份的 engine.ts／hudLayout.ts 算每一幀的版面，找出
 // 標籤／蓋章壓到模型、兩張卡同時出現又重疊、內容超出安全區、內容底部太高（下方空白太多）、小字太小、片尾卡太短。
 import { buildModel, stateAt } from "../../src/components/three/engine";
-import { arrangeOverlays, cardRect, hit, area, modelRect, obstaclesOf, placeLabels, stampRect, textW, visible, zoomAt, zoomKeys, ENDCARD_SETTLED, METER_H, type Rect } from "../../src/components/three/hudLayout";
+import { arrangeOverlays, cardRect, hit, area, modelRect, obstaclesOf, placeLabels, stampRect, textW, visible, zoomAt, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
 import { setHudLayout, setHudSkin, H } from "../../src/components/three/hudSkin";
 import { cameraFor, projectPoint } from "../../src/components/three/engine";
 import { EASE, tween } from "../../src/components/anim";
@@ -36,6 +36,17 @@ export const check = (script: any) => {
     const at = ec.at ? resolveAt(tl, endScene.id, ec.at) : by[endScene.id]?.startFrame;
     const len = total - at;
     if (len < 90) E("片尾卡", `片尾卡 ${(len / 30).toFixed(2)} 秒，要 ≥3 秒（可用 endCard.at 提早開始）`);
+    // 留言關鍵字（2026/11/15 Andy）：每支片尾卡都要有、2～4 字、字級 ≥40、在 LOGO 落定後出現、整行在安全區與片尾卡框內
+    if (!ec.comment) W("片尾卡", "endCard.comment 沒寫：每支影片要訂一個留言關鍵字（2～4 字），片尾卡顯示「留言「關鍵字」拿完整資料」");
+    else {
+      const n = [...String(ec.comment)].length, line = `留言「${ec.comment}」拿完整資料`, px = L.ENDCARD_COMMENT_PX, w = textW(line, px), top = L.STAGE_TOP + 300 + 884;
+      if (n < 2 || n > 4) E("片尾卡", `留言關鍵字「${ec.comment}」${n} 字，要 2～4 字`);
+      if (px < 40) E("小字", `片尾卡留言關鍵字 ${px}px < 40`);
+      if (w > L.INNER_W - 40) E("片尾卡", `「${line}」寬約 ${Math.round(w)}px，放不下一行`);
+      if (top + px * 1.4 > Math.min(SAFE.y1, L.CAP_TOP + L.CAP_H)) E("片尾卡", `留言關鍵字那一行超出片尾卡框（下緣 y${Math.round(top + px * 1.4)}）`);
+      if (ENDCARD.comment < ENDCARD.dot[1] + 6) E("片尾卡", "留言關鍵字要等 LOGO 落定後才出現");
+      if (len - (ENDCARD.comment + 8) < 30) E("片尾卡", "留言關鍵字出現後停不到 1 秒");
+    }
     if (len - ENDCARD_SETTLED < 30) E("片尾卡", `片尾卡動畫在第 ${ENDCARD_SETTLED} 幀才落定，之後只停 ${((len - ENDCARD_SETTLED) / 30).toFixed(2)} 秒（要 ≥1 秒）`);
   }
   // 出處列：一行要放得下（Hud.tsx 會縮字，但不低於 30px）

@@ -266,7 +266,7 @@
 - **`hud.layout: "fill"`**（撐滿版面）：數字在 `src/theme.ts` 的 `LAYOUT_3D_FILL`（頁首 228、LOGO 80px、頻道名 64px、舞台 356–1356、字幕框 1372–1628（中文 76px、英文 36px）、出處 1648 起 34px）。`src/components/three/hudSkin.ts` 的 `setHudLayout` 切換，同時把 3D 舞台框告訴 `engine.ts`（`setStage`，標籤投影用）。沒寫＝原本的 `LAYOUT_3D`。
 - **版面計算拆到 `src/components/three/hudLayout.ts`**（純計算，不畫）：縮放級數、模型投影範圍（`modelRect`、`modelUnion`）、疊層整理（`arrangeOverlays`：蓋章自動避開模型／HUD 讀數／標籤／儀表，換幕重疊的自動延後進場）、標籤放置（`placeLabels`：整段固定在模型外的空位，只有引線跟著零件）、片尾卡時間表（`ENDCARD`）。疊層寫 `avoid: false` 就不自動挪。
 - **`scripts/three/layout-check.mjs <slug>`**：用 esbuild 把上面同一份程式打包到 node 裡逐幀檢查（不開瀏覽器，約 1 秒），validate 對有 `hud` 的片自動跑；寫了 `layout: "fill"` 的片 error 會擋，舊片只出 warning。
-- **片尾卡** `endCard.at`（提早開始的 cue）、`endCard.nextAt`（「下一支」最早出現的 cue；一律不早於 LOGO 落定）；中間大標誌的動畫照「圈子打開，你走進來」：圓環從缺口對面往兩邊長（不轉）→ 橘點從缺口外側沿短弧線進來、小回彈 → 圓環線條微粗＋淡色細線外擴（接住）→ 頻道名、底線、slogan、軌跡 → 下一支（規則與時間表見 `docs/channels/tech-daily-playbook.md` 第九節「片尾 LOGO 動畫」）；頁首 LOGO 在片尾卡上也照畫。
+- **片尾卡** `endCard.at`（提早開始的 cue）、`endCard.nextAt`（「下一支」最早出現的 cue；一律不早於 LOGO 落定）；中間大標誌的動畫照「圈子打開，你走進來」：圓環從缺口對面往兩邊長（不轉）→ 橘點從缺口外側沿短弧線進來、小回彈 → 圓環線條微粗＋淡色細線外擴（接住）→ 頻道名、底線、slogan、軌跡 → 下一支（規則與時間表見 `docs/channels/tech-daily-playbook.md` 第九節「片尾 LOGO 動畫」）；頁首 LOGO 在片尾卡上也照畫。`endCard.comment`（2～4 字）＝留言關鍵字，片尾卡在「下一支」下方顯示「留言「關鍵字」拿完整資料」（`LAYOUT_3D_FILL.ENDCARD_COMMENT_PX`＝46）。
 - **`flow` 動作的電流效果**（`src/components/three/Ops.tsx`，資料寫在 `model.json` 的 `actions`）：
   - `drive: true`：位置用強度的積分（`engine.ts` 的 `op.u`），所以 `run` 的 `ramp` 就是加速／減速的幀數（tech-2nm 寫 13＝約 0.43 秒慢下來停住）；同時密度跟著強度（`minVisible`＝最慢時剩幾成，按固定亂數順序收掉）。
   - `lanes`／`laneGap`／`laneDir`：同一條路徑並排幾道（一片薄片三道＝看起來是一片電子流）；`jitter`：垂直方向的小抖動。
