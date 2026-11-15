@@ -836,6 +836,8 @@ export const LAYOUT_ISO = {
   MAIN_TOP: 336, MAIN_BOTTOM: 1250,
   CAP_TOP: 1290, CAP_H: 226, CAP_ZH_PX: 70, CAP_EN_PX: 32,
   SRC_TOP: 1560, SRC_PX: 28, MIN_PX: 28,
+  /** 短片（isoVersion 3）下方桌緣色帶的上緣（只放裝飾，不放要讀的字） */
+  BAND_TOP: 1640,
 } as const;
 
 /** CPI 實測短片（src/components/cpi/，composition「CpiVideo」，scripts/cpi/run.mjs）：深色乾淨科技感、自畫對話框、數字放大強調 */

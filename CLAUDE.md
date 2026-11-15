@@ -83,7 +83,7 @@
   - `stage: "chart"`（股票，資料圖表主導）：`src/components/chartlead/`，每幕 `component: "ChartScene"`，資料寫在頂層 `chart`；token＝`THEME_CHARTLEAD`／`LAYOUT_CHARTLEAD`；檢查 `scripts/chartlead/validate-chart.mjs`；樣片 `videos/sample-stock-chart/`。只畫查證過的資料點，紅色代表上漲（台股習慣），不給投資建議。
 - 共同規則：元件不寫死色碼；事件的 `at` 只寫 cue id 或 `start｜voice｜end｜exit` 加減幾幀，不手填秒數；不出現真實商標與真人；這四種可以用淡入淡出（紙拼貼的「不用透明度」規則只管沒有 `stage` 的 v3）。
 - **深色 HUD 片的頻道皮膚**（`videos/tech-2nm/`，科技透明圈第一支完整片）：script.json 頂層 `hudSkin: "deep"｜"glass"｜"brand"｜"light"` 選配色，色票全部在 `src/theme-hud-skins.json`（換色只改這一個欄位；新增一套就在 JSON 加一個鍵）；另有 `props.reexplode`、overlay `bars`、片尾卡（最後一幕 `silent: true`＋`props.endCard`）、旁白設定檔 `tech-report`，寫法見 `docs/three-stage.md` 第八節。使用者 2026/11/15 選定科技頻道用 `light`（頻道貼文風：淺藍白底＋亮藍＋橘、開口圈標誌）；`glass`、`brand` 留著備用。
-- **科技片三條固定規則**（使用者 2026/11/15）：LOGO 固定左上、版面填滿（`LAYOUT_HUD`）；片尾卡 LOGO 要有動畫（使用者 2026/11/15 選定 `logoAnim: "particles"` 粒子聚合加強版，`src/components/three/LogoAnims.tsx`；片尾 3 秒）；電流等運作效果用 `stream`（電子流跟著閘極電壓加速／減速停住、電場線）。細節見 `docs/channels/tech-daily-playbook.md`。
+- **科技片三條固定規則**（使用者 2026/11/15）：LOGO 固定左上、版面填滿（`LAYOUT_HUD`）；片尾卡 LOGO 要有動畫（使用者 2026/11/15 定案 `logoAnim: "transparent"`「透明圈」加強版，`src/components/three/LogoAnims.tsx`；片尾 3 秒，配可愛科技感合成音效與五字招牌音，做法在 `docs/channels/tech-daily-playbook.md`）；電流等運作效果用 `stream`（電子流跟著閘極電壓加速／減速停住、電場線）。細節見 `docs/channels/tech-daily-playbook.md`。
 - **3D 片的前 3 秒與留存**（使用者 2026/11/14 要求、三位評審評估）：第 0 幀要有反差或後果的大字加一個已經在動的東西（不是只有產品在轉），先給結果再拆開；中段逐步揭曉並畫出一個衝突，結尾＝具體提問＋下一集鉤子；示意動畫不畫成歸零。新畫面優先用 2D 疊層 `props.overlay`（`scope｜stamp｜cross｜circle｜steps｜card｜ribbon`，`src/components/three/Overlays.tsx`，不增加 3D 成本）。18 條檢查清單在 `docs/channels/tech-3d.md`，評估全文與採用理由在 `docs/tech-3d-expert-review.md`；照做的樣片是 `videos/sample-tech-anc/`。
 - **3D 只開放給科技頻道**（使用者已同意）：全專案只有 `src/components/three/` 可以 import three.js／`@remotion/three`（validate 會擋其他資料夾）；v2、紙拼貼與其他 `stage` 仍禁止 3D。模型用基本形狀自己建，不畫真實商標、不仿特定機型。
 - 3D 的 GL 設定與限制：這台機器 4 核心、沒有 GPU，預設的 `gl: "swiftshader"` 開不出 WebGL；`stage: "three"` 時 `scripts/lib.mjs` 自動改用 `swangle`，平行數預設 1（`THREE_CONCURRENCY` 可調，樣片用 4）。成本幾乎和 3D 畫布的像素數成正比：`THEME_3D.fx.dpr`（畫布倍率）1＝每幀約 2.7 秒、1.35（樣片）＝平行數 4 時每幀約 2 秒（441 幀約 15 分鐘）、2＝約 8.3 秒；一般畫面每幀約 0.05 秒。MSAA、物理材質（PBR）、陰影貼圖、折射在這台機器都太貴（數字在 `docs/three-stage.md`），預設用 Phong＋程式畫的環境貼圖＋壓扁的假陰影；正式長片要先 `node scripts/three/bench30.mjs <slug>` 估時間。
@@ -149,7 +149,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 ## 所有頻道的版面規則（使用者 2026/11/15：「所有影片都是」）
 - 頻道 LOGO 固定在左上角，全片不動、不換位置。
 - 版面不要留大片空白：主視覺、字幕、出處要適當填滿 1080×1920，上方與下方不留死白帶（平台介面區不放重要文字，但也不能看起來是空的）。
-- 片尾卡的頻道 LOGO 要有動畫（例如描線畫出、圓點彈入、輕微脈動），不能只是靜止圖。
+- 片尾卡的頻道 LOGO 要有動畫（例如描線畫出、圓點彈入、輕微脈動），不能只是靜止圖；**片尾 LOGO 也要配音效**（程式合成、對準動作，頻道名逐字出現時用固定的招牌旋律；使用者 2026/11/15：「後面 LOGO 音效也要寫進去，他是需要的」）。
 - 物理或運作效果（電流流動、訊號傳遞、零件動作等）要做得清楚、有方向感、跟旁白同步，示意也要像真的在動。
 - 第一支照這四條修改的是 `videos/tech-2nm/`；其他頻道的新片一律照做，舊片要改時再套用。
 

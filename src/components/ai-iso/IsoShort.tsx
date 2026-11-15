@@ -563,9 +563,89 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
   );
 };
 
+// ───────── 上下兩條色帶（2026/11/15 版面規則：上下不留死白；平台介面區不放要讀的字，只放裝飾） ─────────
+/** 一顆等距小方塊（top／左／右三面），中心在 (0,0)，邊長 a */
+const Cube: React.FC<{ a: number; tone: string }> = ({ a, tone }) => {
+  const c = T.solid[tone] ?? T.solid.lav, h = a * 0.5;
+  return (
+    <g>
+      <path d={`M0 ${-h} L${a} 0 L0 ${h} L${-a} 0 Z`} fill={c.top} />
+      <path d={`M${-a} 0 L0 ${h} L0 ${h + a} L${-a} ${a} Z`} fill={c.l} />
+      <path d={`M${a} 0 L0 ${h} L0 ${h + a} L${a} ${a} Z`} fill={c.r} />
+    </g>
+  );
+};
+const BAND_TONES = ["lav", "sky", "mint", "yellow", "coral", "plum"];
+const Bands: React.FC<{ f: number }> = ({ f }) => {
+  const top = L.HEADER_TOP - 22, bot = L.BAND_TOP;
+  return (
+    <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
+      <defs>
+        <linearGradient id="isoBandTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={T.solid.lav.top} stopOpacity={0.55} /><stop offset="1" stopColor={T.bg} stopOpacity={0} /></linearGradient>
+        <linearGradient id="isoBandBot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={T.solid.desk.top} stopOpacity={0.9} /><stop offset="1" stopColor={T.solid.desk.l} stopOpacity={0.95} /></linearGradient>
+      </defs>
+      <rect x={0} y={0} width={L.W} height={top} fill="url(#isoBandTop)" />
+      {/* 上方：一排慢慢上下浮的小方塊 */}
+      {Array.from({ length: 9 }, (_, i) => { const x = 60 + i * 120, y = 120 + 12 * Math.sin(f / 17 + i * 0.9); return <g key={i} transform={`translate(${x} ${y.toFixed(1)})`} opacity={0.55}><Cube a={14 + (i % 3) * 4} tone={BAND_TONES[i % 6]} /></g>; })}
+      {/* 下方：桌緣色帶（像桌面延伸出畫面）＋一排方塊慢慢往左滑 */}
+      <path d={`M0 ${bot + 26} Q ${L.W / 2} ${bot - 14} ${L.W} ${bot + 26} L ${L.W} ${L.H} L 0 ${L.H} Z`} fill="url(#isoBandBot)" />
+      <path d={`M0 ${bot + 26} Q ${L.W / 2} ${bot - 14} ${L.W} ${bot + 26}`} fill="none" stroke={T.solid.desk.r} strokeWidth={6} />
+      {Array.from({ length: 11 }, (_, i) => { const x = ((i * 118 - f * 1.2) % 1298 + 1298) % 1298 - 100, y = bot + 120 + (i % 2) * 34; return <g key={i} transform={`translate(${x.toFixed(1)} ${y})`} opacity={0.75}><Cube a={20 + (i % 3) * 5} tone={BAND_TONES[(i + 2) % 6]} /></g>; })}
+    </svg>
+  );
+};
+
+// ───────── 片尾卡：小方塊從上面掉下來疊成底座 → LOGO 方塊落地回彈 → 對話泡泡彈出、游標把頻道名打出來 → slogan ─────────
+const EndIso: React.FC<{ f: number; at: number; p: Record<string, any>; name: string }> = ({ f, at, p, name }) => {
+  const a = f - at, c = col("primary"), cx = L.W / 2, cy = 860;
+  const wipe = eio(f, at, 10); // 圓形擴開蓋住桌面
+  const word = String(p.word ?? "AI 動手做"), chars = [...word], tType = at + 34, typed = Math.max(0, Math.min(chars.length, Math.floor((f - tType) / 3) + 1));
+  const tLogo = at + 20, land = f >= tLogo ? tween(f, tLogo, 7, EASE.enter) : 0;
+  const squash = f < tLogo + 7 ? 1 : 1 + 0.16 * Math.exp(-(f - tLogo - 7) / 4) * Math.cos((f - tLogo - 7) / 1.6);
+  const cubes = [-3, -2, -1, 0, 1, 2, 3];
+  return (
+    <AbsoluteFill style={{ clipPath: `circle(${(wipe * 125).toFixed(2)}% at 50% 46%)`, background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }}>
+      <Bands f={f} />
+      <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
+        {/* 底座：七顆方塊依序掉下來，落地彈一下 */}
+        {cubes.map((k, i) => {
+          const t0 = at + 6 + i * 2, t = tween(f, t0, 8, EASE.enter), bob = f > t0 + 8 ? 6 * Math.exp(-(f - t0 - 8) / 5) * Math.sin((f - t0 - 8) / 1.4) : 0;
+          if (f < t0) return null;
+          const x = cx + k * 66, y = cy + 210 + Math.abs(k) * -0 - (1 - t) * 520 - bob;
+          return <g key={i} transform={`translate(${x} ${y.toFixed(1)})`}><Cube a={36} tone={BAND_TONES[(i + 1) % 6]} /></g>;
+        })}
+        {/* 落地時的擴散圈 */}
+        {f >= tLogo + 7 ? <ellipse cx={cx} cy={cy + 205} rx={120 + 260 * tween(f, tLogo + 7, 16)} ry={(120 + 260 * tween(f, tLogo + 7, 16)) * 0.42} fill="none" stroke={c.fill} strokeWidth={6} opacity={1 - tween(f, tLogo + 7, 16)} /> : null}
+      </svg>
+      {/* LOGO 方塊（和左上角的同一個圖形，放大） */}
+      <div style={{ position: "absolute", left: cx - 150, top: cy - 120 - (1 - land) * 700, width: 300, height: 270, transformOrigin: "50% 100%", transform: `scale(${(1 / squash).toFixed(4)}, ${squash.toFixed(4)})`, opacity: f >= tLogo ? 1 : 0 }}>
+        <div style={{ ...face(c.fill, c.side, 26, 78), display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.strong, fontSize: 150, color: c.on }}>{name}</div>
+        {/* 四角星：落地後轉半圈 */}
+        <svg width={90} height={90} viewBox="-50 -50 100 100" style={{ position: "absolute", right: -30, top: -36, transform: `rotate(${(180 * eio(f, tLogo + 8, 16)).toFixed(1)}deg) scale(${(f < tLogo + 8 ? 0 : pop(f, tLogo + 8, 0.6)).toFixed(3)})` }}><path d="M0 50 C0 12 -12 0 -50 0 C-12 0 0 -12 0 -50 C0 -12 12 0 50 0 C12 0 0 12 0 50 Z" fill={T.color.note.fill} /></svg>
+      </div>
+      {/* 對話泡泡：彈出，先三個點，再由游標打出頻道名 */}
+      <div style={{ position: "absolute", left: 0, width: L.W, top: cy - 420, display: "flex", justifyContent: "center" }}>
+        <div style={{ ...bounce(f, at + 26) }}>
+          <div style={{ position: "relative", background: T.card, borderRadius: 40, padding: "28px 52px", boxShadow: `0 10px 0 ${T.cardSide}, ${T.depth.soft}`, minWidth: 220, display: "flex", alignItems: "center", justifyContent: "center", height: 112 }}>
+            {f < tType ? [0, 1, 2].map((i) => <span key={i} style={{ width: 22, height: 22, borderRadius: 11, margin: "0 9px", background: c.fill, transform: `translateY(${(-12 * Math.max(0, Math.sin((a - i * 3) / 2.2))).toFixed(1)}px)` }} />) : (
+              <span style={{ ...zh, fontWeight: T.weight.title, fontSize: 84, color: T.ink }}>{chars.slice(0, typed).join("")}<span style={{ display: "inline-block", width: 8, height: 76, marginLeft: 6, verticalAlign: "-8px", background: c.fill, opacity: typed < chars.length || Math.floor(a / 7) % 2 === 0 ? 1 : 0 }} /></span>
+            )}
+            <span style={{ position: "absolute", left: "50%", bottom: -26, marginLeft: -20, width: 0, height: 0, borderLeft: "20px solid transparent", borderRight: "20px solid transparent", borderTop: `28px solid ${T.card}` }} />
+          </div>
+        </div>
+      </div>
+      {p.slogan ? <div style={{ position: "absolute", left: 0, width: L.W, top: cy + 330, textAlign: "center", ...riseInS(f, at + 52) }}><span style={{ ...zh, fontWeight: T.weight.strong, fontSize: 52, color: T.ink2 }}>{p.slogan}</span></div> : null}
+    </AbsoluteFill>
+  );
+};
+const riseInS = (f: number, at: number): React.CSSProperties => ({ opacity: tween(f, at, 6), transform: `translateY(${Math.round((1 - springAccent(f, at)) * 40)}px)` });
+
 export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
   const f = useCurrentFrame();
-  const panels = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
+  const all = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
+  // 片尾卡（panel: "end"，silent）不進桌面舞台：它是蓋在最上面的一張整頁卡，桌面在底下停在最後一鏡
+  const panels = useMemo(() => all.filter((x) => x.kind !== "end"), [all]);
+  const endP = all.find((x) => x.kind === "end");
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
   const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines.map((l) => ({ ...l, text: l.text.replace(/[，、；：。]+$/, "") })), keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
@@ -574,9 +654,11 @@ export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
       <Stage panels={panels} f={f} />
+      <Bands f={f} />
+      {endP && f >= endP.in ? <EndIso f={f} at={endP.in} p={endP.p} name={channel?.name ?? "AI"} /> : null}
       <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} />
-      <Caption cues={caps} f={f} />
-      <SourceLine cues={srcs} f={f} />
+      {endP && f >= endP.in + 6 ? null : <Caption cues={caps} f={f} />}
+      {endP && f >= endP.in + 6 ? null : <SourceLine cues={srcs} f={f} />}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}
