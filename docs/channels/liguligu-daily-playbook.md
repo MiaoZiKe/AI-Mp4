@@ -114,3 +114,15 @@
 | 72–108 | 全部停住 1.2 秒 | — |
 
 程式：`src/components/dossier/DossierVideo.tsx` 的 `EndCardDossier`；時間在 `DOSSIER_END.f`；音在 `scripts/dossier/sfx-logo-ligu.py`（G=3.7 時片尾段約 −11.7 LUFS）。不轉、不繞圈、落定後沒有待機動作。預覽頁：https://claude.ai/artifact/BJv6miMTRxkrxbbXUE2Mmz
+
+### 片尾主題版（2026/11/15 Andy：「LOGO 需要有對應主題的特效 效果 音效 需要引人注目」）
+
+骨架每集一樣（素材歸檔成 L → i 點蓋章定案 → 哩股哩股｜查到底 → 留言關鍵字，撞擊固定在片尾卡第 36 幀），**組成 L 的素材、撞擊特效、音色依主題換**。寫法：最後一幕 `props.endCard.theme`；色與震動幅度在 `DOSSIER_END.themes`；音效 `python3 scripts/dossier/sfx-logo-ligu.py <out.wav> <theme>`；混音 `bash scripts/dossier/mix-final.sh … <theme>`（各主題倍數不同，片尾段都約 −11.5 LUFS）。
+
+| theme | 用在 | 畫面 | 音效 |
+|---|---|---|---|
+| `data`（預設） | 一般題目 | 資料粒子匯聚、銅紅閃光、火花 | 細點歸檔、低頻定音＋銅鐘＋小調和弦 |
+| `power` | 電費、能源、電網 | 藍白電弧沿電網線竄進來（閃爍）、點陣由外往內通電；合閘：全畫面跳電閃白、6 道電弧劈出、藍白衝擊波、震動 11px | 60 Hz 嗡聲＋電弧劈啪（正弦顆粒）；合閘＝爆裂「啪」＋金屬合閘聲＋低頻＋嗡聲猛增後衰減 |
+| `chip` | 晶片、科技公司、輝達 | 晶片走線（直角、轉角過孔）亮起組成 L；蓋章時 `endCard.words` 三個字樣依序閃過（輝達：臨時執行長／執行副總裁／財務長） | 每條走線接上一聲數位脈衝（五聲音階）；印章重擊＋銅鐘；三個字樣各一聲兩音嗶 |
+
+新主題照這個表加一列：畫面寫進 `EndCardDossier` 的 theme 分支，音效寫進 `sfx-logo-ligu.py` 的 THEME 分支，倍數寫進 `mix-final.sh`。

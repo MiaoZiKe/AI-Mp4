@@ -531,7 +531,7 @@ const LiTile: React.FC<{ size: number }> = ({ size }) => (
     <LiMark size={Math.round(size * 0.92)} />
   </div>
 );
-type EndSpec = { comment?: string; next?: string };
+type EndSpec = { comment?: string; next?: string; theme?: "data" | "power" | "chip"; words?: string[] };
 /** 固定 seed 的亂數（片尾粒子用；每一幀算出來都一樣） */
 const rng = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
 const easeOut3 = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
@@ -554,15 +554,54 @@ const SPARKS = (() => { const r = rng(808); return Array.from({ length: 16 }, (_
 /** 背景點陣（片尾卡專用）：撞擊時從字標往外擴一圈波，經過的點變亮 */
 const ENDDOTS = (() => { const out: [number, number][] = []; for (let y = DE.TOP + 20; y < DE.BOTTOM; y += 36) for (let x = 18; x < L.W; x += 36) out.push([x, y]); return out; })();
 
+
+/** power：電弧沿電網線（橫、直）從畫面邊緣竄向 L；每條取樣 48 點，畫的時候每一幀加一點抖動（電光閃爍） */
+const ARCS = (() => {
+  const r = rng(6060), out: { pts: [number, number][]; d: number }[] = [];
+  const edge = [[0, 0.18], [0, 0.62], [1, 0.3], [1, 0.78], [0.2, 0], [0.75, 0], [0.15, 1], [0.6, 1], [1, 0.5]];
+  edge.forEach(([ex, ey], k) => {
+    const sx = ex * L.W, sy = DE.TOP + ey * (DE.BOTTOM - DE.TOP);
+    const foot = k % 2 === 0, tx = LX(foot ? 140 + r() * 180 : 140 + r() * 40), ty = LY(foot ? 345 + r() * 40 : 130 + r() * 190);
+    const mx = k % 3 === 0 ? sx : tx, my = k % 3 === 0 ? ty : sy; // 先橫再直或先直再橫（沿格線）
+    const raw: [number, number][] = [[sx, sy], [mx, my], [tx, ty]], pts: [number, number][] = [];
+    const seg = [Math.hypot(raw[1][0] - raw[0][0], raw[1][1] - raw[0][1]), Math.hypot(raw[2][0] - raw[1][0], raw[2][1] - raw[1][1])], tot = seg[0] + seg[1] || 1;
+    for (let i = 0; i <= 47; i++) { const s = (i / 47) * tot, a = s <= seg[0] ? 0 : 1, u = a === 0 ? s / (seg[0] || 1) : (s - seg[0]) / (seg[1] || 1); pts.push([raw[a][0] + (raw[a + 1][0] - raw[a][0]) * u, raw[a][1] + (raw[a + 1][1] - raw[a][1]) * u]); }
+    out.push({ pts, d: r() * 7 });
+  });
+  return out;
+})();
+/** chip：晶片走線（兩個直角彎）從邊緣畫到 L，轉角有過孔 */
+const TRACES = (() => {
+  const r = rng(4242), out: { pts: [number, number][]; d: number }[] = [];
+  for (let k = 0; k < 14; k++) {
+    const side = k % 4, foot = k % 3 === 0;
+    const tx = LX(foot ? 130 + r() * 200 : 125 + r() * 55), ty = LY(foot ? 340 + r() * 50 : 115 + r() * 205);
+    const sx = side === 0 ? 0 : side === 1 ? L.W : 60 + r() * (L.W - 120), sy = side === 2 ? DE.TOP : side === 3 ? DE.BOTTOM : DE.TOP + 120 + r() * (DE.BOTTOM - DE.TOP - 240);
+    const m = side < 2 ? [[sx + (tx - sx) * (0.3 + 0.3 * r()), sy], [sx + (tx - sx) * (0.3 + 0.3 * r()), ty]] : [[sx, sy + (ty - sy) * (0.3 + 0.3 * r())], [tx, sy + (ty - sy) * (0.3 + 0.3 * r())]];
+    out.push({ pts: [[sx, sy], m[0] as [number, number], m[1] as [number, number], [tx, ty]], d: r() * 8 });
+  }
+  return out;
+})();
+/** 沿折線取到第 q（0–1）長度為止的點 */
+const polyUpTo = (pts: [number, number][], q: number): [number, number][] => {
+  const lens = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1])), tot = lens.reduce((a, b) => a + b, 0) || 1;
+  let left = tot * Math.max(0, Math.min(1, q)); const out: [number, number][] = [pts[0]];
+  for (let i = 0; i < lens.length; i++) { if (left >= lens[i]) { out.push(pts[i + 1]); left -= lens[i]; } else { const u = lens[i] ? left / lens[i] : 0; out.push([pts[i][0] + (pts[i + 1][0] - pts[i][0]) * u, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * u]); break; } }
+  return out;
+};
+const jag = (pts: [number, number][], seed: number, amp: number) => { const r = rng(seed); return pts.map(([x, y], i) => (i === 0 || i === pts.length - 1 ? [x, y] : [x + (r() - 0.5) * amp, y + (r() - 0.5) * amp]) as [number, number]); };
+const pstr = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? "L" : "M"}${r1(x)} ${r1(y)}`).join("");
+
 const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string; tag: string }> = ({ sh, f, slogan, name, tag }) => {
   const e = f - sh.start, F = DE.f;
   if (e < 0) return null;
   const spec = (sh.p.endCard ?? {}) as EndSpec;
+  const theme = spec.theme ?? "data", TH = DE.themes[theme];
   const pin = tween(f, sh.start, NM.cut, EASE.move);
   const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
   // 撞擊震動（36–44 幀，遞減）
   const k = e >= F.impact && e < F.shakeEnd ? 1 - (e - F.impact) / (F.shakeEnd - F.impact) : 0;
-  const sx = r1(k * 7 * Math.sin((e - F.impact) * 2.7)), sy = r1(k * 6 * Math.cos((e - F.impact) * 3.3));
+  const sx = r1(k * TH.shake * Math.sin((e - F.impact) * 2.7)), sy = r1(k * TH.shake * 0.85 * Math.cos((e - F.impact) * 3.3));
   // 粒子位置（含三格拖尾）
   const pos = (p: (typeof PARTS)[number], fr: number) => { const q = easeOut3((fr - F.gather - p.d) / F.gatherDur); return [p.sx + (p.tx - p.sx) * q, p.sy + (p.ty - p.sy) * q, q] as const; };
   const solid = ease(F.solid, F.solidDur), partO = 1 - solid;
@@ -583,7 +622,10 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
         <g transform={`translate(0,${-DE.TOP})`}>
           {ENDDOTS.map(([x, y], i) => {
             const dd = Math.hypot(x - DE.LOGO_CX, y - DE.LOGO_CY), hit = waveOn ? Math.max(0, 1 - Math.abs(dd - waveR) / 70) : 0;
-            return <rect key={i} x={x - 2} y={y - 2} width={4} height={4} fill={hit > 0.05 ? DE.dotHi : DE.dot} opacity={hit > 0.05 ? r1(0.3 + 0.7 * hit) : 1} />;
+            // power：電網通電——集結時從外圈往裡一圈圈亮起（藍），撞擊後全部亮一下再暗回去
+            const pw = theme === "power" ? (e < F.impact ? (dd > 1150 - 1150 * Math.min(1, e / 30) ? 0.55 : 0) : Math.max(0, 1 - (e - F.impact) / 20)) : 0;
+            const lit = Math.max(hit, pw);
+            return <rect key={i} x={x - 2} y={y - 2} width={4} height={4} fill={lit > 0.05 ? (theme === "data" ? DE.dotHi : TH.accent) : DE.dot} opacity={lit > 0.05 ? r1(0.3 + 0.7 * lit) : 1} />;
           })}
         </g>
       </svg>
@@ -592,14 +634,35 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
           {/* 撞擊光暈（徑向漸層只用在這一下閃光） */}
           <defs><radialGradient id="endglow"><stop offset="0%" stopColor={DE.glowHi} /><stop offset="35%" stopColor={DE.glow} /><stop offset="100%" stopColor="rgba(208,100,63,0)" /></radialGradient></defs>
           {flash > 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * (2 + 6 * (1 - flash)))} fill="url(#endglow)" opacity={r1(flash)} /> : null}
-          {/* 資料粒子（匯聚中，三格拖尾） */}
-          {partO > 0 ? PARTS.map((p, i) => {
+          {/* 匯聚：data＝資料粒子（三格拖尾）、power＝電弧沿電網竄進來（抖動閃爍）、chip＝晶片走線（轉角過孔） */}
+          {theme === "data" && partO > 0 ? PARTS.map((p, i) => {
             if (e < F.gather + p.d) return null;
             const col = p.c ? DE.darkCopper : DE.darkL;
             return <g key={i} opacity={r1(partO)}>{[3, 2, 1, 0].map((b) => { const [x, y, q] = pos(p, e - b * 1.2); return q > 0 ? <rect key={b} x={r1(x - 3)} y={r1(y - 3)} width={6} height={6} fill={col} opacity={b ? r1(0.12 * (4 - b)) : 1} /> : null; })}</g>;
           }) : null}
+          {theme === "power" && e < F.impact + 4 ? ARCS.map((a, i) => {
+            const q = easeOut3((e - a.d) / 16); if (q <= 0) return null;
+            const head = polyUpTo(a.pts, q), tail = Math.max(0, head.length - 16), seg = jag(head.slice(tail), i * 997 + Math.floor(e), 16);
+            const flick = 0.55 + 0.45 * rng(i * 31 + Math.floor(e))(), fade = e < F.solid ? 1 : Math.max(0, 1 - (e - F.solid) / 10);
+            const hp = head[head.length - 1];
+            return <g key={i} opacity={r1(flick * fade)}>
+              <path d={pstr(seg)} fill="none" stroke={TH.accent} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" opacity={0.25} />
+              <path d={pstr(seg)} fill="none" stroke={TH.accent2} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+              {q < 1 ? <circle cx={r1(hp[0])} cy={r1(hp[1])} r={9} fill={TH.accent2} /> : null}
+            </g>;
+          }) : null}
+          {theme === "chip" ? TRACES.map((tr, i) => {
+            const q = easeOut3((e - tr.d) / 18); if (q <= 0) return null;
+            const pts = polyUpTo(tr.pts, q), hp = pts[pts.length - 1], o = e < F.solid ? 1 : Math.max(0.28, 1 - (e - F.solid) / 12);
+            return <g key={i} opacity={r1(o)}>
+              <path d={pstr(pts)} fill="none" stroke={i % 3 === 0 ? TH.accent2 : TH.accent} strokeWidth={4} strokeLinejoin="miter" />
+              {tr.pts.slice(1, -1).map((v, j) => pts.length > j + 2 ? <circle key={j} cx={v[0]} cy={v[1]} r={8} fill={T.bg} stroke={TH.accent} strokeWidth={3} /> : null)}
+              {q < 1 ? <rect x={r1(hp[0] - 6)} y={r1(hp[1] - 6)} width={12} height={12} fill={DE.darkL} /> : null}
+            </g>;
+          }) : null}
           {/* 實心 L 與 i 身 */}
-          <g opacity={r1(solid)}>
+          <g opacity={r1(theme === "power" && solid > 0 && solid < 1 ? solid * (0.5 + 0.5 * rng(Math.floor(e) * 7)()) : solid)}>
+            {theme !== "data" ? <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill="none" stroke={TH.accent} strokeWidth={10} opacity={0.35} /> : null}
             <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill={DE.darkL} />
           </g>
           <rect x={LX(276)} y={LY(330) - (LY(330) - LY(214)) * stem} width={LX(340) - LX(276)} height={(LY(330) - LY(214)) * stem} fill={DE.darkCopper} />
@@ -608,14 +671,29 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
           {/* i 點（蓋章） */}
           {dq >= 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * dScale)} fill={DE.darkCopper} opacity={r1(dOp)} /> : null}
           {/* 兩圈衝擊波 */}
-          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr + 420 * easeOut3(q))} fill="none" stroke={DE.darkCopper} strokeWidth={r1(6 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
+          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr + 420 * easeOut3(q))} fill="none" stroke={theme === "data" ? DE.darkCopper : TH.accent} strokeWidth={r1(7 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
           {/* 火花：往外噴、減速、拖尾 */}
-          {e >= F.spark && e < F.spark + F.sparkDur ? SPARKS.map((s, j) => {
+          {theme !== "power" && e >= F.spark && e < F.spark + F.sparkDur ? SPARKS.map((s, j) => {
             const q = (e - F.spark) / F.sparkDur, d1 = s.v * easeOut3(q), d0 = s.v * easeOut3(Math.max(0, q - 0.12));
             return <line key={j} x1={r1(dcx + Math.cos(s.a) * (dr + d0))} y1={r1(dcy + Math.sin(s.a) * (dr + d0))} x2={r1(dcx + Math.cos(s.a) * (dr + d1))} y2={r1(dcy + Math.sin(s.a) * (dr + d1))} stroke={j % 2 ? DE.darkL : DE.darkCopper} strokeWidth={3} strokeLinecap="round" opacity={r1(1 - q)} />;
           }) : null}
+          {/* power：合閘那一下，6 道電弧從 i 點往外劈出（每兩幀換一次形狀） */}
+          {theme === "power" && e >= F.impact && e < F.impact + 12 ? SPARKS.filter((_, j) => j % 2 === 0).map((s, j) => {
+            const L0 = dr * 1.1, L1 = dr + 140 + s.v * 0.9, n = 8, pts: [number, number][] = [];
+            for (let i = 0; i <= n; i++) { const d = L0 + (L1 - L0) * (i / n); pts.push([dcx + Math.cos(s.a) * d, dcy + Math.sin(s.a) * d]); }
+            const jj = jag(pts, j * 53 + Math.floor((e - F.impact) / 2), 34), o = 1 - (e - F.impact) / 12;
+            return <g key={j} opacity={r1(o)}><path d={pstr(jj)} fill="none" stroke={TH.accent} strokeWidth={12} opacity={0.3} strokeLinejoin="round" /><path d={pstr(jj)} fill="none" stroke={TH.accent2} strokeWidth={4} strokeLinejoin="round" /></g>;
+          }) : null}
         </svg>
       </div>
+      {/* 撞擊閃白（power＝跳電閃白最強；只有 6 幀） */}
+      {TH.flashFull > 0 && e >= F.impact && e < F.impact + 6 ? <div style={{ position: "absolute", inset: 0, background: TH.flash, opacity: r1(TH.flashFull * (1 - (e - F.impact) / 6)) }} /> : null}
+      {/* chip：蓋章時三個頭銜依序閃過（38／41／44 幀出現，56 幀前淡出） */}
+      {theme === "chip" && spec.words ? spec.words.slice(0, 3).map((w, j) => {
+        const a = F.impact + 2 + j * 3, o = e < a ? 0 : e < a + 3 ? (e - a) / 3 : Math.max(0, 1 - (e - a - 3) / 14);
+        const pos = [[DE.LOGO_CX - 330, DE.LOGO_CY - 250], [DE.LOGO_CX + 120, DE.LOGO_CY - 330], [DE.LOGO_CX + 150, DE.LOGO_CY + 230]][j];
+        return o > 0 ? <div key={j} style={{ position: "absolute", left: pos[0], top: pos[1] - DE.TOP, padding: "8px 18px", border: `2px solid ${TH.accent}`, background: T.bg, ...sans(40, T.weight.bold, T.text), opacity: r1(o), transform: `scale(${r1(1.15 - 0.15 * Math.min(1, (e - a) / 3))})` }}>{w}</div> : null;
+      }) : null}
       <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 6 }}>
         {chars.map((c, i) => { const a = F.name[Math.min(i, F.name.length - 1)]; return <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= a ? 1 : 0, transform: `translateY(${e >= a ? r1(12 * (1 - ease(a, 5))) : 0}px)` }}>{c}</span>; })}
         <span style={{ ...serif(DE.TAG_PX, T.weight.serif, T.text2), lineHeight: 1, marginLeft: 18, opacity: ease(F.tag, 6) }}>｜{tag}</span>
