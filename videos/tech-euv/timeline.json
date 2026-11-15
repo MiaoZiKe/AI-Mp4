@@ -2,114 +2,2704 @@
  "version": 2,
  "slug": "tech-euv",
  "fps": 30,
- "totalFrames": 1738,
- "totalSec": 57.93,
- "gapSec": 0.3,
+ "totalFrames": 1949,
+ "totalSec": 64.97,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-euv/01-s1.wav",
+   "audioFrame": 0,
+   "audioSec": 2.9,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 87,
+   "durationFrames": 105,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 79,
-   "stillFrame": 77,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 86,
+   "stillFrame": 95,
    "subtitleWindow": [
     0,
-    84
+    102
    ],
    "sourceWindow": [
     0,
-    82
+    100
    ],
    "lines": [
     {
      "text": "晶片上的線",
      "start": 0,
      "chars": [
-      4,
-      9,
+      0,
+      5,
+      11,
       15,
-      20,
-      26
+      20
      ]
     },
     {
      "text": "比畫它的光還細",
-     "start": 36,
+     "start": 37,
      "chars": [
-      38,
-      44,
-      49,
-      55,
-      60,
-      66,
-      71
+      39,
+      46,
+      53,
+      57,
+      62,
+      71,
+      79
      ]
     }
    ],
    "keywords": [
     {
      "text": "線",
-     "start": 26
+     "start": 20
     },
     {
      "text": "光還細",
-     "start": 60
+     "start": 62
     }
    ],
    "cues": [
     {
      "id": "line",
      "text": "線",
-     "frame": 27
+     "frame": 22,
+     "early": 0
     },
     {
      "id": "thin",
      "text": "還細",
-     "frame": 67
+     "frame": 72,
+     "early": 0
     }
    ],
+   "hash": "4cd66162dff3-3a5f783c6c",
    "sub": "晶片上的線\n比畫它的光還細",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.966,
+    "minScore": 0.879,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.4,
+      "start": 1.36,
+      "ch": "比",
+      "errMs": -40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.941
+    },
+    {
+     "text": "片",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.95
+    },
+    {
+     "text": "上",
+     "start": 0.4,
+     "end": 0.54,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 0.56,
+     "end": 0.62,
+     "score": 0.998
+    },
+    {
+     "text": "線",
+     "start": 0.72,
+     "end": 0.96,
+     "score": 0.899
+    },
+    {
+     "text": "比",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.992
+    },
+    {
+     "text": "畫",
+     "start": 1.58,
+     "end": 1.7,
+     "score": 0.879
+    },
+    {
+     "text": "它",
+     "start": 1.8,
+     "end": 1.88,
+     "score": 0.988
+    },
+    {
+     "text": "的",
+     "start": 1.94,
+     "end": 2,
+     "score": 0.998
+    },
+    {
+     "text": "光",
+     "start": 2.12,
+     "end": 2.34,
+     "score": 0.965
+    },
+    {
+     "text": "還",
+     "start": 2.4,
+     "end": 2.54,
+     "score": 0.994
+    },
+    {
+     "text": "細",
+     "start": 2.68,
+     "end": 2.8,
+     "score": 0.993
+    }
+   ],
    "charTimes": [
-    0,
-    0.186,
-    0.371,
-    0.557,
-    0.742,
-    1.15,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263
+    0.04,
+    0.2,
+    0.4,
+    0.56,
+    0.72,
+    1.36,
+    1.58,
+    1.8,
+    1.94,
+    2.12,
+    2.4,
+    2.68
    ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 87,
-   "audioSec": 2.653,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 77,
+   "audio": "audio/tech-euv/02-s2.wav",
+   "audioFrame": 104,
+   "audioSec": 2.77,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 95,
+   "durationFrames": 103,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 105,
+   "voiceEndFrame": 186,
+   "stillFrame": 188,
+   "subtitleWindow": [
+    102,
+    195
+   ],
+   "sourceWindow": [
+    100,
+    193
+   ],
+   "lines": [
+    {
+     "text": "以前的光",
+     "start": 102,
+     "chars": [
+      103,
+      107,
+      112,
+      116
+     ]
+    },
+    {
+     "text": "波長 193 奈米",
+     "start": 130,
+     "chars": [
+      132,
+      138,
+      138,
+      152,
+      159,
+      167,
+      167,
+      174,
+      180
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "193 奈米",
+     "start": 152
+    }
+   ],
+   "cues": [
+    {
+     "id": "old",
+     "text": "以前",
+     "frame": 105,
+     "early": 0
+    },
+    {
+     "id": "wave",
+     "text": "波長",
+     "frame": 133,
+     "early": 0
+    }
+   ],
+   "hash": "5fde713b7899-3a5f783c6c",
+   "sub": "以前的光\n波長 193 奈米",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.578,
+    "minScore": 0.001,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.02,
+      "start": 0.98,
+      "ch": "波",
+      "errMs": -40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "以",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.985
+    },
+    {
+     "text": "前",
+     "start": 0.16,
+     "end": 0.28,
+     "score": 0.88
+    },
+    {
+     "text": "的",
+     "start": 0.32,
+     "end": 0.38,
+     "score": 0.986
+    },
+    {
+     "text": "光",
+     "start": 0.46,
+     "end": 0.7,
+     "score": 0.973
+    },
+    {
+     "text": "波",
+     "start": 0.98,
+     "end": 1.06,
+     "score": 0.984
+    },
+    {
+     "text": "長",
+     "start": 1.18,
+     "end": 1.42,
+     "score": 0.736
+    },
+    {
+     "text": "一",
+     "start": 1.54,
+     "end": 1.62,
+     "score": 0.001
+    },
+    {
+     "text": "百",
+     "start": 1.7,
+     "end": 1.84,
+     "score": 0.002
+    },
+    {
+     "text": "九",
+     "start": 1.9,
+     "end": 2,
+     "score": 0.021
+    },
+    {
+     "text": "十",
+     "start": 2.04,
+     "end": 2.12,
+     "score": 0.029
+    },
+    {
+     "text": "三",
+     "start": 2.2,
+     "end": 2.34,
+     "score": 0.05
+    },
+    {
+     "text": "奈",
+     "start": 2.38,
+     "end": 2.54,
+     "score": 0.925
+    },
+    {
+     "text": "米",
+     "start": 2.58,
+     "end": 2.66,
+     "score": 0.939
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.16,
+    0.32,
+    0.46,
+    0.98,
+    1.18,
+    1.66,
+    1.9,
+    2.14,
+    2.38,
+    2.58
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": "audio/tech-euv/03-s3.wav",
+   "audioFrame": 197,
+   "audioSec": 2.88,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 188,
+   "durationFrames": 103,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 198,
+   "voiceEndFrame": 283,
+   "stillFrame": 281,
+   "subtitleWindow": [
+    195,
+    288
+   ],
+   "sourceWindow": [
+    193,
+    286
+   ],
+   "lines": [
+    {
+     "text": "一次只畫得出",
+     "start": 195,
+     "chars": [
+      197,
+      201,
+      208,
+      213,
+      220,
+      224
+     ]
+    },
+    {
+     "text": "約 40 奈米寬的線",
+     "start": 230,
+     "chars": [
+      232,
+      232,
+      242,
+      249,
+      249,
+      256,
+      260,
+      265,
+      270,
+      275
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "40 奈米",
+     "start": 242
+    }
+   ],
+   "cues": [
+    {
+     "id": "once",
+     "text": "一次",
+     "frame": 198,
+     "early": 0
+    },
+    {
+     "id": "forty",
+     "text": "寬的線",
+     "frame": 266,
+     "early": 0
+    }
+   ],
+   "hash": "67b1717f9138-3a5f783c6c",
+   "sub": "一次只畫得出\n約 40 奈米寬的線",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.809,
+    "minScore": 0.006,
+    "onsetMedianMs": null,
+    "onsetMaxMs": null,
+    "onsetCheck": []
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.04,
+     "end": 0.08,
+     "score": 0.895
+    },
+    {
+     "text": "次",
+     "start": 0.18,
+     "end": 0.32,
+     "score": 0.986
+    },
+    {
+     "text": "只",
+     "start": 0.42,
+     "end": 0.52,
+     "score": 0.719
+    },
+    {
+     "text": "畫",
+     "start": 0.6,
+     "end": 0.72,
+     "score": 0.997
+    },
+    {
+     "text": "得",
+     "start": 0.8,
+     "end": 0.86,
+     "score": 0.967
+    },
+    {
+     "text": "出",
+     "start": 0.94,
+     "end": 1.06,
+     "score": 0.856
+    },
+    {
+     "text": "約",
+     "start": 1.22,
+     "end": 1.34,
+     "score": 0.908
+    },
+    {
+     "text": "四",
+     "start": 1.58,
+     "end": 1.7,
+     "score": 0.006
+    },
+    {
+     "text": "十",
+     "start": 1.82,
+     "end": 1.94,
+     "score": 0.027
+    },
+    {
+     "text": "奈",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.986
+    },
+    {
+     "text": "米",
+     "start": 2.16,
+     "end": 2.24,
+     "score": 0.997
+    },
+    {
+     "text": "寬",
+     "start": 2.3,
+     "end": 2.46,
+     "score": 0.994
+    },
+    {
+     "text": "的",
+     "start": 2.48,
+     "end": 2.54,
+     "score": 0.996
+    },
+    {
+     "text": "線",
+     "start": 2.64,
+     "end": 2.82,
+     "score": 0.986
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.42,
+    0.6,
+    0.8,
+    0.94,
+    1.22,
+    1.56,
+    1.78,
+    2,
+    2.16,
+    2.3,
+    2.48,
+    2.64
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": "audio/tech-euv/04-s4.wav",
+   "audioFrame": 290,
+   "audioSec": 3.13,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 281,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 291,
+   "voiceEndFrame": 383,
+   "stillFrame": 382,
+   "subtitleWindow": [
+    288,
+    389
+   ],
+   "sourceWindow": [
+    286,
+    387
+   ],
+   "lines": [
+    {
+     "text": "再細",
+     "start": 288,
+     "chars": [
+      299,
+      310
+     ]
+    },
+    {
+     "text": "就要同一層分好幾次畫",
+     "start": 321,
+     "chars": [
+      323,
+      327,
+      333,
+      339,
+      343,
+      351,
+      358,
+      364,
+      369,
+      375
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "分好幾次",
+     "start": 351
+    }
+   ],
+   "cues": [
+    {
+     "id": "finer",
+     "text": "再細",
+     "frame": 300,
+     "early": 0
+    },
+    {
+     "id": "multi",
+     "text": "好幾次",
+     "frame": 359,
+     "early": 0
+    }
+   ],
+   "hash": "05bbcb4d6083-3a5f783c6c",
+   "sub": "再細\n就要同一層分好幾次畫",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.869,
+    "minScore": 0.3,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.16,
+      "start": 1.14,
+      "ch": "就",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "再",
+     "start": 0.34,
+     "end": 0.56,
+     "score": 0.999
+    },
+    {
+     "text": "細",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.998
+    },
+    {
+     "text": "就",
+     "start": 1.14,
+     "end": 1.26,
+     "score": 0.355
+    },
+    {
+     "text": "要",
+     "start": 1.28,
+     "end": 1.42,
+     "score": 0.976
+    },
+    {
+     "text": "同",
+     "start": 1.48,
+     "end": 1.66,
+     "score": 0.983
+    },
+    {
+     "text": "一",
+     "start": 1.68,
+     "end": 1.74,
+     "score": 0.3
+    },
+    {
+     "text": "層",
+     "start": 1.82,
+     "end": 2.02,
+     "score": 0.924
+    },
+    {
+     "text": "分",
+     "start": 2.08,
+     "end": 2.24,
+     "score": 0.997
+    },
+    {
+     "text": "好",
+     "start": 2.3,
+     "end": 2.46,
+     "score": 0.992
+    },
+    {
+     "text": "幾",
+     "start": 2.5,
+     "end": 2.58,
+     "score": 0.998
+    },
+    {
+     "text": "次",
+     "start": 2.68,
+     "end": 2.78,
+     "score": 0.998
+    },
+    {
+     "text": "畫",
+     "start": 2.88,
+     "end": 3,
+     "score": 0.903
+    }
+   ],
+   "charTimes": [
+    0.34,
+    0.72,
+    1.14,
+    1.28,
+    1.48,
+    1.68,
+    1.82,
+    2.08,
+    2.3,
+    2.5,
+    2.68,
+    2.88
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": "audio/tech-euv/05-s5.wav",
+   "audioFrame": 391,
+   "audioSec": 3.82,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 382,
+   "durationFrames": 144,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 392,
+   "voiceEndFrame": 505,
+   "stillFrame": 516,
+   "subtitleWindow": [
+    389,
+    523
+   ],
+   "sourceWindow": [
+    387,
+    521
+   ],
+   "lines": [
+    {
+     "text": "所以換一種光",
+     "start": 389,
+     "chars": [
+      392,
+      397,
+      402,
+      408,
+      411,
+      418
+     ]
+    },
+    {
+     "text": "極紫外光",
+     "start": 434,
+     "chars": [
+      436,
+      445,
+      451,
+      457
+     ]
+    },
+    {
+     "text": "13.5 奈米",
+     "start": 469,
+     "chars": [
+      471,
+      478,
+      478,
+      486,
+      486,
+      493,
+      499
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "極紫外光",
+     "start": 436
+    },
+    {
+     "text": "13.5",
+     "start": 471
+    }
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光",
+     "frame": 438,
+     "early": 0
+    }
+   ],
+   "hash": "0a5ee04c5ea2-3a5f783c6c",
+   "sub": "所以換一種光\n極紫外光\n13.5 奈米",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.809,
+    "minScore": 0.001,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 70,
+    "onsetCheck": [
+     {
+      "onset": 1.57,
+      "start": 1.56,
+      "ch": "極",
+      "errMs": -10
+     },
+     {
+      "onset": 2.73,
+      "start": 2.8,
+      "ch": "十",
+      "errMs": 70
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.999
+    },
+    {
+     "text": "以",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.999
+    },
+    {
+     "text": "換",
+     "start": 0.42,
+     "end": 0.6,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 0.62,
+     "end": 0.66,
+     "score": 0.69
+    },
+    {
+     "text": "種",
+     "start": 0.72,
+     "end": 0.88,
+     "score": 0.984
+    },
+    {
+     "text": "光",
+     "start": 0.94,
+     "end": 1.16,
+     "score": 0.994
+    },
+    {
+     "text": "極",
+     "start": 1.56,
+     "end": 1.7,
+     "score": 0.997
+    },
+    {
+     "text": "紫",
+     "start": 1.86,
+     "end": 1.96,
+     "score": 0.998
+    },
+    {
+     "text": "外",
+     "start": 2.06,
+     "end": 2.2,
+     "score": 0.996
+    },
+    {
+     "text": "光",
+     "start": 2.26,
+     "end": 2.48,
+     "score": 0.99
+    },
+    {
+     "text": "十",
+     "start": 2.8,
+     "end": 2.9,
+     "score": 0.001
+    },
+    {
+     "text": "三",
+     "start": 2.98,
+     "end": 3.12,
+     "score": 0.004
+    },
+    {
+     "text": "點",
+     "start": 3.16,
+     "end": 3.3,
+     "score": 0.897
+    },
+    {
+     "text": "五",
+     "start": 3.34,
+     "end": 3.38,
+     "score": 0.455
+    },
+    {
+     "text": "奈",
+     "start": 3.44,
+     "end": 3.58,
+     "score": 0.958
+    },
+    {
+     "text": "米",
+     "start": 3.64,
+     "end": 3.72,
+     "score": 0.996
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.24,
+    0.42,
+    0.62,
+    0.72,
+    0.94,
+    1.56,
+    1.86,
+    2.06,
+    2.26,
+    2.72,
+    2.96,
+    3.2,
+    3.44,
+    3.64
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": "audio/tech-euv/06-s6.wav",
+   "audioFrame": 525,
+   "audioSec": 3.05,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 516,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 526,
+   "voiceEndFrame": 616,
+   "stillFrame": 617,
+   "subtitleWindow": [
+    523,
+    624
+   ],
+   "sourceWindow": [
+    521,
+    622
+   ],
+   "lines": [
+    {
+     "text": "可是它連空氣都會吸掉",
+     "start": 523,
+     "chars": [
+      525,
+      528,
+      531,
+      535,
+      541,
+      548,
+      554,
+      557,
+      564,
+      569
+     ]
+    },
+    {
+     "text": "只能走真空",
+     "start": 581,
+     "chars": [
+      583,
+      588,
+      594,
+      599,
+      606
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "空氣",
+     "start": 541
+    },
+    {
+     "text": "真空",
+     "start": 599
+    }
+   ],
+   "cues": [
+    {
+     "id": "air",
+     "text": "空氣",
+     "frame": 542,
+     "early": 0
+    },
+    {
+     "id": "vac",
+     "text": "真空",
+     "frame": 601,
+     "early": 0
+    }
+   ],
+   "hash": "64ddbc5814eb-3a5f783c6c",
+   "sub": "可是它連空氣都會吸掉\n只能走真空",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.931,
+    "minScore": 0.414,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 1.98,
+      "start": 1.98,
+      "ch": "只",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "可",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 0.16,
+     "end": 0.22,
+     "score": 0.995
+    },
+    {
+     "text": "它",
+     "start": 0.26,
+     "end": 0.32,
+     "score": 0.984
+    },
+    {
+     "text": "連",
+     "start": 0.38,
+     "end": 0.52,
+     "score": 0.985
+    },
+    {
+     "text": "空",
+     "start": 0.58,
+     "end": 0.78,
+     "score": 0.993
+    },
+    {
+     "text": "氣",
+     "start": 0.82,
+     "end": 0.94,
+     "score": 0.985
+    },
+    {
+     "text": "都",
+     "start": 1,
+     "end": 1.08,
+     "score": 0.414
+    },
+    {
+     "text": "會",
+     "start": 1.12,
+     "end": 1.22,
+     "score": 0.999
+    },
+    {
+     "text": "吸",
+     "start": 1.34,
+     "end": 1.44,
+     "score": 0.998
+    },
+    {
+     "text": "掉",
+     "start": 1.52,
+     "end": 1.72,
+     "score": 0.993
+    },
+    {
+     "text": "只",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.971
+    },
+    {
+     "text": "能",
+     "start": 2.14,
+     "end": 2.28,
+     "score": 0.816
+    },
+    {
+     "text": "走",
+     "start": 2.34,
+     "end": 2.46,
+     "score": 0.944
+    },
+    {
+     "text": "真",
+     "start": 2.52,
+     "end": 2.68,
+     "score": 0.891
+    },
+    {
+     "text": "空",
+     "start": 2.74,
+     "end": 2.96,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.26,
+    0.38,
+    0.58,
+    0.82,
+    1,
+    1.12,
+    1.34,
+    1.52,
+    1.98,
+    2.14,
+    2.34,
+    2.52,
+    2.74
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": "audio/tech-euv/07-s7.wav",
+   "audioFrame": 626,
+   "audioSec": 3.69,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 617,
+   "durationFrames": 133,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 627,
+   "voiceEndFrame": 736,
+   "stillFrame": 740,
+   "subtitleWindow": [
+    624,
+    747
+   ],
+   "sourceWindow": [
+    622,
+    745
+   ],
+   "lines": [
+    {
+     "text": "光要自己做",
+     "start": 624,
+     "chars": [
+      626,
+      632,
+      638,
+      641,
+      647
+     ]
+    },
+    {
+     "text": "每秒 5 萬顆錫滴往下掉",
+     "start": 669,
+     "chars": [
+      671,
+      676,
+      676,
+      686,
+      686,
+      690,
+      697,
+      706,
+      712,
+      718,
+      722,
+      728
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "自己做",
+     "start": 638
+    },
+    {
+     "text": "錫滴",
+     "start": 706
+    }
+   ],
+   "cues": [
+    {
+     "id": "make",
+     "text": "自己做",
+     "frame": 639,
+     "early": 0
+    },
+    {
+     "id": "tin",
+     "text": "錫滴",
+     "frame": 707,
+     "early": 0
+    }
+   ],
+   "hash": "16450a018a75-3a5f783c6c",
+   "sub": "光要自己做\n每秒 5 萬顆錫滴往下掉",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.977,
+    "minScore": 0.873,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 1.56,
+      "start": 1.56,
+      "ch": "每",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "光",
+     "start": 0.04,
+     "end": 0.22,
+     "score": 0.937
+    },
+    {
+     "text": "要",
+     "start": 0.26,
+     "end": 0.4,
+     "score": 0.998
+    },
+    {
+     "text": "自",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.998
+    },
+    {
+     "text": "己",
+     "start": 0.56,
+     "end": 0.64,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 0.74,
+     "end": 0.88,
+     "score": 0.999
+    },
+    {
+     "text": "每",
+     "start": 1.56,
+     "end": 1.68,
+     "score": 0.999
+    },
+    {
+     "text": "秒",
+     "start": 1.72,
+     "end": 1.92,
+     "score": 0.995
+    },
+    {
+     "text": "五",
+     "start": 2,
+     "end": 2.08,
+     "score": 0.873
+    },
+    {
+     "text": "萬",
+     "start": 2.18,
+     "end": 2.34,
+     "score": 0.985
+    },
+    {
+     "text": "顆",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.999
+    },
+    {
+     "text": "錫",
+     "start": 2.7,
+     "end": 2.82,
+     "score": 0.996
+    },
+    {
+     "text": "滴",
+     "start": 2.9,
+     "end": 2.98,
+     "score": 0.895
+    },
+    {
+     "text": "往",
+     "start": 3.1,
+     "end": 3.24,
+     "score": 0.987
+    },
+    {
+     "text": "下",
+     "start": 3.26,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "掉",
+     "start": 3.46,
+     "end": 3.64,
+     "score": 0.991
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.26,
+    0.44,
+    0.56,
+    0.74,
+    1.56,
+    1.72,
+    2.05,
+    2.18,
+    2.4,
+    2.7,
+    2.9,
+    3.1,
+    3.26,
+    3.46
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": "audio/tech-euv/08-s8.wav",
+   "audioFrame": 749,
+   "audioSec": 3.9,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 740,
+   "durationFrames": 141,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 750,
+   "voiceEndFrame": 865,
+   "stillFrame": 871,
+   "subtitleWindow": [
+    747,
+    878
+   ],
+   "sourceWindow": [
+    745,
+    876
+   ],
+   "lines": [
+    {
+     "text": "雷射每顆打兩下",
+     "start": 747,
+     "chars": [
+      749,
+      757,
+      764,
+      770,
+      777,
+      782,
+      789
+     ]
+    },
+    {
+     "text": "打成電漿",
+     "start": 800,
+     "chars": [
+      802,
+      808,
+      814,
+      820
+     ]
+    },
+    {
+     "text": "發出這種光",
+     "start": 831,
+     "chars": [
+      833,
+      839,
+      845,
+      848,
+      853
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "雷射",
+     "start": 749
+    },
+    {
+     "text": "電漿",
+     "start": 814
+    }
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "雷射",
+     "frame": 751,
+     "early": 0
+    },
+    {
+     "id": "twice",
+     "text": "兩下",
+     "frame": 784,
+     "early": 0
+    },
+    {
+     "id": "plasma",
+     "text": "電漿",
+     "frame": 815,
+     "early": 0
+    },
+    {
+     "id": "glow",
+     "text": "發出",
+     "frame": 835,
+     "early": 0
+    }
+   ],
+   "hash": "6d066d4d281b-3a5f783c6c",
+   "sub": "雷射每顆打兩下\n打成電漿\n發出這種光",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.927,
+    "minScore": 0.658,
+    "onsetMedianMs": 35,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.85,
+      "start": 1.82,
+      "ch": "打",
+      "errMs": -30
+     },
+     {
+      "onset": 2.82,
+      "start": 2.86,
+      "ch": "發",
+      "errMs": 40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "雷",
+     "start": 0.06,
+     "end": 0.18,
+     "score": 0.962
+    },
+    {
+     "text": "射",
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.658
+    },
+    {
+     "text": "每",
+     "start": 0.54,
+     "end": 0.68,
+     "score": 0.997
+    },
+    {
+     "text": "顆",
+     "start": 0.74,
+     "end": 0.86,
+     "score": 0.999
+    },
+    {
+     "text": "打",
+     "start": 0.98,
+     "end": 1.06,
+     "score": 0.999
+    },
+    {
+     "text": "兩",
+     "start": 1.16,
+     "end": 1.34,
+     "score": 0.956
+    },
+    {
+     "text": "下",
+     "start": 1.38,
+     "end": 1.5,
+     "score": 0.991
+    },
+    {
+     "text": "打",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.999
+    },
+    {
+     "text": "成",
+     "start": 2,
+     "end": 2.18,
+     "score": 0.744
+    },
+    {
+     "text": "電",
+     "start": 2.2,
+     "end": 2.36,
+     "score": 0.999
+    },
+    {
+     "text": "漿",
+     "start": 2.4,
+     "end": 2.62,
+     "score": 0.996
+    },
+    {
+     "text": "發",
+     "start": 2.86,
+     "end": 2.96,
+     "score": 0.996
+    },
+    {
+     "text": "出",
+     "start": 3.06,
+     "end": 3.16,
+     "score": 0.934
+    },
+    {
+     "text": "這",
+     "start": 3.24,
+     "end": 3.3,
+     "score": 0.731
+    },
+    {
+     "text": "種",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.889
+    },
+    {
+     "text": "光",
+     "start": 3.52,
+     "end": 3.74,
+     "score": 0.989
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.3,
+    0.54,
+    0.74,
+    0.98,
+    1.16,
+    1.38,
+    1.82,
+    2,
+    2.2,
+    2.4,
+    2.86,
+    3.06,
+    3.24,
+    3.34,
+    3.52
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": "audio/tech-euv/09-s9.wav",
+   "audioFrame": 880,
+   "audioSec": 3,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 871,
+   "durationFrames": 109,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 881,
+   "voiceEndFrame": 969,
+   "stillFrame": 970,
+   "subtitleWindow": [
+    878,
+    977
+   ],
+   "sourceWindow": [
+    876,
+    975
+   ],
+   "lines": [
+    {
+     "text": "玻璃也會吸光",
+     "start": 878,
+     "chars": [
+      879,
+      885,
+      890,
+      894,
+      899,
+      906
+     ]
+    },
+    {
+     "text": "所以全部改用反射鏡",
+     "start": 917,
+     "chars": [
+      919,
+      924,
+      928,
+      935,
+      941,
+      945,
+      950,
+      956,
+      962
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "玻璃",
+     "start": 879
+    },
+    {
+     "text": "反射鏡",
+     "start": 950
+    }
+   ],
+   "cues": [
+    {
+     "id": "glass",
+     "text": "玻璃",
+     "frame": 881,
+     "early": 0
+    },
+    {
+     "id": "mirror",
+     "text": "反射鏡",
+     "frame": 951,
+     "early": 0
+    }
+   ],
+   "hash": "a518368d5225-3a5f783c6c",
+   "sub": "玻璃也會吸光\n所以全部改用反射鏡",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.952,
+    "minScore": 0.633,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.32,
+      "start": 1.36,
+      "ch": "所",
+      "errMs": 40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "玻",
+     "start": 0.02,
+     "end": 0.12,
+     "score": 0.996
+    },
+    {
+     "text": "璃",
+     "start": 0.22,
+     "end": 0.3,
+     "score": 0.997
+    },
+    {
+     "text": "也",
+     "start": 0.38,
+     "end": 0.46,
+     "score": 0.999
+    },
+    {
+     "text": "會",
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.999
+    },
+    {
+     "text": "吸",
+     "start": 0.7,
+     "end": 0.8,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 0.9,
+     "end": 1.12,
+     "score": 0.991
+    },
+    {
+     "text": "所",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.998
+    },
+    {
+     "text": "以",
+     "start": 1.52,
+     "end": 1.58,
+     "score": 0.977
+    },
+    {
+     "text": "全",
+     "start": 1.66,
+     "end": 1.86,
+     "score": 0.998
+    },
+    {
+     "text": "部",
+     "start": 1.9,
+     "end": 1.98,
+     "score": 0.996
+    },
+    {
+     "text": "改",
+     "start": 2.08,
+     "end": 2.2,
+     "score": 0.917
+    },
+    {
+     "text": "用",
+     "start": 2.22,
+     "end": 2.36,
+     "score": 0.633
+    },
+    {
+     "text": "反",
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.998
+    },
+    {
+     "text": "射",
+     "start": 2.58,
+     "end": 2.68,
+     "score": 0.927
+    },
+    {
+     "text": "鏡",
+     "start": 2.78,
+     "end": 2.94,
+     "score": 0.86
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.22,
+    0.38,
+    0.52,
+    0.7,
+    0.9,
+    1.36,
+    1.52,
+    1.66,
+    1.9,
+    2.08,
+    2.22,
+    2.38,
+    2.58,
+    2.78
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": "audio/tech-euv/10-s10.wav",
+   "audioFrame": 979,
+   "audioSec": 3.625,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.04,
+   "startFrame": 970,
+   "durationFrames": 125,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 980,
+   "voiceEndFrame": 1087,
+   "stillFrame": 1085,
+   "subtitleWindow": [
+    977,
+    1091
+   ],
+   "sourceWindow": [
+    975,
+    1090
+   ],
+   "lines": [
+    {
+     "text": "鏡面是鉬和矽",
+     "start": 977,
+     "chars": [
+      979,
+      985,
+      993,
+      1002,
+      1011,
+      1018
+     ]
+    },
+    {
+     "text": "一層層疊上幾十層",
+     "start": 1034,
+     "chars": [
+      1036,
+      1040,
+      1047,
+      1054,
+      1061,
+      1068,
+      1074,
+      1078
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "鉬和矽",
+     "start": 1002
+    },
+    {
+     "text": "幾十層",
+     "start": 1068
+    }
+   ],
+   "cues": [
+    {
+     "id": "mo",
+     "text": "鉬和矽",
+     "frame": 1003,
+     "early": 0
+    },
+    {
+     "id": "layers",
+     "text": "幾十層",
+     "frame": 1069,
+     "early": 0
+    }
+   ],
+   "hash": "d2d3dc3484c3-3a5f783c6c",
+   "sub": "鏡面是鉬和矽\n一層層疊上幾十層",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.804,
+    "minScore": 0.004,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.97,
+      "start": 1.94,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "鏡",
+     "start": 0.04,
+     "end": 0.22,
+     "score": 0.854
+    },
+    {
+     "text": "面",
+     "start": 0.24,
+     "end": 0.42,
+     "score": 1
+    },
+    {
+     "text": "是",
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.993
+    },
+    {
+     "text": "鉬",
+     "start": 0.8,
+     "end": 0.9,
+     "score": 0.998
+    },
+    {
+     "text": "和",
+     "start": 1.1,
+     "end": 1.18,
+     "score": 0.499
+    },
+    {
+     "text": "矽",
+     "start": 1.36,
+     "end": 1.54,
+     "score": 0.498
+    },
+    {
+     "text": "一",
+     "start": 1.94,
+     "end": 2,
+     "score": 0.004
+    },
+    {
+     "text": "層",
+     "start": 2.08,
+     "end": 2.28,
+     "score": 0.801
+    },
+    {
+     "text": "層",
+     "start": 2.3,
+     "end": 2.48,
+     "score": 0.821
+    },
+    {
+     "text": "疊",
+     "start": 2.54,
+     "end": 2.66,
+     "score": 0.989
+    },
+    {
+     "text": "上",
+     "start": 2.78,
+     "end": 2.96,
+     "score": 0.967
+    },
+    {
+     "text": "幾",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.997
+    },
+    {
+     "text": "十",
+     "start": 3.2,
+     "end": 3.28,
+     "score": 0.989
+    },
+    {
+     "text": "層",
+     "start": 3.34,
+     "end": 3.56,
+     "score": 0.846
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.24,
+    0.52,
+    0.8,
+    1.1,
+    1.36,
+    1.94,
+    2.08,
+    2.3,
+    2.54,
+    2.78,
+    3,
+    3.2,
+    3.34
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": "audio/tech-euv/11-s11.wav",
+   "audioFrame": 1093,
+   "audioSec": 2.17,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1085,
+   "durationFrames": 90,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1094,
+   "voiceEndFrame": 1157,
+   "stillFrame": 1165,
+   "subtitleWindow": [
+    1091,
+    1172
+   ],
+   "sourceWindow": [
+    1090,
+    1170
+   ],
+   "lines": [
+    {
+     "text": "每一面",
+     "start": 1091,
+     "chars": [
+      1095,
+      1099,
+      1102
+     ]
+    },
+    {
+     "text": "最多只反射七成",
+     "start": 1108,
+     "chars": [
+      1110,
+      1117,
+      1123,
+      1129,
+      1135,
+      1141,
+      1148
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "七成",
+     "start": 1141
+    }
+   ],
+   "cues": [
+    {
+     "id": "each",
+     "text": "每一面",
+     "frame": 1097,
+     "early": 0
+    },
+    {
+     "id": "seventy",
+     "text": "七成",
+     "frame": 1142,
+     "early": 0
+    }
+   ],
+   "hash": "b061c532347f-3a5f783c6c",
+   "sub": "每一面\n最多只反射七成",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.816,
+    "minScore": 0,
+    "onsetMedianMs": null,
+    "onsetMaxMs": null,
+    "onsetCheck": []
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "每",
+     "start": 0.12,
+     "end": 0.26,
+     "score": 0.691
+    },
+    {
+     "text": "一",
+     "start": 0.26,
+     "end": 0.3,
+     "score": 0
+    },
+    {
+     "text": "面",
+     "start": 0.36,
+     "end": 0.54,
+     "score": 0.926
+    },
+    {
+     "text": "最",
+     "start": 0.62,
+     "end": 0.78,
+     "score": 0.997
+    },
+    {
+     "text": "多",
+     "start": 0.86,
+     "end": 0.96,
+     "score": 0.981
+    },
+    {
+     "text": "只",
+     "start": 1.06,
+     "end": 1.16,
+     "score": 0.955
+    },
+    {
+     "text": "反",
+     "start": 1.24,
+     "end": 1.38,
+     "score": 0.999
+    },
+    {
+     "text": "射",
+     "start": 1.44,
+     "end": 1.54,
+     "score": 0.923
+    },
+    {
+     "text": "七",
+     "start": 1.64,
+     "end": 1.78,
+     "score": 0.995
+    },
+    {
+     "text": "成",
+     "start": 1.88,
+     "end": 2.08,
+     "score": 0.697
+    }
+   ],
+   "charTimes": [
+    0.12,
+    0.26,
+    0.36,
+    0.62,
+    0.86,
+    1.06,
+    1.24,
+    1.44,
+    1.64,
+    1.88
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": "audio/tech-euv/12-s12.wav",
+   "audioFrame": 1174,
+   "audioSec": 4.58,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1165,
+   "durationFrames": 156,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1175,
+   "voiceEndFrame": 1311,
+   "stillFrame": 1311,
+   "subtitleWindow": [
+    1172,
+    1318
+   ],
+   "sourceWindow": [
+    1170,
+    1316
+   ],
+   "lines": [
+    {
+     "text": "從光源到晶圓反射十幾次",
+     "start": 1172,
+     "chars": [
+      1174,
+      1182,
+      1189,
+      1195,
+      1201,
+      1208,
+      1221,
+      1227,
+      1233,
+      1238,
+      1243
+     ]
+    },
+    {
+     "text": "只剩大約 2%",
+     "start": 1253,
+     "chars": [
+      1255,
+      1261,
+      1267,
+      1273,
+      1273,
+      1287,
+      1298
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "十幾次",
+     "start": 1233
+    },
+    {
+     "text": "2%",
+     "start": 1287
+    }
+   ],
+   "cues": [
+    {
+     "id": "bounce",
+     "text": "十幾次",
+     "frame": 1235,
+     "early": 0
+    },
+    {
+     "id": "two",
+     "text": "只剩",
+     "frame": 1257,
+     "early": 0
+    }
+   ],
+   "hash": "3f4bf90f01a7-3a5f783c6c",
+   "sub": "從光源到晶圓反射十幾次\n只剩大約 2%",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.812,
+    "minScore": 0.144,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.59,
+      "start": 1.62,
+      "ch": "反",
+      "errMs": 30
+     },
+     {
+      "onset": 2.76,
+      "start": 2.76,
+      "ch": "只",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "從",
+     "start": 0.04,
+     "end": 0.24,
+     "score": 0.946
+    },
+    {
+     "text": "光",
+     "start": 0.3,
+     "end": 0.48,
+     "score": 0.949
+    },
+    {
+     "text": "源",
+     "start": 0.54,
+     "end": 0.7,
+     "score": 0.919
+    },
+    {
+     "text": "到",
+     "start": 0.76,
+     "end": 0.92,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 0.96,
+     "end": 1.12,
+     "score": 0.957
+    },
+    {
+     "text": "圓",
+     "start": 1.18,
+     "end": 1.36,
+     "score": 0.997
+    },
+    {
+     "text": "反",
+     "start": 1.62,
+     "end": 1.76,
+     "score": 0.994
+    },
+    {
+     "text": "射",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.861
+    },
+    {
+     "text": "十",
+     "start": 2.02,
+     "end": 2.12,
+     "score": 0.855
+    },
+    {
+     "text": "幾",
+     "start": 2.18,
+     "end": 2.28,
+     "score": 0.994
+    },
+    {
+     "text": "次",
+     "start": 2.36,
+     "end": 2.5,
+     "score": 0.996
+    },
+    {
+     "text": "只",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 0.898
+    },
+    {
+     "text": "剩",
+     "start": 2.94,
+     "end": 3.12,
+     "score": 0.81
+    },
+    {
+     "text": "大",
+     "start": 3.16,
+     "end": 3.24,
+     "score": 0.997
+    },
+    {
+     "text": "約",
+     "start": 3.34,
+     "end": 3.42,
+     "score": 0.983
+    },
+    {
+     "text": "百",
+     "start": 3.5,
+     "end": 3.62,
+     "score": 0.145
+    },
+    {
+     "text": "分",
+     "start": 3.66,
+     "end": 3.76,
+     "score": 0.422
+    },
+    {
+     "text": "之",
+     "start": 3.82,
+     "end": 3.9,
+     "score": 0.57
+    },
+    {
+     "text": "二",
+     "start": 4.02,
+     "end": 4.12,
+     "score": 0.144
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.3,
+    0.54,
+    0.76,
+    0.96,
+    1.18,
+    1.62,
+    1.82,
+    2.02,
+    2.18,
+    2.36,
+    2.76,
+    2.94,
+    3.16,
+    3.34,
+    3.807,
+    4.193
+   ]
+  },
+  {
+   "id": "s13",
+   "audio": "audio/tech-euv/13-s13.wav",
+   "audioFrame": 1320,
+   "audioSec": 2.325,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.04,
+   "startFrame": 1311,
+   "durationFrames": 86,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1321,
+   "voiceEndFrame": 1389,
+   "stillFrame": 1387,
+   "subtitleWindow": [
+    1318,
+    1393
+   ],
+   "sourceWindow": [
+    1316,
+    1392
+   ],
+   "lines": [
+    {
+     "text": "但光夠短",
+     "start": 1318,
+     "chars": [
+      1319,
+      1327,
+      1334,
+      1341
+     ]
+    },
+    {
+     "text": "一次就印得出來",
+     "start": 1352,
+     "chars": [
+      1354,
+      1359,
+      1364,
+      1368,
+      1373,
+      1376,
+      1382
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "夠短",
+     "start": 1334
+    },
+    {
+     "text": "一次",
+     "start": 1354
+    }
+   ],
+   "cues": [
+    {
+     "id": "short",
+     "text": "夠短",
+     "frame": 1336,
+     "early": 0
+    },
+    {
+     "id": "one",
+     "text": "一次",
+     "frame": 1355,
+     "early": 0
+    }
+   ],
+   "hash": "c1bd15fcc6ec-3a5f783c6c",
+   "sub": "但光夠短\n一次就印得出來",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.946,
+    "minScore": 0.851,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.19,
+      "start": 1.18,
+      "ch": "一",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.02,
+     "end": 0.14,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 0.28,
+     "end": 0.48,
+     "score": 0.876
+    },
+    {
+     "text": "夠",
+     "start": 0.52,
+     "end": 0.68,
+     "score": 0.998
+    },
+    {
+     "text": "短",
+     "start": 0.74,
+     "end": 0.94,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 1.18,
+     "end": 1.24,
+     "score": 0.851
+    },
+    {
+     "text": "次",
+     "start": 1.34,
+     "end": 1.44,
+     "score": 0.865
+    },
+    {
+     "text": "就",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.934
+    },
+    {
+     "text": "印",
+     "start": 1.66,
+     "end": 1.78,
+     "score": 0.991
+    },
+    {
+     "text": "得",
+     "start": 1.8,
+     "end": 1.86,
+     "score": 0.977
+    },
+    {
+     "text": "出",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.925
+    },
+    {
+     "text": "來",
+     "start": 2.1,
+     "end": 2.26,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.28,
+    0.52,
+    0.74,
+    1.18,
+    1.34,
+    1.5,
+    1.66,
+    1.8,
+    1.92,
+    2.1
+   ]
+  },
+  {
+   "id": "s14",
+   "audio": "audio/tech-euv/14-s14.wav",
+   "audioFrame": 1395,
+   "audioSec": 2.79,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1387,
    "durationFrames": 99,
    "transitionFrames": 10,
    "transition": {
@@ -124,1345 +2714,190 @@
      8
     ]
    },
-   "voiceStartFrame": 87,
-   "voiceEndFrame": 168,
-   "stillFrame": 166,
+   "voiceStartFrame": 1396,
+   "voiceEndFrame": 1478,
+   "stillFrame": 1476,
    "subtitleWindow": [
-    84,
-    173
+    1393,
+    1483
    ],
    "sourceWindow": [
-    82,
-    171
-   ],
-   "lines": [
-    {
-     "text": "以前的光",
-     "start": 84,
-     "chars": [
-      86,
-      92,
-      99,
-      105
-     ]
-    },
-    {
-     "text": "波長 193 奈米",
-     "start": 117,
-     "chars": [
-      119,
-      126,
-      126,
-      132,
-      139,
-      146,
-      146,
-      152,
-      159
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "193 奈米",
-     "start": 132
-    }
-   ],
-   "cues": [
-    {
-     "id": "old",
-     "text": "以前",
-     "frame": 87
-    },
-    {
-     "id": "wave",
-     "text": "波長",
-     "frame": 121
-    }
-   ],
-   "sub": "以前的光\n波長 193 奈米",
-   "provider": "estimate",
-   "syllables": 13,
-   "words": [],
-   "charTimes": [
-    0,
-    0.217,
-    0.435,
-    0.652,
-    1.131,
-    1.348,
-    1.566,
-    1.783,
-    2.001,
-    2.218,
-    2.436
-   ]
-  },
-  {
-   "id": "s3",
-   "audio": null,
-   "audioFrame": 176,
-   "audioSec": 2.857,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 166,
-   "durationFrames": 104,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 176,
-   "voiceEndFrame": 262,
-   "stillFrame": 260,
-   "subtitleWindow": [
-    173,
-    267
-   ],
-   "sourceWindow": [
-    171,
-    265
-   ],
-   "lines": [
-    {
-     "text": "一次只畫得出",
-     "start": 173,
-     "chars": [
-      175,
-      180,
-      186,
-      191,
-      197,
-      203
-     ]
-    },
-    {
-     "text": "約 40 奈米寬的線",
-     "start": 213,
-     "chars": [
-      215,
-      215,
-      221,
-      226,
-      226,
-      232,
-      238,
-      243,
-      249,
-      255
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "40 奈米",
-     "start": 221
-    }
-   ],
-   "cues": [
-    {
-     "id": "once",
-     "text": "一次",
-     "frame": 176
-    },
-    {
-     "id": "forty",
-     "text": "寬的線",
-     "frame": 245
-    }
-   ],
-   "sub": "一次只畫得出\n約 40 奈米寬的線",
-   "provider": "estimate",
-   "syllables": 14,
-   "words": [],
-   "charTimes": [
-    0,
-    0.188,
-    0.376,
-    0.564,
-    0.752,
-    0.94,
-    1.353,
-    1.541,
-    1.729,
-    1.917,
-    2.105,
-    2.293,
-    2.481,
-    2.669
-   ]
-  },
-  {
-   "id": "s4",
-   "audio": null,
-   "audioFrame": 271,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 260,
-   "durationFrames": 93,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 270,
-   "voiceEndFrame": 345,
-   "stillFrame": 343,
-   "subtitleWindow": [
-    267,
-    350
-   ],
-   "sourceWindow": [
-    265,
-    348
-   ],
-   "lines": [
-    {
-     "text": "再細",
-     "start": 267,
-     "chars": [
-      270,
-      275
-     ]
-    },
-    {
-     "text": "就要同一層分好幾次畫",
-     "start": 285,
-     "chars": [
-      287,
-      293,
-      298,
-      304,
-      310,
-      315,
-      321,
-      326,
-      332,
-      337
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "分好幾次",
-     "start": 315
-    }
-   ],
-   "cues": [
-    {
-     "id": "finer",
-     "text": "再細",
-     "frame": 271
-    },
-    {
-     "id": "multi",
-     "text": "好幾次",
-     "frame": 322
-    }
-   ],
-   "sub": "再細\n就要同一層分好幾次畫",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
-   "charTimes": [
-    0,
-    0.186,
-    0.594,
-    0.779,
-    0.965,
-    1.15,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263
-   ]
-  },
-  {
-   "id": "s5",
-   "audio": null,
-   "audioFrame": 353,
-   "audioSec": 3.265,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 343,
-   "durationFrames": 117,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 353,
-   "voiceEndFrame": 452,
-   "stillFrame": 450,
-   "subtitleWindow": [
-    350,
-    457
-   ],
-   "sourceWindow": [
-    348,
-    455
-   ],
-   "lines": [
-    {
-     "text": "所以換一種光",
-     "start": 350,
-     "chars": [
-      352,
-      357,
-      363,
-      368,
-      374,
-      380
-     ]
-    },
-    {
-     "text": "極紫外光",
-     "start": 390,
-     "chars": [
-      392,
-      398,
-      403,
-      409
-     ]
-    },
-    {
-     "text": "13.5 奈米",
-     "start": 419,
-     "chars": [
-      421,
-      427,
-      427,
-      433,
-      433,
-      438,
-      444
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "極紫外光",
-     "start": 392
-    },
-    {
-     "text": "13.5",
-     "start": 421
-    }
-   ],
-   "cues": [
-    {
-     "id": "euv",
-     "text": "極紫外光",
-     "frame": 394
-    }
-   ],
-   "sub": "所以換一種光\n極紫外光\n13.5 奈米",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
-   "charTimes": [
-    0,
-    0.188,
-    0.375,
-    0.563,
-    0.751,
-    0.938,
-    1.351,
-    1.539,
-    1.726,
-    1.914,
-    2.327,
-    2.515,
-    2.702,
-    2.89,
-    3.078
-   ]
-  },
-  {
-   "id": "s6",
-   "audio": null,
-   "audioFrame": 460,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 450,
-   "durationFrames": 111,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 460,
-   "voiceEndFrame": 553,
-   "stillFrame": 551,
-   "subtitleWindow": [
-    457,
-    558
-   ],
-   "sourceWindow": [
-    455,
-    556
-   ],
-   "lines": [
-    {
-     "text": "可是它連空氣都會吸掉",
-     "start": 457,
-     "chars": [
-      459,
-      464,
-      470,
-      476,
-      481,
-      487,
-      493,
-      498,
-      504,
-      510
-     ]
-    },
-    {
-     "text": "只能走真空",
-     "start": 520,
-     "chars": [
-      522,
-      528,
-      533,
-      539,
-      545
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "空氣",
-     "start": 481
-    },
-    {
-     "text": "真空",
-     "start": 539
-    }
-   ],
-   "cues": [
-    {
-     "id": "air",
-     "text": "空氣",
-     "frame": 483
-    },
-    {
-     "id": "vac",
-     "text": "真空",
-     "frame": 540
-    }
-   ],
-   "sub": "可是它連空氣都會吸掉\n只能走真空",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
-   "charTimes": [
-    0,
-    0.189,
-    0.378,
-    0.567,
-    0.756,
-    0.945,
-    1.134,
-    1.323,
-    1.512,
-    1.701,
-    2.116,
-    2.305,
-    2.494,
-    2.683,
-    2.872
-   ]
-  },
-  {
-   "id": "s7",
-   "audio": null,
-   "audioFrame": 561,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 551,
-   "durationFrames": 110,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 561,
-   "voiceEndFrame": 653,
-   "stillFrame": 651,
-   "subtitleWindow": [
-    558,
-    658
-   ],
-   "sourceWindow": [
-    556,
-    656
-   ],
-   "lines": [
-    {
-     "text": "光要自己做",
-     "start": 558,
-     "chars": [
-      560,
-      565,
-      571,
-      577,
-      582
-     ]
-    },
-    {
-     "text": "每秒 5 萬顆錫滴往下掉",
-     "start": 593,
-     "chars": [
-      595,
-      600,
-      600,
-      606,
-      606,
-      612,
-      617,
-      623,
-      629,
-      634,
-      640,
-      646
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "自己做",
-     "start": 571
-    },
-    {
-     "text": "錫滴",
-     "start": 623
-    }
-   ],
-   "cues": [
-    {
-     "id": "make",
-     "text": "自己做",
-     "frame": 572
-    },
-    {
-     "id": "tin",
-     "text": "錫滴",
-     "frame": 624
-    }
-   ],
-   "sub": "光要自己做\n每秒 5 萬顆錫滴往下掉",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
-   "charTimes": [
-    0,
-    0.189,
-    0.378,
-    0.567,
-    0.756,
-    1.172,
-    1.361,
-    1.55,
-    1.738,
-    1.927,
-    2.116,
-    2.305,
-    2.494,
-    2.683,
-    2.872
-   ]
-  },
-  {
-   "id": "s8",
-   "audio": null,
-   "audioFrame": 662,
-   "audioSec": 3.265,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 651,
-   "durationFrames": 117,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 661,
-   "voiceEndFrame": 760,
-   "stillFrame": 758,
-   "subtitleWindow": [
-    658,
-    765
-   ],
-   "sourceWindow": [
-    656,
-    763
-   ],
-   "lines": [
-    {
-     "text": "雷射每顆打兩下",
-     "start": 658,
-     "chars": [
-      661,
-      666,
-      671,
-      676,
-      682,
-      687,
-      692
-     ]
-    },
-    {
-     "text": "打成電漿",
-     "start": 702,
-     "chars": [
-      704,
-      709,
-      715,
-      720
-     ]
-    },
-    {
-     "text": "發出這種光",
-     "start": 730,
-     "chars": [
-      732,
-      737,
-      742,
-      748,
-      753
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "雷射",
-     "start": 661
-    },
-    {
-     "text": "電漿",
-     "start": 715
-    }
-   ],
-   "cues": [
-    {
-     "id": "laser",
-     "text": "雷射",
-     "frame": 662
-    },
-    {
-     "id": "twice",
-     "text": "兩下",
-     "frame": 689
-    },
-    {
-     "id": "plasma",
-     "text": "電漿",
-     "frame": 716
-    },
-    {
-     "id": "glow",
-     "text": "發出",
-     "frame": 733
-    }
-   ],
-   "sub": "雷射每顆打兩下\n打成電漿\n發出這種光",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
-   "charTimes": [
-    0,
-    0.177,
-    0.355,
-    0.532,
-    0.71,
-    0.887,
-    1.065,
-    1.455,
-    1.633,
-    1.81,
-    1.988,
-    2.378,
-    2.555,
-    2.733,
-    2.91,
-    3.088
-   ]
-  },
-  {
-   "id": "s9",
-   "audio": null,
-   "audioFrame": 769,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 758,
-   "durationFrames": 111,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 768,
-   "voiceEndFrame": 861,
-   "stillFrame": 859,
-   "subtitleWindow": [
-    765,
-    866
-   ],
-   "sourceWindow": [
-    763,
-    864
-   ],
-   "lines": [
-    {
-     "text": "玻璃也會吸光",
-     "start": 765,
-     "chars": [
-      768,
-      773,
-      779,
-      785,
-      790,
-      796
-     ]
-    },
-    {
-     "text": "所以全部改用反射鏡",
-     "start": 806,
-     "chars": [
-      808,
-      814,
-      820,
-      825,
-      831,
-      837,
-      842,
-      848,
-      854
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "玻璃",
-     "start": 768
-    },
-    {
-     "text": "反射鏡",
-     "start": 842
-    }
-   ],
-   "cues": [
-    {
-     "id": "glass",
-     "text": "玻璃",
-     "frame": 769
-    },
-    {
-     "id": "mirror",
-     "text": "反射鏡",
-     "frame": 844
-    }
-   ],
-   "sub": "玻璃也會吸光\n所以全部改用反射鏡",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
-   "charTimes": [
-    0,
-    0.189,
-    0.378,
-    0.567,
-    0.756,
-    0.945,
-    1.361,
-    1.55,
-    1.738,
-    1.927,
-    2.116,
-    2.305,
-    2.494,
-    2.683,
-    2.872
-   ]
-  },
-  {
-   "id": "s10",
-   "audio": null,
-   "audioFrame": 870,
-   "audioSec": 2.857,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 859,
-   "durationFrames": 105,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 869,
-   "voiceEndFrame": 956,
-   "stillFrame": 954,
-   "subtitleWindow": [
-    866,
-    961
-   ],
-   "sourceWindow": [
-    864,
-    959
-   ],
-   "lines": [
-    {
-     "text": "鏡面是鉬和矽",
-     "start": 866,
-     "chars": [
-      869,
-      874,
-      880,
-      885,
-      891,
-      897
-     ]
-    },
-    {
-     "text": "一層層疊上幾十層",
-     "start": 907,
-     "chars": [
-      909,
-      915,
-      920,
-      926,
-      932,
-      937,
-      943,
-      949
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "鉬和矽",
-     "start": 885
-    },
-    {
-     "text": "幾十層",
-     "start": 937
-    }
-   ],
-   "cues": [
-    {
-     "id": "mo",
-     "text": "鉬和矽",
-     "frame": 887
-    },
-    {
-     "id": "layers",
-     "text": "幾十層",
-     "frame": 939
-    }
-   ],
-   "sub": "鏡面是鉬和矽\n一層層疊上幾十層",
-   "provider": "estimate",
-   "syllables": 14,
-   "words": [],
-   "charTimes": [
-    0,
-    0.188,
-    0.376,
-    0.564,
-    0.752,
-    0.94,
-    1.353,
-    1.541,
-    1.729,
-    1.917,
-    2.105,
-    2.293,
-    2.481,
-    2.669
-   ]
-  },
-  {
-   "id": "s11",
-   "audio": null,
-   "audioFrame": 964,
-   "audioSec": 2.041,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 954,
-   "durationFrames": 80,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 964,
-   "voiceEndFrame": 1026,
-   "stillFrame": 1024,
-   "subtitleWindow": [
-    961,
-    1031
-   ],
-   "sourceWindow": [
-    959,
-    1029
-   ],
-   "lines": [
-    {
-     "text": "每一面",
-     "start": 961,
-     "chars": [
-      963,
-      968,
-      973
-     ]
-    },
-    {
-     "text": "最多只反射七成",
-     "start": 983,
-     "chars": [
-      985,
-      991,
-      996,
-      1002,
-      1007,
-      1013,
-      1018
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "七成",
-     "start": 1013
-    }
-   ],
-   "cues": [
-    {
-     "id": "each",
-     "text": "每一面",
-     "frame": 964
-    },
-    {
-     "id": "seventy",
-     "text": "七成",
-     "frame": 1014
-    }
-   ],
-   "sub": "每一面\n最多只反射七成",
-   "provider": "estimate",
-   "syllables": 10,
-   "words": [],
-   "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.765,
-    0.948,
-    1.13,
-    1.312,
-    1.494,
-    1.676,
-    1.859
-   ]
-  },
-  {
-   "id": "s12",
-   "audio": null,
-   "audioFrame": 1035,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1024,
-   "durationFrames": 135,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1034,
-   "voiceEndFrame": 1151,
-   "stillFrame": 1149,
-   "subtitleWindow": [
-    1031,
-    1156
-   ],
-   "sourceWindow": [
-    1029,
-    1154
-   ],
-   "lines": [
-    {
-     "text": "從光源到晶圓反射十幾次",
-     "start": 1031,
-     "chars": [
-      1034,
-      1040,
-      1046,
-      1053,
-      1059,
-      1065,
-      1072,
-      1078,
-      1085,
-      1091,
-      1097
-     ]
-    },
-    {
-     "text": "只剩大約 2%",
-     "start": 1109,
-     "chars": [
-      1111,
-      1118,
-      1124,
-      1131,
-      1131,
-      1137,
-      1143
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "十幾次",
-     "start": 1085
-    },
-    {
-     "text": "2%",
-     "start": 1137
-    }
-   ],
-   "cues": [
-    {
-     "id": "bounce",
-     "text": "十幾次",
-     "frame": 1086
-    },
-    {
-     "id": "two",
-     "text": "只剩",
-     "frame": 1113
-    }
-   ],
-   "sub": "從光源到晶圓反射十幾次\n只剩大約 2%",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
-   "charTimes": [
-    0,
-    0.213,
-    0.426,
-    0.639,
-    0.852,
-    1.065,
-    1.278,
-    1.491,
-    1.704,
-    1.917,
-    2.131,
-    2.599,
-    2.812,
-    3.025,
-    3.238,
-    3.451,
-    3.664
-   ]
-  },
-  {
-   "id": "s13",
-   "audio": null,
-   "audioFrame": 1160,
-   "audioSec": 2.245,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1149,
-   "durationFrames": 87,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1159,
-   "voiceEndFrame": 1228,
-   "stillFrame": 1226,
-   "subtitleWindow": [
-    1156,
-    1233
-   ],
-   "sourceWindow": [
-    1154,
-    1231
-   ],
-   "lines": [
-    {
-     "text": "但光夠短",
-     "start": 1156,
-     "chars": [
-      1159,
-      1164,
-      1170,
-      1175
-     ]
-    },
-    {
-     "text": "一次就印得出來",
-     "start": 1185,
-     "chars": [
-      1187,
-      1193,
-      1198,
-      1204,
-      1209,
-      1215,
-      1220
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "夠短",
-     "start": 1170
-    },
-    {
-     "text": "一次",
-     "start": 1187
-    }
-   ],
-   "cues": [
-    {
-     "id": "short",
-     "text": "夠短",
-     "frame": 1171
-    },
-    {
-     "id": "one",
-     "text": "一次",
-     "frame": 1189
-    }
-   ],
-   "sub": "但光夠短\n一次就印得出來",
-   "provider": "estimate",
-   "syllables": 11,
-   "words": [],
-   "charTimes": [
-    0,
-    0.184,
-    0.368,
-    0.552,
-    0.957,
-    1.141,
-    1.325,
-    1.509,
-    1.693,
-    1.877,
-    2.061
-   ]
-  },
-  {
-   "id": "s14",
-   "audio": null,
-   "audioFrame": 1236,
-   "audioSec": 2.653,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1226,
-   "durationFrames": 98,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1236,
-   "voiceEndFrame": 1316,
-   "stillFrame": 1314,
-   "subtitleWindow": [
-    1233,
-    1321
-   ],
-   "sourceWindow": [
-    1231,
-    1319
+    1392,
+    1481
    ],
    "lines": [
     {
      "text": "廠商標示",
-     "start": 1233,
+     "start": 1393,
      "chars": [
-      1235,
-      1240,
-      1246,
-      1251
+      1395,
+      1402,
+      1407,
+      1415
      ]
     },
     {
      "text": "最細可以印 13 奈米",
-     "start": 1262,
+     "start": 1425,
      "chars": [
-      1264,
-      1269,
-      1275,
-      1280,
-      1286,
-      1286,
-      1292,
-      1297,
-      1297,
-      1303,
-      1308
+      1427,
+      1435,
+      1442,
+      1445,
+      1449,
+      1449,
+      1457,
+      1462,
+      1462,
+      1467,
+      1472
      ]
     }
    ],
    "keywords": [
     {
      "text": "13 奈米",
-     "start": 1292
+     "start": 1457
     }
    ],
    "cues": [
     {
      "id": "spec",
      "text": "廠商",
-     "frame": 1236
+     "frame": 1396,
+     "early": 0
     },
     {
      "id": "thirteen",
      "text": "最細",
-     "frame": 1265
+     "frame": 1429,
+     "early": 0
     }
    ],
+   "hash": "ab64531263d0-3a5f783c6c",
    "sub": "廠商標示\n最細可以印 13 奈米",
-   "provider": "estimate",
-   "syllables": 13,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.828,
+    "minScore": 0.005,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.13,
+      "start": 1.12,
+      "ch": "最",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "廠",
+     "start": 0.04,
+     "end": 0.24,
+     "score": 0.892
+    },
+    {
+     "text": "商",
+     "start": 0.28,
+     "end": 0.44,
+     "score": 0.986
+    },
+    {
+     "text": "標",
+     "start": 0.46,
+     "end": 0.64,
+     "score": 0.999
+    },
+    {
+     "text": "示",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.993
+    },
+    {
+     "text": "最",
+     "start": 1.12,
+     "end": 1.28,
+     "score": 0.999
+    },
+    {
+     "text": "細",
+     "start": 1.4,
+     "end": 1.5,
+     "score": 0.997
+    },
+    {
+     "text": "可",
+     "start": 1.6,
+     "end": 1.68,
+     "score": 0.998
+    },
+    {
+     "text": "以",
+     "start": 1.72,
+     "end": 1.78,
+     "score": 0.999
+    },
+    {
+     "text": "印",
+     "start": 1.84,
+     "end": 1.98,
+     "score": 0.929
+    },
+    {
+     "text": "十",
+     "start": 2.1,
+     "end": 2.18,
+     "score": 0.005
+    },
+    {
+     "text": "三",
+     "start": 2.26,
+     "end": 2.4,
+     "score": 0.009
+    },
+    {
+     "text": "奈",
+     "start": 2.44,
+     "end": 2.58,
+     "score": 0.959
+    },
+    {
+     "text": "米",
+     "start": 2.62,
+     "end": 2.7,
+     "score": 0.996
+    }
+   ],
    "charTimes": [
-    0,
-    0.187,
-    0.374,
-    0.561,
-    0.972,
-    1.158,
-    1.345,
-    1.532,
-    1.719,
-    1.906,
-    2.093,
-    2.279,
-    2.466
+    0.04,
+    0.28,
+    0.46,
+    0.72,
+    1.12,
+    1.4,
+    1.6,
+    1.72,
+    1.84,
+    2.133,
+    2.287,
+    2.44,
+    2.62
    ]
   },
   {
    "id": "s15",
-   "audio": null,
-   "audioFrame": 1325,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1314,
-   "durationFrames": 130,
+   "audio": "audio/tech-euv/15-s15.wav",
+   "audioFrame": 1485,
+   "audioSec": 4.16,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1476,
+   "durationFrames": 141,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1476,112 +2911,245 @@
      8
     ]
    },
-   "voiceStartFrame": 1324,
-   "voiceEndFrame": 1436,
-   "stillFrame": 1434,
+   "voiceStartFrame": 1486,
+   "voiceEndFrame": 1609,
+   "stillFrame": 1607,
    "subtitleWindow": [
-    1321,
-    1441
+    1483,
+    1614
    ],
    "sourceWindow": [
-    1319,
-    1439
+    1481,
+    1612
    ],
    "lines": [
     {
      "text": "2019 年起",
-     "start": 1321,
+     "start": 1483,
      "chars": [
-      1324,
-      1329,
-      1334,
-      1340,
-      1340,
-      1345,
-      1351
+      1489,
+      1495,
+      1501,
+      1507,
+      1507,
+      1513,
+      1520
      ]
     },
     {
      "text": "台積電關鍵幾層",
-     "start": 1360,
+     "start": 1531,
      "chars": [
-      1362,
-      1368,
-      1373,
-      1379,
-      1384,
-      1389,
-      1395
+      1533,
+      1539,
+      1544,
+      1551,
+      1558,
+      1565,
+      1569
      ]
     },
     {
      "text": "改用它來印",
-     "start": 1405,
+     "start": 1579,
      "chars": [
-      1407,
-      1412,
-      1417,
-      1423,
-      1428
+      1581,
+      1586,
+      1591,
+      1596,
+      1601
      ]
     }
    ],
    "keywords": [
     {
      "text": "2019",
-     "start": 1324
+     "start": 1489
     },
     {
      "text": "關鍵幾層",
-     "start": 1379
+     "start": 1551
     }
    ],
    "cues": [
     {
      "id": "tsmc",
      "text": "台積電",
-     "frame": 1364
+     "frame": 1535,
+     "early": 0
     },
     {
      "id": "key",
      "text": "關鍵幾層",
-     "frame": 1380
+     "frame": 1553,
+     "early": 0
     }
    ],
+   "hash": "4d0155b4cdb3-3a5f783c6c",
    "sub": "2019 年起\n台積電關鍵幾層\n改用它來印",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.766,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.68,
+      "start": 1.66,
+      "ch": "台",
+      "errMs": -20
+     },
+     {
+      "onset": 3.26,
+      "start": 3.24,
+      "ch": "改",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "二",
+     "start": 0.4,
+     "end": 0.48,
+     "score": 0.011
+    },
+    {
+     "text": "零",
+     "start": 0.52,
+     "end": 0.66,
+     "score": 0.049
+    },
+    {
+     "text": "一",
+     "start": 0.68,
+     "end": 0.74,
+     "score": 0.001
+    },
+    {
+     "text": "九",
+     "start": 0.8,
+     "end": 0.94,
+     "score": 0.023
+    },
+    {
+     "text": "年",
+     "start": 0.98,
+     "end": 1.14,
+     "score": 0.973
+    },
+    {
+     "text": "起",
+     "start": 1.2,
+     "end": 1.34,
+     "score": 0.992
+    },
+    {
+     "text": "台",
+     "start": 1.66,
+     "end": 1.82,
+     "score": 0.972
+    },
+    {
+     "text": "積",
+     "start": 1.84,
+     "end": 1.94,
+     "score": 0.985
+    },
+    {
+     "text": "電",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.998
+    },
+    {
+     "text": "關",
+     "start": 2.26,
+     "end": 2.42,
+     "score": 0.979
+    },
+    {
+     "text": "鍵",
+     "start": 2.48,
+     "end": 2.64,
+     "score": 0.999
+    },
+    {
+     "text": "幾",
+     "start": 2.7,
+     "end": 2.78,
+     "score": 0.997
+    },
+    {
+     "text": "層",
+     "start": 2.86,
+     "end": 3.06,
+     "score": 0.829
+    },
+    {
+     "text": "改",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.996
+    },
+    {
+     "text": "用",
+     "start": 3.4,
+     "end": 3.54,
+     "score": 0.997
+    },
+    {
+     "text": "它",
+     "start": 3.58,
+     "end": 3.66,
+     "score": 0.985
+    },
+    {
+     "text": "來",
+     "start": 3.74,
+     "end": 3.88,
+     "score": 0.997
+    },
+    {
+     "text": "印",
+     "start": 3.92,
+     "end": 4.06,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.18,
-    0.36,
-    0.54,
-    0.72,
-    0.9,
-    1.297,
-    1.477,
-    1.657,
-    1.837,
-    2.017,
-    2.197,
-    2.377,
-    2.773,
-    2.953,
-    3.133,
-    3.313,
-    3.493
+    0.196,
+    0.392,
+    0.588,
+    0.784,
+    0.98,
+    1.2,
+    1.66,
+    1.84,
+    2,
+    2.26,
+    2.48,
+    2.7,
+    2.86,
+    3.24,
+    3.4,
+    3.58,
+    3.74,
+    3.92
    ]
   },
   {
    "id": "s16",
-   "audio": null,
-   "audioFrame": 1444,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1434,
-   "durationFrames": 110,
+   "audio": "audio/tech-euv/16-s16.wav",
+   "audioFrame": 1616,
+   "audioSec": 3.56,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1607,
+   "durationFrames": 126,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1595,96 +3163,211 @@
      8
     ]
    },
-   "voiceStartFrame": 1444,
-   "voiceEndFrame": 1536,
-   "stillFrame": 1534,
+   "voiceStartFrame": 1617,
+   "voiceEndFrame": 1722,
+   "stillFrame": 1723,
    "subtitleWindow": [
-    1441,
-    1541
+    1614,
+    1730
    ],
    "sourceWindow": [
-    1439,
-    1539
+    1612,
+    1728
    ],
    "lines": [
     {
      "text": "可是一片晶圓印完",
-     "start": 1441,
+     "start": 1614,
      "chars": [
-      1443,
-      1448,
-      1454,
-      1460,
-      1465,
-      1471,
-      1477,
-      1482
+      1628,
+      1633,
+      1642,
+      1646,
+      1653,
+      1659,
+      1665,
+      1671
      ]
     },
     {
      "text": "每一顆都能用嗎？",
-     "start": 1493,
+     "start": 1683,
      "chars": [
-      1495,
-      1500,
-      1506,
-      1512,
-      1517,
-      1523,
-      1529,
-      1529
+      1685,
+      1689,
+      1693,
+      1700,
+      1704,
+      1709,
+      1715,
+      1715
      ]
     }
    ],
    "keywords": [
     {
      "text": "每一顆",
-     "start": 1495
+     "start": 1685
     }
    ],
    "cues": [
     {
      "id": "small",
      "text": "晶圓印完",
-     "frame": 1467
+     "frame": 1654,
+     "early": 0
     },
     {
      "id": "every",
      "text": "每一顆",
-     "frame": 1496
+     "frame": 1686,
+     "early": 0
     }
    ],
+   "hash": "0fb5ba878c12-3a5f783c6c",
    "sub": "可是一片晶圓印完\n每一顆都能用嗎？",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.891,
+    "minScore": 0.072,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.48,
+      "start": 0.46,
+      "ch": "可",
+      "errMs": -20
+     },
+     {
+      "onset": 2.34,
+      "start": 2.34,
+      "ch": "每",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "可",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 0.62,
+     "end": 0.74,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 0.92,
+     "end": 1,
+     "score": 0.931
+    },
+    {
+     "text": "片",
+     "start": 1.06,
+     "end": 1.24,
+     "score": 0.935
+    },
+    {
+     "text": "晶",
+     "start": 1.28,
+     "end": 1.44,
+     "score": 0.862
+    },
+    {
+     "text": "圓",
+     "start": 1.48,
+     "end": 1.6,
+     "score": 0.993
+    },
+    {
+     "text": "印",
+     "start": 1.68,
+     "end": 1.8,
+     "score": 0.998
+    },
+    {
+     "text": "完",
+     "start": 1.88,
+     "end": 2.06,
+     "score": 0.999
+    },
+    {
+     "text": "每",
+     "start": 2.34,
+     "end": 2.46,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.48,
+     "end": 2.54,
+     "score": 0.072
+    },
+    {
+     "text": "顆",
+     "start": 2.62,
+     "end": 2.74,
+     "score": 0.999
+    },
+    {
+     "text": "都",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.624
+    },
+    {
+     "text": "能",
+     "start": 2.98,
+     "end": 3.12,
+     "score": 0.966
+    },
+    {
+     "text": "用",
+     "start": 3.16,
+     "end": 3.3,
+     "score": 0.999
+    },
+    {
+     "text": "嗎",
+     "start": 3.34,
+     "end": 3.42,
+     "score": 0.996
+    }
+   ],
    "charTimes": [
-    0,
-    0.189,
-    0.378,
-    0.567,
-    0.756,
-    0.945,
-    1.134,
-    1.323,
-    1.738,
-    1.927,
-    2.116,
-    2.305,
-    2.494,
-    2.683,
-    2.872
+    0.46,
+    0.62,
+    0.92,
+    1.06,
+    1.28,
+    1.48,
+    1.68,
+    1.88,
+    2.34,
+    2.48,
+    2.62,
+    2.84,
+    2.98,
+    3.16,
+    3.34
    ]
   },
   {
    "id": "s17",
-   "audio": null,
-   "audioFrame": 1545,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1534,
-   "durationFrames": 142,
+   "audio": "audio/tech-euv/17-s17.wav",
+   "audioFrame": 1732,
+   "audioSec": 4.93,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1723,
+   "durationFrames": 164,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1698,127 +3381,285 @@
      8
     ]
    },
-   "voiceStartFrame": 1544,
-   "voiceEndFrame": 1668,
-   "stillFrame": 1666,
+   "voiceStartFrame": 1733,
+   "voiceEndFrame": 1879,
+   "stillFrame": 1877,
    "subtitleWindow": [
-    1541,
-    1676
+    1730,
+    1887
    ],
    "sourceWindow": [
-    1539,
-    1671
+    1728,
+    1882
    ],
    "lines": [
     {
      "text": "下一支，",
-     "start": 1541,
+     "start": 1730,
      "chars": [
-      1544,
-      1549,
-      1555,
-      1555
+      1733,
+      1738,
+      1741,
+      1741
      ]
     },
     {
      "text": "來看晶圓良率",
-     "start": 1559,
+     "start": 1751,
      "chars": [
-      1561,
-      1567,
-      1572,
-      1578,
-      1584,
-      1590
+      1753,
+      1758,
+      1764,
+      1770,
+      1776,
+      1782
      ]
     },
     {
-     "text": "想要完整資料，",
-     "start": 1600,
+     "text": "想要完整解說，",
+     "start": 1800,
      "chars": [
-      1602,
-      1608,
-      1614,
-      1620,
-      1626,
-      1631,
-      1631
+      1803,
+      1808,
+      1814,
+      1819,
+      1825,
+      1831,
+      1831
      ]
     },
     {
      "text": "留言曝光機",
-     "start": 1635,
+     "start": 1844,
      "chars": [
-      1637,
-      1643,
-      1649,
-      1654,
-      1660
+      1846,
+      1853,
+      1859,
+      1864,
+      1870
      ]
     }
    ],
    "keywords": [
     {
      "text": "良率",
-     "start": 1584
+     "start": 1776
     },
     {
      "text": "曝光機",
-     "start": 1649
+     "start": 1859
     }
    ],
    "cues": [
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1545
+     "frame": 1734,
+     "early": 0
     },
     {
      "id": "yield",
      "text": "良率",
-     "frame": 1585
+     "frame": 1777,
+     "early": 0
     },
     {
      "id": "cm",
      "text": "留言",
-     "frame": 1639
+     "frame": 1847,
+     "early": 0
     }
    ],
-   "sub": "下一支，來看晶圓良率\n想要完整資料，留言曝光機",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "hash": "5cd892311c14-3a5f783c6c",
+   "sub": "下一支，來看晶圓良率\n想要完整解說，留言曝光機",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.868,
+    "minScore": 0.006,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 280,
+    "onsetCheck": [
+     {
+      "onset": 0.76,
+      "start": 0.74,
+      "ch": "來",
+      "errMs": -20
+     },
+     {
+      "onset": 2.12,
+      "start": 2.4,
+      "ch": "想",
+      "errMs": 280
+     },
+     {
+      "onset": 2.39,
+      "start": 2.4,
+      "ch": "想",
+      "errMs": 10
+     },
+     {
+      "onset": 3.85,
+      "start": 3.84,
+      "ch": "留",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "下",
+     "start": 0.08,
+     "end": 0.2,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 0.26,
+     "end": 0.3,
+     "score": 0.501
+    },
+    {
+     "text": "支",
+     "start": 0.36,
+     "end": 0.48,
+     "score": 0.888
+    },
+    {
+     "text": "來",
+     "start": 0.74,
+     "end": 0.88,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 0.9,
+     "end": 1.06,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 1.12,
+     "end": 1.28,
+     "score": 0.877
+    },
+    {
+     "text": "圓",
+     "start": 1.3,
+     "end": 1.44,
+     "score": 0.997
+    },
+    {
+     "text": "良",
+     "start": 1.5,
+     "end": 1.68,
+     "score": 0.916
+    },
+    {
+     "text": "率",
+     "start": 1.7,
+     "end": 1.8,
+     "score": 0.498
+    },
+    {
+     "text": "想",
+     "start": 2.4,
+     "end": 2.56,
+     "score": 0.981
+    },
+    {
+     "text": "要",
+     "start": 2.58,
+     "end": 2.72,
+     "score": 0.998
+    },
+    {
+     "text": "完",
+     "start": 2.78,
+     "end": 2.92,
+     "score": 0.897
+    },
+    {
+     "text": "整",
+     "start": 2.96,
+     "end": 3.12,
+     "score": 0.86
+    },
+    {
+     "text": "解",
+     "start": 3.14,
+     "end": 3.24,
+     "score": 0.997
+    },
+    {
+     "text": "說",
+     "start": 3.34,
+     "end": 3.46,
+     "score": 0.991
+    },
+    {
+     "text": "留",
+     "start": 3.84,
+     "end": 4.02,
+     "score": 0.99
+    },
+    {
+     "text": "言",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.995
+    },
+    {
+     "text": "曝",
+     "start": 4.28,
+     "end": 4.46,
+     "score": 0.006
+    },
+    {
+     "text": "光",
+     "start": 4.46,
+     "end": 4.64,
+     "score": 0.985
+    },
+    {
+     "text": "機",
+     "start": 4.66,
+     "end": 4.76,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.193,
-    0.385,
-    0.578,
-    0.77,
-    0.963,
-    1.155,
-    1.348,
-    1.54,
-    1.964,
-    2.156,
-    2.349,
-    2.541,
-    2.734,
-    2.926,
-    3.119,
-    3.312,
-    3.504,
-    3.697,
-    3.889
+    0.08,
+    0.26,
+    0.36,
+    0.74,
+    0.9,
+    1.12,
+    1.3,
+    1.5,
+    1.7,
+    2.4,
+    2.58,
+    2.78,
+    2.96,
+    3.14,
+    3.34,
+    3.84,
+    4.08,
+    4.28,
+    4.46,
+    4.66
    ]
   },
   {
    "id": "s18",
    "audio": null,
-   "audioFrame": 1666,
+   "audioFrame": 1877,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1666,
+   "startFrame": 1877,
    "durationFrames": 72,
    "transitionFrames": 10,
    "transition": {
@@ -1833,24 +3674,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1676,
-   "voiceEndFrame": 1676,
-   "stillFrame": 1726,
+   "voiceStartFrame": 1887,
+   "voiceEndFrame": 1887,
+   "stillFrame": 1937,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1671,
-    1738
+    1882,
+    1949
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-euv/voice.wav",
+  "lufsIn": -16.79,
+  "lufs": -16,
+  "sec": 64.967
+ }
 }
