@@ -264,9 +264,9 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     );
   }
   if (Pn.limit) {
-    const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = l.at("known", l.in + 6), tQ = l.at("q", l.in + 50);
-    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: W0, top: y, width: L.INNER_W, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={30} name="" /><div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink, marginTop: 8 }}>{lines[0]}</div><div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 2 }}>{lines[1]}</div></div></div>;
-    out.push(one("k", tK, p.known.status, "right", p.known.lines, TOP), one("u", tQ, p.unknown.status, "plum", p.unknown.lines, TOP + 214));
+    const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = Math.max(l.at("known", l.in + 6), l.in + 22), tQ = Math.max(l.at("q", l.in + 50), l.in + 30);
+    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: key === "k" ? W0 : W0 + 496, top: y, width: 456, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={30} name="" /><div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink, marginTop: 8 }}>{lines[0]}</div><div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 2 }}>{lines[1]}</div></div></div>;
+    out.push(one("k", tK, p.known.status, "right", p.known.lines, TOP), one("u", tQ, p.unknown.status, "plum", p.unknown.lines, TOP));
   }
   if (Pn.ask) {
     const a = Pn.ask, p = a.p, o = 1 - O(f, a.out - 8, 8), t1 = a.at("a", a.in + 8), t2 = a.at("b", a.in + 30), tN = a.at("next", a.in + 60);
