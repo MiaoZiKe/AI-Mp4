@@ -82,7 +82,7 @@
     - **運作動畫**（不只拆解，還演「東西實際怎麼運作」）：動作的定義也是資料，寫在 `model.json` 的 `actions`（八種 type：`vibrate` 零件振動／往復、`rotate` 旋轉件、`pulse` 零件發光脈衝、`flow` 沿路徑流動的光點或箭頭、`wave` 往外擴散的聲波圈、`trace` 行進波形、`sum` 幾道波疊加相消、`meter` 跟著數值動的小儀表），每幕用 `props.run: [{ id, at, until?, speed?, gain? }]` 由 cue 觸發；另有 `props.shot`（鏡頭關鍵格，跟著訊號走）與 `props.shift`（把某一層變透明或移開）。程式在 `src/components/three/Ops.tsx`，線寬與不透明度在 `THEME_3D.ops`；寫法、範例與每種成本見 `docs/three-stage.md`「運作動畫怎麼寫」，量成本 `node scripts/three/bench-fx.mjs <slug> --ops`；樣片 `videos/sample-tech-anc/`（耳機主動降噪，拆解只佔約三分之一）。運作動畫都是示意，出處列要寫「波形是示意，不是量測」，儀表不標沒查證的數字。
   - `stage: "chart"`（股票，資料圖表主導）：`src/components/chartlead/`，每幕 `component: "ChartScene"`，資料寫在頂層 `chart`；token＝`THEME_CHARTLEAD`／`LAYOUT_CHARTLEAD`；檢查 `scripts/chartlead/validate-chart.mjs`；樣片 `videos/sample-stock-chart/`。只畫查證過的資料點，紅色代表上漲（台股習慣），不給投資建議。
 - 共同規則：元件不寫死色碼；事件的 `at` 只寫 cue id 或 `start｜voice｜end｜exit` 加減幾幀，不手填秒數；不出現真實商標與真人；這四種可以用淡入淡出（紙拼貼的「不用透明度」規則只管沒有 `stage` 的 v3）。
-- **深色 HUD 片的頻道皮膚**（`videos/tech-2nm/`，科技透明圈第一支完整片）：script.json 頂層 `hudSkin: "deep"｜"glass"` 選配色，色票全部在 `src/theme-hud-skins.json`（換色只改這一個欄位；新增一套就在 JSON 加一個鍵）；另有 `props.reexplode`、overlay `bars`、片尾卡（最後一幕 `silent: true`＋`props.endCard`）、旁白設定檔 `tech-report`，寫法見 `docs/three-stage.md` 第八節。使用者 2026/11/15 選定科技頻道用 `glass`（冰藍加萊姆綠）；`brand`（頻道開口圈標誌的深藍＋藍＋橘）做過一版對照，留著備用。之後的範本片改用 `light`（淺色底配藍與橘，主要風格），`glass` 留作備用。2026/11/15 使用者看完淺色版的回饋（LOGO 固定左上、空白填滿、片尾 LOGO 動畫、電流效果、換幕不疊、標籤不壓模型）都寫成規則：`hud.layout: "fill"`、`scripts/three/layout-check.mjs`（validate 自動跑），清單在 `docs/channels/tech-daily-playbook.md` 第九節。
+- **深色 HUD 片的頻道皮膚**（`videos/tech-2nm/`，科技透明圈第一支完整片）：script.json 頂層 `hudSkin: "deep"｜"glass"` 選配色，色票全部在 `src/theme-hud-skins.json`（換色只改這一個欄位；新增一套就在 JSON 加一個鍵）；另有 `props.reexplode`、overlay `bars`、片尾卡（最後一幕 `silent: true`＋`props.endCard`）、旁白設定檔 `tech-report`，寫法見 `docs/three-stage.md` 第八節。使用者 2026/11/15 選定科技頻道用 `glass`（冰藍加萊姆綠）；`brand`（頻道開口圈標誌的深藍＋藍＋橘）做過一版對照，留著備用。之後的範本片改用 `light`（淺色底配藍與橘，主要風格），`glass` 留作備用。2026/11/15 使用者看完淺色版之後的回饋都寫成規則（`docs/channels/tech-daily-playbook.md` 第九節）：**科技片固定規則**＝LOGO 固定左上（`hud.logoCorner` 可切右上，待使用者確認）、版面上下填滿（`hud.layout: "fill"`）、主素材不准被遮也非必要不移動（`scripts/three/layout-check.mjs`，validate 自動跑）、運作時加同步的 2D 剖面圖（overlay `section`）、片尾＝透明圈動畫（`logoAnim: "transparent"`）＋程式合成的 AI 科技感招牌音（`scripts/three/sfx-logo-tech.py`，鎖定那一聲固定）、片尾卡顯示留言關鍵字（`endCard.comment`）。
 - **3D 片的前 3 秒與留存**（使用者 2026/11/14 要求、三位評審評估）：第 0 幀要有反差或後果的大字加一個已經在動的東西（不是只有產品在轉），先給結果再拆開；中段逐步揭曉並畫出一個衝突，結尾＝具體提問＋下一集鉤子；示意動畫不畫成歸零。新畫面優先用 2D 疊層 `props.overlay`（`scope｜stamp｜cross｜circle｜steps｜card｜ribbon`，`src/components/three/Overlays.tsx`，不增加 3D 成本）。18 條檢查清單在 `docs/channels/tech-3d.md`，評估全文與採用理由在 `docs/tech-3d-expert-review.md`；照做的樣片是 `videos/sample-tech-anc/`。
 - **3D 只開放給科技頻道**（使用者已同意）：全專案只有 `src/components/three/` 可以 import three.js／`@remotion/three`（validate 會擋其他資料夾）；v2、紙拼貼與其他 `stage` 仍禁止 3D。模型用基本形狀自己建，不畫真實商標、不仿特定機型。
 - 3D 的 GL 設定與限制：這台機器 4 核心、沒有 GPU，預設的 `gl: "swiftshader"` 開不出 WebGL；`stage: "three"` 時 `scripts/lib.mjs` 自動改用 `swangle`，平行數預設 1（`THREE_CONCURRENCY` 可調，樣片用 4）。成本幾乎和 3D 畫布的像素數成正比：`THEME_3D.fx.dpr`（畫布倍率）1＝每幀約 2.7 秒、1.35（樣片）＝平行數 4 時每幀約 2 秒（441 幀約 15 分鐘）、2＝約 8.3 秒；一般畫面每幀約 0.05 秒。MSAA、物理材質（PBR）、陰影貼圖、折射在這台機器都太貴（數字在 `docs/three-stage.md`），預設用 Phong＋程式畫的環境貼圖＋壓扁的假陰影；正式長片要先 `node scripts/three/bench30.mjs <slug>` 估時間。
@@ -144,6 +144,14 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 科技（Tech）：Iapetus（男）＋「說明 B」（親和、專業解說），使用者 2026/11/15 決定；提示詞全文在 `docs/prompts/tech-2nm-親和專業試聽.txt`。第一支用在 tech-2nm：使用者自己在 Google AI Studio 生成錄音後上傳，沒有送 TTS 請求（做法見 `videos/tech-2nm/voice.md`）。在這之前的設定是照 love-stats 成片的聲音（使用者 2026/11/14 上傳 love-stats.mp4 指定：`voice.style`＝「用台灣人平常講話的口音，語氣沉穩認真一點，語速比平常稍快，咬字清楚」，生成後 atempo 1.17；使用者聽過成品後指定的，1.08 上限不適用）。原本哩股哩股也用這個聲音，11/14 已被否決，只剩科技頻道沿用。
 - 白話國際：沿用 Iapetus（未另行指定）。
 - 音色固定；語速、語氣、情緒起伏依每支片的內容在 voice.profile 決定，試聽檔只代表音色。Iapetus 曾被聽成中國口音（stock-jensen），每次生成後跑 scripts/voice-retro.py，捲舌指標明顯偏高時照實告訴使用者，重配要先得到同意。
+
+## 所有頻道的版面規則（使用者 2026/11/15：「所有影片都是」）
+- 頻道 LOGO 固定在一個角落（預設左上），全片不動、不換位置，片尾卡也在。
+- 版面上下不留大片空白：主視覺、字幕、出處適當填滿 1080×1920（上方只留約 100–140px）；字幕卡與重要文字在 y≤1600（IG／Reels 底部介面會蓋住），那一區只放出處或裝飾。
+- 畫面中間的主素材不准被讀數、標籤、蓋章、卡片蓋到中央；也不要為了躲開而一直縮放、移動主素材（使用者：「移動很奇怪」），疊層去找旁邊的空白。
+- 片尾卡的頻道 LOGO 要有動畫，並配程式合成的片尾音效（每個頻道一段固定的招牌音；科技頻道見 `docs/channels/tech-daily-playbook.md`）。
+- 物理或運作效果（電流流動、訊號傳遞、零件動作等）要做得清楚、有方向感、跟旁白同步；有空間時搭配 2D 剖面圖說明原理。
+- 第一支照這些修改的是 `videos/tech-2nm/`；其他頻道的新片一律照做，舊片要改時再套用。
 
 ## 試聽規則
 - 試聽不花 API 額度（使用者 2026/11/13 指示）：要比較音色、語氣或口語程度時，不要自己送 TTS 請求；把完整提示詞（含設定說明與念稿）寫成檔案交給使用者，由他在 Google AI Studio 的語音生成頁（aistudio.google.com/generate-speech，模型 Gemini 2.5 Flash Preview TTS、音色照設定檔）試聽後回覆選擇；Claude 的網站不會產生語音，不要叫使用者貼到那裡。API 只用在使用者選定之後的正式配音（每支片整篇 1 次）；需要重配先說明原因與次數，等使用者同意。

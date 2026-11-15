@@ -6,8 +6,13 @@ import { cameraFor, projectPoint, stateAt, type Label3D, type Model3D, type Over
 import type { PartDef, ProductModel } from "./model";
 import type { Scene, TimelineV2 } from "../../types";
 
-export type Rect = { x0: number; y0: number; x1: number; y1: number };
-export type Box = { W: number; X: number; INNER_W: number; STAGE_TOP: number; STAGE_H: number; HEADER_TOP?: number; CAP_TOP?: number; BAND_TOP?: number; BAND_BOTTOM?: number };
+export type Rect = { x0: number; y0: number; x1: number; y1: number; w?: number };
+/** 主素材「中央區域」：中心不變、寬高各取一半（中間的 25%～75%）。2026/11/15 v6：蓋到這裡＝蓋到主體正中央（error），只蓋到外圈＝邊緣（warning） */
+export const centerOf = (r: Rect): Rect => { const cx = (r.x0 + r.x1) / 2, cy = (r.y0 + r.y1) / 2, hw = (r.x1 - r.x0) / 4, hh = (r.y1 - r.y0) / 4; return { x0: cx - hw, x1: cx + hw, y0: cy - hh, y1: cy + hh }; };
+/** 障礙物：主素材外圈是軟的（權重 0.001，真的放不下時可以蓋到邊緣），中央與其他東西是硬的（權重 HARD） */
+export const HARD = 1e6;
+export const mainObstacles = (r: Rect | null): Rect[] => (r ? [{ ...r, w: 0.001 }, { ...centerOf(r), w: HARD }] : []);
+export type Box = { W: number; X: number; INNER_W: number; STAGE_TOP: number; STAGE_H: number; HEADER_TOP?: number; CAP_TOP?: number; BAND_TOP?: number; BAND_BOTTOM?: number; ART_FIT?: number };
 export const hit = (a: Rect, b: Rect, pad = 0) => a.x0 < b.x1 + pad && b.x0 < a.x1 + pad && a.y0 < b.y1 + pad && b.y0 < a.y1 + pad;
 export const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0)) * Math.max(0, Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0));
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
@@ -36,7 +41,8 @@ export const zoomKeys = (scenes: Scene[], tl: TimelineV2, hud: HudSpec, zoomDur:
   for (const s of scenes) for (const z of ([] as any[]).concat((s.props as any)?.zoom ?? [])) {
     const to = hud.levels.findIndex((l) => l.id === z.to), a = at(s.id, z.at, NaN);
     if (to < 0 || Number.isNaN(a)) continue;
-    keys.push({ to, at: a, dur: z.dur ?? zoomDur, drift: !!z.drift });
+    // out＝停在這一級再往外拉幾分之一級（例如 0.75；圖變小、四周留出放卡片的空白），只用在最後一次拉回
+    keys.push({ to: to - (z.out ?? 0), at: a, dur: z.dur ?? zoomDur, drift: !!z.drift });
   }
   keys.sort((a, b) => a.at - b.at);
   // drift：這一級慢慢推近（＋drift 級），一直推到下一個縮放開始
@@ -116,6 +122,8 @@ export const stampRect = (o: Overlay3D, cx: number, cy: number): Rect => {
 export const cardRect = (o: Overlay3D, b: Box): Rect | null => {
   const x0 = b.X, x1 = b.X + b.INNER_W;
   if (o.type === "compare") return { x0, x1, y0: o.y ?? 840, y1: (o.y ?? 840) + (o.h ?? 400) };
+  if (o.type === "section") return { x0: o.x ?? b.X, x1: (o.x ?? b.X) + (o.w ?? 600), y0: o.y ?? 900, y1: (o.y ?? 900) + (o.h ?? 300) };
+  if (o.type === "bars" && o.compact) { const n = (o.rows ?? []).length; return { x0, x1, y0: o.y ?? 640, y1: (o.y ?? 640) + 4 + 16 + 54 + n * 70 + 20 }; }
   if (o.type === "bars") { const n = (o.rows ?? []).length; return { x0, x1, y0: o.y ?? 640, y1: (o.y ?? 640) + 4 + 20 + 64 + n * (26 + 80 + 10 + 44) + 30 }; }
   // 提問卡：上下內距 36＋44、小標約 90（含間距）、每行 size×1.28，再多留 30（字型行高比估的高；2026/11/15 實測 s18 的卡比估的高約 50px）
   if (o.type === "card") { const size = o.size ?? 100, lines = (o.lines ?? []).length; return { x0, x1, y0: o.y ?? 360, y1: (o.y ?? 360) + 4 + 36 + (o.kicker ? 90 : 0) + lines * size * 1.28 + (o.foot ? 58 : 0) + 44 + 30 }; }
@@ -133,15 +141,20 @@ export const modelUnion = (m: Model3D, mainAt: (f: number) => Rect | null, f0: n
 };
 /** 在舞台裡找一個 w×h 的空位：中心點每 STEP px 掃一遍，不碰任何障礙（留 pad）的位置中選離 pref 最近的；全被擋就選重疊面積最小的 */
 export const freeSpot = (w: number, h: number, pref: [number, number], obs: Rect[], area0: Rect, pad = 14): { c: [number, number]; cost: number } => {
+  // 成本＝Σ 權重×(1＋重疊面積)；0＝完全空白，<HARD＝只蓋到主素材外圈，≥HARD＝蓋到主體正中央或其他東西
   const STEP = 12, hw = w / 2, hh = h / 2;
-  const cost = (cx: number, cy: number) => { const r = { x0: cx - hw, x1: cx + hw, y0: cy - hh, y1: cy + hh }; let c = 0; for (const q of obs) if (hit(r, q, pad)) c += 1 + area(r, { x0: q.x0 - pad, x1: q.x1 + pad, y0: q.y0 - pad, y1: q.y1 + pad }); return c; };
+  const cost = (cx: number, cy: number) => { const r = { x0: cx - hw, x1: cx + hw, y0: cy - hh, y1: cy + hh }; let c = 0; for (const q of obs) if (hit(r, q, pad)) c += (q.w ?? HARD) * (1 + area(r, { x0: q.x0 - pad, x1: q.x1 + pad, y0: q.y0 - pad, y1: q.y1 + pad })); return c; };
   const cl = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
   const px = cl(pref[0], area0.x0 + hw, area0.x1 - hw), py = cl(pref[1], area0.y0 + hh, area0.y1 - hh);
-  let best: { c: [number, number]; cost: number; d: number } = { c: [px, py], cost: cost(px, py), d: 0 };
+  // 排序：先比「有沒有蓋到硬的東西」（主體中央、讀數帶、其他標籤卡片），同一級再比「離原位多遠＋蓋到主素材外圈多少」：
+  // 可以為了靠近零件蓋到一點主素材外圈，不要為了完全不碰而跑到畫面另一邊（引線會橫過模型）
+  const score = (c: number, d: number) => Math.floor(c / HARD) * 1e9 + d + (c % HARD) * 20;
+  const c0 = cost(px, py);
+  let best: { c: [number, number]; cost: number; d: number; sc: number } = { c: [px, py], cost: c0, d: 0, sc: score(c0, 0) };
   if (best.cost === 0) return best;
   for (let cy = area0.y0 + hh; cy <= area0.y1 - hh; cy += STEP) for (let cx = area0.x0 + hw; cx <= area0.x1 - hw; cx += STEP) {
-    const c = cost(cx, cy), d = Math.hypot(cx - pref[0], (cy - pref[1]) * 1.2);
-    if (c < best.cost || (c === best.cost && d < best.d)) best = { c: [cx, cy], cost: c, d };
+    const c = cost(cx, cy), d = Math.hypot(cx - pref[0], (cy - pref[1]) * 1.2), sc = score(c, d);
+    if (sc < best.sc) best = { c: [cx, cy], cost: c, d, sc };
   }
   return best;
 };
@@ -168,7 +181,7 @@ export const ART_BOX: Record<string, [number, number, number, number]> = { phone
 export const artMainRect = (hud: HudSpec, z: { lv: number; logField: number }, b: Box): Rect | null => {
   const i = Math.max(0, Math.min(hud.levels.length - 1, Math.round(z.lv))), lvl = hud.levels[i], bx = ART_BOX[lvl.art];
   if (!bx) return null;
-  const R = artRegion(b), cx = b.W / 2, cy = (R.y0 + R.y1) / 2, k = Math.pow(10, Math.log10(meters(lvl.field)) - z.logField), u = (b.INNER_W * k) / 1000;
+  const R = artRegion(b), cx = b.W / 2, cy = (R.y0 + R.y1) / 2, k = Math.pow(10, Math.log10(meters(lvl.field)) - z.logField), u = (b.INNER_W * k * (b.ART_FIT ?? 1)) / 1000;
   // 裁在整個舞台裡（不是 artRegion）：讓位時才會把整支手機放進空白，不會只放進被裁過的那一段
   const S0 = b.STAGE_TOP, S1 = b.STAGE_TOP + b.STAGE_H;
   const r = { x0: Math.max(0, cx + bx[0] * u), x1: Math.min(b.W, cx + bx[2] * u), y0: Math.max(S0, cy + bx[1] * u), y1: Math.min(S1, cy + bx[3] * u) };
@@ -250,16 +263,26 @@ export const arrangeOverlays = (m: Model3D, b: Box, mainAt: (f: number) => Rect 
   // 1. 避開模型與其他東西（照進場順序；已放好的蓋章也是障礙）
   const placed: Overlay3D[] = [];
   for (const o of [...list].sort((p, q) => p.at - q.at)) {
-    if (o.type !== "stamp" || o.avoid === false || fixed.has(o._i)) { placed.push(o); continue; }
+    const isCard = ["compare", "bars", "card", "section"].includes(o.type);
+    if ((o.type !== "stamp" && !isCard) || o.avoid === false || fixed.has(o._i)) { placed.push(o); continue; }
     const f0 = o.at, f1 = Math.min(o.until + EXIT, m.total - 1);
     const mr = modelUnion(m, mainAt, f0, f1);
     const others = [...placed, ...list.filter((p) => fixed.has(p._i) && p !== o && !placed.includes(p))];
-    const obs: Rect[] = [...hudReserved(b), ...obstacles(f0, f1), ...others.filter((p) => p.type === "stamp" && p.at < f1 && p.until > f0 + 4) /* 舊的幾幀內就退場的不算：第 2 步會讓新的等它退完 */.map((p) => rectOf(p) as Rect)];
-    if (mr) obs.push(mr);
-    const r0 = rectOf(o) as Rect, x = o.x ?? b.W / 2, y = o.y ?? (stage.y0 + stage.y1) / 2;
+    const obs: Rect[] = [...hudReserved(b), ...obstacles(f0, f1), ...others.filter((p) => (p.type === "stamp" || ["compare", "bars", "card", "section"].includes(p.type)) && p.at < f1 && p.until > f0 + 4) /* 舊的幾幀內就退場的不算：第 2 步會讓新的等它退完 */.map((p) => rectOf(p) as Rect), ...mainObstacles(mr)];
+    const r0 = rectOf(o) as Rect;
+    if (isCard) {
+      // 卡片（全寬）：只上下找；主素材不動。找不到不蓋中央的位置時，卡片照原位、主素材在卡片出現期間退成背景（_backdrop）
+      const y0 = r0.y0, hgt = r0.y1 - r0.y0, wid = r0.x1 - r0.x0;
+      const { c, cost } = freeSpot(wid, hgt, [(r0.x0 + r0.x1) / 2, y0 + hgt / 2], obs, { ...stage, x0: r0.x0, x1: r0.x1 }, 10);
+      if (cost >= HARD) o._backdrop = true;
+      else { const ny = c[1] - hgt / 2; if (Math.abs(ny - y0) > 1) { if (o.type === "section") { o.y = (o.y ?? 0) + (ny - y0); o.x = (o.x ?? 0) + (c[0] - (r0.x0 + r0.x1) / 2); } else o.y = ny; o._moved = true; } if (cost > 0) o._edge = true; }
+      placed.push(o);
+      continue;
+    }
+    const x = o.x ?? b.W / 2, y = o.y ?? (stage.y0 + stage.y1) / 2;
     const { c, cost } = freeSpot(r0.x1 - r0.x0, r0.y1 - r0.y0, [x, y], obs, stage);
-    // 找不到空位（2D 圖撐滿舞台時常見）：留在原位，標成「主素材要讓位」
-    if (cost > 0 && mr) { o._yield = true; } else if (Math.abs(c[0] - x) > 1 || Math.abs(c[1] - y) > 1) { o.x = c[0]; o.y = c[1]; o._moved = true; }
+    if (Math.abs(c[0] - x) > 1 || Math.abs(c[1] - y) > 1) { o.x = c[0]; o.y = c[1]; o._moved = true; }
+    if (cost >= HARD) o._center = true; else if (cost > 0) o._edge = true;
     placed.push(o);
   }
   // 2. 換幕不疊（依進場時間排）
@@ -290,8 +313,7 @@ export const placeLabels = (m: Model3D, b: Box, mainAt: (f: number) => Rect | nu
     const an = A[l.part], f0 = l.at + 8, s0 = stateAt(m, f0), p0 = projectPoint(s0, cameraFor(s0), an.layer, an.p);
     const f1 = Math.min(l.until + 6, m.total - 1), { w, h } = labelSize(l, enPx);
     const obs: Rect[] = [...hudReserved(b), ...obstacles(l.at, f1), ...out.filter((q) => q.l.at < f1 && q.l.until + 6 > l.at).map((q) => q.rect)];
-    const mr = modelUnion(m, mainAt, l.at, f1);
-    if (mr) obs.push(mr);
+    obs.push(...mainObstacles(modelUnion(m, mainAt, l.at, f1)));
     const pref: [number, number] = [p0.x + an.dx + (an.dx < 0 ? -w / 2 : w / 2), p0.y + an.dy];
     const { c, cost } = freeSpot(w, h, pref, obs, stage, 18);
     const left = c[0] < p0.x, rect = { x0: c[0] - w / 2, x1: c[0] + w / 2, y0: c[1] - h / 2, y1: c[1] + h / 2 };
@@ -354,45 +376,28 @@ export const hookRect = (h: { title: string; kicker?: string; size?: number; top
  * 全套版面（Hud.tsx 與 layout-check 共用）：主素材框 → 第一輪讓位（鉤子、大卡片）→ 標籤 → 蓋章（找空位）→ 放不下的蓋章也加進讓位 → 第二輪讓位 → 其餘蓋章用新的主素材框重放。
  */
 export const planHud = (m: Model3D, b: Box, hud: HudSpec, keys: ZoomKey[], enPx: number, hookOut: number) => {
+  // 2026/11/15 v6（Andy：「物件非必要不用一直移動，原來那樣其實 OK 了，你這樣移動很奇怪」）：主素材不動、不縮放。
+  // 2D 圖與 3D 畫布只套一個固定的放大（ART_FIT，繞 artRegion 中心），讓主素材撐滿舞台；卡片、蓋章、標籤找主素材旁的空白放。
   const total = m.total, is3D = (f: number) => zoomAt(hud, keys, f).handoff > 0.5;
+  const fit = b.ART_FIT ?? 1, R = artRegion(b), cx = b.W / 2, cy = b.BAND_TOP ? (R.y0 + R.y1) / 2 : b.STAGE_TOP + b.STAGE_H / 2;
+  const base3D: Yield = fit === 1 ? ID : { s: fit, ox: cx * (1 - fit), oy: cy * (1 - fit) };
   const mc = new Map<number, Rect | null>();
-  const rawMain = (f: number) => { if (!mc.has(f)) mc.set(f, is3D(f) ? modelRect(m.product, stateAt(m, f)) : artMainRect(hud, zoomAt(hud, keys, f), b)); return mc.get(f) ?? null; };
-  const band = !!b.BAND_TOP;
-  // 一定會讓位的：鉤子大字、大卡片、固定在畫面上的儀表（run 期間）
-  const trig: YieldTrigger[] = [];
+  const rawMain = (f: number) => { if (!mc.has(f)) { const r = is3D(f) ? modelRect(m.product, stateAt(m, f)) : artMainRect(hud, zoomAt(hud, keys, f), b); mc.set(f, r ? (is3D(f) ? applyY(r, base3D) : r) : null); } return mc.get(f) ?? null; };
   const hook = m.hook ? hookRect(m.hook as any, b) : null;
-  if (hook && band) trig.push({ at: -30, until: hookOut, rect: hook, why: "鉤子大字" });
-  for (const [id, d] of Object.entries(m.product.actions ?? {})) {
-    if (d.type !== "meter" || d.x === undefined || d.y === undefined || !band) continue;
-    for (const r of m.runs.filter((q) => q.id === id)) trig.push({ at: r.at, until: Math.min(r.until + r.ramp, total), rect: { x0: d.x, y0: d.y, x1: d.x + (d.w ?? 330), y1: d.y + METER_H }, why: `儀表「${d.label}」` });
-  }
-  const cardTrig = (ovs: Overlay3D[]) => ovs.filter((o) => ["compare", "bars", "card"].includes(o.type) && o.avoid !== false).map((o) => ({ at: o.at, until: o.until, rect: cardRect(o, b)!, why: o.type }));
   const obsOf = (labels: PlacedLabel[]) => { const base = obstaclesOf(m, labels); return (f0: number, f1: number) => [...base(f0, f1), ...(hook && f0 < hookOut + EXIT ? [hook] : [])]; };
-  const run = (extra: YieldTrigger[], fixedOv?: { fixed: Set<number>; pos: Map<number, { x?: number; y?: number }> }) => {
-    const t0 = band ? [...trig, ...cardTrig((m.overlays ?? []) as Overlay3D[]), ...extra] : [];
-    const y = makeYield(b, rawMain, t0, total);
-    const labels = placeLabels(m, b, y.mainAt, enPx, obsOf([]));
-    const mm = fixedOv ? ({ ...m, overlays: (m.overlays ?? []).map((o, i) => (fixedOv.fixed.has(i) ? { ...o, ...fixedOv.pos.get(i) } : o)) } as Model3D) : m;
-    const ovs = arrangeOverlays(mm, b, y.mainAt, obsOf(labels), fixedOv?.fixed);
-    if (fixedOv) for (const o of ovs) if (fixedOv.fixed.has(o._i)) o._yield = true;
-    return { y, labels, ovs, triggers: t0 };
-  };
-  let r = run([]);
-  if (!band) return { overlays: r.ovs, labels: r.labels, yieldAt: r.y.yieldAt, mainAt: r.y.mainAt, rawMain, is3D, triggers: r.triggers };
-  // 放不下的蓋章與標籤：留在原位，改成主素材讓位（最多兩輪）
-  let extra: YieldTrigger[] = [], fixed = new Set<number>(), pos = new Map<number, { x?: number; y?: number }>();
-  for (let pass = 0; pass < 2; pass++) {
-    const newS = r.ovs.filter((o) => o._yield && !fixed.has(o._i)), newL = r.labels.filter((l) => (l.cost ?? 0) > 0 && !extra.some((t) => t.why === `標籤「${l.l.text}」`));
-    if (!newS.length && !newL.length) break;
-    for (const o of newS) {
-      // 留在原位，但整個要在 artRegion 裡（不壓讀數帶）
-      const R = artRegion(b), x = o.x ?? b.W / 2, y = o.y ?? b.STAGE_TOP + b.STAGE_H / 2, r0 = stampRect(o, x, y);
-      const dx = Math.max(0, R.x0 + 8 - r0.x0) - Math.max(0, r0.x1 - (R.x1 - 8)), dy = Math.max(0, R.y0 + 8 - r0.y0) - Math.max(0, r0.y1 - (R.y1 - 8));
-      fixed.add(o._i); pos.set(o._i, { x: x + dx, y: y + dy });
-      extra.push({ at: o.at, until: o.until, rect: stampRect(o, x + dx, y + dy), why: `蓋章「${o.text}」` });
-    }
-    for (const l of newL) extra.push({ at: l.l.at, until: Math.min(l.l.until, total), rect: l.rect, why: `標籤「${l.l.text}」` });
-    r = run(extra, { fixed, pos });
-  }
-  return { overlays: r.ovs, labels: r.labels, yieldAt: r.y.yieldAt, mainAt: r.y.mainAt, rawMain, is3D, triggers: r.triggers };
+  // 標籤先讓出卡片（剖面圖、對照卡…）在腳本裡的位置
+  const cardsAt = (f0: number, f1: number) => ((m.overlays ?? []) as Overlay3D[]).filter((o) => ["compare", "bars", "card", "section"].includes(o.type) && o.at < f1 && o.until + EXIT > f0).map((o) => cardRect(o, b)!).filter(Boolean);
+  const labels = placeLabels(m, b, rawMain, enPx, (f0, f1) => [...obsOf([])(f0, f1), ...cardsAt(f0, f1)]);
+  const overlays = arrangeOverlays(m, b, rawMain, obsOf(labels));
+  // 卡片放不下（會蓋到主體正中央）時，主素材在卡片出現期間退成背景（不透明度降到 BACKDROP_O）
+  const backs = overlays.filter((o) => o._backdrop);
+  const dimAt = (f: number) => backs.reduce((a, o) => Math.max(a, tween(f, o.at - 8, 8, EASE.move) * (1 - tween(f, o.until, 8, EASE.move))), 0);
+  return { overlays, labels, yieldAt: (f: number) => (is3D(f) ? base3D : ID), base3D, mainAt: rawMain, rawMain, is3D, dimAt, triggers: [] as YieldTrigger[] };
 };
+export const BACKDROP_O = 0.28;
+
+/** 片尾卡「透明圈」動畫（endCard.logoAnim: "transparent"，LogoAnims.tsx 的 Transparent）的時間表（片尾卡開始後第幾幀）：
+ *  飛入 0–10、X 光掃描 11–25、各層撞合約 27／29／31／33、鎖定 lock＝34（橘點落進缺口＋粒子迸開，招牌音主音在這一幀）、橘點回彈約 39；
+ *  頻道名從 34 起每 2 幀彈出一個字、光掃 40、底線與 slogan 44、軌跡 46 起每 2 幀、下一支 52、留言關鍵字 56；settled＝全部落定 */
+export const ENDCARD_TC = { lock: 34, name: 34, nameStep: 2, sweep: 40, line: 44, slogan: 44, trail: 46, next: 52, comment: 56, settled: 64, dot: [34, 39] as [number, number] } as const;
+export const endcardTimes = (logoAnim?: string) => (logoAnim === "transparent" ? ENDCARD_TC : ENDCARD);

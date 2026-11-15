@@ -1,7 +1,7 @@
 // scripts/three/layout-check.mjs 用 esbuild 打包這支（不開瀏覽器）：用和畫面同一份的 engine.ts／hudLayout.ts 算每一幀的版面，找出
 // 標籤／蓋章壓到模型、兩張卡同時出現又重疊、內容超出安全區、內容底部太高（下方空白太多）、小字太小、片尾卡太短。
 import { buildModel, stateAt } from "../../src/components/three/engine";
-import { cardRect, visibleMain, hit, area, hookRect, hudReserved, planHud, stampRect, textW, visible, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
+import { cardRect, centerOf, endcardTimes, visibleMain, hit, area, hookRect, hudReserved, planHud, stampRect, textW, visible, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
 import { setHudLayout, setHudSkin, H } from "../../src/components/three/hudSkin";
 import { cameraFor, projectPoint } from "../../src/components/three/engine";
 import { EASE, tween } from "../../src/components/anim";
@@ -16,7 +16,7 @@ export const check = (script: any) => {
   if (!hud || !tl) return { issues: out, stats: {} };
   setHudSkin(script.hudSkin, hud.smallPx);
   const L = setHudLayout(hud.layout) as any;
-  const total = tl.totalFrames, SAFE = { x0: 64, y0: 220, x1: 1080 - 64, y1: 1920 - 220 };
+  const total = tl.totalFrames, SAFE = { x0: 64, y0: L.SAFE_TOP ?? 220, x1: 1080 - 64, y1: 1920 - 220 };
   // ── 靜態規則 ──
   if (hud.layout !== "fill") W("版面", "hud.layout 不是 \"fill\"：LOGO 仍是小的、下方空白沒填滿（2026/11/15 使用者回饋）");
   const capBottom = L.CAP_TOP + L.CAP_H, srcBottom = L.SRC_TOP + L.SRC_PX * 1.3;
@@ -39,15 +39,17 @@ export const check = (script: any) => {
     // 留言關鍵字（2026/11/15 Andy）：每支片尾卡都要有、2～4 字、字級 ≥40、在 LOGO 落定後出現、整行在安全區與片尾卡框內
     if (!ec.comment) W("片尾卡", "endCard.comment 沒寫：每支影片要訂一個留言關鍵字（2～4 字），片尾卡顯示「留言「關鍵字」拿完整資料」");
     else {
-      const n = [...String(ec.comment)].length, line = `留言「${ec.comment}」拿完整資料`, px = L.ENDCARD_COMMENT_PX, w = textW(line, px), top = L.STAGE_TOP + 300 + 868;
+      const n = [...String(ec.comment)].length, line = `留言「${ec.comment}」拿完整資料`, px = L.ENDCARD_COMMENT_PX, w = textW(line, px), top = L.STAGE_TOP + (ec.logoAnim ? 330 + 40 : 300) + 868;
       if (n < 2 || n > 4) E("片尾卡", `留言關鍵字「${ec.comment}」${n} 字，要 2～4 字`);
       if (px < 40) E("小字", `片尾卡留言關鍵字 ${px}px < 40`);
       if (w > L.INNER_W - 40) E("片尾卡", `「${line}」寬約 ${Math.round(w)}px，放不下一行`);
       if (top + px * 1.4 > Math.min(SAFE.y1, L.CAP_TOP + L.CAP_H, L.IG_SAFE_BOTTOM)) E("片尾卡", `留言關鍵字那一行超出片尾卡框（下緣 y${Math.round(top + px * 1.4)}）`);
-      if (ENDCARD.comment < ENDCARD.dot[1] + 6) E("片尾卡", "留言關鍵字要等 LOGO 落定後才出現");
-      if (len - (ENDCARD.comment + 8) < 30) E("片尾卡", "留言關鍵字出現後停不到 1 秒");
+      const ET = endcardTimes(ec.logoAnim);
+      if (ET.comment < ET.dot[1] + 6) E("片尾卡", "留言關鍵字要等 LOGO 落定後才出現");
+      if (len - (ET.comment + 8) < 30) E("片尾卡", "留言關鍵字出現後停不到 1 秒");
     }
-    if (len - ENDCARD_SETTLED < 30) E("片尾卡", `片尾卡動畫在第 ${ENDCARD_SETTLED} 幀才落定，之後只停 ${((len - ENDCARD_SETTLED) / 30).toFixed(2)} 秒（要 ≥1 秒）`);
+    const ST = endcardTimes(ec.logoAnim).settled;
+    if (len - ST < 30) E("片尾卡", `片尾卡動畫在第 ${ST} 幀才落定，之後只停 ${((len - ST) / 30).toFixed(2)} 秒（要 ≥1 秒）`);
   }
   // 出處列：一行要放得下（Hud.tsx 會縮字，但不低於 30px）
   for (const sc of script.scenes) {
@@ -66,6 +68,7 @@ export const check = (script: any) => {
   const enPx0 = Math.max(28, small), plan = planHud(m, L, hud, keys, enPx0, hookOut), lab = plan.labels, ovs = plan.overlays;
   for (const o of ovs) if (o._delayed) W("換幕", `${o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」和前一張重疊，自動延後 ${o._delayed} 幀進場（舊的退場完才進）`);
   for (const o of ovs) if (o._moved) W("避開模型", `蓋章「${o.text}」原本會壓到主素材或其他東西，自動挪到 (${Math.round(o.x ?? 540)}, ${Math.round(o.y)})`);
+  for (const o of ovs) if (o._backdrop) W("主素材退成背景", `${o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」放不下、會蓋到主素材正中央：出現期間主素材降到半透明當背景`);
   for (const t of plan.triggers) W("主素材讓位", `${t.why} 出現期間（第 ${Math.max(0, t.at)}–${t.until} 幀）主素材先縮小移開`);
   const ovRect = (o: any): Rect | null => (o.type === "stamp" ? stampRect(o, o.x ?? L.W / 2, o.y ?? L.STAGE_TOP + L.STAGE_H / 2) : cardRect(o, L));
   const ovK = (o: any, f: number) => tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
@@ -90,12 +93,17 @@ export const check = (script: any) => {
     for (const it of items) {
       if (it.r.x0 < SAFE.x0 - 1 || it.r.x1 > SAFE.x1 + 1 || it.r.y0 < SAFE.y0 || it.r.y1 > SAFE.y1) add(`E|安全區|${it.name} 超出安全區`, f);
       if (it.kind !== "card" && it.r.y1 > L.CAP_TOP + 2) add(`E|字幕|${it.name} 壓到字幕框`, f);
-      if (mr && (it.kind === "label" || it.kind === "stamp") && area(it.r, mr) > 0) add(`E|模型|${it.name} 壓到模型`, f);
+      
     }
-    // 主素材遮擋（2026/11/15 Andy：「避免中間重要的素材被遮擋」）：任何疊層和主素材框重疊超過主素材框面積的 5%
-    if (main) {
-      const A0 = Math.max(1, (main.x1 - main.x0) * (main.y1 - main.y0));
-      for (const it of [...items, ...hudItems]) { const r = area(it.r, main) / A0; if (r > 0.05) { add(`${HE}|主素材遮擋|${it.name} 蓋到主素材（${plan.is3D(f) ? "3D 模型" : "2D 圖"}）超過 5%`, f); occl++; } }
+    // 主素材遮擋（2026/11/15 Andy：「避免中間重要的素材被遮擋」；v6 改兩級）：蓋到主素材「中央區域」（寬高各取中間一半）→ error；只蓋到外圈邊緣（>5%）→ warning。
+    // 主素材在卡片出現期間退成背景（_backdrop，planHud 的 dimAt）時不算遮擋，另記一筆 warning
+    if (main && plan.dimAt(f) > 0.5) add(`W|主素材退成背景|卡片放不下、主素材在卡片出現期間降到半透明`, f);
+    else if (main) {
+      const A0 = Math.max(1, (main.x1 - main.x0) * (main.y1 - main.y0)), C = centerOf(main), AC = Math.max(1, (C.x1 - C.x0) * (C.y1 - C.y0)), what = plan.is3D(f) ? "3D 模型" : "2D 圖";
+      for (const it of [...items, ...hudItems]) {
+        if (area(it.r, C) / AC > 0.01) { add(`${HE}|主素材遮擋|${it.name} 蓋到主素材（${what}）正中央`, f); occl++; }
+        else if (area(it.r, main) / A0 > 0.05) add(`W|主素材邊緣|${it.name} 蓋到主素材（${what}）邊緣（超過 5%，沒蓋到中央）`, f);
+      }
     }
     for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
       const a = items[i], b = items[j];
@@ -105,7 +113,7 @@ export const check = (script: any) => {
     }
   }
   for (const [key, rs] of Object.entries(runs)) for (const fr of rs) { const [lv, kind, msg] = key.split("|"); (lv === "E" ? E : W)(kind, msg, fr); }
-  return { issues: out, stats: { frames: total, labels: lab.length, overlays: ovs.length, occlusionFrames: occl }, labels: lab.map((p) => ({ text: p.l.text, at: p.l.at, until: p.l.until, rect: p.rect })), overlays: ovs.map((o) => ({ type: o.type, text: o.text ?? o.title ?? o.kicker, at: o.at, until: o.until, x: o.x, y: o.y, rect: o.type === "stamp" ? stampRect(o, o.x ?? 540, o.y ?? 856) : cardRect(o, L) })) };
+  return { issues: out, stats: { frames: total, labels: lab.length, overlays: ovs.length, occlusionFrames: occl }, mainSamples: Array.from({ length: Math.ceil(total / 15) }, (_, i) => { const r = plan.mainAt(i * 15); return [i * 15, r ? [r.x0, r.y0, r.x1, r.y1].map(Math.round) : null]; }), labels: lab.map((p) => ({ text: p.l.text, at: p.l.at, until: p.l.until, rect: p.rect })), overlays: ovs.map((o) => ({ type: o.type, text: o.text ?? o.title ?? o.kicker, at: o.at, until: o.until, x: o.x, y: o.y, rect: o.type === "stamp" ? stampRect(o, o.x ?? 540, o.y ?? 856) : cardRect(o, L) })) };
 };
 
 const resolveAt = (tl: any, sceneId: string, spec: string) => {

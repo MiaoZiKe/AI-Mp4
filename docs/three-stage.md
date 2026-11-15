@@ -283,3 +283,13 @@
 - `HudFrame`：有讀數帶時，層級名、倍率、FIELD 在上帶，尺標與示意圖標示在下帶；`ZoomArt` 只畫在 `artRegion`（兩條帶子中間），中心是那一塊的中心。
 - `hudLayout.ts`：`ART_BOX`（2D 圖外框）、`artMainRect`／`modelRect`＝主素材框；`makeYield`＝主素材讓位（觸發物：鉤子、compare／bars／card、固定儀表、找不到空位的蓋章與標籤；出現前 20 幀開始縮小平移到最大空白，±6 幀平滑）；`planHud` 把主素材框、讓位、標籤、蓋章串成一套，Hud.tsx 和 layout-check 共用。讓位的變形同時套在 2D 圖（SVG matrix）、3D 畫布（CSS transform）、標籤引線與尺寸線的錨點。
 - layout-check 新規則「主素材遮擋」：任何疊層（含 HUD 讀數帶、鉤子大字、儀表）和主素材框重疊超過主素材框面積 5% → error（寫了 fill 的片）；另查字幕卡下緣 ≤1600。
+
+## 十一、2026/11/15 v6（Andy：「物件非必要不用一直移動」「上下都太多」「2.5D 圖在運作時…搭配 2D 剖析圖」「結尾的 LOGO 動畫使用這個…需要有音效」）
+
+- 撤回第十節的「主素材讓位」：`planHud` 不再縮放、移動主素材，只套全片固定的 `ART_FIT`（2D 圖 `ZoomArt` 乘在倍率上；3D 畫布用 CSS 放大、`dpr` 同步提高避免變糊；標籤引線、尺寸線的錨點跟著同一個變形）。卡片、蓋章、標籤用 `freeSpot` 找空位：主素材外圈是軟障礙（可以蓋到一點，warning），中央區域與其他東西是硬障礙。放不下的卡片最後退路是 `_backdrop`（主素材降到半透明）。
+- `LAYOUT_3D_FILL`（v6）：頁首 110、舞台 236–1340（讀數帶上 96、下 80）、字幕框 1352–1600、出處 1634 起、`ART_FIT: 1.14`、`SAFE_TOP: 100`。
+- `hud.logoCorner: "left"｜"right"`：頁首 LOGO 放哪一角（預設左上）。
+- `props.zoom` 可寫 `out`：停在那一級再往外幾分之一級（例如 s15 拉回手機 `out: 0.75`，手機變小、下方留空白放卡片）。
+- overlay `bars` 可寫 `compact: true`：一列一行（名稱｜橫條｜數字），卡片矮約一半。
+- **overlay `section`（運作時的 2D 剖面圖）**：`{ type: "section", at, until, x, y, w, h, title, flows: [flow 動作 id…（由下到上一片一個）], gate: "閘極 pulse 的 id", channel: "通道 pulse 的 id", meters: [meter 動作 id…（畫在右側）], labels: { src, drn, gate } }`。畫沿電流方向切開的剖面：左源極、右汲極、中間幾片通道、閘極包住通道（亮度跟 gate 的強度）；電子光點用 3D 那幾個 flow 的同一份數值（`op.u`、`op.k`、drive 的密度與停住規則），2D 路徑是「源極上方往下 → 沿通道 → 汲極往上」，三段長度比照 3D 路徑。剖面圖當卡片排版（不蓋主體中央）。HUD 片才有（`Hud.tsx` 的 `HudSection`）。
+- 片尾 `endCard.logoAnim`：`LogoAnims.tsx`（10 種，tech-2nm 用 `transparent`；移植時拿掉了 `transparent` 的繞圈待機動作）。用了 `logoAnim` 時文字照 `ENDCARD_TC`（頻道名逐字、光掃、底線、slogan、軌跡、下一支、留言關鍵字），右下角加淡淡的開口圈浮水印。音效：`scripts/three/sfx-logo-tech.py`（見 playbook 第九節）。

@@ -113,7 +113,7 @@
      "kicker": "手機晶片的",
      "title": "2奈米不是尺寸",
      "size": 128,
-     "top": 470
+     "top": 316
     },
     "zoom": [
      {
@@ -517,7 +517,7 @@
       "at": "start-8",
       "d": 127,
       "elev": 24,
-      "y": -4,
+      "y": -8,
       "x": 0,
       "dur": 28
      }
@@ -553,16 +553,6 @@
      }
     ],
     "run": [
-     {
-      "id": "vgMeter",
-      "at": "gate",
-      "until": "s10:fin-10"
-     },
-     {
-      "id": "idMeter",
-      "at": "gate",
-      "until": "s10:fin-10"
-     },
      {
       "id": "gateOn",
       "at": "volt-4",
@@ -623,6 +613,33 @@
       "color": "amber",
       "rot": -5,
       "size": 76
+     },
+     {
+      "type": "section",
+      "_說明": "2026/11/15 v6（Andy：「2.5D 圖在運作時，若有空間，可以搭配 2D 剖析圖，讓讀者更清楚原理」）：沿電流方向切開的剖面，電子光點和 3D 的電子流同一份數值（flows），閘極亮度跟 gate、通道亮度跟 channel",
+      "at": "volt",
+      "until": "s10:fin-14",
+      "x": 64,
+      "y": 982,
+      "w": 952,
+      "h": 268,
+      "title": "剖面示意",
+      "flows": [
+       "e1",
+       "e2",
+       "e3"
+      ],
+      "gate": "gateOn",
+      "channel": "chanOn",
+      "labels": {
+       "src": "源極",
+       "drn": "汲極",
+       "gate": "閘極"
+      },
+      "meters": [
+       "vgMeter",
+       "idMeter"
+      ]
      }
     ]
    },
@@ -719,12 +736,12 @@
    "props": {
     "shot": [
      {
-      "at": "fin-10",
+      "at": "fin-24",
       "d": 160,
       "elev": 24,
       "y": -13,
       "x": 0,
-      "dur": 22
+      "dur": 20
      }
     ],
     "overlay": [
@@ -732,8 +749,8 @@
       "type": "compare",
       "at": "fin-8",
       "until": "s12:start-4",
-      "y": 802,
-      "h": 440,
+      "y": 854,
+      "h": 400,
       "title": "關閉時",
       "tag": "剖面示意，非實測",
       "sides": [
@@ -1026,7 +1043,8 @@
      {
       "to": "phone",
       "at": "start-8",
-      "dur": 40
+      "dur": 40,
+      "out": 0.75
      }
     ],
     "overlay": [
@@ -1078,7 +1096,7 @@
       "type": "bars",
       "at": "target-2",
       "until": "s18:small-6",
-      "y": 804,
+      "y": 1020,
       "title": "同樣效能下的耗電",
       "tag": "廠商目標值，非實測",
       "rows": [
@@ -1097,7 +1115,8 @@
         "at": "s17:power-2",
         "textAt": "s17:less"
        }
-      ]
+      ],
+      "compact": true
      }
     ]
    },
@@ -1171,15 +1190,14 @@
       "type": "card",
       "at": "small-4",
       "until": "s20:start+0",
-      "y": 792,
+      "y": 1000,
       "kicker": "想一想",
       "lines": [
-       "這麼小",
-       "怎麼印上去？"
+       "這麼小，怎麼印上去？"
       ],
       "hi": "怎麼印",
       "hiAt": "how",
-      "size": 96
+      "size": 60
      }
     ]
    },
@@ -1243,7 +1261,8 @@
      ],
      "at": "s19:litho-12",
      "_說明": "片尾卡從 s19 念到「曝光機」前 12 幀開始（≥3 秒、不動配音時間）；LOGO 動畫＝圈子打開、你走進來（docs/channels/tech-daily-playbook.md 第九節）；「下一支」等 LOGO 落定才出",
-     "comment": "2奈米"
+     "comment": "2奈米",
+     "logoAnim": "transparent"
     }
    },
    "sources": []
