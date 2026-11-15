@@ -1,6 +1,10 @@
 # short-ai：問 AI 明年基本工資，它給去年的（AI 教學短片）
 
-成片：`out/short-ai.mp4`，1080×1920、30fps、H.264＋AAC，**15.13 秒（454 幀）**，5 鏡，沒有片尾卡（短片）。
+成片：`out/short-ai.mp4`，1080×1920、30fps、H.264＋AAC，**12.23 秒（367 幀）**，5 鏡，沒有片尾卡（短片）。
+
+**第 4 版（2026/11/15）**：旁白換成使用者自己在 AI Studio 用 Sulafat 生成上傳的錄音（提示在 `docs/prompts/short-ai-旁白.txt`，細節在 `voice.md`），TTS 請求 0 次；沒有 atempo、沒有 ALIGN_GAP_MAX；畫面程式沒改，只依新時間軸重渲。語速含停頓 5.1、扣掉停頓 5.7 音節/秒；對齊信心 s03 0.549 最低。第 3 版成片 `out/short-ai.sulafat-v3.mp4`，音檔備份 `public/audio/short-ai/_sulafat-v3/`、`videos/short-ai/_sulafat-v3/`。鏡長 1.8–3.6 秒（s01 1.83、s02 2.0），字幕「先貼新聞」只有 0.77 秒、「只打這一句」1.03 秒。
+
+以下第 3 版的說明保留作紀錄：
 這是第 3 版（2026/11/14 晚上）。使用者看完第 2 版的原話：「女聲配音口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情，並且動畫不夠豐富，同樣風格但變化可以多點」。這一版重配了旁白、重做了動畫。
 
 - 上一版成片：`out/short-ai.v2-sulafat-slow.mp4`；新舊對照 `out/short-ai-before-after.png`
@@ -74,4 +78,4 @@ flock /tmp/aimp4-render.lock node scripts/still.mjs short-ai
 flock /tmp/aimp4-render.lock node scripts/render.mjs short-ai
 python3 scripts/ui/review9.py short-ai 0,s01:much+8,s02:gem+14,s02:one+8,s03:old+24,s04:last+10,s04:now+16,s05:only+20,s05:next+16
 ```
-注意：不要再跑 `tts-take.mjs short-ai`（會用原始錄音重切、蓋掉 atempo 1.08 的切檔，還可能再送 TTS 請求）；align 不要帶 `ALIGN_GAP_MAX`。
+注意：第 4 版的快取 `.take-e55e4baaa5.raw.wav` 已換成使用者錄音，只能用 `tts-take.mjs short-ai --resplit`（不帶 `--resplit` 若雜湊變了會送 TTS 請求）；align 不要帶 `ALIGN_GAP_MAX`。

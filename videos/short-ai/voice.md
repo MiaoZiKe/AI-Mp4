@@ -1,5 +1,25 @@
 # short-ai 配音紀錄
 
+## 第 4 版（現行）：使用者自己在 AI Studio 生成的錄音，2026/11/15 12:25 上傳
+
+- 使用者在 Google AI Studio（Gemini 2.5 Flash Preview TTS，音色 Sulafat）自己生成後上傳；**這一版 TTS 請求 0 次、文字模型請求 0 次**（沒有 `--asr`）。
+- 提示全文（也存在 `docs/prompts/short-ai-旁白.txt`）：
+
+```
+用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人報告一件事那樣，語速比平常再快一點點，語氣跟著內容有起伏，問句上揚、講到答案肯定一點，不拖尾音、不演，直接說：
+明年基本工資多少？我們實測 Gemini，只打這一句。它回答兩萬八千五百九十。但那是去年的，明年是三萬零九百。先貼新聞，請它只看這段。下次再教一招。
+```
+
+- 原檔：`public/audio/short-ai/user-take.orig.wav`（24 kHz 單聲道，11.96 秒，上傳檔原樣複製）。
+- 接法：照 tech-2nm 的做法，把它複製到 tts-take 的快取位置 `public/audio/short-ai/.take-e55e4baaa5.raw.wav`（script.json 沒改，雜湊不變），`node scripts/tts-take.mjs short-ai --resplit`（manifest `take.requests` 是 0），再 `node scripts/align.mjs short-ai --force`。**沒有 atempo、沒有 ALIGN_GAP_MAX**，照原錄音的停頓。
+- 注意：`tts-manifest.json` 的 `take.prompt` 還是 script.json 的 `ai-report` 那一句（程式照 script.json 寫），不是這份錄音實際用的提示；`tts-take-asr.json` 是第 3 版的聽寫，不是這一份的。
+- 整篇強制對齊 64/64 字、照順序各出現一次，整篇信心 0.691；分幕（align）s01 0.937、s02 0.708、s03 0.549、s04 0.796、s05 0.881。
+- 語速（61 音節）：含頭尾 5.1 音節/秒；開口到收聲 5.3；扣掉 ≥0.15 秒的停頓 5.7。比 `pace` 目標 4.6–5.0 快。
+- voice-retro：ㄓㄔㄕ 擦音重心 5908 Hz、ㄗㄘㄙ 10611 Hz、差距 4703 Hz（第 3 版同一稿 5204／8772／3568）。捲舌重心比第 3 版高，差距也比較大，只是輔助數字，要人耳判斷。
+- 第 3 版備份：`public/audio/short-ai/_sulafat-v3/`、`videos/short-ai/_sulafat-v3/`、`out/short-ai.sulafat-v3.mp4`。
+
+---
+
 ## 第 4 版嘗試（report-lively）：2026/11/14 21:54（台北）送 1 次，**沒有拿到音訊，已停下**
 
 使用者聽完第 3 版（下面的「現行版本」）的原話：「可以，但可以再快那麼一點點，並且有點起伏，依據內容變化」。
@@ -22,7 +42,7 @@
 
 ---
 
-## 現行版本：Sulafat（女）第 2 版，「正常報導」提示，2026/11/14 21:00（台北）
+## 第 3 版：Sulafat（女）第 2 版，「正常報導」提示，2026/11/14 21:00（台北）
 
 使用者聽完第 1 版 Sulafat 的原話：「AI 短片的女聲配音了，口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」。這一版依這句話重配，TTS 只送 1 次。
 
