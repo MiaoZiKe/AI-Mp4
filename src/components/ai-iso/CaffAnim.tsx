@@ -5,10 +5,11 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import { FONT_ZH, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
-import { AICELLS, CARD, CARDS, CARD_C, CELL, CUPCELLS, DESK, KW_BOX, PROPS, TAG_BOX, TIMELINE as TL, WORD, WORD_X0, backOut, cardMat, clamp, cupCenter, cupX, cupY, easeInOut, easeOut, hash, landScale, lockScale, scanY, shakeAt, type M6 } from "./caffAnim";
+import { AICELLS, CARD, CARDS, CARD_C, CELL, CUPCELLS, DESK, KW_BOX, PROPS, TAG_BOX, TIMELINE as TL, WORD, WORD_X0, backOut, cardMat, clamp, cupCenter, cupX, cupY, easeInOut, easeOut, hash, landScale, lockScale, scanY, shakeAt, type M6 , CUPV, cardMatV, toStage, type Variant } from "./caffAnim";
 import { CAFF } from "./caffaineMark";
 import { Box, Shade, Slab, css } from "./IsoVideo";
 
+const CUP_K2 = 2.2;
 const MONO = "'JetBrains Mono', 'DejaVu Sans Mono', monospace";
 const P = T.color.primary, S = T.solid;
 const crisp = { shapeRendering: "crispEdges" } as const;
@@ -26,7 +27,7 @@ const CardBody: React.FC<{ bg: string; side: string; shadow?: boolean }> = ({ bg
 );
 
 /** 卡片上的內容：杯子逐格拼出、連線節點、掃描光、AI、游標、蒸氣資料點 */
-const CardFace: React.FC<{ f: number }> = ({ f }) => {
+const CardFace: React.FC<{ f: number; v: Variant }> = ({ f, v }) => {
   const lock = TL.lock, [sa, sb] = TL.scan, sy = scanY(f);
   // 連線節點：拼杯子時杯子外框的幾個節點亮起、互相連線，鎖定後淡掉（AI 感）
   const nodes: [number, number][] = [[40, 92], [152, 92], [40, 172], [120, 172], [96, 132], [152, 132]];
@@ -35,25 +36,42 @@ const CardFace: React.FC<{ f: number }> = ({ f }) => {
   return (
     <g>
       <circle cx={70} cy={50} r={9} fill={T.color.wrong.fill} /><circle cx={100} cy={50} r={9} fill={T.color.note.fill} /><circle cx={130} cy={50} r={9} fill={T.color.right.fill} />
-      <rect x={110} y={CARD.h - 78} width={300} height={10} rx={5} fill={T.line} />
-      {link > 0 ? (
+      {v !== "C" ? <rect x={110} y={CARD.h - 78} width={300} height={10} rx={5} fill={T.line} /> : null}
+      {link > 0 && v === "A" ? (
         <g opacity={0.7 * link}>
           {nodes.map(([a, b], i) => nodes.slice(i + 1).filter((_, j) => (i + j) % 2 === 0).map(([c, d], j) => <line key={`${i}-${j}`} x1={cupX(a)} y1={cupY(b)} x2={cupX(c)} y2={cupY(d)} stroke={P.fill} strokeWidth={3} opacity={0.5} />))}
           {nodes.map(([a, b], i) => <circle key={i} cx={cupX(a)} cy={cupY(b)} r={7 + 4 * Math.abs(Math.sin(f / 3 + i))} fill={T.card} stroke={P.fill} strokeWidth={4} />)}
         </g>
       ) : null}
-      {/* 杯子：一格一格長出來（回彈） */}
+      {/* 杯子：A 一列列長出；B 咖啡倒進去由下往上滿；C 程式碼收攏重組；D 資料方塊飛來；E 蓋章一次印出 */}
       <g {...crisp}>
-        {CUPCELLS.filter(doneAt).map((c, i) => { const t = backOut((f - c.at) / 5, 2.4), s = Math.max(0.01, t), w = CELL * s; return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; })}
+        {v === "A" ? CUPCELLS.filter(doneAt).map((c, i) => { const t = backOut((f - c.at) / 5, 2.4), s2 = Math.max(0.01, t), w = CELL * s2; return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
+        {v === "B" ? (() => {
+          const F = clamp((f - 20) / 10), n = F * 11, surf = cupY(180) - n * 8 * CUP_K2;
+          return <g>
+            {f >= 14 && f < 36 ? CUPV.map((c, i) => <rect key={`g${i}`} x={cupX(c.x)} y={cupY(c.y)} width={CELL} height={CELL} fill={T.line} opacity={0.55 * (1 - clamp((f - 30) / 6))} />) : null}
+            {CUPV.filter((c) => n >= 10 - c.row + 0.5 || f >= 31).map((c, i) => <rect key={i} x={cupX(c.x)} y={cupY(c.y)} width={CELL} height={CELL} fill={c.k === "cup" ? S.desk.r : S.desk.l} />)}
+            {f >= 16 && f < 36 ? <g opacity={1 - clamp((f - 31) / 5)}><rect x={226} y={14} width={68} height={22} rx={8} fill={T.color.plum.fill} /><rect x={248} y={36} width={24} height={10} fill={T.color.plum.side} /></g> : null}
+            {f >= 20 && f < 33 ? Array.from({ length: 9 }, (_, j) => { const top = 52, h = Math.max(40, surf - top), y = top + (((f - 20) * 15 + j * 46) % h); return <rect key={j} x={cupX(100) - 8 + (j % 2) * 8} y={y} width={14} height={14} fill={S.desk.r} />; }) : null}
+          </g>; })() : null}
+        {v === "C" ? CUPV.map((c, i) => {
+          const tp = 4 + c.ty * 0.17; if (f < tp) return null;
+          const u = easeInOut((f - 25 - (c.ty % 12) * 0.3) / 5), x = c.code.x + (cupX(c.x) - c.code.x) * u, y = c.code.y + (cupY(c.y) - c.code.y) * u - 40 * Math.sin(Math.PI * u), sz = 15 + (CELL - 15) * u, col = u > 0.7 ? S.desk.r : [P.fill, T.color.sky.fill, T.color.plum.fill, T.color.right.fill][(i * 7) % 4];
+          return <rect key={i} x={x} y={y} width={sz} height={sz} rx={u > 0.9 ? 0 : 3} fill={u > 0.7 ? S.desk.r : col} />;
+        }) : null}
+        {v === "C" && f < 26 ? (() => { const kk = Math.min(131, Math.floor((f - 4) / 0.17)), q = CUPV.find((c) => c.ty === kk); return q && Math.floor(f / 3) % 2 === 0 ? <rect x={q.code.x + 20} y={q.code.y - 2} width={5} height={19} fill={T.ink} /> : null; })() : null}
+        {v === "D" ? CUPV.filter((c) => f >= c.dAt).map((c, i) => { const t = backOut((f - c.dAt) / 4, 2.2), w = CELL * Math.max(0.01, t); return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
+        {v === "E" ? CUPV.filter(() => f >= TL.lock).map((c, i) => { const t = backOut((f - TL.lock) / 5, 3), w = CELL * Math.max(0.01, Math.min(1.12, t)); return <rect key={i} x={cupX(c.x) + (CELL - w) / 2} y={cupY(c.y) + (CELL - w) / 2} width={w} height={w} fill={c.k === "cup" ? S.desk.r : S.desk.l} />; }) : null}
       </g>
+      {v === "C" && f >= 22 && f < 42 ? (() => { const press = f >= 28 && f < 32 ? 7 : 0, o = 1 - clamp((f - 36) / 5); return <g opacity={o} transform={`translate(0 ${press})`}><rect x={150} y={494} width={220} height={64} rx={14} fill={T.cardSide} transform="translate(0 7)" /><rect x={150} y={494} width={220} height={64} rx={14} fill={T.card} stroke={T.ink3} strokeWidth={4} /><text x={260} y={537} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={34} fill={T.ink}>Enter ⏎</text></g>; })() : null}
       {/* AI：掃描光掃過才顯現（掃過的那一格閃一下） */}
       <g {...crisp}>
-        {AICELLS.map((c, i) => { const y = cupY(c.y); if (sy < y || f < sa) return null; const t = f - sa, fresh = sy - y < 26 && f < sb + 3; return <rect key={i} x={cupX(c.x)} y={y} width={CELL} height={CELL} fill={fresh ? "#8E9BFF" : P.fill} />; })}
+        {(v === "B" || v === "E") ? AICELLS.map((c, i) => { const t0 = v === "B" ? TL.lock + 1 + i * 0.25 : TL.lock + 3 + (c.x - 56) / 8 * 0.6; if (f < t0) return null; const u = clamp((f - t0) / 4), dy = v === "B" ? 26 * (1 - easeOut(u)) : 0; return <rect key={i} x={cupX(c.x)} y={cupY(c.y) + dy} width={CELL} height={CELL} fill={P.fill} opacity={u} />; }) : AICELLS.map((c, i) => { const y = cupY(c.y); if (sy < y || f < sa) return null; const t = f - sa, fresh = sy - y < 26 && f < sb + 3; return <rect key={i} x={cupX(c.x)} y={y} width={CELL} height={CELL} fill={fresh ? "#8E9BFF" : P.fill} />; })}
       </g>
       {/* 游標：AI 後面閃兩下 */}
       {f >= TL.cursor[0] && f < TL.cursor[1] && Math.floor((f - TL.cursor[0]) / 3) % 2 === 0 ? <rect x={cupX(136)} y={cupY(104)} width={9} height={CELL * 5} rx={3} fill={P.fill} /> : null}
       {/* 掃描光 */}
-      {f >= sa && f <= sb + 2 ? (
+      {f >= sa && f <= sb + 2 && v !== "B" && v !== "E" ? (
         <g opacity={f > sb ? 0.4 : 0.95}>
           <rect x={30} y={sy - 44} width={CARD.w - 60} height={44} fill="url(#caScan)" />
           <rect x={30} y={sy - 3} width={CARD.w - 60} height={6} rx={3} fill="#8E9BFF" />
@@ -69,7 +87,7 @@ const CardFace: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
-export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; header?: boolean; format?: "tall" | "square" }> = ({ f, keyword = "", kw = true, format = "tall" }) => {
+export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; header?: boolean; format?: "tall" | "square"; variant?: Variant }> = ({ f, keyword = "", kw = true, format = "tall", variant: v = "A" }) => {
   const sh = shakeAt(f), sc = landScale(f) * lockScale(f), cc = cupCenter();
   // 光掃過白卡（落地那一刻）：斜的淡藍色帶從左上滑到右下
   const glossT = (f - (TL.flip[1] - 4)) / 10, gloss = glossT > 0 && glossT < 1;
@@ -93,8 +111,8 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
       </g>
       {/* 卡片：三張，後面兩張色卡晚一點出發 */}
       <g transform={cardTf}>
-        {[0, 1, 2].map((i) => { const m = cardMat(i, f), c = CARDS[i], bg = c.bg === "white" ? T.card : T.color[c.bg].soft, side = c.bg === "white" ? T.cardSide : c.bg === "plum" ? T.color.plum.fill : T.color.note.side; return <g key={i} transform={css(m)}><CardBody bg={bg} side={side} shadow={i === 2} />{i === 2 ? (
-          <g clipPath="url(#caClip)"><CardFace f={f} />{gloss ? <g transform={`translate(${-260 + 1000 * easeOut(glossT)} 0) skewX(-18)`}><rect x={0} y={-40} width={190} height={CARD.h + 80} fill="url(#caGloss)" /></g> : null}</g>
+        {[0, 1, 2].map((i) => { const m = cardMatV(i, f, v), c = CARDS[i], bg = c.bg === "white" ? T.card : T.color[c.bg].soft, side = c.bg === "white" ? T.cardSide : c.bg === "plum" ? T.color.plum.fill : T.color.note.side; return <g key={i} transform={css(m)}><CardBody bg={bg} side={side} shadow={i === 2} />{i === 2 ? (
+          <g clipPath="url(#caClip)"><CardFace f={f} v={v} />{gloss ? <g transform={`translate(${-260 + 1000 * easeOut(glossT)} 0) skewX(-18)`}><rect x={0} y={-40} width={190} height={CARD.h + 80} fill="url(#caGloss)" /></g> : null}</g>
         ) : null}</g>; })}
       </g>
       {/* 鎖定：像素迸開、擴散波 */}

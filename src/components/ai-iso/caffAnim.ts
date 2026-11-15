@@ -79,12 +79,12 @@ export const wordBoxes = (f: number, hasKw: boolean): Box[] => {
   if (f >= TL.stamp) out.push({ name: "AI色塊", x: WORD_X0 + 4 * cw + 1, y: top - 10, w: 2 * cw - 2, h: WORD.px * 1.1 });
   return out;
 };
-export const cardBox = (f: number): Box => {
+export const cardBox = (f: number, v: Variant = "A"): Box => {
   // 三張卡的聯集（含放大與震動）
   const sc = landScale(f) * lockScale(f), sh = shakeAt(f);
   let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
   for (let i = 0; i < 3; i++) {
-    const m = cardMat(i, f);
+    const m = cardMatV(i, f, v);
     for (const [x, y] of [[0, 0], [CARD.w, 0], [0, CARD.h + 16], [CARD.w, CARD.h + 16]]) {
       let [px, py] = applyM(m, x, y);
       px = CARD_C.x + (px - CARD_C.x) * sc + sh.dx; py = CARD_C.y + (py - CARD_C.y) * sc + sh.dy;
@@ -95,11 +95,40 @@ export const cardBox = (f: number): Box => {
 };
 const wo = (a: { x: number; y: number }) => [(a.x - a.y) * CX + DESK.cx, (a.x + a.y) * SY + DESK.top];
 export const propBoxes = (): Box[] => PROPS.map((p) => { const pts = [wo({ x: p.x, y: p.y }), wo({ x: p.x + p.w, y: p.y }), wo({ x: p.x, y: p.y + p.h }), wo({ x: p.x + p.w, y: p.y + p.h })]; const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const x = Math.min(...xs), y = Math.min(...ys); return { name: p.name, x, y: y - (p.name === "盆栽" ? 110 : 12), w: Math.max(...xs) - x, h: Math.max(...ys) - y + 24 + (p.name === "盆栽" ? 110 : 0) }; });
-export const boxesAt = (f: number, hasKw = true, header = true): Box[] => {
+export const boxesAt = (f: number, hasKw = true, header = true, v: Variant = "A"): Box[] => {
   const out: Box[] = [];
   if (header) out.push({ name: "頁首LOGO", ...LOGO_BOX }, { name: "進度條", ...PROGRESS_BOX });
-  out.push(cardBox(f), ...wordBoxes(f, hasKw));
+  out.push(cardBox(f, v), ...wordBoxes(f, hasKw));
   if (f >= TL.tagline) out.push({ name: "標語", ...TAG_BOX });
   if (hasKw && f > TL.keyword) { const dy = Math.round(40 * (1 - backOut((f - TL.keyword) / 7, 1.4))); out.push({ name: "留言列", ...KW_BOX, y: KW_BOX.y + dy }); }
   return out;
+};
+
+// ───────── 五款效果（2026/11/16 Andy：「我想看其他效果」）─────────
+// A 現行版（白卡翻起、像素一列列長出、掃描光）｜B 咖啡倒進杯子｜C 打字游標（程式碼收攏成杯子、Enter 定格）｜D 資料流匯聚｜E 蓋章。
+// 時間表（caffaineTimeline.json）與招牌音全部共用：落地 16、鎖定 30、蓋章 62。
+export type Variant = "A" | "B" | "C" | "D" | "E";
+const sM = (k: number): M6 => [k, 0, 0, k, 0, 0];
+/** 各款的卡片進場：B 從上面掉下來（16 幀落地）、C 在原地像視窗一樣彈開、D 沿用 A 的翻起、E 從右邊衝進來 */
+export const cardMatV = (i: number, f: number, v: Variant): M6 => {
+  if (v === "A" || v === "D") return cardMat(i, f);
+  const c = CARDS[i], t = clamp((f - 2 - c.delay) / 14);
+  const base = (dx: number, dy: number, deg: number, k = 1): M6 => mul(at2(CARD_C.x + c.dx + dx, CARD_C.y + c.dy + dy), mul(sM(k), mul(rot(c.deg + deg), at2(-CARD.w / 2, -CARD.h / 2))));
+  if (v === "B") return base(0, -760 * (1 - t * t), 0);
+  if (v === "C") return base(0, 0, 0, 0.3 + 0.7 * backOut(t, 1.9));
+  return base(1000 * (1 - easeOut(t)), 0, 14 * (1 - easeOut(t)));
+};
+/** 杯子每一格在各款裡的資料：D 的飛來時間與起點、C 的程式碼位置與打字順序 */
+export const CUPV = (() => {
+  const order = CUPCELLS.map((_, i) => i).sort((a, b) => CUPCELLS[a].y - CUPCELLS[b].y || CUPCELLS[a].x - CUPCELLS[b].x);
+  const pos: { x: number; y: number }[] = []; let r = 0;
+  while (pos.length < order.length) { const n = 8 + Math.floor(hash(r * 3.7) * 5), ind = Math.floor(hash(r * 1.9) * 3) * 22; for (let q = 0; q < n && pos.length < order.length; q++) pos.push({ x: 44 + ind + q * 21, y: 74 + r * 28 }); r++; }
+  const code = new Array(CUPCELLS.length) as { x: number; y: number }[], kOf = new Array(CUPCELLS.length) as number[];
+  order.forEach((ci, k) => { code[ci] = pos[k]; kOf[ci] = k; });
+  return CUPCELLS.map((c, i) => ({ ...c, code: code[i], ty: kOf[i], dAt: 14 + hash(i * 9.1) * 14, ang: hash(i * 4.4) * Math.PI * 2, rad: 560 + 220 * hash(i * 7.3), row: (c.y - 92) / 8 }));
+})();
+/** 卡片局部座標 → 舞台座標（含落地與鎖定的彈大、震動），給飛來的方塊算目標 */
+export const toStage = (x: number, y: number, f: number, v: Variant): [number, number] => {
+  const m = cardMatV(2, f, v), [px, py] = applyM(m, x, y), sc = landScale(f) * lockScale(f), sh = shakeAt(f);
+  return [CARD_C.x + (px - CARD_C.x) * sc + sh.dx, CARD_C.y + (py - CARD_C.y) * sc + sh.dy];
 };
