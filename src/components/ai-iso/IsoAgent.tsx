@@ -206,7 +206,7 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
 // ───────── 2D 說明卡 ─────────
 const Card: React.FC<{ x: number; y: number; w: number; h: number; f: number; at: number; children: React.ReactNode; bg?: string; side?: string; out?: number }> = ({ x, y, w, h, f, at, children, bg, side, out = FAR }) => {
   const o = O(f, at, 5) * (1 - O(f, out, 6)), t = 1 - 1 / (1 + Math.exp(-(f - at - 5) * 0.4));
-  return o <= 0.01 ? null : <div data-ov="說明卡" style={{ position: "absolute", left: x, top: y + 50 * Math.max(0, 1 - O(f, at, 12)), width: w, height: h, opacity: o }}><div style={{ ...face(bg, side), padding: "22px 28px", position: "relative", overflow: "hidden" }}>{children}</div></div>;
+  return o <= 0.01 ? null : <div data-ov="說明卡" style={{ position: "absolute", left: x, top: y + 12 * Math.max(0, 1 - O(f, at, 12)), width: w, height: h, opacity: o }}><div style={{ ...face(bg, side), padding: "22px 28px", position: "relative", overflow: "hidden" }}>{children}</div></div>;
 };
 const Step: React.FC<{ n: string; label: string; c: string; on: number; f: number; at: number }> = ({ n, label, c, on, f, at }) => {
   const cc = col(c);
@@ -415,8 +415,8 @@ export const AgentIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop /><Glow f={f} />
-      <Bands f={f} s={cometAt(world, f)} />
       <World f={f} cam={cam} P={Pn} panels={world} />
+      <Bands f={f} s={cometAt(world, f)} />
       <Floaters f={f} cam={cam} />
       <Overlays f={f} P={Pn} cam={cam} panels={world} />
       {inEnd ? <CaffAnim f={f - endP!.in} keyword={String(endP!.p.keyword ?? "")} /> : null}
