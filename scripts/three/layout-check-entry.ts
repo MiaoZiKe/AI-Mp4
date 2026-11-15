@@ -67,7 +67,7 @@ export const check = (script: any) => {
   const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;
   const enPx0 = Math.max(28, small), plan = planHud(m, L, hud, keys, enPx0, hookOut), lab = plan.labels, ovs = plan.overlays;
   for (const o of ovs) if (o._delayed) W("換幕", `${o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」和前一張重疊，自動延後 ${o._delayed} 幀進場（舊的退場完才進）`);
-  for (const o of ovs) if (o._moved) W("避開模型", `蓋章「${o.text}」原本會壓到主素材或其他東西，自動挪到 (${Math.round(o.x ?? 540)}, ${Math.round(o.y)})`);
+  for (const o of ovs) if (o._moved) W("避開模型", `${o.type === "stamp" ? "蓋章" : o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」原本會壓到主素材或其他東西，自動挪到 (${Math.round(o.x ?? 540)}, ${Math.round(o.y)})`);
   for (const o of ovs) if (o._backdrop) W("主素材退成背景", `${o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」放不下、會蓋到主素材正中央：出現期間主素材降到半透明當背景`);
   for (const t of plan.triggers) W("主素材讓位", `${t.why} 出現期間（第 ${Math.max(0, t.at)}–${t.until} 幀）主素材先縮小移開`);
   const ovRect = (o: any): Rect | null => (o.type === "stamp" ? stampRect(o, o.x ?? L.W / 2, o.y ?? L.STAGE_TOP + L.STAGE_H / 2) : cardRect(o, L));
