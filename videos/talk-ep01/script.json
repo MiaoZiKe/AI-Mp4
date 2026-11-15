@@ -89,11 +89,11 @@
    "id": "s02",
    "beat": "you",
    "para": 1,
-   "narration": "這是勞動部算的，二零二五年的年總工時。",
-   "tts": "這是勞動部算的，二零二五年的年總工時。",
+   "narration": "這是政府統計的，二零二五年的年總工時。",
+   "tts": "這是政府統計的，二零二五年的年總工時。",
    "subtitle": {
-    "zh": "這是勞動部算的，\n二零二五年的年總工時。",
-    "en": "This is the Ministry of Labor's figure: | total annual working hours for 2025."
+    "zh": "這是政府統計的，\n二零二五年的年總工時。",
+    "en": "This is the official figure: | total annual working hours for 2025."
    },
    "keywords": [
     "年總工時"
@@ -101,7 +101,7 @@
    "cues": [
     {
      "id": "mol",
-     "text": "勞動部"
+     "text": "政府"
     },
     {
      "id": "y25",
@@ -188,11 +188,11 @@
    "id": "s04",
    "beat": "mechanism",
    "para": 1,
-   "narration": "二零一四年更長，兩千一百三十五小時。",
-   "tts": "二零一四年更長，兩千一百三十五小時。",
+   "narration": "十年前更長，多了大約一百小時。",
+   "tts": "十年前更長，多了大約一百小時。",
    "subtitle": {
-    "zh": "二零一四年更長，\n兩千一百三十五小時。",
-    "en": "In 2014 it was longer: | 2,135 hours."
+    "zh": "十年前更長，\n多了大約一百小時。",
+    "en": "Ten years ago it was longer: | about 100 hours more."
    },
    "keywords": [
     "更長"
@@ -200,7 +200,7 @@
    "cues": [
     {
      "id": "y14",
-     "text": "二零一四"
+     "text": "十年前"
     },
     {
      "id": "longer",
@@ -208,14 +208,14 @@
     },
     {
      "id": "n2135",
-     "text": "兩千一百"
+     "text": "一百"
     }
    ],
    "component": "TanqingScene",
    "props": {
     "kind": "ai",
     "title": [
-     "2014年，還更長"
+     "十年前，還更長"
     ],
     "figure": {
      "type": "bars",
@@ -225,9 +225,8 @@
      "diffAt": "n2135+14",
      "bars": [
       {
-       "label": "2014 年",
-       "v": 2135,
-       "val": "2,135"
+       "label": "十年前",
+       "v": 2135
       },
       {
        "label": "2025 年",
@@ -237,7 +236,7 @@
       }
      ],
      "diff": {
-      "text": "少約 108 小時\n（約 5%）"
+      "text": "十年前\n約多一百小時"
      },
      "claim": "F3"
     },
@@ -245,7 +244,7 @@
    },
    "sources": [
     "資料：勞動部（國際勞動統計）",
-    "2014 年約 2,135 小時"
+    "十年前的數字只取概數"
    ]
   },
   {
@@ -295,8 +294,7 @@
      "points": [
       {
        "x": 2014,
-       "v": 2135,
-       "val": "2,135"
+       "v": 2135
       },
       {
        "x": 2017,
@@ -465,11 +463,11 @@
    "id": "s08",
    "beat": "mechanism",
    "para": 2,
-   "narration": "兼職只有百分之三到四，日本大約四個有一個。",
-   "tts": "兼職只有百分之三到四，日本大約四個有一個。",
+   "narration": "兼職只有百分之三到四，勞動部說，日本大約四個有一個。",
+   "tts": "兼職只有百分之三到四，勞動部說，日本大約四個有一個。",
    "subtitle": {
-    "zh": "兼職只有百分之三到四，\n日本大約四個有一個。",
-    "en": "Part-timers are only 3 to 4 percent here. | In Japan, about one in four."
+    "zh": "兼職只有百分之三到四，\n勞動部說，日本大約四個有一個。",
+    "en": "Part-timers are only 3 to 4 percent here. | The Ministry says Japan is about one in four."
    },
    "keywords": [
     "百分之三到四",
@@ -513,7 +511,8 @@
      "b": {
       "name": "日本",
       "mark": 25,
-      "val": "24.8%"
+      "val": "24.8%",
+      "note": "勞動部引用"
      },
      "sub": "一百個就業者裡，兼職（部分工時）的人",
      "claim": "F6"
@@ -785,11 +784,11 @@
    "id": "s13",
    "beat": "twist",
    "para": 3,
-   "narration": "只看全職，台灣一週四十一點五小時，比日本還少。",
-   "tts": "只看全職，台灣一週四十一點五小時，比日本還少。",
+   "narration": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
+   "tts": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
    "subtitle": {
-    "zh": "只看全職，\n台灣一週四十一點五小時，\n比日本還少。",
-    "en": "Looking at full-timers only, | Taiwan's week is 41.5 hours, | shorter than Japan's."
+    "zh": "只看全職，\n二零二三年台灣一週四十一點五小時，\n比日本還少。",
+    "en": "Looking at full-timers only, | in 2023 Taiwan's week was 41.5 hours, | shorter than Japan's."
    },
    "keywords": [
     "比日本還少"
@@ -816,7 +815,7 @@
    "props": {
     "kind": "ai",
     "title": [
-     "只看全職，",
+     "2023年只看全職，",
      "比日本還少一點"
     ],
     "figure": {

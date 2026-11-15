@@ -249,7 +249,7 @@ const Week: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   );
 };
 
-type Side = { name: string; mark: number; half?: number; val: string };
+type Side = { name: string; mark: number; half?: number; val: string; note?: string };
 /** 兩塊 10×10 的小格子並排（一格＝一百人裡的一個）：各自把 mark 格填成橘色，half 格是橘色虛線（不滿一格） */
 const Pair: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   const pitch = 33, cell = 25, gw = 9 * pitch + cell, y0 = 96, t = fig.times;
@@ -264,6 +264,7 @@ const Pair: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
           })}
         </Svg>
         <div style={{ ...figText(L.FIELD_PX, T.weight.bold, T.ink), left: x0, top: y0 - 78, opacity: fadeP(f, fig.at) }}>{s.name}</div>
+        {s.note ? <div style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), left: x0 + L.FIELD_PX * s.name.length + 18, top: y0 - 78 + (L.FIELD_PX - L.LABEL_PX) * 0.7, whiteSpace: "nowrap", opacity: fadeP(f, fig.at + 4) }}>{s.note}</div> : null}
         <div style={{ ...numStyle(78), left: x0, top: y0 + gw + 24, opacity: fadeP(f, markAt + 6) }}>{s.val}</div>
       </React.Fragment>
     );
