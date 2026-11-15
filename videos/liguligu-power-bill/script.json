@@ -1,0 +1,583 @@
+{
+  "slug": "liguligu-power-bill",
+  "title": "AI 資料中心的電，誰在買單？",
+  "asOf": "2026/11/15",
+  "styleVersion": 3,
+  "stage": "dossier",
+  "channel": {
+    "name": "哩股哩股",
+    "tag": "查到底",
+    "slogan": "數字，查過再信"
+  },
+  "news": {
+    "layout": "fill",
+    "section": "國際",
+    "sectionEn": "INTERNATIONAL",
+    "places": {
+      "pa": {
+        "zh": "賓州",
+        "en": "VALLEY FORGE",
+        "lon": -75.45,
+        "lat": 40.1
+      }
+    }
+  },
+  "voice": {
+    "voiceName": "user-upload",
+    "model": "user-recording",
+    "mode": "take",
+    "profile": "liguligu",
+    "note": "旁白由使用者在 Google AI Studio 生成後上傳；本專案不送任何 TTS 請求。上傳前 timeline.json 是無聲估算。"
+  },
+  "cover": {
+    "title": [
+      "11 倍",
+      "備用電力價格"
+    ],
+    "sub": "AI 資料中心的電，誰在買單？"
+  },
+  "audio": {
+    "bgm": false,
+    "sfx": false
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration": "11 倍。美東電網的備用電力價格，四次拍賣變 11 倍。",
+      "tts": "十一倍。美東電網的備用電力價格，四次拍賣變成十一倍。",
+      "subtitle": {
+        "zh": "11 倍\n美東電網的備用電力價格\n四次拍賣變 11 倍",
+        "en": "Eleven times. | Backup power on a U.S. East grid | rose 11-fold in four auctions."
+      },
+      "keywords": [
+        "11 倍"
+      ],
+      "cues": [
+        {
+          "id": "x11",
+          "text": "11 倍"
+        },
+        {
+          "id": "grid",
+          "text": "電網"
+        },
+        {
+          "id": "price",
+          "text": "備用電力價格"
+        },
+        {
+          "id": "four",
+          "text": "四次拍賣"
+        }
+      ],
+      "beat": "hook",
+      "component": "DossierScene",
+      "props": {
+        "panel": "hook",
+        "kicker": "美國 PJM 電網・容量拍賣",
+        "span": "2024/25→2028/29",
+        "num": "11",
+        "numText": "倍",
+        "line2": "備用電力價格",
+        "mark": "備用電力",
+        "markAt": "price",
+        "doc": {
+          "title": "拍賣結果報告",
+          "date": "2026/7/14",
+          "field": "結算價：",
+          "fill": "325 美元・上限",
+          "fillPx": 30,
+          "fillAt": "price",
+          "note": "示意，非文件原件",
+          "scanAts": [
+            "start",
+            "four-6"
+          ],
+          "frameAt": "start+10",
+          "flashAt": "four+8"
+        },
+        "callout": {
+          "label": "四次前",
+          "text": "28.92",
+          "at": "start+12",
+          "markAt": "four+4"
+        },
+        "tag": {
+          "kind": "confirmed",
+          "text": "已確定",
+          "at": "four+2"
+        },
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026/7/14",
+          "place": "pa",
+          "lt": "事件"
+        }
+      },
+      "sources": [
+        "PJM 容量拍賣報告 2026/7/14（原文已讀）"
+      ]
+    },
+    {
+      "id": "s02",
+      "narration": "這叫容量費，先付給電廠，保證尖峰有電。",
+      "tts": "這叫容量費，先付給電廠，保證尖峰有電。",
+      "subtitle": {
+        "zh": "這叫容量費\n先付給電廠\n保證尖峰有電",
+        "en": "These are capacity payments, | paid to plants in advance | so power is there at peak."
+      },
+      "keywords": [
+        "容量費",
+        "保證尖峰時有電"
+      ],
+      "cues": [
+        {
+          "id": "cap",
+          "text": "容量費"
+        },
+        {
+          "id": "plant",
+          "text": "電廠"
+        },
+        {
+          "id": "peak",
+          "text": "保證尖峰"
+        },
+        {
+          "id": "money",
+          "text": "有電"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "timeline",
+        "photo": {
+          "name": "towers",
+          "caption": "輸電塔（示意照片）",
+          "at": "start-20"
+        },
+        "axis": {
+          "days": [
+            "24/25",
+            "25/26",
+            "26/27",
+            "27/28",
+            "28/29"
+          ],
+          "at": "start-24",
+          "label": "交付年度",
+          "labelEn": "DELIVERY YEAR"
+        },
+        "gap": {
+          "pre": "變成",
+          "num": "11",
+          "unit": "倍",
+          "at": "peak",
+          "flashAt": "money+6"
+        },
+        "left": {
+          "title": "容量費",
+          "date": "每 MW・每天",
+          "sub": "先付給電廠",
+          "lines": [
+            "保證尖峰",
+            "有電可用"
+          ],
+          "at": "start-16",
+          "subAt": "plant-4",
+          "typeAt": "peak-6",
+          "markAt": "money",
+          "note": "示意，非文件原件"
+        },
+        "right": {
+          "label": "2028/29 結算",
+          "date": "美元",
+          "lines": [
+            "325",
+            "價格上限"
+          ],
+          "at": "peak+8"
+        },
+        "tag": {
+          "kind": "confirmed",
+          "text": "已確定",
+          "at": "money+2"
+        },
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026/7/14",
+          "place": "pa",
+          "lt": "名詞"
+        }
+      },
+      "sources": [
+        "PJM 拍賣報告：28.92→325 美元／MW・天"
+      ]
+    },
+    {
+      "id": "s03",
+      "narration": "官方說資料中心要自己付，監察單位說沒做到。",
+      "tts": "官方說資料中心要自己付，監察單位說，沒做到。",
+      "subtitle": {
+        "zh": "官方說資料中心要自己付\n監察單位說沒做到",
+        "en": "Officials: data centers pay their own way. | The monitor: that hasn't happened."
+      },
+      "keywords": [
+        "自己付",
+        "沒做到"
+      ],
+      "cues": [
+        {
+          "id": "rule",
+          "text": "官方"
+        },
+        {
+          "id": "dc",
+          "text": "資料中心"
+        },
+        {
+          "id": "own",
+          "text": "自己付"
+        },
+        {
+          "id": "imm",
+          "text": "監察單位"
+        },
+        {
+          "id": "fail",
+          "text": "沒做到"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "官方原則",
+          "doc": "州長與白宮 1/16",
+          "big": "自付",
+          "src": "資料中心自付成本",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "rule+6",
+          "srcAt": "dc+4",
+          "tag": {
+            "kind": "report",
+            "text": "監察報告轉述",
+            "at": "own+12"
+          }
+        },
+        "right": {
+          "head": "市場監察",
+          "big": [
+            "沒做到"
+          ],
+          "src": "PJM 獨立市場監察 第三季報告",
+          "headAt": "start-20",
+          "at": "imm",
+          "bigAt": "fail-4",
+          "srcAt": "fail+4",
+          "tag": {
+            "kind": "none",
+            "text": "監察單位結論",
+            "at": "fail-2"
+          },
+          "masthead": {
+            "name": "市場監察報告",
+            "date": "Q3",
+            "at": "imm+4"
+          }
+        },
+        "mid": {
+          "text": "？",
+          "at": "fail+2"
+        },
+        "news": {
+          "dateline": "WASHINGTON, D.C.・2026/1/16",
+          "lt": "兩種說法"
+        }
+      },
+      "sources": [
+        "PJM 市場監察 2026 第三季報告（原文已讀）"
+      ]
+    },
+    {
+      "id": "s04",
+      "narration": "監察單位估算，用戶已多付 294 億美元。",
+      "tts": "監察單位估算，用戶已經多付兩百九十四億美元。",
+      "subtitle": {
+        "zh": "監察單位估算\n用戶已多付 294 億美元",
+        "en": "The monitor estimates customers | have paid $29.4 billion more."
+      },
+      "keywords": [
+        "294 億美元"
+      ],
+      "cues": [
+        {
+          "id": "est",
+          "text": "估算"
+        },
+        {
+          "id": "all",
+          "text": "用戶"
+        },
+        {
+          "id": "num",
+          "text": "294 億美元"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "claim",
+        "head": {
+          "text": "誰在買單？",
+          "mark": "買單",
+          "at": "start-16",
+          "markAt": "all"
+        },
+        "photo": {
+          "name": "servers",
+          "caption": "資料中心機房（示意照片）",
+          "date": "Q3",
+          "at": "start-22",
+          "dateAt": "est"
+        },
+        "quote": {
+          "by": "市場監察報告 2026 Q3",
+          "byAt": "est-4",
+          "pre": "所有用戶已多付",
+          "big": "294",
+          "post": "億美元",
+          "at": "all-4",
+          "bigAt": "num",
+          "masthead": {
+            "name": "市場監察報告",
+            "date": "2026 Q3"
+          }
+        },
+        "tag": {
+          "kind": "report",
+          "text": "監察單位估算",
+          "at": "num+6"
+        },
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026 Q3",
+          "place": "pa",
+          "lt": "外界怎麼說"
+        }
+      },
+      "sources": [
+        "PJM 市場監察 2026 Q3（估算）"
+      ]
+    },
+    {
+      "id": "s05",
+      "narration": "但容量費 11 倍，不等於電費也漲 11 倍。",
+      "tts": "但容量費十一倍，不等於電費也漲十一倍。",
+      "subtitle": {
+        "zh": "但容量費 11 倍\n不等於電費也漲 11 倍",
+        "en": "But 11 times the capacity price | doesn't mean 11 times the bill."
+      },
+      "keywords": [
+        "不等於"
+      ],
+      "cues": [
+        {
+          "id": "cap",
+          "text": "容量費"
+        },
+        {
+          "id": "ne",
+          "text": "不等於"
+        },
+        {
+          "id": "bill",
+          "text": "電費"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "容量",
+        "op": "≠",
+        "opLabel": "不等於",
+        "b": "帳單",
+        "aAt": "start-16",
+        "opAt": "ne-6",
+        "bAt": "ne-2",
+        "rows": [
+          {
+            "text": "佔批發 17%",
+            "at": "cap+4",
+            "tag": {
+              "kind": "confirmed",
+              "text": "監察報告數字",
+              "at": "cap+12"
+            }
+          },
+          {
+            "text": "帳單漲幅",
+            "at": "bill",
+            "tag": {
+              "kind": "pending",
+              "text": "各州不同",
+              "at": "bill-4"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026 Q3",
+          "place": "pa",
+          "lt": "查證"
+        }
+      },
+      "sources": [
+        "市場監察：容量費佔批發成本 17.4%"
+      ],
+      "pauseAfter": 0.3
+    },
+    {
+      "id": "s06",
+      "narration": "12 月還有一場拍賣，會再漲多少還不知道。",
+      "tts": "十二月還有一場拍賣，會再漲多少，還不知道。",
+      "subtitle": {
+        "zh": "12 月還有一場拍賣\n會再漲多少還不知道",
+        "en": "Another auction comes in December. | How much more? Unknown."
+      },
+      "keywords": [
+        "12 月",
+        "還不知道"
+      ],
+      "cues": [
+        {
+          "id": "dec",
+          "text": "12 月"
+        },
+        {
+          "id": "auc",
+          "text": "拍賣"
+        },
+        {
+          "id": "more",
+          "text": "再漲多少"
+        },
+        {
+          "id": "unk",
+          "text": "還不知道"
+        }
+      ],
+      "beat": "payoff",
+      "component": "DossierScene",
+      "props": {
+        "panel": "pending",
+        "left": {
+          "photo": {
+            "name": "substation",
+            "caption": "變電所（示意照片）",
+            "at": "start-20"
+          },
+          "row": "12 月拍賣",
+          "rowAt": "auc"
+        },
+        "right": {
+          "title": "2029/30 結算價",
+          "field": "（未公布）",
+          "note": "示意，非文件原件",
+          "at": "start-16",
+          "titleAt": "dec+2",
+          "frameAt": "more-4",
+          "row": "還不知道",
+          "rowAt": "more"
+        },
+        "tag": {
+          "kind": "pending",
+          "text": "截至 2026/11/15 尚未確定",
+          "at": "more+4"
+        },
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026/11/15",
+          "place": "pa",
+          "lt": "還不知道"
+        }
+      },
+      "sources": [
+        "PJM：2029/30 拍賣排在 12 月"
+      ]
+    },
+    {
+      "id": "s07",
+      "narration": "資料中心該自己蓋電廠嗎？下集看 12 月拍賣。",
+      "tts": "資料中心該自己蓋電廠嗎？下集看十二月拍賣。",
+      "subtitle": {
+        "zh": "資料中心該自己蓋電廠嗎？\n下集看 12 月拍賣",
+        "en": "Should data centers build their own plants? | Next: the December auction."
+      },
+      "keywords": [
+        "自己蓋電廠"
+      ],
+      "cues": [
+        {
+          "id": "dc",
+          "text": "資料中心"
+        },
+        {
+          "id": "own",
+          "text": "自己蓋電廠"
+        },
+        {
+          "id": "next",
+          "text": "下集"
+        },
+        {
+          "id": "dec",
+          "text": "12 月拍賣"
+        }
+      ],
+      "beat": "cta",
+      "component": "DossierScene",
+      "props": {
+        "panel": "ask",
+        "head": {
+          "lines": [
+            "資料中心",
+            "該自己蓋電廠？"
+          ],
+          "marks": [
+            "資料中心",
+            "自己蓋電廠"
+          ],
+          "at": "start-18",
+          "markAts": [
+            "dc+6",
+            "own+2"
+          ]
+        },
+        "cta": {
+          "text": "留言說你的看法",
+          "at": "own+12"
+        },
+        "next": {
+          "label": "下一集",
+          "at": "next-4",
+          "photo": {
+            "name": "pylons",
+            "caption": "示意照片",
+            "at": "next"
+          },
+          "title": "12 月拍賣結果",
+          "titleAt": "dec",
+          "frameAt": "dec+16"
+        },
+        "news": {
+          "dateline": "VALLEY FORGE, PA.・2026/11/15",
+          "place": "pa",
+          "lt": "提問"
+        }
+      },
+      "sources": [
+        "PJM 新聞稿 7/14；市場監察 2026 Q3"
+      ]
+    }
+  ]
+}
