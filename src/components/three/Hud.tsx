@@ -20,6 +20,7 @@ import { buildModel, setStageGeo, cameraFor, projectPoint, signalLevel, stateAt,
 import { col, fxOf, type ProductModel } from "./model";
 import { Art } from "./HudArt";
 import { ProductScene } from "./Scene";
+import { LogoAnim, hasLogoAnim } from "./LogoAnims";
 
 export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean };
 export type HudSpec = { theme?: "dark"; levels: HudLevel[]; schematic?: { text?: string; zh?: string }; maxLabels?: number };
@@ -512,7 +513,7 @@ const RingMarkAnim: React.FC<{ n: number; size: number }> = ({ n, size }) => {
 
 /** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌（動畫）與名稱、slogan、下一支預告。
  *  頁首（左上 LOGO）畫在片尾卡上面，全片不動。字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
-const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
+const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string; trail?: string[]; logoAnim?: string }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
   const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 90, y1 = L.BAND_TOP - 60;
@@ -524,7 +525,7 @@ const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicke
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
         {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={5} />)}
         <g transform={`translate(${L.W / 2} 640)`}>
-          {ring ? <RingMarkAnim n={n} size={400} /> : <g transform={`scale(${(0.6 + 0.4 * tween(f, at + 6, 10, EASE.enter)).toFixed(3)})`} opacity={tween(f, at + 6, 10, EASE.enter)}>
+          {ring ? (hasLogoAnim(spec?.logoAnim) ? <LogoAnim name={spec.logoAnim as string} n={n} size={400} /> : <RingMarkAnim n={n} size={400} />) : <g transform={`scale(${(0.6 + 0.4 * tween(f, at + 6, 10, EASE.enter)).toFixed(3)})`} opacity={tween(f, at + 6, 10, EASE.enter)}>
           <rect x={-100} y={-100} width={200} height={200} fill="none" stroke={H.line} strokeWidth={8} />
           <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></g>}
         </g>
@@ -623,12 +624,14 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const camK = z.handoff > 0.99 && d0 > 0 ? d0 / s.cam.d : 1;
   const endScene = scenes.find((x) => (x as any).silent === true && (x.props as any)?.endCard);
   const card = (m.overlays ?? []).find((o) => o.type === "card");
+  // 片尾卡完全蓋住畫面之後（進場 8 幀）不再掛 3D 畫布：畫面一模一樣，只是省下每幀幾秒的 3D 成本
+  const endAt = endScene && by[endScene.id] ? by[endScene.id].startFrame + 8 : 1e9;
   const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (
     <AbsoluteFill style={{ background: H.bg }}>
       <HudBackdrop f={f} lv={z.lv} warm={z.handoff * s.lay} />
       <ZoomArt hud={hud} z={z} f={f} />
-      <Stage3D s={s} model={m.product} o={z.handoff} />
+      {f < endAt ? <Stage3D s={s} model={m.product} o={z.handoff} /> : null}
       <HudFrame f={f} hud={hud} z={z} camK={camK} quiet={quiet} />
       <HudHook m={m} f={f} out={hookOut} />
       <HudStreams m={m} s={s} f={f} />
