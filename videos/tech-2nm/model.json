@@ -1246,7 +1246,8 @@
    "color": "vg",
    "steady": true,
    "glow": 0.75,
-   "halo": 0
+   "halo": 0,
+   "stagger": 4
   },
   "chanOn": {
    "type": "pulse",
@@ -1406,7 +1407,7 @@
    "type": "meter",
    "anchor": "drn",
    "kind": "bar",
-   "source": "e2",
+   "source": "cur",
    "label": "通道電流",
    "accent": "blue",
    "sym": "Id",
@@ -1414,6 +1415,128 @@
    "hi": "開",
    "x": 92,
    "y": 562
+  },
+  "cur": {
+   "type": "stream",
+   "lanes": [
+    [
+     {
+      "layer": "metal",
+      "p": [
+       -5.5,
+       -2.6,
+       8.6
+      ]
+     },
+     {
+      "layer": "sheet1",
+      "p": [
+       -5.5,
+       -2.6,
+       0
+      ]
+     },
+     {
+      "layer": "sheet1",
+      "p": [
+       5.5,
+       -2.6,
+       0
+      ]
+     },
+     {
+      "layer": "metal",
+      "p": [
+       5.5,
+       -2.6,
+       8.6
+      ]
+     }
+    ],
+    [
+     {
+      "layer": "metal",
+      "p": [
+       -5.5,
+       0,
+       8.6
+      ]
+     },
+     {
+      "layer": "sheet2",
+      "p": [
+       -5.5,
+       0,
+       0
+      ]
+     },
+     {
+      "layer": "sheet2",
+      "p": [
+       5.5,
+       0,
+       0
+      ]
+     },
+     {
+      "layer": "metal",
+      "p": [
+       5.5,
+       0,
+       8.6
+      ]
+     }
+    ],
+    [
+     {
+      "layer": "metal",
+      "p": [
+       -5.5,
+       2.6,
+       8.6
+      ]
+     },
+     {
+      "layer": "sheet3",
+      "p": [
+       -5.5,
+       2.6,
+       0
+      ]
+     },
+     {
+      "layer": "sheet3",
+      "p": [
+       5.5,
+       2.6,
+       0
+      ]
+     },
+     {
+      "layer": "metal",
+      "p": [
+       5.5,
+       2.6,
+       8.6
+      ]
+     }
+    ]
+   ],
+   "n": 6,
+   "size": 12,
+   "rate": 0.55,
+   "drive": "gateOn",
+   "color": "signal",
+   "field": {
+    "from": {
+     "layer": "gate",
+     "p": [
+      0,
+      0,
+      6.5
+     ]
+    }
+   }
   }
  },
  "pose": {

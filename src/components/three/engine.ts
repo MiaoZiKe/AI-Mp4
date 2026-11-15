@@ -228,6 +228,7 @@ export const signalVal = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id
 export const signalLevel = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id: string) => {
   const d = pr.actions?.[id], op = s.ops[id];
   if (!d || !op) return 0;
+  if (d.type === "stream") return clamp01(op.g * (d.drive ? s.ops[d.drive]?.g ?? 0 : 1));
   if (d.type !== "trace" && d.type !== "sum") return clamp01(op.g);
   const ref = d.type === "trace" ? d.amp ?? 0.5 : pr.actions?.[d.of?.[0] ?? ""]?.amp ?? 0.5;
   let mx = 0;
@@ -240,9 +241,12 @@ export const opPoint = (s: { layers: Record<string, { x: number; y: number; z: n
   return [p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0)];
 };
 
+/** 3D 畫布在整個畫面上的位置（HUD 片用 LAYOUT_HUD，舊 3D 片用 LAYOUT_3D）；Hud.tsx 每次渲染開頭呼叫 setStageGeo */
+export const STAGE_GEO = { TOP: L.STAGE_TOP as number, H: L.STAGE_H as number };
+export const setStageGeo = (top: number, h: number) => { STAGE_GEO.TOP = top; STAGE_GEO.H = h; };
 /** 相機（3D 畫面與標籤投影共用） */
 export const cameraFor = (s: State3D) => {
-  const cam = new THREE.PerspectiveCamera(T.camera.fov, L.W / L.STAGE_H, 1, 400);
+  const cam = new THREE.PerspectiveCamera(T.camera.fov, L.W / STAGE_GEO.H, 1, 400);
   const e = (s.cam.elev * Math.PI) / 180;
   cam.position.set(s.cam.x, s.cam.y + s.cam.d * Math.sin(e), s.cam.d * Math.cos(e));
   cam.lookAt(s.cam.x, s.cam.y, 0);
@@ -255,5 +259,5 @@ export const projectPoint = (s: State3D, cam: THREE.PerspectiveCamera, layer: st
   const q = s.layers[layer];
   const v = new THREE.Vector3(p[0] + (q?.x ?? 0), p[1] + (q?.y ?? 0), (p[2] ?? 0) + (q?.z ?? 0));
   v.applyEuler(new THREE.Euler(s.pitch, 0, 0)).applyEuler(new THREE.Euler(0, s.yaw, 0)).project(cam);
-  return { x: ((v.x + 1) / 2) * L.W, y: L.STAGE_TOP + ((1 - v.y) / 2) * L.STAGE_H };
+  return { x: ((v.x + 1) / 2) * L.W, y: STAGE_GEO.TOP + ((1 - v.y) / 2) * STAGE_GEO.H };
 };

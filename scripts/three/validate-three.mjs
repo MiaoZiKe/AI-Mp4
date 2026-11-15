@@ -6,7 +6,7 @@ import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mj
 
 const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere"];
 const ROLES = ["lid", "heatFloor", "heatSource", "xray"];
-const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter"];
+const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter", "stream"];
 const COLORS = ["amber", "blue", "coral", "mint"];
 const THERMAL_FX = ["peek", "cutaway", "heat", "vapor", "spread", "condense", "flowBack"];
 /** 產品模型資料（script.json 的 model 或 videos/<slug>/model.json）的檢查；回傳可以標註的點（anchors 的鍵） */

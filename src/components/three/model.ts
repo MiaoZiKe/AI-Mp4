@@ -36,7 +36,7 @@ export type ThermalDef = {
 export type Pt = number[] | { layer: string; p: number[] };
 /** 運作動畫（model.json 的 actions；script.json 每幕的 run 用 cue 觸發）。各種 type 用到的欄位見 docs/three-stage.md「運作動畫怎麼寫」 */
 export type ActionDef = {
-  type: "vibrate" | "rotate" | "pulse" | "flow" | "wave" | "trace" | "sum" | "meter";
+  type: "vibrate" | "rotate" | "pulse" | "flow" | "wave" | "trace" | "sum" | "meter" | "stream";
   layer?: string; color?: string;
   /** vibrate／rotate／pulse：作用在哪些零件（parts 的 id） */
   parts?: string[];
@@ -56,6 +56,10 @@ export type ActionDef = {
   anchor?: string; kind?: "bar" | "wave"; source?: string; label?: string; traces?: string[]; accent?: string; w?: number;
   /** 深色 HUD 片（Hud.tsx）的 meter：固定在畫面像素 x、y（不跟著標註點）；sym＝符號（Vg）、lo／hi＝條兩端的字（低／高，不標數值） */
   x?: number; y?: number; sym?: string; lo?: string; hi?: string;
+  /** stream（只有 HUD 片，Hud.tsx 用 2D SVG 畫在 3D 投影位置上，不增加 3D 成本）：lanes＝幾條路徑（每條是 Pt 陣列）；每條 n 顆電子；
+   *  rate＝全速時每秒跑幾趟；drive＝速度跟著哪個動作的強度（例如閘極電壓 gateOn；強度降下來電子就減速、停住）；
+   *  field＝閘極電場線：from 一點、往每條 lane 的中點畫會流動的虛線箭頭；stagger（pulse）＝這組零件依序亮起的間隔幀數（閘極充電的掃過感） */
+  lanes?: Pt[][]; drive?: string; field?: { from: Pt; n?: number }; stagger?: number;
 };
 export type ProductModel = {
   name?: string; size: { w: number; h: number; r: number; t: number };

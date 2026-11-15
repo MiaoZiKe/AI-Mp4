@@ -521,6 +521,19 @@ export const LAYOUT_3D = {
   HOOK_TOP: 322, LABEL_PAD: 30, FOOT_W: 560,
 } as const;
 
+/** 深色／淺色 HUD 片（script.json 頂層 hud；src/components/three/Hud.tsx）的版面。使用者 2026/11/15：LOGO 固定在左上角、不要留大片空白。
+ *  舊值（LAYOUT_3D）：頁首 228–292、舞台 300–1290、字幕 1296–1532、出處 1560、1600–1920 空著。
+ *  新值：頁首 100–164（全片不動）、舞台 184–1404（高 1220，模型放大約 1.23 倍）、字幕 1420–1656、出處 1676、1724–1920 頻道色帶（不放重要文字）。
+ *  舞台中心（794）和舊版（795）幾乎一樣，所以 script.json 裡寫死的疊層 y 不用改。 */
+export const LAYOUT_HUD = {
+  ...LAYOUT_3D,
+  HEADER_TOP: 100, HEADER_H: 64, PROGRESS_TOP: 180,
+  STAGE_TOP: 184, STAGE_H: 1220,
+  CAP_TOP: 1420, CAP_H: 236,
+  SRC_TOP: 1676,
+  BAND_TOP: 1724,
+} as const;
+
 /** stage "three" 的深色科技 HUD 與 Powers of Ten 縮放（script.json 頂層 hud: { theme: "dark", levels }；src/components/three/Hud.tsx）。
  *  只是新增，沒寫 hud 的片完全不讀這裡。HUD 是細線 UI（1.5–3px、實色），不用發光濾鏡。 */
 export const THEME_3D_HUD = {

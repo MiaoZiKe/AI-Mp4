@@ -12,11 +12,11 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
-import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T } from "../../theme";
+import { FONT_EN, FONT_ZH, FPS, LAYOUT_HUD as L, THEME_3D as T } from "../../theme";
 import { H, setHudSkin, sm } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
-import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
+import { buildModel, setStageGeo, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
 import { col, fxOf, type ProductModel } from "./model";
 import { Art } from "./HudArt";
 import { ProductScene } from "./Scene";
@@ -338,6 +338,53 @@ const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) =>
   );
 };
 
+/** 電流（model.actions 的 type: "stream"，由 props.run 觸發）：2D SVG 畫在 3D 投影位置上（每幀只多幾十個圓點，不增加 3D 成本）。
+ *  電子沿每條 lane 由源極流到汲極；速度＝rate × drive（閘極電壓）的強度，位置是速度對時間的累加，所以電壓拿掉時電子會減速、停住，不會倒退或跳格。
+ *  每顆電子＝實心圓（signal 色、底色描邊，淺色與深色皮膚都高對比）＋往後拖的短尾巴（長度跟速度成正比，看得出方向）；軌道是淡色虛線；
+ *  field＝閘極到各片的電場線（虛線箭頭往下流動，強度跟著 drive）。示意，不是量測。 */
+const runK = (r: { at: number; until: number; ramp: number; gain: number }, j: number) => tween(j, r.at, r.ramp, EASE.move) * (1 - tween(j, r.until, r.ramp, EASE.move)) * r.gain;
+const HudStreams: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s, f }) => {
+  const cam = useMemo(() => cameraFor(s), [s]);
+  const acts = m.product.actions ?? {};
+  const out: React.ReactNode[] = [];
+  for (const [id, d] of Object.entries(acts)) {
+    const op = s.ops[id];
+    if (d.type !== "stream" || !op || op.k <= 0.01) continue;
+    const run = m.runs.find((r) => r.id === id && f >= r.at - 1 && f <= r.until + r.ramp + 1);
+    if (!run) continue;
+    const drv = d.drive ? m.runs.filter((r) => r.id === d.drive) : [];
+    const spd = (j: number) => (drv.length ? Math.max(...drv.map((r) => runK(r, j))) : runK(run, j));
+    // 從觸發那一幀累加到現在：走了幾趟（速度 0 的幀不前進）
+    let trips = 0;
+    for (let j = run.at; j < f; j++) trips += (spd(j) * (d.rate ?? 0.8)) / FPS;
+    const v = spd(f), c = col(m.product, d.color ?? "signal"), n = d.n ?? 6, sz = d.size ?? 9;
+    const P = (pt: any) => { const lay = Array.isArray(pt) ? d.layer ?? "" : pt.layer ?? d.layer ?? ""; const p = Array.isArray(pt) ? pt : pt.p; return projectPoint(s, cam, lay, p); };
+    (d.lanes ?? []).forEach((lane, li) => {
+      const pts = lane.map(P);
+      const seg = pts.slice(1).map((p, i) => Math.hypot(p.x - pts[i].x, p.y - pts[i].y)), total = seg.reduce((a, b) => a + b, 0);
+      if (total < 1) return;
+      const at = (u: number) => { let dd = Math.max(0, Math.min(1, u)) * total, k = 0; while (k < seg.length - 1 && dd > seg[k]) { dd -= seg[k]; k++; } const t = seg[k] ? dd / seg[k] : 0; return { x: pts[k].x + (pts[k + 1].x - pts[k].x) * t, y: pts[k].y + (pts[k + 1].y - pts[k].y) * t }; };
+      out.push(<path key={`${id}-t${li}`} d={`M${pts.map((p) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" L")}`} fill="none" stroke={c} strokeOpacity={0.35 * op.k} strokeWidth={3} strokeDasharray="4 10" />);
+      for (let i = 0; i < n; i++) {
+        const raw = trips - i / n - li * 0.13;
+        if (raw < 0) continue;
+        const u = raw - Math.floor(raw), e = Math.min(1, u * 12, (1 - u) * 12);
+        const p = at(u), q = at(u - 0.05 - 0.09 * v);
+        out.push(<line key={`${id}-q${li}-${i}`} x1={q.x.toFixed(1)} y1={q.y.toFixed(1)} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke={c} strokeWidth={sz * 0.9} strokeLinecap="round" opacity={0.35 * op.k * e * Math.min(1, v * 3)} />);
+        out.push(<circle key={`${id}-p${li}-${i}`} cx={p.x.toFixed(1)} cy={p.y.toFixed(1)} r={sz} fill={c} stroke={H.bg} strokeWidth={2.5} opacity={op.k * e} />);
+      }
+      if (d.field && v > 0.02) {
+        const a = P(d.field.from), mid = at(0.5), len = Math.hypot(mid.x - a.x, mid.y - a.y), ux = (mid.x - a.x) / len, uy = (mid.y - a.y) / len;
+        const ex = mid.x - ux * (sz + 6), ey = mid.y - uy * (sz + 6), o = 0.85 * v * op.k;
+        out.push(<line key={`${id}-f${li}`} x1={a.x} y1={a.y} x2={ex} y2={ey} stroke={col(m.product, "vg")} strokeWidth={4} strokeDasharray="10 8" strokeDashoffset={(-f * 2).toFixed(0)} opacity={o} />);
+        out.push(<path key={`${id}-fh${li}`} d={`M${ex} ${ey} L${ex - ux * 16 - uy * 9} ${ey - uy * 16 + ux * 9} L${ex - ux * 16 + uy * 9} ${ey - uy * 16 - ux * 9} Z`} fill={col(m.product, "vg")} opacity={o} />);
+      }
+    });
+  }
+  if (!out.length) return null;
+  return <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>{out}</svg>;
+};
+
 /** HUD 版的疊層：stamp 蓋章（實心色塊、微歪、先大後小）、card 下一支提問卡（深色框＋四角括號） */
 const HudOverlays: React.FC<{ m: Model3D; f: number }> = ({ m, f }) => (
   <>
@@ -432,7 +479,7 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
   <>
     <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        {(H as any).mark === "ring" ? <svg width={46} height={46} viewBox="18 16 64 64"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></svg> : <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>}
+        {(H as any).mark === "ring" ? <svg width={46} height={46} viewBox="18 16 64 64"><path d={RING_ARC} fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></svg> : <svg width={46} height={46} viewBox="0 0 46 46"><rect x={3} y={3} width={40} height={40} fill="none" stroke={H.line} strokeWidth={3} /><rect x={15} y={15} width={16} height={16} fill={H.amber} /></svg>}
         <div style={{ ...zh(40, H.text), letterSpacing: "0.04em" }}>{(H as any).light ? <>{name.slice(0, -1)}<span style={{ color: H.line }}>{name.slice(-1)}</span></> : name}</div>
       </div>
       <div style={{ ...zh(28, H.line, 700), ...((H as any).light ? { background: H.bg2, borderRadius: 14, padding: "8px 24px" } : { border: `2px solid ${H.line}`, padding: "6px 22px" }), letterSpacing: "0.08em" }}>{tag}</div>
@@ -444,31 +491,65 @@ const HudHeader: React.FC<{ name: string; tag: string; total: number; f: number 
   </>
 );
 
-/** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌與名稱、slogan、下一支預告。
- *  字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
+/** 開口圈標誌（100×100 座標，圓心 50,50、半徑 25；圓點在 -45° 的缺口上） */
+const RING_ARC = "M74.69 46.09 A25 25 0 1 1 53.91 25.31";
+/** 片尾卡的標誌動畫（使用者 2026/11/15：片尾 LOGO 要有動畫）。n＝片尾卡第幾幀，全部只看幀數（可重現）：
+ *  2–20 幀圓弧自己描出來 → 16–34 幀橘點從圓弧起點繞圓心轉進缺口、落定時回彈 → 34–52 幀一圈淡淡的脈衝往外擴 → 之後慢慢呼吸。 */
+const RingMarkAnim: React.FC<{ n: number; size: number }> = ({ n, size }) => {
+  const draw = tween(n, 2, 18, EASE.move);
+  const orb = tween(n, 16, 18, EASE.move), ang = (-45 - 300 * (1 - orb)) * (Math.PI / 180);
+  const land = n - 34, bounce = land < 0 ? 0.55 + 0.45 * tween(n, 16, 6, EASE.enter) : 1 + 0.28 * Math.exp(-land / 5) * Math.cos(land / 1.6);
+  const pulse = tween(n, 34, 18, EASE.move), breathe = n > 52 ? 1 + 0.04 * Math.sin((n - 52) / 7) : 1;
+  const dx = 50 + 25 * Math.cos(ang), dy = 50 + 25 * Math.sin(ang);
+  return (
+    <g transform={`scale(${size / 100}) translate(-50 -50)`}>
+      {pulse > 0 && pulse < 1 ? <circle cx={50} cy={50} r={25 + 22 * pulse} fill="none" stroke={H.line} strokeWidth={3 * (1 - pulse) + 0.5} opacity={0.5 * (1 - pulse)} /> : null}
+      <path d={RING_ARC} pathLength={1} fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" strokeDasharray="1 1" strokeDashoffset={(1 - draw).toFixed(4)} opacity={draw > 0 ? 1 : 0} />
+      {orb > 0 ? <circle cx={dx} cy={dy} r={6.6 * bounce * breathe} fill={H.amber} /> : null}
+    </g>
+  );
+};
+
+/** 片尾卡（最後一幕 silent: true ＋ props.endCard: { lines?, next? }）：整個畫面蓋上底色，四角括號、頻道標誌（動畫）與名稱、slogan、下一支預告。
+ *  頁首（左上 LOGO）畫在片尾卡上面，全片不動。字來自 script.json 的 channel 與 endCard；沒寫 endCard 的片不會畫 */
 const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicker?: string; trail?: string[] }; channel?: { name?: string; tag?: string; slogan?: string } }> = ({ f, at, spec, channel }) => {
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
-  const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = 400, y1 = 1560;
-  const draw = tween(f, at + 2, 14, EASE.move), pop = tween(f, at + 6, 10, EASE.enter), line = tween(f, at + 12, 14, EASE.move), nx = tween(f, at + 22, 8, EASE.enter);
-  const trail = spec?.trail ?? [];
+  const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 90, y1 = L.BAND_TOP - 60;
+  const draw = tween(f, at + 2, 14, EASE.move), name = tween(f, at + 28, 10, EASE.enter), line = tween(f, at + 36, 14, EASE.move), nx = tween(f, at + 48, 8, EASE.enter);
+  const trail = spec?.trail ?? [], ring = (H as any).mark === "ring";
   return (
     <AbsoluteFill style={{ background: H.bg, opacity: k }}>
       <HudBackdrop f={f} lv={0} />
       <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0 }}>
         {[[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].map(([x, y, sx, sy], i) => <path key={i} d={`M ${x} ${y + sy * b * draw} V ${y} H ${x + sx * b * draw}`} fill="none" stroke={H.line} strokeWidth={5} />)}
-        <g transform={`translate(${L.W / 2} 640) scale(${(0.6 + 0.4 * pop).toFixed(3)})`} opacity={pop}>
-          {(H as any).mark === "ring" ? <g transform="scale(4) translate(-50 -50)"><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6 * (1 + 0.08 * Math.sin(n / 6))} fill={H.amber} /></g> : <>
+        <g transform={`translate(${L.W / 2} 640)`}>
+          {ring ? <RingMarkAnim n={n} size={400} /> : <g transform={`scale(${(0.6 + 0.4 * tween(f, at + 6, 10, EASE.enter)).toFixed(3)})`} opacity={tween(f, at + 6, 10, EASE.enter)}>
           <rect x={-100} y={-100} width={200} height={200} fill="none" stroke={H.line} strokeWidth={8} />
-          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></>}
+          <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></g>}
         </g>
       </svg>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 800, textAlign: "center", opacity: pop, transform: `translateY(${Math.round(20 * (1 - pop))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
-      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1012, width: 760 * line, height: 5, background: H.amber }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1046, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
-      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1190, display: "flex", justifyContent: "center", gap: 14, opacity: line }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 14 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1330, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      <div style={{ position: "absolute", left: 0, right: 0, top: 860, textAlign: "center", opacity: name, transform: `translateY(${Math.round(30 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
+      <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1072, width: 760 * line, height: 5, background: H.amber }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: 1106, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
+      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1250, display: "flex", justifyContent: "center", gap: 14 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 38 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1400, display: "flex", justifyContent: "center", opacity: nx, transform: `scale(${(1 + 0.08 * Math.sin(Math.PI * tween(f, at + 50, 8, EASE.move))).toFixed(3)})` }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
     </AbsoluteFill>
+  );
+};
+
+/** 底部頻道色帶（BAND_TOP 到畫面底）：平台介面會蓋住的區域，不放要讀的字；淡底色＋一排會慢慢滑動的刻度＋全片進度，讓底部不是空白 */
+const HudBand: React.FC<{ f: number; total: number }> = ({ f, total }) => {
+  const top = L.BAND_TOP, h = L.H - top, g = 24, off = (f * 0.8) % g;
+  return (
+    <svg width={L.W} height={h} style={{ position: "absolute", left: 0, top }}>
+      <rect x={0} y={0} width={L.W} height={h} fill={H.bg2} />
+      <line x1={0} x2={L.W} y1={1} y2={1} stroke={H.lineSoft} strokeWidth={2} />
+      {Array.from({ length: Math.ceil(L.W / g) + 2 }, (_, i) => { const x = i * g - off; return <line key={i} x1={x} x2={x} y1={14} y2={14 + (i % 5 ? 10 : 22)} stroke={H.lineSoft} strokeWidth={2} />; })}
+      <rect x={0} y={h - 10} width={L.W} height={10} fill={H.lineSoft} />
+      <rect x={0} y={h - 10} width={(L.W * Math.min(1, f / Math.max(1, total - 1))).toFixed(1)} height={10} fill={H.line} />
+      <g transform={`translate(${L.W - 150} ${h / 2 + 10}) scale(2.2) translate(-50 -50)`} opacity={0.18}><path d={RING_ARC} fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></g>
+    </svg>
   );
 };
 
@@ -521,6 +602,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const hud = (props as any).hud as HudSpec;
   const skin = (props as any).hudSkin as string | undefined;
   setHudSkin(skin, (hud as any).smallPx);
+  setStageGeo(L.STAGE_TOP, L.STAGE_H);
   // 皮膚的 parts 蓋掉 model.json palette 裡同名的色（"deep" 的 parts 和 short-tech 的 palette 相同）
   const model = useMemo(() => { const pm = props.model as ProductModel; return { ...pm, palette: { ...pm.palette, ...H.parts } }; }, [props.model, skin]);
   const f = useCurrentFrame();
@@ -549,14 +631,16 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <Stage3D s={s} model={m.product} o={z.handoff} />
       <HudFrame f={f} hud={hud} z={z} camK={camK} quiet={quiet} />
       <HudHook m={m} f={f} out={hookOut} />
+      <HudStreams m={m} s={s} f={f} />
       <HudLabels m={m} s={s} f={f} max={hud.maxLabels ?? 2} />
       <HudMeasures m={m} s={s} f={f} list={meas} />
       <HudMeters m={m} s={s} f={f} />
       <HudOverlays m={m} f={f} />
       <HudCaption cues={subCues as Cue[]} f={f} />
       <HudSource cues={srcCues} f={f} px={(m.product.fx as any)?.srcPx ?? 30} />
-      <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} />
       {endScene && by[endScene.id] ? <HudEndCard f={f} at={by[endScene.id].startFrame} spec={(endScene.props as any).endCard} channel={channel} /> : null}
+      <HudBand f={f} total={timeline.totalFrames} />
+      <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} />
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}
@@ -570,6 +654,7 @@ export const CoverHud: React.FC<Script & { coverCrop?: number }> = (props) => {
   const hud = (props as any).hud as HudSpec;
   const c = (cover ?? {}) as { title?: string[]; sub?: string; frame?: number };
   setHudSkin((props as any).hudSkin, (hud as any).smallPx);
+  setStageGeo(L.STAGE_TOP, L.STAGE_H);
   const keys = useMemo(() => (timeline ? zoomKeys(scenes, timeline as TimelineV2, hud) : []), [scenes, timeline, hud]);
   const cf = keys.find((k) => !k.drift && k.at > 0);
   const z = zoomAt(hud, keys, cf ? cf.at + Math.round(cf.dur * 0.7) : 0);

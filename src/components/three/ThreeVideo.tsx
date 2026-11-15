@@ -8,7 +8,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_3D as L, THEME_3D as T, accent3D } from "../../theme";
 import type * as THREE from "three";
 import { EASE, seeded, tween } from "../anim";
-import { buildModel, cameraFor, projectPoint, signalLevel, signalVal, stateAt, type Label3D, type Model3D, type State3D } from "./engine";
+import { buildModel, cameraFor, projectPoint, signalLevel, signalVal, stateAt, type Label3D, type Model3D, type State3D , setStageGeo } from "./engine";
 import { col, fxOf, type Fx, type ProductModel } from "./model";
 import { ProductScene } from "./Scene";
 import { Caption3D, Header3D, Source3D } from "./Tracks";
@@ -226,6 +226,7 @@ const Stage: React.FC<{ s: State3D; model: ProductModel }> = ({ s, model }) => {
 /** script.json 頂層有 hud（深色 HUD＋Powers of Ten 縮放，videos/short-tech）就改走 Hud.tsx；沒有的舊片照舊 */
 export const VideoThree: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).hud ? <VideoHud {...props} /> : <VideoThreeBase {...props} />);
 const VideoThreeBase: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, model }) => {
+  setStageGeo(L.STAGE_TOP, L.STAGE_H);
   const f = useCurrentFrame();
   const m = useMemo(() => buildModel(scenes, timeline, model as ProductModel), [scenes, timeline, model]);
   const fx = useMemo(() => fxOf(model as ProductModel), [model]);

@@ -114,13 +114,13 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
 export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; glow: number; color: string | null };
 export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]> => {
   const m = new Map<string, [string, ActionDef][]>();
-  for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) for (const p of d.parts ?? []) m.set(p, [...(m.get(p) ?? []), [id, d]]);
+  for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) (d.parts ?? []).forEach((p, i) => m.set(p, [...(m.get(p) ?? []), [id, d, i] as any]));
   return m;
 };
 export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): PartFx | null => {
   if (!list) return null;
   const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, glow: 0, color: null };
-  for (const [id, d] of list) {
+  for (const [id, d, idx] of list as unknown as [string, ActionDef, number][]) {
     const op = s.ops[id];
     if (!op) continue;
     if (d.type === "vibrate") {
@@ -133,7 +133,9 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): P
     } else if (d.type === "pulse") {
       // steady＝不閃，穩定亮著（強度只跟著進出場 ramp；例如電壓維持在高的那段時間）
       const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
-      fx.glow = Math.max(fx.glow, (d.glow ?? 0.8) * Math.min(1, op.g) * (0.35 + 0.65 * beat)); fx.color = d.color ?? null;
+      // stagger：第 i 個零件晚 i×stagger 幀才亮（閘極由上往下「充電」的掃過感；熄滅時一起暗）
+      const sw = d.stagger ? Math.max(0, Math.min(1, (op.n - (idx ?? 0) * d.stagger) / Math.max(1, d.stagger))) : 1;
+      fx.glow = Math.max(fx.glow, (d.glow ?? 0.8) * Math.min(1, op.g) * sw * (0.35 + 0.65 * beat)); fx.color = d.color ?? null;
     }
   }
   return fx;
