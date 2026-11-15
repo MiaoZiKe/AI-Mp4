@@ -1,11 +1,9 @@
 #!/bin/bash
 # 哩股哩股成片音軌：旁白（使用者上傳的錄音，整條調到 −16 LUFS、真峰值 −1.5）＋片尾招牌音（只在片尾卡）。正片沒有背景音樂與音效。
-# 用法：bash scripts/dossier/mix-final.sh <旁白 wav 或 none> <招牌音 wav> <片尾卡開始秒> <總長秒> <輸出 wav> [主題 data|power|chip]
-# 招牌音乘固定倍數 G（預設 3.7），過 limiter（latency=1：補回 lookahead，音效準確落在畫面那一幀）；目標片尾段約 −11.5 LUFS、真峰值 ≤ −1 dBTP。
+# 用法：bash scripts/dossier/mix-final.sh <旁白 wav 或 none> <招牌音 wav> <片尾卡開始秒> <總長秒> <輸出 wav>
+# 招牌音乘固定倍數 G（預設 4.9），過 limiter（latency=1：補回 lookahead，音效準確落在畫面那一幀）；目標片尾段約 −11.5 LUFS、真峰值 ≤ −1 dBTP。
 set -e
-VOICE=$1; STING=$2; AT=$3; DUR=$4; OUT=$5; TH=${6:-data}
-case "$TH" in power) G0=5.2;; chip) G0=4.6;; *) G0=3.7;; esac   # 各主題招牌音的峰值與響度比例不同，倍數照片尾段約 −11.5 LUFS 調
-G=${G:-$G0}
+VOICE=$1; STING=$2; AT=$3; DUR=$4; OUT=$5; G=${G:-4.9}
 MS=$(python3 -c "print(int(round($AT*1000)))")
 if [ "$VOICE" = "none" ]; then IN0=(-f lavfi -t "$DUR" -i "anullsrc=r=48000:cl=stereo"); VF="[0:a]anull[v]";
 else IN0=(-i "$VOICE"); VF="[0:a]aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000,apad=whole_dur=$DUR,atrim=0:$DUR[v]"; fi

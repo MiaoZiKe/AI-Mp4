@@ -1012,20 +1012,16 @@ export const LAYOUT_DOSSIER_NEWS = {
 export const DOSSIER_END = {
   navy: "#14213D", copper: "#A8482A", paper: "#FBFAF6", paperEdge: "#D9D3C4",
   /** 深色版字標（icon_5C_dark.svg）：片尾卡在深色底上用 */
-  darkL: "#FBFAF6", darkCopper: "#D0643F", glow: "rgba(208,100,63,0.55)", glowHi: "rgba(251,250,246,0.9)", dot: "rgba(174,182,194,0.16)", dotHi: "rgba(208,100,63,0.75)",
-  /** 依主題換的片尾特效（script.json 最後一幕 props.endCard.theme）：data＝資料點歸檔（預設）、power＝電弧沿電網竄進來／合閘跳電、chip＝晶片走線／簽名蓋章 */
-  themes: {
-    data: { accent: "#D0643F", accent2: "#FBFAF6", flash: "rgba(251,250,246,0.9)", flashFull: 0, shake: 7 },
-    power: { accent: "#9FD8FF", accent2: "#E8F6FF", flash: "rgba(232,246,255,0.95)", flashFull: 0.8, shake: 11 },
-    chip: { accent: "#6FB7C6", accent2: "#D0643F", flash: "rgba(251,250,246,0.9)", flashFull: 0.35, shake: 9 },
-  },
-  /** 版面（1080×1920）：字標中心與大小、字標下方各行 */
-  TOP: 160, BOTTOM: 1790, LOGO_CX: 540, LOGO_CY: 610, LOGO_S: 720, NAME_Y: 1040, NAME_PX: 140, TAG_PX: 68, RULE_Y: 1222, SLOGAN_Y: 1258, SLOGAN_PX: 50,
-  NEXT_Y: 1420, NEXT_PX: 54, CMT_Y: 1550, CMT_PX: 58, MINI: 64,
-  /** 片尾卡第幾幀：資料粒子匯聚成 L（0–22）→ L 實心化 22 → i 身升起 24–32 → i 點像蓋章落下 28–36、36 撞擊（閃光、兩圈衝擊波、火花、掃描光、背景點陣波、震動）
+  darkL: "#FBFAF6", darkCopper: "#D0643F", glow: "rgba(208,100,63,0.6)", glowHi: "rgba(251,250,246,0.95)", mapDot: "#AEB6C2",
+  scanHi: "rgba(251,250,246,0.75)", flashFull: "#FBFAF6", flashO: 0.42, shake: 10,
+  /** 版面（1080×1920）：世界地圖（每度 3px，北緯 83 度在 MAP_Y）、字標、字標下方各行；上下撐滿 */
+  TOP: 160, BOTTOM: 1790, MAP_Y: 380, MAP_LAT: 83, LOGO_CX: 540, LOGO_CY: 600, LOGO_S: 760, NAME_Y: 1060, NAME_PX: 148, TAG_PX: 72,
+  RULE_Y: 1250, SLOGAN_Y: 1288, SLOGAN_PX: 52, NEXT_Y: 1450, NEXT_PX: 56, CMT_Y: 1580, CMT_PX: 60, MINI: 64,
+  /** 片尾卡第幾幀（固定，每集一樣）：世界各地 12 個新聞點脈衝 → 數字／文件碎片沿銅紅連線飛進來（0–24）→ L 實心 22 → i 身 24–32
+   *  → 查證章 28–36 加速壓下、36 重重蓋下（閃光、閃白 4 幀、兩圈銅紅震波、紙屑迸散、新聞條式掃描光橫掃、地圖點陣兩圈亮起、鏡頭震 10px）
    *  → 字標逐字 40/43/46/49 → ｜查到底 54 → 底線 56 → slogan 60 → 下一集 66 → 留言 72（之後停 ≥1 秒）。不轉、不繞圈。 */
-  f: { gather: 0, gatherDur: 14, gatherSpread: 8, solid: 22, solidDur: 6, stem: 24, stemDur: 8, stamp: 28, impact: 36, shakeEnd: 44,
-       flashDur: 10, ring: [36, 40], ringDur: 20, spark: 36, sparkDur: 18, scan: 38, scanDur: 12, wave: 36, waveDur: 24,
+  f: { gatherDur: 14, solid: 22, solidDur: 6, stem: 24, stemDur: 8, stamp: 28, impact: 36, shakeEnd: 46, flashDur: 12,
+       ring: [36, 41], ringDur: 22, spark: 36, sparkDur: 22, scan: 37, scanDur: 14, wave: [36, 44], waveDur: 28,
        name: [40, 43, 46, 49], tag: 54, rule: 56, ruleDur: 8, slogan: 60, next: 66, cmt: 72 },
 } as const;
 /** 「國際新聞」填滿版（script.json `news.layout: "fill"`；使用者 2026/11/15「紅框處還有空間」）：上方留白 ≤60px、下方留白 ≤60px、標題條下緣 ≤1700、1700 以下放出處與跑馬燈頁尾帶。

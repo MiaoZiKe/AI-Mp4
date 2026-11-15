@@ -531,174 +531,105 @@ const LiTile: React.FC<{ size: number }> = ({ size }) => (
     <LiMark size={Math.round(size * 0.92)} />
   </div>
 );
-type EndSpec = { comment?: string; next?: string; theme?: "data" | "power" | "chip"; words?: string[] };
-/** 固定 seed 的亂數（片尾粒子用；每一幀算出來都一樣） */
+type EndSpec = { comment?: string; next?: string };
+/** 固定 seed 的亂數（片尾用；每一幀算出來都一樣） */
 const rng = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
 const easeOut3 = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const easeIn2 = (x: number) => Math.pow(Math.min(1, Math.max(0, x)), 2);
 /** 字標座標（viewBox 512，含 translate 27）→ 畫面座標 */
 const LX = (x: number) => DE.LOGO_CX - DE.LOGO_S / 2 + ((x + 27) * DE.LOGO_S) / 512;
 const LY = (y: number) => DE.LOGO_CY - DE.LOGO_S / 2 + (y * DE.LOGO_S) / 512;
-/** 匯聚粒子：起點散在整個畫面（像檔案室裡散落的資料點），終點均勻落在 L 的範圍裡；一部分是銅紅（之後進 i）*/
-const PARTS = (() => {
-  const r = rng(20261115), out: { sx: number; sy: number; tx: number; ty: number; d: number; c: 0 | 1 }[] = [];
-  for (let k = 0; k < 150; k++) {
-    const foot = r() < 0.42, copper = k % 9 === 0;
-    const tx = copper ? 276 + r() * 64 : foot ? 118 + r() * 222 : 118 + r() * 72;
-    const ty = copper ? 214 + r() * 116 : foot ? 330 + r() * 70 : 104 + r() * 226;
-    const ang = r() * Math.PI * 2, dist = 520 + r() * 620;
-    out.push({ sx: DE.LOGO_CX + Math.cos(ang) * dist, sy: DE.LOGO_CY + Math.sin(ang) * dist * 1.2, tx: LX(tx), ty: LY(ty), d: r() * DE.f.gatherSpread, c: copper ? 1 : 0 });
-  }
-  return out;
-})();
-const SPARKS = (() => { const r = rng(808); return Array.from({ length: 16 }, (_, k) => ({ a: (k / 16) * Math.PI * 2 + r() * 0.3, v: 160 + r() * 200 })); })();
-/** 背景點陣（片尾卡專用）：撞擊時從字標往外擴一圈波，經過的點變亮 */
-const ENDDOTS = (() => { const out: [number, number][] = []; for (let y = DE.TOP + 20; y < DE.BOTTOM; y += 36) for (let x = 18; x < L.W; x += 36) out.push([x, y]); return out; })();
-
-
-/** power：電弧沿電網線（橫、直）從畫面邊緣竄向 L；每條取樣 48 點，畫的時候每一幀加一點抖動（電光閃爍） */
-const ARCS = (() => {
-  const r = rng(6060), out: { pts: [number, number][]; d: number }[] = [];
-  const edge = [[0, 0.18], [0, 0.62], [1, 0.3], [1, 0.78], [0.2, 0], [0.75, 0], [0.15, 1], [0.6, 1], [1, 0.5]];
-  edge.forEach(([ex, ey], k) => {
-    const sx = ex * L.W, sy = DE.TOP + ey * (DE.BOTTOM - DE.TOP);
-    const foot = k % 2 === 0, tx = LX(foot ? 140 + r() * 180 : 140 + r() * 40), ty = LY(foot ? 345 + r() * 40 : 130 + r() * 190);
-    const mx = k % 3 === 0 ? sx : tx, my = k % 3 === 0 ? ty : sy; // 先橫再直或先直再橫（沿格線）
-    const raw: [number, number][] = [[sx, sy], [mx, my], [tx, ty]], pts: [number, number][] = [];
-    const seg = [Math.hypot(raw[1][0] - raw[0][0], raw[1][1] - raw[0][1]), Math.hypot(raw[2][0] - raw[1][0], raw[2][1] - raw[1][1])], tot = seg[0] + seg[1] || 1;
-    for (let i = 0; i <= 47; i++) { const s = (i / 47) * tot, a = s <= seg[0] ? 0 : 1, u = a === 0 ? s / (seg[0] || 1) : (s - seg[0]) / (seg[1] || 1); pts.push([raw[a][0] + (raw[a + 1][0] - raw[a][0]) * u, raw[a][1] + (raw[a + 1][1] - raw[a][1]) * u]); }
-    out.push({ pts, d: r() * 7 });
+/** 片尾的世界地圖（整張寬 1080：每度 3px），畫在字標後面 */
+const EMX = (lon: number) => L.W / 2 + lon * 3, EMY = (lat: number) => DE.MAP_Y + (DE.MAP_LAT - lat) * 3;
+const END_MAP = (() => { let d = ""; WORLD.rows.forEach((row: string, r: number) => { const y = EMY(WORLD.lat0 - r * WORLD.step); for (let c = 0; c < row.length; c++) if (row[c] === "1") { const x = EMX(WORLD.lon0 + c * WORLD.step); d += `M${r1(x - 2)} ${r1(y - 2)}h4v4h-4z`; } }); return d; })();
+const END_DOTS = (() => { const out: [number, number][] = []; WORLD.rows.forEach((row: string, r: number) => { for (let c = 0; c < row.length; c++) if (row[c] === "1") out.push([EMX(WORLD.lon0 + c * WORLD.step), EMY(WORLD.lat0 - r * WORLD.step)]); }); return out; })();
+/** 世界各地的新聞來源點：每一點飛出一張數字／文件碎片，沿弧線收進 L（全球資訊被收進檔案） */
+const FRAGS = (() => {
+  const cities: [number, number, string][] = [[-74, 40.7, "+4.3%"], [-77, 38.9, "8-K"], [-0.1, 51.5, "28.92"], [4.4, 50.9, "2026"], [8.7, 50.1, "±2%"], [139.7, 35.7, "10-Q"], [121.5, 25, "1080"], [116.4, 39.9, "CPI"], [103.8, 1.4, "325"], [-46.6, -23.5, "EPFR"], [-122, 37.4, "Q3"], [72.9, 19.1, "FOMC"]];
+  const r = rng(1115);
+  return cities.map(([lon, lat, txt], k) => {
+    const foot = k % 3 === 0, tx = LX(foot ? 140 + r() * 180 : 135 + r() * 40), ty = LY(foot ? 345 + r() * 40 : 125 + r() * 190);
+    const sx = EMX(lon), sy = EMY(lat), cx = (sx + tx) / 2 + (r() - 0.5) * 200, cy = Math.min(sy, ty) - 160 - r() * 120;
+    return { sx, sy, tx, ty, cx, cy, txt, d: k * 1.1 + r() * 2 };
   });
-  return out;
 })();
-/** chip：晶片走線（兩個直角彎）從邊緣畫到 L，轉角有過孔 */
-const TRACES = (() => {
-  const r = rng(4242), out: { pts: [number, number][]; d: number }[] = [];
-  for (let k = 0; k < 14; k++) {
-    const side = k % 4, foot = k % 3 === 0;
-    const tx = LX(foot ? 130 + r() * 200 : 125 + r() * 55), ty = LY(foot ? 340 + r() * 50 : 115 + r() * 205);
-    const sx = side === 0 ? 0 : side === 1 ? L.W : 60 + r() * (L.W - 120), sy = side === 2 ? DE.TOP : side === 3 ? DE.BOTTOM : DE.TOP + 120 + r() * (DE.BOTTOM - DE.TOP - 240);
-    const m = side < 2 ? [[sx + (tx - sx) * (0.3 + 0.3 * r()), sy], [sx + (tx - sx) * (0.3 + 0.3 * r()), ty]] : [[sx, sy + (ty - sy) * (0.3 + 0.3 * r())], [tx, sy + (ty - sy) * (0.3 + 0.3 * r())]];
-    out.push({ pts: [[sx, sy], m[0] as [number, number], m[1] as [number, number], [tx, ty]], d: r() * 8 });
-  }
-  return out;
-})();
-/** 沿折線取到第 q（0–1）長度為止的點 */
-const polyUpTo = (pts: [number, number][], q: number): [number, number][] => {
-  const lens = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1])), tot = lens.reduce((a, b) => a + b, 0) || 1;
-  let left = tot * Math.max(0, Math.min(1, q)); const out: [number, number][] = [pts[0]];
-  for (let i = 0; i < lens.length; i++) { if (left >= lens[i]) { out.push(pts[i + 1]); left -= lens[i]; } else { const u = lens[i] ? left / lens[i] : 0; out.push([pts[i][0] + (pts[i + 1][0] - pts[i][0]) * u, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * u]); break; } }
-  return out;
-};
-const jag = (pts: [number, number][], seed: number, amp: number) => { const r = rng(seed); return pts.map(([x, y], i) => (i === 0 || i === pts.length - 1 ? [x, y] : [x + (r() - 0.5) * amp, y + (r() - 0.5) * amp]) as [number, number]); };
-const pstr = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? "L" : "M"}${r1(x)} ${r1(y)}`).join("");
+const bez = (f: (typeof FRAGS)[number], q: number) => [(1 - q) * (1 - q) * f.sx + 2 * (1 - q) * q * f.cx + q * q * f.tx, (1 - q) * (1 - q) * f.sy + 2 * (1 - q) * q * f.cy + q * q * f.ty] as const;
+/** 撞擊時迸開的紙屑（小紙片，往外飛、受重力往下、減速） */
+const CONFETTI = (() => { const r = rng(808); return Array.from({ length: 22 }, (_, k) => ({ a: (k / 22) * Math.PI * 2 + r() * 0.25, v: 220 + r() * 260, w: 10 + r() * 14, h: 6 + r() * 6, rot: (r() - 0.5) * 2, c: k % 3 })); })();
 
 const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string; tag: string }> = ({ sh, f, slogan, name, tag }) => {
   const e = f - sh.start, F = DE.f;
   if (e < 0) return null;
   const spec = (sh.p.endCard ?? {}) as EndSpec;
-  const theme = spec.theme ?? "data", TH = DE.themes[theme];
   const pin = tween(f, sh.start, NM.cut, EASE.move);
   const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
-  // 撞擊震動（36–44 幀，遞減）
   const k = e >= F.impact && e < F.shakeEnd ? 1 - (e - F.impact) / (F.shakeEnd - F.impact) : 0;
-  const sx = r1(k * TH.shake * Math.sin((e - F.impact) * 2.7)), sy = r1(k * TH.shake * 0.85 * Math.cos((e - F.impact) * 3.3));
-  // 粒子位置（含三格拖尾）
-  const pos = (p: (typeof PARTS)[number], fr: number) => { const q = easeOut3((fr - F.gather - p.d) / F.gatherDur); return [p.sx + (p.tx - p.sx) * q, p.sy + (p.ty - p.sy) * q, q] as const; };
-  const solid = ease(F.solid, F.solidDur), partO = 1 - solid;
-  const stem = ease(F.stem, F.stemDur);
-  // i 點：28 幀從 2.4 倍大、淡淡的樣子縮下來，36 幀「蓋下去」定住（之後壓扁一下回彈）
+  const sx = r1(k * DE.shake * Math.sin((e - F.impact) * 2.7)), sy = r1(k * DE.shake * 0.85 * Math.cos((e - F.impact) * 3.3));
+  const solid = ease(F.solid, F.solidDur), stem = ease(F.stem, F.stemDur);
+  // 查證章：28 幀從 2.6 倍大、淡淡的樣子加速壓下，36 幀重重蓋下（之後壓扁回彈一下）
   const dq = e < F.stamp ? -1 : Math.min(1, (e - F.stamp) / (F.impact - F.stamp));
-  const dScale = dq < 0 ? 0 : dq < 1 ? 2.4 - 1.4 * dq * dq : 1 + 0.12 * Math.max(0, 1 - (e - F.impact) / 5) * Math.cos((e - F.impact) * 1.4);
-  const dOp = dq < 0 ? 0 : dq < 1 ? 0.25 + 0.75 * dq : 1;
+  const dScale = dq < 0 ? 0 : dq < 1 ? 2.6 - 1.6 * easeIn2(dq) : 1 + 0.14 * Math.max(0, 1 - (e - F.impact) / 6) * Math.cos((e - F.impact) * 1.4);
+  const dOp = dq < 0 ? 0 : dq < 1 ? 0.2 + 0.8 * dq : 1;
   const dcx = LX(308), dcy = LY(154), dr = (38 * DE.LOGO_S) / 512;
   const flash = e >= F.impact ? Math.max(0, 1 - (e - F.impact) / F.flashDur) : 0;
-  const waveR = e >= F.wave ? 1300 * easeOut3((e - F.wave) / F.waveDur) : -1, waveOn = e >= F.wave && e < F.wave + F.waveDur + 6;
   const scanP = e >= F.scan && e < F.scan + F.scanDur ? (e - F.scan) / F.scanDur : -1;
+  const waves = F.wave.map((a) => (e >= a ? 1400 * easeOut3((e - a) / F.waveDur) : -1));
+  const mapO = 0.18 + 0.22 * ease(0, 10);
   const chars = [...name];
   return (
     <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)`, overflow: "hidden" }}>
       <Backdrop />
-      <svg width={L.W} height={DE.BOTTOM - DE.TOP} style={{ position: "absolute", left: 0, top: 0 }}>
-        <g transform={`translate(0,${-DE.TOP})`}>
-          {ENDDOTS.map(([x, y], i) => {
-            const dd = Math.hypot(x - DE.LOGO_CX, y - DE.LOGO_CY), hit = waveOn ? Math.max(0, 1 - Math.abs(dd - waveR) / 70) : 0;
-            // power：電網通電——集結時從外圈往裡一圈圈亮起（藍），撞擊後全部亮一下再暗回去
-            const pw = theme === "power" ? (e < F.impact ? (dd > 1150 - 1150 * Math.min(1, e / 30) ? 0.55 : 0) : Math.max(0, 1 - (e - F.impact) / 20)) : 0;
-            const lit = Math.max(hit, pw);
-            return <rect key={i} x={x - 2} y={y - 2} width={4} height={4} fill={lit > 0.05 ? (theme === "data" ? DE.dotHi : TH.accent) : DE.dot} opacity={lit > 0.05 ? r1(0.3 + 0.7 * lit) : 1} />;
-          })}
-        </g>
-      </svg>
       <div style={{ position: "absolute", left: sx, top: sy - DE.TOP, width: L.W, height: L.H }}>
         <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-          {/* 撞擊光暈（徑向漸層只用在這一下閃光） */}
           <defs><radialGradient id="endglow"><stop offset="0%" stopColor={DE.glowHi} /><stop offset="35%" stopColor={DE.glow} /><stop offset="100%" stopColor="rgba(208,100,63,0)" /></radialGradient></defs>
-          {flash > 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * (2 + 6 * (1 - flash)))} fill="url(#endglow)" opacity={r1(flash)} /> : null}
-          {/* 匯聚：data＝資料粒子（三格拖尾）、power＝電弧沿電網竄進來（抖動閃爍）、chip＝晶片走線（轉角過孔） */}
-          {theme === "data" && partO > 0 ? PARTS.map((p, i) => {
-            if (e < F.gather + p.d) return null;
-            const col = p.c ? DE.darkCopper : DE.darkL;
-            return <g key={i} opacity={r1(partO)}>{[3, 2, 1, 0].map((b) => { const [x, y, q] = pos(p, e - b * 1.2); return q > 0 ? <rect key={b} x={r1(x - 3)} y={r1(y - 3)} width={6} height={6} fill={col} opacity={b ? r1(0.12 * (4 - b)) : 1} /> : null; })}</g>;
+          {/* 世界地圖點陣（淡）；撞擊後兩圈銅紅波從字標往外，經過的陸地點亮起 */}
+          <path d={END_MAP} fill={DE.mapDot} opacity={r1(mapO)} />
+          {e >= F.wave[0] && e < F.wave[1] + F.waveDur + 4 ? END_DOTS.map(([x, y], i) => {
+            const dd = Math.hypot(x - DE.LOGO_CX, y - DE.LOGO_CY), hit = Math.max(0, ...waves.map((w) => (w < 0 ? 0 : 1 - Math.abs(dd - w) / 60)));
+            return hit > 0.05 ? <rect key={i} x={x - 2.5} y={y - 2.5} width={5} height={5} fill={DE.darkCopper} opacity={r1(hit)} /> : null;
           }) : null}
-          {theme === "power" && e < F.impact + 4 ? ARCS.map((a, i) => {
-            const q = easeOut3((e - a.d) / 16); if (q <= 0) return null;
-            const head = polyUpTo(a.pts, q), tail = Math.max(0, head.length - 16), seg = jag(head.slice(tail), i * 997 + Math.floor(e), 16);
-            const flick = 0.55 + 0.45 * rng(i * 31 + Math.floor(e))(), fade = e < F.solid ? 1 : Math.max(0, 1 - (e - F.solid) / 10);
-            const hp = head[head.length - 1];
-            return <g key={i} opacity={r1(flick * fade)}>
-              <path d={pstr(seg)} fill="none" stroke={TH.accent} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" opacity={0.25} />
-              <path d={pstr(seg)} fill="none" stroke={TH.accent2} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
-              {q < 1 ? <circle cx={r1(hp[0])} cy={r1(hp[1])} r={9} fill={TH.accent2} /> : null}
+          {/* 各地新聞來源點：脈衝亮起 → 銅紅連線往字標長出 → 數字／文件碎片沿線飛進來，越近越小、最後收進 L */}
+          {FRAGS.map((fr, i) => {
+            if (e < fr.d - 3) return null;
+            const q = easeOut3((e - fr.d) / F.gatherDur), lineO = e < F.solid ? 1 : Math.max(0, 1 - (e - F.solid) / 10);
+            const n = 18, pts: string[] = []; for (let j = 0; j <= n; j++) { const [x, y] = bez(fr, (j / n) * q); pts.push(`${j ? "L" : "M"}${r1(x)} ${r1(y)}`); }
+            const [hx, hy] = bez(fr, q), ping = Math.max(0, 1 - (e - fr.d + 3) / 10);
+            return <g key={i}>
+              {ping > 0 ? <circle cx={fr.sx} cy={fr.sy} r={r1(6 + 22 * (1 - ping))} fill="none" stroke={DE.darkCopper} strokeWidth={2} opacity={r1(ping)} /> : null}
+              <rect x={fr.sx - 4} y={fr.sy - 4} width={8} height={8} fill={DE.darkCopper} opacity={r1(lineO)} />
+              {q > 0 ? <path d={pts.join("")} fill="none" stroke={DE.darkCopper} strokeWidth={2} strokeDasharray="6 6" opacity={r1(0.8 * lineO)} /> : null}
+              {q > 0 && q < 1 ? <g transform={`translate(${r1(hx)},${r1(hy)}) scale(${r1(1.2 - 0.8 * q)})`}>
+                <rect x={-58} y={-24} width={116} height={48} fill={DE.paper} />
+                <text x={0} y={10} textAnchor="middle" style={{ fontFamily: FONT_EN, fontWeight: 700, fontSize: 28 }} fill={DE.navy}>{fr.txt}</text>
+              </g> : null}
             </g>;
-          }) : null}
-          {theme === "chip" ? TRACES.map((tr, i) => {
-            const q = easeOut3((e - tr.d) / 18); if (q <= 0) return null;
-            const pts = polyUpTo(tr.pts, q), hp = pts[pts.length - 1], o = e < F.solid ? 1 : Math.max(0.28, 1 - (e - F.solid) / 12);
-            return <g key={i} opacity={r1(o)}>
-              <path d={pstr(pts)} fill="none" stroke={i % 3 === 0 ? TH.accent2 : TH.accent} strokeWidth={4} strokeLinejoin="miter" />
-              {tr.pts.slice(1, -1).map((v, j) => pts.length > j + 2 ? <circle key={j} cx={v[0]} cy={v[1]} r={8} fill={T.bg} stroke={TH.accent} strokeWidth={3} /> : null)}
-              {q < 1 ? <rect x={r1(hp[0] - 6)} y={r1(hp[1] - 6)} width={12} height={12} fill={DE.darkL} /> : null}
-            </g>;
-          }) : null}
-          {/* 實心 L 與 i 身 */}
-          <g opacity={r1(theme === "power" && solid > 0 && solid < 1 ? solid * (0.5 + 0.5 * rng(Math.floor(e) * 7)()) : solid)}>
-            {theme !== "data" ? <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill="none" stroke={TH.accent} strokeWidth={10} opacity={0.35} /> : null}
-            <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill={DE.darkL} />
-          </g>
+          })}
+          {flash > 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * (2.4 + 8 * (1 - flash)))} fill="url(#endglow)" opacity={r1(flash)} /> : null}
+          {/* L：碎片到齊後實心化（米白），i 身升起（銅紅） */}
+          <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill={DE.darkL} opacity={r1(solid)} />
           <rect x={LX(276)} y={LY(330) - (LY(330) - LY(214)) * stem} width={LX(340) - LX(276)} height={(LY(330) - LY(214)) * stem} fill={DE.darkCopper} />
-          {/* 掃描光：撞擊後一道亮帶由上往下掃過字標 */}
-          {scanP >= 0 ? <rect x={LX(100)} y={LY(90) + (LY(420) - LY(90)) * scanP - 18} width={LX(360) - LX(100)} height={36} fill={DE.glowHi} opacity={r1(0.35 * Math.sin(Math.PI * scanP))} /> : null}
-          {/* i 點（蓋章） */}
-          {dq >= 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * dScale)} fill={DE.darkCopper} opacity={r1(dOp)} /> : null}
-          {/* 兩圈衝擊波 */}
-          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr + 420 * easeOut3(q))} fill="none" stroke={theme === "data" ? DE.darkCopper : TH.accent} strokeWidth={r1(7 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
-          {/* 火花：往外噴、減速、拖尾 */}
-          {theme !== "power" && e >= F.spark && e < F.spark + F.sparkDur ? SPARKS.map((s, j) => {
-            const q = (e - F.spark) / F.sparkDur, d1 = s.v * easeOut3(q), d0 = s.v * easeOut3(Math.max(0, q - 0.12));
-            return <line key={j} x1={r1(dcx + Math.cos(s.a) * (dr + d0))} y1={r1(dcy + Math.sin(s.a) * (dr + d0))} x2={r1(dcx + Math.cos(s.a) * (dr + d1))} y2={r1(dcy + Math.sin(s.a) * (dr + d1))} stroke={j % 2 ? DE.darkL : DE.darkCopper} strokeWidth={3} strokeLinecap="round" opacity={r1(1 - q)} />;
-          }) : null}
-          {/* power：合閘那一下，6 道電弧從 i 點往外劈出（每兩幀換一次形狀） */}
-          {theme === "power" && e >= F.impact && e < F.impact + 12 ? SPARKS.filter((_, j) => j % 2 === 0).map((s, j) => {
-            const L0 = dr * 1.1, L1 = dr + 140 + s.v * 0.9, n = 8, pts: [number, number][] = [];
-            for (let i = 0; i <= n; i++) { const d = L0 + (L1 - L0) * (i / n); pts.push([dcx + Math.cos(s.a) * d, dcy + Math.sin(s.a) * d]); }
-            const jj = jag(pts, j * 53 + Math.floor((e - F.impact) / 2), 34), o = 1 - (e - F.impact) / 12;
-            return <g key={j} opacity={r1(o)}><path d={pstr(jj)} fill="none" stroke={TH.accent} strokeWidth={12} opacity={0.3} strokeLinejoin="round" /><path d={pstr(jj)} fill="none" stroke={TH.accent2} strokeWidth={4} strokeLinejoin="round" /></g>;
+          {/* 查證章（i 點）：蓋下前外面有一圈雙線章框，蓋下的瞬間章框放大成第一圈震波 */}
+          {dq >= 0 ? <>
+            {e < F.impact ? <circle cx={dcx} cy={dcy} r={r1(dr * dScale * 1.9)} fill="none" stroke={DE.darkCopper} strokeWidth={3} opacity={r1(dOp * 0.8)} /> : null}
+            <circle cx={dcx} cy={dcy} r={r1(dr * dScale)} fill={DE.darkCopper} opacity={r1(dOp)} />
+          </> : null}
+          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr * 1.9 + 520 * easeOut3(q))} fill="none" stroke={DE.darkCopper} strokeWidth={r1(9 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
+          {/* 紙屑迸散（往外、受重力、減速） */}
+          {e >= F.spark && e < F.spark + F.sparkDur ? CONFETTI.map((c, j) => {
+            const tt = (e - F.spark) / F.sparkDur, d = c.v * easeOut3(tt), x = dcx + Math.cos(c.a) * (dr + d), y = dcy + Math.sin(c.a) * (dr + d) + 260 * tt * tt;
+            return <rect key={j} x={r1(x - c.w / 2)} y={r1(y - c.h / 2)} width={r1(c.w)} height={r1(c.h)} fill={c.c === 0 ? DE.darkCopper : c.c === 1 ? DE.paper : T.text3} opacity={r1(1 - tt)} transform={`rotate(${r1(c.rot * 140 * tt)} ${r1(x)} ${r1(y)})`} />;
           }) : null}
         </svg>
       </div>
-      {/* 撞擊閃白（power＝跳電閃白最強；只有 6 幀） */}
-      {TH.flashFull > 0 && e >= F.impact && e < F.impact + 6 ? <div style={{ position: "absolute", inset: 0, background: TH.flash, opacity: r1(TH.flashFull * (1 - (e - F.impact) / 6)) }} /> : null}
-      {/* chip：蓋章時三個頭銜依序閃過（38／41／44 幀出現，56 幀前淡出） */}
-      {theme === "chip" && spec.words ? spec.words.slice(0, 3).map((w, j) => {
-        const a = F.impact + 2 + j * 3, o = e < a ? 0 : e < a + 3 ? (e - a) / 3 : Math.max(0, 1 - (e - a - 3) / 14);
-        const pos = [[DE.LOGO_CX - 330, DE.LOGO_CY - 250], [DE.LOGO_CX + 120, DE.LOGO_CY - 330], [DE.LOGO_CX + 150, DE.LOGO_CY + 230]][j];
-        return o > 0 ? <div key={j} style={{ position: "absolute", left: pos[0], top: pos[1] - DE.TOP, padding: "8px 18px", border: `2px solid ${TH.accent}`, background: T.bg, ...sans(40, T.weight.bold, T.text), opacity: r1(o), transform: `scale(${r1(1.15 - 0.15 * Math.min(1, (e - a) / 3))})` }}>{w}</div> : null;
-      }) : null}
+      {/* 撞擊閃白（4 幀） */}
+      {e >= F.impact && e < F.impact + 4 ? <div style={{ position: "absolute", inset: 0, background: DE.flashFull, opacity: r1(DE.flashO * (1 - (e - F.impact) / 4)) }} /> : null}
+      {/* 新聞條式掃描光：一道帶銅紅邊的亮帶由左橫掃到右 */}
+      {scanP >= 0 ? <div style={{ position: "absolute", top: DE.LOGO_CY - DE.LOGO_S / 2 - DE.TOP, height: DE.LOGO_S, left: r1(-200 + (L.W + 400) * easeOut3(scanP)), width: 140, background: `linear-gradient(90deg, rgba(251,250,246,0) 0%, ${DE.scanHi} 70%, ${DE.darkCopper} 100%)`, opacity: r1(0.55 * Math.sin(Math.PI * scanP)) }} /> : null}
       <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 6 }}>
-        {chars.map((c, i) => { const a = F.name[Math.min(i, F.name.length - 1)]; return <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= a ? 1 : 0, transform: `translateY(${e >= a ? r1(12 * (1 - ease(a, 5))) : 0}px)` }}>{c}</span>; })}
+        {chars.map((c, i) => { const a = F.name[Math.min(i, F.name.length - 1)]; return <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= a ? 1 : 0, transform: `translateY(${e >= a ? r1(14 * (1 - ease(a, 5))) : 0}px)` }}>{c}</span>; })}
         <span style={{ ...serif(DE.TAG_PX, T.weight.serif, T.text2), lineHeight: 1, marginLeft: 18, opacity: ease(F.tag, 6) }}>｜{tag}</span>
       </div>
-      <div style={{ position: "absolute", left: (L.W - 520) / 2, top: DE.RULE_Y - DE.TOP, width: r1(520 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.darkCopper }} />
+      <div style={{ position: "absolute", left: (L.W - 560) / 2, top: DE.RULE_Y - DE.TOP, width: r1(560 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.darkCopper }} />
       <div style={{ position: "absolute", left: 0, width: L.W, top: DE.SLOGAN_Y - DE.TOP, textAlign: "center", ...sans(DE.SLOGAN_PX, T.weight.bold, T.text2), letterSpacing: "0.3em", opacity: ease(F.slogan, 8) }}>{slogan}</div>
       {spec.next ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NEXT_Y - DE.TOP, textAlign: "center", ...sans(DE.NEXT_PX, T.weight.bold, T.text), opacity: ease(F.next, 6) }}><span style={{ color: T.accentText, letterSpacing: "0.2em" }}>下一集 ▸ </span>{spec.next}</div> : null}
       {spec.comment ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.CMT_Y - DE.TOP, display: "flex", justifyContent: "center", opacity: ease(F.cmt, 6) }}>
