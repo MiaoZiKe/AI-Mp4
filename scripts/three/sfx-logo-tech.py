@@ -8,11 +8,15 @@
 - 時間對齊片尾卡「透明圈」動畫（src/components/three/hudLayout.ts 的 ENDCARD_TC；LogoAnims.tsx 的 Transparent），單位＝片尾卡開始後第幾幀：
     飛入 0–10：低音量數位粒子聲（短促高音小點）
     掃描 11–25：資料流的嗶啾聲（更小、更快）
-    疊合 14–34：上升掃頻（riser），張力往上推；各層撞合 27／29／31／33 各一個輕的「嗒」
+    疊合 14–34：上升掃頻（riser），張力往上推
+    震動音（v8，Andy：「在結尾 LOGO 圓圈出現震動的那畫面需要有音效」）：畫面震動的每一幀都有一個撞擊＝低頻「咚」＋玻璃撞擊（幾個不成倍數的正弦泛音、快速衰減），
+      音量照震動幅度（LogoAnims.tsx 的 shake／lockShake）：撞合 27／29／31／33（玻璃層、外框、晶片、電路各砸一下，幅度 1.60／1.64／1.53／1.53，玻璃音一層比一層高），
+      鎖定 34（幅度 2.4＋橫向 1.44，最大）＝主音＋最重的震動音（低一點、拖長的玻璃撞擊）
     鎖定 34：主音＝低頻厚重撞擊（音高往下掉的正弦）＋明亮合成和弦（九和弦、慢慢散開）＋回音尾巴
     頻道名逐字 34／36／38／40／42：很輕的數位點擊
     下一支 52：短的確認音（兩個音往上）
-- 輸出 48 kHz 立體聲 float32 wav，第 0 個樣本＝片尾卡第 0 幀。響度與峰值在混音那一步再調（目標 −14 LUFS、true peak ≤ −1 dBTP）。
+- 輸出 48 kHz 立體聲 wav，第 0 個樣本＝片尾卡第 0 幀。音量平衡已經做在這裡（v8 起）：鎖定前的聲音整組 ×0.275（主音的 −11.2 dB）、主音那組在鎖定後 0.8 秒起
+  花 0.8 秒降到 ×0.5625；混音只乘一個固定倍數（tech-2nm ×22）再過 limiter（scripts/three/mix-endsting.sh；目標片尾段約 −11 LUFS、true peak ≤ −1 dBTP）。
 """
 import sys, wave, struct
 import numpy as np
@@ -65,8 +69,26 @@ ph = 2 * np.pi * np.cumsum(f) / SR
 riser = (np.sin(ph) + 0.6 * np.sin(ph * 1.004 + 0.3) + 0.25 * np.sin(2 * ph)) * (u ** 2.2)
 riser *= np.minimum(1, (1 - u) * 400 + 0.0) ** 0.5           # 最後 ~2.5 ms 收掉，讓主音乾淨地蓋上
 add(riser, a0, pan=0, gain=0.11)
-for k, nfr in enumerate([27, 29, 31, 33]):
-    add(tone(880 * 2 ** (k / 6), 0.05, a=0.001, d=0.04, harm=((1, 1), (3, 0.2))), fr(nfr), pan=(-0.3, 0.3)[k % 2], gain=0.07)
+
+# ── 3b. 震動音（v8）：每一次畫面震動對準那一幀，一個「咚」＋一個玻璃撞擊；音量照震動幅度（÷1.6） ──
+GLASS = ((1.0, 1.0, 0.30), (2.32, 0.5, 0.18), (4.25, 0.28, 0.11), (6.63, 0.15, 0.07))   # （泛音倍率、音量、衰減秒）：玻璃／金屬板不成倍數的泛音
+def glass(f, dur=0.5, slow=1.0, side=0.0):
+    n = int(dur * SR); t = np.arange(n) / SR
+    s = sum(g * np.sin(2 * np.pi * f * m * (1 + side) * t) * env(n, 0.0015, d * slow, shape=4.0) for m, g, d in GLASS)
+    return s
+def thud(f0=140, f1=55, dur=0.28, d=0.22):
+    n = int(dur * SR); t = np.arange(n) / SR
+    fb = f1 + (f0 - f1) * np.exp(-t / 0.025)
+    return np.sin(2 * np.pi * np.cumsum(fb) / SR) * env(n, 0.002, d, shape=4.0)
+def shake_hit(at, amp, fg, slow=1.0, gt=0.136, gg=0.052):
+    k = amp / 1.6
+    add(thud(), at, gain=gt * k)
+    add(glass(fg, 0.9 * slow, slow, -0.0015), at, pan=-0.35, gain=gg * k); add(glass(fg, 0.9 * slow, slow, 0.0015), at, pan=0.35, gain=gg * k)
+SHAKES = [(27, 1.60, 1568.0), (29, 1.64, 1760.0), (31, 1.53, 1975.5), (33, 1.53, 2217.5)]   # （片尾卡幀、震動幅度、玻璃音高）
+for nfr, amp, fg in SHAKES: shake_hit(fr(nfr), amp, fg)
+
+# ── 鎖定前的聲音（上面全部）整組收進 PRE；下面鎖定那組另外算 ──
+PRE_L, PRE_R = L.copy(), R.copy(); L[:] = 0; R[:] = 0
 
 # ── 4. 鎖定 34：招牌主音（固定，不要改） ──
 LOCK = fr(34)
@@ -85,6 +107,8 @@ for j, fq in enumerate(CHORD):
     hr = tone(fq, 2.2, a=0.006, d=2.0, harm=((1, 1), (2, 0.18), (3, 0.05)), detune=+0.0012)
     i = int(LOCK * SR); m = min(len(hl), len(L) - i)
     L[i:i + m] += hl[:m] * g * 0.5; R[i:i + m] += hr[:m] * g * 0.5
+# 4b' 鎖定那一下的震動音（v8，幅度 2.4，全段最大）：比撞合低、拖長的玻璃撞擊＋一個較高的「咚」疊在主音上
+shake_hit(LOCK, 2.4, 1318.5, slow=2.2, gt=0.55, gg=0.4)
 # 4c 亮點：和弦上方一個晶亮的高音（E7 附近），很短
 add(tone(2637.0, 0.6, a=0.002, d=0.5), LOCK + 0.012, pan=0.25, gain=0.05)
 # 4d 回音尾巴：主音和弦的延遲回音（多個分接、逐漸變小、一階低通變暗），不用噪音殘響，聲音乾淨
@@ -108,10 +132,16 @@ for k in range(5):
 add(tone(783.99, 0.12, a=0.003, d=0.1, harm=((1, 1), (2, 0.12))), fr(52), gain=0.14)
 add(tone(1174.66, 0.18, a=0.003, d=0.16, harm=((1, 1), (2, 0.12))), fr(52) + 0.085, gain=0.14)
 
+# ── 音量平衡（v8，原本 v7 在混音包絡裡做）：鎖定前 ×0.275；主音那組鎖定後 0.8 秒起 0.8 秒內降到 ×0.406 ──
+tt = np.arange(len(L)) / SR
+tail = np.interp(tt, [LOCK + 0.8, LOCK + 1.6], [1.0, 9 / 16])
+L = PRE_L * (4.4 / 16) + L * tail; R = PRE_R * (4.4 / 16) + R * tail
+SHAKE_TIMES = [fr(n) for n, _, _ in SHAKES] + [LOCK]
+
 # ── 輸出（峰值先正規化到 −3 dBFS，混音時再依響度調整） ──
 peak = max(np.abs(L).max(), np.abs(R).max()); sc = 10 ** (-3 / 20) / peak
 data = np.stack([L * sc, R * sc], axis=1).astype(np.float32)
 with wave.open(OUT, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((np.clip(data, -1, 1) * 32767).astype("<i2").tobytes())
-print(f"✔ {OUT}：{DUR} 秒、48 kHz 立體聲；主音在 {LOCK:.3f} 秒（片尾卡第 34 幀）")
+print(f"✔ {OUT}：{DUR} 秒、48 kHz 立體聲；主音在 {LOCK:.3f} 秒（片尾卡第 34 幀）；震動音 " + "、".join(f"{x:.3f}" for x in SHAKE_TIMES) + " 秒")
