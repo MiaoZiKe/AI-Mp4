@@ -836,8 +836,6 @@ export const LAYOUT_ISO = {
   MAIN_TOP: 336, MAIN_BOTTOM: 1250,
   CAP_TOP: 1290, CAP_H: 226, CAP_ZH_PX: 70, CAP_EN_PX: 32,
   SRC_TOP: 1560, SRC_PX: 28, MIN_PX: 28,
-  /** 短片（isoVersion 3）下方桌緣色帶的上緣（只放裝飾，不放要讀的字） */
-  BAND_TOP: 1640,
 } as const;
 
 /** CPI 實測短片（src/components/cpi/，composition「CpiVideo」，scripts/cpi/run.mjs）：深色乾淨科技感、自畫對話框、數字放大強調 */
@@ -931,6 +929,8 @@ export const LAYOUT_TANQING = {
   /** 左下資料來源、右下頁碼 */
   SRC_TOP: 1604, SRC_PX: 28, SRC_W: 640, PAGER_Y: 1624, PAGER_GAP: 40,
   MIN_PX: 28,
+  /** script.json 頂層 tanqing.fill: true 時的版面（2026/11/15「不留大片空白」）：圖放大 1.1、大標 96px 往下、字幕 54/32px 往下、出處與頁碼往下，BAND_TOP 以下是底部紙帶（只放裝飾） */
+  FILL: { FIG_TOP: 372, FIG_SCALE: 1.1, TITLE_TOP: 1062, TITLE_PX: 96, CAP_TOP: 1372, CAP_ZH_PX: 54, CAP_EN_PX: 32, SRC_TOP: 1588, PAGER_Y: 1610, BAND_TOP: 1716 },
 } as const;
 
 // ───────────────────────── stage: "dossier"：檔案室式（哩股哩股的專業嚴肅版；src/components/dossier/） ─────────────────────────
