@@ -168,7 +168,8 @@ const Hook: React.FC<PanelProps> = ({ sh, f }) => {
         <DocHead title={d.title} right={d.date} />
         <Bars widths={[100, 64]} />
         <div style={{ position: "absolute", left: 34, top: FY + 8, ...serif(40, T.weight.serif, T.paperInk), lineHeight: `${FH - 16}px` }}>{d.field}</div>
-        {Math.floor(f / M.caret) % 2 === 0 ? <div style={{ position: "absolute", left: FX + 16, top: FY + 14, width: 4, height: FH - 28, background: T.accentOnPaper }} /> : null}
+        {d.fill ? <div style={{ position: "absolute", left: FX, top: FY, width: FW, height: FH, display: "flex", alignItems: "center", justifyContent: "center", ...serif(d.fillPx ?? 36, T.weight.serif, T.paperInk) }}><Typed text={d.fill} f={f} at={d.fillAt ?? sh.start} /></div>
+          : Math.floor(f / M.caret) % 2 === 0 ? <div style={{ position: "absolute", left: FX + 16, top: FY + 14, width: 4, height: FH - 28, background: T.accentOnPaper }} /> : null}
         <div style={{ position: "absolute", left: 34, right: 34, top: FY + FH + 24 }}><Bars widths={[100, 100, 46]} mt={0} /></div>
         {(d.scanAts as number[]).map((at, k) => {
           const q = linear(f, at, M.scan);
@@ -279,7 +280,7 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
       <Reveal f={f} at={l.at} dir="down" style={{ ...paperBox(0, CY, CW, CH) }}>
         <DocHead title={l.doc} />
         <Bars widths={[100, 58]} />
-        <div style={{ marginTop: 40, ...serif(160, T.weight.head, T.paperInk) }}><Marked f={f} at={l.bigAt + 8} color={T.accentOnPaper}><Typed text={l.big} f={f} at={l.bigAt} /></Marked></div>
+        <div style={{ marginTop: 40, ...serif(l.bigPx ?? 160, T.weight.head, T.paperInk) }}><Marked f={f} at={l.bigAt + 8} color={T.accentOnPaper}><Typed text={l.big} f={f} at={l.bigAt} /></Marked></div>
         <Bars widths={[100, 82, 100]} mt={44} />
       </Reveal>
       <Note text={l.note} x={0} y={CY + CH + 12} f={f} at={l.at + M.wipe} />
