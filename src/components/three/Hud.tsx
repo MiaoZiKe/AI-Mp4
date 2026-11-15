@@ -257,7 +257,7 @@ const HudCompare: React.FC<{ o: Overlay3D; f: number; k: number }> = ({ o, f, k 
               )}
               {/* 關閉時的漏電（示意，2026/11/15 改）：沒被閘極包到的地方，小光點斷斷續續地漏出去（帶短拖尾、往基板方向走）；
                   leak＝強度（每秒約 leak×0.75 顆，不是 0），鰭式從鰭底部兩側漏，奈米片從最下面那片底下偶爾漏一顆 */}
-              <LeakDots kind={sd.kind} leak={leak} cx={cx} base={base} n={n - ((sd as any).at ?? o.at)} seed={i * 97 + 13} />
+              <LeakDots kind={sd.kind} leak={leak} cx={cx} base={base} n={f - ((sd as any).at ?? o.at)} seed={i * 97 + 13} />
               {leak > 0 && sd.note ? <><path d={`M ${cx + (sd.kind === "fin" ? 22 : 16)} ${base - 18} H ${cx + 104}`} stroke={A.leak} strokeWidth={2} strokeDasharray="5 5" opacity={0.9} /><text x={cx + 110} y={base - 6} style={zh(sm(30), A.leak, 800)}>{sd.note}</text></> : null}
               <text x={cx} y={98} textAnchor="middle" style={zh(40, c, 900)}>{sd.title}</text>
               {sd.sub ? <text x={cx} y={132} textAnchor="middle" style={mono(sm(24), H.text2, 500)}>{sd.sub}</text> : null}
@@ -286,7 +286,7 @@ const LeakDots: React.FC<{ kind: string; leak: number; cx: number; base: number;
     const x1 = x0 + side * (kind === "fin" ? 40 + 30 * hash01(seed + k) : 18), y1 = base + 22;
     const pos = (t: number) => { const e = 1 - Math.pow(1 - Math.max(0, t), 2); return [x0 + (x1 - x0) * e, y0 + (y1 - y0) * e]; };
     const o = Math.min(1, u * 6) * (1 - Math.pow(u, 3)) * (kind === "fin" ? 1 : 0.8);
-    for (let tr = 3; tr >= 0; tr--) { const [x, y] = pos(u - tr * 0.06); out.push(<circle key={`${k}-${tr}`} cx={x} cy={y} r={tr ? 5 - tr : 6} fill={A.leak} opacity={o * (tr ? 0.5 - tr * 0.12 : 1)} />); }
+    for (let tr = 3; tr >= 0; tr--) { const [x, y] = pos(u - tr * 0.06); out.push(<circle key={`${k}-${tr}`} cx={x} cy={y} r={tr ? 7 - tr * 1.5 : 8} fill={A.leak} opacity={o * (tr ? 0.5 - tr * 0.12 : 1)} />); }
     // 出生時一圈小波紋：看得出「漏了一顆」
     if (age < 10) out.push(<circle key={`${k}-r`} cx={x0} cy={y0} r={4 + age * 1.6} fill="none" stroke={A.leak} strokeWidth={2} opacity={(1 - age / 10) * 0.8} />);
   }
