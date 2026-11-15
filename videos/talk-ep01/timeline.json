@@ -2,8 +2,8 @@
  "version": 2,
  "slug": "talk-ep01",
  "fps": 30,
- "totalFrames": 2021,
- "totalSec": 67.37,
+ "totalFrames": 1601,
+ "totalSec": 53.37,
  "gapSec": 0.15,
  "transitionFrames": 10,
  "scenes": [
@@ -11,25 +11,24 @@
    "id": "s01",
    "audio": "audio/talk-ep01/01-s01.wav",
    "audioFrame": 0,
-   "audioSec": 4.319,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.049,
+   "audioSec": 3.91,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 142,
+   "durationFrames": 125,
    "transitionFrames": 0,
    "transition": null,
    "voiceStartFrame": 1,
-   "voiceEndFrame": 129,
-   "stillFrame": 132,
+   "voiceEndFrame": 117,
+   "stillFrame": 115,
    "subtitleWindow": [
     0,
-    139
+    120
    ],
    "sourceWindow": [
     0,
-    137
+    120
    ],
-   "pauseAfter": 0.45,
    "lines": [
     {
      "text": "一年工作兩千零",
@@ -37,54 +36,54 @@
      "chars": [
       0,
       3,
-      9,
+      8,
       14,
-      21,
-      27,
-      33
+      20,
+      26,
+      31
      ]
     },
     {
      "text": "二十七小時。",
-     "start": 37,
+     "start": 34,
      "chars": [
-      39,
+      36,
+      38,
       42,
-      46,
-      51,
-      58,
-      58
+      47,
+      53,
+      53
      ]
     },
     {
      "text": "下班的時候，",
-     "start": 74,
+     "start": 66,
      "chars": [
-      76,
-      81,
-      86,
-      89,
-      93,
-      93
+      68,
+      73,
+      77,
+      80,
+      84,
+      84
      ]
     },
     {
      "text": "天早就黑了。",
-     "start": 98,
+     "start": 89,
      "chars": [
-      101,
-      108,
-      113,
-      117,
-      123,
-      123
+      92,
+      98,
+      102,
+      106,
+      111,
+      111
      ]
     }
    ],
    "keywords": [
     {
      "text": "天早就黑了",
-     "start": 101
+     "start": 92
     }
    ],
    "cues": [
@@ -97,37 +96,43 @@
     {
      "id": "hours",
      "text": "小時",
-     "frame": 52,
+     "frame": 48,
      "early": 0
     },
     {
      "id": "off",
      "text": "下班",
-     "frame": 77,
+     "frame": 70,
      "early": 0
     },
     {
      "id": "dark",
      "text": "黑了",
-     "frame": 118,
-     "early": 0
+     "frame": 107,
+     "early": 4
     }
    ],
-   "hash": "6fe87f0f5da3-7ae26340ab",
+   "hash": "ad8d609dee13-5dd608bfa2",
    "sub": "一年工作兩千零二十七小時。\n下班的時候，天早就黑了。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.767,
-    "minScore": 0.001,
-    "onsetMedianMs": 30,
+    "confidence": 0.766,
+    "minScore": 0.007,
+    "onsetMedianMs": 25,
     "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 2.55,
-      "start": 2.58,
+      "onset": 2.3,
+      "start": 2.32,
       "ch": "下",
-      "errMs": 30
+      "errMs": 20
+     },
+     {
+      "onset": 3.13,
+      "start": 3.1,
+      "ch": "天",
+      "errMs": -30
      }
     ]
    },
@@ -136,170 +141,170 @@
     {
      "text": "一",
      "start": 0.02,
-     "end": 0.08,
-     "score": 0.78
+     "end": 0.06,
+     "score": 0.871
     },
     {
      "text": "年",
      "start": 0.14,
-     "end": 0.28,
-     "score": 0.941
+     "end": 0.26,
+     "score": 0.987
     },
     {
      "text": "工",
-     "start": 0.34,
-     "end": 0.48,
-     "score": 0.995
+     "start": 0.32,
+     "end": 0.46,
+     "score": 0.982
     },
     {
      "text": "作",
-     "start": 0.52,
-     "end": 0.62,
-     "score": 0.993
-    },
-    {
-     "text": "兩",
-     "start": 0.74,
-     "end": 0.92,
-     "score": 0.841
-    },
-    {
-     "text": "千",
-     "start": 0.96,
-     "end": 1.12,
-     "score": 0.05
-    },
-    {
-     "text": "零",
-     "start": 1.16,
-     "end": 1.28,
-     "score": 0.417
-    },
-    {
-     "text": "二",
-     "start": 1.36,
-     "end": 1.42,
-     "score": 0.001
-    },
-    {
-     "text": "十",
-     "start": 1.46,
-     "end": 1.54,
-     "score": 0.033
-    },
-    {
-     "text": "七",
-     "start": 1.58,
-     "end": 1.68,
-     "score": 0.131
-    },
-    {
-     "text": "小",
-     "start": 1.74,
-     "end": 1.9,
-     "score": 0.984
-    },
-    {
-     "text": "時",
-     "start": 1.98,
-     "end": 2.1,
-     "score": 0.971
-    },
-    {
-     "text": "下",
-     "start": 2.58,
-     "end": 2.68,
+     "start": 0.5,
+     "end": 0.58,
      "score": 0.998
     },
     {
-     "text": "班",
-     "start": 2.76,
-     "end": 2.86,
-     "score": 0.996
+     "text": "兩",
+     "start": 0.72,
+     "end": 0.9,
+     "score": 0.334
     },
     {
-     "text": "的",
-     "start": 2.9,
-     "end": 2.94,
-     "score": 0.997
+     "text": "千",
+     "start": 0.92,
+     "end": 1.06,
+     "score": 0.029
+    },
+    {
+     "text": "零",
+     "start": 1.08,
+     "end": 1.2,
+     "score": 0.4
+    },
+    {
+     "text": "二",
+     "start": 1.24,
+     "end": 1.3,
+     "score": 0.007
+    },
+    {
+     "text": "十",
+     "start": 1.32,
+     "end": 1.4,
+     "score": 0.096
+    },
+    {
+     "text": "七",
+     "start": 1.44,
+     "end": 1.52,
+     "score": 0.438
+    },
+    {
+     "text": "小",
+     "start": 1.6,
+     "end": 1.74,
+     "score": 0.995
     },
     {
      "text": "時",
-     "start": 3,
-     "end": 3.08,
-     "score": 0.966
+     "start": 1.8,
+     "end": 1.92,
+     "score": 0.982
     },
     {
-     "text": "候",
-     "start": 3.16,
-     "end": 3.32,
+     "text": "下",
+     "start": 2.32,
+     "end": 2.42,
+     "score": 0.997
+    },
+    {
+     "text": "班",
+     "start": 2.48,
+     "end": 2.58,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.62,
+     "end": 2.68,
      "score": 0.999
     },
     {
+     "text": "時",
+     "start": 2.72,
+     "end": 2.8,
+     "score": 0.93
+    },
+    {
+     "text": "候",
+     "start": 2.86,
+     "end": 2.98,
+     "score": 1
+    },
+    {
      "text": "天",
-     "start": 3.4,
-     "end": 3.58,
-     "score": 0.835
+     "start": 3.1,
+     "end": 3.26,
+     "score": 0.998
     },
     {
      "text": "早",
-     "start": 3.64,
-     "end": 3.78,
-     "score": 0.992
+     "start": 3.3,
+     "end": 3.42,
+     "score": 0.987
     },
     {
      "text": "就",
-     "start": 3.8,
-     "end": 3.9,
-     "score": 0.967
+     "start": 3.44,
+     "end": 3.54,
+     "score": 0.834
     },
     {
      "text": "黑",
-     "start": 3.94,
-     "end": 4.08,
-     "score": 0.994
+     "start": 3.58,
+     "end": 3.7,
+     "score": 0.996
     },
     {
      "text": "了",
-     "start": 4.14,
-     "end": 4.2,
-     "score": 0.995
+     "start": 3.74,
+     "end": 3.82,
+     "score": 0.993
     }
    ],
    "charTimes": [
     0.02,
     0.14,
-    0.34,
-    0.52,
-    0.74,
-    0.96,
-    1.16,
-    1.36,
-    1.46,
-    1.58,
-    1.74,
-    1.98,
-    2.58,
-    2.76,
-    2.9,
-    3,
-    3.16,
-    3.4,
-    3.64,
-    3.8,
-    3.94,
-    4.14
+    0.32,
+    0.5,
+    0.72,
+    0.92,
+    1.08,
+    1.24,
+    1.32,
+    1.44,
+    1.6,
+    1.8,
+    2.32,
+    2.48,
+    2.62,
+    2.72,
+    2.86,
+    3.1,
+    3.3,
+    3.44,
+    3.58,
+    3.74
    ]
   },
   {
    "id": "s02",
    "audio": "audio/talk-ep01/02-s02.wav",
-   "audioFrame": 141,
-   "audioSec": 3.223,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.032,
-   "startFrame": 132,
-   "durationFrames": 118,
+   "audioFrame": 122,
+   "audioSec": 3.07,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 115,
+   "durationFrames": 119,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -313,91 +318,91 @@
      8
     ]
    },
-   "voiceStartFrame": 142,
-   "voiceEndFrame": 237,
-   "stillFrame": 240,
+   "voiceStartFrame": 123,
+   "voiceEndFrame": 213,
+   "stillFrame": 224,
    "subtitleWindow": [
-    139,
-    247
+    120,
+    231
    ],
    "sourceWindow": [
-    137,
-    245
+    120,
+    229
    ],
    "lines": [
     {
      "text": "這是勞動部算的，",
-     "start": 139,
+     "start": 120,
      "chars": [
-      140,
-      144,
+      131,
+      134,
+      138,
+      142,
       147,
-      152,
+      151,
       157,
-      162,
-      168,
-      168
+      157
      ]
     },
     {
      "text": "二零二五年的年總工時。",
-     "start": 183,
+     "start": 167,
      "chars": [
-      185,
+      169,
+      172,
+      177,
+      180,
+      183,
       188,
-      192,
+      191,
       196,
-      200,
-      205,
-      210,
-      216,
-      222,
-      229,
-      229
+      201,
+      206,
+      206
      ]
     }
    ],
    "keywords": [
     {
      "text": "年總工時",
-     "start": 210
+     "start": 191
     }
    ],
    "cues": [
     {
      "id": "mol",
      "text": "勞動部",
-     "frame": 149,
+     "frame": 139,
      "early": 0
     },
     {
      "id": "y25",
      "text": "二零二五",
-     "frame": 187,
+     "frame": 171,
      "early": 0
     },
     {
      "id": "total",
      "text": "年總工時",
-     "frame": 212,
+     "frame": 193,
      "early": 0
     }
    ],
-   "hash": "7683abc9881e-7ae26340ab",
+   "hash": "98dae34f230e-5dd608bfa2",
    "sub": "這是勞動部算的，\n二零二五年的年總工時。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.745,
-    "minScore": 0,
-    "onsetMedianMs": 580,
-    "onsetMaxMs": 580,
+    "confidence": 0.762,
+    "minScore": 0.002,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
     "onsetCheck": [
      {
-      "onset": 1.52,
-      "start": 0.94,
-      "ch": "的",
-      "errMs": -580
+      "onset": 1.62,
+      "start": 1.62,
+      "ch": "二",
+      "errMs": 0
      }
     ]
    },
@@ -405,370 +410,135 @@
    "words": [
     {
      "text": "這",
-     "start": 0.02,
-     "end": 0.1,
-     "score": 0.89
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.955
     },
     {
      "text": "是",
-     "start": 0.14,
-     "end": 0.22,
-     "score": 0.906
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.995
     },
     {
      "text": "勞",
-     "start": 0.26,
-     "end": 0.38,
-     "score": 0.987
+     "start": 0.58,
+     "end": 0.7,
+     "score": 0.993
     },
     {
      "text": "動",
-     "start": 0.42,
-     "end": 0.54,
-     "score": 0.999
+     "start": 0.72,
+     "end": 0.86,
+     "score": 0.991
     },
     {
      "text": "部",
-     "start": 0.58,
-     "end": 0.64,
-     "score": 0.998
-    },
-    {
-     "text": "算",
-     "start": 0.74,
-     "end": 0.9,
-     "score": 0.992
-    },
-    {
-     "text": "的",
-     "start": 0.94,
-     "end": 1.02,
+     "start": 0.88,
+     "end": 0.94,
      "score": 0.999
     },
     {
-     "text": "二",
-     "start": 1.52,
-     "end": 1.6,
-     "score": 0
-    },
-    {
-     "text": "零",
-     "start": 1.62,
-     "end": 1.74,
-     "score": 0.009
-    },
-    {
-     "text": "二",
-     "start": 1.74,
-     "end": 1.86,
-     "score": 0
-    },
-    {
-     "text": "五",
-     "start": 1.9,
-     "end": 1.94,
-     "score": 0.003
-    },
-    {
-     "text": "年",
-     "start": 2,
-     "end": 2.14,
-     "score": 0.972
+     "text": "算",
+     "start": 1.02,
+     "end": 1.18,
+     "score": 0.993
     },
     {
      "text": "的",
-     "start": 2.18,
-     "end": 2.24,
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.998
+    },
+    {
+     "text": "二",
+     "start": 1.62,
+     "end": 1.68,
+     "score": 0.009
+    },
+    {
+     "text": "零",
+     "start": 1.7,
+     "end": 1.84,
+     "score": 0.038
+    },
+    {
+     "text": "二",
+     "start": 1.88,
+     "end": 1.94,
+     "score": 0.002
+    },
+    {
+     "text": "五",
+     "start": 1.98,
+     "end": 2.04,
+     "score": 0.034
+    },
+    {
+     "text": "年",
+     "start": 2.08,
+     "end": 2.22,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.26,
+     "end": 2.3,
      "score": 0.998
     },
     {
      "text": "年",
      "start": 2.36,
-     "end": 2.5,
+     "end": 2.48,
      "score": 0.998
     },
     {
      "text": "總",
-     "start": 2.56,
-     "end": 2.72,
-     "score": 0.951
+     "start": 2.52,
+     "end": 2.64,
+     "score": 0.997
     },
     {
      "text": "工",
-     "start": 2.76,
-     "end": 2.9,
-     "score": 0.999
+     "start": 2.68,
+     "end": 2.82,
+     "score": 0.968
     },
     {
      "text": "時",
-     "start": 2.98,
-     "end": 3.08,
-     "score": 0.97
+     "start": 2.86,
+     "end": 2.98,
+     "score": 0.985
     }
    ],
    "charTimes": [
-    0.02,
-    0.14,
-    0.26,
-    0.42,
+    0.34,
+    0.46,
     0.58,
-    0.74,
-    0.94,
-    1.52,
+    0.72,
+    0.88,
+    1.02,
+    1.22,
     1.62,
-    1.74,
-    1.9,
-    2,
-    2.18,
+    1.7,
+    1.88,
+    1.98,
+    2.08,
+    2.26,
     2.36,
-    2.56,
-    2.76,
-    2.98
+    2.52,
+    2.68,
+    2.86
    ]
   },
   {
    "id": "s03",
    "audio": "audio/talk-ep01/03-s03.wav",
-   "audioFrame": 249,
-   "audioSec": 3.166,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.044,
-   "startFrame": 240,
-   "durationFrames": 116,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 250,
-   "voiceEndFrame": 343,
-   "stillFrame": 346,
-   "subtitleWindow": [
-    247,
-    353
-   ],
-   "sourceWindow": [
-    245,
-    351
-   ],
-   "lines": [
-    {
-     "text": "換成一天八小時，",
-     "start": 247,
-     "chars": [
-      249,
-      254,
-      258,
-      261,
-      267,
-      273,
-      279,
-      279
-     ]
-    },
-    {
-     "text": "是兩百五十三個工作天。",
-     "start": 292,
-     "chars": [
-      294,
-      299,
-      305,
-      310,
-      314,
-      317,
-      322,
-      325,
-      330,
-      335,
-      335
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "兩百五十三個工作天",
-     "start": 299
-    }
-   ],
-   "cues": [
-    {
-     "id": "eight",
-     "text": "八小時",
-     "frame": 269,
-     "early": 0
-    },
-    {
-     "id": "n253",
-     "text": "兩百五十三",
-     "frame": 301,
-     "early": 0
-    },
-    {
-     "id": "days",
-     "text": "工作天",
-     "frame": 326,
-     "early": 0
-    }
-   ],
-   "hash": "dfb6eaf1f077-7ae26340ab",
-   "sub": "換成一天八小時，\n是兩百五十三個工作天。",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.622,
-    "minScore": 0.006,
-    "onsetMedianMs": 50,
-    "onsetMaxMs": 50,
-    "onsetCheck": [
-     {
-      "onset": 1.51,
-      "start": 1.56,
-      "ch": "是",
-      "errMs": 50
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "換",
-     "start": 0.04,
-     "end": 0.16,
-     "score": 0.995
-    },
-    {
-     "text": "成",
-     "start": 0.2,
-     "end": 0.36,
-     "score": 0.832
-    },
-    {
-     "text": "一",
-     "start": 0.36,
-     "end": 0.42,
-     "score": 0.006
-    },
-    {
-     "text": "天",
-     "start": 0.46,
-     "end": 0.62,
-     "score": 0.877
-    },
-    {
-     "text": "八",
-     "start": 0.66,
-     "end": 0.74,
-     "score": 0.826
-    },
-    {
-     "text": "小",
-     "start": 0.84,
-     "end": 0.98,
-     "score": 0.928
-    },
-    {
-     "text": "時",
-     "start": 1.06,
-     "end": 1.16,
-     "score": 0.978
-    },
-    {
-     "text": "是",
-     "start": 1.56,
-     "end": 1.64,
-     "score": 0.989
-    },
-    {
-     "text": "兩",
-     "start": 1.72,
-     "end": 1.88,
-     "score": 0.14
-    },
-    {
-     "text": "百",
-     "start": 1.92,
-     "end": 2.04,
-     "score": 0.087
-    },
-    {
-     "text": "五",
-     "start": 2.08,
-     "end": 2.14,
-     "score": 0.019
-    },
-    {
-     "text": "十",
-     "start": 2.2,
-     "end": 2.28,
-     "score": 0.013
-    },
-    {
-     "text": "三",
-     "start": 2.32,
-     "end": 2.44,
-     "score": 0.013
-    },
-    {
-     "text": "個",
-     "start": 2.48,
-     "end": 2.54,
-     "score": 0.877
-    },
-    {
-     "text": "工",
-     "start": 2.58,
-     "end": 2.7,
-     "score": 0.998
-    },
-    {
-     "text": "作",
-     "start": 2.74,
-     "end": 2.82,
-     "score": 0.996
-    },
-    {
-     "text": "天",
-     "start": 2.9,
-     "end": 3.08,
-     "score": 0.993
-    }
-   ],
-   "charTimes": [
-    0.04,
-    0.2,
-    0.36,
-    0.46,
-    0.66,
-    0.84,
-    1.06,
-    1.56,
-    1.72,
-    1.92,
-    2.08,
-    2.2,
-    2.32,
-    2.48,
-    2.58,
-    2.74,
-    2.9
-   ]
-  },
-  {
-   "id": "s04",
-   "audio": "audio/talk-ep01/04-s04.wav",
-   "audioFrame": 355,
-   "audioSec": 3.061,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.044,
-   "startFrame": 346,
+   "audioFrame": 233,
+   "audioSec": 2.79,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 224,
    "durationFrames": 112,
    "transitionFrames": 10,
    "transition": {
@@ -783,90 +553,318 @@
      8
     ]
    },
-   "voiceStartFrame": 356,
-   "voiceEndFrame": 446,
-   "stillFrame": 448,
+   "voiceStartFrame": 234,
+   "voiceEndFrame": 316,
+   "stillFrame": 326,
    "subtitleWindow": [
-    353,
-    455
+    231,
+    333
    ],
    "sourceWindow": [
-    351,
-    453
+    229,
+    331
+   ],
+   "lines": [
+    {
+     "text": "換成一天八小時，",
+     "start": 231,
+     "chars": [
+      232,
+      236,
+      241,
+      245,
+      249,
+      254,
+      260,
+      260
+     ]
+    },
+    {
+     "text": "是兩百五十三個工作天。",
+     "start": 267,
+     "chars": [
+      269,
+      273,
+      280,
+      284,
+      287,
+      290,
+      295,
+      298,
+      302,
+      307,
+      307
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩百五十三個工作天",
+     "start": 273
+    }
+   ],
+   "cues": [
+    {
+     "id": "eight",
+     "text": "八小時",
+     "frame": 251,
+     "early": 0
+    },
+    {
+     "id": "n253",
+     "text": "兩百五十三",
+     "frame": 275,
+     "early": 0
+    },
+    {
+     "id": "days",
+     "text": "工作天",
+     "frame": 300,
+     "early": 0
+    }
+   ],
+   "hash": "fd0b3809118a-5dd608bfa2",
+   "sub": "換成一天八小時，\n是兩百五十三個工作天。",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.842,
+    "minScore": 0.033,
+    "onsetMedianMs": null,
+    "onsetMaxMs": null,
+    "onsetCheck": []
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "換",
+     "start": 0,
+     "end": 0.12,
+     "score": 0.979
+    },
+    {
+     "text": "成",
+     "start": 0.16,
+     "end": 0.3,
+     "score": 0.925
+    },
+    {
+     "text": "一",
+     "start": 0.32,
+     "end": 0.38,
+     "score": 0.033
+    },
+    {
+     "text": "天",
+     "start": 0.44,
+     "end": 0.56,
+     "score": 0.949
+    },
+    {
+     "text": "八",
+     "start": 0.6,
+     "end": 0.66,
+     "score": 0.975
+    },
+    {
+     "text": "小",
+     "start": 0.74,
+     "end": 0.9,
+     "score": 0.938
+    },
+    {
+     "text": "時",
+     "start": 0.96,
+     "end": 1.08,
+     "score": 0.963
+    },
+    {
+     "text": "是",
+     "start": 1.26,
+     "end": 1.34,
+     "score": 0.951
+    },
+    {
+     "text": "兩",
+     "start": 1.4,
+     "end": 1.58,
+     "score": 0.853
+    },
+    {
+     "text": "百",
+     "start": 1.6,
+     "end": 1.7,
+     "score": 0.978
+    },
+    {
+     "text": "五",
+     "start": 1.74,
+     "end": 1.78,
+     "score": 0.838
+    },
+    {
+     "text": "十",
+     "start": 1.84,
+     "end": 1.9,
+     "score": 0.875
+    },
+    {
+     "text": "三",
+     "start": 1.96,
+     "end": 2.08,
+     "score": 0.088
+    },
+    {
+     "text": "個",
+     "start": 2.12,
+     "end": 2.18,
+     "score": 0.985
+    },
+    {
+     "text": "工",
+     "start": 2.22,
+     "end": 2.34,
+     "score": 0.998
+    },
+    {
+     "text": "作",
+     "start": 2.36,
+     "end": 2.46,
+     "score": 0.992
+    },
+    {
+     "text": "天",
+     "start": 2.52,
+     "end": 2.7,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    0,
+    0.16,
+    0.32,
+    0.44,
+    0.6,
+    0.74,
+    0.96,
+    1.26,
+    1.4,
+    1.6,
+    1.74,
+    1.84,
+    1.96,
+    2.12,
+    2.22,
+    2.36,
+    2.52
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": "audio/talk-ep01/04-s04.wav",
+   "audioFrame": 335,
+   "audioSec": 2.79,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 326,
+   "durationFrames": 107,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 336,
+   "voiceEndFrame": 418,
+   "stillFrame": 423,
+   "subtitleWindow": [
+    333,
+    430
+   ],
+   "sourceWindow": [
+    331,
+    428
    ],
    "lines": [
     {
      "text": "二零一四年更長，",
-     "start": 353,
+     "start": 333,
      "chars": [
-      355,
-      357,
-      361,
-      366,
-      370,
-      375,
-      381,
-      381
+      335,
+      338,
+      341,
+      344,
+      348,
+      354,
+      359,
+      359
      ]
     },
     {
      "text": "兩千一百三十五小時。",
-     "start": 396,
+     "start": 373,
      "chars": [
-      398,
+      375,
+      382,
+      387,
+      390,
+      394,
+      399,
+      401,
       405,
-      410,
-      413,
-      418,
-      424,
-      429,
-      432,
-      438,
-      438
+      411,
+      411
      ]
     }
    ],
    "keywords": [
     {
      "text": "更長",
-     "start": 375
+     "start": 354
     }
    ],
    "cues": [
     {
      "id": "y14",
      "text": "二零一四",
-     "frame": 356,
+     "frame": 337,
      "early": 0
     },
     {
      "id": "longer",
      "text": "更長",
-     "frame": 377,
+     "frame": 355,
      "early": 0
     },
     {
      "id": "n2135",
      "text": "兩千一百",
-     "frame": 399,
+     "frame": 377,
      "early": 0
     }
    ],
-   "hash": "df6cb5ac98d7-7ae26340ab",
+   "hash": "38140c8ec629-5dd608bfa2",
    "sub": "二零一四年更長，\n兩千一百三十五小時。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.334,
+    "confidence": 0.312,
     "minScore": 0,
-    "onsetMedianMs": 0,
-    "onsetMaxMs": 0,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 1.48,
-      "start": 1.48,
+      "onset": 1.39,
+      "start": 1.4,
       "ch": "兩",
-      "errMs": 0
+      "errMs": 10
      }
     ]
    },
@@ -874,129 +872,129 @@
    "words": [
     {
      "text": "二",
-     "start": 0.04,
-     "end": 0.1,
-     "score": 0.012
+     "start": 0.06,
+     "end": 0.12,
+     "score": 0.022
     },
     {
      "text": "零",
-     "start": 0.12,
+     "start": 0.14,
      "end": 0.26,
-     "score": 0.05
+     "score": 0.019
     },
     {
      "text": "一",
      "start": 0.26,
-     "end": 0.32,
+     "end": 0.3,
      "score": 0.001
     },
     {
      "text": "四",
-     "start": 0.42,
-     "end": 0.5,
-     "score": 0.035
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.075
     },
     {
      "text": "年",
-     "start": 0.54,
-     "end": 0.68,
-     "score": 0.957
+     "start": 0.48,
+     "end": 0.6,
+     "score": 0.994
     },
     {
      "text": "更",
-     "start": 0.72,
-     "end": 0.88,
-     "score": 0.99
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.995
     },
     {
      "text": "長",
-     "start": 0.92,
-     "end": 1.14,
-     "score": 0.811
+     "start": 0.84,
+     "end": 1.08,
+     "score": 0.819
     },
     {
      "text": "兩",
-     "start": 1.48,
-     "end": 1.66,
-     "score": 0.23
+     "start": 1.4,
+     "end": 1.58,
+     "score": 0.104
     },
     {
      "text": "千",
-     "start": 1.7,
-     "end": 1.86,
-     "score": 0.007
+     "start": 1.6,
+     "end": 1.76,
+     "score": 0.004
     },
     {
      "text": "一",
-     "start": 1.88,
-     "end": 1.94,
+     "start": 1.78,
+     "end": 1.82,
      "score": 0
     },
     {
      "text": "百",
-     "start": 1.98,
-     "end": 2.12,
-     "score": 0
+     "start": 1.88,
+     "end": 1.98,
+     "score": 0.002
     },
     {
      "text": "三",
-     "start": 2.16,
-     "end": 2.3,
-     "score": 0.001
+     "start": 2.02,
+     "end": 2.14,
+     "score": 0.004
     },
     {
      "text": "十",
-     "start": 2.36,
-     "end": 2.44,
-     "score": 0.001
+     "start": 2.18,
+     "end": 2.26,
+     "score": 0.103
     },
     {
      "text": "五",
-     "start": 2.5,
-     "end": 2.54,
-     "score": 0.361
+     "start": 2.26,
+     "end": 2.3,
+     "score": 0.019
     },
     {
      "text": "小",
-     "start": 2.6,
-     "end": 2.74,
-     "score": 0.957
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.873
     },
     {
      "text": "時",
-     "start": 2.82,
-     "end": 2.92,
-     "score": 0.928
+     "start": 2.58,
+     "end": 2.68,
+     "score": 0.952
     }
    ],
    "charTimes": [
-    0.04,
-    0.12,
+    0.06,
+    0.14,
     0.26,
-    0.42,
-    0.54,
-    0.72,
-    0.92,
-    1.48,
-    1.7,
+    0.34,
+    0.48,
+    0.68,
+    0.84,
+    1.4,
+    1.6,
+    1.78,
     1.88,
-    1.98,
-    2.16,
-    2.36,
-    2.5,
-    2.6,
-    2.82
+    2.02,
+    2.18,
+    2.26,
+    2.38,
+    2.58
    ]
   },
   {
    "id": "s05",
    "audio": "audio/talk-ep01/05-s05.wav",
-   "audioFrame": 457,
-   "audioSec": 2.653,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.036,
-   "startFrame": 448,
-   "durationFrames": 100,
+   "audioFrame": 432,
+   "audioSec": 2.21,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 423,
+   "durationFrames": 86,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1010,86 +1008,309 @@
      8
     ]
    },
-   "voiceStartFrame": 458,
-   "voiceEndFrame": 536,
-   "stillFrame": 538,
+   "voiceStartFrame": 433,
+   "voiceEndFrame": 498,
+   "stillFrame": 499,
    "subtitleWindow": [
-    455,
-    545
+    430,
+    506
    ],
    "sourceWindow": [
-    453,
-    543
+    428,
+    504
    ],
    "lines": [
     {
      "text": "後來一路降，",
-     "start": 455,
+     "start": 430,
      "chars": [
-      457,
-      461,
-      466,
-      469,
-      475,
-      475
+      432,
+      435,
+      438,
+      442,
+      446,
+      446
      ]
     },
     {
      "text": "疫情那年不到兩千。",
-     "start": 492,
+     "start": 457,
      "chars": [
-      495,
-      498,
-      504,
-      507,
-      513,
-      517,
-      522,
-      527,
-      527
+      459,
+      463,
+      468,
+      471,
+      476,
+      479,
+      483,
+      488,
+      488
      ]
     }
    ],
    "keywords": [
     {
      "text": "不到兩千",
-     "start": 513
+     "start": 476
     }
    ],
    "cues": [
     {
      "id": "down",
      "text": "一路降",
-     "frame": 467,
+     "frame": 440,
      "early": 0
     },
     {
      "id": "covid",
      "text": "疫情",
-     "frame": 496,
+     "frame": 461,
      "early": 0
     },
     {
      "id": "two",
      "text": "兩千",
-     "frame": 523,
+     "frame": 484,
      "early": 0
     }
    ],
-   "hash": "18f34ca1e478-7ae26340ab",
+   "hash": "98ed470ab04c-5dd608bfa2",
    "sub": "後來一路降，\n疫情那年不到兩千。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
+    "confidence": 0.791,
+    "minScore": 0.05,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.99,
+      "start": 0.96,
+      "ch": "疫",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "後",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 1
+    },
+    {
+     "text": "來",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.841
+    },
+    {
+     "text": "一",
+     "start": 0.26,
+     "end": 0.3,
+     "score": 0.499
+    },
+    {
+     "text": "路",
+     "start": 0.38,
+     "end": 0.46,
+     "score": 0.967
+    },
+    {
+     "text": "降",
+     "start": 0.52,
+     "end": 0.76,
+     "score": 0.928
+    },
+    {
+     "text": "疫",
+     "start": 0.96,
+     "end": 1.02,
+     "score": 0.05
+    },
+    {
+     "text": "情",
+     "start": 1.08,
+     "end": 1.24,
+     "score": 0.932
+    },
+    {
+     "text": "那",
+     "start": 1.24,
+     "end": 1.3,
+     "score": 0.172
+    },
+    {
+     "text": "年",
+     "start": 1.36,
+     "end": 1.48,
+     "score": 0.997
+    },
+    {
+     "text": "不",
+     "start": 1.5,
+     "end": 1.56,
+     "score": 0.992
+    },
+    {
+     "text": "到",
+     "start": 1.6,
+     "end": 1.72,
+     "score": 0.991
+    },
+    {
+     "text": "兩",
+     "start": 1.74,
+     "end": 1.9,
+     "score": 0.93
+    },
+    {
+     "text": "千",
+     "start": 1.92,
+     "end": 2.12,
+     "score": 0.979
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.26,
+    0.38,
+    0.52,
+    0.96,
+    1.08,
+    1.24,
+    1.36,
+    1.5,
+    1.6,
+    1.74,
+    1.92
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": "audio/talk-ep01/06-s06.wav",
+   "audioFrame": 508,
+   "audioSec": 3.97,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 499,
+   "durationFrames": 147,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 509,
+   "voiceEndFrame": 626,
+   "stillFrame": 636,
+   "subtitleWindow": [
+    506,
+    643
+   ],
+   "sourceWindow": [
+    504,
+    641
+   ],
+   "lines": [
+    {
+     "text": "之後又回升。",
+     "start": 506,
+     "chars": [
+      508,
+      513,
+      517,
+      520,
+      526,
+      526
+     ]
+    },
+    {
+     "text": "去年假變多，",
+     "start": 543,
+     "chars": [
+      546,
+      551,
+      556,
+      561,
+      565,
+      565
+     ]
+    },
+    {
+     "text": "全年只少了三點六小時。",
+     "start": 573,
+     "chars": [
+      576,
+      581,
+      586,
+      590,
+      594,
+      598,
+      604,
+      609,
+      613,
+      619,
+      619
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "三點六小時",
+     "start": 598
+    }
+   ],
+   "cues": [
+    {
+     "id": "back",
+     "text": "回升",
+     "frame": 522,
+     "early": 0
+    },
+    {
+     "id": "holiday",
+     "text": "假變多",
+     "frame": 557,
+     "early": 0
+    },
+    {
+     "id": "n36",
+     "text": "三點六",
+     "frame": 600,
+     "early": 0
+    }
+   ],
+   "hash": "b482a0b87970-5dd608bfa2",
+   "sub": "之後又回升。\n去年假變多，\n全年只少了三點六小時。",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
     "confidence": 0.9,
-    "minScore": 0.101,
+    "minScore": 0.008,
     "onsetMedianMs": 20,
     "onsetMaxMs": 20,
     "onsetCheck": [
      {
       "onset": 1.32,
       "start": 1.3,
-      "ch": "疫",
+      "ch": "去",
+      "errMs": -20
+     },
+     {
+      "onset": 2.32,
+      "start": 2.3,
+      "ch": "全",
       "errMs": -20
      }
     ]
@@ -1097,382 +1318,158 @@
    "transcript": "",
    "words": [
     {
-     "text": "後",
-     "start": 0.06,
-     "end": 0.16,
-     "score": 0.999
-    },
-    {
-     "text": "來",
-     "start": 0.18,
-     "end": 0.3,
-     "score": 1
-    },
-    {
-     "text": "一",
-     "start": 0.34,
-     "end": 0.4,
-     "score": 0.816
-    },
-    {
-     "text": "路",
-     "start": 0.46,
-     "end": 0.54,
-     "score": 0.984
-    },
-    {
-     "text": "降",
-     "start": 0.64,
-     "end": 0.86,
-     "score": 0.946
-    },
-    {
-     "text": "疫",
-     "start": 1.3,
-     "end": 1.36,
-     "score": 0.101
-    },
-    {
-     "text": "情",
-     "start": 1.42,
-     "end": 1.58,
-     "score": 0.967
-    },
-    {
-     "text": "那",
-     "start": 1.6,
-     "end": 1.66,
-     "score": 0.992
-    },
-    {
-     "text": "年",
-     "start": 1.72,
-     "end": 1.86,
-     "score": 0.997
-    },
-    {
-     "text": "不",
-     "start": 1.92,
-     "end": 2,
-     "score": 0.997
-    },
-    {
-     "text": "到",
-     "start": 2.04,
-     "end": 2.18,
-     "score": 0.934
-    },
-    {
-     "text": "兩",
-     "start": 2.2,
-     "end": 2.34,
-     "score": 0.985
-    },
-    {
-     "text": "千",
-     "start": 2.38,
-     "end": 2.58,
-     "score": 0.982
-    }
-   ],
-   "charTimes": [
-    0.06,
-    0.18,
-    0.34,
-    0.46,
-    0.64,
-    1.3,
-    1.42,
-    1.6,
-    1.72,
-    1.92,
-    2.04,
-    2.2,
-    2.38
-   ]
-  },
-  {
-   "id": "s06",
-   "audio": "audio/talk-ep01/06-s06.wav",
-   "audioFrame": 547,
-   "audioSec": 4.532,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.045,
-   "startFrame": 538,
-   "durationFrames": 157,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 548,
-   "voiceEndFrame": 682,
-   "stillFrame": 685,
-   "subtitleWindow": [
-    545,
-    692
-   ],
-   "sourceWindow": [
-    543,
-    690
-   ],
-   "pauseAfter": 0.45,
-   "lines": [
-    {
-     "text": "之後又回升。",
-     "start": 545,
-     "chars": [
-      547,
-      552,
-      556,
-      561,
-      566,
-      566
-     ]
-    },
-    {
-     "text": "去年假變多，",
-     "start": 586,
-     "chars": [
-      588,
-      594,
-      599,
-      605,
-      611,
-      611
-     ]
-    },
-    {
-     "text": "全年只少了三點六小時。",
-     "start": 624,
-     "chars": [
-      627,
-      633,
-      639,
-      643,
-      648,
-      654,
-      659,
-      664,
-      669,
-      675,
-      675
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "三點六小時",
-     "start": 654
-    }
-   ],
-   "cues": [
-    {
-     "id": "back",
-     "text": "回升",
-     "frame": 562,
-     "early": 0
-    },
-    {
-     "id": "holiday",
-     "text": "假變多",
-     "frame": 600,
-     "early": 0
-    },
-    {
-     "id": "n36",
-     "text": "三點六",
-     "frame": 656,
-     "early": 0
-    }
-   ],
-   "hash": "6da998e3f246-7ae26340ab",
-   "sub": "之後又回升。\n去年假變多，\n全年只少了三點六小時。",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.874,
-    "minScore": 0.004,
-    "onsetMedianMs": 0,
-    "onsetMaxMs": 0,
-    "onsetCheck": [
-     {
-      "onset": 1.42,
-      "start": 1.42,
-      "ch": "去",
-      "errMs": 0
-     },
-     {
-      "onset": 2.7,
-      "start": 2.7,
-      "ch": "全",
-      "errMs": 0
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
      "text": "之",
      "start": 0.04,
-     "end": 0.14,
-     "score": 0.991
+     "end": 0.12,
+     "score": 0.99
     },
     {
      "text": "後",
      "start": 0.2,
-     "end": 0.32,
+     "end": 0.3,
      "score": 1
     },
     {
      "text": "又",
      "start": 0.34,
-     "end": 0.46,
-     "score": 0.999
+     "end": 0.44,
+     "score": 0.993
     },
     {
      "text": "回",
-     "start": 0.5,
-     "end": 0.62,
-     "score": 0.999
+     "start": 0.46,
+     "end": 0.58,
+     "score": 1
     },
     {
      "text": "升",
-     "start": 0.68,
-     "end": 0.88,
-     "score": 0.784
+     "start": 0.64,
+     "end": 0.82,
+     "score": 0.97
     },
     {
      "text": "去",
-     "start": 1.42,
-     "end": 1.54,
+     "start": 1.3,
+     "end": 1.4,
      "score": 0.998
     },
     {
      "text": "年",
-     "start": 1.62,
-     "end": 1.74,
-     "score": 0.999
-    },
-    {
-     "text": "假",
-     "start": 1.78,
-     "end": 1.9,
-     "score": 0.989
-    },
-    {
-     "text": "變",
-     "start": 1.98,
-     "end": 2.12,
-     "score": 0.987
-    },
-    {
-     "text": "多",
-     "start": 2.18,
-     "end": 2.28,
+     "start": 1.48,
+     "end": 1.6,
      "score": 0.996
     },
     {
-     "text": "全",
-     "start": 2.7,
-     "end": 2.88,
+     "text": "假",
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.95
+    },
+    {
+     "text": "變",
+     "start": 1.8,
+     "end": 1.92,
+     "score": 0.996
+    },
+    {
+     "text": "多",
+     "start": 1.96,
+     "end": 2.06,
      "score": 0.998
     },
     {
-     "text": "年",
-     "start": 2.92,
-     "end": 3.04,
+     "text": "全",
+     "start": 2.3,
+     "end": 2.46,
      "score": 0.995
     },
     {
+     "text": "年",
+     "start": 2.48,
+     "end": 2.6,
+     "score": 0.994
+    },
+    {
      "text": "只",
-     "start": 3.1,
-     "end": 3.18,
-     "score": 0.909
+     "start": 2.64,
+     "end": 2.72,
+     "score": 0.982
     },
     {
      "text": "少",
-     "start": 3.26,
-     "end": 3.4,
-     "score": 0.99
+     "start": 2.78,
+     "end": 2.92,
+     "score": 0.915
     },
     {
      "text": "了",
-     "start": 3.42,
-     "end": 3.5,
-     "score": 0.999
+     "start": 2.92,
+     "end": 2.98,
+     "score": 0.998
     },
     {
      "text": "三",
-     "start": 3.62,
-     "end": 3.76,
-     "score": 0.004
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.008
     },
     {
      "text": "點",
-     "start": 3.78,
-     "end": 3.92,
-     "score": 0.901
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.982
     },
     {
      "text": "六",
-     "start": 3.96,
-     "end": 4.08,
-     "score": 0.062
+     "start": 3.4,
+     "end": 3.52,
+     "score": 0.275
     },
     {
      "text": "小",
-     "start": 4.12,
-     "end": 4.26,
-     "score": 0.984
+     "start": 3.54,
+     "end": 3.68,
+     "score": 0.981
     },
     {
      "text": "時",
-     "start": 4.32,
-     "end": 4.42,
-     "score": 0.891
+     "start": 3.74,
+     "end": 3.84,
+     "score": 0.988
     }
    ],
    "charTimes": [
     0.04,
     0.2,
     0.34,
-    0.5,
-    0.68,
-    1.42,
-    1.62,
-    1.78,
-    1.98,
-    2.18,
-    2.7,
+    0.46,
+    0.64,
+    1.3,
+    1.48,
+    1.64,
+    1.8,
+    1.96,
+    2.3,
+    2.48,
+    2.64,
+    2.78,
     2.92,
-    3.1,
-    3.26,
-    3.42,
-    3.62,
-    3.78,
-    3.96,
-    4.12,
-    4.32
+    3.06,
+    3.24,
+    3.4,
+    3.54,
+    3.74
    ]
   },
   {
    "id": "s07",
    "audio": "audio/talk-ep01/07-s07.wav",
-   "audioFrame": 694,
-   "audioSec": 2.881,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.037,
-   "startFrame": 685,
-   "durationFrames": 108,
+   "audioFrame": 645,
+   "audioSec": 2.56,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 636,
+   "durationFrames": 96,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1486,89 +1483,89 @@
      8
     ]
    },
-   "voiceStartFrame": 695,
-   "voiceEndFrame": 780,
-   "stillFrame": 783,
+   "voiceStartFrame": 646,
+   "voiceEndFrame": 721,
+   "stillFrame": 722,
    "subtitleWindow": [
-    692,
-    790
+    643,
+    729
    ],
    "sourceWindow": [
-    690,
-    788
+    641,
+    727
    ],
    "lines": [
     {
      "text": "為什麼降不下來？",
-     "start": 692,
+     "start": 643,
      "chars": [
-      693,
-      699,
-      702,
-      705,
-      709,
-      712,
-      717,
-      717
+      645,
+      648,
+      652,
+      654,
+      659,
+      661,
+      666,
+      666
      ]
     },
     {
      "text": "我們幾乎都是全職。",
-     "start": 735,
+     "start": 683,
      "chars": [
-      737,
-      739,
-      744,
-      749,
-      754,
-      759,
-      763,
-      770,
-      770
+      685,
+      689,
+      692,
+      695,
+      699,
+      702,
+      706,
+      713,
+      713
      ]
     }
    ],
    "keywords": [
     {
      "text": "全職",
-     "start": 763
+     "start": 706
     }
    ],
    "cues": [
     {
      "id": "why",
      "text": "為什麼",
-     "frame": 695,
+     "frame": 646,
      "early": 0
     },
     {
      "id": "we",
      "text": "我們",
-     "frame": 738,
+     "frame": 687,
      "early": 0
     },
     {
      "id": "full",
      "text": "全職",
-     "frame": 764,
+     "frame": 707,
      "early": 0
     }
    ],
-   "hash": "794706b99ee7-7ae26340ab",
+   "hash": "96e0aa92011a-5dd608bfa2",
    "sub": "為什麼降不下來？\n我們幾乎都是全職。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.966,
-    "minScore": 0.792,
-    "onsetMedianMs": 0,
-    "onsetMaxMs": 0,
+    "confidence": 0.962,
+    "minScore": 0.709,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 1.48,
-      "start": 1.48,
+      "onset": 1.41,
+      "start": 1.4,
       "ch": "我",
-      "errMs": 0
+      "errMs": -10
      }
     ]
    },
@@ -1576,122 +1573,122 @@
    "words": [
     {
      "text": "為",
-     "start": 0.02,
-     "end": 0.14,
-     "score": 0.828
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.985
     },
     {
      "text": "什",
-     "start": 0.2,
-     "end": 0.3,
-     "score": 0.792
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.909
     },
     {
      "text": "麼",
-     "start": 0.32,
-     "end": 0.36,
-     "score": 0.995
+     "start": 0.28,
+     "end": 0.32,
+     "score": 0.997
     },
     {
      "text": "降",
-     "start": 0.4,
-     "end": 0.54,
-     "score": 0.967
+     "start": 0.36,
+     "end": 0.5,
+     "score": 0.937
     },
     {
      "text": "不",
-     "start": 0.56,
-     "end": 0.6,
+     "start": 0.5,
+     "end": 0.54,
      "score": 0.999
     },
     {
      "text": "下",
-     "start": 0.66,
-     "end": 0.76,
-     "score": 0.995
+     "start": 0.58,
+     "end": 0.68,
+     "score": 1
     },
     {
      "text": "來",
-     "start": 0.82,
-     "end": 1,
+     "start": 0.74,
+     "end": 0.92,
      "score": 1
     },
     {
      "text": "我",
-     "start": 1.48,
-     "end": 1.54,
+     "start": 1.4,
+     "end": 1.46,
      "score": 1
     },
     {
      "text": "們",
-     "start": 1.56,
-     "end": 1.66,
+     "start": 1.5,
+     "end": 1.58,
      "score": 1
     },
     {
      "text": "幾",
-     "start": 1.7,
-     "end": 1.8,
+     "start": 1.6,
+     "end": 1.66,
      "score": 0.999
     },
     {
      "text": "乎",
-     "start": 1.9,
-     "end": 1.98,
-     "score": 0.999
+     "start": 1.72,
+     "end": 1.78,
+     "score": 0.993
     },
     {
      "text": "都",
-     "start": 2.06,
-     "end": 2.16,
-     "score": 0.999
+     "start": 1.84,
+     "end": 1.92,
+     "score": 0.709
     },
     {
      "text": "是",
-     "start": 2.2,
-     "end": 2.28,
-     "score": 0.974
+     "start": 1.96,
+     "end": 2.04,
+     "score": 0.958
     },
     {
      "text": "全",
-     "start": 2.34,
-     "end": 2.52,
-     "score": 0.987
+     "start": 2.08,
+     "end": 2.28,
+     "score": 0.941
     },
     {
      "text": "職",
-     "start": 2.58,
-     "end": 2.72,
-     "score": 0.958
+     "start": 2.32,
+     "end": 2.44,
+     "score": 0.997
     }
    ],
    "charTimes": [
-    0.02,
-    0.2,
-    0.32,
-    0.4,
-    0.56,
-    0.66,
-    0.82,
-    1.48,
-    1.56,
-    1.7,
-    1.9,
-    2.06,
-    2.2,
-    2.34,
-    2.58
+    0.04,
+    0.16,
+    0.28,
+    0.36,
+    0.5,
+    0.58,
+    0.74,
+    1.4,
+    1.5,
+    1.6,
+    1.72,
+    1.84,
+    1.96,
+    2.08,
+    2.32
    ]
   },
   {
    "id": "s08",
    "audio": "audio/talk-ep01/08-s08.wav",
-   "audioFrame": 792,
-   "audioSec": 3.822,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.039,
-   "startFrame": 783,
-   "durationFrames": 136,
+   "audioFrame": 731,
+   "audioSec": 3.26,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 722,
+   "durationFrames": 123,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1705,103 +1702,103 @@
      8
     ]
    },
-   "voiceStartFrame": 793,
-   "voiceEndFrame": 906,
-   "stillFrame": 909,
+   "voiceStartFrame": 732,
+   "voiceEndFrame": 828,
+   "stillFrame": 835,
    "subtitleWindow": [
-    790,
-    916
+    729,
+    842
    ],
    "sourceWindow": [
-    788,
-    914
+    727,
+    840
    ],
    "lines": [
     {
      "text": "兼職只有百分之三到四，",
-     "start": 790,
+     "start": 729,
      "chars": [
-      791,
-      798,
-      806,
-      810,
-      814,
-      819,
-      823,
-      828,
-      834,
-      840,
-      840
+      731,
+      736,
+      740,
+      744,
+      748,
+      752,
+      756,
+      761,
+      767,
+      774,
+      774
      ]
     },
     {
      "text": "日本大約四個有一個。",
-     "start": 859,
+     "start": 788,
      "chars": [
-      861,
-      866,
-      870,
-      875,
-      884,
-      889,
-      893,
-      896,
-      900,
-      900
+      790,
+      794,
+      798,
+      802,
+      808,
+      812,
+      816,
+      820,
+      823,
+      823
      ]
     }
    ],
    "keywords": [
     {
      "text": "百分之三到四",
-     "start": 814
+     "start": 748
     },
     {
      "text": "四個有一個",
-     "start": 884
+     "start": 808
     }
    ],
    "cues": [
     {
      "id": "part",
      "text": "兼職",
-     "frame": 793,
+     "frame": 732,
      "early": 0
     },
     {
      "id": "pct",
      "text": "百分之三",
-     "frame": 815,
+     "frame": 750,
      "early": 0
     },
     {
      "id": "jp",
      "text": "日本",
-     "frame": 863,
+     "frame": 792,
      "early": 0
     },
     {
      "id": "quarter",
      "text": "四個",
-     "frame": 886,
+     "frame": 810,
      "early": 0
     }
    ],
-   "hash": "14b800bb5908-7ae26340ab",
+   "hash": "03a16a113675-5dd608bfa2",
    "sub": "兼職只有百分之三到四，\n日本大約四個有一個。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.774,
+    "confidence": 0.726,
     "minScore": 0,
-    "onsetMedianMs": 0,
-    "onsetMaxMs": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
     "onsetCheck": [
      {
-      "onset": 2.36,
-      "start": 2.36,
+      "onset": 2.04,
+      "start": 2.02,
       "ch": "日",
-      "errMs": 0
+      "errMs": -20
      }
     ]
    },
@@ -1809,150 +1806,150 @@
    "words": [
     {
      "text": "兼",
-     "start": 0.02,
-     "end": 0.2,
-     "score": 0.99
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.845
     },
     {
      "text": "職",
-     "start": 0.26,
-     "end": 0.38,
-     "score": 0.981
+     "start": 0.22,
+     "end": 0.3,
+     "score": 0.982
     },
     {
      "text": "只",
-     "start": 0.52,
-     "end": 0.62,
-     "score": 0.666
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.986
     },
     {
      "text": "有",
-     "start": 0.66,
-     "end": 0.74,
-     "score": 0.996
+     "start": 0.48,
+     "end": 0.58,
+     "score": 0.997
     },
     {
      "text": "百",
-     "start": 0.78,
-     "end": 0.88,
-     "score": 0.052
+     "start": 0.62,
+     "end": 0.72,
+     "score": 0.015
     },
     {
      "text": "分",
-     "start": 0.94,
-     "end": 1.04,
-     "score": 0.933
+     "start": 0.76,
+     "end": 0.86,
+     "score": 0.281
     },
     {
      "text": "之",
-     "start": 1.08,
-     "end": 1.16,
-     "score": 0.938
+     "start": 0.88,
+     "end": 0.96,
+     "score": 0.664
     },
     {
      "text": "三",
-     "start": 1.26,
-     "end": 1.4,
-     "score": 0.024
+     "start": 1.04,
+     "end": 1.2,
+     "score": 0.027
     },
     {
      "text": "到",
-     "start": 1.44,
-     "end": 1.56,
-     "score": 0.968
+     "start": 1.24,
+     "end": 1.38,
+     "score": 0.975
     },
     {
      "text": "四",
-     "start": 1.66,
-     "end": 1.78,
-     "score": 0.934
+     "start": 1.48,
+     "end": 1.58,
+     "score": 0.938
     },
     {
      "text": "日",
-     "start": 2.36,
-     "end": 2.42,
-     "score": 0.998
-    },
-    {
-     "text": "本",
-     "start": 2.5,
-     "end": 2.6,
+     "start": 2.02,
+     "end": 2.08,
      "score": 0.999
     },
     {
+     "text": "本",
+     "start": 2.14,
+     "end": 2.24,
+     "score": 0.998
+    },
+    {
      "text": "大",
-     "start": 2.64,
-     "end": 2.72,
-     "score": 0.997
+     "start": 2.28,
+     "end": 2.34,
+     "score": 0.982
     },
     {
      "text": "約",
-     "start": 2.82,
-     "end": 2.92,
-     "score": 0.991
+     "start": 2.42,
+     "end": 2.5,
+     "score": 0.954
     },
     {
      "text": "四",
-     "start": 3.12,
-     "end": 3.22,
-     "score": 0.275
+     "start": 2.62,
+     "end": 2.7,
+     "score": 0.184
     },
     {
      "text": "個",
-     "start": 3.28,
-     "end": 3.34,
-     "score": 0.978
+     "start": 2.76,
+     "end": 2.82,
+     "score": 0.977
     },
     {
      "text": "有",
-     "start": 3.4,
-     "end": 3.5,
-     "score": 0.997
+     "start": 2.88,
+     "end": 3,
+     "score": 0.998
     },
     {
      "text": "一",
-     "start": 3.52,
-     "end": 3.56,
+     "start": 3,
+     "end": 3.04,
      "score": 0
     },
     {
      "text": "個",
-     "start": 3.64,
-     "end": 3.72,
-     "score": 0.998
+     "start": 3.12,
+     "end": 3.2,
+     "score": 0.995
     }
    ],
    "charTimes": [
-    0.02,
-    0.26,
-    0.52,
-    0.66,
-    0.78,
-    0.94,
-    1.08,
-    1.26,
-    1.44,
-    1.66,
-    2.36,
-    2.5,
-    2.64,
-    2.82,
-    3.12,
-    3.28,
-    3.4,
-    3.52,
-    3.64
+    0.04,
+    0.22,
+    0.36,
+    0.48,
+    0.62,
+    0.76,
+    0.88,
+    1.04,
+    1.24,
+    1.48,
+    2.02,
+    2.14,
+    2.28,
+    2.42,
+    2.62,
+    2.76,
+    2.88,
+    3,
+    3.12
    ]
   },
   {
    "id": "s09",
    "audio": "audio/talk-ep01/09-s09.wav",
-   "audioFrame": 918,
-   "audioSec": 4.281,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.029,
-   "startFrame": 909,
-   "durationFrames": 150,
+   "audioFrame": 844,
+   "audioSec": 3.66,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 835,
+   "durationFrames": 133,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1966,109 +1963,109 @@
      8
     ]
    },
-   "voiceStartFrame": 919,
-   "voiceEndFrame": 1046,
-   "stillFrame": 1049,
+   "voiceStartFrame": 845,
+   "voiceEndFrame": 953,
+   "stillFrame": 958,
    "subtitleWindow": [
-    916,
-    1056
+    842,
+    965
    ],
    "sourceWindow": [
-    914,
-    1054
+    840,
+    963
    ],
    "lines": [
     {
      "text": "再來是加班。",
-     "start": 916,
+     "start": 842,
      "chars": [
-      918,
-      922,
-      926,
-      930,
-      935,
-      935
+      844,
+      849,
+      853,
+      857,
+      862,
+      862
      ]
     },
     {
      "text": "去年正常工時變少，",
-     "start": 958,
+     "start": 878,
      "chars": [
-      960,
-      966,
-      972,
-      978,
-      984,
-      990,
-      995,
-      1001,
-      1001
+      880,
+      884,
+      889,
+      895,
+      899,
+      905,
+      909,
+      915,
+      915
      ]
     },
     {
      "text": "加班卻變多。",
-     "start": 1013,
+     "start": 925,
      "chars": [
-      1016,
-      1022,
-      1027,
-      1032,
-      1037,
-      1037
+      927,
+      933,
+      936,
+      940,
+      946,
+      946
      ]
     }
    ],
    "keywords": [
     {
      "text": "加班卻變多",
-     "start": 1016
+     "start": 927
     }
    ],
    "cues": [
     {
      "id": "ot",
      "text": "加班",
-     "frame": 931,
+     "frame": 858,
      "early": 0
     },
     {
      "id": "regular",
      "text": "正常工時",
-     "frame": 974,
+     "frame": 891,
      "early": 0
     },
     {
      "id": "less",
      "text": "變少",
-     "frame": 996,
+     "frame": 911,
      "early": 0
     },
     {
      "id": "more",
      "text": "變多",
-     "frame": 1033,
+     "frame": 942,
      "early": 0
     }
    ],
-   "hash": "81e5e21dab3b-7ae26340ab",
+   "hash": "fa384c597d1a-5dd608bfa2",
    "sub": "再來是加班。\n去年正常工時變少，\n加班卻變多。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.965,
-    "minScore": 0.711,
-    "onsetMedianMs": 10,
+    "confidence": 0.977,
+    "minScore": 0.909,
+    "onsetMedianMs": 20,
     "onsetMaxMs": 20,
     "onsetCheck": [
      {
-      "onset": 1.44,
-      "start": 1.44,
+      "onset": 1.26,
+      "start": 1.24,
       "ch": "去",
-      "errMs": 0
+      "errMs": -20
      },
      {
-      "onset": 3.32,
-      "start": 3.3,
+      "onset": 2.84,
+      "start": 2.82,
       "ch": "加",
       "errMs": -20
      }
@@ -2080,141 +2077,141 @@
      "text": "再",
      "start": 0.04,
      "end": 0.16,
-     "score": 0.99
+     "score": 0.999
     },
     {
      "text": "來",
-     "start": 0.18,
-     "end": 0.28,
+     "start": 0.2,
+     "end": 0.32,
      "score": 0.999
     },
     {
      "text": "是",
-     "start": 0.32,
-     "end": 0.38,
-     "score": 0.998
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.945
     },
     {
      "text": "加",
-     "start": 0.44,
-     "end": 0.54,
-     "score": 0.998
+     "start": 0.48,
+     "end": 0.58,
+     "score": 0.997
     },
     {
      "text": "班",
-     "start": 0.62,
+     "start": 0.66,
      "end": 0.8,
      "score": 0.998
     },
     {
      "text": "去",
-     "start": 1.44,
-     "end": 1.54,
+     "start": 1.24,
+     "end": 1.34,
      "score": 0.999
     },
     {
      "text": "年",
-     "start": 1.64,
-     "end": 1.8,
+     "start": 1.4,
+     "end": 1.52,
      "score": 0.999
     },
     {
      "text": "正",
-     "start": 1.86,
-     "end": 2.02,
-     "score": 0.999
+     "start": 1.56,
+     "end": 1.72,
+     "score": 0.983
     },
     {
      "text": "常",
-     "start": 2.06,
-     "end": 2.24,
-     "score": 0.868
+     "start": 1.74,
+     "end": 1.88,
+     "score": 0.921
     },
     {
      "text": "工",
-     "start": 2.26,
-     "end": 2.4,
-     "score": 0.934
+     "start": 1.9,
+     "end": 2.04,
+     "score": 0.995
     },
     {
      "text": "時",
-     "start": 2.46,
-     "end": 2.56,
-     "score": 0.711
+     "start": 2.08,
+     "end": 2.16,
+     "score": 0.974
     },
     {
      "text": "變",
-     "start": 2.6,
-     "end": 2.74,
-     "score": 0.998
+     "start": 2.22,
+     "end": 2.36,
+     "score": 0.988
     },
     {
      "text": "少",
-     "start": 2.8,
-     "end": 3,
-     "score": 0.996
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.909
     },
     {
      "text": "加",
-     "start": 3.3,
-     "end": 3.42,
-     "score": 0.999
+     "start": 2.82,
+     "end": 2.94,
+     "score": 0.986
     },
     {
      "text": "班",
-     "start": 3.5,
-     "end": 3.62,
-     "score": 0.999
-    },
-    {
-     "text": "卻",
-     "start": 3.68,
-     "end": 3.8,
+     "start": 3,
+     "end": 3.1,
      "score": 0.998
     },
     {
+     "text": "卻",
+     "start": 3.12,
+     "end": 3.22,
+     "score": 0.956
+    },
+    {
      "text": "變",
-     "start": 3.84,
-     "end": 3.98,
-     "score": 0.999
+     "start": 3.26,
+     "end": 3.38,
+     "score": 0.984
     },
     {
      "text": "多",
-     "start": 4.02,
-     "end": 4.14,
-     "score": 0.88
+     "start": 3.44,
+     "end": 3.52,
+     "score": 0.963
     }
    ],
    "charTimes": [
     0.04,
-    0.18,
-    0.32,
-    0.44,
-    0.62,
-    1.44,
-    1.64,
-    1.86,
-    2.06,
-    2.26,
-    2.46,
-    2.6,
-    2.8,
-    3.3,
-    3.5,
-    3.68,
-    3.84,
-    4.02
+    0.2,
+    0.36,
+    0.48,
+    0.66,
+    1.24,
+    1.4,
+    1.56,
+    1.74,
+    1.9,
+    2.08,
+    2.22,
+    2.42,
+    2.82,
+    3,
+    3.12,
+    3.26,
+    3.44
    ]
   },
   {
    "id": "s10",
    "audio": "audio/talk-ep01/10-s10.wav",
-   "audioFrame": 1058,
-   "audioSec": 4.221,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.047,
-   "startFrame": 1049,
-   "durationFrames": 148,
+   "audioFrame": 967,
+   "audioSec": 3.78,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 958,
+   "durationFrames": 143,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2228,109 +2225,108 @@
      8
     ]
    },
-   "voiceStartFrame": 1059,
-   "voiceEndFrame": 1184,
-   "stillFrame": 1187,
+   "voiceStartFrame": 968,
+   "voiceEndFrame": 1080,
+   "stillFrame": 1091,
    "subtitleWindow": [
-    1056,
-    1194
+    965,
+    1098
    ],
    "sourceWindow": [
-    1054,
-    1192
+    963,
+    1096
    ],
-   "pauseAfter": 0.45,
    "lines": [
     {
      "text": "還有下班以後。",
-     "start": 1056,
+     "start": 965,
      "chars": [
-      1058,
-      1061,
-      1066,
-      1071,
-      1075,
-      1079,
-      1079
+      967,
+      971,
+      975,
+      979,
+      983,
+      988,
+      988
      ]
     },
     {
      "text": "四個人有一個，",
-     "start": 1100,
+     "start": 1004,
      "chars": [
-      1102,
-      1107,
-      1111,
-      1114,
-      1118,
-      1122,
-      1122
+      1006,
+      1011,
+      1015,
+      1021,
+      1025,
+      1028,
+      1028
      ]
     },
     {
      "text": "收過交辦工作的訊息。",
-     "start": 1135,
+     "start": 1035,
      "chars": [
-      1137,
-      1142,
-      1147,
-      1153,
-      1157,
-      1162,
-      1166,
-      1170,
-      1176,
-      1176
+      1038,
+      1042,
+      1047,
+      1052,
+      1057,
+      1061,
+      1065,
+      1068,
+      1074,
+      1074
      ]
     }
    ],
    "keywords": [
     {
      "text": "四個人有一個",
-     "start": 1102
+     "start": 1006
     }
    ],
    "cues": [
     {
      "id": "after",
      "text": "下班以後",
-     "frame": 1067,
+     "frame": 976,
      "early": 0
     },
     {
      "id": "four",
      "text": "四個人",
-     "frame": 1104,
+     "frame": 1008,
      "early": 0
     },
     {
      "id": "msg",
      "text": "訊息",
-     "frame": 1171,
+     "frame": 1070,
      "early": 0
     }
    ],
-   "hash": "d313299cfd15-7ae26340ab",
+   "hash": "d16bad7e0846-5dd608bfa2",
    "sub": "還有下班以後。\n四個人有一個，\n收過交辦工作的訊息。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.905,
-    "minScore": 0,
-    "onsetMedianMs": 45,
-    "onsetMaxMs": 50,
+    "confidence": 0.919,
+    "minScore": 0.001,
+    "onsetMedianMs": 60,
+    "onsetMaxMs": 70,
     "onsetCheck": [
      {
-      "onset": 1.47,
-      "start": 1.52,
+      "onset": 1.29,
+      "start": 1.36,
       "ch": "四",
-      "errMs": 50
+      "errMs": 70
      },
      {
-      "onset": 2.64,
-      "start": 2.68,
+      "onset": 2.35,
+      "start": 2.4,
       "ch": "收",
-      "errMs": 40
+      "errMs": 50
      }
     ]
    },
@@ -2338,14 +2334,14 @@
    "words": [
     {
      "text": "還",
-     "start": 0.04,
-     "end": 0.14,
-     "score": 0.998
+     "start": 0.06,
+     "end": 0.16,
+     "score": 0.899
     },
     {
      "text": "有",
-     "start": 0.16,
-     "end": 0.26,
+     "start": 0.18,
+     "end": 0.28,
      "score": 1
     },
     {
@@ -2356,146 +2352,146 @@
     },
     {
      "text": "班",
-     "start": 0.48,
+     "start": 0.46,
      "end": 0.58,
      "score": 0.997
     },
     {
      "text": "以",
-     "start": 0.62,
+     "start": 0.6,
      "end": 0.66,
-     "score": 0.982
+     "score": 0.978
     },
     {
      "text": "後",
-     "start": 0.76,
-     "end": 0.94,
-     "score": 1
+     "start": 0.74,
+     "end": 0.88,
+     "score": 0.999
     },
     {
      "text": "四",
-     "start": 1.52,
-     "end": 1.62,
-     "score": 0.274
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.521
     },
     {
      "text": "個",
-     "start": 1.68,
-     "end": 1.76,
-     "score": 0.953
+     "start": 1.52,
+     "end": 1.6,
+     "score": 0.981
     },
     {
      "text": "人",
-     "start": 1.8,
-     "end": 1.9,
+     "start": 1.66,
+     "end": 1.8,
      "score": 0.999
     },
     {
      "text": "有",
-     "start": 1.92,
-     "end": 2.04,
-     "score": 1
+     "start": 1.84,
+     "end": 1.96,
+     "score": 0.999
     },
     {
      "text": "一",
-     "start": 2.06,
-     "end": 2.1,
-     "score": 0
+     "start": 1.98,
+     "end": 2.02,
+     "score": 0.001
     },
     {
      "text": "個",
-     "start": 2.18,
-     "end": 2.26,
+     "start": 2.08,
+     "end": 2.14,
      "score": 0.999
     },
     {
      "text": "收",
-     "start": 2.68,
-     "end": 2.82,
-     "score": 0.926
+     "start": 2.4,
+     "end": 2.54,
+     "score": 0.958
     },
     {
      "text": "過",
-     "start": 2.86,
-     "end": 2.94,
-     "score": 0.942
+     "start": 2.56,
+     "end": 2.64,
+     "score": 0.999
     },
     {
      "text": "交",
-     "start": 3.02,
-     "end": 3.18,
-     "score": 0.999
+     "start": 2.72,
+     "end": 2.86,
+     "score": 0.988
     },
     {
      "text": "辦",
-     "start": 3.2,
-     "end": 3.3,
-     "score": 0.998
+     "start": 2.88,
+     "end": 2.98,
+     "score": 0.997
     },
     {
      "text": "工",
-     "start": 3.36,
-     "end": 3.5,
-     "score": 0.968
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.997
     },
     {
      "text": "作",
-     "start": 3.52,
-     "end": 3.62,
-     "score": 0.989
+     "start": 3.18,
+     "end": 3.26,
+     "score": 0.998
     },
     {
      "text": "的",
-     "start": 3.66,
-     "end": 3.72,
-     "score": 0.999
+     "start": 3.3,
+     "end": 3.36,
+     "score": 0.998
     },
     {
      "text": "訊",
-     "start": 3.78,
-     "end": 3.92,
-     "score": 0.996
+     "start": 3.42,
+     "end": 3.56,
+     "score": 0.997
     },
     {
      "text": "息",
-     "start": 3.98,
-     "end": 4.1,
-     "score": 0.993
+     "start": 3.62,
+     "end": 3.72,
+     "score": 0.997
     }
    ],
    "charTimes": [
-    0.04,
-    0.16,
+    0.06,
+    0.18,
     0.3,
-    0.48,
-    0.62,
-    0.76,
+    0.46,
+    0.6,
+    0.74,
+    1.36,
     1.52,
-    1.68,
-    1.8,
-    1.92,
-    2.06,
-    2.18,
-    2.68,
-    2.86,
-    3.02,
-    3.2,
-    3.36,
-    3.52,
-    3.66,
-    3.78,
-    3.98
+    1.66,
+    1.84,
+    1.98,
+    2.08,
+    2.4,
+    2.56,
+    2.72,
+    2.88,
+    3.04,
+    3.18,
+    3.3,
+    3.42,
+    3.62
    ]
   },
   {
    "id": "s11",
    "audio": "audio/talk-ep01/11-s11.wav",
-   "audioFrame": 1196,
-   "audioSec": 4.722,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.035,
-   "startFrame": 1187,
-   "durationFrames": 163,
+   "audioFrame": 1100,
+   "audioSec": 3.54,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1091,
+   "durationFrames": 124,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2509,124 +2505,118 @@
      8
     ]
    },
-   "voiceStartFrame": 1197,
-   "voiceEndFrame": 1337,
-   "stillFrame": 1340,
+   "voiceStartFrame": 1101,
+   "voiceEndFrame": 1205,
+   "stillFrame": 1205,
    "subtitleWindow": [
-    1194,
-    1347
+    1098,
+    1212
    ],
    "sourceWindow": [
-    1192,
-    1345
+    1096,
+    1210
    ],
    "lines": [
     {
      "text": "只是這個數字要小心讀。",
-     "start": 1194,
+     "start": 1098,
      "chars": [
-      1202,
-      1207,
-      1213,
-      1217,
-      1221,
-      1226,
-      1231,
-      1236,
-      1242,
-      1247,
-      1247
+      1100,
+      1103,
+      1107,
+      1111,
+      1114,
+      1118,
+      1123,
+      1126,
+      1131,
+      1136,
+      1136
      ]
     },
     {
      "text": "全職和兼職，",
-     "start": 1267,
+     "start": 1149,
      "chars": [
-      1270,
-      1277,
-      1283,
-      1288,
-      1294,
-      1294
+      1151,
+      1158,
+      1162,
+      1166,
+      1172,
+      1172
      ]
     },
     {
      "text": "是一起平均的。",
-     "start": 1305,
+     "start": 1177,
      "chars": [
-      1307,
-      1312,
-      1315,
-      1321,
-      1326,
-      1331,
-      1331
+      1179,
+      1183,
+      1186,
+      1189,
+      1195,
+      1201,
+      1201
      ]
     }
    ],
    "keywords": [
     {
      "text": "小心讀",
-     "start": 1236
+     "start": 1126
     },
     {
      "text": "一起平均",
-     "start": 1312
+     "start": 1183
     }
    ],
    "cues": [
     {
      "id": "but",
      "text": "只是",
-     "frame": 1203,
+     "frame": 1101,
      "early": 0
     },
     {
      "id": "care",
      "text": "小心",
-     "frame": 1238,
+     "frame": 1128,
      "early": 0
     },
     {
      "id": "full",
      "text": "全職",
-     "frame": 1271,
+     "frame": 1153,
      "early": 0
     },
     {
      "id": "part",
      "text": "兼職",
-     "frame": 1289,
+     "frame": 1168,
      "early": 0
     },
     {
      "id": "avg",
      "text": "平均",
-     "frame": 1322,
+     "frame": 1191,
      "early": 0
     }
    ],
-   "hash": "569f6c980fa1-7ae26340ab",
+   "hash": "bbe798f42406-5dd608bfa2",
    "sub": "只是這個數字要小心讀。\n全職和兼職，\n是一起平均的。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.898,
-    "minScore": 0.022,
-    "onsetMedianMs": 30,
-    "onsetMaxMs": 50,
+    "confidence": 0.916,
+    "minScore": 0.005,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 2.51,
-      "start": 2.5,
+      "onset": 1.77,
+      "start": 1.76,
       "ch": "全",
       "errMs": -10
-     },
-     {
-      "onset": 3.69,
-      "start": 3.74,
-      "ch": "是",
-      "errMs": 50
      }
     ]
    },
@@ -2634,164 +2624,164 @@
    "words": [
     {
      "text": "只",
-     "start": 0.24,
-     "end": 0.34,
-     "score": 0.982
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.986
     },
     {
      "text": "是",
-     "start": 0.42,
-     "end": 0.52,
-     "score": 0.999
+     "start": 0.16,
+     "end": 0.22,
+     "score": 0.996
     },
     {
      "text": "這",
-     "start": 0.62,
-     "end": 0.7,
-     "score": 0.999
-    },
-    {
-     "text": "個",
-     "start": 0.76,
-     "end": 0.82,
-     "score": 0.999
-    },
-    {
-     "text": "數",
-     "start": 0.88,
-     "end": 0.96,
+     "start": 0.28,
+     "end": 0.36,
      "score": 0.997
     },
     {
+     "text": "個",
+     "start": 0.4,
+     "end": 0.44,
+     "score": 0.998
+    },
+    {
+     "text": "數",
+     "start": 0.5,
+     "end": 0.56,
+     "score": 0.989
+    },
+    {
      "text": "字",
-     "start": 1.04,
-     "end": 1.14,
-     "score": 0.984
+     "start": 0.64,
+     "end": 0.74,
+     "score": 0.921
     },
     {
      "text": "要",
-     "start": 1.22,
-     "end": 1.36,
-     "score": 0.999
-    },
-    {
-     "text": "小",
-     "start": 1.4,
-     "end": 1.54,
-     "score": 0.999
-    },
-    {
-     "text": "心",
-     "start": 1.58,
-     "end": 1.7,
-     "score": 0.999
-    },
-    {
-     "text": "讀",
-     "start": 1.74,
-     "end": 1.84,
+     "start": 0.8,
+     "end": 0.92,
      "score": 0.995
     },
     {
-     "text": "全",
-     "start": 2.5,
-     "end": 2.68,
-     "score": 0.994
+     "text": "小",
+     "start": 0.92,
+     "end": 1.06,
+     "score": 0.983
     },
     {
-     "text": "職",
-     "start": 2.74,
-     "end": 2.84,
+     "text": "心",
+     "start": 1.08,
+     "end": 1.2,
+     "score": 0.996
+    },
+    {
+     "text": "讀",
+     "start": 1.24,
+     "end": 1.34,
+     "score": 0.997
+    },
+    {
+     "text": "全",
+     "start": 1.76,
+     "end": 1.92,
      "score": 0.992
     },
     {
+     "text": "職",
+     "start": 1.98,
+     "end": 2.06,
+     "score": 0.993
+    },
+    {
      "text": "和",
-     "start": 2.94,
-     "end": 3,
+     "start": 2.12,
+     "end": 2.18,
      "score": 0.499
     },
     {
      "text": "兼",
-     "start": 3.1,
-     "end": 3.26,
-     "score": 0.837
+     "start": 2.26,
+     "end": 2.42,
+     "score": 0.941
     },
     {
      "text": "職",
-     "start": 3.3,
-     "end": 3.44,
-     "score": 0.931
+     "start": 2.46,
+     "end": 2.56,
+     "score": 0.992
     },
     {
      "text": "是",
-     "start": 3.74,
-     "end": 3.84,
+     "start": 2.68,
+     "end": 2.76,
      "score": 0.997
     },
     {
      "text": "一",
-     "start": 3.9,
-     "end": 3.96,
-     "score": 0.022
+     "start": 2.8,
+     "end": 2.84,
+     "score": 0.005
     },
     {
      "text": "起",
-     "start": 4.02,
-     "end": 4.14,
-     "score": 0.99
+     "start": 2.9,
+     "end": 2.98,
+     "score": 0.982
     },
     {
      "text": "平",
-     "start": 4.2,
-     "end": 4.36,
-     "score": 0.985
+     "start": 3.02,
+     "end": 3.18,
+     "score": 0.981
     },
     {
      "text": "均",
-     "start": 4.38,
-     "end": 4.5,
-     "score": 0.666
+     "start": 3.2,
+     "end": 3.36,
+     "score": 1
     },
     {
      "text": "的",
-     "start": 4.54,
-     "end": 4.62,
-     "score": 1
+     "start": 3.4,
+     "end": 3.46,
+     "score": 0.999
     }
    ],
    "charTimes": [
-    0.24,
-    0.42,
-    0.62,
-    0.76,
-    0.88,
-    1.04,
-    1.22,
-    1.4,
-    1.58,
-    1.74,
-    2.5,
-    2.74,
-    2.94,
-    3.1,
-    3.3,
-    3.74,
-    3.9,
-    4.02,
-    4.2,
-    4.38,
-    4.54
+    0.04,
+    0.16,
+    0.28,
+    0.4,
+    0.5,
+    0.64,
+    0.8,
+    0.92,
+    1.08,
+    1.24,
+    1.76,
+    1.98,
+    2.12,
+    2.26,
+    2.46,
+    2.68,
+    2.8,
+    2.9,
+    3.02,
+    3.2,
+    3.4
    ]
   },
   {
    "id": "s12",
    "audio": "audio/talk-ep01/12-s12.wav",
-   "audioFrame": 1349,
-   "audioSec": 3.612,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.038,
-   "startFrame": 1340,
-   "durationFrames": 130,
+   "audioFrame": 1214,
+   "audioSec": 3.44,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1205,
+   "durationFrames": 129,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2805,101 +2795,101 @@
      8
     ]
    },
-   "voiceStartFrame": 1350,
-   "voiceEndFrame": 1457,
-   "stillFrame": 1460,
+   "voiceStartFrame": 1215,
+   "voiceEndFrame": 1316,
+   "stillFrame": 1324,
    "subtitleWindow": [
-    1347,
-    1467
+    1212,
+    1331
    ],
    "sourceWindow": [
-    1345,
-    1465
+    1210,
+    1329
    ],
    "lines": [
     {
      "text": "所以不能說，",
-     "start": 1347,
+     "start": 1212,
      "chars": [
-      1350,
-      1354,
-      1357,
-      1361,
-      1366,
-      1366
+      1214,
+      1217,
+      1220,
+      1223,
+      1228,
+      1228
      ]
     },
     {
      "text": "我們比日本人",
-     "start": 1377,
+     "start": 1240,
      "chars": [
-      1379,
-      1382,
-      1386,
-      1391,
-      1394,
-      1399
+      1242,
+      1245,
+      1249,
+      1253,
+      1258,
+      1262
      ]
     },
     {
      "text": "多上將近四百小時的班。",
-     "start": 1403,
+     "start": 1265,
      "chars": [
-      1405,
-      1410,
-      1415,
-      1421,
-      1428,
-      1432,
-      1436,
-      1442,
-      1445,
-      1448,
-      1448
+      1267,
+      1273,
+      1277,
+      1282,
+      1289,
+      1293,
+      1297,
+      1302,
+      1305,
+      1308,
+      1308
      ]
     }
    ],
    "keywords": [
     {
      "text": "不能說",
-     "start": 1357
+     "start": 1220
     }
    ],
    "cues": [
     {
      "id": "cannot",
      "text": "不能說",
-     "frame": 1359,
+     "frame": 1221,
      "early": 0
     },
     {
      "id": "jp",
      "text": "日本人",
-     "frame": 1392,
+     "frame": 1255,
      "early": 0
     },
     {
      "id": "n400",
      "text": "四百",
-     "frame": 1429,
+     "frame": 1290,
      "early": 0
     }
    ],
-   "hash": "3c5fac96a3c0-7ae26340ab",
+   "hash": "131ac5c2f439-5dd608bfa2",
    "sub": "所以不能說，\n我們比日本人\n多上將近四百小時的班。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.852,
+    "confidence": 0.818,
     "minScore": 0.025,
     "onsetMedianMs": 10,
     "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 1.07,
-      "start": 1.06,
+      "onset": 0.97,
+      "start": 0.98,
       "ch": "我",
-      "errMs": -10
+      "errMs": 10
      }
     ]
    },
@@ -2907,164 +2897,164 @@
    "words": [
     {
      "text": "所",
-     "start": 0.08,
-     "end": 0.18,
-     "score": 0.991
+     "start": 0.06,
+     "end": 0.14,
+     "score": 0.665
     },
     {
      "text": "以",
-     "start": 0.22,
-     "end": 0.28,
-     "score": 0.996
+     "start": 0.16,
+     "end": 0.2,
+     "score": 0.518
     },
     {
      "text": "不",
-     "start": 0.32,
-     "end": 0.4,
-     "score": 0.999
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.998
     },
     {
      "text": "能",
-     "start": 0.44,
-     "end": 0.58,
-     "score": 0.965
+     "start": 0.36,
+     "end": 0.48,
+     "score": 0.977
     },
     {
      "text": "說",
-     "start": 0.62,
-     "end": 0.74,
-     "score": 0.914
+     "start": 0.52,
+     "end": 0.62,
+     "score": 0.975
     },
     {
      "text": "我",
-     "start": 1.06,
-     "end": 1.12,
+     "start": 0.98,
+     "end": 1.04,
      "score": 1
     },
     {
      "text": "們",
-     "start": 1.16,
-     "end": 1.26,
-     "score": 0.962
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.999
     },
     {
      "text": "比",
-     "start": 1.28,
-     "end": 1.34,
+     "start": 1.22,
+     "end": 1.28,
      "score": 0.998
     },
     {
      "text": "日",
-     "start": 1.44,
-     "end": 1.5,
-     "score": 0.995
+     "start": 1.36,
+     "end": 1.42,
+     "score": 0.998
     },
     {
      "text": "本",
-     "start": 1.56,
-     "end": 1.66,
-     "score": 0.998
+     "start": 1.5,
+     "end": 1.6,
+     "score": 0.999
     },
     {
      "text": "人",
-     "start": 1.7,
-     "end": 1.84,
-     "score": 1
+     "start": 1.64,
+     "end": 1.76,
+     "score": 0.999
     },
     {
      "text": "多",
-     "start": 1.92,
-     "end": 2.02,
-     "score": 0.927
+     "start": 1.82,
+     "end": 1.92,
+     "score": 0.897
     },
     {
      "text": "上",
-     "start": 2.08,
-     "end": 2.24,
-     "score": 0.919
+     "start": 2,
+     "end": 2.14,
+     "score": 0.9
     },
     {
      "text": "將",
-     "start": 2.26,
-     "end": 2.42,
-     "score": 0.991
+     "start": 2.16,
+     "end": 2.32,
+     "score": 0.936
     },
     {
      "text": "近",
-     "start": 2.44,
-     "end": 2.56,
-     "score": 0.998
+     "start": 2.32,
+     "end": 2.44,
+     "score": 0.909
     },
     {
      "text": "四",
-     "start": 2.68,
-     "end": 2.76,
+     "start": 2.54,
+     "end": 2.62,
      "score": 0.025
     },
     {
      "text": "百",
-     "start": 2.8,
-     "end": 2.92,
-     "score": 0.086
+     "start": 2.68,
+     "end": 2.78,
+     "score": 0.108
     },
     {
      "text": "小",
-     "start": 2.96,
-     "end": 3.1,
-     "score": 0.694
+     "start": 2.82,
+     "end": 2.94,
+     "score": 0.753
     },
     {
      "text": "時",
-     "start": 3.14,
-     "end": 3.22,
-     "score": 0.532
+     "start": 2.98,
+     "end": 3.06,
+     "score": 0.589
     },
     {
      "text": "的",
-     "start": 3.26,
-     "end": 3.32,
-     "score": 0.933
+     "start": 3.08,
+     "end": 3.14,
+     "score": 0.976
     },
     {
      "text": "班",
-     "start": 3.34,
-     "end": 3.5,
+     "start": 3.18,
+     "end": 3.34,
      "score": 0.962
     }
    ],
    "charTimes": [
-    0.08,
-    0.22,
-    0.32,
-    0.44,
-    0.62,
-    1.06,
-    1.16,
-    1.28,
-    1.44,
-    1.56,
-    1.7,
-    1.92,
-    2.08,
-    2.26,
-    2.44,
+    0.06,
+    0.16,
+    0.24,
+    0.36,
+    0.52,
+    0.98,
+    1.08,
+    1.22,
+    1.36,
+    1.5,
+    1.64,
+    1.82,
+    2,
+    2.16,
+    2.32,
+    2.54,
     2.68,
-    2.8,
-    2.96,
-    3.14,
-    3.26,
-    3.34
+    2.82,
+    2.98,
+    3.08,
+    3.18
    ]
   },
   {
    "id": "s13",
    "audio": "audio/talk-ep01/13-s13.wav",
-   "audioFrame": 1469,
-   "audioSec": 4.004,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.047,
-   "startFrame": 1460,
-   "durationFrames": 145,
+   "audioFrame": 1333,
+   "audioSec": 3.79,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1324,
+   "durationFrames": 139,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -3078,118 +3068,117 @@
      8
     ]
    },
-   "voiceStartFrame": 1470,
-   "voiceEndFrame": 1588,
-   "stillFrame": 1595,
+   "voiceStartFrame": 1334,
+   "voiceEndFrame": 1446,
+   "stillFrame": 1453,
    "subtitleWindow": [
-    1467,
-    1602
+    1331,
+    1460
    ],
    "sourceWindow": [
-    1465,
-    1600
+    1329,
+    1458
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "只看全職，",
-     "start": 1467,
+     "start": 1331,
      "chars": [
-      1469,
-      1473,
-      1478,
-      1485,
-      1485
+      1333,
+      1337,
+      1342,
+      1349,
+      1349
      ]
     },
     {
      "text": "台灣一週四十",
-     "start": 1498,
+     "start": 1361,
      "chars": [
-      1500,
-      1505,
-      1510,
-      1514,
-      1522,
-      1526
+      1363,
+      1368,
+      1374,
+      1378,
+      1386,
+      1390
      ]
     },
     {
      "text": "一點五小時，",
-     "start": 1528,
+     "start": 1392,
      "chars": [
-      1530,
-      1533,
-      1538,
-      1543,
-      1549,
-      1549
+      1394,
+      1397,
+      1402,
+      1405,
+      1412,
+      1412
      ]
     },
     {
      "text": "比日本還少。",
-     "start": 1560,
+     "start": 1422,
      "chars": [
-      1562,
-      1567,
-      1571,
-      1576,
-      1581,
-      1581
+      1424,
+      1429,
+      1432,
+      1436,
+      1440,
+      1440
      ]
     }
    ],
    "keywords": [
     {
      "text": "比日本還少",
-     "start": 1562
+     "start": 1424
     }
    ],
    "cues": [
     {
      "id": "only",
      "text": "只看",
-     "frame": 1470,
+     "frame": 1334,
      "early": 0
     },
     {
      "id": "tw",
      "text": "台灣",
-     "frame": 1501,
+     "frame": 1364,
      "early": 0
     },
     {
      "id": "n415",
      "text": "四十一",
-     "frame": 1524,
+     "frame": 1387,
      "early": 0
     },
     {
      "id": "jp",
      "text": "日本",
-     "frame": 1568,
+     "frame": 1430,
      "early": 0
     }
    ],
-   "hash": "f964ac11a5b5-7ae26340ab",
+   "hash": "34f4ebe35a20-5dd608bfa2",
    "sub": "只看全職，\n台灣一週四十一點五小時，\n比日本還少。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.763,
-    "minScore": 0.002,
-    "onsetMedianMs": 20,
+    "confidence": 0.772,
+    "minScore": 0.006,
+    "onsetMedianMs": 25,
     "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 1.09,
-      "start": 1.08,
+      "onset": 1.06,
+      "start": 1.04,
       "ch": "台",
-      "errMs": -10
+      "errMs": -20
      },
      {
-      "onset": 3.17,
-      "start": 3.14,
+      "onset": 3.11,
+      "start": 3.08,
       "ch": "比",
       "errMs": -30
      }
@@ -3201,155 +3190,155 @@
      "text": "只",
      "start": 0.04,
      "end": 0.12,
-     "score": 0.938
+     "score": 0.948
     },
     {
      "text": "看",
      "start": 0.18,
      "end": 0.32,
-     "score": 0.999
+     "score": 0.997
     },
     {
      "text": "全",
-     "start": 0.36,
+     "start": 0.34,
      "end": 0.52,
-     "score": 0.999
+     "score": 0.998
     },
     {
      "text": "職",
      "start": 0.58,
-     "end": 0.72,
-     "score": 0.963
+     "end": 0.68,
+     "score": 0.989
     },
     {
      "text": "台",
-     "start": 1.08,
-     "end": 1.22,
-     "score": 0.996
+     "start": 1.04,
+     "end": 1.18,
+     "score": 0.997
     },
     {
      "text": "灣",
-     "start": 1.26,
+     "start": 1.22,
      "end": 1.36,
      "score": 0.995
     },
     {
      "text": "一",
      "start": 1.42,
-     "end": 1.48,
-     "score": 0.423
+     "end": 1.46,
+     "score": 0.031
     },
     {
      "text": "週",
      "start": 1.54,
-     "end": 1.7,
-     "score": 0.975
+     "end": 1.68,
+     "score": 0.907
     },
     {
      "text": "四",
-     "start": 1.82,
-     "end": 1.9,
-     "score": 0.002
+     "start": 1.8,
+     "end": 1.88,
+     "score": 0.006
     },
     {
      "text": "十",
      "start": 1.96,
      "end": 2.04,
-     "score": 0.002
+     "score": 0.008
     },
     {
      "text": "一",
      "start": 2.08,
-     "end": 2.14,
-     "score": 0.002
+     "end": 2.12,
+     "score": 0.044
     },
     {
      "text": "點",
      "start": 2.18,
-     "end": 2.32,
-     "score": 0.428
+     "end": 2.3,
+     "score": 0.913
     },
     {
      "text": "五",
-     "start": 2.36,
-     "end": 2.42,
-     "score": 0.69
+     "start": 2.34,
+     "end": 2.4,
+     "score": 0.91
     },
     {
      "text": "小",
-     "start": 2.5,
-     "end": 2.64,
-     "score": 0.979
+     "start": 2.46,
+     "end": 2.6,
+     "score": 0.989
     },
     {
      "text": "時",
-     "start": 2.72,
-     "end": 2.84,
-     "score": 0.963
+     "start": 2.68,
+     "end": 2.78,
+     "score": 0.916
     },
     {
      "text": "比",
-     "start": 3.14,
-     "end": 3.22,
-     "score": 0.996
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.99
     },
     {
      "text": "日",
-     "start": 3.3,
-     "end": 3.38,
-     "score": 0.998
+     "start": 3.24,
+     "end": 3.3,
+     "score": 0.997
     },
     {
      "text": "本",
-     "start": 3.44,
-     "end": 3.54,
-     "score": 0.999
+     "start": 3.36,
+     "end": 3.44,
+     "score": 0.997
     },
     {
      "text": "還",
-     "start": 3.6,
-     "end": 3.72,
-     "score": 0.999
+     "start": 3.48,
+     "end": 3.58,
+     "score": 0.981
     },
     {
      "text": "少",
-     "start": 3.78,
-     "end": 3.94,
-     "score": 0.906
+     "start": 3.62,
+     "end": 3.76,
+     "score": 0.825
     }
    ],
    "charTimes": [
     0.04,
     0.18,
-    0.36,
+    0.34,
     0.58,
-    1.08,
-    1.26,
+    1.04,
+    1.22,
     1.42,
     1.54,
-    1.82,
+    1.8,
     1.96,
     2.08,
     2.18,
-    2.36,
-    2.5,
-    2.72,
-    3.14,
-    3.3,
-    3.44,
-    3.6,
-    3.78
+    2.34,
+    2.46,
+    2.68,
+    3.08,
+    3.24,
+    3.36,
+    3.48,
+    3.62
    ]
   },
   {
    "id": "s14",
    "audio": "audio/talk-ep01/14-s14.wav",
-   "audioFrame": 1604,
-   "audioSec": 3.146,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.042,
-   "startFrame": 1595,
-   "durationFrames": 111,
+   "audioFrame": 1462,
+   "audioSec": 1.691,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.001,
+   "startFrame": 1453,
+   "durationFrames": 68,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -3363,521 +3352,67 @@
      8
     ]
    },
-   "voiceStartFrame": 1605,
-   "voiceEndFrame": 1698,
-   "stillFrame": 1696,
+   "voiceStartFrame": 1463,
+   "voiceEndFrame": 1513,
+   "stillFrame": 1511,
    "subtitleWindow": [
-    1602,
-    1702
+    1460,
+    1521
    ],
    "sourceWindow": [
-    1600,
-    1701
+    1458,
+    1516
    ],
    "lines": [
     {
-     "text": "不過有些傍晚，",
-     "start": 1602,
+     "text": "下一集，",
+     "start": 1460,
      "chars": [
-      1609,
-      1613,
-      1619,
-      1623,
-      1627,
-      1632,
-      1632
+      1462,
+      1468,
+      1471,
+      1471
      ]
     },
     {
-     "text": "走出公司，",
-     "start": 1641,
+     "text": "我們看房租。",
+     "start": 1475,
      "chars": [
-      1643,
-      1648,
-      1652,
-      1659,
-      1659
-     ]
-    },
-    {
-     "text": "天還亮著。",
-     "start": 1670,
-     "chars": [
-      1672,
-      1680,
-      1684,
-      1691,
-      1691
+      1477,
+      1480,
+      1483,
+      1488,
+      1493,
+      1493
      ]
     }
    ],
    "keywords": [
     {
-     "text": "天還亮著",
-     "start": 1672
+     "text": "房租",
+     "start": 1488
     }
    ],
    "cues": [
     {
-     "id": "still",
-     "text": "不過",
-     "frame": 1611,
+     "id": "next",
+     "text": "下一集",
+     "frame": 1464,
      "early": 0
     },
     {
-     "id": "out",
-     "text": "走出",
-     "frame": 1645,
+     "id": "rent",
+     "text": "房租",
+     "frame": 1489,
      "early": 0
-    },
-    {
-     "id": "light",
-     "text": "亮著",
-     "frame": 1686,
-     "early": 2
     }
    ],
-   "hash": "b06c770401bf-7ae26340ab",
-   "sub": "不過有些傍晚，\n走出公司，天還亮著。",
+   "hash": "05fbef154ae3-5dd608bfa2",
+   "sub": "下一集，我們看房租。",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.955,
-    "minScore": 0.727,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 30,
-    "onsetCheck": [
-     {
-      "onset": 0.25,
-      "start": 0.22,
-      "ch": "不",
-      "errMs": -30
-     },
-     {
-      "onset": 1.36,
-      "start": 1.36,
-      "ch": "走",
-      "errMs": 0
-     },
-     {
-      "onset": 2.34,
-      "start": 2.32,
-      "ch": "天",
-      "errMs": -20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "不",
-     "start": 0.22,
-     "end": 0.3,
-     "score": 1
-    },
-    {
-     "text": "過",
-     "start": 0.34,
-     "end": 0.42,
-     "score": 0.998
-    },
-    {
-     "text": "有",
-     "start": 0.54,
-     "end": 0.64,
-     "score": 1
-    },
-    {
-     "text": "些",
-     "start": 0.68,
-     "end": 0.76,
-     "score": 0.996
-    },
-    {
-     "text": "傍",
-     "start": 0.8,
-     "end": 0.96,
-     "score": 0.848
-    },
-    {
-     "text": "晚",
-     "start": 0.98,
-     "end": 1.14,
-     "score": 0.998
-    },
-    {
-     "text": "走",
-     "start": 1.36,
-     "end": 1.48,
-     "score": 0.982
-    },
-    {
-     "text": "出",
-     "start": 1.52,
-     "end": 1.62,
-     "score": 0.947
-    },
-    {
-     "text": "公",
-     "start": 1.66,
-     "end": 1.82,
-     "score": 0.974
-    },
-    {
-     "text": "司",
-     "start": 1.88,
-     "end": 2,
-     "score": 0.997
-    },
-    {
-     "text": "天",
-     "start": 2.32,
-     "end": 2.52,
-     "score": 0.997
-    },
-    {
-     "text": "還",
-     "start": 2.58,
-     "end": 2.7,
-     "score": 0.997
-    },
-    {
-     "text": "亮",
-     "start": 2.72,
-     "end": 2.92,
-     "score": 0.914
-    },
-    {
-     "text": "著",
-     "start": 2.94,
-     "end": 3.04,
-     "score": 0.727
-    }
-   ],
-   "charTimes": [
-    0.22,
-    0.34,
-    0.54,
-    0.68,
-    0.8,
-    0.98,
-    1.36,
-    1.52,
-    1.66,
-    1.88,
-    2.32,
-    2.58,
-    2.72,
-    2.94
-   ]
-  },
-  {
-   "id": "s15",
-   "audio": "audio/talk-ep01/15-s15.wav",
-   "audioFrame": 1704,
-   "audioSec": 2.443,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.026,
-   "startFrame": 1696,
-   "durationFrames": 99,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1705,
-   "voiceEndFrame": 1777,
-   "stillFrame": 1785,
-   "subtitleWindow": [
-    1702,
-    1792
-   ],
-   "sourceWindow": [
-    1701,
-    1790
-   ],
-   "pauseAfter": 0.6,
-   "lines": [
-    {
-     "text": "我們多走一站，",
-     "start": 1702,
-     "chars": [
-      1710,
-      1713,
-      1716,
-      1721,
-      1726,
-      1730,
-      1730
-     ]
-    },
-    {
-     "text": "買一份熱的晚餐。",
-     "start": 1739,
-     "chars": [
-      1742,
-      1746,
-      1749,
-      1755,
-      1759,
-      1762,
-      1767,
-      1767
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "熱的晚餐",
-     "start": 1755
-    }
-   ],
-   "cues": [
-    {
-     "id": "we",
-     "text": "我們",
-     "frame": 1711,
-     "early": 0
-    },
-    {
-     "id": "stop",
-     "text": "一站",
-     "frame": 1727,
-     "early": 0
-    },
-    {
-     "id": "buy",
-     "text": "買",
-     "frame": 1743,
-     "early": 0
-    },
-    {
-     "id": "hot",
-     "text": "熱的",
-     "frame": 1756,
-     "early": 0
-    }
-   ],
-   "hash": "e19737f3c503-7ae26340ab",
-   "sub": "我們多走一站，\n買一份熱的晚餐。",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.836,
-    "minScore": 0.021,
-    "onsetMedianMs": 10,
-    "onsetMaxMs": 10,
-    "onsetCheck": [
-     {
-      "onset": 1.29,
-      "start": 1.3,
-      "ch": "買",
-      "errMs": 10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "我",
-     "start": 0.24,
-     "end": 0.3,
-     "score": 1
-    },
-    {
-     "text": "們",
-     "start": 0.34,
-     "end": 0.42,
-     "score": 1
-    },
-    {
-     "text": "多",
-     "start": 0.44,
-     "end": 0.54,
-     "score": 0.95
-    },
-    {
-     "text": "走",
-     "start": 0.62,
-     "end": 0.76,
-     "score": 0.967
-    },
-    {
-     "text": "一",
-     "start": 0.78,
-     "end": 0.82,
-     "score": 0.09
-    },
-    {
-     "text": "站",
-     "start": 0.9,
-     "end": 1.08,
-     "score": 0.926
-    },
-    {
-     "text": "買",
-     "start": 1.3,
-     "end": 1.44,
-     "score": 0.958
-    },
-    {
-     "text": "一",
-     "start": 1.44,
-     "end": 1.48,
-     "score": 0.021
-    },
-    {
-     "text": "份",
-     "start": 1.56,
-     "end": 1.68,
-     "score": 0.996
-    },
-    {
-     "text": "熱",
-     "start": 1.74,
-     "end": 1.84,
-     "score": 0.979
-    },
-    {
-     "text": "的",
-     "start": 1.9,
-     "end": 1.96,
-     "score": 0.996
-    },
-    {
-     "text": "晚",
-     "start": 1.98,
-     "end": 2.12,
-     "score": 0.994
-    },
-    {
-     "text": "餐",
-     "start": 2.16,
-     "end": 2.36,
-     "score": 0.989
-    }
-   ],
-   "charTimes": [
-    0.24,
-    0.34,
-    0.44,
-    0.62,
-    0.78,
-    0.9,
-    1.3,
-    1.44,
-    1.56,
-    1.74,
-    1.9,
-    1.98,
-    2.16
-   ]
-  },
-  {
-   "id": "s16",
-   "audio": "audio/talk-ep01/16-s16.wav",
-   "audioFrame": 1794,
-   "audioSec": 2.743,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.047,
-   "startFrame": 1785,
-   "durationFrames": 103,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1795,
-   "voiceEndFrame": 1875,
-   "stillFrame": 1878,
-   "subtitleWindow": [
-    1792,
-    1885
-   ],
-   "sourceWindow": [
-    1790,
-    1883
-   ],
-   "pauseAfter": 0.45,
-   "lines": [
-    {
-     "text": "你上一次天還亮著下班，",
-     "start": 1792,
-     "chars": [
-      1799,
-      1803,
-      1808,
-      1812,
-      1817,
-      1824,
-      1828,
-      1833,
-      1836,
-      1842,
-      1842
-     ]
-    },
-    {
-     "text": "是什麼時候？",
-     "start": 1850,
-     "chars": [
-      1853,
-      1857,
-      1861,
-      1864,
-      1869,
-      1869
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "什麼時候",
-     "start": 1857
-    }
-   ],
-   "cues": [
-    {
-     "id": "you",
-     "text": "你",
-     "frame": 1801,
-     "early": 0
-    },
-    {
-     "id": "light",
-     "text": "亮著",
-     "frame": 1829,
-     "early": 0
-    },
-    {
-     "id": "when",
-     "text": "什麼時候",
-     "frame": 1859,
-     "early": 0
-    }
-   ],
-   "hash": "ee6fefe27e39-7ae26340ab",
-   "sub": "你上一次天還亮著下班，\n是什麼時候？",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.91,
+    "confidence": 0.865,
     "minScore": 0.082,
     "onsetMedianMs": null,
     "onsetMaxMs": null,
@@ -3886,279 +3421,73 @@
    "transcript": "",
    "words": [
     {
-     "text": "你",
-     "start": 0.22,
-     "end": 0.3,
-     "score": 1
-    },
-    {
-     "text": "上",
-     "start": 0.36,
-     "end": 0.52,
-     "score": 0.967
-    },
-    {
-     "text": "一",
-     "start": 0.52,
-     "end": 0.56,
-     "score": 0.082
-    },
-    {
-     "text": "次",
-     "start": 0.64,
-     "end": 0.74,
-     "score": 0.984
-    },
-    {
-     "text": "天",
-     "start": 0.82,
-     "end": 1,
-     "score": 0.996
-    },
-    {
-     "text": "還",
-     "start": 1.04,
-     "end": 1.16,
-     "score": 0.998
-    },
-    {
-     "text": "亮",
-     "start": 1.18,
-     "end": 1.34,
-     "score": 0.965
-    },
-    {
-     "text": "著",
-     "start": 1.34,
-     "end": 1.42,
-     "score": 0.684
-    },
-    {
-     "text": "下",
-     "start": 1.46,
-     "end": 1.56,
-     "score": 1
-    },
-    {
-     "text": "班",
-     "start": 1.64,
-     "end": 1.8,
-     "score": 0.999
-    },
-    {
-     "text": "是",
-     "start": 2,
-     "end": 2.1,
-     "score": 0.999
-    },
-    {
-     "text": "什",
-     "start": 2.16,
-     "end": 2.26,
-     "score": 0.994
-    },
-    {
-     "text": "麼",
-     "start": 2.28,
-     "end": 2.32,
-     "score": 1
-    },
-    {
-     "text": "時",
-     "start": 2.38,
-     "end": 2.46,
-     "score": 0.981
-    },
-    {
-     "text": "候",
-     "start": 2.54,
-     "end": 2.68,
-     "score": 1
-    }
-   ],
-   "charTimes": [
-    0.22,
-    0.36,
-    0.52,
-    0.64,
-    0.82,
-    1.04,
-    1.18,
-    1.34,
-    1.46,
-    1.64,
-    2,
-    2.16,
-    2.28,
-    2.38,
-    2.54
-   ]
-  },
-  {
-   "id": "s17",
-   "audio": "audio/talk-ep01/17-s17.wav",
-   "audioFrame": 1887,
-   "audioSec": 1.552,
-   "headSilSec": 0.0348,
-   "tailSilSec": 0.03,
-   "startFrame": 1878,
-   "durationFrames": 63,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1888,
-   "voiceEndFrame": 1933,
-   "stillFrame": 1931,
-   "subtitleWindow": [
-    1885,
-    1941
-   ],
-   "sourceWindow": [
-    1883,
-    1936
-   ],
-   "lines": [
-    {
-     "text": "下一集，",
-     "start": 1885,
-     "chars": [
-      1887,
-      1893,
-      1896,
-      1896
-     ]
-    },
-    {
-     "text": "我們看房租。",
-     "start": 1905,
-     "chars": [
-      1907,
-      1910,
-      1913,
-      1919,
-      1925,
-      1925
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "房租",
-     "start": 1919
-    }
-   ],
-   "cues": [
-    {
-     "id": "next",
-     "text": "下一集",
-     "frame": 1889,
-     "early": 0
-    },
-    {
-     "id": "rent",
-     "text": "房租",
-     "frame": 1920,
-     "early": 1
-    }
-   ],
-   "hash": "9c34b303a4af-7ae26340ab",
-   "sub": "下一集，我們看房租。",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.852,
-    "minScore": 0.238,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 20,
-    "onsetCheck": [
-     {
-      "onset": 0.74,
-      "start": 0.72,
-      "ch": "我",
-      "errMs": -20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
      "text": "下",
      "start": 0.06,
-     "end": 0.16,
-     "score": 0.997
+     "end": 0.18,
+     "score": 0.932
     },
     {
      "text": "一",
      "start": 0.24,
      "end": 0.28,
-     "score": 0.238
+     "score": 0.082
     },
     {
      "text": "集",
      "start": 0.34,
-     "end": 0.44,
-     "score": 0.995
+     "end": 0.42,
+     "score": 0.986
     },
     {
      "text": "我",
-     "start": 0.72,
-     "end": 0.78,
-     "score": 1
+     "start": 0.54,
+     "end": 0.6,
+     "score": 0.995
     },
     {
      "text": "們",
-     "start": 0.82,
-     "end": 0.9,
+     "start": 0.64,
+     "end": 0.72,
      "score": 1
     },
     {
      "text": "看",
-     "start": 0.92,
-     "end": 1.06,
+     "start": 0.74,
+     "end": 0.86,
      "score": 0.999
     },
     {
      "text": "房",
-     "start": 1.1,
-     "end": 1.28,
-     "score": 0.931
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.934
     },
     {
      "text": "租",
-     "start": 1.3,
-     "end": 1.42,
-     "score": 0.657
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.994
     }
    ],
    "charTimes": [
     0.06,
     0.24,
     0.34,
-    0.72,
-    0.82,
-    0.92,
-    1.1,
-    1.3
+    0.54,
+    0.64,
+    0.74,
+    0.9,
+    1.08
    ]
   },
   {
-   "id": "s18",
+   "id": "s15",
    "audio": null,
-   "audioFrame": 1931,
+   "audioFrame": 1511,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1931,
+   "startFrame": 1511,
    "durationFrames": 90,
    "transitionFrames": 10,
    "transition": {
@@ -4173,14 +3502,14 @@
      8
     ]
    },
-   "voiceStartFrame": 1941,
-   "voiceEndFrame": 1941,
-   "stillFrame": 2009,
+   "voiceStartFrame": 1521,
+   "voiceEndFrame": 1521,
+   "stillFrame": 1589,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1936,
-    2021
+    1516,
+    1601
    ],
    "lines": [],
    "keywords": [],
@@ -4190,8 +3519,8 @@
  ],
  "voice": {
   "file": "audio/talk-ep01/voice.wav",
-  "lufsIn": -15.51,
+  "lufsIn": -15.92,
   "lufs": -16,
-  "sec": 67.367
+  "sec": 53.367
  }
 }

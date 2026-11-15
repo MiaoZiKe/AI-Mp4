@@ -232,5 +232,21 @@
     "voices": [
       "Iapetus"
     ]
+  },
+  "tanqing-report": {
+    "_說明": "談晴說礙正式旁白（2026/11/15 使用者定案，參考檔 out/voice-refs/tanqing-reference.wav＝audio/worktime_sulafat.wav）：API 自動配音、不再由使用者上傳。delivery deep-report＝docs/prompts/tanqing-旁白-深度報導.txt 的設定句（voice-profile.mjs 的 DEEP_REPORT_LINE），送法同 scripts/tts-worktime.mjs：設定句接念稿不換行、整篇一段、不送 languageCode。模型 gemini-3.8-flash-tts，失敗才改 fallbackModel。成品約 2.9 字/秒（含停頓），使用者接受，不加速。",
+    "gender": "female",
+    "accent": "台灣華語",
+    "pace": [
+      2.7,
+      3.2
+    ],
+    "delivery": "deep-report",
+    "model": "gemini-3.8-flash-tts",
+    "fallbackModel": "gemini-2.5-flash-preview-tts",
+    "languageCode": "off",
+    "voices": [
+      "Sulafat"
+    ]
   }
 }

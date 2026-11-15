@@ -82,7 +82,7 @@
 - **內容規則不變**：全片只放一個有來源的數字（寫 `claim` 指到 research.md）；結尾留一頁「晴」（`kind: "qing"`），最後一頁可以是提問；不出現真人、商標，不用 AI 生圖。
 - 程式與檢查：`src/components/tanqing/`、`src/theme.ts` 的 `THEME_TANQING`／`LAYOUT_TANQING`、`scripts/tanqing/validate-tanqing.mjs`、`scripts/tanqing/fetch-fonts.mjs`（襯線字型子集）。寫法看 `videos/short-talk/script.json` 與它的 README。
 - 2026/11/14 第 2 版加的三個寫法（都可省略，舊稿不受影響）：`props.caption: "en"`（這一頁不放中文字幕，大標就是正在念的那句）；`figure.scale`（1–1.3，圖整個放大，9:16 比貼文高）；`people` 第 0 幀先有淡線輪廓（`ghost: false` 可關），標籤接在橘色虛線右端。大數字 220px。
-- 完整片（45–75 秒；第一支 `videos/talk-ep01/`，使用者 2026/11/14：「給我完整影片吧，並且是要有題材的」）：script.json 頂層寫 `tanqing.film: true`。可以有多個數字，但每張資料圖都要寫 `claim`；要有「為什麼」、口徑提醒（數字不能怎麼讀）、晴、提問、下一集、片尾卡；18–24 鏡、旁白 230–290 字。多出來的 12 種圖形在 `src/components/tanqing/Figures.tsx`，寫法看該片的 README 與 storyboard.md。
+- 完整片（45–75 秒；第一支 `videos/talk-ep01/`，使用者 2026/11/14：「給我完整影片吧，並且是要有題材的」）：script.json 頂層寫 `tanqing.film: true`。可以有多個數字，但每張資料圖都要寫 `claim`；要有「為什麼」、口徑提醒（數字不能怎麼讀）、下一集、片尾卡；15–24 鏡、旁白 230–290 字。**2026/11/15 起完整片不放「晴」收尾與反思提問**（使用者：「後面廢話有點多，介紹完就好，不用特別說什麼天亮著什麼的」）：結尾＝介紹完 → 下一集 → 片尾卡（validate 對 film 不再要求 qing／ask；短片規則不變）。旁白一律 API 自動配音，`voice.profile: "tanqing-report"`（見 CLAUDE.md 各頻道音色）。多出來的 12 種圖形在 `src/components/tanqing/Figures.tsx`，寫法看該片的 README 與 storyboard.md。
 - 以前試過、使用者不要的：觀察者筆記（`stage: "notes"`，實景照片加手寫字）、夜窗（`stage: "talk"`，實拍照片加夜色）。程式留著，新片不用。
 
 ## 7-舊. 畫面（觀察者筆記風格；已不用，留作紀錄）

@@ -32,7 +32,7 @@ export function resolveProfile(voice) {
 /** delivery（選填，docs/voice-natural.md）：把固定的 Pacing／Articulation 兩句換掉；沒寫就和以前完全一樣。
  * "chat"＝跟朋友講話版（想到哪講到哪）；"warm-pro"＝親和專業版（前輩當面帶同事做一次：句子講完整、不拖尾音，介於 chat 與沒寫之間）；
  * "probe"＝查證揭露版（哩股哩股：把查到的事一件一件攤給信得過的人聽；講到疑點放慢、講到查證結果乾脆收住，比 warm-pro 低、穩） */
-export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively", "report-tech", "plain"];
+export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively", "report-tech", "plain", "deep-report"];
 /** "report"＝正常報導一件事（2026/11/14，使用者聽完 short-ai：「口吻很奇怪，語速太慢，我只是想要讓它正常的去報導一件事情」）。
  * 整段說明只有一句（和 what-is-server 被接受的 voice.style 同一種寫法：`…說：` 後面直接接念稿），不寫人設、場景、情緒弧線、Avoid。
  * 原因：長篇導演筆記（AUDIO PROFILE＋SCENE＋Arc）會讓 Gemini 2.5 TTS「演」那個角色，短稿尤其明顯——又慢（short-ai 實測 3.3 音節/秒）又怪。
@@ -47,7 +47,14 @@ export const REPORT_TECH_LINE = "用台灣人平常講話的口音，不特別�
 /** "plain"＝正常說話（2026/11/14，談晴說礙 short-talk；使用者聽完第 1 版：「我覺得正常說話，不要太奇怪，那個氣音很奇怪」）。
  * 一樣只有一句、沒有人設場景；不寫「小聲、放低、講心事」這類會引出氣音或耳語的描述，只要求平常的音量和聲音。其他 delivery 的輸出不變。 */
 export const PLAIN_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音，正常語速、不拖尾音、不用氣音、不演，直接說：";
-const REPORT_LINES = { report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
+/** "deep-report"＝談晴說礙的固定旁白（2026/11/15 使用者定案 audio/worktime_sulafat.wav：「以後都用這口吻 語調 語速」）。
+ * 全文照 docs/prompts/tanqing-旁白-深度報導.txt，一字不改；送法和 scripts/tts-worktime.mjs 完全一樣：
+ * 設定句（以「直接說：」結尾）後面「不換行」直接接念稿，念稿各幕接成一整段、不空行（isOneShot）；不送 languageCode；
+ * gemini-3.8-flash-tts 也要送這句（不是只有 2.5 系列）。句中的「每秒 5.5 個字」是提示原文，實際成品約 2.9 字/秒，使用者已接受。 */
+export const DEEP_REPORT_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音。像一位做深度報導的記者，把剛查完的資料攤開來，跟觀眾一起拆解這則新聞：講數字時清楚、肯定，像在對著資料念；講到「為什麼」和「只是」這種轉折時稍微放慢、帶一點思考；講到結論時篤定收住。整體語速偏快，大約每秒 5.5 個字，句子之間停頓短，不拖尾音、不用氣音、不演，不像主播播報，也不像在講課。直接說：";
+const REPORT_LINES = { report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE, "deep-report": DEEP_REPORT_LINE };
+/** 一段送完：設定句＋念稿不換行、整篇不分段、任何模型都送設定句（目前只有 deep-report） */
+export const isOneShot = (profile) => profile?.delivery === "deep-report";
 /** 這個 delivery 是不是「只送一句話」的報導類 */
 export const isReport = (profile) => Object.hasOwn(REPORT_LINES, profile?.delivery ?? "");
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();
@@ -69,7 +76,7 @@ export function buildDirection(profile) {
   if (profile.avoid?.length) L.push(`Avoid: ${profile.avoid.map(one).join("、")}。`);
   return L.join("\n");
 }
-export const takePrompt = (profile, text) => (isReport(profile) ? `${REPORT_LINES[profile.delivery]}\n${text}` : `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`);
+export const takePrompt = (profile, text) => (isOneShot(profile) ? `${REPORT_LINES[profile.delivery]}${text}` : isReport(profile) ? `${REPORT_LINES[profile.delivery]}\n${text}` : `${buildDirection(profile)}\n\n# TRANSCRIPT\n${text}`);
 
 export function profileIssues(profile) {
   const out = [];
@@ -78,7 +85,7 @@ export function profileIssues(profile) {
   if (!report) for (const k of ["persona", "tone"]) if (typeof profile[k] !== "string" || !profile[k].trim()) out.push(`voice.profile 缺 ${k}`);
   if (!GENDERS.includes(profile.gender)) out.push(`voice.profile.gender 要是 ${GENDERS.join("／")}`);
   if (profile.accent !== "台灣華語") out.push("voice.profile.accent 固定寫「台灣華語」");
-  if (!Array.isArray(profile.pace) || profile.pace.length !== 2 || profile.pace.some((v) => typeof v !== "number") || profile.pace[0] >= profile.pace[1] || profile.pace[0] < 3 || profile.pace[1] > 5.5) out.push("voice.profile.pace 要是 [下限, 上限]（音節/秒，3–5.5 之間）");
+  if (!Array.isArray(profile.pace) || profile.pace.length !== 2 || profile.pace.some((v) => typeof v !== "number") || profile.pace[0] >= profile.pace[1] || profile.pace[0] < (isOneShot(profile) ? 2.5 : 3) || profile.pace[1] > 5.5) out.push("voice.profile.pace 要是 [下限, 上限]（音節/秒，3–5.5 之間；deep-report 下限 2.5）");
   if (!report) for (const k of ARC_KEYS) if (typeof profile.arc?.[k] !== "string" || !profile.arc[k].trim()) out.push(`voice.profile.arc 缺「${k}」（起／承／轉／合各一句情緒指示）`);
   if (profile.englishTerms !== undefined && (typeof profile.englishTerms !== "object" || Array.isArray(profile.englishTerms))) out.push("voice.profile.englishTerms 要是 { 英文詞: 念法 }");
   if (profile.avoid !== undefined && !Array.isArray(profile.avoid)) out.push("voice.profile.avoid 要是陣列");

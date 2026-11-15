@@ -46,3 +46,14 @@
 - **捲舌指標**（voice-retro.py，原始錄音）：ㄓㄔㄕ 6330 Hz、ㄗㄘㄙ 8765 Hz，差距 2435 Hz（不是偏高的樣子；口音仍要人耳聽）。
 - **對齊（align，加速後）**：s04 0.334（< 0.5，要試聽：「二零一四年更長，兩千一百三十五小時」）、s03 0.622、s02 0.745（起音誤差中位 580 ms，畫面事件可能早或晚約半秒）、s01 0.767、s13 0.763、s08 0.774；其他 ≥ 0.83。
 - 後製：`ALIGN_GAP_MAX=0.6 npm run align talk-ep01 -- --force` → validate 0 error → render。人聲整條 loudnorm −16 LUFS；片尾卡（s18，64.37 秒起）的卡林巴琴音效拉高 9 dB 再混（片尾段峰值約 −6.5 dB），音軌補齊到和畫面一樣長（67.367 秒）。
+
+## 第 4 版：改用 worktime_sulafat.wav，之後 API 自動配音（2026/11/15）
+
+- 使用者：「worktime_sulafat.wav 我使用這旁白在談晴說礙上未來影片，我不希望一直透過下載放上來的方式…以後都用這口吻 語調 語速」；同一輪：「後面廢話有點多，介紹完就好，不用特別說什麼天亮著什麼的」。
+- 音檔：`audio/worktime_sulafat.wav`（scripts/tts-worktime.mjs 生成，gemini-3.8-flash-tts、Sulafat，84.36 秒），複本 `public/audio/talk-ep01/worktime_sulafat.wav`、`out/voice-refs/tanqing-reference.wav`。這一輪 0 次 TTS／API 請求。
+- **發現：前 33.7 秒是模型把設定句整段念出來**（本機 MMS 貪婪解碼：「yong taiwan ren pingchang jianghua de kouyin … zhijie shuo」；worktime 的六個檔 Charon／Sulafat 開頭全部都是）。worktime 用 Gemini 聽寫做的「沒念設定句」檢查沒抓到。所以原先算的 2.9 字/秒是含了這 34 秒；念稿本身 248 字 50.4 秒＝**約 4.9 字/秒（含停頓）**。
+- 處理：`tts-take.mjs`（delivery deep-report）先把「設定句＋念稿」整段強制對齊，念稿第一個字前有超過 1 秒說話聲就從念稿前 0.25 秒切掉；原檔 `public/audio/talk-ep01/.take-5dd608bfa2.orig.wav`，切好的是 `.take-5dd608bfa2.raw.wav`（50.65 秒）。沒有加速、沒有 ALIGN_GAP_MAX，句間停頓是原始錄音的（0.22–0.74 秒）。script.json 拿掉 pauseAfter。
+- 稿：拿掉 s14–s16（晴兩句與提問），原 s17→s14（下一集，我們看房租）、s18→s15（片尾卡）；舊稿 `script.v3.json`。
+- 對齊信心：s04 0.31（< 0.5，「二零一四年更長，兩千一百三十五小時」要人耳聽）、s08 0.73、s01 0.77、s02 0.76、s13 0.77，其他 ≥ 0.79。worktime 時的 Gemini 聽寫三個 Sulafat 檔都把 s02 聽成「二零二三年」（稿是二零二五），**要人耳確認**。
+- 捲舌指標（voice-retro.py，切好的檔）：ㄓㄔㄕ 6156 Hz、ㄗㄘㄙ 9023 Hz，差距 2867 Hz（不偏高）。
+- 成片：53.37 秒（1601 幀），片尾卡 50.37 秒起，卡林巴琴 +9 dB 混入，音軌補齊到 53.367 秒。

@@ -7,3 +7,5 @@
 輸出：24kHz、16-bit、單聲道 PCM 加 WAV 檔頭，存到專案 audio/ 資料夾（不進 git）。
 自我檢查：長度（每秒 5.2–5.8 字）、聽寫確認沒念出設定句、結尾完整、數字念對；不過就重生，最多 3 次；太長可 atempo 加速，倍率不超過 1.15，另存 _fast.wav。
 程式：scripts/tts-worktime.mjs（talk-ep01 第一次用；換片時改 BODY 念稿）。
+
+2026/11/15 更新：正式流程改成 script.json `voice.profile: "tanqing-report"`＋`npm run tts <slug>`（scripts/tts-take.mjs，送法與上面一字不差）。注意：gemini-3.8 實測六次都把設定句念出來（約 34 秒），Gemini 聽寫檢查抓不到；tts-take 改用本機強制對齊偵測並自動切掉（原檔留 .orig.wav）。聽寫檢查（結尾、設定句）加 --asr（1 次文字模型請求）。

@@ -12,12 +12,13 @@
 //   2. 不靠靜音偵測猜切點：整篇先做 CTC 強制對齊，切點＝相鄰兩幕之間能量最低的地方
 //   3. 每幕在原始錄音裡的間隔寫進 manifest 的 gapAfter；align 用它排時間軸 → 成片的節奏就是原始錄音的節奏
 // 提示格式和 tts.mjs 相同：`${voice.style}說：\n${text}`（2.5 系列）。提示裡不要放任何像台詞的句子，會被念出來。
+// delivery deep-report（談晴說礙，voice.profile "tanqing-report"）：設定句（以「直接說：」結尾）＋念稿不換行、整篇一段、3.8 也送；送法同 tts-worktime.mjs。自我檢查：加 --asr（1 次文字模型請求）。
 // 不自動重試 429（免費額度每模型每天約 10 次）；5xx 只重試一次。每次請求都記在 videos/<slug>/tts-requests.json。
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { runFA, geminiTranscribe, writeVerify, CONF_MIN, CER_MAX } from "./verify.mjs";
-import { resolveProfile, profileIssues, buildDirection, takePrompt, LANGUAGE_CODE } from "./voice-profile.mjs";
+import { resolveProfile, profileIssues, buildDirection, takePrompt, isOneShot, LANGUAGE_CODE } from "./voice-profile.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const args = process.argv.slice(2);
@@ -38,24 +39,28 @@ if (opt.voice) voice.voiceName = opt.voice; // 只給試聽用：換音色不改
 if (opt.profile) voice.profile = opt.profile; // 只給試聽用：套某個頻道預設檔
 if ((opt.voice || opt.profile) && !opt.audition) { console.error("--voice／--profile 只能和 --audition 一起用（正式配音請改 script.json）"); process.exit(2); }
 if (!voice.voiceName) { console.error("script.json 缺 voice.voiceName"); process.exit(2); }
-const MODEL = process.env.TTS_MODEL || voice.model || "gemini-2.5-flash-preview-tts";
-const styled = /gemini-2\.5/.test(MODEL);
 // 旁白設定檔（voice.profile，docs/voice-profiles.md）：有就用它組「導演筆記」說明；沒有的舊片照舊用 voice.style（提示與快取雜湊都不變）
 const profile = opt.style ? null : resolveProfile(voice);
+// ONE＝一段送完（delivery deep-report，談晴說礙）：設定句＋念稿不換行、整篇不分段、任何模型都送設定句、模型與備援寫在設定檔。其他設定檔完全不受影響
+const ONE = isOneShot(profile);
+let MODEL = process.env.TTS_MODEL || voice.model || (ONE ? profile.model : null) || "gemini-2.5-flash-preview-tts";
+const FALLBACK = ONE && !process.env.TTS_MODEL ? profile.fallbackModel ?? null : null;
+const styled = /gemini-2\.5/.test(MODEL) || ONE;
 if (profile) { const bad = profileIssues(profile); if (bad.length) { console.error("✖ voice.profile 有問題：\n  " + bad.join("\n  ")); process.exit(2); } }
 const STYLE = profile ? buildDirection(profile) : (opt.style ?? voice.style ?? "").replace(/[。：:]+$/, "");
 if (styled && !STYLE) { console.error("script.json 缺 voice.profile 或 voice.style（或用 --style=）"); process.exit(2); }
 // 3.x 系列會把說明念出來 → 只送念稿，口音靠 languageCode；各段情緒在 3.x 目前不送（見 docs/voice-profiles.md）
 const prompt = (text) => (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
 // languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
-let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
+let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? (ONE && profile.languageCode === "off" ? null : LANGUAGE_CODE) : null);
+if (ONE && LANG === "off") LANG = null;
 const SR = 24000, KEEP = 0.04, FADE = 0.004, VOICE_DB = -40;
 
 /** 有旁白的幕；同一個 para 接成同一行，換段空一行 */
 let spoken = script.scenes.map((s, i) => ({ n: i + 1, id: s.id, text: (s.tts ?? s.narration ?? "").trim(), para: s.para ?? i })).filter((x) => x.text);
 if (opt.upto) { const k = spoken.findIndex((x) => x.id === opt.upto); if (k < 0) { console.error(`--upto=${opt.upto} 不是有旁白的幕`); process.exit(2); } spoken = spoken.slice(0, k + 1); }
 let full = "";
-for (const [k, x] of spoken.entries()) { if (k) full += x.para === spoken[k - 1].para ? "" : "\n\n"; x.from = full.length; full += x.text; x.to = full.length; }
+for (const [k, x] of spoken.entries()) { if (k) full += ONE || x.para === spoken[k - 1].para ? "" : "\n\n"; x.from = full.length; full += x.text; x.to = full.length; }
 
 const reqLog = path.join(dir, "tts-requests.json");
 const logReq = (row) => { const a = fs.existsSync(reqLog) ? JSON.parse(fs.readFileSync(reqLog, "utf8")) : []; a.push(row); fs.writeFileSync(reqLog, JSON.stringify(a, null, 1) + "\n"); };
@@ -82,6 +87,8 @@ async function synth(text, purpose) {
     if (process.env.TTS_NO_RETRY === "1") { const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e; } // 嚴格只送 1 次：任何錯誤都不重送
     if (r.status === 400 && LANG && /language/i.test(t) && i === 0) { console.warn(`  ⚠ ${MODEL} 不收 languageCode「${LANG}」（400）→ 拿掉重送一次`); LANG = null; continue; }
     if (r.status >= 500 && i === 0) { console.warn(`  ↻ ${r.status}，5 秒後重試一次`); await sleep(5000); continue; }
+    // 備援模型（只有設定檔寫了 fallbackModel 的 deep-report）：主模型失敗或不存在 → 換備援再送一次，和 tts-worktime.mjs 一樣
+    if (FALLBACK && MODEL !== FALLBACK) { console.warn(`  ⚠ ${MODEL} 失敗（${r.status}）→ 改用 ${FALLBACK} 重送一次`); MODEL = FALLBACK; i = -1; continue; }
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;
   }
 }
@@ -146,6 +153,24 @@ if (fs.existsSync(rawAbs) && !flags.has("--force")) {
   writeWav(rawAbs, take.pcm, take.rate);
   console.log(`✔ public/${rawRel}（${(take.pcm.length / take.rate).toFixed(2)}s）`);
 }
+// ── deep-report：gemini-3.8 會把設定句整句念出來（2026/11/15 實測 worktime 六次全部都念了，約 34 秒；Gemini 聽寫沒抓到）。
+//    本機檢查（不花請求）：把「設定句＋念稿」整段強制對齊，念稿第一個字之前若有 > 1 秒的說話聲＝設定句被念了 → 從念稿前 0.25 秒切掉。
+//    原檔留在 .take-<hash>.orig.wav，切好的覆蓋 raw（之後 --resplit 直接用）；沒念就什麼都不動。
+let promptRead = null;
+if (ONE) {
+  const chk = runFA([{ id: "prompt", file: rawAbs, text: prompt(full) }]).prompt;
+  const off = prompt(full).length - full.length;
+  const narr = chk?.units.find((u) => u.i >= off), pre = chk?.units.filter((u) => u.i < off) ?? [];
+  if (narr && pre.length && narr.start > 1.0 && pre.at(-1).end > 1.0) {
+    const cut = Math.max(pre.at(-1).end, narr.start - 0.25);
+    const orig = rawAbs.replace(/\.raw\.wav$/, ".orig.wav");
+    if (!fs.existsSync(orig)) fs.copyFileSync(rawAbs, orig);
+    take = { rate: take.rate, pcm: take.pcm.slice(Math.round(cut * take.rate)) };
+    writeWav(rawAbs, take.pcm, take.rate);
+    promptRead = { sec: +cut.toFixed(3), orig: path.relative(path.join(ROOT, "public"), orig) };
+    console.warn(`⚠ 設定句被念出來了（念稿從 ${narr.start.toFixed(2)}s 才開始）→ 切掉前 ${cut.toFixed(2)}s；原檔 public/${promptRead.orig}`);
+  } else console.log(`✔ 自我檢查：設定句沒有被念出來（念稿第一個字在 ${narr ? narr.start.toFixed(2) : "?"}s）`);
+}
 const { pcm, rate } = take;
 const total = pcm.length / rate;
 
@@ -194,7 +219,7 @@ for (const [k, e] of entries.entries()) e.gapAfter = k < entries.length - 1 ? +M
 const lead = spoken[0].vs, firstUnit = fa.units[0].start, tailExtra = total - spoken.at(-1).ve;
 const speechSec = spoken.at(-1).ve - spoken[0].vs;
 fs.writeFileSync(manifestPath, JSON.stringify({ slug, mode: "take", model: MODEL, voiceName: voice.voiceName, style: styled ? STYLE : null, profile: profile ? (profile.preset ?? "custom") : null, languageCode: LANG,
-  take: { file: rawRel, hash: takeHash, sec: +total.toFixed(3), speechSec: +speechSec.toFixed(3), leadSec: +lead.toFixed(3), firstCharSec: firstUnit, confidence: fa.confidence, minScore: fa.minScore, requests, prompt: prompt(full) },
+  take: { file: rawRel, hash: takeHash, sec: +total.toFixed(3), speechSec: +speechSec.toFixed(3), leadSec: +lead.toFixed(3), firstCharSec: firstUnit, confidence: fa.confidence, minScore: fa.minScore, requests, prompt: prompt(full), ...(promptRead ? { promptRead } : {}) },
   scenes: entries }, null, 2));
 console.log(`\n幕   秒    信心(最低)  之後停頓`);
 for (const e of entries) console.log(`${e.id}  ${e.sec.toFixed(2).padStart(5)}  ${e.confidence.toFixed(3)}(${e.minScore.toFixed(2)})  ${e.gapAfter == null ? "—" : e.gapAfter.toFixed(2)}${e.confidence < CONF_MIN ? "  ⚠ 信心偏低，請試聽" : ""}`);
@@ -209,6 +234,15 @@ if (flags.has("--asr")) {
   asr = { at: new Date().toISOString(), take: takeHash, model: tr.model, text: tr.text };
   fs.writeFileSync(asrPath, JSON.stringify(asr, null, 1) + "\n");
   console.log(`聽寫（${tr.model ?? "無可用模型"}）：${tr.text}`);
+}
+// 自我檢查（tts-worktime.mjs 的做法）：聽寫開頭沒有念出設定句、結尾有最後一幕的字。要聽寫才有；沒聽寫就只看上面的「第一個字之前有說話聲」
+if (asr?.text) {
+  const nz = (t) => String(t).replace(/[，。？！、：；「」『』\s,.?!:;]/g, "");
+  const said = nz(asr.text), lastTail = nz(spoken.at(-1).text).slice(-4);
+  const leak = /台灣人平常講話|直接說|深度報導|捲舌|兒化|配音員|TRANSCRIPT/.test(said.slice(0, 60));
+  const ended = said.slice(-20).includes(lastTail);
+  console.log(`自我檢查：設定句沒念出來 ${leak ? "✖" : "✔"}、結尾「${lastTail}」完整 ${ended ? "✔" : "✖"}`);
+  if (leak || !ended) console.warn("⚠ 自我檢查沒過：請試聽；要重做用 --force 整篇重來（1 次請求）");
 }
 // 回讀校驗紀錄（和 tts.mjs 同一個格式，align 會附在 tts-check.md 最後）。整篇模式不單幕重生：要重做就整篇重來（--force，1 次請求）
 const bad = entries.filter((e) => e.confidence < CONF_MIN);

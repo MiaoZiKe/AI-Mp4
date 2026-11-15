@@ -2,7 +2,7 @@
 
 使用者看完 short-talk 說：「談晴說礙的旁白先暫用這個，給我完整影片吧，並且是要有題材的，不是這樣的影片」。所以這支是有題材、有資料、有口徑提醒、有出處的完整片，畫面照頻道貼文的風格。
 
-**目前是無聲版**：正式配音只送了 1 次，回 HTTP 502（沒拿到聲音），照指示沒有重送。提示詞與接下來的步驟在 `voice.md`。
+**目前是第 4 版（2026/11/15）**：旁白＝`audio/worktime_sulafat.wav`（切掉被念出來的設定句），去掉晴與提問，53.37 秒。見下方「第 4 版」與 voice.md。
 
 ## 成片
 
@@ -78,3 +78,10 @@ npm run validate talk-ep01
 flock /tmp/aimp4-render.lock npm run still talk-ep01
 flock /tmp/aimp4-render.lock npm run render talk-ep01
 ```
+
+## 2026/11/15 第 4 版（worktime 旁白、介紹完就好）
+
+- 成片 `out/talk-ep01.mp4`：**53.37 秒**（1601 幀），15 鏡（s01–s13 內容、s14 下一集、s15 片尾卡）；影音軌等長、無黑幀、−14.4 LUFS。第 3 版備份 `out/talk-ep01.v3.mp4`、舊稿 `script.v3.json`。
+- 檢查圖：`out/talk-ep01-review.png`（每 2.2 秒一格）、`out/talk-ep01/check/q1–q4.png`（每 0.25 秒）、`first3s.png`（前 3 秒每 2 幀）。
+- 之後的集數：script.json 寫 `voice: { voiceName: "Sulafat", mode: "take", profile: "tanqing-report" }`，`npm run tts <slug>` 自動配音（1 次請求；設定句被念出來會自動切掉）。
+- 人耳待確認：s02「二零二五」（聽寫曾聽成二零二三）、s04 對齊信心 0.31、所有數字念法。

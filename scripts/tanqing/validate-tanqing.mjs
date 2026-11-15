@@ -118,13 +118,14 @@ export function validateTanqing(script, h) {
   if (p0.titleAt !== undefined || !p0.figure?.number) E("第一幕要有 figure.number，大標不能寫 titleAt：第 0 幀就要有大標與數字");
   if (!film && numbers !== 1) E(`全片有 ${numbers} 個 figure.number；這個頻道一支片只放一個有來源的數字`);
   if (film && numbers < 1) E("全片沒有 figure.number");
-  if (!qing) E("全片沒有 kind: \"qing\" 的頁：結尾要留一小段「晴」");
+  // 完整片 2026/11/15 起不要「晴」收尾與提問（使用者：「後面廢話有點多，介紹完就好」）→ 結尾＝介紹完 → 下一集 → 片尾卡；短片照舊要晴
+  if (!qing && !film) E("全片沒有 kind: \"qing\" 的頁：結尾要留一小段「晴」");
   if (film) {
-    for (const k of ["ask", "next", "end"]) if (!seen.has(k)) E(`完整片要有 kind: "${k}" 的頁（提問／下一集／片尾卡）`);
+    for (const k of ["next", "end"]) if (!seen.has(k)) E(`完整片要有 kind: "${k}" 的頁（下一集／片尾卡）`);
     const last = scenes[scenes.length - 1];
     if (last.props?.kind !== "end") E("完整片最後一幕要是片尾卡（kind: \"end\"）");
     if (qing / scenes.length > 1 / 3) W(`「晴」佔 ${qing}/${scenes.length} 頁，超過三分之一`);
-    if (scenes.length < 18 || scenes.length > 24) W(`完整片 ${scenes.length} 鏡，建議 18–24 鏡`);
+    if (scenes.length < 15 || scenes.length > 24) W(`完整片 ${scenes.length} 鏡，建議 15–24 鏡`);
     if (chars < 230 || chars > 290) W(`旁白共 ${chars} 字，完整片建議 230–290 字（45–75 秒）`);
   } else if (chars < 45 || chars > 60) W(`旁白共 ${chars} 字，短片建議 45–60 字（約 10–15 秒）`);
   const est = Math.round(chars / 4.7 + 1.5) + (film ? Number(scenes[scenes.length - 1].durationSec ?? 0) : 0);
