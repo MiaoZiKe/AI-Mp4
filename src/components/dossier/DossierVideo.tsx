@@ -643,7 +643,7 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
 type Place = { zh: string; en: string; lon: number; lat: number };
-type NewsSpec = { layout?: "fill"; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
+type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
 type ShotNews = { dateline?: string; place?: string; lt?: string };
 const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
 const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
@@ -725,7 +725,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
   return (
     <>
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
-        <LiTile size={ln.BAR_H} /><div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
+        <LiTile size={ln.BAR_H} /><div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{news.mark ?? (name === "哩股哩股" ? "LIGULIGU" : name)}</span></div>
         <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
           <span style={{ ...sans(ln.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
           {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: ln.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
