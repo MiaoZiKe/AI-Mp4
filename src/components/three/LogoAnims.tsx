@@ -282,57 +282,89 @@ const Blueprint: React.FC<{ n: number }> = ({ n }) => {
   );
 };
 
-// ── 10 透明圈（使用者 2026/11/15：「做一個符合頻道名稱的」）：「科技＋透明＋圈」
-//    ① 一枚透明玻璃圈斜放著，像影片裡的爆炸圖分成五層（底板、電路層、晶片層、外框、玻璃面）浮在空中，
-//       看得穿每一層：裡面的電路、晶片格子都透出來＝「透明」；
-//    ② 一道掃描光由左到右掃過，五層依序收回疊成一片、轉正＝「把結構拆開看清楚，再組回來」；
-//    ③ 收齊時圓弧由透明變實心藍，裡面的電路從圓弧中心淡出，橘點在缺口點亮＝「圈」，之後外圈有一層透明的玻璃光環緩慢呼吸 ──
-const TC_LAYERS = [
-  { k: "base", dy: 54 }, { k: "trace", dy: 27 }, { k: "chip", dy: 0 }, { k: "frame", dy: -27 }, { k: "glass", dy: -54 },
-];
+// ── 10 透明圈 v2（使用者 2026/11/15：「不夠吸引人 幫我優化」）：「科技＋透明＋圈」
+//    ① 0–12 幀：五層透明圈（底板、電路、晶片、外框、玻璃面）從上下左右不同方向帶旋轉飛進來，放大到約 1.6 倍斜放成爆炸圖；
+//    ② 11–25 幀：一道寬的 X 光掃描帶由上往下掃，掃過的那一層電路亮起橘／藍；
+//    ③ 23–33 幀：由上而下一層接一層砸合，每砸一下畫面輕震；同時轉正、縮回原尺寸；
+//    ④ 34 幀鎖定：白→藍的圓環閃一下、兩道衝擊波、粒子往四面八方迸開，橘點從上方掉進缺口回彈；
+//    ⑤ 待機：每 30 幀一道白色玻璃反光沿圓環掃過，外圈有幾顆粒子繞行 ──
 const TC_TRACES: [number, number][][] = [
-  [[32, 50], [42, 50], [46, 44], [54, 44]], [[50, 30], [50, 40], [56, 46]], [[68, 50], [58, 50], [54, 56], [46, 56]],
-  [[50, 70], [50, 60], [44, 54]], [[36, 38], [42, 44]], [[64, 62], [58, 56]],
+  [[30, 50], [40, 50], [45, 44], [55, 44]], [[50, 28], [50, 38], [57, 45]], [[70, 50], [60, 50], [55, 56], [45, 56]],
+  [[50, 72], [50, 62], [43, 55]], [[34, 36], [41, 43]], [[66, 64], [59, 57]], [[64, 34], [58, 40]], [[34, 64], [40, 58]],
 ];
+const TC_PTS = (pts: [number, number][]) => pts.map((p) => p.join(",")).join(" ");
+// 每層：爆炸圖位置 dy、飛進來的方向（dx,dy）與旋轉、砸合時間
+const TC_LAYERS = [
+  { k: "base", dy: 38, fx: 0, fy: 140, rot: 0, inAt: 0, slam: 32 },
+  { k: "trace", dy: 19, fx: -150, fy: 20, rot: -25, inAt: 2, slam: 30 },
+  { k: "chip", dy: 0, fx: 150, fy: -10, rot: 30, inAt: 4, slam: 28 },
+  { k: "frame", dy: -19, fx: -60, fy: -150, rot: 20, inAt: 6, slam: 26 },
+  { k: "glass", dy: -38, fx: 130, fy: -130, rot: -30, inAt: 8, slam: 24 },
+];
+const TC_BURST = (() => { const r = seeded(4242); return Array.from({ length: 56 }, () => ({ a: r() * 360, d: 26 + r() * 46, s: 0.7 + r() * 1.3, o: r() < 0.3, sp: 0.8 + r() * 0.5 })); })();
 const Transparent: React.FC<{ n: number }> = ({ n }) => {
-  const c = col();
-  const appear = tween(n, 0, 10, EASE.enter);               // 五層浮現
-  const sweep = tween(n, 8, 18, EASE.move);                 // 掃描光
-  const close = tween(n, 12, 20, EASE.move);                // 層與層收攏
-  const tilt = 1 - tween(n, 16, 16, EASE.move);             // 斜放 → 轉正
-  const solid = tween(n, 26, 8, EASE.enter);                // 圓弧變實心
-  const inner = 1 - tween(n, 30, 10, EASE.exit);            // 內部結構淡出
-  const LOCK = 34;
-  const sy = lerp(1, 0.5, tilt), skew = -18 * tilt;         // 等距斜放
-  const layerG = (dy: number, children: React.ReactNode, o: number) =>
-    <g transform={`translate(50 ${50 + dy * (1 - close) * appear}) skewX(${skew.toFixed(2)}) scale(1 ${sy.toFixed(3)}) translate(-50 -50)`} opacity={o}>{children}</g>;
-  const sx = lerp(-40, 140, sweep), zoom = lerp(1.3, 1, close);
+  const c = col(), white = H.panel ?? "#FFFFFF", navy = c.ink, LOCK = 34;
+  const tilt = 1 - tween(n, 24, 10, EASE.move);                     // 斜放 → 轉正
+  const zoom = lerp(1, 1.6, 1 - tween(n, 24, 11, EASE.move));        // 1.6 倍 → 原尺寸
+  const lift = 28 * (1 - tween(n, 24, 10, EASE.move));               // 建構時整組稍微往下，避開頁首
+  // 砸合的震動：每層落下那一刻
+  let shake = 0; for (const L of TC_LAYERS) { const d = n - (L.slam + 3); if (d >= 0 && d < 6) shake += (L.k === "base" ? 0 : 1.6) * Math.exp(-d / 1.5) * Math.cos(d * 2.4); }
+  const lockShake = n >= LOCK && n < LOCK + 8 ? 2.4 * Math.exp(-(n - LOCK) / 2) * Math.cos((n - LOCK) * 2.6) : 0;
+  const sy = lerp(1, 0.55, tilt), skew = -16 * tilt;
+  const scanY = lerp(4, 112, tween(n, 11, 14, EASE.move));         // 掃描帶在整組座標的 y
+  const scanOn = n >= 11 && n <= 26;
+  const inner = 1 - tween(n, LOCK, 5, EASE.exit);                     // 鎖定後內部結構收掉
+  const flash = n >= LOCK ? Math.exp(-(n - LOCK) / 3.5) : 0;
+  const layer = (L: (typeof TC_LAYERS)[number], i: number) => {
+    const fin = tween(n, L.inAt, 10, EASE.move);
+    if (fin <= 0) return null;
+    const close = tween(n, L.slam, 4, EASE.enter);                   // 4 幀砸下（加速）
+    const ox = L.fx * (1 - fin), oy = L.fy * (1 - fin), r = L.rot * (1 - fin);
+    const y = 50 + L.dy * (1 - close) + oy;
+    const lit = tween(n, 12 + (4 - i) * 2.6, 4, EASE.enter);          // 掃描帶經過後亮起
+    const cx = 50, cy = 50;
+    let body: React.ReactNode = null;
+    if (L.k === "base") body = <><circle cx={cx} cy={cy} r={32} fill={c.grid} stroke={navy} strokeWidth={1.6} /><circle cx={cx} cy={cy} r={27} fill="none" stroke={c.blue} strokeWidth={0.8} strokeDasharray="2 2" /></>;
+    else if (L.k === "trace") body = <><circle cx={cx} cy={cy} r={32} fill={white} fillOpacity={0.35} stroke={navy} strokeWidth={1.3} />
+      {TC_TRACES.map((p, j) => <polyline key={j} points={TC_PTS(p)} fill="none" stroke={lit > 0.5 ? (j % 3 === 1 ? c.orange : c.blue) : c.trace} strokeWidth={lerp(1.4, 2.4, lit)} strokeLinejoin="round" strokeLinecap="round" />)}
+      {TC_TRACES.map((p, j) => <circle key={`p${j}`} cx={p[0][0]} cy={p[0][1]} r={lerp(1.4, 2.3, lit)} fill={c.orange} stroke={navy} strokeWidth={0.5} />)}</>;
+    else if (L.k === "chip") body = <><circle cx={cx} cy={cy} r={32} fill={white} fillOpacity={0.3} stroke={navy} strokeWidth={1.3} />
+      <rect x={38.5} y={38.5} width={23} height={23} rx={2} fill={white} stroke={navy} strokeWidth={1.4} />
+      {[0, 1, 2].map((a) => [0, 1, 2].map((b) => <rect key={`${a}${b}`} x={41 + a * 6.4} y={41 + b * 6.4} width={5} height={5} rx={0.8} fill={lit > 0.5 && (a + b) % 2 === 0 ? c.orange : c.blue} />))}</>;
+    else if (L.k === "frame") body = <><circle cx={cx} cy={cy} r={32} fill="none" stroke={navy} strokeWidth={1.3} /><path d={ARC} fill="none" stroke={navy} strokeWidth={11.5} strokeLinecap="round" /><path d={ARC} fill="none" stroke={lit > 0.5 ? c.blue : c.soft} strokeWidth={8.5} strokeLinecap="round" /></>;
+    else body = <><circle cx={cx} cy={cy} r={32} fill={white} fillOpacity={0.45} stroke={c.blue} strokeWidth={1.6} />
+      <path d="M26 40 A26 26 0 0 1 40 25" fill="none" stroke={white} strokeWidth={3.4} strokeLinecap="round" />
+      <path d="M62 74 A26 26 0 0 0 74 62" fill="none" stroke={white} strokeWidth={2} strokeLinecap="round" /></>;
+    const o = inner;
+    if (o <= 0) return null;
+    return <g key={L.k} opacity={o} transform={`translate(${(50 + ox).toFixed(2)} ${y.toFixed(2)}) rotate(${r.toFixed(1)}) skewX(${skew.toFixed(2)}) scale(1 ${sy.toFixed(3)}) translate(-50 -50)`}>{body}</g>;
+  };
   return (
-    <g transform={`translate(50 50) scale(${zoom.toFixed(3)}) translate(-50 -50)`}>
-      <defs>
-        <clipPath id="tc-in"><circle cx={50} cy={50} r={21} /></clipPath>
-        <clipPath id="tc-swept"><rect x={-60} y={-60} width={Math.max(0, sx + 60)} height={220} /></clipPath>
-      </defs>
-      {/* 每層的透明圓板（看得穿） */}
-      {TC_LAYERS.map((L, i) => {
-        const o = appear * (1 - tween(n, 28, 14, EASE.exit));
-        const body = L.k === "base" ? <circle cx={50} cy={50} r={31} fill={c.soft} opacity={0.6} stroke={c.blue} strokeWidth={1} />
-          : L.k === "trace" ? <g clipPath="url(#tc-in)">{TC_TRACES.map((pts, j) => <polyline key={j} points={pts.map((p) => p.join(",")).join(" ")} fill="none" stroke={c.blue} strokeWidth={1.8} strokeLinejoin="round" opacity={1} />)}{TC_TRACES.map((pts, j) => <circle key={`p${j}`} cx={pts[0][0]} cy={pts[0][1]} r={1.4} fill={c.orange} />)}</g>
-          : L.k === "chip" ? <g>{[0, 1, 2].map((a) => [0, 1, 2].map((b) => <rect key={`${a}${b}`} x={41 + a * 6.4} y={41 + b * 6.4} width={5} height={5} fill={c.blue} opacity={0.35 + 0.2 * ((a + b) % 2)} />))}<rect x={39.5} y={39.5} width={21} height={21} fill="none" stroke={c.blue} strokeWidth={0.8} /></g>
-          : L.k === "frame" ? <circle cx={50} cy={50} r={25} fill="none" stroke={c.blue} strokeWidth={9} opacity={0.4} />
-          : <><circle cx={50} cy={50} r={31} fill={c.paper} opacity={0.25} stroke={c.blue} strokeWidth={0.9} strokeDasharray="2 1.5" /><path d="M30 36 A24 24 0 0 1 44 27" fill="none" stroke="#FFFFFF" strokeWidth={2.2} strokeLinecap="round" opacity={0.9} /></>;
-        return <React.Fragment key={L.k}>{layerG(L.dy, body, o)}</React.Fragment>;
-      })}
-      {/* 層與層之間的虛線（爆炸圖的對位線），收攏後消失 */}
-      {close < 0.98 ? [-31, 31].map((x) => <line key={x} x1={50 + x} y1={50 - 30 * (1 - close) * appear * 0.5} x2={50 + x} y2={50 + 30 * (1 - close) * appear * 0.5} stroke={c.faint} strokeWidth={0.5} strokeDasharray="1.5 1.5" opacity={appear * (1 - close)} />) : null}
-      {/* 掃描光：掃過的地方圓弧先出現描邊 */}
-      {sweep > 0 && sweep < 1 ? <><rect x={sx - 6} y={-40} width={12} height={180} fill={c.blue} opacity={0.08} /><rect x={sx - 0.8} y={-40} width={1.6} height={180} fill={c.blue} opacity={0.7} /></> : null}
-      <g clipPath="url(#tc-swept)">{layerG(0, <path d={ARC} fill="none" stroke={c.blue} strokeWidth={9} strokeLinecap="round" opacity={0.25 + 0.75 * solid} />, 1)}</g>
-      {/* 收齊後：透明玻璃光環呼吸 */}
-      {n >= LOCK ? <circle cx={50} cy={50} r={32 + 2 * Math.sin((n - LOCK) / 8)} fill="none" stroke={c.blue} strokeWidth={0.8} opacity={0.35 * tween(n, LOCK, 8, EASE.enter)} /> : null}
-      {n >= LOCK ? (() => { const u = tween(n, LOCK, 20, EASE.move); return u < 1 ? <circle cx={50} cy={50} r={27 + 30 * u} fill="none" stroke={c.blue} strokeWidth={2 * (1 - u)} opacity={0.7 * (1 - u)} /> : null; })() : null}
-      {inner > 0.02 && solid > 0 ? <g opacity={inner * solid} clipPath="url(#tc-in)">{TC_TRACES.map((pts, j) => <polyline key={j} points={pts.map((p) => p.join(",")).join(" ")} fill="none" stroke={c.blue} strokeWidth={1} opacity={0.5} />)}</g> : null}
-      <Dot s={n < LOCK ? 0 : bounce(n, LOCK) * breathe(n, 52)} />
+    <g transform={`translate(${(lockShake * 0.6).toFixed(2)} ${(shake + lockShake + lift).toFixed(2)}) translate(50 50) scale(${zoom.toFixed(3)}) translate(-50 -50)`}>
+      {/* 爆炸圖的對位虛線 */}
+      {tilt > 0.05 ? [-32, 32].map((x) => <line key={x} x1={50 + x * lerp(1, 1, tilt)} y1={50 - 38} x2={50 + x} y2={50 + 38} stroke={navy} strokeWidth={0.6} strokeDasharray="1.6 1.6" opacity={tween(n, 8, 6, EASE.enter) * (1 - tween(n, 24, 6, EASE.exit))} />) : null}
+      {/* 衝擊波 */}
+      {[0, 5].map((d) => { const u = tween(n, LOCK + d, 20, EASE.move); return u > 0 && u < 1 ? <circle key={`w${d}`} cx={50} cy={50} r={30 + 46 * u} fill="none" stroke={d ? c.orange : c.blue} strokeWidth={3.2 * (1 - u)} opacity={1 - u} /> : null; })}
+      {TC_LAYERS.map(layer)}
+      {/* X 光掃描帶：寬帶＋最前緣一條亮線 */}
+      {scanOn ? <g>
+        <rect x={0} y={scanY - 22} width={100} height={22} fill={c.soft} opacity={0.35} />
+        <rect x={-4} y={scanY - 1.6} width={108} height={3.2} fill={white} />
+        <rect x={-4} y={scanY + 1.6} width={108} height={1.4} fill={c.blue} />
+        <rect x={-6} y={scanY - 3} width={4} height={6} fill={c.orange} /><rect x={102} y={scanY - 3} width={4} height={6} fill={c.orange} />
+      </g> : null}
+      {/* 鎖定：白→藍閃光圓環 */}
+      {flash > 0.03 ? <path d={ARC} fill="none" stroke={flash > 0.55 ? white : c.blue} strokeWidth={9 + 16 * flash} strokeLinecap="round" opacity={Math.min(1, flash * 1.4)} /> : null}
+      {n >= LOCK ? <path d={ARC} fill="none" stroke={c.blue} strokeWidth={9} strokeLinecap="round" /> : null}
+      {/* 粒子迸開 */}
+      {n >= LOCK ? TC_BURST.map((b, i) => { const u = tween(n, LOCK, 16 * b.sp, EASE.move); if (u >= 1) return null; const [x, y] = polar(b.a, 30 + b.d * u); return <circle key={`b${i}`} cx={x} cy={y} r={b.s * (1 - u * 0.8)} fill={b.o ? c.orange : c.blue} opacity={1 - u} />; }) : null}
+      {/* 待機：玻璃反光沿圓環掃過 */}
+      {n > LOCK + 10 ? (() => { const u = ((n - LOCK - 10) % 30) / 16; if (u >= 1) return null; const t0 = Math.max(0, u - 0.18), t1 = Math.min(1, u);
+        const [ax, ay] = onArc(t0), [bx, by] = onArc(t1);
+        return <path d={`M${ax.toFixed(2)} ${ay.toFixed(2)} A25 25 0 0 1 ${bx.toFixed(2)} ${by.toFixed(2)}`} fill="none" stroke={white} strokeWidth={3} strokeLinecap="round" opacity={0.9 * Math.sin(Math.PI * u)} />; })() : null}
+      {n > LOCK + 6 ? [0, 1, 2, 3, 4, 5].map((i) => { const a = (n - LOCK) * 2.2 + i * 60, rr = 37 + 3 * Math.sin((n + i * 11) / 9), [x, y] = polar(a, rr); return <circle key={`o${i}`} cx={x} cy={y} r={i % 3 === 1 ? 1.5 : 1.1} fill={i % 3 === 1 ? c.orange : c.blue} opacity={0.8 * tween(n, LOCK + 6 + i * 2, 8, EASE.enter)} />; }) : null}
+      {/* 橘點從上方掉進缺口 */}
+      {n >= LOCK ? (() => { const k = tween(n, LOCK, 5, EASE.enter), y = lerp(DOT[1] - 40, DOT[1], k); return <Dot s={bounce(n, LOCK + 5) * breathe(n, 58)} y={y} />; })() : null}
     </g>
   );
 };

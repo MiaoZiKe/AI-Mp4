@@ -517,8 +517,10 @@ const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicke
   const k = tween(f, at, 8, EASE.enter);
   if (k <= 0) return null;
   const n = f - at, b = 120, x0 = L.X + 10, x1 = L.W - L.X - 10, y0 = L.STAGE_TOP + 90, y1 = L.BAND_TOP - 60;
-  const draw = tween(f, at + 2, 14, EASE.move), name = tween(f, at + 28, 10, EASE.enter), line = tween(f, at + 36, 14, EASE.move), nx = tween(f, at + 48, 8, EASE.enter);
+  const tc = spec?.logoAnim === "transparent"; // 透明圈 v2：字跟著 34 幀鎖定才逐字彈出＋一道光掃過
+  const draw = tween(f, at + 2, 14, EASE.move), name = tween(f, at + (tc ? 34 : 28), 10, EASE.enter), line = tween(f, at + (tc ? 44 : 36), tc ? 10 : 14, EASE.move), nx = tween(f, at + (tc ? 54 : 48), 8, EASE.enter);
   const trail = spec?.trail ?? [], ring = (H as any).mark === "ring";
+  const nameStr = channel?.name ?? "科技", sweepX = tween(f, at + 40, 12, EASE.move);
   return (
     <AbsoluteFill style={{ background: H.bg, opacity: k }}>
       <HudBackdrop f={f} lv={0} />
@@ -530,11 +532,15 @@ const HudEndCard: React.FC<{ f: number; at: number; spec: { next?: string; kicke
           <rect x={-38} y={-38} width={76} height={76} fill={H.amber} transform={`rotate(${(n * 0.6).toFixed(1)})`} /></g>}
         </g>
       </svg>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 860, textAlign: "center", opacity: name, transform: `translateY(${Math.round(30 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>
+      {tc ? <div style={{ position: "absolute", left: 0, right: 0, top: 860, display: "flex", justifyContent: "center", ...zh(148, H.text), letterSpacing: "0.06em", overflow: "hidden", height: 210 }}>
+        {[...nameStr].map((ch, i) => { const q = tween(f, at + 34 + i * 2, 7, EASE.enter), pop = 1 + 0.25 * Math.sin(Math.PI * tween(f, at + 34 + i * 2, 9, EASE.move));
+          return <span key={i} style={{ display: "inline-block", opacity: q, transform: `translateY(${Math.round(60 * (1 - q))}px) scale(${pop.toFixed(3)})`}}>{ch}</span>; })}
+        {sweepX > 0 && sweepX < 1 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(-20 + 130 * sweepX).toFixed(1)}%`, width: 70, background: H.panel, opacity: 0.85, transform: "skewX(-20deg)", mixBlendMode: "normal" }} /> : null}
+      </div> : <div style={{ position: "absolute", left: 0, right: 0, top: 860, textAlign: "center", opacity: name, transform: `translateY(${Math.round(30 * (1 - name))}px)`, ...zh(148, H.text), letterSpacing: "0.06em" }}>{channel?.name ?? "科技"}</div>}
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: 1072, width: 760 * line, height: 5, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: 1106, textAlign: "center", opacity: line, ...zh(68, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
-      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1250, display: "flex", justifyContent: "center", gap: 14 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + 38 + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1400, display: "flex", justifyContent: "center", opacity: nx, transform: `scale(${(1 + 0.08 * Math.sin(Math.PI * tween(f, at + 50, 8, EASE.move))).toFixed(3)})` }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: 1250, display: "flex", justifyContent: "center", gap: 14 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(36, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 18px 8px", opacity: tween(f, at + (tc ? 48 : 38) + i * 3, 5, EASE.enter) }}>{t}</div>)}</div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: 1400, display: "flex", justifyContent: "center", opacity: nx, transform: `scale(${(1 + (tc ? 0.16 : 0.08) * Math.sin(Math.PI * tween(f, at + (tc ? 56 : 50), 8, EASE.move))).toFixed(3)})` }}><div style={{ ...zh(60, onC(H.amber), 800), background: H.amber, padding: "10px 44px 16px", letterSpacing: "0.06em" }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
     </AbsoluteFill>
   );
 };
