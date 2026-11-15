@@ -87,7 +87,42 @@ const CardFace: React.FC<{ f: number; v: Variant }> = ({ f, v }) => {
   );
 };
 
-export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; header?: boolean; format?: "tall" | "square"; variant?: Variant }> = ({ f, keyword = "", kw = true, format = "tall", variant: v = "A" }) => {
+export type EndBg = "desk" | "light" | "dark" | "white";
+/** 獨立片尾頁的背景（不是內容片的桌面）：light 淡紫藍到奶油漸層＋淡點陣＋中央柔光；dark 深靛藍夜空＋星點＋發光；white 純白＋大面積柔光暈與景深粒子 */
+const EndBackdrop: React.FC<{ f: number; bg: Exclude<EndBg, "desk"> }> = ({ f, bg }) => {
+  const lockT = f - TL.lock, burst = lockT >= 0 ? Math.exp(-lockT / 16) : 0, glowIn = clamp(f / 20);
+  const cx = CARD_C.x, cy = CARD_C.y + 110;
+  const baseBg = bg === "light" ? "linear-gradient(180deg,#E6E9FF 0%,#F1ECFF 48%,#FFF4DE 100%)" : bg === "dark" ? "linear-gradient(180deg,#0A0E2B 0%,#151B4A 55%,#1F1B52 100%)" : "linear-gradient(180deg,#FFFFFF 0%,#F8F7FF 100%)";
+  const parts = Array.from({ length: bg === "white" ? 26 : 44 }, (_, k) => {
+    const x = hash(k * 3.1) * 1080, sp = 0.25 + 0.7 * hash(k * 5.3), y = ((hash(k * 1.9) * 1920 - f * sp * 2.2) % 1920 + 1920) % 1920, d = hash(k * 8.8), size = bg === "white" ? 8 + 34 * d : 5 + 9 * d;
+    const colr = [P.fill, "#8E9BFF", T.color.sky.fill, T.color.plum.fill, T.color.note.fill][k % 5];
+    const blur = bg === "white" ? (d > 0.62 ? 5 : d < 0.2 ? 2 : 0) : 0;
+    return <rect key={k} x={x + 18 * Math.sin(f / 40 + k)} y={y} width={size} height={size} rx={bg === "white" ? size * 0.28 : 2} fill={colr} opacity={(bg === "dark" ? 0.35 + 0.45 * d : bg === "white" ? 0.22 + 0.3 * d : 0.3 + 0.3 * d) * (0.6 + 0.4 * Math.sin(f / 9 + k))} style={blur ? { filter: `blur(${blur}px)` } : undefined} />;
+  });
+  return (
+    <AbsoluteFill style={{ background: baseBg }}>
+      <svg width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+        <defs>
+          <radialGradient id="ebGlow"><stop offset="0" stopColor={bg === "dark" ? "#6F7DFF" : "#8E9BFF"} stopOpacity={bg === "dark" ? 0.55 : 0.5} /><stop offset="1" stopColor={bg === "dark" ? "#6F7DFF" : "#8E9BFF"} stopOpacity={0} /></radialGradient>
+          <radialGradient id="ebWarm"><stop offset="0" stopColor="#FFC98A" stopOpacity={0.55} /><stop offset="1" stopColor="#FFC98A" stopOpacity={0} /></radialGradient>
+          <radialGradient id="ebMint"><stop offset="0" stopColor="#9FE6CF" stopOpacity={0.5} /><stop offset="1" stopColor="#9FE6CF" stopOpacity={0} /></radialGradient>
+          <radialGradient id="ebVig"><stop offset="0.55" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#1B2545" stopOpacity={0.12} /></radialGradient>
+          <pattern id="ebDots" width={54} height={54} patternUnits="userSpaceOnUse"><circle cx={27} cy={27} r={2.2} fill="#5566F0" opacity={0.13} /></pattern>
+        </defs>
+        {bg === "light" ? <rect width={1080} height={1920} fill="url(#ebDots)" /> : null}
+        {bg === "dark" ? Array.from({ length: 70 }, (_, k) => <circle key={k} cx={hash(k * 2.3) * 1080} cy={hash(k * 4.7) * 1920} r={1 + 2.2 * hash(k * 9.1)} fill="#fff" opacity={(0.25 + 0.6 * hash(k * 1.3)) * (0.55 + 0.45 * Math.sin(f / (6 + 8 * hash(k)) + k))} />) : null}
+        {bg === "white" ? <g><circle cx={150 + 60 * Math.sin(f / 50)} cy={420} r={420} fill="url(#ebGlow)" opacity={0.55} /><circle cx={950 + 50 * Math.cos(f / 44)} cy={1000} r={460} fill="url(#ebWarm)" opacity={0.8} /><circle cx={300 + 40 * Math.sin(f / 37)} cy={1560} r={400} fill="url(#ebMint)" opacity={0.7} /><circle cx={840} cy={260} r={300} fill="url(#ebWarm)" opacity={0.5} /></g> : null}
+        <circle cx={cx} cy={cy} r={(bg === "white" ? 560 : 640) * (0.9 + 0.1 * Math.sin(f / 14)) + 140 * burst} fill="url(#ebGlow)" opacity={glowIn * (0.7 + 0.6 * burst)} />
+        {bg === "dark" ? <circle cx={cx} cy={cy} r={330 + 40 * burst} fill="none" stroke="#8E9BFF" strokeWidth={3} opacity={0.18 + 0.3 * burst} /> : null}
+        {parts}
+        {bg === "white" ? <rect width={1080} height={1920} fill="url(#ebVig)" /> : null}
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; header?: boolean; format?: "tall" | "square"; variant?: Variant; bg?: EndBg }> = ({ f, keyword = "", kw = true, format = "tall", variant: v = "A", bg = "desk" }) => {
+  const dark = bg === "dark", INK = dark ? "#F4F6FF" : T.ink, INK2 = dark ? "#BCC5EE" : T.ink2;
   const sh = shakeAt(f), sc = landScale(f) * lockScale(f), cc = cupCenter();
   // 光掃過白卡（落地那一刻）：斜的淡藍色帶從左上滑到右下
   const glossT = (f - (TL.flip[1] - 4)) / 10, gloss = glossT > 0 && glossT < 1;
@@ -103,12 +138,12 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
         <clipPath id="caClip"><rect width={CARD.w} height={CARD.h} rx={44} /></clipPath>
       </defs>
       {/* 桌面（和 short-ai 同一張粉彩桌，放大鋪滿）＋桌上的小東西 */}
-      <g transform={`translate(${DESK.cx} ${DESK.top})`}>
+      {bg === "desk" ? <g transform={`translate(${DESK.cx} ${DESK.top})`}>
         <Shade x={30} y={30} w={DESK.S} h={DESK.S} r={70} z={-110} />
         <Slab id="caDesk" x={0} y={0} w={DESK.S} h={DESK.S} t={40} r={64} c={S.desk} />
         <Slab id="caKb" x={PROPS[0].x} y={PROPS[0].y} z={4} w={PROPS[0].w} h={PROPS[0].h} t={12} r={12} c={S.lav}>{Array.from({ length: 21 }, (_, i) => <rect key={i} x={10 + (i % 7) * 34} y={14 + Math.floor(i / 7) * 28} width={26} height={20} rx={5} fill={T.card} opacity={0.85} />)}</Slab>
         <Box x={PROPS[1].x} y={PROPS[1].y} dx={60} dy={60} dz={50} c={S.mint} />
-      </g>
+      </g> : null}
       {/* 卡片：三張，後面兩張色卡晚一點出發 */}
       <g transform={cardTf}>
         {[0, 1, 2].map((i) => { const m = cardMatV(i, f, v), c = CARDS[i], bg = c.bg === "white" ? T.card : T.color[c.bg].soft, side = c.bg === "white" ? T.cardSide : c.bg === "plum" ? T.color.plum.fill : T.color.note.side; return <g key={i} transform={css(m)}><CardBody bg={bg} side={side} shadow={i === 2} />{i === 2 ? (
@@ -150,7 +185,7 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
       })()}
       {/* 字標：C a f f 逐字彈出，n e，最後 AI 藍色塊「啪」蓋上 */}
       <g transform={`translate(${shakeAt(f).dx} ${shakeAt(f).dy})`}>
-        {TL.letters.map((lf, i) => { if (f < lf) return null; const idx = i < 4 ? i : i + 2, t = backOut((f - lf) / 6, 2), dy = Math.round(46 * (1 - t)), s = 0.6 + 0.4 * Math.min(1, t); return <text key={i} transform={`translate(${WORD_X0 + (idx + 0.5) * cw} ${wordY + dy}) scale(${s})`} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={WORD.px} fill={T.ink} opacity={clamp((f - lf) / 2)}>{"Caffne"[i]}</text>; })}
+        {TL.letters.map((lf, i) => { if (f < lf) return null; const idx = i < 4 ? i : i + 2, t = backOut((f - lf) / 6, 2), dy = Math.round(46 * (1 - t)), s = 0.6 + 0.4 * Math.min(1, t); return <text key={i} transform={`translate(${WORD_X0 + (idx + 0.5) * cw} ${wordY + dy}) scale(${s})`} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={WORD.px} fill={INK} opacity={clamp((f - lf) / 2)}>{"Caffne"[i]}</text>; })}
         {f >= TL.stamp ? (() => {
           const u = clamp(stampT / 5), sc2 = 1 + 0.9 * (1 - easeOut(u)), w = 2 * cw - 2, h = WORD.px * 1.1, x = WORD_X0 + 4 * cw + 1, y = wordY - 0.8 * WORD.px - 10;
           const iPop = f >= TL.iPop ? backOut((f - TL.iPop) / 5, 2.6) : 0;
@@ -167,7 +202,7 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
       {/* 標語（一格一格抹出，叮叮兩顆星）、留言列 */}
       {f >= TL.tagline ? (() => {
         const w = Math.ceil(8 * clamp((f - TL.tagline) / 8)) / 8, dy = Math.round(18 * (1 - backOut((f - TL.tagline) / 8, 1.2)));
-        return <g transform={`translate(0 ${dy})`}><clipPath id="caTag"><rect x={TAG_BOX.x} y={TAG_BOX.y - 4} width={TAG_BOX.w * w} height={TAG_BOX.h + 8} /></clipPath><text clipPath="url(#caTag)" x={540} y={TAG_BOX.y + 46} textAnchor="middle" fontFamily={FONT_ZH} fontWeight={800} fontSize={42} fill={T.ink2}>{TAGLINE}</text></g>;
+        return <g transform={`translate(0 ${dy})`}><clipPath id="caTag"><rect x={TAG_BOX.x} y={TAG_BOX.y - 4} width={TAG_BOX.w * w} height={TAG_BOX.h + 8} /></clipPath><text clipPath="url(#caTag)" x={540} y={TAG_BOX.y + 46} textAnchor="middle" fontFamily={FONT_ZH} fontWeight={800} fontSize={42} fill={INK2}>{TAGLINE}</text></g>;
       })() : null}
       <Spark x={150} y={TAG_BOX.y - 6} s={26} o={f >= TL.tagline && f < TL.tagline + 10 ? 1 : 0} /><Spark x={930} y={TAG_BOX.y - 6} s={26} o={f >= TL.tagline2 && f < TL.tagline2 + 10 ? 1 : 0} />
       {kw && f >= TL.keyword ? (() => { const t = clamp((f - TL.keyword) / 6), dy = Math.round(40 * (1 - backOut((f - TL.keyword) / 7, 1.4))); return (
@@ -178,7 +213,8 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
     </svg>
   );
   // 方形版（1080×1080）：整個場景縮一點、上移，讓卡片到標語落在正中
-  const wrap: React.CSSProperties = format === "square" ? { position: "absolute", inset: 0, transform: "translateY(-300px) scale(1.0)", transformOrigin: "50% 0" } : { position: "absolute", inset: 0 };
+  const wrap: React.CSSProperties = bg !== "desk" ? { position: "absolute", inset: 0, transform: "translateY(110px)" } : format === "square" ? { position: "absolute", inset: 0, transform: "translateY(-300px) scale(1.0)", transformOrigin: "50% 0" } : { position: "absolute", inset: 0 };
+  if (bg !== "desk") return <AbsoluteFill><EndBackdrop f={f} bg={bg} /><div style={wrap}>{scene}</div></AbsoluteFill>;
   return (
     <AbsoluteFill style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }}>
       {[[260, 640, P.soft], [820, 1000, T.color.note.soft]].map(([x, y, c], i) => <div key={i} style={{ position: "absolute", left: (x as number) + 70 * Math.sin(f / 31 + i) - 330 + (format === "square" ? 0 : 0), top: (y as number) - 330 + (format === "square" ? -300 : 0), width: 660, height: 660, borderRadius: "50%", background: `radial-gradient(closest-side, ${c}, ${c}00)`, opacity: 0.85 }} />)}

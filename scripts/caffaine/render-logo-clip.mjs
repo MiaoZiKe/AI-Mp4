@@ -6,7 +6,7 @@ import { renderMedia, renderStill, selectComposition } from "@remotion/renderer"
 import { ROOT, BROWSER, makeBundle, chromiumOptions } from "../lib.mjs";
 await import("../fetch-fonts.mjs");
 const [mode, fmt, arg, dir] = process.argv.slice(2);
-const id = /^[A-E]$/.test(fmt) ? `CaffLogoVar${fmt}` : fmt === "square" ? "CaffLogoClipSquare" : "CaffLogoClipTall";
+const id = /^(light|dark|white)$/.test(fmt) ? `CaffEnd-${fmt}` : /^[A-E]$/.test(fmt) ? `CaffLogoVar${fmt}` : fmt === "square" ? "CaffLogoClipSquare" : "CaffLogoClipTall";
 const serveUrl = await makeBundle();
 const opts = { serveUrl, browserExecutable: BROWSER, chromiumOptions };
 const comp = await selectComposition({ ...opts, id });

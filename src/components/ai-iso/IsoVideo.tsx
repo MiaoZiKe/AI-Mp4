@@ -10,6 +10,7 @@ import { CaffHeaderLogo } from "./CaffLogoV2";
 import { CoverFilm, FilmIso } from "./IsoFilm";
 import { CoverShort, ShortIso } from "./IsoShort";
 import { AgentIso, CoverAgent } from "./IsoAgent";
+import { CoverMeeting, MeetingIso } from "./IsoMeeting";
 
 const M = T.motion;
 export const col = (name?: string) => T.color[name ?? "primary"] ?? T.color.primary;
@@ -545,5 +546,5 @@ const CoverIso1: React.FC<Script & { coverCrop?: number }> = ({ scenes, channel,
 };
 
 /** isoVersion: 2＝完整片引擎（IsoFilm.tsx：同一張桌面演完 20 鏡）；3＝短片引擎（IsoShort.tsx：每鏡不同構圖、物件會動）；沒寫的照舊是 5 鏡試片 */
-export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : (props as any).isoVersion === 4 ? <AgentIso {...props} /> : (props as any).isoVersion === 3 ? <ShortIso {...props} /> : <VideoIso1 {...props} />);
-export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : (props as any).isoVersion === 4 ? <CoverAgent {...props} /> : (props as any).isoVersion === 3 ? <CoverShort {...props} /> : <CoverIso1 {...props} />);
+export const VideoIso: React.FC<Script & { timeline: TimelineV2 }> = (props) => ((props as any).isoVersion === 2 ? <FilmIso {...props} /> : (props as any).isoVersion === 5 ? <MeetingIso {...props} /> : (props as any).isoVersion === 4 ? <AgentIso {...props} /> : (props as any).isoVersion === 3 ? <ShortIso {...props} /> : <VideoIso1 {...props} />);
+export const CoverIso: React.FC<Script & { coverCrop?: number }> = (props) => ((props as any).isoVersion === 2 ? <CoverFilm {...props} /> : (props as any).isoVersion === 5 ? <CoverMeeting {...props} /> : (props as any).isoVersion === 4 ? <CoverAgent {...props} /> : (props as any).isoVersion === 3 ? <CoverShort {...props} /> : <CoverIso1 {...props} />);
