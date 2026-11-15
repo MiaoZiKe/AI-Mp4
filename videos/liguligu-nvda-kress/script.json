@@ -1,0 +1,596 @@
+{
+  "slug": "liguligu-nvda-kress",
+  "title": "一個簽名、三個頭銜：輝達財報換人交",
+  "asOf": "2026/11/15",
+  "styleVersion": 3,
+  "stage": "dossier",
+  "channel": {
+    "name": "哩股哩股",
+    "tag": "查到底",
+    "slogan": "數字，查過再信"
+  },
+  "news": {
+    "section": "國際",
+    "sectionEn": "INTERNATIONAL",
+    "places": {
+      "ca": {
+        "zh": "加州",
+        "en": "SANTA CLARA",
+        "lon": -121.95,
+        "lat": 37.35
+      },
+      "dc": {
+        "zh": "華盛頓",
+        "en": "D.C.",
+        "lon": -77.04,
+        "lat": 38.9
+      }
+    },
+    "link": {
+      "from": "ca",
+      "to": "dc",
+      "at": "s01:three+6"
+    }
+  },
+  "voice": {
+    "voiceName": "user-upload",
+    "model": "user-recording",
+    "mode": "take",
+    "profile": "liguligu",
+    "note": "旁白由使用者在 Google AI Studio 生成後上傳；本專案不送任何 TTS 請求。還沒上傳之前，timeline.json 是無聲估算。"
+  },
+  "cover": {
+    "title": [
+      "一個簽名",
+      "三個頭銜"
+    ],
+    "sub": "輝達財報，換人交"
+  },
+  "audio": {
+    "bgm": false,
+    "sfx": false
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration": "一個簽名，三個頭銜。簽字的是同一個人。",
+      "tts": "一個簽名，三個頭銜。簽字的是同一個人。",
+      "subtitle": {
+        "zh": "一個簽名\n三個頭銜\n簽字的是同一個人",
+        "en": "One signature. | Three titles. | Same person signing."
+      },
+      "keywords": [
+        "三個頭銜",
+        "同一個人"
+      ],
+      "cues": [
+        {
+          "id": "sig",
+          "text": "簽名"
+        },
+        {
+          "id": "three",
+          "text": "三個頭銜"
+        },
+        {
+          "id": "same",
+          "text": "同一個人"
+        }
+      ],
+      "beat": "hook",
+      "component": "DossierScene",
+      "props": {
+        "panel": "hook",
+        "kicker": "輝達送證管會的 8-K",
+        "span": "2026/11/12",
+        "num": "1",
+        "numText": "個簽名",
+        "line2": "三個頭銜",
+        "mark": "三個頭銜",
+        "markAt": "three",
+        "doc": {
+          "title": "8-K 簽名欄",
+          "date": "2026/11/12",
+          "field": "簽名：",
+          "note": "示意，非文件原件",
+          "scanAts": [
+            "start",
+            "three+4"
+          ],
+          "frameAt": "start+10",
+          "flashAt": "same",
+          "fill": "同一人・三個頭銜",
+          "fillPx": 30,
+          "fillAt": "three"
+        },
+        "callout": {
+          "label": "簽字的",
+          "text": "同一人",
+          "at": "start+16",
+          "markAt": "same+4"
+        },
+        "tag": {
+          "kind": "confirmed",
+          "text": "已確定",
+          "at": "three+10"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/12",
+          "place": "ca",
+          "lt": "事件"
+        }
+      },
+      "sources": [
+        "輝達 8-K 文件 2026/11/12 申報（原文已讀）"
+      ]
+    },
+    {
+      "id": "s02",
+      "narration": "她是財務長，暫代執行長，5 天後就要交財報。",
+      "tts": "她是財務長，暫代執行長，五天後就要交財報。",
+      "subtitle": {
+        "zh": "她是財務長\n暫代執行長\n5 天後就要交財報",
+        "en": "She's the CFO, | now also interim CEO. | Earnings are due in five days."
+      },
+      "keywords": [
+        "暫代執行長",
+        "5 天後"
+      ],
+      "cues": [
+        {
+          "id": "cfo",
+          "text": "財務長"
+        },
+        {
+          "id": "act",
+          "text": "暫代執行長"
+        },
+        {
+          "id": "d5",
+          "text": "5 天後"
+        },
+        {
+          "id": "rep",
+          "text": "交財報"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "timeline",
+        "photo": {
+          "name": "room",
+          "caption": "董事會（示意照片）",
+          "at": "start-20"
+        },
+        "axis": {
+          "days": [
+            "11/12",
+            "11/13",
+            "11/14",
+            "11/15",
+            "11/16",
+            "11/17"
+          ],
+          "at": "start-24",
+          "label": "時間軸",
+          "labelEn": "TIMELINE"
+        },
+        "gap": {
+          "pre": "只隔",
+          "num": "5",
+          "unit": "天",
+          "at": "d5",
+          "flashAt": "rep+6"
+        },
+        "left": {
+          "title": "董事會公告",
+          "date": "11/12",
+          "sub": "執行長辭職・即刻生效",
+          "lines": [
+            "財務長",
+            "兼執行長"
+          ],
+          "at": "start-16",
+          "subAt": "start-4",
+          "typeAt": "cfo",
+          "markAt": "act+4",
+          "note": "示意，非文件原件"
+        },
+        "right": {
+          "label": "第三季財報",
+          "date": "11/17",
+          "lines": [
+            "照常",
+            "原訂日期"
+          ],
+          "at": "d5+8"
+        },
+        "tag": {
+          "kind": "confirmed",
+          "text": "已確定",
+          "at": "rep-4"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/12",
+          "place": "ca",
+          "lt": "發生了什麼"
+        }
+      },
+      "sources": [
+        "輝達新聞稿 11/12、8-K（原文已讀）"
+      ]
+    },
+    {
+      "id": "s03",
+      "narration": "金融時報說已接觸人選，公司說還沒正式接洽。",
+      "tts": "金融時報說已經接觸人選，公司說還沒正式接洽。",
+      "subtitle": {
+        "zh": "金融時報說已接觸人選\n公司說還沒正式接洽",
+        "en": "The FT says candidates were approached. | The company says no formal talks yet."
+      },
+      "keywords": [
+        "已接觸人選",
+        "還沒正式接洽"
+      ],
+      "cues": [
+        {
+          "id": "ft",
+          "text": "金融時報"
+        },
+        {
+          "id": "touch",
+          "text": "已接觸"
+        },
+        {
+          "id": "co",
+          "text": "公司說"
+        },
+        {
+          "id": "no",
+          "text": "還沒正式接洽"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "公司說法",
+          "doc": "輝達回應 11/13",
+          "big": "未接洽",
+          "bigPx": 120,
+          "src": "回應媒體（摘要）",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "no",
+          "srcAt": "no+8",
+          "tag": {
+            "kind": "report",
+            "text": "公司說法",
+            "at": "no+14"
+          }
+        },
+        "right": {
+          "head": "媒體報導",
+          "big": [
+            "已接觸",
+            "人選"
+          ],
+          "src": "金融時報引述知情人士",
+          "headAt": "start-20",
+          "at": "ft",
+          "bigAt": "touch-4",
+          "srcAt": "touch+6",
+          "tag": {
+            "kind": "report",
+            "text": "公司未證實",
+            "at": "touch+10"
+          },
+          "masthead": {
+            "name": "金融時報",
+            "date": "11/13",
+            "at": "ft+4"
+          }
+        },
+        "mid": {
+          "text": "？",
+          "at": "no+4"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/13",
+          "place": "ca",
+          "lt": "兩種說法"
+        }
+      },
+      "sources": [
+        "金融時報 11/13 引述知情人士；輝達回應（皆經媒體轉述）"
+      ]
+    },
+    {
+      "id": "s04",
+      "narration": "這季財測 1080 億美元，是他還在任時給的。",
+      "tts": "這季財測一千零八十億美元，是他還在任時給的。",
+      "subtitle": {
+        "zh": "這季財測 1080 億美元\n是他還在任時給的",
+        "en": "This quarter's forecast: $108 billion, | set while he was still CEO."
+      },
+      "keywords": [
+        "1080 億美元",
+        "還在任"
+      ],
+      "cues": [
+        {
+          "id": "guide",
+          "text": "財測"
+        },
+        {
+          "id": "num",
+          "text": "1080 億美元"
+        },
+        {
+          "id": "still",
+          "text": "還在任"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "claim",
+        "head": {
+          "text": "成績單換人交",
+          "mark": "換人交",
+          "at": "start-16",
+          "markAt": "num+22"
+        },
+        "photo": {
+          "name": "charts",
+          "caption": "示意照片",
+          "date": "8/26",
+          "at": "start-22",
+          "dateAt": "guide"
+        },
+        "quote": {
+          "by": "第二季財報 8/26",
+          "byAt": "guide-4",
+          "pre": "第三季營收財測",
+          "big": "1080",
+          "post": "億美元 ±2%",
+          "at": "guide",
+          "bigAt": "num",
+          "masthead": {
+            "name": "第二季財報",
+            "date": "8/26"
+          }
+        },
+        "tag": {
+          "kind": "confirmed",
+          "text": "已確定",
+          "at": "still-4"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/8/26",
+          "place": "ca",
+          "lt": "對照"
+        }
+      },
+      "sources": [
+        "輝達第二季財報新聞稿 2026/8/26（8-K 附件，原文已讀）"
+      ]
+    },
+    {
+      "id": "s05",
+      "narration": "但暫代，不等於接班，人選還在找。",
+      "tts": "但暫代，不等於接班，人選還在找。",
+      "subtitle": {
+        "zh": "但暫代\n不等於接班\n人選還在找",
+        "en": "But interim | isn't succession. | The search is still on."
+      },
+      "keywords": [
+        "不等於接班"
+      ],
+      "cues": [
+        {
+          "id": "act",
+          "text": "暫代"
+        },
+        {
+          "id": "ne",
+          "text": "不等於"
+        },
+        {
+          "id": "succ",
+          "text": "接班"
+        },
+        {
+          "id": "board",
+          "text": "人選還在找"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "暫代",
+        "op": "≠",
+        "opLabel": "不等於",
+        "b": "接班",
+        "aAt": "start-16",
+        "opAt": "ne-6",
+        "bAt": "ne-2",
+        "rows": [
+          {
+            "text": "現在暫代",
+            "at": "act+4",
+            "tag": {
+              "kind": "confirmed",
+              "text": "已確定",
+              "at": "act+12"
+            }
+          },
+          {
+            "text": "正式接班",
+            "at": "succ",
+            "tag": {
+              "kind": "pending",
+              "text": "尚未確定",
+              "at": "succ+6"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/12",
+          "place": "ca",
+          "lt": "查證"
+        }
+      },
+      "sources": [
+        "輝達新聞稿 11/12：董事會開始遴選，考慮內外部人選"
+      ],
+      "pauseAfter": 0.3
+    },
+    {
+      "id": "s06",
+      "narration": "調查還沒結論，正式人選也還沒定。",
+      "tts": "調查還沒結論，正式人選也還沒定。",
+      "subtitle": {
+        "zh": "調查還沒結論\n正式人選也還沒定",
+        "en": "The probe has no findings yet. | No permanent CEO either."
+      },
+      "keywords": [
+        "還沒結論",
+        "還沒定"
+      ],
+      "cues": [
+        {
+          "id": "probe",
+          "text": "調查"
+        },
+        {
+          "id": "none",
+          "text": "還沒結論"
+        },
+        {
+          "id": "pick",
+          "text": "正式人選"
+        },
+        {
+          "id": "open",
+          "text": "還沒定"
+        }
+      ],
+      "beat": "payoff",
+      "component": "DossierScene",
+      "props": {
+        "panel": "pending",
+        "left": {
+          "photo": {
+            "name": "binders",
+            "caption": "董事會的獨立調查（示意照片）",
+            "at": "start-20"
+          },
+          "row": "還沒結論",
+          "rowAt": "none"
+        },
+        "right": {
+          "title": "正式執行長",
+          "field": "（未定）",
+          "note": "示意，非文件原件",
+          "at": "start-16",
+          "titleAt": "pick-8",
+          "frameAt": "open-8",
+          "row": "還沒定",
+          "rowAt": "open-4"
+        },
+        "tag": {
+          "kind": "pending",
+          "text": "截至 2026/11/15 尚未確定",
+          "at": "none+12"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/15",
+          "place": "ca",
+          "lt": "還不知道"
+        }
+      },
+      "sources": [
+        "截至 2026/11/15 尚未確定"
+      ]
+    },
+    {
+      "id": "s07",
+      "narration": "她是過渡，還是接班？下集看財報數字。",
+      "tts": "她是過渡，還是接班？下集看財報數字。",
+      "subtitle": {
+        "zh": "她是過渡，還是接班？\n下集看財報數字",
+        "en": "Stopgap, or successor? | Next: the numbers."
+      },
+      "keywords": [
+        "過渡",
+        "接班"
+      ],
+      "cues": [
+        {
+          "id": "tr",
+          "text": "過渡"
+        },
+        {
+          "id": "succ",
+          "text": "接班"
+        },
+        {
+          "id": "next",
+          "text": "下集"
+        },
+        {
+          "id": "num",
+          "text": "財報數字"
+        }
+      ],
+      "beat": "cta",
+      "component": "DossierScene",
+      "props": {
+        "panel": "ask",
+        "head": {
+          "lines": [
+            "她是過渡",
+            "還是接班？"
+          ],
+          "marks": [
+            "過渡",
+            "接班"
+          ],
+          "at": "start-18",
+          "markAts": [
+            "tr+6",
+            "succ+2"
+          ]
+        },
+        "cta": {
+          "text": "留言說你的看法",
+          "at": "succ+12"
+        },
+        "next": {
+          "label": "下一集",
+          "at": "next-4",
+          "photo": {
+            "name": "screens",
+            "caption": "示意照片",
+            "at": "next"
+          },
+          "title": "財報數字說了什麼？",
+          "titleAt": "num",
+          "frameAt": "num+16"
+        },
+        "news": {
+          "dateline": "SANTA CLARA, CALIF.・2026/11/15",
+          "place": "ca",
+          "lt": "提問"
+        }
+      },
+      "sources": [
+        "輝達：第三季財報 11/17（美西）照原訂公布"
+      ]
+    }
+  ]
+}
