@@ -58,7 +58,7 @@ export const makeBundle = () => {
 // swiftshader 比預設的 swangle 快 2.5 倍（軟體渲染環境實測 194 vs 479 ms/frame）
 export const chromiumOptions = { gl: "swiftshader" };
 /** render 的平行數（預設 4）；loadScript 依 stage 調整（3D 產品台＝1） */
-export const renderTuning = { concurrency: 4 };
+export const renderTuning = { concurrency: Number(process.env.RENDER_CONCURRENCY ?? 4) };
 export const fps = 30;
 /**
  * 每幕截圖用的絕對幀。v2：timeline.json 的 stillFrame（單一時間來源）；v1：各幕結束前 12 幀（舊算法）

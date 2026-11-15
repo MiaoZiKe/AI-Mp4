@@ -77,7 +77,8 @@
       "claim": "F1",
       "note": "小時\n2025 年"
      }
-    }
+    },
+    "scene": "city"
    },
    "sources": [
     "資料：勞動部勞動統計查詢網",
@@ -124,7 +125,8 @@
      "sumAt": "total-6",
      "head": "平均每人每月總工時",
      "sum": "× 12 個月 ＝ 年總工時"
-    }
+    },
+    "scene": "calendar"
    },
    "sources": [
     "資料：勞動部勞動統計查詢網",
@@ -174,7 +176,8 @@
      "unit": "個工作天",
      "note": "一格＝一天，一天算 8 小時",
      "claim": "F2"
-    }
+    },
+    "scene": "commute"
    },
    "sources": [
     "換算：2,026.8 ÷ 8 ≈ 253",
@@ -237,7 +240,8 @@
       "text": "少約 108 小時\n（約 5%）"
      },
      "claim": "F3"
-    }
+    },
+    "scene": "desk"
    },
    "sources": [
     "資料：勞動部（國際勞動統計）",
@@ -322,7 +326,8 @@
      ],
      "note": "只畫查到的年份；縱軸從 1,960 開始",
      "claim": "F4"
-    }
+    },
+    "scene": "city"
    },
    "sources": [
     "資料：勞動部（公視等媒體轉述）",
@@ -400,7 +405,8 @@
      ],
      "note": "2022、2023 沒畫；縱軸從 1,980 開始",
      "claim": "F5"
-    }
+    },
+    "scene": "cafe"
    },
    "sources": [
     "資料：勞動部；中國時報 2026/3/1",
@@ -447,7 +453,8 @@
      "stagger": 4,
      "labelAt": "we+4",
      "label": "幾乎都是全職"
-    }
+    },
+    "scene": "desk"
    },
    "sources": [
     "資料：勞動部 2025/3 說明",
@@ -510,7 +517,8 @@
      },
      "sub": "一百個就業者裡，兼職（部分工時）的人",
      "claim": "F6"
-    }
+    },
+    "scene": "cafe"
    },
    "sources": [
     "資料：勞動部 2025/3 說明",
@@ -576,7 +584,8 @@
       1
      ],
      "side": "2025 年\n變多的是\n加班"
-    }
+    },
+    "scene": "desk"
    },
    "sources": [
     "資料：勞動部工時統計（2025 年）",
@@ -628,7 +637,8 @@
      "val": "24.6%",
      "sub": "下班後被\n交辦過工作",
      "claim": "F8"
-    }
+    },
+    "scene": "home"
    },
    "sources": [
     "資料：勞動部 2025 年",
@@ -696,7 +706,8 @@
       1
      ],
      "side": "放在一起\n平均"
-    }
+    },
+    "scene": "commute"
    },
    "sources": [
     "資料：勞動部對年總工時的說明",
@@ -762,7 +773,8 @@
       "text": "差 394 小時？\n兼職比例不同"
      },
      "claim": "F7"
-    }
+    },
+    "scene": "city"
    },
    "sources": [
     "資料：勞動部國際勞動統計，2024 年",
@@ -832,7 +844,8 @@
      ],
      "note": "全時就業者每週經常工時，2023 年",
      "claim": "F9"
-    }
+    },
+    "scene": "calendar"
    },
    "sources": [
     "資料：勞動部 2025/3 說明",
@@ -877,7 +890,8 @@
      "tagAt": "rent-6",
      "lineAt": "rent+4",
      "line": "下一集・房租"
-    }
+    },
+    "scene": "home"
    },
    "sources": [
     "下一集的數字，查證後再說"
@@ -906,12 +920,22 @@
      "type": "mark",
      "rise": true,
      "name": "談晴說礙",
-     "at": "start+4",
-     "sunAt": "start+20",
-     "wordAt": "start+44",
-     "lineAt": "start+66",
-     "line": "下一集見",
-     "arrow": false
+     "at": "start+2",
+     "sunAt": "start+12",
+     "cloudDur": 14,
+     "sunDur": 12,
+     "rayAt": "start+26",
+     "rayStep": 4,
+     "rayDur": 5,
+     "wordAt": "start+38",
+     "wordStep": 4,
+     "wordDur": 7
+    },
+    "endCard": {
+     "keyword": "工時",
+     "text": "留言『{kw}』拿完整資料",
+     "at": "start+58",
+     "_note": "關鍵字「工時」是暫定，等使用者確認；改這裡就好，不用改程式"
     }
    },
    "sources": [
@@ -924,6 +948,8 @@
   "film": true,
   "ref": "docs/channels/tanqing-ref/（頻道 11/12 發的三張輪播圖）",
   "fonts": "node scripts/tanqing/fetch-fonts.mjs talk-ep01（Noto Serif TC 子集，改了畫面上的字要重跑）",
-  "fill": true
+  "fill": true,
+  "layout": "v5",
+  "silentVoice": true
  }
 }

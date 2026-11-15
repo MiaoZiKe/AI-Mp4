@@ -2,13 +2,23 @@
 // 暖米紙底、左上太陽雲朵字標、襯線粗體大標、線稿圓角圖形一筆一筆長出來、只有一個橘色強調、
 // 左下「資料：來源」、右下小太陽加圓點當頁碼。一幕＝一頁，換頁是紙面平移加淡入；每頁極慢推近。
 // 參考圖：docs/channels/tanqing-ref/；時間全部來自 timeline（engine.ts）；顏色與版面讀 THEME_TANQING／LAYOUT_TANQING。
-import React, { useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, Audio, Sequence, continueRender, delayRender, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_TANQING_SERIF as SERIF, FONT_ZH, FPS, LAYOUT_TANQING as L, THEME_TANQING as T } from "../../theme";
 import { EASE, linear, tween } from "../anim";
 import { buildTanqing, staticPage, type TqFigure, type TqPage } from "./engine";
 import { FILM_FIGURES } from "./Figures";
+import { Scenery } from "./Scenery";
+
+/** v5（tanqing.layout: "v5"）開關：圖形裡的數字往上數、長條帶回彈、流動光點；沒寫的片（short-talk、v4）照舊 */
+export const TqV5 = createContext(false);
+export const useV5 = () => useContext(TqV5);
+/** 帶一點回彈的 ease-out（超過 1 一點再回來） */
+export const backOut = (p: number, k = 1.2) => { const x = Math.min(1, Math.max(0, p)) - 1; return 1 + (k + 1) * x * x * x + k * x * x; };
+export const backP = (f: number, at: number, dur: number) => backOut(linear(f, at, dur));
+/** 文字裡的數字從 0 數上來（保留千分位與小數位數） */
+export const countText = (text: string, p: number) => p >= 1 ? text : text.replace(/\d[\d,]*(\.\d+)?/g, (m) => { const dec = (m.split(".")[1] ?? "").length, v = Number(m.replace(/,/g, "")) * Math.max(0, p); const s0 = v.toFixed(dec); return m.includes(",") ? Number(s0).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s0; });
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
 const M = T.motion;
@@ -43,10 +53,10 @@ const SunCloud: React.FC<{ size: number; cloud?: number; sun?: number; rays?: nu
 );
 
 /** 左上字標：太陽雲朵＋「談晴說礙」（晴、礙兩字帶橘棕色） */
-const Wordmark: React.FC<{ name: string }> = ({ name }) => (
-  <div style={{ position: "absolute", left: L.X, top: L.MARK_TOP, height: L.MARK_ICON, display: "flex", alignItems: "center", gap: 26 }}>
-    <SunCloud size={L.MARK_ICON} />
-    <div style={{ fontFamily: SERIF, fontWeight: T.weight.mark, fontSize: L.MARK_PX, letterSpacing: "0.14em", color: T.ink, lineHeight: 1 }}>
+const Wordmark: React.FC<{ name: string; v5?: boolean }> = ({ name, v5 }) => (
+  <div style={{ position: "absolute", left: L.X, top: v5 ? L.V5.MARK_TOP : L.MARK_TOP, height: v5 ? L.V5.MARK_ICON : L.MARK_ICON, display: "flex", alignItems: "center", gap: 26 }}>
+    <SunCloud size={v5 ? L.V5.MARK_ICON : L.MARK_ICON} />
+    <div style={{ fontFamily: SERIF, fontWeight: T.weight.mark, fontSize: v5 ? L.V5.MARK_PX : L.MARK_PX, letterSpacing: "0.14em", color: T.ink, lineHeight: 1 }}>
       {[...name].map((c, i) => <span key={i} style={{ color: c === "晴" ? T.qing : c === "礙" ? T.ai : T.ink }}>{c}</span>)}
     </div>
   </div>
@@ -203,6 +213,8 @@ const RiseMark: React.FC<{ fig: TqFigure; f: number; name: string }> = ({ fig, f
 };
 
 const Mark: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
+  const v5 = useV5();
+  if (fig.rise && v5) return <RiseMarkV5 fig={fig} f={f} name={String(fig.name ?? "談晴說礙")} />;
   if (fig.rise) return <RiseMark fig={fig} f={f} name={String(fig.name ?? "談晴說礙")} />;
   const t = fig.times, size = 420;
   const lineAt = t.lineAt ?? fig.at;
@@ -314,6 +326,118 @@ const Bands: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
+
+// ───────────────────────── v5（tanqing.layout: "v5"） ─────────────────────────
+const V = L.V5;
+const lin = (f: number, at: number, dur: number) => Math.min(1, Math.max(0, (f - at) / Math.max(1, dur)));
+const outCubic = (p: number) => 1 - Math.pow(1 - p, 3);
+
+/** 片尾 LOGO（v5）：雲一筆描出來 → 太陽從雲後面升起、落定時輕輕回彈一下並暈開一圈 → 三道光一道一道畫出 → 「談晴說礙」一個字一個字由左往右寫上去。
+ *  不旋轉、不循環（不像讀取圈）；音效的每一拍和這裡用同一組欄位（scripts/tanqing/endcard-sound.py 讀 script.json） */
+const RiseMarkV5: React.FC<{ fig: TqFigure; f: number; name: string }> = ({ fig, f, name }) => {
+  const t = fig.times, size = 470;
+  const sunAt = t.sunAt ?? fig.at + 10, sunDur = Number(fig.sunDur ?? 12), land = sunAt + sunDur;
+  const rayAt = t.rayAt ?? land + 2, rayStep = Number(fig.rayStep ?? 4), rayDur = Number(fig.rayDur ?? 5);
+  const wordAt = t.wordAt ?? rayAt + 3 * rayStep + 2, wordStep = Number(fig.wordStep ?? 4), wordDur = Number(fig.wordDur ?? 7);
+  const cloud = drawP(f, fig.at, Number(fig.cloudDur ?? 14));
+  const rp = outCubic(lin(f, sunAt, sunDur)), bump = f >= land && f < land + 10 ? -7 * Math.sin((Math.PI * (f - land)) / 10) : 0;
+  const yOff = 150 * (1 - rp) + bump, sunP = drawP(f, sunAt, sunDur);
+  const bloom = lin(f, land, 22), breath = f > land + 24 ? 1 + 0.012 * Math.sin((f - land - 24) / 10) : 1;
+  return (
+    <>
+      <div style={{ position: "absolute", left: (L.INNER_W - size) / 2 - 24, top: -10 }}>
+        <svg width={size} height={size} viewBox="-150 -200 340 340" style={{ display: "block", overflow: "visible" }}>
+          <defs><clipPath id="tqRiseClip5"><rect x={-260} y={-320} width={620} height={430} /></clipPath></defs>
+          {bloom > 0 && bloom < 1 ? <circle cx={61} cy={-8} r={110 + 70 * outCubic(bloom)} fill="none" stroke={T.dot} strokeWidth={10 * (1 - bloom) + 1} opacity={(0.9 * (1 - bloom)).toFixed(2)} /> : null}
+          <g clipPath="url(#tqRiseClip5)">
+            <g transform={`translate(0 ${yOff.toFixed(1)}) translate(61 -8) scale(${breath.toFixed(4)}) translate(-61 8)`}>
+              {sunP > 0 ? <path d={SUN_ARC} fill="none" stroke={T.orange} strokeWidth={22} {...pen(sunP)} /> : null}
+              {RAYS.map((d, k) => { const p = tween(f, rayAt + k * rayStep, rayDur, EASE.move); return p > 0 ? <path key={k} d={d} fill="none" stroke={T.orange} strokeWidth={18} {...pen(p)} /> : null; })}
+            </g>
+          </g>
+          {cloud > 0 ? <path d={CLOUD} fill={T.fill} fillOpacity={Math.min(1, cloud * 1.5)} stroke={T.line} strokeWidth={22} {...pen(cloud)} /> : null}
+        </svg>
+      </div>
+      <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 474, display: "flex", justifyContent: "center", fontFamily: SERIF, fontWeight: T.weight.mark, fontSize: 96, letterSpacing: "0.16em", lineHeight: 1.1 }}>
+        {[...name].map((c, i) => { const p = lin(f, wordAt + i * wordStep, wordDur), e = EASE.move(p); return <span key={i} style={{ display: "inline-block", clipPath: `inset(-10% ${(100 * (1 - e)).toFixed(1)}% -10% 0)`, transform: `translateY(${r1(8 * (1 - backOut(p)))}px)`, color: c === "晴" ? T.qing : c === "礙" ? T.ai : T.ink }}>{c}</span>; })}
+      </div>
+    </>
+  );
+};
+
+/** 一頁（v5）：自己有不透明的紙底；換頁＝新頁由右往左擦進來蓋住舊頁（邊上一條棕色細線），兩頁都是實心，不會半透明疊字 */
+const PageV5: React.FC<{ pg: TqPage; f: number; first: boolean; nextStart?: number }> = ({ pg, f, first, nextStart }) => {
+  if (f < pg.start || (nextStart !== undefined && f >= nextStart + V.WIPE)) return null;
+  const wp = first ? 1 : EASE.move(lin(f, pg.start, V.WIPE));
+  const life = Math.max(1, (nextStart ?? pg.end) - pg.start), q = lin(f, pg.start, life), s = 1 + 0.028 * q;
+  const ent = first ? 1 : backP(f, pg.start + 4, 20);
+  const tp = pg.titleAt <= pg.start ? 1 : lin(f, pg.titleAt, 14);
+  const titleH = pg.title.length * V.TITLE_PX * L.TITLE_LH, noteH = pg.note ? L.NOTE_GAP + L.NOTE_PX * 1.3 : 0;
+  const vigTop = V.TITLE_TOP + titleH + noteH + V.VIG_GAP, vigH = V.VIG_BOTTOM - vigTop;
+  const clip = wp >= 1 ? undefined : `inset(0 0 0 ${(100 * (1 - wp)).toFixed(2)}%)`;
+  return (
+    <div style={{ position: "absolute", left: 0, top: 0, width: L.W, height: L.H, clipPath: clip }}>
+      <Paper />
+      <div style={{ position: "absolute", left: 0, top: 0, width: L.W, height: L.H, transform: `scale(${s.toFixed(4)})`, transformOrigin: "50% 30%" }}>
+        <div style={{ position: "absolute", left: L.X, top: V.FIG_TOP, width: L.INNER_W, height: L.FIG_H, transform: `translateY(${r1(26 * (1 - ent))}px) scale(${(V.FIG_SCALE * (0.95 + 0.05 * ent)).toFixed(4)})`, transformOrigin: "50% 0" }}><Figure fig={pg.figure} f={f} /></div>
+        <div style={{ position: "absolute", left: L.X, top: V.TITLE_TOP, width: L.INNER_W, fontFamily: SERIF, fontWeight: T.weight.title, fontSize: V.TITLE_PX, lineHeight: L.TITLE_LH, color: T.ink, whiteSpace: "nowrap" }}>
+          {pg.title.map((line, i) => { const lp = pg.titleAt <= pg.start ? (first ? 1 : backP(f, pg.start + 6 + i * 4, 16)) : backP(f, pg.titleAt + i * 4, 16); return (
+            <div key={i} style={{ clipPath: `inset(-12% ${(100 * (1 - Math.min(1, lp))).toFixed(1)}% -12% 0)`, transform: `translateY(${r1(18 * (1 - lp))}px)`, opacity: tp > 0 || pg.titleAt <= pg.start ? 1 : 0 }}>
+              {[...line].map((c, j) => <span key={j} style={c === "晴" ? { color: T.qing } : c === "礙" ? { color: T.ai } : undefined}>{c}</span>)}
+            </div>); })}
+        </div>
+        {pg.note ? <div style={{ position: "absolute", left: L.X, top: V.TITLE_TOP + titleH + L.NOTE_GAP, fontFamily: FONT_ZH, fontWeight: T.weight.bold, fontSize: L.NOTE_PX, lineHeight: 1.3, color: T.orangeText, whiteSpace: "nowrap", clipPath: `inset(0 ${(100 * (1 - lin(f, pg.note.at, 10))).toFixed(1)}% 0 0)` }}>{pg.note.text}</div> : null}
+        {pg.scene ? <div style={{ position: "absolute", left: L.X, top: vigTop, width: L.INNER_W, height: vigH }}><Scenery type={pg.scene} f={f} q={q} p={first ? 1 : lin(f, pg.start + 8, 18)} w={L.INNER_W} h={vigH} back={backOut} /></div> : null}
+      </div>
+      {wp < 1 ? <div style={{ position: "absolute", top: 0, height: L.H, left: L.W * (1 - wp) - 2, width: 4, background: T.line, opacity: 0.55 }} /> : null}
+    </div>
+  );
+};
+
+/** 字幕卡（v5）：一張實心的白紙卡固定在 1474–1692，全片同一張；換段＝新的一段由左往右擦出來（不淡入、不疊兩張卡）；片尾卡時換成留言關鍵字 */
+const CaptionV5: React.FC<{ cues: Cap[]; f: number; end?: { text: string; at: number; start: number } }> = ({ cues, f, end }) => {
+  const box: React.CSSProperties = { position: "absolute", left: L.X - 24, width: L.INNER_W + 48, top: V.CAP_CARD_TOP, height: V.CAP_CARD_BOTTOM - V.CAP_CARD_TOP, background: T.fill, border: `2px solid ${T.hair}`, borderRadius: 20, boxShadow: "0 6px 0 rgba(110,90,78,0.10)", boxSizing: "border-box", overflow: "hidden" };
+  const inner = (zh: string | null, en: string | null, from: number, key: string) => {
+    const p = from <= 0 ? 1 : EASE.move(lin(f, from, 8));
+    return (
+      <div key={key} style={{ position: "absolute", left: V.CAP_PAD, right: V.CAP_PAD, top: 0, bottom: 0, display: "flex", flexDirection: "column", justifyContent: "center", clipPath: `inset(0 ${(100 * (1 - p)).toFixed(1)}% 0 0)` }}>
+        {zh ? <div style={{ fontFamily: FONT_ZH, fontWeight: T.weight.body, fontSize: V.CAP_ZH_PX, lineHeight: 1.3, color: T.ink, whiteSpace: "nowrap" }}>{zh}</div> : null}
+        {en ? <div style={{ marginTop: zh ? 14 : 0, fontFamily: FONT_EN, fontWeight: T.weight.en, fontSize: V.CAP_EN_PX, color: T.ink2, whiteSpace: "nowrap" }}>{en}</div> : null}
+      </div>
+    );
+  };
+  if (end && f >= end.at) {
+    const parts = end.text.split(/(『[^』]*』)/);
+    return <div style={box}>{inner(null, null, 0, "x")}<div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "center", justifyContent: "center", clipPath: `inset(0 ${(100 * (1 - EASE.move(lin(f, end.at, 10)))).toFixed(1)}% 0 0)`, fontFamily: FONT_ZH, fontWeight: T.weight.bold, fontSize: 64, color: T.ink, whiteSpace: "nowrap" }}>{parts.map((x, i) => <span key={i} style={/^『/.test(x) ? { color: T.orangeText } : undefined}>{x}</span>)}</div></div>;
+  }
+  if (end && f >= end.start) return <div style={box} />;
+  // 現在這一段：目前所在的字幕窗；兩段之間留著上一段（卡片不會空著）
+  let cue: Cap | undefined; for (const c of cues) if (f >= c.window[0]) cue = c;
+  if (!cue || !cue.phrases.length) return <div style={box} />;
+  let k = 0; cue.phrases.forEach((p, i) => { if (f >= p.start) k = i; });
+  const zh = cue.phrases[k].text.replace(/[，、；：]$/, "");
+  const en = enSplit(cue.en); const ek = Math.min(en.length - 1, Math.floor((k * en.length) / cue.phrases.length));
+  const from = Math.max(cue.window[0], cue.phrases[k].start);
+  return <div style={box}>{inner(cue.zh ? zh : null, en[ek] ?? null, from === 0 ? 0 : from, `${cue.window[0]}-${k}`)}</div>;
+};
+
+/** 出處（v5）：1712 起兩行 30px；換頁時新出處由左往右擦出來蓋掉舊的（不淡入淡出） */
+const SourceV5: React.FC<{ pages: TqPage[]; f: number }> = ({ pages, f }) => {
+  let i = 0; pages.forEach((pg, k) => { if (f >= pg.start) i = k; });
+  const pg = pages[i]; if (!pg || !pg.sources.length) return null;
+  const p = i === 0 ? 1 : EASE.move(lin(f, pg.start + 4, 10));
+  return <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: V.SRC_TOP, fontFamily: FONT_ZH, fontWeight: T.weight.body, fontSize: V.SRC_PX, lineHeight: 1.4, color: T.ink2, whiteSpace: "pre", clipPath: `inset(0 ${(100 * (1 - p)).toFixed(1)}% 0 0)` }}>{pg.sources.slice(0, 2).join("\n")}</div>;
+};
+
+/** 頁尾細帶（v5）：1806 以下一條米色紙帶，左邊頻道名＋標語小字、右邊頁碼（IG 底部介面蓋到也不影響理解） */
+const FooterV5: React.FC<{ pages: TqPage[]; f: number; label: string }> = ({ pages, f, label }) => (
+  <>
+    <div style={{ position: "absolute", left: 0, top: V.FOOT_TOP, width: L.W, height: L.H - V.FOOT_TOP, background: T.fillB, borderTop: `2px solid ${T.hair}` }} />
+    <div style={{ position: "absolute", left: L.X, top: V.FOOT_TEXT_TOP, fontFamily: FONT_ZH, fontWeight: T.weight.body, fontSize: V.FOOT_PX, lineHeight: 1.25, color: T.ink2, whiteSpace: "nowrap" }}>{label}</div>
+    <Pager pages={pages} f={f} lay={{ ...LAY0, PAGER_Y: V.PAGER_Y }} />
+  </>
+);
+
 const Paper: React.FC = () => <AbsoluteFill style={{ background: `radial-gradient(ellipse 80% 62% at 50% 42%, ${T.bgCenter} 0%, ${T.bg} 55%, ${T.bgEdge} 100%)` }} />;
 
 export const VideoTanqing: React.FC<Script & { timeline: TimelineV2 }> = (props) => {
@@ -325,6 +449,23 @@ export const VideoTanqing: React.FC<Script & { timeline: TimelineV2 }> = (props)
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
   const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, zh: (s.props as any)?.caption !== "en", window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines }));
+  const v5 = (props as any).tanqing?.layout === "v5";
+  if (v5) {
+    const endPg = m.pages.find((pg) => pg.endCard);
+    return (
+      <TqV5.Provider value={true}>
+        <AbsoluteFill style={{ background: T.bg }}>
+          <Paper />
+          {m.pages.map((pg, i) => <PageV5 key={pg.id} pg={pg} f={f} first={i === 0} nextStart={m.pages[i + 1]?.start} />)}
+          <CaptionV5 cues={caps} f={f} end={endPg?.endCard ? { text: endPg.endCard.text.replace("{kw}", endPg.endCard.keyword), at: endPg.endCard.at, start: endPg.start } : undefined} />
+          <SourceV5 pages={m.pages} f={f} />
+          <FooterV5 pages={m.pages} f={f} label={`${channel?.name ?? "談晴說礙"}・${channel?.tag ?? ""}`} />
+          <Wordmark name={channel?.name ?? "談晴說礙"} v5 />
+          {(props as any).tanqing?.silentVoice ? null : timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : null}
+        </AbsoluteFill>
+      </TqV5.Provider>
+    );
+  }
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Paper />

@@ -85,3 +85,14 @@ flock /tmp/aimp4-render.lock npm run render talk-ep01
 - 檢查圖：`out/talk-ep01-review.png`（每 2.2 秒一格）、`out/talk-ep01/check/q1–q4.png`（每 0.25 秒）、`first3s.png`（前 3 秒每 2 幀）。
 - 之後的集數：script.json 寫 `voice: { voiceName: "Sulafat", mode: "take", profile: "tanqing-report" }`，`npm run tts <slug>` 自動配音（1 次請求；設定句被念出來會自動切掉）。
 - 人耳待確認：s02「二零二五」（聽寫曾聽成二零二三）、s04 對齊信心 0.31、所有數字念法。
+
+## 2026/11/15 第 5 版（無聲審稿版、跨頻道版面規則、片尾 B 版）
+
+- 成片 `out/talk-ep01-v5-silent.mp4`：53.57 秒（1607 幀），**沒有旁白**（時間軸沿用 v4 的配音時間軸、voiceLeadIn 0.2 不變），音軌只有片尾招牌音。`out/talk-ep01.mp4` 仍是 v4（備份 `out/talk-ep01.v4.mp4`）。
+- 開關：script.json 頂層 `tanqing.layout: "v5"`（新版面與動畫）、`tanqing.silentVoice: true`（畫面不掛旁白；有正式配音版時拿掉）。沒寫的片（short-talk）照舊。
+- 版面（`LAYOUT_TANQING.V5`）：字標左上 y40–124、圖 168 起放大 1.08、大標 100px、大標下面是情境插畫帶（到 1450）、字幕卡 1474–1692、出處 1712、頁尾細帶 1806 起。量測在 `out/talk-ep01-v5/layout-check.md`（頂端 42、底端 54–55 px）。
+- 動畫：每頁兩層＝情境線稿（`props.scene`：desk／city／commute／calendar／home／cafe，`src/components/tanqing/Scenery.tsx`，遠近兩層視差＋時鐘、熱氣、窗燈、公車、翻頁等小動作）＋資料圖；換頁用擦入（新頁實心蓋舊頁）；大標逐行擦出帶回彈；大數字與長條數值往上數；長條帶回彈依序長；s02 年總工時括號上有減速停下的光點流。
+- 片尾卡（B 版）：雲描線 → 太陽從雲後升起、落定回彈暈開 → 三道光 → 四個字由左往右寫上 → 字幕卡換成「留言『工時』拿完整資料」。關鍵字在 s15 `props.endCard.keyword`（**「工時」是暫定，等使用者確認**），句型在 `props.endCard.text`。
+- 片尾招牌音：`python3 scripts/tanqing/endcard-sound.py talk-ep01 <out.wav> --gain -5`（純正弦／卡林巴式泛音、短回音、無雜訊），再 `alimiter=limit=0.84:level=disabled:attack=5:release=60:latency=1`。拍點（太陽落定、三道光、四個字、關鍵字）和畫面同一幀，讀同一組 script.json 欄位；片尾段 −11.5 LUFS、峰值 −1.6 dB（混進 mp4 後 −11.7 LUFS）。單獨 MP3：`out/talk-ep01-v5/endcard-sound.mp3`。
+- 檢查圖：`out/talk-ep01-v5/before-after.png`（v4｜v5 同時間點）、`endcard-strip.png`（片尾每 0.1 秒）、`peek1.png`。
+- 重做：`npm run validate talk-ep01` → `RENDER_CONCURRENCY=2 flock /tmp/aimp4-render.lock npm run render talk-ep01`（平行 4 時 Chrome 曾 ERR_INSUFFICIENT_RESOURCES 當掉）→ 用 ffmpeg 把 `out/talk-ep01.video.mp4` 的畫面接上片尾音軌。render 會覆蓋 `out/talk-ep01.mp4`，做完要從 `.v4.mp4` 還原。

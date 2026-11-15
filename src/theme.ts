@@ -930,6 +930,10 @@ export const LAYOUT_TANQING = {
   SRC_TOP: 1604, SRC_PX: 28, SRC_W: 640, PAGER_Y: 1624, PAGER_GAP: 40,
   MIN_PX: 28,
   /** script.json 頂層 tanqing.fill: true 時的版面（2026/11/15「不留大片空白」）：圖放大 1.06、大標 96px 往下、字幕 54/32px 往下、出處與頁碼往下，BAND_TOP 以下是底部紙帶（只放裝飾） */
+  /** script.json 頂層 tanqing.layout: "v5"（2026/11/15 跨頻道版面規則：頂端／底端空白 ≤60、字幕卡下緣 ≤1700、1700 以下只放出處與細頁尾帶、小字 ≥30）：
+   *  字標 40–124；圖 168 起放大 1.08（以上緣為準）；大標 100px；情境插畫帶接在大標下面到 VIG_BOTTOM；字幕卡 CAP_CARD_TOP–CAP_CARD_BOTTOM；出處 1712；頁尾帶 FOOT_TOP 以下 */
+  V5: { MARK_TOP: 40, MARK_ICON: 84, MARK_PX: 56, FIG_TOP: 168, FIG_SCALE: 1.08, TITLE_TOP: 872, TITLE_PX: 100, VIG_GAP: 30, VIG_BOTTOM: 1450,
+    CAP_CARD_TOP: 1474, CAP_CARD_BOTTOM: 1692, CAP_PAD: 30, CAP_ZH_PX: 58, CAP_EN_PX: 34, SRC_TOP: 1712, SRC_PX: 30, FOOT_TOP: 1806, FOOT_TEXT_TOP: 1826, FOOT_PX: 30, PAGER_Y: 1845, MIN_PX: 30, WIPE: 16 },
   FILL: { FIG_TOP: 372, FIG_SCALE: 1.06, TITLE_TOP: 1062, TITLE_PX: 96, CAP_TOP: 1372, CAP_ZH_PX: 54, CAP_EN_PX: 32, SRC_TOP: 1588, PAGER_Y: 1610, BAND_TOP: 1716 },
 } as const;
 

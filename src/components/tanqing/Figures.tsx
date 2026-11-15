@@ -5,7 +5,7 @@
 import React from "react";
 import { FONT_EN, FONT_ZH, LAYOUT_TANQING as L, THEME_TANQING as T } from "../../theme";
 import type { TqFigure } from "./engine";
-import { Ground, Svg, drawP, fadeP, figText, pen } from "./TanqingVideo";
+import { Ground, Svg, backOut, countText, drawP, fadeP, figText, pen, useV5 } from "./TanqingVideo";
 
 const M = T.motion;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -13,12 +13,13 @@ const numStyle = (px: number, color: string = T.ink): React.CSSProperties => ({ 
 const SMALL = L.MIN_PX;
 
 /** 左上的大數字＋旁邊兩行說明（和 people 的寫法一樣） */
-const BigNum: React.FC<{ number?: { text: string; note?: string } }> = ({ number }) => !number ? null : (
+/** v5：數字從 0 往上數（count 從 at 開始、countDur 幀；第 0 頁 at≤0 時直接是完整數字） */
+const BigNum: React.FC<{ number?: { text: string; note?: string }; f?: number; at?: number }> = ({ number, f = 0, at = -9999 }) => { const v5 = useV5(); return !number ? null : (
   <div style={{ position: "absolute", left: 0, top: 0, display: "flex", alignItems: "center", gap: 34 }}>
-    <div style={{ fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: L.NUM_PX, lineHeight: 1, letterSpacing: "-0.02em", color: T.ink }}>{number.text}</div>
+    <div style={{ fontFamily: FONT_EN, fontWeight: T.weight.num, fontSize: L.NUM_PX, lineHeight: 1, letterSpacing: "-0.02em", color: T.ink, fontVariantNumeric: "tabular-nums" }}>{v5 && at > 0 ? countText(number.text, 1 - Math.pow(1 - clamp01((f - at) / 28), 3)) : number.text}</div>
     {number.note ? <div style={{ ...figText(L.NUM_NOTE_PX, T.weight.body, T.ink2), position: "relative", lineHeight: 1.4 }}>{number.note}</div> : null}
   </div>
-);
+); };
 
 /** 一扇窗：sky "night"＝玻璃暗下來、橘色的月亮、窗外幾棟亮燈的樓；"dusk"＝橘色的太陽還在山線上面 */
 const Window: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
@@ -75,7 +76,7 @@ const Window: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
           </>
         ) : null}
       </Svg>
-      <BigNum number={fig.number} />
+      <BigNum number={fig.number} f={f} at={fig.at} />
     </>
   );
 };
@@ -98,11 +99,33 @@ const Months: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
           );
         })}
         {lp > 0 ? <path d={`M ${x0 - 6} ${top + ph + 86} v 22 H ${x0 + 11 * pitch + pw + 6} v -22`} fill="none" stroke={T.orange} strokeWidth={T.stroke.line} {...pen(lp)} /> : null}
+        {useV5() && lp > 0 ? <MonthFlow f={f} at={sumAt} x0={x0} x1={x0 + 11 * pitch + pw} y={top + ph + 108} /> : null}
       </Svg>
       {Array.from({ length: 12 }, (_, k) => <div key={k} style={{ ...figText(SMALL, T.weight.body, T.ink2), left: x0 + k * pitch, width: pw, textAlign: "center", top: top + ph + 26, opacity: fadeP(f, fig.at + k * (fig.stagger ?? 2) + 4) }}>{k + 1}</div>)}
       {fig.head ? <div style={{ ...figText(L.LABEL_PX, T.weight.bold, T.ink), left: x0, top: top - 86, opacity: fadeP(f, fig.at) }}>{fig.head}</div> : null}
       {fig.sum ? <div style={{ ...figText(L.FIELD_PX, T.weight.bold, T.ink), left: 0, width: L.INNER_W, textAlign: "center", top: top + ph + 132, opacity: fadeP(f, sumAt + M.draw) }}>{fig.sum}</div> : null}
     </>
+  );
+};
+
+/** v5：十二個月沿著橘色括號往右「加進去」的光點流：密集、有拖尾、有方向；開始快，2 秒內慢慢減速停在右端（不是瞬間停） */
+const MonthFlow: React.FC<{ f: number; at: number; x0: number; x1: number; y: number }> = ({ f, at, x0, x1, y }) => {
+  const t = Math.max(0, f - at), run = 64, speed = (u: number) => (u >= run ? 0 : 1 - u / run); // 速度線性降到 0
+  const travel = (u: number) => { const c = Math.min(u, run); return c - (c * c) / (2 * run); }; // 速度的積分
+  const d = travel(t) * 26, W = x1 - x0, n = 14, gap = W / n;
+  return (
+    <g>
+      {Array.from({ length: n }, (_, k) => {
+        const x = x0 + ((k * gap + d) % W), sp = speed(t), tail = 10 + 46 * sp;
+        const a = Math.min(1, t / 8) * (0.35 + 0.65 * sp) + (sp === 0 ? 0 : 0);
+        return a <= 0.02 ? null : (
+          <g key={k} opacity={a.toFixed(2)}>
+            <line x1={Math.max(x0, x - tail)} y1={y} x2={x} y2={y} stroke={T.orange} strokeWidth={6} strokeLinecap="round" opacity={0.35} />
+            <circle cx={x} cy={y} r={6} fill={T.orange} />
+          </g>
+        );
+      })}
+    </g>
   );
 };
 
@@ -134,7 +157,7 @@ type Bar = { label: string; v: number; val?: string; mark?: boolean };
 const Bars: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   const bars = fig.bars as Bar[], n = bars.length, max = fig.max ?? Math.max(...bars.map((b) => b.v));
   const ground = 500, maxH = 372, bw = n > 2 ? 150 : 170, pitch = n > 2 ? 200 : 250, x0 = fig.diff ? (n > 2 ? 30 : 50) : (L.INNER_W - ((n - 1) * pitch + bw)) / 2;
-  const h = (b: Bar) => (b.v / max) * maxH, grow = (k: number) => drawP(f, fig.at + k * 9, 26);
+  const v5 = useV5(), h = (b: Bar) => (b.v / max) * maxH, grow = (k: number) => v5 ? (f < fig.at + k * 9 ? 0 : backOut(clamp01((f - fig.at - k * 9) / 24), 0.9)) : drawP(f, fig.at + k * 9, 26);
   const diffAt = fig.times.diffAt ?? fig.at, dp = drawP(f, diffAt, M.draw * 1.8), yA = ground - h(bars[0]), yB = ground - h(bars[n - 1]), xr = x0 + (n - 1) * pitch + bw + 26;
   const lines = String(fig.diff?.text ?? "").split("\n");
   return (
@@ -153,7 +176,7 @@ const Bars: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
         const x = x0 + k * pitch, o = fadeP(f, fig.at + k * 9 + 16);
         return (
           <React.Fragment key={k}>
-            {b.val ? <div style={{ ...numStyle(n > 2 ? 44 : 52), left: x - 40, width: bw + 80, textAlign: "center", top: ground - h(b) + 22, opacity: o }}>{b.val}</div> : null}
+            {b.val ? <div style={{ ...numStyle(n > 2 ? 44 : 52), left: x - 40, width: bw + 80, textAlign: "center", top: ground - h(b) * (v5 ? Math.min(1, grow(k)) : 1) + 22, opacity: o, fontVariantNumeric: "tabular-nums" }}>{v5 ? countText(b.val, Math.min(1, grow(k))) : b.val}</div> : null}
             <div style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), left: x - 40, width: bw + 80, textAlign: "center", top: ground + 28, opacity: fadeP(f, fig.at + k * 9) }}>{b.label}</div>
           </React.Fragment>
         );

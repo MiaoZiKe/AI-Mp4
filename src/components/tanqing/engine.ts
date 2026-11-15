@@ -7,6 +7,8 @@ export type TqFigure = { type: string; at: number; times: Record<string, number>
 export type TqPage = {
   id: string; index: number; start: number; end: number;
   title: string[]; titleAt: number; note?: { text: string; at: number }; figure?: TqFigure; sources: string[];
+  /** v5：情境插畫（props.scene）；片尾卡的留言關鍵字（props.endCard: { keyword, text?, at }） */
+  scene?: string; endCard?: { keyword: string; text: string; at: number };
 };
 export type TqModel = { total: number; pages: TqPage[] };
 
@@ -41,6 +43,8 @@ export const buildTanqing = (scenes: Scene[], tl: TimelineV2): TqModel => {
       note: p.note ? { text: String(p.note.text ?? ""), at: resolve(p.note.at, s.id, start) } : undefined,
       figure: fig ? { ...fig, type: String(fig.type), at: times.at ?? start, times } : undefined,
       sources: s.sources ?? [],
+      scene: typeof p.scene === "string" ? p.scene : undefined,
+      endCard: p.endCard?.keyword ? { keyword: String(p.endCard.keyword), text: String(p.endCard.text ?? "留言『{kw}』拿完整資料"), at: resolve(p.endCard.at, s.id, start) } : undefined,
     };
   });
   return { total: tl.totalFrames, pages };
@@ -52,5 +56,5 @@ export const staticPage = (s: Scene, index = 0): TqPage => {
   const fig = p.figure as Record<string, any> | undefined;
   const times: Record<string, number> = {};
   if (fig) for (const k of Object.keys(fig)) if (isAt(k)) times[k] = -9999;
-  return { id: s.id, index, start: -9999, end: 1e9, title: Array.isArray(p.title) ? p.title : [], titleAt: -9999, note: p.note ? { text: String(p.note.text ?? ""), at: -9999 } : undefined, figure: fig ? { ...fig, type: String(fig.type), at: -9999, times } : undefined, sources: s.sources ?? [] };
+  return { id: s.id, index, start: -9999, end: 1e9, title: Array.isArray(p.title) ? p.title : [], titleAt: -9999, note: p.note ? { text: String(p.note.text ?? ""), at: -9999 } : undefined, figure: fig ? { ...fig, type: String(fig.type), at: -9999, times } : undefined, sources: s.sources ?? [], scene: typeof p.scene === "string" ? p.scene : undefined, endCard: p.endCard?.keyword ? { keyword: String(p.endCard.keyword), text: String(p.endCard.text ?? "留言『{kw}』拿完整資料"), at: -9999 } : undefined };
 };
