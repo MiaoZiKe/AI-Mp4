@@ -35,5 +35,68 @@
    ],
    "serviceTier": "standard"
   }
+ },
+ {
+  "at": "2026-11-15T08:19:23.680Z",
+  "purpose": "talk-ep01 正式配音（Sulafat）take（失敗）",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Sulafat",
+  "languageCode": "cmn-TW",
+  "status": 502,
+  "error": "upstream request failed"
+ },
+ {
+  "at": "2026-11-15T08:26:25.712Z",
+  "purpose": "talk-ep01 正式配音（Sulafat）audition:splitA",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Sulafat",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 142,
+   "candidatesTokenCount": 668,
+   "totalTokenCount": 810,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 142
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 668
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ },
+ {
+  "at": "2026-11-15T08:26:44.820Z",
+  "purpose": "talk-ep01 正式配音（Sulafat）audition:splitB",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Sulafat",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 212,
+   "candidatesTokenCount": 1216,
+   "totalTokenCount": 1428,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 212
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1216
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
