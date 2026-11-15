@@ -38,11 +38,16 @@ export function validateIso(script, h) {
     if (!s.id || ids.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
     if (s.component !== "IsoScene") E(`${tag}: stage "iso" 的 component 只能是 IsoScene：${s.component}`);
     const n = h.len(s.narration); total += n;
-    const silent = film && s.silent === true;
+    const caff = script.isoVersion === 3 && s.silent === true && s.props?.panel === "caffend"; // CaffAIne 片尾卡（短片引擎，src/components/ai-iso/CaffEnd.tsx）
+    const silent = (film && s.silent === true) || caff;
     if (silent) {
       if (i !== scenes.length - 1) E(`${tag}: silent 只能用在最後一幕（片尾卡）`);
       if (!(s.durationSec > 0)) E(`${tag}: silent 的幕要寫 durationSec`);
-      if (s.props?.panel !== "end") E(`${tag}: silent 的幕要是 panel: "end"（片尾卡）`);
+      if (caff) {
+        if (script.channelLogo !== "caffaine") E(`${tag}: panel "caffend" 要搭配頂層 channelLogo: "caffaine"`);
+        if (!String(s.props?.keyword ?? "").trim()) E(`${tag}: 片尾卡要有留言關鍵字 props.keyword`);
+        if (!(s.durationSec >= 3 && s.durationSec <= 4)) W(`${tag}: 片尾卡 ${s.durationSec} 秒（建議 3–3.5）`);
+      } else if (s.props?.panel !== "end") E(`${tag}: silent 的幕要是 panel: "end"（片尾卡）`);
     } else if (n < 4) E(`${tag}: 旁白太短（${n} 字）`); else if (n > 26) W(`${tag}: 旁白 ${n} 字 > 26（建議拆開）`);
     for (const [k, t] of [["念稿", s.tts ?? s.narration], ["字幕", s.subtitle?.zh]]) for (const m of cnTermIssues(t)) W(`${tag}: ${k}有${m}`);
     for (const m of h.readingIssues(s.tts ?? s.narration)) W(`${tag}: 念稿 ${m}`);
@@ -61,7 +66,8 @@ export function validateIso(script, h) {
     };
     const p = s.props ?? {};
     const kinds = film ? KINDS2 : KINDS;
-    if (!kinds.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${kinds.join("／")}）`);
+    if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
+    if (!caff && !kinds.includes(p.panel)) E(`${tag}: props.panel「${p.panel}」不存在（${kinds.join("／")}）`);
     // 走過整個 props：時間鍵檢查格式、color 檢查名稱
     const walk = (o, where) => {
       if (Array.isArray(o)) return o.forEach((v, k) => walk(v, `${where}[${k}]`));
@@ -75,7 +81,7 @@ export function validateIso(script, h) {
     };
     walk(p, "props");
     const cams = [].concat(p.camera ?? []);
-    if (!cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
+    if (!caff && !cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
     for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < 1.6) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
     if (film && QUOTES2.includes(p.panel)) {
       // 完整片：每一塊放了 AI 回答的地方都要有 verbatim（實測原始回答的 JSON），字只能刪節不能改；卡片要標「實測…（節錄）」
@@ -113,7 +119,8 @@ export function validateIso(script, h) {
     else W(`${tag}: 沒有出處`);
   });
   const hk = scenes[0].props ?? {};
-  if (hk.panel !== "hook" || !Array.isArray(hk.title) || !hk.title.length) E("第一幕要是 panel: \"hook\"，而且有 title（第 0 幀就看得到的實心大字主張）");
+  if (scenes.length === 1 && hk.panel === "caffend") { /* 只有片尾卡的測試片：不用鉤子 */ }
+  else if (hk.panel !== "hook" || !Array.isArray(hk.title) || !hk.title.length) E("第一幕要是 panel: \"hook\"，而且有 title（第 0 幀就看得到的實心大字主張）");
   else {
     if (![hk.screen, hk.pin].some((n) => /\d/.test(n?.value ?? ""))) E("第一幕的 hook 要有數字（props.screen／props.pin 的 value）：第 0 幀放後果或數字，不能只有問句");
     if (hk.title.some((t) => /[？?]$/.test(t))) W("第一幕的大字是問句：第 0 幀要放後果或數字");

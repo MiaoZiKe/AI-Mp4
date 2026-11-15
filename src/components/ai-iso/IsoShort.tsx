@@ -9,6 +9,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
+import { CaffEnd } from "./CaffEnd";
 import { ap, at2, Backdrop, Bb, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, fly, ground, HeaderIso, iso, type M6, MON, mul, popM, SCR, SCR_H, SCR_W, Shade, Slab, slam, SourceLine, Strike } from "./IsoVideo";
 
 const M = T.motion;
@@ -563,9 +564,12 @@ const Stage: React.FC<{ panels: Panel[]; f: number }> = ({ panels, f }) => {
   );
 };
 
-export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel }) => {
+export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, ...rest }) => {
   const f = useCurrentFrame();
   const panels = useMemo(() => buildIso(scenes, timeline), [scenes, timeline]);
+  // 頂層 channelLogo: "caffaine"：左上角放 CaffAIne LOGO；最後一幕 panel: "caffend"（silent）＝片尾卡（props.keyword＝留言關鍵字）。沒寫的舊片完全不變。
+  const logo = (rest as any).channelLogo === "caffaine";
+  const endP = panels.find((x) => x.kind === "caffend");
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((s) => by[s.id]);
   const caps: Cap[] = ordered.filter((s) => by[s.id].subtitleWindow).map((s) => ({ en: s.subtitle.en, window: by[s.id].subtitleWindow as [number, number], phrases: by[s.id].lines.map((l) => ({ ...l, text: l.text.replace(/[，、；：。]+$/, "") })), keywords: s.keywords ?? [], kw: ((s.props as any)?.kw ?? {}) as Record<string, string> }));
@@ -573,10 +577,11 @@ export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
-      <Stage panels={panels} f={f} />
-      <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} />
-      <Caption cues={caps} f={f} />
-      <SourceLine cues={srcs} f={f} />
+      <Stage panels={panels.filter((x) => x.kind !== "caffend")} f={f} />
+      {endP && f >= endP.in ? <CaffEnd f={f - endP.in} keyword={String(endP.p.keyword ?? "")} fadeIn={endP.in > 0} /> : null}
+      <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo={logo} />
+      {endP && f >= endP.in ? null : <Caption cues={caps} f={f} />}
+      {endP && f >= endP.in ? null : <SourceLine cues={srcs} f={f} />}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (
         <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} name={`${t.id}-audio`} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>
       ))}

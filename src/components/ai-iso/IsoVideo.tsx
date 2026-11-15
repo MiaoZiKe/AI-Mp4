@@ -6,6 +6,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
+import { CaffHeaderLogo } from "./CaffEnd";
 import { CoverFilm, FilmIso } from "./IsoFilm";
 import { CoverShort, ShortIso } from "./IsoShort";
 
@@ -453,14 +454,16 @@ export const Lens: React.FC<{ f: number; at: number; text: string; dx?: number; 
 };
 
 export const Backdrop: React.FC = () => <AbsoluteFill style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bg2} 100%)` }} />;
-export const HeaderIso: React.FC<{ name: string; tag: string; right?: string; progress: number }> = ({ name, tag, right, progress }) => (
+export const HeaderIso: React.FC<{ name: string; tag: string; right?: string; progress: number; logo?: boolean }> = ({ name, tag, right, progress, logo }) => (
   <>
-    <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+    {/* 頻道 LOGO（script.json 頂層 channelLogo: "caffaine"）：固定左上、每幕同位置同大小；沒開的片照舊畫小牌子加標籤 */}
+    {logo ? <CaffHeaderLogo /> : null}
+    <div style={{ position: "absolute", left: L.X, right: L.X, top: L.HEADER_TOP, height: L.HEADER_H, display: "flex", alignItems: "center", justifyContent: logo ? "flex-end" : "space-between" }}>
+      <div style={{ display: logo ? "none" : "flex", alignItems: "center", gap: 18 }}>
         <div style={{ width: 60, height: 54, borderRadius: 16, background: T.color.primary.fill, boxShadow: `0 6px 0 ${T.color.primary.side}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: T.weight.strong, fontSize: 30, color: T.color.primary.on }}>{name}</div>
         <div style={{ ...zh, fontWeight: T.weight.strong, fontSize: 36, color: T.ink }}>{tag}</div>
       </div>
-      {right ? <div style={{ ...zh, fontWeight: T.weight.body, fontSize: L.MIN_PX, color: T.ink3 }}>{right}</div> : null}
+      {right ? <div style={{ ...zh, fontWeight: T.weight.body, fontSize: logo ? 30 : L.MIN_PX, color: T.ink3 }}>{right}</div> : null}
     </div>
     <div style={{ position: "absolute", left: L.X, top: L.PROGRESS_TOP, width: L.INNER_W, height: 8, borderRadius: 8, background: T.line, overflow: "hidden" }}>
       <div style={{ width: `${(100 * progress).toFixed(2)}%`, height: 8, borderRadius: 8, background: T.color.primary.fill }} />
