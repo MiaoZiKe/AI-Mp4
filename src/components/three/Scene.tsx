@@ -149,7 +149,10 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             let px = q[0] + off[0] + L.x + (pf?.off[0] ?? 0), py = q[1] + off[1] + L.y + (pf?.off[1] ?? 0);
             const pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
             if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }
-            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[px, py, pz]} quaternion={pf?.quat ?? IDENT} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
+            // grow：以零件底部（y 最低處）為基準伸縮，底部不離開桌面
+            const gs = pf?.grow ?? null;
+            if (gs) py += ((gs[1] - 1) * (b.p.size[1] ?? 0)) / 2;
+            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[px, py, pz]} scale={gs ?? [1, 1, 1]} quaternion={pf?.quat ?? IDENT} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
           })}
           {sw.on > 0.001 ? <><primitive object={spot} /><primitive object={spot.target} /></> : null}
           {model.actions ? <Ops model={model} s={s} /> : null}

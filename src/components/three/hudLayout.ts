@@ -98,12 +98,18 @@ export const layerBoxes = (pr: ProductModel) => {
 export const modelRect = (pr: ProductModel, s: State3D, minO = 0.3): Rect | null => {
   const cam = cameraFor(s), boxes = layerBoxes(pr);
   let r: Rect | null = null;
+  const bg = new Set(pr.layers.filter((l) => l.bg).map((l) => l.id));
   for (const [id, b] of Object.entries(boxes)) {
-    if ((s.layers[id]?.opacity ?? 1) < minO) continue;
+    if ((s.layers[id]?.opacity ?? 1) < minO || bg.has(id)) continue;
+    // 2026/11/16 tech-offer（長桌上好幾個工作站、鏡頭沿桌子平移）：整層都在畫面外的不算，部分在畫面外的裁到畫面寬度
+    let q: Rect | null = null;
     for (let i = 0; i < 8; i++) {
       const p = projectPoint(s, cam, id, [i & 1 ? b.max[0] : b.min[0], i & 2 ? b.max[1] : b.min[1], i & 4 ? b.max[2] : b.min[2]]);
-      r = r ? { x0: Math.min(r.x0, p.x), y0: Math.min(r.y0, p.y), x1: Math.max(r.x1, p.x), y1: Math.max(r.y1, p.y) } : { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
+      q = q ? { x0: Math.min(q.x0, p.x), y0: Math.min(q.y0, p.y), x1: Math.max(q.x1, p.x), y1: Math.max(q.y1, p.y) } : { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
     }
+    if (!q || q.x1 < 0 || q.x0 > 1080) continue;
+    q = { ...q, x0: Math.max(0, q.x0), x1: Math.min(1080, q.x1) };
+    r = r ? { x0: Math.min(r.x0, q.x0), y0: Math.min(r.y0, q.y0), x1: Math.max(r.x1, q.x1), y1: Math.max(r.y1, q.y1) } : q;
   }
   return r;
 };

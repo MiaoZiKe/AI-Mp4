@@ -26,7 +26,8 @@ export type PartDef = {
   role?: "lid" | "heatFloor" | "heatSource" | "xray";
   shadow?: boolean;
 };
-export type LayerDef = { id: string; z: number; k: number; outline?: [number, number, number, number] };
+/** bg（2026/11/16 tech-offer）：背景層（例如整張桌面），不算進主素材框（版面檢查與疊層避讓都不看它） */
+export type LayerDef = { id: string; z: number; k: number; outline?: [number, number, number, number]; bg?: boolean };
 export type AnchorDef = { layer: string; p: Vec3; dx: number; dy: number };
 export type ThermalDef = {
   layer: string; center: [number, number]; size: [number, number]; floorZ: number; hot: [number, number]; lanes: [number, number]; lidTravel: number;
@@ -48,6 +49,8 @@ export type ActionDef = {
   parts?: string[];
   /** vibrate：方向、幅度（模型單位）、每秒幾下。rotate：軸、每秒幾圈、轉軸位置（預設零件自己的 pos） */
   axis?: number[]; amp?: number; freq?: number; rps?: number; pivot?: number[];
+  /** 2026/11/16 tech-offer：vibrate 的 grow＝沿 axis 伸縮（以零件底部為基準）；rotate 的 angle（度）＝轉到固定角度、swing（度）＝來回擺 */
+  grow?: boolean; angle?: number; swing?: number; gain0?: number;
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */

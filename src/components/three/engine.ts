@@ -231,6 +231,8 @@ export const signalVal = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id
 export const signalLevel = (pr: ProductModel, s: { ops: Record<string, Op3D> }, id: string) => {
   const d = pr.actions?.[id], op = s.ops[id];
   if (!d || !op) return 0;
+  // 2026/11/16 tech-offer：會伸縮的 vibrate（grow）與來回擺的 rotate（swing）＝跟著同一個正弦走（儀表和 3D 是同一份數值）
+  if ((d.type === "vibrate" && d.grow) || (d.type === "rotate" && d.swing !== undefined)) return clamp01(op.g * (0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T)));
   if (d.type !== "trace" && d.type !== "sum") return clamp01(op.g);
   const ref = d.type === "trace" ? d.amp ?? 0.5 : pr.actions?.[d.of?.[0] ?? ""]?.amp ?? 0.5;
   let mx = 0;

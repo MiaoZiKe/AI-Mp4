@@ -201,7 +201,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
 };
 
 /** 零件本身的作用：vibrate 的位移、rotate 的旋轉、pulse 的發光（Scene.tsx 每個零件問一次） */
-export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; glow: number; color: string | null };
+export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; glow: number; color: string | null; grow: [number, number, number] | null };
 export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]> => {
   const m = new Map<string, [string, ActionDef][]>();
   for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) for (const p of d.parts ?? []) m.set(p, [...(m.get(p) ?? []), [id, d]]);
@@ -209,17 +209,23 @@ export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]>
 };
 export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): PartFx | null => {
   if (!list) return null;
-  const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, glow: 0, color: null };
+  const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, glow: 0, color: null, grow: null };
   for (const [id, d] of list) {
     const op = s.ops[id];
     if (!op) continue;
     if (d.type === "vibrate") {
       const a = d.axis ?? [0, 0, 1], v = (d.amp ?? 0.1) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 4) * op.T);
-      fx.off = [fx.off[0] + a[0] * v, fx.off[1] + a[1] * v, fx.off[2] + (a[2] ?? 0) * v];
+      // grow（2026/11/16 tech-offer）：不是位移，是沿 axis 伸縮（以零件底部為基準；amp＝相對伸縮量，0.4＝±40%）
+      if (d.grow) { const g0 = fx.grow ?? [1, 1, 1]; fx.grow = [g0[0] * (1 + Math.abs(a[0]) * v), g0[1] * (1 + Math.abs(a[1]) * v), g0[2] * (1 + Math.abs(a[2] ?? 0) * v)]; }
+      else fx.off = [fx.off[0] + a[0] * v, fx.off[1] + a[1] * v, fx.off[2] + (a[2] ?? 0) * v];
     } else if (d.type === "rotate") {
-      // 角度＝轉速 × 觸發後的時間（until 之後時間不再走，停在原地）
-      fx.quat = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), Math.PI * 2 * (d.rps ?? 1) * op.t);
-      fx.pivot = d.pivot ?? null;
+      // 角度＝轉速 × 觸發後的時間（until 之後時間不再走，停在原地）。
+      // 2026/11/16 tech-offer：angle（度）＝轉到固定角度（跟著 run 的進出場 ramp 轉過去、until 後轉回來）；swing（度）＝來回擺（± swing、每秒 freq 下，相位用全片時間，和 vibrate 同一個式子）；
+      // 同一個零件有好幾個 rotate 時角度相乘（以前只取最後一個）
+      const ang = d.angle !== undefined ? ((d.angle * Math.PI) / 180) * op.k * (d.gain0 ?? 1) : d.swing !== undefined ? ((d.swing * Math.PI) / 180) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T) : Math.PI * 2 * (d.rps ?? 1) * op.t;
+      const q = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), ang);
+      fx.quat = fx.quat ? fx.quat.multiply(q) : q;
+      fx.pivot = d.pivot ?? fx.pivot ?? null;
     } else if (d.type === "pulse") {
       // steady＝不閃，穩定亮著（強度只跟著進出場 ramp；例如電壓維持在高的那段時間）
       const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
