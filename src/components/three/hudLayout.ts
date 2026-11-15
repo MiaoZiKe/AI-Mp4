@@ -7,7 +7,7 @@ import type { PartDef, ProductModel } from "./model";
 import type { Scene, TimelineV2 } from "../../types";
 
 export type Rect = { x0: number; y0: number; x1: number; y1: number };
-export type Box = { W: number; X: number; INNER_W: number; STAGE_TOP: number; STAGE_H: number; HEADER_TOP?: number; CAP_TOP?: number };
+export type Box = { W: number; X: number; INNER_W: number; STAGE_TOP: number; STAGE_H: number; HEADER_TOP?: number; CAP_TOP?: number; BAND_TOP?: number; BAND_BOTTOM?: number };
 export const hit = (a: Rect, b: Rect, pad = 0) => a.x0 < b.x1 + pad && b.x0 < a.x1 + pad && a.y0 < b.y1 + pad && b.y0 < a.y1 + pad;
 export const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0)) * Math.max(0, Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0));
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
@@ -116,17 +116,17 @@ export const stampRect = (o: Overlay3D, cx: number, cy: number): Rect => {
 export const cardRect = (o: Overlay3D, b: Box): Rect | null => {
   const x0 = b.X, x1 = b.X + b.INNER_W;
   if (o.type === "compare") return { x0, x1, y0: o.y ?? 840, y1: (o.y ?? 840) + (o.h ?? 400) };
-  if (o.type === "bars") { const n = (o.rows ?? []).length; return { x0, x1, y0: o.y ?? 640, y1: (o.y ?? 640) + 20 + 56 + n * (26 + 74 + 10 + 44) + 30 }; }
-  if (o.type === "card") { const size = o.size ?? 100, lines = (o.lines ?? []).length; return { x0, x1, y0: o.y ?? 360, y1: (o.y ?? 360) + 36 + (o.kicker ? 66 : 0) + lines * size * 1.28 + (o.foot ? 58 : 0) + 44 }; }
+  if (o.type === "bars") { const n = (o.rows ?? []).length; return { x0, x1, y0: o.y ?? 640, y1: (o.y ?? 640) + 4 + 20 + 64 + n * (26 + 80 + 10 + 44) + 30 }; }
+  // 提問卡：上下內距 36＋44、小標約 90（含間距）、每行 size×1.28，再多留 30（字型行高比估的高；2026/11/15 實測 s18 的卡比估的高約 50px）
+  if (o.type === "card") { const size = o.size ?? 100, lines = (o.lines ?? []).length; return { x0, x1, y0: o.y ?? 360, y1: (o.y ?? 360) + 4 + 36 + (o.kicker ? 90 : 0) + lines * size * 1.28 + (o.foot ? 58 : 0) + 44 + 30 }; }
   return null;
 };
 
 /** f0–f1 之間（每 3 幀取樣）模型範圍的聯集；3D 沒出場的幀不算 */
-export const modelUnion = (m: Model3D, is3D: (f: number) => boolean, f0: number, f1: number): Rect | null => {
+export const modelUnion = (m: Model3D, mainAt: (f: number) => Rect | null, f0: number, f1: number): Rect | null => {
   let mr: Rect | null = null;
   for (let f = Math.max(0, f0); f <= Math.min(f1, m.total - 1); f += 3) {
-    if (!is3D(f)) continue;
-    const r = modelRect(m.product, stateAt(m, f));
+    const r = mainAt(f);
     if (r) mr = mr ? { x0: Math.min(mr.x0, r.x0), y0: Math.min(mr.y0, r.y0), x1: Math.max(mr.x1, r.x1), y1: Math.max(mr.y1, r.y1) } : r;
   }
   return mr;
@@ -147,14 +147,89 @@ export const freeSpot = (w: number, h: number, pref: [number, number], obs: Rect
 };
 
 export const EXIT = 6;
-/** HUD 外框常駐的讀數（Hud.tsx 的 HudFrame）：左上層級名、右上示意圖標示＋倍率＋FIELD、左下尺標。標籤與蓋章都要避開 */
+/** HUD 外框常駐的讀數（Hud.tsx 的 HudFrame）：2026/11/15 起集中在舞台上下兩條讀數帶（上：層級名、倍率、FIELD；下：尺標、示意圖標示），
+ *  主素材只畫在兩條帶子中間（artRegion）。沒有讀數帶的舊版面（BAND_TOP＝0）照舊用三個角落的框。 */
 export const hudReserved = (b: Box): Rect[] => {
   const x0 = b.X, x1 = b.W - b.X, y0 = b.STAGE_TOP + 14, y1 = b.STAGE_TOP + b.STAGE_H - 14;
+  if (b.BAND_TOP) return [{ x0, x1, y0: b.STAGE_TOP, y1: b.STAGE_TOP + b.BAND_TOP }, { x0, x1, y0: b.STAGE_TOP + b.STAGE_H - (b.BAND_BOTTOM ?? 0), y1: b.STAGE_TOP + b.STAGE_H }];
   return [
     { x0: x0, y0: y0, x1: x0 + 350, y1: y0 + 110 },
     { x0: x1 - 470, y0: y0, x1: x1, y1: y0 + 206 },
     { x0: x0, y0: y1 - 92, x1: x0 + 300, y1: y1 },
   ];
+};
+/** 主素材可以畫的範圍：舞台扣掉上下兩條讀數帶 */
+export const artRegion = (b: Box): Rect => ({ x0: b.X, x1: b.W - b.X, y0: b.STAGE_TOP + (b.BAND_TOP ?? 0), y1: b.STAGE_TOP + b.STAGE_H - (b.BAND_BOTTOM ?? 0) });
+
+// ── 主素材框（2026/11/15 Andy：「避免中間重要的素材被遮擋」） ──
+/** 2D 縮放圖每一種的外框（HudArt.tsx 的座標，1000 單位＝舞台內寬 × 這一級的倍率） */
+export const ART_BOX: Record<string, [number, number, number, number]> = { phone: [-220, -424, 220, 424], board: [-500, -330, 500, 330], die: [-500, -500, 500, 500], cells: [-500, -500, 500, 500], gates: [-453, -240, 453, 240] };
+/** 2D 階段的主素材框：鏡頭現在對著的那一級（round(lv)）的圖，裁在舞台裡（沒有 yield 變形；畫面上看得到的部分另外再和 artRegion 取交集，見 visibleMain） */
+export const artMainRect = (hud: HudSpec, z: { lv: number; logField: number }, b: Box): Rect | null => {
+  const i = Math.max(0, Math.min(hud.levels.length - 1, Math.round(z.lv))), lvl = hud.levels[i], bx = ART_BOX[lvl.art];
+  if (!bx) return null;
+  const R = artRegion(b), cx = b.W / 2, cy = (R.y0 + R.y1) / 2, k = Math.pow(10, Math.log10(meters(lvl.field)) - z.logField), u = (b.INNER_W * k) / 1000;
+  // 裁在整個舞台裡（不是 artRegion）：讓位時才會把整支手機放進空白，不會只放進被裁過的那一段
+  const S0 = b.STAGE_TOP, S1 = b.STAGE_TOP + b.STAGE_H;
+  const r = { x0: Math.max(0, cx + bx[0] * u), x1: Math.min(b.W, cx + bx[2] * u), y0: Math.max(S0, cy + bx[1] * u), y1: Math.min(S1, cy + bx[3] * u) };
+  return r.x1 > r.x0 && r.y1 > r.y0 ? r : null;
+};
+/** 主素材讓位的變形：畫面上一點 p → p×s＋(ox, oy)（2D 圖與 3D 畫布用同一個） */
+export type Yield = { s: number; ox: number; oy: number };
+export const ID: Yield = { s: 1, ox: 0, oy: 0 };
+export const applyY = (r: Rect, y: Yield): Rect => ({ x0: r.x0 * y.s + y.ox, x1: r.x1 * y.s + y.ox, y0: r.y0 * y.s + y.oy, y1: r.y1 * y.s + y.oy });
+export type YieldTrigger = { at: number; until: number; rect: Rect; why: string };
+/** 在 region 裡找一塊不碰任何 trigger 的最大空白（候選邊界＝各 trigger 的邊），讓主素材縮放平移進去；回傳變形 */
+const fitInto = (main: Rect, region: Rect, trig: Rect[]): Yield => {
+  const pad = 18, xs = [region.x0, region.x1], ys = [region.y0, region.y1];
+  for (const t of trig) { xs.push(t.x0 - pad, t.x1 + pad); ys.push(t.y0 - pad, t.y1 + pad); }
+  const X = [...new Set(xs)].filter((v) => v >= region.x0 && v <= region.x1).sort((a, b) => a - b), Y = [...new Set(ys)].filter((v) => v >= region.y0 && v <= region.y1).sort((a, b) => a - b);
+  const mw = main.x1 - main.x0, mh = main.y1 - main.y0, mcx = (main.x0 + main.x1) / 2, mcy = (main.y0 + main.y1) / 2;
+  let best = { s: 0, cx: mcx, cy: mcy, d: 1e9 };
+  for (let a = 0; a < X.length; a++) for (let c = a + 1; c < X.length; c++) for (let e = 0; e < Y.length; e++) for (let g = e + 1; g < Y.length; g++) {
+    const r = { x0: X[a], x1: X[c], y0: Y[e], y1: Y[g] };
+    if (trig.some((t) => hit(r, t, pad - 1))) continue;
+    const s = Math.min(1, (r.x1 - r.x0) / mw, (r.y1 - r.y0) / mh);
+    // 放進這塊時離原位最近的中心
+    const hw = (mw * s) / 2, hh = (mh * s) / 2, cx = Math.max(r.x0 + hw, Math.min(r.x1 - hw, mcx)), cy = Math.max(r.y0 + hh, Math.min(r.y1 - hh, mcy)), d = Math.hypot(cx - mcx, cy - mcy);
+    if (s > best.s + 1e-3 || (Math.abs(s - best.s) <= 1e-3 && d < best.d)) best = { s, cx, cy, d };
+  }
+  if (best.s <= 0) return ID;
+  return { s: best.s, ox: best.cx - mcx * best.s, oy: best.cy - mcy * best.s };
+};
+export const YIELD_LEAD = 20, YIELD_SMOOTH = 6;
+/**
+ * 主素材讓位：有東西（大卡片、鉤子大字、放不下的蓋章）要出現時，主素材先（at−20 幀起、at−8 幀到位，平滑後約 at−2 幀到位）縮小移到剩下的空白，東西退場後再回來。
+ * rawMain(f)＝沒讓位時的主素材框；回傳 yieldAt(f)（已做 ±YIELD_SMOOTH 幀平滑）與 mainAt(f)（讓位後的主素材框）。
+ */
+export const makeYield = (b: Box, rawMain: (f: number) => Rect | null, triggers: YieldTrigger[], total: number) => {
+  const R = artRegion(b), cache = new Map<number, Yield>(), sm = new Map<number, Yield>();
+  const raw = (f: number): Yield => {
+    if (cache.has(f)) return cache.get(f)!;
+    let w = 0; const act: Rect[] = [];
+    for (const t of triggers) { const k = tween(f, t.at - YIELD_LEAD, YIELD_LEAD - 8, EASE.move) * (1 - tween(f, t.until + EXIT + YIELD_SMOOTH, 12, EASE.move)); if (k > 0.001) { w = Math.max(w, k); act.push(t.rect); } }
+    const main = w > 0 ? rawMain(f) : null;
+    let y = ID;
+    if (main && act.some((t) => hit(main, t))) { const t = fitInto(main, R, act); y = { s: 1 + (t.s - 1) * w, ox: t.ox * w, oy: t.oy * w }; }
+    cache.set(f, y);
+    return y;
+  };
+  const yieldAt = (f: number): Yield => {
+    if (sm.has(f)) return sm.get(f)!;
+    let s = 0, ox = 0, oy = 0, n = 0;
+    for (let g = Math.max(0, f - YIELD_SMOOTH); g <= Math.min(total - 1, f + YIELD_SMOOTH); g++) { const y = raw(g); s += y.s; ox += y.ox; oy += y.oy; n++; }
+    const y = n ? { s: s / n, ox: ox / n, oy: oy / n } : ID;
+    sm.set(f, y);
+    return y;
+  };
+  const mainAt = (f: number) => { const r = rawMain(f); return r ? applyY(r, yieldAt(f)) : null; };
+  return { yieldAt, mainAt };
+};
+/** 畫面上真的看得到的主素材框：2D 圖畫在 artRegion（左右各放寬 40）裡，超出的被裁掉 */
+export const visibleMain = (r: Rect | null, b: Box, is2D: boolean): Rect | null => {
+  if (!r || !is2D || !b.BAND_TOP) return r;
+  const R = artRegion(b), v = { x0: Math.max(R.x0 - 40, r.x0), x1: Math.min(R.x1 + 40, r.x1), y0: Math.max(R.y0, r.y0), y1: Math.min(R.y1, r.y1) };
+  return v.x1 > v.x0 && v.y1 > v.y0 ? v : null;
 };
 /** 疊層的可見範圍（進場前一幀到退場完） */
 export const visible = (o: Overlay3D, f: number) => f >= o.at - 1 && f < o.until + EXIT;
@@ -167,22 +242,24 @@ export const visible = (o: Overlay3D, f: number) => f >= o.at - 1 && f < o.until
  * 2. 換幕不疊：位置會重疊的兩個疊層（大卡片之間、蓋章之間），新的那個等舊的退場完才進場（at 往後挪，巢狀的 at 一起挪）。
  * obstacles(f0, f1)＝這段時間裡畫面上其他會擋到的框（標籤、儀表）。
  */
-export const arrangeOverlays = (m: Model3D, b: Box, is3D: (f: number) => boolean, obstacles: (f0: number, f1: number) => Rect[] = () => []): Overlay3D[] => {
-  const list = (m.overlays ?? []).map((o) => ({ ...o }));
+export const arrangeOverlays = (m: Model3D, b: Box, mainAt: (f: number) => Rect | null, obstacles: (f0: number, f1: number) => Rect[] = () => [], fixed: Set<number> = new Set()): Overlay3D[] => {
+  const list = (m.overlays ?? []).map((o, i) => ({ ...o, _i: i }) as Overlay3D);
   const rectOf = (o: Overlay3D) => (o.type === "stamp" ? stampRect(o, o.x ?? b.W / 2, o.y ?? b.STAGE_TOP + b.STAGE_H / 2) : cardRect(o, b));
   // 舞台下緣留 RULER_BAND（左下尺標與角框），蓋章不放進去
-  const stage: Rect = { x0: b.X, x1: b.W - b.X, y0: b.STAGE_TOP + 16, y1: b.STAGE_TOP + b.STAGE_H - 16 };
+  const stage: Rect = b.BAND_TOP ? artRegion(b) : { x0: b.X, x1: b.W - b.X, y0: b.STAGE_TOP + 16, y1: b.STAGE_TOP + b.STAGE_H - 16 };
   // 1. 避開模型與其他東西（照進場順序；已放好的蓋章也是障礙）
   const placed: Overlay3D[] = [];
   for (const o of [...list].sort((p, q) => p.at - q.at)) {
-    if (o.type !== "stamp" || o.avoid === false) { placed.push(o); continue; }
+    if (o.type !== "stamp" || o.avoid === false || fixed.has(o._i)) { placed.push(o); continue; }
     const f0 = o.at, f1 = Math.min(o.until + EXIT, m.total - 1);
-    const mr = modelUnion(m, is3D, f0, f1);
-    const obs: Rect[] = [...hudReserved(b), ...obstacles(f0, f1), ...placed.filter((p) => p.type === "stamp" && p.at < f1 && p.until > f0 + 4) /* 舊的幾幀內就退場的不算：第 2 步會讓新的等它退完 */.map((p) => rectOf(p) as Rect)];
+    const mr = modelUnion(m, mainAt, f0, f1);
+    const others = [...placed, ...list.filter((p) => fixed.has(p._i) && p !== o && !placed.includes(p))];
+    const obs: Rect[] = [...hudReserved(b), ...obstacles(f0, f1), ...others.filter((p) => p.type === "stamp" && p.at < f1 && p.until > f0 + 4) /* 舊的幾幀內就退場的不算：第 2 步會讓新的等它退完 */.map((p) => rectOf(p) as Rect)];
     if (mr) obs.push(mr);
     const r0 = rectOf(o) as Rect, x = o.x ?? b.W / 2, y = o.y ?? (stage.y0 + stage.y1) / 2;
-    const { c } = freeSpot(r0.x1 - r0.x0, r0.y1 - r0.y0, [x, y], obs, stage);
-    if (Math.abs(c[0] - x) > 1 || Math.abs(c[1] - y) > 1) { o.x = c[0]; o.y = c[1]; o._moved = true; }
+    const { c, cost } = freeSpot(r0.x1 - r0.x0, r0.y1 - r0.y0, [x, y], obs, stage);
+    // 找不到空位（2D 圖撐滿舞台時常見）：留在原位，標成「主素材要讓位」
+    if (cost > 0 && mr) { o._yield = true; } else if (Math.abs(c[0] - x) > 1 || Math.abs(c[1] - y) > 1) { o.x = c[0]; o.y = c[1]; o._moved = true; }
     placed.push(o);
   }
   // 2. 換幕不疊（依進場時間排）
@@ -205,20 +282,20 @@ export const arrangeOverlays = (m: Model3D, b: Box, is3D: (f: number) => boolean
 
 /** 全片標籤的位置（畫面與檢查共用）：標籤卡整段固定不動（只有引線跟著零件走），位置用 freeSpot 找：
  *  避開它出現期間模型範圍的聯集、同時出現的其他標籤、obstacles（儀表），從 anchors 的 dx／dy 那一點往外找最近的空位。 */
-export type PlacedLabel = { l: Label3D; an: { layer: string; p: number[]; dx: number; dy: number }; p0: { x: number; y: number }; x: number; y: number; left: boolean; rect: Rect };
-export const placeLabels = (m: Model3D, b: Box, is3D: (f: number) => boolean, enPx: number, obstacles: (f0: number, f1: number) => Rect[] = () => []): PlacedLabel[] => {
+export type PlacedLabel = { l: Label3D; an: { layer: string; p: number[]; dx: number; dy: number }; p0: { x: number; y: number }; x: number; y: number; left: boolean; rect: Rect; cost?: number };
+export const placeLabels = (m: Model3D, b: Box, mainAt: (f: number) => Rect | null, enPx: number, obstacles: (f0: number, f1: number) => Rect[] = () => []): PlacedLabel[] => {
   const A = m.product.anchors, out: PlacedLabel[] = [];
-  const stage: Rect = { x0: b.X, x1: b.W - b.X, y0: b.STAGE_TOP + 16, y1: b.STAGE_TOP + b.STAGE_H - 16 };
+  const stage: Rect = b.BAND_TOP ? artRegion(b) : { x0: b.X, x1: b.W - b.X, y0: b.STAGE_TOP + 16, y1: b.STAGE_TOP + b.STAGE_H - 16 };
   for (const l of [...m.labels].filter((l) => A[l.part]).sort((p, q) => p.at - q.at)) {
     const an = A[l.part], f0 = l.at + 8, s0 = stateAt(m, f0), p0 = projectPoint(s0, cameraFor(s0), an.layer, an.p);
     const f1 = Math.min(l.until + 6, m.total - 1), { w, h } = labelSize(l, enPx);
     const obs: Rect[] = [...hudReserved(b), ...obstacles(l.at, f1), ...out.filter((q) => q.l.at < f1 && q.l.until + 6 > l.at).map((q) => q.rect)];
-    const mr = modelUnion(m, is3D, l.at, f1);
+    const mr = modelUnion(m, mainAt, l.at, f1);
     if (mr) obs.push(mr);
     const pref: [number, number] = [p0.x + an.dx + (an.dx < 0 ? -w / 2 : w / 2), p0.y + an.dy];
-    const { c } = freeSpot(w, h, pref, obs, stage, 18);
+    const { c, cost } = freeSpot(w, h, pref, obs, stage, 18);
     const left = c[0] < p0.x, rect = { x0: c[0] - w / 2, x1: c[0] + w / 2, y0: c[1] - h / 2, y1: c[1] + h / 2 };
-    out.push({ l, an, p0, x: left ? rect.x1 : rect.x0, y: c[1], left, rect });
+    out.push({ l, an, p0, x: left ? rect.x1 : rect.x0, y: c[1], left, rect, cost });
   }
   return out;
 };
@@ -266,4 +343,56 @@ export const obstaclesOf = (m: Model3D, labels: PlacedLabel[]) => (f0: number, f
     if (m.runs.some((r) => r.id === id && r.at < f1 && r.until + r.ramp > f0)) out.push({ x0: d.x, y0: d.y, x1: d.x + (d.w ?? 330), y1: d.y + METER_H });
   }
   return out;
+};
+
+/** 鉤子大字（第一幕 props.hook）的外接矩形（Hud.tsx 的 HudHook：小標＋大字底板） */
+export const hookRect = (h: { title: string; kicker?: string; size?: number; top?: number }, b: Box): Rect => {
+  const size = h.size ?? 128, w = textW(h.title, size, 0) + 44, top = h.top ?? 560, H = (h.kicker ? 40 + 14 + 14 : 0) + size * 1.18 + 26;
+  return { x0: b.W / 2 - w / 2, x1: b.W / 2 + w / 2, y0: top, y1: top + H };
+};
+/**
+ * 全套版面（Hud.tsx 與 layout-check 共用）：主素材框 → 第一輪讓位（鉤子、大卡片）→ 標籤 → 蓋章（找空位）→ 放不下的蓋章也加進讓位 → 第二輪讓位 → 其餘蓋章用新的主素材框重放。
+ */
+export const planHud = (m: Model3D, b: Box, hud: HudSpec, keys: ZoomKey[], enPx: number, hookOut: number) => {
+  const total = m.total, is3D = (f: number) => zoomAt(hud, keys, f).handoff > 0.5;
+  const mc = new Map<number, Rect | null>();
+  const rawMain = (f: number) => { if (!mc.has(f)) mc.set(f, is3D(f) ? modelRect(m.product, stateAt(m, f)) : artMainRect(hud, zoomAt(hud, keys, f), b)); return mc.get(f) ?? null; };
+  const band = !!b.BAND_TOP;
+  // 一定會讓位的：鉤子大字、大卡片、固定在畫面上的儀表（run 期間）
+  const trig: YieldTrigger[] = [];
+  const hook = m.hook ? hookRect(m.hook as any, b) : null;
+  if (hook && band) trig.push({ at: -30, until: hookOut, rect: hook, why: "鉤子大字" });
+  for (const [id, d] of Object.entries(m.product.actions ?? {})) {
+    if (d.type !== "meter" || d.x === undefined || d.y === undefined || !band) continue;
+    for (const r of m.runs.filter((q) => q.id === id)) trig.push({ at: r.at, until: Math.min(r.until + r.ramp, total), rect: { x0: d.x, y0: d.y, x1: d.x + (d.w ?? 330), y1: d.y + METER_H }, why: `儀表「${d.label}」` });
+  }
+  const cardTrig = (ovs: Overlay3D[]) => ovs.filter((o) => ["compare", "bars", "card"].includes(o.type) && o.avoid !== false).map((o) => ({ at: o.at, until: o.until, rect: cardRect(o, b)!, why: o.type }));
+  const obsOf = (labels: PlacedLabel[]) => { const base = obstaclesOf(m, labels); return (f0: number, f1: number) => [...base(f0, f1), ...(hook && f0 < hookOut + EXIT ? [hook] : [])]; };
+  const run = (extra: YieldTrigger[], fixedOv?: { fixed: Set<number>; pos: Map<number, { x?: number; y?: number }> }) => {
+    const t0 = band ? [...trig, ...cardTrig((m.overlays ?? []) as Overlay3D[]), ...extra] : [];
+    const y = makeYield(b, rawMain, t0, total);
+    const labels = placeLabels(m, b, y.mainAt, enPx, obsOf([]));
+    const mm = fixedOv ? ({ ...m, overlays: (m.overlays ?? []).map((o, i) => (fixedOv.fixed.has(i) ? { ...o, ...fixedOv.pos.get(i) } : o)) } as Model3D) : m;
+    const ovs = arrangeOverlays(mm, b, y.mainAt, obsOf(labels), fixedOv?.fixed);
+    if (fixedOv) for (const o of ovs) if (fixedOv.fixed.has(o._i)) o._yield = true;
+    return { y, labels, ovs, triggers: t0 };
+  };
+  let r = run([]);
+  if (!band) return { overlays: r.ovs, labels: r.labels, yieldAt: r.y.yieldAt, mainAt: r.y.mainAt, rawMain, is3D, triggers: r.triggers };
+  // 放不下的蓋章與標籤：留在原位，改成主素材讓位（最多兩輪）
+  let extra: YieldTrigger[] = [], fixed = new Set<number>(), pos = new Map<number, { x?: number; y?: number }>();
+  for (let pass = 0; pass < 2; pass++) {
+    const newS = r.ovs.filter((o) => o._yield && !fixed.has(o._i)), newL = r.labels.filter((l) => (l.cost ?? 0) > 0 && !extra.some((t) => t.why === `標籤「${l.l.text}」`));
+    if (!newS.length && !newL.length) break;
+    for (const o of newS) {
+      // 留在原位，但整個要在 artRegion 裡（不壓讀數帶）
+      const R = artRegion(b), x = o.x ?? b.W / 2, y = o.y ?? b.STAGE_TOP + b.STAGE_H / 2, r0 = stampRect(o, x, y);
+      const dx = Math.max(0, R.x0 + 8 - r0.x0) - Math.max(0, r0.x1 - (R.x1 - 8)), dy = Math.max(0, R.y0 + 8 - r0.y0) - Math.max(0, r0.y1 - (R.y1 - 8));
+      fixed.add(o._i); pos.set(o._i, { x: x + dx, y: y + dy });
+      extra.push({ at: o.at, until: o.until, rect: stampRect(o, x + dx, y + dy), why: `蓋章「${o.text}」` });
+    }
+    for (const l of newL) extra.push({ at: l.l.at, until: Math.min(l.l.until, total), rect: l.rect, why: `標籤「${l.l.text}」` });
+    r = run(extra, { fixed, pos });
+  }
+  return { overlays: r.ovs, labels: r.labels, yieldAt: r.y.yieldAt, mainAt: r.y.mainAt, rawMain, is3D, triggers: r.triggers };
 };

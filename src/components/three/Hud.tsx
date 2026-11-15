@@ -14,7 +14,7 @@ import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
 import { H, L, setHudLayout, setHudSkin, sm } from "./hudSkin";
-import { ENDCARD, textW, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
+import { ENDCARD, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -61,13 +61,14 @@ export const HudBackdrop: React.FC<{ f: number; lv: number; warm?: number }> = (
 };
 
 /** 2D 縮放圖層：每一級一張圖，畫在舞台中心；大小＝那一級的 field ÷ 現在的 field。只畫在舞台框裡 */
-export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z, f }) => {
+export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number; y?: Yield }> = ({ hud, z, f, y = ID }) => {
   if (z.handoff >= 1) return null;
-  const { CX, CY } = cxy();
+  // 讀數帶版面：圖只畫在兩條讀數帶中間（artRegion），中心也是那一塊的中心；y＝主素材讓位的變形
+  const R = L.BAND_TOP ? artRegion(L as any) : { x0: 0, x1: L.W, y0: L.STAGE_TOP, y1: L.STAGE_TOP + L.STAGE_H }, CX = L.W / 2, CY = L.BAND_TOP ? (R.y0 + R.y1) / 2 : cxy().CY;
   return (
     <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, opacity: 1 - z.handoff }}>
-      <defs><clipPath id="hudStage"><rect x={0} y={L.STAGE_TOP} width={L.W} height={L.STAGE_H} /></clipPath></defs>
-      <g clipPath="url(#hudStage)">
+      <defs><clipPath id="hudStage"><rect x={L.BAND_TOP ? R.x0 - 40 : 0} y={R.y0} width={L.BAND_TOP ? R.x1 - R.x0 + 80 : L.W} height={R.y1 - R.y0} /></clipPath></defs>
+      <g clipPath="url(#hudStage)"><g transform={`matrix(${y.s} 0 0 ${y.s} ${y.ox} ${y.oy})`}>
         {hud.levels.map((lvl, i) => {
           const k = Math.pow(10, Math.log10(meters(lvl.field)) - z.logField);
           // 裡面那一級（還很小）慢慢浮現；外面那一級等「下一級長到 0.4–0.9 倍畫面寬」才退掉（兩級差 100 倍以上時中間也不會空掉）
@@ -76,7 +77,7 @@ export const ZoomArt: React.FC<{ hud: HudSpec; z: Zoom; f: number }> = ({ hud, z
           const o = clamp01((k - 0.07) / 0.25) * clamp01((0.9 - kin) / 0.5);
           return <g key={lvl.id} transform={`translate(${CX} ${CY}) scale(${(L.INNER_W * k) / 1000})`} opacity={o}><Art kind={lvl.art} f={f} /></g>;
         })}
-      </g>
+      </g></g>
     </svg>
   );
 };
@@ -89,7 +90,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
   const band = (f * (H.scan.sweep / 30)) % (y1 - y0 + H.scan.bandH);
   const lvl = z.level ?? hud.levels[0];
   // 尺標長度：ruler ÷ 目前 field × 畫面寬（縮放途中跟著伸縮）；3D 之後固定在那一級
-  const rulerPx = Math.max(40, Math.min(L.INNER_W * 0.5, (meters(lvl.ruler) / Math.pow(10, z.logField)) * L.INNER_W * camK));
+  const rulerPx = Math.max(40, Math.min(L.INNER_W * (L.BAND_TOP ? 0.4 : 0.5), (meters(lvl.ruler) / Math.pow(10, z.logField)) * L.INNER_W * camK));
   // quiet＝提問卡出現時收掉層級名、倍率、FIELD（只留右上的示意圖標示，全片都在）
   const rq = 1 - quiet;
   // 讀數換級時閃一下（換字的那幾幀亮起來）
@@ -106,11 +107,20 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         <line x1={CX - 30} x2={CX - 8} y1={CY} y2={CY} /><line x1={CX + 8} x2={CX + 30} y1={CY} y2={CY} />
         <line y1={CY - 30} y2={CY - 8} x1={CX} x2={CX} /><line y1={CY + 8} y2={CY + 30} x1={CX} x2={CX} />
       </g>
-      <g transform={`translate(${x0 + 28} ${y1 - 34})`}>
+      <g transform={`translate(${x0 + 28} ${L.BAND_TOP ? L.STAGE_TOP + L.STAGE_H - 22 : y1 - 34})`}>
         <line x1={0} x2={rulerPx} y1={0} y2={0} stroke={H.amber} strokeWidth={s.bold} />
         {Array.from({ length: H.ruler.ticks + 1 }, (_, i) => <line key={i} x1={(rulerPx * i) / H.ruler.ticks} x2={(rulerPx * i) / H.ruler.ticks} y1={0} y2={i % 5 ? -H.ruler.h / 2 : -H.ruler.h} stroke={H.amber} strokeWidth={s.mid} />)}
         <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
       </g>
+      {L.BAND_TOP ? <>
+        {/* 2026/11/15 讀數帶版面：上帶＝左邊層級名、右邊倍率＋FIELD；下帶＝左邊尺標、右邊示意圖標示。主素材只畫在兩條帶子中間，讀數不會壓到它 */}
+        <text x={x0 + 28} y={L.STAGE_TOP + 50} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
+        <text x={x0 + 28} y={L.STAGE_TOP + 90} style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
+        <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={mono(56, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text>
+        <text x={x1 - 24} y={L.STAGE_TOP + 96} textAnchor="end" style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>FIELD {lvl.field}</text>
+        {sc ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 52} textAnchor="end" style={mono(sm(28), H.text2, 500)}>{sc.text}</text> : null}
+        {sc?.zh ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 16} textAnchor="end" style={zh(sm(28), H.text2, 500)}>{sc.zh}</text> : null}
+      </> : <>
       {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
       <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={H.plateO * rq} />
       <rect x={x1 - 470} y={y0 + 10} width={460} height={86 + 110 * rq} fill={H.bg} opacity={H.plateO} />
@@ -120,16 +130,19 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
       <text x={x1 - 24} y={y0 + 192} textAnchor="end" style={mono(H.font.px.readout, H.text2)} opacity={rq}>FIELD {lvl.field}</text>
       <text x={x0 + 28} y={y0 + 56} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
       <text x={x0 + 28} y={y0 + 96} style={mono(H.font.px.readout, H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
+      </>}
     </svg>
   );
 };
 
 /** 3D 舞台（只在交棒之後掛上）；外圈 drop-shadow 當便宜的光暈（不是 3D bloom） */
-const Stage3D: React.FC<{ s: State3D; model: ProductModel; o: number }> = ({ s, model, o }) => {
+const Stage3D: React.FC<{ s: State3D; model: ProductModel; o: number; y?: Yield }> = ({ s, model, o, y = ID }) => {
   const fx = fxOf(model);
   if (o <= 0.001) return null;
+  // 主素材讓位：整張 3D 畫布做同一個縮放平移（畫面點 p → p×s＋o；換成畫布自己的座標）
+  const T0 = L.STAGE_TOP, tr = y.s === 1 && !y.ox && !y.oy ? undefined : `translate(${y.ox.toFixed(2)}px, ${(y.s * T0 + y.oy - T0).toFixed(2)}px) scale(${y.s.toFixed(4)})`;
   return (
-    <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H, opacity: o, filter: `drop-shadow(0 0 ${H.glow.rimPx}px ${H.glow.rim})` }}>
+    <div style={{ position: "absolute", left: 0, top: L.STAGE_TOP, width: L.W, height: L.STAGE_H, opacity: o, transform: tr, transformOrigin: "0 0", filter: `drop-shadow(0 0 ${H.glow.rimPx}px ${H.glow.rim})` }}>
       <ThreeCanvas linear={false} shadows={false} width={L.W} height={L.STAGE_H} dpr={fx.dpr ?? 1} gl={{ antialias: !!fx.msaa, alpha: true }} camera={{ fov: T.camera.fov, near: 1, far: 600, position: [0, 0, 60] }}>
         <ProductScene model={model} s={s} />
       </ThreeCanvas>
@@ -153,13 +166,13 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
 
 /** 標籤：圓點釘在零件上、引線、小框。同畫面最多 max 張（多的照時間先後留最新的）。
  *  2026/11/15：標籤一律放在模型外面（hudLayout.ts 的 placeLabel）：位置用標籤落定那一幀（at+8）的模型範圍算一次，之後跟著零件平移，引線拉到模型外 */
-const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number }> = ({ s, f, max, placed, enPx }) => {
+const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number; y?: Yield }> = ({ s, f, max, placed, enPx, y: yv = ID }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
   const on = placed.filter(({ l }) => f >= l.at - 2 && f < l.until + 6).slice(-max);
   return (
     <>
       {on.map(({ l, an, x: x0, y: y0, left }, i) => {
-        const p = projectPoint(s, cam, an.layer, an.p), c = hudAccent(l.color);
+        const p0 = projectPoint(s, cam, an.layer, an.p), p = { x: p0.x * yv.s + yv.ox, y: p0.y * yv.s + yv.oy }, c = hudAccent(l.color);
         const o = tween(f, l.at - 2, 5, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit));
         // 標籤卡整段固定在模型外的空位（hudLayout.ts 的 placeLabels），只有引線跟著零件走
         const x = x0, y = y0;
@@ -184,7 +197,7 @@ const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLa
 };
 
 /** HUD 尺寸線：兩個標註點投影到畫面，往旁邊（off，預設 70px）拉出延伸線，中間是兩頭有短擋的尺寸線，數字框貼在外側 */
-const HudMeasures: React.FC<{ m: Model3D; s: State3D; f: number; list: Measure[] }> = ({ m, s, f, list }) => {
+const HudMeasures: React.FC<{ m: Model3D; s: State3D; f: number; list: Measure[]; y?: Yield }> = ({ m, s, f, list, y: yv = ID }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
   const A = m.product.anchors;
   return (
@@ -194,7 +207,8 @@ const HudMeasures: React.FC<{ m: Model3D; s: State3D; f: number; list: Measure[]
         if (!a || !b) return null;
         const o = tween(f, d.at, 5, EASE.enter) * (1 - tween(f, d.until, 6, EASE.exit));
         if (o <= 0) return null;
-        const p = projectPoint(s, cam, a.layer, a.p), q = projectPoint(s, cam, b.layer, b.p), c = hudAccent(d.color);
+        const Y = (r: { x: number; y: number }) => ({ x: r.x * yv.s + yv.ox, y: r.y * yv.s + yv.oy });
+        const p = Y(projectPoint(s, cam, a.layer, a.p)), q = Y(projectPoint(s, cam, b.layer, b.p)), c = hudAccent(d.color);
         const dx = q.x - p.x, dy = q.y - p.y, len = Math.max(1, Math.hypot(dx, dy));
         // 往外推的方向：垂直於兩點連線；off 的正負決定哪一邊
         const nx = -dy / len, ny = dx / len, off = d.off ?? 70;
@@ -493,9 +507,9 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + 418, width: 760 * line, height: 6, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: cy + 450, textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
       {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 600, display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + E.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + E.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 716, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 708, display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
       {/* 留言關鍵字（2026/11/15 Andy：「往後製作影片後面可以補上 留言『XXXX』我就把資訊傳給他，IG Thread 都是」）：LOGO 落定後才出現，在「下一支」下方 */}
-      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 884, display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整資料</div></div> : null}
+      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + 868, display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整資料</div></div> : null}
     </AbsoluteFill>
   );
 };
@@ -574,22 +588,20 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const ec = endScene ? ((endScene.props as any).endCard ?? {}) : null, atF = useMemo(() => atOf(timeline), [timeline]);
   const ecAt = endScene && by[endScene.id] ? (ec.at ? atF(endScene.id, ec.at, by[endScene.id].startFrame) : by[endScene.id].startFrame) : null;
   const ecNext = endScene && ec?.nextAt ? atF(endScene.id, ec.nextAt, NaN) : undefined;
-  // 版面整理（hudLayout.ts）：模型在畫面上的範圍（有快取）、蓋章避開模型、換幕時大卡片不疊
-  const is3D = useMemo(() => (g: number) => zoomAt(hud, keys, g).handoff > 0.5, [hud, keys]);
-  const mrAt = useMemo(() => { const cache = new Map<number, Rect | null>(); return (g: number) => { if (!cache.has(g)) cache.set(g, is3D(g) ? modelRect(m.product, stateAt(m, g)) : null); return cache.get(g) ?? null; }; }, [m, is3D]);
-  const enPx = sm(28), placed = useMemo(() => placeLabels(m, L as any, is3D, enPx, obstaclesOf(m, [])), [m, is3D, enPx]);
-  const overlays = useMemo(() => arrangeOverlays(m, L as any, is3D, obstaclesOf(m, placed)), [m, is3D, placed]);
+  // 版面整理（hudLayout.ts 的 planHud）：主素材框、主素材讓位（鉤子／大卡片／放不下的蓋章出現前先縮小移開）、標籤與蓋章找空位、換幕不疊
+  const enPx = sm(28), plan = useMemo(() => planHud(m, L as any, hud, keys, enPx, hookOut), [m, hud, keys, enPx, hookOut]);
+  const placed = plan.labels, overlays = plan.overlays, yy = plan.yieldAt(f);
   const card = overlays.find((o) => o.type === "card");
   const quiet = card ? tween(f, card.at - 4, 6, EASE.move) * (1 - tween(f, card.until, 6, EASE.exit)) : 0;
   return (
     <AbsoluteFill style={{ background: H.bg }}>
       <HudBackdrop f={f} lv={z.lv} warm={z.handoff * s.lay} />
-      <ZoomArt hud={hud} z={z} f={f} />
-      <Stage3D s={s} model={m.product} o={z.handoff} />
+      <ZoomArt hud={hud} z={z} f={f} y={yy} />
+      <Stage3D s={s} model={m.product} o={z.handoff} y={yy} />
       <HudFrame f={f} hud={hud} z={z} camK={camK} quiet={quiet} />
       <HudHook m={m} f={f} out={hookOut} />
-      <HudLabels s={s} f={f} max={hud.maxLabels ?? 2} placed={placed} enPx={enPx} />
-      <HudMeasures m={m} s={s} f={f} list={meas} />
+      <HudLabels s={s} f={f} max={hud.maxLabels ?? 2} placed={placed} enPx={enPx} y={yy} />
+      <HudMeasures m={m} s={s} f={f} list={meas} y={yy} />
       <HudMeters m={m} s={s} f={f} />
       <HudOverlays m={m} f={f} list={overlays} />
       <HudCaption cues={subCues as Cue[]} f={f} />

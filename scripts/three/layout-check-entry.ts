@@ -1,7 +1,7 @@
 // scripts/three/layout-check.mjs 用 esbuild 打包這支（不開瀏覽器）：用和畫面同一份的 engine.ts／hudLayout.ts 算每一幀的版面，找出
 // 標籤／蓋章壓到模型、兩張卡同時出現又重疊、內容超出安全區、內容底部太高（下方空白太多）、小字太小、片尾卡太短。
 import { buildModel, stateAt } from "../../src/components/three/engine";
-import { arrangeOverlays, cardRect, hit, area, modelRect, obstaclesOf, placeLabels, stampRect, textW, visible, zoomAt, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
+import { cardRect, visibleMain, hit, area, hookRect, hudReserved, planHud, stampRect, textW, visible, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
 import { setHudLayout, setHudSkin, H } from "../../src/components/three/hudSkin";
 import { cameraFor, projectPoint } from "../../src/components/three/engine";
 import { EASE, tween } from "../../src/components/anim";
@@ -39,11 +39,11 @@ export const check = (script: any) => {
     // 留言關鍵字（2026/11/15 Andy）：每支片尾卡都要有、2～4 字、字級 ≥40、在 LOGO 落定後出現、整行在安全區與片尾卡框內
     if (!ec.comment) W("片尾卡", "endCard.comment 沒寫：每支影片要訂一個留言關鍵字（2～4 字），片尾卡顯示「留言「關鍵字」拿完整資料」");
     else {
-      const n = [...String(ec.comment)].length, line = `留言「${ec.comment}」拿完整資料`, px = L.ENDCARD_COMMENT_PX, w = textW(line, px), top = L.STAGE_TOP + 300 + 884;
+      const n = [...String(ec.comment)].length, line = `留言「${ec.comment}」拿完整資料`, px = L.ENDCARD_COMMENT_PX, w = textW(line, px), top = L.STAGE_TOP + 300 + 868;
       if (n < 2 || n > 4) E("片尾卡", `留言關鍵字「${ec.comment}」${n} 字，要 2～4 字`);
       if (px < 40) E("小字", `片尾卡留言關鍵字 ${px}px < 40`);
       if (w > L.INNER_W - 40) E("片尾卡", `「${line}」寬約 ${Math.round(w)}px，放不下一行`);
-      if (top + px * 1.4 > Math.min(SAFE.y1, L.CAP_TOP + L.CAP_H)) E("片尾卡", `留言關鍵字那一行超出片尾卡框（下緣 y${Math.round(top + px * 1.4)}）`);
+      if (top + px * 1.4 > Math.min(SAFE.y1, L.CAP_TOP + L.CAP_H, L.IG_SAFE_BOTTOM)) E("片尾卡", `留言關鍵字那一行超出片尾卡框（下緣 y${Math.round(top + px * 1.4)}）`);
       if (ENDCARD.comment < ENDCARD.dot[1] + 6) E("片尾卡", "留言關鍵字要等 LOGO 落定後才出現");
       if (len - (ENDCARD.comment + 8) < 30) E("片尾卡", "留言關鍵字出現後停不到 1 秒");
     }
@@ -56,47 +56,56 @@ export const check = (script: any) => {
     const text = /^(資料)?來源|示意/.test(j) ? j : `來源：${j}`, need = (srcPx * (L.INNER_W - 30)) / textW(text, srcPx, 0.02);
     if (need < 30) E("小字", `${sc.id} 出處列太長，一行放不下要縮到 ${Math.floor(need)}px（<30）：改短「${text}」`);
   }
+  // IG／Reels 底部介面（約 y1600 以下會被漸層蓋住）：字幕卡要在上面；出處可以在下面但要知道會被蓋
+  if (L.CAP_TOP + L.CAP_H > L.IG_SAFE_BOTTOM) E("IG 底部", `字幕卡下緣 y${L.CAP_TOP + L.CAP_H} 超過 y${L.IG_SAFE_BOTTOM}（IG 底部介面會蓋住）`);
+  if (L.SRC_TOP + L.SRC_PX > L.IG_SAFE_BOTTOM && L.IG_SAFE_BOTTOM < 1920) W("IG 底部", `出處列在 y${L.SRC_TOP} 起，IG 上會被底部漸層蓋住（規則允許，只放出處）`);
   // ── 逐幀 ──
   const m = buildModel(script.scenes, tl, script.model);
   const keys = zoomKeys(script.scenes, tl, hud, H.motion.zoom, H.motion.drift);
-  const is3D = (f: number) => zoomAt(hud, keys, f).handoff > 0.5;
-  const mcache = new Map<number, Rect | null>();
-  const mrAt = (f: number) => { if (!mcache.has(f)) mcache.set(f, is3D(f) ? modelRect(m.product, stateAt(m, f)) : null); return mcache.get(f) ?? null; };
-  const enPx0 = Math.max(28, small), lab = placeLabels(m, L, is3D, enPx0, obstaclesOf(m, []));
-  const ovs = arrangeOverlays(m, L, is3D, obstaclesOf(m, lab));
+  const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;
+  const enPx0 = Math.max(28, small), plan = planHud(m, L, hud, keys, enPx0, hookOut), lab = plan.labels, ovs = plan.overlays;
   for (const o of ovs) if (o._delayed) W("換幕", `${o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」和前一張重疊，自動延後 ${o._delayed} 幀進場（舊的退場完才進）`);
-  for (const o of ovs) if (o._moved) W("避開模型", `蓋章「${o.text}」原本會壓到模型或其他東西，自動挪到 (${Math.round(o.x ?? 540)}, ${Math.round(o.y)})`);
+  for (const o of ovs) if (o._moved) W("避開模型", `蓋章「${o.text}」原本會壓到主素材或其他東西，自動挪到 (${Math.round(o.x ?? 540)}, ${Math.round(o.y)})`);
+  for (const t of plan.triggers) W("主素材讓位", `${t.why} 出現期間（第 ${Math.max(0, t.at)}–${t.until} 幀）主素材先縮小移開`);
   const ovRect = (o: any): Rect | null => (o.type === "stamp" ? stampRect(o, o.x ?? L.W / 2, o.y ?? L.STAGE_TOP + L.STAGE_H / 2) : cardRect(o, L));
   const ovK = (o: any, f: number) => tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
   const runs: Record<string, [number, number][]> = {};
   const add = (key: string, f: number) => { const rs = (runs[key] ??= []), r = rs[rs.length - 1]; if (r && r[1] >= f - 2) r[1] = f; else rs.push([f, f]); };
   const meters = Object.entries(m.product.actions ?? {}).filter(([, d]) => d.type === "meter" && d.x !== undefined);
+  const bands = L.BAND_TOP ? hudReserved(L) : [];
+  const HE = hud.layout === "fill" ? "E" : "W";
+  let occl = 0;
   for (let f = 0; f < total; f++) {
-    const s = stateAt(m, f), mr = mrAt(f), cam = cameraFor(s);
+    const s = stateAt(m, f), main = visibleMain(plan.mainAt(f), L, !plan.is3D(f)), mr = plan.is3D(f) ? main : null;
     const items: { name: string; r: Rect; kind: string }[] = [];
     for (const o of ovs) { if (!visible(o, f) || ovK(o, f) < 0.15) continue; const r = ovRect(o); if (r) items.push({ name: `${o.type === "stamp" ? (o.style === "tag" ? "小標" : "蓋章") : o.type}「${o.text ?? o.title ?? o.kicker ?? ""}」`, r, kind: o.type === "stamp" ? "stamp" : "card" }); }
-    for (const { l, an, p0, rect } of lab) {
+    for (const { l, rect } of lab) {
       const k = tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit));
       if (k < 0.15) continue;
-      const dx = 0, dy = 0;
-      items.push({ name: `標籤「${l.text}」`, r: { x0: rect.x0 + dx, y0: rect.y0 + dy, x1: rect.x1 + dx, y1: rect.y1 + dy }, kind: "label" });
+      items.push({ name: `標籤「${l.text}」`, r: rect, kind: "label" });
     }
     for (const [id, d] of meters) { const op = s.ops[id]; if (op && op.k > 0.15) items.push({ name: `儀表「${d.label}」`, r: { x0: d.x!, y0: d.y!, x1: d.x! + (d.w ?? 330), y1: d.y! + METER_H }, kind: "meter" }); }
+    if (m.hook && f < hookOut + 8) items.push({ name: "鉤子大字", r: hookRect(m.hook as any, L), kind: "hook" });
+    const hudItems = bands.map((r, i) => ({ name: i ? "HUD 讀數（下帶：尺標、示意圖標示）" : "HUD 讀數（上帶：層級、倍率、FIELD）", r, kind: "hud" }));
     for (const it of items) {
       if (it.r.x0 < SAFE.x0 - 1 || it.r.x1 > SAFE.x1 + 1 || it.r.y0 < SAFE.y0 || it.r.y1 > SAFE.y1) add(`E|安全區|${it.name} 超出安全區`, f);
       if (it.kind !== "card" && it.r.y1 > L.CAP_TOP + 2) add(`E|字幕|${it.name} 壓到字幕框`, f);
       if (mr && (it.kind === "label" || it.kind === "stamp") && area(it.r, mr) > 0) add(`E|模型|${it.name} 壓到模型`, f);
     }
+    // 主素材遮擋（2026/11/15 Andy：「避免中間重要的素材被遮擋」）：任何疊層和主素材框重疊超過主素材框面積的 5%
+    if (main) {
+      const A0 = Math.max(1, (main.x1 - main.x0) * (main.y1 - main.y0));
+      for (const it of [...items, ...hudItems]) { const r = area(it.r, main) / A0; if (r > 0.05) { add(`${HE}|主素材遮擋|${it.name} 蓋到主素材（${plan.is3D(f) ? "3D 模型" : "2D 圖"}）超過 5%`, f); occl++; } }
+    }
     for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
       const a = items[i], b = items[j];
       if (!hit(a.r, b.r)) continue;
-      // 蓋章故意疊在卡片上（一起退場）不算；兩張卡、標籤和任何東西、蓋章和蓋章重疊都算
       if ((a.kind === "stamp" && b.kind === "card") || (a.kind === "card" && b.kind === "stamp")) continue;
       add(`E|重疊|${a.name} 和 ${b.name} 重疊`, f);
     }
   }
   for (const [key, rs] of Object.entries(runs)) for (const fr of rs) { const [lv, kind, msg] = key.split("|"); (lv === "E" ? E : W)(kind, msg, fr); }
-  return { issues: out, stats: { frames: total, labels: lab.length, overlays: ovs.length }, labels: lab.map((p) => ({ text: p.l.text, at: p.l.at, until: p.l.until, rect: p.rect })), overlays: ovs.map((o) => ({ type: o.type, text: o.text ?? o.title ?? o.kicker, at: o.at, until: o.until, x: o.x, y: o.y, rect: o.type === "stamp" ? stampRect(o, o.x ?? 540, o.y ?? 856) : cardRect(o, L) })) };
+  return { issues: out, stats: { frames: total, labels: lab.length, overlays: ovs.length, occlusionFrames: occl }, labels: lab.map((p) => ({ text: p.l.text, at: p.l.at, until: p.l.until, rect: p.rect })), overlays: ovs.map((o) => ({ type: o.type, text: o.text ?? o.title ?? o.kicker, at: o.at, until: o.until, x: o.x, y: o.y, rect: o.type === "stamp" ? stampRect(o, o.x ?? 540, o.y ?? 856) : cardRect(o, L) })) };
 };
 
 const resolveAt = (tl: any, sceneId: string, spec: string) => {
