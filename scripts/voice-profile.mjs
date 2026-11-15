@@ -47,7 +47,9 @@ export const REPORT_TECH_LINE = "用台灣人平常講話的口音，不特別�
 /** "plain"＝正常說話（2026/11/14，談晴說礙 short-talk；使用者聽完第 1 版：「我覺得正常說話，不要太奇怪，那個氣音很奇怪」）。
  * 一樣只有一句、沒有人設場景；不寫「小聲、放低、講心事」這類會引出氣音或耳語的描述，只要求平常的音量和聲音。其他 delivery 的輸出不變。 */
 export const PLAIN_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音，正常語速、不拖尾音、不用氣音、不演，直接說：";
-const REPORT_LINES = { report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
+// 2026/11/15 使用者：「以後都用呼叫 API 方式生成旁白」。AI 教學（CaffAIne）用使用者在 AI Studio 驗收過的那一句（short-ai 第 4 版，docs/prompts/short-ai-旁白.txt）。
+export const REPORT_AI_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人報告一件事那樣，語速比平常再快一點點，語氣跟著內容有起伏，問句上揚、講到答案肯定一點，不拖尾音、不演，直接說：";
+const REPORT_LINES = { "report-ai": REPORT_AI_LINE, report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
 /** 這個 delivery 是不是「只送一句話」的報導類 */
 export const isReport = (profile) => Object.hasOwn(REPORT_LINES, profile?.delivery ?? "");
 const one = (s) => String(s ?? "").replace(/\s+/g, " ").replace(/[。．.]+$/, "").trim();

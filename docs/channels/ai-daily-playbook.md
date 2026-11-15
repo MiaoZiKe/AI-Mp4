@@ -10,11 +10,11 @@
 | 1 選題（一則新聞配一招）、查證 | 自動 | `research.md` |
 | 2 對 AI 真的實測（隨便問、這樣問各一次，原文存檔） | 自動 | `tests/*.json`、`tests.md` |
 | 3 寫腳本、無聲預覽、念稿 | 自動 | `script.json`、九格圖、念稿 |
-| **4 生成旁白並上傳** | **使用者手動** | 一個 wav 檔 |
+| 4 生成旁白（呼叫 Gemini TTS API，`tts-take.mjs`，音色 Sulafat、`voice.profile: "ai-report-v4"`） | 自動（使用者 2026/11/15：「以後都用呼叫 API 方式生成旁白」） | 一個 wav 檔 |
 | 5 接旁白、對時間、渲染、片尾 LOGO 動畫＋音效 | 自動 | `out/<slug>.mp4`、字幕檔、九格圖 |
 | 6 檢查、交片 | 自動，使用者看過才發布 | 成片＋已知問題清單 |
 
-旁白（第 4 步）：使用者到 Google AI Studio（aistudio.google.com/generate-speech），模型 Gemini 2.5 Flash Preview TTS、音色 **Sulafat**，整段貼上下面這句說明加念稿，生成後下載上傳。不呼叫配音 API。
+~~旁白（第 4 步）：使用者到 Google AI Studio（aistudio.google.com/generate-speech），模型 Gemini 2.5 Flash Preview TTS、音色 **Sulafat**，整段貼上下面這句說明加念稿，生成後下載上傳。不呼叫配音 API。~~（2026/11/15 起改成 API 自動生成；送出的說明就是下面這句，程式常數 `REPORT_AI_LINE`。每支整篇送 1 次，生成後先人耳清單＋語速／捲舌量測；要重配先說明原因與次數。）
 
     用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人報告一件事那樣，語速比平常再快一點點，語氣跟著內容有起伏，問句上揚、講到答案肯定一點，不拖尾音、不演，直接說：
 
