@@ -142,10 +142,11 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
 };
 
 // ───────── 2D 說明卡 ─────────
-const W0 = L.X, TOP = 420;
+const W0 = L.X, TOP = 424;
 const Tag: React.FC<{ f: number; p: Panel }> = ({ f, p }) => {
   const o = O(f, p.in, 5) * (1 - O(f, p.out - 6, 5)), c = col(String(p.p.tagColor ?? "primary"));
-  return o <= 0.01 ? null : <div data-ov="性質小標" style={{ position: "absolute", left: W0, top: L.MAIN_TOP + 8, opacity: o }}><div style={{ ...zh, fontWeight: 900, fontSize: 40, color: c.on, background: c.fill, borderRadius: 18, padding: "6px 26px", boxShadow: `0 6px 0 ${c.side}` }}>{String(p.p.tag)}</div></div>;
+  const st = p.p.status ? String(p.p.status) : "", tS = p.at(p.p.statusAt, p.in + 10);
+  return o <= 0.01 ? null : <div style={{ position: "absolute", left: W0, top: L.MAIN_TOP + 8, opacity: o, display: "flex", alignItems: "center", gap: 14 }}><div data-ov="性質小標" style={{ ...zh, fontWeight: 900, fontSize: 40, color: c.on, background: c.fill, borderRadius: 18, padding: "6px 26px", boxShadow: `0 6px 0 ${c.side}` }}>{String(p.p.tag)}</div>{st ? <StatusChip f={f} at={tS} text={st} px={30} /> : null}</div>;
 };
 const AsOf: React.FC<{ text: string }> = ({ text }) => <div data-ov="查證日期" style={{ position: "absolute", right: L.X, top: L.MAIN_TOP + 14, ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>{text}</div>;
 
@@ -153,10 +154,10 @@ type Cells = { cells: string[]; at?: any; flag?: boolean; ok?: boolean };
 const Row: React.FC<{ r: Cells; f: number; at: number; hide?: number }> = ({ r, f, at, hide = 0 }) => {
   const c = r.flag ? col("wrong") : r.ok ? col("right") : null, hh = 1 - hide;
   return (
-    <div data-ov="回答列" style={{ ...riseIn(f, at, 24), display: "flex", alignItems: "center", gap: 16, background: c ? c.soft : "transparent", borderRadius: 18, padding: hh > 0.02 ? "10px 14px" : 0, boxShadow: c ? `inset 0 0 0 4px ${c.fill}` : undefined, maxHeight: 110 * hh, opacity: hh, overflow: "hidden" }}>
-      <div style={{ ...zh, fontWeight: 900, fontSize: 32, color: c ? c.text : T.ink, width: 168, flexShrink: 0 }}>{r.cells[0]}</div>
-      <div style={{ ...zh, whiteSpace: "normal", fontWeight: 700, fontSize: 32, color: T.ink, flex: 1 }}>{r.cells[1]}</div>
-      <div style={{ ...zh, fontWeight: 800, fontSize: 30, color: T.ink2, width: 206, flexShrink: 0, textAlign: "right" }}>{r.cells[2]}</div>
+    <div style={{ ...riseIn(f, at, 24), display: "flex", alignItems: "center", gap: 14, background: c ? c.soft : "transparent", borderRadius: 18, padding: hh > 0.02 ? "5px 12px" : 0, boxShadow: c ? `inset 0 0 0 4px ${c.fill}` : undefined, maxHeight: 120 * hh, opacity: hh, overflow: "hidden" }}>
+      <div style={{ ...zh, fontWeight: 900, fontSize: 32, color: c ? c.text : T.ink, width: 140, flexShrink: 0 }}>{r.cells[0]}</div>
+      <div style={{ ...zh, whiteSpace: "normal", fontWeight: 700, fontSize: 30, color: T.ink, flex: 1 }}>{r.cells[1]}</div>
+      <div style={{ ...zh, fontWeight: 800, fontSize: 30, color: T.ink2, width: 272, flexShrink: 0, textAlign: "right" }}>{r.cells[2]}</div>
     </div>
   );
 };
@@ -164,8 +165,8 @@ const AnswerCard: React.FC<{ f: number; at: number; out?: number; by: string; ro
   const o = O(f, at, 5) * (1 - O(f, out, 6)), c = col(color);
   return o <= 0.01 ? null : (
     <div data-ov="說明卡" style={{ position: "absolute", left: W0, top: y + 14 * (1 - O(f, at, 12)), width: w, opacity: o }}>
-      <div style={{ ...face(T.card, c.side, 12), padding: "18px 24px 20px", height: "auto" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8 }}>
+      <div style={{ ...face(T.card, c.side, 12), padding: "12px 22px 14px", height: "auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 4 }}>
           {label ? <Chip text={label} bg={c.fill} fg={c.on} px={30} /> : null}
           <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{by}</div>
         </div>
@@ -188,10 +189,10 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
         <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, color: T.ink }}>{p.title[0]}</div><br />
         <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, marginTop: 8, color: f >= tM ? T.color.wrong.text : T.ink, transform: `scale(${f < tM ? 1 : 1 + 0.1 * Math.exp(-(f - tM) / 5)})`, transformOrigin: "0 50%" }}>{p.title[1]}</div>
         <div style={{ display: "flex", alignItems: "center", gap: 28, marginTop: 30 }}>
-          <div data-ov="蓋章" style={{ ...slam(f, tS, -6), ...zh, fontWeight: 900, fontSize: 50, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "4px 24px" }}>{p.stamp?.text}</div>
+          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.4), ...zh, fontWeight: 900, fontSize: 50, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "4px 24px" }}>{p.stamp?.text}</div>
           <div data-ov="數字卡" style={{ ...bounce(f, tN), ...zh, fontWeight: 900, fontSize: 36, color: T.ink2, background: T.card, borderRadius: 24, padding: "10px 24px", boxShadow: `0 7px 0 ${T.cardSide}` }}><span style={{ ...en, fontSize: 52, color: P.text }}>{p.count?.value}</span> {p.count?.unit}</div>
         </div>
-        <div style={{ marginTop: 22 }}><StatusChip f={f} at={tN + 8} text={p.status} /></div>
+
       </div>,
     );
   }
@@ -203,19 +204,17 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       <div key="run" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
           <div data-ov="工具標籤" style={{ ...bounce(f, tTool), display: "inline-block" }}><Chip text={p.tool} bg={P.fill} fg="#fff" px={34} side={P.side} /></div>
-          <div data-ov="情境標籤" style={{ ...bounce(f, tTool + 6), display: "inline-block" }}><Chip text={p.sub} bg={T.color.note.soft} fg={T.color.note.text} px={30} /></div>
         </div>
-        <div data-ov="說明卡" style={{ ...riseIn(f, tT - 4, 26), marginTop: 22 }}>
-          <div style={{ ...face(T.card, P.side, 12), padding: "20px 28px", height: "auto" }}>
-            <div style={{ ...zh, fontWeight: 700, fontSize: 30, color: T.ink3 }}>我這樣問</div>
-            <div style={{ ...zh, fontWeight: 900, fontSize: 70, color: T.ink, marginTop: 6 }}>{full.slice(0, n)}<span style={{ opacity: Math.floor(f / 6) % 2 ? 0 : 1, color: P.fill }}>|</span></div>
+        <div data-ov="說明卡" style={{ ...riseIn(f, tT - 4, 26), marginTop: 18 }}>
+          <div style={{ ...face(T.card, P.side, 12), padding: "14px 26px 16px", height: "auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}><div style={{ ...zh, fontWeight: 700, fontSize: 30, color: T.ink3 }}>我這樣問</div><div style={{ ...zh, fontWeight: 800, fontSize: 28, color: T.color.note.text, background: T.color.note.soft, borderRadius: 20, padding: "2px 16px" }}>{p.sub}</div></div>
+            <div style={{ ...zh, fontWeight: 900, fontSize: 64, color: T.ink, marginTop: 4 }}>{full.slice(0, n)}<span style={{ opacity: Math.floor(f / 6) % 2 ? 0 : 1, color: P.fill }}>|</span></div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 22, alignItems: "center", marginTop: 22 }}>
+        <div style={{ display: "flex", gap: 22, alignItems: "center", marginTop: 18 }}>
           <div data-ov="計時卡" style={{ ...bounce(f, tW - 6), display: "inline-flex", alignItems: "baseline", gap: 14, background: T.card, borderRadius: 26, padding: "10px 28px", boxShadow: `0 8px 0 ${T.cardSide}` }}>
-            <span style={{ ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>第一次等了</span><span style={{ ...en, fontWeight: 900, fontSize: 84, color: f >= tD ? T.color.wrong.text : P.text }}>{mm}:{ss}</span>
+            <span style={{ ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>第一次等了</span><span style={{ ...en, fontWeight: 900, fontSize: 72, color: f >= tD ? T.color.wrong.text : P.text }}>{mm}:{ss}</span>
           </div>
-          <StatusChip f={f} at={tS} text={p.status} />
         </div>
       </div>,
     );
@@ -226,15 +225,14 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     out.push(
       <React.Fragment key="wr">
         <div style={{ opacity: o }}><AnswerCard f={f} at={w.in + 2} out={w.out - 4} by={p.by} rows={rs} y={TOP} hideRows={{ 0: hide, 1: hide }} /></div>
-        {f >= tSrc ? <div data-ov="說明卡" style={{ ...riseIn(f, tSrc + 6, 30), position: "absolute", left: W0, top: TOP + 218, width: L.INNER_W, opacity: o }}>
+        {f >= tSrc + 10 ? <div data-ov="說明卡" style={{ ...riseIn(f, tSrc + 10, 30), position: "absolute", left: W0, top: TOP + 172, width: L.INNER_W, opacity: o }}>
           <div style={{ ...face(T.card, T.color.note.side, 12), padding: "16px 26px 18px", height: "auto" }}>
             <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.src.label}</div>
-            <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: T.ink, marginTop: 6 }}>{p.src.text}</div>
+            <div style={{ ...zh, fontWeight: 800, fontSize: 34, color: T.ink, marginTop: 6 }}>{p.src.text}</div>
           </div>
         </div> : null}
-        <div style={{ position: "absolute", left: W0, top: TOP + 410, opacity: o, display: "flex", gap: 20, alignItems: "center" }}>
-          <div data-ov="蓋章" style={{ ...slam(f, tSt, -4), ...zh, fontWeight: 900, fontSize: 46, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "2px 22px" }}>{p.stamp.text}</div>
-          <StatusChip f={f} at={tSt + 6} text={p.status} />
+        <div style={{ position: "absolute", right: W0, top: TOP + 346, opacity: o, display: "flex", gap: 20, alignItems: "center" }}>
+          <div data-ov="蓋章" style={{ ...slam(f, tSt, -4, 1.3), ...zh, fontWeight: 900, fontSize: 46, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "2px 22px" }}>{p.stamp.text}</div>
         </div>
       </React.Fragment>,
     );
@@ -244,10 +242,9 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     out.push(
       <React.Fragment key="vs">
         <AnswerCard f={f} at={tA} out={v.out - 4} by={p.top.by} rows={[{ cells: p.top.cells, flag: true }]} y={TOP} label={p.top.label} color="wrong" />
-        <AnswerCard f={f} at={tB} out={v.out - 4} by={p.bottom.by} rows={[{ cells: p.bottom.cells, ok: true }]} y={TOP + 176} label={p.bottom.label} color="right" />
-        <div style={{ position: "absolute", left: W0, top: TOP + 352, opacity: 1 - O(f, v.out - 8, 8), display: "flex", gap: 20, alignItems: "center" }}>
-          <div data-ov="蓋章" style={{ ...slam(f, tBd, -3), ...zh, fontWeight: 900, fontSize: 44, color: P.text, border: `7px solid ${P.fill}`, borderRadius: 16, background: T.card, padding: "2px 22px" }}>{p.badge.text}</div>
-          <StatusChip f={f} at={tBd + 6} text={p.status} />
+        <AnswerCard f={f} at={tB} out={v.out - 4} by={p.bottom.by} rows={[{ cells: p.bottom.cells, ok: true }]} y={TOP + 166} label={p.bottom.label} color="right" />
+        <div style={{ position: "absolute", right: W0, top: TOP + 336, opacity: 1 - O(f, v.out - 8, 8), display: "flex", gap: 20, alignItems: "center" }}>
+          <div data-ov="蓋章" style={{ ...slam(f, tBd, -3, 1.25), ...zh, fontWeight: 900, fontSize: 44, color: P.text, border: `7px solid ${P.fill}`, borderRadius: 16, background: T.card, padding: "2px 22px" }}>{p.badge.text}</div>
         </div>
       </React.Fragment>,
     );
@@ -257,20 +254,18 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     const rs: Cells[] = p.result.rows.map((q: any) => ({ cells: q.cells, ok: !!q.ok }));
     out.push(
       <React.Fragment key="ru">
-        <div data-ov="說明卡" style={{ ...riseIn(f, tP, 26), position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o * (1 - 0.0) }}>
-          <div style={{ ...face(T.card, P.side, 12), padding: "16px 24px 20px", height: "auto" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}><Chip text="這樣問：加三條規定" bg={P.fill} fg="#fff" px={30} /></div>
-            <div style={{ display: "flex", gap: 12, marginTop: 14, flexWrap: "nowrap" }}>{(p.rules as any[]).map((q, i) => { const c = col(q.color); return <div key={i} style={{ ...bounce(f, r.at(q.at, tP + 8 + i * 8)) }}><div style={{ ...zh, fontWeight: 900, fontSize: 32, color: c.on, background: c.fill, borderRadius: 22, padding: "8px 18px", boxShadow: `0 6px 0 ${c.side}` }}>{q.text}</div></div>; })}</div>
+        <div data-ov="說明卡" style={{ ...riseIn(f, tP, 26), position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+          <div style={{ ...face(T.card, P.side, 12), padding: "14px 20px 18px", height: "auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "nowrap" }}><Chip text="這樣問" bg={P.fill} fg="#fff" px={30} />{(p.rules as any[]).map((q, i) => { const c = col(q.color); return <div key={i} style={{ ...bounce(f, r.at(q.at, tP + 8 + i * 8)) }}><div style={{ ...zh, fontWeight: 900, fontSize: 30, color: c.on, background: c.fill, borderRadius: 22, padding: "6px 14px", boxShadow: `0 6px 0 ${c.side}` }}>{q.text}</div></div>; })}</div>
           </div>
         </div>
-        <AnswerCard f={f} at={tR} out={r.out - 4} by={p.result.by} rows={rs} y={TOP + 176} color="right" label={p.result.label} />
-        <div style={{ position: "absolute", left: W0, top: TOP + 176 + 280, opacity: o }}><StatusChip f={f} at={r.at(p.statusAt, tR + 30)} text={p.status} /></div>
+        <AnswerCard f={f} at={tR} out={r.out - 4} by={p.result.by} rows={rs} y={TOP + 128} color="right" label={p.result.label} />
       </React.Fragment>,
     );
   }
   if (Pn.limit) {
     const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = l.at("known", l.in + 6), tQ = l.at("q", l.in + 50);
-    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: W0, top: y, width: L.INNER_W, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "18px 26px 20px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={32} name="狀態" /><div style={{ marginTop: 12 }}>{lines.map((t, i) => <div key={i} style={{ ...zh, fontWeight: i ? 700 : 900, fontSize: i ? 36 : 44, color: i ? T.ink2 : T.ink, marginTop: 4 }}>{t}</div>)}</div></div></div>;
+    const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: W0, top: y, width: L.INNER_W, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={32} name="卡內狀態" /><div style={{ marginTop: 6 }}>{lines.map((t, i) => <div key={i} style={{ ...zh, fontWeight: i ? 700 : 900, fontSize: i ? 34 : 40, color: i ? T.ink2 : T.ink, marginTop: 4 }}>{t}</div>)}</div></div></div>;
     out.push(one("k", tK, p.known.status, "right", p.known.lines, TOP), one("u", tQ, p.unknown.status, "plum", p.unknown.lines, TOP + 214));
   }
   if (Pn.ask) {
@@ -280,7 +275,6 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
         <div style={{ display: "flex", gap: 40 }}>{[[p.a, t1, "note"], [p.b, t2, "primary"]].map(([t, at, c]) => <div key={t as string} data-ov="選項卡" style={{ ...bounce(f, at as number), width: 456 }}><div style={{ ...face(T.card, col(c as string).fill, 12), padding: "32px 24px", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ ...zh, fontWeight: 900, fontSize: 62, color: T.ink }}>{t as string}</div></div></div>)}</div>
         <div data-ov="下一集卡" style={{ ...bounce(f, tN), marginTop: 36, display: "inline-flex", alignItems: "center", gap: 18, background: col("plum").fill, borderRadius: 30, padding: "14px 34px", boxShadow: `0 8px 0 ${col("plum").side}` }}>
           <span style={{ ...zh, fontWeight: 700, fontSize: 34, color: "#fff" }}>{p.next.kicker}</span><span style={{ ...zh, fontWeight: 900, fontSize: 54, color: "#fff" }}>{p.next.text}</span>
-          <StatusChip f={f} at={tN + 6} text={p.next.status} color="note" name="狀態" />
         </div>
       </div>,
     );
@@ -289,7 +283,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     const c = Pn.cta, p = c.p, o = 1 - O(f, c.out - 8, 8), t1 = c.at("kw", c.in + 8);
     out.push(
       <div key="cta" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
-        <div data-ov="說明卡" style={{ ...slam(f, t1, -2, 1.8) }}>
+        <div data-ov="說明卡" style={{ ...slam(f, t1, -2, 1.2) }}>
           <div style={{ ...face(T.card, P.side, 14, 40), padding: "30px 40px 34px", height: "auto" }}>
             <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: T.ink2 }}>{p.kicker}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 10 }}><span style={{ ...zh, fontWeight: 900, fontSize: 70, color: T.ink }}>留言</span><span style={{ ...zh, fontWeight: 900, fontSize: 104, color: "#fff", background: P.fill, borderRadius: 26, padding: "2px 34px", boxShadow: `0 9px 0 ${P.side}` }}>{p.keyword}</span></div>
@@ -300,6 +294,26 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     );
   }
   return <>{out}</>;
+};
+
+/** 上下兩條淡色帶（平台介面區也有內容）＋底部的「會議紀錄 → AI 整理 → 待辦清單」追蹤條 */
+const Bands: React.FC<{ f: number; on: number }> = ({ f, on }) => {
+  const steps: [string, string][] = [["會議紀錄", "note"], ["AI 整理", "primary"], ["待辦清單", "right"]];
+  return (
+    <>
+      <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
+        <rect x={0} y={0} width={L.W} height={64} fill={S.lav.top} /><rect x={0} y={L.H - 64} width={L.W} height={64} fill={S.mint.top} />
+        {Array.from({ length: 27 }, (_, i) => <g key={i}><rect x={i * 40 + 16} y={22} width={8} height={8} rx={2} fill={P.fill} opacity={0.35} /><rect x={i * 40 + 16} y={L.H - 42} width={8} height={8} rx={2} fill={T.color.right.fill} opacity={0.4} /></g>)}
+      </svg>
+      <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: 1690, display: "flex", alignItems: "center", justifyContent: "center", gap: 18 }}>
+        {steps.map(([w, c], i) => { const act = on === i, cc = col(c); return (
+          <React.Fragment key={w}>
+            {i ? <svg width={54} height={30} viewBox="0 0 60 30"><path d="M4 15 H46 M36 5 L48 15 L36 25" fill="none" stroke={T.ink3} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" /></svg> : null}
+            <div data-ov="追蹤條" style={{ ...zh, fontWeight: 900, fontSize: 46, padding: "12px 30px", borderRadius: 30, background: act ? cc.fill : T.card, color: act ? cc.on : T.ink3, boxShadow: `0 8px 0 ${act ? cc.side : T.cardSide}`, transform: `scale(${act ? 1.06 : 1})` }}>{w}</div>
+          </React.Fragment>); })}
+      </div>
+    </>
+  );
 };
 
 export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, ...rest }) => {
@@ -335,6 +349,7 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop /><Glow f={f} />
       <World f={f} cam={cam} P={Pn} panels={world} />
+      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, run: 1, wrong: 2, vs: 2, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
       <Floaters f={f} cam={cam} />
       {inEnd ? null : <Overlays f={f} P={Pn} cam={cam} />}
       {inEnd ? null : world.map((p) => <Tag key={p.sid} f={f} p={p} />)}
