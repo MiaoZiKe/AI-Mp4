@@ -314,5 +314,5 @@
 - path 剖面的 `count: { at, step, readout: true, note }`：每 `step` 幀跳一個反射編號，右邊讀數跟著乘一次 keep（100%→70%→49%→…→約 2%）並多一根遞減長條；`note` 寫在長條下（例如「估算」）。
 - multilayer 的 `split: [{ label, v, color }]`：念到 textAt 長出「入射 100／反射 70／吸收 30」三條長條（取代 result 大字）。
 - scan 的 `cmp: { at }`：卡片左邊接回前面的「193 nm 要畫 4 次（四色）／極紫外光 1 次」；note 改放在右上那一列。
-- 蓋章 `countTo`＋`countDur`：text 裡的 `{n}` 從 0 跳到 countTo（例如「每秒 {n} 顆」）。
+- 蓋章 `countTo`＋`countDur`（可加 `countFrom`）：text 裡的 `{n}` 從 countFrom（預設 0）跳到 countTo（例如「每秒 {n} 顆」、「{n} nm」從 40 數到 13）。
 - 蓋章想固定在指定位置（例如機台和卡片之間的空帶）就寫 `avoid: false`；freeSpot 會把蓋章挪到「主素材外圈」也算可以，所以要確定不壓機台時用固定位置。

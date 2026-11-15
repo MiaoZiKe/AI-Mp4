@@ -112,7 +112,7 @@ export const modelRect = (pr: ProductModel, s: State3D, minO = 0.3): Rect | null
 export const textW = (t: string, px: number, spacing = 0.04) => [...String(t ?? "")].reduce((a, ch) => a + (/[⺀-￿]/.test(ch) && !/[▸·・]/.test(ch) ? 1 : ch === " " ? 0.3 : 0.6) * px + spacing * px, 0);
 /** 蓋章（實心色塊＋外框）與小標（細框）的外接矩形，中心在 (x, y) */
 export const stampRect = (o: Overlay3D, cx: number, cy: number): Rect => {
-  const size = o.size ?? (o.style === "tag" ? 34 : 76), tx = (o as any).countTo ? String(o.text).replace("{n}", Number((o as any).countTo).toLocaleString("en-US")) : o.text;
+  const size = o.size ?? (o.style === "tag" ? 34 : 76), tx = (o as any).countTo !== undefined ? String(o.text).replace("{n}", Math.max(Number((o as any).countTo), Number((o as any).countFrom ?? 0)).toLocaleString("en-US")) : o.text;
   const w = o.style === "tag" ? textW(tx, size) + 44 : textW(tx, size) + size * 0.72 + 24, h = o.style === "tag" ? size * 1.3 + 18 : size * 1.42 + 24;
   // 微歪（rot）讓外接矩形大一點
   const k = o.style === "tag" ? 0 : Math.abs(Math.sin(((o.rot ?? -6) * Math.PI) / 180));

@@ -1196,7 +1196,7 @@
       "mask": "maskScan",
       "wafer": "waferScan",
       "at": "start+2",
-      "until": "s15:start-10",
+      "until": "s15:start-8",
       "x": 64,
       "y": 1030,
       "w": 952,
@@ -1277,20 +1277,23 @@
      {
       "type": "stamp",
       "at": "thirteen",
-      "until": "s15:start-2",
+      "until": "s15:start-8",
       "x": 250,
       "y": 936,
-      "text": "13 nm",
+      "text": "{n} nm",
       "color": "amber",
       "rot": -4,
       "size": 56,
-      "avoid": false
+      "avoid": false,
+      "countFrom": 40,
+      "countTo": 13,
+      "countDur": 30
      },
      {
       "type": "stamp",
       "style": "tag",
       "at": "spec",
-      "until": "s15:start-2",
+      "until": "s15:start-8",
       "x": 600,
       "y": 936,
       "text": "廠商規格，非實測",
@@ -1333,14 +1336,14 @@
     "zoom": [
      {
       "to": "wafer",
-      "at": "start-8",
-      "dur": 40
+      "at": "start-2",
+      "dur": 2
      }
     ],
     "overlay": [
      {
       "type": "card",
-      "at": "tsmc-6",
+      "at": "start",
       "until": "s16:small-8",
       "y": 1090,
       "kicker": "2019 年起",

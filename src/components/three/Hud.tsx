@@ -693,7 +693,7 @@ const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s: State
       }
       if (o.type === "stamp") {
         // countTo（2026/11/15 tech-euv v3）：text 裡的 {n} 從 0 跳到 countTo（countDur 幀），例如「每秒 {n} 顆」
-        if ((o as any).countTo) { const n = Math.round(((o as any).countTo as number) * EASE.move(Math.min(1, Math.max(0, (f - o.at) / ((o as any).countDur ?? 24))))); o = { ...o, text: String(o.text).replace("{n}", n.toLocaleString("en-US")) }; }
+        if ((o as any).countTo !== undefined) { const c0 = (o as any).countFrom ?? 0, n = Math.round(c0 + (((o as any).countTo as number) - c0) * EASE.move(Math.min(1, Math.max(0, (f - o.at) / ((o as any).countDur ?? 24))))); o = { ...o, text: String(o.text).replace("{n}", n.toLocaleString("en-US")) }; }
         const size = o.size ?? 76, slam = 1 + 0.6 * (1 - tween(f, o.at, 6, EASE.enter)) + 0.05 * Math.sin(Math.PI * tween(f, o.at + 6, 8, EASE.move));
         return (
           <div key={i} style={{ position: "absolute", left: o.x ?? CX, top: o.y ?? CY, opacity: k, transform: `translate(-50%, -50%) rotate(${o.rot ?? -6}deg) scale(${slam.toFixed(3)})` }}>

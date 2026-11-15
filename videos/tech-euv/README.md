@@ -27,7 +27,8 @@
 - s4：「7 奈米世代：分 4 次」改畫在 2D 圖裡（細線那一排上方），不再壓彩色編號。
 - s13–s14：「一次印好」「關鍵層」「13 nm」「廠商規格，非實測」縮小、固定在機台和掃描卡之間的空帶，不壓機台。
 - 預覽：`out/tech-euv-silent-9grid.png`、`out/tech-euv-ops-1-laser.png`、`out/tech-euv-ops-2-mirrors.png`、`out/tech-euv-ops-3-scan.png`、`out/tech-euv-ops-4-wafer.png`。
-- 沒做：s14 標尺 40→13 nm 動畫（低優先）、s1 畫筆、氫氣與錫碎屑、光罩 6° 標註。
+- s14：「13 nm」蓋章改成從 40 nm 數到 13 nm（約 1 秒，countFrom／countTo）。s14→s15 改成硬切到晶圓（不再從裁切的縮放中間格縮進來），「2019 年起」卡在 s15 一開始就出現；s13–s14 的卡片與蓋章在切換前 8 幀收掉。
+- 沒做：s1 畫筆、氫氣與錫碎屑、光罩 6° 標註。
 
 ## 已知問題（無聲預覽階段）
 
