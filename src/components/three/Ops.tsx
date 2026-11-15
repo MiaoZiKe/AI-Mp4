@@ -17,6 +17,10 @@ const hash01 = (k: number) => { const x = Math.sin(k * 127.1 + 311.7) * 43758.54
 /** 畫在最上層（不被零件擋住）的不受光材質；def.depth＝true 的動作才會被零件擋住 */
 const flat = (color: string, depth = false) => new THREE.MeshBasicMaterial({ color, transparent: true, depthTest: depth, depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false });
 const SAMPLES = 72, RADIAL = 6;
+/** lpp 一輪裡的時刻（0–1）：預脈衝打到、主脈衝打到（之後是電漿發光） */
+export const LPP = { pre: 0.32, main: 0.58 };
+/** lpp 的相位（0–1）：觸發後的時間 ÷ 一輪幾秒；3D（Ops）和 2D 剖面（Hud.tsx section kind: "lpp"）共用 */
+export const lppPhase = (d: ActionDef, t: number) => { const per = d.lpp?.period ?? 1.1; const x = t / per + (d.phase ?? 0); return x - Math.floor(x); };
 
 type Res = { mat: THREE.MeshBasicMaterial; mats: THREE.MeshBasicMaterial[]; halo?: THREE.SpriteMaterial; ring?: THREE.BufferGeometry; tube?: THREE.BufferGeometry; axis: THREE.MeshBasicMaterial };
 
@@ -38,6 +42,12 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         // 每顆一份核心材質；有 rim／trail 時再加外圈與拖尾（各自淡入淡出）
         const per = 2 + (d.trail ?? 0), tc = col(model, d.trailColor ?? d.color ?? T.ink), rc = col(model, d.rim ?? d.color ?? T.ink);
         r.mats = Array.from({ length: (d.n ?? 4) * Math.max(1, d.lanes ?? 1) * per }, (_, j) => flat(j % per === 0 ? c : j % per === 1 ? rc : tc, dp));
+      }
+      if (d.type === "lpp") {
+        // 0–7 錫滴（排隊往下掉）、8 預脈衝光束、9 主脈衝光束、10 扁平錫餅、11 電漿球、12–19 噴出的碎點；halo＝電漿閃光
+        const L = d.lpp ?? {};
+        r.mats = Array.from({ length: 20 }, (_, j) => flat(j < 8 ? c : j === 8 ? col(model, L.pre ?? d.color ?? T.ink) : j === 9 ? col(model, L.main ?? d.color ?? T.ink) : j === 10 ? c : col(model, L.glow ?? d.color ?? T.ink), dp));
+        r.halo = new THREE.SpriteMaterial({ map: puff(), color: col(model, L.glow ?? d.color ?? T.ink), transparent: true, depthTest: false, depthWrite: false, fog: false });
       }
       if (d.type === "pulse" && (d.halo ?? 0) > 0) r.halo = new THREE.SpriteMaterial({ map: puff(), color: c, transparent: true, depthTest: false, depthWrite: false, fog: false });
       if (d.type === "trace" || d.type === "sum") {
@@ -88,7 +98,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
           let dist = u * total, k = 0;
           while (k < seg.length - 1 && dist > seg[k]) { dist -= seg[k]; k++; }
           const dir = pts[k + 1].clone().sub(pts[k]).normalize();
-          return { pos: pts[k].clone().addScaledVector(dir, Math.min(dist, seg[k])), dir };
+          return { pos: pts[k].clone().addScaledVector(dir, Math.min(dist, seg[k])), dir, k };
         };
         for (let i = 0; i < n; i++) {
           const id2 = ln * n + i, rk = hash01(id2 * 7.13 + 1.7);
@@ -96,9 +106,11 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
           if (raw < 0) continue; // 還沒出發
           if (drive && rk > keep) continue;
           const u = frac(raw), fadeK = drive ? Math.min(1, (keep - rk) * 8) : 1;
-          const { pos, dir } = at(u);
+          const { pos, dir, k: segK } = at(u);
+          // keep＋bounces（2026/11/15 tech-euv）：每經過一個反射點（path 的第幾個點）只剩 keep 成，光點越後面越淡、越小
+          const loss = d.keep !== undefined && d.bounces ? Math.pow(d.keep, d.bounces.filter((b) => b <= segK).length) : 1, lossO = d.keep !== undefined ? (d.lossFloor ?? 0.16) + (1 - (d.lossFloor ?? 0.16)) * loss : 1, lossS = d.keep !== undefined ? 0.5 + 0.5 * Math.sqrt(loss) : 1;
           if (d.jitter) pos.addScaledVector(ld, (hash01(id2 * 3.1 + Math.floor(raw)) - 0.5) * d.jitter);
-          const e = Math.min(1, u * 10, (1 - u) * 10), size = (d.size ?? 0.12) * (drive ? 1 : 0.6 + 0.4 * Math.min(1, op.g));
+          const e = Math.min(1, u * 10, (1 - u) * 10) * lossO, size = (d.size ?? 0.12) * (drive ? 1 : 0.6 + 0.4 * Math.min(1, op.g)) * lossS;
           const mats = r.mats.slice(id2 * (2 + trail), (id2 + 1) * (2 + trail));
           const core = mats[0] ?? r.mats[i];
           core.opacity = vis * e * fadeK;
@@ -111,7 +123,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
             if (uj <= 0 || speed < 0.05) continue;
             const m2 = mats[1 + j];
             if (!m2) continue;
-            m2.opacity = vis * fadeK * Math.min(1, uj * 10, (1 - uj) * 10) * (0.62 - (0.5 * j) / (trail + 1));
+            m2.opacity = vis * fadeK * lossO * Math.min(1, uj * 10, (1 - uj) * 10) * (0.62 - (0.5 * j) / (trail + 1));
             nodes.push(<mesh key={`${id}-q${id2}-${j}`} geometry={geo.ball} material={m2} position={at(uj).pos} scale={size * (1 - (0.55 * j) / (trail + 1))} renderOrder={8} frustumCulled={false} />);
           }
         }
@@ -139,6 +151,44 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
       r.mat.opacity = op.k;
       if (d.axisLine !== false) { r.axis.opacity = O.axisO * op.k; rod(`${id}-ax`, a, b, O.axis, r.axis); }
       nodes.push(<mesh key={id} geometry={r.tube} material={r.mat} renderOrder={9} frustumCulled={false} />);
+    } else if (d.type === "lpp" && r.halo) {
+      // 雷射打錫滴的循環（2026/11/15 tech-euv）：錫滴排隊往下掉 → 預脈衝（細光束）打到 → 錫滴被壓扁成餅 → 主脈衝（粗光束）→ 炸成電漿發光、碎點噴開。
+      // 每 period 秒一輪；相位用觸發後的時間 op.t，2D 剖面（Hud.tsx 的 section kind: "lpp"）讀同一個 lppPhase，兩邊同步
+      const L = d.lpp ?? {}, ph = lppPhase(d, op.t), focus = v3(opPoint(s, d.at ?? [0, 0, 0], d.layer)), top = v3(opPoint(s, L.drop ?? [0, 3, 0], d.layer)), beam0 = v3(opPoint(s, L.beam ?? [-3, 0, 0], d.layer));
+      const q = L.queue ?? 4, sz = d.size ?? 0.3, bd = focus.clone().sub(beam0).normalize(), qb = new THREE.Quaternion().setFromUnitVectors(UP, bd), k = op.k;
+      const P = LPP;
+      // 錫滴：j＝0 是這一輪要被打的那顆（到 P.pre 時抵達焦點），後面排隊
+      for (let j = 0; j < q; j++) {
+        if (j === 0 && ph >= P.pre) continue;
+        const t = 1 - (P.pre - ph + j) / q;
+        if (t < 0) continue;
+        r.mats[j].opacity = k * Math.min(1, t * 6);
+        nodes.push(<mesh key={`${id}-d${j}`} geometry={geo.ball} material={r.mats[j]} position={top.clone().lerp(focus, t)} scale={sz} renderOrder={10} frustumCulled={false} />);
+      }
+      const tri = (a: number, b: number) => (ph < a || ph > b ? 0 : Math.sin((Math.PI * (ph - a)) / (b - a)));
+      const pre = tri(P.pre - 0.05, P.pre + 0.05), main = tri(P.main - 0.05, P.main + 0.06);
+      if (pre > 0.01) { r.mats[8].opacity = k * pre; rod(`${id}-pre`, beam0, focus, (L.preR ?? 0.1) * (0.6 + 0.4 * pre), r.mats[8]); }
+      if (main > 0.01) { r.mats[9].opacity = k * main; rod(`${id}-main`, beam0, focus, (L.mainR ?? 0.28) * (0.6 + 0.4 * main), r.mats[9]); }
+      // 錫餅：預脈衝之後沿光束方向壓扁、往兩側攤開，主脈衝打到就消失
+      if (ph >= P.pre && ph < P.main + 0.02) {
+        const e = EASE.enter(Math.min(1, (ph - P.pre) / (P.main - P.pre))), rad = sz + ((L.pancake ?? sz * 3) - sz) * e;
+        r.mats[10].opacity = k;
+        nodes.push(<mesh key={`${id}-pan`} geometry={geo.ball} material={r.mats[10]} position={focus} quaternion={qb} scale={[rad, sz * (1 - 0.72 * e), rad]} renderOrder={10} frustumCulled={false} />);
+      }
+      // 電漿：主脈衝打到後膨脹發光、慢慢暗下來；碎點往四周噴
+      if (ph >= P.main) {
+        const u = (ph - P.main) / (1 - P.main), fade = Math.pow(1 - u, 1.6), br = (L.burst ?? sz * 4) * (0.45 + 0.55 * EASE.enter(Math.min(1, u * 3)));
+        r.mats[11].opacity = k * fade * 0.9;
+        nodes.push(<mesh key={`${id}-pl`} geometry={geo.ball} material={r.mats[11]} position={focus} scale={br} renderOrder={10} frustumCulled={false} />);
+        r.halo.opacity = O.halo * k * fade;
+        const hs = (d.halo ?? 4) * (0.6 + 0.6 * EASE.enter(Math.min(1, u * 2.5)));
+        nodes.push(<sprite key={`${id}-h`} material={r.halo} position={focus} scale={[hs, hs, 1]} renderOrder={11} />);
+        for (let j = 0; j < 8; j++) {
+          const a = (j / 8) * Math.PI * 2 + 0.3, dirv = new THREE.Vector3(Math.cos(a), Math.sin(a), 0.4 * Math.sin(a * 3)).normalize();
+          r.mats[12 + j].opacity = k * fade;
+          nodes.push(<mesh key={`${id}-x${j}`} geometry={geo.ball} material={r.mats[12 + j]} position={focus.clone().addScaledVector(dirv, br * 0.6 + (L.spray ?? 2.2) * EASE.enter(u))} scale={sz * 0.42 * (1 - 0.5 * u)} renderOrder={10} frustumCulled={false} />);
+        }
+      }
     } else if (d.type === "pulse" && r.halo) {
       const part = model.parts.find((p) => p.id === d.parts?.[0]);
       const c = d.at ? opPoint(s, d.at, d.layer) : opPoint(s, [(part?.pos?.[0] ?? 0) + (part?.at?.[0]?.[0] ?? 0), (part?.pos?.[1] ?? 0) + (part?.at?.[0]?.[1] ?? 0), (part?.pos?.[2] ?? 0) + (part?.at?.[0]?.[2] ?? 0)], part?.layer);

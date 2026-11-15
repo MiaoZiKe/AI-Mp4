@@ -7,6 +7,7 @@
 import React from "react";
 import { FONT_EN, FONT_ZH } from "../../theme";
 import { H } from "./hudSkin";
+import { EASE, tween } from "../anim";
 
 const mono = (px: number, color: string = H.text2, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontSize: px, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text2, w = 700): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, fontWeight: w, whiteSpace: "nowrap" });
@@ -46,7 +47,69 @@ const Shield: React.FC<{ x: number; y: number; w: number; h: number }> = ({ x, y
   </g>
 );
 
-export const Art: React.FC<{ kind: string; f: number }> = ({ kind }) => {
+/** 光與線（2026/11/15 tech-euv，art: "litho"）：照真實比例畫（1 單位＝0.6 nm，畫面寬 1000＝600 nm）。
+ *  上段＝光：193 nm 的波（深藍，一個波長畫刻度）與 13.5 nm 的極紫外光（橘）；下段＝晶圓上的線：40 nm 寬的線（一次畫得出來），
+ *  再下一排是更細的線，四種顏色＝分四次畫。每一樣念到才出現（cues：wave／forty／finer／multi／euv，由 script.json 那一級的 cues 換成幀）。
+ *  數字都在 research.md（193、40、13.5、7 奈米世代四次）；線寬與間距是示意，不是某一層的實際設計。 */
+const Litho: React.FC<{ f: number; cues: Record<string, number> }> = ({ f, cues }) => {
+  const on = (k: string, d = 10, off = 0) => (cues[k] === undefined ? 0 : tween(f, cues[k] + off, d, EASE.enter));
+  const A2 = H.art, wav = (cy: number, amp: number, lam: number, grow: number, ph: number, step: number) => {
+    const x1 = -480 + 960 * grow, pts: string[] = [];
+    for (let x = -480; x <= x1; x += step) pts.push(`${x.toFixed(1)},${(cy - amp * Math.sin((2 * Math.PI * (x - ph)) / lam)).toFixed(1)}`);
+    return pts.join(" ");
+  };
+  const g193 = on("wave", 22), gEuv = on("euv", 22), g40 = on("forty", 8), gFiner = on("finer", 8), ph193 = f * 3.2, phEuv = f * 0.9;
+  const PASS = [A2.sheet, H.amber, H.coral, A2.fin];
+  const plate = (x: number, y: number, w: number, t: string, c: string, o: number, anchor: "start" | "middle" = "start") => (
+    <g opacity={o}><rect x={anchor === "middle" ? x - w / 2 : x - 10} y={y - 34} width={w} height={44} rx={6} fill={H.panel} stroke={c} strokeWidth={2.5} />
+      <text x={anchor === "middle" ? x : x + w / 2 - 10} y={y} textAnchor="middle" style={zh(32, c, 800)}>{t}</text></g>
+  );
+  return (
+    <g>
+      {/* 底：淺色面板＋每 20 nm 一條細格線 */}
+      <rect x={-500} y={-480} width={1000} height={720} fill={H.panel} stroke={H.lineSoft} strokeWidth={3} />
+      {range(31).map((i) => <line key={`gx${i}`} x1={-500 + i * 33.33} x2={-500 + i * 33.33} y1={-480} y2={240} stroke={H.grid} strokeWidth={2} />)}
+      {range(22).map((i) => <line key={`gy${i}`} y1={-480 + i * 33.33} y2={-480 + i * 33.33} x1={-500} x2={500} stroke={H.grid} strokeWidth={2} />)}
+      {/* 上段：光 */}
+      <polyline points={wav(-300, 60, 322, g193, ph193, 4)} fill="none" stroke={H.text} strokeWidth={10} strokeLinecap="round" opacity={0.9} />
+      <g opacity={on("wave", 8, 14)}>
+        <path d={`M -161 -392 V -408 H 161 V -392`} fill="none" stroke={H.text} strokeWidth={3.5} />
+        <text x={0} y={-418} textAnchor="middle" style={mono(34, H.text, 800)}>193 nm</text>
+      </g>
+      {plate(-440, -205, 196, "以前的光", H.text, on("old", 8) || g193)}
+      <polyline points={wav(-170, 22, 22.5, gEuv, phEuv, 1.5)} fill="none" stroke={H.amber} strokeWidth={4.5} strokeLinecap="round" />
+      <g opacity={on("euv", 8, 16)}>
+        <path d={`M 60 -200 V -212 H 82.5 V -200`} fill="none" stroke={H.amber} strokeWidth={3} />
+        {plate(110, -126, 286, "極紫外光 13.5 nm", H.amber, 1)}
+      </g>
+      {/* 中線：下面是晶圓上的線 */}
+      <line x1={-500} x2={500} y1={-112} y2={-112} stroke={H.lineSoft} strokeWidth={3} strokeDasharray="12 9" />
+      {/* 第一排：40 nm 寬的線（一次畫得出來）；間距 80 nm */}
+      <rect x={-500} y={-62} width={1000} height={118} fill={A2.sub} opacity={0.75} />
+      {range(8).map((i) => { const x = -469 + i * 134; return <rect key={`a${i}`} x={x - 33.5} y={-70} width={67} height={134} rx={4} fill={A2.sheet} opacity={0.88} />; })}
+      <g opacity={g40}>
+        <rect x={67 - 35.5} y={-76} width={71} height={146} rx={6} fill="none" stroke={H.amber} strokeWidth={6} />
+        <path d={`M ${-469 + 4 * 134 - 33.5} -86 V -98 M ${-469 + 4 * 134 + 33.5} -86 V -98 M ${-469 + 4 * 134 - 33.5} -92 H ${-469 + 4 * 134 + 33.5}`} stroke={H.amber} strokeWidth={4} />
+      </g>
+      {plate(-440, -76, 220, "一次畫的線", A2.sheet, 1)}
+      {/* 第二排：更細的線（20 nm 寬、間距 40 nm），四種顏色＝同一層分四次畫 */}
+      <rect x={-500} y={98} width={1000} height={120} fill={A2.sub} opacity={0.75} />
+      {range(15).map((i) => {
+        const x = -469 + i * 67, p = i % 4, g = on("multi", 6, -16 + p * 7);
+        return <g key={`b${i}`}>
+          <rect x={x - 16.5} y={92} width={33} height={132} rx={3} fill="none" stroke={H.text3} strokeWidth={2} strokeDasharray="6 5" opacity={gFiner * (1 - g)} />
+          <rect x={x - 16.5} y={92 + 132 * (1 - g)} width={33} height={132 * g} rx={3} fill={PASS[p]} />
+          <text x={x} y={170} textAnchor="middle" style={mono(30, H.onAccent, 800)} opacity={g}>{p + 1}</text>
+        </g>;
+      })}
+      {plate(-440, 82, 220, "更細的線", H.text2, gFiner)}
+    </g>
+  );
+};
+
+export const Art: React.FC<{ kind: string; f: number; cues?: Record<string, number> }> = ({ kind, f, cues }) => {
+  if (kind === "none") return null;
+  if (kind === "litho") return <Litho f={f} cues={cues ?? {}} />;
   if (kind === "phone") return (
     // 手機：X 光線稿，高 840＝畫面寬 18 cm 的約 15 cm。主機板那一級的圖會照比例疊在正中央（寬約 1/3）
     <g>

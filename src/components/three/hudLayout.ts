@@ -18,7 +18,7 @@ export const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.x1, b.x1) - Mat
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 
 // ── 縮放（Powers of Ten） ──
-export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean; readout?: boolean; note?: string };
+export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean; readout?: boolean; note?: string; cues?: Record<string, string>; hideInside?: boolean };
 /* readout: false（2026/11/15 tech-euv）：這一級不是「放大」出來的（例如整台曝光機的示意模型），不畫倍率、FIELD、尺標，改顯示 note（例如「整台約數公尺・示意」）；field 只用來排序與交棒 */
 export type HudSpec = { theme?: "dark"; levels: HudLevel[]; schematic?: { text?: string; zh?: string }; maxLabels?: number; layout?: string; smallPx?: number };
 export type ZoomKey = { to: number; at: number; dur: number; drift?: boolean };
@@ -177,7 +177,7 @@ export const artRegion = (b: Box): Rect => ({ x0: b.X, x1: b.W - b.X, y0: b.STAG
 
 // ── 主素材框（2026/11/15 Andy：「避免中間重要的素材被遮擋」） ──
 /** 2D 縮放圖每一種的外框（HudArt.tsx 的座標，1000 單位＝舞台內寬 × 這一級的倍率） */
-export const ART_BOX: Record<string, [number, number, number, number]> = { phone: [-220, -424, 220, 424], board: [-500, -330, 500, 330], die: [-500, -500, 500, 500], cells: [-500, -500, 500, 500], gates: [-453, -240, 453, 240] };
+export const ART_BOX: Record<string, [number, number, number, number]> = { phone: [-220, -424, 220, 424], board: [-500, -330, 500, 330], die: [-500, -500, 500, 500], cells: [-500, -500, 500, 500], gates: [-453, -240, 453, 240], litho: [-450, -470, 450, 225], none: [-1, -1, 1, 1] };
 /** 2D 階段的主素材框：鏡頭現在對著的那一級（round(lv)）的圖，裁在舞台裡（沒有 yield 變形；畫面上看得到的部分另外再和 artRegion 取交集，見 visibleMain） */
 export const artMainRect = (hud: HudSpec, z: { lv: number; logField: number }, b: Box): Rect | null => {
   const i = Math.max(0, Math.min(hud.levels.length - 1, Math.round(z.lv))), lvl = hud.levels[i], bx = ART_BOX[lvl.art];

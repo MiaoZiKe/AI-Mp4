@@ -293,3 +293,17 @@
 - overlay `bars` 可寫 `compact: true`：一列一行（名稱｜橫條｜數字），卡片矮約一半。
 - **overlay `section`（運作時的 2D 剖面圖）**：`{ type: "section", at, until, x, y, w, h, title, flows: [flow 動作 id…（由下到上一片一個）], gate: "閘極 pulse 的 id", channel: "通道 pulse 的 id", meters: [meter 動作 id…（畫在右側）], labels: { src, drn, gate } }`。畫沿電流方向切開的剖面：左源極、右汲極、中間幾片通道、閘極包住通道（亮度跟 gate 的強度）；電子光點用 3D 那幾個 flow 的同一份數值（`op.u`、`op.k`、drive 的密度與停住規則），2D 路徑是「源極上方往下 → 沿通道 → 汲極往上」，三段長度比照 3D 路徑。剖面圖當卡片排版（不蓋主體中央）。HUD 片才有（`Hud.tsx` 的 `HudSection`）。
 - 片尾 `endCard.logoAnim`：`LogoAnims.tsx`（10 種，tech-2nm 用 `transparent`；移植時拿掉了 `transparent` 的繞圈待機動作）。用了 `logoAnim` 時文字照 `ENDCARD_TC`（頻道名逐字、光掃、底線、slogan、軌跡、下一支、留言關鍵字），右下角加淡淡的開口圈浮水印。音效：`scripts/three/sfx-logo-tech.py`（見 playbook 第九節）。
+
+## 十二、2026/11/15 tech-euv v2（Andy：「素材部分需要多點，在更細緻」「運作部分也不能忽略」；都向下相容，沒寫就不作用）
+
+- **新動作 `lpp`**（雷射打錫滴成電漿的循環，`Ops.tsx`）：`{ type: "lpp", layer, at（焦點）, size（錫滴半徑）, halo（電漿閃光大小）, color（錫滴色）, lpp: { drop（錫滴從哪裡掉）, beam（雷射光束起點）, period（一輪幾秒，預設 1.1）, queue（排隊的錫滴數）, pancake（壓扁後半徑）, burst（電漿球半徑）, spray（碎點噴多遠）, pre／main／glow（預脈衝、主脈衝、電漿的色票名）, preR／mainR（光束粗細） } }`。一輪：錫滴排隊落到焦點 → 預脈衝（細）打到、錫滴沿光束方向壓扁成餅 → 主脈衝（粗）→ 電漿膨脹發光、碎點往四周噴、慢慢暗下。時刻在 `Ops.tsx` 的 `LPP`（預脈衝 0.32、主脈衝 0.58），相位 `lppPhase` 由 3D 和 2D 剖面共用。
+- **`flow` 的反射衰減**：`keep`（每經過一個反射點剩幾成）、`bounces`（path 的哪幾個點算反射，索引）、`lossFloor`（最暗時的不透明度下限，預設 0.16）。光點過了第 n 個反射點，不透明度與大小照 keep 的 n 次方縮（tech-euv：0.7、11 個反射點，終點約 2%，畫面最暗但看得到）。
+- **overlay `section` 的新 `kind`**（`Hud.tsx`，都當卡片排版，避開主素材中央）：
+  - `lpp`：雷射打錫滴的 2D 側視（噴嘴、碗形收集鏡、雷射、錫滴→錫餅→電漿），`source`＝lpp 動作 id（同一份相位）；`items: [{ text, at }]` 右側步驟列，現在演到哪一步就亮哪一列（4 列＝落下／預脈衝／主脈衝／發光）。
+  - `multilayer`：鉬／矽多層膜剖面。`pairs`（畫幾對）、`stack: { at }`（一對一對由下往上疊，每 2 幀一對，疊完光才打進來）、`legend`、`note`（可換行）、`base`（基板字）、`result`＋`textAt`（右下大字，念到才跳出）、`mo`／`si`／`light`（色票名）。每個交界面反射回一小部分、越深越淡，是示意，tag 寫「示意，不是量測」。
+  - `scan`：掃描曝光側視。`mask`／`wafer`＝兩個 vibrate 動作 id（位移用同一個式子），`px`（模型單位換像素）、`ratio`（縮小倍率）、`mirrors`（中間那塊的字）、`labels: { mask, wafer }`、`note`。光從左下斜打到反射式光罩、反射往右下經投影鏡、縮小照到晶圓上的光縫；光縫掃過的地方圖案才印上去，箭頭跟著移動方向。
+  - `air`：空氣 vs 真空。灰色粒子讓光走沒多遠就暗掉；`textAt`（例如「真空」）時粒子往上被抽走，光走到底。`labels: { air, vac }`。
+  - `path`（第十一節加的光路剖面）新增：節點 `kind: "focus"`（中間焦點：上下兩片隔板中間留孔，不算反射）、`count: { at }`（從 at 起每 3 幀在每個反射點旁跳出 1、2、3…）。
+  - 巢狀 cue 一律寫成 `{ at: … }`（engine 只換 `at`／`textAt`／`hiAt` 這幾個鍵；自訂鍵名寫 cue 字串會讓畫面當掉）。
+- **HUD 2D 圖**：`hud.levels[].art` 可寫 `litho`（光與線，照真實比例：1 單位＝0.6 nm，193 nm 與 13.5 nm 的波、40 nm 的線、分四次畫的細線）、`none`（不畫；3D 交棒那一級用）。level 可寫 `cues: { 名字: "幕id:cue" }`（Hud.tsx 換成幀交給圖，念到才畫出來）與 `hideInside: true`（外面這一級不是放大鏡，裡面那一級不疊在它正中央）。新圖要在 `hudLayout.ts` 的 `ART_BOX` 加外框。
+- **模型產生器**：要算座標的零件（螺栓圈、晶粒格、照鏡面的入射／出射方向算朝向）用一支小程式產生 `model.json`（`videos/tech-euv/gen-model.mjs`，`node videos/tech-euv/gen-model.mjs`）；改模型改產生器，不要手改 json。

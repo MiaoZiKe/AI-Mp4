@@ -36,7 +36,13 @@ export type ThermalDef = {
 export type Pt = number[] | { layer: string; p: number[] };
 /** 運作動畫（model.json 的 actions；script.json 每幕的 run 用 cue 觸發）。各種 type 用到的欄位見 docs/three-stage.md「運作動畫怎麼寫」 */
 export type ActionDef = {
-  type: "vibrate" | "rotate" | "pulse" | "flow" | "wave" | "trace" | "sum" | "meter";
+  type: "vibrate" | "rotate" | "pulse" | "flow" | "wave" | "trace" | "sum" | "meter" | "lpp";
+  /** lpp（2026/11/15 tech-euv）：雷射打錫滴成電漿的循環。at＝焦點；size＝錫滴半徑；halo＝電漿閃光大小；
+   *  lpp.drop＝錫滴從哪裡開始掉、beam＝雷射光束的起點、period＝一輪幾秒、queue＝畫面上排隊的錫滴數、pancake＝壓扁後的半徑、burst＝電漿球半徑、spray＝碎點噴多遠、
+   *  pre／main／glow＝預脈衝、主脈衝、電漿的色票名、preR／mainR＝兩道光束的粗細 */
+  lpp?: { drop?: Pt; beam?: Pt; period?: number; queue?: number; pancake?: number; burst?: number; spray?: number; pre?: string; main?: string; glow?: string; preR?: number; mainR?: number };
+  /** flow 的反射衰減（2026/11/15 tech-euv）：keep＝每經過一個反射點剩幾成、bounces＝path 裡哪幾個點是反射點（索引）、lossFloor＝最暗時的不透明度下限 */
+  keep?: number; bounces?: number[]; lossFloor?: number;
   layer?: string; color?: string;
   /** vibrate／rotate／pulse：作用在哪些零件（parts 的 id） */
   parts?: string[];

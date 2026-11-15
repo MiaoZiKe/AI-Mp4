@@ -7,7 +7,7 @@ import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mj
 
 const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere"];
 const ROLES = ["lid", "heatFloor", "heatSource", "xray"];
-const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter"];
+const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter", "lpp"]; // lpp＝雷射打錫滴成電漿的循環（tech-euv）
 const COLORS = ["amber", "blue", "coral", "mint"];
 const THERMAL_FX = ["peek", "cutaway", "heat", "vapor", "spread", "condense", "flowBack"];
 /** 產品模型資料（script.json 的 model 或 videos/<slug>/model.json）的檢查；回傳可以標註的點（anchors 的鍵） */
@@ -42,6 +42,8 @@ function checkModel(script, E, W) {
     if (d.layer && !layers.has(d.layer)) E(`${tag} layer「${d.layer}」不在 layers 裡`);
     if (["vibrate", "rotate", "pulse"].includes(d.type)) { if (!Array.isArray(d.parts) || !d.parts.length) E(`${tag} 要有 parts（作用在哪些零件的 id）`); for (const pid of d.parts ?? []) if (!partIds.has(pid)) E(`${tag} parts「${pid}」不在 model.parts 的 id 裡`); }
     if (d.type === "flow") { if (!Array.isArray(d.path) || d.path.length < 2) E(`${tag} path 至少兩個點`); else d.path.forEach((pt, i) => { if (!ptOk(pt, d)) E(`${tag} path[${i}] 要是 [x, y, z]（加上動作的 layer）或 { layer, p }`); }); }
+    if (d.type === "lpp") { if (!ptOk(d.at, d)) E(`${tag} at（焦點）要是 [x, y, z]（加上動作的 layer）或 { layer, p }`); for (const q of ["drop", "beam"]) if (!ptOk(d.lpp?.[q], d)) E(`${tag} lpp.${q} 要是 [x, y, z]（加上動作的 layer）或 { layer, p }`); for (const q of ["pre", "main", "glow"]) if (d.lpp?.[q] && !(m.palette ?? {})[d.lpp[q]] && !/^#/.test(d.lpp[q])) E(`${tag} lpp.${q}「${d.lpp[q]}」不在 palette 裡`); }
+    if (d.type === "flow" && d.keep !== undefined) { if (!(d.keep > 0 && d.keep <= 1)) E(`${tag} keep 要在 0–1 之間`); for (const b of d.bounces ?? []) if (!(Number.isInteger(b) && b > 0 && b < (d.path ?? []).length)) E(`${tag} bounces「${b}」不是 path 的點的索引`); }
     if (d.type === "wave" && !ptOk(d.from, d)) E(`${tag} from 要是 [x, y, z]（加上動作的 layer）或 { layer, p }`);
     if ((d.type === "trace" || d.type === "sum") && !d.hidden) for (const q of ["from", "to"]) if (!ptOk(d[q], d)) E(`${tag} ${q} 要是 [x, y, z]（加上動作的 layer）或 { layer, p }；只給儀表用的波形寫 hidden: true`);
     if (d.type === "sum") { if (!Array.isArray(d.of) || d.of.length < 2) E(`${tag} of 要列至少兩道 trace`); for (const t of d.of ?? []) if (acts[t]?.type !== "trace") E(`${tag} of「${t}」不是 trace`); }

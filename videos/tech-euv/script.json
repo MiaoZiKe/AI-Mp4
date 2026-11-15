@@ -39,11 +39,21 @@
    },
    {
     "id": "cells",
-    "label": "電路",
-    "en": "CIRCUIT",
-    "field": "15 µm",
-    "ruler": "5 µm",
-    "art": "cells"
+    "label": "光與線",
+    "en": "LIGHT & LINES",
+    "field": "600 nm",
+    "ruler": "100 nm",
+    "art": "litho",
+    "hideInside": true,
+    "cues": {
+     "old": "s2:old",
+     "wave": "s2:wave",
+     "forty": "s3:forty",
+     "finer": "s4:finer",
+     "multi": "s4:multi",
+     "euv": "s5:euv"
+    },
+    "_說明": "照真實比例畫的光與線（HudArt.tsx 的 litho：193 nm 與 13.5 nm 的波、40 nm 的線、分四次畫的細線），念到 cue 才出現；hideInside＝裡面那一級（電晶體）不疊在它正中央"
    },
    {
     "id": "lines",
@@ -59,7 +69,7 @@
     "en": "EUV SCANNER",
     "field": "100 nm",
     "ruler": "50 nm",
-    "art": "gates",
+    "art": "none",
     "handoff3D": true,
     "readout": false,
     "note": "整台約數公尺・示意"
@@ -369,6 +379,42 @@
       "at": "vac-2",
       "until": "s7:start-4"
      }
+    ],
+    "shift": [
+     {
+      "layer": "lens",
+      "at": "start-40",
+      "until": "s9:glass-4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "hullF",
+      "at": "vac+2",
+      "until": "s18:end",
+      "dz": 12,
+      "opacity": 0,
+      "dur": 20
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "air",
+      "at": "air-2",
+      "until": "s7:make-8",
+      "x": 64,
+      "y": 1110,
+      "w": 952,
+      "h": 230,
+      "title": "空氣 vs 真空",
+      "tag": "示意",
+      "textAt": "vac",
+      "labels": {
+       "air": "有空氣：光走不遠就被吸掉",
+       "vac": "抽成真空：光才走得過去"
+      }
+     }
     ]
    },
    "sources": [
@@ -404,9 +450,9 @@
     "shot": [
      {
       "at": "make-6",
-      "d": 84,
+      "d": 104,
       "elev": 10,
-      "y": -6,
+      "y": -11.5,
       "x": -12,
       "dur": 30
      }
@@ -415,7 +461,7 @@
      {
       "id": "tin",
       "at": "tin-6",
-      "until": "s18:start"
+      "until": "s8:laser-10"
      }
     ],
     "labels": [
@@ -432,48 +478,73 @@
      {
       "type": "stamp",
       "at": "tin-2",
-      "until": "s8:twice-4",
-      "x": 800,
-      "y": 1240,
+      "until": "s8:laser-10",
+      "x": 560,
+      "y": 1170,
       "text": "每秒 5 萬顆",
       "color": "amber",
       "rot": -5,
-      "size": 70
+      "size": 84
+     },
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "tin+8",
+      "until": "s8:laser-10",
+      "x": 560,
+      "y": 1300,
+      "text": "錫滴放大畫",
+      "color": "blue",
+      "size": 36
      }
     ],
     "shift": [
      {
       "layer": "optics",
       "at": "make-6",
-      "until": "s9:start-12",
+      "until": "s9:start+10",
       "opacity": 0.15,
       "dur": 14
      },
      {
       "layer": "shell",
       "at": "make-6",
-      "until": "s9:start-12",
+      "until": "s9:start+10",
       "opacity": 0.15,
       "dur": 14
      },
      {
       "layer": "mask",
       "at": "make-6",
-      "until": "s9:start-12",
+      "until": "s9:start+10",
       "opacity": 0.15,
       "dur": 14
      },
      {
       "layer": "wafer",
       "at": "make-6",
-      "until": "s9:start-12",
+      "until": "s9:start+10",
+      "opacity": 0.15,
+      "dur": 14
+     },
+     {
+      "layer": "hull",
+      "at": "make-6",
+      "until": "s18:end",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "frame",
+      "at": "make-6",
+      "until": "s9:start+10",
       "opacity": 0.15,
       "dur": 14
      }
     ]
    },
    "sources": [
-    "每秒約 5 萬顆（TRUMPF，約略值）；畫面放慢"
+    "每秒約 5 萬顆、直徑約 20–30 µm（廠商說明）；放大、放慢示意"
    ]
   },
   {
@@ -512,50 +583,57 @@
    "props": {
     "run": [
      {
-      "id": "laser",
-      "at": "laser-4",
-      "until": "s18:start"
-     },
-     {
-      "id": "plasmaOn",
-      "at": "plasma-2",
+      "id": "lpp",
+      "at": "laser-12",
       "until": "s18:start"
      }
     ],
     "labels": [
-     {
-      "part": "laser",
-      "text": "雷射",
-      "en": "CO2 laser",
-      "color": "coral",
-      "at": "laser-2",
-      "until": "s9:start-12"
-     },
      {
       "part": "plasma",
       "text": "電漿",
       "en": "plasma",
       "color": "amber",
       "at": "plasma",
-      "until": "s9:start-12"
+      "until": "s9:start-18"
      }
     ],
     "overlay": [
      {
-      "type": "stamp",
-      "style": "tag",
-      "at": "twice",
-      "until": "s9:start-12",
-      "x": 330,
-      "y": 1320,
-      "text": "先打扁，再打成電漿",
-      "color": "amber",
-      "size": 40
+      "type": "section",
+      "kind": "lpp",
+      "source": "lpp",
+      "at": "laser-6",
+      "until": "s9:start-18",
+      "x": 64,
+      "y": 1060,
+      "w": 952,
+      "h": 300,
+      "title": "雷射打錫滴（側視）",
+      "tag": "示意",
+      "items": [
+       {
+        "text": "① 錫滴落到焦點",
+        "at": "laser-6"
+       },
+       {
+        "text": "② 預脈衝：先打扁",
+        "at": "laser"
+       },
+       {
+        "text": "③ 主脈衝：打成電漿",
+        "at": "twice"
+       },
+       {
+        "text": "④ 電漿往四面發光",
+        "at": "plasma"
+       }
+      ]
      }
     ]
    },
    "sources": [
-    "兩道雷射脈衝（TRUMPF）；運作為示意"
+    "每顆兩道雷射脈衝（TRUMPF、專利）；運作為示意"
    ]
   },
   {
@@ -586,22 +664,35 @@
    "props": {
     "shot": [
      {
-      "at": "start-6",
+      "at": "start-16",
       "d": 185,
       "elev": 12,
       "y": -17,
       "x": 0,
-      "dur": 30
+      "dur": 26
      }
     ],
     "run": [
      {
+      "id": "lensFail",
+      "at": "glass-2",
+      "until": "mirror-4"
+     },
+     {
       "id": "light",
-      "at": "glass-4",
+      "at": "mirror-2",
       "until": "s18:start"
      }
     ],
     "labels": [
+     {
+      "part": "lens",
+      "text": "透鏡（錯誤示範）",
+      "en": "lens",
+      "color": "coral",
+      "at": "glass",
+      "until": "mirror-4"
+     },
      {
       "part": "mirror",
       "text": "反射鏡",
@@ -615,74 +706,124 @@
      {
       "type": "section",
       "kind": "path",
-      "at": "mirror",
-      "until": "s13:start-4",
       "x": 64,
-      "y": 1100,
+      "y": 1080,
       "w": 952,
-      "h": 256,
+      "h": 280,
       "title": "光路剖面",
-      "tag": "示意",
+      "tag": "示意・約 2% 為估算",
       "flow": "light",
       "keep": 0.7,
       "nodes": [
        {
-        "x": 0.04,
-        "y": 0.55,
+        "x": 0.02,
+        "y": 0.62,
         "kind": "src",
         "label": "光源"
        },
        {
-        "x": 0.17,
-        "y": 0.55,
-        "kind": "mirror",
-        "rot": 90
-       },
-       {
-        "x": 0.3,
-        "y": 0.2,
+        "x": 0.09,
+        "y": 0.18,
         "kind": "mirror",
         "rot": -30
        },
        {
+        "x": 0.16,
+        "y": 0.62,
+        "kind": "focus"
+       },
+       {
+        "x": 0.24,
+        "y": 0.7,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.31,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.38,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
         "x": 0.45,
-        "y": 0.05,
+        "y": 0.06,
         "kind": "mask",
         "label": "光罩"
        },
        {
-        "x": 0.56,
-        "y": 0.45,
+        "x": 0.51,
+        "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.64,
-        "y": 0.12,
+        "x": 0.56,
+        "y": 0.18,
         "kind": "mirror",
         "rot": -20
+       },
+       {
+        "x": 0.61,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.66,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.68,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
        },
        {
         "x": 0.72,
-        "y": 0.5,
-        "kind": "mirror",
-        "rot": 20
-       },
-       {
-        "x": 0.8,
-        "y": 0.15,
+        "y": 0.22,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.86,
-        "y": 0.92,
+        "x": 0.745,
+        "y": 0.82,
         "kind": "wafer",
         "label": "晶圓"
        }
       ],
       "endText": "約 2%",
+      "at": "glass+12",
+      "until": "s10:mo-8",
       "textAt": "s12:two"
+     },
+     {
+      "type": "stamp",
+      "at": "glass+4",
+      "until": "mirror-2",
+      "x": 300,
+      "y": 420,
+      "text": "✕ 玻璃吸光",
+      "color": "coral",
+      "rot": -5,
+      "size": 60
+     }
+    ],
+    "shift": [
+     {
+      "layer": "lens",
+      "at": "mirror-2",
+      "until": "s18:end",
+      "opacity": 0,
+      "dz": -6,
+      "dur": 10
      }
     ]
    },
@@ -718,20 +859,39 @@
    "props": {
     "overlay": [
      {
-      "type": "stamp",
-      "style": "tag",
-      "at": "mo",
-      "until": "s11:seventy-4",
-      "x": 820,
-      "y": 330,
-      "text": "鉬／矽 多層膜",
-      "color": "blue",
-      "size": 40
+      "type": "section",
+      "kind": "multilayer",
+      "at": "mo-2",
+      "until": "s12:start-6",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 330,
+      "title": "鏡面剖面（放大）",
+      "tag": "示意，不是量測",
+      "pairs": 12,
+      "base": "基板",
+      "legend": [
+       {
+        "text": "鉬 Mo",
+        "swatch": "mo"
+       },
+       {
+        "text": "矽 Si",
+        "swatch": "si"
+       }
+      ],
+      "note": "每對約 7 nm\n實際約 40–50 對\n（圖只畫 12 對）",
+      "result": "最多約 70%",
+      "textAt": "s11:seventy",
+      "stack": {
+       "at": "layers-14"
+      }
      }
     ]
    },
    "sources": [
-    "鉬／矽多層膜反射鏡（SPIE 等）"
+    "鉬／矽多層膜：約 40 對、每對約 7 nm（SPIE 等）"
    ]
   },
   {
@@ -762,19 +922,19 @@
     "overlay": [
      {
       "type": "stamp",
-      "at": "seventy",
-      "until": "s12:bounce+10",
-      "x": 820,
-      "y": 440,
-      "text": "約 70%",
-      "color": "amber",
-      "rot": -5,
-      "size": 80
+      "style": "tag",
+      "at": "seventy+6",
+      "until": "s12:start-6",
+      "x": 800,
+      "y": 330,
+      "text": "其餘約 3 成被鏡子吸收",
+      "color": "coral",
+      "size": 36
      }
     ]
    },
    "sources": [
-    "反射率約 70%（理論與實驗值）"
+    "反射率約 70%、每面吸收約 30%（理論與實驗值）"
    ]
   },
   {
@@ -820,7 +980,113 @@
       "en": "wafer",
       "color": "blue",
       "at": "bounce",
-      "until": "s13:start-2"
+      "until": "s12:two+20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "path",
+      "x": 64,
+      "y": 1080,
+      "w": 952,
+      "h": 280,
+      "title": "光路剖面",
+      "tag": "示意・約 2% 為估算",
+      "flow": "light",
+      "keep": 0.7,
+      "nodes": [
+       {
+        "x": 0.02,
+        "y": 0.62,
+        "kind": "src",
+        "label": "光源"
+       },
+       {
+        "x": 0.09,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -30
+       },
+       {
+        "x": 0.16,
+        "y": 0.62,
+        "kind": "focus"
+       },
+       {
+        "x": 0.24,
+        "y": 0.7,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.31,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.38,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.45,
+        "y": 0.06,
+        "kind": "mask",
+        "label": "光罩"
+       },
+       {
+        "x": 0.51,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.56,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.61,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.66,
+        "y": 0.18,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.68,
+        "y": 0.62,
+        "kind": "mirror",
+        "rot": 20
+       },
+       {
+        "x": 0.72,
+        "y": 0.22,
+        "kind": "mirror",
+        "rot": -20
+       },
+       {
+        "x": 0.745,
+        "y": 0.82,
+        "kind": "wafer",
+        "label": "晶圓"
+       }
+      ],
+      "endText": "約 2%",
+      "at": "start",
+      "until": "s13:start-4",
+      "textAt": "two",
+      "count": {
+       "at": "bounce-30"
+      }
      }
     ]
    },
@@ -857,10 +1123,10 @@
     "shot": [
      {
       "at": "start-6",
-      "d": 115,
-      "elev": 28,
-      "y": -12,
-      "x": 5,
+      "d": 172,
+      "elev": 22,
+      "y": -14,
+      "x": 6,
       "dur": 34
      }
     ],
@@ -875,11 +1141,71 @@
       "color": "amber",
       "rot": -4,
       "size": 84
+     },
+     {
+      "type": "stamp",
+      "style": "tag",
+      "at": "one+4",
+      "until": "s14:start-2",
+      "x": 800,
+      "y": 1120,
+      "text": "關鍵層",
+      "color": "blue",
+      "size": 40
+     },
+     {
+      "type": "section",
+      "kind": "scan",
+      "mask": "maskScan",
+      "wafer": "waferScan",
+      "at": "start+2",
+      "until": "s15:start-10",
+      "x": 64,
+      "y": 1030,
+      "w": 952,
+      "h": 340,
+      "px": 70,
+      "ratio": 4,
+      "title": "掃描曝光（側視）",
+      "tag": "示意",
+      "mirrors": "6 面投影反射鏡",
+      "labels": {
+       "mask": "光罩（反射式）",
+       "wafer": "晶圓"
+      },
+      "note": "圖案縮小 4 倍・反向掃描"
+     }
+    ],
+    "run": [
+     {
+      "id": "maskScan",
+      "at": "start",
+      "until": "s15:start-6"
+     },
+     {
+      "id": "waferScan",
+      "at": "start",
+      "until": "s15:start-6"
+     },
+     {
+      "id": "expose",
+      "at": "short",
+      "until": "s15:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mask",
+      "text": "光罩",
+      "en": "mask",
+      "color": "blue",
+      "at": "start+6",
+      "until": "s14:start-2"
      }
     ]
    },
    "sources": [
-    "關鍵層不必多次曝光（示意）"
+    "4 倍縮小、光罩與晶圓反向掃描（ASML）；示意"
    ]
   },
   {
@@ -1037,10 +1363,10 @@
    "id": "s17",
    "beat": "cta",
    "para": 8,
-   "narration": "下一支，來看晶圓良率。想要完整資料，留言曝光機。",
-   "tts": "下一支，來看晶圓良率。想要完整資料，留言曝光機。",
+   "narration": "下一支，來看晶圓良率。想要完整解說，留言曝光機。",
+   "tts": "下一支，來看晶圓良率。想要完整解說，留言曝光機。",
    "subtitle": {
-    "zh": "下一支，來看晶圓良率\n想要完整資料，留言曝光機",
+    "zh": "下一支，來看晶圓良率\n想要完整解說，留言曝光機",
     "en": "Next time: wafer yield. | Comment \"曝光機\" for the full notes."
    },
    "keywords": [
