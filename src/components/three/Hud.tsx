@@ -548,7 +548,7 @@ const HudBand: React.FC<{ f: number; total: number }> = ({ f, total }) => {
       {Array.from({ length: Math.ceil(L.W / g) + 2 }, (_, i) => { const x = i * g - off; return <line key={i} x1={x} x2={x} y1={14} y2={14 + (i % 5 ? 10 : 22)} stroke={H.lineSoft} strokeWidth={2} />; })}
       <rect x={0} y={h - 10} width={L.W} height={10} fill={H.lineSoft} />
       <rect x={0} y={h - 10} width={(L.W * Math.min(1, f / Math.max(1, total - 1))).toFixed(1)} height={10} fill={H.line} />
-      <g transform={`translate(${L.W - 150} ${h / 2 + 10}) scale(2.2) translate(-50 -50)`} opacity={0.18}><path d={RING_ARC} fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></g>
+      {(H as any).mark === "ring" ? <g transform={`translate(${L.W - 150} ${h / 2 + 10}) scale(2.2) translate(-50 -50)`} opacity={0.18}><path d={RING_ARC} fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></g> : null}
     </svg>
   );
 };
