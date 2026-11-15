@@ -57,19 +57,20 @@ def note(f, dur, a=0.004, d=None, duty=0.25, hmax=9, lp=4200, det=0.0):
     n = int(dur * SR)
     return lowpass(pulse(f, n, duty, hmax, det), lp) * env(n, a, d or dur)
 
+SOFT = "--classic" not in sys.argv   # 2026/11/16 Andy：「聲音有點太大聲，稍微柔和點」→ 預設柔和版；--classic 是舊版
 def thud(f0, f1, dur, d, tau=0.03):
     n = int(dur * SR); t = np.arange(n) / SR
     fb = f1 + (f0 - f1) * np.exp(-t / tau)
-    return np.sin(2 * np.pi * np.cumsum(fb) / SR) * env(n, 0.002, d, 3.5)
+    return np.sin(2 * np.pi * np.cumsum(fb) / SR) * env(n, 0.006 if SOFT else 0.002, d, 3.5) * (0.62 if SOFT else 1)   # 柔和：低頻撞擊起音放慢、音量收
 
 def bell(f, dur, d):
     n = int(dur * SR); t = np.arange(n) / SR
-    return (np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 2.76 * t) * np.exp(-t / 0.08) + 0.2 * np.sin(2 * np.pi * f * 4.1 * t) * np.exp(-t / 0.04)) * env(n, 0.002, d, 4.0)
+    return (np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 2.76 * t) * np.exp(-t / 0.08) + 0.2 * np.sin(2 * np.pi * f * 4.1 * t) * np.exp(-t / 0.04)) * env(n, 0.003 if SOFT else 0.002, d, 4.0) * (0.78 if SOFT else 1)   # 柔和：鐘聲高頻稍收
 
 
 # 0. 0.2 秒內抓耳朵：上揚掃頻＋亮的鐘聲
 n = int(0.17 * SR); t = np.arange(n) / SR
-fsw = 320 * (2600 / 320) ** (t / 0.17); sw = np.sin(2 * np.pi * np.cumsum(fsw) / SR) * env(n, 0.01, 0.17, 2.0)
+fsw = 320 * (2600 / 320) ** (t / 0.17); sw = np.sin(2 * np.pi * np.cumsum(fsw) / SR) * env(n, 0.03 if SOFT else 0.01, 0.17, 2.0)   # 柔和：掃頻起音放慢
 add(sw, 0.0, gain=0.35)
 add(bell(2093.0, 0.8, 0.5), 0.0, pan=-0.15, gain=0.34); add(bell(2637.0, 0.6, 0.4), 0.035, pan=0.15, gain=0.24)
 
@@ -137,6 +138,8 @@ k0 = fr(TL["keyword"])
 add(note(987.77, 0.07, a=0.002, d=0.05, duty=0.5, lp=4200), k0, gain=0.18)
 add(note(1318.51, 0.2, a=0.002, d=0.15, duty=0.5, lp=4200), k0 + 0.07, gain=0.18)
 
+if SOFT:  # 整體再過兩段 4.6 kHz 低通（12 dB/oct）：去掉尖的泛音，旋律、時間點不變
+    L = lowpass(lowpass(L, 4600), 4600); R = lowpass(lowpass(R, 4600), 4600)
 peak = max(np.abs(L).max(), np.abs(R).max()); sc = 10 ** (-3 / 20) / peak
 data = np.stack([L * sc, R * sc], axis=1)
 with wave.open(sys.argv[1], "wb") as w:

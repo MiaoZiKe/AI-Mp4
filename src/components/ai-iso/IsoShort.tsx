@@ -9,7 +9,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, pop, springAccent, tween, typeChars } from "../anim";
 import { buildIso, type Panel } from "./engine";
-import { CaffAnim } from "./CaffAnim";
+import { CaffEndcard } from "./CaffAnim";
 import { ap, at2, Backdrop, Bb, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, fly, ground, HeaderIso, iso, type M6, MON, mul, popM, SCR, SCR_H, SCR_W, Shade, Slab, slam, SourceLine, Strike } from "./IsoVideo";
 
 const M = T.motion;
@@ -578,8 +578,8 @@ export const ShortIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, 
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop />
       <Stage panels={panels.filter((x) => x.kind !== "caffend")} f={f} />
-      {endP && f >= endP.in ? <CaffAnim f={f - endP.in} keyword={String(endP.p.keyword ?? "")} /> : null}
-      <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo={logo} />
+      {endP && f >= endP.in ? <CaffEndcard f={f - endP.in} keyword={String(endP.p.keyword ?? "")} /> : null}
+      {endP && f >= endP.in ? null : <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? "AI 動手做"} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo={logo} />}
       {endP && f >= endP.in ? null : <Caption cues={caps} f={f} />}
       {endP && f >= endP.in ? null : <SourceLine cues={srcs} f={f} />}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => (

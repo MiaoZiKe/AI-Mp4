@@ -8,7 +8,7 @@ import type { Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../theme";
 import { EASE, tween } from "../anim";
 import { buildIso, type Panel } from "./engine";
-import { CaffAnim } from "./CaffAnim";
+import { CaffEndcard } from "./CaffAnim";
 import { Floaters, Glow } from "./IsoShort";
 import { ap, at2, Backdrop, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, ground, HeaderIso, iso, type M6, mul, riseIn, Shade, Slab, slam, SourceLine, wallX } from "./IsoVideo";
 
@@ -354,8 +354,8 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
       {inEnd ? null : <Overlays f={f} P={Pn} cam={cam} />}
       {inEnd ? null : world.map((p) => <Tag key={p.sid} f={f} p={p} />)}
       {inEnd ? null : <AsOf text={asOf} />}
-      {inEnd ? <CaffAnim f={f - endP!.in} keyword={String(endP!.p.keyword ?? "")} /> : null}
-      <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? ""} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo />
+      {inEnd ? <CaffEndcard f={f - endP!.in} keyword={String(endP!.p.keyword ?? "")} /> : null}
+      {inEnd ? null : <HeaderIso name={channel?.name ?? "AI"} tag={channel?.tag ?? ""} right={channel?.slogan} progress={Math.min(1, f / Math.max(1, timeline.totalFrames - 1))} logo />}
       {inEnd ? null : <Caption cues={caps} f={f} />}
       {inEnd ? null : <SourceLine cues={srcs} f={f} />}
       {timeline.voice ? <Audio src={staticFile(timeline.voice.file)} /> : timeline.scenes.filter((t) => t.audio).map((t) => <Sequence key={`${t.id}-audio`} from={t.audioFrame} durationInFrames={Math.ceil(t.audioSec * FPS) + 1} layout="none"><Audio src={staticFile(t.audio as string)} /></Sequence>)}

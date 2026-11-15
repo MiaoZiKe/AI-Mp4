@@ -249,3 +249,6 @@ export const CaffAnim: React.FC<{ f: number; keyword?: string; kw?: boolean; hea
     </AbsoluteFill>
   );
 };
+
+/** CaffAIne 預設片尾（2026/11/16 Andy 定案「3 純白景深」）：獨立片尾頁，沒有桌面與頻道牌，整頁就是 LOGO；各引擎的片尾卡都用它 */
+export const CaffEndcard: React.FC<{ f: number; keyword?: string }> = ({ f, keyword = "" }) => <CaffAnim f={f} keyword={keyword} variant="S" bg="white" />;
