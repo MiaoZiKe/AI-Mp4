@@ -1,0 +1,75 @@
+{
+ "slug": "short-ai",
+ "at": "2026-11-14T12:52:26.874Z",
+ "method": "fa",
+ "confMin": 0.5,
+ "cerMax": 0.15,
+ "regenMax": 0,
+ "regenRequests": 0,
+ "note": "整篇一鏡到底（tts-take.mjs，原始音檔 e55e4baaa5，本次 TTS 請求 1 次）：信心取自整篇對齊；不單幕重生，要重做就整篇重來；整篇聽寫（gemini-3.5-flash-lite）共 69 字，全文見 tts-take-asr.json",
+ "scenes": [
+  {
+   "id": "s01",
+   "before": {
+    "confidence": 0.969,
+    "minScore": 0.788,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  },
+  {
+   "id": "s02",
+   "before": {
+    "confidence": 0.796,
+    "minScore": 0,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  },
+  {
+   "id": "s03",
+   "before": {
+    "confidence": 0.334,
+    "minScore": 0.013,
+    "cer": null,
+    "transcript": null,
+    "bad": true,
+    "why": [
+     "對齊信心 0.334 < 0.5"
+    ]
+   },
+   "regen": false,
+   "skipReason": "整篇模式不單幕重生"
+  },
+  {
+   "id": "s04",
+   "before": {
+    "confidence": 0.632,
+    "minScore": 0.009,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  },
+  {
+   "id": "s05",
+   "before": {
+    "confidence": 0.9,
+    "minScore": 0.043,
+    "cer": null,
+    "transcript": null,
+    "bad": false,
+    "why": []
+   },
+   "regen": false
+  }
+ ]
+}
