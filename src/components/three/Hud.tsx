@@ -355,7 +355,7 @@ const HudSectionPath: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
           return <rect key={i} x={x - w / 2} y={y - hgt / 2} width={w} height={hgt} rx={3} transform={`rotate(${n.rot ?? 0} ${x} ${y})`} fill={n.kind === "mask" ? A.edge : n.kind === "wafer" ? A.sd : A.gate} />;
         })}
         {dots}
-        {(o as any).count ? (() => { let c = 0; return nodes.map((n, i) => { if (n.kind !== "mirror" && n.kind !== "mask") return null; c++; const [x, y] = P[i], sh = tween(f, ((o as any).count?.at ?? o.at) + c * 3, 5, EASE.enter);
+        {(o as any).count ? (() => { let c = 0; return nodes.map((n, i) => { if (n.kind !== "mirror" && n.kind !== "mask") return null; c++; const [x, y] = P[i], sh = tween(f, ((o as any).count?.at ?? o.at) + c * ((o as any).count?.step ?? 3), 5, EASE.enter);
           return <g key={`c${i}`} opacity={sh}><circle cx={x} cy={y + (n.kind === "mask" ? 30 : 32)} r={17} fill={H.panel} stroke={H.text2} strokeWidth={2} /><text x={x} y={y + (n.kind === "mask" ? 30 : 32) + 10} textAnchor="middle" style={mono(sm(28), H.text, 800)}>{c}</text></g>; }); })() : null}
         {nodes.map((n, i) => {
           if (!n.label && !n.note) return null;
@@ -366,6 +366,19 @@ const HudSectionPath: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
           </g>;
         })}
       </svg>
+      {(o as any).count?.readout ? (() => {
+        // 逐面遞減讀數（2026/11/15 v3，結構驗收：「100→70→49→…→約 2%」）：跟編號同一個節奏，每跳一個編號，讀數乘一次 keep、右邊多一根長條
+        const nR = nodes.filter((n) => n.kind === "mirror" || n.kind === "mask").length, c0 = (o as any).count?.at ?? o.at, stp = (o as any).count?.step ?? 3;
+        const c = Math.max(0, Math.min(nR, Math.floor((f - c0) / stp))), v = Math.pow(keep, c), pct = c === nR ? `約 ${Math.round(v * 100)}%` : `${Math.round(v * 100)}%`, bw0 = 15, gap = 5, bx = W - 24 - nR * (bw0 + gap), maxH = 74;
+        return <div style={{ position: "absolute", right: 0, top: 50, width: nR * (bw0 + gap) + 30, height: Hh - 56 }}>
+          <div style={{ position: "absolute", right: 24, top: 2, ...zh(30, H.text2, 800) }}>剩下的光</div>
+          <div style={{ position: "absolute", right: 24, top: 40, ...zh(c === nR ? 56 : 48, c === nR ? H.amber : H.text, 900), fontVariantNumeric: "tabular-nums" }}>{f >= c0 ? pct : "100%"}</div>
+          <svg width={nR * (bw0 + gap) + 30} height={Hh - 56} style={{ position: "absolute", left: 0, top: 0 }}>
+            {Array.from({ length: nR + 1 }, (_, j) => j).map((j) => { if (j > c && f >= c0) return null; const h = maxH * Math.pow(keep, j); return <rect key={j} x={6 + j * (bw0 + gap) - (bw0 + gap)} y={Hh - 70 - h} width={bw0} height={Math.max(2, h)} fill={j === nR ? H.amber : (H.parts as any).euv ?? "#8B5CF6"} opacity={0.35 + 0.65 * Math.pow(keep, j * 0.5)} />; })}
+          </svg>
+          {(o as any).count?.note ? <div style={{ position: "absolute", right: 24, bottom: 4, ...zh(sm(30), H.text2, 700) }}>{(o as any).count.note}</div> : null}
+        </div>;
+      })() : null}
       {(o as any).endText ? <div style={{ position: "absolute", right: 22, bottom: 18, ...zh(64, H.amber, 900), letterSpacing: "0.02em", opacity: tween(f, (o as any).textAt ?? o.at, 8, EASE.enter), transform: `scale(${(1 + 0.14 * Math.sin(Math.PI * tween(f, (o as any).textAt ?? o.at, 10, EASE.move))).toFixed(3)})` }}>{(o as any).endText}</div> : null}
     </div>
   );
@@ -399,11 +412,11 @@ const HudSectionLpp: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; 
   const tri = (a: number, b: number) => (ph < a || ph > b ? 0 : Math.sin((Math.PI * (ph - a)) / (b - a)));
   const el: React.ReactNode[] = [];
   if (on) {
-    for (let j = 0; j < q; j++) { if (j === 0 && ph >= P.pre) continue; const t = 1 - (P.pre - ph + j) / q; if (t < 0) continue; el.push(<circle key={`d${j}`} cx={fx} cy={y0 + (fy - y0) * t} r={14} fill={tin} stroke={H.text2} strokeWidth={2} opacity={vk * Math.min(1, t * 6)} />); }
+    for (let j = 0; j < q; j++) { if (j === 0 && ph >= P.pre) continue; const t = 1 - (P.pre - ph + j) / q; if (t < 0) continue; el.push(<circle key={`d${j}`} cx={fx} cy={y0 + (fy - y0) * t} r={20} fill={tin} stroke={H.text2} strokeWidth={2} opacity={vk * Math.min(1, t * 6)} />); }
     const a = tri(P.pre - 0.05, P.pre + 0.05), b = tri(P.main - 0.05, P.main + 0.06);
-    if (a > 0.01) el.push(<line key="pre" x1={20} y1={fy} x2={fx} y2={fy} stroke={pre} strokeWidth={4 + 3 * a} opacity={vk * a} />);
+    if (a > 0.01) el.push(<line key="pre" x1={20} y1={fy} x2={fx} y2={fy} stroke={pre} strokeWidth={5 + 3 * a} opacity={vk * a} />);
     if (b > 0.01) el.push(<line key="main" x1={20} y1={fy} x2={fx} y2={fy} stroke={main} strokeWidth={12 + 8 * b} opacity={vk * b} />);
-    if (ph >= P.pre && ph < P.main + 0.02) { const e = EASE.enter(Math.min(1, (ph - P.pre) / (P.main - P.pre))); el.push(<ellipse key="pan" cx={fx} cy={fy} rx={14 * (1 - 0.6 * e)} ry={14 + 40 * e} fill={tin} stroke={H.text2} strokeWidth={2} opacity={vk} />); }
+    if (ph >= P.pre && ph < P.main + 0.02) { const e = EASE.enter(Math.min(1, (ph - P.pre) / (P.main - P.pre))); el.push(<ellipse key="pan" cx={fx} cy={fy} rx={20 * (1 - 0.65 * e)} ry={20 + 46 * e} fill={tin} stroke={H.text2} strokeWidth={2} opacity={vk} />); }
     if (ph >= P.main) {
       const u = (ph - P.main) / (1 - P.main), fade = Math.pow(1 - u, 1.4), r = 22 + 52 * EASE.enter(Math.min(1, u * 3));
       el.push(<circle key="halo" cx={fx} cy={fy} r={r * 1.7} fill={glow} opacity={vk * fade * 0.18} />, <circle key="pl" cx={fx} cy={fy} r={r} fill={glow} opacity={vk * fade * 0.85} />);
@@ -423,7 +436,7 @@ const HudSectionLpp: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; 
         {/* 收集鏡（碗形，側視）：中間留孔讓雷射穿過 */}
         <path d={`M ${fx - 70} ${top + 6} Q ${fx - 175} ${fy - 60} ${fx - 150} ${fy - 16}`} fill="none" stroke={C("mirror", H.amber)} strokeWidth={9} strokeLinecap="round" />
         <path d={`M ${fx - 150} ${fy + 16} Q ${fx - 175} ${fy + 60} ${fx - 70} ${Hh - 8}`} fill="none" stroke={C("mirror", H.amber)} strokeWidth={9} strokeLinecap="round" />
-        <text x={fx - 150} y={Hh - 12} textAnchor="middle" style={zh(sm(30), H.text2, 800)}>收集鏡</text>
+        <text x={fx - 215} y={Hh - 40} textAnchor="middle" style={zh(sm(30), H.text2, 800)}>收集鏡</text>
         {el}
       </svg>
       <SecSteps items={items} f={f} active={step} x={vw + 10} y={top + 6} w={W - vw - 30} gap={Math.max(60, Math.floor((Hh - top - 16) / Math.max(1, items.length)))} />
@@ -435,7 +448,7 @@ const HudSectionLpp: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; 
  *  光從上面斜斜打進來，每一個交界面都反射回一小部分（越深越淡），全部加起來就是鏡子反射的光。pairs＝畫幾對（示意，不是實際層數）；
  *  legend＝[{ text, swatch }]（swatch 寫 model.palette 的色名）；result＝右下大字（例如「最多約 70%」）、textAt＝念到才出現；note＝說明小字 */
 const HudSectionMultilayer: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D }> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, top = 60, n = (o as any).pairs ?? 12, tm = 6, ts = 10, sx0 = 24, sx1 = Math.round(W * 0.6), y0 = top + 64, hx = Math.round(sx0 + (sx1 - sx0) * 0.38), sl = 0.55;
+  const W = o.w ?? 952, Hh = o.h ?? 330, top = 60, n = (o as any).pairs ?? 12, tm = 6, ts = 10, sx0 = 24, sx1 = Math.round(W * 0.52), y0 = top + 64, hx = Math.round(sx0 + (sx1 - sx0) * 0.38), sl = 0.55;
   const mo = col(m.product, (o as any).mo ?? "mo"), si = col(m.product, (o as any).si ?? "si"), lt = col(m.product, (o as any).light ?? "euv");
   const layers: React.ReactNode[] = [], refl: React.ReactNode[] = [], dots: React.ReactNode[] = [];
   // 一對一對由下往上疊（每 2 幀一對），疊完光才打進來
@@ -469,9 +482,19 @@ const HudSectionMultilayer: React.FC<{ o: Overlay3D; f: number; k: number; m: Mo
         {refl}{dots}
       </svg>
       <div style={{ position: "absolute", left: sx1 + 26, top: top + 4, display: "flex", flexDirection: "column", gap: 10 }}>
-        {legend.map((it, j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 12 }}><div style={{ width: 34, height: 26, background: col(m.product, it.swatch), border: `1.5px solid ${H.text3}` }} /><div style={zh(32, H.text, 800)}>{it.text}</div></div>)}
-        {(o as any).note ? <div style={{ ...zh(sm(30), H.text2, 700), whiteSpace: "pre-line", width: W - sx1 - 50, lineHeight: 1.3 }}>{(o as any).note}</div> : null}
+        <div style={{ display: "flex", gap: 22 }}>{legend.map((it, j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10 }}><div style={{ width: 34, height: 26, background: col(m.product, it.swatch), border: `1.5px solid ${H.text3}` }} /><div style={zh(32, H.text, 800)}>{it.text}</div></div>)}</div>
+        {(o as any).note ? <div style={{ ...zh(sm(30), H.text2, 700), whiteSpace: "pre-line", width: W - sx1 - 50, lineHeight: 1.2 }}>{(o as any).note}</div> : null}
       </div>
+      {(o as any).split ? (() => {
+        // 入射 100／反射 70／吸收 30（2026/11/15 v3，結構驗收）：三條長條，念到 textAt 才長出來
+        const g2 = tween(f, rAt, 14, EASE.move), rows = (o as any).split as { label: string; v: number; color?: string }[], bw = W - sx1 - 60 - 150;
+        return <div style={{ position: "absolute", left: sx1 + 26, bottom: 12, display: "flex", flexDirection: "column", gap: 4 }}>
+          {rows.map((r, j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, height: 32, opacity: Math.min(1, g2 * 2) }}>
+            <div style={{ ...zh(30, H.text, 800), lineHeight: 1, width: 140, flex: "none" }}>{r.label}</div>
+            <div style={{ width: bw, height: 22, background: H.bg, border: `1.5px solid ${H.text3}`, position: "relative" }}><div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${(100 * (r.v / 100) * g2).toFixed(1)}%`, background: hudAccent(r.color) }} /></div>
+          </div>)}
+        </div>;
+      })() : null}
       {res ? <div style={{ position: "absolute", right: 20, bottom: 14, ...zh(52, H.amber, 900), opacity: tween(f, rAt, 8, EASE.enter), transform: `scale(${(1 + 0.14 * Math.sin(Math.PI * tween(f, rAt, 10, EASE.move))).toFixed(3)})`, transformOrigin: "right bottom" }}>{res}</div> : null}
     </SecCard>
   );
@@ -483,11 +506,11 @@ const HudSectionAir: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D }
   const W = o.w ?? 952, Hh = o.h ?? 240, top = 64, y = Math.round(top + (Hh - top) * 0.55), x0 = 30, x1 = W - 40, lt = col(m.product, (o as any).light ?? "euv");
   const vt = (o as any).textAt ?? 1e9, pump = tween(f, vt, 18, EASE.move), lab = ((o as any).labels ?? {}) as { air?: string; vac?: string };
   const parts: React.ReactNode[] = [];
-  for (let i = 0; i < 46; i++) {
+  for (let i = 0; i < 30; i++) {
     const hx = hash01s(i * 3.1 + 0.4), hy = hash01s(i * 7.7 + 2.1), sp = 0.6 + hash01s(i * 1.3) * 0.8;
     const px = x0 + hx * (x1 - x0) + Math.sin(f * 0.05 * sp + i) * 6, py0 = top + 8 + hy * (Hh - top - 16) + Math.cos(f * 0.04 * sp + i) * 5;
     const py = py0 - pump * (py0 + 40) * (0.7 + 0.6 * hx);
-    parts.push(<circle key={i} cx={px} cy={py} r={6} fill={H.text3} opacity={0.75 * (1 - pump)} />);
+    parts.push(<circle key={i} cx={px} cy={py} r={11} fill={H.text3} opacity={0.75 * (1 - pump)} />);
   }
   // 光：有空氣時走到 reach 就暗掉；抽真空後一路走到底
   const reach = 0.3 + 0.7 * pump, dots: React.ReactNode[] = [];
@@ -504,7 +527,7 @@ const HudSectionAir: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D }
         {parts}{dots}
         {pump > 0.05 ? [0.2, 0.5, 0.8].map((u, i) => <path key={i} d={`M ${x0 + u * (x1 - x0)} ${top + 70} v -40 m -12 14 l 12 -14 l 12 14`} stroke={H.text2} strokeWidth={4} fill="none" opacity={Math.sin(Math.PI * pump)} />) : null}
       </svg>
-      <div style={{ position: "absolute", left: 250, top: 12, ...zh(32, pump > 0.5 ? H.line : H.coral, 800) }}>{pump > 0.5 ? lab.vac ?? "真空：光能通過" : lab.air ?? "有空氣：光被吸掉"}</div>
+      <div style={{ position: "absolute", left: 250, top: 8, ...zh(38, pump > 0.5 ? H.line : H.coral, 800) }}>{pump > 0.5 ? lab.vac ?? "真空：光能通過" : lab.air ?? "有空氣：光被吸掉"}</div>
     </SecCard>
   );
 };
@@ -527,7 +550,7 @@ const HudSectionScan: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
   if (om && om.n >= 0) for (let fr = Math.max(f - om.n, f - 240); fr <= f; fr += 1) { const mo = offAt(dm, om, fr) * px; pat.forEach(([x], j) => { if (Math.abs(cx + mo + x - cx) < slitW / 2) printed.add(j); }); }
   const lt = col(m.product, (o as any).light ?? "euv"), lab = ((o as any).labels ?? {}) as { mask?: string; wafer?: string };
   const vm = dm && om ? Math.cos(Math.PI * 2 * (dm.freq ?? 1) * om.T) * (dm.axis?.[0] ?? 1) : 0, vwv = -vm;
-  const arrow = (x: number, y: number, dir: number) => <path d={dir > 0 ? `M ${x - 26} ${y} H ${x + 22} M ${x + 10} ${y - 10} L ${x + 24} ${y} L ${x + 10} ${y + 10}` : `M ${x + 26} ${y} H ${x - 22} M ${x - 10} ${y - 10} L ${x - 24} ${y} L ${x - 10} ${y + 10}`} stroke={H.text} strokeWidth={4} fill="none" strokeLinecap="round" />;
+  const arrow = (x: number, y: number, dir: number) => <path opacity={0.35 + 0.65 * Math.min(1, Math.abs(dir) * 1.5)} d={dir > 0 ? `M ${x - 26} ${y} H ${x + 22} M ${x + 10} ${y - 10} L ${x + 24} ${y} L ${x + 10} ${y + 10}` : `M ${x + 26} ${y} H ${x - 22} M ${x - 10} ${y - 10} L ${x - 24} ${y} L ${x - 10} ${y + 10}`} stroke={H.text} strokeWidth={4} fill="none" strokeLinecap="round" />;
   return (
     <SecCard o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -535,11 +558,13 @@ const HudSectionScan: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
         <rect x={0} y={ym} width={W} height={30} fill={H.text3} opacity={0.55} />
         <rect x={0} y={ym + 30} width={W} height={10} fill={H.lineSoft} />
         {pat.map(([x, w], j) => <rect key={`m${j}`} x={cx + mOff + x - w / 2} y={ym + 30} width={w} height={12} fill={H.text} />)}
-        <polygon points={`${cx - 200},${ym + 150} ${cx - 168},${ym + 150} ${cx + slitW / 2},${ym + 42} ${cx - slitW / 2},${ym + 42}`} fill={lt} opacity={0.32} />
-        <polygon points={`${cx - slitW / 2},${ym + 42} ${cx + slitW / 2},${ym + 42} ${cx + 210},${ym + 104} ${cx + 160},${ym + 104}`} fill={lt} opacity={0.26} />
-        <rect x={cx + 90} y={ym + 104} width={250} height={48} fill={H.panel} stroke={H.line} strokeWidth={2.5} />
-        <text x={cx + 215} y={ym + 139} textAnchor="middle" style={zh(sm(30), H.text, 800)}>{(o as any).mirrors ?? "投影反射鏡"}</text>
-        <polygon points={`${cx + 150},${ym + 152} ${cx + 250},${ym + 152} ${cx + slitW / (2 * red) + 3},${yw} ${cx - slitW / (2 * red) - 3},${yw}`} fill={lt} opacity={0.3} />
+        <polygon points={`${cx - 150},${ym + 160} ${cx - 118},${ym + 160} ${cx + slitW / 2},${ym + 42} ${cx - slitW / 2},${ym + 42}`} fill={lt} opacity={0.32} />
+        <polygon points={`${cx - slitW / 2},${ym + 42} ${cx + slitW / 2},${ym + 42} ${cx + 150},${ym + 110} ${cx + 120},${ym + 110}`} fill={lt} opacity={0.26} />
+        <polygon points={`${cx + 120},${ym + 110} ${cx + 150},${ym + 110} ${cx + slitW / (2 * red) + 3},${yw} ${cx - slitW / (2 * red) - 3},${yw}`} fill={lt} opacity={0.3} />
+        {[[cx + 135, ym + 110]].map(([x, y], i) => <rect key={i} x={x - 34} y={y - 6} width={68} height={12} rx={3} fill={(m.product.palette as any).mirror ?? H.amber} />)}
+        <rect x={cx + 190} y={ym + 92} width={W - cx - 210} height={44} fill={H.panel} stroke={H.line} strokeWidth={2.5} />
+        <text x={cx + 190 + (W - cx - 210) / 2} y={ym + 125} textAnchor="middle" style={zh(sm(30), H.text, 800)}>{(o as any).mirrors ?? "投影反射鏡"}</text>
+        <path d={`M ${cx + 190} ${ym + 114} H ${cx + 160}`} stroke={H.line} strokeWidth={2.5} />
         {/* 晶圓：感光層＋已經印上去的線（縮小 red 倍、左右相反）；光縫是固定的一小段 */}
         <rect x={0} y={yw} width={W} height={22} fill={col(m.product, "resist")} />
         <rect x={0} y={yw + 22} width={W} height={18} fill={H.text3} opacity={0.6} />
@@ -549,7 +574,18 @@ const HudSectionScan: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
         {arrow(Math.round(textW(lab.mask ?? "光罩", 30, 0) + 70), ym - 18, vm)}
         <text x={20} y={Hh - 10} style={zh(sm(30), H.text, 800)}>{lab.wafer ?? "晶圓"}</text>
         {arrow(Math.round(textW(lab.wafer ?? "晶圓", 30, 0) + 70), Hh - 20, vwv)}
-        {(o as any).note ? <text x={W - 20} y={ym + 84} textAnchor="end" style={zh(sm(30), H.text2, 800)}>{(o as any).note}</text> : null}
+        {(o as any).note ? <text x={W - 20} y={ym - 8} textAnchor="end" style={zh(sm(30), H.text, 800)}>{(o as any).note}</text> : null}
+        {(o as any).cmp ? (() => {
+          // 接回 s4：以前 193 nm 同一層要畫 4 次、極紫外光 1 次（顏色和 s4 的四次一樣）
+          const g3 = tween(f, (o as any).cmp.at ?? o.at, 8, EASE.enter), PASS = [H.art.sheet, H.amber, H.coral, H.art.fin], y1 = ym + 80, y2 = ym + 126;
+          return <g opacity={g3}>
+            <text x={20} y={y1} style={zh(sm(30), H.text2, 800)}>193 nm</text>
+            {PASS.map((c, j) => <rect key={j} x={140 + j * 34} y={y1 - 24} width={24} height={28} fill={c} />)}
+            <text x={284} y={y1} style={zh(sm(30), H.text2, 800)}>4 次</text>
+            <text x={20} y={y2} style={zh(sm(30), H.text, 900)}>極紫外光</text>
+            <rect x={160} y={y2 - 24} width={24} height={28} fill={lt} />
+            <text x={196} y={y2} style={zh(32, H.amber, 900)}>1 次</text>
+          </g>; })() : null}
       </svg>
     </SecCard>
   );
@@ -656,6 +692,8 @@ const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s: State
         return <div key={i} style={{ position: "absolute", left: o.x ?? CX, top: o.y ?? CY, opacity: k, transform: `translate(-50%, -50%) translateY(${Math.round(10 * (1 - k))}px)`, ...zh(o.size ?? 34, c, 700), background: H.panel, border: `2px solid ${c}`, padding: "6px 20px 8px", letterSpacing: "0.04em" }}>{o.text}</div>;
       }
       if (o.type === "stamp") {
+        // countTo（2026/11/15 tech-euv v3）：text 裡的 {n} 從 0 跳到 countTo（countDur 幀），例如「每秒 {n} 顆」
+        if ((o as any).countTo) { const n = Math.round(((o as any).countTo as number) * EASE.move(Math.min(1, Math.max(0, (f - o.at) / ((o as any).countDur ?? 24))))); o = { ...o, text: String(o.text).replace("{n}", n.toLocaleString("en-US")) }; }
         const size = o.size ?? 76, slam = 1 + 0.6 * (1 - tween(f, o.at, 6, EASE.enter)) + 0.05 * Math.sin(Math.PI * tween(f, o.at + 6, 8, EASE.move));
         return (
           <div key={i} style={{ position: "absolute", left: o.x ?? CX, top: o.y ?? CY, opacity: k, transform: `translate(-50%, -50%) rotate(${o.rot ?? -6}deg) scale(${slam.toFixed(3)})` }}>

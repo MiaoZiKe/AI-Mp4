@@ -112,8 +112,8 @@ export const modelRect = (pr: ProductModel, s: State3D, minO = 0.3): Rect | null
 export const textW = (t: string, px: number, spacing = 0.04) => [...String(t ?? "")].reduce((a, ch) => a + (/[⺀-￿]/.test(ch) && !/[▸·・]/.test(ch) ? 1 : ch === " " ? 0.3 : 0.6) * px + spacing * px, 0);
 /** 蓋章（實心色塊＋外框）與小標（細框）的外接矩形，中心在 (x, y) */
 export const stampRect = (o: Overlay3D, cx: number, cy: number): Rect => {
-  const size = o.size ?? (o.style === "tag" ? 34 : 76);
-  const w = o.style === "tag" ? textW(o.text, size) + 44 : textW(o.text, size) + size * 0.72 + 24, h = o.style === "tag" ? size * 1.3 + 18 : size * 1.42 + 24;
+  const size = o.size ?? (o.style === "tag" ? 34 : 76), tx = (o as any).countTo ? String(o.text).replace("{n}", Number((o as any).countTo).toLocaleString("en-US")) : o.text;
+  const w = o.style === "tag" ? textW(tx, size) + 44 : textW(tx, size) + size * 0.72 + 24, h = o.style === "tag" ? size * 1.3 + 18 : size * 1.42 + 24;
   // 微歪（rot）讓外接矩形大一點
   const k = o.style === "tag" ? 0 : Math.abs(Math.sin(((o.rot ?? -6) * Math.PI) / 180));
   const W = w + h * k, Hh = h + w * k;
@@ -177,7 +177,7 @@ export const artRegion = (b: Box): Rect => ({ x0: b.X, x1: b.W - b.X, y0: b.STAG
 
 // ── 主素材框（2026/11/15 Andy：「避免中間重要的素材被遮擋」） ──
 /** 2D 縮放圖每一種的外框（HudArt.tsx 的座標，1000 單位＝舞台內寬 × 這一級的倍率） */
-export const ART_BOX: Record<string, [number, number, number, number]> = { phone: [-220, -424, 220, 424], board: [-500, -330, 500, 330], die: [-500, -500, 500, 500], cells: [-500, -500, 500, 500], gates: [-453, -240, 453, 240], litho: [-450, -470, 450, 225], none: [-1, -1, 1, 1] };
+export const ART_BOX: Record<string, [number, number, number, number]> = { phone: [-220, -424, 220, 424], board: [-500, -330, 500, 330], die: [-500, -500, 500, 500], cells: [-500, -500, 500, 500], gates: [-453, -240, 453, 240], litho: [-450, -470, 450, 225], wafer: [-420, -433, 196, 183], none: [-1, -1, 1, 1] };
 /** 2D 階段的主素材框：鏡頭現在對著的那一級（round(lv)）的圖，裁在舞台裡（沒有 yield 變形；畫面上看得到的部分另外再和 artRegion 取交集，見 visibleMain） */
 export const artMainRect = (hud: HudSpec, z: { lv: number; logField: number }, b: Box): Rect | null => {
   const i = Math.max(0, Math.min(hud.levels.length - 1, Math.round(z.lv))), lvl = hud.levels[i], bx = ART_BOX[lvl.art];

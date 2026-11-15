@@ -103,11 +103,59 @@ const Litho: React.FC<{ f: number; cues: Record<string, number> }> = ({ f, cues 
         </g>;
       })}
       {plate(-440, 82, 220, "更細的線", H.text2, gFiner)}
+      {plate(-180, 82, 330, "7 奈米世代：分 4 次", H.line, on("multi", 8, 10))}
+    </g>
+  );
+};
+
+/** 晶圓（2026/11/15 tech-euv v3，art: "wafer"）：左邊一片晶圓（約 300 mm，示意）和晶粒格，右邊一疊「晶片的層」。
+ *  cues：tsmc（右邊標「台積電 N7+（2019）」）、key（只有幾層關鍵層亮成紫色＝改用極紫外光印，其餘灰）、
+ *  small（掃描線一列一列掃過晶粒）、every（掃過的格子裡少數變灰打叉＝示意不良，不代表任何比例）。顏色只讀皮膚。 */
+const WaferArt: React.FC<{ f: number; cues: Record<string, number> }> = ({ f, cues }) => {
+  const on = (k: string, d = 10, off = 0) => (cues[k] === undefined ? 0 : tween(f, cues[k] + off, d, EASE.enter));
+  const A2 = H.art, cx = -112, cy = -125, R = 308, st = 48, euv = (H.parts as any).euv ?? "#8B5CF6";
+  const dies: { x: number; y: number; i: number; row: number }[] = [];
+  for (let j = -6; j <= 6; j++) for (let i = -6; i <= 6; i++) { const x = cx + i * st, y = cy + j * st, h = st / 2 - 3; if ([[x - h, y - h], [x + h, y - h], [x - h, y + h], [x + h, y + h]].every(([a, b]) => Math.hypot(a - cx, b - cy) < R - 12)) dies.push({ x, y, i: dies.length, row: j + 6 }); }
+  const bad = new Set(dies.filter((d) => { const v = Math.sin(d.i * 91.7 + 13.1) * 43758.5; return v - Math.floor(v) < 0.09; }).map((d) => d.i));
+  const t0 = cues.small, scanRows = 13, perRow = 4;
+  const rowAt = (r: number) => (t0 === undefined ? 1e9 : t0 + 4 + r * perRow);
+  const scanY = t0 === undefined || f < t0 ? null : cy - R + ((f - t0 - 4) / (scanRows * perRow)) * 2 * R;
+  const layers = 8, keyL = new Set([2, 3, 5]), gKey = on("key", 10), gTs = on("tsmc", 8);
+  return (
+    <g>
+      <rect x={-500} y={-480} width={1000} height={720} fill={H.panel} stroke={H.lineSoft} strokeWidth={3} />
+      {range(31).map((i) => <line key={`gx${i}`} x1={-500 + i * 33.33} x2={-500 + i * 33.33} y1={-480} y2={240} stroke={H.grid} strokeWidth={2} />)}
+      {/* 晶圓：外圈、缺口、晶粒格 */}
+      <circle cx={cx} cy={cy} r={R} fill={A2.die} stroke={H.line} strokeWidth={6} />
+      <circle cx={cx} cy={cy} r={R - 10} fill="none" stroke={H.lineSoft} strokeWidth={2} />
+      <path d={`M ${cx - 14} ${cy + R - 2} A 14 14 0 0 1 ${cx + 14} ${cy + R - 2}`} fill={H.panel} stroke={H.line} strokeWidth={4} />
+      {dies.map((d) => {
+        const sc = f >= rowAt(d.row), isBad = bad.has(d.i) && sc && cues.every !== undefined && f >= Math.max(rowAt(d.row), cues.every) + 2;
+        const flash = sc ? Math.max(0, 1 - (f - rowAt(d.row)) / 8) : 0;
+        return <g key={d.i}>
+          <rect x={d.x - st / 2 + 3} y={d.y - st / 2 + 3} width={st - 6} height={st - 6} rx={3} fill={isBad ? H.text3 : A2.block} stroke={isBad ? H.text2 : H.line} strokeWidth={2} />
+          <rect x={d.x - st / 2 + 9} y={d.y - st / 2 + 9} width={st - 18} height={st - 18} fill="none" stroke={isBad ? H.text2 : A2.trace} strokeWidth={1.5} />
+          {flash > 0 ? <rect x={d.x - st / 2 + 3} y={d.y - st / 2 + 3} width={st - 6} height={st - 6} rx={3} fill={euv} opacity={0.55 * flash} /> : null}
+          {isBad ? <path d={`M ${d.x - 12} ${d.y - 12} L ${d.x + 12} ${d.y + 12} M ${d.x + 12} ${d.y - 12} L ${d.x - 12} ${d.y + 12}`} stroke={H.coral} strokeWidth={4} /> : null}
+        </g>;
+      })}
+      {scanY !== null && scanY < cy + R ? <rect x={cx - R} y={scanY - 4} width={2 * R} height={8} fill={euv} opacity={0.7} /> : null}
+      {/* 右邊：晶片的層（由下到上），關鍵層亮成紫色 */}
+      <g opacity={gTs}><text x={300} y={-350} textAnchor="middle" style={zh(34, H.line, 900)}>台積電 N7+</text><text x={300} y={-312} textAnchor="middle" style={mono(30, H.text2, 800)}>2019</text></g>
+      <text x={300} y={-252} textAnchor="middle" style={zh(30, H.text, 800)}>晶片的層（示意）</text>
+      {range(layers).map((i) => { const y = -30 - i * 28, k = keyL.has(i); return <g key={`L${i}`}>
+        <rect x={220} y={y} width={160} height={24} rx={3} fill={k ? euv : H.lineSoft} opacity={k ? 0.25 + 0.75 * gKey : 1} />
+        <rect x={220} y={y} width={160} height={24} rx={3} fill="none" stroke={H.text3} strokeWidth={1.5} />
+      </g>; })}
+      <rect x={220} y={0} width={160} height={40} rx={4} fill={A2.sub} />
+      <text x={300} y={30} textAnchor="middle" style={zh(30, H.text2, 800)}>矽基板</text>
+      <g opacity={gKey}><text x={300} y={84} textAnchor="middle" style={zh(32, euv, 900)}>紫色＝關鍵層</text><text x={300} y={122} textAnchor="middle" style={zh(30, H.text2, 800)}>改用極紫外光印</text></g>
     </g>
   );
 };
 
 export const Art: React.FC<{ kind: string; f: number; cues?: Record<string, number> }> = ({ kind, f, cues }) => {
+  if (kind === "wafer") return <WaferArt f={f} cues={cues ?? {}} />;
   if (kind === "none") return null;
   if (kind === "litho") return <Litho f={f} cues={cues ?? {}} />;
   if (kind === "phone") return (

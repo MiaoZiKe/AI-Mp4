@@ -22,12 +22,20 @@
   "_說明": "深色科技 HUD 與 Powers of Ten 縮放（src/components/three/Hud.tsx）。顏色由頂層 hudSkin 選（src/theme.ts 的 HUD_SKINS：deep｜glass）；smallPx＝小字下限。",
   "levels": [
    {
-    "id": "phone",
-    "label": "手機",
-    "en": "PHONE",
-    "field": "18 cm",
-    "ruler": "5 cm",
-    "art": "phone"
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "wafer",
+    "hideInside": true,
+    "cues": {
+     "tsmc": "s15:tsmc",
+     "key": "s15:key",
+     "small": "s16:small",
+     "every": "s16:every"
+    },
+    "_說明": "s15–s17：晶圓與晶粒格（HudArt.tsx 的 wafer）；右邊晶片的層，念到「關鍵幾層」只亮三層；s16 掃描線一列列掃過，念到「每一顆」後少數格子變灰打叉（示意，不代表比例）"
    },
    {
     "id": "chip",
@@ -81,7 +89,7 @@
    "zh": "示意圖，非實際比例",
    "_說明": "使用者技能 3d-industry-explainer-video：右上角固定標示，全片都在（接 HudFrame 時畫在倍率讀數下方、頁首之下）"
   },
-  "maxLabels": 2,
+  "maxLabels": 5,
   "smallPx": 30,
   "layout": "fill",
   "_layout說明": "fill＝撐滿版面（2026/11/15 使用者回饋：LOGO 固定左上並放大、下方空白填滿）：頁首 LOGO 80px、舞台 356–1356、字幕框 1372–1628、出處到約 y1690（src/theme.ts 的 LAYOUT_3D_FILL）"
@@ -182,7 +190,7 @@
      {
       "type": "bars",
       "at": "wave-4",
-      "until": "s6:air-6",
+      "until": "s6:start",
       "y": 1090,
       "title": "光與線的寬度",
       "tag": "約略值",
@@ -278,19 +286,7 @@
    ],
    "component": "ThreeScene",
    "props": {
-    "overlay": [
-     {
-      "type": "stamp",
-      "style": "tag",
-      "at": "multi-2",
-      "until": "s5:euv-4",
-      "x": 800,
-      "y": 1050,
-      "text": "7 奈米世代：分 4 次",
-      "color": "amber",
-      "size": 40
-     }
-    ]
+    "overlay": []
    },
    "sources": [
     "7nm 世代要四重曝光（SemiEngineering）"
@@ -363,7 +359,7 @@
     "shot": [
      {
       "at": "air-4",
-      "d": 200,
+      "d": 178,
       "elev": 12,
       "y": -2,
       "x": 0,
@@ -401,7 +397,7 @@
      {
       "type": "section",
       "kind": "air",
-      "at": "air-2",
+      "at": "start+4",
       "until": "s7:make-8",
       "x": 64,
       "y": 1110,
@@ -481,10 +477,12 @@
       "until": "s8:laser-10",
       "x": 560,
       "y": 1170,
-      "text": "每秒 5 萬顆",
+      "text": "每秒 {n} 顆",
       "color": "amber",
       "rot": -5,
-      "size": 84
+      "size": 76,
+      "countTo": 50000,
+      "countDur": 30
      },
      {
       "type": "stamp",
@@ -493,7 +491,7 @@
       "until": "s8:laser-10",
       "x": 560,
       "y": 1300,
-      "text": "錫滴放大畫",
+      "text": "錫滴放大、放慢示意",
       "color": "blue",
       "size": 36
      }
@@ -503,28 +501,28 @@
       "layer": "optics",
       "at": "make-6",
       "until": "s9:start+10",
-      "opacity": 0.15,
+      "opacity": 0,
       "dur": 14
      },
      {
       "layer": "shell",
       "at": "make-6",
       "until": "s9:start+10",
-      "opacity": 0.15,
+      "opacity": 0,
       "dur": 14
      },
      {
       "layer": "mask",
       "at": "make-6",
       "until": "s9:start+10",
-      "opacity": 0.15,
+      "opacity": 0,
       "dur": 14
      },
      {
       "layer": "wafer",
       "at": "make-6",
       "until": "s9:start+10",
-      "opacity": 0.15,
+      "opacity": 0,
       "dur": 14
      },
      {
@@ -538,7 +536,7 @@
       "layer": "frame",
       "at": "make-6",
       "until": "s9:start+10",
-      "opacity": 0.15,
+      "opacity": 0,
       "dur": 14
      }
     ]
@@ -665,9 +663,9 @@
     "shot": [
      {
       "at": "start-16",
-      "d": 185,
+      "d": 178,
       "elev": 12,
-      "y": -17,
+      "y": -16.5,
       "x": 0,
       "dur": 26
      }
@@ -694,12 +692,44 @@
       "until": "mirror-4"
      },
      {
-      "part": "mirror",
-      "text": "反射鏡",
-      "en": "mirrors",
+      "part": "srcZone",
+      "text": "光源",
+      "en": "source",
+      "color": "blue",
+      "at": "mirror+2",
+      "until": "s12:start-4"
+     },
+     {
+      "part": "ifp",
+      "text": "中間焦點",
+      "en": "focus",
+      "color": "blue",
+      "at": "mirror+5",
+      "until": "s12:start-4"
+     },
+     {
+      "part": "illum",
+      "text": "照明",
+      "en": "illumination",
+      "color": "blue",
+      "at": "mirror+8",
+      "until": "s12:start-4"
+     },
+     {
+      "part": "mask",
+      "text": "光罩",
+      "en": "mask",
+      "color": "blue",
+      "at": "mirror+11",
+      "until": "s12:start-4"
+     },
+     {
+      "part": "poZone",
+      "text": "投影",
+      "en": "projection",
       "color": "amber",
-      "at": "mirror-2",
-      "until": "s10:layers+20"
+      "at": "mirror+14",
+      "until": "s12:start-4"
      }
     ],
     "overlay": [
@@ -722,98 +752,97 @@
         "label": "光源"
        },
        {
-        "x": 0.09,
+        "x": 0.083,
         "y": 0.18,
         "kind": "mirror",
         "rot": -30
        },
        {
-        "x": 0.16,
+        "x": 0.147,
         "y": 0.62,
         "kind": "focus"
        },
        {
-        "x": 0.24,
+        "x": 0.221,
         "y": 0.7,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.31,
+        "x": 0.285,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.38,
+        "x": 0.35,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.45,
+        "x": 0.414,
         "y": 0.06,
         "kind": "mask",
         "label": "光罩"
        },
        {
-        "x": 0.51,
+        "x": 0.469,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.56,
+        "x": 0.515,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.61,
+        "x": 0.561,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.66,
+        "x": 0.607,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.68,
+        "x": 0.626,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.72,
+        "x": 0.662,
         "y": 0.22,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.745,
+        "x": 0.685,
         "y": 0.82,
         "kind": "wafer",
         "label": "晶圓"
        }
       ],
-      "endText": "約 2%",
       "at": "glass+12",
-      "until": "s10:mo-8",
-      "textAt": "s12:two"
+      "until": "s10:mo-8"
      },
      {
       "type": "stamp",
       "at": "glass+4",
       "until": "mirror-2",
-      "x": 300,
-      "y": 420,
+      "x": 330,
+      "y": 930,
       "text": "✕ 玻璃吸光",
       "color": "coral",
       "rot": -5,
-      "size": 60
+      "size": 52,
+      "avoid": false
      }
     ],
     "shift": [
@@ -864,9 +893,9 @@
       "at": "mo-2",
       "until": "s12:start-6",
       "x": 64,
-      "y": 1040,
+      "y": 1018,
       "w": 952,
-      "h": 330,
+      "h": 322,
       "title": "鏡面剖面（放大）",
       "tag": "示意，不是量測",
       "pairs": 12,
@@ -881,14 +910,31 @@
         "swatch": "si"
        }
       ],
-      "note": "每對約 7 nm\n實際約 40–50 對\n（圖只畫 12 對）",
-      "result": "最多約 70%",
+      "note": "每對約 7 nm・約 40–50 對\n（圖只畫 12 對）",
       "textAt": "s11:seventy",
       "stack": {
        "at": "layers-14"
-      }
+      },
+      "split": [
+       {
+        "label": "入射 100",
+        "v": 100,
+        "color": "blue"
+       },
+       {
+        "label": "反射 70",
+        "v": 70,
+        "color": "amber"
+       },
+       {
+        "label": "吸收 30",
+        "v": 30,
+        "color": "coral"
+       }
+      ]
      }
-    ]
+    ],
+    "labels": []
    },
    "sources": [
     "鉬／矽多層膜：約 40 對、每對約 7 nm（SPIE 等）"
@@ -919,19 +965,7 @@
    ],
    "component": "ThreeScene",
    "props": {
-    "overlay": [
-     {
-      "type": "stamp",
-      "style": "tag",
-      "at": "seventy+6",
-      "until": "s12:start-6",
-      "x": 800,
-      "y": 330,
-      "text": "其餘約 3 成被鏡子吸收",
-      "color": "coral",
-      "size": 36
-     }
-    ]
+    "overlay": []
    },
    "sources": [
     "反射率約 70%、每面吸收約 30%（理論與實驗值）"
@@ -1003,89 +1037,90 @@
         "label": "光源"
        },
        {
-        "x": 0.09,
+        "x": 0.083,
         "y": 0.18,
         "kind": "mirror",
         "rot": -30
        },
        {
-        "x": 0.16,
+        "x": 0.147,
         "y": 0.62,
         "kind": "focus"
        },
        {
-        "x": 0.24,
+        "x": 0.221,
         "y": 0.7,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.31,
+        "x": 0.285,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.38,
+        "x": 0.35,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.45,
+        "x": 0.414,
         "y": 0.06,
         "kind": "mask",
         "label": "光罩"
        },
        {
-        "x": 0.51,
+        "x": 0.469,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.56,
+        "x": 0.515,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.61,
+        "x": 0.561,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.66,
+        "x": 0.607,
         "y": 0.18,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.68,
+        "x": 0.626,
         "y": 0.62,
         "kind": "mirror",
         "rot": 20
        },
        {
-        "x": 0.72,
+        "x": 0.662,
         "y": 0.22,
         "kind": "mirror",
         "rot": -20
        },
        {
-        "x": 0.745,
+        "x": 0.685,
         "y": 0.82,
         "kind": "wafer",
         "label": "晶圓"
        }
       ],
-      "endText": "約 2%",
       "at": "start",
       "until": "s13:start-4",
-      "textAt": "two",
       "count": {
-       "at": "bounce-30"
+       "at": "bounce-40",
+       "step": 6,
+       "readout": true,
+       "note": "估算"
       }
      }
     ]
@@ -1123,10 +1158,10 @@
     "shot": [
      {
       "at": "start-6",
-      "d": 172,
+      "d": 182,
       "elev": 22,
       "y": -14,
-      "x": 6,
+      "x": 4.5,
       "dur": 34
      }
     ],
@@ -1135,23 +1170,25 @@
       "type": "stamp",
       "at": "one",
       "until": "s14:start-2",
-      "x": 540,
-      "y": 1250,
+      "x": 300,
+      "y": 936,
       "text": "一次印好",
       "color": "amber",
       "rot": -4,
-      "size": 84
+      "size": 50,
+      "avoid": false
      },
      {
       "type": "stamp",
       "style": "tag",
       "at": "one+4",
       "until": "s14:start-2",
-      "x": 800,
-      "y": 1120,
+      "x": 560,
+      "y": 936,
       "text": "關鍵層",
       "color": "blue",
-      "size": 40
+      "size": 36,
+      "avoid": false
      },
      {
       "type": "section",
@@ -1164,7 +1201,7 @@
       "y": 1030,
       "w": 952,
       "h": 340,
-      "px": 70,
+      "px": 110,
       "ratio": 4,
       "title": "掃描曝光（側視）",
       "tag": "示意",
@@ -1173,7 +1210,10 @@
        "mask": "光罩（反射式）",
        "wafer": "晶圓"
       },
-      "note": "圖案縮小 4 倍・反向掃描"
+      "note": "圖案縮小 4 倍・反向掃描",
+      "cmp": {
+       "at": "one"
+      }
      }
     ],
     "run": [
@@ -1238,23 +1278,25 @@
       "type": "stamp",
       "at": "thirteen",
       "until": "s15:start-2",
-      "x": 540,
-      "y": 1250,
+      "x": 250,
+      "y": 936,
       "text": "13 nm",
       "color": "amber",
       "rot": -4,
-      "size": 96
+      "size": 56,
+      "avoid": false
      },
      {
       "type": "stamp",
       "style": "tag",
       "at": "spec",
       "until": "s15:start-2",
-      "x": 800,
-      "y": 1100,
+      "x": 600,
+      "y": 936,
       "text": "廠商規格，非實測",
       "color": "blue",
-      "size": 40
+      "size": 36,
+      "avoid": false
      }
     ]
    },
@@ -1290,23 +1332,24 @@
    "props": {
     "zoom": [
      {
-      "to": "phone",
+      "to": "wafer",
       "at": "start-8",
-      "dur": 40,
-      "out": 0.75
+      "dur": 40
      }
     ],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "key",
-      "until": "s16:small-6",
-      "x": 540,
-      "y": 1250,
-      "text": "關鍵層",
-      "color": "amber",
-      "rot": -4,
-      "size": 90
+      "type": "card",
+      "at": "tsmc-6",
+      "until": "s16:small-8",
+      "y": 1090,
+      "kicker": "2019 年起",
+      "lines": [
+       "關鍵幾層改用極紫外光印"
+      ],
+      "hi": "極紫外光",
+      "hiAt": "key+4",
+      "size": 56
      }
     ]
    },

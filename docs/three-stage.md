@@ -307,3 +307,12 @@
   - 巢狀 cue 一律寫成 `{ at: … }`（engine 只換 `at`／`textAt`／`hiAt` 這幾個鍵；自訂鍵名寫 cue 字串會讓畫面當掉）。
 - **HUD 2D 圖**：`hud.levels[].art` 可寫 `litho`（光與線，照真實比例：1 單位＝0.6 nm，193 nm 與 13.5 nm 的波、40 nm 的線、分四次畫的細線）、`none`（不畫；3D 交棒那一級用）。level 可寫 `cues: { 名字: "幕id:cue" }`（Hud.tsx 換成幀交給圖，念到才畫出來）與 `hideInside: true`（外面這一級不是放大鏡，裡面那一級不疊在它正中央）。新圖要在 `hudLayout.ts` 的 `ART_BOX` 加外框。
 - **模型產生器**：要算座標的零件（螺栓圈、晶粒格、照鏡面的入射／出射方向算朝向）用一支小程式產生 `model.json`（`videos/tech-euv/gen-model.mjs`，`node videos/tech-euv/gen-model.mjs`）；改模型改產生器，不要手改 json。
+
+### 2026/11/15 tech-euv v3（驗收退件後補的；都向下相容）
+
+- HUD 2D 圖 `wafer`：一片晶圓＋晶粒格（約 90 格）＋右邊「晶片的層」。cues：`tsmc`（標年份與名稱）、`key`（只亮幾層關鍵層）、`small`（掃描線一列列掃過晶粒）、`every`（掃過的格子裡少數變灰打叉，示意，不代表比例）。
+- path 剖面的 `count: { at, step, readout: true, note }`：每 `step` 幀跳一個反射編號，右邊讀數跟著乘一次 keep（100%→70%→49%→…→約 2%）並多一根遞減長條；`note` 寫在長條下（例如「估算」）。
+- multilayer 的 `split: [{ label, v, color }]`：念到 textAt 長出「入射 100／反射 70／吸收 30」三條長條（取代 result 大字）。
+- scan 的 `cmp: { at }`：卡片左邊接回前面的「193 nm 要畫 4 次（四色）／極紫外光 1 次」；note 改放在右上那一列。
+- 蓋章 `countTo`＋`countDur`：text 裡的 `{n}` 從 0 跳到 countTo（例如「每秒 {n} 顆」）。
+- 蓋章想固定在指定位置（例如機台和卡片之間的空帶）就寫 `avoid: false`；freeSpot 會把蓋章挪到「主素材外圈」也算可以，所以要確定不壓機台時用固定位置。
