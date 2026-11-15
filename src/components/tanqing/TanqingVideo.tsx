@@ -194,10 +194,10 @@ const RiseMark: React.FC<{ fig: TqFigure; f: number; name: string }> = ({ fig, f
           {cloud > 0 ? <path d={CLOUD} fill={T.fill} fillOpacity={Math.min(1, cloud * 1.5)} stroke={T.line} strokeWidth={22} {...pen(cloud)} /> : null}
         </svg>
       </div>
-      <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 392, display: "flex", justifyContent: "center", fontFamily: SERIF, fontWeight: T.weight.mark, fontSize: 84, letterSpacing: "0.16em", lineHeight: 1 }}>
+      <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 414, display: "flex", justifyContent: "center", fontFamily: SERIF, fontWeight: T.weight.mark, fontSize: 84, letterSpacing: "0.16em", lineHeight: 1 }}>
         {[...name].map((c, i) => { const p = fadeP(f, wordAt + i * 5, 10); return <span key={i} style={{ opacity: p, transform: `translateY(${r1(14 * (1 - p))}px)`, display: "inline-block", color: c === "晴" ? T.qing : c === "礙" ? T.ai : T.ink }}>{c}</span>; })}
       </div>
-      {fig.line ? <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 512, textAlign: "center", opacity: fadeP(f, lineAt) }}><span style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), position: "relative" }}>{fig.line}</span></div> : null}
+      {fig.line ? <div style={{ position: "absolute", left: 0, width: L.INNER_W, top: 528, textAlign: "center", opacity: fadeP(f, lineAt) }}><span style={{ ...figText(L.LABEL_PX, T.weight.body, T.ink2), position: "relative" }}>{fig.line}</span></div> : null}
     </>
   );
 };
