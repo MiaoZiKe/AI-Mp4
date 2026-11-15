@@ -131,3 +131,17 @@ export function validateTanqing(script, h) {
   const est = Math.round(chars / 4.7 + 1.5) + (film ? Number(scenes[scenes.length - 1].durationSec ?? 0) : 0);
   return { errors, warns, est };
 }
+
+// ── 旁白起音檢查（2026/11/15 使用者回饋「旁白剛開始的聲音被截一點點」）：
+//    node scripts/tanqing/validate-tanqing.mjs --onset <mp4>：前 300ms 內要看到由靜轉響（第 1 個 20ms 區塊不能就是滿音量）
+if (process.argv.includes("--onset")) {
+  const f = process.argv[process.argv.indexOf("--onset") + 1];
+  const { execFileSync } = await import("node:child_process");
+  const raw = execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-i", f, "-t", "0.4", "-ac", "1", "-ar", "1000", "-f", "s16le", "-"]);
+  const a = new Int16Array(raw.buffer, raw.byteOffset, raw.length >> 1), blk = [];
+  for (let i = 0; i + 20 <= a.length; i += 20) { let m = 0; for (let j = i; j < i + 20; j++) m = Math.max(m, Math.abs(a[j])); blk.push(m); }
+  const peak = Math.max(...blk), first = blk[0], rise = blk.slice(0, 15).findIndex((v) => v > peak * 0.3);
+  const ok = first < peak * 0.1 && rise >= 7; // 第一個字前至少留約 0.14 秒（使用者要 0.15–0.25 秒）
+  console.log(`${ok ? "✔" : "✖"} 旁白起音：第 1 個 20ms 區塊 ${first}／峰值 ${peak}，起音在第 ${rise} 個區塊（${rise * 20} ms）`);
+  if (!ok) process.exitCode = 1;
+}
