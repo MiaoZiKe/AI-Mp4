@@ -111,7 +111,7 @@ const scenes = [
     ["台積電 CoWoS 流程（專利、Amkor 教學簡報）；示意"]),
   S("s7b", "payoff", 7, "台積電做這件事叫 CoWoS，英特爾和三星也各有自己的做法。日月光和安靠，也在幫忙分擔。", "台積電做這件事叫 CoWoS\n英特爾和三星\n也各有自己的做法\n日月光和安靠\n也在幫忙分擔", "TSMC calls this CoWoS; | Intel and Samsung each have their own way. | ASE and Amkor help share the load.", ["CoWoS", "英特爾", "日月光"], [["tsmc", "台積電"], ["intel", "英特爾"], ["ase", "日月光"]],
     { overlay: [{ type: "card", at: "tsmc", until: "s8:start-2", y: 820, lines: ["台積電　CoWoS", "英特爾　EMIB", "三星　I-Cube", "日月光　FOCoS", "安靠　S-SWIFT"], hi: "CoWoS", hiAt: "tsmc", size: 38, foot: "媒體報導，查證截至 2026/11/16，非投資建議" }] },
-    ["台積電官方 CoWoS 頁；Intel EMIB；日月光、Amkor 官方技術頁"]),
+    ["台積電 CoWoS 頁；Intel EMIB；日月光、Amkor 技術頁"]),
   S("s8", "twist", 8, "代價是接點變多、封裝變難。廠商說，這種大封裝良率已超過九成八，還沒有第三方實測。", "代價是接點變多、封裝變難\n廠商說，這種大封裝\n良率已超過九成八\n還沒有第三方實測", "The cost: more joints, harder packaging. | The vendor says yield for these big packages | is above 98% — | not yet independently tested.", ["接點變多", "九成八", "第三方實測"], [["joints", "接點變多"], ["hard", "封裝變難"], ["rate", "九成八"], ["unk", "第三方實測"]],
     { run: [{ id: "jointGlow", at: "joints-2", until: "hard+6", ramp: 4 }],
       overlay: [{ type: "section", kind: "pkg-warp", at: "hard-4", until: "s9:start-2", avoid: false, x: 64, y: 930, w: 470, h: 260, title: "大面積易翹曲（示意）", flash: { at: "hard+2" }, uf: { at: "hard+14" } },

@@ -30,3 +30,11 @@
 ## 2026/11/16 補：哪些公司在做（s7b，尚未配音）
 - 新幕 s7b 接在 s7 後，旁白 46 字；畫面＝card 名單卡（台積電 CoWoS｜英特爾 EMIB｜三星 I-Cube｜日月光 FOCoS｜安靠 S-SWIFT）。只改了腳本與念稿，沒送 TTS、沒渲染；timeline／storyboard 是舊的，要整篇重配音（念稿變了）＋align＋layout-check（現在沒 timeline 會略過）才能確認卡片不壓字幕。
 - 估總長約 54＋8.6＋0.7≈63 秒，超過 60 秒。可縮：刪「輝達是最大的客戶，」（約 −2.5 秒）或「日月光和安靠也在分擔後段」（約 −3 秒）；或 s1 的「怎麼做到的？」。
+
+## v2（2026/11/16，Andy 選定配音 A 版 pkg-a）
+- 配音：`out/voice-pkg/pkg-a.wav`（整篇 1 次生成，念稿同現行 script.json，69.05 秒）→ `.take-eeb64ad0ef.raw.orig.wav`，atempo 1.27 成 `.raw.wav`；`tts-take --resplit` 沿用原始音檔（0 次 TTS 請求）。舊原始檔備份在 `out/old-pkg-take/`。
+- 對齊：整篇信心 0.908，說話 54.26 秒；開口前 0.03 秒，開頭 0.5 秒內沒有多餘聲音（第一個字就是「一顆晶片」）。總長 58.03 秒（1741 幀）。
+- 檢查：validate 0 error（原本 s7b 出處列太長，改短成「台積電 CoWoS 頁；Intel EMIB；日月光、Amkor 技術頁」）；layout-check 0 error（頂端空白 0px、底端 46px）。
+- 渲染：`out/tech-packaging.video.mp4`；片尾音 G=28、AT 54.0、FADE 54.9（s9 收聲）、DUR 58.03。響度：正片 −16.0 LUFS、片尾段 −11.5 LUFS、峰值 −1.3 dBFS。
+- 成片：`out/tech-packaging.v2.mp4`（不進 git）；抽格 `out/tech-packaging-v2-check.png`（0、6、36.2 秒）：標籤沒壓頁首、s7b 名單卡沒壓字幕。待人耳確認。
+- 已知：s7b 第二句英文字幕沿用上一句（「英特爾和三星」配 TSMC calls this CoWoS;），未改。
