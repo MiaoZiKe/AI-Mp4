@@ -19,7 +19,7 @@ def fixup(scenes):
             w = lambda x: sum(0.62 if ord(c) < 128 else 1.0 for c in x)
             r["size"] = 300 if w(r["big"]) <= 1.2 else 240 if w(r["big"]) <= 2.5 else 200
             if s["props"].get("q"): r["size"] = min(r["size"], 220)
-            r["usize"] = int(min(120, max(60, (900 - 34 - w(r["big"]) * r["size"]) / max(1, w(r["unit"])))))
+            r["usize"] = int(min(120, max(60, (820 - 34 - w(r["big"]) * r["size"]) / max(1, w(r["unit"])))))
     for s in scenes:
         en = s["subtitle"]["en"].replace(" | ", " ")
         if en: s["subtitle"]["en"] = " | ".join(textwrap.wrap(en, 44))
@@ -78,12 +78,12 @@ S1 = [
  sc("s08","payoff","這次每個品項是一張卡片，尺寸、熱量、價格，不用滑就看得到。",
     "這次每個品項\n是一張卡片\n尺寸、熱量、價格\n不用滑就看得到","Now each item is a card: size, calories, price, | all visible without swiping.",
     [("now","每個品項是一張卡片"),("all","不用滑就看得到")],{"不用滑":"right"},
-    {"left":{"src":P+"phone-fix1.png","label":"修一次：要滑","color":"wrong","at":"start-1"},"right":{"src":P+"phone-fix2.png","label":"說清楚：不用滑","color":"right","at":"now"},"mid":{"text":"價格看得到","at":"all"},"aiAt":"start+8"},
+    {"left":{"src":P+"phone-fix1.png","label":"修一次：要滑","color":"wrong","at":"start-1"},"right":{"src":P+"phone-fix2.png","label":"說清楚：不用滑","color":"right","at":"now"},"mid":{"text":"看得到","at":"all"},"aiAt":"start+8"},
     ["Playwright 實測（tests/table.py）：修兩次後價格欄在畫面內、無橫向捲動"],"修好","right","已確定・實測（1 次）","all+6",2,"split","fix"),
  sc("s09","so","所以做法三步：用手機寬度打開、說清楚要看到什麼、再打開確認。",
     "所以做法三步\n用手機寬度打開\n說清楚要看到什麼\n再打開確認","Three steps: open at phone width, | say what you want to see, check again.",
     [("so","做法三步"),("a","用手機寬度打開"),("b","說清楚要看到什麼"),("c","再打開確認")],{"三步":"right"},
-    {"nodes":[{"icon":"window","label":"手機寬度打開","sub":"390 寬","color":"note","at":"start-1"},{"icon":"chip","label":"說清楚","sub":"要看到什麼","color":"primary","at":"b"},{"icon":"check","label":"再打開確認","sub":"看到才算","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"沒好就再說一句"},
+    {"nodes":[{"icon":"window","label":"手機開看","sub":"390 寬","color":"note","at":"start-1"},{"icon":"chip","label":"說清楚","sub":"要看到什麼","color":"primary","at":"b"},{"icon":"check","label":"再確認","sub":"看到才算","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"沒好就再說一句"},
     ["做法整理；內容取自本次實測"],"所以呢","right","","so",2,"flow","fix"),
  sc("s10","cta","留言「手機」，拿這句修版提示詞。",
     "留言「手機」\n拿這句修版提示詞","Comment “手機” to get the prompt.",
@@ -116,7 +116,7 @@ S2 = [
  sc("s04","twist","但是看三月，門市 B 的線掉到零。表格那格明明是空白。",
     "但是看三月\n門市 B 的線掉到零\n表格那格明明是空白","But look at March: store B drops to zero. | That cell in the table was blank.",
     [("but","但是看三月"),("zero","掉到零"),("blank","那格明明是空白")],{"掉到零":"wrong"},
-    {"src":X+"lens-messy.png","ring":[215,550,110,110],"note":"三月・門市 B","noteAt":"but","scanAt":"zero","stampAt":"blank","stamp":"零","zoom":{"src":X+"messy-zoom.png","w":960,"h":576,"cap":"放大：空白被畫成 0"}},
+    {"src":X+"lens-messy.png","ring":[215,550,110,110],"note":"三月・門市 B","noteAt":"but","scanAt":"zero","stampAt":"blank","stamp":"零","zoom":{"src":X+"messy-zoom.png","w":960,"h":456,"cap":"放大：空白被畫成 0"}},
     ["Playwright 實測截圖；表格 3 月門市 B 為空白（tests/sales-messy.tsv）"],"翻車","wrong","已確定・實測","zero+6",1,"lens","bug"),
  sc("s05","why","空白，不等於零。這是 AI 自己的決定，我沒有交代。",
     "空白，不等於零\n這是 AI 自己的決定\n我沒有交代","Blank is not zero. | That was AI's own call; I never said.",
@@ -131,7 +131,7 @@ S2 = [
  sc("s07","payoff","改完，三月那一段斷開，標著無資料，其他兩條線沒動。",
     "改完\n三月那一段斷開\n標著無資料\n其他兩條線沒動","Fixed: March breaks and says no data. | The other two lines are unchanged.",
     [("done","三月那一段斷開"),("lab","標著無資料"),("keep","其他兩條線沒動")],{"斷開":"right"},
-    {"layout":"stack","top":{"src":X+"messy.png","label":"修之前","color":"wrong","at":"start-1"},"bottom":{"src":X+"fix.png","label":"修之後","color":"right","at":"done"},"mids":[{"text":"無資料","at":"lab","color":"note"},{"text":"其他沒動","at":"keep","color":"right","kind":"stamp"}]},
+    {"layout":"stack","top":{"src":X+"messy.png","label":"修之前","color":"wrong","at":"start-1"},"bottom":{"src":X+"fix.png","label":"修之後","color":"right","at":"done"},"mids":[{"text":"無資料","at":"lab","color":"note"},{"text":"沒動","at":"keep","color":"right","kind":"stamp"}]},
     ["Playwright 實測（tests/shot.py）；只試 1 次"],"修好","right","已確定・實測（1 次）","keep+6",2,"split","fix"),
  sc("s08","unknown","不過我只試了兩份小表格，一個模型，更大的表格行不行，還不知道。",
     "不過我只試了兩份小表格\n一個模型\n更大的表格行不行\n還不知道","But I tried only two small tables and one model. | Bigger tables: unknown.",
@@ -141,7 +141,7 @@ S2 = [
  sc("s09","so","所以做法三步：貼表格、看圖有沒有怪點，有就說清楚。",
     "所以做法三步\n貼表格\n看圖有沒有怪點\n有就說清楚","Three steps: paste the table, check for odd points, | and say it clearly if so.",
     [("so","做法三步"),("a","貼表格"),("b","看圖有沒有怪點"),("c","有就說清楚")],{"三步":"right"},
-    {"nodes":[{"icon":"file","label":"貼表格","sub":"直接複製貼上","color":"note","at":"start-1"},{"icon":"mag","label":"看有沒有怪點","sub":"零、缺口、跳動","color":"primary","at":"b"},{"icon":"chip","label":"說清楚","sub":"空白代表什麼","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"有毛病就說一句"},
+    {"nodes":[{"icon":"file","label":"貼表格","sub":"直接複製貼上","color":"note","at":"start-1"},{"icon":"mag","label":"看怪點","sub":"零、缺口、跳動","color":"primary","at":"b"},{"icon":"chip","label":"說清楚","sub":"空白代表什麼","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"有毛病就說一句"},
     ["做法整理；內容取自本次實測"],"所以呢","right","","so",2,"flow","fix"),
  sc("s10","cta","留言「圖表」，拿這句貼表格的提示詞。",
     "留言「圖表」\n拿這句貼表格的提示詞","Comment “圖表” to get the prompt.",
@@ -204,7 +204,7 @@ S3 = [
  sc("s10","so","所以做法三步：貼講義、檢查題目、哪裡看不懂就說。",
     "所以做法三步\n貼講義\n檢查題目\n哪裡看不懂就說","Three steps: paste the handout, check the questions, | and say what's unclear.",
     [("so","做法三步"),("a","貼講義"),("b","檢查題目"),("c","哪裡看不懂就說")],{"三步":"right"},
-    {"nodes":[{"icon":"file","label":"貼講義","sub":"整段貼上","color":"note","at":"start-1"},{"icon":"mag","label":"檢查題目","sub":"對照講義","color":"primary","at":"b"},{"icon":"chip","label":"哪裡不懂就說","sub":"一句話改","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"有毛病就說一句"},
+    {"nodes":[{"icon":"file","label":"貼講義","sub":"整段貼上","color":"note","at":"start-1"},{"icon":"mag","label":"檢查題目","sub":"對照講義","color":"primary","at":"b"},{"icon":"chip","label":"說不懂處","sub":"一句話改","color":"right","at":"c"}],"lights":[{"from":"a","to":"b"},{"from":"b+2","to":"c"}],"loopAt":"c+6","chipAt":"c+26","chip":"有毛病就說一句"},
     ["做法整理；內容取自本次實測"],"所以呢","right","","so",2,"flow","fix"),
  sc("s11","cta","留言「小考」，拿這句出題提示詞。",
     "留言「小考」\n拿這句出題提示詞","Comment “小考” to get the prompt.",
