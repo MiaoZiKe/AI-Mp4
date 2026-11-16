@@ -15,7 +15,7 @@
 ## 進行中（11/16）
 | 片 | 狀態 | 下一步 |
 |---|---|---|
-| liguligu-nvda-kress | 新稿無聲版已給 Andy（Artifact CygwGtvfEKSUC4smMQRdMx v4） | 16:10 後 Charon 整篇配音 1 次 → recording-timeline → render → mix-final → 驗證 → 交件 |
+| liguligu-nvda-kress | 有聲完整版已做（25.4 秒，Charon／gemini-3.8-flash-tts，API 1 次請求）；網站用版本在 out/web/liguligu-nvda-kress/（mp4、cover.jpg、voice.mp3，2.5MB）；文章 JSON 念稿已更新為現行 5 句 | 主控放網站；人耳確認口音（捲舌指標差距 4.3 kHz 偏高）與語速 |
 | liguligu-power-bill | 同上；第 3 鏡標籤「官方原則（監察報告轉述）」 | 同上；真錄音若讓片長 >30 秒，回報主控請 Andy 決定砍句 |
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill 已交（power-bill 念稿是舊版） | 配音後更新 power-bill、補 nvda-kress 新稿版 |
