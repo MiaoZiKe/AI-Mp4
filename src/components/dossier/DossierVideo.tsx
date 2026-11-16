@@ -329,6 +329,7 @@ const Claim: React.FC<PanelProps> = ({ sh, f, slug }) => {
       <Reveal f={f} at={q.bigAt} style={{ left: QX - 4, top: PY + 176, paddingBottom: 18, ...serif(176) }}><Marked f={f} at={q.bigAt + 8}>{q.big}</Marked></Reveal>
       <Fade f={f} at={q.bigAt + 4} style={{ left: QX, top: PY + 392, ...sans(64, T.weight.sub) }}>{q.post}</Fade>
       {p.tag ? <div style={{ position: "absolute", left: QX, top: PY + PS + 46 }}><Tag tag={p.tag} f={f} /></div> : null}
+      {p.note ? <Note text={p.note.text} x={QX} y={PY + PS + 150} f={f} at={p.note.at} /> : null}
     </>
   );
 };
