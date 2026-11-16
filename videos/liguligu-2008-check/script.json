@@ -99,7 +99,7 @@
         },
         "tag": {
           "kind": "report",
-          "text": "媒體轉述",
+          "text": "日經、路透報導",
           "at": "pct+14"
         },
         "news": {
@@ -108,7 +108,7 @@
         }
       },
       "sources": [
-        "日本內閣府速報（原文未讀，解說轉述）"
+        "日經、路透 11/16（內閣府原文未讀）"
       ]
     },
     {
@@ -156,8 +156,8 @@
             "text": "只是換算",
             "at": "cv",
             "tag": {
-              "kind": "confirmed",
-              "text": "定義",
+              "kind": "report",
+              "text": "換算定義",
               "at": "cv+8"
             }
           },
@@ -166,7 +166,7 @@
             "at": "sm",
             "tag": {
               "kind": "report",
-              "text": "媒體轉述",
+              "text": "日經、路透報導",
               "at": "sm+4"
             }
           }
@@ -177,7 +177,7 @@
         }
       },
       "sources": [
-        "NOVAIST 解說（原文未讀）"
+        "路透 11/16（annualised）；MLQ 11/16"
       ]
     },
     {
@@ -224,7 +224,7 @@
           "dateAt": "cap+26"
         },
         "quote": {
-          "by": "日本經濟研究機構解說",
+          "by": "路透社報導",
           "byAt": "cap-4",
           "pre": "比上一季增",
           "big": "1.6",
@@ -232,13 +232,13 @@
           "at": "prev-4",
           "bigAt": "num",
           "masthead": {
-            "name": "研究機構解說",
+            "name": "路透報導",
             "date": "11/16"
           }
         },
         "tag": {
           "kind": "report",
-          "text": "研究機構解說",
+          "text": "路透報導",
           "at": "num+6"
         },
         "news": {
@@ -247,16 +247,16 @@
         }
       },
       "sources": [
-        "ニッセイ基礎研 QE 速報解說（原文未讀）"
+        "路透 11/16；日文媒體摘要（原文未讀）"
       ]
     },
     {
       "id": "s04",
-      "narration": "十一月初全球股市大跌，有人說，這很像 2008 年。美國銀行的策略主管說，今年的資產走勢，很像 2007 到 2008 年。",
-      "tts": "十一月初全球股市大跌，有人說，這很像二零零八年。美國銀行的策略主管說，今年的資產走勢，很像二零零七到二零零八年。",
+      "narration": "十一月初全球股市大跌，這像不像 2008 年。美國銀行的策略主管，三月就說，今年的資產走勢，很像 2007 到 2008 年。",
+      "tts": "十一月初全球股市大跌，這像不像二零零八年。美國銀行的策略主管，三月就說，今年的資產走勢，很像二零零七到二零零八年。",
       "subtitle": {
-        "zh": "十一月初全球股市大跌\n有人說，這很像 2008 年\n美銀策略主管說\n今年的資產走勢\n很像 2007 到 2008 年",
-        "en": "Global stocks fell in early November. | Some say it looks like 2008. | A BofA strategist says this year's | asset moves resemble 2007–08."
+        "zh": "十一月初全球股市大跌\n這像不像 2008 年\n美銀策略主管 3 月就說\n今年的資產走勢\n很像 2007 到 2008 年",
+        "en": "Global stocks fell in early November. | Is it like 2008? | In March, a BofA strategist said | this year's asset moves resemble 2007–08."
       },
       "keywords": [
         "2008",
@@ -269,7 +269,7 @@
         },
         {
           "id": "say",
-          "text": "有人說"
+          "text": "像不像"
         },
         {
           "id": "bofa",
@@ -285,7 +285,7 @@
       "props": {
         "panel": "claim",
         "head": {
-          "text": "有人說很像 2008",
+          "text": "像不像 2008？",
           "mark": "2008",
           "at": "start-16",
           "markAt": "say+10"
@@ -298,7 +298,7 @@
           "dateAt": "say+4"
         },
         "quote": {
-          "by": "美銀策略主管（分析推測）",
+          "by": "美銀策略主管（3 月）",
           "byAt": "bofa-4",
           "pre": "走勢像 2007 到",
           "big": "2008",
@@ -307,30 +307,34 @@
           "bigAt": "like+20",
           "masthead": {
             "name": "分析師說法",
-            "date": "2026"
+            "date": "3/13"
           }
         },
         "tag": {
           "kind": "none",
-          "text": "分析推測",
+          "text": "分析推測（3 月說法）",
           "at": "bofa+10"
         },
         "news": {
           "dateline": "NEW YORK・2026/11",
           "lt": "外界怎麼說"
+        },
+        "note": {
+          "text": "這是 3 月的說法，不是大跌後說的",
+          "at": "like+34"
         }
       },
       "sources": [
-        "AP 11/6；allmind 轉述（原文未讀）"
+        "ThinkAdvisor、GlobeSt（彭博轉述）；路透"
       ]
     },
     {
       "id": "s05",
-      "narration": "不過 2008 年是銀行和房貸先出事，美股大盤全年跌了 38.5%。這次，美聯社報導的導火線，是市場擔心 AI 投資。",
-      "tts": "不過二零零八年是銀行和房貸先出事，美股大盤全年跌了三十八點五趴。這次，美聯社報導的導火線，是市場擔心 AI 投資。",
+      "narration": "不過 2008 年是銀行和房貸先出事，美股大盤全年跌了 38.5%。這次，路透和美聯社都說，導火線是市場擔心 AI 投資。",
+      "tts": "不過二零零八年是銀行和房貸先出事，美股大盤全年跌了三十八點五趴。這次，路透和美聯社都說，導火線是市場擔心 AI 投資。",
       "subtitle": {
-        "zh": "不過 2008 年\n是銀行和房貸先出事\n美股大盤全年跌 38.5%\n這次的導火線\n是市場擔心 AI 投資",
-        "en": "In 2008, banks and mortgages broke first; | the S&P 500 fell 38.5% that year. | This time, AP says the trigger | is worry over AI spending."
+        "zh": "不過 2008 年\n是銀行和房貸先出事\n美股大盤全年跌 38.5%\n這次路透、美聯社說\n導火線是市場\n擔心 AI 投資",
+        "en": "In 2008, banks and mortgages broke first; | the S&P 500 fell 38.5% that year. | This time, Reuters and AP say | the trigger is worry over AI spending."
       },
       "keywords": [
         "38.5%",
@@ -375,7 +379,7 @@
             "at": "bank",
             "tag": {
               "kind": "report",
-              "text": "歷史數據",
+              "text": "ABC、CNN 當年報導",
               "at": "fell+8"
             }
           },
@@ -384,7 +388,7 @@
             "at": "ai",
             "tag": {
               "kind": "report",
-              "text": "美聯社報導",
+              "text": "路透、美聯社報導",
               "at": "ai+8"
             }
           }
@@ -395,19 +399,19 @@
         }
       },
       "sources": [
-        "標普五百 2008；AP 2026/11/6（原文未讀）"
+        "ABC、CNN 2008/12/31；路透 11/6、美聯社 11/6"
       ]
     },
     {
       "id": "s06",
-      "narration": "德意志銀行的看法不同，認為現在的結構，衝擊比較難經由銀行擴散。",
-      "tts": "德意志銀行的看法不同，認為現在的結構，衝擊比較難經由銀行擴散。",
+      "narration": "德意志銀行研究院的看法不同，認為近期更可能是估值修正，不是金融危機。",
+      "tts": "德意志銀行研究院的看法不同，認為近期更可能是估值修正，不是金融危機。",
       "subtitle": {
-        "zh": "德意志銀行的看法不同\n認為現在的結構\n衝擊比較難經由銀行擴散",
-        "en": "Deutsche Bank sees it differently: | today's structure makes shocks | harder to spread via banks."
+        "zh": "德意志銀行研究院\n看法不同\n近期更可能是估值修正\n不是金融危機",
+        "en": "Deutsche Bank Research differs: | a valuation correction looks likelier | near term than a financial crisis."
       },
       "keywords": [
-        "難經由銀行擴散"
+        "估值修正"
       ],
       "cues": [
         {
@@ -420,11 +424,11 @@
         },
         {
           "id": "struct",
-          "text": "現在的結構"
+          "text": "估值修正"
         },
         {
           "id": "spread",
-          "text": "擴散"
+          "text": "金融危機"
         }
       ],
       "beat": "twist",
@@ -449,17 +453,17 @@
         "right": {
           "head": "德意志銀行",
           "big": [
-            "難擴散",
-            "到銀行"
+            "估值修正",
+            "較可能"
           ],
-          "src": "2026/11/3 研究報告（轉存）",
+          "src": "2026/11/3 研究報告（摘要）",
           "headAt": "start-20",
           "at": "struct",
           "bigAt": "struct+4",
           "srcAt": "spread",
           "tag": {
             "kind": "none",
-            "text": "分析推測（原文未讀）",
+            "text": "分析推測（只看摘要）",
             "at": "spread+4"
           },
           "masthead": {
@@ -478,15 +482,15 @@
         }
       },
       "sources": [
-        "德銀 2026/11/3（轉存 PDF，原文未讀）"
+        "德意志銀行研究院 11/3 報告（只看到摘要）"
       ]
     },
     {
       "id": "s07",
-      "narration": "所以像不像，目前還沒有定論。12 月 8 日，日本會公布二次速報，數字可能修正。",
-      "tts": "所以像不像，目前還沒有定論。十二月八日，日本會公布二次速報，數字可能修正。",
+      "narration": "所以像不像，目前還沒有定論。12 月 8 日，日本預計公布二次速報，數字可能修正。",
+      "tts": "所以像不像，目前還沒有定論。十二月八日，日本預計公布二次速報，數字可能修正。",
       "subtitle": {
-        "zh": "所以像不像\n目前還沒有定論\n12 月 8 日二次速報\n數字可能修正",
+        "zh": "所以像不像\n目前還沒有定論\n預計 12 月 8 日二次速報\n數字可能修正",
         "en": "So, is it like 2008? Not settled. | A second estimate is due Dec 8; | the figures may be revised."
       },
       "keywords": [
@@ -545,7 +549,7 @@
         }
       },
       "sources": [
-        "日本內閣府二次速報 12/8（解說轉述）"
+        "e-Stat 公表予定；內閣府日程（預定）"
       ]
     },
     {

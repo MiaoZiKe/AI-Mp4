@@ -20,7 +20,7 @@
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
 | **liguligu-2008-check（Andy 11/16 17:50 交辦，要做成影片）** | 題材與查證素材已備：`videos/liguligu-2008-check/research.md`（日本 7–9 月 GDP 年率 ▲0.1%、11/5 全球股市大跌、像不像 2008、2027 機構預測） | 照標準流程做：先補讀標「待讀原文」的來源 → 規劃主旨＋念稿 → 交主控給 Andy 看；排在 11/17 題目之後或依主控安排 |
-| **liguligu-2008-check（無聲初稿 11/16 晚）** | 無聲成片 57.6 秒（旁白 237 字、數字 5、事實 6、無相關公司卡）；validate 0 error；待讀原文因網路被擋全數維持「原文未讀」；**未送 TTS** | Andy 看過後定稿再配音（念稿全文在 script.md）；有網路後補讀原文 |
+| **liguligu-2008-check（無聲版，查證後第二版 11/16 晚）** | 無聲成片 59.0 秒（旁白 248 字、數字 5、事實 6、無相關公司卡）；改用 WebSearch 交叉查證：日本 GDP＝日經＋路透、2008 跌幅＝ABC＋CNN、AI 導火線＝路透＋美聯社、美銀＝ThinkAdvisor＋GlobeSt（發現是 3 月的說法，念稿已改）、12/8＝e-Stat 官方預定；設備投資第二來源弱、德銀只有一家且只看摘要（已換說法）；內閣府、德銀原文仍未讀，沒有任何「已確定」；片尾 −11.7 LUFS／−1.3 dBTP；照片攝影者查不到；**未送 TTS** | Andy 看交件頁（scratchpad ligu-2008）；有聲版需 Andy 錄音；上片前重查並請人用瀏覽器補照片作者 |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
 
 ## 11/16 決定
