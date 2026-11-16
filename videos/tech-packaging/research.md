@@ -153,3 +153,49 @@
 - TestConX 2025 主題演講：https://www.testconx.org/premium/wp-content/uploads/2025china/TestConXChina2025s1p1HurtarteKeynote_6321.pdf
 - SemiEngineering（單顆測試）：https://semiengineering.com/singulated-die-test-ensures-stacked-die-quality-as-power-density-rises/
 - Rambus HBM3：https://www.rambus.com/blogs/hbm3-everything-you-need-to-know/
+
+## 哪些公司在做（2026/11/16 補）
+
+查證截至 2026/11/16。信心度：高＝官方或兩個以上獨立來源；中＝媒體報導；低＝單一來源、概念股整理或傳聞。
+
+### 一、做 2.5D 先進封裝的廠商（技術名稱）
+| 廠商 | 技術名稱 | 說明 | 信心 | 來源 |
+|---|---|---|---|---|
+| 台積電 | CoWoS（-S 矽中介層、-L 局部矽橋、-R）；3D 另有 SoIC，品牌 3DFabric | 官方技術頁與多篇媒體一致 | 高 | https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm 、https://www.anandtech.com/show/16051 |
+| 英特爾 | EMIB（矽橋嵌入基板，2.5D）、EMIB-T（加 TSV）；3D 為 Foveros | EMIB 已量產；EMIB-T 外部客戶設計預計一兩年內量產 | 高（技術）／低（客戶） | https://tomshardware.com/tech-industry/semiconductors/intels-emib-t-heads-for-fab-rollout-this-year 、https://www.trendforce.com/research/download/RP251103NA |
+| 三星 | I-Cube（矽中介層，2.5D）；3D 為 SAINT | 規模與客戶數小於 CoWoS；查不到 I-Cube 客戶名單 | 中（技術）／查不到（客戶） | https://www.anandtech.com/show/16051 、https://semiconductorx.com/packaging-advanced.html |
+| 日月光（矽品為旗下） | FOCoS（含 FOCoS-Bridge）；承接 CoWoS 後段 oS 外溢 | 2026/2 報導 FOCoS 預計 2026 下半年放量，客戶市場報導為 AMD、博通；預估 2026 CoWoS 月產能約 2 萬片（分析師預估） | 中 | https://technews.tw/2026/01/12/ai-cowos-war/ 、https://finance.technews.tw/2026/01/29/tsmcs-cowos-advanced-packaging-capacity-expansion-still-falls-short-of-market-demand/ |
+| 安靠（Amkor） | S-SWIFT（高密度 RDL）等 2.5D 方案 | CEO 2026/3 說 2.5D 隨 GPU 快速成長；亞利桑那廠主要客戶報導為蘋果、輝達；S-SWIFT 與亞利桑那廠的連結沒查到 | 中 | https://www.tomshardware.com/tech-industry/semiconductors/amkor-breaks-ground-on-arizona-advanced-packaging-campus 、https://www.semiconductorpackagingnews.com/uploads/2/2025_SPN_White_Paper_-_Revolutionizing_IC_Packaging_With_High-Density_RDL_Technology.pdf |
+
+### 二、誰是 AI 晶片大宗需求方（只用市場報導，都不是官方數字）
+- 輝達是 CoWoS 最大客戶，各家估計約五到六成（富邦估 2026 年約 50%；另一篇稱 63%，未註明時間與來源，不採用）。博通居次（富邦估 2026 約 17%，主要靠 Google TPU），AMD 約 9%。來源：大摩／富邦轉述 https://statementdog.com/news/15201 、https://hao.cnyes.com/post/249444 。信心：方向高、百分比低。
+- 大摩（轉述）：2026 年新增產能幾乎被輝達與博通預訂。信心：中。
+- 輝達傳出提供數十億美元協助矽品擴 CoWoS 產能（2026/11/6 報導），日月光表示不評論：**未經證實，旁白與畫面都不要用**。來源：https://uanalyze.com.tw/articles/7992658533 。
+- 英特爾 EMIB 客戶：英特爾沒有公布；媒體點名 Google、亞馬遜洽談中（Tom's Hardware、TrendForce）。信心：低，畫面只寫技術不寫客戶。
+
+### 三、台灣設備／材料公司（與這段製程直接相關）
+| 公司（代號） | 做什麼 | 信心 | 來源與備註 |
+|---|---|---|---|
+| 弘塑（3131） | 濕製程設備（清洗、蝕刻），日月光、美光、Amkor 為客戶，報導稱為台積先進封裝擴廠主力供應商 | 中 | https://technews.tw/2024/10/18/cowos-equipment-factory/ 、華南投顧 2026/5 設備報告 |
+| 辛耘（3583） | 濕製程設備，自製設備打進 CoWoS 製程 | 中 | 同上；2025 年報導 |
+| 均華（6640） | 晶粒挑揀機、高精度黏晶機（把晶片挑出來放到中介層）；2025 上半年先進封裝設備營收占 85% | 中高（法說會） | https://statementdog.com/news/14448 、https://blog.fugle.tw/post/earnings-call-6640-2025-11-11 ；該公司表示本土設備廠僅占先進封裝投資額約一成 |
+| 萬潤（6187） | 概念股整理列為 AOI 檢測；另有報導稱其打入日月光與台積供應鏈 | 低 | 只見於概念股整理，品項不確定，**畫面不放或只放公司名不放品項** |
+| 志聖（2467） | 概念股整理列為貼模（壓膜）設備 | 低 | 同上，只有一個來源 |
+
+沒查到：點膠／底部填充設備的台廠、載板廠（欣興等）本輪沒查，不列。
+
+### 四、建議旁白（2～3 句，口語，無投資建議）
+1. 台積電做這件事叫 CoWoS，英特爾和三星也各有自己的做法。（約 22 字）
+2. 輝達的晶片大多找台積電，日月光和安靠也在幫忙分擔後段。（約 25 字；「大多」依市場估計約五成以上，若要更穩，改成「是最大客戶」）
+3. 台灣的設備商，像弘塑、辛耘負責清洗，均華負責把晶片放到定位。（約 29 字，偏長，可拆成兩句）
+
+註：句首沒有英文字母；英文縮寫只留 CoWoS 一個（品牌名），畫面標「以市場報導為準」。旁白不要提輝達出資矽品那則傳聞。
+
+### 五、畫面可列名單（中文名＋技術名）
+- 台積電　CoWoS
+- 英特爾　EMIB
+- 三星　I-Cube
+- 日月光（矽品）　FOCoS
+- 安靠　S-SWIFT（技術名稱來自該公司白皮書，與 2.5D 量產的對應信心中）
+- 設備（高信心優先）：弘塑 3131、辛耘 3583、均華 6640；萬潤 6187、志聖 2467 信心低，建議不上畫面
+- 小字：「資料來源為媒體報導與公司資料，截至 2026/11/16，非投資建議」
