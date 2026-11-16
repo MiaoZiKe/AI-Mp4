@@ -62,7 +62,7 @@ export function subtitleEvents(script, tl) {
       t.lines.forEach((l, k) => {
         const start = Math.max(a, l.start), end = k + 1 < t.lines.length ? t.lines[k + 1].start : b;
         if (end <= start) return;
-        ev.push({ sceneId: t.id, start, end, zh: display(l.text), en: en[Math.min(en.length - 1, Math.floor((k * en.length) / t.lines.length))] });
+        ev.push({ sceneId: t.id, start, end, zh: display(l.text), en: en[Math.min(en.length - 1, Math.floor((k * en.length) / t.lines.length))], enIdx: [Math.min(en.length - 1, Math.floor((k * en.length) / t.lines.length))], enAll: en });
       });
     }
   } else {
@@ -106,11 +106,26 @@ const mergeShort = (script, ev) => {
     const e = out[i];
     if (e.end - e.start >= MIN_CUE_V3) continue;
     const n = out[i + 1], p = out[i - 1];
-    if (n && n.sceneId === e.sceneId) { n.start = e.start; n.zh = joinZh(e.sceneId, e.zh, n.zh); n.en = joinEn(e.en, n.en); out.splice(i, 1); i--; }
-    else if (p && p.sceneId === e.sceneId) { p.end = e.end; p.zh = joinZh(e.sceneId, p.zh, e.zh); p.en = joinEn(p.en, e.en); out.splice(i, 1); i--; }
+    if (n && n.sceneId === e.sceneId) { n.start = e.start; n.zh = joinZh(e.sceneId, e.zh, n.zh); n.en = joinEn(e.en, n.en); n.enIdx = [...(e.enIdx ?? []), ...(n.enIdx ?? [])]; out.splice(i, 1); i--; }
+    else if (p && p.sceneId === e.sceneId) { p.end = e.end; p.zh = joinZh(e.sceneId, p.zh, e.zh); p.en = joinEn(p.en, e.en); p.enIdx = [...(p.enIdx ?? []), ...(e.enIdx ?? [])]; out.splice(i, 1); i--; }
   }
   return out;
 };
+
+/** 英文軌：同一段英文只顯示一次（被併進前一個短語的段落，後面的短語不再重複），空出來的時間接給前一段 */
+function enCues(ev) {
+  const out = []; let shown = new Set(), scene = null;
+  for (const e of ev) {
+    if (!e.en) continue;
+    if (e.sceneId !== scene) { scene = e.sceneId; shown = new Set(); }
+    if (!e.enIdx || !e.enAll) { out.push({ start: e.start, end: e.end, text: e.en }); continue; }
+    const idx = [...new Set(e.enIdx)].filter((i) => !shown.has(i));
+    idx.forEach((i) => shown.add(i));
+    if (!idx.length) { if (out.length) out[out.length - 1].end = e.end; continue; }
+    out.push({ start: e.start, end: e.end, text: idx.map((i) => e.enAll[i]).join(" ") });
+  }
+  return out;
+}
 
 export function buildSrt(script, tl) {
   let ev = subtitleEvents(script, tl);
@@ -118,7 +133,7 @@ export function buildSrt(script, tl) {
   return {
     both: srt(ev.map((e) => ({ start: e.start, end: e.end, text: e.en ? `${e.zh}\n${e.en}` : e.zh }))),
     zh: srt(ev.map((e) => ({ start: e.start, end: e.end, text: e.zh }))),
-    en: srt(merge(ev.filter((e) => e.en).map((e) => ({ start: e.start, end: e.end, text: e.en })))),
+    en: srt(merge(enCues(ev))),
     count: ev.length,
   };
 }

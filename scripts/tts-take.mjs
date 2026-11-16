@@ -109,6 +109,8 @@ function levels(pcm, rate) {
 }
 
 const takeHash = crypto.createHash("sha1").update([MODEL, voice.voiceName, STYLE, full, ...(LANG ? [LANG] : [])].join("\u0001")).digest("hex").slice(0, 10);
+// --hash：只印正式整篇原始音檔的相對路徑（make-tech.sh 用），不做任何事、不送請求
+if (flags.has("--hash")) { console.log(`audio/${slug}/.take-${takeHash}.raw.wav`); process.exit(0); }
 
 // ── 試聽 ──────────────────────────────────────────────────────────────
 if (opt.audition) {
