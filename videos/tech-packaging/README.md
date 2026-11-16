@@ -21,3 +21,8 @@
 - 取放間距（storyboard 的 s4 才是吸嘴站）：test 589 → pick 610 → bad 642 → drop 658；test→bad 53 幀＝1.77 秒（略短於 2 秒）、pick→bad 1.07 秒；抽格尚未看。
 - 渲染已丟背景：`flock out/.render.lock env THREE_CONCURRENCY=4 node scripts/render.mjs tech-packaging`，log 在 `out/tech-packaging.render.log`，成品 `out/tech-packaging.video.mp4`（預期）。
 - 剩下：片尾招牌音。`python3 scripts/three/sfx-logo-tech.py`＋`mix-endsting.sh`，G=28，AT＝(s9:kw 1504−8)÷30＝49.87 秒；正片 −16 LUFS、片尾約 −11.5；輸出 `out/tech-packaging.v1.mp4`。
+
+## v2 準備（2026/11/16，配音前；11/18 20:00 播）
+- 重疊：鉤子標籤（kicker）`top` 136→236，不再壓頁首；`hud.levels[0].noteAlways: true`，「查證截至 2026/11/18」第 0 幀起全片常駐（同 tech-yield）。抽 0／2／6 秒三格確認：`out/tech-packaging-v2-peek.png`。
+- 段落停頓（Andy 11-16：段落間 0.6～0.8 秒、句間至少 0.3 秒、片長 45～60 秒）：s1、s3、s7、s8 設 `pauseAfter` 0.7（改 gen-script.mjs 再重跑，不手改 json）；其餘幕間 ≥0.3 秒。v1 成片 53.9 秒，加 4×0.7 後約 57 秒，仍在 60 秒內。
+- validate 0 error；layout-check 0 error（10 warning，皆為邊緣）。**未送 TTS、未渲染**，v2 配音由主控決定是否改稿後再做。

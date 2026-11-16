@@ -57,7 +57,7 @@ const s4Shift = [
 
 const scenes = [
   S("s1", "hook", 1, "一顆晶片能做多大，其實有上限。現在最大的 AI 晶片，整組做到上限的五倍以上。怎麼做到的？", "一顆晶片能做多大\n其實有上限\n最大的 AI 晶片\n整組做到上限的五倍以上\n怎麼做到的？", "How big can one chip be? | There's a limit. | Today's biggest AI chips | reach over five times that, as a set. | How?", ["上限", "五倍以上"], [["limit", "有上限"], ["x5", "五倍以上"], ["how", "怎麼做到"]],
-    { hook: { kicker: "最大的 AI 晶片", title: "上限的 5 倍以上", size: 112, top: 136 }, zoom: [{ to: "pk", at: "start-30", dur: 1 }], shot: [shot("start-30", PK, 1)],
+    { hook: { kicker: "最大的 AI 晶片", title: "上限的 5 倍以上", size: 112, top: 236 }, zoom: [{ to: "pk", at: "start-30", dur: 1 }], shot: [shot("start-30", PK, 1)],
       shift: [H0("frame0", "s10:end+300"), H0("frame1", "s10:end+300"), H0("bridge", "s10:end+300"), H0("sub", "s7:start+8"), H0("pcb", "s7:start+10"), ...[0, 1, 2].map((g) => H0(`balls${g}`, `s7:start+${52 + g * 3}`)), H0("head", "s7:start-4"),
         hide("frame", "s3:start-2", "s10:end+400", 2)],
       run: [{ id: "scanF", at: "start-30", until: "start+70", ramp: 6 }],
@@ -126,12 +126,14 @@ const scenes = [
 // 各幕預估長度（無聲時間軸用，配音後以 timeline 為準）
 const EST = [6.8, 5.4, 5.6, 6.6, 6.0, 6.0, 3.8, 6.8, 7.3];
 scenes.forEach((s, i) => { if (EST[i]) s.durationSec = EST[i]; });
+// 段落停頓（Andy 11-16：段落間 0.6～0.8 秒）：換段的幕設 pauseAfter 0.7
+for (const id of ["s1", "s3", "s7", "s8"]) scenes.find((s) => s.id === id).pauseAfter = 0.7;
 const script = {
   slug: "tech-packaging", title: "先進封裝：晶片太大做不好，拆小再拼回去（科技透明圈 第 5 支）", asOf: "2026/11/18", styleVersion: 3, stage: "three",
   channel: { name: "科技透明圈", tag: "放大來看", slogan: "一支講透一件事" }, hudSkin: "light",
   voice: { voiceName: "Iapetus", model: "gemini-2.5-flash-preview-tts", mode: "take", languageCode: "cmn-TW", profile: "tech-b", _說明: "念稿定版：docs/prompts/tech-packaging-旁白.txt（不改）；API 整篇 1 次請求" },
   hud: {
-    levels: [{ id: "pk", label: "先進封裝", en: "PACKAGE", field: "10 cm", ruler: "1 cm", art: "none", handoff3D: true, readout: false, note: "查證截至 2026/11/18" }],
+    levels: [{ id: "pk", label: "先進封裝", en: "PACKAGE", field: "10 cm", ruler: "1 cm", art: "none", handoff3D: true, readout: false, note: "查證截至 2026/11/18", noteAlways: true }],
     theme: "dark", schematic: { text: "Schematic – not to scale", zh: "示意圖，非實際比例・運作為示意" }, maxLabels: 4, smallPx: 30, layout: "fill", scanBand: 0.3,
   },
   cover: { title: ["拆小", "再拼回去"], sub: "先進封裝", frame: 40 },
