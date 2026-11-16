@@ -38,7 +38,7 @@ export function validateIso(script, h) {
     if (!s.id || ids.indexOf(s.id) !== i) E(`${tag}: id 缺少或重複`);
     if (s.component !== "IsoScene") E(`${tag}: stage "iso" 的 component 只能是 IsoScene：${s.component}`);
     const n = h.len(s.narration); total += n;
-    const caff = (script.isoVersion === 3 || script.isoVersion === 4 || script.isoVersion === 5) && s.silent === true && s.props?.panel === "caffend"; // CaffAIne 片尾卡（短片引擎，src/components/ai-iso/CaffEnd.tsx）
+    const caff = (script.isoVersion === 3 || script.isoVersion === 4 || script.isoVersion === 5 || script.isoVersion === 6) && s.silent === true && s.props?.panel === "caffend"; // CaffAIne 片尾卡（短片引擎，src/components/ai-iso/CaffEnd.tsx）
     const silent = (film && s.silent === true) || caff;
     if (silent) {
       if (i !== scenes.length - 1) E(`${tag}: silent 只能用在最後一幕（片尾卡）`);
@@ -67,9 +67,20 @@ export function validateIso(script, h) {
     const p = s.props ?? {};
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
+    const VIEWS6 = ["split", "chat", "browser", "device", "lens", "kinetic", "flow", "claim", "draw", "check", "editor", "chart", "desk"], TONES6 = ["event", "principle", "bug", "fix", "unknown", "claim"];
     const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
     const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick", "shot"];
-    if (script.isoVersion === 5 && !caff) {
+    if (script.isoVersion === 6 && !caff) {
+      // isoVersion 6（IsoVariety.tsx）：每幕 props.view 選畫面類型、props.tone 選色調；各 view 的必要 props
+      const NEED = { split: ["left", "right"], chat: ["msgs"], browser: ["shots"], device: ["src", "cards"], lens: ["src", "ring", "zoom", "note"], kinetic: ["rows"], flow: ["nodes", "lights"], claim: ["keyword", "kicker", "card"] };
+      if (!VIEWS6.includes(p.view)) E(`${tag}: isoVersion 6 的 props.view「${p.view}」不存在（${VIEWS6.join("／")}）`);
+      else for (const k of NEED[p.view] ?? []) if (p[k] === undefined) E(`${tag}: view「${p.view}」缺少 props.${k}`);
+      if (!TONES6.includes(p.tone)) E(`${tag}: 缺少或不認得 props.tone「${p.tone}」（${TONES6.join("／")}）`);
+      if (!String(p.tag ?? "").trim()) E(`${tag}: 缺少 props.tag（性質小標）`);
+      if (p.view === "browser" && !(p.items ?? []).length) W(`${tag}: browser 沒有 items（右側欄會是空的）`);
+      for (const sh of [].concat(p.shots ?? [], p.left ?? [], p.right ?? [])) if (sh?.src && !fs.existsSync(path.join(ROOT, "public", sh.src))) E(`${tag}: 找不到圖 public/${sh.src}`);
+      if (p.src && !fs.existsSync(path.join(ROOT, "public", p.src))) E(`${tag}: 找不到圖 public/${p.src}`);
+    } else if (script.isoVersion === 5 && !caff) {
       if (!KINDS5.includes(p.panel)) E(`${tag}: isoVersion 5 的 props.panel「${p.panel}」不存在（${KINDS5.join("／")}）`);
       // 會議紀錄片：放 AI 回答的地方（wrong｜vs｜rule）要標實測＋節錄，每一格文字都要是實測原文的一部分（只能刪節，不能改字）；來源紀錄與提示規則也逐字比對
       const rd = (fn) => (fn && fs.existsSync(path.join(ROOT, "videos", script.slug, fn))) ? fs.readFileSync(path.join(ROOT, "videos", script.slug, fn), "utf8") : null;
@@ -116,8 +127,8 @@ export function validateIso(script, h) {
     };
     walk(p, "props");
     const cams = [].concat(p.camera ?? []);
-    if (!caff && !cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
-    for (const c of cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < (script.isoVersion === 4 ? 2.4 : 1.6)) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
+    if (!caff && script.isoVersion !== 6 && !cams.length) E(`${tag}: 缺少 props.camera（鏡頭看哪裡：look [x,y,z]、zoom、sy）`);
+    for (const c of script.isoVersion === 6 ? [] : cams) if (!Array.isArray(c.look) || c.look.length !== 3 || !(c.zoom > 0.3 && c.zoom < (script.isoVersion === 4 ? 2.4 : 1.6)) || !(c.sy > 300 && c.sy < (film ? 1500 : 1300))) E(`${tag}: props.camera 要有 look [x,y,z]、zoom（0.3–1.6）、sy（300–${film ? 1500 : 1300}）`);
     if (film && QUOTES2.includes(p.panel)) {
       // 完整片：每一塊放了 AI 回答的地方都要有 verbatim（實測原始回答的 JSON），字只能刪節不能改；卡片要標「實測…（節錄）」
       const check = (o, where) => {
@@ -155,12 +166,19 @@ export function validateIso(script, h) {
   });
   const hk = scenes[0].props ?? {};
   if (scenes.length === 1 && hk.panel === "caffend") { /* 只有片尾卡的測試片：不用鉤子 */ }
+  else if (script.isoVersion === 6) { /* 第一幕由 view 決定，不要求 hook */ }
   else if (script.isoVersion === 4 || script.isoVersion === 5) { if (hk.panel !== "hook") E("第一幕要是 panel: \"hook\"（第 0 幀就是實心大字）"); }
   else if (hk.panel !== "hook" || !Array.isArray(hk.title) || !hk.title.length) E("第一幕要是 panel: \"hook\"，而且有 title（第 0 幀就看得到的實心大字主張）");
   else {
     if (![hk.screen, hk.pin].some((n) => /\d/.test(n?.value ?? ""))) E("第一幕的 hook 要有數字（props.screen／props.pin 的 value）：第 0 幀放後果或數字，不能只有問句");
     if (hk.title.some((t) => /[？?]$/.test(t))) W("第一幕的大字是問句：第 0 幀要放後果或數字");
     for (const t of hk.title) if (h.emWidth(t) * (hk.size ?? 136) > 952) E(`第一幕大字「${t}」超出左右安全區`);
+  }
+  if (script.isoVersion === 6) {
+    const vs = scenes.filter((x) => !(x.silent === true && x.props?.panel === "caffend")).map((x) => x.props?.view);
+    const kinds = new Set(vs); if (kinds.size < 6) E(`isoVersion 6：這支只有 ${kinds.size} 種 view，要 ≥6 種（畫面多樣化）`);
+    for (let i = 2; i < vs.length; i++) if (vs[i] === vs[i - 1] && vs[i] === vs[i - 2]) E(`isoVersion 6：view「${vs[i]}」連續超過 2 鏡（${scenes[i - 2].id}–${scenes[i].id}）`);
+    if (vs.filter((v) => v === "desk").length > 2) E("isoVersion 6：等距桌面（desk）每支最多 2 鏡");
   }
   const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
   if (film) {

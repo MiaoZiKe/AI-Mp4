@@ -9,3 +9,6 @@
 - 驗收（2026/11/16）：validate 0 error、tsc 0；ov-check 每 6 幀 285 幀，內容幀 0 筆（只有片尾動畫幀的上下緣空白被標，與既有片相同）；人工抽格看過。
 - 渲染：背景依序 render 四支無聲版，日誌 `out/render-long-caffaine-sketch-game.log`，成品 `out/caffaine-sketch-game.mp4`（媒體不進 git）。
 - 已知問題：草圖由程式畫、非人手畫（片中已講明）；放大圖是原圖 540 像素寬放大，略軟。
+
+## 2026/11/16 畫面多樣化（isoVersion 6）
+引擎 `src/components/ai-iso/IsoVariety.tsx`：每幕 `props.view`（split／chat／browser／device／lens／kinetic／flow／claim）＋`props.tone`（色票 THEME_ISO.tones），換幕圓形擦開；念稿未動（僅 s03 的 cue id start 改 strt，避免和「幕開頭」撞名）。規劃：docs/channels/caffaine-visual-plan-1116.md。重疊檢查：程式 285 幀，內容幀 0 筆（只剩片尾動畫幀上下緣空白）。
