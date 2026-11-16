@@ -56,36 +56,36 @@
       "id": "s1",
       "beat": "hook",
       "para": 1,
-      "narration": "一次曝光，最多印八百多平方毫米。現在最大的 AI 晶片封裝，是這個的五倍以上。",
-      "tts": "一次曝光，最多印八百多平方毫米。現在最大的 AI 晶片封裝，是這個的五倍以上。",
+      "narration": "一顆晶片能做多大，其實有上限。現在最大的 AI 晶片，整組做到上限的五倍以上。怎麼做到的？",
+      "tts": "一顆晶片能做多大，其實有上限。現在最大的 AI 晶片，整組做到上限的五倍以上。怎麼做到的？",
       "subtitle": {
-        "zh": "一次曝光\n最多印八百多平方毫米\n最大的 AI 晶片封裝\n是這個的五倍以上",
-        "en": "One exposure prints at most | about 858 mm². | Today's biggest AI chip package | is over five times that."
+        "zh": "一顆晶片能做多大\n其實有上限\n最大的 AI 晶片\n整組做到上限的五倍以上\n怎麼做到的？",
+        "en": "How big can one chip be? | There's a limit. | Today's biggest AI chips | reach over five times that, as a set. | How?"
       },
       "keywords": [
-        "八百多",
+        "上限",
         "五倍以上"
       ],
       "cues": [
         {
-          "id": "once",
-          "text": "一次曝光"
-        },
-        {
           "id": "limit",
-          "text": "八百多"
+          "text": "有上限"
         },
         {
           "id": "x5",
           "text": "五倍以上"
+        },
+        {
+          "id": "how",
+          "text": "怎麼做到"
         }
       ],
       "component": "ThreeScene",
       "props": {
         "hook": {
-          "kicker": "封裝面積",
-          "title": "≈ 5 倍光罩",
-          "size": 132,
+          "kicker": "最大的 AI 晶片",
+          "title": "上限的 5 倍以上",
+          "size": 112,
           "top": 136
         },
         "zoom": [
@@ -109,70 +109,70 @@
           {
             "layer": "frame0",
             "at": "s1:start-40",
-            "until": "s7:two",
+            "until": "s10:end+300",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "frame1",
             "at": "s1:start-40",
-            "until": "s7:two+5",
+            "until": "s10:end+300",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "bridge",
             "at": "s1:start-40",
-            "until": "s7:bw-4",
+            "until": "s10:end+300",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "sub",
             "at": "s1:start-40",
-            "until": "s10:start+8",
+            "until": "s7:start+8",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "pcb",
             "at": "s1:start-40",
-            "until": "s10:start+10",
+            "until": "s7:start+10",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "balls0",
             "at": "s1:start-40",
-            "until": "s10:start+52",
+            "until": "s7:start+52",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "balls1",
             "at": "s1:start-40",
-            "until": "s10:start+55",
+            "until": "s7:start+55",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "balls2",
             "at": "s1:start-40",
-            "until": "s10:start+58",
+            "until": "s7:start+58",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "head",
             "at": "s1:start-40",
-            "until": "s10:start-4",
+            "until": "s7:start-4",
             "opacity": 0,
             "dur": 2
           },
           {
             "layer": "frame",
-            "at": "s2:start-2",
-            "until": "s11:end+400",
+            "at": "s3:start-2",
+            "until": "s10:end+400",
             "opacity": 0,
             "dur": 2
           }
@@ -190,7 +190,7 @@
             "type": "section",
             "kind": "pkg-frames",
             "at": "start-30",
-            "until": "s2:start-2",
+            "until": "s3:start-2",
             "avoid": false,
             "x": 64,
             "y": 905,
@@ -199,7 +199,7 @@
             "cols": 5,
             "fw": 130,
             "total": 5,
-            "title": "光罩框＝一次曝光的面積",
+            "title": "光罩框＝一次能印的上限",
             "items": [
               {
                 "at": "start-30"
@@ -223,32 +223,20 @@
               }
             ],
             "note": {
-              "at": "limit+4",
-              "text": "單顆晶片仍受 858 mm² 限制，變大的是封裝"
+              "at": "s2:n800+4",
+              "text": "單顆晶片仍受約 858 mm² 限制，變大的是整組"
             }
           },
           {
             "type": "stamp",
             "at": "start+22",
-            "until": "limit-2",
+            "until": "s2:start-2",
             "text": "廠商公布",
             "x": 850,
             "y": 862,
             "color": "amber",
             "size": 44,
             "rot": -4,
-            "avoid": false
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "limit",
-            "until": "s2:start-2",
-            "text": "已確定：一次曝光約 858 mm²",
-            "x": 320,
-            "y": 862,
-            "color": "blue",
-            "size": 30,
             "avoid": false
           },
           {
@@ -268,39 +256,34 @@
       "sources": [
         "台積電 2026/10 法說、2026/8 OCP；SemiEngineering"
       ],
-      "durationSec": 6.1
+      "durationSec": 6.8
     },
     {
       "id": "s2",
       "beat": "you",
       "para": 2,
-      "narration": "做法是把好幾顆晶片，平放在一片矽中介層上，旁邊再圍一圈記憶體。",
-      "tts": "做法是把好幾顆晶片，平放在一片矽中介層上，旁邊再圍一圈記憶體。",
+      "narration": "上限來自製造。電路是用光印上去的，一次最多印八百多平方毫米。",
+      "tts": "上限來自製造。電路是用光印上去的，一次最多印八百多平方毫米。",
       "subtitle": {
-        "zh": "做法是把好幾顆晶片\n平放在一片矽中介層上\n旁邊再圍一圈記憶體",
-        "en": "The trick: lay several chips flat | on one silicon interposer, | ringed by memory."
+        "zh": "上限來自製造\n電路是用光印上去的\n一次最多印八百多平方毫米",
+        "en": "The limit comes from manufacturing. | Circuits are printed with light — | at most about 858 mm² per shot."
       },
       "keywords": [
-        "平放",
-        "矽中介層",
-        "記憶體"
+        "用光印",
+        "八百多"
       ],
       "cues": [
         {
-          "id": "flat",
-          "text": "平放"
+          "id": "make",
+          "text": "製造"
         },
         {
-          "id": "ip",
-          "text": "矽中介層"
+          "id": "light",
+          "text": "用光印"
         },
         {
-          "id": "mem",
-          "text": "記憶體"
-        },
-        {
-          "id": "ring",
-          "text": "一圈"
+          "id": "n800",
+          "text": "八百多"
         }
       ],
       "component": "ThreeScene",
@@ -312,565 +295,65 @@
             "dur": 1
           }
         ],
-        "shift": [
-          {
-            "layer": "dieA",
-            "at": "s2:start-2",
-            "until": "flat-2",
-            "dy": 1.4,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.03,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.012
-          },
-          {
-            "layer": "dieB",
-            "at": "s2:start-2",
-            "until": "flat+2",
-            "dy": 1.4,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.03,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.012
-          },
-          {
-            "layer": "hbm0",
-            "at": "s2:start-2",
-            "until": "mem+0",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm1",
-            "at": "s2:start-2",
-            "until": "mem+4",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm2",
-            "at": "s2:start-2",
-            "until": "mem+8",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm3",
-            "at": "s2:start-2",
-            "until": "mem+12",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm4",
-            "at": "s2:start-2",
-            "until": "mem+16",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm5",
-            "at": "s2:start-2",
-            "until": "mem+20",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm6",
-            "at": "s2:start-2",
-            "until": "mem+24",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hbm7",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs0",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs1",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs2",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs3",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs4",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs5",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs6",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs7",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs8",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs9",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs10",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "hs11",
-            "at": "s2:start-2",
-            "until": "mem+28",
-            "dy": 1,
-            "opacity": 0,
-            "dur": 9,
-            "fallIn": true,
-            "bounce": 0.06,
-            "press": [
-              "ip",
-              "c4"
-            ],
-            "pressAmt": 0.006
-          },
-          {
-            "layer": "align",
-            "at": "s1:start-40",
-            "until": "s2:start",
-            "opacity": 0,
-            "dur": 2
-          },
-          {
-            "layer": "align",
-            "at": "mem+44",
-            "until": "s11:end+400",
-            "opacity": 0,
-            "dur": 6
-          },
-          {
-            "layer": "ipPad",
-            "at": "s1:start-40",
-            "until": "s2:start",
-            "opacity": 0,
-            "dur": 2
-          },
-          {
-            "layer": "ipPad",
-            "at": "mem+44",
-            "until": "s11:end+400",
-            "opacity": 0,
-            "dur": 6
-          }
-        ],
         "run": [
           {
-            "id": "landRip",
-            "at": "flat+8",
-            "until": "flat+30",
-            "ramp": 4
-          },
-          {
-            "id": "ringH",
-            "at": "ring",
-            "until": "ring+16",
-            "ramp": 3
+            "id": "scanF",
+            "at": "light-4",
+            "until": "s3:start-4",
+            "ramp": 6
           }
         ],
         "labels": [
           {
             "part": "dieA",
-            "text": "運算晶片",
-            "en": "Compute die",
-            "color": "blue",
-            "at": "flat+8",
-            "until": "s3:start"
-          },
-          {
-            "part": "ip",
-            "text": "矽中介層",
-            "en": "Interposer",
-            "color": "blue",
-            "at": "ip",
-            "until": "s3:start"
-          },
-          {
-            "part": "hbm",
-            "text": "記憶體",
-            "en": "HBM",
+            "text": "一次能印的範圍",
+            "en": "one exposure",
             "color": "amber",
-            "at": "mem+12",
-            "until": "s3:start"
+            "at": "light+2",
+            "until": "s3:start-2"
           }
         ],
         "overlay": [
           {
             "type": "stamp",
             "style": "tag",
-            "at": "start+4",
-            "until": "s3:start",
-            "text": "已確定・以 CoWoS-S 示意",
-            "x": 540,
-            "y": 1300,
-            "color": "blue",
-            "size": 30,
-            "avoid": false
-          },
-          {
-            "type": "legend",
-            "at": "flat+4",
+            "at": "n800",
             "until": "s3:start-2",
-            "avoid": false,
-            "x": 90,
-            "y": 990,
-            "cols": 2,
-            "colW": 430,
-            "size": 40,
-            "items": [
-              {
-                "text": "運算晶片 ×2",
-                "swatch": "pkChip"
-              },
-              {
-                "text": "記憶體 HBM ×8",
-                "swatch": "pkHbm"
-              },
-              {
-                "text": "矽中介層（平放的底）",
-                "swatch": "pkIp"
-              },
-              {
-                "text": "微凸塊（晶片底下）",
-                "swatch": "pkUb"
-              }
-            ]
-          }
-        ]
-      },
-      "sources": [
-        "台積電 CoWoS；WikiChip"
-      ],
-      "durationSec": 5.8
-    },
-    {
-      "id": "s3",
-      "beat": "twist",
-      "para": 3,
-      "narration": "拆開再拼，接點變多，訊號也要多走一段，為什麼反而划算？",
-      "tts": "拆開再拼，接點變多，訊號也要多走一段，為什麼反而划算？",
-      "subtitle": {
-        "zh": "拆開再拼\n接點變多\n訊號也要多走一段\n為什麼反而划算？",
-        "en": "Split and rejoin: more joints, | a longer trip for signals. | So why is it cheaper?"
-      },
-      "keywords": [
-        "接點變多",
-        "多走一段",
-        "划算"
-      ],
-      "cues": [
-        {
-          "id": "joints",
-          "text": "接點變多"
-        },
-        {
-          "id": "detour",
-          "text": "多走一段"
-        },
-        {
-          "id": "why",
-          "text": "為什麼"
-        }
-      ],
-      "component": "ThreeScene",
-      "props": {
-        "run": [
-          {
-            "id": "ubGlow",
-            "at": "joints-2",
-            "until": "s4:start",
-            "ramp": 4
-          },
-          {
-            "id": "sigDirect",
-            "at": "start",
-            "until": "detour-2",
-            "ramp": 4
-          },
-          {
-            "id": "sigDetour",
-            "at": "detour",
-            "until": "s4:start",
-            "ramp": 4
-          }
-        ],
-        "overlay": [
-          {
-            "type": "section",
-            "kind": "pkg-detour",
-            "at": "start",
-            "until": "s4:start-2",
-            "avoid": false,
-            "x": 64,
-            "y": 905,
-            "w": 952,
-            "h": 320,
-            "title": "代價",
-            "joints": {
-              "at": "joints"
-            },
-            "detour": {
-              "at": "detour"
-            }
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "joints+2",
-            "until": "s4:start-2",
-            "text": "已確定（代價）",
-            "x": 250,
-            "y": 1290,
-            "color": "coral",
+            "text": "已確定：一次最多約 858 mm²",
+            "x": 320,
+            "y": 862,
+            "color": "blue",
             "size": 30,
             "avoid": false
           },
           {
             "type": "stamp",
-            "at": "why",
-            "until": "s4:start-2",
-            "text": "為什麼划算？",
-            "x": 700,
-            "y": 1290,
-            "color": "amber",
-            "size": 52,
+            "at": "n800+4",
+            "until": "s3:start-2",
+            "text": "上限",
+            "x": 540,
+            "y": 1268,
+            "color": "blue",
+            "size": 56,
             "rot": -4,
             "avoid": false
           }
         ]
       },
       "sources": [
-        "The Register 2024/4；WikiChip"
+        "SemiEngineering；Tom's Hardware（26×33 mm）"
       ],
-      "durationSec": 4.6
+      "durationSec": 5.4
     },
     {
-      "id": "s4",
+      "id": "s3",
       "beat": "mechanism",
-      "para": 4,
-      "narration": "上一支估算過，晶片越大越容易被缺陷打中，大晶片好的不到一半。",
-      "tts": "上一支估算過，晶片越大越容易被缺陷打中，大晶片好的不到一半。",
+      "para": 3,
+      "narration": "而且晶片越大，越容易被缺陷打中。上一支估算過，好的可能不到一半。",
+      "tts": "而且晶片越大，越容易被缺陷打中。上一支估算過，好的可能不到一半。",
       "subtitle": {
-        "zh": "上一支估算過\n晶片越大越容易被缺陷打中\n大晶片好的不到一半",
-        "en": "Last time we estimated: | the bigger the chip, the likelier a defect hits. | Under half of big chips come out good."
+        "zh": "而且晶片越大\n越容易被缺陷打中\n上一支估算過\n好的可能不到一半",
+        "en": "And the bigger the chip, | the likelier a defect hits it. | Last time we estimated: | maybe under half come out good."
       },
       "keywords": [
         "缺陷",
@@ -878,12 +361,12 @@
       ],
       "cues": [
         {
-          "id": "prev",
-          "text": "上一支"
-        },
-        {
           "id": "defect",
           "text": "缺陷"
+        },
+        {
+          "id": "prev",
+          "text": "上一支"
         },
         {
           "id": "half",
@@ -897,7 +380,7 @@
             "type": "section",
             "kind": "pkg-wafers",
             "at": "start",
-            "until": "s5:start-10",
+            "until": "s4:start-10",
             "avoid": false,
             "x": 64,
             "y": 900,
@@ -917,7 +400,7 @@
             "type": "stamp",
             "style": "tag",
             "at": "prev+4",
-            "until": "s5:start-10",
+            "until": "s4:start-10",
             "text": "估算（簡化模型，非實測）",
             "x": 760,
             "y": 858,
@@ -930,27 +413,27 @@
       "sources": [
         "tech-yield：D0 0.1/cm²、泊松模型（估算）"
       ],
-      "durationSec": 5.3
+      "durationSec": 5.6
     },
     {
-      "id": "s5",
+      "id": "s4",
       "beat": "mechanism",
-      "para": 5,
-      "narration": "拆成小顆，每顆先測過，只挑好的封裝。壞一顆，只丟那一小顆。",
-      "tts": "拆成小顆，每顆先測過，只挑好的封裝。壞一顆，只丟那一小顆。",
+      "para": 4,
+      "narration": "所以反過來，拆成幾顆小晶片，每顆先測過，只挑好的用。壞一顆，只丟那一小顆。",
+      "tts": "所以反過來，拆成幾顆小晶片，每顆先測過，只挑好的用。壞一顆，只丟那一小顆。",
       "subtitle": {
-        "zh": "拆成小顆，每顆先測過\n只挑好的封裝\n壞一顆\n只丟那一小顆",
-        "en": "Split into small dies, test each first, | package only the good ones. | One bad die? Toss just that one."
+        "zh": "所以反過來\n拆成幾顆小晶片，每顆先測過\n只挑好的用\n壞一顆，只丟那一小顆",
+        "en": "So flip it: split into small dies, | test each one first, | use only the good ones. | One bad die? Toss just that one."
       },
       "keywords": [
+        "小晶片",
         "先測過",
-        "只挑好的",
         "只丟那一小顆"
       ],
       "cues": [
         {
           "id": "small",
-          "text": "拆成小顆"
+          "text": "小晶片"
         },
         {
           "id": "test",
@@ -1182,7 +665,7 @@
           {
             "id": "okA",
             "at": "test+1",
-            "until": "s6:start",
+            "until": "s5:start",
             "ramp": 2
           },
           {
@@ -1200,7 +683,7 @@
           {
             "id": "ngBlink",
             "at": "drop-2",
-            "until": "s6:start",
+            "until": "s5:start",
             "ramp": 3
           },
           {
@@ -1215,7 +698,7 @@
             "type": "stamp",
             "style": "tag",
             "at": "start+4",
-            "until": "s6:start-2",
+            "until": "s5:start-2",
             "text": "已確定（作法：已知良品挑選）",
             "x": 540,
             "y": 1300,
@@ -1227,7 +710,7 @@
             "type": "stamp",
             "style": "tag",
             "at": "start+4",
-            "until": "s6:start-2",
+            "until": "s5:start-2",
             "text": "探針測試（示意）→ 吸嘴 → 中介層晶圓",
             "x": 540,
             "y": 1070,
@@ -1250,7 +733,7 @@
           {
             "type": "stamp",
             "at": "bad+4",
-            "until": "s6:start-2",
+            "until": "s5:start-2",
             "text": "壞 ✕",
             "x": 270,
             "y": 1175,
@@ -1262,7 +745,7 @@
           {
             "type": "stamp",
             "at": "drop",
-            "until": "s6:start-2",
+            "until": "s5:start-2",
             "text": "只丟這一顆",
             "x": 760,
             "y": 1175,
@@ -1276,31 +759,529 @@
       "sources": [
         "WikiChip；Teradyne；SemiEngineering"
       ],
-      "durationSec": 5
+      "durationSec": 6.6
+    },
+    {
+      "id": "s5",
+      "beat": "mechanism",
+      "para": 5,
+      "narration": "挑好的，平放到一片很薄的矽板上拼回去。這片叫中介層，旁邊再圍一圈記憶體。",
+      "tts": "挑好的，平放到一片很薄的矽板上拼回去。這片叫中介層，旁邊再圍一圈記憶體。",
+      "subtitle": {
+        "zh": "挑好的，平放到\n一片很薄的矽板上拼回去\n這片叫中介層\n旁邊再圍一圈記憶體",
+        "en": "Lay the good ones flat | on a thin silicon slab. | It's called an interposer, | ringed by memory."
+      },
+      "keywords": [
+        "很薄的矽板",
+        "中介層",
+        "記憶體"
+      ],
+      "cues": [
+        {
+          "id": "flat",
+          "text": "平放"
+        },
+        {
+          "id": "ip",
+          "text": "中介層"
+        },
+        {
+          "id": "mem",
+          "text": "記憶體"
+        },
+        {
+          "id": "ring",
+          "text": "一圈"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-4",
+            "dur": 14,
+            "x": 0,
+            "y": -1.15,
+            "d": 31,
+            "elev": 35
+          }
+        ],
+        "shift": [
+          {
+            "layer": "dieA",
+            "at": "s5:start-2",
+            "until": "flat-2",
+            "dy": 1.4,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.03,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.012
+          },
+          {
+            "layer": "dieB",
+            "at": "s5:start-2",
+            "until": "flat+2",
+            "dy": 1.4,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.03,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.012
+          },
+          {
+            "layer": "hbm0",
+            "at": "s5:start-2",
+            "until": "mem+0",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm1",
+            "at": "s5:start-2",
+            "until": "mem+4",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm2",
+            "at": "s5:start-2",
+            "until": "mem+8",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm3",
+            "at": "s5:start-2",
+            "until": "mem+12",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm4",
+            "at": "s5:start-2",
+            "until": "mem+16",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm5",
+            "at": "s5:start-2",
+            "until": "mem+20",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm6",
+            "at": "s5:start-2",
+            "until": "mem+24",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm7",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs0",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs1",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs2",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs3",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs4",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs5",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs6",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs7",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs8",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs9",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs10",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs11",
+            "at": "s5:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "align",
+            "at": "s1:start-40",
+            "until": "s5:start",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "align",
+            "at": "mem+44",
+            "until": "s10:end+400",
+            "opacity": 0,
+            "dur": 6
+          },
+          {
+            "layer": "ipPad",
+            "at": "s1:start-40",
+            "until": "s5:start",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "ipPad",
+            "at": "mem+44",
+            "until": "s10:end+400",
+            "opacity": 0,
+            "dur": 6
+          }
+        ],
+        "run": [
+          {
+            "id": "landRip",
+            "at": "flat+8",
+            "until": "flat+30",
+            "ramp": 4
+          },
+          {
+            "id": "ringH",
+            "at": "ring",
+            "until": "ring+16",
+            "ramp": 3
+          }
+        ],
+        "labels": [
+          {
+            "part": "dieA",
+            "text": "運算晶片",
+            "en": "Compute die",
+            "color": "blue",
+            "at": "flat+8",
+            "until": "s6:start"
+          },
+          {
+            "part": "ip",
+            "text": "矽中介層",
+            "en": "Interposer",
+            "color": "blue",
+            "at": "ip",
+            "until": "s6:start"
+          },
+          {
+            "part": "hbm",
+            "text": "記憶體",
+            "en": "HBM",
+            "color": "amber",
+            "at": "mem+12",
+            "until": "s6:start"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "start+4",
+            "until": "s6:start",
+            "text": "已確定・以 CoWoS-S 示意",
+            "x": 540,
+            "y": 1300,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "legend",
+            "at": "flat+4",
+            "until": "s6:start-2",
+            "avoid": false,
+            "x": 90,
+            "y": 990,
+            "cols": 2,
+            "colW": 440,
+            "size": 38,
+            "items": [
+              {
+                "text": "運算晶片 ×2",
+                "swatch": "pkChip"
+              },
+              {
+                "text": "記憶體 HBM ×8",
+                "swatch": "pkHbm"
+              },
+              {
+                "text": "矽中介層（薄矽板）",
+                "swatch": "pkIp"
+              },
+              {
+                "text": "微凸塊（底下接點）",
+                "swatch": "pkUb"
+              }
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "台積電 CoWoS；WikiChip"
+      ],
+      "durationSec": 6
     },
     {
       "id": "s6",
       "beat": "mechanism",
       "para": 6,
-      "narration": "中介層的線比電路板細很多，晶片跟記憶體貼得近，資料來回才夠快。",
-      "tts": "中介層的線比電路板細很多，晶片跟記憶體貼得近，資料來回才夠快。",
+      "narration": "為什麼不直接裝在電路板上？中介層的線細很多、排得更密，資料來回才夠快。",
+      "tts": "為什麼不直接裝在電路板上？中介層的線細很多、排得更密，資料來回才夠快。",
       "subtitle": {
-        "zh": "中介層的線比電路板細很多\n晶片跟記憶體貼得近\n資料來回才夠快",
-        "en": "Interposer wiring is far finer than a circuit board's. | Chip and memory sit close, | so data moves fast both ways."
+        "zh": "為什麼不直接裝在電路板上？\n中介層的線細很多\n排得更密\n資料來回才夠快",
+        "en": "Why not mount them on a circuit board? | Interposer wiring is far finer | and denser, | so data moves fast both ways."
       },
       "keywords": [
         "細很多",
-        "貼得近",
+        "更密",
         "來回"
       ],
       "cues": [
+        {
+          "id": "why",
+          "text": "電路板"
+        },
         {
           "id": "thin",
           "text": "細很多"
         },
         {
-          "id": "near",
-          "text": "貼得近"
+          "id": "dense",
+          "text": "更密"
         },
         {
           "id": "fast",
@@ -1396,7 +1377,7 @@
             "text": "微凸塊",
             "en": "Micro-bump",
             "color": "blue",
-            "at": "near",
+            "at": "dense",
             "until": "s7:start-12"
           }
         ],
@@ -1421,7 +1402,7 @@
               "at": "thin"
             },
             "near": {
-              "at": "near"
+              "at": "dense"
             }
           },
           {
@@ -1441,432 +1422,29 @@
       "sources": [
         "ECTC 2023；Rambus；示意，非實際線寬"
       ],
-      "durationSec": 5.6
+      "durationSec": 6
     },
     {
       "id": "s7",
       "beat": "payoff",
       "para": 7,
-      "narration": "廠商公布的大晶片，就是兩顆印到極限的晶片並排，每秒互傳十兆位元組。",
-      "tts": "廠商公布的大晶片，就是兩顆印到極限的晶片並排，每秒互傳十兆位元組。",
+      "narration": "拼好再整個包起來，這一步就叫先進封裝。",
+      "tts": "拼好再整個包起來，這一步就叫先進封裝。",
       "subtitle": {
-        "zh": "廠商公布的大晶片\n就是兩顆印到極限的晶片並排\n每秒互傳十兆位元組",
-        "en": "The vendor's big chip: | two dies, each printed to the limit, side by side, | trading 10 TB every second."
+        "zh": "拼好再整個包起來\n這一步就叫先進封裝",
+        "en": "Assemble, then package the whole thing: | that step is called advanced packaging."
       },
       "keywords": [
-        "印到極限",
-        "十兆位元組"
+        "先進封裝"
       ],
       "cues": [
         {
-          "id": "maker",
-          "text": "廠商公布"
+          "id": "wrap",
+          "text": "包起來"
         },
         {
-          "id": "two",
-          "text": "兩顆"
-        },
-        {
-          "id": "edge",
-          "text": "印到極限"
-        },
-        {
-          "id": "bw",
-          "text": "十兆位元組"
-        }
-      ],
-      "component": "ThreeScene",
-      "props": {
-        "shot": [
-          {
-            "at": "start-8",
-            "dur": 14,
-            "x": 0,
-            "y": -1.15,
-            "d": 31,
-            "elev": 35
-          }
-        ],
-        "shift": [
-          {
-            "layer": "frame0",
-            "at": "s1:start-40",
-            "until": "two",
-            "dy": 1.8,
-            "dur": 8,
-            "fallIn": true,
-            "bounce": 0.05
-          },
-          {
-            "layer": "frame1",
-            "at": "s1:start-40",
-            "until": "two+5",
-            "dy": 1.8,
-            "dur": 8,
-            "fallIn": true,
-            "bounce": 0.05
-          },
-          {
-            "layer": "frame0",
-            "at": "s8:start-2",
-            "until": "s11:end+400",
-            "opacity": 0,
-            "dur": 4
-          },
-          {
-            "layer": "frame1",
-            "at": "s8:start-2",
-            "until": "s11:end+400",
-            "opacity": 0,
-            "dur": 4
-          },
-          {
-            "layer": "bridge",
-            "at": "s8:start-2",
-            "until": "s11:end+400",
-            "opacity": 0,
-            "dur": 4
-          },
-          {
-            "layer": "dieA",
-            "at": "bw-6",
-            "until": "s8:start-2",
-            "opacity": 0.28,
-            "dur": 6
-          },
-          {
-            "layer": "dieB",
-            "at": "bw-6",
-            "until": "s8:start-2",
-            "opacity": 0.28,
-            "dur": 6
-          }
-        ],
-        "run": [
-          {
-            "id": "frameEdge",
-            "at": "edge",
-            "until": "bw-6",
-            "ramp": 3
-          },
-          {
-            "id": "bridgeAB",
-            "at": "bw",
-            "until": "s8:start-2",
-            "ramp": 6
-          },
-          {
-            "id": "bridgeBA",
-            "at": "bw",
-            "until": "s8:start-2",
-            "ramp": 6
-          }
-        ],
-        "labels": [
-          {
-            "part": "dieA",
-            "text": "各自印到上限",
-            "en": "1 reticle each",
-            "color": "coral",
-            "at": "edge",
-            "until": "bw-6"
-          }
-        ],
-        "overlay": [
-          {
-            "type": "stamp",
-            "at": "bw+2",
-            "until": "s8:start-2",
-            "text": "每秒 {n} TB",
-            "x": 760,
-            "y": 1010,
-            "color": "amber",
-            "size": 76,
-            "rot": -4,
-            "avoid": false,
-            "countTo": 10,
-            "countDur": 18
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "maker",
-            "until": "s8:start-2",
-            "text": "廠商公布（NVIDIA 2024/3 發表）",
-            "x": 540,
-            "y": 1290,
-            "color": "amber",
-            "size": 30,
-            "avoid": false
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "bw+8",
-            "until": "s8:start-2",
-            "text": "晶片之間走矽橋（CoWoS-L）",
-            "x": 540,
-            "y": 1180,
-            "color": "blue",
-            "size": 30,
-            "avoid": false
-          }
-        ]
-      },
-      "sources": [
-        "Electronic Design；All About Circuits"
-      ],
-      "durationSec": 6.1
-    },
-    {
-      "id": "s8",
-      "beat": "payoff",
-      "para": 8,
-      "narration": "代價是封裝變難。廠商說，這種大封裝的良率已經超過九成八。",
-      "tts": "代價是封裝變難。廠商說，這種大封裝的良率已經超過九成八。",
-      "subtitle": {
-        "zh": "代價是封裝變難\n廠商說\n這種大封裝的良率已經超過九成八",
-        "en": "The cost: packaging gets harder. | The vendor says yield for these big packages | is already above 98%."
-      },
-      "keywords": [
-        "封裝變難",
-        "九成八"
-      ],
-      "cues": [
-        {
-          "id": "hard",
-          "text": "封裝變難"
-        },
-        {
-          "id": "maker2",
-          "text": "廠商說"
-        },
-        {
-          "id": "rate",
-          "text": "九成八"
-        }
-      ],
-      "component": "ThreeScene",
-      "props": {
-        "overlay": [
-          {
-            "type": "section",
-            "kind": "pkg-warp",
-            "at": "hard-4",
-            "until": "s9:start-2",
-            "avoid": false,
-            "x": 64,
-            "y": 930,
-            "w": 470,
-            "h": 260,
-            "title": "大面積易翹曲（示意）",
-            "flash": {
-              "at": "hard+2"
-            },
-            "uf": {
-              "at": "hard+14"
-            }
-          },
-          {
-            "type": "stamp",
-            "at": "rate",
-            "until": "s9:start-2",
-            "text": "> 98%",
-            "x": 800,
-            "y": 1040,
-            "color": "amber",
-            "size": 96,
-            "rot": -4,
-            "avoid": false
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "rate+4",
-            "until": "s9:start-2",
-            "text": "廠商公布，封裝良率，非第三方實測",
-            "x": 540,
-            "y": 1270,
-            "color": "amber",
-            "size": 30,
-            "avoid": false
-          }
-        ]
-      },
-      "sources": [
-        "台積電 2026/8 OCP（媒體轉述）"
-      ],
-      "durationSec": 5.2
-    },
-    {
-      "id": "s9",
-      "beat": "twist",
-      "para": 9,
-      "narration": "十四倍的更大版本，廠商排在二零二八年，做不做得到還要再看。",
-      "tts": "十四倍的更大版本，廠商排在二零二八年，做不做得到還要再看。",
-      "subtitle": {
-        "zh": "十四倍的更大版本\n廠商排在二零二八年\n做不做得到還要再看",
-        "en": "A 14× version is on the vendor's 2028 roadmap. | Whether it works out | remains to be seen."
-      },
-      "keywords": [
-        "十四倍",
-        "二零二八年",
-        "還要再看"
-      ],
-      "cues": [
-        {
-          "id": "x14",
-          "text": "十四倍"
-        },
-        {
-          "id": "y28",
-          "text": "二零二八年"
-        },
-        {
-          "id": "see",
-          "text": "還要再看"
-        }
-      ],
-      "component": "ThreeScene",
-      "props": {
-        "overlay": [
-          {
-            "type": "section",
-            "kind": "pkg-frames",
-            "at": "start",
-            "until": "s10:start-8",
-            "avoid": false,
-            "x": 64,
-            "y": 905,
-            "w": 952,
-            "h": 430,
-            "title": "光罩框＝一次曝光的面積",
-            "unit": "個光罩面積",
-            "note": {
-              "at": "y28",
-              "text": "虛線＝廠商目標（2028），非實測"
-            },
-            "items": [
-              {
-                "at": "start-30"
-              },
-              {
-                "at": "start-30"
-              },
-              {
-                "at": "start-30"
-              },
-              {
-                "at": "start-30"
-              },
-              {
-                "at": "start-30"
-              },
-              {
-                "at": "start+2",
-                "dashed": true
-              },
-              {
-                "at": "start+5",
-                "dashed": true
-              },
-              {
-                "at": "start+8",
-                "dashed": true
-              },
-              {
-                "at": "start+11",
-                "dashed": true
-              },
-              {
-                "at": "start+14",
-                "dashed": true
-              },
-              {
-                "at": "start+17",
-                "dashed": true
-              },
-              {
-                "at": "start+20",
-                "dashed": true
-              },
-              {
-                "at": "start+23",
-                "dashed": true
-              },
-              {
-                "at": "start+26",
-                "dashed": true
-              }
-            ],
-            "marks": []
-          },
-          {
-            "type": "stamp",
-            "style": "tag",
-            "at": "x14+6",
-            "until": "s10:start-8",
-            "text": "廠商目標值（非實測）",
-            "x": 540,
-            "y": 860,
-            "color": "amber",
-            "size": 30,
-            "avoid": false
-          },
-          {
-            "type": "stamp",
-            "at": "see",
-            "until": "s10:start-8",
-            "text": "尚未確定",
-            "x": 830,
-            "y": 405,
-            "color": "coral",
-            "size": 52,
-            "rot": -5,
-            "avoid": false
-          }
-        ]
-      },
-      "sources": [
-        "台積電 2026/4 北美技術論壇"
-      ],
-      "durationSec": 5.3
-    },
-    {
-      "id": "s10",
-      "beat": "cta",
-      "para": 10,
-      "narration": "往旁邊拼，還是往上疊？下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
-      "tts": "往旁邊拼，還是往上疊？下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
-      "subtitle": {
-        "zh": "往旁邊拼，還是往上疊？\n下一支，來看記憶體\n為什麼疊十二層\n想要完整解說，留言封裝",
-        "en": "Spread sideways, or stack up? | Next: why memory stacks 12 layers high. | Comment \"封裝\" for the full notes."
-      },
-      "keywords": [
-        "往旁邊拼",
-        "往上疊",
-        "十二層"
-      ],
-      "cues": [
-        {
-          "id": "side",
-          "text": "往旁邊拼"
-        },
-        {
-          "id": "stack",
-          "text": "往上疊"
-        },
-        {
-          "id": "next",
-          "text": "下一支"
-        },
-        {
-          "id": "twelve",
-          "text": "疊十二層"
-        },
-        {
-          "id": "kw",
-          "text": "留言封裝"
+          "id": "name",
+          "text": "先進封裝"
         }
       ],
       "component": "ThreeScene",
@@ -2125,7 +1703,7 @@
           {
             "layer": "head",
             "at": "start+76",
-            "until": "s11:end+400",
+            "until": "s10:end+400",
             "dy": 3,
             "opacity": 0,
             "dur": 8
@@ -2706,97 +2284,6 @@
               "tau": 4,
               "period": 11
             }
-          },
-          {
-            "layer": "hs0",
-            "at": "twelve-10",
-            "until": "s11:end+400",
-            "dy": 1.6,
-            "dur": 12
-          },
-          {
-            "layer": "hs1",
-            "at": "twelve-9",
-            "until": "s11:end+400",
-            "dy": 1.74,
-            "dur": 12
-          },
-          {
-            "layer": "hs2",
-            "at": "twelve-9",
-            "until": "s11:end+400",
-            "dy": 1.88,
-            "dur": 12
-          },
-          {
-            "layer": "hs3",
-            "at": "twelve-8",
-            "until": "s11:end+400",
-            "dy": 2.02,
-            "dur": 12
-          },
-          {
-            "layer": "hs4",
-            "at": "twelve-8",
-            "until": "s11:end+400",
-            "dy": 2.16,
-            "dur": 12
-          },
-          {
-            "layer": "hs5",
-            "at": "twelve-7",
-            "until": "s11:end+400",
-            "dy": 2.3,
-            "dur": 12
-          },
-          {
-            "layer": "hs6",
-            "at": "twelve-6",
-            "until": "s11:end+400",
-            "dy": 2.44,
-            "dur": 12
-          },
-          {
-            "layer": "hs7",
-            "at": "twelve-6",
-            "until": "s11:end+400",
-            "dy": 2.58,
-            "dur": 12
-          },
-          {
-            "layer": "hs8",
-            "at": "twelve-5",
-            "until": "s11:end+400",
-            "dy": 2.72,
-            "dur": 12
-          },
-          {
-            "layer": "hs9",
-            "at": "twelve-5",
-            "until": "s11:end+400",
-            "dy": 2.86,
-            "dur": 12
-          },
-          {
-            "layer": "hs10",
-            "at": "twelve-4",
-            "until": "s11:end+400",
-            "dy": 3,
-            "dur": 12
-          },
-          {
-            "layer": "hs11",
-            "at": "twelve-3",
-            "until": "s11:end+400",
-            "dy": 3.14,
-            "dur": 12
-          },
-          {
-            "layer": "hbm7",
-            "at": "twelve-10",
-            "until": "s11:end+400",
-            "dy": 1.6,
-            "dur": 12
           }
         ],
         "run": [
@@ -2820,7 +2307,7 @@
             "en": "Substrate",
             "color": "blue",
             "at": "start+16",
-            "until": "stack"
+            "until": "name-8"
           },
           {
             "part": "ball",
@@ -2828,36 +2315,10 @@
             "en": "BGA",
             "color": "blue",
             "at": "start+56",
-            "until": "next+10"
-          },
-          {
-            "part": "hbmS",
-            "text": "12 層",
-            "en": "12-high",
-            "color": "amber",
-            "at": "twelve+4",
-            "until": "s11:start+10"
+            "until": "name-8"
           }
         ],
         "overlay": [
-          {
-            "type": "section",
-            "kind": "pkg-choice",
-            "at": "side-4",
-            "until": "s11:start+2",
-            "avoid": false,
-            "x": 64,
-            "y": 1050,
-            "w": 952,
-            "h": 290,
-            "title": "二選一",
-            "left": {
-              "at": "side"
-            },
-            "right": {
-              "at": "stack"
-            }
-          },
           {
             "type": "stamp",
             "style": "tag",
@@ -2869,16 +2330,325 @@
             "color": "amber",
             "size": 30,
             "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "name",
+            "until": "s8:start-2",
+            "text": "先進封裝",
+            "x": 540,
+            "y": 1040,
+            "color": "blue",
+            "size": 84,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "name+4",
+            "until": "s8:start-2",
+            "text": "晶片 → 中介層 → 基板 → 錫球 → 主機板",
+            "x": 540,
+            "y": 1190,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 CoWoS 流程（專利、Amkor 教學簡報）；示意"
+      ],
+      "durationSec": 3.8
+    },
+    {
+      "id": "s8",
+      "beat": "twist",
+      "para": 8,
+      "narration": "代價是接點變多、封裝變難。廠商說，這種大封裝良率已超過九成八，還沒有第三方實測。",
+      "tts": "代價是接點變多、封裝變難。廠商說，這種大封裝良率已超過九成八，還沒有第三方實測。",
+      "subtitle": {
+        "zh": "代價是接點變多、封裝變難\n廠商說，這種大封裝\n良率已超過九成八\n還沒有第三方實測",
+        "en": "The cost: more joints, harder packaging. | The vendor says yield for these big packages | is above 98% — | not yet independently tested."
+      },
+      "keywords": [
+        "接點變多",
+        "九成八",
+        "第三方實測"
+      ],
+      "cues": [
+        {
+          "id": "joints",
+          "text": "接點變多"
+        },
+        {
+          "id": "hard",
+          "text": "封裝變難"
+        },
+        {
+          "id": "rate",
+          "text": "九成八"
+        },
+        {
+          "id": "unk",
+          "text": "第三方實測"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "run": [
+          {
+            "id": "jointGlow",
+            "at": "joints-2",
+            "until": "hard+6",
+            "ramp": 4
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-warp",
+            "at": "hard-4",
+            "until": "s9:start-2",
+            "avoid": false,
+            "x": 64,
+            "y": 930,
+            "w": 470,
+            "h": 260,
+            "title": "大面積易翹曲（示意）",
+            "flash": {
+              "at": "hard+2"
+            },
+            "uf": {
+              "at": "hard+14"
+            }
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "joints",
+            "until": "hard+6",
+            "text": "接點：微凸塊＋C4＋錫球",
+            "x": 540,
+            "y": 312,
+            "color": "coral",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "rate",
+            "until": "s9:start-2",
+            "text": "> 98%",
+            "x": 800,
+            "y": 1040,
+            "color": "amber",
+            "size": 96,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "rate+4",
+            "until": "s9:start-2",
+            "text": "廠商公布，封裝良率",
+            "x": 540,
+            "y": 1240,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "unk",
+            "until": "s9:start-2",
+            "text": "查不到第三方實測（截至 2026/11/18）",
+            "x": 540,
+            "y": 1300,
+            "color": "coral",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 2026/8 OCP（媒體轉述）"
+      ],
+      "durationSec": 6.8
+    },
+    {
+      "id": "s9",
+      "beat": "cta",
+      "para": 9,
+      "narration": "晶片往旁邊拼，記憶體則往上疊。下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
+      "tts": "晶片往旁邊拼，記憶體則往上疊。下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
+      "subtitle": {
+        "zh": "晶片往旁邊拼\n記憶體則往上疊\n下一支，來看記憶體為什麼疊十二層\n想要完整解說，留言封裝",
+        "en": "Chips spread sideways; | memory stacks up. | Next: why memory stacks 12 layers high. | Comment \"封裝\" for the full notes."
+      },
+      "keywords": [
+        "往旁邊拼",
+        "往上疊",
+        "十二層"
+      ],
+      "cues": [
+        {
+          "id": "side",
+          "text": "往旁邊拼"
+        },
+        {
+          "id": "stack",
+          "text": "往上疊"
+        },
+        {
+          "id": "next",
+          "text": "下一支"
+        },
+        {
+          "id": "twelve",
+          "text": "疊十二層"
+        },
+        {
+          "id": "kw",
+          "text": "留言封裝"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shift": [
+          {
+            "layer": "hs0",
+            "at": "stack-10",
+            "until": "s10:end+400",
+            "dy": 1.6,
+            "dur": 12
+          },
+          {
+            "layer": "hs1",
+            "at": "stack-9",
+            "until": "s10:end+400",
+            "dy": 1.74,
+            "dur": 12
+          },
+          {
+            "layer": "hs2",
+            "at": "stack-9",
+            "until": "s10:end+400",
+            "dy": 1.88,
+            "dur": 12
+          },
+          {
+            "layer": "hs3",
+            "at": "stack-8",
+            "until": "s10:end+400",
+            "dy": 2.02,
+            "dur": 12
+          },
+          {
+            "layer": "hs4",
+            "at": "stack-8",
+            "until": "s10:end+400",
+            "dy": 2.16,
+            "dur": 12
+          },
+          {
+            "layer": "hs5",
+            "at": "stack-7",
+            "until": "s10:end+400",
+            "dy": 2.3,
+            "dur": 12
+          },
+          {
+            "layer": "hs6",
+            "at": "stack-6",
+            "until": "s10:end+400",
+            "dy": 2.44,
+            "dur": 12
+          },
+          {
+            "layer": "hs7",
+            "at": "stack-6",
+            "until": "s10:end+400",
+            "dy": 2.58,
+            "dur": 12
+          },
+          {
+            "layer": "hs8",
+            "at": "stack-5",
+            "until": "s10:end+400",
+            "dy": 2.72,
+            "dur": 12
+          },
+          {
+            "layer": "hs9",
+            "at": "stack-5",
+            "until": "s10:end+400",
+            "dy": 2.86,
+            "dur": 12
+          },
+          {
+            "layer": "hs10",
+            "at": "stack-4",
+            "until": "s10:end+400",
+            "dy": 3,
+            "dur": 12
+          },
+          {
+            "layer": "hs11",
+            "at": "stack-3",
+            "until": "s10:end+400",
+            "dy": 3.14,
+            "dur": 12
+          },
+          {
+            "layer": "hbm7",
+            "at": "stack-10",
+            "until": "s10:end+400",
+            "dy": 1.6,
+            "dur": 12
+          }
+        ],
+        "labels": [
+          {
+            "part": "hbmS",
+            "text": "12 層",
+            "en": "12-high",
+            "color": "amber",
+            "at": "twelve",
+            "until": "s10:start+10"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-choice",
+            "at": "side-4",
+            "until": "s10:start+2",
+            "avoid": false,
+            "x": 64,
+            "y": 1050,
+            "w": 952,
+            "h": 290,
+            "title": "兩個方向",
+            "left": {
+              "at": "side"
+            },
+            "right": {
+              "at": "stack"
+            }
           }
         ]
       },
       "sources": [
         "下一支：11/19（四）20:00 HBM（已排定）"
       ],
-      "durationSec": 6.8
+      "durationSec": 7.3
     },
     {
-      "id": "s11",
+      "id": "s10",
       "beat": "end",
       "silent": true,
       "durationSec": 3.2,
@@ -2893,12 +2663,12 @@
         "endCard": {
           "next": "HBM 為什麼疊 12 層",
           "trail": [
-            "光罩上限",
-            "中介層",
+            "上限",
             "已知良品",
-            "HBM"
+            "中介層",
+            "先進封裝"
           ],
-          "at": "s10:kw-8",
+          "at": "s9:kw-8",
           "comment": "封裝",
           "logoAnim": "transparent"
         }

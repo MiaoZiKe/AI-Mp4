@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1770,
- "totalSec": 59,
+ "totalFrames": 1725,
+ "totalSec": 57.5,
  "scenes": [
   {
    "id": "s1",
    "startFrame": 0,
-   "durationFrames": 183,
+   "durationFrames": 204,
    "startSec": 0,
-   "durationSec": 6.1,
+   "durationSec": 6.8,
    "component": "ThreeScene",
    "beat": "hook",
    "transition": {
@@ -23,59 +23,65 @@
    "voice": null,
    "cues": [
     {
-     "id": "once",
-     "text": "一次曝光",
-     "frame": 0,
-     "sceneFrame": 0
-    },
-    {
      "id": "limit",
-     "text": "八百多",
-     "frame": 39,
-     "sceneFrame": 39
+     "text": "有上限",
+     "frame": 54,
+     "sceneFrame": 54
     },
     {
      "id": "x5",
      "text": "五倍以上",
-     "frame": 151,
-     "sceneFrame": 151
+     "frame": 146,
+     "sceneFrame": 146
+    },
+    {
+     "id": "how",
+     "text": "怎麼做到",
+     "frame": 167,
+     "sceneFrame": 167
     }
    ],
-   "stillFrame": 182,
+   "stillFrame": 203,
    "subtitles": [
     {
-     "zh": "一次曝光",
-     "en": "One exposure prints at most",
+     "zh": "一顆晶片能做多大",
+     "en": "How big can one chip be?",
      "startFrame": 0,
-     "endFrame": 18
+     "endFrame": 39
     },
     {
-     "zh": "最多印八百多平方毫米",
-     "en": "about 858 mm².",
-     "startFrame": 18,
-     "endFrame": 74
+     "zh": "其實有上限",
+     "en": "There's a limit.",
+     "startFrame": 39,
+     "endFrame": 66
     },
     {
-     "zh": "最大的 AI 晶片封裝",
-     "en": "Today's biggest AI chip package",
-     "startFrame": 74,
-     "endFrame": 124
+     "zh": "最大的 AI 晶片",
+     "en": "Today's biggest AI chips",
+     "startFrame": 66,
+     "endFrame": 104
     },
     {
-     "zh": "是這個的五倍以上",
-     "en": "is over five times that.",
-     "startFrame": 124,
-     "endFrame": 184
+     "zh": "整組做到上限的五倍以上",
+     "en": "reach over five times that, as a set.",
+     "startFrame": 104,
+     "endFrame": 163
+    },
+    {
+     "zh": "怎麼做到的？",
+     "en": "How?",
+     "startFrame": 163,
+     "endFrame": 205
     }
    ],
-   "narration": "一次曝光，最多印八百多平方毫米。現在最大的 AI 晶片封裝，是這個的五倍以上。"
+   "narration": "一顆晶片能做多大，其實有上限。現在最大的 AI 晶片，整組做到上限的五倍以上。怎麼做到的？"
   },
   {
    "id": "s2",
-   "startFrame": 183,
-   "durationFrames": 174,
-   "startSec": 6.1,
-   "durationSec": 5.8,
+   "startFrame": 204,
+   "durationFrames": 162,
+   "startSec": 6.8,
+   "durationSec": 5.4,
    "component": "ThreeScene",
    "beat": "you",
    "transition": {
@@ -87,59 +93,415 @@
    "voice": null,
    "cues": [
     {
+     "id": "make",
+     "text": "製造",
+     "frame": 230,
+     "sceneFrame": 26
+    },
+    {
+     "id": "light",
+     "text": "用光印",
+     "frame": 257,
+     "sceneFrame": 53
+    },
+    {
+     "id": "n800",
+     "text": "八百多",
+     "frame": 318,
+     "sceneFrame": 114
+    }
+   ],
+   "stillFrame": 365,
+   "subtitles": [
+    {
+     "zh": "上限來自製造",
+     "en": "The limit comes from manufacturing.",
+     "startFrame": 205,
+     "endFrame": 237
+    },
+    {
+     "zh": "電路是用光印上去的",
+     "en": "The limit comes from manufacturing.",
+     "startFrame": 237,
+     "endFrame": 286
+    },
+    {
+     "zh": "一次最多印",
+     "en": "Circuits are printed with light —",
+     "startFrame": 286,
+     "endFrame": 314
+    },
+    {
+     "zh": "八百多平方毫",
+     "en": "Circuits are printed with light —",
+     "startFrame": 314,
+     "endFrame": 347
+    },
+    {
+     "zh": "米",
+     "en": "at most about 858 mm² per shot.",
+     "startFrame": 347,
+     "endFrame": 367
+    }
+   ],
+   "narration": "上限來自製造。電路是用光印上去的，一次最多印八百多平方毫米。"
+  },
+  {
+   "id": "s3",
+   "startFrame": 366,
+   "durationFrames": 168,
+   "startSec": 12.2,
+   "durationSec": 5.6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "defect",
+     "text": "缺陷",
+     "frame": 425,
+     "sceneFrame": 59
+    },
+    {
+     "id": "prev",
+     "text": "上一支",
+     "frame": 447,
+     "sceneFrame": 81
+    },
+    {
+     "id": "half",
+     "text": "不到一半",
+     "frame": 502,
+     "sceneFrame": 136
+    }
+   ],
+   "stillFrame": 533,
+   "subtitles": [
+    {
+     "zh": "而且晶片越大",
+     "en": "And the bigger the chip,",
+     "startFrame": 367,
+     "endFrame": 399
+    },
+    {
+     "zh": "越容易被缺陷打中",
+     "en": "the likelier a defect hits it.",
+     "startFrame": 399,
+     "endFrame": 443
+    },
+    {
+     "zh": "上一支估算過",
+     "en": "Last time we estimated:",
+     "startFrame": 443,
+     "endFrame": 476
+    },
+    {
+     "zh": "好的可能不到一半",
+     "en": "maybe under half come out good.",
+     "startFrame": 476,
+     "endFrame": 535
+    }
+   ],
+   "narration": "而且晶片越大，越容易被缺陷打中。上一支估算過，好的可能不到一半。"
+  },
+  {
+   "id": "s4",
+   "startFrame": 534,
+   "durationFrames": 198,
+   "startSec": 17.8,
+   "durationSec": 6.6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "small",
+     "text": "小晶片",
+     "frame": 591,
+     "sceneFrame": 57
+    },
+    {
+     "id": "test",
+     "text": "先測過",
+     "frame": 621,
+     "sceneFrame": 87
+    },
+    {
+     "id": "pick",
+     "text": "只挑好的",
+     "frame": 639,
+     "sceneFrame": 105
+    },
+    {
+     "id": "bad",
+     "text": "壞一顆",
+     "frame": 669,
+     "sceneFrame": 135
+    },
+    {
+     "id": "drop",
+     "text": "只丟那一小顆",
+     "frame": 686,
+     "sceneFrame": 152
+    }
+   ],
+   "stillFrame": 731,
+   "subtitles": [
+    {
+     "zh": "所以反過來",
+     "en": "So flip it: split into small dies,",
+     "startFrame": 535,
+     "endFrame": 564
+    },
+    {
+     "zh": "拆成幾顆小晶片",
+     "en": "So flip it: split into small dies,",
+     "startFrame": 564,
+     "endFrame": 605
+    },
+    {
+     "zh": "每顆先測過",
+     "en": "test each one first,",
+     "startFrame": 605,
+     "endFrame": 635
+    },
+    {
+     "zh": "只挑好的用",
+     "en": "use only the good ones.",
+     "startFrame": 635,
+     "endFrame": 665
+    },
+    {
+     "zh": "壞一顆",
+     "en": "use only the good ones.",
+     "startFrame": 665,
+     "endFrame": 682
+    },
+    {
+     "zh": "只丟那一小顆",
+     "en": "One bad die? Toss just that one.",
+     "startFrame": 682,
+     "endFrame": 733
+    }
+   ],
+   "narration": "所以反過來，拆成幾顆小晶片，每顆先測過，只挑好的用。壞一顆，只丟那一小顆。"
+  },
+  {
+   "id": "s5",
+   "startFrame": 732,
+   "durationFrames": 180,
+   "startSec": 24.4,
+   "durationSec": 6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
      "id": "flat",
      "text": "平放",
-     "frame": 238,
-     "sceneFrame": 55
+     "frame": 752,
+     "sceneFrame": 20
     },
     {
      "id": "ip",
-     "text": "矽中介層",
-     "frame": 267,
-     "sceneFrame": 84
+     "text": "中介層",
+     "frame": 840,
+     "sceneFrame": 108
     },
     {
      "id": "mem",
      "text": "記憶體",
-     "frame": 330,
-     "sceneFrame": 147
+     "frame": 886,
+     "sceneFrame": 154
     },
     {
      "id": "ring",
      "text": "一圈",
-     "frame": 318,
-     "sceneFrame": 135
+     "frame": 876,
+     "sceneFrame": 144
     }
    ],
-   "stillFrame": 356,
+   "stillFrame": 911,
    "subtitles": [
     {
-     "zh": "做法是把好幾顆晶片",
-     "en": "The trick: lay several chips flat",
-     "startFrame": 184,
-     "endFrame": 234
+     "zh": "挑好的",
+     "en": "Lay the good ones flat",
+     "startFrame": 733,
+     "endFrame": 748
     },
     {
-     "zh": "平放在一片矽中介層上",
-     "en": "on one silicon interposer,",
-     "startFrame": 234,
-     "endFrame": 292
+     "zh": "平放到",
+     "en": "Lay the good ones flat",
+     "startFrame": 748,
+     "endFrame": 763
+    },
+    {
+     "zh": "一片很薄的矽板上拼回去",
+     "en": "on a thin silicon slab.",
+     "startFrame": 763,
+     "endFrame": 820
+    },
+    {
+     "zh": "這片叫中介層",
+     "en": "It's called an interposer,",
+     "startFrame": 820,
+     "endFrame": 851
     },
     {
      "zh": "旁邊再圍一圈記憶體",
      "en": "ringed by memory.",
-     "startFrame": 292,
-     "endFrame": 358
+     "startFrame": 851,
+     "endFrame": 913
     }
    ],
-   "narration": "做法是把好幾顆晶片，平放在一片矽中介層上，旁邊再圍一圈記憶體。"
+   "narration": "挑好的，平放到一片很薄的矽板上拼回去。這片叫中介層，旁邊再圍一圈記憶體。"
   },
   {
-   "id": "s3",
-   "startFrame": 357,
-   "durationFrames": 138,
-   "startSec": 11.9,
-   "durationSec": 4.6,
+   "id": "s6",
+   "startFrame": 912,
+   "durationFrames": 180,
+   "startSec": 30.4,
+   "durationSec": 6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "why",
+     "text": "電路板",
+     "frame": 959,
+     "sceneFrame": 47
+    },
+    {
+     "id": "thin",
+     "text": "細很多",
+     "frame": 1007,
+     "sceneFrame": 95
+    },
+    {
+     "id": "dense",
+     "text": "更密",
+     "frame": 1034,
+     "sceneFrame": 122
+    },
+    {
+     "id": "fast",
+     "text": "來回",
+     "frame": 1055,
+     "sceneFrame": 143
+    }
+   ],
+   "stillFrame": 1091,
+   "subtitles": [
+    {
+     "zh": "為什麼不直接裝",
+     "en": "Why not mount them on a circuit board?",
+     "startFrame": 913,
+     "endFrame": 949
+    },
+    {
+     "zh": "在電路板上？",
+     "en": "Why not mount them on a circuit board?",
+     "startFrame": 949,
+     "endFrame": 976
+    },
+    {
+     "zh": "中介層的線細很多",
+     "en": "Interposer wiring is far finer",
+     "startFrame": 976,
+     "endFrame": 1019
+    },
+    {
+     "zh": "排得更密",
+     "en": "and denser,",
+     "startFrame": 1019,
+     "endFrame": 1041
+    },
+    {
+     "zh": "資料來回才夠快",
+     "en": "so data moves fast both ways.",
+     "startFrame": 1041,
+     "endFrame": 1093
+    }
+   ],
+   "narration": "為什麼不直接裝在電路板上？中介層的線細很多、排得更密，資料來回才夠快。"
+  },
+  {
+   "id": "s7",
+   "startFrame": 1092,
+   "durationFrames": 114,
+   "startSec": 36.4,
+   "durationSec": 3.8,
+   "component": "ThreeScene",
+   "beat": "payoff",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "wrap",
+     "text": "包起來",
+     "frame": 1125,
+     "sceneFrame": 33
+    },
+    {
+     "id": "name",
+     "text": "先進封裝",
+     "frame": 1172,
+     "sceneFrame": 80
+    }
+   ],
+   "stillFrame": 1205,
+   "subtitles": [
+    {
+     "zh": "拼好再整個包起來",
+     "en": "Assemble, then package the whole thing:",
+     "startFrame": 1093,
+     "endFrame": 1139
+    },
+    {
+     "zh": "這一步就叫先進封裝",
+     "en": "that step is called advanced packaging.",
+     "startFrame": 1139,
+     "endFrame": 1207
+    }
+   ],
+   "narration": "拼好再整個包起來，這一步就叫先進封裝。"
+  },
+  {
+   "id": "s8",
+   "startFrame": 1206,
+   "durationFrames": 204,
+   "startSec": 40.2,
+   "durationSec": 6.8,
    "component": "ThreeScene",
    "beat": "twist",
    "transition": {
@@ -153,459 +515,75 @@
     {
      "id": "joints",
      "text": "接點變多",
-     "frame": 383,
-     "sceneFrame": 26
+     "frame": 1226,
+     "sceneFrame": 20
     },
-    {
-     "id": "detour",
-     "text": "多走一段",
-     "frame": 426,
-     "sceneFrame": 69
-    },
-    {
-     "id": "why",
-     "text": "為什麼",
-     "frame": 447,
-     "sceneFrame": 90
-    }
-   ],
-   "stillFrame": 494,
-   "subtitles": [
-    {
-     "zh": "拆開再拼",
-     "en": "Split and rejoin: more joints,",
-     "startFrame": 358,
-     "endFrame": 379
-    },
-    {
-     "zh": "接點變多",
-     "en": "Split and rejoin: more joints,",
-     "startFrame": 379,
-     "endFrame": 400
-    },
-    {
-     "zh": "訊號也要多走一段",
-     "en": "a longer trip for signals.",
-     "startFrame": 400,
-     "endFrame": 443
-    },
-    {
-     "zh": "為什麼反而划算？",
-     "en": "So why is it cheaper?",
-     "startFrame": 443,
-     "endFrame": 496
-    }
-   ],
-   "narration": "拆開再拼，接點變多，訊號也要多走一段，為什麼反而划算？"
-  },
-  {
-   "id": "s4",
-   "startFrame": 495,
-   "durationFrames": 159,
-   "startSec": 16.5,
-   "durationSec": 5.3,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "prev",
-     "text": "上一支",
-     "frame": 499,
-     "sceneFrame": 4
-    },
-    {
-     "id": "defect",
-     "text": "缺陷",
-     "frame": 574,
-     "sceneFrame": 79
-    },
-    {
-     "id": "half",
-     "text": "不到一半",
-     "frame": 623,
-     "sceneFrame": 128
-    }
-   ],
-   "stillFrame": 653,
-   "subtitles": [
-    {
-     "zh": "上一支估算過",
-     "en": "Last time we estimated:",
-     "startFrame": 496,
-     "endFrame": 527
-    },
-    {
-     "zh": "晶片越大越容",
-     "en": "Last time we estimated:",
-     "startFrame": 527,
-     "endFrame": 559
-    },
-    {
-     "zh": "易被缺陷打中",
-     "en": "the bigger the chip, the likelier a defect hits.",
-     "startFrame": 559,
-     "endFrame": 592
-    },
-    {
-     "zh": "大晶片好的不到一半",
-     "en": "Under half of big chips come out good.",
-     "startFrame": 592,
-     "endFrame": 655
-    }
-   ],
-   "narration": "上一支估算過，晶片越大越容易被缺陷打中，大晶片好的不到一半。"
-  },
-  {
-   "id": "s5",
-   "startFrame": 654,
-   "durationFrames": 150,
-   "startSec": 21.8,
-   "durationSec": 5,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "small",
-     "text": "拆成小顆",
-     "frame": 658,
-     "sceneFrame": 4
-    },
-    {
-     "id": "test",
-     "text": "先測過",
-     "frame": 692,
-     "sceneFrame": 38
-    },
-    {
-     "id": "pick",
-     "text": "只挑好的",
-     "frame": 709,
-     "sceneFrame": 55
-    },
-    {
-     "id": "bad",
-     "text": "壞一顆",
-     "frame": 743,
-     "sceneFrame": 89
-    },
-    {
-     "id": "drop",
-     "text": "只丟那一小顆",
-     "frame": 760,
-     "sceneFrame": 106
-    }
-   ],
-   "stillFrame": 803,
-   "subtitles": [
-    {
-     "zh": "拆成小顆",
-     "en": "Split into small dies, test each first,",
-     "startFrame": 655,
-     "endFrame": 677
-    },
-    {
-     "zh": "每顆先測過",
-     "en": "Split into small dies, test each first,",
-     "startFrame": 677,
-     "endFrame": 705
-    },
-    {
-     "zh": "只挑好的封裝",
-     "en": "package only the good ones.",
-     "startFrame": 705,
-     "endFrame": 739
-    },
-    {
-     "zh": "壞一顆",
-     "en": "package only the good ones.",
-     "startFrame": 739,
-     "endFrame": 756
-    },
-    {
-     "zh": "只丟那一小顆",
-     "en": "One bad die? Toss just that one.",
-     "startFrame": 756,
-     "endFrame": 805
-    }
-   ],
-   "narration": "拆成小顆，每顆先測過，只挑好的封裝。壞一顆，只丟那一小顆。"
-  },
-  {
-   "id": "s6",
-   "startFrame": 804,
-   "durationFrames": 168,
-   "startSec": 26.8,
-   "durationSec": 5.6,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "thin",
-     "text": "細很多",
-     "frame": 858,
-     "sceneFrame": 54
-    },
-    {
-     "id": "near",
-     "text": "貼得近",
-     "frame": 907,
-     "sceneFrame": 103
-    },
-    {
-     "id": "fast",
-     "text": "來回",
-     "frame": 935,
-     "sceneFrame": 131
-    }
-   ],
-   "stillFrame": 971,
-   "subtitles": [
-    {
-     "zh": "中介層的線比",
-     "en": "Interposer wiring is far finer than a circuit board's.",
-     "startFrame": 805,
-     "endFrame": 837
-    },
-    {
-     "zh": "電路板細很多",
-     "en": "Interposer wiring is far finer than a circuit board's.",
-     "startFrame": 837,
-     "endFrame": 870
-    },
-    {
-     "zh": "晶片跟記憶體貼得近",
-     "en": "Chip and memory sit close,",
-     "startFrame": 870,
-     "endFrame": 920
-    },
-    {
-     "zh": "資料來回才夠快",
-     "en": "so data moves fast both ways.",
-     "startFrame": 920,
-     "endFrame": 973
-    }
-   ],
-   "narration": "中介層的線比電路板細很多，晶片跟記憶體貼得近，資料來回才夠快。"
-  },
-  {
-   "id": "s7",
-   "startFrame": 972,
-   "durationFrames": 183,
-   "startSec": 32.4,
-   "durationSec": 6.1,
-   "component": "ThreeScene",
-   "beat": "payoff",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "maker",
-     "text": "廠商公布",
-     "frame": 976,
-     "sceneFrame": 4
-    },
-    {
-     "id": "two",
-     "text": "兩顆",
-     "frame": 1032,
-     "sceneFrame": 60
-    },
-    {
-     "id": "edge",
-     "text": "印到極限",
-     "frame": 1044,
-     "sceneFrame": 72
-    },
-    {
-     "id": "bw",
-     "text": "十兆位元組",
-     "frame": 1117,
-     "sceneFrame": 145
-    }
-   ],
-   "stillFrame": 1154,
-   "subtitles": [
-    {
-     "zh": "廠商公布的大晶片",
-     "en": "The vendor's big chip:",
-     "startFrame": 973,
-     "endFrame": 1017
-    },
-    {
-     "zh": "就是兩顆",
-     "en": "The vendor's big chip:",
-     "startFrame": 1017,
-     "endFrame": 1040
-    },
-    {
-     "zh": "印到極限的晶片",
-     "en": "two dies, each printed to the limit, side by side,",
-     "startFrame": 1040,
-     "endFrame": 1079
-    },
-    {
-     "zh": "並排每秒互傳十兆位元組",
-     "en": "trading 10 TB every second.",
-     "startFrame": 1079,
-     "endFrame": 1156
-    }
-   ],
-   "narration": "廠商公布的大晶片，就是兩顆印到極限的晶片並排，每秒互傳十兆位元組。"
-  },
-  {
-   "id": "s8",
-   "startFrame": 1155,
-   "durationFrames": 156,
-   "startSec": 38.5,
-   "durationSec": 5.2,
-   "component": "ThreeScene",
-   "beat": "payoff",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
     {
      "id": "hard",
      "text": "封裝變難",
-     "frame": 1176,
-     "sceneFrame": 21
-    },
-    {
-     "id": "maker2",
-     "text": "廠商說",
-     "frame": 1199,
-     "sceneFrame": 44
+     "frame": 1248,
+     "sceneFrame": 42
     },
     {
      "id": "rate",
      "text": "九成八",
-     "frame": 1284,
-     "sceneFrame": 129
+     "frame": 1340,
+     "sceneFrame": 134
+    },
+    {
+     "id": "unk",
+     "text": "第三方實測",
+     "frame": 1373,
+     "sceneFrame": 167
     }
    ],
-   "stillFrame": 1310,
+   "stillFrame": 1409,
    "subtitles": [
     {
-     "zh": "代價是封裝變難",
-     "en": "The cost: packaging gets harder.",
-     "startFrame": 1156,
-     "endFrame": 1195
+     "zh": "代價是接點變多",
+     "en": "The cost: more joints, harder packaging.",
+     "startFrame": 1207,
+     "endFrame": 1244
+    },
+    {
+     "zh": "封裝變難",
+     "en": "The cost: more joints, harder packaging.",
+     "startFrame": 1244,
+     "endFrame": 1266
     },
     {
      "zh": "廠商說",
-     "en": "The cost: packaging gets harder.",
-     "startFrame": 1195,
-     "endFrame": 1212
-    },
-    {
-     "zh": "這種大封裝的良率",
      "en": "The vendor says yield for these big packages",
-     "startFrame": 1212,
-     "endFrame": 1257
+     "startFrame": 1266,
+     "endFrame": 1282
     },
     {
-     "zh": "已經超過九成八",
-     "en": "is already above 98%.",
-     "startFrame": 1257,
-     "endFrame": 1312
+     "zh": "這種大封裝",
+     "en": "is above 98% —",
+     "startFrame": 1282,
+     "endFrame": 1309
+    },
+    {
+     "zh": "良率已超過九成八",
+     "en": "is above 98% —",
+     "startFrame": 1309,
+     "endFrame": 1353
+    },
+    {
+     "zh": "還沒有第三方實測",
+     "en": "not yet independently tested.",
+     "startFrame": 1353,
+     "endFrame": 1411
     }
    ],
-   "narration": "代價是封裝變難。廠商說，這種大封裝的良率已經超過九成八。"
+   "narration": "代價是接點變多、封裝變難。廠商說，這種大封裝良率已超過九成八，還沒有第三方實測。"
   },
   {
    "id": "s9",
-   "startFrame": 1311,
-   "durationFrames": 159,
-   "startSec": 43.7,
-   "durationSec": 5.3,
-   "component": "ThreeScene",
-   "beat": "twist",
-   "transition": {
-    "type": "none",
-    "frames": 0
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": null,
-   "cues": [
-    {
-     "id": "x14",
-     "text": "十四倍",
-     "frame": 1315,
-     "sceneFrame": 4
-    },
-    {
-     "id": "y28",
-     "text": "二零二八年",
-     "frame": 1382,
-     "sceneFrame": 71
-    },
-    {
-     "id": "see",
-     "text": "還要再看",
-     "frame": 1438,
-     "sceneFrame": 127
-    }
-   ],
-   "stillFrame": 1469,
-   "subtitles": [
-    {
-     "zh": "十四倍的更大版本",
-     "en": "A 14× version is on the vendor's 2028 roadmap.",
-     "startFrame": 1312,
-     "endFrame": 1356
-    },
-    {
-     "zh": "廠商排在二零二八年",
-     "en": "Whether it works out",
-     "startFrame": 1356,
-     "endFrame": 1406
-    },
-    {
-     "zh": "做不做得到還要再看",
-     "en": "remains to be seen.",
-     "startFrame": 1406,
-     "endFrame": 1471
-    }
-   ],
-   "narration": "十四倍的更大版本，廠商排在二零二八年，做不做得到還要再看。"
-  },
-  {
-   "id": "s10",
-   "startFrame": 1470,
-   "durationFrames": 204,
-   "startSec": 49,
-   "durationSec": 6.8,
+   "startFrame": 1410,
+   "durationFrames": 219,
+   "startSec": 47,
+   "durationSec": 7.3,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
@@ -619,86 +597,86 @@
     {
      "id": "side",
      "text": "往旁邊拼",
-     "frame": 1474,
-     "sceneFrame": 4
+     "frame": 1425,
+     "sceneFrame": 15
     },
     {
      "id": "stack",
      "text": "往上疊",
-     "frame": 1508,
-     "sceneFrame": 38
+     "frame": 1468,
+     "sceneFrame": 58
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1524,
-     "sceneFrame": 54
+     "frame": 1484,
+     "sceneFrame": 74
     },
     {
      "id": "twelve",
      "text": "疊十二層",
-     "frame": 1586,
-     "sceneFrame": 116
+     "frame": 1543,
+     "sceneFrame": 133
     },
     {
      "id": "kw",
      "text": "留言封裝",
-     "frame": 1642,
-     "sceneFrame": 172
+     "frame": 1597,
+     "sceneFrame": 187
     }
    ],
-   "stillFrame": 1673,
+   "stillFrame": 1628,
    "subtitles": [
     {
-     "zh": "往旁邊拼",
-     "en": "Spread sideways, or stack up?",
-     "startFrame": 1471,
-     "endFrame": 1492
+     "zh": "晶片往旁邊拼",
+     "en": "Chips spread sideways;",
+     "startFrame": 1411,
+     "endFrame": 1442
     },
     {
-     "zh": "還是往上疊？",
-     "en": "Spread sideways, or stack up?",
-     "startFrame": 1492,
-     "endFrame": 1520
+     "zh": "記憶體則往上疊",
+     "en": "Chips spread sideways;",
+     "startFrame": 1442,
+     "endFrame": 1480
     },
     {
      "zh": "下一支",
-     "en": "Spread sideways, or stack up?",
-     "startFrame": 1520,
-     "endFrame": 1537
+     "en": "memory stacks up.",
+     "startFrame": 1480,
+     "endFrame": 1496
     },
     {
-     "zh": "來看記憶體",
-     "en": "Next: why memory stacks 12 layers high.",
-     "startFrame": 1537,
-     "endFrame": 1565
+     "zh": "來看記憶體為",
+     "en": "memory stacks up.",
+     "startFrame": 1496,
+     "endFrame": 1529
     },
     {
-     "zh": "為什麼疊十二層",
+     "zh": "什麼疊十二層",
      "en": "Next: why memory stacks 12 layers high.",
-     "startFrame": 1565,
-     "endFrame": 1604
+     "startFrame": 1529,
+     "endFrame": 1561
     },
     {
      "zh": "想要完整解說",
-     "en": "Comment \"封裝\" for the full notes.",
-     "startFrame": 1604,
-     "endFrame": 1638
+     "en": "Next: why memory stacks 12 layers high.",
+     "startFrame": 1561,
+     "endFrame": 1593
     },
     {
      "zh": "留言封裝",
      "en": "Comment \"封裝\" for the full notes.",
-     "startFrame": 1638,
-     "endFrame": 1675
+     "startFrame": 1593,
+     "endFrame": 1630
     }
    ],
-   "narration": "往旁邊拼，還是往上疊？下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。"
+   "narration": "晶片往旁邊拼，記憶體則往上疊。下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。"
   },
   {
-   "id": "s11",
-   "startFrame": 1674,
+   "id": "s10",
+   "startFrame": 1629,
    "durationFrames": 96,
-   "startSec": 55.8,
+   "startSec": 54.3,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
@@ -710,7 +688,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1758,
+   "stillFrame": 1713,
    "subtitles": []
   }
  ]
