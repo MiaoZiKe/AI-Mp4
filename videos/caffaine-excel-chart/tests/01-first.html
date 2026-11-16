@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>門市銷售量統計圖表</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-sub: #64748b;
+      --border-color: #e2e8f0;
+      --store-a: #3b82f6;
+      --store-b: #10b981;
+      --store-c: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      padding: 32px;
+      border: 1px solid var(--border-color);
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .btn {
+      border: none;
+      background: transparent;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      color: var(--text-main);
+    }
+
+    .btn.active {
+      background: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .grid-line {
+      stroke: var(--border-color);
+      stroke-dasharray: 4 4;
+      stroke-width: 1;
+    }
+
+    .axis-text {
+      font-size: 12px;
+      fill: var(--text-sub);
+    }
+
+    .bar {
+      cursor: pointer;
+      transition: y 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  x 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.3s ease;
+      rx: 4px;
+      ry: 4px;
+    }
+
+    .bar:hover {
+      filter: brightness(0.9);
+    }
+
+    .val-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle;
+      transition: y 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  x 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.4s ease;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1 class="title">上半年門市銷售量統計</h1>
+      <div class="controls" id="filterGroup">
+        <button class="btn active" data-target="all">全部門市</button>
+        <button class="btn" data-target="門市A">門市 A</button>
+        <button class="btn" data-target="門市B">門市 B</button>
+        <button class="btn" data-target="門市C">門市 C</button>
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <svg id="chart" viewBox="0 0 800 400"></svg>
+    </div>
+
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <script>
+    const dataset = {
+      months: ['1月', '2月', '3月', '4月', '5月', '6月'],
+      stores: [
+        { name: '門市A', color: '#3b82f6', data: [120, 135, 150, 142, 168, 175] },
+        { name: '門市B', color: '#10b981', data: [95, 102, 98, 115, 120, 131] },
+        { name: '門市C', color: '#f59e0b', data: [80, 76, 91, 99, 105, 110] }
+      ]
+    };
+
+    const svg = document.getElementById('chart');
+    const legendEl = document.getElementById('legend');
+    const width = 800;
+    const height = 400;
+    const padding = { top: 40, right: 20, bottom: 40, left: 50 };
+
+    const chartWidth = width - padding.left - padding.right;
+    const chartHeight = height - padding.top - padding.bottom;
+
+    const maxVal = 200; // Y 軸最大值固定為 200
+    const zeroY = height - padding.bottom;
+
+    let currentFilter = 'all';
+
+    // 初始化 Y 軸 scale
+    function getY(val) {
+      return zeroY - (val / maxVal) * chartHeight;
+    }
+
+    // 建立背景網格與座標軸
+    function initChart() {
+      svg.innerHTML = '';
+      
+      // 繪製橫向網格與標籤
+      const yTicks = [0, 50, 100, 150, 200];
+      yTicks.forEach(tick => {
+        const y = getY(tick);
+        
+        // 網格線
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', padding.left);
+        line.setAttribute('y1', y);
+        line.setAttribute('x2', width - padding.right);
+        line.setAttribute('y2', y);
+        line.setAttribute('class', 'grid-line');
+        svg.appendChild(line);
+
+        // Y 軸標籤
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', padding.left - 10);
+        text.setAttribute('y', y + 4);
+        text.setAttribute('text-anchor', 'end');
+        text.setAttribute('class', 'axis-text');
+        text.textContent = tick;
+        svg.appendChild(text);
+      });
+
+      // 繪製 X 軸月份標籤
+      const stepX = chartWidth / dataset.months.length;
+      dataset.months.forEach((month, index) => {
+        const x = padding.left + index * stepX + stepX / 2;
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', height - 12);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('class', 'axis-text');
+        text.style.fontSize = '13px';
+        text.textContent = month;
+        svg.appendChild(text);
+      });
+
+      // 初始化圖例
+      legendEl.innerHTML = '';
+      dataset.stores.forEach(store => {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.id = `legend-${store.name}`;
+        item.innerHTML = `
+          <div class="legend-color" style="background-color: ${store.color}"></div>
+          <span>${store.name}</span>
+        `;
+        legendEl.appendChild(item);
+      });
+
+      // 創建長條圖容器
+      const barsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      barsGroup.id = 'bars-group';
+      svg.appendChild(barsGroup);
+
+      renderBars(true);
+    }
+
+    // 繪製/更新柱狀圖
+    function renderBars(isInitial = false) {
+      const barsGroup = document.getElementById('bars-group');
+      const stepX = chartWidth / dataset.months.length;
+      
+      const activeStores = currentFilter === 'all' 
+        ? dataset.stores 
+        : dataset.stores.filter(s => s.name === currentFilter);
+
+      // 更新圖例顯示狀態
+      dataset.stores.forEach(s => {
+        const el = document.getElementById(`legend-${s.name}`);
+        if (currentFilter === 'all' || currentFilter === s.name) {
+          el.style.opacity = '1';
+        } else {
+          el.style.opacity = '0.3';
+        }
+      });
+
+      const groupCount = activeStores.length;
+      const totalGroupWidth = stepX * 0.7; // 每一組佔據 X 軸區間的 70%
+      const barWidth = totalGroupWidth / groupCount;
+
+      dataset.months.forEach((_, mIdx) => {
+        const groupStartX = padding.left + mIdx * stepX + (stepX - totalGroupWidth) / 2;
+
+        dataset.stores.forEach((store, sIdx) => {
+          const barId = `bar-${mIdx}-${store.name}`;
+          const labelId = `label-${mIdx}-${store.name}`;
+          
+          let bar = document.getElementById(barId);
+          let label = document.getElementById(labelId);
+
+          const isVisible = currentFilter === 'all' || currentFilter === store.name;
+          const activeIndex = activeStores.findIndex(s => s.name === store.name);
+          
+          const targetVal = store.data[mIdx];
+          const targetY = getY(targetVal);
+          const targetHeight = zeroY - targetY;
+          const targetX = isVisible ? groupStartX + activeIndex * barWidth : groupStartX + (totalGroupWidth / 2) - (barWidth / 2);
+
+          if (!bar) {
+            // 創建長條元素
+            bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            bar.setAttribute('id', barId);
+            bar.setAttribute('class', 'bar');
+            bar.setAttribute('fill', store.color);
+            // 動畫初始位置（從底部長出）
+            bar.setAttribute('x', targetX);
+            bar.setAttribute('y', zeroY);
+            bar.setAttribute('width', barWidth);
+            bar.setAttribute('height', 0);
+            barsGroup.appendChild(bar);
+
+            // 創建數據標籤
+            label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            label.setAttribute('id', labelId);
+            label.setAttribute('class', 'val-label');
+            label.setAttribute('fill', store.color);
+            label.setAttribute('x', targetX + barWidth / 2);
+            label.setAttribute('y', zeroY - 6);
+            label.setAttribute('opacity', 0);
+            label.textContent = targetVal;
+            barsGroup.appendChild(label);
+          }
+
+          // 觸發 Transition 動畫
+          setTimeout(() => {
+            if (isVisible) {
+              bar.setAttribute('x', targetX);
+              bar.setAttribute('width', barWidth - (groupCount > 1 ? 4 : 0)); // 留適當間隙
+              bar.setAttribute('y', targetY);
+              bar.setAttribute('height', targetHeight);
+              bar.style.opacity = '1';
+
+              label.setAttribute('x', targetX + (barWidth - (groupCount > 1 ? 4 : 0)) / 2);
+              label.setAttribute('y', targetY - 6);
+              label.setAttribute('opacity', '1');
+              label.textContent = targetVal;
+            } else {
+              bar.setAttribute('y', zeroY);
+              bar.setAttribute('height', 0);
+              bar.style.opacity = '0';
+
+              label.setAttribute('y', zeroY);
+              label.setAttribute('opacity', '0');
+            }
+          }, isInitial ? mIdx * 60 : 10); // 載入時有些微交錯動畫
+        });
+      });
+    }
+
+    // 事件監聽：切換門市
+    document.getElementById('filterGroup').addEventListener('click', (e) => {
+      if (!e.target.classList.contains('btn')) return;
+
+      document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+
+      currentFilter = e.target.getAttribute('data-target');
+      renderBars();
+    });
+
+    // 頁面載入後初始化圖表
+    window.onload = initChart;
+  </script>
+</body>
+</html>

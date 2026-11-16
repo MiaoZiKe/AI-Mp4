@@ -212,3 +212,15 @@ CEO 自己對照念稿找到的原因：
 3. 改字／排版先一次收齊再重渲染一次。
 4. 指令輸出一律截短；截圖用縮圖或拼成一張再看。
 5. 進度與決定寫進檔案（各片 README.md、本手冊、caffaine-strategy-1116.md），不靠聊天紀錄。
+
+## 十五、量產指令（2026/11/17：一週 40～50 支，每支目標 0.08～0.12 億 token）
+原則：套版＋渲染＋檢查一支指令跑完，**報錯才派 haiku 修**；主聊天室只看最後一行摘要。
+
+1. **寫稿表**：`videos/<slug>/script.md`＝開頭幾行「欄位：值」（標題／查證日／留言關鍵字／封面（兩行用 `|` 隔開）／封面副標／追蹤）＋一張逐句表，表頭：`念稿｜view｜素材｜tone｜重點詞｜英`，可加 `來源｜狀態｜tag`。範例：`scripts/caffaine/examples/two-answers.script.md`（由 caffaine-two-answers 反推）。
+   - view 12 種、tone 6 種見 `caffaine-visual-plan-1116.md`；重點詞用「、」隔開，**每個必須出現在念稿裡**，依序變成 cue `k1、k2…`（動畫跟著念到那個詞觸發）；儲存格內要放 `|` 寫成 `\|`。
+   - 素材欄依 view：`kinetic`＝大字\|單位\|問號句；`chat`＝使用者那句話；`split`＝兩張圖路徑（`public/` 底下）或「上欄,…\|下欄,…\|表頭,…\|實測檔1\|實測檔2」；`browser`／`device`／`lens`＝圖路徑；`editor`＝repo 內文字檔路徑（取含重點詞的原文行，行號自動對）；`flow`／`check`＝節點或項目用 `\|` 隔開；`draw`＝一項＝骰子，多項（題幹\|選項…）＝抽籤；`claim`＝關鍵字\|引言句\|卡片名；`chart`＝免填。
+2. **套版**：`node scripts/caffaine/autoscript.mjs <slug>` → `videos/<slug>/script.json`（isoVersion 6，已有就不覆蓋，`--force` 才重產；`--md` 指別處的表、`--out` 指別處輸出）。缺英文字幕、重點詞不在念稿、素材找不到都會直接報錯。
+3. **配音（同批）**：`scripts/caffaine/voice-batch.sh <slug1> <slug2> …`，說明見 `docs/voice-batch-howto.md`。
+4. **出片＋檢查**：`scripts/caffaine/make.sh <slug> [--silent|--voice]`：念稿預檢 → validate → tsc（src 有變才跑）→ 無聲時間軸／align → `finish.sh` 出片＋疊片尾音 → `ov-check` 每 6 幀 → freezedetect → 16 格拼圖 `out/<slug>-sheet.png` → 一行摘要（片長、重疊筆數、停住次數、片尾 LUFS）。任何一步錯就停，印出卡在哪一步與最後 15 行輸出，完整紀錄在 `out/<slug>-make.log`。
+5. 流程：先 `--silent` 驗畫面 → 看一張拼圖 → 同批 `voice-batch.sh` → `--voice` 出成片。摘要出現重疊或停住才派 haiku，附 make.log 與 ov-report.json 路徑。
+
