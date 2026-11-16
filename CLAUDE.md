@@ -162,3 +162,4 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - 以台灣時間（Asia/Taipei）為準，**07:00 是停工線**。每個耗時步驟（研究工作流、TTS 批次、render）開始前先執行 `TZ=Asia/Taipei date`。
 - 若已超過 07:00：不開始新的耗時步驟；正在進行的 render 可讓它跑完但不再排下一支；把進度（已完成哪幾幕／哪一步）commit 並回報，等使用者再指示。
 - 每完成一支影片就先給使用者看（截圖總覽＋ MP4 路徑），再做下一支。
+- **科技透明圈例外**（使用者 2026/11/16 選「科技頻道白天照常做」）：停工線只管半夜到清晨；白天使用者在線、科技頻道每天要交片時，照常渲染與配音，每個耗時步驟開始前仍先看時間（`TZ=Asia/Taipei date`）與磁碟（`df -h /`）。其他頻道仍照停工線。
