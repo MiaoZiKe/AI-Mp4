@@ -98,7 +98,7 @@
     ]
    },
    "sources": [
-    "Gemini 實測 2026/11/17（虛構行程草稿，情境示意）"
+    "gemini-3.5-flash-lite 實測 2026/11/17（虛構草稿）"
    ],
    "para": 1
   },
@@ -108,7 +108,7 @@
    "narration": "我先貼上亂排的草稿，只有時間和地點。",
    "subtitle": {
     "zh": "我先貼上亂排的草稿\n只有時間和地點",
-    "en": "I pasted a rough draft: | just times and places."
+    "en": "I pasted a rough draft. | It has just times and places."
    },
    "keywords": [
     "草稿"
@@ -189,7 +189,7 @@
    "narration": "然後說：做成手機行程頁，每一項能勾選，重新整理還記得。",
    "subtitle": {
     "zh": "然後說\n做成手機行程頁\n每一項能勾選\n重新整理還記得",
-    "en": "Then: make a phone page where each item | ticks off and survives a reload."
+    "en": "Then I said: make a phone page. | Each item ticks off and survives reload."
    },
    "keywords": [
     "勾選"
@@ -249,7 +249,7 @@
    "narration": "它交回一頁：分兩天、時間軸，每項有時間、地點、怎麼去。",
    "subtitle": {
     "zh": "它交回一頁\n分兩天、時間軸\n每項有時間地點\n還有怎麼去",
-    "en": "One page: two days on a timeline, | with time, place and transport."
+    "en": "One page: two days on a timeline. | Each has time, place and transport."
    },
    "keywords": [
     "時間軸"
@@ -344,7 +344,7 @@
    "narration": "我用手機勾了三項，計數跟著變，重新整理，勾的還在。",
    "subtitle": {
     "zh": "手機勾了三項\n計數跟著變\n重新整理\n勾的還在",
-    "en": "On a phone: tick three, the counter follows; | after reload they stay."
+    "en": "On a phone, I tick three items. | The counter follows, and they stay."
    },
    "keywords": [
     "勾的還在"
@@ -413,7 +413,7 @@
    "narration": "但有個小毛病：一打開寫十一項，勾了卻變十二項。",
    "subtitle": {
     "zh": "但有個小毛病\n一打開寫十一項\n勾了卻變十二項",
-    "en": "One flaw: it opens saying 11 items, | then jumps to 12 after one tick."
+    "en": "One flaw: it opens saying 11 items. | After one tick, it jumps to 12."
    },
    "keywords": [
     "小毛病"
@@ -447,9 +447,9 @@
     "src": "caffaine-trip-plan/bug-raw.png",
     "ring": [
      124,
-     58,
+     56,
      142,
-     40
+     44
     ],
     "note": "最上面的計數",
     "noteAt": "but",
@@ -457,11 +457,27 @@
     "stampAt": "twelve",
     "stamp": "錯",
     "zoom": {
-     "src": "caffaine-trip-plan/bug-zoom.png",
-     "w": 1053,
-     "h": 488,
+     "src": "caffaine-trip-plan/zoom-a.png",
+     "src2": "caffaine-trip-plan/zoom-b.png",
+     "w": 1000,
+     "h": 384,
      "cap": "放大看：0／11 變成 3／12"
-    }
+    },
+    "native": [
+     390,
+     844
+    ],
+    "crop": [
+     0,
+     0,
+     390,
+     640
+    ],
+    "wi": 400,
+    "magOff": [
+     113,
+     48
+    ]
    },
    "sources": [
     "Playwright 實測：一打開 0／11，勾後 3／12"
@@ -474,7 +490,7 @@
    "narration": "我照實說：總數一打開就要對，其他不要動。",
    "subtitle": {
     "zh": "我照實說\n總數一打開就要對\n其他不要動",
-    "en": "I told it: the total must be right on open, | change nothing else."
+    "en": "I told it: the total must be right on open. | Change nothing else."
    },
    "keywords": [
     "要對"
@@ -536,7 +552,7 @@
    "narration": "再試一次，一打開就寫十二項，勾三項，重新整理也對。",
    "subtitle": {
     "zh": "再試一次\n一打開就寫十二項\n勾三項\n重新整理也對",
-    "en": "Retest: opens with 12, tick three, | and it stays right after reload."
+    "en": "Retest: it opens with 12 items. | Tick three, reload, and it stays right."
    },
    "keywords": [
     "十二項"
@@ -703,7 +719,7 @@
    "narration": "所以做法三步：貼上行程、交給 AI、用手機點，有毛病就說。",
    "subtitle": {
     "zh": "所以做法三步\n貼上行程\n交給 AI\n用手機點\n有毛病就說",
-    "en": "Three steps: paste, hand to AI, | tap through on a phone, report problems."
+    "en": "Three steps: paste, hand it to AI. | Tap through on a phone, report problems."
    },
    "keywords": [
     "三步"

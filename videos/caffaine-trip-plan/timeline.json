@@ -2,14 +2,14 @@
  "version": 2,
  "slug": "caffaine-trip-plan",
  "fps": 30,
- "totalFrames": 1755,
- "totalSec": 58.5,
- "gapSec": 0.7,
+ "totalFrames": 1518,
+ "totalSec": 50.6,
+ "gapSec": 0.3,
  "transitionFrames": 10,
  "estimated": {
   "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.5,
-  "gap": 0.7,
+  "rate": 4.9,
+  "gap": 0.3,
   "tailEndFrames": 18
  },
  "scenes": [
@@ -17,23 +17,23 @@
    "id": "s01",
    "audio": null,
    "audioFrame": 5,
-   "audioSec": 4.667,
+   "audioSec": 4.286,
    "headSilSec": 0,
    "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 166,
+   "durationFrames": 142,
    "transitionFrames": 0,
    "transition": null,
    "voiceStartFrame": 5,
-   "voiceEndFrame": 146,
-   "stillFrame": 156,
+   "voiceEndFrame": 134,
+   "stillFrame": 132,
    "subtitleWindow": [
     0,
-    163
+    139
    ],
    "sourceWindow": [
     0,
-    161
+    137
    ],
    "lines": [
     {
@@ -42,46 +42,46 @@
      "chars": [
       4,
       9,
-      15,
-      21,
-      26,
-      32,
-      38,
-      44
+      14,
+      19,
+      25,
+      30,
+      35,
+      40
      ]
     },
     {
      "text": "丟給 AI",
-     "start": 54,
+     "start": 50,
      "chars": [
-      56,
-      62,
-      62,
-      68,
-      73
+      52,
+      57,
+      57,
+      63,
+      68
      ]
     },
     {
      "text": "變成一頁能點的行程表",
-     "start": 84,
+     "start": 77,
      "chars": [
-      86,
-      92,
-      98,
-      103,
-      109,
-      115,
-      121,
-      126,
-      132,
-      138
+      79,
+      85,
+      90,
+      95,
+      100,
+      106,
+      111,
+      116,
+      122,
+      127
      ]
     }
    ],
    "keywords": [
     {
      "text": "一頁",
-     "start": 98
+     "start": 90
     }
    ],
    "cues": [
@@ -93,12 +93,12 @@
     {
      "id": "ai",
      "text": "丟給",
-     "frame": 58
+     "frame": 53
     },
     {
      "id": "page",
      "text": "一頁能點的行程表",
-     "frame": 99
+     "frame": 91
     }
    ],
    "sub": "行程亂躺在備忘錄\n丟給 AI\n變成一頁能點的行程表",
@@ -107,38 +107,38 @@
    "words": [],
    "charTimes": [
     0,
-    0.191,
-    0.383,
-    0.574,
-    0.765,
-    0.956,
-    1.148,
-    1.339,
-    1.76,
-    1.951,
-    2.142,
-    2.333,
-    2.754,
-    2.945,
-    3.137,
-    3.328,
-    3.519,
-    3.71,
-    3.902,
-    4.093,
-    4.284,
-    4.475
+    0.176,
+    0.351,
+    0.527,
+    0.703,
+    0.878,
+    1.054,
+    1.23,
+    1.616,
+    1.792,
+    1.967,
+    2.143,
+    2.529,
+    2.705,
+    2.881,
+    3.056,
+    3.232,
+    3.407,
+    3.583,
+    3.759,
+    3.934,
+    4.11
    ]
   },
   {
    "id": "s02",
    "audio": null,
-   "audioFrame": 166,
-   "audioSec": 3.556,
+   "audioFrame": 143,
+   "audioSec": 3.265,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 156,
-   "durationFrames": 137,
+   "startFrame": 132,
+   "durationFrames": 117,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -152,63 +152,63 @@
      8
     ]
    },
-   "voiceStartFrame": 166,
-   "voiceEndFrame": 273,
-   "stillFrame": 283,
+   "voiceStartFrame": 142,
+   "voiceEndFrame": 241,
+   "stillFrame": 239,
    "subtitleWindow": [
-    163,
-    290
+    139,
+    246
    ],
    "sourceWindow": [
-    161,
-    288
+    137,
+    244
    ],
    "lines": [
     {
      "text": "我先貼上亂排的草稿",
-     "start": 163,
+     "start": 139,
      "chars": [
-      165,
-      171,
-      177,
-      183,
-      189,
-      196,
-      202,
-      208,
-      214
+      142,
+      147,
+      153,
+      159,
+      164,
+      170,
+      176,
+      181,
+      187
      ]
     },
     {
      "text": "只有時間和地點",
-     "start": 226,
+     "start": 197,
      "chars": [
+      200,
+      205,
+      211,
+      217,
+      222,
       228,
-      234,
-      240,
-      246,
-      253,
-      259,
-      265
+      234
      ]
     }
    ],
    "keywords": [
     {
      "text": "草稿",
-     "start": 208
+     "start": 181
     }
    ],
    "cues": [
     {
      "id": "paste",
      "text": "貼上亂排的草稿",
-     "frame": 178
+     "frame": 154
     },
     {
      "id": "plain",
      "text": "只有時間和地點",
-     "frame": 229
+     "frame": 201
     }
    ],
    "sub": "我先貼上亂排的草稿\n只有時間和地點",
@@ -217,32 +217,32 @@
    "words": [],
    "charTimes": [
     0,
-    0.207,
-    0.413,
-    0.62,
-    0.827,
-    1.034,
-    1.24,
-    1.447,
-    1.654,
-    2.109,
-    2.315,
-    2.522,
-    2.729,
-    2.935,
-    3.142,
-    3.349
+    0.19,
+    0.38,
+    0.57,
+    0.759,
+    0.949,
+    1.139,
+    1.329,
+    1.519,
+    1.936,
+    2.126,
+    2.316,
+    2.506,
+    2.696,
+    2.886,
+    3.075
    ]
   },
   {
    "id": "s03",
    "audio": null,
-   "audioFrame": 294,
-   "audioSec": 5.111,
+   "audioFrame": 250,
+   "audioSec": 4.694,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 283,
-   "durationFrames": 184,
+   "startFrame": 239,
+   "durationFrames": 160,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -256,87 +256,87 @@
      8
     ]
    },
-   "voiceStartFrame": 293,
-   "voiceEndFrame": 447,
-   "stillFrame": 457,
+   "voiceStartFrame": 249,
+   "voiceEndFrame": 391,
+   "stillFrame": 389,
    "subtitleWindow": [
-    290,
-    464
+    246,
+    396
    ],
    "sourceWindow": [
-    288,
-    462
+    244,
+    394
    ],
    "lines": [
     {
      "text": "然後說",
-     "start": 290,
+     "start": 246,
      "chars": [
-      293,
-      298,
-      304
+      249,
+      254,
+      259
      ]
     },
     {
      "text": "做成手機行程頁",
-     "start": 315,
+     "start": 269,
      "chars": [
-      317,
-      322,
-      328,
-      334,
-      340,
-      346,
-      351
+      271,
+      276,
+      281,
+      287,
+      292,
+      297,
+      303
      ]
     },
     {
      "text": "每一項能勾選",
-     "start": 362,
+     "start": 312,
      "chars": [
-      364,
-      370,
-      376,
-      381,
-      387,
-      393
+      314,
+      319,
+      325,
+      330,
+      335,
+      341
      ]
     },
     {
      "text": "重新整理還記得",
-     "start": 403,
+     "start": 350,
      "chars": [
-      405,
-      411,
-      417,
-      423,
-      429,
-      434,
-      440
+      352,
+      358,
+      363,
+      368,
+      373,
+      379,
+      384
      ]
     }
    ],
    "keywords": [
     {
      "text": "勾選",
-     "start": 387
+     "start": 335
     }
    ],
    "cues": [
     {
      "id": "say",
      "text": "做成手機行程頁",
-     "frame": 318
+     "frame": 272
     },
     {
      "id": "tick",
      "text": "每一項能勾選",
-     "frame": 365
+     "frame": 316
     },
     {
      "id": "keep",
      "text": "重新整理還記得",
-     "frame": 407
+     "frame": 354
     }
    ],
    "sub": "然後說\n做成手機行程頁\n每一項能勾選\n重新整理還記得",
@@ -345,39 +345,39 @@
    "words": [],
    "charTimes": [
     0,
-    0.192,
-    0.384,
-    0.807,
-    0.999,
-    1.191,
-    1.383,
-    1.576,
-    1.768,
-    1.96,
-    2.383,
-    2.575,
-    2.767,
-    2.959,
-    3.151,
-    3.343,
-    3.766,
-    3.958,
-    4.15,
-    4.343,
-    4.535,
-    4.727,
-    4.919
+    0.176,
+    0.353,
+    0.741,
+    0.918,
+    1.094,
+    1.271,
+    1.447,
+    1.623,
+    1.8,
+    2.188,
+    2.365,
+    2.541,
+    2.718,
+    2.894,
+    3.07,
+    3.459,
+    3.635,
+    3.812,
+    3.988,
+    4.164,
+    4.341,
+    4.517
    ]
   },
   {
    "id": "s04",
    "audio": null,
-   "audioFrame": 468,
-   "audioSec": 4.667,
+   "audioFrame": 399,
+   "audioSec": 4.286,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 457,
-   "durationFrames": 172,
+   "startFrame": 389,
+   "durationFrames": 147,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -391,94 +391,94 @@
      8
     ]
    },
-   "voiceStartFrame": 467,
-   "voiceEndFrame": 608,
-   "stillFrame": 619,
+   "voiceStartFrame": 399,
+   "voiceEndFrame": 528,
+   "stillFrame": 526,
    "subtitleWindow": [
-    464,
-    626
+    396,
+    533
    ],
    "sourceWindow": [
-    462,
-    624
+    394,
+    531
    ],
    "lines": [
     {
      "text": "它交回一頁",
-     "start": 464,
+     "start": 396,
      "chars": [
-      467,
-      472,
-      477,
-      482,
-      488
+      398,
+      402,
+      407,
+      412,
+      417
      ]
     },
     {
      "text": "分兩天、",
-     "start": 497,
+     "start": 425,
      "chars": [
-      499,
-      504,
-      510,
-      510
+      427,
+      432,
+      437,
+      437
      ]
     },
     {
      "text": "時間軸",
-     "start": 513,
+     "start": 440,
      "chars": [
-      515,
-      520,
-      525
+      442,
+      447,
+      452
      ]
     },
     {
      "text": "每項有時間地點",
-     "start": 535,
+     "start": 460,
      "chars": [
-      537,
-      542,
-      548,
-      553,
-      558,
-      563,
-      569
+      462,
+      467,
+      472,
+      477,
+      482,
+      486,
+      491
      ]
     },
     {
      "text": "還有怎麼去",
-     "start": 578,
+     "start": 500,
      "chars": [
-      580,
-      585,
-      591,
-      596,
-      601
+      502,
+      507,
+      512,
+      516,
+      521
      ]
     }
    ],
    "keywords": [
     {
      "text": "時間軸",
-     "start": 515
+     "start": 442
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "交回一頁",
-     "frame": 473
+     "frame": 404
     },
     {
      "id": "tl",
      "text": "時間軸",
-     "frame": 516
+     "frame": 443
     },
     {
      "id": "how",
      "text": "怎麼去",
-     "frame": 592
+     "frame": 513
     }
    ],
    "sub": "它交回一頁\n分兩天、時間軸\n每項有時間地點\n還有怎麼去",
@@ -487,39 +487,39 @@
    "words": [],
    "charTimes": [
     0,
-    0.175,
-    0.351,
-    0.526,
-    0.702,
-    1.088,
-    1.263,
-    1.439,
-    1.614,
-    1.789,
-    1.965,
-    2.351,
-    2.526,
-    2.702,
-    2.877,
-    3.053,
-    3.228,
-    3.404,
-    3.789,
-    3.965,
-    4.14,
-    4.316,
-    4.491
+    0.161,
+    0.322,
+    0.483,
+    0.644,
+    0.999,
+    1.16,
+    1.321,
+    1.482,
+    1.643,
+    1.805,
+    2.159,
+    2.32,
+    2.481,
+    2.642,
+    2.803,
+    2.965,
+    3.126,
+    3.48,
+    3.641,
+    3.802,
+    3.963,
+    4.125
    ]
   },
   {
    "id": "s05",
    "audio": null,
-   "audioFrame": 629,
-   "audioSec": 4.667,
+   "audioFrame": 537,
+   "audioSec": 4.286,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 619,
-   "durationFrames": 171,
+   "startFrame": 526,
+   "durationFrames": 148,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -533,83 +533,83 @@
      8
     ]
    },
-   "voiceStartFrame": 629,
-   "voiceEndFrame": 769,
-   "stillFrame": 780,
+   "voiceStartFrame": 536,
+   "voiceEndFrame": 666,
+   "stillFrame": 664,
    "subtitleWindow": [
-    626,
-    787
+    533,
+    671
    ],
    "sourceWindow": [
-    624,
-    785
+    531,
+    669
    ],
    "lines": [
     {
      "text": "手機勾了三項",
-     "start": 626,
+     "start": 533,
      "chars": [
-      628,
-      634,
-      640,
-      646,
-      652,
-      658
+      536,
+      541,
+      547,
+      553,
+      558,
+      564
      ]
     },
     {
      "text": "計數跟著變",
-     "start": 670,
+     "start": 574,
      "chars": [
-      672,
-      678,
-      684,
-      691,
-      697
+      576,
+      582,
+      588,
+      594,
+      599
      ]
     },
     {
      "text": "重新整理",
-     "start": 708,
+     "start": 610,
      "chars": [
-      711,
-      717,
-      723,
-      729
+      612,
+      617,
+      623,
+      629
      ]
     },
     {
      "text": "勾的還在",
-     "start": 741,
+     "start": 639,
      "chars": [
-      743,
-      749,
-      755,
-      761
+      641,
+      647,
+      653,
+      658
      ]
     }
    ],
    "keywords": [
     {
      "text": "勾的還在",
-     "start": 743
+     "start": 641
     }
    ],
    "cues": [
     {
      "id": "tick",
      "text": "勾了三項",
-     "frame": 641
+     "frame": 548
     },
     {
      "id": "cnt",
      "text": "計數跟著變",
-     "frame": 674
+     "frame": 578
     },
     {
      "id": "keep",
      "text": "勾的還在",
-     "frame": 744
+     "frame": 643
     }
    ],
    "sub": "手機勾了三項\n計數跟著變\n重新整理\n勾的還在",
@@ -618,35 +618,35 @@
    "words": [],
    "charTimes": [
     0,
-    0.206,
-    0.413,
-    0.619,
-    0.826,
-    1.032,
-    1.487,
-    1.693,
-    1.9,
-    2.106,
-    2.313,
-    2.767,
-    2.973,
-    3.18,
-    3.386,
-    3.841,
-    4.047,
-    4.254,
-    4.46
+    0.19,
+    0.379,
+    0.569,
+    0.759,
+    0.948,
+    1.365,
+    1.555,
+    1.745,
+    1.934,
+    2.124,
+    2.541,
+    2.731,
+    2.92,
+    3.11,
+    3.527,
+    3.717,
+    3.906,
+    4.096
    ]
   },
   {
    "id": "s06",
    "audio": null,
-   "audioFrame": 790,
-   "audioSec": 4.444,
+   "audioFrame": 674,
+   "audioSec": 4.082,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 780,
-   "durationFrames": 164,
+   "startFrame": 664,
+   "durationFrames": 141,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -660,78 +660,78 @@
      8
     ]
    },
-   "voiceStartFrame": 790,
-   "voiceEndFrame": 924,
-   "stillFrame": 934,
+   "voiceStartFrame": 674,
+   "voiceEndFrame": 797,
+   "stillFrame": 795,
    "subtitleWindow": [
-    787,
-    941
+    671,
+    802
    ],
    "sourceWindow": [
-    785,
-    939
+    669,
+    800
    ],
    "lines": [
     {
      "text": "但有個小毛病",
-     "start": 787,
+     "start": 671,
      "chars": [
-      789,
-      794,
-      800,
-      806,
-      812,
-      818
+      673,
+      678,
+      683,
+      689,
+      694,
+      700
      ]
     },
     {
      "text": "一打開寫十一項",
-     "start": 829,
+     "start": 710,
      "chars": [
-      831,
-      837,
-      843,
-      849,
-      855,
-      861,
-      867
+      712,
+      717,
+      723,
+      728,
+      734,
+      739,
+      745
      ]
     },
     {
      "text": "勾了卻變十二項",
-     "start": 878,
+     "start": 755,
      "chars": [
-      880,
-      886,
-      892,
-      898,
-      904,
-      910,
-      916
+      757,
+      762,
+      768,
+      773,
+      779,
+      784,
+      789
      ]
     }
    ],
    "keywords": [
     {
      "text": "小毛病",
-     "start": 806
+     "start": 689
     }
    ],
    "cues": [
     {
      "id": "but",
      "text": "但有個小毛病",
-     "frame": 790
+     "frame": 674
     },
     {
      "id": "open",
      "text": "一打開寫十一項",
-     "frame": 833
+     "frame": 713
     },
     {
      "id": "twelve",
      "text": "變十二項",
-     "frame": 900
+     "frame": 775
     }
    ],
    "sub": "但有個小毛病\n一打開寫十一項\n勾了卻變十二項",
@@ -740,36 +740,36 @@
    "words": [],
    "charTimes": [
     0,
-    0.198,
-    0.397,
-    0.595,
-    0.794,
-    0.992,
-    1.429,
-    1.627,
-    1.825,
-    2.024,
-    2.222,
-    2.421,
-    2.619,
-    3.056,
-    3.254,
-    3.452,
-    3.651,
-    3.849,
-    4.048,
-    4.246
+    0.182,
+    0.364,
+    0.547,
+    0.729,
+    0.911,
+    1.312,
+    1.494,
+    1.676,
+    1.859,
+    2.041,
+    2.223,
+    2.405,
+    2.806,
+    2.988,
+    3.171,
+    3.353,
+    3.535,
+    3.717,
+    3.899
    ]
   },
   {
    "id": "s07",
    "audio": null,
-   "audioFrame": 944,
-   "audioSec": 3.778,
+   "audioFrame": 806,
+   "audioSec": 3.469,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 934,
-   "durationFrames": 144,
+   "startFrame": 795,
+   "durationFrames": 124,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -783,70 +783,70 @@
      8
     ]
    },
-   "voiceStartFrame": 944,
-   "voiceEndFrame": 1058,
-   "stillFrame": 1068,
+   "voiceStartFrame": 805,
+   "voiceEndFrame": 911,
+   "stillFrame": 909,
    "subtitleWindow": [
-    941,
-    1075
+    802,
+    916
    ],
    "sourceWindow": [
-    939,
-    1073
+    800,
+    914
    ],
    "lines": [
     {
      "text": "我照實說",
-     "start": 941,
+     "start": 802,
      "chars": [
-      943,
-      948,
-      954,
-      960
+      805,
+      810,
+      815,
+      821
      ]
     },
     {
      "text": "總數一打開就要對",
-     "start": 971,
+     "start": 830,
      "chars": [
-      973,
-      979,
-      985,
-      990,
-      996,
-      1002,
-      1008,
-      1014
+      832,
+      838,
+      843,
+      848,
+      854,
+      859,
+      865,
+      870
      ]
     },
     {
      "text": "其他不要動",
-     "start": 1025,
+     "start": 880,
      "chars": [
-      1027,
-      1032,
-      1038,
-      1044,
-      1050
+      882,
+      887,
+      892,
+      898,
+      903
      ]
     }
    ],
    "keywords": [
     {
      "text": "要對",
-     "start": 1008
+     "start": 865
     }
    ],
    "cues": [
     {
      "id": "say",
      "text": "總數一打開就要對",
-     "frame": 974
+     "frame": 834
     },
     {
      "id": "keep",
      "text": "其他不要動",
-     "frame": 1028
+     "frame": 883
     }
    ],
    "sub": "我照實說\n總數一打開就要對\n其他不要動",
@@ -855,33 +855,33 @@
    "words": [],
    "charTimes": [
     0,
-    0.195,
-    0.389,
-    0.584,
-    1.013,
-    1.207,
-    1.402,
-    1.597,
-    1.792,
-    1.986,
-    2.181,
-    2.376,
-    2.804,
-    2.999,
-    3.194,
-    3.388,
-    3.583
+    0.179,
+    0.358,
+    0.537,
+    0.93,
+    1.109,
+    1.288,
+    1.466,
+    1.645,
+    1.824,
+    2.003,
+    2.182,
+    2.575,
+    2.754,
+    2.933,
+    3.112,
+    3.291
    ]
   },
   {
    "id": "s08",
    "audio": null,
-   "audioFrame": 1079,
-   "audioSec": 4.667,
+   "audioFrame": 919,
+   "audioSec": 4.286,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1068,
-   "durationFrames": 171,
+   "startFrame": 909,
+   "durationFrames": 147,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -895,90 +895,90 @@
      8
     ]
    },
-   "voiceStartFrame": 1078,
-   "voiceEndFrame": 1219,
-   "stillFrame": 1229,
+   "voiceStartFrame": 919,
+   "voiceEndFrame": 1048,
+   "stillFrame": 1046,
    "subtitleWindow": [
-    1075,
-    1236
+    916,
+    1053
    ],
    "sourceWindow": [
-    1073,
-    1234
+    914,
+    1051
    ],
    "lines": [
     {
      "text": "再試一次",
-     "start": 1075,
+     "start": 916,
      "chars": [
-      1078,
-      1083,
-      1089,
-      1095
+      918,
+      923,
+      928,
+      933
      ]
     },
     {
      "text": "一打開就寫十二項",
-     "start": 1105,
+     "start": 943,
      "chars": [
-      1107,
-      1113,
-      1118,
-      1124,
-      1130,
-      1136,
-      1141,
-      1147
+      945,
+      950,
+      955,
+      960,
+      966,
+      971,
+      976,
+      981
      ]
     },
     {
      "text": "勾三項",
-     "start": 1157,
+     "start": 991,
      "chars": [
-      1159,
-      1165,
-      1171
+      993,
+      998,
+      1003
      ]
     },
     {
      "text": "重新整理也對",
-     "start": 1181,
+     "start": 1013,
      "chars": [
-      1183,
-      1189,
-      1195,
-      1200,
-      1206,
-      1212
+      1015,
+      1020,
+      1025,
+      1030,
+      1036,
+      1041
      ]
     }
    ],
    "keywords": [
     {
      "text": "十二項",
-     "start": 1136
+     "start": 971
     }
    ],
    "cues": [
     {
      "id": "again",
      "text": "再試一次",
-     "frame": 1079
+     "frame": 919
     },
     {
      "id": "open",
      "text": "一打開就寫十二項",
-     "frame": 1109
+     "frame": 946
     },
     {
      "id": "three",
      "text": "勾三項",
-     "frame": 1161
+     "frame": 994
     },
     {
      "id": "ok",
      "text": "重新整理也對",
-     "frame": 1185
+     "frame": 1016
     }
    ],
    "sub": "再試一次\n一打開就寫十二項\n勾三項\n重新整理也對",
@@ -987,37 +987,37 @@
    "words": [],
    "charTimes": [
     0,
-    0.19,
-    0.379,
-    0.569,
-    0.986,
-    1.176,
-    1.366,
-    1.556,
-    1.745,
-    1.935,
+    0.174,
+    0.348,
+    0.523,
+    0.906,
+    1.08,
+    1.254,
+    1.429,
+    1.603,
+    1.777,
+    1.951,
     2.125,
-    2.314,
-    2.732,
-    2.921,
-    3.111,
-    3.528,
-    3.718,
-    3.908,
-    4.098,
-    4.287,
-    4.477
+    2.509,
+    2.683,
+    2.857,
+    3.24,
+    3.415,
+    3.589,
+    3.763,
+    3.937,
+    4.111
    ]
   },
   {
    "id": "s09",
    "audio": null,
-   "audioFrame": 1240,
-   "audioSec": 5.111,
+   "audioFrame": 1057,
+   "audioSec": 4.694,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1229,
-   "durationFrames": 185,
+   "startFrame": 1046,
+   "durationFrames": 160,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1031,82 +1031,82 @@
      8
     ]
    },
-   "voiceStartFrame": 1239,
-   "voiceEndFrame": 1393,
-   "stillFrame": 1404,
+   "voiceStartFrame": 1056,
+   "voiceEndFrame": 1198,
+   "stillFrame": 1196,
    "subtitleWindow": [
-    1236,
-    1411
+    1053,
+    1203
    ],
    "sourceWindow": [
-    1234,
-    1409
+    1051,
+    1201
    ],
    "lines": [
     {
      "text": "不過行程是",
-     "start": 1236,
+     "start": 1053,
      "chars": [
-      1239,
-      1244,
-      1250,
-      1256,
-      1262
+      1056,
+      1061,
+      1066,
+      1071,
+      1077
      ]
     },
     {
      "text": "我虛構的草稿",
-     "start": 1272,
+     "start": 1086,
      "chars": [
-      1274,
-      1280,
-      1286,
-      1292,
-      1297,
-      1303
+      1088,
+      1094,
+      1099,
+      1104,
+      1110,
+      1115
      ]
     },
     {
      "text": "真的出門好不好用",
-     "start": 1314,
+     "start": 1124,
      "chars": [
-      1316,
-      1322,
-      1327,
-      1333,
-      1339,
-      1345,
-      1350,
-      1356
+      1126,
+      1132,
+      1137,
+      1142,
+      1148,
+      1153,
+      1158,
+      1164
      ]
     },
     {
      "text": "還不知道",
-     "start": 1367,
+     "start": 1173,
      "chars": [
-      1369,
-      1375,
-      1380,
-      1386
+      1175,
+      1180,
+      1186,
+      1191
      ]
     }
    ],
    "keywords": [
     {
      "text": "還不知道",
-     "start": 1369
+     "start": 1175
     }
    ],
    "cues": [
     {
      "id": "known",
      "text": "虛構的草稿",
-     "frame": 1281
+     "frame": 1095
     },
     {
      "id": "q",
      "text": "真的出門",
-     "frame": 1317
+     "frame": 1128
     }
    ],
    "sub": "不過行程是\n我虛構的草稿\n真的出門好不好用\n還不知道",
@@ -1115,39 +1115,39 @@
    "words": [],
    "charTimes": [
     0,
-    0.192,
-    0.384,
-    0.576,
-    0.769,
-    1.191,
-    1.383,
-    1.576,
-    1.768,
-    1.96,
-    2.152,
-    2.575,
-    2.767,
-    2.959,
-    3.151,
-    3.343,
-    3.536,
-    3.728,
-    3.92,
-    4.343,
-    4.535,
-    4.727,
-    4.919
+    0.176,
+    0.353,
+    0.529,
+    0.706,
+    1.094,
+    1.271,
+    1.447,
+    1.623,
+    1.8,
+    1.976,
+    2.365,
+    2.541,
+    2.718,
+    2.894,
+    3.07,
+    3.247,
+    3.423,
+    3.6,
+    3.988,
+    4.164,
+    4.341,
+    4.517
    ]
   },
   {
    "id": "s10",
    "audio": null,
-   "audioFrame": 1414,
-   "audioSec": 4.889,
+   "audioFrame": 1206,
+   "audioSec": 4.49,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1404,
-   "durationFrames": 177,
+   "startFrame": 1196,
+   "durationFrames": 154,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1161,94 +1161,94 @@
      8
     ]
    },
-   "voiceStartFrame": 1414,
-   "voiceEndFrame": 1561,
-   "stillFrame": 1571,
+   "voiceStartFrame": 1206,
+   "voiceEndFrame": 1342,
+   "stillFrame": 1340,
    "subtitleWindow": [
-    1411,
-    1578
+    1203,
+    1347
    ],
    "sourceWindow": [
-    1409,
-    1576
+    1201,
+    1345
    ],
    "lines": [
     {
      "text": "所以做法三步",
-     "start": 1411,
+     "start": 1203,
      "chars": [
-      1413,
-      1418,
-      1423,
-      1428,
-      1434,
-      1439
+      1205,
+      1209,
+      1214,
+      1219,
+      1224,
+      1229
      ]
     },
     {
      "text": "貼上行程",
-     "start": 1448,
+     "start": 1237,
      "chars": [
-      1450,
-      1456,
-      1461,
-      1466
+      1239,
+      1244,
+      1249,
+      1254
      ]
     },
     {
      "text": "交給 AI",
-     "start": 1476,
+     "start": 1262,
      "chars": [
-      1478,
-      1483,
-      1483,
-      1488,
-      1494
+      1265,
+      1269,
+      1269,
+      1274,
+      1279
      ]
     },
     {
      "text": "用手機點",
-     "start": 1503,
+     "start": 1288,
      "chars": [
-      1505,
-      1511,
-      1516,
-      1521
+      1290,
+      1295,
+      1299,
+      1304
      ]
     },
     {
      "text": "有毛病就說",
-     "start": 1531,
+     "start": 1313,
      "chars": [
-      1533,
-      1538,
-      1543,
-      1549,
-      1554
+      1315,
+      1320,
+      1325,
+      1330,
+      1334
      ]
     }
    ],
    "keywords": [
     {
      "text": "三步",
-     "start": 1434
+     "start": 1224
     }
    ],
    "cues": [
     {
      "id": "a",
      "text": "貼上行程",
-     "frame": 1452
+     "frame": 1241
     },
     {
      "id": "b",
      "text": "交給 AI",
-     "frame": 1479
+     "frame": 1266
     },
     {
      "id": "c",
      "text": "用手機點",
-     "frame": 1507
+     "frame": 1291
     }
    ],
    "sub": "所以做法三步\n貼上行程\n交給 AI\n用手機點\n有毛病就說",
@@ -1257,39 +1257,39 @@
    "words": [],
    "charTimes": [
     0,
-    0.176,
-    0.352,
-    0.528,
-    0.703,
-    0.879,
-    1.266,
-    1.442,
-    1.618,
-    1.794,
-    2.181,
-    2.357,
-    2.532,
-    2.708,
-    3.095,
-    3.271,
-    3.447,
-    3.623,
-    4.01,
-    4.185,
-    4.361,
-    4.537,
-    4.713
+    0.162,
+    0.323,
+    0.485,
+    0.646,
+    0.808,
+    1.163,
+    1.324,
+    1.486,
+    1.647,
+    2.003,
+    2.164,
+    2.326,
+    2.487,
+    2.842,
+    3.004,
+    3.165,
+    3.327,
+    3.682,
+    3.844,
+    4.005,
+    4.167,
+    4.328
    ]
   },
   {
    "id": "s11",
    "audio": null,
-   "audioFrame": 1582,
-   "audioSec": 2.222,
+   "audioFrame": 1350,
+   "audioSec": 2.041,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1571,
-   "durationFrames": 86,
+   "startFrame": 1340,
+   "durationFrames": 80,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1303,59 +1303,59 @@
      8
     ]
    },
-   "voiceStartFrame": 1581,
-   "voiceEndFrame": 1649,
-   "stillFrame": 1647,
+   "voiceStartFrame": 1350,
+   "voiceEndFrame": 1412,
+   "stillFrame": 1410,
    "subtitleWindow": [
-    1578,
-    1657
+    1347,
+    1420
    ],
    "sourceWindow": [
-    1576,
-    1652
+    1345,
+    1415
    ],
    "lines": [
     {
      "text": "留言「行程」",
-     "start": 1578,
+     "start": 1347,
      "chars": [
-      1581,
-      1586,
-      1586,
-      1592,
-      1598,
-      1598
+      1349,
+      1354,
+      1354,
+      1359,
+      1365,
+      1365
      ]
     },
     {
      "text": "拿這段提示詞",
-     "start": 1609,
+     "start": 1375,
      "chars": [
-      1611,
-      1617,
-      1623,
-      1629,
-      1635,
-      1641
+      1377,
+      1382,
+      1388,
+      1393,
+      1399,
+      1404
      ]
     }
    ],
    "keywords": [
     {
      "text": "行程",
-     "start": 1592
+     "start": 1359
     }
    ],
    "cues": [
     {
      "id": "kw",
      "text": "行程",
-     "frame": 1594
+     "frame": 1361
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 1631
+     "frame": 1395
     }
    ],
    "sub": "留言「行程」\n拿這段提示詞",
@@ -1364,25 +1364,25 @@
    "words": [],
    "charTimes": [
     0,
-    0.198,
-    0.397,
-    0.595,
-    1.032,
-    1.23,
-    1.429,
-    1.627,
-    1.825,
-    2.024
+    0.182,
+    0.364,
+    0.547,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1647,
+   "audioFrame": 1410,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1647,
+   "startFrame": 1410,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1397,14 +1397,14 @@
      8
     ]
    },
-   "voiceStartFrame": 1657,
-   "voiceEndFrame": 1657,
-   "stillFrame": 1743,
+   "voiceStartFrame": 1420,
+   "voiceEndFrame": 1420,
+   "stillFrame": 1506,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1652,
-    1755
+    1415,
+    1518
    ],
    "lines": [],
    "keywords": [],

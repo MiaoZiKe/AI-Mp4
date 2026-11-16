@@ -46,7 +46,7 @@
       "narration": "叫 AI 做咖啡店網頁，用手機寬度打開，價目表的價格欄不見了。",
       "subtitle": {
         "zh": "叫 AI 做咖啡店網頁\n用手機寬度打開\n價目表的價格欄\n不見了",
-        "en": "Asked AI for a cafe site. On a phone-width | screen the price column is gone."
+        "en": "Asked AI for a cafe site. | At phone width, the price column is gone."
       },
       "keywords": [
         "價格欄"
@@ -98,7 +98,7 @@
         ]
       },
       "sources": [
-        "Gemini 實測 2026/11/17"
+        "gemini-3.5-flash／3-flash-preview 實測 11/17"
       ],
       "para": 1
     },
@@ -108,7 +108,7 @@
       "narration": "我請它做咖啡店網頁，有價目表和推薦卡，交回一個網頁檔。",
       "subtitle": {
         "zh": "我請它做咖啡店網頁\n有價目表和推薦卡\n交回一個網頁檔",
-        "en": "I asked for a cafe page with menu, price | list, cards. It returned one web file."
+        "en": "I asked for a cafe page with a menu. | It returned one web file."
       },
       "keywords": [
         "價目表"
@@ -168,7 +168,7 @@
       "narration": "手機寬度打開，價目表右邊被切掉，價格欄在畫面外。",
       "subtitle": {
         "zh": "手機寬度打開\n價目表右邊被切掉\n價格欄在畫面外",
-        "en": "Opened at phone width: the table is cut off, | price column out of view."
+        "en": "Opened at phone width: the table is cut off. | The price column is out of view."
       },
       "keywords": [
         "被切掉"
@@ -229,7 +229,7 @@
       "narration": "我跟它說：價格欄被擠到畫面外，請修好，其他不要動。",
       "subtitle": {
         "zh": "我跟它說\n價格欄被擠到畫面外\n請修好\n其他不要動",
-        "en": "I told it: price column is off-screen, fix | it, change nothing else."
+        "en": "I told it the price column is off-screen. | Fix it, and change nothing else."
       },
       "keywords": [
         "請修好"
@@ -295,7 +295,7 @@
       "narration": "它改了，但只是變成能左右滑，價格還是要滑才看得到。",
       "subtitle": {
         "zh": "它改了\n但只是變成能左右滑\n價格還是要滑\n才看得到",
-        "en": "It changed it, but only made the table | swipeable: the price still needs a swipe."
+        "en": "It made the table swipeable. | But the price still needs a swipe."
       },
       "keywords": [
         "要滑"
@@ -357,7 +357,7 @@
       "narration": "所以一句話只修了一半，因為我沒說要不用滑。這次只測一個網頁。",
       "subtitle": {
         "zh": "所以一句話只修了一半\n因為我沒說要不用滑\n這次只測一個網頁",
-        "en": "So one sentence fixed only half: I never | said I wanted no swiping. One page, one | model tested."
+        "en": "One sentence fixed only half. | I never said I wanted no swiping. | I tested just one page this time."
       },
       "keywords": [
         "一半"
@@ -412,7 +412,7 @@
         }
       },
       "sources": [
-        "Gemini 實測，只試 1 個網頁、1 個模型"
+        "只試 1 個網頁（先後用 2 個模型）"
       ],
       "para": 1
     },
@@ -422,7 +422,7 @@
       "narration": "我再補一句：不要橫向滑動，每個品項改成一張小卡片。",
       "subtitle": {
         "zh": "我再補一句\n不要橫向滑動\n每個品項\n改成一張小卡片",
-        "en": "One more sentence: no sideways swiping, one | small card per item on phones."
+        "en": "One more sentence: no sideways swiping. | On phones, make each item a small card."
       },
       "keywords": [
         "小卡片"
@@ -479,7 +479,7 @@
       "narration": "這次每個品項是一張卡片，尺寸、熱量、價格，不用滑就看得到。",
       "subtitle": {
         "zh": "這次每個品項\n是一張卡片\n尺寸、熱量、價格\n不用滑就看得到",
-        "en": "Now each item is a card: size, calories, | price, all visible without swiping."
+        "en": "Now each item is a small card. | Size, calories, price: no swiping needed."
       },
       "keywords": [
         "不用滑"
@@ -522,7 +522,14 @@
           "text": "看得到",
           "at": "all"
         },
-        "aiAt": "start+8"
+        "aiAt": "start+8",
+        "size": "big",
+        "crop": [
+          0,
+          95,
+          390,
+          560
+        ]
       },
       "sources": [
         "Playwright 實測"
@@ -535,7 +542,7 @@
       "narration": "所以做法三步：用手機寬度打開、說清楚要看到什麼、再打開確認。",
       "subtitle": {
         "zh": "所以做法三步\n用手機寬度打開\n說清楚要看到什麼\n再打開確認",
-        "en": "Three steps: open at phone width, say what | you want to see, check again."
+        "en": "Three steps: open it at phone width. | Say what you want to see, then recheck."
       },
       "keywords": [
         "三步"

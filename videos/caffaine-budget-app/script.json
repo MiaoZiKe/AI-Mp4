@@ -46,7 +46,7 @@
    "narration": "想要自己的記帳工具，不用寫一行程式，一句話就行。",
    "subtitle": {
     "zh": "想要自己的記帳工具\n不用寫一行程式\n一句話就行",
-    "en": "Your own expense tracker: | no code, just one prompt."
+    "en": "Your own expense tracker, no code. | Just one prompt."
    },
    "keywords": [
     "一句話"
@@ -94,7 +94,7 @@
     ]
    },
    "sources": [
-    "Gemini 實測 2026/11/17（情境示意）"
+    "gemini-3.5-flash-lite 實測 2026/11/17（情境示意）"
    ],
    "para": 1
   },
@@ -104,7 +104,7 @@
    "narration": "我只說：輸入金額、選分類，算出本月總共花多少。",
    "subtitle": {
     "zh": "我只說\n輸入金額、選分類\n算出本月總共花多少",
-    "en": "I asked for: amounts, categories, | and a monthly total."
+    "en": "I asked for amounts and categories. | I also wanted a monthly total."
    },
    "keywords": [
     "輸入金額"
@@ -160,7 +160,7 @@
    "narration": "它交回一個網頁檔，一開始是空的。我記了四筆，本月總共四百九十五元。",
    "subtitle": {
     "zh": "它交回一個網頁檔\n一開始是空的\n我記了四筆\n本月總共四百九十五元",
-    "en": "It returned one web file. Empty at first; | I logged four items: NT$495 total."
+    "en": "It returned one web file. | It was empty at first. | I logged four items. | The total is NT$495."
    },
    "keywords": [
     "四百九十五"
@@ -208,7 +208,8 @@
      "text": "495",
      "at": "sum"
     },
-    "aiAt": "start+8"
+    "aiAt": "start+8",
+    "size": "big"
    },
    "sources": [
     "Playwright 實測：四筆合計 495，畫面也是 495"
@@ -221,7 +222,7 @@
    "narration": "重新整理，資料還在，存在這支手機的瀏覽器裡。",
    "subtitle": {
     "zh": "重新整理\n資料還在\n存在這支手機的瀏覽器",
-    "en": "Reload: the data is still there, | saved in this phone's browser."
+    "en": "Reload the page: the data is still there. | It's saved in this phone's browser."
    },
    "keywords": [
     "資料還在"
@@ -270,7 +271,8 @@
       "at": "store",
       "color": "right"
      }
-    ]
+    ],
+    "size": "big"
    },
    "sources": [
     "Playwright 實測：重新整理後四筆都在"
@@ -344,7 +346,7 @@
    "narration": "我照實跟它說：刪除前先問我一次，其他地方不要動。",
    "subtitle": {
     "zh": "我照實跟它說\n刪除前先問我一次\n其他地方不要動",
-    "en": "I told it: ask before deleting, | and leave everything else alone."
+    "en": "I told it: ask before deleting. | And leave everything else alone."
    },
    "keywords": [
     "先問"
@@ -406,7 +408,7 @@
    "narration": "再試一次，按刪除先跳確認，按取消都還在，按確定才刪一筆。",
    "subtitle": {
     "zh": "再試一次\n按刪除先跳確認\n按取消都還在\n按確定才刪一筆",
-    "en": "Retest: Delete asks first. Cancel keeps | both; OK removes one."
+    "en": "Retest: Delete now asks first. | Cancel keeps both items. | OK removes just one."
    },
    "keywords": [
     "先跳確認"
@@ -518,15 +520,11 @@
     "rows": [
      {
       "big": "1",
-      "unit": "個模型",
-      "at": "start-1",
-      "color": "primary"
-     },
-     {
-      "big": "1",
       "unit": "種工具",
-      "at": "known+26",
-      "color": "sky"
+      "at": "start-1",
+      "color": "sky",
+      "size": 300,
+      "usize": 130
      }
     ],
     "q": {
@@ -537,7 +535,7 @@
     "statusAt": "q"
    },
    "sources": [
-    "只試 1 個模型、1 種工具"
+    "只試 1 種工具"
    ],
    "para": 1
   },
@@ -547,7 +545,7 @@
    "narration": "所以做法三步：講清楚、交給 AI、用手機試，有毛病就說。",
    "subtitle": {
     "zh": "所以做法三步\n講清楚\n交給 AI\n用手機試\n有毛病就說",
-    "en": "Three steps: be specific, hand it to AI, | try it on a phone, report problems."
+    "en": "Three steps: be specific, hand it to AI. | Try it on a phone, report problems."
    },
    "keywords": [
     "三步"

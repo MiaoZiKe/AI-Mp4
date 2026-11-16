@@ -94,7 +94,7 @@
     ]
    },
    "sources": [
-    "Gemini 實測 2026/11/17（虛構主角與地點，情境示意）"
+    "gemini-3.5-flash-lite 實測 2026/11/17（虛構，示意）"
    ],
    "para": 1
   },
@@ -104,7 +104,7 @@
    "narration": "我只說：要有時間地點、倒數天數，還有回覆按鈕。",
    "subtitle": {
     "zh": "我只說\n要有時間地點\n倒數天數\n還有回覆按鈕",
-    "en": "I asked for: time and place, a countdown, | and a reply button."
+    "en": "I asked for a time and place. | I also wanted a countdown and reply button."
    },
    "keywords": [
     "回覆按鈕"
@@ -164,7 +164,7 @@
    "narration": "它交回網頁，時間地點都有，倒數三十二天，我核對過，算對了。",
    "subtitle": {
     "zh": "時間地點都有\n倒數三十二天\n我核對過\n算對了",
-    "en": "Time and place are there. 32 days to go; | I checked it: correct."
+    "en": "Time and place are there. | It shows 32 days to go. | I checked: that's correct."
    },
    "keywords": [
     "三十二天"
@@ -320,7 +320,7 @@
    "narration": "但有兩個毛病：名單有我沒輸入的人，回覆重新整理就不見。",
    "subtitle": {
     "zh": "但有兩個毛病\n名單有我沒輸入的人\n回覆重新整理\n就不見",
-    "en": "Two flaws: names I never typed, | and replies vanish on reload."
+    "en": "Two flaws: it lists names I never typed. | Replies also vanish on reload."
    },
    "keywords": [
     "兩個毛病"
@@ -353,10 +353,10 @@
     "statusAt": "two+6",
     "src": "caffaine-invite-page/bug-raw.png",
     "ring": [
-     24,
-     686,
-     334,
-     100
+     34,
+     708,
+     200,
+     64
     ],
     "note": "已回覆名單",
     "noteAt": "two",
@@ -364,11 +364,27 @@
     "stampAt": "gone",
     "stamp": "失",
     "zoom": {
-     "src": "caffaine-invite-page/bug-zoom.png",
-     "w": 1110,
-     "h": 450,
+     "src": "caffaine-invite-page/zoom-list.png",
+     "w": 840,
+     "h": 280,
      "cap": "放大看：預填的兩個人"
-    }
+    },
+    "native": [
+     390,
+     844
+    ],
+    "crop": [
+     0,
+     60,
+     390,
+     720
+    ],
+    "wi": 400,
+    "magOff": [
+     142,
+     -10
+    ],
+    "noteSize": 46
    },
    "sources": [
     "Playwright 實測：一打開已有 2 人，重新整理只剩 2 人"
@@ -381,7 +397,7 @@
    "narration": "我照實說：拿掉預填名單，回覆要存在手機裡。",
    "subtitle": {
     "zh": "我照實說\n拿掉預填名單\n回覆要存在手機裡",
-    "en": "I told it: drop the pre-filled names, | and save replies on the phone."
+    "en": "I told it: drop the pre-filled names. | Save the replies on the phone."
    },
    "keywords": [
     "存在手機裡"
@@ -443,7 +459,7 @@
    "narration": "再試一次，名單是空的，我送三個回覆，重新整理都還在。",
    "subtitle": {
     "zh": "再試一次\n名單是空的\n我送三個回覆\n重新整理都還在",
-    "en": "Retest: empty list, three replies sent; | after reload all three remain."
+    "en": "Retest: the list is empty. | I send three replies, reload, all remain."
    },
    "keywords": [
     "都還在"
@@ -598,7 +614,7 @@
    "narration": "所以做法三步：講清楚、交給 AI、用手機點一遍，有毛病就說。",
    "subtitle": {
     "zh": "所以做法三步\n講清楚\n交給 AI\n用手機點一遍\n有毛病就說",
-    "en": "Three steps: be specific, hand it to AI, | tap through on a phone, report problems."
+    "en": "Three steps: be specific, hand it to AI. | Tap through on a phone, report problems."
    },
    "keywords": [
     "三步"

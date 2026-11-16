@@ -181,7 +181,8 @@ const StackSplit: React.FC<VP> = ({ f, p, tone }) => {
       </>
     );
   }
-  const IWp = 560, ih = Math.round(IWp * 800 / 1280), CH = ih + 24, mids = (q.mids ?? []) as { text: string; at: any; color: string; kind?: string }[];
+  const cropped = !!(sides[0] as any)?.crop;   // 有 crop：原圖不拉伸、截取圖表區並放大；沒有就維持原本版面
+  const IWp = cropped ? (q.w ?? 740) : 560, ih = cropped ? Math.round(IWp * (sides[0] as any).crop[3] / (sides[0] as any).crop[2]) : Math.round(IWp * 800 / 1280), CH = ih + 24, mids = (q.mids ?? []) as { text: string; at: any; color: string; kind?: string }[];
   let my = TOP + 130;
   return (
     <>
@@ -191,7 +192,7 @@ const StackSplit: React.FC<VP> = ({ f, p, tone }) => {
         return (
           <React.Fragment key={i}>
             <div data-ov={`圖${i + 1}`} style={{ position: "absolute", left: X0, top: y, opacity: O(f, t, 5), transform: `translateX(${Math.round((1 - e) * -50)}px) rotate(${(-2 * (1 - e)).toFixed(2)}deg)` }}>
-              <Card color={sd.color}><div style={{ width: IWp, height: ih, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}><img src={staticFile(sd.src)} style={{ width: IWp, height: ih, display: "block" }} /></div></Card>
+              <Card color={sd.color}><div style={{ width: IWp, height: ih, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}>{(sd as any).crop ? <Shot src={sd.src} w={IWp} box={(sd as any).crop} sw={(sd as any).native?.[0] ?? 1120} sh={(sd as any).native?.[1] ?? 887} style={{ borderRadius: 12 }}>{null}</Shot> : <img src={staticFile(sd.src)} style={{ width: IWp, height: ih, display: "block" }} />}</div></Card>
             </div>
             <div data-ov={`標籤${i + 1}`} style={{ position: "absolute", left: X0 + IWp + 64, top: i ? y + CH - 70 : y + 6, ...bounce(f, A(sd.labelAt ?? sd.at, t)) }}><Chip text={sd.label} bg={c.fill} fg={c.on} px={30} /></div>
           </React.Fragment>
@@ -211,42 +212,48 @@ const StackSplit: React.FC<VP> = ({ f, p, tone }) => {
 const SplitView: React.FC<VP> = (vp) => (((vp.p.p as any).layout === "stack") ? <StackSplit {...vp} /> : <SplitSide {...vp} />);
 const SplitSide: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
-  const WI = 370, tL = A(q.left.at, p.in + 3), tR = A(q.right.at, p.in + 60), tM = A(q.mid?.at, FAR), tAI = A(q.aiAt, p.in + 6);
-  const CW = WI + 24, ex = E(f, tL, 12), exM = E(f, tM, 14);
+  const big = q.size === "big";   // big：左小右大、原圖不拉伸、只截取內文區（左右各自 crop，單位＝原圖像素）；預設行為不變
+  const WL = big ? (q.wl ?? 300) : 370, WR = big ? (q.wr ?? 476) : 370, WI = WL;
+  const tL = A(q.left.at, p.in + 3), tR = A(q.right.at, p.in + 60), tM = A(q.mid?.at, FAR), tAI = A(q.aiAt, p.in + 6);
+  const CWL = WL + 24, CWR = WR + 24, CW = CWL, ex = E(f, tL, 12), exM = E(f, tM, 14);
+  const GAP = IW - CWL - CWR, MIDC = X0 + CWL + GAP / 2, CTOP = TOP + (big ? 84 : 90), MW = big ? 120 : 132;
+  const nat = (s: any) => (s.native ?? q.native ?? [390, 844]) as number[];
+  const bx = (s: any) => (s.crop ?? q.crop ?? [0, 0, nat(s)[0], Math.min(nat(s)[1], 560)]) as number[];
+  const shot = (s: any, w: number) => (big ? <Shot src={s.src} w={w} box={bx(s)} sw={nat(s)[0]} sh={nat(s)[1]}>{null}</Shot> : null);
   const wipe = E(f, tR, 16), H = Math.round(800 * (WI / GBOX[2]));
   const ring = (t: number, big = 1) => (f < t ? 0 : 1);
   void ring;
   return (
     <>
-      <div style={{ position: "absolute", left: X0, top: TOP + 4, width: CW, display: "flex", justifyContent: "center" }}>
+      <div style={{ position: "absolute", left: X0, top: TOP + 4, width: CWL, display: "flex", justifyContent: "center" }}>
         <div data-ov="標籤左" style={bounce(f, A(q.left.labelAt ?? q.left.at, tL))}><Chip text={q.left.label} bg={col(q.left.color).fill} fg={col(q.left.color).on} px={34} /></div>
       </div>
-      <div style={{ position: "absolute", left: X0 + IW - CW, top: TOP + 4, width: CW, display: "flex", justifyContent: "center" }}>
+      <div style={{ position: "absolute", left: X0 + IW - CWR, top: TOP + 4, width: CWR, display: "flex", justifyContent: "center" }}>
         <div data-ov="標籤右" style={bounce(f, A(q.right.labelAt ?? q.right.at, tR))}><Chip text={q.right.label} bg={col(q.right.color).fill} fg={col(q.right.color).on} px={34} /></div>
       </div>
       {/* 左：草圖 */}
-      <div data-ov="左卡" style={{ position: "absolute", left: X0, top: TOP + 90, opacity: O(f, tL, 5), transform: `translateX(${Math.round((1 - ex) * -48)}px) rotate(${(-3 * (1 - ex) - 1.2 * ex).toFixed(2)}deg)` }}>
-        <Card color={q.left.color}><Shot src={q.left.src} w={WI}>{null}</Shot></Card>
+      <div data-ov="左卡" style={{ position: "absolute", left: X0, top: CTOP, opacity: O(f, tL, 5), transform: `translateX(${Math.round((1 - ex) * -48)}px) rotate(${(-3 * (1 - ex) - 1.2 * ex).toFixed(2)}deg)` }}>
+        <Card color={q.left.color}>{big ? shot(q.left, WL) : <Shot src={q.left.src} w={WI}>{null}</Shot>}</Card>
       </div>
       {f >= tR ? (
-        <div data-ov="右卡" style={{ position: "absolute", left: X0 + IW - CW, top: TOP + 90, clipPath: `inset(0 ${(100 * (1 - wipe)).toFixed(1)}% 0 0)` }}>
+        <div data-ov="右卡" style={{ position: "absolute", left: X0 + IW - CWR, top: CTOP, clipPath: `inset(0 ${(100 * (1 - wipe)).toFixed(1)}% 0 0)` }}>
           <Card color={q.right.color}>
-            <Shot src={q.right.src} w={WI}>
+            {big ? shot(q.right, WR) : <Shot src={q.right.src} w={WI}>
               {(() => { const y = 150 + (((f - tR) * 9) % 560); return <g><path d={`M${150} ${y - 38} V${y - 18}`} stroke={T.ink} strokeWidth={4} /><Star cx={150} cy={y} r={22} stroke={T.ink} fill="#fff" /></g>; })()}
               {(() => { const y = 120 + (((f - tR) * 6 + 300) % 600); return <g><path d={`M${380} ${y - 38} V${y - 18}`} stroke={T.ink} strokeWidth={4} /><Star cx={380} cy={y} r={22} stroke={T.ink} fill="#fff" /></g>; })()}
-            </Shot>
+            </Shot>}
           </Card>
         </div>
       ) : null}
       {/* 中：AI → 計時 */}
-      <div data-ov="AI 圓" style={{ position: "absolute", left: X0 + CW + (IW - 2 * CW) / 2 - 56, top: TOP + 260, width: 112, height: 112, borderRadius: 56, background: col("primary").fill, boxShadow: `0 8px 0 ${col("primary").side}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 52, color: "#fff", opacity: O(f, tAI, 6), transform: `scale(${(1 + 0.06 * Math.sin(f / 6)).toFixed(3)})` }}>AI</div>
-      <svg width={IW - 2 * CW} height={50} style={{ position: "absolute", left: X0 + CW, top: TOP + 388 }}>
-        {[0, 1, 2].map((i) => <path key={i} d={`M${34 + i * 36} 8 L${58 + i * 36} 25 L${34 + i * 36} 42`} fill="none" stroke={tone.accent} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" opacity={f < tAI ? 0 : 0.25 + 0.75 * clamp(Math.sin((f - i * 5) / 5))} />)}
+      <div data-ov="AI 圓" style={{ position: "absolute", left: MIDC - 56, top: TOP + 260, width: 112, height: 112, borderRadius: 56, background: col("primary").fill, boxShadow: `0 8px 0 ${col("primary").side}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 52, color: "#fff", opacity: O(f, tAI, 6), transform: `scale(${(1 + 0.06 * Math.sin(f / 6)).toFixed(3)})` }}>AI</div>
+      <svg width={GAP} height={50} style={{ position: "absolute", left: X0 + CWL, top: TOP + 388 }}>
+        {[0, 1, 2].map((i) => <path key={i} d={`M${(GAP - 96) / 2 + i * 36} 8 L${(GAP - 96) / 2 + 24 + i * 36} 25 L${(GAP - 96) / 2 + i * 36} 42`} fill="none" stroke={tone.accent} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" opacity={f < tAI ? 0 : 0.25 + 0.75 * clamp(Math.sin((f - i * 5) / 5))} />)}
       </svg>
       {q.mid ? (
-        <div data-ov="計時" style={{ position: "absolute", left: X0 + CW + (IW - 2 * CW) / 2 - 66, top: TOP + 480, width: 132, height: 132, opacity: O(f, tM, 4), transform: `scale(${(0.4 + 0.6 * exM + 0.08 * Math.sin(exM * 3.14)).toFixed(3)})` }}>
-          <svg width={132} height={132} viewBox="0 0 160 160"><circle cx={80} cy={80} r={68} fill={T.card} stroke={T.line} strokeWidth={14} /><circle cx={80} cy={80} r={68} fill="none" stroke={col("right").fill} strokeWidth={14} strokeLinecap="round" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - E(f, tM, 40) * 0.8} transform="rotate(-90 80 80)" /></svg>
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 38, color: col("right").text }}>{q.mid.text}</div>
+        <div data-ov="計時" style={{ position: "absolute", left: MIDC - MW / 2, top: TOP + 480, width: MW, height: MW, opacity: O(f, tM, 4), transform: `scale(${(0.4 + 0.6 * exM + 0.08 * Math.sin(exM * 3.14)).toFixed(3)})` }}>
+          <svg width={MW} height={MW} viewBox="0 0 160 160"><circle cx={80} cy={80} r={68} fill={T.card} stroke={T.line} strokeWidth={14} /><circle cx={80} cy={80} r={68} fill="none" stroke={col("right").fill} strokeWidth={14} strokeLinecap="round" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - E(f, tM, 40) * 0.8} transform="rotate(-90 80 80)" /></svg>
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: big ? 30 : 38, color: col("right").text }}>{q.mid.text}</div>
         </div>
       ) : null}
     </>
@@ -410,7 +417,8 @@ const BrowserSide: React.FC<VP> = ({ f, p, tone }) => {
 // ───────── T11 手機框 ─────────
 const DeviceView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
-  const tP = A(q.at ?? "start", p.in + 3), tTap = A(q.tapAt, FAR), SW = 330, SH = Math.round(SW * 844 / 390);
+  const big = q.size === "big";   // big：手機框放大到約半版寬（內容貼齊上緣、底部截掉）；預設不變
+  const tP = A(q.at ?? "start", p.in + 3), tTap = A(q.tapAt, FAR), SW = big ? (q.sw ?? 440) : 330, SH = big ? (q.sh ?? 740) : Math.round(SW * 844 / 390);
   const e = E(f, tP, 14), cards = (q.cards ?? []) as { text: string; sub?: string; at: any; color: string; icon: IconName }[];
   const fx = lerp(SW * 0.75, SW * 0.5, E(f, tTap - 22, 20)), fy = lerp(SH + 40, SH * 0.5, E(f, tTap - 22, 20));
   const press = f >= tTap ? Math.max(0, 1 - (f - tTap) / 26) : 0;
@@ -419,7 +427,7 @@ const DeviceView: React.FC<VP> = ({ f, p, tone }) => {
       <div data-ov="手機" style={{ position: "absolute", left: X0 + 30 + Math.round((1 - e) * -50), top: TOP + Math.round(8 * Math.sin(f / 14)), opacity: O(f, tP, 5), transform: `rotate(${(-3 * (1 - e) + 1.2).toFixed(2)}deg)` }}>
         <div style={{ width: SW + 40, padding: 20, borderRadius: 56, background: T.ink, boxShadow: `0 12px 0 #0E1530, ${T.depth.soft}` }}>
           <div style={{ position: "relative", width: SW, height: SH, borderRadius: 34, overflow: "hidden", background: "#FAF6EC" }}>
-            <img src={staticFile(q.src)} style={{ width: SW, height: SH, display: "block", objectFit: "cover" }} />
+            <img src={staticFile(q.src)} style={{ width: SW, height: SH, display: "block", objectFit: "cover", objectPosition: big ? "50% 0" : undefined }} />
             {f >= tTap - 22 ? <>
               <div style={{ position: "absolute", left: SW / 2 - 90 * (1 - press) - 40, top: SH * 0.5 - 90 * (1 - press) - 40, width: 80 + 180 * (1 - press), height: 80 + 180 * (1 - press), borderRadius: 999, border: `8px solid ${col("right").fill}`, opacity: f >= tTap ? press : 0 }} />
               <div style={{ position: "absolute", left: fx - 36, top: fy - 36, transform: `scale(${(1 - 0.2 * Math.min(1, press * 3)).toFixed(3)})`, opacity: O(f, tTap - 22, 6) }}><Ico n="tap" size={96} fill="#fff" /></div>
@@ -442,30 +450,31 @@ const DeviceView: React.FC<VP> = ({ f, p, tone }) => {
 // ───────── T9 放大鏡圈出 ─────────
 const LensView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
-  const WI = 420, k = WI / GBOX[2], tI = A(q.at ?? "start", p.in + 3), tScr = A(q.scanAt, FAR), tLap = A(q.stampAt, FAR), tA = A(q.noteAt, FAR);
+  const nat = q.native as number[] | undefined, cr = (q.crop ?? (nat ? [0, 0, nat[0], nat[1]] : GBOX)) as number[];   // native：座標＝原圖像素、不拉伸；沒寫就維持舊行為
+  const WI = q.wi ?? 420, k = WI / cr[2], tI = A(q.at ?? "start", p.in + 3), tScr = A(q.scanAt, FAR), tLap = A(q.stampAt, FAR), tA = A(q.noteAt, FAR);
   const e = E(f, tI, 14), box = q.ring as number[];
-  const cx = (box[0] + box[2] / 2 - GBOX[0]) * k, cy = (box[1] + box[3] / 2 - GBOX[1]) * k;
-  const m = E(f, tScr - 6, 22), mx = lerp(WI * 0.7, cx + 30, m) + (f > tScr + 16 ? 8 * Math.sin(f / 6) : 0), my = lerp(WI * 0.2, cy - 10, m) + (f > tScr + 16 ? 5 * Math.cos(f / 5) : 0);
-  const ZW = IW - (WI + 24) - 36, z = q.zoom, ZH = Math.round(ZW * (z.h / z.w));
+  const cx = (box[0] + box[2] / 2 - cr[0]) * k, cy = (box[1] + box[3] / 2 - cr[1]) * k, mo = (q.magOff ?? [30, -10]) as number[];
+  const m = E(f, tScr - 6, 22), mx = lerp(WI * 0.7, cx + mo[0], m) + (f > tScr + 16 ? 8 * Math.sin(f / 6) : 0), my = lerp(WI * 0.2, cy + mo[1], m) + (f > tScr + 16 ? 5 * Math.cos(f / 5) : 0);
+  const ZW = IW - (WI + 24) - 36, z = q.zoom, zsrc = z.src2 && f >= tLap ? z.src2 : z.src, ZH = Math.round(ZW * (z.h / z.w));
   return (
     <>
-      <div data-ov="大圖" style={{ position: "absolute", left: X0, top: TOP, opacity: O(f, tI, 5), transform: `translateX(${Math.round((1 - e) * -48)}px) rotate(${(-3 * (1 - e)).toFixed(2)}deg)` }}>
+      <div data-ov="大圖" style={{ position: "absolute", left: X0, top: TOP, opacity: O(f, tI, 5), transform: `translateX(${Math.round((1 - e) * (nat ? -20 : -48))}px) rotate(${(-3 * (1 - e)).toFixed(2)}deg)` }}>
         <Card color="wrong" style={{ position: "relative" }}>
-          <Shot src={q.src} w={WI}>
+          <Shot src={q.src} w={WI} box={cr} sw={nat ? nat[0] : 540} sh={nat ? nat[1] : 960}>
             <Ring f={f} at={tScr + 14} box={box} color="wrong" sw={8} />
           </Shot>
           {f >= tScr - 6 && f < tLap + 40 ? <div style={{ position: "absolute", left: 12 + mx - 40, top: 12 + my - 40, opacity: O(f, tScr - 6, 4) * (1 - O(f, tLap + 28, 10)) }}><Ico n="mag" size={100} color={T.ink} fill="rgba(255,255,255,0.55)" /></div> : null}
         </Card>
       </div>
       <div style={{ position: "absolute", left: X0 + WI + 24 + 36, top: TOP, width: ZW }}>
-        <div data-ov="說明條" style={{ ...bounce(f, A(q.noteAt, p.in + 8)), display: "inline-block" }}><Chip text={q.note} bg={col("wrong").soft} fg={col("wrong").text} px={34} /></div>
+        <div data-ov="說明條" style={{ ...bounce(f, A(q.noteAt, p.in + 8)), display: "inline-block" }}><Chip text={q.note} bg={col("wrong").soft} fg={col("wrong").text} px={q.noteSize ?? 34} /></div>
         {f < tScr ? <Ghost ov="放大空位" color={tone.accent} style={{ left: 0, top: 110, width: ZW, height: ZH + 56 }}><div style={{ transform: `scale(${(1 + 0.06 * Math.sin(f / 6)).toFixed(3)})` }}><Ico n="mag" size={150} color={tone.accent} fill="#fff" /></div></Ghost> : null}
         {f >= tScr ? (
           <div data-ov="放大圖" style={{ position: "absolute", left: 0, top: 110, width: ZW, ...riseIn(f, tScr, 40) }}>
-            <Card color="wrong"><div style={{ width: ZW - 24, height: ZH, borderRadius: 12, overflow: "hidden" }}><img src={staticFile(z.src)} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} /></div><div style={{ ...zh, fontWeight: 900, fontSize: 32, color: col("wrong").text, textAlign: "center", marginTop: 8 }}>{z.cap}</div></Card>
+            <Card color="wrong"><div style={{ width: ZW - 24, height: ZH, borderRadius: 12, overflow: "hidden" }}><img src={staticFile(zsrc)} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} /></div><div style={{ ...zh, fontWeight: 900, fontSize: 32, color: col("wrong").text, textAlign: "center", marginTop: 8 }}>{z.cap}</div></Card>
           </div>
         ) : null}
-        {f >= tLap ? <div data-ov="蓋章" style={{ position: "absolute", left: ZW / 2 - 130, top: 110 + ZH + 140, ...slam(f, tLap, -8, 1.3) }}><div style={{ width: 260, height: 260, borderRadius: 130, border: `14px solid ${col("wrong").fill}`, display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 150, color: col("wrong").fill, background: "rgba(255,255,255,0.7)" }}>{q.stamp}</div></div> : null}
+        {f >= tLap ? <div data-ov="蓋章" style={{ position: "absolute", left: ZW / 2 - 130, top: Math.min(110 + ZH + 140, 540), ...slam(f, tLap, -8, 1.3) }}><div style={{ width: 260, height: 260, borderRadius: 130, border: `14px solid ${col("wrong").fill}`, display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 150, color: col("wrong").fill, background: "rgba(255,255,255,0.7)" }}>{q.stamp}</div></div> : null}
       </div>
     </>
   );
@@ -539,8 +548,8 @@ const ClaimView: React.FC<VP> = ({ f, p, tone }) => {
       <div data-ov="引言卡" style={{ position: "absolute", left: X0, top: TOP + 4, width: IW, ...riseIn(f, p.in + 3, 40), background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("note").side}`, padding: "30px 40px", boxSizing: "border-box", textAlign: "center" }}>
         <div style={{ ...zh, fontWeight: 900, fontSize: 52, color: T.ink }}>{q.kicker}</div>
       </div>
-      {f < tK - 10 ? <Ghost color={col("primary").fill} style={{ left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, borderRadius: 64 }}><Ico n="bubble" size={150} color={col("primary").fill} fill="#fff" /></Ghost> : null}
-      <div data-ov="留言泡泡" style={{ position: "absolute", left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, background: col("primary").fill, borderRadius: 64, borderBottomLeftRadius: 14, boxShadow: `0 12px 0 ${col("primary").side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, tK - 10, 4), transform: `scale(${(0.9 + 0.1 * E(f, tK - 10, 12)).toFixed(3)})` }}>
+      {f < tK ? <Ghost color={col("primary").fill} style={{ left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, borderRadius: 64 }}><Ico n="bubble" size={150} color={col("primary").fill} fill="#fff" /></Ghost> : null}
+      <div data-ov="留言泡泡" style={{ position: "absolute", left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, background: col("primary").fill, borderRadius: 64, borderBottomLeftRadius: 14, boxShadow: `0 12px 0 ${col("primary").side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, tK, 4), transform: `scale(${(0.9 + 0.1 * E(f, tK, 12)).toFixed(3)})` }}>
         <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: "#DDE2FF", marginBottom: 8 }}>在貼文下留言</div>
         <div style={{ display: "flex", gap: 10 }}>{chars.map((c, i) => <div key={i} style={{ ...zh, fontWeight: 900, fontSize: 240, lineHeight: 1.1, color: "#fff", opacity: O(f, tK + i * 6, 4), transform: `translateY(${Math.round((1 - E(f, tK + i * 6, 8)) * -70)}px) rotate(${i ? 3 : -3}deg)` }}>{c}</div>)}</div>
       </div>
