@@ -98,7 +98,8 @@
     ],
     "kw": {
      "沒講": "wrong"
-    }
+    },
+    "track": 1
    },
    "sources": [
     "Gemini 實測 2026/11/16；PChome、東森頁面文字"
@@ -167,7 +168,8 @@
     ],
     "kw": {
      "劃線原價": "primary"
-    }
+    },
+    "track": 0
    },
    "sources": [
     "PChome、東森購物網頁文字，2026/11/16"
@@ -232,7 +234,8 @@
     ],
     "kw": {
      "兩千多": "wrong"
-    }
+    },
+    "track": 2
    },
    "sources": [
     "PChome、東森購物網頁文字，2026/11/16"
@@ -298,7 +301,8 @@
     ],
     "kw": {
      "六十塊": "right"
-    }
+    },
+    "track": 2
    },
    "sources": [
     "PChome、東森購物網頁文字，2026/11/16"
@@ -357,6 +361,32 @@
     ],
     "kw": {
      "自己判斷": "note"
+    },
+    "track": 2,
+    "table": {
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/03-compare.json",
+     "at": "own-24",
+     "head": [
+      "商品",
+      "PChome",
+      "ETMall",
+      "差"
+     ],
+     "rows": [
+      [
+       "酷態科 15號 (PB200PS)",
+       "$1,649",
+       "$1,589",
+       "$60"
+      ],
+      [
+       "酷態科 CP24 (LPB200NL)",
+       "$1,449",
+       "$1,409",
+       "$40"
+      ]
+     ]
     }
    },
    "sources": [
@@ -439,7 +469,8 @@
     ],
     "kw": {
      "兩個讓它看": "wrong"
-    }
+    },
+    "track": 0
    },
    "sources": [
     "各站 robots.txt 與條款，2026/11/16（Yahoo 為條款摘要）"
@@ -501,7 +532,8 @@
     ],
     "kw": {
      "還不知道": "wrong"
-    }
+    },
+    "track": 2
    },
    "sources": [
     "實測 1 樣商品、2 個網站、Gemini 3 次，2026/11/16"
@@ -551,7 +583,8 @@
     ],
     "kw": {
      "比價": "primary"
-    }
+    },
+    "track": 2
    },
    "sources": [
     "做法與測試紀錄整理在 CaffAIne 網站"
@@ -575,5 +608,20 @@
    "silent": true,
    "durationSec": 3.6
   }
+ ],
+ "desk": "shop",
+ "tracker": [
+  [
+   "購物網站",
+   "note"
+  ],
+  [
+   "AI 整理",
+   "primary"
+  ],
+  [
+   "比價表",
+   "right"
+  ]
  ]
 }

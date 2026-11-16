@@ -67,7 +67,7 @@ const Clock: React.FC<{ min: number; hr: number; flash: number }> = ({ min, hr, 
   );
 };
 
-const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, cam, P: Pn, panels }) => {
+const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[]; shop?: boolean }> = ({ f, cam, P: Pn, panels, shop }) => {
   const hk = Pn.hook, run = Pn.run, wr = Pn.wrong, vs = Pn.vs, ru = Pn.rule, lm = Pn.limit, ct = Pn.cta;
   const tTick = hk ? hk.at("tick", FAR) : FAR, tGuess = hk ? hk.at("guess", FAR) : FAR;
   const tSend = run ? run.at("send", FAR) : hk && hk.p.send ? hk.at("send", FAR) : FAR, tWait = run ? run.at("wait", FAR) : FAR, tDone = run ? run.at("done", FAR) : hk && hk.p.done ? hk.at("done", FAR) : FAR;
@@ -110,6 +110,7 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
           {mode === "done" ? [250, 210, 270, 160, 230].map((w, i) => <g key={i}><rect x={44} y={42 + i * 34} width={20} height={20} rx={5} fill={i === 3 ? T.color.wrong.fill : T.screen.on} /><rect x={76} y={44 + i * 34} width={w} height={16} rx={8} fill={i === 3 ? T.color.wrong.soft : T.screen.bar} /></g>) : null}
           {mode === "ok" ? <g><circle cx={W / 2} cy={H / 2} r={66} fill={T.screen.on} /><path d={`M${W / 2 - 32} ${H / 2 + 2} L${W / 2 - 8} ${H / 2 + 28} L${W / 2 + 36} ${H / 2 - 24}`} fill="none" stroke={T.color.right.fill} strokeWidth={18} strokeLinecap="round" strokeLinejoin="round" /></g> : null}
         </g>
+        {shop ? null : (<>
         {/* 會議紀錄：一疊紙＋最上面那張的字行；wr 時一行被螢光筆畫上 */}
         <Shade x={STK.x - 6} y={STK.y - 4} w={STK.w + 24} h={STK.h + 24} r={10} a={0.08} />
         {Array.from({ length: 7 }, (_, i) => <Slab key={i} id={`mtP${i}`} x={STK.x + (i % 2 ? 4 : -3)} y={STK.y + (i % 3) * 2} z={i * 7} w={STK.w} h={STK.h} t={6} r={6} c={S.white}>{i === 6 ? <g>{Array.from({ length: 6 }, (_, k) => <rect key={k} x={18} y={22 + k * 20} width={k % 2 ? 120 : 150} height={8} rx={4} fill={T.line} />)}<rect x={18} y={22 + 4 * 20 - 3} width={f >= tHl ? 150 * E(f, tHl, 9) : 0} height={14} rx={5} fill={T.color.wrong.fill} opacity={0.75} /></g> : null}</Slab>)}
@@ -130,6 +131,34 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
         </Slab>
         {rowsOn.filter(Boolean).length ? null : null}
         <Clock min={spin} hr={spin / 12 + 40} flash={pulse(f, tDone, 12)} />
+        </>)}
+        {shop ? (
+          <g>
+            {/* 兩個購物網站的頁面卡（只用圖形，站名在上面的 2D 卡） */}
+            <Shade x={STK.x - 6} y={STK.y - 4} w={STK.w + 24} h={STK.h + 150} r={10} a={0.08} />
+            {[0, 1].map((k) => <Slab key={k} id={`shP${k}`} x={STK.x} y={STK.y + k * 130} z={k ? 8 : 0} w={STK.w} h={110} t={8} r={8} c={S.white}>
+              <rect x={0} y={0} width={STK.w} height={20} rx={8} fill={k ? S.mint.r : S.sky.r} />
+              {[0, 1, 2].map((i) => <g key={i}><rect x={14 + i * 58} y={32} width={46} height={40} rx={6} fill={T.line} /><rect x={14 + i * 58} y={80} width={34} height={12} rx={6} fill={S.yellow.r} /></g>)}
+              <rect x={STK.w - 52} y={f >= tHl && f < tHl + 30 ? 80 : 80} width={38} height={12} rx={6} fill={T.color.wrong.fill} opacity={f >= tHl ? 0.9 : 0} />
+            </Slab>)}
+            {/* 價格標籤（跳一下） */}
+            <g transform={`translate(0 ${-14 * pulse(f, tHl, 14) * Math.sin(Math.PI * clamp((f - tHl) / 14))})`}><Box x={HL.x} y={HL.y} dx={80} dy={44} dz={10} c={S.yellow} /><Box x={HL.x + 90} y={HL.y + 10} dx={60} dy={34} dz={10} c={S.coral} /></g>
+            {/* 行動電源小模型 */}
+            <Shade x={CLK.x - 4} y={CLK.y - 4} w={90} h={150} r={12} a={0.1} />
+            <Box x={CLK.x} y={CLK.y} dx={72} dy={132} dz={34} c={S.lav} />
+            <g transform={css(ground(CLK.x + 8, CLK.y + 12, 34))}>{[0, 1, 2, 3].map((i) => <rect key={i} x={6} y={6 + i * 28} width={50} height={16} rx={6} fill={i < 3 ? S.mint.r : S.white.l} />)}</g>
+            {/* 比價表卡：兩欄（兩個網站）× 6 列，一格格打勾 */}
+            <Shade x={TODO.x - 4} y={TODO.y - 2} w={TODO.w + 18} h={TODO.h + 16} r={14} a={0.09} />
+            <Slab id="shTbl" x={TODO.x} y={TODO.y} z={0} w={TODO.w} h={TODO.h} t={12} r={14} c={S.white}>
+              <rect x={14} y={14} width={TODO.w - 28} height={34} rx={10} fill={f >= tAll ? T.color.right.fill : P.fill} opacity={0.9} />
+              {Array.from({ length: ROWS }, (_, i) => { const st = rowSt(i), y = 62 + i * 30, c = st === "guess" ? T.color.wrong.fill : T.color.right.fill; return (
+                <g key={i}>{[0, 1].map((k) => <g key={k}><rect x={20 + k * 104} y={y} width={22} height={22} rx={6} fill={st === "empty" ? "#fff" : c} stroke={st === "empty" ? T.cardSide : c} strokeWidth={3} />
+                  {st === "tick" || st === "fixed" ? <path d={`M${25 + k * 104} ${y + 11} L${31 + k * 104} ${y + 17} L${38 + k * 104} ${y + 6}`} fill="none" stroke="#fff" strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" /> : null}
+                  {st === "guess" ? <text x={31 + k * 104} y={y + 18} textAnchor="middle" fontFamily={FONT_EN} fontWeight={900} fontSize={20} fill="#fff">?</text> : null}
+                  <rect x={48 + k * 104} y={y + 5} width={st === "guess" ? 40 : 44} height={12} rx={6} fill={st === "guess" ? T.color.wrong.soft : T.line} /></g>)}</g>); })}
+            </Slab>
+          </g>
+        ) : null}
         {/* 還不知道：兩疊「別份紀錄」的虛線輪廓＋問號 */}
         {f >= tLim ? [{ x: 40, y: 330 }, { x: 150, y: 470 }].map((q, i) => { const o = O(f, tLim + i * 6, 8); return <g key={i} transform={css(ground(q.x, q.y, 2))} opacity={o}><rect width={150} height={110} rx={10} fill="none" stroke={T.color.plum.fill} strokeWidth={5} strokeDasharray="14 10" /><text x={75} y={78} textAnchor="middle" fontFamily={FONT_EN} fontWeight={900} fontSize={72} fill={T.color.plum.fill}>?</text></g>; }) : null}
         {/* 小盆栽（佈景） */}
@@ -249,14 +278,20 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     );
   }
   if (Pn.verdict) {
-    const g = Pn.verdict, p = g.p, o = 1 - O(f, g.out - 8, 8), t1 = g.at(p.a.at, g.in + 8), t2 = g.at(p.b.at, g.in + 40);
-    const card = (k: string, at: number, c: string, big: string, sub: string, icon: React.ReactNode) => <div key={k} data-ov="說明卡" style={{ ...bounce(f, at), width: 456 }}><div style={{ ...face(T.card, col(c).fill, 12), padding: "22px 22px 26px", height: "auto" }}>{icon}<div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 6 }}>{sub}</div><div style={{ ...zh, fontWeight: 900, fontSize: 58, color: col(c).text, marginTop: 4 }}>{big}</div></div></div>;
+    const g = Pn.verdict, p = g.p, o = 1 - O(f, g.out - 8, 8), t1 = g.at(p.a.at, g.in + 8), t2 = g.at(p.b.at, g.in + 40), tT = g.at(p.table?.at, g.in + 24);
+    const card = (k: string, at: number, c: string, big: string, sub: string, icon: React.ReactNode) => <div key={k} data-ov="說明卡" style={{ ...bounce(f, at), width: 456 }}><div style={{ ...face(T.card, col(c).fill, 12), padding: "12px 18px 16px", height: "auto", display: "flex", alignItems: "center", gap: 14 }}>{icon}<div><div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink2 }}>{sub}</div><div style={{ ...zh, fontWeight: 900, fontSize: 46, color: col(c).text }}>{big}</div></div></div></div>;
+    const tb = p.table as { by: string; head: string[]; rows: string[][] } | undefined, W4 = [480, 140, 140, 110];
     out.push(
       <div key="verdict" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div style={{ display: "flex", gap: 40 }}>
-          {card("a", t1, "right", p.a.big, p.a.sub, <Check size={64} color={col("right").fill} />)}
-          {card("b", t2, "note", p.b.big, p.b.sub, <svg width={64} height={64} viewBox="0 0 64 64"><path d="M32 6 L60 56 H4 Z" fill={col("note").fill} stroke={col("note").side} strokeWidth={5} strokeLinejoin="round" /><rect x={29} y={22} width={6} height={20} rx={3} fill={T.ink} /><circle cx={32} cy={48} r={4} fill={T.ink} /></svg>)}
+          {card("a", t1, "right", p.a.big, p.a.sub, <Check size={52} color={col("right").fill} />)}
+          {card("b", t2, "note", p.b.big, p.b.sub, <svg width={52} height={52} viewBox="0 0 64 64"><path d="M32 6 L60 56 H4 Z" fill={col("note").fill} stroke={col("note").side} strokeWidth={5} strokeLinejoin="round" /><rect x={29} y={22} width={6} height={20} rx={3} fill={T.ink} /><circle cx={32} cy={48} r={4} fill={T.ink} /></svg>)}
         </div>
+        {tb ? <div data-ov="說明卡" style={{ ...riseIn(f, tT, 24), marginTop: 18 }}><div style={{ ...face(T.card, P.side, 12), padding: "10px 20px 14px", height: "auto" }}>
+          <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{tb.by}</div>
+          <div style={{ display: "flex", gap: 10, marginTop: 6, borderBottom: `3px solid ${T.line}`, paddingBottom: 4 }}>{tb.head.map((h, i) => <div key={i} style={{ ...zh, fontWeight: 800, fontSize: 28, color: T.ink2, width: W4[i], textAlign: i ? "right" : "left" }}>{h}</div>)}</div>
+          {tb.rows.map((r, k) => <div key={k} style={{ ...riseIn(f, tT + 6 + k * 6, 14), display: "flex", gap: 10, padding: "4px 0" }}>{r.map((c, i) => <div key={i} style={{ ...(i ? en : zh), fontWeight: 800, fontSize: 30, color: i === 3 ? col("right").text : T.ink, width: W4[i], textAlign: i ? "right" : "left" }}>{c}</div>)}</div>)}
+        </div></div> : null}
       </div>,
     );
   }
@@ -376,8 +411,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
 };
 
 /** 上下兩條淡色帶（平台介面區也有內容）＋底部的「會議紀錄 → AI 整理 → 待辦清單」追蹤條 */
-const Bands: React.FC<{ f: number; on: number }> = ({ f, on }) => {
-  const steps: [string, string][] = [["會議紀錄", "note"], ["AI 整理", "primary"], ["待辦清單", "right"]];
+const Bands: React.FC<{ f: number; on: number; steps?: [string, string][] }> = ({ f, on, steps = [["會議紀錄", "note"], ["AI 整理", "primary"], ["待辦清單", "right"]] }) => {
   return (
     <>
       <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
@@ -428,8 +462,8 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop /><Glow f={f} />
-      <World f={f} cam={cam} P={Pn} panels={world} />
-      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, price: 1, verdict: 1, sites: 0, orig: 0, run: 1, wrong: 2, vs: 2, guess: 1, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
+      <World f={f} cam={cam} P={Pn} panels={world} shop={(rest as any).desk === "shop"} />
+      <Bands f={f} steps={(rest as any).tracker ?? undefined} on={inEnd ? -1 : (() => { const cur = world.filter((q) => q.in <= f).pop(); const t = cur?.p.track; return typeof t === "number" ? t : (({ hook: -1, price: 1, verdict: 1, sites: 0, orig: 0, run: 1, wrong: 2, vs: 2, guess: 1, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[cur?.kind ?? "hook"] ?? -1); })()} />
       <Floaters f={f} cam={cam} />
       {inEnd ? null : <Overlays f={f} P={Pn} cam={cam} />}
       {inEnd ? null : world.map((p) => <Tag key={p.sid} f={f} p={p} />)}
