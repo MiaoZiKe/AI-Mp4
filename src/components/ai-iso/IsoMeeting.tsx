@@ -382,7 +382,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     );
   }
   if (Pn.limit) {
-    const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = Math.max(l.at("known", l.in + 6), l.in + 22), tQ = Math.max(l.at("q", l.in + 50), l.in + 30);
+    const l = Pn.limit, p = l.p, o = 1 - O(f, l.out - 8, 8), tK = p.early ? l.in + 4 : Math.max(l.at("known", l.in + 6), l.in + 22), tQ = Math.max(l.at("q", l.in + 50), l.in + 30);
     const one = (key: string, at: number, st: string, c: string, lines: string[], y: number) => <div key={key} data-ov="說明卡" style={{ ...riseIn(f, at, 26), position: "absolute", left: key === "k" ? W0 : W0 + 496, top: y, width: 456, opacity: o }}><div style={{ ...face(T.card, col(c).side, 12), padding: "14px 26px 16px", height: "auto" }}><StatusChip f={f} at={at + 4} text={st} color={c} px={30} name="" /><div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink, marginTop: 8 }}>{lines[0]}</div><div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 2 }}>{lines[1]}</div></div></div>;
     out.push(one("k", tK, p.known.status, "right", p.known.lines, TOP), one("u", tQ, p.unknown.status, "plum", p.unknown.lines, TOP));
   }
@@ -494,25 +494,42 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
   // 實測截圖：一排最多三張手機尺寸的真實截圖（Playwright 實拍，檔案在 public/<src>），每張下面一句圖說；右側空位可放一個蓋章
   if (Pn.shot) {
     const g = Pn.shot, p = g.p, o = 1 - O(f, g.out - 8, 8), t0 = g.in + 3, shots = p.shots as { src: string; cap: string; at: any; color?: string }[];
-    const SW = 270, SH = 480, tSt = p.stamp ? g.at(p.stamp.at, g.in + 60) : 0;
+    // size: "big"＝截圖放大成主畫面（354×630）；右邊可放 zoom（放大圈出的局部圖）、note（一張文字卡）、stamp（蓋章）
+    const big = p.size === "big", SW = big ? 354 : 270, SH = big ? 630 : 480, tSt = p.stamp ? g.at(p.stamp.at, g.in + 60) : 0;
+    const side = big && (p.zoom || p.note), ZW = L.INNER_W - (SW + 48) - 24;
+    const sc = (k?: string) => col(k ?? "right");
     out.push(
       <div key="shot" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div data-ov="說明卡" style={{ ...riseIn(f, t0, 22), display: "inline-flex", alignItems: "center", gap: 14, background: T.card, borderRadius: 22, padding: "8px 18px", boxShadow: `0 6px 0 ${T.cardSide}` }}>
           <Chip text={p.label} bg={col(p.labelColor ?? "primary").fill} fg="#fff" px={30} /><div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.by}</div>
         </div>
-        <div style={{ display: "flex", gap: 24, marginTop: 52 }}>
+        <div style={{ display: "flex", gap: 24, marginTop: big ? 40 : 52, justifyContent: big && !side ? "center" : "flex-start" }}>
           {shots.map((q, i) => { const c = col(q.color ?? "primary"); return (
             <div key={q.src} data-ov="截圖" style={{ ...bounce(f, g.at(q.at, g.in + 10 + i * 22)), width: SW + 24, background: T.card, borderRadius: 22, padding: 12, boxShadow: `0 8px 0 ${c.side}` }}>
               <div style={{ width: SW, height: SH, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}><img src={staticFile(q.src)} style={{ width: SW, height: SH, objectFit: "contain", display: "block" }} /></div>
               <div style={{ ...zh, fontWeight: 900, fontSize: 32, color: c.text, marginTop: 8, textAlign: "center" }}>{q.cap}</div>
             </div>); })}
+          {side ? (
+            <div style={{ width: ZW, display: "flex", flexDirection: "column", gap: 22 }}>
+              {p.zoom ? <div data-ov="放大圖" style={{ ...bounce(f, g.at(p.zoom.at, g.in + 30)), background: T.card, borderRadius: 22, padding: 12, boxShadow: `0 8px 0 ${sc(p.zoom.color).side}` }}>
+                <div style={{ width: ZW - 24, height: Math.round((ZW - 24) * (p.zoom.h / p.zoom.w)), borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}><img src={staticFile(p.zoom.src)} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} /></div>
+                <div style={{ ...zh, fontWeight: 900, fontSize: 32, color: sc(p.zoom.color).text, marginTop: 8, textAlign: "center" }}>{p.zoom.cap}</div>
+              </div> : null}
+              {p.note ? <div data-ov="說明卡" style={{ ...bounce(f, g.at(p.note.at, g.in + 30)) }}><div style={{ ...face(T.card, sc(p.note.color).side, 12), padding: "16px 24px 22px", height: "auto" }}>
+                <Chip text={p.note.label} bg={sc(p.note.color).fill} fg={sc(p.note.color).on} px={30} />
+                <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: 50, color: T.ink, marginTop: 12, lineHeight: 1.3 }}>{p.note.line}</div>
+                {p.note.sub ? <div style={{ ...zh, whiteSpace: "normal", fontWeight: 700, fontSize: 30, color: T.ink2, marginTop: 10 }}>{p.note.sub}</div> : null}
+              </div></div> : null}
+              {p.stamp ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), alignSelf: "flex-start", ...zh, fontWeight: 900, fontSize: 52, color: sc(p.stamp.color).text, border: `7px solid ${sc(p.stamp.color).fill}`, borderRadius: 16, background: T.card, padding: "2px 24px" }}>{p.stamp.text}</div> : null}
+            </div>
+          ) : null}
         </div>
-        {p.stamp ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), position: "absolute", left: (SW + 48) * shots.length + 24 * (shots.length - 1) + 24, top: 160, ...zh, fontWeight: 900, fontSize: 44, color: col(p.stamp.color ?? "right").text, border: `7px solid ${col(p.stamp.color ?? "right").fill}`, borderRadius: 16, background: T.card, padding: "2px 22px", maxWidth: L.INNER_W - ((SW + 48) * shots.length + 24 * shots.length) }}>{p.stamp.text}</div> : null}
+        {p.stamp && !side ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), position: "absolute", ...(big ? { right: 0, top: 0 } : { left: (SW + 48) * shots.length + 24 * (shots.length - 1) + 24, top: 160, maxWidth: L.INNER_W - ((SW + 48) * shots.length + 24 * shots.length) }), ...zh, fontWeight: 900, fontSize: 44, color: col(p.stamp.color ?? "right").text, border: `7px solid ${col(p.stamp.color ?? "right").fill}`, borderRadius: 16, background: T.card, padding: "2px 22px" }}>{p.stamp.text}</div> : null}
       </div>,
     );
   }
   if (Pn.cta) {
-    const c = Pn.cta, p = c.p, o = 1 - O(f, c.out - 8, 8), t1 = c.at("kw", c.in + 8);
+    const c = Pn.cta, p = c.p, o = 1 - O(f, c.out - 8, 8), t1 = c.at(p.kwAt ?? "kw", c.in + 8);
     out.push(
       <div key="cta" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div data-ov="說明卡" style={{ ...slam(f, t1, -2, 1.04) }}>

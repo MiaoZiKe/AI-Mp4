@@ -112,8 +112,7 @@
    "sources": [
     "本片製作紀錄：程式與腳本都在本 repo，查證截至 2026/11/16"
    ],
-   "para": 1,
-   "tts": "你正在看的這支動畫，是我叫 A I 做的，我一行程式都沒寫。"
+   "para": 1
   },
   {
    "id": "s02",
@@ -188,9 +187,9 @@
   {
    "id": "s03",
    "beat": "mechanism",
-   "narration": "AI 先寫成腳本檔，會議紀錄那支有六百多行，全是文字。",
+   "narration": "接著 AI 先寫成腳本檔，會議紀錄那支有六百多行，全是文字。",
    "subtitle": {
-    "zh": "AI 先寫成腳本檔\n會議紀錄那支\n有六百多行\n全是文字",
+    "zh": "接著 AI 先寫成腳本檔\n會議紀錄那支\n有六百多行\n全是文字",
     "en": "AI writes a script file first. | The last one has 600+ lines, all text."
    },
    "keywords": [
@@ -267,8 +266,7 @@
    "sources": [
     "本 repo：script.json 共 604 行"
    ],
-   "para": 1,
-   "tts": "A I 先寫成腳本檔，會議紀錄那支有六百多行，全是文字。"
+   "para": 1
   },
   {
    "id": "s04",
@@ -349,8 +347,7 @@
    "sources": [
     "本 repo：ai-iso 資料夾 12 個檔"
    ],
-   "para": 1,
-   "tts": "畫面是另一批程式畫出來的，三千多行，也是 A I 寫的。"
+   "para": 1
   },
   {
    "id": "s05",
@@ -410,6 +407,70 @@
   },
   {
    "id": "s06",
+   "beat": "twist",
+   "narration": "第一版開頭只丟結果：六項待辦，一項是 AI 猜的。",
+   "subtitle": {
+    "zh": "第一版開頭\n只丟結果\n六項待辦\n一項是 AI 猜的",
+    "en": "Version 1 opened with a bare result: | six to-dos, one guessed by AI."
+   },
+   "keywords": [
+    "只丟結果"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "第一版開頭"
+    },
+    {
+     "id": "res",
+     "text": "只丟結果"
+    },
+    {
+     "id": "guess",
+     "text": "AI 猜的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "翻車",
+    "tagColor": "wrong",
+    "a": {
+     "big": "只丟結果",
+     "sub": "「六項待辦，一項負責人是它猜的」",
+     "at": "res"
+    },
+    "b": {
+     "big": "沒說是誰",
+     "sub": "也沒說在做什麼",
+     "at": "guess"
+    },
+    "status": "已確定・repo 文件紀錄",
+    "statusAt": "open+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "只丟結果": "wrong"
+    }
+   },
+   "sources": [
+    "玩法紀錄：playbook 第十三節第 2 點"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
    "beat": "payoff",
    "narration": "所以我多交代一句：動工前，先用一句話寫出重點。",
    "subtitle": {
@@ -480,7 +541,84 @@
    "para": 1
   },
   {
-   "id": "s07",
+   "id": "s08",
+   "beat": "payoff",
+   "narration": "重做成八句，每句只講一件事，句句接得上。",
+   "subtitle": {
+    "zh": "重做成八句\n每句只講一件事\n句句接得上",
+    "en": "Redone as eight lines, one idea each, | each line leading to the next."
+   },
+   "keywords": [
+    "八句"
+   ],
+   "cues": [
+    {
+     "id": "eight",
+     "text": "重做成八句"
+    },
+    {
+     "id": "one",
+     "text": "每句只講一件事"
+    },
+    {
+     "id": "link",
+     "text": "句句接得上"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "steps",
+    "tag": "修正",
+    "tagColor": "right",
+    "steps": [
+     {
+      "n": "1",
+      "t": "重做成八句",
+      "sub": "會議紀錄那支",
+      "color": "primary",
+      "at": "eight"
+     },
+     {
+      "n": "2",
+      "t": "一句一件事",
+      "sub": "講完一件才講下一件",
+      "color": "note",
+      "at": "one"
+     },
+     {
+      "n": "3",
+      "t": "句句接得上",
+      "sub": "用「為什麼、所以」連起來",
+      "color": "right",
+      "at": "link"
+     }
+    ],
+    "status": "已確定・本片製作紀錄",
+    "statusAt": "eight+6",
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "八句": "right"
+    }
+   },
+   "sources": [
+    "重做紀錄：git commit dc481b4"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
    "beat": "check",
    "narration": "還有，字卡疊在一起，檢查程式會抓出來，再叫它改。",
    "subtitle": {
@@ -545,7 +683,7 @@
    "tts": "還有，字卡疊在一起，檢查程式就會把它抓出來，再叫它改。"
   },
   {
-   "id": "s08",
+   "id": "s10",
    "beat": "so",
    "narration": "所以不會寫程式也行，講清楚、不對就退回。",
    "subtitle": {
@@ -617,7 +755,7 @@
    "para": 1
   },
   {
-   "id": "s09",
+   "id": "s11",
    "beat": "cta",
    "narration": "留言「動畫」，拿這兩句交代 AI 的範本。",
    "subtitle": {
@@ -665,11 +803,10 @@
    "sources": [
     "範本與步驟整理在 CaffAIne 網站（示意）"
    ],
-   "para": 1,
-   "tts": "留言「動畫」，拿這兩句交代 A I 的範本。"
+   "para": 1
   },
   {
-   "id": "s10",
+   "id": "end",
    "narration": "",
    "subtitle": {
     "zh": "",

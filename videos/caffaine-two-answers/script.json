@@ -116,11 +116,72 @@
    "sources": [
     "Gemini 實測 2026/11/16（虛構紀錄，情境示意）"
    ],
-   "para": 1,
-   "tts": "同一份會議紀錄、同一句話，我問 A I 兩次，答案卻不一樣。"
+   "para": 1
   },
   {
    "id": "s02",
+   "beat": "you",
+   "narration": "兩次都是同一句：幫我整理這份會議紀錄。",
+   "subtitle": {
+    "zh": "兩次都是同一句\n幫我整理這份會議紀錄",
+    "en": "Both times, one sentence: | “Please organize these meeting notes.”"
+   },
+   "keywords": [
+    "同一句"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "兩次都是同一句"
+    },
+    {
+     "id": "say",
+     "text": "幫我整理這份會議紀錄"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "talk",
+    "tag": "實測",
+    "tagColor": "note",
+    "label": "我打的那一句",
+    "note": "兩次完全一樣（實測原文）",
+    "line": "幫我整理這份會議紀錄。",
+    "typeAt": "start+8",
+    "typeDur": 34,
+    "lines": 1,
+    "size": 64,
+    "chips": [
+     "同一份紀錄",
+     "一個字沒改"
+    ],
+    "chipsAt": "say+10",
+    "status": "已確定・實測",
+    "statusAt": "same+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       420,
+       220,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "同一句": "primary"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16：兩次提示詞逐字相同"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
    "beat": "check",
    "narration": "第一次寫行銷經理，第二次寫待指派。",
    "subtitle": {
@@ -200,7 +261,67 @@
    "para": 1
   },
   {
-   "id": "s03",
+   "id": "s04",
+   "beat": "check",
+   "narration": "原文寫還沒指派，所以第二次對了，第一次是猜的。",
+   "subtitle": {
+    "zh": "原文寫還沒指派\n所以第二次對了\n第一次是猜的",
+    "en": "The notes say “not yet assigned”: | the 2nd was right, the 1st was a guess."
+   },
+   "keywords": [
+    "還沒指派"
+   ],
+   "cues": [
+    {
+     "id": "src",
+     "text": "原文寫還沒指派"
+    },
+    {
+     "id": "ok",
+     "text": "第二次對了"
+    },
+    {
+     "id": "guess",
+     "text": "第一次是猜的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "orig",
+    "tag": "原文",
+    "tagColor": "note",
+    "label": "會議紀錄原文（情境示意）",
+    "text": "客服排班要在 11 月底前排好，目前還沒有指派負責人",
+    "mark": "還沒有指派負責人",
+    "markAt": "src",
+    "hl": "src",
+    "verbatim": "tests/source-text.txt",
+    "status": "已確定・原文",
+    "statusAt": "src+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       420,
+       220,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "還沒指派": "wrong"
+    }
+   },
+   "sources": [
+    "會議紀錄虛構情境；第一次填的與原文不符"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
    "beat": "mechanism",
    "narration": "為什麼？因為 AI 是一個字一個字挑，像抽籤。這次抽到行銷經理，下次就可能抽到待指派。",
    "subtitle": {
@@ -302,11 +423,74 @@
    "sources": [
     "一般原理示意；字和長短是舉例"
    ],
-   "para": 1,
-   "tts": "為什麼？因為 A I 是一個字一個字挑，像抽籤。這次抽到行銷經理，下次就可能抽到待指派。"
+   "para": 1
   },
   {
-   "id": "s04",
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "像丟骰子，同一顆丟兩次，點數不一定一樣。",
+   "subtitle": {
+    "zh": "像丟骰子\n同一顆丟兩次\n點數不一定一樣",
+    "en": "Like dice: roll the same die twice, | the numbers can differ."
+   },
+   "keywords": [
+    "丟骰子"
+   ],
+   "cues": [
+    {
+     "id": "dice",
+     "text": "丟骰子"
+    },
+    {
+     "id": "twice",
+     "text": "丟兩次"
+    },
+    {
+     "id": "diff",
+     "text": "點數不一定一樣"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "比喻",
+    "tagColor": "primary",
+    "a": {
+     "big": "同一顆骰子",
+     "sub": "丟兩次",
+     "at": "dice"
+    },
+    "b": {
+     "big": "點數不一定",
+     "sub": "一樣",
+     "at": "diff"
+    },
+    "status": "日常比喻・示意",
+    "statusAt": "dice+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "丟骰子": "primary"
+    }
+   },
+   "sources": [
+    "日常比喻，示意；非實際機率"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
    "beat": "mechanism",
    "narration": "常見的字比較容易被抽到，但不保證每次一樣。",
    "subtitle": {
@@ -370,7 +554,71 @@
    "para": 1
   },
   {
-   "id": "s05",
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過我只測了這份紀錄，別份會不會這樣，還不知道。",
+   "subtitle": {
+    "zh": "不過我只測了這份紀錄\n別份會不會這樣\n還不知道",
+    "en": "But I only tested this one set of notes. | Whether others do this, unknown."
+   },
+   "keywords": [
+    "還不知道"
+   ],
+   "cues": [
+    {
+     "id": "known",
+     "text": "只測了這份紀錄"
+    },
+    {
+     "id": "q",
+     "text": "別份"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "limit",
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "early": true,
+    "known": {
+     "status": "已確定・實測",
+     "lines": [
+      "同一份紀錄",
+      "一般問法問了 2 次，答案不同"
+     ]
+    },
+    "unknown": {
+     "status": "查不到・還沒測",
+     "lines": [
+      "別份紀錄、別的 AI",
+      "會不會一樣，還不知道"
+     ]
+    },
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.6,
+      "sy": 1060,
+      "dur": 12,
+      "at": "start+2"
+     }
+    ],
+    "kw": {
+     "還不知道": "wrong"
+    },
+    "track": 2
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；只測一份紀錄"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
    "beat": "so",
    "narration": "所以重要的事，問兩次，對一對。",
    "subtitle": {
@@ -445,7 +693,7 @@
    "para": 1
   },
   {
-   "id": "s06",
+   "id": "s10",
    "beat": "payoff",
    "narration": "或者規定它，只根據資料，沒寫的填未指定，我們試了一次，它照做。",
    "subtitle": {
@@ -539,7 +787,7 @@
    "para": 1
   },
   {
-   "id": "s07",
+   "id": "s11",
    "beat": "cta",
    "narration": "留言「兩次」，拿這兩招的提示詞。",
    "subtitle": {
@@ -590,7 +838,7 @@
    "para": 1
   },
   {
-   "id": "s08",
+   "id": "end",
    "narration": "",
    "subtitle": {
     "zh": "",
