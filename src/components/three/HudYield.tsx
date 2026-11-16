@@ -321,7 +321,7 @@ const DiceView: React.FC<{ f: number; c: C; v: V }> = ({ f, c, v }) => {
       {blade ? <g><circle cx={blade.x} cy={blade.y} r={22} fill={A.yChuck2} stroke={A.yChuck3} strokeWidth={3} /><circle cx={blade.x} cy={blade.y} r={6} fill={A.yChuck3} /></g> : null}
       <Tag x={540} y={300} t={f >= c.s3_wafer ? "晶圓＝整片圓形矽板（直徑 300 mm）" : "圓形的矽板"} c={H.line} px={32} o={1} />
       {/* 下方的槽：切出來的一小格＝一顆晶片 */}
-      <rect x={465} y={1070} width={150} height={150} rx={6} fill="none" stroke={H.lineSoft} strokeWidth={3} strokeDasharray="10 8" />
+      <rect x={465} y={1070} width={150} height={150} rx={6} fill="none" stroke={H.lineSoft} strokeWidth={3} strokeDasharray="10 8" opacity={pk ? 1 : 0} />
       <Txt x={540} y={1300} t="晶片＝切出來的一小格（10×10 mm）" px={32} c={H.text2} w={800} g="slotlab" />
       {pk ? (
         <g transform={`translate(${px} ${py + bounce})`}>
@@ -522,7 +522,7 @@ const ChartView: React.FC<{ f: number; o: number; c: C }> = ({ f, o, c }) => {
 export const YieldArt: React.FC<{ f: number; cues: C }> = ({ f, cues }) => {
   const c0 = new Proxy(cues, { get: (t, k: string) => (t[k] ?? 1e9) }) as C;
   // 換段的幀（狀態標籤落定後至少停 0.8 秒，所以有些段延到下一幕開頭幾幀）
-  const v = { v3: c0.s3_start, v4: c0.s4_start + 4, v5: c0.s5_start, v7: c0.s7_start, v8: c0.s8_start, v9: c0.s9_start + 6, v10: c0.s10_start + 4 };
+  const v = { v3: c0.s3_start, v4: c0.s4_start + 4, v5: c0.s5_start, v7: Math.max(c0.s7_start, c0.s6_ratio < 1e8 ? c0.s6_ratio + 8 + 12 + 24 : 0), v8: c0.s8_start, v9: c0.s9_start + 6, v10: c0.s10_start + 4 };
   const c = new Proxy({ ...cues, ...v }, { get: (t, k: string) => ((t as any)[k] ?? 1e9) }) as C;
   const R = artRegion(L as any), CY = (R.y0 + R.y1) / 2, u = (L.INNER_W * (L.ART_FIT ?? 1)) / 1000;
   const S = STATS, pctS = Math.round((100 * S.S.good) / S.S.all), pctL = Math.round((100 * S.L.good) / S.L.all);
@@ -535,16 +535,14 @@ export const YieldArt: React.FC<{ f: number; cues: C }> = ({ f, cues }) => {
   const VA: [V, V] = [{ cx: 285, cy: 800, s: 470 / 30, E: 62 }, { cx: 795, cy: 800, s: 470 / 30, E: 62 }];
   const VE: [V, V] = [{ cx: 285, cy: 560, s: 470 / 30, E: 62 }, { cx: 795, cy: 560, s: 470 / 30, E: 62 }];
   const VB: V = { cx: 540, cy: 700, s: 760 / 30, E: 58 }, VC: V = { cx: 540, cy: 560, s: 640 / 30, E: 58 }, VDw: V = { cx: 540, cy: 640, s: 760 / 30, E: 58 };
-  const hookOn = f < c.s2_exit;
   const views: [number, number, React.ReactNode][] = [
     [0, c.v3, <g key="A">
       <Pair f={f} land={landA} vl={VA[0]} vr={VA[1]} labY={560} boxAt={20} bracket={{ at: c.s2_fab, y: 1130 }}
-        cnt={{ a: `能用 ≈${roll(f, c.s2_hook, pctS)}%`, b: `能用 ≈${roll(f, c.s2_half, pctL)}%`, at: [c.s2_hook, c.s2_half], y: 1090 }} />
+        cnt={{ a: `能用 ≈${roll(f, c.s2_hook, pctS)}%`, b: `能用 ≈${roll(f, c.s2_half - 18, pctL)}%`, at: [c.s2_hook, c.s2_half - 18], y: 1090 }} />
       <Tag x={540} y={1066} t="晶圓＝整片圓盤・晶片＝切出來的一小格" c={H.line} px={32} o={f < c.s2_hook ? 1 : 0} />
       <Tag x={540} y={1170} t="■ 紅格＝被缺陷打中、做壞的晶片" c={H.coral} px={30} o={f < c.s2_fab + 2 ? 1 : 0} />
       <Stamp x={840} y={1270} t="估算" f={f} at={c.s2_half + 4} px={56} />
       <Tag x={380} y={1270} t="估算（簡化模型）" c={H.amber} px={32} o={1} />
-      {hookOn ? <Txt x={540} y={1340} t="查證截至 2026/11/17" px={30} c={H.text2} w={800} g="asof0" /> : null}
     </g>],
     [c.v3, c.v4, <g key="B"><DiceView f={f} c={c} v={VB} /></g>],
     [c.v4, c.v5, <g key="C">
@@ -559,10 +557,10 @@ export const YieldArt: React.FC<{ f: number; cues: C }> = ({ f, cues }) => {
       <Wafer id="sD" v={VDw} g={GS} w={10} h={10} o={1} st={(d) => { const s0 = rainSt(f, landD)(d); if (s0) { const hop = f >= c.s5_scrap && f < c.s5_scrap + 10 ? 14 * Math.max(0, Math.sin((Math.PI * (f - c.s5_scrap)) / 10)) : 0; return { ...s0, lift: hop }; } return f >= c.s6_ratio && d.hit < 0 ? { c: A.yGood, o: f < c.s6_ratio + 10 ? 1 : 0.7 } : null; }} defs={rain(f, landD).defs} />
       <Card x={140} y={1010} w={800} h={270} o={1} g="formula" c={H.line}>
         <Txt x={540} y={1074} t={`這一片：缺陷 ${landedN(landD)} 個・報廢 ${badCount("S", landD)} 顆`} px={40} c={H.text} w={900} g="formula" />
-        <Txt x={540} y={1160} t="良率 ＝ 能用的 ÷ 全部" px={50} c={H.text} w={900} o={f >= c.s6_yield - 2 ? 1 : 0} g="formula" />
-        <Txt x={540} y={1240} t={`這一片 ≈ ${roll(f, c.s6_yield + 2, pctS, 14)}%`} px={50} c={A.yGood} w={900} o={f >= c.s6_yield + 2 ? 1 : 0} g="formula" />
+        <Txt x={540} y={1160} t="良率 ＝ 能用的 ÷ 全部" px={50} c={H.text} w={900} o={f >= c.s6_ratio + 4 ? 1 : 0} g="formula" />
+        <Txt x={540} y={1240} t={`這一片 ≈ ${roll(f, c.s6_ratio + 8, pctS, 12)}%`} px={50} c={A.yGood} w={900} o={f >= c.s6_ratio + 8 ? 1 : 0} g="formula" />
       </Card>
-      <Tag x={540} y={1326} t={f >= c.s6_yield + 4 ? "已確定（定義）" : "缺陷位置為示意"} c={f >= c.s6_yield + 4 ? H.line : H.text3} px={30} o={1} />
+      <Tag x={540} y={1326} t={f >= c.s6_ratio + 12 ? "已確定（定義）" : "缺陷位置為示意"} c={f >= c.s6_ratio + 12 ? H.line : H.text3} px={30} o={1} />
     </g>],
     [c.v7, c.v8, <g key="E">
       <Tag x={540} y={262} t="同一組缺陷，隨機落下" c={H.line} px={32} o={1} />

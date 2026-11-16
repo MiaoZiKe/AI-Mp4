@@ -126,9 +126,9 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         <text x={x0 + 28} y={L.STAGE_TOP + 90} style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
         {ro ? <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={mono(56, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text> : null}
         {ro ? <text x={x1 - 24} y={L.STAGE_TOP + 96} textAnchor="end" style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>FIELD {lvl.field}</text>
-          : <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={zh(sm(34), H.text2, 700)} opacity={rq}>{lvl.note ?? "示意"}</text>}
-        {sc ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 52} textAnchor="end" style={mono(sm(28), H.text2, 500)}>{sc.text}</text> : null}
-        {sc?.zh ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 16} textAnchor="end" style={zh(sm(28), H.text2, 500)}>{sc.zh}</text> : null}
+          : <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={zh(sm(34), H.text2, 700)} opacity={lvl.noteAlways ? 1 : rq}>{lvl.note ?? "示意"}</text>}
+        {sc ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 52 - ((sc as any).lift ?? 0)} textAnchor="end" style={mono(sm(28), H.text2, 500)}>{sc.text}</text> : null}
+        {sc?.zh ? <text x={x1 - 24} y={L.STAGE_TOP + L.STAGE_H - 16 - ((sc as any).lift ?? 0)} textAnchor="end" style={zh(sm(28), H.text2, 500)}>{sc.zh}</text> : null}
       </> : <>
       {/* 讀數底板：縮放圖層從底下經過時字還讀得到 */}
       <rect x={x0 + 10} y={y0 + 10} width={340} height={100} fill={H.bg} opacity={H.plateO * rq} />

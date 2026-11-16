@@ -18,7 +18,7 @@ export const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.x1, b.x1) - Mat
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 
 // ── 縮放（Powers of Ten） ──
-export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean; readout?: boolean; note?: string; cues?: Record<string, string>; hideInside?: boolean };
+export type HudLevel = { id: string; label: string; en?: string; field: string; ruler: string; art: string; handoff3D?: boolean; readout?: boolean; note?: string; noteAlways?: boolean; cues?: Record<string, string>; hideInside?: boolean };
 /* readout: false（2026/11/15 tech-euv）：這一級不是「放大」出來的（例如整台曝光機的示意模型），不畫倍率、FIELD、尺標，改顯示 note（例如「整台約數公尺・示意」）；field 只用來排序與交棒 */
 export type HudSpec = { theme?: "dark"; levels: HudLevel[]; schematic?: { text?: string; zh?: string }; maxLabels?: number; layout?: string; smallPx?: number };
 export type ZoomKey = { to: number; at: number; dur: number; drift?: boolean };
