@@ -56,3 +56,10 @@
 2. 照片授權與作者未核對。
 3. s04 事件間隔 1.23 秒是全片最長；s05 只有 2.6 秒，接上真錄音後要看「尚未確定」停得夠不夠久（不夠就加 `cutDelayF`）。
 4. 下一集題目＝11/17 財報數字（已確定會公布），不預告內容。
+
+## 片尾卡＋招牌音＋留言關鍵字（2026/11/15 所有頻道規則）
+
+- 最後一幕 `end`：Li 字標「i 點落定」動畫＋「哩股哩股／數字，查過再信」＋「下一集 ▸ 財報數字說了什麼？」＋「留言「輝達」拿完整資料」，3.2 秒。
+- 念稿最後一句改成念出關鍵字「輝達」（`script.md` 已更新）。
+- 片尾招牌音：`scripts/dossier/sfx-logo-ligu.py`；無聲預覽配招牌音的版本 `out/liguligu-nvda-kress.preview.mp4`（片尾段 −11.3 LUFS、真峰值 −1.3 dBTP，AAC 後量）。只有招牌音：`out/liguligu-sting.mp3`。
+- 交件圖：修改前後 `out/liguligu-nvda-kress-before-after.png`、片尾每 0.1 秒 `out/liguligu-nvda-kress-endcard-0.1s.png`、九格 `out/liguligu-nvda-kress-review.png`；edge-check 上 44px／下 60px。

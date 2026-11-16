@@ -7,7 +7,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, staticFile, useCurrentFrame } from "remotion";
 import type { Script, TimelineV2 } from "../../types";
-import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, LAYOUT_DOSSIER_NEWS_FILL as LNF, THEME_DOSSIER as T } from "../../theme";
+import { FONT_DOSSIER_SERIF as SERIF, FONT_EN, FONT_ZH, FPS, LAYOUT_DOSSIER as L, LAYOUT_DOSSIER_NEWS as LN, LAYOUT_DOSSIER_NEWS_FILL as LNF, THEME_DOSSIER as T, DOSSIER_END as DE } from "../../theme";
 import WORLD from "./worldDots.json";
 import { EASE, linear, tween } from "../anim";
 import { buildDossier, staticShot, type DsShot } from "./engine";
@@ -96,9 +96,11 @@ const Tag: React.FC<{ tag: TagSpec; f: number; big?: boolean }> = ({ tag, f, big
 
 /** 黑白低對比照片：遮罩擦入、極慢推近、細框；圖說在照片下面（都要標「示意」） */
 const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: number; y: number; w: number; h: number; caption?: string; life: number; children?: React.ReactNode }> = ({ slug, name, f, at, x, y, w, h, caption, life, children }) => {
+  const noPush = useLN().STAGE_SCALE !== 1;
   const p = wipeP(f, at, M.wipe + 4);
   if (p <= 0) return null;
-  const s = 1 + M.photoPush * linear(f, at, Math.max(1, life));
+  // 填滿版不做「整張圖慢慢放大」（使用者 2026/11/15 禁止事項，改用物件本身的動作）
+  const s = noPush ? 1 : 1 + M.photoPush * linear(f, at, Math.max(1, life));
   return (
     <>
       <div style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
@@ -416,7 +418,7 @@ const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = (
     // 「國際新聞」版：橫向擦切。新鏡從左邊露出來、舊鏡同時從左邊被切掉，中間一條條帶（SweepBand）掃過；沒有淡出，所以換鏡時畫面不會空。
     const pin = sh.index === 0 ? 1 : tween(f, sh.start, NM.cut, EASE.move), pout = tween(f, sh.outAt, NM.cut, EASE.move);
     if (f < sh.start || pout >= 1) return null;
-    const sc = 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start));
+    const sc = ln.STAGE_SCALE !== 1 ? 1 : 1 + NM.push * linear(f, sh.start, Math.max(1, sh.end + NM.cut - sh.start)); // 填滿版不慢推整鏡
     return (
       <AbsoluteFill style={{ clipPath: pin >= 1 && pout <= 0 ? undefined : `inset(0 ${r1(100 * (1 - pin))}% 0 ${r1(100 * pout)}%)` }}>
         <div style={{ position: "absolute", left: L.X, top: ln.STAGE_TOP, width: L.INNER_W, height: L.STAGE_H, transform: ln.STAGE_SCALE === 1 ? undefined : `scale(${ln.STAGE_SCALE})`, transformOrigin: "50% 0" }}>
@@ -505,11 +507,145 @@ const Footer: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots,
   );
 };
 
+
+// ───────────────────────── 哩股哩股 Li 字標與片尾卡 ─────────────────────────
+// Li 字標：深藍 L（檔案的直角邊）＋深藍 i 身＋銅紅 i 點。片尾動畫的意思＝「i 點落定」：資料（L、i 身）先就位，最後那一點（查證結果）落下、撞擊、定住。
+// 不轉、不繞圈、落定後沒有待機動作。座標 viewBox 0–100。
+type LiState = { lv: number; lh: number; stem: number; dotY: number; squash: number };
+const LI_DONE: LiState = { lv: 1, lh: 1, stem: 1, dotY: 0, squash: 0 };
+/** 正式字標 5C（viewBox 512，translate(27,0)）：L＝M118 104H190V330H340V400H118Z（拆成直邊與底邊兩段畫）；i 身 x276 y214 64×116；i 點 (308,154) r38 */
+const LiMark: React.FC<{ size: number; s?: LiState }> = ({ size, s = LI_DONE }) => {
+  const sq = s.squash;
+  return (
+    <svg width={size} height={size} viewBox="0 0 512 512" style={{ display: "block", overflow: "visible" }}>
+      <g transform="translate(27,0)">
+        <rect x={118} y={330 - 226 * s.lv} width={72} height={226 * s.lv} fill={DE.navy} />
+        <rect x={118} y={330} width={222 * s.lh} height={70} fill={DE.navy} opacity={s.lh > 0 ? 1 : 0} />
+        <rect x={276} y={330 - 116 * s.stem} width={64} height={116 * s.stem} fill={DE.copper} />
+        {s.dotY > -900 ? <ellipse cx={308} cy={154 + s.dotY * 4 + 12 * sq} rx={38 * (1 + 0.28 * sq)} ry={38 * (1 - 0.3 * sq)} fill={DE.copper} /> : null}
+      </g>
+    </svg>
+  );
+};
+/** 新聞條左邊的小字標（每一鏡、片尾卡都在同一個位置、同一個大小） */
+const LiTile: React.FC<{ size: number }> = ({ size }) => (
+  <div style={{ width: size, height: size, background: DE.paper, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+    <LiMark size={Math.round(size * 0.92)} />
+  </div>
+);
+type EndSpec = { comment?: string; next?: string };
+/** 固定 seed 的亂數（片尾用；每一幀算出來都一樣） */
+const rng = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+const easeOut3 = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const easeIn2 = (x: number) => Math.pow(Math.min(1, Math.max(0, x)), 2);
+/** 字標座標（viewBox 512，含 translate 27）→ 畫面座標 */
+const LX = (x: number) => DE.LOGO_CX - DE.LOGO_S / 2 + ((x + 27) * DE.LOGO_S) / 512;
+const LY = (y: number) => DE.LOGO_CY - DE.LOGO_S / 2 + (y * DE.LOGO_S) / 512;
+/** 片尾的世界地圖（整張寬 1080：每度 3px），畫在字標後面 */
+const EMX = (lon: number) => L.W / 2 + lon * 3, EMY = (lat: number) => DE.MAP_Y + (DE.MAP_LAT - lat) * 3;
+const END_MAP = (() => { let d = ""; WORLD.rows.forEach((row: string, r: number) => { const y = EMY(WORLD.lat0 - r * WORLD.step); for (let c = 0; c < row.length; c++) if (row[c] === "1") { const x = EMX(WORLD.lon0 + c * WORLD.step); d += `M${r1(x - 2)} ${r1(y - 2)}h4v4h-4z`; } }); return d; })();
+const END_DOTS = (() => { const out: [number, number][] = []; WORLD.rows.forEach((row: string, r: number) => { for (let c = 0; c < row.length; c++) if (row[c] === "1") out.push([EMX(WORLD.lon0 + c * WORLD.step), EMY(WORLD.lat0 - r * WORLD.step)]); }); return out; })();
+/** 世界各地的新聞來源點：每一點飛出一張數字／文件碎片，沿弧線收進 L（全球資訊被收進檔案） */
+const FRAGS = (() => {
+  const cities: [number, number, string][] = [[-74, 40.7, "+4.3%"], [-77, 38.9, "8-K"], [-0.1, 51.5, "28.92"], [4.4, 50.9, "2026"], [8.7, 50.1, "±2%"], [139.7, 35.7, "10-Q"], [121.5, 25, "1080"], [116.4, 39.9, "CPI"], [103.8, 1.4, "325"], [-46.6, -23.5, "EPFR"], [-122, 37.4, "Q3"], [72.9, 19.1, "FOMC"]];
+  const r = rng(1115);
+  return cities.map(([lon, lat, txt], k) => {
+    const foot = k % 3 === 0, tx = LX(foot ? 140 + r() * 180 : 135 + r() * 40), ty = LY(foot ? 345 + r() * 40 : 125 + r() * 190);
+    const sx = EMX(lon), sy = EMY(lat), cx = (sx + tx) / 2 + (r() - 0.5) * 200, cy = Math.min(sy, ty) - 160 - r() * 120;
+    return { sx, sy, tx, ty, cx, cy, txt, d: k * 1.1 + r() * 2 };
+  });
+})();
+const bez = (f: (typeof FRAGS)[number], q: number) => [(1 - q) * (1 - q) * f.sx + 2 * (1 - q) * q * f.cx + q * q * f.tx, (1 - q) * (1 - q) * f.sy + 2 * (1 - q) * q * f.cy + q * q * f.ty] as const;
+/** 撞擊時迸開的紙屑（小紙片，往外飛、受重力往下、減速） */
+const CONFETTI = (() => { const r = rng(808); return Array.from({ length: 22 }, (_, k) => ({ a: (k / 22) * Math.PI * 2 + r() * 0.25, v: 220 + r() * 260, w: 10 + r() * 14, h: 6 + r() * 6, rot: (r() - 0.5) * 2, c: k % 3 })); })();
+
+const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string; tag: string }> = ({ sh, f, slogan, name, tag }) => {
+  const e = f - sh.start, F = DE.f;
+  if (e < 0) return null;
+  const spec = (sh.p.endCard ?? {}) as EndSpec;
+  const pin = tween(f, sh.start, NM.cut, EASE.move);
+  const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
+  const k = e >= F.impact && e < F.shakeEnd ? 1 - (e - F.impact) / (F.shakeEnd - F.impact) : 0;
+  const sx = r1(k * DE.shake * Math.sin((e - F.impact) * 2.7)), sy = r1(k * DE.shake * 0.85 * Math.cos((e - F.impact) * 3.3));
+  const solid = ease(F.solid, F.solidDur), stem = ease(F.stem, F.stemDur);
+  // 查證章：28 幀從 2.6 倍大、淡淡的樣子加速壓下，36 幀重重蓋下（之後壓扁回彈一下）
+  const dq = e < F.stamp ? -1 : Math.min(1, (e - F.stamp) / (F.impact - F.stamp));
+  const dScale = dq < 0 ? 0 : dq < 1 ? 2.6 - 1.6 * easeIn2(dq) : 1 + 0.14 * Math.max(0, 1 - (e - F.impact) / 6) * Math.cos((e - F.impact) * 1.4);
+  const dOp = dq < 0 ? 0 : dq < 1 ? 0.2 + 0.8 * dq : 1;
+  const dcx = LX(308), dcy = LY(154), dr = (38 * DE.LOGO_S) / 512;
+  const flash = e >= F.impact ? Math.max(0, 1 - (e - F.impact) / F.flashDur) : 0;
+  const scanP = e >= F.scan && e < F.scan + F.scanDur ? (e - F.scan) / F.scanDur : -1;
+  const waves = F.wave.map((a) => (e >= a ? 1400 * easeOut3((e - a) / F.waveDur) : -1));
+  const mapO = 0.18 + 0.22 * ease(0, 10);
+  const chars = [...name];
+  return (
+    <div style={{ position: "absolute", left: 0, top: DE.TOP, width: L.W, height: DE.BOTTOM - DE.TOP, background: T.bg, clipPath: `inset(0 ${r1(100 * (1 - pin))}% 0 0)`, overflow: "hidden" }}>
+      <Backdrop />
+      <div style={{ position: "absolute", left: sx, top: sy - DE.TOP, width: L.W, height: L.H }}>
+        <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+          <defs><radialGradient id="endglow"><stop offset="0%" stopColor={DE.glowHi} /><stop offset="35%" stopColor={DE.glow} /><stop offset="100%" stopColor="rgba(208,100,63,0)" /></radialGradient></defs>
+          {/* 世界地圖點陣（淡）；撞擊後兩圈銅紅波從字標往外，經過的陸地點亮起 */}
+          <path d={END_MAP} fill={DE.mapDot} opacity={r1(mapO)} />
+          {e >= F.wave[0] && e < F.wave[1] + F.waveDur + 4 ? END_DOTS.map(([x, y], i) => {
+            const dd = Math.hypot(x - DE.LOGO_CX, y - DE.LOGO_CY), hit = Math.max(0, ...waves.map((w) => (w < 0 ? 0 : 1 - Math.abs(dd - w) / 60)));
+            return hit > 0.05 ? <rect key={i} x={x - 2.5} y={y - 2.5} width={5} height={5} fill={DE.darkCopper} opacity={r1(hit)} /> : null;
+          }) : null}
+          {/* 各地新聞來源點：脈衝亮起 → 銅紅連線往字標長出 → 數字／文件碎片沿線飛進來，越近越小、最後收進 L */}
+          {FRAGS.map((fr, i) => {
+            if (e < fr.d - 3) return null;
+            const q = easeOut3((e - fr.d) / F.gatherDur), lineO = e < F.solid ? 1 : Math.max(0, 1 - (e - F.solid) / 10);
+            const n = 18, pts: string[] = []; for (let j = 0; j <= n; j++) { const [x, y] = bez(fr, (j / n) * q); pts.push(`${j ? "L" : "M"}${r1(x)} ${r1(y)}`); }
+            const [hx, hy] = bez(fr, q), ping = Math.max(0, 1 - (e - fr.d + 3) / 10);
+            return <g key={i}>
+              {ping > 0 ? <circle cx={fr.sx} cy={fr.sy} r={r1(6 + 22 * (1 - ping))} fill="none" stroke={DE.darkCopper} strokeWidth={2} opacity={r1(ping)} /> : null}
+              <rect x={fr.sx - 4} y={fr.sy - 4} width={8} height={8} fill={DE.darkCopper} opacity={r1(lineO)} />
+              {q > 0 ? <path d={pts.join("")} fill="none" stroke={DE.darkCopper} strokeWidth={2} strokeDasharray="6 6" opacity={r1(0.8 * lineO)} /> : null}
+              {q > 0 && q < 1 ? <g transform={`translate(${r1(hx)},${r1(hy)}) scale(${r1(1.2 - 0.8 * q)})`}>
+                <rect x={-58} y={-24} width={116} height={48} fill={DE.paper} />
+                <text x={0} y={10} textAnchor="middle" style={{ fontFamily: FONT_EN, fontWeight: 700, fontSize: 28 }} fill={DE.navy}>{fr.txt}</text>
+              </g> : null}
+            </g>;
+          })}
+          {flash > 0 ? <circle cx={dcx} cy={dcy} r={r1(dr * (2.4 + 8 * (1 - flash)))} fill="url(#endglow)" opacity={r1(flash)} /> : null}
+          {/* L：碎片到齊後實心化（米白），i 身升起（銅紅） */}
+          <path d={`M${LX(118)} ${LY(104)}H${LX(190)}V${LY(330)}H${LX(340)}V${LY(400)}H${LX(118)}Z`} fill={DE.darkL} opacity={r1(solid)} />
+          <rect x={LX(276)} y={LY(330) - (LY(330) - LY(214)) * stem} width={LX(340) - LX(276)} height={(LY(330) - LY(214)) * stem} fill={DE.darkCopper} />
+          {/* 查證章（i 點）：蓋下前外面有一圈雙線章框，蓋下的瞬間章框放大成第一圈震波 */}
+          {dq >= 0 ? <>
+            {e < F.impact ? <circle cx={dcx} cy={dcy} r={r1(dr * dScale * 1.9)} fill="none" stroke={DE.darkCopper} strokeWidth={3} opacity={r1(dOp * 0.8)} /> : null}
+            <circle cx={dcx} cy={dcy} r={r1(dr * dScale)} fill={DE.darkCopper} opacity={r1(dOp)} />
+          </> : null}
+          {F.ring.map((a, j) => { const q = (e - a) / F.ringDur; return q > 0 && q < 1 ? <circle key={j} cx={dcx} cy={dcy} r={r1(dr * 1.9 + 520 * easeOut3(q))} fill="none" stroke={DE.darkCopper} strokeWidth={r1(9 * (1 - q) + 1)} opacity={r1(1 - q)} /> : null; })}
+          {/* 紙屑迸散（往外、受重力、減速） */}
+          {e >= F.spark && e < F.spark + F.sparkDur ? CONFETTI.map((c, j) => {
+            const tt = (e - F.spark) / F.sparkDur, d = c.v * easeOut3(tt), x = dcx + Math.cos(c.a) * (dr + d), y = dcy + Math.sin(c.a) * (dr + d) + 260 * tt * tt;
+            return <rect key={j} x={r1(x - c.w / 2)} y={r1(y - c.h / 2)} width={r1(c.w)} height={r1(c.h)} fill={c.c === 0 ? DE.darkCopper : c.c === 1 ? DE.paper : T.text3} opacity={r1(1 - tt)} transform={`rotate(${r1(c.rot * 140 * tt)} ${r1(x)} ${r1(y)})`} />;
+          }) : null}
+        </svg>
+      </div>
+      {/* 撞擊閃白（4 幀） */}
+      {e >= F.impact && e < F.impact + 4 ? <div style={{ position: "absolute", inset: 0, background: DE.flashFull, opacity: r1(DE.flashO * (1 - (e - F.impact) / 4)) }} /> : null}
+      {/* 新聞條式掃描光：一道帶銅紅邊的亮帶由左橫掃到右 */}
+      {scanP >= 0 ? <div style={{ position: "absolute", top: DE.LOGO_CY - DE.LOGO_S / 2 - DE.TOP, height: DE.LOGO_S, left: r1(-200 + (L.W + 400) * easeOut3(scanP)), width: 140, background: `linear-gradient(90deg, rgba(251,250,246,0) 0%, ${DE.scanHi} 70%, ${DE.darkCopper} 100%)`, opacity: r1(0.55 * Math.sin(Math.PI * scanP)) }} /> : null}
+      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NAME_Y - DE.TOP, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 6 }}>
+        {chars.map((c, i) => { const a = F.name[Math.min(i, F.name.length - 1)]; return <span key={i} style={{ ...serif(DE.NAME_PX), lineHeight: 1, opacity: e >= a ? 1 : 0, transform: `translateY(${e >= a ? r1(14 * (1 - ease(a, 5))) : 0}px)` }}>{c}</span>; })}
+        <span style={{ ...serif(DE.TAG_PX, T.weight.serif, T.text2), lineHeight: 1, marginLeft: 18, opacity: ease(F.tag, 6) }}>｜{tag}</span>
+      </div>
+      <div style={{ position: "absolute", left: (L.W - 560) / 2, top: DE.RULE_Y - DE.TOP, width: r1(560 * ease(F.rule, F.ruleDur)), height: T.stroke.mark, background: DE.darkCopper }} />
+      <div style={{ position: "absolute", left: 0, width: L.W, top: DE.SLOGAN_Y - DE.TOP, textAlign: "center", ...sans(DE.SLOGAN_PX, T.weight.bold, T.text2), letterSpacing: "0.3em", opacity: ease(F.slogan, 8) }}>{slogan}</div>
+      {spec.next ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.NEXT_Y - DE.TOP, textAlign: "center", ...sans(DE.NEXT_PX, T.weight.bold, T.text), opacity: ease(F.next, 6) }}><span style={{ color: T.accentText, letterSpacing: "0.2em" }}>下一集 ▸ </span>{spec.next}</div> : null}
+      {spec.comment ? <div style={{ position: "absolute", left: 0, width: L.W, top: DE.CMT_Y - DE.TOP, display: "flex", justifyContent: "center", opacity: ease(F.cmt, 6) }}>
+        <div style={{ padding: "16px 34px", border: `2px solid ${T.accent}`, ...sans(DE.CMT_PX, T.weight.bold, T.text) }}>留言「<span style={{ color: T.accentText }}>{spec.comment}</span>」拿完整資料</div>
+      </div> : null}
+    </div>
+  );
+};
+
 // ───────────────────────── 「國際新聞」版（script.json 頂層有 news） ─────────────────────────
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
 type Place = { zh: string; en: string; lon: number; lat: number };
-type NewsSpec = { layout?: "fill"; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
+type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
 type ShotNews = { dateline?: string; place?: string; lt?: string };
 const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
 const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
@@ -585,10 +721,13 @@ const WorldMap: React.FC<{ news: NewsSpec; shots: DsShot[]; f: number; linkAt: n
 const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsShot[]; f: number; progress: number }> = ({ name, tag, news, shots, f, progress }) => {
   const ln = useLN();
   const cur = curShot(shots, f), dl = shotNews(cur).dateline, at = cur.index === 0 ? -9999 : cur.start + 2;
+  // 換鏡時只重打和上一鏡不同的部分（地點相同就只打日期），電頭不會有一大段時間只剩半句
+  const prevDl = cur.index > 0 ? shotNews(shots[cur.index - 1]).dateline ?? "" : "";
+  let keep = 0; if (dl) { while (keep < dl.length && keep < prevDl.length && dl[keep] === prevDl[keep]) keep++; const sep = dl.indexOf("・"); if (keep < dl.length) keep = sep >= 0 && keep > sep ? sep + 1 : 0; }
   return (
     <>
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
-        <div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{name}</span></div>
+        <LiTile size={ln.BAR_H} /><div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{news.mark ?? (name === "哩股哩股" ? "LIGULIGU" : name)}</span></div>
         <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
           <span style={{ ...sans(ln.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
           {news.sectionEn ? <><span style={{ width: T.stroke.hair, height: 28, background: T.line }} /><span style={{ ...NUM, fontWeight: 600, fontSize: ln.SEC_EN_PX, lineHeight: 1, color: T.text2, letterSpacing: "0.14em" }}>{news.sectionEn}</span></> : null}
@@ -599,7 +738,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: r1(L.INNER_W * progress), height: ln.PROG_H, background: T.text2 }} />
       <div style={{ position: "absolute", left: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
         <span style={{ width: 12, height: 12, background: T.accent, opacity: f >= at && f < at + M.flash && Math.floor((f - at) / 4) % 2 === 0 ? 0.25 : 1 }} />
-        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}><Typed text={dl} f={f} at={at} per={NM.dl} /></span> : null}
+        {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{dl.slice(0, keep)}<Typed text={dl.slice(keep)} f={f} at={at} per={NM.dl} /></span> : null}
       </div>
       <div style={{ position: "absolute", right: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", ...NUM, fontWeight: 600, fontSize: ln.DL_PX, color: T.text3, letterSpacing: "0.06em" }}>{String(cur.index + 1).padStart(2, "0")} / {String(shots.length).padStart(2, "0")}</div>
     </>
@@ -609,6 +748,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
 const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string }> = ({ cues, shots, f, fixed }) => {
   const ln = useLN();
   const cur = curShot(shots, f), label = shotNews(cur).lt;
+  if (cur.panel === "end" && f >= cur.start) return null;
   const cue = cues.find((c) => f >= c.window[0] && f < c.window[1]) ?? cues[cues.length - 1];
   let zh: React.ReactNode = fixed ?? null, en = "", p = 1;
   if (!fixed && cue && cue.phrases.length) {
@@ -641,7 +781,7 @@ const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ 
   const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(ln.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
   return (
     <>
-      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(L.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
+      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(ln.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
       <div style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
         <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(ln.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
         <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
@@ -684,9 +824,10 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       <WorldMap news={news} shots={m.shots} f={f} linkAt={news.link ? m.time(news.link.at, 0) : 1e9} />
       {m.shots.map((sh) => <Shot key={sh.id} sh={sh} f={f} slug={slug} cut />)}
       <SweepBand shots={m.shots} f={f} />
-      <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       <LowerThird cues={caps} shots={m.shots} f={f} />
       <SourceTicker shots={m.shots} f={f} asOf={asOf} />
+      {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
+      <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       {audio}
     </AbsoluteFill>
     </LNC.Provider>

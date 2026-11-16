@@ -11,6 +11,7 @@
   },
   "news": {
     "layout": "fill",
+    "mark": "LIGULIGU",
     "section": "國際",
     "sectionEn": "INTERNATIONAL",
     "places": {
@@ -30,15 +31,15 @@
     "link": {
       "from": "ca",
       "to": "dc",
-      "at": "s01:three+6"
+      "at": "s01:doc+4"
     }
   },
   "voice": {
-    "voiceName": "user-upload",
-    "model": "user-recording",
+    "voiceName": "Charon",
+    "model": "gemini-3.8-flash-tts",
     "mode": "take",
     "profile": "liguligu",
-    "note": "旁白由使用者在 Google AI Studio 生成後上傳；本專案不送任何 TTS 請求。還沒上傳之前，timeline.json 是無聲估算。"
+    "note": "API 整篇一次生成"
   },
   "cover": {
     "title": [
@@ -54,28 +55,27 @@
   "scenes": [
     {
       "id": "s01",
-      "narration": "一個簽名，三個頭銜。簽字的是同一個人。",
-      "tts": "一個簽名，三個頭銜。簽字的是同一個人。",
+      "narration": "黃仁勳辭職後，輝達送給證管會的文件上，一個人簽了三個頭銜。",
+      "tts": "黃仁勳辭職後，輝達送給證管會的文件上，一個人簽了三個頭銜。",
       "subtitle": {
-        "zh": "一個簽名\n三個頭銜\n簽字的是同一個人",
-        "en": "One signature. | Three titles. | Same person signing."
+        "zh": "黃仁勳辭職後\n輝達送給證管會的文件上\n一個人簽了三個頭銜",
+        "en": "After Jensen Huang resigned, | on Nvidia's filing to the SEC, | one person signed with three titles."
       },
       "keywords": [
-        "三個頭銜",
-        "同一個人"
+        "三個頭銜"
       ],
       "cues": [
         {
           "id": "sig",
-          "text": "簽名"
+          "text": "黃仁勳辭職"
+        },
+        {
+          "id": "doc",
+          "text": "證管會"
         },
         {
           "id": "three",
           "text": "三個頭銜"
-        },
-        {
-          "id": "same",
-          "text": "同一個人"
         }
       ],
       "beat": "hook",
@@ -96,10 +96,10 @@
           "note": "示意，非文件原件",
           "scanAts": [
             "start",
-            "three+4"
+            "doc"
           ],
           "frameAt": "start+10",
-          "flashAt": "same",
+          "flashAt": "three+14",
           "fill": "同一人・三個頭銜",
           "fillPx": 30,
           "fillAt": "three"
@@ -108,7 +108,7 @@
           "label": "簽字的",
           "text": "同一人",
           "at": "start+16",
-          "markAt": "same+4"
+          "markAt": "three+8"
         },
         "tag": {
           "kind": "confirmed",
@@ -127,15 +127,14 @@
     },
     {
       "id": "s02",
-      "narration": "她是財務長，暫代執行長，5 天後就要交財報。",
-      "tts": "她是財務長，暫代執行長，五天後就要交財報。",
+      "narration": "她是財務長，現在暫代執行長，5 天後就要交財報。",
+      "tts": "她是財務長，現在暫代執行長，五天後就要交財報。",
       "subtitle": {
-        "zh": "她是財務長\n暫代執行長\n5 天後就要交財報",
-        "en": "She's the CFO, | now also interim CEO. | Earnings are due in five days."
+        "zh": "她是財務長\n現在暫代執行長\n5 天後就要交財報",
+        "en": "She's the CFO, | now also interim CEO, | with earnings due in five days."
       },
       "keywords": [
-        "暫代執行長",
-        "5 天後"
+        "暫代執行長"
       ],
       "cues": [
         {
@@ -224,17 +223,21 @@
     },
     {
       "id": "s03",
-      "narration": "金融時報說已接觸人選，公司說還沒正式接洽。",
-      "tts": "金融時報說已經接觸人選，公司說還沒正式接洽。",
+      "narration": "那正式的執行長呢？金融時報說已接觸人選，公司說還沒正式接洽。",
+      "tts": "那正式的執行長呢？金融時報說已經接觸人選，公司說還沒正式接洽。",
       "subtitle": {
-        "zh": "金融時報說已接觸人選\n公司說還沒正式接洽",
-        "en": "The FT says candidates were approached. | The company says no formal talks yet."
+        "zh": "那正式的執行長呢？\n金融時報說已接觸人選\n公司說還沒正式接洽",
+        "en": "And a permanent CEO? | The FT says candidates were approached. | The company says no formal talks yet."
       },
       "keywords": [
         "已接觸人選",
         "還沒正式接洽"
       ],
       "cues": [
+        {
+          "id": "who",
+          "text": "正式的執行長"
+        },
         {
           "id": "ft",
           "text": "金融時報"
@@ -263,7 +266,7 @@
           "bigPx": 120,
           "src": "回應媒體（摘要）",
           "headAt": "start-20",
-          "at": "start-16",
+          "at": "who+10",
           "bigAt": "no",
           "srcAt": "no+8",
           "tag": {
@@ -309,83 +312,12 @@
       ]
     },
     {
-      "id": "s04",
-      "narration": "這季財測 1080 億美元，是他還在任時給的。",
-      "tts": "這季財測一千零八十億美元，是他還在任時給的。",
-      "subtitle": {
-        "zh": "這季財測 1080 億美元\n是他還在任時給的",
-        "en": "This quarter's forecast: $108 billion, | set while he was still CEO."
-      },
-      "keywords": [
-        "1080 億美元",
-        "還在任"
-      ],
-      "cues": [
-        {
-          "id": "guide",
-          "text": "財測"
-        },
-        {
-          "id": "num",
-          "text": "1080 億美元"
-        },
-        {
-          "id": "still",
-          "text": "還在任"
-        }
-      ],
-      "beat": "twist",
-      "component": "DossierScene",
-      "props": {
-        "panel": "claim",
-        "head": {
-          "text": "成績單換人交",
-          "mark": "換人交",
-          "at": "start-16",
-          "markAt": "num+22"
-        },
-        "photo": {
-          "name": "charts",
-          "caption": "示意照片",
-          "date": "8/26",
-          "at": "start-22",
-          "dateAt": "guide"
-        },
-        "quote": {
-          "by": "第二季財報 8/26",
-          "byAt": "guide-4",
-          "pre": "第三季營收財測",
-          "big": "1080",
-          "post": "億美元 ±2%",
-          "at": "guide",
-          "bigAt": "num",
-          "masthead": {
-            "name": "第二季財報",
-            "date": "8/26"
-          }
-        },
-        "tag": {
-          "kind": "confirmed",
-          "text": "已確定",
-          "at": "still-4"
-        },
-        "news": {
-          "dateline": "SANTA CLARA, CALIF.・2026/8/26",
-          "place": "ca",
-          "lt": "對照"
-        }
-      },
-      "sources": [
-        "輝達第二季財報新聞稿 2026/8/26（8-K 附件，原文已讀）"
-      ]
-    },
-    {
       "id": "s05",
-      "narration": "但暫代，不等於接班，人選還在找。",
-      "tts": "但暫代，不等於接班，人選還在找。",
+      "narration": "所以她現在是暫代，不等於接班，人選還在找。",
+      "tts": "所以她現在是暫代，不等於接班，人選還在找。",
       "subtitle": {
-        "zh": "但暫代\n不等於接班\n人選還在找",
-        "en": "But interim | isn't succession. | The search is still on."
+        "zh": "所以她現在是暫代\n不等於接班\n人選還在找",
+        "en": "So for now she's interim, | not the successor. | The search goes on."
       },
       "keywords": [
         "不等於接班"
@@ -416,7 +348,7 @@
         "op": "≠",
         "opLabel": "不等於",
         "b": "接班",
-        "aAt": "start-16",
+        "aAt": "act-14",
         "opAt": "ne-6",
         "bAt": "ne-2",
         "rows": [
@@ -451,80 +383,12 @@
       "pauseAfter": 0.3
     },
     {
-      "id": "s06",
-      "narration": "調查還沒結論，正式人選也還沒定。",
-      "tts": "調查還沒結論，正式人選也還沒定。",
-      "subtitle": {
-        "zh": "調查還沒結論\n正式人選也還沒定",
-        "en": "The probe has no findings yet. | No permanent CEO either."
-      },
-      "keywords": [
-        "還沒結論",
-        "還沒定"
-      ],
-      "cues": [
-        {
-          "id": "probe",
-          "text": "調查"
-        },
-        {
-          "id": "none",
-          "text": "還沒結論"
-        },
-        {
-          "id": "pick",
-          "text": "正式人選"
-        },
-        {
-          "id": "open",
-          "text": "還沒定"
-        }
-      ],
-      "beat": "payoff",
-      "component": "DossierScene",
-      "props": {
-        "panel": "pending",
-        "left": {
-          "photo": {
-            "name": "binders",
-            "caption": "董事會的獨立調查（示意照片）",
-            "at": "start-20"
-          },
-          "row": "還沒結論",
-          "rowAt": "none"
-        },
-        "right": {
-          "title": "正式執行長",
-          "field": "（未定）",
-          "note": "示意，非文件原件",
-          "at": "start-16",
-          "titleAt": "pick-8",
-          "frameAt": "open-8",
-          "row": "還沒定",
-          "rowAt": "open-4"
-        },
-        "tag": {
-          "kind": "pending",
-          "text": "截至 2026/11/15 尚未確定",
-          "at": "none+12"
-        },
-        "news": {
-          "dateline": "SANTA CLARA, CALIF.・2026/11/15",
-          "place": "ca",
-          "lt": "還不知道"
-        }
-      },
-      "sources": [
-        "截至 2026/11/15 尚未確定"
-      ]
-    },
-    {
       "id": "s07",
-      "narration": "她是過渡，還是接班？下集看財報數字。",
-      "tts": "她是過渡，還是接班？下集看財報數字。",
+      "narration": "她是過渡還是接班，要看人選。想看完整資料，留言輝達。",
+      "tts": "她是過渡還是接班，要看人選。想看完整資料，留言輝達。",
       "subtitle": {
-        "zh": "她是過渡，還是接班？\n下集看財報數字",
-        "en": "Stopgap, or successor? | Next: the numbers."
+        "zh": "她是過渡還是接班\n要看人選\n想看完整資料，留言輝達",
+        "en": "Stopgap or successor depends on the pick. | For the full brief, comment \"Nvidia\"."
       },
       "keywords": [
         "過渡",
@@ -540,12 +404,12 @@
           "text": "接班"
         },
         {
-          "id": "next",
-          "text": "下集"
+          "id": "pick",
+          "text": "要看人選"
         },
         {
-          "id": "num",
-          "text": "財報數字"
+          "id": "cmt",
+          "text": "留言輝達"
         }
       ],
       "beat": "cta",
@@ -568,20 +432,20 @@
           ]
         },
         "cta": {
-          "text": "留言說你的看法",
-          "at": "succ+12"
+          "text": "留言「輝達」拿完整資料",
+          "at": "cmt"
         },
         "next": {
           "label": "下一集",
-          "at": "next-4",
+          "at": "succ+8",
           "photo": {
             "name": "screens",
             "caption": "示意照片",
-            "at": "next"
+            "at": "succ+12"
           },
           "title": "財報數字說了什麼？",
-          "titleAt": "num",
-          "frameAt": "num+16"
+          "titleAt": "pick",
+          "frameAt": "cmt+6"
         },
         "news": {
           "dateline": "SANTA CLARA, CALIF.・2026/11/15",
@@ -592,6 +456,29 @@
       "sources": [
         "輝達：第三季財報 11/17（美西）照原訂公布"
       ]
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "beat": "cta",
+      "component": "EndCard",
+      "silent": true,
+      "durationSec": 3.6,
+      "props": {
+        "panel": "end",
+        "endCard": {
+          "comment": "輝達",
+          "next": "財報數字說了什麼？"
+        }
+      },
+      "sources": []
     }
-  ]
+  ],
+  "thesis": "輝達換帥後，財務長兼兩職交財報，她是過渡還是接班"
 }

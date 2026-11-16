@@ -2,515 +2,179 @@
  "version": 2,
  "slug": "liguligu-power-bill",
  "fps": 30,
- "totalFrames": 808,
- "totalSec": 26.93,
- "gapSec": 0.12,
+ "totalFrames": 873,
+ "totalSec": 29.1,
+ "gapSec": 0.3,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 5.2,
-  "gap": 0.12,
-  "tailEndFrames": 14
+ "recording": {
+  "file": "audio/liguligu-power-bill/voice-api.wav",
+  "scenes": [
+   "s01",
+   "s02",
+   "s03",
+   "s04",
+   "s05",
+   "s06",
+   "s07"
+  ],
+  "sec": 26.091,
+  "confidence": 0.876,
+  "minScore": 0.003,
+  "lastVoiceSec": 25.54
  },
  "scenes": [
   {
    "id": "s01",
    "audio": null,
-   "audioFrame": 5,
-   "audioSec": 4.423,
+   "audioFrame": 2,
+   "audioSec": 3.96,
    "headSilSec": 0,
    "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 146,
+   "durationFrames": 143,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 138,
-   "stillFrame": 136,
+   "voiceStartFrame": 2,
+   "voiceEndFrame": 122,
+   "stillFrame": 133,
    "subtitleWindow": [
     0,
-    138
+    140
    ],
    "sourceWindow": [
     0,
-    141
+    138
    ],
    "lines": [
     {
-     "text": "11 倍",
+     "text": "AI 資料中心越蓋越多",
      "start": 0,
      "chars": [
+      1,
       4,
-      9,
-      9,
-      14
-     ]
-    },
-    {
-     "text": "美東電網的備用電力價格",
-     "start": 24,
-     "chars": [
+      4,
+      7,
+      10,
+      14,
+      17,
+      21,
       26,
-      32,
-      37,
-      43,
-      48,
-      54,
-      59,
-      64,
-      70,
-      75,
-      81
+      29,
+      34
      ]
     },
     {
-     "text": "四次拍賣變 11 倍",
-     "start": 91,
+     "text": "美國電網的備用電費",
+     "start": 41,
      "chars": [
+      43,
+      47,
+      51,
+      55,
+      58,
+      61,
+      65,
+      69,
+      74
+     ]
+    },
+    {
+     "text": "四次拍賣漲成 11 倍",
+     "start": 79,
+     "chars": [
+      81,
+      85,
+      89,
       93,
       98,
-      104,
-      109,
-      114,
-      114,
-      120,
-      125,
-      125,
-      131
+      102,
+      102,
+      106,
+      111,
+      111,
+      115
      ]
     }
    ],
    "keywords": [
     {
      "text": "11 倍",
-     "start": 4
+     "start": 106
+    },
+    {
+     "text": "備用電費",
+     "start": 61
     }
    ],
    "cues": [
     {
      "id": "x11",
-     "text": "11 倍",
-     "frame": 5
+     "text": "AI 資料中心",
+     "frame": 2
     },
     {
      "id": "grid",
      "text": "電網",
-     "frame": 39
+     "frame": 52
     },
     {
      "id": "price",
-     "text": "備用電力價格",
-     "frame": 55
+     "text": "備用電費",
+     "frame": 63
     },
     {
      "id": "four",
      "text": "四次拍賣",
-     "frame": 94
+     "frame": 82
     }
    ],
-   "sub": "11 倍\n美東電網的備用電力價格\n四次拍賣變 11 倍",
-   "provider": "estimate",
-   "syllables": 23,
+   "sub": "AI 資料中心越蓋越多\n美國電網的備用電費\n四次拍賣漲成 11 倍",
+   "provider": "recording+fa",
+   "syllables": 28,
    "words": [],
    "charTimes": [
     0,
-    0.181,
-    0.363,
-    0.761,
-    0.943,
-    1.124,
-    1.305,
-    1.486,
-    1.668,
-    1.849,
-    2.03,
-    2.212,
-    2.393,
-    2.574,
-    2.973,
-    3.154,
-    3.335,
-    3.517,
-    3.698,
-    3.879,
-    4.061,
-    4.242
-   ]
+    0.1,
+    0.22,
+    0.32,
+    0.44,
+    0.56,
+    0.7,
+    0.84,
+    0.96,
+    1.1,
+    1.42,
+    1.56,
+    1.68,
+    1.82,
+    1.92,
+    2.02,
+    2.14,
+    2.28,
+    2.44,
+    2.68,
+    2.82,
+    2.94,
+    3.08,
+    3.24,
+    3.38,
+    3.527,
+    3.673,
+    3.82
+   ],
+   "fa": {
+    "confidence": 0.846,
+    "minScore": 0.013
+   }
   },
   {
    "id": "s02",
    "audio": null,
-   "audioFrame": 141,
-   "audioSec": 3.077,
+   "audioFrame": 143,
+   "audioSec": 2.84,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 136,
-   "durationFrames": 106,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 141,
-   "voiceEndFrame": 234,
-   "stillFrame": 232,
-   "subtitleWindow": [
-    138,
-    234
-   ],
-   "sourceWindow": [
-    141,
-    237
-   ],
-   "lines": [
-    {
-     "text": "這叫容量費",
-     "start": 138,
-     "chars": [
-      140,
-      145,
-      150,
-      155,
-      160
-     ]
-    },
-    {
-     "text": "先付給電廠",
-     "start": 169,
-     "chars": [
-      171,
-      176,
-      181,
-      186,
-      191
-     ]
-    },
-    {
-     "text": "保證尖峰有電",
-     "start": 200,
-     "chars": [
-      202,
-      207,
-      212,
-      217,
-      222,
-      227
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "容量費",
-     "start": 150
-    },
-    {
-     "text": "保證尖峰時有電",
-     "start": 138
-    }
-   ],
-   "cues": [
-    {
-     "id": "cap",
-     "text": "容量費",
-     "frame": 151
-    },
-    {
-     "id": "plant",
-     "text": "電廠",
-     "frame": 187
-    },
-    {
-     "id": "peak",
-     "text": "保證尖峰",
-     "frame": 203
-    },
-    {
-     "id": "money",
-     "text": "有電",
-     "frame": 223
-    }
-   ],
-   "sub": "這叫容量費\n先付給電廠\n保證尖峰有電",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
-   "charTimes": [
-    0,
-    0.167,
-    0.334,
-    0.502,
-    0.669,
-    1.037,
-    1.204,
-    1.371,
-    1.538,
-    1.706,
-    2.074,
-    2.241,
-    2.408,
-    2.575,
-    2.742,
-    2.91
-   ]
-  },
-  {
-   "id": "s03",
-   "audio": null,
-   "audioFrame": 237,
-   "audioSec": 3.654,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 232,
-   "durationFrames": 123,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 237,
-   "voiceEndFrame": 347,
-   "stillFrame": 345,
-   "subtitleWindow": [
-    234,
-    347
-   ],
-   "sourceWindow": [
-    237,
-    350
-   ],
-   "lines": [
-    {
-     "text": "官方說資料中心要自己付",
-     "start": 234,
-     "chars": [
-      236,
-      241,
-      246,
-      252,
-      257,
-      263,
-      268,
-      273,
-      279,
-      284,
-      290
-     ]
-    },
-    {
-     "text": "監察單位說沒做到",
-     "start": 300,
-     "chars": [
-      302,
-      307,
-      313,
-      318,
-      323,
-      329,
-      334,
-      340
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "自己付",
-     "start": 279
-    },
-    {
-     "text": "沒做到",
-     "start": 329
-    }
-   ],
-   "cues": [
-    {
-     "id": "rule",
-     "text": "官方",
-     "frame": 237
-    },
-    {
-     "id": "dc",
-     "text": "資料中心",
-     "frame": 253
-    },
-    {
-     "id": "own",
-     "text": "自己付",
-     "frame": 280
-    },
-    {
-     "id": "imm",
-     "text": "監察單位",
-     "frame": 303
-    },
-    {
-     "id": "fail",
-     "text": "沒做到",
-     "frame": 330
-    }
-   ],
-   "sub": "官方說資料中心要自己付\n監察單位說沒做到",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
-   "charTimes": [
-    0,
-    0.181,
-    0.362,
-    0.543,
-    0.724,
-    0.904,
-    1.085,
-    1.266,
-    1.447,
-    1.628,
-    1.809,
-    2.207,
-    2.388,
-    2.569,
-    2.749,
-    2.93,
-    3.111,
-    3.292,
-    3.473
-   ]
-  },
-  {
-   "id": "s04",
-   "audio": null,
-   "audioFrame": 350,
-   "audioSec": 3.846,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 345,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 350,
-   "voiceEndFrame": 466,
-   "stillFrame": 464,
-   "subtitleWindow": [
-    347,
-    466
-   ],
-   "sourceWindow": [
-    350,
-    469
-   ],
-   "lines": [
-    {
-     "text": "監察單位估算",
-     "start": 347,
-     "chars": [
-      349,
-      355,
-      361,
-      368,
-      374,
-      380
-     ]
-    },
-    {
-     "text": "用戶已多付 294 億美元",
-     "start": 392,
-     "chars": [
-      394,
-      400,
-      407,
-      413,
-      420,
-      420,
-      426,
-      432,
-      439,
-      439,
-      445,
-      451,
-      458
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "294 億美元",
-     "start": 426
-    }
-   ],
-   "cues": [
-    {
-     "id": "est",
-     "text": "估算",
-     "frame": 375
-    },
-    {
-     "id": "all",
-     "text": "用戶",
-     "frame": 396
-    },
-    {
-     "id": "num",
-     "text": "294 億美元",
-     "frame": 427
-    }
-   ],
-   "sub": "監察單位估算\n用戶已多付 294 億美元",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
-   "charTimes": [
-    0,
-    0.211,
-    0.423,
-    0.634,
-    0.845,
-    1.057,
-    1.522,
-    1.733,
-    1.944,
-    2.156,
-    2.367,
-    2.578,
-    2.79,
-    3.001,
-    3.212,
-    3.423,
-    3.635
-   ]
-  },
-  {
-   "id": "s05",
-   "audio": null,
-   "audioFrame": 469,
-   "audioSec": 3.269,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 464,
+   "startFrame": 133,
    "durationFrames": 112,
    "transitionFrames": 10,
    "transition": {
@@ -525,108 +189,383 @@
      8
     ]
    },
-   "voiceStartFrame": 469,
-   "voiceEndFrame": 568,
-   "stillFrame": 566,
+   "voiceStartFrame": 143,
+   "voiceEndFrame": 229,
+   "stillFrame": 235,
    "subtitleWindow": [
-    466,
-    573
+    140,
+    242
    ],
    "sourceWindow": [
-    469,
-    571
+    138,
+    240
    ],
-   "pauseAfter": 0.3,
    "lines": [
     {
-     "text": "但容量費 11 倍",
-     "start": 466,
+     "text": "備用電費",
+     "start": 140,
      "chars": [
-      468,
-      473,
-      478,
-      484,
-      484,
-      489,
-      494,
-      494,
-      500
+      142,
+      145,
+      149,
+      153
      ]
     },
     {
-     "text": "不等於電費也漲 11 倍",
-     "start": 510,
+     "text": "是先付給電廠",
+     "start": 159,
      "chars": [
-      512,
-      517,
-      522,
-      528,
-      533,
-      539,
-      544,
-      544,
-      549,
-      555,
-      555,
-      560
+      161,
+      166,
+      172,
+      176,
+      179,
+      184
+     ]
+    },
+    {
+     "text": "保證尖峰有電的錢",
+     "start": 190,
+     "chars": [
+      193,
+      197,
+      202,
+      206,
+      211,
+      215,
+      219,
+      221
      ]
     }
    ],
    "keywords": [
     {
-     "text": "不等於",
-     "start": 512
+     "text": "保證尖峰有電",
+     "start": 193
     }
    ],
    "cues": [
     {
      "id": "cap",
-     "text": "容量費",
-     "frame": 474
+     "text": "備用電費",
+     "frame": 143
     },
     {
-     "id": "ne",
-     "text": "不等於",
-     "frame": 513
+     "id": "plant",
+     "text": "電廠",
+     "frame": 181
     },
     {
-     "id": "bill",
-     "text": "電費",
-     "frame": 529
+     "id": "peak",
+     "text": "保證尖峰",
+     "frame": 194
+    },
+    {
+     "id": "money",
+     "text": "有電的錢",
+     "frame": 212
     }
    ],
-   "sub": "但容量費 11 倍\n不等於電費也漲 11 倍",
-   "provider": "estimate",
+   "sub": "備用電費\n是先付給電廠\n保證尖峰有電的錢",
+   "provider": "recording+fa",
+   "syllables": 18,
+   "words": [],
+   "charTimes": [
+    0,
+    0.12,
+    0.24,
+    0.38,
+    0.66,
+    0.82,
+    1.02,
+    1.14,
+    1.26,
+    1.42,
+    1.7,
+    1.86,
+    2.02,
+    2.16,
+    2.3,
+    2.44,
+    2.58,
+    2.66
+   ],
+   "fa": {
+    "confidence": 0.973,
+    "minScore": 0.912
+   }
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 246,
+   "audioSec": 3.2,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 235,
+   "durationFrames": 131,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 245,
+   "voiceEndFrame": 342,
+   "stillFrame": 356,
+   "subtitleWindow": [
+    242,
+    363
+   ],
+   "sourceWindow": [
+    240,
+    361
+   ],
+   "lines": [
+    {
+     "text": "那誰該付？",
+     "start": 242,
+     "chars": [
+      245,
+      248,
+      253,
+      257,
+      257
+     ]
+    },
+    {
+     "text": "白宮和州長說",
+     "start": 275,
+     "chars": [
+      277,
+      282,
+      286,
+      290,
+      294,
+      299
+     ]
+    },
+    {
+     "text": "資料中心自己付",
+     "start": 308,
+     "chars": [
+      311,
+      315,
+      319,
+      323,
+      328,
+      333,
+      338
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "自己付",
+     "start": 328
+    }
+   ],
+   "cues": [
+    {
+     "id": "rule",
+     "text": "白宮",
+     "frame": 278
+    },
+    {
+     "id": "dc",
+     "text": "資料中心",
+     "frame": 312
+    },
+    {
+     "id": "own",
+     "text": "自己付",
+     "frame": 329
+    }
+   ],
+   "sub": "那誰該付？\n白宮和州長說\n資料中心自己付",
+   "provider": "recording+fa",
    "syllables": 17,
    "words": [],
    "charTimes": [
     0,
-    0.18,
-    0.359,
-    0.539,
-    0.719,
-    0.898,
-    1.078,
-    1.473,
-    1.653,
-    1.832,
-    2.012,
-    2.191,
-    2.371,
-    2.551,
-    2.73,
-    2.91,
-    3.09
-   ]
+    0.12,
+    0.28,
+    0.42,
+    1.08,
+    1.26,
+    1.4,
+    1.52,
+    1.64,
+    1.8,
+    2.2,
+    2.34,
+    2.48,
+    2.6,
+    2.78,
+    2.94,
+    3.1
+   ],
+   "fa": {
+    "confidence": 0.93,
+    "minScore": 0.498
+   }
   },
   {
-   "id": "s06",
+   "id": "s04",
    "audio": null,
-   "audioFrame": 576,
-   "audioSec": 3.462,
+   "audioFrame": 366,
+   "audioSec": 4.04,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 566,
+   "startFrame": 356,
+   "durationFrames": 155,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 366,
+   "voiceEndFrame": 488,
+   "stillFrame": 501,
+   "subtitleWindow": [
+    363,
+    508
+   ],
+   "sourceWindow": [
+    361,
+    506
+   ],
+   "lines": [
+    {
+     "text": "但盯市場的監察",
+     "start": 363,
+     "chars": [
+      365,
+      369,
+      374,
+      377,
+      381,
+      383,
+      387
+     ]
+    },
+    {
+     "text": "單位說沒做到",
+     "start": 388,
+     "chars": [
+      390,
+      393,
+      398,
+      408,
+      413,
+      417
+     ]
+    },
+    {
+     "text": "用戶已多付 294 億美元",
+     "start": 426,
+     "chars": [
+      428,
+      432,
+      436,
+      443,
+      447,
+      447,
+      453,
+      460,
+      467,
+      467,
+      474,
+      477,
+      481
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "沒做到",
+     "start": 408
+    },
+    {
+     "text": "294 億美元",
+     "start": 453
+    }
+   ],
+   "cues": [
+    {
+     "id": "est",
+     "text": "監察單位",
+     "frame": 385
+    },
+    {
+     "id": "all",
+     "text": "用戶",
+     "frame": 430
+    },
+    {
+     "id": "num",
+     "text": "294 億美元",
+     "frame": 455
+    }
+   ],
+   "sub": "但盯市場的監察單位說沒做到\n用戶已多付 294 億美元",
+   "provider": "recording+fa",
+   "syllables": 27,
+   "words": [],
+   "charTimes": [
+    0,
+    0.16,
+    0.3,
+    0.42,
+    0.54,
+    0.62,
+    0.74,
+    0.86,
+    0.96,
+    1.1,
+    1.44,
+    1.6,
+    1.76,
+    2.12,
+    2.26,
+    2.38,
+    2.6,
+    2.74,
+    2.965,
+    3.19,
+    3.415,
+    3.64,
+    3.76,
+    3.88
+   ],
+   "fa": {
+    "confidence": 0.788,
+    "minScore": 0.128
+   }
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 512,
+   "audioSec": 3.04,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 501,
    "durationFrames": 123,
    "transitionFrames": 10,
    "transition": {
@@ -641,116 +580,121 @@
      8
     ]
    },
-   "voiceStartFrame": 576,
-   "voiceEndFrame": 681,
-   "stillFrame": 679,
+   "voiceStartFrame": 511,
+   "voiceEndFrame": 603,
+   "stillFrame": 614,
    "subtitleWindow": [
-    573,
-    680
+    508,
+    621
    ],
    "sourceWindow": [
-    571,
-    684
+    506,
+    619
    ],
+   "pauseAfter": 0.3,
    "lines": [
     {
-     "text": "12 月還有一場拍賣",
-     "start": 573,
+     "text": "電費也漲 11 倍嗎？",
+     "start": 508,
      "chars": [
-      575,
-      580,
-      580,
-      585,
-      591,
-      596,
-      602,
-      607,
-      612,
-      618
+      511,
+      515,
+      518,
+      521,
+      521,
+      525,
+      528,
+      528,
+      532,
+      537,
+      537
      ]
     },
     {
-     "text": "會再漲多少還不知道",
-     "start": 628,
+     "text": "不是這只佔電費一小部分",
+     "start": 549,
      "chars": [
-      630,
-      635,
-      641,
-      646,
-      651,
-      657,
-      662,
-      668,
-      673
+      551,
+      555,
+      567,
+      571,
+      574,
+      578,
+      582,
+      585,
+      589,
+      593,
+      598
      ]
     }
    ],
    "keywords": [
     {
-     "text": "12 月",
-     "start": 575
-    },
-    {
-     "text": "還不知道",
-     "start": 657
+     "text": "一小部分",
+     "start": 585
     }
    ],
    "cues": [
     {
-     "id": "dec",
-     "text": "12 月",
-     "frame": 576
+     "id": "cap",
+     "text": "電費",
+     "frame": 512
     },
     {
-     "id": "auc",
-     "text": "拍賣",
-     "frame": 614
+     "id": "ne",
+     "text": "不是",
+     "frame": 553
     },
     {
-     "id": "more",
-     "text": "再漲多少",
-     "frame": 637
+     "id": "succ",
+     "text": "一小部分",
+     "frame": 586
     },
     {
-     "id": "unk",
-     "text": "還不知道",
-     "frame": 658
+     "id": "board",
+     "text": "只佔",
+     "frame": 573
     }
    ],
-   "sub": "12 月還有一場拍賣\n會再漲多少還不知道",
-   "provider": "estimate",
-   "syllables": 18,
+   "sub": "電費也漲 11 倍嗎？\n不是\n這只佔電費一小部分",
+   "provider": "recording+fa",
+   "syllables": 19,
    "words": [],
    "charTimes": [
     0,
-    0.18,
-    0.361,
-    0.541,
-    0.721,
-    0.901,
-    1.082,
-    1.262,
-    1.442,
-    1.839,
-    2.019,
-    2.2,
+    0.14,
+    0.24,
+    0.34,
+    0.467,
+    0.593,
+    0.72,
+    0.88,
+    1.36,
+    1.48,
+    1.9,
+    2.02,
+    2.12,
+    2.24,
     2.38,
-    2.56,
-    2.74,
-    2.921,
-    3.101,
-    3.281
-   ]
+    2.48,
+    2.6,
+    2.76,
+    2.9
+   ],
+   "fa": {
+    "confidence": 0.826,
+    "minScore": 0.02
+   }
   },
   {
-   "id": "s07",
+   "id": "s06",
    "audio": null,
-   "audioFrame": 684,
-   "audioSec": 3.654,
+   "audioFrame": 625,
+   "audioSec": 2.58,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 679,
-   "durationFrames": 129,
+   "startFrame": 614,
+   "durationFrames": 106,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -764,112 +708,255 @@
      8
     ]
    },
-   "voiceStartFrame": 683,
-   "voiceEndFrame": 794,
-   "stillFrame": 796,
+   "voiceStartFrame": 624,
+   "voiceEndFrame": 702,
+   "stillFrame": 710,
    "subtitleWindow": [
-    680,
-    808
+    621,
+    717
    ],
    "sourceWindow": [
-    684,
-    808
+    619,
+    715
    ],
    "lines": [
     {
-     "text": "資料中心該",
-     "start": 680,
+     "text": "12 月還有一場拍賣",
+     "start": 621,
      "chars": [
-      683,
-      688,
-      693,
-      699,
-      704
+      624,
+      627,
+      627,
+      630,
+      636,
+      640,
+      643,
+      645,
+      649,
+      654
      ]
     },
     {
-     "text": "自己蓋電廠嗎？",
-     "start": 708,
+     "text": "會不會再漲，",
+     "start": 662,
      "chars": [
-      710,
-      715,
-      720,
-      726,
-      731,
-      737,
-      737
+      664,
+      669,
+      671,
+      675,
+      679,
+      679
      ]
     },
     {
-     "text": "下集看 12 月拍賣",
-     "start": 747,
+     "text": "還不知道",
+     "start": 684,
      "chars": [
-      749,
-      754,
-      760,
-      760,
-      765,
-      770,
-      770,
-      776,
-      781,
-      787
+      686,
+      691,
+      694,
+      697
      ]
     }
    ],
    "keywords": [
     {
-     "text": "自己蓋電廠",
-     "start": 710
+     "text": "還不知道",
+     "start": 686
+    }
+   ],
+   "cues": [
+    {
+     "id": "dec",
+     "text": "12 月",
+     "frame": 625
+    },
+    {
+     "id": "auc",
+     "text": "拍賣",
+     "frame": 651
+    },
+    {
+     "id": "more",
+     "text": "再漲",
+     "frame": 676
+    },
+    {
+     "id": "unk",
+     "text": "還不知道",
+     "frame": 687
+    }
+   ],
+   "sub": "12 月還有一場拍賣\n會不會再漲，還不知道",
+   "provider": "recording+fa",
+   "syllables": 18,
+   "words": [],
+   "charTimes": [
+    0,
+    0.122,
+    0.22,
+    0.42,
+    0.54,
+    0.64,
+    0.72,
+    0.86,
+    1.02,
+    1.36,
+    1.5,
+    1.58,
+    1.7,
+    1.84,
+    2.08,
+    2.24,
+    2.34,
+    2.44
+   ],
+   "fa": {
+    "confidence": 0.922,
+    "minScore": 0.003
+   }
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 721,
+   "audioSec": 1.52,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 710,
+   "durationFrames": 65,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 720,
+   "voiceEndFrame": 767,
+   "stillFrame": 765,
+   "subtitleWindow": [
+    717,
+    775
+   ],
+   "sourceWindow": [
+    715,
+    770
+   ],
+   "lines": [
+    {
+     "text": "想看完整數字",
+     "start": 717,
+     "chars": [
+      720,
+      724,
+      727,
+      730,
+      733,
+      737
+     ]
+    },
+    {
+     "text": "留言電費",
+     "start": 743,
+     "chars": [
+      745,
+      750,
+      756,
+      761
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "留言電費",
+     "start": 745
     }
    ],
    "cues": [
     {
      "id": "dc",
-     "text": "資料中心",
-     "frame": 684
+     "text": "完整數字",
+     "frame": 728
     },
     {
      "id": "own",
-     "text": "自己蓋電廠",
-     "frame": 711
+     "text": "留言",
+     "frame": 746
     },
     {
-     "id": "next",
-     "text": "下集",
-     "frame": 750
-    },
-    {
-     "id": "dec",
-     "text": "12 月拍賣",
-     "frame": 766
+     "id": "cmt",
+     "text": "電費",
+     "frame": 757
     }
    ],
-   "sub": "資料中心該自己蓋電廠嗎？\n下集看 12 月拍賣",
-   "provider": "estimate",
-   "syllables": 19,
+   "sub": "想看完整數字\n留言電費",
+   "provider": "recording+fa",
+   "syllables": 10,
    "words": [],
    "charTimes": [
     0,
-    0.181,
-    0.362,
-    0.543,
-    0.724,
-    0.904,
-    1.085,
-    1.266,
-    1.447,
-    1.628,
-    1.809,
-    2.207,
-    2.388,
-    2.569,
-    2.749,
-    2.93,
-    3.111,
-    3.292,
-    3.473
-   ]
+    0.14,
+    0.24,
+    0.34,
+    0.46,
+    0.6,
+    0.84,
+    1,
+    1.2,
+    1.4
+   ],
+   "fa": {
+    "confidence": 0.94,
+    "minScore": 0.684
+   }
+  },
+  {
+   "id": "end",
+   "audio": null,
+   "audioFrame": 765,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 765,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 775,
+   "voiceEndFrame": 775,
+   "stillFrame": 861,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    770,
+    873
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
   }
  ]
 }

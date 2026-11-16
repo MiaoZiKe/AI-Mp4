@@ -2,133 +2,450 @@
  "version": 2,
  "slug": "liguligu-nvda-kress",
  "fps": 30,
- "totalFrames": 716,
- "totalSec": 23.87,
- "gapSec": 0.12,
+ "totalFrames": 762,
+ "totalSec": 25.4,
+ "gapSec": 0.3,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 5.2,
-  "gap": 0.12,
-  "tailEndFrames": 14
+ "recording": {
+  "file": "audio/liguligu-nvda-kress/voice-api.wav",
+  "scenes": [
+   "s01",
+   "s02",
+   "s03",
+   "s05",
+   "s07"
+  ],
+  "sec": 22.461,
+  "confidence": 0.942,
+  "minScore": 0.004,
+  "lastVoiceSec": 21.86
  },
  "scenes": [
   {
    "id": "s01",
    "audio": null,
-   "audioFrame": 5,
-   "audioSec": 3.077,
+   "audioFrame": 2,
+   "audioSec": 4,
    "headSilSec": 0,
    "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 106,
+   "durationFrames": 144,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 98,
-   "stillFrame": 96,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 122,
+   "stillFrame": 134,
    "subtitleWindow": [
     0,
-    97
+    141
    ],
    "sourceWindow": [
     0,
-    101
+    139
    ],
    "lines": [
     {
-     "text": "一個簽名",
+     "text": "黃仁勳辭職後",
      "start": 0,
      "chars": [
+      1,
       4,
-      9,
-      14,
-      19
+      8,
+      13,
+      18,
+      23
      ]
     },
     {
-     "text": "三個頭銜",
+     "text": "輝達送給證管會的文件上",
      "start": 28,
      "chars": [
       30,
       35,
       40,
-      45
+      44,
+      49,
+      53,
+      57,
+      61,
+      63,
+      67,
+      71
      ]
     },
     {
-     "text": "簽字的是同一個人",
-     "start": 54,
+     "text": "一個人簽了三個頭銜",
+     "start": 78,
      "chars": [
-      56,
-      61,
-      66,
-      71,
-      76,
-      81,
-      86,
-      91
+      80,
+      84,
+      88,
+      94,
+      98,
+      103,
+      107,
+      110,
+      115
      ]
     }
    ],
    "keywords": [
     {
      "text": "三個頭銜",
-     "start": 30
-    },
-    {
-     "text": "同一個人",
-     "start": 76
+     "start": 103
     }
    ],
    "cues": [
     {
      "id": "sig",
-     "text": "簽名",
-     "frame": 15
+     "text": "黃仁勳辭職",
+     "frame": 2
+    },
+    {
+     "id": "doc",
+     "text": "證管會",
+     "frame": 50
     },
     {
      "id": "three",
      "text": "三個頭銜",
-     "frame": 31
-    },
-    {
-     "id": "same",
-     "text": "同一個人",
-     "frame": 77
+     "frame": 104
     }
    ],
-   "sub": "一個簽名\n三個頭銜\n簽字的是同一個人",
-   "provider": "estimate",
-   "syllables": 16,
+   "sub": "黃仁勳辭職後\n輝達送給證管會的文件上\n一個人簽了三個頭銜",
+   "provider": "recording+fa",
+   "syllables": 26,
    "words": [],
    "charTimes": [
     0,
-    0.167,
-    0.334,
-    0.502,
-    0.87,
-    1.037,
-    1.204,
-    1.371,
-    1.739,
-    1.906,
-    2.074,
-    2.241,
-    2.408,
-    2.575,
-    2.742,
-    2.91
-   ]
+    0.12,
+    0.24,
+    0.42,
+    0.58,
+    0.74,
+    0.98,
+    1.14,
+    1.3,
+    1.46,
+    1.6,
+    1.76,
+    1.9,
+    2,
+    2.08,
+    2.2,
+    2.36,
+    2.66,
+    2.78,
+    2.9,
+    3.1,
+    3.26,
+    3.4,
+    3.56,
+    3.64,
+    3.82
+   ],
+   "fa": {
+    "confidence": 0.884,
+    "minScore": 0.004
+   }
   },
   {
    "id": "s02",
    "audio": null,
-   "audioFrame": 101,
-   "audioSec": 3.462,
+   "audioFrame": 145,
+   "audioSec": 3.4,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 96,
+   "startFrame": 134,
+   "durationFrames": 134,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 144,
+   "voiceEndFrame": 247,
+   "stillFrame": 258,
+   "subtitleWindow": [
+    141,
+    265
+   ],
+   "sourceWindow": [
+    139,
+    263
+   ],
+   "lines": [
+    {
+     "text": "她是財務長",
+     "start": 141,
+     "chars": [
+      144,
+      147,
+      150,
+      155,
+      158
+     ]
+    },
+    {
+     "text": "現在暫代執行長",
+     "start": 166,
+     "chars": [
+      168,
+      173,
+      179,
+      184,
+      189,
+      192,
+      196
+     ]
+    },
+    {
+     "text": "5 天後就要交財報",
+     "start": 202,
+     "chars": [
+      204,
+      204,
+      212,
+      217,
+      223,
+      228,
+      231,
+      236,
+      241
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "暫代執行長",
+     "start": 179
+    }
+   ],
+   "cues": [
+    {
+     "id": "cfo",
+     "text": "財務長",
+     "frame": 152
+    },
+    {
+     "id": "act",
+     "text": "暫代執行長",
+     "frame": 180
+    },
+    {
+     "id": "d5",
+     "text": "5 天後",
+     "frame": 206
+    },
+    {
+     "id": "rep",
+     "text": "交財報",
+     "frame": 233
+    }
+   ],
+   "sub": "她是財務長\n現在暫代執行長\n5 天後就要交財報",
+   "provider": "recording+fa",
+   "syllables": 20,
+   "words": [],
+   "charTimes": [
+    0,
+    0.12,
+    0.22,
+    0.38,
+    0.48,
+    0.82,
+    0.98,
+    1.18,
+    1.36,
+    1.5,
+    1.62,
+    1.76,
+    2.02,
+    2.28,
+    2.44,
+    2.66,
+    2.8,
+    2.92,
+    3.08,
+    3.26
+   ],
+   "fa": {
+    "confidence": 0.967,
+    "minScore": 0.807
+   }
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 268,
+   "audioSec": 4.76,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 258,
+   "durationFrames": 179,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 268,
+   "voiceEndFrame": 411,
+   "stillFrame": 427,
+   "subtitleWindow": [
+    265,
+    434
+   ],
+   "sourceWindow": [
+    263,
+    432
+   ],
+   "lines": [
+    {
+     "text": "那正式的執行長呢？",
+     "start": 265,
+     "chars": [
+      267,
+      271,
+      277,
+      280,
+      283,
+      286,
+      290,
+      295,
+      295
+     ]
+    },
+    {
+     "text": "金融時報說已接觸人選",
+     "start": 309,
+     "chars": [
+      311,
+      315,
+      319,
+      322,
+      327,
+      333,
+      341,
+      345,
+      350,
+      355
+     ]
+    },
+    {
+     "text": "公司說還沒正式接洽",
+     "start": 365,
+     "chars": [
+      367,
+      371,
+      375,
+      382,
+      388,
+      393,
+      398,
+      402,
+      406
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "已接觸人選",
+     "start": 333
+    },
+    {
+     "text": "還沒正式接洽",
+     "start": 382
+    }
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "正式的執行長",
+     "frame": 273
+    },
+    {
+     "id": "ft",
+     "text": "金融時報",
+     "frame": 312
+    },
+    {
+     "id": "touch",
+     "text": "已接觸",
+     "frame": 335
+    },
+    {
+     "id": "co",
+     "text": "公司說",
+     "frame": 368
+    },
+    {
+     "id": "no",
+     "text": "還沒正式接洽",
+     "frame": 383
+    }
+   ],
+   "sub": "那正式的執行長呢？\n金融時報說已接觸人選\n公司說還沒正式接洽",
+   "provider": "recording+fa",
+   "syllables": 28,
+   "words": [],
+   "charTimes": [
+    0,
+    0.16,
+    0.34,
+    0.44,
+    0.54,
+    0.66,
+    0.78,
+    0.94,
+    1.48,
+    1.6,
+    1.74,
+    1.86,
+    2,
+    2.22,
+    2.48,
+    2.62,
+    2.78,
+    2.96,
+    3.34,
+    3.48,
+    3.6,
+    3.84,
+    4.04,
+    4.2,
+    4.38,
+    4.5,
+    4.64
+   ],
+   "fa": {
+    "confidence": 0.962,
+    "minScore": 0.658
+   }
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 437,
+   "audioSec": 2.9,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 427,
    "durationFrames": 117,
    "transitionFrames": 10,
    "transition": {
@@ -143,596 +460,122 @@
      8
     ]
    },
-   "voiceStartFrame": 100,
-   "voiceEndFrame": 205,
-   "stillFrame": 203,
+   "voiceStartFrame": 437,
+   "voiceEndFrame": 525,
+   "stillFrame": 534,
    "subtitleWindow": [
-    97,
-    205
+    434,
+    541
    ],
    "sourceWindow": [
-    101,
-    208
-   ],
-   "lines": [
-    {
-     "text": "她是財務長",
-     "start": 97,
-     "chars": [
-      100,
-      105,
-      110,
-      115,
-      120
-     ]
-    },
-    {
-     "text": "暫代執行長",
-     "start": 129,
-     "chars": [
-      131,
-      136,
-      141,
-      146,
-      151
-     ]
-    },
-    {
-     "text": "5 天後就要交財報",
-     "start": 161,
-     "chars": [
-      163,
-      163,
-      168,
-      173,
-      178,
-      183,
-      188,
-      193,
-      198
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "暫代執行長",
-     "start": 131
-    },
-    {
-     "text": "5 天後",
-     "start": 163
-    }
-   ],
-   "cues": [
-    {
-     "id": "cfo",
-     "text": "財務長",
-     "frame": 111
-    },
-    {
-     "id": "act",
-     "text": "暫代執行長",
-     "frame": 133
-    },
-    {
-     "id": "d5",
-     "text": "5 天後",
-     "frame": 164
-    },
-    {
-     "id": "rep",
-     "text": "交財報",
-     "frame": 190
-    }
-   ],
-   "sub": "她是財務長\n暫代執行長\n5 天後就要交財報",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
-   "charTimes": [
-    0,
-    0.17,
-    0.339,
-    0.509,
-    0.679,
-    1.052,
-    1.222,
-    1.391,
-    1.561,
-    1.731,
-    2.104,
-    2.274,
-    2.443,
-    2.613,
-    2.783,
-    2.952,
-    3.122,
-    3.292
-   ]
-  },
-  {
-   "id": "s03",
-   "audio": null,
-   "audioFrame": 208,
-   "audioSec": 3.846,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 203,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 208,
-   "voiceEndFrame": 324,
-   "stillFrame": 322,
-   "subtitleWindow": [
-    205,
-    324
-   ],
-   "sourceWindow": [
-    208,
-    327
-   ],
-   "lines": [
-    {
-     "text": "金融時報說已接觸人選",
-     "start": 205,
-     "chars": [
-      207,
-      212,
-      218,
-      224,
-      229,
-      235,
-      241,
-      246,
-      252,
-      258
-     ]
-    },
-    {
-     "text": "公司說還沒正式接洽",
-     "start": 268,
-     "chars": [
-      270,
-      276,
-      282,
-      288,
-      293,
-      299,
-      305,
-      310,
-      316
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "已接觸人選",
-     "start": 235
-    },
-    {
-     "text": "還沒正式接洽",
-     "start": 288
-    }
-   ],
-   "cues": [
-    {
-     "id": "ft",
-     "text": "金融時報",
-     "frame": 208
-    },
-    {
-     "id": "touch",
-     "text": "已接觸",
-     "frame": 237
-    },
-    {
-     "id": "co",
-     "text": "公司說",
-     "frame": 272
-    },
-    {
-     "id": "no",
-     "text": "還沒正式接洽",
-     "frame": 289
-    }
-   ],
-   "sub": "金融時報說已接觸人選\n公司說還沒正式接洽",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
-   "charTimes": [
-    0,
-    0.19,
-    0.381,
-    0.571,
-    0.762,
-    0.952,
-    1.142,
-    1.333,
-    1.523,
-    1.714,
-    2.133,
-    2.323,
-    2.513,
-    2.704,
-    2.894,
-    3.085,
-    3.275,
-    3.465,
-    3.656
-   ]
-  },
-  {
-   "id": "s04",
-   "audio": null,
-   "audioFrame": 327,
-   "audioSec": 3.846,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 322,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 327,
-   "voiceEndFrame": 443,
-   "stillFrame": 441,
-   "subtitleWindow": [
-    324,
-    443
-   ],
-   "sourceWindow": [
-    327,
-    446
-   ],
-   "lines": [
-    {
-     "text": "這季財測 1080 億美元",
-     "start": 324,
-     "chars": [
-      326,
-      331,
-      337,
-      343,
-      343,
-      348,
-      354,
-      360,
-      365,
-      365,
-      371,
-      377,
-      383
-     ]
-    },
-    {
-     "text": "是他還在任時給的",
-     "start": 393,
-     "chars": [
-      395,
-      401,
-      407,
-      412,
-      418,
-      424,
-      429,
-      435
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "1080 億美元",
-     "start": 348
-    },
-    {
-     "text": "還在任",
-     "start": 407
-    }
-   ],
-   "cues": [
-    {
-     "id": "guide",
-     "text": "財測",
-     "frame": 338
-    },
-    {
-     "id": "num",
-     "text": "1080 億美元",
-     "frame": 350
-    },
-    {
-     "id": "still",
-     "text": "還在任",
-     "frame": 408
-    }
-   ],
-   "sub": "這季財測 1080 億美元\n是他還在任時給的",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
-   "charTimes": [
-    0,
-    0.19,
-    0.381,
-    0.571,
-    0.762,
-    0.952,
-    1.142,
-    1.333,
-    1.523,
-    1.714,
-    1.904,
-    2.323,
-    2.513,
-    2.704,
-    2.894,
-    3.085,
-    3.275,
-    3.465,
-    3.656
-   ]
-  },
-  {
-   "id": "s05",
-   "audio": null,
-   "audioFrame": 446,
-   "audioSec": 2.5,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 441,
-   "durationFrames": 89,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 446,
-   "voiceEndFrame": 522,
-   "stillFrame": 520,
-   "subtitleWindow": [
-    443,
-    527
-   ],
-   "sourceWindow": [
-    446,
-    525
+    432,
+    539
    ],
    "pauseAfter": 0.3,
    "lines": [
     {
-     "text": "但暫代",
-     "start": 443,
+     "text": "所以她現在是暫代",
+     "start": 434,
      "chars": [
+      436,
+      439,
+      441,
       445,
-      449,
-      454
+      450,
+      454,
+      460,
+      465
      ]
     },
     {
      "text": "不等於接班",
-     "start": 463,
+     "start": 472,
      "chars": [
-      465,
-      470,
-      475,
-      480,
-      484
+      474,
+      477,
+      481,
+      484,
+      489
      ]
     },
     {
      "text": "人選還在找",
-     "start": 493,
+     "start": 497,
      "chars": [
-      495,
-      500,
-      505,
-      510,
-      515
+      499,
+      503,
+      509,
+      514,
+      518
      ]
     }
    ],
    "keywords": [
     {
      "text": "不等於接班",
-     "start": 465
+     "start": 474
     }
    ],
    "cues": [
     {
      "id": "act",
      "text": "暫代",
-     "frame": 451
+     "frame": 461
     },
     {
      "id": "ne",
      "text": "不等於",
-     "frame": 466
+     "frame": 475
     },
     {
      "id": "succ",
      "text": "接班",
-     "frame": 481
+     "frame": 486
     },
     {
      "id": "board",
      "text": "人選還在找",
-     "frame": 497
+     "frame": 501
     }
    ],
-   "sub": "但暫代\n不等於接班\n人選還在找",
-   "provider": "estimate",
-   "syllables": 13,
+   "sub": "所以她現在是暫代\n不等於接班\n人選還在找",
+   "provider": "recording+fa",
+   "syllables": 18,
    "words": [],
    "charTimes": [
     0,
-    0.162,
-    0.325,
-    0.682,
-    0.844,
-    1.006,
-    1.169,
-    1.331,
-    1.688,
-    1.851,
-    2.013,
-    2.175,
-    2.338
-   ]
-  },
-  {
-   "id": "s06",
-   "audio": null,
-   "audioFrame": 530,
-   "audioSec": 2.692,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 520,
-   "durationFrames": 100,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 530,
-   "voiceEndFrame": 612,
-   "stillFrame": 610,
-   "subtitleWindow": [
-    527,
-    611
+    0.1,
+    0.18,
+    0.32,
+    0.48,
+    0.62,
+    0.8,
+    0.98,
+    1.28,
+    1.4,
+    1.52,
+    1.62,
+    1.78,
+    2.12,
+    2.26,
+    2.46,
+    2.62,
+    2.76
    ],
-   "sourceWindow": [
-    525,
-    615
-   ],
-   "lines": [
-    {
-     "text": "調查還沒結論",
-     "start": 527,
-     "chars": [
-      529,
-      534,
-      539,
-      544,
-      550,
-      555
-     ]
-    },
-    {
-     "text": "正式人選也還沒定",
-     "start": 565,
-     "chars": [
-      567,
-      572,
-      577,
-      583,
-      588,
-      593,
-      599,
-      604
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "還沒結論",
-     "start": 539
-    },
-    {
-     "text": "還沒定",
-     "start": 593
-    }
-   ],
-   "cues": [
-    {
-     "id": "probe",
-     "text": "調查",
-     "frame": 530
-    },
-    {
-     "id": "none",
-     "text": "還沒結論",
-     "frame": 541
-    },
-    {
-     "id": "pick",
-     "text": "正式人選",
-     "frame": 568
-    },
-    {
-     "id": "open",
-     "text": "還沒定",
-     "frame": 595
-    }
-   ],
-   "sub": "調查還沒結論\n正式人選也還沒定",
-   "provider": "estimate",
-   "syllables": 14,
-   "words": [],
-   "charTimes": [
-    0,
-    0.177,
-    0.354,
-    0.531,
-    0.709,
-    0.886,
-    1.275,
-    1.452,
-    1.63,
-    1.807,
-    1.984,
-    2.161,
-    2.338,
-    2.515
-   ]
+   "fa": {
+    "confidence": 0.941,
+    "minScore": 0.498
+   }
   },
   {
    "id": "s07",
    "audio": null,
-   "audioFrame": 615,
-   "audioSec": 2.885,
+   "audioFrame": 544,
+   "audioSec": 3.72,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 610,
-   "durationFrames": 106,
+   "startFrame": 534,
+   "durationFrames": 130,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -746,107 +589,171 @@
      8
     ]
    },
-   "voiceStartFrame": 614,
-   "voiceEndFrame": 702,
-   "stillFrame": 704,
+   "voiceStartFrame": 544,
+   "voiceEndFrame": 656,
+   "stillFrame": 654,
    "subtitleWindow": [
-    611,
-    716
+    541,
+    664
    ],
    "sourceWindow": [
-    615,
-    716
+    539,
+    659
    ],
    "lines": [
     {
-     "text": "她是過渡，",
-     "start": 611,
+     "text": "她是過渡還是接班",
+     "start": 541,
      "chars": [
-      614,
-      619,
-      624,
-      630,
-      630
+      543,
+      546,
+      550,
+      555,
+      560,
+      565,
+      568,
+      573
      ]
     },
     {
-     "text": "還是接班？",
+     "text": "要看人選",
+     "start": 578,
+     "chars": [
+      580,
+      584,
+      588,
+      592
+     ]
+    },
+    {
+     "text": "想看完整資料，",
+     "start": 603,
+     "chars": [
+      606,
+      610,
+      613,
+      617,
+      622,
+      625,
+      625
+     ]
+    },
+    {
+     "text": "留言輝達",
      "start": 633,
      "chars": [
       635,
       640,
-      646,
-      651,
-      651
-     ]
-    },
-    {
-     "text": "下集看財報數字",
-     "start": 661,
-     "chars": [
-      663,
-      668,
-      673,
-      679,
-      684,
-      689,
-      695
+      647,
+      652
      ]
     }
    ],
    "keywords": [
     {
      "text": "過渡",
-     "start": 624
+     "start": 550
     },
     {
      "text": "接班",
-     "start": 646
+     "start": 568
     }
    ],
    "cues": [
     {
      "id": "tr",
      "text": "過渡",
-     "frame": 626
+     "frame": 551
     },
     {
      "id": "succ",
      "text": "接班",
-     "frame": 647
+     "frame": 570
     },
     {
-     "id": "next",
-     "text": "下集",
-     "frame": 664
+     "id": "pick",
+     "text": "要看人選",
+     "frame": 582
     },
     {
-     "id": "num",
-     "text": "財報數字",
-     "frame": 680
+     "id": "cmt",
+     "text": "留言輝達",
+     "frame": 636
     }
    ],
-   "sub": "她是過渡，還是接班？\n下集看財報數字",
-   "provider": "estimate",
-   "syllables": 15,
+   "sub": "她是過渡還是接班\n要看人選\n想看完整資料，留言輝達",
+   "provider": "recording+fa",
+   "syllables": 22,
    "words": [],
    "charTimes": [
     0,
-    0.178,
-    0.356,
-    0.534,
-    0.712,
-    0.89,
-    1.068,
-    1.246,
-    1.638,
-    1.816,
-    1.994,
-    2.172,
-    2.35,
-    2.528,
-    2.707
-   ]
+    0.12,
+    0.24,
+    0.4,
+    0.6,
+    0.76,
+    0.86,
+    1,
+    1.26,
+    1.38,
+    1.5,
+    1.66,
+    2.1,
+    2.24,
+    2.36,
+    2.48,
+    2.64,
+    2.76,
+    3.08,
+    3.24,
+    3.48,
+    3.66
+   ],
+   "fa": {
+    "confidence": 0.961,
+    "minScore": 0.485
+   }
+  },
+  {
+   "id": "end",
+   "audio": null,
+   "audioFrame": 654,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 654,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 664,
+   "voiceEndFrame": 664,
+   "stillFrame": 750,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    659,
+    762
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
   }
  ]
 }

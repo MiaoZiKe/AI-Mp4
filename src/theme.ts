@@ -1006,7 +1006,23 @@ export const LAYOUT_DOSSIER_NEWS = {
   /** 點陣世界地圖（只當背景，畫在標題條以下到畫面底）：中心經度 lonC 在 x=540、緯度 latRef 在 y=latY、每度 k px */
   MAP_TOP: 1500, MAP_K: 7, MAP_LON_C: -78, MAP_LAT_REF: 38, MAP_LAT_Y: 1578, MAP_DOT: 5, MAP_LABEL_PX: 28,
   TICK_TOP: 1640, TICK_H: 56, TICK_PX: 28,
-  STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30,
+  STAGE_SCALE: 1, CAP_ZH_PX: 64, CAP_EN_PX: 30, SRC_PX: 28,
+} as const;
+/** 哩股哩股片尾卡與左上 LOGO（正式字標 5C「Li」，tw-rotation docs/brand/avatar_5C/icon_5C_light.svg：深藍 L＋銅紅 i 身與 i 點；「i 點落定」＝查證落定）。時間都是片尾卡開始後第幾幀。 */
+export const DOSSIER_END = {
+  navy: "#14213D", copper: "#A8482A", paper: "#FBFAF6", paperEdge: "#D9D3C4",
+  /** 深色版字標（icon_5C_dark.svg）：片尾卡在深色底上用 */
+  darkL: "#FBFAF6", darkCopper: "#D0643F", glow: "rgba(208,100,63,0.6)", glowHi: "rgba(251,250,246,0.95)", mapDot: "#AEB6C2",
+  scanHi: "rgba(251,250,246,0.75)", flashFull: "#FBFAF6", flashO: 0.42, shake: 10,
+  /** 版面（1080×1920）：世界地圖（每度 3px，北緯 83 度在 MAP_Y）、字標、字標下方各行；上下撐滿 */
+  TOP: 160, BOTTOM: 1790, MAP_Y: 380, MAP_LAT: 83, LOGO_CX: 540, LOGO_CY: 600, LOGO_S: 760, NAME_Y: 1060, NAME_PX: 148, TAG_PX: 72,
+  RULE_Y: 1250, SLOGAN_Y: 1288, SLOGAN_PX: 52, NEXT_Y: 1450, NEXT_PX: 56, CMT_Y: 1580, CMT_PX: 60, MINI: 64,
+  /** 片尾卡第幾幀（固定，每集一樣）：世界各地 12 個新聞點脈衝 → 數字／文件碎片沿銅紅連線飛進來（0–24）→ L 實心 22 → i 身 24–32
+   *  → 查證章 28–36 加速壓下、36 重重蓋下（閃光、閃白 4 幀、兩圈銅紅震波、紙屑迸散、新聞條式掃描光橫掃、地圖點陣兩圈亮起、鏡頭震 10px）
+   *  → 字標逐字 40/43/46/49 → ｜查到底 54 → 底線 56 → slogan 60 → 下一集 66 → 留言 72（之後停 ≥1 秒）。不轉、不繞圈。 */
+  f: { gatherDur: 14, solid: 22, solidDur: 6, stem: 24, stemDur: 8, stamp: 28, impact: 36, shakeEnd: 46, flashDur: 12,
+       ring: [36, 41], ringDur: 22, spark: 36, sparkDur: 22, scan: 37, scanDur: 14, wave: [36, 44], waveDur: 28,
+       name: [40, 43, 46, 49], tag: 54, rule: 56, ruleDur: 8, slogan: 60, next: 66, cmt: 72 },
 } as const;
 /** 「國際新聞」填滿版（script.json `news.layout: "fill"`；使用者 2026/11/15「紅框處還有空間」）：上方留白 ≤60px、下方留白 ≤60px、標題條下緣 ≤1700、1700 以下放出處與跑馬燈頁尾帶。
  *  新聞條 44–108｜電頭 124–160｜主舞台 188 起放大 1.06 倍（到約 1163，左右約 52px）｜標題條 1192–1462｜地圖地點約 1600–1650｜出處 1706｜跑馬燈 1800–1860 */
@@ -1019,5 +1035,5 @@ export const LAYOUT_DOSSIER_NEWS_FILL = {
   CAP_ZH_PX: 70, CAP_EN_PX: 32,
   SRC_TOP: 1706,
   MAP_TOP: 1462, MAP_LAT_Y: 1606,
-  TICK_TOP: 1800, TICK_H: 60,
+  TICK_TOP: 1800, TICK_H: 60, TICK_PX: 30, SRC_PX: 30, MAP_LABEL_PX: 30,
 } as const;
