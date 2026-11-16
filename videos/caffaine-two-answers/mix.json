@@ -1,11 +1,11 @@
 {
  "slug": "caffaine-two-answers",
- "at": "2026-11-16T08:24:40.048Z",
- "durationSec": 29.57,
+ "at": "2026-11-16T18:23:34.245Z",
+ "durationSec": 51.83,
  "final": {
-  "lufs": -14.3,
-  "truePeakDbfs": -4.5,
-  "lra": 1.4,
+  "lufs": -14.2,
+  "truePeakDbfs": -4.4,
+  "lra": 2.7,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -40,16 +40,23 @@
   },
   "notch": "−9dB @3kHz（避開 2–4kHz）",
   "counts": {
-   "whoosh": 1
+   "whoosh": 2
   },
-  "perThreeSec": 0.1,
+  "perThreeSec": 0.12,
   "events": [
    {
     "type": "whoosh",
-    "frame": 708,
+    "frame": 140,
+    "why": "hook→you",
+    "startSec": 4.271,
+    "peakSec": 4.6
+   },
+   {
+    "type": "whoosh",
+    "frame": 1363,
     "why": "payoff→cta",
-    "startSec": 23.204,
-    "peakSec": 23.533
+    "startSec": 45.038,
+    "peakSec": 45.367
    }
   ]
  }
