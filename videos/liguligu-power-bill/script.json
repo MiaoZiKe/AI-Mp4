@@ -44,19 +44,20 @@
   "scenes": [
     {
       "id": "s01",
-      "narration": "11 倍。美東電網的備用電力，四次拍賣漲成 11 倍。",
-      "tts": "十一倍。美東電網的備用電力，四次拍賣漲成十一倍。",
+      "narration": "AI 資料中心越蓋越多，美國電網的備用電費，四次拍賣漲成 11 倍。",
+      "tts": "A I 資料中心越蓋越多，美國電網的備用電費，四次拍賣漲成十一倍。",
       "subtitle": {
-        "zh": "11 倍\n美東電網的備用電力\n四次拍賣漲成 11 倍",
-        "en": "Eleven times. | Backup power on a U.S. East grid | rose 11-fold in four auctions."
+        "zh": "AI 資料中心越蓋越多\n美國電網的備用電費\n四次拍賣漲成 11 倍",
+        "en": "AI data centers keep multiplying in the U.S. | A grid's backup-power price | rose 11-fold in four auctions."
       },
       "keywords": [
-        "11 倍"
+        "11 倍",
+        "備用電費"
       ],
       "cues": [
         {
           "id": "x11",
-          "text": "11 倍"
+          "text": "AI 資料中心"
         },
         {
           "id": "grid",
@@ -64,7 +65,7 @@
         },
         {
           "id": "price",
-          "text": "備用電力"
+          "text": "備用電費"
         },
         {
           "id": "four",
@@ -120,24 +121,23 @@
     },
     {
       "id": "s02",
-      "narration": "這叫容量費，保證尖峰有電的錢。",
-      "tts": "這叫容量費，保證尖峰有電的錢。",
+      "narration": "備用電費，是先付給電廠、保證尖峰有電的錢。",
+      "tts": "備用電費，是先付給電廠、保證尖峰有電的錢。",
       "subtitle": {
-        "zh": "這叫容量費\n保證尖峰有電的錢",
-        "en": "It's called a capacity payment: | money that keeps power there at peak."
+        "zh": "備用電費\n是先付給電廠\n保證尖峰有電的錢",
+        "en": "What is it? | Money paid to plants in advance | so power is there at peak."
       },
       "keywords": [
-        "容量費",
-        "保證尖峰時有電"
+        "保證尖峰有電"
       ],
       "cues": [
         {
           "id": "cap",
-          "text": "容量費"
+          "text": "備用電費"
         },
         {
           "id": "plant",
-          "text": "這叫"
+          "text": "電廠"
         },
         {
           "id": "peak",
@@ -177,7 +177,7 @@
           "flashAt": "money+6"
         },
         "left": {
-          "title": "容量費",
+          "title": "備用電費",
           "date": "每 MW・每天",
           "sub": "先付給電廠",
           "lines": [
@@ -216,20 +216,19 @@
     },
     {
       "id": "s03",
-      "narration": "官方說資料中心要自己付，監察單位說沒做到。",
-      "tts": "官方說資料中心要自己付，監察單位說，沒做到。",
+      "narration": "那誰該付？白宮和州長說，資料中心自己付。",
+      "tts": "那誰該付？白宮和州長說，資料中心自己付。",
       "subtitle": {
-        "zh": "官方說資料中心要自己付\n監察單位說沒做到",
-        "en": "Officials: data centers pay their own way. | The monitor: that hasn't happened."
+        "zh": "那誰該付？\n白宮和州長說\n資料中心自己付",
+        "en": "So who pays? | The White House and governors | say data centers pay their own way."
       },
       "keywords": [
-        "自己付",
-        "沒做到"
+        "自己付"
       ],
       "cues": [
         {
           "id": "rule",
-          "text": "官方"
+          "text": "白宮"
         },
         {
           "id": "dc",
@@ -238,14 +237,6 @@
         {
           "id": "own",
           "text": "自己付"
-        },
-        {
-          "id": "imm",
-          "text": "監察單位"
-        },
-        {
-          "id": "fail",
-          "text": "沒做到"
         }
       ],
       "beat": "mechanism",
@@ -254,17 +245,17 @@
         "panel": "versus",
         "left": {
           "head": "官方原則",
-          "doc": "州長與白宮 1/16",
+          "doc": "白宮與州長 1/16",
           "big": "自付",
           "src": "資料中心自付成本",
           "headAt": "start-20",
-          "at": "start-16",
-          "bigAt": "rule+6",
-          "srcAt": "dc+4",
+          "at": "rule+12",
+          "bigAt": "own",
+          "srcAt": "own+6",
           "tag": {
             "kind": "report",
             "text": "監察報告轉述",
-            "at": "own+12"
+            "at": "own+10"
           }
         },
         "right": {
@@ -274,23 +265,23 @@
           ],
           "src": "PJM 獨立市場監察 第三季報告",
           "headAt": "start-20",
-          "at": "imm",
-          "bigAt": "fail-4",
-          "srcAt": "fail+4",
+          "at": "exit+40",
+          "bigAt": "exit+40",
+          "srcAt": "exit+40",
           "tag": {
             "kind": "none",
             "text": "監察單位結論",
-            "at": "fail-2"
+            "at": "exit+40"
           },
           "masthead": {
             "name": "市場監察報告",
             "date": "Q3",
-            "at": "imm+4"
+            "at": "exit+40"
           }
         },
         "mid": {
           "text": "？",
-          "at": "fail+2"
+          "at": "own+16"
         },
         "news": {
           "dateline": "WASHINGTON, D.C.・2026/1/16",
@@ -303,19 +294,20 @@
     },
     {
       "id": "s04",
-      "narration": "監察單位估算，用戶已多付 294 億美元。",
-      "tts": "監察單位估算，用戶已經多付兩百九十四億美元。",
+      "narration": "但盯市場的監察單位說沒做到，用戶已多付 294 億美元。",
+      "tts": "但盯市場的監察單位說沒做到，用戶已經多付兩百九十四億美元。",
       "subtitle": {
-        "zh": "監察單位估算\n用戶已多付 294 億美元",
-        "en": "The monitor estimates customers | have paid $29.4 billion more."
+        "zh": "但盯市場的監察單位說沒做到\n用戶已多付 294 億美元",
+        "en": "But the monitor says it hasn't: | customers have paid $29.4 billion more."
       },
       "keywords": [
+        "沒做到",
         "294 億美元"
       ],
       "cues": [
         {
           "id": "est",
-          "text": "估算"
+          "text": "監察單位"
         },
         {
           "id": "all",
@@ -331,22 +323,22 @@
       "props": {
         "panel": "claim",
         "head": {
-          "text": "誰在買單？",
-          "mark": "買單",
+          "text": "說好的沒做到",
+          "mark": "沒做到",
           "at": "start-16",
-          "markAt": "all"
+          "markAt": "est+10"
         },
         "photo": {
           "name": "servers",
           "caption": "資料中心機房（示意照片）",
           "date": "Q3",
           "at": "start-22",
-          "dateAt": "est"
+          "dateAt": "est+26"
         },
         "quote": {
           "by": "市場監察報告 2026 Q3",
           "byAt": "est-4",
-          "pre": "所有用戶已多付",
+          "pre": "一般用戶已多付",
           "big": "294",
           "post": "億美元",
           "at": "all-4",
@@ -373,57 +365,61 @@
     },
     {
       "id": "s05",
-      "narration": "但容量費 11 倍，不等於電費 11 倍。",
-      "tts": "但容量費十一倍，不等於電費十一倍。",
+      "narration": "電費也漲 11 倍嗎？不是，這只佔電費一小部分。",
+      "tts": "電費也漲十一倍嗎？不是，這只佔電費一小部分。",
       "subtitle": {
-        "zh": "但容量費 11 倍\n不等於電費 11 倍",
-        "en": "But 11 times the capacity price | doesn't mean 11 times the bill."
+        "zh": "電費也漲 11 倍嗎？\n不是\n這只佔電費一小部分",
+        "en": "So bills rose 11-fold too? | No. | It's a small part of the bill."
       },
       "keywords": [
-        "不等於"
+        "一小部分"
       ],
       "cues": [
         {
           "id": "cap",
-          "text": "容量費"
+          "text": "電費"
         },
         {
           "id": "ne",
-          "text": "不等於"
+          "text": "不是"
         },
         {
-          "id": "bill",
-          "text": "電費"
+          "id": "succ",
+          "text": "一小部分"
+        },
+        {
+          "id": "board",
+          "text": "只佔"
         }
       ],
       "beat": "twist",
       "component": "DossierScene",
       "props": {
         "panel": "notequal",
-        "a": "容量",
+        "a": "11 倍",
         "op": "≠",
         "opLabel": "不等於",
         "b": "帳單",
-        "aAt": "start-16",
-        "opAt": "ne-6",
-        "bAt": "ne-2",
+        "aAt": "cap+16",
+        "opAt": "ne-4",
+        "bAt": "ne",
         "rows": [
           {
-            "text": "佔批發 17%",
-            "at": "cap+4",
+            "text": "只佔一部分",
+            "at": "board",
             "tag": {
               "kind": "confirmed",
-              "text": "監察報告數字",
-              "at": "cap+12"
+              "text": "監察報告",
+              "at": "board+8"
             }
           },
           {
-            "text": "帳單漲幅",
-            "at": "bill",
+            "text": "各州漲幅",
+            "at": "succ",
             "tag": {
               "kind": "pending",
               "text": "各州不同",
-              "at": "bill-4"
+              "at": "succ+4"
             }
           }
         ],
@@ -434,20 +430,19 @@
         }
       },
       "sources": [
-        "市場監察：容量費佔批發成本 17.4%"
+        "市場監察：容量費佔批發電力成本 17.4%"
       ],
       "pauseAfter": 0.3
     },
     {
       "id": "s06",
-      "narration": "12 月還有一場拍賣，結果還不知道。",
-      "tts": "十二月還有一場拍賣，結果還不知道。",
+      "narration": "12 月還有一場拍賣，會不會再漲，還不知道。",
+      "tts": "十二月還有一場拍賣，會不會再漲，還不知道。",
       "subtitle": {
-        "zh": "12 月還有一場拍賣\n結果還不知道",
-        "en": "Another auction comes in December. | The result is unknown."
+        "zh": "12 月還有一場拍賣\n會不會再漲，還不知道",
+        "en": "Another auction comes in December. | Whether it rises again is unknown."
       },
       "keywords": [
-        "12 月",
         "還不知道"
       ],
       "cues": [
@@ -461,7 +456,7 @@
         },
         {
           "id": "more",
-          "text": "結果"
+          "text": "再漲"
         },
         {
           "id": "unk",
@@ -508,31 +503,27 @@
     },
     {
       "id": "s07",
-      "narration": "資料中心該自己蓋電廠嗎？留言電費，拿完整資料。",
-      "tts": "資料中心該自己蓋電廠嗎？留言電費，拿完整資料。",
+      "narration": "想看完整數字，留言電費。",
+      "tts": "想看完整數字，留言電費。",
       "subtitle": {
-        "zh": "資料中心該自己蓋電廠嗎？\n留言電費，拿完整資料",
-        "en": "Should data centers build their own plants? | Comment \"power bill\" for the full brief."
+        "zh": "想看完整數字\n留言電費",
+        "en": "For the full numbers, | comment \"power bill\"."
       },
       "keywords": [
-        "自己蓋電廠"
+        "留言電費"
       ],
       "cues": [
         {
           "id": "dc",
-          "text": "資料中心"
+          "text": "完整數字"
         },
         {
           "id": "own",
-          "text": "自己蓋電廠"
+          "text": "留言"
         },
         {
           "id": "cmt",
-          "text": "留言電費"
-        },
-        {
-          "id": "full",
-          "text": "完整資料"
+          "text": "電費"
         }
       ],
       "beat": "cta",
@@ -541,16 +532,16 @@
         "panel": "ask",
         "head": {
           "lines": [
-            "資料中心",
-            "該自己蓋電廠？"
+            "誰付這筆錢",
+            "還沒定案"
           ],
           "marks": [
-            "資料中心",
-            "自己蓋電廠"
+            "誰付",
+            "還沒定案"
           ],
           "at": "start-18",
           "markAts": [
-            "dc+6",
+            "dc+4",
             "own+2"
           ]
         },
@@ -560,15 +551,15 @@
         },
         "next": {
           "label": "下一集",
-          "at": "own+8",
+          "at": "dc+8",
           "photo": {
             "name": "pylons",
             "caption": "示意照片",
-            "at": "own+12"
+            "at": "dc+12"
           },
           "title": "12 月拍賣結果",
-          "titleAt": "cmt+4",
-          "frameAt": "full"
+          "titleAt": "own",
+          "frameAt": "cmt+6"
         },
         "news": {
           "dateline": "VALLEY FORGE, PA.・2026/11/15",
@@ -602,5 +593,6 @@
       },
       "sources": []
     }
-  ]
+  ],
+  "thesis": "AI 資料中心推高美國電價，誰該付錢還沒說清楚"
 }
