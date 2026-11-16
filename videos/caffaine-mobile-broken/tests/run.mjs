@@ -26,7 +26,7 @@ const contents = [];
 let model = process.env.TEST_MODEL;
 if (prevIdx > 0) {
   const prev = JSON.parse(fs.readFileSync(path.join(dir, process.argv[prevIdx + 1] + ".json"), "utf8"));
-  model = prev.model;
+  model = process.env.TEST_MODEL || prev.model;
   contents.push(...prev.request.contents, { role: "model", parts: [{ text: prev.answer }] }, { role: "user", parts: [{ text: prompt }] });
 } else contents.push({ role: "user", parts: [{ text: prompt }] });
 const body = { contents };

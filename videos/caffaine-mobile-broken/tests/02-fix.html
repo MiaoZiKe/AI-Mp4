@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>馥香咖啡 Café Aroma</title>
+    <style>
+        :root {
+            --primary-color: #4a3525;
+            --secondary-color: #8c6d58;
+            --accent-color: #c89666;
+            --bg-color: #fdfbf7;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* 頂部選單 */
+        header {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero 區塊 */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* 推薦商品卡片 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* 價目表 - 已修正手機端溢出問題 */
+        .price-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .price-table {
+            width: 100%;
+            min-width: 500px; /* 確保內容不縮太扁，觸發捲動 */
+            border-collapse: collapse;
+            background: var(--card-bg);
+        }
+
+        .price-table th, .price-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+
+        .price-table th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        .price-table tr:nth-child(even) {
+            background-color: #f9f6f0;
+        }
+
+        .price-table tr:hover {
+            background-color: #f1ece4;
+        }
+
+        /* 聯絡資訊 */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--primary-color);
+            color: #d3c4b7;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .container {
+                margin: 2.5rem auto;
+            }
+            /* 縮小手機端表格內距以呈現更多內容 */
+            .price-table th, .price-table td {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部選單 -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Café Aroma</a>
+            <ul class="nav-links">
+                <li><a href="#recommended">主打推薦</a></li>
+                <li><a href="#menu">完整菜單</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero 區塊 -->
+    <section class="hero">
+        <h1>品味每一滴純粹</h1>
+        <p>嚴選全球優質咖啡豆，用心烘焙，為您獻上最溫暖的晨間陪伴。</p>
+    </section>
+
+    <!-- 推薦商品卡片 -->
+    <section id="recommended" class="container">
+        <h2 class="section-title">主打推薦</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="招牌手沖咖啡">
+                <div class="card-body">
+                    <h3 class="card-title">招牌手沖咖啡</h3>
+                    <p class="card-desc">採用埃塞俄比亞淺焙豆，帶有濃郁的花果香氣與清醇的果酸韻味。</p>
+                    <div class="card-price">NT$ 160</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="焦糖瑪奇朵">
+                <div class="card-body">
+                    <h3 class="card-title">焦糖瑪奇朵</h3>
+                    <p class="card-desc">濃縮咖啡結合綿密奶泡，淋上自製焦糖醬，甜而不膩的經典選擇。</p>
+                    <div class="card-price">NT$ 150</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="燕麥拿鐵">
+                <div class="card-body">
+                    <h3 class="card-title">香濃燕麥拿鐵</h3>
+                    <p class="card-desc">選用優質燕麥奶搭配深焙義式濃縮，口感滑順，乳糖不耐者的完美替代。</p>
+                    <div class="card-price">NT$ 140</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 價目表 -->
+    <section id="menu" class="container">
+        <h2 class="section-title">飲品價目表</h2>
+        <div class="price-table-wrapper">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>品名</th>
+                        <th>尺寸</th>
+                        <th>熱量 (kcal)</th>
+                        <th>價格</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>經典美式咖啡</td>
+                        <td>大杯 (16oz)</td>
+                        <td>15</td>
+                        <td>$ 100</td>
+                    </tr>
+                    <tr>
+                        <td>原味拿鐵</td>
+                        <td>中杯/大杯</td>
+                        <td>180 / 220</td>
+                        <td>$ 120 / $ 135</td>
+                    </tr>
+                    <tr>
+                        <td>卡布奇諾</td>
+                        <td>中杯 (12oz)</td>
+                        <td>150</td>
+                        <td>$ 120</td>
+                    </tr>
+                    <tr>
+                        <td>焦糖瑪奇朵</td>
+                        <td>大杯 (16oz)</td>
+                        <td>280</td>
+                        <td>$ 150</td>
+                    </tr>
+                    <tr>
+                        <td>靜岡抹茶拿鐵</td>
+                        <td>大杯 (16oz)</td>
+                        <td>240</td>
+                        <td>$ 140</td>
+                    </tr>
+                    <tr>
+                        <td>莊園級手沖咖啡</td>
+                        <td>中杯 (12oz)</td>
+                        <td>5</td>
+                        <td>$ 160</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 聯絡資訊 -->
+    <section id="contact" class="container">
+        <h2 class="section-title">聯絡我們</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>門市資訊</h3>
+                <p>📍 <strong>地址：</strong>台北市大安區人文路 88 號</p>
+                <p>📞 <strong>電話：</strong>(02) 2345-6789</p>
+                <p>✉️ <strong>信箱：</strong>info@cafearoma.com</p>
+            </div>
+            <div class="contact-info">
+                <h3>營業時間</h3>
+                <p>🕒 <strong>週一至週五：</strong> 07:30 - 20:00</p>
+                <p>🕒 <strong>週六至週日：</strong> 08:30 - 21:00</p>
+                <p>💡 <strong>備註：</strong> 每月第一個週一為公休日</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2023 Café Aroma 馥香咖啡. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

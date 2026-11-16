@@ -24,7 +24,7 @@ const contents = [];
 let model = process.env.TEST_MODEL;
 if (prevIdx > 0) {
   const prev = JSON.parse(fs.readFileSync(path.join(dir, process.argv[prevIdx + 1] + ".json"), "utf8"));
-  model = prev.model;
+  model = process.env.TEST_MODEL || prev.model;
   const pc = JSON.parse(JSON.stringify(prev.request.contents).replace("(sketch.png)", img));
   contents.push(...pc, { role: "model", parts: [{ text: prev.answer }] });
   contents.push({ role: "user", parts: [{ text: prompt }] });

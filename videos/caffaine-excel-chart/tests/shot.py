@@ -7,8 +7,8 @@ with sync_playwright() as pw:
     p = b.new_page(viewport={"width": 960, "height": 760}); errs = []
     p.on("pageerror", lambda e: errs.append(str(e))); p.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
     p.goto("file://" + os.path.join(d, i + ".html"))
-    for k, t in enumerate([60, 250, 500, 1500]):
-        p.wait_for_timeout(t if k == 0 else t - [60, 250, 500, 1500][k - 1]); p.screenshot(path=os.path.join(d, f"{i}-a{k}.png"))
+    for k, t in enumerate([60, 250, 500, 1500, 3500]):
+        p.wait_for_timeout(t if k == 0 else t - [60, 250, 500, 1500, 3500][k - 1]); p.screenshot(path=os.path.join(d, f"{i}-a{k}.png"))
     btns = p.query_selector_all("button")
     print("按鈕", [x.inner_text() for x in btns])
     if len(btns) > 2:

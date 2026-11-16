@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>門市銷售趨勢圖</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f5f5f7; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 90%; max-width: 800px; }
+        h2 { text-align: center; color: #333; margin-bottom: 2rem; }
+        .chart-container { position: relative; width: 100%; height: 400px; }
+        svg { width: 100%; height: 100%; overflow: visible; }
+        .axis { stroke: #ccc; stroke-width: 1; }
+        .grid-line { stroke: #eee; stroke-width: 1; }
+        .label { font-size: 12px; fill: #666; }
+        .line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.3s; }
+        .point { r: 4; stroke-width: 2; fill: white; }
+        .legend { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .legend-item { display: flex; align-items: center; font-size: 14px; }
+        .legend-color { width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+        
+        /* 動畫效果 */
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        .path-animated {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>門市月銷售量趨勢</h2>
+    <div class="chart-container" id="chart">
+        <svg id="svg-canvas" viewBox="0 0 800 400" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+</div>
+
+<script>
+    // 原始貼上資料
+    const rawData = `月份	門市A	門市B	門市C
+1月	1,200	950	800
+2月	1,350	1,020	760
+3月	1,500		910
+4月	1,420	1,150	990
+5月	1,680	1,200	1,050
+6月	1,750	1,310	1,100
+合計	8,900	5,630	5,610`;
+
+    function initChart() {
+        const rows = rawData.trim().split('\n');
+        const headers = rows[0].split('\t').slice(1);
+        const months = [];
+        const storeData = headers.map(() => []);
+
+        // 解析資料 (跳過標題與合計)
+        for (let i = 1; i < rows.length - 1; i++) {
+            const cols = rows[i].split('\t');
+            months.push(cols[0]);
+            for (let j = 0; j < headers.length; j++) {
+                const val = parseInt(cols[j + 1].replace(/,/g, '')) || 0;
+                storeData[j].push(val);
+            }
+        }
+
+        const width = 800;
+        const height = 400;
+        const padding = 50;
+        const chartW = width - padding * 2;
+        const chartH = height - padding * 2;
+        
+        const svg = document.getElementById('svg-canvas');
+        const maxVal = Math.ceil(Math.max(...storeData.flat()) / 500) * 500;
+        const colors = ['#007AFF', '#34C759', '#FF9500'];
+
+        // 繪製座標軸與網格
+        let gridHTML = '';
+        for (let i = 0; i <= 5; i++) {
+            const y = height - padding - (i * chartH / 5);
+            const label = Math.round(maxVal * i / 5);
+            gridHTML += `<line class="grid-line" x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" />`;
+            gridHTML += `<text class="label" x="${padding - 10}" y="${y + 5}" text-anchor="end">${label}</text>`;
+        }
+        
+        months.forEach((m, i) => {
+            const x = padding + (i * chartW / (months.length - 1));
+            gridHTML += `<text class="label" x="${x}" y="${height - padding + 25}" text-anchor="middle">${m}</text>`;
+        });
+
+        // 繪製折線
+        let pathsHTML = '';
+        let legendHTML = '';
+
+        storeData.forEach((data, storeIdx) => {
+            const points = data.map((val, i) => {
+                const x = padding + (i * chartW / (months.length - 1));
+                const y = height - padding - (val / maxVal * chartH);
+                return `${x},${y}`;
+            });
+
+            const pathData = `M ${points.join(' L ')}`;
+            
+            // 線條
+            pathsHTML += `
+                <path class="line path-animated" d="${pathData}" 
+                      stroke="${colors[storeIdx]}" 
+                      id="path-${storeIdx}" />
+            `;
+            
+            // 圓點
+            points.forEach(p => {
+                const [x, y] = p.split(',');
+                pathsHTML += `<circle class="point" cx="${x}" cy="${y}" stroke="${colors[storeIdx]}" />`;
+            });
+
+            // 圖例
+            legendHTML += `
+                <div class="legend-item">
+                    <div class="legend-color" style="background:${colors[storeIdx]}"></div>
+                    <span>${headers[storeIdx]}</span>
+                </div>
+            `;
+        });
+
+        svg.innerHTML = gridHTML + pathsHTML;
+        document.getElementById('legend').innerHTML = legendHTML;
+
+        // 觸發路徑長度計算以執行平滑動畫
+        storeData.forEach((_, i) => {
+            const path = document.getElementById(`path-${i}`);
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+        });
+    }
+
+    window.onload = initChart;
+</script>
+
+</body>
+</html>

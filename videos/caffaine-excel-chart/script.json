@@ -1,0 +1,688 @@
+{
+  "slug": "caffaine-excel-chart",
+  "title": "Excel 表格丟給 AI，變成會動的圖表（CaffAIne 無聲版）",
+  "asOf": "2026/11/17",
+  "styleVersion": 3,
+  "stage": "iso",
+  "isoVersion": 6,
+  "sample": false,
+  "channelLogo": "caffaine",
+  "channel": {
+    "name": "CaffAIne",
+    "tag": "",
+    "slogan": "看懂一個 AI 新知"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "ai-report-v5"
+  },
+  "cover": {
+    "title": [
+      "Excel 表格",
+      "變成會動的圖表"
+    ],
+    "sub": "空白格會被當成 0，要說清楚"
+  },
+  "tracker": [
+    [
+      "貼表格",
+      "note"
+    ],
+    [
+      "AI 畫圖",
+      "primary"
+    ],
+    [
+      "會動",
+      "right"
+    ]
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "narration": "把 Excel 表格貼給 AI，約十一秒，就交回一個會動的圖表網頁。",
+      "subtitle": {
+        "zh": "把 Excel 表格貼給 AI\n約十一秒\n交回一個\n會動的圖表網頁",
+        "en": "Paste an Excel table to AI: in about 11 | seconds it returns an animated chart page."
+      },
+      "keywords": [
+        "會動"
+      ],
+      "cues": [
+        {
+          "id": "xl",
+          "text": "Excel 表格"
+        },
+        {
+          "id": "sec",
+          "text": "約十一秒"
+        },
+        {
+          "id": "ch",
+          "text": "會動的圖表網頁"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "事件",
+        "tagColor": "primary",
+        "status": "已確定・實測",
+        "statusAt": "sec+6",
+        "track": 0,
+        "kw": {
+          "會動": "primary"
+        },
+        "view": "kinetic",
+        "tone": "event",
+        "asOf": "查證截至 2026/11/17",
+        "rows": [
+          {
+            "big": "11",
+            "unit": "秒交回網頁",
+            "at": "start-1",
+            "color": "primary",
+            "size": 240,
+            "usize": 113
+          },
+          {
+            "big": "動",
+            "unit": "會動的圖表",
+            "at": "ch",
+            "color": "right",
+            "size": 300,
+            "usize": 113
+          }
+        ]
+      },
+      "sources": [
+        "Gemini 實測 2026/11/17"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s02",
+      "beat": "check",
+      "narration": "我貼上從 Excel 複製的銷量表，請它畫折線圖，要有動畫。",
+      "subtitle": {
+        "zh": "我貼上\nExcel 複製的銷量表\n請它畫折線圖\n要有動畫",
+        "en": "I pasted sales copied from Excel, asked for | a line chart that animates on load."
+      },
+      "keywords": [
+        "動畫"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "貼上"
+        },
+        {
+          "id": "ask",
+          "text": "請它畫折線圖"
+        },
+        {
+          "id": "anim",
+          "text": "要有動畫"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "步驟 1",
+        "tagColor": "note",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 0,
+        "kw": {
+          "動畫": "primary"
+        },
+        "view": "chat",
+        "tone": "event",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "（貼上表格）請畫三家門市的折線圖，載入時要有動畫",
+            "typeAt": "say",
+            "typeDur": 40,
+            "at": "anim-2"
+          },
+          {
+            "who": "ai",
+            "text": "已完成，附上一個網頁檔",
+            "check": true,
+            "typingAt": "anim",
+            "at": "anim+30"
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s03",
+      "beat": "check",
+      "narration": "網頁打開，三條線真的一條一條畫出來。",
+      "subtitle": {
+        "zh": "網頁打開\n三條線真的\n一條一條畫出來",
+        "en": "Open the page: the three lines draw | themselves in."
+      },
+      "keywords": [
+        "畫出來"
+      ],
+      "cues": [
+        {
+          "id": "open",
+          "text": "網頁打開"
+        },
+        {
+          "id": "draw",
+          "text": "一條一條畫出來"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "實測",
+        "tagColor": "primary",
+        "status": "已確定・實測",
+        "statusAt": "draw+6",
+        "track": 1,
+        "kw": {
+          "畫出來": "right"
+        },
+        "view": "browser",
+        "tone": "principle",
+        "wide": true,
+        "shots": [
+          {
+            "src": "caffaine-excel-chart/messy-a1.png",
+            "at": "start-1",
+            "img": [
+              1120,
+              887
+            ],
+            "label": "載入中：線正在畫"
+          }
+        ],
+        "items": [
+          {
+            "icon": "window",
+            "text": "網頁打開",
+            "sub": "一個網頁檔",
+            "at": "open",
+            "color": "primary"
+          },
+          {
+            "icon": "play",
+            "text": "線畫出來",
+            "sub": "連拍截圖為證",
+            "at": "draw",
+            "color": "right"
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 連拍"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s04",
+      "beat": "twist",
+      "narration": "但是看三月，門市 B 的線掉到零。表格那格明明是空白。",
+      "subtitle": {
+        "zh": "但是看三月\n門市 B 的線掉到零\n表格那格明明是空白",
+        "en": "But look at March: store B drops to zero. | That cell in the table was blank."
+      },
+      "keywords": [
+        "掉到零"
+      ],
+      "cues": [
+        {
+          "id": "but",
+          "text": "但是看三月"
+        },
+        {
+          "id": "zero",
+          "text": "掉到零"
+        },
+        {
+          "id": "blank",
+          "text": "那格明明是空白"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "翻車",
+        "tagColor": "wrong",
+        "status": "已確定・實測",
+        "statusAt": "zero+6",
+        "track": 1,
+        "kw": {
+          "掉到零": "wrong"
+        },
+        "view": "lens",
+        "tone": "bug",
+        "src": "caffaine-excel-chart/lens-messy.png",
+        "ring": [
+          215,
+          550,
+          110,
+          110
+        ],
+        "note": "三月・門市 B",
+        "noteAt": "but",
+        "scanAt": "zero",
+        "stampAt": "blank",
+        "stamp": "零",
+        "zoom": {
+          "src": "caffaine-excel-chart/messy-zoom.png",
+          "w": 960,
+          "h": 576,
+          "cap": "放大：空白被畫成 0"
+        }
+      },
+      "sources": [
+        "Playwright 實測截圖"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s05",
+      "beat": "why",
+      "narration": "空白，不等於零。這是 AI 自己的決定，我沒有交代。",
+      "subtitle": {
+        "zh": "空白，不等於零\n這是 AI 自己的決定\n我沒有交代",
+        "en": "Blank is not zero. That was AI's own call; I | never said."
+      },
+      "keywords": [
+        "不等於零"
+      ],
+      "cues": [
+        {
+          "id": "blank",
+          "text": "空白，不等於零"
+        },
+        {
+          "id": "decide",
+          "text": "AI 自己的決定"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "原因",
+        "tagColor": "primary",
+        "status": "分析推測・非實測",
+        "statusAt": "decide+6",
+        "track": 1,
+        "kw": {
+          "不等於零": "wrong"
+        },
+        "view": "kinetic",
+        "tone": "principle",
+        "rows": [
+          {
+            "big": "0",
+            "unit": "不是空白",
+            "at": "start-1",
+            "color": "wrong",
+            "size": 300,
+            "usize": 120
+          },
+          {
+            "big": "空",
+            "unit": "才是沒有資料",
+            "at": "decide",
+            "color": "right",
+            "size": 300,
+            "usize": 94
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 實測；成因為推測，非模型自述"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s06",
+      "beat": "payoff",
+      "narration": "我補一句：空白代表沒資料，別畫成零，線斷開，標上無資料。",
+      "subtitle": {
+        "zh": "我補一句\n空白代表沒資料\n別畫成零\n線斷開，標上無資料",
+        "en": "I added: blank means no data. Don't plot | zero; break the line and label it."
+      },
+      "keywords": [
+        "沒資料"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "空白代表沒資料"
+        },
+        {
+          "id": "brk",
+          "text": "線斷開"
+        },
+        {
+          "id": "lab",
+          "text": "標上無資料"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修正",
+        "tagColor": "right",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 2,
+        "kw": {
+          "沒資料": "right"
+        },
+        "view": "chat",
+        "tone": "fix",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "空白代表沒有資料，別畫成 0，那一段線斷開並標示無資料",
+            "typeAt": "say",
+            "typeDur": 44,
+            "at": "lab-2"
+          }
+        ],
+        "chips": [
+          {
+            "text": "線斷開",
+            "at": "brk",
+            "color": "right"
+          },
+          {
+            "text": "標「無資料」",
+            "at": "lab",
+            "color": "note",
+            "hot": true
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/03-fix.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s07",
+      "beat": "payoff",
+      "narration": "改完，三月那一段斷開，標著無資料，其他兩條線沒動。",
+      "subtitle": {
+        "zh": "改完\n三月那一段斷開\n標著無資料\n其他兩條線沒動",
+        "en": "Fixed: March breaks and says no data. The | other two lines are unchanged."
+      },
+      "keywords": [
+        "斷開"
+      ],
+      "cues": [
+        {
+          "id": "done",
+          "text": "三月那一段斷開"
+        },
+        {
+          "id": "lab",
+          "text": "標著無資料"
+        },
+        {
+          "id": "keep",
+          "text": "其他兩條線沒動"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修好",
+        "tagColor": "right",
+        "status": "已確定・實測（1 次）",
+        "statusAt": "keep+6",
+        "track": 2,
+        "kw": {
+          "斷開": "right"
+        },
+        "view": "split",
+        "tone": "fix",
+        "layout": "stack",
+        "top": {
+          "src": "caffaine-excel-chart/messy.png",
+          "label": "修之前",
+          "color": "wrong",
+          "at": "start-1"
+        },
+        "bottom": {
+          "src": "caffaine-excel-chart/fix.png",
+          "label": "修之後",
+          "color": "right",
+          "at": "done"
+        },
+        "mids": [
+          {
+            "text": "無資料",
+            "at": "lab",
+            "color": "note"
+          },
+          {
+            "text": "其他沒動",
+            "at": "keep",
+            "color": "right",
+            "kind": "stamp"
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 實測（tests/shot.py）；只試 1 次"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s08",
+      "beat": "unknown",
+      "narration": "不過我只試了兩份小表格，一個模型，更大的表格行不行，還不知道。",
+      "subtitle": {
+        "zh": "不過我只試了兩份小表格\n一個模型\n更大的表格行不行\n還不知道",
+        "en": "But I tried only two small tables and one | model. Bigger tables: unknown."
+      },
+      "keywords": [
+        "還不知道"
+      ],
+      "cues": [
+        {
+          "id": "known",
+          "text": "兩份小表格"
+        },
+        {
+          "id": "q",
+          "text": "還不知道"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "還不知道",
+        "tagColor": "plum",
+        "status": "查不到・還沒測",
+        "statusAt": "q",
+        "track": 2,
+        "kw": {
+          "還不知道": "wrong"
+        },
+        "view": "kinetic",
+        "tone": "unknown",
+        "rows": [
+          {
+            "big": "2",
+            "unit": "份小表格",
+            "at": "start-1",
+            "color": "primary",
+            "size": 220,
+            "usize": 120
+          },
+          {
+            "big": "1",
+            "unit": "個模型",
+            "at": "known+26",
+            "color": "sky",
+            "size": 220,
+            "usize": 120
+          }
+        ],
+        "q": {
+          "text": "更大的表格呢？",
+          "at": "q"
+        }
+      },
+      "sources": [
+        "Gemini 實測，只試 2 份小表格、1 個模型"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s09",
+      "beat": "so",
+      "narration": "所以做法三步：貼表格、看圖有沒有怪點，有就說清楚。",
+      "subtitle": {
+        "zh": "所以做法三步\n貼表格\n看圖有沒有怪點\n有就說清楚",
+        "en": "Three steps: paste the table, check for odd | points, and say it clearly if so."
+      },
+      "keywords": [
+        "三步"
+      ],
+      "cues": [
+        {
+          "id": "so",
+          "text": "做法三步"
+        },
+        {
+          "id": "a",
+          "text": "貼表格"
+        },
+        {
+          "id": "b",
+          "text": "看圖有沒有怪點"
+        },
+        {
+          "id": "c",
+          "text": "有就說清楚"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "所以呢",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "三步": "right"
+        },
+        "view": "flow",
+        "tone": "fix",
+        "nodes": [
+          {
+            "icon": "file",
+            "label": "貼表格",
+            "sub": "直接複製貼上",
+            "color": "note",
+            "at": "start-1"
+          },
+          {
+            "icon": "mag",
+            "label": "看有沒有怪點",
+            "sub": "零、缺口、跳動",
+            "color": "primary",
+            "at": "b"
+          },
+          {
+            "icon": "chip",
+            "label": "說清楚",
+            "sub": "空白代表什麼",
+            "color": "right",
+            "at": "c"
+          }
+        ],
+        "lights": [
+          {
+            "from": "a",
+            "to": "b"
+          },
+          {
+            "from": "b+2",
+            "to": "c"
+          }
+        ],
+        "loopAt": "c+6",
+        "chipAt": "c+26",
+        "chip": "有毛病就說一句"
+      },
+      "sources": [
+        "做法整理；內容取自本次實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s10",
+      "beat": "cta",
+      "narration": "留言「圖表」，拿這句貼表格的提示詞。",
+      "subtitle": {
+        "zh": "留言「圖表」\n拿這句貼表格的提示詞",
+        "en": "Comment “圖表” to get the prompt."
+      },
+      "keywords": [
+        "圖表"
+      ],
+      "cues": [
+        {
+          "id": "kw",
+          "text": "圖表"
+        },
+        {
+          "id": "all",
+          "text": "貼表格的提示詞"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "領取",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "圖表": "primary"
+        },
+        "view": "claim",
+        "tone": "claim",
+        "kicker": "想要表格變圖表的提示詞",
+        "keyword": "圖表",
+        "kwAt": "kw",
+        "allAt": "all",
+        "card": "提示詞＋用法",
+        "sub": "私訊給你"
+      },
+      "sources": [
+        "提示詞與測試紀錄整理在 CaffAIne 網站"
+      ],
+      "para": 1
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "component": "IsoScene",
+      "props": {
+        "panel": "caffend",
+        "keyword": "圖表"
+      },
+      "sources": [],
+      "silent": true,
+      "durationSec": 3.6
+    }
+  ]
+}

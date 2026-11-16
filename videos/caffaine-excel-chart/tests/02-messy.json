@@ -1,0 +1,38 @@
+{
+  "id": "02-messy",
+  "tool": "Gemini（Gemini API，沒有開搜尋工具）",
+  "model": "gemini-3-flash-preview",
+  "modelVersion": "gemini-3-flash-preview",
+  "sentAtUTC": "2026-11-16T19:35:53.471Z",
+  "elapsedSec": 10.8,
+  "sentAtTaipei": "2026-11-17 03:35:53",
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "這是我直接從 Excel 複製貼上的表格（示意資料，欄位用 Tab 分隔）：\n月份\t門市A\t門市B\t門市C\n1月\t1,200\t950\t800\n2月\t1,350\t1,020\t760\n3月\t1,500\t\t910\n4月\t1,420\t1,150\t990\n5月\t1,680\t1,200\t1,050\n6月\t1,750\t1,310\t1,100\n合計\t8,900\t5,630\t5,610\n請做一個單檔 HTML 網頁，用折線圖呈現三家門市的月銷售量，載入時線條要有畫出來的動畫。不要用外部程式庫。只輸出完整的 HTML，不要解釋。"
+          }
+        ]
+      }
+    ]
+  },
+  "prompt": "這是我直接從 Excel 複製貼上的表格（示意資料，欄位用 Tab 分隔）：\n月份\t門市A\t門市B\t門市C\n1月\t1,200\t950\t800\n2月\t1,350\t1,020\t760\n3月\t1,500\t\t910\n4月\t1,420\t1,150\t990\n5月\t1,680\t1,200\t1,050\n6月\t1,750\t1,310\t1,100\n合計\t8,900\t5,630\t5,610\n請做一個單檔 HTML 網頁，用折線圖呈現三家門市的月銷售量，載入時線條要有畫出來的動畫。不要用外部程式庫。只輸出完整的 HTML，不要解釋。",
+  "answer": "```html\n<!DOCTYPE html>\n<html lang=\"zh-TW\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>門市銷售趨勢圖</title>\n    <style>\n        body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f5f5f7; }\n        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 90%; max-width: 800px; }\n        h2 { text-align: center; color: #333; margin-bottom: 2rem; }\n        .chart-container { position: relative; width: 100%; height: 400px; }\n        svg { width: 100%; height: 100%; overflow: visible; }\n        .axis { stroke: #ccc; stroke-width: 1; }\n        .grid-line { stroke: #eee; stroke-width: 1; }\n        .label { font-size: 12px; fill: #666; }\n        .line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.3s; }\n        .point { r: 4; stroke-width: 2; fill: white; }\n        .legend { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }\n        .legend-item { display: flex; align-items: center; font-size: 14px; }\n        .legend-color { width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }\n        \n        /* 動畫效果 */\n        @keyframes draw {\n            to { stroke-dashoffset: 0; }\n        }\n        .path-animated {\n            stroke-dasharray: 1000;\n            stroke-dashoffset: 1000;\n            animation: draw 2s ease-out forwards;\n        }\n    </style>\n</head>\n<body>\n\n<div class=\"card\">\n    <h2>門市月銷售量趨勢</h2>\n    <div class=\"chart-container\" id=\"chart\">\n        <svg id=\"svg-canvas\" viewBox=\"0 0 800 400\" preserveAspectRatio=\"none\"></svg>\n    </div>\n    <div class=\"legend\" id=\"legend\"></div>\n</div>\n\n<script>\n    // 原始貼上資料\n    const rawData = `月份\t門市A\t門市B\t門市C\n1月\t1,200\t950\t800\n2月\t1,350\t1,020\t760\n3月\t1,500\t\t910\n4月\t1,420\t1,150\t990\n5月\t1,680\t1,200\t1,050\n6月\t1,750\t1,310\t1,100\n合計\t8,900\t5,630\t5,610`;\n\n    function initChart() {\n        const rows = rawData.trim().split('\\n');\n        const headers = rows[0].split('\\t').slice(1);\n        const months = [];\n        const storeData = headers.map(() => []);\n\n        // 解析資料 (跳過標題與合計)\n        for (let i = 1; i < rows.length - 1; i++) {\n            const cols = rows[i].split('\\t');\n            months.push(cols[0]);\n            for (let j = 0; j < headers.length; j++) {\n                const val = parseInt(cols[j + 1].replace(/,/g, '')) || 0;\n                storeData[j].push(val);\n            }\n        }\n\n        const width = 800;\n        const height = 400;\n        const padding = 50;\n        const chartW = width - padding * 2;\n        const chartH = height - padding * 2;\n        \n        const svg = document.getElementById('svg-canvas');\n        const maxVal = Math.ceil(Math.max(...storeData.flat()) / 500) * 500;\n        const colors = ['#007AFF', '#34C759', '#FF9500'];\n\n        // 繪製座標軸與網格\n        let gridHTML = '';\n        for (let i = 0; i <= 5; i++) {\n            const y = height - padding - (i * chartH / 5);\n            const label = Math.round(maxVal * i / 5);\n            gridHTML += `<line class=\"grid-line\" x1=\"${padding}\" y1=\"${y}\" x2=\"${width - padding}\" y2=\"${y}\" />`;\n            gridHTML += `<text class=\"label\" x=\"${padding - 10}\" y=\"${y + 5}\" text-anchor=\"end\">${label}</text>`;\n        }\n        \n        months.forEach((m, i) => {\n            const x = padding + (i * chartW / (months.length - 1));\n            gridHTML += `<text class=\"label\" x=\"${x}\" y=\"${height - padding + 25}\" text-anchor=\"middle\">${m}</text>`;\n        });\n\n        // 繪製折線\n        let pathsHTML = '';\n        let legendHTML = '';\n\n        storeData.forEach((data, storeIdx) => {\n            const points = data.map((val, i) => {\n                const x = padding + (i * chartW / (months.length - 1));\n                const y = height - padding - (val / maxVal * chartH);\n                return `${x},${y}`;\n            });\n\n            const pathData = `M ${points.join(' L ')}`;\n            \n            // 線條\n            pathsHTML += `\n                <path class=\"line path-animated\" d=\"${pathData}\" \n                      stroke=\"${colors[storeIdx]}\" \n                      id=\"path-${storeIdx}\" />\n            `;\n            \n            // 圓點\n            points.forEach(p => {\n                const [x, y] = p.split(',');\n                pathsHTML += `<circle class=\"point\" cx=\"${x}\" cy=\"${y}\" stroke=\"${colors[storeIdx]}\" />`;\n            });\n\n            // 圖例\n            legendHTML += `\n                <div class=\"legend-item\">\n                    <div class=\"legend-color\" style=\"background:${colors[storeIdx]}\"></div>\n                    <span>${headers[storeIdx]}</span>\n                </div>\n            `;\n        });\n\n        svg.innerHTML = gridHTML + pathsHTML;\n        document.getElementById('legend').innerHTML = legendHTML;\n\n        // 觸發路徑長度計算以執行平滑動畫\n        storeData.forEach((_, i) => {\n            const path = document.getElementById(`path-${i}`);\n            const length = path.getTotalLength();\n            path.style.strokeDasharray = length;\n            path.style.strokeDashoffset = length;\n        });\n    }\n\n    window.onload = initChart;\n</script>\n\n</body>\n</html>\n```",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 216,
+    "candidatesTokenCount": 1758,
+    "totalTokenCount": 2848,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 216
+      }
+    ],
+    "thoughtsTokenCount": 874,
+    "serviceTier": "standard"
+  },
+  "responseId": "GVv7aoS6Mb6-_PUPu5_JmQ0"
+}

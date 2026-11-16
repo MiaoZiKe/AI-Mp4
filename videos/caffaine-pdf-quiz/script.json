@@ -1,0 +1,763 @@
+{
+  "slug": "caffaine-pdf-quiz",
+  "title": "一份講義丟給 AI，變成能自己測驗的小考網頁（CaffAIne 無聲版）",
+  "asOf": "2026/11/17",
+  "styleVersion": 3,
+  "stage": "iso",
+  "isoVersion": 6,
+  "sample": false,
+  "channelLogo": "caffaine",
+  "channel": {
+    "name": "CaffAIne",
+    "tag": "",
+    "slogan": "看懂一個 AI 新知"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "ai-report-v5"
+  },
+  "cover": {
+    "title": [
+      "一份講義",
+      "變成能測驗的小考"
+    ],
+    "sub": "選完要看得出對錯，得再補一句"
+  },
+  "tracker": [
+    [
+      "講義",
+      "note"
+    ],
+    [
+      "AI 出題",
+      "primary"
+    ],
+    [
+      "能測驗",
+      "right"
+    ]
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "narration": "一份講義丟給 AI，約十秒，就變成能自己測驗的小考網頁。",
+      "subtitle": {
+        "zh": "一份講義丟給 AI\n約十秒\n變成能自己測驗的\n小考網頁",
+        "en": "One handout to AI: in about ten seconds it's | a self-grading quiz page."
+      },
+      "keywords": [
+        "小考"
+      ],
+      "cues": [
+        {
+          "id": "hand",
+          "text": "一份講義"
+        },
+        {
+          "id": "sec",
+          "text": "約十秒"
+        },
+        {
+          "id": "quiz",
+          "text": "小考網頁"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "事件",
+        "tagColor": "primary",
+        "status": "已確定・實測",
+        "statusAt": "sec+6",
+        "track": 0,
+        "kw": {
+          "小考": "primary"
+        },
+        "view": "kinetic",
+        "tone": "event",
+        "asOf": "查證截至 2026/11/17",
+        "rows": [
+          {
+            "big": "10",
+            "unit": "秒交回網頁",
+            "at": "start-1",
+            "color": "primary",
+            "size": 240,
+            "usize": 113
+          },
+          {
+            "big": "5",
+            "unit": "題小考",
+            "at": "quiz",
+            "color": "right",
+            "size": 300,
+            "usize": 120
+          }
+        ]
+      },
+      "sources": [
+        "Gemini 實測 2026/11/17"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s02",
+      "beat": "check",
+      "narration": "我貼上虛構講義，請它出五題，選完有對錯，最後算分。",
+      "subtitle": {
+        "zh": "我貼上虛構講義\n請它出五題\n選完有對錯\n最後算分",
+        "en": "I pasted a made-up meeting handout and asked | for five multiple-choice questions, instant | feedback, final score."
+      },
+      "keywords": [
+        "五題"
+      ],
+      "cues": [
+        {
+          "id": "paste",
+          "text": "貼上虛構講義"
+        },
+        {
+          "id": "ask",
+          "text": "出五題"
+        },
+        {
+          "id": "end",
+          "text": "最後算分"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "步驟 1",
+        "tagColor": "note",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "paste+6",
+        "track": 0,
+        "kw": {
+          "五題": "primary"
+        },
+        "view": "chat",
+        "tone": "event",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "（貼上講義）出 5 題選擇題，選完顯示對錯，最後給總分",
+            "typeAt": "paste",
+            "typeDur": 40,
+            "at": "end-2"
+          },
+          {
+            "who": "ai",
+            "text": "已完成，附上一個網頁檔",
+            "check": true,
+            "typingAt": "end",
+            "at": "end+30"
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s03",
+      "beat": "check",
+      "narration": "它交回網頁檔，一次一題，選完跳出對錯和解釋。",
+      "subtitle": {
+        "zh": "它交回網頁檔\n一次一題\n選完跳出\n對錯和解釋",
+        "en": "It returned a web file: one question at a | time, right/wrong and an explanation right | after."
+      },
+      "keywords": [
+        "一次一題"
+      ],
+      "cues": [
+        {
+          "id": "file",
+          "text": "網頁檔"
+        },
+        {
+          "id": "one",
+          "text": "一次一題"
+        },
+        {
+          "id": "expl",
+          "text": "對錯和解釋"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "實測",
+        "tagColor": "primary",
+        "status": "已確定・實測",
+        "statusAt": "expl+6",
+        "track": 1,
+        "kw": {
+          "一次一題": "primary"
+        },
+        "view": "browser",
+        "tone": "principle",
+        "shots": [
+          {
+            "src": "caffaine-pdf-quiz/q1.png",
+            "at": "start-1",
+            "label": "一次一題"
+          },
+          {
+            "src": "caffaine-pdf-quiz/wrong.png",
+            "at": "expl",
+            "label": "選完跳出解釋"
+          }
+        ],
+        "items": [
+          {
+            "icon": "file",
+            "text": "一個網頁檔",
+            "sub": "AI 交回來的",
+            "at": "file",
+            "color": "note"
+          },
+          {
+            "icon": "text",
+            "text": "一次一題",
+            "sub": "共 5 題",
+            "at": "one",
+            "color": "primary"
+          },
+          {
+            "icon": "check",
+            "text": "對錯＋解釋",
+            "sub": "選完立刻出現",
+            "at": "expl",
+            "color": "right"
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 實測截圖（tests/play.py）"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s04",
+      "beat": "check",
+      "narration": "我逐題對過講義，五題都對得上。",
+      "subtitle": {
+        "zh": "我逐題對過講義\n五題\n都對得上",
+        "en": "I checked every question against the | handout: all five match."
+      },
+      "keywords": [
+        "對得上"
+      ],
+      "cues": [
+        {
+          "id": "cmp",
+          "text": "逐題對過講義"
+        },
+        {
+          "id": "five",
+          "text": "五題"
+        },
+        {
+          "id": "ok",
+          "text": "都對得上"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "核對",
+        "tagColor": "right",
+        "status": "已確定・人工核對",
+        "statusAt": "five+6",
+        "track": 1,
+        "kw": {
+          "對得上": "right"
+        },
+        "view": "check",
+        "tone": "principle",
+        "mode": "list",
+        "head": {
+          "text": "我逐題對照講義",
+          "at": "start-1",
+          "color": "primary"
+        },
+        "items": [
+          {
+            "text": "題目只用講義內容",
+            "sub": "5 題",
+            "at": "cmp",
+            "color": "primary"
+          },
+          {
+            "text": "正確答案對得上",
+            "sub": "逐題核對",
+            "at": "five",
+            "color": "right"
+          },
+          {
+            "text": "解釋貼近原文",
+            "sub": "沒有多出來的規定",
+            "at": "ok",
+            "color": "note"
+          }
+        ]
+      },
+      "sources": [
+        "人工逐題核對講義（research.md）；只核對這一份"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s05",
+      "beat": "twist",
+      "narration": "但有個小毛病：選完後選項全變灰，看不出我選了哪個，哪個才對。",
+      "subtitle": {
+        "zh": "但有個小毛病\n選完後選項全變灰\n看不出我選了哪個\n哪個才對",
+        "en": "But a small bug: after choosing, all options | turn grey, so I can't tell which I chose or | which is right."
+      },
+      "keywords": [
+        "變灰"
+      ],
+      "cues": [
+        {
+          "id": "but",
+          "text": "有個小毛病"
+        },
+        {
+          "id": "gray",
+          "text": "選項全變灰"
+        },
+        {
+          "id": "which",
+          "text": "看不出我選了哪個"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "翻車",
+        "tagColor": "wrong",
+        "status": "已確定・實測",
+        "statusAt": "gray+6",
+        "track": 1,
+        "kw": {
+          "變灰": "wrong"
+        },
+        "view": "lens",
+        "tone": "bug",
+        "src": "caffaine-pdf-quiz/lens-wrong.png",
+        "ring": [
+          47,
+          351,
+          446,
+          208
+        ],
+        "note": "選完以後",
+        "noteAt": "but",
+        "scanAt": "gray",
+        "stampAt": "which",
+        "stamp": "灰",
+        "zoom": {
+          "src": "caffaine-pdf-quiz/wrong-zoom.png",
+          "w": 960,
+          "h": 460,
+          "cap": "放大：選項全灰"
+        }
+      },
+      "sources": [
+        "Playwright 實測截圖（tests/play.py）"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s06",
+      "beat": "payoff",
+      "narration": "我說：答對標綠色，答錯標紅色，也把正確答案標綠。",
+      "subtitle": {
+        "zh": "我說\n答對標綠色\n答錯標紅色\n也把正確答案標綠",
+        "en": "I said: mark my pick green if right, red if | wrong, and show the right answer in green."
+      },
+      "keywords": [
+        "標綠"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "答對標綠色"
+        },
+        {
+          "id": "rg",
+          "text": "答錯標紅色"
+        },
+        {
+          "id": "fix",
+          "text": "正確答案標綠"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修正",
+        "tagColor": "right",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 2,
+        "kw": {
+          "標綠": "right"
+        },
+        "view": "chat",
+        "tone": "fix",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "我選的選項答對標綠色、答錯標紅色，答錯時把正確答案也標綠色。其他不要動",
+            "typeAt": "say",
+            "typeDur": 46,
+            "at": "fix-2"
+          }
+        ],
+        "chips": [
+          {
+            "text": "答對綠、答錯紅",
+            "at": "rg",
+            "color": "right"
+          },
+          {
+            "text": "其他不要動",
+            "at": "fix",
+            "color": "note",
+            "hot": true
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/02-fix.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s07",
+      "beat": "payoff",
+      "narration": "改完，選錯的是紅色，正確答案是綠色，一眼就看懂。",
+      "subtitle": {
+        "zh": "改完\n選錯的是紅色\n正確答案是綠色\n一眼就看懂",
+        "en": "Fixed: the wrong pick is red, the right | answer green, easy to see at a glance."
+      },
+      "keywords": [
+        "一眼"
+      ],
+      "cues": [
+        {
+          "id": "done",
+          "text": "選錯的是紅色"
+        },
+        {
+          "id": "ok",
+          "text": "正確答案是綠色"
+        },
+        {
+          "id": "see",
+          "text": "一眼就看懂"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修好",
+        "tagColor": "right",
+        "status": "已確定・實測（1 次）",
+        "statusAt": "ok+6",
+        "track": 2,
+        "kw": {
+          "一眼": "right"
+        },
+        "view": "split",
+        "tone": "fix",
+        "left": {
+          "src": "caffaine-pdf-quiz/wrong.png",
+          "label": "修之前：全灰",
+          "color": "wrong",
+          "at": "start-1"
+        },
+        "right": {
+          "src": "caffaine-pdf-quiz/wrongfix.png",
+          "label": "修之後：紅綠",
+          "color": "right",
+          "at": "done"
+        },
+        "mid": {
+          "text": "看懂了",
+          "at": "see"
+        },
+        "aiAt": "start+8"
+      },
+      "sources": [
+        "Playwright 實測截圖"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s08",
+      "beat": "payoff",
+      "narration": "我故意答錯第一題，其餘答對，總分八十分。",
+      "subtitle": {
+        "zh": "我故意答錯第一題\n其餘答對\n總分八十分",
+        "en": "I got question 1 wrong on purpose, the rest | right: 80 points, scored correctly."
+      },
+      "keywords": [
+        "八十分"
+      ],
+      "cues": [
+        {
+          "id": "bad",
+          "text": "故意答錯第一題"
+        },
+        {
+          "id": "rest",
+          "text": "其餘答對"
+        },
+        {
+          "id": "eighty",
+          "text": "八十分"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "結果",
+        "tagColor": "right",
+        "status": "已確定・實測（1 次）",
+        "statusAt": "eighty+6",
+        "track": 2,
+        "kw": {
+          "八十分": "right"
+        },
+        "view": "kinetic",
+        "tone": "fix",
+        "rows": [
+          {
+            "big": "4/5",
+            "unit": "答對",
+            "at": "start-1",
+            "color": "primary",
+            "size": 240,
+            "usize": 120
+          },
+          {
+            "big": "80",
+            "unit": "分，算對了",
+            "at": "eighty",
+            "color": "right",
+            "size": 240,
+            "usize": 113
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s09",
+      "beat": "unknown",
+      "narration": "不過只試了這一份講義，更長的講義行不行，還不知道。",
+      "subtitle": {
+        "zh": "不過只試了這一份講義\n更長的講義行不行\n還不知道",
+        "en": "But I tried only this one handout. Longer, | harder ones: unknown."
+      },
+      "keywords": [
+        "還不知道"
+      ],
+      "cues": [
+        {
+          "id": "known",
+          "text": "只試了這一份講義"
+        },
+        {
+          "id": "q",
+          "text": "還不知道"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "還不知道",
+        "tagColor": "plum",
+        "status": "查不到・還沒測",
+        "statusAt": "q",
+        "track": 2,
+        "kw": {
+          "還不知道": "wrong"
+        },
+        "view": "kinetic",
+        "tone": "unknown",
+        "rows": [
+          {
+            "big": "1",
+            "unit": "份講義",
+            "at": "start-1",
+            "color": "primary",
+            "size": 220,
+            "usize": 120
+          },
+          {
+            "big": "1",
+            "unit": "個模型",
+            "at": "known+26",
+            "color": "sky",
+            "size": 220,
+            "usize": 120
+          }
+        ],
+        "q": {
+          "text": "更長的講義呢？",
+          "at": "q"
+        }
+      },
+      "sources": [
+        "Gemini 實測，只試 1 份講義、1 個模型"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s10",
+      "beat": "so",
+      "narration": "所以做法三步：貼講義、檢查題目、哪裡看不懂就說。",
+      "subtitle": {
+        "zh": "所以做法三步\n貼講義\n檢查題目\n哪裡看不懂就說",
+        "en": "Three steps: paste the handout, check the | questions, and say what's unclear."
+      },
+      "keywords": [
+        "三步"
+      ],
+      "cues": [
+        {
+          "id": "so",
+          "text": "做法三步"
+        },
+        {
+          "id": "a",
+          "text": "貼講義"
+        },
+        {
+          "id": "b",
+          "text": "檢查題目"
+        },
+        {
+          "id": "c",
+          "text": "哪裡看不懂就說"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "所以呢",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "三步": "right"
+        },
+        "view": "flow",
+        "tone": "fix",
+        "nodes": [
+          {
+            "icon": "file",
+            "label": "貼講義",
+            "sub": "整段貼上",
+            "color": "note",
+            "at": "start-1"
+          },
+          {
+            "icon": "mag",
+            "label": "檢查題目",
+            "sub": "對照講義",
+            "color": "primary",
+            "at": "b"
+          },
+          {
+            "icon": "chip",
+            "label": "哪裡不懂就說",
+            "sub": "一句話改",
+            "color": "right",
+            "at": "c"
+          }
+        ],
+        "lights": [
+          {
+            "from": "a",
+            "to": "b"
+          },
+          {
+            "from": "b+2",
+            "to": "c"
+          }
+        ],
+        "loopAt": "c+6",
+        "chipAt": "c+26",
+        "chip": "有毛病就說一句"
+      },
+      "sources": [
+        "做法整理；內容取自本次實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s11",
+      "beat": "cta",
+      "narration": "留言「小考」，拿這句出題提示詞。",
+      "subtitle": {
+        "zh": "留言「小考」\n拿這句出題提示詞",
+        "en": "Comment “小考” to get the prompt."
+      },
+      "keywords": [
+        "小考"
+      ],
+      "cues": [
+        {
+          "id": "kw",
+          "text": "小考"
+        },
+        {
+          "id": "all",
+          "text": "出題提示詞"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "領取",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "小考": "primary"
+        },
+        "view": "claim",
+        "tone": "claim",
+        "kicker": "想要講義變小考的提示詞",
+        "keyword": "小考",
+        "kwAt": "kw",
+        "allAt": "all",
+        "card": "提示詞＋用法",
+        "sub": "私訊給你"
+      },
+      "sources": [
+        "提示詞與測試紀錄整理在 CaffAIne 網站"
+      ],
+      "para": 1
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "component": "IsoScene",
+      "props": {
+        "panel": "caffend",
+        "keyword": "小考"
+      },
+      "sources": [],
+      "silent": true,
+      "durationSec": 3.6
+    }
+  ]
+}

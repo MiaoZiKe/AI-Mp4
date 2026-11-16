@@ -1,0 +1,674 @@
+{
+  "slug": "caffaine-mobile-broken",
+  "title": "叫 AI 做網站，手機打開直接爆版？一句話修好（CaffAIne 無聲版）",
+  "asOf": "2026/11/17",
+  "styleVersion": 3,
+  "stage": "iso",
+  "isoVersion": 6,
+  "sample": false,
+  "channelLogo": "caffaine",
+  "channel": {
+    "name": "CaffAIne",
+    "tag": "",
+    "slogan": "看懂一個 AI 新知"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "ai-report-v5"
+  },
+  "cover": {
+    "title": [
+      "手機打開",
+      "價格欄不見了"
+    ],
+    "sub": "AI 做的網站，修兩次才對"
+  },
+  "tracker": [
+    [
+      "手機",
+      "note"
+    ],
+    [
+      "說清楚",
+      "primary"
+    ],
+    [
+      "看得到",
+      "right"
+    ]
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "narration": "叫 AI 做咖啡店網頁，用手機寬度打開，價目表的價格欄不見了。",
+      "subtitle": {
+        "zh": "叫 AI 做咖啡店網頁\n用手機寬度打開\n價目表的價格欄\n不見了",
+        "en": "Asked AI for a cafe site. On a phone-width | screen the price column is gone."
+      },
+      "keywords": [
+        "價格欄"
+      ],
+      "cues": [
+        {
+          "id": "cafe",
+          "text": "咖啡店網頁"
+        },
+        {
+          "id": "ph",
+          "text": "手機寬度"
+        },
+        {
+          "id": "price",
+          "text": "價格欄"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "事件",
+        "tagColor": "primary",
+        "status": "已確定・實測",
+        "statusAt": "price+6",
+        "track": 0,
+        "kw": {
+          "價格欄": "wrong"
+        },
+        "view": "kinetic",
+        "tone": "event",
+        "asOf": "查證截至 2026/11/17",
+        "rows": [
+          {
+            "big": "390",
+            "unit": "像素手機寬",
+            "at": "start-1",
+            "color": "primary",
+            "size": 240,
+            "usize": 83
+          },
+          {
+            "big": "1",
+            "unit": "欄看不到",
+            "at": "price",
+            "color": "wrong",
+            "size": 300,
+            "usize": 120
+          }
+        ]
+      },
+      "sources": [
+        "Gemini 實測 2026/11/17"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s02",
+      "beat": "check",
+      "narration": "我請它做咖啡店網頁，有價目表和推薦卡，交回一個網頁檔。",
+      "subtitle": {
+        "zh": "我請它做咖啡店網頁\n有價目表和推薦卡\n交回一個網頁檔",
+        "en": "I asked for a cafe page with menu, price | list, cards. It returned one web file."
+      },
+      "keywords": [
+        "價目表"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "請它做咖啡店網頁"
+        },
+        {
+          "id": "list",
+          "text": "價目表"
+        },
+        {
+          "id": "fin",
+          "text": "交回一個網頁檔"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "步驟 1",
+        "tagColor": "note",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 0,
+        "kw": {
+          "價目表": "primary"
+        },
+        "view": "chat",
+        "tone": "event",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "做咖啡店介紹網頁：選單、價目表、推薦卡",
+            "typeAt": "say",
+            "typeDur": 34,
+            "at": "list+8"
+          },
+          {
+            "who": "ai",
+            "text": "已完成，附上一個網頁檔",
+            "check": true,
+            "typingAt": "list+10",
+            "at": "fin+4"
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/01-first.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s03",
+      "beat": "twist",
+      "narration": "手機寬度打開，價目表右邊被切掉，價格欄在畫面外。",
+      "subtitle": {
+        "zh": "手機寬度打開\n價目表右邊被切掉\n價格欄在畫面外",
+        "en": "Opened at phone width: the table is cut off, | price column out of view."
+      },
+      "keywords": [
+        "被切掉"
+      ],
+      "cues": [
+        {
+          "id": "open",
+          "text": "手機寬度打開"
+        },
+        {
+          "id": "cut",
+          "text": "右邊被切掉"
+        },
+        {
+          "id": "out",
+          "text": "價格欄在畫面外"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "翻車",
+        "tagColor": "wrong",
+        "status": "已確定・實測",
+        "statusAt": "cut+6",
+        "track": 1,
+        "kw": {
+          "被切掉": "wrong"
+        },
+        "view": "lens",
+        "tone": "bug",
+        "src": "caffaine-mobile-broken/lens-before.png",
+        "ring": [
+          420,
+          205,
+          115,
+          125
+        ],
+        "note": "手機 390 寬",
+        "noteAt": "open",
+        "scanAt": "cut",
+        "stampAt": "out",
+        "stamp": "切",
+        "zoom": {
+          "src": "caffaine-mobile-broken/before-zoom.png",
+          "w": 940,
+          "h": 564,
+          "cap": "放大：價格在畫面外"
+        }
+      },
+      "sources": [
+        "Playwright 實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s04",
+      "beat": "payoff",
+      "narration": "我跟它說：價格欄被擠到畫面外，請修好，其他不要動。",
+      "subtitle": {
+        "zh": "我跟它說\n價格欄被擠到畫面外\n請修好\n其他不要動",
+        "en": "I told it: price column is off-screen, fix | it, change nothing else."
+      },
+      "keywords": [
+        "請修好"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "價格欄被擠到畫面外"
+        },
+        {
+          "id": "fix",
+          "text": "請修好"
+        },
+        {
+          "id": "keep",
+          "text": "其他不要動"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修正 1",
+        "tagColor": "right",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 1,
+        "kw": {
+          "請修好": "right"
+        },
+        "view": "chat",
+        "tone": "fix",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "價格欄被擠到畫面外，請修好，其他不要動",
+            "typeAt": "say",
+            "typeDur": 40,
+            "at": "fix-2"
+          }
+        ],
+        "chips": [
+          {
+            "text": "請它修好",
+            "at": "fix",
+            "color": "right"
+          },
+          {
+            "text": "其他不要動",
+            "at": "keep",
+            "color": "note",
+            "hot": true
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/02-fix.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s05",
+      "beat": "twist",
+      "narration": "它改了，但只是變成能左右滑，價格還是要滑才看得到。",
+      "subtitle": {
+        "zh": "它改了\n但只是變成能左右滑\n價格還是要滑\n才看得到",
+        "en": "It changed it, but only made the table | swipeable: the price still needs a swipe."
+      },
+      "keywords": [
+        "要滑"
+      ],
+      "cues": [
+        {
+          "id": "chg",
+          "text": "它改了"
+        },
+        {
+          "id": "slide",
+          "text": "左右滑"
+        },
+        {
+          "id": "price",
+          "text": "價格還是要滑"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "翻車",
+        "tagColor": "wrong",
+        "status": "已確定・實測",
+        "statusAt": "slide+6",
+        "track": 1,
+        "kw": {
+          "要滑": "wrong"
+        },
+        "view": "device",
+        "tone": "bug",
+        "src": "caffaine-mobile-broken/phone-fix1.png",
+        "at": "start-1",
+        "tapAt": "slide",
+        "cards": [
+          {
+            "icon": "phone",
+            "text": "能左右滑了",
+            "sub": "價格仍在畫面外",
+            "at": "slide",
+            "color": "note"
+          },
+          {
+            "icon": "tap",
+            "text": "價格要滑才看到",
+            "sub": "沒有真的修好",
+            "at": "price",
+            "color": "wrong"
+          }
+        ]
+      },
+      "sources": [
+        "Playwright 實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s06",
+      "beat": "unknown",
+      "narration": "所以一句話只修了一半，因為我沒說要不用滑。這次只測一個網頁。",
+      "subtitle": {
+        "zh": "所以一句話只修了一半\n因為我沒說要不用滑\n這次只測一個網頁",
+        "en": "So one sentence fixed only half: I never | said I wanted no swiping. One page, one | model tested."
+      },
+      "keywords": [
+        "一半"
+      ],
+      "cues": [
+        {
+          "id": "half",
+          "text": "只修了一半"
+        },
+        {
+          "id": "nos",
+          "text": "不用滑"
+        },
+        {
+          "id": "known",
+          "text": "一個網頁"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "還不知道",
+        "tagColor": "plum",
+        "status": "查不到・還沒測",
+        "statusAt": "known+30",
+        "track": 2,
+        "kw": {
+          "一半": "wrong"
+        },
+        "view": "kinetic",
+        "tone": "unknown",
+        "rows": [
+          {
+            "big": "1 句",
+            "unit": "只修一半",
+            "at": "start-1",
+            "color": "wrong",
+            "size": 220,
+            "usize": 93
+          },
+          {
+            "big": "1",
+            "unit": "個網頁",
+            "at": "known",
+            "color": "sky",
+            "size": 220,
+            "usize": 120
+          }
+        ],
+        "q": {
+          "text": "別的網頁呢？",
+          "at": "known+30"
+        }
+      },
+      "sources": [
+        "Gemini 實測，只試 1 個網頁、1 個模型"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s07",
+      "beat": "payoff",
+      "narration": "我再補一句：不要橫向滑動，每個品項改成一張小卡片。",
+      "subtitle": {
+        "zh": "我再補一句\n不要橫向滑動\n每個品項\n改成一張小卡片",
+        "en": "One more sentence: no sideways swiping, one | small card per item on phones."
+      },
+      "keywords": [
+        "小卡片"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "不要橫向滑動"
+        },
+        {
+          "id": "card",
+          "text": "每個品項改成一張小卡片"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修正 2",
+        "tagColor": "right",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 2,
+        "kw": {
+          "小卡片": "right"
+        },
+        "view": "chat",
+        "tone": "fix",
+        "title": "和 AI 對話",
+        "msgs": [
+          {
+            "who": "me",
+            "text": "不要橫向滑動，手機上每個品項改成一張小卡片",
+            "typeAt": "say",
+            "typeDur": 44,
+            "at": "card-2"
+          }
+        ],
+        "chips": [
+          {
+            "text": "說清楚要看到什麼",
+            "at": "card",
+            "color": "right",
+            "hot": true
+          }
+        ]
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/03-fix2.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s08",
+      "beat": "payoff",
+      "narration": "這次每個品項是一張卡片，尺寸、熱量、價格，不用滑就看得到。",
+      "subtitle": {
+        "zh": "這次每個品項\n是一張卡片\n尺寸、熱量、價格\n不用滑就看得到",
+        "en": "Now each item is a card: size, calories, | price, all visible without swiping."
+      },
+      "keywords": [
+        "不用滑"
+      ],
+      "cues": [
+        {
+          "id": "now",
+          "text": "每個品項是一張卡片"
+        },
+        {
+          "id": "all",
+          "text": "不用滑就看得到"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "修好",
+        "tagColor": "right",
+        "status": "已確定・實測（1 次）",
+        "statusAt": "all+6",
+        "track": 2,
+        "kw": {
+          "不用滑": "right"
+        },
+        "view": "split",
+        "tone": "fix",
+        "left": {
+          "src": "caffaine-mobile-broken/phone-fix1.png",
+          "label": "修一次：要滑",
+          "color": "wrong",
+          "at": "start-1"
+        },
+        "right": {
+          "src": "caffaine-mobile-broken/phone-fix2.png",
+          "label": "說清楚：不用滑",
+          "color": "right",
+          "at": "now"
+        },
+        "mid": {
+          "text": "價格看得到",
+          "at": "all"
+        },
+        "aiAt": "start+8"
+      },
+      "sources": [
+        "Playwright 實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s09",
+      "beat": "so",
+      "narration": "所以做法三步：用手機寬度打開、說清楚要看到什麼、再打開確認。",
+      "subtitle": {
+        "zh": "所以做法三步\n用手機寬度打開\n說清楚要看到什麼\n再打開確認",
+        "en": "Three steps: open at phone width, say what | you want to see, check again."
+      },
+      "keywords": [
+        "三步"
+      ],
+      "cues": [
+        {
+          "id": "so",
+          "text": "做法三步"
+        },
+        {
+          "id": "a",
+          "text": "用手機寬度打開"
+        },
+        {
+          "id": "b",
+          "text": "說清楚要看到什麼"
+        },
+        {
+          "id": "c",
+          "text": "再打開確認"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "所以呢",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "三步": "right"
+        },
+        "view": "flow",
+        "tone": "fix",
+        "nodes": [
+          {
+            "icon": "window",
+            "label": "手機寬度打開",
+            "sub": "390 寬",
+            "color": "note",
+            "at": "start-1"
+          },
+          {
+            "icon": "chip",
+            "label": "說清楚",
+            "sub": "要看到什麼",
+            "color": "primary",
+            "at": "b"
+          },
+          {
+            "icon": "check",
+            "label": "再打開確認",
+            "sub": "看到才算",
+            "color": "right",
+            "at": "c"
+          }
+        ],
+        "lights": [
+          {
+            "from": "a",
+            "to": "b"
+          },
+          {
+            "from": "b+2",
+            "to": "c"
+          }
+        ],
+        "loopAt": "c+6",
+        "chipAt": "c+26",
+        "chip": "沒好就再說一句"
+      },
+      "sources": [
+        "做法整理；內容取自本次實測"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s10",
+      "beat": "cta",
+      "narration": "留言「手機」，拿這句修版提示詞。",
+      "subtitle": {
+        "zh": "留言「手機」\n拿這句修版提示詞",
+        "en": "Comment “手機” to get the prompt."
+      },
+      "keywords": [
+        "手機"
+      ],
+      "cues": [
+        {
+          "id": "kw",
+          "text": "手機"
+        },
+        {
+          "id": "all",
+          "text": "修版提示詞"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "tag": "領取",
+        "tagColor": "right",
+        "track": 2,
+        "kw": {
+          "手機": "primary"
+        },
+        "view": "claim",
+        "tone": "claim",
+        "kicker": "想要手機版修好的提示詞",
+        "keyword": "手機",
+        "kwAt": "kw",
+        "allAt": "all",
+        "card": "提示詞＋用法",
+        "sub": "私訊給你"
+      },
+      "sources": [
+        "提示詞與測試紀錄整理在 CaffAIne 網站"
+      ],
+      "para": 1
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "component": "IsoScene",
+      "props": {
+        "panel": "caffend",
+        "keyword": "手機"
+      },
+      "sources": [],
+      "silent": true,
+      "durationSec": 3.6
+    }
+  ]
+}

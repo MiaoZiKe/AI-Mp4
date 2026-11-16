@@ -1,0 +1,732 @@
+{
+ "slug": "caffaine-invite-page",
+ "title": "一句話做出生日邀請網頁，還能收回覆（CaffAIne 無聲版）",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "一句話做出",
+   "生日邀請網頁"
+  ],
+  "sub": "能倒數、能回覆的手機網頁"
+ },
+ "tracker": [
+  [
+   "一句話",
+   "note"
+  ],
+  [
+   "邀請網頁",
+   "primary"
+  ],
+  [
+   "能回覆",
+   "right"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "要辦生日聚會，邀請網頁不用找人做，一句話就行。",
+   "subtitle": {
+    "zh": "要辦生日聚會\n邀請網頁不用找人做\n一句話就行",
+    "en": "Planning a birthday party? | An invitation page, from one prompt."
+   },
+   "keywords": [
+    "一句話"
+   ],
+   "cues": [
+    {
+     "id": "party",
+     "text": "生日聚會"
+    },
+    {
+     "id": "one",
+     "text": "一句話"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "一句話": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "asOf": "查證截至 2026/11/17",
+    "status": "已確定・實測",
+    "statusAt": "one+6",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "句話",
+      "at": "start-10",
+      "color": "primary",
+      "size": 220,
+      "usize": 130
+     },
+     {
+      "big": "0",
+      "unit": "行程式",
+      "at": "one",
+      "color": "right",
+      "size": 220,
+      "usize": 130
+     }
+    ]
+   },
+   "sources": [
+    "Gemini 實測 2026/11/17（虛構主角與地點，情境示意）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "narration": "我只說：要有時間地點、倒數天數，還有回覆按鈕。",
+   "subtitle": {
+    "zh": "我只說\n要有時間地點\n倒數天數\n還有回覆按鈕",
+    "en": "I asked for: time and place, a countdown, | and a reply button."
+   },
+   "keywords": [
+    "回覆按鈕"
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "時間地點"
+    },
+    {
+     "id": "cnt",
+     "text": "倒數天數"
+    },
+    {
+     "id": "btn",
+     "text": "回覆按鈕"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "步驟 1",
+    "tagColor": "note",
+    "track": 0,
+    "kw": {
+     "回覆按鈕": "primary"
+    },
+    "view": "chat",
+    "tone": "event",
+    "status": "已確定・實測提示（節錄）",
+    "statusAt": "say+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "時間地點、還有幾天的倒數、一個「我會去／可能去／去不了」的回覆按鈕",
+      "typeAt": "say-4",
+      "typeDur": 56,
+      "at": "say-6"
+     },
+     {
+      "who": "ai",
+      "text": "已完成，附上一個網頁檔",
+      "check": true,
+      "typingAt": "cnt+10",
+      "at": "btn+14"
+     }
+    ]
+   },
+   "sources": [
+    "提示詞節錄；原文見 tests/01-first.json"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "check",
+   "narration": "它交回網頁，時間地點都有，倒數三十二天，我核對過，算對了。",
+   "subtitle": {
+    "zh": "時間地點都有\n倒數三十二天\n我核對過\n算對了",
+    "en": "Time and place are there. 32 days to go; | I checked it: correct."
+   },
+   "keywords": [
+    "三十二天"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "時間地點"
+    },
+    {
+     "id": "cnt",
+     "text": "倒數三十二天"
+    },
+    {
+     "id": "ok",
+     "text": "算對了"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "實測",
+    "tagColor": "primary",
+    "track": 1,
+    "kw": {
+     "三十二天": "right"
+    },
+    "view": "browser",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "cnt+6",
+    "file": "invite.html",
+    "fileAt": "start+3",
+    "openAt": "open",
+    "shots": [
+     {
+      "src": "caffaine-invite-page/first-top.png",
+      "at": "open"
+     }
+    ],
+    "rings": [
+     {
+      "shot": 0,
+      "at": "cnt",
+      "box": [
+       36,
+       205,
+       318,
+       78
+      ],
+      "color": "right"
+     }
+    ],
+    "items": [
+     {
+      "icon": "file",
+      "text": "一個網頁檔",
+      "sub": "AI 交回來的",
+      "at": "start+4",
+      "color": "note"
+     },
+     {
+      "icon": "window",
+      "text": "標題、時間地點",
+      "at": "open",
+      "color": "primary"
+     },
+     {
+      "icon": "star",
+      "text": "倒數 32 天",
+      "sub": "2026/11/16 到 12/19",
+      "at": "cnt",
+      "color": "right"
+     },
+     {
+      "icon": "text",
+      "text": "日期核對過",
+      "sub": "算出來一樣",
+      "at": "ok",
+      "color": "right"
+     }
+    ]
+   },
+   "sources": [
+    "Playwright 實測：頁面 32 天 22 小時，與日期差相符"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "點「我會去」，填名字送出，名單多一個人。",
+   "subtitle": {
+    "zh": "點「我會去」\n填名字送出\n名單多一個人",
+    "en": "Tap “I’ll come”, type a name, send. | The guest list grows."
+   },
+   "keywords": [
+    "名單"
+   ],
+   "cues": [
+    {
+     "id": "tap",
+     "text": "點「我會去」"
+    },
+    {
+     "id": "fill",
+     "text": "填名字送出"
+    },
+    {
+     "id": "add",
+     "text": "名單多一個人"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "實測",
+    "tagColor": "primary",
+    "track": 1,
+    "kw": {
+     "名單": "right"
+    },
+    "view": "device",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "fill+6",
+    "src": "caffaine-invite-page/form.png",
+    "at": "start-1",
+    "tapAt": "tap",
+    "cards": [
+     {
+      "icon": "tap",
+      "text": "點「我會去」",
+      "sub": "三個按鈕選一個",
+      "at": "tap",
+      "color": "primary"
+     },
+     {
+      "icon": "text",
+      "text": "填名字送出",
+      "sub": "名單多一個人",
+      "at": "fill",
+      "color": "right"
+     }
+    ]
+   },
+   "sources": [
+    "Playwright 實測：觸控送出三筆，名單變 5 人"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "twist",
+   "narration": "但有兩個毛病：名單有我沒輸入的人，回覆重新整理就不見。",
+   "subtitle": {
+    "zh": "但有兩個毛病\n名單有我沒輸入的人\n回覆重新整理\n就不見",
+    "en": "Two flaws: names I never typed, | and replies vanish on reload."
+   },
+   "keywords": [
+    "兩個毛病"
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "兩個毛病"
+    },
+    {
+     "id": "fake",
+     "text": "我沒輸入的人"
+    },
+    {
+     "id": "gone",
+     "text": "重新整理就不見"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "翻車",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "兩個毛病": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "two+6",
+    "src": "caffaine-invite-page/bug-raw.png",
+    "ring": [
+     24,
+     686,
+     334,
+     100
+    ],
+    "note": "已回覆名單",
+    "noteAt": "two",
+    "scanAt": "fake",
+    "stampAt": "gone",
+    "stamp": "失",
+    "zoom": {
+     "src": "caffaine-invite-page/bug-zoom.png",
+     "w": 1110,
+     "h": 450,
+     "cap": "放大看：重新整理後只剩預填的兩位"
+    }
+   },
+   "sources": [
+    "Playwright 實測：一打開已有 2 人，重新整理只剩 2 人"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "fix",
+   "narration": "我照實說：拿掉預填名單，回覆要存在手機裡。",
+   "subtitle": {
+    "zh": "我照實說\n拿掉預填名單\n回覆要存在手機裡",
+    "en": "I told it: drop the pre-filled names, | and save replies on the phone."
+   },
+   "keywords": [
+    "存在手機裡"
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "拿掉預填名單"
+    },
+    {
+     "id": "keep",
+     "text": "存在手機裡"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "修正",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "存在手機裡": "right"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測提示（節錄）",
+    "statusAt": "say+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "請拿掉預先放好的名單，讓回覆存在這支手機的瀏覽器裡，重新整理還在",
+      "typeAt": "say-8",
+      "typeDur": 50,
+      "at": "say-10"
+     }
+    ],
+    "chips": [
+     {
+      "text": "拿掉預填名單",
+      "at": "say+10",
+      "color": "right"
+     },
+     {
+      "text": "存在瀏覽器",
+      "at": "keep",
+      "color": "note",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提示詞節錄；原文見 tests/02-fix.json"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "fix",
+   "narration": "再試一次，名單是空的，我送三個回覆，重新整理都還在。",
+   "subtitle": {
+    "zh": "再試一次\n名單是空的\n我送三個回覆\n重新整理都還在",
+    "en": "Retest: empty list, three replies sent; | after reload all three remain."
+   },
+   "keywords": [
+    "都還在"
+   ],
+   "cues": [
+    {
+     "id": "again",
+     "text": "再試一次"
+    },
+    {
+     "id": "empty",
+     "text": "名單是空的"
+    },
+    {
+     "id": "three",
+     "text": "送三個回覆"
+    },
+    {
+     "id": "still",
+     "text": "都還在"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "修好",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "都還在": "right"
+    },
+    "view": "browser",
+    "tone": "fix",
+    "status": "已確定・實測（1 次）",
+    "statusAt": "three+6",
+    "shots": [
+     {
+      "src": "caffaine-invite-page/fix-list.png",
+      "at": "start-1"
+     },
+     {
+      "src": "caffaine-invite-page/fix-reload.png",
+      "at": "still"
+     }
+    ],
+    "rings": [
+     {
+      "shot": 1,
+      "at": "still+4",
+      "box": [
+       34,
+       688,
+       322,
+       70
+      ],
+      "color": "right"
+     }
+    ],
+    "items": [
+     {
+      "icon": "redo",
+      "text": "再試一次",
+      "sub": "第二版",
+      "at": "again",
+      "color": "note"
+     },
+     {
+      "icon": "text",
+      "text": "名單是空的",
+      "sub": "0 人",
+      "at": "empty",
+      "color": "primary"
+     },
+     {
+      "icon": "star",
+      "text": "送出三個回覆",
+      "num": {
+       "to": 3,
+       "label": "人"
+      },
+      "at": "three",
+      "color": "right"
+     },
+     {
+      "icon": "play",
+      "text": "重新整理還在",
+      "sub": "三個都在",
+      "at": "still",
+      "color": "right"
+     }
+    ]
+   },
+   "sources": [
+    "Playwright 實測：重新整理後仍 3 人（1 次）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過回覆只存在這支手機，要收所有人的，這次沒做。",
+   "subtitle": {
+    "zh": "不過回覆只存在\n這支手機\n要收所有人的\n這次沒做",
+    "en": "But replies live only on this phone. | Collecting everyone's: not done here."
+   },
+   "keywords": [
+    "沒做"
+   ],
+   "cues": [
+    {
+     "id": "known",
+     "text": "只存在這支手機"
+    },
+    {
+     "id": "q",
+     "text": "要收所有人的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "沒做": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "支手機",
+      "at": "start-1",
+      "color": "primary"
+     }
+    ],
+    "q": {
+     "text": "朋友的回覆收得到嗎？",
+     "at": "q"
+    },
+    "status": "程式用瀏覽器儲存・沒測別人手機",
+    "statusAt": "q"
+   },
+   "sources": [
+    "程式存在瀏覽器；沒做收所有人回覆的版本"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以做法三步：講清楚、交給 AI、用手機點一遍，有毛病就說。",
+   "subtitle": {
+    "zh": "所以做法三步\n講清楚\n交給 AI\n用手機點一遍\n有毛病就說",
+    "en": "Three steps: be specific, hand it to AI, | tap through on a phone, report problems."
+   },
+   "keywords": [
+    "三步"
+   ],
+   "cues": [
+    {
+     "id": "a",
+     "text": "講清楚"
+    },
+    {
+     "id": "b",
+     "text": "交給 AI"
+    },
+    {
+     "id": "c",
+     "text": "用手機點一遍"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "所以呢",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "三步": "right"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "pencil",
+      "label": "講清楚",
+      "sub": "時間、地點、按鈕",
+      "color": "note",
+      "at": "start-1"
+     },
+     {
+      "icon": "chip",
+      "label": "交給 AI",
+      "sub": "只說想要什麼",
+      "color": "primary",
+      "at": "b"
+     },
+     {
+      "icon": "phone",
+      "label": "用手機點",
+      "sub": "真的回覆一次",
+      "color": "right",
+      "at": "c"
+     }
+    ],
+    "lights": [
+     {
+      "from": "a",
+      "to": "b"
+     },
+     {
+      "from": "b+2",
+      "to": "c"
+     }
+    ],
+    "loopAt": "c+6",
+    "chipAt": "c+26",
+    "chip": "有毛病就跟它說"
+   },
+   "sources": [
+    "做法整理；內容取自本次實測"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "留言「邀請」，拿這段提示詞。",
+   "subtitle": {
+    "zh": "留言「邀請」\n拿這段提示詞",
+    "en": "Comment “邀請” to get the prompt."
+   },
+   "keywords": [
+    "邀請"
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "邀請"
+    },
+    {
+     "id": "all",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "邀請": "primary"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "kicker": "想要邀請網頁的提示詞",
+    "keyword": "邀請",
+    "kwAt": "kw",
+    "allAt": "all",
+    "card": "提示詞＋用法",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞與測試紀錄整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "邀請"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

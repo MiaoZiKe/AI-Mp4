@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新進同仁訓練小考：會議紀錄三步驟</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #quiz-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 { color: #2c3e50; margin-top: 0; }
+        .question { font-size: 1.2rem; margin-bottom: 1rem; font-weight: bold; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        button:hover:not(:disabled) { background-color: #e9ecef; }
+        button:disabled { cursor: not-allowed; }
+        
+        /* 選項回饋顏色 */
+        .btn-correct { background-color: #28a745 !important; color: white !important; border-color: #1e7e34 !important; }
+        .btn-wrong { background-color: #dc3545 !important; color: white !important; border-color: #bd2130 !important; }
+
+        .feedback {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+        .correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .wrong { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        #next-btn, #restart-btn {
+            margin-top: 1rem;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #score-display { text-align: center; font-size: 1.5rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div id="quiz-content">
+        <div id="progress">題目 1 / 5</div>
+        <p class="question" id="question-text"></p>
+        <div class="options" id="options-container"></div>
+        <div id="feedback" class="feedback"></div>
+        <button id="next-btn">下一題</button>
+    </div>
+    <div id="result-page" style="display: none;">
+        <h2>測驗結束</h2>
+        <p id="score-display"></p>
+        <button id="restart-btn" style="display: block;">重新測驗</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            q: "根據講義，關於開會前的準備，會議邀請應包含什麼？",
+            a: ["主題名稱", "所有參與者的資歷", "要做出的決定", "會議室的詳細地圖"],
+            correct: 2,
+            exp: "開會前應在會議邀請裡寫出「要做出的決定」，不要只寫主題。"
+        },
+        {
+            q: "會議紀錄中「不包含」下列哪一項核心記載事項？",
+            a: ["決定了什麼", "誰負責", "何時完成", "每位發言者的逐字稿"],
+            correct: 3,
+            exp: "會議中紀錄只寫三件事：決定了什麼、誰負責、何時完成。"
+        },
+        {
+            q: "若會議中某個事項無人認領負責，紀錄者應如何處理？",
+            a: ["自行推測最可能的負責人", "標註「待指派」", "直接跳過不紀錄", "寫上主管的名字"],
+            correct: 1,
+            exp: "沒人認領的事項應標註「待指派」，不可自行推測負責人。"
+        },
+        {
+            q: "關於會後的時間要求，下列敘述何者正確？",
+            a: ["48小時內寄出紀錄，一週內回覆", "12小時內寄出紀錄，24小時內回覆", "24小時內寄出紀錄，48小時內回覆", "當天寄出，當天回覆"],
+            correct: 2,
+            exp: "會後 24 小時內寄出紀錄，並請與會者在 48 小時內回覆是否有誤。"
+        },
+        {
+            q: "關於紀錄的篇幅與附件處理，下列何者符合規定？",
+            a: ["篇幅不限，附件貼在文末", "篇幅以一頁為限，附件貼在文末", "篇幅不限，附件另放連結", "篇幅以一頁為限，附件另放連結"],
+            correct: 3,
+            exp: "紀錄的篇幅以一頁為限；附件另放連結，不貼在內文。"
+        }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const feedback = document.getElementById('feedback');
+    const nextBtn = document.getElementById('next-btn');
+    const progress = document.getElementById('progress');
+    const quizContent = document.getElementById('quiz-content');
+    const resultPage = document.getElementById('result-page');
+    const scoreDisplay = document.getElementById('score-display');
+    const restartBtn = document.getElementById('restart-btn');
+
+    function loadQuestion() {
+        const currentData = quizData[currentIdx];
+        progress.innerText = `題目 ${currentIdx + 1} / ${quizData.length}`;
+        questionText.innerText = currentData.q;
+        optionsContainer.innerHTML = '';
+        feedback.style.display = 'none';
+        nextBtn.style.display = 'none';
+
+        currentData.a.forEach((option, i) => {
+            const btn = document.createElement('button');
+            btn.innerText = option;
+            btn.onclick = () => checkAnswer(i);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selectedIdx) {
+        const currentData = quizData[currentIdx];
+        const buttons = optionsContainer.querySelectorAll('button');
+        
+        buttons.forEach((btn, i) => {
+            btn.disabled = true;
+            if (i === currentData.correct) {
+                // 正確答案標綠色
+                btn.classList.add('btn-correct');
+            } else if (i === selectedIdx) {
+                // 如果選錯了，選的那項標紅色
+                btn.classList.add('btn-wrong');
+            }
+        });
+
+        feedback.style.display = 'block';
+        if (selectedIdx === currentData.correct) {
+            score++;
+            feedback.innerText = "正確！" + currentData.exp;
+            feedback.className = "feedback correct";
+        } else {
+            feedback.innerText = "錯誤。" + currentData.exp;
+            feedback.className = "feedback wrong";
+        }
+        
+        nextBtn.style.display = 'block';
+        if (currentIdx === quizData.length - 1) {
+            nextBtn.innerText = "查看結果";
+        }
+    }
+
+    nextBtn.onclick = () => {
+        currentIdx++;
+        if (currentIdx < quizData.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    };
+
+    function showResult() {
+        quizContent.style.display = 'none';
+        resultPage.style.display = 'block';
+        scoreDisplay.innerText = `總分：${(score / quizData.length) * 100} 分`;
+    }
+
+    restartBtn.onclick = () => {
+        currentIdx = 0;
+        score = 0;
+        nextBtn.innerText = "下一題";
+        quizContent.style.display = 'block';
+        resultPage.style.display = 'none';
+        loadQuestion();
+    };
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
