@@ -1,0 +1,318 @@
+{
+ "name": "parts-sheet：零件總表（每種零件一個範例，全部用零件庫）",
+ "unit": "1 cm",
+ "size": {
+  "w": 14,
+  "h": 2,
+  "r": 0.1,
+  "t": 6
+ },
+ "palette": {},
+ "materials": {},
+ "layers": [],
+ "anchors": {},
+ "parts": [
+  {
+   "part": "wafer",
+   "id": "wafer",
+   "pos": [
+    -114,
+    0,
+    0
+   ],
+   "r": 3,
+   "step": 0.6,
+   "bad": 6,
+   "pick": [
+    2,
+    0
+   ]
+  },
+  {
+   "part": "die",
+   "id": "dd",
+   "pos": [
+    -102,
+    0,
+    0
+   ],
+   "w": 2.6,
+   "d": 3.3
+  },
+  {
+   "part": "bumps",
+   "id": "bumps",
+   "pos": [
+    -90,
+    0,
+    0
+   ],
+   "kind": "c4",
+   "n": [
+    12,
+    8
+   ]
+  },
+  {
+   "part": "tsv",
+   "id": "tsv",
+   "pos": [
+    -78,
+    0,
+    0
+   ],
+   "line": [
+    -2,
+    0,
+    2,
+    0
+   ],
+   "n": 30,
+   "h": 0.9
+  },
+  {
+   "part": "interposer",
+   "id": "interposer",
+   "pos": [
+    -66,
+    0,
+    0
+   ],
+   "w": 7,
+   "d": 4.6
+  },
+  {
+   "part": "substrate",
+   "id": "substrate",
+   "pos": [
+    -54,
+    0,
+    0
+   ],
+   "w": 7,
+   "d": 5,
+   "t": 0.5,
+   "pads": [
+    16,
+    10
+   ]
+  },
+  {
+   "part": "pcb",
+   "id": "pcb",
+   "pos": [
+    -42,
+    0,
+    0
+   ],
+   "w": 8,
+   "d": 6
+  },
+  {
+   "part": "hbm",
+   "id": "hbm",
+   "pos": [
+    -30,
+    0,
+    0
+   ],
+   "w": 1.6,
+   "t": 0.9,
+   "n": 12
+  },
+  {
+   "part": "stack",
+   "id": "stack",
+   "pos": [
+    -18,
+    0,
+    0
+   ],
+   "w": 3,
+   "d": 3,
+   "layers": [
+    {
+     "t": 0.15,
+     "mat": "silicon"
+    },
+    {
+     "t": 0.1,
+     "mat": "pad"
+    },
+    {
+     "t": 0.15,
+     "mat": "chip"
+    },
+    {
+     "t": 0.1,
+     "mat": "pad"
+    },
+    {
+     "t": 0.15,
+     "mat": "hbm"
+    }
+   ]
+  },
+  {
+   "part": "nozzle",
+   "id": "nozzle",
+   "pos": [
+    -6,
+    0,
+    0
+   ],
+   "scale": 1.3
+  },
+  {
+   "part": "arm",
+   "id": "arm",
+   "pos": [
+    6,
+    0,
+    0
+   ],
+   "reach": 0
+  },
+  {
+   "part": "probe",
+   "id": "probe",
+   "pos": [
+    18,
+    0,
+    0
+   ]
+  },
+  {
+   "part": "beam",
+   "id": "beam",
+   "from": [
+    30,
+    3,
+    0
+   ],
+   "to": [
+    30,
+    0.2,
+    0
+   ],
+   "r": 0.1
+  },
+  {
+   "part": "chamber",
+   "id": "chamber",
+   "pos": [
+    42,
+    0,
+    0
+   ],
+   "r": 2.2,
+   "len": 6
+  },
+  {
+   "part": "pipe",
+   "id": "pipe",
+   "path": [
+    [
+     51,
+     0.2,
+     0
+    ],
+    [
+     54,
+     0.2,
+     0
+    ],
+    [
+     54,
+     1.6,
+     0
+    ],
+    [
+     57,
+     1.6,
+     0
+    ]
+   ],
+   "r": 0.2
+  },
+  {
+   "part": "heatsink",
+   "id": "heatsink",
+   "pos": [
+    66,
+    0,
+    0
+   ],
+   "w": 4.4,
+   "d": 3.6,
+   "fins": 11,
+   "finH": 1.4
+  },
+  {
+   "part": "rail",
+   "id": "rail",
+   "pos": [
+    78,
+    0,
+    0
+   ],
+   "len": 8,
+   "w": 2.1
+  },
+  {
+   "part": "bin",
+   "id": "bin",
+   "pos": [
+    90,
+    0,
+    0
+   ],
+   "w": 2.6,
+   "d": 2
+  },
+  {
+   "part": "blade",
+   "id": "blade",
+   "pos": [
+    102,
+    0,
+    0
+   ],
+   "r": 1.4
+  },
+  {
+   "part": "sensor",
+   "id": "sensor",
+   "pos": [
+    114,
+    0,
+    0
+   ],
+   "ray": 1.5
+  }
+ ],
+ "actions": {},
+ "pose": {
+  "yaw0": -0.5236,
+  "yawIso": 0,
+  "drift": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 14,
+   "elev": 36,
+   "y": 0.4
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "srcPx": 30,
+  "shadows": 0,
+  "ghost": false,
+  "guides": false,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ }
+}

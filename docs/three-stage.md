@@ -4,6 +4,7 @@
 **產品模型是資料**：零件清單寫在 `videos/<slug>/model.json`（或 `script.json` 的 `model`），引擎讀資料建模。換產品只寫一份新的 `model.json`，不用改 `src/components/three/`。
 
 - 樣片：`videos/sample-tech-3d/`（手機均熱板；`model.json` 有 65 個零件）、`videos/sample-tech-anc/`（耳機主動降噪；示範第五節的「運作動畫」）
+- **零件與動作庫（2026/11/16）**：晶圓、晶片、凸塊、TSV、中介層、基板、HBM、吸嘴、手臂、探針、光束、腔體、管線、散熱片、刀片、檢測頭等 20 種零件，和取放／下壓接合／逐層堆疊／切割／掃描／電流／熱擴散等動作預設，寫成資料就能引用（`{ "part": "wafer", … }`、`props.motion`），不用再寫 gen-model／gen-script。見 `docs/three-parts.md`、總表 `docs/three-parts-sheet.png`、示範 `videos/sample-parts/`。
 - 程式：`src/components/three/model.ts`（資料 → 幾何、材質、紋理）、`engine.ts`（時間與姿態）、`Scene.tsx`（3D 畫面）、`Ops.tsx`（運作動畫的 3D 部分）、`ThreeVideo.tsx`（HTML 外圈、2D 特效、儀表）
 - 檢查：`npm run validate <slug>`（`scripts/three/validate-three.mjs`，會檢查 model.json 的形狀、材質、層、標註點）
 - 量成本：`node scripts/three/bench-fx.mjs <slug>`（逐項開關特效，量每幀毫秒）
