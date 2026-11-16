@@ -4,7 +4,7 @@
  "asOf": "2026/11/16",
  "styleVersion": 3,
  "stage": "iso",
- "isoVersion": 5,
+ "isoVersion": 6,
  "sample": false,
  "channelLogo": "caffaine",
  "channel": {
@@ -63,51 +63,35 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "hook",
     "tag": "事件",
     "tagColor": "primary",
     "asOf": "查證截至 2026/11/16",
-    "title": [
-     "這支動畫",
-     "AI 做的，沒寫程式"
-    ],
-    "size": 100,
-    "mark": {
-     "text": "AI 做的",
-     "at": "ai",
-     "color": "primary"
-    },
-    "stamp": {
-     "text": "AI 寫的程式",
-     "at": "zero",
-     "color": "primary"
-    },
-    "count": {
-     "at": "ai+10"
-    },
-    "flow": [
-     "一句中文",
-     "AI 寫程式",
-     "會動的影片"
-    ],
     "status": "已確定・本片製作紀錄",
     "statusAt": "zero+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "AI 做的": "primary"
-    }
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "rows": [
+     {
+      "big": "AI",
+      "unit": "做的動畫",
+      "at": "start+3",
+      "color": "primary",
+      "size": 300,
+      "usize": 110
+     },
+     {
+      "big": "0",
+      "unit": "行是我寫的",
+      "at": "zero",
+      "color": "wrong",
+      "size": 300,
+      "usize": 100
+     }
+    ]
    },
    "sources": [
     "本片製作紀錄：程式與腳本都在本 repo，查證截至 2026/11/16"
@@ -145,39 +129,46 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "talk",
     "tag": "步驟 1",
     "tagColor": "note",
-    "label": "我這樣交代",
-    "note": "示意：交代句是範例",
-    "line": "做一支 30 秒的短影片，講 AI 整理會議紀錄。",
-    "typeAt": "say",
-    "typeDur": 38,
-    "lines": 2,
-    "size": 56,
-    "chips": [
-     "中文就好",
-     "不用寫程式"
-    ],
-    "chipsAt": "done",
     "status": "示意・交代句是範例",
     "statusAt": "how+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       420,
-       220,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "只用中文": "primary"
-    }
+    },
+    "view": "chat",
+    "tone": "event",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "做一支 30 秒的短影片，講 AI 整理會議紀錄。",
+      "typeAt": "say",
+      "typeDur": 38,
+      "at": "send"
+     },
+     {
+      "who": "ai",
+      "text": "收到，開始做這支短影片",
+      "check": true,
+      "typingAt": "send+2",
+      "at": "done"
+     }
+    ],
+    "chips": [
+     {
+      "text": "中文就好",
+      "at": "done+6",
+      "color": "note"
+     },
+     {
+      "text": "不用寫程式",
+      "at": "done+16",
+      "color": "right",
+      "hot": true
+     }
+    ]
    },
    "sources": [
     "示意：交代句是範例，不是原始紀錄"
@@ -211,27 +202,51 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "code",
     "tag": "步驟 2",
     "tagColor": "primary",
-    "kind": "腳本檔",
+    "status": "已確定・repo 實際檔案",
+    "statusAt": "num+8",
+    "track": 1,
+    "kw": {
+     "全是文字": "primary"
+    },
+    "view": "editor",
+    "tone": "principle",
     "file": "caffaine-meeting-todo/script.json",
     "src": "videos/caffaine-meeting-todo/script.json",
     "lines": [
-     "\"id\": \"s03\",",
-     "\"beat\": \"twist\",",
-     "\"narration\": \"它卻填了行銷經理。\",",
-     "\"zh\": \"它卻填了行銷經理\","
+     {
+      "t": "\"id\": \"s03\",",
+      "n": 169,
+      "at": "file+3",
+      "dur": 10
+     },
+     {
+      "t": "\"beat\": \"twist\",",
+      "n": 170,
+      "at": "file+10",
+      "dur": 10
+     },
+     {
+      "t": "\"narration\": \"它卻填了行銷經理。\",",
+      "n": 171,
+      "at": "file+17",
+      "dur": 14
+     },
+     {
+      "t": "\"zh\": \"它卻填了行銷經理\",",
+      "n": 173,
+      "at": "file+26",
+      "dur": 12
+     }
     ],
-    "nums": [
-     169,
-     170,
-     171,
-     173
-    ],
-    "gap": 9,
     "hl": 2,
     "hlAt": "all",
+    "total": {
+     "to": 604,
+     "at": "num"
+    },
+    "shrinkAt": "num",
     "badge": {
      "num": "600+",
      "unit": "行，全是文字",
@@ -243,24 +258,6 @@
       ],
       "atLeast": 600
      }
-    },
-    "status": "已確定・repo 實際檔案",
-    "statusAt": "num+8",
-    "track": 1,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "全是文字": "primary"
     }
    },
    "sources": [
@@ -295,53 +292,57 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "code",
     "tag": "步驟 3",
     "tagColor": "primary",
-    "kind": "動畫程式",
-    "file": "src/components/ai-iso/IsoMeeting.tsx",
-    "src": "src/components/ai-iso/IsoMeeting.tsx",
-    "lines": [
-     "const DESKW = 760, DESKH = 600;",
-     "const ROWS = 6;"
-    ],
-    "nums": [
-     23,
-     29
-    ],
-    "gap": 12,
-    "hl": 0,
-    "hlAt": "ai",
-    "badge": {
-     "num": "3,000+",
-     "unit": "行程式碼",
-     "at": "num",
-     "color": "primary",
-     "proof": {
-      "dir": "src/components/ai-iso",
-      "ext": [
-       ".tsx"
-      ],
-      "atLeast": 3000
-     }
-    },
     "status": "已確定・repo 實際檔案",
     "statusAt": "num+8",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       0
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "AI 寫的": "primary"
+    },
+    "view": "flow",
+    "tone": "principle",
+    "nodes": [
+     {
+      "icon": "file",
+      "label": "腳本檔",
+      "sub": "一段一段的文字",
+      "color": "note",
+      "at": "start+3"
+     },
+     {
+      "icon": "chip",
+      "label": "動畫程式",
+      "sub": "三千多行",
+      "color": "primary",
+      "at": "draw+4"
+     },
+     {
+      "icon": "play",
+      "label": "影片畫面",
+      "sub": "程式畫出來的",
+      "color": "right",
+      "at": "ai"
+     }
+    ],
+    "lights": [
+     {
+      "from": "draw",
+      "to": "draw+4"
+     },
+     {
+      "from": "num+2",
+      "to": "ai"
+     }
+    ],
+    "chipAt": "ai+6",
+    "chip": "三千多行，也是 AI 寫的",
+    "proof": {
+     "dir": "src/components/ai-iso",
+     "ext": [
+      ".tsx"
+     ],
+     "atLeast": 3000
     }
    },
    "sources": [
@@ -372,33 +373,38 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "orig",
     "tag": "翻車",
     "tagColor": "wrong",
-    "label": "第一版（會議紀錄那支）被退件的評語",
-    "text": "他要表達什麼，前面開頭就不知道他要幹嘛",
-    "mark": "前面開頭就不知道他要幹嘛",
-    "markAt": "why",
-    "hl": "why",
-    "verbatim": "tests/feedback.txt",
     "status": "已確定・內部評語",
     "statusAt": "fail+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       420,
-       220,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "被退件": "wrong"
-    }
+    },
+    "view": "check",
+    "tone": "bug",
+    "mode": "list",
+    "verbatim": "tests/feedback.txt",
+    "head": {
+     "text": "第一版被退件的評語",
+     "at": "start+3",
+     "color": "wrong"
+    },
+    "stamp": {
+     "text": "退件",
+     "at": "fail",
+     "color": "wrong"
+    },
+    "items": [
+     {
+      "text": "他要表達什麼，前面開頭就不知道他要幹嘛",
+      "at": "why",
+      "bad": true,
+      "big": true,
+      "mark": "前面開頭就不知道他要幹嘛",
+      "markAt": "why+10"
+     }
+    ]
    },
    "sources": [
     "退件評語：AI 教學手冊第十三節"
@@ -432,37 +438,50 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "verdict",
     "tag": "翻車",
     "tagColor": "wrong",
-    "a": {
-     "big": "只丟結果",
-     "sub": "六項裡一項是猜的",
-     "at": "res"
-    },
-    "b": {
-     "big": "沒說是誰",
-     "sub": "也沒說在做什麼",
-     "at": "guess"
-    },
     "status": "已確定・repo 文件紀錄",
     "statusAt": "open+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "只丟結果": "wrong"
-    }
+    },
+    "view": "chart",
+    "tone": "bug",
+    "kind": "waffle",
+    "cols": 3,
+    "rows": 2,
+    "maxH": 520,
+    "groups": [
+     {
+      "n": 5,
+      "color": "primary",
+      "at": "res",
+      "gs": 3
+     },
+     {
+      "n": 1,
+      "color": "wrong",
+      "at": "guess"
+     }
+    ],
+    "box": {
+     "group": 1,
+     "at": "guess"
+    },
+    "chips": [
+     {
+      "text": "六項待辦",
+      "at": "res",
+      "color": "primary"
+     },
+     {
+      "text": "一項是 AI 猜的",
+      "at": "guess",
+      "color": "wrong"
+     }
+    ],
+    "note": "示意：每一格代表第一版開頭的一項待辦"
    },
    "sources": [
     "玩法紀錄：playbook 第十三節第 2 點"
@@ -500,40 +519,46 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "talk",
     "tag": "修正",
     "tagColor": "right",
-    "color": "right",
-    "label": "我多交代的一句",
-    "note": "示意：交代句是範例",
-    "line": "動工前，先用一句話寫出這支片的重點。",
-    "typeAt": "send",
-    "typeDur": 34,
-    "lines": 2,
-    "size": 58,
-    "chips": [
-     "重點只有一句",
-     "再開始做"
-    ],
-    "chipsAt": "done",
     "status": "已確定・已改進做法",
     "statusAt": "add+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "一句話": "right"
-    }
+    },
+    "view": "chat",
+    "tone": "fix",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "動工前，先用一句話寫出這支片的重點。",
+      "typeAt": "add",
+      "typeDur": 30,
+      "at": "send"
+     },
+     {
+      "who": "ai",
+      "text": "好，先寫出一句重點",
+      "check": true,
+      "typingAt": "send+2",
+      "at": "done"
+     }
+    ],
+    "chips": [
+     {
+      "text": "重點只有一句",
+      "at": "one",
+      "color": "note",
+      "hot": true
+     },
+     {
+      "text": "再開始做",
+      "at": "done+6",
+      "color": "right"
+     }
+    ]
    },
    "sources": [
     "做法記錄：docs/channels/ai-daily-playbook.md 第十三節"
@@ -567,49 +592,29 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "steps",
     "tag": "修正",
     "tagColor": "right",
-    "steps": [
-     {
-      "n": "1",
-      "t": "重做成八句",
-      "sub": "會議紀錄那支",
-      "color": "primary",
-      "at": "eight"
-     },
-     {
-      "n": "2",
-      "t": "一句一件事",
-      "sub": "講完一件才講下一件",
-      "color": "note",
-      "at": "one"
-     },
-     {
-      "n": "3",
-      "t": "句句接得上",
-      "sub": "用「為什麼、所以」連起來",
-      "color": "right",
-      "at": "link"
-     }
-    ],
     "status": "已確定・本片製作紀錄",
     "statusAt": "eight+6",
     "track": 2,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "八句": "right"
+    },
+    "view": "check",
+    "tone": "fix",
+    "mode": "grid",
+    "cells": 8,
+    "cols": 4,
+    "label": "第 {n} 句",
+    "litAt": "eight",
+    "stagger": 4,
+    "focus": {
+     "cell": 0,
+     "text": "一句只講一件事",
+     "at": "one"
+    },
+    "link": {
+     "at": "link"
     }
    },
    "sources": [
@@ -644,37 +649,52 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "verdict",
     "tag": "查證",
     "tagColor": "right",
-    "a": {
-     "big": "每 6 幀量一次",
-     "sub": "字卡有沒有疊到",
-     "at": "also"
-    },
-    "b": {
-     "big": "疊到就改",
-     "sub": "叫 AI 改，再量一次",
-     "at": "fix-10"
-    },
     "status": "已確定・本片製作紀錄",
     "statusAt": "catch+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       0
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "抓出來": "right"
-    }
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "window",
+      "label": "字卡疊住",
+      "sub": "字卡疊在一起",
+      "color": "wrong",
+      "at": "start+3"
+     },
+     {
+      "icon": "mag",
+      "label": "檢查程式",
+      "sub": "每 6 幀量一次",
+      "color": "note",
+      "at": "catch"
+     },
+     {
+      "icon": "redo",
+      "label": "叫 AI 改",
+      "sub": "疊到就改",
+      "color": "primary",
+      "at": "fix"
+     }
+    ],
+    "lights": [
+     {
+      "from": "also",
+      "to": "catch"
+     },
+     {
+      "from": "catch+2",
+      "to": "fix"
+     }
+    ],
+    "loopAt": "fix+6",
+    "chipAt": "fix+26",
+    "chip": "改完再量一次"
    },
    "sources": [
     "檢查程式 ov-check：每 6 幀量一次"
@@ -709,43 +729,34 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "steps",
     "tag": "所以呢",
     "tagColor": "primary",
-    "steps": [
-     {
-      "n": "1",
-      "t": "不用寫程式",
-      "sub": "寫程式交給 AI",
-      "color": "primary",
-      "at": "a"
-     },
-     {
-      "n": "2",
-      "t": "只要講清楚",
-      "sub": "你要什麼、給誰看",
-      "color": "note",
-      "at": "clear"
-     },
-     {
-      "n": "3",
-      "t": "不對就退回",
-      "sub": "字卡疊住？檢查程式每 6 幀量一次",
-      "color": "right",
-      "at": "back"
-     }
-    ],
     "track": 2,
-    "camera": [
+    "view": "kinetic",
+    "tone": "fix",
+    "rows": [
      {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
+      "big": "不用",
+      "unit": "寫程式",
+      "at": "start+3",
+      "color": "primary",
+      "size": 220,
+      "usize": 130
+     },
+     {
+      "big": "講清楚",
+      "unit": "",
+      "at": "clear",
+      "color": "right",
+      "size": 220
+     },
+     {
+      "big": "不對",
+      "unit": "就退回",
+      "at": "back",
+      "color": "wrong",
+      "size": 220,
+      "usize": 120
      }
     ]
    },
@@ -777,28 +788,20 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "cta",
     "tag": "領取",
     "tagColor": "right",
-    "kicker": "想要這兩句交代 AI 的範本",
-    "keyword": "動畫",
-    "sub": "私訊給你範本＋用法",
     "track": 2,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "動畫": "primary"
-    }
+    },
+    "view": "claim",
+    "tone": "claim",
+    "kicker": "想要這兩句交代 AI 的範本",
+    "keyword": "動畫",
+    "kwAt": "kw",
+    "allAt": "all",
+    "card": "範本＋用法",
+    "sub": "私訊給你"
    },
    "sources": [
     "範本與步驟整理在 CaffAIne 網站（示意）"

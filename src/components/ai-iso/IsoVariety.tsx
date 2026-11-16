@@ -145,8 +145,71 @@ const Bands: React.FC<{ on: number; steps: [string, string][] }> = ({ on, steps 
   </div>
 );
 
+
+const StackSplit: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  const sides = [q.top, q.bottom] as any[];
+  const tS = sides.map((x, i) => A(x.at, p.in + 3 + i * 40));
+  if (q.top.cells) {
+    const heads = q.heads ?? ["負責人", "事項", "期限"], CH = 330, tD = A(q.diffAt, FAR), widths = [290, 380, 170];
+    return (
+      <>
+        {sides.map((sd, i) => {
+          const t = tS[i], e = E(f, t, 12), c = col(sd.color);
+          if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: TOP + i * (CH + 34), width: IW, height: CH }}><Chip text={sd.label} bg={c.soft} fg={c.text} px={34} /></Ghost>;
+          return (
+            <div key={i} data-ov={`表${i + 1}`} style={{ position: "absolute", left: X0, top: TOP + i * (CH + 34), width: IW, height: CH, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${c.side}`, boxSizing: "border-box", padding: "20px 32px", opacity: O(f, t, 5), transform: `translateX(${Math.round((1 - e) * (i ? 60 : -60))}px)` }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+                <Chip text={sd.label} bg={c.fill} fg={c.on} px={34} />
+                <div style={{ ...zh, fontWeight: 800, fontSize: 30, color: T.ink2 }}>{sd.by}</div>
+              </div>
+              <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+                {sd.cells.map((cv: string, k: number) => {
+                  const hot = q.diffCell === k && f >= tD, hc = col("wrong");
+                  return (
+                    <div key={k} style={{ width: widths[k], background: hot ? "#FFF2C6" : "#F4F6FD", borderRadius: 20, padding: "12px 18px", boxSizing: "border-box", height: 190, boxShadow: hot ? `0 0 0 6px ${hc.fill}` : undefined, transform: hot ? `scale(${(1 + 0.03 * Math.sin(f / 4)).toFixed(3)})` : undefined }}>
+                      <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{heads[k]}</div>
+                      <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: k === 0 ? 48 : k === 1 ? 38 : 34, lineHeight: 1.25, color: hot ? hc.text : T.ink, marginTop: 6 }}>{cv}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+        {q.badge ? <div data-ov="差異徽章" style={{ position: "absolute", left: X0, top: TOP + 2 * (CH + 34), width: IW, display: "flex", justifyContent: "center", ...(f >= A(q.badge.at, FAR) ? bounce(f, A(q.badge.at, FAR)) : { opacity: 0 }) }}><Chip text={q.badge.text} bg={col("wrong").fill} fg="#fff" px={44} /></div> : null}
+      </>
+    );
+  }
+  const IWp = 560, ih = Math.round(IWp * 800 / 1280), CH = ih + 24, mids = (q.mids ?? []) as { text: string; at: any; color: string; kind?: string }[];
+  let my = TOP + 130;
+  return (
+    <>
+      {sides.map((sd, i) => {
+        const t = tS[i], e = E(f, t, 12), c = col(sd.color), y = TOP + i * (CH + 36);
+        if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: y, width: IWp + 24, height: CH }}><Chip text={sd.label} bg={c.soft} fg={c.text} px={34} /></Ghost>;
+        return (
+          <React.Fragment key={i}>
+            <div data-ov={`圖${i + 1}`} style={{ position: "absolute", left: X0, top: y, opacity: O(f, t, 5), transform: `translateX(${Math.round((1 - e) * -50)}px) rotate(${(-2 * (1 - e)).toFixed(2)}deg)` }}>
+              <Card color={sd.color}><div style={{ width: IWp, height: ih, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}><img src={staticFile(sd.src)} style={{ width: IWp, height: ih, display: "block" }} /></div></Card>
+            </div>
+            <div data-ov={`標籤${i + 1}`} style={{ position: "absolute", left: X0 + IWp + 64, top: i ? y + CH - 70 : y + 6, ...bounce(f, A(sd.labelAt ?? sd.at, t)) }}><Chip text={sd.label} bg={c.fill} fg={c.on} px={30} /></div>
+          </React.Fragment>
+        );
+      })}
+      {mids.map((m, i) => {
+        const t = A(m.at, FAR), c = col(m.color), big = m.kind === "stamp", h = big ? 170 : 120, y = my; my += h + 24;
+        return f < t ? null : big
+          ? <div key={i} data-ov={`中${i + 1}`} style={{ position: "absolute", left: X0 + IWp + 64 + 80, top: y, width: 170, height: 170, borderRadius: 85, background: c.fill, boxShadow: `0 8px 0 ${c.side}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 110, color: "#fff", ...slam(f, t, -6, 1.3) }}>{m.text}</div>
+          : <div key={i} data-ov={`中${i + 1}`} style={{ position: "absolute", left: X0 + IWp + 64, top: y, width: IW - IWp - 64, ...zh, whiteSpace: "normal", ...bounce(f, t) }}><Chip text={m.text} bg={c.fill} fg={c.on} px={28} /></div>;
+      })}
+    </>
+  );
+};
+
 // ───────── T6 左右對照 ─────────
-const SplitView: React.FC<VP> = ({ f, p, tone }) => {
+const SplitView: React.FC<VP> = (vp) => (((vp.p.p as any).layout === "stack") ? <StackSplit {...vp} /> : <SplitSide {...vp} />);
+const SplitSide: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
   const WI = 370, tL = A(q.left.at, p.in + 3), tR = A(q.right.at, p.in + 60), tM = A(q.mid?.at, FAR), tAI = A(q.aiAt, p.in + 6);
   const CW = WI + 24, ex = E(f, tL, 12), exM = E(f, tM, 14);
@@ -210,6 +273,8 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
         <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: T.ink }}>{q.title ?? "和 AI 對話"}</div>
       </div>
       <div data-ov="對話區" style={{ position: "absolute", left: 28, top: 104, width: IW - 56, height: 530, display: "flex", flexDirection: "column", gap: 20, overflow: "hidden" }}>
+        <div style={{ alignSelf: "flex-start", ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: 42, padding: "16px 28px", borderRadius: 32, borderBottomLeftRadius: 8, background: "#EEF2FC", color: T.ink, opacity: O(f, p.in, 4) }}>{q.hello ?? "嗨，今天想做什麼？"}</div>
+        {f < Math.min(...msgs.map(T0)) ? <div style={{ position: "absolute", left: (IW - 56 - 230) / 2, top: 190, width: 230, height: 230, borderRadius: 115, background: col("primary").fill, boxShadow: `0 10px 0 ${col("primary").side}, 0 0 0 ${Math.round(14 + 10 * Math.sin(f / 6))}px ${col("primary").soft}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 112, color: "#fff", opacity: 1 - O(f, Math.min(...msgs.map(T0)) - 6, 6) }}>AI</div> : null}
         {msgs.map((m, i) => {
           const t = T0(m), me = m.who === "me", e = E(f, t, 10);
           if (f < t) return null;
@@ -221,7 +286,7 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
                   <div style={{ ...zh, fontWeight: 800, fontSize: 32, color: T.ink2, paddingRight: 18 }}>{m.attach.cap}</div>
                 </div>
               ) : (
-                <div style={{ ...zh, whiteSpace: "normal", maxWidth: 740, fontWeight: 800, fontSize: 42, lineHeight: 1.3, padding: "16px 28px", borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{ ...zh, whiteSpace: "normal", maxWidth: 760, fontWeight: 800, fontSize: 48, lineHeight: 1.3, padding: "16px 28px", borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
                   {m.check ? <Ico n="check" size={46} color="#fff" fill={col("right").fill} /> : null}{m.text}
                 </div>
               )}
@@ -247,8 +312,47 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
   );
 };
 
+
+const BrowserWide: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  const shots = q.shots as { src: string; at: any; img: number[]; label?: string }[], WW = IW, VW = WW - 24, VH = 430;
+  const k = VW / shots[0].img[0], sc = A(q.scrollAt, FAR), sy = lerp(q.scroll?.[0] ?? 0, q.scroll?.[1] ?? 0, E(f, sc, 34)) * k;
+  let cur = 0; shots.forEach((s, i) => { if (f >= A(s.at, FAR)) cur = i; });
+  const items = (q.items ?? []) as { text: string; sub?: string; at: any; color: string; icon: IconName }[];
+  const IWd = Math.floor((IW - (items.length - 1) * 20) / Math.max(1, items.length)), e0 = E(f, p.in + 2, 12);
+  return (
+    <>
+      <div data-ov="瀏覽器" style={{ position: "absolute", left: X0, top: TOP, width: WW, opacity: O(f, p.in, 4), transform: `translateY(${Math.round((1 - e0) * 50)}px)` }}>
+        <Card color="primary" pad={0} style={{ overflow: "hidden" }}>
+          <div style={{ height: 76, background: "#EEF2FC", display: "flex", alignItems: "center", gap: 12, padding: "0 20px" }}>
+            {["#FF7A5C", "#FFD766", "#19A88A"].map((c) => <div key={c} style={{ width: 20, height: 20, borderRadius: 10, background: c }} />)}
+            <div style={{ marginLeft: 10, flex: 1, height: 46, borderRadius: 23, background: "#fff", boxShadow: `inset 0 0 0 3px ${T.line}`, display: "flex", alignItems: "center", paddingLeft: 20, ...zh, fontWeight: 700, fontSize: 28, color: T.ink2 }}>{shots[cur].label ?? "咖啡店首頁"}</div>
+          </div>
+          <div style={{ position: "relative", width: VW, height: VH, margin: 12, overflow: "hidden", borderRadius: 10 }}>
+            <img src={staticFile(shots[cur].src)} style={{ position: "absolute", left: 0, top: -sy, width: VW, display: "block" }} />
+            <svg width={VW} height={VH} viewBox={`0 ${sy / k} ${shots[0].img[0]} ${VH / k}`} style={{ position: "absolute", left: 0, top: 0 }}>
+              {(q.rings ?? []).filter((r: any) => r.shot === cur).map((r: any, i: number) => <Ring key={i} f={f} at={A(r.at, FAR)} box={r.box} circle={r.circle} color={r.color} sw={10} />)}
+            </svg>
+          </div>
+        </Card>
+      </div>
+      {items.map((it, i) => {
+        const t = A(it.at, FAR), c = col(it.color), on = f >= t, e = E(f, t, 12), left = X0 + i * (IWd + 20), top = TOP + 570;
+        return on ? (
+          <div key={i} data-ov={`項目${i + 1}`} style={{ position: "absolute", left, top, width: IWd, height: 180, opacity: O(f, t, 4), transform: `translateY(${Math.round((1 - e) * 40)}px)`, background: T.card, borderRadius: 26, boxShadow: `0 8px 0 ${c.side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, padding: "0 10px", boxSizing: "border-box" }}>
+            <Ico n={it.icon} size={64} fill={c.soft} />
+            <div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink }}>{it.text}</div>
+            {it.sub ? <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink2 }}>{it.sub}</div> : null}
+          </div>
+        ) : <Ghost key={i} color={c.fill} style={{ left, top, width: IWd, height: 180 }}><div style={{ ...en, fontWeight: 900, fontSize: 60, color: c.fill }}>{i + 1}</div></Ghost>;
+      })}
+    </>
+  );
+};
+
 // ───────── T3 瀏覽器視窗（也用在「實測截圖」） ─────────
-const BrowserView: React.FC<VP> = ({ f, p, tone }) => {
+const BrowserView: React.FC<VP> = (vp) => (((vp.p.p as any).wide) ? <BrowserWide {...vp} /> : <BrowserSide {...vp} />);
+const BrowserSide: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
   const WI = 400, H = Math.round(800 * (WI / GBOX[2])), WW = WI + 24;
   const shots = (q.shots ?? []) as { src: string; at: any }[];
@@ -288,9 +392,9 @@ const BrowserView: React.FC<VP> = ({ f, p, tone }) => {
       ) : null}
       <div style={{ position: "absolute", left: X0 + WW + 32, top: TOP, width: IW - WW - 32 }}>
         {items.map((it, i) => {
-          const t = A(it.at, FAR); if (f < t) return null; const c = col(it.color), e = E(f, t, 12);
+          const t = A(it.at, FAR); if (f < t) return <Ghost key={i} color={col(it.color).fill} style={{ left: 0, top: i * 184, width: "100%", height: 156 }}><div style={{ ...en, fontWeight: 900, fontSize: 60, color: col(it.color).fill }}>{i + 1}</div></Ghost>; const c = col(it.color), e = E(f, t, 12);
           const last = i === items.length - 1 || f < A(items[i + 1].at, FAR);
-          const nv = it.num ? Math.round(lerp(it.num.from ?? 0, it.num.to, E(f, t + 4, 20))) : 0;
+          const nv = it.num ? Math.round(lerp(it.num.from ?? 0, it.num.to, E(f, t + 2, 12))) : 0;
           return (
             <div key={i} data-ov={`項目${i + 1}`} style={{ position: "absolute", left: 0, top: i * 184, width: "100%", height: 156, opacity: O(f, t, 4), transform: `translateX(${Math.round((1 - e) * 36)}px) scale(${last ? (1 + 0.025 * Math.sin(f / 5)).toFixed(3) : 1})`, background: T.card, borderRadius: 26, boxShadow: `0 8px 0 ${c.side}`, display: "flex", alignItems: "center", gap: 20, padding: "0 24px", boxSizing: "border-box" }}>
               <div style={{ width: 84, height: 84, borderRadius: 24, background: c.soft, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Ico n={it.icon} size={58} /></div>
@@ -328,7 +432,7 @@ const DeviceView: React.FC<VP> = ({ f, p, tone }) => {
         </div>
       </div>
       <div style={{ position: "absolute", left: X0 + SW + 120, top: TOP + 40, width: IW - SW - 120 }}>
-        {cards.map((c, i) => { const t = A(c.at, FAR); if (f < t) return null; const cc = col(c.color), ee = E(f, t, 12); return (
+        {cards.map((c, i) => { const t = A(c.at, FAR); if (f < t) return <Ghost key={i} color={col(c.color).fill} style={{ left: 0, top: i * 250, width: "100%", height: 220 }}><Ico n={c.icon} size={90} color={col(c.color).fill} fill="#fff" /></Ghost>; const cc = col(c.color), ee = E(f, t, 12); return (
           <div key={i} data-ov={`卡${i + 1}`} style={{ position: "absolute", left: 0, top: i * 250, width: "100%", minHeight: 220, opacity: O(f, t, 4), transform: `translateX(${Math.round((1 - ee) * 36)}px)`, background: T.card, borderRadius: 30, boxShadow: `0 8px 0 ${cc.side}`, padding: "26px 26px", boxSizing: "border-box" }}>
             <div style={{ width: 84, height: 84, borderRadius: 24, background: cc.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><Ico n={c.icon} size={58} /></div>
             <div style={{ ...zh, fontWeight: 900, fontSize: 44, color: T.ink, marginTop: 14 }}>{c.text}</div>
@@ -359,6 +463,7 @@ const LensView: React.FC<VP> = ({ f, p, tone }) => {
       </div>
       <div style={{ position: "absolute", left: X0 + WI + 24 + 36, top: TOP, width: ZW }}>
         <div data-ov="說明條" style={{ ...bounce(f, A(q.noteAt, p.in + 8)), display: "inline-block" }}><Chip text={q.note} bg={col("wrong").soft} fg={col("wrong").text} px={34} /></div>
+        {f < tScr ? <Ghost ov="放大空位" color={tone.accent} style={{ left: 0, top: 110, width: ZW, height: ZH + 56 }}><div style={{ transform: `scale(${(1 + 0.06 * Math.sin(f / 6)).toFixed(3)})` }}><Ico n="mag" size={150} color={tone.accent} fill="#fff" /></div></Ghost> : null}
         {f >= tScr ? (
           <div data-ov="放大圖" style={{ position: "absolute", left: 0, top: 110, width: ZW, ...riseIn(f, tScr, 40) }}>
             <Card color="wrong"><div style={{ width: ZW - 24, height: ZH, borderRadius: 12, overflow: "hidden" }}><img src={staticFile(z.src)} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} /></div><div style={{ ...zh, fontWeight: 900, fontSize: 32, color: col("wrong").text, textAlign: "center", marginTop: 8 }}>{z.cap}</div></Card>
@@ -372,17 +477,20 @@ const LensView: React.FC<VP> = ({ f, p, tone }) => {
 
 // ───────── T2 大字動態 ─────────
 const KineticView: React.FC<VP> = ({ f, p, tone }) => {
-  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), rows = (q.rows ?? []) as { big: string; unit: string; at: any; color: string }[];
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), rows = (q.rows ?? []) as { big: string; unit: string; at: any; color: string; size?: number; usize?: number }[];
+  const RP = (r: { size?: number }) => (r.size ? Math.round(r.size * 1.04) + 10 : 270);
+  const rowTop = (i: number) => TOP + 20 + rows.slice(0, i).reduce((a, r) => a + RP(r), 0), rowsEnd = rowTop(rows.length);
   const tQ = A(q.q?.at, FAR), eq = E(f, tQ, 16);
   return (
     <>
-      {rows.map((r, i) => { const t = A(r.at, p.in + 3), e = E(f, t, 14), c = col(r.color); if (f < t) return null; return (
-        <div key={i} data-ov={`大字${i + 1}`} style={{ position: "absolute", left: X0, top: TOP + 20 + i * 270, width: IW, height: 240, display: "flex", alignItems: "center", gap: 34, opacity: O(f, t, 4) }}>
-          <div style={{ perspective: 900 }}><div style={{ ...zh, fontWeight: 900, fontSize: 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
-          <div style={{ ...zh, fontWeight: 900, fontSize: 120, color: T.ink, transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
+      {rows.map((r, i) => { const t = A(r.at, p.in + 3), e = E(f, t, 14), c = col(r.color); if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: rowTop(i) + 20, width: IW, height: RP(r) - 40, ...zh, fontWeight: 900, fontSize: 150, color: c.fill }}>？</Ghost>; return (
+        <div key={i} data-ov={`大字${i + 1}`} style={{ position: "absolute", left: X0, top: rowTop(i), width: IW, height: RP(r) - 30, display: "flex", alignItems: "center", gap: 34, opacity: O(f, t, 4) }}>
+          <div style={{ perspective: 900 }}><div style={{ ...zh, fontWeight: 900, fontSize: r.size ?? 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
+          <div style={{ ...zh, fontWeight: 900, fontSize: r.usize ?? 120, color: T.ink, transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
         </div>); })}
+      {q.q && f < tQ ? <Ghost color={col("plum").fill} style={{ left: X0, top: rowsEnd, width: IW, height: 190, ...zh, fontWeight: 900, fontSize: 120, color: col("plum").fill }}>？</Ghost> : null}
       {q.q && f >= tQ ? (
-        <div data-ov="問號卡" style={{ position: "absolute", left: X0, top: TOP + 20 + rows.length * 270, width: IW, height: 190, background: T.card, borderRadius: 40, boxShadow: `0 10px 0 ${col("plum").side}`, display: "flex", alignItems: "center", gap: 36, padding: "0 40px", boxSizing: "border-box", opacity: O(f, tQ, 4), transform: `translateY(${Math.round((1 - eq) * 100)}px)` }}>
+        <div data-ov="問號卡" style={{ position: "absolute", left: X0, top: rowsEnd, width: IW, height: 190, background: T.card, borderRadius: 40, boxShadow: `0 10px 0 ${col("plum").side}`, display: "flex", alignItems: "center", gap: 36, padding: "0 40px", boxSizing: "border-box", opacity: O(f, tQ, 4), transform: `translateY(${Math.round((1 - eq) * 100)}px)` }}>
           <div style={{ ...zh, fontWeight: 900, fontSize: 170, color: col("plum").fill, transform: `translateY(${(-14 * Math.abs(Math.sin(f / 9))).toFixed(1)}px) rotate(${(8 * Math.sin(f / 11)).toFixed(1)}deg)` }}>？</div>
           <div style={{ ...zh, fontWeight: 900, fontSize: 64, color: T.ink }}>{q.q.text}</div>
         </div>
@@ -413,6 +521,7 @@ const FlowView: React.FC<VP> = ({ f, p, tone }) => {
         {dot ? <circle cx={dot.x} cy={dot.y} r={16} fill={col("primary").fill} stroke="#fff" strokeWidth={5} /> : null}
         {ld >= 0 ? (() => { const pts = [[cxs[2], y0 + NH + 6], [cxs[2], y0 + NH + 190], [cxs[1], y0 + NH + 190], [cxs[1], y0 + NH + 14]]; const segs = [144, cxs[2] - cxs[1], 136], tot = segs[0] + segs[1] + segs[2]; let d = ld * tot, i = 0; while (i < 2 && d > segs[i]) { d -= segs[i]; i++; } const a = pts[i], b = pts[i + 1]; return <circle cx={lerp(a[0], b[0], d / segs[i])} cy={lerp(a[1], b[1], d / segs[i])} r={13} fill={col("wrong").fill} stroke="#fff" strokeWidth={4} />; })() : null}
       </svg>
+      {nodes.map((n, i) => f < tN[i] ? <Ghost key={`g${i}`} ov={undefined} color={col(n.color).fill} style={{ left: cxs[i] - NW / 2, top: y0, width: NW, height: NH, ...en, fontWeight: 900, fontSize: 120, color: col(n.color).fill }}>{i + 1}</Ghost> : null)}
       {nodes.map((n, i) => { if (f < tN[i]) return null; const e = E(f, tN[i], 14), c = col(n.color), lit = f >= tN[i] && f < tN[i] + 40; return (
         <div key={i} data-ov={`節點${i + 1}`} style={{ position: "absolute", left: cxs[i] - NW / 2, top: y0 + Math.round((1 - e) * 90 + 7 * Math.sin(f / 12 + i * 2)), width: NW, height: NH, opacity: O(f, tN[i], 4), transform: `scale(${(lit ? 1 + 0.05 * Math.sin((f - tN[i]) / 4) : 1).toFixed(3)})`, background: T.card, borderRadius: 36, boxShadow: `0 10px 0 ${c.side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, padding: "0 12px", boxSizing: "border-box" }}>
           <div style={{ width: 190, height: 190, borderRadius: 48, background: c.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><Ico n={n.icon} size={130} fill={c.soft} /></div>
@@ -434,10 +543,12 @@ const ClaimView: React.FC<VP> = ({ f, p, tone }) => {
       <div data-ov="引言卡" style={{ position: "absolute", left: X0, top: TOP + 4, width: IW, ...riseIn(f, p.in + 3, 40), background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("note").side}`, padding: "30px 40px", boxSizing: "border-box", textAlign: "center" }}>
         <div style={{ ...zh, fontWeight: 900, fontSize: 52, color: T.ink }}>{q.kicker}</div>
       </div>
+      {f < tK - 10 ? <Ghost color={col("primary").fill} style={{ left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, borderRadius: 64 }}><Ico n="bubble" size={150} color={col("primary").fill} fill="#fff" /></Ghost> : null}
       <div data-ov="留言泡泡" style={{ position: "absolute", left: X0 + 56, top: TOP + 180, width: IW - 112, height: 340, background: col("primary").fill, borderRadius: 64, borderBottomLeftRadius: 14, boxShadow: `0 12px 0 ${col("primary").side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, tK - 10, 4), transform: `scale(${(0.9 + 0.1 * E(f, tK - 10, 12)).toFixed(3)})` }}>
         <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: "#DDE2FF", marginBottom: 8 }}>在貼文下留言</div>
         <div style={{ display: "flex", gap: 10 }}>{chars.map((c, i) => <div key={i} style={{ ...zh, fontWeight: 900, fontSize: 240, lineHeight: 1.1, color: "#fff", opacity: O(f, tK + i * 6, 4), transform: `translateY(${Math.round((1 - E(f, tK + i * 6, 8)) * -70)}px) rotate(${i ? 3 : -3}deg)` }}>{c}</div>)}</div>
       </div>
+      {f < tAll ? <Ghost color={col("right").fill} style={{ left: X0, top: TOP + 570, width: IW, height: 170 }}><Ico n="file" size={80} color={col("right").fill} fill="#fff" /></Ghost> : null}
       {f >= tAll ? (
         <div data-ov="範本卡" style={{ position: "absolute", left: X0, top: TOP + 570, width: IW, opacity: O(f, tAll, 4), transform: `translateY(${Math.round((1 - eA) * 60)}px)`, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("right").side}`, padding: "30px 40px", boxSizing: "border-box", display: "flex", alignItems: "center", gap: 28 }}>
           <div style={{ width: 100, height: 100, borderRadius: 28, background: col("right").soft, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Ico n="file" size={72} fill="#fff" /></div>
@@ -448,7 +559,280 @@ const ClaimView: React.FC<VP> = ({ f, p, tone }) => {
   );
 };
 
-const VIEWS: Record<string, React.FC<VP>> = { split: SplitView, chat: ChatView, browser: BrowserView, device: DeviceView, lens: LensView, kinetic: KineticView, flow: FlowView, claim: ClaimView };
+// ───────── 共用：虛線空位（開頭 0.3 秒內版面就有東西，不留大片空白） ─────────
+const Ghost: React.FC<{ style: React.CSSProperties; color: string; ov?: string; children?: React.ReactNode }> = ({ style, color, ov, children }) => (
+  <div data-ov={ov} style={{ position: "absolute", border: `6px dashed ${color}`, borderRadius: 26, boxSizing: "border-box", opacity: 0.55, display: "flex", alignItems: "center", justifyContent: "center", ...style }}>{children}</div>
+);
+const bounceOut = (t: number) => { const n = 7.5625, d = 2.75; if (t < 1 / d) return n * t * t; if (t < 2 / d) { t -= 1.5 / d; return n * t * t + 0.75; } if (t < 2.5 / d) { t -= 2.25 / d; return n * t * t + 0.9375; } t -= 2.625 / d; return n * t * t + 0.984375; };
+const CheckMark: React.FC<{ t: number; size: number; color: string; bad?: boolean }> = ({ t, size, color, bad }) => (
+  <svg width={size} height={size} viewBox="0 0 64 64" style={{ display: "block", flexShrink: 0 }}>
+    <circle cx={32} cy={32} r={28} fill={t > 0 ? color : "none"} stroke={t > 0 ? color : T.ink3} strokeWidth={5} strokeDasharray={t > 0 ? undefined : "6 8"} />
+    <path d={bad ? "M21 21 L43 43 M43 21 L21 43" : "M18 33 L28 43 L47 22"} fill="none" stroke="#fff" strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - t} />
+  </svg>
+);
+/** 一行字裡的一段做螢光標記（從左掃到右） */
+const MarkText: React.FC<{ text: string; mark?: string; t: number; hl?: string; fg?: string }> = ({ text, mark, t, hl = "#FFD766", fg }) => {
+  const i = mark ? text.indexOf(mark) : -1;
+  if (i < 0) return <>{text}</>;
+  return <>{text.slice(0, i)}<span style={{ backgroundImage: `linear-gradient(${hl},${hl})`, backgroundRepeat: "no-repeat", backgroundSize: `${(100 * t).toFixed(1)}% 100%`, color: t > 0.5 ? T.ink : fg, borderRadius: 8, padding: "0 4px" }}>{mark}</span>{text.slice(i + mark!.length)}</>;
+};
+
+// ───────── T4 程式編輯器（深色；唯一的深色段） ─────────
+type CodeLine = { t: string; n?: number; at: any; dur?: number; mark?: string; markAt?: any; kind?: "out"; ok?: boolean };
+const ED = { bg: "#1F2440", bar: "#2B3254", txt: "#E8ECFF", dim: "#8A93C0", num: "#6B74A6", out: "#7BE0C3" };
+const EditorView: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  const lines = q.lines as CodeLine[], wrap = !!q.wrap, fs = q.size ?? (wrap ? 40 : 38);
+  const tags = (q.tags ?? []) as { text: string; at: any; color: string }[], hasBadge = !!q.badge || tags.length > 0, WH = q.badge ? 660 : tags.length ? 700 : (q.height ?? 780);
+  const nums: number[] = []; lines.forEach((l, i) => nums.push(l.n ?? (i ? nums[i - 1] + 1 : (q.start ?? 1))));
+  type Row = { k: "line"; i: number } | { k: "skel"; n: number; w: number } | { k: "fold"; c: number } | { k: "div" };
+  const rows: Row[] = [];
+  const first = nums[0], before = q.before ?? 1, after = q.after ?? 1;
+  for (let b = before; b >= 1; b--) if (first - b >= 1) rows.push({ k: "skel", n: first - b, w: 260 + ((first - b) * 97) % 380 });
+  lines.forEach((l, i) => {
+    if (i && nums[i] - nums[i - 1] > 1) rows.push({ k: "fold", c: nums[i] - nums[i - 1] - 1 });
+    if (l.kind === "out" && lines[i - 1]?.kind !== "out") rows.push({ k: "div" });
+    rows.push({ k: "line", i });
+  });
+  const last = nums[nums.length - 1];
+  for (let a = 1; a <= after; a++) rows.push({ k: "skel", n: last + a, w: 220 + ((last + a) * 131) % 420 });
+  const tLine = lines.map((l, i) => A(l.at, p.in + 4 + i * 12));
+  const durOf = (l: CodeLine) => l.dur ?? Math.max(14, Math.min(34, Math.round(l.t.length * 1.1)));
+  let cur = -1; lines.forEach((l, i) => { if (f >= tLine[i]) cur = i; });
+  const tTot = A(q.total?.at, FAR), tot = q.total ? Math.round(E(f, tTot, 40) * q.total.to) : 0;
+  const tHl = A(q.hlAt, FAR), eHl = E(f, tHl, 10);
+  const tSh = A(q.shrinkAt ?? q.total?.at, FAR), thumb = lerp(0.62, 0.05, E(f, tSh, 26));
+  const bd = q.badge, tB = A(bd?.at, FAR), cb = col(bd?.color ?? "primary");
+  const gut = 116, TXTW = IW - gut - 90;
+  return (
+    <>
+      <div data-ov="編輯器" style={{ position: "absolute", left: X0, top: TOP, width: IW, height: WH, background: ED.bg, borderRadius: 30, boxShadow: `0 10px 0 #0E1330, ${T.depth.soft}`, overflow: "hidden", opacity: O(f, p.in, 4) }}>
+        <div style={{ height: 76, background: ED.bar, display: "flex", alignItems: "center", gap: 14, padding: "0 24px" }}>
+          {["#FF7A5C", "#FFD766", "#19A88A"].map((c) => <div key={c} style={{ width: 20, height: 20, borderRadius: 10, background: c }} />)}
+          <div style={{ marginLeft: 14, height: 52, borderRadius: 14, background: ED.bg, display: "flex", alignItems: "center", gap: 12, padding: "0 20px", ...en, fontWeight: 700, fontSize: 30, color: ED.txt, ...({ transform: `translateY(${Math.round((1 - E(f, A(q.fileAt, p.in + 2), 10)) * -20)}px)` }) }}><Ico n="file" size={34} color={ED.txt} fill="none" />{q.file}</div>
+        </div>
+        <div style={{ position: "absolute", left: 0, top: 76, width: gut, bottom: 64, background: "#262C4D" }} />
+        <div style={{ position: "absolute", left: 0, top: 76, width: IW, bottom: 64, padding: "10px 0", boxSizing: "border-box", overflow: "hidden", display: "flex", flexDirection: "column", gap: 8 }}>
+          {rows.map((r, ri) => {
+            if (r.k === "skel") return <div key={ri} style={{ display: "flex", alignItems: "center", minHeight: 58 }}><div style={{ width: gut, textAlign: "right", paddingRight: 26, boxSizing: "border-box", ...en, fontWeight: 700, fontSize: 28, color: ED.num }}>{r.n}</div><div style={{ marginLeft: 26, width: r.w, height: 18, borderRadius: 9, background: ED.bar, opacity: 0.9 }} /></div>;
+            if (r.k === "fold") return <div key={ri} style={{ display: "flex", alignItems: "center", minHeight: 58 }}><div style={{ width: gut, textAlign: "right", paddingRight: 26, boxSizing: "border-box", ...en, fontWeight: 700, fontSize: 28, color: ED.num }}>⋯</div><div style={{ marginLeft: 26, ...zh, fontWeight: 700, fontSize: 30, color: ED.dim }}>省略 {r.c} 行</div></div>;
+            if (r.k === "div") { const t0 = Math.min(...lines.filter((l) => l.kind === "out").map((l) => A(l.at, FAR))); return <div key={ri} style={{ display: "flex", alignItems: "center", minHeight: 70, opacity: O(f, t0 - 6, 6) }}><div style={{ width: gut }} /><div style={{ marginLeft: 26, ...zh, fontWeight: 800, fontSize: 32, color: ED.out, border: `3px solid ${ED.out}`, borderRadius: 16, padding: "4px 20px" }}>{q.outLabel ?? "實測回答（節錄）"}</div></div>; }
+            const l = lines[r.i], t0 = tLine[r.i], pr = clamp((f - t0) / durOf(l)), n = Math.ceil(l.t.length * pr);
+            const tm = A(l.markAt, FAR), isHl = q.hl === r.i && f >= tHl, out = l.kind === "out";
+            const shown = f < t0 ? "" : l.t.slice(0, n);
+            const curNow = cur === r.i && (f - t0 < durOf(l) + 40);
+            return (
+              <div key={ri} data-ov={undefined} style={{ display: "flex", alignItems: "flex-start", minHeight: wrap ? 0 : 66, background: isHl ? `rgba(255,215,102,${(0.16 * eHl).toFixed(3)})` : "transparent", position: "relative" }}>
+                {isHl ? <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 8, background: "#FFD766", opacity: eHl }} /> : null}
+                <div style={{ width: gut, textAlign: "right", paddingRight: 26, boxSizing: "border-box", ...en, fontWeight: 700, fontSize: 28, lineHeight: "66px", color: isHl ? "#FFD766" : ED.num }}>{out ? (f >= t0 ? "▶" : "") : nums[r.i]}</div>
+                <div style={{ marginLeft: 26, width: TXTW, ...zh, whiteSpace: wrap ? "normal" : "nowrap", fontWeight: 700, fontSize: fs, lineHeight: wrap ? 1.4 : "66px", color: out ? ED.out : ED.txt, letterSpacing: 0.5 }}>
+                  {f >= tm && l.mark ? <MarkText text={shown} mark={l.mark} t={E(f, tm, 10)} fg={ED.txt} /> : shown}
+                  {curNow && f % 16 < 9 ? <span style={{ display: "inline-block", width: 14, height: fs, background: "#FFD766", marginLeft: 4, verticalAlign: "middle" }} /> : null}
+                  {l.ok && pr >= 1 ? <span style={{ display: "inline-block", marginLeft: 16, verticalAlign: "middle", ...bounce(f, t0 + durOf(l)) }}><Ico n="check" size={50} color="#fff" fill={col("right").fill} /></span> : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ position: "absolute", right: 22, top: 100, bottom: 84, width: 14, borderRadius: 7, background: ED.bar }}><div style={{ position: "absolute", left: 0, top: 0, width: 14, height: `${(thumb * 100).toFixed(1)}%`, borderRadius: 7, background: ED.dim }} /></div>
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 64, background: ED.bar, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 30px", boxSizing: "border-box", ...zh, fontWeight: 700, fontSize: 30, color: ED.dim }}>
+          <span>{cur >= 0 ? `第 ${nums[cur]} 行` : "第 1 行"}</span>
+          <span style={{ color: q.total && f >= tTot ? "#FFD766" : ED.dim }}>{q.total ? `共 ${tot} 行` : (q.status2 ?? "")}</span>
+        </div>
+      </div>
+      {bd ? (
+        <div data-ov="徽章" style={{ position: "absolute", left: X0, top: TOP + WH + 24, width: IW, height: 130, background: T.card, borderRadius: 30, boxShadow: `0 8px 0 ${cb.side}`, display: "flex", alignItems: "center", gap: 30, padding: "0 40px", boxSizing: "border-box", opacity: O(f, tB, 4), transform: `scale(${(0.92 + 0.08 * E(f, tB, 10)).toFixed(3)})` }}>
+          <div style={{ ...en, fontWeight: 900, fontSize: 96, color: cb.fill, textShadow: `0 6px 0 ${cb.side}`, minWidth: 330 }}>{bd.num}</div>
+          <div style={{ ...zh, fontWeight: 900, fontSize: 52, color: T.ink }}>{bd.unit}</div>
+        </div>
+      ) : null}
+      {tags.length ? (
+        <div style={{ position: "absolute", left: X0, top: TOP + WH + 30, width: IW, display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap" }}>
+          {tags.map((c, i) => { const t = A(c.at, FAR), cc = col(c.color); return f < t ? <div key={i} style={{ opacity: 0 }}><Chip text={c.text} bg={cc.fill} fg={cc.on} px={34} /></div> : <div key={i} data-ov={`標籤${i + 1}`} style={bounce(f, t)}><Chip text={c.text} bg={cc.fill} fg={cc.on} px={34} /></div>; })}
+        </div>
+      ) : null}
+    </>
+  );
+};
+
+// ───────── T7 抽籤筒／骰子（搖、彈出、落地回彈） ─────────
+const PIPS: Record<number, number[][]> = { 1: [[1, 1]], 2: [[0, 0], [2, 2]], 3: [[0, 0], [1, 1], [2, 2]], 4: [[0, 0], [2, 0], [0, 2], [2, 2]], 5: [[0, 0], [2, 0], [1, 1], [0, 2], [2, 2]], 6: [[0, 0], [2, 0], [0, 1], [2, 1], [0, 2], [2, 2]] };
+const Die: React.FC<{ face: number; size: number }> = ({ face, size }) => (
+  <svg width={size} height={size} viewBox="0 0 200 200" style={{ display: "block" }}>
+    <rect x={8} y={14} width={184} height={184} rx={40} fill="#C9CEE8" /><rect x={8} y={6} width={184} height={184} rx={40} fill="#fff" stroke={T.ink} strokeWidth={7} />
+    {PIPS[face].map(([a, b], i) => <circle key={i} cx={52 + a * 48} cy={50 + b * 48} r={15} fill={face === 1 ? col("wrong").fill : T.ink} />)}
+  </svg>
+);
+const DrawView: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  const rounds = q.rounds as { label: string; at: any; from?: any; pick?: number; face?: number; color: string }[];
+  const note = q.note ? <div data-ov="示意" style={{ position: "absolute", left: X0, top: TOP + 784, width: IW, textAlign: "center", ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>{q.note}</div> : null;
+  if (q.mode === "dice") {
+    const DS = 260, tD = rounds.map((r, i) => A(r.at, p.in + 6 + i * 20)), tNe = A(q.diffAt, FAR), xs = [X0 + 70, X0 + IW - 70 - DS];
+    return (
+      <>
+        <div data-ov="引言" style={{ position: "absolute", left: X0, top: TOP + 4, width: IW, height: 130, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("primary").side}`, display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 60, color: T.ink, ...riseIn(f, p.in + 2, 14) }}>{q.kicker}</div>
+        <div style={{ position: "absolute", left: X0, top: TOP + 450, width: IW, height: 130, borderRadius: 40, background: "rgba(255,255,255,0.7)", boxShadow: `inset 0 0 0 5px ${T.line}` }} />
+        {rounds.map((r, i) => {
+          const t = tD[i], u = clamp((f - t) / 30), dy = f < t ? -110 : -110 * (1 - bounceOut(u)), rot = f < t ? 0 : 180 * (1 - E(f, t, 30)), landed = f >= t + 30;
+          return (
+            <React.Fragment key={i}>
+              {f < t ? <Ghost color={col(r.color).fill} style={{ left: xs[i], top: TOP + 310, width: DS, height: DS, borderRadius: 50, ...zh, fontWeight: 900, fontSize: 150, color: col(r.color).fill }}>？</Ghost> : null}
+              <div style={{ position: "absolute", left: xs[i] + 20, top: TOP + 560, width: DS - 40, height: 30, borderRadius: 15, background: "rgba(30,36,80,0.18)", transform: `scale(${(0.5 + 0.5 * bounceOut(u)).toFixed(3)})`, opacity: f < t ? 0 : 1 }} />
+              <div data-ov={`骰子${i + 1}`} style={{ position: "absolute", left: xs[i], top: TOP + 310 + dy, width: DS, height: DS, transform: `rotate(${rot.toFixed(1)}deg)`, opacity: f < t - 2 ? 0 : 1 }}><Die face={r.face ?? 1} size={DS} /></div>
+              <div data-ov={`骰標${i + 1}`} style={{ position: "absolute", left: xs[i] - 20, top: TOP + 620, width: DS + 40, display: "flex", justifyContent: "center", opacity: landed ? 1 : 0.0, ...(landed ? bounce(f, t + 30) : {}) }}><Chip text={`${r.label}・${r.face} 點`} bg={col(r.color).fill} fg={col(r.color).on} px={34} /></div>
+            </React.Fragment>
+          );
+        })}
+        {f >= tNe ? <div data-ov="不等號" style={{ position: "absolute", left: X0 + IW / 2 - 90, top: TOP + 360, width: 180, height: 180, borderRadius: 90, background: col("wrong").fill, boxShadow: `0 8px 0 ${col("wrong").side}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 120, color: "#fff", ...slam(f, tNe, -6, 1.3) }}>≠</div> : null}
+        {note}
+      </>
+    );
+  }
+  // 抽籤筒
+  const opts = q.options as string[], TW = 340, TH = 520, tx = X0 + 60, ty = TOP + 190;
+  const shakeOf = (): number => { let s = Math.sin(f / 9) * 1.2; rounds.forEach((r) => { const a = A(r.from, FAR), b = A(r.at, FAR); if (f >= a && f < b) s = 6 * Math.sin((f - a) * 1.15) * Math.min(1, (f - a) / 6); }); return s; };
+  const flown = rounds.map((r) => r.pick as number);
+  const tAt = rounds.map((r, i) => A(r.at, p.in + 20 + i * 40));
+  const stickX = [96, 148, 200, 252], stickTop = [34, 64, 22, 54], stickRot = [-7, 3, 5, -3];
+  const cardTop = (i: number) => ty + i * 290;
+  return (
+    <>
+      <div data-ov="題目" style={{ position: "absolute", left: X0, top: TOP + 4, width: IW, height: 150, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("primary").side}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 18, ...riseIn(f, p.in + 2, 14) }}>
+        <div style={{ ...zh, fontWeight: 900, fontSize: 56, color: T.ink }}>{q.stem}</div>
+        <div style={{ width: 150, height: 74, borderRadius: 20, border: `6px dashed ${tone.accent}` }} />
+      </div>
+      <div data-ov="籤筒" style={{ position: "absolute", left: tx, top: ty, width: TW, height: TH, transform: `rotate(${shakeOf().toFixed(2)}deg) scale(0.9)`, transformOrigin: "50% 100%", opacity: O(f, p.in, 4) }}>
+        <svg width={TW} height={TH} viewBox={`0 0 ${TW} ${TH}`}>
+          {stickX.map((x, i) => { const r = flown.indexOf(i); const gone = r >= 0 && f >= tAt[r]; return gone ? null : <g key={i} transform={`rotate(${stickRot[i]} ${x} 240)`}><rect x={x - 22} y={stickTop[i]} width={44} height={240} rx={12} fill={["#FFF2C6", "#D8F4EB", "#DCEFFC", "#FFE3DB"][i]} stroke={T.ink} strokeWidth={5} /><rect x={x - 22} y={stickTop[i]} width={44} height={46} rx={12} fill={col(["note", "right", "sky", "wrong"][i]).fill} stroke={T.ink} strokeWidth={5} /></g>; })}
+          <path d="M52 232 H288 V470 Q288 500 258 500 H82 Q52 500 52 470 Z" fill={col("note").fill} stroke={T.ink} strokeWidth={7} strokeLinejoin="round" />
+          <rect x={52} y={232} width={236} height={34} fill={col("note").side} stroke={T.ink} strokeWidth={6} />
+          <circle cx={170} cy={375} r={62} fill="#fff" stroke={T.ink} strokeWidth={6} /><text x={170} y={400} textAnchor="middle" fontSize={78} fontWeight={900} fill={T.ink} style={{ fontFamily: FONT_ZH }}>籤</text>
+        </svg>
+      </div>
+      {rounds.map((r, i) => {
+        const t = tAt[i], u = clamp((f - t) / 22), c = col(r.color), landed = f >= t + 22, pick = opts[r.pick as number];
+        const sx = tx + 170, sy = ty + 150, ex = X0 + 470 + 241, ey = cardTop(i) + 120;
+        const px = lerp(sx, ex, E(f, t, 22)), py = lerp(sy, ey, E(f, t, 22)) - 100 * Math.sin(Math.PI * u), rot = 720 * (1 - E(f, t, 22)) - 8;
+        return (
+          <React.Fragment key={i}>
+            <Ghost ov={landed ? undefined : `空位${i + 1}`} color={landed ? "transparent" : tone.accent} style={{ left: X0 + 470, top: cardTop(i), width: 482, height: 240, flexDirection: "column", gap: 8, opacity: landed ? 0 : 0.55 }}><div style={{ ...zh, fontWeight: 900, fontSize: 44, color: T.ink3 }}>{r.label}</div></Ghost>
+            {landed ? (
+              <div data-ov={`籤卡${i + 1}`} style={{ position: "absolute", left: X0 + 470, top: cardTop(i), width: 482, height: 240, background: T.card, borderRadius: 30, boxShadow: `0 8px 0 ${c.side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, ...slam(f, t + 22, 0, 1.12) }}>
+                <Chip text={r.label} bg={c.soft} fg={c.text} px={28} />
+                <div style={{ ...zh, fontWeight: 900, fontSize: 84, color: c.fill, textShadow: `0 5px 0 ${c.side}` }}>{pick}</div>
+              </div>
+            ) : null}
+            {f >= t && f < t + 22 ? <div style={{ position: "absolute", left: px - 90, top: py - 36, width: 180, height: 72, borderRadius: 18, background: c.fill, border: `5px solid ${T.ink}`, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 40, color: c.on, transform: `rotate(${rot.toFixed(1)}deg)` }}>{pick}</div> : null}
+          </React.Fragment>
+        );
+      })}
+      {note}
+    </>
+  );
+};
+
+// ───────── T10 清單／格子時間軸（一格一格亮起、打勾） ─────────
+const CheckView: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  if (q.mode === "grid") {
+    const N = q.cells as number, cols = q.cols ?? 4, rws = Math.ceil(N / cols), gap = 28, cw = Math.floor((IW - (cols - 1) * gap) / cols), ch = 250;
+    const t0 = A(q.litAt, p.in + 4), st = q.stagger ?? 5, tF = A(q.focus?.at, FAR), tL = A(q.link?.at, FAR), eL = E(f, tL, 30);
+    const cx = (i: number) => (i % cols) * (cw + gap) + cw / 2, cy = (i: number) => Math.floor(i / cols) * (ch + gap) + ch / 2;
+    const path = Array.from({ length: N }, (_, i) => `${i ? "L" : "M"}${cx(i)} ${cy(i)}`).join(" ");
+    return (
+      <div style={{ position: "absolute", left: X0, top: TOP + 10, width: IW }}>
+        <svg width={IW} height={rws * (ch + gap)} style={{ position: "absolute", left: 0, top: 0 }}>
+          <path d={path} fill="none" stroke={col("sky").fill} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={`${eL} 1.2`} />
+        </svg>
+        {Array.from({ length: N }, (_, i) => {
+          const t = t0 + i * st, on = f >= t, e = E(f, t, 10), foc = q.focus && f >= tF && (q.focus.cell ?? 0) === i, c = col(i % 2 ? "primary" : "right");
+          return (
+            <div key={i} data-ov={`格${i + 1}`} style={{ position: "absolute", left: (i % cols) * (cw + gap), top: Math.floor(i / cols) * (ch + gap), width: cw, height: ch, borderRadius: 30, background: on ? T.card : "rgba(255,255,255,0.45)", boxShadow: on ? `0 8px 0 ${c.side}` : `inset 0 0 0 5px ${T.line}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, transform: `scale(${(on ? (foc ? 1.06 + 0.02 * Math.sin(f / 5) : 0.9 + 0.1 * e + 0.06 * Math.sin(Math.min(1, e) * 3.14)) : 0.94).toFixed(3)})` }}>
+              <div style={{ ...en, fontWeight: 900, fontSize: 116, color: on ? c.fill : T.ink3, lineHeight: 1 }}>{i + 1}</div>
+              <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: on ? T.ink : T.ink3 }}>{(q.label ?? "第 {n} 句").replace("{n}", String(i + 1))}</div>
+            </div>
+          );
+        })}
+        {q.focus ? <div data-ov="焦點卡" style={{ position: "absolute", left: 0, top: rws * (ch + gap) + 20, width: IW, height: 150, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("note").side}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 22, ...zh, fontWeight: 900, fontSize: 56, color: T.ink, opacity: O(f, tF, 4), transform: `translateY(${Math.round((1 - E(f, tF, 12)) * 50)}px)` }}><Ico n="pencil" size={74} fill={col("note").soft} />{q.focus.text}</div>
+          : <Ghost ov="" style={{ display: "none" }} color="#000" />}
+      </div>
+    );
+  }
+  const items = q.items as { text: string; sub?: string; at: any; color?: string; bad?: boolean; mark?: string; markAt?: any; big?: boolean }[];
+  const head = q.head, tH = A(head?.at, p.in + 3), tS = A(q.stamp?.at, FAR);
+  return (
+    <>
+      <div data-ov="清單標題" style={{ position: "absolute", left: X0, top: TOP + 4, width: q.stamp ? IW - 200 : IW, height: 150, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col(head?.color ?? "primary").side}`, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", boxSizing: "border-box", ...riseIn(f, tH, 14) }}>
+        <div style={{ ...zh, fontWeight: 900, fontSize: 56, color: T.ink }}>{head?.text}</div>
+              </div>
+      {q.stamp && f >= tS ? <div data-ov="蓋章" style={{ position: "absolute", left: X0 + IW - 170, top: TOP - 6, width: 170, height: 170, borderRadius: 85, border: `12px solid ${col(q.stamp.color).fill}`, background: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 70, color: col(q.stamp.color).fill, ...slam(f, tS, -12, 1.3) }}>{q.stamp.text}</div> : null}
+      {items.map((it, i) => {
+        const t = A(it.at, FAR), on = f >= t, e = E(f, t, 12), c = col(it.color ?? (it.bad ? "wrong" : "right"));
+        const h = it.big ? 470 : 190, top = TOP + 190 + items.slice(0, i).reduce((a, x) => a + (x.big ? 470 : 190) + 26, 0);
+        const tm = A(it.markAt, FAR);
+        return (
+          <div key={i} data-ov={`項目${i + 1}`} style={{ position: "absolute", left: X0, top: top, width: IW, height: h, borderRadius: 32, background: on ? T.card : "rgba(255,255,255,0.5)", boxShadow: on ? `0 8px 0 ${c.side}` : `inset 0 0 0 5px ${T.line}`, display: "flex", alignItems: "center", gap: 30, padding: "0 36px", boxSizing: "border-box", opacity: on ? 1 : 0.7, transform: `translateX(${on ? Math.round((1 - e) * 30) : 0}px)` }}>
+            <CheckMark t={on ? E(f, t + 2, 12) : 0} size={it.big ? 110 : 92} color={c.fill} bad={it.bad} />
+            <div style={{ minWidth: 0 }}>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: it.big ? 64 : 52, lineHeight: 1.3, color: on ? T.ink : T.ink3 }}>{on && it.mark ? <MarkText text={it.text} mark={it.mark} t={f >= tm ? E(f, tm, 10) : 0} hl={col("wrong").soft} /> : it.text}</div>
+              {it.sub ? <div style={{ ...zh, fontWeight: 700, fontSize: 34, color: T.ink2, marginTop: 8 }}>{it.sub}</div> : null}
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+// ───────── T13 資料圖（方格填色／長條），一律標「示意」 ─────────
+const ChartView: React.FC<VP> = ({ f, p, tone }) => {
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb);
+  const chips = (q.chips ?? []) as { text: string; at: any; color: string }[];
+  const tail = (top: number) => (
+    <>
+      <div style={{ position: "absolute", left: X0, top, width: IW, display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap" }}>
+        {chips.map((c, i) => { const t = A(c.at, FAR), cc = col(c.color); return f < t ? <div key={i} style={{ opacity: 0.0 }}><Chip text={c.text} bg={cc.fill} fg={cc.on} px={34} /></div> : <div key={i} data-ov={`標籤${i + 1}`} style={bounce(f, t)}><Chip text={c.text} bg={cc.fill} fg={cc.on} px={34} /></div>; })}
+      </div>
+      {q.note ? <div data-ov="示意" style={{ position: "absolute", left: X0, top: top + 96, width: IW, textAlign: "center", ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>{q.note}</div> : null}
+    </>
+  );
+  if (q.kind === "bars") {
+    const its = q.items as { t: string; h: number; color: string }[], BW = 190, BG = Math.floor((IW - its.length * BW) / (its.length - 1 || 1)), base = TOP + 520, MH = 440;
+    const tG = A(q.growAt, p.in + 4), tM = A(q.mark?.at, FAR);
+    return (
+      <>
+        <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}><rect x={X0 - 10} y={base} width={IW + 20} height={10} rx={5} fill={T.ink3} opacity={0.6} /></svg>
+        {its.map((b, i) => { const g = E(f, tG + i * 5, 22), c = col(b.color), h = Math.max(8, b.h * MH * g), mk = q.mark && q.mark.idx === i && f >= tM; return (
+          <React.Fragment key={i}>
+            <div data-ov={`長條${i + 1}`} style={{ position: "absolute", left: X0 + i * (BW + BG), top: base - h, width: BW, height: h, borderRadius: "22px 22px 6px 6px", background: c.fill, boxShadow: `0 8px 0 ${c.side}`, outline: mk ? `8px solid ${T.ink}` : undefined, outlineOffset: 6 }} />
+            <div style={{ position: "absolute", left: X0 + i * (BW + BG) - 20, top: base + 26, width: BW + 40, textAlign: "center", ...zh, fontWeight: 900, fontSize: 44, color: T.ink }}>{b.t}</div>
+          </React.Fragment>); })}
+        {q.mark && f >= tM ? <div data-ov="長條標記" style={{ position: "absolute", left: X0 + (q.mark.idx ?? 0) * (BW + BG) + BW + 36, top: base - its[q.mark.idx ?? 0].h * MH - 6, ...bounce(f, tM) }}><Chip text={q.mark.text} bg={col("right").fill} fg="#fff" px={34} /></div> : null}
+        {tail(base + 100)}
+      </>
+    );
+  }
+  const cols = q.cols as number, rws = q.rows as number, gap = 12, cell = Math.min(Math.floor((IW - (cols - 1) * gap) / cols), Math.floor((q.maxH ?? 600) / rws) - gap), gw = cols * cell + (cols - 1) * gap, gx = X0 + Math.floor((IW - gw) / 2), gy = TOP + 20;
+  const groups = q.groups as { n: number; color: string; at: any; gs?: number }[];
+  let acc = 0; const owner: { g: number; k: number }[] = [];
+  groups.forEach((g, gi) => { for (let k = 0; k < g.n; k++) owner[acc++] = { g: gi, k }; });
+  const tB = A(q.box?.at, FAR), bg = q.box ? groups[q.box.group] : null;
+  let bx = [0, 0, 0, 0];
+  if (bg) { const s0 = groups.slice(0, q.box.group).reduce((a, x) => a + x.n, 0), idxs = Array.from({ length: bg.n }, (_, k) => s0 + k), cs = idxs.map((i) => Math.floor(i / rws)), rs = idxs.map((i) => i % rws); bx = [gx + Math.min(...cs) * (cell + gap) - 8, gy + Math.min(...rs) * (cell + gap) - 8, (Math.max(...cs) - Math.min(...cs) + 1) * (cell + gap) - gap + 16, (Math.max(...rs) - Math.min(...rs) + 1) * (cell + gap) - gap + 16]; }
+  return (
+    <>
+      {Array.from({ length: cols * rws }, (_, i) => {
+        const o = owner[i], g = o ? groups[o.g] : null, t = g ? A(g.at, FAR) + o.k * (g.gs ?? 1.2) : FAR, on = f >= t, c = g ? col(g.color) : col("primary"), e = E(f, t, 8);
+        return <div key={i} data-ov={undefined} style={{ position: "absolute", left: gx + Math.floor(i / rws) * (cell + gap), top: gy + (i % rws) * (cell + gap), width: cell, height: cell, borderRadius: Math.round(cell * 0.2), background: on ? c.fill : "rgba(255,255,255,0.6)", boxShadow: on ? `0 6px 0 ${c.side}` : `inset 0 0 0 4px ${T.line}`, transform: `scale(${on ? (0.6 + 0.4 * e + 0.12 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3) : 1})` }} />;
+      })}
+      {q.box && f >= tB ? <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}><rect x={bx[0]} y={bx[1]} width={bx[2]} height={bx[3]} rx={22} fill="none" stroke={T.ink} strokeWidth={9} strokeDasharray="1" pathLength={1} strokeDashoffset={1 - E(f, tB, 14)} /></svg> : null}
+      {tail(gy + rws * (cell + gap) + 30)}
+    </>
+  );
+};
+
+const VIEWS: Record<string, React.FC<VP>> = { editor: EditorView, draw: DrawView, check: CheckView, chart: ChartView, split: SplitView, chat: ChatView, browser: BrowserView, device: DeviceView, lens: LensView, kinetic: KineticView, flow: FlowView, claim: ClaimView };
 export const VIEW6 = Object.keys(VIEWS);
 
 export const VarietyIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, ...rest }) => {

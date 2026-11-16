@@ -131,3 +131,9 @@ Andy 原話：「AI 頻道為何都是同一個畫面背景，需要更豐富點
 5. 驗收：逐幀重疊檢查、色調對比 ≥4.5:1、四支各 `npm run render`，不重新配音（念稿與音檔不動，時間軸沿用）。
 
 合計約 12 工作天（元件 9.5、素材與驗證 1.5、改四支 2 天含部分重疊可壓到約 10 天）；若要先出一支驗證手感，建議先做 `sketch-game`（截圖素材最齊，需 T2、T3、T5、T6、T8、T9、T11、T12，約 6 天）。
+
+## 4. 實作進度（2026/11/16 第二輪）
+- `IsoVariety.tsx` 現有 12 種 view：split（左右／上下表格與圖）、chat（含開頭 AI 頭像空狀態）、browser（直式與寬版捲動）、device、lens（右欄開頭有放大鏡空位）、kinetic、flow、claim、editor（T4 深色編輯器：逐行打字、行號、省略列、高亮、行數計數、徽章與標籤列）、draw（T7 抽籤筒搖／彈出、骰子落地回彈）、check（T10 清單打勾與八格時間軸）、chart（T13 方格填色與長條，標「示意」）。
+- 各鏡開頭 0.3 秒內版面就有東西：尚未出現的格子畫虛線空位（Ghost）。
+- 已改成 isoVersion 6：sketch-game、made-by-ai（kinetic／chat／editor／flow／check／chart／claim 共 7 種）、two-answers（kinetic／chat／split／editor／draw／chart／flow／claim 共 8 種）、same-look（split／chat／browser／check／chart／kinetic／claim 共 7 種）。念稿未動。
+- 素材：made-by-ai s03 行數取自 videos/caffaine-meeting-todo/script.json（604 行）、s04 取自 src/components/ai-iso/*.tsx（validate 會核對行數與逐行原文）；same-look 圖在 public/caffaine-same-look/。

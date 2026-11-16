@@ -72,14 +72,40 @@ export function validateIso(script, h) {
     const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick", "shot"];
     if (script.isoVersion === 6 && !caff) {
       // isoVersion 6（IsoVariety.tsx）：每幕 props.view 選畫面類型、props.tone 選色調；各 view 的必要 props
-      const NEED = { split: ["left", "right"], chat: ["msgs"], browser: ["shots"], device: ["src", "cards"], lens: ["src", "ring", "zoom", "note"], kinetic: ["rows"], flow: ["nodes", "lights"], claim: ["keyword", "kicker", "card"] };
+      const NEED = { split: p.layout === "stack" ? ["top", "bottom"] : ["left", "right"], chat: ["msgs"], browser: ["shots"], device: ["src", "cards"], lens: ["src", "ring", "zoom", "note"], kinetic: ["rows"], flow: ["nodes", "lights"], claim: ["keyword", "kicker", "card"], editor: ["file", "lines"], draw: ["rounds"], check: [], chart: [] };
       if (!VIEWS6.includes(p.view)) E(`${tag}: isoVersion 6 的 props.view「${p.view}」不存在（${VIEWS6.join("／")}）`);
       else for (const k of NEED[p.view] ?? []) if (p[k] === undefined) E(`${tag}: view「${p.view}」缺少 props.${k}`);
       if (!TONES6.includes(p.tone)) E(`${tag}: 缺少或不認得 props.tone「${p.tone}」（${TONES6.join("／")}）`);
       if (!String(p.tag ?? "").trim()) E(`${tag}: 缺少 props.tag（性質小標）`);
       if (p.view === "browser" && !(p.items ?? []).length) W(`${tag}: browser 沒有 items（右側欄會是空的）`);
-      for (const sh of [].concat(p.shots ?? [], p.left ?? [], p.right ?? [])) if (sh?.src && !fs.existsSync(path.join(ROOT, "public", sh.src))) E(`${tag}: 找不到圖 public/${sh.src}`);
-      if (p.src && !fs.existsSync(path.join(ROOT, "public", p.src))) E(`${tag}: 找不到圖 public/${p.src}`);
+      for (const sh of [].concat(p.shots ?? [], p.left ?? [], p.right ?? [], p.top ?? [], p.bottom ?? [])) if (sh?.src && !fs.existsSync(path.join(ROOT, "public", sh.src))) E(`${tag}: 找不到圖 public/${sh.src}`);
+      if (p.src && p.view !== "editor" && !fs.existsSync(path.join(ROOT, "public", p.src))) E(`${tag}: 找不到圖 public/${p.src}`);
+      {
+        // v6 的真實素材核對：程式／文字檔逐行、徽章行數、實測回答節錄
+        const rd6 = (fn) => (fn && fs.existsSync(path.join(ROOT, "videos", script.slug, fn))) ? fs.readFileSync(path.join(ROOT, "videos", script.slug, fn), "utf8") : null;
+        if (p.view === "editor") {
+          const fp = p.src ? path.join(ROOT, p.src) : null, all = fp && fs.existsSync(fp) ? fs.readFileSync(fp, "utf8").split("\n") : null;
+          const vj = p.verbatim ? rd6(p.verbatim) : null, vtxt = vj ? strip((() => { const j = JSON.parse(vj); return (j.request?.contents?.[0]?.parts?.[0]?.text ?? "") + (j.answer ?? ""); })()) : null;
+          for (const l of p.lines ?? []) {
+            if (all && l.n && (all[l.n - 1] ?? "").trim() !== String(l.t).trim()) E(`${tag}: 第 ${l.n} 行不是 ${p.src} 的原文：「${l.t}」`);
+            if (all && !l.n && !l.kind) E(`${tag}: 程式行要寫行號 n（和 ${p.src} 對照）`);
+            if (vtxt !== null && !vtxt.includes(strip(l.t))) E(`${tag}: 「${l.t}」不在實測檔 ${p.verbatim} 裡`);
+            if (l.mark && !String(l.t).includes(l.mark)) E(`${tag}: mark「${l.mark}」不在該行裡`);
+          }
+          const pf = p.badge?.proof;
+          if (p.badge && !pf) E(`${tag}: badge 要有 proof`);
+          if (pf) { const files = pf.files ? pf.files : fs.readdirSync(path.join(ROOT, pf.dir)).filter((x) => (pf.ext ?? [".tsx"]).some((e) => x.endsWith(e))).map((x) => path.join(pf.dir, x)); const n = files.reduce((a, x) => a + fs.readFileSync(path.join(ROOT, x), "utf8").split("\n").length - 1, 0); if (n < pf.atLeast) E(`${tag}: badge「${p.badge.num}」要求至少 ${pf.atLeast} 行，實際只有 ${n} 行`); }
+          if (p.total && all && p.total.to > all.length) E(`${tag}: total ${p.total.to} 超過 ${p.src} 實際行數 ${all.length}`);
+        }
+        if (p.view === "split" && p.layout === "stack" && p.top?.cells) for (const sd of [p.top, p.bottom]) {
+          const t = rd6(sd.verbatim); if (t === null) { E(`${tag}: 表格要寫 verbatim（實測 JSON）`); continue; }
+          if (!/實測/.test(sd.by ?? "") || !/節錄/.test(sd.by ?? "")) E(`${tag}: 表格節錄要標示實測與節錄（by）`);
+          const ans = strip(JSON.parse(t).answer ?? ""); for (const c of sd.cells) if (!ans.includes(strip(c))) E(`${tag}: 「${c}」不是實測原文（只能刪節，不能改字）`);
+        }
+        if (p.view === "flow" && p.proof) { const pf = p.proof, files = fs.readdirSync(path.join(ROOT, pf.dir)).filter((x) => (pf.ext ?? [".tsx"]).some((e) => x.endsWith(e))); const n = files.reduce((a, x) => a + fs.readFileSync(path.join(ROOT, pf.dir, x), "utf8").split("\n").length - 1, 0); if (n < pf.atLeast) E(`${tag}: flow 數字要求至少 ${pf.atLeast} 行，實際只有 ${n} 行`); }
+        if (p.view === "check" && p.verbatim) { const tx = rd6(p.verbatim); for (const it of p.items ?? []) if (tx === null || !strip(tx).includes(strip(it.text))) E(`${tag}: 清單「${it.text}」不在 ${p.verbatim} 原文裡`); }
+        if (p.view === "chart" && !/示意/.test(String(p.note ?? ""))) E(`${tag}: chart 要在 note 標示「示意」`);
+      }
     } else if (script.isoVersion === 5 && !caff) {
       if (!KINDS5.includes(p.panel)) E(`${tag}: isoVersion 5 的 props.panel「${p.panel}」不存在（${KINDS5.join("／")}）`);
       // 會議紀錄片：放 AI 回答的地方（wrong｜vs｜rule）要標實測＋節錄，每一格文字都要是實測原文的一部分（只能刪節，不能改字）；來源紀錄與提示規則也逐字比對

@@ -4,7 +4,7 @@
  "asOf": "2026/11/16",
  "styleVersion": 3,
  "stage": "iso",
- "isoVersion": 5,
+ "isoVersion": 6,
  "sample": false,
  "channelLogo": "caffaine",
  "channel": {
@@ -67,51 +67,38 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "hook",
     "tag": "事件",
     "tagColor": "wrong",
     "asOf": "查證截至 2026/11/16",
-    "title": [
-     "同一句話做兩次",
-     "兩份幾乎一樣"
-    ],
-    "size": 108,
-    "mark": {
-     "text": "兩份幾乎一樣",
-     "at": "same",
-     "color": "wrong"
-    },
-    "stamp": {
-     "text": "幾乎一樣",
-     "at": "same+2",
-     "color": "wrong"
-    },
-    "count": {
-     "at": "ask+8"
-    },
-    "flow": [
-     "咖啡店首頁",
-     "AI",
-     "兩份網頁"
-    ],
     "status": "已確定・實測",
     "statusAt": "twice+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "一模一樣": "wrong"
-    }
+    },
+    "view": "split",
+    "tone": "event",
+    "layout": "stack",
+    "top": {
+     "src": "caffaine-same-look/plain-1.png",
+     "label": "第一次",
+     "color": "note",
+     "at": "start+3"
+    },
+    "bottom": {
+     "src": "caffaine-same-look/plain-2.png",
+     "label": "第二次",
+     "color": "primary",
+     "at": "twice"
+    },
+    "mids": [
+     {
+      "text": "≈",
+      "at": "same",
+      "color": "wrong",
+      "kind": "stamp"
+     }
+    ]
    },
    "sources": [
     "Gemini 實測 2026/11/16；同一句提示詞，兩次執行"
@@ -146,39 +133,39 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "talk",
     "tag": "實測",
     "tagColor": "note",
-    "label": "我打的那一句",
-    "note": "兩次完全一樣（實測原文）",
-    "line": "幫我做一個咖啡店首頁。",
-    "typeAt": "start+8",
-    "typeDur": 34,
-    "lines": 1,
-    "size": 64,
-    "chips": [
-     "同一句話",
-     "沒指定風格"
-    ],
-    "chipsAt": "nos",
     "status": "已確定・實測",
     "statusAt": "one+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "沒指定風格": "wrong"
-    }
+    },
+    "view": "chat",
+    "tone": "event",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "幫我做一個咖啡店首頁。",
+      "typeAt": "one",
+      "typeDur": 30,
+      "at": "say+10"
+     }
+    ],
+    "chips": [
+     {
+      "text": "同一句話",
+      "at": "say+14",
+      "color": "note"
+     },
+     {
+      "text": "沒指定風格",
+      "at": "nos",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
    },
    "sources": [
     "Gemini 實測 2026/11/16：兩次提示詞相同"
@@ -212,51 +199,87 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "vs",
     "tag": "對照",
     "tagColor": "primary",
-    "top": {
-     "label": "第一次",
-     "by": "Gemini 實測・2026/11/16（節錄）",
-     "verbatim": "tests/01-plain.json",
-     "cells": [
-      "#FAF6F0",
-      "我們的堅持",
-      "嚴選單一莊園豆"
-     ],
-     "at": "start+4"
-    },
-    "bottom": {
-     "label": "第二次",
-     "by": "Gemini 實測・2026/11/16（節錄）",
-     "verbatim": "tests/01b-plain-run2.json",
-     "cells": [
-      "#F9F6F0",
-      "我們的堅持",
-      "嚴選單品莊園豆"
-     ],
-     "at": "sec"
-    },
-    "badge": {
-     "text": "兩份很像",
-     "at": "one"
-    },
     "status": "已確定・實測 2 次",
     "statusAt": "one+6",
+    "track": 0,
     "kw": {
      "我們的堅持": "wrong"
     },
-    "track": 0,
-    "camera": [
+    "view": "browser",
+    "tone": "bug",
+    "wide": true,
+    "shots": [
      {
-      "look": [
-       520,
-       360,
-       6
+      "src": "caffaine-same-look/full-1.jpg",
+      "at": "start+2",
+      "img": [
+       1280,
+       2856
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
+      "label": "咖啡店首頁・第一次"
+     },
+     {
+      "src": "caffaine-same-look/full-2.jpg",
+      "at": "one",
+      "img": [
+       1280,
+       2400
+      ],
+      "label": "咖啡店首頁・第二次"
+     }
+    ],
+    "scroll": [
+     0,
+     640
+    ],
+    "scrollAt": "sec-10",
+    "rings": [
+     {
+      "shot": 0,
+      "at": "sec+8",
+      "box": [
+       510,
+       870,
+       260,
+       100
+      ],
+      "color": "wrong"
+     },
+     {
+      "shot": 1,
+      "at": "one+8",
+      "box": [
+       510,
+       870,
+       260,
+       100
+      ],
+      "color": "wrong"
+     }
+    ],
+    "items": [
+     {
+      "icon": "window",
+      "text": "米白底",
+      "sub": "兩次都是",
+      "at": "bg",
+      "color": "note"
+     },
+     {
+      "icon": "text",
+      "text": "我們的堅持",
+      "sub": "區塊名稱",
+      "at": "sec",
+      "color": "wrong"
+     },
+     {
+      "icon": "redo",
+      "text": "差一個字",
+      "sub": "連小標題",
+      "at": "one",
+      "color": "primary"
      }
     ]
    },
@@ -292,50 +315,42 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "steps",
     "tag": "共同點",
     "tagColor": "primary",
-    "steps": [
-     {
-      "n": "1",
-      "t": "左字右圖",
-      "sub": "第一屏的排法",
-      "color": "primary",
-      "at": "start+4"
-     },
-     {
-      "n": "2",
-      "t": "三欄小卡片",
-      "sub": "「我們的堅持」那一區",
-      "color": "note",
-      "at": "card"
-     },
-     {
-      "n": "3",
-      "t": "深色按鈕",
-      "sub": "右上角訂位／點餐",
-      "color": "wrong",
-      "at": "btn"
-     }
-    ],
     "status": "已確定・實測 2 次",
     "statusAt": "card+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "三欄小卡片": "primary"
-    }
+    },
+    "view": "check",
+    "tone": "bug",
+    "mode": "list",
+    "head": {
+     "text": "兩次的排法也一樣",
+     "at": "start+3",
+     "color": "wrong"
+    },
+    "items": [
+     {
+      "text": "左文右圖",
+      "sub": "第一屏的排法",
+      "at": "left",
+      "color": "primary"
+     },
+     {
+      "text": "下面三欄小卡片",
+      "sub": "「我們的堅持」那一區",
+      "at": "card",
+      "color": "note"
+     },
+     {
+      "text": "右上角深色按鈕",
+      "sub": "訂位／點餐",
+      "at": "btn",
+      "color": "wrong"
+     }
+    ]
    },
    "sources": [
     "Gemini 實測 2026/11/16；逐項比對見 research.md"
@@ -369,37 +384,57 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "verdict",
     "tag": "原因",
     "tagColor": "primary",
-    "a": {
-     "big": "最常見的樣子",
-     "sub": "最容易被選中",
-     "at": "start+4"
-    },
-    "b": {
-     "big": "你沒指定",
-     "sub": "它就選最保險的",
-     "at": "safe"
-    },
     "status": "分析推測・非實測",
     "statusAt": "why+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "最常見": "primary"
-    }
+    },
+    "view": "chart",
+    "tone": "principle",
+    "kind": "waffle",
+    "cols": 8,
+    "rows": 5,
+    "maxH": 560,
+    "groups": [
+     {
+      "n": 25,
+      "color": "primary",
+      "at": "why",
+      "gs": 0.8
+     },
+     {
+      "n": 10,
+      "color": "sky",
+      "at": "why+6",
+      "gs": 0.8
+     },
+     {
+      "n": 5,
+      "color": "plum",
+      "at": "why+10",
+      "gs": 0.8
+     }
+    ],
+    "box": {
+     "group": 0,
+     "at": "common"
+    },
+    "chips": [
+     {
+      "text": "最常見的樣子",
+      "at": "common",
+      "color": "primary"
+     },
+     {
+      "text": "最保險",
+      "at": "safe",
+      "color": "note"
+     }
+    ],
+    "note": "示意：一般認為，不是實測比例"
    },
    "sources": [
     "一般認為的說法（分析推測）；非實測"
@@ -442,61 +477,45 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "rule",
     "tag": "解法",
     "tagColor": "right",
-    "rules": [
-     {
-      "text": "日本咖啡館的手寫菜單看板",
-      "color": "sky",
-      "at": "start+4"
-     },
-     {
-      "text": "標題用襯線字體並靠左",
-      "color": "right",
-      "at": "ref+14"
-     },
-     {
-      "text": "不要三欄卡片",
-      "color": "wrong",
-      "at": "ref+24"
-     }
-    ],
-    "promptVerbatim": "tests/02-styled.json",
-    "resultY": 176,
-    "result": {
-     "label": "再做一次",
-     "by": "Gemini 實測・2026/11/16（節錄）",
-     "verbatim": "tests/02-styled.json",
-     "at": "again",
-     "rows": [
-      {
-       "cells": [
-        "珈琲 雲和",
-        "お品書き",
-        "手沖法蘭絨的法式深煎"
-       ],
-       "ok": true
-      }
-     ]
-    },
-    "fix": "diff",
     "status": "已確定・實測（1 次）",
     "statusAt": "diff+6",
+    "track": 2,
     "kw": {
      "明顯不同": "right"
     },
-    "track": 2,
-    "camera": [
+    "view": "split",
+    "tone": "fix",
+    "layout": "stack",
+    "top": {
+     "src": "caffaine-same-look/plain-1.png",
+     "label": "沒指定風格",
+     "color": "note",
+     "at": "start+3"
+    },
+    "bottom": {
+     "src": "caffaine-same-look/styled.png",
+     "label": "加了風格",
+     "color": "right",
+     "at": "ref"
+    },
+    "mids": [
      {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
+      "text": "＋一句風格",
+      "at": "add",
+      "color": "note"
+     },
+     {
+      "text": "≠",
+      "at": "diff",
+      "color": "right",
+      "kind": "stamp"
+     },
+     {
+      "text": "只試一次",
+      "at": "once",
+      "color": "plum"
      }
     ]
    },
@@ -528,41 +547,34 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "limit",
     "tag": "還不知道",
     "tagColor": "plum",
-    "early": true,
-    "known": {
-     "status": "已確定・實測",
-     "lines": [
-      "咖啡店首頁、一個模型",
-      "一般問法 2 次，兩份很像"
-     ]
-    },
-    "unknown": {
-     "status": "查不到・還沒測",
-     "lines": [
-      "別的題目、別的 AI",
-      "會不會一樣，還不知道"
-     ]
-    },
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       0
-      ],
-      "zoom": 0.6,
-      "sy": 1060,
-      "dur": 12,
-      "at": "start+2"
-     }
-    ],
+    "track": 2,
     "kw": {
      "還不知道": "wrong"
     },
-    "track": 2
+    "view": "kinetic",
+    "tone": "unknown",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "個題目",
+      "at": "start+3",
+      "color": "primary"
+     },
+     {
+      "big": "1",
+      "unit": "個模型",
+      "at": "known+26",
+      "color": "sky"
+     }
+    ],
+    "q": {
+     "text": "別的題目行不行？",
+     "at": "q"
+    },
+    "status": "查不到・還沒測",
+    "statusAt": "q"
    },
    "sources": [
     "Gemini 實測 2026/11/16；只測咖啡店首頁、一個模型"
@@ -600,48 +612,41 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "steps",
     "tag": "所以呢",
     "tagColor": "right",
-    "steps": [
-     {
-      "n": "1",
-      "t": "參考哪裡",
-      "sub": "例：日本咖啡館菜單",
-      "color": "primary",
-      "at": "start+4"
-     },
-     {
-      "n": "2",
-      "t": "要什麼",
-      "sub": "米色紙底、襯線字",
-      "color": "right",
-      "at": "want"
-     },
-     {
-      "n": "3",
-      "t": "不要什麼",
-      "sub": "不要漸層、不要三欄卡片",
-      "color": "wrong",
-      "at": "not"
-     }
-    ],
     "track": 2,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "先講風格": "right"
-    }
+    },
+    "view": "check",
+    "tone": "fix",
+    "mode": "list",
+    "head": {
+     "text": "想要自己的樣子，先講風格",
+     "at": "start+3",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "參考哪裡",
+      "sub": "例：日本咖啡館菜單",
+      "at": "ref",
+      "color": "primary"
+     },
+     {
+      "text": "要什麼",
+      "sub": "米色紙底、襯線字",
+      "at": "want",
+      "color": "right"
+     },
+     {
+      "text": "不要什麼",
+      "sub": "不要漸層、不要三欄卡片",
+      "at": "not",
+      "color": "wrong",
+      "bad": true
+     }
+    ]
    },
    "sources": [
     "做法整理；內容取自實測提示詞（tests/02-styled.json）"
@@ -671,29 +676,20 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "cta",
     "tag": "領取",
     "tagColor": "right",
-    "kicker": "想要指定風格的提示詞",
-    "keyword": "網頁",
-    "sub": "私訊給你提示詞＋用法",
     "track": 2,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "網頁": "primary"
     },
-    "kwAt": "start+4"
+    "view": "claim",
+    "tone": "claim",
+    "kicker": "想要指定風格的提示詞",
+    "keyword": "網頁",
+    "kwAt": "kw",
+    "allAt": "all",
+    "card": "提示詞＋用法",
+    "sub": "私訊給你"
    },
    "sources": [
     "提示詞與測試紀錄整理在 CaffAIne 網站"

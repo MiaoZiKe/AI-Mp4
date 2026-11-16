@@ -4,7 +4,7 @@
  "asOf": "2026/11/16",
  "styleVersion": 3,
  "stage": "iso",
- "isoVersion": 5,
+ "isoVersion": 6,
  "sample": false,
  "channelLogo": "caffaine",
  "channel": {
@@ -67,51 +67,35 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "hook",
     "tag": "事件",
     "tagColor": "wrong",
     "asOf": "查證截至 2026/11/16",
-    "title": [
-     "同一句話問兩次",
-     "答案不一樣"
-    ],
-    "size": 108,
-    "mark": {
-     "text": "答案不一樣",
-     "at": "diff",
-     "color": "wrong"
-    },
-    "stamp": {
-     "text": "兩次不同",
-     "at": "diff+2",
-     "color": "wrong"
-    },
-    "count": {
-     "at": "same+8"
-    },
-    "flow": [
-     "會議紀錄",
-     "AI",
-     "兩個答案"
-    ],
     "status": "已確定・實測",
     "statusAt": "twice+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "不一樣": "wrong"
-    }
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "rows": [
+     {
+      "big": "同一句",
+      "unit": "×2",
+      "at": "start+3",
+      "color": "primary",
+      "size": 220,
+      "usize": 140
+     },
+     {
+      "big": "≠",
+      "unit": "兩個答案",
+      "at": "diff",
+      "color": "wrong",
+      "size": 220,
+      "usize": 110
+     }
+    ]
    },
    "sources": [
     "Gemini 實測 2026/11/16（虛構紀錄，情境示意）"
@@ -141,39 +125,46 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "talk",
     "tag": "實測",
     "tagColor": "note",
-    "label": "我打的那一句",
-    "note": "兩次完全一樣（實測原文）",
-    "line": "幫我整理這份會議紀錄。",
-    "typeAt": "start+8",
-    "typeDur": 34,
-    "lines": 1,
-    "size": 64,
-    "chips": [
-     "同一份紀錄",
-     "一個字沒改"
-    ],
-    "chipsAt": "say+10",
     "status": "已確定・實測",
     "statusAt": "same+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       420,
-       220,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "同一句": "primary"
-    }
+    },
+    "view": "chat",
+    "tone": "event",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "幫我整理這份會議紀錄。",
+      "typeAt": "start+4",
+      "typeDur": 22,
+      "at": "same+4"
+     },
+     {
+      "who": "me",
+      "text": "幫我整理這份會議紀錄。",
+      "typeAt": "same+8",
+      "typeDur": 20,
+      "at": "say+10"
+     }
+    ],
+    "chips": [
+     {
+      "text": "同一份紀錄",
+      "at": "say+14",
+      "color": "note"
+     },
+     {
+      "text": "一個字沒改",
+      "at": "say+24",
+      "color": "right",
+      "hot": true
+     }
+    ]
    },
    "sources": [
     "Gemini 實測 2026/11/16：兩次提示詞逐字相同"
@@ -207,9 +198,17 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "vs",
     "tag": "對照",
     "tagColor": "primary",
+    "status": "已確定・實測 2 次",
+    "statusAt": "diff+6",
+    "track": 0,
+    "kw": {
+     "待指派": "right"
+    },
+    "view": "split",
+    "tone": "bug",
+    "layout": "stack",
     "top": {
      "label": "第一次",
      "by": "Gemini 實測・2026/11/16（節錄）",
@@ -219,7 +218,8 @@
       "指派「雙十二客服排班」負責人",
       "11 月底前"
      ],
-     "at": "start"
+     "at": "start+3",
+     "color": "wrong"
     },
     "bottom": {
      "label": "第二次",
@@ -230,30 +230,20 @@
       "排定雙十二檔期的客服排班",
       "11 月底前"
      ],
-     "at": "second"
+     "at": "second",
+     "color": "right"
     },
+    "heads": [
+     "負責人",
+     "事項",
+     "期限"
+    ],
+    "diffCell": 0,
+    "diffAt": "diff",
     "badge": {
      "text": "同一句話・兩次不同",
      "at": "diff"
-    },
-    "status": "已確定・實測 2 次",
-    "statusAt": "diff+6",
-    "kw": {
-     "待指派": "right"
-    },
-    "track": 0,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ]
+    }
    },
    "sources": [
     "Gemini 實測 2026/11/16（虛構紀錄）；問法相同，兩次執行"
@@ -287,33 +277,51 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "orig",
     "tag": "原文",
     "tagColor": "note",
-    "label": "會議紀錄原文（情境示意）",
-    "text": "客服排班要在 11 月底前排好，目前還沒有指派負責人",
-    "mark": "還沒有指派負責人",
-    "markAt": "src",
-    "hl": "src",
-    "verbatim": "tests/source-text.txt",
     "status": "已確定・原文",
     "statusAt": "src+6",
     "track": 0,
-    "camera": [
-     {
-      "look": [
-       420,
-       220,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "還沒指派": "wrong"
-    }
+    },
+    "view": "editor",
+    "tone": "bug",
+    "file": "source-text.txt",
+    "src": "videos/caffaine-meeting-todo/tests/source-text.txt",
+    "wrap": true,
+    "before": 2,
+    "after": 0,
+    "lines": [
+     {
+      "t": "2. 客服主管提醒雙十二檔期的客服排班要在 11 月底前排好，目前還沒有指派負責人。",
+      "n": 22,
+      "at": "start+4",
+      "dur": 30,
+      "mark": "還沒有指派負責人",
+      "markAt": "src"
+     }
+    ],
+    "hl": 0,
+    "hlAt": "src+10",
+    "tags": [
+     {
+      "text": "原文：還沒指派",
+      "at": "src",
+      "color": "note"
+     },
+     {
+      "text": "第二次：對",
+      "at": "ok",
+      "color": "right"
+     },
+     {
+      "text": "第一次：猜的",
+      "at": "guess",
+      "color": "wrong"
+     }
+    ],
+    "size": 48
    },
    "sources": [
     "會議紀錄虛構情境；第一次填的與原文不符"
@@ -359,66 +367,41 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "pick",
     "tag": "原理",
     "tagColor": "primary",
+    "status": "公認原理・示意",
+    "statusAt": "lot+6",
+    "track": 1,
+    "kw": {
+     "抽籤": "primary"
+    },
+    "view": "draw",
+    "tone": "principle",
+    "mode": "lots",
     "stem": "雙十二客服排班，負責人是",
-    "growAt": "why",
     "options": [
-     {
-      "t": "行銷經理",
-      "h": 0.9
-     },
-     {
-      "t": "待指派",
-      "h": 0.7
-     },
-     {
-      "t": "客服主管",
-      "h": 0.45
-     },
-     {
-      "t": "未指定",
-      "h": 0.3
-     }
+     "行銷經理",
+     "待指派",
+     "客服主管",
+     "未指定"
     ],
     "rounds": [
      {
       "label": "第一次",
+      "from": "lot",
       "at": "r1",
-      "from": "pickw",
       "pick": 0,
       "color": "wrong"
      },
      {
       "label": "第二次",
-      "at": "r2",
       "from": "next",
+      "at": "r2",
       "pick": 1,
       "color": "right"
      }
     ],
-    "note": "示意：字和長短是舉例，不是實際機率",
-    "status": "公認原理・示意",
-    "statusAt": "lot+6",
-    "track": 1,
-    "send": "why",
-    "done": "r1",
-    "camera": [
-     {
-      "look": [
-       420,
-       220,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "抽籤": "primary"
-    }
+    "note": "示意：字是舉例，不是實際機率"
    },
    "sources": [
     "一般原理示意；字和長短是舉例"
@@ -452,37 +435,34 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "verdict",
     "tag": "比喻",
     "tagColor": "primary",
-    "a": {
-     "big": "同一顆骰子",
-     "sub": "丟兩次",
-     "at": "dice"
-    },
-    "b": {
-     "big": "點數不一定",
-     "sub": "一樣",
-     "at": "diff"
-    },
     "status": "日常比喻・示意",
     "statusAt": "dice+6",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "丟骰子": "primary"
-    }
+    },
+    "view": "draw",
+    "tone": "principle",
+    "mode": "dice",
+    "kicker": "同一顆骰子，丟兩次",
+    "rounds": [
+     {
+      "label": "第一次",
+      "at": "dice",
+      "face": 3,
+      "color": "primary"
+     },
+     {
+      "label": "第二次",
+      "at": "twice",
+      "face": 5,
+      "color": "note"
+     }
+    ],
+    "diffAt": "diff",
+    "note": "示意：點數是舉例"
    },
    "sources": [
     "日常比喻，示意；非實際機率"
@@ -516,37 +496,53 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "verdict",
     "tag": "原理",
     "tagColor": "primary",
-    "a": {
-     "big": "常見的字",
-     "sub": "比較容易被抽到",
-     "at": "common"
-    },
-    "b": {
-     "big": "少見的字",
-     "sub": "偶爾也會被抽到",
-     "at": "no-12"
-    },
     "status": "公認原理・示意",
     "statusAt": "easy+4",
     "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       0
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "不保證": "wrong"
-    }
+    },
+    "view": "chart",
+    "tone": "principle",
+    "kind": "bars",
+    "items": [
+     {
+      "t": "行銷經理",
+      "h": 0.9,
+      "color": "primary"
+     },
+     {
+      "t": "待指派",
+      "h": 0.7,
+      "color": "sky"
+     },
+     {
+      "t": "客服主管",
+      "h": 0.45,
+      "color": "note"
+     },
+     {
+      "t": "未指定",
+      "h": 0.3,
+      "color": "plum"
+     }
+    ],
+    "growAt": "start+4",
+    "mark": {
+     "idx": 0,
+     "at": "easy",
+     "text": "容易被抽到"
+    },
+    "chips": [
+     {
+      "text": "不保證每次一樣",
+      "at": "no",
+      "color": "wrong"
+     }
+    ],
+    "note": "示意：字和長短是舉例，不是實際機率"
    },
    "sources": [
     "一般原理示意；不是某個 AI 的實際機率"
@@ -576,41 +572,28 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "limit",
     "tag": "還不知道",
     "tagColor": "plum",
-    "early": true,
-    "known": {
-     "status": "已確定・實測",
-     "lines": [
-      "同一份紀錄",
-      "一般問法問了 2 次，答案不同"
-     ]
-    },
-    "unknown": {
-     "status": "查不到・還沒測",
-     "lines": [
-      "別份紀錄、別的 AI",
-      "會不會一樣，還不知道"
-     ]
-    },
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       0
-      ],
-      "zoom": 0.6,
-      "sy": 1060,
-      "dur": 12,
-      "at": "start+2"
-     }
-    ],
+    "track": 2,
     "kw": {
      "還不知道": "wrong"
     },
-    "track": 2
+    "view": "kinetic",
+    "tone": "unknown",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "份紀錄",
+      "at": "start+3",
+      "color": "primary"
+     }
+    ],
+    "q": {
+     "text": "別份會不會一樣？",
+     "at": "q"
+    },
+    "status": "查不到・還沒測",
+    "statusAt": "q"
    },
    "sources": [
     "Gemini 實測 2026/11/16；只測一份紀錄"
@@ -644,48 +627,47 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "steps",
     "tag": "所以呢",
     "tagColor": "right",
-    "steps": [
+    "track": 2,
+    "kw": {
+     "問兩次": "right"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
      {
-      "n": "1",
-      "t": "問兩次",
+      "icon": "redo",
+      "label": "問兩次",
       "sub": "同一句話跑兩遍",
       "color": "primary",
-      "at": "ask"
+      "at": "start+3"
      },
      {
-      "n": "2",
-      "t": "對一對",
+      "icon": "mag",
+      "label": "對一對",
       "sub": "答案一樣才放心",
       "color": "right",
       "at": "cmp"
      },
      {
-      "n": "3",
-      "t": "不一樣",
-      "sub": "回原文核對",
+      "icon": "text",
+      "label": "回原文核對",
+      "sub": "不一樣的時候",
       "color": "wrong",
       "at": "cmp+26"
      }
     ],
-    "track": 2,
-    "camera": [
+    "lights": [
      {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
+      "from": "ask",
+      "to": "cmp"
+     },
+     {
+      "from": "cmp+2",
+      "to": "cmp+26"
      }
-    ],
-    "kw": {
-     "問兩次": "right"
-    }
+    ]
    },
    "sources": [
     "做法整理（示意）；實測見 s02"
@@ -723,63 +705,52 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "rule",
     "tag": "解法",
     "tagColor": "right",
-    "rules": [
-     {
-      "text": "沒寫負責人或期限的就寫「未指定」",
-      "color": "right",
-      "at": "unk"
-     },
-     {
-      "text": "只根據紀錄",
-      "color": "sky",
-      "at": "only"
-     },
-     {
-      "text": "「待決定」",
-      "color": "sky",
-      "at": "only+10"
-     }
-    ],
-    "promptVerbatim": "tests/02-better.json",
-    "resultY": 176,
-    "result": {
-     "label": "再跑一次",
-     "by": "Gemini 實測・2026/11/16（節錄）",
-     "verbatim": "tests/02-better.json",
-     "at": "unk+14",
-     "rows": [
-      {
-       "cells": [
-        "未指定",
-        "排定雙十二檔期的客服排班",
-        "11 月底前"
-       ],
-       "ok": true
-      }
-     ]
-    },
-    "fix": "tried",
     "status": "已確定・實測（1 次）",
     "statusAt": "tried+6",
+    "track": 2,
     "kw": {
      "未指定": "right"
     },
-    "track": 2,
-    "camera": [
+    "view": "editor",
+    "tone": "fix",
+    "file": "prompt.txt",
+    "verbatim": "tests/02-better.json",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "start": 1,
+    "outLabel": "Gemini 實測・2026/11/16（節錄）",
+    "lines": [
      {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
+      "t": "規則：只根據紀錄，",
+      "at": "only-6",
+      "dur": 18,
+      "mark": "只根據紀錄",
+      "markAt": "only"
+     },
+     {
+      "t": "沒寫負責人或期限的就寫「未指定」，不要自己補；",
+      "at": "only+14",
+      "dur": 26,
+      "mark": "未指定",
+      "markAt": "unk"
+     },
+     {
+      "t": "還沒決定的事不要列進待辦，另外放在最後的「待決定」。",
+      "at": "unk+10",
+      "dur": 24
+     },
+     {
+      "t": "未指定｜排定雙十二檔期的客服排班｜11 月底前",
+      "kind": "out",
+      "ok": true,
+      "at": "try+6",
+      "dur": 24
      }
-    ]
+    ],
+    "size": 50
    },
    "sources": [
     "Gemini 實測 2026/11/16；只試 1 次"
@@ -809,28 +780,20 @@
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "cta",
     "tag": "領取",
     "tagColor": "right",
-    "kicker": "想要問兩次與規定的提示詞",
-    "keyword": "兩次",
-    "sub": "私訊給你提示詞＋用法",
     "track": 2,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
     "kw": {
      "兩次": "primary"
-    }
+    },
+    "view": "claim",
+    "tone": "claim",
+    "kicker": "想要問兩次與規定的提示詞",
+    "keyword": "兩次",
+    "kwAt": "kw",
+    "allAt": "all",
+    "card": "提示詞＋用法",
+    "sub": "私訊給你"
    },
    "sources": [
     "提示詞與測試紀錄整理在 CaffAIne 網站（情境示意）"
