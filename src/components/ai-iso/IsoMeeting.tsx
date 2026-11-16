@@ -70,7 +70,11 @@ const Clock: React.FC<{ min: number; hr: number; flash: number }> = ({ min, hr, 
 const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[]; shop?: boolean }> = ({ f, cam, P: Pn, panels, shop }) => {
   const hk = Pn.hook, run = Pn.run, wr = Pn.wrong, vs = Pn.vs, ru = Pn.rule, lm = Pn.limit, ct = Pn.cta;
   const tTick = hk ? hk.at("tick", FAR) : FAR, tGuess = hk ? hk.at("guess", FAR) : FAR;
-  const tSend = run ? run.at("send", FAR) : hk && hk.p.send ? hk.at("send", FAR) : FAR, tWait = run ? run.at("wait", FAR) : FAR, tDone = run ? run.at("done", FAR) : hk && hk.p.done ? hk.at("done", FAR) : FAR;
+  // 新增的 talk／pick／code 畫面：用該鏡自己的 cue「send」「wait」「done」讓螢幕開始想、想完（沒寫 wait 時，時鐘在 done 前 30 幀開始轉）
+  const dv = [Pn.talk, Pn.pick, Pn.code].filter(Boolean) as Panel[], mn = (a: number[]) => Math.min(FAR, ...a);
+  const tSend = mn([run ? run.at("send", FAR) : hk && hk.p.send ? hk.at("send", FAR) : FAR, ...dv.map((d) => d.at("send", FAR))]);
+  const tDone = mn([run ? run.at("done", FAR) : hk && hk.p.done ? hk.at("done", FAR) : FAR, ...dv.map((d) => d.at("done", FAR))]);
+  const tWait0 = mn([run ? run.at("wait", FAR) : FAR, ...dv.map((d) => d.at("wait", FAR))]), tWait = tWait0 >= FAR && tDone < FAR ? tDone - 30 : tWait0;
   const tHl = wr ? wr.at("hl", FAR) : Pn.orig ? Pn.orig.at("hl", FAR) : FAR, tFix = ru ? ru.at("fix", FAR) : FAR, tAll = ct ? ct.at("all", FAR) : FAR;
   const tVs = vs ? vs.in : FAR, tLim = lm ? lm.at("q", FAR) : FAR;
   const mode: "idle" | "think" | "done" | "ok" = f >= tAll ? "ok" : f >= tDone ? "done" : f >= tSend && tSend < FAR ? "think" : "idle";
@@ -216,10 +220,10 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     out.push(
       <div key="hk" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, color: T.ink }}>{p.title[0]}</div><br />
-        <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, marginTop: 8, color: f >= tM ? T.color.wrong.text : T.ink, transform: `scale(${f < tM ? 1 : 1 + 0.1 * Math.exp(-(f - tM) / 5)})`, transformOrigin: "0 50%" }}>{p.title[1]}</div>
+        <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, marginTop: 8, color: f >= tM ? col(p.mark?.color ?? "wrong").text : T.ink, transform: `scale(${f < tM ? 1 : 1 + 0.1 * Math.exp(-(f - tM) / 5)})`, transformOrigin: "0 50%" }}>{p.title[1]}</div>
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 36 }}>
           {(p.flow as string[]).map((t, i) => <React.Fragment key={t}>{i ? <svg width={46} height={26} viewBox="0 0 60 30"><path d="M4 15 H46 M36 5 L48 15 L36 25" fill="none" stroke={T.ink3} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" /></svg> : null}<div data-ov="流程章" style={{ ...bounce(f, tN + i * 6), ...zh, fontWeight: 900, fontSize: 38, color: i === 1 ? "#fff" : T.ink, background: i === 1 ? P.fill : T.card, borderRadius: 24, padding: "8px 20px", boxShadow: `0 7px 0 ${i === 1 ? P.side : T.cardSide}` }}>{t}</div></React.Fragment>)}
-          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.08), ...zh, fontWeight: 900, fontSize: 42, color: T.color.wrong.text, border: `6px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "2px 18px" }}>{p.stamp?.text}</div>
+          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.08), ...zh, fontWeight: 900, fontSize: 42, color: col(p.stamp?.color ?? "wrong").text, border: `6px solid ${col(p.stamp?.color ?? "wrong").fill}`, borderRadius: 16, background: T.card, padding: "2px 18px" }}>{p.stamp?.text}</div>
         </div>
 
       </div>,
@@ -389,6 +393,100 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
         <div style={{ display: "flex", gap: 40 }}>{[[p.a, t1, "note"], [p.b, t2, "primary"]].map(([t, at, c]) => <div key={t as string} data-ov="選項卡" style={{ ...bounce(f, at as number), width: 456 }}><div style={{ ...face(T.card, col(c as string).fill, 12), padding: "32px 24px", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ ...zh, fontWeight: 900, fontSize: 62, color: T.ink }}>{t as string}</div></div></div>)}</div>
         <div data-ov="下一集卡" style={{ ...bounce(f, tN), marginTop: 36, display: "inline-flex", alignItems: "center", gap: 18, background: col("plum").fill, borderRadius: 30, padding: "14px 34px", boxShadow: `0 8px 0 ${col("plum").side}` }}>
           <span style={{ ...zh, fontWeight: 700, fontSize: 34, color: "#fff" }}>{p.next.kicker}</span><span style={{ ...zh, fontWeight: 900, fontSize: 54, color: "#fff" }}>{p.next.text}</span>
+        </div>
+      </div>,
+    );
+  }
+  // 「我這樣交代」：一張輸入卡，中文逐字打出來（示意的交代句要標「示意」）
+  if (Pn.talk) {
+    const k = Pn.talk, p = k.p, o = 1 - O(f, k.out - 8, 8), tT = k.at(p.typeAt, k.in + 8), tC = k.at(p.chipsAt, tT + (p.typeDur ?? 34) + 6);
+    const full: string = p.line, n = Math.floor(clamp((f - tT) / (p.typeDur ?? 34)) * full.length), c = col(p.color ?? "primary");
+    out.push(
+      <div key="talk" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="說明卡" style={{ ...riseIn(f, tT - 4, 26) }}>
+          <div style={{ ...face(T.card, c.side, 12), padding: "16px 28px 22px", height: "auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}><Chip text={p.label} bg={c.fill} fg={c.on} px={30} />{p.note ? <div style={{ ...zh, fontWeight: 800, fontSize: 28, color: T.color.note.text, background: T.color.note.soft, borderRadius: 20, padding: "2px 16px" }}>{p.note}</div> : null}</div>
+            <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: p.size ?? 58, color: T.ink, marginTop: 10, lineHeight: 1.3, minHeight: (p.size ?? 58) * 1.3 * (p.lines ?? 2) }}>{full.slice(0, n)}<span style={{ opacity: Math.floor(f / 6) % 2 ? 0 : 1, color: c.fill }}>|</span></div>
+          </div>
+        </div>
+        {(p.chips as string[] | undefined) ? <div style={{ display: "flex", gap: 18, marginTop: 24 }}>{(p.chips as string[]).map((t, i) => <div key={t} data-ov="流程章" style={{ ...bounce(f, tC + i * 8), ...zh, fontWeight: 900, fontSize: 40, color: i === 0 ? "#fff" : T.ink, background: i === 0 ? P.fill : T.card, borderRadius: 24, padding: "8px 24px", boxShadow: `0 7px 0 ${i === 0 ? P.side : T.cardSide}` }}>{t}</div>)}</div> : null}
+      </div>,
+    );
+  }
+  // 程式檔節錄：每一行都是 repo 裡真的有的那一行（validate 逐行比對 src），旁邊貼一個數字章
+  if (Pn.code) {
+    const g = Pn.code, p = g.p, o = 1 - O(f, g.out - 8, 8), t0 = g.in + 3, gap = p.gap ?? 8, tH = g.at(p.hlAt, g.in + 60), tB = g.at(p.badge?.at, g.in + 50);
+    const ls = p.lines as string[], from = (p.from as number) ?? 1;
+    out.push(
+      <div key="code" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="說明卡" style={{ ...riseIn(f, t0, 26) }}>
+          <div style={{ ...face(T.card, P.side, 12), padding: "14px 22px 18px", height: "auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8 }}><Chip text={p.kind ?? "程式檔"} bg={P.fill} fg="#fff" px={30} /><div style={{ ...en, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.file}</div></div>
+            {ls.map((ln, i) => { const hl = p.hl === i && f >= tH; return (
+              <div key={i} style={{ ...riseIn(f, t0 + 8 + i * gap, 14), display: "flex", alignItems: "center", gap: 18, background: hl ? T.color.note.soft : "transparent", borderRadius: 12, padding: "3px 10px", boxShadow: hl ? `inset 0 0 0 4px ${T.color.note.fill}` : undefined }}>
+                <div style={{ ...en, fontWeight: 700, fontSize: 28, color: T.ink3, width: 64, textAlign: "right", flexShrink: 0 }}>{(p.nums as number[] | undefined)?.[i] ?? from + i}</div>
+                <div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink }}>{ln}</div>
+              </div>); })}
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22 }}>
+          <div data-ov="數字章" style={{ ...bounce(f, tB), display: "inline-flex", alignItems: "baseline", gap: 12, background: col(p.badge?.color ?? "primary").fill, borderRadius: 28, padding: "6px 30px 10px", boxShadow: `0 8px 0 ${col(p.badge?.color ?? "primary").side}` }}>
+            <span style={{ ...en, fontWeight: 900, fontSize: 84, color: "#fff" }}>{p.badge?.num}</span><span style={{ ...zh, fontWeight: 900, fontSize: 40, color: "#fff" }}>{p.badge?.unit}</span>
+          </div>
+        </div>
+      </div>,
+    );
+  }
+  // 三步驟：三張卡依序彈出
+  if (Pn.steps) {
+    const g = Pn.steps, p = g.p, o = 1 - O(f, g.out - 8, 8);
+    const st = p.steps as { n: string; t: string; sub: string; color: string; at: any }[];
+    out.push(
+      <div key="steps" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o, display: "flex", gap: 24 }}>
+        {st.map((s, i) => { const c = col(s.color); return (
+          <div key={i} data-ov={`步驟${i + 1}`} style={{ ...bounce(f, g.at(s.at, g.in + 8 + i * 22)), width: 301 }}>
+            <div style={{ ...face(T.card, c.side, 12), padding: "18px 20px 24px", height: "auto", minHeight: 300 }}>
+              <div style={{ ...en, display: "inline-flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: 32, background: c.fill, color: c.on, fontWeight: 900, fontSize: 40 }}>{s.n}</div>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: 46, color: T.ink, marginTop: 12, lineHeight: 1.2 }}>{s.t}</div>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 700, fontSize: 30, color: T.ink2, marginTop: 10, lineHeight: 1.25 }}>{s.sub}</div>
+            </div>
+          </div>); })}
+      </div>,
+    );
+  }
+  // 「AI 挑下一個字」示意：候選字長條 ＋ 指標跳動 ＋ 落定，兩輪結果並排留在畫面上
+  if (Pn.pick) {
+    const k = Pn.pick, p = k.p, o = 1 - O(f, k.out - 8, 8);
+    const opts = p.options as { t: string; h: number }[], rounds = p.rounds as { label: string; at: any; pick: number; color: string }[];
+    const tG = k.at(p.growAt, k.in + 10), tR = rounds.map((r, i) => k.at(r.at, k.in + 40 + i * 50));
+    const tS = rounds.map((r, i) => (r.from ? Math.min(k.at(r.from, tR[i] - 16), tR[i] - 16) : tR[i] - 16));
+    const ri = tR.reduce((a, t, i) => (f >= tS[i] ? i : a), 0), locked = f >= tR[ri], hopping = f >= tS[ri] && !locked;
+    const ptr = locked ? rounds[ri].pick : Math.floor(Math.max(0, f - tS[ri]) / (3 + Math.round(4 * clamp((f - tS[ri]) / Math.max(1, tR[ri] - tS[ri]))))) % opts.length;
+    const COLW = 227, BARW = 140, BARH = 120;
+    const word = locked ? opts[rounds[ri].pick].t : "";
+    out.push(
+      <div key="pick" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="說明卡" style={{ ...riseIn(f, k.in + 3, 26) }}>
+          <div style={{ ...face(T.card, P.side, 12), padding: "14px 22px 16px", height: "auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}><Chip text="AI 挑下一個字" bg={P.fill} fg="#fff" px={30} /><div style={{ ...zh, fontWeight: 800, fontSize: 28, color: T.color.note.text, background: T.color.note.soft, borderRadius: 20, padding: "2px 16px" }}>示意：字和長短是舉例</div></div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 8 }}>
+              <div style={{ ...zh, fontWeight: 900, fontSize: 48, color: T.ink }}>{p.stem}</div>
+              <div style={{ minWidth: 250, borderBottom: `6px dashed ${locked ? "transparent" : T.ink3}`, textAlign: "center" }}>
+                <span data-ov="落字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 48, color: col(rounds[ri].color).text, background: locked ? col(rounds[ri].color).soft : "transparent", borderRadius: 14, padding: "0 14px", ...(locked ? bounce(f, tR[ri]) : { opacity: 0 }) }}>{word || "　"}</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", marginTop: 10, height: BARH + 78 }}>
+              {opts.map((op, i) => { const on = ptr === i && (hopping || locked), pk = locked && ptr === i; const c = pk ? col(rounds[ri].color) : P; return (
+                <div key={op.t} style={{ width: COLW, display: "flex", flexDirection: "column", justifyContent: "flex-end", alignItems: "center" }}>
+                  <svg width={36} height={28} viewBox="0 0 36 28" style={{ opacity: on ? 1 : 0, marginBottom: 4 }}><path d="M4 4 H32 L18 24 Z" fill={c.fill} /></svg>
+                  <div style={{ width: BARW, height: Math.max(6, op.h * BARH * tween(f, tG + i * 4, 12, EASE.enter)), background: on ? c.fill : T.line, borderRadius: "14px 14px 4px 4px", boxShadow: on ? `0 6px 0 ${c.side}` : undefined }} />
+                  <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: on ? c.text : T.ink2, marginTop: 8 }}>{op.t}</div>
+                </div>); })}
+            </div>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+          {rounds.map((r, i) => <div key={i} data-ov="答案章" style={{ ...bounce(f, tR[i] + 2), ...zh, fontWeight: 900, fontSize: 38, color: col(r.color).text, background: col(r.color).soft, borderRadius: 24, padding: "8px 22px", boxShadow: `0 7px 0 ${col(r.color).fill}`, opacity: f >= tR[i] ? undefined : 0 }}>{r.label}：{opts[r.pick].t}</div>)}
         </div>
       </div>,
     );

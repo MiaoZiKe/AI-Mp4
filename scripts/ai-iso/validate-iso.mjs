@@ -68,7 +68,7 @@ export function validateIso(script, h) {
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
     const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
-    const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta"];
+    const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick"];
     if (script.isoVersion === 5 && !caff) {
       if (!KINDS5.includes(p.panel)) E(`${tag}: isoVersion 5 的 props.panel「${p.panel}」不存在（${KINDS5.join("／")}）`);
       // 會議紀錄片：放 AI 回答的地方（wrong｜vs｜rule）要標實測＋節錄，每一格文字都要是實測原文的一部分（只能刪節，不能改字）；來源紀錄與提示規則也逐字比對
@@ -84,6 +84,20 @@ export function validateIso(script, h) {
       if (p.panel === "guess") { for (const [k, fn] of [["a", p.a?.verbatim], ["b", p.b?.verbatim]]) { const ans = ansOf(fn); if (ans === null || !ans.includes(strip(p[k]?.text ?? "\u0000"))) E(`${tag}: ${k}.text「${p[k]?.text}」不是實測原文`); } }
       if (p.panel === "verdict" && p.table) { if (!/實測/.test(p.table.by ?? "") || !/節錄/.test(p.table.by ?? "")) E(`${tag}: 比價表節錄要標示實測與節錄（table.by）`); const ans = ansOf(p.table.verbatim); if (ans === null) E(`${tag}: table 要寫 verbatim`); else for (const c of [...(p.table.head ?? []), ...(p.table.rows ?? []).flat()]) if (!ans.includes(strip(c))) E(`${tag}: 比價表「${c}」不是實測原文（只能刪節，不能改字）`); }
       if (p.panel === "price") { const fm = (n) => "$" + Number(n).toLocaleString("en-US"); const files = ["tests/pchome-body.txt", "tests/etmall-body.txt"]; (p.sites ?? []).forEach((r, i) => { const tx = rd(files[i]); if (tx === null) return E(`${tag}: 找不到 ${files[i]}`); for (const n of [r.orig, r.now]) if (!tx.includes(fm(n))) E(`${tag}: ${r.name} 的 ${fm(n)} 不在頁面文字 ${files[i]} 裡`); if (!tx.includes(p.model ?? "\u0000")) E(`${tag}: 型號「${p.model}」不在 ${files[i]} 裡`); }); }
+      if (p.panel === "code") {
+        // 程式檔節錄：每一行都要和 repo 檔案的指定行號逐字相同；數字章要有 proof（至少多少行），實際行數要夠
+        const fp = path.join(ROOT, p.src ?? "\u0000");
+        if (!fs.existsSync(fp)) E(`${tag}: props.src「${p.src}」不是 repo 裡的檔案`);
+        else { const all = fs.readFileSync(fp, "utf8").split("\n"); (p.lines ?? []).forEach((ln, i) => { const n = (p.nums ?? [])[i] ?? (p.from ?? 1) + i; if ((all[n - 1] ?? "").trim() !== String(ln).trim()) E(`${tag}: 第 ${n} 行不是 ${p.src} 的原文：「${ln}」`); }); }
+        const pf = p.badge?.proof;
+        if (!pf) E(`${tag}: badge 要有 proof（{ files|dir, ext?, atLeast }），數字要從 repo 算得出來`);
+        else {
+          const files = pf.files ? pf.files : fs.readdirSync(path.join(ROOT, pf.dir)).filter((x) => (pf.ext ?? [".tsx"]).some((e) => x.endsWith(e))).map((x) => path.join(pf.dir, x));
+          const lines = files.reduce((a, x) => a + fs.readFileSync(path.join(ROOT, x), "utf8").split("\n").length - 1, 0);
+          if (lines < pf.atLeast) E(`${tag}: badge「${p.badge.num}」要求至少 ${pf.atLeast} 行，實際只有 ${lines} 行（${files.length} 個檔）`);
+        }
+      }
+      if (p.panel === "pick") { if ((p.rounds ?? []).length < 2) E(`${tag}: pick 要兩輪（rounds），才能對照`); for (const r of p.rounds ?? []) if (!(p.options ?? [])[r.pick]) E(`${tag}: rounds.pick ${r.pick} 超出 options`); if (!/示意/.test(JSON.stringify(p.note ?? "示意"))) W(`${tag}: pick 要標示示意`); }
       if (p.panel === "vs") { quote(p.top ?? {}, [p.top?.cells ?? []], "top"); quote(p.bottom ?? {}, [p.bottom?.cells ?? []], "bottom"); }
       if (p.panel === "rule") { quote(p.result ?? {}, p.result?.rows ?? [], "result"); const pj = rd(p.promptVerbatim); const pr = pj ? strip(JSON.parse(pj).prompt ?? "") : null; for (const q of p.rules ?? []) if (pr === null || !pr.includes(strip(q.text))) E(`${tag}: 規則「${q.text}」不在實測提示裡`); }
     } else if (script.isoVersion === 4 && !caff) { if (!KINDS4.includes(p.panel)) E(`${tag}: isoVersion 4 的 props.panel「${p.panel}」不存在（${KINDS4.join("／")}）`); }

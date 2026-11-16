@@ -1,0 +1,688 @@
+{
+ "slug": "caffaine-made-by-ai",
+ "title": "這支影片的動畫，是我叫 AI 做的（CaffAIne 無聲版）",
+ "asOf": "2026/11/16",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 5,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "這支動畫",
+   "AI 做的，沒寫程式"
+  ],
+  "sub": "不會寫程式，也能做出會動的影片"
+ },
+ "tracker": [
+  [
+   "一句話",
+   "note"
+  ],
+  [
+   "AI 寫程式",
+   "primary"
+  ],
+  [
+   "動畫",
+   "right"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "你正在看的這支動畫，是我叫 AI 做的，我一行程式都沒寫。",
+   "subtitle": {
+    "zh": "你正在看的這支動畫\n是我叫 AI 做的\n我一行程式都沒寫",
+    "en": "This animation was made by AI. | I wrote zero lines of code."
+   },
+   "keywords": [
+    "AI 做的"
+   ],
+   "cues": [
+    {
+     "id": "ai",
+     "text": "叫 AI 做的"
+    },
+    {
+     "id": "zero",
+     "text": "一行程式"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "hook",
+    "tag": "事件",
+    "tagColor": "primary",
+    "asOf": "查證截至 2026/11/16",
+    "title": [
+     "這支動畫",
+     "AI 做的，沒寫程式"
+    ],
+    "size": 100,
+    "mark": {
+     "text": "AI 做的",
+     "at": "ai",
+     "color": "primary"
+    },
+    "stamp": {
+     "text": "AI 寫的程式",
+     "at": "zero",
+     "color": "primary"
+    },
+    "count": {
+     "at": "ai+10"
+    },
+    "flow": [
+     "一句中文",
+     "AI 寫程式",
+     "會動的影片"
+    ],
+    "status": "已確定・本片製作紀錄",
+    "statusAt": "zero+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "AI 做的": "primary"
+    }
+   },
+   "sources": [
+    "本片製作紀錄：程式與腳本都在本 repo，查證截至 2026/11/16"
+   ],
+   "para": 1,
+   "tts": "你正在看的這支動畫，是我叫 A I 做的，我一行程式都沒寫。"
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "narration": "怎麼做的？很簡單，我只用中文，交代它要什麼。",
+   "subtitle": {
+    "zh": "怎麼做的？\n很簡單\n我只用中文\n交代它要什麼",
+    "en": "How? Simple. I only use plain Chinese | to tell it what I want."
+   },
+   "keywords": [
+    "只用中文"
+   ],
+   "cues": [
+    {
+     "id": "how",
+     "text": "怎麼做的"
+    },
+    {
+     "id": "say",
+     "text": "只用中文"
+    },
+    {
+     "id": "send",
+     "text": "交代它"
+    },
+    {
+     "id": "done",
+     "text": "要什麼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "talk",
+    "tag": "步驟 1",
+    "tagColor": "note",
+    "label": "我這樣交代",
+    "note": "示意：交代句是範例",
+    "line": "做一支 30 秒的短影片，講 AI 整理會議紀錄。",
+    "typeAt": "say",
+    "typeDur": 38,
+    "lines": 2,
+    "size": 56,
+    "chips": [
+     "中文就好",
+     "不用寫程式"
+    ],
+    "chipsAt": "done",
+    "status": "示意・交代句是範例",
+    "statusAt": "how+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       420,
+       220,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "只用中文": "primary"
+    }
+   },
+   "sources": [
+    "示意：交代句是範例，不是原始紀錄"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "AI 先寫成腳本檔，會議紀錄那支有六百多行，全是文字。",
+   "subtitle": {
+    "zh": "AI 先寫成腳本檔\n會議紀錄那支\n有六百多行\n全是文字",
+    "en": "AI writes a script file first. | The last one has 600+ lines, all text."
+   },
+   "keywords": [
+    "全是文字"
+   ],
+   "cues": [
+    {
+     "id": "file",
+     "text": "腳本檔"
+    },
+    {
+     "id": "num",
+     "text": "六百多行"
+    },
+    {
+     "id": "all",
+     "text": "全是文字"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "code",
+    "tag": "步驟 2",
+    "tagColor": "primary",
+    "kind": "腳本檔",
+    "file": "caffaine-meeting-todo/script.json",
+    "src": "videos/caffaine-meeting-todo/script.json",
+    "lines": [
+     "\"id\": \"s03\",",
+     "\"beat\": \"twist\",",
+     "\"narration\": \"它卻填了行銷經理。\",",
+     "\"zh\": \"它卻填了行銷經理\","
+    ],
+    "nums": [
+     169,
+     170,
+     171,
+     173
+    ],
+    "gap": 9,
+    "hl": 2,
+    "hlAt": "all",
+    "badge": {
+     "num": "600+",
+     "unit": "行，全是文字",
+     "at": "num",
+     "color": "primary",
+     "proof": {
+      "files": [
+       "videos/caffaine-meeting-todo/script.json"
+      ],
+      "atLeast": 600
+     }
+    },
+    "status": "已確定・repo 實際檔案",
+    "statusAt": "num+8",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "全是文字": "primary"
+    }
+   },
+   "sources": [
+    "本 repo：script.json 共 604 行"
+   ],
+   "para": 1,
+   "tts": "A I 先寫成腳本檔，會議紀錄那支有六百多行，全是文字。"
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "narration": "畫面是另一批程式畫出來的，三千多行，也是 AI 寫的。",
+   "subtitle": {
+    "zh": "畫面是另一批程式畫的\n三千多行\n也是 AI 寫的",
+    "en": "Another batch of code draws it: | 3,000+ lines, also written by AI."
+   },
+   "keywords": [
+    "AI 寫的"
+   ],
+   "cues": [
+    {
+     "id": "draw",
+     "text": "另一批程式"
+    },
+    {
+     "id": "num",
+     "text": "三千多行"
+    },
+    {
+     "id": "ai",
+     "text": "AI 寫的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "code",
+    "tag": "步驟 3",
+    "tagColor": "primary",
+    "kind": "動畫程式",
+    "file": "src/components/ai-iso/IsoMeeting.tsx",
+    "src": "src/components/ai-iso/IsoMeeting.tsx",
+    "lines": [
+     "const DESKW = 760, DESKH = 600;",
+     "const ROWS = 6;"
+    ],
+    "nums": [
+     23,
+     29
+    ],
+    "gap": 12,
+    "hl": 0,
+    "hlAt": "ai",
+    "badge": {
+     "num": "3,000+",
+     "unit": "行程式碼",
+     "at": "num",
+     "color": "primary",
+     "proof": {
+      "dir": "src/components/ai-iso",
+      "ext": [
+       ".tsx"
+      ],
+      "atLeast": 3000
+     }
+    },
+    "status": "已確定・repo 實際檔案",
+    "statusAt": "num+8",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "AI 寫的": "primary"
+    }
+   },
+   "sources": [
+    "本 repo：ai-iso 資料夾 12 個檔"
+   ],
+   "para": 1,
+   "tts": "畫面是另一批程式畫出來的，三千多行，也是 A I 寫的。"
+  },
+  {
+   "id": "s05",
+   "beat": "twist",
+   "narration": "但第一版被退件，評語是：開頭就不知道要幹嘛。",
+   "subtitle": {
+    "zh": "但第一版被退件\n評語是\n開頭就不知道要幹嘛",
+    "en": "But version 1 was rejected: | “no idea what it’s about”."
+   },
+   "keywords": [
+    "被退件"
+   ],
+   "cues": [
+    {
+     "id": "fail",
+     "text": "被退件"
+    },
+    {
+     "id": "why",
+     "text": "開頭就不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "orig",
+    "tag": "翻車",
+    "tagColor": "wrong",
+    "label": "第一版（會議紀錄那支）被退件的評語",
+    "text": "他要表達什麼，前面開頭就不知道他要幹嘛",
+    "mark": "前面開頭就不知道他要幹嘛",
+    "markAt": "why",
+    "hl": "why",
+    "verbatim": "tests/feedback.txt",
+    "status": "已確定・內部評語",
+    "statusAt": "fail+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       420,
+       220,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "被退件": "wrong"
+    }
+   },
+   "sources": [
+    "退件評語：AI 教學手冊第十三節"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "payoff",
+   "narration": "所以我多交代一句：動工前，先用一句話寫出重點。",
+   "subtitle": {
+    "zh": "所以我多交代一句\n動工前\n先用一句話寫出重點",
+    "en": "So I added one rule: | state the point in one sentence first."
+   },
+   "keywords": [
+    "一句話"
+   ],
+   "cues": [
+    {
+     "id": "add",
+     "text": "多交代一句"
+    },
+    {
+     "id": "send",
+     "text": "動工前"
+    },
+    {
+     "id": "one",
+     "text": "一句話"
+    },
+    {
+     "id": "done",
+     "text": "寫出重點"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "talk",
+    "tag": "修正",
+    "tagColor": "right",
+    "color": "right",
+    "label": "我多交代的一句",
+    "note": "示意：交代句是範例",
+    "line": "動工前，先用一句話寫出這支片的重點。",
+    "typeAt": "send",
+    "typeDur": 34,
+    "lines": 2,
+    "size": 58,
+    "chips": [
+     "重點只有一句",
+     "再開始做"
+    ],
+    "chipsAt": "done",
+    "status": "已確定・已改進做法",
+    "statusAt": "add+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "一句話": "right"
+    }
+   },
+   "sources": [
+    "做法記錄：docs/channels/ai-daily-playbook.md 第十三節"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "check",
+   "narration": "還有，字卡疊在一起，檢查程式會抓出來，再叫它改。",
+   "subtitle": {
+    "zh": "還有\n字卡疊在一起\n檢查程式會抓出來\n再叫它改",
+    "en": "Also, if cards overlap, | a checker catches it and AI fixes it."
+   },
+   "keywords": [
+    "抓出來"
+   ],
+   "cues": [
+    {
+     "id": "also",
+     "text": "字卡疊在一起"
+    },
+    {
+     "id": "catch",
+     "text": "抓出來"
+    },
+    {
+     "id": "fix",
+     "text": "叫它改"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "查證",
+    "tagColor": "right",
+    "a": {
+     "big": "每 6 幀量一次",
+     "sub": "字卡有沒有疊到",
+     "at": "also"
+    },
+    "b": {
+     "big": "疊到就改",
+     "sub": "叫 AI 改，再量一次",
+     "at": "fix-10"
+    },
+    "status": "已確定・本片製作紀錄",
+    "statusAt": "catch+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "抓出來": "right"
+    }
+   },
+   "sources": [
+    "檢查程式 ov-check：每 6 幀量一次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "so",
+   "narration": "所以不會寫程式也行，講清楚、不對就退回。",
+   "subtitle": {
+    "zh": "所以不會寫程式也行\n講清楚\n不對就退回",
+    "en": "So no coding needed: | be clear, send it back if wrong."
+   },
+   "keywords": [
+    "講清楚"
+   ],
+   "cues": [
+    {
+     "id": "a",
+     "text": "不會寫程式"
+    },
+    {
+     "id": "clear",
+     "text": "講清楚"
+    },
+    {
+     "id": "back",
+     "text": "不對就退回"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "steps",
+    "tag": "所以呢",
+    "tagColor": "primary",
+    "steps": [
+     {
+      "n": "1",
+      "t": "不用寫程式",
+      "sub": "寫程式交給 AI",
+      "color": "primary",
+      "at": "a"
+     },
+     {
+      "n": "2",
+      "t": "只要講清楚",
+      "sub": "你要什麼、給誰看",
+      "color": "note",
+      "at": "clear"
+     },
+     {
+      "n": "3",
+      "t": "不對就退回",
+      "sub": "字卡疊住？檢查程式每 6 幀量一次",
+      "color": "right",
+      "at": "back"
+     }
+    ],
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ]
+   },
+   "sources": [
+    "檢查程式 ov-check：每 6 幀量一次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "cta",
+   "narration": "留言「動畫」，拿這兩句交代 AI 的範本。",
+   "subtitle": {
+    "zh": "留言「動畫」\n拿這兩句\n交代 AI 的範本",
+    "en": "Comment “動畫” to get | the two briefing lines."
+   },
+   "keywords": [
+    "動畫"
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "動畫"
+    },
+    {
+     "id": "all",
+     "text": "範本"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "cta",
+    "tag": "領取",
+    "tagColor": "right",
+    "kicker": "想要這兩句交代 AI 的範本",
+    "keyword": "動畫",
+    "sub": "私訊給你範本＋用法",
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "動畫": "primary"
+    }
+   },
+   "sources": [
+    "範本與步驟整理在 CaffAIne 網站（示意）"
+   ],
+   "para": 1,
+   "tts": "留言「動畫」，拿這兩句交代 A I 的範本。"
+  },
+  {
+   "id": "s10",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "動畫"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

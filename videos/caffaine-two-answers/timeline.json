@@ -1,0 +1,951 @@
+{
+ "version": 2,
+ "slug": "caffaine-two-answers",
+ "fps": 30,
+ "totalFrames": 1041,
+ "totalSec": 34.7,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 4.694,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 154,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 146,
+   "stillFrame": 144,
+   "subtitleWindow": [
+    0,
+    151
+   ],
+   "sourceWindow": [
+    0,
+    149
+   ],
+   "lines": [
+    {
+     "text": "同一份會議紀錄",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      14,
+      19,
+      25,
+      30,
+      35
+     ]
+    },
+    {
+     "text": "同一句話",
+     "start": 45,
+     "chars": [
+      47,
+      52,
+      58,
+      63
+     ]
+    },
+    {
+     "text": "我問 AI 兩次",
+     "start": 72,
+     "chars": [
+      74,
+      80,
+      80,
+      85,
+      90,
+      90,
+      96,
+      101
+     ]
+    },
+    {
+     "text": "答案卻不一樣",
+     "start": 110,
+     "chars": [
+      113,
+      118,
+      123,
+      128,
+      134,
+      139
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "不一樣",
+     "start": 128
+    }
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同一句話",
+     "frame": 48
+    },
+    {
+     "id": "twice",
+     "text": "兩次",
+     "frame": 97
+    },
+    {
+     "id": "diff",
+     "text": "不一樣",
+     "frame": 130
+    }
+   ],
+   "sub": "同一份會議紀錄\n同一句話\n我問 AI 兩次\n答案卻不一樣",
+   "provider": "estimate",
+   "syllables": 23,
+   "words": [],
+   "charTimes": [
+    0,
+    0.176,
+    0.353,
+    0.529,
+    0.706,
+    0.882,
+    1.059,
+    1.447,
+    1.623,
+    1.8,
+    1.976,
+    2.365,
+    2.541,
+    2.718,
+    2.894,
+    3.07,
+    3.247,
+    3.635,
+    3.812,
+    3.988,
+    4.164,
+    4.341,
+    4.517
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 155,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 144,
+   "durationFrames": 111,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 154,
+   "voiceEndFrame": 247,
+   "stillFrame": 245,
+   "subtitleWindow": [
+    151,
+    252
+   ],
+   "sourceWindow": [
+    149,
+    250
+   ],
+   "lines": [
+    {
+     "text": "第一次寫行銷經理",
+     "start": 151,
+     "chars": [
+      154,
+      159,
+      165,
+      171,
+      176,
+      182,
+      188,
+      193
+     ]
+    },
+    {
+     "text": "第二次寫待指派",
+     "start": 204,
+     "chars": [
+      206,
+      211,
+      217,
+      223,
+      228,
+      234,
+      240
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "待指派",
+     "start": 228
+    }
+   ],
+   "cues": [
+    {
+     "id": "first",
+     "text": "第一次",
+     "frame": 155
+    },
+    {
+     "id": "second",
+     "text": "第二次",
+     "frame": 207
+    },
+    {
+     "id": "diff",
+     "text": "待指派",
+     "frame": 230
+    }
+   ],
+   "sub": "第一次寫行銷經理\n第二次寫待指派",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
+   "charTimes": [
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 256,
+   "audioSec": 7.347,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 245,
+   "durationFrames": 240,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 255,
+   "voiceEndFrame": 477,
+   "stillFrame": 475,
+   "subtitleWindow": [
+    252,
+    482
+   ],
+   "sourceWindow": [
+    250,
+    480
+   ],
+   "lines": [
+    {
+     "text": "為什麼？",
+     "start": 252,
+     "chars": [
+      255,
+      260,
+      265,
+      265
+     ]
+    },
+    {
+     "text": "因為 AI",
+     "start": 275,
+     "chars": [
+      277,
+      282,
+      282,
+      288,
+      293
+     ]
+    },
+    {
+     "text": "一個字一個字挑",
+     "start": 303,
+     "chars": [
+      305,
+      310,
+      316,
+      321,
+      327,
+      332,
+      337
+     ]
+    },
+    {
+     "text": "像抽籤",
+     "start": 347,
+     "chars": [
+      349,
+      354,
+      360
+     ]
+    },
+    {
+     "text": "這次抽到行銷經理",
+     "start": 370,
+     "chars": [
+      372,
+      377,
+      382,
+      388,
+      393,
+      399,
+      404,
+      409
+     ]
+    },
+    {
+     "text": "下次就可能抽到待指派",
+     "start": 419,
+     "chars": [
+      421,
+      427,
+      432,
+      437,
+      443,
+      448,
+      453,
+      459,
+      464,
+      470
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "抽籤",
+     "start": 354
+    }
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼",
+     "frame": 256
+    },
+    {
+     "id": "pickw",
+     "text": "一個字一個字挑",
+     "frame": 307
+    },
+    {
+     "id": "lot",
+     "text": "抽籤",
+     "frame": 356
+    },
+    {
+     "id": "r1",
+     "text": "抽到行銷經理",
+     "frame": 384
+    },
+    {
+     "id": "next",
+     "text": "下次",
+     "frame": 423
+    },
+    {
+     "id": "r2",
+     "text": "抽到待指派",
+     "frame": 450
+    }
+   ],
+   "sub": "為什麼？\n因為 AI\n一個字一個字挑\n像抽籤\n這次抽到行銷經理\n下次就可能抽到待指派",
+   "provider": "estimate",
+   "syllables": 36,
+   "words": [],
+   "charTimes": [
+    0,
+    0.179,
+    0.358,
+    0.753,
+    0.932,
+    1.111,
+    1.29,
+    1.684,
+    1.864,
+    2.043,
+    2.222,
+    2.401,
+    2.58,
+    2.76,
+    3.154,
+    3.333,
+    3.512,
+    3.906,
+    4.086,
+    4.265,
+    4.444,
+    4.623,
+    4.802,
+    4.982,
+    5.161,
+    5.555,
+    5.734,
+    5.913,
+    6.093,
+    6.272,
+    6.451,
+    6.63,
+    6.809,
+    6.989,
+    7.168
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 485,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 475,
+   "durationFrames": 135,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 485,
+   "voiceEndFrame": 602,
+   "stillFrame": 600,
+   "subtitleWindow": [
+    482,
+    607
+   ],
+   "sourceWindow": [
+    480,
+    605
+   ],
+   "lines": [
+    {
+     "text": "常見的字比較容易被抽到",
+     "start": 482,
+     "chars": [
+      484,
+      489,
+      495,
+      501,
+      507,
+      512,
+      518,
+      524,
+      530,
+      535,
+      541
+     ]
+    },
+    {
+     "text": "但不保證每次一樣",
+     "start": 552,
+     "chars": [
+      554,
+      560,
+      565,
+      571,
+      577,
+      583,
+      588,
+      594
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "不保證",
+     "start": 560
+    }
+   ],
+   "cues": [
+    {
+     "id": "common",
+     "text": "常見的字",
+     "frame": 485
+    },
+    {
+     "id": "easy",
+     "text": "容易被抽到",
+     "frame": 520
+    },
+    {
+     "id": "no",
+     "text": "不保證",
+     "frame": 561
+    }
+   ],
+   "sub": "常見的字比較容易被抽到\n但不保證每次一樣",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
+   "charTimes": [
+    0,
+    0.192,
+    0.384,
+    0.576,
+    0.768,
+    0.96,
+    1.152,
+    1.344,
+    1.536,
+    1.728,
+    1.92,
+    2.342,
+    2.534,
+    2.726,
+    2.918,
+    3.11,
+    3.302,
+    3.494,
+    3.686
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 610,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 600,
+   "durationFrames": 92,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 610,
+   "voiceEndFrame": 684,
+   "stillFrame": 682,
+   "subtitleWindow": [
+    607,
+    689
+   ],
+   "sourceWindow": [
+    605,
+    687
+   ],
+   "lines": [
+    {
+     "text": "所以重要的事",
+     "start": 607,
+     "chars": [
+      609,
+      614,
+      619,
+      624,
+      629,
+      634
+     ]
+    },
+    {
+     "text": "問兩次",
+     "start": 643,
+     "chars": [
+      645,
+      650,
+      655
+     ]
+    },
+    {
+     "text": "對一對",
+     "start": 665,
+     "chars": [
+      667,
+      672,
+      677
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "問兩次",
+     "start": 645
+    }
+   ],
+   "cues": [
+    {
+     "id": "imp",
+     "text": "重要的事",
+     "frame": 620
+    },
+    {
+     "id": "ask",
+     "text": "問兩次",
+     "frame": 647
+    },
+    {
+     "id": "cmp",
+     "text": "對一對",
+     "frame": 668
+    }
+   ],
+   "sub": "所以重要的事\n問兩次\n對一對",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.17,
+    0.34,
+    0.51,
+    0.68,
+    0.85,
+    1.224,
+    1.395,
+    1.565,
+    1.939,
+    2.109,
+    2.279
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": null,
+   "audioFrame": 693,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 682,
+   "durationFrames": 179,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 692,
+   "voiceEndFrame": 853,
+   "stillFrame": 851,
+   "subtitleWindow": [
+    689,
+    858
+   ],
+   "sourceWindow": [
+    687,
+    856
+   ],
+   "lines": [
+    {
+     "text": "或者規定它",
+     "start": 689,
+     "chars": [
+      692,
+      697,
+      702,
+      707,
+      712
+     ]
+    },
+    {
+     "text": "只根據資料",
+     "start": 721,
+     "chars": [
+      724,
+      729,
+      734,
+      739,
+      744
+     ]
+    },
+    {
+     "text": "沒寫的填未指定",
+     "start": 753,
+     "chars": [
+      756,
+      761,
+      766,
+      771,
+      776,
+      781,
+      787
+     ]
+    },
+    {
+     "text": "我們試了一次",
+     "start": 796,
+     "chars": [
+      798,
+      803,
+      808,
+      813,
+      819,
+      824
+     ]
+    },
+    {
+     "text": "它照做",
+     "start": 833,
+     "chars": [
+      835,
+      840,
+      846
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "未指定",
+     "start": 776
+    }
+   ],
+   "cues": [
+    {
+     "id": "only",
+     "text": "只根據資料",
+     "frame": 725
+    },
+    {
+     "id": "unk",
+     "text": "沒寫的填未指定",
+     "frame": 757
+    },
+    {
+     "id": "try",
+     "text": "試了一次",
+     "frame": 810
+    },
+    {
+     "id": "tried",
+     "text": "它照做",
+     "frame": 837
+    }
+   ],
+   "sub": "或者規定它\n只根據資料\n沒寫的填未指定\n我們試了一次\n它照做",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.172,
+    0.345,
+    0.517,
+    0.689,
+    1.068,
+    1.24,
+    1.413,
+    1.585,
+    1.757,
+    2.136,
+    2.309,
+    2.481,
+    2.653,
+    2.825,
+    2.998,
+    3.17,
+    3.549,
+    3.721,
+    3.893,
+    4.066,
+    4.238,
+    4.41,
+    4.789,
+    4.962,
+    5.134
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 861,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 851,
+   "durationFrames": 92,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 861,
+   "voiceEndFrame": 935,
+   "stillFrame": 933,
+   "subtitleWindow": [
+    858,
+    943
+   ],
+   "sourceWindow": [
+    856,
+    938
+   ],
+   "lines": [
+    {
+     "text": "留言「兩次」",
+     "start": 858,
+     "chars": [
+      860,
+      865,
+      865,
+      871,
+      876,
+      876
+     ]
+    },
+    {
+     "text": "拿這兩招的提示詞",
+     "start": 886,
+     "chars": [
+      888,
+      894,
+      900,
+      905,
+      911,
+      916,
+      922,
+      927
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩次",
+     "start": 871
+    }
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "兩次",
+     "frame": 872
+    },
+    {
+     "id": "all",
+     "text": "提示詞",
+     "frame": 918
+    }
+   ],
+   "sub": "留言「兩次」\n拿這兩招的提示詞",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.371,
+    0.557,
+    0.965,
+    1.15,
+    1.336,
+    1.521,
+    1.707,
+    1.892,
+    2.078,
+    2.263
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": null,
+   "audioFrame": 933,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 933,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 943,
+   "voiceEndFrame": 943,
+   "stillFrame": 1029,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    938,
+    1041
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}

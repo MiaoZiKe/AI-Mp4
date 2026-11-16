@@ -1,0 +1,610 @@
+{
+ "slug": "caffaine-two-answers",
+ "title": "同一句話問 AI 兩次，答案為什麼不一樣（CaffAIne 無聲版）",
+ "asOf": "2026/11/16",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 5,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "同一句話問兩次",
+   "答案不一樣"
+  ],
+  "sub": "AI 是一個字一個字挑的"
+ },
+ "tracker": [
+  [
+   "同一句話",
+   "note"
+  ],
+  [
+   "AI 抽字",
+   "primary"
+  ],
+  [
+   "答案不同",
+   "wrong"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "同一份會議紀錄、同一句話，我問 AI 兩次，答案卻不一樣。",
+   "subtitle": {
+    "zh": "同一份會議紀錄\n同一句話\n我問 AI 兩次\n答案卻不一樣",
+    "en": "Same notes, same sentence. | I asked AI twice. The answers differed."
+   },
+   "keywords": [
+    "不一樣"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同一句話"
+    },
+    {
+     "id": "twice",
+     "text": "兩次"
+    },
+    {
+     "id": "diff",
+     "text": "不一樣"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "hook",
+    "tag": "事件",
+    "tagColor": "wrong",
+    "asOf": "查證截至 2026/11/16",
+    "title": [
+     "同一句話問兩次",
+     "答案不一樣"
+    ],
+    "size": 108,
+    "mark": {
+     "text": "答案不一樣",
+     "at": "diff",
+     "color": "wrong"
+    },
+    "stamp": {
+     "text": "兩次不同",
+     "at": "diff+2",
+     "color": "wrong"
+    },
+    "count": {
+     "at": "same+8"
+    },
+    "flow": [
+     "會議紀錄",
+     "AI",
+     "兩個答案"
+    ],
+    "status": "已確定・實測",
+    "statusAt": "twice+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "不一樣": "wrong"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16（虛構紀錄，情境示意）"
+   ],
+   "para": 1,
+   "tts": "同一份會議紀錄、同一句話，我問 A I 兩次，答案卻不一樣。"
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "第一次寫行銷經理，第二次寫待指派。",
+   "subtitle": {
+    "zh": "第一次寫行銷經理\n第二次寫待指派",
+    "en": "First: marketing manager. | Second: “unassigned”."
+   },
+   "keywords": [
+    "待指派"
+   ],
+   "cues": [
+    {
+     "id": "first",
+     "text": "第一次"
+    },
+    {
+     "id": "second",
+     "text": "第二次"
+    },
+    {
+     "id": "diff",
+     "text": "待指派"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "vs",
+    "tag": "對照",
+    "tagColor": "primary",
+    "top": {
+     "label": "第一次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/01-casual.json",
+     "cells": [
+      "行銷經理",
+      "指派「雙十二客服排班」負責人",
+      "11 月底前"
+     ],
+     "at": "start"
+    },
+    "bottom": {
+     "label": "第二次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/01b-casual-run2.json",
+     "cells": [
+      "待指派",
+      "排定雙十二檔期的客服排班",
+      "11 月底前"
+     ],
+     "at": "second"
+    },
+    "badge": {
+     "text": "同一句話・兩次不同",
+     "at": "diff"
+    },
+    "status": "已確定・實測 2 次",
+    "statusAt": "diff+6",
+    "kw": {
+     "待指派": "right"
+    },
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ]
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16（虛構紀錄）；問法相同，兩次執行"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "為什麼？因為 AI 是一個字一個字挑，像抽籤。這次抽到行銷經理，下次就可能抽到待指派。",
+   "subtitle": {
+    "zh": "為什麼？\n因為 AI\n一個字一個字挑\n像抽籤\n這次抽到行銷經理\n下次就可能抽到待指派",
+    "en": "Why? AI picks one word at a time, | like a lottery. Next time, another."
+   },
+   "keywords": [
+    "抽籤"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼"
+    },
+    {
+     "id": "pickw",
+     "text": "一個字一個字挑"
+    },
+    {
+     "id": "lot",
+     "text": "抽籤"
+    },
+    {
+     "id": "r1",
+     "text": "抽到行銷經理"
+    },
+    {
+     "id": "next",
+     "text": "下次"
+    },
+    {
+     "id": "r2",
+     "text": "抽到待指派"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "pick",
+    "tag": "原理",
+    "tagColor": "primary",
+    "stem": "雙十二客服排班，負責人是",
+    "growAt": "why",
+    "options": [
+     {
+      "t": "行銷經理",
+      "h": 0.9
+     },
+     {
+      "t": "待指派",
+      "h": 0.7
+     },
+     {
+      "t": "客服主管",
+      "h": 0.45
+     },
+     {
+      "t": "未指定",
+      "h": 0.3
+     }
+    ],
+    "rounds": [
+     {
+      "label": "第一次",
+      "at": "r1",
+      "from": "pickw",
+      "pick": 0,
+      "color": "wrong"
+     },
+     {
+      "label": "第二次",
+      "at": "r2",
+      "from": "next",
+      "pick": 1,
+      "color": "right"
+     }
+    ],
+    "note": "示意：字和長短是舉例，不是實際機率",
+    "status": "公認原理・示意",
+    "statusAt": "lot+6",
+    "track": 1,
+    "send": "why",
+    "done": "r1",
+    "camera": [
+     {
+      "look": [
+       420,
+       220,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "抽籤": "primary"
+    }
+   },
+   "sources": [
+    "一般原理示意；字和長短是舉例"
+   ],
+   "para": 1,
+   "tts": "為什麼？因為 A I 是一個字一個字挑，像抽籤。這次抽到行銷經理，下次就可能抽到待指派。"
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "narration": "常見的字比較容易被抽到，但不保證每次一樣。",
+   "subtitle": {
+    "zh": "常見的字比較容易被抽到\n但不保證每次一樣",
+    "en": "Common words are likelier to be drawn, | but no guarantee of the same result."
+   },
+   "keywords": [
+    "不保證"
+   ],
+   "cues": [
+    {
+     "id": "common",
+     "text": "常見的字"
+    },
+    {
+     "id": "easy",
+     "text": "容易被抽到"
+    },
+    {
+     "id": "no",
+     "text": "不保證"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "原理",
+    "tagColor": "primary",
+    "a": {
+     "big": "常見的字",
+     "sub": "比較容易被抽到",
+     "at": "common"
+    },
+    "b": {
+     "big": "少見的字",
+     "sub": "偶爾也會被抽到",
+     "at": "no-12"
+    },
+    "status": "公認原理・示意",
+    "statusAt": "easy+4",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "不保證": "wrong"
+    }
+   },
+   "sources": [
+    "一般原理示意；不是某個 AI 的實際機率"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "so",
+   "narration": "所以重要的事，問兩次，對一對。",
+   "subtitle": {
+    "zh": "所以重要的事\n問兩次\n對一對",
+    "en": "So for important things, | ask twice and compare."
+   },
+   "keywords": [
+    "問兩次"
+   ],
+   "cues": [
+    {
+     "id": "imp",
+     "text": "重要的事"
+    },
+    {
+     "id": "ask",
+     "text": "問兩次"
+    },
+    {
+     "id": "cmp",
+     "text": "對一對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "steps",
+    "tag": "所以呢",
+    "tagColor": "right",
+    "steps": [
+     {
+      "n": "1",
+      "t": "問兩次",
+      "sub": "同一句話跑兩遍",
+      "color": "primary",
+      "at": "ask"
+     },
+     {
+      "n": "2",
+      "t": "對一對",
+      "sub": "答案一樣才放心",
+      "color": "right",
+      "at": "cmp"
+     },
+     {
+      "n": "3",
+      "t": "不一樣",
+      "sub": "回原文核對",
+      "color": "wrong",
+      "at": "cmp+26"
+     }
+    ],
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "問兩次": "right"
+    }
+   },
+   "sources": [
+    "做法整理（示意）；實測見 s02"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "payoff",
+   "narration": "或者規定它，只根據資料，沒寫的填未指定，我們試了一次，它照做。",
+   "subtitle": {
+    "zh": "或者規定它\n只根據資料\n沒寫的填未指定\n我們試了一次\n它照做",
+    "en": "Or set a rule: use only the data, | write “unspecified” if missing."
+   },
+   "keywords": [
+    "未指定"
+   ],
+   "cues": [
+    {
+     "id": "only",
+     "text": "只根據資料"
+    },
+    {
+     "id": "unk",
+     "text": "沒寫的填未指定"
+    },
+    {
+     "id": "try",
+     "text": "試了一次"
+    },
+    {
+     "id": "tried",
+     "text": "它照做"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "rule",
+    "tag": "解法",
+    "tagColor": "right",
+    "rules": [
+     {
+      "text": "沒寫負責人或期限的就寫「未指定」",
+      "color": "right",
+      "at": "unk"
+     },
+     {
+      "text": "只根據紀錄",
+      "color": "sky",
+      "at": "only"
+     },
+     {
+      "text": "「待決定」",
+      "color": "sky",
+      "at": "only+10"
+     }
+    ],
+    "promptVerbatim": "tests/02-better.json",
+    "resultY": 176,
+    "result": {
+     "label": "再跑一次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/02-better.json",
+     "at": "unk+14",
+     "rows": [
+      {
+       "cells": [
+        "未指定",
+        "排定雙十二檔期的客服排班",
+        "11 月底前"
+       ],
+       "ok": true
+      }
+     ]
+    },
+    "fix": "tried",
+    "status": "已確定・實測（1 次）",
+    "statusAt": "tried+6",
+    "kw": {
+     "未指定": "right"
+    },
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ]
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；只試 1 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "cta",
+   "narration": "留言「兩次」，拿這兩招的提示詞。",
+   "subtitle": {
+    "zh": "留言「兩次」\n拿這兩招的提示詞",
+    "en": "Comment “兩次” to get | the prompts for both tricks."
+   },
+   "keywords": [
+    "兩次"
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "兩次"
+    },
+    {
+     "id": "all",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "cta",
+    "tag": "領取",
+    "tagColor": "right",
+    "kicker": "想要問兩次與規定的提示詞",
+    "keyword": "兩次",
+    "sub": "私訊給你提示詞＋用法",
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "兩次": "primary"
+    }
+   },
+   "sources": [
+    "提示詞與測試紀錄整理在 CaffAIne 網站（情境示意）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "兩次"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}
