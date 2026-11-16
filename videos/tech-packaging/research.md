@@ -67,3 +67,89 @@
 - 數位時代（CoWoS 類型）：https://www.bnext.com.tw/article/82088/tsmc-cowos-type-explanation
 - 科技新報（CoWoS／CoPoS／CoWoP）：https://technews.tw/2025/09/08/what-is-cowos-copos-cowop/
 - 鉅亨號（中介層）：https://hao.cnyes.com/post/274146 、https://hao.cnyes.com/post/81358
+
+---
+
+## 第二輪補查：2.5D 封裝的真實結構與流程（2026/11/16，給 device-spec 用）
+
+研究工具同上，只用 WebSearch（摘要，沒讀到全文）。來源三類：一手／學術（IEEE ECTC 2023 論文、TSMC 3DFabric CoWoS 官方頁、美國專利檢索頁 台積電專利、Hot Chips 2012 Amkor 教學簡報）；產業整理（SemiWiki 比較文、WikiChip CoWoS、SemiEngineering、Teradyne、Cadence、TestConX 2025 主題演講）；二手科普（PCB 廠部落格 bestpcbs）。**注意：沒有任何一份是完整、標好層名的 TSMC 剖面圖**；下面的層別順序是「多份來源拼出來」的，標信心。
+
+### 結構（由上到下，CoWoS-S 為例）
+
+| # | 層／零件 | 說明 | 狀態 | 來源 | 信心 |
+|---|---|---|---|---|---|
+| S1 | 晶片：運算晶粒（SoC／GPU die）與 HBM 並排，平放在中介層上方 | 多顆晶片水平並排，不是疊在一起 | 已確定 | WikiChip CoWoS；ECTC 2023 | 高 |
+| S2 | 微凸塊（μ-bump） | 晶片面朝下，以微凸塊接到中介層上表面；ECTC 2023 寫間距約 30–60 μm；Chip Scale Review 寫 35 μm 級 | 已確定（作法）；間距為論文範圍 | ECTC 2023；Chip Scale Review 2022 | 高（作法）／中（數字，不上畫面） |
+| S3 | 矽中介層：上面有重分佈層（RDL，銅細線加介電層），晶片之間靠這些線互連；層內有矽穿孔（TSV）垂直穿過矽 | 上下兩面都可有 RDL，上面接 μ-bump、下面接 C4（CoWoS-L 論文明寫兩面都有 RDL） | 已確定 | ECTC 2023；台積電專利檢索頁（CoW 的 TSV 要磨薄後露出） | 高 |
+| S4 | C4 凸塊（受控塌陷晶片連接） | 中介層底面接到封裝基板；ECTC 一篇寫 150 μm 間距銅柱 C4（凸塊比微凸塊粗得多） | 已確定（作法）；150 μm 是單篇論文例子 | ECTC 2023 | 中高 |
+| S5 | 封裝基板（有機增層基板，ABF 薄膜為增層絕緣材料） | 有機材料多層板，線寬與孔都比中介層粗很多 | 已確定（基板有機、增層）；ABF 名稱為產業共識（本輪沒找到單篇明寫 CoWoS 用 ABF，列在查不到） | WikiChip；ECTC 2023（build-up organic substrate） | 中高 |
+| S6 | BGA 錫球 | 基板底面接到主機板（PCB）；專利檢索頁寫「以 BGA 方式安裝到 PCB」 | 已確定 | 台積電專利檢索頁 | 高 |
+
+**層別順序（由上到下）定案：晶片（SoC、HBM）→ 微凸塊 → 矽中介層（RDL＋TSV）→ C4 凸塊 → 有機基板（ABF 增層）→ BGA 錫球 → 主機板。** 摘要工具自己也說「BGA 與 ABF 增層的相對位置沒有單篇明確」，但 BGA 在基板底面是封裝通識，信心高。
+
+### 流程（CoWoS-S 的代表性順序；各家與各變體的順序不同）
+
+1. 挑好的晶片（已知良品，KGD）：晶片先在晶圓階段做探針測試（上一支的針測），切開後再挑好的；TestConX 2025 主題演講、Teradyne、SemiEngineering 都提到組裝前要確認晶粒好壞，壞的混進去會連同中介層與基板一起報廢。**已確定（作法）**，高。
+2. 晶片貼到「中介層晶圓」上（chip-on-wafer，CoW）：用微凸塊接合，之後灌第一次底部填充膠（underfill）並固化。專利檢索頁原文有「mounting IC chips on the interposer wafer via micro-bumps, applying and curing the first underfill」。**已確定**，中高。
+3. 磨薄 CoW，露出 TSV，做 C4 凸塊（背面）。專利與 Amkor 簡報：背面研磨、載板移除、露出 TSV、加焊墊。**已確定**，中。
+4. 切割（singulation），再貼到封裝基板（oS：on substrate）並灌第二次底部填充膠。專利：「second underfill between CoW and package substrate … then diced」；Amkor 簡報順序略有不同（先切再貼）。**順序因變體而異**，中。
+5. 最後裝 BGA 錫球、上 PCB（回流焊）。**已確定**，中高。
+- 微凸塊接合是用熱壓還是整批回流焊：**本輪查不到**（Cadence 與 ECTC 都只說「堆疊或回流後才暴露的潛在缺陷」）。影片的「回流焊」只用在「整顆封裝放上基板、錫球／凸塊熔化」這個一般性說法，標示意。
+- 回流焊時凸塊熔融、表面張力把零件拉回對位（自對位），是焊接通識（不是從本輪來源查到）：**已確定（通用物理）**，中高，畫面不標數字。
+
+### CoWoS-S／L／R 差別
+
+| 型式 | 中介層 | 狀態 | 來源 | 信心 |
+|---|---|---|---|---|
+| CoWoS-S | 整片矽中介層（含 TSV）；台積電官網寫已量產自 2012、矽中介層可到約 3.3 倍光罩 | 已確定（官網）；3.3 倍為廠商公布 | TSMC 3DFabric CoWoS 頁；SemiWiki | 高 |
+| CoWoS-R | 以有機重分佈層（RDL）取代矽中介層（銅線＋聚合物介電）；官網 RDL 最小線距約 4 μm（線寬線距各 2 μm） | 已確定；數字為廠商公布 | TSMC 官網；SemiWiki | 高／中 |
+| CoWoS-L | 以重組（reconstituted）中介層加 RDL 做封裝層級走線，只在需要高密度的位置埋入小塊矽橋（LSI，本地矽互連）；成型膠包住 TIV（穿孔導通）提供基板到上方晶片的垂直通路 | 已確定 | ECTC 2023；SemiWiki；bestpcbs | 高 |
+- **對念稿段 7 的含意**：廠商公布的兩顆晶片十 TB／s 互傳，路徑是 CoWoS-L 的矽橋（LSI），不是整片矽中介層。念稿只說「並排」，不衝突；但**畫面不可把兩顆晶片之間畫成一整片矽中介層**，段 7 要用「矽橋」或把中介層畫成示意並標「示意」。
+- 另一點：「CoWoS-S 是最成熟版本」與「S 與 L 性能互有說法」二手說法不一，旁白不比較三者優劣。
+
+### 中介層走線密度（對念稿段 6「線比電路板細很多」）
+
+- HBM 每疊 1024 位元介面（HBM4 為 2048 位元，JEDEC），數千條訊號線，一般電路板放不下，所以要中介層（Rambus、Tom's Hardware、IONOS 整理）。**已確定**，高。
+- 線寬數字：TSMC 官網只給 RDL 中介層 4 μm 線距；矽中介層的線寬、TSV 直徑**本輪查不到**（搜尋摘要沒有）。對照「一般電路板線寬」亦查不到單篇數字。**所以畫面只畫「相對很細／很粗」，不標微米數字**。
+- 「晶片跟記憶體貼得近，資料才夠快」：距離越長延遲與功耗越高，已確定（research #4）。
+
+### 比例（光罩尺寸與中介層倍數）
+
+- 中介層有尺寸上限：矽中介層本身也是用同一種曝光機印的，所以單次曝光 858 mm²；要更大就把幾次曝光拼接（stitching，有專利檢索結果「Forming large chips through stitching」）。台積電官網寫 CoWoS-S 中介層到約 3.3 倍；5.5 倍、9 倍、14 倍屬 CoWoS-L／後續（research #2、#10）。**念稿「五倍以上」不指定是哪一型，OK**。
+- 實際倍數的畫法：1 倍＝26×33 mm 框；5 倍框的面積加起來約 4,290 mm²（5.5 倍＝4,719 mm²，Tom's Hardware）。畫面以「框數」呈現，**框是面積單位，不是封裝外形**（封裝是矩形，不是 5 個框排一排；見 device-spec）。
+
+### 念稿事實核對（念稿不改，列建議）
+
+| 段 | 念稿 | 核對 | 建議 |
+|---|---|---|---|
+| 1 | 一次曝光最多印八百多平方毫米；最大封裝五倍以上 | 858／830 都屬「八百多」，OK；五倍以上＝廠商公布（5 與 5.5 倍） | 無；但畫面別讓人以為「晶片」可以到五倍：晶片仍受 858 mm² 限制，**變大的是封裝（中介層）**。段 1 大字用「封裝」不用「晶片」，見 spec |
+| 2 | 好幾顆晶片平放在矽中介層上，旁邊圍一圈記憶體 | OK（CoWoS-S 結構；CoWoS-L 的中介層不是整片矽） | 畫面標「以 CoWoS-S 示意」小字 |
+| 3 | 接點變多，訊號多走一段 | OK（業界共識，research #7） | 無 |
+| 4 | 大晶片好的不到一半 | 估算（上一支 45%）；念稿沒有講是「估算」 | 畫面必標「估算，簡化模型」 |
+| 5 | 每顆先測過，只挑好的封裝；壞一顆只丟那一小顆 | OK（KGD）；注意壞的丟的是**晶片**，不是整個封裝 | 畫面壞晶片掉進廢料盒，已貼的封裝不丟 |
+| 6 | 中介層的線比電路板細很多 | OK（定性）；沒有數字來源 | **不標微米**；只畫相對粗細 |
+| 7 | 兩顆印到極限的晶片並排，每秒互傳十兆位元組 | 廠商公布（NVIDIA 2024/3）；晶片間走矽橋（CoWoS-L LSI） | 畫面別畫成整片矽中介層；標「廠商公布」 |
+| 8 | 這種大封裝良率已超過九成八 | 廠商公布（台積電 2026/8 OCP，媒體轉述）；**那是封裝組裝良率，不是上一段的「晶片好壞」良率**，兩者不能混為一談 | 標籤寫「廠商公布，封裝良率，非第三方實測」；不與段 4 的 45% 畫在同一張比較 |
+| 9 | 十四倍排在二零二八年 | 廠商目標（2026/4 北美技術論壇） | 標「廠商目標值（非實測）」 |
+| 10 | 往旁邊拼，還是往上疊？ | OK；下一支 HBM | 無 |
+
+### 本輪新增的低信心點
+
+1. 矽中介層與 TSV 的真實尺寸、線寬：查不到（只有 4 μm RDL 線距）。
+2. 微凸塊接合是熱壓還是回流：查不到。
+3. ABF 在 CoWoS 基板的明確來源：只有「有機增層基板」，ABF 為產業通識。
+4. CoWoS-S 流程順序（先貼基板後切或先切）依變體不同。
+5. 各層相對厚度：本輪沒有來源，device-spec 全部標「示意」。
+
+### 新增來源網址
+
+- TSMC 3DFabric CoWoS：https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm
+- WikiChip CoWoS：https://en.wikichip.org/wiki/CoWoS
+- IEEE ECTC 2023（CoWoS 可靠度、μ-bump 30–60 μm、150 μm C4）：https://conferences.computer.org/ectc/pdfs/ECTC2023-1NkkviSxgDnmPjptC1ysqm/349800b022/349800b022.pdf 、…/349800a510/349800a510.pdf
+- 台積電專利（CoW 流程：第一次底部填充、磨薄、切割、BGA）：https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12068300 、…/11532573
+- Hot Chips 2012 Amkor 堆疊教學：https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-Tut2-Die-Stack/HC24.27.225-Stacking-Tutorial-Lee-Amkor.pdf
+- SemiWiki CoWoS-S／R／L 比較：https://semiwiki.com/semiconductor-manufacturers/tsmc/371790-comparison-of-tsmc-cowos-s-cowos-r-and-cowos-l/
+- Teradyne（AI 小晶片測試）：https://www.teradyne.com/2026/07/27/ai-chiplet-architectures-redefining-test-insertions
+- TestConX 2025 主題演講：https://www.testconx.org/premium/wp-content/uploads/2025china/TestConXChina2025s1p1HurtarteKeynote_6321.pdf
+- SemiEngineering（單顆測試）：https://semiengineering.com/singulated-die-test-ensures-stacked-die-quality-as-power-density-rises/
+- Rambus HBM3：https://www.rambus.com/blogs/hbm3-everything-you-need-to-know/
