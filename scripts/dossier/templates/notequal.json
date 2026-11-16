@@ -1,0 +1,14 @@
+{
+  "_meta": { "desc": "A ≠ B（或 vs）：上面兩個大詞中間一個符號，下面兩列說明，各帶狀態標籤", "cues": 5, "beat": "twist", "kw": ["a", "b"],
+    "cueHint": "c1 A 詞｜c2 第一列說明｜c3 符號與第一列標籤｜c4 B 詞｜c5 第二列說明" },
+  "props": {
+    "panel": "notequal",
+    "a": "{{a}}", "op": "{{op|≠}}", "opLabel": "{{opLabel|不等於}}", "b": "{{b}}",
+    "aAt": "c1+4", "opAt": "c3", "bAt": "c4",
+    "rows": [
+      { "text": "{{row1}}", "at": "c2", "tag": { "kind": "{{row1Kind|report}}", "text": "{{row1Tag}}", "at": "c3+8" } },
+      { "text": "{{row2}}", "at": "c5", "tag": { "kind": "{{row2Kind|report}}", "text": "{{row2Tag}}", "at": "c5+8" } }
+    ],
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|對照}}", "place": "{{place?}}" }
+  }
+}

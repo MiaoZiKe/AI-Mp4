@@ -1,0 +1,14 @@
+{
+  "_meta": { "desc": "還不知道：左側情境照＋一列，右側「未公布」文件框＋一列，下方「截至日期尚未確定」標籤", "cues": 4, "beat": "payoff", "kw": ["rightRow"],
+    "cueHint": "c1 日期詞｜c2 左列事件｜c3 右列疑問｜c4 還不知道" },
+  "props": {
+    "panel": "pending",
+    "left": { "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "at": "start-20" }, "row": "{{leftRow}}", "rowAt": "c2" },
+    "right": {
+      "title": "{{rightTitle}}", "field": "{{rightField|（未公布）}}", "note": "示意，非文件原件",
+      "at": "start-16", "titleAt": "start-12", "frameAt": "c1+6", "row": "{{rightRow}}", "rowAt": "c3"
+    },
+    "tag": { "kind": "pending", "text": "{{tagText|截至 {{asOf}} 尚未確定}}", "at": "c3+4" },
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|還不知道}}", "place": "{{place?}}" }
+  }
+}

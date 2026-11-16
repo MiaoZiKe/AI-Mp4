@@ -1,0 +1,22 @@
+{
+  "_meta": { "desc": "第 1 鏡：大數字＋文件蓋章（第 0 幀就有掃描線、1 秒內有紅框與引線）", "cues": 4, "beat": "hook", "kw": ["mark", "num"],
+    "cueHint": "c1 開場詞｜c2 標記詞（mark 與文件填字在這裡出現）｜c3 輔助詞｜c4 數字念出的詞" },
+  "props": {
+    "panel": "hook",
+    "kicker": "{{kicker}}",
+    "span": "{{span}}",
+    "num": "{{num}}",
+    "numText": "{{numText|%}}",
+    "line2": "{{line2}}",
+    "mark": "{{mark}}",
+    "markAt": "c2",
+    "doc": {
+      "title": "{{docTitle}}", "date": "{{docDate|{{asOf}}}}", "field": "{{docField}}",
+      "fill": "{{docFill}}", "fillPx": 30, "fillAt": "c2", "note": "示意，非文件原件",
+      "scanAts": ["start", "c4-6"], "frameAt": "start+10", "flashAt": "c1+30"
+    },
+    "callout": { "label": "{{calloutLabel}}", "text": "{{calloutText}}", "at": "start+20", "markAt": "c4+4" },
+    "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+14" },
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|事件}}", "place": "{{place?}}" }
+  }
+}

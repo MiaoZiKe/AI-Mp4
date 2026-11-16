@@ -1,0 +1,17 @@
+{
+  "_meta": { "desc": "文件／說法引句：上方標題＋左側情境照＋右側報紙引文（大字數字或關鍵詞）＋狀態標籤", "cues": 4, "beat": "mechanism", "kw": ["headMark", "quoteBig"],
+    "cueHint": "c1 標題關鍵詞｜c2 誰說的（引文出處名）｜c3 引文大字念出的詞｜c4 標籤前的收尾詞" },
+  "props": {
+    "panel": "claim",
+    "head": { "text": "{{head}}", "mark": "{{headMark}}", "at": "start-16", "markAt": "c1+10" },
+    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "date": "{{photoDate}}", "at": "start-22", "dateAt": "c1+4" },
+    "quote": {
+      "by": "{{quoteBy}}", "byAt": "c2-4", "pre": "{{quotePre}}", "big": "{{quoteBig}}", "post": "{{quotePost|}}",
+      "at": "c2-6", "bigAt": "c3",
+      "masthead": { "name": "{{mastName}}", "date": "{{mastDate}}" }
+    },
+    "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+6" },
+    "note": { "text": "{{note?}}", "at": "c4+30" },
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|查證}}", "place": "{{place?}}" }
+  }
+}

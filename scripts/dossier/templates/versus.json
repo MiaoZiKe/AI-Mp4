@@ -1,0 +1,20 @@
+{
+  "_meta": { "desc": "對照兩欄：左右兩張卡從第一格就有標題與出處，大字依序念到才蓋上（不會有一欄空著）", "cues": 4, "beat": "mechanism", "kw": ["leftBig", "rightBig"],
+    "cueHint": "c1 引子（例如「那…呢」）｜c2 右欄說話的人｜c3 右欄說法念出｜c4 左欄說法念出" },
+  "props": {
+    "panel": "versus",
+    "left": {
+      "head": "{{leftHead}}", "doc": "{{leftDoc}}", "big": "{{leftBig}}", "bigPx": 120, "src": "{{leftSrc}}",
+      "headAt": "start-20", "at": "start-16", "bigAt": "c4", "srcAt": "c4+8",
+      "tag": { "kind": "{{leftKind|report}}", "text": "{{leftTag}}", "at": "c4+14" }
+    },
+    "right": {
+      "head": "{{rightHead}}", "big": "{{rightBig}}", "src": "{{rightSrc}}",
+      "headAt": "start-20", "at": "start-16", "bigAt": "c3-4", "srcAt": "c3+6",
+      "tag": { "kind": "{{rightKind|report}}", "text": "{{rightTag}}", "at": "c3+10" },
+      "masthead": { "name": "{{rightMast}}", "date": "{{rightMastDate}}", "at": "c2+4" }
+    },
+    "mid": { "text": "{{mid|？}}", "at": "c4+4" },
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|兩種說法}}", "place": "{{place?}}" }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "_meta": { "desc": "時間軸：情境照＋日期軸＋「只隔 N 天」＋左右兩張文件卡", "cues": 4, "beat": "mechanism", "kw": ["leftLines", "gapNum"],
+    "cueHint": "c1 左卡打字的詞｜c2 左卡標記詞｜c3 間隔天數念出｜c4 右卡事件念出" },
+  "props": {
+    "panel": "timeline",
+    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "at": "start-20" },
+    "axis": { "days": "{{days}}", "at": "start-24", "label": "{{axisLabel|時間軸}}", "labelEn": "TIMELINE" },
+    "gap": { "pre": "{{gapPre|只隔}}", "num": "{{gapNum}}", "unit": "{{gapUnit|天}}", "at": "c3", "flashAt": "c4+6" },
+    "left": {
+      "title": "{{leftTitle}}", "date": "{{leftDate}}", "sub": "{{leftSub}}", "lines": "{{leftLines}}",
+      "at": "start-16", "subAt": "start-4", "typeAt": "c1", "markAt": "c2+4", "note": "示意，非文件原件"
+    },
+    "right": { "label": "{{rightLabel}}", "date": "{{rightDate}}", "lines": "{{rightLines}}", "at": "c3+8" },
+    "tag": { "kind": "{{tagKind|confirmed}}", "text": "{{tagText|已確定}}", "at": "c4-4" },
+    "news": { "dateline": "{{dateline}}", "lt": "{{lt|發生了什麼}}", "place": "{{place?}}" }
+  }
+}
