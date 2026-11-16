@@ -36,6 +36,8 @@ const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
 const V3 = script.styleVersion === 3;
 const V2 = script.styleVersion === 2 || V3;
 const GAP_MAX = Number(process.env.ALIGN_GAP_MAX ?? 0.8);
+// 2026/11/16 Andy：句間至少 ALIGN_GAP_MIN 秒、段落（beat 換了）至少 ALIGN_BEAT_GAP 秒（剪輯插靜音；預設 0＝不動）
+const GAP_MIN = Number(process.env.ALIGN_GAP_MIN ?? 0), BEAT_GAP = Number(process.env.ALIGN_BEAT_GAP ?? 0);
 const GAP = Number(process.env.ALIGN_GAP ?? 0.15), TRANS = 10, TAIL_END_F = Number(process.env.ALIGN_TAIL_END_F ?? 18), SUB_LEAD = 3, MIN_SCENE_F = 45;
 // v3 語意轉場（type 由 script.json 每幕 transition 決定，不由 align 輪替）：exit／enter＝出場淡出、進場淡入的幀區間（相對轉場開始）
 const TRANSITIONS = { fade: { exit: [0, 5], enter: [3, 8] }, carry: { exit: [0, 5], enter: [3, 8] }, push: { exit: [0, 6], enter: [4, 10] }, slide: { exit: [0, 6], enter: [4, 10] }, flip: { exit: [0, 5], enter: [5, 10] } };
@@ -165,6 +167,11 @@ function buildV2(cs) {
     prevEnd = V3 && c.take ? (i === 0 ? b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
     prevGap = pause > 0 ? pause : GAP;
     if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
+    if (GAP_MIN || BEAT_GAP) {
+      const si = script.scenes.findIndex((x) => x.id === c.id), nx = script.scenes[si + 1];
+      const beatChange = nx && nx.beat && sc?.beat && nx.beat !== sc.beat;
+      prevGap = Math.max(prevGap, GAP_MIN, beatChange ? BEAT_GAP : 0);
+    }
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
     const ttype = TRANSITIONS[sc?.transition] ? sc.transition : "fade";
     const transition = i === 0 ? null : { type: ttype, frames: TRANS, ...TRANSITIONS[ttype], ...(ttype === "carry" && sc?.carry ? { carry: sc.carry } : {}) };

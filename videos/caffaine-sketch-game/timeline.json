@@ -1,1350 +1,2906 @@
 {
-  "version": 2,
-  "slug": "caffaine-sketch-game",
-  "fps": 30,
-  "totalFrames": 1707,
-  "totalSec": 56.9,
-  "gapSec": 0.7,
-  "transitionFrames": 10,
-  "estimated": {
-    "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-    "rate": 4.5,
-    "gap": 0.7,
-    "tailEndFrames": 18
-  },
-  "scenes": [
+ "version": 2,
+ "slug": "caffaine-sketch-game",
+ "fps": 30,
+ "totalFrames": 1548,
+ "totalSec": 51.6,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": "audio/caffaine-sketch-game/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 4.8,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 0,
+   "durationFrames": 164,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 143,
+   "stillFrame": 154,
+   "subtitleWindow": [
+    0,
+    161
+   ],
+   "sourceWindow": [
+    0,
+    159
+   ],
+   "lines": [
     {
-      "id": "s01",
-      "audio": null,
-      "audioFrame": 5,
-      "audioSec": 5.556,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 0,
-      "durationFrames": 192,
-      "transitionFrames": 0,
-      "transition": null,
-      "voiceStartFrame": 5,
-      "voiceEndFrame": 172,
-      "stillFrame": 182,
-      "subtitleWindow": [
-        0,
-        189
-      ],
-      "sourceWindow": [
-        0,
-        187
-      ],
-      "lines": [
-        {
-          "text": "一張程式畫的手繪風草圖",
-          "start": 0,
-          "chars": [
-            4,
-            9,
-            14,
-            19,
-            25,
-            30,
-            35,
-            40,
-            46,
-            51,
-            56
-          ]
-        },
-        {
-          "text": "丟給 AI",
-          "start": 66,
-          "chars": [
-            68,
-            73,
-            73,
-            78,
-            84
-          ]
-        },
-        {
-          "text": "不到一分鐘",
-          "start": 93,
-          "chars": [
-            95,
-            101,
-            106,
-            111,
-            116
-          ]
-        },
-        {
-          "text": "變成能玩的小遊戲",
-          "start": 126,
-          "chars": [
-            128,
-            133,
-            139,
-            144,
-            149,
-            154,
-            160,
-            165
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "能玩",
-          "start": 139
-        }
-      ],
-      "cues": [
-        {
-          "id": "sketch",
-          "text": "手繪風草圖",
-          "frame": 37
-        },
-        {
-          "id": "min",
-          "text": "不到一分鐘",
-          "frame": 97
-        },
-        {
-          "id": "play",
-          "text": "能玩的小遊戲",
-          "frame": 140
-        }
-      ],
-      "sub": "一張程式畫的手繪風草圖\n丟給 AI\n不到一分鐘\n變成能玩的小遊戲",
-      "provider": "estimate",
-      "syllables": 25,
-      "words": [],
-      "charTimes": [
-        0,
-        0.176,
-        0.352,
-        0.527,
-        0.703,
-        0.879,
-        1.055,
-        1.231,
-        1.406,
-        1.582,
-        1.758,
-        2.145,
-        2.321,
-        2.496,
-        2.672,
-        3.059,
-        3.235,
-        3.411,
-        3.586,
-        3.762,
-        4.149,
-        4.325,
-        4.501,
-        4.677,
-        4.852,
-        5.028,
-        5.204,
-        5.38
-      ]
+     "text": "一張程式畫的手繪風草圖",
+     "start": 0,
+     "chars": [
+      0,
+      3,
+      8,
+      8,
+      8,
+      8,
+      8,
+      13,
+      18,
+      25,
+      30
+     ]
     },
     {
-      "id": "s02",
-      "audio": null,
-      "audioFrame": 193,
-      "audioSec": 3.111,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 182,
-      "durationFrames": 125,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 192,
-      "voiceEndFrame": 286,
-      "stillFrame": 297,
-      "subtitleWindow": [
-        189,
-        304
-      ],
-      "sourceWindow": [
-        187,
-        302
-      ],
-      "lines": [
-        {
-          "text": "我只對 AI 說",
-          "start": 189,
-          "chars": [
-            192,
-            197,
-            202,
-            202,
-            208,
-            213,
-            213,
-            218
-          ]
-        },
-        {
-          "text": "照這張圖",
-          "start": 228,
-          "chars": [
-            230,
-            235,
-            241,
-            246
-          ]
-        },
-        {
-          "text": "做成小遊戲",
-          "start": 256,
-          "chars": [
-            258,
-            263,
-            269,
-            274,
-            279
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "做成",
-          "start": 258
-        }
-      ],
-      "cues": [
-        {
-          "id": "give",
-          "text": "只對 AI 說",
-          "frame": 198
-        },
-        {
-          "id": "say",
-          "text": "照這張圖",
-          "frame": 232
-        },
-        {
-          "id": "fin",
-          "text": "做成小遊戲",
-          "frame": 260
-        }
-      ],
-      "sub": "我只對 AI 說\n照這張圖\n做成小遊戲",
-      "provider": "estimate",
-      "syllables": 14,
-      "words": [],
-      "charTimes": [
-        0,
-        0.179,
-        0.358,
-        0.536,
-        0.715,
-        0.894,
-        1.287,
-        1.466,
-        1.645,
-        1.824,
-        2.217,
-        2.396,
-        2.575,
-        2.754,
-        2.932
-      ]
+     "text": "丟給 AI",
+     "start": 41,
+     "chars": [
+      43,
+      48,
+      48,
+      53,
+      58
+     ]
     },
     {
-      "id": "s03",
-      "audio": null,
-      "audioFrame": 307,
-      "audioSec": 6.889,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 297,
-      "durationFrames": 237,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 307,
-      "voiceEndFrame": 514,
-      "stillFrame": 524,
-      "subtitleWindow": [
-        304,
-        531
-      ],
-      "sourceWindow": [
-        302,
-        529
-      ],
-      "lines": [
-        {
-          "text": "它交回一個網頁檔",
-          "start": 304,
-          "chars": [
-            306,
-            311,
-            317,
-            323,
-            329,
-            335,
-            341,
-            347
-          ]
-        },
-        {
-          "text": "用瀏覽器打開",
-          "start": 358,
-          "chars": [
-            360,
-            366,
-            372,
-            378,
-            384,
-            390
-          ]
-        },
-        {
-          "text": "開始畫面有了",
-          "start": 401,
-          "chars": [
-            403,
-            409,
-            415,
-            421,
-            427,
-            433
-          ]
-        },
-        {
-          "text": "左右移動",
-          "start": 444,
-          "chars": [
-            446,
-            452,
-            458,
-            463
-          ]
-        },
-        {
-          "text": "也接得到星星",
-          "start": 474,
-          "chars": [
-            477,
-            482,
-            488,
-            494,
-            500,
-            506
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "接得到星星",
-          "start": 482
-        }
-      ],
-      "cues": [
-        {
-          "id": "file",
-          "text": "一個網頁檔",
-          "frame": 325
-        },
-        {
-          "id": "open",
-          "text": "用瀏覽器打開",
-          "frame": 362
-        },
-        {
-          "id": "strt",
-          "text": "開始畫面有了",
-          "frame": 404
-        },
-        {
-          "id": "catch",
-          "text": "接得到星星",
-          "frame": 484
-        }
-      ],
-      "sub": "它交回一個網頁檔\n用瀏覽器打開\n開始畫面有了\n左右移動\n也接得到星星",
-      "provider": "estimate",
-      "syllables": 31,
-      "words": [],
-      "charTimes": [
-        0,
-        0.198,
-        0.396,
-        0.594,
-        0.792,
-        0.99,
-        1.188,
-        1.386,
-        1.821,
-        2.019,
-        2.217,
-        2.415,
-        2.613,
-        2.811,
-        3.246,
-        3.444,
-        3.642,
-        3.84,
-        4.038,
-        4.236,
-        4.672,
-        4.87,
-        5.068,
-        5.266,
-        5.701,
-        5.899,
-        6.097,
-        6.295,
-        6.493,
-        6.691
-      ]
+     "text": "不到一分鐘",
+     "start": 66,
+     "chars": [
+      68,
+      71,
+      76,
+      80,
+      85
+     ]
     },
     {
-      "id": "s04",
-      "audio": null,
-      "audioFrame": 535,
-      "audioSec": 4.444,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 524,
-      "durationFrames": 165,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 534,
-      "voiceEndFrame": 668,
-      "stillFrame": 679,
-      "subtitleWindow": [
-        531,
-        686
-      ],
-      "sourceWindow": [
-        529,
-        684
-      ],
-      "lines": [
-        {
-          "text": "手機大小的畫面",
-          "start": 531,
-          "chars": [
-            534,
-            539,
-            545,
-            551,
-            557,
-            563,
-            569
-          ]
-        },
-        {
-          "text": "也打開試了",
-          "start": 580,
-          "chars": [
-            582,
-            588,
-            594,
-            600,
-            606
-          ]
-        },
-        {
-          "text": "點一下就能開始玩",
-          "start": 617,
-          "chars": [
-            619,
-            625,
-            631,
-            637,
-            643,
-            649,
-            655,
-            661
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "點一下",
-          "start": 619
-        }
-      ],
-      "cues": [
-        {
-          "id": "phone",
-          "text": "手機大小的畫面",
-          "frame": 535
-        },
-        {
-          "id": "tap",
-          "text": "點一下",
-          "frame": 621
-        }
-      ],
-      "sub": "手機大小的畫面\n也打開試了\n點一下就能開始玩",
-      "provider": "estimate",
-      "syllables": 20,
-      "words": [],
-      "charTimes": [
-        0,
-        0.198,
-        0.397,
-        0.595,
-        0.794,
-        0.992,
-        1.19,
-        1.627,
-        1.825,
-        2.024,
-        2.222,
-        2.421,
-        2.857,
-        3.056,
-        3.254,
-        3.452,
-        3.651,
-        3.849,
-        4.048,
-        4.246
-      ]
-    },
-    {
-      "id": "s05",
-      "audio": null,
-      "audioFrame": 689,
-      "audioSec": 5.778,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 679,
-      "durationFrames": 204,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 689,
-      "voiceEndFrame": 863,
-      "stillFrame": 873,
-      "subtitleWindow": [
-        686,
-        880
-      ],
-      "sourceWindow": [
-        684,
-        878
-      ],
-      "lines": [
-        {
-          "text": "但有個小毛病",
-          "start": 686,
-          "chars": [
-            688,
-            693,
-            699,
-            705,
-            711,
-            717
-          ]
-        },
-        {
-          "text": "結束畫面上",
-          "start": 728,
-          "chars": [
-            730,
-            736,
-            741,
-            747,
-            753
-          ]
-        },
-        {
-          "text": "掉下來的星星",
-          "start": 764,
-          "chars": [
-            766,
-            772,
-            778,
-            784,
-            789,
-            795
-          ]
-        },
-        {
-          "text": "疊在「重新開始」的字上",
-          "start": 806,
-          "chars": [
-            808,
-            814,
-            814,
-            820,
-            826,
-            832,
-            837,
-            837,
-            843,
-            849,
-            855
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "小毛病",
-          "start": 705
-        }
-      ],
-      "cues": [
-        {
-          "id": "but",
-          "text": "有個小毛病",
-          "frame": 695
-        },
-        {
-          "id": "scr",
-          "text": "結束畫面",
-          "frame": 731
-        },
-        {
-          "id": "lap",
-          "text": "疊在",
-          "frame": 810
-        }
-      ],
-      "sub": "但有個小毛病\n結束畫面上\n掉下來的星星\n疊在「重新開始」的字上",
-      "provider": "estimate",
-      "syllables": 26,
-      "words": [],
-      "charTimes": [
-        0,
-        0.195,
-        0.39,
-        0.586,
-        0.781,
-        0.976,
-        1.405,
-        1.601,
-        1.796,
-        1.991,
-        2.186,
-        2.616,
-        2.811,
-        3.006,
-        3.201,
-        3.396,
-        3.592,
-        4.021,
-        4.216,
-        4.411,
-        4.607,
-        4.802,
-        4.997,
-        5.192,
-        5.387,
-        5.583
-      ]
-    },
-    {
-      "id": "s06",
-      "audio": null,
-      "audioFrame": 883,
-      "audioSec": 3.333,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 873,
-      "durationFrames": 131,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 883,
-      "voiceEndFrame": 984,
-      "stillFrame": 994,
-      "subtitleWindow": [
-        880,
-        1001
-      ],
-      "sourceWindow": [
-        878,
-        999
-      ],
-      "lines": [
-        {
-          "text": "我照實跟它說",
-          "start": 880,
-          "chars": [
-            882,
-            887,
-            893,
-            899,
-            904,
-            910
-          ]
-        },
-        {
-          "text": "請它修好",
-          "start": 921,
-          "chars": [
-            923,
-            929,
-            934,
-            940
-          ]
-        },
-        {
-          "text": "其他不要動",
-          "start": 951,
-          "chars": [
-            953,
-            959,
-            964,
-            970,
-            976
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "修好",
-          "start": 934
-        }
-      ],
-      "cues": [
-        {
-          "id": "say",
-          "text": "照實跟它說",
-          "frame": 889
-        },
-        {
-          "id": "fix",
-          "text": "修好",
-          "frame": 936
-        },
-        {
-          "id": "keep",
-          "text": "其他不要動",
-          "frame": 954
-        }
-      ],
-      "sub": "我照實跟它說\n請它修好\n其他不要動",
-      "provider": "estimate",
-      "syllables": 15,
-      "words": [],
-      "charTimes": [
-        0,
-        0.192,
-        0.383,
-        0.575,
-        0.766,
-        0.958,
-        1.379,
-        1.571,
-        1.762,
-        1.954,
-        2.375,
-        2.567,
-        2.759,
-        2.95,
-        3.142
-      ]
-    },
-    {
-      "id": "s07",
-      "audio": null,
-      "audioFrame": 1004,
-      "audioSec": 4.667,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 994,
-      "durationFrames": 171,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1004,
-      "voiceEndFrame": 1145,
-      "stillFrame": 1155,
-      "subtitleWindow": [
-        1001,
-        1162
-      ],
-      "sourceWindow": [
-        999,
-        1160
-      ],
-      "lines": [
-        {
-          "text": "再玩一次",
-          "start": 1001,
-          "chars": [
-            1003,
-            1008,
-            1014,
-            1020
-          ]
-        },
-        {
-          "text": "字清楚了",
-          "start": 1031,
-          "chars": [
-            1033,
-            1039,
-            1045,
-            1051
-          ]
-        },
-        {
-          "text": "用滑鼠左右掃",
-          "start": 1062,
-          "chars": [
-            1064,
-            1070,
-            1076,
-            1082,
-            1088,
-            1094
-          ]
-        },
-        {
-          "text": "接到六顆星星",
-          "start": 1105,
-          "chars": [
-            1107,
-            1113,
-            1119,
-            1125,
-            1131,
-            1137
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "六顆",
-          "start": 1119
-        }
-      ],
-      "cues": [
-        {
-          "id": "again",
-          "text": "再玩一次",
-          "frame": 1004
-        },
-        {
-          "id": "clear",
-          "text": "字清楚了",
-          "frame": 1035
-        },
-        {
-          "id": "six",
-          "text": "接到六顆星星",
-          "frame": 1108
-        }
-      ],
-      "sub": "再玩一次\n字清楚了\n用滑鼠左右掃\n接到六顆星星",
-      "provider": "estimate",
-      "syllables": 21,
-      "words": [],
-      "charTimes": [
-        0,
-        0.198,
-        0.395,
-        0.593,
-        1.028,
-        1.226,
-        1.424,
-        1.621,
-        2.056,
-        2.254,
-        2.452,
-        2.65,
-        2.847,
-        3.045,
-        3.48,
-        3.678,
-        3.876,
-        4.073,
-        4.271,
-        4.469
-      ]
-    },
-    {
-      "id": "s08",
-      "audio": null,
-      "audioFrame": 1165,
-      "audioSec": 6,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1155,
-      "durationFrames": 211,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1165,
-      "voiceEndFrame": 1346,
-      "stillFrame": 1356,
-      "subtitleWindow": [
-        1162,
-        1363
-      ],
-      "sourceWindow": [
-        1160,
-        1361
-      ],
-      "lines": [
-        {
-          "text": "不過我只試了這一張草圖",
-          "start": 1162,
-          "chars": [
-            1164,
-            1169,
-            1175,
-            1181,
-            1187,
-            1193,
-            1199,
-            1205,
-            1211,
-            1216,
-            1222
-          ]
-        },
-        {
-          "text": "和一個模型",
-          "start": 1233,
-          "chars": [
-            1235,
-            1241,
-            1247,
-            1253,
-            1259
-          ]
-        },
-        {
-          "text": "別的草圖行不行",
-          "start": 1270,
-          "chars": [
-            1272,
-            1278,
-            1284,
-            1289,
-            1295,
-            1301,
-            1307
-          ]
-        },
-        {
-          "text": "還不知道",
-          "start": 1318,
-          "chars": [
-            1320,
-            1326,
-            1332,
-            1338
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "還不知道",
-          "start": 1320
-        }
-      ],
-      "cues": [
-        {
-          "id": "known",
-          "text": "只試了這一張草圖",
-          "frame": 1183
-        },
-        {
-          "id": "q",
-          "text": "別的草圖",
-          "frame": 1273
-        }
-      ],
-      "sub": "不過我只試了這一張草圖\n和一個模型\n別的草圖行不行\n還不知道",
-      "provider": "estimate",
-      "syllables": 27,
-      "words": [],
-      "charTimes": [
-        0,
-        0.196,
-        0.392,
-        0.588,
-        0.784,
-        0.98,
-        1.176,
-        1.373,
-        1.569,
-        1.765,
-        1.961,
-        2.392,
-        2.588,
-        2.784,
-        2.98,
-        3.176,
-        3.608,
-        3.804,
-        4,
-        4.196,
-        4.392,
-        4.588,
-        4.784,
-        5.216,
-        5.412,
-        5.608,
-        5.804
-      ]
-    },
-    {
-      "id": "s09",
-      "audio": null,
-      "audioFrame": 1366,
-      "audioSec": 4.889,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1356,
-      "durationFrames": 178,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1366,
-      "voiceEndFrame": 1513,
-      "stillFrame": 1524,
-      "subtitleWindow": [
-        1363,
-        1531
-      ],
-      "sourceWindow": [
-        1361,
-        1529
-      ],
-      "lines": [
-        {
-          "text": "所以做法三步",
-          "start": 1363,
-          "chars": [
-            1365,
-            1370,
-            1375,
-            1380,
-            1386,
-            1391
-          ]
-        },
-        {
-          "text": "畫草圖",
-          "start": 1400,
-          "chars": [
-            1402,
-            1408,
-            1413
-          ]
-        },
-        {
-          "text": "交給 AI",
-          "start": 1423,
-          "chars": [
-            1425,
-            1430,
-            1430,
-            1435,
-            1440
-          ]
-        },
-        {
-          "text": "玩一下",
-          "start": 1450,
-          "chars": [
-            1452,
-            1457,
-            1463
-          ]
-        },
-        {
-          "text": "有毛病就跟它說",
-          "start": 1472,
-          "chars": [
-            1474,
-            1480,
-            1485,
-            1490,
-            1495,
-            1501,
-            1506
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "三步",
-          "start": 1386
-        }
-      ],
-      "cues": [
-        {
-          "id": "so",
-          "text": "做法三步",
-          "frame": 1377
-        },
-        {
-          "id": "a",
-          "text": "畫草圖",
-          "frame": 1404
-        },
-        {
-          "id": "b",
-          "text": "交給 AI",
-          "frame": 1426
-        },
-        {
-          "id": "c",
-          "text": "玩一下",
-          "frame": 1454
-        }
-      ],
-      "sub": "所以做法三步\n畫草圖\n交給 AI\n玩一下\n有毛病就跟它說",
-      "provider": "estimate",
-      "syllables": 22,
-      "words": [],
-      "charTimes": [
-        0,
-        0.176,
-        0.352,
-        0.528,
-        0.703,
-        0.879,
-        1.266,
-        1.442,
-        1.618,
-        2.005,
-        2.181,
-        2.357,
-        2.532,
-        2.919,
-        3.095,
-        3.271,
-        3.658,
-        3.834,
-        4.01,
-        4.185,
-        4.361,
-        4.537,
-        4.713
-      ]
-    },
-    {
-      "id": "s10",
-      "audio": null,
-      "audioFrame": 1534,
-      "audioSec": 2.222,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1524,
-      "durationFrames": 85,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1534,
-      "voiceEndFrame": 1601,
-      "stillFrame": 1599,
-      "subtitleWindow": [
-        1531,
-        1609
-      ],
-      "sourceWindow": [
-        1529,
-        1604
-      ],
-      "lines": [
-        {
-          "text": "留言「遊戲」",
-          "start": 1531,
-          "chars": [
-            1533,
-            1538,
-            1538,
-            1544,
-            1550,
-            1550
-          ]
-        },
-        {
-          "text": "拿這句提示詞",
-          "start": 1561,
-          "chars": [
-            1563,
-            1569,
-            1575,
-            1581,
-            1587,
-            1593
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "遊戲",
-          "start": 1544
-        }
-      ],
-      "cues": [
-        {
-          "id": "kw",
-          "text": "遊戲",
-          "frame": 1546
-        },
-        {
-          "id": "all",
-          "text": "提示詞",
-          "frame": 1583
-        }
-      ],
-      "sub": "留言「遊戲」\n拿這句提示詞",
-      "provider": "estimate",
-      "syllables": 10,
-      "words": [],
-      "charTimes": [
-        0,
-        0.198,
-        0.397,
-        0.595,
-        1.032,
-        1.23,
-        1.429,
-        1.627,
-        1.825,
-        2.024
-      ]
-    },
-    {
-      "id": "end",
-      "audio": null,
-      "audioFrame": 1599,
-      "audioSec": 0,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1599,
-      "durationFrames": 108,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1609,
-      "voiceEndFrame": 1609,
-      "stillFrame": 1695,
-      "silent": true,
-      "subtitleWindow": null,
-      "sourceWindow": [
-        1604,
-        1707
-      ],
-      "lines": [],
-      "keywords": [],
-      "isEnd": true,
-      "cues": [],
-      "sub": "",
-      "provider": "estimate",
-      "syllables": 0,
-      "words": [],
-      "charTimes": []
+     "text": "變成能玩的小遊戲",
+     "start": 99,
+     "chars": [
+      101,
+      106,
+      112,
+      118,
+      123,
+      126,
+      131,
+      137
+     ]
     }
-  ]
+   ],
+   "keywords": [
+    {
+     "text": "能玩",
+     "start": 112
+    }
+   ],
+   "cues": [
+    {
+     "id": "sketch",
+     "text": "手繪風草圖",
+     "frame": 10,
+     "early": 0
+    },
+    {
+     "id": "min",
+     "text": "不到一分鐘",
+     "frame": 70,
+     "early": 0
+    },
+    {
+     "id": "play",
+     "text": "能玩的小遊戲",
+     "frame": 113,
+     "early": 0
+    }
+   ],
+   "hash": "1415bf76fffc-9616c2911a",
+   "sub": "一張程式畫的手繪風草圖\n丟給 AI\n不到一分鐘\n變成能玩的小遊戲",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.88,
+    "minScore": 0.031,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.51,
+      "start": 1.48,
+      "ch": "丟",
+      "errMs": -30
+     },
+     {
+      "onset": 2.34,
+      "start": 2.32,
+      "ch": "不",
+      "errMs": -20
+     },
+     {
+      "onset": 3.27,
+      "start": 3.26,
+      "ch": "就",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.31
+    },
+    {
+     "text": "張",
+     "start": 0.14,
+     "end": 0.3,
+     "score": 0.96
+    },
+    {
+     "text": "手",
+     "start": 0.32,
+     "end": 0.44,
+     "score": 0.936
+    },
+    {
+     "text": "繪",
+     "start": 0.48,
+     "end": 0.6,
+     "score": 0.999
+    },
+    {
+     "text": "風",
+     "start": 0.64,
+     "end": 0.76,
+     "score": 0.771
+    },
+    {
+     "text": "的",
+     "start": 0.78,
+     "end": 0.82,
+     "score": 0.998
+    },
+    {
+     "text": "草",
+     "start": 0.88,
+     "end": 1.02,
+     "score": 0.996
+    },
+    {
+     "text": "圖",
+     "start": 1.06,
+     "end": 1.18,
+     "score": 0.997
+    },
+    {
+     "text": "丟",
+     "start": 1.48,
+     "end": 1.62,
+     "score": 0.747
+    },
+    {
+     "text": "給",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.974
+    },
+    {
+     "text": "A",
+     "start": 1.82,
+     "end": 1.88,
+     "score": 0.362
+    },
+    {
+     "text": "I",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.978
+    },
+    {
+     "text": "不",
+     "start": 2.32,
+     "end": 2.38,
+     "score": 0.996
+    },
+    {
+     "text": "到",
+     "start": 2.42,
+     "end": 2.56,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 2.58,
+     "end": 2.64,
+     "score": 0.031
+    },
+    {
+     "text": "分",
+     "start": 2.7,
+     "end": 2.82,
+     "score": 0.994
+    },
+    {
+     "text": "鐘",
+     "start": 2.88,
+     "end": 3.06,
+     "score": 0.975
+    },
+    {
+     "text": "就",
+     "start": 3.26,
+     "end": 3.38,
+     "score": 0.997
+    },
+    {
+     "text": "變",
+     "start": 3.42,
+     "end": 3.54,
+     "score": 0.995
+    },
+    {
+     "text": "成",
+     "start": 3.58,
+     "end": 3.74,
+     "score": 0.922
+    },
+    {
+     "text": "能",
+     "start": 3.78,
+     "end": 3.92,
+     "score": 0.951
+    },
+    {
+     "text": "玩",
+     "start": 3.98,
+     "end": 4.1,
+     "score": 0.993
+    },
+    {
+     "text": "的",
+     "start": 4.14,
+     "end": 4.2,
+     "score": 0.998
+    },
+    {
+     "text": "小",
+     "start": 4.24,
+     "end": 4.38,
+     "score": 0.998
+    },
+    {
+     "text": "遊",
+     "start": 4.42,
+     "end": 4.54,
+     "score": 0.999
+    },
+    {
+     "text": "戲",
+     "start": 4.6,
+     "end": 4.7,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.14,
+    0.304,
+    0.308,
+    0.312,
+    0.316,
+    0.32,
+    0.48,
+    0.64,
+    0.88,
+    1.06,
+    1.48,
+    1.64,
+    1.82,
+    1.98,
+    2.32,
+    2.42,
+    2.58,
+    2.7,
+    2.88,
+    3.42,
+    3.58,
+    3.78,
+    3.98,
+    4.14,
+    4.24,
+    4.42,
+    4.6
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": "audio/caffaine-sketch-game/02-s02.wav",
+   "audioFrame": 163,
+   "audioSec": 3.24,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 154,
+   "durationFrames": 113,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 164,
+   "voiceEndFrame": 259,
+   "stillFrame": 257,
+   "subtitleWindow": [
+    161,
+    264
+   ],
+   "sourceWindow": [
+    159,
+    262
+   ],
+   "lines": [
+    {
+     "text": "我只對 AI 說",
+     "start": 161,
+     "chars": [
+      169,
+      174,
+      178,
+      178,
+      183,
+      187,
+      187,
+      192
+     ]
+    },
+    {
+     "text": "照這張圖",
+     "start": 202,
+     "chars": [
+      204,
+      210,
+      214,
+      220
+     ]
+    },
+    {
+     "text": "做成小遊戲",
+     "start": 230,
+     "chars": [
+      232,
+      237,
+      243,
+      248,
+      253
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "做成",
+     "start": 232
+    }
+   ],
+   "cues": [
+    {
+     "id": "give",
+     "text": "只對 AI 說",
+     "frame": 175,
+     "early": 0
+    },
+    {
+     "id": "say",
+     "text": "照這張圖",
+     "frame": 206,
+     "early": 0
+    },
+    {
+     "id": "fin",
+     "text": "做成小遊戲",
+     "frame": 233,
+     "early": 0
+    }
+   ],
+   "hash": "687e796bbdb1-9616c2911a",
+   "sub": "我只對 AI 說\n照這張圖\n做成小遊戲",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.898,
+    "minScore": 0.258,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.43,
+      "start": 1.42,
+      "ch": "照",
+      "errMs": -10
+     },
+     {
+      "onset": 2.34,
+      "start": 2.34,
+      "ch": "做",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.26,
+     "end": 0.34,
+     "score": 1
+    },
+    {
+     "text": "只",
+     "start": 0.4,
+     "end": 0.48,
+     "score": 0.961
+    },
+    {
+     "text": "對",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.787
+    },
+    {
+     "text": "A",
+     "start": 0.72,
+     "end": 0.78,
+     "score": 0.258
+    },
+    {
+     "text": "I",
+     "start": 0.84,
+     "end": 0.94,
+     "score": 0.959
+    },
+    {
+     "text": "說",
+     "start": 1,
+     "end": 1.1,
+     "score": 0.996
+    },
+    {
+     "text": "照",
+     "start": 1.42,
+     "end": 1.58,
+     "score": 0.985
+    },
+    {
+     "text": "這",
+     "start": 1.62,
+     "end": 1.7,
+     "score": 0.924
+    },
+    {
+     "text": "張",
+     "start": 1.76,
+     "end": 1.92,
+     "score": 0.96
+    },
+    {
+     "text": "圖",
+     "start": 1.94,
+     "end": 2.04,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 2.34,
+     "end": 2.44,
+     "score": 0.985
+    },
+    {
+     "text": "成",
+     "start": 2.52,
+     "end": 2.68,
+     "score": 0.916
+    },
+    {
+     "text": "小",
+     "start": 2.7,
+     "end": 2.84,
+     "score": 0.745
+    },
+    {
+     "text": "遊",
+     "start": 2.88,
+     "end": 2.98,
+     "score": 0.999
+    },
+    {
+     "text": "戲",
+     "start": 3.04,
+     "end": 3.14,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.26,
+    0.4,
+    0.54,
+    0.72,
+    0.84,
+    1,
+    1.42,
+    1.62,
+    1.76,
+    1.94,
+    2.34,
+    2.52,
+    2.7,
+    2.88,
+    3.04
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": "audio/caffaine-sketch-game/03-s03.wav",
+   "audioFrame": 266,
+   "audioSec": 6.005,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.025,
+   "startFrame": 257,
+   "durationFrames": 197,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 267,
+   "voiceEndFrame": 446,
+   "stillFrame": 444,
+   "subtitleWindow": [
+    264,
+    451
+   ],
+   "sourceWindow": [
+    262,
+    449
+   ],
+   "lines": [
+    {
+     "text": "它交回一個網頁檔",
+     "start": 264,
+     "chars": [
+      274,
+      278,
+      284,
+      288,
+      292,
+      296,
+      301,
+      305
+     ]
+    },
+    {
+     "text": "用瀏覽器打開",
+     "start": 319,
+     "chars": [
+      321,
+      326,
+      331,
+      336,
+      340,
+      345
+     ]
+    },
+    {
+     "text": "開始畫面有了",
+     "start": 357,
+     "chars": [
+      359,
+      365,
+      370,
+      374,
+      379,
+      383
+     ]
+    },
+    {
+     "text": "左右移動",
+     "start": 392,
+     "chars": [
+      394,
+      400,
+      404,
+      409
+     ]
+    },
+    {
+     "text": "也接得到星星",
+     "start": 413,
+     "chars": [
+      415,
+      420,
+      424,
+      427,
+      431,
+      437
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "接得到星星",
+     "start": 420
+    }
+   ],
+   "cues": [
+    {
+     "id": "file",
+     "text": "一個網頁檔",
+     "frame": 289,
+     "early": 0
+    },
+    {
+     "id": "open",
+     "text": "用瀏覽器打開",
+     "frame": 323,
+     "early": 0
+    },
+    {
+     "id": "strt",
+     "text": "開始畫面有了",
+     "frame": 360,
+     "early": 0
+    },
+    {
+     "id": "catch",
+     "text": "接得到星星",
+     "frame": 421,
+     "early": 0
+    }
+   ],
+   "hash": "8d23fc327fb5-9616c2911a",
+   "sub": "它交回一個網頁檔\n用瀏覽器打開\n開始畫面有了\n左右移動\n也接得到星星",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.93,
+    "minScore": 0.003,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.79,
+      "start": 1.78,
+      "ch": "我",
+      "errMs": -10
+     },
+     {
+      "onset": 3.16,
+      "start": 3.14,
+      "ch": "開",
+      "errMs": -20
+     },
+     {
+      "onset": 4.31,
+      "start": 4.32,
+      "ch": "左",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "它",
+     "start": 0.3,
+     "end": 0.38,
+     "score": 0.994
+    },
+    {
+     "text": "交",
+     "start": 0.44,
+     "end": 0.6,
+     "score": 0.914
+    },
+    {
+     "text": "回",
+     "start": 0.64,
+     "end": 0.76,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 0.78,
+     "end": 0.82,
+     "score": 0.003
+    },
+    {
+     "text": "個",
+     "start": 0.9,
+     "end": 0.96,
+     "score": 0.999
+    },
+    {
+     "text": "網",
+     "start": 1.04,
+     "end": 1.18,
+     "score": 0.92
+    },
+    {
+     "text": "頁",
+     "start": 1.2,
+     "end": 1.28,
+     "score": 0.998
+    },
+    {
+     "text": "檔",
+     "start": 1.36,
+     "end": 1.5,
+     "score": 0.997
+    },
+    {
+     "text": "我",
+     "start": 1.78,
+     "end": 1.84,
+     "score": 1
+    },
+    {
+     "text": "用",
+     "start": 1.9,
+     "end": 2.02,
+     "score": 0.999
+    },
+    {
+     "text": "瀏",
+     "start": 2.04,
+     "end": 2.16,
+     "score": 0.978
+    },
+    {
+     "text": "覽",
+     "start": 2.2,
+     "end": 2.32,
+     "score": 0.982
+    },
+    {
+     "text": "器",
+     "start": 2.38,
+     "end": 2.46,
+     "score": 0.996
+    },
+    {
+     "text": "打",
+     "start": 2.52,
+     "end": 2.58,
+     "score": 0.997
+    },
+    {
+     "text": "開",
+     "start": 2.68,
+     "end": 2.86,
+     "score": 1
+    },
+    {
+     "text": "開",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "始",
+     "start": 3.34,
+     "end": 3.42,
+     "score": 0.997
+    },
+    {
+     "text": "畫",
+     "start": 3.5,
+     "end": 3.58,
+     "score": 0.998
+    },
+    {
+     "text": "面",
+     "start": 3.64,
+     "end": 3.76,
+     "score": 0.99
+    },
+    {
+     "text": "有",
+     "start": 3.8,
+     "end": 3.92,
+     "score": 1
+    },
+    {
+     "text": "了",
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.999
+    },
+    {
+     "text": "左",
+     "start": 4.32,
+     "end": 4.42,
+     "score": 0.847
+    },
+    {
+     "text": "右",
+     "start": 4.5,
+     "end": 4.64,
+     "score": 0.932
+    },
+    {
+     "text": "移",
+     "start": 4.66,
+     "end": 4.72,
+     "score": 0.689
+    },
+    {
+     "text": "動",
+     "start": 4.8,
+     "end": 4.94,
+     "score": 0.934
+    },
+    {
+     "text": "也",
+     "start": 5.02,
+     "end": 5.1,
+     "score": 0.998
+    },
+    {
+     "text": "接",
+     "start": 5.18,
+     "end": 5.26,
+     "score": 0.987
+    },
+    {
+     "text": "得",
+     "start": 5.3,
+     "end": 5.36,
+     "score": 0.994
+    },
+    {
+     "text": "到",
+     "start": 5.4,
+     "end": 5.54,
+     "score": 0.997
+    },
+    {
+     "text": "星",
+     "start": 5.56,
+     "end": 5.72,
+     "score": 0.901
+    },
+    {
+     "text": "星",
+     "start": 5.76,
+     "end": 5.92,
+     "score": 0.807
+    }
+   ],
+   "charTimes": [
+    0.3,
+    0.44,
+    0.64,
+    0.78,
+    0.9,
+    1.04,
+    1.2,
+    1.36,
+    1.9,
+    2.04,
+    2.2,
+    2.38,
+    2.52,
+    2.68,
+    3.14,
+    3.34,
+    3.5,
+    3.64,
+    3.8,
+    3.96,
+    4.32,
+    4.5,
+    4.66,
+    4.8,
+    5.02,
+    5.18,
+    5.3,
+    5.4,
+    5.56,
+    5.76
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": "audio/caffaine-sketch-game/04-s04.wav",
+   "audioFrame": 454,
+   "audioSec": 3.705,
+   "headSilSec": 0.025,
+   "tailSilSec": 0.04,
+   "startFrame": 444,
+   "durationFrames": 141,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 454,
+   "voiceEndFrame": 564,
+   "stillFrame": 575,
+   "subtitleWindow": [
+    451,
+    582
+   ],
+   "sourceWindow": [
+    449,
+    580
+   ],
+   "lines": [
+    {
+     "text": "手機大小的畫面",
+     "start": 451,
+     "chars": [
+      463,
+      468,
+      472,
+      477,
+      480,
+      483,
+      487
+     ]
+    },
+    {
+     "text": "也打開試了",
+     "start": 492,
+     "chars": [
+      494,
+      498,
+      503,
+      509,
+      514
+     ]
+    },
+    {
+     "text": "點一下就能開始玩",
+     "start": 522,
+     "chars": [
+      524,
+      529,
+      533,
+      538,
+      543,
+      547,
+      552,
+      556
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "點一下",
+     "start": 524
+    }
+   ],
+   "cues": [
+    {
+     "id": "phone",
+     "text": "手機大小的畫面",
+     "frame": 464,
+     "early": 0
+    },
+    {
+     "id": "tap",
+     "text": "點一下",
+     "frame": 525,
+     "early": 0
+    }
+   ],
+   "hash": "5f108f98deae-9616c2911a",
+   "sub": "手機大小的畫面\n也打開試了\n點一下就能開始玩",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.944,
+    "minScore": 0.186,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.4,
+      "start": 2.38,
+      "ch": "點",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "手",
+     "start": 0.34,
+     "end": 0.48,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 0.52,
+     "end": 0.6,
+     "score": 0.993
+    },
+    {
+     "text": "大",
+     "start": 0.66,
+     "end": 0.72,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 0.8,
+     "end": 0.92,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 0.92,
+     "end": 0.98,
+     "score": 0.999
+    },
+    {
+     "text": "畫",
+     "start": 1.02,
+     "end": 1.1,
+     "score": 0.999
+    },
+    {
+     "text": "面",
+     "start": 1.16,
+     "end": 1.32,
+     "score": 1
+    },
+    {
+     "text": "也",
+     "start": 1.38,
+     "end": 1.46,
+     "score": 0.999
+    },
+    {
+     "text": "打",
+     "start": 1.52,
+     "end": 1.58,
+     "score": 0.999
+    },
+    {
+     "text": "開",
+     "start": 1.68,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "試",
+     "start": 1.88,
+     "end": 1.98,
+     "score": 0.905
+    },
+    {
+     "text": "了",
+     "start": 2.04,
+     "end": 2.1,
+     "score": 0.998
+    },
+    {
+     "text": "點",
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.943
+    },
+    {
+     "text": "一",
+     "start": 2.54,
+     "end": 2.6,
+     "score": 0.186
+    },
+    {
+     "text": "下",
+     "start": 2.68,
+     "end": 2.78,
+     "score": 0.999
+    },
+    {
+     "text": "就",
+     "start": 2.86,
+     "end": 2.98,
+     "score": 0.989
+    },
+    {
+     "text": "能",
+     "start": 3,
+     "end": 3.12,
+     "score": 0.987
+    },
+    {
+     "text": "開",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "始",
+     "start": 3.32,
+     "end": 3.4,
+     "score": 0.899
+    },
+    {
+     "text": "玩",
+     "start": 3.46,
+     "end": 3.62,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.34,
+    0.52,
+    0.66,
+    0.8,
+    0.92,
+    1.02,
+    1.16,
+    1.38,
+    1.52,
+    1.68,
+    1.88,
+    2.04,
+    2.38,
+    2.54,
+    2.68,
+    2.86,
+    3,
+    3.14,
+    3.32,
+    3.46
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": "audio/caffaine-sketch-game/05-s05.wav",
+   "audioFrame": 584,
+   "audioSec": 5.17,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.02,
+   "startFrame": 575,
+   "durationFrames": 184,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 585,
+   "voiceEndFrame": 739,
+   "stillFrame": 749,
+   "subtitleWindow": [
+    582,
+    756
+   ],
+   "sourceWindow": [
+    580,
+    754
+   ],
+   "lines": [
+    {
+     "text": "但有個小毛病",
+     "start": 582,
+     "chars": [
+      590,
+      595,
+      599,
+      603,
+      608,
+      613
+     ]
+    },
+    {
+     "text": "結束畫面上",
+     "start": 625,
+     "chars": [
+      627,
+      632,
+      637,
+      641,
+      646
+     ]
+    },
+    {
+     "text": "掉下來的星星",
+     "start": 655,
+     "chars": [
+      658,
+      663,
+      667,
+      671,
+      674,
+      679
+     ]
+    },
+    {
+     "text": "疊在「重新開始」的字上",
+     "start": 687,
+     "chars": [
+      689,
+      694,
+      694,
+      700,
+      707,
+      713,
+      719,
+      719,
+      722,
+      727,
+      732
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "小毛病",
+     "start": 603
+    }
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "有個小毛病",
+     "frame": 597,
+     "early": 0
+    },
+    {
+     "id": "scr",
+     "text": "結束畫面",
+     "frame": 628,
+     "early": 0
+    },
+    {
+     "id": "lap",
+     "text": "疊在",
+     "frame": 690,
+     "early": 0
+    }
+   ],
+   "hash": "c29d6ea13da3-9616c2911a",
+   "sub": "但有個小毛病\n結束畫面上\n掉下來的星星\n疊在「重新開始」的字上",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.959,
+    "minScore": 0.674,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.49,
+      "start": 1.48,
+      "ch": "結",
+      "errMs": -10
+     },
+     {
+      "onset": 2.52,
+      "start": 2.5,
+      "ch": "掉",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.26,
+     "end": 0.36,
+     "score": 1
+    },
+    {
+     "text": "有",
+     "start": 0.42,
+     "end": 0.52,
+     "score": 1
+    },
+    {
+     "text": "個",
+     "start": 0.56,
+     "end": 0.62,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.983
+    },
+    {
+     "text": "毛",
+     "start": 0.84,
+     "end": 0.98,
+     "score": 0.995
+    },
+    {
+     "text": "病",
+     "start": 1.02,
+     "end": 1.16,
+     "score": 0.98
+    },
+    {
+     "text": "結",
+     "start": 1.48,
+     "end": 1.6,
+     "score": 0.674
+    },
+    {
+     "text": "束",
+     "start": 1.66,
+     "end": 1.76,
+     "score": 0.94
+    },
+    {
+     "text": "畫",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.94
+    },
+    {
+     "text": "面",
+     "start": 1.96,
+     "end": 2.08,
+     "score": 0.989
+    },
+    {
+     "text": "上",
+     "start": 2.12,
+     "end": 2.3,
+     "score": 1
+    },
+    {
+     "text": "掉",
+     "start": 2.5,
+     "end": 2.64,
+     "score": 0.912
+    },
+    {
+     "text": "下",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.991
+    },
+    {
+     "text": "來",
+     "start": 2.8,
+     "end": 2.92,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.94,
+     "end": 3,
+     "score": 0.999
+    },
+    {
+     "text": "星",
+     "start": 3.04,
+     "end": 3.2,
+     "score": 0.864
+    },
+    {
+     "text": "星",
+     "start": 3.22,
+     "end": 3.4,
+     "score": 0.814
+    },
+    {
+     "text": "疊",
+     "start": 3.54,
+     "end": 3.64,
+     "score": 0.99
+    },
+    {
+     "text": "在",
+     "start": 3.72,
+     "end": 3.86,
+     "score": 0.999
+    },
+    {
+     "text": "重",
+     "start": 3.9,
+     "end": 4.12,
+     "score": 0.929
+    },
+    {
+     "text": "新",
+     "start": 4.16,
+     "end": 4.28,
+     "score": 1
+    },
+    {
+     "text": "開",
+     "start": 4.34,
+     "end": 4.48,
+     "score": 0.999
+    },
+    {
+     "text": "始",
+     "start": 4.54,
+     "end": 4.62,
+     "score": 0.973
+    },
+    {
+     "text": "的",
+     "start": 4.66,
+     "end": 4.74,
+     "score": 0.999
+    },
+    {
+     "text": "字",
+     "start": 4.8,
+     "end": 4.9,
+     "score": 1
+    },
+    {
+     "text": "上",
+     "start": 4.98,
+     "end": 5.14,
+     "score": 0.976
+    }
+   ],
+   "charTimes": [
+    0.26,
+    0.42,
+    0.56,
+    0.68,
+    0.84,
+    1.02,
+    1.48,
+    1.66,
+    1.82,
+    1.96,
+    2.12,
+    2.5,
+    2.68,
+    2.8,
+    2.94,
+    3.04,
+    3.22,
+    3.54,
+    3.72,
+    3.9,
+    4.16,
+    4.34,
+    4.54,
+    4.66,
+    4.8,
+    4.98
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": "audio/caffaine-sketch-game/06-s06.wav",
+   "audioFrame": 758,
+   "audioSec": 3.29,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 749,
+   "durationFrames": 115,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 759,
+   "voiceEndFrame": 856,
+   "stillFrame": 854,
+   "subtitleWindow": [
+    756,
+    861
+   ],
+   "sourceWindow": [
+    754,
+    859
+   ],
+   "lines": [
+    {
+     "text": "我照實跟它說",
+     "start": 756,
+     "chars": [
+      766,
+      770,
+      776,
+      781,
+      785,
+      790
+     ]
+    },
+    {
+     "text": "請它修好",
+     "start": 800,
+     "chars": [
+      802,
+      808,
+      813,
+      820
+     ]
+    },
+    {
+     "text": "其他不要動",
+     "start": 828,
+     "chars": [
+      830,
+      836,
+      842,
+      845,
+      850
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "修好",
+     "start": 813
+    }
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "照實跟它說",
+     "frame": 771,
+     "early": 0
+    },
+    {
+     "id": "fix",
+     "text": "修好",
+     "frame": 815,
+     "early": 0
+    },
+    {
+     "id": "keep",
+     "text": "其他不要動",
+     "frame": 832,
+     "early": 0
+    }
+   ],
+   "hash": "eb9dbb058e69-9616c2911a",
+   "sub": "我照實跟它說\n請它修好\n其他不要動",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.982,
+    "minScore": 0.928,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.53,
+      "start": 1.52,
+      "ch": "請",
+      "errMs": -10
+     },
+     {
+      "onset": 2.47,
+      "start": 2.46,
+      "ch": "其",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.3,
+     "end": 0.36,
+     "score": 0.993
+    },
+    {
+     "text": "照",
+     "start": 0.44,
+     "end": 0.6,
+     "score": 0.967
+    },
+    {
+     "text": "實",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.963
+    },
+    {
+     "text": "跟",
+     "start": 0.8,
+     "end": 0.9,
+     "score": 0.996
+    },
+    {
+     "text": "它",
+     "start": 0.94,
+     "end": 1,
+     "score": 0.994
+    },
+    {
+     "text": "說",
+     "start": 1.1,
+     "end": 1.22,
+     "score": 0.928
+    },
+    {
+     "text": "請",
+     "start": 1.52,
+     "end": 1.7,
+     "score": 0.96
+    },
+    {
+     "text": "它",
+     "start": 1.72,
+     "end": 1.8,
+     "score": 0.99
+    },
+    {
+     "text": "修",
+     "start": 1.9,
+     "end": 2.04,
+     "score": 0.997
+    },
+    {
+     "text": "好",
+     "start": 2.1,
+     "end": 2.26,
+     "score": 0.995
+    },
+    {
+     "text": "其",
+     "start": 2.46,
+     "end": 2.58,
+     "score": 0.996
+    },
+    {
+     "text": "他",
+     "start": 2.64,
+     "end": 2.74,
+     "score": 0.987
+    },
+    {
+     "text": "不",
+     "start": 2.84,
+     "end": 2.9,
+     "score": 0.994
+    },
+    {
+     "text": "要",
+     "start": 2.94,
+     "end": 3.06,
+     "score": 0.994
+    },
+    {
+     "text": "動",
+     "start": 3.1,
+     "end": 3.24,
+     "score": 0.97
+    }
+   ],
+   "charTimes": [
+    0.3,
+    0.44,
+    0.66,
+    0.8,
+    0.94,
+    1.1,
+    1.52,
+    1.72,
+    1.9,
+    2.1,
+    2.46,
+    2.64,
+    2.84,
+    2.94,
+    3.1
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": "audio/caffaine-sketch-game/07-s07.wav",
+   "audioFrame": 863,
+   "audioSec": 4.83,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.02,
+   "startFrame": 854,
+   "durationFrames": 174,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 864,
+   "voiceEndFrame": 1008,
+   "stillFrame": 1018,
+   "subtitleWindow": [
+    861,
+    1025
+   ],
+   "sourceWindow": [
+    859,
+    1023
+   ],
+   "lines": [
+    {
+     "text": "再玩一次",
+     "start": 861,
+     "chars": [
+      869,
+      874,
+      878,
+      882
+     ]
+    },
+    {
+     "text": "字清楚了",
+     "start": 893,
+     "chars": [
+      895,
+      901,
+      907,
+      913
+     ]
+    },
+    {
+     "text": "用滑鼠左右掃",
+     "start": 924,
+     "chars": [
+      926,
+      931,
+      937,
+      943,
+      948,
+      953
+     ]
+    },
+    {
+     "text": "接到六顆星星",
+     "start": 961,
+     "chars": [
+      964,
+      969,
+      974,
+      979,
+      984,
+      989
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "六顆",
+     "start": 974
+    }
+   ],
+   "cues": [
+    {
+     "id": "again",
+     "text": "再玩一次",
+     "frame": 870,
+     "early": 0
+    },
+    {
+     "id": "clear",
+     "text": "字清楚了",
+     "frame": 897,
+     "early": 0
+    },
+    {
+     "id": "six",
+     "text": "接到六顆星星",
+     "frame": 965,
+     "early": 0
+    }
+   ],
+   "hash": "bf2e5a5850bf-9616c2911a",
+   "sub": "再玩一次\n字清楚了\n用滑鼠左右掃\n接到六顆星星",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.877,
+    "minScore": 0.007,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.12,
+      "start": 1.12,
+      "ch": "字",
+      "errMs": 0
+     },
+     {
+      "onset": 2.06,
+      "start": 2.06,
+      "ch": "我",
+      "errMs": 0
+     },
+     {
+      "onset": 3.41,
+      "start": 3.4,
+      "ch": "接",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "再",
+     "start": 0.24,
+     "end": 0.38,
+     "score": 1
+    },
+    {
+     "text": "玩",
+     "start": 0.42,
+     "end": 0.54,
+     "score": 0.948
+    },
+    {
+     "text": "一",
+     "start": 0.56,
+     "end": 0.62,
+     "score": 0.124
+    },
+    {
+     "text": "次",
+     "start": 0.7,
+     "end": 0.84,
+     "score": 0.998
+    },
+    {
+     "text": "字",
+     "start": 1.12,
+     "end": 1.24,
+     "score": 0.998
+    },
+    {
+     "text": "清",
+     "start": 1.32,
+     "end": 1.5,
+     "score": 0.842
+    },
+    {
+     "text": "楚",
+     "start": 1.52,
+     "end": 1.62,
+     "score": 0.973
+    },
+    {
+     "text": "了",
+     "start": 1.7,
+     "end": 1.76,
+     "score": 0.998
+    },
+    {
+     "text": "我",
+     "start": 2.06,
+     "end": 2.12,
+     "score": 0.984
+    },
+    {
+     "text": "用",
+     "start": 2.16,
+     "end": 2.3,
+     "score": 0.985
+    },
+    {
+     "text": "滑",
+     "start": 2.32,
+     "end": 2.42,
+     "score": 0.999
+    },
+    {
+     "text": "鼠",
+     "start": 2.52,
+     "end": 2.62,
+     "score": 0.991
+    },
+    {
+     "text": "左",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.873
+    },
+    {
+     "text": "右",
+     "start": 2.88,
+     "end": 3,
+     "score": 0.999
+    },
+    {
+     "text": "掃",
+     "start": 3.06,
+     "end": 3.24,
+     "score": 0.998
+    },
+    {
+     "text": "接",
+     "start": 3.4,
+     "end": 3.52,
+     "score": 0.994
+    },
+    {
+     "text": "到",
+     "start": 3.58,
+     "end": 3.7,
+     "score": 0.998
+    },
+    {
+     "text": "六",
+     "start": 3.74,
+     "end": 3.88,
+     "score": 0.007
+    },
+    {
+     "text": "顆",
+     "start": 3.92,
+     "end": 4,
+     "score": 0.999
+    },
+    {
+     "text": "星",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.875
+    },
+    {
+     "text": "星",
+     "start": 4.26,
+     "end": 4.44,
+     "score": 0.844
+    }
+   ],
+   "charTimes": [
+    0.24,
+    0.42,
+    0.56,
+    0.7,
+    1.12,
+    1.32,
+    1.52,
+    1.7,
+    2.16,
+    2.32,
+    2.52,
+    2.72,
+    2.88,
+    3.06,
+    3.4,
+    3.58,
+    3.74,
+    3.92,
+    4.08,
+    4.26
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": "audio/caffaine-sketch-game/08-s08.wav",
+   "audioFrame": 1028,
+   "audioSec": 4.785,
+   "headSilSec": 0.02,
+   "tailSilSec": 0.015,
+   "startFrame": 1018,
+   "durationFrames": 174,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1028,
+   "voiceEndFrame": 1172,
+   "stillFrame": 1182,
+   "subtitleWindow": [
+    1025,
+    1189
+   ],
+   "sourceWindow": [
+    1023,
+    1187
+   ],
+   "lines": [
+    {
+     "text": "不過我只試了這一張草圖",
+     "start": 1025,
+     "chars": [
+      1027,
+      1030,
+      1036,
+      1040,
+      1046,
+      1050,
+      1054,
+      1057,
+      1059,
+      1064,
+      1070
+     ]
+    },
+    {
+     "text": "和一個模型",
+     "start": 1080,
+     "chars": [
+      1082,
+      1087,
+      1090,
+      1094,
+      1100
+     ]
+    },
+    {
+     "text": "別的草圖行不行",
+     "start": 1113,
+     "chars": [
+      1115,
+      1119,
+      1123,
+      1128,
+      1133,
+      1138,
+      1141
+     ]
+    },
+    {
+     "text": "還不知道",
+     "start": 1150,
+     "chars": [
+      1153,
+      1158,
+      1162,
+      1165
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "還不知道",
+     "start": 1153
+    }
+   ],
+   "cues": [
+    {
+     "id": "known",
+     "text": "只試了這一張草圖",
+     "frame": 1041,
+     "early": 0
+    },
+    {
+     "id": "q",
+     "text": "別的草圖",
+     "frame": 1116,
+     "early": 0
+    }
+   ],
+   "hash": "9012a14bd4e0-9616c2911a",
+   "sub": "不過我只試了這一張草圖\n和一個模型\n別的草圖行不行\n還不知道",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.919,
+    "minScore": 0.02,
+    "onsetMedianMs": 35,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.8,
+      "start": 1.84,
+      "ch": "和",
+      "errMs": 40
+     },
+     {
+      "onset": 4.17,
+      "start": 4.2,
+      "ch": "還",
+      "errMs": 30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 1
+    },
+    {
+     "text": "過",
+     "start": 0.12,
+     "end": 0.22,
+     "score": 1
+    },
+    {
+     "text": "我",
+     "start": 0.3,
+     "end": 0.38,
+     "score": 0.996
+    },
+    {
+     "text": "只",
+     "start": 0.44,
+     "end": 0.54,
+     "score": 0.989
+    },
+    {
+     "text": "試",
+     "start": 0.64,
+     "end": 0.72,
+     "score": 0.998
+    },
+    {
+     "text": "了",
+     "start": 0.78,
+     "end": 0.84,
+     "score": 0.997
+    },
+    {
+     "text": "這",
+     "start": 0.9,
+     "end": 0.98,
+     "score": 0.972
+    },
+    {
+     "text": "一",
+     "start": 1,
+     "end": 1.04,
+     "score": 0.195
+    },
+    {
+     "text": "張",
+     "start": 1.08,
+     "end": 1.22,
+     "score": 0.989
+    },
+    {
+     "text": "草",
+     "start": 1.24,
+     "end": 1.4,
+     "score": 0.999
+    },
+    {
+     "text": "圖",
+     "start": 1.44,
+     "end": 1.56,
+     "score": 0.998
+    },
+    {
+     "text": "和",
+     "start": 1.84,
+     "end": 1.92,
+     "score": 1
+    },
+    {
+     "text": "一",
+     "start": 2.02,
+     "end": 2.06,
+     "score": 0.02
+    },
+    {
+     "text": "個",
+     "start": 2.12,
+     "end": 2.2,
+     "score": 0.997
+    },
+    {
+     "text": "模",
+     "start": 2.26,
+     "end": 2.34,
+     "score": 0.999
+    },
+    {
+     "text": "型",
+     "start": 2.44,
+     "end": 2.64,
+     "score": 0.863
+    },
+    {
+     "text": "別",
+     "start": 2.94,
+     "end": 3.02,
+     "score": 0.975
+    },
+    {
+     "text": "的",
+     "start": 3.08,
+     "end": 3.14,
+     "score": 0.998
+    },
+    {
+     "text": "草",
+     "start": 3.2,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "圖",
+     "start": 3.38,
+     "end": 3.46,
+     "score": 0.998
+    },
+    {
+     "text": "行",
+     "start": 3.56,
+     "end": 3.7,
+     "score": 0.868
+    },
+    {
+     "text": "不",
+     "start": 3.7,
+     "end": 3.76,
+     "score": 0.997
+    },
+    {
+     "text": "行",
+     "start": 3.82,
+     "end": 4,
+     "score": 0.975
+    },
+    {
+     "text": "還",
+     "start": 4.2,
+     "end": 4.34,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 4.38,
+     "end": 4.44,
+     "score": 0.998
+    },
+    {
+     "text": "知",
+     "start": 4.5,
+     "end": 4.56,
+     "score": 0.993
+    },
+    {
+     "text": "道",
+     "start": 4.62,
+     "end": 4.74,
+     "score": 0.991
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.12,
+    0.3,
+    0.44,
+    0.64,
+    0.78,
+    0.9,
+    1,
+    1.08,
+    1.24,
+    1.44,
+    1.84,
+    2.02,
+    2.12,
+    2.26,
+    2.44,
+    2.94,
+    3.08,
+    3.2,
+    3.38,
+    3.56,
+    3.7,
+    3.82,
+    4.2,
+    4.38,
+    4.5,
+    4.62
+   ]
+  },
+  {
+   "id": "s09",
+   "audio": "audio/caffaine-sketch-game/09-s09.wav",
+   "audioFrame": 1192,
+   "audioSec": 5.305,
+   "headSilSec": 0.015,
+   "tailSilSec": 0.03,
+   "startFrame": 1182,
+   "durationFrames": 188,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1192,
+   "voiceEndFrame": 1351,
+   "stillFrame": 1360,
+   "subtitleWindow": [
+    1189,
+    1367
+   ],
+   "sourceWindow": [
+    1187,
+    1365
+   ],
+   "lines": [
+    {
+     "text": "所以做法三步",
+     "start": 1189,
+     "chars": [
+      1203,
+      1206,
+      1211,
+      1216,
+      1221,
+      1227
+     ]
+    },
+    {
+     "text": "畫草圖",
+     "start": 1238,
+     "chars": [
+      1240,
+      1245,
+      1251
+     ]
+    },
+    {
+     "text": "交給 AI",
+     "start": 1262,
+     "chars": [
+      1264,
+      1270,
+      1270,
+      1276,
+      1281
+     ]
+    },
+    {
+     "text": "玩一下",
+     "start": 1289,
+     "chars": [
+      1291,
+      1296,
+      1300
+     ]
+    },
+    {
+     "text": "有毛病就跟它說",
+     "start": 1311,
+     "chars": [
+      1313,
+      1317,
+      1323,
+      1329,
+      1333,
+      1337,
+      1342
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "三步",
+     "start": 1221
+    }
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "做法三步",
+     "frame": 1212,
+     "early": 0
+    },
+    {
+     "id": "a",
+     "text": "畫草圖",
+     "frame": 1241,
+     "early": 0
+    },
+    {
+     "id": "b",
+     "text": "交給 AI",
+     "frame": 1266,
+     "early": 0
+    },
+    {
+     "id": "c",
+     "text": "玩一下",
+     "frame": 1293,
+     "early": 0
+    }
+   ],
+   "hash": "44d9bde9cac4-9616c2911a",
+   "sub": "所以做法三步\n畫草圖\n交給 AI\n玩一下\n有毛病就跟它說",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.843,
+    "minScore": 0.031,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.62,
+      "start": 1.64,
+      "ch": "畫",
+      "errMs": 20
+     },
+     {
+      "onset": 2.46,
+      "start": 2.46,
+      "ch": "交",
+      "errMs": 0
+     },
+     {
+      "onset": 3.35,
+      "start": 3.36,
+      "ch": "玩",
+      "errMs": 10
+     },
+     {
+      "onset": 4.06,
+      "start": 4.08,
+      "ch": "有",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.4,
+     "end": 0.48,
+     "score": 0.774
+    },
+    {
+     "text": "以",
+     "start": 0.52,
+     "end": 0.58,
+     "score": 0.839
+    },
+    {
+     "text": "做",
+     "start": 0.68,
+     "end": 0.78,
+     "score": 0.926
+    },
+    {
+     "text": "法",
+     "start": 0.86,
+     "end": 0.92,
+     "score": 0.995
+    },
+    {
+     "text": "三",
+     "start": 1.02,
+     "end": 1.16,
+     "score": 0.031
+    },
+    {
+     "text": "步",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.955
+    },
+    {
+     "text": "畫",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.998
+    },
+    {
+     "text": "草",
+     "start": 1.82,
+     "end": 1.98,
+     "score": 0.969
+    },
+    {
+     "text": "圖",
+     "start": 2,
+     "end": 2.12,
+     "score": 0.996
+    },
+    {
+     "text": "交",
+     "start": 2.46,
+     "end": 2.62,
+     "score": 0.895
+    },
+    {
+     "text": "給",
+     "start": 2.64,
+     "end": 2.74,
+     "score": 0.992
+    },
+    {
+     "text": "A",
+     "start": 2.84,
+     "end": 2.88,
+     "score": 0.266
+    },
+    {
+     "text": "I",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.81
+    },
+    {
+     "text": "玩",
+     "start": 3.36,
+     "end": 3.5,
+     "score": 0.969
+    },
+    {
+     "text": "一",
+     "start": 3.52,
+     "end": 3.58,
+     "score": 0.12
+    },
+    {
+     "text": "下",
+     "start": 3.66,
+     "end": 3.76,
+     "score": 0.996
+    },
+    {
+     "text": "有",
+     "start": 4.08,
+     "end": 4.2,
+     "score": 0.998
+    },
+    {
+     "text": "毛",
+     "start": 4.22,
+     "end": 4.38,
+     "score": 0.987
+    },
+    {
+     "text": "病",
+     "start": 4.42,
+     "end": 4.56,
+     "score": 0.979
+    },
+    {
+     "text": "就",
+     "start": 4.62,
+     "end": 4.74,
+     "score": 0.945
+    },
+    {
+     "text": "跟",
+     "start": 4.76,
+     "end": 4.86,
+     "score": 0.97
+    },
+    {
+     "text": "它",
+     "start": 4.88,
+     "end": 4.96,
+     "score": 0.994
+    },
+    {
+     "text": "說",
+     "start": 5.04,
+     "end": 5.16,
+     "score": 0.995
+    }
+   ],
+   "charTimes": [
+    0.4,
+    0.52,
+    0.68,
+    0.86,
+    1.02,
+    1.22,
+    1.64,
+    1.82,
+    2,
+    2.46,
+    2.64,
+    2.84,
+    3,
+    3.36,
+    3.52,
+    3.66,
+    4.08,
+    4.22,
+    4.42,
+    4.62,
+    4.76,
+    4.88,
+    5.04
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": "audio/caffaine-sketch-game/10-s10.wav",
+   "audioFrame": 1370,
+   "audioSec": 2.44,
+   "headSilSec": 0.02,
+   "tailSilSec": 0.04,
+   "startFrame": 1360,
+   "durationFrames": 90,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1370,
+   "voiceEndFrame": 1442,
+   "stillFrame": 1440,
+   "subtitleWindow": [
+    1367,
+    1450
+   ],
+   "sourceWindow": [
+    1365,
+    1445
+   ],
+   "lines": [
+    {
+     "text": "留言「遊戲」",
+     "start": 1367,
+     "chars": [
+      1378,
+      1383,
+      1383,
+      1389,
+      1396,
+      1396
+     ]
+    },
+    {
+     "text": "拿這句提示詞",
+     "start": 1406,
+     "chars": [
+      1408,
+      1414,
+      1418,
+      1423,
+      1429,
+      1434
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "遊戲",
+     "start": 1389
+    }
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "遊戲",
+     "frame": 1391,
+     "early": 0
+    },
+    {
+     "id": "all",
+     "text": "提示詞",
+     "frame": 1424,
+     "early": 0
+    }
+   ],
+   "hash": "53cbe9105fa9-9616c2911a",
+   "sub": "留言「遊戲」\n拿這句提示詞",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.969,
+    "minScore": 0.802,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 1.32,
+      "start": 1.32,
+      "ch": "拿",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.3,
+     "end": 0.44,
+     "score": 0.986
+    },
+    {
+     "text": "言",
+     "start": 0.48,
+     "end": 0.62,
+     "score": 0.963
+    },
+    {
+     "text": "遊",
+     "start": 0.7,
+     "end": 0.84,
+     "score": 0.998
+    },
+    {
+     "text": "戲",
+     "start": 0.92,
+     "end": 1.04,
+     "score": 0.997
+    },
+    {
+     "text": "拿",
+     "start": 1.32,
+     "end": 1.42,
+     "score": 0.997
+    },
+    {
+     "text": "這",
+     "start": 1.5,
+     "end": 1.58,
+     "score": 0.802
+    },
+    {
+     "text": "句",
+     "start": 1.66,
+     "end": 1.74,
+     "score": 0.97
+    },
+    {
+     "text": "提",
+     "start": 1.8,
+     "end": 1.9,
+     "score": 0.99
+    },
+    {
+     "text": "示",
+     "start": 2,
+     "end": 2.08,
+     "score": 0.993
+    },
+    {
+     "text": "詞",
+     "start": 2.18,
+     "end": 2.3,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.3,
+    0.48,
+    0.7,
+    0.92,
+    1.32,
+    1.5,
+    1.66,
+    1.8,
+    2,
+    2.18
+   ]
+  },
+  {
+   "id": "end",
+   "audio": null,
+   "audioFrame": 1440,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1440,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1450,
+   "voiceEndFrame": 1450,
+   "stillFrame": 1536,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1445,
+    1548
+   ],
+   "lines": [],
+   "keywords": [],
+   "cues": [],
+   "sub": ""
+  }
+ ],
+ "voice": {
+  "file": "audio/caffaine-sketch-game/voice.wav",
+  "lufsIn": -10.97,
+  "lufs": -16,
+  "sec": 51.6
+ }
 }

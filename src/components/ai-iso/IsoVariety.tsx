@@ -228,10 +228,6 @@ const SplitSide: React.FC<VP> = ({ f, p, tone }) => {
       <div data-ov="左卡" style={{ position: "absolute", left: X0, top: TOP + 90, opacity: O(f, tL, 5), transform: `translateX(${Math.round((1 - ex) * -48)}px) rotate(${(-3 * (1 - ex) - 1.2 * ex).toFixed(2)}deg)` }}>
         <Card color={q.left.color}><Shot src={q.left.src} w={WI}>{null}</Shot></Card>
       </div>
-      {/* 右：空位 → 遊戲畫面擦入 */}
-      <div data-ov="右空位" style={{ position: "absolute", left: X0 + IW - CW, top: TOP + 90, width: CW, height: H + 24, borderRadius: 26, border: `6px dashed ${tone.accent}`, boxSizing: "border-box", opacity: f < tR ? 0.8 : 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ transform: `translateY(${Math.round(10 * Math.sin(f / 7))}px)` }}><Ico n="gamepad" size={120} color={tone.accent} fill={T.card} /></div>
-      </div>
       {f >= tR ? (
         <div data-ov="右卡" style={{ position: "absolute", left: X0 + IW - CW, top: TOP + 90, clipPath: `inset(0 ${(100 * (1 - wipe)).toFixed(1)}% 0 0)` }}>
           <Card color={q.right.color}>
@@ -560,9 +556,9 @@ const ClaimView: React.FC<VP> = ({ f, p, tone }) => {
 };
 
 // ───────── 共用：虛線空位（開頭 0.3 秒內版面就有東西，不留大片空白） ─────────
-const Ghost: React.FC<{ style: React.CSSProperties; color: string; ov?: string; children?: React.ReactNode }> = ({ style, color, ov, children }) => (
-  <div data-ov={ov} style={{ position: "absolute", border: `6px dashed ${color}`, borderRadius: 26, boxSizing: "border-box", opacity: 0.55, display: "flex", alignItems: "center", justifyContent: "center", ...style }}>{children}</div>
-);
+// 2026-11-16 Andy：虛線空位／問號／灰編號一律拿掉，下一項到 cue 才進場
+const Ghost: React.FC<{ style: React.CSSProperties; color: string; ov?: string; children?: React.ReactNode }> = () => null;
+
 const bounceOut = (t: number) => { const n = 7.5625, d = 2.75; if (t < 1 / d) return n * t * t; if (t < 2 / d) { t -= 1.5 / d; return n * t * t + 0.75; } if (t < 2.5 / d) { t -= 2.25 / d; return n * t * t + 0.9375; } t -= 2.625 / d; return n * t * t + 0.984375; };
 const CheckMark: React.FC<{ t: number; size: number; color: string; bad?: boolean }> = ({ t, size, color, bad }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" style={{ display: "block", flexShrink: 0 }}>
@@ -700,7 +696,6 @@ const DrawView: React.FC<VP> = ({ f, p, tone }) => {
     <>
       <div data-ov="題目" style={{ position: "absolute", left: X0, top: TOP + 4, width: IW, height: 150, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col("primary").side}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 18, ...riseIn(f, p.in + 2, 14) }}>
         <div style={{ ...zh, fontWeight: 900, fontSize: 56, color: T.ink }}>{q.stem}</div>
-        <div style={{ width: 150, height: 74, borderRadius: 20, border: `6px dashed ${tone.accent}` }} />
       </div>
       <div data-ov="籤筒" style={{ position: "absolute", left: tx, top: ty, width: TW, height: TH, transform: `rotate(${shakeOf().toFixed(2)}deg) scale(0.9)`, transformOrigin: "50% 100%", opacity: O(f, p.in, 4) }}>
         <svg width={TW} height={TH} viewBox={`0 0 ${TW} ${TH}`}>
@@ -747,6 +742,7 @@ const CheckView: React.FC<VP> = ({ f, p, tone }) => {
         </svg>
         {Array.from({ length: N }, (_, i) => {
           const t = t0 + i * st, on = f >= t, e = E(f, t, 10), foc = q.focus && f >= tF && (q.focus.cell ?? 0) === i, c = col(i % 2 ? "primary" : "right");
+          if (!on) return null;
           return (
             <div key={i} data-ov={`格${i + 1}`} style={{ position: "absolute", left: (i % cols) * (cw + gap), top: Math.floor(i / cols) * (ch + gap), width: cw, height: ch, borderRadius: 30, background: on ? T.card : "rgba(255,255,255,0.45)", boxShadow: on ? `0 8px 0 ${c.side}` : `inset 0 0 0 5px ${T.line}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, transform: `scale(${(on ? (foc ? 1.06 + 0.02 * Math.sin(f / 5) : 0.9 + 0.1 * e + 0.06 * Math.sin(Math.min(1, e) * 3.14)) : 0.94).toFixed(3)})` }}>
               <div style={{ ...en, fontWeight: 900, fontSize: 116, color: on ? c.fill : T.ink3, lineHeight: 1 }}>{i + 1}</div>
@@ -771,6 +767,7 @@ const CheckView: React.FC<VP> = ({ f, p, tone }) => {
         const t = A(it.at, FAR), on = f >= t, e = E(f, t, 12), c = col(it.color ?? (it.bad ? "wrong" : "right"));
         const h = it.big ? 470 : 190, top = TOP + 190 + items.slice(0, i).reduce((a, x) => a + (x.big ? 470 : 190) + 26, 0);
         const tm = A(it.markAt, FAR);
+        if (!on) return null;
         return (
           <div key={i} data-ov={`項目${i + 1}`} style={{ position: "absolute", left: X0, top: top, width: IW, height: h, borderRadius: 32, background: on ? T.card : "rgba(255,255,255,0.5)", boxShadow: on ? `0 8px 0 ${c.side}` : `inset 0 0 0 5px ${T.line}`, display: "flex", alignItems: "center", gap: 30, padding: "0 36px", boxSizing: "border-box", opacity: on ? 1 : 0.7, transform: `translateX(${on ? Math.round((1 - e) * 30) : 0}px)` }}>
             <CheckMark t={on ? E(f, t + 2, 12) : 0} size={it.big ? 110 : 92} color={c.fill} bad={it.bad} />
