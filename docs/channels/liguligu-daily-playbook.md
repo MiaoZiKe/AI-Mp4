@@ -83,6 +83,8 @@
     node scripts/ui/silent-timeline.mjs <slug>           # 無聲時間軸，先看畫面
     npm run validate <slug>
     node scripts/dossier/events.mjs <slug>               # 每鏡事件間隔
+    # API 配音一條龍（念稿檢查→送 TTS 1 次→切說明句→插停頓→接時間軸；--dry 只檢查）：
+    NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt node scripts/dossier/voice-take.mjs <slug> [--dry] [--from=<既有 orig.wav>]
     # —— 等使用者上傳旁白 ——
     # 錄音複製到 public/audio/<slug>/ 後：
     node scripts/dossier/recording-timeline.mjs <slug> audio/<slug>/<檔名>.wav <句數>
