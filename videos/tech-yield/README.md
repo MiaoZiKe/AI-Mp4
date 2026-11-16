@@ -23,7 +23,9 @@
 - 主素材下方部分畫面（面積對照、1 cm² 那一段）下半部留白偏多。
 - 電流一站只亮 4 幀、關閉淡出 4 幀（每站 12 幀），沒有到 playbook 第 8 條的 0.3–0.5 秒。
 
-## v2（2026/11/16，新念稿 8 段，配音完成、渲染中）
+## v2（2026/11/16，新念稿 8 段，成片完成）
+
+- 成片 `out/tech-yield.v2.mp4`（不進 git）：53.23 秒、1597 幀；正片 −16.3 LUFS；片尾段 −11.5 LUFS、峰值 −1.3（G=28，AT 49.2、FADE 50.1）。已傳 Andy 待核准；美編與機構審查進行中。
 
 - 配音：API 整篇 1 次（Iapetus、tech-b），原始說話 50.45 秒、246 字、純說話 4.74 字／秒 → 整篇 atempo 1.151（目標 5.46）；原檔 `public/audio/tech-yield/.take-7f1daeabc2.raw.orig.wav`；已 `tts-take --resplit`＋`align --force`。整篇信心 0.922；時間軸 1597 幀（53.23 秒）。
 - 檢查：validate 0 error（5 warning，s8 旁白 33 字）；yield-check 程式 1482 幀 0 筆。
