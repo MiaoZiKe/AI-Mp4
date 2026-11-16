@@ -19,6 +19,7 @@
 | liguligu-power-bill | **第 3 版（11/16 17:30 台北）：段落間插靜音（insert-pauses.py，共加 1.48 秒，沒重配）→ 28.9 秒，片尾卡 25.3 秒起；網站版 out/web/ 已重出（4.8MB）；最小段落／句間 0.70／0.30 秒**；以下為第 2 版紀錄：有聲完整版第 2 版已做（11/16 重配：第 1 句改「現在 AI 資料中心…」，原「A I」被念成「欸」；27.4 秒，片尾卡 23.8 秒起；Charon／gemini-3.8-flash-tts，重配 API 1 次請求，共 2 次）；網站用版本在 out/web/liguligu-power-bill/（mp4、cover.jpg、voice.mp3，4.8MB）；文章 JSON 念稿已同步；念稿全文與對齊在 voice.md | 主控放網站；**請人耳聽前 5 秒**確認「現在 AI」兩個字母都有念（對齊只量到 AI 約 0.18 秒）；口音（捲舌指標差距 3.3 kHz）與語速（4.9 音節/秒）|
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
+| **liguligu-2008-check（Andy 11/16 17:50 交辦，要做成影片）** | 題材與查證素材已備：`videos/liguligu-2008-check/research.md`（日本 7–9 月 GDP 年率 ▲0.1%、11/5 全球股市大跌、像不像 2008、2027 機構預測） | 照標準流程做：先補讀標「待讀原文」的來源 → 規劃主旨＋念稿 → 交主控給 Andy 看；排在 11/17 題目之後或依主控安排 |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
 
 ## 11/16 決定
