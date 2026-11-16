@@ -63,3 +63,6 @@
 - 念稿最後一句改成念出關鍵字「輝達」（`script.md` 已更新）。
 - 片尾招牌音：`scripts/dossier/sfx-logo-ligu.py`；無聲預覽配招牌音的版本 `out/liguligu-nvda-kress.preview.mp4`（片尾段 −11.3 LUFS、真峰值 −1.3 dBTP，AAC 後量）。只有招牌音：`out/liguligu-sting.mp3`。
 - 交件圖：修改前後 `out/liguligu-nvda-kress-before-after.png`、片尾每 0.1 秒 `out/liguligu-nvda-kress-endcard-0.1s.png`、九格 `out/liguligu-nvda-kress-review.png`；edge-check 上 44px／下 60px。
+
+## 2026/11/16 停頓檢查（insert-pauses.py）
+- 量到段落間隔 0.70–0.84 秒、句間 0.32–0.42 秒（−40 dBFS 以下算靜音），都已達標（段落 0.7、句間 0.3），所以沒有插靜音，成片不變（25.4 秒）。

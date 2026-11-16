@@ -15,8 +15,8 @@
 ## 進行中（11/16）
 | 片 | 狀態 | 下一步 |
 |---|---|---|
-| liguligu-nvda-kress | 有聲完整版已做（25.4 秒，Charon／gemini-3.8-flash-tts，API 1 次請求）；網站用版本在 out/web/liguligu-nvda-kress/（mp4、cover.jpg、voice.mp3，2.5MB）；文章 JSON 念稿已更新為現行 5 句 | 主控放網站；人耳確認口音（捲舌指標差距 4.3 kHz 偏高）與語速 |
-| liguligu-power-bill | 有聲完整版第 2 版已做（11/16 重配：第 1 句改「現在 AI 資料中心…」，原「A I」被念成「欸」；27.4 秒，片尾卡 23.8 秒起；Charon／gemini-3.8-flash-tts，重配 API 1 次請求，共 2 次）；網站用版本在 out/web/liguligu-power-bill/（mp4、cover.jpg、voice.mp3，4.8MB）；文章 JSON 念稿已同步；念稿全文與對齊在 voice.md | 主控放網站；**請人耳聽前 5 秒**確認「現在 AI」兩個字母都有念（對齊只量到 AI 約 0.18 秒）；口音（捲舌指標差距 3.3 kHz）與語速（4.9 音節/秒）|
+| liguligu-nvda-kress | **11/16 停頓檢查：段落 ≥0.70、句間 ≥0.32 秒，已達標，沒插靜音、成片不變**；有聲完整版已做（25.4 秒，Charon／gemini-3.8-flash-tts，API 1 次請求）；網站用版本在 out/web/liguligu-nvda-kress/（mp4、cover.jpg、voice.mp3，2.5MB）；文章 JSON 念稿已更新為現行 5 句 | 主控放網站；人耳確認口音（捲舌指標差距 4.3 kHz 偏高）與語速 |
+| liguligu-power-bill | **第 3 版（11/16 17:30 台北）：段落間插靜音（insert-pauses.py，共加 1.48 秒，沒重配）→ 28.9 秒，片尾卡 25.3 秒起；網站版 out/web/ 已重出（4.8MB）；最小段落／句間 0.70／0.30 秒**；以下為第 2 版紀錄：有聲完整版第 2 版已做（11/16 重配：第 1 句改「現在 AI 資料中心…」，原「A I」被念成「欸」；27.4 秒，片尾卡 23.8 秒起；Charon／gemini-3.8-flash-tts，重配 API 1 次請求，共 2 次）；網站用版本在 out/web/liguligu-power-bill/（mp4、cover.jpg、voice.mp3，4.8MB）；文章 JSON 念稿已同步；念稿全文與對齊在 voice.md | 主控放網站；**請人耳聽前 5 秒**確認「現在 AI」兩個字母都有念（對齊只量到 AI 約 0.18 秒）；口音（捲舌指標差距 3.3 kHz）與語速（4.9 音節/秒）|
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
