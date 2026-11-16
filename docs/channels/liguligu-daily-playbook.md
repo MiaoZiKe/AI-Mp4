@@ -89,6 +89,8 @@
     npm run validate <slug>
     npm run still <slug>
     npm run render <slug>                                # 產生的是無聲畫面
+    # 一步到位（自動找招牌音增益，AAC 後片尾段 −11.5±0.3 LUFS、真峰值 ≤ −1 dBTP）：
+    bash scripts/dossier/mix-auto.sh <旁白.wav|none> <招牌音.wav> <片尾開始秒> <總長秒> <無聲.mp4> <out.mp4>
     # 用 ffmpeg 把錄音合進去（音量調到約 −16 LUFS、真峰值 ≤ −1.5 dBTP；指令在範本片的 voice.md）
 
 - 成片只放旁白，不加背景音樂與音效。
