@@ -5,7 +5,7 @@
 ## Token 預算（使用者 11/16，規則全文 tw-rotation docs/marketing/channels/token_budget.md）
 - 這個工作階段每天上限 0.6 億 token；用到 80% 後當天只做已排程要發的和維修，新企劃、重做延到隔天。品質不降。
 - 子 agent 不長時間等渲染或 TTS：超過 5 分鐘就先結束、把狀態寫進本檔「進行中」，完成後再派新的子 agent 接手（渲染／TTS 用背景指令跑，輸出寫到 out/<slug>/run.log）。
-- 每天 15:17 跑統計腳本。
+- 每天 15:17 跑統計腳本：不建排程，由網站主控傳訊息來，收到再跑。
 
 ## 固定設定
 - 畫面：`stage: "dossier"`＋`news.layout: "fill"`、`news.mark: "LIGULIGU"`；片尾卡固定版（`DOSSIER_END`，3.6 秒）；招牌音 `python3 scripts/dossier/sfx-logo-ligu.py out.wav`；混音 `bash scripts/dossier/mix-final.sh <旁白|none> <sting> <片尾開始秒> <總長秒> <out.wav>`（G=4.9）。
