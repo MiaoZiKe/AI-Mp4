@@ -36,7 +36,7 @@ export type Shot3D = { at: number; dur: number; d?: number; elev?: number; y?: n
 /** 物理（2026/11/16 tech-offer，沒寫就照舊）：fallIn＝回來那一段是受重力落下（位移∝t²）＋落地小彈跳（bounce＝彈起高度佔 dy 的比例），透明度在落下開始兩幀內就到位；
  *  fallOut＝出去那一段受重力（例如章往下蓋）＋撞到後小回彈；throw＝出去那一段走拋物線（水平等速、垂直先上後落，peak＝最高多高）；
  *  press＝落地（撞擊）那一刻被壓一下的層（往下沉 pressAmt 再彈回） */
-export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number; fallIn?: boolean; fallOut?: boolean; throw?: number; bounce?: number; press?: string[]; pressAmt?: number };
+export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number; fallIn?: boolean; fallOut?: boolean; throw?: number; bounce?: number; press?: string[]; pressAmt?: number; spring?: { tau?: number; period?: number } };
 
 const FAR = 1e9;
 export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductModel): Model3D => {
@@ -68,7 +68,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     // props.overlay：裡面每一層的 at／until（含巢狀的，例如 anti.at、items[].at、keys[].at）都換成絕對幀
     const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" || k === "hiAt" || k === "textAt" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
     for (const o of [].concat(p.overlay ?? []) as any[]) (m.overlays ??= []).push({ until: FAR, ...deep(o), at: at(o.at, own.startFrame) });
-    for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity, fallIn: c.fallIn, fallOut: c.fallOut, throw: c.throw, bounce: c.bounce, press: c.press, pressAmt: c.pressAmt });
+    for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity, fallIn: c.fallIn, fallOut: c.fallOut, throw: c.throw, bounce: c.bounce, press: c.press, pressAmt: c.pressAmt, ...(c.spring ? { spring: c.spring } : {}) } as Shift3D);
   });
   m.runs.sort((a, b) => a.at - b.at); m.shots.sort((a, b) => a.at - b.at); m.shifts.sort((a, b) => a.at - b.at);
   return m;
@@ -151,8 +151,10 @@ export const stateAt = (m: Model3D, f: number) => {
       if (sh.press?.length) presses.push({ layers: sh.press, t0: sh.fallOut ? sh.at + sh.dur : sh.until + sh.dur, amt: sh.pressAmt ?? 0.08 });
       continue;
     }
-    const tw = tween(f, sh.at, sh.dur, EASE.move) * (1 - tween(f, sh.until, sh.dur, EASE.move));
-    if (tw <= 0) continue;
+    // spring（2026/11/16 tech-packaging，沒寫就照舊）：回來那一段是阻尼彈簧（過衝、收斂），例如回流焊時凸塊熔化、表面張力把零件拉回正中（自對位）
+    const sp = (sh as any).spring as { tau?: number; period?: number } | undefined;
+    const tw = sp && f >= sh.until ? tween(f, sh.at, sh.dur, EASE.move) * Math.exp(-(f - sh.until) / (sp.tau ?? 5)) * Math.cos((2 * Math.PI * (f - sh.until)) / (sp.period ?? 12)) : tween(f, sh.at, sh.dur, EASE.move) * (1 - tween(f, sh.until, sh.dur, EASE.move));
+    if (Math.abs(tw) <= 1e-4) continue;
     q.x += sh.dx * tw; q.y += sh.dy * tw; q.z += sh.dz * tw;
     if (sh.opacity !== undefined) q.opacity = mix(q.opacity, sh.opacity, tw);
   }

@@ -1,0 +1,2835 @@
+{
+  "slug": "tech-packaging",
+  "title": "先進封裝：晶片太大做不好，拆小再拼回去（科技透明圈 第 5 支）",
+  "asOf": "2026/11/18",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": {
+    "name": "科技透明圈",
+    "tag": "放大來看",
+    "slogan": "一支講透一件事"
+  },
+  "hudSkin": "light",
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "tech-b",
+    "_說明": "念稿定版：docs/prompts/tech-packaging-旁白.txt（不改）；API 整篇 1 次請求"
+  },
+  "hud": {
+    "levels": [
+      {
+        "id": "pk",
+        "label": "先進封裝",
+        "en": "PACKAGE",
+        "field": "10 cm",
+        "ruler": "1 cm",
+        "art": "none",
+        "handoff3D": true,
+        "readout": false,
+        "note": "查證截至 2026/11/18"
+      }
+    ],
+    "theme": "dark",
+    "schematic": {
+      "text": "Schematic – not to scale",
+      "zh": "示意圖，非實際比例・運作為示意"
+    },
+    "maxLabels": 4,
+    "smallPx": 30,
+    "layout": "fill",
+    "scanBand": 0.3
+  },
+  "cover": {
+    "title": [
+      "拆小",
+      "再拼回去"
+    ],
+    "sub": "先進封裝",
+    "frame": 40
+  },
+  "sample": false,
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "一次曝光，最多印八百多平方毫米。現在最大的 AI 晶片封裝，是這個的五倍以上。",
+      "tts": "一次曝光，最多印八百多平方毫米。現在最大的 AI 晶片封裝，是這個的五倍以上。",
+      "subtitle": {
+        "zh": "一次曝光\n最多印八百多平方毫米\n最大的 AI 晶片封裝\n是這個的五倍以上",
+        "en": "One exposure prints at most | about 858 mm². | Today's biggest AI chip package | is over five times that."
+      },
+      "keywords": [
+        "八百多",
+        "五倍以上"
+      ],
+      "cues": [
+        {
+          "id": "once",
+          "text": "一次曝光"
+        },
+        {
+          "id": "limit",
+          "text": "八百多"
+        },
+        {
+          "id": "x5",
+          "text": "五倍以上"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": {
+          "kicker": "封裝面積",
+          "title": "≈ 5 倍光罩",
+          "size": 132,
+          "top": 136
+        },
+        "zoom": [
+          {
+            "to": "pk",
+            "at": "start-30",
+            "dur": 1
+          }
+        ],
+        "shot": [
+          {
+            "at": "start-30",
+            "dur": 1,
+            "x": 0,
+            "y": -1.15,
+            "d": 31,
+            "elev": 35
+          }
+        ],
+        "shift": [
+          {
+            "layer": "frame0",
+            "at": "s1:start-40",
+            "until": "s7:two",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "frame1",
+            "at": "s1:start-40",
+            "until": "s7:two+5",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "bridge",
+            "at": "s1:start-40",
+            "until": "s7:bw-4",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "sub",
+            "at": "s1:start-40",
+            "until": "s10:start+8",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "pcb",
+            "at": "s1:start-40",
+            "until": "s10:start+10",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "balls0",
+            "at": "s1:start-40",
+            "until": "s10:start+52",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "balls1",
+            "at": "s1:start-40",
+            "until": "s10:start+55",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "balls2",
+            "at": "s1:start-40",
+            "until": "s10:start+58",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "head",
+            "at": "s1:start-40",
+            "until": "s10:start-4",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "frame",
+            "at": "s2:start-2",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 2
+          }
+        ],
+        "run": [
+          {
+            "id": "scanF",
+            "at": "start-30",
+            "until": "start+70",
+            "ramp": 6
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-frames",
+            "at": "start-30",
+            "until": "s2:start-2",
+            "avoid": false,
+            "x": 64,
+            "y": 905,
+            "w": 952,
+            "h": 330,
+            "cols": 5,
+            "fw": 130,
+            "title": "光罩框＝一次曝光的面積",
+            "items": [
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start+3"
+              },
+              {
+                "at": "start+7"
+              },
+              {
+                "at": "start+11"
+              },
+              {
+                "at": "start+15"
+              }
+            ],
+            "flash": [
+              {
+                "at": "x5"
+              }
+            ],
+            "note": {
+              "at": "limit+4",
+              "text": "單顆晶片仍受 858 mm² 限制，變大的是封裝"
+            }
+          },
+          {
+            "type": "stamp",
+            "at": "start+22",
+            "until": "limit-2",
+            "text": "廠商公布",
+            "x": 850,
+            "y": 862,
+            "color": "amber",
+            "size": 44,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "limit",
+            "until": "s2:start-2",
+            "text": "已確定：一次曝光約 858 mm²",
+            "x": 320,
+            "y": 862,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "x5",
+            "until": "s2:start-2",
+            "text": "≥ 5 倍",
+            "x": 540,
+            "y": 1292,
+            "color": "coral",
+            "size": 52,
+            "rot": -4,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 2026/10 法說、2026/8 OCP；SemiEngineering"
+      ],
+      "durationSec": 6.1
+    },
+    {
+      "id": "s2",
+      "beat": "you",
+      "para": 2,
+      "narration": "做法是把好幾顆晶片，平放在一片矽中介層上，旁邊再圍一圈記憶體。",
+      "tts": "做法是把好幾顆晶片，平放在一片矽中介層上，旁邊再圍一圈記憶體。",
+      "subtitle": {
+        "zh": "做法是把好幾顆晶片\n平放在一片矽中介層上\n旁邊再圍一圈記憶體",
+        "en": "The trick: lay several chips flat | on one silicon interposer, | ringed by memory."
+      },
+      "keywords": [
+        "平放",
+        "矽中介層",
+        "記憶體"
+      ],
+      "cues": [
+        {
+          "id": "flat",
+          "text": "平放"
+        },
+        {
+          "id": "ip",
+          "text": "矽中介層"
+        },
+        {
+          "id": "mem",
+          "text": "記憶體"
+        },
+        {
+          "id": "ring",
+          "text": "一圈"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "zoom": [
+          {
+            "to": "pk",
+            "at": "start-2",
+            "dur": 1
+          }
+        ],
+        "shift": [
+          {
+            "layer": "dieA",
+            "at": "s2:start-2",
+            "until": "flat-2",
+            "dy": 1.4,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.03,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.012
+          },
+          {
+            "layer": "dieB",
+            "at": "s2:start-2",
+            "until": "flat+2",
+            "dy": 1.4,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.03,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.012
+          },
+          {
+            "layer": "hbm0",
+            "at": "s2:start-2",
+            "until": "mem+0",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm1",
+            "at": "s2:start-2",
+            "until": "mem+4",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm2",
+            "at": "s2:start-2",
+            "until": "mem+8",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm3",
+            "at": "s2:start-2",
+            "until": "mem+12",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm4",
+            "at": "s2:start-2",
+            "until": "mem+16",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm5",
+            "at": "s2:start-2",
+            "until": "mem+20",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm6",
+            "at": "s2:start-2",
+            "until": "mem+24",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hbm7",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs0",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs1",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs2",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs3",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs4",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs5",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs6",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs7",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs8",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs9",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs10",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "hs11",
+            "at": "s2:start-2",
+            "until": "mem+28",
+            "dy": 1,
+            "opacity": 0,
+            "dur": 9,
+            "fallIn": true,
+            "bounce": 0.06,
+            "press": [
+              "ip",
+              "c4"
+            ],
+            "pressAmt": 0.006
+          },
+          {
+            "layer": "align",
+            "at": "s1:start-40",
+            "until": "s2:start",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "align",
+            "at": "mem+44",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 6
+          }
+        ],
+        "run": [
+          {
+            "id": "landRip",
+            "at": "flat+8",
+            "until": "flat+30",
+            "ramp": 4
+          },
+          {
+            "id": "ringH",
+            "at": "ring",
+            "until": "ring+16",
+            "ramp": 3
+          }
+        ],
+        "labels": [
+          {
+            "part": "dieA",
+            "text": "運算晶片",
+            "en": "Compute die",
+            "color": "blue",
+            "at": "flat+8",
+            "until": "s3:start"
+          },
+          {
+            "part": "ip",
+            "text": "矽中介層",
+            "en": "Interposer",
+            "color": "blue",
+            "at": "ip",
+            "until": "s3:start"
+          },
+          {
+            "part": "hbm",
+            "text": "記憶體",
+            "en": "HBM",
+            "color": "amber",
+            "at": "mem+12",
+            "until": "s3:start"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "start+4",
+            "until": "s3:start",
+            "text": "已確定・以 CoWoS-S 示意",
+            "x": 540,
+            "y": 1300,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 CoWoS；WikiChip"
+      ],
+      "durationSec": 5.8
+    },
+    {
+      "id": "s3",
+      "beat": "twist",
+      "para": 3,
+      "narration": "拆開再拼，接點變多，訊號也要多走一段，為什麼反而划算？",
+      "tts": "拆開再拼，接點變多，訊號也要多走一段，為什麼反而划算？",
+      "subtitle": {
+        "zh": "拆開再拼\n接點變多\n訊號也要多走一段\n為什麼反而划算？",
+        "en": "Split and rejoin: more joints, | a longer trip for signals. | So why is it cheaper?"
+      },
+      "keywords": [
+        "接點變多",
+        "多走一段",
+        "划算"
+      ],
+      "cues": [
+        {
+          "id": "joints",
+          "text": "接點變多"
+        },
+        {
+          "id": "detour",
+          "text": "多走一段"
+        },
+        {
+          "id": "why",
+          "text": "為什麼"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "run": [
+          {
+            "id": "ubGlow",
+            "at": "joints-2",
+            "until": "s4:start",
+            "ramp": 4
+          },
+          {
+            "id": "sigDirect",
+            "at": "start",
+            "until": "detour-2",
+            "ramp": 4
+          },
+          {
+            "id": "sigDetour",
+            "at": "detour",
+            "until": "s4:start",
+            "ramp": 4
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-detour",
+            "at": "start",
+            "until": "s4:start-2",
+            "avoid": false,
+            "x": 556,
+            "y": 875,
+            "w": 460,
+            "h": 470,
+            "title": "代價",
+            "joints": {
+              "at": "joints"
+            },
+            "detour": {
+              "at": "detour"
+            }
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "joints+2",
+            "until": "s4:start-2",
+            "text": "已確定（代價）",
+            "x": 290,
+            "y": 960,
+            "color": "coral",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "why",
+            "until": "s4:start-2",
+            "text": "為什麼划算？",
+            "x": 290,
+            "y": 1120,
+            "color": "amber",
+            "size": 52,
+            "rot": -4,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "The Register 2024/4；WikiChip"
+      ],
+      "durationSec": 4.6
+    },
+    {
+      "id": "s4",
+      "beat": "mechanism",
+      "para": 4,
+      "narration": "上一支估算過，晶片越大越容易被缺陷打中，大晶片好的不到一半。",
+      "tts": "上一支估算過，晶片越大越容易被缺陷打中，大晶片好的不到一半。",
+      "subtitle": {
+        "zh": "上一支估算過\n晶片越大越容易被缺陷打中\n大晶片好的不到一半",
+        "en": "Last time we estimated: | the bigger the chip, the likelier a defect hits. | Under half of big chips come out good."
+      },
+      "keywords": [
+        "缺陷",
+        "不到一半"
+      ],
+      "cues": [
+        {
+          "id": "prev",
+          "text": "上一支"
+        },
+        {
+          "id": "defect",
+          "text": "缺陷"
+        },
+        {
+          "id": "half",
+          "text": "不到一半"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-wafers",
+            "at": "start",
+            "until": "s5:start-10",
+            "avoid": false,
+            "x": 64,
+            "y": 905,
+            "w": 952,
+            "h": 430,
+            "title": "同一組缺陷",
+            "tag": "估算，簡化模型",
+            "defect": {
+              "at": "defect-6"
+            },
+            "half": {
+              "at": "half",
+              "text": "≈45%"
+            }
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "prev+4",
+            "until": "s5:start-10",
+            "text": "估算（簡化模型，非實測）",
+            "x": 760,
+            "y": 858,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "tech-yield：D0 0.1/cm²、泊松模型（估算）"
+      ],
+      "durationSec": 5.3
+    },
+    {
+      "id": "s5",
+      "beat": "mechanism",
+      "para": 5,
+      "narration": "拆成小顆，每顆先測過，只挑好的封裝。壞一顆，只丟那一小顆。",
+      "tts": "拆成小顆，每顆先測過，只挑好的封裝。壞一顆，只丟那一小顆。",
+      "subtitle": {
+        "zh": "拆成小顆，每顆先測過\n只挑好的封裝\n壞一顆\n只丟那一小顆",
+        "en": "Split into small dies, test each first, | package only the good ones. | One bad die? Toss just that one."
+      },
+      "keywords": [
+        "先測過",
+        "只挑好的",
+        "只丟那一小顆"
+      ],
+      "cues": [
+        {
+          "id": "small",
+          "text": "拆成小顆"
+        },
+        {
+          "id": "test",
+          "text": "先測過"
+        },
+        {
+          "id": "pick",
+          "text": "只挑好的"
+        },
+        {
+          "id": "bad",
+          "text": "壞一顆"
+        },
+        {
+          "id": "drop",
+          "text": "只丟那一小顆"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-4",
+            "dur": 14,
+            "x": 41,
+            "y": -2.3,
+            "d": 35,
+            "elev": 40
+          }
+        ],
+        "shift": [
+          {
+            "layer": "kc0",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc1",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc2",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc3",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc4",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc5",
+            "at": "start+2",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc0",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc1",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc2",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc3",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc4",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "kc5",
+            "at": "test+12",
+            "dx": 1.9,
+            "dur": 10
+          },
+          {
+            "layer": "probe",
+            "at": "test-6",
+            "until": "test+8",
+            "dy": -0.4,
+            "dur": 6,
+            "fallOut": true,
+            "bounce": 0.12
+          },
+          {
+            "layer": "probe",
+            "at": "bad-6",
+            "until": "bad+8",
+            "dy": -0.4,
+            "dur": 6,
+            "fallOut": true,
+            "bounce": 0.12
+          },
+          {
+            "layer": "nozzle",
+            "at": "test+24",
+            "until": "test+31",
+            "dy": -1.9,
+            "dur": 6
+          },
+          {
+            "layer": "nozzle",
+            "at": "test+31",
+            "until": "test+76",
+            "dy": 1.5,
+            "dur": 8
+          },
+          {
+            "layer": "nozzle",
+            "at": "test+40",
+            "until": "test+76",
+            "dx": 3.988,
+            "dz": -1,
+            "dur": 14
+          },
+          {
+            "layer": "nozzle",
+            "at": "test+56",
+            "until": "test+66",
+            "dy": -1.45,
+            "dur": 7
+          },
+          {
+            "layer": "nozzle",
+            "at": "test+66",
+            "until": "test+76",
+            "dy": 0.6,
+            "dur": 6
+          },
+          {
+            "layer": "kc0",
+            "at": "test+30",
+            "dy": 0.03,
+            "dur": 2
+          },
+          {
+            "layer": "kc0",
+            "at": "test+31",
+            "dy": 1.47,
+            "dur": 8
+          },
+          {
+            "layer": "kc0",
+            "at": "test+40",
+            "dx": 3.988,
+            "dz": -1,
+            "dur": 14
+          },
+          {
+            "layer": "kc0",
+            "at": "test+56",
+            "dy": -1.43,
+            "dur": 7
+          },
+          {
+            "layer": "kc0",
+            "at": "test+63",
+            "dy": -0.09000000000000001,
+            "dur": 4,
+            "fallOut": true,
+            "bounce": 0.25
+          },
+          {
+            "layer": "pusher",
+            "at": "bad+10",
+            "until": "bad+18",
+            "dz": 0.95,
+            "dur": 4
+          },
+          {
+            "layer": "kc1",
+            "at": "bad+10",
+            "dz": 0.95,
+            "dur": 4
+          },
+          {
+            "layer": "kc1",
+            "at": "bad+14",
+            "dz": 0.65,
+            "dy": -1.5,
+            "throw": 0.375,
+            "dur": 12
+          },
+          {
+            "layer": "kc1",
+            "at": "bad+26",
+            "until": "bad+29",
+            "dy": 0.12,
+            "dur": 3,
+            "fallIn": true,
+            "bounce": 0.25
+          }
+        ],
+        "run": [
+          {
+            "id": "probeI",
+            "at": "test",
+            "until": "test+8",
+            "ramp": 2
+          },
+          {
+            "id": "okA",
+            "at": "test+1",
+            "until": "s6:start",
+            "ramp": 2
+          },
+          {
+            "id": "placeRip",
+            "at": "test+67",
+            "until": "test+90",
+            "ramp": 3
+          },
+          {
+            "id": "ngA",
+            "at": "bad+1",
+            "until": "drop-2",
+            "ramp": 2
+          },
+          {
+            "id": "ngBlink",
+            "at": "drop-2",
+            "until": "s6:start",
+            "ramp": 3
+          },
+          {
+            "id": "binRip",
+            "at": "bad+26",
+            "until": "bad+46",
+            "ramp": 3
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "start+4",
+            "until": "s6:start-2",
+            "text": "已確定（作法：已知良品挑選）",
+            "x": 540,
+            "y": 1300,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "start+4",
+            "until": "s6:start-2",
+            "text": "探針測試（示意）→ 吸嘴 → 中介層晶圓",
+            "x": 540,
+            "y": 1070,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "test+4",
+            "until": "bad-4",
+            "text": "好 ✓",
+            "x": 270,
+            "y": 1175,
+            "color": "blue",
+            "size": 56,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "bad+4",
+            "until": "s6:start-2",
+            "text": "壞 ✕",
+            "x": 270,
+            "y": 1175,
+            "color": "coral",
+            "size": 56,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "drop",
+            "until": "s6:start-2",
+            "text": "只丟這一顆",
+            "x": 760,
+            "y": 1175,
+            "color": "coral",
+            "size": 52,
+            "rot": -4,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "WikiChip；Teradyne；SemiEngineering"
+      ],
+      "durationSec": 5
+    },
+    {
+      "id": "s6",
+      "beat": "mechanism",
+      "para": 6,
+      "narration": "中介層的線比電路板細很多，晶片跟記憶體貼得近，資料來回才夠快。",
+      "tts": "中介層的線比電路板細很多，晶片跟記憶體貼得近，資料來回才夠快。",
+      "subtitle": {
+        "zh": "中介層的線比電路板細很多\n晶片跟記憶體貼得近\n資料來回才夠快",
+        "en": "Interposer wiring is far finer than a circuit board's. | Chip and memory sit close, | so data moves fast both ways."
+      },
+      "keywords": [
+        "細很多",
+        "貼得近",
+        "來回"
+      ],
+      "cues": [
+        {
+          "id": "thin",
+          "text": "細很多"
+        },
+        {
+          "id": "near",
+          "text": "貼得近"
+        },
+        {
+          "id": "fast",
+          "text": "來回"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-8",
+            "dur": 14,
+            "x": 2.2,
+            "y": -0.9,
+            "d": 18,
+            "elev": 36
+          }
+        ],
+        "shift": [
+          {
+            "layer": "dieB",
+            "at": "start+4",
+            "until": "s7:start-6",
+            "opacity": 0.32,
+            "dur": 8
+          },
+          {
+            "layer": "hbm5",
+            "at": "start+4",
+            "until": "s7:start-6",
+            "opacity": 0.32,
+            "dur": 8
+          },
+          {
+            "layer": "hbm6",
+            "at": "start+4",
+            "until": "s7:start-6",
+            "opacity": 0.32,
+            "dur": 8
+          }
+        ],
+        "run": [
+          {
+            "id": "rdlGlow",
+            "at": "thin-2",
+            "until": "s7:start",
+            "ramp": 6
+          },
+          {
+            "id": "memIn",
+            "at": "thin+6",
+            "until": "s7:start-6",
+            "ramp": 12,
+            "gain": 0.45
+          },
+          {
+            "id": "memOut",
+            "at": "thin+6",
+            "until": "s7:start-6",
+            "ramp": 12,
+            "gain": 0.45
+          },
+          {
+            "id": "memIn",
+            "at": "fast-4",
+            "until": "s7:start-6",
+            "ramp": 10
+          },
+          {
+            "id": "memOut",
+            "at": "fast-4",
+            "until": "s7:start-6",
+            "ramp": 10
+          },
+          {
+            "id": "tsvDown",
+            "at": "fast",
+            "until": "s7:start-6",
+            "ramp": 6
+          }
+        ],
+        "labels": [
+          {
+            "part": "rdl",
+            "text": "重分佈層 RDL",
+            "en": "redistribution layer",
+            "color": "amber",
+            "at": "thin",
+            "until": "fast-6"
+          },
+          {
+            "part": "ub",
+            "text": "微凸塊",
+            "en": "Micro-bump",
+            "color": "blue",
+            "at": "near",
+            "until": "s7:start-12"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-xsec",
+            "at": "start+2",
+            "until": "s7:start-2",
+            "avoid": false,
+            "x": 64,
+            "y": 958,
+            "w": 952,
+            "h": 400,
+            "title": "剖面（示意）",
+            "tag": "相對示意，非實際線寬",
+            "flows": [
+              "memIn",
+              "memOut"
+            ],
+            "thin": {
+              "at": "thin"
+            },
+            "near": {
+              "at": "near"
+            }
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "fast",
+            "until": "s7:start-2",
+            "text": "晶片與記憶體之間：數千條訊號線",
+            "x": 600,
+            "y": 912,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "ECTC 2023；Rambus；示意，非實際線寬"
+      ],
+      "durationSec": 5.6
+    },
+    {
+      "id": "s7",
+      "beat": "payoff",
+      "para": 7,
+      "narration": "廠商公布的大晶片，就是兩顆印到極限的晶片並排，每秒互傳十兆位元組。",
+      "tts": "廠商公布的大晶片，就是兩顆印到極限的晶片並排，每秒互傳十兆位元組。",
+      "subtitle": {
+        "zh": "廠商公布的大晶片\n就是兩顆印到極限的晶片並排\n每秒互傳十兆位元組",
+        "en": "The vendor's big chip: | two dies, each printed to the limit, side by side, | trading 10 TB every second."
+      },
+      "keywords": [
+        "印到極限",
+        "十兆位元組"
+      ],
+      "cues": [
+        {
+          "id": "maker",
+          "text": "廠商公布"
+        },
+        {
+          "id": "two",
+          "text": "兩顆"
+        },
+        {
+          "id": "edge",
+          "text": "印到極限"
+        },
+        {
+          "id": "bw",
+          "text": "十兆位元組"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-8",
+            "dur": 14,
+            "x": 0,
+            "y": -1.15,
+            "d": 31,
+            "elev": 35
+          }
+        ],
+        "shift": [
+          {
+            "layer": "frame0",
+            "at": "s1:start-40",
+            "until": "two",
+            "dy": 1.8,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.05
+          },
+          {
+            "layer": "frame1",
+            "at": "s1:start-40",
+            "until": "two+5",
+            "dy": 1.8,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.05
+          },
+          {
+            "layer": "frame0",
+            "at": "s8:start-2",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 4
+          },
+          {
+            "layer": "frame1",
+            "at": "s8:start-2",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 4
+          },
+          {
+            "layer": "bridge",
+            "at": "s8:start-2",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 4
+          },
+          {
+            "layer": "dieA",
+            "at": "bw-6",
+            "until": "s8:start-2",
+            "opacity": 0.28,
+            "dur": 6
+          },
+          {
+            "layer": "dieB",
+            "at": "bw-6",
+            "until": "s8:start-2",
+            "opacity": 0.28,
+            "dur": 6
+          }
+        ],
+        "run": [
+          {
+            "id": "frameEdge",
+            "at": "edge",
+            "until": "bw-6",
+            "ramp": 3
+          },
+          {
+            "id": "bridgeAB",
+            "at": "bw",
+            "until": "s8:start-2",
+            "ramp": 6
+          },
+          {
+            "id": "bridgeBA",
+            "at": "bw",
+            "until": "s8:start-2",
+            "ramp": 6
+          }
+        ],
+        "labels": [
+          {
+            "part": "dieA",
+            "text": "各自印到上限",
+            "en": "1 reticle each",
+            "color": "coral",
+            "at": "edge",
+            "until": "bw-6"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "stamp",
+            "at": "bw+2",
+            "until": "s8:start-2",
+            "text": "每秒 {n} TB",
+            "x": 760,
+            "y": 1010,
+            "color": "amber",
+            "size": 76,
+            "rot": -4,
+            "avoid": false,
+            "countTo": 10,
+            "countDur": 18
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "maker",
+            "until": "s8:start-2",
+            "text": "廠商公布（NVIDIA 2024/3 發表）",
+            "x": 540,
+            "y": 1290,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "bw+8",
+            "until": "s8:start-2",
+            "text": "晶片之間走矽橋（CoWoS-L）",
+            "x": 540,
+            "y": 1180,
+            "color": "blue",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "Electronic Design；All About Circuits"
+      ],
+      "durationSec": 6.1
+    },
+    {
+      "id": "s8",
+      "beat": "payoff",
+      "para": 8,
+      "narration": "代價是封裝變難。廠商說，這種大封裝的良率已經超過九成八。",
+      "tts": "代價是封裝變難。廠商說，這種大封裝的良率已經超過九成八。",
+      "subtitle": {
+        "zh": "代價是封裝變難\n廠商說\n這種大封裝的良率已經超過九成八",
+        "en": "The cost: packaging gets harder. | The vendor says yield for these big packages | is already above 98%."
+      },
+      "keywords": [
+        "封裝變難",
+        "九成八"
+      ],
+      "cues": [
+        {
+          "id": "hard",
+          "text": "封裝變難"
+        },
+        {
+          "id": "maker2",
+          "text": "廠商說"
+        },
+        {
+          "id": "rate",
+          "text": "九成八"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-warp",
+            "at": "hard-4",
+            "until": "s9:start-2",
+            "avoid": false,
+            "x": 64,
+            "y": 930,
+            "w": 470,
+            "h": 260,
+            "title": "大面積易翹曲（示意）",
+            "flash": {
+              "at": "hard+2"
+            },
+            "uf": {
+              "at": "hard+14"
+            }
+          },
+          {
+            "type": "stamp",
+            "at": "rate",
+            "until": "s9:start-2",
+            "text": "> 98%",
+            "x": 800,
+            "y": 1040,
+            "color": "amber",
+            "size": 96,
+            "rot": -4,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "rate+4",
+            "until": "s9:start-2",
+            "text": "廠商公布，封裝良率，非第三方實測",
+            "x": 540,
+            "y": 1270,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 2026/8 OCP（媒體轉述）"
+      ],
+      "durationSec": 5.2
+    },
+    {
+      "id": "s9",
+      "beat": "twist",
+      "para": 9,
+      "narration": "十四倍的更大版本，廠商排在二零二八年，做不做得到還要再看。",
+      "tts": "十四倍的更大版本，廠商排在二零二八年，做不做得到還要再看。",
+      "subtitle": {
+        "zh": "十四倍的更大版本\n廠商排在二零二八年\n做不做得到還要再看",
+        "en": "A 14× version is on the vendor's 2028 roadmap. | Whether it works out | remains to be seen."
+      },
+      "keywords": [
+        "十四倍",
+        "二零二八年",
+        "還要再看"
+      ],
+      "cues": [
+        {
+          "id": "x14",
+          "text": "十四倍"
+        },
+        {
+          "id": "y28",
+          "text": "二零二八年"
+        },
+        {
+          "id": "see",
+          "text": "還要再看"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-frames",
+            "at": "start",
+            "until": "s10:start-8",
+            "avoid": false,
+            "x": 64,
+            "y": 905,
+            "w": 952,
+            "h": 430,
+            "title": "光罩框＝一次曝光的面積",
+            "unit": "個光罩面積",
+            "note": {
+              "at": "y28",
+              "text": "虛線＝廠商目標（2028），非實測"
+            },
+            "items": [
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start-30"
+              },
+              {
+                "at": "start+2",
+                "dashed": true
+              },
+              {
+                "at": "start+5",
+                "dashed": true
+              },
+              {
+                "at": "start+8",
+                "dashed": true
+              },
+              {
+                "at": "start+11",
+                "dashed": true
+              },
+              {
+                "at": "start+14",
+                "dashed": true
+              },
+              {
+                "at": "start+17",
+                "dashed": true
+              },
+              {
+                "at": "start+20",
+                "dashed": true
+              },
+              {
+                "at": "start+23",
+                "dashed": true
+              },
+              {
+                "at": "start+26",
+                "dashed": true
+              }
+            ],
+            "marks": []
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "x14+6",
+            "until": "s10:start-8",
+            "text": "廠商目標值（非實測）",
+            "x": 540,
+            "y": 860,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          },
+          {
+            "type": "stamp",
+            "at": "see",
+            "until": "s10:start-8",
+            "text": "尚未確定",
+            "x": 830,
+            "y": 405,
+            "color": "coral",
+            "size": 52,
+            "rot": -5,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電 2026/4 北美技術論壇"
+      ],
+      "durationSec": 5.3
+    },
+    {
+      "id": "s10",
+      "beat": "cta",
+      "para": 10,
+      "narration": "往旁邊拼，還是往上疊？下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
+      "tts": "往旁邊拼，還是往上疊？下一支，來看記憶體為什麼疊十二層。想要完整解說，留言封裝。",
+      "subtitle": {
+        "zh": "往旁邊拼，還是往上疊？\n下一支，來看記憶體\n為什麼疊十二層\n想要完整解說，留言封裝",
+        "en": "Spread sideways, or stack up? | Next: why memory stacks 12 layers high. | Comment \"封裝\" for the full notes."
+      },
+      "keywords": [
+        "往旁邊拼",
+        "往上疊",
+        "十二層"
+      ],
+      "cues": [
+        {
+          "id": "side",
+          "text": "往旁邊拼"
+        },
+        {
+          "id": "stack",
+          "text": "往上疊"
+        },
+        {
+          "id": "next",
+          "text": "下一支"
+        },
+        {
+          "id": "twelve",
+          "text": "疊十二層"
+        },
+        {
+          "id": "kw",
+          "text": "留言封裝"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-2",
+            "dur": 14,
+            "x": 0,
+            "y": -3.3,
+            "d": 46,
+            "elev": 32
+          }
+        ],
+        "shift": [
+          {
+            "layer": "head",
+            "at": "start-4",
+            "until": "start+6",
+            "dy": 1.2,
+            "opacity": 0,
+            "dur": 6
+          },
+          {
+            "layer": "ip",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "c4",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "dieA",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "dieB",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm0",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm1",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm2",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm3",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm4",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm5",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm6",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm7",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs0",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs1",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs2",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs3",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs4",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs5",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs6",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs7",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs8",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs9",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs10",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs11",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "head",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8
+          },
+          {
+            "layer": "head",
+            "at": "start+76",
+            "until": "s11:end+400",
+            "dy": 3,
+            "opacity": 0,
+            "dur": 8
+          },
+          {
+            "layer": "ip",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "c4",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "dieA",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "dieB",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm0",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm1",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm2",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm3",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm4",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm5",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm6",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hbm7",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs0",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs1",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs2",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs3",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs4",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs5",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs6",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs7",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs8",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs9",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs10",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "hs11",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "sub",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "head",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "balls0",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "balls1",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "balls2",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "sub",
+            "at": "s1:start-40",
+            "until": "start+10",
+            "dx": -14,
+            "dur": 10
+          },
+          {
+            "layer": "ip",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "c4",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "dieA",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "dieB",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm0",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm1",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm2",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm3",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm4",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm5",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm6",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hbm7",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs0",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs1",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs2",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs3",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs4",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs5",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs6",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs7",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs8",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs9",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs10",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs11",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "hs0",
+            "at": "twelve-10",
+            "until": "s11:end+400",
+            "dy": 1.6,
+            "dur": 12
+          },
+          {
+            "layer": "hs1",
+            "at": "twelve-9",
+            "until": "s11:end+400",
+            "dy": 1.74,
+            "dur": 12
+          },
+          {
+            "layer": "hs2",
+            "at": "twelve-9",
+            "until": "s11:end+400",
+            "dy": 1.88,
+            "dur": 12
+          },
+          {
+            "layer": "hs3",
+            "at": "twelve-8",
+            "until": "s11:end+400",
+            "dy": 2.02,
+            "dur": 12
+          },
+          {
+            "layer": "hs4",
+            "at": "twelve-8",
+            "until": "s11:end+400",
+            "dy": 2.16,
+            "dur": 12
+          },
+          {
+            "layer": "hs5",
+            "at": "twelve-7",
+            "until": "s11:end+400",
+            "dy": 2.3,
+            "dur": 12
+          },
+          {
+            "layer": "hs6",
+            "at": "twelve-6",
+            "until": "s11:end+400",
+            "dy": 2.44,
+            "dur": 12
+          },
+          {
+            "layer": "hs7",
+            "at": "twelve-6",
+            "until": "s11:end+400",
+            "dy": 2.58,
+            "dur": 12
+          },
+          {
+            "layer": "hs8",
+            "at": "twelve-5",
+            "until": "s11:end+400",
+            "dy": 2.72,
+            "dur": 12
+          },
+          {
+            "layer": "hs9",
+            "at": "twelve-5",
+            "until": "s11:end+400",
+            "dy": 2.86,
+            "dur": 12
+          },
+          {
+            "layer": "hs10",
+            "at": "twelve-4",
+            "until": "s11:end+400",
+            "dy": 3,
+            "dur": 12
+          },
+          {
+            "layer": "hs11",
+            "at": "twelve-3",
+            "until": "s11:end+400",
+            "dy": 3.14,
+            "dur": 12
+          },
+          {
+            "layer": "hbm7",
+            "at": "twelve-10",
+            "until": "s11:end+400",
+            "dy": 1.6,
+            "dur": 12
+          }
+        ],
+        "run": [
+          {
+            "id": "meltC4",
+            "at": "start+30",
+            "until": "start+44",
+            "ramp": 7
+          },
+          {
+            "id": "meltBall",
+            "at": "start+72",
+            "until": "start+88",
+            "ramp": 6
+          }
+        ],
+        "labels": [
+          {
+            "part": "sub",
+            "text": "有機基板",
+            "en": "Substrate",
+            "color": "blue",
+            "at": "start+16",
+            "until": "stack"
+          },
+          {
+            "part": "ball",
+            "text": "錫球",
+            "en": "BGA",
+            "color": "blue",
+            "at": "start+56",
+            "until": "next+10"
+          },
+          {
+            "part": "hbmS",
+            "text": "12 層",
+            "en": "12-high",
+            "color": "amber",
+            "at": "twelve+4",
+            "until": "s11:start+10"
+          }
+        ],
+        "overlay": [
+          {
+            "type": "section",
+            "kind": "pkg-choice",
+            "at": "side-4",
+            "until": "s11:start+2",
+            "avoid": false,
+            "x": 64,
+            "y": 1050,
+            "w": 952,
+            "h": 290,
+            "title": "二選一",
+            "left": {
+              "at": "side"
+            },
+            "right": {
+              "at": "stack"
+            }
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "start+30",
+            "until": "start+92",
+            "text": "回流焊（示意）：凸塊熔化，把晶片拉回正中",
+            "x": 540,
+            "y": 312,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "下一支：11/19（四）20:00 HBM（已排定）"
+      ],
+      "durationSec": 6.8
+    },
+    {
+      "id": "s11",
+      "beat": "end",
+      "silent": true,
+      "durationSec": 3.2,
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "component": "ThreeScene",
+      "props": {
+        "endCard": {
+          "next": "HBM 為什麼疊 12 層",
+          "trail": [
+            "光罩上限",
+            "中介層",
+            "已知良品",
+            "HBM"
+          ],
+          "at": "s10:kw-8",
+          "comment": "封裝",
+          "logoAnim": "transparent"
+        }
+      },
+      "sources": []
+    }
+  ]
+}
