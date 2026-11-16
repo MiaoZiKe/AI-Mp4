@@ -294,7 +294,7 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
       <Fade f={f} at={r.headAt} style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", border: `${T.stroke.hair}px dashed ${T.hair}` }}>{null}</Fade>
       <Reveal f={f} at={r.at} dir="down" style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", background: T.panel, border: `${T.stroke.hair}px solid ${T.panelLine}`, padding: "18px 34px" }}>
         <div style={{ marginTop: 16, width: 64, height: T.stroke.mark, background: r.masthead ? "transparent" : T.text3 }} />
-        {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(112), clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }}>{t}</div>)}
+        {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(r.bigPx ?? 112), clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }}>{t}</div>)}
       </Reveal>
       {r.masthead ? <Masthead f={f} at={r.masthead.at} x={RX + 34} y={CY + 30} w={CW - 68} name={r.masthead.name} date={r.masthead.date} /> : null}
       {src(0, l.src, l.srcAt)}
