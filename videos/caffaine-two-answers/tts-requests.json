@@ -1,25 +1,43 @@
 [
  {
-  "at": "2026-11-16T08:07:24.633Z",
+  "at": "2026-11-16T08:19:41.592Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Sulafat",
+  "languageCode": "cmn-TW",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-16T08:19:56.242Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Sulafat",
+  "languageCode": "cmn-TW",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-16T08:20:28.259Z",
   "purpose": "take",
   "model": "gemini-2.5-flash-preview-tts",
   "voice": "Sulafat",
   "languageCode": "cmn-TW",
   "status": 200,
   "usage": {
-   "promptTokenCount": 203,
-   "candidatesTokenCount": 831,
-   "totalTokenCount": 1034,
+   "promptTokenCount": 370,
+   "candidatesTokenCount": 1708,
+   "totalTokenCount": 2078,
    "promptTokensDetails": [
     {
      "modality": "TEXT",
-     "tokenCount": 203
+     "tokenCount": 370
     }
    ],
    "candidatesTokensDetails": [
     {
      "modality": "AUDIO",
-     "tokenCount": 831
+     "tokenCount": 1708
     }
    ],
    "serviceTier": "standard"
