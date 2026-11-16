@@ -1,0 +1,968 @@
+{
+ "version": 2,
+ "slug": "caffaine-price-compare",
+ "fps": 30,
+ "totalFrames": 1081,
+ "totalSec": 36.03,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 6.735,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 216,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 208,
+   "stillFrame": 206,
+   "subtitleWindow": [
+    0,
+    213
+   ],
+   "sourceWindow": [
+    0,
+    211
+   ],
+   "lines": [
+    {
+     "text": "想買行動電源",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      14,
+      20,
+      25,
+      30
+     ]
+    },
+    {
+     "text": "叫 AI 去兩個",
+     "start": 40,
+     "chars": [
+      42,
+      42,
+      47,
+      53,
+      53,
+      58,
+      63,
+      69
+     ]
+    },
+    {
+     "text": "購物網站比價",
+     "start": 78,
+     "chars": [
+      80,
+      86,
+      91,
+      97,
+      102,
+      107
+     ]
+    },
+    {
+     "text": "價格它都抓對了",
+     "start": 117,
+     "chars": [
+      119,
+      124,
+      130,
+      135,
+      140,
+      146,
+      151
+     ]
+    },
+    {
+     "text": "但有一件事它沒講",
+     "start": 161,
+     "chars": [
+      163,
+      168,
+      173,
+      179,
+      184,
+      190,
+      195,
+      200
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "沒講",
+     "start": 195
+    }
+   ],
+   "cues": [
+    {
+     "id": "ask",
+     "text": "叫 AI",
+     "frame": 43
+    },
+    {
+     "id": "ok",
+     "text": "抓對了",
+     "frame": 142
+    },
+    {
+     "id": "nosay",
+     "text": "沒講",
+     "frame": 196
+    }
+   ],
+   "sub": "想買行動電源\n叫 AI 去兩個\n購物網站比價\n價格它都抓對了\n但有一件事它沒講",
+   "provider": "estimate",
+   "syllables": 33,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.356,
+    0.534,
+    0.713,
+    0.891,
+    1.283,
+    1.461,
+    1.639,
+    1.817,
+    1.995,
+    2.174,
+    2.566,
+    2.744,
+    2.922,
+    3.1,
+    3.278,
+    3.456,
+    3.848,
+    4.027,
+    4.205,
+    4.383,
+    4.561,
+    4.739,
+    4.917,
+    5.309,
+    5.488,
+    5.666,
+    5.844,
+    6.022,
+    6.2,
+    6.378,
+    6.557
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 216,
+   "audioSec": 4.898,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 206,
+   "durationFrames": 165,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 216,
+   "voiceEndFrame": 363,
+   "stillFrame": 361,
+   "subtitleWindow": [
+    213,
+    368
+   ],
+   "sourceWindow": [
+    211,
+    366
+   ],
+   "lines": [
+    {
+     "text": "什麼事？",
+     "start": 213,
+     "chars": [
+      215,
+      220,
+      225,
+      225
+     ]
+    },
+    {
+     "text": "同一款",
+     "start": 235,
+     "chars": [
+      237,
+      242,
+      248
+     ]
+    },
+    {
+     "text": "一邊劃線原價寫一千八",
+     "start": 257,
+     "chars": [
+      259,
+      265,
+      270,
+      275,
+      281,
+      286,
+      291,
+      296,
+      302,
+      307
+     ]
+    },
+    {
+     "text": "另一邊寫將近四千",
+     "start": 317,
+     "chars": [
+      319,
+      324,
+      329,
+      335,
+      340,
+      345,
+      351,
+      356
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "劃線原價",
+     "start": 270
+    }
+   ],
+   "cues": [
+    {
+     "id": "what",
+     "text": "什麼事",
+     "frame": 216
+    },
+    {
+     "id": "a",
+     "text": "一千八",
+     "frame": 298
+    },
+    {
+     "id": "b",
+     "text": "將近四千",
+     "frame": 342
+    }
+   ],
+   "sub": "什麼事？\n同一款\n一邊劃線原價寫一千八\n另一邊寫將近四千",
+   "provider": "estimate",
+   "syllables": 24,
+   "words": [],
+   "charTimes": [
+    0,
+    0.177,
+    0.355,
+    0.745,
+    0.923,
+    1.1,
+    1.491,
+    1.668,
+    1.846,
+    2.023,
+    2.201,
+    2.378,
+    2.555,
+    2.733,
+    2.91,
+    3.088,
+    3.478,
+    3.656,
+    3.833,
+    4.011,
+    4.188,
+    4.366,
+    4.543,
+    4.72
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 372,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 361,
+   "durationFrames": 81,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 371,
+   "voiceEndFrame": 434,
+   "stillFrame": 432,
+   "subtitleWindow": [
+    368,
+    439
+   ],
+   "sourceWindow": [
+    366,
+    437
+   ],
+   "lines": [
+    {
+     "text": "看劃線價",
+     "start": 368,
+     "chars": [
+      371,
+      376,
+      381,
+      387
+     ]
+    },
+    {
+     "text": "像差了兩千多",
+     "start": 397,
+     "chars": [
+      399,
+      404,
+      410,
+      415,
+      421,
+      426
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩千多",
+     "start": 415
+    }
+   ],
+   "cues": [
+    {
+     "id": "look",
+     "text": "劃線價",
+     "frame": 377
+    },
+    {
+     "id": "gap",
+     "text": "兩千多",
+     "frame": 417
+    }
+   ],
+   "sub": "看劃線價\n像差了兩千多",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 442,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 432,
+   "durationFrames": 86,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 442,
+   "voiceEndFrame": 510,
+   "stillFrame": 508,
+   "subtitleWindow": [
+    439,
+    515
+   ],
+   "sourceWindow": [
+    437,
+    513
+   ],
+   "lines": [
+    {
+     "text": "但實付呢",
+     "start": 439,
+     "chars": [
+      441,
+      446,
+      452,
+      457
+     ]
+    },
+    {
+     "text": "兩邊只差六十塊",
+     "start": 467,
+     "chars": [
+      469,
+      475,
+      480,
+      486,
+      491,
+      497,
+      502
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "六十塊",
+     "start": 491
+    }
+   ],
+   "cues": [
+    {
+     "id": "pay",
+     "text": "實付",
+     "frame": 448
+    },
+    {
+     "id": "d",
+     "text": "六十塊",
+     "frame": 493
+    }
+   ],
+   "sub": "但實付呢\n兩邊只差六十塊",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 519,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 508,
+   "durationFrames": 135,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 518,
+   "voiceEndFrame": 635,
+   "stillFrame": 633,
+   "subtitleWindow": [
+    515,
+    640
+   ],
+   "sourceWindow": [
+    513,
+    638
+   ],
+   "lines": [
+    {
+     "text": "所以 AI 抓的數字沒錯",
+     "start": 515,
+     "chars": [
+      518,
+      523,
+      523,
+      529,
+      535,
+      535,
+      541,
+      546,
+      552,
+      558,
+      564,
+      569
+     ]
+    },
+    {
+     "text": "劃線原價要自己判斷",
+     "start": 580,
+     "chars": [
+      582,
+      588,
+      594,
+      599,
+      605,
+      611,
+      617,
+      622,
+      628
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "自己判斷",
+     "start": 611
+    }
+   ],
+   "cues": [
+    {
+     "id": "right",
+     "text": "沒錯",
+     "frame": 565
+    },
+    {
+     "id": "own",
+     "text": "自己判斷",
+     "frame": 612
+    }
+   ],
+   "sub": "所以 AI 抓的數字沒錯\n劃線原價要自己判斷",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
+   "charTimes": [
+    0,
+    0.192,
+    0.384,
+    0.576,
+    0.768,
+    0.96,
+    1.152,
+    1.344,
+    1.536,
+    1.728,
+    2.15,
+    2.342,
+    2.534,
+    2.726,
+    2.918,
+    3.11,
+    3.302,
+    3.494,
+    3.686
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": null,
+   "audioFrame": 644,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 633,
+   "durationFrames": 136,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 643,
+   "voiceEndFrame": 761,
+   "stillFrame": 759,
+   "subtitleWindow": [
+    640,
+    766
+   ],
+   "sourceWindow": [
+    638,
+    764
+   ],
+   "lines": [
+    {
+     "text": "我們試了五個購物網站",
+     "start": 640,
+     "chars": [
+      643,
+      649,
+      655,
+      662,
+      668,
+      674,
+      681,
+      687,
+      694,
+      700
+     ]
+    },
+    {
+     "text": "只有兩個讓它看",
+     "start": 712,
+     "chars": [
+      714,
+      720,
+      727,
+      733,
+      740,
+      746,
+      752
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩個讓它看",
+     "start": 727
+    }
+   ],
+   "cues": [
+    {
+     "id": "five",
+     "text": "五個",
+     "frame": 670
+    },
+    {
+     "id": "two",
+     "text": "兩個",
+     "frame": 728
+    }
+   ],
+   "sub": "我們試了五個購物網站\n只有兩個讓它看",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
+   "charTimes": [
+    0,
+    0.213,
+    0.426,
+    0.639,
+    0.852,
+    1.065,
+    1.278,
+    1.491,
+    1.704,
+    1.917,
+    2.386,
+    2.599,
+    2.812,
+    3.025,
+    3.238,
+    3.451,
+    3.664
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 769,
+   "audioSec": 4.286,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 759,
+   "durationFrames": 147,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 769,
+   "voiceEndFrame": 898,
+   "stillFrame": 896,
+   "subtitleWindow": [
+    766,
+    903
+   ],
+   "sourceWindow": [
+    764,
+    901
+   ],
+   "lines": [
+    {
+     "text": "這次只比了一樣商品",
+     "start": 766,
+     "chars": [
+      768,
+      773,
+      778,
+      784,
+      789,
+      795,
+      800,
+      806,
+      811
+     ]
+    },
+    {
+     "text": "換別的會不會一樣",
+     "start": 821,
+     "chars": [
+      824,
+      829,
+      835,
+      840,
+      846,
+      851,
+      857,
+      862
+     ]
+    },
+    {
+     "text": "還不知道",
+     "start": 872,
+     "chars": [
+      874,
+      880,
+      885,
+      891
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "還不知道",
+     "start": 874
+    }
+   ],
+   "cues": [
+    {
+     "id": "known",
+     "text": "一樣商品",
+     "frame": 796
+    },
+    {
+     "id": "q",
+     "text": "換別的",
+     "frame": 825
+    }
+   ],
+   "sub": "這次只比了一樣商品\n換別的會不會一樣\n還不知道",
+   "provider": "estimate",
+   "syllables": 21,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.733,
+    0.916,
+    1.099,
+    1.282,
+    1.465,
+    1.868,
+    2.051,
+    2.234,
+    2.418,
+    2.601,
+    2.784,
+    2.967,
+    3.15,
+    3.553,
+    3.736,
+    3.919,
+    4.103
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": null,
+   "audioFrame": 907,
+   "audioSec": 2.245,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 896,
+   "durationFrames": 87,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 906,
+   "voiceEndFrame": 975,
+   "stillFrame": 973,
+   "subtitleWindow": [
+    903,
+    983
+   ],
+   "sourceWindow": [
+    901,
+    978
+   ],
+   "lines": [
+    {
+     "text": "留言「比價」",
+     "start": 903,
+     "chars": [
+      906,
+      911,
+      911,
+      917,
+      922,
+      922
+     ]
+    },
+    {
+     "text": "拿這次用的做法",
+     "start": 932,
+     "chars": [
+      934,
+      940,
+      945,
+      951,
+      956,
+      962,
+      967
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "比價",
+     "start": 917
+    }
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "比價",
+     "frame": 918
+    },
+    {
+     "id": "all",
+     "text": "做法",
+     "frame": 963
+    }
+   ],
+   "sub": "留言「比價」\n拿這次用的做法",
+   "provider": "estimate",
+   "syllables": 11,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.957,
+    1.141,
+    1.325,
+    1.509,
+    1.693,
+    1.877,
+    2.061
+   ]
+  },
+  {
+   "id": "s09",
+   "audio": null,
+   "audioFrame": 973,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 973,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 983,
+   "voiceEndFrame": 983,
+   "stillFrame": 1069,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    978,
+    1081
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}

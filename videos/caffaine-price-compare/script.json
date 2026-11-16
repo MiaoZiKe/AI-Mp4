@@ -1,0 +1,579 @@
+{
+ "slug": "caffaine-price-compare",
+ "title": "讓 AI 幫你比價：價格都對，劃線原價要自己看（CaffAIne 無聲版）",
+ "asOf": "2026/11/16",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 5,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "叫 AI 比價",
+   "價格都抓對了"
+  ],
+  "sub": "但有一件事它沒講"
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "想買行動電源，叫 AI 去兩個購物網站比價？價格它都抓對了，但有一件事它沒講。",
+   "subtitle": {
+    "zh": "想買行動電源\n叫 AI 去兩個\n購物網站比價\n價格它都抓對了\n但有一件事它沒講",
+    "en": "Ask AI to compare two shops. | Prices right, one thing left out."
+   },
+   "keywords": [
+    "沒講"
+   ],
+   "cues": [
+    {
+     "id": "ask",
+     "text": "叫 AI"
+    },
+    {
+     "id": "ok",
+     "text": "抓對了"
+    },
+    {
+     "id": "nosay",
+     "text": "沒講"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "hook",
+    "tag": "事件",
+    "tagColor": "wrong",
+    "asOf": "查證截至 2026/11/16",
+    "title": [
+     "叫 AI 去比價",
+     "價格都抓對了"
+    ],
+    "size": 112,
+    "mark": {
+     "text": "都抓對了",
+     "at": "ok"
+    },
+    "stamp": {
+     "text": "但有件事沒講",
+     "at": "nosay"
+    },
+    "count": {
+     "at": "ask+10"
+    },
+    "flow": [
+     "PChome",
+     "AI",
+     "東森購物"
+    ],
+    "status": "已確定・實測",
+    "statusAt": "ok+6",
+    "send": "ask+8",
+    "done": "ok",
+    "tick": "ok",
+    "guessAt": "nosay",
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 20
+     }
+    ],
+    "kw": {
+     "沒講": "wrong"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；PChome、東森頁面文字"
+   ],
+   "para": 1,
+   "tts": "想買行動電源，叫 A I 去兩個購物網站比價？價格它都抓對了，但有一件事它沒講。"
+  },
+  {
+   "id": "s02",
+   "beat": "you",
+   "narration": "什麼事？同一款，一邊劃線原價寫一千八，另一邊寫將近四千。",
+   "subtitle": {
+    "zh": "什麼事？\n同一款\n一邊劃線原價寫一千八\n另一邊寫將近四千",
+    "en": "Same item, struck-through price: | about 1,800 vs nearly 4,000."
+   },
+   "keywords": [
+    "劃線原價"
+   ],
+   "cues": [
+    {
+     "id": "what",
+     "text": "什麼事"
+    },
+    {
+     "id": "a",
+     "text": "一千八"
+    },
+    {
+     "id": "b",
+     "text": "將近四千"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "price",
+    "stage": "orig",
+    "tag": "對照",
+    "tagColor": "primary",
+    "product": "同款：CUKTECH 酷態科 15號 PB200PS 20000mAh 行動電源",
+    "model": "PB200PS",
+    "sites": [
+     {
+      "name": "PChome 24h",
+      "orig": 1799,
+      "now": 1649
+     },
+     {
+      "name": "東森購物",
+      "orig": 3990,
+      "now": 1589
+     }
+    ],
+    "status": "已確定・網頁文字",
+    "statusAt": "what+4",
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "劃線原價": "primary"
+    }
+   },
+   "sources": [
+    "PChome、東森購物網頁文字，2026/11/16"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "twist",
+   "narration": "看劃線價，像差了兩千多。",
+   "subtitle": {
+    "zh": "看劃線價\n像差了兩千多",
+    "en": "Going by the struck-through price, | it looks 2,000 apart."
+   },
+   "keywords": [
+    "兩千多"
+   ],
+   "cues": [
+    {
+     "id": "look",
+     "text": "劃線價"
+    },
+    {
+     "id": "gap",
+     "text": "兩千多"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "price",
+    "stage": "gap",
+    "tag": "誤會",
+    "tagColor": "wrong",
+    "product": "同款：CUKTECH 酷態科 15號 PB200PS 20000mAh 行動電源",
+    "model": "PB200PS",
+    "sites": [
+     {
+      "name": "PChome 24h",
+      "orig": 1799,
+      "now": 1649
+     },
+     {
+      "name": "東森購物",
+      "orig": 3990,
+      "now": 1589
+     }
+    ],
+    "brAt": "look+6",
+    "status": "算出來的：3,990 − 1,799",
+    "statusAt": "gap",
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 12
+     }
+    ],
+    "kw": {
+     "兩千多": "wrong"
+    }
+   },
+   "sources": [
+    "PChome、東森購物網頁文字，2026/11/16"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "但實付呢？兩邊只差六十塊。",
+   "subtitle": {
+    "zh": "但實付呢\n兩邊只差六十塊",
+    "en": "But what you actually pay? | Only 60 apart."
+   },
+   "keywords": [
+    "六十塊"
+   ],
+   "cues": [
+    {
+     "id": "pay",
+     "text": "實付"
+    },
+    {
+     "id": "d",
+     "text": "六十塊"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "price",
+    "stage": "pay",
+    "tag": "查證",
+    "tagColor": "right",
+    "product": "同款：CUKTECH 酷態科 15號 PB200PS 20000mAh 行動電源",
+    "model": "PB200PS",
+    "sites": [
+     {
+      "name": "PChome 24h",
+      "orig": 1799,
+      "now": 1649
+     },
+     {
+      "name": "東森購物",
+      "orig": 3990,
+      "now": 1589
+     }
+    ],
+    "brAt": "d-8",
+    "hlAt": "pay+6",
+    "status": "已確定・網頁文字",
+    "statusAt": "d",
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 12
+     }
+    ],
+    "kw": {
+     "六十塊": "right"
+    }
+   },
+   "sources": [
+    "PChome、東森購物網頁文字，2026/11/16"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "payoff",
+   "narration": "所以 AI 抓的數字沒錯，劃線原價要自己判斷。",
+   "subtitle": {
+    "zh": "所以 AI 抓的數字沒錯\n劃線原價要自己判斷",
+    "en": "So the numbers AI pulled are right. | The struck-through price is yours to judge."
+   },
+   "keywords": [
+    "自己判斷"
+   ],
+   "cues": [
+    {
+     "id": "right",
+     "text": "沒錯"
+    },
+    {
+     "id": "own",
+     "text": "自己判斷"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "結論",
+    "tagColor": "right",
+    "a": {
+     "big": "18／18 都對",
+     "sub": "AI 抓的價格",
+     "at": "start"
+    },
+    "b": {
+     "big": "自己判斷",
+     "sub": "劃線原價",
+     "at": "own-10"
+    },
+    "status": "已確定・實測 18／18",
+    "statusAt": "right",
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "自己判斷": "note"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；比價表 9 列×2 站，價格逐一對頁面"
+   ],
+   "para": 1,
+   "tts": "所以 A I 抓的數字沒錯，劃線原價要自己判斷。"
+  },
+  {
+   "id": "s06",
+   "beat": "unknown",
+   "narration": "還有，我們試了五個購物網站，只有兩個讓它看。",
+   "subtitle": {
+    "zh": "我們試了五個購物網站\n只有兩個讓它看",
+    "en": "We tried five shopping sites. | Only two let it look."
+   },
+   "keywords": [
+    "兩個讓它看"
+   ],
+   "cues": [
+    {
+     "id": "five",
+     "text": "五個"
+    },
+    {
+     "id": "two",
+     "text": "兩個"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "sites",
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "items": [
+     {
+      "name": "PChome",
+      "ok": true,
+      "why": "讓它看",
+      "at": "five"
+     },
+     {
+      "name": "東森購物",
+      "ok": true,
+      "why": "讓它看（條款沒找到）",
+      "at": "five+8"
+     },
+     {
+      "name": "momo",
+      "ok": false,
+      "why": "擋機器人（403）",
+      "at": "two-30"
+     },
+     {
+      "name": "Yahoo 購物",
+      "ok": false,
+      "why": "條款禁止機器人",
+      "at": "two-20"
+     },
+     {
+      "name": "博客來",
+      "ok": false,
+      "why": "擋 Claude 爬蟲",
+      "at": "two-10"
+     }
+    ],
+    "status": "已確定・robots／條款",
+    "statusAt": "two",
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "兩個讓它看": "wrong"
+    }
+   },
+   "sources": [
+    "各站 robots.txt 與條款，2026/11/16（Yahoo 為條款摘要）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "unknown2",
+   "narration": "這次只比了一樣商品，換別的會不會一樣，還不知道。",
+   "subtitle": {
+    "zh": "這次只比了一樣商品\n換別的會不會一樣\n還不知道",
+    "en": "We compared just one product. | Whether others are the same is unknown."
+   },
+   "keywords": [
+    "還不知道"
+   ],
+   "cues": [
+    {
+     "id": "known",
+     "text": "一樣商品"
+    },
+    {
+     "id": "q",
+     "text": "換別的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "limit",
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "known": {
+     "status": "已確定・實測",
+     "lines": [
+      "1 樣商品、2 個網站",
+      "價格 18／18 都對"
+     ]
+    },
+    "unknown": {
+     "status": "查不到・還沒測",
+     "lines": [
+      "別的商品、別的網站",
+      "會不會一樣，還不知道"
+     ]
+    },
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.6,
+      "sy": 1060,
+      "dur": 12,
+      "at": "start+2"
+     }
+    ],
+    "kw": {
+     "還不知道": "wrong"
+    }
+   },
+   "sources": [
+    "實測 1 樣商品、2 個網站、Gemini 3 次，2026/11/16"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "cta",
+   "narration": "留言「比價」，拿這次用的做法。",
+   "subtitle": {
+    "zh": "留言「比價」\n拿這次用的做法",
+    "en": "Comment “比價” | to get the method we used."
+   },
+   "keywords": [
+    "比價"
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "比價"
+    },
+    {
+     "id": "all",
+     "text": "做法"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "cta",
+    "tag": "領取",
+    "tagColor": "right",
+    "kicker": "想要這次用的比價做法",
+    "keyword": "比價",
+    "sub": "私訊給你步驟＋提示詞",
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "比價": "primary"
+    }
+   },
+   "sources": [
+    "做法與測試紀錄整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "比價"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

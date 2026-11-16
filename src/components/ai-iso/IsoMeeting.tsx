@@ -222,6 +222,59 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       </div>,
     );
   }
+  if (Pn.price) {
+    const q = Pn.price, p = q.p, o = 1 - O(f, q.out - 8, 8), st = String(p.stage), t0 = q.in + 3, tB = q.at(p.brAt, q.in + 30), tH = q.at(p.hlAt, q.in + 30);
+    const rowsD = p.sites as { name: string; orig: number; now: number }[], fmt = (n: number) => "$" + n.toLocaleString("en-US");
+    const showPay = st === "pay", dim = showPay ? 0.45 : 1, gap = st === "pay" ? Math.abs(rowsD[0].now - rowsD[1].now) : Math.abs(rowsD[0].orig - rowsD[1].orig), pre = st === "orig" ? 0 : 99;
+    const bc = st === "pay" ? col("right") : col("wrong");
+    out.push(
+      <div key="price" data-ov="說明卡" style={{ ...(pre ? { opacity: o } : riseIn(f, t0, 24)), position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o * (pre ? 1 : tween(f, t0, 6)) }}>
+        <div style={{ ...face(T.card, P.side, 12), padding: "14px 24px 18px", height: "auto" }}>
+          <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.product}</div>
+          <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 10, marginTop: 10 }}>
+            {rowsD.map((r, i) => (
+              <div key={r.name} style={{ display: "flex", alignItems: "center", gap: 18, ...(pre ? {} : riseIn(f, t0 + 4 + i * 6, 16)), position: "relative" }}>
+                <div style={{ ...zh, fontWeight: 900, fontSize: 30, color: T.ink, width: 190 }}>{r.name}</div>
+                <div style={{ width: showPay ? 170 : 220, opacity: dim }}><div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>劃線原價</div><div style={{ ...en, fontWeight: 900, fontSize: showPay ? 40 : 54, color: showPay ? T.ink3 : st === "gap" ? bc.text : P.text, textDecoration: showPay ? "line-through" : "none" }}>{fmt(r.orig)}</div></div>
+                {showPay ? <div style={{ width: 220, position: "relative" }}><div style={{ position: "absolute", left: -10, right: 10, top: 28, bottom: 0, background: T.color.note.fill, opacity: 0.55 * tween(f, tH, 8), borderRadius: 14, transform: i === 0 ? "none" : "none" }} /><div style={{ position: "relative" }}><div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>實付</div><div style={{ ...en, fontWeight: 900, fontSize: 54, color: T.ink }}>{fmt(r.now)}</div></div></div> : null}
+              </div>
+            ))}
+            {(st === "gap" || st === "pay") ? <div style={{ position: "absolute", right: 0, top: 6, bottom: 6, display: "flex", alignItems: "center", gap: 10, opacity: tween(f, tB, 6) }}>
+              <svg width={34} height={180} viewBox="0 0 34 180" style={{ height: "100%" }} preserveAspectRatio="none"><path d="M4 4 H20 V176 H4 M20 90 H32" fill="none" stroke={bc.fill} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: bc.text, background: bc.soft, borderRadius: 18, padding: "4px 12px", transform: `scale(${1 + 0.1 * Math.exp(-Math.max(0, f - tB) / 6)})` }}>差 {fmt(gap)}</div>
+            </div> : null}
+          </div>
+        </div>
+      </div>,
+    );
+  }
+  if (Pn.verdict) {
+    const g = Pn.verdict, p = g.p, o = 1 - O(f, g.out - 8, 8), t1 = g.at(p.a.at, g.in + 8), t2 = g.at(p.b.at, g.in + 40);
+    const card = (k: string, at: number, c: string, big: string, sub: string, icon: React.ReactNode) => <div key={k} data-ov="說明卡" style={{ ...bounce(f, at), width: 456 }}><div style={{ ...face(T.card, col(c).fill, 12), padding: "22px 22px 26px", height: "auto" }}>{icon}<div style={{ ...zh, fontWeight: 700, fontSize: 32, color: T.ink2, marginTop: 6 }}>{sub}</div><div style={{ ...zh, fontWeight: 900, fontSize: 58, color: col(c).text, marginTop: 4 }}>{big}</div></div></div>;
+    out.push(
+      <div key="verdict" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div style={{ display: "flex", gap: 40 }}>
+          {card("a", t1, "right", p.a.big, p.a.sub, <Check size={64} color={col("right").fill} />)}
+          {card("b", t2, "note", p.b.big, p.b.sub, <svg width={64} height={64} viewBox="0 0 64 64"><path d="M32 6 L60 56 H4 Z" fill={col("note").fill} stroke={col("note").side} strokeWidth={5} strokeLinejoin="round" /><rect x={29} y={22} width={6} height={20} rx={3} fill={T.ink} /><circle cx={32} cy={48} r={4} fill={T.ink} /></svg>)}
+        </div>
+      </div>,
+    );
+  }
+  if (Pn.sites) {
+    const g = Pn.sites, p = g.p, o = 1 - O(f, g.out - 8, 8);
+    out.push(
+      <div key="sites" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="說明卡" style={{ ...face(T.card, P.side, 12), padding: "10px 22px 14px", height: "auto" }}>
+          {(p.items as { name: string; ok: boolean; why: string; at: any }[]).map((it, i) => { const c = col(it.ok ? "right" : "wrong"), at = g.at(it.at, g.in + 8 + i * 8); return (
+            <div key={it.name} style={{ ...riseIn(f, at, 18), display: "flex", alignItems: "center", gap: 16, padding: "4px 0" }}>
+              <svg width={44} height={44} viewBox="0 0 44 44">{it.ok ? <g><circle cx={22} cy={22} r={20} fill={c.fill} /><path d="M12 23 L19 30 L32 14" fill="none" stroke="#fff" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" /></g> : <g><circle cx={22} cy={22} r={20} fill={c.fill} /><rect x={12} y={20} width={20} height={14} rx={3} fill="#fff" /><path d="M15 20 V15 a7 7 0 0 1 14 0 V20" fill="none" stroke="#fff" strokeWidth={4} /></g>}</svg>
+              <div style={{ ...zh, fontWeight: 900, fontSize: 38, color: T.ink, width: 270 }}>{it.name}</div>
+              <div style={{ ...zh, fontWeight: 800, fontSize: 32, color: c.text }}>{it.why}</div>
+            </div>); })}
+        </div>
+      </div>,
+    );
+  }
   if (Pn.run) {
     const r = Pn.run, p = r.p, tT = r.at(p.typeAt, 6), tTool = r.at(p.toolAt, 6), tW = r.at("wait", 40), tD = r.at("done", 90), tS = r.at(p.statusAt, 60), o = 1 - O(f, r.out - 8, 8);
     const full: string = p.lines[0], n = Math.floor(clamp((f - tT) / (p.typeDur ?? 28)) * full.length);
@@ -362,7 +415,8 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
   const srcs = ordered.map((s) => ({ sources: s.sources, window: by[s.id].sourceWindow }));
   const endP = panels.find((x) => x.kind === "caffend");
   const world = panels.filter((x) => x.kind !== "caffend");
-  const Pn: PM = Object.fromEntries(world.map((x) => [x.kind, x]));
+  // 同一種畫面可以出現在好幾鏡（例：price）：取「正在演的那一個」，沒有就取最近演過的、再沒有就取第一個
+  const Pn: PM = Object.fromEntries([...new Set(world.map((x) => x.kind))].map((k) => { const l = world.filter((x) => x.kind === k); return [k, l.find((x) => f >= x.in - 1 && f < x.out + 1) ?? [...l].reverse().find((x) => x.in <= f) ?? l[0]]; }));
   const keys = useMemo(() => camKeys(world), [panels]);
   const shakes = [Pn.hook ? Pn.hook.at(Pn.hook.p.stamp?.at, 8) + 0 : FAR, Pn.wrong ? Pn.wrong.at(Pn.wrong.p.stamp.at, FAR) : FAR, Pn.rule ? Pn.rule.at("fix", FAR) : FAR].filter((t) => t < FAR / 2);
   const cam = camAt(keys, f, shakes);
@@ -375,7 +429,7 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop /><Glow f={f} />
       <World f={f} cam={cam} P={Pn} panels={world} />
-      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, orig: 0, run: 1, wrong: 2, vs: 2, guess: 1, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
+      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, price: 1, verdict: 1, sites: 0, orig: 0, run: 1, wrong: 2, vs: 2, guess: 1, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
       <Floaters f={f} cam={cam} />
       {inEnd ? null : <Overlays f={f} P={Pn} cam={cam} />}
       {inEnd ? null : world.map((p) => <Tag key={p.sid} f={f} p={p} />)}
