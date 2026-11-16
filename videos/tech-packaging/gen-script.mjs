@@ -14,7 +14,7 @@ const R3 = (x) => Math.round(x * 1000) / 1000;
 const PK = { x: 0, y: -1.15, d: 31, elev: 35 }, KG = { x: 41.0, y: -2.3, d: 35, elev: 40 }, XS = { x: 2.2, y: -0.9, d: 18, elev: 36 }, FULL = { x: 0, y: -3.3, d: 46, elev: 32 };
 const shot = (at, c, dur = 16) => ({ at, dur, ...c });
 
-const MOD = ["ip", "c4", "dieA", "dieB", ...HBM_LAYERS, ...SLICE_LAYERS]; // 中介層模組（s10 一起拿起來、放下）
+const MOD = ["ip", "ipPad", "c4", "dieA", "dieB", ...HBM_LAYERS, ...SLICE_LAYERS]; // 中介層模組（s10 一起拿起來、放下）
 const HBM_ALL = (i) => (i === SPLIT ? [`hbm${i}`, ...SLICE_LAYERS] : [`hbm${i}`]);
 // 「一開始就藏起來」：s1 開場前就是 0 透明度
 const H0 = (layer, until) => hide(layer, "s1:start-40", until, 2);
@@ -24,7 +24,7 @@ const fall = (layer, until, dy, bounce, press = ["ip", "c4"], pressAmt = 0.012) 
 const s2Shift = [
   fall("dieA", "flat-2", 1.4, 0.03), fall("dieB", "flat+2", 1.4, 0.03),
   ...Array.from({ length: 8 }, (_, i) => HBM_ALL(i).map((l) => fall(l, `mem+${i * 4}`, 1.0, 0.06, ["ip", "c4"], 0.006))).flat(),
-  H0("align", "s2:start"), hide("align", "mem+44", "s11:end+400", 6),
+  H0("align", "s2:start"), hide("align", "mem+44", "s11:end+400", 6), H0("ipPad", "s2:start"), hide("ipPad", "mem+44", "s11:end+400", 6),
 ];
 
 // ── s5 運作 A：已知良品挑選（物理：輸送等速、探針受力下壓＋彈簧回彈、吸嘴梯形速度、壞的推出去走拋物線掉進盒子） ──

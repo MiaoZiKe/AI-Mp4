@@ -655,6 +655,20 @@
             "until": "s11:end+400",
             "opacity": 0,
             "dur": 6
+          },
+          {
+            "layer": "ipPad",
+            "at": "s1:start-40",
+            "until": "s2:start",
+            "opacity": 0,
+            "dur": 2
+          },
+          {
+            "layer": "ipPad",
+            "at": "mem+44",
+            "until": "s11:end+400",
+            "opacity": 0,
+            "dur": 6
           }
         ],
         "run": [
@@ -1856,6 +1870,15 @@
             "bounce": 0.02
           },
           {
+            "layer": "ipPad",
+            "at": "start+8",
+            "until": "start+22",
+            "dy": 1.3,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
             "layer": "c4",
             "at": "start+8",
             "until": "start+22",
@@ -2079,6 +2102,15 @@
           },
           {
             "layer": "ip",
+            "at": "start+46",
+            "until": "start+64",
+            "dy": 0.9,
+            "dur": 8,
+            "fallIn": true,
+            "bounce": 0.02
+          },
+          {
+            "layer": "ipPad",
             "at": "start+46",
             "until": "start+64",
             "dy": 0.9,
@@ -2347,6 +2379,18 @@
           },
           {
             "layer": "ip",
+            "at": "start+20",
+            "until": "start+31",
+            "dx": 0.12,
+            "dz": -0.08,
+            "dur": 2,
+            "spring": {
+              "tau": 4,
+              "period": 11
+            }
+          },
+          {
+            "layer": "ipPad",
             "at": "start+20",
             "until": "start+31",
             "dx": 0.12,
