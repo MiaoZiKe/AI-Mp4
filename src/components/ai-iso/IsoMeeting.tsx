@@ -491,6 +491,26 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       </div>,
     );
   }
+  // 實測截圖：一排最多三張手機尺寸的真實截圖（Playwright 實拍，檔案在 public/<src>），每張下面一句圖說；右側空位可放一個蓋章
+  if (Pn.shot) {
+    const g = Pn.shot, p = g.p, o = 1 - O(f, g.out - 8, 8), t0 = g.in + 3, shots = p.shots as { src: string; cap: string; at: any; color?: string }[];
+    const SW = 270, SH = 480, tSt = p.stamp ? g.at(p.stamp.at, g.in + 60) : 0;
+    out.push(
+      <div key="shot" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="說明卡" style={{ ...riseIn(f, t0, 22), display: "inline-flex", alignItems: "center", gap: 14, background: T.card, borderRadius: 22, padding: "8px 18px", boxShadow: `0 6px 0 ${T.cardSide}` }}>
+          <Chip text={p.label} bg={col(p.labelColor ?? "primary").fill} fg="#fff" px={30} /><div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.by}</div>
+        </div>
+        <div style={{ display: "flex", gap: 24, marginTop: 52 }}>
+          {shots.map((q, i) => { const c = col(q.color ?? "primary"); return (
+            <div key={q.src} data-ov="截圖" style={{ ...bounce(f, g.at(q.at, g.in + 10 + i * 22)), width: SW + 24, background: T.card, borderRadius: 22, padding: 12, boxShadow: `0 8px 0 ${c.side}` }}>
+              <div style={{ width: SW, height: SH, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}><img src={staticFile(q.src)} style={{ width: SW, height: SH, objectFit: "contain", display: "block" }} /></div>
+              <div style={{ ...zh, fontWeight: 900, fontSize: 32, color: c.text, marginTop: 8, textAlign: "center" }}>{q.cap}</div>
+            </div>); })}
+        </div>
+        {p.stamp ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), position: "absolute", left: (SW + 48) * shots.length + 24 * (shots.length - 1) + 24, top: 160, ...zh, fontWeight: 900, fontSize: 44, color: col(p.stamp.color ?? "right").text, border: `7px solid ${col(p.stamp.color ?? "right").fill}`, borderRadius: 16, background: T.card, padding: "2px 22px", maxWidth: L.INNER_W - ((SW + 48) * shots.length + 24 * shots.length) }}>{p.stamp.text}</div> : null}
+      </div>,
+    );
+  }
   if (Pn.cta) {
     const c = Pn.cta, p = c.p, o = 1 - O(f, c.out - 8, 8), t1 = c.at("kw", c.in + 8);
     out.push(

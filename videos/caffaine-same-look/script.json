@@ -1,0 +1,590 @@
+{
+ "slug": "caffaine-same-look",
+ "title": "為什麼 AI 做的網頁都長一個樣（CaffAIne 無聲版）",
+ "asOf": "2026/11/16",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 5,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "同一句話做兩次",
+   "兩份網頁長一樣"
+  ],
+  "sub": "AI 常選最常見的樣子"
+ },
+ "tracker": [
+  [
+   "同一句話",
+   "note"
+  ],
+  [
+   "最常見的樣子",
+   "primary"
+  ],
+  [
+   "指定風格",
+   "right"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "我請 AI 做咖啡店首頁，同一句話做了兩次，兩份卻幾乎一模一樣。",
+   "subtitle": {
+    "zh": "我請 AI 做咖啡店首頁\n同一句話做了兩次\n兩份卻幾乎一模一樣",
+    "en": "I asked AI for a café homepage, twice. | The two pages looked almost identical."
+   },
+   "keywords": [
+    "一模一樣"
+   ],
+   "cues": [
+    {
+     "id": "ask",
+     "text": "咖啡店首頁"
+    },
+    {
+     "id": "twice",
+     "text": "兩次"
+    },
+    {
+     "id": "same",
+     "text": "一模一樣"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "hook",
+    "tag": "事件",
+    "tagColor": "wrong",
+    "asOf": "查證截至 2026/11/16",
+    "title": [
+     "同一句話做兩次",
+     "兩份幾乎一樣"
+    ],
+    "size": 108,
+    "mark": {
+     "text": "兩份幾乎一樣",
+     "at": "same",
+     "color": "wrong"
+    },
+    "stamp": {
+     "text": "幾乎一樣",
+     "at": "same+2",
+     "color": "wrong"
+    },
+    "count": {
+     "at": "ask+8"
+    },
+    "flow": [
+     "咖啡店首頁",
+     "AI",
+     "兩份網頁"
+    ],
+    "status": "已確定・實測",
+    "statusAt": "twice+6",
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "一模一樣": "wrong"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；同一句提示詞，兩次執行"
+   ],
+   "para": 1,
+   "tts": "我請 A I 做咖啡店首頁，同一句話做了兩次，兩份卻幾乎一模一樣。"
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "兩次都是米白底，區塊都叫我們的堅持，連小標題都只差一個字。",
+   "subtitle": {
+    "zh": "兩次都是米白底\n區塊都叫「我們的堅持」\n連小標題都只差一個字",
+    "en": "Both: cream background, same title, | headings differ by one word."
+   },
+   "keywords": [
+    "我們的堅持"
+   ],
+   "cues": [
+    {
+     "id": "bg",
+     "text": "米白底"
+    },
+    {
+     "id": "sec",
+     "text": "我們的堅持"
+    },
+    {
+     "id": "one",
+     "text": "只差一個字"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "vs",
+    "tag": "對照",
+    "tagColor": "primary",
+    "top": {
+     "label": "第一次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/01-plain.json",
+     "cells": [
+      "#FAF6F0",
+      "我們的堅持",
+      "嚴選單一莊園豆"
+     ],
+     "at": "start"
+    },
+    "bottom": {
+     "label": "第二次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/01b-plain-run2.json",
+     "cells": [
+      "#F9F6F0",
+      "我們的堅持",
+      "嚴選單品莊園豆"
+     ],
+     "at": "sec"
+    },
+    "badge": {
+     "text": "兩份很像",
+     "at": "one"
+    },
+    "status": "已確定・實測 2 次",
+    "statusAt": "one+6",
+    "kw": {
+     "我們的堅持": "wrong"
+    },
+    "track": 0,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ]
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；背景色與文字取自兩份 HTML 原始碼"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "check",
+   "narration": "排法也一樣：左文右圖，下面三欄小卡片，右上角是深色按鈕。",
+   "subtitle": {
+    "zh": "排法也一樣\n左文右圖\n下面三欄小卡片\n右上角是深色按鈕",
+    "en": "Same layout: text left, picture right, | three cards below, dark button top-right."
+   },
+   "keywords": [
+    "三欄小卡片"
+   ],
+   "cues": [
+    {
+     "id": "left",
+     "text": "左文右圖"
+    },
+    {
+     "id": "card",
+     "text": "三欄小卡片"
+    },
+    {
+     "id": "btn",
+     "text": "深色按鈕"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "steps",
+    "tag": "共同點",
+    "tagColor": "primary",
+    "steps": [
+     {
+      "n": "1",
+      "t": "左字右圖",
+      "sub": "第一屏的排法",
+      "color": "primary",
+      "at": "left"
+     },
+     {
+      "n": "2",
+      "t": "三欄小卡片",
+      "sub": "「我們的堅持」那一區",
+      "color": "note",
+      "at": "card"
+     },
+     {
+      "n": "3",
+      "t": "深色按鈕",
+      "sub": "右上角訂位／點餐",
+      "color": "wrong",
+      "at": "btn"
+     }
+    ],
+    "status": "已確定・實測 2 次",
+    "statusAt": "card+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "三欄小卡片": "primary"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；逐項比對見 research.md"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "narration": "為什麼？一般認為，AI 偏向最常見的樣子。你沒指定，它就選最保險的。",
+   "subtitle": {
+    "zh": "為什麼？\n一般認為\nAI 偏向最常見的樣子\n你沒指定\n它就選最保險的",
+    "en": "Why? Commonly thought: AI leans toward | the most common look when you don't specify."
+   },
+   "keywords": [
+    "最常見"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼"
+    },
+    {
+     "id": "common",
+     "text": "最常見的樣子"
+    },
+    {
+     "id": "safe",
+     "text": "最保險的"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "verdict",
+    "tag": "原因",
+    "tagColor": "primary",
+    "a": {
+     "big": "最常見的樣子",
+     "sub": "最容易被選中",
+     "at": "common"
+    },
+    "b": {
+     "big": "你沒指定",
+     "sub": "它就選最保險的",
+     "at": "safe"
+    },
+    "status": "分析推測・非實測",
+    "statusAt": "why+6",
+    "track": 1,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "最常見": "primary"
+    }
+   },
+   "sources": [
+    "一般認為的說法（分析推測）；非實測"
+   ],
+   "para": 1,
+   "tts": "為什麼？一般認為，A I 偏向最常見的樣子。你沒指定，它就選最保險的。"
+  },
+  {
+   "id": "s05",
+   "beat": "payoff",
+   "narration": "所以我多寫一句風格，參考日本咖啡館的手寫菜單。再做一次，樣子明顯不同，只試了一次。",
+   "subtitle": {
+    "zh": "所以我多寫一句風格\n參考日本咖啡館\n的手寫菜單\n再做一次\n樣子明顯不同\n只試了一次",
+    "en": "I added a style line. The result | looked clearly different. Tried once."
+   },
+   "keywords": [
+    "明顯不同"
+   ],
+   "cues": [
+    {
+     "id": "add",
+     "text": "多寫一句風格"
+    },
+    {
+     "id": "ref",
+     "text": "日本咖啡館的手寫菜單"
+    },
+    {
+     "id": "again",
+     "text": "再做一次"
+    },
+    {
+     "id": "diff",
+     "text": "明顯不同"
+    },
+    {
+     "id": "once",
+     "text": "只試了一次"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "rule",
+    "tag": "解法",
+    "tagColor": "right",
+    "rules": [
+     {
+      "text": "日本咖啡館的手寫菜單看板",
+      "color": "sky",
+      "at": "ref"
+     },
+     {
+      "text": "標題用襯線字體並靠左",
+      "color": "right",
+      "at": "ref+14"
+     },
+     {
+      "text": "不要三欄卡片",
+      "color": "wrong",
+      "at": "ref+24"
+     }
+    ],
+    "promptVerbatim": "tests/02-styled.json",
+    "resultY": 176,
+    "result": {
+     "label": "再做一次",
+     "by": "Gemini 實測・2026/11/16（節錄）",
+     "verbatim": "tests/02-styled.json",
+     "at": "again",
+     "rows": [
+      {
+       "cells": [
+        "珈琲 雲和",
+        "お品書き",
+        "手沖法蘭絨的法式深煎"
+       ],
+       "ok": true
+      }
+     ]
+    },
+    "fix": "diff",
+    "status": "已確定・實測（1 次）",
+    "statusAt": "diff+6",
+    "kw": {
+     "明顯不同": "right"
+    },
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ]
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16；風格提示只試 1 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "so",
+   "narration": "所以想要自己的樣子，先講風格：參考哪裡、要什麼、不要什麼。",
+   "subtitle": {
+    "zh": "所以想要自己的樣子\n先講風格\n參考哪裡、要什麼\n不要什麼",
+    "en": "So to get your own look, state a style: | what to copy, what to want, what to avoid."
+   },
+   "keywords": [
+    "先講風格"
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "想要自己的樣子"
+    },
+    {
+     "id": "ref",
+     "text": "參考哪裡"
+    },
+    {
+     "id": "want",
+     "text": "要什麼"
+    },
+    {
+     "id": "not",
+     "text": "不要什麼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "steps",
+    "tag": "所以呢",
+    "tagColor": "right",
+    "steps": [
+     {
+      "n": "1",
+      "t": "參考哪裡",
+      "sub": "例：日本咖啡館菜單",
+      "color": "primary",
+      "at": "ref"
+     },
+     {
+      "n": "2",
+      "t": "要什麼",
+      "sub": "米色紙底、襯線字",
+      "color": "right",
+      "at": "want"
+     },
+     {
+      "n": "3",
+      "t": "不要什麼",
+      "sub": "不要漸層、不要三欄卡片",
+      "color": "wrong",
+      "at": "not"
+     }
+    ],
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       30
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "先講風格": "right"
+    }
+   },
+   "sources": [
+    "做法整理；內容取自實測提示詞（tests/02-styled.json）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "cta",
+   "narration": "留言「網頁」，拿這句風格提示詞。",
+   "subtitle": {
+    "zh": "留言「網頁」\n拿這句風格提示詞",
+    "en": "Comment “網頁” to get the style prompt."
+   },
+   "keywords": [
+    "網頁"
+   ],
+   "cues": [
+    {
+     "id": "kw",
+     "text": "網頁"
+    },
+    {
+     "id": "all",
+     "text": "風格提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "cta",
+    "tag": "領取",
+    "tagColor": "right",
+    "kicker": "想要指定風格的提示詞",
+    "keyword": "網頁",
+    "sub": "私訊給你提示詞＋用法",
+    "track": 2,
+    "camera": [
+     {
+      "look": [
+       520,
+       360,
+       6
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "網頁": "primary"
+    }
+   },
+   "sources": [
+    "提示詞與測試紀錄整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "網頁"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

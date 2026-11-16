@@ -68,7 +68,7 @@ export function validateIso(script, h) {
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
     const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
-    const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick"];
+    const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick", "shot"];
     if (script.isoVersion === 5 && !caff) {
       if (!KINDS5.includes(p.panel)) E(`${tag}: isoVersion 5 的 props.panel「${p.panel}」不存在（${KINDS5.join("／")}）`);
       // 會議紀錄片：放 AI 回答的地方（wrong｜vs｜rule）要標實測＋節錄，每一格文字都要是實測原文的一部分（只能刪節，不能改字）；來源紀錄與提示規則也逐字比對
@@ -97,6 +97,7 @@ export function validateIso(script, h) {
           if (lines < pf.atLeast) E(`${tag}: badge「${p.badge.num}」要求至少 ${pf.atLeast} 行，實際只有 ${lines} 行（${files.length} 個檔）`);
         }
       }
+      if (p.panel === "shot") { if (!/實測/.test(p.by ?? "")) E(`${tag}: shot 要在 by 標示實測`); if (!(p.shots ?? []).length || p.shots.length > 3) E(`${tag}: shot 要 1–3 張 shots`); for (const q of p.shots ?? []) if (!fs.existsSync(path.join(ROOT, "public", q.src ?? "\u0000"))) E(`${tag}: shots.src「${q.src}」不在 public/`); }
       if (p.panel === "pick") { if ((p.rounds ?? []).length < 2) E(`${tag}: pick 要兩輪（rounds），才能對照`); for (const r of p.rounds ?? []) if (!(p.options ?? [])[r.pick]) E(`${tag}: rounds.pick ${r.pick} 超出 options`); if (!/示意/.test(JSON.stringify(p.note ?? "示意"))) W(`${tag}: pick 要標示示意`); }
       if (p.panel === "vs") { quote(p.top ?? {}, [p.top?.cells ?? []], "top"); quote(p.bottom ?? {}, [p.bottom?.cells ?? []], "bottom"); }
       if (p.panel === "rule") { quote(p.result ?? {}, p.result?.rows ?? [], "result"); const pj = rd(p.promptVerbatim); const pr = pj ? strip(JSON.parse(pj).prompt ?? "") : null; for (const q of p.rules ?? []) if (pr === null || !pr.includes(strip(q.text))) E(`${tag}: 規則「${q.text}」不在實測提示裡`); }
