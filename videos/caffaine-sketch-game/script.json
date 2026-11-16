@@ -1,635 +1,635 @@
 {
- "slug": "caffaine-sketch-game",
- "title": "手繪草圖拍一張，AI 變成能玩的小遊戲（CaffAIne 無聲版）",
- "asOf": "2026/11/16",
- "styleVersion": 3,
- "stage": "iso",
- "isoVersion": 5,
- "sample": false,
- "channelLogo": "caffaine",
- "channel": {
-  "name": "CaffAIne",
-  "tag": "",
-  "slogan": "看懂一個 AI 新知"
- },
- "voice": {
-  "voiceName": "Sulafat",
-  "mode": "take",
-  "languageCode": "cmn-TW",
-  "profile": "ai-report-v5"
- },
- "cover": {
-  "title": [
-   "一張草圖",
-   "變成能玩的遊戲"
-  ],
-  "sub": "AI 看圖寫出小遊戲"
- },
- "tracker": [
-  [
-   "草圖",
-   "note"
-  ],
-  [
-   "AI 寫程式",
-   "primary"
-  ],
-  [
-   "能玩",
-   "right"
-  ]
- ],
- "scenes": [
-  {
-   "id": "s01",
-   "beat": "hook",
-   "narration": "一張手繪風的草圖，丟給 AI，不到一分鐘，就變成能玩的小遊戲。",
-   "subtitle": {
-    "zh": "一張手繪風的草圖\n丟給 AI\n不到一分鐘\n變成能玩的小遊戲",
-    "en": "One sketch, handed to AI. | Under a minute later: a playable game."
-   },
-   "keywords": [
-    "能玩"
-   ],
-   "cues": [
-    {
-     "id": "sketch",
-     "text": "手繪風的草圖"
-    },
-    {
-     "id": "min",
-     "text": "不到一分鐘"
-    },
-    {
-     "id": "play",
-     "text": "能玩的小遊戲"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "hook",
-    "tag": "事件",
-    "tagColor": "primary",
-    "asOf": "查證截至 2026/11/16",
+  "slug": "caffaine-sketch-game",
+  "title": "手繪草圖拍一張，AI 變成能玩的小遊戲（CaffAIne 無聲版）",
+  "asOf": "2026/11/16",
+  "styleVersion": 3,
+  "stage": "iso",
+  "isoVersion": 5,
+  "sample": false,
+  "channelLogo": "caffaine",
+  "channel": {
+    "name": "CaffAIne",
+    "tag": "",
+    "slogan": "看懂一個 AI 新知"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "ai-report-v5"
+  },
+  "cover": {
     "title": [
-     "一張草圖",
-     "變成能玩的遊戲"
+      "一張草圖",
+      "變成能玩的遊戲"
     ],
-    "size": 108,
-    "mark": {
-     "text": "變成能玩的遊戲",
-     "at": "play",
-     "color": "primary"
-    },
-    "stamp": {
-     "text": "不到一分鐘",
-     "at": "min+2",
-     "color": "right"
-    },
-    "count": {
-     "at": "sketch+8"
-    },
-    "flow": [
-     "草圖",
-     "AI",
-     "小遊戲"
-    ],
-    "status": "已確定・實測",
-    "statusAt": "min+6",
-    "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
-      ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "能玩": "primary"
-    }
-   },
-   "sources": [
-    "Gemini 實測 2026/11/16；回應約 34 秒"
-   ],
-   "para": 1,
-   "tts": "一張手繪風的草圖，丟給 A I，不到一分鐘，就變成能玩的小遊戲。"
+    "sub": "AI 看圖寫出小遊戲"
   },
-  {
-   "id": "s02",
-   "beat": "check",
-   "narration": "草圖是用程式畫的手繪風。我只對 AI 說：照這張圖，做成小遊戲。",
-   "subtitle": {
-    "zh": "草圖是用程式畫的手繪風\n我只對 AI 說\n照這張圖\n做成小遊戲",
-    "en": "Sketch drawn by code, hand-drawn look. | One line to AI: make it a game."
-   },
-   "keywords": [
-    "做成"
-   ],
-   "cues": [
-    {
-     "id": "draw",
-     "text": "用程式畫的手繪風"
-    },
-    {
-     "id": "give",
-     "text": "只對 AI 說"
-    },
-    {
-     "id": "say",
-     "text": "照這張圖"
-    },
-    {
-     "id": "fin",
-     "text": "做成小遊戲"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "talk",
-    "tag": "步驟 1",
-    "tagColor": "note",
-    "label": "我這樣交代",
-    "note": "草圖由程式繪製；交代句為實測提示節錄",
-    "line": "照這張圖做成一個可以玩的小遊戲",
-    "typeAt": "say",
-    "typeDur": 38,
-    "lines": 2,
-    "size": 56,
-    "chips": [
-     "附上一張草圖",
-     "只輸出一個網頁檔"
+  "tracker": [
+    [
+      "草圖",
+      "note"
     ],
-    "chipsAt": "fin",
-    "status": "已確定・實測提示（節錄）",
-    "statusAt": "give+6",
-    "track": 0,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+    [
+      "AI 寫程式",
+      "primary"
+    ],
+    [
+      "能玩",
+      "right"
+    ]
+  ],
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "narration": "一張手繪風的草圖，丟給 AI，不到一分鐘，就變成能玩的小遊戲。",
+      "subtitle": {
+        "zh": "一張手繪風的草圖\n丟給 AI\n不到一分鐘\n變成能玩的小遊戲",
+        "en": "One sketch, handed to AI. | Under a minute later: a playable game."
+      },
+      "keywords": [
+        "能玩"
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "做成": "primary"
-    }
-   },
-   "sources": [
-    "提示詞節錄；草圖由程式繪製（make-sketch.py）"
-   ],
-   "para": 1,
-   "tts": "草圖是用程式畫的手繪風。我只對 A I 說：照這張圖，做成小遊戲。"
-  },
-  {
-   "id": "s03",
-   "beat": "check",
-   "narration": "它交回一個網頁檔，我用瀏覽器打開，開始畫面有了，左右移動也接得到星星。",
-   "subtitle": {
-    "zh": "它交回一個網頁檔\n用瀏覽器打開\n開始畫面有了\n左右移動\n也接得到星星",
-    "en": "AI returned one web file. I opened it: | start screen works, and I caught a star."
-   },
-   "keywords": [
-    "接得到星星"
-   ],
-   "cues": [
-    {
-     "id": "file",
-     "text": "一個網頁檔"
-    },
-    {
-     "id": "open",
-     "text": "用瀏覽器打開"
-    },
-    {
-     "id": "start",
-     "text": "開始畫面有了"
-    },
-    {
-     "id": "catch",
-     "text": "接得到星星"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "shot",
-    "tag": "實測",
-    "tagColor": "primary",
-    "label": "真的打開來玩",
-    "by": "Playwright 實測・2026/11/16",
-    "shots": [
-     {
-      "src": "caffaine-sketch-game/sketch.png",
-      "cap": "草圖",
-      "at": "file",
-      "color": "note"
-     },
-     {
-      "src": "caffaine-sketch-game/first-start.png",
-      "cap": "開始畫面",
-      "at": "start",
-      "color": "primary"
-     },
-     {
-      "src": "caffaine-sketch-game/first-play.png",
-      "cap": "接到星星",
-      "at": "catch",
-      "color": "right"
-     }
-    ],
-    "status": "已確定・實測",
-    "statusAt": "open+6",
-    "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+      "cues": [
+        {
+          "id": "sketch",
+          "text": "手繪風的草圖"
+        },
+        {
+          "id": "min",
+          "text": "不到一分鐘"
+        },
+        {
+          "id": "play",
+          "text": "能玩的小遊戲"
+        }
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "接得到星星": "right"
-    }
-   },
-   "sources": [
-    "Playwright 實測；截圖在 tests/ 資料夾"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s04",
-   "beat": "twist",
-   "narration": "但有個小毛病：結束畫面上，掉下來的星星疊在「重新開始」的字上。",
-   "subtitle": {
-    "zh": "但有個小毛病\n結束畫面上\n掉下來的星星\n疊在「重新開始」的字上",
-    "en": "But a small bug: on the game-over screen, | a falling star overlaps the restart text."
-   },
-   "keywords": [
-    "小毛病"
-   ],
-   "cues": [
-    {
-     "id": "but",
-     "text": "有個小毛病"
-    },
-    {
-     "id": "end",
-     "text": "結束畫面"
-    },
-    {
-     "id": "lap",
-     "text": "疊在"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "shot",
-    "tag": "翻車",
-    "tagColor": "wrong",
-    "label": "第一版的毛病",
-    "labelColor": "wrong",
-    "by": "Playwright 實測・2026/11/16",
-    "shots": [
-     {
-      "src": "caffaine-sketch-game/bug.png",
-      "cap": "星星疊在字上",
-      "at": "end",
-      "color": "wrong"
-     }
-    ],
-    "stamp": {
-     "text": "小毛病",
-     "at": "lap",
-     "color": "wrong"
-    },
-    "status": "已確定・實測",
-    "statusAt": "but+6",
-    "track": 1,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+      "component": "IsoScene",
+      "props": {
+        "panel": "hook",
+        "tag": "事件",
+        "tagColor": "primary",
+        "asOf": "查證截至 2026/11/16",
+        "title": [
+          "一張草圖",
+          "變成能玩的遊戲"
+        ],
+        "size": 108,
+        "mark": {
+          "text": "變成能玩的遊戲",
+          "at": "play",
+          "color": "primary"
+        },
+        "stamp": {
+          "text": "不到一分鐘",
+          "at": "min+2",
+          "color": "right"
+        },
+        "count": {
+          "at": "sketch+8"
+        },
+        "flow": [
+          "草圖",
+          "AI",
+          "小遊戲"
+        ],
+        "status": "已確定・實測",
+        "statusAt": "min+6",
+        "track": 0,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "能玩": "primary"
+        }
+      },
+      "sources": [
+        "Gemini 實測 2026/11/16；回應約 34 秒"
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "小毛病": "wrong"
-    }
-   },
-   "sources": [
-    "Playwright 實測截圖；圈起處為標示"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s05",
-   "beat": "payoff",
-   "narration": "我照實跟它說，請它修好，其他不要動。",
-   "subtitle": {
-    "zh": "我照實跟它說\n請它修好\n其他不要動",
-    "en": "I told it: fix it, change nothing else."
-   },
-   "keywords": [
-    "修好"
-   ],
-   "cues": [
-    {
-     "id": "say",
-     "text": "照實跟它說"
+      "para": 1,
+      "tts": "一張手繪風的草圖，丟給 AI，不到一分鐘，就變成能玩的小遊戲。"
     },
     {
-     "id": "fix",
-     "text": "修好"
-    },
-    {
-     "id": "keep",
-     "text": "其他不要動"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "talk",
-    "tag": "修正",
-    "tagColor": "right",
-    "color": "right",
-    "label": "我這樣說",
-    "note": "提示詞節錄",
-    "line": "掉落的星星畫在文字後面，把「重新開始」的字蓋住了",
-    "typeAt": "say",
-    "typeDur": 34,
-    "lines": 2,
-    "size": 52,
-    "chips": [
-     "請它修好",
-     "其他不要動"
-    ],
-    "chipsAt": "keep",
-    "status": "已確定・實測提示（節錄）",
-    "statusAt": "say+6",
-    "track": 2,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+      "id": "s02",
+      "beat": "check",
+      "narration": "草圖是用程式畫的手繪風。我只對 AI 說：照這張圖，做成小遊戲。",
+      "subtitle": {
+        "zh": "草圖是用程式畫的手繪風\n我只對 AI 說\n照這張圖\n做成小遊戲",
+        "en": "Sketch drawn by code, hand-drawn look. | One line to AI: make it a game."
+      },
+      "keywords": [
+        "做成"
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "修好": "right"
-    }
-   },
-   "sources": [
-    "提示詞節錄；原文見 tests/02-fix.json"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s06",
-   "beat": "payoff",
-   "narration": "再玩一次，字清楚了，我用滑鼠左右掃，接到六顆星星。",
-   "subtitle": {
-    "zh": "再玩一次\n字清楚了\n用滑鼠左右掃\n接到六顆星星",
-    "en": "Played again: text is clear, | swept the mouse and caught six stars."
-   },
-   "keywords": [
-    "六顆"
-   ],
-   "cues": [
-    {
-     "id": "again",
-     "text": "再玩一次"
-    },
-    {
-     "id": "clear",
-     "text": "字清楚了"
-    },
-    {
-     "id": "six",
-     "text": "接到六顆星星"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "shot",
-    "tag": "修好",
-    "tagColor": "right",
-    "label": "第二版",
-    "labelColor": "right",
-    "by": "Playwright 實測・2026/11/16",
-    "shots": [
-     {
-      "src": "caffaine-sketch-game/fix-end.png",
-      "cap": "字清楚了",
-      "at": "clear",
-      "color": "right"
-     },
-     {
-      "src": "caffaine-sketch-game/fix-score.png",
-      "cap": "分數 6",
-      "at": "six",
-      "color": "primary"
-     }
-    ],
-    "stamp": {
-     "text": "分數 6",
-     "at": "six+2",
-     "color": "right"
-    },
-    "status": "已確定・實測（1 次）",
-    "statusAt": "again+6",
-    "track": 2,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+      "cues": [
+        {
+          "id": "draw",
+          "text": "用程式畫的手繪風"
+        },
+        {
+          "id": "give",
+          "text": "只對 AI 說"
+        },
+        {
+          "id": "say",
+          "text": "照這張圖"
+        },
+        {
+          "id": "fin",
+          "text": "做成小遊戲"
+        }
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "六顆": "right"
-    }
-   },
-   "sources": [
-    "Playwright 實測，只試 1 次；細節見 research.md"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s07",
-   "beat": "so",
-   "narration": "所以做法三步：畫草圖、交給 AI、玩一下，有毛病就跟它說。",
-   "subtitle": {
-    "zh": "所以做法三步\n畫草圖\n交給 AI\n玩一下\n有毛病就跟它說",
-    "en": "Three steps: sketch, hand to AI, | play it, and tell it what's wrong."
-   },
-   "keywords": [
-    "三步"
-   ],
-   "cues": [
-    {
-     "id": "so",
-     "text": "做法三步"
-    },
-    {
-     "id": "a",
-     "text": "畫草圖"
-    },
-    {
-     "id": "b",
-     "text": "交給 AI"
-    },
-    {
-     "id": "c",
-     "text": "玩一下"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "steps",
-    "tag": "所以呢",
-    "tagColor": "right",
-    "steps": [
-     {
-      "n": "1",
-      "t": "畫草圖",
-      "sub": "線條簡單就好",
-      "color": "note",
-      "at": "a"
-     },
-     {
-      "n": "2",
-      "t": "交給 AI",
-      "sub": "只說想要什麼",
-      "color": "primary",
-      "at": "b"
-     },
-     {
-      "n": "3",
-      "t": "玩一下",
-      "sub": "有毛病就跟它說",
-      "color": "right",
-      "at": "c"
-     }
-    ],
-    "track": 2,
-    "camera": [
-     {
-      "look": [
-       380,
-       330,
-       30
+      "component": "IsoScene",
+      "props": {
+        "panel": "talk",
+        "tag": "步驟 1",
+        "tagColor": "note",
+        "label": "我這樣交代",
+        "note": "草圖由程式繪製；交代句為實測提示節錄",
+        "line": "照這張圖做成一個可以玩的小遊戲",
+        "typeAt": "say",
+        "typeDur": 38,
+        "lines": 2,
+        "size": 56,
+        "chips": [
+          "附上一張草圖",
+          "只輸出一個網頁檔"
+        ],
+        "chipsAt": "fin",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "give+6",
+        "track": 0,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "做成": "primary"
+        }
+      },
+      "sources": [
+        "提示詞節錄；草圖由程式繪製（make-sketch.py）"
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "三步": "right"
-    }
-   },
-   "sources": [
-    "做法整理；內容取自本次實測"
-   ],
-   "para": 1,
-   "tts": "所以做法三步：畫草圖、交給 A I、玩一下，有毛病就跟它說。"
-  },
-  {
-   "id": "s08",
-   "beat": "cta",
-   "narration": "留言「遊戲」，拿這句提示詞。",
-   "subtitle": {
-    "zh": "留言「遊戲」\n拿這句提示詞",
-    "en": "Comment “遊戲” to get the prompt."
-   },
-   "keywords": [
-    "遊戲"
-   ],
-   "cues": [
-    {
-     "id": "kw",
-     "text": "遊戲"
+      "para": 1,
+      "tts": "草圖是用程式畫的手繪風。我只對 AI 說：照這張圖，做成小遊戲。"
     },
     {
-     "id": "all",
-     "text": "提示詞"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "cta",
-    "tag": "領取",
-    "tagColor": "right",
-    "kicker": "想要草圖變遊戲的提示詞",
-    "keyword": "遊戲",
-    "sub": "私訊給你提示詞＋用法",
-    "track": 2,
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
+      "id": "s03",
+      "beat": "check",
+      "narration": "它交回一個網頁檔，我用瀏覽器打開，開始畫面有了，左右移動也接得到星星。",
+      "subtitle": {
+        "zh": "它交回一個網頁檔\n用瀏覽器打開\n開始畫面有了\n左右移動\n也接得到星星",
+        "en": "AI returned one web file. I opened it: | start screen works, and I caught a star."
+      },
+      "keywords": [
+        "接得到星星"
       ],
-      "zoom": 0.56,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "遊戲": "primary"
+      "cues": [
+        {
+          "id": "file",
+          "text": "一個網頁檔"
+        },
+        {
+          "id": "open",
+          "text": "用瀏覽器打開"
+        },
+        {
+          "id": "start",
+          "text": "開始畫面有了"
+        },
+        {
+          "id": "catch",
+          "text": "接得到星星"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "shot",
+        "tag": "實測",
+        "tagColor": "primary",
+        "label": "真的打開來玩",
+        "by": "Playwright 實測・2026/11/16",
+        "shots": [
+          {
+            "src": "caffaine-sketch-game/sketch.png",
+            "cap": "草圖",
+            "at": "file",
+            "color": "note"
+          },
+          {
+            "src": "caffaine-sketch-game/first-start.png",
+            "cap": "開始畫面",
+            "at": "start",
+            "color": "primary"
+          },
+          {
+            "src": "caffaine-sketch-game/first-play.png",
+            "cap": "接到星星",
+            "at": "catch",
+            "color": "right"
+          }
+        ],
+        "status": "已確定・實測",
+        "statusAt": "open+6",
+        "track": 1,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "接得到星星": "right"
+        }
+      },
+      "sources": [
+        "Playwright 實測；截圖在 tests/ 資料夾"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s04",
+      "beat": "twist",
+      "narration": "但有個小毛病：結束畫面上，掉下來的星星疊在「重新開始」的字上。",
+      "subtitle": {
+        "zh": "但有個小毛病\n結束畫面上\n掉下來的星星\n疊在「重新開始」的字上",
+        "en": "But a small bug: on the game-over screen, | a falling star overlaps the restart text."
+      },
+      "keywords": [
+        "小毛病"
+      ],
+      "cues": [
+        {
+          "id": "but",
+          "text": "有個小毛病"
+        },
+        {
+          "id": "end",
+          "text": "結束畫面"
+        },
+        {
+          "id": "lap",
+          "text": "疊在"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "shot",
+        "tag": "翻車",
+        "tagColor": "wrong",
+        "label": "第一版的毛病",
+        "labelColor": "wrong",
+        "by": "Playwright 實測・2026/11/16",
+        "shots": [
+          {
+            "src": "caffaine-sketch-game/bug.png",
+            "cap": "星星疊在字上",
+            "at": "end",
+            "color": "wrong"
+          }
+        ],
+        "stamp": {
+          "text": "小毛病",
+          "at": "lap",
+          "color": "wrong"
+        },
+        "status": "已確定・實測",
+        "statusAt": "but+6",
+        "track": 1,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "小毛病": "wrong"
+        }
+      },
+      "sources": [
+        "Playwright 實測截圖；圈起處為標示"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s05",
+      "beat": "payoff",
+      "narration": "我照實跟它說，請它修好，其他不要動。",
+      "subtitle": {
+        "zh": "我照實跟它說\n請它修好\n其他不要動",
+        "en": "I told it: fix it, change nothing else."
+      },
+      "keywords": [
+        "修好"
+      ],
+      "cues": [
+        {
+          "id": "say",
+          "text": "照實跟它說"
+        },
+        {
+          "id": "fix",
+          "text": "修好"
+        },
+        {
+          "id": "keep",
+          "text": "其他不要動"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "talk",
+        "tag": "修正",
+        "tagColor": "right",
+        "color": "right",
+        "label": "我這樣說",
+        "note": "提示詞節錄",
+        "line": "掉落的星星畫在文字後面，把「重新開始」的字蓋住了",
+        "typeAt": "say",
+        "typeDur": 34,
+        "lines": 2,
+        "size": 52,
+        "chips": [
+          "請它修好",
+          "其他不要動"
+        ],
+        "chipsAt": "keep",
+        "status": "已確定・實測提示（節錄）",
+        "statusAt": "say+6",
+        "track": 2,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "修好": "right"
+        }
+      },
+      "sources": [
+        "提示詞節錄；原文見 tests/02-fix.json"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s06",
+      "beat": "payoff",
+      "narration": "再玩一次，字清楚了，我用滑鼠左右掃，接到六顆星星。",
+      "subtitle": {
+        "zh": "再玩一次\n字清楚了\n用滑鼠左右掃\n接到六顆星星",
+        "en": "Played again: text is clear, | swept the mouse and caught six stars."
+      },
+      "keywords": [
+        "六顆"
+      ],
+      "cues": [
+        {
+          "id": "again",
+          "text": "再玩一次"
+        },
+        {
+          "id": "clear",
+          "text": "字清楚了"
+        },
+        {
+          "id": "six",
+          "text": "接到六顆星星"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "shot",
+        "tag": "修好",
+        "tagColor": "right",
+        "label": "第二版",
+        "labelColor": "right",
+        "by": "Playwright 實測・2026/11/16",
+        "shots": [
+          {
+            "src": "caffaine-sketch-game/fix-end.png",
+            "cap": "字清楚了",
+            "at": "clear",
+            "color": "right"
+          },
+          {
+            "src": "caffaine-sketch-game/fix-score.png",
+            "cap": "分數 6",
+            "at": "six",
+            "color": "primary"
+          }
+        ],
+        "stamp": {
+          "text": "分數 6",
+          "at": "six+2",
+          "color": "right"
+        },
+        "status": "已確定・實測（1 次）",
+        "statusAt": "again+6",
+        "track": 2,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "六顆": "right"
+        }
+      },
+      "sources": [
+        "Playwright 實測，只試 1 次；細節見 research.md"
+      ],
+      "para": 1
+    },
+    {
+      "id": "s07",
+      "beat": "so",
+      "narration": "所以做法三步：畫草圖、交給 AI、玩一下，有毛病就跟它說。",
+      "subtitle": {
+        "zh": "所以做法三步\n畫草圖\n交給 AI\n玩一下\n有毛病就跟它說",
+        "en": "Three steps: sketch, hand to AI, | play it, and tell it what's wrong."
+      },
+      "keywords": [
+        "三步"
+      ],
+      "cues": [
+        {
+          "id": "so",
+          "text": "做法三步"
+        },
+        {
+          "id": "a",
+          "text": "畫草圖"
+        },
+        {
+          "id": "b",
+          "text": "交給 AI"
+        },
+        {
+          "id": "c",
+          "text": "玩一下"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "steps",
+        "tag": "所以呢",
+        "tagColor": "right",
+        "steps": [
+          {
+            "n": "1",
+            "t": "畫草圖",
+            "sub": "線條簡單就好",
+            "color": "note",
+            "at": "a"
+          },
+          {
+            "n": "2",
+            "t": "交給 AI",
+            "sub": "只說想要什麼",
+            "color": "primary",
+            "at": "b"
+          },
+          {
+            "n": "3",
+            "t": "玩一下",
+            "sub": "有毛病就跟它說",
+            "color": "right",
+            "at": "c"
+          }
+        ],
+        "track": 2,
+        "camera": [
+          {
+            "look": [
+              380,
+              330,
+              30
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "三步": "right"
+        }
+      },
+      "sources": [
+        "做法整理；內容取自本次實測"
+      ],
+      "para": 1,
+      "tts": "所以做法三步：畫草圖、交給 AI、玩一下，有毛病就跟它說。"
+    },
+    {
+      "id": "s08",
+      "beat": "cta",
+      "narration": "留言「遊戲」，拿這句提示詞。",
+      "subtitle": {
+        "zh": "留言「遊戲」\n拿這句提示詞",
+        "en": "Comment “遊戲” to get the prompt."
+      },
+      "keywords": [
+        "遊戲"
+      ],
+      "cues": [
+        {
+          "id": "kw",
+          "text": "遊戲"
+        },
+        {
+          "id": "all",
+          "text": "提示詞"
+        }
+      ],
+      "component": "IsoScene",
+      "props": {
+        "panel": "cta",
+        "tag": "領取",
+        "tagColor": "right",
+        "kicker": "想要草圖變遊戲的提示詞",
+        "keyword": "遊戲",
+        "sub": "私訊給你提示詞＋用法",
+        "track": 2,
+        "camera": [
+          {
+            "look": [
+              520,
+              360,
+              6
+            ],
+            "zoom": 0.56,
+            "sy": 1105,
+            "dur": 16
+          }
+        ],
+        "kw": {
+          "遊戲": "primary"
+        }
+      },
+      "sources": [
+        "提示詞與測試紀錄整理在 CaffAIne 網站"
+      ],
+      "para": 1
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "component": "IsoScene",
+      "props": {
+        "panel": "caffend",
+        "keyword": "遊戲"
+      },
+      "sources": [],
+      "silent": true,
+      "durationSec": 3.6
     }
-   },
-   "sources": [
-    "提示詞與測試紀錄整理在 CaffAIne 網站"
-   ],
-   "para": 1
-  },
-  {
-   "id": "end",
-   "narration": "",
-   "subtitle": {
-    "zh": "",
-    "en": ""
-   },
-   "keywords": [],
-   "component": "IsoScene",
-   "props": {
-    "panel": "caffend",
-    "keyword": "遊戲"
-   },
-   "sources": [],
-   "silent": true,
-   "durationSec": 3.6
-  }
- ]
+  ]
 }
