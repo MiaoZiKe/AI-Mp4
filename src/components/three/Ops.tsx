@@ -94,7 +94,9 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         const pts = pts0.map((p) => p.clone().add(off));
         const seg = pts.slice(1).map((p, i) => p.distanceTo(pts[i])), total = seg.reduce((a, b) => a + b, 0);
         if (d.track !== false && ln === 0) { r.mat.opacity = O.trackO * vis; pts0.slice(1).forEach((p, i) => rod(`${id}-t${i}`, pts0[i], p, O.track, r.mat)); }
-        const at = (u: number) => {
+        // accel（2026/11/16 tech-offer）：受重力的落下（位置＝u²，越掉越快），水滴、硬幣用
+        const at = (u0: number) => {
+          const u = d.accel ? u0 * u0 : u0;
           let dist = u * total, k = 0;
           while (k < seg.length - 1 && dist > seg[k]) { dist -= seg[k]; k++; }
           const dir = pts[k + 1].clone().sub(pts[k]).normalize();
@@ -204,11 +206,23 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
 export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; glow: number; color: string | null; grow: [number, number, number] | null };
 export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]> => {
   const m = new Map<string, [string, ActionDef][]>();
-  for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) for (const p of d.parts ?? []) m.set(p, [...(m.get(p) ?? []), [id, d]]);
+  for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) for (const p of [...(d.parts ?? []), ...(d.level ?? [])]) m.set(p, [...(m.get(p) ?? []), [id, d]]);
   return m;
 };
-export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): PartFx | null => {
+/** rotate 的角度（弧度）。angle＋damp（2026/11/16 tech-offer）：阻尼振盪的步階響應——從觸發起 θ＝A·(1−e^(−t/τ)·cos 2πft)，過衝幾次後停在 A；
+ *  until 之後再用同一個式子回到 0。damp＝{ f（每秒擺幾次）, tau（衰減時間常數，秒） } */
+export const rotAngle = (d: ActionDef, op: { k: number; g: number; T: number; t: number; n: number; f: number; until: number }) => {
+  if (d.angle !== undefined && d.damp) {
+    const A = (d.angle * Math.PI) / 180, st = (t: number) => (t <= 0 ? 0 : 1 - Math.exp(-t / d.damp!.tau) * Math.cos(Math.PI * 2 * d.damp!.f * t));
+    return A * (st(op.n / 30) - st((op.f - op.until) / 30));
+  }
+  if (d.angle !== undefined) return ((d.angle * Math.PI) / 180) * op.k * (d.gain0 ?? 1);
+  if (d.swing !== undefined) return ((d.swing * Math.PI) / 180) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T);
+  return Math.PI * 2 * (d.rps ?? 1) * op.t;
+};
+export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, part?: { id?: string; pos?: number[] }): PartFx | null => {
   if (!list) return null;
+  let lvAng = 0, lvD: ActionDef | null = null;
   const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, glow: 0, color: null, grow: null };
   for (const [id, d] of list) {
     const op = s.ops[id];
@@ -222,7 +236,9 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): P
       // 角度＝轉速 × 觸發後的時間（until 之後時間不再走，停在原地）。
       // 2026/11/16 tech-offer：angle（度）＝轉到固定角度（跟著 run 的進出場 ramp 轉過去、until 後轉回來）；swing（度）＝來回擺（± swing、每秒 freq 下，相位用全片時間，和 vibrate 同一個式子）；
       // 同一個零件有好幾個 rotate 時角度相乘（以前只取最後一個）
-      const ang = d.angle !== undefined ? ((d.angle * Math.PI) / 180) * op.k * (d.gain0 ?? 1) : d.swing !== undefined ? ((d.swing * Math.PI) / 180) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T) : Math.PI * 2 * (d.rps ?? 1) * op.t;
+      const ang = rotAngle(d, op);
+      // level（2026/11/16 tech-offer）：吊著的零件（天平秤盤、吊繩、盤上的東西）不跟著轉，只跟著吊點（hang）平移，永遠保持水平
+      if (part?.id && d.level?.includes(part.id)) { lvAng += ang; lvD = d; continue; }
       const q = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), ang);
       fx.quat = fx.quat ? fx.quat.multiply(q) : q;
       fx.pivot = d.pivot ?? fx.pivot ?? null;
@@ -231,6 +247,12 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D): P
       const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
       fx.glow = Math.max(fx.glow, (d.glow ?? 0.8) * Math.min(1, op.g) * (0.35 + 0.65 * beat)); fx.color = d.color ?? null;
     }
+  }
+  if (lvD && part?.pos) {
+    // 吊點：零件在轉軸哪一邊就用哪一邊的 hang 點；吊點繞轉軸轉 θ，零件整個平移同樣的位移（不轉）
+    const pv = lvD.pivot ?? [0, 0], side = part.pos[0] < pv[0] ? 0 : 1, h = lvD.hang?.[side] ?? [part.pos[0], pv[1]];
+    const ax = (lvD.axis?.[2] ?? 1) < 0 ? -1 : 1, c = Math.cos(lvAng * ax), sn = Math.sin(lvAng * ax), rx = h[0] - pv[0], ry = h[1] - pv[1];
+    fx.off = [fx.off[0] + pv[0] + rx * c - ry * sn - h[0], fx.off[1] + pv[1] + rx * sn + ry * c - h[1], fx.off[2]];
   }
   return fx;
 };

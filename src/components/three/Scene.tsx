@@ -85,7 +85,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
     if (model.actions && m.transparent !== o < 0.995) m.needsUpdate = true;
     m.opacity = o; m.transparent = o < 0.995; m.depthWrite = o >= 0.995;
     // 運作動畫 pulse：零件往指定顏色靠並自發光，跟著節拍一亮一暗
-    const pf = b.p.id ? partFxAt(pops.get(b.p.id), s) : null;
+    const pf = b.p.id ? partFxAt(pops.get(b.p.id), s, b.p) : null;
     if (pf && m.emissive) {
       // 每一幀都從原色算起（同一個分頁不一定照順序渲）
       m.color.copy(b.base.color); m.emissive.copy(b.base.em); m.emissiveIntensity = b.base.ei;
@@ -145,7 +145,7 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             const q = b.p.pos ?? [0, 0, 0], off = b.p.role === "lid" ? lidOff : [0, 0, 0];
             const solid = m.opacity > 0.6 && b.p.shadow !== false;
             // 運作動畫：vibrate 加位移；rotate 繞轉軸轉（轉軸預設是零件自己的位置）
-            const pf = b.p.id ? partFxAt(pops.get(b.p.id), s) : null;
+            const pf = b.p.id ? partFxAt(pops.get(b.p.id), s, b.p) : null;
             let px = q[0] + off[0] + L.x + (pf?.off[0] ?? 0), py = q[1] + off[1] + L.y + (pf?.off[1] ?? 0);
             const pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
             if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }

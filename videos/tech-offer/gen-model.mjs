@@ -118,8 +118,12 @@ P({ id: "sTop", layer: "scale", shape: "sphere", size: [0.35], pos: [SX, SB + 0.
 P({ id: "sPointer", layer: "scale", shape: "box", size: [0.12, 1.6, 0.1], pos: [SX, SB - 1.1, 0.45], mat: "red" });
 P({ id: "sDial", layer: "scale", shape: "box", size: [1.8, 0.12, 0.08], pos: [SX, SB - 2.0, 0.4], mat: "steel" });
 P({ id: "sBeam", layer: "scale", shape: "slab", size: [2 * SW + 1, 0.32, 0.45], r: 0.12, pos: [SX, SB, 0.2], mat: "brass" });
-P({ id: "sHang", layer: "scale", shape: "box", size: [0.08, 2.0, 0.08], pos: [SX, SB - 1.0, 0.2], at: [[-SW, 0, 0], [SW, 0, 0]], mat: "steel" });
-P({ id: "sPan", layer: "scale", shape: "cyl", size: [2.2, 0.18], rot: [90, 0, 0], pos: [SX, SB - 2.1, 0.2], at: [[-SW, 0, 0], [SW, 0, 0]], mat: "brass" });
+// 秤盤是吊著的（2026/11/16 Andy：「天平稱重 不應該那樣」）：左右各一組吊架（三根吊繩＋吊環）＋秤盤，秤桿轉時只跟著吊點平移、永遠保持水平
+for (const [k, sx] of [["L", -SW], ["R", SW]]) {
+  P({ id: `sRing${k}`, layer: "scale", shape: "tube", size: [0.22, 0.12, 0.12], pos: [SX + sx, SB - 0.25, 0.2], mat: "steel" });
+  P({ id: `sHang${k}`, layer: "scale", shape: "box", size: [0.06, 1.75, 0.06], pos: [SX + sx, SB - 1.25, 0.2], at: [[-0.9, 0, 0], [0.9, 0, 0], [0, 0, 0]], rot: [0, 0, 0], mat: "steel" });
+  P({ id: `sPan${k}`, layer: "scale", shape: "cyl", size: [2.2, 0.18], rot: [90, 0, 0], pos: [SX + sx, SB - 2.1, 0.2], mat: "brass" });
+}
 const PANY = SB - 2.0;
 // s3 的內容：左右各 12 片薄月薪板；右邊再加一塊橘色（年終＋分紅，高度≈12 片）
 L("scaleA", { outline: [3, 2, SX - SW, 0] });
@@ -139,7 +143,7 @@ P({ id: "faStack", layer: "scaleF", shape: "slab", size: [1.6, 2.2, 1.2], r: 0.0
 P({ id: "faBon", layer: "scaleF", shape: "slab", size: [1.6, 0.8, 1.2], r: 0.08, pos: [SX - SW, R2(PANY + 0.4 + 2.2 + 0.45), 0.2], mat: "bonus" });
 P({ id: "fbStack", layer: "scaleF", shape: "slab", size: [1.6, 1.5, 1.2], r: 0.08, pos: [SX + SW, R2(PANY + 0.4 + 0.75), 0.2], mat: "mo" });
 P({ id: "fbBon", layer: "scaleF", shape: "slab", size: [1.6, 1.5, 1.2], r: 0.08, pos: [SX + SW, R2(PANY + 0.4 + 1.5 + 0.8), 0.2], mat: "bonus" });
-const beamParts = ["sBeam", "sHang", "sPan", "sMoL", "sMoR", "sBon", "faF", "faS", "faClip", "fbF", "fbS", "fbClip", "faStack", "faBon", "fbStack", "fbBon", "sPointer"];
+const beamParts = ["sBeam", "sPointer"], hung = ["sRingL", "sRingR", "sHangL", "sHangR", "sPanL", "sPanR", "sMoL", "sMoR", "sBon", "faF", "faS", "faClip", "fbF", "fbS", "fbClip", "faStack", "faBon", "fbStack", "fbBon"], hang = [[SX - SW, SB], [SX + SW, SB]];
 
 // ── C：加班費（x=30）。左：大月薪方塊，正面 30×8＝240 格（每排一個 pulse，逐排亮）；中：時鐘；右：A、B 兩堆硬幣 ──
 const C0 = 30, BKX = C0 - 5.0, BKY = 2.2;
@@ -238,16 +242,18 @@ Object.assign(actions, {
   meterD: { type: "meter", _說明: "分紅讀數條：source＝growD（和 3D 同一份數值）", anchor: "gauge", source: "growD", label: "今年分紅（示意）", lo: "少", hi: "多", accent: "amber", x: 650, y: 380, w: 340 },
   blinkY: { type: "pulse", _說明: "s6：沒寫進合約的年終＝不一定有，閃兩下", parts: ["bonYBlk"], color: "plus", freq: 1.6, glow: 0.8, halo: 0 },
   hiBlank: { type: "pulse", _說明: "s6：合約上「保障幾個月」那一欄亮起來", parts: ["cBlank"], color: "bonus", freq: 1.6, glow: 0.9, halo: 0 },
-  tiltS3: { type: "rotate", angle: -9, _說明: "s3：右盤（一年實拿）比左盤（offer 上寫的月薪）重，天平往右倒", parts: beamParts, axis: [0, 0, 1], pivot: [SX, SB] },
-  swingS: { type: "rotate", swing: 5, _說明: "s12：兩份 offer 在天平上來回擺（還沒決定）", parts: beamParts, axis: [0, 0, 1], freq: 0.55, pivot: [SX, SB] },
+  tiltS3: { type: "rotate", angle: -15, damp: { f: 1.35, tau: 0.3 }, _說明: "s3：橘色方塊落到右盤那一刻才開始轉；右盤（一年實拿 ≈ 1.9 倍）重 → 右邊往下 15°（正角＝逆時針，所以寫負的）；阻尼振盪：過衝 2～3 次、約 1 秒收斂。秤盤吊著保持水平（level）", parts: beamParts, level: hung, hang, axis: [0, 0, 1], pivot: [SX, SB] },
+  swingS: { type: "rotate", swing: 6, _說明: "s12：A、B 兩份沒有確定答案 → 秤桿在兩邊之間來回小幅擺（±6°），不停在任何一邊；秤盤保持水平", parts: beamParts, level: hung, hang, axis: [0, 0, 1], freq: 0.5, pivot: [SX, SB] },
   ...Object.fromEntries(Array.from({ length: 8 }, (_, r) => [`row${r}`, { type: "pulse", _說明: `運作 ②：240 格的第 ${r + 1} 排亮起（30 天 × 8 小時）`, parts: [`cellRow${r}`], color: "bonus", steady: true, glow: 0.95, halo: 0 }])),
   slice: { type: "flow", _說明: "運作 ②：切下一格（1 小時的工資）飛到硬幣盤", path: [{ layer: "slab240", p: [BKX + 2.4, BKY, 1.3] }, { layer: "clock", p: [C0 + 2.6, 6.5, 1.5] }, { layer: "clock", p: [CA[0], 2.4, CA[1]] }], n: 3, size: 0.32, shape: "dot", rate: 0.7, color: "plus", rim: "moDark", rimScale: 1.6, rimO: 0.5, trail: 3, trailGap: 0.02, trailColor: "plus", track: true },
   hands: { type: "rotate", _說明: "運作 ②：時鐘走（分針快、時針慢）", parts: ["ckMin"], axis: [0, 0, -1], rps: 0.9, pivot: [CK[0], CK[1]] },
   handsH: { type: "rotate", _說明: "時針", parts: ["ckHour"], axis: [0, 0, -1], rps: 0.075, pivot: [CK[0], CK[1]] },
   dropA: { type: "flow", _說明: "運作 ②：每走一格掉一枚（A，月薪高）", path: [{ layer: "clock", p: [CK[0] + 1.4, CK[1] + 1.4, CK[2] + 0.5] }, { layer: "clock", p: [CA[0], 3.6, CA[1]] }, { layer: "clock", p: [CA[0], 1.9, CA[1]] }], n: 2, size: 0.42, shape: "dot", rate: 0.9, color: "brass", rim: "moDark", rimScale: 1.4, rimO: 0.5, trail: 2, trailGap: 0.03, trailColor: "plus", track: false },
   dropB: { type: "flow", _說明: "B（月薪低）硬幣比較小", path: [{ layer: "clock", p: [CK[0] + 1.6, CK[1] + 1.0, CK[2] + 0.5] }, { layer: "clock", p: [CB[0], 3.6, CB[1]] }, { layer: "clock", p: [CB[0], 1.9, CB[1]] }], n: 2, size: 0.28, shape: "dot", rate: 0.9, phase: 0.25, color: "brass", rim: "moDark", rimScale: 1.4, rimO: 0.5, trail: 2, trailGap: 0.03, trailColor: "plus", track: false },
-  dripA: { type: "flow", _說明: "運作 ③：A 的月薪切下 6% 滴進勞退罐", path: [{ layer: "feedA", p: [JA + 1.4, JH + 2.1, 0] }, { layer: "jarA", p: [JA, JH - 0.3, 0] }, { layer: "jarA", p: [JA, 3.6, 0] }], n: 4, size: 0.34, shape: "dot", rate: 0.9, color: "plus", rim: "moDark", rimScale: 1.5, rimO: 0.5, trail: 3, trailGap: 0.02, trailColor: "plus", track: false },
-  dripB: { type: "flow", _說明: "B 的月薪比較少，滴下來的也小", path: [{ layer: "feedB", p: [JB + 1.0, JH + 2.1, 0] }, { layer: "jarB", p: [JB, JH - 0.3, 0] }, { layer: "jarB", p: [JB, 2.4, 0] }], n: 4, size: 0.24, shape: "dot", rate: 0.9, phase: 0.2, color: "plus", rim: "moDark", rimScale: 1.5, rimO: 0.5, trail: 3, trailGap: 0.02, trailColor: "plus", track: false },
+  dripA: { type: "flow", accel: true, _說明: "運作 ③：A 的月薪切下 6% 滴進勞退罐（受重力加速）", path: [{ layer: "feedA", p: [JA + 1.4, JH + 2.1, 0] }, { layer: "jarA", p: [JA, JH - 0.3, 0] }, { layer: "jarA", p: [JA, 3.6, 0] }], n: 4, size: 0.34, shape: "dot", rate: 0.9, color: "plus", rim: "moDark", rimScale: 1.5, rimO: 0.5, trail: 3, trailGap: 0.02, trailColor: "plus", track: false },
+  dripB: { type: "flow", accel: true, _說明: "B 的月薪比較少，滴下來的也小", path: [{ layer: "feedB", p: [JB + 1.0, JH + 2.1, 0] }, { layer: "jarB", p: [JB, JH - 0.3, 0] }, { layer: "jarB", p: [JB, 2.4, 0] }], n: 4, size: 0.24, shape: "dot", rate: 0.9, phase: 0.2, color: "plus", rim: "moDark", rimScale: 1.5, rimO: 0.5, trail: 3, trailGap: 0.02, trailColor: "plus", track: false },
+  rippleA: { type: "wave", _說明: "運作 ③：水滴打到水面的漣漪（跟著水位層一起升）", from: { layer: "waterA", p: [JA, 4.12, 0] }, dir: [0, 1, 0], reach: 0.1, count: 2, r0: 0.25, spread: 12, rate: 1.1, color: "plus", width: 0.06 },
+  rippleB: { type: "wave", _說明: "B 的漣漪", from: { layer: "waterB", p: [JB, 2.82, 0] }, dir: [0, 1, 0], reach: 0.1, count: 2, r0: 0.2, spread: 11, rate: 1.1, phase: 0.2, color: "plus", width: 0.06 },
   docGo: { type: "flow", _說明: "運作 ④：文件要走的路（三道章）", path: [[DOC0, 0.3, 1.4], [D0 + 9, 0.3, 1.4]], layer: "track", n: 5, size: 0.24, shape: "arrow", rate: 0.5, color: "mo", track: false },
   ...Object.fromEntries([0, 1, 2].map((i) => [`press${i}`, { type: "pulse", _說明: `運作 ④：第 ${i + 1} 道章蓋下去時亮一下`, parts: [`stFace${i}`, `stBody${i}`], color: "bonus", steady: true, glow: 0.8, halo: 0 }])),
   pulseD: { type: "pulse", _說明: "s11：明年的分紅＝還不知道（閃）", parts: ["bonDBlk"], color: "plus", freq: 1.2, glow: 0.7, halo: 0 },

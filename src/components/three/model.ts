@@ -51,6 +51,9 @@ export type ActionDef = {
   axis?: number[]; amp?: number; freq?: number; rps?: number; pivot?: number[];
   /** 2026/11/16 tech-offer：vibrate 的 grow＝沿 axis 伸縮（以零件底部為基準）；rotate 的 angle（度）＝轉到固定角度、swing（度）＝來回擺 */
   grow?: boolean; angle?: number; swing?: number; gain0?: number;
+  /** rotate（2026/11/16 tech-offer）：damp＝轉到 angle 時用阻尼振盪（過衝後收斂）；level＝吊著、保持水平的零件 id（只跟著 hang 吊點平移）；hang＝[[左吊點 x,y],[右吊點 x,y]]；
+   *  flow 的 accel＝受重力加速（位置＝u²） */
+  damp?: { f: number; tau: number }; level?: string[]; hang?: number[][]; accel?: boolean;
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */

@@ -3052,35 +3052,61 @@
    "mat": "brass"
   },
   {
-   "id": "sHang",
+   "id": "sRingL",
    "layer": "scale",
-   "shape": "box",
+   "shape": "tube",
    "size": [
-    0.08,
-    2,
-    0.08
+    0.22,
+    0.12,
+    0.12
    ],
    "pos": [
-    -30,
-    7.6,
+    -36.2,
+    8.35,
     0.2
-   ],
-   "at": [
-    [
-     -6.2,
-     0,
-     0
-    ],
-    [
-     6.2,
-     0,
-     0
-    ]
    ],
    "mat": "steel"
   },
   {
-   "id": "sPan",
+   "id": "sHangL",
+   "layer": "scale",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.75,
+    0.06
+   ],
+   "pos": [
+    -36.2,
+    7.35,
+    0.2
+   ],
+   "at": [
+    [
+     -0.9,
+     0,
+     0
+    ],
+    [
+     0.9,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ]
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "sPanL",
    "layer": "scale",
    "shape": "cyl",
    "size": [
@@ -3093,21 +3119,83 @@
     0
    ],
    "pos": [
-    -30,
+    -36.2,
     6.5,
+    0.2
+   ],
+   "mat": "brass"
+  },
+  {
+   "id": "sRingR",
+   "layer": "scale",
+   "shape": "tube",
+   "size": [
+    0.22,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    -23.8,
+    8.35,
+    0.2
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "sHangR",
+   "layer": "scale",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.75,
+    0.06
+   ],
+   "pos": [
+    -23.8,
+    7.35,
     0.2
    ],
    "at": [
     [
-     -6.2,
+     -0.9,
      0,
      0
     ],
     [
-     6.2,
+     0.9,
+     0,
+     0
+    ],
+    [
+     0,
      0,
      0
     ]
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "sPanR",
+   "layer": "scale",
+   "shape": "cyl",
+   "size": [
+    2.2,
+    0.18
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -23.8,
+    6.5,
+    0.2
    ],
    "mat": "brass"
   },
@@ -6016,12 +6104,23 @@
   },
   "tiltS3": {
    "type": "rotate",
-   "angle": -9,
-   "_說明": "s3：右盤（一年實拿）比左盤（offer 上寫的月薪）重，天平往右倒",
+   "angle": -15,
+   "damp": {
+    "f": 1.35,
+    "tau": 0.3
+   },
+   "_說明": "s3：橘色方塊落到右盤那一刻才開始轉；右盤（一年實拿 ≈ 1.9 倍）重 → 右邊往下 15°（正角＝逆時針，所以寫負的）；阻尼振盪：過衝 2～3 次、約 1 秒收斂。秤盤吊著保持水平（level）",
    "parts": [
     "sBeam",
-    "sHang",
-    "sPan",
+    "sPointer"
+   ],
+   "level": [
+    "sRingL",
+    "sRingR",
+    "sHangL",
+    "sHangR",
+    "sPanL",
+    "sPanR",
     "sMoL",
     "sMoR",
     "sBon",
@@ -6034,8 +6133,17 @@
     "faStack",
     "faBon",
     "fbStack",
-    "fbBon",
-    "sPointer"
+    "fbBon"
+   ],
+   "hang": [
+    [
+     -36.2,
+     8.6
+    ],
+    [
+     -23.8,
+     8.6
+    ]
    ],
    "axis": [
     0,
@@ -6049,12 +6157,19 @@
   },
   "swingS": {
    "type": "rotate",
-   "swing": 5,
-   "_說明": "s12：兩份 offer 在天平上來回擺（還沒決定）",
+   "swing": 6,
+   "_說明": "s12：A、B 兩份沒有確定答案 → 秤桿在兩邊之間來回小幅擺（±6°），不停在任何一邊；秤盤保持水平",
    "parts": [
     "sBeam",
-    "sHang",
-    "sPan",
+    "sPointer"
+   ],
+   "level": [
+    "sRingL",
+    "sRingR",
+    "sHangL",
+    "sHangR",
+    "sPanL",
+    "sPanR",
     "sMoL",
     "sMoR",
     "sBon",
@@ -6067,15 +6182,24 @@
     "faStack",
     "faBon",
     "fbStack",
-    "fbBon",
-    "sPointer"
+    "fbBon"
+   ],
+   "hang": [
+    [
+     -36.2,
+     8.6
+    ],
+    [
+     -23.8,
+     8.6
+    ]
    ],
    "axis": [
     0,
     0,
     1
    ],
-   "freq": 0.55,
+   "freq": 0.5,
    "pivot": [
     -30,
     8.6
@@ -6332,7 +6456,8 @@
   },
   "dripA": {
    "type": "flow",
-   "_說明": "運作 ③：A 的月薪切下 6% 滴進勞退罐",
+   "accel": true,
+   "_說明": "運作 ③：A 的月薪切下 6% 滴進勞退罐（受重力加速）",
    "path": [
     {
      "layer": "feedA",
@@ -6374,6 +6499,7 @@
   },
   "dripB": {
    "type": "flow",
+   "accel": true,
    "_說明": "B 的月薪比較少，滴下來的也小",
    "path": [
     {
@@ -6414,6 +6540,55 @@
    "trailGap": 0.02,
    "trailColor": "plus",
    "track": false
+  },
+  "rippleA": {
+   "type": "wave",
+   "_說明": "運作 ③：水滴打到水面的漣漪（跟著水位層一起升）",
+   "from": {
+    "layer": "waterA",
+    "p": [
+     56.8,
+     4.12,
+     0
+    ]
+   },
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "reach": 0.1,
+   "count": 2,
+   "r0": 0.25,
+   "spread": 12,
+   "rate": 1.1,
+   "color": "plus",
+   "width": 0.06
+  },
+  "rippleB": {
+   "type": "wave",
+   "_說明": "B 的漣漪",
+   "from": {
+    "layer": "waterB",
+    "p": [
+     63.2,
+     2.82,
+     0
+    ]
+   },
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "reach": 0.1,
+   "count": 2,
+   "r0": 0.2,
+   "spread": 11,
+   "rate": 1.1,
+   "phase": 0.2,
+   "color": "plus",
+   "width": 0.06
   },
   "docGo": {
    "type": "flow",

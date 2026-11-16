@@ -33,7 +33,10 @@ export type Model3D = {
 export type Overlay3D = { type: string; at: number; until: number; [k: string]: any };
 export type Run3D = { id: string; at: number; until: number; speed: number; gain: number; ramp: number };
 export type Shot3D = { at: number; dur: number; d?: number; elev?: number; y?: number; x?: number; yaw?: number };
-export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number };
+/** 物理（2026/11/16 tech-offer，沒寫就照舊）：fallIn＝回來那一段是受重力落下（位移∝t²）＋落地小彈跳（bounce＝彈起高度佔 dy 的比例），透明度在落下開始兩幀內就到位；
+ *  fallOut＝出去那一段受重力（例如章往下蓋）＋撞到後小回彈；throw＝出去那一段走拋物線（水平等速、垂直先上後落，peak＝最高多高）；
+ *  press＝落地（撞擊）那一刻被壓一下的層（往下沉 pressAmt 再彈回） */
+export type Shift3D = { layer: string; at: number; until: number; dur: number; dx: number; dy: number; dz: number; opacity?: number; fallIn?: boolean; fallOut?: boolean; throw?: number; bounce?: number; press?: string[]; pressAmt?: number };
 
 const FAR = 1e9;
 export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductModel): Model3D => {
@@ -65,7 +68,7 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     // props.overlay：裡面每一層的 at／until（含巢狀的，例如 anti.at、items[].at、keys[].at）都換成絕對幀
     const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" || k === "hiAt" || k === "textAt" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
     for (const o of [].concat(p.overlay ?? []) as any[]) (m.overlays ??= []).push({ until: FAR, ...deep(o), at: at(o.at, own.startFrame) });
-    for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity });
+    for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity, fallIn: c.fallIn, fallOut: c.fallOut, throw: c.throw, bounce: c.bounce, press: c.press, pressAmt: c.pressAmt });
   });
   m.runs.sort((a, b) => a.at - b.at); m.shots.sort((a, b) => a.at - b.at); m.shifts.sort((a, b) => a.at - b.at);
   return m;
@@ -121,12 +124,40 @@ export const stateAt = (m: Model3D, f: number) => {
     layers[d.id] = { z, opacity, e, x: 0, y: 0 };
   }
   // props.shift：把某一層移開／變透明（露出下面的零件），until 之後回來
+  const presses: { layers: string[]; t0: number; amt: number }[] = [];
   for (const sh of m.shifts) {
-    const q = layers[sh.layer], tw = tween(f, sh.at, sh.dur, EASE.move) * (1 - tween(f, sh.until, sh.dur, EASE.move));
-    if (!q || tw <= 0) continue;
+    const q = layers[sh.layer];
+    if (!q) continue;
+    if (sh.fallIn || sh.fallOut || sh.throw !== undefined) {
+      const lin = (t: number) => clamp01(t);
+      const a = lin((f - sh.at) / sh.dur), b = lin((f - sh.until) / sh.dur), bh = sh.bounce ?? 0.06, BF = 8;
+      // 重力：位移∝t²；落地後 BF 幀內彈起 bounce×|dy| 再落回（半個正弦，第二下更小）
+      const bounceAt = (t0: number) => { const n = f - t0; if (n < 0 || n > BF * 1.6) return 0; return n <= BF ? Math.sin((Math.PI * n) / BF) : 0.35 * Math.sin((Math.PI * (n - BF)) / (BF * 0.6)); };
+      let fx = a, fy = a, fz = a, ox = 0, oy = 0;
+      if (sh.fallOut) { fx = fy = fz = a * a; if (a >= 1) oy = -Math.sign(sh.dy || -1) * Math.abs(sh.dy) * bh * bounceAt(sh.at + sh.dur); }
+      else if (sh.throw !== undefined) { fy = a; oy = sh.throw * 4 * a * (1 - a); }
+      else { fx = EASE.move(a); fy = fx; fz = fx; }
+      // 回來那一段
+      let back = sh.fallIn ? b * b : EASE.move(b);
+      let tw = 1 - back;
+      const dyBack = sh.fallIn && b >= 1 ? Math.abs(sh.dy) * bh * bounceAt(sh.until + sh.dur) : 0;
+      if (f < sh.at) continue;
+      q.x += sh.dx * fx * tw; q.y += sh.dy * fy * tw + oy * tw + dyBack; q.z += sh.dz * fz * tw;
+      if (sh.opacity !== undefined) {
+        // fallIn：落下一開始就看得到（兩幀內不透明）；其他照舊
+        const backV = f < sh.until ? 0 : sh.fallIn ? Math.min(1, (f - sh.until + 1) / 2) : EASE.move(b);
+        q.opacity = mix(q.opacity, sh.opacity, EASE.move(a) * (1 - backV));
+      }
+      if (sh.press?.length) presses.push({ layers: sh.press, t0: sh.fallOut ? sh.at + sh.dur : sh.until + sh.dur, amt: sh.pressAmt ?? 0.08 });
+      continue;
+    }
+    const tw = tween(f, sh.at, sh.dur, EASE.move) * (1 - tween(f, sh.until, sh.dur, EASE.move));
+    if (tw <= 0) continue;
     q.x += sh.dx * tw; q.y += sh.dy * tw; q.z += sh.dz * tw;
     if (sh.opacity !== undefined) q.opacity = mix(q.opacity, sh.opacity, tw);
   }
+  // 被壓一下：撞擊那一刻往下沉 amt，6 幀內彈回（阻尼）
+  for (const p of presses) { const n = f - p.t0; if (n < 0 || n > 10) continue; const d = -p.amt * Math.exp(-n / 3) * Math.cos((Math.PI * n) / 5); for (const id of p.layers) if (layers[id]) layers[id].y += d; }
   const cam = {
     d: mix(mix(C.stand.d, C.explode.d, lay), C.focus.d, fo) + C.orbit.d * orb + C.settle.d * set,
     elev: mix(mix(C.stand.elev, C.explode.elev, lay), C.focus.elev, fo) + C.orbit.elev * orb + C.settle.elev * set,
