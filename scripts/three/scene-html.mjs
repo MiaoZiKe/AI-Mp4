@@ -3,9 +3,10 @@
 // 形狀照 model.ts：slab 用圓角方塊近似、box、cyl（半徑、高，沿厚度方向）；at＝同一零件的複製位置。下方滑桿＝分開程度（0＝組好、1＝爆炸圖）。
 import fs from "node:fs";
 import path from "node:path";
+import { expandModel } from "./parts/index.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const slug = process.argv[2];
-const model = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "model.json"), "utf8"));
+const model = expandModel(JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "model.json"), "utf8")));
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "script.json"), "utf8"));
 // 頻道皮膚（script.json 頂層 hudSkin；沒寫＝和以前一樣的顏色）：蓋掉 CSS 變數、背景、格線與模型色票
 const SK = script.hudSkin ? (JSON.parse(fs.readFileSync(path.join(ROOT, "src/theme-hud-skins.json"), "utf8"))[script.hudSkin] ?? {}) : {};

@@ -1,0 +1,245 @@
+{
+ "version": 2,
+ "slug": "sample-parts",
+ "fps": 30,
+ "totalFrames": 432,
+ "totalSec": 14.4,
+ "gapSec": 0,
+ "transitionFrames": 0,
+ "silent": true,
+ "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 0,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 162,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 0,
+   "voiceEndFrame": 152,
+   "stillFrame": 161,
+   "subtitleWindow": [
+    0,
+    163
+   ],
+   "sourceWindow": [
+    0,
+    162
+   ],
+   "lines": [
+    {
+     "text": "先掃描整片晶圓",
+     "start": 0,
+     "chars": [
+      0,
+      10,
+      21,
+      33,
+      45,
+      56,
+      68
+     ]
+    },
+    {
+     "text": "標出壞的晶粒",
+     "start": 78,
+     "chars": [
+      80,
+      92,
+      103,
+      115,
+      127,
+      138
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "掃描",
+     "start": 10
+    },
+    {
+     "text": "壞的",
+     "start": 103
+    }
+   ],
+   "cues": [
+    {
+     "id": "scan",
+     "text": "掃描",
+     "frame": 12
+    },
+    {
+     "id": "flag",
+     "text": "壞的",
+     "frame": 105
+    }
+   ],
+   "sub": "先掃描整片晶圓\n標出壞的晶粒",
+   "silentEstimate": true
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 166,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 162,
+   "durationFrames": 144,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 166,
+   "voiceEndFrame": 296,
+   "stillFrame": 305,
+   "subtitleWindow": [
+    163,
+    307
+   ],
+   "sourceWindow": [
+    162,
+    306
+   ],
+   "lines": [
+    {
+     "text": "好的晶片",
+     "start": 163,
+     "chars": [
+      164,
+      173,
+      181,
+      190
+     ]
+    },
+    {
+     "text": "用吸嘴吸起來",
+     "start": 197,
+     "chars": [
+      199,
+      207,
+      216,
+      225,
+      233,
+      242
+     ]
+    },
+    {
+     "text": "放到基板上",
+     "start": 249,
+     "chars": [
+      251,
+      259,
+      268,
+      277,
+      285
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "吸起來",
+     "start": 225
+    },
+    {
+     "text": "基板",
+     "start": 268
+    }
+   ],
+   "cues": [
+    {
+     "id": "pick",
+     "text": "吸嘴",
+     "frame": 209
+    },
+    {
+     "id": "place",
+     "text": "放到",
+     "frame": 253
+    }
+   ],
+   "sub": "好的晶片\n用吸嘴吸起來\n放到基板上",
+   "silentEstimate": true
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 310,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 306,
+   "durationFrames": 126,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 310,
+   "voiceEndFrame": 422,
+   "stillFrame": 420,
+   "subtitleWindow": [
+    307,
+    432
+   ],
+   "sourceWindow": [
+    306,
+    432
+   ],
+   "lines": [
+    {
+     "text": "下壓接合",
+     "start": 307,
+     "chars": [
+      308,
+      319,
+      330,
+      342
+     ]
+    },
+    {
+     "text": "接點熔化通電",
+     "start": 351,
+     "chars": [
+      353,
+      364,
+      375,
+      386,
+      398,
+      409
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "下壓",
+     "start": 308
+    },
+    {
+     "text": "熔化",
+     "start": 375
+    }
+   ],
+   "cues": [
+    {
+     "id": "press",
+     "text": "下壓",
+     "frame": 310
+    },
+    {
+     "id": "melt",
+     "text": "熔化",
+     "frame": 377
+    },
+    {
+     "id": "cur",
+     "text": "通電",
+     "frame": 400
+    }
+   ],
+   "sub": "下壓接合\n接點熔化通電",
+   "silentEstimate": true
+  }
+ ]
+}

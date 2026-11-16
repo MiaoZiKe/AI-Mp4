@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { expandModel, expandScript } from "./three/parts/index.mjs";
 import path from "node:path";
 import { bundle } from "@remotion/bundler";
 
@@ -29,6 +30,7 @@ export const loadScript = (slug) => {
     // 產品模型資料：script.json 的 model，或 videos/<slug>/model.json（零件清單、材質、層、標註點；格式見 docs/three-stage.md）
     const mp = path.join(ROOT, "videos", slug, "model.json");
     if (!s.model && fs.existsSync(mp)) s.model = JSON.parse(fs.readFileSync(mp, "utf8"));
+    if (s.model) { s.model = expandModel(s.model); s.scenes = expandScript(s, s.model).scenes; } // 零件與動作庫（scripts/three/parts/，沒用到就原樣）
     if (!s.model) throw new Error(`${slug} 是 stage "three"，需要產品模型資料：videos/${slug}/model.json（或 script.json 的 model）`);
     // 量測用：THREE_FX="shadows=0,env=0" 暫時關掉幾種特效（scripts/three/bench-fx.mjs）
     if (process.env.THREE_FX) s.model = { ...s.model, fx: { ...(s.model.fx ?? {}), ...Object.fromEntries(process.env.THREE_FX.split(",").map((kv) => { const [k, v] = kv.split("="); return [k, v === "true" ? true : v === "false" ? false : Number(v)]; })) } };

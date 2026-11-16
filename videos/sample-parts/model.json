@@ -1,0 +1,161 @@
+{
+  "name": "sample-parts：零件庫示範（晶圓掃描 → 吸嘴取放 → 下壓接合）。這份 model.json 只寫資料，零件由 scripts/three/parts/ 展開",
+  "unit": "1 cm（水平）",
+  "size": {
+    "w": 14,
+    "h": 2,
+    "r": 0.1,
+    "t": 6
+  },
+  "palette": {},
+  "materials": {},
+  "layers": [],
+  "anchors": {},
+  "parts": [
+    {
+      "part": "wafer",
+      "id": "wf",
+      "pos": [
+        -6,
+        0,
+        0
+      ],
+      "r": 3.0,
+      "step": 0.6,
+      "bad": 6,
+      "pick": [
+        2,
+        0
+      ],
+      "label": {
+        "dx": -110,
+        "dy": 70
+      }
+    },
+    {
+      "part": "sensor",
+      "id": "sn",
+      "pos": [
+        -6,
+        1.5,
+        -3.2
+      ],
+      "ray": 1.3,
+      "sweepAmp": 2.4
+    },
+    {
+      "part": "nozzle",
+      "id": "nz",
+      "pos": [
+        -4.8,
+        0.59,
+        0
+      ]
+    },
+    {
+      "part": "substrate",
+      "id": "sb",
+      "pos": [
+        4,
+        0,
+        0
+      ],
+      "w": 6.4,
+      "d": 4.6,
+      "t": 0.4,
+      "pads": [
+        14,
+        10
+      ],
+      "pitch": 0.3,
+      "caps": false
+    },
+    {
+      "part": "bumps",
+      "id": "bp",
+      "pos": [
+        4,
+        0.4,
+        0
+      ],
+      "kind": "c4",
+      "n": [
+        14,
+        10
+      ],
+      "pitch": 0.3
+    },
+    {
+      "part": "nozzle",
+      "id": "hd",
+      "pos": [
+        4,
+        0.94,
+        0
+      ],
+      "scale": 1.15
+    },
+    {
+      "part": "pcb",
+      "id": "pb",
+      "pos": [
+        4,
+        -0.32,
+        0
+      ],
+      "w": 8,
+      "d": 6,
+      "t": 0.3,
+      "pads": false
+    }
+  ],
+  "actions": {
+    "cur": {
+      "preset": "current",
+      "path": [
+        [
+          4,
+          0.9,
+          0
+        ],
+        [
+          4,
+          0.5,
+          0
+        ]
+      ],
+      "lanes": 3,
+      "laneGap": 0.45,
+      "laneDir": [
+        1,
+        0,
+        0
+      ],
+      "size": 0.07,
+      "layer": "bp"
+    }
+  },
+  "pose": {
+    "yaw0": -0.5236,
+    "yawIso": 0,
+    "drift": 0
+  },
+  "camera": {
+    "stand": {
+      "d": 28,
+      "elev": 36,
+      "y": 0.4
+    }
+  },
+  "fx": {
+    "dpr": 1,
+    "srcPx": 30,
+    "shadows": 0,
+    "ghost": false,
+    "guides": false,
+    "fog": false,
+    "dust": false,
+    "vaporSprites": false,
+    "shimmer": false
+  }
+}

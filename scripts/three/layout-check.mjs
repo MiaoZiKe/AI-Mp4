@@ -3,6 +3,7 @@
 // 內容底部太高（下方空白太多）、小字 <30px、片尾卡 <3 秒或動畫落定後停不到 1 秒。結果寫 out/<slug>/layout-check.json；有 error 時結束碼 1。
 // validate-three.mjs 對有 hud 的片會自動跑這支。2026/11/15 為使用者回饋（LOGO、空白、重疊、標籤壓模型）新增。
 import fs from "node:fs";
+import { expandModel, expandScript } from "./parts/index.mjs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { build } from "esbuild";
@@ -15,6 +16,7 @@ const script = JSON.parse(fs.readFileSync(sp, "utf8"));
 const tp = path.join(ROOT, "videos", slug, "timeline.json"), mp = path.join(ROOT, "videos", slug, "model.json");
 script.timeline = fs.existsSync(tp) ? JSON.parse(fs.readFileSync(tp, "utf8")) : null;
 if (!script.model && fs.existsSync(mp)) script.model = JSON.parse(fs.readFileSync(mp, "utf8"));
+if (script.model) { script.model = expandModel(script.model); script.scenes = expandScript(script, script.model).scenes; } // 零件與動作庫
 if (!script.hud || !script.timeline) { const r = { issues: [], skipped: !script.hud ? "沒有 hud" : "沒有 timeline.json" }; console.log(asJson ? JSON.stringify(r) : `略過：${r.skipped}`); process.exit(0); }
 // 打包：字型模組在 node 裡不需要（換成空殼），其他照原樣
 const outDir = path.join(ROOT, "out", ".bundle", `layout-${process.pid}`);

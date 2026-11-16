@@ -1,0 +1,241 @@
+{
+  "slug": "sample-parts",
+  "title": "零件庫示範：晶圓掃描、吸嘴取放、下壓接合（只寫資料）",
+  "asOf": "2026/11/16",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": {
+    "name": "科技透明圈",
+    "tag": "放大來看",
+    "slogan": "一支講透一件事"
+  },
+  "hudSkin": "light",
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "tech-b",
+    "_說明": "無聲示範片，不送 TTS"
+  },
+  "hud": {
+    "levels": [
+      {
+        "id": "pk",
+        "label": "零件庫示範",
+        "en": "PARTS LIBRARY",
+        "field": "12 cm",
+        "ruler": "1 cm",
+        "art": "none",
+        "handoff3D": true,
+        "readout": false,
+        "note": "零件庫示範，非真實製程",
+        "noteAlways": true
+      }
+    ],
+    "theme": "dark",
+    "schematic": {
+      "text": "Schematic – not to scale",
+      "zh": "示意圖，非實際比例・運作為示意"
+    },
+    "maxLabels": 4,
+    "smallPx": 30,
+    "layout": "fill",
+    "scanBand": 0.3
+  },
+  "cover": {
+    "title": [
+      "只寫資料",
+      "就能出片"
+    ],
+    "sub": "零件庫示範",
+    "frame": 40
+  },
+  "sample": true,
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "narration": "先掃描整片晶圓標出壞的晶粒",
+      "tts": "先掃描整片晶圓標出壞的晶粒",
+      "subtitle": {
+        "zh": "先掃描整片晶圓\n標出壞的晶粒",
+        "en": "Scan the whole wafer | and flag the bad dies"
+      },
+      "keywords": [
+        "掃描",
+        "壞的"
+      ],
+      "cues": [
+        {
+          "id": "scan",
+          "text": "掃描"
+        },
+        {
+          "id": "flag",
+          "text": "壞的"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "zoom": [
+          {
+            "to": "pk",
+            "at": "start-30",
+            "dur": 1
+          }
+        ],
+        "shot": [
+          {
+            "at": "start-30",
+            "dur": 1,
+            "x": -1.2,
+            "y": 0.5,
+            "d": 38,
+            "elev": 36
+          }
+        ],
+        "motion": [
+          {
+            "preset": "scan",
+            "tool": "sn",
+            "at": "scan-4",
+            "len": 84,
+            "dz": 6.4,
+            "flag": "wf_badGlow"
+          }
+        ]
+      },
+      "sources": [
+        "示範用零件庫，數字與比例為示意"
+      ],
+      "durationSec": 5.4
+    },
+    {
+      "id": "s2",
+      "beat": "mechanism",
+      "narration": "好的晶片用吸嘴吸起來放到基板上",
+      "tts": "好的晶片用吸嘴吸起來放到基板上",
+      "subtitle": {
+        "zh": "好的晶片\n用吸嘴吸起來\n放到基板上",
+        "en": "Pick the good die | with a nozzle | and place it on the substrate"
+      },
+      "keywords": [
+        "吸起來",
+        "基板"
+      ],
+      "cues": [
+        {
+          "id": "pick",
+          "text": "吸嘴"
+        },
+        {
+          "id": "place",
+          "text": "放到"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-4",
+            "dur": 14,
+            "x": -1.2,
+            "y": 0.5,
+            "d": 38,
+            "elev": 36
+          }
+        ],
+        "motion": [
+          {
+            "preset": "pick-place",
+            "tool": "nz",
+            "item": "wf_pick",
+            "at": "pick-6",
+            "down": 0.35,
+            "to": [
+              8.8,
+              0
+            ],
+            "dyEnd": 0.4
+          }
+        ]
+      },
+      "sources": [
+        "示範用零件庫"
+      ],
+      "durationSec": 4.8
+    },
+    {
+      "id": "s3",
+      "beat": "payoff",
+      "narration": "下壓接合接點熔化通電",
+      "tts": "下壓接合接點熔化通電",
+      "subtitle": {
+        "zh": "下壓接合\n接點熔化通電",
+        "en": "Press to bond: | the joints melt and conduct"
+      },
+      "keywords": [
+        "下壓",
+        "熔化"
+      ],
+      "cues": [
+        {
+          "id": "press",
+          "text": "下壓"
+        },
+        {
+          "id": "melt",
+          "text": "熔化"
+        },
+        {
+          "id": "cur",
+          "text": "通電"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-4",
+            "dur": 14,
+            "x": 3.4,
+            "y": 0.5,
+            "d": 24,
+            "elev": 34
+          }
+        ],
+        "motion": [
+          {
+            "preset": "reveal",
+            "layers": [
+              "hd"
+            ],
+            "hide": "s1:start-40",
+            "at": "press-14"
+          },
+          {
+            "preset": "press-bond",
+            "tool": "hd",
+            "at": "press",
+            "down": 0.3,
+            "press": [
+              "sb",
+              "bp"
+            ],
+            "melt": [
+              "bp_melt"
+            ],
+            "current": [
+              "cur"
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "示範用零件庫"
+      ],
+      "durationSec": 4.2
+    }
+  ]
+}

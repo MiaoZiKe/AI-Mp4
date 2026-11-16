@@ -38,3 +38,8 @@
 - 渲染：`out/tech-packaging.video.mp4`；片尾音 G=28、AT 54.0、FADE 54.9（s9 收聲）、DUR 58.03。響度：正片 −16.0 LUFS、片尾段 −11.5 LUFS、峰值 −1.3 dBFS。
 - 成片：`out/tech-packaging.v2.mp4`（不進 git）；抽格 `out/tech-packaging-v2-check.png`（0、6、36.2 秒）：標籤沒壓頁首、s7b 名單卡沒壓字幕。待人耳確認。
 - 已知：s7b 第二句英文字幕沿用上一句（「英特爾和三星」配 TSMC calls this CoWoS;），未改。
+
+## v3（2026/11/16，修英文副字幕錯位；未送 TTS、未重配音）
+- 原因：s7b 中文 5 行、英文只有 3 段（`|`），英文落後一句。gen-script.mjs 改成 5 段，其他幕逐幕核對行數一致。
+- `scripts/subs.mjs`：英文軌同一段英文只顯示一次（短語被併時不再重複），en.srt 37 段無重複行。
+- 成片：`out/tech-packaging.v3.mp4`（不進 git）；58.03 秒、−15.6 LUFS、TP −1.4 dBFS；片尾音 AT 54.0／FADE 54.9／G 28。抽 38、40 秒兩格中英對上。

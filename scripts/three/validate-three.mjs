@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mjs";
+import { expandModel, expandScript } from "./parts/index.mjs";
 
 const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere"];
 const ROLES = ["lid", "heatFloor", "heatSource", "xray"];
@@ -13,7 +14,7 @@ const THERMAL_FX = ["peek", "cutaway", "heat", "vapor", "spread", "condense", "f
 /** 產品模型資料（script.json 的 model 或 videos/<slug>/model.json）的檢查；回傳可以標註的點（anchors 的鍵） */
 function checkModel(script, E, W) {
   const mp = path.join(path.dirname(new URL(import.meta.url).pathname), "../../videos", String(script.slug), "model.json");
-  const m = script.model ?? (fs.existsSync(mp) ? JSON.parse(fs.readFileSync(mp, "utf8")) : null);
+  const m = expandModel(script.model ?? (fs.existsSync(mp) ? JSON.parse(fs.readFileSync(mp, "utf8")) : null)); // 零件與動作庫先展開
   if (!m) { E(`stage "three" 需要產品模型資料：videos/${script.slug}/model.json（格式見 docs/three-stage.md）`); return null; }
   for (const k of ["size", "palette", "materials", "layers", "parts", "anchors"]) if (!m[k]) E(`model: 缺少 ${k}`);
   const layers = new Set((m.layers ?? []).map((l) => l.id)), mats = m.materials ?? {};
@@ -72,7 +73,7 @@ export function validateThree(script, h) {
   const prof = resolveProfile(script.voice);
   if (!prof) E("沒有 voice.profile：配音前要先定旁白設定檔（docs/voice-profiles.md）");
   else for (const m of profileIssues(prof)) E(m);
-  const scenes = Array.isArray(script.scenes) ? script.scenes : [];
+  const scenes = Array.isArray(script.scenes) ? expandScript(script, (() => { try { const mp0 = path.join(path.dirname(new URL(import.meta.url).pathname), "../../videos", String(script.slug), "model.json"); return expandModel(script.model ?? (fs.existsSync(mp0) ? JSON.parse(fs.readFileSync(mp0, "utf8")) : null)); } catch { return null; } })()).scenes : [];
   if (!scenes.length) { E("scenes 是空的"); return { errors, warns, est: 0 }; }
   const ids = scenes.map((s) => s.id);
   const model = checkModel(script, E, W);
