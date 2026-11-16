@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>珈琲 喫茶 雲和 | Kissa Unwa</title>
+  <style>
+    /* Base & Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f4efe6;
+      color: #382b22;
+      font-family: "Georgia", "Times New Roman", "Songti TC", "Noto Serif CJK TC", "Yu Mincho", serif;
+      line-height: 1.8;
+      padding: 24px;
+    }
+
+    /* Container Outer Paper Frame */
+    .paper-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #fbf7f0;
+      border: 2px solid #382b22;
+      padding: 40px 48px;
+      position: relative;
+      box-shadow: 6px 6px 0px #d9d0c1;
+    }
+
+    /* Decorative Board Lines */
+    .paper-container::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px dashed #382b22;
+      pointer-events: none;
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3, h4 {
+      font-family: "Georgia", "Songti TC", "Yu Mincho", serif;
+      font-weight: normal;
+      text-align: left;
+      color: #382b22;
+    }
+
+    .handwritten-note {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.9em;
+      color: #6b5242;
+    }
+
+    /* Header Section */
+    header {
+      border-bottom: 2px solid #382b22;
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .brand-title {
+      text-align: left;
+    }
+
+    .brand-title h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-title span {
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      margin-top: 4px;
+      color: #6b5242;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      color: #382b22;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover {
+      border-bottom-color: #382b22;
+    }
+
+    /* Asymmetric Layout - Hero */
+    .hero-section {
+      display: grid;
+      grid-template-columns: 7fr 4fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .hero-content {
+      text-align: left;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid #382b22;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #4a3b31;
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+
+    .btn-action {
+      display: inline-block;
+      border: 2px solid #382b22;
+      background-color: transparent;
+      color: #382b22;
+      padding: 10px 24px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background-color: #382b22;
+      color: #fbf7f0;
+    }
+
+    /* Right Side SVG Graphic Box */
+    .hero-illustration {
+      border: 1px solid #382b22;
+      padding: 20px;
+      background-color: #f4efe6;
+      text-align: center;
+      transform: rotate(1deg);
+    }
+
+    .hero-illustration svg {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+    }
+
+    .illustration-caption {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      border-top: 1px dashed #382b22;
+      padding-top: 8px;
+    }
+
+    /* Asymmetric Layout - Menu Board Section */
+    .menu-section {
+      display: grid;
+      grid-template-columns: 3.5fr 8.5fr;
+      gap: 32px;
+      border-top: 2px dashed #382b22;
+      padding-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    .menu-sidebar {
+      text-align: left;
+    }
+
+    .menu-sidebar h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .menu-sidebar-note {
+      font-size: 0.85rem;
+      color: #6b5242;
+      line-height: 1.6;
+      border-left: 2px solid #382b22;
+      padding-left: 12px;
+      margin-top: 16px;
+    }
+
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px dashed #d0c4b4;
+      padding-bottom: 12px;
+    }
+
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .menu-item-title {
+      font-size: 1.1rem;
+      font-weight: normal;
+    }
+
+    .menu-dots {
+      flex-grow: 1;
+      border-bottom: 1px dotted #8c7869;
+      margin: 0 12px;
+      height: 1px;
+    }
+
+    .menu-item-price {
+      font-weight: bold;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.05rem;
+    }
+
+    .menu-item-desc {
+      font-size: 0.85rem;
+      color: #6b5242;
+      margin-top: 4px;
+    }
+
+    /* Asymmetric Layout - Info & Atmosphere Section */
+    .info-section {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 32px;
+      border-top: 1px solid #382b22;
+      padding-top: 40px;
+      align-items: start;
+    }
+
+    .story-box {
+      text-align: left;
+    }
+
+    .story-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .story-box p {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      color: #4a3b31;
+    }
+
+    /* Paper Stamp / Board Notice Style */
+    .stamp-box {
+      border: 2px solid #382b22;
+      padding: 24px;
+      background-color: #eee7d9;
+      transform: rotate(-1.5deg);
+      position: relative;
+    }
+
+    .stamp-box::after {
+      content: "喫茶 雲和";
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      border: 1px solid #8c3a27;
+      color: #8c3a27;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      transform: rotate(-8deg);
+    }
+
+    .stamp-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #382b22;
+      padding-bottom: 4px;
+    }
+
+    .info-list {
+      list-style: none;
+      font-size: 0.85rem;
+    }
+
+    .info-list li {
+      margin-bottom: 8px;
+      display: flex;
+    }
+
+    .info-label {
+      width: 70px;
+      color: #6b5242;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      border-top: 2px solid #382b22;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #6b5242;
+    }
+
+    .footer-left {
+      text-align: left;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 12px;
+      }
+
+      .paper-container {
+        padding: 24px 20px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .hero-section,
+      .menu-section,
+      .info-section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .hero-illustration,
+      .stamp-box {
+        transform: none;
+      }
+
+      .menu-dots {
+        display: none;
+      }
+
+      .menu-item-header {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper-container">
+
+    <!-- Header Section -->
+    <header>
+      <div class="brand-title">
+        <h1>珈琲 雲和</h1>
+        <span>COFFEE KISSA UNWA</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">關於</a></li>
+          <li><a href="#menu">品項</a></li>
+          <li><a href="#info">資訊</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section (Asymmetric 7:4) -->
+    <section class="hero-section" id="about">
+      <div class="hero-content">
+        <span class="hero-tag">ネルドリップ • 自家焙煎</span>
+        <h2 class="hero-title">手沖法蘭絨的法式深煎，<br>與慢下來的晨昏。</h2>
+        <p class="hero-desc">
+          深木色的桌椅、滴漏咖啡的微響。在雲和，我們堅持使用傳統法蘭絨濾布，以低溫慢速萃取。讓濃郁順口的苦甜風味，陪伴您度過一段不受打擾的個人時光。
+        </p>
+        <a href="#menu" class="btn-action">閱讀本日菜單 →</a>
+      </div>
+
+      <div class="hero-illustration">
+        <!-- Pure CSS/SVG Hand-drip Coffee Line Art -->
+        <svg viewBox="0 0 100 120" stroke="#382b22" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Kettle Spout & Water stream -->
+          <path d="M 15,25 Q 35,20 45,35" />
+          <path d="M 45,35 C 45,45 48,50 48,58" stroke-dasharray="2,2" />
+          
+          <!-- Dripper Stand & Cloth Filter -->
+          <path d="M 30,55 L 70,55" />
+          <path d="M 35,55 L 48,75 Q 50,78 52,75 L 65,55" fill="#f4efe6" />
+          
+          <!-- Coffee Cup -->
+          <path d="M 35,85 L 38,105 Q 50,108 62,105 L 65,85 Z" fill="#f4efe6" />
+          <path d="M 65,90 C 72,90 72,100 65,100" />
+          
+          <!-- Steam Lines -->
+          <path d="M 44,80 Q 42,73 45,68" stroke-width="1" />
+          <path d="M 56,80 Q 58,73 55,68" stroke-width="1" />
+        </svg>
+        <div class="illustration-caption handwritten-note">
+          Nel Drip Method / 深煎ネル抽出
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Board Section (Asymmetric 3.5:8.5) -->
+    <section class="menu-section" id="menu">
+      <div class="menu-sidebar">
+        <h2>お品書き</h2>
+        <p class="handwritten-note">TODAY'S SELECTION</p>
+        <div class="menu-sidebar-note">
+          菜單隨當季生豆調整。<br>
+          全品項皆由自家烘焙豆手沖現泡，請耐心等待一份濃香。
+        </div>
+      </div>
+
+      <div class="menu-list">
+        <!-- Item 1 -->
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-title">雲和特調法蘭絨 (深焙)</span>
+            <span class="menu-dots"></span>
+            <span class="menu-item-price">NT$ 180</span>
+          </div>
+          <div class="menu-item-desc">招牌深焙配方。帶有曼特寧的黑巧克力餘韻與煙燻香氣，口感厚實滑順。</div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-title">琥珀女王 (琥珀の女王)</span>
+            <span class="menu-dots"></span>
+            <span class="menu-item-price">NT$ 200</span>
+          </div>
+          <div class="menu-item-desc">經典日本喫茶店冷飲。極深焙冰濃縮咖啡，上層覆蓋無糖無調味無水鮮奶油。</div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-title">埃塞俄比亞 耶加雪菲 (中淺焙)</span>
+            <span class="menu-dots"></span>
+            <span class="menu-item-price">NT$ 190</span>
+          </div>
+          <div class="menu-item-desc">水洗處理法。乾淨的白色花香、柑橘酸質與清甜的紅茶尾韻。</div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-title">自家製焦糖硬布丁</span>
+            <span class="menu-dots"></span>
+            <span class="menu-item-price">NT$ 130</span>
+          </div>
+          <div class="menu-item-desc">使用新鮮雞蛋與天然香草籽，搭配帶有些微苦味的微焦糖液，適合搭配深焙咖啡。</div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-title">厚切烤吐司與紅豆奶油</span>
+            <span class="menu-dots"></span>
+            <span class="menu-item-price">NT$ 140</span>
+          </div>
+          <div class="menu-item-desc">外酥內軟的山形厚切吐司，附上北海道十勝紅豆泥與發酵有鹽奶油。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info & Atmosphere Section (Asymmetric 7:5) -->
+    <section class="info-section" id="info">
+      <div class="story-box">
+        <h3>店內空間與守則</h3>
+        <p>「雲和」是一間希望讓每位客人都能專注於咖啡與閱讀的安靜空間。店內音樂以爵士黑膠與古典樂為主。</p>
+        <p>為維護舒適的休憩氛圍，請降低交談音量。全店不提供插座與交談為主的聚會服務，感謝您的理解與配合。</p>
+      </div>
+
+      <div class="stamp-box">
+        <h4>店舗案内 / INFO</h4>
+        <ul class="info-list">
+          <li>
+            <span class="info-label">地址</span>
+            <span>台北市大安區雲和街 42 號</span>
+          </li>
+          <li>
+            <span class="info-label">營業</span>
+            <span>13:00 - 21:00 (週二公休)</span>
+          </li>
+          <li>
+            <span class="info-label">席位</span>
+            <span>現場候位，無電話預約</span>
+          </li>
+          <li>
+            <span class="info-label">低消</span>
+            <span>每人飲品一杯</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-left">
+        © KISSA UNWA COFFEE. ALL RIGHTS RESERVED.
+      </div>
+      <div class="handwritten-note">
+        ネルドリップ珈琲の店
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

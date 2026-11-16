@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>接星星遊戲</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: #f4efe2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: "Chalkboard SE", "Comic Sans MS", "BabelStone Han", "PingFang TC", "Microsoft JhengHei", cursive, sans-serif;
+            overflow: hidden;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            max-height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            background-color: #fcf8ec;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <canvas id="gameCanvas" width="450" height="720"></canvas>
+</div>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 遊戲狀態
+    const STATE_START = 0;
+    const STATE_PLAYING = 1;
+    const STATE_GAMEOVER = 2;
+    let gameState = STATE_START;
+
+    let score = 0;
+    let misses = 0;
+    const MAX_MISSES = 3;
+
+    // 手繪墨水顏色
+    const INK_COLOR = '#2d2d3a';
+    const ACCENT_COLOR = '#3a3a4c';
+
+    // 玩家 (盆栽)
+    const player = {
+        x: canvas.width / 2,
+        y: canvas.height - 90,
+        width: 60,
+        height: 65,
+        speed: 7,
+        dx: 0
+    };
+
+    // 控制按鍵狀態
+    const keys = {
+        left: false,
+        right: false
+    };
+
+    // 掉落的星星
+    let stars = [];
+    let starSpawnTimer = 0;
+    let starSpawnInterval = 80;
+
+    // 粒子效果
+    let particles = [];
+
+    // 亂數微抖動 (製造手繪感)
+    function jitter(amount = 1.5) {
+        return (Math.random() - 0.5) * amount;
+    }
+
+    // 手繪線條
+    function drawHandLine(x1, y1, x2, y2, roughness = 1.5) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        const midX = (x1 + x2) / 2 + jitter(roughness * 2);
+        const midY = (y1 + y2) / 2 + jitter(roughness * 2);
+        ctx.quadraticCurveTo(midX, midY, x2 + jitter(roughness), y2 + jitter(roughness));
+        ctx.stroke();
+    }
+
+    // 手繪矩形
+    function drawHandRect(x, y, w, h, roughness = 1.5) {
+        drawHandLine(x, y, x + w, y, roughness);
+        drawHandLine(x + w, y, x + w, y + h, roughness);
+        drawHandLine(x + w, y + h, x, y + h, roughness);
+        drawHandLine(x, y + h, x, y, roughness);
+    }
+
+    // 手繪外框波浪線
+    function drawOuterBorder() {
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        const margin = 12;
+        const w = canvas.width - margin * 2;
+        const h = canvas.height - margin * 2;
+        const step = 20;
+
+        // 上邊
+        ctx.beginPath();
+        ctx.moveTo(margin, margin);
+        for (let x = margin; x <= margin + w; x += step) {
+            ctx.lineTo(x, margin + Math.sin(x * 0.1) * 2 + jitter(1));
+        }
+        ctx.stroke();
+
+        // 右邊
+        ctx.beginPath();
+        ctx.moveTo(margin + w, margin);
+        for (let y = margin; y <= margin + h; y += step) {
+            ctx.lineTo(margin + w + Math.cos(y * 0.1) * 2 + jitter(1), y);
+        }
+        ctx.stroke();
+
+        // 下邊
+        ctx.beginPath();
+        ctx.moveTo(margin + w, margin + h);
+        for (let x = margin + w; x >= margin; x -= step) {
+            ctx.lineTo(x, margin + h + Math.sin(x * 0.1) * 2 + jitter(1));
+        }
+        ctx.stroke();
+
+        // 左邊
+        ctx.beginPath();
+        ctx.moveTo(margin, margin + h);
+        for (let y = margin + h; y >= margin; y -= step) {
+            ctx.lineTo(margin + Math.cos(y * 0.1) * 2 + jitter(1), y);
+        }
+        ctx.stroke();
+    }
+
+    // 手繪五角星
+    function drawStar(cx, cy, spikes = 5, outerRadius = 22, innerRadius = 10) {
+        ctx.save();
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = 2.2;
+        ctx.lineCap = 'round';
+
+        let rot = Math.PI / 2 * 3;
+        let x = cx;
+        let y = cy;
+        let step = Math.PI / spikes;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - outerRadius);
+
+        for (let i = 0; i < spikes; i++) {
+            x = cx + Math.cos(rot) * outerRadius + jitter(1);
+            y = cy + Math.sin(rot) * outerRadius + jitter(1);
+            ctx.lineTo(x, y);
+            rot += step;
+
+            x = cx + Math.cos(rot) * innerRadius + jitter(1);
+            y = cy + Math.sin(rot) * innerRadius + jitter(1);
+            ctx.lineTo(x, y);
+            rot += step;
+        }
+        ctx.lineTo(cx + jitter(1), cy - outerRadius + jitter(1));
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    // 繪製盆栽（玩家）
+    function drawPlayer(p) {
+        ctx.save();
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+
+        const x = p.x;
+        const y = p.y;
+
+        // 花盆底部與頂部寬度
+        const potTopW = 38;
+        const potBotW = 30;
+        const potH = 32;
+
+        // 畫花盆 (梯形)
+        drawHandLine(x - potTopW / 2, y, x + potTopW / 2, y); // 盆口
+        drawHandLine(x + potTopW / 2, y, x + potBotW / 2, y + potH); // 右側
+        drawHandLine(x + potBotW / 2, y + potH, x - potBotW / 2, y + potH); // 盆底
+        drawHandLine(x - potBotW / 2, y + potH, x - potTopW / 2, y); // 左側
+
+        // 畫莖
+        drawHandLine(x, y, x + jitter(1), y - 22);
+
+        // 畫頂部的圓圈花苞
+        ctx.beginPath();
+        ctx.arc(x + jitter(1), y - 29 + jitter(1), 7, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    // 繪製頂部UI
+    function drawUI() {
+        ctx.save();
+        ctx.strokeStyle = INK_COLOR;
+        ctx.fillStyle = INK_COLOR;
+        ctx.lineWidth = 2;
+
+        // 左上角分數框
+        drawHandRect(28, 28, 130, 50);
+
+        ctx.font = '22px "Chalkboard SE", "Comic Sans MS", cursive, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText(`分數 ${score}`, 40, 60);
+
+        // 右上角說明文字
+        ctx.textAlign = 'right';
+        ctx.font = '18px "Chalkboard SE", "Comic Sans MS", cursive, sans-serif';
+        ctx.fillText('接到星星 +1 分', canvas.width - 32, 52);
+        ctx.fillText(`漏掉 3 顆就結束 (${misses}/${MAX_MISSES})`, canvas.width - 32, 78);
+
+        // 下方箭頭 (UI 提示)
+        ctx.font = '36px cursive, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('←', 45, canvas.height - 30);
+        ctx.fillText('→', canvas.width - 45, canvas.height - 30);
+
+        ctx.restore();
+    }
+
+    // 產生吃星星特效
+    function createCatchParticles(x, y) {
+        for (let i = 0; i < 8; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 6,
+                vy: (Math.random() - 0.5) * 6,
+                life: 1,
+                size: Math.random() * 4 + 2
+            });
+        }
+    }
+
+    function updateParticles() {
+        for (let i = particles.length - 1; i >= 0; i--) {
+            let p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life -= 0.05;
+
+            if (p.life <= 0) {
+                particles.splice(i, 1);
+            } else {
+                ctx.save();
+                ctx.strokeStyle = INK_COLOR;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+    }
+
+    // 重置遊戲
+    function resetGame() {
+        score = 0;
+        misses = 0;
+        stars = [];
+        particles = [];
+        player.x = canvas.width / 2;
+        starSpawnInterval = 80;
+        gameState = STATE_PLAYING;
+    }
+
+    // 遊戲主邏輯更新
+    function update() {
+        if (gameState !== STATE_PLAYING) return;
+
+        // 玩家移動
+        if (keys.left) player.dx = -player.speed;
+        else if (keys.right) player.dx = player.speed;
+        else player.dx = 0;
+
+        player.x += player.dx;
+
+        // 限制玩家在畫面內
+        const margin = 40;
+        if (player.x < margin) player.x = margin;
+        if (player.x > canvas.width - margin) player.x = canvas.width - margin;
+
+        // 生成星星
+        starSpawnTimer++;
+        if (starSpawnTimer >= starSpawnInterval) {
+            starSpawnTimer = 0;
+            const starX = Math.random() * (canvas.width - 120) + 60;
+            const speed = Math.random() * 1.5 + 2.5 + Math.min(score * 0.1, 4);
+            stars.push({
+                x: starX,
+                y: 100,
+                speed: speed,
+                radius: 20
+            });
+
+            // 隨分數提高密度
+            if (starSpawnInterval > 35) {
+                starSpawnInterval -= 0.5;
+            }
+        }
+
+        // 星星邏輯
+        for (let i = stars.length - 1; i >= 0; i--) {
+            let s = stars[i];
+            s.y += s.speed;
+
+            // 碰撞檢測 (接住星星)
+            // 盆栽中心約在 (player.x, player.y - 15)
+            const dx = s.x - player.x;
+            const dy = s.y - (player.y - 15);
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < s.radius + 25) {
+                // 接到星星
+                score += 1;
+                createCatchParticles(s.x, s.y);
+                stars.splice(i, 1);
+                continue;
+            }
+
+            // 漏掉星星
+            if (s.y > canvas.height - 50) {
+                misses += 1;
+                stars.splice(i, 1);
+
+                if (misses >= MAX_MISSES) {
+                    gameState = STATE_GAMEOVER;
+                }
+            }
+        }
+    }
+
+    // 繪製主畫面
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 外框
+        drawOuterBorder();
+
+        // 頂部 UI
+        drawUI();
+
+        // 畫星星
+        for (let s of stars) {
+            // 畫星星上方手繪速度線 (如原圖)
+            ctx.save();
+            ctx.strokeStyle = INK_COLOR;
+            ctx.lineWidth = 2;
+            drawHandLine(s.x, s.y - s.radius - 22, s.x, s.y - s.radius - 8);
+            ctx.restore();
+
+            drawStar(s.x, s.y, 5, s.radius, s.radius * 0.45);
+        }
+
+        // 畫玩家 (盆栽)
+        drawPlayer(player);
+
+        // 畫粒子效果
+        updateParticles();
+
+        // 遊戲開始 / 結束 蓋板
+        if (gameState === STATE_START) {
+            drawOverlay('點擊或按空白鍵開始遊戲');
+        } else if (gameState === STATE_GAMEOVER) {
+            drawOverlay('遊戲結束！', `最終得分：${score}`, '點擊或按空白鍵重新開始');
+        }
+    }
+
+    function drawOverlay(title, subtitle = '', hint = '') {
+        ctx.save();
+        ctx.fillStyle = 'rgba(252, 248, 236, 0.85)';
+        ctx.fillRect(20, 150, canvas.width - 40, 360);
+
+        ctx.strokeStyle = INK_COLOR;
+        ctx.lineWidth = 2;
+        drawHandRect(35, 165, canvas.width - 70, 330);
+
+        ctx.fillStyle = INK_COLOR;
+        ctx.textAlign = 'center';
+
+        ctx.font = '32px "Chalkboard SE", "Comic Sans MS", cursive, sans-serif';
+        ctx.fillText(title, canvas.width / 2, 260);
+
+        if (subtitle) {
+            ctx.font = '24px "Chalkboard SE", "Comic Sans MS", cursive, sans-serif';
+            ctx.fillText(subtitle, canvas.width / 2, 320);
+        }
+
+        const bottomText = hint || subtitle;
+        if (bottomText && hint) {
+            ctx.font = '18px "Chalkboard SE", "Comic Sans MS", cursive, sans-serif';
+            ctx.fillText(bottomText, canvas.width / 2, 380);
+        }
+
+        ctx.restore();
+    }
+
+    // 遊戲迴圈
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+    // 事件監聽 - 鍵盤
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+            keys.left = true;
+        } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+            keys.right = true;
+        } else if (e.key === ' ' || e.key === 'Enter') {
+            if (gameState !== STATE_PLAYING) {
+                resetGame();
+            }
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+            keys.left = false;
+        } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+            keys.right = false;
+        }
+    });
+
+    // 事件監聽 - 觸控與滑鼠
+    function handlePointer(clientX) {
+        if (gameState !== STATE_PLAYING) return;
+        const rect = canvas.getBoundingClientRect();
+        const canvasX = (clientX - rect.left) * (canvas.width / rect.width);
+        
+        // 點擊畫面左半邊或右半邊移動，或者直接跟隨位置
+        player.x = canvasX;
+    }
+
+    canvas.addEventListener('touchstart', (e) => {
+        if (gameState !== STATE_PLAYING) {
+            resetGame();
+            return;
+        }
+        e.preventDefault();
+        handlePointer(e.touches[0].clientX);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+        if (gameState !== STATE_PLAYING) return;
+        e.preventDefault();
+        handlePointer(e.touches[0].clientX);
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', (e) => {
+        if (gameState !== STATE_PLAYING) {
+            resetGame();
+            return;
+        }
+        handlePointer(e.clientX);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (e.buttons === 1 && gameState === STATE_PLAYING) {
+            handlePointer(e.clientX);
+        }
+    });
+
+    // 啟動遊戲
+    requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>

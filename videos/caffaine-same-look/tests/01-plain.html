@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Café 馥光咖啡</title>
+    <style>
+        :root {
+            --bg-color: #FAF6F0;
+            --surface-color: #FFFFFF;
+            --primary-color: #2C1810;
+            --accent-color: #C87D55;
+            --accent-light: #E8D5C4;
+            --text-main: #1A0F0A;
+            --text-muted: #665A52;
+            --font-serif: "Playfair Display", Georgia, "Noto Serif TC", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, .brand-logo {
+            font-family: var(--font-serif);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(250, 246, 240, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(200, 125, 85, 0.15);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .brand-logo svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #FFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(200, 125, 85, 0.25);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: #FFF;
+        }
+
+        .hero-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-art {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(44, 24, 16, 0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background-color: var(--surface-color);
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            border-radius: 16px;
+            background: var(--bg-color);
+            border: 1px solid rgba(200, 125, 85, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            gap: 1.5rem;
+        }
+
+        .menu-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            background-color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .menu-img svg {
+            width: 45px;
+            height: 45px;
+            fill: var(--accent-color);
+        }
+
+        .menu-info {
+            flex-grow: 1;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(102, 90, 82, 0.2);
+            padding-bottom: 0.4rem;
+        }
+
+        .menu-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .menu-price {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .menu-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Banner Section */
+        .banner {
+            max-width: 1200px;
+            margin: 2rem auto 6rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #42261A 100%);
+            border-radius: 24px;
+            color: #FFF;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFF;
+        }
+
+        .banner p {
+            color: var(--accent-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--accent-light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .brand-logo {
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 300px;
+        }
+
+        .footer-column h4 {
+            color: #FFF;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/>
+                </svg>
+                馥光 AROMA
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#features">特色工藝</a></li>
+                <li><a href="#menu">特選菜單</a></li>
+                <li><a href="#location">門市資訊</a></li>
+            </ul>
+            <a href="#menu" class="btn btn-primary">線上點餐</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>尋找城市中的<br><span>慢時光與香氣</span></h1>
+                    <p>嚴選全球頂級手採莊園豆，以極致匠心精準烘焙。在晨光與咖啡香較勁的角落，為你遞上一杯充滿靈魂的暖意。</p>
+                    <div class="hero-btns">
+                        <a href="#menu" class="btn btn-primary">探索風味</a>
+                        <a href="#about" class="btn btn-outline">了解馥光</a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <!-- Embedded Vector Hero Art -->
+                    <svg class="hero-art" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="200" r="160" fill="#E8D5C4" fill-opacity="0.5"/>
+                        <circle cx="200" cy="200" r="120" fill="#C87D55" fill-opacity="0.2"/>
+                        <!-- Coffee Cup Illustration -->
+                        <rect x="130" y="160" width="140" height="130" rx="20" fill="#2C1810"/>
+                        <path d="M270 190C285 190 295 200 295 215C295 230 285 240 270 240" stroke="#2C1810" stroke-width="12" stroke-linecap="round"/>
+                        <ellipse cx="200" cy="160" rx="70" ry="15" fill="#C87D55"/>
+                        <ellipse cx="200" cy="160" rx="60" ry="10" fill="#42261A"/>
+                        <!-- Steam -->
+                        <path d="M170 120C170 100 180 90 180 70" stroke="#C87D55" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <path d="M200 130C200 110 210 100 210 80" stroke="#C87D55" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <path d="M230 120C230 100 240 90 240 70" stroke="#C87D55" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <!-- Floating Beans -->
+                        <circle cx="100" cy="120" r="10" fill="#C87D55"/>
+                        <circle cx="310" cy="110" r="14" fill="#2C1810"/>
+                        <circle cx="300" cy="290" r="8" fill="#C87D55"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="section-title">
+                <h2>我們的堅持</h2>
+                <p>從種子到杯中的極致追求，只為呈現最純粹的咖啡風味</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12,3L2,12H5V20H19V12H22L12,3M12,7.7C14.1,7.7 15.8,9.4 15.8,11.5C15.8,14.5 12,18 12,18C12,18 8.2,14.5 8.2,11.5C8.2,9.4 9.9,7.7 12,7.7Z"/></svg>
+                    </div>
+                    <h3>嚴選單一莊園豆</h3>
+                    <p>合作全球永續契作農場，100% 高海拔人工手摘完熟咖啡果實。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+                    </div>
+                    <h3>自家每日新鮮烘焙</h3>
+                    <p>由國際認證烘焙師微調曲線，釋放每顆咖啡豆獨有的花果香氣。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M5,2H19A2,2 0 0,1 21,4V6C21,6.78 20.55,7.44 19.9,7.75C19.46,11.71 16.23,14.73 12.26,14.97C12.17,15.54 11.83,16.04 11.32,16.34L13.5,20H16V22H8V20H10.5L12.68,16.34C12.17,16.04 11.83,15.54 11.74,14.97C7.77,14.73 4.54,11.71 4.1,7.75C3.45,7.44 3,6.78 3,6V4A2,2 0 0,1 5,2Z"/></svg>
+                    </div>
+                    <h3>金杯標準萃取</h3>
+                    <p>精準控制水溫、粉粒徑與流速，為您沖煮出完美平衡的最佳口感。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section class="menu-section" id="menu">
+            <div class="section-title">
+                <h2>招牌推薦</h2>
+                <p>探索我們精心設計的經典與創新飲品</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">馥光特調濃縮 Espresso</span>
+                            <span class="menu-price">$120</span>
+                        </div>
+                        <p class="menu-desc">帶有榛果、黑巧克力與焦糖尾韻，口感濃郁厚實。</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">燕麥奶拿鐵 Oat Latte</span>
+                            <span class="menu-price">$160</span>
+                        </div>
+                        <p class="menu-desc">嚴選小農燕麥奶，與中深烘焙濃縮完美融合，綿密自然甜感。</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">手沖．衣索比亞 耶加雪菲</span>
+                            <span class="menu-price">$180</span>
+                        </div>
+                        <p class="menu-desc">淺焙。優雅的茉莉花香、柑橘酸甜感，質地清爽明亮。</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <svg viewBox="0 0 24 24"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">法式焦糖蜂巢烤布蕾</span>
+                            <span class="menu-price">$140</span>
+                        </div>
+                        <p class="menu-desc">每日限量發售。香草籽濃郁香氣，搭配現烤酥脆焦糖層。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner Section -->
+        <section class="banner" id="location">
+            <h2>預約您的專屬咖啡時光</h2>
+            <p>不論是獨處沉思、與好友聚會，或是外帶一杯好心情，馥光隨時準備為您服務。</p>
+            <a href="#" class="btn btn-primary" style="background-color: var(--accent-color);">立即線上訂位</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="brand-logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/>
+                    </svg>
+                    馥光 AROMA
+                </a>
+                <p>用心淬鍊每一滴美好，讓咖啡成為日常生活中最迷人的儀式。</p>
+            </div>
+            <div class="footer-column">
+                <h4>營業時間</h4>
+                <ul>
+                    <li>週一至週五：07:30 - 19:00</li>
+                    <li>週六至週日：08:30 - 20:00</li>
+                    <li>* 每月第一個週一公休</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>門市位置</h4>
+                <ul>
+                    <li>台北市大安區人文路 104 號</li>
+                    <li>02-2345-6789</li>
+                    <li>hello@aromacafe.tw</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>關注我們</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LINE 官方帳號</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Aroma Café 馥光咖啡. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
