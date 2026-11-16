@@ -44,13 +44,13 @@ const clip = (p: number, dir: Dir) => (p >= 1 ? undefined : dir === "right" ? `i
 const Reveal: React.FC<{ f: number; at: number; dir?: Dir; dur?: number; style?: React.CSSProperties; children: React.ReactNode }> = ({ f, at, dir = "right", dur, style, children }) => {
   const p = wipeP(f, at, dur);
   if (p <= 0) return null;
-  return <div style={{ position: "absolute", ...style, clipPath: clip(p, dir), opacity: Math.min(1, p * 3) }}>{children}</div>;
+  return <div data-box="text" style={{ position: "absolute", ...style, clipPath: clip(p, dir), opacity: Math.min(1, p * 3) }}>{children}</div>;
 };
 /** 淡入 */
 const Fade: React.FC<{ f: number; at: number; style?: React.CSSProperties; children: React.ReactNode }> = ({ f, at, style, children }) => {
   const p = fadeP(f, at);
   if (p <= 0) return null;
-  return <div style={{ position: "absolute", ...style, opacity: p }}>{children}</div>;
+  return <div data-box="text" style={{ position: "absolute", ...style, opacity: p }}>{children}</div>;
 };
 /** 一條描出來的直線（水平或垂直） */
 const Rule: React.FC<{ f: number; at: number; x: number; y: number; len: number; vertical?: boolean; color?: string; w?: number; dur?: number }> = ({ f, at, x, y, len, vertical, color = T.hair, w = T.stroke.hair, dur }) => {
@@ -87,7 +87,7 @@ const Tag: React.FC<{ tag: TagSpec; f: number; big?: boolean }> = ({ tag, f, big
   const p = wipeP(f, tag.at), c = T.status[tag.kind] ?? T.text2, h = big ? L.TAG_H + 16 : L.TAG_H, px = big ? L.TAG_TEXT_PX + 8 : L.TAG_TEXT_PX;
   if (p <= 0) return null;
   return (
-    <div style={{ display: "inline-flex", alignItems: "center", gap: 14, height: h, padding: `0 ${big ? 28 : 20}px 0 ${big ? 24 : 18}px`, border: `${T.stroke.hair}px solid ${c}`, background: T.bg, boxSizing: "border-box", clipPath: clip(p, "right"), opacity: Math.min(1, p * 3) }}>
+    <div data-box="tag" style={{ display: "inline-flex", alignItems: "center", gap: 14, height: h, padding: `0 ${big ? 28 : 20}px 0 ${big ? 24 : 18}px`, border: `${T.stroke.hair}px solid ${c}`, background: T.bg, boxSizing: "border-box", clipPath: clip(p, "right"), opacity: Math.min(1, p * 3) }}>
       <span style={{ width: 12, height: 12, boxSizing: "border-box", background: tag.kind === "pending" ? "transparent" : c, border: `${T.stroke.hair}px solid ${c}` }} />
       <span style={{ ...sans(px, T.weight.bold, c), letterSpacing: "0.08em", lineHeight: 1 }}>{tag.text}</span>
     </div>
@@ -103,12 +103,12 @@ const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: nu
   const s = noPush ? 1 : 1 + M.photoPush * linear(f, at, Math.max(1, life));
   return (
     <>
-      <div style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
+      <div data-box="card" style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
         <Img src={staticFile(`dossier/${slug}/${name}.jpg`)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${s.toFixed(4)})` }} />
         <div style={{ position: "absolute", inset: 0, background: T.photoTint, boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }} />
         {children}
       </div>
-      {caption ? <div style={{ position: "absolute", left: x, top: y + h + 10, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, at + M.wipe) }}>{caption}</div> : null}
+      {caption ? <div data-box="text" style={{ position: "absolute", left: x, top: y + h + 10, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, at + M.wipe) }}>{caption}</div> : null}
     </>
   );
 };
@@ -125,7 +125,7 @@ const DocHead: React.FC<{ title: React.ReactNode; right?: string }> = ({ title, 
     {right ? <span style={{ ...NUM, fontWeight: 600, fontSize: 32, color: T.paperInk2 }}>{right}</span> : null}
   </div>
 );
-const Note: React.FC<{ text?: string; x: number; y: number; f: number; at: number }> = ({ text, x, y, f, at }) => text ? <div style={{ position: "absolute", left: x, top: y, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, at) }}>{text}</div> : null;
+const Note: React.FC<{ text?: string; x: number; y: number; f: number; at: number }> = ({ text, x, y, f, at }) => text ? <div data-box="text" style={{ position: "absolute", left: x, top: y, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, at) }}>{text}</div> : null;
 const StageSvg: React.FC<{ children: React.ReactNode }> = ({ children }) => <svg width={L.INNER_W} height={L.STAGE_H} viewBox={`0 0 ${L.INNER_W} ${L.STAGE_H}`} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>{children}</svg>;
 /** 細紅框：描出來，描完閃一下；flashAt 再閃一次 */
 const RedFrame: React.FC<{ f: number; at: number; flashAt?: number; x: number; y: number; w: number; h: number }> = ({ f, at, flashAt, x, y, w, h }) => {
@@ -727,7 +727,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
   let keep = 0; if (dl) { while (keep < dl.length && keep < prevDl.length && dl[keep] === prevDl[keep]) keep++; const sep = dl.indexOf("・"); if (keep < dl.length) keep = sep >= 0 && keep > sep ? sep + 1 : 0; }
   return (
     <>
-      <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
+      <div data-box="header" style={{ position: "absolute", left: L.X, top: ln.BAR_TOP, width: L.INNER_W, height: ln.BAR_H, background: N.barBg, display: "flex", alignItems: "stretch" }}>
         <LiTile size={ln.BAR_H} /><div style={{ background: N.red, padding: "0 22px", display: "flex", alignItems: "center" }}><span style={{ ...serif(ln.MARK_PX, T.weight.serif, N.onRed), letterSpacing: "0.1em", lineHeight: 1 }}>{news.mark ?? (name === "哩股哩股" ? "LIGULIGU" : name)}</span></div>
         <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 20 }}>
           <span style={{ ...sans(ln.SEC_PX, T.weight.bold), letterSpacing: "0.12em", lineHeight: 1 }}>{news.section}</span>
@@ -737,7 +737,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
       </div>
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: L.INNER_W, height: ln.PROG_H, background: T.hair }} />
       <div style={{ position: "absolute", left: L.X, top: ln.BAR_TOP + ln.BAR_H, width: r1(L.INNER_W * progress), height: ln.PROG_H, background: T.text2 }} />
-      <div style={{ position: "absolute", left: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
+      <div data-box="header" style={{ position: "absolute", left: L.X, top: ln.DL_TOP, height: 36, display: "flex", alignItems: "center", gap: 14 }}>
         <span style={{ width: 12, height: 12, background: T.accent, opacity: f >= at && f < at + M.flash && Math.floor((f - at) / 4) % 2 === 0 ? 0.25 : 1 }} />
         {dl ? <span style={{ ...NUM, fontWeight: 600, fontSize: ln.DL_PX, lineHeight: 1, color: T.text, letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{dl.slice(0, keep)}<Typed text={dl.slice(keep)} f={f} at={at} per={NM.dl} /></span> : null}
       </div>
@@ -762,8 +762,8 @@ const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: st
   const lp = cur.index === 0 ? 1 : tween(f, cur.start, NM.lt, EASE.enter);
   return (
     <>
-      {label ? <div style={{ position: "absolute", left: L.X, top: ln.LT_TAB_TOP, height: ln.LT_TAB_H, padding: "0 20px", background: N.red, display: "flex", alignItems: "center", clipPath: clip(lp, "right") }}><span style={{ ...sans(ln.LT_TAB_PX, T.weight.bold, N.onRed), letterSpacing: "0.2em", lineHeight: 1 }}>{label}</span></div> : null}
-      <div style={{ position: "absolute", left: L.X, top: ln.LT_TOP, width: L.INNER_W, height: ln.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${ln.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: ln.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {label ? <div data-box="subtitle" style={{ position: "absolute", left: L.X, top: ln.LT_TAB_TOP, height: ln.LT_TAB_H, padding: "0 20px", background: N.red, display: "flex", alignItems: "center", clipPath: clip(lp, "right") }}><span style={{ ...sans(ln.LT_TAB_PX, T.weight.bold, N.onRed), letterSpacing: "0.2em", lineHeight: 1 }}>{label}</span></div> : null}
+      <div data-box="subtitle" style={{ position: "absolute", left: L.X, top: ln.LT_TOP, width: L.INNER_W, height: ln.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${ln.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: ln.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div style={{ clipPath: clip(p, "right") }}>
           <div style={fixed ? { ...serif(ln.CAP_ZH_PX + 4), lineHeight: 1.3 } : { ...sans(ln.CAP_ZH_PX, T.weight.sub), lineHeight: 1.3 }}>{zh}</div>
           {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: 400, fontSize: ln.CAP_EN_PX, lineHeight: 1.3, color: T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
@@ -782,8 +782,8 @@ const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ 
   const row = (k: number) => <div key={k} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>{items.map((t, i) => <React.Fragment key={i}><span style={{ ...sans(ln.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{t}</span><span style={{ width: 8, height: 8, margin: "0 28px", background: T.text3, flexShrink: 0 }} /></React.Fragment>)}</div>;
   return (
     <>
-      {cur.sources.length ? <div style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(ln.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
-      <div style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
+      {cur.sources.length ? <div data-box="source" style={{ position: "absolute", left: L.X, width: L.INNER_W, top: ln.SRC_TOP, clipPath: clip(sp, "right"), ...sans(ln.SRC_PX, T.weight.body, T.text2) }}>來源：{cur.sources.join("；")}</div> : null}
+      <div data-box="ticker" style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
         <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(ln.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
         <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
           <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", transform: `translateX(${r1(-50 * frac)}%)` }}>{row(0)}{row(1)}</div>
@@ -804,6 +804,24 @@ const SweepBand: React.FC<{ shots: DsShot[]; f: number }> = ({ shots, f }) => {
       <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: T.stroke.mark, background: T.accent }} />
     </div>
   );
+};
+
+/** 版面量測（scripts/dossier/overlap-check.mjs 用）：輸入屬性帶 __probe 才掛上，把 data-box 元素的框印到 console，不影響畫面 */
+const BoxProbe: React.FC<{ f: number }> = ({ f }) => {
+  useEffect(() => {
+    const h = delayRender("box-probe");
+    const done = () => {
+      const out = Array.from(document.querySelectorAll("[data-box]")).map((el) => {
+        const e = el as HTMLElement, r = e.getBoundingClientRect(), g = document.createRange(); g.selectNodeContents(e);
+        const t = g.getBoundingClientRect(), cs = getComputedStyle(e);
+        return { kind: e.dataset.box, x: r.left, y: r.top, w: r.width, h: r.height, tx: t.left, ty: t.top, tw: t.width, th: t.height, sw: e.scrollWidth, cw: e.clientWidth, sh: e.scrollHeight, ch: e.clientHeight, op: Number(cs.opacity), ov: cs.overflow, text: (e.textContent ?? "").slice(0, 24) };
+      });
+      console.log("@@BOXES@@" + JSON.stringify({ f, boxes: out }));
+      continueRender(h);
+    };
+    document.fonts.ready.then(() => setTimeout(done, 300));
+  }, []);
+  return null;
 };
 
 export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props) => {
@@ -830,6 +848,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
       <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       {audio}
+      {(props as { __probe?: boolean }).__probe ? <BoxProbe f={f} /> : null}
     </AbsoluteFill>
     </LNC.Provider>
   );

@@ -11,6 +11,7 @@
 3. **生成無旁白影片**：無聲估算時間軸 → 渲染 → 片尾招牌音合進去。
 4. **驗證**（每一項都要過）：
    - 版面：`python3 scripts/dossier/edge-check.py <slug>`，上下留白 ≤60px；字幕卡下緣 ≤1700
+   - 版面重疊與文字溢出：`node scripts/dossier/overlap-check.mjs <slug>`（不重渲成片，約 1 分鐘；量 DOM 框，標籤／卡片／文字壓到字幕、頁首、出處或文字溢出＝error，exit 1；結果 `out/<slug>/overlap.json`）
    - 重疊：換鏡兩卡不半透明疊在一起；標籤／蓋章不壓主素材中央（抽格看）
    - 小字 ≥30px（填滿版出處、跑馬燈、地名都是 30px）
    - 靜止段 ≤1.2 秒：`node scripts/dossier/events.mjs <slug>`，內容鏡最大間隔 ≤1.2 秒（片尾卡落定後的停留不算）
