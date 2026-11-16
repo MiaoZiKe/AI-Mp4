@@ -5,26 +5,27 @@ import fs from "node:fs";
 const R = new URL(".", import.meta.url).pathname;
 const S = (id, para, narration, zh, en, keywords, cues, sources, props = {}) => ({ id, beat: "mechanism", para, narration, tts: narration, subtitle: { zh, en }, keywords, cues: cues.map(([id, text]) => ({ id, text })), component: "ThreeScene", props, sources });
 const scenes = [
-  S("s1", 1, "同一片晶圓，同樣的缺陷，小晶片九成能用，大晶片可能不到一半。", "同一片晶圓，同樣的缺陷\n小晶片九成能用\n大晶片可能不到一半", "Same wafer, same defects: | about 90% of small chips work, | big chips maybe under half.", ["九成", "不到一半"], [["same", "同樣的缺陷"], ["hook", "九成"], ["half", "不到一半"]],
+  S("s1", 1, "AI 晶片為什麼這麼貴？一個原因是做壞的太多。", "AI 晶片為什麼這麼貴？\n一個原因是做壞的太多", "Why are AI chips so expensive? | One reason: too many come out bad.", ["做壞的"], [["ai", "晶片為什麼"], ["bad", "做壞的"]],
     ["估算：D0 0.1／cm²、泊松模型、300 mm 晶圓"],
-    { hook: { kicker: "同一片晶圓", title: "9成／不到一半", size: 120, top: 236 }, zoom: [{ to: "yield", at: "exit-8", dur: 1 }] }),
-  S("s2", 2, "印完的晶圓，表面總會留下看不見的缺陷。", "印完的晶圓\n表面總會留下看不見的缺陷", "Every printed wafer is left with | defects you can't see.", ["看不見的缺陷"], [["printed", "印完"], ["invisible", "看不見"]], ["WikiChip〈Yield〉：隨機缺陷是良率損失主因之一"]),
-  S("s3", 2, "可能是一顆微粒，也可能是一段沒印好的線。", "可能是一顆微粒\n也可能是一段沒印好的線", "It might be a particle, | or a line that didn't print right.", ["微粒", "沒印好的線"], [["particle", "微粒"], ["line", "沒印好"]], ["WikiChip〈Yield〉；放大示意，非實際比例"]),
-  S("s4", 3, "缺陷落在哪一顆，那一顆就可能報廢。", "缺陷落在哪一顆\n那一顆就可能報廢", "Wherever a defect lands, | that chip may be scrapped.", ["報廢"], [["fall", "落在"], ["scrap", "報廢"]], ["缺陷位置為固定亂數示意；格數為 300 mm 晶圓實排"]),
-  S("s5", 3, "能用的比例，就叫良率。", "能用的比例\n就叫良率", "The share that works | is called the yield.", ["良率"], [["ratio", "比例"], ["yield", "良率"]], ["WikiChip〈Yield〉（定義）"]),
-  S("s6", 4, "切開之前，探針卡會把每一顆都通電測過。", "切開之前\n探針卡會把每一顆\n都通電測過", "Before dicing, a probe card | powers up and tests | every single chip.", ["探針卡", "通電測過"], [["cut", "切開"], ["probecard", "探針卡"], ["each", "每一顆"], ["test", "通電"]], ["晶圓測試流程：AnySilicon、NextPCB"]),
-  S("s7", 4, "好的、壞的，全部記在一張晶圓地圖上。", "好的、壞的\n全部記在一張晶圓地圖上", "Good or bad, | it all goes onto a wafer map.", ["晶圓地圖"], [["good", "好的"], ["bad", "壞的"], ["map", "晶圓地圖"]], ["AnySilicon〈wafer sort〉；美國專利 5838951"]),
-  S("s8", 5, "廠商公布過，五奈米量產初期，每平方公分大約零點一個缺陷。", "廠商公布過\n5 奈米量產初期\n每平方公分大約 0.1 個缺陷", "A chipmaker disclosed that early 5 nm | had about 0.1 defects | per square centimeter.", ["廠商公布", "0.1 個"], [["vendor", "廠商公布"], ["n5", "量產初期"], ["cm2", "每平方公分"], ["d0", "大約"]], ["台積電 2020 技術論壇（AnandTech 報導）"]),
-  S("s9", 6, "缺陷一樣密，晶片大八倍，被打中的機會也大很多。", "缺陷一樣密\n晶片大八倍\n被打中的機會也大很多", "Same defect density, | a chip 8× bigger | is far more likely to be hit.", ["大八倍", "大很多"], [["dense", "一樣密"], ["eight", "大八倍"], ["hit", "被打中"]], ["面積：100 mm² 與 800 mm²（25 × 32 mm）"]),
-  S("s10", 6, "估算下來，小晶片好的有五百多顆，大晶片只剩二十幾顆。", "估算下來\n小晶片好的有五百多顆\n大晶片只剩二十幾顆", "By estimate: 500-plus good small chips, | but only 20-some big ones.", ["五百多顆", "二十幾顆"], [["est", "估算"], ["s500", "五百多"], ["l20", "二十幾"]], ["估算：泊松模型 Y＝e^(−A·D0)；格數為實排結果"]),
-  S("s11", 7, "有些壞的還救得回來。記憶體會多做幾排備用，壞掉那排直接換掉。", "有些壞的還救得回來\n記憶體會多做幾排備用\n壞掉那排直接換掉", "Some bad chips can be saved: | memory has spare rows, | and a broken row gets swapped out.", ["救得回來", "備用"], [["rescue", "救得回來"], ["mem", "記憶體"], ["spare", "備用"], ["broke", "壞掉那排"], ["swap", "換掉"]], ["備用列修補：IEEE TechNav、美國專利 4658379；運作為示意"]),
-  S("s12", 8, "各家現在的良率，廠商都沒有公布，只能從估算看方向。", "各家現在的良率\n廠商都沒有公布\n只能從估算看方向", "Today's yields? | No maker has published them — | estimates only show the direction.", ["沒有公布", "估算"], [["now", "現在的良率"], ["unpub", "沒有公布"], ["estimate", "估算"]], ["查不到公布（截至 2026/11/17）；曲線為估算"]),
-  S("s13", 9, "大晶片要硬做一整顆，還是拆小再拼回去？", "大晶片要硬做一整顆\n還是拆小再拼回去？", "Build a big chip in one piece, | or split it and put it back together?", ["一整顆", "拆小再拼"], [["whole", "一整顆"], ["split", "拆小"]], ["二選一提問；拆開與拼回為外形示意"]),
-  S("s14", 9, "下一支，來看先進封裝。想要完整解說，留言良率。", "下一支，來看先進封裝\n想要完整解說，留言良率", "Next up: advanced packaging. | Comment \"良率\" for the full notes.", ["先進封裝", "良率"], [["next", "下一支"], ["pkg", "先進封裝"], ["cm", "留言"]], ["下一集：先進封裝（已排定）"]),
-  { id: "s15", beat: "end", silent: true, durationSec: 3.2, subtitle: { zh: "", en: "" }, keywords: [], cues: [], component: "ThreeScene",
-    props: { endCard: { next: "先進封裝", trail: ["缺陷", "測試", "良率", "修補"], at: "s14:cm-8", comment: "良率", logoAnim: "transparent" } }, sources: [] },
+    { hook: { kicker: "AI 晶片為什麼貴", title: "9成／不到一半", size: 120, top: 236 }, zoom: [{ to: "yield", at: "s2:exit-8", dur: 1 }] }),
+  S("s2", 1, "同樣的工廠，小晶片九成能用，大晶片可能不到一半。", "同樣的工廠\n小晶片九成能用\n大晶片可能不到一半", "Same fab: about 90% of small chips work, | big chips maybe under half.", ["九成", "不到一半"], [["fab", "同樣的工廠"], ["hook", "九成"], ["half", "不到一半"]],
+    ["估算：D0 0.1／cm²、泊松模型、300 mm 晶圓"]),
+  S("s3", 2, "差在哪？晶片是在一片圓形的矽板上做的，這片叫晶圓，做完再切成一顆一顆。", "差在哪？\n晶片是在一片\n圓形的矽板上做的\n這片叫晶圓\n做完再切成一顆一顆", "What's the difference? | Chips are made on a round silicon disc — a wafer — | then cut into individual chips.", ["晶圓", "一顆一顆"], [["where", "差在哪"], ["disk", "矽板"], ["wafer", "叫晶圓"], ["cut", "切成"], ["each", "一顆一顆"]],
+    ["300 mm 晶圓；切割道與晶片格為示意"]),
+  S("s4", 3, "晶圓表面難免留下看不見的缺陷，可能是一顆微粒，也可能是一段沒做好的線路。", "晶圓表面難免留下\n看不見的缺陷\n可能是一顆微粒\n也可能是\n一段沒做好的線路", "Every wafer ends up with defects you can't see: | a particle, | or a bit of wiring that didn't come out right.", ["看不見的缺陷", "微粒"], [["invisible", "看不見"], ["particle", "微粒"], ["line", "沒做好"]],
+    ["WikiChip〈Yield〉：隨機缺陷是良率損失主因之一"]),
+  S("s5", 4, "缺陷落在哪一顆，那一顆就可能報廢。", "缺陷落在哪一顆\n那一顆就可能報廢", "Wherever a defect lands, | that chip may be scrapped.", ["報廢"], [["fall", "落在"], ["scrap", "報廢"]], ["缺陷位置為固定亂數示意；格數為 300 mm 晶圓實排"]),
+  S("s6", 4, "能用的比例，就叫良率。", "能用的比例\n就叫良率", "The share that works | is called the yield.", ["良率"], [["ratio", "比例"], ["yield", "良率"]], ["WikiChip〈Yield〉（定義）"]),
+  S("s7", 5, "關鍵是，缺陷是隨機落下的。晶片越大，被打中的機會就越高。", "關鍵是\n缺陷是隨機落下的\n晶片越大\n被打中的機會就越高", "The key: defects land at random. | The bigger the chip, | the more likely it gets hit.", ["隨機", "越大"], [["key", "關鍵"], ["random", "隨機"], ["big", "越大"], ["hit", "被打中"]], ["同一組缺陷；格數為 300 mm 晶圓實排"]),
+  S("s8", 6, "用廠商公布過的缺陷數字估算，晶片大八倍，能用的就從九成，掉到可能不到一半。", "用廠商公布過的\n缺陷數字估算\n晶片大八倍\n能用的就從九成\n掉到可能不到一半", "Using a defect rate a chipmaker disclosed: | a chip 8× bigger | drops from 90% usable to maybe under half.", ["大八倍", "不到一半"], [["vendor", "廠商公布"], ["eight", "大八倍"], ["from", "從九成"], ["drop", "不到一半"]], ["D0≈0.1／cm²：台積電 2020（AnandTech）；泊松估算"]),
+  S("s9", 7, "這是簡化的估算。各家實際的良率，廠商都沒有公布。", "這是簡化的估算\n各家實際的良率\n廠商都沒有公布", "This is a simplified estimate. | Actual yields? | No chipmaker has published them.", ["簡化的估算", "沒有公布"], [["simple", "簡化"], ["each2", "各家"], ["unpub", "沒有公布"]], ["查不到公布（截至 2026/11/17）；曲線為估算"]),
+  S("s10", 8, "那大晶片怎麼辦？硬做一整顆，還是拆小再拼回去？", "那大晶片怎麼辦？\n硬做一整顆\n還是拆小再拼回去？", "So what about big chips? | Build one in a single piece, | or split it and put it back together?", ["一整顆", "拆小再拼"], [["how", "怎麼辦"], ["whole", "一整顆"], ["split", "拆小"]], ["二選一提問；拆開與拼回為外形示意"]),
+  S("s11", 8, "下一支，來看先進封裝。想要完整解說，留言良率。", "下一支，來看先進封裝\n想要完整解說，留言良率", "Next up: advanced packaging. | Comment \"良率\" for the full notes.", ["先進封裝", "良率"], [["next", "下一支"], ["pkg", "先進封裝"], ["cm", "留言"]], ["下一集：先進封裝（已排定）"]),
+  { id: "s12", beat: "end", silent: true, durationSec: 3.2, subtitle: { zh: "", en: "" }, keywords: [], cues: [], component: "ThreeScene",
+    props: { endCard: { next: "先進封裝", trail: ["缺陷", "晶片大小", "良率", "拆小"], at: "s11:cm-8", comment: "良率", logoAnim: "transparent" } }, sources: [] },
 ];
-scenes[0].beat = "hook"; scenes[12].beat = "cta"; scenes[13].beat = "cta";
+scenes[0].tts = scenes[0].narration.replace("AI", "A I");
+scenes[0].beat = "hook"; scenes[9].beat = "cta"; scenes[10].beat = "cta";
 // 畫面用的 cue：每幕的 start／end／exit 與每個 cue
 const cues = {};
 for (const s of scenes) { if (s.silent) continue; for (const k of ["start", "end", "exit"]) cues[`${s.id}_${k}`] = `${s.id}:${k}`; for (const c of s.cues) cues[`${s.id}_${c.id}`] = `${s.id}:${c.id}`; }

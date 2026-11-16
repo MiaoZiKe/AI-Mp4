@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1728,
- "totalSec": 57.6,
+ "totalFrames": 1902,
+ "totalSec": 63.4,
  "scenes": [
   {
    "id": "s1",
    "startFrame": 0,
-   "durationFrames": 174,
+   "durationFrames": 150,
    "startSec": 0,
-   "durationSec": 5.8,
+   "durationSec": 5,
    "component": "ThreeScene",
    "beat": "hook",
    "transition": {
@@ -20,865 +20,683 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 1,
-    "endFrame": 150,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "same",
-     "text": "同樣的缺陷",
-     "frame": 29,
-     "sceneFrame": 29
+     "id": "ai",
+     "text": "晶片為什麼",
+     "frame": 14,
+     "sceneFrame": 14
+    },
+    {
+     "id": "bad",
+     "text": "做壞的",
+     "frame": 105,
+     "sceneFrame": 105
+    }
+   ],
+   "stillFrame": 149,
+   "subtitles": [
+    {
+     "zh": "AI 晶片為什麼這麼貴？",
+     "en": "Why are AI chips so expensive?",
+     "startFrame": 0,
+     "endFrame": 66
+    },
+    {
+     "zh": "一個原因是做壞的太多",
+     "en": "One reason: too many come out bad.",
+     "startFrame": 66,
+     "endFrame": 151
+    }
+   ],
+   "narration": "AI 晶片為什麼這麼貴？一個原因是做壞的太多。"
+  },
+  {
+   "id": "s2",
+   "startFrame": 150,
+   "durationFrames": 156,
+   "startSec": 5,
+   "durationSec": 5.2,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "fab",
+     "text": "同樣的工廠",
+     "frame": 154,
+     "sceneFrame": 4
     },
     {
      "id": "hook",
      "text": "九成",
-     "frame": 81,
-     "sceneFrame": 81
+     "frame": 208,
+     "sceneFrame": 58
     },
     {
      "id": "half",
      "text": "不到一半",
-     "frame": 136,
-     "sceneFrame": 136
+     "frame": 269,
+     "sceneFrame": 119
     }
    ],
-   "stillFrame": 164,
+   "stillFrame": 305,
    "subtitles": [
     {
-     "zh": "同一片晶圓",
-     "en": "Same wafer, same defects:",
-     "startFrame": 0,
-     "endFrame": 26
-    },
-    {
-     "zh": "同樣的缺陷",
-     "en": "Same wafer, same defects:",
-     "startFrame": 26,
-     "endFrame": 59
+     "zh": "同樣的工廠",
+     "en": "Same fab: about 90% of small chips work,",
+     "startFrame": 151,
+     "endFrame": 184
     },
     {
      "zh": "小晶片九成能用",
-     "en": "about 90% of small chips work,",
-     "startFrame": 59,
-     "endFrame": 106
+     "en": "Same fab: about 90% of small chips work,",
+     "startFrame": 184,
+     "endFrame": 231
     },
     {
      "zh": "大晶片可能不到一半",
      "en": "big chips maybe under half.",
-     "startFrame": 106,
-     "endFrame": 171
+     "startFrame": 231,
+     "endFrame": 307
     }
    ],
-   "narration": "同一片晶圓，同樣的缺陷，小晶片九成能用，大晶片可能不到一半。"
-  },
-  {
-   "id": "s2",
-   "startFrame": 164,
-   "durationFrames": 99,
-   "startSec": 5.47,
-   "durationSec": 3.3,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 174,
-    "endFrame": 252,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "printed",
-     "text": "印完",
-     "frame": 174,
-     "sceneFrame": 10
-    },
-    {
-     "id": "invisible",
-     "text": "看不見",
-     "frame": 228,
-     "sceneFrame": 64
-    }
-   ],
-   "stillFrame": 253,
-   "subtitles": [
-    {
-     "zh": "印完的晶圓",
-     "en": "Every printed wafer is left with",
-     "startFrame": 171,
-     "endFrame": 197
-    },
-    {
-     "zh": "表面總會留下",
-     "en": "Every printed wafer is left with",
-     "startFrame": 197,
-     "endFrame": 224
-    },
-    {
-     "zh": "看不見的缺陷",
-     "en": "defects you can't see.",
-     "startFrame": 224,
-     "endFrame": 260
-    }
-   ],
-   "narration": "印完的晶圓，表面總會留下看不見的缺陷。"
+   "narration": "同樣的工廠，小晶片九成能用，大晶片可能不到一半。"
   },
   {
    "id": "s3",
-   "startFrame": 253,
-   "durationFrames": 101,
-   "startSec": 8.43,
-   "durationSec": 3.37,
+   "startFrame": 306,
+   "durationFrames": 216,
+   "startSec": 10.2,
+   "durationSec": 7.2,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 263,
-    "endFrame": 346,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "particle",
-     "text": "微粒",
-     "frame": 281,
-     "sceneFrame": 28
+     "id": "where",
+     "text": "差在哪",
+     "frame": 310,
+     "sceneFrame": 4
     },
     {
-     "id": "line",
-     "text": "沒印好",
-     "frame": 321,
-     "sceneFrame": 68
+     "id": "disk",
+     "text": "矽板",
+     "frame": 388,
+     "sceneFrame": 82
+    },
+    {
+     "id": "wafer",
+     "text": "叫晶圓",
+     "frame": 434,
+     "sceneFrame": 128
+    },
+    {
+     "id": "cut",
+     "text": "切成",
+     "frame": 473,
+     "sceneFrame": 167
+    },
+    {
+     "id": "each",
+     "text": "一顆一顆",
+     "frame": 486,
+     "sceneFrame": 180
     }
    ],
-   "stillFrame": 344,
+   "stillFrame": 521,
    "subtitles": [
     {
-     "zh": "可能是一顆微粒",
-     "en": "It might be a particle,",
-     "startFrame": 260,
-     "endFrame": 294
+     "zh": "差在哪？",
+     "en": "What's the difference?",
+     "startFrame": 307,
+     "endFrame": 326
     },
     {
-     "zh": "也可能是一段沒印好的線",
-     "en": "or a line that didn't print right.",
-     "startFrame": 294,
-     "endFrame": 351
+     "zh": "晶片是在一片",
+     "en": "What's the difference?",
+     "startFrame": 326,
+     "endFrame": 365
+    },
+    {
+     "zh": "圓形的矽板上做的",
+     "en": "Chips are made on a round silicon disc — a wafer —",
+     "startFrame": 365,
+     "endFrame": 417
+    },
+    {
+     "zh": "這片叫晶圓",
+     "en": "Chips are made on a round silicon disc — a wafer —",
+     "startFrame": 417,
+     "endFrame": 449
+    },
+    {
+     "zh": "做完再切成一顆一顆",
+     "en": "then cut into individual chips.",
+     "startFrame": 449,
+     "endFrame": 523
     }
    ],
-   "narration": "可能是一顆微粒，也可能是一段沒印好的線。"
+   "narration": "差在哪？晶片是在一片圓形的矽板上做的，這片叫晶圓，做完再切成一顆一顆。"
   },
   {
    "id": "s4",
-   "startFrame": 344,
-   "durationFrames": 110,
-   "startSec": 11.47,
-   "durationSec": 3.67,
+   "startFrame": 522,
+   "durationFrames": 228,
+   "startSec": 17.4,
+   "durationSec": 7.6,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 354,
-    "endFrame": 442,
-    "pauseAfterSec": null
+   "voice": null,
+   "cues": [
+    {
+     "id": "invisible",
+     "text": "看不見",
+     "frame": 578,
+     "sceneFrame": 56
+    },
+    {
+     "id": "particle",
+     "text": "微粒",
+     "frame": 649,
+     "sceneFrame": 127
+    },
+    {
+     "id": "line",
+     "text": "沒做好",
+     "frame": 701,
+     "sceneFrame": 179
+    }
+   ],
+   "stillFrame": 749,
+   "subtitles": [
+    {
+     "zh": "晶圓表面難免留下",
+     "en": "Every wafer ends up with defects you can't see:",
+     "startFrame": 523,
+     "endFrame": 574
+    },
+    {
+     "zh": "看不見的缺陷",
+     "en": "Every wafer ends up with defects you can't see:",
+     "startFrame": 574,
+     "endFrame": 613
+    },
+    {
+     "zh": "可能是一顆微粒",
+     "en": "a particle,",
+     "startFrame": 613,
+     "endFrame": 658
+    },
+    {
+     "zh": "也可能是",
+     "en": "a particle,",
+     "startFrame": 658,
+     "endFrame": 684
+    },
+    {
+     "zh": "一段沒做好的線路",
+     "en": "or a bit of wiring that didn't come out right.",
+     "startFrame": 684,
+     "endFrame": 751
+    }
+   ],
+   "narration": "晶圓表面難免留下看不見的缺陷，可能是一顆微粒，也可能是一段沒做好的線路。"
+  },
+  {
+   "id": "s5",
+   "startFrame": 750,
+   "durationFrames": 120,
+   "startSec": 25,
+   "durationSec": 4,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
    },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
    "cues": [
     {
      "id": "fall",
      "text": "落在",
-     "frame": 378,
-     "sceneFrame": 34
+     "frame": 768,
+     "sceneFrame": 18
     },
     {
      "id": "scrap",
      "text": "報廢",
-     "frame": 430,
-     "sceneFrame": 86
+     "frame": 846,
+     "sceneFrame": 96
     }
    ],
-   "stillFrame": 444,
+   "stillFrame": 869,
    "subtitles": [
     {
      "zh": "缺陷落在哪一顆",
      "en": "Wherever a defect lands,",
-     "startFrame": 351,
-     "endFrame": 403
+     "startFrame": 751,
+     "endFrame": 799
     },
     {
      "zh": "那一顆就可能報廢",
      "en": "that chip may be scrapped.",
-     "startFrame": 403,
-     "endFrame": 451
+     "startFrame": 799,
+     "endFrame": 871
     }
    ],
    "narration": "缺陷落在哪一顆，那一顆就可能報廢。"
   },
   {
-   "id": "s5",
-   "startFrame": 444,
-   "durationFrames": 78,
-   "startSec": 14.8,
-   "durationSec": 2.6,
+   "id": "s6",
+   "startFrame": 870,
+   "durationFrames": 84,
+   "startSec": 29,
+   "durationSec": 2.8,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 454,
-    "endFrame": 501,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
      "id": "ratio",
      "text": "比例",
-     "frame": 465,
-     "sceneFrame": 21
+     "frame": 897,
+     "sceneFrame": 27
     },
     {
      "id": "yield",
      "text": "良率",
-     "frame": 490,
-     "sceneFrame": 46
+     "frame": 928,
+     "sceneFrame": 58
     }
    ],
-   "stillFrame": 512,
+   "stillFrame": 953,
    "subtitles": [
     {
      "zh": "能用的比例",
      "en": "The share that works",
-     "startFrame": 451,
-     "endFrame": 476
+     "startFrame": 871,
+     "endFrame": 909
     },
     {
      "zh": "就叫良率",
      "en": "is called the yield.",
-     "startFrame": 476,
-     "endFrame": 519
+     "startFrame": 909,
+     "endFrame": 955
     }
    ],
    "narration": "能用的比例，就叫良率。"
   },
   {
-   "id": "s6",
-   "startFrame": 512,
-   "durationFrames": 107,
-   "startSec": 17.07,
-   "durationSec": 3.57,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 522,
-    "endFrame": 608,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "cut",
-     "text": "切開",
-     "frame": 524,
-     "sceneFrame": 12
-    },
-    {
-     "id": "probecard",
-     "text": "探針卡",
-     "frame": 549,
-     "sceneFrame": 37
-    },
-    {
-     "id": "each",
-     "text": "每一顆",
-     "frame": 571,
-     "sceneFrame": 59
-    },
-    {
-     "id": "test",
-     "text": "通電",
-     "frame": 588,
-     "sceneFrame": 76
-    }
-   ],
-   "stillFrame": 609,
-   "subtitles": [
-    {
-     "zh": "切開之前",
-     "en": "Before dicing, a probe card",
-     "startFrame": 519,
-     "endFrame": 546
-    },
-    {
-     "zh": "探針卡會把每一顆",
-     "en": "powers up and tests",
-     "startFrame": 546,
-     "endFrame": 580
-    },
-    {
-     "zh": "都通電測過",
-     "en": "every single chip.",
-     "startFrame": 580,
-     "endFrame": 616
-    }
-   ],
-   "narration": "切開之前，探針卡會把每一顆都通電測過。"
-  },
-  {
    "id": "s7",
-   "startFrame": 609,
-   "durationFrames": 105,
-   "startSec": 20.3,
-   "durationSec": 3.5,
+   "startFrame": 954,
+   "durationFrames": 174,
+   "startSec": 31.8,
+   "durationSec": 5.8,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 619,
-    "endFrame": 697,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "good",
-     "text": "好的",
-     "frame": 620,
-     "sceneFrame": 11
+     "id": "key",
+     "text": "關鍵",
+     "frame": 958,
+     "sceneFrame": 4
     },
     {
-     "id": "bad",
-     "text": "壞的",
-     "frame": 630,
-     "sceneFrame": 21
+     "id": "random",
+     "text": "隨機",
+     "frame": 998,
+     "sceneFrame": 44
     },
     {
-     "id": "map",
-     "text": "晶圓地圖",
-     "frame": 670,
-     "sceneFrame": 61
-    }
-   ],
-   "stillFrame": 704,
-   "subtitles": [
-    {
-     "zh": "好的",
-     "en": "Good or bad,",
-     "startFrame": 616,
-     "endFrame": 626
-    },
-    {
-     "zh": "壞的",
-     "en": "Good or bad,",
-     "startFrame": 626,
-     "endFrame": 642
-    },
-    {
-     "zh": "全部記在一張晶圓地圖上",
-     "en": "it all goes onto a wafer map.",
-     "startFrame": 642,
-     "endFrame": 711
-    }
-   ],
-   "narration": "好的、壞的，全部記在一張晶圓地圖上。"
-  },
-  {
-   "id": "s8",
-   "startFrame": 704,
-   "durationFrames": 171,
-   "startSec": 23.47,
-   "durationSec": 5.7,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 714,
-    "endFrame": 867,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "vendor",
-     "text": "廠商公布",
-     "frame": 715,
-     "sceneFrame": 11
-    },
-    {
-     "id": "n5",
-     "text": "量產初期",
-     "frame": 762,
-     "sceneFrame": 58
-    },
-    {
-     "id": "cm2",
-     "text": "每平方公分",
-     "frame": 790,
-     "sceneFrame": 86
-    },
-    {
-     "id": "d0",
-     "text": "大約",
-     "frame": 815,
-     "sceneFrame": 111
-    }
-   ],
-   "stillFrame": 865,
-   "subtitles": [
-    {
-     "zh": "廠商公布過",
-     "en": "A chipmaker disclosed that early 5 nm",
-     "startFrame": 711,
-     "endFrame": 741
-    },
-    {
-     "zh": "5 奈米量產初期",
-     "en": "A chipmaker disclosed that early 5 nm",
-     "startFrame": 741,
-     "endFrame": 787
-    },
-    {
-     "zh": "每平方公分大",
-     "en": "had about 0.1 defects",
-     "startFrame": 787,
-     "endFrame": 816
-    },
-    {
-     "zh": "約 0.1 個缺陷",
-     "en": "per square centimeter.",
-     "startFrame": 816,
-     "endFrame": 867
-    }
-   ],
-   "narration": "廠商公布過，五奈米量產初期，每平方公分大約零點一個缺陷。"
-  },
-  {
-   "id": "s9",
-   "startFrame": 865,
-   "durationFrames": 122,
-   "startSec": 28.83,
-   "durationSec": 4.07,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 870,
-    "endFrame": 973,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "dense",
-     "text": "一樣密",
-     "frame": 880,
-     "sceneFrame": 15
-    },
-    {
-     "id": "eight",
-     "text": "大八倍",
-     "frame": 908,
-     "sceneFrame": 43
+     "id": "big",
+     "text": "越大",
+     "frame": 1045,
+     "sceneFrame": 91
     },
     {
      "id": "hit",
      "text": "被打中",
-     "frame": 930,
-     "sceneFrame": 65
+     "frame": 1058,
+     "sceneFrame": 104
     }
    ],
-   "stillFrame": 977,
+   "stillFrame": 1127,
    "subtitles": [
     {
-     "zh": "缺陷一樣密",
-     "en": "Same defect density,",
-     "startFrame": 867,
-     "endFrame": 895
+     "zh": "關鍵是",
+     "en": "The key: defects land at random.",
+     "startFrame": 955,
+     "endFrame": 974
+    },
+    {
+     "zh": "缺陷是隨機落下的",
+     "en": "The key: defects land at random.",
+     "startFrame": 974,
+     "endFrame": 1027
+    },
+    {
+     "zh": "晶片越大",
+     "en": "The bigger the chip,",
+     "startFrame": 1027,
+     "endFrame": 1054
+    },
+    {
+     "zh": "被打中的機會就越高",
+     "en": "the more likely it gets hit.",
+     "startFrame": 1054,
+     "endFrame": 1129
+    }
+   ],
+   "narration": "關鍵是，缺陷是隨機落下的。晶片越大，被打中的機會就越高。"
+  },
+  {
+   "id": "s8",
+   "startFrame": 1128,
+   "durationFrames": 228,
+   "startSec": 37.6,
+   "durationSec": 7.6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "vendor",
+     "text": "廠商公布",
+     "frame": 1138,
+     "sceneFrame": 10
+    },
+    {
+     "id": "eight",
+     "text": "大八倍",
+     "frame": 1229,
+     "sceneFrame": 101
+    },
+    {
+     "id": "from",
+     "text": "從九成",
+     "frame": 1275,
+     "sceneFrame": 147
+    },
+    {
+     "id": "drop",
+     "text": "不到一半",
+     "frame": 1320,
+     "sceneFrame": 192
+    }
+   ],
+   "stillFrame": 1355,
+   "subtitles": [
+    {
+     "zh": "用廠商公布過的",
+     "en": "Using a defect rate a chipmaker disclosed:",
+     "startFrame": 1129,
+     "endFrame": 1173
+    },
+    {
+     "zh": "缺陷數字估算",
+     "en": "Using a defect rate a chipmaker disclosed:",
+     "startFrame": 1173,
+     "endFrame": 1212
     },
     {
      "zh": "晶片大八倍",
      "en": "a chip 8× bigger",
-     "startFrame": 895,
-     "endFrame": 926
+     "startFrame": 1212,
+     "endFrame": 1245
     },
     {
-     "zh": "被打中的機會也大很多",
-     "en": "is far more likely to be hit.",
-     "startFrame": 926,
-     "endFrame": 984
+     "zh": "能用的就從九成",
+     "en": "a chip 8× bigger",
+     "startFrame": 1245,
+     "endFrame": 1290
+    },
+    {
+     "zh": "掉到可能不到一半",
+     "en": "drops from 90% usable to maybe under half.",
+     "startFrame": 1290,
+     "endFrame": 1357
     }
    ],
-   "narration": "缺陷一樣密，晶片大八倍，被打中的機會也大很多。"
+   "narration": "用廠商公布過的缺陷數字估算，晶片大八倍，能用的就從九成，掉到可能不到一半。"
   },
   {
-   "id": "s10",
-   "startFrame": 977,
-   "durationFrames": 155,
-   "startSec": 32.57,
-   "durationSec": 5.17,
+   "id": "s9",
+   "startFrame": 1356,
+   "durationFrames": 156,
+   "startSec": 45.2,
+   "durationSec": 5.2,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 987,
-    "endFrame": 1110,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "est",
-     "text": "估算",
-     "frame": 987,
-     "sceneFrame": 10
+     "id": "simple",
+     "text": "簡化",
+     "frame": 1374,
+     "sceneFrame": 18
     },
     {
-     "id": "s500",
-     "text": "五百多",
-     "frame": 1041,
-     "sceneFrame": 64
-    },
-    {
-     "id": "l20",
-     "text": "二十幾",
-     "frame": 1095,
-     "sceneFrame": 118
-    }
-   ],
-   "stillFrame": 1122,
-   "subtitles": [
-    {
-     "zh": "估算下來",
-     "en": "By estimate: 500-plus good small chips,",
-     "startFrame": 984,
-     "endFrame": 1010
-    },
-    {
-     "zh": "小晶片好的有五百多顆",
-     "en": "By estimate: 500-plus good small chips,",
-     "startFrame": 1010,
-     "endFrame": 1064
-    },
-    {
-     "zh": "大晶片只剩二十幾顆",
-     "en": "but only 20-some big ones.",
-     "startFrame": 1064,
-     "endFrame": 1129
-    }
-   ],
-   "narration": "估算下來，小晶片好的有五百多顆，大晶片只剩二十幾顆。"
-  },
-  {
-   "id": "s11",
-   "startFrame": 1122,
-   "durationFrames": 165,
-   "startSec": 37.4,
-   "durationSec": 5.5,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 1132,
-    "endFrame": 1266,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "rescue",
-     "text": "救得回來",
-     "frame": 1153,
-     "sceneFrame": 31
-    },
-    {
-     "id": "mem",
-     "text": "記憶體",
-     "frame": 1180,
-     "sceneFrame": 58
-    },
-    {
-     "id": "spare",
-     "text": "備用",
-     "frame": 1211,
-     "sceneFrame": 89
-    },
-    {
-     "id": "broke",
-     "text": "壞掉那排",
-     "frame": 1228,
-     "sceneFrame": 106
-    },
-    {
-     "id": "swap",
-     "text": "換掉",
-     "frame": 1257,
-     "sceneFrame": 135
-    }
-   ],
-   "stillFrame": 1277,
-   "subtitles": [
-    {
-     "zh": "有些壞的還救得回來",
-     "en": "Some bad chips can be saved:",
-     "startFrame": 1129,
-     "endFrame": 1176
-    },
-    {
-     "zh": "記憶體會多做幾排備用",
-     "en": "memory has spare rows,",
-     "startFrame": 1176,
-     "endFrame": 1225
-    },
-    {
-     "zh": "壞掉那排直接換掉",
-     "en": "and a broken row gets swapped out.",
-     "startFrame": 1225,
-     "endFrame": 1284
-    }
-   ],
-   "narration": "有些壞的還救得回來。記憶體會多做幾排備用，壞掉那排直接換掉。"
-  },
-  {
-   "id": "s12",
-   "startFrame": 1277,
-   "durationFrames": 141,
-   "startSec": 42.57,
-   "durationSec": 4.7,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 1287,
-    "endFrame": 1398,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "now",
-     "text": "現在的良率",
-     "frame": 1296,
-     "sceneFrame": 19
+     "id": "each2",
+     "text": "各家",
+     "frame": 1407,
+     "sceneFrame": 51
     },
     {
      "id": "unpub",
      "text": "沒有公布",
-     "frame": 1336,
-     "sceneFrame": 59
-    },
-    {
-     "id": "estimate",
-     "text": "估算",
-     "frame": 1374,
-     "sceneFrame": 97
+     "frame": 1475,
+     "sceneFrame": 119
     }
    ],
-   "stillFrame": 1408,
+   "stillFrame": 1511,
    "subtitles": [
     {
-     "zh": "各家現在的良率",
-     "en": "Today's yields?",
-     "startFrame": 1284,
-     "endFrame": 1319
+     "zh": "這是簡化的估算",
+     "en": "This is a simplified estimate.",
+     "startFrame": 1357,
+     "endFrame": 1403
+    },
+    {
+     "zh": "各家實際的良率",
+     "en": "Actual yields?",
+     "startFrame": 1403,
+     "endFrame": 1451
     },
     {
      "zh": "廠商都沒有公布",
-     "en": "No maker has published them —",
-     "startFrame": 1319,
-     "endFrame": 1357
-    },
-    {
-     "zh": "只能從估算看方向",
-     "en": "estimates only show the direction.",
-     "startFrame": 1357,
-     "endFrame": 1415
+     "en": "No chipmaker has published them.",
+     "startFrame": 1451,
+     "endFrame": 1513
     }
    ],
-   "narration": "各家現在的良率，廠商都沒有公布，只能從估算看方向。"
+   "narration": "這是簡化的估算。各家實際的良率，廠商都沒有公布。"
   },
   {
-   "id": "s13",
-   "startFrame": 1408,
-   "durationFrames": 110,
-   "startSec": 46.93,
-   "durationSec": 3.67,
+   "id": "s10",
+   "startFrame": 1512,
+   "durationFrames": 150,
+   "startSec": 50.4,
+   "durationSec": 5,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 1418,
-    "endFrame": 1505,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
+    {
+     "id": "how",
+     "text": "怎麼辦",
+     "frame": 1543,
+     "sceneFrame": 31
+    },
     {
      "id": "whole",
      "text": "一整顆",
-     "frame": 1450,
-     "sceneFrame": 42
+     "frame": 1577,
+     "sceneFrame": 65
     },
     {
      "id": "split",
      "text": "拆小",
-     "frame": 1478,
-     "sceneFrame": 70
+     "frame": 1611,
+     "sceneFrame": 99
     }
    ],
-   "stillFrame": 1508,
+   "stillFrame": 1661,
    "subtitles": [
     {
-     "zh": "大晶片要硬做一整顆",
-     "en": "Build a big chip in one piece,",
-     "startFrame": 1415,
-     "endFrame": 1467
+     "zh": "那大晶片怎麼辦？",
+     "en": "So what about big chips?",
+     "startFrame": 1513,
+     "endFrame": 1560
+    },
+    {
+     "zh": "硬做一整顆",
+     "en": "Build one in a single piece,",
+     "startFrame": 1560,
+     "endFrame": 1594
     },
     {
      "zh": "還是拆小再拼回去？",
      "en": "or split it and put it back together?",
-     "startFrame": 1467,
-     "endFrame": 1515
+     "startFrame": 1594,
+     "endFrame": 1663
     }
    ],
-   "narration": "大晶片要硬做一整顆，還是拆小再拼回去？"
+   "narration": "那大晶片怎麼辦？硬做一整顆，還是拆小再拼回去？"
   },
   {
-   "id": "s14",
-   "startFrame": 1508,
-   "durationFrames": 134,
-   "startSec": 50.27,
-   "durationSec": 4.47,
+   "id": "s11",
+   "startFrame": 1662,
+   "durationFrames": 144,
+   "startSec": 55.4,
+   "durationSec": 4.8,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 1518,
-    "endFrame": 1634,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1519,
-     "sceneFrame": 11
+     "frame": 1666,
+     "sceneFrame": 4
     },
     {
      "id": "pkg",
      "text": "先進封裝",
-     "frame": 1548,
-     "sceneFrame": 40
+     "frame": 1700,
+     "sceneFrame": 38
     },
     {
      "id": "cm",
      "text": "留言",
-     "frame": 1614,
-     "sceneFrame": 106
+     "frame": 1769,
+     "sceneFrame": 107
     }
    ],
-   "stillFrame": 1632,
+   "stillFrame": 1805,
    "subtitles": [
     {
      "zh": "下一支",
      "en": "Next up: advanced packaging.",
-     "startFrame": 1515,
-     "endFrame": 1533
+     "startFrame": 1663,
+     "endFrame": 1683
     },
     {
      "zh": "來看先進封裝",
      "en": "Next up: advanced packaging.",
-     "startFrame": 1533,
-     "endFrame": 1578
+     "startFrame": 1683,
+     "endFrame": 1724
     },
     {
      "zh": "想要完整解說",
      "en": "Comment \"良率\" for the full notes.",
-     "startFrame": 1578,
-     "endFrame": 1610
+     "startFrame": 1724,
+     "endFrame": 1765
     },
     {
      "zh": "留言良率",
      "en": "Comment \"良率\" for the full notes.",
-     "startFrame": 1610,
-     "endFrame": 1642
+     "startFrame": 1765,
+     "endFrame": 1807
     }
    ],
    "narration": "下一支，來看先進封裝。想要完整解說，留言良率。"
   },
   {
-   "id": "s15",
-   "startFrame": 1632,
+   "id": "s12",
+   "startFrame": 1806,
    "durationFrames": 96,
-   "startSec": 54.4,
+   "startSec": 60.2,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
    "transition": {
-    "type": "fade",
-    "frames": 10
+    "type": "none",
+    "frames": 0
    },
    "camera": null,
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1716,
+   "stillFrame": 1890,
    "subtitles": []
   }
  ]
