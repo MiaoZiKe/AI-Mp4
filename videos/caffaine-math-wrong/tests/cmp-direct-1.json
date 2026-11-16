@@ -1,0 +1,41 @@
+{
+  "id": "cmp-direct-1",
+  "k": "cmp",
+  "m": "direct",
+  "run": 1,
+  "prompt": "9.11 和 9.9，哪一個比較大？只回答一個數字。",
+  "truth": "9.9",
+  "tool": "Gemini（Gemini API，沒有開搜尋與程式執行工具）",
+  "model": "gemini-3.5-flash",
+  "modelVersion": "gemini-3.6-flash",
+  "sentAtUTC": "2026-11-16T19:25:02.456Z",
+  "sentAtTaipei": "2026-11-17 03:25:02",
+  "elapsedSec": 20.5,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "9.11 和 9.9，哪一個比較大？只回答一個數字。"
+          }
+        ]
+      }
+    ]
+  },
+  "answer": "9.9",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 21,
+    "candidatesTokenCount": 3,
+    "totalTokenCount": 233,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21
+      }
+    ],
+    "thoughtsTokenCount": 209,
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "cnt2-direct-1",
+  "k": "cnt2",
+  "m": "direct",
+  "run": 1,
+  "prompt": "英文單字 bookkeeper 裡有幾個字母 e？只回答數字。",
+  "truth": "3",
+  "tool": "Gemini（Gemini API，沒有開搜尋與程式執行工具）",
+  "model": "gemini-3.5-flash",
+  "modelVersion": "gemini-3.6-flash",
+  "sentAtUTC": "2026-11-16T19:25:47.115Z",
+  "sentAtTaipei": "2026-11-17 03:25:47",
+  "elapsedSec": 21.6,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "英文單字 bookkeeper 裡有幾個字母 e？只回答數字。"
+          }
+        ]
+      }
+    ]
+  },
+  "answer": "3",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 17,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 233,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 17
+      }
+    ],
+    "thoughtsTokenCount": 215,
+    "serviceTier": "standard"
+  }
+}

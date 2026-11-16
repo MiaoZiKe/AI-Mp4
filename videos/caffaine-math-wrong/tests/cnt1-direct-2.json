@@ -1,0 +1,41 @@
+{
+  "id": "cnt1-direct-2",
+  "k": "cnt1",
+  "m": "direct",
+  "run": 2,
+  "prompt": "英文單字 strawberry 裡有幾個字母 r？只回答數字。",
+  "truth": "3",
+  "tool": "Gemini（Gemini API，沒有開搜尋與程式執行工具）",
+  "model": "gemini-3.5-flash",
+  "modelVersion": "gemini-3.6-flash",
+  "sentAtUTC": "2026-11-16T19:25:46.259Z",
+  "sentAtTaipei": "2026-11-17 03:25:46",
+  "elapsedSec": 19.7,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "英文單字 strawberry 裡有幾個字母 r？只回答數字。"
+          }
+        ]
+      }
+    ]
+  },
+  "answer": "3",
+  "finishReason": "STOP",
+  "usage": {
+    "promptTokenCount": 16,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 265,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16
+      }
+    ],
+    "thoughtsTokenCount": 248,
+    "serviceTier": "standard"
+  }
+}
