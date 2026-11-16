@@ -108,6 +108,7 @@
 - 招牌音：程式合成，八位元／小機器人音色，**柔和版是預設**（`sfx-caffaine.py`；舊版加 `--classic`）：撞擊低頻起音放慢、音量收、鐘聲高頻收、掃頻起音放慢、整體兩段 4.6 kHz 低通；8 個字母配 8 個音的旋律與撞擊時間點（第 16、30、62 幀）不變。
 - **響度：片尾段約 −14 LUFS（和正片 −16 差約 2 LU，不會突然變大聲），true peak ≤ −2 dBTP**，limiter latency=1；`mix-endsting.py` 預設值已改。實測柔和版：−13.9 LUFS、−2.8 dBTP。另附只有片尾音效的 MP3（`caffaine-endsting-soft.mp3`）。
 - 片尾卡放「留言『關鍵字』拿完整資料」；念稿最後一句念出關鍵字。
+- **render 之後一定要疊招牌音**（2026/11/16 Andy：「影片後 LOGO 的音效沒了」，made-by-ai、two-answers 渲染完片尾沒聲音）：`render` 不會自動疊，要用 storyboard.json 最後一幕的 startFrame÷30 當 `--at`，跑 `mix-endsting.py out/caffaine-endcard-standalone/sting-soft.wav out/<slug>-sting.wav --src out/<slug>.no-sting.mp4 --at <秒> --dur <總長>`，再把影像串流複製、音軌換成這條。交件前量片尾段 ≈ −14 LUFS 才算有音效。
 
 **內容動畫**
 - 流動類效果（資料流、訊號、工具呼叫）要有密度、拖尾、方向感，跟旁白同步，結束時慢慢減速。
