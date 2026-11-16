@@ -457,7 +457,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
   // 「AI 挑下一個字」示意：候選字長條 ＋ 指標跳動 ＋ 落定，兩輪結果並排留在畫面上
   if (Pn.pick) {
     const k = Pn.pick, p = k.p, o = 1 - O(f, k.out - 8, 8);
-    const opts = p.options as { t: string; h: number }[], rounds = p.rounds as { label: string; at: any; pick: number; color: string }[];
+    const opts = p.options as { t: string; h: number }[], rounds = p.rounds as { label: string; at: any; from?: any; pick: number; color: string }[];
     const tG = k.at(p.growAt, k.in + 10), tR = rounds.map((r, i) => k.at(r.at, k.in + 40 + i * 50));
     const tS = rounds.map((r, i) => (r.from ? Math.min(k.at(r.from, tR[i] - 16), tR[i] - 16) : tR[i] - 16));
     const ri = tR.reduce((a, t, i) => (f >= tS[i] ? i : a), 0), locked = f >= tR[ri], hopping = f >= tS[ri] && !locked;
@@ -472,7 +472,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
             <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 8 }}>
               <div style={{ ...zh, fontWeight: 900, fontSize: 48, color: T.ink }}>{p.stem}</div>
               <div style={{ minWidth: 250, borderBottom: `6px dashed ${locked ? "transparent" : T.ink3}`, textAlign: "center" }}>
-                <span data-ov="落字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 48, color: col(rounds[ri].color).text, background: locked ? col(rounds[ri].color).soft : "transparent", borderRadius: 14, padding: "0 14px", ...(locked ? bounce(f, tR[ri]) : { opacity: 0 }) }}>{word || "　"}</span>
+                <span style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 48, color: col(rounds[ri].color).text, background: locked ? col(rounds[ri].color).soft : "transparent", borderRadius: 14, padding: "0 14px", ...(locked ? bounce(f, tR[ri]) : { opacity: 0 }) }}>{word || "　"}</span>
               </div>
             </div>
             <div style={{ display: "flex", marginTop: 10, height: BARH + 78 }}>
