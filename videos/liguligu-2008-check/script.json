@@ -1,0 +1,644 @@
+{
+  "slug": "liguligu-2008-check",
+  "title": "負成長、大跌，像 2008 嗎？",
+  "asOf": "2026/11/16",
+  "styleVersion": 3,
+  "stage": "dossier",
+  "channel": {
+    "name": "哩股哩股",
+    "tag": "查到底",
+    "slogan": "數字，查過再信"
+  },
+  "news": {
+    "layout": "fill",
+    "mark": "LIGULIGU",
+    "section": "國際",
+    "sectionEn": "INTERNATIONAL",
+    "places": {}
+  },
+  "voice": {
+    "voiceName": "Charon",
+    "model": "gemini-3.8-flash-tts",
+    "mode": "take",
+    "profile": "liguligu",
+    "note": "API 整篇一次生成（本輪未送）"
+  },
+  "cover": {
+    "title": [
+      "負成長",
+      "像 2008？"
+    ],
+    "sub": "日本 GDP 與股市大跌，對得上嗎"
+  },
+  "audio": {
+    "bgm": false,
+    "sfx": false
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration": "日本公布，七到九月的經濟負成長。年率只差 0.1%。",
+      "tts": "日本公布，七到九月的經濟負成長。年率只差零點一個百分點。",
+      "subtitle": {
+        "zh": "日本公布\n七到九月經濟負成長\n年率只差 0.1%",
+        "en": "Japan reports | a Jul–Sep contraction | of just 0.1% annualized."
+      },
+      "keywords": [
+        "負成長",
+        "0.1%"
+      ],
+      "cues": [
+        {
+          "id": "jp",
+          "text": "日本公布"
+        },
+        {
+          "id": "neg",
+          "text": "負成長"
+        },
+        {
+          "id": "ann",
+          "text": "年率"
+        },
+        {
+          "id": "pct",
+          "text": "0.1%"
+        }
+      ],
+      "beat": "hook",
+      "component": "DossierScene",
+      "props": {
+        "panel": "hook",
+        "kicker": "日本・7–9 月 GDP 速報",
+        "span": "2026 年 7–9 月",
+        "num": "0.1",
+        "numText": "%",
+        "line2": "日本年率負成長",
+        "mark": "負成長",
+        "markAt": "neg",
+        "doc": {
+          "title": "GDP 速報",
+          "date": "2026/11/16",
+          "field": "年率：",
+          "fill": "▲0.1%",
+          "fillPx": 30,
+          "fillAt": "neg",
+          "note": "示意，非文件原件",
+          "scanAts": [
+            "start",
+            "pct-6"
+          ],
+          "frameAt": "start+10",
+          "flashAt": "jp+30"
+        },
+        "callout": {
+          "label": "名目 GDP",
+          "text": "+0.4%",
+          "at": "start+20",
+          "markAt": "pct+4"
+        },
+        "tag": {
+          "kind": "report",
+          "text": "媒體轉述",
+          "at": "pct+14"
+        },
+        "news": {
+          "dateline": "TOKYO・2026/11/16",
+          "lt": "事件"
+        }
+      },
+      "sources": [
+        "日本內閣府速報（原文未讀，解說轉述）"
+      ]
+    },
+    {
+      "id": "s02",
+      "narration": "年率，是把這一季的變化，換算成一整年。所以這是個很小的負數。",
+      "tts": "年率，是把這一季的變化，換算成一整年。所以這是個很小的負數。",
+      "subtitle": {
+        "zh": "年率\n是把這一季的變化\n換算成一整年\n所以是個很小的負數",
+        "en": "Annualized: | this quarter's change | scaled to a full year. | So it is a very small negative."
+      },
+      "keywords": [
+        "換算"
+      ],
+      "cues": [
+        {
+          "id": "ann",
+          "text": "年率"
+        },
+        {
+          "id": "cv",
+          "text": "換算"
+        },
+        {
+          "id": "yr",
+          "text": "一整年"
+        },
+        {
+          "id": "sm",
+          "text": "很小"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "年率",
+        "op": "≠",
+        "opLabel": "不等於",
+        "b": "全年",
+        "aAt": "ann+4",
+        "opAt": "cv-4",
+        "bAt": "yr",
+        "rows": [
+          {
+            "text": "只是換算",
+            "at": "cv",
+            "tag": {
+              "kind": "confirmed",
+              "text": "定義",
+              "at": "cv+8"
+            }
+          },
+          {
+            "text": "差距很小",
+            "at": "sm",
+            "tag": {
+              "kind": "report",
+              "text": "媒體轉述",
+              "at": "sm+4"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "TOKYO・2026/11/16",
+          "lt": "名詞"
+        }
+      },
+      "sources": [
+        "NOVAIST 解說（原文未讀）"
+      ]
+    },
+    {
+      "id": "s03",
+      "narration": "而且企業的設備投資，比上一季還多了 1.6%。",
+      "tts": "而且企業的設備投資，比上一季還多了一點六趴。",
+      "subtitle": {
+        "zh": "而且企業的設備投資\n比上一季還多了 1.6%",
+        "en": "Yet corporate capex | rose 1.6% from the prior quarter."
+      },
+      "keywords": [
+        "1.6%",
+        "設備投資"
+      ],
+      "cues": [
+        {
+          "id": "cap",
+          "text": "設備投資"
+        },
+        {
+          "id": "prev",
+          "text": "上一季"
+        },
+        {
+          "id": "num",
+          "text": "1.6%"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "claim",
+        "head": {
+          "text": "設備投資還在增加",
+          "mark": "還在增加",
+          "at": "start-16",
+          "markAt": "cap+10"
+        },
+        "photo": {
+          "name": "docs",
+          "caption": "資料（示意照片）",
+          "date": "Q3",
+          "at": "start-22",
+          "dateAt": "cap+26"
+        },
+        "quote": {
+          "by": "日本經濟研究機構解說",
+          "byAt": "cap-4",
+          "pre": "比上一季增",
+          "big": "1.6",
+          "post": "%",
+          "at": "prev-4",
+          "bigAt": "num",
+          "masthead": {
+            "name": "研究機構解說",
+            "date": "11/16"
+          }
+        },
+        "tag": {
+          "kind": "report",
+          "text": "研究機構解說",
+          "at": "num+6"
+        },
+        "news": {
+          "dateline": "TOKYO・2026/11/16",
+          "lt": "查證"
+        }
+      },
+      "sources": [
+        "ニッセイ基礎研 QE 速報解說（原文未讀）"
+      ]
+    },
+    {
+      "id": "s04",
+      "narration": "十一月初全球股市大跌，有人說，這很像 2008 年。美國銀行的策略主管說，今年的資產走勢，很像 2007 到 2008 年。",
+      "tts": "十一月初全球股市大跌，有人說，這很像二零零八年。美國銀行的策略主管說，今年的資產走勢，很像二零零七到二零零八年。",
+      "subtitle": {
+        "zh": "十一月初全球股市大跌\n有人說，這很像 2008 年\n美銀策略主管說\n今年的資產走勢\n很像 2007 到 2008 年",
+        "en": "Global stocks fell in early November. | Some say it looks like 2008. | A BofA strategist says this year's | asset moves resemble 2007–08."
+      },
+      "keywords": [
+        "2008",
+        "很像"
+      ],
+      "cues": [
+        {
+          "id": "fall",
+          "text": "股市大跌"
+        },
+        {
+          "id": "say",
+          "text": "有人說"
+        },
+        {
+          "id": "bofa",
+          "text": "美銀"
+        },
+        {
+          "id": "like",
+          "text": "很像"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "claim",
+        "head": {
+          "text": "有人說很像 2008",
+          "mark": "2008",
+          "at": "start-16",
+          "markAt": "say+10"
+        },
+        "photo": {
+          "name": "markets",
+          "caption": "看盤螢幕（示意照片）",
+          "date": "11 月",
+          "at": "start-22",
+          "dateAt": "say+4"
+        },
+        "quote": {
+          "by": "美銀策略主管（分析推測）",
+          "byAt": "bofa-4",
+          "pre": "走勢像 2007 到",
+          "big": "2008",
+          "post": "年",
+          "at": "bofa-6",
+          "bigAt": "like+20",
+          "masthead": {
+            "name": "分析師說法",
+            "date": "2026"
+          }
+        },
+        "tag": {
+          "kind": "none",
+          "text": "分析推測",
+          "at": "bofa+10"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11",
+          "lt": "外界怎麼說"
+        }
+      },
+      "sources": [
+        "AP 11/6；allmind 轉述（原文未讀）"
+      ]
+    },
+    {
+      "id": "s05",
+      "narration": "不過 2008 年是銀行和房貸先出事，美股大盤全年跌了 38.5%。這次，美聯社報導的導火線，是市場擔心 AI 投資。",
+      "tts": "不過二零零八年是銀行和房貸先出事，美股大盤全年跌了三十八點五趴。這次，美聯社報導的導火線，是市場擔心 AI 投資。",
+      "subtitle": {
+        "zh": "不過 2008 年\n是銀行和房貸先出事\n美股大盤全年跌 38.5%\n這次的導火線\n是市場擔心 AI 投資",
+        "en": "In 2008, banks and mortgages broke first; | the S&P 500 fell 38.5% that year. | This time, AP says the trigger | is worry over AI spending."
+      },
+      "keywords": [
+        "38.5%",
+        "AI 投資"
+      ],
+      "cues": [
+        {
+          "id": "y08",
+          "text": "2008 年"
+        },
+        {
+          "id": "bank",
+          "text": "銀行和房貸"
+        },
+        {
+          "id": "fell",
+          "text": "38.5%"
+        },
+        {
+          "id": "this",
+          "text": "這次"
+        },
+        {
+          "id": "ai",
+          "text": "AI 投資"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "當年",
+        "op": "vs",
+        "opLabel": "起因",
+        "b": "現在",
+        "aAt": "y08+4",
+        "opAt": "fell",
+        "bAt": "this",
+        "rows": [
+          {
+            "text": "銀行房貸出事",
+            "at": "bank",
+            "tag": {
+              "kind": "report",
+              "text": "歷史數據",
+              "at": "fell+8"
+            }
+          },
+          {
+            "text": "導火線 AI 疑慮",
+            "at": "ai",
+            "tag": {
+              "kind": "report",
+              "text": "美聯社報導",
+              "at": "ai+8"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "NEW YORK・2026/11",
+          "lt": "對照"
+        }
+      },
+      "sources": [
+        "標普五百 2008；AP 2026/11/6（原文未讀）"
+      ]
+    },
+    {
+      "id": "s06",
+      "narration": "德意志銀行的看法不同，認為現在的結構，衝擊比較難經由銀行擴散。",
+      "tts": "德意志銀行的看法不同，認為現在的結構，衝擊比較難經由銀行擴散。",
+      "subtitle": {
+        "zh": "德意志銀行的看法不同\n認為現在的結構\n衝擊比較難經由銀行擴散",
+        "en": "Deutsche Bank sees it differently: | today's structure makes shocks | harder to spread via banks."
+      },
+      "keywords": [
+        "難經由銀行擴散"
+      ],
+      "cues": [
+        {
+          "id": "db",
+          "text": "德意志銀行"
+        },
+        {
+          "id": "diff",
+          "text": "不同"
+        },
+        {
+          "id": "struct",
+          "text": "現在的結構"
+        },
+        {
+          "id": "spread",
+          "text": "擴散"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "美銀策略主管",
+          "doc": "分析推測",
+          "big": "很像",
+          "src": "2007–08 年走勢",
+          "headAt": "start-20",
+          "at": "db-8",
+          "bigAt": "db",
+          "srcAt": "db+6",
+          "tag": {
+            "kind": "none",
+            "text": "分析推測",
+            "at": "db+10"
+          }
+        },
+        "right": {
+          "head": "德意志銀行",
+          "big": [
+            "難擴散",
+            "到銀行"
+          ],
+          "src": "2026/11/3 研究報告（轉存）",
+          "headAt": "start-20",
+          "at": "struct",
+          "bigAt": "struct+4",
+          "srcAt": "spread",
+          "tag": {
+            "kind": "none",
+            "text": "分析推測（原文未讀）",
+            "at": "spread+4"
+          },
+          "masthead": {
+            "name": "研究報告",
+            "date": "11/3",
+            "at": "struct"
+          }
+        },
+        "mid": {
+          "text": "？",
+          "at": "diff+6"
+        },
+        "news": {
+          "dateline": "FRANKFURT・2026/11/3",
+          "lt": "兩種說法"
+        }
+      },
+      "sources": [
+        "德銀 2026/11/3（轉存 PDF，原文未讀）"
+      ]
+    },
+    {
+      "id": "s07",
+      "narration": "所以像不像，目前還沒有定論。12 月 8 日，日本會公布二次速報，數字可能修正。",
+      "tts": "所以像不像，目前還沒有定論。十二月八日，日本會公布二次速報，數字可能修正。",
+      "subtitle": {
+        "zh": "所以像不像\n目前還沒有定論\n12 月 8 日二次速報\n數字可能修正",
+        "en": "So, is it like 2008? Not settled. | A second estimate is due Dec 8; | the figures may be revised."
+      },
+      "keywords": [
+        "沒有定論",
+        "12 月 8 日"
+      ],
+      "cues": [
+        {
+          "id": "so",
+          "text": "像不像"
+        },
+        {
+          "id": "un",
+          "text": "沒有定論"
+        },
+        {
+          "id": "dec",
+          "text": "12 月 8 日"
+        },
+        {
+          "id": "rev",
+          "text": "修正"
+        }
+      ],
+      "beat": "payoff",
+      "component": "DossierScene",
+      "props": {
+        "panel": "pending",
+        "left": {
+          "photo": {
+            "name": "docs",
+            "caption": "資料（示意照片）",
+            "at": "start-20"
+          },
+          "row": "12/8 速報",
+          "rowAt": "dec"
+        },
+        "right": {
+          "title": "二次速報",
+          "field": "（未公布）",
+          "note": "示意，非文件原件",
+          "at": "start-16",
+          "titleAt": "start-12",
+          "frameAt": "un+6",
+          "row": "可能修正",
+          "rowAt": "rev"
+        },
+        "tag": {
+          "kind": "pending",
+          "text": "截至 2026/11/16 尚未確定",
+          "at": "rev+4"
+        },
+        "news": {
+          "dateline": "TOKYO・2026/11/16",
+          "lt": "還不知道"
+        }
+      },
+      "sources": [
+        "日本內閣府二次速報 12/8（解說轉述）"
+      ]
+    },
+    {
+      "id": "s08",
+      "narration": "想看完整對照，留言日本。",
+      "tts": "想看完整對照，留言日本。",
+      "subtitle": {
+        "zh": "想看完整對照\n留言日本",
+        "en": "For the full comparison, | comment \"Japan\"."
+      },
+      "keywords": [
+        "留言日本"
+      ],
+      "cues": [
+        {
+          "id": "fc",
+          "text": "完整對照"
+        },
+        {
+          "id": "cm",
+          "text": "留言"
+        },
+        {
+          "id": "jp",
+          "text": "日本"
+        }
+      ],
+      "beat": "cta",
+      "component": "DossierScene",
+      "props": {
+        "panel": "ask",
+        "head": {
+          "lines": [
+            "像不像 2008",
+            "還沒定案"
+          ],
+          "marks": [
+            "像不像",
+            "還沒定案"
+          ],
+          "at": "start-18",
+          "markAts": [
+            "fc+4",
+            "cm+2"
+          ]
+        },
+        "cta": {
+          "text": "留言「日本」拿完整資料",
+          "at": "jp"
+        },
+        "next": {
+          "label": "下一集",
+          "at": "fc+8",
+          "photo": {
+            "name": "markets",
+            "caption": "示意照片",
+            "at": "fc+12"
+          },
+          "title": "12/8 日本二次速報",
+          "titleAt": "cm",
+          "frameAt": "jp+6"
+        },
+        "news": {
+          "dateline": "TOKYO・2026/11/16",
+          "lt": "提問"
+        }
+      },
+      "sources": [
+        "日本內閣府 12/8；研究整理"
+      ]
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "beat": "cta",
+      "component": "EndCard",
+      "silent": true,
+      "durationSec": 3.6,
+      "props": {
+        "panel": "end",
+        "endCard": {
+          "comment": "日本",
+          "next": "12/8 日本二次速報"
+        }
+      },
+      "sources": []
+    }
+  ],
+  "thesis": "負成長、大跌像 2008？數字只對上一部分"
+}
