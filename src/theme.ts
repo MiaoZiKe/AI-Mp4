@@ -826,6 +826,15 @@ export const THEME_ISO = {
   weight: { title: 900, strong: 800, body: 600 },
   /** 卡片厚度（px）與柔影 */
   depth: { card: 10, tile: 14, soft: "0 28px 48px rgba(27,37,69,0.13)" },
+  /** isoVersion 6（IsoVariety.tsx）每一段的色調：底色漸層 bg0→bg1、頂底色帶 band、重點色 accent（取自 color.*）、紋理 tex（dots 圓點／diag 斜線／grid 方格／plus 十字／dash 虛線／bigdots 大圓點） */
+  tones: {
+    event: { bg0: "#EEF3FF", bg1: "#F8F3FF", band: "#CFC9FB", accent: "#5566F0", tex: "dots" },
+    principle: { bg0: "#D8F4EB", bg1: "#EAFAF4", band: "#B2EAD9", accent: "#19A88A", tex: "diag" },
+    bug: { bg0: "#FFE3DB", bg1: "#FFF0EB", band: "#FFAE9C", accent: "#FF7A5C", tex: "grid" },
+    fix: { bg0: "#DCEFFC", bg1: "#EAF6FE", band: "#BFE3FA", accent: "#2F9BE0", tex: "plus" },
+    unknown: { bg0: "#ECE7F3", bg1: "#F6F2FA", band: "#D5ACEC", accent: "#B565D9", tex: "dash" },
+    claim: { bg0: "#FFF2C6", bg1: "#FFF9E2", band: "#FFE08A", accent: "#E3B23A", tex: "bigdots" },
+  } as Record<string, { bg0: string; bg1: string; band: string; accent: string; tex: string }>,
   /** 動作（幀）：鏡頭移動 18、卡片飛行 14、彈出／蓋章 5、退場 8、螢光標記 9、劃線 7、打字每字 2、錯開 4；飛行弧高 px */
   motion: { cam: 18, fly: 14, slam: 5, exit: 8, mark: 9, strike: 7, step: 2, stagger: 4, arc: 110 },
 } as const;
