@@ -16,7 +16,7 @@
 | 片 | 狀態 | 下一步 |
 |---|---|---|
 | liguligu-nvda-kress | 有聲完整版已做（25.4 秒，Charon／gemini-3.8-flash-tts，API 1 次請求）；網站用版本在 out/web/liguligu-nvda-kress/（mp4、cover.jpg、voice.mp3，2.5MB）；文章 JSON 念稿已更新為現行 5 句 | 主控放網站；人耳確認口音（捲舌指標差距 4.3 kHz 偏高）與語速 |
-| liguligu-power-bill | 同上；第 3 鏡標籤「官方原則（監察報告轉述）」 | 同上；真錄音若讓片長 >30 秒，回報主控請 Andy 決定砍句 |
+| liguligu-power-bill | 有聲完整版已做（29.1 秒，片尾卡 25.5 秒起；Charon／gemini-3.8-flash-tts，API 1 次請求）；網站用版本在 out/web/liguligu-power-bill/（mp4、cover.jpg、voice.mp3，4.3MB）；文章 JSON 念稿已更新為現行 7 句；第 3 鏡標籤「官方原則（監察報告轉述）」 | 主控放網站；人耳確認口音（捲舌指標差距 3.9 kHz）與語速（4.9 音節/秒）；片長 29.1 秒未超 32 秒 |
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
-| 文章 JSON | jensen、power-bill 已交（power-bill 念稿是舊版） | 配音後更新 power-bill、補 nvda-kress 新稿版 |
+| 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
