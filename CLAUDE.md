@@ -127,6 +127,7 @@ Background、Header、Subtitle、EndCard、TermCard、FlowRow、CompareSplit、B
 - script.json 頂層 `voice: { voiceName, profile, languageCode?, candidates?, style?（舊片） }`；每幕可加 `tts`（念稿版，數字、縮寫改成唸法）
 - 停頓（v2）：換幕人聲間隔預設 0.15 秒；script.json 每幕可設 `pauseAfter`（本幕結束到下一幕開口的整段秒數；鉤子後約 0.25、數字或反轉前後 0.3–0.5），每支最多 3 處、每處 ≤0.7 秒。v2 切檔只去頭尾靜音（各留 40ms）不逐段 loudnorm，align 會把各段依時間軸疊成一條 `public/audio/<slug>/voice.wav` 再整條做兩段式 loudnorm（−16 LUFS），畫面只播這一條。
 - `npm run validate <slug>` 先檢查結構、字數、元件 props、總長估算，0 error 才進 TTS
+- 片長與停頓（2026/11/16 使用者，全頻道）：短片 45–60 秒、旁白 180–260 字不加速；段落間停 0.6–0.8 秒、句間至少 0.3 秒；數字 ≤5、事實 ≤6（docs/channels/tanqing-shuoai.md）。
 - 送 API 前逐句印出 tts 全文檢查（2026/11/16 使用者：不准有「欸」、句首不用英文字母、AI 不拆成「A I」，見 docs/channels/tanqing-shuoai.md 最後一節）。
 - 讀法規則（只改送配音的 `tts`，字幕維持原文）：兩個標點之間 ≤26 字（超過加逗號）；數字、%、$ 寫成唸法（二零二六、四趴、四點三億美元），英文縮寫拆字母（M S T R）或改中文，英文與中文之間留半形空白；會念錯的多音字換同義詞；整篇一次生成、各幕空一行（tts.mjs 自動）。validate 對念稿版逐條警告，確定念得對的詞放 pronunciation.md 標題含「白名單」的一節（反引號包住）。
 - 回讀校驗＋自動重生：`npm run tts` 合成完自動校驗新做的幕——CTC 對齊信心 < 0.5（預設 `--verify=fa`，本機不花請求）或 Gemini 聽寫 CER > 15%（`--verify=asr|both`，花文字模型請求）的幕自動重生一次（等同 `--only`，合併成一次 TTS 請求；每支最多 `--regen-max=3` 幕），重生後再校驗、變差就還原原音檔；音色／模型／念稿已改的幕不單獨重生。`--no-regen` 只校驗、`--verify=off` 全關、`--check` 不合成只校驗現有音檔。結果寫 `videos/<slug>/tts-verify.json` 與 tts-check.md 的「自動重生紀錄」。仍不合格的幕要人耳試聽。
