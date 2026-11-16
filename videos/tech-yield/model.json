@@ -1,0 +1,53 @@
+{
+ "name": "tech-yield：畫面全部在 2D 圖層 art: yield（HudYield.tsx），這份只給引擎最小結構；由 gen-script.mjs 產生",
+ "unit": "cm",
+ "size": {
+  "w": 30,
+  "h": 30,
+  "r": 1,
+  "t": 0.6
+ },
+ "palette": {
+  "wafer": "#C9D6EA"
+ },
+ "materials": {
+  "m": {
+   "kind": "std",
+   "color": "wafer",
+   "rough": 0.5,
+   "metal": 0.2
+  }
+ },
+ "layers": [
+  {
+   "id": "w",
+   "z": 0,
+   "k": 0
+  }
+ ],
+ "parts": [
+  {
+   "id": "dummy",
+   "layer": "w",
+   "shape": "box",
+   "size": [
+    0.01,
+    0.01,
+    0.01
+   ],
+   "mat": "m"
+  }
+ ],
+ "anchors": {
+  "c": {
+   "layer": "w",
+   "p": [
+    0,
+    0,
+    0
+   ],
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

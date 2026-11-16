@@ -1,0 +1,650 @@
+{
+  "slug": "tech-yield",
+  "title": "晶圓良率：大晶片為什麼比較吃虧（科技透明圈 第 4 支）",
+  "asOf": "2026/11/17",
+  "styleVersion": 3,
+  "stage": "three",
+  "channel": {
+    "name": "科技透明圈",
+    "tag": "放大來看",
+    "slogan": "一支講透一件事"
+  },
+  "hudSkin": "light",
+  "voice": {
+    "voiceName": "Iapetus",
+    "model": "gemini-2.5-flash-preview-tts",
+    "mode": "take",
+    "languageCode": "cmn-TW",
+    "profile": "tech-b",
+    "_說明": "念稿定版：docs/prompts/tech-yield-旁白.txt；API 整篇 1 次請求"
+  },
+  "hud": {
+    "levels": [
+      {
+        "id": "yield",
+        "label": "晶圓良率",
+        "en": "WAFER YIELD",
+        "field": "40 cm",
+        "ruler": "10 cm",
+        "art": "yield",
+        "readout": false,
+        "note": "查證截至 2026/11/17",
+        "cues": {
+          "s1_start": "s1:start",
+          "s1_end": "s1:end",
+          "s1_exit": "s1:exit",
+          "s1_same": "s1:same",
+          "s1_hook": "s1:hook",
+          "s1_half": "s1:half",
+          "s2_start": "s2:start",
+          "s2_end": "s2:end",
+          "s2_exit": "s2:exit",
+          "s2_printed": "s2:printed",
+          "s2_invisible": "s2:invisible",
+          "s3_start": "s3:start",
+          "s3_end": "s3:end",
+          "s3_exit": "s3:exit",
+          "s3_particle": "s3:particle",
+          "s3_line": "s3:line",
+          "s4_start": "s4:start",
+          "s4_end": "s4:end",
+          "s4_exit": "s4:exit",
+          "s4_fall": "s4:fall",
+          "s4_scrap": "s4:scrap",
+          "s5_start": "s5:start",
+          "s5_end": "s5:end",
+          "s5_exit": "s5:exit",
+          "s5_ratio": "s5:ratio",
+          "s5_yield": "s5:yield",
+          "s6_start": "s6:start",
+          "s6_end": "s6:end",
+          "s6_exit": "s6:exit",
+          "s6_cut": "s6:cut",
+          "s6_probecard": "s6:probecard",
+          "s6_each": "s6:each",
+          "s6_test": "s6:test",
+          "s7_start": "s7:start",
+          "s7_end": "s7:end",
+          "s7_exit": "s7:exit",
+          "s7_good": "s7:good",
+          "s7_bad": "s7:bad",
+          "s7_map": "s7:map",
+          "s8_start": "s8:start",
+          "s8_end": "s8:end",
+          "s8_exit": "s8:exit",
+          "s8_vendor": "s8:vendor",
+          "s8_n5": "s8:n5",
+          "s8_cm2": "s8:cm2",
+          "s8_d0": "s8:d0",
+          "s9_start": "s9:start",
+          "s9_end": "s9:end",
+          "s9_exit": "s9:exit",
+          "s9_dense": "s9:dense",
+          "s9_eight": "s9:eight",
+          "s9_hit": "s9:hit",
+          "s10_start": "s10:start",
+          "s10_end": "s10:end",
+          "s10_exit": "s10:exit",
+          "s10_est": "s10:est",
+          "s10_s500": "s10:s500",
+          "s10_l20": "s10:l20",
+          "s11_start": "s11:start",
+          "s11_end": "s11:end",
+          "s11_exit": "s11:exit",
+          "s11_rescue": "s11:rescue",
+          "s11_mem": "s11:mem",
+          "s11_spare": "s11:spare",
+          "s11_broke": "s11:broke",
+          "s11_swap": "s11:swap",
+          "s12_start": "s12:start",
+          "s12_end": "s12:end",
+          "s12_exit": "s12:exit",
+          "s12_now": "s12:now",
+          "s12_unpub": "s12:unpub",
+          "s12_estimate": "s12:estimate",
+          "s13_start": "s13:start",
+          "s13_end": "s13:end",
+          "s13_exit": "s13:exit",
+          "s13_whole": "s13:whole",
+          "s13_split": "s13:split",
+          "s14_start": "s14:start",
+          "s14_end": "s14:end",
+          "s14_exit": "s14:exit",
+          "s14_next": "s14:next",
+          "s14_pkg": "s14:pkg",
+          "s14_cm": "s14:cm"
+        }
+      }
+    ],
+    "theme": "dark",
+    "schematic": {
+      "text": "Schematic – not to scale",
+      "zh": "示意圖，非實際比例・格線與切割道為示意"
+    },
+    "maxLabels": 4,
+    "smallPx": 30,
+    "layout": "fill",
+    "scanBand": 0.3
+  },
+  "cover": {
+    "title": [
+      "同一片晶圓",
+      "大晶片吃虧"
+    ],
+    "sub": "晶圓良率",
+    "frame": 40
+  },
+  "sample": false,
+  "scenes": [
+    {
+      "id": "s1",
+      "beat": "hook",
+      "para": 1,
+      "narration": "同一片晶圓，同樣的缺陷，小晶片九成能用，大晶片可能不到一半。",
+      "tts": "同一片晶圓，同樣的缺陷，小晶片九成能用，大晶片可能不到一半。",
+      "subtitle": {
+        "zh": "同一片晶圓，同樣的缺陷\n小晶片九成能用\n大晶片可能不到一半",
+        "en": "Same wafer, same defects: | about 90% of small chips work, | big chips maybe under half."
+      },
+      "keywords": [
+        "九成",
+        "不到一半"
+      ],
+      "cues": [
+        {
+          "id": "same",
+          "text": "同樣的缺陷"
+        },
+        {
+          "id": "hook",
+          "text": "九成"
+        },
+        {
+          "id": "half",
+          "text": "不到一半"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "hook": {
+          "kicker": "同一片晶圓",
+          "title": "9成／不到一半",
+          "size": 120,
+          "top": 236
+        },
+        "zoom": [
+          {
+            "to": "yield",
+            "at": "exit-8",
+            "dur": 1
+          }
+        ]
+      },
+      "sources": [
+        "估算：D0 0.1／cm²、泊松模型、300 mm 晶圓"
+      ]
+    },
+    {
+      "id": "s2",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "印完的晶圓，表面總會留下看不見的缺陷。",
+      "tts": "印完的晶圓，表面總會留下看不見的缺陷。",
+      "subtitle": {
+        "zh": "印完的晶圓\n表面總會留下看不見的缺陷",
+        "en": "Every printed wafer is left with | defects you can't see."
+      },
+      "keywords": [
+        "看不見的缺陷"
+      ],
+      "cues": [
+        {
+          "id": "printed",
+          "text": "印完"
+        },
+        {
+          "id": "invisible",
+          "text": "看不見"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "WikiChip〈Yield〉：隨機缺陷是良率損失主因之一"
+      ]
+    },
+    {
+      "id": "s3",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "可能是一顆微粒，也可能是一段沒印好的線。",
+      "tts": "可能是一顆微粒，也可能是一段沒印好的線。",
+      "subtitle": {
+        "zh": "可能是一顆微粒\n也可能是一段沒印好的線",
+        "en": "It might be a particle, | or a line that didn't print right."
+      },
+      "keywords": [
+        "微粒",
+        "沒印好的線"
+      ],
+      "cues": [
+        {
+          "id": "particle",
+          "text": "微粒"
+        },
+        {
+          "id": "line",
+          "text": "沒印好"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "WikiChip〈Yield〉；放大示意，非實際比例"
+      ]
+    },
+    {
+      "id": "s4",
+      "beat": "mechanism",
+      "para": 3,
+      "narration": "缺陷落在哪一顆，那一顆就可能報廢。",
+      "tts": "缺陷落在哪一顆，那一顆就可能報廢。",
+      "subtitle": {
+        "zh": "缺陷落在哪一顆\n那一顆就可能報廢",
+        "en": "Wherever a defect lands, | that chip may be scrapped."
+      },
+      "keywords": [
+        "報廢"
+      ],
+      "cues": [
+        {
+          "id": "fall",
+          "text": "落在"
+        },
+        {
+          "id": "scrap",
+          "text": "報廢"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "缺陷位置為固定亂數示意；格數為 300 mm 晶圓實排"
+      ]
+    },
+    {
+      "id": "s5",
+      "beat": "mechanism",
+      "para": 3,
+      "narration": "能用的比例，就叫良率。",
+      "tts": "能用的比例，就叫良率。",
+      "subtitle": {
+        "zh": "能用的比例\n就叫良率",
+        "en": "The share that works | is called the yield."
+      },
+      "keywords": [
+        "良率"
+      ],
+      "cues": [
+        {
+          "id": "ratio",
+          "text": "比例"
+        },
+        {
+          "id": "yield",
+          "text": "良率"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "WikiChip〈Yield〉（定義）"
+      ]
+    },
+    {
+      "id": "s6",
+      "beat": "mechanism",
+      "para": 4,
+      "narration": "切開之前，探針卡會把每一顆都通電測過。",
+      "tts": "切開之前，探針卡會把每一顆都通電測過。",
+      "subtitle": {
+        "zh": "切開之前\n探針卡會把每一顆\n都通電測過",
+        "en": "Before dicing, a probe card | powers up and tests | every single chip."
+      },
+      "keywords": [
+        "探針卡",
+        "通電測過"
+      ],
+      "cues": [
+        {
+          "id": "cut",
+          "text": "切開"
+        },
+        {
+          "id": "probecard",
+          "text": "探針卡"
+        },
+        {
+          "id": "each",
+          "text": "每一顆"
+        },
+        {
+          "id": "test",
+          "text": "通電"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "晶圓測試流程：AnySilicon、NextPCB"
+      ]
+    },
+    {
+      "id": "s7",
+      "beat": "mechanism",
+      "para": 4,
+      "narration": "好的、壞的，全部記在一張晶圓地圖上。",
+      "tts": "好的、壞的，全部記在一張晶圓地圖上。",
+      "subtitle": {
+        "zh": "好的、壞的\n全部記在一張晶圓地圖上",
+        "en": "Good or bad, | it all goes onto a wafer map."
+      },
+      "keywords": [
+        "晶圓地圖"
+      ],
+      "cues": [
+        {
+          "id": "good",
+          "text": "好的"
+        },
+        {
+          "id": "bad",
+          "text": "壞的"
+        },
+        {
+          "id": "map",
+          "text": "晶圓地圖"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "AnySilicon〈wafer sort〉；美國專利 5838951"
+      ]
+    },
+    {
+      "id": "s8",
+      "beat": "mechanism",
+      "para": 5,
+      "narration": "廠商公布過，五奈米量產初期，每平方公分大約零點一個缺陷。",
+      "tts": "廠商公布過，五奈米量產初期，每平方公分大約零點一個缺陷。",
+      "subtitle": {
+        "zh": "廠商公布過\n5 奈米量產初期\n每平方公分大約 0.1 個缺陷",
+        "en": "A chipmaker disclosed that early 5 nm | had about 0.1 defects | per square centimeter."
+      },
+      "keywords": [
+        "廠商公布",
+        "0.1 個"
+      ],
+      "cues": [
+        {
+          "id": "vendor",
+          "text": "廠商公布"
+        },
+        {
+          "id": "n5",
+          "text": "量產初期"
+        },
+        {
+          "id": "cm2",
+          "text": "每平方公分"
+        },
+        {
+          "id": "d0",
+          "text": "大約"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "台積電 2020 技術論壇（AnandTech 報導）"
+      ]
+    },
+    {
+      "id": "s9",
+      "beat": "mechanism",
+      "para": 6,
+      "narration": "缺陷一樣密，晶片大八倍，被打中的機會也大很多。",
+      "tts": "缺陷一樣密，晶片大八倍，被打中的機會也大很多。",
+      "subtitle": {
+        "zh": "缺陷一樣密\n晶片大八倍\n被打中的機會也大很多",
+        "en": "Same defect density, | a chip 8× bigger | is far more likely to be hit."
+      },
+      "keywords": [
+        "大八倍",
+        "大很多"
+      ],
+      "cues": [
+        {
+          "id": "dense",
+          "text": "一樣密"
+        },
+        {
+          "id": "eight",
+          "text": "大八倍"
+        },
+        {
+          "id": "hit",
+          "text": "被打中"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "面積：100 mm² 與 800 mm²（25 × 32 mm）"
+      ]
+    },
+    {
+      "id": "s10",
+      "beat": "mechanism",
+      "para": 6,
+      "narration": "估算下來，小晶片好的有五百多顆，大晶片只剩二十幾顆。",
+      "tts": "估算下來，小晶片好的有五百多顆，大晶片只剩二十幾顆。",
+      "subtitle": {
+        "zh": "估算下來\n小晶片好的有五百多顆\n大晶片只剩二十幾顆",
+        "en": "By estimate: 500-plus good small chips, | but only 20-some big ones."
+      },
+      "keywords": [
+        "五百多顆",
+        "二十幾顆"
+      ],
+      "cues": [
+        {
+          "id": "est",
+          "text": "估算"
+        },
+        {
+          "id": "s500",
+          "text": "五百多"
+        },
+        {
+          "id": "l20",
+          "text": "二十幾"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "估算：泊松模型 Y＝e^(−A·D0)；格數為實排結果"
+      ]
+    },
+    {
+      "id": "s11",
+      "beat": "mechanism",
+      "para": 7,
+      "narration": "有些壞的還救得回來。記憶體會多做幾排備用，壞掉那排直接換掉。",
+      "tts": "有些壞的還救得回來。記憶體會多做幾排備用，壞掉那排直接換掉。",
+      "subtitle": {
+        "zh": "有些壞的還救得回來\n記憶體會多做幾排備用\n壞掉那排直接換掉",
+        "en": "Some bad chips can be saved: | memory has spare rows, | and a broken row gets swapped out."
+      },
+      "keywords": [
+        "救得回來",
+        "備用"
+      ],
+      "cues": [
+        {
+          "id": "rescue",
+          "text": "救得回來"
+        },
+        {
+          "id": "mem",
+          "text": "記憶體"
+        },
+        {
+          "id": "spare",
+          "text": "備用"
+        },
+        {
+          "id": "broke",
+          "text": "壞掉那排"
+        },
+        {
+          "id": "swap",
+          "text": "換掉"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "備用列修補：IEEE TechNav、美國專利 4658379；運作為示意"
+      ]
+    },
+    {
+      "id": "s12",
+      "beat": "mechanism",
+      "para": 8,
+      "narration": "各家現在的良率，廠商都沒有公布，只能從估算看方向。",
+      "tts": "各家現在的良率，廠商都沒有公布，只能從估算看方向。",
+      "subtitle": {
+        "zh": "各家現在的良率\n廠商都沒有公布\n只能從估算看方向",
+        "en": "Today's yields? | No maker has published them — | estimates only show the direction."
+      },
+      "keywords": [
+        "沒有公布",
+        "估算"
+      ],
+      "cues": [
+        {
+          "id": "now",
+          "text": "現在的良率"
+        },
+        {
+          "id": "unpub",
+          "text": "沒有公布"
+        },
+        {
+          "id": "estimate",
+          "text": "估算"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "查不到公布（截至 2026/11/17）；曲線為估算"
+      ]
+    },
+    {
+      "id": "s13",
+      "beat": "cta",
+      "para": 9,
+      "narration": "大晶片要硬做一整顆，還是拆小再拼回去？",
+      "tts": "大晶片要硬做一整顆，還是拆小再拼回去？",
+      "subtitle": {
+        "zh": "大晶片要硬做一整顆\n還是拆小再拼回去？",
+        "en": "Build a big chip in one piece, | or split it and put it back together?"
+      },
+      "keywords": [
+        "一整顆",
+        "拆小再拼"
+      ],
+      "cues": [
+        {
+          "id": "whole",
+          "text": "一整顆"
+        },
+        {
+          "id": "split",
+          "text": "拆小"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "二選一提問；拆開與拼回為外形示意"
+      ]
+    },
+    {
+      "id": "s14",
+      "beat": "cta",
+      "para": 9,
+      "narration": "下一支，來看先進封裝。想要完整解說，留言良率。",
+      "tts": "下一支，來看先進封裝。想要完整解說，留言良率。",
+      "subtitle": {
+        "zh": "下一支，來看先進封裝\n想要完整解說，留言良率",
+        "en": "Next up: advanced packaging. | Comment \"良率\" for the full notes."
+      },
+      "keywords": [
+        "先進封裝",
+        "良率"
+      ],
+      "cues": [
+        {
+          "id": "next",
+          "text": "下一支"
+        },
+        {
+          "id": "pkg",
+          "text": "先進封裝"
+        },
+        {
+          "id": "cm",
+          "text": "留言"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {},
+      "sources": [
+        "下一集：先進封裝（已排定）"
+      ]
+    },
+    {
+      "id": "s15",
+      "beat": "end",
+      "silent": true,
+      "durationSec": 3.2,
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "component": "ThreeScene",
+      "props": {
+        "endCard": {
+          "next": "先進封裝",
+          "trail": [
+            "缺陷",
+            "測試",
+            "良率",
+            "修補"
+          ],
+          "at": "s14:cm-8",
+          "comment": "良率",
+          "logoAnim": "transparent"
+        }
+      },
+      "sources": []
+    }
+  ]
+}
