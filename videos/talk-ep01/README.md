@@ -96,3 +96,10 @@ flock /tmp/aimp4-render.lock npm run render talk-ep01
 - 片尾招牌音：`python3 scripts/tanqing/endcard-sound.py talk-ep01 <out.wav> --gain -5`（純正弦／卡林巴式泛音、短回音、無雜訊），再 `alimiter=limit=0.84:level=disabled:attack=5:release=60:latency=1`。拍點（太陽落定、三道光、四個字、關鍵字）和畫面同一幀，讀同一組 script.json 欄位；片尾段 −11.5 LUFS、峰值 −1.6 dB（混進 mp4 後 −11.7 LUFS）。單獨 MP3：`out/talk-ep01-v5/endcard-sound.mp3`。
 - 檢查圖：`out/talk-ep01-v5/before-after.png`（v4｜v5 同時間點）、`endcard-strip.png`（片尾每 0.1 秒）、`peek1.png`。
 - 重做：`npm run validate talk-ep01` → `RENDER_CONCURRENCY=2 flock /tmp/aimp4-render.lock npm run render talk-ep01`（平行 4 時 Chrome 曾 ERR_INSUFFICIENT_RESOURCES 當掉）→ 用 ffmpeg 把 `out/talk-ep01.video.mp4` 的畫面接上片尾音軌。render 會覆蓋 `out/talk-ep01.mp4`，做完要從 `.v4.mp4` 還原。
+
+## 2026/11/16 第 5c 版（數字精簡，無聲審稿版）
+
+- 使用者決定只留 5 個數字（2,027 小時、253 個工作天、兼職 3–4%、24.6%、全職每週 41.5 小時 2023）。場景 15 → 11 鏡：拿掉 s04 十年前、s05／s06 折線、s12 國際比較；s08 不再放日本、s13 只畫台灣一條長條。備份 `script.v5b.json`、`timeline.v5b.json`（上一版 5b 時間軸）。
+- 念稿 188 字（11 鏡，不含片尾卡；幕間 0.3 秒，s03／s08／s10 後停 0.7 秒；估算 45.4 秒），下一次配音照這份重生；估算時間軸 `SILENT_RATE=4.9 node scripts/ui/silent-timeline.mjs talk-ep01 --force`。
+- `Figures.tsx` 的 `Pair` 現在可以只給 `a`（單一格圖置中）。
+- 成片 `out/talk-ep01-v5/overview-v5c.png`；render 後 `out/talk-ep01.mp4`（v4）要從 `.v4.mp4` 還原。

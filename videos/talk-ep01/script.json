@@ -1,954 +1,642 @@
 {
- "slug": "talk-ep01",
- "title": "一年工作 2,027 小時，為什麼降不下來｜談晴說礙",
- "asOf": "2026/11/14",
- "styleVersion": 3,
- "stage": "tanqing",
- "channel": {
-  "name": "談晴說礙",
-  "tag": "數字裡的日子",
-  "slogan": "說這一代的難，也說還在的光"
- },
- "voice": {
-  "voiceName": "Sulafat",
-  "mode": "take",
-  "profile": "tanqing-report"
- },
- "voiceLeadIn": 0.2,
- "audio": {
-  "bgm": true,
-  "sfx": false
- },
- "cover": {
-  "title": [
-   "一年工作2,027小時",
-   "為什麼降不下來"
+  "slug": "talk-ep01",
+  "title": "一年工作 2,027 小時，為什麼降不下來｜談晴說礙",
+  "asOf": "2026/11/14",
+  "styleVersion": 3,
+  "stage": "tanqing",
+  "channel": {
+    "name": "談晴說礙",
+    "tag": "數字裡的日子",
+    "slogan": "說這一代的難，也說還在的光"
+  },
+  "voice": {
+    "voiceName": "Sulafat",
+    "mode": "take",
+    "profile": "tanqing-report"
+  },
+  "voiceLeadIn": 0.2,
+  "audio": {
+    "bgm": true,
+    "sfx": false
+  },
+  "cover": {
+    "title": [
+      "一年工作2,027小時",
+      "為什麼降不下來"
+    ],
+    "sub": "說這一代的難，也說還在的光"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "beat": "hook",
+      "para": 0,
+      "narration": "一年工作兩千零二十七小時。下班的時候，天早就黑了。",
+      "tts": "一年工作兩千零二十七小時。下班的時候，天早就黑了。",
+      "subtitle": {
+        "zh": "一年工作兩千零二十七小時。\n下班的時候，天早就黑了。",
+        "en": "2,027 hours of work a year. | By the time we leave, it's long been dark."
+      },
+      "keywords": [
+        "天早就黑了"
+      ],
+      "cues": [
+        {
+          "id": "year",
+          "text": "一年"
+        },
+        {
+          "id": "hours",
+          "text": "小時"
+        },
+        {
+          "id": "off",
+          "text": "下班"
+        },
+        {
+          "id": "dark",
+          "text": "黑了"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "一年工作2,027小時",
+          "下班天早就黑了"
+        ],
+        "caption": "en",
+        "figure": {
+          "type": "window",
+          "sky": "night",
+          "at": "start+0",
+          "lightAt": "start+26",
+          "skyAt": "dark-12",
+          "number": {
+            "text": "2,027",
+            "claim": "F1",
+            "note": "小時\n2025 年"
+          }
+        },
+        "scene": "city"
+      },
+      "sources": [
+        "資料：勞動部勞動統計查詢網",
+        "2025 年受僱員工年總工時"
+      ]
+    },
+    {
+      "id": "s02",
+      "beat": "you",
+      "para": 1,
+      "narration": "這是政府統計的，二零二五年的年總工時。",
+      "tts": "這是政府統計的，二零二五年的年總工時。",
+      "subtitle": {
+        "zh": "這是政府統計的，\n二零二五年的年總工時。",
+        "en": "This is the official figure: | total annual working hours for 2025."
+      },
+      "keywords": [
+        "年總工時"
+      ],
+      "cues": [
+        {
+          "id": "mol",
+          "text": "政府"
+        },
+        {
+          "id": "y25",
+          "text": "二零二五"
+        },
+        {
+          "id": "total",
+          "text": "年總工時"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "這個數字怎麼算"
+        ],
+        "figure": {
+          "type": "months",
+          "at": "start+8",
+          "stagger": 2,
+          "sumAt": "total-6",
+          "head": "平均每人每月總工時",
+          "sum": "加起來 ＝ 年總工時"
+        },
+        "scene": "calendar"
+      },
+      "sources": [
+        "資料：勞動部勞動統計查詢網",
+        "含正常工時與加班工時"
+      ]
+    },
+    {
+      "id": "s03",
+      "beat": "you",
+      "para": 1,
+      "narration": "換成一天八小時，是兩百五十三個工作天。",
+      "tts": "換成一天八小時，是兩百五十三個工作天。",
+      "subtitle": {
+        "zh": "換成一天八小時，\n是兩百五十三個工作天。",
+        "en": "At eight hours a day, | that is 253 working days."
+      },
+      "keywords": [
+        "兩百五十三個工作天"
+      ],
+      "cues": [
+        {
+          "id": "eight",
+          "text": "八小時"
+        },
+        {
+          "id": "n253",
+          "text": "兩百五十三"
+        },
+        {
+          "id": "days",
+          "text": "工作天"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "等於253個工作天"
+        ],
+        "figure": {
+          "type": "grid",
+          "count": 365,
+          "mark": 253,
+          "cols": 28,
+          "at": "start+6",
+          "markAt": "n253-10",
+          "unit": "個工作天",
+          "note": "一格＝一天，一天算 8 小時",
+          "claim": "F2"
+        },
+        "scene": "commute"
+      },
+      "sources": [
+        "換算：年總工時 ÷ 每天 8 小時",
+        "自行換算，不是官方統計"
+      ],
+      "pauseAfter": 0.7
+    },
+    {
+      "id": "s07",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "為什麼降不下來？第一，我們幾乎都是全職。",
+      "tts": "為什麼降不下來？第一，我們幾乎都是全職。",
+      "subtitle": {
+        "zh": "為什麼降不下來？\n第一，我們幾乎都是全職。",
+        "en": "Why won't it come down? First, | nearly all of us work full time."
+      },
+      "keywords": [
+        "全職"
+      ],
+      "cues": [
+        {
+          "id": "why",
+          "text": "為什麼"
+        },
+        {
+          "id": "we",
+          "text": "我們"
+        },
+        {
+          "id": "full",
+          "text": "全職"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "為什麼降不下來"
+        ],
+        "figure": {
+          "type": "week",
+          "days": 5,
+          "at": "start+8",
+          "stagger": 4,
+          "labelAt": "we+4",
+          "label": "幾乎都是全職"
+        },
+        "scene": "desk"
+      },
+      "sources": [
+        "資料：勞動部 2025/3 說明",
+        "部分工時只占 3%–4%"
+      ]
+    },
+    {
+      "id": "s08",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "兼職只有百分之三到四，勞動部說，比日本少很多。",
+      "tts": "兼職只有百分之三到四，勞動部說，比日本少很多。",
+      "subtitle": {
+        "zh": "兼職只有百分之三到四，\n勞動部說，比日本少很多。",
+        "en": "Part-timers are only 3 to 4 percent here. | The Ministry says that is far fewer than in Japan."
+      },
+      "keywords": [
+        "百分之三到四",
+        "少很多"
+      ],
+      "cues": [
+        {
+          "id": "part",
+          "text": "兼職"
+        },
+        {
+          "id": "pct",
+          "text": "百分之三"
+        },
+        {
+          "id": "less",
+          "text": "少很多"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "兼職的人很少"
+        ],
+        "figure": {
+          "type": "pair",
+          "at": "start+6",
+          "markAt": "pct-8",
+          "a": {
+            "name": "台灣",
+            "mark": 3,
+            "half": 1,
+            "val": "3–4%"
+          },
+          "sub": "一百個就業者裡，兼職（部分工時）的人",
+          "claim": "F6"
+        },
+        "scene": "cafe"
+      },
+      "sources": [
+        "資料：勞動部 2025/3 說明",
+        "日本的兼職比例明顯較高"
+      ],
+      "pauseAfter": 0.7
+    },
+    {
+      "id": "s09",
+      "beat": "mechanism",
+      "para": 2,
+      "narration": "再來是加班。去年正常工時變少，加班卻變多。",
+      "tts": "再來是加班。去年正常工時變少，加班卻變多。",
+      "subtitle": {
+        "zh": "再來是加班。\n去年正常工時變少，\n加班卻變多。",
+        "en": "Then there is overtime. | Regular hours fell last year, | but overtime rose."
+      },
+      "keywords": [
+        "加班卻變多"
+      ],
+      "cues": [
+        {
+          "id": "ot",
+          "text": "加班"
+        },
+        {
+          "id": "regular",
+          "text": "正常工時"
+        },
+        {
+          "id": "less",
+          "text": "變少"
+        },
+        {
+          "id": "more",
+          "text": "變多"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "少的是正常工時，",
+          "多的是加班"
+        ],
+        "figure": {
+          "type": "rows",
+          "at": "start+8",
+          "row0At": "regular-6",
+          "row1At": "less+2",
+          "frameAt": "more-10",
+          "rows": [
+            {
+              "text": "正常工時",
+              "tail": "down"
+            },
+            {
+              "text": "加班工時",
+              "tail": "up"
+            }
+          ],
+          "frame": [
+            1,
+            1
+          ],
+          "side": "2025 年\n變多的是\n加班"
+        },
+        "scene": "desk"
+      },
+      "sources": [
+        "資料：勞動部工時統計（2025 年）",
+        "中國時報、104 轉述，只知道方向"
+      ]
+    },
+    {
+      "id": "s10",
+      "beat": "twist",
+      "para": 2,
+      "narration": "還有下班以後。四個人有一個，收過交辦工作的訊息。",
+      "tts": "還有下班以後。四個人有一個，收過交辦工作的訊息。",
+      "subtitle": {
+        "zh": "還有下班以後。\n四個人有一個，\n收過交辦工作的訊息。",
+        "en": "And then there is after work. | One in four | got a message assigning them work."
+      },
+      "keywords": [
+        "四個人有一個"
+      ],
+      "cues": [
+        {
+          "id": "after",
+          "text": "下班以後"
+        },
+        {
+          "id": "four",
+          "text": "四個人"
+        },
+        {
+          "id": "msg",
+          "text": "訊息"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "下班以後，",
+          "工作還會找來"
+        ],
+        "figure": {
+          "type": "phone",
+          "at": "start+8",
+          "markAt": "four-4",
+          "msgAt": "four+12",
+          "msg2At": "msg-12",
+          "count": 4,
+          "mark": 1,
+          "val": "24.6%",
+          "sub": "下班後被\n交辦過工作",
+          "claim": "F8"
+        },
+        "scene": "home"
+      },
+      "sources": [
+        "資料：勞動部 2025 年",
+        "勞工生活及就業狀況調查"
+      ],
+      "pauseAfter": 0.7
+    },
+    {
+      "id": "s11",
+      "beat": "twist",
+      "para": 3,
+      "narration": "只是這個數字要小心讀。全職和兼職，是一起平均的。",
+      "tts": "只是這個數字要小心讀。全職和兼職，是一起平均的。",
+      "subtitle": {
+        "zh": "只是這個數字要小心讀。\n全職和兼職，\n是一起平均的。",
+        "en": "But this number needs careful reading. | Full-time and part-time workers | are averaged together."
+      },
+      "keywords": [
+        "小心讀",
+        "一起平均"
+      ],
+      "cues": [
+        {
+          "id": "but",
+          "text": "只是"
+        },
+        {
+          "id": "care",
+          "text": "小心"
+        },
+        {
+          "id": "full",
+          "text": "全職"
+        },
+        {
+          "id": "part",
+          "text": "兼職"
+        },
+        {
+          "id": "avg",
+          "text": "平均"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "數字背後"
+        ],
+        "figure": {
+          "type": "rows",
+          "at": "start+8",
+          "row0At": "full-6",
+          "row1At": "part-6",
+          "frameAt": "avg-16",
+          "rows": [
+            {
+              "text": "全職（全時）"
+            },
+            {
+              "text": "兼職（部分工時）"
+            }
+          ],
+          "frame": [
+            0,
+            1
+          ],
+          "side": "放在一起\n平均"
+        },
+        "scene": "commute"
+      },
+      "sources": [
+        "資料：勞動部對年總工時的說明",
+        "（2025/3 新聞稿）"
+      ]
+    },
+    {
+      "id": "s13",
+      "beat": "twist",
+      "para": 3,
+      "narration": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
+      "tts": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
+      "subtitle": {
+        "zh": "只看全職，\n二零二三年台灣一週四十一點五小時，\n比日本還少。",
+        "en": "Looking at full-timers only, | in 2023 Taiwan's week was 41.5 hours, | shorter than Japan's."
+      },
+      "keywords": [
+        "比日本還少"
+      ],
+      "cues": [
+        {
+          "id": "only",
+          "text": "只看"
+        },
+        {
+          "id": "tw",
+          "text": "台灣"
+        },
+        {
+          "id": "n415",
+          "text": "四十一"
+        },
+        {
+          "id": "jp",
+          "text": "日本"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "ai",
+        "title": [
+          "2023年只看全職，",
+          "比日本還少一點"
+        ],
+        "figure": {
+          "type": "hbars",
+          "max": 50,
+          "at": "start+8",
+          "stagger": 10,
+          "bars": [
+            {
+              "label": "台灣",
+              "v": 41.5,
+              "val": "41.5 小時",
+              "mark": true
+            }
+          ],
+          "note": "全時就業者每週經常工時，2023 年\n比日本還少",
+          "claim": "F9"
+        },
+        "scene": "calendar"
+      },
+      "sources": [
+        "資料：勞動部 2025/3 說明",
+        "全時就業者，2023 年"
+      ]
+    },
+    {
+      "id": "s14",
+      "beat": "cta",
+      "para": 4,
+      "narration": "下一集，我們來看看房租。",
+      "tts": "下一集，我們來看看房租。",
+      "subtitle": {
+        "zh": "下一集，我們來看看房租。",
+        "en": "Next time: rent."
+      },
+      "keywords": [
+        "房租"
+      ],
+      "cues": [
+        {
+          "id": "next",
+          "text": "下一集"
+        },
+        {
+          "id": "rent",
+          "text": "房租"
+        }
+      ],
+      "component": "TanqingScene",
+      "props": {
+        "kind": "next",
+        "title": [
+          "下一集，",
+          "我們看房租"
+        ],
+        "caption": "en",
+        "figure": {
+          "type": "key",
+          "scale": 1.15,
+          "at": "start+8",
+          "tagAt": "rent-6",
+          "lineAt": "rent+4",
+          "line": "下一集・房租"
+        },
+        "scene": "home"
+      },
+      "sources": [
+        "下一集的數字，查證後再說"
+      ]
+    },
+    {
+      "id": "s15",
+      "beat": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "silent": true,
+      "durationSec": 3,
+      "component": "TanqingScene",
+      "props": {
+        "kind": "end",
+        "title": [
+          "說這一代的難，",
+          "也說還在的光"
+        ],
+        "figure": {
+          "type": "mark",
+          "rise": true,
+          "name": "談晴說礙",
+          "at": "start+2",
+          "sunAt": "start+12",
+          "cloudDur": 14,
+          "sunDur": 12,
+          "rayAt": "start+26",
+          "rayStep": 4,
+          "rayDur": 5,
+          "wordAt": "start+38",
+          "wordStep": 4,
+          "wordDur": 7
+        },
+        "endCard": {
+          "keyword": "工時",
+          "text": "留言『{kw}』拿完整資料",
+          "at": "start+58",
+          "_note": "關鍵字「工時」是暫定，等使用者確認；改這裡就好，不用改程式"
+        }
+      },
+      "sources": [
+        "資料：勞動部勞動統計查詢網",
+        "查證日期 2026/11/14"
+      ]
+    }
   ],
-  "sub": "說這一代的難，也說還在的光"
- },
- "scenes": [
-  {
-   "id": "s01",
-   "beat": "hook",
-   "para": 0,
-   "narration": "一年工作兩千零二十七小時。下班的時候，天早就黑了。",
-   "tts": "一年工作兩千零二十七小時。下班的時候，天早就黑了。",
-   "subtitle": {
-    "zh": "一年工作兩千零二十七小時。\n下班的時候，天早就黑了。",
-    "en": "2,027 hours of work a year. | By the time we leave, it's long been dark."
-   },
-   "keywords": [
-    "天早就黑了"
-   ],
-   "cues": [
-    {
-     "id": "year",
-     "text": "一年"
-    },
-    {
-     "id": "hours",
-     "text": "小時"
-    },
-    {
-     "id": "off",
-     "text": "下班"
-    },
-    {
-     "id": "dark",
-     "text": "黑了"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "一年工作2,027小時",
-     "下班天早就黑了"
-    ],
-    "caption": "en",
-    "figure": {
-     "type": "window",
-     "sky": "night",
-     "at": "start+0",
-     "lightAt": "start+26",
-     "skyAt": "dark-12",
-     "number": {
-      "text": "2,027",
-      "claim": "F1",
-      "note": "小時\n2025 年"
-     }
-    },
-    "scene": "city"
-   },
-   "sources": [
-    "資料：勞動部勞動統計查詢網",
-    "2025 年受僱員工年總工時"
-   ]
-  },
-  {
-   "id": "s02",
-   "beat": "you",
-   "para": 1,
-   "narration": "這是政府統計的，二零二五年的年總工時。",
-   "tts": "這是政府統計的，二零二五年的年總工時。",
-   "subtitle": {
-    "zh": "這是政府統計的，\n二零二五年的年總工時。",
-    "en": "This is the official figure: | total annual working hours for 2025."
-   },
-   "keywords": [
-    "年總工時"
-   ],
-   "cues": [
-    {
-     "id": "mol",
-     "text": "政府"
-    },
-    {
-     "id": "y25",
-     "text": "二零二五"
-    },
-    {
-     "id": "total",
-     "text": "年總工時"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "這個數字怎麼算"
-    ],
-    "figure": {
-     "type": "months",
-     "at": "start+8",
-     "stagger": 2,
-     "sumAt": "total-6",
-     "head": "平均每人每月總工時",
-     "sum": "× 12 個月 ＝ 年總工時"
-    },
-    "scene": "calendar"
-   },
-   "sources": [
-    "資料：勞動部勞動統計查詢網",
-    "含正常工時與加班工時"
-   ]
-  },
-  {
-   "id": "s03",
-   "beat": "you",
-   "para": 1,
-   "narration": "換成一天八小時，是兩百五十三個工作天。",
-   "tts": "換成一天八小時，是兩百五十三個工作天。",
-   "subtitle": {
-    "zh": "換成一天八小時，\n是兩百五十三個工作天。",
-    "en": "At eight hours a day, | that is 253 working days."
-   },
-   "keywords": [
-    "兩百五十三個工作天"
-   ],
-   "cues": [
-    {
-     "id": "eight",
-     "text": "八小時"
-    },
-    {
-     "id": "n253",
-     "text": "兩百五十三"
-    },
-    {
-     "id": "days",
-     "text": "工作天"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "等於253個工作天"
-    ],
-    "figure": {
-     "type": "grid",
-     "count": 365,
-     "mark": 253,
-     "cols": 28,
-     "at": "start+6",
-     "markAt": "n253-10",
-     "unit": "個工作天",
-     "note": "一格＝一天，一天算 8 小時",
-     "claim": "F2"
-    },
-    "scene": "commute"
-   },
-   "sources": [
-    "換算：2,026.8 ÷ 8 ≈ 253",
-    "自行換算，不是官方統計"
-   ]
-  },
-  {
-   "id": "s04",
-   "beat": "mechanism",
-   "para": 1,
-   "narration": "十年前更長，多了大約一百小時。",
-   "tts": "十年前更長，多了大約一百小時。",
-   "subtitle": {
-    "zh": "十年前更長，\n多了大約一百小時。",
-    "en": "Ten years ago it was longer: | about 100 hours more."
-   },
-   "keywords": [
-    "更長"
-   ],
-   "cues": [
-    {
-     "id": "y14",
-     "text": "十年前"
-    },
-    {
-     "id": "longer",
-     "text": "更長"
-    },
-    {
-     "id": "n2135",
-     "text": "一百"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "十年前，還更長"
-    ],
-    "figure": {
-     "type": "bars",
-     "scale": 1.12,
-     "max": 2400,
-     "at": "start+8",
-     "diffAt": "n2135+14",
-     "bars": [
-      {
-       "label": "十年前",
-       "v": 2135
-      },
-      {
-       "label": "2025 年",
-       "v": 2026.8,
-       "val": "2,027",
-       "mark": true
-      }
-     ],
-     "diff": {
-      "text": "十年前\n約多一百小時"
-     },
-     "claim": "F3"
-    },
-    "scene": "desk"
-   },
-   "sources": [
-    "資料：勞動部（國際勞動統計）",
-    "十年前的數字只取概數"
-   ]
-  },
-  {
-   "id": "s05",
-   "beat": "mechanism",
-   "para": 1,
-   "narration": "後來一路降，疫情那年不到兩千。",
-   "tts": "後來一路降，疫情那年不到兩千。",
-   "subtitle": {
-    "zh": "後來一路降，\n疫情那年不到兩千。",
-    "en": "Then it kept falling. | In the pandemic year it dipped below 2,000."
-   },
-   "keywords": [
-    "不到兩千"
-   ],
-   "cues": [
-    {
-     "id": "down",
-     "text": "一路降"
-    },
-    {
-     "id": "covid",
-     "text": "疫情"
-    },
-    {
-     "id": "two",
-     "text": "兩千"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "一路往下，",
-     "2021年不到2,000"
-    ],
-    "figure": {
-     "type": "line",
-     "yMin": 1960,
-     "yMax": 2160,
-     "ticks": [
-      2000,
-      2100
-     ],
-     "at": "start+8",
-     "markAt": "covid+0",
-     "points": [
-      {
-       "x": 2014,
-       "v": 2135
-      },
-      {
-       "x": 2017,
-       "v": 2035
-      },
-      {
-       "x": 2018,
-       "v": 2033
-      },
-      {
-       "x": 2019,
-       "v": 2025.6,
-       "val": "2,026"
-      },
-      {
-       "x": 2021,
-       "v": 1999.2,
-       "val": "1,999",
-       "mark": true,
-       "tag": "2021 年"
-      }
-     ],
-     "xTicks": [
-      2014,
-      2019,
-      2021
-     ],
-     "note": "只畫查到的年份；縱軸從 1,960 開始",
-     "claim": "F4"
-    },
-    "scene": "city"
-   },
-   "sources": [
-    "資料：勞動部（公視等媒體轉述）",
-    "2021 年 1,999.2 小時"
-   ]
-  },
-  {
-   "id": "s06",
-   "beat": "mechanism",
-   "para": 1,
-   "narration": "之後又回升。去年假變多，全年只少了三點六小時。",
-   "tts": "之後又回升。去年假變多，全年只少了三點六小時。",
-   "subtitle": {
-    "zh": "之後又回升。\n去年假變多，\n全年只少了三點六小時。",
-    "en": "Then it climbed again. | Last year brought more holidays, | yet hours fell by just 3.6."
-   },
-   "keywords": [
-    "三點六小時"
-   ],
-   "cues": [
-    {
-     "id": "back",
-     "text": "回升"
-    },
-    {
-     "id": "holiday",
-     "text": "假變多"
-    },
-    {
-     "id": "n36",
-     "text": "三點六"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "假變多了，",
-     "只少3.6小時"
-    ],
-    "figure": {
-     "type": "line",
-     "yMin": 1980,
-     "yMax": 2050,
-     "ticks": [
-      2000,
-      2040
-     ],
-     "at": "start+8",
-     "markAt": "n36-8",
-     "points": [
-      {
-       "x": 2021,
-       "v": 1999.2,
-       "val": "1,999.2"
-      },
-      {
-       "x": 2024,
-       "v": 2030.4,
-       "val": "2,030.4",
-       "dx": -80
-      },
-      {
-       "x": 2025,
-       "v": 2026.8,
-       "val": "2,026.8",
-       "mark": true,
-       "tag": "−3.6"
-      }
-     ],
-     "xTicks": [
-      2021,
-      2024,
-      2025
-     ],
-     "note": "2022、2023 沒畫；縱軸從 1,980 開始",
-     "claim": "F5"
-    },
-    "scene": "cafe"
-   },
-   "sources": [
-    "資料：勞動部；中國時報 2026/3/1",
-    "2024 年 2,030.4、2025 年 2,026.8"
-   ]
-  },
-  {
-   "id": "s07",
-   "beat": "mechanism",
-   "para": 2,
-   "narration": "為什麼降不下來？我們幾乎都是全職。",
-   "tts": "為什麼降不下來？我們幾乎都是全職。",
-   "subtitle": {
-    "zh": "為什麼降不下來？\n我們幾乎都是全職。",
-    "en": "Why won't it come down? | Nearly all of us work full time."
-   },
-   "keywords": [
-    "全職"
-   ],
-   "cues": [
-    {
-     "id": "why",
-     "text": "為什麼"
-    },
-    {
-     "id": "we",
-     "text": "我們"
-    },
-    {
-     "id": "full",
-     "text": "全職"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "為什麼降不下來"
-    ],
-    "figure": {
-     "type": "week",
-     "days": 5,
-     "at": "start+8",
-     "stagger": 4,
-     "labelAt": "we+4",
-     "label": "幾乎都是全職"
-    },
-    "scene": "desk"
-   },
-   "sources": [
-    "資料：勞動部 2025/3 說明",
-    "部分工時只占 3%–4%"
-   ]
-  },
-  {
-   "id": "s08",
-   "beat": "mechanism",
-   "para": 2,
-   "narration": "兼職只有百分之三到四，勞動部說，日本大約四個有一個。",
-   "tts": "兼職只有百分之三到四，勞動部說，日本大約四個有一個。",
-   "subtitle": {
-    "zh": "兼職只有百分之三到四，\n勞動部說，日本大約四個有一個。",
-    "en": "Part-timers are only 3 to 4 percent here. | The Ministry says Japan is about one in four."
-   },
-   "keywords": [
-    "百分之三到四",
-    "四個有一個"
-   ],
-   "cues": [
-    {
-     "id": "part",
-     "text": "兼職"
-    },
-    {
-     "id": "pct",
-     "text": "百分之三"
-    },
-    {
-     "id": "jp",
-     "text": "日本"
-    },
-    {
-     "id": "quarter",
-     "text": "四個"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "兼職的人很少"
-    ],
-    "figure": {
-     "type": "pair",
-     "at": "start+6",
-     "markAt": "pct-8",
-     "markBAt": "jp+0",
-     "a": {
-      "name": "台灣",
-      "mark": 3,
-      "half": 1,
-      "val": "3–4%"
-     },
-     "b": {
-      "name": "日本",
-      "mark": 25,
-      "val": "24.8%",
-      "note": "勞動部引用"
-     },
-     "sub": "一百個就業者裡，兼職（部分工時）的人",
-     "claim": "F6"
-    },
-    "scene": "cafe"
-   },
-   "sources": [
-    "資料：勞動部 2025/3 說明",
-    "日本 24.8% 是 2023 年的數字"
-   ]
-  },
-  {
-   "id": "s09",
-   "beat": "mechanism",
-   "para": 2,
-   "narration": "再來是加班。去年正常工時變少，加班卻變多。",
-   "tts": "再來是加班。去年正常工時變少，加班卻變多。",
-   "subtitle": {
-    "zh": "再來是加班。\n去年正常工時變少，\n加班卻變多。",
-    "en": "Then there is overtime. | Regular hours fell last year, | but overtime rose."
-   },
-   "keywords": [
-    "加班卻變多"
-   ],
-   "cues": [
-    {
-     "id": "ot",
-     "text": "加班"
-    },
-    {
-     "id": "regular",
-     "text": "正常工時"
-    },
-    {
-     "id": "less",
-     "text": "變少"
-    },
-    {
-     "id": "more",
-     "text": "變多"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "少的是正常工時，",
-     "多的是加班"
-    ],
-    "figure": {
-     "type": "rows",
-     "at": "start+8",
-     "row0At": "regular-6",
-     "row1At": "less+2",
-     "frameAt": "more-10",
-     "rows": [
-      {
-       "text": "正常工時",
-       "tail": "down"
-      },
-      {
-       "text": "加班工時",
-       "tail": "up"
-      }
-     ],
-     "frame": [
-      1,
-      1
-     ],
-     "side": "2025 年\n變多的是\n加班"
-    },
-    "scene": "desk"
-   },
-   "sources": [
-    "資料：勞動部工時統計（2025 年）",
-    "中國時報、104 轉述，只知道方向"
-   ]
-  },
-  {
-   "id": "s10",
-   "beat": "twist",
-   "para": 2,
-   "narration": "還有下班以後。四個人有一個，收過交辦工作的訊息。",
-   "tts": "還有下班以後。四個人有一個，收過交辦工作的訊息。",
-   "subtitle": {
-    "zh": "還有下班以後。\n四個人有一個，\n收過交辦工作的訊息。",
-    "en": "And then there is after work. | One in four | got a message assigning them work."
-   },
-   "keywords": [
-    "四個人有一個"
-   ],
-   "cues": [
-    {
-     "id": "after",
-     "text": "下班以後"
-    },
-    {
-     "id": "four",
-     "text": "四個人"
-    },
-    {
-     "id": "msg",
-     "text": "訊息"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "下班以後，",
-     "工作還會找來"
-    ],
-    "figure": {
-     "type": "phone",
-     "at": "start+8",
-     "markAt": "four-4",
-     "msgAt": "four+12",
-     "msg2At": "msg-12",
-     "count": 4,
-     "mark": 1,
-     "val": "24.6%",
-     "sub": "下班後被\n交辦過工作",
-     "claim": "F8"
-    },
-    "scene": "home"
-   },
-   "sources": [
-    "資料：勞動部 2025 年",
-    "勞工生活及就業狀況調查"
-   ]
-  },
-  {
-   "id": "s11",
-   "beat": "twist",
-   "para": 3,
-   "narration": "只是這個數字要小心讀。全職和兼職，是一起平均的。",
-   "tts": "只是這個數字要小心讀。全職和兼職，是一起平均的。",
-   "subtitle": {
-    "zh": "只是這個數字要小心讀。\n全職和兼職，\n是一起平均的。",
-    "en": "But this number needs careful reading. | Full-time and part-time workers | are averaged together."
-   },
-   "keywords": [
-    "小心讀",
-    "一起平均"
-   ],
-   "cues": [
-    {
-     "id": "but",
-     "text": "只是"
-    },
-    {
-     "id": "care",
-     "text": "小心"
-    },
-    {
-     "id": "full",
-     "text": "全職"
-    },
-    {
-     "id": "part",
-     "text": "兼職"
-    },
-    {
-     "id": "avg",
-     "text": "平均"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "數字背後"
-    ],
-    "figure": {
-     "type": "rows",
-     "at": "start+8",
-     "row0At": "full-6",
-     "row1At": "part-6",
-     "frameAt": "avg-16",
-     "rows": [
-      {
-       "text": "全職（全時）"
-      },
-      {
-       "text": "兼職（部分工時）"
-      }
-     ],
-     "frame": [
-      0,
-      1
-     ],
-     "side": "放在一起\n平均"
-    },
-    "scene": "commute"
-   },
-   "sources": [
-    "資料：勞動部對年總工時的說明",
-    "（2025/3 新聞稿）"
-   ]
-  },
-  {
-   "id": "s12",
-   "beat": "twist",
-   "para": 3,
-   "narration": "所以不能說，我們比日本人多上將近四百小時的班。",
-   "tts": "所以不能說，我們比日本人多上將近四百小時的班。",
-   "subtitle": {
-    "zh": "所以不能說，\n我們比日本人\n多上將近四百小時的班。",
-    "en": "So we can't simply say | that we work nearly | 400 hours more than people in Japan."
-   },
-   "keywords": [
-    "不能說"
-   ],
-   "cues": [
-    {
-     "id": "cannot",
-     "text": "不能說"
-    },
-    {
-     "id": "jp",
-     "text": "日本人"
-    },
-    {
-     "id": "n400",
-     "text": "四百"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "不能直接這樣比"
-    ],
-    "figure": {
-     "type": "bars",
-     "max": 2400,
-     "at": "start+8",
-     "diffAt": "n400-10",
-     "bars": [
-      {
-       "label": "台灣",
-       "v": 2030.4,
-       "val": "2,030"
-      },
-      {
-       "label": "韓國",
-       "v": 1859,
-       "val": "1,859"
-      },
-      {
-       "label": "日本",
-       "v": 1636,
-       "val": "1,636"
-      }
-     ],
-     "diff": {
-      "text": "差 394 小時？\n兼職比例不同"
-     },
-     "claim": "F7"
-    },
-    "scene": "city"
-   },
-   "sources": [
-    "資料：勞動部國際勞動統計，2024 年",
-    "工商時報 2025/11 轉述"
-   ]
-  },
-  {
-   "id": "s13",
-   "beat": "twist",
-   "para": 3,
-   "narration": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
-   "tts": "只看全職，二零二三年台灣一週四十一點五小時，比日本還少。",
-   "subtitle": {
-    "zh": "只看全職，\n二零二三年台灣一週四十一點五小時，\n比日本還少。",
-    "en": "Looking at full-timers only, | in 2023 Taiwan's week was 41.5 hours, | shorter than Japan's."
-   },
-   "keywords": [
-    "比日本還少"
-   ],
-   "cues": [
-    {
-     "id": "only",
-     "text": "只看"
-    },
-    {
-     "id": "tw",
-     "text": "台灣"
-    },
-    {
-     "id": "n415",
-     "text": "四十一"
-    },
-    {
-     "id": "jp",
-     "text": "日本"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "ai",
-    "title": [
-     "2023年只看全職，",
-     "比日本還少一點"
-    ],
-    "figure": {
-     "type": "hbars",
-     "max": 50,
-     "at": "start+8",
-     "stagger": 10,
-     "bars": [
-      {
-       "label": "台灣",
-       "v": 41.5,
-       "val": "41.5 小時",
-       "mark": true
-      },
-      {
-       "label": "日本",
-       "v": 42.9,
-       "val": "42.9 小時"
-      },
-      {
-       "label": "韓國",
-       "v": 43.8,
-       "val": "43.8 小時"
-      }
-     ],
-     "note": "全時就業者每週經常工時，2023 年",
-     "claim": "F9"
-    },
-    "scene": "calendar"
-   },
-   "sources": [
-    "資料：勞動部 2025/3 說明",
-    "全時就業者，2023 年"
-   ]
-  },
-  {
-   "id": "s14",
-   "beat": "cta",
-   "para": 4,
-   "narration": "下一集，我們看房租。",
-   "tts": "下一集，我們看房租。",
-   "subtitle": {
-    "zh": "下一集，我們看房租。",
-    "en": "Next time: rent."
-   },
-   "keywords": [
-    "房租"
-   ],
-   "cues": [
-    {
-     "id": "next",
-     "text": "下一集"
-    },
-    {
-     "id": "rent",
-     "text": "房租"
-    }
-   ],
-   "component": "TanqingScene",
-   "props": {
-    "kind": "next",
-    "title": [
-     "下一集，",
-     "我們看房租"
-    ],
-    "caption": "en",
-    "figure": {
-     "type": "key",
-     "scale": 1.15,
-     "at": "start+8",
-     "tagAt": "rent-6",
-     "lineAt": "rent+4",
-     "line": "下一集・房租"
-    },
-    "scene": "home"
-   },
-   "sources": [
-    "下一集的數字，查證後再說"
-   ]
-  },
-  {
-   "id": "s15",
-   "beat": "end",
-   "narration": "",
-   "subtitle": {
-    "zh": "",
-    "en": ""
-   },
-   "keywords": [],
-   "cues": [],
-   "silent": true,
-   "durationSec": 3,
-   "component": "TanqingScene",
-   "props": {
-    "kind": "end",
-    "title": [
-     "說這一代的難，",
-     "也說還在的光"
-    ],
-    "figure": {
-     "type": "mark",
-     "rise": true,
-     "name": "談晴說礙",
-     "at": "start+2",
-     "sunAt": "start+12",
-     "cloudDur": 14,
-     "sunDur": 12,
-     "rayAt": "start+26",
-     "rayStep": 4,
-     "rayDur": 5,
-     "wordAt": "start+38",
-     "wordStep": 4,
-     "wordDur": 7
-    },
-    "endCard": {
-     "keyword": "工時",
-     "text": "留言『{kw}』拿完整資料",
-     "at": "start+58",
-     "_note": "關鍵字「工時」是暫定，等使用者確認；改這裡就好，不用改程式"
-    }
-   },
-   "sources": [
-    "資料：勞動部勞動統計查詢網",
-    "查證日期 2026/11/14"
-   ]
+  "tanqing": {
+    "film": true,
+    "ref": "docs/channels/tanqing-ref/（頻道 11/12 發的三張輪播圖）",
+    "fonts": "node scripts/tanqing/fetch-fonts.mjs talk-ep01（Noto Serif TC 子集，改了畫面上的字要重跑）",
+    "fill": true,
+    "layout": "v5",
+    "silentVoice": true
   }
- ],
- "tanqing": {
-  "film": true,
-  "ref": "docs/channels/tanqing-ref/（頻道 11/12 發的三張輪播圖）",
-  "fonts": "node scripts/tanqing/fetch-fonts.mjs talk-ep01（Noto Serif TC 子集，改了畫面上的字要重跑）",
-  "fill": true,
-  "layout": "v5",
-  "silentVoice": true
- }
 }

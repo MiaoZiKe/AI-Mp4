@@ -12,7 +12,7 @@ const AT_BASE = ["start", "voice", "end", "exit"];
 const FIGS = { people: ["count", "mark"], form: ["ask"], bowl: [], mark: [] };
 const KINDS = ["ai", "qing", "ask"];
 // 完整片（頂層 tanqing.film: true，第一支 videos/talk-ep01/）多出來的圖形與頁種；短片不寫 film 就完全照舊
-const FIGS_FILM = { window: ["sky"], months: [], grid: ["count", "mark"], bars: ["bars"], line: ["points", "yMin", "yMax"], week: [], pair: ["a", "b"], hbars: ["bars", "max"], rows: ["rows"], phone: [], bento: [], key: [] };
+const FIGS_FILM = { window: ["sky"], months: [], grid: ["count", "mark"], bars: ["bars"], line: ["points", "yMin", "yMax"], week: [], pair: ["a"], hbars: ["bars", "max"], rows: ["rows"], phone: [], bento: [], key: [] };
 const KINDS_FILM = ["next", "end"];
 
 export function validateTanqing(script, h) {

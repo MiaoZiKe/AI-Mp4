@@ -271,8 +271,8 @@ const Pair: React.FC<{ fig: TqFigure; f: number }> = ({ fig, f }) => {
   };
   return (
     <>
-      {side(fig.a as Side, 60, t.markAt ?? fig.at, "a")}
-      {side(fig.b as Side, L.INNER_W - 60 - gw, t.markBAt ?? t.markAt ?? fig.at, "b")}
+      {side(fig.a as Side, fig.b ? 60 : (L.INNER_W - gw) / 2, t.markAt ?? fig.at, "a")}
+      {fig.b ? side(fig.b as Side, L.INNER_W - 60 - gw, t.markBAt ?? t.markAt ?? fig.at, "b") : null}
       {fig.sub ? <div style={{ ...figText(SMALL, T.weight.body, T.ink2), left: 60, top: y0 + gw + 128, opacity: fadeP(f, fig.at + 8) }}>{fig.sub}</div> : null}
     </>
   );
