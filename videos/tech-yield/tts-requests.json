@@ -133,5 +133,70 @@
    "serviceTier": "standard"
   },
   "audio": true
+ },
+ {
+  "at": "2026-11-16T09:18:52.903Z",
+  "purpose": "audition:yield-t05",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "error": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metr"
+ },
+ {
+  "at": "2026-11-16T09:19:19.137Z",
+  "purpose": "audition:yield-t10",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 286,
+   "candidatesTokenCount": 1624,
+   "totalTokenCount": 1910,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 286
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1624
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ },
+ {
+  "at": "2026-11-16T09:21:52.369Z",
+  "purpose": "audition:yield-t05",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 286,
+   "totalTokenCount": 286,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 286
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": false
+ },
+ {
+  "at": "2026-11-16T09:22:02.022Z",
+  "purpose": "audition:yield-t08",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "error": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metr"
  }
 ]
