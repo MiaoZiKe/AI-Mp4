@@ -77,7 +77,13 @@
 - 節奏：每鏡事件間隔 0.5–1.0 秒（最長 ≤1.2 秒），前 3 秒至少 5 個事件；蓋章、狀態標籤落定後至少停 0.8 秒才換鏡。
 - 事件時間只寫念到的字（cue），不手填秒數。
 
-## 五、指令順序
+## 五、一支指令：make.mjs（分步用法在下面保留）
+
+    node scripts/dossier/make.mjs <slug> [--silent] [--from-plan] [--from-audio=<orig.wav>] [--skip-render] [--no-overlap-fail] [--no-edge-fail]
+
+一路跑 validate＋字型 → 時間軸（有聲＝voice-take，`--silent`＝silent-timeline）→ overlap-check → render → edge-check → 招牌音＋mix-auto → 網站版（out/web/<slug>/video.mp4 ≤20MiB、cover.jpg、voice.mp3）→ 抽格拼圖 out/<slug>/sheet.jpg。每步印一行狀態與耗時，失敗就停並把停在哪一步寫進 `out/<slug>/make.json`（成功時記每步耗時、片長、片尾 LUFS／真峰值、overlap 結果、網站版大小）。不加 `--from-audio` 的有聲版會送 TTS 1 次。已排程的 liguligu-nvda-kress、liguligu-power-bill 會被拒絕（要動加 `--force-scheduled`）。實測（2008-check 有聲完整版）約 3.5 分鐘，最慢是 render（約 86 秒）與 voice-take 對齊（約 60 秒）。
+
+分步用法：
 
     python3 scripts/dossier/make-photos.py <slug>        # 黑白照片
     node scripts/dossier/fetch-fonts.mjs <slug>          # 襯線字型子集；改了畫面上的字要重跑
