@@ -20,3 +20,7 @@
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
+
+## 11/16 決定
+- nvda-kress、power-bill 照現在版本定案（nvda-kress 口音 OK，捲舌指標 4.3 kHz 當基準）；加照片取消、不重渲。
+- 下一支起加「相關公司」卡（規則在 liguligu-daily-playbook.md 第三節、liguligu.md 第 3 節第 10 條）。
