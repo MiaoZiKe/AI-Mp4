@@ -53,7 +53,7 @@ S1 = [
  sc("s03","twist","手機寬度打開，價目表右邊被切掉，價格欄在畫面外。",
     "手機寬度打開\n價目表右邊被切掉\n價格欄在畫面外","Opened at phone width: | the table is cut off, price column out of view.",
     [("open","手機寬度打開"),("cut","右邊被切掉"),("out","價格欄在畫面外")],{"被切掉":"wrong"},
-    {"src":P+"lens-before.png","ring":[420,205,115,125],"note":"手機 390 寬","noteAt":"open","scanAt":"cut","stampAt":"out","stamp":"切","zoom":{"src":P+"before-zoom.png","w":940,"h":564,"cap":"放大：價格在畫面外"}},
+    {"src":P+"lens-before.png","ring":[408,205,110,125],"note":"手機 390 寬","noteAt":"open","scanAt":"cut","stampAt":"out","stamp":"切","zoom":{"src":P+"before-zoom.png","w":940,"h":564,"cap":"放大：價格在畫面外"}},
     ["Playwright 實測（tests/table.py）：價格欄右緣 443px，畫面寬 390px"],"翻車","wrong","已確定・實測","cut+6",1,"lens","bug"),
  sc("s04","payoff","我跟它說：價格欄被擠到畫面外，請修好，其他不要動。",
     "我跟它說\n價格欄被擠到畫面外\n請修好\n其他不要動","I told it: price column is off-screen, fix it, | change nothing else.",
