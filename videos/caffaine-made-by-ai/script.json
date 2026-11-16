@@ -78,7 +78,7 @@
      {
       "big": "AI",
       "unit": "做的動畫",
-      "at": "start+3",
+      "at": "start-10",
       "color": "primary",
       "size": 300,
       "usize": 110
@@ -86,7 +86,7 @@
      {
       "big": "0",
       "unit": "行是我寫的",
-      "at": "zero",
+      "at": "start-8",
       "color": "wrong",
       "size": 300,
       "usize": 100
@@ -308,7 +308,7 @@
       "label": "腳本檔",
       "sub": "一段一段的文字",
       "color": "note",
-      "at": "start+3"
+      "at": "start-1"
      },
      {
       "icon": "chip",
@@ -387,7 +387,7 @@
     "verbatim": "tests/feedback.txt",
     "head": {
      "text": "第一版被退件的評語",
-     "at": "start+3",
+     "at": "start-1",
      "color": "wrong"
     },
     "stamp": {
@@ -448,27 +448,7 @@
     },
     "view": "chart",
     "tone": "bug",
-    "kind": "waffle",
-    "cols": 3,
-    "rows": 2,
-    "maxH": 520,
-    "groups": [
-     {
-      "n": 5,
-      "color": "primary",
-      "at": "res",
-      "gs": 3
-     },
-     {
-      "n": 1,
-      "color": "wrong",
-      "at": "guess"
-     }
-    ],
-    "box": {
-     "group": 1,
-     "at": "guess"
-    },
+    "kind": "todos",
     "chips": [
      {
       "text": "六項待辦",
@@ -481,7 +461,15 @@
       "color": "wrong"
      }
     ],
-    "note": "示意：每一格代表第一版開頭的一項待辦"
+    "note": "示意：每張卡代表第一版開頭的一項待辦",
+    "n": 6,
+    "at": "start-1",
+    "gs": 4,
+    "guess": {
+     "idx": 5,
+     "at": "guess",
+     "text": "AI 猜的"
+    }
    },
    "sources": [
     "玩法紀錄：playbook 第十三節第 2 點"
@@ -665,7 +653,7 @@
       "label": "字卡疊住",
       "sub": "字卡疊在一起",
       "color": "wrong",
-      "at": "start+3"
+      "at": "start-1"
      },
      {
       "icon": "mag",
@@ -738,7 +726,7 @@
      {
       "big": "不用",
       "unit": "寫程式",
-      "at": "start+3",
+      "at": "start-1",
       "color": "primary",
       "size": 220,
       "usize": 130

@@ -810,6 +810,26 @@ const ChartView: React.FC<VP> = ({ f, p, tone }) => {
       </>
     );
   }
+  if (q.kind === "todos") {
+    const n = (q.n ?? 6) as number, g = q.guess as { idx: number; text: string; at: any }, tA = A(q.at, p.in), gs = q.gs ?? 3, CW = Math.floor((IW - 26) / 2), CH = 150, rows2 = Math.ceil(n / 2);
+    const tG = A(g.at, FAR);
+    return (
+      <>
+        {Array.from({ length: n }, (_, i) => {
+          const isG = i === g.idx, t = isG ? tG : tA + i * gs; if (f < t) return null;
+          const e = E(f, t, 10), c = col(isG ? "wrong" : "primary");
+          return (
+            <div key={i} data-ov={`待辦${i + 1}`} style={{ position: "absolute", left: X0 + (i % 2) * (CW + 26), top: TOP + 10 + Math.floor(i / 2) * (CH + 26) + Math.round((1 - e) * 40), width: CW, height: CH, borderRadius: 30, background: isG ? c.fill : T.card, boxShadow: `0 8px 0 ${c.side}`, display: "flex", alignItems: "center", justifyContent: "center", gap: 20, boxSizing: "border-box", opacity: O(f, t, 4), transform: `scale(${(0.9 + 0.1 * e).toFixed(3)})` }}>
+              <div style={{ ...zh, fontWeight: 900, fontSize: 56, color: isG ? "#fff" : T.ink }}>{`待辦 ${i + 1}`}</div>
+              {isG ? <div style={{ ...zh, fontWeight: 900, fontSize: 38, color: c.fill, background: "#fff", borderRadius: 22, padding: "6px 20px" }}>{g.text}</div> : null}
+            </div>
+          );
+        })}
+        {f >= tG ? <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}><rect x={X0 + (g.idx % 2) * (CW + 26) - 10} y={TOP + 10 + Math.floor(g.idx / 2) * (CH + 26) - 10} width={CW + 20} height={CH + 20} rx={36} fill="none" stroke={T.ink} strokeWidth={8} pathLength={1} strokeDasharray="1" strokeDashoffset={1 - E(f, tG, 14)} /></svg> : null}
+        {tail(TOP + 10 + rows2 * (CH + 26) + 20)}
+      </>
+    );
+  }
   const cols = q.cols as number, rws = q.rows as number, gap = 12, cell = Math.min(Math.floor((IW - (cols - 1) * gap) / cols), Math.floor((q.maxH ?? 600) / rws) - gap), gw = cols * cell + (cols - 1) * gap, gx = X0 + Math.floor((IW - gw) / 2), gy = TOP + 20;
   const groups = q.groups as { n: number; color: string; at: any; gs?: number }[];
   let acc = 0; const owner: { g: number; k: number }[] = [];
@@ -821,6 +841,7 @@ const ChartView: React.FC<VP> = ({ f, p, tone }) => {
     <>
       {Array.from({ length: cols * rws }, (_, i) => {
         const o = owner[i], g = o ? groups[o.g] : null, t = g ? A(g.at, FAR) + o.k * (g.gs ?? 1.2) : FAR, on = f >= t, c = g ? col(g.color) : col("primary"), e = E(f, t, 8);
+        if (!on) return null;
         return <div key={i} data-ov={undefined} style={{ position: "absolute", left: gx + Math.floor(i / rws) * (cell + gap), top: gy + (i % rws) * (cell + gap), width: cell, height: cell, borderRadius: Math.round(cell * 0.2), background: on ? c.fill : "rgba(255,255,255,0.6)", boxShadow: on ? `0 6px 0 ${c.side}` : `inset 0 0 0 4px ${T.line}`, transform: `scale(${on ? (0.6 + 0.4 * e + 0.12 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3) : 1})` }} />;
       })}
       {q.box && f >= tB ? <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}><rect x={bx[0]} y={bx[1]} width={bx[2]} height={bx[3]} rx={22} fill="none" stroke={T.ink} strokeWidth={9} strokeDasharray="1" pathLength={1} strokeDashoffset={1 - E(f, tB, 14)} /></svg> : null}
@@ -865,9 +886,9 @@ export const VarietyIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
       <div style={{ position: "absolute", inset: 0, clipPath: wipe >= 1 ? undefined : `circle(${Math.round(wipe * 2300)}px at 50% 78%)` }}><ToneBg tone={(inEnd ? world[world.length - 1] : cur)?.p.tone as string} f={f} /></div>
       {inEnd ? null : <Bands on={typeof trk === "number" ? trk : -1} steps={tracker} />}
       {inEnd ? null : world.map((x) => {
-        if (f < x.in || f >= x.out) return null;
+        if (f < x.in || f >= x.out + 2) return null;
         const V = VIEWS[String((x.p as any).view)]; if (!V) return null;
-        const prog = clamp((f - x.in) / Math.max(1, x.out - x.in)), exit = 1 - O(f, x.out - 6, 6);
+        const prog = clamp((f - x.in) / Math.max(1, x.out - x.in)), exit = 1 - O(f, x.out - 2, 4);
         return <div key={x.sid} style={{ position: "absolute", inset: 0, opacity: exit, transform: `scale(${(1 + 0.016 * prog).toFixed(4)})`, transformOrigin: "50% 45%" }}><V f={f} p={x} tone={toneOf((x.p as any).tone)} /></div>;
       })}
       {inEnd ? null : world.map((x) => <Tag key={x.sid} f={f} p={x} />)}
