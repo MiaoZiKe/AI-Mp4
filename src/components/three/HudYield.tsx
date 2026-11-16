@@ -541,8 +541,8 @@ export const YieldArt: React.FC<{ f: number; cues: C }> = ({ f, cues }) => {
         cnt={{ a: `能用 ≈${roll(f, c.s2_hook, pctS)}%`, b: `能用 ≈${roll(f, c.s2_half - 18, pctL)}%`, at: [c.s2_hook, c.s2_half - 18], y: 1090 }} />
       <Tag x={540} y={1066} t="晶圓＝整片圓盤・晶片＝切出來的一小格" c={H.line} px={32} o={f < c.s2_hook ? 1 : 0} />
       <Tag x={540} y={1170} t="■ 紅格＝被缺陷打中、做壞的晶片" c={H.coral} px={30} o={f < c.s2_fab + 2 ? 1 : 0} />
-      <Stamp x={840} y={1270} t="估算" f={f} at={c.s2_half + 4} px={56} />
-      <Tag x={380} y={1270} t="估算（簡化模型）" c={H.amber} px={32} o={1} />
+      <Stamp x={840} y={1282} t="估算" f={f} at={c.s2_half + 4} px={56} />
+      <Tag x={380} y={1282} t="估算（簡化模型）" c={H.amber} px={32} o={1} />
     </g>],
     [c.v3, c.v4, <g key="B"><DiceView f={f} c={c} v={VB} /></g>],
     [c.v4, c.v5, <g key="C">

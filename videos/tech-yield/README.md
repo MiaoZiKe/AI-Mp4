@@ -31,3 +31,11 @@
 - 檢查：validate 0 error（5 warning，s8 旁白 33 字）；yield-check 程式 1482 幀 0 筆。
 - 渲染：背景執行 `flock out/.render.lock env THREE_CONCURRENCY=4 node scripts/render.mjs tech-yield`，log 在 `out/tech-yield.render.log`。
 - 下一步：渲染完成後做片尾音：`python3 scripts/three/sfx-logo-tech.py`＋`mix-endsting.sh`，G=28，AT＝(s11 的 cm cue 第 1484 幀 − 8)÷30＝49.2 秒；音源用 `out/tech-yield.video.mp4`；輸出 `out/tech-yield.v2.mp4`；量正片 −16 LUFS、片尾約 −11.5；人工抽格看重疊。
+
+## v3（2026/11/16，Andy 選定配音 yield-t10）
+- 配音：Andy 選定試聽檔 `out/voice-yield/yield-t10.wav`（整篇 1 次生成，念稿同現行 script.json），轉成 `.take-9f7b19174a.raw.orig.wav` 後 atempo 1.23（同曝光機）成 `.raw.wav`；`--resplit` 沿用原始音檔（0 次 TTS 請求）。舊檔備份 `out/tech-yield.take4-unused.wav`。
+- 停頓（Andy 11-16：段落 0.6～0.8 秒、句間至少 0.3 秒）：s2、s6、s9、s10 設 `pauseAfter` 0.7（共 4 處，已超過舊規則「每支最多 3 處」，以 Andy 新規則為準；validate 未擋）；其餘幕間 0.40 秒以上。
+- 總長 56.37 秒（1691 幀）；說話 52.47 秒。對齊整篇信心 0.913。已知：第一個字前約 0.5 秒有起頭呼吸聲（對齊警告），「現在的 AI 晶片」從 0.5 秒開口，建議人耳確認。
+- 版面：`估算（簡化模型）` 標籤與「估算」章下移 12px，消除 62px 連續空白橫條（yield-check 0 筆）。
+- 響度：正片 −16.1 LUFS；片尾段 −11.1 LUFS、峰值 −1.3（G=28，AT 52.10、FADE 53.23）。
+- 成片：`out/tech-yield.v3.mp4`（不進 git）。公式卡 91% 約 26.8–27.6 秒停住。
