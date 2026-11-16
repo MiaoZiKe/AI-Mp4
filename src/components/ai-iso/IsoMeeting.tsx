@@ -179,7 +179,7 @@ const W0 = L.X, TOP = 424;
 const Tag: React.FC<{ f: number; p: Panel }> = ({ f, p }) => {
   const o = O(f, p.in, 4) * (f < p.out ? 1 : 0), c = col(String(p.p.tagColor ?? "primary")); // 到鏡尾就切掉，不做淡出（淡出會和下一鏡的小標疊成殘影）
   const st = p.p.status ? String(p.p.status) : "", tS = p.at(p.p.statusAt, p.in + 10);
-  return o <= 0.01 ? null : <div style={{ position: "absolute", left: W0, top: L.MAIN_TOP + 8, opacity: o, display: "flex", alignItems: "center", gap: 14 }}><div data-ov="性質小標" style={{ ...zh, fontWeight: 900, fontSize: 40, color: c.on, background: c.fill, borderRadius: 18, padding: "6px 26px", boxShadow: `0 6px 0 ${c.side}` }}>{String(p.p.tag)}</div>{st ? <StatusChip f={f} at={tS} text={st} px={30} /> : null}</div>;
+  return o <= 0.01 ? null : <div style={{ position: "absolute", left: W0, top: L.MAIN_TOP + 8, opacity: o, display: "flex", alignItems: "center", gap: 26 }}><div data-ov="性質小標" style={{ ...zh, fontWeight: 900, fontSize: 40, color: c.on, background: c.fill, borderRadius: 18, padding: "6px 26px", boxShadow: `0 6px 0 ${c.side}` }}>{String(p.p.tag)}</div>{st ? <StatusChip f={f} at={tS} text={st} px={30} /> : null}</div>;
 };
 const AsOf: React.FC<{ text: string }> = ({ text }) => <div data-ov="查證日期" style={{ position: "absolute", right: L.X, top: L.MAIN_TOP + 14, ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>{text}</div>;
 
@@ -520,7 +520,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
                 <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: 50, color: T.ink, marginTop: 12, lineHeight: 1.3 }}>{p.note.line}</div>
                 {p.note.sub ? <div style={{ ...zh, whiteSpace: "normal", fontWeight: 700, fontSize: 30, color: T.ink2, marginTop: 10 }}>{p.note.sub}</div> : null}
               </div></div> : null}
-              {p.stamp ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), alignSelf: "flex-start", ...zh, fontWeight: 900, fontSize: 52, color: sc(p.stamp.color).text, border: `7px solid ${sc(p.stamp.color).fill}`, borderRadius: 16, background: T.card, padding: "2px 24px" }}>{p.stamp.text}</div> : null}
+              {p.stamp ? <div data-ov="蓋章" style={{ ...slam(f, tSt, -3, 1.25), alignSelf: "flex-end", ...zh, fontWeight: 900, fontSize: 52, color: sc(p.stamp.color).text, border: `7px solid ${sc(p.stamp.color).fill}`, borderRadius: 16, background: T.card, padding: "2px 24px" }}>{p.stamp.text}</div> : null}
             </div>
           ) : null}
         </div>
