@@ -14,3 +14,10 @@
 1. `NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs tech-packaging`（1 次請求）→ 量純說話字／秒，<5.3 就 atempo（倍數＝5.46÷實測，原檔留 .orig.wav）→ `tts-take --resplit` → `npm run align tech-packaging -- --force`。
 2. `node scripts/three/layout-check.mjs tech-packaging`、抽格看 s5 的取放時間（test、bad 兩個 cue 相距要 ≥ 約 2 秒，否則吸嘴還在搬時壞的那顆已經被推下去）。
 3. render（flock）→ 片尾招牌音（sfx-logo-tech.py＋mix-endsting.sh）→ `out/tech-packaging.v1.mp4`。
+
+## 配音完成、渲染中（2026/11/16 16:2x）
+- 配音只送 1 次（成功）。純說話 277 字／67.74 秒＝4.09 字／秒 → atempo 1.335（原檔 `public/audio/tech-packaging/.take-b758c3f82f.raw.orig.wav`），已 `tts-take --resplit`＋`align --force`；說話 50.73 秒、信心 0.907、總長 1617 幀（53.9 秒）。
+- layout-check：0 error、9 warning（HUD／標籤蓋到主素材邊緣，沒蓋到中央）。
+- 取放間距（storyboard 的 s4 才是吸嘴站）：test 589 → pick 610 → bad 642 → drop 658；test→bad 53 幀＝1.77 秒（略短於 2 秒）、pick→bad 1.07 秒；抽格尚未看。
+- 渲染已丟背景：`flock out/.render.lock env THREE_CONCURRENCY=4 node scripts/render.mjs tech-packaging`，log 在 `out/tech-packaging.render.log`，成品 `out/tech-packaging.video.mp4`（預期）。
+- 剩下：片尾招牌音。`python3 scripts/three/sfx-logo-tech.py`＋`mix-endsting.sh`，G=28，AT＝(s9:kw 1504−8)÷30＝49.87 秒；正片 −16 LUFS、片尾約 −11.5；輸出 `out/tech-packaging.v1.mp4`。
