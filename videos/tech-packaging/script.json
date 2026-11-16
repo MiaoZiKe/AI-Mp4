@@ -195,9 +195,10 @@
             "x": 64,
             "y": 905,
             "w": 952,
-            "h": 330,
+            "h": 290,
             "cols": 5,
             "fw": 130,
+            "total": 5,
             "title": "光罩框＝一次曝光的面積",
             "items": [
               {
@@ -256,9 +257,9 @@
             "until": "s2:start-2",
             "text": "≥ 5 倍",
             "x": 540,
-            "y": 1292,
+            "y": 1268,
             "color": "coral",
-            "size": 52,
+            "size": 60,
             "rot": -4,
             "avoid": false
           }
@@ -723,6 +724,35 @@
             "color": "blue",
             "size": 30,
             "avoid": false
+          },
+          {
+            "type": "legend",
+            "at": "flat+4",
+            "until": "s3:start-2",
+            "avoid": false,
+            "x": 90,
+            "y": 990,
+            "cols": 2,
+            "colW": 430,
+            "size": 40,
+            "items": [
+              {
+                "text": "運算晶片 ×2",
+                "swatch": "pkChip"
+              },
+              {
+                "text": "記憶體 HBM ×8",
+                "swatch": "pkHbm"
+              },
+              {
+                "text": "矽中介層（平放的底）",
+                "swatch": "pkIp"
+              },
+              {
+                "text": "微凸塊（晶片底下）",
+                "swatch": "pkUb"
+              }
+            ]
           }
         ]
       },
@@ -789,10 +819,10 @@
             "at": "start",
             "until": "s4:start-2",
             "avoid": false,
-            "x": 556,
-            "y": 875,
-            "w": 460,
-            "h": 470,
+            "x": 64,
+            "y": 905,
+            "w": 952,
+            "h": 320,
             "title": "代價",
             "joints": {
               "at": "joints"
@@ -807,8 +837,8 @@
             "at": "joints+2",
             "until": "s4:start-2",
             "text": "已確定（代價）",
-            "x": 290,
-            "y": 960,
+            "x": 250,
+            "y": 1290,
             "color": "coral",
             "size": 30,
             "avoid": false
@@ -818,8 +848,8 @@
             "at": "why",
             "until": "s4:start-2",
             "text": "為什麼划算？",
-            "x": 290,
-            "y": 1120,
+            "x": 700,
+            "y": 1290,
             "color": "amber",
             "size": 52,
             "rot": -4,
@@ -870,9 +900,9 @@
             "until": "s5:start-10",
             "avoid": false,
             "x": 64,
-            "y": 905,
+            "y": 900,
             "w": 952,
-            "h": 430,
+            "h": 450,
             "title": "同一組缺陷",
             "tag": "估算，簡化模型",
             "defect": {

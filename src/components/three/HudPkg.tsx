@@ -39,7 +39,7 @@ const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children:
 const Frames: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 430, cols = o.cols ?? 7, items = (o.items ?? []) as { at: number; dashed?: boolean }[];
   const pad = 24, gap = 14, fw = Math.min(o.fw ?? 1e9, (W - 2 * pad - (cols - 1) * gap) / cols), fh = (fw * 33) / 26, top = 66;
-  const T = 6, landed = items.filter((it) => f >= it.at + T).length, lastAt = Math.max(-1e9, ...items.filter((it) => f >= it.at + T).map((it) => it.at + T));
+  const T = 6, landed = o.total ?? items.filter((it) => f >= it.at + T).length, lastAt = Math.max(-1e9, ...items.filter((it) => f >= it.at + T).map((it) => it.at + T));
   const pop = 1 + 0.25 * Math.sin(Math.PI * clamp01((f - lastAt) / 8));
   const flash = ((o.flash ?? []) as { at: number }[]).reduce((a, q) => Math.max(a, Math.sin(Math.PI * clamp01((f - q.at) / 14))), 0);
   const fc = col(m.product, "pkFrame"), unit = o.unit ?? "個光罩面積";
@@ -89,13 +89,13 @@ const waferData = (R: number, small: number, big: number) => {
   return data;
 };
 const Wafers: React.FC<P> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 420, R = Math.min(150, (Hh - 150) / 2), small = 22, big = 50, { S, B, pts } = waferData(R, small, big);
+  const W = o.w ?? 952, Hh = o.h ?? 420, R = Math.min(170, (Hh - 110) / 2), small = 24, big = 56, { S, B, pts } = waferData(R, small, big);
   const t0 = o.defect?.at ?? o.at + 10, half = o.half?.at ?? t0 + 30, T = 7;
   const landAt = (i: number) => t0 + Math.round((i * 22) / Math.max(1, pts.length)) + T;
   const hit = (cx: number, cy: number, c: number, i: number) => f >= landAt(i) && pts[i][0] >= cx && pts[i][0] < cx + c && pts[i][1] >= cy && pts[i][1] < cy + c;
   const wf = col(m.product, "pkWafer"), good = col(m.product, "pkGood"), bad = col(m.product, "pkBad"), dft = col(m.product, "pkInk");
   const wafer = (ox: number, list: [number, number][], c: number, label: string, sub: string) => {
-    const cy = 70 + R;
+    const cy = 58 + R;
     let nBad = 0;
     const rects = list.map(([x, y], j) => { let b = false; for (let i = 0; i < pts.length; i++) if (hit(x, y, c, i)) { b = true; break; } if (b) nBad++; return <rect key={j} x={ox + x + 1} y={cy + y + 1} width={c - 2} height={c - 2} fill={b ? bad : good} fillOpacity={b ? 0.85 : 0.32} stroke={H.lineSoft} strokeWidth={1} />; });
     return { el: (
@@ -106,12 +106,12 @@ const Wafers: React.FC<P> = ({ o, f, k, m }) => {
         <text x={ox} y={cy + R + 40} textAnchor="middle" style={zh(sm(32), H.text, 800)}>{label}</text>
       </g>), nBad, n: list.length };
   };
-  const L1 = wafer(W * 0.22, S, small, "拆成小顆", ""), R1 = wafer(W * 0.56, B, big, "一整顆大晶片", "");
+  const L1 = wafer(W * 0.21, S, small, "拆成小顆", ""), R1 = wafer(W * 0.555, B, big, "一整顆大晶片", "");
   const hk = tween(f, half, 6, EASE.enter), pop = 1 + 0.2 * Math.sin(Math.PI * clamp01((f - half) / 10));
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>{L1.el}{R1.el}</svg>
-      <div style={{ position: "absolute", left: W - 250, top: 150, opacity: hk, transform: `scale(${pop.toFixed(3)})`, transformOrigin: "left top", background: H.panel, border: `3px solid ${H.coral}`, padding: "4px 14px 6px" }}>
+      <div style={{ position: "absolute", left: W - 232, top: 150, opacity: hk, transform: `scale(${pop.toFixed(3)})`, transformOrigin: "left top", background: H.panel, border: `3px solid ${H.coral}`, padding: "4px 14px 6px" }}>
         <div style={zh(sm(30), H.text2, 700)}>好的</div><div style={zh(56, H.coral, 900)}>{o.half?.text ?? "≈45%"}</div>
       </div>
     </Card>
@@ -121,7 +121,7 @@ const Wafers: React.FC<P> = ({ o, f, k, m }) => {
 // ── pkg-detour：上＝拆開再拼（A → 下到微凸塊 → 中介層走線 → 上到 B，路徑長、接點多）；下＝單一大晶片（直線、短） ──
 const Detour: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 460, Hh = o.h ?? 470, chip = col(m.product, "pkChip"), ipc = col(m.product, "pkIp"), ub = col(m.product, "pkUb"), sig = col(m.product, "pkSig"), badc = col(m.product, "pkBad");
-  const jA = o.joints?.at ?? o.at + 10, dA = o.detour?.at ?? jA + 20, cx0 = 30, cw = W - 60;
+  const jA = o.joints?.at ?? o.at + 10, dA = o.detour?.at ?? jA + 20, wide = W >= 800, cx0 = 30, cw = wide ? W / 2 - 60 : W - 60, cx2 = wide ? W / 2 + 30 : cx0; // wide＝兩張圖左右並排（寬卡）
   // 上：兩顆晶片在中介層上
   const y0 = 104, chipW = cw * 0.4, chipH = 52, ipY = y0 + chipH + 14;
   const ax = cx0 + chipW / 2, bx = cx0 + cw - chipW / 2, sy = y0 + chipH / 2, ry = ipY + 8;
@@ -131,8 +131,8 @@ const Detour: React.FC<P> = ({ o, f, k, m }) => {
   const jk = tween(f, jA, 6, EASE.enter), dk = tween(f, dA, 8, EASE.move);
   const dots = [0, 0.33, 0.66].map((ph, i) => { const u = (((f - o.at) / 30) * 0.55 + ph) % 1, [x, y] = dk > 0.5 ? at(u) : [ax + (bx - ax) * u, sy]; return <circle key={i} cx={x} cy={y} r={7} fill={dk > 0.5 ? badc : sig} stroke={H.panel} strokeWidth={2} />; });
   // 下：單一大晶片
-  const y2 = 318, bigH = 62;
-  const dots2 = [0, 0.5].map((ph, i) => { const u = (((f - o.at) / 30) * 1.1 + ph) % 1; return <circle key={i} cx={cx0 + 40 + (cw - 80) * u} cy={y2 + bigH / 2} r={7} fill={sig} stroke={H.panel} strokeWidth={2} />; });
+  const y2 = wide ? y0 : 318, bigH = wide ? chipH + 36 : 62;
+  const dots2 = [0, 0.5].map((ph, i) => { const u = (((f - o.at) / 30) * 1.1 + ph) % 1; return <circle key={i} cx={cx2 + 40 + (cw - 80) * u} cy={y2 + bigH / 2} r={7} fill={sig} stroke={H.panel} strokeWidth={2} />; });
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -141,11 +141,12 @@ const Detour: React.FC<P> = ({ o, f, k, m }) => {
         {[cx0, cx0 + cw - chipW].map((x, i) => <g key={i}><rect x={x} y={y0} width={chipW} height={chipH} fill={chip} rx={4} />{Array.from({ length: 9 }, (_, j) => <circle key={j} cx={x + 10 + j * ((chipW - 20) / 8)} cy={y0 + chipH + 7} r={4.5} fill={ub} opacity={0.4 + 0.6 * jk} stroke={jk > 0.5 ? badc : "none"} strokeWidth={1.5} />)}</g>)}
         <polyline points={(dk > 0.5 ? path : [[ax, sy], [bx, sy]]).map((p) => p.join(",")).join(" ")} fill="none" stroke={dk > 0.5 ? badc : sig} strokeWidth={3} strokeDasharray={dk > 0.5 ? "10 7" : undefined} opacity={0.8} />
         {dots}
-        <text x={cx0} y={y2 - 14} style={zh(sm(30), H.text, 800)}>單一大晶片</text>
-        <rect x={cx0} y={y2} width={cw} height={bigH} fill={chip} rx={4} />
-        <line x1={cx0 + 40} y1={y2 + bigH / 2} x2={cx0 + cw - 40} y2={y2 + bigH / 2} stroke={sig} strokeWidth={3} />
+        <text x={cx2} y={y2 - 10} style={zh(sm(30), H.text, 800)}>單一大晶片</text>
+        <rect x={cx2} y={y2} width={cw} height={bigH} fill={chip} rx={4} />
+        <line x1={cx2 + 40} y1={y2 + bigH / 2} x2={cx2 + cw - 40} y2={y2 + bigH / 2} stroke={sig} strokeWidth={3} />
         {dots2}
-        <text x={cx0} y={y2 + bigH + 40} style={zh(sm(30), H.text2, 700)}>在同一塊矽裡，走得短</text>
+        <text x={cx2} y={y2 + bigH + 44} style={zh(sm(30), H.text2, 700)}>在同一塊矽裡，走得短</text>
+        {wide ? <><text x={cx0} y={ipY + 66} style={zh(sm(30), H.coral, 800)}>{dk > 0.5 ? "下到凸塊、繞中介層、再上來" : "想像中直接過去"}</text><line x1={W / 2} x2={W / 2} y1={y0 - 30} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={2} /></> : null}
       </svg>
       {[["接點", jA, 0], ["距離", dA, 1]].map(([t, a, i]) => (
         <div key={i as number} style={{ position: "absolute", right: 14 + (1 - (i as number)) * 128, top: 8, opacity: tween(f, a as number, 6, EASE.enter), ...zh(36, H.coral, 900), background: H.panel, border: `2px solid ${H.coral}`, padding: "0 10px 2px" }}>{t as string} ↑</div>
