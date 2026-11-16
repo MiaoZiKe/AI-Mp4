@@ -1,6 +1,6 @@
 {
  "slug": "caffaine-meeting-todo",
- "title": "把會議紀錄丟給 AI，待辦清單裡有一項是它猜的（CaffAIne 無聲動畫版）",
+ "title": "把會議紀錄丟給 AI，待辦裡有一項是它編的（CaffAIne 無聲版第 2 版）",
  "asOf": "2026/11/16",
  "styleVersion": 3,
  "stage": "iso",
@@ -29,22 +29,26 @@
   {
    "id": "s01",
    "beat": "hook",
-   "narration": "AI 整理六項待辦，一項負責人是它猜的。",
+   "narration": "開完會，把紀錄丟給 AI 整理待辦？六項裡，有一項是它編的。",
    "subtitle": {
-    "zh": "AI 整理六項待辦\n一項負責人是它猜的",
-    "en": "AI sorted out six to-dos. | One owner was a guess."
+    "zh": "開完會把紀錄丟給 AI\n整理待辦\n六項裡有一項是它編的",
+    "en": "Notes handed to AI for to-dos. | One in six was made up."
    },
    "keywords": [
-    "猜的"
+    "編的"
    ],
    "cues": [
+    {
+     "id": "toss",
+     "text": "丟給"
+    },
     {
      "id": "six",
      "text": "六項"
     },
     {
      "id": "guess",
-     "text": "猜的"
+     "text": "編的"
     }
    ],
    "component": "IsoScene",
@@ -54,24 +58,30 @@
     "tagColor": "wrong",
     "asOf": "查證截至 2026/11/16",
     "title": [
-     "6 項待辦",
-     "1 項是猜的"
+     "紀錄丟給 AI",
+     "6 項待辦 1 項編的"
     ],
-    "size": 112,
+    "size": 104,
     "mark": {
-     "text": "猜的",
+     "text": "編的",
      "at": "guess"
     },
     "stamp": {
-     "text": "AI 猜的",
+     "text": "AI 編的",
      "at": "guess+2"
     },
     "count": {
-     "value": "1,939",
-     "unit": "字紀錄・情境示意",
-     "at": "six"
+     "at": "toss+10"
     },
+    "flow": [
+     "會議紀錄",
+     "AI",
+     "待辦 6 項"
+    ],
     "status": "已確定・實測",
+    "statusAt": "six+8",
+    "send": "toss",
+    "done": "six",
     "tick": "six",
     "guessAt": "guess",
     "camera": [
@@ -81,109 +91,92 @@
        330,
        30
       ],
-      "zoom": 0.504,
+      "zoom": 0.56,
       "sy": 1105,
       "dur": 20
      }
     ],
     "kw": {
-     "猜的": "wrong"
-    },
-    "statusAt": "six+10"
+     "編的": "wrong"
+    }
    },
    "sources": [
-    "Gemini 實測 2026/11/16（情境示意：虛構會議紀錄）"
+    "Gemini 實測 2026/11/16（虛構紀錄，情境示意）"
    ],
    "para": 1,
-   "tts": "A I 整理六項待辦，一項負責人是它猜的。"
+   "tts": "開完會，把紀錄丟給 A I 整理待辦？六項裡，有一項是它編的。"
   },
   {
    "id": "s02",
    "beat": "you",
-   "narration": "我們用 Gemini 實測，第一次等了兩分五十秒。",
+   "narration": "哪一項？雙十二的客服排班，原文寫「還沒指派」。",
    "subtitle": {
-    "zh": "我們用 Gemini 實測\n第一次等了兩分五十秒",
-    "en": "We tested Gemini. | The first reply took 2 min 50 s."
+    "zh": "哪一項？\n雙十二的客服排班\n原文寫「還沒指派」",
+    "en": "Which one? The Dec 12 support shift. | The minutes say “not yet assigned”."
    },
    "keywords": [
-    "實測"
+    "還沒指派"
    ],
    "cues": [
     {
-     "id": "gem",
-     "text": "Gemini"
+     "id": "which",
+     "text": "哪一項"
     },
     {
-     "id": "wait",
-     "text": "等了"
+     "id": "shift",
+     "text": "客服排班"
     },
     {
-     "id": "sec",
-     "text": "五十秒"
+     "id": "nop",
+     "text": "還沒指派"
     }
    ],
    "component": "IsoScene",
    "props": {
-    "panel": "run",
-    "tag": "實測",
-    "tool": "Gemini 實測・2026/11/16",
-    "sub": "虛構紀錄 1,939 字",
-    "lines": [
-     "幫我整理這份會議紀錄。"
-    ],
-    "typeAt": "voice",
-    "typeDur": 26,
-    "toolAt": "gem",
-    "send": "gem+22",
-    "wait": "wait",
-    "done": "sec+6",
-    "timer": {
-     "secs": 170
-    },
-    "statusAt": "sec+6",
-    "status": "已確定・實測",
+    "panel": "orig",
+    "tag": "原文",
+    "tagColor": "note",
+    "label": "會議紀錄原文（情境示意）",
+    "text": "客服排班要在 11 月底前排好，目前還沒有指派負責人",
+    "mark": "還沒有指派負責人",
+    "markAt": "nop",
+    "hl": "nop",
+    "verbatim": "tests/source-text.txt",
+    "status": "已確定・原文",
+    "statusAt": "which+4",
     "camera": [
      {
       "look": [
-       300,
-       300,
-       60
+       420,
+       220,
+       30
       ],
-      "zoom": 0.54,
+      "zoom": 0.56,
       "sy": 1105,
       "dur": 16
      }
     ],
     "kw": {
-     "實測": "primary"
+     "還沒指派": "wrong"
     }
    },
    "sources": [
-    "Gemini API 實測 2026/11/16；等待時間隨伺服器忙碌而變"
+    "會議紀錄為虛構情境（tests/source-text.txt）"
    ],
-   "para": 1,
-   "tts": "我們用 Gemini 實測，第一次等了兩分五十秒。"
+   "para": 1
   },
   {
    "id": "s03",
    "beat": "twist",
-   "narration": "但雙十二排班，原文沒指定人，它填了行銷經理。",
+   "narration": "它卻填了行銷經理。",
    "subtitle": {
-    "zh": "但雙十二排班\n原文沒指定人\n它填了行銷經理",
-    "en": "But for the Dec 12 shift, | the minutes named no one. | It filled in the marketing manager."
+    "zh": "它卻填了行銷經理",
+    "en": "Yet it filled in the marketing manager."
    },
    "keywords": [
-    "沒指定人"
+    "行銷經理"
    ],
    "cues": [
-    {
-     "id": "pai",
-     "text": "排班"
-    },
-    {
-     "id": "no",
-     "text": "沒指定人"
-    },
     {
      "id": "fill",
      "text": "行銷經理"
@@ -199,22 +192,6 @@
     "rows": [
      {
       "cells": [
-       "業務代表",
-       "提供 3 句客戶見證文案給設計師",
-       "11/13（五）前"
-      ],
-      "ok": true
-     },
-     {
-      "cells": [
-       "客服主管",
-       "提供各尺寸實測數據",
-       "11/18（三）前"
-      ],
-      "ok": true
-     },
-     {
-      "cells": [
        "行銷經理",
        "指派「雙十二客服排班」負責人",
        "11 月底前"
@@ -222,18 +199,19 @@
       "flag": true
      }
     ],
-    "hl": "no",
     "src": {
      "label": "會議紀錄原文（情境示意）",
      "text": "客服排班要在 11 月底前排好，目前還沒有指派負責人",
      "verbatim": "tests/source-text.txt",
-     "at": "no"
+     "at": "start"
     },
     "stamp": {
-     "text": "原文沒指定人",
+     "text": "對不上",
      "at": "fill"
     },
+    "hl": "start",
     "status": "實測・與原文不符",
+    "statusAt": "fill+6",
     "camera": [
      {
       "look": [
@@ -241,28 +219,27 @@
        220,
        30
       ],
-      "zoom": 0.54,
+      "zoom": 0.56,
       "sy": 1105,
-      "dur": 16
+      "dur": 12
      }
     ],
     "kw": {
-     "沒指定人": "wrong"
-    },
-    "statusAt": "fill+6"
+     "行銷經理": "wrong"
+    }
    },
    "sources": [
-    "Gemini 實測 2026/11/16（情境示意：虛構會議紀錄）"
+    "Gemini 實測 2026/11/16（虛構紀錄，情境示意）"
    ],
    "para": 1
   },
   {
    "id": "s04",
    "beat": "check",
-   "narration": "同一句話再問一次，這次它寫了待指派。",
+   "narration": "同一句話再問一次，這次變成待指派。",
    "subtitle": {
-    "zh": "同一句話再問一次\n這次它寫了待指派",
-    "en": "Same sentence, asked again. | This time it wrote “unassigned”."
+    "zh": "同一句話再問一次\n這次變成待指派",
+    "en": "Same sentence again. | This time: “unassigned”."
    },
    "keywords": [
     "待指派"
@@ -270,7 +247,7 @@
    "cues": [
     {
      "id": "again",
-     "text": "再問"
+     "text": "再問一次"
     },
     {
      "id": "this",
@@ -308,6 +285,7 @@
      "at": "this+4"
     },
     "status": "已確定・實測 2 次",
+    "statusAt": "this+8",
     "camera": [
      {
       "look": [
@@ -315,15 +293,14 @@
        360,
        6
       ],
-      "zoom": 0.54,
+      "zoom": 0.56,
       "sy": 1105,
       "dur": 16
      }
     ],
     "kw": {
      "待指派": "right"
-    },
-    "statusAt": "this+8"
+    }
    },
    "sources": [
     "Gemini 實測 2026/11/16（虛構紀錄）；兩次問法相同"
@@ -332,65 +309,135 @@
   },
   {
    "id": "s05",
-   "beat": "payoff",
-   "narration": "所以要規定，沒寫的就填未指定，別自己補。",
+   "beat": "conclude",
+   "narration": "所以那不是查到的，是猜的，兩次答案還不一樣。",
    "subtitle": {
-    "zh": "所以要規定\n沒寫的就填未指定\n別自己補",
-    "en": "So set a rule: | if it isn’t written, say “unspecified”. | Don’t fill it in."
+    "zh": "所以那不是查到的\n是猜的\n兩次答案還不一樣",
+    "en": "So it wasn’t looked up. It was a guess, | and the two answers differ."
+   },
+   "keywords": [
+    "是猜的"
+   ],
+   "cues": [
+    {
+     "id": "not",
+     "text": "不是查到的"
+    },
+    {
+     "id": "guessw",
+     "text": "是猜的"
+    },
+    {
+     "id": "diff",
+     "text": "不一樣"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "panel": "guess",
+    "tag": "查證",
+    "tagColor": "right",
+    "big": [
+     "不是查到的",
+     "是猜的"
+    ],
+    "a": {
+     "label": "第一次",
+     "text": "行銷經理",
+     "verbatim": "tests/01-casual.json",
+     "at": "not"
+    },
+    "b": {
+     "label": "第二次",
+     "text": "待指派",
+     "verbatim": "tests/01b-casual-run2.json",
+     "at": "diff-14"
+    },
+    "stamp": {
+     "at": "guessw"
+    },
+    "status": "已確定・實測 2 次",
+    "statusAt": "diff",
+    "camera": [
+     {
+      "look": [
+       380,
+       330,
+       0
+      ],
+      "zoom": 0.56,
+      "sy": 1105,
+      "dur": 16
+     }
+    ],
+    "kw": {
+     "是猜的": "wrong"
+    }
+   },
+   "sources": [
+    "Gemini 實測 2026/11/16（虛構紀錄）；問法相同、答案不同"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "payoff",
+   "narration": "提示詞多加一句：原文沒寫的，就填未指定。再跑一次，這次填了未指定。",
+   "subtitle": {
+    "zh": "提示詞多加一句\n原文沒寫的就填未指定\n再跑一次這次填了未指定",
+    "en": "Add one line: if unwritten, | say “unspecified”. Run again."
    },
    "keywords": [
     "未指定"
    ],
    "cues": [
     {
-     "id": "rule",
-     "text": "規定"
+     "id": "addl",
+     "text": "多加一句"
     },
     {
      "id": "unk",
-     "text": "未指定"
+     "text": "填未指定"
     },
     {
-     "id": "own",
-     "text": "別自己補"
+     "id": "again",
+     "text": "再跑一次"
+    },
+    {
+     "id": "filled",
+     "text": "填了未指定"
     }
    ],
    "component": "IsoScene",
    "props": {
     "panel": "rule",
-    "tag": "查證",
+    "tag": "解法",
     "tagColor": "right",
     "rules": [
      {
-      "text": "只根據紀錄",
-      "color": "primary",
-      "at": "rule"
+      "text": "沒寫負責人或期限的就寫「未指定」",
+      "color": "right",
+      "at": "addl"
      },
      {
-      "text": "就寫「未指定」",
-      "color": "right",
-      "at": "unk"
+      "text": "只根據紀錄",
+      "color": "sky",
+      "at": "unk+6"
      },
      {
       "text": "「待決定」",
-      "color": "note",
-      "at": "own"
+      "color": "sky",
+      "at": "unk+12"
      }
     ],
     "promptVerbatim": "tests/02-better.json",
+    "resultY": 176,
     "result": {
-     "label": "第三次",
+     "label": "再跑一次",
      "by": "Gemini 實測・2026/11/16（節錄）",
      "verbatim": "tests/02-better.json",
-     "at": "unk+10",
+     "at": "again+10",
      "rows": [
-      {
-       "cells": [
-        "業務代表",
-        "提供三個客戶見證句給設計師",
-        "這週五前"
-       ]
-      },
       {
        "cells": [
         "未指定",
@@ -401,9 +448,9 @@
       }
      ]
     },
-    "fix": "own+6",
-    "status": "已確定・實測：排班填未指定",
-    "statusAt": "own+14",
+    "fix": "filled",
+    "status": "已確定・實測",
+    "statusAt": "filled+6",
     "camera": [
      {
       "look": [
@@ -411,7 +458,7 @@
        360,
        6
       ],
-      "zoom": 0.558,
+      "zoom": 0.56,
       "sy": 1105,
       "dur": 16
      }
@@ -421,17 +468,17 @@
     }
    },
    "sources": [
-    "Gemini 實測 2026/11/16（虛構紀錄）；第三次加三條規定"
+    "Gemini 實測 2026/11/16（虛構紀錄）；提示另含兩條規定"
    ],
    "para": 1
   },
   {
-   "id": "s06",
+   "id": "s07",
    "beat": "unknown",
-   "narration": "只測了這份紀錄，別份會不會一樣，還不知道。",
+   "narration": "我們只測了這一份，別份會不會也猜，還不知道。",
    "subtitle": {
-    "zh": "只測了這份紀錄\n別份會不會一樣\n還不知道",
-    "en": "I only tested this one set. | Whether others behave the same | is unknown."
+    "zh": "我們只測了這一份\n別份會不會也猜\n還不知道",
+    "en": "We only tested this one. | Whether others get guessed too is unknown."
    },
    "keywords": [
     "還不知道"
@@ -439,7 +486,7 @@
    "cues": [
     {
      "id": "known",
-     "text": "這份紀錄"
+     "text": "這一份"
     },
     {
      "id": "q",
@@ -483,75 +530,16 @@
     }
    },
    "sources": [
-    "Gemini 實測 2026/11/16（情境示意：虛構會議紀錄）；共 3 次"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s07",
-   "beat": "ask",
-   "narration": "你先查負責人，還是查期限？下集講期限怎麼查。",
-   "subtitle": {
-    "zh": "你先查負責人\n還是查期限\n下集講期限怎麼查",
-    "en": "Check the owner first, or the deadline? | Next: how to check deadlines."
-   },
-   "keywords": [
-    "負責人"
-   ],
-   "cues": [
-    {
-     "id": "a",
-     "text": "負責人"
-    },
-    {
-     "id": "b",
-     "text": "查期限"
-    },
-    {
-     "id": "next",
-     "text": "下集"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "panel": "ask",
-    "tag": "提問",
-    "tagColor": "primary",
-    "a": "先查負責人",
-    "b": "先查期限",
-    "next": {
-     "kicker": "下集",
-     "text": "期限怎麼查"
-    },
-    "camera": [
-     {
-      "look": [
-       520,
-       360,
-       6
-      ],
-      "zoom": 0.54,
-      "sy": 1105,
-      "dur": 16
-     }
-    ],
-    "kw": {
-     "負責人": "primary"
-    },
-    "status": "我們會做",
-    "statusAt": "next"
-   },
-   "sources": [
-    "Gemini 實測 2026/11/16（情境示意：虛構會議紀錄）"
+    "Gemini 實測 2026/11/16（虛構紀錄，情境示意）；共 3 次"
    ],
    "para": 1
   },
   {
    "id": "s08",
    "beat": "cta",
-   "narration": "留言「待辦」，領這份提示詞。",
+   "narration": "留言「待辦」，拿這句提示詞。",
    "subtitle": {
-    "zh": "留言「待辦」\n領這份提示詞",
+    "zh": "留言「待辦」\n拿這句提示詞",
     "en": "Comment “待辦” | to get this prompt."
    },
    "keywords": [
@@ -572,7 +560,7 @@
     "panel": "cta",
     "tag": "領取",
     "tagColor": "right",
-    "kicker": "想要這份三條規定的提示詞",
+    "kicker": "想要這句規定的提示詞",
     "keyword": "待辦",
     "sub": "私訊給你步驟＋完整提示詞",
     "camera": [
@@ -582,7 +570,7 @@
        360,
        6
       ],
-      "zoom": 0.54,
+      "zoom": 0.56,
       "sy": 1105,
       "dur": 16
      }

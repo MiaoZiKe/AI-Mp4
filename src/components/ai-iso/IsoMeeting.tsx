@@ -10,7 +10,7 @@ import { EASE, tween } from "../anim";
 import { buildIso, type Panel } from "./engine";
 import { CaffEndcard } from "./CaffAnim";
 import { Floaters, Glow } from "./IsoShort";
-import { ap, at2, Backdrop, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, ground, HeaderIso, iso, type M6, mul, riseIn, Shade, Slab, slam, SourceLine, wallX } from "./IsoVideo";
+import { Mark, ap, at2, Backdrop, bounce, Box, Caption, type Cap, Check, Chip, col, css, face, ground, HeaderIso, iso, type M6, mul, riseIn, Shade, Slab, slam, SourceLine, wallX } from "./IsoVideo";
 
 const zh: React.CSSProperties = { fontFamily: FONT_ZH, whiteSpace: "nowrap", lineHeight: 1.16 };
 const en: React.CSSProperties = { fontFamily: FONT_EN, whiteSpace: "nowrap", lineHeight: 1 };
@@ -70,8 +70,8 @@ const Clock: React.FC<{ min: number; hr: number; flash: number }> = ({ min, hr, 
 const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, cam, P: Pn, panels }) => {
   const hk = Pn.hook, run = Pn.run, wr = Pn.wrong, vs = Pn.vs, ru = Pn.rule, lm = Pn.limit, ct = Pn.cta;
   const tTick = hk ? hk.at("tick", FAR) : FAR, tGuess = hk ? hk.at("guess", FAR) : FAR;
-  const tSend = run ? run.at("send", FAR) : FAR, tWait = run ? run.at("wait", FAR) : FAR, tDone = run ? run.at("done", FAR) : FAR;
-  const tHl = wr ? wr.at("hl", FAR) : FAR, tFix = ru ? ru.at("fix", FAR) : FAR, tAll = ct ? ct.at("all", FAR) : FAR;
+  const tSend = run ? run.at("send", FAR) : hk && hk.p.send ? hk.at("send", FAR) : FAR, tWait = run ? run.at("wait", FAR) : FAR, tDone = run ? run.at("done", FAR) : hk && hk.p.done ? hk.at("done", FAR) : FAR;
+  const tHl = wr ? wr.at("hl", FAR) : Pn.orig ? Pn.orig.at("hl", FAR) : FAR, tFix = ru ? ru.at("fix", FAR) : FAR, tAll = ct ? ct.at("all", FAR) : FAR;
   const tVs = vs ? vs.in : FAR, tLim = lm ? lm.at("q", FAR) : FAR;
   const mode: "idle" | "think" | "done" | "ok" = f >= tAll ? "ok" : f >= tDone ? "done" : f >= tSend && tSend < FAR ? "think" : "idle";
   const flash = pulse(f, tDone, 14) + pulse(f, tVs + 4, 10) * 0.7;
@@ -188,11 +188,37 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       <div key="hk" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, color: T.ink }}>{p.title[0]}</div><br />
         <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, marginTop: 8, color: f >= tM ? T.color.wrong.text : T.ink, transform: `scale(${f < tM ? 1 : 1 + 0.1 * Math.exp(-(f - tM) / 5)})`, transformOrigin: "0 50%" }}>{p.title[1]}</div>
-        <div style={{ display: "flex", alignItems: "center", gap: 36, marginTop: 40 }}>
-          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.08), ...zh, fontWeight: 900, fontSize: 50, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "4px 24px" }}>{p.stamp?.text}</div>
-          <div data-ov="數字卡" style={{ ...bounce(f, tN), ...zh, fontWeight: 900, fontSize: 36, color: T.ink2, background: T.card, borderRadius: 24, padding: "10px 24px", boxShadow: `0 7px 0 ${T.cardSide}` }}><span style={{ ...en, fontSize: 52, color: P.text }}>{p.count?.value}</span> {p.count?.unit}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 36 }}>
+          {(p.flow as string[]).map((t, i) => <React.Fragment key={t}>{i ? <svg width={46} height={26} viewBox="0 0 60 30"><path d="M4 15 H46 M36 5 L48 15 L36 25" fill="none" stroke={T.ink3} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" /></svg> : null}<div data-ov="流程章" style={{ ...bounce(f, tN + i * 6), ...zh, fontWeight: 900, fontSize: 38, color: i === 1 ? "#fff" : T.ink, background: i === 1 ? P.fill : T.card, borderRadius: 24, padding: "8px 20px", boxShadow: `0 7px 0 ${i === 1 ? P.side : T.cardSide}` }}>{t}</div></React.Fragment>)}
+          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.08), ...zh, fontWeight: 900, fontSize: 42, color: T.color.wrong.text, border: `6px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "2px 18px" }}>{p.stamp?.text}</div>
         </div>
 
+      </div>,
+    );
+  }
+  if (Pn.orig) {
+    const g = Pn.orig, p = g.p, o = 1 - O(f, g.out - 8, 8), tM = g.at(p.markAt, g.in + 30), t0 = g.in + 4;
+    const i = (p.text as string).indexOf(p.mark);
+    out.push(
+      <div key="orig" data-ov="說明卡" style={{ ...riseIn(f, t0, 26), position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div style={{ ...face(T.card, T.color.note.side, 12), padding: "16px 26px 22px", height: "auto" }}>
+          <div style={{ ...zh, fontWeight: 700, fontSize: 30, color: T.ink3 }}>{p.label}</div>
+          <div style={{ ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: 46, color: T.ink, marginTop: 8, lineHeight: 1.35 }}>{(p.text as string).slice(0, i)}<Mark f={f} at={tM} bg={T.color.wrong.fill} fg="#fff">{p.mark}</Mark>{(p.text as string).slice(i + (p.mark as string).length)}</div>
+        </div>
+      </div>,
+    );
+  }
+  if (Pn.guess) {
+    const g = Pn.guess, p = g.p, o = 1 - O(f, g.out - 8, 8), tA = g.at(p.a.at, g.in + 6), tB = g.at(p.b.at, g.in + 24), tS = g.at(p.stamp.at, g.in + 40);
+    out.push(
+      <div key="guess" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
+        <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 92, color: T.ink }}>{p.big[0]}</div><br />
+        <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: 112, color: f >= tS ? T.color.wrong.text : T.ink, transform: `scale(${f < tS ? 1 : 1 + 0.08 * Math.exp(-(f - tS) / 5)})`, transformOrigin: "0 50%" }}>{p.big[1]}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 26 }}>
+          <div data-ov="答案章" style={{ ...bounce(f, tA), ...zh, fontWeight: 900, fontSize: 40, color: T.color.wrong.text, background: T.color.wrong.soft, borderRadius: 24, padding: "8px 22px", boxShadow: `0 7px 0 ${T.color.wrong.fill}` }}>{p.a.label}：{p.a.text}</div>
+          <div style={{ ...bounce(f, tB - 4), ...zh, fontWeight: 900, fontSize: 52, color: T.ink2 }}>≠</div>
+          <div data-ov="答案章" style={{ ...bounce(f, tB), ...zh, fontWeight: 900, fontSize: 40, color: T.color.right.text, background: T.color.right.soft, borderRadius: 24, padding: "8px 22px", boxShadow: `0 7px 0 ${T.color.right.fill}` }}>{p.b.label}：{p.b.text}</div>
+        </div>
       </div>,
     );
   }
@@ -224,7 +250,7 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
     const rs: Cells[] = p.rows.map((r: any) => ({ cells: r.cells, flag: !!r.flag, ok: !!r.ok }));
     out.push(
       <React.Fragment key="wr">
-        <div style={{ opacity: o }}><AnswerCard f={f} at={w.in + 2} out={w.out - 4} by={p.by} rows={rs} y={TOP} hideRows={{ 0: hide, 1: hide }} /></div>
+        <div style={{ opacity: o }}><AnswerCard f={f} at={w.in + 2} out={w.out - 4} by={p.by} rows={rs} y={TOP} hideRows={p.collapse ? { 0: hide, 1: hide } : {}} /></div>
         {f >= tSrc + 10 ? <div data-ov="說明卡" style={{ ...riseIn(f, tSrc + 10, 30), position: "absolute", left: W0, top: TOP + 172, width: L.INNER_W, opacity: o }}>
           <div style={{ ...face(T.card, T.color.note.side, 12), padding: "16px 26px 18px", height: "auto" }}>
             <div style={{ ...zh, fontWeight: 700, fontSize: 28, color: T.ink3 }}>{p.src.label}</div>
@@ -256,10 +282,10 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       <React.Fragment key="ru">
         <div data-ov="說明卡" style={{ ...riseIn(f, tP, 26), position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
           <div style={{ ...face(T.card, P.side, 12), padding: "14px 20px 18px", height: "auto" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "nowrap" }}><Chip text="這樣問" bg={P.fill} fg="#fff" px={30} />{(p.rules as any[]).map((q, i) => { const c = col(q.color); return <div key={i} style={{ ...bounce(f, r.at(q.at, tP + 8 + i * 8)) }}><div style={{ ...zh, fontWeight: 900, fontSize: 30, color: c.on, background: c.fill, borderRadius: 22, padding: "6px 14px", boxShadow: `0 6px 0 ${c.side}` }}>{q.text}</div></div>; })}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}><Chip text="提示詞" bg={P.fill} fg="#fff" px={30} />{(p.rules as any[]).map((q, i) => { const c = col(q.color); return <div key={i} style={{ ...bounce(f, r.at(q.at, tP + 8 + i * 8)) }}><div style={{ ...zh, fontWeight: 900, fontSize: 30, color: c.on, background: c.fill, borderRadius: 22, padding: "6px 14px", boxShadow: `0 6px 0 ${c.side}` }}>{q.text}</div></div>; })}</div>
           </div>
         </div>
-        <AnswerCard f={f} at={tR} out={r.out - 4} by={p.result.by} rows={rs} y={TOP + 128} color="right" label={p.result.label} />
+        <AnswerCard f={f} at={tR} out={r.out - 4} by={p.result.by} rows={rs} y={TOP + (p.resultY ?? 128)} color="right" label={p.result.label} />
       </React.Fragment>,
     );
   }
@@ -349,7 +375,7 @@ export const MeetingIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
     <AbsoluteFill style={{ background: T.bg }}>
       <Backdrop /><Glow f={f} />
       <World f={f} cam={cam} P={Pn} panels={world} />
-      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, run: 1, wrong: 2, vs: 2, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
+      <Bands f={f} on={inEnd ? -1 : ({ hook: -1, orig: 0, run: 1, wrong: 2, vs: 2, guess: 1, rule: 2, limit: 0, ask: 2, cta: 2 } as Record<string, number>)[(world.filter((q) => q.in <= f).pop()?.kind) ?? "hook"] ?? -1} />
       <Floaters f={f} cam={cam} />
       {inEnd ? null : <Overlays f={f} P={Pn} cam={cam} />}
       {inEnd ? null : world.map((p) => <Tag key={p.sid} f={f} p={p} />)}

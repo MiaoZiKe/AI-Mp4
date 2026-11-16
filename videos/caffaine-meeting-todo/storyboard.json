@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 884,
- "totalSec": 29.47,
+ "totalFrames": 1038,
+ "totalSec": 34.6,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 116,
+   "durationFrames": 160,
    "startSec": 0,
-   "durationSec": 3.87,
+   "durationSec": 5.33,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -19,54 +19,57 @@
     "frames": 0
    },
    "camera": null,
-   "cueEarly": [
-    {
-     "id": "guess",
-     "early": 2
-    }
-   ],
-   "voice": {
-    "startFrame": 1,
-    "endFrame": 106,
-    "pauseAfterSec": null
-   },
+   "cueEarly": [],
+   "voice": null,
    "cues": [
+    {
+     "id": "toss",
+     "text": "丟給",
+     "frame": 38,
+     "sceneFrame": 38
+    },
     {
      "id": "six",
      "text": "六項",
-     "frame": 26,
-     "sceneFrame": 26
+     "frame": 96,
+     "sceneFrame": 96
     },
     {
      "id": "guess",
-     "text": "猜的",
-     "frame": 96,
-     "sceneFrame": 96
+     "text": "編的",
+     "frame": 141,
+     "sceneFrame": 141
     }
    ],
-   "stillFrame": 106,
+   "stillFrame": 150,
    "subtitles": [
     {
-     "zh": "AI 整理六項待辦",
-     "en": "AI sorted out six to-dos.",
+     "zh": "開完會把紀錄丟給 AI",
+     "en": "Notes handed to AI for to-dos.",
      "startFrame": 0,
-     "endFrame": 54
+     "endFrame": 64
     },
     {
-     "zh": "一項負責人是它猜的",
-     "en": "One owner was a guess.",
-     "startFrame": 54,
-     "endFrame": 113
+     "zh": "整理待辦",
+     "en": "Notes handed to AI for to-dos.",
+     "startFrame": 64,
+     "endFrame": 93
+    },
+    {
+     "zh": "六項裡有一項是它編的",
+     "en": "One in six was made up.",
+     "startFrame": 93,
+     "endFrame": 157
     }
    ],
-   "narration": "AI 整理六項待辦，一項負責人是它猜的。"
+   "narration": "開完會，把紀錄丟給 AI 整理待辦？六項裡，有一項是它編的。"
   },
   {
    "id": "s02",
-   "startFrame": 106,
-   "durationFrames": 104,
-   "startSec": 3.53,
-   "durationSec": 3.47,
+   "startFrame": 150,
+   "durationFrames": 130,
+   "startSec": 5,
+   "durationSec": 4.33,
    "component": "IsoScene",
    "beat": "you",
    "transition": {
@@ -75,54 +78,56 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 116,
-    "endFrame": 200,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "gem",
-     "text": "Gemini",
-     "frame": 125,
-     "sceneFrame": 19
+     "id": "which",
+     "text": "哪一項",
+     "frame": 161,
+     "sceneFrame": 11
     },
     {
-     "id": "wait",
-     "text": "等了",
-     "frame": 168,
-     "sceneFrame": 62
+     "id": "shift",
+     "text": "客服排班",
+     "frame": 205,
+     "sceneFrame": 55
     },
     {
-     "id": "sec",
-     "text": "五十秒",
-     "frame": 186,
-     "sceneFrame": 80
+     "id": "nop",
+     "text": "還沒指派",
+     "frame": 250,
+     "sceneFrame": 100
     }
    ],
-   "stillFrame": 200,
+   "stillFrame": 270,
    "subtitles": [
     {
-     "zh": "我們用 Gemini 實測",
-     "en": "We tested Gemini.",
-     "startFrame": 113,
-     "endFrame": 154
+     "zh": "哪一項？",
+     "en": "Which one? The Dec 12 support shift.",
+     "startFrame": 157,
+     "endFrame": 180
     },
     {
-     "zh": "第一次等了兩分五十秒",
-     "en": "The first reply took 2 min 50 s.",
-     "startFrame": 154,
-     "endFrame": 207
+     "zh": "雙十二的客服排班",
+     "en": "Which one? The Dec 12 support shift.",
+     "startFrame": 180,
+     "endFrame": 230
+    },
+    {
+     "zh": "原文寫「還沒指派」",
+     "en": "The minutes say “not yet assigned”.",
+     "startFrame": 230,
+     "endFrame": 277
     }
    ],
-   "narration": "我們用 Gemini 實測，第一次等了兩分五十秒。"
+   "narration": "哪一項？雙十二的客服排班，原文寫「還沒指派」。"
   },
   {
    "id": "s03",
-   "startFrame": 200,
-   "durationFrames": 124,
-   "startSec": 6.67,
-   "durationSec": 4.13,
+   "startFrame": 270,
+   "durationFrames": 68,
+   "startSec": 9,
+   "durationSec": 2.27,
    "component": "IsoScene",
    "beat": "twist",
    "transition": {
@@ -131,60 +136,32 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 210,
-    "endFrame": 314,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
-    {
-     "id": "pai",
-     "text": "排班",
-     "frame": 229,
-     "sceneFrame": 29
-    },
-    {
-     "id": "no",
-     "text": "沒指定人",
-     "frame": 258,
-     "sceneFrame": 58
-    },
     {
      "id": "fill",
      "text": "行銷經理",
-     "frame": 297,
-     "sceneFrame": 97
+     "frame": 304,
+     "sceneFrame": 34
     }
    ],
-   "stillFrame": 314,
+   "stillFrame": 328,
    "subtitles": [
     {
-     "zh": "但雙十二排班",
-     "en": "But for the Dec 12 shift,",
-     "startFrame": 207,
-     "endFrame": 244
-    },
-    {
-     "zh": "原文沒指定人",
-     "en": "the minutes named no one.",
-     "startFrame": 244,
-     "endFrame": 282
-    },
-    {
-     "zh": "它填了行銷經理",
-     "en": "It filled in the marketing manager.",
-     "startFrame": 282,
-     "endFrame": 321
+     "zh": "它卻填了行銷經理",
+     "en": "Yet it filled in the marketing manager.",
+     "startFrame": 277,
+     "endFrame": 335
     }
    ],
-   "narration": "但雙十二排班，原文沒指定人，它填了行銷經理。"
+   "narration": "它卻填了行銷經理。"
   },
   {
    "id": "s04",
-   "startFrame": 314,
-   "durationFrames": 98,
-   "startSec": 10.47,
-   "durationSec": 3.27,
+   "startFrame": 328,
+   "durationFrames": 110,
+   "startSec": 10.93,
+   "durationSec": 3.67,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -193,48 +170,102 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 324,
-    "endFrame": 403,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
      "id": "again",
-     "text": "再問",
-     "frame": 341,
-     "sceneFrame": 27
+     "text": "再問一次",
+     "frame": 361,
+     "sceneFrame": 33
     },
     {
      "id": "this",
      "text": "待指派",
-     "frame": 387,
-     "sceneFrame": 73
+     "frame": 413,
+     "sceneFrame": 85
     }
    ],
-   "stillFrame": 402,
+   "stillFrame": 428,
    "subtitles": [
     {
      "zh": "同一句話再問一次",
-     "en": "Same sentence, asked again.",
-     "startFrame": 321,
-     "endFrame": 363
+     "en": "Same sentence again.",
+     "startFrame": 335,
+     "endFrame": 387
     },
     {
-     "zh": "這次它寫了待指派",
-     "en": "This time it wrote “unassigned”.",
-     "startFrame": 363,
-     "endFrame": 409
+     "zh": "這次變成待指派",
+     "en": "This time: “unassigned”.",
+     "startFrame": 387,
+     "endFrame": 435
     }
    ],
-   "narration": "同一句話再問一次，這次它寫了待指派。"
+   "narration": "同一句話再問一次，這次變成待指派。"
   },
   {
    "id": "s05",
-   "startFrame": 402,
-   "durationFrames": 113,
-   "startSec": 13.4,
-   "durationSec": 3.77,
+   "startFrame": 428,
+   "durationFrames": 136,
+   "startSec": 14.27,
+   "durationSec": 4.53,
+   "component": "IsoScene",
+   "beat": "conclude",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "not",
+     "text": "不是查到的",
+     "frame": 455,
+     "sceneFrame": 27
+    },
+    {
+     "id": "guessw",
+     "text": "是猜的",
+     "frame": 489,
+     "sceneFrame": 61
+    },
+    {
+     "id": "diff",
+     "text": "不一樣",
+     "frame": 539,
+     "sceneFrame": 111
+    }
+   ],
+   "stillFrame": 554,
+   "subtitles": [
+    {
+     "zh": "所以那不是查到的",
+     "en": "So it wasn’t looked up. It was a guess,",
+     "startFrame": 435,
+     "endFrame": 485
+    },
+    {
+     "zh": "是猜的",
+     "en": "So it wasn’t looked up. It was a guess,",
+     "startFrame": 485,
+     "endFrame": 508
+    },
+    {
+     "zh": "兩次答案還不一樣",
+     "en": "and the two answers differ.",
+     "startFrame": 508,
+     "endFrame": 561
+    }
+   ],
+   "narration": "所以那不是查到的，是猜的，兩次答案還不一樣。"
+  },
+  {
+   "id": "s06",
+   "startFrame": 554,
+   "durationFrames": 190,
+   "startSec": 18.47,
+   "durationSec": 6.33,
    "component": "IsoScene",
    "beat": "payoff",
    "transition": {
@@ -243,60 +274,62 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 412,
-    "endFrame": 505,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
-     "id": "rule",
-     "text": "規定",
-     "frame": 424,
-     "sceneFrame": 22
+     "id": "addl",
+     "text": "多加一句",
+     "frame": 581,
+     "sceneFrame": 27
     },
     {
      "id": "unk",
-     "text": "未指定",
-     "frame": 468,
-     "sceneFrame": 66
+     "text": "填未指定",
+     "frame": 644,
+     "sceneFrame": 90
     },
     {
-     "id": "own",
-     "text": "別自己補",
-     "frame": 488,
-     "sceneFrame": 86
+     "id": "again",
+     "text": "再跑一次",
+     "frame": 673,
+     "sceneFrame": 119
+    },
+    {
+     "id": "filled",
+     "text": "填了未指定",
+     "frame": 707,
+     "sceneFrame": 153
     }
    ],
-   "stillFrame": 505,
+   "stillFrame": 734,
    "subtitles": [
     {
-     "zh": "所以要規定",
-     "en": "So set a rule:",
-     "startFrame": 409,
-     "endFrame": 439
+     "zh": "提示詞多加一句",
+     "en": "Add one line: if unwritten,",
+     "startFrame": 561,
+     "endFrame": 607
     },
     {
-     "zh": "沒寫的就填未指定",
-     "en": "if it isn’t written, say “unspecified”.",
-     "startFrame": 439,
-     "endFrame": 485
+     "zh": "原文沒寫的就填未指定",
+     "en": "Add one line: if unwritten,",
+     "startFrame": 607,
+     "endFrame": 670
     },
     {
-     "zh": "別自己補",
-     "en": "Don’t fill it in.",
-     "startFrame": 485,
-     "endFrame": 512
+     "zh": "再跑一次這次填了未指定",
+     "en": "say “unspecified”. Run again.",
+     "startFrame": 670,
+     "endFrame": 741
     }
    ],
-   "narration": "所以要規定，沒寫的就填未指定，別自己補。"
+   "narration": "提示詞多加一句：原文沒寫的，就填未指定。再跑一次，這次填了未指定。"
   },
   {
-   "id": "s06",
-   "startFrame": 505,
-   "durationFrames": 103,
-   "startSec": 16.83,
-   "durationSec": 3.43,
+   "id": "s07",
+   "startFrame": 734,
+   "durationFrames": 136,
+   "startSec": 24.47,
+   "durationSec": 4.53,
    "component": "IsoScene",
    "beat": "unknown",
    "transition": {
@@ -305,116 +338,50 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 515,
-    "endFrame": 598,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
      "id": "known",
-     "text": "這份紀錄",
-     "frame": 527,
-     "sceneFrame": 22
+     "text": "這一份",
+     "frame": 772,
+     "sceneFrame": 38
     },
     {
      "id": "q",
      "text": "別份",
-     "frame": 551,
-     "sceneFrame": 46
+     "frame": 795,
+     "sceneFrame": 61
     }
    ],
-   "stillFrame": 598,
+   "stillFrame": 860,
    "subtitles": [
     {
-     "zh": "只測了這份紀錄",
-     "en": "I only tested this one set.",
-     "startFrame": 512,
-     "endFrame": 548
+     "zh": "我們只測了這一份",
+     "en": "We only tested this one.",
+     "startFrame": 741,
+     "endFrame": 791
     },
     {
-     "zh": "別份會不會一樣",
-     "en": "Whether others behave the same",
-     "startFrame": 548,
-     "endFrame": 579
+     "zh": "別份會不會也猜",
+     "en": "We only tested this one.",
+     "startFrame": 791,
+     "endFrame": 836
     },
     {
      "zh": "還不知道",
-     "en": "is unknown.",
-     "startFrame": 579,
-     "endFrame": 605
+     "en": "Whether others get guessed too is unknown.",
+     "startFrame": 836,
+     "endFrame": 867
     }
    ],
-   "narration": "只測了這份紀錄，別份會不會一樣，還不知道。"
-  },
-  {
-   "id": "s07",
-   "startFrame": 598,
-   "durationFrames": 123,
-   "startSec": 19.93,
-   "durationSec": 4.1,
-   "component": "IsoScene",
-   "beat": "ask",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 608,
-    "endFrame": 712,
-    "pauseAfterSec": null
-   },
-   "cues": [
-    {
-     "id": "a",
-     "text": "負責人",
-     "frame": 621,
-     "sceneFrame": 23
-    },
-    {
-     "id": "b",
-     "text": "查期限",
-     "frame": 645,
-     "sceneFrame": 47
-    },
-    {
-     "id": "next",
-     "text": "下集",
-     "frame": 673,
-     "sceneFrame": 75
-    }
-   ],
-   "stillFrame": 711,
-   "subtitles": [
-    {
-     "zh": "你先查負責人",
-     "en": "Check the owner first, or the deadline?",
-     "startFrame": 605,
-     "endFrame": 634
-    },
-    {
-     "zh": "還是查期限",
-     "en": "Check the owner first, or the deadline?",
-     "startFrame": 634,
-     "endFrame": 669
-    },
-    {
-     "zh": "下集講期限怎麼查",
-     "en": "Next: how to check deadlines.",
-     "startFrame": 669,
-     "endFrame": 718
-    }
-   ],
-   "narration": "你先查負責人，還是查期限？下集講期限怎麼查。"
+   "narration": "我們只測了這一份，別份會不會也猜，還不知道。"
   },
   {
    "id": "s08",
-   "startFrame": 711,
-   "durationFrames": 75,
-   "startSec": 23.7,
-   "durationSec": 2.5,
+   "startFrame": 860,
+   "durationFrames": 80,
+   "startSec": 28.67,
+   "durationSec": 2.67,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -423,47 +390,43 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": {
-    "startFrame": 721,
-    "endFrame": 778,
-    "pauseAfterSec": null
-   },
+   "voice": null,
    "cues": [
     {
      "id": "kw",
      "text": "待辦",
-     "frame": 733,
-     "sceneFrame": 22
+     "frame": 881,
+     "sceneFrame": 21
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 763,
-     "sceneFrame": 52
+     "frame": 915,
+     "sceneFrame": 55
     }
    ],
-   "stillFrame": 776,
+   "stillFrame": 930,
    "subtitles": [
     {
      "zh": "留言「待辦」",
      "en": "Comment “待辦”",
-     "startFrame": 718,
-     "endFrame": 746
+     "startFrame": 867,
+     "endFrame": 895
     },
     {
-     "zh": "領這份提示詞",
+     "zh": "拿這句提示詞",
      "en": "to get this prompt.",
-     "startFrame": 746,
-     "endFrame": 786
+     "startFrame": 895,
+     "endFrame": 940
     }
    ],
-   "narration": "留言「待辦」，領這份提示詞。"
+   "narration": "留言「待辦」，拿這句提示詞。"
   },
   {
    "id": "s09",
-   "startFrame": 776,
+   "startFrame": 930,
    "durationFrames": 108,
-   "startSec": 25.87,
+   "startSec": 31,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -475,7 +438,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 872,
+   "stillFrame": 1026,
    "subtitles": [],
    "narration": ""
   }

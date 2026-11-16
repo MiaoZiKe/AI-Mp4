@@ -2,243 +2,147 @@
  "version": 2,
  "slug": "caffaine-meeting-todo",
  "fps": 30,
- "totalFrames": 884,
- "totalSec": 29.47,
- "gapSec": 0.15,
+ "totalFrames": 1038,
+ "totalSec": 34.6,
+ "gapSec": 0.3,
  "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
  "scenes": [
   {
    "id": "s01",
-   "audio": "audio/caffaine-meeting-todo/01-s01.wav",
-   "audioFrame": 0,
-   "audioSec": 3.57,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 4.898,
+   "headSilSec": 0,
+   "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 116,
+   "durationFrames": 160,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 1,
-   "voiceEndFrame": 106,
-   "stillFrame": 106,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 152,
+   "stillFrame": 150,
    "subtitleWindow": [
     0,
-    113
+    157
    ],
    "sourceWindow": [
     0,
-    111
+    155
    ],
    "lines": [
     {
-     "text": "AI 整理六項待辦",
+     "text": "開完會把紀錄丟給 AI",
      "start": 0,
      "chars": [
-      0,
-      0,
-      0,
-      14,
-      19,
-      24,
+      4,
+      9,
+      15,
+      20,
+      26,
       31,
-      36,
-      40
+      37,
+      42,
+      42,
+      48,
+      54
      ]
     },
     {
-     "text": "一項負責人是它猜的",
-     "start": 54,
+     "text": "整理待辦",
+     "start": 64,
      "chars": [
-      56,
-      62,
-      69,
-      75,
-      80,
-      86,
-      89,
+      66,
+      71,
+      77,
+      83
+     ]
+    },
+    {
+     "text": "六項裡有一項是它編的",
+     "start": 93,
+     "chars": [
       95,
-      100
+      100,
+      106,
+      111,
+      117,
+      123,
+      128,
+      134,
+      139,
+      145
      ]
     }
    ],
    "keywords": [
     {
-     "text": "猜的",
-     "start": 95
+     "text": "編的",
+     "start": 139
     }
    ],
    "cues": [
     {
+     "id": "toss",
+     "text": "丟給",
+     "frame": 38
+    },
+    {
      "id": "six",
      "text": "六項",
-     "frame": 26,
-     "early": 0
+     "frame": 96
     },
     {
      "id": "guess",
-     "text": "猜的",
-     "frame": 96,
-     "early": 2
+     "text": "編的",
+     "frame": 141
     }
    ],
-   "hash": "1c22249be9cc-4f0d13da55",
-   "sub": "AI 整理六項待辦\n一項負責人是它猜的",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.826,
-    "minScore": 0.001,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 30,
-    "onsetCheck": [
-     {
-      "onset": 0.51,
-      "start": 0.5,
-      "ch": "整",
-      "errMs": -10
-     },
-     {
-      "onset": 1.95,
-      "start": 1.92,
-      "ch": "一",
-      "errMs": -30
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "A",
-     "start": 0,
-     "end": 0.04,
-     "score": 0.001
-    },
-    {
-     "text": "I",
-     "start": 0.06,
-     "end": 0.16,
-     "score": 0.685
-    },
-    {
-     "text": "整",
-     "start": 0.5,
-     "end": 0.66,
-     "score": 0.732
-    },
-    {
-     "text": "理",
-     "start": 0.68,
-     "end": 0.76,
-     "score": 0.996
-    },
-    {
-     "text": "六",
-     "start": 0.86,
-     "end": 1.04,
-     "score": 0.28
-    },
-    {
-     "text": "項",
-     "start": 1.08,
-     "end": 1.24,
-     "score": 0.995
-    },
-    {
-     "text": "待",
-     "start": 1.26,
-     "end": 1.38,
-     "score": 0.993
-    },
-    {
-     "text": "辦",
-     "start": 1.4,
-     "end": 1.56,
-     "score": 0.996
-    },
-    {
-     "text": "一",
-     "start": 1.92,
-     "end": 2,
-     "score": 0.877
-    },
-    {
-     "text": "項",
-     "start": 2.1,
-     "end": 2.28,
-     "score": 0.999
-    },
-    {
-     "text": "負",
-     "start": 2.34,
-     "end": 2.44,
-     "score": 0.997
-    },
-    {
-     "text": "責",
-     "start": 2.54,
-     "end": 2.64,
-     "score": 0.5
-    },
-    {
-     "text": "人",
-     "start": 2.72,
-     "end": 2.84,
-     "score": 0.999
-    },
-    {
-     "text": "是",
-     "start": 2.9,
-     "end": 2.98,
-     "score": 0.999
-    },
-    {
-     "text": "它",
-     "start": 3.02,
-     "end": 3.1,
-     "score": 0.99
-    },
-    {
-     "text": "猜",
-     "start": 3.2,
-     "end": 3.36,
-     "score": 0.997
-    },
-    {
-     "text": "的",
-     "start": 3.38,
-     "end": 3.46,
-     "score": 0.999
-    }
-   ],
+   "sub": "開完會把紀錄丟給 AI\n整理待辦\n六項裡有一項是它編的",
+   "provider": "estimate",
+   "syllables": 24,
+   "words": [],
    "charTimes": [
     0,
-    0.06,
-    0.5,
-    0.68,
-    0.86,
-    1.08,
-    1.26,
-    1.4,
-    1.92,
-    2.1,
-    2.34,
-    2.54,
-    2.72,
-    2.9,
-    3.02,
-    3.2,
-    3.38
+    0.186,
+    0.371,
+    0.557,
+    0.742,
+    0.928,
+    1.113,
+    1.299,
+    1.484,
+    1.67,
+    2.078,
+    2.263,
+    2.449,
+    2.635,
+    3.043,
+    3.228,
+    3.414,
+    3.599,
+    3.785,
+    3.97,
+    4.156,
+    4.341,
+    4.527,
+    4.712
    ]
   },
   {
    "id": "s02",
-   "audio": "audio/caffaine-meeting-todo/02-s02.wav",
-   "audioFrame": 115,
-   "audioSec": 2.85,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 106,
-   "durationFrames": 104,
+   "audio": null,
+   "audioFrame": 161,
+   "audioSec": 3.673,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 150,
+   "durationFrames": 130,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -252,260 +156,115 @@
      8
     ]
    },
-   "voiceStartFrame": 116,
-   "voiceEndFrame": 200,
-   "stillFrame": 200,
+   "voiceStartFrame": 160,
+   "voiceEndFrame": 272,
+   "stillFrame": 270,
    "subtitleWindow": [
-    113,
-    207
+    157,
+    277
    ],
    "sourceWindow": [
-    111,
-    205
+    155,
+    275
    ],
    "lines": [
     {
-     "text": "我們用 Gemini 實測",
-     "start": 113,
+     "text": "哪一項？",
+     "start": 157,
      "chars": [
-      115,
-      117,
-      120,
-      120,
-      124,
-      126,
-      129,
-      129,
-      130,
-      134,
-      134,
-      137,
-      142
+      160,
+      165,
+      170,
+      170
      ]
     },
     {
-     "text": "第一次等了兩分五十秒",
-     "start": 154,
+     "text": "雙十二的客服排班",
+     "start": 180,
      "chars": [
-      156,
-      159,
-      162,
-      166,
-      170,
-      174,
-      179,
-      184,
-      189,
-      192
+      182,
+      188,
+      193,
+      198,
+      204,
+      209,
+      215,
+      220
+     ]
+    },
+    {
+     "text": "原文寫「還沒指派」",
+     "start": 230,
+     "chars": [
+      232,
+      237,
+      243,
+      243,
+      248,
+      253,
+      259,
+      264,
+      264
      ]
     }
    ],
    "keywords": [
     {
-     "text": "實測",
-     "start": 137
+     "text": "還沒指派",
+     "start": 248
     }
    ],
    "cues": [
     {
-     "id": "gem",
-     "text": "Gemini",
-     "frame": 125,
-     "early": 0
+     "id": "which",
+     "text": "哪一項",
+     "frame": 161
     },
     {
-     "id": "wait",
-     "text": "等了",
-     "frame": 168,
-     "early": 0
+     "id": "shift",
+     "text": "客服排班",
+     "frame": 205
     },
     {
-     "id": "sec",
-     "text": "五十秒",
-     "frame": 186,
-     "early": 0
+     "id": "nop",
+     "text": "還沒指派",
+     "frame": 250
     }
    ],
-   "hash": "cf6375baef93-4f0d13da55",
-   "sub": "我們用 Gemini 實測\n第一次等了兩分五十秒",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.655,
-    "minScore": 0,
-    "onsetMedianMs": 10,
-    "onsetMaxMs": 10,
-    "onsetCheck": [
-     {
-      "onset": 1.43,
-      "start": 1.42,
-      "ch": "第",
-      "errMs": -10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "我",
-     "start": 0.04,
-     "end": 0.1,
-     "score": 1
-    },
-    {
-     "text": "們",
-     "start": 0.12,
-     "end": 0.18,
-     "score": 0.998
-    },
-    {
-     "text": "用",
-     "start": 0.22,
-     "end": 0.32,
-     "score": 0.999
-    },
-    {
-     "text": "G",
-     "start": 0.34,
-     "end": 0.36,
-     "score": 0
-    },
-    {
-     "text": "e",
-     "start": 0.42,
-     "end": 0.44,
-     "score": 0.008
-    },
-    {
-     "text": "m",
-     "start": 0.5,
-     "end": 0.52,
-     "score": 0.996
-    },
-    {
-     "text": "i",
-     "start": 0.52,
-     "end": 0.54,
-     "score": 0
-    },
-    {
-     "text": "n",
-     "start": 0.56,
-     "end": 0.62,
-     "score": 0.537
-    },
-    {
-     "text": "i",
-     "start": 0.7,
-     "end": 0.72,
-     "score": 0.987
-    },
-    {
-     "text": "實",
-     "start": 0.78,
-     "end": 0.88,
-     "score": 0.213
-    },
-    {
-     "text": "測",
-     "start": 0.96,
-     "end": 1.08,
-     "score": 0.979
-    },
-    {
-     "text": "第",
-     "start": 1.42,
-     "end": 1.5,
-     "score": 0.954
-    },
-    {
-     "text": "一",
-     "start": 1.5,
-     "end": 1.56,
-     "score": 0
-    },
-    {
-     "text": "次",
-     "start": 1.62,
-     "end": 1.72,
-     "score": 0.984
-    },
-    {
-     "text": "等",
-     "start": 1.76,
-     "end": 1.88,
-     "score": 0.847
-    },
-    {
-     "text": "了",
-     "start": 1.9,
-     "end": 1.96,
-     "score": 0.988
-    },
-    {
-     "text": "兩",
-     "start": 2,
-     "end": 2.16,
-     "score": 0.859
-    },
-    {
-     "text": "分",
-     "start": 2.18,
-     "end": 2.3,
-     "score": 0.783
-    },
-    {
-     "text": "五",
-     "start": 2.36,
-     "end": 2.42,
-     "score": 0.352
-    },
-    {
-     "text": "十",
-     "start": 2.5,
-     "end": 2.6,
-     "score": 0.365
-    },
-    {
-     "text": "秒",
-     "start": 2.62,
-     "end": 2.78,
-     "score": 0.905
-    }
-   ],
+   "sub": "哪一項？\n雙十二的客服排班\n原文寫「還沒指派」",
+   "provider": "estimate",
+   "syllables": 18,
+   "words": [],
    "charTimes": [
-    0.04,
-    0.12,
-    0.22,
-    0.34,
-    0.42,
-    0.5,
-    0.52,
-    0.56,
-    0.7,
-    0.78,
-    0.96,
-    1.42,
-    1.5,
-    1.62,
-    1.76,
-    1.9,
-    2,
-    2.18,
-    2.36,
-    2.5,
-    2.62
+    0,
+    0.18,
+    0.36,
+    0.756,
+    0.936,
+    1.116,
+    1.297,
+    1.477,
+    1.657,
+    1.837,
+    2.017,
+    2.413,
+    2.593,
+    2.773,
+    2.953,
+    3.133,
+    3.313,
+    3.493
    ]
   },
   {
    "id": "s03",
-   "audio": "audio/caffaine-meeting-todo/03-s03.wav",
-   "audioFrame": 209,
-   "audioSec": 3.52,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 200,
-   "durationFrames": 124,
+   "audio": null,
+   "audioFrame": 280,
+   "audioSec": 1.633,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 270,
+   "durationFrames": 68,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -519,254 +278,70 @@
      8
     ]
    },
-   "voiceStartFrame": 210,
-   "voiceEndFrame": 314,
-   "stillFrame": 314,
+   "voiceStartFrame": 280,
+   "voiceEndFrame": 330,
+   "stillFrame": 328,
    "subtitleWindow": [
-    207,
-    321
+    277,
+    335
    ],
    "sourceWindow": [
-    205,
-    319
+    275,
+    333
    ],
    "lines": [
     {
-     "text": "但雙十二排班",
-     "start": 207,
+     "text": "它卻填了行銷經理",
+     "start": 277,
      "chars": [
-      208,
-      214,
-      220,
-      225,
-      227,
-      232
-     ]
-    },
-    {
-     "text": "原文沒指定人",
-     "start": 244,
-     "chars": [
-      247,
-      252,
-      257,
-      263,
-      268,
-      273
-     ]
-    },
-    {
-     "text": "它填了行銷經理",
-     "start": 282,
-     "chars": [
-      284,
-      288,
-      292,
-      295,
-      299,
-      304,
-      309
+      279,
+      285,
+      291,
+      297,
+      303,
+      309,
+      315,
+      321
      ]
     }
    ],
    "keywords": [
     {
-     "text": "沒指定人",
-     "start": 257
+     "text": "行銷經理",
+     "start": 303
     }
    ],
    "cues": [
     {
-     "id": "pai",
-     "text": "排班",
-     "frame": 229,
-     "early": 0
-    },
-    {
-     "id": "no",
-     "text": "沒指定人",
-     "frame": 258,
-     "early": 0
-    },
-    {
      "id": "fill",
      "text": "行銷經理",
-     "frame": 297,
-     "early": 0
+     "frame": 304
     }
    ],
-   "hash": "9bec6ece382d-4f0d13da55",
-   "sub": "但雙十二排班\n原文沒指定人\n它填了行銷經理",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.862,
-    "minScore": 0.132,
-    "onsetMedianMs": 5,
-    "onsetMaxMs": 10,
-    "onsetCheck": [
-     {
-      "onset": 1.3,
-      "start": 1.3,
-      "ch": "原",
-      "errMs": 0
-     },
-     {
-      "onset": 2.57,
-      "start": 2.56,
-      "ch": "它",
-      "errMs": -10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "但",
-     "start": 0.02,
-     "end": 0.16,
-     "score": 0.999
-    },
-    {
-     "text": "雙",
-     "start": 0.22,
-     "end": 0.38,
-     "score": 0.945
-    },
-    {
-     "text": "十",
-     "start": 0.42,
-     "end": 0.48,
-     "score": 0.132
-    },
-    {
-     "text": "二",
-     "start": 0.58,
-     "end": 0.64,
-     "score": 0.24
-    },
-    {
-     "text": "排",
-     "start": 0.66,
-     "end": 0.78,
-     "score": 0.627
-    },
-    {
-     "text": "班",
-     "start": 0.82,
-     "end": 0.96,
-     "score": 0.932
-    },
-    {
-     "text": "原",
-     "start": 1.3,
-     "end": 1.42,
-     "score": 0.997
-    },
-    {
-     "text": "文",
-     "start": 1.48,
-     "end": 1.6,
-     "score": 0.979
-    },
-    {
-     "text": "沒",
-     "start": 1.64,
-     "end": 1.76,
-     "score": 0.994
-    },
-    {
-     "text": "指",
-     "start": 1.84,
-     "end": 1.94,
-     "score": 0.984
-    },
-    {
-     "text": "定",
-     "start": 2,
-     "end": 2.14,
-     "score": 0.928
-    },
-    {
-     "text": "人",
-     "start": 2.18,
-     "end": 2.32,
-     "score": 1
-    },
-    {
-     "text": "它",
-     "start": 2.56,
-     "end": 2.62,
-     "score": 0.997
-    },
-    {
-     "text": "填",
-     "start": 2.68,
-     "end": 2.8,
-     "score": 0.993
-    },
-    {
-     "text": "了",
-     "start": 2.82,
-     "end": 2.88,
-     "score": 0.832
-    },
-    {
-     "text": "行",
-     "start": 2.92,
-     "end": 3.04,
-     "score": 0.95
-    },
-    {
-     "text": "銷",
-     "start": 3.06,
-     "end": 3.18,
-     "score": 0.953
-    },
-    {
-     "text": "經",
-     "start": 3.2,
-     "end": 3.34,
-     "score": 0.891
-    },
-    {
-     "text": "理",
-     "start": 3.38,
-     "end": 3.44,
-     "score": 0.998
-    }
-   ],
+   "sub": "它卻填了行銷經理",
+   "provider": "estimate",
+   "syllables": 8,
+   "words": [],
    "charTimes": [
-    0.02,
-    0.22,
-    0.42,
-    0.58,
-    0.66,
-    0.82,
-    1.3,
-    1.48,
-    1.64,
-    1.84,
-    2,
-    2.18,
-    2.56,
-    2.68,
-    2.82,
-    2.92,
-    3.06,
-    3.2,
-    3.38
+    0,
+    0.204,
+    0.408,
+    0.612,
+    0.816,
+    1.02,
+    1.224,
+    1.429
    ]
   },
   {
    "id": "s04",
-   "audio": "audio/caffaine-meeting-todo/04-s04.wav",
-   "audioFrame": 323,
-   "audioSec": 2.68,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 314,
-   "durationFrames": 98,
+   "audio": null,
+   "audioFrame": 338,
+   "audioSec": 3.061,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 328,
+   "durationFrames": 110,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -780,212 +355,95 @@
      8
     ]
    },
-   "voiceStartFrame": 324,
-   "voiceEndFrame": 403,
-   "stillFrame": 402,
+   "voiceStartFrame": 338,
+   "voiceEndFrame": 430,
+   "stillFrame": 428,
    "subtitleWindow": [
-    321,
-    409
+    335,
+    435
    ],
    "sourceWindow": [
-    319,
-    407
+    333,
+    433
    ],
    "lines": [
     {
      "text": "同一句話再問一次",
-     "start": 321,
+     "start": 335,
      "chars": [
-      323,
-      328,
-      332,
-      335,
-      339,
-      345,
-      349,
-      353
+      337,
+      342,
+      348,
+      354,
+      359,
+      365,
+      371,
+      376
      ]
     },
     {
-     "text": "這次它寫了待指派",
-     "start": 363,
+     "text": "這次變成待指派",
+     "start": 387,
      "chars": [
-      365,
-      371,
-      374,
-      378,
-      383,
-      385,
-      391,
-      396
+      389,
+      394,
+      400,
+      406,
+      411,
+      417,
+      423
      ]
     }
    ],
    "keywords": [
     {
      "text": "待指派",
-     "start": 385
+     "start": 411
     }
    ],
    "cues": [
     {
      "id": "again",
-     "text": "再問",
-     "frame": 341,
-     "early": 0
+     "text": "再問一次",
+     "frame": 361
     },
     {
      "id": "this",
      "text": "待指派",
-     "frame": 387,
-     "early": 0
+     "frame": 413
     }
    ],
-   "hash": "df33c331fa1e-4f0d13da55",
-   "sub": "同一句話再問一次\n這次它寫了待指派",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.853,
-    "minScore": 0.513,
-    "onsetMedianMs": 10,
-    "onsetMaxMs": 10,
-    "onsetCheck": [
-     {
-      "onset": 1.47,
-      "start": 1.46,
-      "ch": "這",
-      "errMs": -10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "同",
-     "start": 0.04,
-     "end": 0.2,
-     "score": 0.995
-    },
-    {
-     "text": "一",
-     "start": 0.22,
-     "end": 0.28,
-     "score": 0.555
-    },
-    {
-     "text": "句",
-     "start": 0.34,
-     "end": 0.4,
-     "score": 0.513
-    },
-    {
-     "text": "話",
-     "start": 0.46,
-     "end": 0.54,
-     "score": 0.999
-    },
-    {
-     "text": "再",
-     "start": 0.6,
-     "end": 0.74,
-     "score": 0.999
-    },
-    {
-     "text": "問",
-     "start": 0.78,
-     "end": 0.88,
-     "score": 0.969
-    },
-    {
-     "text": "一",
-     "start": 0.92,
-     "end": 0.96,
-     "score": 0.877
-    },
-    {
-     "text": "次",
-     "start": 1.04,
-     "end": 1.14,
-     "score": 0.533
-    },
-    {
-     "text": "這",
-     "start": 1.46,
-     "end": 1.54,
-     "score": 0.615
-    },
-    {
-     "text": "次",
-     "start": 1.64,
-     "end": 1.72,
-     "score": 0.696
-    },
-    {
-     "text": "它",
-     "start": 1.76,
-     "end": 1.82,
-     "score": 0.98
-    },
-    {
-     "text": "寫",
-     "start": 1.9,
-     "end": 1.98,
-     "score": 0.954
-    },
-    {
-     "text": "了",
-     "start": 2.04,
-     "end": 2.08,
-     "score": 0.997
-    },
-    {
-     "text": "待",
-     "start": 2.12,
-     "end": 2.26,
-     "score": 0.998
-    },
-    {
-     "text": "指",
-     "start": 2.32,
-     "end": 2.42,
-     "score": 0.973
-    },
-    {
-     "text": "派",
-     "start": 2.48,
-     "end": 2.64,
-     "score": 0.996
-    }
-   ],
+   "sub": "同一句話再問一次\n這次變成待指派",
+   "provider": "estimate",
+   "syllables": 15,
+   "words": [],
    "charTimes": [
-    0.04,
-    0.22,
-    0.34,
-    0.46,
-    0.6,
-    0.78,
-    0.92,
-    1.04,
-    1.46,
-    1.64,
-    1.76,
-    1.9,
-    2.04,
-    2.12,
-    2.32,
-    2.48
+    0,
+    0.189,
+    0.378,
+    0.567,
+    0.756,
+    0.945,
+    1.134,
+    1.323,
+    1.738,
+    1.927,
+    2.116,
+    2.305,
+    2.494,
+    2.683,
+    2.872
    ]
   },
   {
    "id": "s05",
-   "audio": "audio/caffaine-meeting-todo/05-s05.wav",
-   "audioFrame": 411,
-   "audioSec": 3.17,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 402,
-   "durationFrames": 113,
+   "audio": null,
+   "audioFrame": 439,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 428,
+   "durationFrames": 136,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -999,238 +457,114 @@
      8
     ]
    },
-   "voiceStartFrame": 412,
-   "voiceEndFrame": 505,
-   "stillFrame": 505,
+   "voiceStartFrame": 438,
+   "voiceEndFrame": 556,
+   "stillFrame": 554,
    "subtitleWindow": [
-    409,
-    512
+    435,
+    561
    ],
    "sourceWindow": [
-    407,
-    510
+    433,
+    559
    ],
    "lines": [
     {
-     "text": "所以要規定",
-     "start": 409,
+     "text": "所以那不是查到的",
+     "start": 435,
      "chars": [
-      413,
-      416,
-      419,
-      423,
-      427
-     ]
-    },
-    {
-     "text": "沒寫的就填未指定",
-     "start": 439,
-     "chars": [
-      441,
+      438,
+      443,
       448,
-      453,
-      456,
+      454,
       459,
-      466,
-      473,
-      477
+      465,
+      470,
+      476
      ]
     },
     {
-     "text": "別自己補",
+     "text": "是猜的",
      "start": 485,
      "chars": [
-      487,
-      492,
-      496,
-      500
+      488,
+      493,
+      498
+     ]
+    },
+    {
+     "text": "兩次答案還不一樣",
+     "start": 508,
+     "chars": [
+      510,
+      516,
+      521,
+      527,
+      532,
+      538,
+      543,
+      548
      ]
     }
    ],
    "keywords": [
     {
-     "text": "未指定",
-     "start": 466
+     "text": "是猜的",
+     "start": 488
     }
    ],
    "cues": [
     {
-     "id": "rule",
-     "text": "規定",
-     "frame": 424,
-     "early": 0
+     "id": "not",
+     "text": "不是查到的",
+     "frame": 455
     },
     {
-     "id": "unk",
-     "text": "未指定",
-     "frame": 468,
-     "early": 0
+     "id": "guessw",
+     "text": "是猜的",
+     "frame": 489
     },
     {
-     "id": "own",
-     "text": "別自己補",
-     "frame": 488,
-     "early": 0
+     "id": "diff",
+     "text": "不一樣",
+     "frame": 539
     }
    ],
-   "hash": "8a6544cb6df0-4f0d13da55",
-   "sub": "所以要規定\n沒寫的就填未指定\n別自己補",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.988,
-    "minScore": 0.954,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 30,
-    "onsetCheck": [
-     {
-      "onset": 1.07,
-      "start": 1.06,
-      "ch": "沒",
-      "errMs": -10
-     },
-     {
-      "onset": 2.61,
-      "start": 2.58,
-      "ch": "別",
-      "errMs": -30
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "所",
-     "start": 0.1,
-     "end": 0.16,
-     "score": 0.997
-    },
-    {
-     "text": "以",
-     "start": 0.22,
-     "end": 0.26,
-     "score": 0.986
-    },
-    {
-     "text": "要",
-     "start": 0.32,
-     "end": 0.42,
-     "score": 0.954
-    },
-    {
-     "text": "規",
-     "start": 0.44,
-     "end": 0.56,
-     "score": 0.995
-    },
-    {
-     "text": "定",
-     "start": 0.6,
-     "end": 0.78,
-     "score": 0.971
-    },
-    {
-     "text": "沒",
-     "start": 1.06,
-     "end": 1.2,
-     "score": 0.999
-    },
-    {
-     "text": "寫",
-     "start": 1.28,
-     "end": 1.4,
-     "score": 0.994
-    },
-    {
-     "text": "的",
-     "start": 1.44,
-     "end": 1.5,
-     "score": 0.998
-    },
-    {
-     "text": "就",
-     "start": 1.54,
-     "end": 1.62,
-     "score": 0.992
-    },
-    {
-     "text": "填",
-     "start": 1.66,
-     "end": 1.84,
-     "score": 0.998
-    },
-    {
-     "text": "未",
-     "start": 1.9,
-     "end": 2.04,
-     "score": 0.984
-    },
-    {
-     "text": "指",
-     "start": 2.1,
-     "end": 2.18,
-     "score": 0.989
-    },
-    {
-     "text": "定",
-     "start": 2.24,
-     "end": 2.4,
-     "score": 0.955
-    },
-    {
-     "text": "別",
-     "start": 2.58,
-     "end": 2.68,
-     "score": 0.997
-    },
-    {
-     "text": "自",
-     "start": 2.76,
-     "end": 2.84,
-     "score": 0.99
-    },
-    {
-     "text": "己",
-     "start": 2.88,
-     "end": 2.96,
-     "score": 0.999
-    },
-    {
-     "text": "補",
-     "start": 3.02,
-     "end": 3.1,
-     "score": 0.996
-    }
-   ],
+   "sub": "所以那不是查到的\n是猜的\n兩次答案還不一樣",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
    "charTimes": [
-    0.1,
-    0.22,
-    0.32,
-    0.44,
-    0.6,
-    1.06,
-    1.28,
-    1.44,
-    1.54,
-    1.66,
-    1.9,
-    2.1,
-    2.24,
-    2.58,
-    2.76,
-    2.88,
-    3.02
+    0,
+    0.181,
+    0.362,
+    0.544,
+    0.725,
+    0.906,
+    1.087,
+    1.268,
+    1.667,
+    1.848,
+    2.029,
+    2.428,
+    2.609,
+    2.79,
+    2.972,
+    3.153,
+    3.334,
+    3.515,
+    3.696
    ]
   },
   {
    "id": "s06",
-   "audio": "audio/caffaine-meeting-todo/06-s06.wav",
-   "audioFrame": 514,
-   "audioSec": 2.82,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 505,
-   "durationFrames": 103,
+   "audio": null,
+   "audioFrame": 564,
+   "audioSec": 5.714,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 554,
+   "durationFrames": 190,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1244,489 +578,253 @@
      8
     ]
    },
-   "voiceStartFrame": 515,
-   "voiceEndFrame": 598,
-   "stillFrame": 598,
+   "voiceStartFrame": 564,
+   "voiceEndFrame": 736,
+   "stillFrame": 734,
    "subtitleWindow": [
-    512,
-    605
+    561,
+    741
    ],
    "sourceWindow": [
-    510,
-    603
+    559,
+    739
    ],
    "lines": [
     {
-     "text": "只測了這份紀錄",
-     "start": 512,
+     "text": "提示詞多加一句",
+     "start": 561,
      "chars": [
-      514,
-      518,
-      522,
-      525,
-      529,
-      533,
-      538
+      563,
+      568,
+      574,
+      579,
+      585,
+      591,
+      596
      ]
     },
     {
-     "text": "別份會不會一樣",
-     "start": 548,
+     "text": "原文沒寫的就填未指定",
+     "start": 607,
      "chars": [
-      550,
-      556,
-      561,
-      564,
-      567,
-      571,
-      573
+      609,
+      614,
+      620,
+      626,
+      631,
+      637,
+      643,
+      648,
+      654,
+      659
+     ]
+    },
+    {
+     "text": "再跑一次這次填了未指定",
+     "start": 670,
+     "chars": [
+      672,
+      678,
+      683,
+      689,
+      694,
+      700,
+      706,
+      711,
+      717,
+      723,
+      728
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "未指定",
+     "start": 648
+    }
+   ],
+   "cues": [
+    {
+     "id": "addl",
+     "text": "多加一句",
+     "frame": 581
+    },
+    {
+     "id": "unk",
+     "text": "填未指定",
+     "frame": 644
+    },
+    {
+     "id": "again",
+     "text": "再跑一次",
+     "frame": 673
+    },
+    {
+     "id": "filled",
+     "text": "填了未指定",
+     "frame": 707
+    }
+   ],
+   "sub": "提示詞多加一句\n原文沒寫的就填未指定\n再跑一次這次填了未指定",
+   "provider": "estimate",
+   "syllables": 28,
+   "words": [],
+   "charTimes": [
+    0,
+    0.188,
+    0.376,
+    0.564,
+    0.752,
+    0.94,
+    1.128,
+    1.541,
+    1.729,
+    1.917,
+    2.105,
+    2.293,
+    2.481,
+    2.669,
+    2.857,
+    3.045,
+    3.233,
+    3.647,
+    3.835,
+    4.023,
+    4.211,
+    4.398,
+    4.586,
+    4.774,
+    4.962,
+    5.15,
+    5.338,
+    5.526
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": null,
+   "audioFrame": 745,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 734,
+   "durationFrames": 136,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 744,
+   "voiceEndFrame": 862,
+   "stillFrame": 860,
+   "subtitleWindow": [
+    741,
+    867
+   ],
+   "sourceWindow": [
+    739,
+    865
+   ],
+   "lines": [
+    {
+     "text": "我們只測了這一份",
+     "start": 741,
+     "chars": [
+      744,
+      749,
+      754,
+      760,
+      765,
+      771,
+      776,
+      782
+     ]
+    },
+    {
+     "text": "別份會不會也猜",
+     "start": 791,
+     "chars": [
+      794,
+      799,
+      804,
+      810,
+      815,
+      821,
+      826
      ]
     },
     {
      "text": "還不知道",
-     "start": 579,
+     "start": 836,
      "chars": [
-      581,
-      585,
-      588,
-      591
+      838,
+      844,
+      849,
+      854
      ]
     }
    ],
    "keywords": [
     {
      "text": "還不知道",
-     "start": 581
+     "start": 838
     }
    ],
    "cues": [
     {
      "id": "known",
-     "text": "這份紀錄",
-     "frame": 527,
-     "early": 0
+     "text": "這一份",
+     "frame": 772
     },
     {
      "id": "q",
      "text": "別份",
-     "frame": 551,
-     "early": 0
+     "frame": 795
     }
    ],
-   "hash": "4fdb44c9687d-4f0d13da55",
-   "sub": "只測了這份紀錄\n別份會不會一樣\n還不知道",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.942,
-    "minScore": 0.542,
-    "onsetMedianMs": 30,
-    "onsetMaxMs": 30,
-    "onsetCheck": [
-     {
-      "onset": 1.27,
-      "start": 1.24,
-      "ch": "別",
-      "errMs": -30
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "只",
-     "start": 0.04,
-     "end": 0.12,
-     "score": 0.879
-    },
-    {
-     "text": "測",
-     "start": 0.18,
-     "end": 0.28,
-     "score": 0.989
-    },
-    {
-     "text": "了",
-     "start": 0.32,
-     "end": 0.38,
-     "score": 0.988
-    },
-    {
-     "text": "這",
-     "start": 0.42,
-     "end": 0.5,
-     "score": 0.798
-    },
-    {
-     "text": "份",
-     "start": 0.56,
-     "end": 0.66,
-     "score": 0.999
-    },
-    {
-     "text": "紀",
-     "start": 0.7,
-     "end": 0.78,
-     "score": 0.997
-    },
-    {
-     "text": "錄",
-     "start": 0.86,
-     "end": 0.94,
-     "score": 0.988
-    },
-    {
-     "text": "別",
-     "start": 1.24,
-     "end": 1.36,
-     "score": 0.937
-    },
-    {
-     "text": "份",
-     "start": 1.44,
-     "end": 1.56,
-     "score": 0.999
-    },
-    {
-     "text": "會",
-     "start": 1.6,
-     "end": 1.7,
-     "score": 0.999
-    },
-    {
-     "text": "不",
-     "start": 1.72,
-     "end": 1.78,
-     "score": 0.991
-    },
-    {
-     "text": "會",
-     "start": 1.8,
-     "end": 1.92,
-     "score": 0.974
-    },
-    {
-     "text": "一",
-     "start": 1.94,
-     "end": 1.98,
-     "score": 0.542
-    },
-    {
-     "text": "樣",
-     "start": 2.02,
-     "end": 2.2,
-     "score": 0.99
-    },
-    {
-     "text": "還",
-     "start": 2.28,
-     "end": 2.4,
-     "score": 0.999
-    },
-    {
-     "text": "不",
-     "start": 2.42,
-     "end": 2.48,
-     "score": 0.998
-    },
-    {
-     "text": "知",
-     "start": 2.52,
-     "end": 2.6,
-     "score": 0.89
-    },
-    {
-     "text": "道",
-     "start": 2.62,
-     "end": 2.76,
-     "score": 0.993
-    }
-   ],
+   "sub": "我們只測了這一份\n別份會不會也猜\n還不知道",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
    "charTimes": [
-    0.04,
-    0.18,
-    0.32,
-    0.42,
-    0.56,
-    0.7,
-    0.86,
-    1.24,
-    1.44,
-    1.6,
-    1.72,
-    1.8,
-    1.94,
-    2.02,
-    2.28,
-    2.42,
-    2.52,
-    2.62
-   ]
-  },
-  {
-   "id": "s07",
-   "audio": "audio/caffaine-meeting-todo/07-s07.wav",
-   "audioFrame": 607,
-   "audioSec": 3.51,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 598,
-   "durationFrames": 123,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 608,
-   "voiceEndFrame": 712,
-   "stillFrame": 711,
-   "subtitleWindow": [
-    605,
-    718
-   ],
-   "sourceWindow": [
-    603,
-    716
-   ],
-   "lines": [
-    {
-     "text": "你先查負責人",
-     "start": 605,
-     "chars": [
-      607,
-      611,
-      615,
-      620,
-      624,
-      628
-     ]
-    },
-    {
-     "text": "還是查期限",
-     "start": 634,
-     "chars": [
-      636,
-      640,
-      643,
-      648,
-      654
-     ]
-    },
-    {
-     "text": "下集講期限怎麼查",
-     "start": 669,
-     "chars": [
-      672,
-      678,
-      683,
-      688,
-      693,
-      698,
-      701,
-      703
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "負責人",
-     "start": 620
-    }
-   ],
-   "cues": [
-    {
-     "id": "a",
-     "text": "負責人",
-     "frame": 621,
-     "early": 0
-    },
-    {
-     "id": "b",
-     "text": "查期限",
-     "frame": 645,
-     "early": 0
-    },
-    {
-     "id": "next",
-     "text": "下集",
-     "frame": 673,
-     "early": 0
-    }
-   ],
-   "hash": "b93260f3ad4d-4f0d13da55",
-   "sub": "你先查負責人\n還是查期限\n下集講期限怎麼查",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.98,
-    "minScore": 0.75,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 20,
-    "onsetCheck": [
-     {
-      "onset": 2.18,
-      "start": 2.2,
-      "ch": "下",
-      "errMs": 20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "你",
-     "start": 0.04,
-     "end": 0.1,
-     "score": 0.996
-    },
-    {
-     "text": "先",
-     "start": 0.18,
-     "end": 0.28,
-     "score": 0.998
-    },
-    {
-     "text": "查",
-     "start": 0.32,
-     "end": 0.4,
-     "score": 0.933
-    },
-    {
-     "text": "負",
-     "start": 0.48,
-     "end": 0.56,
-     "score": 0.999
-    },
-    {
-     "text": "責",
-     "start": 0.62,
-     "end": 0.7,
-     "score": 0.984
-    },
-    {
-     "text": "人",
-     "start": 0.76,
-     "end": 0.9,
-     "score": 0.999
-    },
-    {
-     "text": "還",
-     "start": 1.02,
-     "end": 1.12,
-     "score": 1
-    },
-    {
-     "text": "是",
-     "start": 1.14,
-     "end": 1.22,
-     "score": 0.996
-    },
-    {
-     "text": "查",
-     "start": 1.26,
-     "end": 1.32,
-     "score": 0.997
-    },
-    {
-     "text": "期",
-     "start": 1.42,
-     "end": 1.52,
-     "score": 0.999
-    },
-    {
-     "text": "限",
-     "start": 1.6,
-     "end": 1.76,
-     "score": 1
-    },
-    {
-     "text": "下",
-     "start": 2.2,
-     "end": 2.32,
-     "score": 0.999
-    },
-    {
-     "text": "集",
-     "start": 2.4,
-     "end": 2.48,
-     "score": 0.999
-    },
-    {
-     "text": "講",
-     "start": 2.58,
-     "end": 2.72,
-     "score": 0.971
-    },
-    {
-     "text": "期",
-     "start": 2.76,
-     "end": 2.84,
-     "score": 0.998
-    },
-    {
-     "text": "限",
-     "start": 2.92,
-     "end": 3.04,
-     "score": 1
-    },
-    {
-     "text": "怎",
-     "start": 3.08,
-     "end": 3.16,
-     "score": 0.75
-    },
-    {
-     "text": "麼",
-     "start": 3.18,
-     "end": 3.22,
-     "score": 0.999
-    },
-    {
-     "text": "查",
-     "start": 3.24,
-     "end": 3.36,
-     "score": 0.997
-    }
-   ],
-   "charTimes": [
-    0.04,
-    0.18,
-    0.32,
-    0.48,
-    0.62,
-    0.76,
-    1.02,
-    1.14,
-    1.26,
-    1.42,
-    1.6,
-    2.2,
-    2.4,
-    2.58,
-    2.76,
-    2.92,
-    3.08,
-    3.18,
-    3.24
+    0,
+    0.181,
+    0.362,
+    0.544,
+    0.725,
+    0.906,
+    1.087,
+    1.268,
+    1.667,
+    1.848,
+    2.029,
+    2.211,
+    2.392,
+    2.573,
+    2.754,
+    3.153,
+    3.334,
+    3.515,
+    3.696
    ]
   },
   {
    "id": "s08",
-   "audio": "audio/caffaine-meeting-todo/08-s08.wav",
-   "audioFrame": 720,
-   "audioSec": 1.95,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 711,
-   "durationFrames": 75,
+   "audio": null,
+   "audioFrame": 870,
+   "audioSec": 2.041,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 860,
+   "durationFrames": 80,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1740,165 +838,86 @@
      8
     ]
    },
-   "voiceStartFrame": 721,
-   "voiceEndFrame": 778,
-   "stillFrame": 776,
+   "voiceStartFrame": 870,
+   "voiceEndFrame": 932,
+   "stillFrame": 930,
    "subtitleWindow": [
-    718,
-    786
+    867,
+    940
    ],
    "sourceWindow": [
-    716,
-    781
+    865,
+    935
    ],
    "lines": [
     {
      "text": "留言「待辦」",
-     "start": 718,
+     "start": 867,
      "chars": [
-      720,
-      725,
-      725,
-      732,
-      737,
-      737
+      869,
+      874,
+      874,
+      879,
+      885,
+      885
      ]
     },
     {
-     "text": "領這份提示詞",
-     "start": 746,
+     "text": "拿這句提示詞",
+     "start": 895,
      "chars": [
-      749,
-      753,
-      757,
-      761,
-      765,
-      770
+      897,
+      902,
+      908,
+      913,
+      919,
+      924
      ]
     }
    ],
    "keywords": [
     {
      "text": "待辦",
-     "start": 732
+     "start": 879
     }
    ],
    "cues": [
     {
      "id": "kw",
      "text": "待辦",
-     "frame": 733,
-     "early": 0
+     "frame": 881
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 763,
-     "early": 0
+     "frame": 915
     }
    ],
-   "hash": "b446ecb17792-4f0d13da55",
-   "sub": "留言「待辦」\n領這份提示詞",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.966,
-    "minScore": 0.83,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 20,
-    "onsetCheck": [
-     {
-      "onset": 0.98,
-      "start": 1,
-      "ch": "領",
-      "errMs": 20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "留",
-     "start": 0.04,
-     "end": 0.16,
-     "score": 0.994
-    },
-    {
-     "text": "言",
-     "start": 0.2,
-     "end": 0.34,
-     "score": 0.993
-    },
-    {
-     "text": "待",
-     "start": 0.44,
-     "end": 0.58,
-     "score": 0.996
-    },
-    {
-     "text": "辦",
-     "start": 0.62,
-     "end": 0.78,
-     "score": 0.992
-    },
-    {
-     "text": "領",
-     "start": 1,
-     "end": 1.14,
-     "score": 0.963
-    },
-    {
-     "text": "這",
-     "start": 1.16,
-     "end": 1.24,
-     "score": 0.83
-    },
-    {
-     "text": "份",
-     "start": 1.28,
-     "end": 1.38,
-     "score": 0.995
-    },
-    {
-     "text": "提",
-     "start": 1.42,
-     "end": 1.48,
-     "score": 0.995
-    },
-    {
-     "text": "示",
-     "start": 1.56,
-     "end": 1.64,
-     "score": 0.985
-    },
-    {
-     "text": "詞",
-     "start": 1.7,
-     "end": 1.82,
-     "score": 0.917
-    }
-   ],
+   "sub": "留言「待辦」\n拿這句提示詞",
+   "provider": "estimate",
+   "syllables": 10,
+   "words": [],
    "charTimes": [
-    0.04,
-    0.2,
-    0.44,
-    0.62,
-    1,
-    1.16,
-    1.28,
-    1.42,
-    1.56,
-    1.7
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.948,
+    1.13,
+    1.312,
+    1.494,
+    1.676,
+    1.859
    ]
   },
   {
    "id": "s09",
    "audio": null,
-   "audioFrame": 776,
+   "audioFrame": 930,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 776,
+   "startFrame": 930,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1913,25 +932,24 @@
      8
     ]
    },
-   "voiceStartFrame": 786,
-   "voiceEndFrame": 786,
-   "stillFrame": 872,
+   "voiceStartFrame": 940,
+   "voiceEndFrame": 940,
+   "stillFrame": 1026,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    781,
-    884
+    935,
+    1038
    ],
    "lines": [],
    "keywords": [],
+   "isEnd": true,
    "cues": [],
-   "sub": ""
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
   }
- ],
- "voice": {
-  "file": "audio/caffaine-meeting-todo/voice.wav",
-  "lufsIn": -16.58,
-  "lufs": -16,
-  "sec": 29.467
- }
+ ]
 }

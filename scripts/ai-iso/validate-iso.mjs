@@ -68,7 +68,7 @@ export function validateIso(script, h) {
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
     const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
-    const KINDS5 = ["hook", "run", "wrong", "vs", "rule", "limit", "ask", "cta"];
+    const KINDS5 = ["hook", "orig", "guess", "run", "wrong", "vs", "rule", "limit", "ask", "cta"];
     if (script.isoVersion === 5 && !caff) {
       if (!KINDS5.includes(p.panel)) E(`${tag}: isoVersion 5 的 props.panel「${p.panel}」不存在（${KINDS5.join("／")}）`);
       // 會議紀錄片：放 AI 回答的地方（wrong｜vs｜rule）要標實測＋節錄，每一格文字都要是實測原文的一部分（只能刪節，不能改字）；來源紀錄與提示規則也逐字比對
@@ -80,6 +80,8 @@ export function validateIso(script, h) {
         for (const c of rows.flatMap((r) => r.cells ?? r)) if (!ans.includes(strip(c))) E(`${tag}: ${where}「${c}」不是實測原文（只能刪節，不能改字）`);
       };
       if (p.panel === "wrong") { quote(p, p.rows ?? [], "props"); const sr = rd(p.src?.verbatim); if (sr === null || !strip(sr).includes(strip(p.src?.text ?? "\u0000"))) E(`${tag}: props.src.text 不是會議紀錄原文`); }
+      if (p.panel === "orig") { const sr = rd(p.verbatim); if (sr === null || !strip(sr).includes(strip(p.text ?? "\u0000"))) E(`${tag}: props.text 不是會議紀錄原文`); if (!String(p.text ?? "").includes(p.mark ?? "\u0000")) E(`${tag}: props.mark 不在 props.text 裡`); }
+      if (p.panel === "guess") { for (const [k, fn] of [["a", p.a?.verbatim], ["b", p.b?.verbatim]]) { const ans = ansOf(fn); if (ans === null || !ans.includes(strip(p[k]?.text ?? "\u0000"))) E(`${tag}: ${k}.text「${p[k]?.text}」不是實測原文`); } }
       if (p.panel === "vs") { quote(p.top ?? {}, [p.top?.cells ?? []], "top"); quote(p.bottom ?? {}, [p.bottom?.cells ?? []], "bottom"); }
       if (p.panel === "rule") { quote(p.result ?? {}, p.result?.rows ?? [], "result"); const pj = rd(p.promptVerbatim); const pr = pj ? strip(JSON.parse(pj).prompt ?? "") : null; for (const q of p.rules ?? []) if (pr === null || !pr.includes(strip(q.text))) E(`${tag}: 規則「${q.text}」不在實測提示裡`); }
     } else if (script.isoVersion === 4 && !caff) { if (!KINDS4.includes(p.panel)) E(`${tag}: isoVersion 4 的 props.panel「${p.panel}」不存在（${KINDS4.join("／")}）`); }
