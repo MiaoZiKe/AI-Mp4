@@ -107,8 +107,12 @@ const scenes = [
         ...MOD.map((l) => ({ layer: l, at: "start+20", until: "start+31", dx: 0.12, dz: -0.08, dur: 2, spring: { tau: 4, period: 11 } }))],
       run: [{ id: "meltC4", at: "start+30", until: "start+44", ramp: 7 }, { id: "meltBall", at: "start+72", until: "start+88", ramp: 6 }],
       labels: [{ part: "sub", text: "有機基板", en: "Substrate", color: "blue", at: "start+16", until: "name-8" }, { part: "ball", text: "錫球", en: "BGA", color: "blue", at: "start+56", until: "name-8" }],
-      overlay: [tag("start+30", "start+92", "回流焊（示意）：凸塊熔化，把晶片拉回正中", 540, 312, "amber", 30, { avoid: false }), stamp("name", "s8:start-2", "先進封裝", 540, 1040, "blue", 84, -4, { avoid: false }), tag("name+4", "s8:start-2", "晶片 → 中介層 → 基板 → 錫球 → 主機板", 540, 1190, "blue", 30, { avoid: false })] },
+      overlay: [tag("start+30", "start+92", "回流焊（示意）：凸塊熔化，把晶片拉回正中", 540, 312, "amber", 30, { avoid: false }), stamp("name", "s7b:start-2", "先進封裝", 540, 1040, "blue", 84, -4, { avoid: false }), tag("name+4", "s7b:start-2", "晶片 → 中介層 → 基板 → 錫球 → 主機板", 540, 1190, "blue", 30, { avoid: false })] },
     ["台積電 CoWoS 流程（專利、Amkor 教學簡報）；示意"]),
+  S("s7b", "payoff", 7, "台積電做這件事叫 CoWoS，英特爾和三星也各有自己的做法。輝達是最大的客戶，日月光和安靠也在分擔後段。", "台積電做這件事叫 CoWoS\n英特爾和三星\n也各有自己的做法\n輝達是最大的客戶\n日月光和安靠\n也在分擔後段", "TSMC calls this CoWoS; | Intel and Samsung each have their own way. | Nvidia is the biggest customer; | ASE and Amkor share the back end.", ["CoWoS", "最大的客戶", "後段"], [["tsmc", "台積電"], ["intel", "英特爾"], ["nv", "輝達"], ["ase", "日月光"]],
+    { overlay: [{ type: "card", at: "tsmc", until: "s8:start-2", y: 820, lines: ["台積電　CoWoS", "英特爾　EMIB", "三星　I-Cube", "日月光　FOCoS", "安靠　S-SWIFT"], hi: "CoWoS", hiAt: "tsmc", size: 38, foot: "媒體報導，查證截至 2026/11/16，非投資建議" },
+        tag("nv", "s8:start-2", "輝達：最大客戶（媒體報導，非官方數字）", 540, 312, "amber", 30, { avoid: false })] },
+    ["台積電官方 CoWoS 頁；Intel EMIB；富邦（媒體轉述）"]),
   S("s8", "twist", 8, "代價是接點變多、封裝變難。廠商說，這種大封裝良率已超過九成八，還沒有第三方實測。", "代價是接點變多、封裝變難\n廠商說，這種大封裝\n良率已超過九成八\n還沒有第三方實測", "The cost: more joints, harder packaging. | The vendor says yield for these big packages | is above 98% — | not yet independently tested.", ["接點變多", "九成八", "第三方實測"], [["joints", "接點變多"], ["hard", "封裝變難"], ["rate", "九成八"], ["unk", "第三方實測"]],
     { run: [{ id: "jointGlow", at: "joints-2", until: "hard+6", ramp: 4 }],
       overlay: [{ type: "section", kind: "pkg-warp", at: "hard-4", until: "s9:start-2", avoid: false, x: 64, y: 930, w: 470, h: 260, title: "大面積易翹曲（示意）", flash: { at: "hard+2" }, uf: { at: "hard+14" } },
@@ -124,10 +128,10 @@ const scenes = [
     props: { endCard: { next: "HBM 為什麼疊 12 層", trail: ["上限", "已知良品", "中介層", "先進封裝"], at: "s9:kw-8", comment: "封裝", logoAnim: "transparent" } }, sources: [] },
 ];
 // 各幕預估長度（無聲時間軸用，配音後以 timeline 為準）
-const EST = [6.8, 5.4, 5.6, 6.6, 6.0, 6.0, 3.8, 6.8, 7.3];
+const EST = [6.8, 5.4, 5.6, 6.6, 6.0, 6.0, 3.8, 8.6, 6.8, 7.3];
 scenes.forEach((s, i) => { if (EST[i]) s.durationSec = EST[i]; });
 // 段落停頓（Andy 11-16：段落間 0.6～0.8 秒）：換段的幕設 pauseAfter 0.7
-for (const id of ["s1", "s3", "s7", "s8"]) scenes.find((s) => s.id === id).pauseAfter = 0.7;
+for (const id of ["s1", "s3", "s7b", "s8"]) scenes.find((s) => s.id === id).pauseAfter = 0.7;
 const script = {
   slug: "tech-packaging", title: "先進封裝：晶片太大做不好，拆小再拼回去（科技透明圈 第 5 支）", asOf: "2026/11/18", styleVersion: 3, stage: "three",
   channel: { name: "科技透明圈", tag: "放大來看", slogan: "一支講透一件事" }, hudSkin: "light",

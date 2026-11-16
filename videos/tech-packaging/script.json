@@ -2337,7 +2337,7 @@
           {
             "type": "stamp",
             "at": "name",
-            "until": "s8:start-2",
+            "until": "s7b:start-2",
             "text": "先進封裝",
             "x": 540,
             "y": 1040,
@@ -2350,7 +2350,7 @@
             "type": "stamp",
             "style": "tag",
             "at": "name+4",
-            "until": "s8:start-2",
+            "until": "s7b:start-2",
             "text": "晶片 → 中介層 → 基板 → 錫球 → 主機板",
             "x": 540,
             "y": 1190,
@@ -2363,7 +2363,79 @@
       "sources": [
         "台積電 CoWoS 流程（專利、Amkor 教學簡報）；示意"
       ],
-      "durationSec": 3.8,
+      "durationSec": 3.8
+    },
+    {
+      "id": "s7b",
+      "beat": "payoff",
+      "para": 7,
+      "narration": "台積電做這件事叫 CoWoS，英特爾和三星也各有自己的做法。輝達是最大的客戶，日月光和安靠也在分擔後段。",
+      "tts": "台積電做這件事叫 CoWoS，英特爾和三星也各有自己的做法。輝達是最大的客戶，日月光和安靠也在分擔後段。",
+      "subtitle": {
+        "zh": "台積電做這件事叫 CoWoS\n英特爾和三星\n也各有自己的做法\n輝達是最大的客戶\n日月光和安靠\n也在分擔後段",
+        "en": "TSMC calls this CoWoS; | Intel and Samsung each have their own way. | Nvidia is the biggest customer; | ASE and Amkor share the back end."
+      },
+      "keywords": [
+        "CoWoS",
+        "最大的客戶",
+        "後段"
+      ],
+      "cues": [
+        {
+          "id": "tsmc",
+          "text": "台積電"
+        },
+        {
+          "id": "intel",
+          "text": "英特爾"
+        },
+        {
+          "id": "nv",
+          "text": "輝達"
+        },
+        {
+          "id": "ase",
+          "text": "日月光"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "overlay": [
+          {
+            "type": "card",
+            "at": "tsmc",
+            "until": "s8:start-2",
+            "y": 820,
+            "lines": [
+              "台積電　CoWoS",
+              "英特爾　EMIB",
+              "三星　I-Cube",
+              "日月光　FOCoS",
+              "安靠　S-SWIFT"
+            ],
+            "hi": "CoWoS",
+            "hiAt": "tsmc",
+            "size": 38,
+            "foot": "媒體報導，查證截至 2026/11/16，非投資建議"
+          },
+          {
+            "type": "stamp",
+            "style": "tag",
+            "at": "nv",
+            "until": "s8:start-2",
+            "text": "輝達：最大客戶（媒體報導，非官方數字）",
+            "x": 540,
+            "y": 312,
+            "color": "amber",
+            "size": 30,
+            "avoid": false
+          }
+        ]
+      },
+      "sources": [
+        "台積電官方 CoWoS 頁；Intel EMIB；富邦（媒體轉述）"
+      ],
+      "durationSec": 8.6,
       "pauseAfter": 0.7
     },
     {

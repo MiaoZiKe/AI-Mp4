@@ -26,3 +26,7 @@
 - 重疊：鉤子標籤（kicker）`top` 136→236，不再壓頁首；`hud.levels[0].noteAlways: true`，「查證截至 2026/11/18」第 0 幀起全片常駐（同 tech-yield）。抽 0／2／6 秒三格確認：`out/tech-packaging-v2-peek.png`。
 - 段落停頓（Andy 11-16：段落間 0.6～0.8 秒、句間至少 0.3 秒、片長 45～60 秒）：s1、s3、s7、s8 設 `pauseAfter` 0.7（改 gen-script.mjs 再重跑，不手改 json）；其餘幕間 ≥0.3 秒。v1 成片 53.9 秒，加 4×0.7 後約 57 秒，仍在 60 秒內。
 - validate 0 error；layout-check 0 error（10 warning，皆為邊緣）。**未送 TTS、未渲染**，v2 配音由主控決定是否改稿後再做。
+
+## 2026/11/16 補：哪些公司在做（s7b，尚未配音）
+- 新幕 s7b 接在 s7 後，旁白 46 字；畫面＝card 名單卡（台積電 CoWoS｜英特爾 EMIB｜三星 I-Cube｜日月光 FOCoS｜安靠 S-SWIFT）。只改了腳本與念稿，沒送 TTS、沒渲染；timeline／storyboard 是舊的，要整篇重配音（念稿變了）＋align＋layout-check（現在沒 timeline 會略過）才能確認卡片不壓字幕。
+- 估總長約 54＋8.6＋0.7≈63 秒，超過 60 秒。可縮：刪「輝達是最大的客戶，」（約 −2.5 秒）或「日月光和安靠也在分擔後段」（約 −3 秒）；或 s1 的「怎麼做到的？」。
