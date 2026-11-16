@@ -144,7 +144,7 @@ const World: React.FC<{ f: number; cam: M6; P: PM; panels: Panel[] }> = ({ f, ca
 // ───────── 2D 說明卡 ─────────
 const W0 = L.X, TOP = 424;
 const Tag: React.FC<{ f: number; p: Panel }> = ({ f, p }) => {
-  const o = O(f, p.in, 5) * (1 - O(f, p.out - 6, 5)), c = col(String(p.p.tagColor ?? "primary"));
+  const o = O(f, p.in, 4) * (f < p.out ? 1 : 0), c = col(String(p.p.tagColor ?? "primary")); // 到鏡尾就切掉，不做淡出（淡出會和下一鏡的小標疊成殘影）
   const st = p.p.status ? String(p.p.status) : "", tS = p.at(p.p.statusAt, p.in + 10);
   return o <= 0.01 ? null : <div style={{ position: "absolute", left: W0, top: L.MAIN_TOP + 8, opacity: o, display: "flex", alignItems: "center", gap: 14 }}><div data-ov="性質小標" style={{ ...zh, fontWeight: 900, fontSize: 40, color: c.on, background: c.fill, borderRadius: 18, padding: "6px 26px", boxShadow: `0 6px 0 ${c.side}` }}>{String(p.p.tag)}</div>{st ? <StatusChip f={f} at={tS} text={st} px={30} /> : null}</div>;
 };
@@ -188,8 +188,8 @@ const Overlays: React.FC<{ f: number; P: PM; cam: M6 }> = ({ f, P: Pn0 }) => {
       <div key="hk" style={{ position: "absolute", left: W0, top: TOP, width: L.INNER_W, opacity: o }}>
         <div data-ov="鉤子大字" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, color: T.ink }}>{p.title[0]}</div><br />
         <div data-ov="鉤子大字2" style={{ display: "inline-block", ...zh, fontWeight: 900, fontSize: p.size ?? 132, marginTop: 8, color: f >= tM ? T.color.wrong.text : T.ink, transform: `scale(${f < tM ? 1 : 1 + 0.1 * Math.exp(-(f - tM) / 5)})`, transformOrigin: "0 50%" }}>{p.title[1]}</div>
-        <div style={{ display: "flex", alignItems: "center", gap: 28, marginTop: 30 }}>
-          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.4), ...zh, fontWeight: 900, fontSize: 50, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "4px 24px" }}>{p.stamp?.text}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 36, marginTop: 40 }}>
+          <div data-ov="蓋章" style={{ ...slam(f, tS, -6, 1.08), ...zh, fontWeight: 900, fontSize: 50, color: T.color.wrong.text, border: `7px solid ${T.color.wrong.fill}`, borderRadius: 16, background: T.card, padding: "4px 24px" }}>{p.stamp?.text}</div>
           <div data-ov="數字卡" style={{ ...bounce(f, tN), ...zh, fontWeight: 900, fontSize: 36, color: T.ink2, background: T.card, borderRadius: 24, padding: "10px 24px", boxShadow: `0 7px 0 ${T.cardSide}` }}><span style={{ ...en, fontSize: 52, color: P.text }}>{p.count?.value}</span> {p.count?.unit}</div>
         </div>
 

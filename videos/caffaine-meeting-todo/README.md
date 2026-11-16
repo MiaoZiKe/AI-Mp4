@@ -1,6 +1,6 @@
 # caffaine-meeting-todo：把會議紀錄丟給 AI，待辦裡有一項是它猜的（CaffAIne 無聲動畫版）
 
-2026/11/16 Andy 選定的新方向第 1 題（題目表 `docs/channels/caffaine-topics.md`）。**無聲版，先確認動畫，不配旁白。** 引擎：`isoVersion: 5`（`src/components/ai-iso/IsoMeeting.tsx`，新）；片尾用 2026/11/16 定案的預設片尾「純白景深」獨立頁（`CaffEndcard`）。
+2026/11/16 Andy 選定的新方向第 1 題（題目表 `docs/channels/caffaine-topics.md`）。**已配旁白（2026/11/16，Andy：「可以配上旁白」）**，細節見 `voice.md`；成片 29.47 秒。 引擎：`isoVersion: 5`（`src/components/ai-iso/IsoMeeting.tsx`，新）；片尾用 2026/11/16 定案的預設片尾「純白景深」獨立頁（`CaffEndcard`）。
 
 ## 題目數字（實測做到的才寫）
 原題「30 頁、3 分鐘」沒有實測做到：紀錄是 1,939 字（約 3 頁）。片中改用實測數字：六項待辦、一項是猜的；第一次等了兩分五十秒（170.2 秒，第 2、3 次 23.4、14.7 秒，是伺服器忙碌度，不是穩定速度）。細節 `tests.md`。
