@@ -2,34 +2,32 @@
  "version": 2,
  "slug": "tech-yield",
  "fps": 30,
- "totalFrames": 1902,
- "totalSec": 63.4,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 1597,
+ "totalSec": 53.23,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
+   "audio": "audio/tech-yield/01-s1.wav",
    "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audioSec": 3.61,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 150,
+   "durationFrames": 121,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 140,
-   "stillFrame": 149,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 108,
+   "stillFrame": 111,
    "subtitleWindow": [
     0,
-    151
+    118
    ],
    "sourceWindow": [
     0,
-    150
+    116
    ],
    "lines": [
     {
@@ -37,1073 +35,3262 @@
      "start": 0,
      "chars": [
       0,
-      5,
-      5,
-      12,
-      19,
+      16,
+      16,
+      21,
       26,
-      33,
-      40,
-      47,
-      54,
-      61,
-      61
+      30,
+      34,
+      36,
+      39,
+      41,
+      45,
+      45
      ]
     },
     {
      "text": "一個原因是做壞的太多",
-     "start": 66,
+     "start": 58,
      "chars": [
-      68,
-      75,
-      82,
-      89,
-      96,
-      103,
-      110,
-      117,
-      124,
-      131
+      60,
+      63,
+      66,
+      71,
+      76,
+      81,
+      87,
+      91,
+      94,
+      99
      ]
     }
    ],
    "keywords": [
     {
      "text": "做壞的",
-     "start": 103
+     "start": 81
     }
    ],
    "cues": [
     {
      "id": "ai",
      "text": "晶片為什麼",
-     "frame": 14
+     "frame": 22,
+     "early": 0
     },
     {
      "id": "bad",
      "text": "做壞的",
-     "frame": 105
+     "frame": 82,
+     "early": 0
     }
    ],
+   "hash": "45512612fdae-7f1daeabc2",
    "sub": "AI 晶片為什麼這麼貴？\n一個原因是做壞的太多",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.906,
+    "minScore": 0.001,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.55,
+      "start": 0.58,
+      "ch": "I",
+      "errMs": 30
+     },
+     {
+      "onset": 2.06,
+      "start": 2.04,
+      "ch": "一",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "A",
+     "start": 0.06,
+     "end": 0.12,
+     "score": 0.551
+    },
+    {
+     "text": "I",
+     "start": 0.58,
+     "end": 0.68,
+     "score": 0.974
+    },
+    {
+     "text": "晶",
+     "start": 0.74,
+     "end": 0.88,
+     "score": 0.828
+    },
+    {
+     "text": "片",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.981
+    },
+    {
+     "text": "為",
+     "start": 1.06,
+     "end": 1.16,
+     "score": 0.999
+    },
+    {
+     "text": "什",
+     "start": 1.18,
+     "end": 1.26,
+     "score": 0.992
+    },
+    {
+     "text": "麼",
+     "start": 1.26,
+     "end": 1.3,
+     "score": 0.998
+    },
+    {
+     "text": "這",
+     "start": 1.34,
+     "end": 1.4,
+     "score": 0.963
+    },
+    {
+     "text": "麼",
+     "start": 1.42,
+     "end": 1.46,
+     "score": 0.999
+    },
+    {
+     "text": "貴",
+     "start": 1.54,
+     "end": 1.7,
+     "score": 0.996
+    },
+    {
+     "text": "一",
+     "start": 2.04,
+     "end": 2.08,
+     "score": 0.001
+    },
+    {
+     "text": "個",
+     "start": 2.14,
+     "end": 2.2,
+     "score": 1
+    },
+    {
+     "text": "原",
+     "start": 2.26,
+     "end": 2.38,
+     "score": 0.925
+    },
+    {
+     "text": "因",
+     "start": 2.4,
+     "end": 2.5,
+     "score": 0.997
+    },
+    {
+     "text": "是",
+     "start": 2.58,
+     "end": 2.66,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 2.74,
+     "end": 2.86,
+     "score": 0.996
+    },
+    {
+     "text": "壞",
+     "start": 2.94,
+     "end": 3.06,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 3.08,
+     "end": 3.14,
+     "score": 0.998
+    },
+    {
+     "text": "太",
+     "start": 3.18,
+     "end": 3.32,
+     "score": 0.988
+    },
+    {
+     "text": "多",
+     "start": 3.36,
+     "end": 3.46,
+     "score": 0.931
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.58,
+    0.74,
+    0.9,
+    1.06,
+    1.18,
+    1.26,
+    1.34,
+    1.42,
+    1.54,
+    2.04,
+    2.14,
+    2.26,
+    2.4,
+    2.58,
+    2.74,
+    2.94,
+    3.08,
+    3.18,
+    3.36
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 154,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 150,
-   "durationFrames": 156,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 154,
-   "voiceEndFrame": 296,
-   "stillFrame": 305,
+   "audio": "audio/tech-yield/02-s2.wav",
+   "audioFrame": 120,
+   "audioSec": 3.79,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 111,
+   "durationFrames": 140,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 121,
+   "voiceEndFrame": 233,
+   "stillFrame": 241,
    "subtitleWindow": [
-    151,
-    307
+    118,
+    248
    ],
    "sourceWindow": [
-    150,
-    306
+    116,
+    246
    ],
    "lines": [
     {
      "text": "同樣的工廠",
-     "start": 151,
+     "start": 118,
      "chars": [
-      152,
-      159,
-      166,
-      172,
-      179
+      120,
+      125,
+      128,
+      131,
+      135
      ]
     },
     {
      "text": "小晶片九成能用",
-     "start": 184,
+     "start": 147,
      "chars": [
-      186,
-      193,
-      199,
-      206,
-      213,
-      220,
-      226
+      149,
+      155,
+      160,
+      167,
+      173,
+      178,
+      183
      ]
     },
     {
      "text": "大晶片可能不到一半",
-     "start": 231,
+     "start": 193,
      "chars": [
-      233,
-      240,
-      247,
-      253,
-      260,
-      267,
-      274,
-      280,
-      287
+      195,
+      200,
+      204,
+      210,
+      214,
+      218,
+      220,
+      224,
+      227
      ]
     }
    ],
    "keywords": [
     {
      "text": "九成",
-     "start": 206
+     "start": 167
     },
     {
      "text": "不到一半",
-     "start": 267
+     "start": 218
     }
    ],
    "cues": [
     {
      "id": "fab",
      "text": "同樣的工廠",
-     "frame": 154
+     "frame": 121,
+     "early": 0
     },
     {
      "id": "hook",
      "text": "九成",
-     "frame": 208
+     "frame": 168,
+     "early": 0
     },
     {
      "id": "half",
      "text": "不到一半",
-     "frame": 269
+     "frame": 219,
+     "early": 0
     }
    ],
+   "hash": "77999d0bbe50-7f1daeabc2",
    "sub": "同樣的工廠\n小晶片九成能用\n大晶片可能不到一半",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.923,
+    "minScore": 0.001,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 0.97,
+      "start": 1.02,
+      "ch": "小",
+      "errMs": 50
+     },
+     {
+      "onset": 2.57,
+      "start": 2.54,
+      "ch": "大",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "同",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "樣",
+     "start": 0.2,
+     "end": 0.32,
+     "score": 0.992
+    },
+    {
+     "text": "的",
+     "start": 0.32,
+     "end": 0.36,
+     "score": 0.996
+    },
+    {
+     "text": "工",
+     "start": 0.4,
+     "end": 0.54,
+     "score": 0.887
+    },
+    {
+     "text": "廠",
+     "start": 0.56,
+     "end": 0.76,
+     "score": 0.967
+    },
+    {
+     "text": "小",
+     "start": 1.02,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 1.22,
+     "end": 1.36,
+     "score": 0.87
+    },
+    {
+     "text": "片",
+     "start": 1.38,
+     "end": 1.54,
+     "score": 0.979
+    },
+    {
+     "text": "九",
+     "start": 1.6,
+     "end": 1.76,
+     "score": 0.94
+    },
+    {
+     "text": "成",
+     "start": 1.8,
+     "end": 1.96,
+     "score": 0.864
+    },
+    {
+     "text": "能",
+     "start": 1.98,
+     "end": 2.1,
+     "score": 0.979
+    },
+    {
+     "text": "用",
+     "start": 2.14,
+     "end": 2.28,
+     "score": 0.999
+    },
+    {
+     "text": "大",
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 2.7,
+     "end": 2.84,
+     "score": 0.918
+    },
+    {
+     "text": "片",
+     "start": 2.86,
+     "end": 3,
+     "score": 0.998
+    },
+    {
+     "text": "可",
+     "start": 3.06,
+     "end": 3.14,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 3.18,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 3.3,
+     "end": 3.34,
+     "score": 0.997
+    },
+    {
+     "text": "到",
+     "start": 3.38,
+     "end": 3.5,
+     "score": 0.997
+    },
+    {
+     "text": "一",
+     "start": 3.5,
+     "end": 3.54,
+     "score": 0.001
+    },
+    {
+     "text": "半",
+     "start": 3.6,
+     "end": 3.74,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.32,
+    0.4,
+    0.56,
+    1.02,
+    1.22,
+    1.38,
+    1.6,
+    1.8,
+    1.98,
+    2.14,
+    2.54,
+    2.7,
+    2.86,
+    3.06,
+    3.18,
+    3.3,
+    3.38,
+    3.5,
+    3.6
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 310,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 306,
-   "durationFrames": 216,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 310,
-   "voiceEndFrame": 512,
-   "stillFrame": 521,
+   "audio": "audio/tech-yield/03-s3.wav",
+   "audioFrame": 250,
+   "audioSec": 6.15,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 241,
+   "durationFrames": 212,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 251,
+   "voiceEndFrame": 434,
+   "stillFrame": 443,
    "subtitleWindow": [
-    307,
-    523
+    248,
+    450
    ],
    "sourceWindow": [
-    306,
-    522
+    246,
+    448
    ],
    "lines": [
     {
      "text": "差在哪？",
-     "start": 307,
+     "start": 248,
      "chars": [
-      308,
-      315,
-      321,
-      321
+      250,
+      255,
+      259,
+      259
      ]
     },
     {
      "text": "晶片是在一片",
-     "start": 326,
+     "start": 273,
      "chars": [
-      328,
-      334,
-      341,
-      347,
-      354,
-      360
+      276,
+      282,
+      288,
+      291,
+      296,
+      300
      ]
     },
     {
      "text": "圓形的矽板上做的",
-     "start": 365,
+     "start": 304,
      "chars": [
-      367,
-      373,
-      380,
-      386,
-      393,
-      399,
-      406,
-      412
+      306,
+      312,
+      316,
+      319,
+      325,
+      331,
+      336,
+      340
      ]
     },
     {
      "text": "這片叫晶圓",
-     "start": 417,
+     "start": 351,
      "chars": [
-      419,
-      425,
-      432,
-      438,
-      445
+      354,
+      357,
+      361,
+      366,
+      371
      ]
     },
     {
      "text": "做完再切成一顆一顆",
-     "start": 449,
+     "start": 386,
      "chars": [
-      451,
-      458,
-      464,
-      471,
-      477,
-      484,
-      490,
-      497,
-      503
+      388,
+      393,
+      397,
+      402,
+      408,
+      413,
+      417,
+      423,
+      426
      ]
     }
    ],
    "keywords": [
     {
      "text": "晶圓",
-     "start": 438
+     "start": 366
     },
     {
      "text": "一顆一顆",
-     "start": 484
+     "start": 413
     }
    ],
    "cues": [
     {
      "id": "where",
      "text": "差在哪",
-     "frame": 310
+     "frame": 251,
+     "early": 0
     },
     {
      "id": "disk",
      "text": "矽板",
-     "frame": 388
+     "frame": 321,
+     "early": 0
     },
     {
      "id": "wafer",
      "text": "叫晶圓",
-     "frame": 434
+     "frame": 362,
+     "early": 0
     },
     {
      "id": "cut",
      "text": "切成",
-     "frame": 473
+     "frame": 404,
+     "early": 0
     },
     {
      "id": "each",
      "text": "一顆一顆",
-     "frame": 486
+     "frame": 414,
+     "early": 0
     }
    ],
+   "hash": "1e0999313fd3-7f1daeabc2",
    "sub": "差在哪？\n晶片是在一片\n圓形的矽板上做的\n這片叫晶圓\n做完再切成一顆一顆",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.931,
+    "minScore": 0.397,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 450,
+    "onsetCheck": [
+     {
+      "onset": 0.92,
+      "start": 0.9,
+      "ch": "晶",
+      "errMs": -20
+     },
+     {
+      "onset": 3.51,
+      "start": 3.06,
+      "ch": "的",
+      "errMs": -450
+     },
+     {
+      "onset": 4.67,
+      "start": 4.64,
+      "ch": "做",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "差",
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.978
+    },
+    {
+     "text": "在",
+     "start": 0.2,
+     "end": 0.32,
+     "score": 1
+    },
+    {
+     "text": "哪",
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.998
+    },
+    {
+     "text": "晶",
+     "start": 0.9,
+     "end": 1.08,
+     "score": 0.979
+    },
+    {
+     "text": "片",
+     "start": 1.12,
+     "end": 1.26,
+     "score": 0.997
+    },
+    {
+     "text": "是",
+     "start": 1.3,
+     "end": 1.38,
+     "score": 0.999
+    },
+    {
+     "text": "在",
+     "start": 1.42,
+     "end": 1.54,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 1.58,
+     "end": 1.64,
+     "score": 0.397
+    },
+    {
+     "text": "片",
+     "start": 1.7,
+     "end": 1.86,
+     "score": 0.997
+    },
+    {
+     "text": "圓",
+     "start": 1.92,
+     "end": 2.06,
+     "score": 0.993
+    },
+    {
+     "text": "形",
+     "start": 2.12,
+     "end": 2.26,
+     "score": 0.991
+    },
+    {
+     "text": "的",
+     "start": 2.26,
+     "end": 2.32,
+     "score": 0.998
+    },
+    {
+     "text": "矽",
+     "start": 2.36,
+     "end": 2.5,
+     "score": 0.498
+    },
+    {
+     "text": "板",
+     "start": 2.56,
+     "end": 2.68,
+     "score": 0.998
+    },
+    {
+     "text": "上",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.992
+    },
+    {
+     "text": "做",
+     "start": 2.9,
+     "end": 3,
+     "score": 0.991
+    },
+    {
+     "text": "的",
+     "start": 3.06,
+     "end": 3.14,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 3.5,
+     "end": 3.58,
+     "score": 0.996
+    },
+    {
+     "text": "片",
+     "start": 3.6,
+     "end": 3.72,
+     "score": 0.998
+    },
+    {
+     "text": "叫",
+     "start": 3.74,
+     "end": 3.86,
+     "score": 0.943
+    },
+    {
+     "text": "晶",
+     "start": 3.9,
+     "end": 4.06,
+     "score": 0.875
+    },
+    {
+     "text": "圓",
+     "start": 4.08,
+     "end": 4.26,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 4.64,
+     "end": 4.76,
+     "score": 0.989
+    },
+    {
+     "text": "完",
+     "start": 4.8,
+     "end": 4.92,
+     "score": 0.999
+    },
+    {
+     "text": "再",
+     "start": 4.96,
+     "end": 5.06,
+     "score": 0.999
+    },
+    {
+     "text": "切",
+     "start": 5.12,
+     "end": 5.24,
+     "score": 0.988
+    },
+    {
+     "text": "成",
+     "start": 5.3,
+     "end": 5.44,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 5.48,
+     "end": 5.54,
+     "score": 0.589
+    },
+    {
+     "text": "顆",
+     "start": 5.62,
+     "end": 5.72,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 5.8,
+     "end": 5.84,
+     "score": 0.685
+    },
+    {
+     "text": "顆",
+     "start": 5.9,
+     "end": 6,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.36,
+    0.9,
+    1.12,
+    1.3,
+    1.42,
+    1.58,
+    1.7,
+    1.92,
+    2.12,
+    2.26,
+    2.36,
+    2.56,
+    2.74,
+    2.9,
+    3.06,
+    3.5,
+    3.6,
+    3.74,
+    3.9,
+    4.08,
+    4.64,
+    4.8,
+    4.96,
+    5.12,
+    5.3,
+    5.48,
+    5.62,
+    5.8,
+    5.9
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 526,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 522,
-   "durationFrames": 228,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 526,
-   "voiceEndFrame": 740,
-   "stillFrame": 749,
+   "audio": "audio/tech-yield/04-s4.wav",
+   "audioFrame": 452,
+   "audioSec": 5.55,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 443,
+   "durationFrames": 194,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 453,
+   "voiceEndFrame": 618,
+   "stillFrame": 627,
    "subtitleWindow": [
-    523,
-    751
+    450,
+    634
    ],
    "sourceWindow": [
-    522,
-    750
+    448,
+    632
    ],
    "lines": [
     {
      "text": "晶圓表面難免留下",
-     "start": 523,
+     "start": 450,
      "chars": [
-      524,
-      530,
-      537,
-      543,
-      550,
-      556,
-      563,
-      569
+      452,
+      457,
+      461,
+      467,
+      473,
+      477,
+      482,
+      487
      ]
     },
     {
      "text": "看不見的缺陷",
-     "start": 574,
+     "start": 490,
      "chars": [
-      576,
-      582,
-      589,
-      595,
-      602,
-      608
+      492,
+      497,
+      500,
+      504,
+      506,
+      512
      ]
     },
     {
      "text": "可能是一顆微粒",
-     "start": 613,
+     "start": 528,
      "chars": [
-      615,
-      621,
-      628,
-      634,
-      641,
-      647,
-      654
+      530,
+      533,
+      537,
+      540,
+      544,
+      549,
+      554
      ]
     },
     {
      "text": "也可能是",
-     "start": 658,
+     "start": 565,
      "chars": [
-      660,
-      667,
-      673,
-      680
+      568,
+      572,
+      575,
+      579
      ]
     },
     {
      "text": "一段沒做好的線路",
-     "start": 684,
+     "start": 580,
      "chars": [
-      686,
-      693,
-      699,
-      706,
-      712,
-      719,
-      725,
-      732
+      583,
+      586,
+      591,
+      596,
+      600,
+      604,
+      607,
+      613
      ]
     }
    ],
    "keywords": [
     {
      "text": "看不見的缺陷",
-     "start": 576
+     "start": 492
     },
     {
      "text": "微粒",
-     "start": 647
+     "start": 549
     }
    ],
    "cues": [
     {
      "id": "invisible",
      "text": "看不見",
-     "frame": 578
+     "frame": 493,
+     "early": 0
     },
     {
      "id": "particle",
      "text": "微粒",
-     "frame": 649
+     "frame": 550,
+     "early": 0
     },
     {
      "id": "line",
      "text": "沒做好",
-     "frame": 701
+     "frame": 592,
+     "early": 0
     }
    ],
+   "hash": "87fbc57996d1-7f1daeabc2",
    "sub": "晶圓表面難免留下\n看不見的缺陷\n可能是一顆微粒\n也可能是\n一段沒做好的線路",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.921,
+    "minScore": 0.011,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.64,
+      "start": 2.64,
+      "ch": "可",
+      "errMs": 0
+     },
+     {
+      "onset": 3.92,
+      "start": 3.9,
+      "ch": "也",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.943
+    },
+    {
+     "text": "圓",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.984
+    },
+    {
+     "text": "表",
+     "start": 0.36,
+     "end": 0.52,
+     "score": 0.999
+    },
+    {
+     "text": "面",
+     "start": 0.56,
+     "end": 0.7,
+     "score": 1
+    },
+    {
+     "text": "難",
+     "start": 0.74,
+     "end": 0.86,
+     "score": 0.779
+    },
+    {
+     "text": "免",
+     "start": 0.88,
+     "end": 1.02,
+     "score": 0.914
+    },
+    {
+     "text": "留",
+     "start": 1.04,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "下",
+     "start": 1.2,
+     "end": 1.3,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 1.38,
+     "end": 1.52,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 1.54,
+     "end": 1.6,
+     "score": 0.992
+    },
+    {
+     "text": "見",
+     "start": 1.64,
+     "end": 1.76,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 1.78,
+     "end": 1.84,
+     "score": 0.997
+    },
+    {
+     "text": "缺",
+     "start": 1.86,
+     "end": 1.98,
+     "score": 0.968
+    },
+    {
+     "text": "陷",
+     "start": 2.06,
+     "end": 2.22,
+     "score": 0.999
+    },
+    {
+     "text": "可",
+     "start": 2.64,
+     "end": 2.7,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 2.74,
+     "end": 2.86,
+     "score": 0.973
+    },
+    {
+     "text": "是",
+     "start": 2.88,
+     "end": 2.96,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 2.98,
+     "end": 3.04,
+     "score": 0.011
+    },
+    {
+     "text": "顆",
+     "start": 3.1,
+     "end": 3.18,
+     "score": 0.999
+    },
+    {
+     "text": "微",
+     "start": 3.28,
+     "end": 3.4,
+     "score": 0.999
+    },
+    {
+     "text": "粒",
+     "start": 3.46,
+     "end": 3.52,
+     "score": 0.998
+    },
+    {
+     "text": "也",
+     "start": 3.9,
+     "end": 3.98,
+     "score": 1
+    },
+    {
+     "text": "可",
+     "start": 4.04,
+     "end": 4.1,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 4.16,
+     "end": 4.26,
+     "score": 0.954
+    },
+    {
+     "text": "是",
+     "start": 4.28,
+     "end": 4.36,
+     "score": 0.959
+    },
+    {
+     "text": "一",
+     "start": 4.4,
+     "end": 4.44,
+     "score": 0.081
+    },
+    {
+     "text": "段",
+     "start": 4.5,
+     "end": 4.64,
+     "score": 0.977
+    },
+    {
+     "text": "沒",
+     "start": 4.68,
+     "end": 4.8,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 4.84,
+     "end": 4.94,
+     "score": 0.902
+    },
+    {
+     "text": "好",
+     "start": 4.98,
+     "end": 5.1,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 5.12,
+     "end": 5.18,
+     "score": 0.999
+    },
+    {
+     "text": "線",
+     "start": 5.22,
+     "end": 5.36,
+     "score": 0.985
+    },
+    {
+     "text": "路",
+     "start": 5.4,
+     "end": 5.48,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.36,
+    0.56,
+    0.74,
+    0.88,
+    1.04,
+    1.2,
+    1.38,
+    1.54,
+    1.64,
+    1.78,
+    1.86,
+    2.06,
+    2.64,
+    2.74,
+    2.88,
+    2.98,
+    3.1,
+    3.28,
+    3.46,
+    3.9,
+    4.04,
+    4.16,
+    4.28,
+    4.4,
+    4.5,
+    4.68,
+    4.84,
+    4.98,
+    5.12,
+    5.22,
+    5.4
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 754,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 750,
-   "durationFrames": 120,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 754,
-   "voiceEndFrame": 860,
-   "stillFrame": 869,
+   "audio": "audio/tech-yield/05-s5.wav",
+   "audioFrame": 636,
+   "audioSec": 2.505,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.04,
+   "startFrame": 627,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 637,
+   "voiceEndFrame": 710,
+   "stillFrame": 713,
    "subtitleWindow": [
-    751,
-    871
+    634,
+    720
    ],
    "sourceWindow": [
-    750,
-    870
+    632,
+    718
    ],
    "lines": [
     {
      "text": "缺陷落在哪一顆",
-     "start": 751,
+     "start": 634,
      "chars": [
-      752,
-      759,
-      766,
-      773,
-      780,
-      787,
-      794
+      635,
+      641,
+      647,
+      651,
+      655,
+      660,
+      663
      ]
     },
     {
      "text": "那一顆就可能報廢",
-     "start": 799,
+     "start": 674,
      "chars": [
-      801,
-      809,
-      816,
-      823,
-      830,
-      837,
-      844,
-      851
+      676,
+      680,
+      683,
+      687,
+      692,
+      695,
+      699,
+      705
      ]
     }
    ],
    "keywords": [
     {
      "text": "報廢",
-     "start": 844
+     "start": 699
     }
    ],
    "cues": [
     {
      "id": "fall",
      "text": "落在",
-     "frame": 768
+     "frame": 648,
+     "early": 0
     },
     {
      "id": "scrap",
      "text": "報廢",
-     "frame": 846
+     "frame": 701,
+     "early": 0
     }
    ],
+   "hash": "03ef1666ac5d-7f1daeabc2",
    "sub": "缺陷落在哪一顆\n那一顆就可能報廢",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.915,
+    "minScore": 0.256,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.41,
+      "start": 1.38,
+      "ch": "那",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "缺",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.996
+    },
+    {
+     "text": "陷",
+     "start": 0.22,
+     "end": 0.36,
+     "score": 0.994
+    },
+    {
+     "text": "落",
+     "start": 0.4,
+     "end": 0.48,
+     "score": 0.998
+    },
+    {
+     "text": "在",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.999
+    },
+    {
+     "text": "哪",
+     "start": 0.7,
+     "end": 0.76,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 0.84,
+     "end": 0.88,
+     "score": 0.256
+    },
+    {
+     "text": "顆",
+     "start": 0.94,
+     "end": 1.06,
+     "score": 0.999
+    },
+    {
+     "text": "那",
+     "start": 1.38,
+     "end": 1.46,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 1.5,
+     "end": 1.54,
+     "score": 0.515
+    },
+    {
+     "text": "顆",
+     "start": 1.6,
+     "end": 1.68,
+     "score": 0.999
+    },
+    {
+     "text": "就",
+     "start": 1.76,
+     "end": 1.88,
+     "score": 0.999
+    },
+    {
+     "text": "可",
+     "start": 1.92,
+     "end": 1.98,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 2.02,
+     "end": 2.14,
+     "score": 0.968
+    },
+    {
+     "text": "報",
+     "start": 2.16,
+     "end": 2.3,
+     "score": 0.999
+    },
+    {
+     "text": "廢",
+     "start": 2.34,
+     "end": 2.46,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.22,
+    0.4,
+    0.54,
+    0.7,
+    0.84,
+    0.94,
+    1.38,
+    1.5,
+    1.6,
+    1.76,
+    1.92,
+    2.02,
+    2.16,
+    2.34
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 874,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 870,
-   "durationFrames": 84,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 874,
-   "voiceEndFrame": 944,
-   "stillFrame": 953,
+   "audio": "audio/tech-yield/06-s6.wav",
+   "audioFrame": 722,
+   "audioSec": 1.52,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 713,
+   "durationFrames": 70,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 723,
+   "voiceEndFrame": 767,
+   "stillFrame": 773,
    "subtitleWindow": [
-    871,
-    955
+    720,
+    780
    ],
    "sourceWindow": [
-    870,
-    954
+    718,
+    778
    ],
    "lines": [
     {
      "text": "能用的比例",
-     "start": 871,
+     "start": 720,
      "chars": [
-      872,
-      880,
-      888,
-      895,
-      903
+      722,
+      727,
+      731,
+      733,
+      738
      ]
     },
     {
      "text": "就叫良率",
-     "start": 909,
+     "start": 745,
      "chars": [
-      911,
-      919,
-      926,
-      934
+      747,
+      751,
+      755,
+      761
      ]
     }
    ],
    "keywords": [
     {
      "text": "良率",
-     "start": 926
+     "start": 755
     }
    ],
    "cues": [
     {
      "id": "ratio",
      "text": "比例",
-     "frame": 897
+     "frame": 735,
+     "early": 0
     },
     {
      "id": "yield",
      "text": "良率",
-     "frame": 928
+     "frame": 757,
+     "early": 0
     }
    ],
+   "hash": "76576d712c39-7f1daeabc2",
    "sub": "能用的比例\n就叫良率",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.931,
+    "minScore": 0.493,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 0.89,
+      "start": 0.88,
+      "ch": "就",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "能",
+     "start": 0.06,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 0.22,
+     "end": 0.32,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 0.34,
+     "end": 0.4,
+     "score": 0.996
+    },
+    {
+     "text": "比",
+     "start": 0.42,
+     "end": 0.5,
+     "score": 0.998
+    },
+    {
+     "text": "例",
+     "start": 0.58,
+     "end": 0.66,
+     "score": 0.987
+    },
+    {
+     "text": "就",
+     "start": 0.88,
+     "end": 0.98,
+     "score": 0.997
+    },
+    {
+     "text": "叫",
+     "start": 1,
+     "end": 1.14,
+     "score": 0.964
+    },
+    {
+     "text": "良",
+     "start": 1.16,
+     "end": 1.34,
+     "score": 0.943
+    },
+    {
+     "text": "率",
+     "start": 1.36,
+     "end": 1.44,
+     "score": 0.493
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.22,
+    0.34,
+    0.42,
+    0.58,
+    0.88,
+    1,
+    1.16,
+    1.36
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 958,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 954,
-   "durationFrames": 174,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 958,
-   "voiceEndFrame": 1118,
-   "stillFrame": 1127,
+   "audio": "audio/tech-yield/07-s7.wav",
+   "audioFrame": 782,
+   "audioSec": 4.89,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 773,
+   "durationFrames": 171,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 783,
+   "voiceEndFrame": 928,
+   "stillFrame": 934,
    "subtitleWindow": [
-    955,
-    1129
+    780,
+    941
    ],
    "sourceWindow": [
-    954,
-    1128
+    778,
+    939
    ],
    "lines": [
     {
      "text": "關鍵是",
-     "start": 955,
+     "start": 780,
      "chars": [
-      956,
-      963,
-      969
+      782,
+      786,
+      793
      ]
     },
     {
      "text": "缺陷是隨機落下的",
-     "start": 974,
+     "start": 805,
      "chars": [
-      976,
-      983,
-      989,
-      996,
-      1003,
-      1009,
-      1016,
-      1023
+      808,
+      814,
+      819,
+      824,
+      830,
+      835,
+      839,
+      845
      ]
     },
     {
      "text": "晶片越大",
-     "start": 1027,
+     "start": 858,
      "chars": [
-      1029,
-      1036,
-      1043,
-      1049
+      860,
+      865,
+      871,
+      875
      ]
     },
     {
      "text": "被打中的機會就越高",
-     "start": 1054,
+     "start": 885,
      "chars": [
-      1056,
-      1063,
-      1069,
-      1076,
-      1083,
-      1089,
-      1096,
-      1103,
-      1109
+      887,
+      892,
+      896,
+      901,
+      904,
+      908,
+      911,
+      916,
+      920
      ]
     }
    ],
    "keywords": [
     {
      "text": "隨機",
-     "start": 996
+     "start": 824
     },
     {
      "text": "越大",
-     "start": 1043
+     "start": 871
     }
    ],
    "cues": [
     {
      "id": "key",
      "text": "關鍵",
-     "frame": 958
+     "frame": 783,
+     "early": 0
     },
     {
      "id": "random",
      "text": "隨機",
-     "frame": 998
+     "frame": 826,
+     "early": 0
     },
     {
      "id": "big",
      "text": "越大",
-     "frame": 1045
+     "frame": 873,
+     "early": 0
     },
     {
      "id": "hit",
      "text": "被打中",
-     "frame": 1058
+     "frame": 889,
+     "early": 0
     }
    ],
+   "hash": "4cccf7c991ca-7f1daeabc2",
    "sub": "關鍵是\n缺陷是隨機落下的\n晶片越大\n被打中的機會就越高",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.961,
+    "minScore": 0.499,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.9,
+      "start": 0.9,
+      "ch": "缺",
+      "errMs": 0
+     },
+     {
+      "onset": 2.65,
+      "start": 2.64,
+      "ch": "晶",
+      "errMs": -10
+     },
+     {
+      "onset": 3.58,
+      "start": 3.56,
+      "ch": "被",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "關",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.998
+    },
+    {
+     "text": "鍵",
+     "start": 0.18,
+     "end": 0.34,
+     "score": 0.971
+    },
+    {
+     "text": "是",
+     "start": 0.4,
+     "end": 0.5,
+     "score": 0.967
+    },
+    {
+     "text": "缺",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.988
+    },
+    {
+     "text": "陷",
+     "start": 1.12,
+     "end": 1.24,
+     "score": 0.911
+    },
+    {
+     "text": "是",
+     "start": 1.28,
+     "end": 1.36,
+     "score": 0.91
+    },
+    {
+     "text": "隨",
+     "start": 1.46,
+     "end": 1.6,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 1.66,
+     "end": 1.74,
+     "score": 0.999
+    },
+    {
+     "text": "落",
+     "start": 1.8,
+     "end": 1.9,
+     "score": 0.499
+    },
+    {
+     "text": "下",
+     "start": 1.96,
+     "end": 2.06,
+     "score": 1
+    },
+    {
+     "text": "的",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 2.64,
+     "end": 2.8,
+     "score": 0.949
+    },
+    {
+     "text": "片",
+     "start": 2.82,
+     "end": 2.98,
+     "score": 0.995
+    },
+    {
+     "text": "越",
+     "start": 3.02,
+     "end": 3.1,
+     "score": 0.991
+    },
+    {
+     "text": "大",
+     "start": 3.16,
+     "end": 3.24,
+     "score": 0.999
+    },
+    {
+     "text": "被",
+     "start": 3.56,
+     "end": 3.66,
+     "score": 0.999
+    },
+    {
+     "text": "打",
+     "start": 3.7,
+     "end": 3.76,
+     "score": 0.999
+    },
+    {
+     "text": "中",
+     "start": 3.86,
+     "end": 3.98,
+     "score": 0.985
+    },
+    {
+     "text": "的",
+     "start": 4,
+     "end": 4.06,
+     "score": 0.998
+    },
+    {
+     "text": "機",
+     "start": 4.1,
+     "end": 4.18,
+     "score": 0.999
+    },
+    {
+     "text": "會",
+     "start": 4.24,
+     "end": 4.34,
+     "score": 0.998
+    },
+    {
+     "text": "就",
+     "start": 4.36,
+     "end": 4.46,
+     "score": 0.994
+    },
+    {
+     "text": "越",
+     "start": 4.5,
+     "end": 4.58,
+     "score": 0.925
+    },
+    {
+     "text": "高",
+     "start": 4.64,
+     "end": 4.82,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.4,
+    0.9,
+    1.12,
+    1.28,
+    1.46,
+    1.66,
+    1.8,
+    1.96,
+    2.14,
+    2.64,
+    2.82,
+    3.02,
+    3.16,
+    3.56,
+    3.7,
+    3.86,
+    4,
+    4.1,
+    4.24,
+    4.36,
+    4.5,
+    4.64
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1132,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1128,
-   "durationFrames": 228,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1132,
-   "voiceEndFrame": 1346,
-   "stillFrame": 1355,
+   "audio": "audio/tech-yield/08-s8.wav",
+   "audioFrame": 943,
+   "audioSec": 5.9,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 934,
+   "durationFrames": 202,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 944,
+   "voiceEndFrame": 1119,
+   "stillFrame": 1126,
    "subtitleWindow": [
-    1129,
-    1357
+    941,
+    1133
    ],
    "sourceWindow": [
-    1128,
-    1356
+    939,
+    1131
    ],
    "lines": [
     {
      "text": "用廠商公布過的",
-     "start": 1129,
+     "start": 941,
      "chars": [
-      1130,
-      1136,
-      1143,
-      1149,
-      1156,
-      1162,
-      1169
+      943,
+      948,
+      954,
+      959,
+      964,
+      968,
+      972
      ]
     },
     {
      "text": "缺陷數字估算",
-     "start": 1173,
+     "start": 972,
      "chars": [
-      1175,
-      1182,
-      1188,
-      1195,
-      1201,
-      1208
+      975,
+      980,
+      985,
+      990,
+      993,
+      998
      ]
     },
     {
      "text": "晶片大八倍",
-     "start": 1212,
+     "start": 1011,
      "chars": [
-      1214,
-      1221,
-      1227,
-      1234,
-      1240
+      1013,
+      1018,
+      1023,
+      1029,
+      1033
      ]
     },
     {
      "text": "能用的就從九成",
-     "start": 1245,
+     "start": 1045,
      "chars": [
-      1247,
-      1253,
-      1260,
-      1266,
-      1273,
-      1279,
-      1286
+      1047,
+      1052,
+      1056,
+      1059,
+      1062,
+      1068,
+      1074
      ]
     },
     {
      "text": "掉到可能不到一半",
-     "start": 1290,
+     "start": 1084,
      "chars": [
-      1292,
-      1299,
-      1305,
-      1312,
-      1318,
-      1325,
-      1331,
-      1338
+      1086,
+      1091,
+      1096,
+      1099,
+      1104,
+      1106,
+      1110,
+      1113
      ]
     }
    ],
    "keywords": [
     {
      "text": "大八倍",
-     "start": 1227
+     "start": 1023
     },
     {
      "text": "不到一半",
-     "start": 1318
+     "start": 1104
     }
    ],
    "cues": [
     {
      "id": "vendor",
      "text": "廠商公布",
-     "frame": 1138
+     "frame": 950,
+     "early": 0
     },
     {
      "id": "eight",
      "text": "大八倍",
-     "frame": 1229
+     "frame": 1025,
+     "early": 0
     },
     {
      "id": "from",
      "text": "從九成",
-     "frame": 1275
+     "frame": 1064,
+     "early": 0
     },
     {
      "id": "drop",
      "text": "不到一半",
-     "frame": 1320
+     "frame": 1105,
+     "early": 0
     }
    ],
+   "hash": "c6d3ea32bb96-7f1daeabc2",
    "sub": "用廠商公布過的\n缺陷數字估算\n晶片大八倍\n能用的就從九成\n掉到可能不到一半",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.94,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.39,
+      "start": 2.38,
+      "ch": "晶",
+      "errMs": -10
+     },
+     {
+      "onset": 3.5,
+      "start": 3.52,
+      "ch": "能",
+      "errMs": 20
+     },
+     {
+      "onset": 4.84,
+      "start": 4.82,
+      "ch": "掉",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "用",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.999
+    },
+    {
+     "text": "廠",
+     "start": 0.22,
+     "end": 0.4,
+     "score": 0.858
+    },
+    {
+     "text": "商",
+     "start": 0.42,
+     "end": 0.58,
+     "score": 0.919
+    },
+    {
+     "text": "公",
+     "start": 0.6,
+     "end": 0.72,
+     "score": 1
+    },
+    {
+     "text": "布",
+     "start": 0.74,
+     "end": 0.82,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.88,
+     "end": 0.96,
+     "score": 0.971
+    },
+    {
+     "text": "的",
+     "start": 1,
+     "end": 1.06,
+     "score": 0.999
+    },
+    {
+     "text": "缺",
+     "start": 1.1,
+     "end": 1.22,
+     "score": 0.969
+    },
+    {
+     "text": "陷",
+     "start": 1.28,
+     "end": 1.4,
+     "score": 0.937
+    },
+    {
+     "text": "數",
+     "start": 1.44,
+     "end": 1.52,
+     "score": 0.98
+    },
+    {
+     "text": "字",
+     "start": 1.6,
+     "end": 1.68,
+     "score": 0.998
+    },
+    {
+     "text": "估",
+     "start": 1.72,
+     "end": 1.78,
+     "score": 0.999
+    },
+    {
+     "text": "算",
+     "start": 1.88,
+     "end": 2.06,
+     "score": 0.976
+    },
+    {
+     "text": "晶",
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.965
+    },
+    {
+     "text": "片",
+     "start": 2.54,
+     "end": 2.68,
+     "score": 0.967
+    },
+    {
+     "text": "大",
+     "start": 2.72,
+     "end": 2.8,
+     "score": 0.997
+    },
+    {
+     "text": "八",
+     "start": 2.9,
+     "end": 2.98,
+     "score": 0.938
+    },
+    {
+     "text": "倍",
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.997
+    },
+    {
+     "text": "能",
+     "start": 3.52,
+     "end": 3.64,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.95
+    },
+    {
+     "text": "的",
+     "start": 3.8,
+     "end": 3.86,
+     "score": 0.998
+    },
+    {
+     "text": "就",
+     "start": 3.9,
+     "end": 4,
+     "score": 0.997
+    },
+    {
+     "text": "從",
+     "start": 4.02,
+     "end": 4.18,
+     "score": 0.953
+    },
+    {
+     "text": "九",
+     "start": 4.22,
+     "end": 4.38,
+     "score": 0.852
+    },
+    {
+     "text": "成",
+     "start": 4.42,
+     "end": 4.62,
+     "score": 0.983
+    },
+    {
+     "text": "掉",
+     "start": 4.82,
+     "end": 4.96,
+     "score": 0.936
+    },
+    {
+     "text": "到",
+     "start": 4.98,
+     "end": 5.1,
+     "score": 0.91
+    },
+    {
+     "text": "可",
+     "start": 5.14,
+     "end": 5.2,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 5.26,
+     "end": 5.38,
+     "score": 0.998
+    },
+    {
+     "text": "不",
+     "start": 5.4,
+     "end": 5.44,
+     "score": 0.999
+    },
+    {
+     "text": "到",
+     "start": 5.48,
+     "end": 5.6,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 5.62,
+     "end": 5.66,
+     "score": 0
+    },
+    {
+     "text": "半",
+     "start": 5.72,
+     "end": 5.84,
+     "score": 0.975
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.42,
+    0.6,
+    0.74,
+    0.88,
+    1,
+    1.1,
+    1.28,
+    1.44,
+    1.6,
+    1.72,
+    1.88,
+    2.38,
+    2.54,
+    2.72,
+    2.9,
+    3.06,
+    3.52,
+    3.68,
+    3.8,
+    3.9,
+    4.02,
+    4.22,
+    4.42,
+    4.82,
+    4.98,
+    5.14,
+    5.26,
+    5.4,
+    5.48,
+    5.62,
+    5.72
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1360,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1356,
-   "durationFrames": 156,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1360,
-   "voiceEndFrame": 1502,
-   "stillFrame": 1511,
+   "audio": "audio/tech-yield/09-s9.wav",
+   "audioFrame": 1135,
+   "audioSec": 3.65,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1126,
+   "durationFrames": 138,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1136,
+   "voiceEndFrame": 1244,
+   "stillFrame": 1254,
    "subtitleWindow": [
-    1357,
-    1513
+    1133,
+    1261
    ],
    "sourceWindow": [
-    1356,
-    1512
+    1131,
+    1259
    ],
    "lines": [
     {
      "text": "這是簡化的估算",
-     "start": 1357,
+     "start": 1133,
      "chars": [
-      1358,
-      1365,
-      1372,
-      1378,
-      1385,
-      1392,
-      1399
+      1134,
+      1138,
+      1142,
+      1148,
+      1153,
+      1155,
+      1160
      ]
     },
     {
      "text": "各家實際的良率",
-     "start": 1403,
+     "start": 1173,
      "chars": [
-      1405,
-      1412,
-      1419,
-      1426,
-      1432,
-      1439,
-      1446
+      1175,
+      1180,
+      1186,
+      1190,
+      1195,
+      1198,
+      1203
      ]
     },
     {
      "text": "廠商都沒有公布",
-     "start": 1451,
+     "start": 1211,
      "chars": [
-      1453,
-      1459,
-      1466,
-      1473,
-      1480,
-      1486,
-      1493
+      1213,
+      1219,
+      1223,
+      1227,
+      1230,
+      1233,
+      1238
      ]
     }
    ],
    "keywords": [
     {
      "text": "簡化的估算",
-     "start": 1372
+     "start": 1142
     },
     {
      "text": "沒有公布",
-     "start": 1473
+     "start": 1227
     }
    ],
    "cues": [
     {
      "id": "simple",
      "text": "簡化",
-     "frame": 1374
+     "frame": 1143,
+     "early": 0
     },
     {
      "id": "each2",
      "text": "各家",
-     "frame": 1407
+     "frame": 1177,
+     "early": 0
     },
     {
      "id": "unpub",
      "text": "沒有公布",
-     "frame": 1475
+     "frame": 1228,
+     "early": 0
     }
    ],
+   "hash": "df0314483872-7f1daeabc2",
    "sub": "這是簡化的估算\n各家實際的良率\n廠商都沒有公布",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.95,
+    "minScore": 0.493,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.42,
+      "start": 1.4,
+      "ch": "各",
+      "errMs": -20
+     },
+     {
+      "onset": 2.66,
+      "start": 2.64,
+      "ch": "廠",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "這",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.968
+    },
+    {
+     "text": "是",
+     "start": 0.16,
+     "end": 0.22,
+     "score": 0.997
+    },
+    {
+     "text": "簡",
+     "start": 0.28,
+     "end": 0.42,
+     "score": 0.879
+    },
+    {
+     "text": "化",
+     "start": 0.48,
+     "end": 0.56,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 0.64,
+     "end": 0.68,
+     "score": 0.998
+    },
+    {
+     "text": "估",
+     "start": 0.72,
+     "end": 0.78,
+     "score": 0.998
+    },
+    {
+     "text": "算",
+     "start": 0.88,
+     "end": 1.04,
+     "score": 0.985
+    },
+    {
+     "text": "各",
+     "start": 1.4,
+     "end": 1.48,
+     "score": 0.999
+    },
+    {
+     "text": "家",
+     "start": 1.56,
+     "end": 1.64,
+     "score": 0.976
+    },
+    {
+     "text": "實",
+     "start": 1.76,
+     "end": 1.84,
+     "score": 0.914
+    },
+    {
+     "text": "際",
+     "start": 1.9,
+     "end": 1.98,
+     "score": 0.996
+    },
+    {
+     "text": "的",
+     "start": 2.04,
+     "end": 2.08,
+     "score": 0.998
+    },
+    {
+     "text": "良",
+     "start": 2.14,
+     "end": 2.3,
+     "score": 0.985
+    },
+    {
+     "text": "率",
+     "start": 2.32,
+     "end": 2.4,
+     "score": 0.493
+    },
+    {
+     "text": "廠",
+     "start": 2.64,
+     "end": 2.82,
+     "score": 0.938
+    },
+    {
+     "text": "商",
+     "start": 2.84,
+     "end": 2.96,
+     "score": 0.997
+    },
+    {
+     "text": "都",
+     "start": 2.98,
+     "end": 3.08,
+     "score": 0.936
+    },
+    {
+     "text": "沒",
+     "start": 3.1,
+     "end": 3.2,
+     "score": 0.899
+    },
+    {
+     "text": "有",
+     "start": 3.2,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "公",
+     "start": 3.3,
+     "end": 3.44,
+     "score": 0.997
+    },
+    {
+     "text": "布",
+     "start": 3.48,
+     "end": 3.54,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.16,
+    0.28,
+    0.48,
+    0.64,
+    0.72,
+    0.88,
+    1.4,
+    1.56,
+    1.76,
+    1.9,
+    2.04,
+    2.14,
+    2.32,
+    2.64,
+    2.84,
+    2.98,
+    3.1,
+    3.2,
+    3.3,
+    3.48
+   ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1516,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1512,
-   "durationFrames": 150,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1516,
-   "voiceEndFrame": 1652,
-   "stillFrame": 1661,
+   "audio": "audio/tech-yield/10-s10.wav",
+   "audioFrame": 1263,
+   "audioSec": 3.73,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1254,
+   "durationFrames": 134,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1264,
+   "voiceEndFrame": 1374,
+   "stillFrame": 1378,
    "subtitleWindow": [
-    1513,
-    1663
+    1261,
+    1385
    ],
    "sourceWindow": [
-    1512,
-    1662
+    1259,
+    1383
    ],
    "lines": [
     {
      "text": "那大晶片怎麼辦？",
-     "start": 1513,
+     "start": 1261,
      "chars": [
-      1514,
-      1521,
-      1528,
-      1534,
-      1541,
-      1548,
-      1555,
-      1555
+      1263,
+      1267,
+      1272,
+      1277,
+      1281,
+      1284,
+      1287,
+      1287
      ]
     },
     {
      "text": "硬做一整顆",
-     "start": 1560,
+     "start": 1302,
      "chars": [
-      1562,
-      1568,
-      1575,
-      1582,
-      1589
+      1304,
+      1309,
+      1314,
+      1317,
+      1323
      ]
     },
     {
      "text": "還是拆小再拼回去？",
-     "start": 1594,
+     "start": 1334,
      "chars": [
-      1596,
-      1602,
-      1609,
-      1616,
-      1623,
-      1630,
-      1636,
-      1643,
-      1643
+      1336,
+      1340,
+      1344,
+      1349,
+      1354,
+      1358,
+      1364,
+      1368,
+      1368
      ]
     }
    ],
    "keywords": [
     {
      "text": "一整顆",
-     "start": 1575
+     "start": 1314
     },
     {
      "text": "拆小再拼",
-     "start": 1609
+     "start": 1344
     }
    ],
    "cues": [
     {
      "id": "how",
      "text": "怎麼辦",
-     "frame": 1543
+     "frame": 1282,
+     "early": 0
     },
     {
      "id": "whole",
      "text": "一整顆",
-     "frame": 1577
+     "frame": 1315,
+     "early": 0
     },
     {
      "id": "split",
      "text": "拆小",
-     "frame": 1611
+     "frame": 1345,
+     "early": 0
     }
    ],
+   "hash": "4365fe07f812-7f1daeabc2",
    "sub": "那大晶片怎麼辦？\n硬做一整顆\n還是拆小再拼回去？",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.927,
+    "minScore": 0.002,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.43,
+      "start": 1.42,
+      "ch": "硬",
+      "errMs": -10
+     },
+     {
+      "onset": 2.48,
+      "start": 2.48,
+      "ch": "還",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "那",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.999
+    },
+    {
+     "text": "大",
+     "start": 0.18,
+     "end": 0.24,
+     "score": 0.998
+    },
+    {
+     "text": "晶",
+     "start": 0.34,
+     "end": 0.48,
+     "score": 0.885
+    },
+    {
+     "text": "片",
+     "start": 0.5,
+     "end": 0.62,
+     "score": 0.977
+    },
+    {
+     "text": "怎",
+     "start": 0.64,
+     "end": 0.74,
+     "score": 0.989
+    },
+    {
+     "text": "麼",
+     "start": 0.76,
+     "end": 0.8,
+     "score": 0.997
+    },
+    {
+     "text": "辦",
+     "start": 0.84,
+     "end": 1,
+     "score": 0.999
+    },
+    {
+     "text": "硬",
+     "start": 1.42,
+     "end": 1.56,
+     "score": 0.884
+    },
+    {
+     "text": "做",
+     "start": 1.58,
+     "end": 1.68,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 1.74,
+     "end": 1.8,
+     "score": 0.002
+    },
+    {
+     "text": "整",
+     "start": 1.86,
+     "end": 2,
+     "score": 0.935
+    },
+    {
+     "text": "顆",
+     "start": 2.04,
+     "end": 2.16,
+     "score": 0.999
+    },
+    {
+     "text": "還",
+     "start": 2.48,
+     "end": 2.58,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 2.62,
+     "end": 2.68,
+     "score": 0.999
+    },
+    {
+     "text": "拆",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.901
+    },
+    {
+     "text": "小",
+     "start": 2.92,
+     "end": 3.06,
+     "score": 0.998
+    },
+    {
+     "text": "再",
+     "start": 3.08,
+     "end": 3.2,
+     "score": 0.999
+    },
+    {
+     "text": "拼",
+     "start": 3.22,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "回",
+     "start": 3.4,
+     "end": 3.52,
+     "score": 0.999
+    },
+    {
+     "text": "去",
+     "start": 3.54,
+     "end": 3.64,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.34,
+    0.5,
+    0.64,
+    0.76,
+    0.84,
+    1.42,
+    1.58,
+    1.74,
+    1.86,
+    2.04,
+    2.48,
+    2.62,
+    2.74,
+    2.92,
+    3.08,
+    3.22,
+    3.4,
+    3.54
+   ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 1666,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1662,
-   "durationFrames": 144,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1666,
-   "voiceEndFrame": 1796,
-   "stillFrame": 1805,
+   "audio": "audio/tech-yield/11-s11.wav",
+   "audioFrame": 1387,
+   "audioSec": 3.89,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1378,
+   "durationFrames": 133,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1388,
+   "voiceEndFrame": 1503,
+   "stillFrame": 1501,
    "subtitleWindow": [
-    1663,
-    1807
+    1385,
+    1511
    ],
    "sourceWindow": [
-    1662,
-    1806
+    1383,
+    1506
    ],
    "lines": [
     {
      "text": "下一支，",
-     "start": 1663,
+     "start": 1385,
      "chars": [
-      1664,
-      1671,
-      1678,
-      1678
+      1387,
+      1392,
+      1395,
+      1395
      ]
     },
     {
      "text": "來看先進封裝",
-     "start": 1683,
+     "start": 1403,
      "chars": [
-      1685,
-      1691,
-      1698,
-      1705,
-      1712,
-      1719
+      1405,
+      1410,
+      1416,
+      1420,
+      1425,
+      1430
      ]
     },
     {
      "text": "想要完整解說，",
-     "start": 1724,
+     "start": 1446,
      "chars": [
-      1726,
-      1732,
-      1739,
-      1746,
-      1753,
-      1760,
-      1760
+      1449,
+      1453,
+      1458,
+      1462,
+      1467,
+      1473,
+      1473
      ]
     },
     {
      "text": "留言良率",
-     "start": 1765,
+     "start": 1481,
      "chars": [
-      1767,
-      1773,
-      1780,
-      1787
+      1483,
+      1487,
+      1492,
+      1498
      ]
     }
    ],
    "keywords": [
     {
      "text": "先進封裝",
-     "start": 1698
+     "start": 1416
     },
     {
      "text": "良率",
-     "start": 1780
+     "start": 1492
     }
    ],
    "cues": [
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1666
+     "frame": 1389,
+     "early": 0
     },
     {
      "id": "pkg",
      "text": "先進封裝",
-     "frame": 1700
+     "frame": 1417,
+     "early": 0
     },
     {
      "id": "cm",
      "text": "留言",
-     "frame": 1769
+     "frame": 1484,
+     "early": 0
     }
    ],
+   "hash": "aa693d4bb466-7f1daeabc2",
    "sub": "下一支，來看先進封裝\n想要完整解說，留言良率",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.904,
+    "minScore": 0.41,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.68,
+      "start": 0.66,
+      "ch": "來",
+      "errMs": -20
+     },
+     {
+      "onset": 2.07,
+      "start": 2.1,
+      "ch": "想",
+      "errMs": 30
+     },
+     {
+      "onset": 3.24,
+      "start": 3.24,
+      "ch": "留",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "下",
+     "start": 0.06,
+     "end": 0.16,
+     "score": 0.997
+    },
+    {
+     "text": "一",
+     "start": 0.22,
+     "end": 0.26,
+     "score": 0.41
+    },
+    {
+     "text": "支",
+     "start": 0.32,
+     "end": 0.42,
+     "score": 0.965
+    },
+    {
+     "text": "來",
+     "start": 0.66,
+     "end": 0.78,
+     "score": 0.998
+    },
+    {
+     "text": "看",
+     "start": 0.82,
+     "end": 0.94,
+     "score": 0.998
+    },
+    {
+     "text": "先",
+     "start": 1,
+     "end": 1.12,
+     "score": 0.993
+    },
+    {
+     "text": "進",
+     "start": 1.16,
+     "end": 1.26,
+     "score": 0.992
+    },
+    {
+     "text": "封",
+     "start": 1.32,
+     "end": 1.44,
+     "score": 0.997
+    },
+    {
+     "text": "裝",
+     "start": 1.48,
+     "end": 1.66,
+     "score": 0.803
+    },
+    {
+     "text": "想",
+     "start": 2.1,
+     "end": 2.24,
+     "score": 0.998
+    },
+    {
+     "text": "要",
+     "start": 2.26,
+     "end": 2.38,
+     "score": 0.999
+    },
+    {
+     "text": "完",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 2.56,
+     "end": 2.7,
+     "score": 0.976
+    },
+    {
+     "text": "解",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.965
+    },
+    {
+     "text": "說",
+     "start": 2.9,
+     "end": 3,
+     "score": 0.94
+    },
+    {
+     "text": "留",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.991
+    },
+    {
+     "text": "言",
+     "start": 3.38,
+     "end": 3.5,
+     "score": 0.74
+    },
+    {
+     "text": "良",
+     "start": 3.54,
+     "end": 3.72,
+     "score": 0.924
+    },
+    {
+     "text": "率",
+     "start": 3.74,
+     "end": 3.8,
+     "score": 0.493
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.22,
+    0.32,
+    0.66,
+    0.82,
+    1,
+    1.16,
+    1.32,
+    1.48,
+    2.1,
+    2.26,
+    2.4,
+    2.56,
+    2.72,
+    2.9,
+    3.24,
+    3.38,
+    3.54,
+    3.74
+   ]
   },
   {
    "id": "s12",
    "audio": null,
-   "audioFrame": 1810,
+   "audioFrame": 1501,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1806,
+   "startFrame": 1501,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1810,
-   "voiceEndFrame": 1892,
-   "stillFrame": 1890,
-   "subtitleWindow": [
-    1807,
-    1902
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1511,
+   "voiceEndFrame": 1511,
+   "stillFrame": 1585,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    1806,
-    1902
+    1506,
+    1597
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-yield/voice.wav",
+  "lufsIn": -19.65,
+  "lufs": -16,
+  "sec": 53.233
+ }
 }

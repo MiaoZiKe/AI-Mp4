@@ -22,3 +22,10 @@
 - 針測慢動作從第一列「有 6 個以上整站」的列開始蛇行，最上面幾列（邊緣站只有 1–2 顆）放到最後快轉補測。
 - 主素材下方部分畫面（面積對照、1 cm² 那一段）下半部留白偏多。
 - 電流一站只亮 4 幀、關閉淡出 4 幀（每站 12 幀），沒有到 playbook 第 8 條的 0.3–0.5 秒。
+
+## v2（2026/11/16，新念稿 8 段，配音完成、渲染中）
+
+- 配音：API 整篇 1 次（Iapetus、tech-b），原始說話 50.45 秒、246 字、純說話 4.74 字／秒 → 整篇 atempo 1.151（目標 5.46）；原檔 `public/audio/tech-yield/.take-7f1daeabc2.raw.orig.wav`；已 `tts-take --resplit`＋`align --force`。整篇信心 0.922；時間軸 1597 幀（53.23 秒）。
+- 檢查：validate 0 error（5 warning，s8 旁白 33 字）；yield-check 程式 1482 幀 0 筆。
+- 渲染：背景執行 `flock out/.render.lock env THREE_CONCURRENCY=4 node scripts/render.mjs tech-yield`，log 在 `out/tech-yield.render.log`。
+- 下一步：渲染完成後做片尾音：`python3 scripts/three/sfx-logo-tech.py`＋`mix-endsting.sh`，G=28，AT＝(s11 的 cm cue 第 1484 幀 − 8)÷30＝49.2 秒；音源用 `out/tech-yield.video.mp4`；輸出 `out/tech-yield.v2.mp4`；量正片 −16 LUFS、片尾約 −11.5；人工抽格看重疊。
