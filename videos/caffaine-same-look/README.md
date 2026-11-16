@@ -6,3 +6,4 @@
 - 已完成：實測 3 次、script.json、validate 0 error。
 - 進行中／下一步：見下方最後一行狀態（tsc、ov-check、九格圖、render 結果）。
 - 已知問題：片長估 47 秒（含片尾 3.6）；s03 的「深色按鈕」是 Playwright 截圖目視確認（compare.txt 的按鈕欄位沒量到，已在 research.md 註明）。
+- 2026/11/16 16:40 台北：tsc 0、ov-check 每 6 幀 209 幀 0 筆（只有片尾動畫幀 f1141 之後被標空白）、九格圖看過。尚未 render（無聲版未渲染；Andy 通過後配旁白再 render）。片尾招牌音配音版才疊（playbook 第八節）。
