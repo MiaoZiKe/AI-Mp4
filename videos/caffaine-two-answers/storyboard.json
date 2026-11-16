@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1041,
- "totalSec": 34.7,
+ "totalFrames": 936,
+ "totalSec": 31.2,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 154,
+   "durationFrames": 126,
    "startSec": 0,
-   "durationSec": 5.13,
+   "durationSec": 4.2,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -19,63 +19,72 @@
     "frames": 0
    },
    "camera": null,
-   "cueEarly": [],
-   "voice": null,
+   "cueEarly": [
+    {
+     "id": "diff",
+     "early": 2
+    }
+   ],
+   "voice": {
+    "startFrame": 1,
+    "endFrame": 116,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "same",
      "text": "同一句話",
-     "frame": 48,
-     "sceneFrame": 48
+     "frame": 30,
+     "sceneFrame": 30
     },
     {
      "id": "twice",
      "text": "兩次",
-     "frame": 97,
-     "sceneFrame": 97
+     "frame": 73,
+     "sceneFrame": 73
     },
     {
      "id": "diff",
      "text": "不一樣",
-     "frame": 130,
-     "sceneFrame": 130
+     "frame": 106,
+     "sceneFrame": 106
     }
    ],
-   "stillFrame": 144,
+   "stillFrame": 116,
    "subtitles": [
     {
      "zh": "同一份會議紀錄",
      "en": "Same notes, same sentence.",
      "startFrame": 0,
-     "endFrame": 45
+     "endFrame": 26
     },
     {
      "zh": "同一句話",
      "en": "Same notes, same sentence.",
-     "startFrame": 45,
-     "endFrame": 72
+     "startFrame": 26,
+     "endFrame": 53
     },
     {
      "zh": "我問 AI 兩次",
      "en": "I asked AI twice. The answers differed.",
-     "startFrame": 72,
-     "endFrame": 110
+     "startFrame": 53,
+     "endFrame": 88
     },
     {
      "zh": "答案卻不一樣",
      "en": "I asked AI twice. The answers differed.",
-     "startFrame": 110,
-     "endFrame": 151
+     "startFrame": 88,
+     "endFrame": 123
     }
    ],
    "narration": "同一份會議紀錄、同一句話，我問 AI 兩次，答案卻不一樣。"
   },
   {
    "id": "s02",
-   "startFrame": 144,
-   "durationFrames": 111,
-   "startSec": 4.8,
-   "durationSec": 3.7,
+   "startFrame": 116,
+   "durationFrames": 97,
+   "startSec": 3.87,
+   "durationSec": 3.23,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -84,50 +93,54 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 126,
+    "endFrame": 204,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "first",
      "text": "第一次",
-     "frame": 155,
-     "sceneFrame": 11
+     "frame": 126,
+     "sceneFrame": 10
     },
     {
      "id": "second",
      "text": "第二次",
-     "frame": 207,
-     "sceneFrame": 63
+     "frame": 169,
+     "sceneFrame": 53
     },
     {
      "id": "diff",
      "text": "待指派",
-     "frame": 230,
-     "sceneFrame": 86
+     "frame": 188,
+     "sceneFrame": 72
     }
    ],
-   "stillFrame": 245,
+   "stillFrame": 203,
    "subtitles": [
     {
      "zh": "第一次寫行銷經理",
      "en": "First: marketing manager.",
-     "startFrame": 151,
-     "endFrame": 204
+     "startFrame": 123,
+     "endFrame": 166
     },
     {
      "zh": "第二次寫待指派",
      "en": "Second: “unassigned”.",
-     "startFrame": 204,
-     "endFrame": 252
+     "startFrame": 166,
+     "endFrame": 210
     }
    ],
    "narration": "第一次寫行銷經理，第二次寫待指派。"
   },
   {
    "id": "s03",
-   "startFrame": 245,
-   "durationFrames": 240,
-   "startSec": 8.17,
-   "durationSec": 8,
+   "startFrame": 203,
+   "durationFrames": 219,
+   "startSec": 6.77,
+   "durationSec": 7.3,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -136,92 +149,96 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 213,
+    "endFrame": 411,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "why",
      "text": "為什麼",
-     "frame": 256,
-     "sceneFrame": 11
+     "frame": 213,
+     "sceneFrame": 10
     },
     {
      "id": "pickw",
      "text": "一個字一個字挑",
-     "frame": 307,
-     "sceneFrame": 62
+     "frame": 258,
+     "sceneFrame": 55
     },
     {
      "id": "lot",
      "text": "抽籤",
-     "frame": 356,
-     "sceneFrame": 111
+     "frame": 297,
+     "sceneFrame": 94
     },
     {
      "id": "r1",
      "text": "抽到行銷經理",
-     "frame": 384,
-     "sceneFrame": 139
+     "frame": 331,
+     "sceneFrame": 128
     },
     {
      "id": "next",
      "text": "下次",
-     "frame": 423,
-     "sceneFrame": 178
+     "frame": 367,
+     "sceneFrame": 164
     },
     {
      "id": "r2",
      "text": "抽到待指派",
-     "frame": 450,
-     "sceneFrame": 205
+     "frame": 387,
+     "sceneFrame": 184
     }
    ],
-   "stillFrame": 475,
+   "stillFrame": 412,
    "subtitles": [
     {
      "zh": "為什麼？",
      "en": "Why? AI picks one word at a time,",
-     "startFrame": 252,
-     "endFrame": 275
+     "startFrame": 210,
+     "endFrame": 233
     },
     {
      "zh": "因為 AI",
      "en": "Why? AI picks one word at a time,",
-     "startFrame": 275,
-     "endFrame": 303
+     "startFrame": 233,
+     "endFrame": 255
     },
     {
      "zh": "一個字一個字挑",
      "en": "Why? AI picks one word at a time,",
-     "startFrame": 303,
-     "endFrame": 347
+     "startFrame": 255,
+     "endFrame": 289
     },
     {
      "zh": "像抽籤",
      "en": "like a lottery. Next time, another.",
-     "startFrame": 347,
-     "endFrame": 370
+     "startFrame": 289,
+     "endFrame": 319
     },
     {
      "zh": "這次抽到行銷經理",
      "en": "like a lottery. Next time, another.",
-     "startFrame": 370,
-     "endFrame": 419
+     "startFrame": 319,
+     "endFrame": 364
     },
     {
      "zh": "下次就可能抽到待指派",
      "en": "like a lottery. Next time, another.",
-     "startFrame": 419,
-     "endFrame": 482
+     "startFrame": 364,
+     "endFrame": 419
     }
    ],
    "narration": "為什麼？因為 AI 是一個字一個字挑，像抽籤。這次抽到行銷經理，下次就可能抽到待指派。"
   },
   {
    "id": "s04",
-   "startFrame": 475,
-   "durationFrames": 135,
-   "startSec": 15.83,
-   "durationSec": 4.5,
+   "startFrame": 412,
+   "durationFrames": 107,
+   "startSec": 13.73,
+   "durationSec": 3.57,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -230,49 +247,53 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 422,
+    "endFrame": 509,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "common",
      "text": "常見的字",
-     "frame": 485,
+     "frame": 422,
      "sceneFrame": 10
     },
     {
      "id": "easy",
      "text": "容易被抽到",
-     "frame": 520,
-     "sceneFrame": 45
+     "frame": 449,
+     "sceneFrame": 37
     },
     {
      "id": "no",
      "text": "不保證",
-     "frame": 561,
-     "sceneFrame": 86
+     "frame": 479,
+     "sceneFrame": 67
     }
    ],
-   "stillFrame": 600,
+   "stillFrame": 509,
    "subtitles": [
     {
      "zh": "常見的字比較容易被抽到",
      "en": "Common words are likelier to be drawn,",
-     "startFrame": 482,
-     "endFrame": 552
+     "startFrame": 419,
+     "endFrame": 471
     },
     {
      "zh": "但不保證每次一樣",
      "en": "but no guarantee of the same result.",
-     "startFrame": 552,
-     "endFrame": 607
+     "startFrame": 471,
+     "endFrame": 516
     }
    ],
    "narration": "常見的字比較容易被抽到，但不保證每次一樣。"
   },
   {
    "id": "s05",
-   "startFrame": 600,
+   "startFrame": 509,
    "durationFrames": 92,
-   "startSec": 20,
+   "startSec": 16.97,
    "durationSec": 3.07,
    "component": "IsoScene",
    "beat": "so",
@@ -282,56 +303,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 519,
+    "endFrame": 591,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "imp",
      "text": "重要的事",
-     "frame": 620,
-     "sceneFrame": 20
+     "frame": 532,
+     "sceneFrame": 23
     },
     {
      "id": "ask",
      "text": "問兩次",
-     "frame": 647,
-     "sceneFrame": 47
+     "frame": 558,
+     "sceneFrame": 49
     },
     {
      "id": "cmp",
      "text": "對一對",
-     "frame": 668,
-     "sceneFrame": 68
+     "frame": 579,
+     "sceneFrame": 70
     }
    ],
-   "stillFrame": 682,
+   "stillFrame": 591,
    "subtitles": [
     {
      "zh": "所以重要的事",
      "en": "So for important things,",
-     "startFrame": 607,
-     "endFrame": 643
+     "startFrame": 516,
+     "endFrame": 554
     },
     {
      "zh": "問兩次",
      "en": "So for important things,",
-     "startFrame": 643,
-     "endFrame": 665
+     "startFrame": 554,
+     "endFrame": 575
     },
     {
      "zh": "對一對",
      "en": "ask twice and compare.",
-     "startFrame": 665,
-     "endFrame": 689
+     "startFrame": 575,
+     "endFrame": 598
     }
    ],
    "narration": "所以重要的事，問兩次，對一對。"
   },
   {
    "id": "s06",
-   "startFrame": 682,
-   "durationFrames": 179,
-   "startSec": 22.73,
-   "durationSec": 5.97,
+   "startFrame": 591,
+   "durationFrames": 174,
+   "startSec": 19.7,
+   "durationSec": 5.8,
    "component": "IsoScene",
    "beat": "payoff",
    "transition": {
@@ -340,74 +365,78 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 601,
+    "endFrame": 755,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "only",
      "text": "只根據資料",
-     "frame": 725,
-     "sceneFrame": 43
+     "frame": 633,
+     "sceneFrame": 42
     },
     {
      "id": "unk",
      "text": "沒寫的填未指定",
-     "frame": 757,
-     "sceneFrame": 75
+     "frame": 667,
+     "sceneFrame": 76
     },
     {
      "id": "try",
      "text": "試了一次",
-     "frame": 810,
-     "sceneFrame": 128
+     "frame": 721,
+     "sceneFrame": 130
     },
     {
      "id": "tried",
      "text": "它照做",
-     "frame": 837,
-     "sceneFrame": 155
+     "frame": 740,
+     "sceneFrame": 149
     }
    ],
-   "stillFrame": 851,
+   "stillFrame": 755,
    "subtitles": [
     {
      "zh": "或者規定它",
      "en": "Or set a rule: use only the data,",
-     "startFrame": 689,
-     "endFrame": 721
+     "startFrame": 598,
+     "endFrame": 629
     },
     {
      "zh": "只根據資料",
      "en": "Or set a rule: use only the data,",
-     "startFrame": 721,
-     "endFrame": 753
+     "startFrame": 629,
+     "endFrame": 663
     },
     {
      "zh": "沒寫的填未指定",
      "en": "Or set a rule: use only the data,",
-     "startFrame": 753,
-     "endFrame": 796
+     "startFrame": 663,
+     "endFrame": 711
     },
     {
      "zh": "我們試了一次",
      "en": "write “unspecified” if missing.",
-     "startFrame": 796,
-     "endFrame": 833
+     "startFrame": 711,
+     "endFrame": 736
     },
     {
      "zh": "它照做",
      "en": "write “unspecified” if missing.",
-     "startFrame": 833,
-     "endFrame": 858
+     "startFrame": 736,
+     "endFrame": 762
     }
    ],
    "narration": "或者規定它，只根據資料，沒寫的填未指定，我們試了一次，它照做。"
   },
   {
    "id": "s07",
-   "startFrame": 851,
-   "durationFrames": 92,
-   "startSec": 28.37,
-   "durationSec": 3.07,
+   "startFrame": 755,
+   "durationFrames": 83,
+   "startSec": 25.17,
+   "durationSec": 2.77,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -416,43 +445,47 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 765,
+    "endFrame": 830,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "kw",
      "text": "兩次",
-     "frame": 872,
+     "frame": 776,
      "sceneFrame": 21
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 918,
-     "sceneFrame": 67
+     "frame": 814,
+     "sceneFrame": 59
     }
    ],
-   "stillFrame": 933,
+   "stillFrame": 828,
    "subtitles": [
     {
      "zh": "留言「兩次」",
      "en": "Comment “兩次” to get",
-     "startFrame": 858,
-     "endFrame": 886
+     "startFrame": 762,
+     "endFrame": 792
     },
     {
      "zh": "拿這兩招的提示詞",
      "en": "the prompts for both tricks.",
-     "startFrame": 886,
-     "endFrame": 943
+     "startFrame": 792,
+     "endFrame": 838
     }
    ],
    "narration": "留言「兩次」，拿這兩招的提示詞。"
   },
   {
    "id": "s08",
-   "startFrame": 933,
+   "startFrame": 828,
    "durationFrames": 108,
-   "startSec": 31.1,
+   "startSec": 27.6,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -464,7 +497,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1029,
+   "stillFrame": 924,
    "subtitles": [],
    "narration": ""
   }
