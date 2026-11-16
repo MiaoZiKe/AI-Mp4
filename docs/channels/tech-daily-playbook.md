@@ -165,6 +165,7 @@ Andy 11-15 傳了 8 格參考圖：「結尾的 LOGO 動畫使用這個，並且
 
 - 音效全部用程式合成：`python3 scripts/three/sfx-logo-tech.py <輸出.wav>`（numpy，參數與亂數 seed 固定；不用現成音檔、不模仿任何品牌的旋律或音色；只用乾淨的正弦類音色，不加噪音）。**鎖定那一聲是頻道招牌音，以後每支片都用同一段，不改參數**（v8 只在上面疊了震動音，主音本身沒改）。
 - 混音（v8）：`G=22 bash scripts/three/mix-endsting.sh <原音軌> <招牌音.wav> <片尾卡開始秒> <最後一句結束秒> <總長秒> <輸出.wav>`。原音軌先補滿全長（`apad`），最後一句旁白結束後 0.25 秒內降到 0.3；招牌音的音量平衡做在 `sfx-logo-tech.py`（鎖定前整組 ×0.275、主音那組鎖定後 0.8 秒起降到 ×0.5625），混音只乘固定倍數 G 再過 limiter（−1.3 dBFS、lookahead 20 ms、`latency=1` 補回延遲）＋總和 −1.4 dBFS。**片尾這段約 −11 到 −12 LUFS、true peak ≤ −1 dBTP（AAC 編碼後量）、鎖定那一下是全段最大聲；招牌音開始前的正片一個樣本都不動；每個音效要準確落在畫面那一幀（limiter 一定要 `latency=1`，v7 沒加，主音晚了 20 ms）。**（tech-2nm：v6 片尾 −14.2 → v7 −11.2 → v8 −11.6 LUFS，true peak −1.3 dBTP；四次撞合的震動音在那一幀 RMS 約 −13～−16 dB，鎖定那一幀 −7 dB。）交片另附只有音效的 MP3 和頻譜圖（標出每一次震動的幀號與音效時間），用頻譜檢查對齊和有沒有毛刺。
+- 配音之後一條龍（2026/11/16）：`bash scripts/three/make-tech.sh <slug> [--atempo=1.23] [--take=<選定試聽 wav>] [--ver=v1] [--dry]`。依序：換配音（有 --take）→ resplit → align → validate → layout-check → 渲染（flock out/.render.lock）→ 片尾音（AT／FADE／DUR 從 storyboard 與 endCard.at 自動算）→ mux → 量響度並抽格拼成 `out/<slug>.<ver>-grid.jpg`；0 次 TTS 請求，失敗會印出哪一步與 log（`out/<slug>-make/`）；`--dry` 只跑到 layout-check。
 - tech-2nm 的音軌是使用者上傳的成片混音（旁白和背景音樂已經混在一起），所以「背景音樂降到 0.3」是整條原音軌一起降（降之前旁白已經念完）。
 
 #### 已被 11-15 新版取代：開口圈描線、橘點從圈外移進來
