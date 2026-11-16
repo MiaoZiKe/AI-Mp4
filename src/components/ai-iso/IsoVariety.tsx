@@ -416,7 +416,7 @@ const DeviceView: React.FC<VP> = ({ f, p, tone }) => {
   const press = f >= tTap ? Math.max(0, 1 - (f - tTap) / 26) : 0;
   return (
     <>
-      <div data-ov="手機" style={{ position: "absolute", left: X0 + 30, top: TOP + Math.round((1 - e) * 120 + 8 * Math.sin(f / 14)), opacity: O(f, tP, 5), transform: `rotate(${(-3 * (1 - e) + 1.2).toFixed(2)}deg)` }}>
+      <div data-ov="手機" style={{ position: "absolute", left: X0 + 30 + Math.round((1 - e) * -50), top: TOP + Math.round(8 * Math.sin(f / 14)), opacity: O(f, tP, 5), transform: `rotate(${(-3 * (1 - e) + 1.2).toFixed(2)}deg)` }}>
         <div style={{ width: SW + 40, padding: 20, borderRadius: 56, background: T.ink, boxShadow: `0 12px 0 #0E1530, ${T.depth.soft}` }}>
           <div style={{ position: "relative", width: SW, height: SH, borderRadius: 34, overflow: "hidden", background: "#FAF6EC" }}>
             <img src={staticFile(q.src)} style={{ width: SW, height: SH, display: "block", objectFit: "cover" }} />
@@ -762,7 +762,7 @@ const CheckView: React.FC<VP> = ({ f, p, tone }) => {
       <div data-ov="清單標題" style={{ position: "absolute", left: X0, top: TOP + 4, width: q.stamp ? IW - 200 : IW, height: 150, background: T.card, borderRadius: 32, boxShadow: `0 8px 0 ${col(head?.color ?? "primary").side}`, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", boxSizing: "border-box", ...riseIn(f, tH, 14) }}>
         <div style={{ ...zh, fontWeight: 900, fontSize: 56, color: T.ink }}>{head?.text}</div>
               </div>
-      {q.stamp && f >= tS ? <div data-ov="蓋章" style={{ position: "absolute", left: X0 + IW - 170, top: TOP - 6, width: 170, height: 170, borderRadius: 85, border: `12px solid ${col(q.stamp.color).fill}`, background: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 70, color: col(q.stamp.color).fill, ...slam(f, tS, -12, 1.3) }}>{q.stamp.text}</div> : null}
+      {q.stamp && f >= tS ? <div data-ov="蓋章" style={{ position: "absolute", left: X0 + IW - 170, top: TOP - 6, width: 170, height: 170, borderRadius: 85, border: `12px solid ${col(q.stamp.color).fill}`, background: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 70, color: col(q.stamp.color).fill, ...slam(f, tS, -12, 1.1) }}>{q.stamp.text}</div> : null}
       {items.map((it, i) => {
         const t = A(it.at, FAR), on = f >= t, e = E(f, t, 12), c = col(it.color ?? (it.bad ? "wrong" : "right"));
         const h = it.big ? 470 : 190, top = TOP + 190 + items.slice(0, i).reduce((a, x) => a + (x.big ? 470 : 190) + 26, 0);
