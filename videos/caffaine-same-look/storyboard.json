@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1249,
- "totalSec": 41.63,
+ "totalFrames": 1753,
+ "totalSec": 58.43,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 179,
+   "durationFrames": 199,
    "startSec": 0,
-   "durationSec": 5.97,
+   "durationSec": 6.63,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -25,51 +25,109 @@
     {
      "id": "ask",
      "text": "咖啡店首頁",
-     "frame": 33,
-     "sceneFrame": 33
+     "frame": 34,
+     "sceneFrame": 34
     },
     {
      "id": "twice",
      "text": "兩次",
-     "frame": 102,
-     "sceneFrame": 102
+     "frame": 106,
+     "sceneFrame": 106
     },
     {
      "id": "same",
      "text": "一模一樣",
-     "frame": 148,
-     "sceneFrame": 148
+     "frame": 155,
+     "sceneFrame": 155
     }
    ],
-   "stillFrame": 169,
+   "stillFrame": 189,
    "subtitles": [
     {
      "zh": "我請 AI 做咖啡店首頁",
      "en": "I asked AI for a café homepage, twice.",
      "startFrame": 0,
-     "endFrame": 64
+     "endFrame": 67
     },
     {
      "zh": "同一句話做了兩次",
      "en": "I asked AI for a café homepage, twice.",
-     "startFrame": 64,
-     "endFrame": 116
+     "startFrame": 67,
+     "endFrame": 122
     },
     {
      "zh": "兩份卻幾乎一模一樣",
      "en": "The two pages looked almost identical.",
-     "startFrame": 116,
-     "endFrame": 176
+     "startFrame": 122,
+     "endFrame": 196
     }
    ],
    "narration": "我請 AI 做咖啡店首頁，同一句話做了兩次，兩份卻幾乎一模一樣。"
   },
   {
    "id": "s02",
-   "startFrame": 169,
-   "durationFrames": 178,
-   "startSec": 5.63,
-   "durationSec": 5.93,
+   "startFrame": 189,
+   "durationFrames": 164,
+   "startSec": 6.3,
+   "durationSec": 5.47,
+   "component": "IsoScene",
+   "beat": "you",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "one",
+     "text": "我只打一句",
+     "frame": 199,
+     "sceneFrame": 10
+    },
+    {
+     "id": "say",
+     "text": "幫我做一個咖啡店首頁",
+     "frame": 236,
+     "sceneFrame": 47
+    },
+    {
+     "id": "nos",
+     "text": "沒指定風格",
+     "frame": 303,
+     "sceneFrame": 114
+    }
+   ],
+   "stillFrame": 343,
+   "subtitles": [
+    {
+     "zh": "我只打一句",
+     "en": "One line only: make a café homepage.",
+     "startFrame": 196,
+     "endFrame": 232
+    },
+    {
+     "zh": "幫我做一個咖啡店首頁",
+     "en": "One line only: make a café homepage.",
+     "startFrame": 232,
+     "endFrame": 299
+    },
+    {
+     "zh": "沒指定風格",
+     "en": "No style given.",
+     "startFrame": 299,
+     "endFrame": 350
+    }
+   ],
+   "narration": "我只打一句：幫我做一個咖啡店首頁，沒指定風格。"
+  },
+  {
+   "id": "s03",
+   "startFrame": 343,
+   "durationFrames": 205,
+   "startSec": 11.43,
+   "durationSec": 6.83,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -83,51 +141,51 @@
     {
      "id": "bg",
      "text": "米白底",
-     "frame": 201,
-     "sceneFrame": 32
+     "frame": 378,
+     "sceneFrame": 35
     },
     {
      "id": "sec",
      "text": "我們的堅持",
-     "frame": 247,
-     "sceneFrame": 78
+     "frame": 428,
+     "sceneFrame": 85
     },
     {
      "id": "one",
      "text": "只差一個字",
-     "frame": 310,
-     "sceneFrame": 141
+     "frame": 497,
+     "sceneFrame": 154
     }
    ],
-   "stillFrame": 337,
+   "stillFrame": 538,
    "subtitles": [
     {
      "zh": "兩次都是米白底",
      "en": "Both: cream background, same title,",
-     "startFrame": 176,
-     "endFrame": 221
+     "startFrame": 350,
+     "endFrame": 400
     },
     {
      "zh": "區塊都叫「我們的堅持」",
      "en": "Both: cream background, same title,",
-     "startFrame": 221,
-     "endFrame": 279
+     "startFrame": 400,
+     "endFrame": 463
     },
     {
      "zh": "連小標題都只差一個字",
      "en": "headings differ by one word.",
-     "startFrame": 279,
-     "endFrame": 344
+     "startFrame": 463,
+     "endFrame": 545
     }
    ],
    "narration": "兩次都是米白底，區塊都叫我們的堅持，連小標題都只差一個字。"
   },
   {
-   "id": "s03",
-   "startFrame": 337,
-   "durationFrames": 166,
-   "startSec": 11.23,
-   "durationSec": 5.53,
+   "id": "s04",
+   "startFrame": 538,
+   "durationFrames": 190,
+   "startSec": 17.93,
+   "durationSec": 6.33,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -141,57 +199,57 @@
     {
      "id": "left",
      "text": "左文右圖",
-     "frame": 380,
-     "sceneFrame": 43
+     "frame": 584,
+     "sceneFrame": 46
     },
     {
      "id": "card",
      "text": "三欄小卡片",
-     "frame": 418,
-     "sceneFrame": 81
+     "frame": 626,
+     "sceneFrame": 88
     },
     {
      "id": "btn",
      "text": "深色按鈕",
-     "frame": 473,
-     "sceneFrame": 136
+     "frame": 685,
+     "sceneFrame": 147
     }
    ],
-   "stillFrame": 493,
+   "stillFrame": 718,
    "subtitles": [
     {
      "zh": "排法也一樣",
      "en": "Same layout: text left, picture right,",
-     "startFrame": 344,
-     "endFrame": 376
+     "startFrame": 545,
+     "endFrame": 580
     },
     {
      "zh": "左文右圖",
      "en": "Same layout: text left, picture right,",
-     "startFrame": 376,
-     "endFrame": 404
+     "startFrame": 580,
+     "endFrame": 610
     },
     {
      "zh": "下面三欄小卡片",
      "en": "three cards below, dark button top-right.",
-     "startFrame": 404,
-     "endFrame": 448
+     "startFrame": 610,
+     "endFrame": 658
     },
     {
      "zh": "右上角是深色按鈕",
      "en": "three cards below, dark button top-right.",
-     "startFrame": 448,
-     "endFrame": 500
+     "startFrame": 658,
+     "endFrame": 725
     }
    ],
    "narration": "排法也一樣：左文右圖，下面三欄小卡片，右上角是深色按鈕。"
   },
   {
-   "id": "s04",
-   "startFrame": 493,
-   "durationFrames": 190,
-   "startSec": 16.43,
-   "durationSec": 6.33,
+   "id": "s05",
+   "startFrame": 718,
+   "durationFrames": 231,
+   "startSec": 23.93,
+   "durationSec": 7.7,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -205,63 +263,63 @@
     {
      "id": "why",
      "text": "為什麼",
-     "frame": 503,
-     "sceneFrame": 10
+     "frame": 729,
+     "sceneFrame": 11
     },
     {
      "id": "common",
      "text": "最常見的樣子",
-     "frame": 573,
-     "sceneFrame": 80
+     "frame": 811,
+     "sceneFrame": 93
     },
     {
      "id": "safe",
      "text": "最保險的",
-     "frame": 654,
-     "sceneFrame": 161
+     "frame": 905,
+     "sceneFrame": 187
     }
    ],
-   "stillFrame": 673,
+   "stillFrame": 939,
    "subtitles": [
     {
      "zh": "為什麼？",
      "en": "Why? Commonly thought: AI leans toward",
-     "startFrame": 500,
-     "endFrame": 521
+     "startFrame": 725,
+     "endFrame": 751
     },
     {
      "zh": "一般認為",
      "en": "Why? Commonly thought: AI leans toward",
-     "startFrame": 521,
-     "endFrame": 549
+     "startFrame": 751,
+     "endFrame": 783
     },
     {
      "zh": "AI 偏向最常見的樣子",
      "en": "Why? Commonly thought: AI leans toward",
-     "startFrame": 549,
-     "endFrame": 607
+     "startFrame": 783,
+     "endFrame": 851
     },
     {
      "zh": "你沒指定",
      "en": "the most common look when you don't specify.",
-     "startFrame": 607,
-     "endFrame": 634
+     "startFrame": 851,
+     "endFrame": 883
     },
     {
      "zh": "它就選最保險的",
      "en": "the most common look when you don't specify.",
-     "startFrame": 634,
-     "endFrame": 680
+     "startFrame": 883,
+     "endFrame": 946
     }
    ],
    "narration": "為什麼？一般認為，AI 偏向最常見的樣子。你沒指定，它就選最保險的。"
   },
   {
-   "id": "s05",
-   "startFrame": 673,
-   "durationFrames": 240,
-   "startSec": 22.43,
-   "durationSec": 8,
+   "id": "s06",
+   "startFrame": 939,
+   "durationFrames": 272,
+   "startSec": 31.3,
+   "durationSec": 9.07,
    "component": "IsoScene",
    "beat": "payoff",
    "transition": {
@@ -275,81 +333,133 @@
     {
      "id": "add",
      "text": "多寫一句風格",
-     "frame": 700,
-     "sceneFrame": 27
+     "frame": 967,
+     "sceneFrame": 28
     },
     {
      "id": "ref",
      "text": "日本咖啡館的手寫菜單",
-     "frame": 748,
-     "sceneFrame": 75
+     "frame": 1020,
+     "sceneFrame": 81
     },
     {
      "id": "again",
      "text": "再做一次",
-     "frame": 813,
-     "sceneFrame": 140
+     "frame": 1091,
+     "sceneFrame": 152
     },
     {
      "id": "diff",
      "text": "明顯不同",
-     "frame": 851,
-     "sceneFrame": 178
+     "frame": 1132,
+     "sceneFrame": 193
     },
     {
      "id": "once",
      "text": "只試了一次",
-     "frame": 878,
-     "sceneFrame": 205
+     "frame": 1161,
+     "sceneFrame": 222
     }
    ],
-   "stillFrame": 903,
+   "stillFrame": 1201,
    "subtitles": [
     {
      "zh": "所以我多寫一句風格",
      "en": "I added a style line. The result",
-     "startFrame": 680,
-     "endFrame": 734
+     "startFrame": 946,
+     "endFrame": 1005
     },
     {
      "zh": "參考日本咖啡館",
      "en": "I added a style line. The result",
-     "startFrame": 734,
-     "endFrame": 777
+     "startFrame": 1005,
+     "endFrame": 1052
     },
     {
      "zh": "的手寫菜單",
      "en": "I added a style line. The result",
-     "startFrame": 777,
-     "endFrame": 809
+     "startFrame": 1052,
+     "endFrame": 1087
     },
     {
      "zh": "再做一次",
      "en": "looked clearly different. Tried once.",
-     "startFrame": 809,
-     "endFrame": 837
+     "startFrame": 1087,
+     "endFrame": 1117
     },
     {
      "zh": "樣子明顯不同",
      "en": "looked clearly different. Tried once.",
-     "startFrame": 837,
-     "endFrame": 875
+     "startFrame": 1117,
+     "endFrame": 1158
     },
     {
      "zh": "只試了一次",
      "en": "looked clearly different. Tried once.",
-     "startFrame": 875,
-     "endFrame": 910
+     "startFrame": 1158,
+     "endFrame": 1208
     }
    ],
    "narration": "所以我多寫一句風格，參考日本咖啡館的手寫菜單。再做一次，樣子明顯不同，只試了一次。"
   },
   {
-   "id": "s06",
-   "startFrame": 903,
-   "durationFrames": 166,
-   "startSec": 30.1,
-   "durationSec": 5.53,
+   "id": "s07",
+   "startFrame": 1201,
+   "durationFrames": 184,
+   "startSec": 40.03,
+   "durationSec": 6.13,
+   "component": "IsoScene",
+   "beat": "unknown",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "known",
+     "text": "只試咖啡店首頁",
+     "frame": 1229,
+     "sceneFrame": 28
+    },
+    {
+     "id": "q",
+     "text": "別的題目",
+     "frame": 1316,
+     "sceneFrame": 115
+    }
+   ],
+   "stillFrame": 1375,
+   "subtitles": [
+    {
+     "zh": "不過我只試咖啡店首頁",
+     "en": "I only tried a café homepage,",
+     "startFrame": 1208,
+     "endFrame": 1275
+    },
+    {
+     "zh": "和一個模型",
+     "en": "I only tried a café homepage,",
+     "startFrame": 1275,
+     "endFrame": 1312
+    },
+    {
+     "zh": "別的題目還不知道",
+     "en": "and one model. Other topics: unknown.",
+     "startFrame": 1312,
+     "endFrame": 1382
+    }
+   ],
+   "narration": "不過我只試咖啡店首頁和一個模型，別的題目還不知道。"
+  },
+  {
+   "id": "s08",
+   "startFrame": 1375,
+   "durationFrames": 191,
+   "startSec": 45.83,
+   "durationSec": 6.37,
    "component": "IsoScene",
    "beat": "so",
    "transition": {
@@ -363,69 +473,69 @@
     {
      "id": "so",
      "text": "想要自己的樣子",
-     "frame": 924,
-     "sceneFrame": 21
+     "frame": 1397,
+     "sceneFrame": 22
     },
     {
      "id": "ref",
      "text": "參考哪裡",
-     "frame": 995,
-     "sceneFrame": 92
+     "frame": 1474,
+     "sceneFrame": 99
     },
     {
      "id": "want",
      "text": "要什麼",
-     "frame": 1016,
-     "sceneFrame": 113
+     "frame": 1497,
+     "sceneFrame": 122
     },
     {
      "id": "not",
      "text": "不要什麼",
-     "frame": 1039,
-     "sceneFrame": 136
+     "frame": 1522,
+     "sceneFrame": 147
     }
    ],
-   "stillFrame": 1059,
+   "stillFrame": 1556,
    "subtitles": [
     {
      "zh": "所以想要自己的樣子",
      "en": "So to get your own look, state a style:",
-     "startFrame": 910,
-     "endFrame": 964
+     "startFrame": 1382,
+     "endFrame": 1441
     },
     {
      "zh": "先講風格",
      "en": "So to get your own look, state a style:",
-     "startFrame": 964,
-     "endFrame": 991
+     "startFrame": 1441,
+     "endFrame": 1471
     },
     {
      "zh": "參考哪裡",
      "en": "So to get your own look, state a style:",
-     "startFrame": 991,
-     "endFrame": 1013
+     "startFrame": 1471,
+     "endFrame": 1494
     },
     {
      "zh": "要什麼",
      "en": "what to copy, what to want, what to avoid.",
-     "startFrame": 1013,
-     "endFrame": 1035
+     "startFrame": 1494,
+     "endFrame": 1518
     },
     {
      "zh": "不要什麼",
      "en": "what to copy, what to want, what to avoid.",
-     "startFrame": 1035,
-     "endFrame": 1066
+     "startFrame": 1518,
+     "endFrame": 1563
     }
    ],
    "narration": "所以想要自己的樣子，先講風格：參考哪裡、要什麼、不要什麼。"
   },
   {
-   "id": "s07",
-   "startFrame": 1059,
-   "durationFrames": 92,
-   "startSec": 35.3,
-   "durationSec": 3.07,
+   "id": "s09",
+   "startFrame": 1556,
+   "durationFrames": 99,
+   "startSec": 51.87,
+   "durationSec": 3.3,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -439,38 +549,38 @@
     {
      "id": "kw",
      "text": "網頁",
-     "frame": 1080,
-     "sceneFrame": 21
+     "frame": 1578,
+     "sceneFrame": 22
     },
     {
      "id": "all",
      "text": "風格提示詞",
-     "frame": 1115,
-     "sceneFrame": 56
+     "frame": 1616,
+     "sceneFrame": 60
     }
    ],
-   "stillFrame": 1141,
+   "stillFrame": 1645,
    "subtitles": [
     {
      "zh": "留言「網頁」",
      "en": "Comment “網頁” to get the style prompt.",
-     "startFrame": 1066,
-     "endFrame": 1094
+     "startFrame": 1563,
+     "endFrame": 1594
     },
     {
      "zh": "拿這句風格提示詞",
      "en": "Comment “網頁” to get the style prompt.",
-     "startFrame": 1094,
-     "endFrame": 1151
+     "startFrame": 1594,
+     "endFrame": 1655
     }
    ],
    "narration": "留言「網頁」，拿這句風格提示詞。"
   },
   {
    "id": "end",
-   "startFrame": 1141,
+   "startFrame": 1645,
    "durationFrames": 108,
-   "startSec": 38.03,
+   "startSec": 54.83,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -482,7 +592,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1237,
+   "stillFrame": 1741,
    "subtitles": [],
    "narration": ""
   }
