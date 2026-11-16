@@ -20,7 +20,7 @@
 | liguligu-jensen-pro | 網站用版本與 cover 已備（out/web/liguligu-jensen-pro/），文章 JSON 在 Artifact 9jqsf4gBgTZRuZSM7eT45R | 主控放網站 |
 | 文章 JSON | jensen、power-bill、nvda-kress 念稿都是現行版 | — |
 | **liguligu-2008-check（Andy 11/16 17:50 交辦，要做成影片）** | 題材與查證素材已備：`videos/liguligu-2008-check/research.md`（日本 7–9 月 GDP 年率 ▲0.1%、11/5 全球股市大跌、像不像 2008、2027 機構預測） | 照標準流程做：先補讀標「待讀原文」的來源 → 規劃主旨＋念稿 → 交主控給 Andy 看；排在 11/17 題目之後或依主控安排 |
-| **liguligu-2008-check（有聲版 11/16 晚）** | Andy 說「可以配旁白」→ 已配：Charon／gemini-3.8-flash-tts，API 1 次；成片 51.9 秒，片尾 −11.5 LUFS／真峰值 −1.1 dBTP，語速 4.9，捲舌指標差距 3.5 kHz，對齊信心 0.80（最低 s04 0.70）；第 1 鏡大字改「−0.1%」；網站版 out/web/liguligu-2008-check/（4.9MB）；仍沒有「已確定」，德銀、內閣府原文未讀；前 5 秒聽寫失敗（503／逾時），只有對齊結果 | 交件頁（scratchpad ligu-2008）；**請 Andy 聽前 5 秒、口音、s03→s04 停頓（剪過）**；上片前重查並改「查證截至」 |
+| **liguligu-2008-check（有聲版 11/16 晚）** | Andy 說「可以配旁白」→ 已配：Charon／gemini-3.8-flash-tts，API 1 次；成片 51.9 秒，片尾 −11.5 LUFS／真峰值 −1.1 dBTP，語速 4.9，捲舌指標差距 3.5 kHz，對齊信心 0.80（最低 s04 0.70）；第 1 鏡大字改「−0.1%」；網站版 out/web/liguligu-2008-check/（4.9MB）；仍沒有「已確定」，德銀、內閣府原文未讀；前 5 秒聽寫失敗（503／逾時），只有對齊結果 | 交件頁（scratchpad ligu-2008）；**請 Andy 聽前 5 秒、口音、s03→s04 停頓（剪過）**；上片前重查並改「查證截至」；**網站版 11/16 晚（Andy：「可以放上網站」）**：文章 JSON 已做，`videos/liguligu-2008-check/site-article.json`（目標 `site/articles/ligu/2026-11-17-ligu-2008-check.json`；影片 4.6 MiB、封面放 `site/media/ligu/20261117v_2008_check/`），待 Andy 放進網站並發布 |
 | 11/17 題目 | 財長對聯準會喊話：原文讀不到（CNBC 擋），暫定 | 11/17 09:00 子 agent 重查；找不到原文就換備選 |
 
 ## 11/16 決定
