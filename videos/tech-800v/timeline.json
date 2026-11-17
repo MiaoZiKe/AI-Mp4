@@ -2,1091 +2,3301 @@
  "version": 2,
  "slug": "tech-800v",
  "fps": 30,
- "totalFrames": 1860,
- "totalSec": 62,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 1743,
+ "totalSec": 58.1,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
+   "audio": "audio/tech-800v/01-s1.wav",
    "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audioSec": 6.65,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 228,
+   "durationFrames": 219,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 218,
-   "stillFrame": 227,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 199,
+   "stillFrame": 209,
    "subtitleWindow": [
     0,
-    229
+    216
    ],
    "sourceWindow": [
     0,
-    228
+    214
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "一百萬瓦的 AI 機櫃",
      "start": 0,
      "chars": [
       0,
-      5,
-      11,
-      18,
-      24,
-      24,
-      31,
-      38,
-      38,
-      44,
-      51
+      3,
+      9,
+      14,
+      19,
+      19,
+      23,
+      27,
+      27,
+      30,
+      35
      ]
     },
     {
      "text": "光送電的銅條",
-     "start": 55,
+     "start": 47,
      "chars": [
-      57,
+      50,
+      58,
       64,
-      71,
-      77,
-      84,
-      90
+      69,
+      72,
+      77
      ]
     },
     {
      "text": "廠商估計就要兩百公斤",
-     "start": 95,
+     "start": 88,
      "chars": [
-      97,
-      104,
-      110,
-      117,
-      124,
-      130,
-      137,
-      143,
-      150,
-      157
+      90,
+      96,
+      101,
+      105,
+      109,
+      111,
+      116,
+      120,
+      125,
+      129
      ]
     },
     {
      "text": "為什麼？",
-     "start": 161,
+     "start": 147,
      "chars": [
-      163,
-      170,
-      176,
-      176
+      149,
+      153,
+      157,
+      157
      ]
     },
     {
      "text": "答案在電壓",
-     "start": 181,
+     "start": 168,
      "chars": [
-      183,
-      190,
-      196,
-      203,
-      209
+      170,
+      176,
+      179,
+      184,
+      190
      ]
     }
    ],
    "keywords": [
     {
      "text": "兩百公斤",
-     "start": 137
+     "start": 116
     },
     {
      "text": "電壓",
-     "start": 203
+     "start": 184
     }
    ],
    "cues": [
     {
      "id": "rack",
      "text": "AI 機櫃",
-     "frame": 33
+     "frame": 25,
+     "early": 0
     },
     {
      "id": "bar",
      "text": "銅條",
-     "frame": 86
+     "frame": 73,
+     "early": 0
     },
     {
      "id": "kg",
      "text": "兩百公斤",
-     "frame": 139
+     "frame": 117,
+     "early": 0
     },
     {
      "id": "why",
      "text": "為什麼",
-     "frame": 165
+     "frame": 151,
+     "early": 0
     },
     {
      "id": "volt",
      "text": "電壓",
-     "frame": 205
+     "frame": 185,
+     "early": 0
     }
    ],
+   "hash": "15fec4541032-57cba946d3",
    "sub": "一百萬瓦的 AI 機櫃\n光送電的銅條\n廠商估計就要兩百公斤\n為什麼？\n答案在電壓",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.783,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.73,
+      "start": 1.7,
+      "ch": "光",
+      "errMs": -30
+     },
+     {
+      "onset": 3.05,
+      "start": 3.04,
+      "ch": "廠",
+      "errMs": -10
+     },
+     {
+      "onset": 5.02,
+      "start": 5.02,
+      "ch": "為",
+      "errMs": 0
+     },
+     {
+      "onset": 5.75,
+      "start": 5.72,
+      "ch": "答",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.001
+    },
+    {
+     "text": "百",
+     "start": 0.16,
+     "end": 0.28,
+     "score": 0.01
+    },
+    {
+     "text": "萬",
+     "start": 0.36,
+     "end": 0.48,
+     "score": 0.57
+    },
+    {
+     "text": "瓦",
+     "start": 0.52,
+     "end": 0.6,
+     "score": 0.944
+    },
+    {
+     "text": "的",
+     "start": 0.68,
+     "end": 0.74,
+     "score": 0.996
+    },
+    {
+     "text": "A",
+     "start": 0.82,
+     "end": 0.88,
+     "score": 0.097
+    },
+    {
+     "text": "I",
+     "start": 0.94,
+     "end": 1.02,
+     "score": 0.405
+    },
+    {
+     "text": "機",
+     "start": 1.06,
+     "end": 1.16,
+     "score": 0.895
+    },
+    {
+     "text": "櫃",
+     "start": 1.22,
+     "end": 1.4,
+     "score": 0.998
+    },
+    {
+     "text": "光",
+     "start": 1.7,
+     "end": 1.9,
+     "score": 0.941
+    },
+    {
+     "text": "送",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.958
+    },
+    {
+     "text": "電",
+     "start": 2.18,
+     "end": 2.3,
+     "score": 0.958
+    },
+    {
+     "text": "的",
+     "start": 2.34,
+     "end": 2.38,
+     "score": 0.998
+    },
+    {
+     "text": "銅",
+     "start": 2.44,
+     "end": 2.58,
+     "score": 0.989
+    },
+    {
+     "text": "條",
+     "start": 2.6,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "廠",
+     "start": 3.04,
+     "end": 3.22,
+     "score": 0.915
+    },
+    {
+     "text": "商",
+     "start": 3.24,
+     "end": 3.38,
+     "score": 0.99
+    },
+    {
+     "text": "估",
+     "start": 3.4,
+     "end": 3.46,
+     "score": 0.999
+    },
+    {
+     "text": "計",
+     "start": 3.54,
+     "end": 3.62,
+     "score": 0.998
+    },
+    {
+     "text": "就",
+     "start": 3.68,
+     "end": 3.74,
+     "score": 0.34
+    },
+    {
+     "text": "要",
+     "start": 3.76,
+     "end": 3.88,
+     "score": 0.835
+    },
+    {
+     "text": "兩",
+     "start": 3.9,
+     "end": 4.04,
+     "score": 0.051
+    },
+    {
+     "text": "百",
+     "start": 4.06,
+     "end": 4.16,
+     "score": 0.015
+    },
+    {
+     "text": "公",
+     "start": 4.2,
+     "end": 4.34,
+     "score": 0.981
+    },
+    {
+     "text": "斤",
+     "start": 4.36,
+     "end": 4.52,
+     "score": 0.999
+    },
+    {
+     "text": "為",
+     "start": 5.02,
+     "end": 5.12,
+     "score": 1
+    },
+    {
+     "text": "什",
+     "start": 5.14,
+     "end": 5.24,
+     "score": 0.969
+    },
+    {
+     "text": "麼",
+     "start": 5.28,
+     "end": 5.32,
+     "score": 1
+    },
+    {
+     "text": "答",
+     "start": 5.72,
+     "end": 5.8,
+     "score": 0.998
+    },
+    {
+     "text": "案",
+     "start": 5.9,
+     "end": 5.98,
+     "score": 0.995
+    },
+    {
+     "text": "在",
+     "start": 6.02,
+     "end": 6.14,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 6.18,
+     "end": 6.34,
+     "score": 0.999
+    },
+    {
+     "text": "壓",
+     "start": 6.38,
+     "end": 6.48,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.16,
+    0.36,
+    0.52,
+    0.68,
+    0.82,
+    0.94,
+    1.06,
+    1.22,
+    1.7,
+    1.98,
+    2.18,
+    2.34,
+    2.44,
+    2.6,
+    3.04,
+    3.24,
+    3.4,
+    3.54,
+    3.68,
+    3.76,
+    3.9,
+    4.06,
+    4.2,
+    4.36,
+    5.02,
+    5.14,
+    5.28,
+    5.72,
+    5.9,
+    6.02,
+    6.18,
+    6.38
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 232,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 228,
-   "durationFrames": 186,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 232,
-   "voiceEndFrame": 404,
-   "stillFrame": 413,
+   "audio": "audio/tech-800v/02-s2.wav",
+   "audioFrame": 218,
+   "audioSec": 5.08,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 209,
+   "durationFrames": 177,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 219,
+   "voiceEndFrame": 370,
+   "stillFrame": 376,
    "subtitleWindow": [
-    229,
-    415
+    216,
+    383
    ],
    "sourceWindow": [
-    228,
-    414
+    214,
+    381
    ],
    "lines": [
     {
      "text": "現在機櫃裡的電",
-     "start": 229,
+     "start": 216,
      "chars": [
-      230,
+      219,
+      224,
+      228,
+      233,
       237,
-      243,
-      250,
-      256,
-      263,
-      270
+      240,
+      243
      ]
     },
     {
      "text": "只有五十幾伏特",
-     "start": 274,
+     "start": 252,
      "chars": [
-      276,
-      283,
-      290,
-      296,
-      303,
-      309,
-      316
+      254,
+      258,
+      262,
+      266,
+      270,
+      274,
+      278
      ]
     },
     {
      "text": "靠很粗的銅條送進去",
-     "start": 321,
+     "start": 294,
      "chars": [
-      323,
-      329,
-      336,
-      342,
-      349,
-      356,
-      362,
-      369,
-      376
+      296,
+      302,
+      308,
+      313,
+      317,
+      321,
+      327,
+      331,
+      335
      ]
     },
     {
      "text": "叫銅排",
-     "start": 380,
+     "start": 345,
      "chars": [
-      382,
-      389,
-      395
+      347,
+      353,
+      361
      ]
     }
    ],
    "keywords": [
     {
      "text": "五十幾伏特",
-     "start": 290
+     "start": 262
     },
     {
      "text": "銅排",
-     "start": 389
+     "start": 353
     }
    ],
    "cues": [
     {
      "id": "now",
      "text": "機櫃裡的電",
-     "frame": 245
+     "frame": 229,
+     "early": 0
     },
     {
      "id": "v54",
      "text": "五十幾伏特",
-     "frame": 292
+     "frame": 264,
+     "early": 0
     },
     {
      "id": "fat",
      "text": "很粗的銅條",
-     "frame": 331
+     "frame": 303,
+     "early": 0
     },
     {
      "id": "busbar",
      "text": "銅排",
-     "frame": 391
+     "frame": 355,
+     "early": 0
     }
    ],
+   "hash": "59dcaa2a0bec-57cba946d3",
    "sub": "現在機櫃裡的電\n只有五十幾伏特\n靠很粗的銅條送進去\n叫銅排",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.943,
+    "minScore": 0.258,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.26,
+      "start": 1.26,
+      "ch": "只",
+      "errMs": 0
+     },
+     {
+      "onset": 2.64,
+      "start": 2.64,
+      "ch": "靠",
+      "errMs": 0
+     },
+     {
+      "onset": 4.37,
+      "start": 4.36,
+      "ch": "叫",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "現",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.999
+    },
+    {
+     "text": "在",
+     "start": 0.24,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 0.38,
+     "end": 0.46,
+     "score": 0.995
+    },
+    {
+     "text": "櫃",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.877
+    },
+    {
+     "text": "裡",
+     "start": 0.68,
+     "end": 0.74,
+     "score": 0.99
+    },
+    {
+     "text": "的",
+     "start": 0.78,
+     "end": 0.84,
+     "score": 0.998
+    },
+    {
+     "text": "電",
+     "start": 0.88,
+     "end": 1.08,
+     "score": 1
+    },
+    {
+     "text": "只",
+     "start": 1.26,
+     "end": 1.34,
+     "score": 0.959
+    },
+    {
+     "text": "有",
+     "start": 1.38,
+     "end": 1.48,
+     "score": 0.998
+    },
+    {
+     "text": "五",
+     "start": 1.52,
+     "end": 1.58,
+     "score": 0.258
+    },
+    {
+     "text": "十",
+     "start": 1.66,
+     "end": 1.72,
+     "score": 0.658
+    },
+    {
+     "text": "幾",
+     "start": 1.78,
+     "end": 1.86,
+     "score": 0.966
+    },
+    {
+     "text": "伏",
+     "start": 1.92,
+     "end": 2,
+     "score": 0.996
+    },
+    {
+     "text": "特",
+     "start": 2.06,
+     "end": 2.18,
+     "score": 0.997
+    },
+    {
+     "text": "靠",
+     "start": 2.64,
+     "end": 2.8,
+     "score": 0.996
+    },
+    {
+     "text": "很",
+     "start": 2.84,
+     "end": 2.98,
+     "score": 0.999
+    },
+    {
+     "text": "粗",
+     "start": 3.06,
+     "end": 3.16,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 3.22,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "銅",
+     "start": 3.34,
+     "end": 3.46,
+     "score": 0.999
+    },
+    {
+     "text": "條",
+     "start": 3.48,
+     "end": 3.64,
+     "score": 0.9
+    },
+    {
+     "text": "送",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.998
+    },
+    {
+     "text": "進",
+     "start": 3.82,
+     "end": 3.92,
+     "score": 0.964
+    },
+    {
+     "text": "去",
+     "start": 3.96,
+     "end": 4.08,
+     "score": 1
+    },
+    {
+     "text": "叫",
+     "start": 4.36,
+     "end": 4.52,
+     "score": 0.999
+    },
+    {
+     "text": "銅",
+     "start": 4.56,
+     "end": 4.76,
+     "score": 0.982
+    },
+    {
+     "text": "排",
+     "start": 4.8,
+     "end": 5,
+     "score": 0.996
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.24,
+    0.38,
+    0.54,
+    0.68,
+    0.78,
+    0.88,
+    1.26,
+    1.38,
+    1.52,
+    1.66,
+    1.78,
+    1.92,
+    2.06,
+    2.64,
+    2.84,
+    3.06,
+    3.22,
+    3.34,
+    3.48,
+    3.68,
+    3.82,
+    3.96,
+    4.36,
+    4.56,
+    4.8
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 418,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 414,
-   "durationFrames": 138,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 418,
-   "voiceEndFrame": 542,
-   "stillFrame": 551,
+   "audio": "audio/tech-800v/03-s3.wav",
+   "audioFrame": 385,
+   "audioSec": 4.09,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 376,
+   "durationFrames": 151,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 386,
+   "voiceEndFrame": 507,
+   "stillFrame": 517,
    "subtitleWindow": [
-    415,
-    553
+    383,
+    524
    ],
    "sourceWindow": [
-    414,
-    552
+    381,
+    522
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "功率等於",
-     "start": 415,
+     "start": 383,
      "chars": [
-      416,
-      423,
-      430,
-      437
+      385,
+      390,
+      401,
+      406
      ]
     },
     {
      "text": "電壓乘電流",
-     "start": 442,
+     "start": 408,
      "chars": [
-      444,
-      450,
-      457,
-      464,
-      471
+      410,
+      417,
+      424,
+      430,
+      435
      ]
     },
     {
      "text": "電壓低",
-     "start": 476,
+     "start": 452,
      "chars": [
-      478,
-      485,
-      492
+      454,
+      459,
+      465
      ]
     },
     {
      "text": "電流就得很大",
-     "start": 497,
+     "start": 473,
      "chars": [
-      499,
-      506,
-      512,
-      519,
-      526,
-      533
+      475,
+      481,
+      487,
+      490,
+      494,
+      499
      ]
     }
    ],
    "keywords": [
     {
      "text": "電壓乘電流",
-     "start": 444
+     "start": 410
     },
     {
      "text": "很大",
-     "start": 526
+     "start": 494
     }
    ],
    "cues": [
     {
      "id": "power",
      "text": "功率等於",
-     "frame": 418
+     "frame": 386,
+     "early": 0
     },
     {
      "id": "vxi",
      "text": "電壓乘電流",
-     "frame": 446
+     "frame": 411,
+     "early": 0
     },
     {
      "id": "low",
      "text": "電壓低",
-     "frame": 480
+     "frame": 455,
+     "early": 0
     },
     {
      "id": "big",
      "text": "很大",
-     "frame": 528
+     "frame": 495,
+     "early": 0
     }
    ],
+   "hash": "242e84e17b02-57cba946d3",
    "sub": "功率等於\n電壓乘電流\n電壓低\n電流就得很大",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.941,
+    "minScore": 0.496,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 0.6,
+      "start": 0.58,
+      "ch": "等",
+      "errMs": -20
+     },
+     {
+      "onset": 2.38,
+      "start": 2.34,
+      "ch": "電",
+      "errMs": -40
+     },
+     {
+      "onset": 3.08,
+      "start": 3.06,
+      "ch": "電",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "功",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.968
+    },
+    {
+     "text": "率",
+     "start": 0.22,
+     "end": 0.3,
+     "score": 0.496
+    },
+    {
+     "text": "等",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.991
+    },
+    {
+     "text": "於",
+     "start": 0.74,
+     "end": 0.8,
+     "score": 0.767
+    },
+    {
+     "text": "電",
+     "start": 0.88,
+     "end": 1.06,
+     "score": 0.996
+    },
+    {
+     "text": "壓",
+     "start": 1.12,
+     "end": 1.2,
+     "score": 0.999
+    },
+    {
+     "text": "乘",
+     "start": 1.34,
+     "end": 1.52,
+     "score": 0.925
+    },
+    {
+     "text": "電",
+     "start": 1.54,
+     "end": 1.68,
+     "score": 0.992
+    },
+    {
+     "text": "流",
+     "start": 1.72,
+     "end": 1.9,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 2.34,
+     "end": 2.48,
+     "score": 0.991
+    },
+    {
+     "text": "壓",
+     "start": 2.52,
+     "end": 2.6,
+     "score": 0.999
+    },
+    {
+     "text": "低",
+     "start": 2.7,
+     "end": 2.78,
+     "score": 0.869
+    },
+    {
+     "text": "電",
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.985
+    },
+    {
+     "text": "流",
+     "start": 3.26,
+     "end": 3.4,
+     "score": 0.998
+    },
+    {
+     "text": "就",
+     "start": 3.44,
+     "end": 3.52,
+     "score": 0.99
+    },
+    {
+     "text": "得",
+     "start": 3.56,
+     "end": 3.62,
+     "score": 0.988
+    },
+    {
+     "text": "很",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.999
+    },
+    {
+     "text": "大",
+     "start": 3.84,
+     "end": 3.92,
+     "score": 0.991
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.58,
+    0.74,
+    0.88,
+    1.12,
+    1.34,
+    1.54,
+    1.72,
+    2.34,
+    2.52,
+    2.7,
+    3.06,
+    3.26,
+    3.44,
+    3.56,
+    3.68,
+    3.84
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 556,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 552,
-   "durationFrames": 186,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 556,
-   "voiceEndFrame": 728,
-   "stillFrame": 737,
+   "audio": "audio/tech-800v/04-s4.wav",
+   "audioFrame": 526,
+   "audioSec": 6.02,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 517,
+   "durationFrames": 209,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 527,
+   "voiceEndFrame": 706,
+   "stillFrame": 716,
    "subtitleWindow": [
-    553,
-    739
+    524,
+    723
    ],
    "sourceWindow": [
-    552,
-    738
+    522,
+    721
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "電流大",
-     "start": 553,
+     "start": 524,
      "chars": [
-      554,
-      561,
-      567
+      525,
+      530,
+      535
      ]
     },
     {
      "text": "銅排就燙",
-     "start": 572,
+     "start": 543,
      "chars": [
-      574,
-      580,
-      587,
-      594
+      545,
+      551,
+      556,
+      560
      ]
     },
     {
      "text": "只好越做越粗",
-     "start": 598,
+     "start": 571,
      "chars": [
-      600,
-      607,
-      614,
-      620,
-      627,
-      633
+      573,
+      578,
+      583,
+      589,
+      594,
+      599
      ]
     },
     {
      "text": "電流大十五倍",
-     "start": 638,
+     "start": 621,
      "chars": [
-      640,
-      647,
-      653,
-      660,
-      666,
-      673
+      623,
+      629,
+      634,
+      643,
+      648,
+      652
      ]
     },
     {
      "text": "發熱大兩百多倍",
-     "start": 678,
+     "start": 665,
      "chars": [
-      680,
-      686,
-      693,
-      700,
-      706,
-      713,
-      719
+      667,
+      673,
+      679,
+      685,
+      691,
+      694,
+      699
      ]
     }
    ],
    "keywords": [
     {
      "text": "發熱",
-     "start": 680
+     "start": 667
     },
     {
      "text": "兩百多倍",
-     "start": 700
+     "start": 685
     }
    ],
    "cues": [
     {
      "id": "cur",
      "text": "電流大",
-     "frame": 556
+     "frame": 527,
+     "early": 0
     },
     {
      "id": "hot",
      "text": "銅排就燙",
-     "frame": 576
+     "frame": 547,
+     "early": 0
     },
     {
      "id": "thick",
      "text": "越做越粗",
-     "frame": 616
+     "frame": 585,
+     "early": 0
     },
     {
      "id": "x15",
      "text": "十五倍",
-     "frame": 662
+     "frame": 644,
+     "early": 0
     },
     {
      "id": "x219",
      "text": "兩百多倍",
-     "frame": 702
+     "frame": 687,
+     "early": 0
     }
    ],
+   "hash": "83431c1343e2-57cba946d3",
    "sub": "電流大\n銅排就燙\n只好越做越粗\n電流大十五倍\n發熱大兩百多倍",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.891,
+    "minScore": 0.026,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.73,
+      "start": 0.7,
+      "ch": "銅",
+      "errMs": -30
+     },
+     {
+      "onset": 1.64,
+      "start": 1.62,
+      "ch": "只",
+      "errMs": -20
+     },
+     {
+      "onset": 3.31,
+      "start": 3.28,
+      "ch": "電",
+      "errMs": -30
+     },
+     {
+      "onset": 4.74,
+      "start": 4.74,
+      "ch": "發",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "電",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.96
+    },
+    {
+     "text": "流",
+     "start": 0.18,
+     "end": 0.3,
+     "score": 0.997
+    },
+    {
+     "text": "大",
+     "start": 0.34,
+     "end": 0.4,
+     "score": 0.994
+    },
+    {
+     "text": "銅",
+     "start": 0.7,
+     "end": 0.86,
+     "score": 0.875
+    },
+    {
+     "text": "排",
+     "start": 0.88,
+     "end": 1.02,
+     "score": 0.987
+    },
+    {
+     "text": "就",
+     "start": 1.04,
+     "end": 1.14,
+     "score": 0.98
+    },
+    {
+     "text": "燙",
+     "start": 1.18,
+     "end": 1.38,
+     "score": 0.986
+    },
+    {
+     "text": "只",
+     "start": 1.62,
+     "end": 1.72,
+     "score": 0.958
+    },
+    {
+     "text": "好",
+     "start": 1.78,
+     "end": 1.92,
+     "score": 0.998
+    },
+    {
+     "text": "越",
+     "start": 1.96,
+     "end": 2.06,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 2.14,
+     "end": 2.24,
+     "score": 0.957
+    },
+    {
+     "text": "越",
+     "start": 2.32,
+     "end": 2.42,
+     "score": 0.994
+    },
+    {
+     "text": "粗",
+     "start": 2.48,
+     "end": 2.62,
+     "score": 0.997
+    },
+    {
+     "text": "電",
+     "start": 3.28,
+     "end": 3.44,
+     "score": 0.975
+    },
+    {
+     "text": "流",
+     "start": 3.48,
+     "end": 3.62,
+     "score": 0.993
+    },
+    {
+     "text": "大",
+     "start": 3.66,
+     "end": 3.72,
+     "score": 0.971
+    },
+    {
+     "text": "十",
+     "start": 3.94,
+     "end": 4.04,
+     "score": 0.026
+    },
+    {
+     "text": "五",
+     "start": 4.12,
+     "end": 4.18,
+     "score": 0.104
+    },
+    {
+     "text": "倍",
+     "start": 4.24,
+     "end": 4.4,
+     "score": 0.987
+    },
+    {
+     "text": "發",
+     "start": 4.74,
+     "end": 4.82,
+     "score": 0.992
+    },
+    {
+     "text": "熱",
+     "start": 4.94,
+     "end": 5.02,
+     "score": 0.994
+    },
+    {
+     "text": "大",
+     "start": 5.16,
+     "end": 5.24,
+     "score": 0.982
+    },
+    {
+     "text": "兩",
+     "start": 5.36,
+     "end": 5.52,
+     "score": 0.771
+    },
+    {
+     "text": "百",
+     "start": 5.54,
+     "end": 5.64,
+     "score": 0.724
+    },
+    {
+     "text": "多",
+     "start": 5.66,
+     "end": 5.74,
+     "score": 0.978
+    },
+    {
+     "text": "倍",
+     "start": 5.8,
+     "end": 5.94,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.18,
+    0.34,
+    0.7,
+    0.88,
+    1.04,
+    1.18,
+    1.62,
+    1.78,
+    1.96,
+    2.14,
+    2.32,
+    2.48,
+    3.28,
+    3.48,
+    3.66,
+    3.94,
+    4.12,
+    4.24,
+    4.74,
+    4.94,
+    5.16,
+    5.36,
+    5.54,
+    5.66,
+    5.8
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 742,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 738,
-   "durationFrames": 156,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 742,
-   "voiceEndFrame": 884,
-   "stillFrame": 893,
+   "audio": "audio/tech-800v/05-s5.wav",
+   "audioFrame": 725,
+   "audioSec": 4.08,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 716,
+   "durationFrames": 151,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 726,
+   "voiceEndFrame": 847,
+   "stillFrame": 857,
    "subtitleWindow": [
-    739,
-    895
+    723,
+    864
    ],
    "sourceWindow": [
-    738,
-    894
+    721,
+    862
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "改成八百伏特",
-     "start": 739,
+     "start": 723,
      "chars": [
+      725,
+      730,
+      736,
       740,
-      747,
-      754,
-      760,
-      767,
-      774
+      744,
+      749
      ]
     },
     {
      "text": "電流只剩十五分之一",
-     "start": 779,
+     "start": 760,
      "chars": [
-      781,
-      787,
-      794,
-      801,
-      808,
-      814,
-      821,
-      828,
-      835
+      762,
+      767,
+      773,
+      778,
+      784,
+      788,
+      792,
+      797,
+      801
      ]
     },
     {
      "text": "銅排就能做細",
-     "start": 839,
+     "start": 812,
      "chars": [
-      841,
-      848,
-      855,
-      862,
-      868,
-      875
+      814,
+      820,
+      826,
+      830,
+      834,
+      839
      ]
     }
    ],
    "keywords": [
     {
      "text": "八百伏特",
-     "start": 754
+     "start": 736
     },
     {
      "text": "做細",
-     "start": 868
+     "start": 834
     }
    ],
    "cues": [
     {
      "id": "v800",
      "text": "八百伏特",
-     "frame": 756
+     "frame": 737,
+     "early": 0
     },
     {
      "id": "amp",
      "text": "十五分之一",
-     "frame": 810
+     "frame": 786,
+     "early": 0
     },
     {
      "id": "thin",
      "text": "做細",
-     "frame": 870
+     "frame": 835,
+     "early": 0
     }
    ],
+   "hash": "0d1e774eab30-57cba946d3",
    "sub": "改成八百伏特\n電流只剩十五分之一\n銅排就能做細",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.771,
+    "minScore": 0.012,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.3,
+      "start": 1.28,
+      "ch": "電",
+      "errMs": -20
+     },
+     {
+      "onset": 3.05,
+      "start": 3.02,
+      "ch": "銅",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "改",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.997
+    },
+    {
+     "text": "成",
+     "start": 0.2,
+     "end": 0.36,
+     "score": 0.808
+    },
+    {
+     "text": "八",
+     "start": 0.4,
+     "end": 0.46,
+     "score": 0.264
+    },
+    {
+     "text": "百",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.297
+    },
+    {
+     "text": "伏",
+     "start": 0.7,
+     "end": 0.78,
+     "score": 0.884
+    },
+    {
+     "text": "特",
+     "start": 0.84,
+     "end": 0.94,
+     "score": 0.994
+    },
+    {
+     "text": "電",
+     "start": 1.28,
+     "end": 1.42,
+     "score": 0.979
+    },
+    {
+     "text": "流",
+     "start": 1.44,
+     "end": 1.58,
+     "score": 0.996
+    },
+    {
+     "text": "只",
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.803
+    },
+    {
+     "text": "剩",
+     "start": 1.8,
+     "end": 1.94,
+     "score": 0.994
+    },
+    {
+     "text": "十",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.012
+    },
+    {
+     "text": "五",
+     "start": 2.16,
+     "end": 2.22,
+     "score": 0.18
+    },
+    {
+     "text": "分",
+     "start": 2.28,
+     "end": 2.4,
+     "score": 0.944
+    },
+    {
+     "text": "之",
+     "start": 2.44,
+     "end": 2.52,
+     "score": 0.913
+    },
+    {
+     "text": "一",
+     "start": 2.58,
+     "end": 2.64,
+     "score": 0.164
+    },
+    {
+     "text": "銅",
+     "start": 3.02,
+     "end": 3.18,
+     "score": 0.997
+    },
+    {
+     "text": "排",
+     "start": 3.2,
+     "end": 3.38,
+     "score": 0.996
+    },
+    {
+     "text": "就",
+     "start": 3.42,
+     "end": 3.52,
+     "score": 0.981
+    },
+    {
+     "text": "能",
+     "start": 3.56,
+     "end": 3.66,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 3.68,
+     "end": 3.78,
+     "score": 0.993
+    },
+    {
+     "text": "細",
+     "start": 3.86,
+     "end": 3.96,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.4,
+    0.54,
+    0.7,
+    0.84,
+    1.28,
+    1.44,
+    1.64,
+    1.8,
+    2.02,
+    2.16,
+    2.28,
+    2.44,
+    2.58,
+    3.02,
+    3.2,
+    3.42,
+    3.56,
+    3.68,
+    3.86
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 898,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 894,
-   "durationFrames": 240,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 898,
-   "voiceEndFrame": 1124,
-   "stillFrame": 1133,
+   "audio": "audio/tech-800v/06-s6.wav",
+   "audioFrame": 866,
+   "audioSec": 6.86,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 857,
+   "durationFrames": 235,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 867,
+   "voiceEndFrame": 1071,
+   "stillFrame": 1082,
    "subtitleWindow": [
-    895,
-    1135
+    864,
+    1089
    ],
    "sourceWindow": [
-    894,
-    1134
+    862,
+    1087
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "那以前為什麼不用高壓",
-     "start": 895,
+     "start": 864,
      "chars": [
-      896,
-      902,
-      909,
-      915,
-      922,
-      928,
-      935,
-      941,
-      948,
-      954
+      866,
+      870,
+      874,
+      881,
+      885,
+      888,
+      890,
+      893,
+      898,
+      903
      ]
     },
     {
      "text": "因為晶片只吃很低的電壓",
-     "start": 959,
+     "start": 920,
      "chars": [
-      961,
-      967,
-      973,
-      980,
-      986,
-      993,
-      999,
-      1006,
-      1012,
-      1019,
-      1025
+      922,
+      926,
+      930,
+      935,
+      946,
+      952,
+      958,
+      964,
+      968,
+      971,
+      976
      ]
     },
     {
      "text": "電壓越高",
-     "start": 1030,
+     "start": 990,
      "chars": [
-      1032,
-      1038,
-      1045,
-      1051
+      992,
+      997,
+      1002,
+      1007
      ]
     },
     {
      "text": "中間要降壓的次數越多",
-     "start": 1055,
+     "start": 1017,
      "chars": [
-      1057,
-      1064,
-      1070,
-      1077,
-      1083,
-      1090,
-      1096,
-      1103,
-      1109,
-      1116
+      1019,
+      1024,
+      1028,
+      1033,
+      1040,
+      1044,
+      1048,
+      1054,
+      1058,
+      1063
      ]
     }
    ],
    "keywords": [
     {
      "text": "很低的電壓",
-     "start": 999
+     "start": 958
     },
     {
      "text": "降壓",
-     "start": 1077
+     "start": 1033
     }
    ],
    "cues": [
     {
      "id": "why",
      "text": "為什麼不用高壓",
-     "frame": 917
+     "frame": 882,
+     "early": 0
     },
     {
      "id": "chip",
      "text": "晶片只吃很低",
-     "frame": 975
+     "frame": 931,
+     "early": 0
     },
     {
      "id": "hi",
      "text": "電壓越高",
-     "frame": 1034
+     "frame": 994,
+     "early": 0
     },
     {
      "id": "steps",
      "text": "降壓的次數",
-     "frame": 1079
+     "frame": 1035,
+     "early": 0
     },
     {
      "id": "many",
      "text": "越多",
-     "frame": 1111
+     "frame": 1060,
+     "early": 0
     }
    ],
+   "hash": "e1337266e98e-57cba946d3",
    "sub": "那以前為什麼不用高壓\n因為晶片只吃很低的電壓\n電壓越高\n中間要降壓的次數越多",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.979,
+    "minScore": 0.812,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.94,
+      "start": 1.92,
+      "ch": "因",
+      "errMs": -20
+     },
+     {
+      "onset": 2.72,
+      "start": 2.72,
+      "ch": "只",
+      "errMs": 0
+     },
+     {
+      "onset": 4.29,
+      "start": 4.26,
+      "ch": "電",
+      "errMs": -30
+     },
+     {
+      "onset": 5.17,
+      "start": 5.16,
+      "ch": "中",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "那",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.999
+    },
+    {
+     "text": "以",
+     "start": 0.18,
+     "end": 0.24,
+     "score": 0.964
+    },
+    {
+     "text": "前",
+     "start": 0.32,
+     "end": 0.5,
+     "score": 0.994
+    },
+    {
+     "text": "為",
+     "start": 0.54,
+     "end": 0.64,
+     "score": 1
+    },
+    {
+     "text": "什",
+     "start": 0.68,
+     "end": 0.76,
+     "score": 1
+    },
+    {
+     "text": "麼",
+     "start": 0.78,
+     "end": 0.82,
+     "score": 1
+    },
+    {
+     "text": "不",
+     "start": 0.86,
+     "end": 0.92,
+     "score": 1
+    },
+    {
+     "text": "用",
+     "start": 0.96,
+     "end": 1.08,
+     "score": 0.954
+    },
+    {
+     "text": "高",
+     "start": 1.1,
+     "end": 1.24,
+     "score": 1
+    },
+    {
+     "text": "壓",
+     "start": 1.28,
+     "end": 1.36,
+     "score": 0.999
+    },
+    {
+     "text": "因",
+     "start": 1.92,
+     "end": 2.02,
+     "score": 0.998
+    },
+    {
+     "text": "為",
+     "start": 2.06,
+     "end": 2.14,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 2.18,
+     "end": 2.32,
+     "score": 0.95
+    },
+    {
+     "text": "片",
+     "start": 2.36,
+     "end": 2.56,
+     "score": 0.998
+    },
+    {
+     "text": "只",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.976
+    },
+    {
+     "text": "吃",
+     "start": 2.92,
+     "end": 3.04,
+     "score": 0.812
+    },
+    {
+     "text": "很",
+     "start": 3.1,
+     "end": 3.24,
+     "score": 0.999
+    },
+    {
+     "text": "低",
+     "start": 3.32,
+     "end": 3.38,
+     "score": 0.873
+    },
+    {
+     "text": "的",
+     "start": 3.44,
+     "end": 3.5,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 3.54,
+     "end": 3.68,
+     "score": 0.925
+    },
+    {
+     "text": "壓",
+     "start": 3.72,
+     "end": 3.8,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 4.26,
+     "end": 4.4,
+     "score": 0.964
+    },
+    {
+     "text": "壓",
+     "start": 4.42,
+     "end": 4.5,
+     "score": 0.999
+    },
+    {
+     "text": "越",
+     "start": 4.58,
+     "end": 4.66,
+     "score": 0.976
+    },
+    {
+     "text": "高",
+     "start": 4.74,
+     "end": 4.92,
+     "score": 0.999
+    },
+    {
+     "text": "中",
+     "start": 5.16,
+     "end": 5.3,
+     "score": 0.946
+    },
+    {
+     "text": "間",
+     "start": 5.32,
+     "end": 5.44,
+     "score": 0.997
+    },
+    {
+     "text": "要",
+     "start": 5.46,
+     "end": 5.6,
+     "score": 0.999
+    },
+    {
+     "text": "降",
+     "start": 5.62,
+     "end": 5.8,
+     "score": 0.979
+    },
+    {
+     "text": "壓",
+     "start": 5.84,
+     "end": 5.9,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 5.98,
+     "end": 6.04,
+     "score": 0.999
+    },
+    {
+     "text": "次",
+     "start": 6.1,
+     "end": 6.22,
+     "score": 0.999
+    },
+    {
+     "text": "數",
+     "start": 6.3,
+     "end": 6.38,
+     "score": 0.98
+    },
+    {
+     "text": "越",
+     "start": 6.46,
+     "end": 6.52,
+     "score": 0.998
+    },
+    {
+     "text": "多",
+     "start": 6.6,
+     "end": 6.7,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.32,
+    0.54,
+    0.68,
+    0.78,
+    0.86,
+    0.96,
+    1.1,
+    1.28,
+    1.92,
+    2.06,
+    2.18,
+    2.36,
+    2.72,
+    2.92,
+    3.1,
+    3.32,
+    3.44,
+    3.54,
+    3.72,
+    4.26,
+    4.42,
+    4.58,
+    4.74,
+    5.16,
+    5.32,
+    5.46,
+    5.62,
+    5.84,
+    5.98,
+    6.1,
+    6.3,
+    6.46,
+    6.6
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1138,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1134,
-   "durationFrames": 216,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1138,
-   "voiceEndFrame": 1340,
-   "stillFrame": 1349,
+   "audio": "audio/tech-800v/07-s7.wav",
+   "audioFrame": 1091,
+   "audioSec": 5.82,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1082,
+   "durationFrames": 200,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1092,
+   "voiceEndFrame": 1265,
+   "stillFrame": 1272,
    "subtitleWindow": [
-    1135,
-    1351
+    1089,
+    1279
    ],
    "sourceWindow": [
-    1134,
-    1350
+    1087,
+    1277
    ],
    "lines": [
     {
      "text": "廠商規劃二零二七年",
-     "start": 1135,
+     "start": 1089,
      "chars": [
-      1136,
-      1143,
-      1149,
-      1156,
-      1162,
-      1169,
-      1175,
-      1182,
-      1188
+      1091,
+      1097,
+      1102,
+      1106,
+      1116,
+      1119,
+      1124,
+      1127,
+      1132
      ]
     },
     {
      "text": "開始改用",
-     "start": 1193,
+     "start": 1137,
      "chars": [
-      1195,
-      1201,
-      1208,
-      1214
+      1139,
+      1144,
+      1147,
+      1152
      ]
     },
     {
      "text": "台灣的台達電和光寶科",
-     "start": 1219,
+     "start": 1169,
      "chars": [
-      1221,
-      1227,
-      1234,
-      1240,
-      1247,
-      1253,
-      1260,
-      1266,
-      1273,
-      1279
+      1171,
+      1177,
+      1180,
+      1184,
+      1189,
+      1193,
+      1199,
+      1203,
+      1208,
+      1213
      ]
     },
     {
      "text": "也在做這種電源櫃",
-     "start": 1284,
+     "start": 1224,
      "chars": [
-      1286,
-      1292,
-      1299,
-      1305,
-      1312,
-      1318,
-      1325,
-      1331
+      1226,
+      1231,
+      1235,
+      1241,
+      1244,
+      1249,
+      1253,
+      1258
      ]
     }
    ],
    "keywords": [
     {
      "text": "二零二七年",
-     "start": 1162
+     "start": 1116
     },
     {
      "text": "台達電",
-     "start": 1240
+     "start": 1184
     },
     {
      "text": "光寶科",
-     "start": 1266
+     "start": 1203
     }
    ],
    "cues": [
     {
      "id": "y2027",
      "text": "二零二七年",
-     "frame": 1164
+     "frame": 1117,
+     "early": 0
     },
     {
      "id": "use",
      "text": "開始改用",
-     "frame": 1197
+     "frame": 1140,
+     "early": 0
     },
     {
      "id": "tw",
      "text": "台達電",
-     "frame": 1242
+     "frame": 1185,
+     "early": 0
     },
     {
      "id": "lite",
      "text": "光寶科",
-     "frame": 1268
+     "frame": 1204,
+     "early": 0
     },
     {
      "id": "cab",
      "text": "電源櫃",
-     "frame": 1320
+     "frame": 1251,
+     "early": 0
     }
    ],
+   "hash": "dc408a916b5b-57cba946d3",
    "sub": "廠商規劃二零二七年\n開始改用\n台灣的台達電和光寶科\n也在做這種電源櫃",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.845,
+    "minScore": 0,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.73,
+      "start": 2.72,
+      "ch": "台",
+      "errMs": -10
+     },
+     {
+      "onset": 4.56,
+      "start": 4.56,
+      "ch": "也",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "廠",
+     "start": 0.04,
+     "end": 0.22,
+     "score": 0.838
+    },
+    {
+     "text": "商",
+     "start": 0.24,
+     "end": 0.38,
+     "score": 0.979
+    },
+    {
+     "text": "規",
+     "start": 0.4,
+     "end": 0.5,
+     "score": 0.999
+    },
+    {
+     "text": "劃",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 1
+    },
+    {
+     "text": "二",
+     "start": 0.88,
+     "end": 0.96,
+     "score": 0
+    },
+    {
+     "text": "零",
+     "start": 0.98,
+     "end": 1.12,
+     "score": 0.012
+    },
+    {
+     "text": "二",
+     "start": 1.16,
+     "end": 1.22,
+     "score": 0
+    },
+    {
+     "text": "七",
+     "start": 1.26,
+     "end": 1.36,
+     "score": 0.003
+    },
+    {
+     "text": "年",
+     "start": 1.42,
+     "end": 1.58,
+     "score": 0.961
+    },
+    {
+     "text": "開",
+     "start": 1.64,
+     "end": 1.78,
+     "score": 0.998
+    },
+    {
+     "text": "始",
+     "start": 1.8,
+     "end": 1.88,
+     "score": 0.992
+    },
+    {
+     "text": "改",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.993
+    },
+    {
+     "text": "用",
+     "start": 2.08,
+     "end": 2.24,
+     "score": 0.999
+    },
+    {
+     "text": "台",
+     "start": 2.72,
+     "end": 2.86,
+     "score": 0.995
+    },
+    {
+     "text": "灣",
+     "start": 2.9,
+     "end": 3,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.02,
+     "end": 3.08,
+     "score": 0.998
+    },
+    {
+     "text": "台",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.992
+    },
+    {
+     "text": "達",
+     "start": 3.32,
+     "end": 3.38,
+     "score": 0.998
+    },
+    {
+     "text": "電",
+     "start": 3.46,
+     "end": 3.6,
+     "score": 0.988
+    },
+    {
+     "text": "和",
+     "start": 3.66,
+     "end": 3.72,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 3.78,
+     "end": 3.92,
+     "score": 0.996
+    },
+    {
+     "text": "寶",
+     "start": 3.94,
+     "end": 4.06,
+     "score": 0.691
+    },
+    {
+     "text": "科",
+     "start": 4.1,
+     "end": 4.2,
+     "score": 0.999
+    },
+    {
+     "text": "也",
+     "start": 4.56,
+     "end": 4.62,
+     "score": 1
+    },
+    {
+     "text": "在",
+     "start": 4.7,
+     "end": 4.82,
+     "score": 1
+    },
+    {
+     "text": "做",
+     "start": 4.84,
+     "end": 4.94,
+     "score": 0.99
+    },
+    {
+     "text": "這",
+     "start": 5.04,
+     "end": 5.12,
+     "score": 0.913
+    },
+    {
+     "text": "種",
+     "start": 5.16,
+     "end": 5.28,
+     "score": 0.916
+    },
+    {
+     "text": "電",
+     "start": 5.32,
+     "end": 5.42,
+     "score": 0.944
+    },
+    {
+     "text": "源",
+     "start": 5.46,
+     "end": 5.56,
+     "score": 0.997
+    },
+    {
+     "text": "櫃",
+     "start": 5.6,
+     "end": 5.74,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.24,
+    0.4,
+    0.56,
+    0.88,
+    0.98,
+    1.16,
+    1.26,
+    1.42,
+    1.64,
+    1.8,
+    1.92,
+    2.08,
+    2.72,
+    2.9,
+    3.02,
+    3.14,
+    3.32,
+    3.46,
+    3.66,
+    3.78,
+    3.94,
+    4.1,
+    4.56,
+    4.7,
+    4.84,
+    5.04,
+    5.16,
+    5.32,
+    5.46,
+    5.6
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1354,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1350,
-   "durationFrames": 138,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1354,
-   "voiceEndFrame": 1478,
-   "stillFrame": 1487,
+   "audio": "audio/tech-800v/08-s8.wav",
+   "audioFrame": 1281,
+   "audioSec": 2.97,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1272,
+   "durationFrames": 117,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1282,
+   "voiceEndFrame": 1369,
+   "stillFrame": 1379,
    "subtitleWindow": [
-    1351,
-    1489
+    1279,
+    1386
    ],
    "sourceWindow": [
-    1350,
-    1488
+    1277,
+    1384
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "整套能省多少",
-     "start": 1351,
+     "start": 1279,
      "chars": [
-      1352,
-      1359,
-      1366,
-      1373,
-      1380,
-      1386
+      1281,
+      1286,
+      1292,
+      1296,
+      1300,
+      1305
      ]
     },
     {
      "text": "目前還沒有",
-     "start": 1391,
+     "start": 1314,
      "chars": [
-      1393,
-      1400,
-      1407,
-      1414,
-      1421
+      1316,
+      1321,
+      1328,
+      1331,
+      1334
      ]
     },
     {
      "text": "實際機房的數字",
-     "start": 1426,
+     "start": 1336,
      "chars": [
-      1428,
-      1435,
-      1442,
-      1448,
-      1455,
-      1462,
-      1469
+      1338,
+      1342,
+      1346,
+      1350,
+      1355,
+      1358,
+      1362
      ]
     }
    ],
    "keywords": [
     {
      "text": "沒有",
-     "start": 1414
+     "start": 1331
     },
     {
      "text": "數字",
-     "start": 1462
+     "start": 1358
     }
    ],
    "cues": [
     {
      "id": "save",
      "text": "能省多少",
-     "frame": 1368
+     "frame": 1294,
+     "early": 0
     },
     {
      "id": "none",
      "text": "還沒有",
-     "frame": 1409
+     "frame": 1329,
+     "early": 0
     },
     {
      "id": "real",
      "text": "實際機房",
-     "frame": 1430
+     "frame": 1339,
+     "early": 0
     }
    ],
+   "hash": "a86a9b1d8830-57cba946d3",
    "sub": "整套能省多少\n目前還沒有\n實際機房的數字",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.965,
+    "minScore": 0.864,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.24,
+      "start": 1.22,
+      "ch": "目",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "整",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.971
+    },
+    {
+     "text": "套",
+     "start": 0.22,
+     "end": 0.38,
+     "score": 0.972
+    },
+    {
+     "text": "能",
+     "start": 0.42,
+     "end": 0.54,
+     "score": 0.953
+    },
+    {
+     "text": "省",
+     "start": 0.56,
+     "end": 0.7,
+     "score": 0.967
+    },
+    {
+     "text": "多",
+     "start": 0.7,
+     "end": 0.78,
+     "score": 0.999
+    },
+    {
+     "text": "少",
+     "start": 0.86,
+     "end": 1.04,
+     "score": 0.916
+    },
+    {
+     "text": "目",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.999
+    },
+    {
+     "text": "前",
+     "start": 1.38,
+     "end": 1.54,
+     "score": 0.998
+    },
+    {
+     "text": "還",
+     "start": 1.6,
+     "end": 1.72,
+     "score": 0.999
+    },
+    {
+     "text": "沒",
+     "start": 1.72,
+     "end": 1.82,
+     "score": 0.922
+    },
+    {
+     "text": "有",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.998
+    },
+    {
+     "text": "實",
+     "start": 1.94,
+     "end": 2.02,
+     "score": 0.87
+    },
+    {
+     "text": "際",
+     "start": 2.08,
+     "end": 2.16,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.999
+    },
+    {
+     "text": "房",
+     "start": 2.36,
+     "end": 2.5,
+     "score": 0.937
+    },
+    {
+     "text": "的",
+     "start": 2.5,
+     "end": 2.56,
+     "score": 0.999
+    },
+    {
+     "text": "數",
+     "start": 2.6,
+     "end": 2.68,
+     "score": 0.864
+    },
+    {
+     "text": "字",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.42,
+    0.56,
+    0.7,
+    0.86,
+    1.22,
+    1.38,
+    1.6,
+    1.72,
+    1.82,
+    1.94,
+    2.08,
+    2.22,
+    2.36,
+    2.5,
+    2.6,
+    2.76
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1492,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1488,
-   "durationFrames": 276,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1492,
-   "voiceEndFrame": 1754,
-   "stillFrame": 1763,
+   "audio": "audio/tech-800v/09-s9.wav",
+   "audioFrame": 1388,
+   "audioSec": 8.72,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1379,
+   "durationFrames": 278,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1389,
+   "voiceEndFrame": 1649,
+   "stillFrame": 1647,
    "subtitleWindow": [
-    1489,
-    1765
+    1386,
+    1657
    ],
    "sourceWindow": [
-    1488,
-    1764
+    1384,
+    1652
    ],
    "lines": [
     {
      "text": "所以電壓拉高",
-     "start": 1489,
+     "start": 1386,
      "chars": [
-      1490,
-      1496,
-      1503,
-      1509,
-      1516,
-      1522
+      1389,
+      1393,
+      1404,
+      1409,
+      1414,
+      1418
      ]
     },
     {
      "text": "電流變小",
-     "start": 1526,
+     "start": 1428,
      "chars": [
-      1528,
-      1535,
-      1541,
-      1548
+      1430,
+      1435,
+      1439,
+      1445
      ]
     },
     {
      "text": "銅條就能細",
-     "start": 1552,
+     "start": 1454,
      "chars": [
-      1554,
-      1560,
-      1567,
-      1573,
-      1579
+      1456,
+      1462,
+      1468,
+      1472,
+      1477
      ]
     },
     {
      "text": "想要完整解說",
-     "start": 1584,
+     "start": 1495,
      "chars": [
-      1586,
-      1592,
-      1599,
-      1605,
-      1611,
-      1618
+      1498,
+      1502,
+      1507,
+      1511,
+      1516,
+      1521
      ]
     },
     {
      "text": "留言供電",
-     "start": 1622,
+     "start": 1530,
      "chars": [
-      1624,
-      1631,
-      1637,
-      1643
+      1532,
+      1538,
+      1544,
+      1549
      ]
     },
     {
      "text": "下一支",
-     "start": 1648,
+     "start": 1564,
      "chars": [
-      1650,
-      1656,
-      1663
+      1566,
+      1571,
+      1574
      ]
     },
     {
      "text": "晶片設計公司為",
-     "start": 1667,
+     "start": 1584,
      "chars": [
-      1669,
-      1675,
-      1682,
-      1688,
-      1694,
-      1701,
-      1707
+      1586,
+      1591,
+      1597,
+      1601,
+      1605,
+      1610,
+      1619
      ]
     },
     {
      "text": "什麼沒有工廠",
-     "start": 1712,
+     "start": 1623,
      "chars": [
-      1714,
-      1720,
-      1726,
-      1733,
-      1739,
-      1746
+      1625,
+      1628,
+      1631,
+      1634,
+      1637,
+      1641
      ]
     }
    ],
    "keywords": [
     {
      "text": "電壓拉高",
-     "start": 1503
+     "start": 1404
     },
     {
      "text": "電流變小",
-     "start": 1528
+     "start": 1430
     },
     {
      "text": "銅條就能細",
-     "start": 1554
+     "start": 1456
     }
    ],
    "cues": [
     {
      "id": "so",
      "text": "所以",
-     "frame": 1492
+     "frame": 1390,
+     "early": 0
     },
     {
      "id": "up",
      "text": "電壓拉高",
-     "frame": 1505
+     "frame": 1405,
+     "early": 0
     },
     {
      "id": "small",
      "text": "電流變小",
-     "frame": 1530
+     "frame": 1431,
+     "early": 0
     },
     {
      "id": "slim",
      "text": "銅條就能細",
-     "frame": 1556
+     "frame": 1458,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言供電",
-     "frame": 1626
+     "frame": 1534,
+     "early": 0
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1652
+     "frame": 1567,
+     "early": 0
     }
    ],
+   "hash": "f1e042f38c79-57cba946d3",
    "sub": "所以\n電壓拉高\n電流變小\n銅條就能細\n想要完整解說\n留言供電\n下一支\n晶片設計公司為什麼沒有工廠",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.968,
+    "minScore": 0.564,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.6,
+      "start": 0.58,
+      "ch": "電",
+      "errMs": -20
+     },
+     {
+      "onset": 1.46,
+      "start": 1.44,
+      "ch": "電",
+      "errMs": -20
+     },
+     {
+      "onset": 2.34,
+      "start": 2.32,
+      "ch": "銅",
+      "errMs": -20
+     },
+     {
+      "onset": 3.69,
+      "start": 3.7,
+      "ch": "想",
+      "errMs": 10
+     },
+     {
+      "onset": 4.85,
+      "start": 4.86,
+      "ch": "留",
+      "errMs": 10
+     },
+     {
+      "onset": 5.96,
+      "start": 5.98,
+      "ch": "下",
+      "errMs": 20
+     },
+     {
+      "onset": 6.65,
+      "start": 6.64,
+      "ch": "晶",
+      "errMs": -10
+     },
+     {
+      "onset": 7.77,
+      "start": 7.76,
+      "ch": "為",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.08,
+     "end": 0.16,
+     "score": 0.978
+    },
+    {
+     "text": "以",
+     "start": 0.22,
+     "end": 0.3,
+     "score": 1
+    },
+    {
+     "text": "電",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.955
+    },
+    {
+     "text": "壓",
+     "start": 0.76,
+     "end": 0.82,
+     "score": 0.999
+    },
+    {
+     "text": "拉",
+     "start": 0.9,
+     "end": 0.96,
+     "score": 0.946
+    },
+    {
+     "text": "高",
+     "start": 1.06,
+     "end": 1.24,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 1.44,
+     "end": 1.58,
+     "score": 0.983
+    },
+    {
+     "text": "流",
+     "start": 1.62,
+     "end": 1.74,
+     "score": 0.997
+    },
+    {
+     "text": "變",
+     "start": 1.76,
+     "end": 1.9,
+     "score": 0.963
+    },
+    {
+     "text": "小",
+     "start": 1.94,
+     "end": 2.14,
+     "score": 0.998
+    },
+    {
+     "text": "銅",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 0.974
+    },
+    {
+     "text": "條",
+     "start": 2.5,
+     "end": 2.68,
+     "score": 0.999
+    },
+    {
+     "text": "就",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.997
+    },
+    {
+     "text": "能",
+     "start": 2.84,
+     "end": 2.96,
+     "score": 0.988
+    },
+    {
+     "text": "細",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.999
+    },
+    {
+     "text": "想",
+     "start": 3.7,
+     "end": 3.84,
+     "score": 1
+    },
+    {
+     "text": "要",
+     "start": 3.86,
+     "end": 3.96,
+     "score": 0.993
+    },
+    {
+     "text": "完",
+     "start": 4,
+     "end": 4.12,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 4.16,
+     "end": 4.3,
+     "score": 0.95
+    },
+    {
+     "text": "解",
+     "start": 4.3,
+     "end": 4.4,
+     "score": 0.987
+    },
+    {
+     "text": "說",
+     "start": 4.48,
+     "end": 4.58,
+     "score": 0.998
+    },
+    {
+     "text": "留",
+     "start": 4.86,
+     "end": 5,
+     "score": 0.998
+    },
+    {
+     "text": "言",
+     "start": 5.06,
+     "end": 5.2,
+     "score": 0.997
+    },
+    {
+     "text": "供",
+     "start": 5.24,
+     "end": 5.38,
+     "score": 0.957
+    },
+    {
+     "text": "電",
+     "start": 5.4,
+     "end": 5.58,
+     "score": 0.917
+    },
+    {
+     "text": "下",
+     "start": 5.98,
+     "end": 6.08,
+     "score": 0.959
+    },
+    {
+     "text": "一",
+     "start": 6.14,
+     "end": 6.18,
+     "score": 0.564
+    },
+    {
+     "text": "支",
+     "start": 6.24,
+     "end": 6.34,
+     "score": 0.897
+    },
+    {
+     "text": "晶",
+     "start": 6.64,
+     "end": 6.8,
+     "score": 0.936
+    },
+    {
+     "text": "片",
+     "start": 6.82,
+     "end": 6.98,
+     "score": 0.969
+    },
+    {
+     "text": "設",
+     "start": 7.02,
+     "end": 7.1,
+     "score": 0.999
+    },
+    {
+     "text": "計",
+     "start": 7.16,
+     "end": 7.22,
+     "score": 0.999
+    },
+    {
+     "text": "公",
+     "start": 7.28,
+     "end": 7.42,
+     "score": 0.959
+    },
+    {
+     "text": "司",
+     "start": 7.44,
+     "end": 7.54,
+     "score": 0.999
+    },
+    {
+     "text": "為",
+     "start": 7.76,
+     "end": 7.88,
+     "score": 1
+    },
+    {
+     "text": "什",
+     "start": 7.94,
+     "end": 8.02,
+     "score": 1
+    },
+    {
+     "text": "麼",
+     "start": 8.04,
+     "end": 8.1,
+     "score": 1
+    },
+    {
+     "text": "沒",
+     "start": 8.14,
+     "end": 8.24,
+     "score": 0.897
+    },
+    {
+     "text": "有",
+     "start": 8.26,
+     "end": 8.32,
+     "score": 0.999
+    },
+    {
+     "text": "工",
+     "start": 8.36,
+     "end": 8.48,
+     "score": 1
+    },
+    {
+     "text": "廠",
+     "start": 8.5,
+     "end": 8.68,
+     "score": 0.941
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.22,
+    0.58,
+    0.76,
+    0.9,
+    1.06,
+    1.44,
+    1.62,
+    1.76,
+    1.94,
+    2.32,
+    2.5,
+    2.72,
+    2.84,
+    3,
+    3.7,
+    3.86,
+    4,
+    4.16,
+    4.3,
+    4.48,
+    4.86,
+    5.06,
+    5.24,
+    5.4,
+    5.98,
+    6.14,
+    6.24,
+    6.64,
+    6.82,
+    7.02,
+    7.16,
+    7.28,
+    7.44,
+    7.76,
+    7.94,
+    8.04,
+    8.14,
+    8.26,
+    8.36,
+    8.5
+   ]
   },
   {
    "id": "s10",
    "audio": null,
-   "audioFrame": 1768,
+   "audioFrame": 1647,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1764,
+   "startFrame": 1647,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1768,
-   "voiceEndFrame": 1850,
-   "stillFrame": 1848,
-   "subtitleWindow": [
-    1765,
-    1860
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1657,
+   "voiceEndFrame": 1657,
+   "stillFrame": 1731,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    1764,
-    1860
+    1652,
+    1743
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-800v/voice.wav",
+  "lufsIn": -14.07,
+  "lufs": -16,
+  "sec": 58.1
+ }
 }
