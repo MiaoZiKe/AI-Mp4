@@ -262,7 +262,7 @@ let usedProvider = null;
 // 先決定哪些幕要重新對齊（文字、音檔、字幕都沒變就沿用快取），一次送進 fa.py
 const isCached = (s, m) => {
   const cached = prev?.scenes?.find((x) => x.id === s.id);
-  if (force || !cached || cached.hash !== m.hash || cached.sub !== s.subtitle.zh || !cached.provider) return false;
+  if (force || !cached || cached.hash !== m.hash || clean(cached.sub) !== clean(s.subtitle.zh) || !cached.provider) return false; // 只改斷行（\n／空白）不重對齊
   return V2 ? Boolean(cached.charTimes || cached.words) : Boolean(cached.lines?.[0]?.chars);
 };
 const faJobs = [];
@@ -285,9 +285,9 @@ for (const [i, s] of script.scenes.entries()) {
   const subChars = norm(s.subtitle.zh);
   const spoken = norm(m.text);
   let times, transcript, words, cer, provider, unmatched = 0;
-  if (V2 && !force && cached && cached.hash === m.hash && cached.sub === s.subtitle.zh && cached.provider && (cached.charTimes || cached.words)) {
+  if (V2 && !force && cached && cached.hash === m.hash && clean(cached.sub) === clean(s.subtitle.zh) && cached.provider && (cached.charTimes || cached.words)) {
     console.log(`= ${s.id}（沿用時間戳）`);
-    cores.push({ ...cached, isEnd: s.component === "EndCard", charTimes: cached.charTimes ?? timesFromV1(cached, subChars), ...(V3 && typeof m.gapAfter === "number" ? { gapAfter: m.gapAfter } : {}), ...(V3 && typeof m.headSec === "number" ? { take: { head: m.headSec, tail: m.tailSec } } : {}) });
+    cores.push({ ...cached, sub: s.subtitle.zh, isEnd: s.component === "EndCard", charTimes: cached.charTimes ?? timesFromV1(cached, subChars), ...(V3 && typeof m.gapAfter === "number" ? { gapAfter: m.gapAfter } : {}), ...(V3 && typeof m.headSec === "number" ? { take: { head: m.headSec, tail: m.tailSec } } : {}) });
     report.push({ id: s.id, spoken: m.text, transcript: cached.transcript ?? "", cer: cached.cer ?? null, unmatched: 0, n: subChars.length, provider: cached.provider, fa: cached.fa });
     continue;
   }

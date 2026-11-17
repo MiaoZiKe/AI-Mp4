@@ -6,6 +6,7 @@
 //   然後一張表，表頭要有：念稿｜view｜素材｜tone｜重點詞（選填：來源｜狀態｜tag｜英）
 //   重點詞用「、」隔開，每個都必須出現在念稿裡；它們依序變成 cue k1、k2、k3…（動畫跟著念到那個詞觸發）。
 // 規格來源 docs/channels/caffaine-visual-plan-1116.md（view 12 種、tone 6 種）。已有 script.json 時不覆蓋（--force 才寫）。
+import { breakZh } from "./subtitle-breaks.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -35,7 +36,7 @@ const ks = (s) => (s ?? "").split(/[、,，]/).map((x) => x.trim()).filter(Boole
 const split = (s) => (s ?? "").split("|").map((x) => x.trim()).filter(Boolean);
 const clean = (t) => t.replace(/[\s，。？！：；、「」『』“”（）()]/g, "");
 // 字幕：逐標點斷行，單行超過 10 字再硬切（不切進重點詞裡）
-const subZh = (t, ws) => t.split(/(?<=[，。？！：；、])/).map((x) => x.replace(/[，。？！：；、]$/g, "").trim()).filter(Boolean).flatMap((ln) => { const out = []; while ([...ln].length > 10) { let i = 10; for (const w of ws) { const j = ln.indexOf(w); if (j >= 0 && j < i && j + [...w].length > i) i = j > 3 ? j : j + [...w].length; } out.push(ln.slice(0, i)); ln = ln.slice(i); } out.push(ln); return out; }).join("\n");
+const subZh = (t, ws) => breakZh(t, ws); // 斷行規則集中在 subtitle-breaks.mjs（英文詞／數字＋單位不拆、不留單字段）
 const imgSize = (p) => { try { return JSON.parse(execFileSync("python3", ["-c", `from PIL import Image;import json;print(json.dumps(Image.open('${p}').size))`]).toString()); } catch { return [1280, 800]; } };
 const isImg = (s) => /\.(png|jpe?g|webp)$/i.test(s);
 const at = (i, n) => `k${Math.min(i, n) || 1}`;
