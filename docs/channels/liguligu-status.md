@@ -37,6 +37,6 @@
 - overlap-check error 0／warn 0；片長 51.86 秒（上一版 51.90）；片尾 −11.4 LUFS／真峰值 −1.1 dBTP；網站版 6.5 MB（舊檔備份 out/liguligu-2008-check.prev.mp4）；未發布，等主控換檔。
 
 ## liguligu-dotcom-ai（歷史對照系列第 1 支：2000 網路泡沫 vs 現在 AI；11/17）
-- 無聲版完成：56.2 秒、9 幕（含片尾卡）、旁白 235 字、數字 5、事實 5（含相關公司卡）；overlap-check error 0／warn 0；片尾 −11.7 LUFS／−1.3 dBTP；網站版 3.1 MB；make 總耗時約 133 秒（最慢：render 約 80 秒、overlap-check 約 34 秒）。
-- 未送任何 TTS 請求；官方原文全未讀（WebFetch 擋 nasdaq.com 等），沒有「已確定」；等審查分數與使用者看過再配音。
+- 第 3 版有聲完成（最後一輪改版，不再改）：62.1 秒、9 幕（含片尾卡）、旁白 251 字；Charon、gemini-3.8-flash-tts，TTS 2 次請求（第 1 次失敗、等 120 秒重試成功）；語速說話區間 5.0 音節/秒（含停頓 4.3）、捲舌指標 4.07 kHz（基準 4.3）、對齊信心最低 s01 0.69；overlap 0 error／0 warn；片尾 −11.3 LUFS／−1.2 dBTP；網站版 3.5 MiB；make 總耗時 467 秒（含 TTS 324 秒）。
+- 官方原文全未讀（WebFetch 擋 nasdaq.com 等），沒有任何一句標為確定；尚未發布，等 Andy 聽過。事件間隔 >1.2 秒的鏡仍有 7 鏡（warn，不擋）。
 - 下一集：1990 日本泡沫。

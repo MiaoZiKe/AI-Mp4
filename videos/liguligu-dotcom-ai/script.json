@@ -14,14 +14,15 @@
     "mark": "LIGULIGU",
     "section": "國際",
     "sectionEn": "INTERNATIONAL",
-    "places": {}
+    "places": {},
+    "tickerStatic": "非投資建議・出處見上方"
   },
   "voice": {
     "voiceName": "Charon",
     "model": "gemini-3.8-flash-tts",
     "mode": "take",
     "profile": "liguligu",
-    "note": "API 整篇一次生成"
+    "note": "voice-take.mjs（2026/11/17，--from）整篇一次生成，切說明句、段落插靜音"
   },
   "cover": {
     "title": [
@@ -224,8 +225,8 @@
         },
         "photo": {
           "name": "capex",
-          "caption": "資本支出（示意，單位：億美元）",
-          "date": "2026",
+          "caption": "簡圖示意，資料 Yahoo 等",
+          "date": "2025→2026",
           "at": "start-22",
           "dateAt": "c1+4"
         },
@@ -299,7 +300,7 @@
           "src": "口徑：預估，非落後",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c4",
+          "bigAt": "start+8",
           "srcAt": "c4+8",
           "tag": {
             "kind": "none",
@@ -316,7 +317,7 @@
           "src": "口徑：預估，非落後",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c2+6",
+          "bigAt": "start+14",
           "srcAt": "c3+6",
           "tag": {
             "kind": "none",
@@ -384,7 +385,7 @@
           "src": "高點曾到 150–200 倍",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c2+14",
+          "bigAt": "start+8",
           "srcAt": "c4+8",
           "tag": {
             "kind": "none",
@@ -401,7 +402,7 @@
           "src": "同一指標，同一指數",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c2+4",
+          "bigAt": "start+14",
           "srcAt": "c3+6",
           "tag": {
             "kind": "none",
@@ -546,7 +547,7 @@
         "left": {
           "photo": {
             "name": "nasdaq26",
-            "caption": "10/6 高點後修正（示意）",
+            "caption": "簡圖示意，資料 CNBC",
             "at": "start-20"
           },
           "row": "已修正",
@@ -573,7 +574,7 @@
         }
       },
       "sources": [
-        "CNBC、AP 2026/11/5；回收情況尚無資料"
+        "CNBC、AP 2026/11/5；收盤兩版 24,315／24,713"
       ]
     },
     {
@@ -634,7 +635,7 @@
           "at": "c2+8",
           "photo": {
             "name": "nikkei89",
-            "caption": "日經 225 高點資料卡（示意）",
+            "caption": "日經高點・1989/12/29（示意）",
             "at": "c2+12"
           },
           "title": "1990 日本泡沫",

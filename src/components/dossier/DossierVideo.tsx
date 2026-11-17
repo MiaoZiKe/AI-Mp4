@@ -646,7 +646,7 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
 type Place = { zh: string; en: string; lon: number; lat: number };
-type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string } };
+type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string }; /** 選填：底部欄右側改放固定短字（不跑馬燈，不會被「查證截至」徽章切到） */ tickerStatic?: string };
 type ShotNews = { dateline?: string; place?: string; lt?: string };
 const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
 const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
@@ -773,7 +773,7 @@ const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: st
   );
 };
 /** 出處（每鏡一行，換鏡時擦入）＋底部跑馬燈：左邊固定「查證截至」，右邊全片的來源一直往左走 */
-const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ shots, f, asOf }) => {
+const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string; fixedText?: string }> = ({ shots, f, asOf, fixedText }) => {
   const ln = useLN();
   const cur = curShot(shots, f), sp = cur.index === 0 ? 1 : tween(f, cur.start + 2, NM.lt + 2, EASE.enter);
   const items = [...new Set(shots.flatMap((sh) => sh.sources))];
@@ -786,7 +786,7 @@ const SourceTicker: React.FC<{ shots: DsShot[]; f: number; asOf: string }> = ({ 
       <div data-box="ticker" style={{ position: "absolute", left: L.X, top: ln.TICK_TOP, width: L.INNER_W, height: ln.TICK_H, background: N.tickBg, boxSizing: "border-box", borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch", overflow: "hidden" }}>
         <div style={{ background: N.red, padding: "0 18px", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, zIndex: 1, ...sans(ln.TICK_PX, T.weight.bold, N.onRed), letterSpacing: "0.04em", lineHeight: 1 }}>查證截至 <span style={{ ...NUM, fontWeight: 700 }}>{asOf}</span></div>
         <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
-          <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", transform: `translateX(${r1(-50 * frac)}%)` }}>{row(0)}{row(1)}</div>
+          {fixedText ? <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", whiteSpace: "nowrap", ...sans(ln.TICK_PX, T.weight.body, T.text2), lineHeight: 1 }}>{fixedText}</div> : <div style={{ position: "absolute", left: 24, top: 0, height: "100%", display: "flex", alignItems: "center", transform: `translateX(${r1(-50 * frac)}%)` }}>{row(0)}{row(1)}</div>}
         </div>
       </div>
     </>
@@ -844,7 +844,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       {m.shots.map((sh) => <Shot key={sh.id} sh={sh} f={f} slug={slug} cut />)}
       <SweepBand shots={m.shots} f={f} />
       <LowerThird cues={caps} shots={m.shots} f={f} />
-      <SourceTicker shots={m.shots} f={f} asOf={asOf} />
+      <SourceTicker shots={m.shots} f={f} asOf={asOf} fixedText={news.tickerStatic} />
       {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
       <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />
       {audio}

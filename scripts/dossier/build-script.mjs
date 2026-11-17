@@ -121,7 +121,7 @@ const script = {
   channel: plan.channel ?? { name: "哩股哩股", tag: "查到底", slogan: "數字，查過再信" },
   news: {
     layout: "fill", mark: "LIGULIGU", section: plan.news?.section ?? "國際", sectionEn: plan.news?.sectionEn ?? "INTERNATIONAL",
-    places: plan.places ?? {}, ...(plan.link ? { link: plan.link } : {}),
+    places: plan.places ?? {}, ...(plan.link ? { link: plan.link } : {}), ...(plan.news?.tickerStatic ? { tickerStatic: plan.news.tickerStatic } : {}),
   },
   voice: plan.voice ?? { voiceName: "Charon", model: "gemini-3.8-flash-tts", mode: "take", profile: "liguligu", note: "API 整篇一次生成" },
   cover: plan.cover ?? { title: [plan.title], sub: "" },
