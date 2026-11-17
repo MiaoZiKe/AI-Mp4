@@ -163,6 +163,16 @@ export function validateThree(script, h) {
       for (const i of res.issues ?? []) (i.level === "error" ? HE : W)(`版面［${i.kind}］${i.msg}${fr(i.frames)}`);
     } catch { W(`版面檢查沒跑成功（node scripts/three/layout-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 300)}`); }
   }
+  // 關節鏈（機械手臂等；2026/11/17 Andy：「旋轉部分沒做好」）：有 model.kin 或舊式關節鏈（rotate 寫 chain／3D pivot）就跑 scripts/three/kinematics-check.mjs，
+  // 逐幀檢查脫節、夾爪沒夾住、穿模、關節上下限；它的 error 算這裡的 error
+  if (model && (model.kin || Object.values(model.actions ?? {}).some((d) => d.type === "rotate" && (d.chain || (d.pivot && d.pivot.length > 2))))) {
+    const r = spawnSync("node", [path.join(path.dirname(new URL(import.meta.url).pathname), "kinematics-check.mjs"), String(script.slug), "--json"], { encoding: "utf8" });
+    try {
+      const res = JSON.parse(String(r.stdout).trim().split("\n").pop());
+      const fr = (x) => (x ? `（第 ${x[0]}–${x[1]} 幀）` : "");
+      for (const i of res.issues ?? []) (i.level === "error" ? E : W)(`關節鏈［${i.kind}］${i.msg}${fr(i.frames)}`);
+    } catch { E(`關節鏈檢查沒跑成功（node scripts/three/kinematics-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 300)}`); }
+  }
   const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
   if (script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
   return { errors, warns, est };

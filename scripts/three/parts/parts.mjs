@@ -179,7 +179,7 @@ export const PARTS = {
     const lift = { min: R2(-0.35), max: R2(drop + 0.6) };
     c.kin({
       layer: c.layer, tip: "lift", size: R2(l1 + l2),
-      grip: W([l1 + l2, fy, 0]),
+      grip: W([l1 + l2, R2(fy - fh / 2 + 0.05), 0]), // 夾持點＝兩指中間、指尖往上 0.05（夾住時這一點在物件裡面）
       joints: [
         { id: "j1", type: "rot", axis: [0, 1, 0], pivot: W([0, y, 0]), parts: c.ids("shoulder", "link1", "elbow"), min: LIM.j1[0], max: LIM.j1[1] },
         { id: "j2", parent: "j1", type: "rot", axis: [0, 1, 0], pivot: W([l1, y2, 0]), parts: c.ids("link2", "wristHub"), min: LIM.j2[0], max: LIM.j2[1] },

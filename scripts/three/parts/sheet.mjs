@@ -24,7 +24,7 @@ const L = [
   ["hbm", "HBM 堆疊 hbm", "w、t、n、slices", { w: 1.6, t: 0.9, n: 12 }, { d: 4.5, y: 0.4 }],
   ["stack", "逐層堆疊 stack", "layers[{t,mat}]、w、d", { w: 3, d: 3, layers: [{ t: 0.15, mat: "silicon" }, { t: 0.1, mat: "pad" }, { t: 0.15, mat: "chip" }, { t: 0.1, mat: "pad" }, { t: 0.15, mat: "hbm" }] }, { d: 7, y: 0.4 }],
   ["nozzle", "吸嘴 nozzle", "scale", { scale: 1.3 }, { d: 6, y: 1.0 }],
-  ["arm", "機械手臂 arm", "h、l1、l2、drop、reach", { reach: 0 }, { d: 11, y: 1.8, dx: 2 }],
+  ["arm", "機械手臂 arm", "h、l1、l2、drop、to、gw", {}, { d: 11, y: 1.8, dx: 2 }],
   ["probe", "探針頭 probe", "（固定尺寸）", {}, { d: 6, y: 0.9 }],
   ["beam", "光束 beam", "from、to、r、color", { _beam: true }, { d: 8, y: 1.6 }],
   ["chamber", "腔體 chamber", "r、len、bolts", { r: 2.2, len: 6 }, { d: 14, y: 0 }],
