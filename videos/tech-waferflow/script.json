@@ -1,0 +1,433 @@
+{
+ "slug": "tech-waferflow",
+ "title": "一片晶圓要經過哪些流程（科技透明圈 第 11 支）",
+ "asOf": "2026/11/25",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b"
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "一片晶圓要做三個月以上，其實是同一套動作，重複數十次。是哪幾步？",
+   "tts": "一片晶圓要做三個月以上，其實是同一套動作，重複數十次。是哪幾步？",
+   "subtitle": {
+    "zh": "一片晶圓要做三個月以上\n其實是同一套動作\n重複數十次\n是哪幾步？",
+    "en": "One wafer takes over three months, | but it's one routine, | repeated dozens of times. | Which steps?"
+   },
+   "keywords": [
+    "三個月",
+    "同一套",
+    "數十次"
+   ],
+   "cues": [
+    {
+     "id": "wafer",
+     "text": "一片晶圓"
+    },
+    {
+     "id": "mo",
+     "text": "三個月以上"
+    },
+    {
+     "id": "same",
+     "text": "同一套動作"
+    },
+    {
+     "id": "rep",
+     "text": "重複數十次"
+    },
+    {
+     "id": "which",
+     "text": "是哪幾步"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "第一步沉積，鍍一層絕緣的氧化層，再鍍一層金屬。",
+   "tts": "第一步沉積，鍍一層絕緣的氧化層，再鍍一層金屬。",
+   "subtitle": {
+    "zh": "第一步沉積\n鍍一層絕緣的氧化層\n再鍍一層金屬",
+    "en": "Step one: deposition. | Coat an insulating oxide layer, | then a metal layer."
+   },
+   "keywords": [
+    "沉積",
+    "氧化層",
+    "金屬"
+   ],
+   "cues": [
+    {
+     "id": "dep",
+     "text": "沉積"
+    },
+    {
+     "id": "ox",
+     "text": "氧化層"
+    },
+    {
+     "id": "mt",
+     "text": "一層金屬"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "接著塗上光阻，光阻像底片，照到光就會變質。",
+   "tts": "接著塗上光阻，光阻像底片，照到光就會變質。",
+   "subtitle": {
+    "zh": "接著塗上光阻\n光阻像底片\n照到光就會變質",
+    "en": "Next, coat photoresist. | Resist works like film: | light changes it."
+   },
+   "keywords": [
+    "光阻",
+    "底片",
+    "變質"
+   ],
+   "cues": [
+    {
+     "id": "res",
+     "text": "塗上光阻"
+    },
+    {
+     "id": "film",
+     "text": "像底片"
+    },
+    {
+     "id": "chg",
+     "text": "變質"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "所以用光穿過光罩，把圖形印進去，這是曝光。",
+   "tts": "所以用光穿過光罩，把圖形印進去，這是曝光。",
+   "subtitle": {
+    "zh": "所以用光穿過光罩\n把圖形印進去\n這是曝光",
+    "en": "So shine light through a mask | to print the pattern. | That's exposure."
+   },
+   "keywords": [
+    "光罩",
+    "曝光"
+   ],
+   "cues": [
+    {
+     "id": "lt",
+     "text": "用光"
+    },
+    {
+     "id": "msk",
+     "text": "光罩"
+    },
+    {
+     "id": "prt",
+     "text": "印進去"
+    },
+    {
+     "id": "exp",
+     "text": "曝光"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "顯影藥水一沖，變質的光阻被洗掉，金屬露出來。",
+   "tts": "顯影藥水一沖，變質的光阻被洗掉，金屬露出來。",
+   "subtitle": {
+    "zh": "顯影藥水一沖\n變質的光阻被洗掉\n金屬露出來",
+    "en": "Rinse with developer: | the changed resist washes away | and the metal shows."
+   },
+   "keywords": [
+    "顯影",
+    "洗掉",
+    "露出來"
+   ],
+   "cues": [
+    {
+     "id": "dev",
+     "text": "顯影藥水"
+    },
+    {
+     "id": "wash",
+     "text": "洗掉"
+    },
+    {
+     "id": "show",
+     "text": "金屬露出來"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "露出來的金屬沒有保護，被電漿刻掉，這是蝕刻。",
+   "tts": "露出來的金屬沒有保護，被電漿刻掉，這是蝕刻。",
+   "subtitle": {
+    "zh": "露出來的金屬沒有保護\n被電漿刻掉\n這是蝕刻",
+    "en": "Unprotected metal | is cut away by plasma. | That's etching."
+   },
+   "keywords": [
+    "電漿",
+    "蝕刻"
+   ],
+   "cues": [
+    {
+     "id": "bare",
+     "text": "沒有保護"
+    },
+    {
+     "id": "pl",
+     "text": "電漿"
+    },
+    {
+     "id": "cut",
+     "text": "刻掉"
+    },
+    {
+     "id": "etch",
+     "text": "蝕刻"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "光阻沒用了，洗掉，這一層就完成。",
+   "tts": "光阻沒用了，洗掉，這一層就完成。",
+   "subtitle": {
+    "zh": "光阻沒用了\n洗掉\n這一層就完成",
+    "en": "The resist is done, | wash it off, | and the layer is finished."
+   },
+   "keywords": [
+    "洗掉",
+    "完成"
+   ],
+   "cues": [
+    {
+     "id": "use",
+     "text": "沒用了"
+    },
+    {
+     "id": "strip",
+     "text": "洗掉"
+    },
+    {
+     "id": "done",
+     "text": "這一層就完成"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "有的層要打進離子，有的要研磨磨平，下一層才疊得穩。",
+   "tts": "有的層要打進離子，有的要研磨磨平，下一層才疊得穩。",
+   "subtitle": {
+    "zh": "有的層要打進離子\n有的要研磨磨平\n下一層才疊得穩",
+    "en": "Some layers get ions implanted, | some get polished flat, | so the next layer sits steady."
+   },
+   "keywords": [
+    "離子",
+    "研磨",
+    "疊得穩"
+   ],
+   "cues": [
+    {
+     "id": "ion",
+     "text": "打進離子"
+    },
+    {
+     "id": "pol",
+     "text": "研磨磨平"
+    },
+    {
+     "id": "next",
+     "text": "下一層"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "一輪只做出一層，所以要重複數十次，先進晶片更到上百次。",
+   "tts": "一輪只做出一層，所以要重複數十次，先進晶片更到上百次。",
+   "subtitle": {
+    "zh": "一輪只做出一層\n所以要重複數十次\n先進晶片更到上百次",
+    "en": "One round makes one layer, | so repeat it dozens of times, | over a hundred for advanced chips."
+   },
+   "keywords": [
+    "一層",
+    "數十次",
+    "上百次"
+   ],
+   "cues": [
+    {
+     "id": "one",
+     "text": "一輪"
+    },
+    {
+     "id": "rep",
+     "text": "重複數十次"
+    },
+    {
+     "id": "hund",
+     "text": "上百次"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "這些設備，曝光找艾司摩爾，蝕刻找科林研發。台灣有家登的光罩盒，三福化的去光阻藥水，中砂的研磨墊修整碟。",
+   "tts": "這些設備，曝光找艾司摩爾，蝕刻找科林研發。台灣有家登的光罩盒，三福化的去光阻藥水，中砂的研磨墊修整碟。",
+   "subtitle": {
+    "zh": "這些設備\n曝光找艾司摩爾\n蝕刻找科林研發\n台灣有家登的光罩盒\n三福化的去光阻藥水\n中砂的研磨墊修整碟",
+    "en": "These tools: | exposure from ASML, | etching from Lam Research. | In Taiwan: mask pods, | resist stripper, | and pad conditioners."
+   },
+   "keywords": [
+    "艾司摩爾",
+    "科林研發",
+    "家登"
+   ],
+   "cues": [
+    {
+     "id": "tool",
+     "text": "這些設備"
+    },
+    {
+     "id": "asml",
+     "text": "艾司摩爾"
+    },
+    {
+     "id": "lam",
+     "text": "科林研發"
+    },
+    {
+     "id": "gd",
+     "text": "家登"
+    },
+    {
+     "id": "sf",
+     "text": "三福化"
+    },
+    {
+     "id": "kn",
+     "text": "中砂"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "每一步都有學問，下一支先看蝕刻機，怎麼把圖形刻進晶圓。想看完整流程，留言流程。",
+   "tts": "每一步都有學問，下一支先看蝕刻機，怎麼把圖形刻進晶圓。想看完整流程，留言流程。",
+   "subtitle": {
+    "zh": "每一步都有學問\n下一支先看蝕刻機\n怎麼把圖形刻進晶圓\n想看完整流程\n留言流程",
+    "en": "Each step has its tricks. | Next: the etching machine, | how it carves the pattern in. | Want the full rundown? | Comment \"流程\"."
+   },
+   "keywords": [
+    "蝕刻機",
+    "流程"
+   ],
+   "cues": [
+    {
+     "id": "tricks",
+     "text": "學問"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "how",
+     "text": "怎麼把圖形"
+    },
+    {
+     "id": "full",
+     "text": "完整流程"
+    },
+    {
+     "id": "kw",
+     "text": "留言流程"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {},
+   "sources": []
+  }
+ ]
+}
