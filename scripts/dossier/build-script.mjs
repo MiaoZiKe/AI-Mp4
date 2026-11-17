@@ -21,7 +21,7 @@ const outPath = opt("out") ?? path.join(ROOT, "videos", slug ?? plan.slug, "scri
 const types = fs.readdirSync(TPL_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""));
 
 for (const k of ["slug", "title", "asOf", "thesis"]) if (typeof plan[k] !== "string" || !plan[k]) E(`頂層缺少 ${k}`);
-if (!plan.endCard?.comment || !plan.endCard?.next) E("頂層 endCard 要有 comment（2–4 字留言關鍵字）與 next（下一集題目）");
+if (!plan.endCard?.comment) E("頂層 endCard 要有 comment（2–4 字留言關鍵字）；next（下一集題目）可省略");
 if (!Array.isArray(plan.scenes) || !plan.scenes.length) E("scenes 是空的");
 
 const PH = /\{\{(\w+)(\?)?(?:\|([^}]*))?\}\}/g;
@@ -113,7 +113,7 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
 
 if (plan.endCard) scenes.push({
   id: "end", narration: "", subtitle: { zh: "", en: "" }, keywords: [], cues: [], beat: "cta", component: "EndCard",
-  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { comment: plan.endCard.comment, next: plan.endCard.next } }, sources: [],
+  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { comment: plan.endCard.comment, ...(plan.endCard.next ? { next: plan.endCard.next } : {}) } }, sources: [],
 });
 
 const script = {
