@@ -136,11 +136,11 @@ const Count: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <text x={40} y={170} opacity={a} style={zh(150, c("lp_proc"), 900)}>{n}</text>
         <text x={n >= 10 ? 270 : 190} y={170} opacity={a} style={zh(54, H.text, 900)}>層</text>
-        <text x={40} y={222} opacity={a} style={zh(sm(32), H.text2, 800)}>一輪＝沉積→曝光→蝕刻→磨平</text>
-        {Array.from({ length: N }, (_, i) => <rect key={i} x={430 + i * 38} y={150 - i * 5} width={30} height={20 + i * 5} fill={i < n ? (i % 2 ? c("lp_mt") : c("lp_ox")) : H.lineSoft} opacity={i < n ? 1 : 0.4} />)}
-        <text x={430} y={226} opacity={b} style={zh(40, H.text, 900)}>重複數十次</text>
-        <text x={430} y={278} opacity={h} style={zh(42, c("lp_proc"), 900)}>先進晶片：上百道光罩層</text>
-        <text x={W - 24} y={Hh - 14} textAnchor="end" opacity={h} style={zh(sm(30), H.text2, 700)}>約 80～120 層・產業估計</text>
+        <text x={40} y={226} opacity={a} style={zh(sm(32), H.text2, 800)}>一輪＝沉積→曝光→蝕刻→磨平</text>
+        {Array.from({ length: N }, (_, i) => <rect key={i} x={430 + i * 38} y={118 - i * 4} width={30} height={16 + i * 4} fill={i < n ? (i % 2 ? c("lp_mt") : c("lp_ox")) : H.lineSoft} opacity={i < n ? 1 : 0.4} />)}
+        <text x={430} y={186} opacity={b} style={zh(40, H.text, 900)}>重複數十次</text>
+        <text x={430} y={232} opacity={h} style={zh(40, c("lp_proc"), 900)}>先進晶片：上百道光罩層</text>
+        <text x={430} y={272} opacity={h} style={zh(sm(30), H.text2, 700)}>約 80～120 層・產業估計</text>
       </svg>
     </Card>
   );
