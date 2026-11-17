@@ -183,7 +183,7 @@ const Hx: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 310, c = (n: string) => col(m.product, n);
   const cdu = T(o, "cdu"), give = T(o, "give"), cool = T(o, "cool");
   const a = tween(f, cdu, 10, EASE.enter), g = tween(f, give, 16, EASE.move), cl = tween(f, cool, 12, EASE.enter);
-  const x0 = 60, y0 = 96, hh = 164, n = 9, pw = 30, gp = 20;
+  const x0 = 60, y0 = 106, hh = 152, n = 9, pw = 30, gp = 20;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -194,10 +194,10 @@ const Hx: React.FC<P> = ({ o, f, k, m }) => {
           {Array.from({ length: 6 }, (_, j) => { const u = ph(f, 0.016, j, 6, i * 0.31); const yy = hot ? y0 + 8 + u * (hh - 16) : y0 + hh - 8 - u * (hh - 16);
             const tt = hot ? 1 - u * 0.9 * g : u * 0.9 * g; return <circle key={j} cx={x + pw / 2} cy={yy} r={6} fill={tcol(m, hot ? Math.max(0.05, tt) : Math.max(0.05, tt))} />; })}
         </g>; })}
-        <text x={x0} y={y0 - 16} opacity={a} style={zh(sm(30), c("lp_bad"), 800)}>機櫃來的熱水</text>
-        <text x={x0 + n * (pw + gp) - 20} y={y0 + hh + 42} textAnchor="end" opacity={a} style={zh(sm(30), c("lp_sig"), 800)}>機房冷卻水</text>
+        <text x={x0} y={y0 - 14} opacity={a} style={zh(sm(30), c("lp_bad"), 800)}>機櫃來的熱水</text>
+        <text x={x0 + n * (pw + gp) - 20} y={y0 + hh + 40} textAnchor="end" opacity={a} style={zh(sm(30), c("lp_sig"), 800)}>機房冷卻水</text>
         {/* 熱箭頭：水平穿過金屬片 */}
-        {g > 0 ? [0, 1, 2, 3].map((j) => { const yy = y0 + 30 + j * 44, xx = x0 + 60 + ((f * 0.9 + j * 17) % 200); return <path key={j} d={`M${xx} ${yy} h26 m-9 -9 l9 9 l-9 9`} stroke={c("lp_heat")} strokeWidth={5} fill="none" opacity={g * 0.9} />; }) : null}
+        {g > 0 ? [0, 1, 2, 3].map((j) => { const yy = y0 + 24 + j * 36, xx = x0 + 60 + ((f * 0.9 + j * 17) % 200); return <path key={j} d={`M${xx} ${yy} h26 m-9 -9 l9 9 l-9 9`} stroke={c("lp_heat")} strokeWidth={5} fill="none" opacity={g * 0.9} />; }) : null}
         <text x={560} y={110} opacity={tween(f, cdu + 6, 8, EASE.enter)} style={zh(36, H.text, 800)}>① 兩邊的水各走各的</text>
         <text x={560} y={170} opacity={tween(f, give, 8, EASE.enter)} style={zh(36, H.text, 800)}>② 熱隔著金屬片傳過去</text>
         <text x={560} y={230} opacity={cl} style={zh(36, H.text, 800)}>③ 熱水降溫、冷水變暖</text>
