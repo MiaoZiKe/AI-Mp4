@@ -1,0 +1,1510 @@
+{
+ "slug": "tech-icdesign",
+ "title": "IC 設計：一顆晶片怎麼從規格變成光罩（科技透明圈 第 10 支）",
+ "asOf": "2026/11/23",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-icdesign-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "chip",
+    "label": "一顆晶片",
+    "en": "DIE",
+    "field": "12 mm",
+    "ruler": "2 mm",
+    "art": "ic-die",
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "blk",
+    "label": "一個區塊",
+    "en": "BLOCK",
+    "field": "480 µm",
+    "ruler": "100 µm",
+    "art": "ic-blk",
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "rows",
+    "label": "標準元件",
+    "en": "STANDARD CELLS",
+    "field": "6 µm",
+    "ruler": "1 µm",
+    "art": "ic-rows",
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "cell",
+    "label": "電晶體與金屬線",
+    "en": "TRANSISTOR + METAL",
+    "field": "400 nm",
+    "ruler": "100 nm",
+    "art": "ic-cell",
+    "handoff3D": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "flow",
+    "label": "設計流程",
+    "en": "DESIGN FLOW",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "mask",
+    "label": "光罩曝光",
+    "en": "PHOTOMASK EXPOSURE",
+    "field": "20 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "die",
+    "label": "整顆晶片",
+    "en": "FULL CHIP",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 8,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "設計晶片",
+   "沒有工廠"
+  ],
+  "sub": "IC 設計",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片設計公司沒有工廠，因為交出去的只是設計圖。",
+   "tts": "晶片設計公司沒有工廠，因為交出去的只是設計圖。",
+   "subtitle": {
+    "zh": "晶片設計公司沒有工廠\n因為交出去的\n只是設計圖",
+    "en": "A chip-design company has no factory, | because what it hands over | is only a design."
+   },
+   "keywords": [
+    "沒有工廠",
+    "設計圖"
+   ],
+   "cues": [
+    {
+     "id": "co",
+     "text": "晶片設計公司"
+    },
+    {
+     "id": "nofab",
+     "text": "沒有工廠"
+    },
+    {
+     "id": "pic",
+     "text": "設計圖"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "晶片設計公司沒有工廠",
+     "title": "只交設計圖",
+     "size": 130,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "chip",
+      "at": "start-30",
+      "drift": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "co+4",
+      "until": "nofab-4",
+      "text": "晶片設計公司",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "style": "tag",
+      "x": 300,
+      "y": 1296
+     },
+     {
+      "type": "stamp",
+      "at": "nofab",
+      "until": "pic-4",
+      "text": "沒有工廠",
+      "color": "coral",
+      "size": 64,
+      "rot": -4,
+      "x": 800,
+      "y": 1206
+     },
+     {
+      "type": "stamp",
+      "at": "pic",
+      "until": "s2:start-2",
+      "text": "交出去：一份設計圖",
+      "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "style": "tag",
+      "x": 640,
+      "y": 1296
+     }
+    ]
+   },
+   "sources": [
+    "廠商與媒體對 fabless 的通用說法；見 research.md #1"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "設計圖怎麼來？放大來看，晶片裡面有什麼。",
+   "tts": "設計圖怎麼來？放大來看，晶片裡面有什麼。",
+   "subtitle": {
+    "zh": "設計圖怎麼來？\n放大來看\n晶片裡面有什麼",
+    "en": "Where does the design come from? | Zoom in first: | what is inside a chip?"
+   },
+   "keywords": [
+    "怎麼來",
+    "放大"
+   ],
+   "cues": [
+    {
+     "id": "how",
+     "text": "怎麼來"
+    },
+    {
+     "id": "zoom",
+     "text": "放大"
+    },
+    {
+     "id": "inside",
+     "text": "裡面有什麼"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chip",
+      "at": "start-4",
+      "drift": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "how",
+      "until": "zoom-6",
+      "text": "怎麼來？",
+      "color": "amber",
+      "size": 52,
+      "rot": -4,
+      "style": "tag",
+      "x": 330,
+      "y": 1256
+     },
+     {
+      "type": "stamp",
+      "at": "inside",
+      "until": "s3:start-2",
+      "text": "晶片・約 1 公分",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "style": "tag",
+      "x": 720,
+      "y": 1296
+     }
+    ]
+   },
+   "sources": [
+    "示意"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶片分成功能區塊，裡面是一行行的標準元件，每個只有幾顆電晶體。",
+   "tts": "晶片分成功能區塊，裡面是一行行的標準元件，每個只有幾顆電晶體。",
+   "subtitle": {
+    "zh": "晶片分成功能區塊\n裡面是一行行的\n標準元件\n每個只有幾顆電晶體",
+    "en": "A chip splits into function blocks; | inside are rows of | standard cells, | each with just a few transistors."
+   },
+   "keywords": [
+    "功能區塊",
+    "標準元件",
+    "電晶體"
+   ],
+   "cues": [
+    {
+     "id": "blk",
+     "text": "功能區塊"
+    },
+    {
+     "id": "row",
+     "text": "一行行"
+    },
+    {
+     "id": "cell",
+     "text": "標準元件"
+    },
+    {
+     "id": "tr",
+     "text": "電晶體"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "blk",
+      "at": "row-8",
+      "dur": 26
+     },
+     {
+      "to": "rows",
+      "at": "cell-8",
+      "dur": 26
+     },
+     {
+      "to": "cell",
+      "at": "tr-12",
+      "dur": 30
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "blk",
+      "until": "row-8",
+      "text": "功能區塊",
+      "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "style": "tag",
+      "x": 540,
+      "y": 1296
+     },
+     {
+      "type": "stamp",
+      "at": "row+6",
+      "until": "cell-8",
+      "text": "一行一行排",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "style": "tag",
+      "x": 720,
+      "y": 1296
+     },
+     {
+      "type": "stamp",
+      "at": "cell+8",
+      "until": "tr-14",
+      "text": "標準元件",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "style": "tag",
+      "x": 720,
+      "y": 1296
+     },
+     {
+      "type": "stamp",
+      "at": "tr+4",
+      "until": "s4:start-2",
+      "text": "一顆反相器（開關）",
+      "color": "amber",
+      "size": 40,
+      "rot": -4,
+      "style": "tag",
+      "x": 540,
+      "y": 1296
+     }
+    ]
+   },
+   "sources": [
+    "示意：區塊配置不是任何一顆真實晶片"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "拆開來看，電晶體在最底層，上面疊著十幾層金屬線，把它們連起來。",
+   "tts": "拆開來看，電晶體在最底層，上面疊著十幾層金屬線，把它們連起來。",
+   "subtitle": {
+    "zh": "拆開來看\n電晶體在最底層\n上面疊著十幾層金屬線\n把它們連起來",
+    "en": "Take it apart: | transistors sit at the bottom, | a dozen-plus metal layers on top | wire them together."
+   },
+   "keywords": [
+    "電晶體",
+    "十幾層金屬線",
+    "連起來"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "tr",
+     "text": "電晶體"
+    },
+    {
+     "id": "top",
+     "text": "十幾層金屬線"
+    },
+    {
+     "id": "link",
+     "text": "連起來"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "open-4",
+      "dur": 26,
+      "x": 0,
+      "y": 17,
+      "d": 128,
+      "elev": 30,
+      "yaw": 0.5
+     }
+    ],
+    "shift": [
+     {
+      "layer": "sub",
+      "at": "open+0",
+      "until": "s6:start-24",
+      "dy": 0.0,
+      "dur": 22
+     },
+     {
+      "layer": "dev",
+      "at": "open+1",
+      "until": "s6:start-24",
+      "dy": 3.4,
+      "dur": 22
+     },
+     {
+      "layer": "ct",
+      "at": "open+2",
+      "until": "s6:start-24",
+      "dy": 6.8,
+      "dur": 22
+     },
+     {
+      "layer": "m1",
+      "at": "open+3",
+      "until": "s6:start-24",
+      "dy": 10.2,
+      "dur": 22
+     },
+     {
+      "layer": "v1",
+      "at": "open+4",
+      "until": "s6:start-24",
+      "dy": 13.6,
+      "dur": 22
+     },
+     {
+      "layer": "m2",
+      "at": "open+5",
+      "until": "s6:start-24",
+      "dy": 17.0,
+      "dur": 22
+     },
+     {
+      "layer": "v2",
+      "at": "open+6",
+      "until": "s6:start-24",
+      "dy": 20.4,
+      "dur": 22
+     },
+     {
+      "layer": "m3",
+      "at": "open+7",
+      "until": "s6:start-24",
+      "dy": 23.8,
+      "dur": 22
+     },
+     {
+      "layer": "v3",
+      "at": "open+8",
+      "until": "s6:start-24",
+      "dy": 27.2,
+      "dur": 22
+     },
+     {
+      "layer": "m4",
+      "at": "open+9",
+      "until": "s6:start-24",
+      "dy": 30.6,
+      "dur": 22
+     },
+     {
+      "layer": "v4",
+      "at": "open+10",
+      "until": "s6:start-24",
+      "dy": 34.0,
+      "dur": 22
+     },
+     {
+      "layer": "m5",
+      "at": "open+11",
+      "until": "s6:start-24",
+      "dy": 37.4,
+      "dur": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "s_via1",
+      "at": "link",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_via2",
+      "at": "link+4",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_via3",
+      "at": "link+8",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_via4",
+      "at": "link+12",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_ct",
+      "at": "link",
+      "until": "s5:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_sub",
+      "text": "矽基板",
+      "en": "Silicon",
+      "color": "blue",
+      "at": "open+20",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_dev",
+      "text": "電晶體",
+      "en": "Transistors",
+      "color": "amber",
+      "at": "tr",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_m1",
+      "text": "第 1 層金屬 M1",
+      "en": "Metal 1",
+      "color": "amber",
+      "at": "top",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_m2",
+      "text": "M2",
+      "en": "Metal 2",
+      "color": "coral",
+      "at": "top+8",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_m3",
+      "text": "M3",
+      "en": "Metal 3",
+      "color": "blue",
+      "at": "top+16",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_m4",
+      "text": "M4",
+      "en": "Metal 4",
+      "color": "blue",
+      "at": "top+24",
+      "until": "s5:wire-10"
+     },
+     {
+      "part": "a_m5",
+      "text": "最上層 M5",
+      "en": "Metal 5",
+      "color": "blue",
+      "at": "top+30",
+      "until": "s5:wire-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "top+30",
+      "until": "s5:start-2",
+      "text": "示意 5 層・實際 10～15 層",
+      "color": "amber",
+      "size": 34,
+      "rot": -4,
+      "style": "tag",
+      "x": 470,
+      "y": 1296
+     }
+    ]
+   },
+   "sources": [
+    "來源：Semiconductor Engineering 技術文章"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "訊號沿著金屬線，從最上層一層層流到電晶體，再流出去。",
+   "tts": "訊號沿著金屬線，從最上層一層層流到電晶體，再流出去。",
+   "subtitle": {
+    "zh": "訊號沿著金屬線\n從最上層\n一層層流到電晶體\n再流出去",
+    "en": "A signal follows the metal wires, | from the top layer, | down layer by layer to the transistor, | then flows out again."
+   },
+   "keywords": [
+    "金屬線",
+    "一層層",
+    "流出去"
+   ],
+   "cues": [
+    {
+     "id": "sig",
+     "text": "訊號"
+    },
+    {
+     "id": "wire",
+     "text": "金屬線"
+    },
+    {
+     "id": "top",
+     "text": "最上層"
+    },
+    {
+     "id": "lay",
+     "text": "一層層"
+    },
+    {
+     "id": "tr",
+     "text": "電晶體"
+    },
+    {
+     "id": "out",
+     "text": "流出去"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 0,
+      "y": 14,
+      "d": 120,
+      "elev": 34,
+      "yaw": 0.5
+     }
+    ],
+    "run": [
+     {
+      "id": "s_in",
+      "at": "sig",
+      "until": "tr+16",
+      "ramp": 8
+     },
+     {
+      "id": "s_gate",
+      "at": "tr-6",
+      "until": "s6:start-30",
+      "ramp": 10
+     },
+     {
+      "id": "s_out",
+      "at": "out",
+      "until": "s6:start-30",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_m5",
+      "text": "訊號從這裡進來",
+      "en": "Signal in",
+      "color": "amber",
+      "at": "top",
+      "until": "lay"
+     },
+     {
+      "part": "a_via",
+      "text": "穿孔：連到下一層",
+      "en": "Via",
+      "color": "blue",
+      "at": "lay",
+      "until": "tr-4"
+     },
+     {
+      "part": "a_dev",
+      "text": "閘極通電，開關動",
+      "en": "Gate switches",
+      "color": "amber",
+      "at": "tr",
+      "until": "out+20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ic-sec",
+      "at": "start+2",
+      "until": "s6:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "訊號怎麼走",
+      "tag": "示意・側面剖面",
+      "t": {
+       "top": {
+        "at": "top"
+       },
+       "tr": {
+        "at": "tr"
+       },
+       "out": {
+        "at": "out"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "示意：金屬層數與走法簡化"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "線路太細沒辦法手畫。先定規格，再寫程式描述電路，用軟體驗證，最後排位置接線。",
+   "tts": "線路太細沒辦法手畫。先定規格，再寫程式描述電路，用軟體驗證，最後排位置接線。",
+   "subtitle": {
+    "zh": "線路太細沒辦法手畫\n先定規格\n再寫程式描述電路\n用軟體驗證\n最後排位置接線",
+    "en": "Too fine to draw by hand. | Set the spec first, | write code that describes the circuit, | verify it with software, | then place and route."
+   },
+   "keywords": [
+    "手畫",
+    "定規格",
+    "寫程式",
+    "接線"
+   ],
+   "cues": [
+    {
+     "id": "hand",
+     "text": "手畫"
+    },
+    {
+     "id": "spec",
+     "text": "定規格"
+    },
+    {
+     "id": "code",
+     "text": "寫程式"
+    },
+    {
+     "id": "sim",
+     "text": "軟體驗證"
+    },
+    {
+     "id": "pr",
+     "text": "排位置"
+    },
+    {
+     "id": "wire",
+     "text": "接線"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "flow",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 60,
+      "y": 0.8,
+      "d": 44,
+      "elev": 46
+     }
+    ],
+    "shift": [
+     {
+      "layer": "sp",
+      "at": "s1:start-40",
+      "until": "spec",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "rt",
+      "at": "s1:start-40",
+      "until": "code",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "sm",
+      "at": "s1:start-40",
+      "until": "sim",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "pr",
+      "at": "s1:start-40",
+      "until": "pr",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "mk",
+      "at": "s1:start-40",
+      "until": "wire+24",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "sm_cur",
+      "at": "s1:start-40",
+      "until": "sim",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "pr_r1",
+      "at": "s1:start-40",
+      "until": "pr",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "pr_r2",
+      "at": "s1:start-40",
+      "until": "wire",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_flow",
+      "at": "s1:start-40",
+      "until": "code",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "sm_cur",
+      "at": "sim",
+      "until": "pr-4",
+      "dx": 4.6,
+      "dur": 40
+     }
+    ],
+    "run": [
+     {
+      "id": "d_on0",
+      "at": "spec",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_on1",
+      "at": "code",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_on2",
+      "at": "sim",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_on3",
+      "at": "pr",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_f0",
+      "at": "code-6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_f1",
+      "at": "sim-6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_f2",
+      "at": "pr-6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_f3",
+      "at": "wire+8",
+      "until": "s7:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_a0",
+      "text": "規格",
+      "en": "Spec",
+      "color": "amber",
+      "at": "spec",
+      "until": "s7:start-8"
+     },
+     {
+      "part": "d_a1",
+      "text": "程式（RTL）",
+      "en": "RTL code",
+      "color": "blue",
+      "at": "code",
+      "until": "s7:start-8"
+     },
+     {
+      "part": "d_a2",
+      "text": "模擬驗證",
+      "en": "Simulation",
+      "color": "blue",
+      "at": "sim",
+      "until": "s7:start-8"
+     },
+     {
+      "part": "d_a3",
+      "text": "布局繞線",
+      "en": "Place & route",
+      "color": "amber",
+      "at": "pr",
+      "until": "s7:start-8"
+     },
+     {
+      "part": "d_a4",
+      "text": "光罩",
+      "en": "Photomask",
+      "color": "coral",
+      "at": "wire+28",
+      "until": "s7:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ic-flow",
+      "at": "start+2",
+      "until": "s7:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "從規格到版圖",
+      "tag": "示意・五步簡化",
+      "t": {
+       "hand": {
+        "at": "hand"
+       },
+       "spec": {
+        "at": "spec"
+       },
+       "code": {
+        "at": "code"
+       },
+       "sim": {
+        "at": "sim"
+       },
+       "pr": {
+        "at": "pr"
+       },
+       "wire": {
+        "at": "wire"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "AnySilicon；Wikipedia Design flow（通用流程）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "畫好的圖交給晶圓廠做成光罩，光照過去，圖案縮小四倍，印在晶圓上。",
+   "tts": "畫好的圖交給晶圓廠做成光罩，光照過去，圖案縮小四倍，印在晶圓上。",
+   "subtitle": {
+    "zh": "畫好的圖\n交給晶圓廠做成光罩\n光照過去\n圖案縮小四倍\n印在晶圓上",
+    "en": "The finished layout | goes to the fab to become a photomask. | Light shines through, | the pattern shrinks four times, | and prints on the wafer."
+   },
+   "keywords": [
+    "光罩",
+    "縮小四倍",
+    "晶圓"
+   ],
+   "cues": [
+    {
+     "id": "pic",
+     "text": "畫好的圖"
+    },
+    {
+     "id": "fab",
+     "text": "晶圓廠"
+    },
+    {
+     "id": "mask",
+     "text": "做成光罩"
+    },
+    {
+     "id": "light",
+     "text": "光照過去"
+    },
+    {
+     "id": "four",
+     "text": "縮小四倍"
+    },
+    {
+     "id": "wafer",
+     "text": "印在晶圓上"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "mask",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 120,
+      "y": 7.5,
+      "d": 62,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "m_mask",
+      "at": "s1:start-40",
+      "until": "mask",
+      "dy": 5.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "m_beam1",
+      "at": "s1:start-40",
+      "until": "light",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "m_beam2",
+      "at": "s1:start-40",
+      "until": "light",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "m_spot",
+      "at": "s1:start-40",
+      "until": "light",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "m_print",
+      "at": "s1:start-40",
+      "until": "wafer",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "m_light",
+      "at": "light-4",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "m_ray1",
+      "at": "light",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "m_ray2",
+      "at": "light+10",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "m_hit",
+      "at": "wafer-4",
+      "until": "s8:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "m_a_src",
+      "text": "光源",
+      "en": "Light source",
+      "color": "amber",
+      "at": "pic",
+      "until": "fab-6"
+     },
+     {
+      "part": "m_a_lens",
+      "text": "曝光機的鏡組",
+      "en": "Projection lens",
+      "color": "blue",
+      "at": "fab",
+      "until": "mask+14"
+     },
+     {
+      "part": "m_a_mask",
+      "text": "光罩",
+      "en": "Photomask",
+      "color": "amber",
+      "at": "mask",
+      "until": "light-4"
+     },
+     {
+      "part": "m_a_lens",
+      "text": "縮小鏡組",
+      "en": "Reduction lens",
+      "color": "blue",
+      "at": "four",
+      "until": "wafer-6"
+     },
+     {
+      "part": "m_a_print",
+      "text": "晶圓上的圖案",
+      "en": "Printed pattern",
+      "color": "coral",
+      "at": "wafer",
+      "until": "s8:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ic-mask",
+      "at": "four-8",
+      "until": "s8:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 310,
+      "avoid": false,
+      "title": "光罩 vs 晶圓",
+      "tag": "示意・常見縮小比例",
+      "t": {
+       "four": {
+        "at": "four"
+       },
+       "wafer": {
+        "at": "wafer"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Compugraphics 光罩說明；美國專利 US6337162（縮小比例 4:1／5:1）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "這些事台灣誰在做？設計服務有創意電子、世芯，矽智財有力旺、晶心科，設計軟體靠新思、益華、西門子。",
+   "tts": "這些事台灣誰在做？設計服務有創意電子、世芯，矽智財有力旺、晶心科，設計軟體靠新思、益華、西門子。",
+   "subtitle": {
+    "zh": "這些事台灣誰在做？\n設計服務有\n創意電子、世芯\n矽智財有\n力旺、晶心科\n設計軟體靠\n新思、益華、西門子",
+    "en": "Who does this in Taiwan? | Design services: | GUC and Alchip. | Silicon IP: | eMemory and Andes. | Design software: | Synopsys, Cadence, Siemens."
+   },
+   "keywords": [
+    "創意電子",
+    "力旺",
+    "新思"
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "誰在做"
+    },
+    {
+     "id": "guc",
+     "text": "創意電子"
+    },
+    {
+     "id": "em",
+     "text": "力旺"
+    },
+    {
+     "id": "andes",
+     "text": "晶心科"
+    },
+    {
+     "id": "eda",
+     "text": "設計軟體靠"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "die",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 186,
+      "y": 2.0,
+      "d": 60,
+      "elev": 36,
+      "yaw": 0.0
+     }
+    ],
+    "shift": [],
+    "labels": [
+     {
+      "part": "z_die",
+      "text": "創意、世芯：設計服務",
+      "en": "Design services",
+      "color": "amber",
+      "at": "guc",
+      "until": "em-6"
+     },
+     {
+      "part": "z_mem",
+      "text": "力旺：記憶體矽智財",
+      "en": "Memory IP",
+      "color": "blue",
+      "at": "em",
+      "until": "eda-6"
+     },
+     {
+      "part": "z_cpu",
+      "text": "晶心科：CPU 智財",
+      "en": "CPU IP",
+      "color": "blue",
+      "at": "andes",
+      "until": "eda-6"
+     },
+     {
+      "part": "z_mon",
+      "text": "三大 EDA：設計軟體",
+      "en": "EDA software",
+      "color": "amber",
+      "at": "eda",
+      "until": "s9:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ic-who",
+      "at": "start+2",
+      "until": "s9:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "示意・媒體報導",
+      "t": {
+       "guc": {
+        "at": "guc"
+       },
+       "em": {
+        "at": "em"
+       },
+       "eda": {
+        "at": "eda"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "guc",
+      "until": "s9:start-8",
+      "text": "媒體報導",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 840,
+      "y": 340,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "媒體報導：數位時代、科技新報、工商時報"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "不過設計好了，還得有人做出來。下一支，晶圓代工有哪幾家。想要完整解說，留言 IC 設計。",
+   "tts": "不過設計好了，還得有人做出來。下一支，晶圓代工有哪幾家。想要完整解說，留言 IC 設計。",
+   "subtitle": {
+    "zh": "不過設計好了\n還得有人做出來\n下一支\n晶圓代工有哪幾家\n想要完整解說\n留言 IC 設計",
+    "en": "But a finished design | still has to be built. | Next: | which foundries are there? | For the full notes, | comment \"IC設計\"."
+   },
+   "keywords": [
+    "做出來",
+    "晶圓代工",
+    "IC 設計"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "設計好了"
+    },
+    {
+     "id": "make",
+     "text": "做出來"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "fab2",
+     "text": "晶圓代工"
+    },
+    {
+     "id": "full",
+     "text": "想要完整解說"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 16,
+      "x": 186,
+      "y": 2.0,
+      "d": 60,
+      "elev": 36,
+      "yaw": 0.0
+     }
+    ],
+    "run": [
+     {
+      "id": "z_glow",
+      "at": "make",
+      "until": "s10:start",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "z_die",
+      "text": "設計好的晶片",
+      "en": "The finished design",
+      "color": "amber",
+      "at": "done",
+      "until": "next-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ic-next",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "示意",
+      "t": {
+       "make": {
+        "at": "make"
+       },
+       "next": {
+        "at": "fab2"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-14",
+      "text": "完整解說在留言",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "下一支：晶圓代工有哪幾家（已排定）"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "晶圓代工",
+     "trail": [
+      "晶片版圖",
+      "金屬層",
+      "設計流程",
+      "光罩"
+     ],
+     "at": "s9:kw-8",
+     "comment": "IC設計",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
