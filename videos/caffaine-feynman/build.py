@@ -6,7 +6,7 @@ apply("caffaine-feynman", {
   "s01": {"view": "balance", "tone": "event", "tilt": 11,
     "left": {"label": "看懂", "color": "primary", "at": "k1-6"}, "right": {"label": "學會", "color": "wrong", "at": "k2-4", "light": True}, "mid": {"at": "k2"}, "q": {"text": "怎麼逼自己真的學會？", "at": "k3"}},
   "s03": {"view": "board", "tone": "principle", "fs": 72, "lines": [
-      {"who": "ai", "rows": ["利息會變成新的本金，", "繼續幫你賺錢"], "at": "k1+6", "dur": 44, "color": "primary"},
+      {"who": "ai", "rows": ["利息會變成新的本金，", "繼續幫你賺錢"], "at": "start+10", "dur": 60, "color": "primary"},
       {"who": "you", "rows": ["複利就是銀行每年", "固定給你一筆利息，", "存越久領越多"], "at": "k3", "dur": 38, "color": "note", "note": {"text": "故意講錯", "at": "k4+6", "color": "wrong"}}],
     "marks": [{"line": 1, "row": 1, "c0": 0, "c1": 8, "at": "k4", "color": "note"}]},
   "s04": {"view": "compound", "tone": "bug", "years": 8, "rate": 0.2, "note": "示意：本金 100，每年 20%",

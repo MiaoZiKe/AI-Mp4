@@ -349,6 +349,8 @@ const CompoundView: React.FC<VP> = ({ f, p }) => {
       {q.comp ? <div data-ov="圖例複利" style={{ position: "absolute", left: X0 + 370, top: TOP, ...bounce(f, tC) }}><Chip text={q.comp.label} bg={col("wrong").fill} fg="#fff" px={38} side={col("wrong").side} /></div> : null}
       <Full>
         <rect x={X0 - 6} y={base + 4} width={IW + 12} height={10} rx={5} fill={T.ink3} opacity={0.6} />
+        <clipPath id="cpclip"><rect x={X0} y={base - MH - 40} width={IW} height={MH + 40} /></clipPath>
+        <rect x={X0 + ((f * 9) % (IW + 300)) - 150} y={base - MH - 40} width={110} height={MH + 40} fill="#fff" opacity={0.38} clipPath="url(#cpclip)" transform={`skewX(-12)`} />
         <g transform={`translate(${X0 + IW - 50},${TOP + 40 + 12 * Math.sin(f / 8)})`}><circle r={30} fill={col("note").fill} stroke={col("note").side} strokeWidth={6} /><path d="M-10 -4 H10 M-10 8 H10 M0 -16 V18" stroke={col("note").side} strokeWidth={5} strokeLinecap="round" transform={`scale(${(0.8 + 0.2 * Math.cos(f / 8)).toFixed(2)} 1)`} /></g>
         {Array.from({ length: Y }, (_, i) => {
           const n = i + 1, gx = X0 + i * gw + (gw - 2 * bw - 8) / 2, gS = E(f, tS + i * 4, 18), simple = n * P0 * r, comp = P0 * Math.pow(1 + r, n);
