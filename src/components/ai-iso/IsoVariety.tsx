@@ -11,6 +11,7 @@ import { FONT_EN, FONT_ZH, FPS, LAYOUT_ISO as L, THEME_ISO as T } from "../../th
 import { EASE, tween } from "../anim";
 import { buildIso, type Panel } from "./engine";
 import { CaffEndcard } from "./CaffAnim";
+import { META_VIEWS } from "./IsoMetaphor";
 import { bounce, Caption, type Cap, Chip, col, HeaderIso, riseIn, slam, SourceLine } from "./IsoVideo";
 
 const zh: React.CSSProperties = { fontFamily: FONT_ZH, whiteSpace: "nowrap", lineHeight: 1.16 };
@@ -859,7 +860,7 @@ const ChartView: React.FC<VP> = ({ f, p, tone }) => {
   );
 };
 
-const VIEWS: Record<string, React.FC<VP>> = { editor: EditorView, draw: DrawView, check: CheckView, chart: ChartView, split: SplitView, chat: ChatView, browser: BrowserView, device: DeviceView, lens: LensView, kinetic: KineticView, flow: FlowView, claim: ClaimView };
+const VIEWS: Record<string, React.FC<VP>> = { editor: EditorView, draw: DrawView, check: CheckView, chart: ChartView, split: SplitView, chat: ChatView, browser: BrowserView, device: DeviceView, lens: LensView, kinetic: KineticView, flow: FlowView, claim: ClaimView, ...META_VIEWS };
 export const VIEW6 = Object.keys(VIEWS);
 
 export const VarietyIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes, timeline, channel, ...rest }) => {

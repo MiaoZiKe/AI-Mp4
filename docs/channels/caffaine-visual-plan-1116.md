@@ -137,3 +137,20 @@ Andy 原話：「AI 頻道為何都是同一個畫面背景，需要更豐富點
 - 各鏡開頭 0.3 秒內版面就有東西：尚未出現的格子畫虛線空位（Ghost）。
 - 已改成 isoVersion 6：sketch-game、made-by-ai（kinetic／chat／editor／flow／check／chart／claim 共 7 種）、two-answers（kinetic／chat／split／editor／draw／chart／flow／claim 共 8 種）、same-look（split／chat／browser／check／chart／kinetic／claim 共 7 種）。念稿未動。
 - 素材：made-by-ai s03 行數取自 videos/caffaine-meeting-todo/script.json（604 行）、s04 取自 src/components/ai-iso/*.tsx（validate 會核對行數與逐行原文）；same-look 圖在 public/caffaine-same-look/。
+
+## 5. 比喻畫面 view（2026/11/17 第三輪，`src/components/ai-iso/IsoMetaphor.tsx`）
+Andy：「風格不要侷限都是這樣對話框，可以多變一點，多配合當前的內容進行，生動點」。全部 SVG／CSS 2D、色碼走 THEME_ISO、時間寫 cue；`props.view` 直接選用，validate 的必填欄位在括號。`Bot`（小機器人，idle／read／happy／strain）、`Sheet`、`Tick` 可在新 view 重用。
+| view | 比喻 | 主要 props |
+|---|---|---|
+| belts（lanes） | 兩條輸送帶並排：同一個請求進去，輸出一堆歪紙 vs 一張整齊的卡；規則卡當閘門 | lanes[{label,color,at,reqAt,gate,items[{at,kind:sheet｜card}]}]、mid |
+| paper（lines） | 一張紙逐行被寫出，詞可螢光標記，蓋章、圖釘、交給 AI（bot）；無 bot 時全寬 | title、lines[{t,at,dur,color,mark[{word,at,color}]}]、stamp、pin、bot、chip、h、fs |
+| slots（slots） | 一張卡複製進多個槽口，之後每次請求都先讀（信封掉進去、打勾） | card、slots[{label,sub,color,at}]、readAt、chip |
+| scoreboard（boards） | 計分牌：數字跳動、星星、每次得分圓點 | boards[{label,color,value,max,dec,runs[],countAt}]、runsAt、note |
+| pack（count） | AI 背包越塞越重（文件堆高、機器人喘），便條始終留著 | count、fromAt、toAt、note、glowAt、q |
+| volume（big,small） | 大箱子對小紙條（或長文濃縮成小卡）；spin 加「重讀」轉圈 | big{label,sub,n,at}、small{label,sub,text,at}、arrow、end、bigW、smallW |
+| lostmid（n） | 一長排方塊越拉越長、抖動；中間變暗、表現曲線凹下去 | n、n0、growAt、wobbleAt、midAt |
+| carry（left,right） | 舊桌面便條飛到乾淨新桌面，機器人開心，一排勾 | left{label,n}、right{label}、note{at}、okAt、ticks{at,n,text} |
+| balance（left,right） | 天平：A 重 B 輕、≠、問句 | left／right{label,color,at,light}、mid、q、tilt |
+| board（lines） | 黑板：AI 與「你」輪流寫字（rows 手動斷行），紅筆圈字（marks c0／c1 為字元範圍），註記 chip | lines[{who,rows,at,dur,color,pre,dimAt,note}]、marks[{line,row,c0,c1,at,color}]、fs |
+| compound（single） | 單利對複利年度長條，紅筆圈出「利息再生利息」（示意） | years、rate、single／comp／hit／ticks、note |
+注意：props 裡不要用 `from`／`to` 當欄位名（validate 會當成 cue）。

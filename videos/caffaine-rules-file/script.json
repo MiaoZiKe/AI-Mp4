@@ -77,51 +77,61 @@
     "kw": {
      "一大串版本": "primary"
     },
-    "view": "split",
-    "tone": "event",
     "status": "已確定・實測",
     "statusAt": "k1+6",
     "asOf": "查證截至 2026/11/17",
-    "left": {
-     "src": "caffaine-rules-file/cardA.png",
-     "label": "沒規則",
-     "color": "wrong",
-     "at": "start-1",
-     "native": [
-      400,
-      720
-     ],
-     "crop": [
-      0,
-      0,
-      400,
-      720
-     ]
-    },
-    "right": {
-     "src": "caffaine-rules-file/cardB.png",
-     "label": "有規則",
-     "color": "right",
-     "at": "k2",
-     "native": [
-      400,
-      720
-     ],
-     "crop": [
-      0,
-      0,
-      400,
-      720
-     ]
-    },
+    "view": "belts",
+    "tone": "event",
+    "lanes": [
+     {
+      "label": "沒規則",
+      "color": "wrong",
+      "at": "start-6",
+      "reqAt": "start-4",
+      "items": [
+       {
+        "at": "k1-22",
+        "kind": "sheet"
+       },
+       {
+        "at": "k1-17",
+        "kind": "sheet"
+       },
+       {
+        "at": "k1-12",
+        "kind": "sheet"
+       },
+       {
+        "at": "k1-7",
+        "kind": "sheet"
+       },
+       {
+        "at": "k1-2",
+        "kind": "sheet"
+       }
+      ]
+     },
+     {
+      "label": "有規則",
+      "color": "right",
+      "at": "start-6",
+      "reqAt": "k2-30",
+      "gate": {
+       "at": "k2"
+      },
+      "items": [
+       {
+        "at": "k3-8",
+        "kind": "card"
+       }
+      ]
+     }
+    ],
     "mid": {
-     "text": "VS",
-     "at": "k3"
-    },
-    "aiAt": "start+6",
-    "size": "big",
-    "wl": 380,
-    "wr": 380
+     "text": "差在哪？",
+     "at": "k4-4",
+     "color": "plum"
+    }
    },
    "sources": [
     "實測 2026/11/17（tests/，節錄）"
@@ -232,48 +242,58 @@
     "kw": {
      "規則檔": "sky"
     },
-    "view": "editor",
+    "view": "paper",
     "tone": "fix",
-    "file": "規則檔.txt",
-    "src": "videos/caffaine-rules-file/tests/rules.txt",
-    "wrap": true,
-    "before": 0,
-    "after": 0,
+    "title": "規則檔.txt",
+    "color": "sky",
+    "h": 720,
+    "fs": 38,
     "lines": [
      {
       "t": "我是行銷部專案經理，同事都很忙，我要的是能直接貼進群組的訊息。",
-      "n": 1,
-      "at": "start+4",
-      "dur": 26
+      "at": "k1+6",
+      "dur": 12,
+      "color": "primary"
      },
      {
       "t": "口氣：直接、不客套。",
-      "n": 2,
-      "at": "k3",
-      "dur": 26
+      "at": "k3-6",
+      "dur": 12,
+      "color": "sky"
      },
      {
       "t": "格式：第一行只放結論，後面最多三點條列，全文不超過 80 字。",
-      "n": 3,
-      "at": "k4",
-      "dur": 26
+      "at": "k4-6",
+      "dur": 12,
+      "color": "right"
      },
      {
       "t": "禁忌：不寫「您好」「謝謝」「希望」這類開場或結尾，不用表情符號。",
-      "n": 4,
-      "at": "k5",
-      "dur": 26
+      "at": "k5-6",
+      "dur": 12,
+      "color": "wrong"
      }
     ],
-    "hl": 0,
-    "hlAt": "k5",
-    "size": 40,
-    "status2": "四項規則"
+    "stamp": {
+     "text": "只寫一次",
+     "at": "k5+16",
+     "color": "wrong"
+    },
+    "pin": {
+     "at": "k5+24"
+    },
+    "bot": true,
+    "chip": {
+     "text": "每次先讀",
+     "at": "k5+30",
+     "color": "right"
+    }
    },
    "sources": [
     "規則全文 tests/rules.txt"
    ],
-   "para": 1
+   "para": 1,
+   "pauseAfter": 0.7
   },
   {
    "id": "s04",
@@ -312,48 +332,37 @@
     "kw": {
      "自訂指令": "sky"
     },
-    "view": "flow",
-    "tone": "fix",
     "status": "官方說明",
     "statusAt": "k1+6",
-    "nodes": [
+    "view": "slots",
+    "tone": "fix",
+    "card": "規則卡",
+    "slots": [
      {
-      "icon": "bubble",
       "label": "自訂指令",
       "sub": "ChatGPT",
       "color": "primary",
-      "at": "start-1"
+      "at": "k1"
      },
      {
-      "icon": "star",
       "label": "技能",
       "sub": "Gemini（原 Gem）",
       "color": "note",
       "at": "k2"
      },
      {
-      "icon": "file",
       "label": "專案指示",
       "sub": "Claude 專案",
       "color": "right",
       "at": "k3"
      }
     ],
-    "lights": [
-     {
-      "from": "k1",
-      "to": "k2"
-     },
-     {
-      "from": "k2",
-      "to": "k3"
-     }
-    ],
-    "chip": "貼一次，之後每次新對話都先讀過",
-    "chipAt": "k4",
-    "chipColor": "right",
-    "chipCenter": true,
-    "chipTop": 60
+    "readAt": "k4",
+    "chip": {
+     "text": "貼一次，每次新對話都先讀",
+     "at": "k4+14",
+     "color": "right"
+    }
    },
    "sources": [
     "官方說明（查證 2026/11/17，見 research.md）"
@@ -393,42 +402,50 @@
     "kw": {
      "各跑五次": "right"
     },
-    "view": "chart",
-    "tone": "principle",
     "status": "已確定・實測",
     "statusAt": "k1+6",
-    "kind": "bars",
-    "items": [
+    "view": "scoreboard",
+    "tone": "principle",
+    "runsAt": "k1",
+    "note": "實測：同一句請求各跑 5 次，滿分 5 分",
+    "boards": [
      {
-      "t": "沒規則",
-      "h": 0.32,
-      "color": "wrong"
+      "label": "沒規則",
+      "color": "wrong",
+      "value": 1.6,
+      "max": 5,
+      "dec": true,
+      "runs": [
+       1,
+       2,
+       1,
+       2,
+       2
+      ],
+      "countAt": "k2"
      },
      {
-      "t": "有規則",
-      "h": 1.0,
-      "color": "right"
+      "label": "有規則",
+      "color": "right",
+      "value": 5,
+      "max": 5,
+      "dec": false,
+      "runs": [
+       5,
+       5,
+       5,
+       5,
+       5
+      ],
+      "countAt": "k3"
      }
-    ],
-    "growAt": "start+4",
-    "chips": [
-     {
-      "text": "平均 1.6 分",
-      "at": "k2",
-      "color": "wrong"
-     },
-     {
-      "text": "次次 5 分",
-      "at": "k3",
-      "color": "right"
-     }
-    ],
-    "note": "示意：長短依分數；各跑 5 次，滿分 5"
+    ]
    },
    "sources": [
     "實測 2026/11/17（tests/score.json）"
    ],
-   "para": 1
+   "para": 1,
+   "pauseAfter": 0.5
   },
   {
    "id": "s06",
@@ -467,19 +484,27 @@
     "tone": "principle",
     "rows": [
      {
-      "big": "寫一次",
-      "unit": "每次照做",
+      "big": "不是變聰明",
+      "unit": "",
       "at": "start-10",
-      "color": "right",
-      "size": 170,
+      "color": "wrong",
+      "size": 150,
       "usize": 90
      },
      {
-      "big": "先讀過",
-      "unit": "再回答",
-      "at": "start+22",
+      "big": "是規矩寫成檔",
+      "unit": "",
+      "at": "k2",
+      "color": "right",
+      "size": 130,
+      "usize": 90
+     },
+     {
+      "big": "每次先讀過",
+      "unit": "",
+      "at": "k3",
       "color": "primary",
-      "size": 170,
+      "size": 150,
       "usize": 90
      }
     ]

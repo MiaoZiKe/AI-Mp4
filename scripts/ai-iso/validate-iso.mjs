@@ -67,12 +67,12 @@ export function validateIso(script, h) {
     const p = s.props ?? {};
     const kinds = film ? KINDS2 : KINDS;
     if (script.channelLogo !== undefined && script.channelLogo !== "caffaine") E("頂層 channelLogo 目前只有 \"caffaine\"");
-    const VIEWS6 = ["split", "chat", "browser", "device", "lens", "kinetic", "flow", "claim", "draw", "check", "editor", "chart", "desk"], TONES6 = ["event", "principle", "bug", "fix", "unknown", "claim"];
+    const VIEWS6 = ["split", "chat", "browser", "device", "lens", "kinetic", "flow", "claim", "draw", "check", "editor", "chart", "desk", "belts", "paper", "slots", "scoreboard", "pack", "volume", "lostmid", "carry", "balance", "board", "compound"], TONES6 = ["event", "principle", "bug", "fix", "unknown", "claim"];
     const KINDS4 = ["hook", "vs", "loop", "look", "act", "gate", "check", "ask", "next"];
     const KINDS5 = ["hook", "orig", "guess", "price", "verdict", "sites", "run", "wrong", "vs", "rule", "limit", "ask", "cta", "talk", "code", "steps", "pick", "shot"];
     if (script.isoVersion === 6 && !caff) {
       // isoVersion 6（IsoVariety.tsx）：每幕 props.view 選畫面類型、props.tone 選色調；各 view 的必要 props
-      const NEED = { split: p.layout === "stack" ? ["top", "bottom"] : ["left", "right"], chat: ["msgs"], browser: ["shots"], device: ["src", "cards"], lens: ["src", "ring", "zoom", "note"], kinetic: ["rows"], flow: ["nodes", "lights"], claim: ["keyword", "kicker", "card"], editor: ["file", "lines"], draw: ["rounds"], check: [], chart: [] };
+      const NEED = { split: p.layout === "stack" ? ["top", "bottom"] : ["left", "right"], chat: ["msgs"], browser: ["shots"], device: ["src", "cards"], lens: ["src", "ring", "zoom", "note"], kinetic: ["rows"], flow: ["nodes", "lights"], claim: ["keyword", "kicker", "card"], editor: ["file", "lines"], draw: ["rounds"], check: [], chart: [], belts: ["lanes"], paper: ["lines"], slots: ["slots"], scoreboard: ["boards"], pack: ["count"], volume: ["big", "small"], lostmid: ["n"], carry: ["left", "right"], balance: ["left", "right"], board: ["lines"], compound: ["single"] };
       if (!VIEWS6.includes(p.view)) E(`${tag}: isoVersion 6 的 props.view「${p.view}」不存在（${VIEWS6.join("／")}）`);
       else for (const k of NEED[p.view] ?? []) if (p[k] === undefined) E(`${tag}: view「${p.view}」缺少 props.${k}`);
       if (!TONES6.includes(p.tone)) E(`${tag}: 缺少或不認得 props.tone「${p.tone}」（${TONES6.join("／")}）`);
@@ -204,6 +204,7 @@ export function validateIso(script, h) {
     const vs = scenes.filter((x) => !(x.silent === true && x.props?.panel === "caffend")).map((x) => x.props?.view);
     const kinds = new Set(vs); if (kinds.size < Math.min(6, vs.length)) E(`isoVersion 6：這支只有 ${kinds.size} 種 view，要 ≥${Math.min(6, vs.length)} 種（畫面多樣化）`);
     for (let i = 2; i < vs.length; i++) if (vs[i] === vs[i - 1] && vs[i] === vs[i - 2]) E(`isoVersion 6：view「${vs[i]}」連續超過 2 鏡（${scenes[i - 2].id}–${scenes[i].id}）`);
+    if (vs.filter((v) => v === "chat").length > 1) W("isoVersion 6：對話框（chat）每支最多 1 幕，只在真的示範提問時用（Andy 11/17：風格不要侷限都是這樣對話框）");
     if (vs.filter((v) => v === "desk").length > 2) E("isoVersion 6：等距桌面（desk）每支最多 2 鏡");
   }
   const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));

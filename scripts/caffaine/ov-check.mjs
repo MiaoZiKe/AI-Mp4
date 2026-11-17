@@ -38,9 +38,11 @@ for (const f of frames) {
   }
   for (const s of r.small) issues.push(`f${f} DOM 文字「${s.t}」${s.fs}px < 28px`);
 }
-// 上下邊緣空白
+// 上下邊緣空白（片尾卡的 LOGO 動畫本來就從中央長出來，不查）
 let topMax = 0, botMax = 0;
+const endStart = (() => { try { const sb = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "storyboard.json"), "utf8")); return sb.scenes[sb.scenes.length - 1].startFrame; } catch { return 1e9; } })();
 for (const f of frames) {
+  if (f >= endStart) continue;
   const raw = execFileSync("python3", ["-c", `
 from PIL import Image
 import numpy as np

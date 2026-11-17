@@ -73,27 +73,24 @@
     "kw": {
      "看懂了": "primary"
     },
-    "view": "kinetic",
-    "tone": "event",
-    "rows": [
-     {
-      "big": "看懂",
-      "unit": "≠",
-      "at": "start-10",
-      "color": "primary",
-      "size": 240,
-      "usize": 190
-     },
-     {
-      "big": "學會",
-      "unit": "",
-      "at": "start+22",
-      "color": "wrong",
-      "size": 240,
-      "usize": 110
-     }
-    ],
     "asOf": "查證截至 2026/11/17",
+    "view": "balance",
+    "tone": "event",
+    "tilt": 11,
+    "left": {
+     "label": "看懂",
+     "color": "primary",
+     "at": "k1-6"
+    },
+    "right": {
+     "label": "學會",
+     "color": "wrong",
+     "at": "k2-4",
+     "light": true
+    },
+    "mid": {
+     "at": "k2"
+    },
     "q": {
      "text": "怎麼逼自己真的學會？",
      "at": "k3"
@@ -232,28 +229,47 @@
     "kw": {
      "國中生聽得懂的話": "right"
     },
-    "view": "chat",
-    "tone": "principle",
     "status": "已確定・實測",
     "statusAt": "k1+6",
-    "title": "和 AI 對話（複利）",
-    "msgs": [
-     {
-      "who": "me",
-      "text": "用國中生聽得懂的話解釋複利",
-      "typeAt": "start+4",
-      "typeDur": 24,
-      "at": "k1"
-     },
+    "view": "board",
+    "tone": "principle",
+    "fs": 60,
+    "lines": [
      {
       "who": "ai",
-      "text": "利息會變成新的本金，繼續幫你賺錢",
-      "at": "k2"
+      "rows": [
+       "利息會變成新的本金，",
+       "繼續幫你賺錢"
+      ],
+      "at": "k1+6",
+      "dur": 44,
+      "color": "primary"
      },
      {
-      "who": "me",
-      "text": "複利就是每年固定領利息",
-      "at": "k4"
+      "who": "you",
+      "rows": [
+       "複利就是銀行每年",
+       "固定給你一筆利息，",
+       "存越久領越多"
+      ],
+      "at": "k3",
+      "dur": 38,
+      "color": "note",
+      "note": {
+       "text": "故意講錯",
+       "at": "k4+6",
+       "color": "wrong"
+      }
+     }
+    ],
+    "marks": [
+     {
+      "line": 1,
+      "row": 1,
+      "c0": 0,
+      "c1": 8,
+      "at": "k4",
+      "color": "note"
      }
     ]
    },
@@ -284,6 +300,10 @@
     },
     {
      "id": "k3",
+     "text": "利息再生利息"
+    },
+    {
+     "id": "k4",
      "text": "三次都抓到"
     }
    ],
@@ -295,37 +315,36 @@
     "kw": {
      "抓你講錯的地方": "wrong"
     },
-    "view": "lens",
-    "tone": "bug",
     "status": "已確定・實測",
     "statusAt": "k1+6",
-    "src": "caffaine-feynman/cardC.png",
-    "ring": [
-     12,
-     140,
-     376,
-     150
-    ],
-    "note": "抓到我講錯的",
-    "noteAt": "k1",
-    "scanAt": "k1+20",
-    "stampAt": "k3",
-    "stamp": "抓",
-    "zoom": {
-     "src": "caffaine-feynman/cardC-zoom.png",
-     "w": 960,
-     "h": 560,
-     "cap": "放大：固定領利息，是單利"
+    "view": "compound",
+    "tone": "bug",
+    "years": 8,
+    "rate": 0.2,
+    "note": "示意：本金 100，每年 20%",
+    "single": {
+     "label": "你講的：單利",
+     "at": "start+10"
     },
-    "native": [
-     400,
-     720
-    ]
+    "comp": {
+     "label": "實際：複利",
+     "at": "k3"
+    },
+    "hit": {
+     "text": "漏了：利息再生利息",
+     "at": "k3+22"
+    },
+    "ticks": {
+     "at": "k4",
+     "n": 3,
+     "text": "三次都抓到"
+    }
    },
    "sources": [
     "實測 2026/11/17（tests/，節錄）"
    ],
-   "para": 1
+   "para": 1,
+   "pauseAfter": 0.6
   },
   {
    "id": "s05",
@@ -356,25 +375,36 @@
     "kw": {
      "再簡化成一句話": "sky"
     },
-    "view": "chat",
-    "tone": "fix",
     "status": "已確定・實測",
     "statusAt": "k1+6",
-    "title": "和 AI 對話（複利）",
-    "msgs": [
-     {
-      "who": "me",
-      "text": "再簡化成一句話，我要講給同事聽",
-      "typeAt": "start+4",
-      "typeDur": 26,
-      "at": "start+34"
-     },
-     {
-      "who": "ai",
-      "text": "複利就是「利滾利」——把賺到的利息留下來繼續幫你賺錢",
-      "at": "k2"
-     }
-    ]
+    "view": "volume",
+    "tone": "fix",
+    "bigW": 380,
+    "smallW": 380,
+    "smallH": 210,
+    "big": {
+     "label": "正確版本",
+     "sub": "一大段",
+     "n": 3,
+     "at": "start+6",
+     "color": "wrong"
+    },
+    "small": {
+     "label": "一句話",
+     "sub": "",
+     "text": "複利就是利滾利，賺到的利息留下來繼續賺",
+     "at": "k1",
+     "color": "right"
+    },
+    "arrow": {
+     "text": "簡化",
+     "at": "k1-6"
+    },
+    "end": {
+     "text": "直接講給同事聽",
+     "at": "k2",
+     "color": "plum"
+    }
    },
    "sources": [
     "實測 2026/11/17（tests/step4.json，節錄）"
@@ -414,47 +444,44 @@
     "kw": {
      "不是 AI 講得多好": "right"
     },
-    "view": "split",
+    "view": "board",
     "tone": "principle",
-    "layout": "stack",
-    "top": {
-     "src": "caffaine-feynman/cardD.png",
-     "label": "只看",
-     "color": "plum",
-     "at": "start+2",
-     "native": [
-      640,
-      300
-     ],
-     "crop": [
-      0,
-      0,
-      640,
-      300
-     ]
-    },
-    "bottom": {
-     "src": "caffaine-feynman/cardE.png",
-     "label": "講一遍",
-     "color": "right",
-     "at": "k1+34",
-     "native": [
-      640,
-      300
-     ],
-     "crop": [
-      0,
-      0,
-      640,
-      300
-     ]
-    },
-    "w": 640,
-    "mids": [
+    "fs": 60,
+    "lines": [
      {
-      "text": "卡住＝還沒懂",
-      "at": "k3",
-      "color": "right"
+      "who": "ai",
+      "rows": [
+       "利息會變成新的本金，",
+       "繼續幫你賺錢"
+      ],
+      "pre": true,
+      "dimAt": "k1+8",
+      "color": "primary"
+     },
+     {
+      "who": "you",
+      "rows": [
+       "複利就是銀行每年",
+       "固定給你一筆利息"
+      ],
+      "at": "k2-6",
+      "dur": 30,
+      "color": "note",
+      "note": {
+       "text": "卡在這裡",
+       "at": "k3-16",
+       "color": "wrong"
+      }
+     }
+    ],
+    "marks": [
+     {
+      "line": 1,
+      "row": 1,
+      "c0": 0,
+      "c1": 8,
+      "at": "k3-24",
+      "color": "wrong"
      }
     ]
    },
@@ -496,46 +523,60 @@
     "kw": {
      "換成你想學的主題": "note"
     },
-    "view": "check",
+    "view": "paper",
     "tone": "claim",
-    "mode": "list",
-    "head": {
-     "text": "四步提示詞",
-     "at": "start-1",
-     "color": "note"
-    },
-    "items": [
+    "title": "四步提示詞（＿＿換成你想學的主題）",
+    "color": "note",
+    "h": 580,
+    "fs": 54,
+    "num": true,
+    "lines": [
      {
-      "text": "用國中生聽得懂的話解釋◯◯",
-      "sub": "",
+      "t": "用國中生聽得懂的話解釋＿＿",
       "at": "start+6",
-      "color": "primary"
+      "dur": 18,
+      "color": "primary",
+      "mark": [
+       {
+        "word": "＿＿",
+        "at": "k1",
+        "color": "note"
+       }
+      ]
      },
      {
-      "text": "換我講：◯◯就是⋯⋯",
-      "sub": "",
+      "t": "換我講：＿＿就是⋯⋯",
       "at": "start+22",
-      "color": "sky"
+      "dur": 14,
+      "color": "sky",
+      "mark": [
+       {
+        "word": "＿＿",
+        "at": "k1+6",
+        "color": "note"
+       }
+      ]
      },
      {
-      "text": "抓出我講錯的，再問我一題",
-      "sub": "",
+      "t": "抓出我講錯的，再問我一題",
       "at": "start+38",
+      "dur": 18,
       "color": "wrong"
      },
      {
-      "text": "把正確版本簡化成一句話",
-      "sub": "",
+      "t": "把正確版本簡化成一句話",
       "at": "start+54",
+      "dur": 16,
       "color": "right"
      }
     ],
-    "itemH": 124,
-    "itemFs": 44,
     "stamp": {
-     "text": "費曼",
+     "text": "留言「費曼」",
      "at": "k2",
      "color": "note"
+    },
+    "pin": {
+     "at": "k3"
     }
    },
    "sources": [
