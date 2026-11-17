@@ -6,6 +6,7 @@
 - 畫面：倍率讀數（機櫃×1／銅排對照×2／降壓路徑×2／電路板×9）；2.5D 爆炸剖析三處（s2 電源架：整流模組＋風扇拉開，s6 降壓電路板：銅走線／功率元件／晶片逐層拉開，s7–s8 電源側櫃：前蓋／整流模組／背面銅排拉開），全部用 shift 分層，材質不透明；電流光點、銅排漸紅＋熱波、氣流箭頭、風扇轉、2D 剖面卡（pw-compare、pw-vrm、pw-chain、pw-unk、pw-sum）與 3D 同步；公司（台達電、光寶科）用引線指到電源櫃／電源架。
 - 逐句對照表：videos/tech-800v/sync-table.md（產生程式 sync-table.py）＋拼圖 out/tech-800v-sync.jpg；近景：out/tech-800v-closeup-board.png、-shelf.png、-sidecar.png。
 - 改片尾與兩張卡時用 render-range 只重渲第 370–525、1270–1435、1620–1810 幀再接回（音訊沿用）；全片的 layout-check 0 error、validate 0 error。
+- ⚠ 還差一小段：第 1401–1435 幀（0:46.7–0:47.8，s8 後半）仍是舊的「？空框」卡畫面；新版 pw-unk（兩條長條）已進 script.json，該段 35 幀已排進渲染鎖（job：render-range 1401 1435 → out/tech-800v.r4.mp4，被其他支排隊擠住）。渲完後執行 `bash /tmp/claude-0/-home-user/1662701f-8abb-57a6-b66d-4e0b4e90dd73/scratchpad/splice800.sh`（把 r1–r4 接回 out/tech-800v.video.orig.mp4 並混回 v1.wav）再 `python3 videos/tech-800v/sync-table.py`。
 - 已知：s6（降壓）旁白很密，cue 間隔 1～2 秒，畫面事件已合併但讀秒仍偏短（旁白已定稿，要拉長得刪字重配）；機櫃兩側銅排為示意（真實在背面中央）；水冷沒有畫（本題不涉及）。
 
 ## 進度（2026/11/17）
