@@ -1,0 +1,1540 @@
+{
+ "slug": "tech-cooling",
+ "title": "液冷：一櫃 AI 伺服器吃一百二十千瓦，水怎麼把熱搬走（科技透明圈 第 8 支）",
+ "asOf": "2026/11/21",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-cooling-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "pk",
+    "label": "液冷迴路",
+    "en": "LIQUID COOLING",
+    "field": "示意",
+    "ruler": "示意",
+    "art": "none",
+    "handoff3D": true,
+    "readout": false,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例・水流與溫度為示意"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "風扇吹不走",
+   "改讓水搬熱"
+  ],
+  "sub": "液冷",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "一整櫃 AI 伺服器，要吃一百二十千瓦的電。電最後都變成熱，風扇吹得走嗎？",
+   "tts": "一整櫃 AI 伺服器，要吃一百二十千瓦的電。電最後都變成熱，風扇吹得走嗎？",
+   "subtitle": {
+    "zh": "一整櫃 AI 伺服器\n要吃一百二十千瓦的電\n電最後都變成熱\n風扇吹得走嗎？",
+    "en": "One rack of AI servers | draws 120 kilowatts. | All that power ends up as heat. | Can fans blow it away?"
+   },
+   "keywords": [
+    "一百二十千瓦",
+    "變成熱",
+    "風扇"
+   ],
+   "cues": [
+    {
+     "id": "rack",
+     "text": "一整櫃"
+    },
+    {
+     "id": "kw",
+     "text": "一百二十千瓦"
+    },
+    {
+     "id": "heat",
+     "text": "變成熱"
+    },
+    {
+     "id": "fan",
+     "text": "風扇"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "廠商公布｜風扇吹得走嗎？",
+     "title": "1 櫃＝120 kW",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 4.6,
+      "d": 27,
+      "elev": 14
+     },
+     {
+      "at": "heat",
+      "dur": 40,
+      "x": 0,
+      "y": 5.6,
+      "d": 30,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cloud",
+      "at": "s1:start-40",
+      "until": "heat+4",
+      "opacity": 0,
+      "dur": 14,
+      "dy": -0.4
+     }
+    ],
+    "run": [
+     {
+      "id": "h_fans",
+      "at": "start-30",
+      "until": "s2:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "h_leds",
+      "at": "start",
+      "until": "s2:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "h_air0",
+      "at": "start+2",
+      "until": "s2:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "h_air1",
+      "at": "start+2",
+      "until": "s2:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "h_hot",
+      "at": "kw",
+      "until": "s2:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "h_hotb",
+      "at": "kw+6",
+      "until": "s2:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "rk",
+      "text": "風扇牆（風冷）",
+      "en": "Fan wall (air cooling)",
+      "color": "amber",
+      "at": "fan",
+      "until": "s2:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "s2:start-2",
+      "text": "廠商公布",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 210,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "NVIDIA DGX GB200 使用手冊；Vertiv／451 Research 2024/11"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "吹不走。同樣體積，水能帶走的熱，大約是空氣的三千四百多倍。所以改讓水來搬熱。",
+   "tts": "吹不走。同樣體積，水能帶走的熱，大約是空氣的三千四百多倍。所以改讓水來搬熱。",
+   "subtitle": {
+    "zh": "吹不走\n同樣體積\n水能帶走的熱\n大約是空氣的三千四百多倍\n所以改讓水來搬熱",
+    "en": "It can't. | For the same volume, | water carries away | about 3,400 times more heat than air. | So let water carry the heat."
+   },
+   "keywords": [
+    "吹不走",
+    "三千四百多倍",
+    "讓水來搬熱"
+   ],
+   "cues": [
+    {
+     "id": "no",
+     "text": "吹不走"
+    },
+    {
+     "id": "same",
+     "text": "同樣體積"
+    },
+    {
+     "id": "times",
+     "text": "三千四百多倍"
+    },
+    {
+     "id": "water",
+     "text": "讓水來搬熱"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60,
+      "y": 1.6,
+      "d": 20,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cloud",
+      "at": "start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cube_a0",
+      "at": "s1:start-40",
+      "until": "same+4",
+      "dy": 4.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "cube_b0",
+      "at": "s1:start-40",
+      "until": "times-34",
+      "dy": 4.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06
+     },
+     {
+      "layer": "cube_b1",
+      "at": "s1:start-40",
+      "until": "times-25",
+      "dy": 4.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06
+     },
+     {
+      "layer": "cube_b2",
+      "at": "s1:start-40",
+      "until": "times-16",
+      "dy": 4.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06
+     }
+    ],
+    "run": [
+     {
+      "id": "p_air",
+      "at": "same+22",
+      "until": "s3:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "p_wat",
+      "at": "times+8",
+      "until": "s3:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "cup_a",
+      "text": "空氣",
+      "en": "Air",
+      "color": "coral",
+      "at": "same+6",
+      "until": "s3:start-2"
+     },
+     {
+      "part": "cup_b",
+      "text": "水",
+      "en": "Water",
+      "color": "blue",
+      "at": "times-30",
+      "until": "s3:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cool-cups",
+      "at": "start+2",
+      "until": "s3:start-16",
+      "x": 64,
+      "y": 920,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "同樣大小的杯子",
+      "tag": "示意：同體積、升高 1 度",
+      "t": {
+       "same": {
+        "at": "same"
+       },
+       "times": {
+        "at": "times"
+       },
+       "water": {
+        "at": "water"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "times",
+      "until": "s3:start-2",
+      "text": "已確定（物性）",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 800,
+      "y": 340
+     }
+    ]
+   },
+   "sources": [
+    "Upsite；Data Center Frontier；Introl（體積熱容）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶片上面不再裝一片片的散熱片，改貼一塊金屬做的冷板。",
+   "tts": "晶片上面不再裝一片片的散熱片，改貼一塊金屬做的冷板。",
+   "subtitle": {
+    "zh": "晶片上面\n不再裝一片片的散熱片\n改貼一塊金屬做的冷板",
+    "en": "On top of the chip, | no more rows of heat-sink fins, | a metal cold plate is mounted instead."
+   },
+   "keywords": [
+    "散熱片",
+    "冷板"
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "晶片上面"
+    },
+    {
+     "id": "fin",
+     "text": "散熱片"
+    },
+    {
+     "id": "plate",
+     "text": "冷板"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 1.2,
+      "d": 24,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "paste",
+      "at": "s1:start-40",
+      "until": "plate-14",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0.3
+     },
+     {
+      "layer": "cp",
+      "at": "s1:start-40",
+      "until": "plate",
+      "dy": 3.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "hose",
+      "at": "s1:start-40",
+      "until": "plate+12",
+      "opacity": 0,
+      "dur": 10,
+      "dy": 0.5
+     },
+     {
+      "layer": "hs",
+      "at": "fin",
+      "until": "s10:end+400",
+      "dy": 4.2,
+      "dx": -3.0,
+      "opacity": 0,
+      "dur": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "c_die",
+      "at": "start-30",
+      "until": "plate+30",
+      "ramp": 6
+     },
+     {
+      "id": "c_win",
+      "at": "plate+20",
+      "until": "s5:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "c_wout",
+      "at": "plate+26",
+      "until": "s5:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_hs",
+      "text": "散熱片（風冷）",
+      "en": "Heat sink (air)",
+      "color": "coral",
+      "at": "chip",
+      "until": "plate"
+     },
+     {
+      "part": "c_cp",
+      "text": "冷板（銅）",
+      "en": "Cold plate (copper)",
+      "color": "blue",
+      "at": "plate+10",
+      "until": "s4:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "plate+14",
+      "until": "s4:start-2",
+      "text": "貼在晶片上",
+      "color": "amber",
+      "size": 40,
+      "rot": -4,
+      "x": 800,
+      "y": 340,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "HPE；Data Center Frontier（direct-to-chip）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "冷板裡面有很細的水道。冷水從一端進去，吸飽了熱，再從另一端流出來。",
+   "tts": "冷板裡面有很細的水道。冷水從一端進去，吸飽了熱，再從另一端流出來。",
+   "subtitle": {
+    "zh": "冷板裡面有很細的水道\n冷水從一端進去\n吸飽了熱\n再從另一端流出來",
+    "en": "Inside the plate are very fine channels. | Cool water goes in at one end, | soaks up the heat, | and leaves at the other end."
+   },
+   "keywords": [
+    "很細的水道",
+    "吸飽了熱",
+    "流出來"
+   ],
+   "cues": [
+    {
+     "id": "chan",
+     "text": "很細的水道"
+    },
+    {
+     "id": "inn",
+     "text": "進去"
+    },
+    {
+     "id": "hot",
+     "text": "吸飽了熱"
+    },
+    {
+     "id": "out",
+     "text": "流出來"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 180,
+      "y": 0.8,
+      "d": 26,
+      "elev": 40
+     },
+     {
+      "at": "inn",
+      "dur": 30,
+      "x": 180,
+      "y": 1.0,
+      "d": 21,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_diehot",
+      "at": "start-10",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_heat",
+      "at": "chan+10",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_basehot",
+      "at": "hot-16",
+      "until": "s5:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "k_fin",
+      "at": "inn-6",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_f1",
+      "at": "inn",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_f2",
+      "at": "hot-8",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_f3",
+      "at": "out-10",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "k_fout",
+      "at": "out-2",
+      "until": "s5:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_die",
+      "text": "晶片（發熱）",
+      "en": "Chip (heat source)",
+      "color": "amber",
+      "at": "start",
+      "until": "inn"
+     },
+     {
+      "part": "k_wall",
+      "text": "微通道銅牆",
+      "en": "Micro-channel walls",
+      "color": "blue",
+      "at": "chan",
+      "until": "inn+20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cool-plate",
+      "at": "start+2",
+      "until": "s5:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 335,
+      "avoid": false,
+      "title": "冷板剖開",
+      "tag": "示意，非實際比例・水流與溫度為示意",
+      "t": {
+       "chan": {
+        "at": "chan"
+       },
+       "inn": {
+        "at": "inn"
+       },
+       "hot": {
+        "at": "hot"
+       },
+       "out": {
+        "at": "out"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Data Center Frontier；Fibermall（微通道冷板）；運作為示意"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "熱水去哪？每台伺服器的水管，先接到機櫃背後的總水管。插拔用快接頭，拔掉也不會漏水。",
+   "tts": "熱水去哪？每台伺服器的水管，先接到機櫃背後的總水管。插拔用快接頭，拔掉也不會漏水。",
+   "subtitle": {
+    "zh": "熱水去哪？\n每台伺服器的水管\n先接到機櫃背後的總水管\n插拔用快接頭\n拔掉也不會漏水",
+    "en": "Where does the hot water go? | Each server's hose | first joins the main pipe behind the rack. | Plug and unplug with quick disconnects, | and pulling one out doesn't leak."
+   },
+   "keywords": [
+    "總水管",
+    "快接頭",
+    "不會漏水"
+   ],
+   "cues": [
+    {
+     "id": "where",
+     "text": "熱水去哪"
+    },
+    {
+     "id": "pipe",
+     "text": "水管"
+    },
+    {
+     "id": "mani",
+     "text": "總水管"
+    },
+    {
+     "id": "qd",
+     "text": "快接頭"
+    },
+    {
+     "id": "pull",
+     "text": "拔掉"
+    },
+    {
+     "id": "dry",
+     "text": "不會漏水"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 240,
+      "y": 4.4,
+      "d": 24,
+      "elev": 8
+     },
+     {
+      "at": "qd-10",
+      "dur": 18,
+      "x": 300,
+      "y": 3.2,
+      "d": 12,
+      "elev": 10
+     }
+    ],
+    "shift": [
+     {
+      "layer": "qm",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_pop",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_w",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_hose",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_sp0",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_sp1",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_sp2",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_sp3",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qm_sp4",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 3.4,
+      "dur": 18
+     },
+     {
+      "layer": "qf_pop",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 1.25,
+      "dur": 14
+     },
+     {
+      "layer": "qm_pop",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -1.15,
+      "dur": 14
+     },
+     {
+      "layer": "qf_sp0",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 0.25,
+      "dur": 14
+     },
+     {
+      "layer": "qf_sp1",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 0.5,
+      "dur": 14
+     },
+     {
+      "layer": "qf_sp2",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 0.75,
+      "dur": 14
+     },
+     {
+      "layer": "qf_sp3",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 1.0,
+      "dur": 14
+     },
+     {
+      "layer": "qf_sp4",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": 1.25,
+      "dur": 14
+     },
+     {
+      "layer": "qm_sp0",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -1.15,
+      "dur": 14
+     },
+     {
+      "layer": "qm_sp1",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -0.9199999999999999,
+      "dur": 14
+     },
+     {
+      "layer": "qm_sp2",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -0.69,
+      "dur": 14
+     },
+     {
+      "layer": "qm_sp3",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -0.45999999999999996,
+      "dur": 14
+     },
+     {
+      "layer": "qm_sp4",
+      "at": "pull",
+      "until": "dry+10",
+      "dx": -0.22999999999999998,
+      "dur": 14
+     },
+     {
+      "layer": "q_mid",
+      "at": "pull",
+      "until": "dry+10",
+      "opacity": 0,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "r_f_bb",
+      "at": "where",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_bu",
+      "at": "where+6",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_br",
+      "at": "pipe",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_rr",
+      "at": "pipe+14",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_ru",
+      "at": "pipe+22",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_rt",
+      "at": "mani",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "q_flowc",
+      "at": "qd+8",
+      "until": "pull",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "r_man",
+      "text": "總水管（分歧管）",
+      "en": "Manifold",
+      "color": "blue",
+      "at": "mani",
+      "until": "qd-12"
+     },
+     {
+      "part": "q_pop",
+      "text": "閥芯",
+      "en": "Valve",
+      "color": "amber",
+      "at": "qd+14",
+      "until": "dry+4"
+     },
+     {
+      "part": "q_spring",
+      "text": "彈簧",
+      "en": "Spring",
+      "color": "blue",
+      "at": "pull",
+      "until": "dry+4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cool-loop",
+      "at": "start+2",
+      "until": "s6:end",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 310,
+      "avoid": false,
+      "title": "一條迴路",
+      "tag": "示意",
+      "t": {
+       "plate": {
+        "at": "start"
+       },
+       "mani": {
+        "at": "mani"
+       },
+       "cdu": {
+        "at": "s6:cdu"
+       },
+       "dry": {
+        "at": "s6:cool"
+       },
+       "loop": {
+        "at": "s6:loop"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "pull+8",
+      "until": "dry+4",
+      "text": "拔開：0 滴",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 800,
+      "y": 340
+     }
+    ]
+   },
+   "sources": [
+    "Eaton、Boyd 產品頁；經濟日報（快接頭）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "再送到一台換熱的機器，把熱交給機房的冷卻水，降溫之後送回來，一直循環。",
+   "tts": "再送到一台換熱的機器，把熱交給機房的冷卻水，降溫之後送回來，一直循環。",
+   "subtitle": {
+    "zh": "再送到一台換熱的機器\n把熱交給機房的冷卻水\n降溫之後送回來\n一直循環",
+    "en": "Then it goes to a heat-exchange machine, | which hands the heat to the building's cooling water, | and the cooled water returns, | round and round."
+   },
+   "keywords": [
+    "換熱的機器",
+    "冷卻水",
+    "循環"
+   ],
+   "cues": [
+    {
+     "id": "cdu",
+     "text": "換熱的機器"
+    },
+    {
+     "id": "give",
+     "text": "把熱交給"
+    },
+    {
+     "id": "cool",
+     "text": "降溫"
+    },
+    {
+     "id": "loop",
+     "text": "一直循環"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 249.8,
+      "y": 4.4,
+      "d": 20,
+      "elev": 10
+     },
+     {
+      "at": "cool",
+      "dur": 40,
+      "x": 254.5,
+      "y": 4.0,
+      "d": 40,
+      "elev": 12
+     },
+     {
+      "at": "loop",
+      "dur": 40,
+      "x": 250.5,
+      "y": 4.2,
+      "d": 46,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "u_impl",
+      "at": "cdu-10",
+      "until": "s7:end",
+      "ramp": 8
+     },
+     {
+      "id": "u_h1",
+      "at": "give",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_h2",
+      "at": "give+4",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_h3",
+      "at": "give+8",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_c1",
+      "at": "give+2",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_c2",
+      "at": "give+6",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_c3",
+      "at": "give+10",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_hot",
+      "at": "cdu",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "u_out",
+      "at": "cool",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "q_f1",
+      "at": "give",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "q_f2",
+      "at": "give+14",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "q_f3",
+      "at": "cool+6",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "d_fans",
+      "at": "give+10",
+      "until": "s7:end",
+      "ramp": 8
+     },
+     {
+      "id": "d_air",
+      "at": "cool",
+      "until": "s7:end",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "u_hx",
+      "text": "板式熱交換器（CDU）",
+      "en": "Plate heat exchanger",
+      "color": "amber",
+      "at": "cdu",
+      "until": "give+20"
+     },
+     {
+      "part": "u_pump",
+      "text": "幫浦",
+      "en": "Pump",
+      "color": "blue",
+      "at": "cdu+6",
+      "until": "give+20"
+     },
+     {
+      "part": "d_dc",
+      "text": "乾冷器（機房外）",
+      "en": "Dry cooler",
+      "color": "amber",
+      "at": "cool",
+      "until": "s7:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "give+4",
+      "until": "cool",
+      "text": "熱不混水：隔著金屬片傳",
+      "color": "amber",
+      "size": 36,
+      "rot": -4,
+      "x": 640,
+      "y": 340
+     }
+    ]
+   },
+   "sources": [
+    "QCT Qoolrack；Eaton／Boyd；HPE（CDU 與熱交換）；運作為示意"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "台灣的奇鋐、雙鴻做冷板，台達電做換熱的機器，高力做熱交換的零件。",
+   "tts": "台灣的奇鋐、雙鴻做冷板，台達電做換熱的機器，高力做熱交換的零件。",
+   "subtitle": {
+    "zh": "台灣的奇鋐、雙鴻做冷板\n台達電做換熱的機器\n高力做熱交換的零件",
+    "en": "In Taiwan, AVC and Auras make cold plates, | Delta makes the heat-exchange machine, | and Kaori makes the heat-exchanger parts."
+   },
+   "keywords": [
+    "奇鋐",
+    "台達電",
+    "高力"
+   ],
+   "cues": [
+    {
+     "id": "qh",
+     "text": "奇鋐"
+    },
+    {
+     "id": "dt",
+     "text": "台達電"
+    },
+    {
+     "id": "gl",
+     "text": "高力"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 14,
+      "x": 250.5,
+      "y": 4.6,
+      "d": 46,
+      "elev": 12
+     }
+    ],
+    "overlay": [
+     {
+      "type": "card",
+      "at": "qh",
+      "until": "s8:start-2",
+      "y": 880,
+      "kicker": "媒體報導",
+      "rows": [
+       [
+        "奇鋐、雙鴻",
+        "冷板、模組"
+       ],
+       [
+        "台達電",
+        "CDU（換熱）"
+       ],
+       [
+        "高力",
+        "熱交換器"
+       ]
+      ],
+      "hi": "台達電",
+      "hiAt": "dt",
+      "size": 42,
+      "foot": "查證截至 2026/11/21，非投資建議；出處：鉅亨、優分析"
+     }
+    ]
+   },
+   "sources": [
+    "鉅亨、優分析（媒體報導）"
+   ]
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。漏水的機率，各家都沒有公布。",
+   "tts": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。漏水的機率，各家都沒有公布。",
+   "subtitle": {
+    "zh": "不過冷板不是全包\n還有一到兩成的熱\n要靠風扇帶走\n漏水的機率\n各家都沒有公布",
+    "en": "But the cold plate doesn't cover everything, | one to two tenths of the heat | still needs fans to carry it off. | The odds of a leak? | No maker has published them."
+   },
+   "keywords": [
+    "不是全包",
+    "一到兩成",
+    "沒有公布"
+   ],
+   "cues": [
+    {
+     "id": "notall",
+     "text": "不是全包"
+    },
+    {
+     "id": "pct",
+     "text": "一到兩成"
+    },
+    {
+     "id": "fan",
+     "text": "風扇"
+    },
+    {
+     "id": "leak",
+     "text": "漏水的機率"
+    },
+    {
+     "id": "unk",
+     "text": "沒有公布"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 123.4,
+      "y": 1.4,
+      "d": 22,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "c_vrmhot",
+      "at": "notall",
+      "until": "s9:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_hotair",
+      "at": "pct",
+      "until": "s9:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_fan",
+      "at": "pct+8",
+      "until": "s9:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "c_air",
+      "at": "fan",
+      "until": "s9:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_win",
+      "at": "start-4",
+      "until": "s9:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_wout",
+      "at": "start-4",
+      "until": "s9:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_vrm",
+      "text": "電感、功率元件仍發熱",
+      "en": "Still hot",
+      "color": "coral",
+      "at": "pct",
+      "until": "unk"
+     },
+     {
+      "part": "c_cp",
+      "text": "冷板蓋住 GPU",
+      "en": "Cold plate on GPU",
+      "color": "blue",
+      "at": "notall",
+      "until": "pct"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cool-split",
+      "at": "start+2",
+      "until": "s9:start-16",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "熱怎麼帶走",
+      "tag": "業界說法・示意",
+      "t": {
+       "notall": {
+        "at": "notall"
+       },
+       "pct": {
+        "at": "pct"
+       },
+       "fan": {
+        "at": "fan"
+       },
+       "leak": {
+        "at": "leak"
+       },
+       "unk": {
+        "at": "unk"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Data Center Frontier（80–90% 液冷）；research.md #7、#9"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "機櫃還會更耗電，電線要加粗，還是電壓拉高？下一支，來看八百伏特。想要完整解說，留言液冷。",
+   "tts": "機櫃還會更耗電，電線要加粗，還是電壓拉高？下一支，來看八百伏特。想要完整解說，留言液冷。",
+   "subtitle": {
+    "zh": "機櫃還會更耗電\n電線要加粗\n還是電壓拉高？\n下一支\n來看八百伏特\n想要完整解說\n留言液冷",
+    "en": "Racks will draw even more power. | Thicker wires, | or higher voltage? | Next: | 800-volt power. | For the full notes, | comment \"液冷\"."
+   },
+   "keywords": [
+    "更耗電",
+    "電壓拉高",
+    "液冷"
+   ],
+   "cues": [
+    {
+     "id": "more",
+     "text": "更耗電"
+    },
+    {
+     "id": "wire",
+     "text": "電線要加粗"
+    },
+    {
+     "id": "volt",
+     "text": "電壓拉高"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "kw",
+     "text": "留言液冷"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0,
+      "y": 4.6,
+      "d": 30,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bus",
+      "at": "s1:start-40",
+      "until": "wire-4",
+      "opacity": 0,
+      "dur": 10,
+      "dy": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "h_bus",
+      "at": "wire",
+      "until": "s10:start",
+      "ramp": 6
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cool-next",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "耗電還在往上",
+      "tag": "示意",
+      "t": {
+       "more": {
+        "at": "more"
+       },
+       "wire": {
+        "at": "wire"
+       },
+       "volt": {
+        "at": "volt"
+       },
+       "next": {
+        "at": "next"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "科技新報；下一支 11/22 八百伏特"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "八百伏特",
+     "trail": [
+      "風冷不夠",
+      "冷板",
+      "快接頭",
+      "CDU"
+     ],
+     "at": "s9:kw-8",
+     "comment": "液冷",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}

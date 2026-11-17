@@ -127,29 +127,29 @@ actions["r_scglow"]={"type":"pulse","layer":"sc","parts":["sc_body"],"color":"lp
 flow("r_sc","sc",[[SCX-1.4,RH-0.5,BZ+0.2],[RW/2-0.3,RH-0.5,BZ+0.2]],5,2,0.25,[0,0,1],0.12,1.3)
 
 # ───────── C：兩條銅排並排（54 V 粗、800 V 先同粗、之後換成細）─────────
-CX=HX["C"]; BL=11.0
+CX=HX["C"]; BL=9.5; T=1.4
 def lug(pid, lay, x, y, z):
     box(pid, lay, mm("cuHi"), [0.9,0.7,0.14], [x,y,z]); cyl(pid+"_b1",lay,mm("bolt"),0.09,0.12,[x-0.2,y+0.18,z+0.1]); cyl(pid+"_b2",lay,mm("bolt"),0.09,0.12,[x+0.2,y-0.18,z+0.1])
-for tag,yc in (("u",3.3),("d",0.95)):
+for tag,yc in (("u",5.0),("d",1.1)):
     # 電源端（左，橘盒）與負載端（右，發光塊）
-    box(f"c{tag}_src","c"+tag+"S",mm("shelf"),[1.6,1.5,1.5],[CX-BL/2-1.4,yc,0]); box(f"c{tag}_srcl","c"+tag+"S",mm("louv"),[1.1,0.08,0.05],[CX-BL/2-1.4,yc,0.78],at=[[0,k*0.26-0.4,0] for k in range(4)])
-    box(f"c{tag}_load","c"+tag+"L",mm("dark"),[1.6,1.5,1.5],[CX+BL/2+1.4,yc,0]); box(f"c{tag}_lamp","c"+tag+"L",mm("lampOff"),[1.0,0.9,0.08],[CX+BL/2+1.4,yc,0.78])
+    box(f"c{tag}_src","c"+tag+"S",mm("shelf"),[2.0,2.2,2.2],[CX-BL/2-1.7,yc,0]); box(f"c{tag}_srcl","c"+tag+"S",mm("louv"),[1.4,0.1,0.05],[CX-BL/2-1.7,yc,1.12],at=[[0,k*0.34-0.5,0] for k in range(4)])
+    box(f"c{tag}_load","c"+tag+"L",mm("dark"),[2.0,2.2,2.2],[CX+BL/2+1.7,yc,0]); box(f"c{tag}_lamp","c"+tag+"L",mm("lampOff"),[1.3,1.3,0.08],[CX+BL/2+1.7,yc,1.12])
     # 粗銅排（兩者起初同粗，邊長 1.0）
-    box(f"c{tag}_bar","c"+tag+"B",mm("cu"),[BL,1.0,1.0],[CX,yc,0]); box(f"c{tag}_hi","c"+tag+"B",mm("cuHi"),[BL-0.3,0.08,1.02],[CX,yc+0.46,0])
-    box(f"c{tag}_slv","c"+tag+"B",mm("sleeve"),[1.8,1.2,1.2],[CX,yc,0],at=[[-BL/2+1.1,0,0],[BL/2-1.1,0,0]])
-    lug(f"c{tag}_lg0","c"+tag+"B",CX-BL/2-0.2,yc,0.57); lug(f"c{tag}_lg1","c"+tag+"B",CX+BL/2+0.2,yc,0.57)
+    box(f"c{tag}_bar","c"+tag+"B",mm("cu"),[BL,T,T],[CX,yc,0]); box(f"c{tag}_hi","c"+tag+"B",mm("cuHi"),[BL-0.3,0.1,T+0.02],[CX,yc+T/2-0.04,0])
+    box(f"c{tag}_slv","c"+tag+"B",mm("sleeve"),[1.6,T+0.25,T+0.25],[CX,yc,0],at=[[-BL/2+1.0,0,0],[BL/2-1.0,0,0]])
+    lug(f"c{tag}_lg0","c"+tag+"B",CX-BL/2-0.2,yc,T/2+0.07); lug(f"c{tag}_lg1","c"+tag+"B",CX+BL/2+0.2,yc,T/2+0.07)
 # 細銅排（取代下條：截面約 1/15）
-box("cd_thin","cdT",mm("cuHi"),[BL,0.26,0.26],[CX,0.95,0]); lug("cd_tlg0","cdT",CX-BL/2-0.2,0.95,0.2); lug("cd_tlg1","cdT",CX+BL/2+0.2,0.95,0.2)
+box("cd_thin","cdT",mm("cuHi"),[BL,T/3.85,T/3.85],[CX,1.1,0]); lug("cd_tlg0","cdT",CX-BL/2-0.2,1.1,T/7.7+0.07); lug("cd_tlg1","cdT",CX+BL/2+0.2,1.1,T/7.7+0.07)
 for p in parts[-6:]: pass
-anchor("c_up","cuB",[CX-BL/2+0.6,3.3+0.6,0.5],dx=-60,dy=-110); anchor("c_dn","cdB",[CX+BL/2-1.2,0.95-0.6,0.5],dx=60,dy=100)
-anchor("c_thin","cdT",[CX+BL/2-1.6,0.95+0.15,0.2],dx=60,dy=-120)
+anchor("c_up","cuB",[CX-BL/2+0.6,5.0+0.8,0.7],dx=-60,dy=-110); anchor("c_dn","cdB",[CX+BL/2-1.2,1.1-0.8,0.7],dx=60,dy=100)
+anchor("c_thin","cdT",[CX+BL/2-1.6,1.1+0.1,0.2],dx=60,dy=-120)
 # C 的電流：上＝很密（54 V 18,519 A 示意），下＝稀疏（1,250 A）
-flow("c_up","cuB",[[CX-BL/2,3.3,0.56],[CX+BL/2,3.3,0.56]],10,5,0.16,[0,1,0],0.085,1.7)
-flow("c_dn","cdB",[[CX-BL/2,0.95,0.56],[CX+BL/2,0.95,0.56]],2,2,0.3,[0,1,0],0.09,1.0)
-flow("c_dnT","cdT",[[CX-BL/2,0.95,0.2],[CX+BL/2,0.95,0.2]],2,1,0.2,[0,1,0],0.08,1.0)
+flow("c_up","cuB",[[CX-BL/2,5.0,T/2+0.06],[CX+BL/2,5.0,T/2+0.06]],10,5,0.22,[0,1,0],0.085,1.7)
+flow("c_dn","cdB",[[CX-BL/2,1.1,T/2+0.06],[CX+BL/2,1.1,T/2+0.06]],2,2,0.4,[0,1,0],0.09,1.0)
+flow("c_dnT","cdT",[[CX-BL/2,1.1,0.2],[CX+BL/2,1.1,0.2]],2,1,0.2,[0,1,0],0.08,1.0)
 actions["c_hot"]={"type":"pulse","layer":"cuB","parts":["cu_bar"],"color":"lp_bad","steady":True,"glow":0.95,"halo":0}
-actions["c_heat"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX,3.3,0]},"dir":[0,1,0],"reach":2.4,"count":4,"r0":0.7,"spread":0.55,"rate":0.9,"color":"lp_bad"}
-actions["c_heat2"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX+3,3.3,0]},"dir":[0,1,0],"reach":2.2,"count":3,"r0":0.7,"spread":0.55,"rate":0.8,"color":"lp_heat"}
+actions["c_heat"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX,5.0,0]},"dir":[0,1,0],"reach":2.4,"count":4,"r0":0.7,"spread":0.55,"rate":0.9,"color":"lp_bad"}
+actions["c_heat2"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX+3,5.0,0]},"dir":[0,1,0],"reach":2.2,"count":3,"r0":0.7,"spread":0.55,"rate":0.8,"color":"lp_heat"}
 actions["c_lampU"]={"type":"pulse","layer":"cuL","parts":["cu_lamp"],"color":"lp_proc","steady":True,"glow":1,"halo":0}
 actions["c_lampD"]={"type":"pulse","layer":"cdL","parts":["cd_lamp"],"color":"lp_proc","steady":True,"glow":1,"halo":0}
 actions["c_srcU"]={"type":"pulse","layer":"cuS","parts":["cu_src"],"color":"lp_proc","steady":True,"glow":0.5,"halo":0}

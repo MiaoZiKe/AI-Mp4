@@ -38,7 +38,7 @@ def scene(i, beat, para, tts, zh, en, kw, cues, props, src, pause=None, narr=Non
 
 
 scenes = []
-SH_R = {"x": 1.2, "y": 3.6, "d": 38, "elev": 20}
+SH_R = {"x": 1.2, "y": 3.4, "d": 31, "elev": 20}
 def card(kind, at, until, t, y=905, h=345, title="", tag="示意，非實際比例"):
     return {"type": "section", "kind": kind, "at": at, "until": until, "x": 64, "y": y, "w": 952, "h": h, "avoid": False, "title": title, "tag": tag, "t": {k: {"at": v} for k, v in t.items()}}
 
@@ -70,7 +70,7 @@ scenes.append(scene("s2", "you", 2,
     ["Inside today's rack,", "the power is only about 50 volts,", "pushed in through thick copper bars", "called busbars."],
     ["五十幾伏特", "銅排"],
     [cue("now", "機櫃裡的電"), cue("v54", "五十幾伏特"), cue("fat", "很粗的銅條"), cue("busbar", "銅排")],
-    {"shot": [{"at": "start-2", "dur": 14, **SH_R, "x": 1.0, "d": 33}],
+    {"shot": [{"at": "start-2", "dur": 14, **SH_R, "x": 1.0, "d": 29}],
      "run": s2_run,
      "labels": [lab("rk_shelf", "電源架 54 V", "power shelf, 54 V", "amber", "v54", "fat"), lab("rk_bus", "銅排 busbar", "busbar", "blue", "busbar", "s3:start-2")],
      "overlay": [stamp("已確定", "busbar", "s3:start-2", "blue", 44, x=860, y=330)]},
@@ -84,7 +84,7 @@ scenes.append(scene("s3", "mechanism", 3,
     ["電壓乘電流", "很大"],
     [cue("power", "功率等於"), cue("vxi", "電壓乘電流"), cue("low", "電壓低"), cue("big", "很大")],
     {"zoom": [{"to": "pk", "at": "start-2", "dur": 1}],
-     "shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.4, "y": 1.9, "d": 44, "elev": 18}],
+     "shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
      "run": [run("c_srcU", "power", "s6:start-2", 8), run("c_lampU", "low", "s6:start-2", 10), run("c_up", "low-4", "s6:start-2", 8)],
      "labels": [lab("c_up", "54 V 供電", "54 V supply", "amber", "low", "s4:start-2")],
      "overlay": [card("pw-compare", "start+2", "s6:start-14", {"pw": "power", "vi": "vxi", "low": "low", "big": "big", "hot": "s4:hot", "x15": "s4:x15", "x219": "s4:x219", "v800": "s5:v800", "amp": "s5:amp", "thin": "s5:thin"}, title="同樣的電，兩種電壓")]},
@@ -97,7 +97,7 @@ scenes.append(scene("s4", "mechanism", 4,
     ["Big current", "heats the busbar,", "so it keeps getting thicker.", "Fifteen times the current", "means over two hundred times the heat."],
     ["發熱", "兩百多倍"],
     [cue("cur", "電流大"), cue("hot", "銅排就燙"), cue("thick", "越做越粗"), cue("x15", "十五倍"), cue("x219", "兩百多倍")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.4, "y": 1.9, "d": 44, "elev": 18}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
      "run": [run("c_hot", "hot-8", "s6:start-2", 50), run("c_heat", "hot", "s6:start-2", 6), run("c_heat2", "hot+8", "s6:start-2", 6), run("c_dn", "x15", "s5:thin", 8), run("c_srcD", "x15-6", "s6:start-2", 8), run("c_lampD", "x15+6", "s6:start-2", 10)],
      "labels": [lab("c_dn", "800 V 供電", "800 V supply", "blue", "x15", "s5:start-2")],
      "overlay": [stamp("估算：同一條銅排", "x219", "s5:start-2", "coral", 38, x=720, y=330)]},
@@ -110,7 +110,7 @@ scenes.append(scene("s5", "mechanism", 5,
     ["Switch to 800 volts,", "the current drops to one fifteenth,", "so the busbar can be thin."],
     ["八百伏特", "做細"],
     [cue("v800", "八百伏特"), cue("amp", "十五分之一"), cue("thin", "做細")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.4, "y": 1.9, "d": 44, "elev": 18}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
      "shift": [gone("cdB", "thin-4", 6), fall("cdT", "thin", dy=1.4, bounce=0.05)] if False else [{"layer": "cdB", "at": "thin-4", "until": FAR, "opacity": 0, "dy": -0.6, "dur": 8}, hide_until("cdT", "thin+4", dy=1.4)],
      "run": [run("c_dnT", "thin+16", "s6:start-2", 6)],
      "labels": [lab("c_thin", "截面約 1/15", "≈1/15 the cross-section", "blue", "thin+10", "s6:start-2")],

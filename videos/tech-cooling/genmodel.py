@@ -71,9 +71,11 @@ def fan_group(key, lay, items, rps=3):
         ids += a; piv.update(p)
     actions[key] = {"type": "rotate", "parts": ids, "axis": ax, "pivots": piv, "rps": rps, "rampSpin": True, "layer": lay + "_bl"}
 def flow(key, lay, path, n=4, lanes=1, gap=.2, ldir=(1, 0, 0), size=.1, rate=1.0, color="lp_sig", rim="lp_sigRim", trail=3):
+    layer(lay)
     actions[key] = {"type": "flow", "layer": lay, "path": [[R(v) for v in p] for p in path], "n": n, "lanes": lanes, "laneGap": gap, "laneDir": list(ldir), "size": size, "shape": "dot",
                     "rate": rate, "color": color, "rim": rim, "rimScale": 1.6, "rimO": .45, "trail": trail, "trailGap": .03, "trailColor": color, "track": False}
 def glow(key, lay, ps, color="lp_heat", steady=True, g=.9, freq=2.2):
+    layer(lay)
     d = {"type": "pulse", "layer": lay, "parts": ps, "color": color, "glow": g, "halo": 0}
     if steady: d["steady"] = True
     else: d["freq"] = freq
