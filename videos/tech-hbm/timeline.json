@@ -2,38 +2,32 @@
  "version": 2,
  "slug": "tech-hbm",
  "fps": 30,
- "totalFrames": 1946,
- "totalSec": 64.87,
- "gapSec": 0.3,
+ "totalFrames": 1680,
+ "totalSec": 56,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 9.592,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-hbm/01-s1.wav",
+   "audioFrame": 0,
+   "audioSec": 8.08,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 313,
+   "durationFrames": 262,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 293,
-   "stillFrame": 303,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 242,
+   "stillFrame": 252,
    "subtitleWindow": [
     0,
-    310
+    259
    ],
    "sourceWindow": [
     0,
-    308
+    257
    ],
    "pauseAfter": 0.7,
    "lines": [
@@ -41,194 +35,528 @@
      "text": "現在的 AI 晶片",
      "start": 0,
      "chars": [
-      4,
-      9,
-      14,
-      14,
+      1,
+      6,
+      10,
+      10,
+      13,
+      16,
+      16,
       19,
-      25,
-      25,
-      30,
-      35
+      23
      ]
     },
     {
      "text": "算得再快",
-     "start": 45,
+     "start": 32,
      "chars": [
-      47,
-      53,
-      58,
-      63
+      35,
+      39,
+      43,
+      48
      ]
     },
     {
      "text": "資料送不進來也沒用",
-     "start": 73,
+     "start": 58,
      "chars": [
-      75,
+      60,
+      65,
+      69,
+      74,
+      76,
       80,
+      83,
       86,
-      91,
-      96,
-      102,
-      107,
-      112,
-      118
+      90
      ]
     },
     {
      "text": "所以它旁邊那圈記憶體",
-     "start": 127,
+     "start": 104,
      "chars": [
-      129,
+      106,
+      110,
+      112,
+      116,
+      120,
+      124,
+      127,
+      132,
       135,
-      140,
-      145,
-      151,
-      156,
-      161,
-      167,
-      172,
-      177
+      138
      ]
     },
     {
      "text": "是十二層疊在一起",
-     "start": 187,
+     "start": 147,
      "chars": [
-      189,
-      194,
-      200,
-      205,
-      210,
-      216,
-      221,
-      226
+      149,
+      155,
+      161,
+      164,
+      170,
+      176,
+      179,
+      182
      ]
     },
     {
      "text": "整疊還比一張信用卡薄",
-     "start": 236,
+     "start": 193,
      "chars": [
-      238,
-      243,
-      249,
-      254,
-      259,
-      265,
-      270,
-      275,
-      281,
-      286
+      195,
+      200,
+      204,
+      209,
+      212,
+      215,
+      220,
+      224,
+      228,
+      234
      ]
     }
    ],
    "keywords": [
     {
      "text": "資料送不進來",
-     "start": 75
+     "start": 60
     },
     {
      "text": "十二層",
-     "start": 194
+     "start": 155
     },
     {
      "text": "信用卡",
-     "start": 270
+     "start": 220
     }
    ],
    "cues": [
     {
      "id": "ai",
      "text": "AI 晶片",
-     "frame": 21
+     "frame": 14,
+     "early": 0
     },
     {
      "id": "data",
      "text": "送不進來",
-     "frame": 87
+     "frame": 71,
+     "early": 0
     },
     {
      "id": "ring",
      "text": "那圈記憶體",
-     "frame": 157
+     "frame": 125,
+     "early": 0
     },
     {
      "id": "twelve",
      "text": "十二層",
-     "frame": 196
+     "frame": 156,
+     "early": 0
     },
     {
      "id": "card",
      "text": "信用卡",
-     "frame": 271
+     "frame": 221,
+     "early": 0
     }
    ],
+   "hash": "b3e998043fb2-cdd5e7735d",
    "sub": "現在的 AI 晶片\n算得再快\n資料送不進來也沒用\n所以它旁邊那圈記憶體\n是十二層疊在一起\n整疊還比一張信用卡薄",
-   "provider": "estimate",
-   "syllables": 47,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.836,
+    "minScore": 0.003,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 1.14,
+      "start": 1.2,
+      "ch": "算",
+      "errMs": 60
+     },
+     {
+      "onset": 2.06,
+      "start": 2.04,
+      "ch": "資",
+      "errMs": -20
+     },
+     {
+      "onset": 3.57,
+      "start": 3.58,
+      "ch": "所",
+      "errMs": 10
+     },
+     {
+      "onset": 4.99,
+      "start": 5.02,
+      "ch": "是",
+      "errMs": 30
+     },
+     {
+      "onset": 6.54,
+      "start": 6.54,
+      "ch": "整",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "現",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.991
+    },
+    {
+     "text": "在",
+     "start": 0.24,
+     "end": 0.36,
+     "score": 0.967
+    },
+    {
+     "text": "的",
+     "start": 0.38,
+     "end": 0.42,
+     "score": 0.997
+    },
+    {
+     "text": "A",
+     "start": 0.48,
+     "end": 0.52,
+     "score": 0.115
+    },
+    {
+     "text": "I",
+     "start": 0.58,
+     "end": 0.64,
+     "score": 0.583
+    },
+    {
+     "text": "晶",
+     "start": 0.68,
+     "end": 0.8,
+     "score": 0.942
+    },
+    {
+     "text": "片",
+     "start": 0.82,
+     "end": 1,
+     "score": 0.998
+    },
+    {
+     "text": "算",
+     "start": 1.2,
+     "end": 1.34,
+     "score": 0.963
+    },
+    {
+     "text": "得",
+     "start": 1.36,
+     "end": 1.42,
+     "score": 0.997
+    },
+    {
+     "text": "再",
+     "start": 1.48,
+     "end": 1.62,
+     "score": 0.999
+    },
+    {
+     "text": "快",
+     "start": 1.64,
+     "end": 1.8,
+     "score": 0.913
+    },
+    {
+     "text": "資",
+     "start": 2.04,
+     "end": 2.14,
+     "score": 0.999
+    },
+    {
+     "text": "料",
+     "start": 2.2,
+     "end": 2.34,
+     "score": 0.994
+    },
+    {
+     "text": "送",
+     "start": 2.36,
+     "end": 2.48,
+     "score": 0.997
+    },
+    {
+     "text": "不",
+     "start": 2.5,
+     "end": 2.54,
+     "score": 0.998
+    },
+    {
+     "text": "進",
+     "start": 2.58,
+     "end": 2.68,
+     "score": 0.82
+    },
+    {
+     "text": "來",
+     "start": 2.7,
+     "end": 2.78,
+     "score": 0.881
+    },
+    {
+     "text": "也",
+     "start": 2.8,
+     "end": 2.86,
+     "score": 0.994
+    },
+    {
+     "text": "沒",
+     "start": 2.9,
+     "end": 3,
+     "score": 0.997
+    },
+    {
+     "text": "用",
+     "start": 3.04,
+     "end": 3.2,
+     "score": 0.999
+    },
+    {
+     "text": "所",
+     "start": 3.58,
+     "end": 3.66,
+     "score": 0.984
+    },
+    {
+     "text": "以",
+     "start": 3.7,
+     "end": 3.74,
+     "score": 0.985
+    },
+    {
+     "text": "它",
+     "start": 3.78,
+     "end": 3.84,
+     "score": 0.995
+    },
+    {
+     "text": "旁",
+     "start": 3.9,
+     "end": 4.04,
+     "score": 0.968
+    },
+    {
+     "text": "邊",
+     "start": 4.04,
+     "end": 4.16,
+     "score": 0.909
+    },
+    {
+     "text": "那",
+     "start": 4.18,
+     "end": 4.22,
+     "score": 0.522
+    },
+    {
+     "text": "圈",
+     "start": 4.28,
+     "end": 4.4,
+     "score": 0.959
+    },
+    {
+     "text": "記",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.994
+    },
+    {
+     "text": "憶",
+     "start": 4.56,
+     "end": 4.62,
+     "score": 0.174
+    },
+    {
+     "text": "體",
+     "start": 4.66,
+     "end": 4.76,
+     "score": 0.996
+    },
+    {
+     "text": "是",
+     "start": 5.02,
+     "end": 5.1,
+     "score": 0.993
+    },
+    {
+     "text": "十",
+     "start": 5.2,
+     "end": 5.3,
+     "score": 0.041
+    },
+    {
+     "text": "二",
+     "start": 5.4,
+     "end": 5.46,
+     "score": 0.054
+    },
+    {
+     "text": "層",
+     "start": 5.52,
+     "end": 5.68,
+     "score": 0.969
+    },
+    {
+     "text": "疊",
+     "start": 5.72,
+     "end": 5.82,
+     "score": 0.961
+    },
+    {
+     "text": "在",
+     "start": 5.9,
+     "end": 6.02,
+     "score": 0.937
+    },
+    {
+     "text": "一",
+     "start": 6.02,
+     "end": 6.06,
+     "score": 0.003
+    },
+    {
+     "text": "起",
+     "start": 6.12,
+     "end": 6.22,
+     "score": 0.996
+    },
+    {
+     "text": "整",
+     "start": 6.54,
+     "end": 6.7,
+     "score": 0.907
+    },
+    {
+     "text": "疊",
+     "start": 6.72,
+     "end": 6.8,
+     "score": 0.946
+    },
+    {
+     "text": "還",
+     "start": 6.86,
+     "end": 6.96,
+     "score": 0.997
+    },
+    {
+     "text": "比",
+     "start": 7,
+     "end": 7.06,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 7.1,
+     "end": 7.14,
+     "score": 0.019
+    },
+    {
+     "text": "張",
+     "start": 7.2,
+     "end": 7.34,
+     "score": 0.874
+    },
+    {
+     "text": "信",
+     "start": 7.38,
+     "end": 7.5,
+     "score": 0.941
+    },
+    {
+     "text": "用",
+     "start": 7.52,
+     "end": 7.64,
+     "score": 0.892
+    },
+    {
+     "text": "卡",
+     "start": 7.66,
+     "end": 7.74,
+     "score": 0.973
+    },
+    {
+     "text": "薄",
+     "start": 7.84,
+     "end": 8,
+     "score": 0.991
+    }
+   ],
    "charTimes": [
-    0,
-    0.178,
-    0.355,
-    0.533,
-    0.711,
-    0.888,
-    1.066,
-    1.457,
-    1.634,
-    1.812,
-    1.989,
-    2.38,
-    2.558,
-    2.735,
-    2.913,
-    3.091,
-    3.268,
-    3.446,
-    3.624,
-    3.801,
-    4.192,
-    4.37,
-    4.547,
-    4.725,
-    4.902,
-    5.08,
-    5.258,
-    5.435,
-    5.613,
-    5.791,
-    6.181,
-    6.359,
-    6.537,
-    6.714,
-    6.892,
-    7.07,
-    7.247,
-    7.425,
-    7.816,
-    7.993,
-    8.171,
-    8.348,
-    8.526,
-    8.704,
-    8.881,
-    9.059,
-    9.237,
-    9.414
+    0.08,
+    0.24,
+    0.38,
+    0.48,
+    0.58,
+    0.68,
+    0.82,
+    1.2,
+    1.36,
+    1.48,
+    1.64,
+    2.04,
+    2.2,
+    2.36,
+    2.5,
+    2.58,
+    2.7,
+    2.8,
+    2.9,
+    3.04,
+    3.58,
+    3.7,
+    3.78,
+    3.9,
+    4.04,
+    4.18,
+    4.28,
+    4.44,
+    4.56,
+    4.66,
+    5.02,
+    5.2,
+    5.4,
+    5.52,
+    5.72,
+    5.9,
+    6.02,
+    6.12,
+    6.54,
+    6.72,
+    6.86,
+    7,
+    7.1,
+    7.2,
+    7.38,
+    7.52,
+    7.66,
+    7.84
    ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 314,
-   "audioSec": 5.51,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 303,
-   "durationFrames": 185,
+   "audio": "audio/tech-hbm/02-s2.wav",
+   "audioFrame": 261,
+   "audioSec": 5.14,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 252,
+   "durationFrames": 177,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -242,142 +570,336 @@
      8
     ]
    },
-   "voiceStartFrame": 313,
-   "voiceEndFrame": 480,
-   "stillFrame": 478,
+   "voiceStartFrame": 262,
+   "voiceEndFrame": 414,
+   "stillFrame": 419,
    "subtitleWindow": [
-    310,
-    485
+    259,
+    426
    ],
    "sourceWindow": [
-    308,
-    483
+    257,
+    424
    ],
    "lines": [
     {
      "text": "這種記憶體叫",
-     "start": 310,
+     "start": 259,
      "chars": [
-      313,
-      318,
-      323,
-      328,
-      333,
-      338
+      261,
+      264,
+      268,
+      272,
+      275,
+      279
      ]
     },
     {
      "text": "高頻寬記憶體",
-     "start": 347,
+     "start": 284,
      "chars": [
-      349,
-      354,
-      359,
-      364,
-      369,
-      374
+      286,
+      291,
+      297,
+      302,
+      306,
+      309
      ]
     },
     {
      "text": "HBM高頻寬",
-     "start": 383,
+     "start": 318,
      "chars": [
-      385,
-      390,
-      395,
-      406,
-      411,
-      416
+      320,
+      327,
+      334,
+      350,
+      355,
+      360
      ]
     },
     {
      "text": "就是一次能送很多資料",
-     "start": 425,
+     "start": 367,
      "chars": [
-      427,
-      432,
-      437,
-      443,
-      448,
-      453,
-      458,
-      463,
-      468,
-      473
+      369,
+      373,
+      377,
+      380,
+      384,
+      389,
+      395,
+      400,
+      404,
+      408
      ]
     }
    ],
    "keywords": [
     {
      "text": "高頻寬記憶體",
-     "start": 349
+     "start": 286
     },
     {
      "text": "一次能送很多資料",
-     "start": 437
+     "start": 377
     }
    ],
    "cues": [
     {
      "id": "hbm",
      "text": "HBM",
-     "frame": 387
+     "frame": 322,
+     "early": 0
     },
     {
      "id": "band",
      "text": "一次能送",
-     "frame": 439
+     "frame": 378,
+     "early": 0
     },
     {
      "id": "much",
      "text": "很多資料",
-     "frame": 459
+     "frame": 396,
+     "early": 0
     }
    ],
+   "hash": "5278eaee8579-cdd5e7735d",
    "sub": "這種記憶體叫\n高頻寬記憶體\nHBM\n高頻寬\n就是一次能送很多資料",
-   "provider": "estimate",
-   "syllables": 27,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.835,
+    "minScore": 0.108,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.01,
+      "start": 2.02,
+      "ch": "H",
+      "errMs": 10
+     },
+     {
+      "onset": 3.01,
+      "start": 3,
+      "ch": "高",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "這",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.914
+    },
+    {
+     "text": "種",
+     "start": 0.16,
+     "end": 0.28,
+     "score": 0.949
+    },
+    {
+     "text": "記",
+     "start": 0.28,
+     "end": 0.36,
+     "score": 0.992
+    },
+    {
+     "text": "憶",
+     "start": 0.4,
+     "end": 0.46,
+     "score": 0.108
+    },
+    {
+     "text": "體",
+     "start": 0.5,
+     "end": 0.58,
+     "score": 0.996
+    },
+    {
+     "text": "叫",
+     "start": 0.66,
+     "end": 0.82,
+     "score": 0.998
+    },
+    {
+     "text": "高",
+     "start": 0.88,
+     "end": 1.04,
+     "score": 0.923
+    },
+    {
+     "text": "頻",
+     "start": 1.06,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "寬",
+     "start": 1.24,
+     "end": 1.38,
+     "score": 0.997
+    },
+    {
+     "text": "記",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.992
+    },
+    {
+     "text": "憶",
+     "start": 1.54,
+     "end": 1.58,
+     "score": 0.109
+    },
+    {
+     "text": "體",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.996
+    },
+    {
+     "text": "H",
+     "start": 2.02,
+     "end": 2.18,
+     "score": 0.187
+    },
+    {
+     "text": "B",
+     "start": 2.24,
+     "end": 2.34,
+     "score": 0.431
+    },
+    {
+     "text": "M",
+     "start": 2.48,
+     "end": 2.58,
+     "score": 0.494
+    },
+    {
+     "text": "高",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.971
+    },
+    {
+     "text": "頻",
+     "start": 3.18,
+     "end": 3.3,
+     "score": 0.947
+    },
+    {
+     "text": "寬",
+     "start": 3.34,
+     "end": 3.5,
+     "score": 0.979
+    },
+    {
+     "text": "就",
+     "start": 3.64,
+     "end": 3.76,
+     "score": 0.996
+    },
+    {
+     "text": "是",
+     "start": 3.78,
+     "end": 3.86,
+     "score": 0.997
+    },
+    {
+     "text": "一",
+     "start": 3.9,
+     "end": 3.94,
+     "score": 0.532
+    },
+    {
+     "text": "次",
+     "start": 4.02,
+     "end": 4.12,
+     "score": 0.993
+    },
+    {
+     "text": "能",
+     "start": 4.16,
+     "end": 4.28,
+     "score": 0.996
+    },
+    {
+     "text": "送",
+     "start": 4.3,
+     "end": 4.46,
+     "score": 0.905
+    },
+    {
+     "text": "很",
+     "start": 4.5,
+     "end": 4.64,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 4.68,
+     "end": 4.76,
+     "score": 0.999
+    },
+    {
+     "text": "資",
+     "start": 4.82,
+     "end": 4.9,
+     "score": 0.999
+    },
+    {
+     "text": "料",
+     "start": 4.94,
+     "end": 5.1,
+     "score": 0.983
+    }
+   ],
    "charTimes": [
-    0,
-    0.168,
-    0.336,
-    0.504,
-    0.672,
-    0.84,
-    1.21,
-    1.378,
-    1.546,
-    1.714,
-    1.882,
-    2.05,
-    2.419,
-    2.587,
-    2.755,
-    3.125,
-    3.293,
-    3.461,
-    3.83,
-    3.998,
-    4.166,
-    4.334,
-    4.502,
-    4.67,
-    4.838,
-    5.006,
-    5.174,
-    5.342
+    0.04,
+    0.16,
+    0.28,
+    0.4,
+    0.5,
+    0.66,
+    0.88,
+    1.06,
+    1.24,
+    1.42,
+    1.54,
+    1.64,
+    2.02,
+    2.24,
+    2.48,
+    3,
+    3.18,
+    3.34,
+    3.64,
+    3.78,
+    3.9,
+    4.02,
+    4.16,
+    4.3,
+    4.5,
+    4.68,
+    4.82,
+    4.94
    ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 488,
-   "audioSec": 7.755,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 478,
-   "durationFrames": 251,
+   "audio": "audio/tech-hbm/03-s3.wav",
+   "audioFrame": 428,
+   "audioSec": 6.35,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 419,
+   "durationFrames": 212,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -391,172 +913,432 @@
      8
     ]
    },
-   "voiceStartFrame": 488,
-   "voiceEndFrame": 721,
-   "stillFrame": 719,
+   "voiceStartFrame": 429,
+   "voiceEndFrame": 618,
+   "stillFrame": 621,
    "subtitleWindow": [
-    485,
-    726
+    426,
+    628
    ],
    "sourceWindow": [
-    483,
-    724
+    424,
+    626
    ],
    "lines": [
     {
      "text": "多到什麼程度？",
-     "start": 485,
+     "start": 426,
      "chars": [
-      487,
-      492,
-      497,
-      502,
-      508,
-      513,
-      513
+      427,
+      431,
+      435,
+      438,
+      440,
+      444,
+      444
      ]
     },
     {
      "text": "一般電腦記憶體",
-     "start": 523,
+     "start": 456,
      "chars": [
-      525,
-      530,
-      535,
-      541,
-      546,
-      551,
-      557
+      458,
+      461,
+      466,
+      469,
+      473,
+      476,
+      479
      ]
     },
     {
      "text": "一次走六十四條資料線",
-     "start": 566,
+     "start": 483,
      "chars": [
-      568,
-      574,
-      579,
-      584,
-      590,
-      595,
-      600,
-      605,
-      611,
-      616
+      485,
+      489,
+      493,
+      499,
+      503,
+      507,
+      511,
+      517,
+      520,
+      524
      ]
     },
     {
      "text": "新一代 HBM",
-     "start": 626,
+     "start": 537,
      "chars": [
-      628,
-      633,
-      638,
-      638,
-      644,
-      649,
-      654
+      539,
+      544,
+      546,
+      546,
+      551,
+      556,
+      560
      ]
     },
     {
      "text": "一疊有兩千零四十八條",
-     "start": 664,
+     "start": 562,
      "chars": [
-      666,
-      671,
-      677,
-      682,
-      687,
-      693,
-      698,
-      703,
-      709,
-      714
+      565,
+      568,
+      576,
+      580,
+      586,
+      592,
+      598,
+      602,
+      605,
+      610
      ]
     }
    ],
    "keywords": [
     {
      "text": "六十四條",
-     "start": 584
+     "start": 499
     },
     {
      "text": "兩千零四十八條",
-     "start": 682
+     "start": 580
     }
    ],
    "cues": [
     {
      "id": "six4",
      "text": "六十四條",
-     "frame": 586
+     "frame": 500,
+     "early": 0
     },
     {
      "id": "n2048",
      "text": "兩千零四十八",
-     "frame": 683
+     "frame": 582,
+     "early": 0
     },
     {
      "id": "x32",
      "text": "一疊有",
-     "frame": 668
+     "frame": 566,
+     "early": 0
     }
    ],
+   "hash": "01ed2c587fa8-cdd5e7735d",
    "sub": "多到什麼程度？\n一般電腦記憶體\n一次走六十四條資料線\n新一代 HBM\n一疊有兩千零四十八條",
-   "provider": "estimate",
-   "syllables": 38,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.615,
+    "minScore": 0.003,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.07,
+      "start": 1.06,
+      "ch": "一",
+      "errMs": -10
+     },
+     {
+      "onset": 3.73,
+      "start": 3.74,
+      "ch": "新",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "多",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.951
+    },
+    {
+     "text": "到",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.999
+    },
+    {
+     "text": "什",
+     "start": 0.28,
+     "end": 0.36,
+     "score": 0.998
+    },
+    {
+     "text": "麼",
+     "start": 0.38,
+     "end": 0.42,
+     "score": 0.999
+    },
+    {
+     "text": "程",
+     "start": 0.44,
+     "end": 0.58,
+     "score": 0.932
+    },
+    {
+     "text": "度",
+     "start": 0.6,
+     "end": 0.7,
+     "score": 0.963
+    },
+    {
+     "text": "一",
+     "start": 1.06,
+     "end": 1.1,
+     "score": 0.024
+    },
+    {
+     "text": "般",
+     "start": 1.16,
+     "end": 1.26,
+     "score": 0.928
+    },
+    {
+     "text": "電",
+     "start": 1.3,
+     "end": 1.4,
+     "score": 0.994
+    },
+    {
+     "text": "腦",
+     "start": 1.42,
+     "end": 1.54,
+     "score": 0.685
+    },
+    {
+     "text": "記",
+     "start": 1.56,
+     "end": 1.64,
+     "score": 0.989
+    },
+    {
+     "text": "憶",
+     "start": 1.66,
+     "end": 1.72,
+     "score": 0.107
+    },
+    {
+     "text": "體",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.99
+    },
+    {
+     "text": "一",
+     "start": 1.96,
+     "end": 2.02,
+     "score": 0.436
+    },
+    {
+     "text": "次",
+     "start": 2.08,
+     "end": 2.16,
+     "score": 0.938
+    },
+    {
+     "text": "走",
+     "start": 2.22,
+     "end": 2.34,
+     "score": 0.845
+    },
+    {
+     "text": "六",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.003
+    },
+    {
+     "text": "十",
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.011
+    },
+    {
+     "text": "四",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.077
+    },
+    {
+     "text": "條",
+     "start": 2.82,
+     "end": 2.96,
+     "score": 0.911
+    },
+    {
+     "text": "資",
+     "start": 3,
+     "end": 3.06,
+     "score": 0.993
+    },
+    {
+     "text": "料",
+     "start": 3.1,
+     "end": 3.22,
+     "score": 0.968
+    },
+    {
+     "text": "線",
+     "start": 3.26,
+     "end": 3.4,
+     "score": 0.997
+    },
+    {
+     "text": "新",
+     "start": 3.74,
+     "end": 3.86,
+     "score": 0.997
+    },
+    {
+     "text": "一",
+     "start": 3.9,
+     "end": 3.94,
+     "score": 0.643
+    },
+    {
+     "text": "代",
+     "start": 3.98,
+     "end": 4.08,
+     "score": 0.978
+    },
+    {
+     "text": "H",
+     "start": 4.14,
+     "end": 4.26,
+     "score": 0.162
+    },
+    {
+     "text": "B",
+     "start": 4.3,
+     "end": 4.34,
+     "score": 0.127
+    },
+    {
+     "text": "M",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.48
+    },
+    {
+     "text": "一",
+     "start": 4.6,
+     "end": 4.66,
+     "score": 0.022
+    },
+    {
+     "text": "疊",
+     "start": 4.72,
+     "end": 4.84,
+     "score": 0.702
+    },
+    {
+     "text": "有",
+     "start": 4.98,
+     "end": 5.08,
+     "score": 0.999
+    },
+    {
+     "text": "兩",
+     "start": 5.12,
+     "end": 5.3,
+     "score": 0.803
+    },
+    {
+     "text": "千",
+     "start": 5.32,
+     "end": 5.48,
+     "score": 0.03
+    },
+    {
+     "text": "零",
+     "start": 5.52,
+     "end": 5.66,
+     "score": 0.243
+    },
+    {
+     "text": "四",
+     "start": 5.72,
+     "end": 5.78,
+     "score": 0.031
+    },
+    {
+     "text": "十",
+     "start": 5.86,
+     "end": 5.92,
+     "score": 0.03
+    },
+    {
+     "text": "八",
+     "start": 5.96,
+     "end": 6.02,
+     "score": 0.03
+    },
+    {
+     "text": "條",
+     "start": 6.12,
+     "end": 6.28,
+     "score": 0.972
+    }
+   ],
    "charTimes": [
-    0,
-    0.177,
-    0.354,
-    0.531,
-    0.708,
-    0.885,
-    1.275,
-    1.452,
-    1.629,
-    1.806,
-    1.983,
-    2.16,
-    2.337,
-    2.727,
-    2.904,
-    3.081,
-    3.258,
-    3.435,
-    3.612,
-    3.789,
-    3.966,
-    4.143,
-    4.32,
-    4.71,
-    4.887,
-    5.064,
-    5.241,
-    5.418,
-    5.595,
-    5.985,
-    6.162,
-    6.339,
-    6.516,
-    6.693,
-    6.87,
-    7.047,
-    7.224,
-    7.401,
-    7.578
+    0.02,
+    0.14,
+    0.28,
+    0.38,
+    0.44,
+    0.6,
+    1.06,
+    1.16,
+    1.3,
+    1.42,
+    1.56,
+    1.66,
+    1.76,
+    1.96,
+    2.08,
+    2.22,
+    2.4,
+    2.54,
+    2.68,
+    2.82,
+    3,
+    3.1,
+    3.26,
+    3.74,
+    3.9,
+    3.98,
+    4.14,
+    4.3,
+    4.44,
+    4.6,
+    4.72,
+    4.98,
+    5.12,
+    5.32,
+    5.52,
+    5.72,
+    5.86,
+    5.96,
+    6.12
    ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 730,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 719,
-   "durationFrames": 160,
+   "audio": "audio/tech-hbm/04-s4.wav",
+   "audioFrame": 630,
+   "audioSec": 3.53,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 621,
+   "durationFrames": 134,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -570,128 +1352,275 @@
      8
     ]
    },
-   "voiceStartFrame": 729,
-   "voiceEndFrame": 859,
-   "stillFrame": 869,
+   "voiceStartFrame": 631,
+   "voiceEndFrame": 735,
+   "stillFrame": 745,
    "subtitleWindow": [
-    726,
-    876
+    628,
+    752
    ],
    "sourceWindow": [
-    724,
-    874
+    626,
+    750
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "線這麼多",
-     "start": 726,
+     "start": 628,
      "chars": [
-      729,
-      734,
-      739,
-      745
+      631,
+      637,
+      640,
+      642
      ]
     },
     {
      "text": "從旁邊拉不出來",
-     "start": 755,
+     "start": 648,
      "chars": [
-      757,
-      763,
-      768,
-      774,
-      779,
-      785,
-      790
+      650,
+      656,
+      660,
+      665,
+      670,
+      672,
+      677
      ]
     },
     {
      "text": "只好直接在晶片上打洞",
-     "start": 800,
+     "start": 685,
      "chars": [
-      802,
-      808,
-      813,
-      819,
-      824,
-      830,
-      835,
-      841,
-      846,
-      852
+      687,
+      692,
+      697,
+      702,
+      707,
+      711,
+      716,
+      720,
+      725,
+      729
      ]
     }
    ],
    "keywords": [
     {
      "text": "拉不出來",
-     "start": 774
+     "start": 665
     },
     {
      "text": "打洞",
-     "start": 846
+     "start": 725
     }
    ],
    "cues": [
     {
      "id": "many",
      "text": "線這麼多",
-     "frame": 730
+     "frame": 632,
+     "early": 0
     },
     {
      "id": "side",
      "text": "拉不出來",
-     "frame": 775
+     "frame": 667,
+     "early": 0
     },
     {
      "id": "chip",
      "text": "晶片上",
-     "frame": 831
+     "frame": 712,
+     "early": 0
     },
     {
      "id": "hole",
      "text": "打洞",
-     "frame": 848
+     "frame": 726,
+     "early": 0
     }
    ],
+   "hash": "ad32057feda2-cdd5e7735d",
    "sub": "線這麼多\n從旁邊拉不出來\n只好直接在晶片上打洞",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.967,
+    "minScore": 0.666,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.97,
+      "start": 1.96,
+      "ch": "只",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "線",
+     "start": 0.08,
+     "end": 0.24,
+     "score": 0.94
+    },
+    {
+     "text": "這",
+     "start": 0.28,
+     "end": 0.34,
+     "score": 0.996
+    },
+    {
+     "text": "麼",
+     "start": 0.38,
+     "end": 0.44,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 0.46,
+     "end": 0.56,
+     "score": 0.994
+    },
+    {
+     "text": "從",
+     "start": 0.72,
+     "end": 0.88,
+     "score": 0.999
+    },
+    {
+     "text": "旁",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.993
+    },
+    {
+     "text": "邊",
+     "start": 1.06,
+     "end": 1.18,
+     "score": 0.993
+    },
+    {
+     "text": "拉",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.976
+    },
+    {
+     "text": "不",
+     "start": 1.38,
+     "end": 1.44,
+     "score": 0.997
+    },
+    {
+     "text": "出",
+     "start": 1.46,
+     "end": 1.56,
+     "score": 0.998
+    },
+    {
+     "text": "來",
+     "start": 1.6,
+     "end": 1.72,
+     "score": 1
+    },
+    {
+     "text": "只",
+     "start": 1.96,
+     "end": 2.06,
+     "score": 0.908
+    },
+    {
+     "text": "好",
+     "start": 2.12,
+     "end": 2.24,
+     "score": 0.999
+    },
+    {
+     "text": "直",
+     "start": 2.28,
+     "end": 2.38,
+     "score": 0.991
+    },
+    {
+     "text": "接",
+     "start": 2.44,
+     "end": 2.54,
+     "score": 0.666
+    },
+    {
+     "text": "在",
+     "start": 2.6,
+     "end": 2.7,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.982
+    },
+    {
+     "text": "片",
+     "start": 2.9,
+     "end": 3.04,
+     "score": 0.962
+    },
+    {
+     "text": "上",
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.994
+    },
+    {
+     "text": "打",
+     "start": 3.2,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "洞",
+     "start": 3.36,
+     "end": 3.5,
+     "score": 0.923
+    }
+   ],
    "charTimes": [
-    0,
-    0.183,
-    0.366,
-    0.549,
-    0.952,
-    1.136,
-    1.319,
-    1.502,
-    1.685,
-    1.868,
-    2.051,
-    2.454,
-    2.637,
-    2.821,
-    3.004,
-    3.187,
-    3.37,
-    3.553,
-    3.736,
-    3.919,
-    4.103
+    0.08,
+    0.28,
+    0.38,
+    0.46,
+    0.72,
+    0.9,
+    1.06,
+    1.22,
+    1.38,
+    1.46,
+    1.6,
+    1.96,
+    2.12,
+    2.28,
+    2.44,
+    2.6,
+    2.74,
+    2.9,
+    3.06,
+    3.2,
+    3.36
    ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 879,
-   "audioSec": 6.122,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 869,
-   "durationFrames": 214,
+   "audio": "audio/tech-hbm/05-s5.wav",
+   "audioFrame": 754,
+   "audioSec": 5.49,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 745,
+   "durationFrames": 194,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -705,174 +1634,730 @@
      8
     ]
    },
-   "voiceStartFrame": 879,
-   "voiceEndFrame": 1063,
-   "stillFrame": 1073,
+   "voiceStartFrame": 755,
+   "voiceEndFrame": 918,
+   "stillFrame": 929,
    "subtitleWindow": [
-    876,
-    1080
+    752,
+    936
    ],
    "sourceWindow": [
-    874,
-    1078
+    750,
+    934
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "每一層打上幾萬個",
-     "start": 876,
+     "start": 752,
      "chars": [
-      878,
-      883,
-      888,
-      893,
-      899,
-      904,
-      909,
-      914
+      754,
+      757,
+      760,
+      765,
+      769,
+      774,
+      779,
+      783
      ]
     },
     {
      "text": "比頭髮細的孔",
-     "start": 924,
+     "start": 785,
      "chars": [
-      926,
-      931,
-      937,
-      942,
-      947,
-      952
+      787,
+      792,
+      797,
+      802,
+      807,
+      809
      ]
     },
     {
      "text": "填銅再從背面磨薄",
-     "start": 962,
+     "start": 821,
      "chars": [
-      964,
-      969,
-      981,
-      986,
-      992,
-      997,
-      1002,
-      1007
+      823,
+      829,
+      843,
+      847,
+      852,
+      856,
+      861,
+      867
      ]
     },
     {
      "text": "一層一層往下接通",
-     "start": 1017,
+     "start": 876,
      "chars": [
-      1019,
-      1024,
-      1030,
-      1035,
-      1040,
-      1045,
-      1051,
-      1056
+      879,
+      882,
+      887,
+      890,
+      896,
+      901,
+      906,
+      910
      ]
     }
    ],
    "keywords": [
     {
      "text": "幾萬個",
-     "start": 904
+     "start": 774
     },
     {
      "text": "填銅",
-     "start": 964
+     "start": 823
     },
     {
      "text": "背面磨薄",
-     "start": 992
+     "start": 852
     },
     {
      "text": "往下接通",
-     "start": 1040
+     "start": 896
     }
    ],
    "cues": [
     {
      "id": "holes",
      "text": "幾萬個",
-     "frame": 905
+     "frame": 776,
+     "early": 0
     },
     {
      "id": "hair",
      "text": "比頭髮細",
-     "frame": 928
+     "frame": 788,
+     "early": 0
     },
     {
      "id": "fill",
      "text": "填銅",
-     "frame": 966
+     "frame": 824,
+     "early": 0
     },
     {
      "id": "back",
      "text": "背面",
-     "frame": 993
+     "frame": 854,
+     "early": 0
     },
     {
      "id": "thin",
      "text": "磨薄",
-     "frame": 1004
+     "frame": 863,
+     "early": 0
     },
     {
      "id": "stack",
      "text": "一層一層",
-     "frame": 1020
+     "frame": 880,
+     "early": 0
     },
     {
      "id": "thru",
      "text": "往下接通",
-     "frame": 1042
+     "frame": 897,
+     "early": 0
     }
    ],
+   "hash": "2ef2742f07c8-cdd5e7735d",
    "sub": "每一層打上幾萬個\n比頭髮細的孔\n填銅\n再從背面磨薄\n一層一層往下接通",
-   "provider": "estimate",
-   "syllables": 30,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.891,
+    "minScore": 0.004,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.35,
+      "start": 2.34,
+      "ch": "填",
+      "errMs": -10
+     },
+     {
+      "onset": 3.03,
+      "start": 3.02,
+      "ch": "再",
+      "errMs": -10
+     },
+     {
+      "onset": 4.22,
+      "start": 4.2,
+      "ch": "一",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "每",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.935
+    },
+    {
+     "text": "一",
+     "start": 0.14,
+     "end": 0.2,
+     "score": 0.004
+    },
+    {
+     "text": "層",
+     "start": 0.24,
+     "end": 0.38,
+     "score": 0.994
+    },
+    {
+     "text": "打",
+     "start": 0.42,
+     "end": 0.48,
+     "score": 0.999
+    },
+    {
+     "text": "上",
+     "start": 0.56,
+     "end": 0.7,
+     "score": 0.987
+    },
+    {
+     "text": "幾",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.947
+    },
+    {
+     "text": "萬",
+     "start": 0.88,
+     "end": 1,
+     "score": 0.976
+    },
+    {
+     "text": "個",
+     "start": 1.02,
+     "end": 1.1,
+     "score": 0.999
+    },
+    {
+     "text": "比",
+     "start": 1.14,
+     "end": 1.22,
+     "score": 0.997
+    },
+    {
+     "text": "頭",
+     "start": 1.3,
+     "end": 1.44,
+     "score": 0.992
+    },
+    {
+     "text": "髮",
+     "start": 1.48,
+     "end": 1.56,
+     "score": 0.998
+    },
+    {
+     "text": "細",
+     "start": 1.66,
+     "end": 1.74,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.8,
+     "end": 1.84,
+     "score": 0.999
+    },
+    {
+     "text": "孔",
+     "start": 1.88,
+     "end": 2.04,
+     "score": 0.997
+    },
+    {
+     "text": "填",
+     "start": 2.34,
+     "end": 2.5,
+     "score": 0.999
+    },
+    {
+     "text": "銅",
+     "start": 2.54,
+     "end": 2.74,
+     "score": 0.966
+    },
+    {
+     "text": "再",
+     "start": 3.02,
+     "end": 3.12,
+     "score": 1
+    },
+    {
+     "text": "從",
+     "start": 3.16,
+     "end": 3.28,
+     "score": 1
+    },
+    {
+     "text": "背",
+     "start": 3.32,
+     "end": 3.42,
+     "score": 0.998
+    },
+    {
+     "text": "面",
+     "start": 3.46,
+     "end": 3.58,
+     "score": 0.998
+    },
+    {
+     "text": "磨",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.995
+    },
+    {
+     "text": "薄",
+     "start": 3.8,
+     "end": 3.96,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 4.2,
+     "end": 4.24,
+     "score": 0.044
+    },
+    {
+     "text": "層",
+     "start": 4.32,
+     "end": 4.46,
+     "score": 0.977
+    },
+    {
+     "text": "一",
+     "start": 4.48,
+     "end": 4.52,
+     "score": 0.027
+    },
+    {
+     "text": "層",
+     "start": 4.58,
+     "end": 4.72,
+     "score": 0.993
+    },
+    {
+     "text": "往",
+     "start": 4.78,
+     "end": 4.92,
+     "score": 0.905
+    },
+    {
+     "text": "下",
+     "start": 4.94,
+     "end": 5.04,
+     "score": 1
+    },
+    {
+     "text": "接",
+     "start": 5.1,
+     "end": 5.2,
+     "score": 0.999
+    },
+    {
+     "text": "通",
+     "start": 5.26,
+     "end": 5.42,
+     "score": 1
+    }
+   ],
    "charTimes": [
-    0,
-    0.176,
-    0.352,
-    0.528,
-    0.704,
+    0.04,
+    0.14,
+    0.24,
+    0.42,
+    0.56,
+    0.72,
     0.88,
-    1.056,
-    1.232,
-    1.619,
-    1.795,
-    1.97,
-    2.146,
-    2.322,
-    2.498,
-    2.885,
-    3.061,
-    3.448,
-    3.624,
+    1.02,
+    1.14,
+    1.3,
+    1.48,
+    1.66,
+    1.8,
+    1.88,
+    2.34,
+    2.54,
+    3.02,
+    3.16,
+    3.32,
+    3.46,
+    3.62,
     3.8,
-    3.976,
-    4.152,
-    4.328,
-    4.715,
-    4.891,
-    5.067,
-    5.243,
-    5.419,
-    5.595,
-    5.771,
-    5.947
+    4.2,
+    4.32,
+    4.48,
+    4.58,
+    4.78,
+    4.94,
+    5.1,
+    5.26
    ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 1084,
-   "audioSec": 5.306,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1073,
+   "audio": "audio/tech-hbm/06-s6.wav",
+   "audioFrame": 938,
+   "audioSec": 4.35,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 929,
+   "durationFrames": 159,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 939,
+   "voiceEndFrame": 1068,
+   "stillFrame": 1078,
+   "subtitleWindow": [
+    936,
+    1085
+   ],
+   "sourceWindow": [
+    934,
+    1083
+   ],
+   "pauseAfter": 0.7,
+   "lines": [
+    {
+     "text": "廠商說",
+     "start": 936,
+     "chars": [
+      938,
+      943,
+      947
+     ]
+    },
+    {
+     "text": "十二層的每一片",
+     "start": 958,
+     "chars": [
+      961,
+      965,
+      968,
+      971,
+      974,
+      978,
+      980
+     ]
+    },
+    {
+     "text": "都磨得更薄",
+     "start": 985,
+     "chars": [
+      987,
+      992,
+      997,
+      1000,
+      1005
+     ]
+    },
+    {
+     "text": "才塞得進",
+     "start": 1015,
+     "chars": [
+      1017,
+      1023,
+      1027,
+      1030
+     ]
+    },
+    {
+     "text": "原本八層的高度",
+     "start": 1033,
+     "chars": [
+      1035,
+      1040,
+      1045,
+      1051,
+      1055,
+      1057,
+      1062
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "磨得更薄",
+     "start": 992
+    },
+    {
+     "text": "原本八層",
+     "start": 1035
+    }
+   ],
+   "cues": [
+    {
+     "id": "vendor",
+     "text": "廠商說",
+     "frame": 939,
+     "early": 0
+    },
+    {
+     "id": "thin2",
+     "text": "磨得更薄",
+     "frame": 993,
+     "early": 0
+    },
+    {
+     "id": "same",
+     "text": "原本八層",
+     "frame": 1036,
+     "early": 0
+    },
+    {
+     "id": "height",
+     "text": "高度",
+     "frame": 1059,
+     "early": 0
+    }
+   ],
+   "hash": "cb1627cd99d9-cdd5e7735d",
+   "sub": "廠商說\n十二層的每一片\n都磨得更薄\n才塞得進\n原本八層的高度",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.898,
+    "minScore": 0.002,
+    "onsetMedianMs": 40,
+    "onsetMaxMs": 70,
+    "onsetCheck": [
+     {
+      "onset": 0.73,
+      "start": 0.8,
+      "ch": "十",
+      "errMs": 70
+     },
+     {
+      "onset": 2.67,
+      "start": 2.68,
+      "ch": "才",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "廠",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.917
+    },
+    {
+     "text": "商",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.997
+    },
+    {
+     "text": "說",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.999
+    },
+    {
+     "text": "十",
+     "start": 0.8,
+     "end": 0.86,
+     "score": 0.678
+    },
+    {
+     "text": "二",
+     "start": 0.94,
+     "end": 0.98,
+     "score": 0.394
+    },
+    {
+     "text": "層",
+     "start": 1.04,
+     "end": 1.16,
+     "score": 0.885
+    },
+    {
+     "text": "的",
+     "start": 1.16,
+     "end": 1.22,
+     "score": 0.996
+    },
+    {
+     "text": "每",
+     "start": 1.26,
+     "end": 1.36,
+     "score": 0.909
+    },
+    {
+     "text": "一",
+     "start": 1.38,
+     "end": 1.42,
+     "score": 0.002
+    },
+    {
+     "text": "片",
+     "start": 1.46,
+     "end": 1.64,
+     "score": 0.996
+    },
+    {
+     "text": "都",
+     "start": 1.68,
+     "end": 1.78,
+     "score": 0.988
+    },
+    {
+     "text": "磨",
+     "start": 1.84,
+     "end": 1.92,
+     "score": 0.997
+    },
+    {
+     "text": "得",
+     "start": 2,
+     "end": 2.06,
+     "score": 0.998
+    },
+    {
+     "text": "更",
+     "start": 2.1,
+     "end": 2.24,
+     "score": 0.999
+    },
+    {
+     "text": "薄",
+     "start": 2.28,
+     "end": 2.46,
+     "score": 0.998
+    },
+    {
+     "text": "才",
+     "start": 2.68,
+     "end": 2.8,
+     "score": 0.904
+    },
+    {
+     "text": "塞",
+     "start": 2.88,
+     "end": 3,
+     "score": 0.989
+    },
+    {
+     "text": "得",
+     "start": 3.02,
+     "end": 3.08,
+     "score": 0.995
+    },
+    {
+     "text": "進",
+     "start": 3.1,
+     "end": 3.22,
+     "score": 0.997
+    },
+    {
+     "text": "原",
+     "start": 3.28,
+     "end": 3.4,
+     "score": 0.991
+    },
+    {
+     "text": "本",
+     "start": 3.44,
+     "end": 3.54,
+     "score": 0.996
+    },
+    {
+     "text": "八",
+     "start": 3.6,
+     "end": 3.7,
+     "score": 0.757
+    },
+    {
+     "text": "層",
+     "start": 3.8,
+     "end": 3.92,
+     "score": 0.994
+    },
+    {
+     "text": "的",
+     "start": 3.94,
+     "end": 4,
+     "score": 0.995
+    },
+    {
+     "text": "高",
+     "start": 4.02,
+     "end": 4.16,
+     "score": 0.998
+    },
+    {
+     "text": "度",
+     "start": 4.18,
+     "end": 4.26,
+     "score": 0.982
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.36,
+    0.8,
+    0.94,
+    1.04,
+    1.16,
+    1.26,
+    1.38,
+    1.46,
+    1.68,
+    1.84,
+    2,
+    2.1,
+    2.28,
+    2.68,
+    2.88,
+    3.02,
+    3.1,
+    3.28,
+    3.44,
+    3.6,
+    3.8,
+    3.94,
+    4.02,
+    4.18
+   ]
+  },
+  {
+   "id": "s7a",
+   "audio": "audio/tech-hbm/07-s7a.wav",
+   "audioFrame": 1087,
+   "audioSec": 5.64,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1078,
    "durationFrames": 191,
    "transitionFrames": 10,
    "transition": {
@@ -887,336 +2372,411 @@
      8
     ]
    },
-   "voiceStartFrame": 1083,
-   "voiceEndFrame": 1244,
-   "stillFrame": 1254,
+   "voiceStartFrame": 1088,
+   "voiceEndFrame": 1255,
+   "stillFrame": 1259,
    "subtitleWindow": [
-    1080,
-    1261
+    1085,
+    1266
    ],
    "sourceWindow": [
-    1078,
-    1259
-   ],
-   "pauseAfter": 0.7,
-   "lines": [
-    {
-     "text": "廠商說",
-     "start": 1080,
-     "chars": [
-      1083,
-      1088,
-      1093
-     ]
-    },
-    {
-     "text": "十二層的每一片",
-     "start": 1102,
-     "chars": [
-      1104,
-      1109,
-      1115,
-      1120,
-      1125,
-      1130,
-      1135
-     ]
-    },
-    {
-     "text": "都磨得更薄",
-     "start": 1144,
-     "chars": [
-      1147,
-      1152,
-      1157,
-      1162,
-      1167
-     ]
-    },
-    {
-     "text": "才塞得進",
-     "start": 1177,
-     "chars": [
-      1179,
-      1184,
-      1189,
-      1194
-     ]
-    },
-    {
-     "text": "原本八層的高度",
-     "start": 1203,
-     "chars": [
-      1206,
-      1211,
-      1216,
-      1221,
-      1226,
-      1231,
-      1237
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "磨得更薄",
-     "start": 1152
-    },
-    {
-     "text": "原本八層",
-     "start": 1206
-    }
-   ],
-   "cues": [
-    {
-     "id": "vendor",
-     "text": "廠商說",
-     "frame": 1084
-    },
-    {
-     "id": "thin2",
-     "text": "磨得更薄",
-     "frame": 1153
-    },
-    {
-     "id": "same",
-     "text": "原本八層",
-     "frame": 1207
-    },
-    {
-     "id": "height",
-     "text": "高度",
-     "frame": 1233
-    }
-   ],
-   "sub": "廠商說\n十二層的每一片\n都磨得更薄\n才塞得進\n原本八層的高度",
-   "provider": "estimate",
-   "syllables": 26,
-   "words": [],
-   "charTimes": [
-    0,
-    0.172,
-    0.345,
-    0.724,
-    0.896,
-    1.068,
-    1.24,
-    1.413,
-    1.585,
-    1.757,
-    2.136,
-    2.309,
-    2.481,
-    2.653,
-    2.825,
-    3.204,
-    3.377,
-    3.549,
-    3.721,
-    4.1,
-    4.272,
-    4.445,
-    4.617,
-    4.789,
-    4.962,
-    5.134
-   ]
-  },
-  {
-   "id": "s7a",
-   "audio": null,
-   "audioFrame": 1264,
-   "audioSec": 6.531,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1254,
-   "durationFrames": 215,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1264,
-   "voiceEndFrame": 1461,
-   "stillFrame": 1459,
-   "subtitleWindow": [
-    1261,
-    1466
-   ],
-   "sourceWindow": [
-    1259,
-    1464
+    1083,
+    1264
    ],
    "lines": [
     {
      "text": "目前做的有",
-     "start": 1261,
+     "start": 1085,
      "chars": [
-      1263,
-      1268,
-      1273,
-      1278,
-      1283
+      1087,
+      1090,
+      1095,
+      1099,
+      1102
      ]
     },
     {
      "text": "SK 海力士",
-     "start": 1292,
+     "start": 1106,
      "chars": [
-      1294,
-      1299,
-      1299,
-      1304,
-      1309,
-      1314
+      1108,
+      1113,
+      1113,
+      1117,
+      1122,
+      1126
      ]
     },
     {
      "text": "三星和美光",
-     "start": 1323,
+     "start": 1136,
      "chars": [
-      1325,
-      1330,
-      1335,
-      1340,
-      1345
+      1138,
+      1143,
+      1150,
+      1155,
+      1159
      ]
     },
     {
      "text": "台灣的台積電",
-     "start": 1354,
+     "start": 1170,
      "chars": [
-      1356,
-      1361,
-      1366,
-      1371,
-      1376,
-      1381
+      1173,
+      1178,
+      1181,
+      1184,
+      1188,
+      1191
      ]
     },
     {
      "text": "負責新一代",
-     "start": 1390,
+     "start": 1199,
      "chars": [
-      1392,
-      1397,
-      1402,
-      1407,
-      1412
+      1201,
+      1204,
+      1209,
+      1214,
+      1216
      ]
     },
     {
      "text": "最底下那層晶片",
-     "start": 1421,
+     "start": 1220,
      "chars": [
-      1423,
-      1428,
-      1433,
-      1438,
-      1443,
-      1448,
-      1453
+      1222,
+      1227,
+      1232,
+      1237,
+      1240,
+      1245,
+      1249
      ]
     }
    ],
    "keywords": [
     {
      "text": "SK 海力士",
-     "start": 1294
+     "start": 1108
     },
     {
      "text": "台積電",
-     "start": 1371
+     "start": 1184
     },
     {
      "text": "最底下",
-     "start": 1423
+     "start": 1222
     }
    ],
    "cues": [
     {
      "id": "skh",
      "text": "SK",
-     "frame": 1295
+     "frame": 1110,
+     "early": 0
     },
     {
      "id": "sam",
      "text": "三星",
-     "frame": 1326
+     "frame": 1139,
+     "early": 0
     },
     {
      "id": "mic",
      "text": "美光",
-     "frame": 1341
+     "frame": 1156,
+     "early": 0
     },
     {
      "id": "tsmc",
      "text": "台積電",
-     "frame": 1373
+     "frame": 1185,
+     "early": 0
     },
     {
      "id": "base",
      "text": "最底下",
-     "frame": 1425
+     "frame": 1223,
+     "early": 0
     }
    ],
+   "hash": "3467fc332f1f-cdd5e7735d",
    "sub": "目前做的有\nSK 海力士\n三星和美光\n台灣的台積電\n負責新一代\n最底下那層晶片",
-   "provider": "estimate",
-   "syllables": 32,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.883,
+    "minScore": 0.004,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.7,
+      "start": 1.74,
+      "ch": "三",
+      "errMs": 40
+     },
+     {
+      "onset": 2.92,
+      "start": 2.9,
+      "ch": "台",
+      "errMs": -20
+     },
+     {
+      "onset": 3.85,
+      "start": 3.84,
+      "ch": "負",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "目",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.998
+    },
+    {
+     "text": "前",
+     "start": 0.14,
+     "end": 0.28,
+     "score": 0.995
+    },
+    {
+     "text": "做",
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.986
+    },
+    {
+     "text": "的",
+     "start": 0.44,
+     "end": 0.5,
+     "score": 0.994
+    },
+    {
+     "text": "有",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.999
+    },
+    {
+     "text": "S",
+     "start": 0.76,
+     "end": 0.86,
+     "score": 0.577
+    },
+    {
+     "text": "K",
+     "start": 0.9,
+     "end": 1,
+     "score": 0.359
+    },
+    {
+     "text": "海",
+     "start": 1.06,
+     "end": 1.18,
+     "score": 0.996
+    },
+    {
+     "text": "力",
+     "start": 1.22,
+     "end": 1.28,
+     "score": 0.978
+    },
+    {
+     "text": "士",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.996
+    },
+    {
+     "text": "三",
+     "start": 1.74,
+     "end": 1.86,
+     "score": 0.004
+    },
+    {
+     "text": "星",
+     "start": 1.92,
+     "end": 2.08,
+     "score": 0.924
+    },
+    {
+     "text": "和",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.499
+    },
+    {
+     "text": "美",
+     "start": 2.3,
+     "end": 2.4,
+     "score": 0.993
+    },
+    {
+     "text": "光",
+     "start": 2.44,
+     "end": 2.62,
+     "score": 0.972
+    },
+    {
+     "text": "台",
+     "start": 2.9,
+     "end": 3.04,
+     "score": 0.996
+    },
+    {
+     "text": "灣",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.996
+    },
+    {
+     "text": "的",
+     "start": 3.18,
+     "end": 3.24,
+     "score": 0.998
+    },
+    {
+     "text": "台",
+     "start": 3.28,
+     "end": 3.38,
+     "score": 0.979
+    },
+    {
+     "text": "積",
+     "start": 3.4,
+     "end": 3.48,
+     "score": 0.996
+    },
+    {
+     "text": "電",
+     "start": 3.52,
+     "end": 3.66,
+     "score": 0.986
+    },
+    {
+     "text": "負",
+     "start": 3.84,
+     "end": 3.92,
+     "score": 0.999
+    },
+    {
+     "text": "責",
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.988
+    },
+    {
+     "text": "新",
+     "start": 4.12,
+     "end": 4.24,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 4.28,
+     "end": 4.32,
+     "score": 0.547
+    },
+    {
+     "text": "代",
+     "start": 4.36,
+     "end": 4.48,
+     "score": 0.997
+    },
+    {
+     "text": "最",
+     "start": 4.54,
+     "end": 4.66,
+     "score": 0.999
+    },
+    {
+     "text": "底",
+     "start": 4.72,
+     "end": 4.78,
+     "score": 0.96
+    },
+    {
+     "text": "下",
+     "start": 4.88,
+     "end": 4.98,
+     "score": 0.999
+    },
+    {
+     "text": "那",
+     "start": 5.04,
+     "end": 5.1,
+     "score": 0.566
+    },
+    {
+     "text": "層",
+     "start": 5.16,
+     "end": 5.28,
+     "score": 0.998
+    },
+    {
+     "text": "晶",
+     "start": 5.3,
+     "end": 5.44,
+     "score": 0.934
+    },
+    {
+     "text": "片",
+     "start": 5.44,
+     "end": 5.58,
+     "score": 0.922
+    }
+   ],
    "charTimes": [
-    0,
-    0.167,
-    0.335,
-    0.502,
-    0.67,
-    1.038,
-    1.206,
-    1.373,
-    1.541,
-    1.708,
-    2.076,
-    2.244,
-    2.411,
-    2.579,
-    2.746,
-    3.115,
-    3.282,
-    3.45,
-    3.617,
-    3.784,
-    3.952,
-    4.32,
-    4.488,
-    4.655,
-    4.823,
-    4.99,
-    5.358,
-    5.526,
-    5.693,
-    5.861,
-    6.028,
-    6.196,
-    6.363
+    0.04,
+    0.14,
+    0.3,
+    0.44,
+    0.54,
+    0.76,
+    0.9,
+    1.06,
+    1.22,
+    1.36,
+    1.74,
+    1.92,
+    2.14,
+    2.3,
+    2.44,
+    2.9,
+    3.08,
+    3.18,
+    3.28,
+    3.4,
+    3.52,
+    3.84,
+    3.96,
+    4.12,
+    4.28,
+    4.36,
+    4.54,
+    4.72,
+    4.88,
+    5.04,
+    5.16,
+    5.3,
+    5.44
    ]
   },
   {
    "id": "s7b",
-   "audio": null,
-   "audioFrame": 1469,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1459,
-   "durationFrames": 153,
+   "audio": "audio/tech-hbm/08-s7b.wav",
+   "audioFrame": 1269,
+   "audioSec": 3.035,
+   "headSilSec": 0.025,
+   "tailSilSec": 0.04,
+   "startFrame": 1259,
+   "durationFrames": 121,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1230,121 +2790,267 @@
      8
     ]
    },
-   "voiceStartFrame": 1469,
-   "voiceEndFrame": 1592,
-   "stillFrame": 1602,
+   "voiceStartFrame": 1269,
+   "voiceEndFrame": 1359,
+   "stillFrame": 1370,
    "subtitleWindow": [
-    1466,
-    1609
+    1266,
+    1377
    ],
    "sourceWindow": [
-    1464,
-    1607
+    1264,
+    1375
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "疊這麼多層",
-     "start": 1466,
+     "start": 1266,
      "chars": [
-      1468,
-      1473,
-      1478,
-      1484,
-      1489
+      1268,
+      1272,
+      1276,
+      1278,
+      1282
      ]
     },
     {
      "text": "每一家的良率多少",
-     "start": 1499,
+     "start": 1291,
      "chars": [
-      1501,
-      1507,
-      1512,
-      1518,
-      1523,
-      1529,
-      1534,
-      1540
+      1293,
+      1296,
+      1299,
+      1304,
+      1307,
+      1311,
+      1316,
+      1320
      ]
     },
     {
      "text": "廠商都沒有公布",
-     "start": 1550,
+     "start": 1327,
      "chars": [
-      1552,
-      1557,
-      1563,
-      1568,
-      1574,
-      1579,
-      1584
+      1329,
+      1335,
+      1340,
+      1344,
+      1346,
+      1350,
+      1353
      ]
     }
    ],
    "keywords": [
     {
      "text": "良率",
-     "start": 1523
+     "start": 1307
     },
     {
      "text": "沒有公布",
-     "start": 1568
+     "start": 1344
     }
    ],
    "cues": [
     {
      "id": "stackup",
      "text": "疊這麼多層",
-     "frame": 1469
+     "frame": 1270,
+     "early": 0
     },
     {
      "id": "yield",
      "text": "良率",
-     "frame": 1525
+     "frame": 1308,
+     "early": 0
     },
     {
      "id": "unknown",
      "text": "沒有公布",
-     "frame": 1570
+     "frame": 1345,
+     "early": 0
     }
    ],
+   "hash": "3e577fc35f36-cdd5e7735d",
    "sub": "疊這麼多層\n每一家的良率多少\n廠商都沒有公布",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.877,
+    "minScore": 0.002,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 0.86,
+      "start": 0.86,
+      "ch": "每",
+      "errMs": 0
+     },
+     {
+      "onset": 2.04,
+      "start": 2.04,
+      "ch": "廠",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "疊",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.811
+    },
+    {
+     "text": "這",
+     "start": 0.16,
+     "end": 0.24,
+     "score": 0.672
+    },
+    {
+     "text": "麼",
+     "start": 0.28,
+     "end": 0.32,
+     "score": 0.992
+    },
+    {
+     "text": "多",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.928
+    },
+    {
+     "text": "層",
+     "start": 0.48,
+     "end": 0.66,
+     "score": 0.998
+    },
+    {
+     "text": "每",
+     "start": 0.86,
+     "end": 0.96,
+     "score": 0.894
+    },
+    {
+     "text": "一",
+     "start": 0.96,
+     "end": 1,
+     "score": 0.002
+    },
+    {
+     "text": "家",
+     "start": 1.06,
+     "end": 1.14,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.2,
+     "end": 1.24,
+     "score": 0.999
+    },
+    {
+     "text": "良",
+     "start": 1.3,
+     "end": 1.44,
+     "score": 0.965
+    },
+    {
+     "text": "率",
+     "start": 1.46,
+     "end": 1.52,
+     "score": 0.49
+    },
+    {
+     "text": "多",
+     "start": 1.62,
+     "end": 1.7,
+     "score": 0.905
+    },
+    {
+     "text": "少",
+     "start": 1.74,
+     "end": 1.9,
+     "score": 0.992
+    },
+    {
+     "text": "廠",
+     "start": 2.04,
+     "end": 2.22,
+     "score": 0.975
+    },
+    {
+     "text": "商",
+     "start": 2.24,
+     "end": 2.38,
+     "score": 0.991
+    },
+    {
+     "text": "都",
+     "start": 2.4,
+     "end": 2.5,
+     "score": 0.991
+    },
+    {
+     "text": "沒",
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.948
+    },
+    {
+     "text": "有",
+     "start": 2.62,
+     "end": 2.7,
+     "score": 0.998
+    },
+    {
+     "text": "公",
+     "start": 2.74,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "布",
+     "start": 2.86,
+     "end": 2.94,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.547,
-    0.729,
-    1.13,
-    1.312,
-    1.494,
-    1.676,
-    1.859,
-    2.041,
-    2.223,
-    2.405,
-    2.806,
-    2.988,
-    3.171,
-    3.353,
-    3.535,
-    3.717,
-    3.899
+    0.02,
+    0.16,
+    0.28,
+    0.34,
+    0.48,
+    0.86,
+    0.96,
+    1.06,
+    1.2,
+    1.3,
+    1.46,
+    1.62,
+    1.74,
+    2.04,
+    2.24,
+    2.4,
+    2.54,
+    2.62,
+    2.74,
+    2.86
    ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1613,
-   "audioSec": 7.959,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1602,
-   "durationFrames": 258,
+   "audio": "audio/tech-hbm/09-s8.wav",
+   "audioFrame": 1379,
+   "audioSec": 6.94,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1370,
+   "durationFrames": 224,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1358,185 +3064,464 @@
      8
     ]
    },
-   "voiceStartFrame": 1612,
-   "voiceEndFrame": 1852,
-   "stillFrame": 1850,
+   "voiceStartFrame": 1380,
+   "voiceEndFrame": 1586,
+   "stillFrame": 1584,
    "subtitleWindow": [
-    1609,
-    1860
+    1377,
+    1594
    ],
    "sourceWindow": [
-    1607,
-    1855
+    1375,
+    1589
    ],
    "lines": [
     {
      "text": "晶片和記憶體都拼好了",
-     "start": 1609,
+     "start": 1377,
      "chars": [
-      1612,
-      1617,
-      1622,
-      1627,
-      1633,
-      1638,
-      1643,
-      1649,
-      1654,
-      1659
+      1379,
+      1384,
+      1388,
+      1392,
+      1395,
+      1398,
+      1403,
+      1408,
+      1414,
+      1418
      ]
     },
     {
      "text": "最後裝進哪裡？",
-     "start": 1669,
+     "start": 1425,
      "chars": [
-      1671,
-      1676,
-      1682,
-      1687,
-      1692,
-      1697,
-      1697
+      1427,
+      1432,
+      1436,
+      1441,
+      1444,
+      1449,
+      1449
      ]
     },
     {
      "text": "下一支",
-     "start": 1707,
+     "start": 1459,
      "chars": [
-      1709,
-      1714,
-      1720
+      1461,
+      1465,
+      1468
      ]
     },
     {
      "text": "來看伺服器到底是什麼",
-     "start": 1729,
+     "start": 1475,
      "chars": [
-      1731,
-      1737,
-      1742,
-      1747,
-      1753,
-      1758,
-      1763,
-      1769,
-      1774,
-      1779
+      1477,
+      1481,
+      1487,
+      1492,
+      1496,
+      1502,
+      1507,
+      1511,
+      1514,
+      1518
      ]
     },
     {
      "text": "想要完整解說",
-     "start": 1789,
+     "start": 1530,
      "chars": [
-      1791,
-      1796,
-      1801,
-      1807,
-      1812,
-      1817
+      1532,
+      1536,
+      1540,
+      1543,
+      1548,
+      1552
      ]
     },
     {
      "text": "留言堆疊",
-     "start": 1827,
+     "start": 1561,
      "chars": [
-      1829,
-      1834,
-      1840,
-      1845
+      1563,
+      1568,
+      1573,
+      1579
      ]
     }
    ],
    "keywords": [
     {
      "text": "拼好了",
-     "start": 1649
+     "start": 1408
     },
     {
      "text": "伺服器",
-     "start": 1742
+     "start": 1487
     },
     {
      "text": "堆疊",
-     "start": 1840
+     "start": 1573
     }
    ],
    "cues": [
     {
      "id": "done",
      "text": "都拼好了",
-     "frame": 1645
+     "frame": 1405,
+     "early": 0
     },
     {
      "id": "where",
      "text": "裝進哪裡",
-     "frame": 1683
+     "frame": 1437,
+     "early": 0
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1711
+     "frame": 1462,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言堆疊",
-     "frame": 1831
+     "frame": 1564,
+     "early": 0
     }
    ],
+   "hash": "6dfb56c0011f-cdd5e7735d",
    "sub": "晶片和記憶體都拼好了\n最後裝進哪裡？\n下一支\n來看伺服器到底是什麼\n想要完整解說\n留言堆疊",
-   "provider": "estimate",
-   "syllables": 39,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.889,
+    "minScore": 0.298,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.66,
+      "start": 1.66,
+      "ch": "最",
+      "errMs": 0
+     },
+     {
+      "onset": 2.75,
+      "start": 2.78,
+      "ch": "下",
+      "errMs": 30
+     },
+     {
+      "onset": 3.33,
+      "start": 3.32,
+      "ch": "來",
+      "errMs": -10
+     },
+     {
+      "onset": 5.14,
+      "start": 5.14,
+      "ch": "想",
+      "errMs": 0
+     },
+     {
+      "onset": 6.17,
+      "start": 6.18,
+      "ch": "留",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.976
+    },
+    {
+     "text": "片",
+     "start": 0.2,
+     "end": 0.32,
+     "score": 0.906
+    },
+    {
+     "text": "和",
+     "start": 0.36,
+     "end": 0.42,
+     "score": 0.494
+    },
+    {
+     "text": "記",
+     "start": 0.48,
+     "end": 0.56,
+     "score": 0.58
+    },
+    {
+     "text": "憶",
+     "start": 0.6,
+     "end": 0.64,
+     "score": 0.298
+    },
+    {
+     "text": "體",
+     "start": 0.68,
+     "end": 0.76,
+     "score": 0.996
+    },
+    {
+     "text": "都",
+     "start": 0.86,
+     "end": 0.98,
+     "score": 0.999
+    },
+    {
+     "text": "拼",
+     "start": 1,
+     "end": 1.14,
+     "score": 0.911
+    },
+    {
+     "text": "好",
+     "start": 1.2,
+     "end": 1.32,
+     "score": 0.997
+    },
+    {
+     "text": "了",
+     "start": 1.34,
+     "end": 1.4,
+     "score": 0.999
+    },
+    {
+     "text": "最",
+     "start": 1.66,
+     "end": 1.78,
+     "score": 1
+    },
+    {
+     "text": "後",
+     "start": 1.8,
+     "end": 1.9,
+     "score": 1
+    },
+    {
+     "text": "裝",
+     "start": 1.94,
+     "end": 2.08,
+     "score": 0.999
+    },
+    {
+     "text": "進",
+     "start": 2.1,
+     "end": 2.2,
+     "score": 0.69
+    },
+    {
+     "text": "哪",
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.842
+    },
+    {
+     "text": "裡",
+     "start": 2.38,
+     "end": 2.44,
+     "score": 0.996
+    },
+    {
+     "text": "下",
+     "start": 2.78,
+     "end": 2.88,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.92,
+     "end": 2.96,
+     "score": 0.41
+    },
+    {
+     "text": "支",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.994
+    },
+    {
+     "text": "來",
+     "start": 3.32,
+     "end": 3.42,
+     "score": 0.998
+    },
+    {
+     "text": "看",
+     "start": 3.46,
+     "end": 3.58,
+     "score": 0.999
+    },
+    {
+     "text": "伺",
+     "start": 3.66,
+     "end": 3.74,
+     "score": 0.307
+    },
+    {
+     "text": "服",
+     "start": 3.8,
+     "end": 3.88,
+     "score": 0.975
+    },
+    {
+     "text": "器",
+     "start": 3.94,
+     "end": 4.04,
+     "score": 0.995
+    },
+    {
+     "text": "到",
+     "start": 4.14,
+     "end": 4.28,
+     "score": 0.999
+    },
+    {
+     "text": "底",
+     "start": 4.32,
+     "end": 4.38,
+     "score": 0.573
+    },
+    {
+     "text": "是",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.9
+    },
+    {
+     "text": "什",
+     "start": 4.56,
+     "end": 4.66,
+     "score": 0.998
+    },
+    {
+     "text": "麼",
+     "start": 4.68,
+     "end": 4.72,
+     "score": 0.999
+    },
+    {
+     "text": "想",
+     "start": 5.14,
+     "end": 5.26,
+     "score": 0.993
+    },
+    {
+     "text": "要",
+     "start": 5.28,
+     "end": 5.38,
+     "score": 0.961
+    },
+    {
+     "text": "完",
+     "start": 5.4,
+     "end": 5.5,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 5.52,
+     "end": 5.66,
+     "score": 0.951
+    },
+    {
+     "text": "解",
+     "start": 5.68,
+     "end": 5.76,
+     "score": 0.986
+    },
+    {
+     "text": "說",
+     "start": 5.82,
+     "end": 5.92,
+     "score": 0.994
+    },
+    {
+     "text": "留",
+     "start": 6.18,
+     "end": 6.3,
+     "score": 0.999
+    },
+    {
+     "text": "言",
+     "start": 6.34,
+     "end": 6.46,
+     "score": 0.997
+    },
+    {
+     "text": "堆",
+     "start": 6.52,
+     "end": 6.66,
+     "score": 0.999
+    },
+    {
+     "text": "疊",
+     "start": 6.7,
+     "end": 6.84,
+     "score": 0.95
+    }
+   ],
    "charTimes": [
-    0,
-    0.177,
-    0.354,
-    0.531,
-    0.707,
-    0.884,
-    1.061,
-    1.238,
-    1.415,
-    1.592,
-    1.981,
-    2.158,
-    2.335,
-    2.512,
-    2.688,
-    2.865,
-    3.254,
-    3.431,
-    3.608,
-    3.997,
-    4.174,
-    4.351,
-    4.528,
-    4.705,
-    4.882,
-    5.059,
-    5.235,
-    5.412,
-    5.589,
-    5.978,
-    6.155,
-    6.332,
-    6.509,
-    6.686,
-    6.863,
-    7.252,
-    7.429,
-    7.605,
-    7.782
+    0.04,
+    0.2,
+    0.36,
+    0.48,
+    0.6,
+    0.68,
+    0.86,
+    1,
+    1.2,
+    1.34,
+    1.66,
+    1.8,
+    1.94,
+    2.1,
+    2.22,
+    2.38,
+    2.78,
+    2.92,
+    3,
+    3.32,
+    3.46,
+    3.66,
+    3.8,
+    3.94,
+    4.14,
+    4.32,
+    4.44,
+    4.56,
+    4.68,
+    5.14,
+    5.28,
+    5.4,
+    5.52,
+    5.68,
+    5.82,
+    6.18,
+    6.34,
+    6.52,
+    6.7
    ]
   },
   {
    "id": "s9",
    "audio": null,
-   "audioFrame": 1850,
+   "audioFrame": 1584,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1850,
+   "startFrame": 1584,
    "durationFrames": 96,
    "transitionFrames": 10,
    "transition": {
@@ -1551,24 +3536,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1860,
-   "voiceEndFrame": 1860,
-   "stillFrame": 1934,
+   "voiceStartFrame": 1594,
+   "voiceEndFrame": 1594,
+   "stillFrame": 1668,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1855,
-    1946
+    1589,
+    1680
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-hbm/voice.wav",
+  "lufsIn": -16.03,
+  "lufs": -16,
+  "sec": 56
+ }
 }

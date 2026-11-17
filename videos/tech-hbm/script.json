@@ -343,6 +343,13 @@
       "opacity": 0,
       "dur": 2,
       "dy": 0
+     },
+     {
+      "layer": "card",
+      "at": "s3:start-2",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 1
      }
     ],
     "run": [
@@ -379,8 +386,7 @@
       "size": 44,
       "rot": -4,
       "x": 880,
-      "y": 330,
-      "avoid": false
+      "y": 330
      }
     ]
    },
@@ -477,14 +483,14 @@
      },
      {
       "type": "stamp",
-      "at": "n2048+30",
+      "at": "n2048+16",
       "until": "s4:start-2",
       "text": "差 32 倍",
       "color": "coral",
       "size": 52,
       "rot": -4,
       "x": 830,
-      "y": 330,
+      "y": 1200,
       "avoid": false
      }
     ]
@@ -540,8 +546,8 @@
       "at": "chip",
       "dur": 1,
       "x": 120,
-      "y": 1.7,
-      "d": 25,
+      "y": 1.2,
+      "d": 34,
       "elev": 12
      }
     ],
@@ -553,6 +559,13 @@
       "opacity": 0,
       "dur": 2,
       "dy": 0
+     },
+     {
+      "layer": "sideLines",
+      "at": "chip",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 1
      },
      {
       "layer": "x_ho0",
@@ -602,8 +615,7 @@
       "size": 44,
       "rot": -4,
       "y": 1060,
-      "x": 540,
-      "avoid": false
+      "x": 540
      },
      {
       "type": "cross",
@@ -621,9 +633,8 @@
       "color": "amber",
       "size": 40,
       "rot": -4,
-      "y": 300,
-      "x": 860,
-      "avoid": false
+      "y": 330,
+      "x": 230
      }
     ]
    },
@@ -685,16 +696,16 @@
       "at": "start-2",
       "dur": 1,
       "x": 120,
-      "y": 1.7,
-      "d": 25,
+      "y": 1.2,
+      "d": 34,
       "elev": 12
      },
      {
-      "at": "stack",
+      "at": "fill+52",
       "dur": 1,
-      "x": 183.7,
+      "x": 183.0,
       "y": 1.0,
-      "d": 34,
+      "d": 40,
       "elev": 24
      }
     ],
@@ -702,35 +713,35 @@
      {
       "layer": "x_cu0",
       "at": "s1:start-40",
-      "until": "fill-6",
+      "until": "fill-8",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu1",
       "at": "s1:start-40",
-      "until": "fill-2",
+      "until": "fill-5",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu2",
       "at": "s1:start-40",
-      "until": "fill+2",
+      "until": "fill-2",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu3",
       "at": "s1:start-40",
-      "until": "fill+6",
+      "until": "fill+1",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu4",
       "at": "s1:start-40",
-      "until": "fill+10",
+      "until": "fill+4",
       "opacity": 0,
       "dur": 2
      },
@@ -744,141 +755,141 @@
      {
       "layer": "x_ovf",
       "at": "s1:start-40",
-      "until": "fill+14",
+      "until": "fill+2",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_ovf",
-      "at": "fill+34",
+      "at": "fill+8",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_cmp",
       "at": "s1:start-40",
-      "until": "fill+14",
+      "until": "fill+2",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cmp",
-      "at": "fill+16",
-      "until": "fill+36",
+      "at": "fill+3",
+      "until": "fill+9",
       "dy": -0.2,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_cmp",
-      "at": "fill+36",
+      "at": "fill+9",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 5
+      "dur": 3
      },
      {
       "layer": "x_carrier",
       "at": "s1:start-40",
-      "until": "back+4",
+      "until": "fill+30",
       "opacity": 0,
-      "dur": 14,
+      "dur": 10,
       "dy": -1.6
      },
      {
       "layer": "x_wheel",
       "at": "s1:start-40",
-      "until": "back+4",
+      "until": "fill+24",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "back+6",
+      "at": "fill+30",
       "until": "s9:end+400",
       "dy": -1.25,
-      "dur": 8
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "back+14",
+      "at": "fill+36",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_u0",
-      "at": "back+14",
+      "at": "fill+36",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 3
+      "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "back+19",
+      "at": "fill+39",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_u1",
-      "at": "back+19",
+      "at": "fill+39",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 3
+      "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "back+24",
+      "at": "fill+42",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_u2",
-      "at": "back+24",
+      "at": "fill+42",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 3
+      "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "back+29",
+      "at": "fill+45",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 4
+      "dur": 3
      },
      {
       "layer": "x_u3",
-      "at": "back+29",
+      "at": "fill+45",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 3
+      "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "back+38",
+      "at": "fill+47",
       "until": "s9:end+400",
       "dy": 2.6,
-      "dur": 8
+      "dur": 5
      },
      {
       "layer": "x_wheel",
-      "at": "back+46",
+      "at": "fill+51",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 4
+      "dur": 2
      },
      {
       "layer": "x_tip",
       "at": "s1:start-40",
-      "until": "back+38",
+      "until": "fill+46",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_d1",
       "at": "s1:start-40",
-      "until": "stack-6",
+      "until": "fill+50",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -892,7 +903,7 @@
      {
       "layer": "y_d2",
       "at": "s1:start-40",
-      "until": "stack+3",
+      "until": "fill+56",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -906,7 +917,7 @@
      {
       "layer": "y_d3",
       "at": "s1:start-40",
-      "until": "stack+12",
+      "until": "fill+62",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -920,7 +931,7 @@
      {
       "layer": "y_base",
       "at": "s1:start-40",
-      "until": "stack-14",
+      "until": "fill+46",
       "opacity": 0,
       "dur": 2
      }
@@ -930,7 +941,7 @@
       "preset": "pick-place",
       "tool": "y_nz",
       "item": "y_d4",
-      "at": "stack-2",
+      "at": "stack",
       "down": 1.2,
       "to": [
        -7.8,
@@ -946,25 +957,25 @@
     "run": [
      {
       "id": "x_flip",
-      "at": "back-12",
+      "at": "fill+8",
       "until": "s9:end+400",
-      "ramp": 24
+      "ramp": 22
      },
      {
       "id": "x_whspin",
-      "at": "back+4",
-      "until": "back+44",
-      "ramp": 14
+      "at": "fill+24",
+      "until": "fill+50",
+      "ramp": 8
      },
      {
       "id": "x_cmpvib",
-      "at": "fill+16",
-      "until": "fill+36",
-      "ramp": 3
+      "at": "fill+3",
+      "until": "fill+9",
+      "ramp": 2
      },
      {
       "id": "x_tipglow",
-      "at": "back+40",
+      "at": "fill+46",
       "until": "s9:end+400",
       "ramp": 6
      }
@@ -974,26 +985,24 @@
      {
       "type": "stamp",
       "at": "holes",
-      "until": "stack",
+      "until": "fill",
       "text": "共數萬個",
       "color": "amber",
       "size": 44,
       "rot": -4,
-      "x": 880,
-      "y": 330,
-      "avoid": false
+      "x": 840,
+      "y": 300
      },
      {
       "type": "stamp",
       "at": "hair",
-      "until": "stack",
+      "until": "fill+2",
       "text": "孔徑約人髮 1/20",
       "color": "blue",
       "size": 38,
       "rot": -4,
       "x": 800,
-      "y": 400,
-      "avoid": false
+      "y": 380
      }
     ]
    },
@@ -1040,10 +1049,10 @@
      {
       "at": "start-2",
       "dur": 1,
-      "x": 180.3,
-      "y": 1.3,
-      "d": 24,
-      "elev": 22
+      "x": 183.0,
+      "y": 1.0,
+      "d": 40,
+      "elev": 24
      },
      {
       "at": "same-12",
@@ -1058,41 +1067,41 @@
      {
       "layer": "y_uf0",
       "at": "s1:start-40",
-      "until": "vendor+66",
+      "until": "vendor+64",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf1",
       "at": "s1:start-40",
-      "until": "vendor+71",
+      "until": "vendor+69",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf2",
       "at": "s1:start-40",
-      "until": "vendor+76",
+      "until": "vendor+74",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf3",
       "at": "s1:start-40",
-      "until": "vendor+81",
+      "until": "vendor+79",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_bh",
       "at": "s1:start-40",
-      "until": "vendor",
+      "until": "vendor+18",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_bh",
-      "at": "vendor+86",
+      "at": "vendor+84",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
@@ -1403,7 +1412,7 @@
      {
       "preset": "press-bond",
       "tool": "y_bh",
-      "at": "vendor+4",
+      "at": "vendor+22",
       "down": 1.2,
       "press": [
        "y_d4",
@@ -1415,7 +1424,7 @@
       "current": [
        "y_cur"
       ],
-      "k": 0.8
+      "k": 0.6
      }
     ],
     "run": [
@@ -1454,8 +1463,7 @@
       "size": 52,
       "rot": -4,
       "x": 830,
-      "y": 1000,
-      "avoid": false
+      "y": 1000
      },
      {
       "type": "stamp",
@@ -1466,8 +1474,7 @@
       "size": 34,
       "rot": -4,
       "x": 760,
-      "y": 330,
-      "avoid": false
+      "y": 330
      }
     ]
    },
@@ -1520,8 +1527,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 2.0,
-      "y": 0.8,
-      "d": 24,
+      "y": -1.2,
+      "d": 28,
       "elev": 28
      }
     ],
@@ -1608,8 +1615,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 2.0,
-      "y": 0.8,
-      "d": 17,
+      "y": -0.8,
+      "d": 22,
       "elev": 24
      }
     ],
@@ -1638,8 +1645,7 @@
       "size": 40,
       "rot": -4,
       "x": 300,
-      "y": 330,
-      "avoid": false
+      "y": 330
      },
      {
       "type": "stamp",
@@ -1650,8 +1656,7 @@
       "size": 44,
       "rot": -4,
       "x": 300,
-      "y": 330,
-      "avoid": false
+      "y": 330
      },
      {
       "type": "stamp",
@@ -1662,8 +1667,7 @@
       "size": 56,
       "rot": -4,
       "x": 300,
-      "y": 330,
-      "avoid": false
+      "y": 330
      },
      {
       "type": "card",
@@ -1723,10 +1727,179 @@
      {
       "at": "start-2",
       "dur": 1,
-      "x": 3.6,
-      "y": 1.4,
-      "d": 30,
+      "x": 0,
+      "y": 2.2,
+      "d": 40,
       "elev": 26
+     }
+    ],
+    "shift": [
+     {
+      "layer": "rk",
+      "at": "s1:start-40",
+      "until": "where-14",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "rk_tray",
+      "at": "s1:start-40",
+      "until": "where-14",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "card",
+      "at": "s8:start-2",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "ip",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "ai",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_b",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "h2",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "h3",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "band",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s0",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s1",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s2",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s3",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s4",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s5",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s6",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s7",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s8",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s9",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s10",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
+     },
+     {
+      "layer": "hm_s11",
+      "at": "where",
+      "until": "s9:end+400",
+      "dz": -5.2,
+      "dy": 2.47,
+      "dur": 40
      }
     ],
     "labels": [],
