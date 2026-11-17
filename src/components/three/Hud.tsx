@@ -32,7 +32,6 @@ import { WfSection } from "./HudWafer";
 import { DepSection } from "./HudDep";
 import { PwSection } from "./HudPower";
 import { FdySection } from "./HudFoundry";
-import { FdySection } from "./HudFoundry";
 import { IcSection } from "./HudIc";
 
 export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
@@ -675,7 +674,6 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("ic-")) return <IcSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-icdesign（HudIc.tsx）
   if (String((o as any).kind ?? "").startsWith("fdy-")) return <FdySection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-foundry（HudFoundry.tsx）
   if (String((o as any).kind ?? "").startsWith("wf-")) return <WfSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-waferflow（HudWafer.tsx）
-  if (String((o as any).kind ?? "").startsWith("fdy-")) return <FdySection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-foundry（HudFoundry.tsx）
   if (String((o as any).kind ?? "").startsWith("cool-")) return <CoolSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-cooling（HudCool.tsx）
   if (String((o as any).kind ?? "").startsWith("etch-")) return <EtchSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-etch（HudEtch.tsx）
   if (String((o as any).kind ?? "").startsWith("hbm-")) return <HbmSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-hbm v3（HudHbm.tsx）
