@@ -44,29 +44,29 @@ const Compare: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={aF}><text x={W / 2} y={Hh - 18} textAnchor="middle" style={mono(40, H.text, 900)}>P ＝ V × I</text>
-          <text x={W / 2 + 160} y={Hh - 18} style={zh(sm(30), H.amber, 800)} opacity={aVI}>功率不變</text></g>
+        <g opacity={aF}><text x={W / 2} y={Hh - 12} textAnchor="middle" style={mono(40, H.text, 900)}>P ＝ V × I</text>
+          <text x={W / 2 + 160} y={Hh - 12} style={zh(sm(30), H.amber, 800)} opacity={aVI}>功率不變</text></g>
         {/* 54 V */}
-        <text x={cols[0].x} y={92} style={zh(46, H.amber, 900)} opacity={aF}>54 V 供電</text>
-        {row(cols[0].x, 134, "電壓", lenV[0], H.text2, "54 V", aV)}
-        {row(cols[0].x, 182, "電流", 28 + (lenI[0] - 28) * aI, bad, aI > 0.6 ? "18,519 A" : "", aV)}
-        {row(cols[0].x, 230, "發熱", 6 + (lenH[0] - 6) * aHot, bad, aHot > 0.7 ? "×219" : "", tween(f, hot - 4, 8, EASE.enter))}
+        <text x={cols[0].x} y={112} style={zh(44, H.amber, 900)} opacity={aF}>54 V 供電</text>
+        {row(cols[0].x, 156, "電壓", lenV[0], H.text2, "54 V", aV)}
+        {row(cols[0].x, 204, "電流", 28 + (lenI[0] - 28) * aI, bad, aI > 0.6 ? "18,519 A" : "", aV)}
+        {row(cols[0].x, 252, "發熱", 6 + (lenH[0] - 6) * aHot, bad, aHot > 0.7 ? "×219" : "", tween(f, hot - 4, 8, EASE.enter))}
         <g opacity={aF}>
-          <rect x={cols[0].x + 348} y={108} width={sq} height={sq} fill={aHot > 0.3 ? bad : cu} opacity={0.35 + 0.65 * (1 - aHot * 0.3)} stroke={cuHi} strokeWidth={3} />
-          {dots(cols[0].x + 348 + sq / 2, 108 + sq / 2, sq, Math.round(8 + 38 * aI), 0.012, proc)}
-          <text x={cols[0].x + 348 + sq / 2} y={108 + sq + 28} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>銅排截面</text>
+          <rect x={cols[0].x + 348} y={124} width={sq} height={sq} fill={aHot > 0.3 ? bad : cu} opacity={0.35 + 0.65 * (1 - aHot * 0.3)} stroke={cuHi} strokeWidth={3} />
+          {dots(cols[0].x + 348 + sq / 2, 124 + sq / 2, sq, Math.round(8 + 38 * aI), 0.012, proc)}
+          <text x={cols[0].x + 348 + sq / 2} y={124 + sq + 24} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>銅排截面</text>
         </g>
         {/* 800 V */}
         <g opacity={bShow}>
           <line x1={474} y1={72} x2={474} y2={Hh - 56} stroke={H.lineSoft} strokeWidth={2} strokeDasharray="4 8" />
-          <text x={cols[1].x} y={92} style={zh(46, c("lp_sig"), 900)}>800 V 供電</text>
-          {row(cols[1].x, 134, "電壓", 20 + (lenV[1] - 20) * bV, H.text2, "800 V", 1)}
-          {row(cols[1].x, 182, "電流", 300 - 280 * bI, sig, bI > 0.6 ? "1,250 A" : "", 1)}
-          {row(cols[1].x, 230, "發熱", 300 - 297 * bHot, sig, bHot > 0.7 ? "×1" : "", 1)}
-          <rect x={cols[1].x + 348 + (sq - side2) / 2} y={108 + (sq - side2) / 2} width={side2} height={side2} fill={cu} stroke={cuHi} strokeWidth={3} />
-          {shrink > 0 ? <rect x={cols[1].x + 348} y={108} width={sq} height={sq} fill="none" stroke={H.text3} strokeWidth={2} strokeDasharray="6 6" /> : null}
+          <text x={cols[1].x} y={112} style={zh(44, c("lp_sig"), 900)}>800 V 供電</text>
+          {row(cols[1].x, 156, "電壓", 20 + (lenV[1] - 20) * bV, H.text2, "800 V", 1)}
+          {row(cols[1].x, 204, "電流", 300 - 280 * bI, sig, bI > 0.6 ? "1,250 A" : "", 1)}
+          {row(cols[1].x, 252, "發熱", 300 - 297 * bHot, sig, bHot > 0.7 ? "×1" : "", 1)}
+          <rect x={cols[1].x + 348 + (sq - side2) / 2} y={124 + (sq - side2) / 2} width={side2} height={side2} fill={cu} stroke={cuHi} strokeWidth={3} />
+          {shrink > 0 ? <rect x={cols[1].x + 348} y={124} width={sq} height={sq} fill="none" stroke={H.text3} strokeWidth={2} strokeDasharray="6 6" /> : null}
           {dots(cols[1].x + 348 + sq / 2, 108 + sq / 2, side2, 4 + Math.round(2 * (1 - shrink)), 0.007, proc)}
-          <text x={cols[1].x + 348 + sq / 2} y={108 + sq + 28} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>{shrink > 0.5 ? "截面約 1/15" : "銅排截面"}</text>
+          <text x={cols[1].x + 348 + sq / 2} y={124 + sq + 24} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>{shrink > 0.5 ? "截面約 1/15" : "銅排截面"}</text>
         </g>
       </svg>
     </Card>

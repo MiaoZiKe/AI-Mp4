@@ -108,12 +108,12 @@ anchor("rk_thin","busN",[0.78+0.2,(BY0+BY1)/2+0.6,BZ+0.3],dx=170,dy=-40)
 # 電流（R）：由電源架往上沿銅排（正負兩條），光點又多又密；每層夾片分岔電流；散熱氣流
 def flow(key, layer, path, n, lanes, gap, laneDir, size, rate, color="lp_proc", rim="lp_proc", shape="dot"):
     actions[key] = {"type":"flow","layer":layer,"path":path,"n":n,"lanes":lanes,"laneGap":gap,"laneDir":laneDir,"size":size,"shape":shape,"rate":rate,"color":color,"rim":rim,"rimScale":1.6,"rimO":0.45,"trail":3,"trailGap":0.03,"trailColor":color,"track":False}
-flow("r_cur","busT",[[-0.78,BY0+0.1,BZ+0.36],[-0.78,BY1-0.1,BZ+0.36]],9,3,0.3,[1,0,0],0.13,1.5)
-flow("r_cur2","busT",[[0.78,BY0+0.1,BZ+0.36],[0.78,BY1-0.1,BZ+0.36]],9,3,0.3,[1,0,0],0.13,1.5)
+flow("r_cur","busT",[[-0.78,BY0+0.1,BZ+0.36],[-0.78,BY1-0.1,BZ+0.36]],6,3,0.3,[1,0,0],0.085,1.3)
+flow("r_cur2","busT",[[0.78,BY0+0.1,BZ+0.36],[0.78,BY1-0.1,BZ+0.36]],6,3,0.3,[1,0,0],0.085,1.3)
 flow("r_curN","busN",[[-0.78,BY0+0.1,BZ+0.3],[-0.78,BY1-0.1,BZ+0.3]],3,1,0.2,[1,0,0],0.1,1.2)
 flow("r_curN2","busN",[[0.78,BY0+0.1,BZ+0.3],[0.78,BY1-0.1,BZ+0.3]],3,1,0.2,[1,0,0],0.1,1.2)
 for k,y in enumerate(TRY):
-    flow(f"r_br{k}",f"tr{k}",[[0,y,BZ+0.5],[0,y,-0.3]],3,2,0.25,[0,1,0],0.1,1.1)
+    flow(f"r_br{k}",f"tr{k}",[[0,y,BZ+0.5],[0,y,-0.3]],2,2,0.25,[0,1,0],0.07,1.0)
 # 氣流：由前（z 大）往後吸過每層（淺藍箭頭）
 actions["r_air"]={"preset":"stream","layer":"rk","path":[[-1.8,TRY[2],RD/2+1.4],[-1.8,TRY[2],-RD/2-0.5]],"n":6,"shape":"arrow","rate":0.7,"color":"air","size":0.2}
 actions["r_air2"]={"preset":"stream","layer":"rk","path":[[1.8,TRY[4],RD/2+1.4],[1.8,TRY[4],-RD/2-0.5]],"n":6,"shape":"arrow","rate":0.7,"color":"air","size":0.2}
@@ -144,9 +144,9 @@ for p in parts[-6:]: pass
 anchor("c_up","cuB",[CX-BL/2+0.6,3.3+0.6,0.5],dx=-60,dy=-110); anchor("c_dn","cdB",[CX+BL/2-1.2,0.95-0.6,0.5],dx=60,dy=100)
 anchor("c_thin","cdT",[CX+BL/2-1.6,0.95+0.15,0.2],dx=60,dy=-120)
 # C 的電流：上＝很密（54 V 18,519 A 示意），下＝稀疏（1,250 A）
-flow("c_up","cuB",[[CX-BL/2,3.3,0.56],[CX+BL/2,3.3,0.56]],14,5,0.18,[0,1,0],0.12,1.9)
-flow("c_dn","cdB",[[CX-BL/2,0.95,0.56],[CX+BL/2,0.95,0.56]],3,2,0.3,[0,1,0],0.12,1.1)
-flow("c_dnT","cdT",[[CX-BL/2,0.95,0.2],[CX+BL/2,0.95,0.2]],3,1,0.2,[0,1,0],0.1,1.1)
+flow("c_up","cuB",[[CX-BL/2,3.3,0.56],[CX+BL/2,3.3,0.56]],10,5,0.16,[0,1,0],0.085,1.7)
+flow("c_dn","cdB",[[CX-BL/2,0.95,0.56],[CX+BL/2,0.95,0.56]],2,2,0.3,[0,1,0],0.09,1.0)
+flow("c_dnT","cdT",[[CX-BL/2,0.95,0.2],[CX+BL/2,0.95,0.2]],2,1,0.2,[0,1,0],0.08,1.0)
 actions["c_hot"]={"type":"pulse","layer":"cuB","parts":["cu_bar"],"color":"lp_bad","steady":True,"glow":0.95,"halo":0}
 actions["c_heat"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX,3.3,0]},"dir":[0,1,0],"reach":2.4,"count":4,"r0":0.7,"spread":0.55,"rate":0.9,"color":"lp_bad"}
 actions["c_heat2"]={"preset":"heat-spread","layer":"cuB","from":{"layer":"cuB","p":[CX+3,3.3,0]},"dir":[0,1,0],"reach":2.2,"count":3,"r0":0.7,"spread":0.55,"rate":0.8,"color":"lp_heat"}
@@ -176,8 +176,8 @@ box("d_bridge","dB3",mm("cu"),[1.5,0.4,0.9],[DX+6.0,2.4,0])
 anchor("d_sc","dS",[DX-9.2,4.5,0],dx=0,dy=-90); anchor("d_a","dmA",[DX-3.0,3.6,1.1],dx=-90,dy=-80); anchor("d_b","dmB",[DX+1.4,3.1,1.1],dx=0,dy=-110); anchor("d_c","d_die",[DX+8.2,1.4,0.75],dx=40,dy=-110)
 # D 的電流（越往後越密）
 flow("d_f1","dB1",[[DX-8.0,2.4,0.15],[DX-4.1,2.4,0.15]],3,1,0.2,[0,1,0],0.1,1.2)
-flow("d_f2","dB2",[[DX-2.4,2.4,0.34],[DX+0.6,2.4,0.34]],6,2,0.2,[0,1,0],0.1,1.5)
-flow("d_f3","dB3",[[DX+2.8,2.4,0.54],[DX+6.6,2.4,0.54]],10,4,0.2,[0,1,0],0.11,1.8)
+flow("d_f2","dB2",[[DX-2.4,2.4,0.34],[DX+0.6,2.4,0.34]],4,2,0.2,[0,1,0],0.08,1.3)
+flow("d_f3","dB3",[[DX+2.8,2.4,0.54],[DX+6.6,2.4,0.54]],7,4,0.2,[0,1,0],0.085,1.5)
 actions["d_pA"]={"type":"pulse","layer":"dmA","parts":["d_mA"],"color":"lp_proc","steady":True,"glow":0.55,"halo":0}
 actions["d_pB"]={"type":"pulse","layer":"dmB","parts":["d_mB"],"color":"lp_proc","steady":True,"glow":0.55,"halo":0}
 actions["d_pS"]={"type":"pulse","layer":"dS","parts":["d_sc"],"color":"lp_proc","steady":True,"glow":0.45,"halo":0}

@@ -26,6 +26,7 @@ import { LPP, lppPhase } from "./Ops";
 import { PkgSection } from "./HudPkg";
 import { HbmSection } from "./HudHbm";
 import { SrvSection } from "./HudServer";
+import { CoolSection } from "./HudCool";
 import { PwSection } from "./HudPower";
 
 export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
@@ -664,6 +665,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if ((o as any).kind === "tsv") return <HudSectionTsv o={o} f={f} k={k} m={m} />;
   if (String((o as any).kind ?? "").startsWith("srv-")) return <SrvSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-server（HudServer.tsx）
   if (String((o as any).kind ?? "").startsWith("pw-")) return <PwSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-800v（HudPower.tsx）
+  if (String((o as any).kind ?? "").startsWith("cool-")) return <CoolSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-cooling（HudCool.tsx）
   if (String((o as any).kind ?? "").startsWith("hbm-")) return <HbmSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-hbm v3（HudHbm.tsx）
   if (String((o as any).kind ?? "").startsWith("pkg-")) return <PkgSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/16 tech-packaging（HudPkg.tsx）
   if ((o as any).kind === "path") return <HudSectionPath o={o} f={f} k={k} m={m} s={s} />;
