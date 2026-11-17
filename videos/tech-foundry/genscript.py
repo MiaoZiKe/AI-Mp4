@@ -79,14 +79,16 @@ dyb = {"ob0": 0.0, "ob1": -.55, "ob2": -1.1, "ob3": -1.65, "ob4": -2.2, "og": -2
 sh4 = [sh(l, off("rail", -6), 64, dx=9.0) for l in OHT]
 sh4 += [sh(l, off("tool", -4), 30, dy=v) for l, v in dyb.items() if v]
 Z = -2.2; ARM = "arm"
-def ext(at, sign=1, wafer=False, dur=16):
+def ext(at, sign=1, wafer=False, dur=10):
     z = Z * sign
     r = [sh("rp1", at, dur, dz=z / 3), sh("rp2", at, dur, dz=2 * z / 3), sh("rbl", at, dur, dz=z)]
     if wafer: r.append(sh("tw", at, dur, dz=z))
     return r
-armshift = (ext(off(ARM, 0)) + [sh("rbl", off(ARM, 20), 5, dy=.07), sh("tw", off(ARM, 20), 5, dy=.07)] + ext(off(ARM, 26), -1, True) +
-            [sh(l, off(ARM, 46), 26, dx=7.2) for l in ("rb", "rp1", "rp2", "rbl", "tw")] + ext(off(ARM, 76), 1, True) +
-            [sh("rbl", off(ARM, 94), 4, dy=-.07), sh("tw", off(ARM, 94), 4, dy=-.07)] + ext(off(ARM, 100), -1, False))
+A0 = None
+def AA(n): return off(ARM, 12 + n)
+armshift = (ext(AA(0)) + [sh("rbl", AA(12), 4, dy=.07), sh("tw", AA(12), 4, dy=.07)] + ext(AA(16), -1, True) +
+            [sh(l, AA(28), 18, dx=7.2) for l in ("rb", "rp1", "rp2", "rbl", "tw")] + ext(AA(48), 1, True) +
+            [sh("rbl", AA(60), 3, dy=-.07), sh("tw", AA(60), 3, dy=-.07)] + ext(AA(63), -1, False))
 scenes.append(scene("s4", "mechanism", 4,
     "晶圓裝在傳送盒裡，沿著天花板的軌道，送進機台。機械手臂再把晶圓一片片放進去。",
     ["晶圓裝在傳送盒裡", "沿著天花板的軌道", "送進機台", "機械手臂再把晶圓", "一片片放進去"],
@@ -94,9 +96,9 @@ scenes.append(scene("s4", "mechanism", 4,
     ["傳送盒", "軌道", "機械手臂"],
     [cue("box", "傳送盒"), cue("rail", "軌道"), cue("tool", "送進機台"), cue("arm", "機械手臂"), cue("put", "放進去")],
     {"zoom": [{"to": "room", "at": "start-6", "dur": 1}, {"to": "tool", "at": off("arm", -20), "dur": 40}],
-     "shot": [shot("start-2", CX - 4.0, 2.0, 42, 12, 18), shot(off("rail", 4), CX - 2.0, 2.0, 42, 12, 60), shot(off("tool", 30), TX, -.8, 31, 34, 30)],
+     "shot": [shot("start-2", CX - 4.0, 2.0, 42, 12, 18), shot(off("rail", 4), CX - 2.0, 2.0, 42, 12, 60), shot(off("tool", 20), TX, -2.4, 33, 36, 22)],
      "shift": sh4 + armshift,
-     "run": [run("o_foupHi", "box", off("rail", -6), 6), run("t_gas", off(ARM, 104), "s5:start-2", 6), run("t_plasma", off(ARM, 110), "s5:start-2", 8)],
+     "run": [run("o_foupHi", "box", off("rail", -6), 6), run("t_gas", AA(62), "s5:start-2", 6), run("t_plasma", AA(66), "s5:start-2", 8)],
      "labels": [lab("o_foup", "晶圓傳送盒（FOUP）", "Wafer carrier (FOUP)", "amber", "box", off("rail", 20)), lab("o_rail", "天花板軌道", "Overhead rail", "blue", "rail", "tool"),
                 lab("t_wafer", "25 片晶圓為一盒", "25 wafers per pod", "amber", off("tool", 40), off(ARM, -4)), lab("t_arm", "機械手臂", "Robot arm", "blue", off(ARM, 18), off(ARM, 70)), lab("t_ch", "反應腔", "Process chamber", "amber", "put", "s5:start-6")],
      "overlay": [sec("fdy-path", "start+2", "s5:start-12", 930, 320, "晶圓怎麼進機台", "示意", {"box": "box", "rail": "rail", "tool": "tool", "arm": "arm", "put": "put"})]},
@@ -106,7 +108,7 @@ scenes.append(scene("s4", "mechanism", 4,
 DL = ["d_tr", "d_m1", "d_m2", "d_m3", "d_m4", "d_top"]
 EXK = {"d_tr": 1.3, "d_m1": 2.6, "d_m2": 3.8, "d_m3": 5.0, "d_m4": 6.2, "d_top": 7.6}
 sh5 = [sh("wf_pick", "dies+10", 26, dy=1.2)]
-sh5 += [sh(l, "open+8", 26, until="metal+40", dy=v) for l, v in EXK.items()]
+sh5 += [sh(l, "open+8", 26, until="metal+8", dy=v) for l, v in EXK.items()]
 scenes.append(scene("s5", "mechanism", 5,
     "放大晶圓，上面排滿晶粒。拆開一顆，底下是電晶體，上面疊著一層層金屬線。",
     ["放大晶圓", "上面排滿晶粒", "拆開一顆", "底下是電晶體", "上面疊著一層層金屬線"],
@@ -116,10 +118,10 @@ scenes.append(scene("s5", "mechanism", 5,
     {"zoom": [{"to": "wafer", "at": "start-6", "dur": 36}, {"to": "die", "at": off("open", -16), "dur": 36}],
      "shot": [shot("start-2", WX, -2.2, 24, 38, 18), shot(off("open", -16), DX, 0.5, 52, 32, 34)],
      "shift": sh5,
-     "run": [run("d_gateOn", "tr", "s6:start-2", 6), run("d_sig", off("metal", 44), "s6:start-2", 6)],
-     "labels": [lab("w_die", "一顆晶粒", "One die", "amber", "dies", off("open", -18)), lab("d_tr", "電晶體", "Transistors", "amber", "tr", "metal+40"), lab("d_m1", "金屬線（多層）", "Metal wiring layers", "blue", "metal", "metal+40"),
-                lab("d_top", "接點", "Pads", "blue", "metal", "metal+40"), lab("d_si", "矽基板", "Silicon", "coral", "open+14", "metal+40")],
-     "overlay": [sec("fdy-die", "start+2", "s6:start-12", 930, 320, "一顆晶粒的剖面", "示意，非實際比例", {"zw": "zw", "dies": "dies", "open": "open", "tr": "tr", "metal": "metal", "sig": "metal+44"})]},
+     "run": [run("d_gateOn", "tr", "s6:start-2", 6), run("d_sig", off("metal", 24), "s6:start-2", 6)],
+     "labels": [lab("w_die", "一顆晶粒", "One die", "amber", "dies", off("open", -18)), lab("d_tr", "電晶體", "Transistors", "amber", "tr", "metal+12"), lab("d_m1", "金屬線（多層）", "Metal wiring layers", "blue", "metal", "metal+12"),
+                lab("d_top", "接點", "Pads", "blue", "metal", "metal+12"), lab("d_si", "矽基板", "Silicon", "coral", "open+14", "metal+12")],
+     "overlay": [sec("fdy-die", "start+2", "s6:start-12", 930, 320, "一顆晶粒的剖面", "示意，非實際比例", {"zw": "zw", "dies": "dies", "open": "open", "tr": "tr", "metal": "metal", "sig": "metal+24"})]},
     ["台積電、Intel 技術文件"], pause=1.2))
 
 # ───────── s6 先進 vs 成熟（F）─────────
