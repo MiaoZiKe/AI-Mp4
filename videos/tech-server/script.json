@@ -2115,14 +2115,14 @@
    "id": "s9",
    "beat": "cta",
    "para": 9,
-   "narration": "晶片、電和熱，都要搬進同一個櫃子。下一支，來看液冷。想要完整解說，留言伺服器。",
-   "tts": "晶片、電和熱，都要搬進同一個櫃子。下一支，來看液冷。想要完整解說，留言伺服器。",
+   "narration": "晶片、電源、風扇全塞進同一個櫃子，會產生大量的熱，所以要用特殊方法冷卻。下一支，來看液冷。想要完整解說，留言伺服器。",
+   "tts": "晶片、電源、風扇全塞進同一個櫃子，會產生大量的熱，所以要用特殊方法冷卻。下一支，來看液冷。想要完整解說，留言伺服器。",
    "subtitle": {
-    "zh": "晶片\n電和熱\n都要搬進同一個櫃子\n下一支\n來看液冷\n想要完整解說\n留言伺服器",
-    "en": "Chips, | power and heat | all have to fit in one cabinet. | Next: | liquid cooling. | For the full notes, | comment \"伺服器\"."
+    "zh": "晶片\n電源\n風扇全塞進\n同一個櫃子\n會產生大量的熱\n所以要用特殊方法冷卻\n下一支\n來看液冷\n想要完整解說\n留言伺服器",
+    "en": "Chips, | power, | and fans all packed into | one cabinet, | producing a lot of heat, | so special cooling is needed. | Next: | liquid cooling. | For the full notes, | comment \"伺服器\"."
    },
    "keywords": [
-    "同一個櫃子",
+    "大量的熱",
     "液冷",
     "伺服器"
    ],
@@ -2132,12 +2132,24 @@
      "text": "晶片"
     },
     {
-     "id": "ph",
-     "text": "電和熱"
+     "id": "pwr",
+     "text": "電源"
+    },
+    {
+     "id": "fan",
+     "text": "風扇"
     },
     {
      "id": "one",
      "text": "同一個櫃子"
+    },
+    {
+     "id": "heat",
+     "text": "大量的熱"
+    },
+    {
+     "id": "cool",
+     "text": "特殊方法"
     },
     {
      "id": "next",
@@ -2174,36 +2186,66 @@
      {
       "id": "r_cglow",
       "at": "chip",
-      "until": "ph",
+      "until": "pwr",
       "ramp": 6
      },
      {
       "id": "p_up",
-      "at": "ph",
-      "until": "one",
+      "at": "pwr",
+      "until": "fan",
       "ramp": 6
      },
      {
-      "id": "c_hot",
-      "at": "ph",
-      "until": "one",
+      "id": "p_arm_l",
+      "at": "pwr",
+      "until": "fan",
+      "ramp": 6
+     },
+     {
+      "id": "cdu_fan0",
+      "at": "fan",
+      "until": "next",
       "ramp": 6
      },
      {
       "id": "r_frglow",
       "at": "one",
-      "until": "next",
+      "until": "heat",
+      "ramp": 6
+     },
+     {
+      "id": "r_cut",
+      "at": "heat-6",
+      "until": "cool+10",
+      "ramp": 6
+     },
+     {
+      "id": "r_heat",
+      "at": "heat",
+      "until": "cool+10",
       "ramp": 6
      },
      {
       "id": "c_cold",
-      "at": "liquid",
+      "at": "cool",
       "until": "kw",
       "ramp": 6
      },
      {
       "id": "c_hot",
-      "at": "liquid",
+      "at": "cool+4",
+      "until": "kw",
+      "ramp": 6
+     },
+     {
+      "id": "c_arm_c",
+      "at": "cool",
+      "until": "kw",
+      "ramp": 6
+     },
+     {
+      "id": "c_arm_h",
+      "at": "cool+6",
       "until": "kw",
       "ramp": 6
      }
@@ -2214,11 +2256,35 @@
       "text": "冷卻液分配單元",
       "en": "coolant unit",
       "color": "blue",
-      "at": "liquid",
-      "until": "kw-8"
+      "at": "cool",
+      "until": "next"
      }
     ],
     "overlay": [
+     {
+      "type": "stamp",
+      "at": "heat",
+      "until": "cool-6",
+      "text": "大量的熱",
+      "color": "coral",
+      "size": 48,
+      "rot": -4,
+      "x": 690,
+      "y": 250,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "cool",
+      "until": "next-6",
+      "text": "特殊方法冷卻",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 640,
+      "y": 250,
+      "avoid": false
+     },
      {
       "type": "stamp",
       "at": "next",
