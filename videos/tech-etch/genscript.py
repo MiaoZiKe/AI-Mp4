@@ -46,13 +46,12 @@ scenes.append(scene("s1", "hook", 1,
     [cue("mem", "快閃記憶體"), cue("wide", "寬約一百奈米"), cue("deep", "超過一萬奈米"), cue("q", "怎麼挖")],
     {"hook": {"kicker": "快閃記憶體的洞｜廠商公布", "title": "深是寬的 100 倍", "size": 120, "top": 236},
      "zoom": [{"to": "sect", "at": "start-30", "dur": 1}],
-     "shot": [shot("start-30", WX, 3.3, 30, 14, 1)],
+     "shot": [shot("start-30", WX, 3.0, 33, 14, 1)],
      "shift": [hide(f"w_p{i}", "s2:start") for i in range(8)] + [hide(f"w_f{g}", FT[g]) for g in range(4)] + [hide("w_fill", Q("s10", "fill", -4)), hide("plasma", Q("s4", "plasma", -6))],
      "run": [run("w_ionall", "start-30", "s2:start-2", 8)],
      "labels": [lab("w_stack", "交疊的膜層", "Stacked films", "blue", "mem", "wide-4"), lab("w_hole", "洞（寬約 100 奈米）", "Hole, ~100 nm wide", "coral", "wide", "s2:start-8"), lab("w_mask", "光阻遮罩", "Photoresist mask", "amber", "deep", "s2:start-8")],
-     "overlay": [stamp("廠商公布", "wide", "s2:start-2", "blue", 40, x=216, y=330),
-                 sec("etch-dim", "mem", "s2:start-16", 940, 330, "洞的比例", "示意：實際約 1 比 100", {"mem": "s1:mem", "wide": "s1:wide", "deep": "s1:deep", "q": "s1:q"})]},
-    ["Kihara 等人研究摘要（TEL）；Semiconductor Engineering 2023"], pause=0.7))
+     "overlay": [sec("etch-dim", "mem", "s2:start-16", 940, 330, "洞的比例", "示意：實際約 1 比 100", {"mem": "s1:mem", "wide": "s1:wide", "deep": "s1:deep", "q": "s1:q"})]},
+    ["Kihara 等人研究摘要；Semiconductor Engineering"], pause=0.7))
 
 # ───────── s2 機台→反應腔（M → C）─────────
 scenes.append(scene("s2", "mechanism", 2,
@@ -62,7 +61,7 @@ scenes.append(scene("s2", "mechanism", 2,
     ["蝕刻機", "反應腔", "真空"],
     [cue("ans", "答案是"), cue("tool", "蝕刻機"), cue("wf", "晶圓放進"), cue("cham", "反應腔"), cue("vac", "抽成"), cue("near", "接近真空")],
     {"zoom": [{"to": "mach", "at": "start-6", "dur": 1}, {"to": "cham", "at": "cham-16", "dur": 36}],
-     "shot": [shot("start-2", MX, 3.0, 42, 16, 1), shot("cham-16", CX + 4, 3.4, 40, 18, 36)],
+     "shot": [shot("start-2", MX, 2.0, 46, 16, 1), shot("cham-16", CX + 3.5, 1.5, 52, 18, 36)],
      "shift": [{"layer": "m_wafer", "at": "wf", "until": "s8:start-40", "dx": -4.2, "dur": 28}, {"layer": "m_arm", "at": "wf", "until": "s8:start-40", "dx": -4.2, "dur": 28}],
      "run": [run("c_vac", "vac", "s3:start+30", 6), run("c_rot", off("vac", -10), "s8:start-2", 10)],
      "labels": [lab("m_tool", "蝕刻機（群集式）", "Etch tool", "blue", "tool", "cham-18"), lab("m_wf", "晶圓", "Wafer", "amber", "wf", "cham-18"),
@@ -77,9 +76,9 @@ scenes.append(scene("s3", "mechanism", 3,
     ["Up top is the showerhead,", "below is the electrostatic chuck that holds the wafer,", "and waste gas is pumped out the exhaust port."],
     ["噴氣頭", "靜電吸盤", "抽氣口"],
     [cue("in", "上面"), cue("sh", "噴氣頭"), cue("esc", "靜電吸盤"), cue("wafer", "晶圓"), cue("exh", "廢氣"), cue("port", "抽氣口")],
-    {"shot": [shot("start-2", CX + 3, 5.2, 46, 18, 16)],
-     "shift": [{"layer": "ch_lid", "at": "in+4", "until": "s4:start-8", "dy": 7.4, "dur": 22}, {"layer": "ch_top", "at": "in+4", "until": "s4:start-8", "dy": 7.4, "dur": 22},
-               {"layer": "ch_sh", "at": "sh-10", "until": "s4:start-8", "dy": 3.4, "dur": 22}, {"layer": "ch_wf", "at": "wafer-12", "until": "s4:start-8", "dy": 2.6, "dur": 20},
+    {"shot": [shot("start-2", CX + 2, 4.3, 62, 18, 16)],
+     "shift": [{"layer": "ch_lid", "at": "in+4", "until": "s4:start-8", "dy": 5.0, "dur": 22}, {"layer": "ch_top", "at": "in+4", "until": "s4:start-8", "dy": 5.0, "dur": 22},
+               {"layer": "ch_sh", "at": "sh-10", "until": "s4:start-8", "dy": 2.6, "dur": 22}, {"layer": "ch_wf", "at": "wafer-12", "until": "s4:start-8", "dy": 2.2, "dur": 20},
                {"layer": "ch_ring", "at": "wafer-12", "until": "s4:start-8", "dy": 1.2, "dur": 20}],
      "run": [run("c_exh", "exh", "s8:start-2", 6)],
      "labels": [lab("c_sh", "噴氣頭（上電極）", "Showerhead (top electrode)", "amber", "sh", "s4:start-14"), lab("c_esc", "靜電吸盤（下電極）", "Electrostatic chuck (bottom electrode)", "blue", "esc", "s4:start-14"),
@@ -93,11 +92,11 @@ scenes.append(scene("s4", "mechanism", 4,
     ["Gas pours in through the showerhead,", "RF power switches on,", "and the gas is struck into plasma,", "glowing."],
     ["氣體", "射頻電", "電漿"],
     [cue("gas", "氣體"), cue("in", "灌進來"), cue("rf", "射頻電"), cue("plasma", "電漿"), cue("glow", "發出光")],
-    {"shot": [shot("start-2", CX + 1, 4.4, 32, 18, 18)],
+    {"shot": [shot("start-2", CX + 1, 2.4, 42, 18, 18)],
      "run": [run("c_gin", "gas", "s8:start-2", 6), run("c_gsh", "in", "s5:hit-14", 6), run("c_gsh2", "in", "s5:hit-14", 6), run("c_rf", "rf", "s5:hit-14", 6), run("c_rfb", "rf", "s5:hit-14", 6), run("c_pl", off("plasma", -6), "s8:start-2", 8)],
      "labels": [lab("c_gas", "氣體進來", "Gas in", "blue", "gas", "rf-6"), lab("c_rfa", "射頻電", "RF power", "amber", "rf", "s5:start-6"), lab("c_pl", "電漿區", "Plasma", "coral", "plasma", "s5:start-6")],
      "overlay": [sec("etch-gas", "start+2", "s5:start-16", 930, 335, "氣體怎麼變電漿", "示意，非實際比例", {"gas": "s4:gas", "in": "s4:in", "rf": "s4:rf", "plasma": "s4:plasma", "glow": "s4:glow"})]},
-    ["MKS 反應離子蝕刻技術說明；美國專利 US4253907、US6413358"], pause=0.7))
+    ["MKS 蝕刻技術說明；美國專利 US4253907"], pause=0.7))
 
 # ───────── s5 離子往下打（C → W，運作動畫 B）─────────
 scenes.append(scene("s5", "mechanism", 5,
@@ -107,14 +106,14 @@ scenes.append(scene("s5", "mechanism", 5,
     ["離子", "往下拉", "垂直撞向", "一點一點"],
     [cue("ion", "離子"), cue("charge", "帶電"), cue("field", "電場"), cue("pull", "往下拉"), cue("hit", "垂直撞向"), cue("bit", "一點一點"), cue("surf", "打掉表面")],
     {"zoom": [{"to": "sect", "at": "hit-24", "dur": 36}],
-     "shot": [shot("start-2", CX + 1, 3.6, 28, 18, 16), shot("hit-24", WX, 3.3, 28, 14, 36)],
+     "shot": [shot("start-2", CX + 1, 3.0, 40, 18, 16), shot("hit-24", WX, 2.7, 34, 14, 36)],
      "shift": [gone(f"w_p{i}", PT[i], 10) for i in (7, 6, 5, 4)],
      "run": [run("c_ion", "ion", "hit-8", 6), run("c_ion2", "ion", "hit-8", 6), run("c_efield", "field", "hit-8", 6),
              run("w_ion0", off("hit", -4), A(PT[6], 8), 6), run("w_ion1", A(PT[6], 8), Q("s6", "wall", 14), 6)],
      "labels": [lab("c_ionlab", "離子（帶正電）", "Ions (positive)", "coral", "ion", "hit-26"), lab("w_mask", "光阻遮罩", "Mask", "amber", "bit", "s6:start-6")],
      "overlay": [sec("etch-sect", "hit-10", "s7:start-16", 940, 330, "孔一點一點變深", "示意，非實際比例",
                      {**{f"p{i}": PT[i] for i in range(8)}, **{f"f{g}": FT[g] for g in range(4)}, "hit": "s5:hit", "film": "s6:film", "straight": "s6:straight", "side": "s6:side"})]},
-    ["MKS；美國專利（直流自偏壓使離子朝基板加速）；成大設備手冊"], pause=0.7))
+    ["MKS；美國專利；成大設備手冊"], pause=0.7))
 
 # ───────── s6 洞壁保護膜（W，運作動畫 C）─────────
 scenes.append(scene("s6", "mechanism", 6,
@@ -123,11 +122,11 @@ scenes.append(scene("s6", "mechanism", 6,
     ["Hitting straight down isn't enough,", "so a protective film is left on the hole walls,", "keeping the sides from being etched,", "so the hole stays straight."],
     ["保護膜", "不被刻到", "挖得直"],
     [cue("not", "只往下打還不夠"), cue("wall", "洞壁"), cue("film", "保護膜"), cue("side", "側面不被刻到"), cue("straight", "洞才挖得直")],
-    {"shot": [shot("start-2", WX, 3.2, 28, 14, 1)],
+    {"shot": [shot("start-2", WX, 2.7, 34, 14, 1)],
      "shift": [gone(f"w_p{i}", PT[i], 10) for i in (3, 2, 1, 0)],
      "run": [run("w_ion2", Q("s6", "wall", 14), A(PT[2], 8), 6), run("w_ion3", A(PT[2], 8), A(PT[0], 8), 6), run("w_ion4", A(PT[0], 8), "s7:start-2", 6), run("w_by", "wall", "s7:start-2", 6)],
      "labels": [lab("w_wall", "洞壁保護膜", "Protective film", "blue", "film", "s7:start-8"), lab("w_hole", "底部繼續被打深", "Bottom keeps etching", "coral", "straight", "s7:start-8")]},
-    ["美國專利 US7166233；清大論文（側壁保護層維持高非等向性）；MKS"], pause=0.7))
+    ["美國專利 US7166233；清大論文；MKS"], pause=0.7))
 
 # ───────── s7 越深越難，低溫（C 吸盤特寫，運作動畫 D）─────────
 scenes.append(scene("s7", "twist", 7,
@@ -137,11 +136,11 @@ scenes.append(scene("s7", "twist", 7,
     ["越難刻", "零下七十度"],
     [cue("but", "不過"), cue("deep", "洞越深"), cue("hard", "底部越難刻"), cue("so", "所以"), cue("cold", "零下七十度")],
     {"zoom": [{"to": "chuck", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", CX - 1.5, 2.0, 26, 26, 40)],
+     "shot": [shot("start-2", CX - 1.5, 1.3, 31, 26, 40)],
      "run": [run("c_chill", "hard", "s8:start-2", 6), run("c_cold", "cold-6", "s8:start-2", 10)],
      "labels": [lab("c_cath", "冷卻水道", "Coolant channel", "blue", "so", "s8:start-8"), lab("c_wf", "晶圓", "Wafer", "coral", "cold", "s8:start-8")],
      "overlay": [sec("etch-cold", "start+2", "s8:start-16", 940, 330, "常溫對照低溫", "廠商公布（TEL）・示意", {"deep": "s7:deep", "hard": "s7:hard", "so": "s7:so", "cold": "s7:cold"})]},
-    ["Tom's Hardware；TechPowerUp；Semiconductor Engineering"], pause=0.7))
+    ["Tom's Hardware；TechPowerUp"], pause=0.7))
 
 # ───────── s8 誰在做（國際，M）─────────
 scenes.append(scene("s8", "payoff", 8,
@@ -151,10 +150,10 @@ scenes.append(scene("s8", "payoff", 8,
     ["科林研發", "東京威力科創", "應用材料"],
     [cue("few", "做這種機器的不多"), cue("lam", "科林研發"), cue("tel", "東京威力科創"), cue("amat", "應用材料")],
     {"zoom": [{"to": "mach", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", MX, 3.0, 40, 16, 40)],
+     "shot": [shot("start-2", MX, 1.6, 46, 16, 40)],
      "labels": [lab("m_v1", "科林研發", "Lam Research", "amber", "lam", "s9:start-8"), lab("m_v2", "東京威力科創", "Tokyo Electron", "amber", "tel", "s9:start-8"), lab("m_v3", "應用材料", "Applied Materials", "amber", "amat", "s9:start-8")],
      "overlay": [stamp("媒體報導：自由時報", "few", "s9:start-2", "blue", 36, x=640, y=330)]},
-    ["自由時報 2025（美日三大廠）；statementdog 科林研發法說會整理"], pause=0.7))
+    ["自由時報 2025；法說會整理"], pause=0.7))
 
 # ───────── s9 台灣誰在做（引線指到反應腔對應部位）─────────
 scenes.append(scene("s9", "payoff", 9,
@@ -164,7 +163,7 @@ scenes.append(scene("s9", "payoff", 9,
     ["京鼎", "瑞耘", "翔名"],
     [cue("no", "沒有整機廠"), cue("parts", "但有零件"), cue("jd", "京鼎"), cue("ry", "瑞耘"), cue("xm", "翔名")],
     {"zoom": [{"to": "cham", "at": "start-6", "dur": 36}],
-     "shot": [shot("start-2", CX + 1, 3.8, 38, 18, 36)],
+     "shot": [shot("start-2", CX + 1, 2.0, 46, 18, 36)],
      "labels": [lab("c_shell", "京鼎：代工設備模組", "Tool modules (contract)", "amber", "jd", "s10:start-8"), lab("c_sh", "瑞耘：腔體零件", "Chamber parts", "amber", "ry", "s10:start-8"), lab("c_ln", "翔名：耗材", "Consumables", "amber", "xm", "s10:start-8")],
      "overlay": [stamp("媒體報導", "parts", "s10:start-2", "blue", 40, x=800, y=330)]},
     ["媒體報導：優分析、財訊、經濟日報（京鼎、瑞耘、翔名）"], pause=0.7))
@@ -177,9 +176,9 @@ scenes.append(scene("s10", "cta", 10,
     ["電漿", "洞壁保護", "薄膜沉積", "蝕刻"],
     [cue("ans", "又深又直"), cue("ion", "電漿往下打"), cue("prot", "洞壁保護"), cue("fill", "填回材料"), cue("next", "下一支"), cue("dep", "薄膜沉積"), cue("full", "想要完整解說"), cue("kw", "留言蝕刻")],
     {"zoom": [{"to": "sect", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", WX, 3.2, 28, 14, 40)],
+     "shot": [shot("start-2", WX, 2.7, 34, 14, 40)],
      "run": [run("w_ionall", "ion", off("fill", -6), 6)],
-     "labels": [lab("w_wall", "洞壁保護膜", "Protective film", "blue", "prot", "fill-4"), lab("w_hole", "填回材料", "Fill material", "amber", "fill", "kw-10")],
+     "labels": [lab("w_wall", "洞壁保護膜", "Protective film", "blue", "prot", "fill-4"), lab("w_hole", "填回材料", "Fill material", "amber", "fill", "full-6")],
      "overlay": [sec("etch-next", "start+2", "kw-14", 930, 300, "又深又直靠兩件事", "示意", {"ans": "s10:ans", "ion": "s10:ion", "prot": "s10:prot", "fill": "s10:fill", "next": "s10:next", "dep": "s10:dep"}),
                  stamp("完整解說在留言", "full", "kw-14", "blue", 36, x=780, y=336, avoid=False)]},
     ["下一支：薄膜沉積"]))
