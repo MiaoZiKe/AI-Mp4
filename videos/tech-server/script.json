@@ -663,6 +663,15 @@
       "opacity": 0,
       "dur": 2,
       "dy": 0
+     },
+     {
+      "layer": "c8",
+      "at": "what",
+      "until": "s2:start-2",
+      "dz": 1.4,
+      "dy": 0,
+      "dx": 0,
+      "dur": 16
      }
     ],
     "run": [
@@ -707,7 +716,19 @@
       "color": "coral",
       "size": 46,
       "rot": -4,
-      "x": 540,
+      "x": 300,
+      "y": 1270,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "what",
+      "until": "s2:start-2",
+      "text": "裡面？",
+      "color": "blue",
+      "size": 46,
+      "rot": -4,
+      "x": 780,
       "y": 1270,
       "avoid": false
      }
@@ -716,8 +737,7 @@
    "sources": [
     "NVIDIA；HPE、Supermicro 規格"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s2",
@@ -743,6 +763,10 @@
      "text": "七十二顆"
     },
     {
+     "id": "calc",
+     "text": "做運算"
+    },
+    {
      "id": "chip",
      "text": "AI 晶片"
     }
@@ -766,11 +790,19 @@
       "elev": 10
      }
     ],
-    "shift": [],
+    "shift": [
+     {
+      "layer": "frame",
+      "at": "open",
+      "until": "s3:start-2",
+      "opacity": 0.3,
+      "dur": 10
+     }
+    ],
     "run": [
      {
       "id": "r_cglow",
-      "at": "open",
+      "at": "calc",
       "until": "s3:start-2",
       "ramp": 6
      }
@@ -812,7 +844,7 @@
      },
      {
       "type": "stamp",
-      "at": "gpu+10",
+      "at": "chip",
       "until": "s3:start-2",
       "text": "廠商公布",
       "color": "blue",
@@ -826,8 +858,7 @@
    },
    "sources": [
     "NVIDIA 文件；SemiAnalysis"
-   ],
-   "durationSec": 6
+   ]
   },
   {
    "id": "s3",
@@ -891,6 +922,12 @@
     ],
     "run": [
      {
+      "id": "r_c8glow",
+      "at": "tray",
+      "until": "four-6",
+      "ramp": 6
+     },
+     {
       "id": "t_gpuhot",
       "at": "four",
       "until": "s4:start-2",
@@ -905,6 +942,12 @@
      {
       "id": "t_data",
       "at": "four",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_cpuglow",
+      "at": "cpu-4",
       "until": "s4:start-2",
       "ramp": 6
      },
@@ -925,6 +968,24 @@
       "at": "four",
       "until": "s4:start-2",
       "ramp": 6
+     },
+     {
+      "id": "t_vrm",
+      "at": "four",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_vrm0",
+      "at": "four+6",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_vrm1",
+      "at": "four+6",
+      "until": "s4:start-2",
+      "ramp": 6
      }
     ],
     "labels": [
@@ -933,7 +994,7 @@
       "text": "GPU × 4",
       "en": "4 GPUs",
       "color": "amber",
-      "at": "four+6",
+      "at": "four+2",
       "until": "s4:start-2"
      },
      {
@@ -941,7 +1002,7 @@
       "text": "CPU × 2",
       "en": "2 CPUs",
       "color": "blue",
-      "at": "cpu",
+      "at": "cpu-2",
       "until": "s4:start-2"
      }
     ],
@@ -950,8 +1011,7 @@
    "sources": [
     "NVIDIA：每托盤 4 GPU＋2 Grace CPU"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s4",
@@ -961,7 +1021,7 @@
    "tts": "為什麼要整櫃一起設計？因為七十二顆要像一顆一樣工作，得不停傳資料。",
    "subtitle": {
     "zh": "為什麼要整櫃一起設計？\n因為七十二顆\n要像一顆一樣工作\n得不停傳資料",
-    "en": "Why design the whole rack together? | Because the 72 chips | must work like one, | and must keep passing data."
+    "en": "Why design the whole rack together? | Because the 72 chips | must work like one, | and keep passing data."
    },
    "keywords": [
     "像一顆",
@@ -997,7 +1057,7 @@
       "elev": 12
      },
      {
-      "at": "one",
+      "at": "one-10",
       "dur": 28,
       "x": 0,
       "y": 1.9,
@@ -1010,7 +1070,7 @@
      {
       "layer": "spine",
       "at": "s1:start-40",
-      "until": "talk-10",
+      "until": "one",
       "opacity": 0,
       "dur": 2,
       "dy": 0
@@ -1018,9 +1078,15 @@
     ],
     "run": [
      {
+      "id": "r_frglow",
+      "at": "why",
+      "until": "seventy",
+      "ramp": 6
+     },
+     {
       "id": "r_cglow",
       "at": "seventy",
-      "until": "talk",
+      "until": "one",
       "ramp": 6
      },
      {
@@ -1039,6 +1105,18 @@
     "labels": [],
     "overlay": [
      {
+      "type": "stamp",
+      "at": "why",
+      "until": "seventy",
+      "text": "整櫃一起設計",
+      "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
+     },
+     {
       "type": "section",
       "kind": "srv-mesh",
       "at": "start+2",
@@ -1055,13 +1133,16 @@
         "at": "one"
        },
        "link": {
-        "at": "s5:sw"
+        "at": "talk"
        },
        "cable": {
         "at": "s5:cable"
        },
        "find": {
         "at": "s5:find"
+       },
+       "rest": {
+        "at": "s5:rest"
        }
       }
      }
@@ -1070,8 +1151,7 @@
    "sources": [
     "NVIDIA 技術部落格：72 GPU 為單一 NVLink 網域"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s5",
@@ -1123,7 +1203,7 @@
      {
       "id": "r_swglow",
       "at": "sw",
-      "until": "s6:start-2",
+      "until": "cable",
       "ramp": 6
      },
      {
@@ -1140,20 +1220,12 @@
      },
      {
       "id": "d_arms",
-      "at": "cable",
+      "at": "find",
       "until": "s6:start-2",
       "ramp": 6
      }
     ],
     "labels": [
-     {
-      "part": "r_spine",
-      "text": "銅線背板",
-      "en": "copper spine",
-      "color": "amber",
-      "at": "cable",
-      "until": "s6:start-2"
-     },
      {
       "part": "r_sw",
       "text": "交換器 ×9",
@@ -1161,15 +1233,47 @@
       "color": "blue",
       "at": "sw",
       "until": "s6:start-2"
+     },
+     {
+      "part": "r_spine",
+      "text": "銅線背板",
+      "en": "copper spine",
+      "color": "amber",
+      "at": "cable",
+      "until": "s6:start-2"
      }
     ],
     "overlay": [
      {
       "type": "stamp",
       "at": "cable+4",
-      "until": "s6:start-2",
+      "until": "find",
       "text": "超過 5,000 條",
       "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "x": 290,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "find",
+      "until": "rest",
+      "text": "每顆都連到",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 290,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "rest",
+      "until": "s6:start-2",
+      "text": "另外 71 顆",
+      "color": "coral",
       "size": 44,
       "rot": -4,
       "x": 290,
@@ -1181,8 +1285,7 @@
    "sources": [
     "NVIDIA 技術部落格；Supermicro"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s6",
@@ -1326,36 +1429,48 @@
      {
       "id": "p_up",
       "at": "bus",
-      "until": "s7:start-2",
+      "until": "heat-8",
       "ramp": 6
      },
      {
       "id": "p_dn",
       "at": "bus",
-      "until": "s7:start-2",
+      "until": "heat-8",
       "ramp": 6
      },
      {
       "id": "p_up2",
       "at": "bus",
-      "until": "s7:start-2",
+      "until": "heat-8",
       "ramp": 6
      },
      {
       "id": "p_dn2",
       "at": "bus",
+      "until": "heat-8",
+      "ramp": 6
+     },
+     {
+      "id": "t_vrm",
+      "at": "heat-6",
       "until": "s7:start-2",
       "ramp": 6
      },
      {
-      "id": "r_cut",
-      "at": "heat-10",
+      "id": "t_vrm0",
+      "at": "heat-4",
       "until": "s7:start-2",
       "ramp": 6
      },
      {
-      "id": "r_heat",
-      "at": "heat",
+      "id": "t_vrm1",
+      "at": "heat-4",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_pwr",
+      "at": "heat-6",
       "until": "s7:start-2",
       "ramp": 6
      }
@@ -1367,7 +1482,7 @@
       "en": "power shelf",
       "color": "amber",
       "at": "in",
-      "until": "s7:start-2"
+      "until": "heat-8"
      }
     ],
     "overlay": [
@@ -1381,7 +1496,7 @@
       "w": 952,
       "h": 400,
       "avoid": false,
-      "title": "電怎麼進來、變成什麼",
+      "title": "電怎麼進來",
       "tag": "示意",
       "t": {
        "in": {
@@ -1400,8 +1515,7 @@
    "sources": [
     "NVIDIA；Gigabyte 資料表（電源層）；規格 120–132 kW"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s7",
@@ -1521,7 +1635,7 @@
      {
       "layer": "tcool",
       "at": "s1:start-40",
-      "until": "liq-6",
+      "until": "chipf-6",
       "opacity": 0,
       "dur": 6,
       "dy": 0
@@ -1570,73 +1684,73 @@
      },
      {
       "id": "hs0_waves",
-      "at": "s6:heat",
+      "at": "air",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "hs1_waves",
-      "at": "s6:heat",
+      "at": "air",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "fan0_spin",
-      "at": "s6:heat",
+      "at": "air-4",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan1_spin",
-      "at": "s6:heat",
+      "at": "air-4",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan2_spin",
-      "at": "s6:heat",
+      "at": "air-4",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan3_spin",
-      "at": "s6:heat",
+      "at": "air-4",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "t_air",
-      "at": "s6:heat+6",
+      "at": "air",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air2",
-      "at": "s6:heat+8",
+      "at": "air+2",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air3",
-      "at": "s6:heat+10",
+      "at": "air+4",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air4",
-      "at": "s6:heat+12",
+      "at": "air+6",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_cold",
-      "at": "liq",
+      "at": "chipf",
       "until": "out",
       "ramp": 6
      },
      {
       "id": "t_hot",
-      "at": "chipf",
+      "at": "chipf+8",
       "until": "out",
       "ramp": 6
      },
@@ -1707,7 +1821,7 @@
       "text": "冷板（銅）",
       "en": "cold plate",
       "color": "blue",
-      "at": "liq+6",
+      "at": "liq+8",
       "until": "out-6"
      }
     ],
@@ -1741,8 +1855,7 @@
    "sources": [
     "NVIDIA；DCD（晶片與交換器液冷）"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s8a",
@@ -1760,12 +1873,20 @@
    ],
    "cues": [
     {
-     "id": "asm",
-     "text": "組裝"
+     "id": "intro",
+     "text": "做這些的"
+    },
+    {
+     "id": "fox",
+     "text": "鴻海"
+    },
+    {
+     "id": "wiw",
+     "text": "緯穎"
     },
     {
      "id": "pw",
-     "text": "電源"
+     "text": "台達電"
     }
    ],
    "component": "ThreeScene",
@@ -1792,14 +1913,26 @@
     ],
     "run": [
      {
+      "id": "r_frglow",
+      "at": "intro",
+      "until": "fox",
+      "ramp": 6
+     },
+     {
       "id": "r_cglow",
-      "at": "asm-10",
-      "until": "pw-8",
+      "at": "fox",
+      "until": "wiw",
+      "ramp": 6
+     },
+     {
+      "id": "r_cut",
+      "at": "wiw",
+      "until": "pw",
       "ramp": 6
      },
      {
       "id": "r_pwglow",
-      "at": "pw-6",
+      "at": "pw",
       "until": "s8b:start-2",
       "ramp": 6
      },
@@ -1819,10 +1952,18 @@
     "labels": [
      {
       "part": "r_top",
-      "text": "鴻海、廣達、緯穎　組裝",
+      "text": "鴻海、廣達　組裝",
       "en": "assembly",
       "color": "amber",
-      "at": "asm-6",
+      "at": "fox-4",
+      "until": "s8b:start-2"
+     },
+     {
+      "part": "r_top2",
+      "text": "緯穎　組裝",
+      "en": "assembly",
+      "color": "amber",
+      "at": "wiw-4",
       "until": "s8b:start-2"
      },
      {
@@ -1830,7 +1971,7 @@
       "text": "台達電　電源層",
       "en": "power shelf",
       "color": "blue",
-      "at": "pw-6",
+      "at": "pw-4",
       "until": "s8b:start-2"
      }
     ],
@@ -1839,8 +1980,7 @@
    "sources": [
     "數位時代、科技新報、Yam 新聞（媒體報導）"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s8b",
@@ -1860,15 +2000,15 @@
    "cues": [
     {
      "id": "cl",
-     "text": "散熱"
+     "text": "奇鋐"
     },
     {
      "id": "rail",
-     "text": "滑軌"
+     "text": "川湖"
     },
     {
      "id": "shell",
-     "text": "機殼"
+     "text": "勤誠"
     }
    ],
    "component": "ThreeScene",
@@ -1897,32 +2037,38 @@
     "run": [
      {
       "id": "c_cold",
-      "at": "cl-10",
-      "until": "s9:start-2",
+      "at": "cl-6",
+      "until": "rail",
       "ramp": 6
      },
      {
       "id": "c_hot",
-      "at": "cl-10",
-      "until": "s9:start-2",
+      "at": "cl-6",
+      "until": "rail",
       "ramp": 6
      },
      {
       "id": "c_arm_c",
-      "at": "cl-10",
-      "until": "s9:start-2",
+      "at": "cl-6",
+      "until": "rail",
       "ramp": 6
      },
      {
       "id": "c_arm_h",
-      "at": "cl-10",
-      "until": "s9:start-2",
+      "at": "cl-6",
+      "until": "rail",
       "ramp": 6
      },
      {
       "id": "cdu_fan0",
-      "at": "cl-10",
-      "until": "s9:start-2",
+      "at": "cl-6",
+      "until": "rail",
+      "ramp": 6
+     },
+     {
+      "id": "r_c8glow",
+      "at": "rail",
+      "until": "shell",
       "ramp": 6
      },
      {
@@ -1963,8 +2109,7 @@
    "sources": [
     "經濟日報、自由時報、科技新報（媒體報導）"
    ],
-   "pauseAfter": 0.7,
-   "durationSec": 6
+   "pauseAfter": 0.7
   },
   {
    "id": "s9",
@@ -1983,8 +2128,12 @@
    ],
    "cues": [
     {
-     "id": "all",
+     "id": "chip",
      "text": "晶片"
+    },
+    {
+     "id": "ph",
+     "text": "電和熱"
     },
     {
      "id": "one",
@@ -1997,6 +2146,10 @@
     {
      "id": "liquid",
      "text": "液冷"
+    },
+    {
+     "id": "full",
+     "text": "完整解說"
     },
     {
      "id": "kw",
@@ -2019,26 +2172,38 @@
     "shift": [],
     "run": [
      {
-      "id": "d_spine",
-      "at": "all",
-      "until": "one",
+      "id": "r_cglow",
+      "at": "chip",
+      "until": "ph",
       "ramp": 6
      },
      {
       "id": "p_up",
-      "at": "all",
+      "at": "ph",
       "until": "one",
       "ramp": 6
      },
      {
-      "id": "c_cold",
+      "id": "c_hot",
+      "at": "ph",
+      "until": "one",
+      "ramp": 6
+     },
+     {
+      "id": "r_frglow",
       "at": "one",
+      "until": "next",
+      "ramp": 6
+     },
+     {
+      "id": "c_cold",
+      "at": "liquid",
       "until": "kw",
       "ramp": 6
      },
      {
       "id": "c_hot",
-      "at": "one",
+      "at": "liquid",
       "until": "kw",
       "ramp": 6
      }
@@ -2057,21 +2222,56 @@
      {
       "type": "stamp",
       "at": "next",
-      "until": "kw",
-      "text": "下一支：液冷",
+      "until": "liquid-6",
+      "text": "下一支",
       "color": "amber",
       "size": 48,
       "rot": -4,
       "x": 690,
-      "y": 330,
+      "y": 250,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "liquid",
+      "until": "full-6",
+      "text": "液冷",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 690,
+      "y": 250,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-6",
+      "text": "完整解說",
+      "color": "blue",
+      "size": 48,
+      "rot": -4,
+      "x": 690,
+      "y": 250,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "s10:start",
+      "text": "留言「伺服器」",
+      "color": "coral",
+      "size": 44,
+      "rot": -4,
+      "x": 620,
+      "y": 250,
       "avoid": false
      }
     ]
    },
    "sources": [
     "下一支：11/21（六）液冷（已排定）"
-   ],
-   "durationSec": 6
+   ]
   },
   {
    "id": "s10",

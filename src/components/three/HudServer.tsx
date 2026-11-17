@@ -55,8 +55,8 @@ const Count: React.FC<P> = ({ o, f, k, m }) => {
 // ── srv-mesh ──
 const Mesh: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = (n: string) => col(m.product, n);
-  const one = T(o, "one"), link = T(o, "link"), cab = T(o, "cable"), find = T(o, "find");
-  const merge = tween(f, one, 24, EASE.move), lk = tween(f, link, 30, EASE.move), nb = tween(f, cab, 8, EASE.enter), fd = tween(f, find, 10, EASE.enter);
+  const one = T(o, "one"), link = T(o, "link"), cab = T(o, "cable"), find = T(o, "find"), rest = T(o, "rest");
+  const merge = tween(f, one, 24, EASE.move), lk = tween(f, link, 30, EASE.move), nb = tween(f, cab, 8, EASE.enter), fd = tween(f, find, 10, EASE.enter), rs = tween(f, rest, 10, EASE.enter);
   const sig = c("lp_sig"), orange = c("orange"), grn = c("green"), cu = c("cu"), tb = c("trayB");
   const lx = 90, ly = (i: number) => 62 + i * 14.5, sx = 520, sy = (j: number) => 70 + j * 24;
   return (
@@ -74,7 +74,8 @@ const Mesh: React.FC<P> = ({ o, f, k, m }) => {
         <text x={650} y={110} opacity={merge} style={zh(52, H.amber, 900)}>72 顆</text>
         <text x={650} y={166} opacity={merge} style={zh(52, H.amber, 900)}>＝ 一顆</text>
         <text x={650} y={222} opacity={nb} style={zh(38, cu, 900)}>5,000+ 條銅線</text>
-        <text x={650} y={274} opacity={fd} style={zh(36, sig, 900)}>每顆找得到 71 顆</text>
+        <text x={650} y={274} opacity={fd} style={zh(36, sig, 900)}>每顆都連到交換器</text>
+        <text x={650} y={326} opacity={rs} style={zh(40, H.amber, 900)}>另外 71 顆</text>
         <text x={sx} y={Hh - 14} opacity={lk} style={zh(30, H.text2, 700)}>橘＝九層交換器　示意</text>
       </svg>
     </Card>

@@ -636,6 +636,16 @@
    "dx": 120,
    "dy": -60
   },
+  "r_top2": {
+   "layer": "frame",
+   "p": [
+    -2.3,
+    7.37,
+    1.6
+   ],
+   "dx": -130,
+   "dy": -60
+  },
   "r_rail": {
    "layer": "c8",
    "p": [
@@ -8256,6 +8266,29 @@
    "color": "lp_proc",
    "freq": 2.4,
    "glow": 0.8,
+   "halo": 0
+  },
+  "r_c8glow": {
+   "type": "pulse",
+   "layer": "c8",
+   "parts": [
+    "c8_b"
+   ],
+   "color": "lp_sig",
+   "freq": 2.2,
+   "glow": 0.9,
+   "halo": 0
+  },
+  "t_cpuglow": {
+   "type": "pulse",
+   "layer": "sc0_c",
+   "parts": [
+    "cpu0",
+    "cpu1"
+   ],
+   "color": "lp_good",
+   "freq": 2.2,
+   "glow": 0.9,
    "halo": 0
   },
   "r_frglow": {

@@ -152,6 +152,7 @@ box("tb_c", "tcool", mm("coolB"), [0.28, 0.28, 8.0], [TX-0.4, PY, 0.7], shape="b
 box("tb_h", "tcool", mm("hotO"), [0.28, 0.28, 8.0], [TX+0.4, PY, 0.7])
 box("tb_sc", "tcool", mm("coolB"), [1.0, 0.18, 0.18], [TX, PY, 0], at=[[-2.0, 0, 1.4], [-2.0, 0, -1.4]])
 box("tb_sh", "tcool", mm("hotO"), [1.0, 0.18, 0.18], [TX, PY, 0], at=[[2.0, 0, 1.0], [2.0, 0, -1.0]])
+anchor("r_top2", "frame", [-W/2, HR, D/2], dx=-130, dy=-60)
 anchor("r_rail", "c8", [W/2-0.3, SLOTY["c8"], D/2], dx=150, dy=-60)
 anchor("r_chas", "c12", [-W/2+0.3, SLOTY["c12"], D/2], dx=-150, dy=-40)
 anchor("t_gpu", "sc0_g0", [TX+MODX[0]-0.2+0.85, TY+0.22+0.42, 1.0], dx=-130, dy=-80)
@@ -198,6 +199,8 @@ actions["t_gpuhot1"] = {"type":"pulse","layer":"sc1_g0","parts":["gpu10","gpu11"
 actions["r_cglow"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
 actions["r_swglow"] = {"type":"pulse","layer":"sw0","parts":[f"sw{i}_b" for i in range(9)],"color":"lp_proc","freq":2.4,"glow":0.8,"halo":0}
 actions["r_pwglow"] = {"type":"pulse","layer":"pw0","parts":[f"pw{i}_b" for i in range(4)],"color":"lp_proc","freq":2.4,"glow":0.8,"halo":0}
+actions["r_c8glow"] = {"type":"pulse","layer":"c8","parts":["c8_b"],"color":"lp_sig","freq":2.2,"glow":0.9,"halo":0}
+actions["t_cpuglow"] = {"type":"pulse","layer":"sc0_c","parts":["cpu0","cpu1"],"color":"lp_good","freq":2.2,"glow":0.9,"halo":0}
 actions["r_frglow"] = {"type":"pulse","layer":"frame","parts":["fr_post"],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
 actions["r_cut"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_heat","freq":2.6,"glow":0.85,"halo":0}
 actions["r_heat"] = {"preset":"heat-spread","layer":"c5","from":{"layer":"c5","p":[0, SLOTY["c5"]+0.1, 0]},"dir":[0,1,0],"reach":1.6,"count":3,"r0":0.5,"spread":0.5,"rate":0.7}
