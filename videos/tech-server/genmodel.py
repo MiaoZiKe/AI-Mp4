@@ -94,9 +94,9 @@ box("cdu_pc", "cdu", mm("coolB"), [0.2, 0.2, 1.4], [W/2+1.3, 2.3, BZ+0.4])
 box("cdu_ph", "cdu", mm("hotO"), [0.2, 0.2, 1.4], [W/2+1.62, 2.55, BZ+0.4])
 box("cdu_fan", "cdu", mm("slot"), [0.5, 0.5, 0.03], [W/2+2.0, 1.1, BZ+0.4+0.82], at=[[0.0, 0.5, 0], [0.0, -0.5, 0]])
 anchor("r_top", "frame", [W/2, HR, D/2], dx=120, dy=-60)
-anchor("r_gpu", "c3_b", [-W/2+0.3, SLOTY["c3"], D/2], dx=-150, dy=-70)
-anchor("r_sw", "sw4_b", [-W/2+0.3, SLOTY["sw4"], D/2], dx=-150, dy=20)
-anchor("r_pw", "pw0_b", [-W/2+0.3, SLOTY["pw0"], D/2], dx=-150, dy=40)
+anchor("r_gpu", "c3", [-W/2+0.3, SLOTY["c3"], D/2], dx=-150, dy=-70)
+anchor("r_sw", "sw4", [-W/2+0.3, SLOTY["sw4"], D/2], dx=-150, dy=20)
+anchor("r_pw", "pw0", [-W/2+0.3, SLOTY["pw0"], D/2], dx=-150, dy=40)
 anchor("r_spine", "spine", [0.35, HR/2, BZ], dx=130, dy=-30)
 anchor("r_mf", "cool", [W/2+0.85, HR*0.7, BZ+0.05], dx=130, dy=-30)
 anchor("r_cdu", "cdu", [W/2+2.7, 1.8, BZ+0.4], dx=120, dy=-60)
@@ -151,8 +151,11 @@ flow("t_hot", "tcool", [[TX+0.4, PY+0.17, -3.0], [TX+0.4, PY+0.17, 4.5]], 5, 1, 
 flow("t_data", "tp_nic", [[TX-3.7, TY+0.4, 3.9], [TX-3.7, TY+0.4, 0.6]], 3, 3, 0.2, [1,0,0], 0.1, 1.2, "lp_sig", "lp_sigRim")
 actions["t_gpuhot"] = {"type":"pulse","layer":"sc0_g0","parts":["gpu00","gpu01"],"color":"lp_heat","freq":2.2,"glow":0.9,"halo":0}
 actions["t_gpuhot1"] = {"type":"pulse","layer":"sc1_g0","parts":["gpu10","gpu11"],"color":"lp_heat","freq":2.2,"glow":0.9,"halo":0}
-actions["r_cglow"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(1)],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
-actions["r_swglow"] = {"type":"pulse","layer":"sw0","parts":["sw0_b"],"color":"lp_proc","freq":2.4,"glow":0.8,"halo":0}
+actions["r_cglow"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
+actions["r_swglow"] = {"type":"pulse","layer":"sw0","parts":[f"sw{i}_b" for i in range(9)],"color":"lp_proc","freq":2.4,"glow":0.8,"halo":0}
+actions["r_pwglow"] = {"type":"pulse","layer":"pw0","parts":[f"pw{i}_b" for i in range(4)],"color":"lp_proc","freq":2.4,"glow":0.8,"halo":0}
+actions["r_frglow"] = {"type":"pulse","layer":"frame","parts":["fr_post"],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
+actions["r_cut"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_heat","freq":2.6,"glow":0.85,"halo":0}
 actions["r_heat"] = {"preset":"heat-spread","layer":"c5","from":{"layer":"c5","p":[0, SLOTY["c5"]+0.1, 0]},"dir":[0,1,0],"reach":1.6,"count":3,"r0":0.5,"spread":0.5,"rate":0.7}
 actions["t_heat"] = {"preset":"heat-spread","layer":"sc0_g0","from":{"layer":"sc0_g0","p":[TX+MODX[0]+0.7, TY+0.7, 0]},"dir":[0,1,0],"reach":1.8,"count":3,"r0":0.5,"spread":0.5,"rate":0.7}
 actions["r_fan"] = {"type":"vibrate","parts":["cdu_fan"],"axis":[0,1,0],"amp":0.02,"freq":6,"layer":"cdu"}

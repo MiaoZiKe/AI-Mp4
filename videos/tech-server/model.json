@@ -536,7 +536,7 @@
    "dy": -60
   },
   "r_gpu": {
-   "layer": "c3_b",
+   "layer": "c3",
    "p": [
     -2.0,
     1.535,
@@ -546,7 +546,7 @@
    "dy": -70
   },
   "r_sw": {
-   "layer": "sw4_b",
+   "layer": "sw4",
    "p": [
     -2.0,
     3.735,
@@ -556,7 +556,7 @@
    "dy": 20
   },
   "r_pw": {
-   "layer": "pw0_b",
+   "layer": "pw0",
    "p": [
     -2.0,
     0.435,
@@ -6476,7 +6476,24 @@
    "type": "pulse",
    "layer": "c0",
    "parts": [
-    "c0_b"
+    "c0_b",
+    "c1_b",
+    "c2_b",
+    "c3_b",
+    "c4_b",
+    "c5_b",
+    "c6_b",
+    "c7_b",
+    "c8_b",
+    "c9_b",
+    "c10_b",
+    "c11_b",
+    "c12_b",
+    "c13_b",
+    "c14_b",
+    "c15_b",
+    "c16_b",
+    "c17_b"
    ],
    "color": "lp_sig",
    "freq": 2.0,
@@ -6487,11 +6504,72 @@
    "type": "pulse",
    "layer": "sw0",
    "parts": [
-    "sw0_b"
+    "sw0_b",
+    "sw1_b",
+    "sw2_b",
+    "sw3_b",
+    "sw4_b",
+    "sw5_b",
+    "sw6_b",
+    "sw7_b",
+    "sw8_b"
    ],
    "color": "lp_proc",
    "freq": 2.4,
    "glow": 0.8,
+   "halo": 0
+  },
+  "r_pwglow": {
+   "type": "pulse",
+   "layer": "pw0",
+   "parts": [
+    "pw0_b",
+    "pw1_b",
+    "pw2_b",
+    "pw3_b"
+   ],
+   "color": "lp_proc",
+   "freq": 2.4,
+   "glow": 0.8,
+   "halo": 0
+  },
+  "r_frglow": {
+   "type": "pulse",
+   "layer": "frame",
+   "parts": [
+    "fr_post"
+   ],
+   "color": "lp_sig",
+   "freq": 2.0,
+   "glow": 0.8,
+   "halo": 0
+  },
+  "r_cut": {
+   "type": "pulse",
+   "layer": "c0",
+   "parts": [
+    "c0_b",
+    "c1_b",
+    "c2_b",
+    "c3_b",
+    "c4_b",
+    "c5_b",
+    "c6_b",
+    "c7_b",
+    "c8_b",
+    "c9_b",
+    "c10_b",
+    "c11_b",
+    "c12_b",
+    "c13_b",
+    "c14_b",
+    "c15_b",
+    "c16_b",
+    "c17_b"
+   ],
+   "color": "lp_heat",
+   "freq": 2.6,
+   "glow": 0.85,
    "halo": 0
   },
   "r_heat": {
