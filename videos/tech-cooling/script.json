@@ -130,36 +130,44 @@
      },
      {
       "id": "h_leds",
-      "at": "start",
+      "at": "kw",
       "until": "s2:start-2",
       "ramp": 6
      },
      {
       "id": "h_air0",
-      "at": "start+2",
+      "at": "fan",
       "until": "s2:start-2",
       "ramp": 6
      },
      {
       "id": "h_air1",
-      "at": "start+2",
+      "at": "fan",
       "until": "s2:start-2",
       "ramp": 6
      },
      {
       "id": "h_hot",
-      "at": "kw",
+      "at": "heat",
       "until": "s2:start-2",
       "ramp": 8
      },
      {
       "id": "h_hotb",
-      "at": "kw+6",
+      "at": "heat+6",
       "until": "s2:start-2",
       "ramp": 8
      }
     ],
     "labels": [
+     {
+      "part": "rk",
+      "text": "AI 伺服器機櫃",
+      "en": "One AI rack",
+      "color": "blue",
+      "at": "rack",
+      "until": "kw-6"
+     },
      {
       "part": "rk",
       "text": "風扇牆（風冷）",
@@ -213,6 +221,10 @@
      "text": "同樣體積"
     },
     {
+     "id": "carry",
+     "text": "水能帶走"
+    },
+    {
      "id": "times",
      "text": "三千四百多倍"
     },
@@ -251,7 +263,7 @@
      {
       "layer": "cube_a0",
       "at": "s1:start-40",
-      "until": "same+4",
+      "until": "same+10",
       "dy": 4.0,
       "opacity": 0,
       "dur": 12,
@@ -261,7 +273,7 @@
      {
       "layer": "cube_b0",
       "at": "s1:start-40",
-      "until": "times-34",
+      "until": "carry+4",
       "dy": 4.0,
       "opacity": 0,
       "dur": 12,
@@ -271,7 +283,7 @@
      {
       "layer": "cube_b1",
       "at": "s1:start-40",
-      "until": "times-25",
+      "until": "carry+16",
       "dy": 4.0,
       "opacity": 0,
       "dur": 12,
@@ -281,7 +293,7 @@
      {
       "layer": "cube_b2",
       "at": "s1:start-40",
-      "until": "times-16",
+      "until": "carry+28",
       "dy": 4.0,
       "opacity": 0,
       "dur": 12,
@@ -298,7 +310,7 @@
      },
      {
       "id": "p_wat",
-      "at": "times+8",
+      "at": "water",
       "until": "s3:start-2",
       "ramp": 8
      }
@@ -309,7 +321,7 @@
       "text": "空氣",
       "en": "Air",
       "color": "coral",
-      "at": "same+6",
+      "at": "no",
       "until": "s3:start-2"
      },
      {
@@ -317,7 +329,7 @@
       "text": "水",
       "en": "Water",
       "color": "blue",
-      "at": "times-30",
+      "at": "same",
       "until": "s3:start-2"
      }
     ],
@@ -325,7 +337,7 @@
      {
       "type": "section",
       "kind": "cool-cups",
-      "at": "start+2",
+      "at": "same-6",
       "until": "s3:start-16",
       "x": 64,
       "y": 920,
@@ -338,6 +350,9 @@
        "same": {
         "at": "same"
        },
+       "carry": {
+        "at": "carry"
+       },
        "times": {
         "at": "times"
        },
@@ -345,17 +360,6 @@
         "at": "water"
        }
       }
-     },
-     {
-      "type": "stamp",
-      "at": "times",
-      "until": "s3:start-2",
-      "text": "已確定（物性）",
-      "color": "blue",
-      "size": 40,
-      "rot": -4,
-      "x": 800,
-      "y": 340
      }
     ]
    },
@@ -385,11 +389,11 @@
     },
     {
      "id": "fin",
-     "text": "散熱片"
+     "text": "不再裝"
     },
     {
      "id": "plate",
-     "text": "冷板"
+     "text": "改貼"
     }
    ],
    "component": "ThreeScene",
@@ -444,7 +448,7 @@
     "run": [
      {
       "id": "c_die",
-      "at": "start-30",
+      "at": "chip",
       "until": "plate+30",
       "ramp": 6
      },
@@ -463,26 +467,20 @@
     ],
     "labels": [
      {
+      "part": "c_gpu",
+      "text": "GPU 晶片",
+      "en": "GPU chip",
+      "color": "amber",
+      "at": "chip",
+      "until": "fin"
+     },
+     {
       "part": "c_hs",
       "text": "散熱片（風冷）",
       "en": "Heat sink (air)",
       "color": "coral",
-      "at": "chip",
-      "until": "plate"
-     }
-    ],
-    "overlay": [
-     {
-      "type": "stamp",
-      "at": "plate+14",
-      "until": "s4:start-2",
-      "text": "貼在晶片上",
-      "color": "amber",
-      "size": 40,
-      "rot": -4,
-      "x": 800,
-      "y": 340,
-      "avoid": false
+      "at": "fin",
+      "until": "plate-6"
      }
     ]
    },
@@ -866,14 +864,20 @@
     ],
     "run": [
      {
-      "id": "r_f_bb",
+      "id": "r_f_rr",
       "at": "where",
       "until": "s7:end",
       "ramp": 6
      },
      {
-      "id": "r_f_bu",
-      "at": "where+6",
+      "id": "r_f_ru",
+      "at": "where+8",
+      "until": "s7:end",
+      "ramp": 6
+     },
+     {
+      "id": "r_f_rt",
+      "at": "where+30",
       "until": "s7:end",
       "ramp": 6
      },
@@ -884,19 +888,13 @@
       "ramp": 6
      },
      {
-      "id": "r_f_rr",
-      "at": "pipe+14",
+      "id": "r_f_bu",
+      "at": "pipe+8",
       "until": "s7:end",
       "ramp": 6
      },
      {
-      "id": "r_f_ru",
-      "at": "pipe+22",
-      "until": "s7:end",
-      "ramp": 6
-     },
-     {
-      "id": "r_f_rt",
+      "id": "r_f_bb",
       "at": "mani",
       "until": "s7:end",
       "ramp": 6
@@ -932,6 +930,14 @@
       "color": "blue",
       "at": "pull",
       "until": "dry+4"
+     },
+     {
+      "part": "q_body",
+      "text": "富世達 快接頭",
+      "en": "Quick disconnects",
+      "color": "amber",
+      "at": "qd+4",
+      "until": "pull-6"
      }
     ],
     "overlay": [
@@ -939,7 +945,7 @@
       "type": "section",
       "kind": "cool-loop",
       "at": "start+2",
-      "until": "s6:end",
+      "until": "s6:start-2",
       "x": 64,
       "y": 930,
       "w": 952,
@@ -955,13 +961,13 @@
         "at": "mani"
        },
        "cdu": {
-        "at": "s6:cdu"
+        "at": "s6:start-8"
        },
        "dry": {
-        "at": "s6:cool"
+        "at": "s6:start-6"
        },
        "loop": {
-        "at": "s6:loop"
+        "at": "s6:start-4"
        }
       }
      },
@@ -1028,11 +1034,11 @@
       "elev": 10
      },
      {
-      "at": "cdu",
-      "dur": 30,
+      "at": "cdu-6",
+      "dur": 26,
       "x": 249.8,
-      "y": 3.2,
-      "d": 32,
+      "y": 2.8,
+      "d": 20,
       "elev": 10
      },
      {
@@ -1141,19 +1147,19 @@
     "labels": [
      {
       "part": "u_hx",
-      "text": "板式熱交換器（CDU）",
+      "text": "板式熱交換器",
       "en": "Plate heat exchanger",
       "color": "amber",
       "at": "cdu",
-      "until": "give+20"
+      "until": "give+30"
      },
      {
       "part": "u_pump",
       "text": "幫浦",
       "en": "Pump",
       "color": "blue",
-      "at": "cdu+6",
-      "until": "give+20"
+      "at": "cdu+10",
+      "until": "give+30"
      },
      {
       "part": "d_dc",
@@ -1166,15 +1172,58 @@
     ],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "give+4",
-      "until": "cool",
-      "text": "熱不混水：隔著金屬片傳",
-      "color": "amber",
-      "size": 36,
-      "rot": -4,
-      "x": 640,
-      "y": 340
+      "type": "section",
+      "kind": "cool-hx",
+      "at": "start+2",
+      "until": "loop-6",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 310,
+      "avoid": false,
+      "title": "熱交換器剖面",
+      "tag": "示意：兩邊水不混，隔著金屬片傳熱",
+      "t": {
+       "cdu": {
+        "at": "cdu"
+       },
+       "give": {
+        "at": "give"
+       },
+       "cool": {
+        "at": "cool"
+       }
+      }
+     },
+     {
+      "type": "section",
+      "kind": "cool-loop",
+      "at": "loop-6",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 310,
+      "avoid": false,
+      "title": "一條迴路",
+      "tag": "示意",
+      "t": {
+       "plate": {
+        "at": "start"
+       },
+       "mani": {
+        "at": "start"
+       },
+       "cdu": {
+        "at": "start"
+       },
+       "dry": {
+        "at": "start"
+       },
+       "loop": {
+        "at": "start"
+       }
+      }
      }
     ]
    },
@@ -1217,59 +1266,87 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 14,
-      "x": 251.0,
-      "y": 0.2,
-      "d": 48,
-      "elev": 12
+      "dur": 1,
+      "x": 180,
+      "y": -2.0,
+      "d": 34,
+      "elev": 46
+     },
+     {
+      "at": "dt-14",
+      "dur": 26,
+      "x": 249.8,
+      "y": 3.0,
+      "d": 24,
+      "elev": 10
+     },
+     {
+      "at": "gl-10",
+      "dur": 20,
+      "x": 249.8,
+      "y": 3.0,
+      "d": 17,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_lid",
+      "text": "奇鋐、雙鴻：冷板",
+      "en": "Cold plates",
+      "color": "amber",
+      "at": "qh",
+      "until": "dt-10"
+     },
+     {
+      "part": "u_cdu",
+      "text": "台達電：CDU",
+      "en": "CDU",
+      "color": "amber",
+      "at": "dt",
+      "until": "gl-8"
+     },
+     {
+      "part": "u_hx",
+      "text": "高力：熱交換器",
+      "en": "Heat exchanger",
+      "color": "amber",
+      "at": "gl",
+      "until": "s8:start-2"
      }
     ],
     "overlay": [
      {
-      "type": "card",
+      "type": "stamp",
       "at": "qh",
       "until": "s8:start-2",
-      "y": 930,
-      "kicker": "媒體報導",
-      "rows": [
-       [
-        "奇鋐、雙鴻",
-        "冷板、模組"
-       ],
-       [
-        "台達電",
-        "CDU（換熱）"
-       ],
-       [
-        "高力",
-        "熱交換器"
-       ]
-      ],
-      "hi": "台達電",
-      "hiAt": "dt",
-      "size": 42,
-      "foot": "查證截至 2026/11/21，非投資建議；出處：鉅亨、優分析"
+      "text": "媒體報導",
+      "color": "blue",
+      "size": 34,
+      "rot": -4,
+      "x": 800,
+      "y": 336,
+      "avoid": false
      }
     ]
    },
    "sources": [
-    "鉅亨、優分析（媒體報導）"
+    "鉅亨、優分析、財訊（媒體報導）"
    ]
   },
   {
    "id": "s8",
    "beat": "twist",
    "para": 8,
-   "narration": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。漏水的機率，各家都沒有公布。",
-   "tts": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。漏水的機率，各家都沒有公布。",
+   "narration": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。",
+   "tts": "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。",
    "subtitle": {
-    "zh": "不過冷板不是全包\n還有一到兩成的熱\n要靠風扇帶走\n漏水的機率\n各家都沒有公布",
-    "en": "But the cold plate doesn't cover everything, | one to two tenths of the heat | still needs fans to carry it off. | The odds of a leak? | No maker has published them."
+    "zh": "不過冷板不是全包\n還有一到兩成的熱\n要靠風扇帶走",
+    "en": "But the cold plate doesn't cover everything, | one to two tenths of the heat | still needs fans to carry it off."
    },
    "keywords": [
     "不是全包",
-    "一到兩成",
-    "沒有公布"
+    "一到兩成"
    ],
    "cues": [
     {
@@ -1283,14 +1360,6 @@
     {
      "id": "fan",
      "text": "風扇"
-    },
-    {
-     "id": "leak",
-     "text": "漏水的機率"
-    },
-    {
-     "id": "unk",
-     "text": "沒有公布"
     }
    ],
    "component": "ThreeScene",
@@ -1366,12 +1435,6 @@
        },
        "fan": {
         "at": "fan"
-       },
-       "leak": {
-        "at": "leak"
-       },
-       "unk": {
-        "at": "unk"
        }
       }
      }
@@ -1415,6 +1478,14 @@
      "text": "下一支"
     },
     {
+     "id": "v8",
+     "text": "八百伏特"
+    },
+    {
+     "id": "full",
+     "text": "想要完整解說"
+    },
+    {
      "id": "kw",
      "text": "留言液冷"
     }
@@ -1449,6 +1520,16 @@
       "ramp": 6
      }
     ],
+    "labels": [
+     {
+      "part": "rk",
+      "text": "一櫃還會更耗電",
+      "en": "Even more power",
+      "color": "amber",
+      "at": "more",
+      "until": "wire-4"
+     }
+    ],
     "overlay": [
      {
       "type": "section",
@@ -1474,8 +1555,23 @@
        },
        "next": {
         "at": "next"
+       },
+       "v8": {
+        "at": "v8"
        }
       }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-14",
+      "text": "完整解說在留言",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
      }
     ]
    },

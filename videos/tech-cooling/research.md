@@ -59,3 +59,5 @@
 | 15 | 分歧管與快接頭 | 運算托盤用盲插（blind-mate）快接頭接上機櫃分歧管；托盤內另有 inner manifold 把水分給各冷板；快接頭拔開時兩側閥門自動關閉（UQD04／OCP UQD08） | 已確定（作法）；Eaton、Boyd 等 NVIDIA 建議廠商頁說明 | Eaton／Boyd 頁面（validated for GB200 NVL72 recommended vendor list）；Tom's Hardware 2024 | 高 |
 | 16 | CDU | 機櫃級液對液 CDU 以熱交換器把二次側熱交給設施水；廠商列示約 200 kW 級、4 °C approach（只放畫面「示意」，不標） | 廠商公布 | QCT Qoolrack PDF；Eaton／Boyd 頁面 | 中高 |
 | 17 | 台灣廠商角色（只放畫面小字與旁白一句，不排名、不談市占、不給個股建議） | 奇鋐：冷板、模組、快接頭；雙鴻：冷板，擴到 CDU、分歧管；台達電：CDU（2025Q4 起出貨，媒體）；高力：熱交換器與 CDU 整合模組。市占數字（如奇鋐 40–50%）為券商文章估計，**不用** | 媒體報導（鉅亨、優分析、Pocket 證券、104 職場力） | news.cnyes.com/news/id/6152963；uanalyze.com.tw/articles/7598933352；pocket.tw/school/articles/7300 | 中（輝達認證名單不等於供應名單；原文提醒） |
+| 18 | 快接頭：富世達（奇鋐子公司）新切入快接頭並傳入列 NVIDIA 合格供應商；雙鴻擴及快接頭與分歧管、取得 NVIDIA 認證（媒體報導；畫面只標「快接頭」與公司名，不談市占） | 媒體報導 | finance.technews.tw/2025/03/10/gtc-gb300；uanalyze.com.tw/articles/4120458319；moneyweekly.com.tw 167952 | 中（原文提醒：2024/12 的合格供應商說法為市場傳聞） |
+- 11/17 畫面規則（Andy）：不出現「非投資建議」「尚未確定／查不到」字樣；漏水機率、換液週期那句已從片中拿掉（#9 保留在這份研究紀錄，不上影片）。

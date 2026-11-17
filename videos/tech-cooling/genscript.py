@@ -47,9 +47,9 @@ scenes.append(scene("s1", "hook", 1,
      "zoom": [{"to": "pk", "at": "start-30", "dur": 1}],
      "shot": [shot("start-30", HX, 4.0, 36, 16, 1)],
      "shift": [hide_until("cloud", off("heat", 4), dy=-0.4, dur=14)],
-     "run": [run("h_fans", "start-30", "s2:start-2", 8), run("h_leds", "start", "s2:start-2", 6), run("h_air0", "start+2", "s2:start-2", 6), run("h_air1", "start+2", "s2:start-2", 6),
-             run("h_hot", "kw", "s2:start-2", 8), run("h_hotb", "kw+6", "s2:start-2", 8)],
-     "labels": [lab("rk", "風扇牆（風冷）", "Fan wall (air cooling)", "amber", "fan", "s1:end-8")],
+     "run": [run("h_fans", "start-30", "s2:start-2", 8), run("h_leds", "kw", "s2:start-2", 6), run("h_air0", "fan", "s2:start-2", 6), run("h_air1", "fan", "s2:start-2", 6),
+             run("h_hot", "heat", "s2:start-2", 8), run("h_hotb", "heat+6", "s2:start-2", 8)],
+     "labels": [lab("rk", "AI 伺服器機櫃", "One AI rack", "blue", "rack", "kw-6"), lab("rk", "風扇牆（風冷）", "Fan wall (air cooling)", "amber", "fan", "s1:end-8")],
      "overlay": [stamp("廠商公布", "kw", "s2:start-2", "blue", 44, x=210, y=330)]},
     ["NVIDIA GB200 使用手冊；Vertiv 2024/11"], pause=0.7))
 
@@ -59,14 +59,14 @@ scenes.append(scene("s2", "mechanism", 2,
     ["吹不走", "同樣體積", "水能帶走的熱", "大約是空氣的三千四百多倍", "所以改讓水來搬熱"],
     ["It can't.", "For the same volume,", "water carries away", "about 3,400 times more heat than air.", "So let water carry the heat."],
     ["吹不走", "三千四百多倍", "讓水來搬熱"],
-    [cue("no", "吹不走"), cue("same", "同樣體積"), cue("times", "三千四百多倍"), cue("water", "讓水來搬熱")],
+    [cue("no", "吹不走"), cue("same", "同樣體積"), cue("carry", "水能帶走"), cue("times", "三千四百多倍"), cue("water", "讓水來搬熱")],
     {"zoom": [{"to": "pk", "at": "start-18", "dur": 1}],
      "shot": [shot("start-4", PX, -1.5, 34, 16, 1)],
-     "shift": [gone("cloud", "start-2", 1), fall("cube_a0", off("same", 4), press=None, dy=4.0, bounce=0.1)] +
-              [fall(f"cube_b{j}", off("times", -34 + 9 * j), dy=4.0, bounce=0.06) for j in range(3)],
-     "run": [run("p_air", off("same", 22), "s3:start-2", 8), run("p_wat", off("times", 8), "s3:start-2", 8)],
-     "labels": [lab("cup_a", "空氣", "Air", "coral", off("same", 6), "s3:start-2"), lab("cup_b", "水", "Water", "blue", off("times", -30), "s3:start-2")],
-     "overlay": [sec("cool-cups", "start+2", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "times": "times", "water": "water"})]},
+     "shift": [gone("cloud", "start-2", 1), fall("cube_a0", off("same", 10), press=None, dy=4.0, bounce=0.1)] +
+              [fall(f"cube_b{j}", off("carry", 4 + 12 * j), dy=4.0, bounce=0.06) for j in range(3)],
+     "run": [run("p_air", off("same", 22), "s3:start-2", 8), run("p_wat", "water", "s3:start-2", 8)],
+     "labels": [lab("cup_a", "空氣", "Air", "coral", "no", "s3:start-2"), lab("cup_b", "水", "Water", "blue", "same", "s3:start-2")],
+     "overlay": [sec("cool-cups", "same-6", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "carry": "carry", "times": "times", "water": "water"})]},
     ["Upsite；Data Center Frontier；Introl（體積熱容）"], pause=0.7))
 
 # ───────── s3 換冷板（C）─────────
@@ -75,12 +75,12 @@ scenes.append(scene("s3", "mechanism", 3,
     ["晶片上面", "不再裝一片片的散熱片", "改貼一塊金屬做的冷板"],
     ["On top of the chip,", "no more rows of heat-sink fins,", "a metal cold plate is mounted instead."],
     ["散熱片", "冷板"],
-    [cue("chip", "晶片上面"), cue("fin", "散熱片"), cue("plate", "冷板")],
+    [cue("chip", "晶片上面"), cue("fin", "不再裝"), cue("plate", "改貼")],
     {"shot": [shot("start-2", CXX, 1.2, 24, 30, 1)],
      "shift": [hide_until("paste", off("plate", -14), dy=0.3), fall("cp", "plate", press=None, dy=3.6, bounce=0.1), hide_until("hose", off("plate", 12), dy=0.5, dur=10),
                {"layer": "hs", "at": "fin", "until": FAR, "dy": 4.2, "dx": -3.0, "opacity": 0, "dur": 22}],
-     "run": [run("c_die", "start-30", off("plate", 30), 6), run("c_win", off("plate", 20), "s5:start-2", 8), run("c_wout", off("plate", 26), "s5:start-2", 8)],
-     "labels": [lab("c_hs", "散熱片（風冷）", "Heat sink (air)", "coral", "chip", "plate")]},
+     "run": [run("c_die", "chip", off("plate", 30), 6), run("c_win", off("plate", 20), "s5:start-2", 8), run("c_wout", off("plate", 26), "s5:start-2", 8)],
+     "labels": [lab("c_gpu", "GPU 晶片", "GPU chip", "amber", "chip", "fin"), lab("c_hs", "散熱片（風冷）", "Heat sink (air)", "coral", "fin", off("plate", -6))]},
     ["HPE；Data Center Frontier（direct-to-chip）"], pause=0.7))
 
 # ───────── s4 冷板內部（K，運作動畫 A）─────────
@@ -113,8 +113,8 @@ scenes.append(scene("s5", "mechanism", 5,
         {"layer": f"qf_sp{i}", "at": "pull", "until": off("dry", 10), "dx": 1.25 * (i + 1) / 5, "dur": 14} for i in range(5)] + [
         {"layer": f"qm_sp{i}", "at": "pull", "until": off("dry", 10), "dx": -1.15 * (5 - i) / 5, "dur": 14} for i in range(5)] + [
         {"layer": "q_mid", "at": "pull", "until": off("dry", 10), "opacity": 0, "dur": 6}],
-     "run": [run("r_f_bb", "where", "s7:end", 6), run("r_f_bu", off("where", 6), "s7:end", 6), run("r_f_br", "pipe", "s7:end", 6), run("r_f_rr", off("pipe", 14), "s7:end", 6),
-             run("r_f_ru", off("pipe", 22), "s7:end", 6), run("r_f_rt", "mani", "s7:end", 6), run("q_flowc", off("qd", 8), "pull", 4)],
+     "run": [run("r_f_rr", "where", "s7:end", 6), run("r_f_ru", off("where", 8), "s7:end", 6), run("r_f_rt", off("where", 30), "s7:end", 6), run("r_f_br", "pipe", "s7:end", 6),
+             run("r_f_bu", off("pipe", 8), "s7:end", 6), run("r_f_bb", "mani", "s7:end", 6), run("q_flowc", off("qd", 8), "pull", 4)],
      "labels": [lab("r_man", "總水管（分歧管）", "Manifold", "blue", "mani", "qd-12"), lab("q_pop", "閥芯", "Valve", "amber", off("qd", 14), "dry+4"), lab("q_spring", "彈簧", "Spring", "blue", "pull", "dry+4"), lab("q_body", "富世達 快接頭", "Quick disconnects", "amber", off("qd", 4), "pull-6")],
      "overlay": [sec("cool-loop", "start+2", "s6:start-2", 930, 310, "一條迴路", "示意", {"plate": "start", "mani": "mani", "cdu": "s6:start-8", "dry": "s6:start-6", "loop": "s6:start-4"}),
                  stamp("拔開：0 滴", "pull+8", "dry+4", "blue", 44, x=800, y=340)]},
@@ -146,7 +146,7 @@ scenes.append(scene("s7", "payoff", 7,
     [cue("qh", "奇鋐"), cue("dt", "台達電"), cue("gl", "高力")],
     {"shot": [shot("start-2", KX, -2.0, 34, 46, 1), shot("dt-14", CDX, 3.0, 24, 10, 26), shot("gl-10", CDX, 3.0, 17, 10, 20)],
      "labels": [lab("k_lid", "奇鋐、雙鴻：冷板", "Cold plates", "amber", "qh", "dt-10"), lab("u_cdu", "台達電：CDU", "CDU", "amber", "dt", "gl-8"), lab("u_hx", "高力：熱交換器", "Heat exchanger", "amber", "gl", "s8:start-2")],
-     "overlay": [stamp("媒體報導，非投資建議", "qh", "s8:start-2", "blue", 34, x=720, y=336, avoid=False)]},
+     "overlay": [stamp("媒體報導", "qh", "s8:start-2", "blue", 34, x=800, y=336, avoid=False)]},
     ["鉅亨、優分析、財訊（媒體報導）"]))
 
 # ───────── s8 沒全包（C）─────────
@@ -169,11 +169,12 @@ scenes.append(scene("s9", "cta", 9,
     ["機櫃還會更耗電", "電線要加粗", "還是電壓拉高？", "下一支", "來看八百伏特", "想要完整解說", "留言液冷"],
     ["Racks will draw even more power.", "Thicker wires,", "or higher voltage?", "Next:", "800-volt power.", "For the full notes,", "comment \"液冷\"."],
     ["更耗電", "電壓拉高", "液冷"],
-    [cue("more", "更耗電"), cue("wire", "電線要加粗"), cue("volt", "電壓拉高"), cue("next", "下一支"), cue("kw", "留言液冷")],
+    [cue("more", "更耗電"), cue("wire", "電線要加粗"), cue("volt", "電壓拉高"), cue("next", "下一支"), cue("v8", "八百伏特"), cue("full", "想要完整解說"), cue("kw", "留言液冷")],
     {"shot": [shot("start-2", HX, 3.4, 36, 16, 1)],
      "shift": [hide_until("bus", off("wire", -4), dy=0, dur=10)],
      "run": [run("h_bus", "wire", "s10:start", 6)],
-     "overlay": [sec("cool-next", "start+2", "kw-14", 930, 300, "耗電還在往上", "示意", {"more": "more", "wire": "wire", "volt": "volt", "next": "next"})]},
+     "labels": [lab("rk", "一櫃還會更耗電", "Even more power", "amber", "more", "wire-4")],
+     "overlay": [sec("cool-next", "start+2", "kw-14", 930, 300, "耗電還在往上", "示意", {"more": "more", "wire": "wire", "volt": "volt", "next": "next", "v8": "v8"}), stamp("完整解說在留言", "full", "kw-14", "blue", 36, x=780, y=336, avoid=False)]},
     ["科技新報；下一支 11/22 八百伏特"]))
 
 # ───────── s10 片尾卡 ─────────

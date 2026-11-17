@@ -138,8 +138,8 @@ const Loop: React.FC<P> = ({ o, f, k, m }) => {
 // ── cool-split：冷板帶走多少、風扇帶走多少 ──
 const Split: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
-  const notall = T(o, "notall"), pct = T(o, "pct"), fan = T(o, "fan"), leak = T(o, "leak"), unk = T(o, "unk");
-  const a = tween(f, notall, 14, EASE.move), b = tween(f, pct, 12, EASE.enter), cf = tween(f, fan, 8, EASE.enter), lk = tween(f, leak, 8, EASE.enter), un = tween(f, unk, 8, EASE.enter);
+  const notall = T(o, "notall"), pct = T(o, "pct"), fan = T(o, "fan");
+  const a = tween(f, notall, 14, EASE.move), b = tween(f, pct, 12, EASE.enter), cf = tween(f, fan, 8, EASE.enter);
   const cx = 190, cy = 160, r = 100, p = 0.85 * a;
   const arc = (t0: number, t1: number) => { const A0 = -Math.PI / 2 + t0 * 2 * Math.PI, A1 = -Math.PI / 2 + t1 * 2 * Math.PI; return `M${cx} ${cy} L${cx + r * Math.cos(A0)} ${cy + r * Math.sin(A0)} A${r} ${r} 0 ${t1 - t0 > 0.5 ? 1 : 0} 1 ${cx + r * Math.cos(A1)} ${cy + r * Math.sin(A1)} Z`; };
   return (
@@ -152,9 +152,9 @@ const Split: React.FC<P> = ({ o, f, k, m }) => {
         <text x={350} y={178} opacity={b} style={zh(46, c("lp_warm"), 900)}>風扇　約 1～2 成</text>
         <text x={350} y={222} opacity={b} style={zh(sm(32), H.text2, 700)}>業界說法，各家不同</text>
         <g opacity={cf} transform={`translate(${cx + 150} ${cy - 130}) rotate(${f * 14})`}>{[0, 1, 2].map((j) => <rect key={j} x={-3} y={-30} width={6} height={30} fill={c("lp_warm")} transform={`rotate(${j * 120})`} />)}</g>
-        <rect x={640} y={60} width={290} height={78} fill={H.amber} opacity={lk} /><text x={785} y={110} textAnchor="middle" opacity={lk} style={zh(36, onC(H.amber), 900)}>漏水的機率</text>
-        <text x={785} y={190} textAnchor="middle" opacity={un} style={zh(60, H.text, 900)}>查不到</text>
-        <text x={785} y={236} textAnchor="middle" opacity={un} style={zh(sm(32), H.text2, 700)}>各家沒公布　截至 2026/11/21</text>
+        <text x={640} y={110} opacity={cf} style={zh(40, H.text, 900)}>靠風扇帶走</text>
+        <text x={640} y={160} opacity={cf} style={zh(sm(32), H.text2, 700)}>電感、功率晶片、記憶體</text>
+        <text x={640} y={206} opacity={cf} style={zh(sm(32), H.text2, 700)}>冷板沒蓋到的地方</text>
       </svg>
     </Card>
   );
@@ -163,17 +163,47 @@ const Split: React.FC<P> = ({ o, f, k, m }) => {
 // ── cool-next：二選一＋下一支 ──
 const Next: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
-  const more = T(o, "more"), wire = T(o, "wire"), volt = T(o, "volt"), next = T(o, "next");
-  const a = tween(f, more, 10, EASE.enter), b = tween(f, wire, 10, EASE.enter), v = tween(f, volt, 10, EASE.enter), n = tween(f, next, 10, EASE.enter);
+  const more = T(o, "more"), wire = T(o, "wire"), volt = T(o, "volt"), next = T(o, "next"), v8 = T(o, "v8");
+  const a = tween(f, more, 10, EASE.enter), b = tween(f, wire, 10, EASE.enter), v = tween(f, volt, 10, EASE.enter), n = tween(f, next, 10, EASE.enter), e8 = tween(f, v8, 8, EASE.enter);
   const pulse = 1 + 0.06 * Math.sin(f * 0.25);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <text x={W / 2} y={104} textAnchor="middle" opacity={a} style={zh(40, H.text, 900)}>機櫃還會更耗電，二選一</text>
         <g opacity={b}><rect x={60} y={130} width={380} height={92} fill="none" stroke={c("cableCu")} strokeWidth={6} /><rect x={90} y={168} width={320} height={16 * pulse} fill={c("cableCu")} /><text x={250} y={252} textAnchor="middle" style={zh(40, H.text, 900)}>電線加粗</text></g>
-        <g opacity={v}><rect x={512} y={130} width={380} height={92} fill="none" stroke={c("lp_proc")} strokeWidth={6} /><text x={702} y={196} textAnchor="middle" style={zh(70 * pulse, c("lp_proc"), 900)}>800 V</text><text x={702} y={252} textAnchor="middle" style={zh(40, H.text, 900)}>電壓拉高</text></g>
+        <g opacity={v}><rect x={512} y={130} width={380} height={92} fill="none" stroke={c("lp_proc")} strokeWidth={6} /><text x={702} y={196} textAnchor="middle" opacity={e8} style={zh(70 * pulse, c("lp_proc"), 900)}>800 V</text><path d={`M600 190 l20 -26 l20 26 M620 164 v52`} stroke={c("lp_proc")} strokeWidth={6} fill="none" opacity={1 - e8} /><text x={702} y={252} textAnchor="middle" style={zh(40, H.text, 900)}>電壓拉高</text></g>
         <text x={476} y={188} textAnchor="middle" opacity={v} style={zh(44, H.text2, 900)}>或</text>
         <g opacity={n}><rect x={W / 2 - 260} y={Hh - 54} width={520} height={46} fill={H.amber} /><text x={W / 2} y={Hh - 18} textAnchor="middle" style={zh(34, onC(H.amber), 900)}>下一支 ▸ 八百伏特</text></g>
+      </svg>
+    </Card>
+  );
+};
+
+
+// ── cool-hx：板式熱交換器剖面（熱側由上往下、冷側由下往上，逆向，隔著金屬片傳熱） ──
+const Hx: React.FC<P> = ({ o, f, k, m }) => {
+  const W = o.w ?? 952, Hh = o.h ?? 310, c = (n: string) => col(m.product, n);
+  const cdu = T(o, "cdu"), give = T(o, "give"), cool = T(o, "cool");
+  const a = tween(f, cdu, 10, EASE.enter), g = tween(f, give, 16, EASE.move), cl = tween(f, cool, 12, EASE.enter);
+  const x0 = 60, y0 = 70, hh = 190, n = 9, pw = 30, gp = 20;
+  return (
+    <Card o={o} k={k} W={W} Hh={Hh}>
+      <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <rect x={x0 - 14} y={y0 - 12} width={n * (pw + gp) + 28} height={hh + 24} fill="none" stroke={H.text3} strokeWidth={3} />
+        {Array.from({ length: n }, (_, i) => { const x = x0 + i * (pw + gp), hot = i % 2 === 0; return <g key={i} opacity={a}>
+          <rect x={x} y={y0} width={pw} height={hh} fill={hot ? c("lp_bad") : c("lp_sig")} opacity={0.18} />
+          <rect x={x - 3} y={y0} width={4} height={hh} fill={c("steelHi")} />
+          {Array.from({ length: 6 }, (_, j) => { const u = ph(f, 0.016, j, 6, i * 0.31); const yy = hot ? y0 + 8 + u * (hh - 16) : y0 + hh - 8 - u * (hh - 16);
+            const tt = hot ? 1 - u * 0.9 * g : u * 0.9 * g; return <circle key={j} cx={x + pw / 2} cy={yy} r={6} fill={tcol(m, hot ? Math.max(0.05, tt) : Math.max(0.05, tt))} />; })}
+        </g>; })}
+        <text x={x0} y={y0 - 20} opacity={a} style={zh(sm(30), c("lp_bad"), 800)}>機櫃來的熱水</text>
+        <text x={x0 + n * (pw + gp) - 20} y={y0 + hh + 46} textAnchor="end" opacity={a} style={zh(sm(30), c("lp_sig"), 800)}>機房冷卻水</text>
+        {/* 熱箭頭：水平穿過金屬片 */}
+        {g > 0 ? [0, 1, 2, 3].map((j) => { const yy = y0 + 30 + j * 44, xx = x0 + 60 + ((f * 0.9 + j * 17) % 200); return <path key={j} d={`M${xx} ${yy} h26 m-9 -9 l9 9 l-9 9`} stroke={c("lp_heat")} strokeWidth={5} fill="none" opacity={g * 0.9} />; }) : null}
+        <text x={560} y={110} opacity={tween(f, cdu + 6, 8, EASE.enter)} style={zh(36, H.text, 800)}>① 兩邊的水各走各的</text>
+        <text x={560} y={170} opacity={tween(f, give, 8, EASE.enter)} style={zh(36, H.text, 800)}>② 熱隔著金屬片傳過去</text>
+        <text x={560} y={230} opacity={cl} style={zh(36, H.text, 800)}>③ 熱水降溫、冷水變暖</text>
+        <text x={560} y={278} opacity={cl} style={zh(sm(30), H.text2, 700)}>顏色示意，不標溫度</text>
       </svg>
     </Card>
   );
@@ -184,6 +214,7 @@ export const CoolSection: React.FC<P> = (p) => {
   if (kd === "cool-cups") return <Cups {...p} />;
   if (kd === "cool-plate") return <Plate {...p} />;
   if (kd === "cool-loop") return <Loop {...p} />;
+  if (kd === "cool-hx") return <Hx {...p} />;
   if (kd === "cool-split") return <Split {...p} />;
   if (kd === "cool-next") return <Next {...p} />;
   return null;
