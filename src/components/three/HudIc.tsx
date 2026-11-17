@@ -63,6 +63,7 @@ const DieArt: React.FC = () => {
   );
   return (
     <g>
+      <g transform="scale(0.8)">
       <rect x={-470} y={-470} width={940} height={940} rx={20} fill={H.bg2} stroke={H.line} strokeWidth={6} />
       {pads.map((i) => <React.Fragment key={i}>
         <rect x={-432 + i * 29} y={-456} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} /><rect x={-432 + i * 29} y={436} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} />
@@ -76,6 +77,7 @@ const DieArt: React.FC = () => {
       {range(10).map((i) => <rect key={`r${i}`} x={-380 + i * 34} y={96} width={22} height={282} rx={3} fill={IC.mem2} />)}
       {blk(30, 30, 370, 370, IC.io, "I/O")}
       {range(5).map((i) => <rect key={`p${i}`} x={54 + i * 68} y={104} width={52} height={270} rx={5} fill={IC.io2} />)}
+      </g>
       <rect x={-20} y={-20} width={40} height={40} fill="none" stroke={H.amber} strokeWidth={3} vectorEffect="non-scaling-stroke" />
     </g>
   );
@@ -152,10 +154,10 @@ const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children:
 );
 
 // ── ic-sec：側面剖面，訊號從最上層一層一層穿到電晶體，再從汲極往上流出去（t：top 最上層｜lay 一層一層｜tr 電晶體｜out 流出去）──
-const ROWY: Record<string, number> = { m5: 78, m4: 114, m3: 150, m2: 186, m1: 222, dev: 262, sub: 304 };
+const ROWY: Record<string, number> = { m5: 102, m4: 136, m3: 170, m2: 204, m1: 238, dev: 278, sub: 318 };
 type Seg = { x: number; y: number };
-const PATH_IN: Seg[] = [{ x: 150, y: ROWY.m5 }, { x: 250, y: ROWY.m5 }, { x: 250, y: ROWY.m4 }, { x: 330, y: ROWY.m4 }, { x: 330, y: ROWY.m3 }, { x: 410, y: ROWY.m3 }, { x: 410, y: ROWY.m2 }, { x: 470, y: ROWY.m2 }, { x: 470, y: ROWY.m1 }, { x: 520, y: ROWY.m1 }, { x: 520, y: 250 }];
-const PATH_OUT: Seg[] = [{ x: 640, y: 250 }, { x: 640, y: ROWY.m1 }, { x: 690, y: ROWY.m1 }, { x: 690, y: ROWY.m2 }, { x: 750, y: ROWY.m2 }, { x: 750, y: ROWY.m3 }, { x: 810, y: ROWY.m3 }, { x: 810, y: ROWY.m4 }, { x: 860, y: ROWY.m4 }, { x: 860, y: ROWY.m5 }, { x: 920, y: ROWY.m5 }];
+const PATH_IN: Seg[] = [{ x: 150, y: ROWY.m5 }, { x: 250, y: ROWY.m5 }, { x: 250, y: ROWY.m4 }, { x: 330, y: ROWY.m4 }, { x: 330, y: ROWY.m3 }, { x: 410, y: ROWY.m3 }, { x: 410, y: ROWY.m2 }, { x: 470, y: ROWY.m2 }, { x: 470, y: ROWY.m1 }, { x: 520, y: ROWY.m1 }, { x: 520, y: 260 }];
+const PATH_OUT: Seg[] = [{ x: 640, y: 260 }, { x: 640, y: ROWY.m1 }, { x: 690, y: ROWY.m1 }, { x: 690, y: ROWY.m2 }, { x: 750, y: ROWY.m2 }, { x: 750, y: ROWY.m3 }, { x: 810, y: ROWY.m3 }, { x: 810, y: ROWY.m4 }, { x: 860, y: ROWY.m4 }, { x: 860, y: ROWY.m5 }, { x: 920, y: ROWY.m5 }];
 const along = (p: Seg[], u: number) => {
   const len = p.slice(1).map((q, i) => Math.hypot(q.x - p[i].x, q.y - p[i].y)), tot = len.reduce((a, b) => a + b, 0);
   let d = Math.max(0, Math.min(1, u)) * tot;
@@ -179,20 +181,20 @@ const Sec: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {METALS.map(([n, c, key]) => <g key={n}><text x={22} y={ROWY[key] + 10} style={mono(30, c, 800)}>{n}</text><line x1={92} x2={W - 24} y1={ROWY[key]} y2={ROWY[key]} stroke={H.lineSoft} strokeWidth={1.5} strokeDasharray="4 8" /></g>)}
+        {METALS.map(([n, c, key]) => <g key={n}><text x={22} y={ROWY[key] + 10} style={mono(30, c, 800)}>{n}</text><line x1={124} x2={W - 24} y1={ROWY[key]} y2={ROWY[key]} stroke={H.lineSoft} strokeWidth={1.5} strokeDasharray="4 8" /></g>)}
         <text x={22} y={ROWY.dev + 10} style={zh(30, H.text2, 800)}>電晶體</text><text x={22} y={ROWY.sub + 10} style={zh(30, H.text2, 800)}>矽基板</text>
-        <rect x={92} y={ROWY.sub - 16} width={W - 116} height={34} fill={IC.si} />
+        <rect x={124} y={ROWY.sub - 16} width={W - 148} height={34} fill={IC.si} />
         {/* 電晶體：源極、汲極、閘極 */}
         <rect x={460} y={ROWY.dev - 6} width={70} height={24} fill={IC.nSD} /><rect x={630} y={ROWY.dev - 6} width={70} height={24} fill={IC.nSD} /><rect x={530} y={ROWY.dev + 6} width={100} height={12} fill={IC.nSi} />
         <rect x={562} y={ROWY.dev - 18} width={36} height={32} fill={IC.gate} opacity={0.6 + 0.4 * flash} />
         {flash > 0 ? <circle cx={580} cy={ROWY.dev - 2} r={22 + 30 * (1 - flash)} fill="none" stroke={IC.gate} strokeWidth={5} opacity={flash} /> : null}
         <rect x={510} y={ROWY.dev - 6} width={20} height={4} fill={IC.ct} opacity={0} />
         <g opacity={showIn ? 1 : 0}>{wire(PATH_IN, cols)}{wire(PATH_OUT, cols)}</g>
-        <line x1={520} y1={250} x2={580} y2={ROWY.dev - 18} stroke={IC.ct} strokeWidth={6} opacity={showIn ? 1 : 0} /><line x1={640} y1={250} x2={640} y2={ROWY.dev - 4} stroke={IC.ct} strokeWidth={6} opacity={showIn ? 1 : 0} />
+        <line x1={520} y1={260} x2={580} y2={ROWY.dev - 18} stroke={IC.ct} strokeWidth={6} opacity={showIn ? 1 : 0} /><line x1={640} y1={260} x2={640} y2={ROWY.dev - 4} stroke={IC.ct} strokeWidth={6} opacity={showIn ? 1 : 0} />
         {pin > 0 && pin < 1 ? dot(PATH_IN, pin, "in") : null}
         {pout > 0 && pout < 1 ? dot(PATH_OUT, pout, "out") : null}
-        <text x={150} y={ROWY.m5 - 18} style={zh(30, H.line, 800)} opacity={showIn ? 1 : 0}>訊號進來</text>
-        <text x={W - 24} y={ROWY.m5 - 18} textAnchor="end" style={zh(30, H.line, 800)} opacity={lin(f, tOut, 6)}>流出去</text>
+        <text x={236} y={ROWY.m5 - 22} style={zh(30, H.line, 800)} opacity={showIn ? 1 : 0}>訊號進來</text>
+        <text x={W - 24} y={ROWY.m5 - 22} textAnchor="end" style={zh(30, H.line, 800)} opacity={lin(f, tOut, 6)}>流出去</text>
       </svg>
     </Card>
   );
@@ -234,16 +236,16 @@ const MaskCard: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <rect x={52} y={62} width={216} height={216} rx={6} fill={H.bg2} stroke={H.line} strokeWidth={4} />{pat(160, 170, 94, IC.chrome)}
-        <text x={160} y={304} textAnchor="middle" style={zh(sm(30), H.text, 800)}>光罩上的圖案</text>
+        <rect x={48} y={70} width={190} height={190} rx={6} fill={H.bg2} stroke={H.line} strokeWidth={4} />{pat(143, 165, 82, IC.chrome)}
+        <text x={143} y={294} textAnchor="middle" style={zh(sm(30), H.text, 800)}>光罩上的圖案</text>
         <g opacity={four}>
-          <path d="M 300 170 H 600" stroke={IC.m1} strokeWidth={8} /><path d="M 586 150 L 612 170 L 586 190" fill="none" stroke={IC.m1} strokeWidth={8} />
-          <text x={450} y={146} textAnchor="middle" style={zh(70 * pop, H.amber, 900)}>縮小 4 倍</text>
-          <text x={450} y={216} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>鏡組把光縮小（常見比例）</text>
+          <path d="M 270 190 H 600" stroke={IC.m1} strokeWidth={8} /><path d="M 586 170 L 612 190 L 586 210" fill="none" stroke={IC.m1} strokeWidth={8} />
+          <text x={435} y={140} textAnchor="middle" style={zh(66 * pop, H.amber, 900)}>縮小 4 倍</text>
+          <text x={435} y={246} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>鏡組把光縮小（常見比例）</text>
         </g>
         <g opacity={wf}>
-          <rect x={680} y={112} width={120} height={120} rx={4} fill={IC.cpu2} opacity={0.5} stroke={H.line} strokeWidth={3} />{pat(740, 172, 23.5, IC.m1)}
-          <text x={740} y={266} textAnchor="middle" style={zh(sm(30), H.text, 800)}>晶圓上的圖案</text>
+          <rect x={660} y={130} width={120} height={120} rx={4} fill={IC.cpu2} opacity={0.5} stroke={H.line} strokeWidth={3} />{pat(720, 190, 23.5, IC.m1)}
+          <text x={720} y={294} textAnchor="middle" style={zh(sm(30), H.text, 800)}>晶圓上的圖案</text>
         </g>
       </svg>
     </Card>
@@ -258,7 +260,7 @@ const Who: React.FC<P> = ({ o, f, k }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([a, b, c, key], i) => {
-          const on = tween(f, T(o, key), 8, EASE.enter), y = 66 + i * 76;
+          const on = tween(f, T(o, key), 8, EASE.enter), y = 58 + i * 66;
           return (
             <g key={key} opacity={on} transform={`translate(${(1 - on) * -30} 0)`}>
               <rect x={28} y={y} width={230} height={58} rx={8} fill={c} /><text x={143} y={y + 41} textAnchor="middle" style={zh(sm(34), "#FFFFFF", 900)}>{a}</text>
@@ -266,7 +268,7 @@ const Who: React.FC<P> = ({ o, f, k }) => {
             </g>
           );
         })}
-        <text x={W - 24} y={Hh - 14} textAnchor="end" style={zh(sm(26), H.text3, 600)}>媒體報導：數位時代、科技新報、工商時報</text>
+        <text x={W - 24} y={Hh - 8} textAnchor="end" style={zh(sm(26), H.text3, 600)}>媒體報導：數位時代、科技新報、工商時報</text>
       </svg>
     </Card>
   );

@@ -762,9 +762,9 @@
       "at": "spec-6",
       "dur": 1,
       "x": 150,
-      "y": 0.8,
-      "d": 44,
-      "elev": 46,
+      "y": -5,
+      "d": 72,
+      "elev": 55,
       "yaw": -0.5
      }
     ],
@@ -856,30 +856,6 @@
      }
     ],
     "run": [
-     {
-      "id": "d_on0",
-      "at": "spec",
-      "until": "s7:start-2",
-      "ramp": 8
-     },
-     {
-      "id": "d_on1",
-      "at": "code",
-      "until": "s7:start-2",
-      "ramp": 8
-     },
-     {
-      "id": "d_on2",
-      "at": "sim",
-      "until": "s7:start-2",
-      "ramp": 8
-     },
-     {
-      "id": "d_on3",
-      "at": "pr",
-      "until": "s7:start-2",
-      "ramp": 8
-     },
      {
       "id": "d_f0",
       "at": "code-6",
@@ -1043,8 +1019,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 300,
-      "y": 7.5,
-      "d": 62,
+      "y": 1.5,
+      "d": 80,
       "elev": 14
      }
     ],
@@ -1192,7 +1168,7 @@
    "narration": "這些事台灣誰在做？設計服務有創意電子、世芯，矽智財有力旺、晶心科，設計軟體靠新思、益華、西門子。",
    "tts": "這些事台灣誰在做？設計服務有創意電子、世芯，矽智財有力旺、晶心科，設計軟體靠新思、益華、西門子。",
    "subtitle": {
-    "zh": "這些事台灣誰在做？\n設計服務有\n創意電子、世芯\n矽智財有\n力旺、晶心科\n設計軟體靠\n新思、益華、西門子",
+    "zh": "這些事台灣誰在做？\n設計服務有\n創意電子・世芯\n矽智財有\n力旺・晶心科\n設計軟體靠\n新思・益華・西門子",
     "en": "Who does this in Taiwan? | Design services: | GUC and Alchip. | Silicon IP: | eMemory and Andes. | Design software: | Synopsys, Cadence, Siemens."
    },
    "keywords": [
@@ -1235,9 +1211,9 @@
      {
       "at": "start-2",
       "dur": 1,
-      "x": 456,
-      "y": 2.0,
-      "d": 60,
+      "x": 454,
+      "y": -4,
+      "d": 84,
       "elev": 36,
       "yaw": 0.0
      }
@@ -1247,7 +1223,7 @@
      {
       "part": "z_die",
       "text": "創意、世芯：設計服務",
-      "en": "Design services",
+      "en": "",
       "color": "amber",
       "at": "guc",
       "until": "em-6"
@@ -1255,15 +1231,15 @@
      {
       "part": "z_mem",
       "text": "力旺：記憶體矽智財",
-      "en": "Memory IP",
+      "en": "",
       "color": "blue",
       "at": "em",
-      "until": "eda-6"
+      "until": "andes-6"
      },
      {
       "part": "z_cpu",
       "text": "晶心科：CPU 智財",
-      "en": "CPU IP",
+      "en": "",
       "color": "blue",
       "at": "andes",
       "until": "eda-6"
@@ -1271,7 +1247,7 @@
      {
       "part": "z_mon",
       "text": "三大 EDA：設計軟體",
-      "en": "EDA software",
+      "en": "",
       "color": "amber",
       "at": "eda",
       "until": "s9:start-8"
@@ -1304,7 +1280,7 @@
      },
      {
       "type": "stamp",
-      "at": "guc",
+      "at": "em",
       "until": "s9:start-8",
       "text": "媒體報導",
       "color": "blue",
@@ -1364,17 +1340,6 @@
    ],
    "component": "ThreeScene",
    "props": {
-    "shot": [
-     {
-      "at": "start-2",
-      "dur": 1,
-      "x": 456,
-      "y": 2.0,
-      "d": 60,
-      "elev": 36,
-      "yaw": 0.0
-     }
-    ],
     "run": [
      {
       "id": "z_glow",

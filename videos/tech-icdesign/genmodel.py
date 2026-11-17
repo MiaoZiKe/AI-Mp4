@@ -113,8 +113,8 @@ IN = [pt("m5", -17, Y["m5"], -5), pt("m5", -12, Y["m5"], -5), pt("m4", -12, Y["m
       pt("m2", -3, Y["m2"], 5), pt("m2", -3, Y["m2"], 0), pt("m1", -3, Y["m1"], 0), pt("m1", 0, Y["m1"], 0), pt("dev", 0, 2.3, 0)]
 OUT = [pt("dev", 4.5, 2.3, 0), pt("m1", 4.5, Y["m1"], 0), pt("m1", 8, Y["m1"], 0), pt("m2", 8, Y["m2"], 0), pt("m2", 8, Y["m2"], -5), pt("m3", 8, Y["m3"], -5), pt("m3", 14, Y["m3"], -5),
        pt("m4", 14, Y["m4"], -5), pt("m4", 14, Y["m4"], 5), pt("m5", 14, Y["m5"], 5), pt("m5", 17, Y["m5"], 5)]
-flow("s_in", "m5", IN, n=4, size=.5, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
-flow("s_out", "m5", OUT, n=4, size=.5, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
+flow("s_in", "m5", IN, n=4, size=.7, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
+flow("s_out", "m5", OUT, n=4, size=.7, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
 glow("s_gate", "dev", ["gates"], "gOn", steady=True, g=.8)
 for _i in (1, 2, 3, 4): glow(f"s_via{_i}", f"m{_i + 1}", [f"v{_i}_v"], "gOn", steady=True, g=.9)
 glow("s_ct", "m1", ["ct_sd"], "gOn", steady=True, g=.9)
@@ -129,57 +129,66 @@ anchor("a_in", "m5", [-16, 8.4, -5], dx=-130, dy=-40)
 anchor("a_gate", "dev", [0, 2.4, 0], dx=140, dy=60)
 anchor("a_via", "m3", [8, 5.1, -5], dx=140, dy=-40)
 
-# ═════════ D：設計流程（x=150）：規格→程式→模擬驗證→布局繞線→光罩（五塊板子，左到右） ═════════
+# ═════════ D：設計流程（x=150）：規格→程式→模擬驗證（後排左到右）→布局繞線→光罩（前排左到右），兩排用資料光點接起來 ═════════
 DX = 150
-XS = [-13, -6.5, 0, 6.5, 13]
-SL = [5.2, .5, 6.8]
-box("d_table", "d_tab", "dark2", [34, .2, 9.2], [DX, -.1, 0], bevel=.04)
+SL = [5.6, .5, 5.4]
+CEN = [(-6.8, -3.4), (0, -3.4), (6.8, -3.4), (-3.4, 3.6), (3.4, 3.6)]
+box("d_table", "d_tab", "steel2", [21.6, .2, 14.4], [DX, -.1, 0.1], bevel=.04)
+def C(i): return DX + CEN[i][0], CEN[i][1]
 # 1 規格：白紙＋標題條＋文字行＋勾選框
-box("sp_base", "sp", "paper", SL, [DX + XS[0], .25, 0], bevel=.04)
-box("sp_head", "sp", "dieHi", [3.0, .06, .5], [DX + XS[0] - .4, .53, -2.6])
-box("sp_line", "sp", "steel2", [3.9, .05, .26], [DX + XS[0], .53, -1.4], at=[[0, 0, .75 * i] for i in range(5)])
-box("sp_short", "sp", "steel2", [2.2, .05, .26], [DX + XS[0] - .85, .53, 2.35])
-box("sp_chk", "sp", "cpu", [.42, .06, .42], [DX + XS[0] - 2.0, .54, -1.4], at=[[0, 0, 1.5 * i] for i in range(3)])
+cx, cz = C(0)
+box("sp_base", "sp", "paper", SL, [cx, .25, cz], bevel=.04)
+box("sp_head", "sp", "dieHi", [3.0, .06, .5], [cx - .4, .53, cz - 2.1])
+box("sp_line", "sp", "steel2", [3.6, .05, .26], [cx + .2, .53, cz - 1.1], at=[[0, 0, .6 * i] for i in range(5)])
+box("sp_short", "sp", "steel2", [2.0, .05, .26], [cx - .6, .53, cz + 1.7])
+box("sp_chk", "sp", "cpu", [.42, .06, .42], [cx - 2.1, .54, cz - 1.1], at=[[0, 0, 1.2 * i] for i in range(3)])
 # 2 程式（RTL）：深色編輯器＋彩色程式行（縮排不同）
-box("rt_base", "rt", "dark", SL, [DX + XS[1], .25, 0], bevel=.04)
+cx, cz = C(1)
+box("rt_base", "rt", "dark", SL, [cx, .25, cz], bevel=.04)
 CODE = [(0, 2.2, "code3"), (.5, 3.0, "code2"), (.5, 1.9, "code1"), (1.0, 3.3, "code1"), (1.0, 2.4, "code4"), (1.0, 3.0, "code2"), (.5, 1.4, "code3"), (.5, 2.8, "code1"), (0, 1.6, "code2")]
 for i, (ind, ln, c) in enumerate(CODE):
-    box(f"rt_l{i}", "rt", c, [ln, .05, .3], [DX + XS[1] - 2.3 + ind + ln / 2, .53, -2.9 + .72 * i])
+    box(f"rt_l{i}", "rt", c, [ln, .05, .28], [cx - 2.4 + ind + ln / 2, .53, cz - 2.2 + .55 * i])
 # 3 模擬驗證：深色螢幕＋三條波形（方波）＋游標
-box("sm_base", "sm", "dark", SL, [DX + XS[2], .25, 0], bevel=.04)
+cx, cz = C(2)
+box("sm_base", "sm", "dark", SL, [cx, .25, cz], bevel=.04)
 def square(prefix, z, c, segs):
     x = -2.2
     for i, (ln, hi) in enumerate(segs):
-        box(f"{prefix}{i}", "sm", c, [ln, .05, .2], [DX + XS[2] + x + ln / 2, .53, z - (.55 if hi else 0)])
+        box(f"{prefix}{i}", "sm", c, [ln, .05, .2], [cx + x + ln / 2, .53, z - (.55 if hi else 0)])
         x += ln
-        if i < len(segs) - 1: box(f"{prefix}t{i}", "sm", c, [.18, .05, .75], [DX + XS[2] + x, .53, z - .27])
-square("w1", -2.0, "wv1", [(.7, 0), (.7, 1), (.7, 0), (.7, 1), (.7, 0), (.7, 1)])
-square("w2", 0.0, "wv2", [(1.4, 1), (.7, 0), (.7, 1), (1.4, 0)])
-square("w3", 2.0, "wv3", [(.7, 0), (2.1, 1), (.7, 0), (.7, 1)])
-box("sm_cur", "sm_cur", "cur", [.12, .07, 6.2], [DX + XS[2] - 2.3, .55, 0])
+        if i < len(segs) - 1: box(f"{prefix}t{i}", "sm", c, [.18, .05, .75], [cx + x, .53, z - .27])
+square("w1", cz - 1.5, "wv1", [(.7, 0), (.7, 1), (.7, 0), (.7, 1), (.7, 0), (.7, 1)])
+square("w2", cz + .1, "wv2", [(1.4, 1), (.7, 0), (.7, 1), (1.4, 0)])
+square("w3", cz + 1.7, "wv3", [(.7, 0), (2.1, 1), (.7, 0), (.7, 1)])
+box("sm_cur", "sm_cur", "cur", [.12, .07, 5.0], [cx - 2.3, .55, cz])
 # 4 布局繞線：晶片底板＋功能區塊＋繞線（兩組線分兩層出現）
-box("pr_base", "pr", "dark2", SL, [DX + XS[3], .25, 0], bevel=.04)
-for i, (bx, bz, bw, bd, c) in enumerate([(-1.2, -1.7, 2.2, 2.2, "cpu"), (1.2, -1.7, 2.0, 2.2, "npu"), (-1.2, 1.2, 2.2, 1.8, "mem"), (1.2, 1.2, 2.0, 1.8, "io")]):
-    box(f"pr_blk{i}", "pr", c, [bw, .12, bd], [DX + XS[3] + bx, .56, bz])
-for i in range(6): box(f"pr_a{i}", "pr_r1", "rt1", [.09, .05, 1.2], [DX + XS[3] - 2.2 + .35 * i, .55, -2.4])
-box("pr_h1", "pr_r1", "rt1", [4.6, .05, .1], [DX + XS[3], .55, 0], at=[[0, 0, -.45], [0, 0, -.2], [0, 0, .05], [0, 0, .3]])
-box("pr_v1", "pr_r2", "rt2", [.1, .05, 5.2], [DX + XS[3], .56, 0], at=[[-.4, 0, 0], [-.15, 0, 0], [.1, 0, 0], [.35, 0, 0]])
-box("pr_pad", "pr", "steelHi", [.18, .06, .18], [DX + XS[3], .55, 0], at=[[-2.35 + .5 * i, 0, 3.2] for i in range(10)] + [[-2.35 + .5 * i, 0, -3.2] for i in range(10)])
+cx, cz = C(3)
+box("pr_base", "pr", "dark2", SL, [cx, .25, cz], bevel=.04)
+for i, (bx, bz, bw, bd, c) in enumerate([(-1.2, -1.4, 2.2, 1.7, "cpu"), (1.2, -1.4, 2.0, 1.7, "npu"), (-1.2, .9, 2.2, 1.4, "mem"), (1.2, .9, 2.0, 1.4, "io")]):
+    box(f"pr_blk{i}", "pr", c, [bw, .12, bd], [cx + bx, .56, cz + bz])
+for i in range(6): box(f"pr_a{i}", "pr_r1", "rt1", [.09, .05, 1.2], [cx - 2.0 + .4 * i, .55, cz - 2.0])
+box("pr_h1", "pr_r1", "rt1", [4.4, .05, .1], [cx, .55, cz], at=[[0, 0, -.2], [0, 0, 0], [0, 0, .2], [0, 0, .4]])
+box("pr_v1", "pr_r2", "rt2", [.1, .05, 4.0], [cx, .56, cz], at=[[-.4, 0, 0], [-.15, 0, 0], [.1, 0, 0], [.35, 0, 0]])
+box("pr_pad", "pr", "steelHi", [.18, .06, .18], [cx, .55, cz], at=[[-2.3 + .5 * i, 0, 2.5] for i in range(10)] + [[-2.3 + .5 * i, 0, -2.5] for i in range(10)])
 # 5 光罩：玻璃板＋鉻圖案＋金屬框
-box("mk_glass", "mk", "glass", [5.2, .3, 5.2], [DX + XS[4], .3, 0], bevel=.03)
-box("mk_frame", "mk", "steel2", [5.6, .18, .22], [DX + XS[4], .3, 0], at=[[0, 0, -2.7], [0, 0, 2.7]])
-box("mk_frame2", "mk", "steel2", [.22, .18, 5.6], [DX + XS[4], .3, 0], at=[[-2.7, 0, 0], [2.7, 0, 0]])
+cx, cz = C(4)
+box("mk_glass", "mk", "glass", [4.8, .3, 4.8], [cx, .3, cz], bevel=.03)
+box("mk_frame", "mk", "steel2", [5.2, .18, .22], [cx, .3, cz], at=[[0, 0, -2.5], [0, 0, 2.5]])
+box("mk_frame2", "mk", "steel2", [.22, .18, 5.2], [cx, .3, cz], at=[[-2.5, 0, 0], [2.5, 0, 0]])
 PAT = [(-.55, -.55, .7, .7), (.45, -.6, .9, .4), (.4, .1, .5, .9), (-.5, .35, .9, .3), (-.1, .0, .25, .25), (.1, -.1, .1, .5), (-.8, 0.05, .3, .1), (.78, -.85, .3, .1)]
 for i, (px, pz, pw, pd) in enumerate(PAT):
-    box(f"mk_p{i}", "mk", "chrome", [pw * 2.6, .06, pd * 2.6], [DX + XS[4] + px * 2.2, .5, pz * 2.2])
-# 箭頭路徑（資料往下一步流）＋每塊板的亮起
-for i in range(4):
-    x0 = DX + XS[i] + 2.7; x1 = DX + XS[i + 1] - 2.7
-    flow(f"d_f{i}", "d_flow", [[R(x0), 1.0, 0], [R(x1), 1.0, 0]], n=3, size=.26, rate=.9, drive=False)
+    box(f"mk_p{i}", "mk", "chrome", [pw * 2.4, .06, pd * 2.4], [cx + px * 2.0, .5, cz + pz * 2.0])
+# 資料光點：後排左到右、轉到前排、再往右
+def edge(i, side):  # 板子的邊
+    x, z = C(i); return {"r": (x + 2.9, z), "l": (x - 2.9, z), "b": (x, z + 2.9), "t": (x, z - 2.9)}[side]
+flow("d_f0", "d_flow", [[R(edge(0, "r")[0]), 1.0, R(edge(0, "r")[1])], [R(edge(1, "l")[0]), 1.0, R(edge(1, "l")[1])]], n=3, size=.26, rate=.9)
+flow("d_f1", "d_flow", [[R(edge(1, "r")[0]), 1.0, R(edge(1, "r")[1])], [R(edge(2, "l")[0]), 1.0, R(edge(2, "l")[1])]], n=3, size=.26, rate=.9)
+flow("d_f2", "d_flow", [[R(edge(2, "b")[0]), 1.0, R(edge(2, "b")[1])], [R(C(2)[0]), 1.0, 0.1], [R(C(3)[0]), 1.0, 0.1], [R(edge(3, "t")[0]), 1.0, R(edge(3, "t")[1])]], n=4, size=.26, rate=.8)
+flow("d_f3", "d_flow", [[R(edge(3, "r")[0]), 1.0, R(edge(3, "r")[1])], [R(edge(4, "l")[0]), 1.0, R(edge(4, "l")[1])]], n=3, size=.26, rate=.9)
 for k, (nm, ps) in enumerate((("sp", ["sp_base"]), ("rt", ["rt_base"]), ("sm", ["sm_base"]), ("pr", ["pr_base"]), ("mk", ["mk_glass"]))):
     glow(f"d_on{k}", nm, ps, "gOn", steady=True, g=.55)
 for k, nm in enumerate(("sp", "rt", "sm", "pr", "mk")):
-    anchor(f"d_a{k}", nm, [DX + XS[k] + 2.4, .5, 3.4], dx=60 if k < 4 else 100, dy=90)
+    anchor(f"d_a{k}", nm, [C(k)[0] + (2.6 if k != 3 else -2.6), .5, C(k)[1] + (-2.6 if k < 3 else 2.6)], dx=(90 if k in (2, 4) else -90 if k in (3,) else 60), dy=(-70 if k < 3 else 70))
 
 # ═════════ M：光罩曝光（x=300）：光源→光罩→鏡組→晶圓（垂直一柱） ═════════
 MX = 300
