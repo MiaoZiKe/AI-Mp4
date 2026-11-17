@@ -50,21 +50,21 @@ const Dim: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, c = (n: string) => col(m.product, n);
   const mem = T(o, "mem"), wide = T(o, "wide"), deep = T(o, "deep"), q = T(o, "q");
   const a = tween(f, mem, 10, EASE.enter), b = tween(f, wide, 10, EASE.enter), d = tween(f, deep, 26, EASE.move), e = tween(f, q, 10, EASE.enter);
-  const bx = 250, wpx = 6, dpx = 600;
+  const bx = 250, wpx = 6, dpx = 620;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}><Profile m={m} x={40} y={78} w={150} lh={22} hw={12} depth={1} f={f} /></g>
         <g opacity={b}>
-          <text x={bx} y={130} style={zh(34, H.text, 800)}>寬約 100 奈米</text>
-          <rect x={bx} y={142} width={wpx} height={24} fill={c("lp_ion")} />
+          <text x={bx} y={118} style={zh(32, H.text, 800)}>寬約 100 奈米</text>
+          <rect x={bx} y={128} width={wpx} height={20} fill={c("lp_ion")} />
         </g>
         <g opacity={d > 0.02 ? 1 : 0}>
-          <text x={bx} y={214} style={zh(34, H.text, 800)}>深超過 10,000 奈米</text>
-          <rect x={bx} y={226} width={dpx * d} height={24} fill={c("lp_sig")} />
+          <text x={bx} y={190} style={zh(32, H.text, 800)}>深超過 10,000 奈米</text>
+          <rect x={bx} y={200} width={dpx * d} height={20} fill={c("lp_sig")} />
+          <text x={bx} y={250} opacity={d > 0.9 ? 1 : 0} style={zh(sm(30), H.text2, 700)}>兩條長度照 1 比 100 畫</text>
         </g>
-        <text x={bx + dpx + 14} y={246} opacity={d > 0.9 ? 1 : 0} style={zh(sm(30), H.text2, 700)}>長度照 1 比 100 畫</text>
-        <text x={bx} y={298} opacity={e} style={zh(40, H.amber, 900)}>深寬比 100：1，怎麼挖才直？</text>
+        <text x={bx} y={304} opacity={e} style={zh(38, H.amber, 900)}>深寬比 100：1，怎麼挖才直？</text>
       </svg>
     </Card>
   );
@@ -177,6 +177,54 @@ const Next: React.FC<P> = ({ o, f, k, m }) => {
   );
 };
 
+
+// ── etch-ion：電子撞上氣體分子 → 分子變離子（帶正電）→ 電場往下拉 ──
+const Ion: React.FC<P> = ({ o, f, k, m }) => {
+  const W = o.w ?? 952, Hh = o.h ?? 330, c = (n: string) => col(m.product, n);
+  const ion = T(o, "ion"), chg = T(o, "charge"), fld = T(o, "field"), pul = T(o, "pull");
+  const hit = tween(f, ion, 22, EASE.move), split = tween(f, chg, 12, EASE.enter), fa = tween(f, fld, 10, EASE.enter), pull = tween(f, pul, 26, (x: number) => x * x);
+  const blue = c("lp_sig"), pink = c("lp_ion"), amb = c("lp_warm"), mx = 230, my = 150;
+  const ex = 60 + (mx - 60 - 28) * hit;       // 電子從左邊飛來
+  const iy = my + 120 * pull;
+  const el = (x: number, y: number, al: number) => <g opacity={al}><circle cx={x} cy={y} r={11} fill={amb} /><text x={x} y={y + 6} textAnchor="middle" style={zh(20, H.onAccent, 900)}>－</text></g>;
+  return (
+    <Card o={o} k={k} W={W} Hh={Hh}>
+      <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <rect x={40} y={96} width={400} height={6} fill={c("steelHi")} /><text x={436} y={86} textAnchor="end" style={zh(sm(28), H.text2, 700)}>電漿</text>
+        <rect x={40} y={286} width={400} height={8} fill={c("si")} /><text x={44} y={318} style={zh(sm(28), H.text2, 700)}>晶圓</text>
+        {split < 0.5 ? <><circle cx={mx} cy={my} r={20} fill={blue} /><circle cx={mx + 22} cy={my + 10} r={13} fill={blue} opacity={0.85} /></> : null}
+        {el(ex, my + 4, 1 - split)}
+        {split > 0 ? <>
+          {el(mx - 20 - 70 * split, my - 40 * split, split)}{el(mx - 20 - 70 * split, my + 48 * split, split)}
+          <g transform={`translate(${mx} ${iy})`} opacity={split}><circle r={26} fill={pink} /><text y={11} textAnchor="middle" style={zh(34, H.onAccent, 900)}>＋</text></g>
+          <text x={mx} y={my - 52} textAnchor="middle" opacity={split * (1 - pull)} style={zh(sm(30), pink, 900)}>離子（帶正電）</text>
+        </> : null}
+        {fa > 0 ? [0, 1, 2].map((j) => <path key={j} d={`M${mx + 80 + j * 40} 130 v${120 - 0 * j} m-9 -16 l9 18 l9 -18`} stroke={c("lp_proc")} strokeWidth={5} fill="none" opacity={fa} />) : null}
+        <text x={mx + 78} y={116} opacity={fa} style={zh(sm(30), c("lp_proc"), 900)}>電場</text>
+        <text x={480} y={124} opacity={tween(f, ion, 8, EASE.enter)} style={zh(32, H.text, 800)}><tspan fill={amb}>①</tspan> 電子撞上氣體分子</text>
+        <text x={480} y={184} opacity={split} style={zh(32, H.text, 800)}><tspan fill={pink}>②</tspan> 分子被撞掉電子，帶正電</text>
+        <text x={480} y={244} opacity={fa} style={zh(32, H.text, 800)}><tspan fill={c("lp_proc")}>③</tspan> 電場把離子往下拉</text>
+      </svg>
+    </Card>
+  );
+};
+
+// ── etch-co / etch-tw：公司卡（名字＋做什麼；各列依 cue 出現）──
+const Co: React.FC<P & { rows: [string, string, string][]; head?: string; headAt?: string; sub?: string; subAt?: string }> = ({ o, f, k, rows, head, headAt, sub, subAt }) => {
+  const W = o.w ?? 952, Hh = o.h ?? 330;
+  return (
+    <Card o={o} k={k} W={W} Hh={Hh}>
+      <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        {head ? <text x={40} y={102} opacity={tween(f, T(o, headAt ?? "no"), 10, EASE.enter)} style={zh(38, H.text, 900)}>{head}</text> : null}
+        {sub ? <text x={400} y={102} opacity={tween(f, T(o, subAt ?? "parts"), 10, EASE.enter)} style={zh(36, H.amber, 900)}>{sub}</text> : null}
+        {rows.map(([name, desc, key], i) => { const y = (head ? 160 : 100) + i * (head ? 56 : 70), al = tween(f, T(o, key), 10, EASE.enter);
+          return <g key={i} opacity={al}><rect x={40} y={y - 36} width={8} height={46} fill={H.amber} />
+            <text x={62} y={y} style={zh(40, H.text, 900)}>{name}</text><text x={330} y={y} style={zh(32, H.text2, 800)}>{desc}</text></g>; })}
+      </svg>
+    </Card>
+  );
+};
+
 export const EtchSection: React.FC<P> = (p) => {
   const kd = String((p.o as any).kind);
   if (kd === "etch-dim") return <Dim {...p} />;
@@ -184,5 +232,8 @@ export const EtchSection: React.FC<P> = (p) => {
   if (kd === "etch-sect") return <Sect {...p} />;
   if (kd === "etch-cold") return <Cold {...p} />;
   if (kd === "etch-next") return <Next {...p} />;
+  if (kd === "etch-ion") return <Ion {...p} />;
+  if (kd === "etch-co") return <Co {...p} rows={[["科林研發", "電漿蝕刻機", "lam"], ["東京威力科創", "蝕刻機（含低溫蝕刻）", "tel"], ["應用材料", "蝕刻機（前後段都有）", "amat"]]} />;
+  if (kd === "etch-tw") return <Co {...p} head="台灣沒有整機廠" headAt="no" sub="但有零件" subAt="parts" rows={[["京鼎", "替應材代工設備模組", "jd"], ["瑞耘", "腔體零件（氣體分配盤等）", "ry"], ["翔名", "蝕刻等設備的耗材", "xm"]]} />;
   return null;
 };

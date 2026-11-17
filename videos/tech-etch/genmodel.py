@@ -103,7 +103,9 @@ for i, y in enumerate((1.0, 1.4)):
     box(f"m_cab{i}", "m_tf", "slot", [.8, .05, .05], [MX - 3.0, y, 3.34])
 anchor("m_v1", "m_tf", [MX, 3.0, 0], dx=-190, dy=-120); anchor("m_v2", "m_tf", [MX, 3.0, 0], dx=0, dy=-150); anchor("m_v3", "m_tf", [MX, 3.0, 0], dx=190, dy=-120)
 anchor("m_tool", "m_tf", [MX + 3.2, 2.0, 3.2], dx=150, dy=-60)
-anchor("m_cL", "m_cL", [MX - 5.7 - .8, 3.2, 2.2], dx=-150, dy=-70)
+anchor("m_cL", "m_cL", [MX - 5.7, 4.1, 1.6], dx=-110, dy=-130)
+anchor("m_rb", "m_tf", [MX - 1.0, 1.6, 0], dx=40, dy=-170)
+anchor("m_body", "m_ef", [MX + 3.3, 2.8, 6.0], dx=150, dy=-110)
 
 # ═════════ C：反應腔剖開（電容耦合電漿蝕刻腔：上電極＝噴氣頭、下電極＝靜電吸盤，右側抽氣） ═════════
 CX = 60
@@ -182,38 +184,39 @@ flow("c_chill", "ch_cool_f", chill, n=7, size=.15, rate=.9, color="lp_sig", rim=
 anchor("c_sh", "ch_sh", [CX + 2.3, 5.2, 1.5], dx=150, dy=-70); anchor("c_esc", "ch_esc", [CX + 2.55, 1.75, 0.6], dx=240, dy=150)
 anchor("c_wf", "ch_wf", [CX - 2.0, 2.2, 1.2], dx=-150, dy=-100); anchor("c_port", "ch_port", [CX + 6.4, 2.0, 1.0], dx=130, dy=-90)
 anchor("c_pl", "plasma", [CX + 2.4, 3.6, 1.0], dx=150, dy=-60); anchor("c_ring", "ch_ring", [CX - 2.9, 2.2, 1.0], dx=-150, dy=-60)
-anchor("c_ln", "ch_liner", [CX - 3.85, 4.2, 1.5], dx=-150, dy=-60); anchor("c_shell", "ch_shell", [CX - 4.2, 3.0, 3.8], dx=-150, dy=-40)
+anchor("c_ln", "ch_liner", [CX - 3.85, 4.2, 1.5], dx=-150, dy=-60); anchor("c_shell", "ch_shell", [CX - 4.2, 1.4, 3.8], dx=-120, dy=70)
+anchor("c_ln2", "ch_liner", [CX + 3.85, 3.4, 1.5], dx=170, dy=60)
 anchor("c_cath", "ch_cath", [CX - 2.9, 1.0, 1.0], dx=-150, dy=60)
 
 # ═════════ W：晶圓剖面（交疊膜層上挖一個深孔；孔裡的「塞子」一塊一塊被打掉＝一點一點刻深） ═════════
 WX = 120
-NL = 8; LH = .5; Y0 = 1.2; HW = .8; HD = .4  # 層數、每層厚、堆疊底部 y、孔寬、孔的半徑（剖面看到的深度）
-box("w_sub", "w_sub", "si", [8, 1.2, 3.0], [WX, .6, -1.5], bevel=.03)
+NL = 8; LH = .5; Y0 = 1.2; HW = 1.1; HD = .55; SW = 2.5; SX = HW / 2 + SW / 2  # 層數、每層厚、堆疊底部 y、孔寬、孔的半徑（剖面看到的深度）
+box("w_sub", "w_sub", "si", [HW + 2 * SW, 1.2, 3.0], [WX, .6, -1.5], bevel=.03)
 for i in range(NL):
     yc = Y0 + LH / 2 + LH * i; mat = "oxide" if i % 2 == 0 else "nitride"
-    box(f"w_l{i}", f"w_l{i}", mat, [3.6, LH - .02, 3.0], [WX - 2.2, yc, -1.5], at=[[0, 0, 0], [4.4, 0, 0]])
+    box(f"w_l{i}", f"w_l{i}", mat, [SW, LH - .02, 3.0], [WX - SX, yc, -1.5], at=[[0, 0, 0], [2 * SX, 0, 0]])
     box(f"w_lb{i}", f"w_l{i}", mat + "D", [HW, LH - .02, 3.0 - HD], [WX, yc, -(3.0 + HD) / 2])
     box(f"w_p{i}", f"w_p{i}", mat, [HW, LH - .02, HD], [WX, yc, -HD / 2])   # 塞子：會被打掉的部分
 YM = Y0 + LH * NL
-box("w_mask", "w_mask", "resist", [3.6, .5, 3.0], [WX - 2.2, YM + .25, -1.5], at=[[0, 0, 0], [4.4, 0, 0]], bevel=.03)
+box("w_mask", "w_mask", "resist", [SW, .5, 3.0], [WX - SX, YM + .25, -1.5], at=[[0, 0, 0], [2 * SX, 0, 0]], bevel=.03)
 box("w_maskb", "w_mask", "resistD", [HW, .5, 3.0 - HD], [WX, YM + .25, -(3.0 + HD) / 2], bevel=.03)
 # 洞壁保護膜（青綠）：四組，各蓋住兩層的洞壁
 for g in range(4):
     yl = Y0 + LH * 2 * g + LH           # 這組兩層的中心
-    box(f"w_f{g}", f"w_f{g}", "film", [.07, LH * 2 - .03, HD], [WX - HW / 2 - .035, yl, -HD / 2], at=[[0, 0, 0], [HW + .07, 0, 0]])
-    box(f"w_fb{g}", f"w_f{g}", "film", [HW, LH * 2 - .03, .07], [WX, yl, -HD - .035])
+    box(f"w_f{g}", f"w_f{g}", "film", [.1, LH * 2 - .03, HD], [WX - HW / 2 - .05, yl, -HD / 2], at=[[0, 0, 0], [HW + .1, 0, 0]])
+    box(f"w_fb{g}", f"w_f{g}", "film", [HW, LH * 2 - .03, .1], [WX, yl, -HD - .05])
 # 運作：離子往下（對準孔）、每一階段停在目前孔底；副產物往上
 for k in range(5):
     yend = YM - LH * 2 * k if k < 4 else Y0
-    flow(f"w_ion{k}", "w_flow", [[WX, YM + 2.2, -.12], [WX, yend + .06, -.12]], n=3, lanes=3, gap=.22, ldir=(1, 0, 0), size=.1, rate=1.4, color="lp_ion", rim="lp_ion", trail=4)
+    flow(f"w_ion{k}", "w_flow", [[WX, YM + 2.2, -.12], [WX, yend + .06, -.12]], n=3, lanes=3, gap=.3, ldir=(1, 0, 0), size=.12, rate=1.4, color="lp_ion", rim="lp_ion", trail=4)
 flow("w_ionall", "w_flow", [[WX, YM + 2.2, -.12], [WX, Y0 + .06, -.12]], n=4, lanes=3, gap=.22, ldir=(1, 0, 0), size=.1, rate=1.4, color="lp_ion", rim="lp_ion", trail=4)
 flow("w_by", "w_flow", [[WX, Y0 + 1.4, -.12], [WX, YM + 1.8, -.12]], n=4, lanes=2, gap=.3, ldir=(1, 0, 0), size=.07, rate=.8, color="lp_proc", rim="lp_proc", trail=2)
-box("w_fill", "w_fill", "cuHi", [.5, YM - Y0 - .02, .06], [WX, (YM + Y0) / 2, -.04], bevel=.02)
-anchor("w_mask", "w_mask", [WX + 2.2, YM + .25, .0], dx=150, dy=-60); anchor("w_stack", "w_l7", [WX + 2.8, Y0 + 2.5, .0], dx=150, dy=-20)
-anchor("w_hole", "w_l7", [WX - .0, YM - .8, .0], dx=-160, dy=-100); anchor("w_sub", "w_sub", [WX - 3.0, .6, 0], dx=-150, dy=40)
+box("w_fill", "w_fill", "cuHi", [.7, YM - Y0 - .02, .06], [WX, (YM + Y0) / 2, -.04], bevel=.02)
+anchor("w_mask", "w_mask", [WX + SX, YM + .25, .0], dx=150, dy=-60); anchor("w_stack", "w_l7", [WX + SX + .6, Y0 + 2.5, .0], dx=150, dy=-20)
+anchor("w_hole", "w_l7", [WX - .0, YM - .8, .0], dx=-160, dy=-100); anchor("w_sub", "w_sub", [WX - 2.6, .6, 0], dx=-150, dy=40)
 anchor("w_wall", "w_f0", [WX - .45, Y0 + 1.0, .0], dx=-160, dy=-30)
 
-anchor("c_cath2", "ch_cool", [CX - 4.5, 1.2, .6], dx=-60, dy=130)
+anchor("c_cath2", "ch_cool", [CX - 4.5, 1.2, .6], dx=-100, dy=-120)
 anchor("m_wf", "m_wafer", [MX - 3.1, 1.8, 0], dx=0, dy=-170)
 anchor("c_gas", "ch_top", [CX - 3.2, 8.2, 0], dx=-130, dy=40); anchor("c_rfa", "ch_top", [CX + 1.4, 7.9, 0], dx=150, dy=-40); anchor("c_ionlab", "plasma", [CX + 1.6, 3.3, 1.0], dx=150, dy=10)
 

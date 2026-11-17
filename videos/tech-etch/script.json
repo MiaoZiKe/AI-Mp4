@@ -44,6 +44,17 @@
     "noteAlways": true
    },
    {
+    "id": "chuck",
+    "label": "晶圓座",
+    "en": "WAFER CHUCK",
+    "field": "10 cm",
+    "ruler": "2 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
     "id": "sect",
     "label": "晶圓剖面",
     "en": "WAFER SECTION",
@@ -128,8 +139,8 @@
       "at": "start-30",
       "dur": 1,
       "x": 120,
-      "y": 3.0,
-      "d": 33,
+      "y": 2.9,
+      "d": 30,
       "elev": 14
      }
     ],
@@ -506,8 +517,8 @@
       "at": "start-2",
       "dur": 16,
       "x": 62,
-      "y": 4.3,
-      "d": 62,
+      "y": 4.6,
+      "d": 74,
       "elev": 18
      }
     ],
@@ -516,14 +527,14 @@
       "layer": "ch_lid",
       "at": "in+4",
       "until": "s4:start-8",
-      "dy": 5.0,
+      "dy": 4.2,
       "dur": 22
      },
      {
       "layer": "ch_top",
       "at": "in+4",
       "until": "s4:start-8",
-      "dy": 5.0,
+      "dy": 4.2,
       "dur": 22
      },
      {
@@ -649,7 +660,7 @@
      {
       "id": "c_gin",
       "at": "gas",
-      "until": "s8:start-2",
+      "until": "s7:start-4",
       "ramp": 6
      },
      {
@@ -807,16 +818,16 @@
       "at": "start-2",
       "dur": 16,
       "x": 61,
-      "y": 3.0,
-      "d": 40,
+      "y": 1.6,
+      "d": 42,
       "elev": 18
      },
      {
       "at": "hit-24",
       "dur": 36,
       "x": 120,
-      "y": 2.7,
-      "d": 34,
+      "y": 2.6,
+      "d": 30,
       "elev": 14
      }
     ],
@@ -903,9 +914,36 @@
     "overlay": [
      {
       "type": "section",
+      "kind": "etch-ion",
+      "at": "start+2",
+      "until": "hit-28",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 335,
+      "avoid": false,
+      "title": "電子撞出離子",
+      "tag": "示意，非實際比例",
+      "t": {
+       "ion": {
+        "at": "s5:ion"
+       },
+       "charge": {
+        "at": "s5:charge"
+       },
+       "field": {
+        "at": "s5:field"
+       },
+       "pull": {
+        "at": "s5:pull"
+       }
+      }
+     },
+     {
+      "type": "section",
       "kind": "etch-sect",
       "at": "hit+12",
-      "until": "s8:start-16",
+      "until": "s7:start-16",
       "x": 64,
       "y": 940,
       "w": 952,
@@ -1015,8 +1053,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 120,
-      "y": 2.7,
-      "d": 34,
+      "y": 2.6,
+      "d": 30,
       "elev": 14
      }
     ],
@@ -1066,13 +1104,13 @@
      {
       "id": "w_ion4",
       "at": "s6:straight+8",
-      "until": "s8:start-2",
+      "until": "s7:start-2",
       "ramp": 6
      },
      {
       "id": "w_by",
       "at": "wall",
-      "until": "s8:start-2",
+      "until": "s7:start-2",
       "ramp": 6
      }
     ],
@@ -1083,7 +1121,7 @@
       "en": "Protective film",
       "color": "blue",
       "at": "film",
-      "until": "s8:start-8"
+      "until": "s7:start-8"
      },
      {
       "part": "w_hole",
@@ -1091,12 +1129,157 @@
       "en": "Bottom keeps etching",
       "color": "coral",
       "at": "straight",
-      "until": "s8:start-8"
+      "until": "s7:start-8"
      }
     ]
    },
    "sources": [
     "美國專利 US7166233；清大論文；MKS"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
+   "tts": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
+   "subtitle": {
+    "zh": "不過洞越深\n底部越難刻\n所以改把晶圓降到零下七十度",
+    "en": "But the deeper the hole, | the harder the bottom is to etch, | so the wafer is chilled to minus 70 degrees."
+   },
+   "keywords": [
+    "越難刻",
+    "零下七十度"
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "不過"
+    },
+    {
+     "id": "deep",
+     "text": "洞越深"
+    },
+    {
+     "id": "hard",
+     "text": "底部越難刻"
+    },
+    {
+     "id": "so",
+     "text": "所以"
+    },
+    {
+     "id": "cold",
+     "text": "零下七十度"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chuck",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 40,
+      "x": 59.0,
+      "y": 1.4,
+      "d": 30,
+      "elev": 26
+     }
+    ],
+    "shift": [
+     {
+      "layer": "ch_lid",
+      "at": "start-6",
+      "until": "s8:start-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ch_top",
+      "at": "start-6",
+      "until": "s8:start-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ch_sh",
+      "at": "start-6",
+      "until": "s8:start-2",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "c_chill",
+      "at": "hard",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_cold",
+      "at": "cold-6",
+      "until": "s8:start-2",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_cath2",
+      "text": "冷卻水道",
+      "en": "Coolant channel",
+      "color": "blue",
+      "at": "so",
+      "until": "s8:start-8"
+     },
+     {
+      "part": "c_wf",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "coral",
+      "at": "cold",
+      "until": "s8:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "etch-cold",
+      "at": "start+34",
+      "until": "s8:start-16",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "常溫對照低溫",
+      "tag": "廠商公布（TEL）・示意",
+      "t": {
+       "deep": {
+        "at": "s7:deep"
+       },
+       "hard": {
+        "at": "s7:hard"
+       },
+       "so": {
+        "at": "s7:so"
+       },
+       "cold": {
+        "at": "s7:cold"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Tom's Hardware；TechPowerUp"
    ],
    "pauseAfter": 0.7
   },
@@ -1147,48 +1330,64 @@
       "at": "start-2",
       "dur": 40,
       "x": 0,
-      "y": 1.6,
-      "d": 46,
+      "y": 0.4,
+      "d": 42,
       "elev": 16
      }
     ],
     "labels": [
      {
-      "part": "m_v1",
+      "part": "m_cL",
       "text": "科林研發",
       "en": "Lam Research",
       "color": "amber",
       "at": "lam",
-      "until": "s9:start-8"
+      "until": "s9:start-12"
      },
      {
-      "part": "m_v2",
+      "part": "m_rb",
       "text": "東京威力科創",
       "en": "Tokyo Electron",
       "color": "amber",
       "at": "tel",
-      "until": "s9:start-8"
+      "until": "s9:start-12"
      },
      {
-      "part": "m_v3",
+      "part": "m_body",
       "text": "應用材料",
       "en": "Applied Materials",
       "color": "amber",
       "at": "amat",
-      "until": "s9:start-8"
+      "until": "s9:start-12"
      }
     ],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "few",
-      "until": "s9:start-2",
-      "text": "媒體報導：自由時報",
-      "color": "blue",
-      "size": 36,
-      "rot": -4,
-      "x": 640,
-      "y": 330
+      "type": "section",
+      "kind": "etch-co",
+      "at": "start+2",
+      "until": "s9:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "三大蝕刻機廠",
+      "tag": "媒體報導：自由時報・示意：引線只指向機台",
+      "t": {
+       "few": {
+        "at": "s8:few"
+       },
+       "lam": {
+        "at": "s8:lam"
+       },
+       "tel": {
+        "at": "s8:tel"
+       },
+       "amat": {
+        "at": "s8:amat"
+       }
+      }
      }
     ]
    },
@@ -1239,16 +1438,16 @@
     "zoom": [
      {
       "to": "cham",
-      "at": "start-6",
-      "dur": 36
+      "at": "start-14",
+      "dur": 12
      }
     ],
     "shot": [
      {
-      "at": "start-2",
-      "dur": 36,
+      "at": "start-14",
+      "dur": 12,
       "x": 61,
-      "y": 2.0,
+      "y": 1.2,
       "d": 46,
       "elev": 18
      }
@@ -1260,7 +1459,7 @@
       "en": "Tool modules (contract)",
       "color": "amber",
       "at": "jd",
-      "until": "s10:start-8"
+      "until": "ry-3"
      },
      {
       "part": "c_sh",
@@ -1268,10 +1467,10 @@
       "en": "Chamber parts",
       "color": "amber",
       "at": "ry",
-      "until": "s10:start-8"
+      "until": "xm-3"
      },
      {
-      "part": "c_ln",
+      "part": "c_ln2",
       "text": "翔名：耗材",
       "en": "Consumables",
       "color": "amber",
@@ -1281,15 +1480,34 @@
     ],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "parts",
-      "until": "s10:start-2",
-      "text": "媒體報導",
-      "color": "blue",
-      "size": 40,
-      "rot": -4,
-      "x": 800,
-      "y": 330
+      "type": "section",
+      "kind": "etch-tw",
+      "at": "start+2",
+      "until": "s10:start-26",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣供應鏈",
+      "tag": "媒體報導：優分析、財訊、經濟日報",
+      "t": {
+       "no": {
+        "at": "s9:no"
+       },
+       "parts": {
+        "at": "s9:parts"
+       },
+       "jd": {
+        "at": "s9:jd"
+       },
+       "ry": {
+        "at": "s9:ry"
+       },
+       "xm": {
+        "at": "s9:xm"
+       }
+      }
      }
     ]
    },
@@ -1362,8 +1580,8 @@
       "at": "start-2",
       "dur": 40,
       "x": 120,
-      "y": 2.7,
-      "d": 34,
+      "y": 2.6,
+      "d": 30,
       "elev": 14
      }
     ],
@@ -1390,7 +1608,7 @@
       "en": "Fill material",
       "color": "amber",
       "at": "fill",
-      "until": "full-6"
+      "until": "next-8"
      }
     ],
     "overlay": [
