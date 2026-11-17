@@ -933,7 +933,7 @@
      {
       "to": "board",
       "at": "four-8",
-      "dur": 30
+      "dur": 8
      }
     ],
     "shot": [
@@ -1210,8 +1210,8 @@
     "zoom": [
      {
       "to": "rack",
-      "at": "start-6",
-      "dur": 30
+      "at": "start-8",
+      "dur": 8
      }
     ],
     "shot": [
@@ -1471,12 +1471,20 @@
    ],
    "cues": [
     {
+     "id": "elec",
+     "text": "電從"
+    },
+    {
      "id": "in",
      "text": "電源層"
     },
     {
      "id": "bus",
      "text": "銅排"
+    },
+    {
+     "id": "tray",
+     "text": "每一層"
     },
     {
      "id": "heat",
@@ -1489,7 +1497,7 @@
      {
       "to": "board",
       "at": "heat-10",
-      "dur": 30
+      "dur": 8
      }
     ],
     "shot": [
@@ -1673,11 +1681,17 @@
       "title": "電怎麼進來",
       "tag": "示意",
       "t": {
+       "elec": {
+        "at": "elec"
+       },
        "in": {
         "at": "in"
        },
        "bus": {
         "at": "bus"
+       },
+       "tray": {
+        "at": "tray"
        },
        "heat": {
         "at": "heat"
@@ -1729,13 +1743,13 @@
     "zoom": [
      {
       "to": "plate",
-      "at": "chipf-28",
-      "dur": 30
+      "at": "chipf-26",
+      "dur": 8
      },
      {
       "to": "rack",
       "at": "out-8",
-      "dur": 30
+      "dur": 8
      }
     ],
     "shot": [
@@ -2076,6 +2090,9 @@
        },
        "liq": {
         "at": "liq"
+       },
+       "chipf": {
+        "at": "chipf"
        },
        "out": {
         "at": "out"
