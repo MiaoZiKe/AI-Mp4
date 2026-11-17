@@ -341,7 +341,7 @@ const BoardView: React.FC<VP> = ({ f, p }) => {
 const CompoundView: React.FC<VP> = ({ f, p }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), Y = q.years ?? 8, r = q.rate ?? 0.2, P0 = 100, tS = A(q.single.at, p.in + 4), tC = A(q.comp.at, FAR), tH = A(q.hit?.at, FAR), tT = A(q.ticks?.at, FAR);
   const base = TOP + 650, MH = 460, mx = P0 * Math.pow(1 + r, Y), k = MH / mx, gw = IW / Y, bw = 46;
-  const seg = (x: number, parts: [number, string][], g: number) => { let y = base; return parts.map(([v, c], i) => { const h = v * k * g; y -= h; return h > 0.5 ? <rect key={i} x={x} y={y} width={bw} height={h} rx={i === parts.length - 1 ? 10 : 0} fill={col(c).fill} stroke={T.card} strokeWidth={2} /> : null; }); };
+  const seg = (x: number, parts: [number, string][], g: number) => { let y = base; return parts.map(([v, c], i) => { const h = v * k * g * (i === parts.length - 1 && g >= 1 ? 1 + 0.07 * Math.sin(f / 5 + x / 40) : 1); y -= h; return h > 0.5 ? <rect key={i} x={x} y={y} width={bw} height={h} rx={i === parts.length - 1 ? 10 : 0} fill={col(c).fill} stroke={T.card} strokeWidth={2} /> : null; }); };
   const gC = E(f, tC, 40), top8 = base - mx * k * gC, extra8 = (mx - P0 - Y * P0 * r) * k * gC;
   return (
     <>
@@ -350,8 +350,8 @@ const CompoundView: React.FC<VP> = ({ f, p }) => {
       <Full>
         <rect x={X0 - 6} y={base + 4} width={IW + 12} height={10} rx={5} fill={T.ink3} opacity={0.6} />
         <clipPath id="cpclip"><rect x={X0} y={base - MH - 40} width={IW} height={MH + 40} /></clipPath>
-        <rect x={X0 + ((f * 9) % (IW + 300)) - 150} y={base - MH - 40} width={110} height={MH + 40} fill="#fff" opacity={0.38} clipPath="url(#cpclip)" transform={`skewX(-12)`} />
-        <g transform={`translate(${X0 + IW - 50},${TOP + 40 + 12 * Math.sin(f / 8)})`}><circle r={30} fill={col("note").fill} stroke={col("note").side} strokeWidth={6} /><path d="M-10 -4 H10 M-10 8 H10 M0 -16 V18" stroke={col("note").side} strokeWidth={5} strokeLinecap="round" transform={`scale(${(0.8 + 0.2 * Math.cos(f / 8)).toFixed(2)} 1)`} /></g>
+        <rect x={X0 + ((f * 14) % (IW + 500)) - 100} y={base - MH - 40} width={220} height={MH + 40} fill="#fff" opacity={0.65} clipPath="url(#cpclip)" transform={`skewX(-12)`} />
+        <g transform={`translate(${X0 + IW - 50},${TOP + 40 + 22 * Math.sin(f / 7)})`}><circle r={40} fill={col("note").fill} stroke={col("note").side} strokeWidth={6} /><path d="M-10 -4 H10 M-10 8 H10 M0 -16 V18" stroke={col("note").side} strokeWidth={5} strokeLinecap="round" transform={`scale(${(0.8 + 0.2 * Math.cos(f / 8)).toFixed(2)} 1)`} /></g>
         {Array.from({ length: Y }, (_, i) => {
           const n = i + 1, gx = X0 + i * gw + (gw - 2 * bw - 8) / 2, gS = E(f, tS + i * 4, 18), simple = n * P0 * r, comp = P0 * Math.pow(1 + r, n);
           return <g key={i}>{seg(gx, [[P0, "primary"], [simple, "note"]], gS)}{f >= tC ? seg(gx + bw + 8, [[P0, "primary"], [simple, "note"], [comp - P0 - simple, "wrong"]], E(f, tC + i * 4, 18)) : null}</g>;
