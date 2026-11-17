@@ -26,7 +26,7 @@ def anchor(name, lay, p, dx=100, dy=-80): anchors[name] = {"layer": lay, "p": [R
 
 palette = {"dark": "#3F4E6B", "dark2": "#2E3340", "steel": "#9AA8BE", "steel2": "#7D8AA1", "steelHi": "#C5D0E2", "cu": "#C98A3E", "cuHi": "#E8A45E", "cuDk": "#9C6A2C",
  "orange": "#F08A24", "si": "#B8C2D6", "siTop": "#CBD4E4", "pcbG": "#2F6E55", "glass": "#CFE6F5", "brass": "#D6B25E", "white": "#F6F2E8", "slot": "#2A2E3B", "led": "#FF5A1F",
- "ceramic": "#EDE3CF", "quartz": "#D3E3EA", "oxide": "#8FC1E3", "nitride": "#F0C27A", "resist": "#E2573A", "film": "#14A38B", "plasma": "#A66BFF", "plasmaHi": "#D8B8FF",
+ "ceramic": "#EDE3CF", "quartz": "#D3E3EA", "oxide": "#8FC1E3", "nitride": "#F0C27A", "resist": "#E2573A", "film": "#14A38B", "oxideD": "#4A7FA8", "nitrideD": "#B98638", "resistD": "#9C3320", "plasma": "#A66BFF", "plasmaHi": "#D8B8FF",
  "pipeB": "#2F7FE0", "pipeR": "#D8432C", "waterB": "#5CC8FF", "foup": "#F2EFE6", "wfTop": "#6D7FA8", "wfPat": "#8FA0C8", "green": "#2F9E6E",
  "lp_heat": "#FF7A2F", "lp_bad": "#E0472F", "lp_sig": "#38B6FF", "lp_sigRim": "#1F6FEB", "lp_proc": "#FF9F1C", "lp_good": "#14A38B", "lp_warm": "#FFB020", "lp_ion": "#E8337F", "lp_pl": "#A66BFF"}
 def M(color, **k): return {"kind": "std", "color": color, "rough": 0.45, "metal": 0.1, **k}
@@ -35,7 +35,7 @@ materials = {
  "dark": M("dark", rough=.5, metal=.2), "dark2": M("dark2", rough=.35, metal=.3), "steel": M("steel", rough=.3, metal=.85, env=.5), "steel2": M("steel2", rough=.35, metal=.8),
  "steelHi": M("steelHi", rough=.25, metal=.8, env=.7), "cu": M("cu", rough=.3, metal=.9, env=.6), "cuHi": M("cuHi", rough=.25, metal=.9, env=.8), "cuDk": M("cuDk", rough=.4, metal=.8),
  "orange": M("orange", rough=.35, metal=.35), "si": M("si", rough=.3, metal=.4, env=.6), "siTop": M("siTop", rough=.25, metal=.5, env=.8), "white": M("white", rough=.55), "brass": M("brass", rough=.3, metal=.9, env=.7),
- "ceramic": M("ceramic", rough=.5, metal=.05), "quartz": M("quartz", rough=.2, metal=.1, env=.7), "oxide": M("oxide", rough=.4), "nitride": M("nitride", rough=.4), "resist": M("resist", rough=.5),
+ "ceramic": M("ceramic", rough=.5, metal=.05), "quartz": M("quartz", rough=.2, metal=.1, env=.7), "oxide": M("oxide", rough=.4), "nitride": M("nitride", rough=.4), "oxideD": M("oxideD", rough=.6), "nitrideD": M("nitrideD", rough=.6), "resistD": M("resistD", rough=.6), "resist": M("resist", rough=.5),
  "film": M("film", rough=.45, metal=.1), "foup": M("foup", rough=.5), "wfTop": M("wfTop", rough=.2, metal=.6, env=.9), "wfPat": M("wfPat", rough=.3, metal=.5, env=.8),
  "slot": {"kind": "unlit", "color": "slot"}, "led": {"kind": "unlit", "color": "led"}, "green": {"kind": "unlit", "color": "green"},
  "glass": G("glass", .22), "pumpglass": G("steelHi", .3, metal=.2), "chuckglass": G("steel2", .36, metal=.2), "plasma": G("plasma", .3, env=.2), "plasmaS": G("plasmaHi", .5, env=.2),
@@ -192,11 +192,11 @@ box("w_sub", "w_sub", "si", [8, 1.2, 3.0], [WX, .6, -1.5], bevel=.03)
 for i in range(NL):
     yc = Y0 + LH / 2 + LH * i; mat = "oxide" if i % 2 == 0 else "nitride"
     box(f"w_l{i}", f"w_l{i}", mat, [3.6, LH - .02, 3.0], [WX - 2.2, yc, -1.5], at=[[0, 0, 0], [4.4, 0, 0]])
-    box(f"w_lb{i}", f"w_l{i}", mat, [HW, LH - .02, 3.0 - HD], [WX, yc, -(3.0 + HD) / 2])
+    box(f"w_lb{i}", f"w_l{i}", mat + "D", [HW, LH - .02, 3.0 - HD], [WX, yc, -(3.0 + HD) / 2])
     box(f"w_p{i}", f"w_p{i}", mat, [HW, LH - .02, HD], [WX, yc, -HD / 2])   # 塞子：會被打掉的部分
 YM = Y0 + LH * NL
 box("w_mask", "w_mask", "resist", [3.6, .5, 3.0], [WX - 2.2, YM + .25, -1.5], at=[[0, 0, 0], [4.4, 0, 0]], bevel=.03)
-box("w_maskb", "w_mask", "resist", [HW, .5, 3.0 - HD], [WX, YM + .25, -(3.0 + HD) / 2], bevel=.03)
+box("w_maskb", "w_mask", "resistD", [HW, .5, 3.0 - HD], [WX, YM + .25, -(3.0 + HD) / 2], bevel=.03)
 # 洞壁保護膜（青綠）：四組，各蓋住兩層的洞壁
 for g in range(4):
     yl = Y0 + LH * 2 * g + LH           # 這組兩層的中心

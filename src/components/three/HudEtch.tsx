@@ -118,16 +118,16 @@ const Sect: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <Profile m={m} x={40} y={66} w={240} lh={20} hw={18} depth={depth} films={films} ions={hit} f={f} />
-        <text x={300} y={110} opacity={hit} style={zh(32, H.text, 800)}><tspan fill={c("lp_ion")}>①</tspan> 離子往下打，孔底被打掉</text>
-        <text x={300} y={160} opacity={film} style={zh(32, H.text, 800)}><tspan fill={good}>②</tspan> 保護膜留在洞壁</text>
-        <text x={300} y={210} opacity={side} style={zh(32, H.text, 800)}><tspan fill={good}>③</tspan> 側面不被刻到，洞才直</text>
+        <text x={300} y={110} opacity={hit} style={zh(30, H.text, 800)}><tspan fill={c("lp_ion")}>①</tspan> 離子往下打，孔底被打掉</text>
+        <text x={300} y={160} opacity={film} style={zh(30, H.text, 800)}><tspan fill={good}>②</tspan> 保護膜留在洞壁</text>
+        <text x={300} y={210} opacity={side} style={zh(30, H.text, 800)}><tspan fill={good}>③</tspan> 側面不被刻到，洞才直</text>
         <g opacity={film}>
-          <g transform="translate(700 190)"><Profile m={m} x={0} y={0} w={90} lh={7} hw={12} depth={1} bowl={1.4} mask={false} f={f} /></g>
-          <text x={745} y={Hh - 14} textAnchor="middle" style={zh(28, bad, 800)}>沒膜：碗形</text>
+          <g transform="translate(635 190)"><Profile m={m} x={0} y={0} w={90} lh={7} hw={12} depth={1} bowl={1.4} mask={false} f={f} /></g>
+          <text x={680} y={Hh - 14} textAnchor="middle" style={zh(28, bad, 800)}>沒膜：碗形</text>
         </g>
         <g opacity={st}>
-          <g transform="translate(830 190)"><Profile m={m} x={0} y={0} w={90} lh={7} hw={12} depth={1} films={[1, 1, 1, 1]} mask={false} f={f} /></g>
-          <text x={875} y={Hh - 14} textAnchor="middle" style={zh(28, good, 800)}>有膜：直壁 ✓</text>
+          <g transform="translate(825 190)"><Profile m={m} x={0} y={0} w={90} lh={7} hw={12} depth={1} films={[1, 1, 1, 1]} mask={false} f={f} /></g>
+          <text x={870} y={Hh - 14} textAnchor="middle" style={zh(28, good, 800)}>有膜：直壁 ✓</text>
         </g>
       </svg>
     </Card>

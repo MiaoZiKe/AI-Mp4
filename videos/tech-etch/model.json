@@ -31,6 +31,9 @@
   "nitride": "#F0C27A",
   "resist": "#E2573A",
   "film": "#14A38B",
+  "oxideD": "#4A7FA8",
+  "nitrideD": "#B98638",
+  "resistD": "#9C3320",
   "plasma": "#A66BFF",
   "plasmaHi": "#D8B8FF",
   "pipeB": "#2F7FE0",
@@ -159,6 +162,24 @@
    "kind": "std",
    "color": "nitride",
    "rough": 0.4,
+   "metal": 0.1
+  },
+  "m_oxideD": {
+   "kind": "std",
+   "color": "oxideD",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "m_nitrideD": {
+   "kind": "std",
+   "color": "nitrideD",
+   "rough": 0.6,
+   "metal": 0.1
+  },
+  "m_resistD": {
+   "kind": "std",
+   "color": "resistD",
+   "rough": 0.6,
    "metal": 0.1
   },
   "m_resist": {
@@ -4314,7 +4335,7 @@
     1.45,
     -1.7
    ],
-   "mat": "m_oxide"
+   "mat": "m_oxideD"
   },
   {
    "id": "w_p0",
@@ -4374,7 +4395,7 @@
     1.95,
     -1.7
    ],
-   "mat": "m_nitride"
+   "mat": "m_nitrideD"
   },
   {
    "id": "w_p1",
@@ -4434,7 +4455,7 @@
     2.45,
     -1.7
    ],
-   "mat": "m_oxide"
+   "mat": "m_oxideD"
   },
   {
    "id": "w_p2",
@@ -4494,7 +4515,7 @@
     2.95,
     -1.7
    ],
-   "mat": "m_nitride"
+   "mat": "m_nitrideD"
   },
   {
    "id": "w_p3",
@@ -4554,7 +4575,7 @@
     3.45,
     -1.7
    ],
-   "mat": "m_oxide"
+   "mat": "m_oxideD"
   },
   {
    "id": "w_p4",
@@ -4614,7 +4635,7 @@
     3.95,
     -1.7
    ],
-   "mat": "m_nitride"
+   "mat": "m_nitrideD"
   },
   {
    "id": "w_p5",
@@ -4674,7 +4695,7 @@
     4.45,
     -1.7
    ],
-   "mat": "m_oxide"
+   "mat": "m_oxideD"
   },
   {
    "id": "w_p6",
@@ -4734,7 +4755,7 @@
     4.95,
     -1.7
    ],
-   "mat": "m_nitride"
+   "mat": "m_nitrideD"
   },
   {
    "id": "w_p7",
@@ -4795,7 +4816,7 @@
     5.45,
     -1.7
    ],
-   "mat": "m_resist",
+   "mat": "m_resistD",
    "bevel": 0.03
   },
   {
