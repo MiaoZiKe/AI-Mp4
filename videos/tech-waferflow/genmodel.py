@@ -87,6 +87,8 @@ anchor("a_mt", "mt_line", [SX + 5.4, YO + .15, 2.5], dx=150, dy=-45)
 anchor("a_rs", "rs_line", [SX + 5.4, YM + .2, 2.5], dx=150, dy=-85)
 anchor("a_dp", "dp", [SX + 4.5, YS - .25, 2.55], dx=150, dy=60)
 anchor("a_gap", "rs_gap", [SX - 4.5, YM + .4, 2.5], dx=-150, dy=-70)
+anchor("a_mtgap", "mt_line", [SX - 4.9, YO + .3, 2.5], dx=-150, dy=-60)
+anchor("a_mtl", "mt_line", [SX - 5.4, YO + .3, 2.5], dx=-150, dy=-20)
 
 # 沉積：蓮蓬頭（氣體往下噴）
 box("d_plen", "t_dep", "dark2", [11.2, .9, 4.8], [SX, 6.4, 0], bevel=.05)
@@ -124,7 +126,7 @@ for i, y in enumerate((6.2, 7.0, 7.8)):
     tube(f"e_lens{i}", "t_exp", "steelHi", 7.0, 6.5, .55, [SX, y, 0], axis="y")
 tube("e_lensb", "t_exp", "brass", 7.04, 6.9, .08, [SX, 7.0, 0], axis="y")
 box("e_shaft", "t_exp_l", "beam", [.8, YR_ - 2.5 - .2, 5.0], [SX, (YR_ - .2 + 2.5) / 2, 0], at=[[g, 0, 0] for g in GP])
-box("e_wide", "t_exp_l", "beamW", [12.0, 13.0 - YR_ - .4, 5.2], [SX, (13.0 + YR_ + .4) / 2, 0])
+box("e_wide", "t_exp_w", "beamW", [12.0, 13.0 - YR_ - .4, 5.2], [SX, (13.0 + YR_ + .4) / 2, 0])
 flow("e_ray", "t_exp_f", [[SX, YR_ - .4, 0], [SX, 2.6, 0]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.6, color="lp_light", rim="lp_light")
 flow("e_rayw", "t_exp_f", [[SX, 13.0, 0], [SX, YR_ + .5, 0]], n=3, lanes=9, gap=1.3, ldir=(1, 0, 0), size=.11, rate=1.2, color="lp_light", rim="lp_light")
 glow("e_lampg", "t_exp", ["e_lampled"], "lp_light", steady=False, g=1.0, freq=3.0)

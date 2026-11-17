@@ -15,7 +15,63 @@
   "model": "gemini-2.5-flash-preview-tts",
   "mode": "take",
   "languageCode": "cmn-TW",
-  "profile": "tech-b"
+  "profile": "tech-b",
+  "_說明": "整篇 1 次請求；out/voice-waferflow/waferflow-a.wav"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "equip",
+    "label": "設備",
+    "en": "EQUIPMENT",
+    "field": "1 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "handoff3D": true,
+    "readout": false,
+    "note": "設備為示意，非實際比例",
+    "noteAlways": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "sect",
+    "label": "表面剖面",
+    "en": "CROSS-SECTION",
+    "field": "30 µm",
+    "ruler": "5 µm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例・層厚與圖形為示意"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "一片晶圓",
+   "八步一層"
+  ],
+  "sub": "流程",
+  "frame": 40
  },
  "sample": false,
  "scenes": [
@@ -57,8 +113,90 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "hook": {
+     "kicker": "產業估計｜是哪幾步？",
+     "title": "3 個月 × 數十次",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 0.6,
+      "d": 24,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "w_spin",
+      "at": "start-30",
+      "until": "s2:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_wafer",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "wafer",
+      "until": "same-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "mo",
+      "until": "s2:start-2",
+      "text": "產業估計",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 830,
+      "y": 330
+     },
+     {
+      "type": "section",
+      "kind": "wf-ring",
+      "at": "start+2",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "同一套動作",
+      "tag": "示意",
+      "t": {
+       "same": {
+        "at": "same"
+       },
+       "rep": {
+        "at": "rep"
+       },
+       "which": {
+        "at": "which"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "SIA 美國半導體產業協會（平均 12 週、先進製程 14～20 週）；TRUMPF 科普文（每層後研磨、反覆數十次）"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s2",
@@ -90,8 +228,233 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "zoom": [
+     {
+      "to": "sect",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 26,
+      "x": 60,
+      "y": 3.6,
+      "d": 34,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "ox",
+      "at": "s1:start-40",
+      "until": "ox+4",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06,
+      "press": [
+       "sub"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "mt_line",
+      "at": "s1:start-40",
+      "until": "mt+6",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06,
+      "press": [
+       "ox"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "mt_gap",
+      "at": "s1:start-40",
+      "until": "mt+6",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06,
+      "press": [
+       "ox"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "dp",
+      "at": "s1:start-40",
+      "until": "s8:ion+12",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "t_dep",
+      "at": "s1:start-40",
+      "until": "s2:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_dep",
+      "at": "s3:start-6",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "d_ox0",
+      "at": "ox-18",
+      "until": "mt-6",
+      "ramp": 6
+     },
+     {
+      "id": "d_ox1",
+      "at": "ox-18",
+      "until": "mt-6",
+      "ramp": 6
+     },
+     {
+      "id": "d_mt0",
+      "at": "mt-14",
+      "until": "s3:start-6",
+      "ramp": 6
+     },
+     {
+      "id": "d_mt1",
+      "at": "mt-14",
+      "until": "s3:start-6",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_sub",
+      "text": "矽基板",
+      "en": "Silicon wafer",
+      "color": "blue",
+      "at": "dep",
+      "until": "s3:start-6"
+     },
+     {
+      "part": "d_head",
+      "text": "沉積頭：氣體噴下來",
+      "en": "Deposition head",
+      "color": "amber",
+      "at": "dep+8",
+      "until": "ox"
+     },
+     {
+      "part": "a_ox",
+      "text": "氧化層（絕緣）",
+      "en": "Oxide (insulator)",
+      "color": "amber",
+      "at": "ox+22",
+      "until": "s3:start-6"
+     },
+     {
+      "part": "a_mt",
+      "text": "金屬層（導電）",
+      "en": "Metal (conductor)",
+      "color": "coral",
+      "at": "mt+22",
+      "until": "s3:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "dep",
+      "until": "s3:start-6",
+      "text": "① 沉積",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     },
+     {
+      "type": "section",
+      "kind": "wf-sec",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "剖面示意",
+      "tag": "示意，非實際比例",
+      "t": {
+       "dep": {
+        "at": "s2:dep"
+       },
+       "ox": {
+        "at": "s2:ox"
+       },
+       "mt": {
+        "at": "s2:mt"
+       },
+       "res": {
+        "at": "s3:res"
+       },
+       "lt": {
+        "at": "s4:lt"
+       },
+       "msk": {
+        "at": "s4:msk"
+       },
+       "prt": {
+        "at": "s4:prt"
+       },
+       "dev": {
+        "at": "s5:dev"
+       },
+       "wash": {
+        "at": "s5:wash"
+       },
+       "bare": {
+        "at": "s6:bare"
+       },
+       "pl": {
+        "at": "s6:pl"
+       },
+       "cut": {
+        "at": "s6:cut"
+       },
+       "use": {
+        "at": "s7:use"
+       },
+       "strip": {
+        "at": "s7:strip"
+       },
+       "ion": {
+        "at": "s8:ion"
+       },
+       "pol": {
+        "at": "s8:pol"
+       },
+       "next": {
+        "at": "s8:next"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "SemiconductorX Front-End Fabrication；科林研發法說會（薄膜沉積設備）；示意"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s3",
@@ -123,8 +486,175 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 60,
+      "y": 3.0,
+      "d": 32,
+      "elev": 22
+     },
+     {
+      "at": "film-6",
+      "dur": 22,
+      "x": 60,
+      "y": 3.4,
+      "d": 38,
+      "elev": 20
+     }
+    ],
+    "shift": [
+     {
+      "layer": "rs_line",
+      "at": "s1:start-40",
+      "until": "res+14",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06,
+      "press": [
+       "mt_line",
+       "mt_gap"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "rs_gap",
+      "at": "s1:start-40",
+      "until": "res+14",
+      "dy": 3.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06
+     },
+     {
+      "layer": "t_res",
+      "at": "s1:start-40",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_res",
+      "at": "film-8",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "ox",
+      "at": "film",
+      "until": "s4:start-6",
+      "dy": 1.8,
+      "dur": 18
+     },
+     {
+      "layer": "mt_line",
+      "at": "film",
+      "until": "s4:start-6",
+      "dy": 3.6,
+      "dur": 18
+     },
+     {
+      "layer": "mt_gap",
+      "at": "film",
+      "until": "s4:start-6",
+      "dy": 3.6,
+      "dur": 18
+     },
+     {
+      "layer": "rs_line",
+      "at": "film",
+      "until": "s4:start-6",
+      "dy": 5.4,
+      "dur": 18
+     },
+     {
+      "layer": "rs_gap",
+      "at": "film",
+      "until": "s4:start-6",
+      "dy": 5.4,
+      "dur": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "r_drip",
+      "at": "res-8",
+      "until": "res+30",
+      "ramp": 6
+     },
+     {
+      "id": "s_spin",
+      "at": "res-6",
+      "until": "res+44",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "r_nozzle",
+      "text": "光阻（液體）",
+      "en": "Photoresist",
+      "color": "amber",
+      "at": "res",
+      "until": "film-6"
+     },
+     {
+      "part": "a_sub",
+      "text": "矽基板",
+      "en": "Silicon",
+      "color": "blue",
+      "at": "film+4",
+      "until": "s4:start-8"
+     },
+     {
+      "part": "a_ox",
+      "text": "氧化層",
+      "en": "Oxide",
+      "color": "amber",
+      "at": "film+12",
+      "until": "s4:start-8"
+     },
+     {
+      "part": "a_mt",
+      "text": "金屬層",
+      "en": "Metal",
+      "color": "coral",
+      "at": "film+20",
+      "until": "s4:start-8"
+     },
+     {
+      "part": "a_rs",
+      "text": "光阻",
+      "en": "Resist",
+      "color": "blue",
+      "at": "film+28",
+      "until": "s4:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "res",
+      "until": "s4:start-6",
+      "text": "② 塗光阻",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "示意；光阻（正光阻）照到光的部分在顯影時被洗掉"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s4",
@@ -159,8 +689,159 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 26,
+      "x": 60,
+      "y": 7.6,
+      "d": 50,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_exp",
+      "at": "s1:start-40",
+      "until": "s4:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp",
+      "at": "s5:start-6",
+      "until": "s10:asml-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp",
+      "at": "s10:lam-6",
+      "until": "s10:gd-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp",
+      "at": "s10:sf-6",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_w",
+      "at": "s1:start-40",
+      "until": "lt",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_w",
+      "at": "s5:start-6",
+      "until": "s10:asml-2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_w",
+      "at": "s10:lam-6",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_l",
+      "at": "s1:start-40",
+      "until": "msk",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_l",
+      "at": "s5:start-6",
+      "until": "s10:asml-2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_exp_l",
+      "at": "s10:lam-6",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "e_lampg",
+      "at": "start-4",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "e_rayw",
+      "at": "lt",
+      "until": "s5:start-6",
+      "ramp": 6
+     },
+     {
+      "id": "e_ray",
+      "at": "msk",
+      "until": "s5:start-6",
+      "ramp": 6
+     },
+     {
+      "id": "s_rsx",
+      "at": "prt",
+      "until": "s5:wash",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_retA",
+      "text": "光罩（圖形）",
+      "en": "Photomask",
+      "color": "amber",
+      "at": "msk",
+      "until": "s5:start-6"
+     },
+     {
+      "part": "e_lensA",
+      "text": "鏡頭",
+      "en": "Lens",
+      "color": "blue",
+      "at": "prt-6",
+      "until": "s5:start-6"
+     },
+     {
+      "part": "a_gap",
+      "text": "照到光的地方",
+      "en": "Exposed resist",
+      "color": "coral",
+      "at": "prt+4",
+      "until": "s5:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "lt",
+      "until": "s5:start-6",
+      "text": "③ 曝光",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "TechInsights（ASML 曝光機）；示意"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s5",
@@ -192,8 +873,84 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 22,
+      "x": 60,
+      "y": 3.6,
+      "d": 30,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_dev",
+      "at": "s1:start-40",
+      "until": "s5:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_dev",
+      "at": "s6:start-6",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "rs_gap",
+      "at": "wash",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "v_flow",
+      "at": "dev-4",
+      "until": "wash+36",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "v_A",
+      "text": "顯影藥水",
+      "en": "Developer",
+      "color": "blue",
+      "at": "dev",
+      "until": "show+10"
+     },
+     {
+      "part": "a_mtgap",
+      "text": "露出來的金屬",
+      "en": "Exposed metal",
+      "color": "coral",
+      "at": "show",
+      "until": "s6:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "dev",
+      "until": "s6:start-6",
+      "text": "④ 顯影",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "示意"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s6",
@@ -228,8 +985,152 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 22,
+      "x": 60,
+      "y": 5.0,
+      "d": 36,
+      "elev": 20
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_etch",
+      "at": "s1:start-40",
+      "until": "s6:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch",
+      "at": "s7:start-6",
+      "until": "s10:lam-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch",
+      "at": "s10:gd-6",
+      "until": "s11:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch",
+      "at": "s12:end+400",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch_p",
+      "at": "s1:start-40",
+      "until": "pl-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch_p",
+      "at": "s7:start-6",
+      "until": "s10:lam-4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch_p",
+      "at": "s10:gd-6",
+      "until": "s11:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_etch_p",
+      "at": "s12:end+400",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "mt_gap",
+      "at": "cut",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "t_plg",
+      "at": "pl-6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion0",
+      "at": "pl",
+      "until": "cut+36",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion1",
+      "at": "pl",
+      "until": "cut+36",
+      "ramp": 6
+     },
+     {
+      "id": "t_blk",
+      "at": "pl",
+      "until": "cut+36",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_plA",
+      "text": "電漿（帶電的氣體）",
+      "en": "Plasma",
+      "color": "amber",
+      "at": "pl",
+      "until": "cut-6"
+     },
+     {
+      "part": "t_topA",
+      "text": "上電極",
+      "en": "Top electrode",
+      "color": "blue",
+      "at": "pl+10",
+      "until": "cut-6"
+     },
+     {
+      "part": "a_mtl",
+      "text": "圖形留在金屬上",
+      "en": "Pattern in metal",
+      "color": "coral",
+      "at": "cut+14",
+      "until": "s7:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "bare",
+      "until": "s7:start-6",
+      "text": "⑤ 蝕刻",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "示意；蝕刻機廠商：科林研發法說會"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s7",
@@ -260,8 +1161,91 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 22,
+      "x": 60,
+      "y": 3.6,
+      "d": 30,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_str",
+      "at": "s1:start-40",
+      "until": "s7:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_str",
+      "at": "s8:start-6",
+      "until": "s10:sf-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_str",
+      "at": "s10:kn-10",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "rs_line",
+      "at": "strip+8",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_flow",
+      "at": "strip-4",
+      "until": "strip+40",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_A",
+      "text": "去光阻藥水",
+      "en": "Resist stripper",
+      "color": "coral",
+      "at": "strip",
+      "until": "done"
+     },
+     {
+      "part": "a_mtl",
+      "text": "這一層完成",
+      "en": "Layer done",
+      "color": "blue",
+      "at": "done",
+      "until": "s8:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "use",
+      "until": "s8:start-6",
+      "text": "⑥ 去光阻",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "示意"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s8",
@@ -293,8 +1277,181 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "zoom": [
+     {
+      "to": "equip",
+      "at": "pol-24",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 22,
+      "x": 60,
+      "y": 6.6,
+      "d": 44,
+      "elev": 18
+     },
+     {
+      "at": "pol-18",
+      "dur": 30,
+      "x": 120,
+      "y": 2.2,
+      "d": 28,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_imp",
+      "at": "s1:start-40",
+      "until": "s8:start-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "t_imp",
+      "at": "pol-18",
+      "until": "s12:end+400",
+      "opacity": 0,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "i_srcg",
+      "at": "ion-8",
+      "until": "pol-18",
+      "ramp": 6
+     },
+     {
+      "id": "i_beam",
+      "at": "ion-6",
+      "until": "pol-18",
+      "ramp": 6
+     },
+     {
+      "id": "i_gap0",
+      "at": "ion-2",
+      "until": "pol-18",
+      "ramp": 6
+     },
+     {
+      "id": "i_gap1",
+      "at": "ion-2",
+      "until": "pol-18",
+      "ramp": 6
+     },
+     {
+      "id": "i_line",
+      "at": "ion-2",
+      "until": "pol-18",
+      "ramp": 6
+     },
+     {
+      "id": "s_dpg",
+      "at": "ion+14",
+      "until": "pol-18",
+      "ramp": 8
+     },
+     {
+      "id": "m_padspin",
+      "at": "pol-26",
+      "until": "s9:start-2",
+      "ramp": 12
+     },
+     {
+      "id": "m_headspin",
+      "at": "pol-26",
+      "until": "s9:start-2",
+      "ramp": 12
+     },
+     {
+      "id": "m_sweep",
+      "at": "pol-14",
+      "until": "s9:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "m_slf",
+      "at": "pol-14",
+      "until": "s9:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "i_srcA",
+      "text": "離子源",
+      "en": "Ion source",
+      "color": "amber",
+      "at": "ion",
+      "until": "pol-22"
+     },
+     {
+      "part": "a_dp",
+      "text": "摻進矽裡的區域",
+      "en": "Doped region",
+      "color": "coral",
+      "at": "ion+34",
+      "until": "pol-22"
+     },
+     {
+      "part": "m_padA",
+      "text": "研磨墊",
+      "en": "Polishing pad",
+      "color": "blue",
+      "at": "pol+6",
+      "until": "next-6"
+     },
+     {
+      "part": "m_headA",
+      "text": "研磨頭（夾住晶圓）",
+      "en": "Carrier head",
+      "color": "amber",
+      "at": "pol+16",
+      "until": "next-6"
+     },
+     {
+      "part": "m_slA",
+      "text": "研磨液",
+      "en": "Slurry",
+      "color": "coral",
+      "at": "pol+26",
+      "until": "next-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "ion",
+      "until": "pol-20",
+      "text": "⑦ 離子佈植",
+      "color": "amber",
+      "size": 52,
+      "rot": -4,
+      "x": 230,
+      "y": 330
+     },
+     {
+      "type": "stamp",
+      "at": "pol+8",
+      "until": "s9:start-6",
+      "text": "⑧ 研磨",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 200,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "示意；CMP 每層研磨平整：TRUMPF 科普文"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s9",
@@ -326,8 +1483,205 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "zoom": [
+     {
+      "to": "sect",
+      "at": "start-6",
+      "dur": 36
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 30,
+      "x": 180,
+      "y": 2.8,
+      "d": 30,
+      "elev": 22
+     },
+     {
+      "at": "rep+30",
+      "dur": 60,
+      "x": 180,
+      "y": 3.0,
+      "d": 34,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "k0",
+      "at": "s1:start-40",
+      "until": "one+12",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k1",
+      "at": "s1:start-40",
+      "until": "rep+3",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k2",
+      "at": "s1:start-40",
+      "until": "rep+12",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k3",
+      "at": "s1:start-40",
+      "until": "rep+21",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k4",
+      "at": "s1:start-40",
+      "until": "rep+30",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k5",
+      "at": "s1:start-40",
+      "until": "rep+39",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k6",
+      "at": "s1:start-40",
+      "until": "rep+48",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k7",
+      "at": "s1:start-40",
+      "until": "rep+57",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k8",
+      "at": "s1:start-40",
+      "until": "rep+66",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k9",
+      "at": "s1:start-40",
+      "until": "rep+75",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k10",
+      "at": "s1:start-40",
+      "until": "rep+84",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "k11",
+      "at": "s1:start-40",
+      "until": "rep+93",
+      "dy": 4.5,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_bot",
+      "text": "矽基板",
+      "en": "Substrate",
+      "color": "blue",
+      "at": "one",
+      "until": "s10:start-6"
+     },
+     {
+      "part": "k_top",
+      "text": "最上面一層",
+      "en": "Top layer",
+      "color": "amber",
+      "at": "hund-10",
+      "until": "s10:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "wf-count",
+      "at": "start+2",
+      "until": "s10:start-4",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "疊層",
+      "tag": "示意・產業估計",
+      "t": {
+       "one": {
+        "at": "one"
+       },
+       "rep": {
+        "at": "rep"
+       },
+       "hund": {
+        "at": "hund"
+       }
+      },
+      "n": 12,
+      "stag": 9
+     }
+    ]
+   },
+   "sources": [
+    "產業估計：先進邏輯晶片約 80～120 層光罩（SemiconductorX、semiengineering 引述 KLA-Tencor）"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s10",
@@ -371,8 +1725,205 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "zoom": [
+     {
+      "to": "equip",
+      "at": "start-6",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 24,
+      "x": 60,
+      "y": 7.6,
+      "d": 50,
+      "elev": 14
+     },
+     {
+      "at": "asml-10",
+      "dur": 24,
+      "x": 60,
+      "y": 7.6,
+      "d": 50,
+      "elev": 14
+     },
+     {
+      "at": "lam-12",
+      "dur": 24,
+      "x": 60,
+      "y": 5.0,
+      "d": 36,
+      "elev": 20
+     },
+     {
+      "at": "gd-12",
+      "dur": 24,
+      "x": 66.5,
+      "y": 8.6,
+      "d": 34,
+      "elev": 16
+     },
+     {
+      "at": "sf-12",
+      "dur": 24,
+      "x": 60,
+      "y": 3.6,
+      "d": 32,
+      "elev": 22
+     },
+     {
+      "at": "kn-14",
+      "dur": 28,
+      "x": 120,
+      "y": 2.4,
+      "d": 28,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "e_lampg",
+      "at": "asml-6",
+      "until": "lam-6",
+      "ramp": 6
+     },
+     {
+      "id": "e_ray",
+      "at": "asml",
+      "until": "lam-6",
+      "ramp": 6
+     },
+     {
+      "id": "t_plg",
+      "at": "lam-4",
+      "until": "gd-6",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion0",
+      "at": "lam",
+      "until": "gd-6",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion1",
+      "at": "lam",
+      "until": "gd-6",
+      "ramp": 6
+     },
+     {
+      "id": "t_blk",
+      "at": "lam",
+      "until": "gd-6",
+      "ramp": 6
+     },
+     {
+      "id": "x_flow",
+      "at": "sf-2",
+      "until": "kn-10",
+      "ramp": 6
+     },
+     {
+      "id": "m_padspin",
+      "at": "kn-20",
+      "until": "s11:start-2",
+      "ramp": 12
+     },
+     {
+      "id": "m_headspin",
+      "at": "kn-20",
+      "until": "s11:start-2",
+      "ramp": 12
+     },
+     {
+      "id": "m_sweep",
+      "at": "kn-10",
+      "until": "s11:start-2",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_lensA",
+      "text": "艾司摩爾：曝光機",
+      "en": "ASML: scanner",
+      "color": "amber",
+      "at": "asml",
+      "until": "lam-8"
+     },
+     {
+      "part": "t_elA",
+      "text": "科林研發：蝕刻機",
+      "en": "Lam Research: etcher",
+      "color": "amber",
+      "at": "lam",
+      "until": "gd-8"
+     },
+     {
+      "part": "e_podA",
+      "text": "家登：光罩盒",
+      "en": "Mask pod",
+      "color": "amber",
+      "at": "gd",
+      "until": "sf-8"
+     },
+     {
+      "part": "x_A",
+      "text": "三福化：去光阻藥水",
+      "en": "Resist stripper",
+      "color": "amber",
+      "at": "sf",
+      "until": "kn-10"
+     },
+     {
+      "part": "m_discA",
+      "text": "中砂：修整研磨墊的鑽石碟",
+      "en": "Pad conditioner",
+      "color": "amber",
+      "at": "kn",
+      "until": "s11:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "wf-who",
+      "at": "start+2",
+      "until": "s11:start-4",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰做哪一步",
+      "tag": "查證截至 2026/11/18",
+      "t": {
+       "asml": {
+        "at": "asml"
+       },
+       "lam": {
+        "at": "lam"
+       },
+       "gd": {
+        "at": "gd"
+       },
+       "sf": {
+        "at": "sf"
+       },
+       "kn": {
+        "at": "kn"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "TechInsights WFE Market Share；科林研發法說會；家登：TechNews、Taipei Times（媒體報導）；三福化：statementdog、CNA（媒體報導）；中砂：財經周刊（媒體報導）"
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s11",
@@ -411,8 +1962,105 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
-   "sources": []
+   "props": {
+    "zoom": [
+     {
+      "to": "equip",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 24,
+      "x": 60,
+      "y": 5.0,
+      "d": 36,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "t_plg",
+      "at": "next-4",
+      "until": "s12:end",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion0",
+      "at": "next",
+      "until": "s12:end",
+      "ramp": 6
+     },
+     {
+      "id": "t_ion1",
+      "at": "next",
+      "until": "s12:end",
+      "ramp": 6
+     },
+     {
+      "id": "t_blk",
+      "at": "next",
+      "until": "s12:end",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_elA",
+      "text": "蝕刻機",
+      "en": "Etcher",
+      "color": "amber",
+      "at": "next",
+      "until": "kw-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "wf-next",
+      "at": "start+2",
+      "until": "kw+60",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "下一支",
+      "tag": "示意",
+      "t": {
+       "tricks": {
+        "at": "tricks"
+       },
+       "next": {
+        "at": "next"
+       },
+       "how": {
+        "at": "how"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-6",
+      "text": "完整解說在留言",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "下一支 11/26 蝕刻機"
+   ]
   },
   {
    "id": "s12",
@@ -426,7 +2074,20 @@
    "keywords": [],
    "cues": [],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "endCard": {
+     "next": "蝕刻機",
+     "trail": [
+      "沉積",
+      "曝光",
+      "蝕刻",
+      "研磨"
+     ],
+     "at": "s11:kw-8",
+     "comment": "流程",
+     "logoAnim": "transparent"
+    }
+   },
    "sources": []
   }
  ]
