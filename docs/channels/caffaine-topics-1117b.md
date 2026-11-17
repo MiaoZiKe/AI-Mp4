@@ -67,3 +67,20 @@
 1. Karpathy 四原則的「出自 Karpathy」只有社群整理，片中用語定為「社群整理自 Karpathy 的公開說法」。
 2. 新功能類的官方原文都讀不到；上片前需換有網路權限的環境，核對 OpenAI 發布紀錄與 Google 官方稿。
 3. 星數會變：上片當天重讀倉庫頁，片中寫「截至 11/17」。
+
+## Andy 11/17 複選與查證補強（2026/11/17 台北，各支 `videos/caffaine-<slug>/research.md`）
+
+| 題目 | slug | 狀態 | 重點／修正 |
+|---|---|---|---|
+| G1 Karpathy 四原則 | gh-karpathy | 可做（標註社群整理） | 親數原檔 65 行（44 行有字、2,357 位元組）；星數 233.8k、分叉 23.3k；出處「Karpathy」僅二手，原貼文讀不到；main 分支無 LICENSE 檔（README 寫 MIT） |
+| G8 ui-ux-pro-max | gh-uiux | 可做但要標註 | 150.6k 星、MIT；README 現版 80 種風格／192 配色／74 字體／120 UX 指南（第三方舊數字 67／96 不引用）；效果無獨立實測，只能示意 |
+| G3 Meetily | gh-meetily | 可做但要標註 | 32.8k 星；選雲端摘要逐字稿會送出；PRO 每月 10 美元；中文逐字稿能力查不到；我們不能實測 |
+| G5 anthropics/skills | gh-anthropic-skills | 可做 | 196.3k 星；`skills/` 19 個資料夾；官方說明頁寫 Free 也可用（需開程式碼執行），README 寫付費方案＝衝突，片中不講方案 |
+| G7 find-skills | gh-find-skills | 可做 | 讀到 SKILL.md 原檔（141 行，三道品質檢查）；vercel-labs/skills 39.7k 星；安裝量數字各站不一不引用；安裝指令各源不同，上片前自跑確認 |
+| E3 prompt 寫成規格書 | spec-prompt | 可做但要標註 | AI 郵報貼文數字再搜仍查不到，不引用；研究結論分歧（規格不一定越詳細越好）；用 Gemini 自己做 A/B（不量 FPS）後才定開頭數字 |
+| N2 Gemini Notebook 網站 | gemini-notebook-site | 可做（官方稿未讀） | 11/16，多家媒體一致，網頁版全球、手機即將；是否限付費、台灣、分享保存期限不明；與 N5 勿相鄰排程 |
+| N3 Claude 白板＋試算表 | claude-whiteboard | 可做但要標註 | 官方公告 11/10（白板、試算表、Claude Data）、Meetings 11/12；白板／試算表 beta 付費方案，Meetings 僅 Team／Enterprise 先支援 Google Meet，說法不一；台灣查不到；只能示意 |
+| N4 Higgsfield Miracle | higgsfield-miracle | **建議延後** | 只有候補名單、無價格、無日期、無獨立測試，會變廣告；若要做，改成「候補中新工具怎麼判斷」清單卡 |
+| N5 手機錄音變筆記 | notebooklm-voice | 可做但要標註 | 已由單一來源補到多家媒體（9to5Google 10/27、Digital Trends、Android Authority 等）；9/15 公布、10 月底廣泛推出；1 小時、只留逐字稿說法不一；方案與中文未知 |
+
+建議排程：避免相鄰——G1／G5 同為清單卡、N2／N5 同為 Gemini Notebook；N4 延後不排。
