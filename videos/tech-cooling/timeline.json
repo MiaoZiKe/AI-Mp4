@@ -2,1154 +2,3601 @@
  "version": 2,
  "slug": "tech-cooling",
  "fps": 30,
- "totalFrames": 2064,
- "totalSec": 68.8,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 1666,
+ "totalSec": 55.53,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
+   "audio": "audio/tech-cooling/01-s1.wav",
    "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audioSec": 5.22,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 216,
+   "durationFrames": 176,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 206,
-   "stillFrame": 215,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 156,
+   "stillFrame": 166,
    "subtitleWindow": [
     0,
-    217
+    173
    ],
    "sourceWindow": [
     0,
-    216
+    171
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "一整櫃 AI 伺服器",
      "start": 0,
      "chars": [
       0,
-      5,
-      11,
-      11,
-      18,
-      25,
-      25,
-      31,
-      38,
-      45
+      3,
+      8,
+      8,
+      14,
+      16,
+      16,
+      19,
+      23,
+      27
      ]
     },
     {
      "text": "要吃一百二十千瓦的電",
-     "start": 49,
+     "start": 36,
      "chars": [
+      38,
+      43,
       51,
+      54,
       58,
-      64,
-      71,
-      78,
-      84,
-      91,
-      98,
-      104,
-      111
+      62,
+      65,
+      69,
+      73,
+      75
      ]
     },
     {
      "text": "電最後都變成熱",
-     "start": 116,
+     "start": 92,
      "chars": [
-      118,
-      124,
-      131,
-      138,
-      144,
-      151,
-      157
+      95,
+      101,
+      104,
+      107,
+      110,
+      113,
+      117
      ]
     },
     {
      "text": "風扇吹得走嗎？",
-     "start": 162,
+     "start": 128,
      "chars": [
-      164,
-      171,
-      177,
-      184,
-      191,
-      197,
-      197
+      131,
+      135,
+      140,
+      144,
+      147,
+      150,
+      150
      ]
     }
    ],
    "keywords": [
     {
      "text": "一百二十千瓦",
-     "start": 64
+     "start": 51
     },
     {
      "text": "變成熱",
-     "start": 144
+     "start": 110
     },
     {
      "text": "風扇",
-     "start": 164
+     "start": 131
     }
    ],
    "cues": [
     {
      "id": "rack",
      "text": "一整櫃",
-     "frame": 0
+     "frame": 1,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "一百二十千瓦",
-     "frame": 66
+     "frame": 52,
+     "early": 0
     },
     {
      "id": "heat",
      "text": "變成熱",
-     "frame": 146
+     "frame": 111,
+     "early": 0
     },
     {
      "id": "fan",
      "text": "風扇",
-     "frame": 166
+     "frame": 132,
+     "early": 0
     }
    ],
+   "hash": "fda429ef5a16-5db65ea7f1",
    "sub": "一整櫃 AI 伺服器\n要吃一百二十千瓦的電\n電最後都變成熱\n風扇吹得走嗎？",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.656,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.32,
+      "start": 1.32,
+      "ch": "要",
+      "errMs": 0
+     },
+     {
+      "onset": 3.22,
+      "start": 3.2,
+      "ch": "電",
+      "errMs": -20
+     },
+     {
+      "onset": 4.42,
+      "start": 4.4,
+      "ch": "風",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.027
+    },
+    {
+     "text": "整",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.821
+    },
+    {
+     "text": "櫃",
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.993
+    },
+    {
+     "text": "A",
+     "start": 0.5,
+     "end": 0.54,
+     "score": 0.058
+    },
+    {
+     "text": "I",
+     "start": 0.6,
+     "end": 0.66,
+     "score": 0.277
+    },
+    {
+     "text": "伺",
+     "start": 0.7,
+     "end": 0.78,
+     "score": 0.212
+    },
+    {
+     "text": "服",
+     "start": 0.82,
+     "end": 0.88,
+     "score": 0.927
+    },
+    {
+     "text": "器",
+     "start": 0.94,
+     "end": 1.06,
+     "score": 0.966
+    },
+    {
+     "text": "要",
+     "start": 1.32,
+     "end": 1.46,
+     "score": 0.997
+    },
+    {
+     "text": "吃",
+     "start": 1.48,
+     "end": 1.6,
+     "score": 0.827
+    },
+    {
+     "text": "一",
+     "start": 1.74,
+     "end": 1.8,
+     "score": 0.001
+    },
+    {
+     "text": "百",
+     "start": 1.86,
+     "end": 1.96,
+     "score": 0
+    },
+    {
+     "text": "二",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0
+    },
+    {
+     "text": "十",
+     "start": 2.12,
+     "end": 2.18,
+     "score": 0.001
+    },
+    {
+     "text": "千",
+     "start": 2.2,
+     "end": 2.32,
+     "score": 0.156
+    },
+    {
+     "text": "瓦",
+     "start": 2.36,
+     "end": 2.42,
+     "score": 0.555
+    },
+    {
+     "text": "的",
+     "start": 2.48,
+     "end": 2.54,
+     "score": 0.996
+    },
+    {
+     "text": "電",
+     "start": 2.56,
+     "end": 2.72,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 3.2,
+     "end": 3.34,
+     "score": 0.994
+    },
+    {
+     "text": "最",
+     "start": 3.4,
+     "end": 3.5,
+     "score": 0.999
+    },
+    {
+     "text": "後",
+     "start": 3.52,
+     "end": 3.58,
+     "score": 0.998
+    },
+    {
+     "text": "都",
+     "start": 3.6,
+     "end": 3.68,
+     "score": 0.544
+    },
+    {
+     "text": "變",
+     "start": 3.7,
+     "end": 3.78,
+     "score": 0.748
+    },
+    {
+     "text": "成",
+     "start": 3.82,
+     "end": 3.94,
+     "score": 0.952
+    },
+    {
+     "text": "熱",
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.919
+    },
+    {
+     "text": "風",
+     "start": 4.4,
+     "end": 4.54,
+     "score": 0.98
+    },
+    {
+     "text": "扇",
+     "start": 4.56,
+     "end": 4.7,
+     "score": 0.882
+    },
+    {
+     "text": "吹",
+     "start": 4.72,
+     "end": 4.84,
+     "score": 0.782
+    },
+    {
+     "text": "得",
+     "start": 4.84,
+     "end": 4.9,
+     "score": 0.989
+    },
+    {
+     "text": "走",
+     "start": 4.94,
+     "end": 5.02,
+     "score": 0.944
+    },
+    {
+     "text": "嗎",
+     "start": 5.04,
+     "end": 5.1,
+     "score": 0.784
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.14,
+    0.3,
+    0.5,
+    0.6,
+    0.7,
+    0.82,
+    0.94,
+    1.32,
+    1.48,
+    1.74,
+    1.86,
+    1.98,
+    2.12,
+    2.2,
+    2.36,
+    2.48,
+    2.56,
+    3.2,
+    3.4,
+    3.52,
+    3.6,
+    3.7,
+    3.82,
+    3.96,
+    4.4,
+    4.56,
+    4.72,
+    4.84,
+    4.94,
+    5.04
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 220,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 216,
-   "durationFrames": 228,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 220,
-   "voiceEndFrame": 434,
-   "stillFrame": 443,
+   "audio": "audio/tech-cooling/02-s2.wav",
+   "audioFrame": 175,
+   "audioSec": 5.93,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 166,
+   "durationFrames": 207,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 176,
+   "voiceEndFrame": 352,
+   "stillFrame": 363,
    "subtitleWindow": [
-    217,
-    445
+    173,
+    370
    ],
    "sourceWindow": [
-    216,
-    444
+    171,
+    368
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "吹不走",
-     "start": 217,
+     "start": 173,
      "chars": [
-      218,
-      224,
-      231
+      175,
+      180,
+      182
      ]
     },
     {
      "text": "同樣體積",
-     "start": 235,
+     "start": 196,
      "chars": [
-      237,
-      244,
-      250,
-      257
+      198,
+      202,
+      207,
+      211
      ]
     },
     {
      "text": "水能帶走的熱",
-     "start": 261,
+     "start": 222,
      "chars": [
-      263,
-      270,
-      276,
-      283,
-      289,
-      296
+      224,
+      229,
+      234,
+      238,
+      241,
+      244
      ]
     },
     {
      "text": "大約是空氣的",
-     "start": 300,
+     "start": 252,
      "chars": [
-      302,
-      309,
-      315,
-      322,
-      328,
-      335
+      255,
+      259,
+      263,
+      267,
+      272,
+      276
      ]
     },
     {
      "text": "三千四百多倍",
-     "start": 339,
+     "start": 278,
      "chars": [
-      341,
-      348,
-      354,
-      361,
-      367,
-      374
+      280,
+      284,
+      290,
+      294,
+      297,
+      301
      ]
     },
     {
      "text": "所以改讓水來搬熱",
-     "start": 378,
+     "start": 315,
      "chars": [
-      380,
-      387,
-      393,
-      400,
-      406,
-      413,
-      419,
-      426
+      317,
+      320,
+      324,
+      328,
+      333,
+      338,
+      342,
+      346
      ]
     }
    ],
    "keywords": [
     {
      "text": "吹不走",
-     "start": 218
+     "start": 175
     },
     {
      "text": "三千四百多倍",
-     "start": 341
+     "start": 280
     },
     {
      "text": "讓水來搬熱",
-     "start": 400
+     "start": 328
     }
    ],
    "cues": [
     {
      "id": "no",
      "text": "吹不走",
-     "frame": 220
+     "frame": 176,
+     "early": 0
     },
     {
      "id": "same",
      "text": "同樣體積",
-     "frame": 239
+     "frame": 200,
+     "early": 0
     },
     {
      "id": "times",
      "text": "三千四百多倍",
-     "frame": 343
+     "frame": 281,
+     "early": 0
     },
     {
      "id": "water",
      "text": "讓水來搬熱",
-     "frame": 402
+     "frame": 329,
+     "early": 0
     }
    ],
+   "hash": "e025e14eceb4-5db65ea7f1",
    "sub": "吹不走\n同樣體積\n水能帶走的熱\n大約是空氣的三千四百多倍\n所以改讓水來搬熱",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.83,
+    "minScore": 0.004,
+    "onsetMedianMs": 35,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 0.83,
+      "start": 0.82,
+      "ch": "同",
+      "errMs": -10
+     },
+     {
+      "onset": 1.62,
+      "start": 1.68,
+      "ch": "水",
+      "errMs": 60
+     },
+     {
+      "onset": 2.73,
+      "start": 2.7,
+      "ch": "大",
+      "errMs": -30
+     },
+     {
+      "onset": 4.74,
+      "start": 4.78,
+      "ch": "所",
+      "errMs": 40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "吹",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.761
+    },
+    {
+     "text": "不",
+     "start": 0.2,
+     "end": 0.24,
+     "score": 0.994
+    },
+    {
+     "text": "走",
+     "start": 0.28,
+     "end": 0.4,
+     "score": 0.984
+    },
+    {
+     "text": "同",
+     "start": 0.82,
+     "end": 0.94,
+     "score": 0.999
+    },
+    {
+     "text": "樣",
+     "start": 0.96,
+     "end": 1.08,
+     "score": 0.999
+    },
+    {
+     "text": "體",
+     "start": 1.1,
+     "end": 1.18,
+     "score": 0.995
+    },
+    {
+     "text": "積",
+     "start": 1.24,
+     "end": 1.32,
+     "score": 0.997
+    },
+    {
+     "text": "水",
+     "start": 1.68,
+     "end": 1.8,
+     "score": 0.993
+    },
+    {
+     "text": "能",
+     "start": 1.84,
+     "end": 1.98,
+     "score": 0.916
+    },
+    {
+     "text": "帶",
+     "start": 2,
+     "end": 2.12,
+     "score": 0.668
+    },
+    {
+     "text": "走",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.766
+    },
+    {
+     "text": "的",
+     "start": 2.24,
+     "end": 2.3,
+     "score": 0.997
+    },
+    {
+     "text": "熱",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.993
+    },
+    {
+     "text": "大",
+     "start": 2.7,
+     "end": 2.78,
+     "score": 0.691
+    },
+    {
+     "text": "約",
+     "start": 2.84,
+     "end": 2.92,
+     "score": 0.923
+    },
+    {
+     "text": "是",
+     "start": 2.98,
+     "end": 3.04,
+     "score": 0.998
+    },
+    {
+     "text": "空",
+     "start": 3.12,
+     "end": 3.26,
+     "score": 0.972
+    },
+    {
+     "text": "氣",
+     "start": 3.28,
+     "end": 3.36,
+     "score": 0.993
+    },
+    {
+     "text": "的",
+     "start": 3.4,
+     "end": 3.46,
+     "score": 0.998
+    },
+    {
+     "text": "三",
+     "start": 3.54,
+     "end": 3.66,
+     "score": 0.004
+    },
+    {
+     "text": "千",
+     "start": 3.68,
+     "end": 3.82,
+     "score": 0.035
+    },
+    {
+     "text": "四",
+     "start": 3.88,
+     "end": 3.96,
+     "score": 0.029
+    },
+    {
+     "text": "百",
+     "start": 4,
+     "end": 4.08,
+     "score": 0.089
+    },
+    {
+     "text": "多",
+     "start": 4.12,
+     "end": 4.18,
+     "score": 0.977
+    },
+    {
+     "text": "倍",
+     "start": 4.24,
+     "end": 4.36,
+     "score": 0.997
+    },
+    {
+     "text": "所",
+     "start": 4.78,
+     "end": 4.86,
+     "score": 0.996
+    },
+    {
+     "text": "以",
+     "start": 4.88,
+     "end": 4.94,
+     "score": 0.8
+    },
+    {
+     "text": "改",
+     "start": 5,
+     "end": 5.1,
+     "score": 0.986
+    },
+    {
+     "text": "讓",
+     "start": 5.14,
+     "end": 5.28,
+     "score": 0.966
+    },
+    {
+     "text": "水",
+     "start": 5.32,
+     "end": 5.44,
+     "score": 0.896
+    },
+    {
+     "text": "來",
+     "start": 5.48,
+     "end": 5.58,
+     "score": 0.998
+    },
+    {
+     "text": "搬",
+     "start": 5.6,
+     "end": 5.7,
+     "score": 0.996
+    },
+    {
+     "text": "熱",
+     "start": 5.76,
+     "end": 5.84,
+     "score": 0.996
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.28,
+    0.82,
+    0.96,
+    1.1,
+    1.24,
+    1.68,
+    1.84,
+    2,
+    2.14,
+    2.24,
+    2.34,
+    2.7,
+    2.84,
+    2.98,
+    3.12,
+    3.28,
+    3.4,
+    3.54,
+    3.68,
+    3.88,
+    4,
+    4.12,
+    4.24,
+    4.78,
+    4.88,
+    5,
+    5.14,
+    5.32,
+    5.48,
+    5.6,
+    5.76
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 448,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 444,
-   "durationFrames": 174,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 448,
-   "voiceEndFrame": 608,
-   "stillFrame": 617,
+   "audio": "audio/tech-cooling/03-s3.wav",
+   "audioFrame": 372,
+   "audioSec": 3.65,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 363,
+   "durationFrames": 138,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 373,
+   "voiceEndFrame": 481,
+   "stillFrame": 491,
    "subtitleWindow": [
-    445,
-    619
+    370,
+    498
    ],
    "sourceWindow": [
-    444,
-    618
+    368,
+    496
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "晶片上面",
-     "start": 445,
+     "start": 370,
      "chars": [
-      446,
-      453,
-      459,
-      466
+      372,
+      375,
+      380,
+      383
      ]
     },
     {
      "text": "不再裝一片片的散熱片",
-     "start": 471,
+     "start": 387,
      "chars": [
-      473,
-      479,
-      486,
-      493,
-      499,
-      506,
-      513,
-      519,
-      526,
-      533
+      389,
+      393,
+      396,
+      402,
+      405,
+      409,
+      412,
+      416,
+      420,
+      423
      ]
     },
     {
      "text": "改貼一塊金屬做的冷板",
-     "start": 537,
+     "start": 434,
      "chars": [
-      539,
-      546,
-      553,
-      559,
-      566,
-      573,
-      579,
-      586,
-      593,
-      599
+      436,
+      441,
+      445,
+      448,
+      454,
+      459,
+      463,
+      467,
+      470,
+      475
      ]
     }
    ],
    "keywords": [
     {
      "text": "散熱片",
-     "start": 519
+     "start": 416
     },
     {
      "text": "冷板",
-     "start": 593
+     "start": 470
     }
    ],
    "cues": [
     {
      "id": "chip",
      "text": "晶片上面",
-     "frame": 448
+     "frame": 373,
+     "early": 0
     },
     {
      "id": "fin",
      "text": "散熱片",
-     "frame": 521
+     "frame": 417,
+     "early": 0
     },
     {
      "id": "plate",
      "text": "冷板",
-     "frame": 595
+     "frame": 472,
+     "early": 0
     }
    ],
+   "hash": "fa3098ede7f5-5db65ea7f1",
    "sub": "晶片上面\n不再裝一片片的散熱片\n改貼一塊金屬做的冷板",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.857,
+    "minScore": 0.004,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.2,
+      "start": 2.18,
+      "ch": "改",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.854
+    },
+    {
+     "text": "片",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.985
+    },
+    {
+     "text": "上",
+     "start": 0.3,
+     "end": 0.42,
+     "score": 0.949
+    },
+    {
+     "text": "面",
+     "start": 0.42,
+     "end": 0.56,
+     "score": 0.986
+    },
+    {
+     "text": "不",
+     "start": 0.62,
+     "end": 0.68,
+     "score": 0.999
+    },
+    {
+     "text": "再",
+     "start": 0.74,
+     "end": 0.84,
+     "score": 0.999
+    },
+    {
+     "text": "裝",
+     "start": 0.86,
+     "end": 1.02,
+     "score": 0.963
+    },
+    {
+     "text": "一",
+     "start": 1.04,
+     "end": 1.08,
+     "score": 0.139
+    },
+    {
+     "text": "片",
+     "start": 1.14,
+     "end": 1.26,
+     "score": 0.982
+    },
+    {
+     "text": "片",
+     "start": 1.28,
+     "end": 1.38,
+     "score": 0.97
+    },
+    {
+     "text": "的",
+     "start": 1.4,
+     "end": 1.46,
+     "score": 0.998
+    },
+    {
+     "text": "散",
+     "start": 1.5,
+     "end": 1.6,
+     "score": 0.004
+    },
+    {
+     "text": "熱",
+     "start": 1.64,
+     "end": 1.7,
+     "score": 0.99
+    },
+    {
+     "text": "片",
+     "start": 1.76,
+     "end": 1.92,
+     "score": 0.998
+    },
+    {
+     "text": "改",
+     "start": 2.18,
+     "end": 2.3,
+     "score": 0.997
+    },
+    {
+     "text": "貼",
+     "start": 2.34,
+     "end": 2.44,
+     "score": 0.983
+    },
+    {
+     "text": "一",
+     "start": 2.48,
+     "end": 2.54,
+     "score": 0.203
+    },
+    {
+     "text": "塊",
+     "start": 2.58,
+     "end": 2.74,
+     "score": 0.993
+    },
+    {
+     "text": "金",
+     "start": 2.78,
+     "end": 2.9,
+     "score": 0.896
+    },
+    {
+     "text": "屬",
+     "start": 2.96,
+     "end": 3.02,
+     "score": 0.976
+    },
+    {
+     "text": "做",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.958
+    },
+    {
+     "text": "的",
+     "start": 3.2,
+     "end": 3.26,
+     "score": 0.995
+    },
+    {
+     "text": "冷",
+     "start": 3.32,
+     "end": 3.44,
+     "score": 0.757
+    },
+    {
+     "text": "板",
+     "start": 3.48,
+     "end": 3.62,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.3,
+    0.42,
+    0.62,
+    0.74,
+    0.86,
+    1.04,
+    1.14,
+    1.28,
+    1.4,
+    1.5,
+    1.64,
+    1.76,
+    2.18,
+    2.34,
+    2.48,
+    2.58,
+    2.78,
+    2.96,
+    3.08,
+    3.2,
+    3.32,
+    3.48
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 622,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 618,
-   "durationFrames": 204,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 622,
-   "voiceEndFrame": 812,
-   "stillFrame": 821,
+   "audio": "audio/tech-cooling/04-s4.wav",
+   "audioFrame": 500,
+   "audioSec": 4.66,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 491,
+   "durationFrames": 168,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 501,
+   "voiceEndFrame": 639,
+   "stillFrame": 649,
    "subtitleWindow": [
-    619,
-    823
+    498,
+    656
    ],
    "sourceWindow": [
-    618,
-    822
+    496,
+    654
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "冷板裡面有很細的水道",
-     "start": 619,
+     "start": 498,
      "chars": [
-      620,
-      627,
-      633,
-      640,
-      646,
-      653,
-      659,
-      666,
-      672,
-      679
+      500,
+      503,
+      507,
+      510,
+      515,
+      519,
+      525,
+      529,
+      531,
+      535
      ]
     },
     {
      "text": "冷水從一端進去",
-     "start": 684,
+     "start": 548,
      "chars": [
-      686,
-      692,
-      699,
-      705,
-      712,
-      718,
-      725
+      550,
+      554,
+      559,
+      564,
+      566,
+      571,
+      575
      ]
     },
     {
      "text": "吸飽了熱",
-     "start": 729,
+     "start": 585,
      "chars": [
-      731,
-      738,
-      744,
-      751
+      587,
+      591,
+      595,
+      598
      ]
     },
     {
      "text": "再從另一端流出來",
-     "start": 756,
+     "start": 605,
      "chars": [
-      758,
-      764,
-      771,
-      777,
-      784,
-      790,
-      797,
-      803
+      607,
+      611,
+      616,
+      619,
+      622,
+      626,
+      630,
+      634
      ]
     }
    ],
    "keywords": [
     {
      "text": "很細的水道",
-     "start": 653
+     "start": 519
     },
     {
      "text": "吸飽了熱",
-     "start": 731
+     "start": 587
     },
     {
      "text": "流出來",
-     "start": 790
+     "start": 626
     }
    ],
    "cues": [
     {
      "id": "chan",
      "text": "很細的水道",
-     "frame": 655
+     "frame": 521,
+     "early": 0
     },
     {
      "id": "inn",
      "text": "進去",
-     "frame": 720
+     "frame": 572,
+     "early": 0
     },
     {
      "id": "hot",
      "text": "吸飽了熱",
-     "frame": 733
+     "frame": 589,
+     "early": 0
     },
     {
      "id": "out",
      "text": "流出來",
-     "frame": 792
+     "frame": 627,
+     "early": 0
     }
    ],
+   "hash": "b7527dc4a5f1-5db65ea7f1",
    "sub": "冷板裡面有很細的水道\n冷水從一端進去\n吸飽了熱\n再從另一端流出來",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.886,
+    "minScore": 0.068,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.74,
+      "start": 1.72,
+      "ch": "冷",
+      "errMs": -20
+     },
+     {
+      "onset": 2.93,
+      "start": 2.96,
+      "ch": "吸",
+      "errMs": 30
+     },
+     {
+      "onset": 3.64,
+      "start": 3.62,
+      "ch": "再",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "冷",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.532
+    },
+    {
+     "text": "板",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.802
+    },
+    {
+     "text": "裡",
+     "start": 0.28,
+     "end": 0.34,
+     "score": 0.9
+    },
+    {
+     "text": "面",
+     "start": 0.38,
+     "end": 0.52,
+     "score": 0.998
+    },
+    {
+     "text": "有",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 0.999
+    },
+    {
+     "text": "很",
+     "start": 0.7,
+     "end": 0.8,
+     "score": 0.999
+    },
+    {
+     "text": "細",
+     "start": 0.88,
+     "end": 0.96,
+     "score": 0.947
+    },
+    {
+     "text": "的",
+     "start": 1,
+     "end": 1.04,
+     "score": 0.998
+    },
+    {
+     "text": "水",
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "道",
+     "start": 1.22,
+     "end": 1.36,
+     "score": 0.998
+    },
+    {
+     "text": "冷",
+     "start": 1.72,
+     "end": 1.84,
+     "score": 0.719
+    },
+    {
+     "text": "水",
+     "start": 1.86,
+     "end": 1.98,
+     "score": 0.957
+    },
+    {
+     "text": "從",
+     "start": 2.02,
+     "end": 2.16,
+     "score": 0.983
+    },
+    {
+     "text": "一",
+     "start": 2.18,
+     "end": 2.22,
+     "score": 0.068
+    },
+    {
+     "text": "端",
+     "start": 2.26,
+     "end": 2.36,
+     "score": 0.952
+    },
+    {
+     "text": "進",
+     "start": 2.4,
+     "end": 2.5,
+     "score": 1
+    },
+    {
+     "text": "去",
+     "start": 2.54,
+     "end": 2.66,
+     "score": 1
+    },
+    {
+     "text": "吸",
+     "start": 2.96,
+     "end": 3.04,
+     "score": 0.999
+    },
+    {
+     "text": "飽",
+     "start": 3.08,
+     "end": 3.18,
+     "score": 0.98
+    },
+    {
+     "text": "了",
+     "start": 3.2,
+     "end": 3.24,
+     "score": 0.893
+    },
+    {
+     "text": "熱",
+     "start": 3.3,
+     "end": 3.38,
+     "score": 0.991
+    },
+    {
+     "text": "再",
+     "start": 3.62,
+     "end": 3.74,
+     "score": 0.992
+    },
+    {
+     "text": "從",
+     "start": 3.76,
+     "end": 3.88,
+     "score": 0.949
+    },
+    {
+     "text": "另",
+     "start": 3.9,
+     "end": 4,
+     "score": 0.897
+    },
+    {
+     "text": "一",
+     "start": 4.02,
+     "end": 4.06,
+     "score": 0.295
+    },
+    {
+     "text": "端",
+     "start": 4.1,
+     "end": 4.2,
+     "score": 0.996
+    },
+    {
+     "text": "流",
+     "start": 4.24,
+     "end": 4.36,
+     "score": 0.997
+    },
+    {
+     "text": "出",
+     "start": 4.38,
+     "end": 4.46,
+     "score": 0.859
+    },
+    {
+     "text": "來",
+     "start": 4.5,
+     "end": 4.62,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.28,
+    0.38,
+    0.56,
+    0.7,
+    0.88,
+    1,
+    1.08,
+    1.22,
+    1.72,
+    1.86,
+    2.02,
+    2.18,
+    2.26,
+    2.4,
+    2.54,
+    2.96,
+    3.08,
+    3.2,
+    3.3,
+    3.62,
+    3.76,
+    3.9,
+    4.02,
+    4.1,
+    4.24,
+    4.38,
+    4.5
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 826,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 822,
-   "durationFrames": 246,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 826,
-   "voiceEndFrame": 1058,
-   "stillFrame": 1067,
+   "audio": "audio/tech-cooling/05-s5.wav",
+   "audioFrame": 658,
+   "audioSec": 6.04,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 649,
+   "durationFrames": 210,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 659,
+   "voiceEndFrame": 838,
+   "stillFrame": 849,
    "subtitleWindow": [
-    823,
-    1069
+    656,
+    856
    ],
    "sourceWindow": [
-    822,
-    1068
+    654,
+    854
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "熱水去哪？",
-     "start": 823,
+     "start": 656,
      "chars": [
-      824,
-      830,
-      837,
-      843,
-      843
+      658,
+      662,
+      666,
+      669,
+      669
      ]
     },
     {
      "text": "每台伺服器的水管",
-     "start": 848,
+     "start": 683,
      "chars": [
-      850,
-      856,
-      863,
-      869,
-      876,
-      882,
-      888,
-      895
+      685,
+      689,
+      693,
+      697,
+      699,
+      703,
+      705,
+      709
      ]
     },
     {
      "text": "先接到機櫃背後的總水管",
-     "start": 899,
+     "start": 718,
      "chars": [
-      901,
-      908,
-      914,
-      921,
-      927,
-      934,
-      940,
-      946,
-      953,
-      959,
-      966
+      720,
+      725,
+      728,
+      733,
+      736,
+      741,
+      745,
+      748,
+      751,
+      756,
+      760
      ]
     },
     {
      "text": "插拔用快接頭",
-     "start": 970,
+     "start": 776,
      "chars": [
-      972,
-      979,
-      985,
-      992,
-      998,
-      1004
+      778,
+      783,
+      786,
+      790,
+      795,
+      799
      ]
     },
     {
      "text": "拔掉也不會漏水",
-     "start": 1009,
+     "start": 809,
      "chars": [
-      1011,
-      1017,
-      1024,
-      1030,
-      1037,
-      1043,
-      1050
+      811,
+      816,
+      820,
+      823,
+      825,
+      828,
+      832
      ]
     }
    ],
    "keywords": [
     {
      "text": "總水管",
-     "start": 953
+     "start": 751
     },
     {
      "text": "快接頭",
-     "start": 992
+     "start": 790
     },
     {
      "text": "不會漏水",
-     "start": 1030
+     "start": 823
     }
    ],
    "cues": [
     {
      "id": "where",
      "text": "熱水去哪",
-     "frame": 826
+     "frame": 659,
+     "early": 0
     },
     {
      "id": "pipe",
      "text": "水管",
-     "frame": 890
+     "frame": 707,
+     "early": 0
     },
     {
      "id": "mani",
      "text": "總水管",
-     "frame": 955
+     "frame": 753,
+     "early": 0
     },
     {
      "id": "qd",
      "text": "快接頭",
-     "frame": 994
+     "frame": 792,
+     "early": 0
     },
     {
      "id": "pull",
      "text": "拔掉",
-     "frame": 1013
+     "frame": 813,
+     "early": 0
     },
     {
      "id": "dry",
      "text": "不會漏水",
-     "frame": 1032
+     "frame": 824,
+     "early": 0
     }
    ],
+   "hash": "34399ac59dfb-5db65ea7f1",
    "sub": "熱水去哪？\n每台伺服器的水管\n先接到機櫃背後的總水管\n插拔用快接頭\n拔掉也不會漏水",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.966,
+    "minScore": 0.457,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.96,
+      "start": 0.94,
+      "ch": "每",
+      "errMs": -20
+     },
+     {
+      "onset": 2.11,
+      "start": 2.12,
+      "ch": "先",
+      "errMs": 10
+     },
+     {
+      "onset": 4.05,
+      "start": 4.04,
+      "ch": "插",
+      "errMs": -10
+     },
+     {
+      "onset": 5.19,
+      "start": 5.16,
+      "ch": "拔",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "熱",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.997
+    },
+    {
+     "text": "水",
+     "start": 0.18,
+     "end": 0.28,
+     "score": 0.999
+    },
+    {
+     "text": "去",
+     "start": 0.3,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "哪",
+     "start": 0.42,
+     "end": 0.48,
+     "score": 0.924
+    },
+    {
+     "text": "每",
+     "start": 0.94,
+     "end": 1.04,
+     "score": 0.986
+    },
+    {
+     "text": "台",
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.998
+    },
+    {
+     "text": "伺",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.457
+    },
+    {
+     "text": "服",
+     "start": 1.34,
+     "end": 1.38,
+     "score": 0.994
+    },
+    {
+     "text": "器",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.993
+    },
+    {
+     "text": "的",
+     "start": 1.54,
+     "end": 1.58,
+     "score": 0.999
+    },
+    {
+     "text": "水",
+     "start": 1.62,
+     "end": 1.74,
+     "score": 0.931
+    },
+    {
+     "text": "管",
+     "start": 1.76,
+     "end": 1.9,
+     "score": 1
+    },
+    {
+     "text": "先",
+     "start": 2.12,
+     "end": 2.24,
+     "score": 0.978
+    },
+    {
+     "text": "接",
+     "start": 2.28,
+     "end": 2.36,
+     "score": 0.951
+    },
+    {
+     "text": "到",
+     "start": 2.38,
+     "end": 2.5,
+     "score": 0.996
+    },
+    {
+     "text": "機",
+     "start": 2.54,
+     "end": 2.6,
+     "score": 0.999
+    },
+    {
+     "text": "櫃",
+     "start": 2.66,
+     "end": 2.76,
+     "score": 0.999
+    },
+    {
+     "text": "背",
+     "start": 2.8,
+     "end": 2.9,
+     "score": 0.999
+    },
+    {
+     "text": "後",
+     "start": 2.94,
+     "end": 3.02,
+     "score": 1
+    },
+    {
+     "text": "的",
+     "start": 3.04,
+     "end": 3.1,
+     "score": 0.999
+    },
+    {
+     "text": "總",
+     "start": 3.16,
+     "end": 3.3,
+     "score": 0.965
+    },
+    {
+     "text": "水",
+     "start": 3.32,
+     "end": 3.42,
+     "score": 0.994
+    },
+    {
+     "text": "管",
+     "start": 3.46,
+     "end": 3.6,
+     "score": 1
+    },
+    {
+     "text": "插",
+     "start": 4.04,
+     "end": 4.12,
+     "score": 0.677
+    },
+    {
+     "text": "拔",
+     "start": 4.2,
+     "end": 4.26,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 4.32,
+     "end": 4.44,
+     "score": 0.995
+    },
+    {
+     "text": "快",
+     "start": 4.46,
+     "end": 4.58,
+     "score": 0.995
+    },
+    {
+     "text": "接",
+     "start": 4.62,
+     "end": 4.7,
+     "score": 0.996
+    },
+    {
+     "text": "頭",
+     "start": 4.76,
+     "end": 4.9,
+     "score": 0.998
+    },
+    {
+     "text": "拔",
+     "start": 5.16,
+     "end": 5.22,
+     "score": 0.999
+    },
+    {
+     "text": "掉",
+     "start": 5.3,
+     "end": 5.42,
+     "score": 0.997
+    },
+    {
+     "text": "也",
+     "start": 5.44,
+     "end": 5.5,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 5.54,
+     "end": 5.58,
+     "score": 0.999
+    },
+    {
+     "text": "會",
+     "start": 5.62,
+     "end": 5.7,
+     "score": 0.999
+    },
+    {
+     "text": "漏",
+     "start": 5.72,
+     "end": 5.82,
+     "score": 0.995
+    },
+    {
+     "text": "水",
+     "start": 5.86,
+     "end": 5.98,
+     "score": 0.97
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.3,
+    0.42,
+    0.94,
+    1.08,
+    1.22,
+    1.34,
+    1.42,
+    1.54,
+    1.62,
+    1.76,
+    2.12,
+    2.28,
+    2.38,
+    2.54,
+    2.66,
+    2.8,
+    2.94,
+    3.04,
+    3.16,
+    3.32,
+    3.46,
+    4.04,
+    4.2,
+    4.32,
+    4.46,
+    4.62,
+    4.76,
+    5.16,
+    5.3,
+    5.44,
+    5.54,
+    5.62,
+    5.72,
+    5.86
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 1072,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1068,
-   "durationFrames": 216,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1072,
-   "voiceEndFrame": 1274,
-   "stillFrame": 1283,
+   "audio": "audio/tech-cooling/06-s6.wav",
+   "audioFrame": 858,
+   "audioSec": 5.13,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 849,
+   "durationFrames": 183,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 859,
+   "voiceEndFrame": 1011,
+   "stillFrame": 1022,
    "subtitleWindow": [
-    1069,
-    1285
+    856,
+    1029
    ],
    "sourceWindow": [
-    1068,
-    1284
+    854,
+    1027
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "再送到一台換熱的機器",
-     "start": 1069,
+     "start": 856,
      "chars": [
-      1070,
-      1077,
-      1083,
-      1090,
-      1096,
-      1103,
-      1109,
-      1116,
-      1122,
-      1129
+      860,
+      864,
+      868,
+      872,
+      874,
+      881,
+      885,
+      889,
+      892,
+      896
      ]
     },
     {
      "text": "把熱交給機房的冷卻水",
-     "start": 1133,
+     "start": 907,
      "chars": [
-      1135,
-      1142,
-      1148,
-      1155,
-      1161,
-      1168,
-      1174,
-      1181,
-      1187,
-      1194
+      909,
+      913,
+      918,
+      923,
+      926,
+      930,
+      935,
+      938,
+      942,
+      946
      ]
     },
     {
      "text": "降溫之後送回來",
-     "start": 1198,
+     "start": 959,
      "chars": [
-      1200,
-      1207,
-      1213,
-      1220,
-      1226,
-      1233,
-      1239
+      961,
+      965,
+      968,
+      972,
+      977,
+      980,
+      984
      ]
     },
     {
      "text": "一直循環",
-     "start": 1244,
+     "start": 991,
      "chars": [
-      1246,
-      1252,
-      1259,
-      1265
+      993,
+      997,
+      1001,
+      1005
      ]
     }
    ],
    "keywords": [
     {
      "text": "換熱的機器",
-     "start": 1103
+     "start": 881
     },
     {
      "text": "冷卻水",
-     "start": 1181
+     "start": 938
     },
     {
      "text": "循環",
-     "start": 1259
+     "start": 1001
     }
    ],
    "cues": [
     {
      "id": "cdu",
      "text": "換熱的機器",
-     "frame": 1105
+     "frame": 882,
+     "early": 0
     },
     {
      "id": "give",
      "text": "把熱交給",
-     "frame": 1137
+     "frame": 911,
+     "early": 0
     },
     {
      "id": "cool",
      "text": "降溫",
-     "frame": 1202
+     "frame": 962,
+     "early": 0
     },
     {
      "id": "loop",
      "text": "一直循環",
-     "frame": 1248
+     "frame": 995,
+     "early": 0
     }
    ],
+   "hash": "ca07aed617a5-5db65ea7f1",
    "sub": "再送到一台換熱的機器\n把熱交給機房的冷卻水\n降溫之後送回來\n一直循環",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.894,
+    "minScore": 0.015,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.79,
+      "start": 1.76,
+      "ch": "把",
+      "errMs": -30
+     },
+     {
+      "onset": 3.49,
+      "start": 3.48,
+      "ch": "降",
+      "errMs": -10
+     },
+     {
+      "onset": 4.59,
+      "start": 4.56,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "再",
+     "start": 0.12,
+     "end": 0.22,
+     "score": 0.999
+    },
+    {
+     "text": "送",
+     "start": 0.26,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "到",
+     "start": 0.38,
+     "end": 0.48,
+     "score": 0.988
+    },
+    {
+     "text": "一",
+     "start": 0.5,
+     "end": 0.54,
+     "score": 0.015
+    },
+    {
+     "text": "台",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.983
+    },
+    {
+     "text": "換",
+     "start": 0.8,
+     "end": 0.92,
+     "score": 0.998
+    },
+    {
+     "text": "熱",
+     "start": 0.96,
+     "end": 1.02,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 1.08,
+     "end": 1.14,
+     "score": 0.996
+    },
+    {
+     "text": "機",
+     "start": 1.18,
+     "end": 1.26,
+     "score": 0.993
+    },
+    {
+     "text": "器",
+     "start": 1.32,
+     "end": 1.42,
+     "score": 0.998
+    },
+    {
+     "text": "把",
+     "start": 1.76,
+     "end": 1.84,
+     "score": 0.997
+    },
+    {
+     "text": "熱",
+     "start": 1.9,
+     "end": 1.98,
+     "score": 0.998
+    },
+    {
+     "text": "交",
+     "start": 2.06,
+     "end": 2.18,
+     "score": 0.996
+    },
+    {
+     "text": "給",
+     "start": 2.2,
+     "end": 2.3,
+     "score": 0.918
+    },
+    {
+     "text": "機",
+     "start": 2.32,
+     "end": 2.4,
+     "score": 0.997
+    },
+    {
+     "text": "房",
+     "start": 2.46,
+     "end": 2.58,
+     "score": 0.95
+    },
+    {
+     "text": "的",
+     "start": 2.6,
+     "end": 2.64,
+     "score": 0.998
+    },
+    {
+     "text": "冷",
+     "start": 2.7,
+     "end": 2.82,
+     "score": 0.711
+    },
+    {
+     "text": "卻",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.997
+    },
+    {
+     "text": "水",
+     "start": 2.98,
+     "end": 3.12,
+     "score": 0.909
+    },
+    {
+     "text": "降",
+     "start": 3.48,
+     "end": 3.62,
+     "score": 0.848
+    },
+    {
+     "text": "溫",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.718
+    },
+    {
+     "text": "之",
+     "start": 3.72,
+     "end": 3.8,
+     "score": 0.996
+    },
+    {
+     "text": "後",
+     "start": 3.84,
+     "end": 3.96,
+     "score": 1
+    },
+    {
+     "text": "送",
+     "start": 4,
+     "end": 4.12,
+     "score": 0.951
+    },
+    {
+     "text": "回",
+     "start": 4.12,
+     "end": 4.22,
+     "score": 0.999
+    },
+    {
+     "text": "來",
+     "start": 4.24,
+     "end": 4.38,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 4.56,
+     "end": 4.62,
+     "score": 0.152
+    },
+    {
+     "text": "直",
+     "start": 4.68,
+     "end": 4.76,
+     "score": 0.662
+    },
+    {
+     "text": "循",
+     "start": 4.8,
+     "end": 4.92,
+     "score": 0.94
+    },
+    {
+     "text": "環",
+     "start": 4.96,
+     "end": 5.08,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.12,
+    0.26,
+    0.38,
+    0.5,
+    0.58,
+    0.8,
+    0.96,
+    1.08,
+    1.18,
+    1.32,
+    1.76,
+    1.9,
+    2.06,
+    2.2,
+    2.32,
+    2.46,
+    2.6,
+    2.7,
+    2.84,
+    2.98,
+    3.48,
+    3.62,
+    3.72,
+    3.84,
+    4,
+    4.12,
+    4.24,
+    4.56,
+    4.68,
+    4.8,
+    4.96
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1288,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1284,
-   "durationFrames": 198,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1288,
-   "voiceEndFrame": 1472,
-   "stillFrame": 1481,
+   "audio": "audio/tech-cooling/07-s7.wav",
+   "audioFrame": 1031,
+   "audioSec": 4.93,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1022,
+   "durationFrames": 172,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1032,
+   "voiceEndFrame": 1178,
+   "stillFrame": 1184,
    "subtitleWindow": [
-    1285,
-    1483
+    1029,
+    1191
    ],
    "sourceWindow": [
-    1284,
-    1482
+    1027,
+    1189
    ],
    "lines": [
     {
      "text": "台灣的奇鋐、",
-     "start": 1285,
+     "start": 1029,
      "chars": [
-      1286,
-      1293,
-      1299,
-      1306,
-      1312,
-      1312
+      1030,
+      1034,
+      1037,
+      1040,
+      1045,
+      1045
      ]
     },
     {
      "text": "雙鴻做冷板",
-     "start": 1317,
+     "start": 1054,
      "chars": [
-      1319,
-      1325,
-      1332,
-      1339,
-      1345
+      1057,
+      1062,
+      1070,
+      1075,
+      1079
      ]
     },
     {
      "text": "台達電做換熱的機器",
-     "start": 1350,
+     "start": 1091,
      "chars": [
-      1352,
-      1358,
-      1365,
-      1371,
-      1378,
-      1385,
-      1391,
-      1398,
-      1404
+      1093,
+      1097,
+      1100,
+      1105,
+      1109,
+      1114,
+      1118,
+      1121,
+      1125
      ]
     },
     {
      "text": "高力做熱交換的零件",
-     "start": 1409,
+     "start": 1138,
      "chars": [
-      1411,
-      1417,
-      1424,
-      1431,
-      1437,
-      1444,
-      1450,
-      1457,
-      1463
+      1140,
+      1144,
+      1148,
+      1153,
+      1157,
+      1160,
+      1164,
+      1167,
+      1172
      ]
     }
    ],
    "keywords": [
     {
      "text": "奇鋐",
-     "start": 1306
+     "start": 1040
     },
     {
      "text": "台達電",
-     "start": 1352
+     "start": 1093
     },
     {
      "text": "高力",
-     "start": 1411
+     "start": 1140
     }
    ],
    "cues": [
     {
      "id": "qh",
      "text": "奇鋐",
-     "frame": 1308
+     "frame": 1042,
+     "early": 0
     },
     {
      "id": "dt",
      "text": "台達電",
-     "frame": 1354
+     "frame": 1095,
+     "early": 0
     },
     {
      "id": "gl",
      "text": "高力",
-     "frame": 1413
+     "frame": 1141,
+     "early": 0
     }
    ],
+   "hash": "cc4526aca434-5db65ea7f1",
    "sub": "台灣的奇鋐、雙鴻做冷板\n台達電做換熱的機器\n高力做熱交換的零件",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.958,
+    "minScore": 0.529,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.87,
+      "start": 0.9,
+      "ch": "雙",
+      "errMs": 30
+     },
+     {
+      "onset": 2.13,
+      "start": 2.12,
+      "ch": "台",
+      "errMs": -10
+     },
+     {
+      "onset": 3.69,
+      "start": 3.68,
+      "ch": "高",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "台",
+     "start": 0.02,
+     "end": 0.14,
+     "score": 0.887
+    },
+    {
+     "text": "灣",
+     "start": 0.16,
+     "end": 0.24,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 0.26,
+     "end": 0.3,
+     "score": 0.998
+    },
+    {
+     "text": "奇",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.998
+    },
+    {
+     "text": "鋐",
+     "start": 0.52,
+     "end": 0.68,
+     "score": 0.978
+    },
+    {
+     "text": "雙",
+     "start": 0.9,
+     "end": 1.06,
+     "score": 0.936
+    },
+    {
+     "text": "鴻",
+     "start": 1.08,
+     "end": 1.24,
+     "score": 0.985
+    },
+    {
+     "text": "做",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.99
+    },
+    {
+     "text": "冷",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.763
+    },
+    {
+     "text": "板",
+     "start": 1.64,
+     "end": 1.78,
+     "score": 0.998
+    },
+    {
+     "text": "台",
+     "start": 2.12,
+     "end": 2.22,
+     "score": 0.998
+    },
+    {
+     "text": "達",
+     "start": 2.24,
+     "end": 2.3,
+     "score": 0.529
+    },
+    {
+     "text": "電",
+     "start": 2.36,
+     "end": 2.48,
+     "score": 0.969
+    },
+    {
+     "text": "做",
+     "start": 2.52,
+     "end": 2.62,
+     "score": 0.988
+    },
+    {
+     "text": "換",
+     "start": 2.66,
+     "end": 2.78,
+     "score": 0.998
+    },
+    {
+     "text": "熱",
+     "start": 2.82,
+     "end": 2.88,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.94,
+     "end": 3,
+     "score": 0.995
+    },
+    {
+     "text": "機",
+     "start": 3.04,
+     "end": 3.12,
+     "score": 0.99
+    },
+    {
+     "text": "器",
+     "start": 3.18,
+     "end": 3.3,
+     "score": 0.997
+    },
+    {
+     "text": "高",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.999
+    },
+    {
+     "text": "力",
+     "start": 3.82,
+     "end": 3.88,
+     "score": 0.995
+    },
+    {
+     "text": "做",
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.998
+    },
+    {
+     "text": "熱",
+     "start": 4.1,
+     "end": 4.18,
+     "score": 0.998
+    },
+    {
+     "text": "交",
+     "start": 4.24,
+     "end": 4.36,
+     "score": 0.923
+    },
+    {
+     "text": "換",
+     "start": 4.36,
+     "end": 4.46,
+     "score": 0.994
+    },
+    {
+     "text": "的",
+     "start": 4.48,
+     "end": 4.54,
+     "score": 0.998
+    },
+    {
+     "text": "零",
+     "start": 4.58,
+     "end": 4.72,
+     "score": 0.927
+    },
+    {
+     "text": "件",
+     "start": 4.74,
+     "end": 4.88,
+     "score": 0.996
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.16,
+    0.26,
+    0.36,
+    0.52,
+    0.9,
+    1.08,
+    1.36,
+    1.5,
+    1.64,
+    2.12,
+    2.24,
+    2.36,
+    2.52,
+    2.66,
+    2.82,
+    2.94,
+    3.04,
+    3.18,
+    3.68,
+    3.82,
+    3.96,
+    4.1,
+    4.24,
+    4.36,
+    4.48,
+    4.58,
+    4.74
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1486,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1482,
-   "durationFrames": 234,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1486,
-   "voiceEndFrame": 1706,
-   "stillFrame": 1715,
+   "audio": "audio/tech-cooling/08-s8.wav",
+   "audioFrame": 1193,
+   "audioSec": 5.29,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1184,
+   "durationFrames": 187,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1194,
+   "voiceEndFrame": 1351,
+   "stillFrame": 1361,
    "subtitleWindow": [
-    1483,
-    1717
+    1191,
+    1368
    ],
    "sourceWindow": [
-    1482,
-    1716
+    1189,
+    1366
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "不過冷板不是全包",
-     "start": 1483,
+     "start": 1191,
      "chars": [
-      1484,
-      1490,
-      1497,
-      1503,
-      1510,
-      1516,
-      1523,
-      1529
+      1192,
+      1195,
+      1199,
+      1204,
+      1208,
+      1211,
+      1214,
+      1219
      ]
     },
     {
      "text": "還有一到兩成的熱",
-     "start": 1534,
+     "start": 1228,
      "chars": [
-      1536,
-      1542,
-      1549,
-      1555,
-      1562,
-      1568,
-      1575,
-      1581
+      1231,
+      1234,
+      1238,
+      1241,
+      1244,
+      1248,
+      1253,
+      1256
      ]
     },
     {
      "text": "要靠風扇帶走",
-     "start": 1586,
+     "start": 1261,
      "chars": [
-      1588,
-      1594,
-      1600,
-      1607,
-      1613,
-      1620
+      1264,
+      1267,
+      1272,
+      1276,
+      1280,
+      1285
      ]
     },
     {
      "text": "漏水的機率",
-     "start": 1624,
+     "start": 1300,
      "chars": [
-      1626,
-      1633,
-      1639,
-      1646,
-      1652
+      1302,
+      1306,
+      1310,
+      1312,
+      1316
      ]
     },
     {
      "text": "各家都沒有公布",
-     "start": 1657,
+     "start": 1323,
      "chars": [
-      1659,
-      1665,
-      1672,
-      1678,
-      1685,
-      1691,
-      1698
+      1325,
+      1328,
+      1333,
+      1336,
+      1338,
+      1341,
+      1345
      ]
     }
    ],
    "keywords": [
     {
      "text": "不是全包",
-     "start": 1510
+     "start": 1208
     },
     {
      "text": "一到兩成",
-     "start": 1549
+     "start": 1238
     },
     {
      "text": "沒有公布",
-     "start": 1678
+     "start": 1336
     }
    ],
    "cues": [
     {
      "id": "notall",
      "text": "不是全包",
-     "frame": 1512
+     "frame": 1209,
+     "early": 0
     },
     {
      "id": "pct",
      "text": "一到兩成",
-     "frame": 1551
+     "frame": 1239,
+     "early": 0
     },
     {
      "id": "fan",
      "text": "風扇",
-     "frame": 1602
+     "frame": 1273,
+     "early": 0
     },
     {
      "id": "leak",
      "text": "漏水的機率",
-     "frame": 1628
+     "frame": 1303,
+     "early": 0
     },
     {
      "id": "unk",
      "text": "沒有公布",
-     "frame": 1680
+     "frame": 1337,
+     "early": 0
     }
    ],
+   "hash": "61519b155f30-5db65ea7f1",
    "sub": "不過冷板不是全包\n還有一到兩成的熱\n要靠風扇帶走\n漏水的機率\n各家都沒有公布",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.929,
+    "minScore": 0.081,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.31,
+      "start": 1.3,
+      "ch": "還",
+      "errMs": -10
+     },
+     {
+      "onset": 2.43,
+      "start": 2.4,
+      "ch": "要",
+      "errMs": -30
+     },
+     {
+      "onset": 3.69,
+      "start": 3.68,
+      "ch": "漏",
+      "errMs": -10
+     },
+     {
+      "onset": 4.47,
+      "start": 4.46,
+      "ch": "各",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.1,
+     "end": 0.18,
+     "score": 0.919
+    },
+    {
+     "text": "冷",
+     "start": 0.26,
+     "end": 0.38,
+     "score": 0.686
+    },
+    {
+     "text": "板",
+     "start": 0.4,
+     "end": 0.52,
+     "score": 0.99
+    },
+    {
+     "text": "不",
+     "start": 0.54,
+     "end": 0.6,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 0.64,
+     "end": 0.72,
+     "score": 0.996
+    },
+    {
+     "text": "全",
+     "start": 0.76,
+     "end": 0.88,
+     "score": 0.995
+    },
+    {
+     "text": "包",
+     "start": 0.92,
+     "end": 1.06,
+     "score": 0.998
+    },
+    {
+     "text": "還",
+     "start": 1.3,
+     "end": 1.4,
+     "score": 0.998
+    },
+    {
+     "text": "有",
+     "start": 1.42,
+     "end": 1.52,
+     "score": 1
+    },
+    {
+     "text": "一",
+     "start": 1.54,
+     "end": 1.6,
+     "score": 0.081
+    },
+    {
+     "text": "到",
+     "start": 1.64,
+     "end": 1.76,
+     "score": 0.995
+    },
+    {
+     "text": "兩",
+     "start": 1.76,
+     "end": 1.9,
+     "score": 0.927
+    },
+    {
+     "text": "成",
+     "start": 1.9,
+     "end": 2.02,
+     "score": 0.979
+    },
+    {
+     "text": "的",
+     "start": 2.04,
+     "end": 2.08,
+     "score": 0.998
+    },
+    {
+     "text": "熱",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.994
+    },
+    {
+     "text": "要",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.998
+    },
+    {
+     "text": "靠",
+     "start": 2.52,
+     "end": 2.66,
+     "score": 0.994
+    },
+    {
+     "text": "風",
+     "start": 2.68,
+     "end": 2.8,
+     "score": 0.86
+    },
+    {
+     "text": "扇",
+     "start": 2.82,
+     "end": 2.92,
+     "score": 0.992
+    },
+    {
+     "text": "帶",
+     "start": 2.96,
+     "end": 3.06,
+     "score": 0.995
+    },
+    {
+     "text": "走",
+     "start": 3.1,
+     "end": 3.24,
+     "score": 0.991
+    },
+    {
+     "text": "漏",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.982
+    },
+    {
+     "text": "水",
+     "start": 3.82,
+     "end": 3.92,
+     "score": 0.914
+    },
+    {
+     "text": "的",
+     "start": 3.94,
+     "end": 4,
+     "score": 0.997
+    },
+    {
+     "text": "機",
+     "start": 4.02,
+     "end": 4.1,
+     "score": 0.997
+    },
+    {
+     "text": "率",
+     "start": 4.16,
+     "end": 4.22,
+     "score": 0.499
+    },
+    {
+     "text": "各",
+     "start": 4.46,
+     "end": 4.52,
+     "score": 0.998
+    },
+    {
+     "text": "家",
+     "start": 4.56,
+     "end": 4.66,
+     "score": 0.999
+    },
+    {
+     "text": "都",
+     "start": 4.7,
+     "end": 4.8,
+     "score": 0.839
+    },
+    {
+     "text": "沒",
+     "start": 4.8,
+     "end": 4.88,
+     "score": 0.995
+    },
+    {
+     "text": "有",
+     "start": 4.88,
+     "end": 4.96,
+     "score": 0.995
+    },
+    {
+     "text": "公",
+     "start": 4.98,
+     "end": 5.1,
+     "score": 0.995
+    },
+    {
+     "text": "布",
+     "start": 5.12,
+     "end": 5.18,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.1,
+    0.26,
+    0.4,
+    0.54,
+    0.64,
+    0.76,
+    0.92,
+    1.3,
+    1.42,
+    1.54,
+    1.64,
+    1.76,
+    1.9,
+    2.04,
+    2.14,
+    2.4,
+    2.52,
+    2.68,
+    2.82,
+    2.96,
+    3.1,
+    3.68,
+    3.82,
+    3.94,
+    4.02,
+    4.16,
+    4.46,
+    4.56,
+    4.7,
+    4.8,
+    4.88,
+    4.98,
+    5.12
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1720,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1716,
-   "durationFrames": 252,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1720,
-   "voiceEndFrame": 1958,
-   "stillFrame": 1967,
+   "audio": "audio/tech-cooling/09-s9.wav",
+   "audioFrame": 1370,
+   "audioSec": 6.75,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1361,
+   "durationFrames": 219,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1371,
+   "voiceEndFrame": 1572,
+   "stillFrame": 1570,
    "subtitleWindow": [
-    1717,
-    1969
+    1368,
+    1580
    ],
    "sourceWindow": [
-    1716,
-    1968
+    1366,
+    1575
    ],
    "lines": [
     {
      "text": "機櫃還會更耗電",
-     "start": 1717,
+     "start": 1368,
      "chars": [
-      1718,
-      1724,
-      1731,
-      1737,
-      1744,
-      1750,
-      1757
+      1370,
+      1374,
+      1379,
+      1382,
+      1385,
+      1389,
+      1393
      ]
     },
     {
      "text": "電線要加粗",
-     "start": 1761,
+     "start": 1403,
      "chars": [
-      1763,
-      1769,
-      1776,
-      1782,
-      1789
+      1405,
+      1409,
+      1413,
+      1417,
+      1421
      ]
     },
     {
      "text": "還是電壓拉高？",
-     "start": 1793,
+     "start": 1429,
      "chars": [
-      1795,
-      1802,
-      1808,
-      1814,
-      1821,
-      1827,
-      1827
+      1432,
+      1436,
+      1439,
+      1442,
+      1446,
+      1450,
+      1450
      ]
     },
     {
      "text": "下一支",
-     "start": 1832,
+     "start": 1464,
      "chars": [
-      1834,
-      1840,
-      1847
+      1466,
+      1469,
+      1472
      ]
     },
     {
      "text": "來看八百伏特",
-     "start": 1851,
+     "start": 1480,
      "chars": [
-      1853,
-      1860,
-      1866,
-      1872,
-      1879,
-      1885
+      1482,
+      1486,
+      1491,
+      1495,
+      1499,
+      1503
      ]
     },
     {
      "text": "想要完整解說",
-     "start": 1890,
+     "start": 1516,
      "chars": [
-      1892,
-      1898,
-      1905,
-      1911,
-      1917,
-      1924
+      1518,
+      1522,
+      1526,
+      1530,
+      1534,
+      1538
      ]
     },
     {
      "text": "留言液冷",
-     "start": 1928,
+     "start": 1547,
      "chars": [
-      1930,
-      1937,
-      1943,
-      1950
+      1549,
+      1554,
+      1561,
+      1565
      ]
     }
    ],
    "keywords": [
     {
      "text": "更耗電",
-     "start": 1744
+     "start": 1385
     },
     {
      "text": "電壓拉高",
-     "start": 1808
+     "start": 1439
     },
     {
      "text": "液冷",
-     "start": 1943
+     "start": 1561
     }
    ],
    "cues": [
     {
      "id": "more",
      "text": "更耗電",
-     "frame": 1746
+     "frame": 1387,
+     "early": 0
     },
     {
      "id": "wire",
      "text": "電線要加粗",
-     "frame": 1765
+     "frame": 1407,
+     "early": 0
     },
     {
      "id": "volt",
      "text": "電壓拉高",
-     "frame": 1810
+     "frame": 1440,
+     "early": 0
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1836
+     "frame": 1467,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言液冷",
-     "frame": 1932
+     "frame": 1551,
+     "early": 0
     }
    ],
+   "hash": "dd6df7c192b5-5db65ea7f1",
    "sub": "機櫃還會更耗電\n電線要加粗\n還是電壓拉高？\n下一支\n來看八百伏特\n想要完整解說\n留言液冷",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.909,
+    "minScore": 0.287,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.24,
+      "start": 1.22,
+      "ch": "電",
+      "errMs": -20
+     },
+     {
+      "onset": 2.11,
+      "start": 2.1,
+      "ch": "還",
+      "errMs": -10
+     },
+     {
+      "onset": 3.23,
+      "start": 3.24,
+      "ch": "下",
+      "errMs": 10
+     },
+     {
+      "onset": 3.8,
+      "start": 3.78,
+      "ch": "來",
+      "errMs": -20
+     },
+     {
+      "onset": 4.97,
+      "start": 4.98,
+      "ch": "想",
+      "errMs": 10
+     },
+     {
+      "onset": 6.04,
+      "start": 6.02,
+      "ch": "留",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "機",
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.996
+    },
+    {
+     "text": "櫃",
+     "start": 0.18,
+     "end": 0.28,
+     "score": 0.995
+    },
+    {
+     "text": "還",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.998
+    },
+    {
+     "text": "會",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "更",
+     "start": 0.56,
+     "end": 0.68,
+     "score": 0.874
+    },
+    {
+     "text": "耗",
+     "start": 0.68,
+     "end": 0.8,
+     "score": 0.986
+    },
+    {
+     "text": "電",
+     "start": 0.82,
+     "end": 0.98,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 1.22,
+     "end": 1.32,
+     "score": 0.938
+    },
+    {
+     "text": "線",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.892
+    },
+    {
+     "text": "要",
+     "start": 1.48,
+     "end": 1.58,
+     "score": 0.996
+    },
+    {
+     "text": "加",
+     "start": 1.6,
+     "end": 1.68,
+     "score": 0.926
+    },
+    {
+     "text": "粗",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.961
+    },
+    {
+     "text": "還",
+     "start": 2.1,
+     "end": 2.2,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 2.24,
+     "end": 2.3,
+     "score": 0.989
+    },
+    {
+     "text": "電",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.986
+    },
+    {
+     "text": "壓",
+     "start": 2.46,
+     "end": 2.52,
+     "score": 0.996
+    },
+    {
+     "text": "拉",
+     "start": 2.58,
+     "end": 2.64,
+     "score": 0.89
+    },
+    {
+     "text": "高",
+     "start": 2.72,
+     "end": 2.88,
+     "score": 0.998
+    },
+    {
+     "text": "下",
+     "start": 3.24,
+     "end": 3.32,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 3.36,
+     "end": 3.4,
+     "score": 0.406
+    },
+    {
+     "text": "支",
+     "start": 3.46,
+     "end": 3.54,
+     "score": 0.899
+    },
+    {
+     "text": "來",
+     "start": 3.78,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 3.9,
+     "end": 4.02,
+     "score": 0.998
+    },
+    {
+     "text": "八",
+     "start": 4.08,
+     "end": 4.14,
+     "score": 0.37
+    },
+    {
+     "text": "百",
+     "start": 4.22,
+     "end": 4.32,
+     "score": 0.287
+    },
+    {
+     "text": "伏",
+     "start": 4.34,
+     "end": 4.42,
+     "score": 0.752
+    },
+    {
+     "text": "特",
+     "start": 4.48,
+     "end": 4.56,
+     "score": 0.994
+    },
+    {
+     "text": "想",
+     "start": 4.98,
+     "end": 5.1,
+     "score": 0.999
+    },
+    {
+     "text": "要",
+     "start": 5.12,
+     "end": 5.22,
+     "score": 0.996
+    },
+    {
+     "text": "完",
+     "start": 5.26,
+     "end": 5.36,
+     "score": 0.998
+    },
+    {
+     "text": "整",
+     "start": 5.38,
+     "end": 5.5,
+     "score": 0.984
+    },
+    {
+     "text": "解",
+     "start": 5.52,
+     "end": 5.6,
+     "score": 0.768
+    },
+    {
+     "text": "說",
+     "start": 5.66,
+     "end": 5.78,
+     "score": 0.997
+    },
+    {
+     "text": "留",
+     "start": 6.02,
+     "end": 6.16,
+     "score": 0.994
+    },
+    {
+     "text": "言",
+     "start": 6.18,
+     "end": 6.3,
+     "score": 0.994
+    },
+    {
+     "text": "液",
+     "start": 6.4,
+     "end": 6.48,
+     "score": 0.993
+    },
+    {
+     "text": "冷",
+     "start": 6.56,
+     "end": 6.7,
+     "score": 0.809
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.34,
+    0.46,
+    0.56,
+    0.68,
+    0.82,
+    1.22,
+    1.36,
+    1.48,
+    1.6,
+    1.76,
+    2.1,
+    2.24,
+    2.34,
+    2.46,
+    2.58,
+    2.72,
+    3.24,
+    3.36,
+    3.46,
+    3.78,
+    3.9,
+    4.08,
+    4.22,
+    4.34,
+    4.48,
+    4.98,
+    5.12,
+    5.26,
+    5.38,
+    5.52,
+    5.66,
+    6.02,
+    6.18,
+    6.4,
+    6.56
+   ]
   },
   {
    "id": "s10",
    "audio": null,
-   "audioFrame": 1972,
+   "audioFrame": 1570,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1968,
+   "startFrame": 1570,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1972,
-   "voiceEndFrame": 2054,
-   "stillFrame": 2052,
-   "subtitleWindow": [
-    1969,
-    2064
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1580,
+   "voiceEndFrame": 1580,
+   "stillFrame": 1654,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    1968,
-    2064
+    1575,
+    1666
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-cooling/voice.wav",
+  "lufsIn": -17.45,
+  "lufs": -16,
+  "sec": 55.533
+ }
 }

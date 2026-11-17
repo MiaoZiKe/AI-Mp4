@@ -1222,6 +1222,15 @@
       "y": 1.9,
       "d": 34,
       "elev": 12
+     },
+     {
+      "at": "heat-6",
+      "dur": 1,
+      "x": 150,
+      "y": -2.6,
+      "d": 40,
+      "elev": 56,
+      "yaw": -2.4
      }
     ],
     "shift": [
@@ -1232,6 +1241,66 @@
       "opacity": 0,
       "dur": 2,
       "dy": 0
+     },
+     {
+      "layer": "hs0",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03
+     },
+     {
+      "layer": "hs1",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03
+     },
+     {
+      "layer": "fan0",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan1",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan2",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan3",
+      "at": "s1:start-40",
+      "until": "heat-6",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
      }
     ],
     "run": [
@@ -1369,15 +1438,6 @@
    "props": {
     "shot": [
      {
-      "at": "start-2",
-      "dur": 1,
-      "x": 150,
-      "y": -2.6,
-      "d": 40,
-      "elev": 56,
-      "yaw": -2.4
-     },
-     {
       "at": "out-4",
       "dur": 1,
       "x": -1.6,
@@ -1388,66 +1448,6 @@
      }
     ],
     "shift": [
-     {
-      "layer": "hs0",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 1.0,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.03
-     },
-     {
-      "layer": "hs1",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 1.0,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.03
-     },
-     {
-      "layer": "fan0",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 0.8,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.02
-     },
-     {
-      "layer": "fan1",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 0.8,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.02
-     },
-     {
-      "layer": "fan2",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 0.8,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.02
-     },
-     {
-      "layer": "fan3",
-      "at": "s1:start-40",
-      "until": "start",
-      "dy": 0.8,
-      "opacity": 0,
-      "dur": 12,
-      "fallIn": true,
-      "bounce": 0.02
-     },
      {
       "layer": "hs0",
       "at": "liq-12",
@@ -1544,85 +1544,85 @@
     "run": [
      {
       "id": "t_gpuhot",
-      "at": "start",
+      "at": "s6:heat-4",
       "until": "chipf+14",
       "ramp": 6
      },
      {
       "id": "t_gpuhot1",
-      "at": "start",
+      "at": "s6:heat-4",
       "until": "chipf+14",
       "ramp": 6
      },
      {
       "id": "hs0_heat",
-      "at": "air",
+      "at": "s6:heat",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "hs1_heat",
-      "at": "air",
+      "at": "s6:heat",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "hs0_waves",
-      "at": "air",
+      "at": "s6:heat",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "hs1_waves",
-      "at": "air",
+      "at": "s6:heat",
       "until": "liq-12",
       "ramp": 6
      },
      {
       "id": "fan0_spin",
-      "at": "start",
+      "at": "s6:heat",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan1_spin",
-      "at": "start",
+      "at": "s6:heat",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan2_spin",
-      "at": "start",
+      "at": "s6:heat",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "fan3_spin",
-      "at": "start",
+      "at": "s6:heat",
       "until": "liq-8",
       "ramp": 8
      },
      {
       "id": "t_air",
-      "at": "air-6",
+      "at": "s6:heat+6",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air2",
-      "at": "air-4",
+      "at": "s6:heat+8",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air3",
-      "at": "air-2",
+      "at": "s6:heat+10",
       "until": "liq-10",
       "ramp": 6
      },
      {
       "id": "t_air4",
-      "at": "air",
+      "at": "s6:heat+12",
       "until": "liq-10",
       "ramp": 6
      },
@@ -1640,25 +1640,25 @@
      },
      {
       "id": "t_data",
-      "at": "start",
+      "at": "s6:heat",
       "until": "out",
       "ramp": 6
      },
      {
       "id": "t_rear",
-      "at": "start",
+      "at": "s6:heat",
       "until": "out",
       "ramp": 6
      },
      {
       "id": "t_rear2",
-      "at": "start",
+      "at": "s6:heat",
       "until": "out",
       "ramp": 6
      },
      {
       "id": "t_pwr",
-      "at": "start",
+      "at": "s6:heat",
       "until": "out",
       "ramp": 6
      },
@@ -1748,8 +1748,8 @@
    "narration": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源，奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。各家市占，公開資料查不到完整數字。",
    "tts": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源，奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。各家市占，公開資料查不到完整數字。",
    "subtitle": {
-    "zh": "做這些的\n有鴻海、廣達、緯穎組裝\n台達電做電源\n奇鋐和雙鴻做散熱\n川湖做滑軌，勤誠做機殼\n各家市占\n公開資料查不到完整數字",
-    "en": "Who builds this: | Foxconn, Quanta and Wiwynn assemble, | Delta does power, | AVC and Auras do cooling, | King Slide rails, Chenbro chassis. | Market shares? | No complete public numbers."
+    "zh": "做這些的\n有鴻海、廣達\n緯穎組裝\n台達電做電源\n奇鋐和雙鴻做散熱\n川湖做滑軌\n勤誠做機殼\n各家市占\n公開資料查不到完整數字",
+    "en": "Who builds this: | Foxconn and Quanta | and Wiwynn assemble, | Delta does power, | AVC and Auras do cooling, | King Slide does rails, | Chenbro the chassis. | Market shares? | No complete public numbers."
    },
    "keywords": [
     "鴻海",
@@ -1918,8 +1918,8 @@
    "narration": "晶片、電和熱，都要搬進同一個櫃子。下一支，來看液冷。想要完整解說，留言伺服器。",
    "tts": "晶片、電和熱，都要搬進同一個櫃子。下一支，來看液冷。想要完整解說，留言伺服器。",
    "subtitle": {
-    "zh": "晶片、電和熱\n都要搬進同一個櫃子\n下一支\n來看液冷\n想要完整解說\n留言伺服器",
-    "en": "Chips, power and heat | all have to fit in one cabinet. | Next: | liquid cooling. | For the full notes, | comment \"伺服器\"."
+    "zh": "晶片\n電和熱\n都要搬進同一個櫃子\n下一支\n來看液冷\n想要完整解說\n留言伺服器",
+    "en": "Chips, | power and heat | all have to fit in one cabinet. | Next: | liquid cooling. | For the full notes, | comment \"伺服器\"."
    },
    "keywords": [
     "同一個櫃子",
