@@ -73,7 +73,9 @@ const half = (p: PartDef): number[] => {
   else if (p.shape === "plane") h = [s[0] / 2, s[1] / 2, 0.01];
   else h = [s[0] / 2, s[1] / 2, (s[2] ?? 0.1) / 2];
   h = h.map((v, i) => v * (sc[i] ?? 1));
-  if (p.rot && p.rot.some((r) => Math.abs(r) > 1)) { const m = Math.hypot(h[0], h[1], h[2]); h = [m, m, m]; }
+  // 只繞 X 軸轉 90 度（圓柱立起來、圓環躺平）：y、z 對調，不用外接球（外接球會把磨輪這類零件的範圍估成 3.5 倍）
+  if (p.rot && Math.abs(Math.abs(p.rot[0]) - 90) < 1 && Math.abs(p.rot[1] ?? 0) < 1 && Math.abs(p.rot[2] ?? 0) < 1) h = [h[0], h[2], h[1]];
+  else if (p.rot && p.rot.some((r) => Math.abs(r) > 1)) { const m = Math.hypot(h[0], h[1], h[2]); h = [m, m, m]; }
   return h;
 };
 export const layerBoxes = (pr: ProductModel) => {

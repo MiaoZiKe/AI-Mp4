@@ -104,8 +104,8 @@ scenes.append(scene("s4", "mechanism", 4,
      "labels": [],
      "overlay": [stamp("放不下（示意）", "side", "chip", "coral", 44, y=1060, x=540),
                  {"type": "cross", "at": "side", "until": "chip", "part": "sl", "size": 190, "color": "coral"},
-                 stamp("放大示意", "chip", "s5:fill+104", "amber", 40, y=330, x=230),
-                 {"type": "section", "kind": "tsv", "at": "hole", "until": "s5:fill+104", "x": 64, "y": 905, "w": 952, "h": 340, "title": "矽穿孔怎麼做", "tag": "示意，非實際比例",
+                 stamp("放大示意", "chip", "s5:holes", "amber", 40, y=330, x=230),
+                 {"type": "section", "kind": "tsv", "at": "hole", "until": "s5:fill+104", "x": 64, "y": 935, "w": 952, "h": 340, "avoid": False, "title": "矽穿孔怎麼做", "tag": "示意，非實際比例",
                   "t": {"holes": {"at": "hole"}, "fill": {"at": "s5:fill-8"}, "flip": {"at": "s5:fill+8"}, "car": {"at": "s5:fill+14"}, "grind": {"at": "s5:fill+24"}, "end": {"at": "s5:fill+84"}}, "grindDur": 60}]},
     ["三星新聞稿；TrendForce（示意：2,048 條線擠不出來）"], pause=0.7))
 
@@ -116,11 +116,11 @@ s5_shift += [hide_until("x_dense", "holes"), hide_until("x_ovf", "fill+2"), gone
 s5_shift += [hide_until("x_cmp", "fill+2"), {"layer": "x_cmp", "at": "fill+3", "until": "fill+7", "dy": -0.2, "dur": 3}, gone("x_cmp", "fill+7", 3)]
 s5_shift += [hide_until("x_carrier", "fill+14", dy=-1.6, dur=10)]
 # 磨薄：磨輪 F+16 下降、F+24 接觸，連續磨到 F+84（2 秒），四片矽依序磨掉，F+84 才抬起
-s5_shift += [hide_until("x_wheel", "fill+12"), {"layer": "x_wheel", "at": "fill+16", "until": FAR, "dy": -1.25, "dur": 8}]
+s5_shift += [hide_until("x_wheel", "fill+12"), {"layer": "x_wheel", "at": "fill+16", "until": FAR, "dy": -0.15, "dur": 8}]
 for k in range(4):
     s5_shift.append({"layer": "x_wheel", "at": off("fill", 36 + 14 * k), "until": FAR, "dy": -0.25, "dur": 12})
     s5_shift.append({"layer": f"x_u{k}", "at": off("fill", 36 + 14 * k), "until": FAR, "opacity": 0, "dur": 6})
-s5_shift += [{"layer": "x_wheel", "at": "fill+84", "until": FAR, "dy": 2.6, "dur": 6}, gone("x_wheel", "fill+90", 2), hide_until("x_tip", "fill+80")]
+s5_shift += [{"layer": "x_wheel", "at": "fill+84", "until": FAR, "dy": 1.5, "dur": 6}, gone("x_wheel", "fill+90", 2), hide_until("x_tip", "fill+80")]
 for k in (1, 2, 3):
     s5_shift.append(fall(f"y_d{k}", off("fill", 96 + 6 * (k - 1)), press=[("y_base" if k == 1 else f"y_d{k-1}")], dy=1.1, bounce=0.05))
 s5_shift.append(hide_until("y_base", "fill+92"))

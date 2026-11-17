@@ -139,10 +139,10 @@ box("x_car", "x_carrier", mm("carrier"), [BW+1.0, 0.4, BZ+0.6], [XX, -0.3, 0])
 box("x_cmp", "x_cmp", mm("steel2"), [BW+0.6, 0.35, BZ+0.4], [XX, BY+0.5, 0])
 box("x_cmpN", "x_cmp", mm("dark"), [0.5, 1.4, 0.5], [XX, BY+1.4, 0])
 # 磨輪（杯形，繞垂直軸轉）
-WHY = 4.6
+WHY = 3.5
 cyl("x_wh_hub", "x_wheel", mm("wheelM"), 1.1, 0.55, [XX, WHY+0.45, 0])
 box("x_wh_ring", "x_wheel", mm("teeth"), [2.5, 1.95, 0.45], [XX, WHY+0.1, 0], rot=[90,0,0], shape="tube")
-cyl("x_wh_spin", "x_wheel", mm("steel"), 0.4, 2.2, [XX, WHY+1.7, 0])
+cyl("x_wh_spin", "x_wheel", mm("steel"), 0.4, 0.25, [XX, WHY+0.85, 0])
 box("x_wh_gold", "x_wheel", mm("cuHi"), [0.16,0.12,0.4], [XX, WHY-0.1, 0], at=[[math.cos(a)*2.2,0,math.sin(a)*2.2] for a in [i*math.pi/6 for i in range(12)]])
 WHEEL_IDS = ["x_wh_hub","x_wh_ring","x_wh_spin","x_wh_gold"]
 anchor("x_cut", "x_body", [XX+BW/2, 2.2, FZ], dx=130, dy=-70)
