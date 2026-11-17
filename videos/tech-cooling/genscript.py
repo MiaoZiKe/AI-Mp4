@@ -127,7 +127,7 @@ scenes.append(scene("s6", "mechanism", 6,
     ["Then it goes to a heat-exchange machine,", "which hands the heat to the building's cooling water,", "and the cooled water returns,", "round and round."],
     ["換熱的機器", "冷卻水", "循環"],
     [cue("cdu", "換熱的機器"), cue("give", "把熱交給"), cue("cool", "降溫"), cue("loop", "一直循環")],
-    {"shot": [shot("start-2", RX + 5.5, 2.4, 36, 10, 1), shot("cdu-6", CDX, 2.8, 20, 10, 26), shot("cool", RX + 15.0, 0.4, 42, 12, 40), shot("loop", RX + 11.0, 0.0, 48, 12, 40)],
+    {"shot": [shot("start-2", RX + 5.5, 2.4, 36, 10, 1), shot("cdu-6", CDX, 2.4, 30, 10, 26), shot("cool", RX + 15.0, 0.4, 42, 12, 40), shot("loop", RX + 11.0, 0.0, 48, 12, 40)],
      "run": [run("u_impl", off("cdu", -10), "s7:end", 8), run("u_h1", "give", "s7:end", 6), run("u_h2", off("give", 4), "s7:end", 6), run("u_h3", off("give", 8), "s7:end", 6),
              run("u_c1", off("give", 2), "s7:end", 6), run("u_c2", off("give", 6), "s7:end", 6), run("u_c3", off("give", 10), "s7:end", 6), run("u_hot", "cdu", "s7:end", 6),
              run("u_out", "cool", "s7:end", 6), run("q_f1", "give", "s7:end", 6), run("q_f2", off("give", 14), "s7:end", 6), run("q_f3", off("cool", 6), "s7:end", 6),
@@ -144,10 +144,9 @@ scenes.append(scene("s7", "payoff", 7,
     ["In Taiwan, AVC and Auras make cold plates,", "Delta makes the heat-exchange machine,", "and Kaori makes the heat-exchanger parts."],
     ["奇鋐", "台達電", "高力"],
     [cue("qh", "奇鋐"), cue("dt", "台達電"), cue("gl", "高力")],
-    {"shot": [shot("start-2", KX, -2.0, 34, 46, 1), shot("dt-14", CDX, 3.0, 24, 10, 26), shot("gl-10", CDX, 3.0, 17, 10, 20)],
-     "labels": [lab("k_lid", "奇鋐、雙鴻：冷板", "Cold plates", "amber", "qh", "dt-10"), lab("u_cdu", "台達電：CDU", "CDU", "amber", "dt", "gl-8"), lab("u_hx", "高力：熱交換器", "Heat exchanger", "amber", "gl", "s8:start-2")],
-     "overlay": [stamp("媒體報導", "qh", "s8:start-2", "blue", 34, x=800, y=336, avoid=False)]},
-    ["鉅亨、優分析、財訊（媒體報導）"]))
+    {"shot": [shot("start-2", KX, -2.0, 34, 46, 1), shot("dt-14", CDX, 2.4, 30, 10, 26), shot("gl-10", CDX, 2.4, 30, 10, 20)],
+     "labels": [lab("k_lid", "奇鋐、雙鴻：冷板", "Cold plates", "amber", "qh", "dt-10"), lab("u_cdu", "台達電：CDU", "CDU", "amber", "dt", "gl-8"), lab("u_hx", "高力：熱交換器", "Heat exchanger", "amber", "gl", "s8:start-10")]},
+    ["媒體報導：鉅亨、優分析"]))
 
 # ───────── s8 沒全包（C）─────────
 scenes.append(scene("s8", "twist", 8,
