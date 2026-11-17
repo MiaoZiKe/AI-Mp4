@@ -4,6 +4,7 @@
 //   --silent          無聲版：silent-timeline.mjs 估時間軸，混音旁白用 none，不做 voice.mp3
 //   --from-plan       先用 build-script.mjs 由 plan.json 產 script.json
 //   --from-audio=…    旁白已有（orig.wav），voice-take.mjs 帶 --from，不送 TTS；沒帶就送 TTS（花 1 次請求）
+//   --keep-timeline   沿用手動調好的 timeline.json 與 paused 錄音（insert-pauses --scene-map／cutDelayF 調過的），略過 voice-take
 //   --skip-render     略過渲染與其後的混音／網站版／拼圖（測試用）
 //   --no-overlap-fail overlap-check 有 error 只警告不停；--no-edge-fail 同理，edge-check 有 error 只警告
 //   --force-scheduled 允許動已排程要發的片（liguligu-nvda-kress、liguligu-power-bill），預設拒絕
@@ -140,6 +141,8 @@ if (SILENT) {
     const r = run("node", ["scripts/ui/silent-timeline.mjs", slug, "--force"], { env: { SILENT_RATE: "4.9", SILENT_GAP: "0.7", ALIGN_TAIL_END_F: "14" } });
     return { ok: r.code === 0, note: tail(r.out, 2) };
   });
+} else if (flag("keep-timeline")) {
+  step("2 時間軸（沿用現有 timeline.json／paused 錄音，--keep-timeline）", () => ({ ok: fs.existsSync(path.join(vdir, "timeline.json")), note: "不送 TTS、不重插停頓" }));
 } else {
   step("2 時間軸（voice-take）", () => {
     const from = opt("from-audio");

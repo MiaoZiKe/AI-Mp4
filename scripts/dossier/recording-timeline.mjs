@@ -52,7 +52,7 @@ const out = [];
 let prevEnd = 0, prevGap = 0;
 for (const [i, s] of script.scenes.entries()) {
   if (s.silent === true && s.durationSec > 0 && i === script.scenes.length - 1) { // 無旁白的最後一幕（片尾卡）：排法照 align.mjs 的 buildV2
-    const p = out[i - 1], startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+    const p = out[i - 1], startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE) + Math.max(0, Math.round(Number(s.cutDelayF ?? 0))); // 片尾卡也吃 cutDelayF
     out.push({ id: s.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(s.durationSec * FPS)), transitionFrames: TRANS,
       transition: { type: "fade", frames: TRANS, exit: [0, 5], enter: [3, 8] }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true,
       subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "", provider: "estimate", syllables: 0, words: [], charTimes: [] });
