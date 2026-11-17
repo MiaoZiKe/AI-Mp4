@@ -80,7 +80,7 @@ const Scale: React.FC<P> = ({ o, f, k, m }) => {
             return <circle key={`${r}-${i}`} cx={x} cy={y} r={R} fill={isFilm ? c("film") : c("si")} stroke={H.cardCompare} strokeWidth={2} opacity={on} />; }))}
         </g>
         <text x={372} y={172} opacity={b} style={zh(32, H.text, 900)}>放大到原子</text>
-        <text x={gx + 3 * R * 1.9 + 40} y={gy + 4 * R * 1.7 + 66} opacity={q} style={zh(sm(32), H.text2, 800)}>膜只有約 3～5 層原子（示意）</text>
+        <text x={gx} y={gy + 6 * R * 1.7 + 36} opacity={q} style={zh(sm(32), H.text2, 800)}>約 3～5 層原子（示意）</text>
         <g opacity={q}><path d={`M${gx + 12 * R * 1.9 - 40} ${gy - 12} v${3 * R * 1.7 + 8}`} stroke={H.amber} strokeWidth={5} /><text x={gx + 12 * R * 1.9 - 30} y={gy + 40} style={zh(sm(30), H.amber, 900)}>膜</text></g>
       </svg>
     </Card>
@@ -147,7 +147,7 @@ const Cvd: React.FC<P> = ({ o, f, k, m }) => {
             {r > 0.2 ? <circle cx={px + 30} cy={y - (yS - 80) * 0.0 - 30 * (u > 0.85 ? (u - 0.85) * 6 : 0)} r={0} fill="none" /> : null}
           </g>; })}
         {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.01, j, 4); return <circle key={j} cx={x0 + 90 + j * 120} cy={yS - 30 * s - u * 150} r={6} fill={c("purge")} opacity={r * (1 - u)} />; })}
-        <text x={x0} y={66} opacity={a} style={zh(sm(32), H.text, 800)}>兩種氣體分子</text>
+        <text x={x0} y={96} opacity={a} style={zh(sm(32), H.text, 800)}>兩種氣體分子</text>
         <text x={x1 - 10} y={yS + 40} textAnchor="end" opacity={r} style={zh(sm(30), onC(H.amber), 800)}>熱晶圓表面</text>
         <text x={620} y={110} opacity={a} style={zh(34, H.text, 800)}>① 氣體落到表面</text>
         <text x={620} y={168} opacity={r} style={zh(34, H.text, 800)}>② 受熱起反應</text>
@@ -275,11 +275,11 @@ const Co: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key], i) => { const on = tween(f, T(o, key), 10, EASE.enter); const cur = on > 0.5 && (i === 5 || tween(f, T(o, rows[i + 1][2]), 4) < 0.5);
-          const x = 32 + (i % 2) * 464, y = 64 + Math.floor(i / 2) * 82;
+          const x = 32 + (i % 2) * 464, y = 58 + Math.floor(i / 2) * 88;
           return <g key={i} opacity={0.22 + 0.78 * on}>
-            <rect x={x} y={y} width={440} height={68} fill={cur ? H.amber : H.cardCompare} stroke={i < 4 ? H.text3 : c("film")} strokeWidth={cur ? 5 : 3} />
-            <text x={x + 16} y={y + 31} style={zh(34, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
-            <text x={x + 16} y={y + 60} style={zh(sm(30), cur ? onC(H.amber) : H.text2, 700)}>{d}</text></g>; })}
+            <rect x={x} y={y} width={440} height={80} fill={cur ? H.amber : H.cardCompare} stroke={i < 4 ? H.text3 : c("film")} strokeWidth={cur ? 5 : 3} />
+            <text x={x + 16} y={y + 34} style={zh(34, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
+            <text x={x + 16} y={y + 68} style={zh(sm(30), cur ? onC(H.amber) : H.text2, 700)}>{d}</text></g>; })}
       </svg>
     </Card>
   );

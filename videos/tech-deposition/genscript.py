@@ -163,8 +163,8 @@ scenes.append(scene("s8", "payoff", 8,
     {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
      "shot": [shot("start-2", TX + 1.0, -0.5, 100, 30, 1)],
      "run": [run("t_spin", "start-4", "s9:start", 8), run("t_modlit", "am", "s9:start", 8)],
-     "labels": [lab("t_body", "沉積機台", "Deposition tools", "amber", "am", "gy-12"), lab("t_tgt", "光洋科：靶材", "Targets", "amber", "gy", "jd-10"), lab("t_modR", "京鼎：設備", "Equipment supplier", "blue", "jd", "s9:start-6")],
-     "overlay": [sec("dep-co", "start+2", "s9:start-16", 930, 330, "誰在做", "媒體報導／廠商公布", {"am": "am", "lam": "lam", "tel": "tel", "asm": "asm", "gy": "gy", "jd": "jd"})]},
+     "labels": [lab("t_body", "沉積機台", "Deposition tools", "amber", "am", "gy-12"), lab("t_tgt", "光洋科：靶材", "Targets", "amber", "gy", "jd-10"), lab("t_body", "京鼎：設備", "Equipment supplier", "blue", "jd", "s9:start-6")],
+     "overlay": [sec("dep-co", "start+2", "s9:start-16", 925, 345, "誰在做", "媒體報導／廠商公布", {"am": "am", "lam": "lam", "tel": "tel", "asm": "asm", "gy": "gy", "jd": "jd"})]},
     ["TechInsights；ASM 年報；科技新報；聯合報"], pause=0.7))
 
 # ───────── s9 結尾（E） ─────────
