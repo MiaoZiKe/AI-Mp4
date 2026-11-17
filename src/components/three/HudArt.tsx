@@ -9,6 +9,7 @@ import { FONT_EN, FONT_ZH } from "../../theme";
 import { H } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import { YieldArt } from "./HudYield";
+import { IcArt } from "./HudIc";
 
 const mono = (px: number, color: string = H.text2, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontSize: px, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text2, w = 700): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, fontWeight: w, whiteSpace: "nowrap" });
@@ -157,6 +158,7 @@ const WaferArt: React.FC<{ f: number; cues: Record<string, number> }> = ({ f, cu
 
 export const Art: React.FC<{ kind: string; f: number; cues?: Record<string, number> }> = ({ kind, f, cues }) => {
   if (kind === "yield") return <YieldArt f={f} cues={cues ?? {}} />; // 2026/11/16 tech-yield：整支片的 2D 畫面（HudYield.tsx）
+  if (kind.startsWith("ic-")) return <IcArt kind={kind} />; // 2026/11/18 tech-icdesign（HudIc.tsx）
   if (kind === "wafer") return <WaferArt f={f} cues={cues ?? {}} />;
   if (kind === "none") return null;
   if (kind === "litho") return <Litho f={f} cues={cues ?? {}} />;
