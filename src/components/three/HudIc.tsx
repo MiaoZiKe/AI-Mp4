@@ -63,7 +63,7 @@ const DieArt: React.FC = () => {
   );
   return (
     <g>
-      <g transform="scale(0.8)">
+      <g transform="scale(0.7)">
       <rect x={-470} y={-470} width={940} height={940} rx={20} fill={H.bg2} stroke={H.line} strokeWidth={6} />
       {pads.map((i) => <React.Fragment key={i}>
         <rect x={-432 + i * 29} y={-456} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} /><rect x={-432 + i * 29} y={436} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} />
