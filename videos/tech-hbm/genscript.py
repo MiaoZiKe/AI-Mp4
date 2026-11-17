@@ -78,13 +78,13 @@ scenes.append(scene("s3", "mechanism", 3,
     ["How much more?", "A normal PC memory module", "moves 64 data lines at a time.", "The new-generation HBM", "has 2,048 lines in one stack."],
     ["六十四條", "兩千零四十八條"],
     [cue("six4", "六十四條"), cue("n2048", "兩千零四十八"), cue("x32", "一疊有")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": WX, "y": 0.4, "d": 36, "elev": 38}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": WX, "y": -1.2, "d": 27, "elev": 36}],
      "run": [run("w_narrow", "six4-6", "s4:start-2", 6), run("w_wide", "n2048-6", "s4:start-2", 6)],
-     "overlay": [{"type": "bars", "at": "six4", "until": "s4:start-2", "y": 1010, "compact": True, "title": "一次走幾條資料線", "tag": "JEDEC，示意",
+     "overlay": [{"type": "bars", "at": "six4", "until": "s4:start-10", "y": 950, "avoid": False, "compact": True, "title": "一次走幾條資料線", "tag": "JEDEC，示意",
                   "rows": [{"label": "一般電腦記憶體", "v": 0.03, "text": "64", "color": "coral", "textAt": "six4"},
                            {"label": "HBM3E", "v": 0.5, "text": "1,024", "color": "blue", "textAt": "x32"},
                            {"label": "HBM4", "v": 1.0, "text": "2,048", "color": "amber", "textAt": "n2048"}]},
-                 stamp("差 32 倍", "n2048+16", "s4:start-2", "coral", 52, x=830, y=1200, avoid=False)]},
+                 stamp("差 32 倍", "n2048+16", "s4:start-2", "coral", 52, x=830, y=350, avoid=False)]},
     ["JEDEC DDR5；Tom's Hardware；TrendForce"]))
 
 # ───────────── s4 打洞（H → X）─────────────
