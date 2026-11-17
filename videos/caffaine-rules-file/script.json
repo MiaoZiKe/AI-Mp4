@@ -1,0 +1,554 @@
+{
+ "slug": "caffaine-rules-file",
+ "title": "寫一次，AI 每次照你的規矩",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "寫一次",
+   "AI 每次照你的規矩"
+  ],
+  "sub": "同一句請求，有沒有規則差很大"
+ },
+ "tracker": [
+  [
+   "對照",
+   "wrong"
+  ],
+  [
+   "規則",
+   "right"
+  ],
+  [
+   "貼上",
+   "primary"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "同一句請求，沒規則的 AI 回了一大串版本。先寫好規則的，三行就交差。差在哪？",
+   "subtitle": {
+    "zh": "同一句請求\n沒規則的 AI 回了\n一大串版本\n先寫好規則的\n三行就交差\n差在哪",
+    "en": ""
+   },
+   "keywords": [
+    "一大串版本"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一大串版本"
+    },
+    {
+     "id": "k2",
+     "text": "先寫好規則的"
+    },
+    {
+     "id": "k3",
+     "text": "三行就交差"
+    },
+    {
+     "id": "k4",
+     "text": "差在哪"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "一大串版本": "primary"
+    },
+    "view": "split",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "asOf": "查證截至 2026/11/17",
+    "left": {
+     "src": "caffaine-rules-file/cardA.png",
+     "label": "沒規則",
+     "color": "wrong",
+     "at": "start-1",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "right": {
+     "src": "caffaine-rules-file/cardB.png",
+     "label": "有規則",
+     "color": "right",
+     "at": "k2",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "mid": {
+     "text": "VS",
+     "at": "k3"
+    },
+    "aiAt": "start+6",
+    "size": "big",
+    "wl": 380,
+    "wr": 380
+   },
+   "sources": [
+    "實測 2026/11/17（tests/，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "因為 AI 不記得你是誰。所以每次它都先客套一輪，你還得再叫它改短。",
+   "subtitle": {
+    "zh": "因為 AI 不記得你是誰\n所以每次它都先客套一輪\n你還得再叫它改短",
+    "en": ""
+   },
+   "keywords": [
+    "不記得你是誰"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不記得你是誰"
+    },
+    {
+     "id": "k2",
+     "text": "客套一輪"
+    },
+    {
+     "id": "k3",
+     "text": "改短"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "不記得你是誰": "wrong"
+    },
+    "view": "chat",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "回覆同事：會議改週四三點",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "start+30"
+     },
+     {
+      "who": "ai",
+      "text": "給你三種版本：標準、簡短、輕鬆",
+      "at": "k2"
+     },
+     {
+      "who": "me",
+      "text": "太長了，改短",
+      "at": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/A-run*.json）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "so",
+   "narration": "解法是把要求寫成一份規則檔，只寫一次。身分、口氣、格式、禁忌，四行就夠。",
+   "subtitle": {
+    "zh": "解法是把要求寫成\n一份規則檔\n只寫一次\n身分\n口氣\n格式\n禁忌\n四行就夠",
+    "en": ""
+   },
+   "keywords": [
+    "規則檔"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "規則檔"
+    },
+    {
+     "id": "k2",
+     "text": "身分"
+    },
+    {
+     "id": "k3",
+     "text": "口氣"
+    },
+    {
+     "id": "k4",
+     "text": "格式"
+    },
+    {
+     "id": "k5",
+     "text": "禁忌"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "規則檔": "sky"
+    },
+    "view": "editor",
+    "tone": "fix",
+    "file": "規則檔.txt",
+    "src": "videos/caffaine-rules-file/tests/rules.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "我是行銷部專案經理，同事都很忙，我要的是能直接貼進群組的訊息。",
+      "n": 1,
+      "at": "start+4",
+      "dur": 26
+     },
+     {
+      "t": "口氣：直接、不客套。",
+      "n": 2,
+      "at": "k3",
+      "dur": 26
+     },
+     {
+      "t": "格式：第一行只放結論，後面最多三點條列，全文不超過 80 字。",
+      "n": 3,
+      "at": "k4",
+      "dur": 26
+     },
+     {
+      "t": "禁忌：不寫「您好」「謝謝」「希望」這類開場或結尾，不用表情符號。",
+      "n": 4,
+      "at": "k5",
+      "dur": 26
+     }
+    ],
+    "hl": 0,
+    "hlAt": "k5",
+    "size": 40,
+    "status2": "四項規則"
+   },
+   "sources": [
+    "規則全文 tests/rules.txt"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "so",
+   "narration": "寫好以後，貼進 ChatGPT 的自訂指令，或是 Gemini 的技能，或是 Claude 的專案指示。之後每次新對話，它都先讀過。",
+   "subtitle": {
+    "zh": "寫好以後\n貼進 ChatGPT 的\n自訂指令\n或是 Gemini 的技能\n或是 Claude 的專案指示\n之後每次新對話\n它都先讀過",
+    "en": ""
+   },
+   "keywords": [
+    "自訂指令"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "自訂指令"
+    },
+    {
+     "id": "k2",
+     "text": "技能"
+    },
+    {
+     "id": "k3",
+     "text": "專案指示"
+    },
+    {
+     "id": "k4",
+     "text": "每次新對話"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "自訂指令": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "status": "官方說明",
+    "statusAt": "k1+6",
+    "nodes": [
+     {
+      "icon": "bubble",
+      "label": "自訂指令",
+      "sub": "ChatGPT",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "star",
+      "label": "技能",
+      "sub": "Gemini（原 Gem）",
+      "color": "note",
+      "at": "k2"
+     },
+     {
+      "icon": "file",
+      "label": "專案指示",
+      "sub": "Claude 專案",
+      "color": "right",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ],
+    "chip": "貼一次，之後每次新對話都先讀過",
+    "chipAt": "k4",
+    "chipColor": "right",
+    "chipCenter": true,
+    "chipTop": 60
+   },
+   "sources": [
+    "官方說明（查證 2026/11/17，見 research.md）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "narration": "我用 Gemini 實測，同一句請求各跑五次。沒規則平均一點六分，有規則次次滿分。",
+   "subtitle": {
+    "zh": "我用 Gemini 實測\n同一句請求各跑五次\n沒規則平均一點六分\n有規則次次滿分",
+    "en": ""
+   },
+   "keywords": [
+    "各跑五次"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "各跑五次"
+    },
+    {
+     "id": "k2",
+     "text": "一點六分"
+    },
+    {
+     "id": "k3",
+     "text": "次次滿分"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "各跑五次": "right"
+    },
+    "view": "chart",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "kind": "bars",
+    "items": [
+     {
+      "t": "沒規則",
+      "h": 0.32,
+      "color": "wrong"
+     },
+     {
+      "t": "有規則",
+      "h": 1.0,
+      "color": "right"
+     }
+    ],
+    "growAt": "start+4",
+    "chips": [
+     {
+      "text": "平均 1.6 分",
+      "at": "k2",
+      "color": "wrong"
+     },
+     {
+      "text": "次次 5 分",
+      "at": "k3",
+      "color": "right"
+     }
+    ],
+    "note": "示意：長短依分數；各跑 5 次，滿分 5"
+   },
+   "sources": [
+    "實測 2026/11/17（tests/score.json）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "所以不是 AI 變聰明，是你把規矩寫成檔，它每次先讀過。",
+   "subtitle": {
+    "zh": "所以不是 AI 變聰明\n是你把規矩寫成檔\n它每次先讀過",
+    "en": ""
+   },
+   "keywords": [
+    "不是 AI 變聰明"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不是 AI 變聰明"
+    },
+    {
+     "id": "k2",
+     "text": "規矩寫成檔"
+    },
+    {
+     "id": "k3",
+     "text": "先讀過"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "不是 AI 變聰明": "right"
+    },
+    "view": "kinetic",
+    "tone": "principle",
+    "rows": [
+     {
+      "big": "寫一次",
+      "unit": "每次照做",
+      "at": "start-10",
+      "color": "right",
+      "size": 170,
+      "usize": 90
+     },
+     {
+      "big": "先讀過",
+      "unit": "再回答",
+      "at": "start+22",
+      "color": "primary",
+      "size": 170,
+      "usize": 90
+     }
+    ]
+   },
+   "sources": [
+    "實測結論整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "cta",
+   "narration": "存起來，換成你自己的規矩。留言「規則檔」，我把範本給你。",
+   "subtitle": {
+    "zh": "存起來\n換成你自己的規矩\n留言「規則檔」\n我把範本給你",
+    "en": ""
+   },
+   "keywords": [
+    "換成你自己的規矩"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "換成你自己的規矩"
+    },
+    {
+     "id": "k2",
+     "text": "規則檔"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "換成你自己的規矩": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "規則檔",
+    "kicker": "想要規則檔範本，留言這兩個字",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "規則檔範本＋用法",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "範本整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "規則檔"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ],
+ "noEnSub": true
+}

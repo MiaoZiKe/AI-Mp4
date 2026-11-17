@@ -1,0 +1,565 @@
+{
+ "slug": "caffaine-feynman",
+ "title": "用 AI 真的學會一件事",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "用 AI",
+   "真的學會一件事"
+  ],
+  "sub": "看懂不等於學會，費曼四步"
+ },
+ "tracker": [
+  [
+   "講",
+   "primary"
+  ],
+  [
+   "挑錯",
+   "wrong"
+  ],
+  [
+   "簡化",
+   "right"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "就算 AI 講得再清楚，你看懂了，也不等於學會。怎麼逼自己真的學會？",
+   "subtitle": {
+    "zh": "就算 AI 講得再清楚\n你看懂了\n也不等於學會\n怎麼逼自己真的學會",
+    "en": ""
+   },
+   "keywords": [
+    "看懂了"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "看懂了"
+    },
+    {
+     "id": "k2",
+     "text": "不等於學會"
+    },
+    {
+     "id": "k3",
+     "text": "逼自己"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "痛點",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "看懂了": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "rows": [
+     {
+      "big": "看懂",
+      "unit": "≠",
+      "at": "start-10",
+      "color": "primary",
+      "size": 240,
+      "usize": 190
+     },
+     {
+      "big": "學會",
+      "unit": "",
+      "at": "start+22",
+      "color": "wrong",
+      "size": 240,
+      "usize": 110
+     }
+    ],
+    "asOf": "查證截至 2026/11/17",
+    "q": {
+     "text": "怎麼逼自己真的學會？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "學習法常見說法（見 research.md）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "so",
+   "narration": "用費曼學習法，分四步。先請 AI 講，你再講，再請 AI 挑錯，最後再簡化。",
+   "subtitle": {
+    "zh": "用費曼學習法\n分四步\n先請 AI 講\n你再講\n再請 AI 挑錯\n最後再簡化",
+    "en": ""
+   },
+   "keywords": [
+    "先請 AI 講"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "先請 AI 講"
+    },
+    {
+     "id": "k2",
+     "text": "你再講"
+    },
+    {
+     "id": "k3",
+     "text": "再請 AI 挑錯"
+    },
+    {
+     "id": "k4",
+     "text": "再簡化"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "四步",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "先請 AI 講": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "status": "通用做法",
+    "statusAt": "k1+6",
+    "nodes": [
+     {
+      "icon": "bubble",
+      "label": "AI 先講",
+      "sub": "國中生版",
+      "color": "primary",
+      "at": "k1"
+     },
+     {
+      "icon": "pencil",
+      "label": "你再講",
+      "sub": "用自己的話",
+      "color": "sky",
+      "at": "k2"
+     },
+     {
+      "icon": "mag",
+      "label": "AI 挑錯",
+      "sub": "還反問你",
+      "color": "wrong",
+      "at": "k3"
+     },
+     {
+      "icon": "check",
+      "label": "再簡化",
+      "sub": "一句話",
+      "color": "right",
+      "at": "k4"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     },
+     {
+      "from": "k3",
+      "to": "k4"
+     }
+    ]
+   },
+   "sources": [
+    "通用四步做法，整理自公開文章"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "第一步，叫 AI 用國中生聽得懂的話解釋複利。第二步，換你講一遍，我故意講成固定領利息。",
+   "subtitle": {
+    "zh": "第一步\n叫 AI\n用國中生聽得懂的話\n解釋複利\n第二步\n換你講一遍\n我故意講成固定領利息",
+    "en": ""
+   },
+   "keywords": [
+    "國中生聽得懂的話"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "國中生聽得懂的話"
+    },
+    {
+     "id": "k2",
+     "text": "解釋複利"
+    },
+    {
+     "id": "k3",
+     "text": "換你講一遍"
+    },
+    {
+     "id": "k4",
+     "text": "固定領利息"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "第 1、2 步",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "國中生聽得懂的話": "right"
+    },
+    "view": "chat",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話（複利）",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "用國中生聽得懂的話解釋複利",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     },
+     {
+      "who": "ai",
+      "text": "利息會變成新的本金，繼續幫你賺錢",
+      "at": "k2"
+     },
+     {
+      "who": "me",
+      "text": "複利就是每年固定領利息",
+      "at": "k4"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/step1.json，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "第三步，叫它抓你講錯的地方。它指出固定領利息是單利，漏了利息再生利息。我實測三次，三次都抓到。",
+   "subtitle": {
+    "zh": "第三步\n叫它抓你講錯的地方\n它指出固定領利息是單利\n漏了利息再生利息\n我實測三次\n三次都抓到",
+    "en": ""
+   },
+   "keywords": [
+    "抓你講錯的地方"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "抓你講錯的地方"
+    },
+    {
+     "id": "k2",
+     "text": "單利"
+    },
+    {
+     "id": "k3",
+     "text": "三次都抓到"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "第 3 步",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "抓你講錯的地方": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-feynman/cardC.png",
+    "ring": [
+     12,
+     140,
+     376,
+     150
+    ],
+    "note": "抓到我講錯的",
+    "noteAt": "k1",
+    "scanAt": "k1+20",
+    "stampAt": "k3",
+    "stamp": "抓",
+    "zoom": {
+     "src": "caffaine-feynman/cardC-zoom.png",
+     "w": 960,
+     "h": 560,
+     "cap": "放大：固定領利息，是單利"
+    },
+    "native": [
+     400,
+     720
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "so",
+   "narration": "第四步，請它把正確版本再簡化成一句話，你就能直接講給同事聽。",
+   "subtitle": {
+    "zh": "第四步\n請它把正確版本\n再簡化成一句話\n你就能直接講給同事聽",
+    "en": ""
+   },
+   "keywords": [
+    "再簡化成一句話"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "再簡化成一句話"
+    },
+    {
+     "id": "k2",
+     "text": "講給同事聽"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "第 4 步",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "再簡化成一句話": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話（複利）",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "再簡化成一句話，我要講給同事聽",
+      "typeAt": "start+4",
+      "typeDur": 26,
+      "at": "start+34"
+     },
+     {
+      "who": "ai",
+      "text": "複利就是「利滾利」——把賺到的利息留下來繼續幫你賺錢",
+      "at": "k2"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/step4.json，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "所以有用的不是 AI 講得多好。是你被逼著先講一遍，哪裡卡住，一目了然。",
+   "subtitle": {
+    "zh": "所以有用的\n不是 AI 講得多好\n是你被逼著先講一遍\n哪裡卡住\n一目了然",
+    "en": ""
+   },
+   "keywords": [
+    "不是 AI 講得多好"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不是 AI 講得多好"
+    },
+    {
+     "id": "k2",
+     "text": "先講一遍"
+    },
+    {
+     "id": "k3",
+     "text": "一目了然"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "為什麼有用",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "不是 AI 講得多好": "right"
+    },
+    "view": "split",
+    "tone": "principle",
+    "layout": "stack",
+    "top": {
+     "src": "caffaine-feynman/cardD.png",
+     "label": "只看",
+     "color": "plum",
+     "at": "start+2",
+     "native": [
+      640,
+      300
+     ],
+     "crop": [
+      0,
+      0,
+      640,
+      300
+     ]
+    },
+    "bottom": {
+     "src": "caffaine-feynman/cardE.png",
+     "label": "講一遍",
+     "color": "right",
+     "at": "k1+34",
+     "native": [
+      640,
+      300
+     ],
+     "crop": [
+      0,
+      0,
+      640,
+      300
+     ]
+    },
+    "w": 640,
+    "mids": [
+     {
+      "text": "卡住＝還沒懂",
+      "at": "k3",
+      "color": "right"
+     }
+    ]
+   },
+   "sources": [
+    "實測結論整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "cta",
+   "narration": "存起來，換成你想學的主題。留言「費曼」，我把四步提示詞整理給你。",
+   "subtitle": {
+    "zh": "存起來\n換成你想學的主題\n留言「費曼」\n我把四步提示詞整理給你",
+    "en": ""
+   },
+   "keywords": [
+    "換成你想學的主題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "換成你想學的主題"
+    },
+    {
+     "id": "k2",
+     "text": "費曼"
+    },
+    {
+     "id": "k3",
+     "text": "四步提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "帶走",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "換成你想學的主題": "note"
+    },
+    "view": "check",
+    "tone": "claim",
+    "mode": "list",
+    "head": {
+     "text": "四步提示詞",
+     "at": "start-1",
+     "color": "note"
+    },
+    "items": [
+     {
+      "text": "用國中生聽得懂的話解釋◯◯",
+      "sub": "",
+      "at": "start+6",
+      "color": "primary"
+     },
+     {
+      "text": "換我講：◯◯就是⋯⋯",
+      "sub": "",
+      "at": "start+22",
+      "color": "sky"
+     },
+     {
+      "text": "抓出我講錯的，再問我一題",
+      "sub": "",
+      "at": "start+38",
+      "color": "wrong"
+     },
+     {
+      "text": "把正確版本簡化成一句話",
+      "sub": "",
+      "at": "start+54",
+      "color": "right"
+     }
+    ],
+    "itemH": 124,
+    "itemFs": 44,
+    "stamp": {
+     "text": "費曼",
+     "at": "k2",
+     "color": "note"
+    }
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "費曼"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ],
+ "noEnSub": true
+}

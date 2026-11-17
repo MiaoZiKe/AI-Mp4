@@ -1,0 +1,56 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T12:46:35Z",
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "幫我回覆同事：下週三的產品會議要改到週四下午三點，原因是客戶臨時出差。"
+          }
+        ]
+      }
+    ],
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "我是行銷部專案經理，同事都很忙，我要的是能直接貼進群組的訊息。\n口氣：直接、不客套。\n格式：第一行只放結論，後面最多三點條列，全文不超過 80 字。\n禁忌：不寫「您好」「謝謝」「希望」這類開場或結尾，不用表情符號。"
+        }
+      ]
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "下週三產品會議改至週四下午三點。\n- 原因：客戶臨時出差\n- 時間：週四 15:00\n- 請調整行程",
+              "thoughtSignature": "EokBCoYBAWkUfRMZoekXdGBAzrGuke4NAOj0mGDEz2FdWPINmByr7HSsZlw4KrGDiVV8UwkkVuM/8/kEZDZdOJuQ1C5GfdQchr3rlKTuGlwfLkEOLpwU6LXH4a3AV6jMCG3KJhdYWx9llGa2LloInQ+754lZDEAsN1gJ3TIAAz61jb1cqgMW2OWAZZ0="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 113,
+      "candidatesTokenCount": 38,
+      "totalTokenCount": 151,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 113
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "q0z8apueFYTU_uMPrvKdgQw"
+  },
+  "replyText": "下週三產品會議改至週四下午三點。\n- 原因：客戶臨時出差\n- 時間：週四 15:00\n- 請調整行程"
+}

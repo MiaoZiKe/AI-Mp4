@@ -499,7 +499,7 @@ export const Caption: React.FC<{ cues: Cap[]; f: number }> = ({ cues, f }) => {
     <div data-ov="字幕卡" style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H }}>
       <div style={{ ...face(), display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}>
         <div style={{ ...zh, fontWeight: T.weight.title, fontSize: L.CAP_ZH_PX, color: T.ink, opacity: 0.35 + 0.65 * p, transform: `translateY(${Math.round(12 * (1 - p))}px)` }}>{parts.map((x, i) => <span key={i} style={{ color: x.c }}>{x.t}</span>)}</div>
-        <div style={{ ...en, fontWeight: 600, fontSize: L.CAP_EN_PX, color: T.ink2 }}>{enText}</div>
+        {enText ? <div style={{ ...en, fontWeight: 600, fontSize: L.CAP_EN_PX, color: T.ink2 }}>{enText}</div> : null}
       </div>
     </div>
   );

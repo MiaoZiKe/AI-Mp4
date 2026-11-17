@@ -1,0 +1,591 @@
+{
+ "slug": "caffaine-new-chat",
+ "title": "聊越久，AI 越笨？",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "聊越久",
+   "AI 越笨？"
+  ],
+  "sub": "九萬字都記得，還要開新對話嗎"
+ },
+ "tracker": [
+  [
+   "原因",
+   "wrong"
+  ],
+  [
+   "三步",
+   "primary"
+  ],
+  [
+   "交接",
+   "right"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "聊了十六份文件，它還記得我第一句交代的規定。那為什麼還要開新對話？",
+   "subtitle": {
+    "zh": "聊了十六份文件\n它還記得我\n第一句交代的規定\n那為什麼還要開新對話",
+    "en": ""
+   },
+   "keywords": [
+    "十六份文件"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "十六份文件"
+    },
+    {
+     "id": "k2",
+     "text": "還記得"
+    },
+    {
+     "id": "k3",
+     "text": "還要開新對話"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "實測",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "十六份文件": "primary"
+    },
+    "view": "chat",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "長對話（第 17 輪）",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "我一開始交代你什麼規定？",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "start+30"
+     },
+     {
+      "who": "ai",
+      "text": "報告：您一開始交代的回覆規定為：每一則回覆都要以「報告：」開頭，⋯",
+      "at": "k2"
+     }
+    ],
+    "chips": [
+     {
+      "text": "16 份文件，約 9 萬字",
+      "at": "k1",
+      "color": "note",
+      "hot": true
+     }
+    ],
+    "asOf": "查證截至 2026/11/17"
+   },
+   "sources": [
+    "實測 2026/11/17（tests/chat2-A.json，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "因為每問一句，它面前都攤著整段九萬字。換成摘要，只要三百多字。",
+   "subtitle": {
+    "zh": "因為每問一句\n它面前都攤著整段九萬字\n換成摘要\n只要三百多字",
+    "en": ""
+   },
+   "keywords": [
+    "整段九萬字"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "整段九萬字"
+    },
+    {
+     "id": "k2",
+     "text": "三百多字"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原因",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "整段九萬字": "wrong"
+    },
+    "view": "chart",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "kind": "bars",
+    "items": [
+     {
+      "t": "整段對話",
+      "h": 1.0,
+      "color": "wrong"
+     },
+     {
+      "t": "交接摘要",
+      "h": 0.04,
+      "color": "right"
+     }
+    ],
+    "growAt": "start+4",
+    "chips": [
+     {
+      "text": "約 9 萬字",
+      "at": "k1",
+      "color": "wrong"
+     },
+     {
+      "text": "約 350 字",
+      "at": "k2",
+      "color": "right"
+     }
+    ],
+    "note": "示意：長短依字數（實測：16 份文件的對話與它寫的摘要）"
+   },
+   "sources": [
+    "實測 2026/11/17（tests/chat2-*.json）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "研究也發現，輸入越長，表現越不穩定；重點放在中間，表現最差。",
+   "subtitle": {
+    "zh": "研究也發現\n輸入越長\n表現越不穩定\n重點放在中間\n表現最差",
+    "en": ""
+   },
+   "keywords": [
+    "輸入越長"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "輸入越長"
+    },
+    {
+     "id": "k2",
+     "text": "越不穩定"
+    },
+    {
+     "id": "k3",
+     "text": "放在中間"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "研究",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "輸入越長": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已發表研究",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "研究怎麼說",
+     "at": "start-1",
+     "color": "primary"
+    },
+    "items": [
+     {
+      "text": "18 個模型，輸入越長越不穩",
+      "sub": "Chroma 研究，2025 年 7 月",
+      "at": "k1",
+      "color": "wrong"
+     },
+     {
+      "text": "重點放中間，表現最差",
+      "sub": "「迷失在中間」論文，2023 年",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "研究：Chroma 2025；迷失在中間 2023"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "so",
+   "narration": "所以告一段落就換。三步：寫摘要，開新對話，貼上去。",
+   "subtitle": {
+    "zh": "所以告一段落就換\n三步\n寫摘要\n開新對話\n貼上去",
+    "en": ""
+   },
+   "keywords": [
+    "寫摘要"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "寫摘要"
+    },
+    {
+     "id": "k2",
+     "text": "開新對話"
+    },
+    {
+     "id": "k3",
+     "text": "貼上去"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "寫摘要": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "text",
+      "label": "寫摘要",
+      "sub": "請 AI 寫",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "window",
+      "label": "新對話",
+      "sub": "空白對話",
+      "color": "sky",
+      "at": "k2"
+     },
+     {
+      "icon": "file",
+      "label": "貼上去",
+      "sub": "照規定繼續",
+      "color": "right",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "通用做法"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "so",
+   "narration": "第一步，照抄這句提示詞，請它把規定和聊過的主題，寫成摘要。",
+   "subtitle": {
+    "zh": "第一步\n照抄這句提示詞\n請它把規定和聊過的主題\n寫成摘要",
+    "en": ""
+   },
+   "keywords": [
+    "照抄這句提示詞"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "照抄這句提示詞"
+    },
+    {
+     "id": "k2",
+     "text": "規定"
+    },
+    {
+     "id": "k3",
+     "text": "聊過的主題"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "提示詞",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "照抄這句提示詞": "sky"
+    },
+    "view": "editor",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "file": "交接摘要提示詞.txt",
+    "src": "videos/caffaine-new-chat/tests/handover-prompt.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "我要換到新的對話繼續。",
+      "n": 1,
+      "at": "start+4",
+      "dur": 28
+     },
+     {
+      "t": "請寫一段交接摘要，讓我貼到新對話：",
+      "n": 2,
+      "at": "start+40",
+      "dur": 28
+     },
+     {
+      "t": "要包含我交代你的規定，以及我們聊過的主要主題。",
+      "n": 3,
+      "at": "k2",
+      "dur": 28
+     }
+    ],
+    "hl": 2,
+    "hlAt": "k3",
+    "size": 44,
+    "status2": "照抄就能用"
+   },
+   "sources": [
+    "實測用的提示詞（tests/）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "so",
+   "narration": "它寫出來的摘要，規定和主題都在裡面。",
+   "subtitle": {
+    "zh": "它寫出來的摘要\n規定和主題都在裡面",
+    "en": ""
+   },
+   "keywords": [
+    "摘要"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "摘要"
+    },
+    {
+     "id": "k2",
+     "text": "規定和主題"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "摘要": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "舊對話：寫交接摘要",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "我要換到新的對話繼續。請寫一段交接摘要⋯",
+      "typeAt": "start+4",
+      "typeDur": 26,
+      "at": "start+34"
+     },
+     {
+      "who": "ai",
+      "text": "報告：【交接摘要】1. 對話規則：每一則回覆必須以「報告：」開頭，⋯",
+      "at": "k1"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/chat2-B.json，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "narration": "第二步開新對話貼上。我實測，它照樣守規定，四次都守住。",
+   "subtitle": {
+    "zh": "第二步開新對話貼上\n我實測\n它照樣守規定\n四次都守住",
+    "en": ""
+   },
+   "keywords": [
+    "開新對話貼上"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "開新對話貼上"
+    },
+    {
+     "id": "k2",
+     "text": "照樣守規定"
+    },
+    {
+     "id": "k3",
+     "text": "四次都守住"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "證明",
+    "tagColor": "right",
+    "track": 2,
+    "kw": {
+     "開新對話貼上": "right"
+    },
+    "view": "chat",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "新對話：貼上交接摘要",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "以下是上一段對話的交接摘要，請照裡面的規定繼續：",
+      "typeAt": "start+4",
+      "typeDur": 30,
+      "at": "start+38"
+     },
+     {
+      "who": "ai",
+      "text": "報告：收到交接摘要與相關規定。",
+      "at": "k2"
+     }
+    ],
+    "chips": [
+     {
+      "text": "四次都守住",
+      "at": "k3",
+      "color": "right",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17（tests/chat2-B.json，節錄）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "cta",
+   "narration": "所以不是聊久就變笨，是越長越不穩。留言「交接」，我把提示詞給你。",
+   "subtitle": {
+    "zh": "所以不是聊久就變笨\n是越長越不穩\n留言「交接」\n我把提示詞給你",
+    "en": ""
+   },
+   "keywords": [
+    "不是聊久就變笨"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不是聊久就變笨"
+    },
+    {
+     "id": "k2",
+     "text": "越長越不穩"
+    },
+    {
+     "id": "k3",
+     "text": "交接"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "帶走",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "不是聊久就變笨": "note"
+    },
+    "view": "kinetic",
+    "tone": "claim",
+    "rows": [
+     {
+      "big": "不是變笨",
+      "unit": "",
+      "at": "start-10",
+      "color": "primary",
+      "size": 210,
+      "usize": 100
+     },
+     {
+      "big": "是越長越不穩",
+      "unit": "",
+      "at": "k2",
+      "color": "wrong",
+      "size": 130,
+      "usize": 100
+     },
+     {
+      "big": "留言「交接」",
+      "unit": "",
+      "at": "k3",
+      "color": "right",
+      "size": 105,
+      "usize": 100
+     }
+    ]
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "交接"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ],
+ "noEnSub": true
+}

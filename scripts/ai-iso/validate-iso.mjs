@@ -51,7 +51,7 @@ export function validateIso(script, h) {
     } else if (n < 4) E(`${tag}: 旁白太短（${n} 字）`); else if (n > 26) W(`${tag}: 旁白 ${n} 字 > 26（建議拆開）`);
     for (const [k, t] of [["念稿", s.tts ?? s.narration], ["字幕", s.subtitle?.zh]]) for (const m of cnTermIssues(t)) W(`${tag}: ${k}有${m}`);
     for (const m of h.readingIssues(s.tts ?? s.narration)) W(`${tag}: 念稿 ${m}`);
-    if (!silent && (!s.subtitle?.zh || !s.subtitle?.en)) E(`${tag}: 缺字幕（subtitle.zh／en）`);
+    if (!silent && (!s.subtitle?.zh || (!s.subtitle?.en && !script.noEnSub))) E(`${tag}: 缺字幕（subtitle.zh／en）`);
     for (const l of String(s.subtitle?.zh ?? "").split("\n")) if (h.emWidth(l) > 11.5) E(`${tag}: 字幕「${l}」超過 11.5 個字寬（字幕卡放不下）`);
     for (const l of String(s.subtitle?.en ?? "").split("|")) if (l.trim().length > 44) E(`${tag}: 英文字幕「${l.trim()}」超過 44 字元`);
     for (const c of s.cues ?? []) if (!h.clean(s.subtitle?.zh ?? "").includes(h.clean(c.text))) E(`${tag}: cue「${c.id}」的詞「${c.text}」不在字幕裡`);

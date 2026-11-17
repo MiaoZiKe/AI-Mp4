@@ -191,7 +191,7 @@ const StackSplit: React.FC<VP> = ({ f, p, tone }) => {
         if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: y, width: IWp + 24, height: CH }}><Chip text={sd.label} bg={c.soft} fg={c.text} px={34} /></Ghost>;
         return (
           <React.Fragment key={i}>
-            <div data-ov={`圖${i + 1}`} style={{ position: "absolute", left: X0, top: y, opacity: O(f, t, 5), transform: `translateX(${Math.round((1 - e) * -50)}px) rotate(${(-2 * (1 - e)).toFixed(2)}deg)` }}>
+            <div data-ov={`圖${i + 1}`} style={{ position: "absolute", left: X0, top: y, opacity: O(f, t, 5), transform: `translateX(${Math.round((1 - e) * -50)}px) rotate(${(-2 * (1 - e)).toFixed(2)}deg) translateY(${(4 * Math.sin(f / 12 + i * 2)).toFixed(1)}px)` }}>
               <Card color={sd.color}><div style={{ width: IWp, height: ih, borderRadius: 12, overflow: "hidden", background: "#FAF6EC", boxShadow: `inset 0 0 0 3px ${T.line}` }}>{(sd as any).crop ? <Shot src={sd.src} w={IWp} box={(sd as any).crop} sw={(sd as any).native?.[0] ?? 1120} sh={(sd as any).native?.[1] ?? 887} style={{ borderRadius: 12 }}>{null}</Shot> : <img src={staticFile(sd.src)} style={{ width: IWp, height: ih, display: "block" }} />}</div></Card>
             </div>
             <div data-ov={`標籤${i + 1}`} style={{ position: "absolute", left: X0 + IWp + 64, top: i ? y + CH - 70 : y + 6, ...bounce(f, A(sd.labelAt ?? sd.at, t)) }}><Chip text={sd.label} bg={c.fill} fg={c.on} px={30} /></div>
@@ -507,7 +507,7 @@ const KineticView: React.FC<VP> = ({ f, p, tone }) => {
 // ───────── T8 流程路徑 ─────────
 const FlowView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), nodes = q.nodes as { icon: IconName; label: string; sub: string; color: string; at: any }[];
-  const NW = 280, NH = 420, gap = (IW - 3 * NW) / 2, y0 = TOP + 40, cxs = nodes.map((_, i) => X0 + i * (NW + gap) + NW / 2);
+  const NW = nodes.length > 3 ? 214 : 280, NH = 420, gap = (IW - nodes.length * NW) / Math.max(1, nodes.length - 1), y0 = TOP + 40, cxs = nodes.map((_, i) => X0 + i * (NW + gap) + NW / 2);
   const tN = nodes.map((n, i) => A(n.at, p.in + 3 + i * 6)), tLoop = A(q.loopAt, FAR), tChip = A(q.chipAt, FAR);
   const midY = y0 + 150;
   // 光點：節點之間沿線移動（lightAt 兩個時間：到站出發）
@@ -520,7 +520,7 @@ const FlowView: React.FC<VP> = ({ f, p, tone }) => {
   return (
     <>
       <svg width={L.W} height={L.H} style={{ position: "absolute", left: 0, top: 0 }}>
-        {[0, 1].map((i) => <path key={i} d={`M${cxs[i] + NW / 2 + 4} ${midY} H${cxs[i + 1] - NW / 2 - 4}`} stroke={tone.accent} strokeWidth={7} strokeDasharray="4 16" strokeLinecap="round" fill="none" opacity={f < tN[i + 1] - 24 ? 0 : 0.9} strokeDashoffset={-(f * 0.6) % 20} />)}
+        {nodes.slice(0, -1).map((_, i) => i).map((i) => <path key={i} d={`M${cxs[i] + NW / 2 + 4} ${midY} H${cxs[i + 1] - NW / 2 - 4}`} stroke={tone.accent} strokeWidth={7} strokeDasharray="4 16" strokeLinecap="round" fill="none" opacity={f < tN[i + 1] - 24 ? 0 : 0.9} strokeDashoffset={-(f * 0.6) % 20} />)}
         {tLoop < FAR ? <path d={loopPath} fill="none" stroke={col("wrong").fill} strokeWidth={8} strokeDasharray="4 18" strokeLinecap="round" pathLength={1} style={{ strokeDasharray: `${lp} 2`, strokeDashoffset: 0 }} /> : null}
         {tLoop < FAR && lp > 0.97 ? <path d={`M${cxs[1] - 18} ${y0 + NH + 40} L${cxs[1]} ${y0 + NH + 12} L${cxs[1] + 18} ${y0 + NH + 40}`} fill="none" stroke={col("wrong").fill} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" /> : null}
         {dot ? <circle cx={dot.x} cy={dot.y} r={16} fill={col("primary").fill} stroke="#fff" strokeWidth={5} /> : null}
@@ -530,11 +530,11 @@ const FlowView: React.FC<VP> = ({ f, p, tone }) => {
       {nodes.map((n, i) => { if (f < tN[i]) return null; const e = E(f, tN[i], 14), c = col(n.color), lit = f >= tN[i] && f < tN[i] + 40; return (
         <div key={i} data-ov={`節點${i + 1}`} style={{ position: "absolute", left: cxs[i] - NW / 2, top: y0 + Math.round((1 - e) * 90 + 7 * Math.sin(f / 12 + i * 2)), width: NW, height: NH, opacity: O(f, tN[i], 4), transform: `scale(${(lit ? 1 + 0.05 * Math.sin((f - tN[i]) / 4) : 1).toFixed(3)})`, background: T.card, borderRadius: 36, boxShadow: `0 10px 0 ${c.side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, padding: "0 12px", boxSizing: "border-box" }}>
           <div style={{ width: 190, height: 190, borderRadius: 48, background: c.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><Ico n={n.icon} size={130} fill={c.soft} /></div>
-          <div style={{ ...zh, fontWeight: 900, fontSize: 52, color: T.ink }}>{n.label}</div>
-          <div style={{ ...zh, fontWeight: 700, fontSize: 30, color: T.ink2 }}>{n.sub}</div>
+          <div style={{ ...zh, fontWeight: 900, fontSize: nodes.length > 3 ? 44 : 52, color: T.ink }}>{n.label}</div>
+          <div style={{ ...zh, fontWeight: 700, fontSize: nodes.length > 3 ? 28 : 30, color: T.ink2 }}>{n.sub}</div>
           <div style={{ position: "absolute", left: -16, top: -16, width: 56, height: 56, borderRadius: 28, background: c.fill, color: c.on, ...en, fontWeight: 900, fontSize: 34, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 4px 0 ${c.side}` }}>{i + 1}</div>
         </div>); })}
-      {q.chip && f >= tChip ? <div data-ov="迴圈標籤" style={{ position: "absolute", left: (cxs[1] + cxs[2]) / 2 - 300, width: 600, top: y0 + NH + 230, display: "flex", justifyContent: "center", ...bounce(f, tChip) }}><Chip text={q.chip} bg={col("wrong").fill} fg="#fff" px={44} /></div> : null}
+      {q.chip && f >= tChip ? <div data-ov="迴圈標籤" style={{ position: "absolute", left: (q.chipCenter ? X0 + IW / 2 : (cxs[1] + cxs[2]) / 2) - 400, width: 800, top: y0 + NH + (q.chipTop ?? 230), display: "flex", justifyContent: "center", ...bounce(f, tChip) }}><Chip text={q.chip} bg={col(q.chipColor ?? "wrong").fill} fg="#fff" px={44} /></div> : null}
     </>
   );
 };
@@ -774,14 +774,14 @@ const CheckView: React.FC<VP> = ({ f, p, tone }) => {
       {q.stamp && f >= tS ? <div data-ov="蓋章" style={{ position: "absolute", left: X0 + IW - 170, top: TOP - 6, width: 170, height: 170, borderRadius: 85, border: `12px solid ${col(q.stamp.color).fill}`, background: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", justifyContent: "center", ...zh, fontWeight: 900, fontSize: 70, color: col(q.stamp.color).fill, ...slam(f, tS, -12, 1.1) }}>{q.stamp.text}</div> : null}
       {items.map((it, i) => {
         const t = A(it.at, FAR), on = f >= t, e = E(f, t, 12), c = col(it.color ?? (it.bad ? "wrong" : "right"));
-        const h = it.big ? 470 : 190, top = TOP + 190 + items.slice(0, i).reduce((a, x) => a + (x.big ? 470 : 190) + 26, 0);
+        const IH = q.itemH ?? 190, h = it.big ? 470 : IH, top = TOP + 190 + items.slice(0, i).reduce((a, x) => a + (x.big ? 470 : IH) + 26, 0);
         const tm = A(it.markAt, FAR);
         if (!on) return null;
         return (
           <div key={i} data-ov={`項目${i + 1}`} style={{ position: "absolute", left: X0, top: top, width: IW, height: h, borderRadius: 32, background: on ? T.card : "rgba(255,255,255,0.5)", boxShadow: on ? `0 8px 0 ${c.side}` : `inset 0 0 0 5px ${T.line}`, display: "flex", alignItems: "center", gap: 30, padding: "0 36px", boxSizing: "border-box", opacity: on ? 1 : 0.7, transform: `translateX(${on ? Math.round((1 - e) * 30) : 0}px)` }}>
-            <CheckMark t={on ? E(f, t + 2, 12) : 0} size={it.big ? 110 : 92} color={c.fill} bad={it.bad} />
+            <CheckMark t={on ? E(f, t + 2, 12) : 0} size={it.big ? 110 : (q.itemH ? 72 : 92)} color={c.fill} bad={it.bad} />
             <div style={{ minWidth: 0 }}>
-              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: it.big ? 64 : 52, lineHeight: 1.3, color: on ? T.ink : T.ink3 }}>{on && it.mark ? <MarkText text={it.text} mark={it.mark} t={f >= tm ? E(f, tm, 10) : 0} hl={col("wrong").soft} /> : it.text}</div>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 900, fontSize: it.big ? 64 : (q.itemFs ?? 52), lineHeight: 1.3, color: on ? T.ink : T.ink3 }}>{on && it.mark ? <MarkText text={it.text} mark={it.mark} t={f >= tm ? E(f, tm, 10) : 0} hl={col("wrong").soft} /> : it.text}</div>
               {it.sub ? <div style={{ ...zh, fontWeight: 700, fontSize: 34, color: T.ink2, marginTop: 8 }}>{it.sub}</div> : null}
             </div>
           </div>

@@ -1,0 +1,49 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T12:45:56Z",
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "幫我回覆同事：下週三的產品會議要改到週四下午三點，原因是客戶臨時出差。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "這裡提供三種不同語氣的回覆範本，你可以根據平時跟同事的溝通習慣來選擇：\n\n**選項一：標準/有禮貌（適用於一般同事或群組）**\n> 各位好，通知大家一下，原定下週三的產品會議因為客戶臨時出差，需要改期到**下週四下午三點**。再麻煩大家調整一下行事曆，謝謝！\n\n**選項二：簡短/有效率（適用於 Slack / Teams 等即時通訊軟體）**\n> 跟大家說個改期通知：下週三的產品會議改到【下週四下午 3:00】，因客戶臨時出差。請大家再留意一下時間喔！\n\n**選項三：正式（適用於包含主管或跨部門的會議）**\n> 各位同仁好，關於下週三的產品會議，因客戶臨時出差需調整時間，將延期至**下週四（X月X日）下午 3:00**舉行。造成不便敬請見諒，再請大家撥冗出席。",
+              "thoughtSignature": "EokBCoYBAWkUfRP5yg0TNX4YNP4lC62Gl2oVm2mAS4TShMH6rt9mgjnsTjaztRj4JATIkUBr1zb26wcoithxw68C9ZQ+TmSz2lNFymlv8xfi7nLWi/T9GW9L3zN5vllFwUJXKs2lT8xX0hReOFX5BmrL4AKXu9zcIorGUVmgLWv/kH8FCoYKbemMtHo="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 28,
+      "candidatesTokenCount": 242,
+      "totalTokenCount": 270,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 28
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "hEz8asTQKO2N_uMPmLzRoQw"
+  },
+  "replyText": "這裡提供三種不同語氣的回覆範本，你可以根據平時跟同事的溝通習慣來選擇：\n\n**選項一：標準/有禮貌（適用於一般同事或群組）**\n> 各位好，通知大家一下，原定下週三的產品會議因為客戶臨時出差，需要改期到**下週四下午三點**。再麻煩大家調整一下行事曆，謝謝！\n\n**選項二：簡短/有效率（適用於 Slack / Teams 等即時通訊軟體）**\n> 跟大家說個改期通知：下週三的產品會議改到【下週四下午 3:00】，因客戶臨時出差。請大家再留意一下時間喔！\n\n**選項三：正式（適用於包含主管或跨部門的會議）**\n> 各位同仁好，關於下週三的產品會議，因客戶臨時出差需調整時間，將延期至**下週四（X月X日）下午 3:00**舉行。造成不便敬請見諒，再請大家撥冗出席。"
+}
