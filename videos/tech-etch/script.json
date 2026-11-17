@@ -1,0 +1,1621 @@
+{
+ "slug": "tech-etch",
+ "title": "蝕刻機：把圖形刻進晶圓（科技透明圈）",
+ "asOf": "2026/11/18",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-etch-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "mach",
+    "label": "蝕刻機",
+    "en": "ETCH TOOL",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "handoff3D": true,
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "cham",
+    "label": "反應腔",
+    "en": "CHAMBER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "chuck",
+    "label": "晶圓座",
+    "en": "WAFER CHUCK",
+    "field": "10 cm",
+    "ruler": "2 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "sect",
+    "label": "晶圓剖面",
+    "en": "WAFER SECTION",
+    "field": "3 µm",
+    "ruler": "1 µm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例・電漿與離子為示意"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "洞又深又直",
+   "靠電漿往下打"
+  ],
+  "sub": "蝕刻機",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "快閃記憶體有種洞，寬約一百奈米，深卻超過一萬奈米。怎麼挖，才能又深又直？",
+   "tts": "快閃記憶體有種洞，寬約一百奈米，深卻超過一萬奈米。怎麼挖，才能又深又直？",
+   "subtitle": {
+    "zh": "快閃記憶體有種洞\n寬約一百奈米\n深卻超過一萬奈米\n怎麼挖，才能又深又直？",
+    "en": "Flash memory has a kind of hole, | about 100 nanometers wide, | yet over 10,000 nanometers deep. | How do you dig it deep and straight?"
+   },
+   "keywords": [
+    "一百奈米",
+    "一萬奈米",
+    "又深又直"
+   ],
+   "cues": [
+    {
+     "id": "mem",
+     "text": "快閃記憶體"
+    },
+    {
+     "id": "wide",
+     "text": "寬約一百奈米"
+    },
+    {
+     "id": "deep",
+     "text": "超過一萬奈米"
+    },
+    {
+     "id": "q",
+     "text": "怎麼挖"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "快閃記憶體的洞｜廠商公布",
+     "title": "深是寬的 100 倍",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "sect",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 120,
+      "y": 3.3,
+      "d": 30,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_p0",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p1",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p2",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p3",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p4",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p5",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p6",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_p7",
+      "at": "s1:start-40",
+      "until": "s2:start",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_f0",
+      "at": "s1:start-40",
+      "until": "s6:straight+12",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_f1",
+      "at": "s1:start-40",
+      "until": "s6:film+26",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_f2",
+      "at": "s1:start-40",
+      "until": "s6:film+8",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_f3",
+      "at": "s1:start-40",
+      "until": "s6:film+0",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_fill",
+      "at": "s1:start-40",
+      "until": "s10:fill-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "plasma",
+      "at": "s1:start-40",
+      "until": "s4:plasma-6",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ionall",
+      "at": "start-30",
+      "until": "s2:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_stack",
+      "text": "交疊的膜層",
+      "en": "Stacked films",
+      "color": "blue",
+      "at": "mem",
+      "until": "wide-4"
+     },
+     {
+      "part": "w_hole",
+      "text": "洞（寬約 100 奈米）",
+      "en": "Hole, ~100 nm wide",
+      "color": "coral",
+      "at": "wide",
+      "until": "s2:start-8"
+     },
+     {
+      "part": "w_mask",
+      "text": "光阻遮罩",
+      "en": "Photoresist mask",
+      "color": "amber",
+      "at": "deep",
+      "until": "s2:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "wide",
+      "until": "s2:start-2",
+      "text": "廠商公布",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 216,
+      "y": 330
+     },
+     {
+      "type": "section",
+      "kind": "etch-dim",
+      "at": "mem",
+      "until": "s2:start-16",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "洞的比例",
+      "tag": "示意：實際約 1 比 100",
+      "t": {
+       "mem": {
+        "at": "s1:mem"
+       },
+       "wide": {
+        "at": "s1:wide"
+       },
+       "deep": {
+        "at": "s1:deep"
+       },
+       "q": {
+        "at": "s1:q"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Kihara 等人研究摘要（TEL）；Semiconductor Engineering 2023"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "答案是蝕刻機。晶圓放進反應腔，先抽成接近真空。",
+   "tts": "答案是蝕刻機。晶圓放進反應腔，先抽成接近真空。",
+   "subtitle": {
+    "zh": "答案是蝕刻機\n晶圓放進反應腔\n先抽成接近真空",
+    "en": "The answer is an etch tool. | The wafer goes into a reaction chamber, | which is first pumped to near vacuum."
+   },
+   "keywords": [
+    "蝕刻機",
+    "反應腔",
+    "真空"
+   ],
+   "cues": [
+    {
+     "id": "ans",
+     "text": "答案是"
+    },
+    {
+     "id": "tool",
+     "text": "蝕刻機"
+    },
+    {
+     "id": "wf",
+     "text": "晶圓放進"
+    },
+    {
+     "id": "cham",
+     "text": "反應腔"
+    },
+    {
+     "id": "vac",
+     "text": "抽成"
+    },
+    {
+     "id": "near",
+     "text": "接近真空"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "mach",
+      "at": "start-6",
+      "dur": 1
+     },
+     {
+      "to": "cham",
+      "at": "cham-16",
+      "dur": 36
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0,
+      "y": 3.0,
+      "d": 42,
+      "elev": 16
+     },
+     {
+      "at": "cham-16",
+      "dur": 36,
+      "x": 64,
+      "y": 3.4,
+      "d": 40,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "m_wafer",
+      "at": "wf",
+      "until": "s8:start-40",
+      "dx": -4.2,
+      "dur": 28
+     },
+     {
+      "layer": "m_arm",
+      "at": "wf",
+      "until": "s8:start-40",
+      "dx": -4.2,
+      "dur": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "c_vac",
+      "at": "vac",
+      "until": "s3:start+30",
+      "ramp": 6
+     },
+     {
+      "id": "c_rot",
+      "at": "vac-10",
+      "until": "s8:start-2",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "m_tool",
+      "text": "蝕刻機（群集式）",
+      "en": "Etch tool",
+      "color": "blue",
+      "at": "tool",
+      "until": "cham-18"
+     },
+     {
+      "part": "m_wf",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "amber",
+      "at": "wf",
+      "until": "cham-18"
+     },
+     {
+      "part": "c_shell",
+      "text": "反應腔",
+      "en": "Reaction chamber",
+      "color": "blue",
+      "at": "cham+10",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "c_port",
+      "text": "抽氣幫浦",
+      "en": "Vacuum pump",
+      "color": "amber",
+      "at": "vac",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "near",
+      "until": "s3:start-2",
+      "text": "接近真空",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 760,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "通用示意；Semiconductor Engineering；Lam、TEL 產品說明"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "上面是噴氣頭，下面是吸住晶圓的靜電吸盤，廢氣從抽氣口抽走。",
+   "tts": "上面是噴氣頭，下面是吸住晶圓的靜電吸盤，廢氣從抽氣口抽走。",
+   "subtitle": {
+    "zh": "上面是噴氣頭\n下面是吸住晶圓的靜電吸盤\n廢氣從抽氣口抽走",
+    "en": "Up top is the showerhead, | below is the electrostatic chuck that holds the wafer, | and waste gas is pumped out the exhaust port."
+   },
+   "keywords": [
+    "噴氣頭",
+    "靜電吸盤",
+    "抽氣口"
+   ],
+   "cues": [
+    {
+     "id": "in",
+     "text": "上面"
+    },
+    {
+     "id": "sh",
+     "text": "噴氣頭"
+    },
+    {
+     "id": "esc",
+     "text": "靜電吸盤"
+    },
+    {
+     "id": "wafer",
+     "text": "晶圓"
+    },
+    {
+     "id": "exh",
+     "text": "廢氣"
+    },
+    {
+     "id": "port",
+     "text": "抽氣口"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 16,
+      "x": 63,
+      "y": 5.2,
+      "d": 46,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "ch_lid",
+      "at": "in+4",
+      "until": "s4:start-8",
+      "dy": 7.4,
+      "dur": 22
+     },
+     {
+      "layer": "ch_top",
+      "at": "in+4",
+      "until": "s4:start-8",
+      "dy": 7.4,
+      "dur": 22
+     },
+     {
+      "layer": "ch_sh",
+      "at": "sh-10",
+      "until": "s4:start-8",
+      "dy": 3.4,
+      "dur": 22
+     },
+     {
+      "layer": "ch_wf",
+      "at": "wafer-12",
+      "until": "s4:start-8",
+      "dy": 2.6,
+      "dur": 20
+     },
+     {
+      "layer": "ch_ring",
+      "at": "wafer-12",
+      "until": "s4:start-8",
+      "dy": 1.2,
+      "dur": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "c_exh",
+      "at": "exh",
+      "until": "s8:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_sh",
+      "text": "噴氣頭（上電極）",
+      "en": "Showerhead (top electrode)",
+      "color": "amber",
+      "at": "sh",
+      "until": "s4:start-14"
+     },
+     {
+      "part": "c_esc",
+      "text": "靜電吸盤（下電極）",
+      "en": "Electrostatic chuck (bottom electrode)",
+      "color": "blue",
+      "at": "esc",
+      "until": "s4:start-14"
+     },
+     {
+      "part": "c_wf",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "coral",
+      "at": "wafer",
+      "until": "s4:start-14"
+     },
+     {
+      "part": "c_port",
+      "text": "抽氣口",
+      "en": "Exhaust port",
+      "color": "amber",
+      "at": "port",
+      "until": "s4:start-14"
+     }
+    ]
+   },
+   "sources": [
+    "通用電容耦合電漿蝕刻腔示意；Kyocera／TOTO 靜電吸盤產品頁"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "氣體從噴氣頭灌進來，一通上射頻電，就被打成電漿，發出光。",
+   "tts": "氣體從噴氣頭灌進來，一通上射頻電，就被打成電漿，發出光。",
+   "subtitle": {
+    "zh": "氣體從噴氣頭灌進來\n一通上射頻電\n就被打成電漿\n發出光",
+    "en": "Gas pours in through the showerhead, | RF power switches on, | and the gas is struck into plasma, | glowing."
+   },
+   "keywords": [
+    "氣體",
+    "射頻電",
+    "電漿"
+   ],
+   "cues": [
+    {
+     "id": "gas",
+     "text": "氣體"
+    },
+    {
+     "id": "in",
+     "text": "灌進來"
+    },
+    {
+     "id": "rf",
+     "text": "射頻電"
+    },
+    {
+     "id": "plasma",
+     "text": "電漿"
+    },
+    {
+     "id": "glow",
+     "text": "發出光"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 61,
+      "y": 4.4,
+      "d": 32,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "c_gin",
+      "at": "gas",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_gsh",
+      "at": "in",
+      "until": "s5:hit-14",
+      "ramp": 6
+     },
+     {
+      "id": "c_gsh2",
+      "at": "in",
+      "until": "s5:hit-14",
+      "ramp": 6
+     },
+     {
+      "id": "c_rf",
+      "at": "rf",
+      "until": "s5:hit-14",
+      "ramp": 6
+     },
+     {
+      "id": "c_rfb",
+      "at": "rf",
+      "until": "s5:hit-14",
+      "ramp": 6
+     },
+     {
+      "id": "c_pl",
+      "at": "plasma-6",
+      "until": "s8:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_gas",
+      "text": "氣體進來",
+      "en": "Gas in",
+      "color": "blue",
+      "at": "gas",
+      "until": "rf-6"
+     },
+     {
+      "part": "c_rfa",
+      "text": "射頻電",
+      "en": "RF power",
+      "color": "amber",
+      "at": "rf",
+      "until": "s5:start-6"
+     },
+     {
+      "part": "c_pl",
+      "text": "電漿區",
+      "en": "Plasma",
+      "color": "coral",
+      "at": "plasma",
+      "until": "s5:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "etch-gas",
+      "at": "start+2",
+      "until": "s5:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 335,
+      "avoid": false,
+      "title": "氣體怎麼變電漿",
+      "tag": "示意，非實際比例",
+      "t": {
+       "gas": {
+        "at": "s4:gas"
+       },
+       "in": {
+        "at": "s4:in"
+       },
+       "rf": {
+        "at": "s4:rf"
+       },
+       "plasma": {
+        "at": "s4:plasma"
+       },
+       "glow": {
+        "at": "s4:glow"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "MKS 反應離子蝕刻技術說明；美國專利 US4253907、US6413358"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "電漿裡的離子帶電，被電場往下拉，垂直撞向晶圓，一點一點打掉表面。",
+   "tts": "電漿裡的離子帶電，被電場往下拉，垂直撞向晶圓，一點一點打掉表面。",
+   "subtitle": {
+    "zh": "電漿裡的離子帶電\n被電場往下拉\n垂直撞向晶圓\n一點一點打掉表面",
+    "en": "Ions in the plasma carry charge, | get pulled down by the electric field, | slam straight into the wafer, | chipping the surface away bit by bit."
+   },
+   "keywords": [
+    "離子",
+    "往下拉",
+    "垂直撞向",
+    "一點一點"
+   ],
+   "cues": [
+    {
+     "id": "ion",
+     "text": "離子"
+    },
+    {
+     "id": "charge",
+     "text": "帶電"
+    },
+    {
+     "id": "field",
+     "text": "電場"
+    },
+    {
+     "id": "pull",
+     "text": "往下拉"
+    },
+    {
+     "id": "hit",
+     "text": "垂直撞向"
+    },
+    {
+     "id": "bit",
+     "text": "一點一點"
+    },
+    {
+     "id": "surf",
+     "text": "打掉表面"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "sect",
+      "at": "hit-24",
+      "dur": 36
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 16,
+      "x": 61,
+      "y": 3.6,
+      "d": 28,
+      "elev": 18
+     },
+     {
+      "at": "hit-24",
+      "dur": 36,
+      "x": 120,
+      "y": 3.3,
+      "d": 28,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_p7",
+      "at": "s5:hit+8",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p6",
+      "at": "s5:hit+22",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p5",
+      "at": "s5:bit+2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p4",
+      "at": "s5:surf+0",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "c_ion",
+      "at": "ion",
+      "until": "hit-8",
+      "ramp": 6
+     },
+     {
+      "id": "c_ion2",
+      "at": "ion",
+      "until": "hit-8",
+      "ramp": 6
+     },
+     {
+      "id": "c_efield",
+      "at": "field",
+      "until": "hit-8",
+      "ramp": 6
+     },
+     {
+      "id": "w_ion0",
+      "at": "hit-4",
+      "until": "s5:hit+30",
+      "ramp": 6
+     },
+     {
+      "id": "w_ion1",
+      "at": "s5:hit+30",
+      "until": "s6:wall+14",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_ionlab",
+      "text": "離子（帶正電）",
+      "en": "Ions (positive)",
+      "color": "coral",
+      "at": "ion",
+      "until": "hit-26"
+     },
+     {
+      "part": "w_mask",
+      "text": "光阻遮罩",
+      "en": "Mask",
+      "color": "amber",
+      "at": "bit",
+      "until": "s6:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "etch-sect",
+      "at": "hit-10",
+      "until": "s7:start-16",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "孔一點一點變深",
+      "tag": "示意，非實際比例",
+      "t": {
+       "p0": {
+        "at": "s6:straight+0"
+       },
+       "p1": {
+        "at": "s6:side+0"
+       },
+       "p2": {
+        "at": "s6:film+14"
+       },
+       "p3": {
+        "at": "s6:wall+8"
+       },
+       "p4": {
+        "at": "s5:surf+0"
+       },
+       "p5": {
+        "at": "s5:bit+2"
+       },
+       "p6": {
+        "at": "s5:hit+22"
+       },
+       "p7": {
+        "at": "s5:hit+8"
+       },
+       "f0": {
+        "at": "s6:straight+12"
+       },
+       "f1": {
+        "at": "s6:film+26"
+       },
+       "f2": {
+        "at": "s6:film+8"
+       },
+       "f3": {
+        "at": "s6:film+0"
+       },
+       "hit": {
+        "at": "s5:hit"
+       },
+       "film": {
+        "at": "s6:film"
+       },
+       "straight": {
+        "at": "s6:straight"
+       },
+       "side": {
+        "at": "s6:side"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "MKS；美國專利（直流自偏壓使離子朝基板加速）；成大設備手冊"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "只往下打還不夠，所以洞壁留一層保護膜，側面不被刻到，洞才挖得直。",
+   "tts": "只往下打還不夠，所以洞壁留一層保護膜，側面不被刻到，洞才挖得直。",
+   "subtitle": {
+    "zh": "只往下打還不夠\n所以洞壁留一層保護膜\n側面不被刻到\n洞才挖得直",
+    "en": "Hitting straight down isn't enough, | so a protective film is left on the hole walls, | keeping the sides from being etched, | so the hole stays straight."
+   },
+   "keywords": [
+    "保護膜",
+    "不被刻到",
+    "挖得直"
+   ],
+   "cues": [
+    {
+     "id": "not",
+     "text": "只往下打還不夠"
+    },
+    {
+     "id": "wall",
+     "text": "洞壁"
+    },
+    {
+     "id": "film",
+     "text": "保護膜"
+    },
+    {
+     "id": "side",
+     "text": "側面不被刻到"
+    },
+    {
+     "id": "straight",
+     "text": "洞才挖得直"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 3.2,
+      "d": 28,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_p3",
+      "at": "s6:wall+8",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p2",
+      "at": "s6:film+14",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p1",
+      "at": "s6:side+0",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "w_p0",
+      "at": "s6:straight+0",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ion2",
+      "at": "s6:wall+14",
+      "until": "s6:film+22",
+      "ramp": 6
+     },
+     {
+      "id": "w_ion3",
+      "at": "s6:film+22",
+      "until": "s6:straight+8",
+      "ramp": 6
+     },
+     {
+      "id": "w_ion4",
+      "at": "s6:straight+8",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_by",
+      "at": "wall",
+      "until": "s7:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_wall",
+      "text": "洞壁保護膜",
+      "en": "Protective film",
+      "color": "blue",
+      "at": "film",
+      "until": "s7:start-8"
+     },
+     {
+      "part": "w_hole",
+      "text": "底部繼續被打深",
+      "en": "Bottom keeps etching",
+      "color": "coral",
+      "at": "straight",
+      "until": "s7:start-8"
+     }
+    ]
+   },
+   "sources": [
+    "美國專利 US7166233；清大論文（側壁保護層維持高非等向性）；MKS"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
+   "tts": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
+   "subtitle": {
+    "zh": "不過洞越深\n底部越難刻\n所以改把晶圓降到零下七十度",
+    "en": "But the deeper the hole, | the harder the bottom is to etch, | so the wafer is chilled to minus 70 degrees."
+   },
+   "keywords": [
+    "越難刻",
+    "零下七十度"
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "不過"
+    },
+    {
+     "id": "deep",
+     "text": "洞越深"
+    },
+    {
+     "id": "hard",
+     "text": "底部越難刻"
+    },
+    {
+     "id": "so",
+     "text": "所以"
+    },
+    {
+     "id": "cold",
+     "text": "零下七十度"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chuck",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 40,
+      "x": 58.5,
+      "y": 2.0,
+      "d": 26,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "c_chill",
+      "at": "hard",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_cold",
+      "at": "cold-6",
+      "until": "s8:start-2",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_cath",
+      "text": "冷卻水道",
+      "en": "Coolant channel",
+      "color": "blue",
+      "at": "so",
+      "until": "s8:start-8"
+     },
+     {
+      "part": "c_wf",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "coral",
+      "at": "cold",
+      "until": "s8:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "etch-cold",
+      "at": "start+2",
+      "until": "s8:start-16",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "常溫對照低溫",
+      "tag": "廠商公布（TEL）・示意",
+      "t": {
+       "deep": {
+        "at": "s7:deep"
+       },
+       "hard": {
+        "at": "s7:hard"
+       },
+       "so": {
+        "at": "s7:so"
+       },
+       "cold": {
+        "at": "s7:cold"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Tom's Hardware；TechPowerUp；Semiconductor Engineering"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "做這種機器的不多，主要是科林研發、東京威力科創、應用材料。",
+   "tts": "做這種機器的不多，主要是科林研發、東京威力科創、應用材料。",
+   "subtitle": {
+    "zh": "做這種機器的不多\n主要是科林研發\n東京威力科創\n應用材料",
+    "en": "Few companies can build such a tool, | mainly Lam Research, | Tokyo Electron, | and Applied Materials."
+   },
+   "keywords": [
+    "科林研發",
+    "東京威力科創",
+    "應用材料"
+   ],
+   "cues": [
+    {
+     "id": "few",
+     "text": "做這種機器的不多"
+    },
+    {
+     "id": "lam",
+     "text": "科林研發"
+    },
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "amat",
+     "text": "應用材料"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "mach",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 40,
+      "x": 0,
+      "y": 3.0,
+      "d": 40,
+      "elev": 16
+     }
+    ],
+    "labels": [
+     {
+      "part": "m_v1",
+      "text": "科林研發",
+      "en": "Lam Research",
+      "color": "amber",
+      "at": "lam",
+      "until": "s9:start-8"
+     },
+     {
+      "part": "m_v2",
+      "text": "東京威力科創",
+      "en": "Tokyo Electron",
+      "color": "amber",
+      "at": "tel",
+      "until": "s9:start-8"
+     },
+     {
+      "part": "m_v3",
+      "text": "應用材料",
+      "en": "Applied Materials",
+      "color": "amber",
+      "at": "amat",
+      "until": "s9:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "few",
+      "until": "s9:start-2",
+      "text": "媒體報導：自由時報",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 640,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "自由時報 2025（美日三大廠）；statementdog 科林研發法說會整理"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "台灣沒有整機廠，但有零件，京鼎代工模組，瑞耘做腔體零件，翔名做耗材。",
+   "tts": "台灣沒有整機廠，但有零件，京鼎代工模組，瑞耘做腔體零件，翔名做耗材。",
+   "subtitle": {
+    "zh": "台灣沒有整機廠\n但有零件\n京鼎代工模組\n瑞耘做腔體零件\n翔名做耗材",
+    "en": "Taiwan has no full-tool maker, | but it does make parts: | AIC makes tool modules on contract, | Finesse makes chamber parts, | and Hiwin Tech makes consumables."
+   },
+   "keywords": [
+    "京鼎",
+    "瑞耘",
+    "翔名"
+   ],
+   "cues": [
+    {
+     "id": "no",
+     "text": "沒有整機廠"
+    },
+    {
+     "id": "parts",
+     "text": "但有零件"
+    },
+    {
+     "id": "jd",
+     "text": "京鼎"
+    },
+    {
+     "id": "ry",
+     "text": "瑞耘"
+    },
+    {
+     "id": "xm",
+     "text": "翔名"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "cham",
+      "at": "start-6",
+      "dur": 36
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 36,
+      "x": 61,
+      "y": 3.8,
+      "d": 38,
+      "elev": 18
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_shell",
+      "text": "京鼎：代工設備模組",
+      "en": "Tool modules (contract)",
+      "color": "amber",
+      "at": "jd",
+      "until": "s10:start-8"
+     },
+     {
+      "part": "c_sh",
+      "text": "瑞耘：腔體零件",
+      "en": "Chamber parts",
+      "color": "amber",
+      "at": "ry",
+      "until": "s10:start-8"
+     },
+     {
+      "part": "c_ln",
+      "text": "翔名：耗材",
+      "en": "Consumables",
+      "color": "amber",
+      "at": "xm",
+      "until": "s10:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "parts",
+      "until": "s10:start-2",
+      "text": "媒體報導",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 800,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "媒體報導：優分析、財訊、經濟日報（京鼎、瑞耘、翔名）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "又深又直，靠電漿往下打，加上洞壁保護。洞挖好還得填回材料，所以下一支，來看薄膜沉積。想要完整解說，留言蝕刻。",
+   "tts": "又深又直，靠電漿往下打，加上洞壁保護。洞挖好還得填回材料，所以下一支，來看薄膜沉積。想要完整解說，留言蝕刻。",
+   "subtitle": {
+    "zh": "又深又直\n靠電漿往下打\n加上洞壁保護\n洞挖好還得填回材料\n所以下一支\n來看薄膜沉積\n想要完整解說\n留言蝕刻",
+    "en": "Deep and straight, | thanks to plasma ions hitting downward, | plus the wall protection. | Once dug, the hole must be filled with material, | so next: | thin-film deposition. | For the full notes, | comment \"蝕刻\"."
+   },
+   "keywords": [
+    "電漿",
+    "洞壁保護",
+    "薄膜沉積",
+    "蝕刻"
+   ],
+   "cues": [
+    {
+     "id": "ans",
+     "text": "又深又直"
+    },
+    {
+     "id": "ion",
+     "text": "電漿往下打"
+    },
+    {
+     "id": "prot",
+     "text": "洞壁保護"
+    },
+    {
+     "id": "fill",
+     "text": "填回材料"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "dep",
+     "text": "薄膜沉積"
+    },
+    {
+     "id": "full",
+     "text": "想要完整解說"
+    },
+    {
+     "id": "kw",
+     "text": "留言蝕刻"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "sect",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 40,
+      "x": 120,
+      "y": 3.2,
+      "d": 28,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ionall",
+      "at": "ion",
+      "until": "fill-6",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_wall",
+      "text": "洞壁保護膜",
+      "en": "Protective film",
+      "color": "blue",
+      "at": "prot",
+      "until": "fill-4"
+     },
+     {
+      "part": "w_hole",
+      "text": "填回材料",
+      "en": "Fill material",
+      "color": "amber",
+      "at": "fill",
+      "until": "kw-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "etch-next",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "又深又直靠兩件事",
+      "tag": "示意",
+      "t": {
+       "ans": {
+        "at": "s10:ans"
+       },
+       "ion": {
+        "at": "s10:ion"
+       },
+       "prot": {
+        "at": "s10:prot"
+       },
+       "fill": {
+        "at": "s10:fill"
+       },
+       "next": {
+        "at": "s10:next"
+       },
+       "dep": {
+        "at": "s10:dep"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-14",
+      "text": "完整解說在留言",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "下一支：薄膜沉積"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "薄膜沉積",
+     "trail": [
+      "洞很深",
+      "電漿",
+      "洞壁保護",
+      "蝕刻機"
+     ],
+     "at": "s10:kw-8",
+     "comment": "蝕刻",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
