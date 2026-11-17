@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1276,
- "totalSec": 42.53,
+ "totalFrames": 1399,
+ "totalSec": 46.63,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 136,
+   "durationFrames": 148,
    "startSec": 0,
-   "durationSec": 4.53,
+   "durationSec": 4.93,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -20,19 +20,23 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1,
+    "endFrame": 128,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "四頁的講義",
-     "frame": 15,
-     "sceneFrame": 15
+     "frame": 12,
+     "sceneFrame": 12
     },
     {
      "id": "k2",
      "text": "只照原文",
-     "frame": 61,
-     "sceneFrame": 61
+     "frame": 59,
+     "sceneFrame": 59
     },
     {
      "id": "k3",
@@ -41,35 +45,35 @@
      "sceneFrame": 113
     }
    ],
-   "stillFrame": 126,
+   "stillFrame": 138,
    "subtitles": [
     {
      "zh": "一份四頁的講義",
      "en": "A four-page handout. Tell AI:",
      "startFrame": 0,
-     "endFrame": 42
+     "endFrame": 37
     },
     {
      "zh": "叫 AI 只照原文回",
      "en": "A four-page handout. Tell AI:",
-     "startFrame": 42,
-     "endFrame": 88
+     "startFrame": 37,
+     "endFrame": 84
     },
     {
      "zh": "答每句附頁碼",
      "en": "A four-page handout. Tell AI:",
-     "startFrame": 88,
-     "endFrame": 133
+     "startFrame": 84,
+     "endFrame": 145
     }
    ],
    "narration": "一份四頁的講義，叫 AI 只照原文回答，每句附頁碼。"
   },
   {
    "id": "s02",
-   "startFrame": 126,
-   "durationFrames": 129,
-   "startSec": 4.2,
-   "durationSec": 4.3,
+   "startFrame": 138,
+   "durationFrames": 147,
+   "startSec": 4.6,
+   "durationSec": 4.9,
    "component": "IsoScene",
    "beat": "so",
    "transition": {
@@ -78,56 +82,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 148,
+    "endFrame": 264,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "多加一句",
-     "frame": 147,
-     "sceneFrame": 21
+     "frame": 158,
+     "sceneFrame": 20
     },
     {
      "id": "k2",
      "text": "只根據原文",
-     "frame": 175,
-     "sceneFrame": 49
+     "frame": 188,
+     "sceneFrame": 50
     },
     {
      "id": "k3",
      "text": "標頁碼",
-     "frame": 230,
-     "sceneFrame": 104
+     "frame": 249,
+     "sceneFrame": 111
     }
    ],
-   "stillFrame": 245,
+   "stillFrame": 275,
    "subtitles": [
     {
      "zh": "我只多加一句",
      "en": "I added one sentence:",
-     "startFrame": 133,
-     "endFrame": 171
+     "startFrame": 145,
+     "endFrame": 185
     },
     {
      "zh": "只根據原文回答",
      "en": "I added one sentence:",
-     "startFrame": 171,
-     "endFrame": 216
+     "startFrame": 185,
+     "endFrame": 232
     },
     {
      "zh": "每句標頁碼",
      "en": "I added one sentence:",
-     "startFrame": 216,
-     "endFrame": 252
+     "startFrame": 232,
+     "endFrame": 282
     }
    ],
    "narration": "我只多加一句：只根據原文回答，每句標頁碼。"
   },
   {
    "id": "s03",
-   "startFrame": 245,
-   "durationFrames": 154,
-   "startSec": 8.17,
-   "durationSec": 5.13,
+   "startFrame": 275,
+   "durationFrames": 163,
+   "startSec": 9.17,
+   "durationSec": 5.43,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -136,62 +144,66 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 285,
+    "endFrame": 430,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "答案也對",
-     "frame": 282,
-     "sceneFrame": 37
+     "frame": 317,
+     "sceneFrame": 42
     },
     {
      "id": "k2",
      "text": "沒說哪一頁",
-     "frame": 313,
-     "sceneFrame": 68
+     "frame": 348,
+     "sceneFrame": 73
     },
     {
      "id": "k3",
      "text": "每句都有頁碼",
-     "frame": 361,
-     "sceneFrame": 116
+     "frame": 399,
+     "sceneFrame": 124
     }
    ],
-   "stillFrame": 389,
+   "stillFrame": 428,
    "subtitles": [
     {
      "zh": "沒加這句",
      "en": "Without it: right, but no page.",
-     "startFrame": 252,
-     "endFrame": 279
+     "startFrame": 282,
+     "endFrame": 313
     },
     {
      "zh": "答案也對",
      "en": "Without it: right, but no page.",
-     "startFrame": 279,
-     "endFrame": 305
+     "startFrame": 313,
+     "endFrame": 339
     },
     {
      "zh": "但沒說哪一頁",
      "en": "Without it: right, but no page.",
-     "startFrame": 305,
-     "endFrame": 341
+     "startFrame": 339,
+     "endFrame": 378
     },
     {
      "zh": "加了每句都有頁碼",
      "en": "Without it: right, but no page.",
-     "startFrame": 341,
-     "endFrame": 396
+     "startFrame": 378,
+     "endFrame": 435
     }
    ],
    "narration": "沒加這句，答案也對，但沒說哪一頁；加了，每句都有頁碼。"
   },
   {
    "id": "s04",
-   "startFrame": 389,
-   "durationFrames": 98,
-   "startSec": 12.97,
-   "durationSec": 3.27,
+   "startFrame": 428,
+   "durationFrames": 107,
+   "startSec": 14.27,
+   "durationSec": 3.57,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -200,50 +212,54 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 438,
+    "endFrame": 515,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "沒有頁碼",
-     "frame": 399,
-     "sceneFrame": 10
+     "frame": 444,
+     "sceneFrame": 16
     },
     {
      "id": "k2",
      "text": "自己翻",
-     "frame": 439,
-     "sceneFrame": 50
+     "frame": 477,
+     "sceneFrame": 49
     },
     {
      "id": "k3",
      "text": "四頁",
-     "frame": 456,
-     "sceneFrame": 67
+     "frame": 494,
+     "sceneFrame": 66
     }
    ],
-   "stillFrame": 477,
+   "stillFrame": 525,
    "subtitles": [
     {
      "zh": "沒有頁碼",
      "en": "No page numbers:",
-     "startFrame": 396,
-     "endFrame": 425
+     "startFrame": 435,
+     "endFrame": 463
     },
     {
      "zh": "我得自己翻四頁去找",
      "en": "No page numbers:",
-     "startFrame": 425,
-     "endFrame": 484
+     "startFrame": 463,
+     "endFrame": 532
     }
    ],
    "narration": "沒有頁碼，我得自己翻四頁去找。"
   },
   {
    "id": "s05",
-   "startFrame": 477,
-   "durationFrames": 124,
-   "startSec": 15.9,
-   "durationSec": 4.13,
+   "startFrame": 525,
+   "durationFrames": 127,
+   "startSec": 17.5,
+   "durationSec": 4.23,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -251,57 +267,66 @@
     "frames": 10
    },
    "camera": null,
-   "cueEarly": [],
-   "voice": null,
+   "cueEarly": [
+    {
+     "id": "k3",
+     "early": 1
+    }
+   ],
+   "voice": {
+    "startFrame": 535,
+    "endFrame": 644,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "有頁碼",
-     "frame": 488,
-     "sceneFrame": 11
+     "frame": 541,
+     "sceneFrame": 16
     },
     {
      "id": "k2",
      "text": "被標的位置",
-     "frame": 527,
-     "sceneFrame": 50
+     "frame": 577,
+     "sceneFrame": 52
     },
     {
      "id": "k3",
      "text": "全對",
-     "frame": 581,
-     "sceneFrame": 104
+     "frame": 631,
+     "sceneFrame": 106
     }
    ],
-   "stillFrame": 591,
+   "stillFrame": 642,
    "subtitles": [
     {
      "zh": "有頁碼",
      "en": "With pages, I check only those spots.",
-     "startFrame": 484,
-     "endFrame": 507
+     "startFrame": 532,
+     "endFrame": 557
     },
     {
      "zh": "我只翻被標的位置",
      "en": "With pages, I check only those spots.",
-     "startFrame": 507,
-     "endFrame": 556
+     "startFrame": 557,
+     "endFrame": 609
     },
     {
      "zh": "五個頁碼全對",
      "en": "With pages, I check only those spots.",
-     "startFrame": 556,
-     "endFrame": 598
+     "startFrame": 609,
+     "endFrame": 649
     }
    ],
    "narration": "有頁碼，我只翻被標的位置，五個頁碼全對。"
   },
   {
    "id": "s06",
-   "startFrame": 591,
-   "durationFrames": 110,
-   "startSec": 19.7,
-   "durationSec": 3.67,
+   "startFrame": 642,
+   "durationFrames": 123,
+   "startSec": 21.4,
+   "durationSec": 4.1,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -310,56 +335,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 652,
+    "endFrame": 756,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "第三頁",
-     "frame": 606,
-     "sceneFrame": 15
+     "frame": 665,
+     "sceneFrame": 23
     },
     {
      "id": "k2",
      "text": "罰款和賠償",
-     "frame": 628,
-     "sceneFrame": 37
+     "frame": 689,
+     "sceneFrame": 47
     },
     {
      "id": "k3",
      "text": "原文",
-     "frame": 661,
-     "sceneFrame": 70
+     "frame": 727,
+     "sceneFrame": 85
     }
    ],
-   "stillFrame": 691,
+   "stillFrame": 755,
    "subtitles": [
     {
      "zh": "像第三頁",
      "en": "Like page 3: fines and compensation,",
-     "startFrame": 598,
-     "endFrame": 625
+     "startFrame": 649,
+     "endFrame": 686
     },
     {
      "zh": "罰款和賠償",
      "en": "Like page 3: fines and compensation,",
-     "startFrame": 625,
-     "endFrame": 658
+     "startFrame": 686,
+     "endFrame": 723
     },
     {
      "zh": "原文就在那裡",
      "en": "Like page 3: fines and compensation,",
-     "startFrame": 658,
-     "endFrame": 698
+     "startFrame": 723,
+     "endFrame": 762
     }
    ],
    "narration": "像第三頁，罰款和賠償，原文就在那裡。"
   },
   {
    "id": "s07",
-   "startFrame": 691,
-   "durationFrames": 142,
-   "startSec": 23.03,
-   "durationSec": 4.73,
+   "startFrame": 755,
+   "durationFrames": 168,
+   "startSec": 25.17,
+   "durationSec": 5.6,
    "component": "IsoScene",
    "beat": "mechanism",
    "transition": {
@@ -368,56 +397,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 765,
+    "endFrame": 903,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "影印",
-     "frame": 702,
-     "sceneFrame": 11
+     "frame": 774,
+     "sceneFrame": 19
     },
     {
      "id": "k2",
      "text": "文件根本沒寫",
-     "frame": 730,
-     "sceneFrame": 39
+     "frame": 805,
+     "sceneFrame": 50
     },
     {
      "id": "k3",
      "text": "沒寫",
-     "frame": 752,
-     "sceneFrame": 61
+     "frame": 826,
+     "sceneFrame": 71
     }
    ],
-   "stillFrame": 823,
+   "stillFrame": 913,
    "subtitles": [
     {
      "zh": "影印這題",
      "en": "Photocopying isn't in the file.",
-     "startFrame": 698,
-     "endFrame": 727
+     "startFrame": 762,
+     "endFrame": 802
     },
     {
      "zh": "文件根本沒寫",
      "en": "Photocopying isn't in the file.",
-     "startFrame": 727,
-     "endFrame": 766
+     "startFrame": 802,
+     "endFrame": 843
     },
     {
      "zh": "兩種版本都老實說沒寫",
      "en": "Photocopying isn't in the file.",
-     "startFrame": 766,
-     "endFrame": 830
+     "startFrame": 843,
+     "endFrame": 920
     }
    ],
    "narration": "影印這題，文件根本沒寫，兩種版本都老實說沒寫。"
   },
   {
    "id": "s08",
-   "startFrame": 823,
-   "durationFrames": 147,
-   "startSec": 27.43,
-   "durationSec": 4.9,
+   "startFrame": 913,
+   "durationFrames": 151,
+   "startSec": 30.43,
+   "durationSec": 5.03,
    "component": "IsoScene",
    "beat": "unknown",
    "transition": {
@@ -426,56 +459,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 923,
+    "endFrame": 1044,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "只有四頁",
-     "frame": 855,
-     "sceneFrame": 32
+     "frame": 947,
+     "sceneFrame": 34
     },
     {
      "id": "k2",
      "text": "更長的文件",
-     "frame": 884,
-     "sceneFrame": 61
+     "frame": 977,
+     "sceneFrame": 64
     },
     {
      "id": "k3",
      "text": "還不知道",
-     "frame": 940,
-     "sceneFrame": 117
+     "frame": 1025,
+     "sceneFrame": 112
     }
    ],
-   "stillFrame": 960,
+   "stillFrame": 1054,
    "subtitles": [
     {
      "zh": "不過這份只有四頁",
      "en": "But it's only four pages.",
-     "startFrame": 830,
-     "endFrame": 880
+     "startFrame": 920,
+     "endFrame": 973
     },
     {
      "zh": "更長的文件會不會編",
      "en": "But it's only four pages.",
-     "startFrame": 880,
-     "endFrame": 936
+     "startFrame": 973,
+     "endFrame": 1021
     },
     {
      "zh": "還不知道",
      "en": "But it's only four pages.",
-     "startFrame": 936,
-     "endFrame": 967
+     "startFrame": 1021,
+     "endFrame": 1061
     }
    ],
    "narration": "不過這份只有四頁，更長的文件會不會編，還不知道。"
   },
   {
    "id": "s09",
-   "startFrame": 960,
-   "durationFrames": 130,
-   "startSec": 32,
-   "durationSec": 4.33,
+   "startFrame": 1054,
+   "durationFrames": 161,
+   "startSec": 35.13,
+   "durationSec": 5.37,
    "component": "IsoScene",
    "beat": "so",
    "transition": {
@@ -484,62 +521,66 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1064,
+    "endFrame": 1195,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "貼文件",
-     "frame": 998,
-     "sceneFrame": 38
+     "frame": 1100,
+     "sceneFrame": 46
     },
     {
      "id": "k2",
      "text": "附頁碼",
-     "frame": 1029,
-     "sceneFrame": 69
+     "frame": 1137,
+     "sceneFrame": 83
     },
     {
      "id": "k3",
      "text": "核對",
-     "frame": 1071,
-     "sceneFrame": 111
+     "frame": 1184,
+     "sceneFrame": 130
     }
    ],
-   "stillFrame": 1080,
+   "stillFrame": 1205,
    "subtitles": [
     {
      "zh": "所以做法",
      "en": "So: paste the file, require page numbers,",
-     "startFrame": 967,
-     "endFrame": 994
+     "startFrame": 1061,
+     "endFrame": 1096
     },
     {
      "zh": "貼文件",
      "en": "So: paste the file, require page numbers,",
-     "startFrame": 994,
-     "endFrame": 1015
+     "startFrame": 1096,
+     "endFrame": 1122
     },
     {
      "zh": "規定附頁碼",
      "en": "So: paste the file, require page numbers,",
-     "startFrame": 1015,
-     "endFrame": 1047
+     "startFrame": 1122,
+     "endFrame": 1157
     },
     {
      "zh": "翻到那頁核對",
      "en": "So: paste the file, require page numbers,",
-     "startFrame": 1047,
-     "endFrame": 1087
+     "startFrame": 1157,
+     "endFrame": 1212
     }
    ],
    "narration": "所以做法：貼文件、規定附頁碼、翻到那頁核對。"
   },
   {
    "id": "s10",
-   "startFrame": 1080,
-   "durationFrames": 98,
-   "startSec": 36,
-   "durationSec": 3.27,
+   "startFrame": 1205,
+   "durationFrames": 96,
+   "startSec": 40.17,
+   "durationSec": 3.2,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -548,43 +589,47 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1215,
+    "endFrame": 1293,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "k1",
      "text": "頁碼",
-     "frame": 1101,
+     "frame": 1226,
      "sceneFrame": 21
     },
     {
      "id": "k2",
      "text": "提示詞",
-     "frame": 1153,
-     "sceneFrame": 73
+     "frame": 1275,
+     "sceneFrame": 70
     }
    ],
-   "stillFrame": 1168,
+   "stillFrame": 1291,
    "subtitles": [
     {
      "zh": "留言「頁碼」",
      "en": "Comment \"頁碼\" to get",
-     "startFrame": 1087,
-     "endFrame": 1116
+     "startFrame": 1212,
+     "endFrame": 1240
     },
     {
      "zh": "拿這句規定的提示詞",
      "en": "Comment \"頁碼\" to get",
-     "startFrame": 1116,
-     "endFrame": 1178
+     "startFrame": 1240,
+     "endFrame": 1301
     }
    ],
    "narration": "留言「頁碼」，拿這句規定的提示詞。"
   },
   {
    "id": "end",
-   "startFrame": 1168,
+   "startFrame": 1291,
    "durationFrames": 108,
-   "startSec": 38.93,
+   "startSec": 43.03,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -596,7 +641,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1264,
+   "stillFrame": 1387,
    "subtitles": [],
    "narration": ""
   }

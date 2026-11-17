@@ -2,64 +2,58 @@
  "version": 2,
  "slug": "caffaine-excel-formula",
  "fps": 30,
- "totalFrames": 1353,
- "totalSec": 45.1,
- "gapSec": 0.3,
+ "totalFrames": 1520,
+ "totalSec": 50.67,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-excel-formula/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 3.9,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 130,
+   "durationFrames": 137,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 122,
-   "stillFrame": 120,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 116,
+   "stillFrame": 127,
    "subtitleWindow": [
     0,
-    127
+    134
    ],
    "sourceWindow": [
     0,
-    125
+    132
    ],
    "lines": [
     {
      "text": "一分鐘內",
      "start": 0,
      "chars": [
-      4,
-      8,
-      13,
-      17
+      0,
+      3,
+      9,
+      15
      ]
     },
     {
      "text": "叫 AI 寫三條 E",
-     "start": 25,
+     "start": 22,
      "chars": [
-      27,
-      27,
+      24,
+      24,
       32,
       36,
       36,
       41,
-      45,
-      50,
-      50,
-      54
+      48,
+      54,
+      54,
+      62
      ]
     },
     {
@@ -67,87 +61,245 @@
      "start": 62,
      "chars": [
       64,
-      69,
+      66,
+      68,
+      72,
+      72,
       73,
-      78,
-      78,
-      83,
-      87
+      80
      ]
     },
     {
      "text": "還要算得對",
-     "start": 95,
+     "start": 89,
      "chars": [
-      97,
+      91,
+      96,
       102,
-      106,
-      111,
-      115
+      107,
+      110
      ]
     }
    ],
    "keywords": [
     {
      "text": "一分鐘",
-     "start": 4
+     "start": 0
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "一分鐘",
-     "frame": 5
+     "frame": 1,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "三條",
-     "frame": 47
+     "frame": 50,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "算得對",
-     "frame": 108
+     "frame": 103,
+     "early": 0
     }
    ],
+   "hash": "6952a173e9be-fd65c16ade",
    "sub": "一分鐘內\n叫 AI 寫三條 E\nxcel 公式\n還要算得對",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.579,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.88,
+      "start": 0.86,
+      "ch": "叫",
+      "errMs": -20
+     },
+     {
+      "onset": 3.06,
+      "start": 3.08,
+      "ch": "還",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.585
+    },
+    {
+     "text": "分",
+     "start": 0.16,
+     "end": 0.3,
+     "score": 0.997
+    },
+    {
+     "text": "鐘",
+     "start": 0.34,
+     "end": 0.5,
+     "score": 0.954
+    },
+    {
+     "text": "內",
+     "start": 0.54,
+     "end": 0.7,
+     "score": 0.955
+    },
+    {
+     "text": "叫",
+     "start": 0.86,
+     "end": 1.04,
+     "score": 0.99
+    },
+    {
+     "text": "A",
+     "start": 1.12,
+     "end": 1.18,
+     "score": 0.062
+    },
+    {
+     "text": "I",
+     "start": 1.26,
+     "end": 1.36,
+     "score": 0.448
+    },
+    {
+     "text": "寫",
+     "start": 1.42,
+     "end": 1.54,
+     "score": 0.646
+    },
+    {
+     "text": "三",
+     "start": 1.66,
+     "end": 1.8,
+     "score": 0.008
+    },
+    {
+     "text": "條",
+     "start": 1.84,
+     "end": 2.04,
+     "score": 0.27
+    },
+    {
+     "text": "E",
+     "start": 2.1,
+     "end": 2.12,
+     "score": 0.001
+    },
+    {
+     "text": "x",
+     "start": 2.18,
+     "end": 2.2,
+     "score": 0.008
+    },
+    {
+     "text": "c",
+     "start": 2.24,
+     "end": 2.26,
+     "score": 0.006
+    },
+    {
+     "text": "e",
+     "start": 2.3,
+     "end": 2.32,
+     "score": 0.059
+    },
+    {
+     "text": "l",
+     "start": 2.44,
+     "end": 2.46,
+     "score": 0
+    },
+    {
+     "text": "公",
+     "start": 2.48,
+     "end": 2.64,
+     "score": 0.981
+    },
+    {
+     "text": "式",
+     "start": 2.7,
+     "end": 2.8,
+     "score": 0.852
+    },
+    {
+     "text": "還",
+     "start": 3.08,
+     "end": 3.2,
+     "score": 0.996
+    },
+    {
+     "text": "要",
+     "start": 3.26,
+     "end": 3.4,
+     "score": 0.993
+    },
+    {
+     "text": "算",
+     "start": 3.44,
+     "end": 3.58,
+     "score": 0.943
+    },
+    {
+     "text": "得",
+     "start": 3.62,
+     "end": 3.68,
+     "score": 0.997
+    },
+    {
+     "text": "對",
+     "start": 3.72,
+     "end": 3.84,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.151,
-    0.303,
-    0.454,
-    0.788,
-    0.939,
-    1.091,
-    1.242,
-    1.393,
-    1.545,
-    1.696,
-    2.03,
-    2.181,
-    2.333,
-    2.484,
-    2.636,
-    2.787,
-    3.12,
-    3.272,
-    3.423,
-    3.575,
-    3.726
+    0.02,
+    0.16,
+    0.34,
+    0.54,
+    0.86,
+    1.12,
+    1.26,
+    1.42,
+    1.66,
+    1.84,
+    2.1,
+    2.18,
+    2.24,
+    2.3,
+    2.44,
+    2.48,
+    2.7,
+    3.08,
+    3.26,
+    3.44,
+    3.62,
+    3.72
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 130,
-   "audioSec": 2.857,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 120,
-   "durationFrames": 105,
+   "audio": "audio/caffaine-excel-formula/02-s02.wav",
+   "audioFrame": 136,
+   "audioSec": 2.92,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 127,
+   "durationFrames": 116,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -161,93 +313,196 @@
      8
     ]
    },
-   "voiceStartFrame": 130,
-   "voiceEndFrame": 217,
-   "stillFrame": 215,
+   "voiceStartFrame": 137,
+   "voiceEndFrame": 223,
+   "stillFrame": 233,
    "subtitleWindow": [
-    127,
-    222
+    134,
+    240
    ],
    "sourceWindow": [
-    125,
-    220
+    132,
+    238
    ],
    "lines": [
     {
      "text": "我先說表格長怎樣",
-     "start": 127,
+     "start": 134,
      "chars": [
-      129,
-      134,
-      140,
-      145,
-      151,
+      143,
+      147,
+      152,
       157,
-      162,
-      168
+      163,
+      169,
+      175,
+      180
      ]
     },
     {
      "text": "再一條一條問",
-     "start": 178,
+     "start": 188,
      "chars": [
-      180,
-      186,
-      192,
+      190,
       197,
-      203,
-      209
+      201,
+      207,
+      210,
+      217
      ]
     }
    ],
    "keywords": [
     {
      "text": "表格長怎樣",
-     "start": 145
+     "start": 157
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "表格長怎樣",
-     "frame": 147
+     "frame": 159,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "一條一條問",
-     "frame": 188
+     "frame": 198,
+     "early": 0
     }
    ],
+   "hash": "35eebb45d556-fd65c16ade",
    "sub": "我先說表格長怎樣\n再一條一條問",
-   "provider": "estimate",
-   "syllables": 14,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.804,
+    "minScore": 0.023,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.87,
+      "start": 1.86,
+      "ch": "再",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.28,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "先",
+     "start": 0.4,
+     "end": 0.56,
+     "score": 0.931
+    },
+    {
+     "text": "說",
+     "start": 0.6,
+     "end": 0.68,
+     "score": 0.891
+    },
+    {
+     "text": "表",
+     "start": 0.76,
+     "end": 0.92,
+     "score": 0.996
+    },
+    {
+     "text": "格",
+     "start": 0.96,
+     "end": 1.06,
+     "score": 0.999
+    },
+    {
+     "text": "長",
+     "start": 1.14,
+     "end": 1.32,
+     "score": 0.896
+    },
+    {
+     "text": "怎",
+     "start": 1.34,
+     "end": 1.46,
+     "score": 0.531
+    },
+    {
+     "text": "樣",
+     "start": 1.52,
+     "end": 1.7,
+     "score": 0.994
+    },
+    {
+     "text": "再",
+     "start": 1.86,
+     "end": 2.02,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 2.08,
+     "end": 2.14,
+     "score": 0.059
+    },
+    {
+     "text": "條",
+     "start": 2.22,
+     "end": 2.4,
+     "score": 0.985
+    },
+    {
+     "text": "一",
+     "start": 2.42,
+     "end": 2.46,
+     "score": 0.023
+    },
+    {
+     "text": "條",
+     "start": 2.52,
+     "end": 2.7,
+     "score": 0.992
+    },
+    {
+     "text": "問",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.967
+    }
+   ],
    "charTimes": [
-    0,
-    0.188,
-    0.376,
-    0.564,
-    0.752,
-    0.94,
-    1.128,
-    1.316,
-    1.729,
-    1.917,
-    2.105,
-    2.293,
-    2.481,
-    2.669
+    0.28,
+    0.4,
+    0.6,
+    0.76,
+    0.96,
+    1.14,
+    1.34,
+    1.52,
+    1.86,
+    2.08,
+    2.22,
+    2.42,
+    2.52,
+    2.74
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 225,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 215,
-   "durationFrames": 135,
+   "audio": "audio/caffaine-excel-formula/03-s03.wav",
+   "audioFrame": 242,
+   "audioSec": 4.32,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 233,
+   "durationFrames": 158,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -261,114 +516,266 @@
      8
     ]
    },
-   "voiceStartFrame": 225,
-   "voiceEndFrame": 342,
-   "stillFrame": 340,
+   "voiceStartFrame": 243,
+   "voiceEndFrame": 371,
+   "stillFrame": 381,
    "subtitleWindow": [
-    222,
-    347
+    240,
+    388
    ],
    "sourceWindow": [
-    220,
-    345
+    238,
+    386
    ],
    "lines": [
     {
      "text": "第一條",
-     "start": 222,
+     "start": 240,
      "chars": [
-      224,
-      229,
-      234
+      248,
+      252,
+      256
      ]
     },
     {
      "text": "北區大於五千的加總",
-     "start": 243,
+     "start": 267,
      "chars": [
-      245,
-      250,
-      262,
-      267,
-      272,
-      277,
-      282,
-      287,
-      292
+      269,
+      276,
+      289,
+      295,
+      301,
+      305,
+      310,
+      313,
+      319
      ]
     },
     {
      "text": "它給了這條公式",
-     "start": 302,
+     "start": 331,
      "chars": [
-      304,
-      309,
-      314,
-      319,
-      324,
-      330,
-      335
+      333,
+      338,
+      343,
+      347,
+      352,
+      358,
+      364
      ]
     }
    ],
    "keywords": [
     {
      "text": "第一條",
-     "start": 224
+     "start": 248
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "第一條",
-     "frame": 225
+     "frame": 250,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "北區",
-     "frame": 247
+     "frame": 271,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "公式",
-     "frame": 331
+     "frame": 359,
+     "early": 0
     }
    ],
+   "hash": "13e6a1191b74-fd65c16ade",
    "sub": "第一條\n北區\n大於五千的加總\n它給了這條公式",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.884,
+    "minScore": 0.004,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.28,
+      "start": 0.26,
+      "ch": "第",
+      "errMs": -20
+     },
+     {
+      "onset": 0.98,
+      "start": 0.96,
+      "ch": "北",
+      "errMs": -20
+     },
+     {
+      "onset": 1.64,
+      "start": 1.62,
+      "ch": "大",
+      "errMs": -20
+     },
+     {
+      "onset": 3.09,
+      "start": 3.08,
+      "ch": "它",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.26,
+     "end": 0.34,
+     "score": 0.989
+    },
+    {
+     "text": "一",
+     "start": 0.38,
+     "end": 0.44,
+     "score": 0.004
+    },
+    {
+     "text": "條",
+     "start": 0.5,
+     "end": 0.74,
+     "score": 0.998
+    },
+    {
+     "text": "北",
+     "start": 0.96,
+     "end": 1.1,
+     "score": 0.999
+    },
+    {
+     "text": "區",
+     "start": 1.18,
+     "end": 1.32,
+     "score": 0.998
+    },
+    {
+     "text": "大",
+     "start": 1.62,
+     "end": 1.7,
+     "score": 0.998
+    },
+    {
+     "text": "於",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.975
+    },
+    {
+     "text": "五",
+     "start": 2,
+     "end": 2.06,
+     "score": 0.39
+    },
+    {
+     "text": "千",
+     "start": 2.14,
+     "end": 2.28,
+     "score": 0.755
+    },
+    {
+     "text": "的",
+     "start": 2.32,
+     "end": 2.38,
+     "score": 0.997
+    },
+    {
+     "text": "加",
+     "start": 2.42,
+     "end": 2.52,
+     "score": 0.999
+    },
+    {
+     "text": "總",
+     "start": 2.62,
+     "end": 2.8,
+     "score": 0.971
+    },
+    {
+     "text": "它",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.994
+    },
+    {
+     "text": "給",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "了",
+     "start": 3.4,
+     "end": 3.48,
+     "score": 0.997
+    },
+    {
+     "text": "這",
+     "start": 3.56,
+     "end": 3.64,
+     "score": 0.839
+    },
+    {
+     "text": "條",
+     "start": 3.72,
+     "end": 3.88,
+     "score": 0.998
+    },
+    {
+     "text": "公",
+     "start": 3.9,
+     "end": 4.06,
+     "score": 0.938
+    },
+    {
+     "text": "式",
+     "start": 4.12,
+     "end": 4.22,
+     "score": 0.964
+    }
+   ],
    "charTimes": [
-    0,
-    0.172,
-    0.343,
-    0.721,
-    0.892,
-    1.27,
-    1.441,
-    1.613,
-    1.784,
-    1.956,
-    2.128,
-    2.299,
-    2.677,
-    2.848,
-    3.02,
-    3.191,
-    3.363,
-    3.534,
-    3.706
+    0.26,
+    0.38,
+    0.5,
+    0.96,
+    1.18,
+    1.62,
+    1.82,
+    2,
+    2.14,
+    2.32,
+    2.42,
+    2.62,
+    3.08,
+    3.24,
+    3.4,
+    3.56,
+    3.72,
+    3.9,
+    4.12
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 350,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 340,
-   "durationFrames": 92,
+   "audio": "audio/caffaine-excel-formula/04-s04.wav",
+   "audioFrame": 390,
+   "audioSec": 2.61,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 381,
+   "durationFrames": 107,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -382,89 +789,180 @@
      8
     ]
    },
-   "voiceStartFrame": 350,
-   "voiceEndFrame": 424,
-   "stillFrame": 422,
+   "voiceStartFrame": 391,
+   "voiceEndFrame": 468,
+   "stillFrame": 478,
    "subtitleWindow": [
-    347,
-    429
+    388,
+    485
    ],
    "sourceWindow": [
-    345,
-    427
+    386,
+    483
    ],
    "lines": [
     {
      "text": "三條公式",
-     "start": 347,
+     "start": 388,
      "chars": [
-      349,
-      354,
-      360,
-      365
+      397,
+      402,
+      408,
+      414
      ]
     },
     {
      "text": "一共用了八點五秒",
-     "start": 375,
+     "start": 422,
      "chars": [
-      377,
-      383,
-      389,
-      394,
-      400,
-      405,
-      411,
-      416
+      424,
+      428,
+      434,
+      439,
+      444,
+      450,
+      456,
+      461
      ]
     }
    ],
    "keywords": [
     {
      "text": "三條公式",
-     "start": 349
+     "start": 397
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "三條公式",
-     "frame": 350
+     "frame": 398,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "八點五秒",
-     "frame": 401
+     "frame": 446,
+     "early": 0
     }
    ],
+   "hash": "ca4d9d45aad0-fd65c16ade",
    "sub": "三條公式\n一共用了八點五秒",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.767,
+    "minScore": 0.046,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.21,
+      "start": 1.18,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "三",
+     "start": 0.28,
+     "end": 0.42,
+     "score": 0.046
+    },
+    {
+     "text": "條",
+     "start": 0.46,
+     "end": 0.62,
+     "score": 0.972
+    },
+    {
+     "text": "公",
+     "start": 0.64,
+     "end": 0.8,
+     "score": 0.96
+    },
+    {
+     "text": "式",
+     "start": 0.84,
+     "end": 0.96,
+     "score": 0.903
+    },
+    {
+     "text": "一",
+     "start": 1.18,
+     "end": 1.24,
+     "score": 0.137
+    },
+    {
+     "text": "共",
+     "start": 1.32,
+     "end": 1.48,
+     "score": 0.991
+    },
+    {
+     "text": "用",
+     "start": 1.5,
+     "end": 1.66,
+     "score": 0.999
+    },
+    {
+     "text": "了",
+     "start": 1.68,
+     "end": 1.76,
+     "score": 0.994
+    },
+    {
+     "text": "八",
+     "start": 1.86,
+     "end": 1.94,
+     "score": 0.559
+    },
+    {
+     "text": "點",
+     "start": 2.06,
+     "end": 2.2,
+     "score": 0.962
+    },
+    {
+     "text": "五",
+     "start": 2.26,
+     "end": 2.32,
+     "score": 0.697
+    },
+    {
+     "text": "秒",
+     "start": 2.4,
+     "end": 2.58,
+     "score": 0.979
+    }
+   ],
    "charTimes": [
-    0,
-    0.186,
-    0.371,
-    0.557,
-    0.965,
-    1.15,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263
+    0.28,
+    0.46,
+    0.64,
+    0.84,
+    1.18,
+    1.32,
+    1.5,
+    1.68,
+    1.86,
+    2.06,
+    2.26,
+    2.4
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 433,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 422,
-   "durationFrames": 142,
+   "audio": "audio/caffaine-excel-formula/05-s05.wav",
+   "audioFrame": 487,
+   "audioSec": 4.4,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 478,
+   "durationFrames": 149,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -478,136 +976,324 @@
      8
     ]
    },
-   "voiceStartFrame": 432,
-   "voiceEndFrame": 556,
-   "stillFrame": 554,
+   "voiceStartFrame": 488,
+   "voiceEndFrame": 618,
+   "stillFrame": 617,
    "subtitleWindow": [
-    429,
-    561
+    485,
+    624
    ],
    "sourceWindow": [
-    427,
-    559
+    483,
+    622
    ],
    "lines": [
     {
      "text": "我用 LibreOffice",
-     "start": 429,
+     "start": 485,
      "chars": [
-      432,
-      436,
-      436,
-      440,
-      444,
-      448,
-      452,
-      456,
-      460,
-      465,
-      469,
-      473,
-      477,
-      481
+      493,
+      498,
+      498,
+      502,
+      505,
+      506,
+      509,
+      511,
+      514,
+      516,
+      517,
+      520,
+      523,
+      525
      ]
     },
     {
      "text": " 真的算一遍",
-     "start": 488,
+     "start": 527,
      "chars": [
-      488,
-      490,
-      494,
-      499,
-      503,
-      507
+      527,
+      529,
+      535,
+      539,
+      544,
+      548
      ]
     },
     {
      "text": "兩條對",
-     "start": 514,
+     "start": 560,
      "chars": [
-      516,
-      520,
-      524
+      562,
+      568,
+      575
      ]
     },
     {
      "text": "一條算出零",
-     "start": 531,
+     "start": 585,
      "chars": [
-      533,
-      537,
-      542,
-      546,
-      550
+      587,
+      591,
+      598,
+      604,
+      609
      ]
     }
    ],
    "keywords": [
     {
      "text": "LibreOffice",
-     "start": 440
+     "start": 502
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "LibreOffice",
-     "frame": 441
+     "frame": 504,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "兩條對",
-     "frame": 517
+     "frame": 563,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "算出零",
-     "frame": 543
+     "frame": 600,
+     "early": 0
     }
    ],
+   "hash": "907afa577362-fd65c16ade",
    "sub": "我用 LibreOffice\n 真的算一遍\n兩條對\n一條算出零",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.714,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 170,
+    "onsetCheck": [
+     {
+      "onset": 1.47,
+      "start": 1.3,
+      "ch": "e",
+      "errMs": -170
+     },
+     {
+      "onset": 2.56,
+      "start": 2.54,
+      "ch": "兩",
+      "errMs": -20
+     },
+     {
+      "onset": 3.4,
+      "start": 3.38,
+      "ch": "一",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.26,
+     "end": 0.34,
+     "score": 0.778
+    },
+    {
+     "text": "用",
+     "start": 0.4,
+     "end": 0.54,
+     "score": 0.993
+    },
+    {
+     "text": "L",
+     "start": 0.56,
+     "end": 0.58,
+     "score": 0
+    },
+    {
+     "text": "i",
+     "start": 0.66,
+     "end": 0.68,
+     "score": 0.938
+    },
+    {
+     "text": "b",
+     "start": 0.7,
+     "end": 0.72,
+     "score": 0.95
+    },
+    {
+     "text": "r",
+     "start": 0.78,
+     "end": 0.8,
+     "score": 0.605
+    },
+    {
+     "text": "e",
+     "start": 0.84,
+     "end": 0.86,
+     "score": 0.132
+    },
+    {
+     "text": "O",
+     "start": 0.96,
+     "end": 0.98,
+     "score": 0.771
+    },
+    {
+     "text": "f",
+     "start": 1.02,
+     "end": 1.04,
+     "score": 0.832
+    },
+    {
+     "text": "f",
+     "start": 1.06,
+     "end": 1.08,
+     "score": 0.984
+    },
+    {
+     "text": "i",
+     "start": 1.14,
+     "end": 1.16,
+     "score": 0.97
+    },
+    {
+     "text": "c",
+     "start": 1.24,
+     "end": 1.26,
+     "score": 0.987
+    },
+    {
+     "text": "e",
+     "start": 1.3,
+     "end": 1.32,
+     "score": 0.891
+    },
+    {
+     "text": "真",
+     "start": 1.46,
+     "end": 1.6,
+     "score": 0.98
+    },
+    {
+     "text": "的",
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.997
+    },
+    {
+     "text": "算",
+     "start": 1.78,
+     "end": 1.92,
+     "score": 0.056
+    },
+    {
+     "text": "一",
+     "start": 1.96,
+     "end": 2,
+     "score": 0.041
+    },
+    {
+     "text": "遍",
+     "start": 2.08,
+     "end": 2.26,
+     "score": 0.902
+    },
+    {
+     "text": "兩",
+     "start": 2.54,
+     "end": 2.72,
+     "score": 0.987
+    },
+    {
+     "text": "條",
+     "start": 2.74,
+     "end": 2.94,
+     "score": 0.996
+    },
+    {
+     "text": "對",
+     "start": 2.98,
+     "end": 3.14,
+     "score": 0.903
+    },
+    {
+     "text": "一",
+     "start": 3.38,
+     "end": 3.44,
+     "score": 0.022
+    },
+    {
+     "text": "條",
+     "start": 3.52,
+     "end": 3.7,
+     "score": 0.941
+    },
+    {
+     "text": "算",
+     "start": 3.76,
+     "end": 3.9,
+     "score": 0.05
+    },
+    {
+     "text": "出",
+     "start": 3.94,
+     "end": 4.06,
+     "score": 0.896
+    },
+    {
+     "text": "零",
+     "start": 4.12,
+     "end": 4.3,
+     "score": 0.967
+    }
+   ],
    "charTimes": [
-    0,
-    0.138,
-    0.276,
-    0.414,
-    0.552,
-    0.689,
-    0.827,
-    0.965,
-    1.103,
-    1.241,
-    1.379,
-    1.517,
-    1.655,
-    1.958,
-    2.096,
-    2.234,
-    2.372,
-    2.51,
-    2.813,
-    2.951,
-    3.089,
-    3.392,
-    3.53,
-    3.668,
-    3.806,
-    3.944
+    0.26,
+    0.4,
+    0.56,
+    0.66,
+    0.7,
+    0.78,
+    0.84,
+    0.96,
+    1.02,
+    1.06,
+    1.14,
+    1.24,
+    1.3,
+    1.46,
+    1.64,
+    1.78,
+    1.96,
+    2.08,
+    2.54,
+    2.74,
+    2.98,
+    3.38,
+    3.52,
+    3.76,
+    3.94,
+    4.12
    ]
   },
   {
    "id": "s06",
-   "audio": null,
-   "audioFrame": 564,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 554,
-   "durationFrames": 153,
+   "audio": "audio/caffaine-excel-formula/06-s06.wav",
+   "audioFrame": 626,
+   "audioSec": 4.93,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 617,
+   "durationFrames": 176,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -621,246 +1307,339 @@
      8
     ]
    },
-   "voiceStartFrame": 564,
-   "voiceEndFrame": 699,
-   "stillFrame": 697,
+   "voiceStartFrame": 627,
+   "voiceEndFrame": 773,
+   "stillFrame": 783,
    "subtitleWindow": [
-    561,
-    704
+    624,
+    790
    ],
    "sourceWindow": [
-    559,
-    702
+    622,
+    788
    ],
    "lines": [
     {
      "text": "第二條日期用斜線",
-     "start": 561,
+     "start": 624,
      "chars": [
-      563,
-      567,
-      571,
-      575,
-      580,
-      584,
-      588,
-      592
+      634,
+      639,
+      641,
+      648,
+      653,
+      659,
+      664,
+      670
      ]
     },
     {
      "text": "在 LibreOff",
-     "start": 600,
+     "start": 682,
      "chars": [
-      602,
-      602,
-      606,
-      610,
-      614,
-      619,
-      623,
-      627,
-      632,
-      636
+      685,
+      685,
+      690,
+      691,
+      694,
+      696,
+      697,
+      701,
+      703,
+      704
      ]
     },
     {
      "text": "ice 認不出",
-     "start": 643,
+     "start": 704,
      "chars": [
-      645,
-      649,
-      654,
-      654,
-      658,
-      662,
-      667
+      706,
+      710,
+      711,
+      711,
+      716,
+      721,
+      725
      ]
     },
     {
      "text": "改橫線就行",
-     "start": 674,
+     "start": 738,
      "chars": [
-      676,
-      680,
-      684,
-      689,
-      693
+      740,
+      746,
+      753,
+      759,
+      764
      ]
     }
    ],
    "keywords": [
     {
      "text": "斜線",
-     "start": 588
+     "start": 664
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "斜線",
-     "frame": 590
+     "frame": 666,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "認不出",
-     "frame": 659
+     "frame": 717,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "橫線",
-     "frame": 682
+     "frame": 748,
+     "early": 0
     }
    ],
+   "hash": "da72209befa1-fd65c16ade",
    "sub": "第二條日期用斜線\n在 LibreOff\nice 認不出\n改橫線就行",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.867,
+    "minScore": 0.208,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.32,
+      "start": 0.3,
+      "ch": "第",
+      "errMs": -20
+     },
+     {
+      "onset": 2,
+      "start": 2,
+      "ch": "在",
+      "errMs": 0
+     },
+     {
+      "onset": 3.86,
+      "start": 3.84,
+      "ch": "改",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.3,
+     "end": 0.36,
+     "score": 0.987
+    },
+    {
+     "text": "二",
+     "start": 0.48,
+     "end": 0.54,
+     "score": 0.417
+    },
+    {
+     "text": "條",
+     "start": 0.56,
+     "end": 0.74,
+     "score": 0.993
+    },
+    {
+     "text": "日",
+     "start": 0.78,
+     "end": 0.86,
+     "score": 0.997
+    },
+    {
+     "text": "期",
+     "start": 0.96,
+     "end": 1.08,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 1.16,
+     "end": 1.3,
+     "score": 0.99
+    },
+    {
+     "text": "斜",
+     "start": 1.32,
+     "end": 1.44,
+     "score": 0.998
+    },
+    {
+     "text": "線",
+     "start": 1.52,
+     "end": 1.7,
+     "score": 1
+    },
+    {
+     "text": "在",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.991
+    },
+    {
+     "text": "L",
+     "start": 2.18,
+     "end": 2.2,
+     "score": 0.956
+    },
+    {
+     "text": "i",
+     "start": 2.22,
+     "end": 2.24,
+     "score": 0.741
+    },
+    {
+     "text": "b",
+     "start": 2.3,
+     "end": 2.32,
+     "score": 0.976
+    },
+    {
+     "text": "r",
+     "start": 2.38,
+     "end": 2.4,
+     "score": 0.735
+    },
+    {
+     "text": "e",
+     "start": 2.4,
+     "end": 2.42,
+     "score": 0.208
+    },
+    {
+     "text": "O",
+     "start": 2.54,
+     "end": 2.56,
+     "score": 0.704
+    },
+    {
+     "text": "f",
+     "start": 2.6,
+     "end": 2.62,
+     "score": 0.247
+    },
+    {
+     "text": "f",
+     "start": 2.66,
+     "end": 2.68,
+     "score": 0.974
+    },
+    {
+     "text": "i",
+     "start": 2.72,
+     "end": 2.74,
+     "score": 0.808
+    },
+    {
+     "text": "c",
+     "start": 2.84,
+     "end": 2.86,
+     "score": 0.961
+    },
+    {
+     "text": "e",
+     "start": 2.88,
+     "end": 2.9,
+     "score": 0.971
+    },
+    {
+     "text": "認",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.998
+    },
+    {
+     "text": "不",
+     "start": 3.2,
+     "end": 3.26,
+     "score": 0.996
+    },
+    {
+     "text": "出",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.854
+    },
+    {
+     "text": "改",
+     "start": 3.84,
+     "end": 4,
+     "score": 0.995
+    },
+    {
+     "text": "橫",
+     "start": 4.06,
+     "end": 4.24,
+     "score": 0.888
+    },
+    {
+     "text": "線",
+     "start": 4.28,
+     "end": 4.44,
+     "score": 0.994
+    },
+    {
+     "text": "就",
+     "start": 4.48,
+     "end": 4.6,
+     "score": 0.994
+    },
+    {
+     "text": "行",
+     "start": 4.64,
+     "end": 4.84,
+     "score": 0.917
+    }
+   ],
    "charTimes": [
-    0,
-    0.142,
-    0.284,
-    0.426,
-    0.568,
-    0.71,
-    0.852,
-    0.995,
-    1.307,
-    1.449,
-    1.591,
-    1.733,
-    1.875,
-    2.018,
-    2.16,
-    2.302,
-    2.444,
-    2.756,
-    2.898,
-    3.041,
-    3.183,
-    3.325,
-    3.467,
-    3.779,
-    3.921,
-    4.064,
-    4.206,
-    4.348
+    0.3,
+    0.48,
+    0.56,
+    0.78,
+    0.96,
+    1.16,
+    1.32,
+    1.52,
+    2,
+    2.18,
+    2.22,
+    2.3,
+    2.38,
+    2.4,
+    2.54,
+    2.6,
+    2.66,
+    2.72,
+    2.84,
+    2.88,
+    3.04,
+    3.2,
+    3.34,
+    3.84,
+    4.06,
+    4.28,
+    4.48,
+    4.64
    ]
   },
   {
    "id": "s07",
-   "audio": null,
-   "audioFrame": 708,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 697,
-   "durationFrames": 93,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 707,
-   "voiceEndFrame": 782,
-   "stillFrame": 780,
-   "subtitleWindow": [
-    704,
-    787
-   ],
-   "sourceWindow": [
-    702,
-    785
-   ],
-   "lines": [
-    {
-     "text": "我把結果告訴它",
-     "start": 704,
-     "chars": [
-      707,
-      712,
-      717,
-      722,
-      727,
-      732,
-      737
-     ]
-    },
-    {
-     "text": "算出零",
-     "start": 746,
-     "chars": [
-      748,
-      753,
-      759
-     ]
-    },
-    {
-     "text": "請修",
-     "start": 768,
-     "chars": [
-      770,
-      775
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "結果告訴它",
-     "start": 717
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "結果告訴它",
-     "frame": 718
-    },
-    {
-     "id": "k2",
-     "text": "算出零",
-     "frame": 750
-    },
-    {
-     "id": "k3",
-     "text": "請修",
-     "frame": 771
-    }
-   ],
-   "sub": "我把結果告訴它\n算出零\n請修",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
-   "charTimes": [
-    0,
-    0.17,
-    0.34,
-    0.51,
-    0.68,
-    0.85,
-    1.02,
-    1.395,
-    1.565,
-    1.735,
-    2.109,
-    2.279
-   ]
-  },
-  {
-   "id": "s08",
-   "audio": null,
-   "audioFrame": 790,
-   "audioSec": 3.265,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 780,
+   "audio": "audio/caffaine-excel-formula/07-s07.wav",
+   "audioFrame": 792,
+   "audioSec": 2.96,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 783,
    "durationFrames": 117,
    "transitionFrames": 10,
    "transition": {
@@ -875,103 +1654,192 @@
      8
     ]
    },
-   "voiceStartFrame": 790,
-   "voiceEndFrame": 889,
-   "stillFrame": 887,
+   "voiceStartFrame": 793,
+   "voiceEndFrame": 880,
+   "stillFrame": 890,
    "subtitleWindow": [
-    787,
-    894
+    790,
+    897
    ],
    "sourceWindow": [
-    785,
-    892
+    788,
+    895
    ],
    "lines": [
     {
-     "text": "修完算出",
-     "start": 787,
+     "text": "我把結果告訴它",
+     "start": 790,
      "chars": [
-      789,
-      794,
-      799,
-      804
-     ]
-    },
-    {
-     "text": "七萬五千三百零一",
-     "start": 814,
-     "chars": [
+      798,
+      801,
+      807,
+      812,
       816,
       822,
-      827,
-      832,
-      837,
-      843,
-      848,
-      853
+      827
      ]
     },
     {
-     "text": "三條全對",
-     "start": 863,
+     "text": "算出零",
+     "start": 838,
      "chars": [
-      865,
-      870,
-      876,
-      881
+      840,
+      846,
+      852
+     ]
+    },
+    {
+     "text": "請修",
+     "start": 861,
+     "chars": [
+      863,
+      870
      ]
     }
    ],
    "keywords": [
     {
-     "text": "七萬五千三百零一",
-     "start": 816
+     "text": "結果告訴它",
+     "start": 807
     }
    ],
    "cues": [
     {
      "id": "k1",
-     "text": "七萬五千三百零一",
-     "frame": 818
+     "text": "結果告訴它",
+     "frame": 808,
+     "early": 0
     },
     {
      "id": "k2",
-     "text": "三條全對",
-     "frame": 867
+     "text": "算出零",
+     "frame": 842,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "請修",
+     "frame": 865,
+     "early": 0
     }
    ],
-   "sub": "修完算出\n七萬五千三百零一\n三條全對",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
+   "hash": "04644aff4082-fd65c16ade",
+   "sub": "我把結果告訴它\n算出零\n請修",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.901,
+    "minScore": 0.271,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.63,
+      "start": 1.66,
+      "ch": "算",
+      "errMs": 30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.26,
+     "end": 0.32,
+     "score": 0.998
+    },
+    {
+     "text": "把",
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.991
+    },
+    {
+     "text": "結",
+     "start": 0.54,
+     "end": 0.64,
+     "score": 0.978
+    },
+    {
+     "text": "果",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.939
+    },
+    {
+     "text": "告",
+     "start": 0.86,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "訴",
+     "start": 1.06,
+     "end": 1.14,
+     "score": 0.998
+    },
+    {
+     "text": "它",
+     "start": 1.2,
+     "end": 1.3,
+     "score": 0.986
+    },
+    {
+     "text": "算",
+     "start": 1.66,
+     "end": 1.8,
+     "score": 0.271
+    },
+    {
+     "text": "出",
+     "start": 1.86,
+     "end": 1.96,
+     "score": 0.832
+    },
+    {
+     "text": "零",
+     "start": 2.04,
+     "end": 2.24,
+     "score": 0.898
+    },
+    {
+     "text": "請",
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.937
+    },
+    {
+     "text": "修",
+     "start": 2.66,
+     "end": 2.86,
+     "score": 0.989
+    }
+   ],
    "charTimes": [
-    0,
-    0.177,
-    0.355,
-    0.532,
-    0.923,
-    1.1,
-    1.278,
-    1.455,
-    1.633,
-    1.81,
-    1.988,
-    2.165,
-    2.555,
-    2.733,
-    2.91,
-    3.088
+    0.26,
+    0.36,
+    0.54,
+    0.72,
+    0.86,
+    1.06,
+    1.2,
+    1.66,
+    1.86,
+    2.04,
+    2.42,
+    2.66
    ]
   },
   {
-   "id": "s09",
-   "audio": null,
-   "audioFrame": 897,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 887,
-   "durationFrames": 141,
+   "id": "s08",
+   "audio": "audio/caffaine-excel-formula/08-s08.wav",
+   "audioFrame": 899,
+   "audioSec": 3.64,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 890,
+   "durationFrames": 138,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -985,142 +1853,218 @@
      8
     ]
    },
-   "voiceStartFrame": 897,
-   "voiceEndFrame": 1020,
+   "voiceStartFrame": 900,
+   "voiceEndFrame": 1007,
    "stillFrame": 1018,
    "subtitleWindow": [
-    894,
+    897,
     1025
    ],
    "sourceWindow": [
-    892,
+    895,
     1023
    ],
    "lines": [
     {
-     "text": "不過這是 ",
-     "start": 894,
+     "text": "修完算出",
+     "start": 897,
      "chars": [
-      896,
-      899,
-      903,
       907,
-      907
-     ]
-    },
-    {
-     "text": "LibreOffice",
-     "start": 913,
-     "chars": [
-      915,
+      913,
       919,
-      922,
-      926,
-      930,
-      934,
+      925
+     ]
+    },
+    {
+     "text": "七萬五千三百零一",
+     "start": 928,
+     "chars": [
+      931,
       937,
-      941,
-      945,
-      949,
-      952
-     ]
-    },
-    {
-     "text": " 驗算真的 Excel ",
-     "start": 958,
-     "chars": [
+      943,
+      946,
+      953,
       958,
-      960,
-      964,
-      972,
-      976,
-      976,
-      980,
-      984,
-      987,
-      991,
-      995,
-      995
+      962,
+      968
      ]
     },
     {
-     "text": "還不知道",
-     "start": 1001,
+     "text": "三條全對",
+     "start": 980,
      "chars": [
-      1003,
-      1007,
-      1010,
-      1014
+      982,
+      988,
+      994,
+      1001
      ]
     }
    ],
    "keywords": [
     {
-     "text": "LibreOffice",
-     "start": 915
+     "text": "七萬五千三百零一",
+     "start": 931
     }
    ],
    "cues": [
     {
      "id": "k1",
-     "text": "LibreOffice",
-     "frame": 916
+     "text": "七萬五千三百零一",
+     "frame": 932,
+     "early": 0
     },
     {
      "id": "k2",
-     "text": "真的 Excel",
-     "frame": 974
-    },
-    {
-     "id": "k3",
-     "text": "還不知道",
-     "frame": 1005
+     "text": "三條全對",
+     "frame": 984,
+     "early": 0
     }
    ],
-   "sub": "不過這是 \nLibreOffice\n 驗算\n真的 Excel \n還不知道",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "hash": "646a33c504f6-fd65c16ade",
+   "sub": "修完算出\n七萬五千三百零一\n三條全對",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.514,
+    "minScore": 0.008,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.79,
+      "start": 2.82,
+      "ch": "三",
+      "errMs": 30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "修",
+     "start": 0.3,
+     "end": 0.44,
+     "score": 0.864
+    },
+    {
+     "text": "完",
+     "start": 0.5,
+     "end": 0.64,
+     "score": 0.979
+    },
+    {
+     "text": "算",
+     "start": 0.72,
+     "end": 0.86,
+     "score": 0.489
+    },
+    {
+     "text": "出",
+     "start": 0.9,
+     "end": 1,
+     "score": 0.896
+    },
+    {
+     "text": "七",
+     "start": 1.1,
+     "end": 1.22,
+     "score": 0.062
+    },
+    {
+     "text": "萬",
+     "start": 1.32,
+     "end": 1.46,
+     "score": 0.537
+    },
+    {
+     "text": "五",
+     "start": 1.5,
+     "end": 1.56,
+     "score": 0.058
+    },
+    {
+     "text": "千",
+     "start": 1.62,
+     "end": 1.8,
+     "score": 0.16
+    },
+    {
+     "text": "三",
+     "start": 1.84,
+     "end": 1.98,
+     "score": 0.008
+    },
+    {
+     "text": "百",
+     "start": 2,
+     "end": 2.12,
+     "score": 0.036
+    },
+    {
+     "text": "零",
+     "start": 2.16,
+     "end": 2.3,
+     "score": 0.591
+    },
+    {
+     "text": "一",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.542
+    },
+    {
+     "text": "三",
+     "start": 2.82,
+     "end": 2.96,
+     "score": 0.029
+    },
+    {
+     "text": "條",
+     "start": 3,
+     "end": 3.2,
+     "score": 0.981
+    },
+    {
+     "text": "全",
+     "start": 3.22,
+     "end": 3.4,
+     "score": 0.995
+    },
+    {
+     "text": "對",
+     "start": 3.46,
+     "end": 3.58,
+     "score": 0.997
+    }
+   ],
    "charTimes": [
-    0,
-    0.124,
-    0.249,
-    0.373,
-    0.647,
-    0.772,
-    0.896,
-    1.02,
-    1.145,
-    1.269,
-    1.394,
-    1.518,
-    1.643,
-    1.767,
-    1.891,
-    2.165,
-    2.29,
-    2.563,
-    2.688,
-    2.812,
-    2.937,
-    3.061,
-    3.186,
-    3.31,
-    3.584,
-    3.708,
-    3.833,
-    3.957
+    0.3,
+    0.5,
+    0.72,
+    0.9,
+    1.1,
+    1.32,
+    1.5,
+    1.62,
+    1.84,
+    2,
+    2.16,
+    2.34,
+    2.82,
+    3,
+    3.22,
+    3.46
    ]
   },
   {
-   "id": "s10",
-   "audio": null,
-   "audioFrame": 1029,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "id": "s09",
+   "audio": "audio/caffaine-excel-formula/09-s09.wav",
+   "audioFrame": 1027,
+   "audioSec": 3.8,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 1018,
-   "durationFrames": 154,
+   "durationFrames": 143,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1135,125 +2079,335 @@
     ]
    },
    "voiceStartFrame": 1028,
-   "voiceEndFrame": 1164,
-   "stillFrame": 1162,
+   "voiceEndFrame": 1140,
+   "stillFrame": 1151,
    "subtitleWindow": [
     1025,
-    1169
+    1158
    ],
    "sourceWindow": [
     1023,
-    1167
+    1156
    ],
    "lines": [
     {
-     "text": "所以做法",
+     "text": "不過這是 ",
      "start": 1025,
      "chars": [
-      1028,
-      1033,
+      1035,
       1038,
-      1043
+      1042,
+      1046,
+      1046
      ]
     },
     {
-     "text": "講清楚欄位",
-     "start": 1053,
+     "text": "LibreOffice",
+     "start": 1049,
      "chars": [
-      1055,
-      1060,
+      1051,
+      1053,
+      1056,
+      1058,
+      1059,
+      1063,
       1065,
+      1066,
+      1068,
       1071,
-      1076
+      1072
      ]
     },
     {
-     "text": "貼上驗算",
-     "start": 1085,
+     "text": " 驗算真的 Excel ",
+     "start": 1073,
      "chars": [
-      1087,
-      1093,
-      1098,
-      1103
+      1073,
+      1075,
+      1080,
+      1095,
+      1101,
+      1101,
+      1105,
+      1107,
+      1109,
+      1111,
+      1114,
+      1114
      ]
     },
     {
-     "text": "算錯就把結果告訴它",
-     "start": 1113,
+     "text": "還不知道",
+     "start": 1118,
      "chars": [
-      1115,
       1120,
-      1125,
-      1131,
-      1136,
-      1141,
-      1146,
-      1152,
-      1157
+      1126,
+      1129,
+      1134
      ]
     }
    ],
    "keywords": [
     {
-     "text": "講清楚欄位",
-     "start": 1055
+     "text": "LibreOffice",
+     "start": 1051
     }
    ],
    "cues": [
     {
      "id": "k1",
-     "text": "講清楚欄位",
-     "frame": 1056
+     "text": "LibreOffice",
+     "frame": 1053,
+     "early": 0
     },
     {
      "id": "k2",
-     "text": "貼上驗算",
-     "frame": 1089
+     "text": "真的 Excel",
+     "frame": 1097,
+     "early": 0
     },
     {
      "id": "k3",
-     "text": "算錯",
-     "frame": 1116
+     "text": "還不知道",
+     "frame": 1121,
+     "early": 0
     }
    ],
-   "sub": "所以做法\n講清楚欄位\n貼上驗算\n算錯就把結果告訴它",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "hash": "d2ed7f04c7af-fd65c16ade",
+   "sub": "不過這是 \nLibreOffice\n 驗算\n真的 Excel \n還不知道",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.67,
+    "minScore": 0.012,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 2.32,
+      "start": 2.32,
+      "ch": "真",
+      "errMs": 0
+     },
+     {
+      "onset": 3.14,
+      "start": 3.14,
+      "ch": "還",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.3,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.4,
+     "end": 0.48,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 0.54,
+     "end": 0.62,
+     "score": 0.905
+    },
+    {
+     "text": "是",
+     "start": 0.7,
+     "end": 0.8,
+     "score": 0.925
+    },
+    {
+     "text": "L",
+     "start": 0.86,
+     "end": 0.88,
+     "score": 0.986
+    },
+    {
+     "text": "i",
+     "start": 0.92,
+     "end": 0.94,
+     "score": 0.982
+    },
+    {
+     "text": "b",
+     "start": 1,
+     "end": 1.02,
+     "score": 0.99
+    },
+    {
+     "text": "r",
+     "start": 1.08,
+     "end": 1.1,
+     "score": 0.88
+    },
+    {
+     "text": "e",
+     "start": 1.12,
+     "end": 1.14,
+     "score": 0.287
+    },
+    {
+     "text": "O",
+     "start": 1.26,
+     "end": 1.28,
+     "score": 0.534
+    },
+    {
+     "text": "f",
+     "start": 1.32,
+     "end": 1.34,
+     "score": 0.035
+    },
+    {
+     "text": "f",
+     "start": 1.36,
+     "end": 1.38,
+     "score": 0.931
+    },
+    {
+     "text": "i",
+     "start": 1.42,
+     "end": 1.44,
+     "score": 0.362
+    },
+    {
+     "text": "c",
+     "start": 1.52,
+     "end": 1.54,
+     "score": 0.497
+    },
+    {
+     "text": "e",
+     "start": 1.56,
+     "end": 1.58,
+     "score": 0.667
+    },
+    {
+     "text": "驗",
+     "start": 1.64,
+     "end": 1.78,
+     "score": 0.976
+    },
+    {
+     "text": "算",
+     "start": 1.82,
+     "end": 1.98,
+     "score": 0.784
+    },
+    {
+     "text": "真",
+     "start": 2.32,
+     "end": 2.46,
+     "score": 0.933
+    },
+    {
+     "text": "的",
+     "start": 2.5,
+     "end": 2.56,
+     "score": 0.996
+    },
+    {
+     "text": "E",
+     "start": 2.64,
+     "end": 2.66,
+     "score": 0.013
+    },
+    {
+     "text": "x",
+     "start": 2.7,
+     "end": 2.72,
+     "score": 0.012
+    },
+    {
+     "text": "c",
+     "start": 2.78,
+     "end": 2.8,
+     "score": 0.053
+    },
+    {
+     "text": "e",
+     "start": 2.86,
+     "end": 2.88,
+     "score": 0.094
+    },
+    {
+     "text": "l",
+     "start": 2.94,
+     "end": 2.96,
+     "score": 0.069
+    },
+    {
+     "text": "還",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.998
+    },
+    {
+     "text": "不",
+     "start": 3.34,
+     "end": 3.4,
+     "score": 0.997
+    },
+    {
+     "text": "知",
+     "start": 3.46,
+     "end": 3.56,
+     "score": 0.96
+    },
+    {
+     "text": "道",
+     "start": 3.6,
+     "end": 3.76,
+     "score": 0.892
+    }
+   ],
    "charTimes": [
-    0,
-    0.175,
-    0.351,
-    0.526,
-    0.912,
-    1.087,
-    1.263,
-    1.438,
-    1.614,
-    1.999,
-    2.175,
-    2.35,
-    2.526,
-    2.911,
-    3.087,
-    3.262,
-    3.437,
-    3.613,
-    3.788,
-    3.964,
-    4.139,
-    4.314
+    0.3,
+    0.4,
+    0.54,
+    0.7,
+    0.86,
+    0.92,
+    1,
+    1.08,
+    1.12,
+    1.26,
+    1.32,
+    1.36,
+    1.42,
+    1.52,
+    1.56,
+    1.64,
+    1.82,
+    2.32,
+    2.5,
+    2.64,
+    2.7,
+    2.78,
+    2.86,
+    2.94,
+    3.14,
+    3.34,
+    3.46,
+    3.6
    ]
   },
   {
-   "id": "s11",
-   "audio": null,
-   "audioFrame": 1173,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1162,
-   "durationFrames": 93,
+   "id": "s10",
+   "audio": "audio/caffaine-excel-formula/10-s10.wav",
+   "audioFrame": 1160,
+   "audioSec": 5.22,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1151,
+   "durationFrames": 185,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1267,90 +2421,478 @@
      8
     ]
    },
-   "voiceStartFrame": 1172,
-   "voiceEndFrame": 1247,
-   "stillFrame": 1245,
+   "voiceStartFrame": 1161,
+   "voiceEndFrame": 1316,
+   "stillFrame": 1326,
    "subtitleWindow": [
-    1169,
-    1255
+    1158,
+    1333
    ],
    "sourceWindow": [
-    1167,
-    1250
+    1156,
+    1331
+   ],
+   "lines": [
+    {
+     "text": "所以做法",
+     "start": 1158,
+     "chars": [
+      1168,
+      1172,
+      1175,
+      1181
+     ]
+    },
+    {
+     "text": "講清楚欄位",
+     "start": 1193,
+     "chars": [
+      1195,
+      1202,
+      1208,
+      1213,
+      1219
+     ]
+    },
+    {
+     "text": "貼上驗算",
+     "start": 1230,
+     "chars": [
+      1232,
+      1239,
+      1246,
+      1251
+     ]
+    },
+    {
+     "text": "算錯就把結果告訴它",
+     "start": 1264,
+     "chars": [
+      1266,
+      1273,
+      1279,
+      1283,
+      1288,
+      1294,
+      1298,
+      1304,
+      1308
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "講清楚欄位",
+     "start": 1195
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "講清楚欄位",
+     "frame": 1197,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "貼上驗算",
+     "frame": 1234,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "算錯",
+     "frame": 1267,
+     "early": 0
+    }
+   ],
+   "hash": "265456d8ce67-fd65c16ade",
+   "sub": "所以做法\n講清楚欄位\n貼上驗算\n算錯就把結果告訴它",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.918,
+    "minScore": 0.334,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.22,
+      "start": 1.22,
+      "ch": "講",
+      "errMs": 0
+     },
+     {
+      "onset": 2.47,
+      "start": 2.46,
+      "ch": "貼",
+      "errMs": -10
+     },
+     {
+      "onset": 3.55,
+      "start": 3.58,
+      "ch": "算",
+      "errMs": 30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.32,
+     "end": 0.4,
+     "score": 0.334
+    },
+    {
+     "text": "以",
+     "start": 0.46,
+     "end": 0.5,
+     "score": 0.99
+    },
+    {
+     "text": "做",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 0.996
+    },
+    {
+     "text": "法",
+     "start": 0.76,
+     "end": 0.84,
+     "score": 0.999
+    },
+    {
+     "text": "講",
+     "start": 1.22,
+     "end": 1.4,
+     "score": 0.99
+    },
+    {
+     "text": "清",
+     "start": 1.44,
+     "end": 1.62,
+     "score": 0.939
+    },
+    {
+     "text": "楚",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.762
+    },
+    {
+     "text": "欄",
+     "start": 1.8,
+     "end": 1.94,
+     "score": 0.962
+    },
+    {
+     "text": "位",
+     "start": 2.02,
+     "end": 2.16,
+     "score": 1
+    },
+    {
+     "text": "貼",
+     "start": 2.46,
+     "end": 2.6,
+     "score": 0.984
+    },
+    {
+     "text": "上",
+     "start": 2.68,
+     "end": 2.86,
+     "score": 0.955
+    },
+    {
+     "text": "驗",
+     "start": 2.9,
+     "end": 3.02,
+     "score": 0.997
+    },
+    {
+     "text": "算",
+     "start": 3.08,
+     "end": 3.24,
+     "score": 0.732
+    },
+    {
+     "text": "算",
+     "start": 3.58,
+     "end": 3.74,
+     "score": 0.701
+    },
+    {
+     "text": "錯",
+     "start": 3.8,
+     "end": 3.92,
+     "score": 0.876
+    },
+    {
+     "text": "就",
+     "start": 4.02,
+     "end": 4.12,
+     "score": 0.989
+    },
+    {
+     "text": "把",
+     "start": 4.14,
+     "end": 4.2,
+     "score": 0.995
+    },
+    {
+     "text": "結",
+     "start": 4.3,
+     "end": 4.42,
+     "score": 0.997
+    },
+    {
+     "text": "果",
+     "start": 4.5,
+     "end": 4.58,
+     "score": 0.999
+    },
+    {
+     "text": "告",
+     "start": 4.66,
+     "end": 4.8,
+     "score": 0.999
+    },
+    {
+     "text": "訴",
+     "start": 4.84,
+     "end": 4.92,
+     "score": 0.999
+    },
+    {
+     "text": "它",
+     "start": 4.98,
+     "end": 5.08,
+     "score": 0.992
+    }
+   ],
+   "charTimes": [
+    0.32,
+    0.46,
+    0.56,
+    0.76,
+    1.22,
+    1.44,
+    1.64,
+    1.8,
+    2.02,
+    2.46,
+    2.68,
+    2.9,
+    3.08,
+    3.58,
+    3.8,
+    4.02,
+    4.14,
+    4.3,
+    4.5,
+    4.66,
+    4.84,
+    4.98
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": "audio/caffaine-excel-formula/11-s11.wav",
+   "audioFrame": 1335,
+   "audioSec": 2.67,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1326,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1336,
+   "voiceEndFrame": 1414,
+   "stillFrame": 1412,
+   "subtitleWindow": [
+    1333,
+    1422
+   ],
+   "sourceWindow": [
+    1331,
+    1417
    ],
    "lines": [
     {
      "text": "留言「公式」",
-     "start": 1169,
+     "start": 1333,
      "chars": [
-      1172,
-      1177,
-      1177,
-      1183,
-      1188,
-      1188
+      1341,
+      1347,
+      1347,
+      1352,
+      1358,
+      1358
      ]
     },
     {
      "text": "拿這三題的提示詞",
-     "start": 1198,
+     "start": 1368,
      "chars": [
-      1200,
-      1206,
-      1212,
-      1217,
-      1223,
-      1228,
-      1234,
-      1239
+      1370,
+      1376,
+      1381,
+      1387,
+      1392,
+      1395,
+      1401,
+      1406
      ]
     }
    ],
    "keywords": [
     {
      "text": "公式",
-     "start": 1183
+     "start": 1352
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "公式",
-     "frame": 1184
+     "frame": 1354,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "提示詞",
-     "frame": 1230
+     "frame": 1396,
+     "early": 0
     }
    ],
+   "hash": "df926e459431-fd65c16ade",
    "sub": "留言「公式」\n拿這三題的提示詞",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.886,
+    "minScore": 0.013,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.23,
+      "start": 1.22,
+      "ch": "拿",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.26,
+     "end": 0.4,
+     "score": 0.835
+    },
+    {
+     "text": "言",
+     "start": 0.44,
+     "end": 0.56,
+     "score": 0.978
+    },
+    {
+     "text": "公",
+     "start": 0.62,
+     "end": 0.76,
+     "score": 0.911
+    },
+    {
+     "text": "式",
+     "start": 0.82,
+     "end": 0.92,
+     "score": 0.924
+    },
+    {
+     "text": "拿",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.996
+    },
+    {
+     "text": "三",
+     "start": 1.58,
+     "end": 1.74,
+     "score": 0.013
+    },
+    {
+     "text": "題",
+     "start": 1.78,
+     "end": 1.86,
+     "score": 0.991
+    },
+    {
+     "text": "的",
+     "start": 1.94,
+     "end": 2,
+     "score": 0.998
+    },
+    {
+     "text": "提",
+     "start": 2.04,
+     "end": 2.14,
+     "score": 0.997
+    },
+    {
+     "text": "示",
+     "start": 2.24,
+     "end": 2.32,
+     "score": 0.996
+    },
+    {
+     "text": "詞",
+     "start": 2.4,
+     "end": 2.54,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.186,
-    0.371,
-    0.557,
-    0.965,
-    1.15,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263
+    0.26,
+    0.44,
+    0.62,
+    0.82,
+    1.22,
+    1.42,
+    1.58,
+    1.78,
+    1.94,
+    2.04,
+    2.24,
+    2.4
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1245,
+   "audioFrame": 1412,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1245,
+   "startFrame": 1412,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1365,24 +2907,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1255,
-   "voiceEndFrame": 1255,
-   "stillFrame": 1341,
+   "voiceStartFrame": 1422,
+   "voiceEndFrame": 1422,
+   "stillFrame": 1508,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1250,
-    1353
+    1417,
+    1520
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-excel-formula/voice.wav",
+  "lufsIn": -13.53,
+  "lufs": -16,
+  "sec": 50.667
+ }
 }

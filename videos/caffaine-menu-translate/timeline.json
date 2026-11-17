@@ -2,141 +2,2499 @@
  "version": 2,
  "slug": "caffaine-menu-translate",
  "fps": 30,
- "totalFrames": 1362,
- "totalSec": 45.4,
- "gapSec": 0.3,
+ "totalFrames": 1599,
+ "totalSec": 53.3,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-menu-translate/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 4.04,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 118,
+   "durationFrames": 141,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 110,
-   "stillFrame": 108,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 120,
+   "stillFrame": 131,
    "subtitleWindow": [
     0,
-    115
+    138
    ],
    "sourceWindow": [
     0,
-    113
+    136
    ],
    "lines": [
     {
      "text": "拍一張外文菜單",
      "start": 0,
      "chars": [
-      4,
+      0,
+      5,
       8,
-      13,
-      18,
-      23,
-      28,
-      32
+      15,
+      20,
+      25,
+      31
      ]
     },
     {
      "text": "叫 AI 翻譯",
-     "start": 41,
+     "start": 40,
      "chars": [
-      43,
-      43,
-      48,
-      53,
-      53,
-      57,
-      62
+      42,
+      42,
+      50,
+      54,
+      54,
+      59,
+      65
      ]
     },
     {
      "text": "只說翻譯",
-     "start": 71,
+     "start": 74,
      "chars": [
-      73,
-      78,
+      76,
       83,
-      87
+      89,
+      96
      ]
     },
     {
      "text": "夠嗎",
-     "start": 96,
+     "start": 104,
      "chars": [
-      98,
-      103
+      107,
+      113
      ]
     }
    ],
    "keywords": [
     {
      "text": "外文菜單",
-     "start": 18
+     "start": 15
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "外文菜單",
-     "frame": 19
+     "frame": 16,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "翻譯",
-     "frame": 59
+     "frame": 60,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "夠嗎",
-     "frame": 99
+     "frame": 108,
+     "early": 0
     }
    ],
+   "hash": "5204509bd6e7-fd65c16ade",
    "sub": "拍一張外文菜單\n叫 AI 翻譯\n只說翻譯\n夠嗎",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.862,
+    "minScore": 0.127,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.47,
+      "start": 1.46,
+      "ch": "叫",
+      "errMs": -10
+     },
+     {
+      "onset": 2.59,
+      "start": 2.58,
+      "ch": "只",
+      "errMs": -10
+     },
+     {
+      "onset": 3.61,
+      "start": 3.6,
+      "ch": "夠",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "拍",
+     "start": 0.02,
+     "end": 0.18,
+     "score": 0.708
+    },
+    {
+     "text": "一",
+     "start": 0.2,
+     "end": 0.26,
+     "score": 0.84
+    },
+    {
+     "text": "張",
+     "start": 0.32,
+     "end": 0.5,
+     "score": 0.662
+    },
+    {
+     "text": "外",
+     "start": 0.54,
+     "end": 0.68,
+     "score": 0.997
+    },
+    {
+     "text": "文",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.995
+    },
+    {
+     "text": "菜",
+     "start": 0.88,
+     "end": 1.04,
+     "score": 0.993
+    },
+    {
+     "text": "單",
+     "start": 1.08,
+     "end": 1.24,
+     "score": 0.998
+    },
+    {
+     "text": "叫",
+     "start": 1.46,
+     "end": 1.62,
+     "score": 0.976
+    },
+    {
+     "text": "A",
+     "start": 1.7,
+     "end": 1.78,
+     "score": 0.127
+    },
+    {
+     "text": "I",
+     "start": 1.86,
+     "end": 1.94,
+     "score": 0.474
+    },
+    {
+     "text": "翻",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.976
+    },
+    {
+     "text": "譯",
+     "start": 2.2,
+     "end": 2.3,
+     "score": 0.976
+    },
+    {
+     "text": "只",
+     "start": 2.58,
+     "end": 2.7,
+     "score": 0.962
+    },
+    {
+     "text": "說",
+     "start": 2.82,
+     "end": 2.94,
+     "score": 0.911
+    },
+    {
+     "text": "翻",
+     "start": 3.02,
+     "end": 3.18,
+     "score": 0.988
+    },
+    {
+     "text": "譯",
+     "start": 3.24,
+     "end": 3.32,
+     "score": 0.96
+    },
+    {
+     "text": "夠",
+     "start": 3.6,
+     "end": 3.76,
+     "score": 0.988
+    },
+    {
+     "text": "嗎",
+     "start": 3.8,
+     "end": 3.88,
+     "score": 0.984
+    }
+   ],
    "charTimes": [
-    0,
-    0.161,
-    0.321,
-    0.482,
-    0.642,
-    0.803,
-    0.964,
-    1.317,
-    1.478,
-    1.638,
-    1.799,
-    1.96,
-    2.313,
-    2.474,
-    2.634,
-    2.795,
-    3.148,
-    3.309
+    0.02,
+    0.2,
+    0.32,
+    0.54,
+    0.72,
+    0.88,
+    1.08,
+    1.46,
+    1.7,
+    1.86,
+    2,
+    2.2,
+    2.58,
+    2.82,
+    3.02,
+    3.24,
+    3.6,
+    3.8
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 118,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 108,
+   "audio": "audio/caffaine-menu-translate/02-s02.wav",
+   "audioFrame": 140,
+   "audioSec": 3.45,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 131,
+   "durationFrames": 132,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 141,
+   "voiceEndFrame": 243,
+   "stillFrame": 253,
+   "subtitleWindow": [
+    138,
+    260
+   ],
+   "sourceWindow": [
+    136,
+    258
+   ],
+   "lines": [
+    {
+     "text": "第一種問法",
+     "start": 138,
+     "chars": [
+      148,
+      151,
+      155,
+      161,
+      166
+     ]
+    },
+    {
+     "text": "只說幫我翻譯這張菜單",
+     "start": 175,
+     "chars": [
+      178,
+      184,
+      198,
+      204,
+      209,
+      215,
+      219,
+      223,
+      229,
+      234
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "第一種問法",
+     "start": 148
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一種問法",
+     "frame": 149,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "翻譯",
+     "frame": 210,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "菜單",
+     "frame": 230,
+     "early": 0
+    }
+   ],
+   "hash": "c8438613c275-fd65c16ade",
+   "sub": "第一種問法\n只說\n幫我翻譯這張菜單",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.799,
+    "minScore": 0.004,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.3,
+      "start": 1.3,
+      "ch": "只",
+      "errMs": 0
+     },
+     {
+      "onset": 2.01,
+      "start": 1.98,
+      "ch": "幫",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.3,
+     "end": 0.38,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 0.42,
+     "end": 0.48,
+     "score": 0.004
+    },
+    {
+     "text": "種",
+     "start": 0.54,
+     "end": 0.7,
+     "score": 0.852
+    },
+    {
+     "text": "問",
+     "start": 0.74,
+     "end": 0.86,
+     "score": 0.98
+    },
+    {
+     "text": "法",
+     "start": 0.92,
+     "end": 1,
+     "score": 0.999
+    },
+    {
+     "text": "只",
+     "start": 1.3,
+     "end": 1.42,
+     "score": 0.809
+    },
+    {
+     "text": "說",
+     "start": 1.52,
+     "end": 1.66,
+     "score": 0.901
+    },
+    {
+     "text": "幫",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.785
+    },
+    {
+     "text": "我",
+     "start": 2.18,
+     "end": 2.26,
+     "score": 0.998
+    },
+    {
+     "text": "翻",
+     "start": 2.34,
+     "end": 2.5,
+     "score": 0.988
+    },
+    {
+     "text": "譯",
+     "start": 2.54,
+     "end": 2.6,
+     "score": 0.709
+    },
+    {
+     "text": "這",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.339
+    },
+    {
+     "text": "張",
+     "start": 2.82,
+     "end": 2.96,
+     "score": 0.64
+    },
+    {
+     "text": "菜",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.994
+    },
+    {
+     "text": "單",
+     "start": 3.18,
+     "end": 3.34,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.3,
+    0.42,
+    0.54,
+    0.74,
+    0.92,
+    1.3,
+    1.52,
+    1.98,
+    2.18,
+    2.34,
+    2.54,
+    2.68,
+    2.82,
+    3,
+    3.18
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": "audio/caffaine-menu-translate/03-s03.wav",
+   "audioFrame": 262,
+   "audioSec": 4.2,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 253,
+   "durationFrames": 155,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 263,
+   "voiceEndFrame": 387,
+   "stillFrame": 398,
+   "subtitleWindow": [
+    260,
+    405
+   ],
+   "sourceWindow": [
+    258,
+    403
+   ],
+   "lines": [
+    {
+     "text": "結果品名",
+     "start": 260,
+     "chars": [
+      269,
+      274,
+      278,
+      285
+     ]
+    },
+    {
+     "text": "價格過敏提示都對",
+     "start": 295,
+     "chars": [
+      297,
+      305,
+      318,
+      324,
+      329,
+      336,
+      340,
+      346
+     ]
+    },
+    {
+     "text": "一道也沒錯",
+     "start": 356,
+     "chars": [
+      358,
+      363,
+      370,
+      374,
+      379
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "品名",
+     "start": 278
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "品名",
+     "frame": 280,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "價格",
+     "frame": 299,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "過敏提示",
+     "frame": 320,
+     "early": 0
+    }
+   ],
+   "hash": "584c95f504cc-fd65c16ade",
+   "sub": "結果品名\n價格\n過敏提示都對\n一道也沒錯",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.973,
+    "minScore": 0.77,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.24,
+      "start": 1.22,
+      "ch": "價",
+      "errMs": -20
+     },
+     {
+      "onset": 1.94,
+      "start": 1.92,
+      "ch": "過",
+      "errMs": -20
+     },
+     {
+      "onset": 3.27,
+      "start": 3.24,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "結",
+     "start": 0.28,
+     "end": 0.38,
+     "score": 0.999
+    },
+    {
+     "text": "果",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.999
+    },
+    {
+     "text": "品",
+     "start": 0.6,
+     "end": 0.76,
+     "score": 0.999
+    },
+    {
+     "text": "名",
+     "start": 0.82,
+     "end": 1.02,
+     "score": 0.953
+    },
+    {
+     "text": "價",
+     "start": 1.22,
+     "end": 1.36,
+     "score": 0.999
+    },
+    {
+     "text": "格",
+     "start": 1.48,
+     "end": 1.6,
+     "score": 0.998
+    },
+    {
+     "text": "過",
+     "start": 1.92,
+     "end": 2.02,
+     "score": 0.98
+    },
+    {
+     "text": "敏",
+     "start": 2.1,
+     "end": 2.22,
+     "score": 0.999
+    },
+    {
+     "text": "提",
+     "start": 2.28,
+     "end": 2.4,
+     "score": 0.998
+    },
+    {
+     "text": "示",
+     "start": 2.5,
+     "end": 2.6,
+     "score": 0.998
+    },
+    {
+     "text": "都",
+     "start": 2.66,
+     "end": 2.8,
+     "score": 0.997
+    },
+    {
+     "text": "對",
+     "start": 2.84,
+     "end": 2.98,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 3.24,
+     "end": 3.32,
+     "score": 0.869
+    },
+    {
+     "text": "道",
+     "start": 3.42,
+     "end": 3.58,
+     "score": 0.998
+    },
+    {
+     "text": "也",
+     "start": 3.64,
+     "end": 3.72,
+     "score": 0.992
+    },
+    {
+     "text": "沒",
+     "start": 3.78,
+     "end": 3.9,
+     "score": 0.77
+    },
+    {
+     "text": "錯",
+     "start": 3.96,
+     "end": 4.1,
+     "score": 0.993
+    }
+   ],
+   "charTimes": [
+    0.28,
+    0.44,
+    0.6,
+    0.82,
+    1.22,
+    1.48,
+    1.92,
+    2.1,
+    2.28,
+    2.5,
+    2.66,
+    2.84,
+    3.24,
+    3.42,
+    3.64,
+    3.78,
+    3.96
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": "audio/caffaine-menu-translate/04-s04.wav",
+   "audioFrame": 407,
+   "audioSec": 4.12,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 398,
+   "durationFrames": 152,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 408,
+   "voiceEndFrame": 530,
+   "stillFrame": 540,
+   "subtitleWindow": [
+    405,
+    547
+   ],
+   "sourceWindow": [
+    403,
+    545
+   ],
+   "lines": [
+    {
+     "text": "可是親子丼",
+     "start": 405,
+     "chars": [
+      416,
+      421,
+      425,
+      432,
+      437
+     ]
+    },
+    {
+     "text": "第二次它只留日文名",
+     "start": 446,
+     "chars": [
+      448,
+      454,
+      458,
+      464,
+      470,
+      474,
+      481,
+      485,
+      491
+     ]
+    },
+    {
+     "text": "沒說是什麼",
+     "start": 501,
+     "chars": [
+      503,
+      509,
+      515,
+      519,
+      523
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "親子丼",
+     "start": 425
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "親子丼",
+     "frame": 427,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "第二次",
+     "frame": 450,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "沒說是什麼",
+     "frame": 504,
+     "early": 0
+    }
+   ],
+   "hash": "6c9d478be8ad-fd65c16ade",
+   "sub": "可是親子丼\n第二次它只留日文名\n沒說是什麼",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.929,
+    "minScore": 0.499,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.46,
+      "start": 1.42,
+      "ch": "第",
+      "errMs": -40
+     },
+     {
+      "onset": 3.25,
+      "start": 3.24,
+      "ch": "沒",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "可",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 1
+    },
+    {
+     "text": "是",
+     "start": 0.5,
+     "end": 0.6,
+     "score": 0.921
+    },
+    {
+     "text": "親",
+     "start": 0.66,
+     "end": 0.8,
+     "score": 0.996
+    },
+    {
+     "text": "子",
+     "start": 0.88,
+     "end": 0.96,
+     "score": 0.998
+    },
+    {
+     "text": "丼",
+     "start": 1.04,
+     "end": 1.22,
+     "score": 0.499
+    },
+    {
+     "text": "第",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.998
+    },
+    {
+     "text": "二",
+     "start": 1.62,
+     "end": 1.7,
+     "score": 0.581
+    },
+    {
+     "text": "次",
+     "start": 1.76,
+     "end": 1.88,
+     "score": 0.997
+    },
+    {
+     "text": "它",
+     "start": 1.96,
+     "end": 2.02,
+     "score": 0.989
+    },
+    {
+     "text": "只",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.864
+    },
+    {
+     "text": "留",
+     "start": 2.28,
+     "end": 2.44,
+     "score": 0.966
+    },
+    {
+     "text": "日",
+     "start": 2.5,
+     "end": 2.58,
+     "score": 0.98
+    },
+    {
+     "text": "文",
+     "start": 2.66,
+     "end": 2.78,
+     "score": 0.997
+    },
+    {
+     "text": "名",
+     "start": 2.84,
+     "end": 3.02,
+     "score": 0.97
+    },
+    {
+     "text": "沒",
+     "start": 3.24,
+     "end": 3.38,
+     "score": 1
+    },
+    {
+     "text": "說",
+     "start": 3.44,
+     "end": 3.56,
+     "score": 0.9
+    },
+    {
+     "text": "是",
+     "start": 3.64,
+     "end": 3.72,
+     "score": 0.998
+    },
+    {
+     "text": "什",
+     "start": 3.78,
+     "end": 3.9,
+     "score": 0.999
+    },
+    {
+     "text": "麼",
+     "start": 3.92,
+     "end": 4,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    0.34,
+    0.5,
+    0.66,
+    0.88,
+    1.04,
+    1.42,
+    1.62,
+    1.76,
+    1.96,
+    2.14,
+    2.28,
+    2.5,
+    2.66,
+    2.84,
+    3.24,
+    3.44,
+    3.64,
+    3.78,
+    3.92
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": "audio/caffaine-menu-translate/05-s05.wav",
+   "audioFrame": 549,
+   "audioSec": 4.35,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 540,
+   "durationFrames": 159,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 550,
+   "voiceEndFrame": 679,
+   "stillFrame": 689,
+   "subtitleWindow": [
+    547,
+    696
+   ],
+   "sourceWindow": [
+    545,
+    694
+   ],
+   "lines": [
+    {
+     "text": "第二種問法",
+     "start": 547,
+     "chars": [
+      557,
+      563,
+      566,
+      571,
+      576
+     ]
+    },
+    {
+     "text": "請它說明做法",
+     "start": 586,
+     "chars": [
+      588,
+      594,
+      600,
+      604,
+      610,
+      616
+     ]
+    },
+    {
+     "text": "食材標出過敏原",
+     "start": 625,
+     "chars": [
+      627,
+      634,
+      648,
+      654,
+      660,
+      664,
+      669
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "第二種問法",
+     "start": 557
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第二種問法",
+     "frame": 559,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "說明",
+     "frame": 601,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "過敏原",
+     "frame": 661,
+     "early": 0
+    }
+   ],
+   "hash": "9e47f05574fc-fd65c16ade",
+   "sub": "第二種問法\n請它說明做法\n食材\n標出過敏原",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.913,
+    "minScore": 0.107,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.35,
+      "start": 1.34,
+      "ch": "請",
+      "errMs": -10
+     },
+     {
+      "onset": 2.62,
+      "start": 2.66,
+      "ch": "食",
+      "errMs": 40
+     },
+     {
+      "onset": 3.36,
+      "start": 3.34,
+      "ch": "標",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.32,
+     "end": 0.4,
+     "score": 0.995
+    },
+    {
+     "text": "二",
+     "start": 0.5,
+     "end": 0.56,
+     "score": 0.107
+    },
+    {
+     "text": "種",
+     "start": 0.62,
+     "end": 0.76,
+     "score": 0.756
+    },
+    {
+     "text": "問",
+     "start": 0.78,
+     "end": 0.9,
+     "score": 0.999
+    },
+    {
+     "text": "法",
+     "start": 0.96,
+     "end": 1.06,
+     "score": 1
+    },
+    {
+     "text": "請",
+     "start": 1.34,
+     "end": 1.52,
+     "score": 0.875
+    },
+    {
+     "text": "它",
+     "start": 1.54,
+     "end": 1.62,
+     "score": 0.994
+    },
+    {
+     "text": "說",
+     "start": 1.74,
+     "end": 1.84,
+     "score": 0.943
+    },
+    {
+     "text": "明",
+     "start": 1.9,
+     "end": 2.04,
+     "score": 0.904
+    },
+    {
+     "text": "做",
+     "start": 2.08,
+     "end": 2.18,
+     "score": 0.998
+    },
+    {
+     "text": "法",
+     "start": 2.28,
+     "end": 2.36,
+     "score": 1
+    },
+    {
+     "text": "食",
+     "start": 2.66,
+     "end": 2.78,
+     "score": 0.993
+    },
+    {
+     "text": "材",
+     "start": 2.88,
+     "end": 3.1,
+     "score": 0.998
+    },
+    {
+     "text": "標",
+     "start": 3.34,
+     "end": 3.5,
+     "score": 0.902
+    },
+    {
+     "text": "出",
+     "start": 3.54,
+     "end": 3.64,
+     "score": 0.978
+    },
+    {
+     "text": "過",
+     "start": 3.74,
+     "end": 3.82,
+     "score": 0.999
+    },
+    {
+     "text": "敏",
+     "start": 3.88,
+     "end": 4,
+     "score": 0.999
+    },
+    {
+     "text": "原",
+     "start": 4.06,
+     "end": 4.24,
+     "score": 0.993
+    }
+   ],
+   "charTimes": [
+    0.32,
+    0.5,
+    0.62,
+    0.78,
+    0.96,
+    1.34,
+    1.54,
+    1.74,
+    1.9,
+    2.08,
+    2.28,
+    2.66,
+    2.88,
+    3.34,
+    3.54,
+    3.74,
+    3.88,
+    4.06
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": "audio/caffaine-menu-translate/06-s06.wav",
+   "audioFrame": 698,
+   "audioSec": 5.2,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 689,
+   "durationFrames": 184,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 699,
+   "voiceEndFrame": 853,
+   "stillFrame": 863,
+   "subtitleWindow": [
+    696,
+    870
+   ],
+   "sourceWindow": [
+    694,
+    868
+   ],
+   "lines": [
+    {
+     "text": "每道菜都多了說明",
+     "start": 696,
+     "chars": [
+      707,
+      712,
+      717,
+      724,
+      729,
+      734,
+      738,
+      743
+     ]
+    },
+    {
+     "text": "像親子丼",
+     "start": 754,
+     "chars": [
+      756,
+      763,
+      769,
+      775
+     ]
+    },
+    {
+     "text": "雞肉洋蔥淋蛋",
+     "start": 786,
+     "chars": [
+      788,
+      793,
+      799,
+      805,
+      811,
+      818
+     ]
+    },
+    {
+     "text": "蓋在飯上",
+     "start": 827,
+     "chars": [
+      829,
+      835,
+      840,
+      846
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "每道菜",
+     "start": 707
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "每道菜",
+     "frame": 708,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "親子丼",
+     "frame": 764,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "淋蛋",
+     "frame": 813,
+     "early": 0
+    }
+   ],
+   "hash": "c50b7d36d470-fd65c16ade",
+   "sub": "每道菜都多了說明\n像親子丼\n雞肉洋蔥淋蛋\n蓋在飯上",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.963,
+    "minScore": 0.56,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.95,
+      "start": 1.98,
+      "ch": "像",
+      "errMs": 30
+     },
+     {
+      "onset": 3.04,
+      "start": 3.04,
+      "ch": "雞",
+      "errMs": 0
+     },
+     {
+      "onset": 4.44,
+      "start": 4.42,
+      "ch": "蓋",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "每",
+     "start": 0.34,
+     "end": 0.46,
+     "score": 1
+    },
+    {
+     "text": "道",
+     "start": 0.5,
+     "end": 0.64,
+     "score": 0.999
+    },
+    {
+     "text": "菜",
+     "start": 0.68,
+     "end": 0.86,
+     "score": 0.998
+    },
+    {
+     "text": "都",
+     "start": 0.92,
+     "end": 1.04,
+     "score": 0.997
+    },
+    {
+     "text": "多",
+     "start": 1.08,
+     "end": 1.18,
+     "score": 0.884
+    },
+    {
+     "text": "了",
+     "start": 1.24,
+     "end": 1.3,
+     "score": 0.997
+    },
+    {
+     "text": "說",
+     "start": 1.38,
+     "end": 1.48,
+     "score": 0.995
+    },
+    {
+     "text": "明",
+     "start": 1.54,
+     "end": 1.74,
+     "score": 0.966
+    },
+    {
+     "text": "像",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.996
+    },
+    {
+     "text": "親",
+     "start": 2.2,
+     "end": 2.36,
+     "score": 0.992
+    },
+    {
+     "text": "子",
+     "start": 2.42,
+     "end": 2.52,
+     "score": 0.991
+    },
+    {
+     "text": "丼",
+     "start": 2.6,
+     "end": 2.78,
+     "score": 0.56
+    },
+    {
+     "text": "雞",
+     "start": 3.04,
+     "end": 3.14,
+     "score": 0.997
+    },
+    {
+     "text": "肉",
+     "start": 3.22,
+     "end": 3.34,
+     "score": 0.996
+    },
+    {
+     "text": "洋",
+     "start": 3.4,
+     "end": 3.56,
+     "score": 0.993
+    },
+    {
+     "text": "蔥",
+     "start": 3.6,
+     "end": 3.78,
+     "score": 0.999
+    },
+    {
+     "text": "淋",
+     "start": 3.82,
+     "end": 3.96,
+     "score": 0.997
+    },
+    {
+     "text": "蛋",
+     "start": 4.04,
+     "end": 4.2,
+     "score": 0.999
+    },
+    {
+     "text": "蓋",
+     "start": 4.42,
+     "end": 4.56,
+     "score": 0.999
+    },
+    {
+     "text": "在",
+     "start": 4.6,
+     "end": 4.74,
+     "score": 1
+    },
+    {
+     "text": "飯",
+     "start": 4.78,
+     "end": 4.92,
+     "score": 0.887
+    },
+    {
+     "text": "上",
+     "start": 4.98,
+     "end": 5.16,
+     "score": 0.948
+    }
+   ],
+   "charTimes": [
+    0.34,
+    0.5,
+    0.68,
+    0.92,
+    1.08,
+    1.24,
+    1.38,
+    1.54,
+    1.98,
+    2.2,
+    2.42,
+    2.6,
+    3.04,
+    3.22,
+    3.4,
+    3.6,
+    3.82,
+    4.04,
+    4.42,
+    4.6,
+    4.78,
+    4.98
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": "audio/caffaine-menu-translate/07-s07.wav",
+   "audioFrame": 872,
+   "audioSec": 5.99,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 863,
+   "durationFrames": 209,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 873,
+   "voiceEndFrame": 1051,
+   "stillFrame": 1062,
+   "subtitleWindow": [
+    870,
+    1069
+   ],
+   "sourceWindow": [
+    868,
+    1067
+   ],
+   "lines": [
+    {
+     "text": "但洋蔥",
+     "start": 870,
+     "chars": [
+      880,
+      886,
+      891
+     ]
+    },
+    {
+     "text": "叉燒蔥花",
+     "start": 901,
+     "chars": [
+      903,
+      910,
+      920,
+      927
+     ]
+    },
+    {
+     "text": "菜單根本沒印",
+     "start": 937,
+     "chars": [
+      939,
+      946,
+      952,
+      956,
+      961,
+      966
+     ]
+    },
+    {
+     "text": "是它補的",
+     "start": 977,
+     "chars": [
+      979,
+      983,
+      989,
+      994
+     ]
+    },
+    {
+     "text": "沒有一道標不確定",
+     "start": 1010,
+     "chars": [
+      1012,
+      1016,
+      1021,
+      1024,
+      1030,
+      1035,
+      1039,
+      1045
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "菜單根本沒印",
+     "start": 939
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "菜單根本沒印",
+     "frame": 940,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "是它補的",
+     "frame": 981,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "沒有一道標不確定",
+     "frame": 1014,
+     "early": 0
+    }
+   ],
+   "hash": "b406a400ab29-fd65c16ade",
+   "sub": "但洋蔥\n叉燒\n蔥花\n菜單根本沒印\n是它補的\n沒有一道標不確定",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.956,
+    "minScore": 0.459,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 240,
+    "onsetCheck": [
+     {
+      "onset": 1.08,
+      "start": 1.08,
+      "ch": "叉",
+      "errMs": 0
+     },
+     {
+      "onset": 2.3,
+      "start": 2.28,
+      "ch": "菜",
+      "errMs": -20
+     },
+     {
+      "onset": 3.58,
+      "start": 3.62,
+      "ch": "是",
+      "errMs": 40
+     },
+     {
+      "onset": 4.48,
+      "start": 4.72,
+      "ch": "沒",
+      "errMs": 240
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.32,
+     "end": 0.44,
+     "score": 1
+    },
+    {
+     "text": "洋",
+     "start": 0.5,
+     "end": 0.66,
+     "score": 0.987
+    },
+    {
+     "text": "蔥",
+     "start": 0.7,
+     "end": 0.92,
+     "score": 0.962
+    },
+    {
+     "text": "叉",
+     "start": 1.08,
+     "end": 1.2,
+     "score": 0.976
+    },
+    {
+     "text": "燒",
+     "start": 1.32,
+     "end": 1.52,
+     "score": 0.955
+    },
+    {
+     "text": "蔥",
+     "start": 1.64,
+     "end": 1.84,
+     "score": 0.978
+    },
+    {
+     "text": "花",
+     "start": 1.9,
+     "end": 2,
+     "score": 0.999
+    },
+    {
+     "text": "菜",
+     "start": 2.28,
+     "end": 2.46,
+     "score": 0.77
+    },
+    {
+     "text": "單",
+     "start": 2.5,
+     "end": 2.64,
+     "score": 0.999
+    },
+    {
+     "text": "根",
+     "start": 2.7,
+     "end": 2.82,
+     "score": 0.999
+    },
+    {
+     "text": "本",
+     "start": 2.86,
+     "end": 2.98,
+     "score": 0.998
+    },
+    {
+     "text": "沒",
+     "start": 3.02,
+     "end": 3.14,
+     "score": 0.999
+    },
+    {
+     "text": "印",
+     "start": 3.18,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.989
+    },
+    {
+     "text": "它",
+     "start": 3.76,
+     "end": 3.84,
+     "score": 0.993
+    },
+    {
+     "text": "補",
+     "start": 3.94,
+     "end": 4.02,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 4.12,
+     "end": 4.22,
+     "score": 0.998
+    },
+    {
+     "text": "沒",
+     "start": 4.72,
+     "end": 4.82,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 4.84,
+     "end": 4.96,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 5,
+     "end": 5.04,
+     "score": 0.459
+    },
+    {
+     "text": "道",
+     "start": 5.12,
+     "end": 5.28,
+     "score": 0.979
+    },
+    {
+     "text": "標",
+     "start": 5.3,
+     "end": 5.46,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 5.48,
+     "end": 5.56,
+     "score": 0.998
+    },
+    {
+     "text": "確",
+     "start": 5.6,
+     "end": 5.72,
+     "score": 0.976
+    },
+    {
+     "text": "定",
+     "start": 5.8,
+     "end": 5.96,
+     "score": 0.903
+    }
+   ],
+   "charTimes": [
+    0.32,
+    0.5,
+    0.7,
+    1.08,
+    1.32,
+    1.64,
+    1.9,
+    2.28,
+    2.5,
+    2.7,
+    2.86,
+    3.02,
+    3.18,
+    3.62,
+    3.76,
+    3.94,
+    4.12,
+    4.72,
+    4.84,
+    5,
+    5.12,
+    5.3,
+    5.48,
+    5.6,
+    5.8
+   ]
+  },
+  {
+   "id": "s08",
+   "audio": "audio/caffaine-menu-translate/08-s08.wav",
+   "audioFrame": 1071,
+   "audioSec": 5.31,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1062,
+   "durationFrames": 188,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1072,
+   "voiceEndFrame": 1230,
+   "stillFrame": 1240,
+   "subtitleWindow": [
+    1069,
+    1247
+   ],
+   "sourceWindow": [
+    1067,
+    1245
+   ],
+   "lines": [
+    {
+     "text": "不過我只用",
+     "start": 1069,
+     "chars": [
+      1079,
+      1082,
+      1086,
+      1090,
+      1095
+     ]
+    },
+    {
+     "text": "一張自製菜單",
+     "start": 1099,
+     "chars": [
+      1101,
+      1106,
+      1112,
+      1117,
+      1122,
+      1130
+     ]
+    },
+    {
+     "text": "一個模型",
+     "start": 1138,
+     "chars": [
+      1140,
+      1145,
+      1149,
+      1154
+     ]
+    },
+    {
+     "text": "真的店家的菜單",
+     "start": 1166,
+     "chars": [
+      1169,
+      1174,
+      1178,
+      1183,
+      1187,
+      1190,
+      1197
+     ]
+    },
+    {
+     "text": "還不知道",
+     "start": 1206,
+     "chars": [
+      1208,
+      1214,
+      1218,
+      1223
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "一張自製菜單",
+     "start": 1101
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一張自製菜單",
+     "frame": 1102,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "一個模型",
+     "frame": 1141,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "還不知道",
+     "frame": 1210,
+     "early": 0
+    }
+   ],
+   "hash": "fee2aa2aa458-fd65c16ade",
+   "sub": "不過我只用\n一張自製菜單\n一個模型\n真的店家的菜單\n還不知道",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.877,
+    "minScore": 0.083,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.35,
+      "start": 2.34,
+      "ch": "一",
+      "errMs": -10
+     },
+     {
+      "onset": 3.3,
+      "start": 3.3,
+      "ch": "真",
+      "errMs": 0
+     },
+     {
+      "onset": 4.62,
+      "start": 4.62,
+      "ch": "還",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.3,
+     "end": 0.38,
+     "score": 1
+    },
+    {
+     "text": "過",
+     "start": 0.42,
+     "end": 0.5,
+     "score": 0.988
+    },
+    {
+     "text": "我",
+     "start": 0.56,
+     "end": 0.62,
+     "score": 0.999
+    },
+    {
+     "text": "只",
+     "start": 0.68,
+     "end": 0.78,
+     "score": 0.801
+    },
+    {
+     "text": "用",
+     "start": 0.84,
+     "end": 1,
+     "score": 0.976
+    },
+    {
+     "text": "一",
+     "start": 1.04,
+     "end": 1.1,
+     "score": 0.299
+    },
+    {
+     "text": "張",
+     "start": 1.2,
+     "end": 1.38,
+     "score": 0.962
+    },
+    {
+     "text": "自",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.838
+    },
+    {
+     "text": "製",
+     "start": 1.58,
+     "end": 1.66,
+     "score": 0.984
+    },
+    {
+     "text": "菜",
+     "start": 1.76,
+     "end": 2,
+     "score": 0.666
+    },
+    {
+     "text": "單",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.66
+    },
+    {
+     "text": "一",
+     "start": 2.34,
+     "end": 2.4,
+     "score": 0.083
+    },
+    {
+     "text": "個",
+     "start": 2.5,
+     "end": 2.58,
+     "score": 0.998
+    },
+    {
+     "text": "模",
+     "start": 2.64,
+     "end": 2.7,
+     "score": 0.698
+    },
+    {
+     "text": "型",
+     "start": 2.82,
+     "end": 3.02,
+     "score": 0.951
+    },
+    {
+     "text": "真",
+     "start": 3.3,
+     "end": 3.44,
+     "score": 0.98
+    },
+    {
+     "text": "的",
+     "start": 3.48,
+     "end": 3.54,
+     "score": 0.998
+    },
+    {
+     "text": "店",
+     "start": 3.6,
+     "end": 3.74,
+     "score": 1
+    },
+    {
+     "text": "家",
+     "start": 3.78,
+     "end": 3.86,
+     "score": 0.952
+    },
+    {
+     "text": "的",
+     "start": 3.92,
+     "end": 3.98,
+     "score": 0.998
+    },
+    {
+     "text": "菜",
+     "start": 4.02,
+     "end": 4.2,
+     "score": 0.997
+    },
+    {
+     "text": "單",
+     "start": 4.24,
+     "end": 4.4,
+     "score": 0.999
+    },
+    {
+     "text": "還",
+     "start": 4.62,
+     "end": 4.78,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 4.82,
+     "end": 4.9,
+     "score": 0.998
+    },
+    {
+     "text": "知",
+     "start": 4.96,
+     "end": 5.04,
+     "score": 0.976
+    },
+    {
+     "text": "道",
+     "start": 5.1,
+     "end": 5.24,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.3,
+    0.42,
+    0.56,
+    0.68,
+    0.84,
+    1.04,
+    1.2,
+    1.42,
+    1.58,
+    1.76,
+    2.02,
+    2.34,
+    2.5,
+    2.64,
+    2.82,
+    3.3,
+    3.48,
+    3.6,
+    3.78,
+    3.92,
+    4.02,
+    4.24,
+    4.62,
+    4.82,
+    4.96,
+    5.1
+   ]
+  },
+  {
+   "id": "s09",
+   "audio": "audio/caffaine-menu-translate/09-s09.wav",
+   "audioFrame": 1249,
+   "audioSec": 4.41,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1240,
+   "durationFrames": 161,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1250,
+   "voiceEndFrame": 1381,
+   "stillFrame": 1391,
+   "subtitleWindow": [
+    1247,
+    1398
+   ],
+   "sourceWindow": [
+    1245,
+    1396
+   ],
+   "lines": [
+    {
+     "text": "所以做法",
+     "start": 1247,
+     "chars": [
+      1258,
+      1262,
+      1265,
+      1270
+     ]
+    },
+    {
+     "text": "拍清楚",
+     "start": 1281,
+     "chars": [
+      1283,
+      1289,
+      1295
+     ]
+    },
+    {
+     "text": "要說明",
+     "start": 1305,
+     "chars": [
+      1308,
+      1314,
+      1319
+     ]
+    },
+    {
+     "text": "過敏原一定問店家",
+     "start": 1331,
+     "chars": [
+      1333,
+      1338,
+      1343,
+      1350,
+      1356,
+      1361,
+      1366,
+      1372
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "拍清楚",
+     "start": 1283
+    }
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "拍清楚",
+     "frame": 1284,
+     "early": 0
+    },
+    {
+     "id": "k2",
+     "text": "要說明",
+     "frame": 1309,
+     "early": 0
+    },
+    {
+     "id": "k3",
+     "text": "問店家",
+     "frame": 1362,
+     "early": 0
+    }
+   ],
+   "hash": "1a26942b5966-fd65c16ade",
+   "sub": "所以做法\n拍清楚\n要說明\n過敏原一定問店家",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.968,
+    "minScore": 0.796,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.2,
+      "start": 1.18,
+      "ch": "拍",
+      "errMs": -20
+     },
+     {
+      "onset": 2.01,
+      "start": 2,
+      "ch": "要",
+      "errMs": -10
+     },
+     {
+      "onset": 2.86,
+      "start": 2.84,
+      "ch": "過",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.989
+    },
+    {
+     "text": "以",
+     "start": 0.48,
+     "end": 0.52,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 0.58,
+     "end": 0.68,
+     "score": 0.989
+    },
+    {
+     "text": "法",
+     "start": 0.76,
+     "end": 0.86,
+     "score": 0.999
+    },
+    {
+     "text": "拍",
+     "start": 1.18,
+     "end": 1.34,
+     "score": 0.964
+    },
+    {
+     "text": "清",
+     "start": 1.38,
+     "end": 1.56,
+     "score": 0.974
+    },
+    {
+     "text": "楚",
+     "start": 1.58,
+     "end": 1.7,
+     "score": 0.982
+    },
+    {
+     "text": "要",
+     "start": 2,
+     "end": 2.14,
+     "score": 0.999
+    },
+    {
+     "text": "說",
+     "start": 2.2,
+     "end": 2.32,
+     "score": 0.941
+    },
+    {
+     "text": "明",
+     "start": 2.38,
+     "end": 2.58,
+     "score": 0.967
+    },
+    {
+     "text": "過",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.997
+    },
+    {
+     "text": "敏",
+     "start": 3,
+     "end": 3.12,
+     "score": 0.998
+    },
+    {
+     "text": "原",
+     "start": 3.18,
+     "end": 3.34,
+     "score": 0.796
+    },
+    {
+     "text": "一",
+     "start": 3.42,
+     "end": 3.52,
+     "score": 0.96
+    },
+    {
+     "text": "定",
+     "start": 3.6,
+     "end": 3.76,
+     "score": 0.956
+    },
+    {
+     "text": "問",
+     "start": 3.78,
+     "end": 3.9,
+     "score": 0.918
+    },
+    {
+     "text": "店",
+     "start": 3.94,
+     "end": 4.08,
+     "score": 0.999
+    },
+    {
+     "text": "家",
+     "start": 4.14,
+     "end": 4.24,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.34,
+    0.48,
+    0.58,
+    0.76,
+    1.18,
+    1.38,
+    1.58,
+    2,
+    2.2,
+    2.38,
+    2.84,
+    3,
+    3.18,
+    3.42,
+    3.6,
+    3.78,
+    3.94,
+    4.14
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": "audio/caffaine-menu-translate/10-s10.wav",
+   "audioFrame": 1400,
+   "audioSec": 3.11,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1391,
    "durationFrames": 110,
    "transitionFrames": 10,
    "transition": {
@@ -151,1108 +2509,197 @@
      8
     ]
    },
-   "voiceStartFrame": 118,
-   "voiceEndFrame": 210,
-   "stillFrame": 208,
+   "voiceStartFrame": 1401,
+   "voiceEndFrame": 1493,
+   "stillFrame": 1491,
    "subtitleWindow": [
-    115,
-    215
+    1398,
+    1501
    ],
    "sourceWindow": [
-    113,
-    213
-   ],
-   "lines": [
-    {
-     "text": "第一種問法",
-     "start": 115,
-     "chars": [
-      117,
-      122,
-      127,
-      132,
-      138
-     ]
-    },
-    {
-     "text": "只說幫我翻譯這張菜單",
-     "start": 147,
-     "chars": [
-      149,
-      155,
-      166,
-      171,
-      177,
-      182,
-      187,
-      192,
-      198,
-      203
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "第一種問法",
-     "start": 117
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "第一種問法",
-     "frame": 118
-    },
-    {
-     "id": "k2",
-     "text": "翻譯",
-     "frame": 178
-    },
-    {
-     "id": "k3",
-     "text": "菜單",
-     "frame": 199
-    }
-   ],
-   "sub": "第一種問法\n只說\n幫我翻譯這張菜單",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
-   "charTimes": [
-    0,
-    0.176,
-    0.352,
-    0.528,
-    0.704,
-    1.091,
-    1.267,
-    1.654,
-    1.83,
-    2.006,
-    2.182,
-    2.357,
-    2.533,
-    2.709,
-    2.885
-   ]
-  },
-  {
-   "id": "s03",
-   "audio": null,
-   "audioFrame": 219,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 208,
-   "durationFrames": 124,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 218,
-   "voiceEndFrame": 323,
-   "stillFrame": 322,
-   "subtitleWindow": [
-    215,
-    329
-   ],
-   "sourceWindow": [
-    213,
-    327
-   ],
-   "lines": [
-    {
-     "text": "結果品名",
-     "start": 215,
-     "chars": [
-      218,
-      223,
-      228,
-      233
-     ]
-    },
-    {
-     "text": "價格過敏提示都對",
-     "start": 242,
-     "chars": [
-      244,
-      249,
-      260,
-      265,
-      270,
-      275,
-      280,
-      285
-     ]
-    },
-    {
-     "text": "一道也沒錯",
-     "start": 294,
-     "chars": [
-      296,
-      301,
-      306,
-      311,
-      317
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "品名",
-     "start": 228
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "品名",
-     "frame": 229
-    },
-    {
-     "id": "k2",
-     "text": "價格",
-     "frame": 245
-    },
-    {
-     "id": "k3",
-     "text": "過敏提示",
-     "frame": 261
-    }
-   ],
-   "sub": "結果品名\n價格\n過敏提示都對\n一道也沒錯",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
-   "charTimes": [
-    0,
-    0.168,
-    0.337,
-    0.505,
-    0.876,
-    1.044,
-    1.415,
-    1.583,
-    1.752,
-    1.92,
-    2.088,
-    2.257,
-    2.627,
-    2.796,
-    2.964,
-    3.133,
-    3.301
-   ]
-  },
-  {
-   "id": "s04",
-   "audio": null,
-   "audioFrame": 332,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 322,
-   "durationFrames": 135,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 332,
-   "voiceEndFrame": 449,
-   "stillFrame": 447,
-   "subtitleWindow": [
-    329,
-    454
-   ],
-   "sourceWindow": [
-    327,
-    452
-   ],
-   "lines": [
-    {
-     "text": "可是親子丼",
-     "start": 329,
-     "chars": [
-      331,
-      336,
-      341,
-      347,
-      352
-     ]
-    },
-    {
-     "text": "第二次它只留日文名",
-     "start": 362,
-     "chars": [
-      364,
-      370,
-      375,
-      381,
-      386,
-      391,
-      397,
-      402,
-      408
-     ]
-    },
-    {
-     "text": "沒說是什麼",
-     "start": 418,
-     "chars": [
-      420,
-      425,
-      431,
-      436,
-      441
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "親子丼",
-     "start": 341
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "親子丼",
-     "frame": 343
-    },
-    {
-     "id": "k2",
-     "text": "第二次",
-     "frame": 366
-    },
-    {
-     "id": "k3",
-     "text": "沒說是什麼",
-     "frame": 421
-    }
-   ],
-   "sub": "可是親子丼\n第二次它只留日文名\n沒說是什麼",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
-   "charTimes": [
-    0,
-    0.181,
-    0.362,
-    0.544,
-    0.725,
-    1.123,
-    1.305,
-    1.486,
-    1.667,
-    1.848,
-    2.029,
-    2.211,
-    2.392,
-    2.573,
-    2.972,
-    3.153,
-    3.334,
-    3.515,
-    3.696
-   ]
-  },
-  {
-   "id": "s05",
-   "audio": null,
-   "audioFrame": 457,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 447,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 457,
-   "voiceEndFrame": 568,
-   "stillFrame": 566,
-   "subtitleWindow": [
-    454,
-    573
-   ],
-   "sourceWindow": [
-    452,
-    571
-   ],
-   "lines": [
-    {
-     "text": "第二種問法",
-     "start": 454,
-     "chars": [
-      456,
-      461,
-      466,
-      471,
-      476
-     ]
-    },
-    {
-     "text": "請它說明做法",
-     "start": 485,
-     "chars": [
-      487,
-      492,
-      497,
-      502,
-      508,
-      513
-     ]
-    },
-    {
-     "text": "食材標出過敏原",
-     "start": 522,
-     "chars": [
-      524,
-      529,
-      540,
-      545,
-      550,
-      555,
-      561
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "第二種問法",
-     "start": 456
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "第二種問法",
-     "frame": 457
-    },
-    {
-     "id": "k2",
-     "text": "說明",
-     "frame": 499
-    },
-    {
-     "id": "k3",
-     "text": "過敏原",
-     "frame": 552
-    }
-   ],
-   "sub": "第二種問法\n請它說明做法\n食材\n標出過敏原",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
-   "charTimes": [
-    0,
-    0.17,
-    0.34,
-    0.51,
-    0.68,
-    1.054,
-    1.224,
-    1.395,
-    1.565,
-    1.735,
-    1.905,
-    2.279,
-    2.449,
-    2.823,
-    2.993,
-    3.163,
-    3.333,
-    3.503
-   ]
-  },
-  {
-   "id": "s06",
-   "audio": null,
-   "audioFrame": 577,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 566,
-   "durationFrames": 154,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 576,
-   "voiceEndFrame": 712,
-   "stillFrame": 710,
-   "subtitleWindow": [
-    573,
-    717
-   ],
-   "sourceWindow": [
-    571,
-    715
-   ],
-   "lines": [
-    {
-     "text": "每道菜都多了說明",
-     "start": 573,
-     "chars": [
-      576,
-      581,
-      586,
-      591,
-      597,
-      602,
-      607,
-      612
-     ]
-    },
-    {
-     "text": "像親子丼",
-     "start": 622,
-     "chars": [
-      624,
-      629,
-      634,
-      640
-     ]
-    },
-    {
-     "text": "雞肉洋蔥淋蛋",
-     "start": 649,
-     "chars": [
-      651,
-      657,
-      662,
-      667,
-      672,
-      678
-     ]
-    },
-    {
-     "text": "蓋在飯上",
-     "start": 687,
-     "chars": [
-      689,
-      694,
-      700,
-      705
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "每道菜",
-     "start": 576
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "每道菜",
-     "frame": 577
-    },
-    {
-     "id": "k2",
-     "text": "親子丼",
-     "frame": 631
-    },
-    {
-     "id": "k3",
-     "text": "淋蛋",
-     "frame": 674
-    }
-   ],
-   "sub": "每道菜都多了說明\n像親子丼\n雞肉洋蔥淋蛋\n蓋在飯上",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
-   "charTimes": [
-    0,
-    0.175,
-    0.351,
-    0.526,
-    0.702,
-    0.877,
-    1.052,
-    1.228,
-    1.614,
-    1.789,
-    1.964,
-    2.14,
-    2.526,
-    2.701,
-    2.876,
-    3.052,
-    3.227,
-    3.402,
-    3.788,
-    3.964,
-    4.139,
-    4.314
-   ]
-  },
-  {
-   "id": "s07",
-   "audio": null,
-   "audioFrame": 720,
-   "audioSec": 5.102,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 710,
-   "durationFrames": 172,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 720,
-   "voiceEndFrame": 874,
-   "stillFrame": 872,
-   "subtitleWindow": [
-    717,
-    879
-   ],
-   "sourceWindow": [
-    715,
-    877
-   ],
-   "lines": [
-    {
-     "text": "但洋蔥",
-     "start": 717,
-     "chars": [
-      719,
-      723,
-      728
-     ]
-    },
-    {
-     "text": "叉燒蔥花",
-     "start": 737,
-     "chars": [
-      739,
-      744,
-      755,
-      760
-     ]
-    },
-    {
-     "text": "菜單根本沒印",
-     "start": 769,
-     "chars": [
-      771,
-      776,
-      781,
-      786,
-      791,
-      796
-     ]
-    },
-    {
-     "text": "是它補的",
-     "start": 804,
-     "chars": [
-      806,
-      811,
-      816,
-      821
-     ]
-    },
-    {
-     "text": "沒有一道標不確定",
-     "start": 830,
-     "chars": [
-      832,
-      837,
-      842,
-      847,
-      852,
-      857,
-      862,
-      867
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "菜單根本沒印",
-     "start": 771
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "菜單根本沒印",
-     "frame": 772
-    },
-    {
-     "id": "k2",
-     "text": "是它補的",
-     "frame": 808
-    },
-    {
-     "id": "k3",
-     "text": "沒有一道標不確定",
-     "frame": 834
-    }
-   ],
-   "sub": "但洋蔥\n叉燒\n蔥花\n菜單根本沒印\n是它補的\n沒有一道標不確定",
-   "provider": "estimate",
-   "syllables": 25,
-   "words": [],
-   "charTimes": [
-    0,
-    0.165,
-    0.329,
-    0.691,
-    0.856,
-    1.218,
-    1.382,
-    1.745,
-    1.909,
-    2.074,
-    2.238,
-    2.403,
-    2.567,
-    2.93,
-    3.094,
-    3.259,
-    3.423,
-    3.785,
-    3.95,
-    4.115,
-    4.279,
-    4.444,
-    4.608,
-    4.773,
-    4.937
-   ]
-  },
-  {
-   "id": "s08",
-   "audio": null,
-   "audioFrame": 882,
-   "audioSec": 5.306,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 872,
-   "durationFrames": 178,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 882,
-   "voiceEndFrame": 1042,
-   "stillFrame": 1040,
-   "subtitleWindow": [
-    879,
-    1047
-   ],
-   "sourceWindow": [
-    877,
-    1045
-   ],
-   "lines": [
-    {
-     "text": "不過我只用",
-     "start": 879,
-     "chars": [
-      881,
-      886,
-      891,
-      896,
-      901
-     ]
-    },
-    {
-     "text": "一張自製菜單",
-     "start": 910,
-     "chars": [
-      913,
-      918,
-      923,
-      928,
-      933,
-      938
-     ]
-    },
-    {
-     "text": "一個模型",
-     "start": 948,
-     "chars": [
-      950,
-      955,
-      960,
-      965
-     ]
-    },
-    {
-     "text": "真的店家的菜單",
-     "start": 975,
-     "chars": [
-      977,
-      982,
-      987,
-      992,
-      997,
-      1002,
-      1008
-     ]
-    },
-    {
-     "text": "還不知道",
-     "start": 1017,
-     "chars": [
-      1019,
-      1024,
-      1029,
-      1035
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "一張自製菜單",
-     "start": 913
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "一張自製菜單",
-     "frame": 914
-    },
-    {
-     "id": "k2",
-     "text": "一個模型",
-     "frame": 951
-    },
-    {
-     "id": "k3",
-     "text": "還不知道",
-     "frame": 1021
-    }
-   ],
-   "sub": "不過我只用\n一張自製菜單\n一個模型\n真的店家的菜單\n還不知道",
-   "provider": "estimate",
-   "syllables": 26,
-   "words": [],
-   "charTimes": [
-    0,
-    0.172,
-    0.345,
-    0.517,
-    0.689,
-    1.068,
-    1.24,
-    1.413,
-    1.585,
-    1.757,
-    1.929,
-    2.309,
-    2.481,
-    2.653,
-    2.825,
-    3.204,
-    3.377,
-    3.549,
-    3.721,
-    3.893,
-    4.066,
-    4.238,
-    4.617,
-    4.789,
-    4.962,
-    5.134
-   ]
-  },
-  {
-   "id": "s09",
-   "audio": null,
-   "audioFrame": 1050,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1040,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1050,
-   "voiceEndFrame": 1161,
-   "stillFrame": 1159,
-   "subtitleWindow": [
-    1047,
-    1166
-   ],
-   "sourceWindow": [
-    1045,
-    1164
-   ],
-   "lines": [
-    {
-     "text": "所以做法",
-     "start": 1047,
-     "chars": [
-      1049,
-      1054,
-      1059,
-      1064
-     ]
-    },
-    {
-     "text": "拍清楚",
-     "start": 1073,
-     "chars": [
-      1075,
-      1080,
-      1085
-     ]
-    },
-    {
-     "text": "要說明",
-     "start": 1094,
-     "chars": [
-      1096,
-      1102,
-      1107
-     ]
-    },
-    {
-     "text": "過敏原一定問店家",
-     "start": 1116,
-     "chars": [
-      1118,
-      1123,
-      1128,
-      1133,
-      1138,
-      1143,
-      1148,
-      1154
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "拍清楚",
-     "start": 1075
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "拍清楚",
-     "frame": 1077
-    },
-    {
-     "id": "k2",
-     "text": "要說明",
-     "frame": 1098
-    },
-    {
-     "id": "k3",
-     "text": "問店家",
-     "frame": 1145
-    }
-   ],
-   "sub": "所以做法\n拍清楚\n要說明\n過敏原一定問店家",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
-   "charTimes": [
-    0,
-    0.17,
-    0.34,
-    0.51,
-    0.884,
-    1.054,
-    1.224,
-    1.599,
-    1.769,
-    1.939,
-    2.313,
-    2.483,
-    2.653,
-    2.823,
-    2.993,
-    3.163,
-    3.333,
-    3.503
-   ]
-  },
-  {
-   "id": "s10",
-   "audio": null,
-   "audioFrame": 1170,
-   "audioSec": 2.857,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1159,
-   "durationFrames": 105,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1169,
-   "voiceEndFrame": 1256,
-   "stillFrame": 1254,
-   "subtitleWindow": [
-    1166,
-    1264
-   ],
-   "sourceWindow": [
-    1164,
-    1259
+    1396,
+    1496
    ],
    "lines": [
     {
      "text": "留言「菜單」",
-     "start": 1166,
+     "start": 1398,
      "chars": [
-      1169,
-      1174,
-      1174,
-      1180,
-      1185,
-      1185
+      1407,
+      1413,
+      1413,
+      1418,
+      1424,
+      1424
      ]
     },
     {
      "text": "拿這句說清楚的提示詞",
-     "start": 1196,
+     "start": 1435,
      "chars": [
-      1198,
-      1203,
-      1209,
-      1215,
-      1220,
-      1226,
-      1232,
-      1237,
-      1243,
-      1249
+      1437,
+      1443,
+      1448,
+      1454,
+      1459,
+      1465,
+      1469,
+      1472,
+      1478,
+      1483
      ]
     }
    ],
    "keywords": [
     {
      "text": "菜單",
-     "start": 1180
+     "start": 1418
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "菜單",
-     "frame": 1181
+     "frame": 1419,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "提示詞",
-     "frame": 1239
+     "frame": 1474,
+     "early": 0
     }
    ],
+   "hash": "fa67698cabe4-fd65c16ade",
    "sub": "留言「菜單」\n拿這句說清楚的提示詞",
-   "provider": "estimate",
-   "syllables": 14,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.956,
+    "minScore": 0.586,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.29,
+      "start": 1.28,
+      "ch": "拿",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.28,
+     "end": 0.42,
+     "score": 0.901
+    },
+    {
+     "text": "言",
+     "start": 0.48,
+     "end": 0.6,
+     "score": 0.989
+    },
+    {
+     "text": "菜",
+     "start": 0.64,
+     "end": 0.8,
+     "score": 0.996
+    },
+    {
+     "text": "單",
+     "start": 0.84,
+     "end": 1.02,
+     "score": 0.998
+    },
+    {
+     "text": "拿",
+     "start": 1.28,
+     "end": 1.36,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 1.48,
+     "end": 1.56,
+     "score": 0.586
+    },
+    {
+     "text": "句",
+     "start": 1.66,
+     "end": 1.74,
+     "score": 0.998
+    },
+    {
+     "text": "說",
+     "start": 1.86,
+     "end": 1.96,
+     "score": 0.975
+    },
+    {
+     "text": "清",
+     "start": 2.02,
+     "end": 2.18,
+     "score": 0.983
+    },
+    {
+     "text": "楚",
+     "start": 2.2,
+     "end": 2.3,
+     "score": 0.97
+    },
+    {
+     "text": "的",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.999
+    },
+    {
+     "text": "提",
+     "start": 2.46,
+     "end": 2.56,
+     "score": 0.997
+    },
+    {
+     "text": "示",
+     "start": 2.66,
+     "end": 2.74,
+     "score": 0.997
+    },
+    {
+     "text": "詞",
+     "start": 2.82,
+     "end": 2.96,
+     "score": 0.997
+    }
+   ],
    "charTimes": [
-    0,
-    0.188,
-    0.376,
-    0.564,
-    0.977,
-    1.165,
-    1.353,
-    1.541,
-    1.729,
-    1.917,
-    2.105,
-    2.293,
-    2.481,
-    2.669
+    0.28,
+    0.48,
+    0.64,
+    0.84,
+    1.28,
+    1.48,
+    1.66,
+    1.86,
+    2.02,
+    2.2,
+    2.34,
+    2.46,
+    2.66,
+    2.82
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1254,
+   "audioFrame": 1491,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1254,
+   "startFrame": 1491,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1267,24 +2714,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1264,
-   "voiceEndFrame": 1264,
-   "stillFrame": 1350,
+   "voiceStartFrame": 1501,
+   "voiceEndFrame": 1501,
+   "stillFrame": 1587,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1259,
-    1362
+    1496,
+    1599
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-menu-translate/voice.wav",
+  "lufsIn": -11,
+  "lufs": -16,
+  "sec": 53.3
+ }
 }
