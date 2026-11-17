@@ -83,7 +83,7 @@ scenes.append(scene("s2", "you", 2,
      "shift": [ex("rackM", "now+4", "fat-6", dz=2.6), ex("rackF", "now+4", "fat-6", dz=5.0)],
      "labels": [lab("rk_shelf", "電源架", "power shelf", "amber", "now", "fat"), lab("rk_mod", "整流模組", "rectifier modules", "amber", "v54", "fat-6"), lab("rk_fanl", "風扇", "fans", "blue", "v54+14", "fat-6"), lab("rk_bus", "粗銅條", "thick copper", "blue", "fat", "busbar"), lab("rk_bus", "銅排", "busbar", "blue", "busbar", "s3:start-12")],
      "overlay": []},
-    ["NVIDIA 技術部落格 2025/5；SemiAnalysis"]))
+    ["NVIDIA 技術部落格 2025/5；SemiAnalysis"], pause=0.7))
 
 # s3：power「P＝」、vxi「V×I」、low 電壓低、big 電流大
 scenes.append(scene("s3", "mechanism", 3,
@@ -159,7 +159,7 @@ scenes.append(scene("s7", "payoff", 7,
      "run": [run("r_scglow", "use+10", "s8:start-2", 8), run("r_fan", "start-2", "s8:start-2", 4), run("r_sc", "use+40", "s8:start-2", 6), run("r_curN", "use+44", "s8:start-2", 8), run("r_curN2", "use+44", "s8:start-2", 8), run("r_shelf", "tw", "s8:start-2", 8), run("r_air3", "start", "s8:start-2", 4)],
      "labels": [lab("rk_sc", "台達電 電源櫃", "Delta cabinet", "amber", "tw", "s8:start-2"), lab("rk_shelf", "台達電 電源架", "Delta power shelf", "amber", "tw+8", "s8:start-2"), lab("rk_sc2", "光寶科 電源櫃", "Lite-On cabinet", "blue", "lite", "s8:start-2")],
      "overlay": [stamp("2027 廠商規劃", "y2027", "use+20", "amber", 40, x=770, y=330), stamp("媒體報導", "tw", "s8:start-2", "blue", 40, x=790, y=330)]},
-    ["NVIDIA 2025/5；科技新報 2026/3/28"]))
+    ["NVIDIA 2025/5；科技新報 2026/3/28"], pause=0.7))
 
 # s8：save 省多少（？）、none 廠商目標值、real 非實測
 scenes.append(scene("s8", "twist", 8,

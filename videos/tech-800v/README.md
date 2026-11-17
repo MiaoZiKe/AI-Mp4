@@ -1,5 +1,8 @@
 # tech-800v：八百伏特（科技透明圈 第 9 支，11/22（日）20:00）
 
+## 暫停紀錄（2026/11/17，Andy 指示先只做液冷 v3）
+停在：model／script 已含 2.5D 爆炸剖析（電源架、側櫃、電路板，用 shift 分層拉開）、設備改不透明、每句字幕各有畫面事件、公司引線；validate 與 layout-check 0 error。**還沒渲染**（上一輪渲染被我停掉）。恢復時：`bash scripts/three/make-tech.sh tech-800v --take=out/voice-800v/800v-a.wav --atempo=1.12 --ver=v1`（原始含停頓語速 249÷63.85＝3.90 字/秒，atempo＝4.7÷3.90＝1.205，上限 1.12；不送 TTS），再用 `python3 videos/tech-800v/sync-table.py` 產逐句對照表與拼圖，另抽電路板與電源櫃近景各 1 張。
+
 ## 進度（2026/11/17）
 - [x] research.md 複查（第二來源、信心度、台灣公司）
 - [x] 念稿改寫（九段、249 字、結尾預告 11/23「IC 設計為什麼沒有工廠」、留言「供電」）
