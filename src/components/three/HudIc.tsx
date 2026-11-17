@@ -281,7 +281,7 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={0.4 + 0.6 * a}>
+        <g opacity={1}>
           <rect x={40} y={80} width={330} height={160} rx={12} fill={IC.cpu} /><text x={205} y={146} textAnchor="middle" style={zh(sm(44), "#FFFFFF", 900)}>設計公司</text><text x={205} y={196} textAnchor="middle" style={zh(sm(32), "#FFFFFF", 700)}>畫好設計圖</text>
         </g>
         <g opacity={a}><path d="M 392 160 H 548" stroke={H.line} strokeWidth={8} /><path d="M 532 140 L 560 160 L 532 180" fill="none" stroke={H.line} strokeWidth={8} /></g>

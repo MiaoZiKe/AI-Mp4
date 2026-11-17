@@ -45,8 +45,8 @@ scenes.append(scene("s1", "hook", 1,
     ["A chip-design company has no factory,", "because what it hands over", "is only a design."],
     ["沒有工廠", "設計圖"],
     [cue("co", "晶片設計公司"), cue("nofab", "沒有工廠"), cue("pic", "設計圖")],
-    {"hook": {"kicker": "晶片設計公司沒有工廠", "title": "只交設計圖", "size": 130, "top": 236},
-     "zoom": [{"to": "chip", "at": "start-30", "drift": True}],
+    {"hook": {"kicker": "晶片設計公司沒有工廠", "title": "只交設計圖", "size": 100, "top": 150},
+     "zoom": [{"to": "chip", "at": "start-30"}],
      "overlay": [stamp("晶片設計公司", "co+4", "nofab-4", "blue", 40, style="tag", x=300, y=1296),
                  stamp("沒有工廠", "nofab", "pic-4", "coral", 64, x=800, y=1206),
                  stamp("交出去：一份設計圖", "pic", "s2:start-2", "amber", 44, style="tag", x=640, y=1296)]},
@@ -122,8 +122,8 @@ scenes.append(scene("s6", "mechanism", 6,
                {"layer": "sm_cur", "at": "sim", "until": off("pr", -4), "dx": 4.6, "dur": 40}],
      "run": [
              run("d_f0", off("code", -6), "s7:start-2", 6), run("d_f1", off("sim", -6), "s7:start-2", 6), run("d_f2", off("pr", -6), "s7:start-2", 6), run("d_f3", off("wire", 8), "s7:start-2", 6)],
-     "labels": [lab("d_a0", "規格", "Spec", "amber", "spec", "s7:start-8"), lab("d_a1", "程式（RTL）", "RTL code", "blue", "code", "s7:start-8"), lab("d_a2", "模擬驗證", "Simulation", "blue", "sim", "s7:start-8"),
-                lab("d_a3", "布局繞線", "Place & route", "amber", "pr", "s7:start-8"), lab("d_a4", "光罩", "Photomask", "coral", off("wire", 28), "s7:start-8")],
+     "labels": [lab("d_a0", "規格", "Spec", "amber", "spec", "code-4"), lab("d_a1", "程式（RTL）", "RTL code", "blue", "code", "sim-4"), lab("d_a2", "模擬驗證", "Simulation", "blue", "sim", "pr-4"),
+                lab("d_a3", "布局繞線", "Place & route", "amber", "pr", off("wire", 24)), lab("d_a4", "光罩", "Photomask", "coral", off("wire", 28), "s7:start-8")],
      "overlay": [sec("ic-flow", "start+2", "s7:start-16", 930, 300, "從規格到版圖", "示意・五步簡化", {"hand": "hand", "spec": "spec", "code": "code", "sim": "sim", "pr": "pr", "wire": "wire"})]},
     ["AnySilicon；Wikipedia Design flow（通用流程）"], pause=0.7))
 
@@ -149,13 +149,13 @@ scenes.append(scene("s8", "payoff", 8,
     ["這些事台灣誰在做？", "設計服務有", "創意電子・世芯", "矽智財有", "力旺・晶心科", "設計軟體靠", "新思・益華・西門子"],
     ["Who does this in Taiwan?", "Design services:", "GUC and Alchip.", "Silicon IP:", "eMemory and Andes.", "Design software:", "Synopsys, Cadence, Siemens."],
     ["創意電子", "力旺", "新思"],
-    [cue("who", "誰在做"), cue("guc", "創意電子"), cue("em", "力旺"), cue("andes", "晶心科"), cue("eda", "設計軟體靠")],
+    [cue("who", "誰在做"), cue("svc", "設計服務"), cue("guc", "創意電子"), cue("ip", "矽智財"), cue("em", "力旺"), cue("andes", "晶心科"), cue("eda", "設計軟體靠")],
     {"zoom": [{"to": "die", "at": "start-6", "dur": 40}],
      "shot": [shot("start-2", 454, -4, 84, 36, 1, yaw=0.0)],
      "shift": [],
-     "labels": [lab("z_die", "創意、世芯：設計服務", "", "amber", "guc", "em-6"), lab("z_mem", "力旺：記憶體矽智財", "", "blue", "em", "andes-6"), lab("z_cpu", "晶心科：CPU 智財", "", "blue", "andes", "eda-6"),
+     "labels": [lab("z_die", "創意、世芯：設計服務", "", "amber", "svc", "ip-6"), lab("z_mem", "力旺：記憶體矽智財", "", "blue", "em", "andes-6"), lab("z_cpu", "晶心科：CPU 智財", "", "blue", "andes", "eda-6"),
                 lab("z_mon", "三大 EDA：設計軟體", "", "amber", "eda", "s9:start-8")],
-     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "guc", "em": "em", "eda": "eda"}), stamp("媒體報導", "em", "s9:start-8", "blue", 40, x=880, y=880, avoid=False)]},
+     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "svc", "em": "ip", "eda": "eda"}), stamp("媒體報導", "em", "s9:start-8", "blue", 40, x=880, y=880, avoid=False)]},
     ["媒體報導：數位時代、科技新報、工商時報"], pause=0.7))
 
 # ───────── s9 結尾 ─────────
@@ -173,11 +173,11 @@ scenes.append(scene("s9", "cta", 9,
 scenes.append({"id": "s10", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene",
                "props": {"endCard": {"next": "晶圓代工", "trail": ["晶片版圖", "金屬層", "設計流程", "光罩"], "at": "s9:kw-8", "comment": "IC設計", "logoAnim": "transparent"}}, "sources": []})
 
-NOTE = "查證截至 2026/11/23"
+NOTE = "查證截至 2026/11/18"
 def lvl(i, label, en, field, ruler, art, **kw):
     d = {"id": i, "label": label, "en": en, "field": field, "ruler": ruler, "art": art}; d.update(kw); return d
 script = {
- "slug": "tech-icdesign", "title": "IC 設計：一顆晶片怎麼從規格變成光罩（科技透明圈 第 10 支）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
+ "slug": "tech-icdesign", "title": "IC 設計：一顆晶片怎麼從規格變成光罩（科技透明圈 第 10 支）", "asOf": "2026/11/18", "styleVersion": 3, "stage": "three",
  "channel": {"name": "科技透明圈", "tag": "放大來看", "slogan": "一支講透一件事"}, "hudSkin": "light",
  "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
            "_說明": "念稿：docs/prompts/tech-icdesign-旁白.txt；整篇 1 次請求"},

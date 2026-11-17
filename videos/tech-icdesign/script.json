@@ -1,7 +1,7 @@
 {
  "slug": "tech-icdesign",
  "title": "IC 設計：一顆晶片怎麼從規格變成光罩（科技透明圈 第 10 支）",
- "asOf": "2026/11/23",
+ "asOf": "2026/11/18",
  "styleVersion": 3,
  "stage": "three",
  "channel": {
@@ -27,7 +27,7 @@
     "field": "12 mm",
     "ruler": "2 mm",
     "art": "ic-die",
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -37,7 +37,7 @@
     "field": "480 µm",
     "ruler": "100 µm",
     "art": "ic-blk",
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -47,7 +47,7 @@
     "field": "6 µm",
     "ruler": "1 µm",
     "art": "ic-rows",
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -58,7 +58,7 @@
     "ruler": "100 nm",
     "art": "ic-cell",
     "handoff3D": true,
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -69,7 +69,7 @@
     "ruler": "10 cm",
     "art": "none",
     "readout": false,
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -80,7 +80,7 @@
     "ruler": "5 cm",
     "art": "none",
     "readout": false,
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    },
    {
@@ -91,7 +91,7 @@
     "ruler": "10 cm",
     "art": "none",
     "readout": false,
-    "note": "查證截至 2026/11/23",
+    "note": "查證截至 2026/11/18",
     "noteAlways": true
    }
   ],
@@ -148,14 +148,13 @@
     "hook": {
      "kicker": "晶片設計公司沒有工廠",
      "title": "只交設計圖",
-     "size": 130,
-     "top": 236
+     "size": 100,
+     "top": 150
     },
     "zoom": [
      {
       "to": "chip",
-      "at": "start-30",
-      "drift": true
+      "at": "start-30"
      }
     ],
     "overlay": [
@@ -893,7 +892,7 @@
       "en": "Spec",
       "color": "amber",
       "at": "spec",
-      "until": "s7:start-8"
+      "until": "code-4"
      },
      {
       "part": "d_a1",
@@ -901,7 +900,7 @@
       "en": "RTL code",
       "color": "blue",
       "at": "code",
-      "until": "s7:start-8"
+      "until": "sim-4"
      },
      {
       "part": "d_a2",
@@ -909,7 +908,7 @@
       "en": "Simulation",
       "color": "blue",
       "at": "sim",
-      "until": "s7:start-8"
+      "until": "pr-4"
      },
      {
       "part": "d_a3",
@@ -917,7 +916,7 @@
       "en": "Place & route",
       "color": "amber",
       "at": "pr",
-      "until": "s7:start-8"
+      "until": "wire+24"
      },
      {
       "part": "d_a4",
@@ -1187,8 +1186,16 @@
      "text": "誰在做"
     },
     {
+     "id": "svc",
+     "text": "設計服務"
+    },
+    {
      "id": "guc",
      "text": "創意電子"
+    },
+    {
+     "id": "ip",
+     "text": "矽智財"
     },
     {
      "id": "em",
@@ -1230,8 +1237,8 @@
       "text": "創意、世芯：設計服務",
       "en": "",
       "color": "amber",
-      "at": "guc",
-      "until": "em-6"
+      "at": "svc",
+      "until": "ip-6"
      },
      {
       "part": "z_mem",
@@ -1273,10 +1280,10 @@
       "tag": "示意・媒體報導",
       "t": {
        "guc": {
-        "at": "guc"
+        "at": "svc"
        },
        "em": {
-        "at": "em"
+        "at": "ip"
        },
        "eda": {
         "at": "eda"
