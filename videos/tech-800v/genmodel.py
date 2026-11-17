@@ -172,6 +172,42 @@ actions["d_hA"]={"preset":"heat-spread","layer":"dmA","from":{"layer":"dmA","p":
 actions["d_hB"]={"preset":"heat-spread","layer":"dmB","from":{"layer":"dmB","p":[DX+1.8,3.7,0]},"dir":[0,1,0],"reach":2.0,"count":3,"r0":0.5,"spread":0.5,"rate":0.8,"color":"lp_heat"}
 actions["d_air"]={"preset":"stream","layer":"dmA","path":[[DX-4.0,1.5,2.4],[DX+3.6,1.5,2.4]],"n":6,"shape":"arrow","rate":0.7,"color":"air","size":0.2}
 
+
+# ───────── B：降壓模組近景（電路板：輸入接點、銅走線、開關晶片、電感、電容，往中間的運算晶片送約 1 V）─────────
+DB=180
+lib.append({"part":"pcb","id":"d_bpcb","pos":[DB,0,0],"w":9.6,"d":7.8,"t":0.22,"pads":False})
+lib.append({"part":"die","id":"d_bdie","pos":[DB,0.22,0],"w":2.4,"d":2.4,"t":0.4,"bumps":False})
+BYT=0.22
+XS=[-2.4,-0.8,0.8,2.4]
+box("b_in","d_bpcb",mm("cuHi"),[1.0,0.5,2.0],[DB-4.4,BYT+0.25,0])
+for j in range(5): box(f"b_inp{j}","d_bpcb",mm("bolt"),[0.12,0.12,0.12],[DB-4.7,BYT+0.55,-0.8+0.4*j])
+box("b_zbus","d_bpcb",mm("cu"),[0.4,0.06,7.8],[DB-3.7,BYT+0.04,0])
+for sz in (-1,1):
+    box(f"b_xbus{sz}","d_bpcb",mm("cu"),[7.2,0.06,0.4],[DB-0.1,BYT+0.04,sz*3.75])
+    for i,x in enumerate(XS):
+        box(f"b_mos{sz}{i}","d_bpcb",mm("chipBk"),[0.8,0.24,0.62],[DB+x,BYT+0.12,sz*3.0])
+        box(f"b_pin{sz}{i}","d_bpcb",mm("bolt"),[0.7,0.05,0.08],[DB+x,BYT+0.06,sz*3.0],at=[[0,0,-0.3],[0,0,0.3]])
+        box(f"b_t1{sz}{i}","d_bpcb",mm("cu"),[0.3,0.05,0.6],[DB+x,BYT+0.04,sz*3.4])
+        box(f"b_ind{sz}{i}","d_bpcb",mm("chipBk"),[0.95,0.5,0.95],[DB+x,BYT+0.25,sz*2.15])
+        box(f"b_indw{sz}{i}","d_bpcb",mm("cuHi"),[0.98,0.06,0.98],[DB+x,BYT+0.52,sz*2.15])
+        box(f"b_t2{sz}{i}","d_bpcb",mm("cu"),[0.3,0.05,0.7],[DB+x,BYT+0.04,sz*2.65])
+        cyl(f"b_cap{sz}{i}","d_bpcb",mm("steel2"),0.3,0.5,[DB+x,BYT+0.25,sz*1.55],vertical=True)
+        cyl(f"b_capt{sz}{i}","d_bpcb",mm("dark"),0.22,0.05,[DB+x,BYT+0.52,sz*1.55],vertical=True)
+        box(f"b_t3{sz}{i}","d_bpcb",mm("cuHi"),[0.5,0.05,0.5],[DB+x,BYT+0.04,sz*1.2])
+anchor("b_die","d_bdie",[DB+1.2,BYT+0.5,1.2],dx=70,dy=-120); anchor("b_ind","d_bpcb",[DB+2.4,BYT+0.55,2.6],dx=110,dy=-60); anchor("b_mos","d_bpcb",[DB-2.4,BYT+0.25,-3.0],dx=-110,dy=-60); anchor("b_cap","d_bpcb",[DB-0.8,BYT+0.55,-1.55],dx=-130,dy=40)
+flow("d_bin","d_bpcb",[[DB-4.7,BYT+0.6,0],[DB-3.7,BYT+0.1,0]],4,1,0.2,[0,1,0],0.09,1.2)
+flow("d_bzT","d_bpcb",[[DB-3.7,BYT+0.1,-0.2],[DB-3.7,BYT+0.1,-3.75]],3,1,0.2,[1,0,0],0.08,1.1)
+flow("d_bzB","d_bpcb",[[DB-3.7,BYT+0.1,0.2],[DB-3.7,BYT+0.1,3.75]],3,1,0.2,[1,0,0],0.08,1.1)
+flow("d_bxT","d_bpcb",[[DB-3.5,BYT+0.1,-3.75],[DB+3.4,BYT+0.1,-3.75]],3,1,0.2,[0,1,0],0.08,1.2)
+flow("d_bxB","d_bpcb",[[DB-3.5,BYT+0.1,3.75],[DB+3.4,BYT+0.1,3.75]],3,1,0.2,[0,1,0],0.08,1.2)
+flow("d_bsT","d_bpcb",[[DB,BYT+0.1,-3.5],[DB,BYT+0.1,-1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
+flow("d_bsB","d_bpcb",[[DB,BYT+0.1,3.5],[DB,BYT+0.1,1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
+actions["d_bdieG"]={"type":"pulse","layer":"d_bdie","parts":["d_bdie_body"],"color":"lp_heat","steady":True,"glow":0.8,"halo":0}
+actions["d_bmosG"]={"type":"pulse","layer":"d_bpcb","parts":[f"b_mos{s}{i}" for s in (-1,1) for i in range(4)],"color":"lp_proc","freq":3,"glow":0.8,"halo":0}
+actions["d_bheat"]={"preset":"heat-spread","layer":"d_bdie","from":{"layer":"d_bdie","p":[DB,BYT+0.5,0]},"dir":[0,1,0],"reach":1.8,"count":3,"r0":0.5,"spread":0.5,"rate":0.8,"color":"lp_heat"}
+actions["d_bair"]={"preset":"stream","layer":"d_bpcb","path":[[DB-5.2,1.1,-1.0],[DB+5.2,1.1,-1.0]],"n":6,"shape":"arrow","rate":0.7,"color":"air","size":0.2}
+anchor("rk_sc2","sc",[SCX+1.5,3.4,-0.2],dx=70,dy=60)
+
 model = {
  "name":"tech-800v：八百伏特（機櫃供電）。座標：R 機櫃 x=0、C 銅排對照 x=60、D 降壓路徑 x=120。零件用基本形狀＋庫（heatsink、pcb、die）。",
  "unit":"1＝約 10 cm（示意，非實際比例）","size":{"w":14,"h":2,"r":0.1,"t":6},

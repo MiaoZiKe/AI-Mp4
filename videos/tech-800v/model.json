@@ -395,6 +395,11 @@
    "id": "d_pcb",
    "z": 0,
    "k": 0
+  },
+  {
+   "id": "d_bpcb",
+   "z": 0,
+   "k": 0
   }
  ],
  "anchors": {
@@ -507,6 +512,56 @@
    ],
    "dx": 50,
    "dy": -130
+  },
+  "b_die": {
+   "layer": "d_bdie",
+   "p": [
+    181.2,
+    0.72,
+    1.2
+   ],
+   "dx": 70,
+   "dy": -120
+  },
+  "b_ind": {
+   "layer": "d_bpcb",
+   "p": [
+    182.4,
+    0.77,
+    2.6
+   ],
+   "dx": 110,
+   "dy": -60
+  },
+  "b_mos": {
+   "layer": "d_bpcb",
+   "p": [
+    177.6,
+    0.47,
+    -3.0
+   ],
+   "dx": -110,
+   "dy": -60
+  },
+  "b_cap": {
+   "layer": "d_bpcb",
+   "p": [
+    179.2,
+    0.77,
+    -1.55
+   ],
+   "dx": -130,
+   "dy": 40
+  },
+  "rk_sc2": {
+   "layer": "sc",
+   "p": [
+    8.4,
+    3.4,
+    -0.2
+   ],
+   "dx": 70,
+   "dy": 60
   }
  },
  "parts": [
@@ -564,6 +619,32 @@
    "w": 1.5,
    "d": 1.5,
    "t": 0.3,
+   "bumps": false
+  },
+  {
+   "part": "pcb",
+   "id": "d_bpcb",
+   "pos": [
+    180,
+    0,
+    0
+   ],
+   "w": 9.6,
+   "d": 7.8,
+   "t": 0.22,
+   "pads": false
+  },
+  {
+   "part": "die",
+   "id": "d_bdie",
+   "pos": [
+    180,
+    0.22,
+    0
+   ],
+   "w": 2.4,
+   "d": 2.4,
+   "t": 0.4,
    "bumps": false
   },
   {
@@ -3679,6 +3760,1462 @@
     0
    ],
    "mat": "m_steel2"
+  },
+  {
+   "id": "b_in",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    1.0,
+    0.5,
+    2.0
+   ],
+   "pos": [
+    175.6,
+    0.47,
+    0
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_inp0",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    175.3,
+    0.77,
+    -0.8
+   ],
+   "mat": "m_bolt"
+  },
+  {
+   "id": "b_inp1",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    175.3,
+    0.77,
+    -0.4
+   ],
+   "mat": "m_bolt"
+  },
+  {
+   "id": "b_inp2",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    175.3,
+    0.77,
+    0.0
+   ],
+   "mat": "m_bolt"
+  },
+  {
+   "id": "b_inp3",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    175.3,
+    0.77,
+    0.4
+   ],
+   "mat": "m_bolt"
+  },
+  {
+   "id": "b_inp4",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    175.3,
+    0.77,
+    0.8
+   ],
+   "mat": "m_bolt"
+  },
+  {
+   "id": "b_zbus",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.06,
+    7.8
+   ],
+   "pos": [
+    176.3,
+    0.26,
+    0
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_xbus-1",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    7.2,
+    0.06,
+    0.4
+   ],
+   "pos": [
+    179.9,
+    0.26,
+    -3.75
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_mos-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    177.6,
+    0.34,
+    -3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    177.6,
+    0.28,
+    -3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t1-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    -3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    177.6,
+    0.47,
+    -2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    177.6,
+    0.74,
+    -2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t2-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    -2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap-10",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    177.6,
+    0.47,
+    -1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt-10",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    177.6,
+    0.74,
+    -1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t3-10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    -1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    179.2,
+    0.34,
+    -3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    179.2,
+    0.28,
+    -3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t1-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    -3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    179.2,
+    0.47,
+    -2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    179.2,
+    0.74,
+    -2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t2-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    -2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap-11",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    179.2,
+    0.47,
+    -1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt-11",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    179.2,
+    0.74,
+    -1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t3-11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    -1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    180.8,
+    0.34,
+    -3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    180.8,
+    0.28,
+    -3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t1-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    -3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    180.8,
+    0.47,
+    -2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    180.8,
+    0.74,
+    -2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t2-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    -2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap-12",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    180.8,
+    0.47,
+    -1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt-12",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    180.8,
+    0.74,
+    -1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t3-12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    -1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    182.4,
+    0.34,
+    -3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    182.4,
+    0.28,
+    -3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t1-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    -3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    182.4,
+    0.47,
+    -2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    182.4,
+    0.74,
+    -2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t2-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    -2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap-13",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    182.4,
+    0.47,
+    -1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt-13",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    182.4,
+    0.74,
+    -1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t3-13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    -1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_xbus1",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    7.2,
+    0.06,
+    0.4
+   ],
+   "pos": [
+    179.9,
+    0.26,
+    3.75
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_mos10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    177.6,
+    0.34,
+    3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    177.6,
+    0.28,
+    3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t110",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    177.6,
+    0.47,
+    2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw10",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    177.6,
+    0.74,
+    2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t210",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap10",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    177.6,
+    0.47,
+    1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt10",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    177.6,
+    0.74,
+    1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t310",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    177.6,
+    0.26,
+    1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    179.2,
+    0.34,
+    3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    179.2,
+    0.28,
+    3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t111",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    179.2,
+    0.47,
+    2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw11",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    179.2,
+    0.74,
+    2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t211",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap11",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    179.2,
+    0.47,
+    1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt11",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    179.2,
+    0.74,
+    1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t311",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    179.2,
+    0.26,
+    1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    180.8,
+    0.34,
+    3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    180.8,
+    0.28,
+    3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t112",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    180.8,
+    0.47,
+    2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw12",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    180.8,
+    0.74,
+    2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t212",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap12",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    180.8,
+    0.47,
+    1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt12",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    180.8,
+    0.74,
+    1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t312",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    180.8,
+    0.26,
+    1.2
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_mos13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.24,
+    0.62
+   ],
+   "pos": [
+    182.4,
+    0.34,
+    3.0
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_pin13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    182.4,
+    0.28,
+    3.0
+   ],
+   "mat": "m_bolt",
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "b_t113",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    3.4
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_ind13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.95,
+    0.5,
+    0.95
+   ],
+   "pos": [
+    182.4,
+    0.47,
+    2.15
+   ],
+   "mat": "m_chipBk"
+  },
+  {
+   "id": "b_indw13",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.98,
+    0.06,
+    0.98
+   ],
+   "pos": [
+    182.4,
+    0.74,
+    2.15
+   ],
+   "mat": "m_cuHi"
+  },
+  {
+   "id": "b_t213",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.7
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    2.65
+   ],
+   "mat": "m_cu"
+  },
+  {
+   "id": "b_cap13",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.5
+   ],
+   "pos": [
+    182.4,
+    0.47,
+    1.55
+   ],
+   "mat": "m_steel2",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_capt13",
+   "layer": "d_bpcb",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.05
+   ],
+   "pos": [
+    182.4,
+    0.74,
+    1.55
+   ],
+   "mat": "m_dark",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "b_t313",
+   "layer": "d_bpcb",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    182.4,
+    0.26,
+    1.2
+   ],
+   "mat": "m_cuHi"
   }
  ],
  "actions": {
@@ -4898,6 +6435,324 @@
      123.6,
      1.5,
      2.4
+    ]
+   ],
+   "n": 6,
+   "shape": "arrow",
+   "rate": 0.7,
+   "color": "air",
+   "size": 0.2
+  },
+  "d_bin": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     175.3,
+     0.82,
+     0
+    ],
+    [
+     176.3,
+     0.32,
+     0
+    ]
+   ],
+   "n": 4,
+   "lanes": 1,
+   "laneGap": 0.2,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 1.2,
+   "color": "lp_proc",
+   "rim": "lp_proc",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_proc",
+   "track": false
+  },
+  "d_bzT": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     176.3,
+     0.32,
+     -0.2
+    ],
+    [
+     176.3,
+     0.32,
+     -3.75
+    ]
+   ],
+   "n": 3,
+   "lanes": 1,
+   "laneGap": 0.2,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.1,
+   "color": "lp_proc",
+   "rim": "lp_proc",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_proc",
+   "track": false
+  },
+  "d_bzB": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     176.3,
+     0.32,
+     0.2
+    ],
+    [
+     176.3,
+     0.32,
+     3.75
+    ]
+   ],
+   "n": 3,
+   "lanes": 1,
+   "laneGap": 0.2,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.1,
+   "color": "lp_proc",
+   "rim": "lp_proc",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_proc",
+   "track": false
+  },
+  "d_bxT": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     176.5,
+     0.32,
+     -3.75
+    ],
+    [
+     183.4,
+     0.32,
+     -3.75
+    ]
+   ],
+   "n": 3,
+   "lanes": 1,
+   "laneGap": 0.2,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.2,
+   "color": "lp_proc",
+   "rim": "lp_proc",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_proc",
+   "track": false
+  },
+  "d_bxB": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     176.5,
+     0.32,
+     3.75
+    ],
+    [
+     183.4,
+     0.32,
+     3.75
+    ]
+   ],
+   "n": 3,
+   "lanes": 1,
+   "laneGap": 0.2,
+   "laneDir": [
+    0,
+    1,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.2,
+   "color": "lp_proc",
+   "rim": "lp_proc",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_proc",
+   "track": false
+  },
+  "d_bsT": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     180,
+     0.32,
+     -3.5
+    ],
+    [
+     180,
+     0.32,
+     -1.25
+    ]
+   ],
+   "n": 4,
+   "lanes": 4,
+   "laneGap": 1.6,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.3,
+   "color": "lp_sig",
+   "rim": "lp_sigRim",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_sig",
+   "track": false
+  },
+  "d_bsB": {
+   "type": "flow",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     180,
+     0.32,
+     3.5
+    ],
+    [
+     180,
+     0.32,
+     1.25
+    ]
+   ],
+   "n": 4,
+   "lanes": 4,
+   "laneGap": 1.6,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1.3,
+   "color": "lp_sig",
+   "rim": "lp_sigRim",
+   "rimScale": 1.6,
+   "rimO": 0.45,
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "lp_sig",
+   "track": false
+  },
+  "d_bdieG": {
+   "type": "pulse",
+   "layer": "d_bdie",
+   "parts": [
+    "d_bdie_body"
+   ],
+   "color": "lp_heat",
+   "steady": true,
+   "glow": 0.8,
+   "halo": 0
+  },
+  "d_bmosG": {
+   "type": "pulse",
+   "layer": "d_bpcb",
+   "parts": [
+    "b_mos-10",
+    "b_mos-11",
+    "b_mos-12",
+    "b_mos-13",
+    "b_mos10",
+    "b_mos11",
+    "b_mos12",
+    "b_mos13"
+   ],
+   "color": "lp_proc",
+   "freq": 3,
+   "glow": 0.8,
+   "halo": 0
+  },
+  "d_bheat": {
+   "preset": "heat-spread",
+   "layer": "d_bdie",
+   "from": {
+    "layer": "d_bdie",
+    "p": [
+     180,
+     0.72,
+     0
+    ]
+   },
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "reach": 1.8,
+   "count": 3,
+   "r0": 0.5,
+   "spread": 0.5,
+   "rate": 0.8,
+   "color": "lp_heat"
+  },
+  "d_bair": {
+   "preset": "stream",
+   "layer": "d_bpcb",
+   "path": [
+    [
+     174.8,
+     1.1,
+     -1.0
+    ],
+    [
+     185.2,
+     1.1,
+     -1.0
     ]
    ],
    "n": 6,
