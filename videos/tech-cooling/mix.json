@@ -1,11 +1,11 @@
 {
  "slug": "tech-cooling",
- "at": "2026-11-17T11:57:22.696Z",
- "durationSec": 53.6,
+ "at": "2026-11-17T13:28:59.563Z",
+ "durationSec": 61.27,
  "final": {
-  "lufs": -14.6,
+  "lufs": -14.5,
   "truePeakDbfs": -4.4,
-  "lra": 1.9,
+  "lra": 2,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -18,7 +18,7 @@
   "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
   "lufsBeforeDuck": -27,
   "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
-  "underVoiceDuringSpeechLu": 22
+  "underVoiceDuringSpeechLu": 21.2
  },
  "sfx": {
   "meta": {
@@ -42,21 +42,21 @@
   "counts": {
    "whoosh": 2
   },
-  "perThreeSec": 0.11,
+  "perThreeSec": 0.1,
   "events": [
    {
     "type": "whoosh",
-    "frame": 1189,
+    "frame": 1374,
     "why": "payoff→twist",
-    "startSec": 39.238,
-    "peakSec": 39.567
+    "startSec": 45.404,
+    "peakSec": 45.733
    },
    {
     "type": "whoosh",
-    "frame": 1309,
+    "frame": 1508,
     "why": "twist→cta",
-    "startSec": 43.238,
-    "peakSec": 43.567
+    "startSec": 49.871,
+    "peakSec": 50.2
    }
   ]
  }
