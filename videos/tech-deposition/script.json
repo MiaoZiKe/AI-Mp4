@@ -1,0 +1,1681 @@
+{
+ "slug": "tech-deposition",
+ "title": "薄膜沉積：一層幾個原子厚的膜怎麼長上去（科技透明圈）",
+ "asOf": "2026/11/18",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-deposition-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "沉積機台",
+    "en": "DEPOSITION TOOL",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "handoff3D": true,
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "chamber",
+    "label": "反應腔",
+    "en": "CHAMBER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   },
+   {
+    "id": "surface",
+    "label": "晶圓表面溝槽",
+    "en": "WAFER TRENCH",
+    "field": "300 nm",
+    "ruler": "100 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/18",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "幾個原子厚",
+   "怎麼長上去"
+  ],
+  "sub": "薄膜沉積",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片裡有一層膜，只有幾個原子那麼薄。它是怎麼長上去的？",
+   "tts": "晶片裡有一層膜，只有幾個原子那麼薄。它是怎麼長上去的？",
+   "subtitle": {
+    "zh": "晶片裡有一層膜\n只有幾個原子那麼薄\n它是怎麼長上去的？",
+    "en": "Inside a chip is a film | only a few atoms thin. | How does it get grown on?"
+   },
+   "keywords": [
+    "一層膜",
+    "幾個原子",
+    "長上去"
+   ],
+   "cues": [
+    {
+     "id": "film",
+     "text": "一層膜"
+    },
+    {
+     "id": "thin",
+     "text": "幾個原子"
+    },
+    {
+     "id": "how",
+     "text": "怎麼長上去"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "原子級｜怎麼長上去？",
+     "title": "幾個原子厚",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 1.0,
+      "y": -0.5,
+      "d": 100,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "t_spin",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_ledlit",
+      "at": "film",
+      "until": "s2:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_modlit",
+      "at": "how",
+      "until": "s3:start",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_foup",
+      "text": "晶圓盒",
+      "en": "Wafer carrier",
+      "color": "blue",
+      "at": "film",
+      "until": "thin-10"
+     },
+     {
+      "part": "t_mod",
+      "text": "反應腔",
+      "en": "Chamber",
+      "color": "amber",
+      "at": "how",
+      "until": "s2:start-2"
+     },
+     {
+      "part": "t_core",
+      "text": "機械手臂",
+      "en": "Robot arm",
+      "color": "coral",
+      "at": "thin",
+      "until": "how-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-scale",
+      "at": "film-4",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 920,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一層膜有多薄",
+      "tag": "示意：依原子間距換算",
+      "t": {
+       "film": {
+        "at": "film"
+       },
+       "thin": {
+        "at": "thin"
+       },
+       "how": {
+        "at": "how"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "物性換算（原子間距）；清大博士論文"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "蝕刻挖出溝槽後，要把材料鋪回去，這叫薄膜沉積，在反應腔裡進行。",
+   "tts": "蝕刻挖出溝槽後，要把材料鋪回去，這叫薄膜沉積，在反應腔裡進行。",
+   "subtitle": {
+    "zh": "蝕刻挖出溝槽後\n要把材料鋪回去\n這叫薄膜沉積\n在反應腔裡進行",
+    "en": "After etching cuts the trenches, | material must be laid back down. | This is thin-film deposition, | done inside a reaction chamber."
+   },
+   "keywords": [
+    "蝕刻",
+    "薄膜沉積",
+    "反應腔"
+   ],
+   "cues": [
+    {
+     "id": "etch",
+     "text": "蝕刻挖出溝槽後"
+    },
+    {
+     "id": "back",
+     "text": "鋪回去"
+    },
+    {
+     "id": "dep",
+     "text": "薄膜沉積"
+    },
+    {
+     "id": "cham",
+     "text": "反應腔"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chamber",
+      "at": "cham-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 24,
+      "x": 1.0,
+      "y": -0.5,
+      "d": 96,
+      "elev": 30
+     },
+     {
+      "at": "cham-2",
+      "dur": 28,
+      "x": 60,
+      "y": 3.4,
+      "d": 70,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "t_spin",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_modlit",
+      "at": "dep",
+      "until": "s3:start",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_mod",
+      "text": "反應腔",
+      "en": "Chamber",
+      "color": "amber",
+      "at": "dep",
+      "until": "dep+30"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-step",
+      "at": "start+2",
+      "until": "cham-24",
+      "x": 64,
+      "y": 960,
+      "w": 952,
+      "h": 250,
+      "avoid": false,
+      "title": "製程裡的位置",
+      "tag": "蝕刻之後",
+      "t": {
+       "etch": {
+        "at": "etch"
+       },
+       "back": {
+        "at": "back"
+       },
+       "dep": {
+        "at": "dep"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "製程通則；上一支：蝕刻機"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "噴氣頭灑下氣體，晶圓躺在加熱座上，用過的氣體從底下抽走。",
+   "tts": "噴氣頭灑下氣體，晶圓躺在加熱座上，用過的氣體從底下抽走。",
+   "subtitle": {
+    "zh": "噴氣頭灑下氣體\n晶圓躺在加熱座上\n用過的氣體從底下抽走",
+    "en": "The showerhead sprays gas down, | the wafer lies on a heated stage, | and used gas is pumped out below."
+   },
+   "keywords": [
+    "噴氣頭",
+    "加熱座",
+    "抽走"
+   ],
+   "cues": [
+    {
+     "id": "shower",
+     "text": "噴氣頭"
+    },
+    {
+     "id": "wafer",
+     "text": "晶圓躺"
+    },
+    {
+     "id": "heat",
+     "text": "加熱座"
+    },
+    {
+     "id": "pump",
+     "text": "底下抽走"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chamber",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 62.0,
+      "y": 3.4,
+      "d": 70,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "ch_lid",
+      "at": "start+4",
+      "until": "s4:start-4",
+      "dy": 6.0,
+      "dur": 22
+     },
+     {
+      "layer": "ch_sh",
+      "at": "start+12",
+      "until": "s4:start-4",
+      "dy": 3.2,
+      "dur": 22
+     },
+     {
+      "layer": "cwf",
+      "at": "start+20",
+      "until": "s4:start-4",
+      "dy": 1.4,
+      "dur": 22
+     },
+     {
+      "layer": "ch_pump",
+      "at": "start+4",
+      "until": "s4:start-4",
+      "dx": 2.0,
+      "dur": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "c_in",
+      "at": "shower-6",
+      "until": "s4:start-4",
+      "ramp": 8
+     },
+     {
+      "id": "c_show",
+      "at": "shower+4",
+      "until": "s4:start-4",
+      "ramp": 8
+     },
+     {
+      "id": "c_showb",
+      "at": "shower+4",
+      "until": "s4:start-4",
+      "ramp": 8
+     },
+     {
+      "id": "ch_hot",
+      "at": "heat-8",
+      "until": "s4:start-4",
+      "ramp": 12
+     },
+     {
+      "id": "c_outL",
+      "at": "pump",
+      "until": "s4:start-4",
+      "ramp": 8
+     },
+     {
+      "id": "c_outR",
+      "at": "pump",
+      "until": "s4:start-4",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "ch_in",
+      "text": "進氣管",
+      "en": "Gas inlet",
+      "color": "blue",
+      "at": "start+16",
+      "until": "shower+6"
+     },
+     {
+      "part": "ch_sh",
+      "text": "噴氣頭",
+      "en": "Showerhead",
+      "color": "amber",
+      "at": "shower",
+      "until": "pump-6"
+     },
+     {
+      "part": "ch_wf",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "coral",
+      "at": "wafer",
+      "until": "pump-6"
+     },
+     {
+      "part": "ch_ht",
+      "text": "加熱座",
+      "en": "Heated stage",
+      "color": "amber",
+      "at": "heat",
+      "until": "pump-6"
+     },
+     {
+      "part": "ch_stub",
+      "text": "抽氣口",
+      "en": "Pump port",
+      "color": "blue",
+      "at": "pump",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-chamber",
+      "at": "start+2",
+      "until": "s4:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "反應腔剖面",
+      "tag": "示意，非實際比例",
+      "t": {
+       "open": {
+        "at": "start"
+       },
+       "shower": {
+        "at": "shower"
+       },
+       "wafer": {
+        "at": "wafer"
+       },
+       "pump": {
+        "at": "pump"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "單片沉積腔通則；各廠機型說明"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "做法不只一種，最常見的是化學氣相沉積，氣體碰到熱晶圓起反應，固體留下長成膜。",
+   "tts": "做法不只一種，最常見的是化學氣相沉積，氣體碰到熱晶圓起反應，固體留下長成膜。",
+   "subtitle": {
+    "zh": "做法不只一種\n最常見的是化學氣相沉積\n氣體碰到熱晶圓起反應\n固體留下長成膜",
+    "en": "There are several ways. | The most common is chemical vapor deposition: | gas meets the hot wafer and reacts, | and the solid left behind grows into a film."
+   },
+   "keywords": [
+    "化學氣相沉積",
+    "起反應",
+    "長成膜"
+   ],
+   "cues": [
+    {
+     "id": "many",
+     "text": "做法不只一種"
+    },
+    {
+     "id": "cvd",
+     "text": "化學氣相沉積"
+    },
+    {
+     "id": "react",
+     "text": "起反應"
+    },
+    {
+     "id": "solid",
+     "text": "固體留下"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 0.9,
+      "d": 44,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_f1",
+      "at": "s1:start-40",
+      "until": "react+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "w_f2",
+      "at": "s1:start-40",
+      "until": "solid+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "w_f3",
+      "at": "s1:start-40",
+      "until": "solid+44",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ga",
+      "at": "cvd",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_gb",
+      "at": "cvd+6",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_gta",
+      "at": "cvd+14",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_gtb",
+      "at": "cvd+20",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_hot",
+      "at": "react-10",
+      "until": "s5:start-2",
+      "ramp": 12
+     },
+     {
+      "id": "w_by",
+      "at": "react+10",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_by2",
+      "at": "react+16",
+      "until": "s5:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_trench",
+      "text": "晶圓表面的溝槽（放大）",
+      "en": "Trench on the wafer",
+      "color": "blue",
+      "at": "many",
+      "until": "cvd-6"
+     },
+     {
+      "part": "w_gas",
+      "text": "兩種氣體",
+      "en": "Two gases",
+      "color": "amber",
+      "at": "cvd",
+      "until": "react-6"
+     },
+     {
+      "part": "w_hot",
+      "text": "熱晶圓",
+      "en": "Hot wafer",
+      "color": "coral",
+      "at": "react",
+      "until": "solid-4"
+     },
+     {
+      "part": "w_film",
+      "text": "長出的膜",
+      "en": "Growing film",
+      "color": "amber",
+      "at": "solid",
+      "until": "s5:start-8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-cvd",
+      "at": "start+2",
+      "until": "s5:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣體在表面反應",
+      "tag": "示意，非實際比例",
+      "t": {
+       "cvd": {
+        "at": "cvd"
+       },
+       "react": {
+        "at": "react"
+       },
+       "solid": {
+        "at": "solid"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "semiengineering；Wevolver（CVD 原理）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "另一種是濺鍍，離子撞向金屬靶材，打出的原子落到晶圓上。",
+   "tts": "另一種是濺鍍，離子撞向金屬靶材，打出的原子落到晶圓上。",
+   "subtitle": {
+    "zh": "另一種是濺鍍\n離子撞向金屬靶材\n打出的原子落到晶圓上",
+    "en": "Another is sputtering: | ions slam into a metal target, | and the atoms knocked loose land on the wafer."
+   },
+   "keywords": [
+    "濺鍍",
+    "靶材",
+    "原子"
+   ],
+   "cues": [
+    {
+     "id": "spu",
+     "text": "濺鍍"
+    },
+    {
+     "id": "ion",
+     "text": "離子撞向"
+    },
+    {
+     "id": "target",
+     "text": "靶材"
+    },
+    {
+     "id": "atom",
+     "text": "打出的原子"
+    },
+    {
+     "id": "land",
+     "text": "落到晶圓上"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "chamber",
+      "at": "start-4",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 180,
+      "y": 2.7,
+      "d": 58,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "s_f",
+      "at": "s1:start-40",
+      "until": "land+14",
+      "opacity": 0,
+      "dur": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "s_glow",
+      "at": "spu",
+      "until": "s6:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "s_ion",
+      "at": "ion",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_ionb",
+      "at": "ion",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_at",
+      "at": "atom",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_atb",
+      "at": "atom+4",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_atc",
+      "at": "atom+8",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "s_atd",
+      "at": "atom+12",
+      "until": "s6:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "s_ion",
+      "text": "氬離子",
+      "en": "Argon ions",
+      "color": "blue",
+      "at": "ion",
+      "until": "target-4"
+     },
+     {
+      "part": "s_tgt",
+      "text": "金屬靶材",
+      "en": "Metal target",
+      "color": "amber",
+      "at": "target",
+      "until": "land+10"
+     },
+     {
+      "part": "s_film",
+      "text": "鍍上去的膜",
+      "en": "Deposited film",
+      "color": "coral",
+      "at": "land",
+      "until": "s6:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-pvd",
+      "at": "start+2",
+      "until": "s6:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "濺鍍：離子撞靶",
+      "tag": "示意，非實際比例",
+      "t": {
+       "spu": {
+        "at": "spu"
+       },
+       "ion": {
+        "at": "ion"
+       },
+       "target": {
+        "at": "target"
+       },
+       "atom": {
+        "at": "atom"
+       },
+       "land": {
+        "at": "land"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Wevolver；Kindle-Tech（濺鍍原理）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "但溝槽又深又窄，這兩種不容易鋪均勻，所以先進製程改用原子層沉積。",
+   "tts": "但溝槽又深又窄，這兩種不容易鋪均勻，所以先進製程改用原子層沉積。",
+   "subtitle": {
+    "zh": "但溝槽又深又窄\n這兩種不容易鋪均勻\n所以先進製程\n改用原子層沉積",
+    "en": "But the trenches are deep and narrow, | so neither method coats evenly. | That's why advanced nodes | switch to atomic layer deposition."
+   },
+   "keywords": [
+    "又深又窄",
+    "鋪均勻",
+    "原子層沉積"
+   ],
+   "cues": [
+    {
+     "id": "deep",
+     "text": "又深又窄"
+    },
+    {
+     "id": "uneven",
+     "text": "不容易鋪均勻"
+    },
+    {
+     "id": "adv",
+     "text": "先進製程"
+    },
+    {
+     "id": "ald",
+     "text": "原子層沉積"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 240,
+      "y": 1.8,
+      "d": 62,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "v_pvd",
+      "at": "s1:start-40",
+      "until": "uneven+6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "v_ald",
+      "at": "s1:start-40",
+      "until": "ald+4",
+      "opacity": 0,
+      "dur": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "v_tr",
+      "text": "又深又窄的溝槽",
+      "en": "Deep, narrow trench",
+      "color": "blue",
+      "at": "deep",
+      "until": "uneven-4"
+     },
+     {
+      "part": "v_top",
+      "text": "頂端鋪得厚",
+      "en": "Thick on top",
+      "color": "coral",
+      "at": "uneven+10",
+      "until": "ald-6"
+     },
+     {
+      "part": "v_side",
+      "text": "側壁鋪得薄",
+      "en": "Thin on the wall",
+      "color": "coral",
+      "at": "uneven+22",
+      "until": "ald-6"
+     },
+     {
+      "part": "v_even",
+      "text": "每一面一樣厚",
+      "en": "Even on every face",
+      "color": "amber",
+      "at": "ald+12",
+      "until": "s7:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-cmp",
+      "at": "start+2",
+      "until": "s7:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "兩種鋪法對照",
+      "tag": "示意，非實際比例",
+      "t": {
+       "deep": {
+        "at": "deep"
+       },
+       "uneven": {
+        "at": "uneven"
+       },
+       "ald": {
+        "at": "ald"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "semiengineering；科技新報專訪 ASM（GAA 深寬比高）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "兩種氣體輪流進來，第一種貼滿一層，多的吹掉，第二種再反應，一圈只長一層原子。",
+   "tts": "兩種氣體輪流進來，第一種貼滿一層，多的吹掉，第二種再反應，一圈只長一層原子。",
+   "subtitle": {
+    "zh": "兩種氣體輪流進來\n第一種貼滿一層\n多的吹掉\n第二種再反應\n一圈只長一層原子",
+    "en": "Two gases take turns. | The first covers one layer, | the extra is blown away, | the second reacts with it, | and each cycle adds one layer of atoms."
+   },
+   "keywords": [
+    "輪流進來",
+    "貼滿一層",
+    "吹掉",
+    "一層原子"
+   ],
+   "cues": [
+    {
+     "id": "turn",
+     "text": "輪流進來"
+    },
+    {
+     "id": "a",
+     "text": "第一種"
+    },
+    {
+     "id": "full",
+     "text": "貼滿一層"
+    },
+    {
+     "id": "purge",
+     "text": "多的吹掉"
+    },
+    {
+     "id": "b",
+     "text": "第二種"
+    },
+    {
+     "id": "one",
+     "text": "一層原子"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 300,
+      "y": 0.9,
+      "d": 44,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "a_A0",
+      "at": "s1:start-40",
+      "until": "full+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "a_B0",
+      "at": "s1:start-40",
+      "until": "b+30",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "a_A1",
+      "at": "s1:start-40",
+      "until": "one+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "a_B1",
+      "at": "s1:start-40",
+      "until": "one+22",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "a_A2",
+      "at": "s1:start-40",
+      "until": "one+34",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "a_B2",
+      "at": "s1:start-40",
+      "until": "one+46",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "a_A1t",
+      "at": "a",
+      "until": "full+8",
+      "ramp": 4
+     },
+     {
+      "id": "a_A1i",
+      "at": "a",
+      "until": "full+8",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA1t",
+      "at": "purge",
+      "until": "b-4",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA1i",
+      "at": "purge",
+      "until": "b-4",
+      "ramp": 4
+     },
+     {
+      "id": "a_B1t",
+      "at": "b",
+      "until": "b+30",
+      "ramp": 4
+     },
+     {
+      "id": "a_B1i",
+      "at": "b",
+      "until": "b+30",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB1t",
+      "at": "b+34",
+      "until": "one+4",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB1i",
+      "at": "b+34",
+      "until": "one+4",
+      "ramp": 4
+     },
+     {
+      "id": "a_A2t",
+      "at": "one+6",
+      "until": "one+16",
+      "ramp": 4
+     },
+     {
+      "id": "a_A2i",
+      "at": "one+6",
+      "until": "one+16",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA2t",
+      "at": "one+16",
+      "until": "one+20",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA2i",
+      "at": "one+16",
+      "until": "one+20",
+      "ramp": 4
+     },
+     {
+      "id": "a_B2t",
+      "at": "one+20",
+      "until": "one+30",
+      "ramp": 4
+     },
+     {
+      "id": "a_B2i",
+      "at": "one+20",
+      "until": "one+30",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB2t",
+      "at": "one+30",
+      "until": "one+34",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB2i",
+      "at": "one+30",
+      "until": "one+34",
+      "ramp": 4
+     },
+     {
+      "id": "a_A3t",
+      "at": "one+32",
+      "until": "one+40",
+      "ramp": 4
+     },
+     {
+      "id": "a_A3i",
+      "at": "one+32",
+      "until": "one+40",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA3t",
+      "at": "one+40",
+      "until": "one+44",
+      "ramp": 4
+     },
+     {
+      "id": "a_PA3i",
+      "at": "one+40",
+      "until": "one+44",
+      "ramp": 4
+     },
+     {
+      "id": "a_B3t",
+      "at": "one+44",
+      "until": "one+52",
+      "ramp": 4
+     },
+     {
+      "id": "a_B3i",
+      "at": "one+44",
+      "until": "one+52",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB3t",
+      "at": "one+52",
+      "until": "one+60",
+      "ramp": 4
+     },
+     {
+      "id": "a_PB3i",
+      "at": "one+52",
+      "until": "one+60",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_gas",
+      "text": "A 氣體（藍）",
+      "en": "Gas A",
+      "color": "blue",
+      "at": "a",
+      "until": "purge-4"
+     },
+     {
+      "part": "a_gas",
+      "text": "B 氣體（橘）",
+      "en": "Gas B",
+      "color": "amber",
+      "at": "b",
+      "until": "one-6"
+     },
+     {
+      "part": "a_film",
+      "text": "一圈長一層",
+      "en": "One layer per cycle",
+      "color": "coral",
+      "at": "one",
+      "until": "s8:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-ald",
+      "at": "start+2",
+      "until": "s8:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "一圈四步驟",
+      "tag": "示意，非實際比例",
+      "t": {
+       "turn": {
+        "at": "turn"
+       },
+       "a": {
+        "at": "a"
+       },
+       "full": {
+        "at": "full"
+       },
+       "purge": {
+        "at": "purge"
+       },
+       "b": {
+        "at": "b"
+       },
+       "one": {
+        "at": "one"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "semiengineering；Beneq；ASM"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "機台有應用材料、科林研發、東京威力科創、ASM。台灣光洋科做靶材，京鼎供應應用材料設備。",
+   "tts": "機台有應用材料、科林研發、東京威力科創、ASM。台灣光洋科做靶材，京鼎供應應用材料設備。",
+   "subtitle": {
+    "zh": "機台有應用材料、科林研發\n東京威力科創、ASM\n台灣光洋科做靶材\n京鼎供應應用材料設備",
+    "en": "Tool makers: Applied Materials, Lam Research, | Tokyo Electron and ASM. | In Taiwan, Solar Applied makes targets, | and Foxsemicon supplies Applied's equipment."
+   },
+   "keywords": [
+    "應用材料",
+    "光洋科",
+    "京鼎"
+   ],
+   "cues": [
+    {
+     "id": "am",
+     "text": "應用材料"
+    },
+    {
+     "id": "lam",
+     "text": "科林研發"
+    },
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "asm",
+     "text": "ASM"
+    },
+    {
+     "id": "gy",
+     "text": "光洋科"
+    },
+    {
+     "id": "jd",
+     "text": "京鼎"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 1.0,
+      "y": -0.5,
+      "d": 100,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "t_spin",
+      "at": "start-4",
+      "until": "s9:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_modlit",
+      "at": "am",
+      "until": "s9:start",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_body",
+      "text": "沉積機台",
+      "en": "Deposition tools",
+      "color": "amber",
+      "at": "am",
+      "until": "gy-12"
+     },
+     {
+      "part": "t_tgt",
+      "text": "光洋科：靶材",
+      "en": "Targets",
+      "color": "amber",
+      "at": "gy",
+      "until": "jd-10"
+     },
+     {
+      "part": "t_modR",
+      "text": "京鼎：設備",
+      "en": "Equipment supplier",
+      "color": "blue",
+      "at": "jd",
+      "until": "s9:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-co",
+      "at": "start+2",
+      "until": "s9:start-16",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "媒體報導／廠商公布",
+      "t": {
+       "am": {
+        "at": "am"
+       },
+       "lam": {
+        "at": "lam"
+       },
+       "tel": {
+        "at": "tel"
+       },
+       "asm": {
+        "at": "asm"
+       },
+       "gy": {
+        "at": "gy"
+       },
+       "jd": {
+        "at": "jd"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "TechInsights；ASM 年報；科技新報；聯合報"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "所以這層膜，是氣體一層層長的。但長完會凹凸不平，所以下一支，看化學機械研磨，磨到比鏡子還平。留言沉積，看完整解說。",
+   "tts": "所以這層膜，是氣體一層層長的。但長完會凹凸不平，所以下一支，看化學機械研磨，磨到比鏡子還平。留言沉積，看完整解說。",
+   "subtitle": {
+    "zh": "所以這層膜\n是氣體一層層長的\n但長完會凹凸不平\n所以下一支\n看化學機械研磨\n磨到比鏡子還平\n留言沉積\n看完整解說",
+    "en": "So this film | is grown from gas, layer by layer. | But afterwards the surface is bumpy, | so next: | chemical mechanical polishing, | grinding flatter than a mirror. | Comment \"沉積\" | for the full notes."
+   },
+   "keywords": [
+    "一層層長",
+    "凹凸不平",
+    "磨到比鏡子還平",
+    "沉積"
+   ],
+   "cues": [
+    {
+     "id": "grow",
+     "text": "一層層長"
+    },
+    {
+     "id": "bump",
+     "text": "凹凸不平"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "cmp",
+     "text": "化學機械研磨"
+    },
+    {
+     "id": "flat",
+     "text": "比鏡子還平"
+    },
+    {
+     "id": "kw",
+     "text": "留言沉積"
+    },
+    {
+     "id": "full",
+     "text": "看完整解說"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 360,
+      "y": 1.4,
+      "d": 44,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "e_bump",
+      "at": "s1:start-40",
+      "until": "bump-4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "e_flat",
+      "at": "s1:start-40",
+      "until": "flat+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "e_pad",
+      "at": "s1:start-40",
+      "until": "cmp-12",
+      "opacity": 0,
+      "dur": 14,
+      "dy": 1.4
+     },
+     {
+      "layer": "e_bump",
+      "at": "flat-6",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "e_pad",
+      "at": "cmp+6",
+      "until": "flat+4",
+      "dy": -1.4,
+      "dur": 24
+     },
+     {
+      "layer": "e_pad",
+      "at": "flat+8",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "e_padglow",
+      "at": "cmp+6",
+      "until": "flat+10",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_bump",
+      "text": "長完高低不平",
+      "en": "Bumpy after deposition",
+      "color": "coral",
+      "at": "bump",
+      "until": "next-4"
+     },
+     {
+      "part": "e_pad",
+      "text": "研磨墊",
+      "en": "Polishing pad",
+      "color": "blue",
+      "at": "cmp",
+      "until": "flat+4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "dep-step",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 250,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一支：研磨",
+      "t": {
+       "etch": {
+        "at": "start"
+       },
+       "back": {
+        "at": "start"
+       },
+       "dep": {
+        "at": "start"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "kw+60",
+      "text": "留言「沉積」",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "製程通則（沉積後需平坦化）；下一支：化學機械研磨"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "化學機械研磨",
+     "trail": [
+      "化學氣相",
+      "濺鍍",
+      "原子層"
+     ],
+     "at": "s9:kw-8",
+     "comment": "沉積",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
