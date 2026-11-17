@@ -60,6 +60,7 @@ scenes.append(scene("s2", "mechanism", 2,
     ["怎麼來", "放大"],
     [cue("how", "怎麼來"), cue("zoom", "放大"), cue("inside", "裡面有什麼")],
     {"overlay": [stamp("怎麼來？", "how", "zoom-6", "amber", 52, style="tag", x=330, y=1256),
+                 stamp("放大來看", "zoom", "inside-4", "amber", 52, style="tag", x=330, y=1256),
                  stamp("晶片・約 1 公分", "inside", "s3:start-2", "blue", 40, style="tag", x=720, y=1296)]},
     ["示意"], pause=0.7))
 
