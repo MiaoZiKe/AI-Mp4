@@ -50,9 +50,9 @@ const Compare: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <text x={W / 2 - 150} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aP}>P ＝</text>
-        <text x={W / 2 - 80} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aVI}>V × I</text>
-        <text x={W / 2 + 70} y={Hh - 12} style={zh(sm(30), H.amber, 800)} opacity={aVI}>功率不變</text>
+        <text x={24} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aP}>P ＝</text>
+        <text x={110} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aVI}>V × I</text>
+        <text x={250} y={Hh - 12} style={zh(sm(30), H.amber, 800)} opacity={aVI}>功率不變</text>
         {/* 54 V */}
         <text x={c0} y={112} style={zh(44, H.amber, 900)} opacity={aV}>54 V 供電</text>
         {row(c0, 156, "電壓", lenV[0], H.text2, "54 V", aV, 1)}

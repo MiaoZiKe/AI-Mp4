@@ -62,7 +62,7 @@ scenes.append(scene("s1", "hook", 1,
      "run": [run("r_fan", "start", "s2:start-2", 8), run("r_shelf", "rack", "s2:start-2", 8), run("r_air3", "start+10", "s2:start-2", 6),
              run("r_cur", "bar", "s2:start-2", 10), run("r_cur2", "bar", "s2:start-2", 10), run("r_hot", "kg-8", "s2:start-2", 40), run("r_heat", "kg", "s2:start-2", 6)],
      "labels": [lab("rk_frame", "AI 機櫃 1 MW", "1 MW AI rack", "blue", "rack", "s2:start-12"), lab("rk_bus", "銅排", "busbar", "blue", "bar", "kg"), lab("rk_bus", "約 200 kg", "≈ 200 kg", "amber", "kg", "s2:start-12")],
-     "overlay": [stamp("廠商估算", "kg+4", "s2:start-12", "amber", 44, x=830, y=330), stamp("？", "why", "volt", "coral", 96, x=250, y=560, avoid=False), stamp("電壓", "volt", "s2:start-12", "blue", 64, x=250, y=560, avoid=False)]},
+     "overlay": [stamp("廠商估算", "kg+4", "s2:start-12", "amber", 44, x=830, y=330), stamp("？", "why", "volt", "coral", 96, x=250, y=560), stamp("電壓", "volt", "s2:start-12", "blue", 64, x=250, y=560)]},
     ["NVIDIA 2025/5；Tom's Hardware（約 200 kg）"], pause=0.7))
 
 # s2：now 電源架、v54 五十幾伏特、fat 很粗的銅條（電流＋夾片）、busbar 銅排
@@ -179,7 +179,7 @@ scenes.append(scene("s9", "cta", 9,
     {"zoom": ZOOM, "shot": [{"at": "start-2", "dur": 1, **SH_R2}],
      "run": [run("r_scglow", "start-2", "s10:start-2", 4), run("r_fan", "start-2", "s10:start-2", 4), run("r_sc", "start-2", "s10:start-2", 4), run("r_curN", "slim", "s10:start-2", 6), run("r_curN2", "slim", "s10:start-2", 6)],
      "labels": [lab("rk_thin", "細銅排", "thin busbar", "blue", "slim", "full")],
-     "overlay": [card("pw-sum", "so-2", "full-6", {"so": "so", "up": "up", "small": "small", "slim": "slim"}, y=905, h=345, title="一句話", tag="示意"),
+     "overlay": [card("pw-sum", "so-2", "s10:start-14", {"so": "so", "up": "up", "small": "small", "slim": "slim"}, y=905, h=345, title="一句話", tag="示意"),
                  stamp("完整解說", "full", "kw", "amber", 52, x=300, y=330, avoid=False), stamp("留言「供電」", "kw", "s10:start-2", "amber", 56, x=300, y=330, avoid=False)]},
     ["下一支：11/23（一）晶片設計公司（已排定）"]))
 
