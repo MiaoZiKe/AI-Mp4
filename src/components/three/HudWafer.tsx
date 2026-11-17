@@ -26,24 +26,25 @@ const mix2 = (a: string, b: string, t: number) => { const A = hex(a), B = hex(b)
 const STEPS = ["沉積", "塗光阻", "曝光", "顯影", "蝕刻", "去光阻", "離子佈植", "研磨"];
 
 // ── wf-ring：開場問號環 ──
+const RS = ["沉積", "塗光阻", "曝光", "顯影", "蝕刻", "去光阻", "研磨"];
 const Ring: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
   const same = T(o, "same"), rep = T(o, "rep"), which = T(o, "which");
-  const bw = 124, gp = 34, x0 = 36, y0 = 92, bh = 92;
-  const lp = tween(f, rep, 16, EASE.move), wq = tween(f, which, 12, EASE.enter), pul = 1 + 0.07 * Math.sin(f * 0.3) * wq;
+  const bw = 108, gp = 20, x0 = 28, y0 = 88, bh = 104;
+  const lp = tween(f, rep, 16, EASE.move), wq = tween(f, which, 12, EASE.enter);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {Array.from({ length: 6 }, (_, i) => { const x = x0 + i * (bw + gp), a = tween(f, same + i * 5, 8, EASE.enter);
-          return <g key={i} opacity={a}>
-            <rect x={x} y={y0} width={bw} height={bh} fill={H.cardCompare} stroke={wq > 0.5 ? H.amber : H.text3} strokeWidth={wq > 0.5 ? 5 : 3} />
-            <text x={x + bw / 2} y={y0 + 66} textAnchor="middle" style={zh(60 * pul, wq > 0.5 ? H.amber : H.text2, 900)}>？</text>
-            {i < 5 ? <path d={`M${x + bw + 4} ${y0 + 46} h${gp - 10} m-10 -9 l10 9 l-10 9`} stroke={H.text3} strokeWidth={4} fill="none" /> : null}
+        {RS.map((s, i) => { const x = x0 + i * (bw + gp), lit = tween(f, same + i * 6, 8, EASE.enter), a = Math.max(lit, wq), appear = tween(f, o.at + i * 2, 8, EASE.enter);
+          return <g key={i} opacity={appear}>
+            <rect x={x} y={y0} width={bw} height={bh} fill={a > 0.5 ? H.amber : H.cardCompare} stroke={a > 0.5 ? H.amber : H.text3} strokeWidth={3} />
+            <text x={x + bw / 2} y={y0 + 64} textAnchor="middle" style={zh(s.length > 2 ? 30 : 34, a > 0.5 ? onC(H.amber) : H.text, 900)}>{s}</text>
+            {i < 6 ? <path d={`M${x + bw + 3} ${y0 + 42} h${gp - 9} m-8 -8 l8 8 l-8 8`} stroke={H.text3} strokeWidth={4} fill="none" /> : null}
           </g>; })}
-        {(() => { const xa = x0 + 5 * (bw + gp) + bw / 2, xb = x0 + bw / 2, yy = y0 + bh + 58;
+        {(() => { const xa = x0 + 6 * (bw + gp) + bw / 2, xb = x0 + bw / 2, yy = y0 + bh + 52;
           return <g opacity={lp}><path d={`M${xa} ${y0 + bh + 6} V${yy} H${xb} V${y0 + bh + 8}`} stroke={c("lp_proc")} strokeWidth={6} fill="none" />
-            {[0, 1, 2].map((j) => { const u = ph(f, 0.012, j, 3), d = u * (2 * 52 + (xa - xb)); let px = xa, py = y0 + bh + 6 + d;
-              if (d > 52 && d <= 52 + (xa - xb)) { px = xa - (d - 52); py = yy; } else if (d > 52 + (xa - xb)) { px = xb; py = yy - (d - 52 - (xa - xb)); }
+            {[0, 1, 2].map((j) => { const u = ph(f, 0.012, j, 3), d = u * (2 * 46 + (xa - xb)); let px = xa, py = y0 + bh + 6 + d;
+              if (d > 46 && d <= 46 + (xa - xb)) { px = xa - (d - 46); py = yy; } else if (d > 46 + (xa - xb)) { px = xb; py = yy - (d - 46 - (xa - xb)); }
               return <circle key={j} cx={px} cy={py} r={7} fill={c("lp_proc")} />; })}
             <text x={(xa + xb) / 2} y={yy + 40} textAnchor="middle" style={zh(40, c("lp_proc"), 900)}>一輪做一層，重複數十次</text></g>; })()}
       </svg>
@@ -65,6 +66,8 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
   const devF = tween(f, t("dev"), 6, EASE.enter) * (1 - wash), plF = tween(f, t("pl"), 6, EASE.enter) * (1 - cut), strF = tween(f, t("use"), 6, EASE.enter) * (1 - strip);
   const ionA = tween(f, t("ion"), 8, EASE.enter) * (1 - tween(f, t("pol") - 6, 8, EASE.enter)), dope = tween(f, t("ion") + 16, 14, EASE.move);
   const fillG = tween(f, t("pol"), 14, EASE.move), flat = tween(f, t("pol") + 14, 40, EASE.move), pads = tween(f, t("pol") + 10, 8, EASE.enter);
+  const dep0 = t("dep0"), depG = tween(f, dep0, 8, EASE.enter) * (1 - tween(f, t("res") - 4, 8, EASE.enter));
+  const topY = base - hO * gO - hM * gM, depCol = f < t("mt") - 6 ? c("lp_ox") : c("lp_mt");
   const st = [t("dep"), t("res"), t("lt"), t("dev"), t("bare"), t("use"), t("ion"), t("pol")];
   let act = -1; st.forEach((s, i) => { if (f >= s) act = i; });
   const done = tween(f, t("next"), 10, EASE.enter);
@@ -90,6 +93,8 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
         <rect x={X0} y={base} width={11.8 * U} height={hS} fill={si} />
         <text x={X0 + 8} y={base + 34} style={zh(sm(30), H.onAccent, 800)}>矽基板</text>
         {GP.map((x, i) => <rect key={i} x={x} y={base} width={wG} height={16} fill={c("dope")} opacity={dope} />)}
+        {depG > 0.02 ? Array.from({ length: 12 }, (_, i) => [0, 1].map((j) => <circle key={`d${i}${j}`} cx={X0 + 20 + i * ((11.8 * U - 40) / 11)} cy={104 + ph(f, 0.025, j, 2, i) * (topY - 104)} r={5} fill={depCol} opacity={depG} />)) : null}
+        {depG > 0.02 ? <rect x={X0} y={92} width={11.8 * U} height={8} fill={c("steel2")} opacity={depG} /> : null}
         {/* 氧化層 */}
         <rect x={X0} y={base - hO * gO} width={11.8 * U} height={hO * gO} fill={oxide} />
         {/* 金屬：線＋縫（縫被蝕刻掉） */}
@@ -130,17 +135,18 @@ const Count: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
   const one = T(o, "one"), rep = T(o, "rep"), hund = T(o, "hund"), N = (o as any).n ?? 12, stag = (o as any).stag ?? 9;
   const n = f < rep ? (f >= one ? 1 : 0) : Math.min(N, 1 + Math.floor((f - rep) / stag + 1));
-  const a = tween(f, one, 8, EASE.enter), b = tween(f, rep, 10, EASE.enter), h = tween(f, hund, 10, EASE.enter);
+  const a = tween(f, one - 6, 8, EASE.enter), b = tween(f, rep, 10, EASE.enter), h = tween(f, hund, 10, EASE.enter);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <text x={40} y={170} opacity={a} style={zh(150, c("lp_proc"), 900)}>{n}</text>
+        <text x={40} y={170} opacity={a} style={zh(150, c("lp_proc"), 900)}>{Math.max(n, 1)}</text>
         <text x={n >= 10 ? 270 : 190} y={170} opacity={a} style={zh(54, H.text, 900)}>層</text>
-        <text x={40} y={226} opacity={a} style={zh(sm(32), H.text2, 800)}>一輪＝沉積→曝光→蝕刻→磨平</text>
-        {Array.from({ length: N }, (_, i) => <rect key={i} x={430 + i * 38} y={118 - i * 4} width={30} height={16 + i * 4} fill={i < n ? (i % 2 ? c("lp_mt") : c("lp_ox")) : H.lineSoft} opacity={i < n ? 1 : 0.4} />)}
-        <text x={430} y={186} opacity={b} style={zh(40, H.text, 900)}>重複數十次</text>
-        <text x={430} y={232} opacity={h} style={zh(40, c("lp_proc"), 900)}>先進晶片：上百道光罩層</text>
-        <text x={430} y={272} opacity={h} style={zh(sm(30), H.text2, 700)}>約 80～120 層・產業估計</text>
+        <text x={40} y={222} opacity={a} style={zh(30, H.text2, 800)}>一輪＝沉積→曝光→</text>
+        <text x={40} y={262} opacity={a} style={zh(30, H.text2, 800)}>蝕刻→磨平</text>
+        {Array.from({ length: N }, (_, i) => <rect key={i} x={500 + i * 36} y={112 - i * 4} width={28} height={16 + i * 4} fill={i < n ? (i % 2 ? c("lp_mt") : c("lp_ox")) : H.lineSoft} opacity={i < n ? 1 : 0.4} />)}
+        <text x={500} y={176} opacity={b} style={zh(40, H.text, 900)}>重複數十次</text>
+        <text x={500} y={224} opacity={h} style={zh(38, c("lp_proc"), 900)}>先進晶片：上百道光罩層</text>
+        <text x={500} y={268} opacity={h} style={zh(30, H.text2, 700)}>約 80～120 層・產業估計</text>
       </svg>
     </Card>
   );
@@ -167,24 +173,26 @@ const Who: React.FC<P> = ({ o, f, k, m }) => {
 
 // ── wf-next：下一支預告（蝕刻機） ──
 const Next: React.FC<P> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
+  const W = o.w ?? 952, Hh = o.h ?? 330, c = (n: string) => col(m.product, n);
   const tr = T(o, "tricks"), nx = T(o, "next"), hw = T(o, "how"), kw = T(o, "kw");
-  const a = tween(f, tr, 10, EASE.enter), b = tween(f, nx, 10, EASE.enter), cI = tween(f, hw, 14, EASE.move), d = tween(f, kw, 10, EASE.enter);
-  const X0 = 40, U = 40, base = 236;
+  const a = tween(f, tr - 8, 10, EASE.enter), b = tween(f, nx, 10, EASE.enter), cI = tween(f, hw, 14, EASE.move), d = tween(f, kw - 10, 10, EASE.enter);
+  const X0 = 28, U = 38, base = 284;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}>
-          <rect x={X0} y={base} width={7 * U + 6 * 0.8 * U} height={30} fill={c("silicon")} />
-          <rect x={X0} y={base - 14} width={7 * U + 6 * 0.8 * U} height={14} fill={c("oxide")} />
-          {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 26} width={U} height={12} fill={c("metalL")} />)}
-          {Array.from({ length: 6 }, (_, i) => <rect key={i} x={X0 + U + i * 1.8 * U} y={base - 26} width={0.8 * U * (1 - cI)} height={12} fill={c("metalL")} />)}
-          {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 44} width={U} height={18} fill={c("resist")} />)}
-          {cI > 0 ? Array.from({ length: 6 }, (_, i) => [0, 1].map((j) => <circle key={`${i}${j}`} cx={X0 + U + i * 1.8 * U + 0.4 * U} cy={110 + ph(f, 0.03, j, 2, i) * 100} r={5.5} fill={c("lp_ion")} opacity={cI} />)) : null}
+          <rect x={X0} y={base} width={7 * U + 6 * 0.8 * U} height={34} fill={c("silicon")} />
+          <rect x={X0} y={base - 18} width={7 * U + 6 * 0.8 * U} height={18} fill={c("oxide")} />
+          {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 36} width={U} height={18} fill={c("metalL")} />)}
+          {Array.from({ length: 6 }, (_, i) => <rect key={i} x={X0 + U + i * 1.8 * U} y={base - 36} width={0.8 * U * (1 - cI)} height={18} fill={c("metalL")} />)}
+          {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 64} width={U} height={28} fill={c("resist")} />)}
+          {cI > 0 ? Array.from({ length: 6 }, (_, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={X0 + U + i * 1.8 * U + 0.4 * U} cy={100 + ph(f, 0.03, j, 3, i) * 120} r={6.5} fill={c("lp_ion")} opacity={cI} />)) : null}
+          <text x={X0} y={88} style={zh(34, H.text2, 800)}>離子往下打，圖形刻進去</text>
         </g>
-        <text x={560} y={120} opacity={b} style={zh(46, H.text, 900)}>下一支</text>
-        <g opacity={b}><rect x={560} y={140} width={350} height={64} fill={H.amber} /><text x={735} y={188} textAnchor="middle" style={zh(40, onC(H.amber), 900)}>蝕刻機 ▸</text></g>
-        <text x={560} y={256} opacity={d} style={zh(36, c("lp_proc"), 900)}>留言「流程」看完整解說</text>
+        <text x={540} y={110} opacity={b} style={zh(60, H.text, 900)}>下一支</text>
+        <g opacity={b}><rect x={540} y={132} width={380} height={92} fill={H.amber} /><text x={730} y={200} textAnchor="middle" style={zh(60, onC(H.amber), 900)}>蝕刻機 ▸</text></g>
+        <text x={540} y={266} opacity={d} style={zh(46, c("lp_proc"), 900)}>留言「流程」</text>
+        <text x={540} y={312} opacity={d} style={zh(36, H.text, 800)}>看完整解說</text>
       </svg>
     </Card>
   );

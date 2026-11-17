@@ -166,7 +166,7 @@
       "w": 952,
       "h": 300,
       "avoid": false,
-      "title": "同一套動作",
+      "title": "一輪的步驟",
       "tag": "示意",
       "t": {
        "same": {
@@ -221,14 +221,30 @@
     "zoom": [
      {
       "to": "sect",
-      "at": "start-6",
-      "dur": 40
+      "at": "start+2",
+      "dur": 24
      }
     ],
     "shot": [
      {
       "at": "start-2",
-      "dur": 26,
+      "dur": 1,
+      "x": 0,
+      "y": -3.0,
+      "d": 36,
+      "elev": 34
+     },
+     {
+      "at": "start+4",
+      "dur": 20,
+      "x": 0,
+      "y": -3.2,
+      "d": 24,
+      "elev": 34
+     },
+     {
+      "at": "dep-2",
+      "dur": 1,
       "x": 60,
       "y": 1.4,
       "d": 52,
@@ -288,7 +304,7 @@
      {
       "layer": "t_dep",
       "at": "s1:start-40",
-      "until": "s2:start-6",
+      "until": "s2:dep-6",
       "opacity": 0,
       "dur": 6
      },
@@ -332,8 +348,8 @@
       "text": "矽基板",
       "en": "Silicon wafer",
       "color": "blue",
-      "at": "dep",
-      "until": "s3:start-6"
+      "at": "dep+4",
+      "until": "ox-6"
      },
      {
       "part": "d_head",
@@ -341,22 +357,22 @@
       "en": "Deposition head",
       "color": "amber",
       "at": "dep+8",
-      "until": "ox"
+      "until": "ox-6"
      },
      {
       "part": "a_ox",
       "text": "氧化層（絕緣）",
       "en": "Oxide (insulator)",
       "color": "amber",
-      "at": "ox+22",
-      "until": "s3:start-6"
+      "at": "ox+12",
+      "until": "mt-6"
      },
      {
       "part": "a_mt",
       "text": "金屬層（導電）",
       "en": "Metal (conductor)",
       "color": "coral",
-      "at": "mt+22",
+      "at": "mt+12",
       "until": "s3:start-6"
      }
     ],
@@ -385,6 +401,9 @@
       "title": "剖面示意",
       "tag": "示意，非實際比例",
       "t": {
+       "dep0": {
+        "at": "s2:start"
+       },
        "dep": {
         "at": "s2:dep"
        },
@@ -1461,16 +1480,16 @@
      {
       "to": "sect",
       "at": "start-6",
-      "dur": 36
+      "dur": 8
      }
     ],
     "shot": [
      {
       "at": "start-2",
-      "dur": 30,
+      "dur": 1,
       "x": 180,
-      "y": 1.6,
-      "d": 46,
+      "y": 1.2,
+      "d": 40,
       "elev": 20
      },
      {
@@ -1478,7 +1497,7 @@
       "dur": 60,
       "x": 180,
       "y": 1.8,
-      "d": 52,
+      "d": 50,
       "elev": 18
      }
     ],
@@ -1486,7 +1505,7 @@
      {
       "layer": "k0",
       "at": "s1:start-40",
-      "until": "one+12",
+      "until": "start+8",
       "dy": 4.5,
       "opacity": 0,
       "dur": 12,
@@ -1610,8 +1629,8 @@
       "text": "矽基板",
       "en": "Substrate",
       "color": "blue",
-      "at": "one",
-      "until": "s10:start-6"
+      "at": "start+14",
+      "until": "rep-6"
      },
      {
       "part": "k_top",
@@ -1637,7 +1656,7 @@
       "tag": "示意・產業估計",
       "t": {
        "one": {
-        "at": "one"
+        "at": "start+8"
        },
        "rep": {
         "at": "rep"
@@ -1979,9 +1998,9 @@
       "at": "start+2",
       "until": "kw-10",
       "x": 64,
-      "y": 960,
+      "y": 930,
       "w": 952,
-      "h": 300,
+      "h": 330,
       "avoid": false,
       "title": "下一支",
       "tag": "示意",

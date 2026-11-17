@@ -44,20 +44,20 @@ P["s1"] = {
  "shot": [shot("start-30", 0, -3.0, 36, 34, 1)],
  "run": [run("w_spin", "start-30", "s2:start-2", 8)],
  "labels": [lab("w_wafer", "晶圓", "Wafer", "blue", "wafer", "same-4")],
- "overlay": [card("wf-ring", "start+2", "s2:start-2", 960, 300, "同一套動作", "示意", {"same": "same", "rep": "rep", "which": "which"})]}
+ "overlay": [card("wf-ring", "start+2", "s2:start-2", 960, 300, "一輪的步驟", "示意", {"same": "same", "rep": "rep", "which": "which"})]}
 SRC["s1"] = ["SIA 產業協會估計；TRUMPF 科普文"]
 
 # ───────── s2 沉積 ─────────
 P["s2"] = {
- "zoom": [{"to": "sect", "at": "start-6", "dur": 40}],
- "shot": [shot("start-2", SX, 1.4, 52, 20, 26)],
+ "zoom": [{"to": "sect", "at": "start+2", "dur": 24}],
+ "shot": [shot("start-2", 0, -3.0, 36, 34, 1), shot("start+4", 0, -3.2, 24, 34, 20), shot("dep-2", SX, 1.4, 52, 20, 1)],
  "shift": [fall("ox", "ox+4", dy=3.4, press=["sub"]), fall("mt_line", "mt+6", dy=3.4, press=["ox"]), fall("mt_gap", "mt+6", dy=3.4, press=["ox"]), hide("dp", HIDE, "s8:ion+12", 2)]
-          + tool("t_dep", [("s2:start-6", "s3:start-6")]),
+          + tool("t_dep", [("s2:dep-6", "s3:start-6")]),
  "run": [run("d_ox0", off("ox", -18), off("mt", -6), 6), run("d_ox1", off("ox", -18), off("mt", -6), 6), run("d_mt0", off("mt", -14), "s3:start-6", 6), run("d_mt1", off("mt", -14), "s3:start-6", 6)],
- "labels": [lab("a_sub", "矽基板", "Silicon wafer", "blue", "dep", "s3:start-6"), lab("d_head", "沉積頭：氣體噴下來", "Deposition head", "amber", "dep+8", "ox"),
-            lab("a_ox", "氧化層（絕緣）", "Oxide (insulator)", "amber", "ox+22", "s3:start-6"), lab("a_mt", "金屬層（導電）", "Metal (conductor)", "coral", "mt+22", "s3:start-6")],
+ "labels": [lab("a_sub", "矽基板", "Silicon wafer", "blue", "dep+4", "ox-6"), lab("d_head", "沉積頭：氣體噴下來", "Deposition head", "amber", "dep+8", "ox-6"),
+            lab("a_ox", "氧化層（絕緣）", "Oxide (insulator)", "amber", "ox+12", "mt-6"), lab("a_mt", "金屬層（導電）", "Metal (conductor)", "coral", "mt+12", "s3:start-6")],
  "overlay": [stamp("① 沉積", "dep", "s3:start-6", "amber", 56, x=200, y=330),
-             card("wf-sec", "start+2", "s9:start-2", 960, 300, "剖面示意", "示意，非實際比例", {"dep": "s2:dep", "ox": "s2:ox", "mt": "s2:mt", "res": "s3:res", "lt": "s4:lt", "msk": "s4:msk", "prt": "s4:prt", "dev": "s5:dev", "wash": "s5:wash",
+             card("wf-sec", "start+2", "s9:start-2", 960, 300, "剖面示意", "示意，非實際比例", {"dep0": "s2:start", "dep": "s2:dep", "ox": "s2:ox", "mt": "s2:mt", "res": "s3:res", "lt": "s4:lt", "msk": "s4:msk", "prt": "s4:prt", "dev": "s5:dev", "wash": "s5:wash",
                   "bare": "s6:bare", "pl": "s6:pl", "cut": "s6:cut", "use": "s7:use", "strip": "s7:strip", "ion": "s8:ion", "pol": "s8:pol", "next": "s8:next"})]}
 SRC["s2"] = ["SemiconductorX；科林研發法說會；示意"]
 
@@ -126,11 +126,11 @@ SRC["s8"] = ["示意；CMP 每層研磨平整：TRUMPF 科普文"]
 # ───────── s9 一層一層疊 ─────────
 NK, STAG = 12, 9
 P["s9"] = {
- "zoom": [{"to": "sect", "at": "start-6", "dur": 36}],
- "shot": [shot("start-2", KX, 1.6, 46, 20, 30), shot("rep+30", KX, 1.8, 52, 18, 60)],
- "shift": [fall("k0", off("one", 12), dy=4.5, bounce=0.05)] + [fall(f"k{k}", off("rep", STAG * k - 6), dy=4.5, bounce=0.05) for k in range(1, NK)],
- "labels": [lab("k_bot", "矽基板", "Substrate", "blue", "one", "s10:start-6"), lab("k_top", "最上面一層", "Top layer", "amber", "hund-10", "s10:start-6")],
- "overlay": [card("wf-count", "start+2", "s10:start-4", 960, 300, "疊層", "示意・產業估計", {"one": "one", "rep": "rep", "hund": "hund"}, n=NK, stag=STAG)]}
+ "zoom": [{"to": "sect", "at": "start-6", "dur": 8}],
+ "shot": [shot("start-2", KX, 1.2, 40, 20, 1), shot("rep+30", KX, 1.8, 50, 18, 60)],
+ "shift": [fall("k0", "start+8", dy=4.5, bounce=0.05)] + [fall(f"k{k}", off("rep", STAG * k - 6), dy=4.5, bounce=0.05) for k in range(1, NK)],
+ "labels": [lab("k_bot", "矽基板", "Substrate", "blue", "start+14", "rep-6"), lab("k_top", "最上面一層", "Top layer", "amber", "hund-10", "s10:start-6")],
+ "overlay": [card("wf-count", "start+2", "s10:start-4", 960, 300, "疊層", "示意・產業估計", {"one": "start+8", "rep": "rep", "hund": "hund"}, n=NK, stag=STAG)]}
 SRC["s9"] = ["產業估計：80～120 層光罩"]
 
 # ───────── s10 誰做哪一步 ─────────
@@ -150,7 +150,7 @@ P["s11"] = {
  "shot": [shot("start-2", SX, 2.0, 52, 18, 24)],
  "run": [run("t_plg", "next-4", "s12:end", 6), run("t_ion0", "next", "s12:end", 6), run("t_ion1", "next", "s12:end", 6), run("t_blk", "next", "s12:end", 6)],
  "labels": [],
- "overlay": [card("wf-next", "start+2", "kw-10", 960, 300, "下一支", "示意", {"tricks": "tricks", "next": "next", "how": "how", "kw": "kw"}), stamp("完整解說在留言", "full", "kw-6", "blue", 36, x=780, y=336, avoid=False)]}
+ "overlay": [card("wf-next", "start+2", "kw-10", 930, 330, "下一支", "示意", {"tricks": "tricks", "next": "next", "how": "how", "kw": "kw"}), stamp("完整解說在留言", "full", "kw-6", "blue", 36, x=780, y=336, avoid=False)]}
 SRC["s11"] = ["下一支 11/26 蝕刻機"]
 
 scenes = []
