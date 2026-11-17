@@ -36,17 +36,22 @@
 | `pcb` 主機板 | `w`(12.2) `d`(9.4) `t`(.3) `pads` | — |
 | `hbm` 記憶體堆疊 | `w`(1.1) `t`(.32) `n`(12) `slices`(每片一層 `<id>_s0…`) | `glow` |
 | `stack` 逐層堆疊 | `layers`([{ t, mat, w, d }] 由下到上，每層一個層 `<id>_l0…`) `w` `d` `gap` | — |
-| `nozzle` 吸嘴 | `scale`(1)（原點＝嘴底） | `suck`（嘴尖亮綠） |
-| `arm` 機械手臂 | `h` `l1` `l2` `drop` `reach`(28°)（夾爪獨立層 `<id>_grip`） | `reach`（吊臂轉動） |
+| `nozzle` 吸嘴／熱壓頭 | `scale`(1)（原點＝嘴底） | `suck`（嘴尖亮綠）、`heat`（嘴尖、嘴身、升降臂發橘，熱壓接合用） |
+| `arm` 水平多關節手臂（SCARA） | `h` `l1` `l2` `drop` `to`([dx,dz] 放料位相對取料位，程式反運動學算 j1、j2) 或 `j1` `j2`(度) `elbow`(1／-1 肘朝哪折) `carry`(被夾走的零件 "@id")（原點＝底座底面，伸直時夾爪在 x＝l1＋l2＝取料位；夾爪獨立層 `<id>_grip`） | `j1` 肩、`j2` 肘（水平迴轉，繞垂直軸）、`j3` 腕（反向抵消，夾爪方向不變）、`j1c／j2c／j3c`（carry 零件跟著轉到定位後留在原地）、`reach`（舊的上下擺，保留） |
 | `probe` 探針頭 | （原點＝針尖） | `test`（測試電流流下） |
 | `beam` 光束 | `from`／`to`（**絕對座標**）`r`(.06) `color`(beam／beamEuv) `halo` | `glow`、`ray`（光點沿光束跑） |
 | `chamber` 腔體 | `r`(2.6) `len`(6) `bolts`(14)（沿 x 躺著，原點＝圓筒中心） | — |
 | `pipe` 管線 | `path`（**絕對座標**折線）`r`(.14) `mat` `flowColor` | `flow` |
 | `heatsink` 散熱片 | `w` `d` `base` `fins`(9) `finH` `finT` | `heat`（鰭片發橘）、`waves`（熱浪） |
-| `rail` 輸送軌 | `len`(12) `w`(2.1) `legH`（原點＝軌面中心） | — |
+| `rail` 輸送軌 | `len`(12) `w`(2.1) `legH` `rps`(1.1)（原點＝軌面中心）。每支滾輪是獨立零件（`<id>_r0…`，上面一條紅標記 `rmark`） | `roll`（全部滾輪各繞自己的軸轉，起轉加速、停轉減速；rps ≈ 帶速 ÷ 滾輪周長 0.82） |
 | `bin` 廢料盒 | `w` `d` `h` | — |
-| `blade` 切割刀片 | `r`(1.2) `t` `rps`(3)（立在 xy 平面，原點＝圓心） | `spin` |
+| `blade` 切割刀片 | `r`(1.2) `t` `rps`(3)（立在 xy 平面，原點＝圓心；兩側各一支冷卻水管 `jet0／jet1`） | `spin`（起轉加速、停轉減速）、`coolant`（水珠沿水管流向刀口，跟著刀片的層移動） |
+| `maskstage` 光罩台（抽自 tech-euv） | `w`(15 移動台寬) `len`(24 導軌長) `mw`(6.4 光罩邊長)（原點＝光罩下表面中心；上方導軌＋成排磁鐵＋移動台＋馬達，下方護膜框） | `scan`（移動台沿 x 來回，amp／freq）、`drive`（磁鐵與馬達通電發光） |
+| `mirrorarray` 反射鏡面陣列（抽自 tech-euv 場鏡面／瞳鏡面） | `w`(4.2) `n`(4) `fs`(.9 每片邊長) `tilt`(度，整片繞 z 傾斜) `freq`（原點＝鏡面板中心） | `glint`（鏡面亮起） |
+| `alignframe` 對位框（抽自 tech-packaging 的 rectLines） | `w` `d` `t`(.03 線寬) `dash`(0＝實線，>0＝虛線每段長)（水平放，原點＝框中心） | `glow`（框閃） |
 | `sensor` 檢測頭 | `ray`(0＝不要光束) `sweepAmp`(2.2) `sweepFreq`(.6)（原點＝鏡頭底面） | `sweep`（左右掃）、`glow` |
+
+`c.P(名稱, { …, at: […], split: true })`：`at` 的每一份各自成為獨立零件（`<名稱>0、<名稱>1…`），旋轉時各繞自己的位置（輸送軌滾輪就是這樣）；沒寫 `split` 的 `at` 照舊合併成一個零件（繞整組原點）。
 
 要新增零件：在 `parts.mjs` 的 `PARTS` 加一個 `(o, c) => {…}`（用 `c.P(名稱, 零件定義)`、`c.anchor`、`c.act`、`c.ids`、`c.outline`），然後把它補進 `sheet.mjs` 的清單重跑總表。
 
@@ -62,23 +67,40 @@
 | `glow` 發光 | `parts` `color` `steady` `glow` | pulse |
 | `spin`／`shake` | `parts` `axis` `rps`／`amp` `freq` | rotate／vibrate |
 
+引擎 `rotate`（2026/11/17 擴充，沒用到新欄位的舊動作一律走原路，畫面不變）：`pivot` 可寫 `[x,y,z]`（3D 轉軸）、`axis` 任意軸；`pivots`＝`{零件id: [x,y,z]}`（每個零件自己的轉軸，優先於 `pivot`）；`chain`＝同一零件有多個 rotate 時依動作順序（先寫的在外層）串成關節鏈、各繞自己的轉軸（肩→肘→腕）；`hold`＝`angle` 轉到後 `until` 也不轉回來（被搬走的零件）；`rampSpin`＝`rps` 的轉速跟著進出場強度（起轉加速、停轉減速）。
+
 ### 腳本層（script.json 某一幕 `props.motion: [ … ]`，展開成 `props.shift`＋`props.run`）
 
 `at`／`until` 一律是 cue（`"cue"`、`"cue+8"`、`"s4:cue-4"`）；內部偏移是幀（30 fps），參數 `k` 可整體放慢。
 
 | preset | 做什麼 | 參數 |
 |---|---|---|
-| `pick-place` 取放 | 吸嘴下 → 吸住 → 抬 → 平移 → 對位下降 → 放開回彈（約 52 幀） | `tool`(吸嘴層) `item`(被吸的層) `at` `to`([dx,dz]) `down` `lift`(1.5) `dyEnd`(放下後高度差) `suck` `k` |
-| `press-bond` 下壓接合 | 工具受力下壓回彈、下面的層被壓一下、凸塊熔化發光、電流通過（約 40 幀） | `tool` `at` `down` `press`[層] `melt`[動作 id] `current`[動作 id] |
-| `stack-up` 逐層堆疊 | layers 由下到上依序落下（重力、小回彈、壓下層） | `layers` `at` `gap`(4) `from`(1.4) `hide`(start-2) `base` |
-| `cut` 切割 | 刀片沿 dx／dz 切過去並旋轉；切完 `after` 的層分開 | `blade` `at` `len`(60) `dx` `dz` `after`[{layer,dx,dz,dy}] |
-| `scan` 掃描檢測 | 檢測頭沿 dz 掃過、左右掃、發光；掃到一半 `flag` 動作亮起 | `tool` `at` `len`(90) `dz` `dx` `flag` |
+| `pick-place` 取放 | 下降 → 真空吸附（嘴尖亮、停）→ 上升 → 平移 → 停住（視覺定位）→ 微調對位 → 下降 → 破真空放開（零件落下、被壓一下）→ 上升 → 回原位（約 126 幀） | `tool` `item` `at` `to`([dx,dz]) `down` `lift`(1.5) `dyEnd` `press`[被壓的層] `align`([ex,ez]｜false) `suck` `k` |
+| `press-bond` 熱壓接合 | 壓頭先加熱（橘光漸亮）→ 緩降接觸（被壓一下）→ 保壓（被壓的層微微下沉、凸塊熔化）→ 冷卻（橘光慢退）→ 才抬起 → 通電（約 100 幀） | `tool` `at` `down` `press`[層] `sink`(.015) `hold`(54 幀) `melt`[動作 id] `current`[動作 id] `heat`(預設 `<tool>_heat`) |
+| `stack-up` 逐層堆疊 | 每層：從上方落下、帶橫向偏差在著地前修正（對位）→ 著地、前一層被壓一下 → 接合動作亮起 | `layers` `at` `gap`(16) `from`(1.4) `align`([ex,ez]｜false) `bond`[每層的動作 id] `hide` `base` |
+| `cut` 切割 | 刀片先空轉升速、冷卻水先開 → 下刀 → 沿切割道走（緩入緩出）→ 抬刀 → 退回、降速；切完 `after` 的層分開 | `blade` `at` `len`(60) `dx` `dz` `depth`(.35) `coolant`(預設 `<blade>_coolant`) `after`[{layer,dx,dz,dy}] |
+| `scan` 掃描檢測 | 檢測頭沿 dz 掃，左右掃描；掃到缺陷就停下、標記亮起，停後繼續掃到底 | `tool` `at` `len`(90) `dz` `dx` `stops`([.5] 停在全程幾成) `stop`(12 幀) `flag`[每個停點亮起的動作 id] |
+| `arm-transfer` 手臂搬運 | 夾爪下伸 → 夾住 → 抬起 → 肩肘腕同時水平迴轉（緩入緩出）→ 下放 → 鬆開（零件落下、被壓）→ 抬起 → 手臂轉回（約 106 幀） | `arm` `at` `item` `grab`(.5) `put`(0) `press` `k` |
 | `advance` 輸送前進 | layers 整排前進一格 | `layers` `at` `dx` `dz` `dur` |
 | `reveal` 出現／消失 | 藏到 `at` 才浮現；`off` 再藏 | `layers` `at` `hide` `off` |
 | `arm-reach` 手臂取放 | 吊臂轉（`<arm>_reach`）、夾爪下伸 | `arm` `at` `until` `grab` `item` `dx` `dz` |
 | `run` 一次觸發多個動作 | 例如熱擴散＝`die_hot`＋`hs_heat`＋`hs_waves` | `ids` `at` `until` `stagger` `ramp` |
 
 新增動作預設：在 `motions.mjs` 的 `MOTIONS`（腳本層）或 `ACTION_PRESETS`（模型層）加一個函式即可。
+
+## 三之一、動作的「真實機台怎麼做」與來源（2026/11/17 查證，節拍照這個寫）
+
+每個動作的位移都是緩入緩出（加速、減速）、中間有停頓、碰到東西有反作用；幀數是影片節奏，不是機台實際秒數。
+
+| 動作 | 真實機台怎麼做 | 來源 |
+|---|---|---|
+| 取放 `pick-place` | 吸嘴（collet）用真空吸起晶片，視覺系統先量晶片姿態、再用向下看的相機算出 X／Y 要補多少，放下時要控制力道；一輪是「拾取 → 放置 → 固化」 | [Mycronic 光電封裝 die bonding](https://www.mycronic.com/globalassets/pdf/product-areas/die-bonding/technical-articles/high-precision-die-bonding-for-photonics-packaging.pdf)、[SemiconductorX 晶片黏著](https://semiconductorx.com/mfg-back-end-die-attach.html)、USPTO 12027403 |
+| 熱壓接合 `press-bond` | 壓頭真空吸住晶片、下降到接觸，加熱同時加壓並**保持（dwell）**，典型 275–300°C、數十秒；到時間後壓頭先降溫到焊料熔點以下、焊點凝固，才放掉真空抬起。壓力約 0.05–1000 N 視晶片大小，畫面只標示意、不標數字 | [Wikipedia 熱壓接合](https://en.wikipedia.org/wiki/Thermocompression_bonding)、[Intel／ASM TCB（Semiconductor Digest）](https://sst.semiconductor-digest.com/insights-from-leading-edge/2015/07/iftle-247-ectc-part-3-more-thermo-compression-bonding-from-intel-and-asm)、[iConnect007 TCB](https://iconnect007.com/article/129475/zulkis-pcb-nuggets-thermal-compression-bonding-for-extra-fine-pitch-flip-chips/129478/pcb)、USPTO 8163598 |
+| 逐層堆疊 `stack-up` | HBM 等堆疊是一顆一顆用 TCB 疊：每顆都要對位、加熱加壓接合，下一顆才上；單顆能壓平、疊上去的下一顆不容易壓平（翹曲）；一台 TCB 約 500–1000 顆／小時 | [Semiconductor Digest：HBM 堆疊接合](https://sst.semiconductor-digest.com/insights-from-leading-edge/2018/02/iftle-370-3d-asip-part-3-bonding-and-assembly-in-hbm-memory-stacks)、[SemiEngineering：HBM4 仍用微凸塊](https://semiengineering.com/hbm4-sticks-with-microbumps-postponing-hybrid-bonding/) |
+| 切割 `cut` | 刀片主軸高速旋轉（約 1.5–6 萬 rpm，依材料），**一定要有 DI 純水冷卻**（降溫、沖走碎屑、延長刀壽命）；刀片下刀切進切割道、沿道走（進給約 5–120 mm/s），深度要切穿晶圓並略入膠膜 | [UKAM 晶圓切割實務](https://ukam.com/practical-guide-to-semiconductor-wafer-dicing-materials-blades-and-process-optimization/)、[Semiconductor Digest 切割](https://sst.semiconductor-digest.com/?p=34110)、[DISCO DFD6342](https://disco.co.jp/eg/products/dicer/dfd6342.html) |
+| 掃描檢測 `scan` | 載台連續移動、相機與閃光同步拍每一區，與標準晶粒比對找異常，建立缺陷圖；缺陷之後送複檢（載台把缺陷移到相機下）；已標記（inked）的壞晶粒不再檢 | USPTO 9464992、6826298（自動晶圓缺陷檢測） |
+| 手臂搬運 `arm-transfer` | 晶圓搬運機器人是水平多關節（SCARA）：三個旋轉關節軸都垂直、各有馬達，手端的末端執行器水平移動；手以真空（負壓）吸住晶圓 | USPTO 11427412、12434378（水平多關節基板搬運機器人） |
+| 輸送滾輪 `roll` | 滾輪表面速度＝輸送帶速度，起停有加減速 | 一般輸送機原理（無單一來源；rps ≈ 帶速 ÷ 滾輪周長） |
 
 ## 四、新片的最短流程
 
@@ -90,7 +112,8 @@
 ## 五、已知限制與還沒做的
 
 - 展開在 Node 端；`script.json` 內嵌 `model` 時也會展開，但**不認 `parts` 裡以外的位置**寫 `part`。
-- `rotate` 動作的 `pivot` 引擎只吃 x、y（繞 z 軸轉），所以 `arm` 是上下擺（不是水平迴轉）、`blade` 是立著轉。
-- 合併複製（`at`）的零件旋轉時繞整組的原點轉，所以輸送軌滾輪沒有自帶轉動動作。
-- 還沒抽的（packaging／euv 專用）：光罩台、反射鏡面陣列、雷射打錫滴（lpp 已是引擎動作，只差零件）、對位框／光罩框（`rectLines`）。需要時照第二節末段加進 `PARTS`。
-- tech-packaging／tech-euv／tech-yield 的 gen 程式**沒有改**（另有人在用）；要搬進庫時逐支把 gen-model 換成 parts 資料即可，座標與 id 要核對。
+- `split` 的零件每份各是一個網格（滾輪 n 支＝2n 個零件），數量很大時渲染會慢，輸送軌預設約 0.7 間距一支。
+- 手臂的 `to` 超出可達範圍會直接報錯（夠不到）；夾爪的上下伸縮仍是整層位移（`<arm>_grip`），不跟著關節鏈。
+- 零件總表圖 `docs/three-parts-sheet.png` 還是 20 種零件的舊版，新零件（光罩台、鏡面陣列、對位框）尚未補進 `sheet.mjs` 重跑。
+- tech-packaging／tech-euv／tech-yield 的 gen 程式**沒有改**（另有人在用）；要搬進庫時逐支把 gen-model 換成 parts 資料即可，座標與 id 要核對。雷射打錫滴（lpp）已是引擎動作，只差零件。
+- 這次引擎改動的相容策略：只有動作寫了 `pivots`／`chain`／3D `pivot`（長度 3）／`hold`／`rampSpin` 才走新路，其餘與舊版逐行相同（舊片 tech-offer 的 rotate 也不受影響）。

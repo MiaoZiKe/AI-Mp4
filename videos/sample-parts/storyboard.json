@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 432,
- "totalSec": 14.4,
+ "totalFrames": 660,
+ "totalSec": 22,
  "scenes": [
   {
    "id": "s1",
@@ -55,9 +55,9 @@
   {
    "id": "s2",
    "startFrame": 162,
-   "durationFrames": 144,
+   "durationFrames": 156,
    "startSec": 5.4,
-   "durationSec": 4.8,
+   "durationSec": 5.2,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -71,45 +71,39 @@
     {
      "id": "pick",
      "text": "吸嘴",
-     "frame": 209,
-     "sceneFrame": 47
+     "frame": 205,
+     "sceneFrame": 43
     },
     {
      "id": "place",
      "text": "放到",
-     "frame": 253,
-     "sceneFrame": 91
+     "frame": 269,
+     "sceneFrame": 107
     }
    ],
-   "stillFrame": 305,
+   "stillFrame": 317,
    "subtitles": [
     {
-     "zh": "好的晶片",
-     "en": "Pick the good die",
+     "zh": "好的晶片用吸嘴吸起來",
+     "en": "Vacuum-pick the good die",
      "startFrame": 163,
-     "endFrame": 197
+     "endFrame": 241
     },
     {
-     "zh": "用吸嘴吸起來",
-     "en": "with a nozzle",
-     "startFrame": 197,
-     "endFrame": 249
-    },
-    {
-     "zh": "放到基板上",
-     "en": "and place it on the substrate",
-     "startFrame": 249,
-     "endFrame": 307
+     "zh": "對準後放到基板上",
+     "en": "align it, then place it",
+     "startFrame": 241,
+     "endFrame": 319
     }
    ],
-   "narration": "好的晶片用吸嘴吸起來放到基板上"
+   "narration": "好的晶片用吸嘴吸起來，對準後放到基板上"
   },
   {
    "id": "s3",
-   "startFrame": 306,
-   "durationFrames": 126,
-   "startSec": 10.2,
-   "durationSec": 4.2,
+   "startFrame": 318,
+   "durationFrames": 144,
+   "startSec": 10.6,
+   "durationSec": 4.8,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
@@ -123,38 +117,90 @@
     {
      "id": "press",
      "text": "下壓",
-     "frame": 310,
-     "sceneFrame": 4
+     "frame": 365,
+     "sceneFrame": 47
     },
     {
      "id": "melt",
      "text": "熔化",
-     "frame": 377,
-     "sceneFrame": 71
+     "frame": 417,
+     "sceneFrame": 99
     },
     {
      "id": "cur",
      "text": "通電",
-     "frame": 400,
-     "sceneFrame": 94
+     "frame": 435,
+     "sceneFrame": 117
     }
    ],
-   "stillFrame": 420,
+   "stillFrame": 461,
    "subtitles": [
     {
-     "zh": "下壓接合",
-     "en": "Press to bond:",
-     "startFrame": 307,
-     "endFrame": 351
+     "zh": "壓頭先加熱",
+     "en": "Heat the head",
+     "startFrame": 319,
+     "endFrame": 361
+    },
+    {
+     "zh": "下壓保壓",
+     "en": "press and hold",
+     "startFrame": 361,
+     "endFrame": 396
     },
     {
      "zh": "接點熔化通電",
      "en": "the joints melt and conduct",
-     "startFrame": 351,
-     "endFrame": 432
+     "startFrame": 396,
+     "endFrame": 463
     }
    ],
-   "narration": "下壓接合接點熔化通電"
+   "narration": "壓頭先加熱，下壓保壓，接點熔化通電"
+  },
+  {
+   "id": "s4",
+   "startFrame": 462,
+   "durationFrames": 198,
+   "startSec": 15.4,
+   "durationSec": 6.6,
+   "component": "ThreeScene",
+   "beat": "payoff",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "turn",
+     "text": "迴轉",
+     "frame": 519,
+     "sceneFrame": 57
+    },
+    {
+     "id": "tray",
+     "text": "托盤",
+     "frame": 611,
+     "sceneFrame": 149
+    }
+   ],
+   "stillFrame": 648,
+   "subtitles": [
+    {
+     "zh": "手臂水平迴轉",
+     "en": "The arm swings around",
+     "startFrame": 463,
+     "endFrame": 541
+    },
+    {
+     "zh": "把晶片搬到托盤上",
+     "en": "and carries the die to the tray",
+     "startFrame": 541,
+     "endFrame": 660
+    }
+   ],
+   "narration": "手臂水平迴轉，把晶片搬到托盤上"
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "sample-parts",
-  "title": "零件庫示範：晶圓掃描、吸嘴取放、下壓接合（只寫資料）",
+  "title": "零件庫示範 v2：掃描、取放、熱壓接合、手臂水平迴轉與輸送滾輪（只寫資料）",
   "asOf": "2026/11/16",
   "styleVersion": 3,
   "stage": "three",
@@ -102,7 +102,11 @@
             "at": "scan-4",
             "len": 84,
             "dz": 6.4,
-            "flag": "wf_badGlow"
+            "flag": "wf_badGlow",
+            "stops": [
+              0.5
+            ],
+            "stop": 12
           }
         ],
         "hook": {
@@ -120,11 +124,11 @@
     {
       "id": "s2",
       "beat": "mechanism",
-      "narration": "好的晶片用吸嘴吸起來放到基板上",
-      "tts": "好的晶片用吸嘴吸起來放到基板上",
+      "narration": "好的晶片用吸嘴吸起來，對準後放到基板上",
+      "tts": "好的晶片用吸嘴吸起來，對準後放到基板上",
       "subtitle": {
-        "zh": "好的晶片\n用吸嘴吸起來\n放到基板上",
-        "en": "Pick the good die | with a nozzle | and place it on the substrate"
+        "zh": "好的晶片用吸嘴吸起來\n對準後放到基板上",
+        "en": "Vacuum-pick the good die | align it, then place it"
       },
       "keywords": [
         "吸起來",
@@ -157,7 +161,7 @@
             "preset": "pick-place",
             "tool": "nz",
             "item": "wf_pick",
-            "at": "pick-6",
+            "at": "pick-4",
             "down": 0.35,
             "to": [
               8.8,
@@ -177,20 +181,20 @@
       "sources": [
         "示範用零件庫"
       ],
-      "durationSec": 4.8
+      "durationSec": 5.2
     },
     {
       "id": "s3",
       "beat": "payoff",
-      "narration": "下壓接合接點熔化通電",
-      "tts": "下壓接合接點熔化通電",
+      "narration": "壓頭先加熱，下壓保壓，接點熔化通電",
+      "tts": "壓頭先加熱，下壓保壓，接點熔化通電",
       "subtitle": {
-        "zh": "下壓接合\n接點熔化通電",
-        "en": "Press to bond: | the joints melt and conduct"
+        "zh": "壓頭先加熱\n下壓保壓\n接點熔化通電",
+        "en": "Heat the head | press and hold | the joints melt and conduct"
       },
       "keywords": [
-        "下壓",
-        "熔化"
+        "加熱",
+        "保壓"
       ],
       "cues": [
         {
@@ -248,7 +252,90 @@
       "sources": [
         "示範用零件庫"
       ],
-      "durationSec": 4.2
+      "durationSec": 4.8
+    },
+    {
+      "id": "s4",
+      "beat": "payoff",
+      "narration": "手臂水平迴轉，把晶片搬到托盤上",
+      "tts": "手臂水平迴轉，把晶片搬到托盤上",
+      "subtitle": {
+        "zh": "手臂水平迴轉\n把晶片搬到托盤上",
+        "en": "The arm swings around | and carries the die to the tray"
+      },
+      "keywords": [
+        "迴轉",
+        "托盤"
+      ],
+      "cues": [
+        {
+          "id": "turn",
+          "text": "迴轉"
+        },
+        {
+          "id": "tray",
+          "text": "托盤"
+        }
+      ],
+      "component": "ThreeScene",
+      "props": {
+        "shot": [
+          {
+            "at": "start-30",
+            "dur": 1,
+            "x": 10.6,
+            "y": -1.6,
+            "d": 35,
+            "elev": 40
+          }
+        ],
+        "motion": [
+          {
+            "preset": "reveal",
+            "layers": [
+              "rl",
+              "dc",
+              "ar",
+              "ar_grip",
+              "tp"
+            ],
+            "hide": "s1:start-40",
+            "at": "start-6"
+          },
+          {
+            "preset": "run",
+            "ids": [
+              "rl_roll"
+            ],
+            "at": "start-4",
+            "until": "start+30",
+            "ramp": 16
+          },
+          {
+            "preset": "advance",
+            "layers": [
+              "dc"
+            ],
+            "at": "start+4",
+            "dx": 3.0,
+            "dur": 34
+          },
+          {
+            "preset": "arm-transfer",
+            "arm": "ar",
+            "item": "dc",
+            "at": "turn-10",
+            "grab": 0.3,
+            "press": [
+              "tp"
+            ]
+          }
+        ]
+      },
+      "sources": [
+        "示範用零件庫，數字與比例為示意"
+      ],
+      "durationSec": 6.6
     }
   ]
 }

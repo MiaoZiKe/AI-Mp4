@@ -20,8 +20,14 @@ const makeCtx = (o, out, used) => {
   const c = {
     id, layer, pos, out,
     P(name, def) {
-      const { abs, mat, pos: dp = [0, 0, 0], layer: L, ...rest } = def, over = o.mats?.[mat];
+      const { abs, mat, pos: dp = [0, 0, 0], layer: L, split, ...rest } = def, over = o.mats?.[mat];
       if (!over) used.add(mat);
+      // split（2026/11/17）：at 的每一份各自成為獨立零件（<名稱>0、<名稱>1…），旋轉時各自繞自己的位置（輸送軌的每支滾輪、堆疊裡的每一塊）；沒寫 split 的 at 照舊合併成一個零件
+      if (split && rest.at) {
+        const { at, ...r2 } = rest;
+        at.forEach((a, i) => out.parts.push({ id: `${id}_${name}${i}`, layer: L ?? layer, ...r2, pos: abs ? add3(dp, a) : add3(pos, add3(dp, a)), mat: over ?? M_ + mat }));
+        return;
+      }
       out.parts.push({ id: `${id}_${name}`, layer: L ?? layer, ...rest, pos: abs ? dp.map(R2) : add3(pos, dp), mat: over ?? M_ + mat });
     },
     L(lid, extra = {}) { out.layers.push({ id: lid, z: o.z ?? 0, k: o.k ?? 0, ...extra }); },

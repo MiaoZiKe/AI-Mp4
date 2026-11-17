@@ -203,7 +203,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
 };
 
 /** 零件本身的作用：vibrate 的位移、rotate 的旋轉、pulse 的發光（Scene.tsx 每個零件問一次） */
-export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; glow: number; color: string | null; grow: [number, number, number] | null };
+export type PartFx = { off: [number, number, number]; quat: THREE.Quaternion | null; pivot: number[] | null; xf: { q: THREE.Quaternion; pivot: number[] | null }[]; hier: boolean; glow: number; color: string | null; grow: [number, number, number] | null };
 export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]> => {
   const m = new Map<string, [string, ActionDef][]>();
   for (const [id, d] of Object.entries(model.actions ?? {})) if (["vibrate", "rotate", "pulse"].includes(d.type)) for (const p of [...(d.parts ?? []), ...(d.level ?? [])]) m.set(p, [...(m.get(p) ?? []), [id, d]]);
@@ -211,19 +211,33 @@ export const partOps = (model: ProductModel): Map<string, [string, ActionDef][]>
 };
 /** rotate 的角度（弧度）。angle＋damp（2026/11/16 tech-offer）：阻尼振盪的步階響應——從觸發起 θ＝A·(1−e^(−t/τ)·cos 2πft)，過衝幾次後停在 A；
  *  until 之後再用同一個式子回到 0。damp＝{ f（每秒擺幾次）, tau（衰減時間常數，秒） } */
-export const rotAngle = (d: ActionDef, op: { k: number; g: number; T: number; t: number; n: number; f: number; until: number }) => {
+export const rotAngle = (d: ActionDef, op: { k: number; g: number; T: number; t: number; n: number; f: number; until: number; end: number; u: number }) => {
   if (d.angle !== undefined && d.damp) {
     const A = (d.angle * Math.PI) / 180, st = (t: number) => (t <= 0 ? 0 : 1 - Math.exp(-t / d.damp!.tau) * Math.cos(Math.PI * 2 * d.damp!.f * t));
     return A * (st(op.n / 30) - st((op.f - op.until) / 30));
   }
+  // hold（2026/11/17）：轉到定位後 until 也不轉回來（只跟著進場那一段）
+  if (d.angle !== undefined && d.hold) return ((d.angle * Math.PI) / 180) * tween(op.f, op.f - op.n, Math.max(1, op.end - op.until), EASE.move) * (d.gain0 ?? 1);
   if (d.angle !== undefined) return ((d.angle * Math.PI) / 180) * op.k * (d.gain0 ?? 1);
   if (d.swing !== undefined) return ((d.swing * Math.PI) / 180) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T);
+  // rampSpin（2026/11/17）：轉速跟著進出場強度（起轉慢慢加速、停轉慢慢減速）；角度＝轉速的累積量 op.u
+  if (d.rampSpin) return Math.PI * 2 * (d.rps ?? 1) * op.u;
   return Math.PI * 2 * (d.rps ?? 1) * op.t;
+};
+/** 新式轉軸（3D pivot／pivots／chain）的位移：零件原點 q（零件座標）依關節鏈由內往外各繞自己的轉軸轉。pivot 沒寫（null）＝繞零件自己現在的位置 */
+export const rotDelta = (fx: PartFx, q: number[]): [number, number, number] => {
+  const p = new THREE.Vector3(q[0], q[1], q[2] ?? 0);
+  for (let i = fx.xf.length - 1; i >= 0; i--) {
+    const { q: qq, pivot } = fx.xf[i];
+    const pv = pivot ? new THREE.Vector3(pivot[0], pivot[1], pivot[2] ?? p.z) : p.clone();
+    p.sub(pv).applyQuaternion(qq).add(pv);
+  }
+  return [p.x - q[0], p.y - q[1], p.z - (q[2] ?? 0)];
 };
 export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, part?: { id?: string; pos?: number[] }): PartFx | null => {
   if (!list) return null;
   let lvAng = 0, lvD: ActionDef | null = null;
-  const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, glow: 0, color: null, grow: null };
+  const fx: PartFx = { off: [0, 0, 0], quat: null, pivot: null, xf: [], hier: false, glow: 0, color: null, grow: null };
   for (const [id, d] of list) {
     const op = s.ops[id];
     if (!op) continue;
@@ -242,6 +256,10 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, pa
       const q = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), ang);
       fx.quat = fx.quat ? fx.quat.multiply(q) : q;
       fx.pivot = d.pivot ?? fx.pivot ?? null;
+      // 2026/11/17：3D 轉軸、每零件自己的轉軸、關節鏈（沒用到這幾個欄位的舊動作完全走上面那條舊路）
+      const pv = (part?.id ? d.pivots?.[part.id] : undefined) ?? d.pivot ?? null;
+      fx.xf.push({ q, pivot: pv });
+      if (d.pivots || d.chain || (d.pivot && d.pivot.length > 2)) fx.hier = true;
     } else if (d.type === "pulse") {
       // steady＝不閃，穩定亮著（強度只跟著進出場 ramp；例如電壓維持在高的那段時間）
       const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);

@@ -11,6 +11,7 @@ export const LIB_PALETTE = {
   steel: "#9AA8BE", steel2: "#7D8AA1", dark: "#3F4E6B", rail: "#5D6A82", roller: "#8B97AD", bin: "#4E5A72", binEdge: "#E0472F", hose: "#3F4E6B",
   wafer: "#B4C2DA", die: "#7FA4E0", dieBad: "#E0472F", dieHot: "#FF5A1F", chuck: "#6B7891", glass: "#BFD3F2", fin: "#B8C4D8", silicon: "#C9D6EA",
   beam: "#E5484D", beamEuv: "#8B5CF6", sensor: "#2E3C5C", lens: "#9EC3E8", blade: "#D5DCE8", bladeEdge: "#E0472F",
+  maskc: "#1F3A6B", stageC: "#8FA3C4", mirror: "#E8B04A", facet: "#F2C266", frame: "#F2A93B", water: "#7CD4FF",
   good: "#14A38B", bad: "#E0472F", proc: "#FF9F1C", sig: "#38B6FF", sigRim: "#1F6FEB", melt: "#FF5A1F", heat: "#FF7A2F",
 };
 /** 材質：短名 → 材質定義（color 是色票短名；展開時換成 lp_ 前綴） */
@@ -31,6 +32,9 @@ export const LIB_MAT = {
   fin: M("fin", { rough: 0.3, metal: 0.9, env: 0.7 }), silicon: M("silicon", { rough: 0.3, metal: 0.5 }),
   beam: { kind: "unlit", color: "beam", opacity: 0.55 }, beamEuv: { kind: "unlit", color: "beamEuv", opacity: 0.55 },
   sensor: M("sensor", { rough: 0.35, metal: 0.4 }), lens: { kind: "phys", color: "lens", rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.6 },
+  mask: M("maskc", { rough: 0.2, metal: 0.7, tex: "traces", texScale: 1.2, env: 0.8 }), stage: M("stageC", { rough: 0.4, metal: 0.5 }),
+  mirror: M("mirror", { rough: 0.12, metal: 0.95, env: 1.4 }), facet: M("facet", { rough: 0.15, metal: 0.9, env: 1.2 }),
+  frame: { kind: "unlit", color: "frame" }, water: { kind: "unlit", color: "water", opacity: 0.8 },
   blade: M("blade", { rough: 0.2, metal: 0.9, env: 0.8 }), bladeEdge: M("bladeEdge", { rough: 0.4, metal: 0.3 }),
 };
 export const P_ = "lp_", M_ = "lib_";

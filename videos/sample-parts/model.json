@@ -1,5 +1,5 @@
 {
-  "name": "sample-parts：零件庫示範（晶圓掃描 → 吸嘴取放 → 下壓接合）。這份 model.json 只寫資料，零件由 scripts/three/parts/ 展開",
+  "name": "sample-parts：零件庫示範 v2（晶圓掃描 → 吸嘴取放 → 熱壓接合 → 手臂水平迴轉搬運＋輸送滾輪）。這份 model.json 只寫資料，零件由 scripts/three/parts/ 展開",
   "unit": "1 cm（水平）",
   "size": {
     "w": 14,
@@ -107,6 +107,69 @@
       "d": 6,
       "t": 0.3,
       "pads": false
+    },
+    {
+      "part": "rail",
+      "id": "rl",
+      "pos": [
+        16,
+        0,
+        0
+      ],
+      "len": 10,
+      "w": 2.1,
+      "rps": 2.4,
+      "label": {
+        "dx": 90,
+        "dy": 100
+      }
+    },
+    {
+      "part": "die",
+      "id": "dc",
+      "pos": [
+        11.4,
+        0,
+        0
+      ],
+      "w": 0.44,
+      "d": 0.5,
+      "t": 0.16,
+      "bumps": false,
+      "grid": false
+    },
+    {
+      "part": "pcb",
+      "id": "tp",
+      "pos": [
+        12.8,
+        -0.3,
+        -3.2
+      ],
+      "w": 3,
+      "d": 2.4,
+      "t": 0.3,
+      "pads": false
+    },
+    {
+      "part": "arm",
+      "id": "ar",
+      "pos": [
+        10,
+        0,
+        0
+      ],
+      "h": 1.0,
+      "l1": 2.4,
+      "l2": 2.0,
+      "drop": 0.5,
+      "to": [
+        -1.6,
+        -3.2
+      ],
+      "carry": [
+        "@dc"
+      ]
     }
   ],
   "actions": {

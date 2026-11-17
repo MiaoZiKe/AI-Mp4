@@ -133,8 +133,14 @@ export const PARTS = {
     c.P("hose", { shape: "box", size: [R2(0.1 * s), R2(0.9 * s), R2(0.1 * s)], pos: [R2(0.35 * s), R2(1.1 * s), R2(0.1 * s)], mat: "hose" });
     c.anchor("", { p: [0, R2(1.0 * s), 0], dx: 70, dy: -120 }); c.outline(1, 1);
     c.act("suck", { type: "pulse", parts: c.ids("tip"), color: "lp_good", steady: true, glow: 0.95, halo: 0 }, ["good"]);
+    // 熱壓接合時壓頭加熱（press-bond 會用）：嘴尖、嘴身、升降臂發橘
+    c.act("heat", { type: "pulse", parts: c.ids("tip", "body", "arm"), color: "lp_heat", steady: true, glow: 0.85, halo: 0 }, ["heat"]);
   },
-  // ── 機械手臂：底座＋立柱（不動）＋吊臂（兩節＋手腕，繞肩關節上下轉）＋夾爪（自己一層 <id>_grip，可往下伸）。動作 reach＝吊臂轉到 reach 度 ──
+  // ── 機械手臂（水平多關節 SCARA，晶圓搬運手臂就是這型）：底座＋立柱＋三段關節（肩 j1、肘 j2 水平迴轉、腕 j3 抵消、夾爪永遠朝同一方向）＋夾爪（自己一層 <id>_grip，可往下伸）。
+  //   原點＝底座底面中心；伸直（角度 0）時夾爪在 x＝l1＋l2 處（＝取料位置，把手臂擺在讓夾爪剛好在晶片上方）。
+  //   o.to＝[dx,dz]：放料位置相對取料位置的位移（程式用兩連桿反向運動學算 j1、j2；j3＝−(j1＋j2) 保持夾爪方向）；也可直接寫 j1、j2（度）。肘朝哪邊折用 elbow(1｜-1)。
+  //   o.carry＝被夾走的零件（"@id:名稱"）：另外生出 j1c、j2c、j3c（hold：跟著手臂轉到定位後留在原地，不跟著轉回來）。
+  //   動作：j1／j2／j3 關節（chain，繞自己的 3D 轉軸）、carry 版、reach（舊的上下擺，保留） ──
   arm(o, c) {
     const h = o.h ?? 2.2, l1 = o.l1 ?? 2.4, l2 = o.l2 ?? 2.0, drop = o.drop ?? 0.9, G = `${c.id}_grip`;
     c.P("base", { shape: "cyl", size: [0.9, 0.35], rot: V, pos: [0, 0.175, 0], mat: "dark" });
@@ -150,6 +156,21 @@ export const PARTS = {
     c.P("fingers", { layer: G, shape: "box", size: [0.1, 0.34, 0.28], pos: [R2(l1 + l2), R2(y - drop - 0.29), 0], at: [[-0.28, 0, 0], [0.28, 0, 0]], mat: "steel" });
     c.anchor("", { layer: c.layer, p: [R2(l1), y + 0.4, 0], dx: 110, dy: -80 }); c.out.info.reachEnd = add3(c.pos, [l1 + l2, y - drop - 0.46, 0]);
     c.act("reach", { type: "rotate", parts: c.ids("shoulder", "link1", "elbow", "link2", "wrist", "palm", "fingers"), axis: [0, 0, 1], pivot: [c.pos[0], R2(c.pos[1] + y)], angle: o.reach ?? 28 });
+    // 水平關節：轉軸是 3D 點（垂直軸 [0,1,0]），j1 帶動 link1 以後全部、j2 帶動 link2 以後、j3 只轉夾爪（抵消前兩節的轉角）
+    const yy = R2(c.pos[1] + y), P1 = [c.pos[0], yy, c.pos[2]], P2 = [R2(c.pos[0] + l1), yy, c.pos[2]], P3 = [R2(c.pos[0] + l1 + l2), yy, c.pos[2]];
+    let j1 = o.j1 ?? 0, j2 = o.j2 ?? 0;
+    if (o.to) {
+      // 兩連桿反向運動學：平面座標 (X, Y) ＝ (x, −z)（繞 +y 轉正角＝從 +x 往 −z 轉）
+      const tx = l1 + l2 + o.to[0], ty = -o.to[1], d = Math.hypot(tx, ty);
+      if (d > l1 + l2 - 1e-6 || d < Math.abs(l1 - l2) + 1e-6) throw new Error(`arm「${c.id}」夠不到 to=${JSON.stringify(o.to)}（可達距離 ${R2(Math.abs(l1 - l2))}～${R2(l1 + l2)}，要求 ${R2(d)}）`);
+      const cb = (d * d - l1 * l1 - l2 * l2) / (2 * l1 * l2), b2 = (o.elbow ?? 1) * Math.acos(Math.max(-1, Math.min(1, cb)));
+      const a1 = Math.atan2(ty, tx) - Math.atan2(l2 * Math.sin(b2), l1 + l2 * Math.cos(b2));
+      j1 = R2((a1 * 180) / Math.PI); j2 = R2((b2 * 180) / Math.PI);
+    }
+    const J = [["j1", P1, j1, c.ids("link1", "elbow", "link2", "wrist", "palm", "fingers")], ["j2", P2, j2, c.ids("link2", "wrist", "palm", "fingers")], ["j3", P3, R2(-(j1 + j2)), c.ids("palm", "fingers")]];
+    for (const [n, pv, ang, ps] of J) c.act(n, { type: "rotate", parts: ps, axis: [0, 1, 0], pivot: pv, angle: ang, chain: true });
+    if (o.carry) for (const [n, pv, ang] of J) c.act(`${n}c`, { type: "rotate", parts: o.carry, axis: [0, 1, 0], pivot: pv, angle: ang, chain: true, hold: true });
+    c.out.info.joints = { j1, j2, j3: R2(-(j1 + j2)) };
   },
   // ── 探針頭：原點＝針尖；由下往上＝探針（細線）→兩片導板→小電路板→排線，旁邊立柱。動作 test＝測試電流沿針流下 ──
   probe(o, c) {
@@ -200,14 +221,20 @@ export const PARTS = {
     c.act("heat", { type: "pulse", parts: c.ids("base", "fins"), color: "lp_heat", glow: 0.75, halo: 0, steady: true }, ["heat"]);
     c.act("waves", { type: "wave", from: add3(c.pos, [0, bt, 0]), dir: [0, 1, 0], reach: R2(fh + 0.8), count: 3, r0: R2(w * 0.12), spread: 0.9, rate: 0.8, color: "lp_heat", width: 0.05 }, ["heat"]);
   },
-  // ── 輸送軌：沿 x 的軌床＋兩側護欄＋滾輪＋腳；原點＝軌面中心（東西放在 y＝0 上面）；len 長、w 寬 ──
+  // ── 輸送軌：沿 x 的軌床＋兩側護欄＋滾輪＋腳；原點＝軌面中心（東西放在 y＝0 上面）；len 長、w 寬。
+  //   每支滾輪是獨立零件（r0、r1…，各自繞自己的軸心轉），滾輪上有一條亮標記才看得出在轉。動作 roll＝所有滾輪一起轉（rps 每秒圈數，有起轉與停轉的加減速） ──
   rail(o, c) {
-    const len = o.len ?? 12, w = o.w ?? 2.1, n = Math.round(len / 1.1);
-    c.P("bed", { shape: "box", size: [len, 0.24, w], pos: [0, -0.12, 0], mat: "rail" });
-    c.P("side", { shape: "box", size: [len, 0.18, 0.12], pos: [0, 0.05, 0], at: [[0, 0, R2(-w / 2 - 0.03)], [0, 0, R2(w / 2 + 0.03)]], mat: "steel2" });
-    c.P("rollers", { shape: "cyl", size: [0.12, R2(w - 0.1)], pos: [0, -0.26, 0], at: Array.from({ length: n }, (_, i) => [R2(-len / 2 + 0.5 + i * ((len - 1) / (n - 1))), 0, 0]), mat: "roller" });
-    const lh = o.legH ?? 1.2; c.P("legs", { shape: "box", size: [0.24, lh, 0.24], pos: [0, R2(-0.36 - lh / 2), 0], at: [[R2(-len * 0.45), 0, R2(-w * 0.4)], [R2(-len * 0.45), 0, R2(w * 0.4)], [R2(len * 0.45), 0, R2(-w * 0.4)], [R2(len * 0.45), 0, R2(w * 0.4)]], mat: "steel2" });
+    const len = o.len ?? 12, w = o.w ?? 2.1, n = Math.max(3, Math.round(len / 0.7)), rr = 0.13;
+    const xs = Array.from({ length: n }, (_, i) => R2(-len / 2 + 0.45 + i * ((len - 0.9) / (n - 1))));
+    c.P("bed", { shape: "box", size: [len, 0.12, R2(w - 0.1)], pos: [0, -0.34, 0], mat: "rail" });
+    c.P("side", { shape: "box", size: [len, 0.22, 0.12], pos: [0, -0.06, 0], at: [[0, 0, R2(-w / 2 - 0.03)], [0, 0, R2(w / 2 + 0.03)]], mat: "steel2" });
+    c.P("r", { shape: "cyl", size: [rr, R2(w - 0.1)], pos: [0, -0.12, 0], at: xs.map((x) => [x, 0, 0]), mat: "roller", split: true });
+    c.P("rmark", { shape: "box", size: [0.05, 0.05, R2(w - 0.06)], pos: [0, -0.12, 0], at: xs.map((x) => [R2(x + rr * 0.8), 0, 0]), mat: "binEdge", split: true });
+    const lh = o.legH ?? 1.2; c.P("legs", { shape: "box", size: [0.24, lh, 0.24], pos: [0, R2(-0.4 - lh / 2), 0], at: [[R2(-len * 0.45), 0, R2(-w * 0.4)], [R2(-len * 0.45), 0, R2(w * 0.4)], [R2(len * 0.45), 0, R2(-w * 0.4)], [R2(len * 0.45), 0, R2(w * 0.4)]], mat: "steel2" });
     c.anchor("", { p: [R2(-len / 2), 0, R2(w / 2)], dx: -60, dy: 110 }); c.outline(len, w + 1);
+    // 每個標記繞自己滾輪的軸心轉（pivots）；滾輪本身是圓柱，繞自己轉看不出來，標記才轉得出來
+    const pivots = {}; xs.forEach((x, i) => { pivots[`${c.id}_rmark${i}`] = add3(c.pos, [x, -0.12, 0]); });
+    c.act("roll", { type: "rotate", parts: c.ids("rmark"), axis: [0, 0, 1], rps: o.rps ?? 1.1, rampSpin: true, pivots });
   },
   // ── 廢料盒：敞口淺盒（紅邊）；原點＝盒底中心 ──
   bin(o, c) {
@@ -226,7 +253,11 @@ export const PARTS = {
     c.P("hub", { shape: "cyl", size: [R2(r * 0.22), R2(t * 3)], pos: [0, 0, 0], mat: "steel2" });
     c.P("marks", { shape: "box", size: [0.1, R2(r * 0.34), R2(t * 1.6)], pos: [0, 0, 0], at: Array.from({ length: 8 }, (_, i) => { const a = (i / 8) * Math.PI * 2; return [R2(r * 0.62 * Math.cos(a)), R2(r * 0.62 * Math.sin(a)), 0]; }), mat: "dark" });
     c.anchor("", { p: [0, r, 0], dx: 80, dy: -90 }); c.outline(r * 2, 0.4);
-    c.act("spin", { type: "rotate", parts: c.ids("marks"), axis: [0, 0, 1], rps: o.rps ?? 3 });
+    c.act("spin", { type: "rotate", parts: c.ids("marks"), axis: [0, 0, 1], rps: o.rps ?? 3, rampSpin: true });
+    // 冷卻水：兩支水管從刀片兩側斜斜噴向刀口（切割時一定要有水：降溫、沖掉矽屑）。動作 coolant＝水珠沿噴嘴流向刀口（跟著刀片的層移動）
+    const [bx, by, bz] = c.pos, jets = [0.32, -0.32].map((dz) => [[R2(bx - r * 1.15), R2(by + r * 0.85), R2(bz + dz)], [R2(bx - r * 0.12), R2(by - r * 0.95), R2(bz + dz * 0.1)]]);
+    jets.forEach(([a, b], i) => { const A = aim(a, b); c.P(`jet${i}`, { shape: "cyl", size: [0.05, R2(A.len * 0.45)], rot: A.rot, pos: [R2(a[0] + (b[0] - a[0]) * 0.22), R2(a[1] + (b[1] - a[1]) * 0.22), R2(a[2] + (b[2] - a[2]) * 0.22)], mat: "steel", abs: true }); });
+    c.act("coolant", { type: "flow", layer: c.layer, path: [[R2(bx - r * 1.15), R2(by + r * 0.85), bz], [R2(bx - r * 0.12), R2(by - r * 0.95), bz]], n: 7, lanes: 2, laneGap: 0.64, laneDir: [0, 0, 1], size: 0.045, shape: "dot", rate: 1.6, color: "lp_water", rim: "lp_sigRim", rimScale: 1.5, rimO: 0.35, trail: 2, trailGap: 0.03, trailColor: "lp_water", track: false }, ["water", "sigRim"]);
   },
   // ── 檢測頭（相機／感測器）：原點＝鏡頭底面；上面是機身與吊臂，下面可以拉一道細光（ray＝長度，0＝不要）。動作 sweep＝左右掃、glow＝光閃 ──
   sensor(o, c) {
@@ -238,6 +269,47 @@ export const PARTS = {
     c.anchor("", { p: [0.6, 0.6, 0], dx: 100, dy: -90 }); c.outline(1.2, 1);
     c.act("sweep", { type: "vibrate", parts: c.ids("lens", "body", "mount", "ray"), axis: [1, 0, 0], amp: o.sweepAmp ?? 2.2, freq: o.sweepFreq ?? 0.6 });
     c.act("glow", { type: "pulse", parts: c.ids("lens", "ray"), color: "lp_proc", freq: 3, glow: 0.8, halo: 0 }, ["proc"]);
+  },
+  // ── 光罩台（EUV 掃描機的 reticle stage，抽自 tech-euv）：上方兩條導軌＋成排磁鐵（不動）、移動台＋兩顆線性馬達、反射式光罩（朝下）＋四個夾具＋護膜框。
+  //   原點＝光罩下表面中心。w＝移動台寬、len＝導軌長、mw＝光罩邊長。動作 scan＝移動台沿 x 來回掃（光罩跟著動）、drive＝磁鐵與馬達通電發光 ──
+  maskstage(o, c) {
+    const w = o.w ?? 15, len = o.len ?? 24, mw = o.mw ?? 6.4, nm = Math.round(len - 2), by = 0.225;
+    c.P("rail", { shape: "slab", size: [len, 0.5, 1.0], r: 0.15, pos: [0, 2.275, 0], at: [[0, 0, -3.9], [0, 0, 3.9]], mat: "steel" });
+    c.P("mag", { shape: "slab", size: [0.62, 0.35, 1.1], r: 0.06, pos: [0, 2.675, 0], at: Array.from({ length: nm }, (_, i) => [[R2(-(nm - 1) / 2 + i), 0, -3.9], [R2(-(nm - 1) / 2 + i), 0, 3.9]]).flat(), mat: "dark" });
+    c.P("stage", { shape: "slab", size: [w, 1.4, 9], r: 0.4, bevel: 0.1, pos: [0, 1.175, 0], mat: "stage" });
+    c.P("motor", { shape: "slab", size: [2.4, 1.0, 9.4], r: 0.2, pos: [0, 1.675, 0], at: [[R2(-w * 0.43), 0, 0], [R2(w * 0.43), 0, 0]], mat: "dark" });
+    c.P("mask", { shape: "slab", size: [mw, 0.45, mw], r: 0.2, pos: [0, by, 0], mat: "mask" });
+    c.P("clamp", { shape: "box", size: [0.8, 0.5, 0.8], pos: [0, 0.575, 0], at: [[-3.4, 0, -3.4], [3.4, 0, -3.4], [-3.4, 0, 3.4], [3.4, 0, 3.4]].map(([x, y, z]) => [R2(x * mw / 6.8), y, R2(z * mw / 6.8)]), mat: "dark" });
+    c.P("pellicle", { shape: "ring", size: [R2(mw * 0.94), R2(mw * 0.94), 0.3], r: 0.2, wall: 0.25, rot: [90, 0, 0], pos: [0, -0.225, 0], mat: "steel" });
+    c.anchor("", { p: [R2(mw / 2), by, R2(mw / 2)], dx: 120, dy: 70 }); c.outline(len, 9);
+    c.act("scan", { type: "vibrate", parts: c.ids("stage", "motor", "mask", "clamp", "pellicle"), axis: [1, 0, 0], amp: o.amp ?? 1.6, freq: o.freq ?? 0.4 });
+    c.act("drive", { type: "pulse", parts: c.ids("mag", "motor"), color: "lp_sig", steady: true, glow: 0.6, halo: 0 }, ["sig"]);
+  },
+  // ── 反射鏡面陣列（EUV 的場鏡面／瞳鏡面，抽自 tech-euv 的 facetPlate）：底板＋n×n 片小鏡面；tilt＝整片繞 z 傾斜（度，鏡面法線從 +y 往 −x 偏），原點＝鏡面板中心。動作 glint＝鏡面亮起（反射光） ──
+  mirrorarray(o, c) {
+    const w = o.w ?? 4.2, n = o.n ?? 4, fs = o.fs ?? 0.9, a = ((o.tilt ?? 0) * Math.PI) / 180, t = [Math.cos(a), Math.sin(a)], nv = [-Math.sin(a), Math.cos(a)], st = w / n;
+    c.P("plate", { shape: "slab", size: [w, 0.45, w], r: 0.2, rot: [0, 0, o.tilt ?? 0], pos: [R2(-nv[0] * 0.3), R2(-nv[1] * 0.3), 0], mat: "steel" });
+    const at = []; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const u = (i - (n - 1) / 2) * st, v = (j - (n - 1) / 2) * st; at.push([R2(t[0] * u + nv[0] * 0.05), R2(t[1] * u + nv[1] * 0.05), R2(v)]); }
+    c.P("facets", { shape: "slab", size: [fs, 0.28, fs], r: 0.08, rot: [0, 0, o.tilt ?? 0], pos: [0, 0, 0], at, mat: "facet" });
+    c.P("arm", { shape: "cyl", size: [0.22, 1.8], rot: [90, 0, o.tilt ?? 0], pos: [R2(-nv[0] * 1.3), R2(-nv[1] * 1.3), 0], mat: "dark" });
+    c.anchor("", { p: [R2(nv[0] * 0.4), R2(nv[1] * 0.4 + 0.2), R2(w / 2)], dx: 100, dy: -90 }); c.outline(w, w);
+    c.act("glint", { type: "pulse", parts: c.ids("facets"), color: "lp_proc", freq: o.freq ?? 2, glow: 0.7, halo: 0 }, ["proc"]);
+  },
+  // ── 對位框（抽自 tech-packaging 的 rectLines）：水平放的矩形框線（橘色，不受光）；w×d、dash＞0＝虛線（每段長度）、t＝線寬。原點＝框中心（y＝所在高度）。動作 glow＝框閃（對位對準的提示） ──
+  alignframe(o, c) {
+    const w = o.w ?? 3, d = o.d ?? 3, t = o.t ?? 0.03, dash = o.dash ?? 0;
+    if (!dash) {
+      c.P("H", { shape: "box", size: [w, 0.01, t], pos: [0, 0, 0], at: [[0, 0, R2(-d / 2)], [0, 0, R2(d / 2)]], mat: "frame" });
+      c.P("V", { shape: "box", size: [t, 0.01, d], pos: [0, 0, 0], at: [[R2(-w / 2), 0, 0], [R2(w / 2), 0, 0]], mat: "frame" });
+    } else {
+      const nh = Math.round(w / dash / 2), nv = Math.round(d / dash / 2), sh = [], sv = [];
+      for (let i = 0; i < nh; i++) { const x = R2(-w / 2 + (i + 0.5) * (w / nh)); sh.push([x, 0, R2(-d / 2)], [x, 0, R2(d / 2)]); }
+      for (let i = 0; i < nv; i++) { const z = R2(-d / 2 + (i + 0.5) * (d / nv)); sv.push([R2(-w / 2), 0, z], [R2(w / 2), 0, z]); }
+      c.P("H", { shape: "box", size: [R2((w / nh) * 0.55), 0.012, t], pos: [0, 0, 0], at: sh, mat: "frame" });
+      c.P("V", { shape: "box", size: [t, 0.012, R2((d / nv) * 0.55)], pos: [0, 0, 0], at: sv, mat: "frame" });
+    }
+    c.anchor("", { p: [R2(w / 2), 0, R2(d / 2)], dx: 90, dy: 60 }); c.outline(w, d);
+    c.act("glow", { type: "pulse", parts: c.ids("H", "V"), color: "lp_proc", freq: 3, glow: 0.8, halo: 0 }, ["proc"]);
   },
 };
 export const PART_NAMES = Object.keys(PARTS);

@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { THEME_3D as T } from "../../theme";
 import { cameraFor, mix, type State3D } from "./engine";
-import { Ops, partFxAt, partOps } from "./Ops";
+import { Ops, partFxAt, partOps, rotDelta } from "./Ops";
 import { SHADOW_PAD, buildGeo, col, fxOf, makeMaterial, puff, shadowBlob, studioEnv, type Fx, type PartDef, type ProductModel } from "./model";
 
 /** 相機跟著狀態走（和標籤投影用同一組數字）；霧的遠近也跟著鏡頭距離 */
@@ -147,8 +147,9 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             // 運作動畫：vibrate 加位移；rotate 繞轉軸轉（轉軸預設是零件自己的位置）
             const pf = b.p.id ? partFxAt(pops.get(b.p.id), s, b.p) : null;
             let px = q[0] + off[0] + L.x + (pf?.off[0] ?? 0), py = q[1] + off[1] + L.y + (pf?.off[1] ?? 0);
-            const pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
-            if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }
+            let pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
+            if (pf?.quat && pf.hier) { const dd = rotDelta(pf, q); px += dd[0]; py += dd[1]; pz += dd[2]; }
+            else if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }
             // grow：以零件底部（y 最低處）為基準伸縮，底部不離開桌面
             const gs = pf?.grow ?? null;
             if (gs) py += ((gs[1] - 1) * (b.p.size[1] ?? 0)) / 2;

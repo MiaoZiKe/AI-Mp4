@@ -36,50 +36,90 @@ export const ACTION_PRESETS = {
 // ─────────── ② 腳本層預設：回傳 { shift: [], run: [] } ───────────
 const S = (o) => { const x = { ...o }; for (const k of Object.keys(x)) if (x[k] === undefined) delete x[k]; return x; };
 export const MOTIONS = {
-  /** 取放：吸嘴下去 → 吸住（嘴尖亮）→ 抬起 → 平移 → 對位下降 → 放開（小回彈）→ 回原位。
-   *  tool＝吸嘴的層、item＝被吸的層、to＝[dx, dz] 平移量、down＝吸嘴往下多少才碰到、lift＝抬多高、dyEnd＝放下後比原本高多少（預設 0）。約 52 幀。 */
+  // 下面五個動作（取放、熱壓接合、逐層堆疊、切割、掃描檢測）照真實機台的節拍寫：有加速減速（位移都是緩入緩出）、有停頓（吸附、保壓、視覺定位）、有反作用（壓下時被壓的零件微壓縮）。
+  // 每個的「真實機台怎麼做」與來源寫在 docs/three-parts.md 第三節。幀數是 30 fps，k 整體放慢（k＝2 慢一倍）。
+  /** 取放（pick-and-place）：吸嘴下降 → 真空吸附（嘴尖亮、停一下）→ 上升 → 平移 → 停住（視覺定位量到偏差）→ 微調對位 → 下降 → 破真空放開（零件落下、被壓一下）→ 上升 → 回原位。約 126 幀。
+   *  tool＝吸嘴的層、item＝被吸的層、to＝[dx, dz] 平移量、down＝吸嘴往下多少才碰到、lift＝抬多高、dyEnd＝放下後比原本高多少、press＝放下時被壓的層、
+   *  align＝[ex, ez] 平移後的對位偏差（預設 [0.12, -0.08]，false＝不演微調）。 */
   "pick-place": (m, o, model) => {
-    const k = o.k ?? 1, t = (n) => off(o.at, n * k), down = o.down ?? 1.5, L = o.lift ?? 1.5, [dx, dz] = o.to ?? [3, 0], e = o.dyEnd ?? 0, f = (n) => Math.round(n * k);
-    const suck = o.suck ?? (model.actions?.[`${o.tool}_suck`] ? `${o.tool}_suck` : null);
+    const k = o.k ?? 1, t = (n) => off(o.at, n * k), f = (n) => Math.max(1, Math.round(n * k)), down = o.down ?? 1.5, L = o.lift ?? 1.5, [dx, dz] = o.to ?? [3, 0], e = o.dyEnd ?? 0;
+    const [ex, ez] = o.align === false ? [0, 0] : o.align ?? [0.12, -0.08], suck = o.suck ?? (model.actions?.[`${o.tool}_suck`] ? `${o.tool}_suck` : null), END = 104;
     return {
       shift: [
-        S({ layer: o.tool, at: t(0), until: t(7), dy: -down, dur: f(6) }), S({ layer: o.tool, at: t(7), until: t(52), dy: L, dur: f(8) }), S({ layer: o.tool, at: t(16), until: t(52), dx, dz, dur: f(14) }),
-        S({ layer: o.tool, at: t(32), until: t(42), dy: R3(e - L + 0.05), dur: f(7) }), S({ layer: o.tool, at: t(42), until: t(52), dy: 0.6, dur: f(6) }),
-        S({ layer: o.item, at: t(6), dy: 0.03, dur: 2 }), S({ layer: o.item, at: t(7), dy: R3(L - 0.03), dur: f(8) }), S({ layer: o.item, at: t(16), dx, dz, dur: f(14) }),
-        S({ layer: o.item, at: t(32), dy: R3(e + 0.07 - L), dur: f(7) }), S({ layer: o.item, at: t(39), dy: -0.07, dur: 4, fallOut: true, bounce: 0.25 }),
+        // 吸嘴：下降（慢慢靠近）→ 停在零件上 → 上升
+        S({ layer: o.tool, at: t(0), until: t(16), dy: -down, dur: f(10) }),
+        S({ layer: o.tool, at: t(16), until: t(END), dy: L, dur: f(10) }),
+        S({ layer: o.tool, at: t(28), until: t(END), dx: R3(dx + ex), dz: R3(dz + ez), dur: f(22) }),          // 平移（先到差一點的位置）
+        S({ layer: o.tool, at: t(60), until: t(END), dx: -ex, dz: -ez, dur: f(8) }),                           // 看完（停 10 幀）後微調
+        S({ layer: o.tool, at: t(70), until: t(90), dy: R3(e + 0.05 - L), dur: f(10) }),                       // 對位後下降
+        S({ layer: o.tool, at: t(84), until: t(END), dy: 0.6, dur: f(8) }),                                    // 放開後先抬一點
+        // 零件：吸附瞬間彈起貼上嘴尖，之後跟著吸嘴走
+        S({ layer: o.item, at: t(14), dy: 0.03, dur: 2 }), S({ layer: o.item, at: t(16), dy: R3(L - 0.03), dur: f(10) }),
+        S({ layer: o.item, at: t(28), dx: R3(dx + ex), dz: R3(dz + ez), dur: f(22) }), S({ layer: o.item, at: t(60), dx: -ex, dz: -ez, dur: f(8) }),
+        S({ layer: o.item, at: t(70), dy: R3(e + 0.07 - L), dur: f(10) }),
+        S({ layer: o.item, at: t(82), dy: -0.07, dur: 4, fallOut: true, bounce: 0.25, press: o.press, pressAmt: o.pressAmt ?? 0.012 }),   // 破真空：落下、被壓一下、小回彈
       ],
-      run: suck ? [S({ id: suck, at: t(6), until: t(44), ramp: 2 })] : [],
+      run: suck ? [S({ id: suck, at: t(10), until: t(82), ramp: 3 })] : [],
     };
   },
-  /** 下壓接合：tool 受力下壓（加速、碰到後回彈）→ press 裡的層被壓一下 → melt 動作（凸塊熔化發光）→ 冷卻。約 40 幀 */
-  "press-bond": (m, o) => {
-    const t = (n) => off(o.at, n * (o.k ?? 1));
+  /** 熱壓接合（thermo-compression bonding）：壓頭先加熱 → 緩降到接觸 → 加壓（零件微壓縮、被壓的層下沉）→ 保壓數秒、凸塊熔化相連 → 冷卻（壓頭橘光慢慢退）→ 才抬起 → 通電測試。約 100 幀。
+   *  tool＝壓頭層、down＝下降量、press＝被壓的層、sink＝保壓時被壓的層下沉量（預設 0.015）、melt＝熔化動作 id、current＝電流動作 id、heat＝壓頭加熱動作 id（預設 <tool>_heat）、hold＝保壓幀數（預設 54）。 */
+  "press-bond": (m, o, model) => {
+    const k = o.k ?? 1, t = (n) => off(o.at, n * k), f = (n) => Math.max(1, Math.round(n * k)), hold = o.hold ?? 54, sink = o.sink ?? 0.015, down = o.down ?? 0.3, lift = 18 + hold;
+    const heat = o.heat ?? (model.actions?.[`${o.tool}_heat`] ? `${o.tool}_heat` : null), P = [].concat(o.press ?? []);
     return {
-      shift: [S({ layer: o.tool, at: t(0), until: t(16), dy: -(o.down ?? 0.3), dur: 6, fallOut: true, bounce: 0.12, press: o.press, pressAmt: o.pressAmt ?? 0.012 })],
-      run: [...[].concat(o.melt ?? []).map((id) => S({ id, at: t(8), until: t(34), ramp: 5 })), ...[].concat(o.current ?? []).map((id) => S({ id, at: t(10), until: t(30), ramp: 4 }))],
+      shift: [
+        S({ layer: o.tool, at: t(0), until: t(lift), dy: -(down - 0.05), dur: f(14) }),                                                               // 慢慢靠近
+        S({ layer: o.tool, at: t(14), until: t(lift), dy: -0.05, dur: 3, fallOut: true, bounce: 0.1, press: P, pressAmt: o.pressAmt ?? 0.012 }),       // 接觸：被壓一下
+        ...P.map((l) => S({ layer: l, at: t(17), until: t(lift - 2), dy: -sink, dur: f(6) })),                                                          // 保壓：被壓的層微微下沉
+      ],
+      run: [
+        ...(heat ? [S({ id: heat, at: t(-14), until: t(lift - 6), ramp: f(14) })] : []),       // 先加熱（橘光漸亮），保壓結束後慢慢冷卻
+        ...[].concat(o.melt ?? []).map((id) => S({ id, at: t(18), until: t(lift - 14), ramp: f(8) })),
+        ...[].concat(o.current ?? []).map((id) => S({ id, at: t(lift + 4), until: t(lift + 30), ramp: 4 })),
+      ],
     };
   },
-  /** 逐層堆疊：layers（由下到上）依序從上方落下（受重力、小回彈、壓一下下面）；先在 hide（預設該幕開頭）藏起來 */
-  "stack-up": (m, o) => ({
-    shift: o.layers.map((l, i) => S({ layer: l, at: o.hide ?? "start-2", until: off(o.at, i * (o.gap ?? 4)), dy: o.from ?? 1.4, opacity: 0, dur: 9, fallIn: true, bounce: o.bounce ?? 0.03, press: o.press ?? (i ? [o.layers[i - 1]] : o.base), pressAmt: o.pressAmt ?? 0.01 })),
-    run: [],
-  }),
-  /** 切割：blade 沿 dx／dz 切過去（len 幀），轉動（<blade>_spin）；切完 after 裡的層（切下來的晶粒）各自微微分開 */
-  cut: (m, o) => {
-    const len = o.len ?? 60;
+  /** 逐層堆疊（每層都要「對位 → 放下 → 接合」）：layers（由下到上）依序從上方落下；落下時帶一點橫向偏差、在著地前修正（對位），著地後前一層被壓一下、bond[i] 動作亮起（接合）；
+   *  先在 hide（預設該幕開頭）藏起來。gap＝每層間隔幀數（預設 16）、align＝[ex, ez]（預設 0.1，每層交替方向）、bond＝每層的接合動作 id 陣列（可省） */
+  "stack-up": (m, o) => {
+    const gap = o.gap ?? 16, [ax, az] = o.align === false ? [0, 0] : o.align ?? [0.1, 0.06];
     return {
-      shift: [S({ layer: o.blade, at: o.at, until: off(o.at, len + 6), dx: o.dx ?? 6, dz: o.dz ?? 0, dur: len }), ...(o.after ?? []).map((a) => S({ dur: 8, ...a, at: off(o.at, len) }))],
-      run: [S({ id: o.spin ?? `${o.blade}_spin`, at: off(o.at, -6), until: off(o.at, len + 10), ramp: 4 })],
+      shift: o.layers.flatMap((l, i) => {
+        const land = off(o.at, i * gap), sg = i % 2 ? -1 : 1;
+        return [S({ layer: l, at: o.hide ?? "start-2", until: land, dy: o.from ?? 1.4, opacity: 0, dur: 12, fallIn: true, bounce: o.bounce ?? 0.03, press: o.press ?? (i ? [o.layers[i - 1]] : o.base), pressAmt: o.pressAmt ?? 0.01 }),
+          ...(ax || az ? [S({ layer: l, at: o.hide ?? "start-2", until: land, dx: R3(ax * sg), dz: R3(az * sg), dur: 12 })] : [])];
+      }),
+      run: o.bond ? o.layers.flatMap((l, i) => [].concat(o.bond[i] ?? []).map((id) => S({ id, at: off(o.at, i * gap + 12), until: off(o.at, i * gap + 30), ramp: 5 }))) : [],
     };
   },
-  /** 掃描檢測：tool（檢測頭的層）沿 dz 掃過去（len 幀），同時左右掃（<tool>_sweep）、發光（<tool>_glow）；flag＝掃到一半亮起來標記壞的動作（例如 wf_badGlow） */
+  /** 切割（blade dicing）：刀片先空轉升速、冷卻水先開 → 下刀（plunge）切進晶圓 → 沿切割道前進（緩入緩出）→ 抬刀 → 退回、降速；切完 after 裡的層（切下來的晶粒）各自微微分開。
+   *  blade＝刀片層、len＝沿切割道走幾幀（預設 60）、dx／dz＝走多遠、depth＝下刀深度（預設 0.35）、coolant＝冷卻水動作 id（預設 <blade>_coolant）、spin＝轉動動作 id。 */
+  cut: (m, o, model) => {
+    const len = o.len ?? 60, d = o.depth ?? 0.35, cool = o.coolant ?? (model.actions?.[`${o.blade}_coolant`] ? `${o.blade}_coolant` : null);
+    return {
+      shift: [
+        S({ layer: o.blade, at: off(o.at, -4), until: off(o.at, len + 14), dy: -d, dur: 12 }),              // 下刀 / 抬刀
+        S({ layer: o.blade, at: off(o.at, 8), until: off(o.at, len + 28), dx: o.dx ?? 6, dz: o.dz ?? 0, dur: len }),   // 沿切割道走
+        ...(o.after ?? []).map((a) => S({ dur: 8, ...a, at: off(o.at, len + 10) })),
+      ],
+      run: [S({ id: o.spin ?? `${o.blade}_spin`, at: off(o.at, -34), until: off(o.at, len + 24), ramp: 26 }), ...(cool ? [S({ id: cool, at: off(o.at, -20), until: off(o.at, len + 18), ramp: 8 })] : [])],
+    };
+  },
+  /** 掃描檢測（inspection scan）：檢測頭沿 dz 掃過去，左右掃描（<tool>_sweep）、發光；掃到缺陷（stops 的位置，預設走到一半）就停下來，標記亮起（flag），停 stop 幀後繼續掃到底。
+   *  tool＝檢測頭的層、len＝全程幀數、dz／dx＝走多遠、stops＝停在全程的幾成（陣列）、stop＝停幾幀（預設 12）、flag＝發現缺陷時亮起的動作 id（可多個，依序對應每個 stop）。 */
   scan: (m, o) => {
-    const len = o.len ?? 90;
-    return {
-      shift: [S({ layer: o.tool, at: o.at, until: off(o.at, len + 6), dx: o.dx ?? 0, dz: o.dz ?? 3, dur: len })],
-      run: [S({ id: `${o.tool}_sweep`, at: o.at, until: off(o.at, len + 6), ramp: 6 }), S({ id: `${o.tool}_glow`, at: o.at, until: off(o.at, len + 6), ramp: 6 }),
-        ...[].concat(o.flag ?? []).map((id) => S({ id, at: off(o.at, len * 0.5), until: off(o.at, len + 20), ramp: 4 }))],
-    };
+    const len = o.len ?? 90, stops = (o.stops ?? [0.5]).slice().sort((a, b) => a - b), pause = o.stop ?? 12, edges = [0, ...stops, 1], flags = [].concat(o.flag ?? []), shift = [], run = [];
+    const total = len + pause * stops.length, END = total + 8;
+    let cur = 0;
+    for (let i = 0; i < edges.length - 1; i++) {
+      const frac = edges[i + 1] - edges[i], dur = Math.max(4, Math.round(len * frac));
+      shift.push(S({ layer: o.tool, at: off(o.at, cur), until: off(o.at, END), dx: R3((o.dx ?? 0) * frac), dz: R3((o.dz ?? 3) * frac), dur }));
+      cur += dur;
+      if (i < stops.length) { if (flags[i]) run.push(S({ id: flags[i], at: off(o.at, cur - 4), until: off(o.at, total + 24), ramp: 4 })); cur += pause; }
+    }
+    run.push(S({ id: `${o.tool}_sweep`, at: o.at, until: off(o.at, END), ramp: 8 }), S({ id: `${o.tool}_glow`, at: o.at, until: off(o.at, END), ramp: 8 }));
+    return { shift, run };
   },
   /** 輸送前進一格：layers 整排往 dx 前進（dur 幀） */
   advance: (m, o) => ({ shift: o.layers.map((l) => S({ layer: l, at: o.at, dx: o.dx ?? 1.9, dz: o.dz, dur: o.dur ?? 10 })), run: [] }),
@@ -93,6 +133,21 @@ export const MOTIONS = {
     shift: [S({ layer: `${o.arm}_grip`, at: off(o.at, 12), until: off(o.at, 34), dy: -(o.grab ?? 0.5), dur: 7 }), ...(o.item ? [S({ layer: o.item, at: off(o.at, 22), dx: o.dx, dz: o.dz, dy: o.dy, dur: 12 })] : [])],
     run: [S({ id: `${o.arm}_reach`, at: o.at, until: o.until ?? off(o.at, 70), ramp: o.ramp ?? 12 })],
   }),
+  /** 手臂搬運（水平多關節）：夾爪下伸 → 夾住（停一下）→ 抬起 → 肩、肘、腕同時水平迴轉（緩入緩出）到放料位 → 夾爪下放 → 鬆開（零件落下、被壓一下）→ 抬起 → 手臂轉回。約 106 幀。
+   *  arm＝手臂實例 id（model 裡要有 <arm>_j1…，arm 零件給 to 或 j1／j2；要搬東西就給 carry）、item＝被夾的層、grab＝夾爪下伸量（預設 0.5）、put＝放下後比取料時高多少（預設 0）、press＝放下時被壓的層。 */
+  "arm-transfer": (m, o, model) => {
+    const k = o.k ?? 1, t = (n) => off(o.at, n * k), f = (n) => Math.max(1, Math.round(n * k)), g = o.grab ?? 0.5, put = o.put ?? 0, A = o.arm, hasC = !!model.actions?.[`${A}_j1c`];
+    const joints = ["j1", "j2", "j3"].flatMap((j) => [S({ id: `${A}_${j}`, at: t(30), until: t(76), ramp: f(24) }), ...(hasC ? [S({ id: `${A}_${j}c`, at: t(30), until: t(76), ramp: f(24) })] : [])]);
+    return {
+      shift: [
+        S({ layer: `${A}_grip`, at: t(0), until: t(18), dy: -g, dur: f(10) }), S({ layer: `${A}_grip`, at: t(56), until: t(76), dy: R3(-g + put), dur: f(10) }),
+        ...(o.item ? [S({ layer: o.item, at: t(16), dy: 0.02, dur: 2 }), S({ layer: o.item, at: t(18), dy: R3(g - 0.02), dur: f(10) }),
+          S({ layer: o.item, at: t(56), dy: R3(-g + put + 0.05), dur: f(10) }),
+          S({ layer: o.item, at: t(70), dy: -0.05, dur: 4, fallOut: true, bounce: 0.25, press: o.press, pressAmt: o.pressAmt ?? 0.012 })] : []),
+      ],
+      run: joints,
+    };
+  },
   /** 一次觸發好幾個動作（熱擴散：晶片發熱、散熱片發橘、熱浪）；stagger＝每個晚幾幀 */
   run: (m, o) => ({ shift: [], run: o.ids.map((id, i) => S({ id, at: off(o.at, i * (o.stagger ?? 0)), until: o.until, ramp: o.ramp ?? 6, gain: o.gain, speed: o.speed })) }),
 };

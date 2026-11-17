@@ -2,8 +2,8 @@
  "version": 2,
  "slug": "sample-parts",
  "fps": 30,
- "totalFrames": 432,
- "totalSec": 14.4,
+ "totalFrames": 660,
+ "totalSec": 22,
  "gapSec": 0,
  "transitionFrames": 0,
  "silent": true,
@@ -91,154 +91,237 @@
    "headSilSec": 0,
    "tailSilSec": 0,
    "startFrame": 162,
-   "durationFrames": 144,
+   "durationFrames": 156,
    "transitionFrames": 0,
    "transition": null,
    "voiceStartFrame": 166,
-   "voiceEndFrame": 296,
-   "stillFrame": 305,
+   "voiceEndFrame": 308,
+   "stillFrame": 317,
    "subtitleWindow": [
     163,
-    307
+    319
    ],
    "sourceWindow": [
     162,
-    306
+    318
    ],
    "lines": [
     {
-     "text": "好的晶片",
+     "text": "好的晶片用吸嘴吸起來",
      "start": 163,
      "chars": [
       164,
-      173,
-      181,
-      190
+      172,
+      180,
+      188,
+      196,
+      203,
+      211,
+      219,
+      227,
+      235
      ]
     },
     {
-     "text": "用吸嘴吸起來",
-     "start": 197,
+     "text": "對準後放到基板上",
+     "start": 241,
      "chars": [
-      199,
-      207,
-      216,
-      225,
-      233,
-      242
-     ]
-    },
-    {
-     "text": "放到基板上",
-     "start": 249,
-     "chars": [
+      243,
       251,
       259,
-      268,
-      277,
-      285
+      267,
+      274,
+      282,
+      290,
+      298
      ]
     }
    ],
    "keywords": [
     {
      "text": "吸起來",
-     "start": 225
+     "start": 219
     },
     {
      "text": "基板",
-     "start": 268
+     "start": 282
     }
    ],
    "cues": [
     {
      "id": "pick",
      "text": "吸嘴",
-     "frame": 209
+     "frame": 205
     },
     {
      "id": "place",
      "text": "放到",
-     "frame": 253
+     "frame": 269
     }
    ],
-   "sub": "好的晶片\n用吸嘴吸起來\n放到基板上",
+   "sub": "好的晶片用吸嘴吸起來\n對準後放到基板上",
    "silentEstimate": true
   },
   {
    "id": "s3",
    "audio": null,
-   "audioFrame": 310,
+   "audioFrame": 322,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 306,
-   "durationFrames": 126,
+   "startFrame": 318,
+   "durationFrames": 144,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 310,
-   "voiceEndFrame": 422,
-   "stillFrame": 420,
+   "voiceStartFrame": 322,
+   "voiceEndFrame": 452,
+   "stillFrame": 461,
    "subtitleWindow": [
-    307,
-    432
+    319,
+    463
    ],
    "sourceWindow": [
-    306,
-    432
+    318,
+    462
    ],
    "lines": [
     {
-     "text": "下壓接合",
-     "start": 307,
+     "text": "壓頭先加熱",
+     "start": 319,
      "chars": [
-      308,
-      319,
-      330,
-      342
+      320,
+      329,
+      337,
+      346,
+      355
+     ]
+    },
+    {
+     "text": "下壓保壓",
+     "start": 361,
+     "chars": [
+      363,
+      372,
+      381,
+      389
      ]
     },
     {
      "text": "接點熔化通電",
-     "start": 351,
+     "start": 396,
      "chars": [
-      353,
-      364,
-      375,
-      386,
       398,
-      409
+      407,
+      415,
+      424,
+      433,
+      441
      ]
     }
    ],
    "keywords": [
     {
-     "text": "下壓",
-     "start": 308
+     "text": "加熱",
+     "start": 346
     },
     {
-     "text": "熔化",
-     "start": 375
+     "text": "保壓",
+     "start": 381
     }
    ],
    "cues": [
     {
      "id": "press",
      "text": "下壓",
-     "frame": 310
+     "frame": 365
     },
     {
      "id": "melt",
      "text": "熔化",
-     "frame": 377
+     "frame": 417
     },
     {
      "id": "cur",
      "text": "通電",
-     "frame": 400
+     "frame": 435
     }
    ],
-   "sub": "下壓接合\n接點熔化通電",
+   "sub": "壓頭先加熱\n下壓保壓\n接點熔化通電",
+   "silentEstimate": true
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 466,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 462,
+   "durationFrames": 198,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 466,
+   "voiceEndFrame": 650,
+   "stillFrame": 648,
+   "subtitleWindow": [
+    463,
+    660
+   ],
+   "sourceWindow": [
+    462,
+    660
+   ],
+   "lines": [
+    {
+     "text": "手臂水平迴轉",
+     "start": 463,
+     "chars": [
+      464,
+      477,
+      490,
+      503,
+      517,
+      530
+     ]
+    },
+    {
+     "text": "把晶片搬到托盤上",
+     "start": 541,
+     "chars": [
+      543,
+      556,
+      569,
+      582,
+      595,
+      609,
+      622,
+      635
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "迴轉",
+     "start": 517
+    },
+    {
+     "text": "托盤",
+     "start": 609
+    }
+   ],
+   "cues": [
+    {
+     "id": "turn",
+     "text": "迴轉",
+     "frame": 519
+    },
+    {
+     "id": "tray",
+     "text": "托盤",
+     "frame": 611
+    }
+   ],
+   "sub": "手臂水平迴轉\n把晶片搬到托盤上",
    "silentEstimate": true
   }
  ]

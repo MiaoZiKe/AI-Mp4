@@ -53,6 +53,9 @@ export type ActionDef = {
   grow?: boolean; angle?: number; swing?: number; gain0?: number;
   /** rotate（2026/11/16 tech-offer）：damp＝轉到 angle 時用阻尼振盪（過衝後收斂）；level＝吊著、保持水平的零件 id（只跟著 hang 吊點平移）；hang＝[[左吊點 x,y],[右吊點 x,y]]；
    *  flow 的 accel＝受重力加速（位置＝u²） */
+  /** rotate 進階（2026/11/17 零件庫）：pivot 可寫 [x,y,z]（3D 轉軸，配 axis 任意軸）；pivots＝{ 零件 id: 轉軸 }（每個零件自己的轉軸，優先於 pivot）；
+   *  hold＝angle 轉到之後 until 也不轉回來（被手臂抓著搬走、放下後留在原地）；rampSpin＝rps 的轉速跟著進出場強度（起轉加速、停轉減速）；chain＝同一個零件有好幾個 rotate 時，各自繞自己的轉軸、依動作順序（先寫的在外層）串成關節鏈 */
+  pivots?: Record<string, number[]>; hold?: boolean; chain?: boolean; rampSpin?: boolean;
   damp?: { f: number; tau: number }; level?: string[]; hang?: number[][]; accel?: boolean;
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
