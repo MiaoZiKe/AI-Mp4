@@ -1,0 +1,1576 @@
+{
+ "slug": "tech-foundry",
+ "title": "晶圓代工有哪幾家、各家做什麼不同（科技透明圈）",
+ "asOf": "2026/11/24",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-foundry-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "fab",
+    "label": "晶圓廠",
+    "en": "FAB",
+    "field": "400 m",
+    "ruler": "100 m",
+    "art": "none",
+    "handoff3D": true,
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "room",
+    "label": "無塵室",
+    "en": "CLEANROOM",
+    "field": "40 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "tool",
+    "label": "機台",
+    "en": "TOOL",
+    "field": "4 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "40 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "die",
+    "label": "晶粒",
+    "en": "DIE",
+    "field": "4 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "晶片公司沒有工廠",
+   "代工廠各做什麼"
+  ],
+  "sub": "晶圓代工",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶圓代工，超過七成二的營收，都是台積電的。蘋果、輝達為什麼不自己蓋廠？",
+   "tts": "晶圓代工，超過七成二的營收，都是台積電的。蘋果、輝達為什麼不自己蓋廠？",
+   "subtitle": {
+    "zh": "晶圓代工\n超過七成二的營收\n都是台積電的\n蘋果、輝達\n為什麼不自己蓋廠？",
+    "en": "Global wafer foundry: | over 72% of revenue | belongs to TSMC. | Apple, NVIDIA, | why don't they build their own fabs?"
+   },
+   "keywords": [
+    "七成二",
+    "台積電",
+    "不自己蓋廠"
+   ],
+   "cues": [
+    {
+     "id": "wc",
+     "text": "晶圓代工"
+    },
+    {
+     "id": "pct",
+     "text": "七成二"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "ask",
+     "text": "不自己蓋廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "TrendForce 2026 年第二季｜誰在代工？",
+     "title": "台積電 72.5%",
+     "size": 96,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": -2.6,
+      "d": 72,
+      "elev": 36
+     }
+    ],
+    "shift": [
+     {
+      "layer": "f_van",
+      "at": "start-20",
+      "until": "s9:end+400",
+      "dur": 70,
+      "dx": 9.0
+     }
+    ],
+    "run": [
+     {
+      "id": "f_steam",
+      "at": "start-30",
+      "until": "s2:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotA",
+      "at": "tsmc",
+      "until": "s2:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-share",
+      "at": "start+20",
+      "until": "s2:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "全球晶圓代工營收占比",
+      "tag": "TrendForce・2026 年第二季",
+      "t": {
+       "wc": {
+        "at": "wc"
+       },
+       "pct": {
+        "at": "pct"
+       },
+       "tsmc": {
+        "at": "tsmc"
+       },
+       "ask": {
+        "at": "ask"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "TrendForce 2026/9/9 新聞稿（2Q26）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "蓋一座先進晶圓廠，要一百億美元以上，訂單不夠大就攤不平，所以設計公司只管設計，製造交給代工廠。",
+   "tts": "蓋一座先進晶圓廠，要一百億美元以上，訂單不夠大就攤不平，所以設計公司只管設計，製造交給代工廠。",
+   "subtitle": {
+    "zh": "蓋一座先進晶圓廠\n要一百億美元以上\n訂單不夠大就攤不平\n所以設計公司只管設計\n製造交給代工廠",
+    "en": "Building one leading-edge fab | costs over $10 billion, | too much without huge orders. | So design firms just design, | and leave manufacturing to foundries."
+   },
+   "keywords": [
+    "一百億美元",
+    "攤不平",
+    "只管設計",
+    "代工廠"
+   ],
+   "cues": [
+    {
+     "id": "build",
+     "text": "蓋一座"
+    },
+    {
+     "id": "cost",
+     "text": "一百億美元"
+    },
+    {
+     "id": "nofit",
+     "text": "攤不平"
+    },
+    {
+     "id": "design",
+     "text": "只管設計"
+    },
+    {
+     "id": "fab",
+     "text": "交給代工廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 16,
+      "x": -0.6,
+      "y": -2.6,
+      "d": 64,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_hotA",
+      "at": "build",
+      "until": "s3:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "f_steam",
+      "at": "start-4",
+      "until": "s3:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "bA",
+      "text": "一座先進晶圓廠",
+      "en": "One leading-edge fab",
+      "color": "blue",
+      "at": "build",
+      "until": "nofit-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-why",
+      "at": "start+2",
+      "until": "s3:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "設計 與 製造 分開",
+      "tag": "媒體報導・數位時代、經理人",
+      "t": {
+       "build": {
+        "at": "build"
+       },
+       "cost": {
+        "at": "cost"
+       },
+       "nofit": {
+        "at": "nofit"
+       },
+       "design": {
+        "at": "design"
+       },
+       "fab": {
+        "at": "fab"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "數位時代、經理人報導"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "走進代工廠，無塵室的空氣一直往下吹，把灰塵帶走。",
+   "tts": "走進代工廠，無塵室的空氣一直往下吹，把灰塵帶走。",
+   "subtitle": {
+    "zh": "走進代工廠\n無塵室的空氣一直往下吹\n把灰塵帶走",
+    "en": "Step inside a foundry: | cleanroom air blows straight down | and carries the dust away."
+   },
+   "keywords": [
+    "無塵室",
+    "往下吹",
+    "灰塵"
+   ],
+   "cues": [
+    {
+     "id": "enter",
+     "text": "走進"
+    },
+    {
+     "id": "air",
+     "text": "往下吹"
+    },
+    {
+     "id": "dust",
+     "text": "灰塵"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 60,
+      "y": 2.0,
+      "d": 46,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "a_dn1",
+      "at": "air-8",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_dn2",
+      "at": "air-4",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_dust",
+      "at": "dust",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_ul",
+      "at": "air+10",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_ur",
+      "at": "air+10",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_ucl",
+      "at": "air+14",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_ucr",
+      "at": "air+14",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_upl",
+      "at": "air+24",
+      "until": "s4:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "a_upr",
+      "at": "air+24",
+      "until": "s4:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_ffu",
+      "text": "天花板的風扇濾網",
+      "en": "Fan filter units",
+      "color": "blue",
+      "at": "enter",
+      "until": "air+20"
+     },
+     {
+      "part": "c_grate",
+      "text": "格柵地板",
+      "en": "Perforated floor",
+      "color": "amber",
+      "at": "dust",
+      "until": "s4:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-air",
+      "at": "start+2",
+      "until": "s4:start-14",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "無塵室剖面",
+      "tag": "示意・氣流為示意",
+      "t": {
+       "enter": {
+        "at": "enter"
+       },
+       "air": {
+        "at": "air"
+       },
+       "dust": {
+        "at": "dust"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "SemiconductorX；MKS 無塵室氣流介紹（FFU 垂直氣流）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "晶圓裝在傳送盒裡，沿著天花板的軌道，送進機台。機械手臂再把晶圓一片片放進去。",
+   "tts": "晶圓裝在傳送盒裡，沿著天花板的軌道，送進機台。機械手臂再把晶圓一片片放進去。",
+   "subtitle": {
+    "zh": "晶圓裝在傳送盒裡\n沿著天花板的軌道\n送進機台\n機械手臂再把晶圓\n一片片放進去",
+    "en": "Wafers ride in a carrier pod, | along the ceiling rail, | into the tool. | Then a robot arm | places them in one by one."
+   },
+   "keywords": [
+    "傳送盒",
+    "軌道",
+    "機械手臂"
+   ],
+   "cues": [
+    {
+     "id": "box",
+     "text": "傳送盒"
+    },
+    {
+     "id": "rail",
+     "text": "軌道"
+    },
+    {
+     "id": "tool",
+     "text": "送進機台"
+    },
+    {
+     "id": "arm",
+     "text": "機械手臂"
+    },
+    {
+     "id": "put",
+     "text": "放進去"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "start-6",
+      "dur": 1
+     },
+     {
+      "to": "tool",
+      "at": "arm-20",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 56.0,
+      "y": 2.0,
+      "d": 42,
+      "elev": 12
+     },
+     {
+      "at": "rail+4",
+      "dur": 60,
+      "x": 58.0,
+      "y": 2.0,
+      "d": 42,
+      "elev": 12
+     },
+     {
+      "at": "tool+30",
+      "dur": 30,
+      "x": 120,
+      "y": -0.8,
+      "d": 26,
+      "elev": 34
+     }
+    ],
+    "shift": [
+     {
+      "layer": "ov",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob0",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob1",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob2",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob3",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob4",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "og",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "of",
+      "at": "rail-6",
+      "until": "s9:end+400",
+      "dur": 64,
+      "dx": 9.0
+     },
+     {
+      "layer": "ob1",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -0.55
+     },
+     {
+      "layer": "ob2",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -1.1
+     },
+     {
+      "layer": "ob3",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -1.65
+     },
+     {
+      "layer": "ob4",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -2.2
+     },
+     {
+      "layer": "og",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -2.2
+     },
+     {
+      "layer": "of",
+      "at": "tool-4",
+      "until": "s9:end+400",
+      "dur": 30,
+      "dy": -2.2
+     },
+     {
+      "layer": "rp1",
+      "at": "arm+0",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -0.7333333333333334
+     },
+     {
+      "layer": "rp2",
+      "at": "arm+0",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -1.4666666666666668
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+0",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -2.2
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+20",
+      "until": "s9:end+400",
+      "dur": 5,
+      "dy": 0.07
+     },
+     {
+      "layer": "tw",
+      "at": "arm+20",
+      "until": "s9:end+400",
+      "dur": 5,
+      "dy": 0.07
+     },
+     {
+      "layer": "rp1",
+      "at": "arm+26",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 0.7333333333333334
+     },
+     {
+      "layer": "rp2",
+      "at": "arm+26",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 1.4666666666666668
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+26",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 2.2
+     },
+     {
+      "layer": "tw",
+      "at": "arm+26",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 2.2
+     },
+     {
+      "layer": "rb",
+      "at": "arm+46",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dx": 7.2
+     },
+     {
+      "layer": "rp1",
+      "at": "arm+46",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dx": 7.2
+     },
+     {
+      "layer": "rp2",
+      "at": "arm+46",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dx": 7.2
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+46",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dx": 7.2
+     },
+     {
+      "layer": "tw",
+      "at": "arm+46",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dx": 7.2
+     },
+     {
+      "layer": "rp1",
+      "at": "arm+76",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -0.7333333333333334
+     },
+     {
+      "layer": "rp2",
+      "at": "arm+76",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -1.4666666666666668
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+76",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -2.2
+     },
+     {
+      "layer": "tw",
+      "at": "arm+76",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": -2.2
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+94",
+      "until": "s9:end+400",
+      "dur": 4,
+      "dy": -0.07
+     },
+     {
+      "layer": "tw",
+      "at": "arm+94",
+      "until": "s9:end+400",
+      "dur": 4,
+      "dy": -0.07
+     },
+     {
+      "layer": "rp1",
+      "at": "arm+100",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 0.7333333333333334
+     },
+     {
+      "layer": "rp2",
+      "at": "arm+100",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 1.4666666666666668
+     },
+     {
+      "layer": "rbl",
+      "at": "arm+100",
+      "until": "s9:end+400",
+      "dur": 16,
+      "dz": 2.2
+     }
+    ],
+    "run": [
+     {
+      "id": "o_foupHi",
+      "at": "box",
+      "until": "rail-6",
+      "ramp": 6
+     },
+     {
+      "id": "t_gas",
+      "at": "arm+104",
+      "until": "s5:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_plasma",
+      "at": "arm+110",
+      "until": "s5:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "o_foup",
+      "text": "晶圓傳送盒（FOUP）",
+      "en": "Wafer carrier (FOUP)",
+      "color": "amber",
+      "at": "box",
+      "until": "rail+20"
+     },
+     {
+      "part": "o_rail",
+      "text": "天花板軌道",
+      "en": "Overhead rail",
+      "color": "blue",
+      "at": "rail",
+      "until": "tool"
+     },
+     {
+      "part": "t_wafer",
+      "text": "25 片晶圓為一盒",
+      "en": "25 wafers per pod",
+      "color": "amber",
+      "at": "tool+40",
+      "until": "arm-4"
+     },
+     {
+      "part": "t_arm",
+      "text": "機械手臂",
+      "en": "Robot arm",
+      "color": "blue",
+      "at": "arm+18",
+      "until": "arm+70"
+     },
+     {
+      "part": "t_ch",
+      "text": "反應腔",
+      "en": "Process chamber",
+      "color": "amber",
+      "at": "put",
+      "until": "s5:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-path",
+      "at": "start+2",
+      "until": "s5:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "晶圓怎麼進機台",
+      "tag": "示意",
+      "t": {
+       "box": {
+        "at": "box"
+       },
+       "rail": {
+        "at": "rail"
+       },
+       "tool": {
+        "at": "tool"
+       },
+       "arm": {
+        "at": "arm"
+       },
+       "put": {
+        "at": "put"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "SEMI FOUP 標準；Entegris、Muratec"
+   ],
+   "pauseAfter": 1.2
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "放大晶圓，上面排滿晶粒。拆開一顆，底下是電晶體，上面疊著一層層金屬線。",
+   "tts": "放大晶圓，上面排滿晶粒。拆開一顆，底下是電晶體，上面疊著一層層金屬線。",
+   "subtitle": {
+    "zh": "放大晶圓\n上面排滿晶粒\n拆開一顆\n底下是電晶體\n上面疊著一層層金屬線",
+    "en": "Zoom in on the wafer: | it's covered in dies. | Take one apart: | transistors at the bottom, | layers of metal wiring on top."
+   },
+   "keywords": [
+    "晶粒",
+    "電晶體",
+    "金屬線"
+   ],
+   "cues": [
+    {
+     "id": "zw",
+     "text": "放大晶圓"
+    },
+    {
+     "id": "dies",
+     "text": "排滿晶粒"
+    },
+    {
+     "id": "open",
+     "text": "拆開一顆"
+    },
+    {
+     "id": "tr",
+     "text": "電晶體"
+    },
+    {
+     "id": "metal",
+     "text": "一層層金屬線"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-6",
+      "dur": 36
+     },
+     {
+      "to": "die",
+      "at": "open-16",
+      "dur": 36
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 180,
+      "y": -2.2,
+      "d": 24,
+      "elev": 38
+     },
+     {
+      "at": "open-16",
+      "dur": 34,
+      "x": 240,
+      "y": 0.5,
+      "d": 52,
+      "elev": 32
+     }
+    ],
+    "shift": [
+     {
+      "layer": "wf_pick",
+      "at": "dies+10",
+      "until": "s9:end+400",
+      "dur": 26,
+      "dy": 1.2
+     },
+     {
+      "layer": "d_tr",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 1.3
+     },
+     {
+      "layer": "d_m1",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 2.6
+     },
+     {
+      "layer": "d_m2",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 3.8
+     },
+     {
+      "layer": "d_m3",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 5.0
+     },
+     {
+      "layer": "d_m4",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 6.2
+     },
+     {
+      "layer": "d_top",
+      "at": "open+8",
+      "until": "metal+40",
+      "dur": 26,
+      "dy": 7.6
+     }
+    ],
+    "run": [
+     {
+      "id": "d_gateOn",
+      "at": "tr",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_sig",
+      "at": "metal+44",
+      "until": "s6:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_die",
+      "text": "一顆晶粒",
+      "en": "One die",
+      "color": "amber",
+      "at": "dies",
+      "until": "open-18"
+     },
+     {
+      "part": "d_tr",
+      "text": "電晶體",
+      "en": "Transistors",
+      "color": "amber",
+      "at": "tr",
+      "until": "metal+40"
+     },
+     {
+      "part": "d_m1",
+      "text": "金屬線（多層）",
+      "en": "Metal wiring layers",
+      "color": "blue",
+      "at": "metal",
+      "until": "metal+40"
+     },
+     {
+      "part": "d_top",
+      "text": "接點",
+      "en": "Pads",
+      "color": "blue",
+      "at": "metal",
+      "until": "metal+40"
+     },
+     {
+      "part": "d_si",
+      "text": "矽基板",
+      "en": "Silicon",
+      "color": "coral",
+      "at": "open+14",
+      "until": "metal+40"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-die",
+      "at": "start+2",
+      "until": "s6:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "一顆晶粒的剖面",
+      "tag": "示意，非實際比例",
+      "t": {
+       "zw": {
+        "at": "zw"
+       },
+       "dies": {
+        "at": "dies"
+       },
+       "open": {
+        "at": "open"
+       },
+       "tr": {
+        "at": "tr"
+       },
+       "metal": {
+        "at": "metal"
+       },
+       "sig": {
+        "at": "metal+44"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "台積電、Intel 技術文件"
+   ],
+   "pauseAfter": 1.2
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "做出這些的方法叫製程，分兩邊。七奈米以下是先進，做手機和 AI 晶片。二十八奈米以上是成熟，做車用和電源管理晶片。",
+   "tts": "做出這些的方法叫製程，分兩邊。七奈米以下是先進，做手機和 AI 晶片。二十八奈米以上是成熟，做車用和電源管理晶片。",
+   "subtitle": {
+    "zh": "做出這些的方法叫製程\n分兩邊\n七奈米以下是先進\n做手機和 AI 晶片\n二十八奈米以上是成熟\n做車用和電源管理晶片",
+    "en": "The method is called a process node, | and there are two sides. | Below 7 nm is advanced: | phone and AI chips. | 28 nm and above is mature: | car and power-management chips."
+   },
+   "keywords": [
+    "製程",
+    "先進",
+    "成熟"
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "分兩邊"
+    },
+    {
+     "id": "adv",
+     "text": "先進"
+    },
+    {
+     "id": "phone",
+     "text": "手機"
+    },
+    {
+     "id": "mat",
+     "text": "成熟"
+    },
+    {
+     "id": "car",
+     "text": "車用"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 30,
+      "x": 0,
+      "y": -2.6,
+      "d": 72,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_hotA",
+      "at": "adv",
+      "until": "mat-10",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotB",
+      "at": "mat",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotC",
+      "at": "mat+6",
+      "until": "s7:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "bA_f",
+      "text": "先進製程廠區",
+      "en": "Leading-edge fabs",
+      "color": "blue",
+      "at": "adv",
+      "until": "mat-8"
+     },
+     {
+      "part": "bB_f",
+      "text": "成熟製程廠區",
+      "en": "Mature-node fabs",
+      "color": "amber",
+      "at": "mat",
+      "until": "s7:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-nodes",
+      "at": "start+2",
+      "until": "s7:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "先進 vs 成熟",
+      "tag": "各家分類略有不同・台積電以 7 奈米為界",
+      "t": {
+       "two": {
+        "at": "two"
+       },
+       "adv": {
+        "at": "adv"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "mat": {
+        "at": "mat"
+       },
+       "car": {
+        "at": "car"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "TSMC 6-K 2026Q3；technews（成熟製程）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "所以各家分工不同。台積電從先進做到成熟，聯電主攻成熟，世界先進主力是八吋電源管理，力積電做記憶體與驅動晶片。",
+   "tts": "所以各家分工不同。台積電從先進做到成熟，聯電主攻成熟，世界先進主力是八吋電源管理，力積電做記憶體與驅動晶片。",
+   "subtitle": {
+    "zh": "所以各家分工不同\n台積電從先進做到成熟\n聯電主攻成熟\n世界先進\n主力是八吋電源管理\n力積電\n做記憶體與驅動晶片",
+    "en": "So each has its own niche. | TSMC runs from leading-edge to mature, | UMC focuses on mature nodes, | Vanguard's mainstay | is 8-inch power-management chips, | and PSMC | makes memory and driver chips."
+   },
+   "keywords": [
+    "台積電",
+    "聯電",
+    "世界先進",
+    "力積電"
+   ],
+   "cues": [
+    {
+     "id": "div",
+     "text": "分工不同"
+    },
+    {
+     "id": "ts",
+     "text": "台積電"
+    },
+    {
+     "id": "um",
+     "text": "聯電"
+    },
+    {
+     "id": "vi",
+     "text": "世界先進"
+    },
+    {
+     "id": "ps",
+     "text": "力積電"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 0,
+      "y": -2.6,
+      "d": 72,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_hotA",
+      "at": "ts",
+      "until": "um-10",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotB",
+      "at": "ts",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotC",
+      "at": "vi",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "f_hotD",
+      "at": "ps",
+      "until": "s8:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "bA",
+      "text": "台積電 先進＋成熟",
+      "en": "TSMC",
+      "color": "blue",
+      "at": "ts",
+      "until": "s8:start-6"
+     },
+     {
+      "part": "bB",
+      "text": "聯電 成熟製程",
+      "en": "UMC",
+      "color": "amber",
+      "at": "um",
+      "until": "s8:start-6"
+     },
+     {
+      "part": "bC",
+      "text": "世界先進 8吋",
+      "en": "Vanguard",
+      "color": "amber",
+      "at": "vi",
+      "until": "s8:start-6"
+     },
+     {
+      "part": "bD",
+      "text": "力積電 記憶體",
+      "en": "PSMC",
+      "color": "blue",
+      "at": "ps",
+      "until": "s8:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-who",
+      "at": "start+2",
+      "until": "s8:start-12",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 320,
+      "avoid": false,
+      "title": "各家主力",
+      "tag": "公司法說・媒體報導",
+      "t": {
+       "div": {
+        "at": "div"
+       },
+       "ts": {
+        "at": "ts"
+       },
+       "um": {
+        "at": "um"
+       },
+       "vi": {
+        "at": "vi"
+       },
+       "ps": {
+        "at": "ps"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "台積電、聯電、世界先進、力積電法說"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "cta",
+   "para": 8,
+   "narration": "設計和製造就這樣分開。下一支，看代工廠怎麼製造，一片晶圓要經過哪些流程。想要完整解說，留言代工。",
+   "tts": "設計和製造就這樣分開。下一支，看代工廠怎麼製造，一片晶圓要經過哪些流程。想要完整解說，留言代工。",
+   "subtitle": {
+    "zh": "設計和製造就這樣分開\n下一支\n看代工廠怎麼製造\n一片晶圓要經過哪些流程\n想要完整解說\n留言代工",
+    "en": "That's how design and manufacturing split. | Next: | how a foundry makes chips, | the steps one wafer goes through. | For the full notes, | comment \"代工\"."
+   },
+   "keywords": [
+    "怎麼製造",
+    "晶圓",
+    "代工"
+   ],
+   "cues": [
+    {
+     "id": "split",
+     "text": "就這樣分開"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "how",
+     "text": "怎麼製造"
+    },
+    {
+     "id": "flow",
+     "text": "要經過哪些流程"
+    },
+    {
+     "id": "full",
+     "text": "想要完整解說"
+    },
+    {
+     "id": "kw",
+     "text": "留言代工"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 20,
+      "x": 0,
+      "y": -2.6,
+      "d": 74,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_steam",
+      "at": "start-4",
+      "until": "s9:start",
+      "ramp": 8
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fdy-next",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "示意",
+      "t": {
+       "split": {
+        "at": "split"
+       },
+       "how": {
+        "at": "how"
+       },
+       "next": {
+        "at": "next"
+       },
+       "flow": {
+        "at": "flow"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw-14",
+      "text": "完整解說在留言",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "下一支：一片晶圓要經過哪些流程"
+   ]
+  },
+  {
+   "id": "s9",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "一片晶圓的流程",
+     "trail": [
+      "代工市占",
+      "傳送盒",
+      "晶粒",
+      "先進／成熟"
+     ],
+     "at": "s8:kw-8",
+     "comment": "代工",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
