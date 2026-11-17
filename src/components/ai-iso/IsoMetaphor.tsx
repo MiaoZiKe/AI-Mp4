@@ -224,7 +224,7 @@ const VolumeView: React.FC<VP> = ({ f, p }) => {
   return (
     <>
       <Full>
-        {Array.from({ length: n }, (_, i) => { const t = tB + i * 3, e = E(f, t, 10); if (f < t) return null; return <g key={i} opacity={O(f, t, 3)} transform={`translate(${(i % 2) * 8 + i * 5},${-i * 11 + Math.round((1 - e) * -50)})`}><Sheet x={X0} y={base - 520} w={bw - 50} h={520} lines={i === n - 1 ? 7 : 0} accent={i === n - 1 ? bc.fill : undefined} fill={i === n - 1 ? T.card : (i % 2 ? T.line : T.card)} /></g>; })}
+        {Array.from({ length: n }, (_, i) => { const t = tB + i * 3, e = E(f, t, 10); if (f < t) return null; return <g key={i} opacity={O(f, t, 3)} transform={`translate(${(i % 2) * 8 + i * 5},${(-i * 11 + Math.round((1 - e) * -50) + 5 * Math.sin(f / 10 + i * 0.3)).toFixed(1)})`}><Sheet x={X0} y={base - 520} w={bw - 50} h={520} lines={i === n - 1 ? 7 : 0} accent={i === n - 1 ? bc.fill : undefined} fill={i === n - 1 ? T.card : (i % 2 ? T.line : T.card)} /></g>; })}
         {f >= tS ? <g opacity={O(f, tS, 4)} transform={`translate(0,${Math.round((1 - eS) * -160)})`}><rect x={X0 + IW - sw + 4} y={base - sh + 8} width={sw} height={sh} rx={16} fill={sc.side} /><rect x={X0 + IW - sw} y={base - sh} width={sw} height={sh} rx={16} fill={sc.soft} stroke={sc.fill} strokeWidth={6} />{S.text ? null : [0.7, 0.55, 0.4].map((w, i) => <rect key={i} x={X0 + IW - sw + 26} y={base - sh + 40 + i * 44} width={(sw - 52) * w} height={16} rx={8} fill={sc.fill} opacity={0.55} />)}</g> : null}
         {q.spin && f >= tA ? <g transform={`translate(${X0 + bw - 20},${base - 560}) rotate(${(f * 7) % 360})`} opacity={O(f, tA, 6)}><path d="M-34 0 A34 34 0 0 1 28 -20" fill="none" stroke={T.ink} strokeWidth={9} strokeLinecap="round" /><path d="M34 0 A34 34 0 0 1 -28 20" fill="none" stroke={T.ink} strokeWidth={9} strokeLinecap="round" /><path d="M20 -34 L30 -16 L10 -14 Z M-20 34 L-30 16 L-10 14 Z" fill={T.ink} /></g> : null}
         {q.arrow && f >= tA ? <g opacity={O(f, tA, 6)} transform={`translate(${X0 + bw + 20},${base - 250})`}><path d="M0 0 H100 M76 -26 L104 0 L76 26" fill="none" stroke={T.ink3} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" /></g> : null}
@@ -289,7 +289,7 @@ const CarryView: React.FC<VP> = ({ f, p }) => {
 // ───────── balance：天平，A 很重、B 很輕，中間「≠」 ─────────
 const BalanceView: React.FC<VP> = ({ f, p }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), tL = A(q.left.at, p.in + 4), tR = A(q.right.at, FAR), tQ = A(q.q?.at, FAR), tNe = A(q.mid?.at, tR);
-  const px = X0 + IW / 2, py = TOP + 190, HL = 330, th = -(q.tilt ?? 10) * E(f, tL + 6, 22) * (1 + 0.04 * Math.sin(f / 7)), rad = (th * Math.PI) / 180;
+  const px = X0 + IW / 2, py = TOP + 190, HL = 330, th = -(q.tilt ?? 10) * E(f, tL + 6, 22) * (1 + 0.04 * Math.sin(f / 7)) + 1.8 * Math.sin(f / 9), rad = (th * Math.PI) / 180;
   const ends = [[px - HL * Math.cos(rad), py - HL * Math.sin(rad)], [px + HL * Math.cos(rad), py + HL * Math.sin(rad)]], blk = [q.left, q.right], ts = [tL, tR];
   return (
     <>
@@ -303,9 +303,9 @@ const BalanceView: React.FC<VP> = ({ f, p }) => {
             {f >= t ? <g opacity={O(f, t, 3)} transform={`translate(0,${Math.round((1 - e) * -260)})`}><rect x={ex - 95 + 5} y={py2 - 150 + 8} width={190} height={146} rx={24} fill={c.side} /><rect x={ex - 95} y={py2 - 150} width={190} height={146} rx={24} fill={blk[i].light ? c.soft : c.fill} stroke={blk[i].light ? c.fill : "none"} strokeWidth={6} /></g> : null}
           </g>); })}
       </Full>
-      {ends.map(([ex, ey], i) => f >= ts[i] ? <div key={i} data-ov={`天平字${i + 1}`} style={{ position: "absolute", left: ex - 95, top: ey + 190 - 150 + Math.round((1 - E(f, ts[i], 16)) * -260), width: 190, height: 146, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, ts[i], 3), ...zh, fontWeight: 900, fontSize: 62, color: blk[i].light ? col(blk[i].color).text : col(blk[i].color).on }}>{blk[i].label}</div> : null)}
+      {ends.map(([ex, ey], i) => f >= ts[i] ? <div key={i} data-ov={f >= ts[i] + 18 ? `天平字${i + 1}` : undefined} style={{ position: "absolute", left: ex - 95, top: ey + 190 - 150 + Math.round((1 - E(f, ts[i], 16)) * -260), width: 190, height: 146, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, ts[i], 3), ...zh, fontWeight: 900, fontSize: 62, color: blk[i].light ? col(blk[i].color).text : col(blk[i].color).on }}>{blk[i].label}</div> : null)}
       {f >= tNe ? <div data-ov="不等於" style={{ position: "absolute", left: px - 90, top: TOP - 14, width: 180, textAlign: "center", ...slam(f, tNe, 0, 2.4), ...zh, fontWeight: 900, fontSize: 150, lineHeight: 1, color: col("wrong").fill }}>≠</div> : null}
-      {q.q && f >= tQ ? <div data-ov="天平問句" style={{ position: "absolute", left: X0, width: IW, top: TOP + 760, display: "flex", justifyContent: "center", ...bounce(f, tQ) }}><Chip text={q.q.text} bg={col("plum").fill} fg="#fff" px={46} side={col("plum").side} /></div> : null}
+      {q.q && f >= tQ ? <div data-ov="天平問句" style={{ position: "absolute", left: X0, width: IW, top: TOP + 725, display: "flex", justifyContent: "center", ...bounce(f, tQ) }}><Chip text={q.q.text} bg={col("plum").fill} fg="#fff" px={46} side={col("plum").side} /></div> : null}
     </>
   );
 };
@@ -349,6 +349,7 @@ const CompoundView: React.FC<VP> = ({ f, p }) => {
       {q.comp ? <div data-ov="圖例複利" style={{ position: "absolute", left: X0 + 370, top: TOP, ...bounce(f, tC) }}><Chip text={q.comp.label} bg={col("wrong").fill} fg="#fff" px={38} side={col("wrong").side} /></div> : null}
       <Full>
         <rect x={X0 - 6} y={base + 4} width={IW + 12} height={10} rx={5} fill={T.ink3} opacity={0.6} />
+        <g transform={`translate(${X0 + IW - 50},${TOP + 40 + 12 * Math.sin(f / 8)})`}><circle r={30} fill={col("note").fill} stroke={col("note").side} strokeWidth={6} /><path d="M-10 -4 H10 M-10 8 H10 M0 -16 V18" stroke={col("note").side} strokeWidth={5} strokeLinecap="round" transform={`scale(${(0.8 + 0.2 * Math.cos(f / 8)).toFixed(2)} 1)`} /></g>
         {Array.from({ length: Y }, (_, i) => {
           const n = i + 1, gx = X0 + i * gw + (gw - 2 * bw - 8) / 2, gS = E(f, tS + i * 4, 18), simple = n * P0 * r, comp = P0 * Math.pow(1 + r, n);
           return <g key={i}>{seg(gx, [[P0, "primary"], [simple, "note"]], gS)}{f >= tC ? seg(gx + bw + 8, [[P0, "primary"], [simple, "note"], [comp - P0 - simple, "wrong"]], E(f, tC + i * 4, 18)) : null}</g>;
@@ -358,7 +359,7 @@ const CompoundView: React.FC<VP> = ({ f, p }) => {
       </Full>
       {Array.from({ length: Y }, (_, i) => <div key={i} style={{ position: "absolute", left: X0 + i * gw, top: base + 22, width: gw, textAlign: "center", ...zh, fontWeight: 800, fontSize: 32, color: T.ink2 }}>{i + 1}</div>)}
       <div data-ov="示意說明" style={{ position: "absolute", left: X0, top: TOP + 84, ...zh, fontWeight: 700, fontSize: 30, color: T.ink3 }}>{q.note}</div>
-      {q.hit && f >= tH ? <div data-ov="紅筆標註" style={{ position: "absolute", left: X0 + 250, width: IW - 250, top: TOP + 82, display: "flex", justifyContent: "flex-end", ...bounce(f, tH) }}><Chip text={q.hit.text} bg={col("wrong").fill} fg="#fff" px={40} side={col("wrong").side} /></div> : null}
+      {q.hit && f >= tH ? <div data-ov="紅筆標註" style={{ position: "absolute", left: X0 + 480, width: IW - 480, top: TOP + 82, display: "flex", justifyContent: "flex-end", ...bounce(f, tH) }}><Chip text={q.hit.text} bg={col("wrong").fill} fg="#fff" px={40} side={col("wrong").side} /></div> : null}
       {q.ticks && f >= tT ? <div data-ov="次數標籤" style={{ position: "absolute", left: X0 + IW / 2 - 50, top: base + 96, ...bounce(f, tT + 24) }}><Chip text={q.ticks.text} bg={col("right").fill} fg="#fff" px={42} side={col("right").side} /></div> : null}
     </>
   );

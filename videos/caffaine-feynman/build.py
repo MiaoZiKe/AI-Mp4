@@ -5,7 +5,7 @@ from metaphor_build import apply
 apply("caffaine-feynman", {
   "s01": {"view": "balance", "tone": "event", "tilt": 11,
     "left": {"label": "看懂", "color": "primary", "at": "k1-6"}, "right": {"label": "學會", "color": "wrong", "at": "k2-4", "light": True}, "mid": {"at": "k2"}, "q": {"text": "怎麼逼自己真的學會？", "at": "k3"}},
-  "s03": {"view": "board", "tone": "principle", "fs": 60, "lines": [
+  "s03": {"view": "board", "tone": "principle", "fs": 72, "lines": [
       {"who": "ai", "rows": ["利息會變成新的本金，", "繼續幫你賺錢"], "at": "k1+6", "dur": 44, "color": "primary"},
       {"who": "you", "rows": ["複利就是銀行每年", "固定給你一筆利息，", "存越久領越多"], "at": "k3", "dur": 38, "color": "note", "note": {"text": "故意講錯", "at": "k4+6", "color": "wrong"}}],
     "marks": [{"line": 1, "row": 1, "c0": 0, "c1": 8, "at": "k4", "color": "note"}]},
@@ -14,11 +14,11 @@ apply("caffaine-feynman", {
   "s05": {"view": "volume", "tone": "fix", "bigW": 380, "smallW": 380, "smallH": 210,
     "big": {"label": "正確版本", "sub": "一大段", "n": 3, "at": "start+6", "color": "wrong"}, "small": {"label": "一句話", "sub": "", "text": "複利就是利滾利，賺到的利息留下來繼續賺", "at": "k1", "color": "right"},
     "arrow": {"text": "簡化", "at": "k1-6"}, "end": {"text": "直接講給同事聽", "at": "k2", "color": "plum"}},
-  "s06": {"view": "board", "tone": "principle", "fs": 60, "lines": [
+  "s06": {"view": "board", "tone": "principle", "fs": 72, "lines": [
       {"who": "ai", "rows": ["利息會變成新的本金，", "繼續幫你賺錢"], "pre": True, "dimAt": "k1+8", "color": "primary"},
       {"who": "you", "rows": ["複利就是銀行每年", "固定給你一筆利息"], "at": "k2-6", "dur": 30, "color": "note", "note": {"text": "卡在這裡", "at": "k3-16", "color": "wrong"}}],
     "marks": [{"line": 1, "row": 1, "c0": 0, "c1": 8, "at": "k3-24", "color": "wrong"}]},
-  "s07": {"view": "paper", "tone": "claim", "title": "四步提示詞（＿＿換成你想學的主題）", "color": "note", "h": 580, "fs": 54, "num": True,
+  "s07": {"view": "paper", "tone": "claim", "title": "四步提示詞（＿＿換成你想學的主題）", "color": "note", "h": 700, "fs": 54, "num": True,
     "lines": [{"t": "用國中生聽得懂的話解釋＿＿", "at": "start+6", "dur": 18, "color": "primary", "mark": [{"word": "＿＿", "at": "k1", "color": "note"}]},
               {"t": "換我講：＿＿就是⋯⋯", "at": "start+22", "dur": 14, "color": "sky", "mark": [{"word": "＿＿", "at": "k1+6", "color": "note"}]},
               {"t": "抓出我講錯的，再問我一題", "at": "start+38", "dur": 18, "color": "wrong"}, {"t": "把正確版本簡化成一句話", "at": "start+54", "dur": 16, "color": "right"}],
