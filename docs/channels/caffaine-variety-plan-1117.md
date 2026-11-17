@@ -17,67 +17,155 @@
 
 ## 0B. 爆紅 AI 短影音題型研究（題材池與結構庫的主要依據）
 
-擁有者追加（11/17）：「多變化可以去找火爆的 AI 影片，看看他們都什麼題型，我們基於他們題材延伸」。做法：只拿「題型」與公開事實，不照抄腳本與畫面；每個延伸題都要是我們能在本機實測的題目。
+擁有者追加（11/17）：「多變化可以去找火爆的 AI 影片，看看他們都什麼題型，我們基於他們題材延伸」。做法：只拿「題型」與公開事實，不照抄腳本與畫面；每個延伸題都要是我們能在本機實測的題目。本節 2026/11/17 重做：上一版只有擁有者給的 IG 數據、沒有連結、原因是猜的；這版加上 YouTube Shorts 實際抓到的觀看數與連結。
 
 ### 資料來源與限制（先讀）
-- **主資料**＝擁有者 2026/11/16 提供的 IG AI 類影片數據（收集日 2026-11-16，範圍 2026-09-17～11-16，約近 2 個月，已整理在 `caffaine-strategy-1116.md` 第二節）。這是目前唯一有「單支觀看／讚／收藏」數字的來源，信心：中（數字來自擁有者蒐集，我們沒有逐支重抓驗證）。
-- **補查**：今天用 WebSearch 又查 4 組關鍵字（中文 IG／Threads／Shorts 爆紅 AI 教學、英文 YouTube Shorts／TikTok AI tutorial 爆款、Claude Code 非工程師做 app），**查不到任何一支 IG／Shorts／TikTok 的單支觀看數**：搜尋引擎不收錄社群貼文，回來的都是廠商與教學部落格（信心：低）。所以下表沒有新增的「查得到數字」的影片，也**沒有連結**（擁有者的數據只有帳號名與數字，沒有網址；需要連結時請擁有者補，我們不編）。
-- **YouTube 逐字稿**：本次沒有讀逐字稿；`caffaine-sources/` 只有 11/15 擁有者貼的 YouTube 長片排行摘要，下表只列長片當對照，不當 Shorts 題型依據。
-- 「開頭 3 秒怎麼做」「為什麼紅」兩欄**都是我們根據片名與題材的推測，沒有看過原片畫面**，標【推測】。
+- **YouTube Shorts（本版新增，可點開核對）**：用 `scratchpad/yt2.py` 以 81 組關鍵字（中文 AI 教學、Gemini／Claude／ChatGPT、做簡報／做影片／做網站、辦公、學習、生活妙招、不會寫程式；英文 ChatGPT hacks、AI tools、vibe coding、Gemini tricks、NotebookLM、Cursor、Lovable 等）搜 YouTube「Shorts＋近一年＋依觀看數」，收到 1,194 支；對其中觀看數前 260 支逐支讀播放頁取得**發布日與精確觀看數**，其中 146 支成功（其餘被 YouTube 的機器人檢查擋下，沒有繞過），再篩「2026/5/17 之後發布」得 129 支；另補 7 支從一般搜尋頁讀到的 3 分鐘內短片（發布時間只有「約 N 個月前」）。依觀看數取前 42 支列於下表。抓取日 2026/11/17。
+- **這份樣本的偏誤（影響解讀）**：① 觀看數 ≥1 萬的只有 19 支，其餘約 1,000 以下；後者大多是最近幾天剛發，觀看數還沒長，**中位數低不代表題型差**；② 前段有不少是「機構／課程導流」帳號；③ 英文 Shorts 搜尋大多回到小帳號，英文爆款樣本不足；④ 另有 5 支觀看 3.3～46 萬的 Shorts（如蘋果99「NotebookLM 實測」46 萬）**讀不到發布日，未計入統計**，列在表後。
+- **逐字稿**：播放頁被擋之後，十五支都**讀不到逐字稿**；「讀到什麼」欄只依頻道自己寫的描述，「開頭 3 秒」與「為什麼紅」都是【推測】，不是看過原片畫面。
+- **IG／Threads／TikTok**：無法直接抓；仍以擁有者 2026/11/16 提供的 IG 數據為主（下方「IG 對照表」，沒有連結，信心：中）。WebSearch 今天補查 3 組關鍵字，只回到廠商與部落格文章，沒有任何單支 IG／TikTok 觀看數（信心：低）。
+- **WebSearch 補充（只當線索）**：[creatorflow 整理的 Reels 五種結構](https://creatorflow.so/blog/viral-instagram-reels-using-ai/)（POV、權威開場、微型故事迴圈、變化揭曉、懸念結尾）、[miraflow](https://miraflow.ai/blog/ai-shorts-formats-that-go-viral-2026) 列的題型（工具清單、排名、產品示範、App 比較、動畫清單、AI 短劇）、[Virlo 的範例](https://virlo.ai/agent/ai-tools-apps)（「90 支 Shorts 5 分鐘」這類速度與賺錢鉤子）。都是廠商文章，沒有可驗證的觀看數，信心：低；唯一一致的是「前 1～3 秒決定留存」，與我們既有規則相同。
 
-### 清單（26 支 IG ＋ 對照；數字依擁有者提供，抓取日 2026-11-16）
-形式欄寫「IG」是因為來源是 IG 數據，Reels 或輪播擁有者沒逐支標；觀看數沒寫就是沒有資料。
+### YouTube Shorts 近半年觀看數前 42 名（抓取日 2026/11/17）
+「題型」欄的代號見下一小節。短片長度皆在 3 分鐘內；Shorts 連結為 /shorts/<id>。
 
-| # | 帳號／片名 | 平台 | 數據 | 題型 | 開頭 3 秒【推測】 | 為什麼紅【推測】 |
+| # | 片名 | 頻道 | 觀看數（原文，2026/11/17 抓取） | 發布 | 題型 | 連結 |
 |---|---|---|---|---|---|---|
-| 1 | webbyvaris 手繪草圖變遊戲 | IG | 1,082 讚／955 收藏（收藏率 0.88） | T1 | 先給手繪草圖，再給能玩的畫面 | 結果先行、門檻低、看得到成品 |
-| 2 | aiposthub OpenMontage 實測 | IG | 521 讚／445 收藏（0.85） | T2 | 「我實測了…」＋成品 | 實測感、步驟可照抄 |
-| 3 | asksui Claude＋Remotion 做動畫 | IG | 6.4 萬觀看、1,469 讚／1,051 收藏、約 1,592 粉（約 40 倍） | T3 | 動畫成品第 0 秒就播 | 小帳號爆、「一句話做出動畫」門檻低 |
-| 4 | u_chunnn ChatGPT 整理手機桌布 App | IG | 9.2 萬觀看、約 1.7 萬粉（約 5.4 倍） | T1 | 桌布整理前後 | 每個人手機都有的痛點 |
-| 5 | pratiiksaini 一個 prompt 做完十件事 | IG（英文） | 53K 讚 | T2 | 數字「10」＋一句話 | 數字承諾＋省事 |
-| 6 | michonmotion Claude 接 Higgsfield | IG（英文） | 23K | T3 | 工具串接的成品畫面 | 兩個熱門工具相連的新鮮感 |
-| 7 | aiposthub UI 沒 AI 味 | IG | 879 讚／444 收藏（0.50） | T4 | 前後對照（AI 味版 vs 改良版） | 痛點精準：大家都看過 AI 味 |
-| 8 | ai_bytes.lab 叫 AI 畫成地圖 | IG | 504 讚／303 收藏（0.60） | T4 | 成品先給 | 視覺新鮮 |
-| 9 | ai_bytes.lab AI 寫前端停在 2019 | IG | 8.1 萬觀看、約 1,711 粉（約 47 倍） | T4 | 「停在 2019」的反差一句話 | 反差標題＋小帳號爆 |
-| 10 | jasonxtsai 7 個 skill 去 AI 味 | IG | 1,499 讚 | T4／T6 | 數字「7」＋痛點 | 清單＋痛點 |
-| 11 | yoma 六條動畫法則 | IG | 65 讚／24 收藏（0.37） | T4 | 動畫前後對照 | 規則數字化 |
-| 12 | speedy_devv 觸控螢幕怎麼運作 | IG | 1,831 萬觀看、約 23 萬粉（約 80 倍） | T5 | 日常物品＋動畫放大 | 每個人都用過但不知原理 |
-| 13 | speedy_devv 鍵盤怎麼運作 | IG | 1,088 萬觀看（約 47 倍） | T5 | 同上 | 同上 |
-| 14 | dayday 冷氣變頻 | IG | 863 讚／247 收藏（0.29） | T5 | 日常電器開場 | 無時效、純動畫好看 |
-| 15 | learn.invest 3D 拆輝達 Blackwell | IG | 894 讚／237 收藏（0.27） | T5 | 3D 拆解成品畫面 | 視覺衝擊；與科技頻道重疊 |
-| 16 | jasonxtsai Skills 精簡 15 個 | IG | 804 讚／1,616 留言 | T6 | 數字「15」＋收藏指令 | 收藏型清單；留言被關鍵字 CTA 灌高 |
-| 17 | jasonxtsai 5 個 GitHub 工具 | IG | 569 讚／847 留言 | T6 | 數字「5」 | 同上 |
-| 18 | kwons_en 4 個外掛 | IG | 792 讚／824 留言 | T6 | 數字「4」 | 同上 |
-| 19 | melvin 開源 Higgsfield | IG | 1,530 讚／2,829 留言 | T6 | 「免費替代」 | 免費＋替代昂貴工具 |
-| 20 | aiposthub 5 個 Skills | IG | 103 讚／43 留言 | T6 | 數字「5」 | 同類但沒爆（對照組） |
-| 21 | aiposthub 黃仁勳辭任系列 | IG | 8 萬／6.1 萬／4.2 萬觀看（平時 0.6～1 萬，約 8～13 倍） | T7 | 新聞事件標題 | 時效、連發吃同一波熱度；收藏率僅 0.17 |
-| 22 | scps_jia 一分鐘本週 AI 大事 | IG | 12 萬、9.6 萬觀看（約 9.3 萬粉，約 1.3 倍） | T7 | 「這週三件事」 | 固定單元養習慣 |
-| 23 | jasonxtsai 2 個月漲 6 萬粉的 5 個 Prompt | IG | 2,404 讚／6,569 留言 | T8 | 慾望型成果 | 留言被 CTA 灌高，成效不可信 |
-| 24 | zack.ieyo AI 量化交易 | IG | 813 讚／877 收藏、另一支 8.4 萬觀看（2,579 留言） | T8 | 賺錢暗示 | 法規風險，我們不做 |
-| 25 | scps_jia 真人＋AI／marcelodesign 換畫風 | IG | 16.9 萬觀看；換畫風 67K | T9 | 畫風前後切換 | 視覺衝擊；需要人像素材 |
-| 26 | iinsightri AI 工作流反諷 | IG | 482K 讚 | T10 | 搞笑反差 | 難複製、與實用定位不合 |
+| 1 | 人形机器人进入普通人家、30 刀一小时（片名前段為課程報名連結） | 澳洲Henry | 170,364 次 | 2026-08-18 | T7 | https://www.youtube.com/shorts/1c2Y5vSKsv8 |
+| 2 | ChatGPT 會做 GIF 了！3 分鐘看懂 GPT Image 2.6 的 4 個重點 | Jerry_AI 工具X實作X新 | 93,059 次 | 2026-11-05 | T7 | https://www.youtube.com/shorts/NQ7bn9S6cVw |
+| 3 | 你也可以AI做短劇 只要10分鐘就行？ | 617行銷筆記 | 87,165 次 | 2026-06-12 | T1 | https://www.youtube.com/shorts/X-8Na8GW0ss |
+| 4 | AI 影片已經這麼逼真了？真假難辨，一般人也能輕鬆拍大片！ | 零度解说 | 79,021 次 | 約3個月前 | T7 | https://www.youtube.com/watch?v=Psqmwsd2ibc |
+| 5 | ChatGPT 新語音超扯 | 科技浪 | 68,926 次 | 2026-07-10 | T7 | https://www.youtube.com/shorts/Jy467X9YIGs |
+| 6 | 2 分半看 Claude 辦公新功能：白板排流程、試算表寫公式，還能直接改文件 | Jerry_AI 工具X實作X新 | 60,787 次 | 2026-11-11 | T7 | https://www.youtube.com/shorts/em7Vtv18PBw |
+| 7 | 免费！无限制AI 生图神仙工具 | 科技猎奇 | 55,547 次 | 約3個月前 | T6 | https://www.youtube.com/watch?v=yvSyzQeZdzQ |
+| 8 | Claude 學什麼？手把手教你每一項工具該如何使用 | EDA 新創企業發展學院 | 49,742 次 | 約4個月前 | T3 | https://www.youtube.com/shorts/t4tLUOZSuB4 |
+| 9 | 學習 AI 工具沒有意義？｜志祺七七 Shorts | 志祺七七 | 48,607 次 | 2026-08-24 | T9 | https://www.youtube.com/shorts/hqkaHo8qKmk |
+| 10 | 別自己讀！直接丟給你的Grok Bot｜2 分鐘看懂 Grok Bot 指南 5 條規則 | Jerry_AI 工具X實作X新 | 48,084 次 | 約3週前 | T6 | https://www.youtube.com/shorts/9B5_dMPoVnU |
+| 11 | 太扯! Claude Opus 5.5做遊戲超強! 一週爆出一堆知名遊戲仿造款 網頁直接玩 | 好放HaveFun | 43,074 次 | 2026-09-28 | T1 | https://www.youtube.com/shorts/zzc_UauYdWI |
+| 12 | 🔥 Google NotebookLM 新功能！手機錄音直接變 AI 筆記，60 秒學會 A | 許博-輕鬆學 | 39,744 次 | 2026-10-28 | T7 | https://www.youtube.com/shorts/vorpu0_wXYk |
+| 13 | Andrej Karpathy reveals 4 AI prompting tricks  | Jordan Blake | 38,541 次 | 2026-11-13 | T6 | https://www.youtube.com/shorts/tBExSHBCOU0 |
+| 14 | Claude 工程師教你用 AI 更有野心：高度、深度、廣度三招，附可照抄的指令 | fOx Hsiao | 36,086 次 | 2026-10-18 | T6 | https://www.youtube.com/shorts/S4zR_F1MRRo |
+| 15 | GPT会员白嫖：ChatGPT Plus免费试用一个月，立省20刀 | AI 三分钟 | 30,588 次 | 約3個月前 | T6 | https://www.youtube.com/watch?v=gb3VyBPc214 |
+| 16 | ChatGPT推出雲端全能AI Agent Dots | 蘋果妹 | 22,097 次 | 2026-09-30 | T7 | https://www.youtube.com/shorts/wEA7ObrRsEI |
+| 17 | Google 這次太良心！100% 免費、無浮水印、無限生成的 AI 影片神器 | 科技猎奇 | 19,901 次 | 約6個月前 | T6 | https://www.youtube.com/watch?v=0JV4v1PKHOQ |
+| 18 | Claude Code 別再每步都盯！Claude工程師 Lydia 的五項重點架構：從引導 | Jerry_AI 工具X實作X新 | 18,254 次 | 2026-11-14 | T6 | https://www.youtube.com/shorts/rGfYyAHgb6s |
+| 19 | Claude Design 怎麼用？Ai 生成簡報自動排版 | 百香果工作頻道 | 13,273 次 | 約6個月前 | T3 | https://www.youtube.com/shorts/mA65C4ZTDQ0 |
+| 20 | 20 Claude Skills to Level Up Your Vibe Coding | tutorialsEU | 972 次 | 2026-11-16 | T6 | https://www.youtube.com/shorts/0j1NsP7K3zM |
+| 21 | Why Your AI Prompts Sound Wrong (It's Not The  | Jake Dawson | 956 次 | 2026-11-15 | T4 | https://www.youtube.com/shorts/nC8KD0b6IXE |
+| 22 | Stop building your resume manually! 🚫📄 | Neomind ai | 917 次 | 2026-11-16 | T3 | https://www.youtube.com/shorts/2VVnRxbx638 |
+| 23 | Gemini 4 Argon, Carbon, Hydrogen Explained | NeuralNine | 900 次 | 2026-11-16 | T7 | https://www.youtube.com/shorts/McvC4OHrov8 |
+| 24 | Cursor or Claude Code? Which one should you op | Your Average Dev | 877 次 | 2026-11-15 | T2 | https://www.youtube.com/shorts/p89C3Gxoac0 |
+| 25 | Google caught an AI that hacks websites by its | HotCommit | 872 次 | 2026-11-16 | T5 | https://www.youtube.com/shorts/rucZiwT3ne4 |
+| 26 | 别再抄提示词模板了！官方公布最新提问法 | 浩想不打工 | 869 次 | 2026-11-14 | T4 | https://www.youtube.com/shorts/JSx5AqyLP8o |
+| 27 | 🔥 3 SECRET ChatGPT Commands You Need to Try! | Kami82 | 852 次 | 2026-11-16 | T6 | https://www.youtube.com/shorts/cpLwInNtpt8 |
+| 28 | Claude Code 刪 116 GB，回報「看起來沒事」 | 本機窯 / LOCAL KILN | 842 次 | 2026-11-14 | T5 | https://www.youtube.com/shorts/yfG1xyAstUM |
+| 29 | Lovable made my tiny app weirdly powerful | Molly Quinlan | 823 次 | 2026-11-16 | T1 | https://www.youtube.com/shorts/M4FHC6MkviA |
+| 30 | AI短剧怎么做？普通人照着这4步来 | 别太离谱了 | 819 次 | 2026-11-15 | T3 | https://www.youtube.com/shorts/wECYDsRpSAE |
+| 31 | 5 ChatGPT Tricks You Didn't Know! 🤯 ｜ Secret C | AS Connect | 774 次 | 2026-11-15 | T6 | https://www.youtube.com/shorts/Y-3rGVr4GeE |
+| 32 | Free open-source Cursor alternatives: 4 AI cod | Lekssoft | 755 次 | 2026-11-14 | T6 | https://www.youtube.com/shorts/jCb9AraV8q4 |
+| 33 | Things you didn't know you can do with AI (par | PracticalyAI | 744 次 | 2026-11-16 | T6 | https://www.youtube.com/shorts/V-c9rYNFMDo |
+| 34 | 5 FREE AI Tools You Should Know in 2026 🤯 ｜ Be | Easy for ai | 731 次 | 2026-11-14 | T6 | https://www.youtube.com/shorts/vr0WqY-I2Vo |
+| 35 | How to Use Google NotebookLM? 🤖 ｜ 5 Simple Ste | The Ishaan Ai | 729 次 | 2026-11-15 | T3 | https://www.youtube.com/shorts/esALKArZZ-4 |
+| 36 | AI替你發出去的英語 真的是你的英語水平嗎？ | Michael Ochoa的工作 | 696 次 | 2026-11-15 | T9 | https://www.youtube.com/shorts/DRIFuDgOaZY |
+| 37 | How to Build an App With ZERO Code Using AI | Nolan Selby | 688 次 | 2026-11-15 | T1 | https://www.youtube.com/shorts/knDrwOKdz3I |
+| 38 | 真貓還是 AI 貓？Claude Opus 10 題實測 | AI Bytes Lab | 686 次 | 2026-11-14 | T2 | https://www.youtube.com/shorts/rmUGhbkN5bE |
+| 39 | This is crazy… | simpledayswithol | 670 次 | 2026-11-16 | T6 | https://www.youtube.com/shorts/4mF0LUMac48 |
+| 40 | 不用請工程師，一句話做出能用的小工具 | kogmow z | 663 次 | 2026-11-13 | T1 | https://www.youtube.com/shorts/9EFv--AkH5o |
+| 41 | You Can Build Apps Without Coding?! 🤯 Vibe Cod | LOREXIFY | 641 次 | 2026-11-15 | T3 | https://www.youtube.com/shorts/bjwizu5fx58 |
+| 42 | AI 做對一次後，我會多做這個動作 | esor huang | 623 次 | 2026-11-15 | T4 | https://www.youtube.com/shorts/0ExTnZTq9QI |
 
-對照（非 Shorts、不當題型依據）：YouTube Nick Saraev「Claude Code Full Course」875K 觀看、viral score 12.2 倍（擁有者貼的 11/15 排行頁，2026-02-12 發布）；抖音 AIGC 短片《早餐奶奶》2.5 億播放（新榜／36 氪，2026 上半年，信心：低中）。這兩筆都不是教學短影音，只說明「成品先行」與「不露臉也能紅」。
+發布日讀不到、未計入統計的高觀看 Shorts（YouTube 近一年篩選有出現，只知道在近 12 個月內）：蘋果99「NotebookLM 實測」約 46 萬（https://www.youtube.com/shorts/0zUL7Tf0lU0）、Jerry_AI「GPT-6.1 Terra 快 3 倍、便宜 9 倍？」約 5 萬（https://www.youtube.com/shorts/YrKTUpeuVhY）、149米「用 codex 1 分鐘做 PPT」約 5.2 萬（https://www.youtube.com/shorts/yv7E9kHAfec，帳號是代充值廣告，不採用）、蘋果妹「Claude Design」約 3.7 萬（https://www.youtube.com/shorts/_OnoOEIwgxg）、觀點LAB「Gemini＋Canvas 1 分鐘生簡報」約 3.3 萬（https://www.youtube.com/shorts/yKHLIZa4b0M）。觀看數是搜尋頁顯示的概數。對照（6 個月外，不計入）：EighthSense「500 萬人圍觀的頂級 AI 學習法」107 萬（2026/5/10）、「一分鐘了解最強 AI 工具：Claude」41 萬（2026/3/23）、「ChatGPT 新的圖像功能」36 萬（2026/4/28）、志祺七七「Claude 大放送」27 萬（2026/3/17）。
 
-另外 OpenAI 研究（高信心）：全球使用 ChatGPT 最大類是「實用指導」，支撐 T1、T2、T4 這類「做出你用得到的東西」。
+### 前 15 名怎麼做的（描述有寫的依描述，其餘一律【推測】）
+| # | 片名／觀看數 | 讀到什麼 | 開頭 3 秒怎麼做 | 為什麼紅 |
+|---|---|---|---|---|
+| 1 | 报名最新的AI实战课 http://hatchi（170,364） | 依描述：開場是「人形機器人進普通人家、30 美元一小時」的新聞型標題；影片同時掛課程報名連結 | 【推測】標題即第一句：报名最新的AI实战课 http:// | 新聞衝擊＋價格數字；帳號是商業課程導流，不是教學。【推測】 |
+| 2 | ChatGPT 會做 GIF 了！3 分鐘看懂 （93,059） | 依描述：4 個重點（循環 GIF、參考圖、畫圈改圖、SVG），附官方示範素材 | 【推測】標題即第一句：ChatGPT 會做 GIF 了！3 | 新功能剛出、當天就有人整理成「3 分鐘看懂」；承諾短時間、重點編號。【推測】 |
+| 3 | 你也可以AI做短劇 只要10分鐘就行？（87,165） | 只讀到標題與標籤（#AI短劇 #創業） | 【推測】標題即第一句：你也可以AI做短劇 只要10分鐘就行 | 「10 分鐘做短劇」門檻低＋副業暗示。【推測】 |
+| 4 | AI 影片已經這麼逼真了？真假難辨，一般人也能輕（79,021） | 只讀到標題 | 【推測】標題即第一句 | 【推測】見題型欄 |
+| 5 | ChatGPT 新語音超扯（68,926） | 只讀到標題 | 【推測】標題即第一句：ChatGPT 新語音超扯 | 新語音功能的「超扯」情緒標題，功能人人用得到。【推測】 |
+| 6 | 2 分半看 Claude 辦公新功能：白板排流程（60,787） | 依描述：用一個辦活動的情境串白板、試算表、連接器三個新功能，並說明哪些仍是測試版 | 【推測】標題即第一句：2 分半看 Claude 辦公新功能 | 情境串功能＋誠實標測試版。【推測】 |
+| 7 | 免费！无限制AI 生图神仙工具（55,547） | 只讀到標題 | 【推測】標題即第一句 | 【推測】見題型欄 |
+| 8 | Claude 學什麼？手把手教你每一項工具該如何（49,742） | 只讀到標題 | 【推測】標題即第一句 | 【推測】見題型欄 |
+| 9 | 學習 AI 工具沒有意義？｜志祺七七 Short（48,607） | 依描述：節錄自課程宣傳的觀點片段，主張「工具會過時、底層邏輯不會」 | 【推測】標題即第一句：學習 AI 工具沒有意義？｜志祺七七 | 反直覺問句當標題，對焦慮的人有共鳴；頻道本身粉絲基數大。【推測】 |
+| 10 | 別自己讀！直接丟給你的Grok Bot｜2 分鐘（48,084） | 只讀到標題 | 【推測】標題即第一句 | 【推測】見題型欄 |
+| 11 | 太扯! Claude Opus 5.5做遊戲超強（43,074） | 依描述：用「一週內網友用新模型做出的知名遊戲仿作，可直接在網頁玩」，也展示翻車的那款 | 【推測】標題即第一句：太扯! Claude Opus 5. | 成品可玩＋有翻車；最後留言問「你最想做哪款」。【推測】 |
+| 12 | 🔥 Google NotebookLM 新功能！（39,744） | 依描述：NotebookLM 手機錄音新功能、四步驟、附「不保留原始錄音檔」提醒 | 【推測】標題即第一句：🔥 Google NotebookL | 新功能＋四步驟＋誠實提醒。【推測】 |
+| 13 | Andrej Karpathy reveals （38,541） | 依描述：4 個提問技巧，借「航太手冊受控語言」的規則 | 【推測】標題即第一句：Andrej Karpathy re | 名人背書（Karpathy）＋數字 4。【推測】 |
+| 14 | Claude 工程師教你用 AI 更有野心：高度（36,086） | 依描述：工程師用「高度、深度、廣度」三招，附可照抄指令，結尾拋問題 | 【推測】標題即第一句：Claude 工程師教你用 AI 更 | 三個詞好記＋可照抄＋結尾提問。【推測】 |
+| 15 | GPT会员白嫖：ChatGPT Plus免费试用（30,588） | 只讀到標題 | 【推測】標題即第一句 | 【推測】見題型欄 |
 
-### 題型歸納與 CaffAIne 怎麼延伸
-T 編號對應上表。延伸題都只拿題型與事實，題材改成台灣日常情境，且本機做得到實測（Gemini API、Playwright、ffmpeg、Python）。
-
-| 題型 | 例子（來源列號） | 為什麼有效【推測】 | CaffAIne 怎麼延伸（對應結構、題材池項目） |
+### IG 對照表（擁有者提供，抓取日 2026-11-16，無連結）
+| # | 帳號／片名 | 數據 | 題型 |
 |---|---|---|---|
-| T1 日常素材變成可用的成品 | 手繪草圖變遊戲（#1）、整理手機桌布（#4） | 素材人人都有，成品一看就懂 | 不用草圖的版本：「手寫家務表→可勾選網頁」「亂寫行程→表」；結構 S11、S1、S4；領域 家庭、學生、旅遊 |
-| T2 實測式：我真的跑過 | OpenMontage 實測（#2）、一個 prompt 做十件事（#5） | 有證據、有數字 | 「20 筆帳目，兩種問法，漏幾筆」「5 句提示詞每句都跑過」；結構 S5、S8、S3；領域 理財、求職、寵物 |
-| T3 工具串接做成品 | Claude＋Remotion（#3）、Claude 接 Higgsfield（#6） | 兩個熱門工具相連的新鮮感；小帳號也爆 | 兩個我們跑得動的東西串接：Gemini 生圖→Python 拼成貼圖表；Gemini 寫腳本→我們的短影音流程（公開自己的流程）；結構 S10、S9；領域 興趣創作、工作 |
-| T4 去 AI 味前後對照 | UI 沒 AI 味（#7）、前端停在 2019（#9）、7 個 skill（#10）、六條法則（#11） | 痛點精準＋前後對照天生適合動畫 | 把「AI 味」量化：先定「AI 套話詞表」，數改前後出現次數；網頁字級、對比用 Playwright 量；結構 S2、S5、S8；領域 工作文書、求職、長輩 |
-| T5 日常東西原理動畫 | 觸控螢幕（#12）、鍵盤（#13）、冷氣（#14） | 無時效、好看 | 硬體交給科技頻道；我們延伸為「你每天碰到的 AI 現象」：語音輸入為何打錯同音字（用 Gemini 聽寫實測）、AI 為何編造經歷；原理只留一句，放在實測之後；結構 S6、S5 |
-| T6 精選清單／指令包 | 15 個 Skills（#16）、5 個 GitHub 工具（#17）、4 個外掛（#18）、免費替代（#19） | 收藏型 | 「N 句提示詞，我每句都跑過，只有 K 句有用」（每項附真實輸出，K 以實測為準）；結構 S3、S7；收藏指令結尾；同題材另出輪播版 |
-| T7 時事連發／每週大事 | 黃仁勳系列（#21）、一分鐘本週大事（#22） | 時效、固定單元 | 收藏率最低（0.17）；只做週日一個「一般人用得到的更新」插隊位，當天查證、不計入下面 16 支 |
-| T8 賺錢／量化／漲粉 | #23、#24 | 慾望 | **不採用**（法規與投資建議風險；留言數被 CTA 灌高） |
-| T9 換畫風／真人＋AI | #25 | 視覺衝擊 | 只做「物件」不做真人：同一個杯子 5 種商品風格；結構 S2 |
-| T10 搞笑反諷 | #26 | 共鳴 | **不採用**（難複製、與定位不合） |
+| 1 | webbyvaris 手繪草圖變遊戲 | 1,082 讚／955 收藏 | T1 |
+| 2 | aiposthub OpenMontage 實測 | 521 讚／445 收藏 | T2 |
+| 3 | asksui Claude＋Remotion 做動畫 | 6.4 萬觀看、約 1,592 粉 | T3 |
+| 4 | u_chunnn ChatGPT 整理手機桌布 App | 9.2 萬觀看、約 1.7 萬粉 | T1 |
+| 5 | pratiiksaini 一個 prompt 做十件事 | 53K 讚 | T2 |
+| 6 | michonmotion Claude 接 Higgsfield | 23K | T3 |
+| 7 | aiposthub UI 沒 AI 味 | 879 讚／444 收藏 | T4 |
+| 8 | ai_bytes.lab 叫 AI 畫成地圖 | 504 讚／303 收藏 | T4 |
+| 9 | ai_bytes.lab AI 寫前端停在 2019 | 8.1 萬觀看、約 1,711 粉 | T4 |
+| 10 | jasonxtsai 7 個 skill 去 AI 味 | 1,499 讚 | T4／T6 |
+| 11 | yoma 六條動畫法則 | 65 讚／24 收藏 | T4 |
+| 12 | speedy_devv 觸控螢幕怎麼運作 | 1,831 萬觀看、約 23 萬粉 | T5 |
+| 13 | speedy_devv 鍵盤怎麼運作 | 1,088 萬觀看 | T5 |
+| 14 | dayday 冷氣變頻 | 863 讚／247 收藏 | T5 |
+| 15 | learn.invest 3D 拆輝達 Blackwell | 894 讚／237 收藏 | T5（與科技頻道重疊） |
+| 16 | jasonxtsai Skills 精簡 15 個 | 804 讚／1,616 留言 | T6 |
+| 17 | jasonxtsai 5 個 GitHub 工具 | 569 讚／847 留言 | T6 |
+| 18 | kwons_en 4 個外掛 | 792 讚／824 留言 | T6 |
+| 19 | melvin 開源 Higgsfield | 1,530 讚／2,829 留言 | T6 |
+| 20 | aiposthub 5 個 Skills | 103 讚／43 留言（沒爆的對照組） | T6 |
+| 21 | aiposthub 黃仁勳辭任系列 | 8 萬／6.1 萬／4.2 萬觀看（收藏率 0.17） | T7 |
+| 22 | scps_jia 一分鐘本週 AI 大事 | 12 萬、9.6 萬觀看 | T7 |
+| 23 | jasonxtsai 2 個月漲 6 萬粉的 5 個 Prompt | 2,404 讚／6,569 留言（被關鍵字 CTA 灌高） | T8 |
+| 24 | zack.ieyo AI 量化交易 | 813 讚／877 收藏 | T8 |
+| 25 | scps_jia 真人＋AI／marcelodesign 換畫風 | 16.9 萬觀看；67K | T1（換畫風；需真人素材，我們不做） |
+| 26 | iinsightri AI 工作流反諷 | 482K 讚 | T11（搞笑） |
 
-題型使用比例建議（兩週）：T1 約 3 支、T2 約 3 支、T3 約 2 支、T4 約 3 支、T5 約 2 支、T6 約 2 支、T9 約 1 支；T7 週日插隊位，T8、T10 不做。
+另：YouTube 長片 Nick Saraev「Claude Code Full Course」875K 觀看（2026/2，非 Shorts，只當對照）；抖音 AIGC《早餐奶奶》2.5 億播放（新榜／36 氪，信心：低中）；OpenAI 研究：ChatGPT 最大使用類別是「實用指導」（高信心）。
+
+### 題型重新歸納與排行
+題型代號重編（與上一版不同處：T3 改成「單一工具操作教學」併入工具串接；T9 改成「觀點／反直覺」；換畫風併入 T1；搞笑反諷改 T11；T8 賺錢仍不做）。
+
+排行依據＝YouTube 前 42 支（件數、中位數、合計、≥1 萬件數）；中位數受「新片觀看數尚未長大」影響，所以要同時看「≥1 萬件數」與合計。
+
+| 題型 | 件數（前 42 支） | 觀看數中位數 | 觀看數合計 | 其中 ≥1 萬的件數 |
+|---|---|---|---|---|
+| T7 新功能／新聞速報 | 8 | 64,856 | 534,898 | 7 |
+| T6 N 個技巧／清單／免費 | 14 | 9,613 | 252,499 | 7 |
+| T1 一句話做出成品 | 5 | 823 | 132,413 | 2 |
+| T3 單一工具操作教學 | 6 | 868 | 66,121 | 2 |
+| T9 觀點／反直覺 | 2 | 24,651 | 49,303 | 1 |
+| T4 問法技巧／去 AI 味 | 3 | 869 | 2,448 | 0 |
+| T5 翻車／風險／原理 | 2 | 857 | 1,714 | 0 |
+| T2 實測／對比 | 2 | 781 | 1,563 | 0 |
+
+**怎麼讀**：
+- 觀看數 ≥1 萬的 19 支裡，**T7（新功能速報）7 支、T6（N 個技巧／清單／免費）7 支**，兩型合計佔 74%；T1 與 T3 各 2 支、T9 1 支。T7 與 T6 最吃香，而且都能用「實測」做出差異（別人是轉述新功能與唸清單，我們每項都實跑）。
+- T4（問法技巧）、T2（實測）、T5（翻車原理）在 YouTube 樣本沒有 ≥1 萬的片，但件數少、多為新片，只能說「沒有證據顯示吃香」，不能說不吃香；IG 對照表裡 T4（#9 8.1 萬）、T2（#5 53K）、T5（#12 1,831 萬）卻有大爆款，所以保留、降比例，不砍。
+- T1 的兩個爆款（#3 做短劇、#11 做遊戲）都是「成品可看、可玩」；我們的版本改成可勾選網頁、閃卡這類台灣日常成品。
+- T7 風險：IG 資料裡收藏率最低（0.17），且要當天查證、有事實紀律壓力；所以只做「當週一般人用得到的新功能」，每則一項、當天自己實測，不做新聞轉述。
+
+### 每型的例子與 CaffAIne 怎麼延伸
+例子列號＝上方 YouTube 表的 #（含連結）；沒有連結的是 IG 對照表列號（標「IG」）。延伸題都只拿題型與事實，題材改成台灣日常情境，且本機做得到實測（Gemini API、Playwright、ffmpeg、Python）。
+
+| 題型 | 例子 | 為什麼有效 | CaffAIne 怎麼延伸（結構、領域） |
+|---|---|---|---|
+| T7 新功能／新聞速報 | #2 GPT Image 2.6 做 GIF（93,059）、#5 ChatGPT 新語音（68,926）、#6 Claude 辦公新功能（60,787）、#12 NotebookLM 錄音（39,744）；IG #22 | 時效；一般人最關心「我能不能用」【推測】 | 「本週新功能，我用我的資料實跑」：當天查證官方說明，挑一項在本機能重現的跑一次，標「截至 YYYY/M/D」；結構 S9、S2；週日插隊位＋每兩週一支進編制（B4） |
+| T6 N 個技巧／清單／免費 | #7 免費生圖（55,547）、#10 Grok 5 條規則（48,084）、#13 Karpathy 4 個提問技巧（38,541）、#14 三招（36,086）、#15 白嫖（30,588）；IG #16～#19 | 編號承諾＋收藏【推測】 | 「N 個問法，每個我都跑過，只有 K 個有用」，每項附真實輸出；不做「白嫖」帳號買賣類；結構 S3、S7；收藏指令結尾 |
+| T1 一句話做出成品 | #3 AI 做短劇（87,165）、#11 Claude 做遊戲（43,074）、#29 Lovable 小 App（823）；IG #1、#4 | 成品看得到、可玩 | 台灣日常成品：家務點數頁、閃卡、行程預算表；Playwright 實際操作當證據；結構 S1、S4、S11 |
+| T3 單一工具操作教學 | #8 Claude 每個工具怎麼用（49,742）、#19 Claude Design（13,273）、#35 NotebookLM 5 步（729）；IG #3、#6 | 新工具上手需求【推測】 | 只做我們有實測的：Gemini＋Python 串接（貼圖表）、我們自己的短影音流程；結構 S10、S9 |
+| T9 觀點／反直覺 | #9「學習 AI 工具沒有意義？」（48,607）、#36（696）| 反直覺問句、情緒共鳴【推測】 | 偶爾用一支 S6（觀眾問題）承接，答案仍靠實測，不發空洞觀點；下兩週不排獨立一支 |
+| T4 問法技巧／去 AI 味 | #21（956）、#26（869）、#42（623）；IG #7、#9、#10 | 痛點精準、前後對照好動畫【推測】 | 把「AI 味」量化（詞表出現次數）、履歷／週報前後對照；結構 S2、S5、S8 |
+| T2 實測／對比 | #24 Cursor vs Claude Code（877）、#38 真貓 vs AI 貓（686）；IG #2、#5 | 證據感 | 「20 筆帳目兩種問法漏幾筆」；結構 S5、S8、S3 |
+| T5 翻車／風險／原理 | #25（872）、#28 Claude Code 刪 116 GB（842）；IG #12、#13、#14 | 「別踩雷」型、原理型好看 | 「你每天碰到的 AI 現象」：語音輸入同音字、AI 編造履歷；原理一句放最後；結構 S6、S5 |
+| T8 賺錢／量化／漲粉 | IG #23、#24；YouTube #1、#3 的標題帶副業暗示 | 慾望 | **不採用**（法規與投資建議風險） |
+| T11 搞笑反諷 | IG #26 | 共鳴 | **不採用**（難複製、與定位不合） |
+
+題型使用比例建議（兩週 16 支，依上表調整）：T1 4、T6 3、T4 3、T2 2、T5 2、T3 1、T7 1；另有 T7 週日插隊位每週 1 則（不計入 16 支），所以兩週 T7 實際共 3 則；吃香的 T7＋T6＋T1 合計 8／16（含週日共 10 則的一半以上）；T9、T8、T11 不獨立排。
 
 ## 1. 敘事結構庫（11 種）
 
@@ -158,39 +246,39 @@ T 編號對應上表。延伸題都只拿題型與事實，題材改成台灣日
 
 ### 4.2 下兩週排程（11/18～12/1，共 16 支，每支標延伸自哪一型）
 
-「延伸自」＝第 0B 節的題型與例子列號（只拿題型，不抄腳本畫面）。「開頭鏡」＝第一幕 view。「＿」＝以實測為準，不先寫死。「備案」＝擴充還沒做完時現在就能用的畫面。判定標準與測法都要先寫進該片 `research.md`。
+「延伸自」＝第 0B 節的題型與例子：YT # 是 YouTube 前 42 名表的列號（附連結，其餘看該表），IG # 是 IG 對照表列號（只拿題型，不抄腳本畫面）。「開頭鏡」＝第一幕 view。「＿」＝以實測為準，不先寫死。「備案」＝擴充還沒做完時現在就能用的畫面。判定標準與測法都要先寫進該片 `research.md`。
 
 第一週（11/18～11/24）：結構 S2、S3、S4、S5、S6、S8、S10、S11 各一次；領域 8 個；網頁 2 支（A3、A6）。
 
 | # | 日期 | 領域 | 結構 | 延伸自 | 題目與實測 | 開頭鏡（畫面手法） | 開頭一句 | 備案 |
 |---|---|---|---|---|---|---|---|---|
-| A1 | 11/18 三 | 工作文書 | S2 前後對照 | T4（#7 UI 沒 AI 味） | 週報去 AI 味：先定 10 個「AI 套話詞表」，數 Gemini 初稿與改後各出現幾次 | split 滑桿擦入（V2） | 「這份週報一看就是 AI 寫的，改 3 個地方，像你寫的。」 | 現有 split 左右 |
-| A2 | 11/19 四 | 餐飲料理 | S3 三個用法 | T6（#16 清單） | 做菜 3 句提示詞每句都跑過（用到指定食材、有沒有編出沒給的食材） | kinetic 大字「3」＋chart 長條 | 「冰箱剩 4 樣，3 句問法我都跑過，只有＿句好用。」 | 現在可做 |
-| A3 | 11/20 五 | 學生讀書（網） | S4 計時挑戰 | T1（#4 整理桌布） | 一章講義→可翻面閃卡，Playwright 翻卡驗證，計實際用時 | timer 疊 browser（V5） | 「一章講義，＿分鐘內變成可翻面的閃卡，計時開始。」 | kinetic 倒數大字 |
-| A4 | 11/21 六（午） | 理財記帳 | S5 錯誤 vs 正確 | T2（#2 實測） | 20 筆虛構消費，兩種問法對人工標準答案算漏／錯幾筆 | chat | 「你叫 AI 幫你記帳分類，這樣問，20 筆會漏＿筆。」 | 現在可做 |
-| A5 | 11/21 六（晚） | 興趣創作 | S10 翻車合集 | T3（#6 工具串接） | Gemini 生圖→Python 拼成 8 格貼圖表，三次失敗各記錄原因 | reel 三格快切（V7） | 「叫 AI 畫 LINE 貼圖，三次，三次都錯。」 | split 三欄 |
-| A6 | 11/22 日 | 家庭與親子（網） | S11 做給家人用 | T1（#1 草圖變遊戲） | 手寫風家務表圖（示意）→可勾選點數網頁，Playwright 操作 | device 手機框 | 「家裡的家務老是吵，我把手寫的表變成會算點數的網頁。」 | 現在可做 |
-| A7 | 11/23 一 | 求職 | S8 對決 | T4（#9 前端停在 2019） | 履歷一句話：「我負責」vs 具體問法，量含數字句數與編造數量 | VS 記分板（V2） | 「同一份履歷，一句話問 vs 交代清楚，差在哪？」 | split＋chart |
-| A8 | 11/24 二 | 長輩 | S6 觀眾問題 | T5（#12 日常東西原理） | 「語音輸入為什麼打錯同音字」：Gemini TTS 念 5 句含同音字，再用 Gemini 聽寫，數錯字（專案已有校驗流程） | claim 留言卡 | 「有人問：我媽用語音打字，為什麼老打錯字？」 | 現在可做 |
+| A1 | 11/18 三 | 工作文書 | S2 前後對照 | T4（IG #7 UI 沒 AI 味；YT #26 https://www.youtube.com/shorts/JSx5AqyLP8o） | 週報去 AI 味：先定 10 個「AI 套話詞表」，數 Gemini 初稿與改後各出現幾次 | split 滑桿擦入（V2） | 「這份週報一看就是 AI 寫的，改 3 個地方，像你寫的。」 | 現有 split 左右 |
+| A2 | 11/19 四 | 餐飲料理 | S3 三個用法 | T6（YT #7 免費清單 https://www.youtube.com/watch?v=yvSyzQeZdzQ ；IG #16） | 做菜 3 句提示詞每句都跑過（用到指定食材、有沒有編出沒給的食材） | kinetic 大字「3」＋chart 長條 | 「冰箱剩 4 樣，3 句問法我都跑過，只有＿句好用。」 | 現在可做 |
+| A3 | 11/20 五 | 學生讀書（網） | S4 計時挑戰 | T1（YT #3 做短劇 https://www.youtube.com/shorts/X-8Na8GW0ss ；IG #4） | 一章講義→可翻面閃卡，Playwright 翻卡驗證，計實際用時 | timer 疊 browser（V5） | 「一章講義，＿分鐘內變成可翻面的閃卡，計時開始。」 | kinetic 倒數大字 |
+| A4 | 11/21 六（午） | 理財記帳 | S5 錯誤 vs 正確 | T2（YT #38 真貓 vs AI 貓 https://www.youtube.com/shorts/rmUGhbkN5bE ；IG #2） | 20 筆虛構消費，兩種問法對人工標準答案算漏／錯幾筆 | chat | 「你叫 AI 幫你記帳分類，這樣問，20 筆會漏＿筆。」 | 現在可做 |
+| A5 | 11/21 六（晚） | 興趣創作 | S10 翻車合集 | T3（YT #8 Claude 工具教學 https://www.youtube.com/shorts/t4tLUOZSuB4 ；IG #6） | Gemini 生圖→Python 拼成 8 格貼圖表，三次失敗各記錄原因 | reel 三格快切（V7） | 「叫 AI 畫 LINE 貼圖，三次，三次都錯。」 | split 三欄 |
+| A6 | 11/22 日 | 家庭與親子（網） | S11 做給家人用 | T1（YT #11 做遊戲 https://www.youtube.com/shorts/zzc_UauYdWI ；IG #1） | 手寫風家務表圖（示意）→可勾選點數網頁，Playwright 操作 | device 手機框 | 「家裡的家務老是吵，我把手寫的表變成會算點數的網頁。」 | 現在可做 |
+| A7 | 11/23 一 | 求職 | S8 對決 | T4（IG #9；YT #21 https://www.youtube.com/shorts/nC8KD0b6IXE） | 履歷一句話：「我負責」vs 具體問法，量含數字句數與編造數量 | VS 記分板（V2） | 「同一份履歷，一句話問 vs 交代清楚，差在哪？」 | split＋chart |
+| A8 | 11/24 二 | 長輩 | S6 觀眾問題 | T5（IG #12；YT #28 https://www.youtube.com/shorts/yfG1xyAstUM） | 「語音輸入為什麼打錯同音字」：Gemini TTS 念 5 句含同音字，再用 Gemini 聽寫，數錯字（專案已有校驗流程） | claim 留言卡 | 「有人問：我媽用語音打字，為什麼老打錯字？」 | 現在可做 |
 
 第二週（11/25～12/1）：結構 S9、S1、S11、S2、S8、S5、S4、S7；領域 8 個；網頁 2 支（B2、B3）。
 
 | # | 日期 | 領域 | 結構 | 延伸自 | 題目與實測 | 開頭鏡（畫面手法） | 開頭一句 | 備案 |
 |---|---|---|---|---|---|---|---|---|
-| B1 | 11/25 二 | 工作文書 | S9 迷你教學 | T2（#5 一個 prompt 做十件事） | 一個問法同時出公式＋說明＋範例，Python 驗算公式結果 | editor（可升級為 screenrec V11） | 「Excel 公式不會寫？一個問法，三步問出能用的那條。」 | steps 或 check |
-| B2 | 11/26 三 | 健康運動（網） | S1 做出來＋翻車 | T1（#1） | 一句話做一週運動勾選表（只做排程，標「一般認為」，不給醫療建議） | kinetic 大字 | 「一句話，做出一週運動勾選表，結果＿。」 | 現在可做 |
-| B3 | 11/27 四 | 長輩（網） | S11 做給家人用 | T4（#9 反差） | 大字版吃藥提醒頁：先做 AI 預設版，Playwright 量字級，再要求改到 ≥24px（示意，不涉醫療建議） | device 手機框 | 「我媽老花眼，AI 做的提醒頁字級只有＿px。」 | 現在可做 |
-| B4 | 11/28 五 | 副業 | S2 前後對照 | T9（#25 換畫風，只做物件） | 同一個虛構杯子 Gemini 生 5 種商品風格 | split 滑桿擦入 | 「同一個杯子，一句話換 5 種商品風格。」 | 現有 split |
-| B5 | 11/29 六 | 寵物 | S8 對決 | T2（#2） | 領養文案：隨便寫 vs 給細節，數具體細節句數（不談成效） | chat 兩個輸入框 | 「領養文案，隨便寫 vs 給細節，差了＿個細節。」 | 現在可做 |
-| B6 | 11/30 日 | 求職 | S5 錯誤 vs 正確 | T5（#12 原理只留一句） | 虛構履歷→自我介紹，逐項比對編造的經歷；原理一句放最後 | lens 放大圈 | 「叫 AI 寫自我介紹，它多編了＿件我沒做過的事。」 | 現在可做 |
-| B7 | 12/1 一 | 旅遊 | S4 計時挑戰 | T1（#4） | 亂寫的行程文字→兩天一夜行程＋預算表，加總驗算、計時 | timer（V5） | 「週末兩天一夜，＿分鐘做出行程加預算表。」 | kinetic 倒數 |
-| B8 | 12/1 一（晚） | 綜合 | S7 一天用 AI | T6（#16 清單） | 上班族一天 6 次用 AI，每次一筆真實輸入輸出，評最有用／最沒用 | clock 鐘面（V8） | 「上班族的一天，用了 6 次 AI，哪一次最值得？」 | check 八格時間軸 |
+| B1 | 11/25 二 | 工作文書 | S9 迷你教學 | T6（YT #13 Karpathy 4 個提問技巧 https://www.youtube.com/shorts/tBExSHBCOU0 ；IG #5 一個 prompt 做十件事） | 「Excel 公式 4 個問法」每個都跑過，Python 驗算公式結果，只留 K 個有用 | editor（可升級為 screenrec V11） | 「Excel 公式不會寫？一個問法，三步問出能用的那條。」 | steps 或 check |
+| B2 | 11/26 三 | 健康運動（網） | S1 做出來＋翻車 | T1（YT #3、#11；IG #1） | 一句話做一週運動勾選表（只做排程，標「一般認為」，不給醫療建議） | kinetic 大字 | 「一句話，做出一週運動勾選表，結果＿。」 | 現在可做 |
+| B3 | 11/27 四 | 長輩（網） | S11 做給家人用 | T4（IG #9 反差；YT #26） | 大字版吃藥提醒頁：先做 AI 預設版，Playwright 量字級，再要求改到 ≥24px（示意，不涉醫療建議） | device 手機框 | 「我媽老花眼，AI 做的提醒頁字級只有＿px。」 | 現在可做 |
+| B4 | 11/28 五 | 副業 | S2 前後對照 | T7（YT #2 GPT Image 2.6 https://www.youtube.com/shorts/NQ7bn9S6cVw ；#12 NotebookLM 新功能 https://www.youtube.com/shorts/vorpu0_wXYk） | 當週圖像或辦公新功能一項（11/27 當天查證官方說明、標「截至 YYYY/M/D」），同一句指令舊流程 vs 新功能前後對照；題目以當天查證為準 | split 滑桿擦入 | 「這週出的新功能，我拿同一個虛構杯子的商品圖實跑。」 | 備案：同一個虛構杯子 Gemini 生 5 種商品風格（IG #25 換畫風，只做物件） |
+| B5 | 11/29 六 | 寵物 | S8 對決 | T2（YT #24 https://www.youtube.com/shorts/p89C3Gxoac0 ；IG #2） | 領養文案：隨便寫 vs 給細節，數具體細節句數（不談成效） | chat 兩個輸入框 | 「領養文案，隨便寫 vs 給細節，差了＿個細節。」 | 現在可做 |
+| B6 | 11/30 日 | 求職 | S5 錯誤 vs 正確 | T5（YT #25 https://www.youtube.com/shorts/rucZiwT3ne4 ；IG #12 原理只留一句） | 虛構履歷→自我介紹，逐項比對編造的經歷；原理一句放最後 | lens 放大圈 | 「叫 AI 寫自我介紹，它多編了＿件我沒做過的事。」 | 現在可做 |
+| B7 | 12/1 一 | 旅遊 | S4 計時挑戰 | T1（YT #40 https://www.youtube.com/shorts/9EFv--AkH5o ；IG #4） | 亂寫的行程文字→兩天一夜行程＋預算表，加總驗算、計時 | timer（V5） | 「週末兩天一夜，＿分鐘做出行程加預算表。」 | kinetic 倒數 |
+| B8 | 12/1 一（晚） | 綜合 | S7 一天用 AI | T6（YT #10 Grok 5 條規則 https://www.youtube.com/shorts/9B5_dMPoVnU ；IG #16） | 上班族一天 6 次用 AI，每次一筆真實輸入輸出，評最有用／最沒用 | clock 鐘面（V8） | 「上班族的一天，用了 6 次 AI，哪一次最值得？」 | check 八格時間軸 |
 
 核對：
 - 結構：兩週各 8 種不重複；S1（現行結構）只出現一次（B2）。
 - 領域：A 週 8 個、B 週 8 個；網頁 A3、A6、B2、B3，每週 2 支。
 - 開頭鏡家族相鄰皆不同：A 週 split→kinetic→timer(browser)→chat→reel→device→VS(split 家族，但前一支是 device)→claim；A7 VS 與 A8 claim 不同家族；B 週 editor→kinetic→device→split→chat→lens→timer→clock。審查時用 E10 的對照表核第一幕。
-- 題型分布：T1×5（A3、A6、B2、B7，另 B3 為 T4）、T2×4、T3×1、T4×4、T5×2、T6×2、T9×1；T7 時事走週日插隊位（不計入這 16 支），T8、T10 不做。
+- 題型分布（2026/11/17 依 YouTube 實際觀看數調整）：T1×4（A3、A6、B2、B7）、T2×2（A4、B5）、T3×1（A5）、T4×3（A1、A7、B3）、T5×2（A8、B6）、T6×3（A2、B1、B8）、T7×1（B4）；T7 另有週日插隊位每週 1 則（不計入這 16 支），T8、T9、T11 不排。吃香的 T7＋T6＋T1 占 8／16。調整處：B1 由 T2 改 T6、B4 由 T9 改 T7（T9 換畫風 YouTube 樣本無例子，且需要人像素材；T7 與 T6 在 ≥1 萬觀看的片占 74%）。
 - 週日插隊位：每週日一則「一般人用得到的 AI 更新」，當天查證；沿用既有 `caffaine-github-weekly` 的資訊差流程，不佔上表編制。
 - 結尾行動：每週至少用 3 種（留言關鍵字／二選一提問／收藏指令），逐支寫在 script.md；A2、B1、B8 用收藏指令，A4、A5、B6 用關鍵字，A7、A8、B5 用二選一，其餘自行分配。
 - 額度不夠時：保留結構與領域覆蓋，刪同日第二支（A5、B8）。
