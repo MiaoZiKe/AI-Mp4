@@ -126,7 +126,7 @@ for k in (1, 2, 3):
 s5_shift.append(hide_until("y_base", "fill+92"))
 scenes.append(scene("s5", "mechanism", 5,
     "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
-    ["每一層打上幾萬個", "比頭髮細的孔", "填銅，再從背面磨薄", "一層一層往下接通"],
+    ["每一層打上幾萬個", "比頭髮細的孔", "填銅再從背面磨薄", "一層一層往下接通"],
     ["Each layer gets tens of thousands of holes", "thinner than a hair,", "filled with copper, then thinned from the back,", "layer by layer, connected downward."],
     ["幾萬個", "填銅", "背面磨薄", "往下接通"],
     [cue("holes", "幾萬個"), cue("hair", "比頭髮細"), cue("fill", "填銅"), cue("back", "背面"), cue("thin", "磨薄"), cue("stack", "一層一層"), cue("thru", "往下接通")],
