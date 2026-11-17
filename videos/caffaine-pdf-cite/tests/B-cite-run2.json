@@ -1,0 +1,66 @@
+{
+  "id": "B-cite-run2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3-flash-preview",
+  "modelVersion": null,
+  "httpStatus": 429,
+  "sentAtUTC": "2026-11-17T04:33:00Z",
+  "elapsedSec": 91.81,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "inline_data": {
+              "mime_type": "application/pdf",
+              "data": "<base64 省略 66260 字元，檔案 handout.pdf，sha256 e8e5625f28133d52>"
+            }
+          },
+          {
+            "text": "這是一份圖書館借閱須知。我想借書，請告訴我：一次能借幾本、借多久、逾期怎麼罰、書遺失要怎麼辦，還有館內能不能影印？\n\n請只根據文件原文回答，每一句話後面用括號標上頁碼，例如（第 2 頁）。文件裡沒寫的，直接寫「文件沒寫」，不要自己補充。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "error": {
+      "code": 429,
+      "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\nPlease retry in 3h25m27.645897319s.",
+      "status": "RESOURCE_EXHAUSTED",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.Help",
+          "links": [
+            {
+              "description": "Learn more about Gemini API quotas",
+              "url": "https://aistudio.google.com/docs/rate-limits"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+          "violations": [
+            {
+              "description": "Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.",
+              "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+              "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+              "quotaDimensions": {
+                "location": "global",
+                "model": "gemini-3-flash"
+              },
+              "quotaValue": "20"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.RetryInfo",
+          "retryDelay": "12327s"
+        }
+      ]
+    }
+  },
+  "replyText": "",
+  "answer": ""
+}

@@ -1,0 +1,57 @@
+{
+  "id": "2-allow-idk-U5",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:23:02Z",
+  "elapsedSec": 38.27,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：店門口有停車位嗎？\n\n如果資料裡沒有寫，就回答「資料裡沒有寫」，不要猜。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎光臨晨光早餐店😊\n\n關於您的問題，很"
+            },
+            {
+              "text": "抱歉，我們目前的店家資料裡沒有寫店門口是否有停車位，無法直接為您解答，建議您如果經過時可以留意一下，或是您可以搭乘大眾運輸前來唷！\n\n如果您還有其他關於餐點、營業時間或付款方式的問題，我隨時都很樂意為您解答！",
+              "thoughtSignature": "EokBCoYBAWkUfRM9VmcWtSLW1RRvq0UEdjQWJkbESlg/yMxQt7k9A58vvO1on3FqR2djKKrF+/Qe5hF3Q3g0IDdE0cKzBsD1PHonTaekauhihSbTyV+rOjylLb+9xcVjBzMP0ITy+xqUDkb2IDDRNyL3RyulV358Wwt6X6KuybLbN5ddnwt0Csw2of0="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 152,
+      "candidatesTokenCount": 85,
+      "totalTokenCount": 237,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 152
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "y9b7atOoKbONjrEPsqbv6A8"
+  },
+  "replyText": "您好！歡迎光臨晨光早餐店😊\n\n關於您的問題，很抱歉，我們目前的店家資料裡沒有寫店門口是否有停車位，無法直接為您解答，建議您如果經過時可以留意一下，或是您可以搭乘大眾運輸前來唷！\n\n如果您還有其他關於餐點、營業時間或付款方式的問題，我隨時都很樂意為您解答！",
+  "answer": "您好！歡迎光臨晨光早餐店😊\n\n關於您的問題，很抱歉，我們目前的店家資料裡沒有寫店門口是否有停車位，無法直接為您解答，建議您如果經過時可以留意一下，或是您可以搭乘大眾運輸前來唷！\n\n如果您還有其他關於餐點、營業時間或付款方式的問題，我隨時都很樂意為您解答！"
+}

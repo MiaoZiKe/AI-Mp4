@@ -1,0 +1,54 @@
+{
+  "id": "2-allow-idk-K2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:23:41Z",
+  "elapsedSec": 0.69,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：可以刷信用卡嗎？\n\n如果資料裡沒有寫，就回答「資料裡沒有寫」，不要猜。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們的付款方式資料裡沒有寫喔！不過目前店內僅支援**現金**付款，暫時無法刷信用卡，不好意思給您添麻煩了！\n\n如果您還有其他想了解的餐點或資訊，隨時都可以問我喔！祝您有個美好的一天✨",
+              "thoughtSignature": "EokBCoYBAWkUfRPsofB5zIL/RuxyHsB0S75VInJQFU6Wqs3tbkkzb0GdC/hzK4YhU4W/egBuk8VvvzaW6TKJ+4Y01KFKUbtzAoJ0sR0vr6WeQSVBLcO0U6HLolQr9WIuWVgTvEl16byAy/OXCHuxibiwOTZCUnjjm2iQSsoP4i6QqA861/s9gwSi82c="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 149,
+      "candidatesTokenCount": 77,
+      "totalTokenCount": 226,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 149
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "zdb7aqvULuaqjrEP456cgAk"
+  },
+  "replyText": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們的付款方式資料裡沒有寫喔！不過目前店內僅支援**現金**付款，暫時無法刷信用卡，不好意思給您添麻煩了！\n\n如果您還有其他想了解的餐點或資訊，隨時都可以問我喔！祝您有個美好的一天✨",
+  "answer": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們的付款方式資料裡沒有寫喔！不過目前店內僅支援**現金**付款，暫時無法刷信用卡，不好意思給您添麻煩了！\n\n如果您還有其他想了解的餐點或資訊，隨時都可以問我喔！祝您有個美好的一天✨"
+}

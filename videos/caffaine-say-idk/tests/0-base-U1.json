@@ -1,0 +1,54 @@
+{
+  "id": "0-base-U1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:21:50Z",
+  "elapsedSec": 1.03,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：有沒有素食的選項？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎光臨晨光早餐店，很高興為您服務！😊\n\n關於您的問題，我們店裡的**蛋餅**（35元）、**紅茶**（20元）和**豆漿**（25元）是可以做素食的選項喔！\n\n不過要貼心提醒您，我們的蛋餅餅皮是使用一般植物油煎製，如果您是吃「蛋奶素」的話非常適合；但如果是嚴格的素食主義者，可能就要斟酌一下喔。\n\n另外，我們目前付款方式**僅收現金**，地址在「示意市示意路12號」，營業時間到早上 11:00 唷！\n\n請問今天想幫您外帶還是內用呢？有任何其他想了解的餐點，隨時都可以問我喔！✨",
+              "thoughtSignature": "EokBCoYBAWkUfRPs5c1TE1SGQcEq9K7hQuCgxRAOOcQcspiQaAFJKMgV+peqIzQplOkuACvigKBlMXrB5/E6Qs9UHO5eTIcehrqeib78YtlG0RUfnE4QNFHPYOu+J3JhgHLZKAgxQ1l+1Qc//Ddsoe3oZkmW+NZjrbBvLPrBJAy/Y4kQk0jOow76/KE="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 132,
+      "candidatesTokenCount": 178,
+      "totalTokenCount": 310,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 132
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "Xtb7asP1CZHUjMcP2fqkkAY"
+  },
+  "replyText": "您好！歡迎光臨晨光早餐店，很高興為您服務！😊\n\n關於您的問題，我們店裡的**蛋餅**（35元）、**紅茶**（20元）和**豆漿**（25元）是可以做素食的選項喔！\n\n不過要貼心提醒您，我們的蛋餅餅皮是使用一般植物油煎製，如果您是吃「蛋奶素」的話非常適合；但如果是嚴格的素食主義者，可能就要斟酌一下喔。\n\n另外，我們目前付款方式**僅收現金**，地址在「示意市示意路12號」，營業時間到早上 11:00 唷！\n\n請問今天想幫您外帶還是內用呢？有任何其他想了解的餐點，隨時都可以問我喔！✨",
+  "answer": "您好！歡迎光臨晨光早餐店，很高興為您服務！😊\n\n關於您的問題，我們店裡的**蛋餅**（35元）、**紅茶**（20元）和**豆漿**（25元）是可以做素食的選項喔！\n\n不過要貼心提醒您，我們的蛋餅餅皮是使用一般植物油煎製，如果您是吃「蛋奶素」的話非常適合；但如果是嚴格的素食主義者，可能就要斟酌一下喔。\n\n另外，我們目前付款方式**僅收現金**，地址在「示意市示意路12號」，營業時間到早上 11:00 唷！\n\n請問今天想幫您外帶還是內用呢？有任何其他想了解的餐點，隨時都可以問我喔！✨"
+}

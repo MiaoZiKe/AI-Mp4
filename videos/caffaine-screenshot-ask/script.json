@@ -1,0 +1,734 @@
+{
+ "slug": "caffaine-screenshot-ask",
+ "title": "看不懂的畫面，截圖問 AI",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "看不懂的畫面",
+   "截圖直接問 AI"
+  ],
+  "sub": "三步，一張截圖"
+ },
+ "tracker": [
+  [
+   "截圖",
+   "primary"
+  ],
+  [
+   "一步一步",
+   "right"
+  ],
+  [
+   "只截一半",
+   "wrong"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "手機跳出看不懂的畫面，截圖丟給 AI，直接問它。",
+   "subtitle": {
+    "zh": "手機跳出看不懂的畫面\n截圖丟給 AI\n直接問它",
+    "en": "A phone screen you can't read?"
+   },
+   "keywords": [
+    "看不懂"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "看不懂"
+    },
+    {
+     "id": "k2",
+     "text": "截圖"
+    },
+    {
+     "id": "k3",
+     "text": "直接問"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "看不懂": "primary"
+    },
+    "view": "lens",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-screenshot-ask/screen.png",
+    "ring": [
+     28,
+     126,
+     484,
+     186
+    ],
+    "note": "看不懂的畫面",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "？",
+    "zoom": {
+     "src": "caffaine-screenshot-ask/zoom.png",
+     "w": 960,
+     "h": 460,
+     "cap": "放大：紅字那一塊"
+    },
+    "asOf": "查證截至 2026/11/17",
+    "native": [
+     540,
+     960
+    ]
+   },
+   "sources": [
+    "gemini-3-flash-preview 實測；自製示意畫面"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "so",
+   "narration": "第一步，截圖，把有紅字的那一塊截進去。",
+   "subtitle": {
+    "zh": "第一步\n截圖\n把有紅字的那一塊截進\n去",
+    "en": "Step 1: take a screenshot,"
+   },
+   "keywords": [
+    "第一步"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一步"
+    },
+    {
+     "id": "k2",
+     "text": "截圖"
+    },
+    {
+     "id": "k3",
+     "text": "紅字"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "第一步": "sky"
+    },
+    "view": "device",
+    "tone": "fix",
+    "status": "做法・示意",
+    "statusAt": "k1+6",
+    "src": "caffaine-screenshot-ask/screen.png",
+    "at": "start-1",
+    "tapAt": "k3",
+    "cards": [
+     {
+      "icon": "phone",
+      "text": "第一步：截圖",
+      "sub": "整個畫面截下來",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "icon": "tap",
+      "text": "紅字要在裡面",
+      "sub": "錯誤訊息別切掉",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "自製示意畫面，非真實 App"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "so",
+   "narration": "第二步，問它：這是什麼，我該怎麼辦，請一步一步說。",
+   "subtitle": {
+    "zh": "第二步\n問它\n這是什麼\n我該怎麼辦\n請一步一步說",
+    "en": "Step 2: ask what it is,"
+   },
+   "keywords": [
+    "第二步"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第二步"
+    },
+    {
+     "id": "k2",
+     "text": "怎麼辦"
+    },
+    {
+     "id": "k3",
+     "text": "一步一步"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "第二步": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "attach": {
+       "src": "caffaine-screenshot-ask/screen.png",
+       "cap": "截圖"
+      },
+      "at": "start+6"
+     },
+     {
+      "who": "me",
+      "text": "請告訴我它在說什麼、為什麼會這樣、我該怎麼辦，請一步一步說。",
+      "typeAt": "k1",
+      "typeDur": 40,
+      "at": "k3+14"
+     }
+    ],
+    "chips": [
+     {
+      "text": "第二步",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "怎麼辦",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提問原文（實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "narration": "它讀出只剩 0.3 GB、至少要 1 GB，叫我按「管理儲存空間」。",
+   "subtitle": {
+    "zh": "它讀出只剩 \n0.3 GB\n至少要 1 GB\n叫我按「管理儲存空間\n」",
+    "en": "It read 0.3 GB left, 1 GB needed,"
+   },
+   "keywords": [
+    "0.3 GB"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "0.3 GB"
+    },
+    {
+     "id": "k2",
+     "text": "1 GB"
+    },
+    {
+     "id": "k3",
+     "text": "管理儲存空間"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "0.3 GB": "right"
+    },
+    "view": "editor",
+    "tone": "principle",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "answer-A-run2.txt",
+    "src": "videos/caffaine-screenshot-ask/tests/answer-A-run2.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "數據： 您目前的手機只剩下 0.3 GB 的空間，但這個程式需要至少 1 GB 才能正常運作。",
+      "n": 9,
+      "at": "start-1",
+      "dur": 30,
+      "mark": "0.3 GB",
+      "markAt": "k1"
+     },
+     {
+      "t": "第一步：點擊左下角的按鈕",
+      "n": 24,
+      "at": "k2-6",
+      "dur": 14
+     },
+     {
+      "t": "點選畫面上的藍色框框按鈕：「管理儲存空間」。這通常會引導您到手機的設定頁面，查看是什麼佔據了空間。",
+      "n": 25,
+      "at": "k2+4",
+      "dur": 30,
+      "mark": "管理儲存空間",
+      "markAt": "k3"
+     }
+    ],
+    "hl": 2,
+    "hlAt": "k3",
+    "size": 44
+   },
+   "sources": [
+    "實測節錄：gemini-3-flash-preview"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "narration": "第三步，照畫面對一次數字，我對過，沒讀錯。",
+   "subtitle": {
+    "zh": "第三步\n照畫面對一次數字\n我對過\n沒讀錯",
+    "en": "Step 3: check the numbers on screen."
+   },
+   "keywords": [
+    "第三步"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第三步"
+    },
+    {
+     "id": "k2",
+     "text": "數字"
+    },
+    {
+     "id": "k3",
+     "text": "沒讀錯"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "第三步": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測 2 次",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "對照畫面",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "0.3 GB　剩餘空間",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "1 GB　需要的空間",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "紅字　儲存空間不足",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "人工逐項對照畫面（兩次實測各一次）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "check",
+   "narration": "圖縮到很小，數字還是讀對；但只截一半，沒截到紅字，它就開始猜。",
+   "subtitle": {
+    "zh": "圖縮到很小\n數字還是讀對\n但只截一半\n沒截到紅字\n它就開始猜",
+    "en": "Shrunk to 1/8 width: still right."
+   },
+   "keywords": [
+    "縮到很小"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "縮到很小"
+    },
+    {
+     "id": "k2",
+     "text": "只截一半"
+    },
+    {
+     "id": "k3",
+     "text": "開始猜"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "縮到很小": "wrong"
+    },
+    "view": "split",
+    "tone": "bug",
+    "status": "已確定・實測 2 次",
+    "statusAt": "k1+6",
+    "left": {
+     "src": "caffaine-screenshot-ask/small-up.png",
+     "label": "縮到很小：讀對",
+     "color": "right",
+     "at": "start-1",
+     "native": [
+      540,
+      960
+     ],
+     "crop": [
+      0,
+      100,
+      540,
+      640
+     ]
+    },
+    "right": {
+     "src": "caffaine-screenshot-ask/cropped.png",
+     "label": "只截一半：開始猜",
+     "color": "wrong",
+     "at": "k2",
+     "native": [
+      540,
+      640
+     ],
+     "crop": [
+      0,
+      0,
+      540,
+      640
+     ]
+    },
+    "mid": {
+     "text": "猜",
+     "at": "k3"
+    },
+    "aiAt": "start+8",
+    "size": "big",
+    "wl": 380,
+    "wr": 380
+   },
+   "sources": [
+    "實測 2026/11/17：縮小版與只截一半版各問 2 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "check",
+   "narration": "兩次都先猜沒連 Wi-Fi，其實真正的原因是空間不足。",
+   "subtitle": {
+    "zh": "兩次都先猜沒連 \nWi-Fi\n其實真正的原因是\n空間不足",
+    "en": "Both times it guessed Wi-Fi first."
+   },
+   "keywords": [
+    "先猜"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "先猜"
+    },
+    {
+     "id": "k2",
+     "text": "Wi-Fi"
+    },
+    {
+     "id": "k3",
+     "text": "空間不足"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "先猜": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "bug",
+    "status": "已確定・實測 2 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "先猜 Wi-Fi",
+      "unit": "",
+      "at": "start-10",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     },
+     {
+      "big": "其實是空間",
+      "unit": "",
+      "at": "k3",
+      "color": "right",
+      "size": 140,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：只截一半版兩次回答都先列 Wi-Fi"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過我只試一張自製畫面、一個模型，別的畫面還不知道。",
+   "subtitle": {
+    "zh": "不過我只試\n一張自製畫面\n一個模型\n別的畫面還不知道",
+    "en": "But I tried only one made-up screen"
+   },
+   "keywords": [
+    "一張自製畫面"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一張自製畫面"
+    },
+    {
+     "id": "k2",
+     "text": "一個模型"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "一張自製畫面": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "張自製畫面",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "別的畫面會怎樣？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 張自製畫面、1 個模型"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以三步：截圖截完整、一步一步問、照畫面核對。",
+   "subtitle": {
+    "zh": "所以三步\n截圖截完整\n一步一步問\n照畫面核對",
+    "en": "So, three steps: capture it all,"
+   },
+   "keywords": [
+    "截完整"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "截完整"
+    },
+    {
+     "id": "k2",
+     "text": "一步一步問"
+    },
+    {
+     "id": "k3",
+     "text": "核對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "截完整": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "截完整",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "一步一步問",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "照畫面核對",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "留言「截圖」，拿這句提問提示詞。",
+   "subtitle": {
+    "zh": "留言「截圖」\n拿這句提問提示詞",
+    "en": "Comment \"截圖\" to get"
+   },
+   "keywords": [
+    "截圖"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "截圖"
+    },
+    {
+     "id": "k2",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "截圖": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "截圖",
+    "kicker": "想要這句提問的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "提問原句＋三步",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "截圖"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "0-base-U2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:21:51Z",
+  "elapsedSec": 9.77,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：可以外送嗎？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！感謝您洽詢晨光早餐店😊"
+            },
+            {
+              "text": "\n\n不好意思喔！我們目前**沒有提供外送服務**，餐點都是需要**現場自取**的唷～\n\n我們店址在「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00。如果您趕時間，也很歡迎先打電話（或是直接在這裡）預訂餐點，再來店裡拿，就可以幫您省去現場等待的時間囉！\n\n請問今天想幫您點些什麼美味的早餐呢？🍳☕",
+              "thoughtSignature": "EokBCoYBAWkUfRP0LISJkq6aZtM0m9ltfddoz7qbYkHLbjeNSSG75WK3PX59sy6V2LIkF8xMfeXQMtwYRu54ToaX6H7/noCj1qrdQGgcPa1oF+Vqd9sip8TGrFkickYJv9dwmVPe6WOsl50DLZoHpUu9aXlW4DfHkv+jwoXNNhh3igI1pH1CABDrd5A="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 131,
+      "candidatesTokenCount": 128,
+      "totalTokenCount": 259,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 131
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "X9b7aobYC6qy1MkPnauk4Ag"
+  },
+  "replyText": "您好！感謝您洽詢晨光早餐店😊\n\n不好意思喔！我們目前**沒有提供外送服務**，餐點都是需要**現場自取**的唷～\n\n我們店址在「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00。如果您趕時間，也很歡迎先打電話（或是直接在這裡）預訂餐點，再來店裡拿，就可以幫您省去現場等待的時間囉！\n\n請問今天想幫您點些什麼美味的早餐呢？🍳☕",
+  "answer": "您好！感謝您洽詢晨光早餐店😊\n\n不好意思喔！我們目前**沒有提供外送服務**，餐點都是需要**現場自取**的唷～\n\n我們店址在「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00。如果您趕時間，也很歡迎先打電話（或是直接在這裡）預訂餐點，再來店裡拿，就可以幫您省去現場等待的時間囉！\n\n請問今天想幫您點些什麼美味的早餐呢？🍳☕"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "A-free-run1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3-flash-preview",
+  "modelVersion": "gemini-3-flash-preview",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:16:25Z",
+  "elapsedSec": 68.36,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "inline_data": {
+              "mime_type": "application/pdf",
+              "data": "<base64 省略 66260 字元，檔案 handout.pdf，sha256 e8e5625f28133d52>"
+            }
+          },
+          {
+            "text": "這是一份圖書館借閱須知。我想借書，請告訴我：一次能借幾本、借多久、逾期怎麼罰、書遺失要怎麼辦，還有館內能不能影印？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "根據您提供的《示意社區圖書館借閱須知》，以下是您詢問的相關規定：\n\n1.  **一次能借幾本：** 每位讀者一次最多可借 **6 本**。\n2.  **可以借多久：** 借期為 **21 天**（從借書當天起算）。\n    *   *補充：若無人預約，每本書可續借 1 次，延長 14 天。*\n3.  **逾期怎麼罰：** \n    *   每本書每天罰款 **2 元**。\n    *   若逾期超過 30 天，將會**暫停借書權利 60 天**。\n4.  **書遺失要怎麼辦：** 需依**書價賠償**，並另外加收 **100 元手續費**（書頁破損或被水泡過也視同遺失處理）。\n5.  **館內能不能影印：** 這份須知中**沒有提到**關於影印的規定與設備。\n\n建議您若有影印需求，可以直接詢問圖書館櫃檯人員。",
+              "thoughtSignature": "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"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 2175,
+      "candidatesTokenCount": 257,
+      "totalTokenCount": 3110,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 47
+        },
+        {
+          "modality": "IMAGE",
+          "tokenCount": 2128
+        }
+      ],
+      "thoughtsTokenCount": 678,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3-flash-preview",
+    "responseId": "VtX7apmnMvac1MkPzoKB6QE"
+  },
+  "replyText": "根據您提供的《示意社區圖書館借閱須知》，以下是您詢問的相關規定：\n\n1.  **一次能借幾本：** 每位讀者一次最多可借 **6 本**。\n2.  **可以借多久：** 借期為 **21 天**（從借書當天起算）。\n    *   *補充：若無人預約，每本書可續借 1 次，延長 14 天。*\n3.  **逾期怎麼罰：** \n    *   每本書每天罰款 **2 元**。\n    *   若逾期超過 30 天，將會**暫停借書權利 60 天**。\n4.  **書遺失要怎麼辦：** 需依**書價賠償**，並另外加收 **100 元手續費**（書頁破損或被水泡過也視同遺失處理）。\n5.  **館內能不能影印：** 這份須知中**沒有提到**關於影印的規定與設備。\n\n建議您若有影印需求，可以直接詢問圖書館櫃檯人員。",
+  "answer": "根據您提供的《示意社區圖書館借閱須知》，以下是您詢問的相關規定：\n\n1.  **一次能借幾本：** 每位讀者一次最多可借 **6 本**。\n2.  **可以借多久：** 借期為 **21 天**（從借書當天起算）。\n    *   *補充：若無人預約，每本書可續借 1 次，延長 14 天。*\n3.  **逾期怎麼罰：** \n    *   每本書每天罰款 **2 元**。\n    *   若逾期超過 30 天，將會**暫停借書權利 60 天**。\n4.  **書遺失要怎麼辦：** 需依**書價賠償**，並另外加收 **100 元手續費**（書頁破損或被水泡過也視同遺失處理）。\n5.  **館內能不能影印：** 這份須知中**沒有提到**關於影印的規定與設備。\n\n建議您若有影印需求，可以直接詢問圖書館櫃檯人員。"
+}

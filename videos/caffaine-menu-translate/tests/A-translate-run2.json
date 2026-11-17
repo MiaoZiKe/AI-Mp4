@@ -1,0 +1,67 @@
+{
+  "id": "A-translate-run2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:31:02Z",
+  "elapsedSec": 3.35,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "inline_data": {
+              "mime_type": "image/png",
+              "data": "<base64 省略 160072 字元，檔案 menu.png，sha256 cb6dbd54298173c6>"
+            }
+          },
+          {
+            "text": "幫我翻譯這張菜單。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "這是一張日式食堂的菜單。以下是完整的中文翻譯：\n\n---\n\n### **菜單**\n*(示意食堂（程式畫的示意菜單）)*\n\n* **親子丼**　￥850\n* **豬排丼**　￥980\n  *※ 使用雞蛋、小麥*\n* **天ぷらそば (天婦羅蕎麥麵)**　￥1,100\n* **豚骨拉麵**　￥900\n* **担々麺 (擔擔麵)**　￥950\n  *※ 使用花生、芝麻*\n* **烤雞肉串拼盤**　￥780\n* **日式高湯厚蛋燒**　￥480\n* **冷奴 (日式涼拌豆腐)**　￥350\n\n*(示意"
+            },
+            {
+              "text": "菜單，自製，非任何真實店家)*",
+              "thoughtSignature": "EokBCoYBAWkUfROPwGjMi2WDf0ISEsklMbtblIui/kau6ey8SIhN5D2rZtKQoo6q6IJTRY0CZIMZxzwofWbxDa0sLLn8TQ9zqsr5xSNkLYLi8fUxJSVGgM33vYjWDcGJLpFMCKlYvPl7hmZUd9nDsW38JjfIIHtmw/iGCbTq/8T5NkcdjfX29olzw1U="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 1097,
+      "candidatesTokenCount": 210,
+      "totalTokenCount": 1307,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 9
+        },
+        {
+          "modality": "IMAGE",
+          "tokenCount": 1088
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "htj7auChEM3WjMcPhtO12As"
+  },
+  "replyText": "這是一張日式食堂的菜單。以下是完整的中文翻譯：\n\n---\n\n### **菜單**\n*(示意食堂（程式畫的示意菜單）)*\n\n* **親子丼**　￥850\n* **豬排丼**　￥980\n  *※ 使用雞蛋、小麥*\n* **天ぷらそば (天婦羅蕎麥麵)**　￥1,100\n* **豚骨拉麵**　￥900\n* **担々麺 (擔擔麵)**　￥950\n  *※ 使用花生、芝麻*\n* **烤雞肉串拼盤**　￥780\n* **日式高湯厚蛋燒**　￥480\n* **冷奴 (日式涼拌豆腐)**　￥350\n\n*(示意菜單，自製，非任何真實店家)*",
+  "answer": "這是一張日式食堂的菜單。以下是完整的中文翻譯：\n\n---\n\n### **菜單**\n*(示意食堂（程式畫的示意菜單）)*\n\n* **親子丼**　￥850\n* **豬排丼**　￥980\n  *※ 使用雞蛋、小麥*\n* **天ぷらそば (天婦羅蕎麥麵)**　￥1,100\n* **豚骨拉麵**　￥900\n* **担々麺 (擔擔麵)**　￥950\n  *※ 使用花生、芝麻*\n* **烤雞肉串拼盤**　￥780\n* **日式高湯厚蛋燒**　￥480\n* **冷奴 (日式涼拌豆腐)**　￥350\n\n*(示意菜單，自製，非任何真實店家)*"
+}

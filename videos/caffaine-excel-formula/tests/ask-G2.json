@@ -1,0 +1,54 @@
+{
+  "id": "ask-G2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:21:40Z",
+  "elapsedSec": 7.31,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "我的 Excel 資料在工作表「明細」的 A1:E21，第 1 列是標題，第 2 到 21 列是 20 筆資料：A 欄日期（真正的日期格式）、B 欄業務、C 欄區域（北／中／南）、D 欄品項、E 欄金額。\n請給我可以直接貼進指定儲存格的 Excel 公式，只要一行、開頭是 =，不要其他文字。不要用 Excel 365 才有的 UNIQUE、FILTER、XLOOKUP、LET 這類新函數，也不要用要按 Ctrl+Shift+Enter 的陣列公式。\n\n請寫放在 G2 的公式：區域是「北」而且金額大於 5000 的那些訂單，金額加總。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")",
+              "thoughtSignature": "EokBCoYBAWkUfROUw9OXtKHA6ZvBkDQnSCBzFxaFSUXq8RU294TOyhKYkKx6/1ZLhVJLaQ//IamKCl/wlIw349dLWsbB5nTIvUtWb9Tw9BPfYbRNFTBVuGcXQGfB/++vykYREseFl9SdV7efjg8i6hk3nnbEaNpvuQQPhvNYU5UUb9Xj5gEvKPeud9E="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 175,
+      "candidatesTokenCount": 43,
+      "totalTokenCount": 218,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 175
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "VNb7aoOjNrO_39IP07rwGA"
+  },
+  "replyText": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")",
+  "answer": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")"
+}

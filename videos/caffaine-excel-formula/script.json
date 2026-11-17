@@ -1,0 +1,747 @@
+{
+ "slug": "caffaine-excel-formula",
+ "title": "一分鐘內叫 AI 寫三條 Excel 公式",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "一分鐘三條公式",
+   "AI 寫得出來嗎"
+  ],
+  "sub": "真的算過"
+ },
+ "tracker": [
+  [
+   "三條公式",
+   "primary"
+  ],
+  [
+   "真的算過",
+   "right"
+  ],
+  [
+   "算出零",
+   "wrong"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "一分鐘內，叫 AI 寫三條 Excel 公式，還要算得對。",
+   "subtitle": {
+    "zh": "一分鐘內\n叫 AI 寫三條 E\nxcel 公式\n還要算得對",
+    "en": "One minute: have AI write"
+   },
+   "keywords": [
+    "一分鐘"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一分鐘"
+    },
+    {
+     "id": "k2",
+     "text": "三條"
+    },
+    {
+     "id": "k3",
+     "text": "算得對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "一分鐘": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "60",
+      "unit": "秒挑戰",
+      "at": "start-10",
+      "color": "primary",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "算得對",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "asOf": "查證截至 2026/11/17"
+   },
+   "sources": [
+    "gemini-3.5-flash-lite 實測；虛構銷售表"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "so",
+   "narration": "我先說表格長怎樣，再一條一條問。",
+   "subtitle": {
+    "zh": "我先說表格長怎樣\n再一條一條問",
+    "en": "I describe the sheet first,"
+   },
+   "keywords": [
+    "表格長怎樣"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "表格長怎樣"
+    },
+    {
+     "id": "k2",
+     "text": "一條一條問"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "表格長怎樣": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "請寫放在 G2 的公式：區域是「北」而且金額大於 5000 的那些訂單，金額加總。",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "表格長怎樣",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "一條一條問",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提示詞原文（節錄；實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "第一條，北區、大於五千的加總，它給了這條公式。",
+   "subtitle": {
+    "zh": "第一條\n北區\n大於五千的加總\n它給了這條公式",
+    "en": "Formula one: North region, over 5,000."
+   },
+   "keywords": [
+    "第一條"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一條"
+    },
+    {
+     "id": "k2",
+     "text": "北區"
+    },
+    {
+     "id": "k3",
+     "text": "公式"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "第一條": "right"
+    },
+    "view": "editor",
+    "tone": "principle",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "answer-G2.txt",
+    "src": "videos/caffaine-excel-formula/tests/answer-G2.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")",
+      "n": 1,
+      "at": "start-1",
+      "dur": 40,
+      "mark": "SUMIFS",
+      "markAt": "k3"
+     }
+    ],
+    "hl": 0,
+    "hlAt": "k3",
+    "size": 48,
+    "tags": [
+     {
+      "text": "北區＋大於 5000",
+      "at": "k2",
+      "color": "note"
+     }
+    ]
+   },
+   "sources": [
+    "實測節錄：gemini-3.5-flash-lite"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "hook",
+   "narration": "三條公式，一共用了八點五秒。",
+   "subtitle": {
+    "zh": "三條公式\n一共用了八點五秒",
+    "en": "Three formulas:"
+   },
+   "keywords": [
+    "三條公式"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "三條公式"
+    },
+    {
+     "id": "k2",
+     "text": "八點五秒"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "三條公式": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "8.5",
+      "unit": "秒",
+      "at": "start-10",
+      "color": "primary",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "八點五秒",
+      "unit": "",
+      "at": "k2",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：三次請求回應秒數相加（不含貼上驗算）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "check",
+   "narration": "我用 LibreOffice 真的算一遍，兩條對，一條算出零。",
+   "subtitle": {
+    "zh": "我用 LibreOffice\n 真的算一遍\n兩條對\n一條算出零",
+    "en": "I recalculated in LibreOffice."
+   },
+   "keywords": [
+    "LibreOffice"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "LibreOffice"
+    },
+    {
+     "id": "k2",
+     "text": "兩條對"
+    },
+    {
+     "id": "k3",
+     "text": "算出零"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "LibreOffice": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-excel-formula/sheet-before.png",
+    "ring": [
+     0,
+     190,
+     540,
+     100
+    ],
+    "note": "其中一條",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "0",
+    "zoom": {
+     "src": "caffaine-excel-formula/sheet-zoom.png",
+     "w": 960,
+     "h": 213,
+     "cap": "放大：G3 算出 0"
+    },
+    "native": [
+     540,
+     420
+    ]
+   },
+   "sources": [
+    "LibreOffice 24.2 實際重算；標準答案由 Python 直接加總"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "check",
+   "narration": "第二條日期用斜線，在 LibreOffice 認不出，改橫線就行。",
+   "subtitle": {
+    "zh": "第二條日期用斜線\n在 LibreOff\nice 認不出\n改橫線就行",
+    "en": "Dates with slashes: LibreOffice can't read."
+   },
+   "keywords": [
+    "斜線"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "斜線"
+    },
+    {
+     "id": "k2",
+     "text": "認不出"
+    },
+    {
+     "id": "k3",
+     "text": "橫線"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "斜線": "wrong"
+    },
+    "view": "split",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "layout": "stack",
+    "top": {
+     "src": "caffaine-excel-formula/card-first.png",
+     "label": "第一次：斜線",
+     "color": "note",
+     "at": "start-1"
+    },
+    "bottom": {
+     "src": "caffaine-excel-formula/card-fixed.png",
+     "label": "修過：橫線",
+     "color": "wrong",
+     "at": "k3"
+    },
+    "mids": []
+   },
+   "sources": [
+    "對照實驗：斜線 0，橫線 75301"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "so",
+   "narration": "我把結果告訴它：算出零，請修。",
+   "subtitle": {
+    "zh": "我把結果告訴它\n算出零\n請修",
+    "en": "I told it the result: zero."
+   },
+   "keywords": [
+    "結果告訴它"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "結果告訴它"
+    },
+    {
+     "id": "k2",
+     "text": "算出零"
+    },
+    {
+     "id": "k3",
+     "text": "請修"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "結果告訴它": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "我貼進去算出來是 0，但 10 月明明有資料，不該是 0。請修正",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "結果告訴它",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "算出零",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提示詞原文（節錄；實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "mechanism",
+   "narration": "修完算出七萬五千三百零一，三條全對。",
+   "subtitle": {
+    "zh": "修完算出\n七萬五千三百零一\n三條全對",
+    "en": "Fixed: 75,301."
+   },
+   "keywords": [
+    "七萬五千三百零一"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "七萬五千三百零一"
+    },
+    {
+     "id": "k2",
+     "text": "三條全對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "七萬五千三百零一": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "三條都對",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "G2　51801 北區大於五千",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "G3　75301 十月金額",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "G4　3 位業務",
+      "sub": "",
+      "at": "k2",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "標準答案由 Python 直接加總；修正版也由 LibreOffice 算出"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "unknown",
+   "narration": "不過這是 LibreOffice 驗算，真的 Excel 還不知道。",
+   "subtitle": {
+    "zh": "不過這是 \nLibreOffice\n 驗算\n真的 Excel \n還不知道",
+    "en": "But I checked in LibreOffice."
+   },
+   "keywords": [
+    "LibreOffice"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "LibreOffice"
+    },
+    {
+     "id": "k2",
+     "text": "真的 Excel"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "LibreOffice": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "LibreOffice",
+      "unit": "",
+      "at": "start-10",
+      "color": "plum",
+      "size": 118,
+      "usize": 100
+     },
+     {
+      "big": "不是 Excel",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 100
+     }
+    ],
+    "q": {
+     "text": "Excel 也一樣？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只在 LibreOffice 24.2 驗算，沒有在 Excel 本體測過"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "so",
+   "narration": "所以做法：講清楚欄位、貼上驗算、算錯就把結果告訴它。",
+   "subtitle": {
+    "zh": "所以做法\n講清楚欄位\n貼上驗算\n算錯就把結果告訴它",
+    "en": "So: describe columns, paste and check,"
+   },
+   "keywords": [
+    "講清楚欄位"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "講清楚欄位"
+    },
+    {
+     "id": "k2",
+     "text": "貼上驗算"
+    },
+    {
+     "id": "k3",
+     "text": "算錯"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "講清楚欄位": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "講清楚欄位",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "貼上驗算",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "算錯告訴它",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "narration": "留言「公式」，拿這三題的提示詞。",
+   "subtitle": {
+    "zh": "留言「公式」\n拿這三題的提示詞",
+    "en": "Comment \"公式\" to get"
+   },
+   "keywords": [
+    "公式"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "公式"
+    },
+    {
+     "id": "k2",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "公式": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "公式",
+    "kicker": "想要這三題的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "三題原句＋驗算做法",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "公式"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

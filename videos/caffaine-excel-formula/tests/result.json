@@ -1,0 +1,30 @@
+{
+ "G2": {
+  "seconds": 7.31,
+  "formula": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")",
+  "raw": "=SUMIFS(明細!E2:E21, 明細!C2:C21, \"北\", 明細!E2:E21, \">5000\")",
+  "model": "gemini-3.5-flash-lite",
+  "libreoffice_value": 51801,
+  "expected": 51801,
+  "correct": true
+ },
+ "G3": {
+  "seconds": 0.59,
+  "formula": "=SUMIFS(明細!E$2:E$21, 明細!A$2:A$21, \">=2026/10/1\", 明細!A$2:A$21, \"<=2026/10/31\")",
+  "raw": "=SUMIFS(明細!E$2:E$21, 明細!A$2:A$21, \">=2026/10/1\", 明細!A$2:A$21, \"<=2026/10/31\")",
+  "model": "gemini-3.5-flash-lite",
+  "libreoffice_value": 0,
+  "expected": 75301,
+  "correct": false
+ },
+ "G4": {
+  "seconds": 0.56,
+  "formula": "=SUMPRODUCT((明細!$B$2:$B$21<>\"\")/COUNTIF(明細!$B$2:$B$21,明細!$B$2:$B$21&\"\"))",
+  "raw": "=SUMPRODUCT((明細!$B$2:$B$21<>\"\")/COUNTIF(明細!$B$2:$B$21,明細!$B$2:$B$21&\"\"))",
+  "model": "gemini-3.5-flash-lite",
+  "libreoffice_value": 3,
+  "expected": 3,
+  "correct": true
+ },
+ "_total_seconds": 8.46
+}

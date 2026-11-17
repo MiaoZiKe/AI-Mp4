@@ -1,0 +1,716 @@
+{
+ "slug": "caffaine-menu-translate",
+ "title": "拍一張外文菜單，叫 AI 翻譯並解釋",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "外文菜單",
+   "只說翻譯夠嗎"
+  ],
+  "sub": "兩種問法實測"
+ },
+ "tracker": [
+  [
+   "只說翻譯",
+   "wrong"
+  ],
+  [
+   "說清楚",
+   "right"
+  ],
+  [
+   "AI 補的",
+   "note"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "拍一張外文菜單，叫 AI 翻譯，只說翻譯，夠嗎？",
+   "subtitle": {
+    "zh": "拍一張外文菜單\n叫 AI 翻譯\n只說翻譯\n夠嗎",
+    "en": "Photo of a foreign menu."
+   },
+   "keywords": [
+    "外文菜單"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "外文菜單"
+    },
+    {
+     "id": "k2",
+     "text": "翻譯"
+    },
+    {
+     "id": "k3",
+     "text": "夠嗎"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "外文菜單": "primary"
+    },
+    "view": "device",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-menu-translate/phone.png",
+    "at": "start-1",
+    "tapAt": "k3",
+    "cards": [
+     {
+      "icon": "phone",
+      "text": "拍一張菜單",
+      "sub": "日文，程式畫的示意",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "icon": "text",
+      "text": "叫 AI 翻譯",
+      "sub": "只說：幫我翻譯",
+      "at": "k2",
+      "color": "wrong"
+     }
+    ],
+    "asOf": "查證截至 2026/11/17"
+   },
+   "sources": [
+    "gemini-3.5-flash-lite 實測；程式畫的示意菜單"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "第一種問法，只說：幫我翻譯這張菜單。",
+   "subtitle": {
+    "zh": "第一種問法\n只說\n幫我翻譯這張菜單",
+    "en": "Way one, just say:"
+   },
+   "keywords": [
+    "第一種問法"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一種問法"
+    },
+    {
+     "id": "k2",
+     "text": "翻譯"
+    },
+    {
+     "id": "k3",
+     "text": "菜單"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "第一種問法": "wrong"
+    },
+    "view": "chat",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "attach": {
+       "src": "caffaine-menu-translate/phone.png",
+       "cap": "菜單照片"
+      },
+      "at": "start+6"
+     },
+     {
+      "who": "me",
+      "text": "幫我翻譯這張菜單。",
+      "typeAt": "k1",
+      "typeDur": 30,
+      "at": "k3+14"
+     }
+    ],
+    "chips": [
+     {
+      "text": "第一種問法",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "翻譯",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提問原句（實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "結果品名、價格、過敏提示都對，一道也沒錯。",
+   "subtitle": {
+    "zh": "結果品名\n價格\n過敏提示都對\n一道也沒錯",
+    "en": "Names, prices, printed allergy notes:"
+   },
+   "keywords": [
+    "品名"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "品名"
+    },
+    {
+     "id": "k2",
+     "text": "價格"
+    },
+    {
+     "id": "k3",
+     "text": "過敏提示"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "品名": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測 2 次",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "兩次回答對照菜單",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "品名　8 道全對",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "價格　8 道全對",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "菜單印的過敏提示　4 項全帶到",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "人工逐項對照菜單（兩次實測）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "可是親子丼，第二次它只留日文名，沒說是什麼。",
+   "subtitle": {
+    "zh": "可是親子丼\n第二次它只留日文名\n沒說是什麼",
+    "en": "But \"oyakodon\" the second time:"
+   },
+   "keywords": [
+    "親子丼"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "親子丼"
+    },
+    {
+     "id": "k2",
+     "text": "第二次"
+    },
+    {
+     "id": "k3",
+     "text": "沒說是什麼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "親子丼": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "src": "caffaine-menu-translate/a2card.png",
+    "ring": [
+     10,
+     52,
+     520,
+     58
+    ],
+    "note": "親子丼",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "？",
+    "zoom": {
+     "src": "caffaine-menu-translate/a2zoom.png",
+     "w": 960,
+     "h": 388,
+     "cap": "放大：只有名字，沒說明"
+    },
+    "native": [
+     540,
+     560
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：只說翻譯版第二次回答"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "so",
+   "narration": "第二種問法，請它說明做法、食材，標出過敏原。",
+   "subtitle": {
+    "zh": "第二種問法\n請它說明做法\n食材\n標出過敏原",
+    "en": "Way two: ask for the method,"
+   },
+   "keywords": [
+    "第二種問法"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第二種問法"
+    },
+    {
+     "id": "k2",
+     "text": "說明"
+    },
+    {
+     "id": "k3",
+     "text": "過敏原"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "第二種問法": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "每道菜用一句話說明它是什麼、主要食材和做法；菜單上標了過敏原的要照抄標出來",
+      "typeAt": "k1",
+      "typeDur": 44,
+      "at": "k3+16"
+     }
+    ],
+    "chips": [
+     {
+      "text": "第二種問法",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "說明",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提問原句（節錄；實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "每道菜都多了說明，像親子丼：雞肉洋蔥淋蛋，蓋在飯上。",
+   "subtitle": {
+    "zh": "每道菜都多了說明\n像親子丼\n雞肉洋蔥淋蛋\n蓋在飯上",
+    "en": "Every dish got a note. Oyakodon:"
+   },
+   "keywords": [
+    "每道菜"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "每道菜"
+    },
+    {
+     "id": "k2",
+     "text": "親子丼"
+    },
+    {
+     "id": "k3",
+     "text": "淋蛋"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "每道菜": "right"
+    },
+    "view": "editor",
+    "tone": "principle",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "answer-B.txt",
+    "src": "videos/caffaine-menu-translate/tests/answer-B.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "親子丼　￥850",
+      "n": 8,
+      "at": "start-1",
+      "dur": 26
+     },
+     {
+      "t": "說明： 將雞肉和洋蔥以醬油風味的高湯煮熟後，淋上雞蛋覆蓋在白飯上的經典日式蓋飯。",
+      "n": 9,
+      "at": "k1+10",
+      "dur": 26,
+      "mark": "淋上雞蛋",
+      "markAt": "k3"
+     },
+     {
+      "t": "主要食材： 雞肉、雞蛋、洋蔥、白飯",
+      "n": 10,
+      "at": "k1+20",
+      "dur": 26
+     }
+    ],
+    "hl": 1,
+    "hlAt": "k3",
+    "size": 44
+   },
+   "sources": [
+    "實測節錄：gemini-3.5-flash-lite（說清楚版）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "check",
+   "narration": "但洋蔥、叉燒、蔥花，菜單根本沒印，是它補的，沒有一道標不確定。",
+   "subtitle": {
+    "zh": "但洋蔥\n叉燒\n蔥花\n菜單根本沒印\n是它補的\n沒有一道標不確定",
+    "en": "Onion, chashu, scallion aren't on the menu."
+   },
+   "keywords": [
+    "菜單根本沒印"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "菜單根本沒印"
+    },
+    {
+     "id": "k2",
+     "text": "是它補的"
+    },
+    {
+     "id": "k3",
+     "text": "沒有一道標不確定"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "菜單根本沒印": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "bug",
+    "status": "已確定・實測 2 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "0",
+      "unit": "道標不確定",
+      "at": "start-10",
+      "color": "wrong",
+      "size": 230,
+      "usize": 110
+     },
+     {
+      "big": "全是它補的",
+      "unit": "",
+      "at": "k3",
+      "color": "note",
+      "size": 140,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：說清楚版兩次回答都沒有「不確定」"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過我只用一張自製菜單、一個模型，真的店家的菜單，還不知道。",
+   "subtitle": {
+    "zh": "不過我只用\n一張自製菜單\n一個模型\n真的店家的菜單\n還不知道",
+    "en": "But one made-up menu, one model."
+   },
+   "keywords": [
+    "一張自製菜單"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一張自製菜單"
+    },
+    {
+     "id": "k2",
+     "text": "一個模型"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "一張自製菜單": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "張自製菜單",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "真的店家菜單？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 張自製菜單、1 個模型、每種問法 2 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以做法：拍清楚、要說明、過敏原一定問店家。",
+   "subtitle": {
+    "zh": "所以做法\n拍清楚\n要說明\n過敏原一定問店家",
+    "en": "So: shoot it clearly, ask for notes,"
+   },
+   "keywords": [
+    "拍清楚"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "拍清楚"
+    },
+    {
+     "id": "k2",
+     "text": "要說明"
+    },
+    {
+     "id": "k3",
+     "text": "問店家"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "拍清楚": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "拍清楚",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "要說明",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "過敏問店家",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理；過敏相關請以店家說明為準"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "留言「菜單」，拿這句說清楚的提示詞。",
+   "subtitle": {
+    "zh": "留言「菜單」\n拿這句說清楚的提示詞",
+    "en": "Comment \"菜單\" to get"
+   },
+   "keywords": [
+    "菜單"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "菜單"
+    },
+    {
+     "id": "k2",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "菜單": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "菜單",
+    "kicker": "想要說清楚的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "提問原句＋三步",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "菜單"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

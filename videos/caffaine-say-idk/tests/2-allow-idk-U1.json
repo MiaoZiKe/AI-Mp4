@@ -1,0 +1,54 @@
+{
+  "id": "2-allow-idk-U1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:53Z",
+  "elapsedSec": 0.97,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：有沒有素食的選項？\n\n如果資料裡沒有寫，就回答「資料裡沒有寫」，不要猜。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎光臨晨光早餐店～ 😊\n\n關於您的問題，不好意思，我們目前的資料裡沒有寫是否有素食的選項，所以我無法確定喔！\n\n如果您想參考其他餐點資訊，我們目前有：\n* 蛋餅 35 元\n* 火腿蛋吐司 45 元\n* 鐵板麵 60 元\n* 紅茶 20 元\n* 豆漿 25 元\n\n我們位於「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00，付款方式目前「只收現金」喔！\n\n如果有其他需要幫忙的地方，隨時告訴我，祝您有美好的一天！✨",
+              "thoughtSignature": "EokBCoYBAWkUfRM5K/W5BMMfJScU9tXEY2uldZ8RzK2eG1jZQAY1ZtL194BWte/C7cpm1mg44laAQ6Wf2T5/MhOUMMhbpAubZMG7Mj/nummiEzdbF9DKsMN5689iwEjRL51lgHHgYLEOTqTaYn/5//EgrxmUJzEy5X3hLOUEi9hqOz2SyhUK3BQ4Aqo="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 150,
+      "candidatesTokenCount": 165,
+      "totalTokenCount": 315,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 150
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "ndb7asnqGfqz1MkP__abwAc"
+  },
+  "replyText": "您好！歡迎光臨晨光早餐店～ 😊\n\n關於您的問題，不好意思，我們目前的資料裡沒有寫是否有素食的選項，所以我無法確定喔！\n\n如果您想參考其他餐點資訊，我們目前有：\n* 蛋餅 35 元\n* 火腿蛋吐司 45 元\n* 鐵板麵 60 元\n* 紅茶 20 元\n* 豆漿 25 元\n\n我們位於「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00，付款方式目前「只收現金」喔！\n\n如果有其他需要幫忙的地方，隨時告訴我，祝您有美好的一天！✨",
+  "answer": "您好！歡迎光臨晨光早餐店～ 😊\n\n關於您的問題，不好意思，我們目前的資料裡沒有寫是否有素食的選項，所以我無法確定喔！\n\n如果您想參考其他餐點資訊，我們目前有：\n* 蛋餅 35 元\n* 火腿蛋吐司 45 元\n* 鐵板麵 60 元\n* 紅茶 20 元\n* 豆漿 25 元\n\n我們位於「示意市示意路 12 號」，營業時間是週一到週五的 06:30 到 11:00，付款方式目前「只收現金」喔！\n\n如果有其他需要幫忙的地方，隨時告訴我，祝您有美好的一天！✨"
+}

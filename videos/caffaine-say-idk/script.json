@@ -1,0 +1,727 @@
+{
+ "slug": "caffaine-say-idk",
+ "title": "讓 AI 老實說不知道",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "AI 愛亂編",
+   "三招讓它說不知道"
+  ],
+  "sub": "五題實測，兩招有用"
+ },
+ "tracker": [
+  [
+   "亂編",
+   "wrong"
+  ],
+  [
+   "資料沒寫",
+   "right"
+  ],
+  [
+   "三招",
+   "primary"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "客服 AI 愛亂編？用三招，讓它老實說不知道。",
+   "subtitle": {
+    "zh": "客服 AI 愛亂編\n用三招\n讓它老實說不知道",
+    "en": "Does a support AI make things up?"
+   },
+   "keywords": [
+    "愛亂編"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "愛亂編"
+    },
+    {
+     "id": "k2",
+     "text": "三招"
+    },
+    {
+     "id": "k3",
+     "text": "不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "愛亂編": "primary"
+    },
+    "view": "chat",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "有沒有 Wi-Fi 可以用？",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "愛亂編",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "三招",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ],
+    "asOf": "查證截至 2026/11/17"
+   },
+   "sources": [
+    "gemini-3.5-flash-lite 實測；虛構早餐店"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "我給它一份只有五行的早餐店資料，再問五件資料裡沒有的事。",
+   "subtitle": {
+    "zh": "我給它一份只有五行的\n早餐店資料\n再問五件資料裡\n沒有的事",
+    "en": "I gave it five lines about a shop,"
+   },
+   "keywords": [
+    "五行"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "五行"
+    },
+    {
+     "id": "k2",
+     "text": "早餐店資料"
+    },
+    {
+     "id": "k3",
+     "text": "沒有的事"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "五行": "right"
+    },
+    "view": "editor",
+    "tone": "principle",
+    "status": "情境示意・虛構",
+    "statusAt": "k1+6",
+    "file": "shop.txt",
+    "src": "videos/caffaine-say-idk/tests/shop.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "晨光早餐店（虛構店家，自製示意資料）",
+      "n": 1,
+      "at": "start-1",
+      "dur": 20
+     },
+     {
+      "t": "地址：示意市示意路 12 號",
+      "n": 2,
+      "at": "k1+6",
+      "dur": 20
+     },
+     {
+      "t": "營業時間：週一到週五 06:30 到 11:00",
+      "n": 3,
+      "at": "k1+12",
+      "dur": 20
+     },
+     {
+      "t": "菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元",
+      "n": 4,
+      "at": "k1+18",
+      "dur": 20
+     },
+     {
+      "t": "付款方式：只收現金",
+      "n": 5,
+      "at": "k1+24",
+      "dur": 20
+     }
+    ],
+    "hl": 4,
+    "hlAt": "k3",
+    "size": 40
+   },
+   "sources": [
+    "自製虛構店家資料（shop.txt）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "check",
+   "narration": "什麼規定都不加，五題全編，連 Wi-Fi 都說成沒有。",
+   "subtitle": {
+    "zh": "什麼規定都不加\n五題全編\n連 Wi-Fi 都說\n成沒有",
+    "en": "No rules added: all five made up,"
+   },
+   "keywords": [
+    "不加"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不加"
+    },
+    {
+     "id": "k2",
+     "text": "五題全編"
+    },
+    {
+     "id": "k3",
+     "text": "Wi-Fi"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "不加": "wrong"
+    },
+    "view": "check",
+    "tone": "bug",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "什麼規定都不加",
+     "at": "start-1",
+     "color": "wrong"
+    },
+    "items": [
+     {
+      "text": "素食？說蛋餅可以做素食",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "外送？說沒有外送",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "Wi-Fi？說沒有 Wi-Fi",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：五題都把沒寫的事說成事實（人工判讀）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "so",
+   "narration": "第一招，只根據資料，編的剩兩題。",
+   "subtitle": {
+    "zh": "第一招\n只根據資料\n編的剩兩題",
+    "en": "Trick 1: use only the data."
+   },
+   "keywords": [
+    "第一招"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一招"
+    },
+    {
+     "id": "k2",
+     "text": "只根據資料"
+    },
+    {
+     "id": "k3",
+     "text": "兩題"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "第一招": "sky"
+    },
+    "view": "kinetic",
+    "tone": "fix",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "5→2",
+      "unit": "題編造",
+      "at": "start-10",
+      "color": "sky",
+      "size": 230,
+      "usize": 110
+     },
+     {
+      "big": "只剩兩題",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：「請只根據上面的店家資料回答」"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "so",
+   "narration": "第二招，准許它說資料裡沒有寫。",
+   "subtitle": {
+    "zh": "第二招\n准許它說資料裡沒有寫",
+    "en": "Trick 2: give it permission"
+   },
+   "keywords": [
+    "第二招"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第二招"
+    },
+    {
+     "id": "k2",
+     "text": "准許"
+    },
+    {
+     "id": "k3",
+     "text": "沒有寫"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "第二招": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "如果資料裡沒有寫，就回答「資料裡沒有寫」，不要猜。",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "第二招",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "准許",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提示詞原句（實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "結果五題全都老實說沒寫，一題都沒編。",
+   "subtitle": {
+    "zh": "結果五題全都老實說\n沒寫\n一題都沒編",
+    "en": "All five: honestly \"not written\"."
+   },
+   "keywords": [
+    "五題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "五題"
+    },
+    {
+     "id": "k2",
+     "text": "沒寫"
+    },
+    {
+     "id": "k3",
+     "text": "沒編"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "五題": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "加了這句：五題都說沒寫",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "素食？資料裡沒有寫",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "外送？資料裡沒有寫",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "Wi-Fi？資料裡沒有寫",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：五題都說資料沒寫（人工判讀）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "check",
+   "narration": "第三招，先引用原文，沒用，五題還是都編。",
+   "subtitle": {
+    "zh": "第三招\n先引用原文\n沒用\n五題還是都編",
+    "en": "Trick 3: quote the source first."
+   },
+   "keywords": [
+    "第三招"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第三招"
+    },
+    {
+     "id": "k2",
+     "text": "先引用原文"
+    },
+    {
+     "id": "k3",
+     "text": "都編"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "第三招": "wrong"
+    },
+    "view": "editor",
+    "tone": "bug",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "answer-3-U3.txt",
+    "src": "videos/caffaine-say-idk/tests/answer-3-U3.txt",
+    "wrap": true,
+    "before": 1,
+    "after": 0,
+    "lines": [
+     {
+      "t": "找不到原文，我不知道。",
+      "n": 1,
+      "at": "start-1",
+      "dur": 24
+     },
+     {
+      "t": "不過沒關係！雖然我們店裡沒有提供免費的 Wi-Fi，但我們有美味現做的蛋餅、火腿蛋吐司和熱騰騰的鐵板麵，還有香醇的紅茶與豆漿在等著您唷！",
+      "n": 3,
+      "at": "k1+10",
+      "dur": 24,
+      "mark": "沒有提供免費的 Wi-Fi",
+      "markAt": "k3"
+     }
+    ],
+    "hl": 1,
+    "hlAt": "k3",
+    "size": 44
+   },
+   "sources": [
+    "實測節錄：gemini-3.5-flash-lite"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過我只試一份五行資料、一個模型，長文件還不知道。",
+   "subtitle": {
+    "zh": "不過我只試一份\n五行資料\n一個模型\n長文件還不知道",
+    "en": "But only a five-line source, one model."
+   },
+   "keywords": [
+    "五行資料"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "五行資料"
+    },
+    {
+     "id": "k2",
+     "text": "一個模型"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "五行資料": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "5",
+      "unit": "行資料",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "長文件會怎樣？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 份五行資料、1 個模型、每格 1 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以最有用的是那句：資料沒寫，就說沒寫。",
+   "subtitle": {
+    "zh": "所以最有用的是那句\n資料沒寫\n就說沒寫",
+    "en": "So the useful line is:"
+   },
+   "keywords": [
+    "最有用"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "最有用"
+    },
+    {
+     "id": "k2",
+     "text": "資料沒寫"
+    },
+    {
+     "id": "k3",
+     "text": "說沒寫"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "最有用": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "給資料",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "加一句規定",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "核對回答",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "留言「不知道」，拿這三句規定的提示詞。",
+   "subtitle": {
+    "zh": "留言「不知道」\n拿這三句規定的提示詞",
+    "en": "Comment \"不知道\" to get"
+   },
+   "keywords": [
+    "不知道"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "不知道"
+    },
+    {
+     "id": "k2",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "不知道": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "不知道",
+    "kicker": "想要三句規定的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "三招原句＋實測結果",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "不知道"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

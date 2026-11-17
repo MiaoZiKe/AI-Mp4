@@ -1,0 +1,54 @@
+{
+  "id": "2-allow-idk-U2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:54Z",
+  "elapsedSec": 0.67,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：可以外送嗎？\n\n如果資料裡沒有寫，就回答「資料裡沒有寫」，不要猜。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們目前的資料裡沒有寫是否提供外送服務喔！\n\n如果您還有其他餐點或營業時間等相關問題，我隨時都很樂意為您解答！",
+              "thoughtSignature": "EokBCoYBAWkUfRN38NwwHAqAt8Wa5/jGxmn9koMHxRdi+l619lpSgItAfttlVc7ZtxgjP8OIGft1Qx8sR/hKsc6FTywBjjWDSjp0+73tYyS4FUeJm5QMImjqXBXqqaEBkolM2Oi6RL2JIFlpwnoe84A7baiQEqmBxZ555d3lxcmaPOEnSaKzSsEEigk="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 149,
+      "candidatesTokenCount": 53,
+      "totalTokenCount": 202,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 149
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "ntb7apSRGYqR39IP1a7tiA4"
+  },
+  "replyText": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們目前的資料裡沒有寫是否提供外送服務喔！\n\n如果您還有其他餐點或營業時間等相關問題，我隨時都很樂意為您解答！",
+  "answer": "您好！感謝您洽詢晨光早餐店😊\n\n關於您的問題，我們目前的資料裡沒有寫是否提供外送服務喔！\n\n如果您還有其他餐點或營業時間等相關問題，我隨時都很樂意為您解答！"
+}

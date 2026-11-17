@@ -1,0 +1,54 @@
+{
+  "id": "0-base-U4",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:01Z",
+  "elapsedSec": 26.04,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：蛋餅有哪些口味？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎光臨晨光早餐店！☀️\n\n關於您的問題，我們目前有提供經典好吃的**原味蛋餅**喔！（一份是 35 元）\n\n皮煎得酥酥脆脆的，搭配我們的醬油膏非常對味，許多熟客每天早上都會點一份呢！\n\n請問需要幫您準備一份蛋餅，或是搭配一杯香濃的紅茶（20元）或豆漿（25元）嗎？我們店址在「示意市示意路 12 號」，今天營業到上午 11:00，目前小店僅提供**現金付款**，期待您的光臨！😊",
+              "thoughtSignature": "EokBCoYBAWkUfRPAEh33mLdYw7lxyuitcqW0ICit6zyFrjRIvRxr3PcKnjZV7thHrSssOb8TNI7vKfcFecnPV4BXOq6p0/YtTbcQMCijT1YM8CgDy8L3WwWk8D7Qts+r+nBROu0w3+kBkAmwxC8Fmk5tTUhedTK1RjxzkqNk72e2jMvGQHh/9JjX9ks="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 131,
+      "candidatesTokenCount": 142,
+      "totalTokenCount": 273,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 131
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "g9b7arn-CeCr_PUP_O-iiAo"
+  },
+  "replyText": "您好！歡迎光臨晨光早餐店！☀️\n\n關於您的問題，我們目前有提供經典好吃的**原味蛋餅**喔！（一份是 35 元）\n\n皮煎得酥酥脆脆的，搭配我們的醬油膏非常對味，許多熟客每天早上都會點一份呢！\n\n請問需要幫您準備一份蛋餅，或是搭配一杯香濃的紅茶（20元）或豆漿（25元）嗎？我們店址在「示意市示意路 12 號」，今天營業到上午 11:00，目前小店僅提供**現金付款**，期待您的光臨！😊",
+  "answer": "您好！歡迎光臨晨光早餐店！☀️\n\n關於您的問題，我們目前有提供經典好吃的**原味蛋餅**喔！（一份是 35 元）\n\n皮煎得酥酥脆脆的，搭配我們的醬油膏非常對味，許多熟客每天早上都會點一份呢！\n\n請問需要幫您準備一份蛋餅，或是搭配一杯香濃的紅茶（20元）或豆漿（25元）嗎？我們店址在「示意市示意路 12 號」，今天營業到上午 11:00，目前小店僅提供**現金付款**，期待您的光臨！😊"
+}

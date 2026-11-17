@@ -1,0 +1,54 @@
+{
+  "id": "3-quote-first-U5",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:23:52Z",
+  "elapsedSec": 0.88,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：店門口有停車位嗎？\n\n回答前，先從店家資料裡引用一句相關的原文；找不到原文，就回答「找不到原文，我不知道」。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "找不到原文，我不知道。\n\n不過沒關係！雖然我們店家的基本資料裡沒有特別提到停車位的部分，但我可以為您說明：晨光早餐店位於「示意市示意路 12 號」，附近通常路邊都可以暫停或找找機車停車格喔！如果您需要外帶，也可以先打電話或提前告知我們，好讓您取餐更方便。\n\n還有其他想了解的嗎？隨時都可以問我喔！祝您今天有個美好的早晨！",
+              "thoughtSignature": "EokBCoYBAWkUfRMbBUMDVV6YzDajwgXspLp7CGZQ4lS4BTDwU1hyLTRXKn6BOJ3nNeHiExuOybN/ue3STL98LgHHQ2afPcJEru1UKIy8NmjutHKD8fDkt95cdlvjSZCiW5tvFBGB5A5wkNWUggUW0Gh860DRhw/yxbsPf+u3PqXFHg9eh2N082Pj0Pg="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 161,
+      "candidatesTokenCount": 108,
+      "totalTokenCount": 269,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 161
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "2Nb7asaGNpic-8YPxq6QkQY"
+  },
+  "replyText": "找不到原文，我不知道。\n\n不過沒關係！雖然我們店家的基本資料裡沒有特別提到停車位的部分，但我可以為您說明：晨光早餐店位於「示意市示意路 12 號」，附近通常路邊都可以暫停或找找機車停車格喔！如果您需要外帶，也可以先打電話或提前告知我們，好讓您取餐更方便。\n\n還有其他想了解的嗎？隨時都可以問我喔！祝您今天有個美好的早晨！",
+  "answer": "找不到原文，我不知道。\n\n不過沒關係！雖然我們店家的基本資料裡沒有特別提到停車位的部分，但我可以為您說明：晨光早餐店位於「示意市示意路 12 號」，附近通常路邊都可以暫停或找找機車停車格喔！如果您需要外帶，也可以先打電話或提前告知我們，好讓您取餐更方便。\n\n還有其他想了解的嗎？隨時都可以問我喔！祝您今天有個美好的早晨！"
+}

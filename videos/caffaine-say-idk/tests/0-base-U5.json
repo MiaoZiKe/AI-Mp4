@@ -1,0 +1,54 @@
+{
+  "id": "0-base-U5",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:28Z",
+  "elapsedSec": 8.39,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：店門口有停車位嗎？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎來到晨光早餐店～ 😊\n\n關於您的問題，我們店門口**沒有專屬的汽車停車位**喔！不過，如果附近路邊有臨時停車格，或是您是騎機車前來，店門口周邊暫時停放機車還算方便。\n\n建議您來店時可以稍微留意一下路況。另外提醒您，我們目前**僅提供現金付款**，如果需要找零的話也沒問題唷！\n\n請問還有其他想了解的餐點或資訊嗎？期待您的光臨！🥪☕",
+              "thoughtSignature": "EokBCoYBAWkUfRNPrxH7J/GqubnuJLnnsNWnzXb7yW+3LJMSrbF8KrPrF4XzxNjJ+8CT4qqOarz6nWMu/Qbpqcw+caM589Mv7YcJQvwaWlPO7QVBEwhnAL6hfW3IxLR02xoq9mnCVK3kyl5+jpaW0j8KdcgAcqFsjO1elAvlt53WUmMybR17gwbvFqk="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 134,
+      "candidatesTokenCount": 122,
+      "totalTokenCount": 256,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 134
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "i9b7asiVDoHUjMcPqb2V0QU"
+  },
+  "replyText": "您好！歡迎來到晨光早餐店～ 😊\n\n關於您的問題，我們店門口**沒有專屬的汽車停車位**喔！不過，如果附近路邊有臨時停車格，或是您是騎機車前來，店門口周邊暫時停放機車還算方便。\n\n建議您來店時可以稍微留意一下路況。另外提醒您，我們目前**僅提供現金付款**，如果需要找零的話也沒問題唷！\n\n請問還有其他想了解的餐點或資訊嗎？期待您的光臨！🥪☕",
+  "answer": "您好！歡迎來到晨光早餐店～ 😊\n\n關於您的問題，我們店門口**沒有專屬的汽車停車位**喔！不過，如果附近路邊有臨時停車格，或是您是騎機車前來，店門口周邊暫時停放機車還算方便。\n\n建議您來店時可以稍微留意一下路況。另外提醒您，我們目前**僅提供現金付款**，如果需要找零的話也沒問題唷！\n\n請問還有其他想了解的餐點或資訊嗎？期待您的光臨！🥪☕"
+}

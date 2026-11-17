@@ -1,0 +1,64 @@
+{
+  "id": "A-translate-run1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:30:56Z",
+  "elapsedSec": 5.66,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "inline_data": {
+              "mime_type": "image/png",
+              "data": "<base64 省略 160072 字元，檔案 menu.png，sha256 cb6dbd54298173c6>"
+            }
+          },
+          {
+            "text": "幫我翻譯這張菜單。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "這是一張日式食堂的菜單。以下為您翻譯各個品項與說明：\n\n### 標題\n*   **お品書き**：菜單\n*   **示意食堂（程式畫的示意菜單）**：示意食堂（程式碼繪製的示意菜單）\n\n---\n\n### 菜品清單\n1.  **親子丼**：￥850\n    *   *親子丼（雞肉滑蛋蓋飯）*\n2.  **カツ丼**：￥980\n    *   *豬排丼*\n    *   ※ 卵・小麦を使用：※ 含雞蛋、小麥\n3.  **天ぷらそば**：￥1,100\n    *   *天婦羅蕎麥麵*\n4.  **とんこつラーメン**：￥900\n    *   *豚骨拉麵*\n5.  **担々麺**：￥950\n    *   *擔擔麵*\n    *   ※ ピーナッツ・ごまを使用：※ 含花生、芝麻\n6.  **焼き鳥盛り合わせ**：￥780\n    *   *綜合烤雞串 / 串燒拼盤*\n7.  **だし巻き卵**：￥480\n    *   *高湯厚蛋燒 / 日式玉子燒*\n8.  **冷奴**：￥350\n    *   *涼拌豆腐*\n\n---\n\n### 底部備註\n*   **(示意菜單, 自製, 非任何真實店家)**：(示意菜單，自製，非任何真實店家)",
+              "thoughtSignature": "EokBCoYBAWkUfRMvY6x9/ivY5PeaRqCDBidr553Wn/WkaFXAjABrDM2ApmxJcv4jMKG96qMt9S76+vno3xnXeyHfJWzH7xd1bIfXVo41DBMEoQMwH+/cI9macExUJR/gb4XVQbwWe+r8akGTUad7dmNglsv7fTN6M15+t2GRu0I6li7PS1bWVje3pv8="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 1097,
+      "candidatesTokenCount": 364,
+      "totalTokenCount": 1461,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 9
+        },
+        {
+          "modality": "IMAGE",
+          "tokenCount": 1088
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "gNj7apbjJd-4sOIP6PrBWQ"
+  },
+  "replyText": "這是一張日式食堂的菜單。以下為您翻譯各個品項與說明：\n\n### 標題\n*   **お品書き**：菜單\n*   **示意食堂（程式畫的示意菜單）**：示意食堂（程式碼繪製的示意菜單）\n\n---\n\n### 菜品清單\n1.  **親子丼**：￥850\n    *   *親子丼（雞肉滑蛋蓋飯）*\n2.  **カツ丼**：￥980\n    *   *豬排丼*\n    *   ※ 卵・小麦を使用：※ 含雞蛋、小麥\n3.  **天ぷらそば**：￥1,100\n    *   *天婦羅蕎麥麵*\n4.  **とんこつラーメン**：￥900\n    *   *豚骨拉麵*\n5.  **担々麺**：￥950\n    *   *擔擔麵*\n    *   ※ ピーナッツ・ごまを使用：※ 含花生、芝麻\n6.  **焼き鳥盛り合わせ**：￥780\n    *   *綜合烤雞串 / 串燒拼盤*\n7.  **だし巻き卵**：￥480\n    *   *高湯厚蛋燒 / 日式玉子燒*\n8.  **冷奴**：￥350\n    *   *涼拌豆腐*\n\n---\n\n### 底部備註\n*   **(示意菜單, 自製, 非任何真實店家)**：(示意菜單，自製，非任何真實店家)",
+  "answer": "這是一張日式食堂的菜單。以下為您翻譯各個品項與說明：\n\n### 標題\n*   **お品書き**：菜單\n*   **示意食堂（程式畫的示意菜單）**：示意食堂（程式碼繪製的示意菜單）\n\n---\n\n### 菜品清單\n1.  **親子丼**：￥850\n    *   *親子丼（雞肉滑蛋蓋飯）*\n2.  **カツ丼**：￥980\n    *   *豬排丼*\n    *   ※ 卵・小麦を使用：※ 含雞蛋、小麥\n3.  **天ぷらそば**：￥1,100\n    *   *天婦羅蕎麥麵*\n4.  **とんこつラーメン**：￥900\n    *   *豚骨拉麵*\n5.  **担々麺**：￥950\n    *   *擔擔麵*\n    *   ※ ピーナッツ・ごまを使用：※ 含花生、芝麻\n6.  **焼き鳥盛り合わせ**：￥780\n    *   *綜合烤雞串 / 串燒拼盤*\n7.  **だし巻き卵**：￥480\n    *   *高湯厚蛋燒 / 日式玉子燒*\n8.  **冷奴**：￥350\n    *   *涼拌豆腐*\n\n---\n\n### 底部備註\n*   **(示意菜單, 自製, 非任何真實店家)**：(示意菜單，自製，非任何真實店家)"
+}

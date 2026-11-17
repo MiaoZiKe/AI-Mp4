@@ -1,0 +1,57 @@
+{
+  "id": "3-quote-first-U1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:23:42Z",
+  "elapsedSec": 1.35,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：有沒有素食的選項？\n\n回答前，先從店家資料裡引用一句相關的原文；找不到原文，就回答「找不到原文，我不知道」。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "「菜單：蛋餅 35 元、火腿蛋"
+            },
+            {
+              "text": "吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元」\n\n您好！感謝您對晨光早餐店的支持與詢問。\n\n關於您的問題，我們的菜單上有提供**蛋餅（35元）**、**紅茶（20元）**以及**豆漿（25元）**唷！如果您是吃蛋奶素的朋友，可以選擇蛋餅搭配一杯香濃的豆漿或紅茶作為早餐。\n\n不過要提醒您，我們目前小店**只收現金**喔！如果您有特別的飲食習慣（例如不加蔥或蒜等），點餐時也可以直接告訴我們，我們會盡量為您客製化。\n\n期待您的光臨！還有其他想了解的嗎？",
+              "thoughtSignature": "EokBCoYBAWkUfROLJbeICCR65iLOdNHSkNmALU3GZV5K1a7KdH4DHhd7d6NvQhe2a09XUKzXi3FB3Da6JDCEMvvA3K8TrorwKiNn3cDGlvdPZPUeOTKUsFSqNXIuQ7DnioUKqT6l3FzKU5rMn9sX9PjY4atXzJCogEqqFE8hJSiKIXYFQykQxVsuixI="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 159,
+      "candidatesTokenCount": 184,
+      "totalTokenCount": 343,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 159
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "ztb7aoXeGurM-sAPtbHDmAM"
+  },
+  "replyText": "「菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元」\n\n您好！感謝您對晨光早餐店的支持與詢問。\n\n關於您的問題，我們的菜單上有提供**蛋餅（35元）**、**紅茶（20元）**以及**豆漿（25元）**唷！如果您是吃蛋奶素的朋友，可以選擇蛋餅搭配一杯香濃的豆漿或紅茶作為早餐。\n\n不過要提醒您，我們目前小店**只收現金**喔！如果您有特別的飲食習慣（例如不加蔥或蒜等），點餐時也可以直接告訴我們，我們會盡量為您客製化。\n\n期待您的光臨！還有其他想了解的嗎？",
+  "answer": "「菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元」\n\n您好！感謝您對晨光早餐店的支持與詢問。\n\n關於您的問題，我們的菜單上有提供**蛋餅（35元）**、**紅茶（20元）**以及**豆漿（25元）**唷！如果您是吃蛋奶素的朋友，可以選擇蛋餅搭配一杯香濃的豆漿或紅茶作為早餐。\n\n不過要提醒您，我們目前小店**只收現金**喔！如果您有特別的飲食習慣（例如不加蔥或蒜等），點餐時也可以直接告訴我們，我們會盡量為您客製化。\n\n期待您的光臨！還有其他想了解的嗎？"
+}

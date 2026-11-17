@@ -1,0 +1,54 @@
+{
+  "id": "0-base-K1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:36Z",
+  "elapsedSec": 1.78,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：紅茶一杯多少錢？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎來到晨光早餐店 🥰\n\n我們好喝的紅茶一杯是 **20元** 喔！\n\n請問今天需要為您準備一杯紅茶嗎？我們還有蛋餅、吐司等好吃的早餐，隨時都可以為您點餐喔！",
+              "thoughtSignature": "EokBCoYBAWkUfROZWV3C/cULRWoI1TvjQ4agsIPzP7Ii1GjN5wLUsVOdTNHgR/dfm8zJRJoNfYXk8lG2KgfBwtCrR+gmE2rCaPh4w2XDvMafzhueqWAuqpYJnv7JxyWZt6q4R+Z4M14zSFMm+AqfV93DMdFS+SE+amDbtFuifmG5TUbav5KpHgaiKWE="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 131,
+      "candidatesTokenCount": 58,
+      "totalTokenCount": 189,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 131
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "jNb7ar69H7OOjMcPpZiSuQY"
+  },
+  "replyText": "您好！歡迎來到晨光早餐店 🥰\n\n我們好喝的紅茶一杯是 **20元** 喔！\n\n請問今天需要為您準備一杯紅茶嗎？我們還有蛋餅、吐司等好吃的早餐，隨時都可以為您點餐喔！",
+  "answer": "您好！歡迎來到晨光早餐店 🥰\n\n我們好喝的紅茶一杯是 **20元** 喔！\n\n請問今天需要為您準備一杯紅茶嗎？我們還有蛋餅、吐司等好吃的早餐，隨時都可以為您點餐喔！"
+}

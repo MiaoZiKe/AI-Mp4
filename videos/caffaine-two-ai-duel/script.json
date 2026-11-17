@@ -1,0 +1,738 @@
+{
+ "slug": "caffaine-two-ai-duel",
+ "title": "同一題問兩個 AI，誰算對",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "同一題問兩個 AI",
+   "誰算對"
+  ],
+  "sub": "八項評分，兩個 Gemini 型號"
+ },
+ "tracker": [
+  [
+   "評分先寫好",
+   "right"
+  ],
+  [
+   "筆數全錯",
+   "wrong"
+  ],
+  [
+   "對一次",
+   "primary"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "同一題整理帳目，我問兩個 AI，看誰算對。",
+   "subtitle": {
+    "zh": "同一題整理帳目\n我問兩個 AI\n看誰算對",
+    "en": "Same bookkeeping question,"
+   },
+   "keywords": [
+    "同一題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "同一題"
+    },
+    {
+     "id": "k2",
+     "text": "兩個 AI"
+    },
+    {
+     "id": "k3",
+     "text": "誰算對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "同一題": "primary"
+    },
+    "view": "split",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "asOf": "查證截至 2026/11/17",
+    "left": {
+     "src": "caffaine-two-ai-duel/b35.png",
+     "label": "3.5 輕量版",
+     "color": "wrong",
+     "at": "start-1",
+     "native": [
+      400,
+      500
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      500
+     ]
+    },
+    "right": {
+     "src": "caffaine-two-ai-duel/b31.png",
+     "label": "3.1 輕量版",
+     "color": "right",
+     "at": "k2",
+     "native": [
+      400,
+      500
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      500
+     ]
+    },
+    "mid": {
+     "text": "VS",
+     "at": "k3"
+    },
+    "aiAt": "start+8",
+    "size": "big",
+    "wl": 340,
+    "wr": 340
+   },
+   "sources": [
+    "實測：gemini-3.5-flash-lite 對 3.1-flash-lite"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "check",
+   "narration": "十二行流水帳，藏了重複貼上、中文數字和退款三個陷阱。",
+   "subtitle": {
+    "zh": "十二行流水帳\n藏了重複貼上\n中文數字和退款三個陷\n阱",
+    "en": "Twelve lines, three traps:"
+   },
+   "keywords": [
+    "十二行"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "十二行"
+    },
+    {
+     "id": "k2",
+     "text": "重複貼上"
+    },
+    {
+     "id": "k3",
+     "text": "退款"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "十二行": "wrong"
+    },
+    "view": "editor",
+    "tone": "bug",
+    "status": "情境示意・虛構",
+    "statusAt": "k1+6",
+    "file": "data.txt",
+    "src": "videos/caffaine-two-ai-duel/tests/data.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "11/3 午餐 便當 95（重複貼上）",
+      "n": 2,
+      "at": "start-1",
+      "dur": 22,
+      "mark": "重複貼上",
+      "markAt": "k1"
+     },
+     {
+      "t": "11/6 晚餐 火鍋 一百八十",
+      "n": 7,
+      "at": "k1+6",
+      "dur": 22,
+      "mark": "一百八十",
+      "markAt": "k2"
+     },
+     {
+      "t": "11/9 手遊儲值退款 -99",
+      "n": 12,
+      "at": "k2+6",
+      "dur": 22,
+      "mark": "退款",
+      "markAt": "k3"
+     }
+    ],
+    "hl": 2,
+    "hlAt": "k3",
+    "size": 46,
+    "tags": [
+     {
+      "text": "還有 9 行正常的",
+      "at": "k1",
+      "color": "note"
+     }
+    ]
+   },
+   "sources": [
+    "虛構流水帳（tests/data.txt）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "看答案之前，我先算好標準答案，寫好八項評分。",
+   "subtitle": {
+    "zh": "看答案之前\n我先算好標準答案\n寫好八項評分",
+    "en": "Before looking, I worked out the answer"
+   },
+   "keywords": [
+    "標準答案"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "標準答案"
+    },
+    {
+     "id": "k2",
+     "text": "先算好"
+    },
+    {
+     "id": "k3",
+     "text": "八項評分"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "標準答案": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "標準答案（先算好）",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "餐飲　450 元，4 筆",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "交通　210 元，4 筆",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "娛樂　280 元，3 筆　總額 940",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "tests/rubric.md（跑之前先寫）；人工計算"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "so",
+   "narration": "兩個 AI 收到一模一樣的字，一個字都沒差。",
+   "subtitle": {
+    "zh": "兩個 AI 收到\n一模一樣的字\n一個字都沒差",
+    "en": "Both got the exact same words,"
+   },
+   "keywords": [
+    "一模一樣"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一模一樣"
+    },
+    {
+     "id": "k2",
+     "text": "一個字"
+    },
+    {
+     "id": "k3",
+     "text": "沒差"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "一模一樣": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "請只輸出一張表格，欄位是「類別｜筆數｜小計」，表格最後一行寫「總額」，不要其他說明。",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "一模一樣",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "一個字",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "題目原句（節錄）；兩個模型同一句"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "narration": "結果舊的三點一版五分，新的三點五版只拿三分。",
+   "subtitle": {
+    "zh": "結果舊的三點一版五分\n新的三點五版只拿三分",
+    "en": "Result: the older 3.1 scored 5,"
+   },
+   "keywords": [
+    "三點一版"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "三點一版"
+    },
+    {
+     "id": "k2",
+     "text": "五分"
+    },
+    {
+     "id": "k3",
+     "text": "三分"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "三點一版": "right"
+    },
+    "view": "kinetic",
+    "tone": "principle",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "5",
+      "unit": "比 3 分",
+      "at": "start-10",
+      "color": "right",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "三分",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：第一次回答的分數（滿分 8）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "check",
+   "narration": "三點五版的交通少算十五元，剛好是公車那一筆。",
+   "subtitle": {
+    "zh": "三點五版的交通少算十\n五元\n剛好是公車那一筆",
+    "en": "3.5 undercounted transport by 15,"
+   },
+   "keywords": [
+    "三點五版"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "三點五版"
+    },
+    {
+     "id": "k2",
+     "text": "交通少算"
+    },
+    {
+     "id": "k3",
+     "text": "公車"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "三點五版": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "src": "caffaine-two-ai-duel/b35.png",
+    "ring": [
+     18,
+     193,
+     364,
+     68
+    ],
+    "note": "交通小計",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "少",
+    "zoom": {
+     "src": "caffaine-two-ai-duel/b35-zoom.png",
+     "w": 960,
+     "h": 383,
+     "cap": "放大：交通 195（標準 210）"
+    },
+    "native": [
+     400,
+     500
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：交通小計 195，標準 210"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "check",
+   "narration": "不過筆數兩個都數錯，六格全錯。",
+   "subtitle": {
+    "zh": "不過筆數兩個都數錯\n六格全錯",
+    "en": "But both miscounted the rows:"
+   },
+   "keywords": [
+    "筆數"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "筆數"
+    },
+    {
+     "id": "k2",
+     "text": "兩個都"
+    },
+    {
+     "id": "k3",
+     "text": "六格全錯"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "筆數": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "bug",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "6/6",
+      "unit": "筆數數錯",
+      "at": "start-10",
+      "color": "wrong",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "六格全錯",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：兩個模型第一次回答的筆數各 3 格全不符"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過只出一題、各問兩次，誰比較強，還不知道。",
+   "subtitle": {
+    "zh": "不過只出一題\n各問兩次\n誰比較強\n還不知道",
+    "en": "But one question, two runs each."
+   },
+   "keywords": [
+    "只出一題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "只出一題"
+    },
+    {
+     "id": "k2",
+     "text": "各問兩次"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "只出一題": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "題",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "誰比較強？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 題、2 個模型、各 2 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以重要的數字，先算好答案，再讓 AI 算，自己對一次。",
+   "subtitle": {
+    "zh": "所以重要的數字\n先算好答案\n再讓 AI 算\n自己對一次",
+    "en": "So for numbers that matter:"
+   },
+   "keywords": [
+    "先算好答案"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "先算好答案"
+    },
+    {
+     "id": "k2",
+     "text": "讓 AI 算"
+    },
+    {
+     "id": "k3",
+     "text": "對一次"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "先算好答案": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "先算答案",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "同題問兩個",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "逐項對分",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "你平常用哪個？留言「對決」，拿這題的原題。",
+   "subtitle": {
+    "zh": "你平常用哪個\n留言「對決」\n拿這題的原題",
+    "en": "Which do you use? Comment \"對決\""
+   },
+   "keywords": [
+    "你平常用哪個"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "你平常用哪個"
+    },
+    {
+     "id": "k2",
+     "text": "對決"
+    },
+    {
+     "id": "k3",
+     "text": "原題"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "你平常用哪個": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "對決",
+    "kicker": "想要這題的原題與評分表",
+    "kwAt": "k1",
+    "allAt": "k3",
+    "card": "題目＋標準答案＋評分表",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "原題與評分表整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "對決"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

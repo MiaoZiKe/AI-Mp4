@@ -1,0 +1,54 @@
+{
+  "id": "1-only-source-U2",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:40Z",
+  "elapsedSec": 4.67,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：可以外送嗎？\n\n請只根據上面的店家資料回答。"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！感謝您詢問晨光早餐店。\n\n不好意思，我們目前沒有提供外送服務喔！我們的地址位於「示意市示意路 12 號」，歡迎您親自光臨本店選購美味的早餐。\n\n營業時間是週一到週五的 06:30 到 11:00，付款方式目前僅收現金。期待您的光臨！",
+              "thoughtSignature": "EokBCoYBAWkUfRO99gSQtPLCbijXZZfKLufDguDNtkqsXcvcUWIK5JBtDxJYyB8c4nyiLKnMU9I8JmeFbYagvxYQYLiHrW5M16PGMJ2vq0Kh3/t7mdghLhy+E94asPsac6kBGRFxZk6Cru7AN95q+4u8+5IhMIx8CCe5Z6WzOQclej4uFXfy/2NI0r8="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 140,
+      "candidatesTokenCount": 88,
+      "totalTokenCount": 228,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 140
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "kNb7ariKIb6s1MkP_JOS-QQ"
+  },
+  "replyText": "您好！感謝您詢問晨光早餐店。\n\n不好意思，我們目前沒有提供外送服務喔！我們的地址位於「示意市示意路 12 號」，歡迎您親自光臨本店選購美味的早餐。\n\n營業時間是週一到週五的 06:30 到 11:00，付款方式目前僅收現金。期待您的光臨！",
+  "answer": "您好！感謝您詢問晨光早餐店。\n\n不好意思，我們目前沒有提供外送服務喔！我們的地址位於「示意市示意路 12 號」，歡迎您親自光臨本店選購美味的早餐。\n\n營業時間是週一到週五的 06:30 到 11:00，付款方式目前僅收現金。期待您的光臨！"
+}

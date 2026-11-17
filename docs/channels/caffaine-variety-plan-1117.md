@@ -340,3 +340,27 @@
 - 第二週 S1 只有一支，若 Andy 認為仍太像舊片，B2 可換成 S9 或 S3。
 - `screenrec` 的 render 成本是估計，E7 做完先 `bench` 才決定用量。
 - 排程日期依 2026/11/17 當下產能估計，額度或審查延遲時以「結構與領域覆蓋」優先於「天數」。
+
+## 9. AI 用法第一批（11/17）
+
+擁有者 11/17 指示：題材以「AI 用法」為主角（不是生活場景當主角、AI 當背景），形式、畫面、題材都要變化。第一批 6 支無聲版（不配音、不送 TTS），每支都有 `tests/` 原始請求與回應、`research.md`、`script.md`（開頭寫結構、AI 用法、延伸自）、`caption.md`。只用現有 view，沒開發新元件。
+
+### 自查表（本批 6 支並排）
+| 片名（videos/…） | 結構 | AI 用法 | 開頭鏡 view | 主畫面手法（本支獨有） | 領域 | 結尾行動 |
+|---|---|---|---|---|---|---|
+| caffaine-screenshot-ask | S9 一步一步教 | 截圖丟給 AI 讀圖問答 | lens（放大鏡圈出紅字） | 手機框＋附圖對話＋「縮很小／只截一半」左右對照 | 生活（手機畫面） | 留言關鍵字「截圖」 |
+| caffaine-pdf-cite | S2 前後對照 | 只照講義原文回答並附頁碼 | browser（講義頁面） | 表格式前後對照（不限制／附頁碼）＋原文頁放大 | 學習文件 | 留言關鍵字「頁碼」 |
+| caffaine-excel-formula | S4 計時挑戰 | 叫 AI 寫 Excel 公式並驗算 | kinetic（大字計時「60 秒」） | 大字計時＋公式卡片（斜線／橫線）對照 | 工作（銷售表） | 留言關鍵字「公式」 |
+| caffaine-two-ai-duel | S8 對決 | 同題問兩個 AI，用先寫好的評分表比 | split（左右兩張答案卡＋VS） | 答案卡標紅差異＋5 比 3 大字記分 | 記帳整理 | 二選一「你平常用哪個」＋關鍵字「對決」 |
+| caffaine-say-idk | S3 三個技巧 | 叫 AI 資料沒寫就說不知道 | chat（客服提問） | 編造題數 5→2→0（逐招） | 店家客服 | 留言關鍵字「不知道」 |
+| caffaine-menu-translate | S5 錯誤 vs 正確 | 拍外文菜單叫 AI 翻譯並解釋 | device（手機框拍菜單） | 兩種問法回答卡對照＋「補的食材」 | 旅遊（菜單） | 留言關鍵字「菜單」 |
+
+規則檢查：結構六支各不同（S9、S2、S4、S8、S3、S5），相鄰開頭鏡 view 全不同；領域 6 個、成品為網頁 0 支；沒有任何一支是「叫 AI 做一個網頁」；每支 view 種類 ≥6（9、9、8、8、6、8）。結尾行動 5 支用關鍵字、1 支搭二選一，下批請補收藏指令型（結構 S2、S9 本來建議收藏指令，本批為了每支都有可領取的提示詞先用關鍵字）。
+
+### 這批實測的重點與偏離（照實記）
+- **ChatGPT 對決沒做**：api.openai.com 所有模型都回 `credit_balance_exhausted`（帳戶沒額度），S8 改成兩個 Gemini 型號對決（3.5-flash-lite 對 3.1-flash-lite），片中不稱 ChatGPT，也不下「誰比較強」。要做 Gemini 對 ChatGPT 需先補 OpenAI 額度。
+- **gemini-3-flash-preview 與 3.5-flash 當日額度用完（429）**：screenshot-ask、pdf-cite 用 gemini-3-flash-preview（額度尚在時送出），excel-formula、say-idk、menu-translate、two-ai-duel 用 gemini-3.5-flash-lite／3.1-flash-lite；每支片內出處與 research.md 都標實際模型名。pdf-cite 的第二次重跑因限流沒有回應，只有第一次成績。
+- **結果不一定漂亮**：pdf-cite 兩個版本都沒編（只差在有沒有頁碼）；menu-translate 兩種問法品名價格全對，差在說明與「AI 補的食材沒標不確定」；say-idk 三招只有兩招有用。都照實講，沒有為了戲劇性改題目。
+- **excel-formula 只在 LibreOffice 驗算**，沒有在真的 Excel 測；片中有講「還不知道」。
+- 新增共用工具：`scripts/caffaine/llm.py`（Gemini 圖片／PDF 實測並存原始請求與回應）、`scripts/caffaine/html2png.py`（HTML 轉 PNG 做示意截圖）。
+- 每支的 `build.py` 是 `autoscript.mjs` 產出後的手動微調（可重現：`node scripts/caffaine/autoscript.mjs <slug> --force && python3 videos/<slug>/build.py`）。

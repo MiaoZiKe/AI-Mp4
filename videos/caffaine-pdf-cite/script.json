@@ -1,0 +1,760 @@
+{
+ "slug": "caffaine-pdf-cite",
+ "title": "叫 AI 只照原文回答，附頁碼",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "只照原文回答",
+   "每句附頁碼"
+  ],
+  "sub": "四頁講義實測"
+ },
+ "tracker": [
+  [
+   "只照原文",
+   "right"
+  ],
+  [
+   "附頁碼",
+   "primary"
+  ],
+  [
+   "沒說哪一頁",
+   "wrong"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "一份四頁的講義，叫 AI 只照原文回答，每句附頁碼。",
+   "subtitle": {
+    "zh": "一份四頁的講義\n叫 AI 只照原文回\n答\n每句附頁碼",
+    "en": "A four-page handout. Tell AI:"
+   },
+   "keywords": [
+    "四頁的講義"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "四頁的講義"
+    },
+    {
+     "id": "k2",
+     "text": "只照原文"
+    },
+    {
+     "id": "k3",
+     "text": "附頁碼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "四頁的講義": "primary"
+    },
+    "view": "browser",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "wide": true,
+    "shots": [
+     {
+      "src": "caffaine-pdf-cite/p1.png",
+      "at": "start-1",
+      "img": [
+       675,
+       300
+      ],
+      "label": "四頁的講義"
+     },
+     {
+      "src": "caffaine-pdf-cite/p3.png",
+      "at": "k2",
+      "img": [
+       675,
+       300
+      ],
+      "label": "只照原文"
+     }
+    ],
+    "scroll": [
+     0,
+     400
+    ],
+    "scrollAt": "k1",
+    "items": [
+     {
+      "icon": "text",
+      "text": "四頁的講義",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "icon": "text",
+      "text": "只照原文",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "icon": "text",
+      "text": "附頁碼",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ],
+    "asOf": "查證截至 2026/11/17"
+   },
+   "sources": [
+    "gemini-3-flash-preview 實測；虛構講義"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "so",
+   "narration": "我只多加一句：只根據原文回答，每句標頁碼。",
+   "subtitle": {
+    "zh": "我只多加一句\n只根據原文回答\n每句標頁碼",
+    "en": "I added one sentence:"
+   },
+   "keywords": [
+    "多加一句"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "多加一句"
+    },
+    {
+     "id": "k2",
+     "text": "只根據原文"
+    },
+    {
+     "id": "k3",
+     "text": "標頁碼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "多加一句": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "請只根據文件原文回答，每一句話後面用括號標上頁碼",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "多加一句",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "只根據原文",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "提示詞原句（實測用的同一句）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "check",
+   "narration": "沒加這句，答案也對，但沒說哪一頁；加了，每句都有頁碼。",
+   "subtitle": {
+    "zh": "沒加這句\n答案也對\n但沒說哪一頁\n加了\n每句都有頁碼",
+    "en": "Without it: right, but no page."
+   },
+   "keywords": [
+    "答案也對"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "答案也對"
+    },
+    {
+     "id": "k2",
+     "text": "沒說哪一頁"
+    },
+    {
+     "id": "k3",
+     "text": "每句都有頁碼"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "答案也對": "wrong"
+    },
+    "view": "split",
+    "tone": "bug",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "layout": "stack",
+    "top": {
+     "label": "答案也對",
+     "by": "實測（節錄）",
+     "cells": [
+      "6 本",
+      "每天罰款 2 元",
+      "100 元手續費"
+     ],
+     "at": "start-1",
+     "color": "wrong",
+     "verbatim": "tests/A-free-run1.json"
+    },
+    "bottom": {
+     "label": "每句都有頁碼",
+     "by": "實測（節錄）",
+     "cells": [
+      "6 本（第 1 頁）",
+      "每天罰款 2 元（第 3 頁）",
+      "100 元（第 3 頁）"
+     ],
+     "at": "k3",
+     "color": "right",
+     "verbatim": "tests/B-cite-run1.json"
+    },
+    "heads": [
+     "借書本數",
+     "逾期罰款",
+     "遺失手續費"
+    ],
+    "diffCell": 0,
+    "diffAt": "k3",
+    "badge": {
+     "text": "答案也對・沒說哪一頁・每句都有頁碼",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "實測 2026/11/17（節錄）：同一份講義、同一題"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "沒有頁碼，我得自己翻四頁去找。",
+   "subtitle": {
+    "zh": "沒有頁碼\n我得自己翻四頁去找",
+    "en": "No page numbers:"
+   },
+   "keywords": [
+    "沒有頁碼"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "沒有頁碼"
+    },
+    {
+     "id": "k2",
+     "text": "自己翻"
+    },
+    {
+     "id": "k3",
+     "text": "四頁"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "沒有頁碼": "wrong"
+    },
+    "view": "editor",
+    "tone": "bug",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "answer-A.txt",
+    "src": "videos/caffaine-pdf-cite/tests/answer-A.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "1.  一次能借幾本： 每位讀者一次最多可借 6 本。",
+      "n": 3,
+      "at": "start-1",
+      "dur": 26
+     },
+     {
+      "t": "2.  可以借多久： 借期為 21 天（從借書當天起算）。",
+      "n": 4,
+      "at": "k1+12",
+      "dur": 26
+     },
+     {
+      "t": "每本書每天罰款 2 元。",
+      "n": 7,
+      "at": "k1+24",
+      "dur": 26
+     }
+    ],
+    "hl": 2,
+    "hlAt": "k3",
+    "size": 44,
+    "tags": [
+     {
+      "text": "沒有任何頁碼",
+      "at": "k1",
+      "color": "wrong"
+     },
+     {
+      "text": "要自己翻 4 頁",
+      "at": "k2",
+      "color": "note"
+     }
+    ]
+   },
+   "sources": [
+    "實測節錄：gemini-3-flash-preview（不限制版）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "narration": "有頁碼，我只翻被標的位置，五個頁碼全對。",
+   "subtitle": {
+    "zh": "有頁碼\n我只翻被標的位置\n五個頁碼全對",
+    "en": "With pages, I check only those spots."
+   },
+   "keywords": [
+    "有頁碼"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "有頁碼"
+    },
+    {
+     "id": "k2",
+     "text": "被標的位置"
+    },
+    {
+     "id": "k3",
+     "text": "全對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "有頁碼": "right"
+    },
+    "view": "check",
+    "tone": "principle",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "五個頁碼全對",
+     "at": "start-1",
+     "color": "right"
+    },
+    "items": [
+     {
+      "text": "6 本　第 1 頁",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "每天 2 元　第 3 頁",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "賠償加 100 元　第 3 頁",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "人工逐頁對照講義（第一次實測）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "mechanism",
+   "narration": "像第三頁，罰款和賠償，原文就在那裡。",
+   "subtitle": {
+    "zh": "像第三頁\n罰款和賠償\n原文就在那裡",
+    "en": "Like page 3: fines and compensation,"
+   },
+   "keywords": [
+    "第三頁"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第三頁"
+    },
+    {
+     "id": "k2",
+     "text": "罰款和賠償"
+    },
+    {
+     "id": "k3",
+     "text": "原文"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "第三頁": "right"
+    },
+    "view": "lens",
+    "tone": "principle",
+    "status": "已確定・原文",
+    "statusAt": "k1+6",
+    "src": "caffaine-pdf-cite/p3-lens.png",
+    "ring": [
+     70,
+     150,
+     600,
+     300
+    ],
+    "note": "第三頁",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "頁",
+    "zoom": {
+     "src": "caffaine-pdf-cite/p3-zoom.png",
+     "w": 960,
+     "h": 453,
+     "cap": "放大：罰款與賠償"
+    },
+    "native": [
+     795,
+     560
+    ]
+   },
+   "sources": [
+    "虛構講義第 3 頁"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "mechanism",
+   "narration": "影印這題，文件根本沒寫，兩種版本都老實說沒寫。",
+   "subtitle": {
+    "zh": "影印這題\n文件根本沒寫\n兩種版本都老實說沒寫",
+    "en": "Photocopying isn't in the file."
+   },
+   "keywords": [
+    "影印"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "影印"
+    },
+    {
+     "id": "k2",
+     "text": "文件根本沒寫"
+    },
+    {
+     "id": "k3",
+     "text": "沒寫"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "影印": "right"
+    },
+    "view": "kinetic",
+    "tone": "principle",
+    "status": "已確定・實測 1 次",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "影印",
+      "unit": "文件沒寫",
+      "at": "start-10",
+      "color": "right",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "沒寫",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：兩個版本都說文件沒提到影印"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過這份只有四頁，更長的文件會不會編，還不知道。",
+   "subtitle": {
+    "zh": "不過這份只有四頁\n更長的文件會不會編\n還不知道",
+    "en": "But it's only four pages."
+   },
+   "keywords": [
+    "只有四頁"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "只有四頁"
+    },
+    {
+     "id": "k2",
+     "text": "更長的文件"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "只有四頁": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "4",
+      "unit": "頁講義",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "更長的文件會怎樣？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 份四頁講義、1 個模型、每種問法 1 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "so",
+   "narration": "所以做法：貼文件、規定附頁碼、翻到那頁核對。",
+   "subtitle": {
+    "zh": "所以做法\n貼文件\n規定附頁碼\n翻到那頁核對",
+    "en": "So: paste the file, require page numbers,"
+   },
+   "keywords": [
+    "貼文件"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "貼文件"
+    },
+    {
+     "id": "k2",
+     "text": "附頁碼"
+    },
+    {
+     "id": "k3",
+     "text": "核對"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "貼文件": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "貼文件",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "規定附頁碼",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "核對那頁",
+      "sub": "",
+      "color": "wrong",
+      "at": "k3"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k3"
+     }
+    ]
+   },
+   "sources": [
+    "做法整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "narration": "留言「頁碼」，拿這句規定的提示詞。",
+   "subtitle": {
+    "zh": "留言「頁碼」\n拿這句規定的提示詞",
+    "en": "Comment \"頁碼\" to get"
+   },
+   "keywords": [
+    "頁碼"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "頁碼"
+    },
+    {
+     "id": "k2",
+     "text": "提示詞"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "頁碼": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "頁碼",
+    "kicker": "想要只照原文回答的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "規定原句＋用法",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "頁碼"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

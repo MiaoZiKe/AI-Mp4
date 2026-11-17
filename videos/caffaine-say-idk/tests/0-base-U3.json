@@ -1,0 +1,54 @@
+{
+  "id": "0-base-U3",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:22:00Z",
+  "elapsedSec": 1.12,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "你是晨光早餐店的客服，請親切、有幫助地回答客人的問題。\n\n店家資料：\n晨光早餐店（虛構店家，自製示意資料）\n地址：示意市示意路 12 號\n營業時間：週一到週五 06:30 到 11:00\n菜單：蛋餅 35 元、火腿蛋吐司 45 元、鐵板麵 60 元、紅茶 20 元、豆漿 25 元\n付款方式：只收現金\n\n客人問：有沒有 Wi-Fi 可以用？"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "您好！歡迎來到晨光早餐店！☀️\n\n不好意思喔，我們店裡目前**沒有提供 Wi-Fi** 服務呢！😅 \n\n不過我們希望讓每位早起的朋友都能在這裡享用美味的早餐、享受悠閒的早晨時光。如果您需要推薦今天的招牌早餐，像是現煎的蛋餅或是暖呼呼的豆漿，我很樂意為您介紹喔！\n\n請問今天想吃點什麼呢？",
+              "thoughtSignature": "EokBCoYBAWkUfRMeF06eAHhG5iZBNlVB9GhXf4rnBBPSi8NMuQkB0BvffQ9aWqRhHT6OswlCfry/6FtlZ4jq7UeflWMfqSAfcZwZTmK9qNsliN/hyloEZIRXnHpBiJBzJdCbiMY0MmVxfgJMLjqFOQ9ODuDxFSj4vI+xesSbID/X9yPiaSHV/RA4/Kg="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 133,
+      "candidatesTokenCount": 99,
+      "totalTokenCount": 232,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 133
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "aNb7avfnOr-R1MkPzumuuQI"
+  },
+  "replyText": "您好！歡迎來到晨光早餐店！☀️\n\n不好意思喔，我們店裡目前**沒有提供 Wi-Fi** 服務呢！😅 \n\n不過我們希望讓每位早起的朋友都能在這裡享用美味的早餐、享受悠閒的早晨時光。如果您需要推薦今天的招牌早餐，像是現煎的蛋餅或是暖呼呼的豆漿，我很樂意為您介紹喔！\n\n請問今天想吃點什麼呢？",
+  "answer": "您好！歡迎來到晨光早餐店！☀️\n\n不好意思喔，我們店裡目前**沒有提供 Wi-Fi** 服務呢！😅 \n\n不過我們希望讓每位早起的朋友都能在這裡享用美味的早餐、享受悠閒的早晨時光。如果您需要推薦今天的招牌早餐，像是現煎的蛋餅或是暖呼呼的豆漿，我很樂意為您介紹喔！\n\n請問今天想吃點什麼呢？"
+}

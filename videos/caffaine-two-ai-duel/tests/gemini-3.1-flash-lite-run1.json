@@ -1,0 +1,54 @@
+{
+  "id": "gemini-3.1-flash-lite-run1",
+  "tool": "Gemini API（generateContent，沒有開搜尋工具）",
+  "model": "gemini-3.1-flash-lite",
+  "modelVersion": "gemini-3.1-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T04:32:37Z",
+  "elapsedSec": 1.41,
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "下面是一份流水帳。請照類別加總，類別只有三種：餐飲、交通、娛樂（飲料算餐飲，手遊儲值算娛樂）。規則：標明「重複貼上」的那一筆要排除；中文數字要換成阿拉伯數字；負數是退款，算一筆，要從該類別小計扣掉。\n請只輸出一張表格，欄位是「類別｜筆數｜小計」，表格最後一行寫「總額」，不要其他說明。\n\n11/3 午餐 便當 95\n11/3 午餐 便當 95（重複貼上）\n11/4 捷運 30\n11/4 咖啡 拿鐵 120\n11/5 公車 15\n11/5 電影票 280\n11/6 晚餐 火鍋 一百八十\n11/6 捷運 30\n11/7 手遊儲值 99\n11/8 早餐 蛋餅豆漿 55\n11/9 計程車 一百三十五\n11/9 手遊儲值退款 -99"
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "| 類別 | 筆數 | 小計 |\n| :--- | :--- | :--- |\n| 餐飲 | 5 | 450 |\n| 交通 | 3 | 210 |\n| 娛樂 | 2 | 280 |\n| 總額 | 10 | 940 |",
+              "thoughtSignature": "EpwBCpkBAWkUfRNV0zNDrwpBb7EtHB0VuaLArpkoX2WGJ4suh+sBEHiM/bsp2XkDnBVFihoQFFI5Fb1jldr74lYZQIOkBfgm0ao2mXwlzcHgAFGmVIuZsAslQr+odeK6L/iSNnKmrB4F2dqqQsS6NeYIqxLvuuTz1dpU8JjJ5itlTaNn7LkSGHjeXJ//9nyAhjpxvOvmSz/QlWkrSxOX"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 268,
+      "candidatesTokenCount": 77,
+      "totalTokenCount": 345,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 268
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-flash-lite",
+    "responseId": "5dj7av26KbexsOIPtJbd8Ao"
+  },
+  "replyText": "| 類別 | 筆數 | 小計 |\n| :--- | :--- | :--- |\n| 餐飲 | 5 | 450 |\n| 交通 | 3 | 210 |\n| 娛樂 | 2 | 280 |\n| 總額 | 10 | 940 |",
+  "answer": "| 類別 | 筆數 | 小計 |\n| :--- | :--- | :--- |\n| 餐飲 | 5 | 450 |\n| 交通 | 3 | 210 |\n| 娛樂 | 2 | 280 |\n| 總額 | 10 | 940 |"
+}
