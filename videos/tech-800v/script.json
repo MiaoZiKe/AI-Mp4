@@ -21,14 +21,47 @@
  "hud": {
   "levels": [
    {
-    "id": "pk",
-    "label": "AI 機櫃供電",
-    "en": "RACK POWER",
-    "field": "約 2 m",
-    "ruler": "10 cm",
+    "id": "rack",
+    "label": "AI 機櫃",
+    "en": "RACK",
+    "field": "2 m",
+    "ruler": "50 cm",
     "art": "none",
     "handoff3D": true,
-    "readout": false,
+    "readout": true,
+    "note": "查證截至 2026/11/22",
+    "noteAlways": true
+   },
+   {
+    "id": "bars",
+    "label": "銅排對照",
+    "en": "BUSBAR",
+    "field": "1 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/22",
+    "noteAlways": true
+   },
+   {
+    "id": "chain",
+    "label": "降壓路徑",
+    "en": "STEP-DOWN",
+    "field": "1 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/22",
+    "noteAlways": true
+   },
+   {
+    "id": "board",
+    "label": "降壓電路板",
+    "en": "VRM BOARD",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
     "note": "查證截至 2026/11/22",
     "noteAlways": true
    }
@@ -99,7 +132,7 @@
     },
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-30",
       "dur": 1
      }
@@ -362,7 +395,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-2",
       "dur": 1
      }
@@ -601,7 +634,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "bars",
       "at": "start-2",
       "dur": 1
      }
@@ -996,9 +1029,19 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "chain",
       "at": "start-2",
       "dur": 1
+     },
+     {
+      "to": "board",
+      "at": "chip-4",
+      "dur": 14
+     },
+     {
+      "to": "chain",
+      "at": "hi-4",
+      "dur": 14
      }
     ],
     "shot": [
@@ -1340,7 +1383,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-2",
       "dur": 1
      }
@@ -1567,7 +1610,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-2",
       "dur": 1
      }
@@ -1696,7 +1739,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-2",
       "dur": 1
      }
