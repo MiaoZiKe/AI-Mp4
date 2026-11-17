@@ -46,7 +46,7 @@ const Count: React.FC<P> = ({ o, f, k, m }) => {
         <text x={x0 + 480} y={y0 + 118} opacity={g} style={zh(36, H.text, 800)}>顆 GPU（18 層 × 4）</text>
         <text x={x0 + 480} y={y0 + 190} opacity={cp} style={zh(70, grn, 900)}>36</text>
         <text x={x0 + 480} y={y0 + 236} opacity={cp} style={zh(36, H.text, 800)}>顆 CPU（每層 2）</text>
-        <text x={x0} y={Hh - 14} opacity={tween(f, tray, 8, EASE.enter)} style={zh(30, H.text2, 700)}>一格＝一層托盤　示意</text>
+        <text x={x0 + 480} y={Hh - 24} opacity={tween(f, tray, 8, EASE.enter)} style={zh(30, H.text2, 700)}>一格＝一層托盤　示意</text>
       </svg>
     </Card>
   );
@@ -71,10 +71,10 @@ const Mesh: React.FC<P> = ({ o, f, k, m }) => {
         {lk >= 1 ? Array.from({ length: 24 }, (_, j) => { const i = (j * 5) % N, jj = (j * 7) % 9, u = ph(f, 0.03, j, 24); return <circle key={j} cx={lx + 90 + (sx - lx - 90) * u} cy={ly(i) + 5 + (sy(jj) + 9 - ly(i) - 5) * u} r={3.4} fill={sig} />; }) : null}
         {/* 「像一顆」：十八層合成一個大圈 */}
         <g opacity={merge}><rect x={lx - 16} y={52} width={290 + 10} height={18 * 14.5 + 20} fill="none" stroke={H.amber} strokeWidth={4} strokeDasharray="10 8" /></g>
-        <text x={700} y={110} opacity={merge} style={zh(52, H.amber, 900)}>72 顆</text>
-        <text x={700} y={166} opacity={merge} style={zh(52, H.amber, 900)}>＝ 一顆</text>
-        <text x={700} y={222} opacity={nb} style={zh(40, cu, 900)}>5,000+ 條銅線</text>
-        <text x={700} y={274} opacity={fd} style={zh(36, sig, 900)}>每顆找得到 71 顆</text>
+        <text x={650} y={110} opacity={merge} style={zh(52, H.amber, 900)}>72 顆</text>
+        <text x={650} y={166} opacity={merge} style={zh(52, H.amber, 900)}>＝ 一顆</text>
+        <text x={650} y={222} opacity={nb} style={zh(38, cu, 900)}>5,000+ 條銅線</text>
+        <text x={650} y={274} opacity={fd} style={zh(36, sig, 900)}>每顆找得到 71 顆</text>
         <text x={sx} y={Hh - 14} opacity={lk} style={zh(30, H.text2, 700)}>橘＝九層交換器　示意</text>
       </svg>
     </Card>

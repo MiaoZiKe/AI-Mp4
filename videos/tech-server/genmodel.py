@@ -92,7 +92,10 @@ box("mf_stub_h", "cool", mm("hotO"), [0.85, 0.07, 0.07], [W/2+0.45, 0, BZ+0.05],
 box("cdu_b", "cdu", mm("steel2"), [1.5, 2.2, 1.6], [W/2+2.0, 1.1, BZ+0.4])
 box("cdu_pc", "cdu", mm("coolB"), [0.2, 0.2, 1.4], [W/2+1.3, 2.3, BZ+0.4])
 box("cdu_ph", "cdu", mm("hotO"), [0.2, 0.2, 1.4], [W/2+1.62, 2.55, BZ+0.4])
-box("cdu_fan", "cdu", mm("slot"), [0.5, 0.5, 0.03], [W/2+2.0, 1.1, BZ+0.4+0.82], at=[[0.0, 0.5, 0], [0.0, -0.5, 0]])
+for fi, fy in enumerate((1.5, 0.7)):
+    cyl(f"cdu_fh{fi}", "cdu", mm("steel"), 0.1, 0.05, [W/2+2.0, fy, BZ+0.4+0.82], vertical=False)
+    for b in range(3): box(f"cdu_fb{fi}{b}", "cdu", mm("slot"), [0.62, 0.12, 0.03], [W/2+2.0, fy, BZ+0.4+0.83], rot=[0, 0, 60*b])
+    actions[f"cdu_fan{fi}"] = {"type": "rotate", "parts": [f"cdu_fh{fi}"]+[f"cdu_fb{fi}{b}" for b in range(3)], "axis": [0, 0, 1], "pivot": [W/2+2.0, fy, BZ+0.4+0.83], "rps": 2.0, "rampSpin": True, "layer": "cdu"}
 anchor("r_top", "frame", [W/2, HR, D/2], dx=120, dy=-60)
 anchor("r_gpu", "c3", [-W/2+0.3, SLOTY["c3"], D/2], dx=-150, dy=-70)
 anchor("r_sw", "sw4", [-W/2+0.3, SLOTY["sw4"], D/2], dx=-150, dy=20)
@@ -102,8 +105,8 @@ anchor("r_mf", "cool", [W/2+0.85, HR*0.7, BZ+0.05], dx=130, dy=-30)
 anchor("r_cdu", "cdu", [W/2+2.7, 1.8, BZ+0.4], dx=120, dy=-60)
 
 # ───────── T：運算托盤特寫（x=60） ─────────
-TX = 60
-lib.append({"part": "pcb", "id": "tp", "pos": [TX, 0, 0], "w": 15, "d": 9.6, "t": 0.14, "pads": False})
+TX = 150
+lib.append({"part": "pcb", "id": "tp", "pos": [TX, 0, 0], "w": 15.6, "d": 9.8, "t": 0.14, "pads": False})
 TY = 0.14
 MODX = [-3.9, 3.9]
 for mi, mx in enumerate(MODX):
@@ -117,6 +120,24 @@ for mi, mx in enumerate(MODX):
     # 冷板（銅）蓋在 GPU 上
     box(f"cp{mi}", f"cp{mi}", mm("cuHi"), [4.0, 0.3, 2.5], [TX+mx+0.85, top+0.42+0.15, 0])
     box(f"cpfin", f"cp{mi}", mm("cu"), [3.6, 0.02, 0.06], [TX+mx+0.85, top+0.42+0.31, 0], at=[[0, 0, -0.9+0.3*k] for k in range(7)])
+
+# 風冷版：散熱鰭片（疊在 GPU 上，液冷時換成冷板）、前緣風扇、後緣背板連接器、電源接頭
+for mi, mx in enumerate(MODX):
+    lib.append({"part": "heatsink", "id": f"hs{mi}", "pos": [TX+mx+0.85, TY+0.22+0.42, 0], "w": 4.0, "d": 2.5, "base": 0.12, "fins": 12, "finH": 1.1, "finT": 0.05})
+FANX = [-5.2, -1.75, 1.75, 5.2]; FAN_IDS = []
+for fi, fx in enumerate(FANX):
+    L = f"fan{fi}"
+    box(f"{L}_fr", L, mm("dark"), [2.7, 1.5, 0.7], [TX+fx, TY+0.14+0.75, 3.1])
+    cyl(f"{L}_hub", L, mm("steel"), 0.28, 0.9, [TX+fx, TY+0.14+0.75, 3.1], vertical=False)
+    for b in range(3):
+        box(f"{L}_bl{b}", L, mm("wheelM"), [1.1, 0.34, 0.06], [TX+fx, TY+0.14+0.75, 3.52], rot=[0, 0, 60*b])
+    FAN_IDS += [f"{L}_hub"] + [f"{L}_bl{b}" for b in range(3)]
+    actions[f"{L}_spin"] = {"type": "rotate", "parts": [f"{L}_hub"] + [f"{L}_bl{b}" for b in range(3)], "axis": [0, 0, 1], "pivot": [TX+fx, TY+0.14+0.75, 3.52], "rps": 2.6, "rampSpin": True, "layer": L}
+# 後緣背板連接器（接銅線）與電源接頭
+box("rc", "trc", mm("steel2"), [2.6, 0.9, 0.7], [TX, TY+0.45+0.07, -4.6], at=[[-3.9, 0, 0], [3.9, 0, 0]])
+box("rc_pin", "trc", mm("cuHi"), [0.12, 0.5, 0.1], [TX, TY+0.5, -4.2], at=[[-3.9+0.38*k, 0, 0] for k in range(-3, 4)]+[[3.9+0.38*k, 0, 0] for k in range(-3, 4)])
+box("pw_in", "tpw", mm("pwr"), [1.4, 0.6, 0.8], [TX+7.0, TY+0.3+0.07, -3.0])
+box("pw_bar", "tpw", mm("cu"), [0.14, 0.1, 6.4], [TX+6.4, TY+0.35, -0.6], at=[[0, 0, 0]])
 # 網卡（前緣）
 box("nic", "tp_nic", mm("nic"), [1.6, 0.16, 0.9], [TX, TY+0.08+0.07, 3.9], at=[[-4.5, 0, 0], [4.5, 0, 0]])
 # 冷卻液管：中央兩條沿 z，分支進冷板
@@ -135,9 +156,13 @@ def flow(key, layer, path, n, lanes, gap, laneDir, size, rate, color="lp_sig", r
 palette.update({"lp_cool":"#3FA9F5","lp_hot":"#FF7A2F"})
 YA = Y0+PITCH*2; YB = Y0+PITCH*29
 # A 資料：背板垂直銅線束上下流動（兩條道），支線往交換器
-flow("d_spine", "spine", [[-0.18, YA, BZ+0.2], [-0.18, YB, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.1, 1.6, "lp_sig", "lp_sigRim")
-flow("d_spine2", "spine", [[0.18, YB, BZ+0.2], [0.18, YA, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.1, 1.6, "lp_sig", "lp_sigRim")
-flow("d_arms", "spine", [[-1.8, Y0+PITCH*5, BZ+0.2], [-0.4, Y0+PITCH*5, BZ+0.2]], 3, 1, 0.1, [0,1,0], 0.09, 1.2, "lp_sig", "lp_sigRim")
+flow("d_spine", "spine", [[-0.18, YA, BZ+0.2], [-0.18, YB, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.075, 1.6, "lp_sig", "lp_sigRim")
+flow("d_spine2", "spine", [[0.18, YB, BZ+0.2], [0.18, YA, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.075, 1.6, "lp_sig", "lp_sigRim")
+flow("d_arms", "spine", [[-1.8, Y0+PITCH*2+TH/2, BZ+0.2], [-0.4, Y0+PITCH*2+TH/2, BZ+0.2]], 3, 27, PITCH, [0,1,0], 0.08, 1.2, "lp_sig", "lp_sigRim")
+flow("p_arm_l", "bus", [[-W/2+0.45, Y0+PITCH*2+TH/2, BZ+0.16], [-W/2+1.2, Y0+PITCH*2+TH/2, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
+flow("p_arm_r", "bus", [[W/2-0.45, Y0+PITCH*2+TH/2, BZ+0.16], [W/2-1.2, Y0+PITCH*2+TH/2, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
+flow("c_arm_c", "cool", [[W/2+0.45, Y0+PITCH*2+TH/2, BZ+0.05], [W/2-0.6, Y0+PITCH*2+TH/2, -D/2+0.6]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_cool", "lp_cool")
+flow("c_arm_h", "cool", [[W/2-0.6, Y0+PITCH*2+TH/2+0.05, -D/2+0.6], [W/2+0.85, Y0+PITCH*2+TH/2+0.05, BZ+0.05]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_hot", "lp_hot")
 # B 電：電源層 → 銅排往上下送
 flow("p_up", "bus", [[-W/2+0.45, Y0+PITCH*29, BZ+0.18], [-W/2+0.45, Y0+PITCH*12, BZ+0.18]], 5, 1, 0.1, [1,0,0], 0.12, 1.2, "lp_proc", "lp_proc")
 flow("p_dn", "bus", [[-W/2+0.45, Y0+PITCH*2, BZ+0.18], [-W/2+0.45, Y0+PITCH*11, BZ+0.18]], 5, 1, 0.1, [1,0,0], 0.12, 1.2, "lp_proc", "lp_proc")
@@ -149,6 +174,14 @@ flow("c_hot", "cool", [[W/2+0.85, HR-0.4, BZ+0.18], [W/2+0.85, 0.5, BZ+0.18]], 6
 flow("t_cold", "tcool", [[TX-0.4, PY+0.17, 4.5], [TX-0.4, PY+0.17, -3.0]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_cool", "lp_cool")
 flow("t_hot", "tcool", [[TX+0.4, PY+0.17, -3.0], [TX+0.4, PY+0.17, 4.5]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_hot", "lp_hot")
 flow("t_data", "tp_nic", [[TX-3.7, TY+0.4, 3.9], [TX-3.7, TY+0.4, 0.6]], 3, 3, 0.2, [1,0,0], 0.1, 1.2, "lp_sig", "lp_sigRim")
+flow("t_rear", "trc", [[TX-1.5, TY+0.8, -0.8], [TX-3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
+flow("t_rear2", "trc", [[TX+1.5, TY+0.8, -0.8], [TX+3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
+flow("t_pwr", "tpw", [[TX+7.0, TY+0.7, -3.0], [TX+7.0, TY+0.7, -0.6], [TX+4.6, TY+0.7, -0.6]], 4, 2, 0.16, [0,1,0], 0.1, 1.2, "lp_proc", "lp_proc")
+palette["lp_air"] = "#9FB7D1"
+flow("t_air", "trc", [[TX-6.2, TY+1.6, 4.8], [TX-6.2, TY+1.6, -4.2]], 4, 1, 0.1, [1,0,0], 0.15, 1.0, "lp_air", "lp_air", "arrow")
+actions["t_air2"] = {**actions["t_air"], "path": [[TX-1.8, TY+2.0, 4.8], [TX-1.8, TY+2.0, -4.2]]}
+actions["t_air3"] = {**actions["t_air"], "path": [[TX+1.8, TY+2.0, 4.8], [TX+1.8, TY+2.0, -4.2]]}
+actions["t_air4"] = {**actions["t_air"], "path": [[TX+6.2, TY+1.6, 4.8], [TX+6.2, TY+1.6, -4.2]]}
 actions["t_gpuhot"] = {"type":"pulse","layer":"sc0_g0","parts":["gpu00","gpu01"],"color":"lp_heat","freq":2.2,"glow":0.9,"halo":0}
 actions["t_gpuhot1"] = {"type":"pulse","layer":"sc1_g0","parts":["gpu10","gpu11"],"color":"lp_heat","freq":2.2,"glow":0.9,"halo":0}
 actions["r_cglow"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_sig","freq":2.0,"glow":0.8,"halo":0}
@@ -158,7 +191,7 @@ actions["r_frglow"] = {"type":"pulse","layer":"frame","parts":["fr_post"],"color
 actions["r_cut"] = {"type":"pulse","layer":"c0","parts":[f"c{i}_b" for i in range(18)],"color":"lp_heat","freq":2.6,"glow":0.85,"halo":0}
 actions["r_heat"] = {"preset":"heat-spread","layer":"c5","from":{"layer":"c5","p":[0, SLOTY["c5"]+0.1, 0]},"dir":[0,1,0],"reach":1.6,"count":3,"r0":0.5,"spread":0.5,"rate":0.7}
 actions["t_heat"] = {"preset":"heat-spread","layer":"sc0_g0","from":{"layer":"sc0_g0","p":[TX+MODX[0]+0.7, TY+0.7, 0]},"dir":[0,1,0],"reach":1.8,"count":3,"r0":0.5,"spread":0.5,"rate":0.7}
-actions["r_fan"] = {"type":"vibrate","parts":["cdu_fan"],"axis":[0,1,0],"amp":0.02,"freq":6,"layer":"cdu"}
+
 model = {
  "name": "tech-server：AI 伺服器整櫃（NVL72 示意）。座標：R 機櫃 x=0、T 運算托盤特寫 x=60。",
  "unit": "機櫃 1 單位約 0.3 m（示意）；托盤特寫為示意，非實際比例",

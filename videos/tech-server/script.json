@@ -110,8 +110,8 @@
       "at": "start-30",
       "dur": 1,
       "x": 0.4,
-      "y": 3.7,
-      "d": 19,
+      "y": 4.0,
+      "d": 30,
       "elev": 12
      }
     ],
@@ -615,6 +615,54 @@
       "opacity": 0,
       "dur": 2,
       "dy": 0
+     },
+     {
+      "layer": "hs0",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "hs1",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "fan0",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "fan1",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "fan2",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "fan3",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
      }
     ],
     "run": [
@@ -625,17 +673,20 @@
       "ramp": 6
      }
     ],
-    "labels": [
-     {
-      "part": "r_top",
-      "text": "約 1.3–1.5 公噸",
-      "en": "about 1.3-1.5 t",
-      "color": "amber",
-      "at": "ton",
-      "until": "s2:start-2"
-     }
-    ],
+    "labels": [],
     "overlay": [
+     {
+      "type": "stamp",
+      "at": "ton",
+      "until": "s2:start-2",
+      "text": "約 1.4 公噸",
+      "color": "amber",
+      "size": 46,
+      "rot": -4,
+      "x": 300,
+      "y": 1130,
+      "avoid": false
+     },
      {
       "type": "stamp",
       "at": "car",
@@ -644,8 +695,8 @@
       "color": "blue",
       "size": 46,
       "rot": -4,
-      "x": 300,
-      "y": 1000,
+      "x": 780,
+      "y": 1130,
       "avoid": false
      },
      {
@@ -656,14 +707,14 @@
       "color": "coral",
       "size": 46,
       "rot": -4,
-      "x": 800,
-      "y": 1000,
+      "x": 540,
+      "y": 1270,
       "avoid": false
      }
     ]
    },
    "sources": [
-    "NVIDIA；HPE、Supermicro 規格（各家 1.3–1.5 t、120–132 kW）"
+    "NVIDIA；HPE、Supermicro 規格"
    ],
    "pauseAfter": 0.7
   },
@@ -709,8 +760,8 @@
       "at": "start-2",
       "dur": 14,
       "x": 0.4,
-      "y": 3.7,
-      "d": 17,
+      "y": 1.9,
+      "d": 34,
       "elev": 10
      }
     ],
@@ -740,9 +791,9 @@
       "at": "start+2",
       "until": "s4:start-14",
       "x": 64,
-      "y": 920,
+      "y": 1030,
       "w": 952,
-      "h": 330,
+      "h": 400,
       "avoid": false,
       "title": "一櫃裡有幾顆",
       "tag": "示意",
@@ -812,17 +863,17 @@
       "at": "start-2",
       "dur": 1,
       "x": 0.4,
-      "y": 3.7,
-      "d": 17,
+      "y": 1.9,
+      "d": 34,
       "elev": 10
      },
      {
       "at": "four-4",
       "dur": 1,
-      "x": 60,
-      "y": 0.5,
-      "d": 21,
-      "elev": 34
+      "x": 150,
+      "y": -2.6,
+      "d": 40,
+      "elev": 56
      }
     ],
     "shift": [
@@ -851,6 +902,24 @@
      },
      {
       "id": "t_data",
+      "at": "four",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_rear",
+      "at": "four+10",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_rear2",
+      "at": "four+10",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "t_pwr",
       "at": "four",
       "until": "s4:start-2",
       "ramp": 6
@@ -920,18 +989,18 @@
       "at": "start-2",
       "dur": 1,
       "x": 0.4,
-      "y": 3.7,
-      "d": 19,
+      "y": 1.9,
+      "d": 34,
       "elev": 12
      },
      {
       "at": "one",
       "dur": 28,
       "x": 0,
-      "y": 3.7,
-      "d": 19,
+      "y": 1.9,
+      "d": 34,
       "elev": 12,
-      "yaw": 2.7
+      "yaw": 2.4
      }
     ],
     "shift": [
@@ -972,9 +1041,9 @@
       "at": "start+2",
       "until": "s6:start-14",
       "x": 64,
-      "y": 900,
+      "y": 1030,
       "w": 952,
-      "h": 350,
+      "h": 400,
       "avoid": false,
       "title": "72 顆怎麼變一顆",
       "tag": "示意",
@@ -1040,10 +1109,9 @@
       "at": "start-2",
       "dur": 1,
       "x": 0,
-      "y": 3.7,
-      "d": 19,
-      "elev": 12,
-      "yaw": 2.7
+      "y": 1.9,
+      "d": 34,
+      "elev": 12
      }
     ],
     "shift": [],
@@ -1068,7 +1136,7 @@
      },
      {
       "id": "d_arms",
-      "at": "find",
+      "at": "cable",
       "until": "s6:start-2",
       "ramp": 6
      }
@@ -1107,7 +1175,7 @@
     ]
    },
    "sources": [
-    "NVIDIA 技術部落格（over 5,000 copper cables）；Supermicro"
+    "NVIDIA 技術部落格；Supermicro"
    ],
    "pauseAfter": 0.7
   },
@@ -1151,10 +1219,9 @@
       "at": "start-2",
       "dur": 1,
       "x": 0,
-      "y": 3.7,
-      "d": 19,
-      "elev": 12,
-      "yaw": 2.7
+      "y": 1.9,
+      "d": 34,
+      "elev": 12
      }
     ],
     "shift": [
@@ -1172,6 +1239,18 @@
       "id": "r_pwglow",
       "at": "in-6",
       "until": "bus+10",
+      "ramp": 6
+     },
+     {
+      "id": "p_arm_l",
+      "at": "bus+6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "p_arm_r",
+      "at": "bus+6",
+      "until": "s7:start-2",
       "ramp": 6
      },
      {
@@ -1228,9 +1307,9 @@
       "at": "start+2",
       "until": "s7:start-14",
       "x": 64,
-      "y": 920,
+      "y": 1030,
       "w": 952,
-      "h": 330,
+      "h": 400,
       "avoid": false,
       "title": "電怎麼進來、變成什麼",
       "tag": "示意",
@@ -1292,26 +1371,135 @@
      {
       "at": "start-2",
       "dur": 1,
-      "x": 60,
-      "y": 0.5,
-      "d": 21,
-      "elev": 34
+      "x": 150,
+      "y": -2.6,
+      "d": 40,
+      "elev": 56,
+      "yaw": -2.4
      },
      {
       "at": "out-4",
       "dur": 1,
-      "x": 1.6,
-      "y": 3.7,
-      "d": 20,
+      "x": -1.6,
+      "y": 1.9,
+      "d": 34,
       "elev": 12,
       "yaw": 2.55
      }
     ],
     "shift": [
      {
+      "layer": "hs0",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03
+     },
+     {
+      "layer": "hs1",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03
+     },
+     {
+      "layer": "fan0",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan1",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan2",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "fan3",
+      "at": "s1:start-40",
+      "until": "start",
+      "dy": 0.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "hs0",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hs1",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "fan0",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dz": 1.2,
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fan1",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dz": 1.2,
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fan2",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dz": 1.2,
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fan3",
+      "at": "liq-12",
+      "until": "s10:end+400",
+      "dz": 1.2,
+      "opacity": 0,
+      "dur": 8
+     },
+     {
       "layer": "cp0",
       "at": "s1:start-40",
-      "until": "liq-8",
+      "until": "liq-6",
       "opacity": 0,
       "dur": 10,
       "dy": 0.9,
@@ -1321,7 +1509,7 @@
      {
       "layer": "cp1",
       "at": "s1:start-40",
-      "until": "liq-4",
+      "until": "liq-2",
       "opacity": 0,
       "dur": 10,
       "dy": 0.9,
@@ -1331,7 +1519,7 @@
      {
       "layer": "tcool",
       "at": "s1:start-40",
-      "until": "liq-10",
+      "until": "liq-6",
       "opacity": 0,
       "dur": 6,
       "dy": 0
@@ -1357,19 +1545,85 @@
      {
       "id": "t_gpuhot",
       "at": "start",
-      "until": "out",
+      "until": "chipf+14",
       "ramp": 6
      },
      {
       "id": "t_gpuhot1",
       "at": "start",
-      "until": "out",
+      "until": "chipf+14",
       "ramp": 6
      },
      {
-      "id": "t_heat",
+      "id": "hs0_heat",
       "at": "air",
-      "until": "liq",
+      "until": "liq-12",
+      "ramp": 6
+     },
+     {
+      "id": "hs1_heat",
+      "at": "air",
+      "until": "liq-12",
+      "ramp": 6
+     },
+     {
+      "id": "hs0_waves",
+      "at": "air",
+      "until": "liq-12",
+      "ramp": 6
+     },
+     {
+      "id": "hs1_waves",
+      "at": "air",
+      "until": "liq-12",
+      "ramp": 6
+     },
+     {
+      "id": "fan0_spin",
+      "at": "start",
+      "until": "liq-8",
+      "ramp": 8
+     },
+     {
+      "id": "fan1_spin",
+      "at": "start",
+      "until": "liq-8",
+      "ramp": 8
+     },
+     {
+      "id": "fan2_spin",
+      "at": "start",
+      "until": "liq-8",
+      "ramp": 8
+     },
+     {
+      "id": "fan3_spin",
+      "at": "start",
+      "until": "liq-8",
+      "ramp": 8
+     },
+     {
+      "id": "t_air",
+      "at": "air-6",
+      "until": "liq-10",
+      "ramp": 6
+     },
+     {
+      "id": "t_air2",
+      "at": "air-4",
+      "until": "liq-10",
+      "ramp": 6
+     },
+     {
+      "id": "t_air3",
+      "at": "air-2",
+      "until": "liq-10",
+      "ramp": 6
+     },
+     {
+      "id": "t_air4",
+      "at": "air",
+      "until": "liq-10",
       "ramp": 6
      },
      {
@@ -1381,6 +1635,30 @@
      {
       "id": "t_hot",
       "at": "chipf",
+      "until": "out",
+      "ramp": 6
+     },
+     {
+      "id": "t_data",
+      "at": "start",
+      "until": "out",
+      "ramp": 6
+     },
+     {
+      "id": "t_rear",
+      "at": "start",
+      "until": "out",
+      "ramp": 6
+     },
+     {
+      "id": "t_rear2",
+      "at": "start",
+      "until": "out",
+      "ramp": 6
+     },
+     {
+      "id": "t_pwr",
+      "at": "start",
       "until": "out",
       "ramp": 6
      },
@@ -1397,10 +1675,28 @@
       "ramp": 6
      },
      {
-      "id": "r_fan",
+      "id": "c_arm_c",
       "at": "out",
       "until": "s8:start-2",
-      "ramp": 4
+      "ramp": 6
+     },
+     {
+      "id": "c_arm_h",
+      "at": "out+6",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "cdu_fan0",
+      "at": "out",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "cdu_fan1",
+      "at": "out",
+      "until": "s8:start-2",
+      "ramp": 6
      }
     ],
     "labels": [
@@ -1420,9 +1716,9 @@
       "at": "start+2",
       "until": "s8:start-14",
       "x": 64,
-      "y": 920,
+      "y": 1030,
       "w": 952,
-      "h": 330,
+      "h": 400,
       "avoid": false,
       "title": "風冷 → 液冷",
       "tag": "示意",
@@ -1441,7 +1737,7 @@
     ]
    },
    "sources": [
-    "NVIDIA／DCD：CPU、GPU、交換器直接液冷；網路與儲存仍風冷"
+    "NVIDIA；DCD（晶片與交換器液冷）"
    ],
    "pauseAfter": 0.7
   },
@@ -1493,10 +1789,10 @@
       "at": "start-2",
       "dur": 1,
       "x": 0.6,
-      "y": 4.0,
-      "d": 21,
+      "y": 2.7,
+      "d": 37,
       "elev": 12,
-      "yaw": 0.35
+      "yaw": -2.2
      }
     ],
     "shift": [
@@ -1536,6 +1832,24 @@
       "ramp": 6
      },
      {
+      "id": "c_arm_c",
+      "at": "cl",
+      "until": "rail",
+      "ramp": 6
+     },
+     {
+      "id": "c_arm_h",
+      "at": "cl",
+      "until": "rail",
+      "ramp": 6
+     },
+     {
+      "id": "cdu_fan0",
+      "at": "cl",
+      "until": "rail",
+      "ramp": 6
+     },
+     {
       "id": "r_frglow",
       "at": "shell",
       "until": "nodata",
@@ -1548,7 +1862,8 @@
       "type": "card",
       "at": "asm",
       "until": "s9:start-2",
-      "y": 850,
+      "avoid": false,
+      "y": 990,
       "kicker": "媒體報導",
       "rows": [
        [
@@ -1574,7 +1889,7 @@
       ],
       "hi": "台達電",
       "hiAt": "pw",
-      "size": 42,
+      "size": 34,
       "foot": "查證截至 2026/11/20，非投資建議"
      },
      {
@@ -1585,8 +1900,8 @@
       "color": "blue",
       "size": 44,
       "rot": -4,
-      "x": 300,
-      "y": 330,
+      "x": 820,
+      "y": 250,
       "avoid": false
      }
     ]
@@ -1640,10 +1955,10 @@
       "at": "start-2",
       "dur": 1,
       "x": 1.6,
-      "y": 3.7,
-      "d": 21,
+      "y": 1.9,
+      "d": 34,
       "elev": 12,
-      "yaw": 2.0
+      "yaw": 1.65
      }
     ],
     "shift": [],
@@ -1690,9 +2005,9 @@
       "until": "kw",
       "text": "下一支：液冷",
       "color": "amber",
-      "size": 52,
+      "size": 48,
       "rot": -4,
-      "x": 300,
+      "x": 690,
       "y": 330,
       "avoid": false
      }
