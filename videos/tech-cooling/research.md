@@ -1,6 +1,6 @@
 # 液冷：一櫃伺服器一百二十千瓦，風扇吹不走（科技透明圈 第 8 支・tech-cooling）
 
-查證截至 2026/11/16。**發布當天（11/21）再查一次機櫃功耗、全液冷平台的報導，更新「查證截至」日期。**
+查證截至 2026/11/17（11/17 複查：補單顆 GPU 功耗、CDU 規格、台灣廠商角色的第二來源，見表末「11/17 補查」）。**發布當天（11/21）再查一次機櫃功耗、全液冷平台的報導，更新「查證截至」日期。**
 排程：2026/11/21（六）20:00（`TZ=Asia/Taipei date -d 2026-11-21 +%A` → Saturday），類別「運作」，接 11/20（五）「伺服器到底是什麼」（**那支的片尾要預告「一櫃這麼耗電，熱怎麼散？下一支，來看液冷」**）；片尾預告 11/22（日）「八百伏特」。
 鏈上位置：伺服器／系統廠節點的拓展子題（散熱）。
 狀態標記：已確定／廠商公布／媒體報導（寫明哪家）／估算／廠商目標值（非實測）／查不到。
@@ -50,3 +50,12 @@
 - DIGITIMES：https://www.digitimes.com.tw/tech/rpt/SubChannel_3_HKC.asp?CnlID=3&cat=HKC
 - 經濟日報：https://money.udn.com/money/story/5607/9137791
 - 科技新報（800V 研發）：https://technews.tw/?p=1558171
+
+## 11/17 補查（WebSearch 摘要，只當線索；發布當天 11/21 再查一次）
+| # | 說法 | 結果 | 狀態 | 來源 | 信心 |
+|---|---|---|---|---|---|
+| 13 | 單顆 Blackwell GPU 功耗量級 | B200 約 1,000 W；GB200 超級晶片內每顆 GPU 約 1,200 W、整顆（2 GPU＋1 CPU）約 2,700 W。**皆為廠商部落格與一篇研討會論文轉述，非 NVIDIA 手冊直接頁面** | 媒體／第三方（單位 W 級，不寫進旁白，只當畫面小字「約 1,000 W 級」） | fibermall〈NVIDIA GB200 liquid cooling plate〉；alphaxiv 2604.10941（冷板佈局論文）；Alliance Chemical 部落格 | 中 |
+| 14 | 冷板內部做法 | 銅冷板，內部是細密平行微通道（鏟齒 skived fin 或焊接），通道寬約 200–300 µm（單一部落格，不標數字）；熱通量 50 W/cm² 以上、熱點到 150 W/cm²（單一來源，不標） | 廠商說明 | fibermall；Alliance Chemical | 中 |
+| 15 | 分歧管與快接頭 | 運算托盤用盲插（blind-mate）快接頭接上機櫃分歧管；托盤內另有 inner manifold 把水分給各冷板；快接頭拔開時兩側閥門自動關閉（UQD04／OCP UQD08） | 已確定（作法）；Eaton、Boyd 等 NVIDIA 建議廠商頁說明 | Eaton／Boyd 頁面（validated for GB200 NVL72 recommended vendor list）；Tom's Hardware 2024 | 高 |
+| 16 | CDU | 機櫃級液對液 CDU 以熱交換器把二次側熱交給設施水；廠商列示約 200 kW 級、4 °C approach（只放畫面「示意」，不標） | 廠商公布 | QCT Qoolrack PDF；Eaton／Boyd 頁面 | 中高 |
+| 17 | 台灣廠商角色（只放畫面小字與旁白一句，不排名、不談市占、不給個股建議） | 奇鋐：冷板、模組、快接頭；雙鴻：冷板，擴到 CDU、分歧管；台達電：CDU（2025Q4 起出貨，媒體）；高力：熱交換器與 CDU 整合模組。市占數字（如奇鋐 40–50%）為券商文章估計，**不用** | 媒體報導（鉅亨、優分析、Pocket 證券、104 職場力） | news.cnyes.com/news/id/6152963；uanalyze.com.tw/articles/7598933352；pocket.tw/school/articles/7300 | 中（輝達認證名單不等於供應名單；原文提醒） |
