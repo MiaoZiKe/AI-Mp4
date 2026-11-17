@@ -1,0 +1,51 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T08:51:58Z",
+  "systemInstruction": "（SKILL.md＋references/phrases.md＋references/structures.md 原文，同資料夾）",
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Write a short LinkedIn-style post (under 100 words, English) about why our team switched to a new expense system."
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "Our old expense system cost us two weeks every month. Receipts vanished, approvals stalled, and finance spent hours chasing signatures. \n\nWe switched to Ramp last Monday. \n\nEmployees scan receipts with their phones. Managers approve requests in Slack. Finance reconciles accounts automatically. \n\nWork should not involve paperwork.",
+              "thoughtSignature": "EokBCoYBAWkUfRNV12wqYVoh5P5zBbId1t9bqr64tTMonqxeLnrE8gdvUuTxOy+S1NlNqE/XHTGzhbYSCIbndLEMkPKBT0BaaWqJG7SZsOdy+N+dEhzMcqeVkq+inYQVHaGe9jc7JCNs6azhmYsiZbT3/+9skJmeSFvVGSYJeO3Ktq6ydiZfL5jkF8A="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 2975,
+      "candidatesTokenCount": 62,
+      "totalTokenCount": 3037,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 2975
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "rhX8atuxCu6k1MkP8JnkwAE"
+  },
+  "replyText": "Our old expense system cost us two weeks every month. Receipts vanished, approvals stalled, and finance spent hours chasing signatures. \n\nWe switched to Ramp last Monday. \n\nEmployees scan receipts with their phones. Managers approve requests in Slack. Finance reconciles accounts automatically. \n\nWork should not involve paperwork."
+}

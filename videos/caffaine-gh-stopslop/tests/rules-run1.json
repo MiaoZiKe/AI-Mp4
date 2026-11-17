@@ -1,0 +1,51 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "modelVersion": "gemini-3.5-flash-lite",
+  "httpStatus": 200,
+  "sentAtUTC": "2026-11-17T08:51:29Z",
+  "systemInstruction": "（SKILL.md＋references/phrases.md＋references/structures.md 原文，同資料夾）",
+  "request": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Write a short company-wide announcement (under 120 words, English): from Dec 1, all expense reports must be submitted through the new system; paper forms will not be accepted after Nov 30."
+          }
+        ]
+      }
+    ]
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "Starting December 1, submit all expense reports through the new platform. \n\nWe are retiring paper forms after November 30. Finance will reject any paper submissions received after that date. \n\nThe new system cuts processing time from weeks to days. Log in now and complete your profile before the transition. Contact IT if you need access.",
+              "thoughtSignature": "EokBCoYBAWkUfRO7OsEcC5AxoUGh/cqcf26mrTg9KN4rm6Wk323JKPpNOgp1hojsbt9g1TSf2BSE56A7L0+VEwdQeV8H3/IJeowgeQlbmF2D1+AFV+TSgPb1WBKcfUGFvZd0UHbZtmkRAuIzJQhG3GlBxHDrraGNvpXUphWx6EYzVPMqKjv2aqjova4="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 2992,
+      "candidatesTokenCount": 69,
+      "totalTokenCount": 3061,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 2992
+        }
+      ],
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.5-flash-lite",
+    "responseId": "kRX8aoKeLtqv_PUPv8ed8Ao"
+  },
+  "replyText": "Starting December 1, submit all expense reports through the new platform. \n\nWe are retiring paper forms after November 30. Finance will reject any paper submissions received after that date. \n\nThe new system cuts processing time from weeks to days. Log in now and complete your profile before the transition. Contact IT if you need access."
+}

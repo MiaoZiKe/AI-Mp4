@@ -1,0 +1,656 @@
+{
+ "slug": "caffaine-ask-first",
+ "title": "別叫 AI 做，先叫它問你",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "別叫 AI 做",
+   "先叫它問你三個問題"
+  ],
+  "sub": "同一句話，直接做 0 分"
+ },
+ "tracker": [
+  [
+   "先問",
+   "right"
+  ],
+  [
+   "直接做",
+   "wrong"
+  ],
+  [
+   "條件",
+   "primary"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "同一句話交給 AI，直接做，零分。先叫它問三個問題再做，拿到四到五分。差在哪？",
+   "subtitle": {
+    "zh": "同一句話交給 AI\n直接做\n零分\n先叫它問三個問題再做\n拿到四到五分\n差在哪",
+    "en": "Same sentence to an AI."
+   },
+   "keywords": [
+    "直接做"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "直接做"
+    },
+    {
+     "id": "k2",
+     "text": "先叫它問三個問題"
+    },
+    {
+     "id": "k3",
+     "text": "差在哪"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "直接做": "primary"
+    },
+    "view": "split",
+    "tone": "event",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "asOf": "查證截至 2026/11/17",
+    "left": {
+     "src": "caffaine-ask-first/cardA.png",
+     "label": "A 直接做",
+     "color": "wrong",
+     "at": "start-1",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "right": {
+     "src": "caffaine-ask-first/cardB.png",
+     "label": "B 先問三題",
+     "color": "right",
+     "at": "start+12",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "mid": {
+     "text": "VS",
+     "at": "start+26"
+    },
+    "aiAt": "start+8",
+    "size": "big",
+    "wl": 380,
+    "wr": 380
+   },
+   "sources": [
+    "實測 2026/11/17：gemini-3.5-flash-lite，各 2 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "我只丟一句：幫我規劃下週的部門聚餐。",
+   "subtitle": {
+    "zh": "我只丟一句\n幫我規劃下週的部門聚餐",
+    "en": "I sent one line:"
+   },
+   "keywords": [
+    "一句"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一句"
+    },
+    {
+     "id": "k2",
+     "text": "部門聚餐"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "一句": "right"
+    },
+    "view": "chat",
+    "tone": "principle",
+    "status": "情境示意・虛構",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "幫我規劃下週的部門聚餐。",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "一句",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "部門聚餐",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "虛構情境；題目原句（tests/rubric.md）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "check",
+   "narration": "但我腦中有五件事，人數、預算、素食、日期、地點。",
+   "subtitle": {
+    "zh": "但我腦中有五件事\n人數\n預算\n素食\n日期\n地點",
+    "en": "But I had five things in mind:"
+   },
+   "keywords": [
+    "五件事"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "五件事"
+    },
+    {
+     "id": "k2",
+     "text": "素食"
+    },
+    {
+     "id": "k3",
+     "text": "地點"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 0,
+    "kw": {
+     "五件事": "wrong"
+    },
+    "view": "check",
+    "tone": "bug",
+    "status": "情境示意・虛構",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "腦中的五件事（只有我們知道）",
+     "at": "start-1",
+     "color": "wrong"
+    },
+    "items": [
+     {
+      "text": "12 人，每人 600 元以內",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "2 人吃素",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "週四晚上，信義區走路 10 分鐘",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "事實表（tests/rubric.md，跑之前先寫）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "直接做的那邊，自己猜了人數和預算，五條全沒中。",
+   "subtitle": {
+    "zh": "直接做的那邊\n自己猜了人數和預算\n五條全沒中",
+    "en": "The do-it-now side guessed headcount"
+   },
+   "keywords": [
+    "自己猜了"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "自己猜了"
+    },
+    {
+     "id": "k2",
+     "text": "人數和預算"
+    },
+    {
+     "id": "k3",
+     "text": "全沒中"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "自己猜了": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-ask-first/cardA.png",
+    "ring": [
+     12,
+     66,
+     376,
+     212
+    ],
+    "note": "自己猜的",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "猜",
+    "zoom": {
+     "src": "caffaine-ask-first/cardA-zoom.png",
+     "w": 960,
+     "h": 560,
+     "cap": "放大：人數、預算都是它猜的"
+    },
+    "native": [
+     400,
+     720
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：A 兩次都 0／5（tests/A-run1.json）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "mechanism",
+   "narration": "兩次結果，直接做都是零分；先問，一次四分，一次五分。",
+   "subtitle": {
+    "zh": "兩次結果\n直接做都是零分\n先問\n一次四分\n一次五分",
+    "en": "Do it now: 0 both times."
+   },
+   "keywords": [
+    "都是零分"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "都是零分"
+    },
+    {
+     "id": "k2",
+     "text": "一次四分"
+    },
+    {
+     "id": "k3",
+     "text": "一次五分"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "都是零分": "right"
+    },
+    "view": "chart",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "kind": "bars",
+    "items": [
+     {
+      "t": "A①",
+      "h": 0.03,
+      "color": "wrong"
+     },
+     {
+      "t": "A②",
+      "h": 0.03,
+      "color": "wrong"
+     },
+     {
+      "t": "B①",
+      "h": 0.8,
+      "color": "sky"
+     },
+     {
+      "t": "B②",
+      "h": 1.0,
+      "color": "right"
+     }
+    ],
+    "growAt": "start+4",
+    "chips": [
+     {
+      "text": "0／0　　4／5",
+      "at": "k2",
+      "color": "note"
+     }
+    ],
+    "note": "示意：長短依分數，滿分 5；各 2 次"
+   },
+   "sources": [
+    "實測 2026/11/17：A 0／0；B 4／5"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "check",
+   "narration": "那次四分，缺素食，因為它沒問，我也沒講。",
+   "subtitle": {
+    "zh": "那次四分\n缺素食\n因為它沒問\n我也沒講",
+    "en": "The 4 missed vegetarian:"
+   },
+   "keywords": [
+    "四分"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "四分"
+    },
+    {
+     "id": "k2",
+     "text": "缺素食"
+    },
+    {
+     "id": "k3",
+     "text": "沒問"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "四分": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "4／5",
+      "unit": "缺素食",
+      "at": "start-10",
+      "color": "wrong",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "沒問",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：B 第 1 次沒有素食"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "so",
+   "narration": "所以差別不在 AI 變聰明，是你先把條件交給它。",
+   "subtitle": {
+    "zh": "所以差別不在 AI 變聰明\n是你先把條件交給它",
+    "en": "So it's not a smarter AI."
+   },
+   "keywords": [
+    "條件"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "條件"
+    },
+    {
+     "id": "k2",
+     "text": "交給它"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 2,
+    "kw": {
+     "條件": "sky"
+    },
+    "view": "flow",
+    "tone": "fix",
+    "nodes": [
+     {
+      "icon": "redo",
+      "label": "你的條件",
+      "sub": "",
+      "color": "primary",
+      "at": "start-1"
+     },
+     {
+      "icon": "mag",
+      "label": "交給 AI",
+      "sub": "",
+      "color": "right",
+      "at": "k2"
+     },
+     {
+      "icon": "text",
+      "label": "才開始做",
+      "sub": "",
+      "color": "wrong",
+      "at": "k2"
+     }
+    ],
+    "lights": [
+     {
+      "from": "k1",
+      "to": "k2"
+     },
+     {
+      "from": "k2",
+      "to": "k2"
+     }
+    ]
+   },
+   "sources": [
+    "實測結論整理"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "unknown",
+   "narration": "不過只出一題，各跑兩次，換題目會怎樣，還不知道。",
+   "subtitle": {
+    "zh": "不過只出一題\n各跑兩次\n換題目會怎樣\n還不知道",
+    "en": "Only one question, two runs each."
+   },
+   "keywords": [
+    "只出一題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "只出一題"
+    },
+    {
+     "id": "k2",
+     "text": "各跑兩次"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "只出一題": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "1",
+      "unit": "題",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "換題目呢？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測 1 題、1 個模型、各 2 次；沒測「一次把條件寫完」"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s09",
+   "beat": "cta",
+   "narration": "存起來，下次先加一句：先問我三個問題。留言「先問我」，我把提示詞和測試原文給你。",
+   "subtitle": {
+    "zh": "存起來\n下次先加一句\n先問我三個問題\n留言「先問我」\n我把提示詞\n和測試原文給你",
+    "en": "Save this."
+   },
+   "keywords": [
+    "先問我三個問題"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "先問我三個問題"
+    },
+    {
+     "id": "k2",
+     "text": "先問我"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "先問我三個問題": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "先問我",
+    "kicker": "想要先問我三個問題的提示詞",
+    "kwAt": "k1",
+    "allAt": "k2",
+    "card": "提示詞＋測試原文",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "先問我"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

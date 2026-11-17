@@ -1,0 +1,594 @@
+{
+ "slug": "caffaine-gh-stopslop",
+ "title": "讓 AI 別再寫出 AI 味",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "讓 AI 別再",
+   "寫出 AI 味"
+  ],
+  "sub": "一份規則檔，實測前後對照"
+ },
+ "tracker": [
+  [
+   "規則檔",
+   "primary"
+  ],
+  [
+   "少了套路",
+   "right"
+  ],
+  [
+   "會編",
+   "wrong"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "讓 AI 別再寫出 AI 味，一份純文字規則檔，一萬九千顆星。真的有用嗎？",
+   "subtitle": {
+    "zh": "讓 AI 別再寫出 AI 味\n一份純文字規則檔\n一萬九千顆星\n真的有用嗎",
+    "en": "Make AI stop sounding like AI."
+   },
+   "keywords": [
+    "別再寫出"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "別再寫出"
+    },
+    {
+     "id": "k2",
+     "text": "純文字規則檔"
+    },
+    {
+     "id": "k3",
+     "text": "真的有用嗎"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "別再寫出": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "status": "已確定・倉庫頁",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "讓 AI 別再",
+      "unit": "",
+      "at": "start-10",
+      "color": "primary",
+      "size": 150,
+      "usize": 110
+     },
+     {
+      "big": "寫出 AI 味",
+      "unit": "",
+      "at": "start-4",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "asOf": "查證截至 2026/11/17",
+    "q": {
+     "text": "真的有用嗎？",
+     "at": "start+14"
+    }
+   },
+   "sources": [
+    "倉庫頁 2026/11/17：19.0k 星、MIT"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "倉庫叫 stop-slop，規則有刪掉副詞、不用破折號。",
+   "subtitle": {
+    "zh": "倉庫叫 stop-slop\n規則有刪掉副詞\n不用破折號",
+    "en": "The repo is stop-slop."
+   },
+   "keywords": [
+    "刪掉副詞"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "刪掉副詞"
+    },
+    {
+     "id": "k2",
+     "text": "不用破折號"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "刪掉副詞": "right"
+    },
+    "view": "editor",
+    "tone": "principle",
+    "status": "已確定・原文",
+    "statusAt": "k1+6",
+    "file": "SKILL.md",
+    "src": "videos/caffaine-gh-stopslop/tests/SKILL.md",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "- Any adverbs? Kill them.",
+      "n": 35,
+      "at": "start-1",
+      "dur": 22,
+      "mark": "adverbs",
+      "markAt": "k1"
+     },
+     {
+      "t": "- Em-dash anywhere? Remove it.",
+      "n": 43,
+      "at": "k1+8",
+      "dur": 22,
+      "mark": "Em-dash",
+      "markAt": "k2"
+     },
+     {
+      "t": "6. **Vary rhythm.** Mix sentence lengths. Two items beat three. End paragraphs differently. No em dashes.",
+      "n": 25,
+      "at": "k1+16",
+      "dur": 22,
+      "mark": "No em dashes",
+      "markAt": "k2+8"
+     }
+    ],
+    "hl": 1,
+    "hlAt": "k2",
+    "size": 38
+   },
+   "sources": [
+    "hardikpandya/stop-slop 的 SKILL.md（原文）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "mechanism",
+   "narration": "同一則貼文，沒加規則，四個副詞、一個破折號。放進規則檔，副詞剩一個，破折號沒了，字少快一半。",
+   "subtitle": {
+    "zh": "同一則貼文\n沒加規則\n四個副詞\n一個破折號\n放進規則檔\n副詞剩一個\n破折號沒了\n字少快一半",
+    "en": "Same post. Plain: four adverbs, one dash."
+   },
+   "keywords": [
+    "同一則貼文"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "同一則貼文"
+    },
+    {
+     "id": "k2",
+     "text": "副詞剩一個"
+    },
+    {
+     "id": "k3",
+     "text": "少快一半"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "同一則貼文": "right"
+    },
+    "view": "split",
+    "tone": "principle",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "left": {
+     "src": "caffaine-gh-stopslop/cardL.png",
+     "label": "沒加規則",
+     "color": "wrong",
+     "at": "start-1",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "right": {
+     "src": "caffaine-gh-stopslop/cardR.png",
+     "label": "加規則檔",
+     "color": "right",
+     "at": "start+12",
+     "native": [
+      400,
+      720
+     ],
+     "crop": [
+      0,
+      0,
+      400,
+      720
+     ]
+    },
+    "mid": {
+     "text": "VS",
+     "at": "start+26"
+    },
+    "aiAt": "start+8",
+    "size": "big",
+    "wl": 380,
+    "wr": 380
+   },
+   "sources": [
+    "實測 2026/11/17：第 1 次，程式計數"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "check",
+   "narration": "不過右邊多了題目沒給的事：一套叫 Ramp 的系統，每月耗掉兩週。",
+   "subtitle": {
+    "zh": "不過右邊多了\n題目沒給的事\n一套叫 Ramp 的系統\n每月耗掉兩週",
+    "en": "But the right side adds facts I never gave:"
+   },
+   "keywords": [
+    "題目沒給"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "題目沒給"
+    },
+    {
+     "id": "k2",
+     "text": "Ramp"
+    },
+    {
+     "id": "k3",
+     "text": "兩週"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "題目沒給": "wrong"
+    },
+    "view": "lens",
+    "tone": "bug",
+    "status": "已確定・實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-gh-stopslop/cardR.png",
+    "ring": [
+     12,
+     52,
+     376,
+     280
+    ],
+    "note": "題目沒給的事",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k3",
+    "stamp": "編",
+    "zoom": {
+     "src": "caffaine-gh-stopslop/cardR-zoom.png",
+     "w": 960,
+     "h": 395,
+     "cap": "放大：Ramp、兩週"
+    },
+    "native": [
+     400,
+     720
+    ]
+   },
+   "sources": [
+    "實測 2026/11/17：題目沒提 Ramp、兩週"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "check",
+   "narration": "公司公告再測，加規則的兩次有一次，也編了幾週縮到幾天。",
+   "subtitle": {
+    "zh": "公司公告再測\n加規則的兩次有一次\n也編了幾週縮到幾天",
+    "en": "Same on a company notice:"
+   },
+   "keywords": [
+    "公司公告"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "公司公告"
+    },
+    {
+     "id": "k2",
+     "text": "也編了"
+    },
+    {
+     "id": "k3",
+     "text": "幾週縮到幾天"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "公司公告": "wrong"
+    },
+    "view": "editor",
+    "tone": "bug",
+    "status": "已確定・實測（節錄）",
+    "statusAt": "k1+6",
+    "file": "公告第 1 次（加規則）",
+    "src": "videos/caffaine-gh-stopslop/tests/A-rules-run1.txt",
+    "wrap": true,
+    "before": 0,
+    "after": 0,
+    "lines": [
+     {
+      "t": "Starting December 1, submit all expense reports through the new platform.",
+      "n": 1,
+      "at": "start-1",
+      "dur": 22
+     },
+     {
+      "t": "The new system cuts processing time from weeks to days. Log in now and complete your profile before the transition. Contact IT if you need access.",
+      "n": 5,
+      "at": "k1+6",
+      "dur": 22,
+      "mark": "cuts processing time from weeks to days",
+      "markAt": "k3"
+     }
+    ],
+    "hl": 1,
+    "hlAt": "k3",
+    "size": 38
+   },
+   "sources": [
+    "實測 2026/11/17：公告題第 1 次"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "so",
+   "narration": "要用就貼上規則檔，再加一句：不要加我沒給的事實。",
+   "subtitle": {
+    "zh": "要用就貼上規則檔\n再加一句\n不要加我沒給的事實",
+    "en": "To use it, paste the rules file, then add:"
+   },
+   "keywords": [
+    "貼上規則檔"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "貼上規則檔"
+    },
+    {
+     "id": "k2",
+     "text": "不要加"
+    },
+    {
+     "id": "k3",
+     "text": "沒給的事實"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 1,
+    "kw": {
+     "貼上規則檔": "sky"
+    },
+    "view": "chat",
+    "tone": "fix",
+    "status": "建議・未實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "請照上面的規則改寫這段文字，不要加我沒給的事實。",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "貼上規則檔",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "不要加",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "做法建議，我們還沒測這一句有沒有用"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "unknown",
+   "narration": "不過只測了英文，中文有沒有用，還不知道。",
+   "subtitle": {
+    "zh": "不過只測了英文\n中文有沒有用\n還不知道",
+    "en": "I only tested English."
+   },
+   "keywords": [
+    "只測了英文"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "只測了英文"
+    },
+    {
+     "id": "k2",
+     "text": "中文有沒有用"
+    },
+    {
+     "id": "k3",
+     "text": "還不知道"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "只測了英文": "plum"
+    },
+    "view": "kinetic",
+    "tone": "unknown",
+    "status": "查不到・還沒測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "英文",
+      "unit": "只測了",
+      "at": "start-10",
+      "color": "plum",
+      "size": 220,
+      "usize": 110
+     },
+     {
+      "big": "還不知道",
+      "unit": "",
+      "at": "k3",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "q": {
+     "text": "中文呢？",
+     "at": "k3"
+    }
+   },
+   "sources": [
+    "只測英文 2 題、各 2 次、1 個模型"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s08",
+   "beat": "cta",
+   "narration": "所以答案是，少了套路，沒少編造。值得收藏，留言「去味」拿規則檔連結。",
+   "subtitle": {
+    "zh": "所以答案是\n少了套路\n沒少編造\n值得收藏\n留言「去味」\n拿規則檔連結",
+    "en": "So: fewer clichés, not fewer inventions."
+   },
+   "keywords": [
+    "少了套路"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "少了套路"
+    },
+    {
+     "id": "k2",
+     "text": "值得收藏"
+    },
+    {
+     "id": "k3",
+     "text": "去味"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "少了套路": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "去味",
+    "kicker": "想要去 AI 味的規則檔連結",
+    "kwAt": "k1",
+    "allAt": "k3",
+    "card": "規則檔連結＋測試原文",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "規則檔連結與測試原文整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "去味"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}

@@ -1,0 +1,507 @@
+{
+ "slug": "caffaine-chatgpt-gif",
+ "title": "ChatGPT 會做 GIF 了",
+ "asOf": "2026/11/17",
+ "styleVersion": 3,
+ "stage": "iso",
+ "isoVersion": 6,
+ "sample": false,
+ "channelLogo": "caffaine",
+ "channel": {
+  "name": "CaffAIne",
+  "tag": "",
+  "slogan": "看懂一個 AI 新知"
+ },
+ "voice": {
+  "voiceName": "Sulafat",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "ai-report-v5"
+ },
+ "cover": {
+  "title": [
+   "ChatGPT",
+   "會做 GIF 了"
+  ],
+  "sub": "照媒體報導的操作示意，非實測"
+ },
+ "tracker": [
+  [
+   "GIF",
+   "primary"
+  ],
+  [
+   "參考圖",
+   "right"
+  ],
+  [
+   "逐步開放",
+   "note"
+  ]
+ ],
+ "scenes": [
+  {
+   "id": "s01",
+   "beat": "hook",
+   "narration": "十一月四日更新後，你在 ChatGPT 打一句話，就能做出會動的 GIF。怎麼用？",
+   "subtitle": {
+    "zh": "十一月四日更新後\n你在 ChatGPT 打一句話\n就能做出會動的 GIF\n怎麼用",
+    "en": "Since Nov 4, one sentence in ChatGPT"
+   },
+   "keywords": [
+    "十一月四日"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "十一月四日"
+    },
+    {
+     "id": "k2",
+     "text": "一句話"
+    },
+    {
+     "id": "k3",
+     "text": "怎麼用"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "事件",
+    "tagColor": "primary",
+    "track": 0,
+    "kw": {
+     "十一月四日": "primary"
+    },
+    "view": "kinetic",
+    "tone": "event",
+    "status": "媒體報導・多家",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "ChatGPT",
+      "unit": "",
+      "at": "start-10",
+      "color": "primary",
+      "size": 160,
+      "usize": 110
+     },
+     {
+      "big": "會做 GIF 了",
+      "unit": "",
+      "at": "start-4",
+      "color": "wrong",
+      "size": 150,
+      "usize": 110
+     }
+    ],
+    "asOf": "查證截至 2026/11/17",
+    "q": {
+     "text": "怎麼用？",
+     "at": "start+14"
+    }
+   },
+   "sources": [
+    "多家媒體報導：TechRepublic、INSIDE 等"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s02",
+   "beat": "mechanism",
+   "narration": "第一步，直接打你要的畫面，比如：做一個貓咪揮手的 GIF。",
+   "subtitle": {
+    "zh": "第一步\n直接打你要的畫面\n比如\n做一個貓咪揮手的 GIF",
+    "en": "Step 1: type the scene you want,"
+   },
+   "keywords": [
+    "第一步"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第一步"
+    },
+    {
+     "id": "k2",
+     "text": "直接打"
+    },
+    {
+     "id": "k3",
+     "text": "貓咪揮手"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 0,
+    "kw": {
+     "第一步": "right"
+    },
+    "view": "chat",
+    "tone": "principle",
+    "status": "示意・非實測",
+    "statusAt": "k1+6",
+    "title": "和 AI 對話",
+    "msgs": [
+     {
+      "who": "me",
+      "text": "做一個貓咪揮手的 GIF",
+      "typeAt": "start+4",
+      "typeDur": 24,
+      "at": "k1"
+     }
+    ],
+    "chips": [
+     {
+      "text": "第一步",
+      "at": "k1+8",
+      "color": "right",
+      "hot": false
+     },
+     {
+      "text": "直接打",
+      "at": "k2+8",
+      "color": "wrong",
+      "hot": true
+     }
+    ]
+   },
+   "sources": [
+    "媒體報導：TechRepublic；畫面自繪示意"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s03",
+   "beat": "so",
+   "narration": "做好之後，可以調播放速度，也能改單一畫格。",
+   "subtitle": {
+    "zh": "做好之後\n可以調播放速度\n也能改單一畫格",
+    "en": "After that, you can change the speed"
+   },
+   "keywords": [
+    "調播放速度"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "調播放速度"
+    },
+    {
+     "id": "k2",
+     "text": "單一畫格"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "做法",
+    "tagColor": "sky",
+    "track": 0,
+    "kw": {
+     "調播放速度": "sky"
+    },
+    "view": "lens",
+    "tone": "fix",
+    "status": "示意・非實測",
+    "statusAt": "k1+6",
+    "src": "caffaine-chatgpt-gif/m1.png",
+    "ring": [
+     16,
+     492,
+     358,
+     52
+    ],
+    "note": "可調速度、改單格",
+    "noteAt": "k1",
+    "scanAt": "k2",
+    "stampAt": "k2",
+    "stamp": "調",
+    "zoom": {
+     "src": "caffaine-chatgpt-gif/m1-zoom.png",
+     "w": 716,
+     "h": 200,
+     "cap": "放大：調速、改單格"
+    },
+    "native": [
+     390,
+     844
+    ],
+    "crop": [
+     0,
+     260,
+     390,
+     300
+    ]
+   },
+   "sources": [
+    "媒體報導（INSIDE 引 The Verge）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s04",
+   "beat": "mechanism",
+   "narration": "第二步，把常用的人或寵物存成參考圖，下次用 @ 加名字叫出來。",
+   "subtitle": {
+    "zh": "第二步\n把常用的\n人或寵物存成參考圖\n下次用 @ 加名字叫出來",
+    "en": "Step 2: save a person or pet as a reference,"
+   },
+   "keywords": [
+    "第二步"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "第二步"
+    },
+    {
+     "id": "k2",
+     "text": "參考圖"
+    },
+    {
+     "id": "k3",
+     "text": "加名字"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "原理",
+    "tagColor": "right",
+    "track": 1,
+    "kw": {
+     "第二步": "right"
+    },
+    "view": "device",
+    "tone": "principle",
+    "status": "媒體報導・示意",
+    "statusAt": "k1+6",
+    "src": "caffaine-chatgpt-gif/m2.png",
+    "at": "start-1",
+    "tapAt": "k3",
+    "cards": [
+     {
+      "icon": "phone",
+      "text": "第二步",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "icon": "tap",
+      "text": "參考圖",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "icon": "tap",
+      "text": "加名字",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "媒體報導（INSIDE：官方部落格未提參考圖）"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s05",
+   "beat": "check",
+   "narration": "先說清楚，我們沒有實測，這是照媒體報導做的示意。",
+   "subtitle": {
+    "zh": "先說清楚\n我們沒有實測\n這是照媒體報導做的示意",
+    "en": "To be clear: we did not test this."
+   },
+   "keywords": [
+    "沒有實測"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "沒有實測"
+    },
+    {
+     "id": "k2",
+     "text": "媒體報導"
+    },
+    {
+     "id": "k3",
+     "text": "示意"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "對照",
+    "tagColor": "wrong",
+    "track": 1,
+    "kw": {
+     "沒有實測": "wrong"
+    },
+    "view": "kinetic",
+    "tone": "bug",
+    "status": "示意・非實測",
+    "statusAt": "k1+6",
+    "rows": [
+     {
+      "big": "沒實測",
+      "unit": "示意",
+      "at": "start-10",
+      "color": "wrong",
+      "size": 200,
+      "usize": 110
+     },
+     {
+      "big": "媒體報導",
+      "unit": "",
+      "at": "k2",
+      "color": "primary",
+      "size": 150,
+      "usize": 110
+     }
+    ]
+   },
+   "sources": [
+    "OpenAI 額度用完、官方原文讀不到"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s06",
+   "beat": "unknown",
+   "narration": "報導說逐步開放，免費版能不能用，各家寫得不一樣。",
+   "subtitle": {
+    "zh": "報導說逐步開放\n免費版能不能用\n各家寫得不一樣",
+    "en": "Press says gradual rollout."
+   },
+   "keywords": [
+    "逐步開放"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "逐步開放"
+    },
+    {
+     "id": "k2",
+     "text": "免費版"
+    },
+    {
+     "id": "k3",
+     "text": "寫得不一樣"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "還不知道",
+    "tagColor": "plum",
+    "track": 2,
+    "kw": {
+     "逐步開放": "plum"
+    },
+    "view": "check",
+    "tone": "unknown",
+    "status": "查不到・截至 2026/11/17",
+    "statusAt": "k1+6",
+    "mode": "list",
+    "head": {
+     "text": "開放範圍，各家寫法不一",
+     "at": "start-1",
+     "color": "plum"
+    },
+    "items": [
+     {
+      "text": "多家：逐步開放",
+      "sub": "",
+      "at": "k1",
+      "color": "primary"
+     },
+     {
+      "text": "一說：所有訂閱方案",
+      "sub": "",
+      "at": "k2",
+      "color": "right"
+     },
+     {
+      "text": "一說：沒提免費版",
+      "sub": "",
+      "at": "k3",
+      "color": "wrong"
+     }
+    ]
+   },
+   "sources": [
+    "媒體報導：INSIDE、mixed-news、TechRepublic"
+   ],
+   "para": 1
+  },
+  {
+   "id": "s07",
+   "beat": "cta",
+   "narration": "一句話就能做 GIF。你想先做什麼？留言「動圖」，我把提示詞給你。",
+   "subtitle": {
+    "zh": "一句話就能做 GIF\n你想先做什麼\n留言「動圖」\n我把提示詞給你",
+    "en": "One sentence makes a GIF. What first?"
+   },
+   "keywords": [
+    "一句話"
+   ],
+   "cues": [
+    {
+     "id": "k1",
+     "text": "一句話"
+    },
+    {
+     "id": "k2",
+     "text": "先做什麼"
+    },
+    {
+     "id": "k3",
+     "text": "動圖"
+    }
+   ],
+   "component": "IsoScene",
+   "props": {
+    "tag": "領取",
+    "tagColor": "note",
+    "track": 2,
+    "kw": {
+     "一句話": "note"
+    },
+    "view": "claim",
+    "tone": "claim",
+    "keyword": "動圖",
+    "kicker": "想要做 GIF 的提示詞",
+    "kwAt": "k1",
+    "allAt": "k3",
+    "card": "可直接貼的提示詞",
+    "sub": "私訊給你"
+   },
+   "sources": [
+    "提示詞整理在 CaffAIne 網站"
+   ],
+   "para": 1
+  },
+  {
+   "id": "end",
+   "narration": "",
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "component": "IsoScene",
+   "props": {
+    "panel": "caffend",
+    "keyword": "動圖"
+   },
+   "sources": [],
+   "silent": true,
+   "durationSec": 3.6
+  }
+ ]
+}
