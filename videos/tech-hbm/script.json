@@ -450,37 +450,28 @@
     ],
     "overlay": [
      {
-      "type": "bars",
-      "at": "six4",
-      "until": "s4:start-10",
-      "y": 950,
+      "type": "section",
+      "kind": "hbm-lines",
+      "at": "start+4",
+      "until": "s4:start-14",
+      "x": 64,
+      "y": 920,
+      "w": 952,
+      "h": 330,
       "avoid": false,
-      "compact": true,
       "title": "一次走幾條資料線",
-      "tag": "JEDEC，示意",
-      "rows": [
-       {
-        "label": "一般電腦記憶體",
-        "v": 0.03,
-        "text": "64",
-        "color": "coral",
-        "textAt": "six4"
+      "tag": "示意，線數不照實際（JEDEC）",
+      "t": {
+       "six4": {
+        "at": "six4"
        },
-       {
-        "label": "HBM3E",
-        "v": 0.5,
-        "text": "1,024",
-        "color": "blue",
-        "textAt": "x32"
+       "x32": {
+        "at": "x32"
        },
-       {
-        "label": "HBM4",
-        "v": 1.0,
-        "text": "2,048",
-        "color": "amber",
-        "textAt": "n2048"
+       "n2048": {
+        "at": "n2048"
        }
-      ]
+      }
      },
      {
       "type": "stamp",
@@ -539,7 +530,7 @@
       "at": "start-2",
       "dur": 1,
       "x": 3.8,
-      "y": 0.6,
+      "y": -1.0,
       "d": 19,
       "elev": 24
      },
@@ -547,7 +538,7 @@
       "at": "chip",
       "dur": 1,
       "x": 120,
-      "y": 0.9,
+      "y": 0.3,
       "d": 24,
       "elev": 28
      }
@@ -608,15 +599,28 @@
     "labels": [],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "side",
-      "until": "chip",
-      "text": "放不下（示意）",
-      "color": "coral",
-      "size": 44,
-      "rot": -4,
-      "y": 1060,
-      "x": 540
+      "type": "section",
+      "kind": "hbm-route",
+      "at": "start+4",
+      "until": "hole",
+      "x": 64,
+      "y": 935,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "線路怎麼出來",
+      "tag": "側視示意",
+      "t": {
+       "many": {
+        "at": "many"
+       },
+       "side": {
+        "at": "side"
+       },
+       "chip": {
+        "at": "chip"
+       }
+      }
      },
      {
       "type": "cross",
@@ -641,7 +645,7 @@
       "type": "section",
       "kind": "tsv",
       "at": "hole",
-      "until": "s5:fill+104",
+      "until": "s5:fill+80",
       "x": 64,
       "y": 935,
       "w": 952,
@@ -654,19 +658,19 @@
         "at": "hole"
        },
        "fill": {
-        "at": "s5:fill-8"
+        "at": "s5:fill-32"
        },
        "flip": {
-        "at": "s5:fill+8"
+        "at": "s5:fill-16"
        },
        "car": {
-        "at": "s5:fill+14"
+        "at": "s5:fill-10"
        },
        "grind": {
-        "at": "s5:fill+24"
+        "at": "s5:fill"
        },
        "end": {
-        "at": "s5:fill+84"
+        "at": "s5:fill+60"
        }
       },
       "grindDur": 60
@@ -731,12 +735,12 @@
       "at": "start-2",
       "dur": 1,
       "x": 120,
-      "y": 0.9,
+      "y": 0.3,
       "d": 24,
       "elev": 28
      },
      {
-      "at": "fill+92",
+      "at": "fill+68",
       "dur": 1,
       "x": 183.0,
       "y": 1.0,
@@ -748,35 +752,35 @@
      {
       "layer": "x_cu0",
       "at": "s1:start-40",
-      "until": "fill-8",
+      "until": "fill-32",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu1",
       "at": "s1:start-40",
-      "until": "fill-5",
+      "until": "fill-29",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu2",
       "at": "s1:start-40",
-      "until": "fill-2",
+      "until": "fill-26",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu3",
       "at": "s1:start-40",
-      "until": "fill+1",
+      "until": "fill-23",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cu4",
       "at": "s1:start-40",
-      "until": "fill+4",
+      "until": "fill-20",
       "opacity": 0,
       "dur": 2
      },
@@ -790,13 +794,13 @@
      {
       "layer": "x_ovf",
       "at": "s1:start-40",
-      "until": "fill+2",
+      "until": "fill-22",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_ovf",
-      "at": "fill+8",
+      "at": "fill-16",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 3
@@ -804,20 +808,20 @@
      {
       "layer": "x_cmp",
       "at": "s1:start-40",
-      "until": "fill+2",
+      "until": "fill-22",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_cmp",
-      "at": "fill+3",
-      "until": "fill+7",
+      "at": "fill-21",
+      "until": "fill-17",
       "dy": -0.2,
       "dur": 3
      },
      {
       "layer": "x_cmp",
-      "at": "fill+7",
+      "at": "fill-17",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 3
@@ -825,7 +829,7 @@
      {
       "layer": "x_carrier",
       "at": "s1:start-40",
-      "until": "fill+14",
+      "until": "fill-10",
       "opacity": 0,
       "dur": 10,
       "dy": -1.6
@@ -833,83 +837,83 @@
      {
       "layer": "x_wheel",
       "at": "s1:start-40",
-      "until": "fill+12",
+      "until": "fill-12",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "fill+16",
+      "at": "fill-8",
       "until": "s9:end+400",
       "dy": -0.15,
       "dur": 8
      },
      {
       "layer": "x_wheel",
-      "at": "fill+36",
+      "at": "fill+12",
       "until": "s9:end+400",
       "dy": -0.25,
       "dur": 12
      },
      {
       "layer": "x_u0",
-      "at": "fill+36",
+      "at": "fill+12",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+50",
+      "at": "fill+26",
       "until": "s9:end+400",
       "dy": -0.25,
       "dur": 12
      },
      {
       "layer": "x_u1",
-      "at": "fill+50",
+      "at": "fill+26",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+64",
+      "at": "fill+40",
       "until": "s9:end+400",
       "dy": -0.25,
       "dur": 12
      },
      {
       "layer": "x_u2",
-      "at": "fill+64",
+      "at": "fill+40",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+78",
+      "at": "fill+54",
       "until": "s9:end+400",
       "dy": -0.25,
       "dur": 12
      },
      {
       "layer": "x_u3",
-      "at": "fill+78",
+      "at": "fill+54",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+84",
+      "at": "fill+60",
       "until": "s9:end+400",
       "dy": 1.5,
       "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+90",
+      "at": "fill+66",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 2
@@ -917,14 +921,14 @@
      {
       "layer": "x_tip",
       "at": "s1:start-40",
-      "until": "fill+80",
+      "until": "fill+56",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_d1",
       "at": "s1:start-40",
-      "until": "fill+96",
+      "until": "fill+72",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -938,7 +942,7 @@
      {
       "layer": "y_d2",
       "at": "s1:start-40",
-      "until": "fill+102",
+      "until": "fill+78",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -952,7 +956,7 @@
      {
       "layer": "y_d3",
       "at": "s1:start-40",
-      "until": "fill+108",
+      "until": "fill+84",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -966,7 +970,7 @@
      {
       "layer": "y_base",
       "at": "s1:start-40",
-      "until": "fill+92",
+      "until": "fill+68",
       "opacity": 0,
       "dur": 2
      }
@@ -976,7 +980,7 @@
       "preset": "pick-place",
       "tool": "y_nz",
       "item": "y_d4",
-      "at": "fill+104",
+      "at": "fill+80",
       "down": 1.2,
       "to": [
        -7.8,
@@ -992,25 +996,25 @@
     "run": [
      {
       "id": "x_flip",
-      "at": "fill+8",
+      "at": "fill-16",
       "until": "s9:end+400",
       "ramp": 14
      },
      {
       "id": "x_whspin",
-      "at": "fill+12",
-      "until": "fill+90",
+      "at": "fill-12",
+      "until": "fill+66",
       "ramp": 8
      },
      {
       "id": "x_cmpvib",
-      "at": "fill+3",
-      "until": "fill+9",
+      "at": "fill-21",
+      "until": "fill-15",
       "ramp": 2
      },
      {
       "id": "x_tipglow",
-      "at": "fill+82",
+      "at": "fill+58",
       "until": "s9:end+400",
       "ramp": 6
      }
@@ -1020,7 +1024,7 @@
      {
       "type": "stamp",
       "at": "holes",
-      "until": "fill",
+      "until": "fill-16",
       "text": "共數萬個",
       "color": "amber",
       "size": 44,
@@ -1031,7 +1035,7 @@
      {
       "type": "stamp",
       "at": "hair",
-      "until": "fill+2",
+      "until": "fill-14",
       "text": "孔徑約人髮 1/20",
       "color": "blue",
       "size": 38,
@@ -1721,16 +1725,28 @@
       "y": 330
      },
      {
-      "type": "card",
-      "at": "unknown",
-      "until": "s8:start-2",
+      "type": "section",
+      "kind": "hbm-heat",
+      "at": "start+2",
+      "until": "s8:start-16",
+      "x": 64,
       "y": 900,
-      "lines": [
-       "各家良率　查不到",
-       "截至 2026/11/19"
-      ],
-      "size": 40,
-      "foot": "廠商沒有公布"
+      "w": 952,
+      "h": 350,
+      "avoid": false,
+      "title": "疊越高，越難做",
+      "tag": "示意，非實際比例",
+      "t": {
+       "stackup": {
+        "at": "stackup"
+       },
+       "yield": {
+        "at": "yield"
+       },
+       "unknown": {
+        "at": "unknown"
+       }
+      }
      }
     ]
    },
@@ -1779,7 +1795,7 @@
       "at": "start-2",
       "dur": 1,
       "x": 0,
-      "y": 2.2,
+      "y": 0.8,
       "d": 40,
       "elev": 26
      }
@@ -1954,7 +1970,32 @@
      }
     ],
     "labels": [],
-    "overlay": []
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "hbm-pair",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 950,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "拼好之後",
+      "tag": "側視示意",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "where": {
+        "at": "where"
+       },
+       "next": {
+        "at": "next"
+       }
+      }
+     }
+    ]
    },
    "sources": [
     "下一支：11/20（五）20:00 伺服器（已排定）"

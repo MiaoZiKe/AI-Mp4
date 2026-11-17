@@ -24,6 +24,7 @@ import { Art } from "./HudArt";
 import { ProductScene } from "./Scene";
 import { LPP, lppPhase } from "./Ops";
 import { PkgSection } from "./HudPkg";
+import { HbmSection } from "./HudHbm";
 
 export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
 export type Measure = { from: string; to: string; text: string; color?: string; at: number; until: number; off?: number };
@@ -659,6 +660,7 @@ const HudSectionTsv: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D }
 };
 const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: State3D }> = ({ o, f, k, m, s }) => {
   if ((o as any).kind === "tsv") return <HudSectionTsv o={o} f={f} k={k} m={m} />;
+  if (String((o as any).kind ?? "").startsWith("hbm-")) return <HbmSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-hbm v3（HudHbm.tsx）
   if (String((o as any).kind ?? "").startsWith("pkg-")) return <PkgSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/16 tech-packaging（HudPkg.tsx）
   if ((o as any).kind === "path") return <HudSectionPath o={o} f={f} k={k} m={m} s={s} />;
   if ((o as any).kind === "lpp") return <HudSectionLpp o={o} f={f} k={k} m={m} s={s} />;
