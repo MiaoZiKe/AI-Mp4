@@ -609,6 +609,22 @@
       "dy": 0
      },
      {
+      "layer": "cpb0",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "cpb1",
+      "at": "s1:start-40",
+      "until": "s1:end+400",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
       "layer": "tcool",
       "at": "s1:start-40",
       "until": "s1:end+400",
@@ -907,6 +923,14 @@
       "y": -2.6,
       "d": 40,
       "elev": 56
+     },
+     {
+      "at": "four+6",
+      "dur": 24,
+      "x": 150,
+      "y": 0.2,
+      "d": 56,
+      "elev": 36
      }
     ],
     "shift": [
@@ -918,6 +942,97 @@
       "dy": 0,
       "dx": 0,
       "dur": 18
+     },
+     {
+      "layer": "vrm0",
+      "at": "four+8",
+      "until": "s4:start-2",
+      "dy": 1.7,
+      "dur": 20
+     },
+     {
+      "layer": "vrm1",
+      "at": "four+8",
+      "until": "s4:start-2",
+      "dy": 1.7,
+      "dur": 20
+     },
+     {
+      "layer": "tpw",
+      "at": "four+8",
+      "until": "s4:start-2",
+      "dy": 1.7,
+      "dur": 20
+     },
+     {
+      "layer": "trc",
+      "at": "four+8",
+      "until": "s4:start-2",
+      "dy": 1.7,
+      "dur": 20
+     },
+     {
+      "layer": "tp_nic",
+      "at": "four+8",
+      "until": "s4:start-2",
+      "dy": 1.7,
+      "dur": 20
+     },
+     {
+      "layer": "sc0",
+      "at": "four+14",
+      "until": "s4:start-2",
+      "dy": 3.4,
+      "dur": 20
+     },
+     {
+      "layer": "sc1",
+      "at": "four+14",
+      "until": "s4:start-2",
+      "dy": 3.4,
+      "dur": 20
+     },
+     {
+      "layer": "sc0_c",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
+     },
+     {
+      "layer": "sc0_g0",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
+     },
+     {
+      "layer": "sc0_g1",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
+     },
+     {
+      "layer": "sc1_c",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
+     },
+     {
+      "layer": "sc1_g0",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
+     },
+     {
+      "layer": "sc1_g1",
+      "at": "four+20",
+      "until": "s4:start-2",
+      "dy": 5.1,
+      "dur": 20
      }
     ],
     "run": [
@@ -990,11 +1105,27 @@
     ],
     "labels": [
      {
+      "part": "t_pcbA",
+      "text": "電路板 PCB",
+      "en": "circuit board",
+      "color": "blue",
+      "at": "four+10",
+      "until": "s4:start-2"
+     },
+     {
+      "part": "t_vrmA",
+      "text": "供電模組 VRM",
+      "en": "power stages",
+      "color": "blue",
+      "at": "four+10",
+      "until": "s4:start-2"
+     },
+     {
       "part": "t_gpu",
       "text": "GPU × 4",
       "en": "4 GPUs",
       "color": "amber",
-      "at": "four+2",
+      "at": "four+24",
       "until": "s4:start-2"
      },
      {
@@ -1613,9 +1744,29 @@
       "dur": 8
      },
      {
+      "layer": "cpb0",
+      "at": "s1:start-40",
+      "until": "liq-8",
+      "opacity": 0,
+      "dur": 10,
+      "dy": 0.9,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
       "layer": "cp0",
       "at": "s1:start-40",
       "until": "liq-6",
+      "opacity": 0,
+      "dur": 10,
+      "dy": 0.9,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "cpb1",
+      "at": "s1:start-40",
+      "until": "liq-4",
       "opacity": 0,
       "dur": 10,
       "dy": 0.9,
@@ -1631,6 +1782,20 @@
       "dy": 0.9,
       "fallIn": true,
       "bounce": 0.05
+     },
+     {
+      "layer": "cp0",
+      "at": "chipf",
+      "until": "out-10",
+      "dy": 2.4,
+      "dur": 16
+     },
+     {
+      "layer": "cp1",
+      "at": "chipf",
+      "until": "out-10",
+      "dy": 2.4,
+      "dur": 16
      },
      {
       "layer": "tcool",

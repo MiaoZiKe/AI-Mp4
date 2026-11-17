@@ -96,6 +96,9 @@ for fi, fy in enumerate((1.5, 0.7)):
     cyl(f"cdu_fh{fi}", "cdu", mm("steel"), 0.1, 0.05, [W/2+2.0, fy, BZ+0.4+0.82], vertical=False)
     for b in range(3): box(f"cdu_fb{fi}{b}", "cdu", mm("slot"), [0.62, 0.12, 0.03], [W/2+2.0, fy, BZ+0.4+0.83], rot=[0, 0, 60*b])
     actions[f"cdu_fan{fi}"] = {"type": "rotate", "parts": [f"cdu_fh{fi}"]+[f"cdu_fb{fi}{b}" for b in range(3)], "axis": [0, 0, 1], "pivot": [W/2+2.0, fy, BZ+0.4+0.83], "rps": 2.0, "rampSpin": True, "layer": "cdu"}
+cyl("cdu_pump", "cdu", mm("steel"), 0.3, 0.45, [W/2+2.0, 2.45, BZ+0.4])
+box("cdu_led", "cdu", mm("green"), [0.12, 0.08, 0.04], [W/2+1.5, 1.95, BZ+0.4+0.81], at=[[0.25*k, 0, 0] for k in range(4)])
+box("cdu_pan", "cdu", mm("dark"), [1.2, 0.5, 0.03], [W/2+2.0, 1.95, BZ+0.4+0.82])
 anchor("r_top", "frame", [W/2, HR, D/2], dx=120, dy=-60)
 anchor("r_gpu", "c3", [-W/2+0.3, SLOTY["c3"], D/2], dx=-150, dy=-70)
 anchor("r_sw", "sw4", [-W/2+0.3, SLOTY["sw4"], D/2], dx=-150, dy=20)
@@ -117,13 +120,37 @@ for mi, mx in enumerate(MODX):
         box(f"gpu{mi}{gi}", f"sc{mi}_g{gi}", mm("siTop"), [1.7, 0.42, 2.0], [TX+mx+gx, top+0.21, 0])
         box(f"hb{mi}{gi}", f"sc{mi}_g{gi}", mm("dram"), [1.5, 0.3, 0.5], [TX+mx+gx, top+0.15, 0], at=[[0, 0, -1.35], [0, 0, 1.35]])
     box(f"mem{mi}", f"sc{mi}_c", mm("chipBk"), [0.35, 0.12, 0.8], [TX+mx-2.7, top+0.06, 0], at=[[0, 0, -1.4], [0, 0, 1.4], [0.5, 0, -1.4], [0.5, 0, 1.4]])
-    # 冷板（銅）蓋在 GPU 上
-    box(f"cp{mi}", f"cp{mi}", mm("cuHi"), [4.0, 0.3, 2.5], [TX+mx+0.85, top+0.42+0.15, 0])
-    box(f"cpfin", f"cp{mi}", mm("cu"), [3.6, 0.02, 0.06], [TX+mx+0.85, top+0.42+0.31, 0], at=[[0, 0, -0.9+0.3*k] for k in range(7)])
+    # 冷板：底座（銅，上面刻水道）＋蓋（銅）＋進出水接頭；蓋可掀開看水道
+    cx = TX+mx+0.85; cyb = top+0.42+0.09
+    box(f"cpb{mi}", f"cpb{mi}", mm("cu"), [4.0, 0.18, 2.5], [cx, cyb, 0])
+    for k in range(5):
+        box(f"cpb{mi}_ch{k}", f"cpb{mi}", mm("coolB"), [3.3, 0.04, 0.2], [cx, cyb+0.1, -0.9+0.45*k])
+    box(f"cpb{mi}_tu", f"cpb{mi}", mm("coolB"), [0.2, 0.04, 1.8], [cx, cyb+0.1, 0], at=[[-1.65, 0, 0], [1.65, 0, 0]])
+    box(f"cp{mi}", f"cp{mi}", mm("cuHi"), [4.0, 0.14, 2.5], [cx, cyb+0.16, 0])
+    box(f"cp{mi}_bolt", f"cp{mi}", mm("steel"), [0.12, 0.05, 0.12], [cx, cyb+0.25, 0], at=[[sx*1.8, 0, sz*1.1] for sx in (-1, 1) for sz in (-1, 0, 1)], shape="cyl")
+    box(f"cp{mi}_fit", f"cp{mi}", mm("steel"), [0.16, 0.5], [cx, cyb+0.1, 0], at=[[(-2.1 if mi == 0 else 2.1) + (0.0), 0, -0.6], [(-2.1 if mi == 0 else 2.1), 0, 0.6]], shape="cyl", rot=[0, 0, 90])
 
+# 電路板細節：銅走線、SMD 電阻電容、插槽、螺絲孔（層 tpd，跟電路板一起爆炸）
+import random
+random.seed(7)
+tr = []
+for k in range(14): tr.append([-0.65+0.1*k, 0, 0])
+box("tpd_trz", "tpd", mm("cuHi"), [0.05, 0.012, 3.3], [TX, TY+0.01, 1.9], at=tr)        # 模組 → 網卡 的資料線束
+box("tpd_trx", "tpd", mm("cuHi"), [0.05, 0.012, 1.0], [TX, TY+0.01, -3.5], at=[[-6.0+0.45*k, 0, 0] for k in range(27)])  # 供電匯流
+box("tpd_try", "tpd", mm("cuHi"), [2.6, 0.012, 0.05], [TX-3.9, TY+0.01, -2.2], at=[[0, 0, -0.06*k] for k in range(8)])
+box("tpd_try2", "tpd", mm("cuHi"), [2.6, 0.012, 0.05], [TX+3.9, TY+0.01, -2.2], at=[[0, 0, -0.06*k] for k in range(8)])
+smd = []
+for k in range(90):
+    smd.append([round(random.uniform(-7.0, 7.0), 2), 0, round(random.uniform(-4.5, 4.5), 2)])
+smd = [p for p in smd if not (abs(abs(p[0]) - 3.9) < 3.3 and abs(p[2]) < 2.3)]
+box("tpd_smd", "tpd", mm("chipBk"), [0.16, 0.07, 0.09], [TX, TY+0.035, 0], at=smd)
+box("tpd_smd2", "tpd", mm("steel"), [0.1, 0.06, 0.07], [TX, TY+0.03, 0], at=[[p[0]+0.2, 0, p[2]+0.12] for p in smd[::2]])
+box("tpd_slot", "tpd", mm("slot"), [5.2, 0.25, 0.28], [TX-2.4, TY+0.12, 4.45])
+box("tpd_slotg", "tpd", mm("cuHi"), [4.9, 0.03, 0.08], [TX-2.4, TY+0.26, 4.45])
+box("tpd_screw", "tpd", mm("steel"), [0.14, 0.08], [TX, TY+0.04, 0], at=[[sx*7.4, 0, sz*4.6] for sx in (-1, 1) for sz in (-1, 1)], shape="cyl")
 # 風冷版：散熱鰭片（疊在 GPU 上，液冷時換成冷板）、前緣風扇、後緣背板連接器、電源接頭
 for mi, mx in enumerate(MODX):
-    lib.append({"part": "heatsink", "id": f"hs{mi}", "pos": [TX+mx+0.85, TY+0.22+0.42, 0], "w": 4.0, "d": 2.5, "base": 0.12, "fins": 12, "finH": 1.1, "finT": 0.05})
+    lib.append({"part": "heatsink", "id": f"hs{mi}", "pos": [TX+mx+0.85, TY+0.22+0.42, 0], "w": 4.0, "d": 2.5, "base": 0.12, "fins": 12, "finH": 1.1, "finT": 0.05, "mats": {"fin": "m_wheelM", "steel": "m_steel2"}})
 FANX = [-5.2, -1.75, 1.75, 5.2]; FAN_IDS = []
 for fi, fx in enumerate(FANX):
     L = f"fan{fi}"
@@ -131,6 +158,8 @@ for fi, fx in enumerate(FANX):
     cyl(f"{L}_hub", L, mm("steel"), 0.28, 0.9, [TX+fx, TY+0.14+0.75, 3.1], vertical=False)
     for b in range(3):
         box(f"{L}_bl{b}", L, mm("wheelM"), [1.1, 0.34, 0.06], [TX+fx, TY+0.14+0.75, 3.52], rot=[0, 0, 60*b])
+    for q in range(4): box(f"{L}_rim{q}", L, mm("steel2"), [2.7 if q < 2 else 0.1, 0.1 if q < 2 else 1.5, 0.12], [TX+fx+(0 if q < 2 else (1.3 if q == 2 else -1.3)), TY+0.14+(0.75+(0.7 if q == 0 else -0.7) if q < 2 else 0.75), 3.5])
+    box(f"{L}_scr", L, mm("steel"), [0.09, 0.1], [TX+fx, TY+0.14+0.75, 3.5], at=[[sx*1.15, sy*0.6, 0] for sx in (-1, 1) for sy in (-1, 1)], shape="cyl")
     FAN_IDS += [f"{L}_hub"] + [f"{L}_bl{b}" for b in range(3)]
     actions[f"{L}_spin"] = {"type": "rotate", "parts": [f"{L}_hub"] + [f"{L}_bl{b}" for b in range(3)], "axis": [0, 0, 1], "pivot": [TX+fx, TY+0.14+0.75, 3.52], "rps": 2.6, "rampSpin": True, "layer": L}
 # 後緣背板連接器（接銅線）與電源接頭
@@ -155,6 +184,8 @@ box("tb_sh", "tcool", mm("hotO"), [1.0, 0.18, 0.18], [TX, PY, 0], at=[[2.0, 0, 1
 anchor("r_top2", "frame", [-W/2, HR, D/2], dx=-130, dy=-60)
 anchor("r_rail", "c8", [W/2-0.3, SLOTY["c8"], D/2], dx=150, dy=-60)
 anchor("r_chas", "c12", [-W/2+0.3, SLOTY["c12"], D/2], dx=-150, dy=-40)
+anchor("t_pcbA", "tp", [TX-7.8, TY+0.14, 2.4], dx=-120, dy=90)
+anchor("t_vrmA", "vrm0", [TX-6.2, TY+0.3, -2.85], dx=-120, dy=-60)
 anchor("t_gpu", "sc0_g0", [TX+MODX[0]-0.2+0.85, TY+0.22+0.42, 1.0], dx=-130, dy=-80)
 anchor("t_cpu", "sc0_c", [TX+MODX[0]-2.1+0.7, TY+0.22+0.34, 0.7], dx=-140, dy=60)
 anchor("t_cp", "cp0", [TX+MODX[0]+0.85+2.0, PY, 0], dx=130, dy=-50)

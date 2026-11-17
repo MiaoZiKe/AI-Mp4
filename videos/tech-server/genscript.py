@@ -46,7 +46,7 @@ s1_shift = [fall("frame", off("start", 2), dy=1.2)]
 for n, L in enumerate(SLOTORD):
     s1_shift.append(fall(L, off("start", 4 + 2 * n), press=[SLOTORD[n - 1] if n else "frame"], dy=1.1, bounce=0.04))
 for L in ("spine", "bus", "cool", "cdu"): s1_shift.append(hide_until(L, "s1:end+400", dy=0))
-for L in ("cp0", "cp1", "tcool", "hs0", "hs1", "fan0", "fan1", "fan2", "fan3"): s1_shift.append(hide_until(L, "s1:end+400", dy=0))
+for L in ("cp0", "cp1", "cpb0", "cpb1", "tcool", "hs0", "hs1", "fan0", "fan1", "fan2", "fan3"): s1_shift.append(hide_until(L, "s1:end+400", dy=0))
 s1_shift.append({"layer": "c8", "at": "what", "until": "s2:start-2", "dz": 1.4, "dy": 0, "dx": 0, "dur": 16})
 scenes.append(scene("s1", "hook", 1,
     "一櫃 AI 伺服器，約一點四公噸，跟一台小客車差不多重，耗電一百多千瓦。裡面到底裝了什麼？",
@@ -84,6 +84,10 @@ scenes.append(scene("s2", "you", 2,
 
 # ───────────── s3 托盤特寫（R → T）─────────────
 s3_shift = [{"layer": "c8", "at": "tray", "until": "s4:start-2", "dz": 3.3, "dy": 0, "dx": 0, "dur": 18}]
+# 托盤 2.5D 爆炸剖析：電路板留底，供電／連接器、模組、晶片依序拉開，s4 開頭組回去
+for L in ("vrm0", "vrm1", "tpw", "trc", "tp_nic"): s3_shift.append({"layer": L, "at": "four+8", "until": "s4:start-2", "dy": 1.7, "dur": 20})
+for L in ("sc0", "sc1"): s3_shift.append({"layer": L, "at": "four+14", "until": "s4:start-2", "dy": 3.4, "dur": 20})
+for L in ("sc0_c", "sc0_g0", "sc0_g1", "sc1_c", "sc1_g0", "sc1_g1"): s3_shift.append({"layer": L, "at": "four+20", "until": "s4:start-2", "dy": 5.1, "dur": 20})
 scenes.append(scene("s3", "mechanism", 3,
     "它們分在十八層托盤，每層四顆，旁邊配兩顆 CPU。",
     ["它們分在十八層托盤", "每層四顆", "旁邊配兩顆 CPU"],
@@ -91,11 +95,12 @@ scenes.append(scene("s3", "mechanism", 3,
     ["十八層托盤", "每層四顆", "兩顆"],
     [cue("tray", "十八層托盤"), cue("four", "每層四顆"), cue("cpu", "兩顆")],
     {"shot": [{"at": "start-2", "dur": 1, "x": 0.4, "y": RACK_Y, "d": RACK_D, "elev": 10},
-              {"at": "four-4", "dur": 1, "x": TX, "y": -2.6, "d": 40, "elev": 56}],
+              {"at": "four-4", "dur": 1, "x": TX, "y": -2.6, "d": 40, "elev": 56},
+              {"at": "four+6", "dur": 24, "x": TX, "y": 0.2, "d": 56, "elev": 36}],
      "shift": s3_shift,
      "run": [run("r_c8glow", "tray", "four-6", 6), run("t_gpuhot", "four", "s4:start-2", 6), run("t_gpuhot1", "four+8", "s4:start-2", 6), run("t_data", "four", "s4:start-2", 6),
              run("t_cpuglow", "cpu-4", "s4:start-2", 6), run("t_rear", "four+10", "s4:start-2", 6), run("t_rear2", "four+10", "s4:start-2", 6), run("t_pwr", "four", "s4:start-2", 6), run("t_vrm", "four", "s4:start-2", 6), run("t_vrm0", "four+6", "s4:start-2", 6), run("t_vrm1", "four+6", "s4:start-2", 6)],
-     "labels": [lab("t_gpu", "GPU × 4", "4 GPUs", "amber", "four+2", "s4:start-2"), lab("t_cpu", "CPU × 2", "2 CPUs", "blue", "cpu-2", "s4:start-2")],
+     "labels": [lab("t_pcbA", "電路板 PCB", "circuit board", "blue", "four+10", "s4:start-2"), lab("t_vrmA", "供電模組 VRM", "power stages", "blue", "four+10", "s4:start-2"), lab("t_gpu", "GPU × 4", "4 GPUs", "amber", "four+24", "s4:start-2"), lab("t_cpu", "CPU × 2", "2 CPUs", "blue", "cpu-2", "s4:start-2")],
      "overlay": []},
     ["NVIDIA：每托盤 4 GPU＋2 Grace CPU"], pause=0.7))
 
@@ -150,7 +155,9 @@ scenes.append(scene("s6", "mechanism", 6,
 # ───────────── s7 液冷（T → R）─────────────
 FANS = ["fan0", "fan1", "fan2", "fan3"]
 s7_shift = [{"layer": L, "at": "liq-12", "until": FAR, "dy": 2.2, "opacity": 0, "dur": 10} for L in ("hs0", "hs1")] + [{"layer": L, "at": "liq-12", "until": FAR, "dz": 1.2, "opacity": 0, "dur": 8} for L in FANS]
-s7_shift += [{**hide_until("cp0", "liq-6", dy=0.9, dur=10), "fallIn": True, "bounce": 0.05}, {**hide_until("cp1", "liq-2", dy=0.9, dur=10), "fallIn": True, "bounce": 0.05},
+s7_shift += [{**hide_until(L, k, dy=0.9, dur=10), "fallIn": True, "bounce": 0.05} for L, k in (("cpb0", "liq-8"), ("cp0", "liq-6"), ("cpb1", "liq-4"), ("cp1", "liq-2"))]
+s7_shift += [{"layer": L, "at": "chipf", "until": "out-10", "dy": 2.4, "dur": 16} for L in ("cp0", "cp1")]
+s7_shift += [
              hide_until("tcool", "chipf-6", dy=0, dur=6), hide_until("cool", "out-12", dy=0), hide_until("cdu", "out-12", dy=0)]
 scenes.append(scene("s7", "mechanism", 7,
     "風吹不動了。所以改用冷卻液，流過晶片，把熱帶出機櫃外。",
