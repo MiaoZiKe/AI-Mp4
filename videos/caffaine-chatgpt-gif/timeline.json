@@ -2,175 +2,405 @@
  "version": 2,
  "slug": "caffaine-chatgpt-gif",
  "fps": 30,
- "totalFrames": 1163,
- "totalSec": 38.77,
- "gapSec": 0.3,
+ "totalFrames": 1017,
+ "totalSec": 33.9,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 6.122,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-chatgpt-gif/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 6.35,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 197,
+   "durationFrames": 213,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 189,
-   "stillFrame": 187,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 190,
+   "stillFrame": 203,
    "subtitleWindow": [
     0,
-    194
+    210
    ],
    "sourceWindow": [
     0,
-    192
+    208
    ],
    "lines": [
     {
      "text": "十一月四日更新後",
      "start": 0,
      "chars": [
-      4,
+      2,
+      6,
       8,
-      13,
-      18,
+      14,
+      19,
       23,
-      28,
-      33,
-      38
+      29,
+      34
      ]
     },
     {
      "text": "你在 ChatGPT 打一句話",
-     "start": 46,
+     "start": 44,
      "chars": [
-      48,
-      53,
-      53,
-      58,
-      63,
-      68,
-      73,
-      78,
-      83,
-      88,
-      88,
-      92,
-      97,
-      102,
-      107
+      46,
+      50,
+      50,
+      56,
+      57,
+      59,
+      62,
+      66,
+      70,
+      74,
+      74,
+      80,
+      85,
+      89,
+      94
      ]
     },
     {
      "text": "就能做出會動的 GIF",
-     "start": 116,
+     "start": 104,
      "chars": [
-      118,
-      123,
-      128,
-      132,
+      106,
+      111,
+      117,
+      122,
+      130,
       137,
       142,
-      147,
-      147,
+      142,
+      146,
       152,
-      157,
-      162
+      156
      ]
     },
     {
      "text": "怎麼用",
-     "start": 170,
+     "start": 173,
      "chars": [
-      173,
-      177,
-      182
+      175,
+      179,
+      183
      ]
     }
    ],
    "keywords": [
     {
      "text": "十一月四日",
-     "start": 4
+     "start": 2
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "十一月四日",
-     "frame": 5
+     "frame": 3,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "一句話",
-     "frame": 99
+     "frame": 86,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "怎麼用",
-     "frame": 174
+     "frame": 176,
+     "early": 0
     }
    ],
+   "hash": "c6e398cc3146-50bc7d4ccc",
    "sub": "十一月四日更新後\n你在 ChatGPT 打一句話\n就能做出會動的 GIF\n怎麼用",
-   "provider": "estimate",
-   "syllables": 30,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.764,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.6,
+      "start": 1.58,
+      "ch": "你",
+      "errMs": -20
+     },
+     {
+      "onset": 3.6,
+      "start": 3.58,
+      "ch": "就",
+      "errMs": -20
+     },
+     {
+      "onset": 5.91,
+      "start": 5.88,
+      "ch": "怎",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "十",
+     "start": 0.1,
+     "end": 0.2,
+     "score": 0.932
+    },
+    {
+     "text": "一",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.001
+    },
+    {
+     "text": "月",
+     "start": 0.32,
+     "end": 0.42,
+     "score": 0.993
+    },
+    {
+     "text": "四",
+     "start": 0.52,
+     "end": 0.6,
+     "score": 0.93
+    },
+    {
+     "text": "日",
+     "start": 0.68,
+     "end": 0.74,
+     "score": 0.994
+    },
+    {
+     "text": "更",
+     "start": 0.82,
+     "end": 0.96,
+     "score": 0.963
+    },
+    {
+     "text": "新",
+     "start": 1,
+     "end": 1.12,
+     "score": 0.999
+    },
+    {
+     "text": "後",
+     "start": 1.18,
+     "end": 1.36,
+     "score": 1
+    },
+    {
+     "text": "你",
+     "start": 1.58,
+     "end": 1.66,
+     "score": 1
+    },
+    {
+     "text": "在",
+     "start": 1.72,
+     "end": 1.86,
+     "score": 1
+    },
+    {
+     "text": "C",
+     "start": 1.92,
+     "end": 1.94,
+     "score": 0.068
+    },
+    {
+     "text": "h",
+     "start": 1.96,
+     "end": 1.98,
+     "score": 0.138
+    },
+    {
+     "text": "a",
+     "start": 2.02,
+     "end": 2.04,
+     "score": 0.006
+    },
+    {
+     "text": "t",
+     "start": 2.1,
+     "end": 2.12,
+     "score": 0.082
+    },
+    {
+     "text": "G",
+     "start": 2.24,
+     "end": 2.26,
+     "score": 0.07
+    },
+    {
+     "text": "P",
+     "start": 2.38,
+     "end": 2.4,
+     "score": 0.988
+    },
+    {
+     "text": "T",
+     "start": 2.52,
+     "end": 2.54,
+     "score": 0.993
+    },
+    {
+     "text": "打",
+     "start": 2.72,
+     "end": 2.78,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 2.88,
+     "end": 2.92,
+     "score": 0.046
+    },
+    {
+     "text": "句",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.997
+    },
+    {
+     "text": "話",
+     "start": 3.18,
+     "end": 3.3,
+     "score": 1
+    },
+    {
+     "text": "就",
+     "start": 3.58,
+     "end": 3.72,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 3.76,
+     "end": 3.9,
+     "score": 0.996
+    },
+    {
+     "text": "做",
+     "start": 3.94,
+     "end": 4.04,
+     "score": 0.996
+    },
+    {
+     "text": "出",
+     "start": 4.12,
+     "end": 4.26,
+     "score": 0.977
+    },
+    {
+     "text": "會",
+     "start": 4.38,
+     "end": 4.54,
+     "score": 1
+    },
+    {
+     "text": "動",
+     "start": 4.6,
+     "end": 4.76,
+     "score": 0.995
+    },
+    {
+     "text": "的",
+     "start": 4.78,
+     "end": 4.86,
+     "score": 0.999
+    },
+    {
+     "text": "G",
+     "start": 4.92,
+     "end": 5,
+     "score": 0.498
+    },
+    {
+     "text": "I",
+     "start": 5.1,
+     "end": 5.2,
+     "score": 0.752
+    },
+    {
+     "text": "F",
+     "start": 5.26,
+     "end": 5.36,
+     "score": 0.579
+    },
+    {
+     "text": "怎",
+     "start": 5.88,
+     "end": 6,
+     "score": 0.997
+    },
+    {
+     "text": "麼",
+     "start": 6.02,
+     "end": 6.06,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 6.14,
+     "end": 6.3,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.163,
-    0.326,
-    0.488,
-    0.651,
-    0.814,
-    0.977,
-    1.14,
-    1.498,
-    1.661,
-    1.824,
-    1.987,
-    2.149,
-    2.312,
-    2.475,
-    2.638,
-    2.801,
-    2.964,
-    3.126,
-    3.289,
-    3.452,
-    3.81,
-    3.973,
-    4.136,
-    4.299,
-    4.462,
-    4.624,
-    4.787,
-    4.95,
-    5.113,
-    5.276,
-    5.634,
-    5.797,
-    5.96
+    0.1,
+    0.24,
+    0.32,
+    0.52,
+    0.68,
+    0.82,
+    1,
+    1.18,
+    1.58,
+    1.72,
+    1.92,
+    1.96,
+    2.02,
+    2.1,
+    2.24,
+    2.38,
+    2.52,
+    2.72,
+    2.88,
+    3,
+    3.18,
+    3.58,
+    3.76,
+    3.94,
+    4.12,
+    4.38,
+    4.6,
+    4.78,
+    4.92,
+    5.1,
+    5.26,
+    5.88,
+    6.02,
+    6.14
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 198,
-   "audioSec": 4.694,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 187,
-   "durationFrames": 160,
+   "audio": "audio/caffaine-chatgpt-gif/02-s02.wav",
+   "audioFrame": 212,
+   "audioSec": 4.75,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 203,
+   "durationFrames": 174,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -184,131 +414,307 @@
      8
     ]
    },
-   "voiceStartFrame": 197,
-   "voiceEndFrame": 339,
-   "stillFrame": 337,
+   "voiceStartFrame": 213,
+   "voiceEndFrame": 354,
+   "stillFrame": 367,
    "subtitleWindow": [
-    194,
-    344
+    210,
+    374
    ],
    "sourceWindow": [
-    192,
-    342
+    208,
+    372
    ],
    "lines": [
     {
      "text": "第一步",
-     "start": 194,
+     "start": 210,
      "chars": [
-      197,
-      202,
-      207
+      214,
+      217,
+      221
      ]
     },
     {
      "text": "直接打你要的畫面",
-     "start": 216,
+     "start": 232,
      "chars": [
-      218,
-      223,
-      228,
-      233,
-      238,
-      243,
-      249,
-      254
+      235,
+      239,
+      244,
+      250,
+      254,
+      259,
+      263,
+      267
      ]
     },
     {
      "text": "比如",
-     "start": 263,
+     "start": 279,
      "chars": [
-      265,
-      270
+      281,
+      287
      ]
     },
     {
      "text": "做一個貓咪揮手的 GIF",
-     "start": 279,
+     "start": 297,
      "chars": [
-      281,
-      286,
-      291,
-      296,
-      302,
-      307,
-      312,
-      317,
-      317,
-      322,
-      327,
-      332
+      299,
+      305,
+      309,
+      314,
+      319,
+      325,
+      331,
+      335,
+      335,
+      339,
+      344,
+      349
      ]
     }
    ],
    "keywords": [
     {
      "text": "第一步",
-     "start": 197
+     "start": 214
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "第一步",
-     "frame": 198
+     "frame": 215,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "直接打",
-     "frame": 219
+     "frame": 236,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "貓咪揮手",
-     "frame": 298
+     "frame": 315,
+     "early": 0
     }
    ],
+   "hash": "7f72745a2c81-50bc7d4ccc",
    "sub": "第一步\n直接打你要的畫面\n比如\n做一個貓咪揮手的 GIF",
-   "provider": "estimate",
-   "syllables": 23,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.825,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.8,
+      "start": 0.8,
+      "ch": "直",
+      "errMs": 0
+     },
+     {
+      "onset": 2.39,
+      "start": 2.36,
+      "ch": "比",
+      "errMs": -30
+     },
+     {
+      "onset": 2.98,
+      "start": 2.96,
+      "ch": "做",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.1,
+     "end": 0.16,
+     "score": 0.868
+    },
+    {
+     "text": "一",
+     "start": 0.22,
+     "end": 0.28,
+     "score": 0.024
+    },
+    {
+     "text": "步",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.485
+    },
+    {
+     "text": "直",
+     "start": 0.8,
+     "end": 0.9,
+     "score": 0.986
+    },
+    {
+     "text": "接",
+     "start": 0.96,
+     "end": 1.06,
+     "score": 0.996
+    },
+    {
+     "text": "打",
+     "start": 1.12,
+     "end": 1.2,
+     "score": 0.998
+    },
+    {
+     "text": "你",
+     "start": 1.3,
+     "end": 1.38,
+     "score": 0.993
+    },
+    {
+     "text": "要",
+     "start": 1.46,
+     "end": 1.6,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 1.62,
+     "end": 1.68,
+     "score": 0.999
+    },
+    {
+     "text": "畫",
+     "start": 1.74,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "面",
+     "start": 1.9,
+     "end": 2.1,
+     "score": 0.976
+    },
+    {
+     "text": "比",
+     "start": 2.36,
+     "end": 2.44,
+     "score": 0.997
+    },
+    {
+     "text": "如",
+     "start": 2.56,
+     "end": 2.64,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 2.96,
+     "end": 3.08,
+     "score": 0.887
+    },
+    {
+     "text": "一",
+     "start": 3.14,
+     "end": 3.2,
+     "score": 0.001
+    },
+    {
+     "text": "個",
+     "start": 3.28,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "貓",
+     "start": 3.44,
+     "end": 3.6,
+     "score": 0.934
+    },
+    {
+     "text": "咪",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.997
+    },
+    {
+     "text": "揮",
+     "start": 3.8,
+     "end": 3.94,
+     "score": 0.999
+    },
+    {
+     "text": "手",
+     "start": 4,
+     "end": 4.14,
+     "score": 0.961
+    },
+    {
+     "text": "的",
+     "start": 4.16,
+     "end": 4.22,
+     "score": 0.999
+    },
+    {
+     "text": "G",
+     "start": 4.28,
+     "end": 4.36,
+     "score": 0.498
+    },
+    {
+     "text": "I",
+     "start": 4.44,
+     "end": 4.54,
+     "score": 0.554
+    },
+    {
+     "text": "F",
+     "start": 4.6,
+     "end": 4.7,
+     "score": 0.643
+    }
+   ],
    "charTimes": [
-    0,
-    0.17,
-    0.34,
-    0.714,
-    0.884,
-    1.054,
-    1.224,
-    1.395,
-    1.565,
-    1.735,
-    1.905,
-    2.279,
-    2.449,
-    2.823,
-    2.993,
-    3.163,
-    3.333,
-    3.503,
-    3.673,
-    3.844,
-    4.014,
-    4.184,
-    4.354,
-    4.524
+    0.1,
+    0.22,
+    0.36,
+    0.8,
+    0.96,
+    1.12,
+    1.3,
+    1.46,
+    1.62,
+    1.74,
+    1.9,
+    2.36,
+    2.56,
+    2.96,
+    3.14,
+    3.28,
+    3.44,
+    3.62,
+    3.8,
+    4,
+    4.16,
+    4.28,
+    4.44,
+    4.6
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 347,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 337,
-   "durationFrames": 129,
+   "audio": "audio/caffaine-chatgpt-gif/03-s03.wav",
+   "audioFrame": 376,
+   "audioSec": 3.76,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 367,
+   "durationFrames": 145,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -322,107 +728,240 @@
      8
     ]
    },
-   "voiceStartFrame": 347,
-   "voiceEndFrame": 458,
-   "stillFrame": 456,
+   "voiceStartFrame": 377,
+   "voiceEndFrame": 488,
+   "stillFrame": 502,
    "subtitleWindow": [
-    344,
-    463
+    374,
+    509
    ],
    "sourceWindow": [
-    342,
-    461
+    372,
+    507
    ],
    "lines": [
     {
      "text": "做好之後",
-     "start": 344,
+     "start": 374,
      "chars": [
-      346,
-      351,
-      356,
-      362
+      376,
+      381,
+      387,
+      392
      ]
     },
     {
      "text": "可以調播放速度",
-     "start": 371,
+     "start": 401,
      "chars": [
-      374,
-      379,
-      384,
-      390,
-      395,
-      401,
-      406
+      403,
+      408,
+      411,
+      418,
+      423,
+      429,
+      434
      ]
     },
     {
      "text": "也能改單一畫格",
-     "start": 416,
+     "start": 444,
      "chars": [
-      418,
-      423,
-      429,
-      434,
-      439,
-      445,
-      450
+      446,
+      451,
+      456,
+      462,
+      468,
+      472,
+      479
      ]
     }
    ],
    "keywords": [
     {
      "text": "調播放速度",
-     "start": 384
+     "start": 411
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "調播放速度",
-     "frame": 386
+     "frame": 413,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "單一畫格",
-     "frame": 436
+     "frame": 464,
+     "early": 0
     }
    ],
+   "hash": "804e3c330000-50bc7d4ccc",
    "sub": "做好之後\n可以調播放速度\n也能改單一畫格",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.961,
+    "minScore": 0.749,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 0.96,
+      "start": 0.96,
+      "ch": "可",
+      "errMs": 0
+     },
+     {
+      "onset": 2.39,
+      "start": 2.38,
+      "ch": "也",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "做",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.9
+    },
+    {
+     "text": "好",
+     "start": 0.22,
+     "end": 0.36,
+     "score": 0.998
+    },
+    {
+     "text": "之",
+     "start": 0.4,
+     "end": 0.5,
+     "score": 0.985
+    },
+    {
+     "text": "後",
+     "start": 0.58,
+     "end": 0.74,
+     "score": 1
+    },
+    {
+     "text": "可",
+     "start": 0.96,
+     "end": 1.04,
+     "score": 1
+    },
+    {
+     "text": "以",
+     "start": 1.1,
+     "end": 1.16,
+     "score": 0.999
+    },
+    {
+     "text": "調",
+     "start": 1.22,
+     "end": 1.42,
+     "score": 0.749
+    },
+    {
+     "text": "播",
+     "start": 1.46,
+     "end": 1.52,
+     "score": 0.997
+    },
+    {
+     "text": "放",
+     "start": 1.6,
+     "end": 1.76,
+     "score": 0.978
+    },
+    {
+     "text": "速",
+     "start": 1.82,
+     "end": 1.92,
+     "score": 0.996
+    },
+    {
+     "text": "度",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.998
+    },
+    {
+     "text": "也",
+     "start": 2.38,
+     "end": 2.46,
+     "score": 0.997
+    },
+    {
+     "text": "能",
+     "start": 2.54,
+     "end": 2.68,
+     "score": 0.942
+    },
+    {
+     "text": "改",
+     "start": 2.7,
+     "end": 2.84,
+     "score": 0.998
+    },
+    {
+     "text": "單",
+     "start": 2.92,
+     "end": 3.06,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 3.12,
+     "end": 3.16,
+     "score": 0.773
+    },
+    {
+     "text": "畫",
+     "start": 3.26,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "格",
+     "start": 3.48,
+     "end": 3.56,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.18,
-    0.36,
-    0.54,
-    0.936,
-    1.116,
-    1.297,
-    1.477,
-    1.657,
-    1.837,
-    2.017,
-    2.413,
-    2.593,
-    2.773,
-    2.953,
-    3.133,
-    3.313,
-    3.493
+    0.04,
+    0.22,
+    0.4,
+    0.58,
+    0.96,
+    1.1,
+    1.22,
+    1.46,
+    1.6,
+    1.82,
+    1.98,
+    2.38,
+    2.54,
+    2.7,
+    2.92,
+    3.12,
+    3.26,
+    3.48
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 467,
-   "audioSec": 5.102,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 456,
-   "durationFrames": 172,
+   "audio": "audio/caffaine-chatgpt-gif/04-s04.wav",
+   "audioFrame": 511,
+   "audioSec": 5.97,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 502,
+   "durationFrames": 210,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -436,136 +975,312 @@
      8
     ]
    },
-   "voiceStartFrame": 466,
-   "voiceEndFrame": 620,
-   "stillFrame": 618,
+   "voiceStartFrame": 512,
+   "voiceEndFrame": 689,
+   "stillFrame": 702,
    "subtitleWindow": [
-    463,
-    625
+    509,
+    709
    ],
    "sourceWindow": [
-    461,
-    623
+    507,
+    707
    ],
    "lines": [
     {
      "text": "第二步",
-     "start": 463,
+     "start": 509,
      "chars": [
-      466,
-      471,
-      476
+      516,
+      522,
+      525
      ]
     },
     {
      "text": "把常用的",
-     "start": 485,
+     "start": 535,
      "chars": [
-      487,
-      492,
-      498,
-      503
+      537,
+      543,
+      549,
+      553
      ]
     },
     {
      "text": "人或寵物存成參考圖",
-     "start": 512,
+     "start": 555,
      "chars": [
-      514,
-      519,
-      524,
-      530,
-      535,
-      540,
-      545,
-      550,
-      555
+      558,
+      564,
+      569,
+      576,
+      582,
+      589,
+      596,
+      602,
+      607
      ]
     },
     {
      "text": "下次用 @ 加名字叫出來",
-     "start": 565,
+     "start": 626,
      "chars": [
-      567,
-      572,
-      577,
-      577,
-      582,
-      582,
-      588,
-      593,
-      598,
-      603,
-      608,
-      613
+      628,
+      634,
+      640,
+      640,
+      650,
+      650,
+      655,
+      661,
+      667,
+      672,
+      677,
+      682
      ]
     }
    ],
    "keywords": [
     {
      "text": "第二步",
-     "start": 466
+     "start": 516
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "第二步",
-     "frame": 467
+     "frame": 517,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "參考圖",
-     "frame": 547
+     "frame": 597,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "加名字",
-     "frame": 589
+     "frame": 657,
+     "early": 0
     }
    ],
+   "hash": "98e9c164f920-50bc7d4ccc",
    "sub": "第二步\n把常用的\n人或寵物存成參考圖\n下次用 @ 加名字叫出來",
-   "provider": "estimate",
-   "syllables": 25,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.938,
+    "minScore": 0.22,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.94,
+      "start": 0.92,
+      "ch": "把",
+      "errMs": -20
+     },
+     {
+      "onset": 3.92,
+      "start": 3.94,
+      "ch": "下",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "第",
+     "start": 0.2,
+     "end": 0.28,
+     "score": 0.98
+    },
+    {
+     "text": "二",
+     "start": 0.42,
+     "end": 0.48,
+     "score": 0.22
+    },
+    {
+     "text": "步",
+     "start": 0.52,
+     "end": 0.62,
+     "score": 0.992
+    },
+    {
+     "text": "把",
+     "start": 0.92,
+     "end": 1,
+     "score": 0.997
+    },
+    {
+     "text": "常",
+     "start": 1.1,
+     "end": 1.28,
+     "score": 0.917
+    },
+    {
+     "text": "用",
+     "start": 1.3,
+     "end": 1.44,
+     "score": 0.943
+    },
+    {
+     "text": "的",
+     "start": 1.46,
+     "end": 1.52,
+     "score": 0.999
+    },
+    {
+     "text": "人",
+     "start": 1.6,
+     "end": 1.74,
+     "score": 1
+    },
+    {
+     "text": "或",
+     "start": 1.8,
+     "end": 1.9,
+     "score": 0.983
+    },
+    {
+     "text": "寵",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.878
+    },
+    {
+     "text": "物",
+     "start": 2.2,
+     "end": 2.28,
+     "score": 0.991
+    },
+    {
+     "text": "存",
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.984
+    },
+    {
+     "text": "成",
+     "start": 2.64,
+     "end": 2.84,
+     "score": 0.977
+    },
+    {
+     "text": "參",
+     "start": 2.88,
+     "end": 3.04,
+     "score": 0.972
+    },
+    {
+     "text": "考",
+     "start": 3.08,
+     "end": 3.24,
+     "score": 0.997
+    },
+    {
+     "text": "圖",
+     "start": 3.26,
+     "end": 3.4,
+     "score": 0.997
+    },
+    {
+     "text": "下",
+     "start": 3.94,
+     "end": 4.06,
+     "score": 0.997
+    },
+    {
+     "text": "次",
+     "start": 4.16,
+     "end": 4.26,
+     "score": 0.99
+    },
+    {
+     "text": "用",
+     "start": 4.34,
+     "end": 4.48,
+     "score": 0.896
+    },
+    {
+     "text": "加",
+     "start": 4.86,
+     "end": 4.96,
+     "score": 0.99
+    },
+    {
+     "text": "名",
+     "start": 5.04,
+     "end": 5.2,
+     "score": 0.883
+    },
+    {
+     "text": "字",
+     "start": 5.24,
+     "end": 5.34,
+     "score": 0.951
+    },
+    {
+     "text": "叫",
+     "start": 5.4,
+     "end": 5.56,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 5.58,
+     "end": 5.68,
+     "score": 0.923
+    },
+    {
+     "text": "來",
+     "start": 5.74,
+     "end": 5.9,
+     "score": 1
+    }
+   ],
    "charTimes": [
-    0,
-    0.172,
-    0.345,
-    0.724,
-    0.896,
-    1.069,
-    1.241,
-    1.62,
-    1.793,
-    1.965,
-    2.137,
-    2.31,
-    2.482,
-    2.654,
-    2.827,
-    2.999,
-    3.378,
-    3.551,
-    3.723,
-    3.895,
-    4.068,
-    4.24,
-    4.413,
-    4.585,
-    4.757,
-    4.93
+    0.2,
+    0.42,
+    0.52,
+    0.92,
+    1.1,
+    1.3,
+    1.46,
+    1.6,
+    1.8,
+    1.98,
+    2.2,
+    2.42,
+    2.64,
+    2.88,
+    3.08,
+    3.26,
+    3.94,
+    4.16,
+    4.34,
+    4.67,
+    4.86,
+    5.04,
+    5.24,
+    5.4,
+    5.58,
+    5.74
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 629,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 618,
-   "durationFrames": 148,
+   "audio": "audio/caffaine-chatgpt-gif/05-s05.wav",
+   "audioFrame": 711,
+   "audioSec": 5.49,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 702,
+   "durationFrames": 217,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -579,386 +1294,324 @@
      8
     ]
    },
-   "voiceStartFrame": 628,
-   "voiceEndFrame": 758,
-   "stillFrame": 756,
+   "voiceStartFrame": 712,
+   "voiceEndFrame": 875,
+   "stillFrame": 909,
    "subtitleWindow": [
-    625,
-    763
+    709,
+    919
    ],
    "sourceWindow": [
-    623,
-    761
-   ],
-   "lines": [
-    {
-     "text": "先說清楚",
-     "start": 625,
-     "chars": [
-      628,
-      633,
-      638,
-      644
-     ]
-    },
-    {
-     "text": "我們沒有實測",
-     "start": 654,
-     "chars": [
-      656,
-      662,
-      667,
-      673,
-      678,
-      684
-     ]
-    },
-    {
-     "text": "這是照媒體報導做的示意",
-     "start": 694,
-     "chars": [
-      696,
-      701,
-      707,
-      712,
-      718,
-      723,
-      729,
-      734,
-      740,
-      745,
-      751
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "沒有實測",
-     "start": 667
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "沒有實測",
-     "frame": 669
-    },
-    {
-     "id": "k2",
-     "text": "媒體報導",
-     "frame": 714
-    },
-    {
-     "id": "k3",
-     "text": "示意",
-     "frame": 747
-    }
-   ],
-   "sub": "先說清楚\n我們沒有實測\n這是照媒體報導做的示意",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
-   "charTimes": [
-    0,
-    0.183,
-    0.366,
-    0.549,
-    0.952,
-    1.136,
-    1.319,
-    1.502,
-    1.685,
-    1.868,
-    2.271,
-    2.454,
-    2.637,
-    2.821,
-    3.004,
-    3.187,
-    3.37,
-    3.553,
-    3.736,
-    3.919,
-    4.103
-   ]
-  },
-  {
-   "id": "s06",
-   "audio": null,
-   "audioFrame": 766,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 756,
-   "durationFrames": 147,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 766,
-   "voiceEndFrame": 895,
-   "stillFrame": 893,
-   "subtitleWindow": [
-    763,
-    900
-   ],
-   "sourceWindow": [
-    761,
-    898
-   ],
-   "lines": [
-    {
-     "text": "報導說逐步開放",
-     "start": 763,
-     "chars": [
-      765,
-      770,
-      775,
-      781,
-      786,
-      792,
-      797
-     ]
-    },
-    {
-     "text": "免費版能不能用",
-     "start": 807,
-     "chars": [
-      810,
-      815,
-      821,
-      826,
-      832,
-      837,
-      843
-     ]
-    },
-    {
-     "text": "各家寫得不一樣",
-     "start": 853,
-     "chars": [
-      855,
-      860,
-      866,
-      871,
-      877,
-      882,
-      888
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "逐步開放",
-     "start": 781
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "逐步開放",
-     "frame": 782
-    },
-    {
-     "id": "k2",
-     "text": "免費版",
-     "frame": 811
-    },
-    {
-     "id": "k3",
-     "text": "寫得不一樣",
-     "frame": 867
-    }
-   ],
-   "sub": "報導說逐步開放\n免費版能不能用\n各家寫得不一樣",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
-   "charTimes": [
-    0,
-    0.183,
-    0.366,
-    0.549,
-    0.733,
-    0.916,
-    1.099,
-    1.502,
-    1.685,
-    1.868,
-    2.051,
-    2.234,
-    2.418,
-    2.601,
-    3.004,
-    3.187,
-    3.37,
-    3.553,
-    3.736,
-    3.919,
-    4.103
-   ]
-  },
-  {
-   "id": "s07",
-   "audio": null,
-   "audioFrame": 904,
-   "audioSec": 5.102,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 893,
-   "durationFrames": 172,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 903,
-   "voiceEndFrame": 1057,
-   "stillFrame": 1055,
-   "subtitleWindow": [
-    900,
-    1065
-   ],
-   "sourceWindow": [
-    898,
-    1060
+    707,
+    914
    ],
    "lines": [
     {
      "text": "一句話就能做 GIF",
-     "start": 900,
+     "start": 709,
      "chars": [
-      903,
-      908,
-      913,
-      918,
-      923,
-      928,
-      928,
-      934,
-      939,
-      944
+      711,
+      714,
+      720,
+      726,
+      730,
+      735,
+      735,
+      741,
+      746,
+      751
      ]
     },
     {
      "text": "你想先做什麼",
-     "start": 953,
+     "start": 766,
      "chars": [
-      955,
-      960,
-      966,
-      971,
-      976,
-      981
+      768,
+      772,
+      778,
+      783,
+      788,
+      792
      ]
     },
     {
      "text": "留言「動圖」",
-     "start": 990,
+     "start": 808,
      "chars": [
-      992,
-      998,
-      998,
-      1003,
-      1008,
-      1008
+      810,
+      815,
+      815,
+      821,
+      827,
+      827
      ]
     },
     {
      "text": "我把提示詞給你",
-     "start": 1017,
+     "start": 838,
      "chars": [
-      1019,
-      1025,
-      1030,
-      1035,
-      1040,
-      1045,
-      1050
+      840,
+      844,
+      849,
+      854,
+      860,
+      864,
+      869
      ]
     }
    ],
    "keywords": [
     {
      "text": "一句話",
-     "start": 903
+     "start": 711
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "一句話",
-     "frame": 904
+     "frame": 712,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "先做什麼",
-     "frame": 967
+     "frame": 779,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "動圖",
-     "frame": 1004
+     "frame": 823,
+     "early": 0
     }
    ],
+   "hash": "e55e1525da50-50bc7d4ccc",
    "sub": "一句話就能做 GIF\n你想先做什麼\n留言「動圖」\n我把提示詞給你",
-   "provider": "estimate",
-   "syllables": 25,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.929,
+    "minScore": 0.494,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.95,
+      "start": 1.94,
+      "ch": "你",
+      "errMs": -10
+     },
+     {
+      "onset": 3.33,
+      "start": 3.34,
+      "ch": "留",
+      "errMs": 10
+     },
+     {
+      "onset": 4.37,
+      "start": 4.36,
+      "ch": "我",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.942
+    },
+    {
+     "text": "句",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.997
+    },
+    {
+     "text": "話",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 1
+    },
+    {
+     "text": "就",
+     "start": 0.54,
+     "end": 0.66,
+     "score": 0.984
+    },
+    {
+     "text": "能",
+     "start": 0.7,
+     "end": 0.82,
+     "score": 0.998
+    },
+    {
+     "text": "做",
+     "start": 0.86,
+     "end": 0.96,
+     "score": 0.975
+    },
+    {
+     "text": "G",
+     "start": 1.06,
+     "end": 1.14,
+     "score": 0.494
+    },
+    {
+     "text": "I",
+     "start": 1.22,
+     "end": 1.32,
+     "score": 0.514
+    },
+    {
+     "text": "F",
+     "start": 1.38,
+     "end": 1.48,
+     "score": 0.503
+    },
+    {
+     "text": "你",
+     "start": 1.94,
+     "end": 2,
+     "score": 0.997
+    },
+    {
+     "text": "想",
+     "start": 2.08,
+     "end": 2.26,
+     "score": 0.945
+    },
+    {
+     "text": "先",
+     "start": 2.28,
+     "end": 2.42,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 2.46,
+     "end": 2.56,
+     "score": 0.973
+    },
+    {
+     "text": "什",
+     "start": 2.62,
+     "end": 2.72,
+     "score": 0.986
+    },
+    {
+     "text": "麼",
+     "start": 2.76,
+     "end": 2.82,
+     "score": 0.999
+    },
+    {
+     "text": "留",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.998
+    },
+    {
+     "text": "言",
+     "start": 3.52,
+     "end": 3.66,
+     "score": 0.996
+    },
+    {
+     "text": "動",
+     "start": 3.72,
+     "end": 3.88,
+     "score": 0.89
+    },
+    {
+     "text": "圖",
+     "start": 3.92,
+     "end": 4.04,
+     "score": 0.999
+    },
+    {
+     "text": "我",
+     "start": 4.36,
+     "end": 4.42,
+     "score": 0.999
+    },
+    {
+     "text": "把",
+     "start": 4.48,
+     "end": 4.54,
+     "score": 0.982
+    },
+    {
+     "text": "提",
+     "start": 4.64,
+     "end": 4.74,
+     "score": 0.997
+    },
+    {
+     "text": "示",
+     "start": 4.82,
+     "end": 4.92,
+     "score": 0.996
+    },
+    {
+     "text": "詞",
+     "start": 5,
+     "end": 5.1,
+     "score": 0.999
+    },
+    {
+     "text": "給",
+     "start": 5.16,
+     "end": 5.28,
+     "score": 0.999
+    },
+    {
+     "text": "你",
+     "start": 5.32,
+     "end": 5.4,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.172,
-    0.345,
-    0.517,
-    0.689,
-    0.862,
-    1.034,
-    1.207,
-    1.379,
-    1.758,
-    1.931,
-    2.103,
-    2.275,
-    2.448,
+    0.04,
+    0.16,
+    0.34,
+    0.54,
+    0.7,
+    0.86,
+    1.06,
+    1.22,
+    1.38,
+    1.94,
+    2.08,
+    2.28,
+    2.46,
     2.62,
-    2.999,
-    3.172,
-    3.344,
-    3.516,
-    3.895,
-    4.068,
-    4.24,
-    4.413,
-    4.585,
-    4.757,
-    4.93
+    2.76,
+    3.34,
+    3.52,
+    3.72,
+    3.92,
+    4.36,
+    4.48,
+    4.64,
+    4.82,
+    5,
+    5.16,
+    5.32
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1055,
+   "audioFrame": 909,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1055,
+   "startFrame": 909,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -973,24 +1626,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1065,
-   "voiceEndFrame": 1065,
-   "stillFrame": 1151,
+   "voiceStartFrame": 919,
+   "voiceEndFrame": 919,
+   "stillFrame": 1005,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1060,
-    1163
+    914,
+    1017
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-chatgpt-gif/voice.wav",
+  "lufsIn": -17.72,
+  "lufs": -16,
+  "sec": 33.9
+ }
 }

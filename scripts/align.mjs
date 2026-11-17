@@ -149,7 +149,7 @@ function buildV2(cs) {
   for (const [i, c] of cs.entries()) {
     if (c.silent) { // v3：無旁白的最後一幕（片尾卡）
       const p = out[i - 1];
-      const startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+      const startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE + Number(process.env.ALIGN_END_HOLD ?? 0));
       out.push({ id: c.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(c.durationSec * FPS)),
         transitionFrames: TRANS, transition: { type: "fade", frames: TRANS, ...TRANSITIONS.fade }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true, // 沒有人聲：兩個值都放在轉場結束那一幀，讀的人不會拿到 null
         subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "" });

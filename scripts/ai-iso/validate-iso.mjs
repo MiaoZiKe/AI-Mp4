@@ -202,7 +202,7 @@ export function validateIso(script, h) {
   }
   if (script.isoVersion === 6) {
     const vs = scenes.filter((x) => !(x.silent === true && x.props?.panel === "caffend")).map((x) => x.props?.view);
-    const kinds = new Set(vs); if (kinds.size < 6) E(`isoVersion 6：這支只有 ${kinds.size} 種 view，要 ≥6 種（畫面多樣化）`);
+    const kinds = new Set(vs); if (kinds.size < Math.min(6, vs.length)) E(`isoVersion 6：這支只有 ${kinds.size} 種 view，要 ≥${Math.min(6, vs.length)} 種（畫面多樣化）`);
     for (let i = 2; i < vs.length; i++) if (vs[i] === vs[i - 1] && vs[i] === vs[i - 2]) E(`isoVersion 6：view「${vs[i]}」連續超過 2 鏡（${scenes[i - 2].id}–${scenes[i].id}）`);
     if (vs.filter((v) => v === "desk").length > 2) E("isoVersion 6：等距桌面（desk）每支最多 2 鏡");
   }

@@ -27,5 +27,4 @@ AI 用法：叫 AI 先問你三個問題，再做事
 | s06 | 兩次結果，直接做都是零分；先問，一次四分，一次五分。 | chart | A 第 1 次\|A 第 2 次\|B 第 1 次\|B 第 2 次 | principle | 都是零分、一次四分、一次五分 | 實測 2026/11/17：A 0／0；B 4／5 | 已確定・實測 | Do it now: 0 both times. | Ask first: 4 once, 5 once. |
 | s07 | 那次四分，缺素食，因為它沒問，我也沒講。 | kinetic | 4／5\|缺素食\|它沒問，我就沒講 | bug | 四分、缺素食、沒問 | 實測 2026/11/17：B 第 1 次沒有素食 | 已確定・實測 | The 4 missed vegetarian: | it didn't ask, I didn't say. |
 | s08 | 所以差別不在 AI 變聰明，是你先把條件交給它。 | flow | 你的條件\|交給 AI\|才開始做 | fix | 條件、交給它 | 實測結論整理 | | So it's not a smarter AI. | You handed over the conditions first. |
-| s09 | 不過只出一題，各跑兩次，換題目會怎樣，還不知道。 | kinetic | 1\|題\|換題目呢？ | unknown | 只出一題、各跑兩次、還不知道 | 只測 1 題、1 個模型、各 2 次；沒測「一次把條件寫完」 | 查不到・還沒測 | Only one question, two runs each. | A different task? Unknown. |
 | s10 | 存起來，下次先加一句：先問我三個問題。留言「先問我」，我把提示詞和測試原文給你。 | claim | 先問我\|想要先問我三個問題的提示詞\|提示詞＋測試原文 | claim | 先問我三個問題、先問我 | 提示詞整理在 CaffAIne 網站 | | Save this. | Comment "先問我" to get the prompt. |

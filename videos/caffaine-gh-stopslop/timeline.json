@@ -2,166 +2,366 @@
  "version": 2,
  "slug": "caffaine-gh-stopslop",
  "fps": 30,
- "totalFrames": 1393,
- "totalSec": 46.43,
- "gapSec": 0.3,
+ "totalFrames": 1412,
+ "totalSec": 47.07,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 5.51,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-gh-stopslop/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 5.98,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 179,
+   "durationFrames": 199,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 171,
-   "stillFrame": 169,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 179,
+   "stillFrame": 189,
    "subtitleWindow": [
     0,
-    176
+    196
    ],
    "sourceWindow": [
     0,
-    174
+    194
    ],
    "lines": [
     {
      "text": "讓 AI 別再寫出 AI 味",
      "start": 0,
      "chars": [
-      4,
-      4,
-      9,
-      14,
-      14,
-      19,
-      24,
-      29,
-      34,
-      34,
-      39,
-      44,
-      44,
-      49
+      0,
+      0,
+      7,
+      11,
+      11,
+      15,
+      20,
+      25,
+      30,
+      30,
+      36,
+      40,
+      40,
+      45
      ]
     },
     {
      "text": "一份純文字規則檔",
-     "start": 58,
+     "start": 56,
      "chars": [
-      60,
-      65,
-      70,
-      76,
-      81,
-      86,
-      91,
-      96
+      58,
+      62,
+      68,
+      74,
+      79,
+      84,
+      89,
+      94
      ]
     },
     {
      "text": "一萬九千顆星",
-     "start": 105,
+     "start": 103,
      "chars": [
-      107,
-      112,
+      105,
+      111,
       117,
-      122,
-      127,
-      132
+      123,
+      129,
+      135
      ]
     },
     {
      "text": "真的有用嗎",
-     "start": 141,
+     "start": 150,
      "chars": [
-      143,
-      149,
-      154,
-      159,
-      164
+      152,
+      158,
+      161,
+      166,
+      171
      ]
     }
    ],
    "keywords": [
     {
      "text": "別再寫出",
-     "start": 19
+     "start": 15
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "別再寫出",
-     "frame": 20
+     "frame": 17,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "純文字規則檔",
-     "frame": 72
+     "frame": 69,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "真的有用嗎",
-     "frame": 145
+     "frame": 154,
+     "early": 0
     }
    ],
+   "hash": "a3fcc6b292e4-50bc7d4ccc",
    "sub": "讓 AI 別再寫出 AI 味\n一份純文字規則檔\n一萬九千顆星\n真的有用嗎",
-   "provider": "estimate",
-   "syllables": 27,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.813,
+    "minScore": 0.104,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 2.02,
+      "start": 1.98,
+      "ch": "一",
+      "errMs": -40
+     },
+     {
+      "onset": 3.56,
+      "start": 3.54,
+      "ch": "一",
+      "errMs": -20
+     },
+     {
+      "onset": 5.13,
+      "start": 5.12,
+      "ch": "真",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "讓",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.822
+    },
+    {
+     "text": "A",
+     "start": 0.28,
+     "end": 0.34,
+     "score": 0.167
+    },
+    {
+     "text": "I",
+     "start": 0.42,
+     "end": 0.52,
+     "score": 0.648
+    },
+    {
+     "text": "別",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 0.992
+    },
+    {
+     "text": "再",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.999
+    },
+    {
+     "text": "寫",
+     "start": 0.88,
+     "end": 0.98,
+     "score": 0.997
+    },
+    {
+     "text": "出",
+     "start": 1.04,
+     "end": 1.14,
+     "score": 0.929
+    },
+    {
+     "text": "A",
+     "start": 1.24,
+     "end": 1.3,
+     "score": 0.104
+    },
+    {
+     "text": "I",
+     "start": 1.4,
+     "end": 1.48,
+     "score": 0.54
+    },
+    {
+     "text": "味",
+     "start": 1.54,
+     "end": 1.68,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 1.98,
+     "end": 2.04,
+     "score": 0.88
+    },
+    {
+     "text": "份",
+     "start": 2.12,
+     "end": 2.26,
+     "score": 0.948
+    },
+    {
+     "text": "純",
+     "start": 2.3,
+     "end": 2.48,
+     "score": 0.872
+    },
+    {
+     "text": "文",
+     "start": 2.52,
+     "end": 2.62,
+     "score": 0.989
+    },
+    {
+     "text": "字",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.997
+    },
+    {
+     "text": "規",
+     "start": 2.84,
+     "end": 2.96,
+     "score": 0.998
+    },
+    {
+     "text": "則",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.991
+    },
+    {
+     "text": "檔",
+     "start": 3.18,
+     "end": 3.36,
+     "score": 0.958
+    },
+    {
+     "text": "一",
+     "start": 3.54,
+     "end": 3.62,
+     "score": 0.716
+    },
+    {
+     "text": "萬",
+     "start": 3.76,
+     "end": 3.9,
+     "score": 0.401
+    },
+    {
+     "text": "九",
+     "start": 3.96,
+     "end": 4.1,
+     "score": 0.264
+    },
+    {
+     "text": "千",
+     "start": 4.16,
+     "end": 4.32,
+     "score": 0.53
+    },
+    {
+     "text": "顆",
+     "start": 4.36,
+     "end": 4.46,
+     "score": 0.994
+    },
+    {
+     "text": "星",
+     "start": 4.56,
+     "end": 4.76,
+     "score": 0.904
+    },
+    {
+     "text": "真",
+     "start": 5.12,
+     "end": 5.26,
+     "score": 0.995
+    },
+    {
+     "text": "的",
+     "start": 5.32,
+     "end": 5.38,
+     "score": 0.997
+    },
+    {
+     "text": "有",
+     "start": 5.42,
+     "end": 5.54,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 5.58,
+     "end": 5.72,
+     "score": 0.955
+    },
+    {
+     "text": "嗎",
+     "start": 5.74,
+     "end": 5.82,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.169,
-    0.338,
-    0.507,
-    0.676,
-    0.845,
-    1.014,
-    1.183,
-    1.352,
-    1.521,
-    1.893,
-    2.062,
-    2.231,
-    2.4,
-    2.569,
-    2.738,
-    2.907,
-    3.076,
-    3.448,
-    3.617,
-    3.786,
-    3.955,
-    4.124,
-    4.293,
-    4.665,
-    4.834,
-    5.003,
-    5.172,
-    5.341
+    0.04,
+    0.28,
+    0.42,
+    0.56,
+    0.72,
+    0.88,
+    1.04,
+    1.24,
+    1.4,
+    1.54,
+    1.98,
+    2.12,
+    2.3,
+    2.52,
+    2.68,
+    2.84,
+    3,
+    3.18,
+    3.54,
+    3.76,
+    3.96,
+    4.16,
+    4.36,
+    4.56,
+    5.12,
+    5.32,
+    5.42,
+    5.58,
+    5.74
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 179,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 169,
-   "durationFrames": 135,
+   "audio": "audio/caffaine-gh-stopslop/02-s02.wav",
+   "audioFrame": 198,
+   "audioSec": 4.26,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 189,
+   "durationFrames": 146,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -175,119 +375,282 @@
      8
     ]
    },
-   "voiceStartFrame": 179,
-   "voiceEndFrame": 296,
-   "stillFrame": 294,
+   "voiceStartFrame": 199,
+   "voiceEndFrame": 325,
+   "stillFrame": 325,
    "subtitleWindow": [
-    176,
-    301
+    196,
+    332
    ],
    "sourceWindow": [
-    174,
-    299
+    194,
+    330
    ],
    "lines": [
     {
      "text": "倉庫叫 stop-slop",
-     "start": 176,
+     "start": 196,
      "chars": [
-      178,
-      182,
-      187,
-      187,
-      191,
-      196,
-      200,
-      205,
-      205,
+      204,
       210,
-      214,
-      219,
-      223
+      216,
+      216,
+      224,
+      226,
+      228,
+      230,
+      230,
+      232,
+      234,
+      236,
+      239
      ]
     },
     {
      "text": "規則有刪掉副詞",
-     "start": 231,
+     "start": 249,
      "chars": [
-      233,
-      238,
-      243,
-      247,
-      252,
+      251,
       256,
-      261
+      261,
+      268,
+      273,
+      278,
+      284
      ]
     },
     {
      "text": "不用破折號",
-     "start": 269,
+     "start": 295,
      "chars": [
-      271,
-      276,
-      280,
-      285,
-      289
+      297,
+      302,
+      307,
+      313,
+      318
      ]
     }
    ],
    "keywords": [
     {
      "text": "刪掉副詞",
-     "start": 247
+     "start": 268
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "刪掉副詞",
-     "frame": 249
+     "frame": 269,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "不用破折號",
-     "frame": 272
+     "frame": 298,
+     "early": 0
     }
    ],
+   "hash": "4e82c17c9ad8-50bc7d4ccc",
    "sub": "倉庫叫 stop-slop\n規則有刪掉副詞\n不用破折號",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.832,
+    "minScore": 0.015,
+    "onsetMedianMs": 220,
+    "onsetMaxMs": 410,
+    "onsetCheck": [
+     {
+      "onset": 1.83,
+      "start": 1.42,
+      "ch": "p",
+      "errMs": -410
+     },
+     {
+      "onset": 3.37,
+      "start": 3.34,
+      "ch": "不",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "倉",
+     "start": 0.24,
+     "end": 0.44,
+     "score": 0.895
+    },
+    {
+     "text": "庫",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.991
+    },
+    {
+     "text": "叫",
+     "start": 0.64,
+     "end": 0.84,
+     "score": 0.994
+    },
+    {
+     "text": "s",
+     "start": 0.92,
+     "end": 0.94,
+     "score": 0.985
+    },
+    {
+     "text": "t",
+     "start": 0.98,
+     "end": 1,
+     "score": 0.948
+    },
+    {
+     "text": "o",
+     "start": 1.04,
+     "end": 1.06,
+     "score": 0.031
+    },
+    {
+     "text": "p",
+     "start": 1.1,
+     "end": 1.12,
+     "score": 0.259
+    },
+    {
+     "text": "s",
+     "start": 1.18,
+     "end": 1.2,
+     "score": 0.981
+    },
+    {
+     "text": "l",
+     "start": 1.26,
+     "end": 1.28,
+     "score": 0.984
+    },
+    {
+     "text": "o",
+     "start": 1.32,
+     "end": 1.34,
+     "score": 0.015
+    },
+    {
+     "text": "p",
+     "start": 1.42,
+     "end": 1.44,
+     "score": 0.334
+    },
+    {
+     "text": "規",
+     "start": 1.82,
+     "end": 1.94,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.982
+    },
+    {
+     "text": "有",
+     "start": 2.16,
+     "end": 2.3,
+     "score": 0.999
+    },
+    {
+     "text": "刪",
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.834
+    },
+    {
+     "text": "掉",
+     "start": 2.54,
+     "end": 2.68,
+     "score": 0.955
+    },
+    {
+     "text": "副",
+     "start": 2.72,
+     "end": 2.8,
+     "score": 0.994
+    },
+    {
+     "text": "詞",
+     "start": 2.9,
+     "end": 3.06,
+     "score": 0.995
+    },
+    {
+     "text": "不",
+     "start": 3.34,
+     "end": 3.42,
+     "score": 0.996
+    },
+    {
+     "text": "用",
+     "start": 3.5,
+     "end": 3.66,
+     "score": 0.99
+    },
+    {
+     "text": "破",
+     "start": 3.68,
+     "end": 3.78,
+     "score": 0.999
+    },
+    {
+     "text": "折",
+     "start": 3.88,
+     "end": 3.96,
+     "score": 0.992
+    },
+    {
+     "text": "號",
+     "start": 4.04,
+     "end": 4.22,
+     "score": 0.991
+    }
+   ],
    "charTimes": [
-    0,
-    0.153,
-    0.305,
-    0.458,
-    0.611,
-    0.763,
-    0.916,
-    1.069,
-    1.221,
-    1.374,
-    1.527,
-    1.862,
-    2.015,
-    2.168,
-    2.32,
-    2.473,
-    2.626,
-    2.778,
-    3.114,
-    3.267,
-    3.42,
-    3.572,
-    3.725
+    0.24,
+    0.46,
+    0.64,
+    0.92,
+    0.98,
+    1.04,
+    1.1,
+    1.18,
+    1.26,
+    1.32,
+    1.42,
+    1.82,
+    1.98,
+    2.16,
+    2.38,
+    2.54,
+    2.72,
+    2.9,
+    3.34,
+    3.5,
+    3.68,
+    3.88,
+    4.04
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 305,
-   "audioSec": 7.755,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 294,
-   "durationFrames": 252,
+   "audio": "audio/caffaine-gh-stopslop/03-s03.wav",
+   "audioFrame": 334,
+   "audioSec": 8.98,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 325,
+   "durationFrames": 298,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -301,182 +664,466 @@
      8
     ]
    },
-   "voiceStartFrame": 304,
-   "voiceEndFrame": 538,
-   "stillFrame": 536,
+   "voiceStartFrame": 335,
+   "voiceEndFrame": 603,
+   "stillFrame": 613,
    "subtitleWindow": [
-    301,
-    543
+    332,
+    620
    ],
    "sourceWindow": [
-    299,
-    541
+    330,
+    618
    ],
    "lines": [
     {
      "text": "同一則貼文",
-     "start": 301,
+     "start": 332,
      "chars": [
-      304,
-      309,
-      314,
-      319,
-      324
+      340,
+      346,
+      349,
+      354,
+      360
      ]
     },
     {
      "text": "沒加規則",
-     "start": 332,
+     "start": 372,
      "chars": [
-      335,
-      340,
-      345,
-      350
+      374,
+      381,
+      386,
+      391
      ]
     },
     {
      "text": "四個副詞",
-     "start": 359,
+     "start": 404,
      "chars": [
-      361,
-      366,
-      371,
-      376
+      406,
+      412,
+      415,
+      421
      ]
     },
     {
      "text": "一個破折號",
-     "start": 385,
+     "start": 430,
      "chars": [
-      387,
-      392,
-      397,
-      402,
-      407
+      432,
+      437,
+      441,
+      447,
+      452
      ]
     },
     {
      "text": "放進規則檔",
-     "start": 416,
+     "start": 468,
      "chars": [
-      418,
-      423,
-      428,
-      433,
-      438
+      471,
+      476,
+      481,
+      486,
+      490
      ]
     },
     {
      "text": "副詞剩一個",
-     "start": 447,
+     "start": 500,
      "chars": [
-      449,
-      454,
-      459,
-      464,
-      469
+      502,
+      508,
+      516,
+      522,
+      526
      ]
     },
     {
      "text": "破折號沒了",
-     "start": 478,
+     "start": 533,
      "chars": [
-      480,
-      485,
-      490,
-      495,
-      500
+      535,
+      542,
+      547,
+      552,
+      558
      ]
     },
     {
      "text": "字少快一半",
-     "start": 509,
+     "start": 570,
      "chars": [
-      511,
-      516,
-      521,
-      526,
-      531
+      573,
+      581,
+      587,
+      593,
+      597
      ]
     }
    ],
    "keywords": [
     {
      "text": "同一則貼文",
-     "start": 304
+     "start": 340
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "同一則貼文",
-     "frame": 305
+     "frame": 341,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "副詞剩一個",
-     "frame": 450
+     "frame": 504,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "少快一半",
-     "frame": 518
+     "frame": 582,
+     "early": 0
     }
    ],
+   "hash": "7ec913248eb4-50bc7d4ccc",
    "sub": "同一則貼文\n沒加規則\n四個副詞\n一個破折號\n放進規則檔\n副詞剩一個\n破折號沒了\n字少快一半",
-   "provider": "estimate",
-   "syllables": 38,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.876,
+    "minScore": 0.031,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 1.41,
+      "start": 1.4,
+      "ch": "沒",
+      "errMs": -10
+     },
+     {
+      "onset": 2.4,
+      "start": 2.46,
+      "ch": "四",
+      "errMs": 60
+     },
+     {
+      "onset": 3.35,
+      "start": 3.32,
+      "ch": "一",
+      "errMs": -30
+     },
+     {
+      "onset": 4.64,
+      "start": 4.6,
+      "ch": "放",
+      "errMs": -40
+     },
+     {
+      "onset": 5.68,
+      "start": 5.66,
+      "ch": "副",
+      "errMs": -20
+     },
+     {
+      "onset": 6.78,
+      "start": 6.76,
+      "ch": "破",
+      "errMs": -20
+     },
+     {
+      "onset": 8.03,
+      "start": 8,
+      "ch": "字",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "同",
+     "start": 0.24,
+     "end": 0.42,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 0.44,
+     "end": 0.5,
+     "score": 0.051
+    },
+    {
+     "text": "則",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 0.998
+    },
+    {
+     "text": "貼",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.917
+    },
+    {
+     "text": "文",
+     "start": 0.92,
+     "end": 1.1,
+     "score": 0.996
+    },
+    {
+     "text": "沒",
+     "start": 1.4,
+     "end": 1.54,
+     "score": 1
+    },
+    {
+     "text": "加",
+     "start": 1.6,
+     "end": 1.7,
+     "score": 0.999
+    },
+    {
+     "text": "規",
+     "start": 1.78,
+     "end": 1.9,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 1.96,
+     "end": 2.08,
+     "score": 0.998
+    },
+    {
+     "text": "四",
+     "start": 2.46,
+     "end": 2.56,
+     "score": 0.445
+    },
+    {
+     "text": "個",
+     "start": 2.64,
+     "end": 2.72,
+     "score": 0.983
+    },
+    {
+     "text": "副",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 0.997
+    },
+    {
+     "text": "詞",
+     "start": 2.96,
+     "end": 3.12,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 3.32,
+     "end": 3.38,
+     "score": 0.038
+    },
+    {
+     "text": "個",
+     "start": 3.48,
+     "end": 3.56,
+     "score": 0.999
+    },
+    {
+     "text": "破",
+     "start": 3.62,
+     "end": 3.72,
+     "score": 0.999
+    },
+    {
+     "text": "折",
+     "start": 3.8,
+     "end": 3.9,
+     "score": 0.99
+    },
+    {
+     "text": "號",
+     "start": 3.98,
+     "end": 4.18,
+     "score": 0.999
+    },
+    {
+     "text": "放",
+     "start": 4.6,
+     "end": 4.76,
+     "score": 1
+    },
+    {
+     "text": "進",
+     "start": 4.78,
+     "end": 4.9,
+     "score": 0.999
+    },
+    {
+     "text": "規",
+     "start": 4.96,
+     "end": 5.06,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 5.1,
+     "end": 5.2,
+     "score": 0.999
+    },
+    {
+     "text": "檔",
+     "start": 5.26,
+     "end": 5.42,
+     "score": 0.999
+    },
+    {
+     "text": "副",
+     "start": 5.66,
+     "end": 5.76,
+     "score": 0.999
+    },
+    {
+     "text": "詞",
+     "start": 5.86,
+     "end": 6,
+     "score": 0.999
+    },
+    {
+     "text": "剩",
+     "start": 6.1,
+     "end": 6.28,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 6.3,
+     "end": 6.36,
+     "score": 0.031
+    },
+    {
+     "text": "個",
+     "start": 6.44,
+     "end": 6.52,
+     "score": 0.999
+    },
+    {
+     "text": "破",
+     "start": 6.76,
+     "end": 6.88,
+     "score": 1
+    },
+    {
+     "text": "折",
+     "start": 6.98,
+     "end": 7.06,
+     "score": 0.979
+    },
+    {
+     "text": "號",
+     "start": 7.16,
+     "end": 7.3,
+     "score": 0.999
+    },
+    {
+     "text": "沒",
+     "start": 7.32,
+     "end": 7.46,
+     "score": 0.999
+    },
+    {
+     "text": "了",
+     "start": 7.52,
+     "end": 7.6,
+     "score": 0.841
+    },
+    {
+     "text": "字",
+     "start": 8,
+     "end": 8.12,
+     "score": 0.997
+    },
+    {
+     "text": "少",
+     "start": 8.28,
+     "end": 8.44,
+     "score": 0.94
+    },
+    {
+     "text": "快",
+     "start": 8.5,
+     "end": 8.66,
+     "score": 0.954
+    },
+    {
+     "text": "一",
+     "start": 8.68,
+     "end": 8.72,
+     "score": 0.177
+    },
+    {
+     "text": "半",
+     "start": 8.8,
+     "end": 8.94,
+     "score": 0.991
+    }
+   ],
    "charTimes": [
-    0,
-    0.167,
-    0.334,
-    0.501,
-    0.669,
-    1.036,
-    1.203,
-    1.371,
-    1.538,
-    1.905,
-    2.072,
-    2.24,
-    2.407,
-    2.774,
-    2.942,
-    3.109,
-    3.276,
-    3.443,
-    3.811,
-    3.978,
-    4.145,
-    4.312,
-    4.479,
-    4.847,
-    5.014,
-    5.181,
-    5.348,
-    5.515,
-    5.883,
-    6.05,
-    6.217,
-    6.385,
-    6.552,
-    6.919,
-    7.087,
-    7.254,
-    7.421,
-    7.588
+    0.24,
+    0.44,
+    0.56,
+    0.72,
+    0.92,
+    1.4,
+    1.6,
+    1.78,
+    1.96,
+    2.46,
+    2.64,
+    2.76,
+    2.96,
+    3.32,
+    3.48,
+    3.62,
+    3.8,
+    3.98,
+    4.6,
+    4.78,
+    4.96,
+    5.1,
+    5.26,
+    5.66,
+    5.86,
+    6.1,
+    6.3,
+    6.44,
+    6.76,
+    6.98,
+    7.16,
+    7.32,
+    7.52,
+    8,
+    8.28,
+    8.5,
+    8.68,
+    8.8
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 546,
-   "audioSec": 5.306,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 536,
-   "durationFrames": 178,
+   "audio": "audio/caffaine-gh-stopslop/04-s04.wav",
+   "audioFrame": 622,
+   "audioSec": 5.65,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 613,
+   "durationFrames": 186,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -490,140 +1137,340 @@
      8
     ]
    },
-   "voiceStartFrame": 546,
-   "voiceEndFrame": 706,
-   "stillFrame": 704,
+   "voiceStartFrame": 623,
+   "voiceEndFrame": 791,
+   "stillFrame": 789,
    "subtitleWindow": [
-    543,
-    711
+    620,
+    795
    ],
    "sourceWindow": [
-    541,
-    709
+    618,
+    794
    ],
    "lines": [
     {
      "text": "不過右邊多了",
-     "start": 543,
+     "start": 620,
      "chars": [
-      545,
-      550,
-      555,
-      560,
-      565,
-      570
+      628,
+      631,
+      636,
+      641,
+      648,
+      652
      ]
     },
     {
      "text": "題目沒給的事",
-     "start": 579,
+     "start": 654,
      "chars": [
-      581,
-      586,
-      591,
-      596,
-      601,
-      606
+      657,
+      661,
+      666,
+      671,
+      675,
+      680
      ]
     },
     {
      "text": "一套叫 Ramp 的系統",
-     "start": 615,
+     "start": 692,
      "chars": [
-      617,
-      622,
-      627,
-      627,
-      632,
-      637,
-      642,
-      647,
-      647,
-      652,
-      657,
-      662
+      694,
+      698,
+      704,
+      704,
+      712,
+      714,
+      715,
+      717,
+      717,
+      721,
+      726,
+      731
      ]
     },
     {
      "text": "每月耗掉兩週",
-     "start": 671,
+     "start": 740,
      "chars": [
-      673,
-      679,
-      684,
-      689,
-      694,
-      699
+      742,
+      748,
+      754,
+      759,
+      765,
+      771
      ]
     }
    ],
    "keywords": [
     {
      "text": "題目沒給",
-     "start": 581
+     "start": 657
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "題目沒給",
-     "frame": 582
+     "frame": 658,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "Ramp",
-     "frame": 634
+     "frame": 713,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "兩週",
-     "frame": 695
+     "frame": 766,
+     "early": 0
     }
    ],
+   "hash": "ef486aee1b24-50bc7d4ccc",
    "sub": "不過右邊多了\n題目沒給的事\n一套叫 Ramp 的系統\n每月耗掉兩週",
-   "provider": "estimate",
-   "syllables": 26,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.948,
+    "minScore": 0.011,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.26,
+      "start": 0.24,
+      "ch": "不",
+      "errMs": -20
+     },
+     {
+      "onset": 2.47,
+      "start": 2.46,
+      "ch": "一",
+      "errMs": -10
+     },
+     {
+      "onset": 4.06,
+      "start": 4.06,
+      "ch": "每",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.24,
+     "end": 0.32,
+     "score": 1
+    },
+    {
+     "text": "過",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.903
+    },
+    {
+     "text": "右",
+     "start": 0.52,
+     "end": 0.66,
+     "score": 0.999
+    },
+    {
+     "text": "邊",
+     "start": 0.68,
+     "end": 0.84,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 0.9,
+     "end": 1,
+     "score": 0.978
+    },
+    {
+     "text": "了",
+     "start": 1.06,
+     "end": 1.14,
+     "score": 0.998
+    },
+    {
+     "text": "題",
+     "start": 1.2,
+     "end": 1.28,
+     "score": 0.999
+    },
+    {
+     "text": "目",
+     "start": 1.36,
+     "end": 1.44,
+     "score": 0.996
+    },
+    {
+     "text": "沒",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.999
+    },
+    {
+     "text": "給",
+     "start": 1.68,
+     "end": 1.78,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.8,
+     "end": 1.86,
+     "score": 0.999
+    },
+    {
+     "text": "事",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.986
+    },
+    {
+     "text": "一",
+     "start": 2.46,
+     "end": 2.52,
+     "score": 0.965
+    },
+    {
+     "text": "套",
+     "start": 2.58,
+     "end": 2.76,
+     "score": 0.993
+    },
+    {
+     "text": "叫",
+     "start": 2.78,
+     "end": 2.96,
+     "score": 0.94
+    },
+    {
+     "text": "R",
+     "start": 3.04,
+     "end": 3.06,
+     "score": 0.998
+    },
+    {
+     "text": "a",
+     "start": 3.1,
+     "end": 3.12,
+     "score": 0.986
+    },
+    {
+     "text": "m",
+     "start": 3.16,
+     "end": 3.18,
+     "score": 0.011
+    },
+    {
+     "text": "p",
+     "start": 3.22,
+     "end": 3.24,
+     "score": 0.986
+    },
+    {
+     "text": "的",
+     "start": 3.36,
+     "end": 3.42,
+     "score": 0.996
+    },
+    {
+     "text": "系",
+     "start": 3.5,
+     "end": 3.6,
+     "score": 0.999
+    },
+    {
+     "text": "統",
+     "start": 3.68,
+     "end": 3.88,
+     "score": 0.952
+    },
+    {
+     "text": "每",
+     "start": 4.06,
+     "end": 4.2,
+     "score": 0.999
+    },
+    {
+     "text": "月",
+     "start": 4.26,
+     "end": 4.36,
+     "score": 0.978
+    },
+    {
+     "text": "耗",
+     "start": 4.46,
+     "end": 4.6,
+     "score": 0.999
+    },
+    {
+     "text": "掉",
+     "start": 4.62,
+     "end": 4.78,
+     "score": 0.993
+    },
+    {
+     "text": "兩",
+     "start": 4.8,
+     "end": 4.98,
+     "score": 0.938
+    },
+    {
+     "text": "週",
+     "start": 5.02,
+     "end": 5.24,
+     "score": 0.967
+    }
+   ],
    "charTimes": [
-    0,
-    0.168,
-    0.336,
-    0.504,
-    0.672,
-    0.84,
-    1.209,
-    1.377,
-    1.545,
-    1.713,
-    1.881,
-    2.049,
-    2.418,
-    2.586,
-    2.754,
-    2.922,
-    3.09,
-    3.258,
-    3.425,
-    3.593,
-    3.761,
-    3.929,
-    4.299,
-    4.467,
-    4.634,
-    4.802,
-    4.97,
-    5.138
+    0.24,
+    0.36,
+    0.52,
+    0.68,
+    0.9,
+    1.06,
+    1.2,
+    1.36,
+    1.5,
+    1.68,
+    1.8,
+    1.98,
+    2.46,
+    2.58,
+    2.78,
+    3.04,
+    3.1,
+    3.16,
+    3.22,
+    3.36,
+    3.5,
+    3.68,
+    4.06,
+    4.26,
+    4.46,
+    4.62,
+    4.8,
+    5.02
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 714,
-   "audioSec": 4.898,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 704,
-   "durationFrames": 166,
+   "audio": "audio/caffaine-gh-stopslop/05-s05.wav",
+   "audioFrame": 798,
+   "audioSec": 4.85,
+   "headSilSec": 0.02,
+   "tailSilSec": 0.04,
+   "startFrame": 789,
+   "durationFrames": 174,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -637,124 +1484,294 @@
      8
     ]
    },
-   "voiceStartFrame": 714,
-   "voiceEndFrame": 862,
-   "stillFrame": 860,
+   "voiceStartFrame": 798,
+   "voiceEndFrame": 943,
+   "stillFrame": 953,
    "subtitleWindow": [
-    711,
-    867
+    795,
+    960
    ],
    "sourceWindow": [
-    709,
-    865
+    794,
+    958
    ],
    "lines": [
     {
      "text": "公司公告再測",
-     "start": 711,
+     "start": 795,
      "chars": [
-      713,
-      718,
-      724,
-      729,
-      735,
-      740
+      797,
+      803,
+      807,
+      812,
+      816,
+      822
      ]
     },
     {
      "text": "加規則的兩次有一次",
-     "start": 750,
+     "start": 834,
      "chars": [
-      753,
-      758,
-      764,
-      769,
-      775,
-      780,
-      786,
-      792,
-      797
+      836,
+      843,
+      848,
+      852,
+      855,
+      862,
+      868,
+      873,
+      877
      ]
     },
     {
      "text": "也編了幾週縮到幾天",
-     "start": 807,
+     "start": 889,
      "chars": [
-      809,
-      815,
-      820,
-      826,
-      832,
-      837,
-      843,
-      848,
-      854
+      891,
+      896,
+      901,
+      905,
+      910,
+      917,
+      922,
+      927,
+      932
      ]
     }
    ],
    "keywords": [
     {
      "text": "公司公告",
-     "start": 713
+     "start": 797
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "公司公告",
-     "frame": 714
+     "frame": 799,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "也編了",
-     "frame": 811
+     "frame": 892,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "幾週縮到幾天",
-     "frame": 828
+     "frame": 906,
+     "early": 0
     }
    ],
+   "hash": "f6b3bfa56e62-50bc7d4ccc",
    "sub": "公司公告再測\n加規則的兩次有一次\n也編了幾週縮到幾天",
-   "provider": "estimate",
-   "syllables": 24,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.95,
+    "minScore": 0.128,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.33,
+      "start": 1.32,
+      "ch": "加",
+      "errMs": -10
+     },
+     {
+      "onset": 3.14,
+      "start": 3.14,
+      "ch": "也",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "公",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.993
+    },
+    {
+     "text": "司",
+     "start": 0.2,
+     "end": 0.28,
+     "score": 0.998
+    },
+    {
+     "text": "公",
+     "start": 0.34,
+     "end": 0.48,
+     "score": 0.99
+    },
+    {
+     "text": "告",
+     "start": 0.5,
+     "end": 0.62,
+     "score": 0.998
+    },
+    {
+     "text": "再",
+     "start": 0.64,
+     "end": 0.78,
+     "score": 0.999
+    },
+    {
+     "text": "測",
+     "start": 0.84,
+     "end": 0.98,
+     "score": 0.995
+    },
+    {
+     "text": "加",
+     "start": 1.32,
+     "end": 1.42,
+     "score": 0.998
+    },
+    {
+     "text": "規",
+     "start": 1.54,
+     "end": 1.66,
+     "score": 0.998
+    },
+    {
+     "text": "則",
+     "start": 1.72,
+     "end": 1.8,
+     "score": 0.983
+    },
+    {
+     "text": "的",
+     "start": 1.84,
+     "end": 1.9,
+     "score": 0.997
+    },
+    {
+     "text": "兩",
+     "start": 1.96,
+     "end": 2.14,
+     "score": 0.927
+    },
+    {
+     "text": "次",
+     "start": 2.18,
+     "end": 2.3,
+     "score": 0.998
+    },
+    {
+     "text": "有",
+     "start": 2.38,
+     "end": 2.5,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.54,
+     "end": 2.58,
+     "score": 0.128
+    },
+    {
+     "text": "次",
+     "start": 2.68,
+     "end": 2.82,
+     "score": 0.999
+    },
+    {
+     "text": "也",
+     "start": 3.14,
+     "end": 3.2,
+     "score": 1
+    },
+    {
+     "text": "編",
+     "start": 3.3,
+     "end": 3.44,
+     "score": 0.848
+    },
+    {
+     "text": "了",
+     "start": 3.48,
+     "end": 3.54,
+     "score": 0.999
+    },
+    {
+     "text": "幾",
+     "start": 3.6,
+     "end": 3.7,
+     "score": 0.999
+    },
+    {
+     "text": "週",
+     "start": 3.78,
+     "end": 3.94,
+     "score": 0.99
+    },
+    {
+     "text": "縮",
+     "start": 4.02,
+     "end": 4.12,
+     "score": 0.957
+    },
+    {
+     "text": "到",
+     "start": 4.18,
+     "end": 4.32,
+     "score": 0.998
+    },
+    {
+     "text": "幾",
+     "start": 4.34,
+     "end": 4.44,
+     "score": 0.999
+    },
+    {
+     "text": "天",
+     "start": 4.52,
+     "end": 4.74,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.186,
-    0.371,
-    0.557,
-    0.742,
-    0.928,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263,
-    2.449,
-    2.635,
-    2.82,
-    3.228,
-    3.414,
-    3.599,
-    3.785,
-    3.97,
-    4.156,
-    4.341,
-    4.527,
-    4.712
+    0.02,
+    0.2,
+    0.34,
+    0.5,
+    0.64,
+    0.84,
+    1.32,
+    1.54,
+    1.72,
+    1.84,
+    1.96,
+    2.18,
+    2.38,
+    2.54,
+    2.68,
+    3.14,
+    3.3,
+    3.48,
+    3.6,
+    3.78,
+    4.02,
+    4.18,
+    4.34,
+    4.52
    ]
   },
   {
    "id": "s06",
-   "audio": null,
-   "audioFrame": 870,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 860,
-   "durationFrames": 147,
+   "audio": "audio/caffaine-gh-stopslop/06-s06.wav",
+   "audioFrame": 962,
+   "audioSec": 4.34,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 953,
+   "durationFrames": 159,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -768,118 +1785,270 @@
      8
     ]
    },
-   "voiceStartFrame": 870,
-   "voiceEndFrame": 999,
-   "stillFrame": 997,
+   "voiceStartFrame": 963,
+   "voiceEndFrame": 1091,
+   "stillFrame": 1102,
    "subtitleWindow": [
-    867,
-    1004
+    960,
+    1109
    ],
    "sourceWindow": [
-    865,
-    1002
+    958,
+    1107
    ],
    "lines": [
     {
      "text": "要用就貼上規則檔",
-     "start": 867,
+     "start": 960,
      "chars": [
-      869,
-      874,
-      879,
-      885,
-      890,
-      896,
-      901,
-      907
+      967,
+      972,
+      977,
+      983,
+      988,
+      994,
+      998,
+      1002
      ]
     },
     {
      "text": "再加一句",
-     "start": 917,
+     "start": 1012,
      "chars": [
-      919,
-      925,
-      930,
-      936
+      1014,
+      1020,
+      1025,
+      1030
      ]
     },
     {
      "text": "不要加我沒給的事實",
-     "start": 946,
+     "start": 1041,
      "chars": [
-      948,
-      953,
-      959,
-      964,
-      970,
-      975,
-      981,
-      986,
-      992
+      1043,
+      1048,
+      1053,
+      1059,
+      1063,
+      1068,
+      1073,
+      1077,
+      1084
      ]
     }
    ],
    "keywords": [
     {
      "text": "貼上規則檔",
-     "start": 885
+     "start": 983
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "貼上規則檔",
-     "frame": 886
+     "frame": 984,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "不要加",
-     "frame": 949
+     "frame": 1045,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "沒給的事實",
-     "frame": 971
+     "frame": 1065,
+     "early": 0
     }
    ],
+   "hash": "32e3e7c7280a-50bc7d4ccc",
    "sub": "要用就貼上規則檔\n再加一句\n不要加我沒給的事實",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.978,
+    "minScore": 0.663,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.81,
+      "start": 1.78,
+      "ch": "再",
+      "errMs": -30
+     },
+     {
+      "onset": 2.77,
+      "start": 2.76,
+      "ch": "不",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "要",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 0.38,
+     "end": 0.54,
+     "score": 0.996
+    },
+    {
+     "text": "就",
+     "start": 0.56,
+     "end": 0.68,
+     "score": 0.944
+    },
+    {
+     "text": "貼",
+     "start": 0.74,
+     "end": 0.86,
+     "score": 0.988
+    },
+    {
+     "text": "上",
+     "start": 0.92,
+     "end": 1.08,
+     "score": 0.984
+    },
+    {
+     "text": "規",
+     "start": 1.1,
+     "end": 1.2,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 1.24,
+     "end": 1.34,
+     "score": 0.999
+    },
+    {
+     "text": "檔",
+     "start": 1.4,
+     "end": 1.58,
+     "score": 0.986
+    },
+    {
+     "text": "再",
+     "start": 1.78,
+     "end": 1.92,
+     "score": 0.999
+    },
+    {
+     "text": "加",
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.16,
+     "end": 2.22,
+     "score": 0.663
+    },
+    {
+     "text": "句",
+     "start": 2.3,
+     "end": 2.42,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 2.76,
+     "end": 2.84,
+     "score": 1
+    },
+    {
+     "text": "要",
+     "start": 2.9,
+     "end": 3.04,
+     "score": 0.999
+    },
+    {
+     "text": "加",
+     "start": 3.08,
+     "end": 3.18,
+     "score": 1
+    },
+    {
+     "text": "我",
+     "start": 3.28,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "沒",
+     "start": 3.42,
+     "end": 3.54,
+     "score": 0.999
+    },
+    {
+     "text": "給",
+     "start": 3.58,
+     "end": 3.7,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.74,
+     "end": 3.8,
+     "score": 0.999
+    },
+    {
+     "text": "事",
+     "start": 3.88,
+     "end": 3.98,
+     "score": 0.996
+    },
+    {
+     "text": "實",
+     "start": 4.1,
+     "end": 4.22,
+     "score": 0.996
+    }
+   ],
    "charTimes": [
-    0,
-    0.183,
-    0.366,
-    0.549,
-    0.733,
-    0.916,
-    1.099,
-    1.282,
-    1.685,
-    1.868,
-    2.051,
-    2.234,
-    2.637,
-    2.821,
-    3.004,
-    3.187,
-    3.37,
-    3.553,
-    3.736,
-    3.919,
-    4.103
+    0.2,
+    0.38,
+    0.56,
+    0.74,
+    0.92,
+    1.1,
+    1.24,
+    1.4,
+    1.78,
+    1.98,
+    2.16,
+    2.3,
+    2.76,
+    2.9,
+    3.08,
+    3.28,
+    3.42,
+    3.58,
+    3.74,
+    3.88,
+    4.1
    ]
   },
   {
    "id": "s07",
-   "audio": null,
-   "audioFrame": 1008,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 997,
-   "durationFrames": 124,
+   "audio": "audio/caffaine-gh-stopslop/07-s07.wav",
+   "audioFrame": 1111,
+   "audioSec": 6.54,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1102,
+   "durationFrames": 212,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -893,266 +2062,355 @@
      8
     ]
    },
-   "voiceStartFrame": 1007,
-   "voiceEndFrame": 1113,
-   "stillFrame": 1111,
+   "voiceStartFrame": 1112,
+   "voiceEndFrame": 1306,
+   "stillFrame": 1304,
    "subtitleWindow": [
-    1004,
-    1118
+    1109,
+    1314
    ],
    "sourceWindow": [
-    1002,
-    1116
-   ],
-   "lines": [
-    {
-     "text": "不過只測了英文",
-     "start": 1004,
-     "chars": [
-      1007,
-      1012,
-      1017,
-      1023,
-      1028,
-      1033,
-      1039
-     ]
-    },
-    {
-     "text": "中文有沒有用",
-     "start": 1048,
-     "chars": [
-      1050,
-      1056,
-      1061,
-      1067,
-      1072,
-      1077
-     ]
-    },
-    {
-     "text": "還不知道",
-     "start": 1087,
-     "chars": [
-      1089,
-      1094,
-      1100,
-      1105
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "只測了英文",
-     "start": 1017
-    }
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "只測了英文",
-     "frame": 1019
-    },
-    {
-     "id": "k2",
-     "text": "中文有沒有用",
-     "frame": 1052
-    },
-    {
-     "id": "k3",
-     "text": "還不知道",
-     "frame": 1091
-    }
-   ],
-   "sub": "不過只測了英文\n中文有沒有用\n還不知道",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
-   "charTimes": [
-    0,
-    0.179,
-    0.358,
-    0.537,
-    0.715,
-    0.894,
-    1.073,
-    1.466,
-    1.645,
-    1.824,
-    2.003,
-    2.182,
-    2.361,
-    2.754,
-    2.933,
-    3.112,
-    3.291
-   ]
-  },
-  {
-   "id": "s08",
-   "audio": null,
-   "audioFrame": 1121,
-   "audioSec": 5.51,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1111,
-   "durationFrames": 184,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1121,
-   "voiceEndFrame": 1287,
-   "stillFrame": 1285,
-   "subtitleWindow": [
-    1118,
-    1295
-   ],
-   "sourceWindow": [
-    1116,
-    1290
+    1107,
+    1309
    ],
    "lines": [
     {
      "text": "所以答案是",
-     "start": 1118,
+     "start": 1109,
      "chars": [
+      1112,
+      1117,
       1120,
-      1125,
-      1130,
-      1135,
-      1140
+      1126,
+      1132
      ]
     },
     {
      "text": "少了套路",
-     "start": 1148,
+     "start": 1143,
      "chars": [
+      1145,
       1151,
-      1156,
-      1161,
-      1166
+      1155,
+      1162
      ]
     },
     {
      "text": "沒少編造",
-     "start": 1175,
+     "start": 1170,
      "chars": [
-      1177,
-      1182,
-      1187,
+      1173,
+      1180,
+      1186,
       1192
      ]
     },
     {
      "text": "值得收藏",
-     "start": 1201,
+     "start": 1208,
      "chars": [
-      1203,
-      1208,
-      1213,
-      1218
+      1210,
+      1215,
+      1219,
+      1225
      ]
     },
     {
      "text": "留言「去味」",
-     "start": 1227,
+     "start": 1236,
      "chars": [
-      1229,
-      1234,
-      1234,
       1239,
-      1244,
-      1244
+      1245,
+      1245,
+      1252,
+      1260,
+      1260
      ]
     },
     {
      "text": "拿規則檔連結",
-     "start": 1253,
+     "start": 1267,
      "chars": [
-      1255,
-      1260,
-      1265,
-      1270,
+      1269,
       1275,
-      1280
+      1281,
+      1285,
+      1290,
+      1296
      ]
     }
    ],
    "keywords": [
     {
      "text": "少了套路",
-     "start": 1151
+     "start": 1145
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "少了套路",
-     "frame": 1152
+     "frame": 1146,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "值得收藏",
-     "frame": 1204
+     "frame": 1212,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "去味",
-     "frame": 1240
+     "frame": 1254,
+     "early": 0
     }
    ],
+   "hash": "33b3d85ee137-50bc7d4ccc",
    "sub": "所以答案是\n少了套路\n沒少編造\n值得收藏\n留言「去味」\n拿規則檔連結",
-   "provider": "estimate",
-   "syllables": 27,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.986,
+    "minScore": 0.936,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 1.13,
+      "start": 1.18,
+      "ch": "少",
+      "errMs": 50
+     },
+     {
+      "onset": 2.11,
+      "start": 2.1,
+      "ch": "沒",
+      "errMs": -10
+     },
+     {
+      "onset": 3.36,
+      "start": 3.36,
+      "ch": "值",
+      "errMs": 0
+     },
+     {
+      "onset": 4.32,
+      "start": 4.3,
+      "ch": "留",
+      "errMs": -20
+     },
+     {
+      "onset": 5.34,
+      "start": 5.32,
+      "ch": "拿",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.971
+    },
+    {
+     "text": "以",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.962
+    },
+    {
+     "text": "答",
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.998
+    },
+    {
+     "text": "案",
+     "start": 0.56,
+     "end": 0.64,
+     "score": 0.983
+    },
+    {
+     "text": "是",
+     "start": 0.74,
+     "end": 0.84,
+     "score": 0.975
+    },
+    {
+     "text": "少",
+     "start": 1.18,
+     "end": 1.36,
+     "score": 0.996
+    },
+    {
+     "text": "了",
+     "start": 1.4,
+     "end": 1.46,
+     "score": 0.997
+    },
+    {
+     "text": "套",
+     "start": 1.52,
+     "end": 1.72,
+     "score": 0.992
+    },
+    {
+     "text": "路",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.994
+    },
+    {
+     "text": "沒",
+     "start": 2.1,
+     "end": 2.24,
+     "score": 0.999
+    },
+    {
+     "text": "少",
+     "start": 2.34,
+     "end": 2.5,
+     "score": 0.997
+    },
+    {
+     "text": "編",
+     "start": 2.54,
+     "end": 2.68,
+     "score": 0.989
+    },
+    {
+     "text": "造",
+     "start": 2.74,
+     "end": 2.94,
+     "score": 0.998
+    },
+    {
+     "text": "值",
+     "start": 3.36,
+     "end": 3.46,
+     "score": 0.936
+    },
+    {
+     "text": "得",
+     "start": 3.52,
+     "end": 3.58,
+     "score": 0.998
+    },
+    {
+     "text": "收",
+     "start": 3.66,
+     "end": 3.8,
+     "score": 0.938
+    },
+    {
+     "text": "藏",
+     "start": 3.84,
+     "end": 4.08,
+     "score": 0.979
+    },
+    {
+     "text": "留",
+     "start": 4.3,
+     "end": 4.46,
+     "score": 0.998
+    },
+    {
+     "text": "言",
+     "start": 4.52,
+     "end": 4.68,
+     "score": 0.998
+    },
+    {
+     "text": "去",
+     "start": 4.76,
+     "end": 4.92,
+     "score": 0.995
+    },
+    {
+     "text": "味",
+     "start": 5.02,
+     "end": 5.18,
+     "score": 0.999
+    },
+    {
+     "text": "拿",
+     "start": 5.32,
+     "end": 5.4,
+     "score": 0.997
+    },
+    {
+     "text": "規",
+     "start": 5.52,
+     "end": 5.64,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 5.7,
+     "end": 5.78,
+     "score": 0.987
+    },
+    {
+     "text": "檔",
+     "start": 5.84,
+     "end": 6,
+     "score": 0.95
+    },
+    {
+     "text": "連",
+     "start": 6.02,
+     "end": 6.18,
+     "score": 0.997
+    },
+    {
+     "text": "結",
+     "start": 6.22,
+     "end": 6.36,
+     "score": 0.994
+    }
+   ],
    "charTimes": [
-    0,
-    0.167,
-    0.334,
-    0.501,
-    0.668,
-    1.035,
-    1.202,
-    1.369,
-    1.536,
-    1.904,
-    2.071,
-    2.237,
-    2.404,
-    2.772,
-    2.939,
-    3.106,
-    3.273,
-    3.64,
-    3.807,
-    3.974,
-    4.141,
-    4.508,
-    4.675,
-    4.842,
-    5.009,
-    5.176,
-    5.343
+    0.08,
+    0.24,
+    0.36,
+    0.56,
+    0.74,
+    1.18,
+    1.4,
+    1.52,
+    1.76,
+    2.1,
+    2.34,
+    2.54,
+    2.74,
+    3.36,
+    3.52,
+    3.66,
+    3.84,
+    4.3,
+    4.52,
+    4.76,
+    5.02,
+    5.32,
+    5.52,
+    5.7,
+    5.84,
+    6.02,
+    6.22
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1285,
+   "audioFrame": 1304,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1285,
+   "startFrame": 1304,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1167,24 +2425,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1295,
-   "voiceEndFrame": 1295,
-   "stillFrame": 1381,
+   "voiceStartFrame": 1314,
+   "voiceEndFrame": 1314,
+   "stillFrame": 1400,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1290,
-    1393
+    1309,
+    1412
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-gh-stopslop/voice.wav",
+  "lufsIn": -17.48,
+  "lufs": -16,
+  "sec": 47.067
+ }
 }

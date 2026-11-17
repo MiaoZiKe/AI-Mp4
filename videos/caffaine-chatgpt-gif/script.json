@@ -162,7 +162,7 @@
      },
      {
       "text": "直接打",
-      "at": "k2+8",
+      "at": "k3+14",
       "color": "wrong",
       "hot": true
      }
@@ -198,7 +198,7 @@
    "props": {
     "tag": "做法",
     "tagColor": "sky",
-    "track": 0,
+    "track": 1,
     "kw": {
      "調播放速度": "sky"
     },
@@ -311,136 +311,6 @@
   },
   {
    "id": "s05",
-   "beat": "check",
-   "narration": "先說清楚，我們沒有實測，這是照媒體報導做的示意。",
-   "subtitle": {
-    "zh": "先說清楚\n我們沒有實測\n這是照媒體報導做的示意",
-    "en": "To be clear: we did not test this."
-   },
-   "keywords": [
-    "沒有實測"
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "沒有實測"
-    },
-    {
-     "id": "k2",
-     "text": "媒體報導"
-    },
-    {
-     "id": "k3",
-     "text": "示意"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "tag": "對照",
-    "tagColor": "wrong",
-    "track": 1,
-    "kw": {
-     "沒有實測": "wrong"
-    },
-    "view": "kinetic",
-    "tone": "bug",
-    "status": "示意・非實測",
-    "statusAt": "k1+6",
-    "rows": [
-     {
-      "big": "沒實測",
-      "unit": "示意",
-      "at": "start-10",
-      "color": "wrong",
-      "size": 200,
-      "usize": 110
-     },
-     {
-      "big": "媒體報導",
-      "unit": "",
-      "at": "k2",
-      "color": "primary",
-      "size": 150,
-      "usize": 110
-     }
-    ]
-   },
-   "sources": [
-    "OpenAI 額度用完、官方原文讀不到"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s06",
-   "beat": "unknown",
-   "narration": "報導說逐步開放，免費版能不能用，各家寫得不一樣。",
-   "subtitle": {
-    "zh": "報導說逐步開放\n免費版能不能用\n各家寫得不一樣",
-    "en": "Press says gradual rollout."
-   },
-   "keywords": [
-    "逐步開放"
-   ],
-   "cues": [
-    {
-     "id": "k1",
-     "text": "逐步開放"
-    },
-    {
-     "id": "k2",
-     "text": "免費版"
-    },
-    {
-     "id": "k3",
-     "text": "寫得不一樣"
-    }
-   ],
-   "component": "IsoScene",
-   "props": {
-    "tag": "還不知道",
-    "tagColor": "plum",
-    "track": 2,
-    "kw": {
-     "逐步開放": "plum"
-    },
-    "view": "check",
-    "tone": "unknown",
-    "status": "查不到・截至 2026/11/17",
-    "statusAt": "k1+6",
-    "mode": "list",
-    "head": {
-     "text": "開放範圍，各家寫法不一",
-     "at": "start-1",
-     "color": "plum"
-    },
-    "items": [
-     {
-      "text": "多家：逐步開放",
-      "sub": "",
-      "at": "k1",
-      "color": "primary"
-     },
-     {
-      "text": "一說：所有訂閱方案",
-      "sub": "",
-      "at": "k2",
-      "color": "right"
-     },
-     {
-      "text": "一說：沒提免費版",
-      "sub": "",
-      "at": "k3",
-      "color": "wrong"
-     }
-    ]
-   },
-   "sources": [
-    "媒體報導：INSIDE、mixed-news、TechRepublic"
-   ],
-   "para": 1
-  },
-  {
-   "id": "s07",
    "beat": "cta",
    "narration": "一句話就能做 GIF。你想先做什麼？留言「動圖」，我把提示詞給你。",
    "subtitle": {
@@ -476,8 +346,8 @@
     "tone": "claim",
     "keyword": "動圖",
     "kicker": "想要做 GIF 的提示詞",
-    "kwAt": "k1",
-    "allAt": "k3",
+    "kwAt": "k1+16",
+    "allAt": "k2-8",
     "card": "可直接貼的提示詞",
     "sub": "私訊給你"
    },
