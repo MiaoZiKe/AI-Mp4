@@ -21,3 +21,7 @@
 - 爆炸剖析：冷板（蓋板、O 形環往上、導熱膏、晶片往下，每層標名稱，講到「進去」時蓋板與 O 形環移走、其餘回位）、CDU 熱交換板散開；右上倍率讀數（機櫃 ×1、GPU 主機板 ×10、冷板 ×20）。
 - 零件改不透明：電路板（銅走線貼圖、PCIe 插槽金手指、電源接頭、螺絲孔、電阻電感）、風扇（方框外殼＋7 葉＋輪轂馬達）、冷板（25 片鰭、螺栓蓋板）、CDU 外殼與熱交換板、墊片。
 - 修正 0:30 藍管橫過剖面卡（熱交換器卡提早出現）。逐句對照表 sync-table.md、截圖 out/tech-cooling.v3-sync1～4.jpg、近景 out/tech-cooling.v3-closeup-pcb／coldplate／cdu.png。
+
+## v4（2026/11/17）：out/tech-cooling.v4.mp4（61.3 秒；格子圖 out/tech-cooling.v4-grid.jpg）
+- Andy 核准液冷 v3，排 11/21（六）20:00。v4＝v3 只修熱交換器剖面卡（0:30–0:36）上方標籤「機櫃來的熱水」被標題蓋住露出的紅色殘字；同一份音軌，沒送 TTS，其餘畫面不動。
+- 已排進 tw-rotation：social/tc/queue/20261121_cooling/、網站文章 site/articles/tech/2026-11-21-tech-cooling.json、dm_config 關鍵字「液冷」。
