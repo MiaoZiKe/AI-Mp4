@@ -39,11 +39,12 @@ for k, v in materials.items():
     if isinstance(v.get("color"), str) and not v["color"].startswith("lp_"): pass
 
 
-palette.update({"pwr":"#F5B83D","pwrHi":"#FFD36B","coolB":"#3FA9F5","hotO":"#FF7A2F","rackFr":"#2B3548","trayB":"#3A4A66","trayF":"#5B6C8C","green":"#2E8B57","nic":"#4C6FD6"})
+palette.update({"pcbG":"#3A9A74","pwr":"#F5B83D","pwrHi":"#FFD36B","coolB":"#3FA9F5","hotO":"#FF7A2F","rackFr":"#2B3548","trayB":"#3A4A66","trayF":"#5B6C8C","green":"#2E8B57","nic":"#4C6FD6"})
 for k, c in (("pwr", "pwr"), ("pwrHi", "pwrHi"), ("rackFr", "rackFr"), ("trayB", "trayB"), ("trayF", "trayF"), ("green", "green"), ("nic", "nic")):
     materials[mm(k)] = M(c, rough=.4, metal=.3)
 materials[mm("coolB")] = {"kind":"phys","color":"coolB","rough":.15,"metal":0,"clearcoat":.7,"opacity":.8,"env":.5}
 materials[mm("hotO")] = {"kind":"phys","color":"hotO","rough":.15,"metal":0,"clearcoat":.7,"opacity":.85,"env":.5}
+materials[mm("pcbtr")] = M("pcbG", rough=.55, tex="traces", texScale=.35)
 materials[mm("cable")] = M("cu", rough=.35, metal=.8, env=.6)
 
 lib = []
@@ -145,6 +146,7 @@ for k in range(90):
 smd = [p for p in smd if not (abs(abs(p[0]) - 3.9) < 3.3 and abs(p[2]) < 2.3)]
 box("tpd_smd", "tpd", mm("chipBk"), [0.16, 0.07, 0.09], [TX, TY+0.035, 0], at=smd)
 box("tpd_smd2", "tpd", mm("steel"), [0.1, 0.06, 0.07], [TX, TY+0.03, 0], at=[[p[0]+0.2, 0, p[2]+0.12] for p in smd[::2]])
+box("tpd_tex", "tpd", mm("pcbtr"), [15.4, 0.004, 9.6], [TX, TY+0.003, 0])
 box("tpd_slot", "tpd", mm("slot"), [5.2, 0.25, 0.28], [TX-2.4, TY+0.12, 4.45])
 box("tpd_slotg", "tpd", mm("cuHi"), [4.9, 0.03, 0.08], [TX-2.4, TY+0.26, 4.45])
 box("tpd_screw", "tpd", mm("steel"), [0.14, 0.08], [TX, TY+0.04, 0], at=[[sx*7.4, 0, sz*4.6] for sx in (-1, 1) for sz in (-1, 1)], shape="cyl")
@@ -186,8 +188,10 @@ anchor("r_rail", "c8", [W/2-0.3, SLOTY["c8"], D/2], dx=150, dy=-60)
 anchor("r_chas", "c12", [-W/2+0.3, SLOTY["c12"], D/2], dx=-150, dy=-40)
 anchor("t_pcbA", "tp", [TX-7.8, TY+0.14, 2.4], dx=-120, dy=90)
 anchor("t_vrmA", "vrm0", [TX-6.2, TY+0.3, -2.85], dx=-120, dy=-60)
+anchor("t_lid", "cp0", [TX+MODX[0]+0.85+2.0, TY+0.22+0.42+0.4, 0.8], dx=140, dy=-70)
+anchor("t_base", "cpb0", [TX+MODX[0]+0.85-2.0, TY+0.22+0.42+0.2, 0.8], dx=-150, dy=40)
 anchor("t_gpu", "sc0_g0", [TX+MODX[0]-0.2+0.85, TY+0.22+0.42, 1.0], dx=-130, dy=-80)
-anchor("t_cpu", "sc0_c", [TX+MODX[0]-2.1+0.7, TY+0.22+0.34, 0.7], dx=-140, dy=60)
+anchor("t_cpu", "sc0_c", [TX+MODX[0]-2.1+0.7, TY+0.22+0.34, 0.7], dx=-60, dy=-170)
 anchor("t_cp", "cp0", [TX+MODX[0]+0.85+2.0, PY, 0], dx=130, dy=-50)
 anchor("t_nic", "tp_nic", [TX-4.5+0.8, TY+0.2, 3.9], dx=-140, dy=40)
 

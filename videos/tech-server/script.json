@@ -21,14 +21,36 @@
  "hud": {
   "levels": [
    {
-    "id": "pk",
+    "id": "rack",
     "label": "AI 伺服器機櫃",
     "en": "AI SERVER RACK",
-    "field": "約 2.2 m",
-    "ruler": "10 cm",
+    "field": "2 m",
+    "ruler": "50 cm",
     "art": "none",
     "handoff3D": true,
-    "readout": false,
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   },
+   {
+    "id": "board",
+    "label": "運算托盤",
+    "en": "COMPUTE TRAY",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   },
+   {
+    "id": "plate",
+    "label": "冷板",
+    "en": "COLD PLATE",
+    "field": "10 cm",
+    "ruler": "2 cm",
+    "art": "none",
+    "readout": true,
     "note": "查證截至 2026/11/20",
     "noteAlways": true
    }
@@ -100,7 +122,7 @@
     },
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-30",
       "dur": 1
      }
@@ -791,7 +813,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-2",
       "dur": 1
      }
@@ -907,6 +929,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "four-8",
+      "dur": 30
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1178,6 +1207,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "rack",
+      "at": "start-6",
+      "dur": 30
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1449,6 +1485,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "heat-10",
+      "dur": 30
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1683,7 +1726,27 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "plate",
+      "at": "chipf-28",
+      "dur": 30
+     },
+     {
+      "to": "rack",
+      "at": "out-8",
+      "dur": 30
+     }
+    ],
     "shot": [
+     {
+      "at": "chipf-22",
+      "dur": 14,
+      "x": 146.95,
+      "y": -0.6,
+      "d": 20,
+      "elev": 36
+     },
      {
       "at": "out-4",
       "dur": 1,
@@ -1836,18 +1899,6 @@
       "ramp": 6
      },
      {
-      "id": "hs0_heat",
-      "at": "s6:heat",
-      "until": "liq-12",
-      "ramp": 6
-     },
-     {
-      "id": "hs1_heat",
-      "at": "s6:heat",
-      "until": "liq-12",
-      "ramp": 6
-     },
-     {
       "id": "hs0_waves",
       "at": "air",
       "until": "liq-12",
@@ -1982,12 +2033,28 @@
     ],
     "labels": [
      {
-      "part": "t_cp",
-      "text": "冷板（銅）",
-      "en": "cold plate",
+      "part": "t_lid",
+      "text": "蓋板",
+      "en": "lid",
+      "color": "amber",
+      "at": "chipf+6",
+      "until": "out-8"
+     },
+     {
+      "part": "t_base",
+      "text": "銅底板＋水道",
+      "en": "copper base with channels",
       "color": "blue",
-      "at": "liq+8",
-      "until": "out-6"
+      "at": "chipf+8",
+      "until": "out-8"
+     },
+     {
+      "part": "t_gpu",
+      "text": "晶片",
+      "en": "GPU die",
+      "color": "amber",
+      "at": "chipf+10",
+      "until": "out-8"
      }
     ],
     "overlay": [

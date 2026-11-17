@@ -41,6 +41,7 @@
   "lp_bad": "#E0472F",
   "water": "#7CD4FF",
   "dashC": "#E0472F",
+  "pcbG": "#3A9A74",
   "pwr": "#F5B83D",
   "pwrHi": "#FFD36B",
   "coolB": "#3FA9F5",
@@ -284,6 +285,14 @@
    "clearcoat": 0.7,
    "opacity": 0.85,
    "env": 0.5
+  },
+  "m_pcbtr": {
+   "kind": "std",
+   "color": "pcbG",
+   "rough": 0.55,
+   "metal": 0.1,
+   "tex": "traces",
+   "texScale": 0.35
   },
   "m_cable": {
    "kind": "std",
@@ -701,6 +710,26 @@
    "dx": -120,
    "dy": -60
   },
+  "t_lid": {
+   "layer": "cp0",
+   "p": [
+    148.95,
+    1.18,
+    0.8
+   ],
+   "dx": 140,
+   "dy": -70
+  },
+  "t_base": {
+   "layer": "cpb0",
+   "p": [
+    144.95,
+    0.98,
+    0.8
+   ],
+   "dx": -150,
+   "dy": 40
+  },
   "t_gpu": {
    "layer": "sc0_g0",
    "p": [
@@ -718,8 +747,8 @@
     0.7,
     0.7
    ],
-   "dx": -140,
-   "dy": 60
+   "dx": -60,
+   "dy": -170
   },
   "t_cp": {
    "layer": "cp0",
@@ -7335,6 +7364,22 @@
      -4.12
     ]
    ]
+  },
+  {
+   "id": "tpd_tex",
+   "layer": "tpd",
+   "shape": "box",
+   "size": [
+    15.4,
+    0.004,
+    9.6
+   ],
+   "pos": [
+    150,
+    0.143,
+    0
+   ],
+   "mat": "m_pcbtr"
   },
   {
    "id": "tpd_slot",
