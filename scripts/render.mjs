@@ -22,7 +22,7 @@ const V2MIX = [2, 3].includes(script.styleVersion) && script.timeline?.voice && 
 const out = path.join(ROOT, "out", `${slug}${script.audit ? "-audit" : ""}${V2MIX ? ".video" : ""}.mp4`);
 const t0 = Date.now();
 let last = -1;
-await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: renderTuning.concurrency,
+await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: renderTuning.concurrency, ...(process.env.RENDER_TIMEOUT_MS ? { timeoutInMilliseconds: Number(process.env.RENDER_TIMEOUT_MS) } : {}),
   onProgress: ({ progress }) => { const p = Math.floor(progress * 10); if (p !== last) { last = p; console.log(`render ${p * 10}%`); } } });
 const ms = Date.now() - t0;
 if (!script.audit) fs.writeFileSync(path.join(ROOT, "out", `${slug}.render.json`), JSON.stringify({ frames: comp.durationInFrames, renderSec: Math.round(ms / 1000), msPerFrame: Math.round(ms / comp.durationInFrames), concurrency: renderTuning.concurrency, at: new Date().toISOString() }, null, 1));
