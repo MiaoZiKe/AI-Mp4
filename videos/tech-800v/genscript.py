@@ -171,7 +171,7 @@ scenes.append(scene("s8", "twist", 8,
     {"zoom": [{"to": "rack", "at": "start-2", "dur": 1}], "shot": [{"at": "start-2", "dur": 1, **SH_R2}],
      "run": [run("r_scglow", "start-2", "s9:start-2", 4), run("r_fan", "start-2", "s9:start-2", 4), run("r_sc", "start-2", "s9:start-2", 4), run("r_curN", "start-2", "s9:start-2", 4), run("r_curN2", "start-2", "s9:start-2", 4)],
      "labels": [],
-     "overlay": [card("pw-unk", "save-2", "s9:start-14", {"save": "save", "none": "none", "real": "real"}, y=905, h=345, title="整套能省多少", tag="廠商目標值")]},
+     "overlay": [card("pw-unk", "save-2", "s9:start-14", {"save": "save", "none": "none", "real": "real"}, y=905, h=345, title="整套能省多少", tag="廠商目標")]},
     ["NVIDIA 2025/5（目標最多降 30% 總持有成本）"], pause=0.7))
 
 # s9：so 所以、up 電壓拉高、small 電流變小、slim 銅條就能細、full 想要完整解說、kw 留言供電、next 下一支
@@ -184,12 +184,12 @@ scenes.append(scene("s9", "cta", 9,
     {"zoom": [{"to": "rack", "at": "start-2", "dur": 1}], "shot": [{"at": "start-2", "dur": 24, **SH_R2, "yaw": -0.5}],
      "run": [run("r_scglow", "start-2", "s10:start-2", 4), run("r_fan", "start-2", "s10:start-2", 4), run("r_sc", "start-2", "s10:start-2", 4), run("r_curN", "slim", "s10:start-2", 6), run("r_curN2", "slim", "s10:start-2", 6)],
      "labels": [lab("rk_thin", "細銅排", "thin busbar", "blue", "slim", "full")],
-     "overlay": [card("pw-sum", "so-2", "s10:start-14", {"so": "so", "up": "up", "small": "small", "slim": "slim"}, y=905, h=345, title="一句話", tag="示意"),
+     "overlay": [card("pw-sum", "so-2", "next-10", {"so": "so", "up": "up", "small": "small", "slim": "slim"}, y=905, h=345, title="一句話", tag="示意"),
                  stamp("完整解說", "full", "kw", "amber", 52, x=300, y=330, avoid=False), stamp("留言「供電」", "kw", "s10:start-2", "amber", 56, x=300, y=330, avoid=False)]},
     ["下一支：11/23（一）晶片設計公司（已排定）"]))
 
 scenes.append({"id": "s10", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene",
-               "props": {"endCard": {"next": "晶片設計公司為什麼沒有工廠", "trail": ["電壓", "電流", "銅排", "降壓"], "at": "s9:next", "comment": "供電", "logoAnim": "transparent"}}, "sources": []})
+               "props": {"endCard": {"next": "晶片設計公司", "trail": ["電壓", "電流", "銅排", "降壓"], "at": "s9:next", "comment": "供電", "logoAnim": "transparent"}}, "sources": []})
 script = {
  "slug": "tech-800v", "title": "八百伏特：AI 機櫃為什麼要把電壓拉高（科技透明圈 第 9 支）", "asOf": "2026/11/22", "styleVersion": 3, "stage": "three",
  "channel": {"name": "科技透明圈", "tag": "放大來看", "slogan": "一支講透一件事"}, "hudSkin": "light",

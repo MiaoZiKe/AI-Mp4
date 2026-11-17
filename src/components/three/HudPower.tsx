@@ -50,6 +50,13 @@ const Compare: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <g opacity={(1 - aV)}>
+          <g opacity={aP}><rect x={110} y={90} width={200} height={150} fill={H.amber} /><text x={210} y={150} textAnchor="middle" style={zh(sm(34), onC(H.amber), 900)}>功率 P</text><text x={210} y={206} textAnchor="middle" style={mono(46, onC(H.amber), 900)}>送出去的電</text></g>
+          <g opacity={aVI}><text x={338} y={190} textAnchor="middle" style={mono(70, H.text, 900)}>＝</text>
+            <rect x={380} y={90} width={200} height={150} fill={H.line} /><text x={480} y={150} textAnchor="middle" style={zh(sm(34), onC(H.line), 900)}>電壓 V</text><text x={480} y={206} textAnchor="middle" style={mono(46, onC(H.line), 900)}>推力</text>
+            <text x={608} y={190} textAnchor="middle" style={mono(70, H.text, 900)}>×</text>
+            <rect x={640} y={90} width={200} height={150} fill={c("lp_sig")} /><text x={740} y={150} textAnchor="middle" style={zh(sm(34), H.onAccent, 900)}>電流 I</text><text x={740} y={206} textAnchor="middle" style={mono(46, H.onAccent, 900)}>流量</text></g>
+        </g>
         <text x={24} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aP}>P ＝</text>
         <text x={110} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aVI}>V × I</text>
         <text x={250} y={Hh - 12} style={zh(sm(30), H.amber, 800)} opacity={aVI}>功率不變</text>
@@ -138,17 +145,22 @@ const Chain: React.FC<P> = ({ o, f, k, m }) => {
   );
 };
 
-// ── pw-unk：省多少？廠商目標值（非實測）──
+// ── pw-unk：整套能省多少（廠商目標值，非實測）：現況 100% 對目標最多少三成 ──
 const Unk: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 345;
-  const a = tween(f, T(o, "save"), 8, EASE.enter), b = tween(f, T(o, "none"), 8, EASE.enter), r = tween(f, T(o, "real"), 8, EASE.enter);
+  const a = tween(f, T(o, "save"), 12, EASE.move), b = tween(f, T(o, "none"), 18, EASE.move), r = tween(f, T(o, "real"), 8, EASE.enter);
+  const L = 640;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={a}><rect x={60} y={80} width={330} height={200} fill="none" stroke={H.amber} strokeWidth={5} strokeDasharray="14 10" />
-          <text x={225} y={206} textAnchor="middle" style={zh(110, H.amber, 900)}>？</text></g>
-        <g opacity={b}><text x={420} y={150} style={zh(38, H.text, 900)}>廠商目標：總成本最多少三成</text></g>
-        <g opacity={r}><rect x={420} y={196} width={300} height={60} fill={H.amber} /><text x={570} y={240} textAnchor="middle" style={zh(40, onC(H.amber), 900)}>目標值，非實測</text></g>
+        <text x={40} y={130} style={zh(sm(34), H.text2, 800)} opacity={a}>現在的做法</text>
+        <rect x={250} y={96} width={L * a} height={48} fill={H.line} />
+        <text x={250 + L * a + 12} y={132} style={mono(sm(34), H.text, 900)} opacity={a}>{a > 0.9 ? "總成本 100%" : ""}</text>
+        <text x={40} y={230} style={zh(sm(34), H.amber, 800)} opacity={b}>八百伏特</text>
+        <rect x={250} y={196} width={L * 0.7 * b} height={48} fill="none" stroke={H.amber} strokeWidth={4} strokeDasharray="12 8" />
+        <rect x={250} y={196} width={L * 0.7 * b} height={48} fill={H.amber} opacity={0.35} />
+        <text x={250 + L * 0.7 * b + 12} y={232} style={mono(sm(34), H.amber, 900)} opacity={b}>{b > 0.9 ? "最多少三成" : ""}</text>
+        <g opacity={r}><rect x={560} y={266} width={330} height={52} fill={H.amber} /><text x={725} y={304} textAnchor="middle" style={zh(38, onC(H.amber), 900)}>目標值，非實測</text></g>
       </svg>
     </Card>
   );
