@@ -41,7 +41,7 @@ def glow(key, lay, ps, color="lp_heat", steady=True, g=.9, freq=2.2):
     actions[key] = d
 
 palette.update({"film": "#2A9D8F", "film2": "#33B3A3", "film3": "#47C7B5", "layA": "#4FA3E8", "layB": "#F0A030", "ion": "#8B7CFF", "plasma": "#B8A6FF", "atomG": "#E8B33D",
-                "purge": "#8E96A6", "gasA": "#38B6FF", "gasB": "#FF9F1C", "filmG": "#D9A93C", "fill": "#5E8FB0", "magN": "#D8432C", "magS": "#2F7FE0", "pad": "#6E7A92"})
+                "purge": "#8E96A6", "siF": "#A9B7D6", "siB": "#8091B8", "latt": "#5E6F9B", "gasA": "#38B6FF", "gasB": "#FF9F1C", "filmG": "#D9A93C", "fill": "#5E8FB0", "magN": "#D8432C", "magS": "#2F7FE0", "pad": "#34456E"})
 def M(color, **k): return {"kind": "std", "color": color, "rough": 0.45, "metal": 0.1, **k}
 materials = {
  "dark": M("dark", rough=.5, metal=.2), "dark2": M("dark2", rough=.35, metal=.3), "steel": M("steel", rough=.3, metal=.85, env=.5), "steel2": M("steel2", rough=.35, metal=.8),
@@ -50,7 +50,7 @@ materials = {
  "cu": M("cu", rough=.3, metal=.9, env=.6) if False else M("brass", rough=.3, metal=.9, env=.6),
  "film": M("film", rough=.3, metal=.3, env=.6), "film2": M("film2", rough=.3, metal=.3, env=.6), "film3": M("film3", rough=.3, metal=.3, env=.6),
  "layA": M("layA", rough=.3, metal=.2, env=.6), "layB": M("layB", rough=.3, metal=.2, env=.6), "filmG": M("filmG", rough=.25, metal=.9, env=.8), "fill": M("fill", rough=.35, metal=.3, env=.5),
- "magN": M("magN", rough=.4, metal=.3), "magS": M("magS", rough=.4, metal=.3), "pad": M("pad", rough=.5, metal=.5, env=.4),
+ "magN": M("magN", rough=.4, metal=.3), "magS": M("magS", rough=.4, metal=.3), "pad": M("pad", rough=.5, metal=.3, env=.2), "siF": M("siF", rough=.55, metal=.05, env=.15), "siB": M("siB", rough=.55, metal=.05, env=.15), "latt": M("latt", rough=.5, metal=.1, env=.1),
  "pipeB": M("pipeB", rough=.35, metal=.4), "orange": M("orange", rough=.35, metal=.35) if False else M("lp_proc", rough=.35, metal=.35),
  "plasma": {"kind": "unlit", "color": "plasma", "opacity": .16}, "hotc": {"kind": "unlit", "color": "lp_heat", "opacity": .5},
  "grn": M("pcbG", rough=.55) if False else M("film", rough=.55),
@@ -108,6 +108,9 @@ box("t_cabled", "t_cab", "led", [.6, .1, .04], [TX + 10.45, 3.8, 5.0], at=[[0, 0
 cyl("t_tgt", "t_tgt", "gold", 1.7, .4, [TX + 9.0, 4.55, -2.0], axis="y")
 cyl("t_tgtr", "t_tgt", "steelHi", 1.95, .2, [TX + 9.0, 4.3, -2.0], axis="y")
 box("t_mag", "t_tgt", "magN", [2.4, .5, .6], [TX + 9.0, 5.0, -2.0], at=[[0, 0, -.8], [0, 0, .8]], bevel=.03)
+for i, (mx, mz) in enumerate(MODS):
+    flow(f"t_gas{i}", "t_gasl", [[TX + mx, 8.2, mz], [TX + mx, 4.5, mz]], n=3, size=.34, rate=.9, color="lp_sig", rim="lp_sigRim", trail=3)
+    anchor(f"t_m{i}", "t_mods", [TX + mx + (1.6 if mx < 0 else -1.6), 4.1, mz + 1.0], dx=(-140 if mx < 0 else 140), dy=(-60 if mz < -5 else -20))
 glow("t_modlit", "t_mods", ["t_modlid0", "t_modlid1", "t_modlid2", "t_modlid3"], "lp_good", steady=False, g=.9, freq=1.8)
 glow("t_ledlit", "t_front", ["t_efemled"], "lp_bad", steady=False, g=1.0, freq=2.4)
 anchor("t_mod", "t_mods", [TX - 9.0 + 1.8, 4.2, -2.0 + 1.0], dx=-140, dy=-90)
@@ -176,8 +179,12 @@ BW, FW, TW, D, FH = 10.4, 3.6, 2.4, 4.0, 3.4    # 基板寬、鰭寬、溝槽寬
 FT = 1.0 + FH                                   # 鰭頂 y＝4.4
 def trench(pre, cx, lay_si=None):
     L = lay_si or f"{pre}_si"
-    box(f"{pre}_base", L, "si", [BW, 1.0, D], [cx, .5, 0], bevel=.03)
-    box(f"{pre}_fin", L, "siTop", [FW, FH, D], [cx, 2.7, 0], at=[[-3.0, 0, 0], [3.0, 0, 0]], bevel=.03)
+    box(f"{pre}_base", L, "siB", [BW, 1.0, D], [cx, .5, 0], bevel=.03)
+    box(f"{pre}_fin", L, "siF", [FW, FH, D], [cx, 2.7, 0], at=[[-3.0, 0, 0], [3.0, 0, 0]], bevel=.03)
+    # 矽晶格：前剖面貼一格一格的原子（基板兩排、兩根鰭各 7×6）
+    pts = [[-4.75 + .5 * i, y, 0] for i in range(20) for y in (.28, .72)]
+    for fx in (-3.0, 3.0): pts += [[fx - 1.5 + .5 * i + .25, 1.3 + .5 * j, 0] for i in range(7) for j in range(6)]
+    box(f"{pre}_lat", L, "latt", [.11], [cx, 0, D / 2 + .02], at=pts, shape="sphere")
     return L
 def conf(pre, idx, off, t, mat, lay):
     """共形膜一層：頂、兩側壁、底（第 idx 層，內縮量 off）"""
@@ -241,12 +248,12 @@ box("s_wallR", "s_wall", "dark2", [.3, 12.4, 6.4], [SX + 6.7, 6.2, 0])
 box("s_plasma", "s_plasma", "plasma", [9.0, 3.6, 4.8], [SX, 7.0, 0])
 box("s_shield", "s_wall", "steel2", [.3, 3.6, 6.0], [SX - 5.5, 7.0, 0], at=[[0, 0, 0], [11.0, 0, 0]])
 # 氬離子往上撞靶（藍紫）、靶材原子往下落（金）
-flow("s_ion", "s_fx", [[SX, 5.6, 0], [SX, 8.7, 0]], n=3, lanes=5, gap=1.6, ldir=(1, 0, 0), size=.16, rate=1.1, color="ion", rim="ion", trail=3)
-flow("s_ionb", "s_fx", [[SX, 5.6, 0], [SX, 8.7, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.16, rate=1.1, color="ion", rim="ion", trail=3)
-flow("s_at", "s_fx", [[SX, 8.7, 0], [SX, FT + .75, 0]], n=3, lanes=7, gap=1.2, ldir=(1, 0, 0), size=.12, rate=.8, color="atomG", rim="atomG", trail=3)
-flow("s_atb", "s_fx", [[SX - 2.4, 8.7, 0], [SX - 3.4, FT + .75, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.12, rate=.8, color="atomG", rim="atomG", trail=3)
-flow("s_atc", "s_fx", [[SX + 2.4, 8.7, 0], [SX + 3.4, FT + .75, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.12, rate=.8, color="atomG", rim="atomG", trail=3)
-flow("s_atd", "s_fx", [[SX + 1.0, 8.7, 0], [SX + .2, 1.6, 0]], n=3, lanes=2, gap=1.0, ldir=(0, 0, 1), size=.12, rate=.8, color="atomG", rim="atomG", trail=3)
+flow("s_ion", "s_fx", [[SX, 5.6, 0], [SX, 8.7, 0]], n=3, lanes=5, gap=1.6, ldir=(1, 0, 0), size=.22, rate=1.1, color="ion", rim="ion", trail=3)
+flow("s_ionb", "s_fx", [[SX, 5.6, 0], [SX, 8.7, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.22, rate=1.1, color="ion", rim="ion", trail=3)
+flow("s_at", "s_fx", [[SX, 8.7, 0], [SX, FT + .75, 0]], n=3, lanes=7, gap=1.2, ldir=(1, 0, 0), size=.2, rate=.8, color="atomG", rim="atomG", trail=3)
+flow("s_atb", "s_fx", [[SX - 2.4, 8.7, 0], [SX - 3.4, FT + .75, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.2, rate=.8, color="atomG", rim="atomG", trail=3)
+flow("s_atc", "s_fx", [[SX + 2.4, 8.7, 0], [SX + 3.4, FT + .75, 0]], n=3, lanes=3, gap=1.3, ldir=(0, 0, 1), size=.2, rate=.8, color="atomG", rim="atomG", trail=3)
+flow("s_atd", "s_fx", [[SX + 1.0, 8.7, 0], [SX + .2, 1.6, 0]], n=3, lanes=2, gap=1.0, ldir=(0, 0, 1), size=.2, rate=.8, color="atomG", rim="atomG", trail=3)
 glow("s_glow", "s_plasma", ["s_plasma"], "ion", steady=False, g=.6, freq=2.0)
 anchor("s_tgt", "s_tgt", [SX + 3.8, 9.2, 2.0], dx=150, dy=-40)
 anchor("s_mag", "s_mag", [SX + 3.4, 10.6, 2.0], dx=150, dy=-30)
@@ -289,6 +296,7 @@ anchor("a_gas", "a_gas", [AX - 3.4, 7.0, 0], dx=-150, dy=-20)
 # ═════════ E：結尾（凹凸、研磨） x=360 ═════════
 EX = 360
 trench("e", EX)
+conf_layers("e", EX, [("e_g1", "film", .2), ("e_g2", "film2", .2), ("e_g3", "film3", .2)])
 box("e_fillt", "e_bump", "fill", [4.8 - 1.2, 1.2, D], [EX, FT + .6, 0], at=[[-3.0, 0, 0], [3.0, 0, 0]], bevel=.0) if False else None
 box("e_bumpfin", "e_bump", "film", [3.6, 1.2, D], [EX, FT + .6, 0], at=[[-3.0, 0, 0], [3.0, 0, 0]])
 box("e_bumpfill", "e_bump", "film", [2.4, FH, D], [EX, 1.0 + FH / 2, 0])

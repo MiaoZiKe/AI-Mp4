@@ -124,8 +124,8 @@
       "at": "start-30",
       "dur": 1,
       "x": 1.0,
-      "y": -0.5,
-      "d": 100,
+      "y": -2.2,
+      "d": 104,
       "elev": 30
      }
     ],
@@ -138,22 +138,46 @@
      },
      {
       "id": "t_ledlit",
-      "at": "film",
+      "at": "start-30",
       "until": "s2:start-2",
-      "ramp": 6
+      "ramp": 2
      },
      {
       "id": "t_modlit",
-      "at": "how",
+      "at": "start-30",
       "until": "s3:start",
-      "ramp": 8
+      "ramp": 2
+     },
+     {
+      "id": "t_gas0",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 2
+     },
+     {
+      "id": "t_gas1",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 2
+     },
+     {
+      "id": "t_gas2",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 2
+     },
+     {
+      "id": "t_gas3",
+      "at": "start-30",
+      "until": "s3:start",
+      "ramp": 2
      }
     ],
     "labels": [
      {
       "part": "t_foup",
       "text": "晶圓盒",
-      "en": "Wafer carrier",
+      "en": "FOUP",
       "color": "blue",
       "at": "film",
       "until": "thin-10"
@@ -254,8 +278,8 @@
       "at": "start-4",
       "dur": 24,
       "x": 1.0,
-      "y": -0.5,
-      "d": 96,
+      "y": -2.2,
+      "d": 100,
       "elev": 30
      },
      {
@@ -791,25 +815,25 @@
      },
      {
       "id": "s_at",
-      "at": "atom",
+      "at": "target+6",
       "until": "s6:start-2",
       "ramp": 6
      },
      {
       "id": "s_atb",
-      "at": "atom+4",
+      "at": "target+10",
       "until": "s6:start-2",
       "ramp": 6
      },
      {
       "id": "s_atc",
-      "at": "atom+8",
+      "at": "target+14",
       "until": "s6:start-2",
       "ramp": 6
      },
      {
       "id": "s_atd",
-      "at": "atom+12",
+      "at": "target+18",
       "until": "s6:start-2",
       "ramp": 6
      }
@@ -1385,8 +1409,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 1.0,
-      "y": -0.5,
-      "d": 100,
+      "y": -2.2,
+      "d": 104,
       "elev": 30
      }
     ],
@@ -1406,12 +1430,36 @@
     ],
     "labels": [
      {
-      "part": "t_body",
-      "text": "沉積機台",
-      "en": "Deposition tools",
+      "part": "t_m0",
+      "text": "應用材料",
+      "en": "Applied Materials",
       "color": "amber",
       "at": "am",
-      "until": "gy-12"
+      "until": "gy-6"
+     },
+     {
+      "part": "t_m2",
+      "text": "科林研發",
+      "en": "Lam Research",
+      "color": "amber",
+      "at": "lam",
+      "until": "gy-6"
+     },
+     {
+      "part": "t_m3",
+      "text": "東京威力科創",
+      "en": "Tokyo Electron",
+      "color": "amber",
+      "at": "tel",
+      "until": "gy-6"
+     },
+     {
+      "part": "t_core",
+      "text": "ASM",
+      "en": "ASM",
+      "color": "amber",
+      "at": "asm",
+      "until": "gy-6"
      },
      {
       "part": "t_tgt",
@@ -1437,9 +1485,9 @@
       "at": "start+2",
       "until": "s9:start-16",
       "x": 64,
-      "y": 925,
+      "y": 965,
       "w": 952,
-      "h": 345,
+      "h": 300,
       "avoid": false,
       "title": "誰在做",
       "tag": "媒體報導／廠商公布",
@@ -1488,6 +1536,10 @@
     "沉積"
    ],
    "cues": [
+    {
+     "id": "film",
+     "text": "所以這層膜"
+    },
     {
      "id": "grow",
      "text": "一層層長"
@@ -1538,6 +1590,48 @@
     ],
     "shift": [
      {
+      "layer": "e_g1",
+      "at": "s1:start-40",
+      "until": "film+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "e_g2",
+      "at": "s1:start-40",
+      "until": "grow+6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "e_g3",
+      "at": "s1:start-40",
+      "until": "grow+30",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "e_g1",
+      "at": "bump-8",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "e_g2",
+      "at": "bump-8",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "e_g3",
+      "at": "bump-8",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
       "layer": "e_bump",
       "at": "s1:start-40",
       "until": "bump-4",
@@ -1572,23 +1666,9 @@
       "until": "flat+4",
       "dy": -1.4,
       "dur": 24
-     },
-     {
-      "layer": "e_pad",
-      "at": "flat+8",
-      "until": "s10:end+400",
-      "opacity": 0,
-      "dur": 8
      }
     ],
-    "run": [
-     {
-      "id": "e_padglow",
-      "at": "cmp+6",
-      "until": "flat+10",
-      "ramp": 6
-     }
-    ],
+    "run": [],
     "labels": [
      {
       "part": "e_bump",
