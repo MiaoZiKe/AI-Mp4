@@ -17,8 +17,17 @@ for (const c of "下一集▸留言拿完整資料") set.add(c);
 for (const c of "哩股哩股查到底查證截至示意照片非文件原件來源") set.add(c);
 set.delete("\n");
 const text = [...set].sort().join("");
-const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
 const dir = path.join(ROOT, "public/fonts/dossier");
+const stamp = path.join(dir, "chars.txt");
+// --check：不下載，只確認已抓的子集（chars.txt 是上次抓字時存的字表）含本片所有字；缺字或沒抓過就 exit 1 並列出缺字
+if (process.argv.includes("--check")) {
+  const have = new Set(fs.existsSync(stamp) && fs.existsSync(path.join(dir, "serif-900.woff2")) ? fs.readFileSync(stamp, "utf8") : []);
+  const missing = [...set].filter((c) => !have.has(c));
+  if (!have.size) { console.log("字型子集不存在（沒抓過）"); process.exit(1); }
+  if (missing.length) { console.log(`字型子集缺 ${missing.length} 字：${missing.join("")}`); process.exit(1); }
+  console.log(`字型子集已含本片全部 ${set.size} 字`); process.exit(0);
+}
+const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
 fs.mkdirSync(dir, { recursive: true });
 const curl = (args) => execFileSync("curl", ["-sS", "--fail", "--retry", "3", "-A", UA, ...args]);
 for (const [w, file] of [[900, "serif-900.woff2"], [600, "serif-600.woff2"]]) {
@@ -29,3 +38,4 @@ for (const [w, file] of [[900, "serif-900.woff2"], [600, "serif-600.woff2"]]) {
   console.log(`✔ public/fonts/dossier/${file}（${[...text].length} 字，${fs.statSync(path.join(dir, file)).size} bytes）`);
 }
 fs.writeFileSync(path.join(dir, "chars.txt"), text);
+fs.writeFileSync(stamp, text);

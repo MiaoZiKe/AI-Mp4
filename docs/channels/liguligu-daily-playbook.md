@@ -85,6 +85,8 @@
 
 一路跑 validate＋字型 → 時間軸（有聲＝voice-take，`--silent`＝silent-timeline）→ overlap-check → render → edge-check → 招牌音＋mix-auto → 網站版（out/web/<slug>/video.mp4 ≤20MiB、cover.jpg、voice.mp3）→ 抽格拼圖 out/<slug>/sheet.jpg。每步印一行狀態與耗時，失敗就停並把停在哪一步寫進 `out/<slug>/make.json`（成功時記每步耗時、片長、片尾 LUFS／真峰值、overlap 結果、網站版大小）。不加 `--from-audio` 的有聲版會送 TTS 1 次。已排程的 liguligu-nvda-kress、liguligu-power-bill 會被拒絕（要動加 `--force-scheduled`）。實測（2008-check 有聲完整版）約 3.5 分鐘，最慢是 render（約 86 秒）與 voice-take 對齊（約 60 秒）。
 
+全新 slug 不用手動補洞（2026/11/17）：make 會在 validate 前做「0b 預檢」（cue 詞要逐字出現在 subtitle.zh、hook 的 line2≤7 字／kicker≤22／num≤4、缺 pronunciation.md 就建含 AI／GDP／ETF／CPI 的骨架，錯誤訊息寫哪一幕哪個欄位怎麼改）、「0c 字型」（`fetch-fonts.mjs <slug> --check` 比對 public/fonts/dossier/chars.txt，缺字或沒抓過就重抓）、「0d 照片」（有 out/<slug>/assets-raw/photos/ 就跑 make-photos）；時間軸後自動寫 storyboard.json（2c）並印每鏡事件間隔，>1.2 秒列 warn 不擋（2d，片尾卡不算）。`--silent` 一律重生無聲時間軸，但若已是真配音時間軸會拒絕，要蓋掉加 `--force-silent`。
+
 分步用法：
 
     python3 scripts/dossier/make-photos.py <slug>        # 黑白照片
