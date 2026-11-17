@@ -490,8 +490,8 @@ const KineticView: React.FC<VP> = ({ f, p, tone }) => {
     <>
       {rows.map((r, i) => { const t = A(r.at, p.in + 3), e = E(f, t, 14), c = col(r.color); if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: rowTop(i) + 20, width: IW, height: RP(r) - 40, ...zh, fontWeight: 900, fontSize: 150, color: c.fill }}>？</Ghost>; return (
         <div key={i} data-ov={`大字${i + 1}`} style={{ position: "absolute", left: X0, top: rowTop(i), width: IW, height: RP(r) - 30, display: "flex", alignItems: "center", gap: 34, opacity: O(f, t, 4) }}>
-          <div style={{ perspective: 900 }}><div style={{ ...zh, fontWeight: 900, fontSize: r.size ?? 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
-          <div style={{ ...zh, fontWeight: 900, fontSize: r.usize ?? 120, color: T.ink, transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
+          <div style={{ perspective: 900, opacity: Math.min(1, e * 3) }}><div style={{ ...zh, fontWeight: 900, fontSize: r.size ?? 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
+          <div style={{ ...zh, fontWeight: 900, fontSize: r.usize ?? 120, color: T.ink, opacity: Math.min(1, Math.max(0, (e - 0.15) * 3)), transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
         </div>); })}
       {q.q && f < tQ ? <Ghost color={col("plum").fill} style={{ left: X0, top: rowsEnd, width: IW, height: 190, ...zh, fontWeight: 900, fontSize: 120, color: col("plum").fill }}>？</Ghost> : null}
       {q.q && f >= tQ ? (
@@ -894,10 +894,10 @@ export const VarietyIso: React.FC<Script & { timeline: TimelineV2 }> = ({ scenes
       {prev ? <ToneBg tone={(prev.p as any).tone} f={f} /> : null}
       <div style={{ position: "absolute", inset: 0, clipPath: wipe >= 1 ? undefined : `circle(${Math.round(wipe * 2300)}px at 50% 78%)` }}><ToneBg tone={(inEnd ? world[world.length - 1] : cur)?.p.tone as string} f={f} /></div>
       {inEnd ? null : <Bands on={typeof trk === "number" ? trk : -1} steps={tracker} />}
-      {inEnd ? null : world.map((x) => {
+      {inEnd ? null : world.map((x, xi) => {
         if (f < x.in || f >= x.out + 2) return null;
         const V = VIEWS[String((x.p as any).view)]; if (!V) return null;
-        const prog = clamp((f - x.in) / Math.max(1, x.out - x.in)), exit = 1 - O(f, x.out - 2, 4);
+        const prog = clamp((f - x.in) / Math.max(1, x.out - x.in)), nxt = world[xi + 1], exitAt = nxt ? Math.min(x.out - 2, nxt.in - 1) : x.out - 2, exit = 1 - O(f, exitAt, 5); // 下一鏡一進來，上一鏡就先淡出，不半透明疊在新內容後面
         return <div key={x.sid} style={{ position: "absolute", inset: 0, opacity: exit, transform: `scale(${(1 + 0.016 * prog).toFixed(4)})`, transformOrigin: "50% 45%" }}><V f={f} p={x} tone={toneOf((x.p as any).tone)} /></div>;
       })}
       {inEnd ? null : world.map((x) => <Tag key={x.sid} f={f} p={x} />)}
