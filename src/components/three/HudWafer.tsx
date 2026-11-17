@@ -112,14 +112,14 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
           <path d={`M${padX + 20} ${yM - 56 + 12 * flat} h160 m-14 -10 l14 10 l-14 10`} stroke={c("lp_proc")} strokeWidth={4} fill="none" /></g> : null}
         {/* 標名 */}
         {Lbl(X0 + 5.5 * U, base - 2 - 0, "", 0, H.text)}
-        {Lbl(X0 + 12.1 * U, yO + 11, "氧化層", gO, c("lp_ox"))}
-        {Lbl(X0 + 12.1 * U, yM + 11, "金屬層", gM * (1 - 0), c("lp_mt"))}
-        {Lbl(X0 + 12.1 * U, yR + 14, "光阻", gR * (1 - strip), c("lp_res"))}
+        {Lbl(X0 + 12.1 * U, yO + 18, "氧化層", gO, c("lp_ox"))}
+        {Lbl(X0 + 12.1 * U, yM - 2, "金屬層", gM * (1 - 0), c("lp_mt"))}
+        {Lbl(X0 + 12.1 * U, yR - 20, "光阻", gR * (1 - strip), c("lp_res"))}
         {/* 步驟清單（兩欄） */}
-        {STEPS.map((s, i) => { const col2 = i < 4 ? 0 : 1, row = i % 4, x = 655 + col2 * 150, y = 104 + row * 52; const on = i === act, past = i < act;
+        {STEPS.map((s, i) => { const col2 = i < 4 ? 0 : 1, row = i % 4, x = 652 + col2 * 138, y = 104 + row * 52; const on = i === act, past = i < act;
           return <g key={i} opacity={f >= st[i] - 6 ? 1 : 0.28}>
-            <rect x={x - 6} y={y - 32} width={142} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
-            <text x={x} y={y} style={zh(29, on ? onC(H.amber) : past ? c("lp_good") : H.text, 800)}>{past ? "✓" : "①②③④⑤⑥⑦⑧"[i]}{s}</text></g>; })}
+            <rect x={x - 6} y={y - 32} width={136} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
+            <text x={x} y={y} style={zh(28, on ? onC(H.amber) : past ? c("lp_good") : H.text, 800)}>{past ? "✓" : "①②③④⑤⑥⑦⑧"[i]}{s}</text></g>; })}
       </svg>
     </Card>
   );

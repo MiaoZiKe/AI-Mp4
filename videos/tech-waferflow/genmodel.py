@@ -81,10 +81,10 @@ box("s_rsl", "rs_line", "resist", [1.0, .4, 5], [SX, YM + .2, 0], at=[[x, 0, 0] 
 box("s_rsg", "rs_gap", "resist", [.8, .4, 5], [SX, YM + .2, 0], at=[[x, 0, 0] for x in GP])
 glow("s_rsx", "rs_gap", ["s_rsg"], "lp_proc", steady=True, g=1.0)
 # 標名用錨點（爆炸時跟著各層移動）
-anchor("a_sub", "sub", [SX + 5.9, YS * .5, 2.5], dx=150, dy=40)
-anchor("a_ox", "ox", [SX + 5.9, YS + .17, 2.5], dx=150, dy=-5)
-anchor("a_mt", "mt_line", [SX + 5.4, YO + .15, 2.5], dx=150, dy=-45)
-anchor("a_rs", "rs_line", [SX + 5.4, YM + .2, 2.5], dx=150, dy=-85)
+anchor("a_sub", "sub", [SX + 4.2, YS * .5, 2.5], dx=0, dy=-140)
+anchor("a_ox", "ox", [SX + 1.4, YS + .17, 2.5], dx=0, dy=-140)
+anchor("a_mt", "mt_line", [SX - 1.0, YO + .15, 2.5], dx=0, dy=-140)
+anchor("a_rs", "rs_line", [SX - 3.6, YM + .2, 2.5], dx=0, dy=-140)
 anchor("a_dp", "dp", [SX + 4.5, YS - .25, 2.55], dx=150, dy=60)
 anchor("a_gap", "rs_gap", [SX - 4.5, YM + .4, 2.5], dx=-150, dy=-70)
 anchor("a_mtgap", "mt_line", [SX - 4.9, YO + .3, 2.5], dx=-150, dy=-60)
@@ -131,13 +131,13 @@ flow("e_ray", "t_exp_f", [[SX, YR_ - .4, 0], [SX, 2.6, 0]], n=4, lanes=6, gap=1.
 flow("e_rayw", "t_exp_f", [[SX, 8.4, 0], [SX, YR_ + .5, 0]], n=3, lanes=9, gap=1.3, ldir=(1, 0, 0), size=.11, rate=1.2, color="lp_light", rim="lp_light")
 glow("e_lampg", "t_exp", ["e_lampled"], "lp_light", steady=False, g=1.0, freq=3.0)
 # 光罩盒（家登）：放在光罩台旁
-box("e_pod", "t_pod", "pod", [3.2, 1.5, 3.2], [SX + 11.8, YR_ + .4, 0], bevel=.12)
-box("e_podh", "t_pod", "dark2", [1.4, .35, 1.0], [SX + 11.8, YR_ + 1.4, 0], bevel=.08)
-box("e_podl", "t_pod", "steel2", [.3, .5, 3.3], [SX + 11.8, YR_ + .4, 0], at=[[-1.1, 0, 0], [1.1, 0, 0]])
-box("e_podw", "t_pod", "reticleG", [2.3, .1, 2.3], [SX + 11.8, YR_ - .5, 0])
+box("e_pod", "t_pod", "pod", [3.2, 1.5, 3.2], [SX + 9.8, YR_ + .4, 0], bevel=.12)
+box("e_podh", "t_pod", "dark2", [1.4, .35, 1.0], [SX + 9.8, YR_ + 1.4, 0], bevel=.08)
+box("e_podl", "t_pod", "steel2", [.3, .5, 3.3], [SX + 9.8, YR_ + .4, 0], at=[[-1.1, 0, 0], [1.1, 0, 0]])
+box("e_podw", "t_pod", "reticleG", [2.3, .1, 2.3], [SX + 9.8, YR_ - .5, 0])
 anchor("e_lensA", "t_exp", [SX + 7.0, 4.9, 0], dx=150, dy=-30)
 anchor("e_retA", "t_exp", [SX - 6.4, YR_ + .3, 2.8], dx=-150, dy=-60)
-anchor("e_podA", "t_pod", [SX + 12.6, YR_ + .5, 1.6], dx=100, dy=-80)
+anchor("e_podA", "t_pod", [SX + 10.6, YR_ + .5, 1.6], dx=60, dy=-120)
 
 # 顯影／去光阻：藥水噴桿＋儲液桶（兩套，顏色不同）
 def spray(pre, lay, flay, side, tank, fcol, ylab):
