@@ -38,7 +38,8 @@ def scene(i, beat, para, tts, zh, en, kw, cues, props, src, pause=None, narr=Non
 
 
 scenes = []
-SH_R = {"x": 1.2, "y": 3.4, "d": 31, "elev": 20}
+SH_R2 = {"x": 2.6, "y": 0.7, "d": 42, "elev": 20}
+SH_R = {"x": 1.4, "y": 3.5, "d": 36, "elev": 20}
 def card(kind, at, until, t, y=905, h=345, title="", tag="示意，非實際比例"):
     return {"type": "section", "kind": kind, "at": at, "until": until, "x": 64, "y": y, "w": 952, "h": h, "avoid": False, "title": title, "tag": tag, "t": {k: {"at": v} for k, v in t.items()}}
 
@@ -63,16 +64,17 @@ scenes.append(scene("s1", "hook", 1,
 
 # ───────────── s2 現況（R）─────────────
 s2_run = [run("r_fan", "start-2", "s3:start-2", 4), run("r_cur", "start-2", "s3:start-2", 4), run("r_cur2", "start-2", "s3:start-2", 4), run("r_hot", "start-2", "s3:start-2", 4), run("r_air", "start", "s3:start-2", 6), run("r_air2", "start+10", "s3:start-2", 6), run("r_air3", "start-2", "s3:start-2", 4)]
-for k in range(6): s2_run.append(run(f"r_br{k}", off("v54", 4 + 7 * k), "s3:start-2", 4))
+for k in range(6):
+    s2_run.append(run(f"r_br{k}", off("v54", 4 + 7 * k), "s3:start-2", 4)); s2_run.append(run(f"r_bl{k}", off("v54", 4 + 7 * k), "s3:start-2", 4))
 scenes.append(scene("s2", "you", 2,
     "現在機櫃裡的電，只有五十幾伏特，靠很粗的銅條送進去，叫銅排。",
     ["現在機櫃裡的電", "只有五十幾伏特", "靠很粗的銅條送進去", "叫銅排"],
     ["Inside today's rack,", "the power is only about 50 volts,", "pushed in through thick copper bars", "called busbars."],
     ["五十幾伏特", "銅排"],
     [cue("now", "機櫃裡的電"), cue("v54", "五十幾伏特"), cue("fat", "很粗的銅條"), cue("busbar", "銅排")],
-    {"shot": [{"at": "start-2", "dur": 14, **SH_R, "x": 1.0, "d": 29}],
+    {"zoom": [{"to": "pk", "at": "start-2", "dur": 1}], "shot": [{"at": "start-2", "dur": 14, **SH_R, "x": 0.8, "d": 33}],
      "run": s2_run,
-     "labels": [lab("rk_shelf", "電源架 54 V", "power shelf, 54 V", "amber", "v54", "fat"), lab("rk_bus", "銅排 busbar", "busbar", "blue", "busbar", "s3:start-2")],
+     "labels": [lab("rk_shelf", "電源架 54 V", "power shelf, 54 V", "amber", "v54", "fat"), lab("rk_bus", "銅排 busbar", "busbar", "blue", "busbar", "s3:start-12")],
      "overlay": [stamp("已確定", "busbar", "s3:start-2", "blue", 44, x=860, y=330)]},
     ["NVIDIA 技術部落格 2025/5；SemiAnalysis"]))
 
@@ -84,7 +86,7 @@ scenes.append(scene("s3", "mechanism", 3,
     ["電壓乘電流", "很大"],
     [cue("power", "功率等於"), cue("vxi", "電壓乘電流"), cue("low", "電壓低"), cue("big", "很大")],
     {"zoom": [{"to": "pk", "at": "start-2", "dur": 1}],
-     "shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
+     "shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 0.0, "d": 46, "elev": 16}],
      "run": [run("c_srcU", "power", "s6:start-2", 8), run("c_lampU", "low", "s6:start-2", 10), run("c_up", "low-4", "s6:start-2", 8)],
      "labels": [lab("c_up", "54 V 供電", "54 V supply", "amber", "low", "s4:start-2")],
      "overlay": [card("pw-compare", "start+2", "s6:start-14", {"pw": "power", "vi": "vxi", "low": "low", "big": "big", "hot": "s4:hot", "x15": "s4:x15", "x219": "s4:x219", "v800": "s5:v800", "amp": "s5:amp", "thin": "s5:thin"}, title="同樣的電，兩種電壓")]},
@@ -97,7 +99,7 @@ scenes.append(scene("s4", "mechanism", 4,
     ["Big current", "heats the busbar,", "so it keeps getting thicker.", "Fifteen times the current", "means over two hundred times the heat."],
     ["發熱", "兩百多倍"],
     [cue("cur", "電流大"), cue("hot", "銅排就燙"), cue("thick", "越做越粗"), cue("x15", "十五倍"), cue("x219", "兩百多倍")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 0.0, "d": 46, "elev": 16}],
      "run": [run("c_hot", "hot-8", "s6:start-2", 50), run("c_heat", "hot", "s6:start-2", 6), run("c_heat2", "hot+8", "s6:start-2", 6), run("c_dn", "x15", "s5:thin", 8), run("c_srcD", "x15-6", "s6:start-2", 8), run("c_lampD", "x15+6", "s6:start-2", 10)],
      "labels": [lab("c_dn", "800 V 供電", "800 V supply", "blue", "x15", "s5:start-2")],
      "overlay": [stamp("估算：同一條銅排", "x219", "s5:start-2", "coral", 38, x=720, y=330)]},
@@ -110,7 +112,7 @@ scenes.append(scene("s5", "mechanism", 5,
     ["Switch to 800 volts,", "the current drops to one fifteenth,", "so the busbar can be thin."],
     ["八百伏特", "做細"],
     [cue("v800", "八百伏特"), cue("amp", "十五分之一"), cue("thin", "做細")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 3.3, "d": 40, "elev": 16}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": CXX + 0.2, "y": 0.0, "d": 46, "elev": 16}],
      "shift": [gone("cdB", "thin-4", 6), fall("cdT", "thin", dy=1.4, bounce=0.05)] if False else [{"layer": "cdB", "at": "thin-4", "until": FAR, "opacity": 0, "dy": -0.6, "dur": 8}, hide_until("cdT", "thin+4", dy=1.4)],
      "run": [run("c_dnT", "thin+16", "s6:start-2", 6)],
      "labels": [lab("c_thin", "截面約 1/15", "≈1/15 the cross-section", "blue", "thin+10", "s6:start-2")],
@@ -124,10 +126,10 @@ scenes.append(scene("s6", "twist", 6,
     ["So why not use high voltage before?", "Because the chip needs very low voltage.", "The higher the voltage,", "the more times it must be stepped down."],
     ["很低的電壓", "降壓"],
     [cue("why", "為什麼不用高壓"), cue("chip", "晶片只吃很低"), cue("hi", "電壓越高"), cue("steps", "降壓的次數"), cue("many", "越多")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": DXX + 0.4, "y": 2.2, "d": 54, "elev": 20}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": DXX + 0.2, "y": 0.4, "d": 46, "elev": 18}],
      "run": [run("d_pC", "chip", "s7:start-2", 10), run("d_pS", "hi-4", "s7:start-2", 8), run("d_f1", "hi", "s7:start-2", 6), run("d_f2", "steps", "s7:start-2", 6), run("d_pA", "steps", "s7:start-2", 8), run("d_hA", "steps+6", "s7:start-2", 6),
              run("d_f3", "many", "s7:start-2", 6), run("d_pB", "many-4", "s7:start-2", 8), run("d_hB", "many+6", "s7:start-2", 6), run("d_air", "steps", "s7:start-2", 6)],
-     "labels": [lab("d_sc", "800 V", "800 V", "amber", "hi", "s7:start-2"), lab("d_a", "→ 約 50 V", "to ~50 V", "amber", "steps", "s7:start-2"), lab("d_b", "→ 約 12 V", "to ~12 V", "amber", "many", "s7:start-2"), lab("d_c", "晶片 約 1 V", "chip, ~1 V", "blue", "chip", "s7:start-2")],
+     "labels": [lab("d_sc", "800 V", "800 V", "amber", "hi", "s7:start-2"), lab("d_a", "約 50 V", "to ~50 V", "amber", "steps", "s7:start-2"), lab("d_b", "約 12 V", "to ~12 V", "amber", "many", "s7:start-2"), lab("d_c", "晶片 約 1 V", "chip, ~1 V", "blue", "chip", "s7:start-2")],
      "overlay": [card("pw-chain", "start+2", "s7:start-14", {"why": "why", "chip": "chip", "hi": "hi", "steps": "steps", "many": "many"}, title="電壓逐級降下來", tag="示意：常見路徑之一，各家不同")]},
     ["Power Systems Design；Arrow 2026/8（晶片約 1 V）"], pause=0.7))
 
@@ -138,7 +140,7 @@ scenes.append(scene("s7", "payoff", 7,
     ["The makers plan 2027", "for the switch.", "In Taiwan, Delta and Lite-On", "are building these power cabinets too."],
     ["二零二七年", "台達電", "光寶科"],
     [cue("y2027", "二零二七年"), cue("use", "開始改用"), cue("tw", "台達電"), cue("lite", "光寶科"), cue("cab", "電源櫃")],
-    {"shot": [{"at": "start-2", "dur": 1, **SH_R, "x": 2.8, "d": 42}],
+    {"shot": [{"at": "start-2", "dur": 1, **SH_R2}],
      "shift": [{"layer": "sc", "at": "s1:start-40", "until": "use", "dx": 5, "opacity": 0, "dur": 26},
                {"layer": "busT", "at": "use+30", "until": FAR, "opacity": 0, "dy": -0.4, "dur": 8},
                hide_until("busN", "use+36", dy=1.6, dur=10)],
@@ -155,11 +157,11 @@ scenes.append(scene("s8", "twist", 8,
     ["How much the whole system saves", "is not yet known:", "there are no real data-center figures."],
     ["沒有", "數字"],
     [cue("save", "能省多少"), cue("none", "還沒有"), cue("real", "實際機房")],
-    {"shot": [{"at": "start-2", "dur": 1, **SH_R, "x": 2.8, "d": 42}],
+    {"shot": [{"at": "start-2", "dur": 1, **SH_R2}],
      "run": [run("r_scglow", "start-2", "s9:start-2", 4), run("r_fan", "start-2", "s9:start-2", 4), run("r_sc", "start-2", "s9:start-2", 4), run("r_curN", "start-2", "s9:start-2", 4), run("r_curN2", "start-2", "s9:start-2", 4)],
      "labels": [],
      "overlay": [stamp("查不到", "real", "s9:start-2", "blue", 56, x=300, y=330), card("pw-unk", "start+2", "s9:start-14", {"save": "save", "none": "none", "real": "real"}, y=905, h=345, title="省多少？", tag="廠商目標，非實測")]},
-    ["research.md #9（截至 2026/11/17 查不到整套機房實測）"], pause=0.7))
+    ["research.md #9（查不到實測）"], pause=0.7))
 
 # ───────────── s9 回扣答案（R）─────────────
 scenes.append(scene("s9", "cta", 9,
@@ -168,7 +170,7 @@ scenes.append(scene("s9", "cta", 9,
     ["So,", "raise the voltage,", "the current shrinks,", "and the copper can be thin.", "For the full notes,", "comment \"供電\".", "Next:", "why a chip-design company has no factory."],
     ["電壓拉高", "電流變小", "銅條就能細"],
     [cue("so", "所以"), cue("up", "電壓拉高"), cue("small", "電流變小"), cue("slim", "銅條就能細"), cue("kw", "留言供電"), cue("next", "下一支")],
-    {"shot": [{"at": "start-2", "dur": 1, **SH_R, "x": 2.8, "d": 42}],
+    {"shot": [{"at": "start-2", "dur": 1, **SH_R2}],
      "run": [run("r_scglow", "start-2", "s10:start-2", 4), run("r_fan", "start-2", "s10:start-2", 4), run("r_sc", "start-2", "s10:start-2", 4), run("r_curN", "start-2", "s10:start-2", 4), run("r_curN2", "start-2", "s10:start-2", 4)],
      "labels": [],
      "overlay": [card("pw-sum", "start+2", "kw-14", {"up": "up", "small": "small", "slim": "slim"}, y=905, h=345, title="一句話", tag="示意")]},

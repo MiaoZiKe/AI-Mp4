@@ -30,7 +30,7 @@ const Compare: React.FC<P> = ({ o, f, k, m }) => {
   const cu = c("cu"), cuHi = c("cuHi"), bad = c("lp_bad"), proc = c("lp_proc"), sig = c("lp_sig");
   const aF = tween(f, pw, 8, EASE.enter), aVI = tween(f, vi, 8, EASE.enter);
   const aV = tween(f, low - 4, 10, EASE.move), aI = tween(f, big - 6, 24, EASE.move), aHot = tween(f, hot, 36, EASE.move);
-  const bShow = tween(f, x15 - 6, 10, EASE.enter), bI = tween(f, amp - 4, 24, EASE.move) , bV = tween(f, v800 - 2, 16, EASE.move), bHot = tween(f, x219 + 6, 24, EASE.move);
+  const bShow = tween(f, x15 - 6, 10, EASE.enter), bI = tween(f, x15 + 4, 24, EASE.move), bV = tween(f, x15, 16, EASE.move), bHot = tween(f, x219 + 6, 24, EASE.move);
   const shrink = tween(f, thin - 2, 22, EASE.move);
   const cols = [{ x: 24, tag: "54 V" }, { x: 492, tag: "800 V" }];
   const lenV = [20, 170], lenI = [170, 20], lenH = [170, 3];
@@ -81,15 +81,15 @@ const Chain: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 345, c = (n: string) => col(m.product, n);
   const why = T(o, "why"), chip = T(o, "chip"), hi = T(o, "hi"), steps = T(o, "steps"), many = T(o, "many");
   const heat = c("lp_heat"), proc = c("lp_proc"), cu = c("cu");
-  const st = [{ v: "800 V", at: hi, h: 190 }, { v: "50 V", at: steps, h: 120 }, { v: "12 V", at: many, h: 76 }, { v: "約 1 V", at: chip, h: 36 }];
-  const bw = 150, gap = 56, x0 = 34, yb = Hh - 66;
+  const st = [{ v: "800 V", at: hi, h: 130 }, { v: "50 V", at: steps, h: 92 }, { v: "12 V", at: many, h: 62 }, { v: "約 1 V", at: chip, h: 30 }];
+  const bw = 150, gap = 56, x0 = 34, yb = Hh - 70;
   const names = ["電源側櫃", "降壓模組", "降壓模組", "晶片"];
   const order = [3, 0, 1, 2];   // 先看到「晶片只吃很低」，再由高往低
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {st.map((s, i) => {
-          const a = tween(f, s.at, 10, EASE.move), x = x0 + i * (bw + gap), hh = 36 + (s.h - 36) * 1; const y = yb - hh;
+          const a = tween(f, s.at, 10, EASE.move), x = x0 + i * (bw + gap), hh = s.h; const y = yb - hh;
           const gl = Math.max(0, 1 - (f - s.at) / 40);
           return <g key={i} opacity={a} transform={`translate(0 ${(1 - a) * 18})`}>
             <rect x={x} y={y} width={bw} height={hh} fill={i === 3 ? c("lp_sig") : i === 0 ? H.amber : H.line} opacity={0.88} />
