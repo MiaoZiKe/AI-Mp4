@@ -716,7 +716,8 @@
    "sources": [
     "NVIDIA；HPE、Supermicro 規格"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s2",
@@ -825,7 +826,8 @@
    },
    "sources": [
     "NVIDIA 文件；SemiAnalysis"
-   ]
+   ],
+   "durationSec": 6
   },
   {
    "id": "s3",
@@ -948,17 +950,18 @@
    "sources": [
     "NVIDIA：每托盤 4 GPU＋2 Grace CPU"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s4",
    "beat": "mechanism",
    "para": 4,
-   "narration": "為什麼要整櫃一起設計？因為七十二顆要像一顆一樣工作，彼此得不停傳資料。",
-   "tts": "為什麼要整櫃一起設計？因為七十二顆要像一顆一樣工作，彼此得不停傳資料。",
+   "narration": "為什麼要整櫃一起設計？因為七十二顆要像一顆一樣工作，得不停傳資料。",
+   "tts": "為什麼要整櫃一起設計？因為七十二顆要像一顆一樣工作，得不停傳資料。",
    "subtitle": {
-    "zh": "為什麼要整櫃一起設計？\n因為七十二顆\n要像一顆一樣工作\n彼此得不停傳資料",
-    "en": "Why design the whole rack together? | Because the 72 chips | must work like one, | and keep passing data to each other."
+    "zh": "為什麼要整櫃一起設計？\n因為七十二顆\n要像一顆一樣工作\n得不停傳資料",
+    "en": "Why design the whole rack together? | Because the 72 chips | must work like one, | and must keep passing data."
    },
    "keywords": [
     "像一顆",
@@ -1067,7 +1070,8 @@
    "sources": [
     "NVIDIA 技術部落格：72 GPU 為單一 NVLink 網域"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s5",
@@ -1177,17 +1181,18 @@
    "sources": [
     "NVIDIA 技術部落格；Supermicro"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s6",
    "beat": "mechanism",
    "para": 6,
-   "narration": "電從電源層進來，順著銅排送到每一層。這麼大的電流，最後都變成熱。",
-   "tts": "電從電源層進來，順著銅排送到每一層。這麼大的電流，最後都變成熱。",
+   "narration": "電從電源層進來，順著銅排送到每一層，最後都變成熱。",
+   "tts": "電從電源層進來，順著銅排送到每一層，最後都變成熱。",
    "subtitle": {
-    "zh": "電從電源層進來\n順著銅排送到每一層\n這麼大的電流\n最後都變成熱",
-    "en": "Power comes in from the power shelves, | runs down the copper busbars to every tray. | A current this big | ends up as heat."
+    "zh": "電從電源層進來\n順著銅排送到每一層\n最後都變成熱",
+    "en": "Power comes in from the power shelves, | runs down the copper busbars to every tray, | and ends up as heat."
    },
    "keywords": [
     "電源層",
@@ -1202,10 +1207,6 @@
     {
      "id": "bus",
      "text": "銅排"
-    },
-    {
-     "id": "big",
-     "text": "這麼大"
     },
     {
      "id": "heat",
@@ -1399,7 +1400,8 @@
    "sources": [
     "NVIDIA；Gigabyte 資料表（電源層）；規格 120–132 kW"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s7",
@@ -1665,37 +1667,37 @@
      {
       "id": "c_cold",
       "at": "out",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      },
      {
       "id": "c_hot",
       "at": "out",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      },
      {
       "id": "c_arm_c",
       "at": "out",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      },
      {
       "id": "c_arm_h",
       "at": "out+6",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      },
      {
       "id": "cdu_fan0",
       "at": "out",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      },
      {
       "id": "cdu_fan1",
       "at": "out",
-      "until": "s8:start-2",
+      "until": "s8a:start-2",
       "ramp": 6
      }
     ],
@@ -1714,7 +1716,7 @@
       "type": "section",
       "kind": "srv-cool",
       "at": "start+2",
-      "until": "s8:start-14",
+      "until": "s8a:start-14",
       "x": 64,
       "y": 1030,
       "w": 952,
@@ -1739,22 +1741,22 @@
    "sources": [
     "NVIDIA；DCD（晶片與交換器液冷）"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
-   "id": "s8",
+   "id": "s8a",
    "beat": "payoff",
    "para": 8,
-   "narration": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源，奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。各家市占，公開資料查不到完整數字。",
-   "tts": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源，奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。各家市占，公開資料查不到完整數字。",
+   "narration": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源。",
+   "tts": "做這些的，有鴻海、廣達、緯穎組裝，台達電做電源。",
    "subtitle": {
-    "zh": "做這些的\n有鴻海、廣達\n緯穎組裝\n台達電做電源\n奇鋐和雙鴻做散熱\n川湖做滑軌\n勤誠做機殼\n各家市占\n公開資料查不到完整數字",
-    "en": "Who builds this: | Foxconn and Quanta | and Wiwynn assemble, | Delta does power, | AVC and Auras do cooling, | King Slide does rails, | Chenbro the chassis. | Market shares? | No complete public numbers."
+    "zh": "做這些的\n有鴻海、廣達\n緯穎組裝\n台達電做電源",
+    "en": "Who builds this: | Foxconn and Quanta | and Wiwynn assemble, | Delta does the power."
    },
    "keywords": [
     "鴻海",
-    "台達電",
-    "查不到"
+    "台達電"
    ],
    "cues": [
     {
@@ -1764,7 +1766,98 @@
     {
      "id": "pw",
      "text": "電源"
-    },
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0.6,
+      "y": 2.2,
+      "d": 34,
+      "elev": 12,
+      "yaw": -2.2
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bus",
+      "at": "start",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "r_cglow",
+      "at": "asm-10",
+      "until": "pw-8",
+      "ramp": 6
+     },
+     {
+      "id": "r_pwglow",
+      "at": "pw-6",
+      "until": "s8b:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "p_arm_l",
+      "at": "pw",
+      "until": "s8b:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "p_arm_r",
+      "at": "pw",
+      "until": "s8b:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "r_top",
+      "text": "鴻海、廣達、緯穎　組裝",
+      "en": "assembly",
+      "color": "amber",
+      "at": "asm-6",
+      "until": "s8b:start-2"
+     },
+     {
+      "part": "r_pw",
+      "text": "台達電　電源層",
+      "en": "power shelf",
+      "color": "blue",
+      "at": "pw-6",
+      "until": "s8b:start-2"
+     }
+    ],
+    "overlay": []
+   },
+   "sources": [
+    "數位時代、科技新報、Yam 新聞（媒體報導）"
+   ],
+   "pauseAfter": 0.7,
+   "durationSec": 6
+  },
+  {
+   "id": "s8b",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。",
+   "tts": "奇鋐和雙鴻做散熱，川湖做滑軌，勤誠做機殼。",
+   "subtitle": {
+    "zh": "奇鋐和雙鴻做散熱\n川湖做滑軌\n勤誠做機殼",
+    "en": "AVC and Auras do cooling, | King Slide does rails, | Chenbro the chassis."
+   },
+   "keywords": [
+    "散熱",
+    "滑軌",
+    "機殼"
+   ],
+   "cues": [
     {
      "id": "cl",
      "text": "散熱"
@@ -1776,10 +1869,6 @@
     {
      "id": "shell",
      "text": "機殼"
-    },
-    {
-     "id": "nodata",
-     "text": "查不到"
     }
    ],
    "component": "ThreeScene",
@@ -1789,127 +1878,93 @@
       "at": "start-2",
       "dur": 1,
       "x": 0.6,
-      "y": 2.7,
-      "d": 37,
-      "elev": 12,
-      "yaw": -2.2
+      "y": 2.2,
+      "d": 34,
+      "elev": 12
      }
     ],
     "shift": [
      {
       "layer": "c8",
-      "at": "rail-4",
-      "until": "shell-6",
+      "at": "rail-6",
+      "until": "s9:start-2",
       "dz": 2.4,
       "dy": 0,
       "dx": 0,
-      "dur": 16
+      "dur": 20
      }
     ],
     "run": [
      {
-      "id": "r_cglow",
-      "at": "asm",
-      "until": "pw",
-      "ramp": 6
-     },
-     {
-      "id": "r_pwglow",
-      "at": "pw",
-      "until": "cl",
-      "ramp": 6
-     },
-     {
       "id": "c_cold",
-      "at": "cl",
-      "until": "rail",
+      "at": "cl-10",
+      "until": "s9:start-2",
       "ramp": 6
      },
      {
       "id": "c_hot",
-      "at": "cl",
-      "until": "rail",
+      "at": "cl-10",
+      "until": "s9:start-2",
       "ramp": 6
      },
      {
       "id": "c_arm_c",
-      "at": "cl",
-      "until": "rail",
+      "at": "cl-10",
+      "until": "s9:start-2",
       "ramp": 6
      },
      {
       "id": "c_arm_h",
-      "at": "cl",
-      "until": "rail",
+      "at": "cl-10",
+      "until": "s9:start-2",
       "ramp": 6
      },
      {
       "id": "cdu_fan0",
-      "at": "cl",
-      "until": "rail",
+      "at": "cl-10",
+      "until": "s9:start-2",
       "ramp": 6
      },
      {
       "id": "r_frglow",
       "at": "shell",
-      "until": "nodata",
+      "until": "s9:start-2",
       "ramp": 6
      }
     ],
-    "labels": [],
-    "overlay": [
+    "labels": [
      {
-      "type": "card",
-      "at": "asm",
-      "until": "s9:start-2",
-      "avoid": false,
-      "y": 990,
-      "kicker": "媒體報導",
-      "rows": [
-       [
-        "組裝",
-        "鴻海、廣達、緯穎"
-       ],
-       [
-        "電源",
-        "台達電"
-       ],
-       [
-        "散熱",
-        "奇鋐、雙鴻"
-       ],
-       [
-        "滑軌",
-        "川湖"
-       ],
-       [
-        "機殼",
-        "勤誠"
-       ]
-      ],
-      "hi": "台達電",
-      "hiAt": "pw",
-      "size": 34,
-      "foot": "查證截至 2026/11/20，非投資建議"
+      "part": "r_mf",
+      "text": "奇鋐、雙鴻　散熱",
+      "en": "cooling",
+      "color": "blue",
+      "at": "cl-4",
+      "until": "s9:start-2"
      },
      {
-      "type": "stamp",
-      "at": "nodata",
-      "until": "s9:start-2",
-      "text": "市占查不到",
+      "part": "r_rail",
+      "text": "川湖　滑軌",
+      "en": "rails",
+      "color": "amber",
+      "at": "rail-4",
+      "until": "s9:start-2"
+     },
+     {
+      "part": "r_chas",
+      "text": "勤誠　機殼",
+      "en": "chassis",
       "color": "blue",
-      "size": 44,
-      "rot": -4,
-      "x": 820,
-      "y": 250,
-      "avoid": false
+      "at": "shell-4",
+      "until": "s9:start-2"
      }
-    ]
+    ],
+    "overlay": []
    },
    "sources": [
-    "數位時代、科技新報、Yam 新聞、經濟日報（媒體報導）"
+    "經濟日報、自由時報、科技新報（媒體報導）"
    ],
-   "pauseAfter": 0.7
+   "pauseAfter": 0.7,
+   "durationSec": 6
   },
   {
    "id": "s9",
@@ -2015,7 +2070,8 @@
    },
    "sources": [
     "下一支：11/21（六）液冷（已排定）"
-   ]
+   ],
+   "durationSec": 6
   },
   {
    "id": "s10",

@@ -66,8 +66,7 @@ scenes.append(scene("s2", "mechanism", 2,
               [fall(f"cube_b{j}", off("times", -34 + 9 * j), dy=4.0, bounce=0.06) for j in range(3)],
      "run": [run("p_air", off("same", 22), "s3:start-2", 8), run("p_wat", off("times", 8), "s3:start-2", 8)],
      "labels": [lab("cup_a", "空氣", "Air", "coral", off("same", 6), "s3:start-2"), lab("cup_b", "水", "Water", "blue", off("times", -30), "s3:start-2")],
-     "overlay": [sec("cool-cups", "start+2", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "times": "times", "water": "water"}),
-                 stamp("已確定（物性）", "times", "s3:start-2", "blue", 40, x=800, y=340)]},
+     "overlay": [sec("cool-cups", "start+2", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "times": "times", "water": "water"})]},
     ["Upsite；Data Center Frontier；Introl（體積熱容）"], pause=0.7))
 
 # ───────── s3 換冷板（C）─────────
@@ -81,8 +80,7 @@ scenes.append(scene("s3", "mechanism", 3,
      "shift": [hide_until("paste", off("plate", -14), dy=0.3), fall("cp", "plate", press=None, dy=3.6, bounce=0.1), hide_until("hose", off("plate", 12), dy=0.5, dur=10),
                {"layer": "hs", "at": "fin", "until": FAR, "dy": 4.2, "dx": -3.0, "opacity": 0, "dur": 22}],
      "run": [run("c_die", "start-30", off("plate", 30), 6), run("c_win", off("plate", 20), "s5:start-2", 8), run("c_wout", off("plate", 26), "s5:start-2", 8)],
-     "labels": [lab("c_hs", "散熱片（風冷）", "Heat sink (air)", "coral", "chip", "plate")],
-     "overlay": [stamp("貼在晶片上", "plate+14", "s4:start-2", "amber", 40, x=800, y=340, avoid=False)]},
+     "labels": [lab("c_hs", "散熱片（風冷）", "Heat sink (air)", "coral", "chip", "plate")]},
     ["HPE；Data Center Frontier（direct-to-chip）"], pause=0.7))
 
 # ───────── s4 冷板內部（K，運作動畫 A）─────────
@@ -117,8 +115,8 @@ scenes.append(scene("s5", "mechanism", 5,
         {"layer": "q_mid", "at": "pull", "until": off("dry", 10), "opacity": 0, "dur": 6}],
      "run": [run("r_f_bb", "where", "s7:end", 6), run("r_f_bu", off("where", 6), "s7:end", 6), run("r_f_br", "pipe", "s7:end", 6), run("r_f_rr", off("pipe", 14), "s7:end", 6),
              run("r_f_ru", off("pipe", 22), "s7:end", 6), run("r_f_rt", "mani", "s7:end", 6), run("q_flowc", off("qd", 8), "pull", 4)],
-     "labels": [lab("r_man", "總水管（分歧管）", "Manifold", "blue", "mani", "qd-12"), lab("q_pop", "閥芯", "Valve", "amber", off("qd", 14), "dry+4"), lab("q_spring", "彈簧", "Spring", "blue", "pull", "dry+4")],
-     "overlay": [sec("cool-loop", "start+2", "s6:end", 930, 310, "一條迴路", "示意", {"plate": "start", "mani": "mani", "cdu": "s6:cdu", "dry": "s6:cool", "loop": "s6:loop"}),
+     "labels": [lab("r_man", "總水管（分歧管）", "Manifold", "blue", "mani", "qd-12"), lab("q_pop", "閥芯", "Valve", "amber", off("qd", 14), "dry+4"), lab("q_spring", "彈簧", "Spring", "blue", "pull", "dry+4"), lab("q_body", "富世達 快接頭", "Quick disconnects", "amber", off("qd", 4), "pull-6")],
+     "overlay": [sec("cool-loop", "start+2", "s6:start-2", 930, 310, "一條迴路", "示意", {"plate": "start", "mani": "mani", "cdu": "s6:start-8", "dry": "s6:start-6", "loop": "s6:start-4"}),
                  stamp("拔開：0 滴", "pull+8", "dry+4", "blue", 44, x=800, y=340)]},
     ["Eaton、Boyd 產品頁；經濟日報（快接頭）"], pause=0.7))
 
@@ -129,39 +127,40 @@ scenes.append(scene("s6", "mechanism", 6,
     ["Then it goes to a heat-exchange machine,", "which hands the heat to the building's cooling water,", "and the cooled water returns,", "round and round."],
     ["換熱的機器", "冷卻水", "循環"],
     [cue("cdu", "換熱的機器"), cue("give", "把熱交給"), cue("cool", "降溫"), cue("loop", "一直循環")],
-    {"shot": [shot("start-2", RX + 5.5, 2.4, 36, 10, 1), shot("cdu", CDX, 3.2, 32, 10, 30), shot("cool", RX + 15.0, 0.4, 42, 12, 40), shot("loop", RX + 11.0, 0.0, 48, 12, 40)],
+    {"shot": [shot("start-2", RX + 5.5, 2.4, 36, 10, 1), shot("cdu-6", CDX, 2.8, 20, 10, 26), shot("cool", RX + 15.0, 0.4, 42, 12, 40), shot("loop", RX + 11.0, 0.0, 48, 12, 40)],
      "run": [run("u_impl", off("cdu", -10), "s7:end", 8), run("u_h1", "give", "s7:end", 6), run("u_h2", off("give", 4), "s7:end", 6), run("u_h3", off("give", 8), "s7:end", 6),
              run("u_c1", off("give", 2), "s7:end", 6), run("u_c2", off("give", 6), "s7:end", 6), run("u_c3", off("give", 10), "s7:end", 6), run("u_hot", "cdu", "s7:end", 6),
              run("u_out", "cool", "s7:end", 6), run("q_f1", "give", "s7:end", 6), run("q_f2", off("give", 14), "s7:end", 6), run("q_f3", off("cool", 6), "s7:end", 6),
              run("d_fans", off("give", 10), "s7:end", 8), run("d_air", "cool", "s7:end", 6)],
-     "labels": [lab("u_hx", "板式熱交換器（CDU）", "Plate heat exchanger", "amber", "cdu", "give+20"), lab("u_pump", "幫浦", "Pump", "blue", off("cdu", 6), "give+20"), lab("d_dc", "乾冷器（機房外）", "Dry cooler", "amber", "cool", "loop-34")],
-     "overlay": [stamp("熱不混水：隔著金屬片傳", "give+4", "cool", "amber", 36, x=640, y=340)]},
+     "labels": [lab("u_hx", "板式熱交換器", "Plate heat exchanger", "amber", "cdu", "give+30"), lab("u_pump", "幫浦", "Pump", "blue", off("cdu", 10), "give+30"), lab("d_dc", "乾冷器（機房外）", "Dry cooler", "amber", "cool", "loop-34")],
+     "overlay": [sec("cool-hx", "start+2", "loop-6", 930, 310, "熱交換器剖面", "示意：兩邊水不混，隔著金屬片傳熱", {"cdu": "cdu", "give": "give", "cool": "cool"}),
+                 sec("cool-loop", "loop-6", "s7:start-2", 930, 310, "一條迴路", "示意", {"plate": "start", "mani": "start", "cdu": "start", "dry": "start", "loop": "start"})]},
     ["QCT；Eaton；HPE；運作示意"], pause=0.7))
 
-# ───────── s7 台灣誰在做 ─────────
+# ───────── s7 台灣誰在做（引線指到 3D 模型對應部位）─────────
 scenes.append(scene("s7", "payoff", 7,
     "台灣的奇鋐、雙鴻做冷板，台達電做換熱的機器，高力做熱交換的零件。",
     ["台灣的奇鋐、雙鴻做冷板", "台達電做換熱的機器", "高力做熱交換的零件"],
     ["In Taiwan, AVC and Auras make cold plates,", "Delta makes the heat-exchange machine,", "and Kaori makes the heat-exchanger parts."],
     ["奇鋐", "台達電", "高力"],
     [cue("qh", "奇鋐"), cue("dt", "台達電"), cue("gl", "高力")],
-    {"shot": [shot("start-2", RX + 11.0, 0.2, 48, 12, 14)],
-     "overlay": [{"type": "card", "at": "qh", "until": "s8:start-2", "y": 930, "kicker": "媒體報導", "rows": [["奇鋐、雙鴻", "冷板、模組"], ["台達電", "CDU（換熱）"], ["高力", "熱交換器"]], "hi": "台達電", "hiAt": "dt", "size": 42,
-                  "foot": "查證截至 2026/11/21，非投資建議；出處：鉅亨、優分析"}]},
-    ["鉅亨、優分析（媒體報導）"]))
+    {"shot": [shot("start-2", KX, -2.0, 34, 46, 1), shot("dt-14", CDX, 3.0, 24, 10, 26), shot("gl-10", CDX, 3.0, 17, 10, 20)],
+     "labels": [lab("k_lid", "奇鋐、雙鴻：冷板", "Cold plates", "amber", "qh", "dt-10"), lab("u_cdu", "台達電：CDU", "CDU", "amber", "dt", "gl-8"), lab("u_hx", "高力：熱交換器", "Heat exchanger", "amber", "gl", "s8:start-2")],
+     "overlay": [stamp("媒體報導，非投資建議", "qh", "s8:start-2", "blue", 34, x=720, y=336, avoid=False)]},
+    ["鉅亨、優分析、財訊（媒體報導）"]))
 
-# ───────── s8 沒全包＋查不到（C）─────────
+# ───────── s8 沒全包（C）─────────
 scenes.append(scene("s8", "twist", 8,
-    "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。漏水的機率，各家都沒有公布。",
-    ["不過冷板不是全包", "還有一到兩成的熱", "要靠風扇帶走", "漏水的機率", "各家都沒有公布"],
-    ["But the cold plate doesn't cover everything,", "one to two tenths of the heat", "still needs fans to carry it off.", "The odds of a leak?", "No maker has published them."],
-    ["不是全包", "一到兩成", "沒有公布"],
-    [cue("notall", "不是全包"), cue("pct", "一到兩成"), cue("fan", "風扇"), cue("leak", "漏水的機率"), cue("unk", "沒有公布")],
+    "不過冷板不是全包，還有一到兩成的熱，要靠風扇帶走。",
+    ["不過冷板不是全包", "還有一到兩成的熱", "要靠風扇帶走"],
+    ["But the cold plate doesn't cover everything,", "one to two tenths of the heat", "still needs fans to carry it off."],
+    ["不是全包", "一到兩成"],
+    [cue("notall", "不是全包"), cue("pct", "一到兩成"), cue("fan", "風扇")],
     {"shot": [shot("start-2", CXX + 3.4, -0.3, 22, 32, 1)],
      "run": [run("c_vrmhot", "notall", "s9:start-2", 6), run("c_hotair", "pct", "s9:start-2", 6), run("c_fan", off("pct", 8), "s9:start-2", 8), run("c_air", "fan", "s9:start-2", 6),
              run("c_win", "start-4", "s9:start-2", 6), run("c_wout", "start-4", "s9:start-2", 6)],
      "labels": [],
-     "overlay": [sec("cool-split", "start+2", "s9:start-16", 940, 300, "熱怎麼帶走", "業界說法・示意", {"notall": "notall", "pct": "pct", "fan": "fan", "leak": "leak", "unk": "unk"})]},
+     "overlay": [sec("cool-split", "start+2", "s9:start-16", 940, 300, "熱怎麼帶走", "業界說法・示意", {"notall": "notall", "pct": "pct", "fan": "fan"})]},
     ["Data Center Frontier（業界說法）"], pause=0.7))
 
 # ───────── s9 結尾（H）─────────

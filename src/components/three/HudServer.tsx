@@ -121,11 +121,22 @@ const Cool: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {/* 風扇與被擋住的風 */}
-        <g opacity={ag * (1 - lq * 0.7)}>
+        <g opacity={ag * (1 - lq)}>
           <circle cx={90} cy={170} r={44} fill="none" stroke={steel} strokeWidth={5} />
           {[0, 1, 2].map((j) => <path key={j} d={`M90 170 l${34 * Math.cos(f * 0.35 + j * 2.09)} ${34 * Math.sin(f * 0.35 + j * 2.09)}`} stroke={steel} strokeWidth={9} strokeLinecap="round" />)}
           {[0, 1, 2].map((j) => <path key={j} d={`M${150 + (f * 2 + j * 20) % 60} ${140 + j * 30} h28`} stroke={steel} strokeWidth={4} opacity={0.7} />)}
           <path d={`M${rx - 26} 100 l50 140 m0 -140 l-50 140`} stroke={bad} strokeWidth={8} opacity={xx} />
+        </g>
+        {/* 晶片剖面：冷板貼在晶片上，冷卻液從冷變熱（顏色跟著溫度） */}
+        <g opacity={lq}>
+          <rect x={30} y={235} width={250} height={26} fill={steel} />
+          <text x={36} y={256} style={zh(sm(30), onC(H.line), 800)}>晶片</text>
+          <rect x={30} y={170} width={250} height={60} fill={c("cuHi")} stroke={H.text3} strokeWidth={1.5} />
+          <path d="M40 200 H270" stroke={H.cardCompare} strokeWidth={14} />
+          {Array.from({ length: 12 }, (_, j) => { const u = ph(f, 0.022, j, 12); const x = 44 + 222 * u; const mix = Math.min(1, Math.max(0, u)); return <circle key={j} cx={x} cy={200} r={5.5} fill={mix < 0.5 ? cool : hot} opacity={0.55 + 0.45 * Math.abs(mix - 0.5) * 2} />; })}
+          {Array.from({ length: 5 }, (_, j) => <path key={j} d={`M${58 + j * 48} 232 v-22 m-6 9 l6 -10 l6 10`} stroke={hot} strokeWidth={3.5} fill="none" opacity={0.5 + 0.4 * Math.sin(f * 0.2 + j)} />)}
+          <text x={34} y={158} style={zh(sm(30), cool, 900)}>冷 →</text>
+          <text x={196} y={158} style={zh(sm(30), hot, 900)}>→ 熱</text>
         </g>
         {Array.from({ length: N }, (_, i) => <rect key={i} x={rx} y={ry(i)} width={280} height={11} fill={tb} />)}
         {/* 冷卻液：冷進（左側下→上）、熱出（右側上→下），經過每一層 */}

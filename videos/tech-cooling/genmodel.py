@@ -195,6 +195,7 @@ glow("k_basehot", "k_base", ["k_base"], "lp_heat", steady=False, g=.7, freq=1.6)
 actions["k_heat"] = {"preset": "heat-spread", "layer": "k_die", "from": {"layer": "k_die", "p": [KX, .55, 0]}, "dir": [0, 1, 0], "reach": 1.8, "count": 3, "r0": .6, "spread": .5, "rate": .7}
 anchor("k_die", "k_die", [KX + 1.7, .3, 1.7], dx=140, dy=70)
 anchor("k_wall", "k_wall", [KX - 3.0, 1.9, 3.0], dx=-150, dy=-60)
+anchor("k_lid", "k_lid", [KX + 3.2, 2.3, 2.4], dx=-150, dy=-100)
 anchor("k_in", "k_pipe", [KX - 6.7, 1.9, 0], dx=-120, dy=-90)
 anchor("k_out", "k_pipe", [KX + 6.7, 1.9, 0], dx=120, dy=-90)
 
@@ -277,6 +278,7 @@ flow("d_air", "dfan_bl", [[DCX - 1.8, 2.4, 0], [DCX - 1.8, 4.6, 0]], n=3, lanes=
 glow("u_hot", "u_hx", ["u_plR"], "lp_bad", steady=False, g=.5, freq=1.4)
 anchor("r_man", "r_man", [RX - 2.8, 6.0, 1.7], dx=-150, dy=-40)
 anchor("r_qd", "r_qd", [RX - 1.5, 4.3, 1.75], dx=-120, dy=-110)
+anchor("u_cdu", "u_cdu", [CDX + 2.4, 6.6, 1.0], dx=130, dy=-60)
 anchor("u_hx", "u_hx", [CDX + 1.6, 5.8, 2.0], dx=130, dy=-60)
 anchor("u_pump", "u_pump", [CDX - 1.0, 1.0, 1.6], dx=-140, dy=60)
 anchor("d_dc", "d_dc", [DCX + 2.7, 1.2, 1.6], dx=100, dy=-90)
@@ -309,6 +311,7 @@ cyl("q_mid", "q_mid", "waterIn", .56, 1.8, [QX - .6, QY, 0], axis="x")
 flow("q_flowc", "q_mid", [[QX - 5.0, QY, 0], [QX + 5.0, QY, 0]], n=4, lanes=3, gap=.28, ldir=(0, 1, 0), size=.12, rate=1.0, color="lp_sig", rim="lp_sigRim")
 anchor("q_pop", "qf_pop", [QX - 1.55, QY + .6, .5], dx=-130, dy=-90)
 anchor("q_spring", "qm_sp0", [QX + 1.2, QY + .45, .4], dx=130, dy=-90)
+anchor("q_body", "qf", [QX - 1.6, QY + 1.1, 0.4], dx=-150, dy=-80)
 anchor("q_or", "qf", [QX - .1, QY + 1.0, 0], dx=0, dy=-120)
 
 model = {

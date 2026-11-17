@@ -138,6 +138,12 @@ box("rc", "trc", mm("steel2"), [2.6, 0.9, 0.7], [TX, TY+0.45+0.07, -4.6], at=[[-
 box("rc_pin", "trc", mm("cuHi"), [0.12, 0.5, 0.1], [TX, TY+0.5, -4.2], at=[[-3.9+0.38*k, 0, 0] for k in range(-3, 4)]+[[3.9+0.38*k, 0, 0] for k in range(-3, 4)])
 box("pw_in", "tpw", mm("pwr"), [1.4, 0.6, 0.8], [TX+7.0, TY+0.3+0.07, -3.0])
 box("pw_bar", "tpw", mm("cu"), [0.14, 0.1, 6.4], [TX+6.4, TY+0.35, -0.6], at=[[0, 0, 0]])
+
+# 供電模組（VRM）：每個 GPU 模組後方一排，電源接頭 → VRM → 晶片
+for mi, mx in enumerate(MODX):
+    box(f"vrm{mi}_ic", f"vrm{mi}", mm("chipBk"), [0.55, 0.26, 0.5], [TX+mx, TY+0.13+0.07, -2.85], at=[[-2.5+0.85*k, 0, 0] for k in range(7)])
+    box(f"vrm{mi}_ind", f"vrm{mi}", mm("cuHi"), [0.4, 0.3, 0.4], [TX+mx, TY+0.15+0.07, -3.55], at=[[-2.5+0.85*k, 0, 0] for k in range(7)])
+    box(f"vrm{mi}_cap", f"vrm{mi}", mm("steel"), [0.28, 0.34, 0.28], [TX+mx, TY+0.17+0.07, -4.1], at=[[-2.5+0.6*k, 0, 0] for k in range(10)], shape="cyl")
 # 網卡（前緣）
 box("nic", "tp_nic", mm("nic"), [1.6, 0.16, 0.9], [TX, TY+0.08+0.07, 3.9], at=[[-4.5, 0, 0], [4.5, 0, 0]])
 # 冷卻液管：中央兩條沿 z，分支進冷板
@@ -146,6 +152,8 @@ box("tb_c", "tcool", mm("coolB"), [0.28, 0.28, 8.0], [TX-0.4, PY, 0.7], shape="b
 box("tb_h", "tcool", mm("hotO"), [0.28, 0.28, 8.0], [TX+0.4, PY, 0.7])
 box("tb_sc", "tcool", mm("coolB"), [1.0, 0.18, 0.18], [TX, PY, 0], at=[[-2.0, 0, 1.4], [-2.0, 0, -1.4]])
 box("tb_sh", "tcool", mm("hotO"), [1.0, 0.18, 0.18], [TX, PY, 0], at=[[2.0, 0, 1.0], [2.0, 0, -1.0]])
+anchor("r_rail", "c8", [W/2-0.3, SLOTY["c8"], D/2], dx=150, dy=-60)
+anchor("r_chas", "c12", [-W/2+0.3, SLOTY["c12"], D/2], dx=-150, dy=-40)
 anchor("t_gpu", "sc0_g0", [TX+MODX[0]-0.2+0.85, TY+0.22+0.42, 1.0], dx=-130, dy=-80)
 anchor("t_cpu", "sc0_c", [TX+MODX[0]-2.1+0.7, TY+0.22+0.34, 0.7], dx=-140, dy=60)
 anchor("t_cp", "cp0", [TX+MODX[0]+0.85+2.0, PY, 0], dx=130, dy=-50)
@@ -174,6 +182,9 @@ flow("c_hot", "cool", [[W/2+0.85, HR-0.4, BZ+0.18], [W/2+0.85, 0.5, BZ+0.18]], 6
 flow("t_cold", "tcool", [[TX-0.4, PY+0.17, 4.5], [TX-0.4, PY+0.17, -3.0]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_cool", "lp_cool")
 flow("t_hot", "tcool", [[TX+0.4, PY+0.17, -3.0], [TX+0.4, PY+0.17, 4.5]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_hot", "lp_hot")
 flow("t_data", "tp_nic", [[TX-3.7, TY+0.4, 3.9], [TX-3.7, TY+0.4, 0.6]], 3, 3, 0.2, [1,0,0], 0.1, 1.2, "lp_sig", "lp_sigRim")
+flow("t_vrm", "tpw", [[TX+7.0, TY+0.5, -3.0], [TX-6.4, TY+0.5, -3.0]], 5, 1, 0.1, [0,1,0], 0.1, 1.1, "lp_proc", "lp_proc")
+flow("t_vrm0", "vrm0", [[TX-3.9, TY+0.45, -3.0], [TX-3.9, TY+0.45, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
+flow("t_vrm1", "vrm1", [[TX+3.9, TY+0.45, -3.0], [TX+3.9, TY+0.45, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
 flow("t_rear", "trc", [[TX-1.5, TY+0.8, -0.8], [TX-3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
 flow("t_rear2", "trc", [[TX+1.5, TY+0.8, -0.8], [TX+3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
 flow("t_pwr", "tpw", [[TX+7.0, TY+0.7, -3.0], [TX+7.0, TY+0.7, -0.6], [TX+4.6, TY+0.7, -0.6]], 4, 2, 0.16, [0,1,0], 0.1, 1.2, "lp_proc", "lp_proc")
