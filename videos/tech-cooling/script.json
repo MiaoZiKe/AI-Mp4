@@ -106,17 +106,9 @@
       "at": "start-30",
       "dur": 1,
       "x": 0,
-      "y": 4.6,
-      "d": 27,
-      "elev": 14
-     },
-     {
-      "at": "heat",
-      "dur": 40,
-      "x": 0,
-      "y": 5.6,
-      "d": 30,
-      "elev": 18
+      "y": 4.0,
+      "d": 36,
+      "elev": 16
      }
     ],
     "shift": [
@@ -174,7 +166,7 @@
       "en": "Fan wall (air cooling)",
       "color": "amber",
       "at": "fan",
-      "until": "s2:start-2"
+      "until": "s1:end-8"
      }
     ],
     "overlay": [
@@ -192,7 +184,7 @@
     ]
    },
    "sources": [
-    "NVIDIA DGX GB200 使用手冊；Vertiv／451 Research 2024/11"
+    "NVIDIA GB200 使用手冊；Vertiv 2024/11"
    ],
    "pauseAfter": 0.7
   },
@@ -234,18 +226,18 @@
     "zoom": [
      {
       "to": "pk",
-      "at": "start-2",
+      "at": "start-10",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "start-2",
+      "at": "start-10",
       "dur": 1,
       "x": 60,
-      "y": 1.6,
-      "d": 20,
-      "elev": 18
+      "y": -1.5,
+      "d": 34,
+      "elev": 16
      }
     ],
     "shift": [
@@ -477,14 +469,6 @@
       "color": "coral",
       "at": "chip",
       "until": "plate"
-     },
-     {
-      "part": "c_cp",
-      "text": "冷板（銅）",
-      "en": "Cold plate (copper)",
-      "color": "blue",
-      "at": "plate+10",
-      "until": "s4:start-2"
      }
     ],
     "overlay": [
@@ -547,17 +531,17 @@
       "at": "start-2",
       "dur": 1,
       "x": 180,
-      "y": 0.8,
-      "d": 26,
-      "elev": 40
+      "y": -2.0,
+      "d": 34,
+      "elev": 46
      },
      {
       "at": "inn",
       "dur": 30,
       "x": 180,
-      "y": 1.0,
-      "d": 21,
-      "elev": 44
+      "y": -1.6,
+      "d": 30,
+      "elev": 48
      }
     ],
     "run": [
@@ -659,7 +643,7 @@
     ]
    },
    "sources": [
-    "Data Center Frontier；Fibermall（微通道冷板）；運作為示意"
+    "Data Center Frontier；Fibermall；運作示意"
    ],
    "pauseAfter": 0.7
   },
@@ -711,17 +695,17 @@
       "at": "start-2",
       "dur": 1,
       "x": 240,
-      "y": 4.4,
-      "d": 24,
+      "y": 2.2,
+      "d": 40,
       "elev": 8
      },
      {
       "at": "qd-10",
       "dur": 18,
       "x": 300,
-      "y": 3.2,
-      "d": 12,
-      "elev": 10
+      "y": 1.5,
+      "d": 20,
+      "elev": 12
      }
     ],
     "shift": [
@@ -1038,25 +1022,33 @@
      {
       "at": "start-2",
       "dur": 1,
+      "x": 245.5,
+      "y": 2.4,
+      "d": 36,
+      "elev": 10
+     },
+     {
+      "at": "cdu",
+      "dur": 30,
       "x": 249.8,
-      "y": 4.4,
-      "d": 20,
+      "y": 3.2,
+      "d": 32,
       "elev": 10
      },
      {
       "at": "cool",
       "dur": 40,
-      "x": 254.5,
-      "y": 4.0,
-      "d": 40,
+      "x": 255.0,
+      "y": 0.4,
+      "d": 42,
       "elev": 12
      },
      {
       "at": "loop",
       "dur": 40,
-      "x": 250.5,
-      "y": 4.2,
-      "d": 46,
+      "x": 251.0,
+      "y": 0.0,
+      "d": 48,
       "elev": 12
      }
     ],
@@ -1169,7 +1161,7 @@
       "en": "Dry cooler",
       "color": "amber",
       "at": "cool",
-      "until": "s7:start-2"
+      "until": "loop-34"
      }
     ],
     "overlay": [
@@ -1187,7 +1179,7 @@
     ]
    },
    "sources": [
-    "QCT Qoolrack；Eaton／Boyd；HPE（CDU 與熱交換）；運作為示意"
+    "QCT；Eaton；HPE；運作示意"
    ],
    "pauseAfter": 0.7
   },
@@ -1226,9 +1218,9 @@
      {
       "at": "start-2",
       "dur": 14,
-      "x": 250.5,
-      "y": 4.6,
-      "d": 46,
+      "x": 251.0,
+      "y": 0.2,
+      "d": 48,
       "elev": 12
      }
     ],
@@ -1237,7 +1229,7 @@
       "type": "card",
       "at": "qh",
       "until": "s8:start-2",
-      "y": 880,
+      "y": 930,
       "kicker": "媒體報導",
       "rows": [
        [
@@ -1308,7 +1300,7 @@
       "at": "start-2",
       "dur": 1,
       "x": 123.4,
-      "y": 1.4,
+      "y": -0.3,
       "d": 22,
       "elev": 32
      }
@@ -1351,24 +1343,7 @@
       "ramp": 6
      }
     ],
-    "labels": [
-     {
-      "part": "c_vrm",
-      "text": "電感、功率元件仍發熱",
-      "en": "Still hot",
-      "color": "coral",
-      "at": "pct",
-      "until": "unk"
-     },
-     {
-      "part": "c_cp",
-      "text": "冷板蓋住 GPU",
-      "en": "Cold plate on GPU",
-      "color": "blue",
-      "at": "notall",
-      "until": "pct"
-     }
-    ],
+    "labels": [],
     "overlay": [
      {
       "type": "section",
@@ -1403,7 +1378,7 @@
     ]
    },
    "sources": [
-    "Data Center Frontier（80–90% 液冷）；research.md #7、#9"
+    "Data Center Frontier（業界說法）"
    ],
    "pauseAfter": 0.7
   },
@@ -1451,8 +1426,8 @@
       "at": "start-2",
       "dur": 1,
       "x": 0,
-      "y": 4.6,
-      "d": 30,
+      "y": 3.4,
+      "d": 36,
       "elev": 16
      }
     ],

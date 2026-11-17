@@ -52,9 +52,9 @@ const Cups: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <text x={cx[0] + cw / 2} y={base - ch - 16} textAnchor="middle" opacity={nA} style={zh(46, bad, 900)}>1 份</text>
         <text x={cx[1] + cw / 2} y={base - ch - 16} textAnchor="middle" opacity={nB} style={zh(46, c("lp_sig"), 900)}>12 份</text>
-        <text x={560} y={150} opacity={tween(f, times - 6, 8, EASE.enter)} style={zh(120 * pop, H.amber, 900)}>約 3,450 倍</text>
-        <text x={566} y={200} opacity={tween(f, times - 4, 8, EASE.enter)} style={zh(36, H.text, 800)}>同體積、升高 1 度，帶走的熱</text>
-        <text x={566} y={252} opacity={tween(f, water, 8, EASE.enter)} style={zh(sm(32), H.text2, 700)}>所以改讓水來搬熱（物性計算；各家寫 3,300–3,500）</text>
+        <text x={540} y={150} opacity={tween(f, times - 6, 8, EASE.enter)} style={zh(92 * pop, H.amber, 900)}>約 3,450 倍</text>
+        <text x={546} y={200} opacity={tween(f, times - 4, 8, EASE.enter)} style={zh(30, H.text, 800)}>同體積、升高 1 度，帶走的熱</text>
+        <text x={546} y={252} opacity={tween(f, water, 8, EASE.enter)} style={zh(sm(32), H.text2, 700)}>改讓水來搬熱（物性計算）</text>
       </svg>
     </Card>
   );

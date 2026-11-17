@@ -188,6 +188,24 @@
    "opacity": 0.22,
    "env": 0.5
   },
+  "m_qglass": {
+   "kind": "phys",
+   "color": "steelHi",
+   "rough": 0.1,
+   "metal": 0.2,
+   "clearcoat": 0.8,
+   "opacity": 0.34,
+   "env": 0.5
+  },
+  "m_qglass2": {
+   "kind": "phys",
+   "color": "steel2",
+   "rough": 0.1,
+   "metal": 0.2,
+   "clearcoat": 0.8,
+   "opacity": 0.4,
+   "env": 0.5
+  },
   "m_glassHot": {
    "kind": "phys",
    "color": "hotR",
@@ -1739,28 +1757,12 @@
    "shape": "box",
    "size": [
     5.4,
-    2.6,
+    1.4,
     3.0
    ],
    "pos": [
     0,
-    10.2,
-    0
-   ],
-   "mat": "m_hotcloud"
-  },
-  {
-   "id": "rk_cloud2",
-   "layer": "cloud",
-   "shape": "box",
-   "size": [
-    4.2,
-    1.6,
-    2.4
-   ],
-   "pos": [
-    0,
-    12.0,
+    9.5,
     0
    ],
    "mat": "m_hotcloud"
@@ -5049,7 +5051,7 @@
     3.0,
     0
    ],
-   "mat": "m_steelHi",
+   "mat": "m_qglass",
    "rot": [
     0,
     90,
@@ -5316,7 +5318,7 @@
     3.0,
     0
    ],
-   "mat": "m_steel",
+   "mat": "m_qglass2",
    "rot": [
     0,
     90,
@@ -5358,7 +5360,7 @@
     3.0,
     0
    ],
-   "mat": "m_steelHi",
+   "mat": "m_qglass",
    "rot": [
     0,
     90,

@@ -75,6 +75,8 @@ const half = (p: PartDef): number[] => {
   h = h.map((v, i) => v * (sc[i] ?? 1));
   // 只繞 X 軸轉 90 度（圓柱立起來、圓環躺平）：y、z 對調，不用外接球（外接球會把磨輪這類零件的範圍估成 3.5 倍）
   if (p.rot && Math.abs(Math.abs(p.rot[0]) - 90) < 1 && Math.abs(p.rot[1] ?? 0) < 1 && Math.abs(p.rot[2] ?? 0) < 1) h = [h[0], h[2], h[1]];
+  // 2026/11/17 tech-cooling：只繞 Y 軸轉 90 度（圓管橫躺沿 x 軸）：x、z 對調（長水管不再被估成一顆大球）
+  else if (p.rot && Math.abs(Math.abs(p.rot[1] ?? 0) - 90) < 1 && Math.abs(p.rot[0] ?? 0) < 1 && Math.abs(p.rot[2] ?? 0) < 1) h = [h[2], h[1], h[0]];
   else if (p.rot && p.rot.some((r) => Math.abs(r) > 1)) { const m = Math.hypot(h[0], h[1], h[2]); h = [m, m, m]; }
   return h;
 };

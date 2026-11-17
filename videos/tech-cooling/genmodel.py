@@ -35,7 +35,7 @@ materials = {
  "orange": M("orange", rough=.35, metal=.35), "dram": M("dram", rough=.35), "dram2": M("dram2", rough=.35), "si": M("si", rough=.35, metal=.35, env=.5), "siTop": M("siTop", rough=.3, metal=.4, env=.6),
  "pcbG": M("pcbG", rough=.6), "paste": M("paste", rough=.7), "brass": M("brass", rough=.3, metal=.9, env=.7), "oring": M("oring", rough=.6), "white": M("white", rough=.55),
  "slot": {"kind": "unlit", "color": "slot"}, "led": {"kind": "unlit", "color": "led"}, "cube": M("cube", rough=.4, metal=.1),
- "glass": G("glass", .22), "glassHot": G("hotR", .0), "waterFill": G("waterB", .55, rough=.05), "airFill": G("airB", .16),
+ "glass": G("glass", .22), "qglass": G("steelHi", .34, metal=.2), "qglass2": G("steel2", .4, metal=.2), "glassHot": G("hotR", .0), "waterFill": G("waterB", .55, rough=.05), "airFill": G("airB", .16),
  "lid": G("glass", .26), "hotcloud": {"kind": "unlit", "color": "cloud", "opacity": .22}, "cdwin": G("glass", .12),
  "pipeB": M("pipeB", rough=.35, metal=.4), "pipeR": M("pipeR", rough=.35, metal=.4), "hxB": G("waterBd", .55), "hxR": G("hotR", .55),
  "waterIn": {"kind": "unlit", "color": "waterB", "opacity": .5}, "cable": M("cableCu", rough=.3, metal=.9),
@@ -94,8 +94,7 @@ fan_group("h_fans", "hfan", fl, rps=3.2)
 box("rk_led", "rk_led", "led", [.5, .14, .04], [HX0, 1.0, 1.64], at=[[0, k * .95, 0] for k in range(8)])
 box("rk_grill", "rk", "slot", [5.0, .1, .04], [HX0, 8.2, 1.62])
 glow("h_leds", "rk_led", ["rk_led"], "lp_bad", steady=False, g=1.0, freq=2.8)
-box("rk_cloud", "cloud", "hotcloud", [5.4, 2.6, 3.0], [HX0, 10.2, 0])
-box("rk_cloud2", "cloud", "hotcloud", [4.2, 1.6, 2.4], [HX0, 12.0, 0])
+box("rk_cloud", "cloud", "hotcloud", [5.4, 1.4, 3.0], [HX0, 9.5, 0])
 # 氣流：風扇吹出只推一小段（藍），熱氣從頂與背面往上冒（橘）
 for c, fx in enumerate((-1.45, 1.45)):
     flow(f"h_air{c}", "hfan_bl", [[HX0 + fx, FY[0], 2.2], [HX0 + fx, FY[0], 4.4]], n=3, lanes=4, gap=1.9, ldir=(0, 1, 0), size=.1, rate=.9, color="lp_sig", rim="lp_sigRim")
@@ -285,7 +284,7 @@ anchor("d_dc", "d_dc", [DCX + 2.7, 1.2, 1.6], dx=100, dy=-90)
 # ═════════ Q：快接頭特寫 ═════════
 QX = 300; QY = 3.0
 # 母端（左）：外套、後壁、閥芯、彈簧（5 圈，每圈各一層，才拉得開）、水
-tube("qf_body", "qf", "steelHi", 1.06, .88, 2.8, [QX - 1.0, QY, 0], axis="x")
+tube("qf_body", "qf", "qglass", 1.06, .88, 2.8, [QX - 1.0, QY, 0], axis="x")
 tube("qf_ring", "qf", "steel2", 1.18, 1.0, .3, [QX - 2.2, QY, 0], axis="x")
 cyl("qf_back", "qf", "steel2", .9, .16, [QX - 2.32, QY, 0], axis="x")
 cyl("qf_pop", "qf_pop", "brass", .52, .3, [QX - 1.55, QY, 0], axis="x")
@@ -295,9 +294,9 @@ cyl("qf_w", "qf_w", "waterIn", .7, .8, [QX - 2.7, QY, 0], axis="x")
 cyl("qf_hose", "qf_hose", "pipeB", .5, 2.2, [QX - 3.6, QY, 0], axis="x")
 cyl("qf_hosew", "qf_hose", "waterIn", .36, 2.2, [QX - 3.6, QY, 0], axis="x")
 # 公端（右）：本體、插入的鼻端、領環、閥芯、彈簧、水
-tube("qm_nose", "qm", "steel", .78, .62, 3.2, [QX + .8, QY, 0], axis="x")
+tube("qm_nose", "qm", "qglass2", .78, .62, 3.2, [QX + .8, QY, 0], axis="x")
 tube("qm_collar", "qm", "steel2", 1.12, .66, .32, [QX + .55, QY, 0], axis="x")
-tube("qm_body", "qm", "steelHi", .98, .62, 1.5, [QX + 2.3, QY, 0], axis="x")
+tube("qm_body", "qm", "qglass", .98, .62, 1.5, [QX + 2.3, QY, 0], axis="x")
 cyl("qm_back", "qm", "steel2", .62, .16, [QX + 3.0, QY, 0], axis="x")
 cyl("qm_pop", "qm_pop", "brass", .46, .3, [QX + .5, QY, 0], axis="x")
 cyl("qm_stem", "qm_pop", "brass", .12, .9, [QX + 1.0, QY, 0], axis="x")
