@@ -9,7 +9,7 @@ apply("caffaine-rules-file", {
       {"label": "有規則", "color": "right", "at": "start-6", "reqAt": "k2-30", "gate": {"at": "k2"}, "items": [{"at": "k3-8", "kind": "card"}]}],
     "mid": {"text": "差在哪？", "at": "k4-4", "color": "plum"}},
   "s03": {"view": "paper", "tone": "fix", "title": "規則檔.txt", "color": "sky", "h": 720, "fs": 38,
-    "lines": [{"t": t, "at": a, "dur": 12, "color": c} for t, a, c in zip(rules, ["k1+6", "k3-6", "k4-6", "k5-6"], ["primary", "sky", "right", "wrong"])],
+    "lines": [{"t": t, "at": a, "dur": 55 if a == "start+10" else 12, "color": c} for t, a, c in zip(rules, ["start+10", "k3-6", "k4-6", "k5-6"], ["primary", "sky", "right", "wrong"])],
     "stamp": {"text": "只寫一次", "at": "k5+16", "color": "wrong"}, "pin": {"at": "k5+24"}, "bot": True, "chip": {"text": "每次先讀", "at": "k5+30", "color": "right"}},
   "s04": {"view": "slots", "tone": "fix", "card": "規則卡", "slots": [
       {"label": "自訂指令", "sub": "ChatGPT", "color": "primary", "at": "k1"}, {"label": "技能", "sub": "Gemini（原 Gem）", "color": "note", "at": "k2"}, {"label": "專案指示", "sub": "Claude 專案", "color": "right", "at": "k3"}],
