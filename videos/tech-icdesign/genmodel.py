@@ -1,5 +1,5 @@
 # 產生 videos/tech-icdesign/model.json（改這支再重產）。座標：x 右、y 上、z 朝觀眾（俯視時畫面上方＝-z）；各站以 x 偏移分開，鏡頭切換。
-# S x=0 電晶體＋五層金屬（爆炸剖析、訊號流動）｜D x=60 設計流程（規格→程式→模擬→布局繞線→光罩）｜M x=120 光罩曝光（光源→光罩→鏡組→晶圓）｜Z x=180 整顆晶片＋設計電腦（公司引線）
+# S x=0 電晶體＋五層金屬｜D x=150 設計流程｜M x=300 光罩曝光｜Z x=450 整顆晶片＋設計電腦（站與站相距 150，遠景鏡頭看不到隔壁站）
 import json, math
 R = lambda x: round(x, 3)
 parts = []; layers = []; anchors = {}; actions = {}
@@ -81,7 +81,7 @@ box("pSDn", "dev", "pSD", [3.6, .9, 3.6], [0, 1.45, -4], at=[[-14.2, 0, 0], [14.
 box("nSDn", "dev", "nSD", [3.6, .9, 3.6], [0, 1.45, 4], at=[[-14.2, 0, 0], [14.2, 0, 0]], bevel=.05)
 box("gates", "dev", "gate", [1.6, 1.4, 14.4], [0, 1.7, 0], at=[[-9, 0, 0], [0, 0, 0], [9, 0, 0]], bevel=.08)
 # 接點：源極汲極 4 顆＋閘極 1 顆
-cyl("ct_sd", "ct", "ct", .55, .6, [0, 2.7, 0], axis="y", at=[[-4.5, 0, -4], [-4.5, 0, 4], [4.5, 0, -4], [4.5, 0, 4], [0, 0, 0]])
+cyl("ct_sd", "m1", "ct", .55, .6, [0, 2.7, 0], axis="y", at=[[-4.5, 0, -4], [-4.5, 0, 4], [4.5, 0, -4], [4.5, 0, 4], [0, 0, 0]])
 # M1：電源軌（上 VDD、下 VSS）、兩個電源接腳、輸出直段＋橫段、輸入腳
 box("m1_rail", "m1", "m1", [34, .6, 1.6], [0, 3.3, 0], at=[[0, 0, -8], [0, 0, 8]], bevel=.05)
 box("m1_tapP", "m1", "m1", [1.6, .6, 4.0], [-4.5, 3.3, -6], bevel=.05)
@@ -89,20 +89,20 @@ box("m1_tapN", "m1", "m1", [1.6, .6, 4.0], [-4.5, 3.3, 6], bevel=.05)
 box("m1_out", "m1", "m1", [1.6, .6, 8.8], [4.5, 3.3, 0], bevel=.05)
 box("m1_outH", "m1", "m1", [3.9, .6, 1.4], [6.25, 3.3, 0], bevel=.05)
 box("m1_in", "m1", "m1", [3.9, .6, 1.4], [-1.5, 3.3, 0], bevel=.05)
-cyl("v1_v", "v1", "via", .5, .6, [0, 3.9, 0], axis="y", at=[[-3, 0, 0], [8, 0, 0]])
+cyl("v1_v", "m2", "via", .5, .6, [0, 3.9, 0], axis="y", at=[[-3, 0, 0], [8, 0, 0]])
 box("m2_in", "m2", "m2", [1.4, .6, 5.8], [-3, 4.5, 2.15], bevel=.05)
 box("m2_out", "m2", "m2", [1.4, .6, 5.8], [8, 4.5, -2.15], bevel=.05)
 box("m2_bg", "m2", "m2", [1.4, .6, 16], [0, 4.5, 0], at=[[-8, 0, 0], [12, 0, 0], [-15, 0, 0]], bevel=.05)
-cyl("v2_v", "v2", "via", .5, .6, [0, 5.1, 0], axis="y", at=[[-3, 0, 5], [8, 0, -5]])
+cyl("v2_v", "m3", "via", .5, .6, [0, 5.1, 0], axis="y", at=[[-3, 0, 5], [8, 0, -5]])
 box("m3_in", "m3", "m3", [10.4, .6, 1.4], [-7.5, 5.7, 5], bevel=.05)
 box("m3_out", "m3", "m3", [7.4, .6, 1.4], [11, 5.7, -5], bevel=.05)
 box("m3_bg", "m3", "m3", [11, .6, 1.4], [0, 5.7, 0], at=[[-11.5, 0, 0], [0, 0, -8], [0, 0, 8]], bevel=.05)
 box("m3_bg2", "m3", "m3", [7, .6, 1.4], [13.5, 5.7, 2.5], bevel=.05)
-cyl("v3_v", "v3", "via", .5, .6, [0, 6.3, 0], axis="y", at=[[-12, 0, 5], [14, 0, -5]])
+cyl("v3_v", "m4", "via", .5, .6, [0, 6.3, 0], axis="y", at=[[-12, 0, 5], [14, 0, -5]])
 box("m4_in", "m4", "m4", [1.4, .6, 11.4], [-12, 6.9, 0], bevel=.05)
 box("m4_out", "m4", "m4", [1.4, .6, 11.4], [14, 6.9, 0], bevel=.05)
 box("m4_bg", "m4", "m4", [1.4, .6, 16], [0, 6.9, 0], at=[[-6, 0, 0], [3, 0, 0]], bevel=.05)
-cyl("v4_v", "v4", "via", .55, .6, [0, 7.5, 0], axis="y", at=[[-12, 0, -5], [14, 0, 5]])
+cyl("v4_v", "m5", "via", .55, .6, [0, 7.5, 0], axis="y", at=[[-12, 0, -5], [14, 0, 5]])
 box("m5_in", "m5", "m5", [6, 1.2, 2.0], [-14, 8.4, -5], bevel=.08)
 box("m5_out", "m5", "m5", [4, 1.2, 2.0], [15, 8.4, 5], bevel=.08)
 box("m5_bg", "m5", "m5", [34, 1.2, 2.0], [0, 8.4, 0], bevel=.08)
@@ -116,20 +116,21 @@ OUT = [pt("dev", 4.5, 2.3, 0), pt("m1", 4.5, Y["m1"], 0), pt("m1", 8, Y["m1"], 0
 flow("s_in", "m5", IN, n=4, size=.5, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
 flow("s_out", "m5", OUT, n=4, size=.5, rate=.32, drive=True, minVisible=.35, rest=18, restO=.6)
 glow("s_gate", "dev", ["gates"], "gOn", steady=True, g=.8)
-for _i in (1, 2, 3, 4): glow(f"s_via{_i}", f"v{_i}", [f"v{_i}_v"], "gOn", steady=True, g=.9)
-glow("s_ct", "ct", ["ct_sd"], "gOn", steady=True, g=.9)
-anchor("a_sub", "sub", [14.5, .5, 8.8], dx=130, dy=60)
-anchor("a_dev", "dev", [-15.5, 1.7, 8], dx=-140, dy=60)
-anchor("a_ct", "ct", [4.5, 2.7, 4], dx=150, dy=20)
-anchor("a_m1", "m1", [14, 3.3, 8], dx=150, dy=20)
-anchor("a_m2", "m2", [12, 4.5, 8], dx=150, dy=-10)
-anchor("a_m3", "m3", [14, 5.7, 8], dx=150, dy=-10)
-anchor("a_m4", "m4", [3, 6.9, 8], dx=150, dy=-30)
-anchor("a_m5", "m5", [16, 8.4, 8.4], dx=140, dy=-50)
-anchor("a_via", "v2", [8, 5.1, -5], dx=150, dy=-40)
+for _i in (1, 2, 3, 4): glow(f"s_via{_i}", f"m{_i + 1}", [f"v{_i}_v"], "gOn", steady=True, g=.9)
+glow("s_ct", "m1", ["ct_sd"], "gOn", steady=True, g=.9)
+anchor("a_sub", "sub", [17, .5, 9], dx=130, dy=40)
+anchor("a_dev", "dev", [-17, 1.7, -9], dx=-130, dy=30)
+anchor("a_m1", "m1", [17, 3.3, 9], dx=130, dy=0)
+anchor("a_m2", "m2", [-17, 4.5, -9], dx=-130, dy=0)
+anchor("a_m3", "m3", [17, 5.7, 9], dx=130, dy=0)
+anchor("a_m4", "m4", [-17, 6.9, -9], dx=-130, dy=0)
+anchor("a_m5", "m5", [17, 8.4, 9], dx=130, dy=-20)
+anchor("a_in", "m5", [-16, 8.4, -5], dx=-130, dy=-40)
+anchor("a_gate", "dev", [0, 2.4, 0], dx=140, dy=60)
+anchor("a_via", "m3", [8, 5.1, -5], dx=140, dy=-40)
 
-# ═════════ D：設計流程（x=60）：規格→程式→模擬驗證→布局繞線→光罩（五塊板子，左到右） ═════════
-DX = 60
+# ═════════ D：設計流程（x=150）：規格→程式→模擬驗證→布局繞線→光罩（五塊板子，左到右） ═════════
+DX = 150
 XS = [-13, -6.5, 0, 6.5, 13]
 SL = [5.2, .5, 6.8]
 box("d_table", "d_tab", "dark2", [34, .2, 9.2], [DX, -.1, 0], bevel=.04)
@@ -180,8 +181,8 @@ for k, (nm, ps) in enumerate((("sp", ["sp_base"]), ("rt", ["rt_base"]), ("sm", [
 for k, nm in enumerate(("sp", "rt", "sm", "pr", "mk")):
     anchor(f"d_a{k}", nm, [DX + XS[k] + 2.4, .5, 3.4], dx=60 if k < 4 else 100, dy=90)
 
-# ═════════ M：光罩曝光（x=120）：光源→光罩→鏡組→晶圓（垂直一柱） ═════════
-MX = 120
+# ═════════ M：光罩曝光（x=300）：光源→光罩→鏡組→晶圓（垂直一柱） ═════════
+MX = 300
 box("m_src", "m_src", "dark2", [4.2, 1.8, 4.2], [MX, 15.0, 0], bevel=.12)
 cyl("m_srcT", "m_src", "steel2", 1.3, .5, [MX, 16.1, 0], axis="y")
 cyl("m_lamp", "m_lamp", "beamHi", 1.7, .2, [MX, 14.0, 0], axis="y")
@@ -220,8 +221,8 @@ anchor("m_a_lens", "m_lens", [MX + 3.0, 5.7, 1.5], dx=140, dy=-10)
 anchor("m_a_wafer", "m_wafer", [MX + 4.0, .6, 1.2], dx=140, dy=30)
 anchor("m_a_print", "m_print", [MX + .5, .72, .6], dx=-150, dy=40)
 
-# ═════════ Z：整顆晶片＋設計電腦（x=180） ═════════
-ZX = 180
+# ═════════ Z：整顆晶片＋設計電腦（x=450） ═════════
+ZX = 450
 box("z_base", "z_die", "siDk", [14.4, .7, 14.4], [ZX, .35, 0], bevel=.08)
 box("z_top", "z_die", "siTop", [13.8, .06, 13.8], [ZX, .73, 0])
 box("z_ring", "z_die", "steelHi", [.5, .12, .5], [ZX, .8, 0], at=[[-6.5 + 1.0 * i, 0, 6.5] for i in range(14)] + [[-6.5 + 1.0 * i, 0, -6.5] for i in range(14)] + [[6.5, 0, -5.5 + 1.0 * i] for i in range(12)] + [[-6.5, 0, -5.5 + 1.0 * i] for i in range(12)])
@@ -259,7 +260,7 @@ model = {
  "name": "tech-icdesign：一顆晶片怎麼從規格變成光罩", "unit": "示意，非實際比例", "size": {"w": 34, "h": 18, "r": 0.4, "t": 16},
  "palette": palette, "materials": materials, "layers": layers, "parts": parts, "anchors": anchors, "actions": actions,
  "pose": {"yaw0": 0, "yawIso": 0, "drift": 0},
- "camera": {"stand": {"d": 84, "elev": 89, "y": 0}, "explode": {"d": 84, "elev": 89, "y": 0}},
+ "camera": {"stand": {"d": 95.5, "elev": 89, "y": 0}, "explode": {"d": 95.5, "elev": 89, "y": 0}},
  "fx": {"dpr": 1, "srcPx": 30, "shadows": 0, "ghost": False, "guides": False, "fog": False, "dust": False, "vaporSprites": False, "shimmer": False},
  "viewer": None,
 }

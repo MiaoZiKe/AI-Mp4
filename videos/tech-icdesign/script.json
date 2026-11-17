@@ -197,7 +197,7 @@
     ]
    },
    "sources": [
-    "廠商與媒體對 fabless 的通用說法；見 research.md #1"
+    "來源：fabless（無晶圓廠）的通用定義"
    ],
    "pauseAfter": 0.7
   },
@@ -418,8 +418,8 @@
       "at": "open-4",
       "dur": 26,
       "x": 0,
-      "y": 17,
-      "d": 128,
+      "y": -1,
+      "d": 185,
       "elev": 30,
       "yaw": 0.5
      }
@@ -428,85 +428,50 @@
      {
       "layer": "sub",
       "at": "open+0",
-      "until": "s6:start-24",
+      "until": "s6:spec-12",
       "dy": 0.0,
       "dur": 22
      },
      {
       "layer": "dev",
       "at": "open+1",
-      "until": "s6:start-24",
-      "dy": 3.4,
-      "dur": 22
-     },
-     {
-      "layer": "ct",
-      "at": "open+2",
-      "until": "s6:start-24",
-      "dy": 6.8,
+      "until": "s6:spec-12",
+      "dy": 4.0,
       "dur": 22
      },
      {
       "layer": "m1",
-      "at": "open+3",
-      "until": "s6:start-24",
-      "dy": 10.2,
-      "dur": 22
-     },
-     {
-      "layer": "v1",
-      "at": "open+4",
-      "until": "s6:start-24",
-      "dy": 13.6,
+      "at": "open+2",
+      "until": "s6:spec-12",
+      "dy": 8.0,
       "dur": 22
      },
      {
       "layer": "m2",
-      "at": "open+5",
-      "until": "s6:start-24",
-      "dy": 17.0,
-      "dur": 22
-     },
-     {
-      "layer": "v2",
-      "at": "open+6",
-      "until": "s6:start-24",
-      "dy": 20.4,
+      "at": "open+3",
+      "until": "s6:spec-12",
+      "dy": 12.0,
       "dur": 22
      },
      {
       "layer": "m3",
-      "at": "open+7",
-      "until": "s6:start-24",
-      "dy": 23.8,
-      "dur": 22
-     },
-     {
-      "layer": "v3",
-      "at": "open+8",
-      "until": "s6:start-24",
-      "dy": 27.2,
+      "at": "open+4",
+      "until": "s6:spec-12",
+      "dy": 16.0,
       "dur": 22
      },
      {
       "layer": "m4",
-      "at": "open+9",
-      "until": "s6:start-24",
-      "dy": 30.6,
-      "dur": 22
-     },
-     {
-      "layer": "v4",
-      "at": "open+10",
-      "until": "s6:start-24",
-      "dy": 34.0,
+      "at": "open+5",
+      "until": "s6:spec-12",
+      "dy": 20.0,
       "dur": 22
      },
      {
       "layer": "m5",
-      "at": "open+11",
-      "until": "s6:start-24",
-      "dy": 37.4,
+      "at": "open+6",
+      "until": "s6:spec-12",
+      "dy": 24.0,
       "dur": 22
      }
     ],
@@ -546,7 +511,7 @@
      {
       "part": "a_sub",
       "text": "矽基板",
-      "en": "Silicon",
+      "en": "",
       "color": "blue",
       "at": "open+20",
       "until": "s5:wire-10"
@@ -554,15 +519,15 @@
      {
       "part": "a_dev",
       "text": "電晶體",
-      "en": "Transistors",
+      "en": "",
       "color": "amber",
       "at": "tr",
       "until": "s5:wire-10"
      },
      {
       "part": "a_m1",
-      "text": "第 1 層金屬 M1",
-      "en": "Metal 1",
+      "text": "M1",
+      "en": "",
       "color": "amber",
       "at": "top",
       "until": "s5:wire-10"
@@ -570,7 +535,7 @@
      {
       "part": "a_m2",
       "text": "M2",
-      "en": "Metal 2",
+      "en": "",
       "color": "coral",
       "at": "top+8",
       "until": "s5:wire-10"
@@ -578,7 +543,7 @@
      {
       "part": "a_m3",
       "text": "M3",
-      "en": "Metal 3",
+      "en": "",
       "color": "blue",
       "at": "top+16",
       "until": "s5:wire-10"
@@ -586,15 +551,15 @@
      {
       "part": "a_m4",
       "text": "M4",
-      "en": "Metal 4",
+      "en": "",
       "color": "blue",
       "at": "top+24",
       "until": "s5:wire-10"
      },
      {
       "part": "a_m5",
-      "text": "最上層 M5",
-      "en": "Metal 5",
+      "text": "M5 最上層",
+      "en": "",
       "color": "blue",
       "at": "top+30",
       "until": "s5:wire-10"
@@ -663,17 +628,6 @@
    ],
    "component": "ThreeScene",
    "props": {
-    "shot": [
-     {
-      "at": "start-2",
-      "dur": 18,
-      "x": 0,
-      "y": 14,
-      "d": 120,
-      "elev": 34,
-      "yaw": 0.5
-     }
-    ],
     "run": [
      {
       "id": "s_in",
@@ -684,19 +638,19 @@
      {
       "id": "s_gate",
       "at": "tr-6",
-      "until": "s6:start-30",
+      "until": "s6:spec-14",
       "ramp": 10
      },
      {
       "id": "s_out",
       "at": "out",
-      "until": "s6:start-30",
+      "until": "s6:spec-14",
       "ramp": 8
      }
     ],
     "labels": [
      {
-      "part": "a_m5",
+      "part": "a_in",
       "text": "訊號從這裡進來",
       "en": "Signal in",
       "color": "amber",
@@ -712,7 +666,7 @@
       "until": "tr-4"
      },
      {
-      "part": "a_dev",
+      "part": "a_gate",
       "text": "閘極通電，開關動",
       "en": "Gate switches",
       "color": "amber",
@@ -799,18 +753,19 @@
     "zoom": [
      {
       "to": "flow",
-      "at": "start-6",
-      "dur": 40
+      "at": "spec-8",
+      "dur": 20
      }
     ],
     "shot": [
      {
-      "at": "start-2",
-      "dur": 20,
-      "x": 60,
+      "at": "spec-6",
+      "dur": 1,
+      "x": 150,
       "y": 0.8,
       "d": 44,
-      "elev": 46
+      "elev": 46,
+      "yaw": -0.5
      }
     ],
     "shift": [
@@ -1086,8 +1041,8 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 20,
-      "x": 120,
+      "dur": 1,
+      "x": 300,
       "y": 7.5,
       "d": 62,
       "elev": 14
@@ -1226,7 +1181,7 @@
     ]
    },
    "sources": [
-    "Compugraphics 光罩說明；美國專利 US6337162（縮小比例 4:1／5:1）"
+    "來源：光罩廠 Compugraphics 說明、美國專利"
    ],
    "pauseAfter": 0.7
   },
@@ -1279,8 +1234,8 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 20,
-      "x": 186,
+      "dur": 1,
+      "x": 456,
       "y": 2.0,
       "d": 60,
       "elev": 36,
@@ -1355,8 +1310,8 @@
       "color": "blue",
       "size": 40,
       "rot": -4,
-      "x": 840,
-      "y": 340,
+      "x": 880,
+      "y": 880,
       "avoid": false
      }
     ]
@@ -1412,8 +1367,8 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 16,
-      "x": 186,
+      "dur": 1,
+      "x": 456,
       "y": 2.0,
       "d": 60,
       "elev": 36,

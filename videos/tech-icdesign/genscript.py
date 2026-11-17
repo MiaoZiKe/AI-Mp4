@@ -34,8 +34,8 @@ def shot(at, x, y, d, elev, dur=14, yaw=None):
     s = {"at": at, "dur": dur, "x": x, "y": y, "d": d, "elev": elev}
     if yaw is not None: s["yaw"] = yaw
     return s
-STACK = ["sub", "dev", "ct", "m1", "v1", "m2", "v2", "m3", "v3", "m4", "v4", "m5"]
-GAPY = 3.4
+STACK = ["sub", "dev", "m1", "m2", "m3", "m4", "m5"]
+GAPY = 4.0
 scenes = []
 
 # ───────── s1 鉤子：晶片設計公司沒有工廠（2D 縮放第一級：整顆晶片）─────────
@@ -50,7 +50,7 @@ scenes.append(scene("s1", "hook", 1,
      "overlay": [stamp("晶片設計公司", "co+4", "nofab-4", "blue", 40, style="tag", x=300, y=1296),
                  stamp("沒有工廠", "nofab", "pic-4", "coral", 64, x=800, y=1206),
                  stamp("交出去：一份設計圖", "pic", "s2:start-2", "amber", 44, style="tag", x=640, y=1296)]},
-    ["廠商與媒體對 fabless 的通用說法；見 research.md #1"], pause=0.7))
+    ["來源：fabless（無晶圓廠）的通用定義"], pause=0.7))
 
 # ───────── s2 怎麼來（放大）─────────
 scenes.append(scene("s2", "mechanism", 2,
@@ -79,20 +79,20 @@ scenes.append(scene("s3", "mechanism", 3,
     ["示意：區塊配置不是任何一顆真實晶片"], pause=0.7))
 
 # ───────── s4 拆開：電晶體＋金屬層（2.5D 爆炸剖析、每層標名）─────────
-EXP = [{"layer": l, "at": off("open", i), "until": "s6:start-24", "dy": round(i * GAPY, 2), "dur": 22} for i, l in enumerate(STACK)]
+EXP = [{"layer": l, "at": off("open", i), "until": "s6:spec-12", "dy": round(i * GAPY, 2), "dur": 22} for i, l in enumerate(STACK)]
 scenes.append(scene("s4", "mechanism", 4,
     "拆開來看，電晶體在最底層，上面疊著十幾層金屬線，把它們連起來。",
     ["拆開來看", "電晶體在最底層", "上面疊著十幾層金屬線", "把它們連起來"],
     ["Take it apart:", "transistors sit at the bottom,", "a dozen-plus metal layers on top", "wire them together."],
     ["電晶體", "十幾層金屬線", "連起來"],
     [cue("open", "拆開"), cue("tr", "電晶體"), cue("top", "十幾層金屬線"), cue("link", "連起來")],
-    {"shot": [shot("open-4", 0, 17, 128, 30, 26, yaw=0.5)],
+    {"shot": [shot("open-4", 0, -1, 185, 30, 26, yaw=0.5)],
      "shift": EXP,
      "run": [run("s_via1", "link", "s5:start-2", 6), run("s_via2", "link+4", "s5:start-2", 6), run("s_via3", "link+8", "s5:start-2", 6), run("s_via4", "link+12", "s5:start-2", 6), run("s_ct", "link", "s5:start-2", 6)],
-     "labels": [lab("a_sub", "矽基板", "Silicon", "blue", "open+20", "s5:wire-10"), lab("a_dev", "電晶體", "Transistors", "amber", "tr", "s5:wire-10"),
-                lab("a_m1", "第 1 層金屬 M1", "Metal 1", "amber", "top", "s5:wire-10"), lab("a_m2", "M2", "Metal 2", "coral", off("top", 8), "s5:wire-10"),
-                lab("a_m3", "M3", "Metal 3", "blue", off("top", 16), "s5:wire-10"), lab("a_m4", "M4", "Metal 4", "blue", off("top", 24), "s5:wire-10"),
-                lab("a_m5", "最上層 M5", "Metal 5", "blue", off("top", 30), "s5:wire-10")],
+     "labels": [lab("a_sub", "矽基板", "", "blue", "open+20", "s5:wire-10"), lab("a_dev", "電晶體", "", "amber", "tr", "s5:wire-10"),
+                lab("a_m1", "M1", "", "amber", "top", "s5:wire-10"), lab("a_m2", "M2", "", "coral", off("top", 8), "s5:wire-10"),
+                lab("a_m3", "M3", "", "blue", off("top", 16), "s5:wire-10"), lab("a_m4", "M4", "", "blue", off("top", 24), "s5:wire-10"),
+                lab("a_m5", "M5 最上層", "", "blue", off("top", 30), "s5:wire-10")],
      "overlay": [stamp("示意 5 層・實際 10～15 層", "top+30", "s5:start-2", "amber", 34, style="tag", x=470, y=1296)]},
     ["來源：Semiconductor Engineering 技術文章"], pause=0.7))
 
@@ -103,9 +103,8 @@ scenes.append(scene("s5", "mechanism", 5,
     ["A signal follows the metal wires,", "from the top layer,", "down layer by layer to the transistor,", "then flows out again."],
     ["金屬線", "一層層", "流出去"],
     [cue("sig", "訊號"), cue("wire", "金屬線"), cue("top", "最上層"), cue("lay", "一層層"), cue("tr", "電晶體"), cue("out", "流出去")],
-    {"shot": [shot("start-2", 0, 14, 120, 34, 18, yaw=0.5)],
-     "run": [run("s_in", "sig", off("tr", 16), 8), run("s_gate", off("tr", -6), "s6:start-30", 10), run("s_out", "out", "s6:start-30", 8)],
-     "labels": [lab("a_m5", "訊號從這裡進來", "Signal in", "amber", "top", "lay"), lab("a_via", "穿孔：連到下一層", "Via", "blue", "lay", "tr-4"), lab("a_dev", "閘極通電，開關動", "Gate switches", "amber", "tr", "out+20")],
+    {"run": [run("s_in", "sig", off("tr", 16), 8), run("s_gate", off("tr", -6), "s6:spec-14", 10), run("s_out", "out", "s6:spec-14", 8)],
+     "labels": [lab("a_in", "訊號從這裡進來", "Signal in", "amber", "top", "lay"), lab("a_via", "穿孔：連到下一層", "Via", "blue", "lay", "tr-4"), lab("a_gate", "閘極通電，開關動", "Gate switches", "amber", "tr", "out+20")],
      "overlay": [sec("ic-sec", "start+2", "s6:start-16", 930, 340, "訊號怎麼走", "示意・側面剖面", {"top": "top", "tr": "tr", "out": "out"})]},
     ["示意：金屬層數與走法簡化"], pause=0.7))
 
@@ -116,8 +115,8 @@ scenes.append(scene("s6", "mechanism", 6,
     ["Too fine to draw by hand.", "Set the spec first,", "write code that describes the circuit,", "verify it with software,", "then place and route."],
     ["手畫", "定規格", "寫程式", "接線"],
     [cue("hand", "手畫"), cue("spec", "定規格"), cue("code", "寫程式"), cue("sim", "軟體驗證"), cue("pr", "排位置"), cue("wire", "接線")],
-    {"zoom": [{"to": "flow", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", 60, 0.8, 44, 46, 20)],
+    {"zoom": [{"to": "flow", "at": "spec-8", "dur": 20}],
+     "shot": [shot("spec-6", 150, 0.8, 44, 46, 1, yaw=-0.5)],
      "shift": [fall("sp", "spec", dy=3.4, bounce=0.1), fall("rt", "code", dy=3.4, bounce=0.1), fall("sm", "sim", dy=3.4, bounce=0.1), fall("pr", "pr", dy=3.4, bounce=0.1), fall("mk", off("wire", 24), dy=3.4, bounce=0.1),
                hide_until("sm_cur", "sim"), hide_until("pr_r1", "pr"), hide_until("pr_r2", "wire"), hide_until("d_flow", "code"),
                {"layer": "sm_cur", "at": "sim", "until": off("pr", -4), "dx": 4.6, "dur": 40}],
@@ -136,13 +135,13 @@ scenes.append(scene("s7", "mechanism", 7,
     ["光罩", "縮小四倍", "晶圓"],
     [cue("pic", "畫好的圖"), cue("fab", "晶圓廠"), cue("mask", "做成光罩"), cue("light", "光照過去"), cue("four", "縮小四倍"), cue("wafer", "印在晶圓上")],
     {"zoom": [{"to": "mask", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", 120, 7.5, 62, 14, 20)],
+     "shot": [shot("start-2", 300, 7.5, 62, 14, 1)],
      "shift": [fall("m_mask", "mask", dy=5.0, bounce=0.08), hide_until("m_beam1", "light"), hide_until("m_beam2", "light"), hide_until("m_spot", "light"), hide_until("m_print", "wafer")],
      "run": [run("m_light", off("light", -4), "s8:start-2", 8), run("m_ray1", "light", "s8:start-2", 6), run("m_ray2", off("light", 10), "s8:start-2", 6), run("m_hit", off("wafer", -4), "s8:start-2", 8)],
      "labels": [lab("m_a_src", "光源", "Light source", "amber", "pic", "fab-6"), lab("m_a_lens", "曝光機的鏡組", "Projection lens", "blue", "fab", "mask+14"), lab("m_a_mask", "光罩", "Photomask", "amber", "mask", "light-4"),
                 lab("m_a_lens", "縮小鏡組", "Reduction lens", "blue", "four", "wafer-6"), lab("m_a_print", "晶圓上的圖案", "Printed pattern", "coral", "wafer", "s8:start-8")],
      "overlay": [sec("ic-mask", "four-8", "s8:start-16", 930, 310, "光罩 vs 晶圓", "示意・常見縮小比例", {"four": "four", "wafer": "wafer"})]},
-    ["Compugraphics 光罩說明；美國專利 US6337162（縮小比例 4:1／5:1）"], pause=0.7))
+    ["來源：光罩廠 Compugraphics 說明、美國專利"], pause=0.7))
 
 # ───────── s8 台灣誰在做（站 Z，引線指到晶片部位）─────────
 scenes.append(scene("s8", "payoff", 8,
@@ -152,11 +151,11 @@ scenes.append(scene("s8", "payoff", 8,
     ["創意電子", "力旺", "新思"],
     [cue("who", "誰在做"), cue("guc", "創意電子"), cue("em", "力旺"), cue("andes", "晶心科"), cue("eda", "設計軟體靠")],
     {"zoom": [{"to": "die", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", 186, 2.0, 60, 36, 20, yaw=0.0)],
+     "shot": [shot("start-2", 456, 2.0, 60, 36, 1, yaw=0.0)],
      "shift": [],
      "labels": [lab("z_die", "創意、世芯：設計服務", "Design services", "amber", "guc", "em-6"), lab("z_mem", "力旺：記憶體矽智財", "Memory IP", "blue", "em", "eda-6"), lab("z_cpu", "晶心科：CPU 智財", "CPU IP", "blue", "andes", "eda-6"),
                 lab("z_mon", "三大 EDA：設計軟體", "EDA software", "amber", "eda", "s9:start-8")],
-     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "guc", "em": "em", "eda": "eda"}), stamp("媒體報導", "guc", "s9:start-8", "blue", 40, x=840, y=340, avoid=False)]},
+     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "guc", "em": "em", "eda": "eda"}), stamp("媒體報導", "guc", "s9:start-8", "blue", 40, x=880, y=880, avoid=False)]},
     ["媒體報導：數位時代、科技新報、工商時報"], pause=0.7))
 
 # ───────── s9 結尾 ─────────
@@ -166,7 +165,7 @@ scenes.append(scene("s9", "cta", 9,
     ["But a finished design", "still has to be built.", "Next:", "which foundries are there?", "For the full notes,", "comment \"IC設計\"."],
     ["做出來", "晶圓代工", "IC 設計"],
     [cue("done", "設計好了"), cue("make", "做出來"), cue("next", "下一支"), cue("fab2", "晶圓代工"), cue("full", "想要完整解說"), cue("kw", "留言")],
-    {"shot": [shot("start-2", 186, 2.0, 60, 36, 16, yaw=0.0)],
+    {"shot": [shot("start-2", 456, 2.0, 60, 36, 1, yaw=0.0)],
      "run": [run("z_glow", "make", "s10:start", 8)],
      "labels": [lab("z_die", "設計好的晶片", "The finished design", "amber", "done", "next-6")],
      "overlay": [sec("ic-next", "start+2", "kw-14", 930, 300, "接下來", "示意", {"make": "make", "next": "fab2"}), stamp("完整解說在留言", "full", "kw-14", "blue", 36, x=780, y=336, avoid=False)]},
