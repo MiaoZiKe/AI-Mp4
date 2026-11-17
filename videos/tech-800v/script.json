@@ -200,62 +200,102 @@
      },
      {
       "id": "r_shelf",
-      "at": "start+6",
+      "at": "rack",
       "until": "s2:start-2",
       "ramp": 8
-     },
-     {
-      "id": "r_cur",
-      "at": "bar-10",
-      "until": "s2:start-2",
-      "ramp": 10
-     },
-     {
-      "id": "r_cur2",
-      "at": "bar-10",
-      "until": "s2:start-2",
-      "ramp": 10
-     },
-     {
-      "id": "r_hot",
-      "at": "bar",
-      "until": "s2:start-2",
-      "ramp": 70
-     },
-     {
-      "id": "r_heat",
-      "at": "kg-10",
-      "until": "s2:start-2",
-      "ramp": 6
      },
      {
       "id": "r_air3",
       "at": "start+10",
       "until": "s2:start-2",
       "ramp": 6
+     },
+     {
+      "id": "r_cur",
+      "at": "bar",
+      "until": "s2:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "r_cur2",
+      "at": "bar",
+      "until": "s2:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "r_hot",
+      "at": "kg-8",
+      "until": "s2:start-2",
+      "ramp": 40
+     },
+     {
+      "id": "r_heat",
+      "at": "kg",
+      "until": "s2:start-2",
+      "ramp": 6
      }
     ],
     "labels": [
      {
+      "part": "rk_frame",
+      "text": "AI 機櫃 1 MW",
+      "en": "1 MW AI rack",
+      "color": "blue",
+      "at": "rack",
+      "until": "s2:start-12"
+     },
+     {
       "part": "rk_bus",
-      "text": "銅排 約 200 kg",
-      "en": "busbar ≈ 200 kg",
+      "text": "銅排",
+      "en": "busbar",
+      "color": "blue",
+      "at": "bar",
+      "until": "kg"
+     },
+     {
+      "part": "rk_bus",
+      "text": "約 200 kg",
+      "en": "≈ 200 kg",
       "color": "amber",
       "at": "kg",
-      "until": "s2:start-2"
+      "until": "s2:start-12"
      }
     ],
     "overlay": [
      {
       "type": "stamp",
-      "at": "kg+6",
-      "until": "s2:start-2",
+      "at": "kg+4",
+      "until": "s2:start-12",
       "text": "廠商估算",
       "color": "amber",
       "size": 44,
       "rot": -4,
       "x": 830,
       "y": 330
+     },
+     {
+      "type": "stamp",
+      "at": "why",
+      "until": "volt",
+      "text": "？",
+      "color": "coral",
+      "size": 96,
+      "rot": -4,
+      "x": 250,
+      "y": 560,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "volt",
+      "until": "s2:start-12",
+      "text": "電壓",
+      "color": "blue",
+      "size": 64,
+      "rot": -4,
+      "x": 250,
+      "y": 560,
+      "avoid": false
      }
     ]
    },
@@ -323,32 +363,8 @@
       "ramp": 4
      },
      {
-      "id": "r_cur",
-      "at": "start-2",
-      "until": "s3:start-2",
-      "ramp": 4
-     },
-     {
-      "id": "r_cur2",
-      "at": "start-2",
-      "until": "s3:start-2",
-      "ramp": 4
-     },
-     {
-      "id": "r_hot",
-      "at": "start-2",
-      "until": "s3:start-2",
-      "ramp": 4
-     },
-     {
-      "id": "r_air",
-      "at": "start",
-      "until": "s3:start-2",
-      "ramp": 6
-     },
-     {
-      "id": "r_air2",
-      "at": "start+10",
+      "id": "r_shelf",
+      "at": "now",
       "until": "s3:start-2",
       "ramp": 6
      },
@@ -359,74 +375,104 @@
       "ramp": 4
      },
      {
+      "id": "r_air",
+      "at": "v54",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_air2",
+      "at": "v54+10",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_cur",
+      "at": "fat",
+      "until": "s3:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_cur2",
+      "at": "fat",
+      "until": "s3:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_hot",
+      "at": "fat",
+      "until": "s3:start-2",
+      "ramp": 30
+     },
+     {
       "id": "r_br0",
-      "at": "v54+4",
+      "at": "fat+10",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl0",
-      "at": "v54+4",
+      "at": "fat+10",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_br1",
-      "at": "v54+11",
+      "at": "fat+16",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl1",
-      "at": "v54+11",
+      "at": "fat+16",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_br2",
-      "at": "v54+18",
+      "at": "fat+22",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl2",
-      "at": "v54+18",
+      "at": "fat+22",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_br3",
-      "at": "v54+25",
+      "at": "fat+28",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl3",
-      "at": "v54+25",
+      "at": "fat+28",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_br4",
-      "at": "v54+32",
+      "at": "fat+34",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl4",
-      "at": "v54+32",
+      "at": "fat+34",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_br5",
-      "at": "v54+39",
+      "at": "fat+40",
       "until": "s3:start-2",
       "ramp": 4
      },
      {
       "id": "r_bl5",
-      "at": "v54+39",
+      "at": "fat+40",
       "until": "s3:start-2",
       "ramp": 4
      }
@@ -434,34 +480,38 @@
     "labels": [
      {
       "part": "rk_shelf",
-      "text": "電源架 54 V",
-      "en": "power shelf, 54 V",
+      "text": "電源架",
+      "en": "power shelf",
+      "color": "amber",
+      "at": "now",
+      "until": "v54"
+     },
+     {
+      "part": "rk_shelf",
+      "text": "54 V",
+      "en": "54 V",
       "color": "amber",
       "at": "v54",
-      "until": "fat"
+      "until": "s3:start-12"
      },
      {
       "part": "rk_bus",
-      "text": "銅排 busbar",
+      "text": "粗銅條",
+      "en": "thick copper",
+      "color": "blue",
+      "at": "fat",
+      "until": "busbar"
+     },
+     {
+      "part": "rk_bus",
+      "text": "銅排",
       "en": "busbar",
       "color": "blue",
       "at": "busbar",
       "until": "s3:start-12"
      }
     ],
-    "overlay": [
-     {
-      "type": "stamp",
-      "at": "busbar",
-      "until": "s3:start-2",
-      "text": "已確定",
-      "color": "blue",
-      "size": 44,
-      "rot": -4,
-      "x": 860,
-      "y": 330
-     }
-    ]
+    "overlay": []
    },
    "sources": [
     "NVIDIA 技術部落格 2025/5；SemiAnalysis"
@@ -527,13 +577,13 @@
      },
      {
       "id": "c_lampU",
-      "at": "low",
+      "at": "vxi",
       "until": "s6:start-2",
       "ramp": 10
      },
      {
       "id": "c_up",
-      "at": "low-4",
+      "at": "big-6",
       "until": "s6:start-2",
       "ramp": 8
      }
@@ -562,10 +612,10 @@
       "title": "同樣的電，兩種電壓",
       "tag": "示意，非實際比例",
       "t": {
-       "pw": {
+       "power": {
         "at": "power"
        },
-       "vi": {
+       "vxi": {
         "at": "vxi"
        },
        "low": {
@@ -574,8 +624,14 @@
        "big": {
         "at": "big"
        },
+       "cur": {
+        "at": "s4:cur"
+       },
        "hot": {
         "at": "s4:hot"
+       },
+       "thick": {
+        "at": "s4:thick"
        },
        "x15": {
         "at": "s4:x15"
@@ -652,9 +708,9 @@
     "run": [
      {
       "id": "c_hot",
-      "at": "hot-8",
+      "at": "hot-6",
       "until": "s6:start-2",
-      "ramp": 50
+      "ramp": 40
      },
      {
       "id": "c_heat",
@@ -669,15 +725,15 @@
       "ramp": 6
      },
      {
-      "id": "c_dn",
-      "at": "x15",
-      "until": "s5:thin",
-      "ramp": 8
-     },
-     {
       "id": "c_srcD",
       "at": "x15-6",
       "until": "s6:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "c_dn",
+      "at": "x15",
+      "until": "s5:thin",
       "ramp": 8
      },
      {
@@ -688,6 +744,30 @@
      }
     ],
     "labels": [
+     {
+      "part": "c_up",
+      "text": "電流大",
+      "en": "big current",
+      "color": "coral",
+      "at": "cur",
+      "until": "hot"
+     },
+     {
+      "part": "c_up",
+      "text": "燙",
+      "en": "hot",
+      "color": "coral",
+      "at": "hot",
+      "until": "thick"
+     },
+     {
+      "part": "c_up",
+      "text": "越做越粗",
+      "en": "ever thicker",
+      "color": "amber",
+      "at": "thick",
+      "until": "x15"
+     },
      {
       "part": "c_dn",
       "text": "800 V 供電",
@@ -702,11 +782,11 @@
       "type": "stamp",
       "at": "x219",
       "until": "s5:start-2",
-      "text": "估算：同一條銅排",
+      "text": "×219",
       "color": "coral",
-      "size": 38,
+      "size": 56,
       "rot": -4,
-      "x": 720,
+      "x": 830,
       "y": 330
      }
     ]
@@ -784,9 +864,25 @@
     ],
     "labels": [
      {
+      "part": "c_dn",
+      "text": "800 V",
+      "en": "800 V",
+      "color": "blue",
+      "at": "v800",
+      "until": "amp"
+     },
+     {
+      "part": "c_dn",
+      "text": "電流 1/15",
+      "en": "current 1/15",
+      "color": "blue",
+      "at": "amp",
+      "until": "thin"
+     },
+     {
       "part": "c_thin",
       "text": "截面約 1/15",
-      "en": "≈1/15 the cross-section",
+      "en": "≈1/15 cross-section",
       "color": "blue",
       "at": "thin+10",
       "until": "s6:start-2"
@@ -807,7 +903,7 @@
     ]
    },
    "sources": [
-    "基本電學：同樣電流密度下截面與電流成正比（估算）"
+    "電流密度相同時，截面與電流成正比（估算）"
    ],
    "pauseAfter": 0.7
   },
@@ -849,6 +945,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -857,20 +960,96 @@
       "y": 0.4,
       "d": 46,
       "elev": 18
+     },
+     {
+      "at": "chip-4",
+      "dur": 14,
+      "x": 180,
+      "y": -1.8,
+      "d": 27,
+      "elev": 44
+     },
+     {
+      "at": "hi-4",
+      "dur": 14,
+      "x": 120.2,
+      "y": 0.4,
+      "d": 46,
+      "elev": 18
      }
     ],
     "run": [
      {
-      "id": "d_pC",
-      "at": "chip",
-      "until": "s7:start-2",
-      "ramp": 10
-     },
-     {
       "id": "d_pS",
-      "at": "hi-4",
+      "at": "why",
       "until": "s7:start-2",
       "ramp": 8
+     },
+     {
+      "id": "d_bin",
+      "at": "chip",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bzT",
+      "at": "chip+6",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bzB",
+      "at": "chip+6",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bxT",
+      "at": "chip+14",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bxB",
+      "at": "chip+14",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bmosG",
+      "at": "chip+18",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bsT",
+      "at": "chip+24",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bsB",
+      "at": "chip+24",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bdieG",
+      "at": "chip+32",
+      "until": "hi-4",
+      "ramp": 8
+     },
+     {
+      "id": "d_bheat",
+      "at": "chip+36",
+      "until": "hi-4",
+      "ramp": 6
+     },
+     {
+      "id": "d_bair",
+      "at": "chip+8",
+      "until": "hi-4",
+      "ramp": 6
      },
      {
       "id": "d_f1",
@@ -897,6 +1076,12 @@
       "ramp": 6
      },
      {
+      "id": "d_air",
+      "at": "steps",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
       "id": "d_f3",
       "at": "many",
       "until": "s7:start-2",
@@ -915,10 +1100,10 @@
       "ramp": 6
      },
      {
-      "id": "d_air",
-      "at": "steps",
+      "id": "d_pC",
+      "at": "many+10",
       "until": "s7:start-2",
-      "ramp": 6
+      "ramp": 8
      }
     ],
     "labels": [
@@ -927,39 +1112,81 @@
       "text": "800 V",
       "en": "800 V",
       "color": "amber",
+      "at": "why",
+      "until": "chip-6"
+     },
+     {
+      "part": "b_die",
+      "text": "晶片 約 1 V",
+      "en": "chip, ~1 V",
+      "color": "blue",
+      "at": "chip+30",
+      "until": "hi-6"
+     },
+     {
+      "part": "b_ind",
+      "text": "電感",
+      "en": "inductor",
+      "color": "amber",
+      "at": "chip+16",
+      "until": "hi-6"
+     },
+     {
+      "part": "b_mos",
+      "text": "開關晶片",
+      "en": "switch chip",
+      "color": "amber",
+      "at": "chip+4",
+      "until": "hi-6"
+     },
+     {
+      "part": "d_sc",
+      "text": "800 V",
+      "en": "800 V",
+      "color": "amber",
       "at": "hi",
-      "until": "s7:start-2"
+      "until": "s7:start-14"
      },
      {
       "part": "d_a",
       "text": "約 50 V",
-      "en": "to ~50 V",
+      "en": "~50 V",
       "color": "amber",
       "at": "steps",
-      "until": "s7:start-2"
+      "until": "s7:start-14"
      },
      {
       "part": "d_b",
       "text": "約 12 V",
-      "en": "to ~12 V",
+      "en": "~12 V",
       "color": "amber",
       "at": "many",
-      "until": "s7:start-2"
-     },
-     {
-      "part": "d_c",
-      "text": "晶片 約 1 V",
-      "en": "chip, ~1 V",
-      "color": "blue",
-      "at": "chip",
-      "until": "s7:start-2"
+      "until": "s7:start-14"
      }
     ],
     "overlay": [
      {
       "type": "section",
+      "kind": "pw-vrm",
+      "at": "chip",
+      "until": "hi-8",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 345,
+      "avoid": false,
+      "title": "降一級怎麼做",
+      "tag": "示意：降壓一級的原理",
+      "t": {
+       "chip": {
+        "at": "chip"
+       }
+      }
+     },
+     {
+      "type": "section",
       "kind": "pw-chain",
-      "at": "start+2",
+      "at": "hi",
       "until": "s7:start-14",
       "x": 64,
       "y": 905,
@@ -970,10 +1197,10 @@
       "tag": "示意：常見路徑之一，各家不同",
       "t": {
        "why": {
-        "at": "why"
+        "at": "hi"
        },
        "chip": {
-        "at": "chip"
+        "at": "many"
        },
        "hi": {
         "at": "hi"
@@ -1032,6 +1259,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1101,9 +1335,9 @@
      },
      {
       "id": "r_shelf",
-      "at": "start",
+      "at": "tw",
       "until": "s8:start-2",
-      "ramp": 4
+      "ramp": 8
      },
      {
       "id": "r_air3",
@@ -1115,18 +1349,26 @@
     "labels": [
      {
       "part": "rk_sc",
-      "text": "800 V 電源側櫃",
-      "en": "800 V sidecar",
+      "text": "台達電 電源櫃",
+      "en": "Delta cabinet",
       "color": "amber",
-      "at": "use+16",
+      "at": "tw",
       "until": "s8:start-2"
      },
      {
-      "part": "rk_thin",
-      "text": "細銅排",
-      "en": "thin busbar",
+      "part": "rk_shelf",
+      "text": "台達電 電源架",
+      "en": "Delta power shelf",
+      "color": "amber",
+      "at": "tw+8",
+      "until": "s8:start-2"
+     },
+     {
+      "part": "rk_sc2",
+      "text": "光寶科 電源櫃",
+      "en": "Lite-On cabinet",
       "color": "blue",
-      "at": "use+50",
+      "at": "lite",
       "until": "s8:start-2"
      }
     ],
@@ -1134,34 +1376,24 @@
      {
       "type": "stamp",
       "at": "y2027",
-      "until": "tw-6",
-      "text": "廠商規劃，非實測",
+      "until": "use+20",
+      "text": "2027 廠商規劃",
       "color": "amber",
-      "size": 36,
+      "size": 40,
       "rot": -4,
       "x": 770,
       "y": 330
      },
      {
-      "type": "card",
+      "type": "stamp",
       "at": "tw",
       "until": "s8:start-2",
-      "y": 880,
-      "kicker": "媒體報導",
-      "rows": [
-       [
-        "台達電",
-        "800 V 電源櫃"
-       ],
-       [
-        "光寶科",
-        "800 V 電源櫃"
-       ]
-      ],
-      "hi": "台達電",
-      "hiAt": "tw",
-      "size": 42,
-      "foot": "查證截至 2026/11/22，非投資建議"
+      "text": "媒體報導",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 790,
+      "y": 330
      }
     ]
    },
@@ -1199,6 +1431,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1244,28 +1483,17 @@
     "labels": [],
     "overlay": [
      {
-      "type": "stamp",
-      "at": "real",
-      "until": "s9:start-2",
-      "text": "查不到",
-      "color": "blue",
-      "size": 56,
-      "rot": -4,
-      "x": 300,
-      "y": 330
-     },
-     {
       "type": "section",
       "kind": "pw-unk",
-      "at": "start+2",
+      "at": "save-2",
       "until": "s9:start-14",
       "x": 64,
       "y": 905,
       "w": 952,
       "h": 345,
       "avoid": false,
-      "title": "省多少？",
-      "tag": "廠商目標，非實測",
+      "title": "整套能省多少",
+      "tag": "廠商目標值",
       "t": {
        "save": {
         "at": "save"
@@ -1281,7 +1509,7 @@
     ]
    },
    "sources": [
-    "research.md #9（查不到實測）"
+    "NVIDIA 2025/5（目標最多降 30% 總持有成本）"
    ],
    "pauseAfter": 0.7
   },
@@ -1318,6 +1546,10 @@
      "text": "銅條就能細"
     },
     {
+     "id": "full",
+     "text": "完整解說"
+    },
+    {
      "id": "kw",
      "text": "留言供電"
     },
@@ -1328,6 +1560,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1359,24 +1598,33 @@
      },
      {
       "id": "r_curN",
-      "at": "start-2",
+      "at": "slim",
       "until": "s10:start-2",
-      "ramp": 4
+      "ramp": 6
      },
      {
       "id": "r_curN2",
-      "at": "start-2",
+      "at": "slim",
       "until": "s10:start-2",
-      "ramp": 4
+      "ramp": 6
      }
     ],
-    "labels": [],
+    "labels": [
+     {
+      "part": "rk_thin",
+      "text": "細銅排",
+      "en": "thin busbar",
+      "color": "blue",
+      "at": "slim",
+      "until": "full"
+     }
+    ],
     "overlay": [
      {
       "type": "section",
       "kind": "pw-sum",
-      "at": "start+2",
-      "until": "kw-14",
+      "at": "so-2",
+      "until": "full-6",
       "x": 64,
       "y": 905,
       "w": 952,
@@ -1385,6 +1633,9 @@
       "title": "一句話",
       "tag": "示意",
       "t": {
+       "so": {
+        "at": "so"
+       },
        "up": {
         "at": "up"
        },
@@ -1395,6 +1646,30 @@
         "at": "slim"
        }
       }
+     },
+     {
+      "type": "stamp",
+      "at": "full",
+      "until": "kw",
+      "text": "完整解說",
+      "color": "amber",
+      "size": 52,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "s10:start-2",
+      "text": "留言「供電」",
+      "color": "amber",
+      "size": 56,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
      }
     ]
    },

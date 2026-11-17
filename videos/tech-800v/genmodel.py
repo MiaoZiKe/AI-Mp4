@@ -91,6 +91,7 @@ box("sc_louv","sc",mm("louv"),[2.4,0.1,0.05],[SCX,3.0,-0.2+(RD-0.8)/2+0.02],at=[
 box("sc_led","sc",mm("led"),[0.14,0.14,0.05],[SCX+1.0,RH-0.4,-0.2+(RD-0.8)/2+0.03])
 box("sc_br","sc",mm("cuHi"),[SCX-BX-0.2,0.22,0.3],[(SCX+BX)/2-0.1,RH-0.5,BZ])
 cyl("sc_fan","sc",mm("louv"),0.8,0.05,[SCX,RH-1.4,-0.2+(RD-0.8)/2+0.03])
+anchor("rk_frame","rk",[RW/2+0.3,RH+0.1,RD/2],dx=-20,dy=-30)
 anchor("rk_bus","busT",[BX+0.4,(BY0+BY1)/2+1.6,BZ+0.3],dx=140,dy=-60)
 anchor("rk_shelf","rack",[RW/2-0.6,SHY+SHH/2,FZ0],dx=130,dy=60)
 anchor("rk_sc","sc",[SCX+1.5,5.2,-0.2],dx=60,dy=-80)
