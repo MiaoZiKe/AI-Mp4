@@ -35,3 +35,8 @@
 ## liguligu-2008-check 版面修正（11/17 03:50 台北，不重配音）
 - s06 右欄大字加 `bigPx: 84`（DossierVideo.tsx Versus 右欄新增選填欄位，預設 112，其他片不受影響）、出處縮成「11/3 研究報告（摘要）」；s05 標籤改「ABC、CNN 報導」不再壓字；s04 引言改「像 2007 到」。
 - overlap-check error 0／warn 0；片長 51.86 秒（上一版 51.90）；片尾 −11.4 LUFS／真峰值 −1.1 dBTP；網站版 6.5 MB（舊檔備份 out/liguligu-2008-check.prev.mp4）；未發布，等主控換檔。
+
+## liguligu-dotcom-ai（歷史對照系列第 1 支：2000 網路泡沫 vs 現在 AI；11/17）
+- 無聲版完成：56.2 秒、9 幕（含片尾卡）、旁白 235 字、數字 5、事實 5（含相關公司卡）；overlap-check error 0／warn 0；片尾 −11.7 LUFS／−1.3 dBTP；網站版 3.1 MB；make 總耗時約 133 秒（最慢：render 約 80 秒、overlap-check 約 34 秒）。
+- 未送任何 TTS 請求；官方原文全未讀（WebFetch 擋 nasdaq.com 等），沒有「已確定」；等審查分數與使用者看過再配音。
+- 下一集：1990 日本泡沫。

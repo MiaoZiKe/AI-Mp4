@@ -1,0 +1,667 @@
+{
+  "slug": "liguligu-dotcom-ai",
+  "title": "2000 網路泡沫 vs 現在 AI",
+  "asOf": "2026/11/17",
+  "styleVersion": 3,
+  "stage": "dossier",
+  "channel": {
+    "name": "哩股哩股",
+    "tag": "查到底",
+    "slogan": "數字，查過再信"
+  },
+  "news": {
+    "layout": "fill",
+    "mark": "LIGULIGU",
+    "section": "國際",
+    "sectionEn": "INTERNATIONAL",
+    "places": {}
+  },
+  "voice": {
+    "voiceName": "Charon",
+    "model": "gemini-3.8-flash-tts",
+    "mode": "take",
+    "profile": "liguligu",
+    "note": "API 整篇一次生成"
+  },
+  "cover": {
+    "title": [
+      "網路泡沫",
+      "像現在 AI？"
+    ],
+    "sub": "2000 年與現在，逐項對照"
+  },
+  "audio": {
+    "bgm": false,
+    "sfx": false
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration": "2000 年網路泡沫，那斯達克一路跌掉 78%。現在的 AI 熱潮，像不像？",
+      "tts": "二零零零年網路泡沫，那斯達克一路跌掉七成八。現在的 AI 熱潮，像不像？",
+      "subtitle": {
+        "zh": "2000 年網路泡沫\n那斯達克一路跌掉 78%\n現在的 AI 熱潮\n像不像？",
+        "en": "After the 2000 dot-com peak | the Nasdaq fell 78%. | Does today's AI boom look the same?"
+      },
+      "keywords": [
+        "那斯達克"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "2000 年"
+        },
+        {
+          "id": "c2",
+          "text": "那斯達克"
+        },
+        {
+          "id": "c3",
+          "text": "跌掉"
+        },
+        {
+          "id": "c4",
+          "text": "78%"
+        }
+      ],
+      "beat": "hook",
+      "component": "DossierScene",
+      "props": {
+        "panel": "hook",
+        "kicker": "網路泡沫・2000 年高點之後",
+        "span": "2000/3/10 → 2002/10/9",
+        "num": "−78",
+        "numText": "%",
+        "line2": "那斯達克高低點",
+        "mark": "那斯達克",
+        "markAt": "c2",
+        "doc": {
+          "title": "那斯達克綜合指數收盤",
+          "date": "2026/11/17",
+          "field": "高點：",
+          "fill": "5,048.62",
+          "fillPx": 30,
+          "fillAt": "c2",
+          "note": "示意，非文件原件",
+          "scanAts": [
+            "start",
+            "c4-6"
+          ],
+          "frameAt": "start+10",
+          "flashAt": "c1+30"
+        },
+        "callout": {
+          "label": "低點 2002/10",
+          "text": "1,114",
+          "at": "start+20",
+          "markAt": "c4+4"
+        },
+        "tag": {
+          "kind": "report",
+          "text": "Kiplinger 等報導（官方原文未讀）",
+          "at": "c4+14"
+        },
+        "news": {
+          "dateline": "NEW YORK・2000/3/10",
+          "lt": "事件"
+        }
+      },
+      "sources": [
+        "Kiplinger、DQYDJ 行情彙整（Nasdaq 原文未讀）"
+      ]
+    },
+    {
+      "id": "s02",
+      "narration": "先看相同的。當年押網路，同一個故事，現在押 AI。",
+      "tts": "先看相同的。當年押網路，同一個故事，現在押 AI。",
+      "subtitle": {
+        "zh": "先看相同的\n當年押網路\n同一個故事\n現在押 AI",
+        "en": "What is the same: | then, the internet. | Same story. | Now, AI."
+      },
+      "keywords": [
+        "當年",
+        "現在"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "當年"
+        },
+        {
+          "id": "c2",
+          "text": "網路"
+        },
+        {
+          "id": "c3",
+          "text": "同一個故事"
+        },
+        {
+          "id": "c4",
+          "text": "現在"
+        },
+        {
+          "id": "c5",
+          "text": "AI"
+        }
+      ],
+      "beat": "you",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "當年",
+        "op": "＝",
+        "opLabel": "同一種故事",
+        "b": "現在",
+        "aAt": "c1+4",
+        "opAt": "c3",
+        "bAt": "c4",
+        "rows": [
+          {
+            "text": "網路改變一切",
+            "at": "c2",
+            "tag": {
+              "kind": "none",
+              "text": "媒體比較",
+              "at": "c3+8"
+            }
+          },
+          {
+            "text": "AI 改變一切",
+            "at": "c5",
+            "tag": {
+              "kind": "none",
+              "text": "媒體比較",
+              "at": "c5+8"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "相同點"
+        }
+      },
+      "sources": [
+        "財星 2026/5/18、Trefis 2026/11/5 的歷史比較"
+      ]
+    },
+    {
+      "id": "s03",
+      "narration": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫花約 7,200 億美元，蓋資料中心、買晶片，比去年大增。",
+      "tts": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫花約七千二百億美元，蓋資料中心、買晶片，比去年大增。",
+      "subtitle": {
+        "zh": "另一個相同點\n都在砸錢蓋設施\n四家美國雲端大廠\n今年計畫約 7,200 億美元\n蓋資料中心、買晶片\n比去年大增",
+        "en": "Also alike: heavy spending. | Four US cloud giants plan | about $720B this year | on data centers and chips, | far above last year."
+      },
+      "keywords": [
+        "砸錢"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "砸錢"
+        },
+        {
+          "id": "c2",
+          "text": "四家"
+        },
+        {
+          "id": "c3",
+          "text": "7,200 億美元"
+        },
+        {
+          "id": "c4",
+          "text": "大增"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "claim",
+        "head": {
+          "text": "都在砸錢蓋設施",
+          "mark": "砸錢",
+          "at": "start-16",
+          "markAt": "c1+10"
+        },
+        "photo": {
+          "name": "capex",
+          "caption": "資本支出長條圖（示意）",
+          "date": "2026",
+          "at": "start-22",
+          "dateAt": "c1+4"
+        },
+        "quote": {
+          "by": "四家雲端大廠 2026 計畫",
+          "byAt": "c2-4",
+          "pre": "約",
+          "big": "7200",
+          "post": "億美元",
+          "at": "c2-6",
+          "bigAt": "c3",
+          "masthead": {
+            "name": "媒體彙整",
+            "date": "2026"
+          }
+        },
+        "tag": {
+          "kind": "report",
+          "text": "媒體報導（原文未讀）",
+          "at": "c4+6"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "相同點"
+        }
+      },
+      "sources": [
+        "Yahoo 財經、AI Weekly 彙整 2026（財報未讀）"
+      ]
+    },
+    {
+      "id": "s04",
+      "narration": "第一個差別，是本益比，就是股價是一年獲利的幾倍。現在約 25 倍，2000 年約 60 倍。",
+      "tts": "第一個差別，是本益比，就是股價是一年獲利的幾倍。現在約二十五倍，二零零零年約六十倍。",
+      "subtitle": {
+        "zh": "第一個差別\n是本益比\n就是股價是一年獲利的幾倍\n現在約 25 倍\n2000 年約 60 倍",
+        "en": "First difference: P/E, | price as a multiple of yearly profit. | Now about 25x, | in 2000 about 60x."
+      },
+      "keywords": [
+        "60 倍",
+        "約",
+        "25 倍"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "差別"
+        },
+        {
+          "id": "c2",
+          "text": "現在"
+        },
+        {
+          "id": "c3",
+          "text": "25 倍"
+        },
+        {
+          "id": "c4",
+          "text": "60 倍"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "2000 年 3 月",
+          "doc": "預估本益比（約）",
+          "big": "60 倍",
+          "bigPx": 120,
+          "src": "LPL 估計（引述）",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c4",
+          "srcAt": "c4+8",
+          "tag": {
+            "kind": "none",
+            "text": "分析推測",
+            "at": "c4+14"
+          }
+        },
+        "right": {
+          "head": "現在（2026）",
+          "big": [
+            "約",
+            "25 倍"
+          ],
+          "src": "那斯達克一百指數，估計值",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c3-4",
+          "srcAt": "c3+6",
+          "tag": {
+            "kind": "none",
+            "text": "分析推測（估計值）",
+            "at": "c3+10"
+          },
+          "masthead": {
+            "name": "媒體引述估計",
+            "date": "2026",
+            "at": "c2+4"
+          }
+        },
+        "mid": {
+          "text": "→",
+          "at": "c4+4"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "不同點"
+        }
+      },
+      "sources": [
+        "財星 2026/5、Trefis 2026/11/5；估計值非官方"
+      ]
+    },
+    {
+      "id": "s05",
+      "narration": "另一個差別是獲利。當年，許多公司沒賺錢。不一樣，現在，領頭的輝達是真的有獲利。",
+      "tts": "另一個差別是獲利。當年，許多公司沒賺錢。不一樣，現在，領頭的輝達是真的有獲利。",
+      "subtitle": {
+        "zh": "另一個差別是獲利\n當年許多公司沒賺錢\n不一樣\n現在領頭的輝達\n是真的有獲利",
+        "en": "Second difference: profit. | Many then made no money. | Not now: Nvidia, | the leader, does make money."
+      },
+      "keywords": [
+        "當年",
+        "現在"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "當年"
+        },
+        {
+          "id": "c2",
+          "text": "沒賺錢"
+        },
+        {
+          "id": "c3",
+          "text": "不一樣"
+        },
+        {
+          "id": "c4",
+          "text": "現在"
+        },
+        {
+          "id": "c5",
+          "text": "有獲利"
+        }
+      ],
+      "beat": "twist",
+      "component": "DossierScene",
+      "props": {
+        "panel": "notequal",
+        "a": "當年",
+        "op": "≠",
+        "opLabel": "賺不賺錢",
+        "b": "現在",
+        "aAt": "c1+4",
+        "opAt": "c3",
+        "bAt": "c4",
+        "rows": [
+          {
+            "text": "許多沒賺錢",
+            "at": "c2",
+            "tag": {
+              "kind": "none",
+              "text": "Nasdaq 摘要",
+              "at": "c3+8"
+            }
+          },
+          {
+            "text": "輝達有獲利",
+            "at": "c5",
+            "tag": {
+              "kind": "report",
+              "text": "公司公告（摘要）",
+              "at": "c5+8"
+            }
+          }
+        ],
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "不同點"
+        }
+      },
+      "sources": [
+        "Nasdaq 指數研究摘要；輝達 2025/11/19 財報新聞稿"
+      ]
+    },
+    {
+      "id": "s06",
+      "narration": "相關公司，現在的代表是輝達，當年的代表是思科。",
+      "tts": "相關公司，現在的代表是輝達，當年的代表是思科。",
+      "subtitle": {
+        "zh": "相關公司\n現在的代表是輝達\n當年的代表是思科",
+        "en": "Related companies: | Nvidia now, | Cisco then."
+      },
+      "keywords": [
+        "思科",
+        "輝達"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "相關公司"
+        },
+        {
+          "id": "c2",
+          "text": "現在"
+        },
+        {
+          "id": "c3",
+          "text": "輝達"
+        },
+        {
+          "id": "c4",
+          "text": "思科"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "當年的代表",
+          "doc": "思科 CSCO",
+          "big": "思科",
+          "bigPx": 120,
+          "src": "股價 25 年後才回到當年高點",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c4",
+          "srcAt": "c4+8",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（雅虎財經）",
+            "at": "c4+14"
+          }
+        },
+        "right": {
+          "head": "現在的代表",
+          "big": [
+            "輝達",
+            "NVDA"
+          ],
+          "src": "11/5 單日跌 8.9%",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c3-4",
+          "srcAt": "c3+6",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（CNBC 轉述）",
+            "at": "c3+10"
+          },
+          "masthead": {
+            "name": "相關公司",
+            "date": "非投資建議",
+            "at": "c2+4"
+          }
+        },
+        "mid": {
+          "text": "vs",
+          "at": "c4+4"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "相關公司"
+        }
+      },
+      "sources": [
+        "雅虎財經 2025/12；CNBC 2026/11/5；非投資建議"
+      ]
+    },
+    {
+      "id": "s07",
+      "narration": "所以像不像，目前沒有定論。要看這些投資，賺不賺得回來。",
+      "tts": "所以像不像，目前沒有定論。要看這些投資，賺不賺得回來。",
+      "subtitle": {
+        "zh": "所以像不像\n目前沒有定論\n要看這些投資\n賺不賺得回來",
+        "en": "So is it alike? Not settled. | It depends on whether | these investments pay back."
+      },
+      "keywords": [],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "目前"
+        },
+        {
+          "id": "c2",
+          "text": "沒有定論"
+        },
+        {
+          "id": "c3",
+          "text": "這些投資"
+        },
+        {
+          "id": "c4",
+          "text": "賺得回來"
+        }
+      ],
+      "beat": "payoff",
+      "component": "DossierScene",
+      "props": {
+        "panel": "pending",
+        "left": {
+          "photo": {
+            "name": "nasdaq26",
+            "caption": "10/6 高點後修正（示意）",
+            "at": "start-20"
+          },
+          "row": "10/6 高點後已修正",
+          "rowAt": "c2"
+        },
+        "right": {
+          "title": "AI 投資回收",
+          "field": "（未公布）",
+          "note": "示意，非文件原件",
+          "at": "start-16",
+          "titleAt": "start-12",
+          "frameAt": "c1+6",
+          "row": "能回收嗎",
+          "rowAt": "c3"
+        },
+        "tag": {
+          "kind": "pending",
+          "text": "截至 2026/11/17 尚未確定",
+          "at": "c3+4"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "還不知道"
+        }
+      },
+      "sources": [
+        "CNBC、AP 2026/11/5；回收情況尚無資料"
+      ]
+    },
+    {
+      "id": "s08",
+      "narration": "這是泡沫，還是修正？下一集，日本泡沫。想看完整對照，留言泡沫。",
+      "tts": "這是泡沫，還是修正？下一集，日本泡沫。想看完整對照，留言泡沫。",
+      "subtitle": {
+        "zh": "這是泡沫\n還是修正？\n下一集日本泡沫\n留言泡沫",
+        "en": "A bubble, or a correction? | Next: Japan's bubble. | Comment \"bubble\"."
+      },
+      "keywords": [
+        "泡沫",
+        "修正"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "這是泡沫"
+        },
+        {
+          "id": "c2",
+          "text": "還是修正"
+        },
+        {
+          "id": "c3",
+          "text": "日本泡沫"
+        },
+        {
+          "id": "c4",
+          "text": "留言泡沫"
+        }
+      ],
+      "beat": "cta",
+      "component": "DossierScene",
+      "props": {
+        "panel": "ask",
+        "head": {
+          "lines": [
+            "這是泡沫",
+            "還是修正？"
+          ],
+          "marks": [
+            "泡沫",
+            "修正"
+          ],
+          "at": "start-18",
+          "markAts": [
+            "c1+6",
+            "c2+2"
+          ]
+        },
+        "cta": {
+          "text": "留言「泡沫」拿完整資料",
+          "at": "c4"
+        },
+        "next": {
+          "label": "下一集",
+          "at": "c2+8",
+          "photo": {
+            "name": "nasdaq00",
+            "caption": "示意照片",
+            "at": "c2+12"
+          },
+          "title": "1990 日本泡沫",
+          "titleAt": "c3",
+          "frameAt": "c4+6"
+        },
+        "news": {
+          "dateline": "NEW YORK・2026/11/17",
+          "lt": "提問"
+        }
+      },
+      "sources": [
+        "研究整理；非投資建議"
+      ]
+    },
+    {
+      "id": "end",
+      "narration": "",
+      "subtitle": {
+        "zh": "",
+        "en": ""
+      },
+      "keywords": [],
+      "cues": [],
+      "beat": "cta",
+      "component": "EndCard",
+      "silent": true,
+      "durationSec": 3.6,
+      "props": {
+        "panel": "end",
+        "endCard": {
+          "comment": "泡沫",
+          "next": "1990 日本泡沫"
+        }
+      },
+      "sources": []
+    }
+  ],
+  "thesis": "都在押新技術的故事，但估值與獲利和 2000 年不同，像不像目前沒定論"
+}
