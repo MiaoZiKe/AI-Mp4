@@ -32,8 +32,8 @@ const mix2 = (a: string, b: string, t: number) => { const A = hex(a), B = hex(b)
 // ── cool-cups ──
 const Cups: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, c = (n: string) => col(m.product, n);
-  const same = T(o, "same"), times = T(o, "times"), water = T(o, "water");
-  const a = tween(f, same, 10, EASE.enter), nA = tween(f, same + 10, 10, EASE.enter), nB = tween(f, times - 20, 30, EASE.move), pop = 1 + 0.12 * Math.sin(Math.PI * tween(f, times, 10, EASE.move));
+  const same = T(o, "same"), times = T(o, "times"), water = T(o, "water"), about = T(o, "about"), carry = T(o, "carry");
+  const a = tween(f, same, 10, EASE.enter), nA = tween(f, same + 10, 10, EASE.enter), nB = tween(f, carry, 30, EASE.move), pop = 1 + 0.12 * Math.sin(Math.PI * tween(f, times, 10, EASE.move));
   const cube = c("cube"), glass = c("glass"), wat = c("waterB"), bad = c("lp_bad");
   const cx = [130, 380], base = 280, ch = 150, cw = 120;
   const cubes = (n: number, x: number, prog: number) => Array.from({ length: n }, (_, i) => { const col_ = i % 4, row = Math.floor(i / 4); const on = i < Math.round(n * prog);
@@ -52,8 +52,8 @@ const Cups: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <text x={cx[0] + cw / 2} y={base - ch - 16} textAnchor="middle" opacity={nA} style={zh(46, bad, 900)}>1 份</text>
         <text x={cx[1] + cw / 2} y={base - ch - 16} textAnchor="middle" opacity={nB} style={zh(46, c("lp_sig"), 900)}>12 份</text>
-        <text x={540} y={150} opacity={tween(f, times - 6, 8, EASE.enter)} style={zh(92 * pop, H.amber, 900)}>約 3,450 倍</text>
-        <text x={546} y={200} opacity={tween(f, times - 4, 8, EASE.enter)} style={zh(30, H.text, 800)}>同體積、升高 1 度，帶走的熱</text>
+        <text x={540} y={150} opacity={tween(f, times, 8, EASE.enter)} style={zh(92 * pop, H.amber, 900)}>約 3,450 倍</text>
+        <text x={546} y={200} opacity={tween(f, about, 8, EASE.enter)} style={zh(30, H.text, 800)}>同體積、升高 1 度，帶走的熱</text>
         <text x={546} y={252} opacity={tween(f, water, 8, EASE.enter)} style={zh(sm(32), H.text2, 700)}>改讓水來搬熱（物性計算）</text>
       </svg>
     </Card>
@@ -148,13 +148,11 @@ const Split: React.FC<P> = ({ o, f, k, m }) => {
         <path d={arc(0, p)} fill={c("lp_sig")} />
         <path d={arc(p, p + 0.15 * b)} fill={c("lp_warm")} />
         <text x={cx} y={cy + 12} textAnchor="middle" opacity={a} style={zh(40, H.onAccent, 900)}> </text>
-        <text x={350} y={118} opacity={a} style={zh(46, c("lp_sig"), 900)}>冷板　約 8～9 成</text>
-        <text x={350} y={178} opacity={b} style={zh(46, c("lp_warm"), 900)}>風扇　約 1～2 成</text>
+        <text x={350} y={118} opacity={a} style={zh(42, c("lp_sig"), 900)}>冷板　約 8～9 成</text>
+        <text x={350} y={178} opacity={b} style={zh(42, c("lp_warm"), 900)}>風扇　約 1～2 成</text>
         <text x={350} y={222} opacity={b} style={zh(sm(32), H.text2, 700)}>業界說法，各家不同</text>
-        <g opacity={cf} transform={`translate(${cx + 150} ${cy - 130}) rotate(${f * 14})`}>{[0, 1, 2].map((j) => <rect key={j} x={-3} y={-30} width={6} height={30} fill={c("lp_warm")} transform={`rotate(${j * 120})`} />)}</g>
-        <text x={640} y={110} opacity={cf} style={zh(40, H.text, 900)}>靠風扇帶走</text>
-        <text x={640} y={160} opacity={cf} style={zh(sm(32), H.text2, 700)}>電感、功率晶片、記憶體</text>
-        <text x={640} y={206} opacity={cf} style={zh(sm(32), H.text2, 700)}>冷板沒蓋到的地方</text>
+        <g opacity={cf} transform={`translate(780 150) rotate(${f * 16})`}>{[0, 1, 2].map((j) => <rect key={j} x={-9} y={-62} width={18} height={62} fill={c("lp_warm")} transform={`rotate(${j * 120})`} />)}<circle r={12} fill={c("steel")} /></g>
+        <text x={780} y={236} textAnchor="middle" opacity={cf} style={zh(42, H.text, 900)}>靠風扇帶走</text>
       </svg>
     </Card>
   );
@@ -169,11 +167,11 @@ const Next: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <text x={W / 2} y={104} textAnchor="middle" opacity={a} style={zh(40, H.text, 900)}>機櫃還會更耗電，二選一</text>
-        <g opacity={b}><rect x={60} y={130} width={380} height={92} fill="none" stroke={c("cableCu")} strokeWidth={6} /><rect x={90} y={168} width={320} height={16 * pulse} fill={c("cableCu")} /><text x={250} y={252} textAnchor="middle" style={zh(40, H.text, 900)}>電線加粗</text></g>
-        <g opacity={v}><rect x={512} y={130} width={380} height={92} fill="none" stroke={c("lp_proc")} strokeWidth={6} /><text x={702} y={196} textAnchor="middle" opacity={e8} style={zh(70 * pulse, c("lp_proc"), 900)}>800 V</text><path d={`M600 190 l20 -26 l20 26 M620 164 v52`} stroke={c("lp_proc")} strokeWidth={6} fill="none" opacity={1 - e8} /><text x={702} y={252} textAnchor="middle" style={zh(40, H.text, 900)}>電壓拉高</text></g>
-        <text x={476} y={188} textAnchor="middle" opacity={v} style={zh(44, H.text2, 900)}>或</text>
-        <g opacity={n}><rect x={W / 2 - 260} y={Hh - 54} width={520} height={46} fill={H.amber} /><text x={W / 2} y={Hh - 18} textAnchor="middle" style={zh(34, onC(H.amber), 900)}>下一支 ▸ 八百伏特</text></g>
+        <text x={W / 2} y={92} textAnchor="middle" opacity={a} style={zh(40, H.text, 900)}>機櫃還會更耗電，二選一</text>
+        <g opacity={b}><rect x={60} y={112} width={380} height={80} fill="none" stroke={c("cableCu")} strokeWidth={6} /><rect x={90} y={142} width={320} height={16 * pulse} fill={c("cableCu")} /><text x={250} y={232} textAnchor="middle" style={zh(40, H.text, 900)}>電線加粗</text></g>
+        <g opacity={v}><rect x={512} y={112} width={380} height={80} fill="none" stroke={c("lp_proc")} strokeWidth={6} /><text x={702} y={176} textAnchor="middle" opacity={e8} style={zh(70 * pulse, c("lp_proc"), 900)}>800 V</text><path d={`M600 170 l20 -26 l20 26 M620 144 v44`} stroke={c("lp_proc")} strokeWidth={6} fill="none" opacity={1 - e8} /><text x={702} y={232} textAnchor="middle" style={zh(40, H.text, 900)}>電壓拉高</text></g>
+        <text x={476} y={166} textAnchor="middle" opacity={v} style={zh(44, H.text2, 900)}>或</text>
+        <g opacity={n}><rect x={W / 2 - 260} y={Hh - 58} width={520} height={46} fill={H.amber} /><text x={W / 2} y={Hh - 22} textAnchor="middle" style={zh(34, onC(H.amber), 900)}>下一支 ▸ 八百伏特</text></g>
       </svg>
     </Card>
   );

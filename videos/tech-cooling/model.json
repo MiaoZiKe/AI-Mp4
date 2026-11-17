@@ -665,6 +665,16 @@
    "dx": 130,
    "dy": -60
   },
+  "rk_top": {
+   "layer": "rk",
+   "p": [
+    0.6,
+    8.7,
+    0.8
+   ],
+   "dx": 150,
+   "dy": 60
+  },
   "cup_a": {
    "layer": "cup_a",
    "p": [
@@ -774,6 +784,26 @@
    ],
    "dx": 120,
    "dy": -90
+  },
+  "r_hot": {
+   "layer": "r_man",
+   "p": [
+    242.8,
+    5.5,
+    1.7
+   ],
+   "dx": 150,
+   "dy": -40
+  },
+  "r_br": {
+   "layer": "r_br",
+   "p": [
+    238.0,
+    4.6,
+    1.7
+   ],
+   "dx": -150,
+   "dy": -60
   },
   "r_man": {
    "layer": "r_man",
@@ -5834,6 +5864,18 @@
    "rampSpin": true,
    "layer": "hfan_bl"
   },
+  "h_body": {
+   "type": "pulse",
+   "layer": "rk",
+   "parts": [
+    "rk_body",
+    "rk_top"
+   ],
+   "color": "lp_heat",
+   "glow": 0.55,
+   "halo": 0,
+   "steady": true
+  },
   "h_leds": {
    "type": "pulse",
    "layer": "rk_led",
@@ -6582,7 +6624,7 @@
     0,
     0
    ],
-   "size": 0.14,
+   "size": 0.22,
    "shape": "dot",
    "rate": 0.8,
    "color": "lp_sig",
@@ -6617,7 +6659,7 @@
     0,
     0
    ],
-   "size": 0.14,
+   "size": 0.22,
    "shape": "dot",
    "rate": 0.8,
    "color": "lp_sig",
@@ -6657,7 +6699,7 @@
     1,
     0
    ],
-   "size": 0.11,
+   "size": 0.2,
    "shape": "dot",
    "rate": 0.9,
    "color": "lp_sig",
@@ -6697,7 +6739,7 @@
     1,
     0
    ],
-   "size": 0.11,
+   "size": 0.2,
    "shape": "dot",
    "rate": 0.9,
    "color": "lp_bad",
@@ -6732,7 +6774,7 @@
     0,
     0
    ],
-   "size": 0.14,
+   "size": 0.22,
    "shape": "dot",
    "rate": 0.8,
    "color": "lp_bad",
@@ -6772,7 +6814,7 @@
     0,
     0
    ],
-   "size": 0.14,
+   "size": 0.22,
    "shape": "dot",
    "rate": 0.8,
    "color": "lp_bad",

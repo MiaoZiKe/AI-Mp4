@@ -157,6 +157,12 @@
       "at": "heat+6",
       "until": "s2:start-2",
       "ramp": 8
+     },
+     {
+      "id": "h_body",
+      "at": "heat",
+      "until": "s2:start-2",
+      "ramp": 12
      }
     ],
     "labels": [
@@ -167,6 +173,14 @@
       "color": "blue",
       "at": "rack",
       "until": "kw-6"
+     },
+     {
+      "part": "rk_top",
+      "text": "熱氣冒出來",
+      "en": "Heat rising",
+      "color": "coral",
+      "at": "heat",
+      "until": "fan-6"
      },
      {
       "part": "rk",
@@ -223,6 +237,10 @@
     {
      "id": "carry",
      "text": "水能帶走"
+    },
+    {
+     "id": "about",
+     "text": "大約是"
     },
     {
      "id": "times",
@@ -352,6 +370,9 @@
        },
        "carry": {
         "at": "carry"
+       },
+       "about": {
+        "at": "about"
        },
        "times": {
         "at": "times"
@@ -907,6 +928,22 @@
      }
     ],
     "labels": [
+     {
+      "part": "r_hot",
+      "text": "熱水出來",
+      "en": "Hot water out",
+      "color": "coral",
+      "at": "where",
+      "until": "pipe-6"
+     },
+     {
+      "part": "r_br",
+      "text": "每台的水管",
+      "en": "Hose per server",
+      "color": "blue",
+      "at": "pipe",
+      "until": "mani-6"
+     },
      {
       "part": "r_man",
       "text": "總水管（分歧管）",

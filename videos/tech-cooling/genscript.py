@@ -48,8 +48,8 @@ scenes.append(scene("s1", "hook", 1,
      "shot": [shot("start-30", HX, 4.0, 36, 16, 1)],
      "shift": [hide_until("cloud", off("heat", 4), dy=-0.4, dur=14)],
      "run": [run("h_fans", "start-30", "s2:start-2", 8), run("h_leds", "kw", "s2:start-2", 6), run("h_air0", "fan", "s2:start-2", 6), run("h_air1", "fan", "s2:start-2", 6),
-             run("h_hot", "heat", "s2:start-2", 8), run("h_hotb", "heat+6", "s2:start-2", 8)],
-     "labels": [lab("rk", "AI 伺服器機櫃", "One AI rack", "blue", "rack", "kw-6"), lab("rk", "風扇牆（風冷）", "Fan wall (air cooling)", "amber", "fan", "s1:end-8")],
+             run("h_hot", "heat", "s2:start-2", 8), run("h_hotb", "heat+6", "s2:start-2", 8), run("h_body", "heat", "s2:start-2", 12)],
+     "labels": [lab("rk", "AI 伺服器機櫃", "One AI rack", "blue", "rack", "kw-6"), lab("rk_top", "熱氣冒出來", "Heat rising", "coral", "heat", "fan-6"), lab("rk", "風扇牆（風冷）", "Fan wall (air cooling)", "amber", "fan", "s1:end-8")],
      "overlay": [stamp("廠商公布", "kw", "s2:start-2", "blue", 44, x=210, y=330)]},
     ["NVIDIA GB200 使用手冊；Vertiv 2024/11"], pause=0.7))
 
@@ -59,14 +59,14 @@ scenes.append(scene("s2", "mechanism", 2,
     ["吹不走", "同樣體積", "水能帶走的熱", "大約是空氣的三千四百多倍", "所以改讓水來搬熱"],
     ["It can't.", "For the same volume,", "water carries away", "about 3,400 times more heat than air.", "So let water carry the heat."],
     ["吹不走", "三千四百多倍", "讓水來搬熱"],
-    [cue("no", "吹不走"), cue("same", "同樣體積"), cue("carry", "水能帶走"), cue("times", "三千四百多倍"), cue("water", "讓水來搬熱")],
+    [cue("no", "吹不走"), cue("same", "同樣體積"), cue("carry", "水能帶走"), cue("about", "大約是"), cue("times", "三千四百多倍"), cue("water", "讓水來搬熱")],
     {"zoom": [{"to": "pk", "at": "start-18", "dur": 1}],
      "shot": [shot("start-4", PX, -1.5, 34, 16, 1)],
      "shift": [gone("cloud", "start-2", 1), fall("cube_a0", off("same", 10), press=None, dy=4.0, bounce=0.1)] +
               [fall(f"cube_b{j}", off("carry", 4 + 12 * j), dy=4.0, bounce=0.06) for j in range(3)],
      "run": [run("p_air", off("same", 22), "s3:start-2", 8), run("p_wat", "water", "s3:start-2", 8)],
      "labels": [lab("cup_a", "空氣", "Air", "coral", "no", "s3:start-2"), lab("cup_b", "水", "Water", "blue", "same", "s3:start-2")],
-     "overlay": [sec("cool-cups", "same-6", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "carry": "carry", "times": "times", "water": "water"})]},
+     "overlay": [sec("cool-cups", "same-6", "s3:start-16", 920, 330, "同樣大小的杯子", "示意：同體積、升高 1 度", {"same": "same", "carry": "carry", "about": "about", "times": "times", "water": "water"})]},
     ["Upsite；Data Center Frontier；Introl（體積熱容）"], pause=0.7))
 
 # ───────── s3 換冷板（C）─────────
@@ -115,7 +115,7 @@ scenes.append(scene("s5", "mechanism", 5,
         {"layer": "q_mid", "at": "pull", "until": off("dry", 10), "opacity": 0, "dur": 6}],
      "run": [run("r_f_rr", "where", "s7:end", 6), run("r_f_ru", off("where", 8), "s7:end", 6), run("r_f_rt", off("where", 30), "s7:end", 6), run("r_f_br", "pipe", "s7:end", 6),
              run("r_f_bu", off("pipe", 8), "s7:end", 6), run("r_f_bb", "mani", "s7:end", 6), run("q_flowc", off("qd", 8), "pull", 4)],
-     "labels": [lab("r_man", "總水管（分歧管）", "Manifold", "blue", "mani", "qd-12"), lab("q_pop", "閥芯", "Valve", "amber", off("qd", 14), "dry+4"), lab("q_spring", "彈簧", "Spring", "blue", "pull", "dry+4"), lab("q_body", "富世達 快接頭", "Quick disconnects", "amber", off("qd", 4), "pull-6")],
+     "labels": [lab("r_hot", "熱水出來", "Hot water out", "coral", "where", "pipe-6"), lab("r_br", "每台的水管", "Hose per server", "blue", "pipe", "mani-6"), lab("r_man", "總水管（分歧管）", "Manifold", "blue", "mani", "qd-12"), lab("q_pop", "閥芯", "Valve", "amber", off("qd", 14), "dry+4"), lab("q_spring", "彈簧", "Spring", "blue", "pull", "dry+4"), lab("q_body", "富世達 快接頭", "Quick disconnects", "amber", off("qd", 4), "pull-6")],
      "overlay": [sec("cool-loop", "start+2", "s6:start-2", 930, 310, "一條迴路", "示意", {"plate": "start", "mani": "mani", "cdu": "s6:start-8", "dry": "s6:start-6", "loop": "s6:start-4"}),
                  stamp("拔開：0 滴", "pull+8", "dry+4", "blue", 44, x=800, y=340)]},
     ["Eaton、Boyd 產品頁；經濟日報（快接頭）"], pause=0.7))

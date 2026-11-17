@@ -93,6 +93,7 @@ for c, fx in enumerate((-1.45, 1.45)):
 fan_group("h_fans", "hfan", fl, rps=3.2)
 box("rk_led", "rk_led", "led", [.5, .14, .04], [HX0, 1.0, 1.64], at=[[0, k * .95, 0] for k in range(8)])
 box("rk_grill", "rk", "slot", [5.0, .1, .04], [HX0, 8.2, 1.62])
+glow("h_body", "rk", ["rk_body", "rk_top"], "lp_heat", steady=True, g=.55)
 glow("h_leds", "rk_led", ["rk_led"], "lp_bad", steady=False, g=1.0, freq=2.8)
 box("rk_cloud", "cloud", "hotcloud", [5.4, 1.4, 3.0], [HX0, 9.5, 0])
 # 氣流：風扇吹出只推一小段（藍），熱氣從頂與背面往上冒（橘）
@@ -101,6 +102,7 @@ for c, fx in enumerate((-1.45, 1.45)):
 flow("h_hot", "rk", [[HX0 - 1.8, 8.9, -.2], [HX0 - 1.6, 12.6, .3]], n=4, lanes=5, gap=.9, ldir=(1, 0, 0), size=.14, rate=.55, color="lp_heat", rim="lp_heat")
 flow("h_hotb", "rk", [[HX0, 2.0, -1.8], [HX0, 2.2, -5.0]], n=3, lanes=4, gap=1.7, ldir=(0, 1, 0), size=.13, rate=.5, color="lp_heat", rim="lp_heat")
 anchor("rk", "rk", [HX0 + 2.8, 6.0, 1.6], dx=130, dy=-60)
+anchor("rk_top", "rk", [HX0 + 0.6, 8.7, 0.8], dx=150, dy=60)
 # 銅排（s9）
 box("rk_bus", "bus", "cable", [.3, 8.2, .22], [HX0 + 3.15, 4.3, 0])
 box("rk_bus2", "bus", "cable", [.3, 8.2, .22], [HX0 - 3.15, 4.3, 0])
@@ -258,12 +260,12 @@ box("d_fin", "d_dc", "steelHi", [.08, 1.2, 2.8], [DCX, .9, 0], at=[[-2.4 + .24 *
 fan_group("d_fans", "dfan", [(f"df{i}", DCX + dx, 1.84, 0, .78, "y") for i, dx in enumerate((-1.8, 0, 1.8))], rps=3)
 box("d_cloud", "dcl", "hotcloud", [5.0, 2.6, 2.8], [DCX, 3.5, 0])
 # 迴路上的光點：primary（機櫃迴路）
-flow("r_f_bb", "r_flow", [[CDX - 1.0, .45, 1.55], [RX - 2.45, .45, 1.55]], n=4, size=.14, rate=.8, color="lp_sig", rim="lp_sigRim")
-flow("r_f_bu", "r_flow", [[RX - 2.45, .5, 1.55], [RX - 2.45, 7.9, 1.55]], n=5, size=.14, rate=.8, color="lp_sig", rim="lp_sigRim")
-flow("r_f_br", "r_flow", [[RX - 2.4, 1.1, 1.55], [RX - 1.5, 1.1, 1.55], [RX - 1.5, 1.1, 1.2]], n=3, lanes=6, gap=1.25, ldir=(0, 1, 0), size=.11, rate=.9, color="lp_sig", rim="lp_sigRim")
-flow("r_f_rr", "r_flow", [[RX + 1.5, 1.1, 1.2], [RX + 1.5, 1.1, 1.55], [RX + 2.4, 1.1, 1.55]], n=3, lanes=6, gap=1.25, ldir=(0, 1, 0), size=.11, rate=.9, color="lp_bad", rim="lp_bad")
-flow("r_f_ru", "r_flow", [[RX + 2.45, 1.0, 1.55], [RX + 2.45, 7.9, 1.55]], n=5, size=.14, rate=.8, color="lp_bad", rim="lp_bad")
-flow("r_f_rt", "r_flow", [[RX + 2.45, 7.9, 1.55], [CDX - 1.0, 7.9, 1.55], [CDX - 1.0, 6.3, 1.0]], n=5, size=.14, rate=.8, color="lp_bad", rim="lp_bad")
+flow("r_f_bb", "r_flow", [[CDX - 1.0, .45, 1.55], [RX - 2.45, .45, 1.55]], n=4, size=.22, rate=.8, color="lp_sig", rim="lp_sigRim")
+flow("r_f_bu", "r_flow", [[RX - 2.45, .5, 1.55], [RX - 2.45, 7.9, 1.55]], n=5, size=.22, rate=.8, color="lp_sig", rim="lp_sigRim")
+flow("r_f_br", "r_flow", [[RX - 2.4, 1.1, 1.55], [RX - 1.5, 1.1, 1.55], [RX - 1.5, 1.1, 1.2]], n=3, lanes=6, gap=1.25, ldir=(0, 1, 0), size=.2, rate=.9, color="lp_sig", rim="lp_sigRim")
+flow("r_f_rr", "r_flow", [[RX + 1.5, 1.1, 1.2], [RX + 1.5, 1.1, 1.55], [RX + 2.4, 1.1, 1.55]], n=3, lanes=6, gap=1.25, ldir=(0, 1, 0), size=.2, rate=.9, color="lp_bad", rim="lp_bad")
+flow("r_f_ru", "r_flow", [[RX + 2.45, 1.0, 1.55], [RX + 2.45, 7.9, 1.55]], n=5, size=.22, rate=.8, color="lp_bad", rim="lp_bad")
+flow("r_f_rt", "r_flow", [[RX + 2.45, 7.9, 1.55], [CDX - 1.0, 7.9, 1.55], [CDX - 1.0, 6.3, 1.0]], n=5, size=.22, rate=.8, color="lp_bad", rim="lp_bad")
 # 熱交換器內：熱側由上往下（紅→暖→藍），冷側由下往上（藍→暖→紅），逆向
 HYX = CDX
 for nm, y0, y1, c in (("u_h1", 6.0, 5.0, "lp_bad"), ("u_h2", 5.0, 3.8, "lp_warm"), ("u_h3", 3.8, 2.7, "lp_sig")):
@@ -277,6 +279,8 @@ flow("q_f2", "q_flow", [[CDX + 2.4, 6.0, 1.55], [DCX - 1.0, 6.0, 1.55], [DCX - 1
 flow("q_f3", "q_flow", [[DCX + 1.0, 1.6, 1.55], [DCX + 1.0, .6, 1.55], [CDX + 2.4, .6, 1.55], [CDX + 1.6, .6, 1.55]], n=5, size=.14, rate=.8, color="lp_sig", rim="lp_sigRim")
 flow("d_air", "dfan_bl", [[DCX - 1.8, 2.4, 0], [DCX - 1.8, 4.6, 0]], n=3, lanes=3, gap=1.8, ldir=(1, 0, 0), size=.1, rate=.9, color="lp_heat", rim="lp_heat")
 glow("u_hot", "u_hx", ["u_plR"], "lp_bad", steady=False, g=.5, freq=1.4)
+anchor("r_hot", "r_man", [RX + 2.8, 5.5, 1.7], dx=150, dy=-40)
+anchor("r_br", "r_br", [RX - 2.0, 4.6, 1.7], dx=-150, dy=-60)
 anchor("r_man", "r_man", [RX - 2.8, 6.0, 1.7], dx=-150, dy=-40)
 anchor("r_qd", "r_qd", [RX - 1.5, 4.3, 1.75], dx=-120, dy=-110)
 anchor("u_cdu", "u_cdu", [CDX + 2.4, 6.6, 1.0], dx=130, dy=-60)
