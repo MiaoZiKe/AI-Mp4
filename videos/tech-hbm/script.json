@@ -1,0 +1,1768 @@
+{
+ "slug": "tech-hbm",
+ "title": "HBM：AI 晶片要的資料太多，記憶體只好打洞、疊成一疊（科技透明圈 第 6 支）",
+ "asOf": "2026/11/19",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-hbm-旁白.txt；第一句句首的「AI」前加「現在的」避免被念成「欸」；API 整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "pk",
+    "label": "HBM 記憶體堆疊",
+    "en": "HBM STACK",
+    "field": "11 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "handoff3D": true,
+    "readout": false,
+    "note": "查證截至 2026/11/19",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例・垂直放大・運作為示意"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "十二層",
+   "比信用卡薄"
+  ],
+  "sub": "HBM 高頻寬記憶體",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "現在的 AI 晶片，算得再快，資料送不進來也沒用。所以它旁邊那圈記憶體，是十二層疊在一起，整疊還比一張信用卡薄。",
+   "tts": "現在的 AI 晶片，算得再快，資料送不進來也沒用。所以它旁邊那圈記憶體，是十二層疊在一起，整疊還比一張信用卡薄。",
+   "subtitle": {
+    "zh": "現在的 AI 晶片\n算得再快\n資料送不進來也沒用\n所以它旁邊那圈記憶體\n是十二層疊在一起\n整疊還比一張信用卡薄",
+    "en": "Today's AI chips, | however fast, | can't use data that never gets in. | So the ring of memory beside them | is stacked twelve layers high, | yet the stack is thinner than a credit card."
+   },
+   "keywords": [
+    "資料送不進來",
+    "十二層",
+    "信用卡"
+   ],
+   "cues": [
+    {
+     "id": "ai",
+     "text": "AI 晶片"
+    },
+    {
+     "id": "data",
+     "text": "送不進來"
+    },
+    {
+     "id": "ring",
+     "text": "那圈記憶體"
+    },
+    {
+     "id": "twelve",
+     "text": "十二層"
+    },
+    {
+     "id": "card",
+     "text": "信用卡"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "第五代 HBM3E｜廠商公布",
+     "title": "12 層＜信用卡",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.9,
+      "y": 0.5,
+      "d": 27,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "hm_s6",
+      "at": "s1:start-40",
+      "until": "start+3",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s5"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "hm_s7",
+      "at": "s1:start-40",
+      "until": "start+8",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s6"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "hm_s8",
+      "at": "s1:start-40",
+      "until": "start+13",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s7"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "hm_s9",
+      "at": "s1:start-40",
+      "until": "start+18",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s8"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "hm_s10",
+      "at": "s1:start-40",
+      "until": "start+23",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s9"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "hm_s11",
+      "at": "s1:start-40",
+      "until": "start+28",
+      "dy": 1.3,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "hm_s10"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "ai",
+      "at": "s1:start-40",
+      "until": "ai",
+      "dy": 2.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.06,
+      "press": [
+       "ip"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "h2",
+      "at": "s1:start-40",
+      "until": "ring",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "ip"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "h3",
+      "at": "s1:start-40",
+      "until": "ring+6",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.07,
+      "press": [
+       "ip"
+      ],
+      "pressAmt": 0.012
+     }
+    ],
+    "run": [
+     {
+      "id": "h_aihot",
+      "at": "data",
+      "until": "ring",
+      "ramp": 6
+     },
+     {
+      "id": "h_jam",
+      "at": "data",
+      "until": "ring+10",
+      "ramp": 6
+     },
+     {
+      "id": "h_hmglow",
+      "at": "twelve",
+      "until": "card+40",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "hm_top",
+      "text": "12 層 720 µm",
+      "en": "12 layers, 720 µm",
+      "color": "amber",
+      "at": "twelve",
+      "until": "s2:start-2"
+     },
+     {
+      "part": "card",
+      "text": "信用卡 760 µm",
+      "en": "Card, 760 µm",
+      "color": "blue",
+      "at": "card",
+      "until": "s2:start-2"
+     }
+    ],
+    "overlay": []
+   },
+   "sources": [
+    "三星 12 層 TSV 新聞稿；SK 海力士 2024/9；ISO 7810"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 2,
+   "narration": "這種記憶體叫高頻寬記憶體，HBM。高頻寬，就是一次能送很多資料。",
+   "tts": "這種記憶體叫高頻寬記憶體，HBM。高頻寬，就是一次能送很多資料。",
+   "subtitle": {
+    "zh": "這種記憶體叫\n高頻寬記憶體\nHBM\n高頻寬\n就是一次能送很多資料",
+    "en": "This memory is called | High Bandwidth Memory, | HBM. | High bandwidth means | a lot of data at once."
+   },
+   "keywords": [
+    "高頻寬記憶體",
+    "一次能送很多資料"
+   ],
+   "cues": [
+    {
+     "id": "hbm",
+     "text": "HBM"
+    },
+    {
+     "id": "band",
+     "text": "一次能送"
+    },
+    {
+     "id": "much",
+     "text": "很多資料"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 14,
+      "x": 1.4,
+      "y": 0.5,
+      "d": 20,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "band",
+      "at": "s1:start-40",
+      "until": "band",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "h_hmglow",
+      "at": "hbm",
+      "until": "band",
+      "ramp": 6
+     },
+     {
+      "id": "h_band",
+      "at": "band",
+      "until": "s3:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "hm_top",
+      "text": "HBM",
+      "en": "High Bandwidth Memory",
+      "color": "amber",
+      "at": "hbm",
+      "until": "s3:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "much",
+      "until": "s3:start-2",
+      "text": "已確定",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 880,
+      "y": 330,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "TrendForce 2025/9；Siemens 2026/4"
+   ]
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "多到什麼程度？一般電腦記憶體一次走六十四條資料線，新一代 HBM 一疊有兩千零四十八條。",
+   "tts": "多到什麼程度？一般電腦記憶體一次走六十四條資料線，新一代 HBM 一疊有兩千零四十八條。",
+   "subtitle": {
+    "zh": "多到什麼程度？\n一般電腦記憶體\n一次走六十四條資料線\n新一代 HBM\n一疊有兩千零四十八條",
+    "en": "How much more? | A normal PC memory module | moves 64 data lines at a time. | The new-generation HBM | has 2,048 lines in one stack."
+   },
+   "keywords": [
+    "六十四條",
+    "兩千零四十八條"
+   ],
+   "cues": [
+    {
+     "id": "six4",
+     "text": "六十四條"
+    },
+    {
+     "id": "n2048",
+     "text": "兩千零四十八"
+    },
+    {
+     "id": "x32",
+     "text": "一疊有"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60,
+      "y": 0.4,
+      "d": 36,
+      "elev": 38
+     }
+    ],
+    "run": [
+     {
+      "id": "w_narrow",
+      "at": "six4-6",
+      "until": "s4:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_wide",
+      "at": "n2048-6",
+      "until": "s4:start-2",
+      "ramp": 6
+     }
+    ],
+    "overlay": [
+     {
+      "type": "bars",
+      "at": "six4",
+      "until": "s4:start-2",
+      "y": 1010,
+      "compact": true,
+      "title": "一次走幾條資料線",
+      "tag": "JEDEC，示意",
+      "rows": [
+       {
+        "label": "一般電腦記憶體",
+        "v": 0.03,
+        "text": "64",
+        "color": "coral",
+        "textAt": "six4"
+       },
+       {
+        "label": "HBM3E",
+        "v": 0.5,
+        "text": "1,024",
+        "color": "blue",
+        "textAt": "x32"
+       },
+       {
+        "label": "HBM4",
+        "v": 1.0,
+        "text": "2,048",
+        "color": "amber",
+        "textAt": "n2048"
+       }
+      ]
+     },
+     {
+      "type": "stamp",
+      "at": "n2048+30",
+      "until": "s4:start-2",
+      "text": "差 32 倍",
+      "color": "coral",
+      "size": 52,
+      "rot": -4,
+      "x": 830,
+      "y": 330,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "JEDEC DDR5；Tom's Hardware；TrendForce"
+   ]
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "線這麼多，從旁邊拉不出來，只好直接在晶片上打洞。",
+   "tts": "線這麼多，從旁邊拉不出來，只好直接在晶片上打洞。",
+   "subtitle": {
+    "zh": "線這麼多\n從旁邊拉不出來\n只好直接在晶片上打洞",
+    "en": "That many lines | can't be routed out from the side, | so holes are drilled straight into the chip."
+   },
+   "keywords": [
+    "拉不出來",
+    "打洞"
+   ],
+   "cues": [
+    {
+     "id": "many",
+     "text": "線這麼多"
+    },
+    {
+     "id": "side",
+     "text": "拉不出來"
+    },
+    {
+     "id": "chip",
+     "text": "晶片上"
+    },
+    {
+     "id": "hole",
+     "text": "打洞"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 3.8,
+      "y": 0.6,
+      "d": 19,
+      "elev": 24
+     },
+     {
+      "at": "chip",
+      "dur": 1,
+      "x": 120,
+      "y": 1.7,
+      "d": 25,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "sideLines",
+      "at": "s1:start-40",
+      "until": "many",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "x_ho0",
+      "at": "s1:start-40",
+      "until": "hole-18",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_ho1",
+      "at": "s1:start-40",
+      "until": "hole-10",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_ho2",
+      "at": "s1:start-40",
+      "until": "hole-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_ho3",
+      "at": "s1:start-40",
+      "until": "hole+6",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "x_plasma",
+      "at": "hole-20",
+      "until": "hole+40",
+      "ramp": 6
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "side",
+      "until": "chip",
+      "text": "放不下（示意）",
+      "color": "coral",
+      "size": 44,
+      "rot": -4,
+      "y": 1060,
+      "x": 540,
+      "avoid": false
+     },
+     {
+      "type": "cross",
+      "at": "side",
+      "until": "chip",
+      "part": "sl",
+      "size": 190,
+      "color": "coral"
+     },
+     {
+      "type": "stamp",
+      "at": "chip",
+      "until": "s6:start-2",
+      "text": "放大示意",
+      "color": "amber",
+      "size": 40,
+      "rot": -4,
+      "y": 300,
+      "x": 860,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "三星新聞稿；TrendForce（示意：2,048 條線擠不出來）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
+   "tts": "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
+   "subtitle": {
+    "zh": "每一層打上幾萬個\n比頭髮細的孔\n填銅\n再從背面磨薄\n一層一層往下接通",
+    "en": "Each layer gets tens of thousands of holes | thinner than a hair, | filled with copper, | then thinned from the back, | layer by layer, connected downward."
+   },
+   "keywords": [
+    "幾萬個",
+    "填銅",
+    "背面磨薄",
+    "往下接通"
+   ],
+   "cues": [
+    {
+     "id": "holes",
+     "text": "幾萬個"
+    },
+    {
+     "id": "hair",
+     "text": "比頭髮細"
+    },
+    {
+     "id": "fill",
+     "text": "填銅"
+    },
+    {
+     "id": "back",
+     "text": "背面"
+    },
+    {
+     "id": "thin",
+     "text": "磨薄"
+    },
+    {
+     "id": "stack",
+     "text": "一層一層"
+    },
+    {
+     "id": "thru",
+     "text": "往下接通"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 1.7,
+      "d": 25,
+      "elev": 12
+     },
+     {
+      "at": "stack",
+      "dur": 1,
+      "x": 183.7,
+      "y": 1.0,
+      "d": 34,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "x_cu0",
+      "at": "s1:start-40",
+      "until": "fill-6",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_cu1",
+      "at": "s1:start-40",
+      "until": "fill-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_cu2",
+      "at": "s1:start-40",
+      "until": "fill+2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_cu3",
+      "at": "s1:start-40",
+      "until": "fill+6",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_cu4",
+      "at": "s1:start-40",
+      "until": "fill+10",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_dense",
+      "at": "s1:start-40",
+      "until": "holes",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_ovf",
+      "at": "s1:start-40",
+      "until": "fill+14",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_ovf",
+      "at": "fill+34",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "x_cmp",
+      "at": "s1:start-40",
+      "until": "fill+14",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_cmp",
+      "at": "fill+16",
+      "until": "fill+36",
+      "dy": -0.2,
+      "dur": 4
+     },
+     {
+      "layer": "x_cmp",
+      "at": "fill+36",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "x_carrier",
+      "at": "s1:start-40",
+      "until": "back+4",
+      "opacity": 0,
+      "dur": 14,
+      "dy": -1.6
+     },
+     {
+      "layer": "x_wheel",
+      "at": "s1:start-40",
+      "until": "back+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+6",
+      "until": "s9:end+400",
+      "dy": -1.25,
+      "dur": 8
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+14",
+      "until": "s9:end+400",
+      "dy": -0.25,
+      "dur": 4
+     },
+     {
+      "layer": "x_u0",
+      "at": "back+14",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+19",
+      "until": "s9:end+400",
+      "dy": -0.25,
+      "dur": 4
+     },
+     {
+      "layer": "x_u1",
+      "at": "back+19",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+24",
+      "until": "s9:end+400",
+      "dy": -0.25,
+      "dur": 4
+     },
+     {
+      "layer": "x_u2",
+      "at": "back+24",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+29",
+      "until": "s9:end+400",
+      "dy": -0.25,
+      "dur": 4
+     },
+     {
+      "layer": "x_u3",
+      "at": "back+29",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+38",
+      "until": "s9:end+400",
+      "dy": 2.6,
+      "dur": 8
+     },
+     {
+      "layer": "x_wheel",
+      "at": "back+46",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "x_tip",
+      "at": "s1:start-40",
+      "until": "back+38",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_d1",
+      "at": "s1:start-40",
+      "until": "stack-6",
+      "dy": 1.1,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05,
+      "press": [
+       "y_base"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "y_d2",
+      "at": "s1:start-40",
+      "until": "stack+3",
+      "dy": 1.1,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05,
+      "press": [
+       "y_d1"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "y_d3",
+      "at": "s1:start-40",
+      "until": "stack+12",
+      "dy": 1.1,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05,
+      "press": [
+       "y_d2"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "y_base",
+      "at": "s1:start-40",
+      "until": "stack-14",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "motion": [
+     {
+      "preset": "pick-place",
+      "tool": "y_nz",
+      "item": "y_d4",
+      "at": "stack-2",
+      "down": 1.2,
+      "to": [
+       -7.8,
+       0
+      ],
+      "dyEnd": 1.72,
+      "press": [
+       "y_d3"
+      ],
+      "k": 0.5
+     }
+    ],
+    "run": [
+     {
+      "id": "x_flip",
+      "at": "back-12",
+      "until": "s9:end+400",
+      "ramp": 24
+     },
+     {
+      "id": "x_whspin",
+      "at": "back+4",
+      "until": "back+44",
+      "ramp": 14
+     },
+     {
+      "id": "x_cmpvib",
+      "at": "fill+16",
+      "until": "fill+36",
+      "ramp": 3
+     },
+     {
+      "id": "x_tipglow",
+      "at": "back+40",
+      "until": "s9:end+400",
+      "ramp": 6
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "holes",
+      "until": "stack",
+      "text": "共數萬個",
+      "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "x": 880,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "hair",
+      "until": "stack",
+      "text": "孔徑約人髮 1/20",
+      "color": "blue",
+      "size": 38,
+      "rot": -4,
+      "x": 800,
+      "y": 400,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "三星新聞稿；Wikipedia TSV；SemiEngineering"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "payoff",
+   "para": 6,
+   "narration": "廠商說，十二層的每一片都磨得更薄，才塞得進原本八層的高度。",
+   "tts": "廠商說，十二層的每一片都磨得更薄，才塞得進原本八層的高度。",
+   "subtitle": {
+    "zh": "廠商說\n十二層的每一片\n都磨得更薄\n才塞得進\n原本八層的高度",
+    "en": "The makers say | each of the twelve layers | is ground thinner, | so twelve fit into | the height of the original eight."
+   },
+   "keywords": [
+    "磨得更薄",
+    "原本八層"
+   ],
+   "cues": [
+    {
+     "id": "vendor",
+     "text": "廠商說"
+    },
+    {
+     "id": "thin2",
+     "text": "磨得更薄"
+    },
+    {
+     "id": "same",
+     "text": "原本八層"
+    },
+    {
+     "id": "height",
+     "text": "高度"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 180.3,
+      "y": 1.3,
+      "d": 24,
+      "elev": 22
+     },
+     {
+      "at": "same-12",
+      "dur": 1,
+      "x": 240,
+      "y": 0.8,
+      "d": 28,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "y_uf0",
+      "at": "s1:start-40",
+      "until": "vendor+66",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_uf1",
+      "at": "s1:start-40",
+      "until": "vendor+71",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_uf2",
+      "at": "s1:start-40",
+      "until": "vendor+76",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_uf3",
+      "at": "s1:start-40",
+      "until": "vendor+81",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_bh",
+      "at": "s1:start-40",
+      "until": "vendor",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "y_bh",
+      "at": "vendor+86",
+      "until": "s9:end+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "za_base",
+      "at": "s1:start-40",
+      "until": "same-8",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "za_0",
+      "at": "s1:start-40",
+      "until": "same-2",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_base"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_1",
+      "at": "s1:start-40",
+      "until": "same+1",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_0"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_2",
+      "at": "s1:start-40",
+      "until": "same+4",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_1"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_3",
+      "at": "s1:start-40",
+      "until": "same+7",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_2"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_4",
+      "at": "s1:start-40",
+      "until": "same+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_3"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_5",
+      "at": "s1:start-40",
+      "until": "same+13",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_4"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_6",
+      "at": "s1:start-40",
+      "until": "same+16",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_5"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "za_7",
+      "at": "s1:start-40",
+      "until": "same+19",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "za_6"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_base",
+      "at": "s1:start-40",
+      "until": "same-8",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "zb_0",
+      "at": "s1:start-40",
+      "until": "same-2",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_base"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_1",
+      "at": "s1:start-40",
+      "until": "same+0",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_0"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_2",
+      "at": "s1:start-40",
+      "until": "same+2",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_1"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_3",
+      "at": "s1:start-40",
+      "until": "same+4",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_2"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_4",
+      "at": "s1:start-40",
+      "until": "same+6",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_3"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_5",
+      "at": "s1:start-40",
+      "until": "same+8",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_4"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_6",
+      "at": "s1:start-40",
+      "until": "same+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_5"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_7",
+      "at": "s1:start-40",
+      "until": "same+12",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_6"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_8",
+      "at": "s1:start-40",
+      "until": "same+14",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_7"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_9",
+      "at": "s1:start-40",
+      "until": "same+16",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_8"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_10",
+      "at": "s1:start-40",
+      "until": "same+18",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_9"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zb_11",
+      "at": "s1:start-40",
+      "until": "same+20",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.03,
+      "press": [
+       "zb_10"
+      ],
+      "pressAmt": 0.012
+     },
+     {
+      "layer": "zl",
+      "at": "s1:start-40",
+      "until": "same+34",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "motion": [
+     {
+      "preset": "press-bond",
+      "tool": "y_bh",
+      "at": "vendor+4",
+      "down": 1.2,
+      "press": [
+       "y_d4",
+       "y_d3"
+      ],
+      "melt": [
+       "y_melt4"
+      ],
+      "current": [
+       "y_cur"
+      ],
+      "k": 0.8
+     }
+    ],
+    "run": [
+     {
+      "id": "zl_glow",
+      "at": "height",
+      "until": "s9:end+400",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "za",
+      "text": "原本 8 層",
+      "en": "original 8",
+      "color": "blue",
+      "at": "same+10",
+      "until": "s7a:start-2"
+     },
+     {
+      "part": "zb",
+      "text": "12 層，每片更薄",
+      "en": "12, thinner each",
+      "color": "amber",
+      "at": "same+16",
+      "until": "s7a:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "height",
+      "until": "s7a:start-2",
+      "text": "同高",
+      "color": "blue",
+      "size": 52,
+      "rot": -4,
+      "x": 830,
+      "y": 1000,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "vendor+30",
+      "until": "same-8",
+      "text": "做法依廠商而異",
+      "color": "amber",
+      "size": 34,
+      "rot": -4,
+      "x": 760,
+      "y": 330,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "科技新報 2024/9；三星新聞稿；ServeTheHome"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7a",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "目前做的有 SK 海力士、三星和美光，台灣的台積電，負責新一代最底下那層晶片。",
+   "tts": "目前做的有 SK 海力士、三星和美光，台灣的台積電，負責新一代最底下那層晶片。",
+   "subtitle": {
+    "zh": "目前做的有\nSK 海力士\n三星和美光\n台灣的台積電\n負責新一代\n最底下那層晶片",
+    "en": "The makers today: | SK hynix, | Samsung and Micron, | and Taiwan's TSMC | builds the new generation's | bottom layer."
+   },
+   "keywords": [
+    "SK 海力士",
+    "台積電",
+    "最底下"
+   ],
+   "cues": [
+    {
+     "id": "skh",
+     "text": "SK"
+    },
+    {
+     "id": "sam",
+     "text": "三星"
+    },
+    {
+     "id": "mic",
+     "text": "美光"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "base",
+     "text": "最底下"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 2.0,
+      "y": 0.8,
+      "d": 24,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "h_hmglow",
+      "at": "skh",
+      "until": "tsmc",
+      "ramp": 6
+     },
+     {
+      "id": "h_basehot",
+      "at": "base",
+      "until": "s7b:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "hm_base",
+      "text": "基底晶片（橘）",
+      "en": "base die",
+      "color": "amber",
+      "at": "base",
+      "until": "s7b:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "card",
+      "at": "skh",
+      "until": "s7b:start-2",
+      "y": 880,
+      "lines": [
+       "SK 海力士　HBM",
+       "三星　HBM",
+       "美光　HBM",
+       "台積電　新一代底層晶片",
+       "韓美半導體、ASMPT　鍵合設備"
+      ],
+      "hi": "台積電",
+      "hiAt": "tsmc",
+      "size": 34,
+      "foot": "媒體報導，查證截至 2026/11/19，非投資建議"
+     }
+    ]
+   },
+   "sources": [
+    "各公司新聞稿；科技新報；TrendForce 2025/12"
+   ]
+  },
+  {
+   "id": "s7b",
+   "beat": "twist",
+   "para": 7,
+   "narration": "疊這麼多層，每一家的良率多少，廠商都沒有公布。",
+   "tts": "疊這麼多層，每一家的良率多少，廠商都沒有公布。",
+   "subtitle": {
+    "zh": "疊這麼多層\n每一家的良率多少\n廠商都沒有公布",
+    "en": "With this many layers, | what is each maker's yield? | None of them has published it."
+   },
+   "keywords": [
+    "良率",
+    "沒有公布"
+   ],
+   "cues": [
+    {
+     "id": "stackup",
+     "text": "疊這麼多層"
+    },
+    {
+     "id": "yield",
+     "text": "良率"
+    },
+    {
+     "id": "unknown",
+     "text": "沒有公布"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 2.0,
+      "y": 0.8,
+      "d": 17,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "h_heat",
+      "at": "stackup",
+      "until": "yield+10",
+      "ramp": 6
+     },
+     {
+      "id": "h_bad",
+      "at": "yield",
+      "until": "unknown+20",
+      "ramp": 4
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "stackup+6",
+      "until": "yield",
+      "text": "疊越高越難散熱",
+      "color": "coral",
+      "size": 40,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "yield+4",
+      "until": "unknown",
+      "text": "一片壞整疊壞",
+      "color": "coral",
+      "size": 44,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "stamp",
+      "at": "unknown",
+      "until": "s8:start-2",
+      "text": "查不到",
+      "color": "blue",
+      "size": 56,
+      "rot": -4,
+      "x": 300,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "card",
+      "at": "unknown",
+      "until": "s8:start-2",
+      "y": 900,
+      "lines": [
+       "各家良率　查不到",
+       "截至 2026/11/19"
+      ],
+      "size": 40,
+      "foot": "廠商沒有公布"
+     }
+    ]
+   },
+   "sources": [
+    "research.md #9（截至 2026/11/16 查不到各家良率）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "cta",
+   "para": 8,
+   "narration": "晶片和記憶體都拼好了，最後裝進哪裡？下一支，來看伺服器到底是什麼。想要完整解說，留言堆疊。",
+   "tts": "晶片和記憶體都拼好了，最後裝進哪裡？下一支，來看伺服器到底是什麼。想要完整解說，留言堆疊。",
+   "subtitle": {
+    "zh": "晶片和記憶體都拼好了\n最後裝進哪裡？\n下一支\n來看伺服器到底是什麼\n想要完整解說\n留言堆疊",
+    "en": "Chip and memory are assembled. | Where do they go next? | Next: | what a server really is. | For the full notes, | comment \"堆疊\"."
+   },
+   "keywords": [
+    "拼好了",
+    "伺服器",
+    "堆疊"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "都拼好了"
+    },
+    {
+     "id": "where",
+     "text": "裝進哪裡"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "kw",
+     "text": "留言堆疊"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 3.6,
+      "y": 1.4,
+      "d": 30,
+      "elev": 26
+     }
+    ],
+    "labels": [],
+    "overlay": []
+   },
+   "sources": [
+    "下一支：11/20（五）20:00 伺服器（已排定）"
+   ]
+  },
+  {
+   "id": "s9",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "伺服器到底是什麼",
+     "trail": [
+      "打孔",
+      "磨薄",
+      "疊十二層",
+      "HBM"
+     ],
+     "at": "s8:kw-8",
+     "comment": "堆疊",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
