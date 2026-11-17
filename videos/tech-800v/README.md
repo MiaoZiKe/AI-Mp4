@@ -1,7 +1,12 @@
 # tech-800v：八百伏特（科技透明圈 第 9 支，11/22（日）20:00）
 
-## 暫停紀錄（2026/11/17，Andy 指示先只做液冷 v3）
-停在：model／script 已含 2.5D 爆炸剖析（電源架、側櫃、電路板，用 shift 分層拉開）、設備改不透明、每句字幕各有畫面事件、公司引線；validate 與 layout-check 0 error。**還沒渲染**（上一輪渲染被我停掉）。恢復時：`bash scripts/three/make-tech.sh tech-800v --take=out/voice-800v/800v-a.wav --atempo=1.12 --ver=v1`（原始含停頓語速 249÷63.85＝3.90 字/秒，atempo＝4.7÷3.90＝1.205，上限 1.12；不送 TTS），再用 `python3 videos/tech-800v/sync-table.py` 產逐句對照表與拼圖，另抽電路板與電源櫃近景各 1 張。
+## v1 成片（2026/11/18，Andy 11/17 回饋版）：out/tech-800v.v1.mp4（不進 git），格子圖 out/tech-800v.v1-grid.jpg
+- 片長 60.37 秒（含片尾卡 3.2 秒）；正片 -16.0 LUFS、片尾 -10.9 LUFS；TTS 只送 1 次（out/voice-800v/800v-a.wav，63.85 秒）。
+- 語速：原始 249 字÷63.85 秒＝3.90 字/秒（含停頓）；atempo＝4.7÷3.90＝1.205，超過上限取 1.12；實測成片含停頓約 4.35 字/秒、純說話約 5.25 字/秒；段落停頓 pauseAfter 0.7 秒。音高中位數 127.7 Hz（基準 112，略高，已做曝光機對照 mp3：scratchpad「八百伏特配音比對_曝光機_800v.mp3」）。
+- 畫面：倍率讀數（機櫃×1／銅排對照×2／降壓路徑×2／電路板×9）；2.5D 爆炸剖析三處（s2 電源架：整流模組＋風扇拉開，s6 降壓電路板：銅走線／功率元件／晶片逐層拉開，s7–s8 電源側櫃：前蓋／整流模組／背面銅排拉開），全部用 shift 分層，材質不透明；電流光點、銅排漸紅＋熱波、氣流箭頭、風扇轉、2D 剖面卡（pw-compare、pw-vrm、pw-chain、pw-unk、pw-sum）與 3D 同步；公司（台達電、光寶科）用引線指到電源櫃／電源架。
+- 逐句對照表：videos/tech-800v/sync-table.md（產生程式 sync-table.py）＋拼圖 out/tech-800v-sync.jpg；近景：out/tech-800v-closeup-board.png、-shelf.png、-sidecar.png。
+- 改片尾與兩張卡時用 render-range 只重渲第 370–525、1270–1435、1620–1810 幀再接回（音訊沿用）；全片的 layout-check 0 error、validate 0 error。
+- 已知：s6（降壓）旁白很密，cue 間隔 1～2 秒，畫面事件已合併但讀秒仍偏短（旁白已定稿，要拉長得刪字重配）；機櫃兩側銅排為示意（真實在背面中央）；水冷沒有畫（本題不涉及）。
 
 ## 進度（2026/11/17）
 - [x] research.md 複查（第二來源、信心度、台灣公司）
