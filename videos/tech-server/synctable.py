@@ -29,4 +29,4 @@ from PIL import Image
 ims = [Image.open(f"{out}/{i:02d}.jpg") for i in range(1, n + 1)]; w, h = ims[0].size; cols = 8; rws = (n + cols - 1) // cols
 W = Image.new("RGB", (w * cols, h * rws), "white")
 for i, im in enumerate(ims): W.paste(im, ((i % cols) * w, (i // cols) * h))
-W.save("out/tech-server.v2-sync.jpg", quality=80); print(n, "rows")
+W.save(os.path.join("out", os.path.basename(mp4).replace(".mp4", "-sync.jpg")), quality=80); print(n, "rows")

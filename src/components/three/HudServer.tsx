@@ -75,7 +75,7 @@ const Mesh: React.FC<P> = ({ o, f, k, m }) => {
         <text x={650} y={166} opacity={merge} style={zh(52, H.amber, 900)}>＝ 一顆</text>
         <text x={650} y={222} opacity={nb} style={zh(38, cu, 900)}>5,000+ 條銅線</text>
         <text x={650} y={274} opacity={fd} style={zh(36, sig, 900)}>每顆都連到交換器</text>
-        <text x={650} y={326} opacity={rs} style={zh(40, H.amber, 900)}>另外 71 顆</text>
+        <text x={650} y={316} opacity={rs} style={zh(40, H.amber, 900)}>另外 71 顆</text>
         <text x={sx} y={Hh - 14} opacity={lk} style={zh(30, H.text2, 700)}>橘＝九層交換器　示意</text>
       </svg>
     </Card>
@@ -84,37 +84,37 @@ const Mesh: React.FC<P> = ({ o, f, k, m }) => {
 
 // ── srv-power：市電 → 電源層（整流）→ 匯流排（銅排）→ 各托盤 → 變成熱，念到哪一段就亮哪一段 ──
 const Power: React.FC<P> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 400, c = (n: string) => col(m.product, n);
+  const W = o.w ?? 952, Hh = o.h ?? 340, c = (n: string) => col(m.product, n);
   const el = T(o, "elec"), inn = T(o, "in"), bus = T(o, "bus"), tray = T(o, "tray"), heat = T(o, "heat");
   const a0 = tween(f, el, 8, EASE.enter), a1 = tween(f, inn, 8, EASE.enter), a2 = tween(f, bus, 8, EASE.enter), a3 = tween(f, tray, 8, EASE.enter), hh = tween(f, heat, 22, EASE.move);
   const pwr = c("pwr"), cu = c("cu"), tb = c("trayB"), hot = c("lp_hot"), proc = c("lp_proc"), steel = c("steel");
-  const bx = 600, ry = (i: number) => 74 + i * 14;
+  const bx = 600, ry = (i: number) => 62 + i * 12.5;
   const arrow = (x0: number, x1: number, y: number, on: number, key: number) => <g opacity={0.25 + 0.75 * on}>
     <path d={`M${x0} ${y} H${x1 - 10}`} stroke={cu} strokeWidth={8} />
     <path d={`M${x1 - 16} ${y - 12} L${x1} ${y} L${x1 - 16} ${y + 12} Z`} fill={cu} />
     {on > 0.6 ? Array.from({ length: 3 }, (_, j) => <circle key={j} cx={x0 + (x1 - 16 - x0) * ph(f, 0.04, j, 3, key)} cy={y} r={5.5} fill={proc} />) : null}
   </g>;
   const box = (x: number, w: number, label: string, sub: string, on: number, fill: string, tc: string) => <g opacity={0.3 + 0.7 * on}>
-    <rect x={x} y={140} width={w} height={110} fill={fill} />
-    <text x={x + w / 2} y={192} textAnchor="middle" style={zh(40, tc, 900)}>{label}</text>
-    <text x={x + w / 2} y={232} textAnchor="middle" style={zh(sm(30), tc, 700)}>{sub}</text>
+    <rect x={x} y={104} width={w} height={100} fill={fill} />
+    <text x={x + w / 2} y={150} textAnchor="middle" style={zh(40, tc, 900)}>{label}</text>
+    <text x={x + w / 2} y={188} textAnchor="middle" style={zh(sm(30), tc, 700)}>{sub}</text>
   </g>;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {box(28, 130, "市電", "交流電", a0, steel, onC(H.line))}
-        {arrow(160, 214, 195, a1, 0)}
+        {arrow(160, 214, 154, a1, 0)}
         {box(216, 170, "電源層", "整流成直流", a1, pwr, onC(H.amber))}
-        {arrow(388, 440, 195, a2, 1)}
-        <g opacity={0.3 + 0.7 * a2}><rect x={bx - 130} y={64} width={16} height={N * 14 + 12} fill={cu} /><text x={bx - 330} y={Hh - 24} textAnchor="start" style={zh(sm(34), cu, 900)}>匯流排（銅排）</text></g>
+        {arrow(388, 440, 154, a2, 1)}
+        <g opacity={0.3 + 0.7 * a2}><rect x={bx - 130} y={54} width={16} height={N * 12.5 + 12} fill={cu} /><text x={bx - 330} y={Hh - 22} textAnchor="start" style={zh(sm(34), cu, 900)}>匯流排（銅排）</text></g>
         {Array.from({ length: N }, (_, i) => <g key={i} opacity={0.3 + 0.7 * a3}>
-          <rect x={bx} y={ry(i)} width={300} height={12} fill={hh > 0.4 ? hot : tb} />
-          <line x1={bx - 114} y1={ry(i) + 6} x2={bx} y2={ry(i) + 6} stroke={cu} strokeWidth={3} />
+          <rect x={bx} y={ry(i)} width={300} height={10} fill={hh > 0.4 ? hot : tb} />
+          <line x1={bx - 114} y1={ry(i) + 5} x2={bx} y2={ry(i) + 5} stroke={cu} strokeWidth={3} />
         </g>)}
-        {a3 > 0.6 ? Array.from({ length: 16 }, (_, j) => <circle key={j} cx={bx - 122} cy={ry(0) + 8 + (N * 14 - 16) * ph(f, 0.03, j, 16)} r={4.5} fill={proc} />) : null}
-        <text x={bx + 160} y={Hh - 24} textAnchor="middle" opacity={0.3 + 0.7 * a3} style={zh(sm(34), H.text, 900)}>各層托盤</text>
+        {a3 > 0.6 ? Array.from({ length: 16 }, (_, j) => <circle key={j} cx={bx - 122} cy={ry(0) + 8 + (N * 12.5 - 16) * ph(f, 0.03, j, 16)} r={4.5} fill={proc} />) : null}
+        <text x={bx + 160} y={Hh - 22} textAnchor="middle" opacity={0.3 + 0.7 * a3} style={zh(sm(34), H.text, 900)}>各層托盤</text>
         {hh > 0 ? Array.from({ length: 6 }, (_, j) => { const u = ph(f, 0.025, j, 6, j), xx = bx + 30 + j * 48; return <path key={j} d={`M${xx} ${ry(17) - u * 150} v-22 m-8 9 l8 -11 l8 11`} stroke={hot} strokeWidth={4.5} fill="none" opacity={hh * (1 - u)} />; }) : null}
-        <text x={bx + 120} y={64} opacity={hh} style={zh(46, hot, 900)}>變成熱</text>
+        <text x={bx + 120} y={50} opacity={hh} style={zh(46, hot, 900)}>變成熱</text>
       </svg>
     </Card>
   );
@@ -122,15 +122,15 @@ const Power: React.FC<P> = ({ o, f, k, m }) => {
 
 // ── srv-cool：風冷（風扇吹、鰭片熱度升到頂）對比 液冷（冷板水道帶走熱、溫度穩住）──
 const Cool: React.FC<P> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 400, c = (n: string) => col(m.product, n);
+  const W = o.w ?? 952, Hh = o.h ?? 340, c = (n: string) => col(m.product, n);
   const air = T(o, "air"), liq = T(o, "liq"), chipf = T(o, "chipf"), out = T(o, "out");
-  const ag = tween(f, air, 8, EASE.enter), rise = tween(f, air + 4, 40, EASE.move), dead = tween(f, liq - 6, 10, EASE.enter);
+  const ag = 1, rise = tween(f, air + 4, 40, EASE.move), dead = tween(f, liq - 6, 10, EASE.enter);
   const lq = tween(f, liq, 10, EASE.enter), flow = tween(f, chipf, 12, EASE.enter), ot = tween(f, out, 10, EASE.enter);
   const cool = c("lp_cool"), hot = c("lp_hot"), bad = c("lp_bad"), steel = c("steel"), cu = c("cuHi"), tb = c("trayB");
   const tempBar = (x: number, v: number, col2: string, label: string, on: number) => <g opacity={on}>
-    <rect x={x} y={110} width={26} height={194} fill="none" stroke={H.text3} strokeWidth={2} />
-    <rect x={x + 3} y={301 - 188 * v} width={20} height={188 * v} fill={col2} />
-    <text x={x + 13} y={336} textAnchor="middle" style={zh(sm(30), H.text2, 800)}>{label}</text>
+    <rect x={x} y={96} width={26} height={172} fill="none" stroke={H.text3} strokeWidth={2} />
+    <rect x={x + 3} y={265 - 166 * v} width={20} height={166 * v} fill={col2} />
+    <text x={x + 13} y={298} textAnchor="middle" style={zh(sm(30), H.text2, 800)}>{label}</text>
   </g>;
   const redV = 0.25 + 0.7 * rise;
   return (
@@ -138,30 +138,30 @@ const Cool: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {/* 左：風冷 */}
         <g opacity={ag * (1 - 0.55 * dead)}>
-          <text x={30} y={112} style={zh(36, H.text, 900)}>風冷</text>
-          <circle cx={70} cy={200} r={40} fill="none" stroke={steel} strokeWidth={5} />
-          {[0, 1, 2].map((j) => <path key={j} d={`M70 200 l${30 * Math.cos(f * 0.35 + j * 2.09)} ${30 * Math.sin(f * 0.35 + j * 2.09)}`} stroke={steel} strokeWidth={9} strokeLinecap="round" />)}
-          {[0, 1, 2].map((j) => <path key={j} d={`M${126 + (f * 2 + j * 20) % 50} ${170 + j * 30} h24`} stroke={steel} strokeWidth={4} opacity={0.7} />)}
-          {Array.from({ length: 9 }, (_, i) => <rect key={i} x={190 + i * 18} y={150} width={9} height={80} fill={rise > 0.6 + i * 0.03 ? hot : steel} />)}
-          <rect x={186} y={230} width={170} height={20} fill={tb} />
+          <text x={30} y={104} style={zh(36, H.text, 900)}>風冷</text>
+          <circle cx={70} cy={176} r={40} fill="none" stroke={steel} strokeWidth={5} />
+          {[0, 1, 2].map((j) => <path key={j} d={`M70 176 l${30 * Math.cos(f * 0.35 + j * 2.09)} ${30 * Math.sin(f * 0.35 + j * 2.09)}`} stroke={steel} strokeWidth={9} strokeLinecap="round" />)}
+          {[0, 1, 2].map((j) => <path key={j} d={`M${126 + (f * 2 + j * 20) % 50} ${146 + j * 30} h24`} stroke={steel} strokeWidth={4} opacity={0.7} />)}
+          {Array.from({ length: 9 }, (_, i) => <rect key={i} x={190 + i * 18} y={130} width={9} height={78} fill={rise > 0.6 + i * 0.03 ? hot : steel} />)}
+          <rect x={186} y={208} width={170} height={20} fill={tb} />
           {tempBar(372, redV, rise > 0.7 ? bad : hot, "溫度", ag)}
-          <text x={34} y={340} opacity={rise} style={zh(sm(32), bad, 900)}>熱卡在鰭片上</text>
-          <path d="M184 130 l190 130 m0 -130 l-190 130" stroke={bad} strokeWidth={8} opacity={dead} />
+          <text x={34} y={326} opacity={rise} style={zh(sm(32), bad, 900)}>熱卡在鰭片上</text>
+          <path d="M184 120 l190 108 m0 -108 l-190 108" stroke={bad} strokeWidth={8} opacity={dead} />
         </g>
         <line x1={W / 2 + 10} y1={70} x2={W / 2 + 10} y2={Hh - 40} stroke={H.lineSoft} strokeWidth={2} strokeDasharray="4 8" opacity={lq} />
         {/* 右：液冷 */}
         <g opacity={lq}>
-          <text x={W / 2 + 40} y={112} style={zh(36, cool, 900)}>液冷</text>
-          <rect x={W / 2 + 40} y={240} width={300} height={22} fill={steel} />
-          <text x={W / 2 + 46} y={258} style={zh(sm(30), onC(H.line), 800)}>晶片</text>
-          <rect x={W / 2 + 40} y={176} width={300} height={62} fill={cu} stroke={H.text3} strokeWidth={1.5} />
-          <path d={`M${W / 2 + 52} 207 H${W / 2 + 328}`} stroke={H.cardCompare} strokeWidth={22} />
-          {Array.from({ length: 12 }, (_, j) => { const u = ph(f, 0.022, j, 12); return <circle key={j} cx={W / 2 + 56 + 256 * u} cy={207} r={6} fill={u < 0.5 ? cool : hot} opacity={flow} />; })}
-          <text x={W / 2 + 44} y={162} opacity={flow} style={zh(sm(32), cool, 900)}>冷 →</text>
-          <text x={W / 2 + 232} y={162} opacity={flow} style={zh(sm(32), hot, 900)}>→ 熱帶走</text>
+          <text x={W / 2 + 40} y={104} style={zh(36, cool, 900)}>液冷</text>
+          <rect x={W / 2 + 40} y={218} width={300} height={22} fill={steel} />
+          <text x={W / 2 + 46} y={236} style={zh(sm(30), onC(H.line), 800)}>晶片</text>
+          <rect x={W / 2 + 40} y={156} width={300} height={60} fill={cu} stroke={H.text3} strokeWidth={1.5} />
+          <path d={`M${W / 2 + 52} 186 H${W / 2 + 328}`} stroke={H.cardCompare} strokeWidth={22} />
+          {Array.from({ length: 12 }, (_, j) => { const u = ph(f, 0.022, j, 12); return <circle key={j} cx={W / 2 + 56 + 256 * u} cy={186} r={6} fill={u < 0.5 ? cool : hot} opacity={flow} />; })}
+          <text x={W / 2 + 44} y={146} opacity={flow} style={zh(sm(32), cool, 900)}>冷 →</text>
+          <text x={W / 2 + 232} y={146} opacity={flow} style={zh(sm(32), hot, 900)}>→ 熱帶走</text>
           {tempBar(W / 2 + 360, 0.34, cool, "溫度", flow)}
-          <text x={W / 2 + 44} y={302} opacity={flow} style={zh(sm(32), H.text, 800)}>水道把熱帶走</text>
-          <g opacity={ot}><rect x={W / 2 + 40} y={324} width={300} height={44} fill={steel} /><text x={W / 2 + 190} y={356} textAnchor="middle" style={zh(sm(34), onC(H.line), 900)}>送到機櫃外散熱</text></g>
+          <text x={W / 2 + 44} y={268} opacity={flow} style={zh(sm(32), H.text, 800)}>水道把熱帶走</text>
+          <g opacity={ot}><rect x={W / 2 + 40} y={282} width={300} height={42} fill={steel} /><text x={W / 2 + 190} y={313} textAnchor="middle" style={zh(sm(34), onC(H.line), 900)}>送到機櫃外散熱</text></g>
         </g>
       </svg>
     </Card>

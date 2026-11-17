@@ -22,12 +22,12 @@
 | 18 | s5 | 23.9s | 用五千多條銅線串起來 | [五千多條銅線] 動作：d_spine、動作：d_spine2、引線標籤：銅線背板、疊層：超過 5,000 條 | ![](out/tech-server-sync/18.jpg) |
 | 19 | s5 | 25.8s | 每顆 GPU 都找得到 | [找得到] 動作：d_arms、疊層：每顆都連到 | ![](out/tech-server-sync/19.jpg) |
 | 20 | s5 | 27.3s | 另外七十一顆 | [七十一顆] 疊層：另外 71 顆 | ![](out/tech-server-sync/20.jpg) |
-| 21 | s6 | 29.0s | 電從電源層進來 | [電源層] 動作：r_pwglow、引線標籤：電源層、2D 卡「電怎麼進來」段 in | ![](out/tech-server-sync/21.jpg) |
-| 22 | s6 | 30.4s | 順著銅排送到每一層 | [銅排] 動作：p_arm_l、動作：p_arm_r、動作：p_up、動作：p_dn、動作：p_up2、動作：p_dn2、2D 卡「電怎麼進來」段 bus | ![](out/tech-server-sync/22.jpg) |
+| 21 | s6 | 29.0s | 電從電源層進來 | [電從] 2D 卡「電怎麼進來」段 elec；[電源層] 動作：r_pwglow、引線標籤：電源層、2D 卡「電怎麼進來」段 in | ![](out/tech-server-sync/21.jpg) |
+| 22 | s6 | 30.4s | 順著銅排送到每一層 | [銅排] 動作：p_arm_l、動作：p_arm_r、動作：p_up、動作：p_dn、動作：p_up2、動作：p_dn2、2D 卡「電怎麼進來」段 bus；[每一層] 2D 卡「電怎麼進來」段 tray | ![](out/tech-server-sync/22.jpg) |
 | 23 | s6 | 32.1s | 最後都變成熱 | [變成熱] 動作：t_vrm、動作：t_vrm0、動作：t_vrm1、動作：t_pwr、2D 卡「電怎麼進來」段 heat | ![](out/tech-server-sync/23.jpg) |
 | 24 | s7 | 33.9s | 風吹不動了 | [風吹不動] 動作：hs0_waves、動作：hs1_waves、動作：fan0_spin、動作：fan1_spin、動作：fan2_spin、動作：fan3_spin、動作：t_air、動作：t_air2、動作：t_air3、動作：t_air4、2D 卡「風冷 → 液冷」段 air | ![](out/tech-server-sync/24.jpg) |
 | 25 | s7 | 35.2s | 所以改用冷卻液 | [冷卻液] 位移：hs0、位移：hs1、位移：fan0、位移：fan1、位移：fan2、位移：fan3、2D 卡「風冷 → 液冷」段 liq | ![](out/tech-server-sync/25.jpg) |
-| 26 | s7 | 36.4s | 流過晶片 | [流過晶片] 動作：t_cold、動作：t_hot、引線標籤：蓋板、引線標籤：銅底板＋水道、引線標籤：晶片、位移：cp0、位移：cp1 | ![](out/tech-server-sync/26.jpg) |
+| 26 | s7 | 36.4s | 流過晶片 | [流過晶片] 動作：t_cold、動作：t_hot、引線標籤：蓋板、引線標籤：銅底板＋水道、引線標籤：晶片、位移：cp0、位移：cp1、2D 卡「風冷 → 液冷」段 chipf | ![](out/tech-server-sync/26.jpg) |
 | 27 | s7 | 37.2s | 把熱帶出機櫃外 | [帶出機櫃外] 動作：c_cold、動作：c_hot、動作：c_arm_c、動作：c_arm_h、動作：cdu_fan0、動作：cdu_fan1、2D 卡「風冷 → 液冷」段 out | ![](out/tech-server-sync/27.jpg) |
 | 28 | s8a | 39.1s | 做這些的 | [做這些的] 動作：r_frglow | ![](out/tech-server-sync/28.jpg) |
 | 29 | s8a | 39.8s | 有鴻海 廣達 | [鴻海] 動作：r_cglow、引線標籤：鴻海、廣達　組裝 | ![](out/tech-server-sync/29.jpg) |

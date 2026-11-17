@@ -77,7 +77,7 @@ scenes.append(scene("s2", "you", 2,
      "shift": [{"layer": "frame", "at": "open", "until": "s3:start-2", "opacity": 0.3, "dur": 10}],
      "run": [run("r_cglow", "calc", "s3:start-2", 6)],
      "labels": [lab("r_gpu", "運算托盤（GPU）", "compute tray", "amber", "gpu", "s3:start-2")],
-     "overlay": [{"type": "section", "kind": "srv-count", "at": "start+2", "until": "s4:start-14", "x": 64, "y": 1030, "w": 952, "h": 400, "avoid": False, "title": "一櫃裡有幾顆", "tag": "示意",
+     "overlay": [{"type": "section", "kind": "srv-count", "at": "start+2", "until": "s4:start-14", "x": 64, "y": 1020, "w": 952, "h": 340, "avoid": False, "title": "一櫃裡有幾顆", "tag": "示意",
                   "t": {"tray": {"at": "open"}, "gpu": {"at": "gpu"}, "cpu": {"at": "s3:cpu"}}},
                  stamp("廠商公布", "chip", "s3:start-2", "blue", 40, x=830, y=340, avoid=False)]},
     ["NVIDIA 文件；SemiAnalysis"]))
@@ -119,7 +119,7 @@ scenes.append(scene("s4", "mechanism", 4,
      "run": [run("r_frglow", "why", "seventy", 6), run("r_cglow", "seventy", "one", 6), run("d_spine", "talk", "s5:start-2", 6), run("d_spine2", "talk", "s5:start-2", 6)],
      "labels": [],
      "overlay": [stamp("整櫃一起設計", "why", "seventy", "amber", 44, x=300, y=330, avoid=False),
-                 {"type": "section", "kind": "srv-mesh", "at": "start+2", "until": "s6:start-14", "x": 64, "y": 1030, "w": 952, "h": 400, "avoid": False, "title": "72 顆怎麼變一顆", "tag": "示意",
+                 {"type": "section", "kind": "srv-mesh", "at": "start+2", "until": "s6:start-14", "x": 64, "y": 1020, "w": 952, "h": 340, "avoid": False, "title": "72 顆怎麼變一顆", "tag": "示意",
                   "t": {"one": {"at": "one"}, "link": {"at": "talk"}, "cable": {"at": "s5:cable"}, "find": {"at": "s5:find"}, "rest": {"at": "s5:rest"}}}]},
     ["NVIDIA 技術部落格：72 GPU 為單一 NVLink 網域"], pause=0.7))
 
@@ -151,7 +151,7 @@ scenes.append(scene("s6", "mechanism", 6,
      "run": [run("r_pwglow", "in-6", "bus+10", 6), run("p_arm_l", "bus+6", "s7:start-2", 6), run("p_arm_r", "bus+6", "s7:start-2", 6), run("p_up", "bus", "heat-8", 6), run("p_dn", "bus", "heat-8", 6), run("p_up2", "bus", "heat-8", 6), run("p_dn2", "bus", "heat-8", 6),
              run("t_vrm", "heat-6", "s7:start-2", 6), run("t_vrm0", "heat-4", "s7:start-2", 6), run("t_vrm1", "heat-4", "s7:start-2", 6), run("t_pwr", "heat-6", "s7:start-2", 6)],
      "labels": [lab("r_pw", "電源層", "power shelf", "amber", "in", "heat-8")],
-     "overlay": [{"type": "section", "kind": "srv-power", "at": "start+2", "until": "s7:start-14", "x": 64, "y": 1030, "w": 952, "h": 400, "avoid": False, "title": "電怎麼進來", "tag": "示意",
+     "overlay": [{"type": "section", "kind": "srv-power", "at": "start+2", "until": "s7:start-14", "x": 64, "y": 1020, "w": 952, "h": 340, "avoid": False, "title": "電怎麼進來", "tag": "示意",
                   "t": {"elec": {"at": "elec"}, "in": {"at": "in"}, "bus": {"at": "bus"}, "tray": {"at": "tray"}, "heat": {"at": "heat"}}}]},
     ["NVIDIA；Gigabyte 資料表（電源層）；規格 120–132 kW"], pause=0.7))
 
@@ -179,7 +179,7 @@ scenes.append(scene("s7", "mechanism", 7,
              run("c_cold", "out", "s8a:start-2", 6), run("c_hot", "out", "s8a:start-2", 6), run("c_arm_c", "out", "s8a:start-2", 6), run("c_arm_h", "out+6", "s8a:start-2", 6),
              run("cdu_fan0", "out", "s8a:start-2", 6), run("cdu_fan1", "out", "s8a:start-2", 6)],
      "labels": [lab("t_lid", "蓋板", "lid", "amber", "chipf+6", "out-8"), lab("t_base", "銅底板＋水道", "copper base with channels", "blue", "chipf+8", "out-8"), lab("t_gpu", "晶片", "GPU die", "amber", "chipf+10", "out-8")],
-     "overlay": [{"type": "section", "kind": "srv-cool", "at": "start+2", "until": "s8a:start-14", "x": 64, "y": 1030, "w": 952, "h": 400, "avoid": False, "title": "風冷 → 液冷", "tag": "示意",
+     "overlay": [{"type": "section", "kind": "srv-cool", "at": "start+2", "until": "s8a:start-14", "x": 64, "y": 1020, "w": 952, "h": 340, "avoid": False, "title": "風冷 → 液冷", "tag": "示意",
                   "t": {"air": {"at": "air"}, "liq": {"at": "liq"}, "chipf": {"at": "chipf"}, "out": {"at": "out"}}}]},
     ["NVIDIA；DCD（晶片與交換器液冷）"], pause=0.7))
 
