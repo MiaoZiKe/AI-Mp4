@@ -21,14 +21,36 @@
  "hud": {
   "levels": [
    {
-    "id": "pk",
-    "label": "液冷迴路",
-    "en": "LIQUID COOLING",
-    "field": "示意",
-    "ruler": "示意",
+    "id": "rack",
+    "label": "AI 機櫃",
+    "en": "RACK",
+    "field": "2 m",
+    "ruler": "50 cm",
     "art": "none",
     "handoff3D": true,
-    "readout": false,
+    "readout": true,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true
+   },
+   {
+    "id": "board",
+    "label": "GPU 主機板",
+    "en": "GPU BOARD",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true
+   },
+   {
+    "id": "plate",
+    "label": "冷板",
+    "en": "COLD PLATE",
+    "field": "10 cm",
+    "ruler": "2 cm",
+    "art": "none",
+    "readout": true,
     "note": "查證截至 2026/11/21",
     "noteAlways": true
    }
@@ -96,7 +118,7 @@
     },
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-30",
       "dur": 1
      }
@@ -255,7 +277,7 @@
    "props": {
     "zoom": [
      {
-      "to": "pk",
+      "to": "rack",
       "at": "start-18",
       "dur": 1
      }
@@ -419,6 +441,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -545,34 +574,85 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "plate",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
       "dur": 1,
       "x": 180,
-      "y": -2.0,
-      "d": 34,
-      "elev": 46
+      "y": 0.4,
+      "d": 42,
+      "elev": 38
      },
      {
-      "at": "inn",
-      "dur": 30,
+      "at": "inn-18",
+      "dur": 24,
       "x": 180,
-      "y": -1.6,
-      "d": 30,
-      "elev": 48
+      "y": -1.4,
+      "d": 33,
+      "elev": 46
+     }
+    ],
+    "shift": [
+     {
+      "layer": "k_lid",
+      "at": "start+6",
+      "until": "s10:end+400",
+      "dy": 5.2,
+      "dur": 22
+     },
+     {
+      "layer": "k_oring",
+      "at": "start+6",
+      "until": "s10:end+400",
+      "dy": 3.0,
+      "dur": 22
+     },
+     {
+      "layer": "k_lid",
+      "at": "inn-18",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "k_oring",
+      "at": "inn-18",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "k_paste",
+      "at": "start+6",
+      "until": "inn-18",
+      "dy": -1.1,
+      "dur": 22
+     },
+     {
+      "layer": "k_die",
+      "at": "start+6",
+      "until": "inn-18",
+      "dy": -2.3,
+      "dur": 22
      }
     ],
     "run": [
      {
       "id": "k_diehot",
-      "at": "start-10",
+      "at": "inn-18",
       "until": "s5:start-2",
       "ramp": 6
      },
      {
       "id": "k_heat",
-      "at": "chan+10",
+      "at": "inn-8",
       "until": "s5:start-2",
       "ramp": 6
      },
@@ -615,20 +695,44 @@
     ],
     "labels": [
      {
-      "part": "k_die",
-      "text": "晶片（發熱）",
-      "en": "Chip (heat source)",
+      "part": "k_lid",
+      "text": "蓋板",
+      "en": "Lid",
       "color": "amber",
-      "at": "start",
-      "until": "inn"
+      "at": "start+30",
+      "until": "inn-22"
+     },
+     {
+      "part": "k_basea",
+      "text": "銅底板＋細水道鰭片",
+      "en": "Copper base with fins",
+      "color": "blue",
+      "at": "start+30",
+      "until": "inn-22"
+     },
+     {
+      "part": "k_paste",
+      "text": "導熱膏",
+      "en": "Thermal paste",
+      "color": "amber",
+      "at": "start+30",
+      "until": "inn-22"
+     },
+     {
+      "part": "k_die",
+      "text": "晶片",
+      "en": "GPU die",
+      "color": "coral",
+      "at": "start+30",
+      "until": "inn-22"
      },
      {
       "part": "k_wall",
       "text": "微通道銅牆",
-      "en": "Micro-channel walls",
+      "en": "Micro-channel fins",
       "color": "blue",
-      "at": "chan",
-      "until": "inn+20"
+      "at": "inn",
+      "until": "hot"
      }
     ],
     "overlay": [
@@ -709,6 +813,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "rack",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1095,6 +1206,106 @@
       "elev": 12
      }
     ],
+    "shift": [
+     {
+      "layer": "u_pl0",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -2.08,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl1",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -1.76,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl2",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -1.44,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl3",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -1.12,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl4",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -0.8,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl5",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -0.48,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl6",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": -0.16,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl7",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 0.16,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl8",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 0.48,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl9",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 0.8,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl10",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 1.12,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl11",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 1.44,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl12",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 1.76,
+      "dur": 18
+     },
+     {
+      "layer": "u_pl13",
+      "at": "cdu",
+      "until": "give-4",
+      "dx": 2.08,
+      "dur": 18
+     }
+    ],
     "run": [
      {
       "id": "u_impl",
@@ -1211,7 +1422,7 @@
      {
       "type": "section",
       "kind": "cool-hx",
-      "at": "start+2",
+      "at": "start-12",
       "until": "loop-6",
       "x": 64,
       "y": 930,
@@ -1355,7 +1566,8 @@
    },
    "sources": [
     "媒體報導：鉅亨、優分析"
-   ]
+   ],
+   "pauseAfter": 0.7
   },
   {
    "id": "s8",
@@ -1387,6 +1599,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
@@ -1515,6 +1734,13 @@
    ],
    "component": "ThreeScene",
    "props": {
+    "zoom": [
+     {
+      "to": "rack",
+      "at": "start-6",
+      "dur": 40
+     }
+    ],
     "shot": [
      {
       "at": "start-2",
