@@ -28,7 +28,7 @@
     "model": "gemini-3.8-flash-tts",
     "mode": "take",
     "profile": "liguligu",
-    "note": "API 整篇一次生成"
+    "note": "voice-take.mjs（2026/11/17，1 次請求）整篇一次生成，切說明句、段落插靜音"
   },
   "cover": {
     "title": [
@@ -44,11 +44,11 @@
   "scenes": [
     {
       "id": "s01",
-      "narration": "現在 AI 資料中心越蓋越多，美國電網的備用電費，四次拍賣漲成 11 倍。",
-      "tts": "現在 AI 資料中心越蓋越多，美國電網的備用電費，四次拍賣漲成十一倍。",
+      "narration": "當 AI 資料中心越蓋越多，備用電費四次拍賣漲成 11 倍，誰買單？",
+      "tts": "當 AI 資料中心越蓋越多，備用電費四次拍賣漲成十一倍，誰買單？",
       "subtitle": {
-        "zh": "現在 AI 資料中心越蓋越多\n美國電網的備用電費\n四次拍賣漲成 11 倍",
-        "en": "AI data centers keep multiplying in the U.S. | A grid's backup-power price | rose 11-fold in four auctions."
+        "zh": "當 AI 資料中心越蓋越多\n備用電費四次拍賣\n漲成 11 倍，誰買單？",
+        "en": "As AI data centers multiply, | backup-power prices rose 11-fold | in four auctions. Who pays?"
       },
       "keywords": [
         "11 倍",
@@ -58,10 +58,6 @@
         {
           "id": "x11",
           "text": "AI 資料中心"
-        },
-        {
-          "id": "grid",
-          "text": "電網"
         },
         {
           "id": "price",
@@ -217,11 +213,11 @@
     {
       "id": "s03",
       "cutDelayF": 24,
-      "narration": "那誰該付？白宮和州長說，資料中心自己付。",
-      "tts": "那誰該付？白宮和州長說，資料中心自己付。",
+      "narration": "白宮和州長說，資料中心自己付。",
+      "tts": "白宮和州長說，資料中心自己付。",
       "subtitle": {
-        "zh": "那誰該付？\n白宮和州長說\n資料中心自己付",
-        "en": "So who pays? | The White House and governors | say data centers pay their own way."
+        "zh": "白宮和州長說\n資料中心自己付",
+        "en": "The White House and governors say | data centers pay their own way."
       },
       "keywords": [
         "自己付"
@@ -296,10 +292,10 @@
     {
       "id": "s04",
       "cutDelayF": 20,
-      "narration": "但盯市場的監察單位說沒做到，用戶已多付 294 億美元。",
-      "tts": "但盯市場的監察單位說沒做到，用戶已經多付兩百九十四億美元。",
+      "narration": "但監察單位說沒做到，用戶多付 294 億美元。",
+      "tts": "但監察單位說沒做到，用戶多付兩百九十四億美元。",
       "subtitle": {
-        "zh": "但盯市場的監察單位說沒做到\n用戶已多付 294 億美元",
+        "zh": "但監察單位說沒做到\n用戶多付 294 億美元",
         "en": "But the monitor says it hasn't: | customers have paid $29.4 billion more."
       },
       "keywords": [
@@ -367,11 +363,11 @@
     },
     {
       "id": "s05",
-      "narration": "電費也漲 11 倍嗎？不是，這只佔電費一小部分。",
-      "tts": "電費也漲十一倍嗎？不是，這只佔電費一小部分。",
+      "narration": "那電費也漲 11 倍嗎？不是，只佔一小部分。",
+      "tts": "那電費也漲十一倍嗎？不是，只佔一小部分。",
       "subtitle": {
-        "zh": "電費也漲 11 倍嗎？\n不是\n這只佔電費一小部分",
-        "en": "So bills rose 11-fold too? | No. | It's a small part of the bill."
+        "zh": "那電費也漲 11 倍嗎？\n不是\n只佔一小部分",
+        "en": "So bills rose 11-fold too? | No. | It's only a small part."
       },
       "keywords": [
         "一小部分"
@@ -438,11 +434,11 @@
     },
     {
       "id": "s06",
-      "narration": "12 月還有一場拍賣，會不會再漲，還不知道。",
-      "tts": "十二月還有一場拍賣，會不會再漲，還不知道。",
+      "narration": "但 12 月還有拍賣，會再漲嗎？還不知道。",
+      "tts": "但十二月還有拍賣，會再漲嗎？還不知道。",
       "subtitle": {
-        "zh": "12 月還有一場拍賣\n會不會再漲，還不知道",
-        "en": "Another auction comes in December. | Whether it rises again is unknown."
+        "zh": "但 12 月還有拍賣\n會再漲嗎？還不知道",
+        "en": "But another auction comes in December. | Will it rise again? Unknown."
       },
       "keywords": [
         "還不知道"
@@ -501,16 +497,17 @@
       },
       "sources": [
         "PJM：2029/30 拍賣排在 12 月"
-      ]
+      ],
+      "cutDelayF": 16
     },
     {
       "id": "s07",
       "cutDelayF": 11,
-      "narration": "想看完整數字，留言電費。",
-      "tts": "想看完整數字，留言電費。",
+      "narration": "所以誰付還沒定案。你覺得呢？留言電費。",
+      "tts": "所以誰付還沒定案。你覺得呢？留言電費。",
       "subtitle": {
-        "zh": "想看完整數字\n留言電費",
-        "en": "For the full numbers, | comment \"power bill\"."
+        "zh": "所以誰付還沒定案\n你覺得呢？\n留言電費",
+        "en": "So who pays is still undecided. | What do you think? | Comment \"power bill\"."
       },
       "keywords": [
         "留言電費"
@@ -518,11 +515,11 @@
       "cues": [
         {
           "id": "dc",
-          "text": "完整數字"
+          "text": "誰付"
         },
         {
           "id": "own",
-          "text": "留言"
+          "text": "還沒定案"
         },
         {
           "id": "cmt",
@@ -553,14 +550,14 @@
           "at": "cmt"
         },
         "next": {
-          "label": "下一集",
+          "label": "還沒定案",
           "at": "dc+8",
           "photo": {
             "name": "pylons",
             "caption": "示意照片",
             "at": "dc+12"
           },
-          "title": "12 月拍賣結果",
+          "title": "誰該付？",
           "titleAt": "own",
           "frameAt": "cmt+6"
         },
@@ -591,8 +588,7 @@
       "props": {
         "panel": "end",
         "endCard": {
-          "comment": "電費",
-          "next": "12 月拍賣結果"
+          "comment": "電費"
         }
       },
       "sources": []

@@ -39,7 +39,7 @@
 
 ## 片尾卡＋招牌音＋留言關鍵字（2026/11/15 所有頻道規則）
 
-- 最後一幕 `end`：Li 字標「i 點落定」動畫＋「哩股哩股／數字，查過再信」＋「下一集 ▸ 12 月拍賣結果」＋「留言「電費」拿完整資料」，3.2 秒。
+- 最後一幕 `end`：Li 字標「i 點落定」動畫＋「哩股哩股／數字，查過再信」＋「留言「電費」拿完整資料」，3.2 秒。
 - 念稿最後一句改成念出關鍵字「電費」（`script.md` 已更新）。
 - 片尾招牌音：`scripts/dossier/sfx-logo-ligu.py`；無聲預覽配招牌音的版本 `out/liguligu-power-bill.preview.mp4`（片尾段 −11.3 LUFS、真峰值 −1.3 dBTP，AAC 後量）。只有招牌音：`out/liguligu-sting.mp3`。
 - 交件圖：修改前後 `out/liguligu-power-bill-before-after.png`、片尾每 0.1 秒 `out/liguligu-power-bill-endcard-0.1s.png`、九格 `out/liguligu-power-bill-review.png`；edge-check 上 44px／下 60px。
