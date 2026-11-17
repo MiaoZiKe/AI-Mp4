@@ -60,7 +60,7 @@ box("f_ground", "f_gnd", "ground", [26, .3, 24], [FX0, -.15, -.5], bevel=.03)
 box("f_road", "f_gnd", "road", [26, .04, 1.8], [FX0, .02, 8.6])
 box("f_lane", "f_gnd", "white", [.8, .02, .12], [FX0, .05, 8.6], at=[[-13 + 2.4 * i, 0, 0] for i in range(11)])
 box("f_walk", "f_gnd", "road", [1.6, .03, 12.0], [FX0, .02, -.4])
-BLD = [("bA", "aBlue", 5.6, 4.6, 4.6, -3.6, 3.0), ("bB", "aOrange", 4.8, 3.5, 4.2, 3.8, 3.0), ("bC", "aTeal", 3.8, 2.7, 3.8, -3.6, -4.2), ("bD", "aPurple", 4.2, 3.1, 3.8, 3.8, -4.2)]
+BLD = [("bA", "aBlue", 5.6, 4.6, 4.6, -3.6, 3.0), ("bB", "aOrange", 4.8, 3.5, 4.2, 3.8, 3.0), ("bC", "aTeal", 3.8, 2.7, 3.8, -3.6, -5.8), ("bD", "aPurple", 4.2, 3.1, 3.8, 3.8, -5.8)]
 FC = {}
 for bid, acc, w, h, d, c, zc in BLD:
     FC[bid] = c
@@ -73,21 +73,21 @@ for bid, acc, w, h, d, c, zc in BLD:
     box(f"{bid}_door", bid, "dark2", [1.1, 1.15, .08], [c, .62, zc + d / 2 + .05])
     box(f"{bid}_hv", bid, "steelHi", [.9, .5, .8], [c, h + .45, zc], at=[[-w / 2 + 1.0, 0, -.5], [w / 2 - 1.0, 0, .3]], bevel=.03)
     cyl(f"{bid}_vent", bid, "steel", .12, .8, [c, h + .6, zc], axis="y", at=[[-.4, 0, .9], [.4, 0, .9], [0, 0, -.8]])
-    anchor(bid, bid, [c + (w / 2 - .5) * (1 if c > 0 else -1), h + .15, zc + d / 2 - .3], dx=(150 if c > 0 else -150), dy=(-170 if zc > 0 else -60))
+    anchor(bid, bid, [c + (w / 2 - .5) * (1 if c > 0 else -1), h + .15, zc + d / 2 - .3], dx=(150 if c > 0 else -150) if zc > 0 else (230 if c > 0 else -230), dy=(-170 if zc > 0 else -10))
     anchor(bid + "_f", bid, [c, h - .6, zc + d / 2 + .08], dx=0, dy=-110)
 # 公用設施：排氣塔（冒蒸氣）、冷卻水塔、冰水機
-cyl("f_stack", "f_util", "steelHi", .3, 4.2, [FX0 + 9.0, 2.1, -8.4], axis="y", at=[[0, 0, 0], [1.1, 0, 0]])
-cyl("f_stackc", "f_util", "orange", .34, .3, [FX0 + 9.0, 4.2, -8.4], axis="y", at=[[0, 0, 0], [1.1, 0, 0]])
-box("f_tower", "f_util", "wallD", [2.2, 1.3, 1.8], [FX0 - 9.0, .65, -8.4], at=[[0, 0, 0], [2.6, 0, 0]], bevel=.04)
-cyl("f_tfan", "f_util", "dark2", .62, .12, [FX0 - 9.0, 1.36, -8.4], axis="y", at=[[0, 0, 0], [2.6, 0, 0]])
-cyl("f_chill", "f_util", "steel", .75, 1.5, [FX0 - 3.0, .75, -8.8], axis="y", at=[[0, 0, 0], [1.8, 0, 0], [3.6, 0, 0]])
+cyl("f_stack", "f_util", "steelHi", .3, 4.2, [FX0 + 9.0, 2.1, -10.0], axis="y", at=[[0, 0, 0], [1.1, 0, 0]])
+cyl("f_stackc", "f_util", "orange", .34, .3, [FX0 + 9.0, 4.2, -10.0], axis="y", at=[[0, 0, 0], [1.1, 0, 0]])
+box("f_tower", "f_util", "wallD", [2.2, 1.3, 1.8], [FX0 - 9.0, .65, -10.0], at=[[0, 0, 0], [2.6, 0, 0]], bevel=.04)
+cyl("f_tfan", "f_util", "dark2", .62, .12, [FX0 - 9.0, 1.36, -10.0], axis="y", at=[[0, 0, 0], [2.6, 0, 0]])
+cyl("f_chill", "f_util", "steel", .75, 1.5, [FX0 - 3.0, .75, -10.4], axis="y", at=[[0, 0, 0], [1.8, 0, 0], [3.6, 0, 0]])
 box("f_off", "f_bg", "wall", [3.4, 2.0, 2.2], [FX0 - 9.8, 1.0, 2.0], bevel=.04)
 box("f_offb", "f_bg", "aBlue", [3.46, .26, 2.26], [FX0 - 9.8, 1.7, 2.0])
 box("f_wh", "f_bg", "wallD", [3.0, 1.6, 4.4], [FX0 + 10.6, .8, .6], bevel=.04)
 box("f_whr", "f_bg", "roof", [3.2, .16, 4.6], [FX0 + 10.6, 1.68, .6])
 box("f_trunk", "f_bg", "cuDk", [.16, .6, .16], [FX0, .3, 10.4], at=[[-13 + 2.0 * i, 0, 0] for i in range(14)])
 cyl("f_tree", "f_bg", "tree", .55, .9, [FX0, 1.0, 10.4], axis="y", at=[[-13 + 2.0 * i, 0, 0] for i in range(14)])
-flow("f_steam", "f_steamL", [[FX0 + 9.0, 4.5, -8.4], [FX0 + 9.3, 8.8, -8.0]], n=5, lanes=2, gap=1.1, ldir=(1, 0, 0), size=.34, rate=.55, color="steam", rim="steam", trail=2)
+flow("f_steam", "f_steamL", [[FX0 + 9.0, 4.5, -10.0], [FX0 + 9.3, 8.8, -9.6]], n=5, lanes=2, gap=1.1, ldir=(1, 0, 0), size=.34, rate=.55, color="steam", rim="steam", trail=2)
 glow("f_hotA", "bA", ["bA_band"], "lp_sigRim", steady=False, g=.8, freq=1.8)
 glow("f_hotB", "bB", ["bB_band"], "lp_proc", steady=False, g=.8, freq=1.8)
 glow("f_hotC", "bC", ["bC_band"], "lp_proc", steady=False, g=.8, freq=1.8)
