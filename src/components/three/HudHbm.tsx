@@ -118,7 +118,7 @@ const Heat: React.FC<P> = ({ o, f, k, m }) => {
   const n = 12, lh = 16, g = 3, x = 70, w = 230, yb = Hh - 34;
   const hotOf = (i: number) => { const v = hot * (1 - i / (n - 1)) * 0.9; if (i === 5 && bad > 0.5) return coral; if (all > 0.5) return coral; return v > 0.55 ? heat : null; };
   const rows = [
-    { t: "熱從底下往上散，要穿過 12 層", at: st + 4, cc: H.text },
+    { t: "熱要穿過 12 層才散得出去", at: st + 4, cc: H.text },
     { t: "一片壞了，整疊跟著壞", at: yl + 2, cc: coral },
     { t: "各家良率　查不到", at: un, cc: H.amber },
   ];
@@ -135,7 +135,7 @@ const Heat: React.FC<P> = ({ o, f, k, m }) => {
         {bad > 0 ? <g opacity={bad}><path d={`M${x + w / 2 - 14} ${yb - 6 * (lh + g) + 2} l28 -26 m0 26 l-28 -26`} stroke={H.onAccent} strokeWidth={5} /></g> : null}
         {bad > 0 ? <text x={x + w + 30} y={yb - 5 * (lh + g) - 2} opacity={bad} style={zh(32, coral, 900)}>壞 1 片</text> : null}
         <text x={x + w + 30} y={yb - 11 * (lh + g) + 10} opacity={tween(f, st, 8, EASE.enter)} style={zh(32, H.text, 800)}>12 層</text>
-        {rows.map((r, i) => <text key={i} x={470} y={118 + i * 74} opacity={tween(f, r.at, 8, EASE.enter)} style={zh(i === 2 ? 46 : 38, r.cc, 900)}>{r.t}</text>)}
+        {rows.map((r, i) => <text key={i} x={470} y={118 + i * 74} opacity={tween(f, r.at, 8, EASE.enter)} style={zh(i === 2 ? 46 : 36, r.cc, 900)}>{r.t}</text>)}
         <text x={470} y={118 + 2 * 74 + 50} opacity={qa} style={zh(sm(32), H.text2, 700)}>廠商沒有公布　截至 2026/11/19</text>
       </svg>
     </Card>
@@ -167,13 +167,13 @@ const Pair: React.FC<P> = ({ o, f, k, m }) => {
         </g>)}
         <g opacity={ck} transform={`translate(0 ${(1 - ck) * 10})`}><rect x={ix + 150} y={52} width={190} height={50} fill={H.amber} /><text x={ix + 245} y={90} textAnchor="middle" style={zh(36, onC(H.amber), 900)}>都拼好了</text></g>
         {/* 下一站：伺服器（先是問號，念到「下一支」才標名稱） */}
-        <path d={`M${ix + iw + 100} ${yb - 40} h${70 * w2}`} stroke={H.amber} strokeWidth={5} opacity={w2} />
+        <path d={`M${ix + iw + 100} ${yb - 40} h${60 * w2}`} stroke={H.amber} strokeWidth={5} opacity={w2} />
         <g opacity={w2}>
-          <rect x={700} y={70} width={230} height={170} fill="none" stroke={H.text2} strokeWidth={3} strokeDasharray="10 8" />
-          {[0, 1, 2, 3].map((i) => <rect key={i} x={716} y={86 + i * 36} width={198} height={22} fill={H.lineSoft} opacity={nx} />)}
-          <text x={815} y={176} textAnchor="middle" style={zh(96, H.amber, 900)} opacity={1 - nx}>？</text>
+          <rect x={680} y={70} width={230} height={170} fill="none" stroke={H.text2} strokeWidth={3} strokeDasharray="10 8" />
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={696} y={86 + i * 36} width={198} height={22} fill={H.lineSoft} opacity={nx} />)}
+          <text x={795} y={176} textAnchor="middle" style={zh(96, H.amber, 900)} opacity={1 - nx}>？</text>
         </g>
-        <text x={815} y={Hh - 24} textAnchor="middle" opacity={nx} style={zh(40, H.text, 900)}>下一站：伺服器</text>
+        <text x={795} y={Hh - 24} textAnchor="middle" opacity={nx} style={zh(34, H.text, 900)}>下一站：伺服器</text>
       </svg>
     </Card>
   );
