@@ -67,9 +67,9 @@ SX = 60
 LN = [-5.4 + 1.8 * k for k in range(7)]      # 7 條線（受保護處）
 GP = [-4.5 + 1.8 * k for k in range(6)]      # 6 個縫（被曝光／被蝕刻處）
 YS = 1.4; YO = YS + .35; YM = YO + .3; YR = YM + .4   # 各層頂面
-chk = box("s_chuck", "chuck", "dark2", [8.3, .4], [SX, -.2, 0], shape="cyl", rot=[90, 0, 0])
-cyl("s_post", "chuck", "steel2", 1.3, 1.2, [SX, -1.0, 0], axis="y")
-mk = [box(f"s_mk{i}", "chuck_mk", "white", [.5, .06, 1.6], [SX + 7.1 * math.cos(math.radians(60 * i)), .02, 7.1 * math.sin(math.radians(60 * i))], rot=[0, -60 * i, 0]) for i in range(6)]
+chk = box("s_chuck", "chuck", "dark2", [6.6, .4], [SX, -.2, 0], shape="cyl", rot=[90, 0, 0])
+cyl("s_post", "chuck", "steel2", 1.3, .5, [SX, -.65, 0], axis="y")
+mk = [box(f"s_mk{i}", "chuck_mk", "white", [.5, .06, 1.6], [SX + 6.0 * math.cos(math.radians(60 * i)), .02, 6.0 * math.sin(math.radians(60 * i))], rot=[0, -60 * i, 0]) for i in range(6)]
 rotate("s_spin", "chuck_mk", mk, [SX, .02, 0], rps=.9)
 box("s_sub", "sub", "silicon", [11.8, YS, 5], [SX, YS / 2, 0], bevel=.02)
 box("s_dp", "dp", "dope", [.8, .5, 5.06], [SX, YS - .25, 0], at=[[g, 0, 0] for g in GP])
@@ -94,10 +94,10 @@ anchor("a_mtl", "mt_line", [SX - 5.4, YO + .3, 2.5], dx=-150, dy=-20)
 box("d_plen", "t_dep", "dark2", [11.2, .9, 4.8], [SX, 6.4, 0], bevel=.05)
 box("d_plate", "t_dep", "steelHi", [11.0, .3, 4.6], [SX, 5.75, 0], bevel=.03)
 cyl("d_tip", "t_dep", "steel2", .11, .4, [SX, 5.4, 0], axis="y", at=[[x, 0, z] for x in [-4.8 + 1.2 * i for i in range(9)] for z in (-1.6, 0, 1.6)])
-cyl("d_feed", "t_dep", "steel", .45, 2.6, [SX, 8.2, 0], axis="y")
-cyl("d_flange", "t_dep", "steelHi", .8, .25, [SX, 9.6, 0], axis="y")
-cyl("d_side", "t_dep", "steel2", .22, 7.0, [SX + 3.3, 8.4, 0], axis="x")
-cyl("d_sidev", "t_dep", "steel2", .22, 2.0, [SX + 6.8, 7.4, 0], axis="y")
+cyl("d_feed", "t_dep", "steel", .45, 1.6, [SX, 7.7, 0], axis="y")
+cyl("d_flange", "t_dep", "steelHi", .8, .25, [SX, 8.6, 0], axis="y")
+cyl("d_side", "t_dep", "steel2", .22, 7.0, [SX + 3.3, 7.8, 0], axis="x")
+cyl("d_sidev", "t_dep", "steel2", .22, 1.6, [SX + 6.8, 7.0, 0], axis="y")
 for nm, y1, c, rim in (("d_ox", 1.45, "lp_ox", "lp_ox"), ("d_mt", 1.8, "lp_mt", "lp_mt")):
     for zi, z in enumerate((1.5, -1.2)):
         flow(f"{nm}{zi}", "t_dep_f", [[SX, 5.2, z], [SX, y1, z]], n=3, lanes=9, gap=1.2, ldir=(1, 0, 0), size=.12, rate=1.0, color=c, rim=rim)
@@ -113,29 +113,29 @@ flow("r_drip", "t_res_f", [[SX, 4.6, 0], [SX, 2.6, 0]], n=4, size=.2, rate=.8, c
 anchor("r_nozzle", "t_res", [SX + .3, 5.6, .5], dx=150, dy=-60)
 
 # 曝光：光源→光罩→鏡頭→光線穿過縫隙
-YR_ = 9.0
-box("e_lamp", "t_exp", "dark2", [10.4, 2.4, 5.0], [SX, 15.0, 0], bevel=.06)
-box("e_cond", "t_exp", "reticleG", [11.6, .6, 5.2], [SX, 13.2, 0], bevel=.05)
-box("e_lampled", "t_exp", "brass", [1.2, .3, 1.0], [SX, 13.65, 0], at=[[x, 0, 0] for x in (-4, -2, 0, 2, 4)])
+YR_ = 6.9
+box("e_lamp", "t_exp", "dark2", [10.4, 1.8, 5.0], [SX, 9.9, 0], bevel=.06)
+box("e_cond", "t_exp", "reticleG", [11.6, .5, 5.2], [SX, 8.7, 0], bevel=.05)
+box("e_lampled", "t_exp", "brass", [1.2, .3, 1.0], [SX, 9.1, 0], at=[[x, 0, 0] for x in (-4, -2, 0, 2, 4)])
 box("e_ret", "t_exp", "reticleG", [13.0, .18, 5.6], [SX, YR_, 0], bevel=.02)
 box("e_cr", "t_exp", "chrome", [1.0, .22, 5.6], [SX, YR_ + .2, 0], at=[[x, 0, 0] for x in LN])
 box("e_rail", "t_exp", "steel2", [14.6, .32, .9], [SX, YR_ - .05, 0], at=[[0, 0, -3.3], [0, 0, 3.3]], bevel=.03)
 box("e_endb", "t_exp", "dark2", [1.0, 1.2, 7.4], [SX, YR_ - .05, 0], at=[[-7.8, 0, 0], [7.8, 0, 0]], bevel=.04)
-cyl("e_post", "t_exp", "dark2", .35, 7.0, [SX, 5.6, 0], axis="y", at=[[x, 0, z] for x in (-7.8, 7.8) for z in (-3.3, 3.3)])
-for i, y in enumerate((6.2, 7.0, 7.8)):
+cyl("e_post", "t_exp", "dark2", .35, 5.4, [SX, 4.4, 0], axis="y", at=[[x, 0, z] for x in (-7.8, 7.8) for z in (-3.3, 3.3)])
+for i, y in enumerate((4.3, 4.9, 5.5)):
     tube(f"e_lens{i}", "t_exp", "steelHi", 7.0, 6.5, .55, [SX, y, 0], axis="y")
-tube("e_lensb", "t_exp", "brass", 7.04, 6.9, .08, [SX, 7.0, 0], axis="y")
+tube("e_lensb", "t_exp", "brass", 7.04, 6.9, .08, [SX, 4.9, 0], axis="y")
 box("e_shaft", "t_exp_l", "beam", [.8, YR_ - 2.5 - .2, 5.0], [SX, (YR_ - .2 + 2.5) / 2, 0], at=[[g, 0, 0] for g in GP])
-box("e_wide", "t_exp_w", "beamW", [12.0, 13.0 - YR_ - .4, 5.2], [SX, (13.0 + YR_ + .4) / 2, 0])
+box("e_wide", "t_exp_w", "beamW", [12.0, 8.4 - YR_ - .4, 5.2], [SX, (8.4 + YR_ + .4) / 2, 0])
 flow("e_ray", "t_exp_f", [[SX, YR_ - .4, 0], [SX, 2.6, 0]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.6, color="lp_light", rim="lp_light")
-flow("e_rayw", "t_exp_f", [[SX, 13.0, 0], [SX, YR_ + .5, 0]], n=3, lanes=9, gap=1.3, ldir=(1, 0, 0), size=.11, rate=1.2, color="lp_light", rim="lp_light")
+flow("e_rayw", "t_exp_f", [[SX, 8.4, 0], [SX, YR_ + .5, 0]], n=3, lanes=9, gap=1.3, ldir=(1, 0, 0), size=.11, rate=1.2, color="lp_light", rim="lp_light")
 glow("e_lampg", "t_exp", ["e_lampled"], "lp_light", steady=False, g=1.0, freq=3.0)
 # 光罩盒（家登）：放在光罩台旁
 box("e_pod", "t_pod", "pod", [3.2, 1.5, 3.2], [SX + 11.8, YR_ + .4, 0], bevel=.12)
 box("e_podh", "t_pod", "dark2", [1.4, .35, 1.0], [SX + 11.8, YR_ + 1.4, 0], bevel=.08)
 box("e_podl", "t_pod", "steel2", [.3, .5, 3.3], [SX + 11.8, YR_ + .4, 0], at=[[-1.1, 0, 0], [1.1, 0, 0]])
 box("e_podw", "t_pod", "reticleG", [2.3, .1, 2.3], [SX + 11.8, YR_ - .5, 0])
-anchor("e_lensA", "t_exp", [SX + 7.0, 7.0, 0], dx=150, dy=-60)
+anchor("e_lensA", "t_exp", [SX + 7.0, 4.9, 0], dx=150, dy=-30)
 anchor("e_retA", "t_exp", [SX - 6.4, YR_ + .3, 2.8], dx=-150, dy=-60)
 anchor("e_podA", "t_pod", [SX + 12.6, YR_ + .5, 1.6], dx=100, dy=-80)
 
@@ -154,40 +154,40 @@ spray("v", "t_dev", "t_dev_f", +1, "tankB", "waterB", 0)
 spray("x", "t_str", "t_str_f", -1, "tankR", "lp_proc", 0)
 
 # 蝕刻：電漿腔（上電極＋電漿＋離子往下打）
-box("t_top", "t_etch", "steel", [11.8, .5, 5.2], [SX, 8.3, 0], bevel=.05)
-box("t_topp", "t_etch", "steelHi", [11.0, .2, 4.6], [SX, 7.95, 0], bevel=.02)
-cyl("t_gas", "t_etch", "steel2", .45, 2.0, [SX, 9.55, 0], axis="y")
-cyl("t_gasf", "t_etch", "steelHi", .8, .25, [SX, 10.65, 0], axis="y")
-cyl("t_rf", "t_etch", "cu", .2, 5.6, [SX + 3.4, 9.2, 0], axis="x")
-box("t_rfbox", "t_etch", "dark2", [1.8, 1.2, 1.4], [SX + 6.5, 9.2, 0], bevel=.06)
-cyl("t_post", "t_etch", "dark2", .3, 8.5, [SX, 4.1, 0], axis="y", at=[[x, 0, z] for x in (-6.5, 6.5) for z in (-3.4, 3.4)])
-box("t_plasma", "t_etch_p", "plasmaV", [11.4, 4.2, 5.0], [SX, 5.45, 0])
+box("t_top", "t_etch", "steel", [11.8, .5, 5.2], [SX, 7.2, 0], bevel=.05)
+box("t_topp", "t_etch", "steelHi", [11.0, .2, 4.6], [SX, 6.85, 0], bevel=.02)
+cyl("t_gas", "t_etch", "steel2", .45, 1.4, [SX, 8.2, 0], axis="y")
+cyl("t_gasf", "t_etch", "steelHi", .8, .25, [SX, 9.0, 0], axis="y")
+cyl("t_rf", "t_etch", "cu", .2, 5.6, [SX + 3.4, 8.0, 0], axis="x")
+box("t_rfbox", "t_etch", "dark2", [1.8, 1.2, 1.4], [SX + 6.5, 8.0, 0], bevel=.06)
+cyl("t_post", "t_etch", "dark2", .3, 7.4, [SX, 3.6, 0], axis="y", at=[[x, 0, z] for x in (-6.5, 6.5) for z in (-3.4, 3.4)])
+box("t_plasma", "t_etch_p", "plasmaV", [11.4, 3.4, 5.0], [SX, 4.8, 0])
 glow("t_plg", "t_etch_p", ["t_plasma"], "lp_ion", steady=False, g=.9, freq=3.2)
 for zi, z in enumerate((1.4, -1.2)):
-    flow(f"t_ion{zi}", "t_etch_f", [[SX, 7.2, z], [SX, 2.15, z]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.5, color="lp_ion", rim="lp_ionRim")
-flow("t_blk", "t_etch_f", [[SX, 7.2, 0], [SX, 2.6, 0]], n=3, lanes=7, gap=1.8, ldir=(1, 0, 0), size=.1, rate=1.3, color="lp_ion", rim="lp_ionRim")
+    flow(f"t_ion{zi}", "t_etch_f", [[SX, 6.4, z], [SX, 2.15, z]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.5, color="lp_ion", rim="lp_ionRim")
+flow("t_blk", "t_etch_f", [[SX, 6.4, 0], [SX, 2.6, 0]], n=3, lanes=7, gap=1.8, ldir=(1, 0, 0), size=.1, rate=1.3, color="lp_ion", rim="lp_ionRim")
 for k, (x, z) in enumerate(((-3.0, 3.1), (3.0, 3.1))):
-    cyl(f"t_pi{k}", "t_etch", "steelHi", .12, .5, [SX + x, 7.65, z], axis="y")
-anchor("t_plA", "t_etch_p", [SX - 6.0, 5.4, 2.6], dx=-150, dy=-40)
-anchor("t_elA", "t_etch", [SX + 5.8, 8.4, 2.6], dx=130, dy=-70)
-anchor("t_topA", "t_etch", [SX - 5.6, 8.3, 2.7], dx=-150, dy=-70)
+    cyl(f"t_pi{k}", "t_etch", "steelHi", .12, .5, [SX + x, 6.55, z], axis="y")
+anchor("t_plA", "t_etch_p", [SX - 5.7, 4.8, 2.6], dx=-150, dy=-40)
+anchor("t_elA", "t_etch", [SX + 5.8, 7.3, 2.6], dx=130, dy=-70)
+anchor("t_topA", "t_etch", [SX - 5.6, 7.2, 2.7], dx=-150, dy=-70)
 
 # 離子佈植：離子源＋加速管＋掃描板，離子往下打進矽
-box("i_src", "t_imp", "dark2", [3.4, 3.0, 3.4], [SX, 15.2, 0], bevel=.08)
-cyl("i_col", "t_imp", "steel", .8, 5.2, [SX, 11.1, 0], axis="y")
-for i, y in enumerate((9.0, 10.1, 11.2, 12.3, 13.4)):
+box("i_src", "t_imp", "dark2", [3.4, 2.0, 3.4], [SX, 11.9, 0], bevel=.08)
+cyl("i_col", "t_imp", "steel", .8, 3.0, [SX, 9.6, 0], axis="y")
+for i, y in enumerate((8.4, 9.0, 9.6, 10.2, 10.8)):
     tube(f"i_ring{i}", "t_imp", "steelHi", 1.55, .85, .28, [SX, y, 0], axis="y")
-tube("i_mag", "t_imp", "cu", 2.4, 1.0, .9, [SX, 8.2, 0], axis="y")
-box("i_scan", "t_imp", "dark2", [12.4, .8, 5.4], [SX, 6.9, 0], bevel=.06)
-box("i_plate", "t_imp", "steelHi", [12.0, .12, 5.0], [SX, 6.35, 0])
+tube("i_mag", "t_imp", "cu", 2.4, 1.0, .8, [SX, 7.5, 0], axis="y")
+box("i_scan", "t_imp", "dark2", [12.4, .7, 5.4], [SX, 6.4, 0], bevel=.06)
+box("i_plate", "t_imp", "steelHi", [12.0, .12, 5.0], [SX, 5.95, 0])
 for zi, z in enumerate((1.4, -1.2)):
-    flow(f"i_gap{zi}", "t_imp_f", [[SX, 6.1, z], [SX, 1.0, z]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.5, color="lp_ion", rim="lp_ionRim")
-flow("i_line", "t_imp_f", [[SX, 6.1, 0], [SX, 2.15, 0]], n=3, lanes=7, gap=1.8, ldir=(1, 0, 0), size=.11, rate=1.3, color="lp_ion", rim="lp_ionRim")
-flow("i_beam", "t_imp_f", [[SX, 14.0, 0], [SX, 7.5, 0]], n=5, size=.22, rate=1.1, color="lp_ion", rim="lp_ionRim")
+    flow(f"i_gap{zi}", "t_imp_f", [[SX, 5.8, z], [SX, 1.0, z]], n=4, lanes=6, gap=1.8, ldir=(1, 0, 0), size=.13, rate=1.5, color="lp_ion", rim="lp_ionRim")
+flow("i_line", "t_imp_f", [[SX, 5.8, 0], [SX, 2.15, 0]], n=3, lanes=7, gap=1.8, ldir=(1, 0, 0), size=.11, rate=1.3, color="lp_ion", rim="lp_ionRim")
+flow("i_beam", "t_imp_f", [[SX, 11.0, 0], [SX, 7.0, 0]], n=5, size=.22, rate=1.1, color="lp_ion", rim="lp_ionRim")
 glow("i_srcg", "t_imp", ["i_src"], "lp_ion", steady=False, g=.6, freq=2.4)
-anchor("i_srcA", "t_imp", [SX + 1.7, 15.3, 1.8], dx=130, dy=-30)
-anchor("i_colA", "t_imp", [SX + 1.6, 10.8, 1.5], dx=140, dy=-30)
-anchor("i_scanA", "t_imp", [SX + 6.2, 6.9, 2.8], dx=130, dy=-60)
+anchor("i_srcA", "t_imp", [SX + 1.7, 12.0, 1.8], dx=130, dy=-30)
+anchor("i_colA", "t_imp", [SX + 1.6, 9.6, 1.5], dx=140, dy=-30)
+anchor("i_scanA", "t_imp", [SX + 6.2, 6.4, 2.8], dx=130, dy=-60)
 
 # ═════════ C：CMP 研磨機（x=120）═════════
 CX = 120

@@ -53,9 +53,9 @@ const Ring: React.FC<P> = ({ o, f, k, m }) => {
 
 // ── wf-sec：剖面圖＋步驟 ──
 const Sec: React.FC<P> = ({ o, f, k, m }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 340, c = (n: string) => col(m.product, n);
+  const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
   const t = (n: string) => T(o, n);
-  const X0 = 30, U = 47.5, base = 262, hS = 36, hO = 15, hM = 13, hR = 18;
+  const X0 = 30, U = 42, base = 246, hS = 44, hO = 20, hM = 18, hR = 24;
   const LN = Array.from({ length: 7 }, (_, i) => X0 + i * 1.8 * U), GP = Array.from({ length: 6 }, (_, i) => X0 + 1.0 * U + i * 1.8 * U);
   const wL = 1.0 * U, wG = 0.8 * U;
   const yO = base - hO, yM = yO - hM, yR = yM - hR;
@@ -80,15 +80,15 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {/* 光罩與光線 */}
         <g opacity={mask}>
-          <rect x={X0 - 10} y={96} width={11.8 * U + 20} height={10} fill={c("reticleG")} />
-          {LN.map((x, i) => <rect key={i} x={x} y={90} width={wL} height={12} fill={c("chrome")} />)}
-          {Lbl(X0 + 11.8 * U - 6, 82, "光罩", mask, H.text2)}
+          <rect x={X0 - 10} y={92} width={11.8 * U + 20} height={8} fill={c("reticleG")} />
+          {LN.map((x, i) => <rect key={i} x={x} y={82} width={wL} height={12} fill={c("chrome")} />)}
+          {Lbl(X0 + 11.8 * U - 6, 76, "光罩", mask, H.text2)}
         </g>
-        {light > 0 ? GP.map((x, i) => <g key={i} opacity={light}><rect x={x} y={106} width={wG} height={yR - 106} fill={c("beamL")} opacity={0.35} />
-          {[0, 1, 2].map((j) => <circle key={j} cx={x + wG / 2} cy={106 + ((f * 3 + j * 40) % (yR - 106))} r={5} fill={c("lp_light")} />)}</g>) : null}
+        {light > 0 ? GP.map((x, i) => <g key={i} opacity={light}><rect x={x} y={100} width={wG} height={yR - 100} fill={c("beamL")} opacity={0.35} />
+          {[0, 1, 2].map((j) => <circle key={j} cx={x + wG / 2} cy={100 + ((f * 3 + j * 40) % (yR - 100))} r={5} fill={c("lp_light")} />)}</g>) : null}
         {/* 基板與摻雜 */}
         <rect x={X0} y={base} width={11.8 * U} height={hS} fill={si} />
-        <text x={X0 + 8} y={base + 28} style={zh(sm(30), H.onAccent, 800)}>矽基板</text>
+        <text x={X0 + 8} y={base + 34} style={zh(sm(30), H.onAccent, 800)}>矽基板</text>
         {GP.map((x, i) => <rect key={i} x={x} y={base} width={wG} height={16} fill={c("dope")} opacity={dope} />)}
         {/* 氧化層 */}
         <rect x={X0} y={base - hO * gO} width={11.8 * U} height={hO * gO} fill={oxide} />
@@ -99,13 +99,13 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
         {LN.map((x, i) => <rect key={i} x={x} y={yM - hR * gR} width={wL} height={hR * gR} fill={resist} opacity={1 - strip} />)}
         {GP.map((x, i) => <rect key={i} x={x} y={yM - hR * gR} width={wG} height={hR * gR} fill={mix2(resist, resistL, struck)} opacity={1 - wash} />)}
         {/* 顯影藥水／電漿離子／去光阻藥水／離子束 */}
-        {devF > 0.02 ? GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={118 + ph(f, 0.02, j, 3, i) * (yM - 118)} r={5} fill={c("waterB")} opacity={devF} />)) : null}
-        {plF > 0.02 ? <g opacity={plF}><rect x={X0} y={96} width={11.8 * U} height={12} fill={c("lp_ion")} opacity={0.5} />
-          {GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={116 + ph(f, 0.03, j, 3, i) * (yM - 116)} r={5.5} fill={c("lp_ion")} />))}
-          {LN.map((x, i) => [0, 1].map((j) => <circle key={`l${i}${j}`} cx={x + wL / 2} cy={116 + ph(f, 0.03, j, 2, i + 3) * (yR - 8 - 116)} r={4.5} fill={c("lp_ion")} opacity={0.5} />))}</g> : null}
-        {strF > 0.02 ? LN.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wL * (0.2 + 0.3 * j)} cy={116 + ph(f, 0.02, j, 3, i) * (yR - 116)} r={5} fill={c("lp_proc")} opacity={strF} />)) : null}
-        {ionA > 0.02 ? <g opacity={ionA}>{GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={116 + ph(f, 0.03, j, 3, i) * (base + 12 - 116)} r={5.5} fill={c("lp_ion")} />))}
-          {LN.map((x, i) => [0, 1].map((j) => <circle key={`l${i}${j}`} cx={x + wL / 2} cy={116 + ph(f, 0.03, j, 2, i + 3) * (yM - 116)} r={4.5} fill={c("lp_ion")} opacity={0.5} />))}</g> : null}
+        {devF > 0.02 ? GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={106 + ph(f, 0.02, j, 3, i) * (yM - 106)} r={5} fill={c("waterB")} opacity={devF} />)) : null}
+        {plF > 0.02 ? <g opacity={plF}><rect x={X0} y={94} width={11.8 * U} height={10} fill={c("lp_ion")} opacity={0.5} />
+          {GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={106 + ph(f, 0.03, j, 3, i) * (yM - 106)} r={5.5} fill={c("lp_ion")} />))}
+          {LN.map((x, i) => [0, 1].map((j) => <circle key={`l${i}${j}`} cx={x + wL / 2} cy={106 + ph(f, 0.03, j, 2, i + 3) * (yR - 8 - 106)} r={4.5} fill={c("lp_ion")} opacity={0.5} />))}</g> : null}
+        {strF > 0.02 ? LN.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wL * (0.2 + 0.3 * j)} cy={106 + ph(f, 0.02, j, 3, i) * (yR - 106)} r={5} fill={c("lp_proc")} opacity={strF} />)) : null}
+        {ionA > 0.02 ? <g opacity={ionA}>{GP.map((x, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={x + wG / 2} cy={106 + ph(f, 0.03, j, 3, i) * (base + 12 - 106)} r={5.5} fill={c("lp_ion")} />))}
+          {LN.map((x, i) => [0, 1].map((j) => <circle key={`l${i}${j}`} cx={x + wL / 2} cy={106 + ph(f, 0.03, j, 2, i + 3) * (yM - 106)} r={4.5} fill={c("lp_ion")} opacity={0.5} />))}</g> : null}
         {/* CMP：新鋪的氧化層凹凸不平，研磨墊壓過去磨平 */}
         {fillG > 0 ? <path d={fillPath} fill={oxide} opacity={fillG} stroke={mix2(oxide, "#FFFFFF", 0.4)} strokeWidth={2} /> : null}
         {pads > 0 ? <g opacity={pads}><rect x={padX} y={yM - 2 - 34 + 12 * flat} width={200} height={20} fill={c("pad")} /><rect x={padX} y={yM - 2 - 14 + 12 * flat} width={200} height={5} fill={c("diamond")} />
@@ -115,12 +115,11 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
         {Lbl(X0 + 12.1 * U, yO + 11, "氧化層", gO, c("lp_ox"))}
         {Lbl(X0 + 12.1 * U, yM + 11, "金屬層", gM * (1 - 0), c("lp_mt"))}
         {Lbl(X0 + 12.1 * U, yR + 14, "光阻", gR * (1 - strip), c("lp_res"))}
-        {done > 0.01 ? <text x={X0} y={Hh - 18} opacity={done} style={zh(34, c("lp_good"), 900)}>一輪結束，圖形轉到金屬層，表面磨平，疊下一層</text> : null}
         {/* 步驟清單（兩欄） */}
-        {STEPS.map((s, i) => { const col2 = i < 4 ? 0 : 1, row = i % 4, x = 640 + col2 * 160, y = 110 + row * 52; const on = i === act, past = i < act;
+        {STEPS.map((s, i) => { const col2 = i < 4 ? 0 : 1, row = i % 4, x = 655 + col2 * 150, y = 104 + row * 52; const on = i === act, past = i < act;
           return <g key={i} opacity={f >= st[i] - 6 ? 1 : 0.28}>
-            <rect x={x - 8} y={y - 32} width={150} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
-            <text x={x} y={y} style={zh(30, on ? onC(H.amber) : past ? c("lp_good") : H.text, 800)}>{past ? "✓" : "①②③④⑤⑥⑦⑧"[i]}{s}</text></g>; })}
+            <rect x={x - 6} y={y - 32} width={142} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
+            <text x={x} y={y} style={zh(29, on ? onC(H.amber) : past ? c("lp_good") : H.text, 800)}>{past ? "✓" : "①②③④⑤⑥⑦⑧"[i]}{s}</text></g>; })}
       </svg>
     </Card>
   );
