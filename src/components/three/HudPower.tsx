@@ -117,9 +117,9 @@ const Unk: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}><rect x={60} y={80} width={330} height={200} fill="none" stroke={H.amber} strokeWidth={5} strokeDasharray="14 10" />
           <text x={225} y={206} textAnchor="middle" style={zh(110, H.amber, 900)}>？</text></g>
-        <g opacity={b}><text x={430} y={130} style={zh(46, H.text, 900)}>廠商目標：總成本最多少三成</text>
-          <text x={430} y={186} style={zh(sm(34), H.text2, 700)}>（目標值，不是實測）</text></g>
-        <g opacity={r}><rect x={430} y={216} width={470} height={60} fill={H.amber} /><text x={665} y={260} textAnchor="middle" style={zh(40, onC(H.amber), 900)}>實際機房數字：查不到</text></g>
+        <g opacity={b}><text x={410} y={130} style={zh(38, H.text, 900)}>廠商目標：總成本最多少三成</text>
+          <text x={410} y={186} style={zh(sm(34), H.text2, 700)}>（目標值，不是實測）</text></g>
+        <g opacity={r}><rect x={410} y={216} width={500} height={60} fill={H.amber} /><text x={660} y={260} textAnchor="middle" style={zh(40, onC(H.amber), 900)}>實際機房數字：查不到</text></g>
       </svg>
     </Card>
   );
