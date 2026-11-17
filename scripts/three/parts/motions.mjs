@@ -128,24 +128,40 @@ export const MOTIONS = {
     shift: [].concat(o.layers ?? o.layer).flatMap((l) => [S({ layer: l, at: o.hide ?? "start-40", until: o.at, opacity: 0, dur: 2 }), ...(o.off ? [S({ layer: l, at: o.off, opacity: 0, dur: 6 })] : [])]),
     run: [],
   }),
-  /** 機械手臂取放：吊臂轉過去（<arm>_reach）、夾爪往下伸再抬起 */
-  "arm-reach": (m, o) => ({
-    shift: [S({ layer: `${o.arm}_grip`, at: off(o.at, 12), until: off(o.at, 34), dy: -(o.grab ?? 0.5), dur: 7 }), ...(o.item ? [S({ layer: o.item, at: off(o.at, 22), dx: o.dx, dz: o.dz, dy: o.dy, dur: 12 })] : [])],
-    run: [S({ id: `${o.arm}_reach`, at: o.at, until: o.until ?? off(o.at, 70), ramp: o.ramp ?? 12 })],
-  }),
-  /** 手臂搬運（水平多關節）：夾爪下伸 → 夾住（停一下）→ 抬起 → 肩、肘、腕同時水平迴轉（緩入緩出）到放料位 → 夾爪下放 → 鬆開（零件落下、被壓一下）→ 抬起 → 手臂轉回。約 106 幀。
-   *  arm＝手臂實例 id（model 裡要有 <arm>_j1…，arm 零件給 to 或 j1／j2；要搬東西就給 carry）、item＝被夾的層、grab＝夾爪下伸量（預設 0.5）、put＝放下後比取料時高多少（預設 0）、press＝放下時被壓的層。 */
+  /** 手臂擺過去再回來（不夾東西）：肩 j1 轉 angle 度（預設 28）、夾爪下伸 grab 再抬起。關節鏈版（2026/11/17）。 */
+  "arm-reach": (m, o, model) => {
+    const k = o.k ?? 1, f = (n) => Math.round(n * k), A = o.arm, def = model.kin?.[A];
+    if (!def) throw new Error(`arm-reach：model 裡沒有手臂「${A}」（零件 part: "arm"）`);
+    const ang = o.angle ?? 28, g = o.grab ?? 0.5;
+    return { shift: [], run: [], kin: [{ arm: A, at: o.at, keys: [[0, { j1: 0, lift: 0 }], [f(24), { j1: ang }], [f(34), { lift: g }], [f(46), { lift: 0 }], [f(70), { j1: 0 }]] }] };
+  },
+  /** 手臂搬運（水平多關節，關節鏈版 2026/11/17）：夾爪下伸 → 兩指夾緊（此刻物件掛到夾爪上）→ 抬起 → 肩、肘、腕同時水平迴轉（緩入緩出）到放料位
+   *  → 下放到放料面 → 兩指張開（此刻放下）→ 抬起 → 手臂轉回。約 108 幀。
+   *  arm＝手臂實例 id（model 裡 part: "arm"，給 to 或 j1／j2）、item＝被夾的層（整層一起走）、grab＝夾爪下伸量（預設依手指底和物件底自動算）、
+   *  put＝放料面比取料面高多少（預設 0）、raise＝搬運時再抬高多少（預設 0.15）、press＝放下時被壓一下的層、k＝整體放慢倍數。 */
   "arm-transfer": (m, o, model) => {
-    const k = o.k ?? 1, t = (n) => off(o.at, n * k), f = (n) => Math.max(1, Math.round(n * k)), g = o.grab ?? 0.5, put = o.put ?? 0, A = o.arm, hasC = !!model.actions?.[`${A}_j1c`];
-    const joints = ["j1", "j2", "j3"].flatMap((j) => [S({ id: `${A}_${j}`, at: t(30), until: t(76), ramp: f(24) }), ...(hasC ? [S({ id: `${A}_${j}c`, at: t(30), until: t(76), ramp: f(24) })] : [])]);
+    const k = o.k ?? 1, f = (n) => Math.round(n * k), A = o.arm, def = model.kin?.[A];
+    if (!def) throw new Error(`arm-transfer：model 裡沒有手臂「${A}」（零件 part: "arm"）`);
+    const inf = def.info, put = o.put ?? 0, pl = inf.place;
+    let g = o.grab;
+    if (g === undefined) {
+      const ps = (model.parts ?? []).filter((p) => p.layer === o.item && p.shape === "box");
+      if (!ps.length) throw new Error(`arm-transfer：item「${o.item}」這一層沒有方塊零件，請直接寫 grab`);
+      const bottom = Math.min(...ps.map((p) => p.pos[1] - p.size[1] / 2));
+      g = R3(inf.fingerBottom - (bottom + 0.02));
+    }
+    const up = R3(-(o.raise ?? 0.15)), close = inf.close;
+    if (g > inf.liftMax || g - put > inf.liftMax) throw new Error(`arm-transfer：夾爪要下伸 ${g}，超過升降行程 ${inf.liftMax}（把手臂立柱 h 調低，或改 grab）`);
+    const keys = [
+      [0, { j1: 0, j2: 0, j3: 0, lift: 0, claw: 0 }],
+      [f(12), { lift: g }], [f(18), { claw: close }], [f(24), {}], [f(34), { lift: up }],
+      [f(58), { j1: pl.j1, j2: pl.j2, j3: pl.j3 }], [f(68), { lift: R3(g - put) }], [f(74), { claw: 0 }], [f(84), { lift: 0 }],
+      [f(108), { j1: 0, j2: 0, j3: 0 }],
+    ];
     return {
-      shift: [
-        S({ layer: `${A}_grip`, at: t(0), until: t(18), dy: -g, dur: f(10) }), S({ layer: `${A}_grip`, at: t(56), until: t(76), dy: R3(-g + put), dur: f(10) }),
-        ...(o.item ? [S({ layer: o.item, at: t(16), dy: 0.02, dur: 2 }), S({ layer: o.item, at: t(18), dy: R3(g - 0.02), dur: f(10) }),
-          S({ layer: o.item, at: t(56), dy: R3(-g + put + 0.05), dur: f(10) }),
-          S({ layer: o.item, at: t(70), dy: -0.05, dur: 4, fallOut: true, bounce: 0.25, press: o.press, pressAmt: o.pressAmt ?? 0.012 })] : []),
-      ],
-      run: joints,
+      shift: o.press ? [S({ layer: [].concat(o.press)[0], at: off(o.at, f(68)), dur: 2, dy: 0, fallOut: true, bounce: 0, press: [].concat(o.press), pressAmt: o.pressAmt ?? 0.012 })] : [],
+      run: [],
+      kin: [{ arm: A, at: o.at, keys, ...(o.item ? { carry: [{ layer: o.item, grab: f(18), release: f(68) }] } : {}) }],
     };
   },
   /** 一次觸發好幾個動作（熱擴散：晶片發熱、散熱片發橘、熱浪）；stagger＝每個晚幾幀 */

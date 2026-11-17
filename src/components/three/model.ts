@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { THEME_3D as T } from "../../theme";
 import { seeded } from "../anim";
+import type { KinDef } from "./kin";
 
 export type Vec3 = [number, number, number];
 export type MatDef = {
@@ -83,6 +84,8 @@ export type ProductModel = {
   thermal?: ThermalDef;
   actions?: Record<string, ActionDef>;
   camera?: Record<string, any>; pose?: Record<string, number>; fx?: Record<string, any>;
+  /** 關節鏈（2026/11/17；kin.ts）：機械手臂等一節接一節的東西，父子階層變換 */
+  kin?: Record<string, KinDef>;
 };
 export type Fx = { [K in keyof typeof T.fx]: (typeof T.fx)[K] extends boolean ? boolean : number };
 export const fxOf = (m: ProductModel): Fx => ({ ...T.fx, ...(m.fx ?? {}) }) as Fx;

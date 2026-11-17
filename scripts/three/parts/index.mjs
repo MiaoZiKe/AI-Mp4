@@ -35,6 +35,8 @@ const makeCtx = (o, out, used) => {
     anchor(name, a) { out.anchors[name ? `${id}_${name}` : id] = { layer: a.layer ?? layer, p: a.abs ? a.p.map(R2) : add3(pos, a.p), dx: o.label?.dx ?? a.dx ?? 100, dy: o.label?.dy ?? a.dy ?? -80 }; },
     /** 名稱開頭符合的零件 id（要在 P 之後呼叫） */
     ids(...names) { return out.parts.filter((p) => names.some((n) => p.id.startsWith(`${id}_${n}`))).map((p) => p.id); },
+    /** 關節鏈（kin.ts）：一個實例最多一條 */
+    kin(def) { out.kin = def; },
     act(name, def, colors = []) { out.actions[`${id}_${name}`] = { layer: layer, ...def }; for (const k of colors) out.colors.add(k); },
   };
   return c;
@@ -68,6 +70,7 @@ export const expandModel = (raw) => {
     for (const q of out.parts) parts.push(q);
     Object.assign(m.anchors, out.anchors, clone(raw.anchors ?? {}));
     Object.assign(actions, out.actions);
+    if (out.kin) (m.kin ??= {})[c.id] = out.kin;
   }
   m.parts = parts;
   // actions：先放零件自帶的，再放 model.json 自己寫的（同名以自己寫的為準）；preset 在這裡展開，"@id" 換成零件 id
@@ -95,15 +98,15 @@ export const expandScript = (script, model) => {
   const s2 = clone(script);
   for (const sc of s2.scenes) {
     const mo = sc.props?.motion; if (!mo) continue;
-    const shift = [].concat(sc.props.shift ?? []), run = [].concat(sc.props.run ?? []);
+    const shift = [].concat(sc.props.shift ?? []), run = [].concat(sc.props.run ?? []), kin = [].concat(sc.props.kin ?? []);
     for (const o of [].concat(mo)) {
       const f = MOTIONS[o.preset];
       if (!f) throw new Error(`${sc.id}: props.motion 的 preset「${o.preset}」不存在（${Object.keys(MOTIONS).join("、")}）`);
       const r = f(o, o, model ?? {});
-      shift.push(...r.shift); run.push(...r.run);
+      shift.push(...r.shift); run.push(...r.run); kin.push(...(r.kin ?? []));
     }
     delete sc.props.motion;
-    if (shift.length) sc.props.shift = shift; if (run.length) sc.props.run = run;
+    if (shift.length) sc.props.shift = shift; if (run.length) sc.props.run = run; if (kin.length) sc.props.kin = kin;
   }
   return s2;
 };

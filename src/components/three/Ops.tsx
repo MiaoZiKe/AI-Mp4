@@ -254,7 +254,8 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, pa
       // level（2026/11/16 tech-offer）：吊著的零件（天平秤盤、吊繩、盤上的東西）不跟著轉，只跟著吊點（hang）平移，永遠保持水平
       if (part?.id && d.level?.includes(part.id)) { lvAng += ang; lvD = d; continue; }
       const q = new THREE.Quaternion().setFromAxisAngle(v3(d.axis ?? [0, 0, 1]).normalize(), ang);
-      fx.quat = fx.quat ? fx.quat.multiply(q) : q;
+      // 2026/11/17 修：第一個轉動要複製一份——以前直接把 q 當 fx.quat，下一個轉動 multiply 時把 xf[0].q 也改掉了（關節鏈的第一節被套了兩次角度，前臂脫節）
+      fx.quat = fx.quat ? fx.quat.multiply(q) : q.clone();
       fx.pivot = d.pivot ?? fx.pivot ?? null;
       // 2026/11/17：3D 轉軸、每零件自己的轉軸、關節鏈（沒用到這幾個欄位的舊動作完全走上面那條舊路）
       const pv = (part?.id ? d.pivots?.[part.id] : undefined) ?? d.pivot ?? null;

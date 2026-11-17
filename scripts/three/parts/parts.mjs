@@ -136,40 +136,61 @@ export const PARTS = {
     // 熱壓接合時壓頭加熱（press-bond 會用）：嘴尖、嘴身、升降臂發橘
     c.act("heat", { type: "pulse", parts: c.ids("tip", "body", "arm"), color: "lp_heat", steady: true, glow: 0.85, halo: 0 }, ["heat"]);
   },
-  // ── 機械手臂（水平多關節 SCARA，晶圓搬運手臂就是這型）：底座＋立柱＋三段關節（肩 j1、肘 j2 水平迴轉、腕 j3 抵消、夾爪永遠朝同一方向）＋夾爪（自己一層 <id>_grip，可往下伸）。
-  //   原點＝底座底面中心；伸直（角度 0）時夾爪在 x＝l1＋l2 處（＝取料位置，把手臂擺在讓夾爪剛好在晶片上方）。
-  //   o.to＝[dx,dz]：放料位置相對取料位置的位移（程式用兩連桿反向運動學算 j1、j2；j3＝−(j1＋j2) 保持夾爪方向）；也可直接寫 j1、j2（度）。肘朝哪邊折用 elbow(1｜-1)。
-  //   o.carry＝被夾走的零件（"@id:名稱"）：另外生出 j1c、j2c、j3c（hold：跟著手臂轉到定位後留在原地，不跟著轉回來）。
-  //   動作：j1／j2／j3 關節（chain，繞自己的 3D 轉軸）、carry 版、reach（舊的上下擺，保留） ──
+  // ── 機械手臂（水平多關節 SCARA，晶圓搬運手臂就是這型）：底座＋立柱＋肩 j1（大臂）→ 肘 j2（小臂，比大臂低一階）→ 腕 j3（抵消前兩節，夾爪方向不變）
+  //   → 升降桿 lift（往下伸）→ 兩根手指 claw（往中間夾）。2026/11/17 起是真正的關節鏈（model.kin，src/components/three/kin.ts）：每一節是上一節的子物件，
+  //   角度只在自己的局部座標轉，子節一定跟著父節走；被夾的東西由 arm-transfer 在夾住那一刻掛到夾爪上、放開那一刻放下。
+  //   原點＝底座底面中心；伸直（全部 0）時夾爪在 x＝l1＋l2（＝取料位置，把手臂擺在讓夾爪剛好在料的正上方）。
+  //   o.to＝[dx,dz]：放料位置相對取料位置的位移（解析式兩連桿反運動學算 j1、j2，超出可達範圍或關節上下限直接報錯）；也可直接寫 j1、j2（度）。肘朝哪邊折用 elbow(1｜-1)。
+  //   o.gw＝要夾的東西的寬度（手指張開時內緣比它寬，夾住時剛好貼到兩側），預設 0.5。
+  //   零件：<id>_base／column（不動）、shoulder／link1／elbow（j1）、link2／wristHub（j2）、quill／palm（lift）、fingerL／fingerR（claw）
   arm(o, c) {
-    const h = o.h ?? 2.2, l1 = o.l1 ?? 2.4, l2 = o.l2 ?? 2.0, drop = o.drop ?? 0.9, G = `${c.id}_grip`;
+    const h = o.h ?? 2.2, l1 = o.l1 ?? 2.4, l2 = o.l2 ?? 2.0, drop = o.drop ?? 0.9, gw = o.gw ?? 0.5, G = `${c.id}_grip`, step = 0.3;
     c.P("base", { shape: "cyl", size: [0.9, 0.35], rot: V, pos: [0, 0.175, 0], mat: "dark" });
     c.P("column", { shape: "cyl", size: [0.35, h], rot: V, pos: [0, R2(0.35 + h / 2), 0], mat: "steel" });
-    const y = R2(0.35 + h);
-    c.P("shoulder", { shape: "cyl", size: [0.3, 0.7], pos: [0, y, 0], mat: "steel2" });
-    c.P("link1", { shape: "box", size: [l1, 0.3, 0.4], pos: [R2(l1 / 2), y, 0], mat: "steel" });
-    c.P("elbow", { shape: "cyl", size: [0.26, 0.6], pos: [l1, y, 0], mat: "steel2" });
-    c.P("link2", { shape: "box", size: [l2, 0.26, 0.34], pos: [R2(l1 + l2 / 2), y, 0], mat: "steel" });
-    c.P("wrist", { shape: "box", size: [0.18, drop, 0.18], pos: [R2(l1 + l2), R2(y - drop / 2), 0], mat: "steel2" });
+    const y = R2(0.35 + h), y2 = R2(y - step);           // 大臂中心高 y、小臂中心高 y2（SCARA 的小臂掛在大臂下面）
+    c.P("shoulder", { shape: "cyl", size: [0.36, 0.42], rot: V, pos: [0, y, 0], mat: "steel2" });
+    c.P("link1", { shape: "box", size: [l1, 0.26, 0.44], pos: [R2(l1 / 2), y, 0], mat: "steel" });
+    c.P("elbow", { shape: "cyl", size: [0.27, R2(step + 0.34)], rot: V, pos: [l1, R2(y - step / 2), 0], mat: "steel2" });
+    c.P("link2", { shape: "box", size: [l2, 0.24, 0.36], pos: [R2(l1 + l2 / 2), y2, 0], mat: "steel" });
+    c.P("wristHub", { shape: "cyl", size: [0.2, 0.34], rot: V, pos: [R2(l1 + l2), y2, 0], mat: "steel2" });
+    // 升降桿：上端藏在小臂裡（抬到最高也還插在腕座裡），下端接手掌
+    const palmY = R2(y2 - 0.12 - drop - 0.06), qLen = R2(drop + 0.12 + 0.4);
+    c.P("quill", { shape: "cyl", size: [0.07, qLen], rot: V, pos: [R2(l1 + l2), R2(palmY + 0.06 + qLen / 2), 0], mat: "steel2" });
     c.L(G);
-    c.P("palm", { layer: G, shape: "box", size: [0.7, 0.12, 0.34], pos: [R2(l1 + l2), R2(y - drop - 0.06), 0], mat: "dark" });
-    c.P("fingers", { layer: G, shape: "box", size: [0.1, 0.34, 0.28], pos: [R2(l1 + l2), R2(y - drop - 0.29), 0], at: [[-0.28, 0, 0], [0.28, 0, 0]], mat: "steel" });
-    c.anchor("", { layer: c.layer, p: [R2(l1), y + 0.4, 0], dx: 110, dy: -80 }); c.out.info.reachEnd = add3(c.pos, [l1 + l2, y - drop - 0.46, 0]);
-    c.act("reach", { type: "rotate", parts: c.ids("shoulder", "link1", "elbow", "link2", "wrist", "palm", "fingers"), axis: [0, 0, 1], pivot: [c.pos[0], R2(c.pos[1] + y)], angle: o.reach ?? 28 });
-    // 水平關節：轉軸是 3D 點（垂直軸 [0,1,0]），j1 帶動 link1 以後全部、j2 帶動 link2 以後、j3 只轉夾爪（抵消前兩節的轉角）
-    const yy = R2(c.pos[1] + y), P1 = [c.pos[0], yy, c.pos[2]], P2 = [R2(c.pos[0] + l1), yy, c.pos[2]], P3 = [R2(c.pos[0] + l1 + l2), yy, c.pos[2]];
+    const fx = R2(gw / 2 + 0.05 + 0.12), fh = 0.34, fy = R2(palmY - 0.06 - fh / 2);
+    c.P("palm", { layer: G, shape: "box", size: [R2(2 * fx + 0.2), 0.12, 0.36], pos: [R2(l1 + l2), palmY, 0], mat: "dark" });
+    c.P("fingerL", { layer: G, shape: "box", size: [0.1, fh, 0.3], pos: [R2(l1 + l2 - fx), fy, 0], mat: "steel" });
+    c.P("fingerR", { layer: G, shape: "box", size: [0.1, fh, 0.3], pos: [R2(l1 + l2 + fx), fy, 0], mat: "steel" });
+    c.anchor("", { layer: c.layer, p: [R2(l1), y + 0.4, 0], dx: 110, dy: -80 });
+    const W = (p) => add3(c.pos, p), fingerBottom = R2(c.pos[1] + fy - fh / 2);
+    c.out.info.reachEnd = W([l1 + l2, fy - fh / 2, 0]);
+    // 反運動學（解析式兩連桿）：平面座標 (X, Y) ＝ (x, −z)（繞 +y 轉正角＝從 +x 往 −z 轉）
+    const LIM = { j1: [-170, 170], j2: [-150, 150], j3: [-340, 340] };
     let j1 = o.j1 ?? 0, j2 = o.j2 ?? 0;
     if (o.to) {
-      // 兩連桿反向運動學：平面座標 (X, Y) ＝ (x, −z)（繞 +y 轉正角＝從 +x 往 −z 轉）
       const tx = l1 + l2 + o.to[0], ty = -o.to[1], d = Math.hypot(tx, ty);
       if (d > l1 + l2 - 1e-6 || d < Math.abs(l1 - l2) + 1e-6) throw new Error(`arm「${c.id}」夠不到 to=${JSON.stringify(o.to)}（可達距離 ${R2(Math.abs(l1 - l2))}～${R2(l1 + l2)}，要求 ${R2(d)}）`);
       const cb = (d * d - l1 * l1 - l2 * l2) / (2 * l1 * l2), b2 = (o.elbow ?? 1) * Math.acos(Math.max(-1, Math.min(1, cb)));
       const a1 = Math.atan2(ty, tx) - Math.atan2(l2 * Math.sin(b2), l1 + l2 * Math.cos(b2));
       j1 = R2((a1 * 180) / Math.PI); j2 = R2((b2 * 180) / Math.PI);
     }
-    const J = [["j1", P1, j1, c.ids("link1", "elbow", "link2", "wrist", "palm", "fingers")], ["j2", P2, j2, c.ids("link2", "wrist", "palm", "fingers")], ["j3", P3, R2(-(j1 + j2)), c.ids("palm", "fingers")]];
-    for (const [n, pv, ang, ps] of J) c.act(n, { type: "rotate", parts: ps, axis: [0, 1, 0], pivot: pv, angle: ang, chain: true });
-    if (o.carry) for (const [n, pv, ang] of J) c.act(`${n}c`, { type: "rotate", parts: o.carry, axis: [0, 1, 0], pivot: pv, angle: ang, chain: true, hold: true });
+    for (const [k, v] of [["j1", j1], ["j2", j2], ["j3", -(j1 + j2)]]) if (v < LIM[k][0] || v > LIM[k][1]) throw new Error(`arm「${c.id}」的 ${k}＝${R2(v)} 度超出關節上下限 ${LIM[k].join("～")}`);
+    const yy = R2(c.pos[1] + y), yy2 = R2(c.pos[1] + y2);
+    const lift = { min: R2(-0.35), max: R2(drop + 0.6) };
+    c.kin({
+      layer: c.layer, tip: "lift", size: R2(l1 + l2),
+      grip: W([l1 + l2, fy, 0]),
+      joints: [
+        { id: "j1", type: "rot", axis: [0, 1, 0], pivot: W([0, y, 0]), parts: c.ids("shoulder", "link1", "elbow"), min: LIM.j1[0], max: LIM.j1[1] },
+        { id: "j2", parent: "j1", type: "rot", axis: [0, 1, 0], pivot: W([l1, y2, 0]), parts: c.ids("link2", "wristHub"), min: LIM.j2[0], max: LIM.j2[1] },
+        { id: "j3", parent: "j2", type: "rot", axis: [0, 1, 0], pivot: W([l1 + l2, y2, 0]), parts: [], min: LIM.j3[0], max: LIM.j3[1] },
+        { id: "lift", parent: "j3", type: "slide", axis: [0, -1, 0], parts: c.ids("quill", "palm"), min: lift.min, max: lift.max },
+        { id: "clawL", parent: "lift", type: "slide", axis: [1, 0, 0], drive: "claw", parts: c.ids("fingerL"), min: 0, max: 0.13 },
+        { id: "clawR", parent: "lift", type: "slide", axis: [-1, 0, 0], drive: "claw", parts: c.ids("fingerR"), min: 0, max: 0.13 },
+      ],
+      body: c.ids(""),
+      info: { place: { j1, j2, j3: R2(-(j1 + j2)) }, fingerBottom, close: 0.12, gw, liftMax: lift.max },
+    });
     c.out.info.joints = { j1, j2, j3: R2(-(j1 + j2)) };
   },
   // ── 探針頭：原點＝針尖；由下往上＝探針（細線）→兩片導板→小電路板→排線，旁邊立柱。動作 test＝測試電流沿針流下 ──

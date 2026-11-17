@@ -6,6 +6,7 @@ import type { Scene, TimelineV2 } from "../../types";
 import { FPS, LAYOUT_3D as L, THEME_3D as T } from "../../theme";
 import { EASE, seeded, tween } from "../anim";
 import type { ActionDef, ProductModel, Pt, ThermalDef } from "./model";
+import { kinState, type KinCarry, type KinTrack } from "./kin";
 
 export type Label3D = { part: string; text: string; en?: string; color: string; at: number; until: number };
 export type Model3D = {
@@ -29,6 +30,8 @@ export type Model3D = {
   runs: Run3D[]; shots: Shot3D[]; shifts: Shift3D[];
   /** 2D 疊層（props.overlay）：蓋章、波形面板、叉叉、圈、步驟列、提問卡、底部波帶；畫在 3D 畫布上面，不增加 3D 成本（Overlays.tsx） */
   overlays?: Overlay3D[];
+  /** 關節鏈（props.kin，2026/11/17；kin.ts）：各臂的關鍵格與夾取區間。沒寫＝空 */
+  kinTracks?: KinTrack[]; kinCarries?: KinCarry[];
 };
 export type Overlay3D = { type: string; at: number; until: number; [k: string]: any };
 export type Run3D = { id: string; at: number; until: number; speed: number; gain: number; ramp: number };
@@ -68,6 +71,12 @@ export const buildModel = (scenes: Scene[], tl: TimelineV2, product: ProductMode
     // props.overlay：裡面每一層的 at／until（含巢狀的，例如 anti.at、items[].at、keys[].at）都換成絕對幀
     const deep = (v: any): any => Array.isArray(v) ? v.map(deep) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "at" || k === "hiAt" || k === "textAt" ? at(x, own.startFrame) : k === "until" ? at(x, FAR) : deep(x)])) : v;
     for (const o of [].concat(p.overlay ?? []) as any[]) (m.overlays ??= []).push({ until: FAR, ...deep(o), at: at(o.at, own.startFrame) });
+    // props.kin：[{ arm, at, keys: [[幀偏移, { 關節: 值 }], …], carry: [{ layer, grab: 幀偏移, release: 幀偏移 }] }]（幀偏移從 at 算）
+    for (const k of [].concat(p.kin ?? []) as any[]) {
+      const t0 = at(k.at, own.voiceStartFrame);
+      (m.kinTracks ??= []).push({ arm: k.arm, keys: (k.keys ?? []).map(([d, v]: [number, Record<string, number>]) => [t0 + d, v]) });
+      for (const c of k.carry ?? []) (m.kinCarries ??= []).push({ arm: k.arm, layer: c.layer, grab: t0 + c.grab, release: c.release === undefined ? FAR : t0 + c.release });
+    }
     for (const c of [].concat(p.shift ?? []) as any[]) m.shifts.push({ layer: c.layer, at: at(c.at, own.voiceStartFrame), until: c.until ? at(c.until, FAR) : FAR, dur: c.dur ?? T.motion.focus, dx: c.dx ?? 0, dy: c.dy ?? 0, dz: c.dz ?? 0, opacity: c.opacity, fallIn: c.fallIn, fallOut: c.fallOut, throw: c.throw, bounce: c.bounce, press: c.press, pressAmt: c.pressAmt, ...(c.spring ? { spring: c.spring } : {}) } as Shift3D);
   });
   m.runs.sort((a, b) => a.at - b.at); m.shots.sort((a, b) => a.at - b.at); m.shifts.sort((a, b) => a.at - b.at);
@@ -94,7 +103,14 @@ export const particlesOf = (th: ThermalDef) => { let p = pcache.get(th); if (!p)
 
 export type State3D = ReturnType<typeof stateAt>;
 /** 第 f 幀的完整狀態 */
-export const stateAt = (m: Model3D, f: number) => {
+/** 關節鏈要用到「別的幀」的各層位移（夾住、放開那一幀）：只算層、不算 kin，存起來 */
+const layerCache = new WeakMap<Model3D, Map<number, Record<string, { x: number; y: number; z: number }>>>();
+const layersAt = (m: Model3D, f: number): Record<string, { x: number; y: number; z: number }> => {
+  let c = layerCache.get(m); if (!c) { c = new Map(); layerCache.set(m, c); }
+  let L = c.get(f); if (!L) { L = stateAt(m, f, true).layers as Record<string, { x: number; y: number; z: number }>; c.set(f, L); }
+  return L;
+};
+export const stateAt = (m: Model3D, f: number, noKin = false) => {
   const pr = m.product, M = T.motion, P = { ...T.pose, ...(pr.pose ?? {}) }, C = { ...T.camera, ...(pr.camera ?? {}) } as typeof T.camera;
   const lay = tween(f, m.explode, M.lay, EASE.move);
   const fo = tween(f, m.focus, M.focus, EASE.move);
@@ -238,7 +254,8 @@ export const stateAt = (m: Model3D, f: number) => {
     for (let g = r.at; g < Math.min(f, r.until + r.ramp); g++) u += tween(g, r.at, r.ramp, EASE.move) * (1 - tween(g, r.until, r.ramp, EASE.move)) * r.gain;
     ops[r.id] = { g: k * r.gain, k, t: ((Math.min(f, r.until + r.ramp) - r.at) / FPS) * r.speed, T: (f / FPS) * r.speed, n: f - r.at, u: (u / FPS) * r.speed, end: r.until + r.ramp, until: r.until, f };
   }
-  return { f, yaw, pitch, lay, fo, layers, cam, groundY, lid, lidLift, xray, heat, heatAt, spreadP, sweep, parts, shimmer, outro, ops };
+  const kin = noKin ? undefined : kinState(pr.kin, m.kinTracks ?? [], m.kinCarries ?? [], f, layers, (g) => layersAt(m, g));
+  return { f, yaw, pitch, lay, fo, layers, cam, groundY, lid, lidLift, xray, heat, heatAt, spreadP, sweep, parts, shimmer, outro, ops, kin };
 };
 export type Op3D = { g: number; k: number; t: number; T: number; n: number; u: number; end: number; until: number; f: number };
 

@@ -5,7 +5,8 @@ import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { THEME_3D as T } from "../../theme";
 import { cameraFor, mix, type State3D } from "./engine";
-import { Ops, partFxAt, partOps, rotDelta } from "./Ops";
+import { Ops, partFxAt, partOps } from "./Ops";
+import { partPose } from "./pose";
 import { SHADOW_PAD, buildGeo, col, fxOf, makeMaterial, puff, shadowBlob, studioEnv, type Fx, type PartDef, type ProductModel } from "./model";
 
 /** 相機跟著狀態走（和標籤投影用同一組數字）；霧的遠近也跟著鏡頭距離 */
@@ -142,18 +143,10 @@ export const ProductScene: React.FC<{ model: ProductModel; s: State3D }> = ({ mo
             if (!L) return null;
             const m = b.mat as THREE.MeshPhongMaterial;
             if (m.opacity <= 0.01) return null;
-            const q = b.p.pos ?? [0, 0, 0], off = b.p.role === "lid" ? lidOff : [0, 0, 0];
             const solid = m.opacity > 0.6 && b.p.shadow !== false;
-            // 運作動畫：vibrate 加位移；rotate 繞轉軸轉（轉軸預設是零件自己的位置）
-            const pf = b.p.id ? partFxAt(pops.get(b.p.id), s, b.p) : null;
-            let px = q[0] + off[0] + L.x + (pf?.off[0] ?? 0), py = q[1] + off[1] + L.y + (pf?.off[1] ?? 0);
-            let pz = (q[2] ?? 0) + L.z + off[2] + (pf?.off[2] ?? 0);
-            if (pf?.quat && pf.hier) { const dd = rotDelta(pf, q); px += dd[0]; py += dd[1]; pz += dd[2]; }
-            else if (pf?.quat && pf.pivot) { const r = new THREE.Vector3(q[0] - pf.pivot[0], q[1] - pf.pivot[1], 0).applyQuaternion(pf.quat); px += r.x - (q[0] - pf.pivot[0]); py += r.y - (q[1] - pf.pivot[1]); }
-            // grow：以零件底部（y 最低處）為基準伸縮，底部不離開桌面
-            const gs = pf?.grow ?? null;
-            if (gs) py += ((gs[1] - 1) * (b.p.size[1] ?? 0)) / 2;
-            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={[px, py, pz]} scale={gs ?? [1, 1, 1]} quaternion={pf?.quat ?? IDENT} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
+            // 零件姿態（關節鏈、vibrate、rotate、grow）：pose.ts，和 kinematics-check 同一份
+            const pp = partPose(model, s, b.p, b.p.id ? pops.get(b.p.id) : undefined, lidOff), gs = pp.scale;
+            return <mesh key={b.p.id ?? i} geometry={b.geo} material={b.mat} position={pp.pos} scale={gs ?? [1, 1, 1]} quaternion={pp.quat ?? IDENT} castShadow={solid && b.p.shape !== "plane"} receiveShadow={solid && fx.shadows >= 3} renderOrder={m.transparent ? 2 : 0} />;
           })}
           {sw.on > 0.001 ? <><primitive object={spot} /><primitive object={spot.target} /></> : null}
           {model.actions ? <Ops model={model} s={s} /> : null}
