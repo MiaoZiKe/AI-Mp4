@@ -179,7 +179,7 @@ chill = [[CX - 6.8, 1.0, .45], [CX - 2.3, 1.0, .45]] + [[CX + 2.3 * math.cos(mat
 cyl("ch_hoseB", "ch_cool", "pipeB", .22, 4.5, [CX - 5.0, 1.0, .45], axis="x"); cyl("ch_hoseR", "ch_cool", "pipeR", .22, 4.5, [CX - 5.0, 1.0, -.45], axis="x")
 box("ch_chiller", "ch_cool", "dark", [1.6, 1.8, 1.4], [CX - 7.5, 1.0, 0], bevel=.05); box("ch_chled", "ch_cool", "led", [.4, .08, .04], [CX - 7.5, 1.7, .72])
 flow("c_chill", "ch_cool_f", chill, n=7, size=.15, rate=.9, color="lp_sig", rim="lp_sigRim")
-anchor("c_sh", "ch_sh", [CX + 2.3, 5.2, 1.5], dx=150, dy=-70); anchor("c_esc", "ch_esc", [CX + 2.5, 1.75, 1.2], dx=150, dy=-30)
+anchor("c_sh", "ch_sh", [CX + 2.3, 5.2, 1.5], dx=150, dy=-70); anchor("c_esc", "ch_esc", [CX + 2.55, 1.75, 0.6], dx=240, dy=150)
 anchor("c_wf", "ch_wf", [CX - 2.0, 2.2, 1.2], dx=-150, dy=-100); anchor("c_port", "ch_port", [CX + 6.4, 2.0, 1.0], dx=130, dy=-90)
 anchor("c_pl", "plasma", [CX + 2.4, 3.6, 1.0], dx=150, dy=-60); anchor("c_ring", "ch_ring", [CX - 2.9, 2.2, 1.0], dx=-150, dy=-60)
 anchor("c_ln", "ch_liner", [CX - 3.85, 4.2, 1.5], dx=-150, dy=-60); anchor("c_shell", "ch_shell", [CX - 4.2, 3.0, 3.8], dx=-150, dy=-40)
