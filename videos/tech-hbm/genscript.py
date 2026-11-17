@@ -138,8 +138,8 @@ scenes.append(scene("s5", "mechanism", 5,
      "run": [run("x_flip", F(8), FAR, 14), run("x_whspin", F(12), F(90), 8), run("x_cmpvib", F(3), F(9), 2),
              run("x_tipglow", F(82), FAR, 6)],
      "labels": [],
-     "overlay": [stamp("共數萬個", "holes", "fill-16", "amber", 44, x=840, y=300),
-                 stamp("孔徑約人髮 1/20", "hair", "fill-14", "blue", 38, x=800, y=380)]},
+     "overlay": [stamp("共數萬個", "holes", "fill-29", "amber", 44, x=250, y=338, avoid=False),
+                 stamp("孔徑約人髮 1/20", "hair", "fill-27", "blue", 38, x=800, y=338, avoid=False)]},
     ["三星新聞稿；Wikipedia TSV；SemiEngineering"], pause=0.7))
 
 # ───────────── s6 同高（Y → Z）─────────────
