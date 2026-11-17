@@ -40,10 +40,10 @@ for k, v in materials.items():
 
 
 # 追加材質／色票
-palette.update({"air":"#8FD3F4","shelf":"#F08A24","led":"#14A38B","fanB":"#46526B","bolt":"#C9CFDB","wire":"#E8613C"})
+palette.update({"shelfD":"#B85F10","air":"#8FD3F4","shelf":"#F08A24","led":"#14A38B","fanB":"#46526B","bolt":"#C9CFDB","wire":"#E8613C"})
 materials.update({mm("air"):{"kind":"unlit","color":"air","opacity":.8}, mm("shelf"):M("shelf",rough=.4,metal=.3,env=.5), mm("led"):{"kind":"unlit","color":"led"},
   mm("fanB"):M("fanB",rough=.5,metal=.3), mm("bolt"):M("bolt",rough=.25,metal=.9,env=.7),
-  mm("sleeve"):{"kind":"phys","color":"carrier","rough":.15,"metal":0,"clearcoat":.7,"opacity":.35,"env":.4},
+  mm("sleeve"):M("dark",rough=.45,metal=.15), mm("shelfD"):M("shelfD",rough=.45,metal=.35,env=.5),
   mm("louv"):M("dark",rough=.5,metal=.4), mm("lampOff"):M("cardW",rough=.4)})
 HX = {"R":0, "C":60, "D":120}
 lib = []
@@ -57,15 +57,20 @@ for sx in (-1,1):
     for sz in (-1,1): box(f"rk_p{sx}{sz}","rk",mm("steel2"),[0.28,RH,0.28],[sx*(RW/2+0.3),RH/2+0.15,sz*(RD/2-0.1)])
 SHY=0.3; SHH=1.5
 box("sh_body","rack",mm("shelf"),[RW-0.6,SHH,RD-1.4],[0,SHY+SHH/2,0.2])
-box("sh_slit","rack",mm("louv"),[1.08,SHH-0.5,0.05],[0,SHY+SHH/2,0.2+(RD-1.4)/2+0.02],at=[[(i-2.5)*1.25,0,0] for i in range(6)])
-box("sh_led","rack",mm("led"),[0.12,0.12,0.05],[0,SHY+SHH-0.2,0.2+(RD-1.4)/2+0.03],at=[[(i-2.5)*1.25,0,0] for i in range(6)])
+box("sh_top","rack",mm("shelfD"),[RW-0.5,0.08,RD-1.3],[0,SHY+SHH+0.04,0.2])
+SHF=0.2+(RD-1.4)/2     # 電源架殼前緣 z
 FANC=[(i-2.5)*1.25 for i in range(6)]
-FZ0=0.2+(RD-1.4)/2+0.05
+for i,fx in enumerate(FANC):   # 六個整流模組（抽屜）：可往前抽出
+    box(f"sh_m{i}","rackM",mm("shelfD"),[1.1,SHH-0.3,0.5],[fx,SHY+SHH/2,SHF+0.2])
+    box(f"sh_ms{i}","rackM",mm("louv"),[0.9,0.06,0.05],[fx,SHY+SHH/2-0.3,SHF+0.46],at=[[0,k*0.18,0] for k in range(5)])
+    box(f"sh_ml{i}","rackM",mm("led"),[0.12,0.12,0.05],[fx+0.38,SHY+SHH-0.35,SHF+0.46])
+    box(f"sh_mh{i}","rackM",mm("bolt"),[0.5,0.07,0.1],[fx,SHY+0.28,SHF+0.52])
+FZ0=SHF+0.52
 for i,fx in enumerate(FANC):
-    cyl(f"fan_ring{i}","rack",mm("louv"),0.36,0.05,[fx,SHY+0.55,FZ0])
+    cyl(f"fan_ring{i}","rackF",mm("louv"),0.36,0.05,[fx,SHY+0.75,FZ0])
     for q in range(2):
-        box(f"fan_b{i}{q}","rack",mm("fanB"),[0.62,0.08,0.03] if q==0 else [0.08,0.62,0.03],[fx,SHY+0.55,FZ0+0.04])
-    cyl(f"fan_h{i}","rack",mm("bolt"),0.07,0.06,[fx,SHY+0.55,FZ0+0.07])
+        box(f"fan_b{i}{q}","rackF",mm("fanB"),[0.62,0.08,0.03] if q==0 else [0.08,0.62,0.03],[fx,SHY+0.75,FZ0+0.04])
+    cyl(f"fan_h{i}","rackF",mm("bolt"),0.07,0.06,[fx,SHY+0.75,FZ0+0.07])
 FANB=[f"fan_b{i}{q}" for i in range(6) for q in range(2)]
 TRY=[2.45+k*0.82 for k in range(6)]
 BZ=-0.6; BX=3.7
@@ -82,19 +87,29 @@ for s,sx in (("a",-BX),("b",BX)):
     box(f"bus{s}","busT",mm("cu"),[0.8,BH,0.6],[sx,(BY0+BY1)/2,BZ])
     box(f"bus{s}_hi","busT",mm("cuHi"),[0.66,BH,0.06],[sx,(BY0+BY1)/2,BZ+0.31])
     for j,y in enumerate([BY0+0.35,BY1-0.35]): cyl(f"bus{s}_bolt{j}","busT",mm("bolt"),0.1,0.1,[sx,y,BZ+0.34])
-    box(f"bus{s}_sl","busT",mm("sleeve"),[1.0,BH*0.98,0.8],[sx,(BY0+BY1)/2,BZ])
+    box(f"bus{s}_sl","busT",mm("sleeve"),[0.96,0.45,0.76],[sx,(BY0+BY1)/2,BZ],at=[[0,-BH/2+0.9,0],[0,BH/2-0.9,0]])
     box(f"thin{s}","busN",mm("cuHi"),[0.21,BH,0.16],[sx,(BY0+BY1)/2,BZ+0.22])
-    box(f"thin{s}_sl","busN",mm("sleeve"),[0.5,BH*0.98,0.5],[sx,(BY0+BY1)/2,BZ])
+    box(f"thin{s}_sl","busN",mm("sleeve"),[0.46,0.4,0.46],[sx,(BY0+BY1)/2,BZ],at=[[0,-BH/2+0.9,0],[0,BH/2-0.9,0]])
 SCX=RW/2+2.9
-box("sc_body","sc",mm("shelf"),[3.0,RH-0.2,RD-0.8],[SCX,(RH-0.2)/2+0.3,-0.2])
-box("sc_louv","sc",mm("louv"),[2.4,0.1,0.05],[SCX,3.0,-0.2+(RD-0.8)/2+0.02],at=[[0,k*0.32,0] for k in range(12)])
-box("sc_led","sc",mm("led"),[0.14,0.14,0.05],[SCX+1.0,RH-0.4,-0.2+(RD-0.8)/2+0.03])
-box("sc_br","sc",mm("cuHi"),[SCX-BX-0.2,0.22,0.3],[(SCX+BX)/2-0.1,RH-0.5,BZ])
-cyl("sc_fan","sc",mm("louv"),0.8,0.05,[SCX,RH-1.4,-0.2+(RD-0.8)/2+0.03])
+SCW=3.0; SCD=3.8; SCZ=-0.6; SCF=SCZ+SCD/2
+box("sc_body","sc",mm("shelf"),[SCW,RH-0.2,SCD],[SCX,(RH-0.2)/2+0.3,SCZ])
+box("sc_top","sc",mm("shelfD"),[SCW+0.1,0.1,SCD+0.1],[SCX,RH+0.15,SCZ])
+for k in range(8):
+    y=0.9+k*0.8
+    box(f"sc_m{k}","scM",mm("shelfD"),[2.5,0.62,0.55],[SCX,y,SCF+0.1]); box(f"sc_ms{k}","scM",mm("louv"),[2.0,0.05,0.05],[SCX,y,SCF+0.4],at=[[0,0.12*j-0.12,0] for j in range(3)])
+    box(f"sc_ml{k}","scM",mm("led"),[0.12,0.12,0.05],[SCX+1.0,y+0.18,SCF+0.4]); box(f"sc_mh{k}","scM",mm("bolt"),[0.5,0.07,0.1],[SCX-0.9,y,SCF+0.42])
+box("sc_fp","scF",mm("shelf"),[SCW-0.1,6.9,0.14],[SCX,3.85,SCF+0.5])
+box("sc_louv","scF",mm("louv"),[2.4,0.1,0.05],[SCX,2.6,SCF+0.6],at=[[0,k*0.3,0] for k in range(9)])
+box("sc_led","scF",mm("led"),[0.14,0.14,0.05],[SCX+1.0,RH-0.5,SCF+0.6])
+cyl("sc_fan","scF",mm("louv"),0.8,0.06,[SCX,RH-1.5,SCF+0.6])
+box("sc_bar","scB",mm("cu"),[0.5,6.4,0.3],[SCX-0.8,3.8,SCZ-SCD/2-0.2]); box("sc_bar2","scB",mm("cu"),[0.5,6.4,0.3],[SCX+0.8,3.8,SCZ-SCD/2-0.2])
+box("sc_br","scB",mm("cuHi"),[SCX-BX-0.2,0.22,0.3],[(SCX+BX)/2-0.1,RH-0.5,BZ])
+anchor("sc_mod","scM",[SCX+1.2,4.4,SCF+0.4],dx=90,dy=-70); anchor("sc_fro","scF",[SCX+1.3,6.2,SCF+0.6],dx=90,dy=-40); anchor("sc_bak","scB",[SCX+0.8,5.5,SCZ-SCD/2-0.2],dx=100,dy=-30)
+anchor("rk_mod","rackM",[RW/2-1.5,SHY+SHH/2,SHF+0.4],dx=120,dy=-70); anchor("rk_fanl","rackF",[RW/2-2.0,SHY+0.75,FZ0+0.1],dx=130,dy=70)
 anchor("rk_frame","rk",[RW/2+0.3,RH+0.1,RD/2],dx=-20,dy=-30)
 anchor("rk_bus","busT",[BX+0.4,(BY0+BY1)/2+1.6,BZ+0.3],dx=140,dy=-60)
 anchor("rk_shelf","rack",[RW/2-0.6,SHY+SHH/2,FZ0],dx=130,dy=60)
-anchor("rk_sc","sc",[SCX+1.5,5.2,-0.2],dx=60,dy=-80)
+anchor("rk_sc","sc",[SCX+1.5,5.2,SCZ],dx=60,dy=-80)
 anchor("rk_thin","busN",[BX+0.1,(BY0+BY1)/2+1.0,BZ+0.3],dx=140,dy=-60)
 
 def flow(key, layer, path, n, lanes, gap, laneDir, size, rate, color="lp_proc", rim="lp_proc", shape="dot"):
@@ -112,10 +127,10 @@ actions["r_air2"]={"preset":"stream","layer":"rk","path":[[1.4,TRY[4],RD/2+1.4],
 actions["r_air3"]={"preset":"stream","layer":"rack","path":[[-2.5,SHY+0.55,RD/2+1.2],[-2.5,SHY+0.55,-RD/2]],"n":4,"shape":"arrow","rate":0.8,"color":"air","size":0.2}
 actions["r_hot"]={"type":"pulse","layer":"busT","parts":["busa","busb"],"color":"lp_bad","steady":True,"glow":0.9,"halo":0}
 actions["r_heat"]={"preset":"heat-spread","layer":"busT","from":{"layer":"busT","p":[BX,(BY0+BY1)/2,BZ+0.4]},"dir":[1,0,0],"reach":1.8,"count":3,"r0":0.5,"spread":0.5,"rate":0.8,"color":"lp_bad"}
-actions["r_shelf"]={"type":"pulse","layer":"rack","parts":["sh_body"],"color":"lp_proc","steady":True,"glow":0.5,"halo":0}
-actions["r_fan"]={"type":"rotate","parts":FANB,"axis":[0,0,1],"pivots":{f"fan_b{i}{q}":[FANC[i],SHY+0.55,FZ0+0.04] for i in range(6) for q in range(2)},"rps":4,"rampSpin":True,"layer":"rack"}
-actions["r_scglow"]={"type":"pulse","layer":"sc","parts":["sc_body"],"color":"lp_proc","steady":True,"glow":0.45,"halo":0}
-flow("r_sc","sc",[[SCX-1.4,RH-0.5,BZ+0.2],[BX+0.5,RH-0.5,BZ+0.2]],5,1,0.2,[0,1,0],0.1,1.3)
+actions["r_shelf"]={"type":"pulse","layer":"rackM","parts":[f"sh_ml{i}" for i in range(6)],"color":"lp_proc","steady":True,"glow":0.9,"halo":0}
+actions["r_fan"]={"type":"rotate","parts":FANB,"axis":[0,0,1],"pivots":{f"fan_b{i}{q}":[FANC[i],SHY+0.75,FZ0+0.04] for i in range(6) for q in range(2)},"rps":4,"rampSpin":True,"layer":"rackF"}
+actions["r_scglow"]={"type":"pulse","layer":"scM","parts":[f"sc_ml{k}" for k in range(8)],"color":"lp_proc","steady":True,"glow":0.9,"halo":0}
+flow("r_sc","scB",[[SCX-1.4,RH-0.5,BZ+0.2],[BX+0.5,RH-0.5,BZ+0.2]],5,1,0.2,[0,1,0],0.1,1.3)
 
 # ───────── C：兩條銅排並排（54 V 粗、800 V 先同粗、之後換成細）─────────
 CX=HX["C"]; BL=9.5; T=1.8; YU=5.8; YD=1.0
@@ -180,35 +195,37 @@ lib.append({"part":"pcb","id":"d_bpcb","pos":[DB,0,0],"w":9.6,"d":7.8,"t":0.22,"
 lib.append({"part":"die","id":"d_bdie","pos":[DB,0.22,0],"w":2.4,"d":2.4,"t":0.4,"bumps":False})
 BYT=0.22
 XS=[-2.4,-0.8,0.8,2.4]
-box("b_in","d_bpcb",mm("cuHi"),[1.0,0.5,2.0],[DB-4.4,BYT+0.25,0])
+box("b_in","b_inl",mm("cuHi"),[1.0,0.5,2.0],[DB-4.4,BYT+0.25,0])
 for j in range(5): box(f"b_inp{j}","d_bpcb",mm("bolt"),[0.12,0.12,0.12],[DB-4.7,BYT+0.55,-0.8+0.4*j])
-box("b_zbus","d_bpcb",mm("cu"),[0.4,0.06,7.8],[DB-3.7,BYT+0.04,0])
+box("b_zbus","b_trc",mm("cu"),[0.4,0.06,7.8],[DB-3.7,BYT+0.04,0])
 for sz in (-1,1):
-    box(f"b_xbus{sz}","d_bpcb",mm("cu"),[7.2,0.06,0.4],[DB-0.1,BYT+0.04,sz*3.75])
+    box(f"b_xbus{sz}","b_trc",mm("cu"),[7.2,0.06,0.4],[DB-0.1,BYT+0.04,sz*3.75])
     for i,x in enumerate(XS):
-        box(f"b_mos{sz}{i}","d_bpcb",mm("chipBk"),[0.8,0.24,0.62],[DB+x,BYT+0.12,sz*3.0])
-        box(f"b_pin{sz}{i}","d_bpcb",mm("bolt"),[0.7,0.05,0.08],[DB+x,BYT+0.06,sz*3.0],at=[[0,0,-0.3],[0,0,0.3]])
-        box(f"b_t1{sz}{i}","d_bpcb",mm("cu"),[0.3,0.05,0.6],[DB+x,BYT+0.04,sz*3.4])
-        box(f"b_ind{sz}{i}","d_bpcb",mm("chipBk"),[0.95,0.5,0.95],[DB+x,BYT+0.25,sz*2.15])
-        box(f"b_indw{sz}{i}","d_bpcb",mm("cuHi"),[0.98,0.06,0.98],[DB+x,BYT+0.52,sz*2.15])
-        box(f"b_t2{sz}{i}","d_bpcb",mm("cu"),[0.3,0.05,0.7],[DB+x,BYT+0.04,sz*2.65])
-        cyl(f"b_cap{sz}{i}","d_bpcb",mm("steel2"),0.3,0.5,[DB+x,BYT+0.25,sz*1.55],vertical=True)
-        cyl(f"b_capt{sz}{i}","d_bpcb",mm("dark"),0.22,0.05,[DB+x,BYT+0.52,sz*1.55],vertical=True)
-        box(f"b_t3{sz}{i}","d_bpcb",mm("cuHi"),[0.5,0.05,0.5],[DB+x,BYT+0.04,sz*1.2])
-anchor("b_die","d_bdie",[DB+1.2,BYT+0.5,1.2],dx=70,dy=-120); anchor("b_ind","d_bpcb",[DB+2.4,BYT+0.55,2.6],dx=110,dy=-60); anchor("b_mos","d_bpcb",[DB-2.4,BYT+0.25,-3.0],dx=-110,dy=-60); anchor("b_cap","d_bpcb",[DB-0.8,BYT+0.55,-1.55],dx=-130,dy=40)
-flow("d_bin","d_bpcb",[[DB-4.7,BYT+0.6,0],[DB-3.7,BYT+0.1,0]],4,1,0.2,[0,1,0],0.09,1.2)
-flow("d_bzT","d_bpcb",[[DB-3.7,BYT+0.1,-0.2],[DB-3.7,BYT+0.1,-3.75]],3,1,0.2,[1,0,0],0.08,1.1)
-flow("d_bzB","d_bpcb",[[DB-3.7,BYT+0.1,0.2],[DB-3.7,BYT+0.1,3.75]],3,1,0.2,[1,0,0],0.08,1.1)
-flow("d_bxT","d_bpcb",[[DB-3.5,BYT+0.1,-3.75],[DB+3.4,BYT+0.1,-3.75]],3,1,0.2,[0,1,0],0.08,1.2)
-flow("d_bxB","d_bpcb",[[DB-3.5,BYT+0.1,3.75],[DB+3.4,BYT+0.1,3.75]],3,1,0.2,[0,1,0],0.08,1.2)
-flow("d_bsT","d_bpcb",[[DB,BYT+0.1,-3.5],[DB,BYT+0.1,-1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
-flow("d_bsB","d_bpcb",[[DB,BYT+0.1,3.5],[DB,BYT+0.1,1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
+        box(f"b_mos{sz}{i}","b_pwr",mm("chipBk"),[0.8,0.24,0.62],[DB+x,BYT+0.12,sz*3.0])
+        box(f"b_pin{sz}{i}","b_pwr",mm("bolt"),[0.7,0.05,0.08],[DB+x,BYT+0.06,sz*3.0],at=[[0,0,-0.3],[0,0,0.3]])
+        box(f"b_t1{sz}{i}","b_trc",mm("cu"),[0.3,0.05,0.6],[DB+x,BYT+0.04,sz*3.4])
+        box(f"b_ind{sz}{i}","b_pwr",mm("chipBk"),[0.95,0.5,0.95],[DB+x,BYT+0.25,sz*2.15])
+        box(f"b_indw{sz}{i}","b_pwr",mm("cuHi"),[0.98,0.06,0.98],[DB+x,BYT+0.52,sz*2.15])
+        box(f"b_t2{sz}{i}","b_trc",mm("cu"),[0.3,0.05,0.7],[DB+x,BYT+0.04,sz*2.65])
+        cyl(f"b_cap{sz}{i}","b_pwr",mm("steel2"),0.3,0.5,[DB+x,BYT+0.25,sz*1.55],vertical=True)
+        cyl(f"b_capt{sz}{i}","b_pwr",mm("dark"),0.22,0.05,[DB+x,BYT+0.52,sz*1.55],vertical=True)
+        box(f"b_t3{sz}{i}","b_trc",mm("cuHi"),[0.5,0.05,0.5],[DB+x,BYT+0.04,sz*1.2])
+anchor("b_die","d_bdie",[DB+1.2,BYT+0.5,0.0],dx=150,dy=0); anchor("b_ind","b_pwr",[DB+2.4,BYT+0.55,0.0],dx=150,dy=0); anchor("b_mos","b_pwr",[DB-2.4,BYT+0.25,-3.0],dx=-110,dy=-60); anchor("b_cap","b_pwr",[DB-0.8,BYT+0.55,-1.55],dx=-130,dy=40)
+flow("d_bin","b_inl",[[DB-4.7,BYT+0.6,0],[DB-3.7,BYT+0.1,0]],4,1,0.2,[0,1,0],0.09,1.2)
+flow("d_bzT","b_trc",[[DB-3.7,BYT+0.1,-0.2],[DB-3.7,BYT+0.1,-3.75]],3,1,0.2,[1,0,0],0.08,1.1)
+flow("d_bzB","b_trc",[[DB-3.7,BYT+0.1,0.2],[DB-3.7,BYT+0.1,3.75]],3,1,0.2,[1,0,0],0.08,1.1)
+flow("d_bxT","b_trc",[[DB-3.5,BYT+0.1,-3.75],[DB+3.4,BYT+0.1,-3.75]],3,1,0.2,[0,1,0],0.08,1.2)
+flow("d_bxB","b_trc",[[DB-3.5,BYT+0.1,3.75],[DB+3.4,BYT+0.1,3.75]],3,1,0.2,[0,1,0],0.08,1.2)
+flow("d_bsT","b_trc",[[DB,BYT+0.1,-3.5],[DB,BYT+0.1,-1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
+flow("d_bsB","b_trc",[[DB,BYT+0.1,3.5],[DB,BYT+0.1,1.25]],4,4,1.6,[1,0,0],0.08,1.3,"lp_sig","lp_sigRim")
 actions["d_bdieG"]={"type":"pulse","layer":"d_bdie","parts":["d_bdie_body"],"color":"lp_heat","steady":True,"glow":0.8,"halo":0}
-actions["d_bmosG"]={"type":"pulse","layer":"d_bpcb","parts":[f"b_mos{s}{i}" for s in (-1,1) for i in range(4)],"color":"lp_proc","freq":3,"glow":0.8,"halo":0}
+actions["d_bmosG"]={"type":"pulse","layer":"b_pwr","parts":[f"b_mos{s}{i}" for s in (-1,1) for i in range(4)],"color":"lp_proc","freq":3,"glow":0.8,"halo":0}
 actions["d_bheat"]={"preset":"heat-spread","layer":"d_bdie","from":{"layer":"d_bdie","p":[DB,BYT+0.5,0]},"dir":[0,1,0],"reach":1.8,"count":3,"r0":0.5,"spread":0.5,"rate":0.8,"color":"lp_heat"}
 actions["d_bair"]={"preset":"stream","layer":"d_bpcb","path":[[DB-5.2,1.1,-1.0],[DB+5.2,1.1,-1.0]],"n":6,"shape":"arrow","rate":0.7,"color":"air","size":0.2}
-anchor("rk_sc2","sc",[SCX+1.5,3.4,-0.2],dx=70,dy=60)
+anchor("rk_sc2","sc",[SCX+1.5,3.4,SCZ],dx=70,dy=60)
 
+
+anchor("b_trc","b_trc",[DB-3.7,BYT+0.1,0.0],dx=-150,dy=0); anchor("b_pcb","d_bpcb",[DB-4.6,BYT,0.0],dx=-150,dy=0)
 model = {
  "name":"tech-800v：八百伏特（機櫃供電）。座標：R 機櫃 x=0、C 銅排對照 x=60、D 降壓路徑 x=120。零件用基本形狀＋庫（heatsink、pcb、die）。",
  "unit":"1＝約 10 cm（示意，非實際比例）","size":{"w":14,"h":2,"r":0.1,"t":6},

@@ -131,6 +131,30 @@
       "dy": 0
      },
      {
+      "layer": "scM",
+      "at": "s1:start-40",
+      "until": "s7:use-30",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "scF",
+      "at": "s1:start-40",
+      "until": "s7:use-30",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "scB",
+      "at": "s1:start-40",
+      "until": "s7:use-30",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
       "layer": "tr0",
       "at": "s1:start-40",
       "until": "start+4",
@@ -350,7 +374,8 @@
       "x": 0.8,
       "y": 3.5,
       "d": 33,
-      "elev": 20
+      "elev": 20,
+      "yaw": 0.5
      }
     ],
     "run": [
@@ -475,6 +500,22 @@
       "ramp": 4
      }
     ],
+    "shift": [
+     {
+      "layer": "rackM",
+      "at": "now+4",
+      "until": "fat-6",
+      "dur": 18,
+      "dz": 2.6
+     },
+     {
+      "layer": "rackF",
+      "at": "now+4",
+      "until": "fat-6",
+      "dur": 18,
+      "dz": 5.0
+     }
+    ],
     "labels": [
      {
       "part": "rk_shelf",
@@ -482,15 +523,23 @@
       "en": "power shelf",
       "color": "amber",
       "at": "now",
-      "until": "v54"
+      "until": "fat"
      },
      {
-      "part": "rk_shelf",
-      "text": "54 V",
-      "en": "54 V",
+      "part": "rk_mod",
+      "text": "整流模組",
+      "en": "rectifier modules",
       "color": "amber",
       "at": "v54",
-      "until": "s3:start-12"
+      "until": "fat-6"
+     },
+     {
+      "part": "rk_fanl",
+      "text": "風扇",
+      "en": "fans",
+      "color": "blue",
+      "at": "v54+14",
+      "until": "fat-6"
      },
      {
       "part": "rk_bus",
@@ -563,7 +612,8 @@
       "x": 60.2,
       "y": 0.0,
       "d": 46,
-      "elev": 16
+      "elev": 16,
+      "yaw": -0.5
      }
     ],
     "run": [
@@ -976,6 +1026,36 @@
       "elev": 18
      }
     ],
+    "shift": [
+     {
+      "layer": "b_trc",
+      "at": "chip+2",
+      "until": "hi-26",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "b_inl",
+      "at": "chip+2",
+      "until": "hi-26",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "b_pwr",
+      "at": "chip+2",
+      "until": "hi-26",
+      "dur": 18,
+      "dy": 3.0
+     },
+     {
+      "layer": "d_bdie",
+      "at": "chip+2",
+      "until": "hi-26",
+      "dur": 18,
+      "dy": 4.5
+     }
+    ],
     "run": [
      {
       "id": "d_pS",
@@ -1118,24 +1198,24 @@
       "text": "晶片 約 1 V",
       "en": "chip, ~1 V",
       "color": "blue",
-      "at": "chip+30",
-      "until": "hi-6"
+      "at": "chip+8",
+      "until": "chip+18"
      },
      {
       "part": "b_ind",
-      "text": "電感",
-      "en": "inductor",
+      "text": "開關・電感・電容",
+      "en": "switch, inductor, cap",
       "color": "amber",
-      "at": "chip+16",
-      "until": "hi-6"
+      "at": "chip+26",
+      "until": "hi-24"
      },
      {
-      "part": "b_mos",
-      "text": "開關晶片",
-      "en": "switch chip",
-      "color": "amber",
-      "at": "chip+4",
-      "until": "hi-6"
+      "part": "b_pcb",
+      "text": "電路板",
+      "en": "circuit board",
+      "color": "blue",
+      "at": "chip+8",
+      "until": "hi-24"
      },
      {
       "part": "d_sc",
@@ -1264,16 +1344,6 @@
       "dur": 1
      }
     ],
-    "shot": [
-     {
-      "at": "start-2",
-      "dur": 1,
-      "x": 2.6,
-      "y": 0.7,
-      "d": 42,
-      "elev": 20
-     }
-    ],
     "shift": [
      {
       "layer": "sc",
@@ -1282,6 +1352,51 @@
       "dx": 5,
       "opacity": 0,
       "dur": 26
+     },
+     {
+      "layer": "scM",
+      "at": "s1:start-40",
+      "until": "use",
+      "dx": 5,
+      "opacity": 0,
+      "dur": 26
+     },
+     {
+      "layer": "scF",
+      "at": "s1:start-40",
+      "until": "use",
+      "dx": 5,
+      "opacity": 0,
+      "dur": 26
+     },
+     {
+      "layer": "scB",
+      "at": "s1:start-40",
+      "until": "use",
+      "dx": 5,
+      "opacity": 0,
+      "dur": 26
+     },
+     {
+      "layer": "scM",
+      "at": "cab",
+      "until": "s8:real+16",
+      "dur": 20,
+      "dz": 1.8
+     },
+     {
+      "layer": "scF",
+      "at": "cab",
+      "until": "s8:real+16",
+      "dur": 20,
+      "dz": 3.8
+     },
+     {
+      "layer": "scB",
+      "at": "cab",
+      "until": "s8:real+16",
+      "dur": 20,
+      "dz": -2.4
      },
      {
       "layer": "busT",
@@ -1298,6 +1413,25 @@
       "opacity": 0,
       "dur": 10,
       "dy": 1.6
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 2.6,
+      "y": 0.7,
+      "d": 42,
+      "elev": 20
+     },
+     {
+      "at": "cab-8",
+      "dur": 20,
+      "x": 2.6,
+      "y": 0.7,
+      "d": 42,
+      "elev": 20,
+      "yaw": 0.5
      }
     ],
     "run": [
@@ -1568,11 +1702,12 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 1,
+      "dur": 24,
       "x": 2.6,
       "y": 0.7,
       "d": 42,
-      "elev": 20
+      "elev": 20,
+      "yaw": -0.5
      }
     ],
     "run": [
