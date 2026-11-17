@@ -1,0 +1,1391 @@
+{
+ "slug": "tech-800v",
+ "title": "八百伏特：AI 機櫃為什麼要把電壓拉高（科技透明圈 第 9 支）",
+ "asOf": "2026/11/22",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-800v-旁白.txt；句首無英文字母；API 整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "pk",
+    "label": "AI 機櫃供電",
+    "en": "RACK POWER",
+    "field": "約 2 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "handoff3D": true,
+    "readout": false,
+    "note": "查證截至 2026/11/22",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例・電流與發熱為示意"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "銅排",
+   "200 公斤"
+  ],
+  "sub": "八百伏特供電",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "一百萬瓦的 AI 機櫃，光送電的銅條，廠商估計就要兩百公斤。為什麼？答案在電壓。",
+   "tts": "一百萬瓦的 AI 機櫃，光送電的銅條，廠商估計就要兩百公斤。為什麼？答案在電壓。",
+   "subtitle": {
+    "zh": "一百萬瓦的 AI 機櫃\n光送電的銅條\n廠商估計就要兩百公斤\n為什麼？\n答案在電壓",
+    "en": "A one-megawatt AI rack, | just the copper to feed it, | is estimated at 200 kilograms. | Why? | The answer is voltage."
+   },
+   "keywords": [
+    "兩百公斤",
+    "電壓"
+   ],
+   "cues": [
+    {
+     "id": "rack",
+     "text": "AI 機櫃"
+    },
+    {
+     "id": "bar",
+     "text": "銅條"
+    },
+    {
+     "id": "kg",
+     "text": "兩百公斤"
+    },
+    {
+     "id": "why",
+     "text": "為什麼"
+    },
+    {
+     "id": "volt",
+     "text": "電壓"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "1 MW 機櫃｜廠商估算",
+     "title": "銅排 200 公斤",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 2.6,
+      "y": 3.9,
+      "d": 21,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "busN",
+      "at": "s1:start-40",
+      "until": "s7:use",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "sc",
+      "at": "s1:start-40",
+      "until": "s7:use-30",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 0
+     },
+     {
+      "layer": "tr0",
+      "at": "s1:start-40",
+      "until": "start+4",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "tr1",
+      "at": "s1:start-40",
+      "until": "start+8",
+      "dy": 1.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "tr2",
+      "at": "s1:start-40",
+      "until": "start+12",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "tr3",
+      "at": "s1:start-40",
+      "until": "start+16",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "tr4",
+      "at": "s1:start-40",
+      "until": "start+20",
+      "dy": 2.4000000000000004,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "tr5",
+      "at": "s1:start-40",
+      "until": "start+24",
+      "dy": 2.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.05
+     }
+    ],
+    "run": [
+     {
+      "id": "r_fan",
+      "at": "start",
+      "until": "s2:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_shelf",
+      "at": "start+6",
+      "until": "s2:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_cur",
+      "at": "bar-10",
+      "until": "s2:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "r_cur2",
+      "at": "bar-10",
+      "until": "s2:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "r_hot",
+      "at": "bar",
+      "until": "s2:start-2",
+      "ramp": 70
+     },
+     {
+      "id": "r_heat",
+      "at": "kg-10",
+      "until": "s2:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_air3",
+      "at": "start+10",
+      "until": "s2:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "rk_bus",
+      "text": "銅排 約 200 kg",
+      "en": "busbar ≈ 200 kg",
+      "color": "amber",
+      "at": "kg",
+      "until": "s2:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "kg+6",
+      "until": "s2:start-2",
+      "text": "廠商估算",
+      "color": "amber",
+      "size": 44,
+      "rot": -4,
+      "x": 830,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "NVIDIA 2025/5；Tom's Hardware（約 200 kg）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 2,
+   "narration": "現在機櫃裡的電，只有五十幾伏特，靠很粗的銅條送進去，叫銅排。",
+   "tts": "現在機櫃裡的電，只有五十幾伏特，靠很粗的銅條送進去，叫銅排。",
+   "subtitle": {
+    "zh": "現在機櫃裡的電\n只有五十幾伏特\n靠很粗的銅條送進去\n叫銅排",
+    "en": "Inside today's rack, | the power is only about 50 volts, | pushed in through thick copper bars | called busbars."
+   },
+   "keywords": [
+    "五十幾伏特",
+    "銅排"
+   ],
+   "cues": [
+    {
+     "id": "now",
+     "text": "機櫃裡的電"
+    },
+    {
+     "id": "v54",
+     "text": "五十幾伏特"
+    },
+    {
+     "id": "fat",
+     "text": "很粗的銅條"
+    },
+    {
+     "id": "busbar",
+     "text": "銅排"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 14,
+      "x": 1.6,
+      "y": 3.9,
+      "d": 19,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "r_fan",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_cur",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_cur2",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_hot",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_air",
+      "at": "start",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_air2",
+      "at": "start+10",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_air3",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br0",
+      "at": "v54+4",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br1",
+      "at": "v54+11",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br2",
+      "at": "v54+18",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br3",
+      "at": "v54+25",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br4",
+      "at": "v54+32",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_br5",
+      "at": "v54+39",
+      "until": "s3:start-2",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "rk_shelf",
+      "text": "電源架 54 V",
+      "en": "power shelf, 54 V",
+      "color": "amber",
+      "at": "v54",
+      "until": "fat"
+     },
+     {
+      "part": "rk_bus",
+      "text": "銅排 busbar",
+      "en": "busbar",
+      "color": "blue",
+      "at": "busbar",
+      "until": "s3:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "busbar",
+      "until": "s3:start-2",
+      "text": "已確定",
+      "color": "blue",
+      "size": 44,
+      "rot": -4,
+      "x": 860,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "NVIDIA 技術部落格 2025/5；SemiAnalysis"
+   ]
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "功率等於電壓乘電流。電壓低，電流就得很大。",
+   "tts": "功率等於電壓乘電流。電壓低，電流就得很大。",
+   "subtitle": {
+    "zh": "功率等於\n電壓乘電流\n電壓低\n電流就得很大",
+    "en": "Power equals | voltage times current. | With low voltage, | the current has to be huge."
+   },
+   "keywords": [
+    "電壓乘電流",
+    "很大"
+   ],
+   "cues": [
+    {
+     "id": "power",
+     "text": "功率等於"
+    },
+    {
+     "id": "vxi",
+     "text": "電壓乘電流"
+    },
+    {
+     "id": "low",
+     "text": "電壓低"
+    },
+    {
+     "id": "big",
+     "text": "很大"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "pk",
+      "at": "start-2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60.6,
+      "y": 1.6,
+      "d": 27,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "c_srcU",
+      "at": "power",
+      "until": "s6:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "c_lampU",
+      "at": "low",
+      "until": "s6:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "c_up",
+      "at": "low-4",
+      "until": "s6:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_up",
+      "text": "54 V 供電",
+      "en": "54 V supply",
+      "color": "amber",
+      "at": "low",
+      "until": "s4:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pw-compare",
+      "at": "start+2",
+      "until": "s6:start-14",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 345,
+      "avoid": false,
+      "title": "同樣的電，兩種電壓",
+      "tag": "示意，非實際比例",
+      "t": {
+       "pw": {
+        "at": "power"
+       },
+       "vi": {
+        "at": "vxi"
+       },
+       "low": {
+        "at": "low"
+       },
+       "big": {
+        "at": "big"
+       },
+       "hot": {
+        "at": "s4:hot"
+       },
+       "x15": {
+        "at": "s4:x15"
+       },
+       "x219": {
+        "at": "s4:x219"
+       },
+       "v800": {
+        "at": "s5:v800"
+       },
+       "amp": {
+        "at": "s5:amp"
+       },
+       "thin": {
+        "at": "s5:thin"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "P＝V×I；1 MW÷54 V≈18,519 A（算式）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "電流大，銅排就燙，只好越做越粗。電流大十五倍，發熱大兩百多倍。",
+   "tts": "電流大，銅排就燙，只好越做越粗。電流大十五倍，發熱大兩百多倍。",
+   "subtitle": {
+    "zh": "電流大\n銅排就燙\n只好越做越粗\n電流大十五倍\n發熱大兩百多倍",
+    "en": "Big current | heats the busbar, | so it keeps getting thicker. | Fifteen times the current | means over two hundred times the heat."
+   },
+   "keywords": [
+    "發熱",
+    "兩百多倍"
+   ],
+   "cues": [
+    {
+     "id": "cur",
+     "text": "電流大"
+    },
+    {
+     "id": "hot",
+     "text": "銅排就燙"
+    },
+    {
+     "id": "thick",
+     "text": "越做越粗"
+    },
+    {
+     "id": "x15",
+     "text": "十五倍"
+    },
+    {
+     "id": "x219",
+     "text": "兩百多倍"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60.6,
+      "y": 1.6,
+      "d": 27,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "c_hot",
+      "at": "hot-8",
+      "until": "s6:start-2",
+      "ramp": 50
+     },
+     {
+      "id": "c_heat",
+      "at": "hot",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_heat2",
+      "at": "hot+8",
+      "until": "s6:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "c_dn",
+      "at": "x15",
+      "until": "s5:thin",
+      "ramp": 8
+     },
+     {
+      "id": "c_srcD",
+      "at": "x15-6",
+      "until": "s6:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "c_lampD",
+      "at": "x15+6",
+      "until": "s6:start-2",
+      "ramp": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_dn",
+      "text": "800 V 供電",
+      "en": "800 V supply",
+      "color": "blue",
+      "at": "x15",
+      "until": "s5:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "x219",
+      "until": "s5:start-2",
+      "text": "估算：同一條銅排",
+      "color": "coral",
+      "size": 38,
+      "rot": -4,
+      "x": 720,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "P＝I²R；14.8²≈219（算式，同一條銅排）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "改成八百伏特，電流只剩十五分之一，銅排就能做細。",
+   "tts": "改成八百伏特，電流只剩十五分之一，銅排就能做細。",
+   "subtitle": {
+    "zh": "改成八百伏特\n電流只剩十五分之一\n銅排就能做細",
+    "en": "Switch to 800 volts, | the current drops to one fifteenth, | so the busbar can be thin."
+   },
+   "keywords": [
+    "八百伏特",
+    "做細"
+   ],
+   "cues": [
+    {
+     "id": "v800",
+     "text": "八百伏特"
+    },
+    {
+     "id": "amp",
+     "text": "十五分之一"
+    },
+    {
+     "id": "thin",
+     "text": "做細"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60.6,
+      "y": 1.6,
+      "d": 27,
+      "elev": 20
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cdB",
+      "at": "thin-4",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dy": -0.6,
+      "dur": 8
+     },
+     {
+      "layer": "cdT",
+      "at": "s1:start-40",
+      "until": "thin+4",
+      "opacity": 0,
+      "dur": 2,
+      "dy": 1.4
+     }
+    ],
+    "run": [
+     {
+      "id": "c_dnT",
+      "at": "thin+16",
+      "until": "s6:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_thin",
+      "text": "截面約 1/15",
+      "en": "≈1/15 the cross-section",
+      "color": "blue",
+      "at": "thin+10",
+      "until": "s6:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "amp",
+      "until": "s6:start-2",
+      "text": "估算",
+      "color": "blue",
+      "size": 40,
+      "rot": -4,
+      "x": 860,
+      "y": 330
+     }
+    ]
+   },
+   "sources": [
+    "基本電學：同樣電流密度下截面與電流成正比（估算）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "那以前為什麼不用高壓？因為晶片只吃很低的電壓，電壓越高，中間要降壓的次數越多。",
+   "tts": "那以前為什麼不用高壓？因為晶片只吃很低的電壓，電壓越高，中間要降壓的次數越多。",
+   "subtitle": {
+    "zh": "那以前為什麼不用高壓\n因為晶片只吃很低的電壓\n電壓越高\n中間要降壓的次數越多",
+    "en": "So why not use high voltage before? | Because the chip needs very low voltage. | The higher the voltage, | the more times it must be stepped down."
+   },
+   "keywords": [
+    "很低的電壓",
+    "降壓"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼不用高壓"
+    },
+    {
+     "id": "chip",
+     "text": "晶片只吃很低"
+    },
+    {
+     "id": "hi",
+     "text": "電壓越高"
+    },
+    {
+     "id": "steps",
+     "text": "降壓的次數"
+    },
+    {
+     "id": "many",
+     "text": "越多"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120.2,
+      "y": 2.0,
+      "d": 30,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "d_pC",
+      "at": "chip",
+      "until": "s7:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "d_pS",
+      "at": "hi-4",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_f1",
+      "at": "hi",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_f2",
+      "at": "steps",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_pA",
+      "at": "steps",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_hA",
+      "at": "steps+6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_f3",
+      "at": "many",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_pB",
+      "at": "many-4",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "d_hB",
+      "at": "many+6",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "d_air",
+      "at": "steps",
+      "until": "s7:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_sc",
+      "text": "800 V",
+      "en": "800 V",
+      "color": "amber",
+      "at": "hi",
+      "until": "s7:start-2"
+     },
+     {
+      "part": "d_a",
+      "text": "→ 約 50 V",
+      "en": "to ~50 V",
+      "color": "amber",
+      "at": "steps",
+      "until": "s7:start-2"
+     },
+     {
+      "part": "d_b",
+      "text": "→ 約 12 V",
+      "en": "to ~12 V",
+      "color": "amber",
+      "at": "many",
+      "until": "s7:start-2"
+     },
+     {
+      "part": "d_c",
+      "text": "晶片 約 1 V",
+      "en": "chip, ~1 V",
+      "color": "blue",
+      "at": "chip",
+      "until": "s7:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pw-chain",
+      "at": "start+2",
+      "until": "s7:start-14",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 345,
+      "avoid": false,
+      "title": "電壓逐級降下來",
+      "tag": "示意：常見路徑之一，各家不同",
+      "t": {
+       "why": {
+        "at": "why"
+       },
+       "chip": {
+        "at": "chip"
+       },
+       "hi": {
+        "at": "hi"
+       },
+       "steps": {
+        "at": "steps"
+       },
+       "many": {
+        "at": "many"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "Power Systems Design；Arrow 2026/8（晶片約 1 V）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "廠商規劃二零二七年開始改用。台灣的台達電和光寶科，也在做這種電源櫃。",
+   "tts": "廠商規劃二零二七年開始改用。台灣的台達電和光寶科，也在做這種電源櫃。",
+   "subtitle": {
+    "zh": "廠商規劃二零二七年\n開始改用\n台灣的台達電和光寶科\n也在做這種電源櫃",
+    "en": "The makers plan 2027 | for the switch. | In Taiwan, Delta and Lite-On | are building these power cabinets too."
+   },
+   "keywords": [
+    "二零二七年",
+    "台達電",
+    "光寶科"
+   ],
+   "cues": [
+    {
+     "id": "y2027",
+     "text": "二零二七年"
+    },
+    {
+     "id": "use",
+     "text": "開始改用"
+    },
+    {
+     "id": "tw",
+     "text": "台達電"
+    },
+    {
+     "id": "lite",
+     "text": "光寶科"
+    },
+    {
+     "id": "cab",
+     "text": "電源櫃"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 3.4,
+      "y": 3.9,
+      "d": 23,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "sc",
+      "at": "s1:start-40",
+      "until": "use",
+      "dx": 5,
+      "opacity": 0,
+      "dur": 26
+     },
+     {
+      "layer": "busT",
+      "at": "use+30",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dy": -0.4,
+      "dur": 8
+     },
+     {
+      "layer": "busN",
+      "at": "s1:start-40",
+      "until": "use+36",
+      "opacity": 0,
+      "dur": 10,
+      "dy": 1.6
+     }
+    ],
+    "run": [
+     {
+      "id": "r_scglow",
+      "at": "use+10",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_fan",
+      "at": "start-2",
+      "until": "s8:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_sc",
+      "at": "use+40",
+      "until": "s8:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "r_curN",
+      "at": "use+44",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_curN2",
+      "at": "use+44",
+      "until": "s8:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "r_shelf",
+      "at": "start",
+      "until": "s8:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_air3",
+      "at": "start",
+      "until": "s8:start-2",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "rk_sc",
+      "text": "800 V 電源側櫃",
+      "en": "800 V sidecar",
+      "color": "amber",
+      "at": "use+16",
+      "until": "s8:start-2"
+     },
+     {
+      "part": "rk_thin",
+      "text": "細銅排",
+      "en": "thin busbar",
+      "color": "blue",
+      "at": "use+50",
+      "until": "s8:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "y2027",
+      "until": "tw-6",
+      "text": "廠商規劃，非實測",
+      "color": "amber",
+      "size": 36,
+      "rot": -4,
+      "x": 770,
+      "y": 330
+     },
+     {
+      "type": "card",
+      "at": "tw",
+      "until": "s8:start-2",
+      "y": 880,
+      "kicker": "媒體報導",
+      "rows": [
+       [
+        "台達電",
+        "800 V 電源櫃"
+       ],
+       [
+        "光寶科",
+        "800 V 電源櫃"
+       ]
+      ],
+      "hi": "台達電",
+      "hiAt": "tw",
+      "size": 42,
+      "foot": "查證截至 2026/11/22，非投資建議"
+     }
+    ]
+   },
+   "sources": [
+    "NVIDIA 2025/5；科技新報 2026/3/28"
+   ]
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "整套能省多少，目前還沒有實際機房的數字。",
+   "tts": "整套能省多少，目前還沒有實際機房的數字。",
+   "subtitle": {
+    "zh": "整套能省多少\n目前還沒有\n實際機房的數字",
+    "en": "How much the whole system saves | is not yet known: | there are no real data-center figures."
+   },
+   "keywords": [
+    "沒有",
+    "數字"
+   ],
+   "cues": [
+    {
+     "id": "save",
+     "text": "能省多少"
+    },
+    {
+     "id": "none",
+     "text": "還沒有"
+    },
+    {
+     "id": "real",
+     "text": "實際機房"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 3.4,
+      "y": 3.9,
+      "d": 23,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "r_scglow",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_fan",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_sc",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_curN",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_curN2",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 4
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "real",
+      "until": "s9:start-2",
+      "text": "查不到",
+      "color": "blue",
+      "size": 56,
+      "rot": -4,
+      "x": 300,
+      "y": 330
+     },
+     {
+      "type": "section",
+      "kind": "pw-unk",
+      "at": "start+2",
+      "until": "s9:start-14",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 345,
+      "avoid": false,
+      "title": "省多少？",
+      "tag": "廠商目標，非實測",
+      "t": {
+       "save": {
+        "at": "save"
+       },
+       "none": {
+        "at": "none"
+       },
+       "real": {
+        "at": "real"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "research.md #9（截至 2026/11/17 查不到整套機房實測）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "所以，電壓拉高，電流變小，銅條就能細。想要完整解說，留言供電。下一支，晶片設計公司為什麼沒有工廠。",
+   "tts": "所以，電壓拉高，電流變小，銅條就能細。想要完整解說，留言供電。下一支，晶片設計公司為什麼沒有工廠。",
+   "subtitle": {
+    "zh": "所以\n電壓拉高\n電流變小\n銅條就能細\n想要完整解說\n留言供電\n下一支\n晶片設計公司為什麼沒有工廠",
+    "en": "So, | raise the voltage, | the current shrinks, | and the copper can be thin. | For the full notes, | comment \"供電\". | Next: | why a chip-design company has no factory."
+   },
+   "keywords": [
+    "電壓拉高",
+    "電流變小",
+    "銅條就能細"
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "所以"
+    },
+    {
+     "id": "up",
+     "text": "電壓拉高"
+    },
+    {
+     "id": "small",
+     "text": "電流變小"
+    },
+    {
+     "id": "slim",
+     "text": "銅條就能細"
+    },
+    {
+     "id": "kw",
+     "text": "留言供電"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 3.4,
+      "y": 3.9,
+      "d": 23,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "r_scglow",
+      "at": "start-2",
+      "until": "s10:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_fan",
+      "at": "start-2",
+      "until": "s10:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_sc",
+      "at": "start-2",
+      "until": "s10:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_curN",
+      "at": "start-2",
+      "until": "s10:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "r_curN2",
+      "at": "start-2",
+      "until": "s10:start-2",
+      "ramp": 4
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pw-sum",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 345,
+      "avoid": false,
+      "title": "一句話",
+      "tag": "示意",
+      "t": {
+       "up": {
+        "at": "up"
+       },
+       "small": {
+        "at": "small"
+       },
+       "slim": {
+        "at": "slim"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "下一支：11/23（一）晶片設計公司（已排定）"
+   ]
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "晶片設計公司為什麼沒有工廠",
+     "trail": [
+      "電壓",
+      "電流",
+      "銅排",
+      "降壓"
+     ],
+     "at": "s9:next",
+     "comment": "供電",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}
