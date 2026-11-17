@@ -111,7 +111,7 @@ scenes.append(scene("s5", "mechanism", 5,
      "run": [run("c_ion", "ion", "hit-8", 6), run("c_ion2", "ion", "hit-8", 6), run("c_efield", "field", "hit-8", 6),
              run("w_ion0", off("hit", -4), A(PT[6], 8), 6), run("w_ion1", A(PT[6], 8), Q("s6", "wall", 14), 6)],
      "labels": [lab("c_ionlab", "離子（帶正電）", "Ions (positive)", "coral", "ion", "hit-26"), lab("w_mask", "光阻遮罩", "Mask", "amber", "bit", "s6:start-6")],
-     "overlay": [sec("etch-sect", "hit-10", "s7:start-16", 940, 330, "孔一點一點變深", "示意，非實際比例",
+     "overlay": [sec("etch-sect", "hit-10", "s8:start-16", 940, 330, "孔一點一點變深", "示意，非實際比例",
                      {**{f"p{i}": PT[i] for i in range(8)}, **{f"f{g}": FT[g] for g in range(4)}, "hit": "s5:hit", "film": "s6:film", "straight": "s6:straight", "side": "s6:side"})]},
     ["MKS；美國專利；成大設備手冊"], pause=0.7))
 
@@ -124,23 +124,9 @@ scenes.append(scene("s6", "mechanism", 6,
     [cue("not", "只往下打還不夠"), cue("wall", "洞壁"), cue("film", "保護膜"), cue("side", "側面不被刻到"), cue("straight", "洞才挖得直")],
     {"shot": [shot("start-2", WX, 2.7, 34, 14, 1)],
      "shift": [gone(f"w_p{i}", PT[i], 10) for i in (3, 2, 1, 0)],
-     "run": [run("w_ion2", Q("s6", "wall", 14), A(PT[2], 8), 6), run("w_ion3", A(PT[2], 8), A(PT[0], 8), 6), run("w_ion4", A(PT[0], 8), "s7:start-2", 6), run("w_by", "wall", "s7:start-2", 6)],
-     "labels": [lab("w_wall", "洞壁保護膜", "Protective film", "blue", "film", "s7:start-8"), lab("w_hole", "底部繼續被打深", "Bottom keeps etching", "coral", "straight", "s7:start-8")]},
+     "run": [run("w_ion2", Q("s6", "wall", 14), A(PT[2], 8), 6), run("w_ion3", A(PT[2], 8), A(PT[0], 8), 6), run("w_ion4", A(PT[0], 8), "s8:start-2", 6), run("w_by", "wall", "s8:start-2", 6)],
+     "labels": [lab("w_wall", "洞壁保護膜", "Protective film", "blue", "film", "s8:start-8"), lab("w_hole", "底部繼續被打深", "Bottom keeps etching", "coral", "straight", "s8:start-8")]},
     ["美國專利 US7166233；清大論文；MKS"], pause=0.7))
-
-# ───────── s7 越深越難，低溫（C 吸盤特寫，運作動畫 D）─────────
-scenes.append(scene("s7", "twist", 7,
-    "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
-    ["不過洞越深", "底部越難刻", "所以改把晶圓降到零下七十度"],
-    ["But the deeper the hole,", "the harder the bottom is to etch,", "so the wafer is chilled to minus 70 degrees."],
-    ["越難刻", "零下七十度"],
-    [cue("but", "不過"), cue("deep", "洞越深"), cue("hard", "底部越難刻"), cue("so", "所以"), cue("cold", "零下七十度")],
-    {"zoom": [{"to": "chuck", "at": "start-6", "dur": 40}],
-     "shot": [shot("start-2", CX - 1.5, 1.3, 31, 26, 40)],
-     "run": [run("c_chill", "hard", "s8:start-2", 6), run("c_cold", "cold-6", "s8:start-2", 10)],
-     "labels": [lab("c_cath", "冷卻水道", "Coolant channel", "blue", "so", "s8:start-8"), lab("c_wf", "晶圓", "Wafer", "coral", "cold", "s8:start-8")],
-     "overlay": [sec("etch-cold", "start+2", "s8:start-16", 940, 330, "常溫對照低溫", "廠商公布（TEL）・示意", {"deep": "s7:deep", "hard": "s7:hard", "so": "s7:so", "cold": "s7:cold"})]},
-    ["Tom's Hardware；TechPowerUp"], pause=0.7))
 
 # ───────── s8 誰在做（國際，M）─────────
 scenes.append(scene("s8", "payoff", 8,
@@ -194,7 +180,6 @@ script = {
            "_說明": "念稿：docs/prompts/tech-etch-旁白.txt；整篇 1 次請求"},
  "hud": {"levels": [{"id": "mach", "label": "蝕刻機", "en": "ETCH TOOL", "field": "3 m", "ruler": "1 m", "art": "none", "handoff3D": True, "readout": True, "note": "查證截至 2026/11/18", "noteAlways": True},
                     {"id": "cham", "label": "反應腔", "en": "CHAMBER", "field": "30 cm", "ruler": "10 cm", "art": "none", "readout": True, "note": "查證截至 2026/11/18", "noteAlways": True},
-                    {"id": "chuck", "label": "晶圓座", "en": "WAFER CHUCK", "field": "10 cm", "ruler": "2 cm", "art": "none", "readout": True, "note": "查證截至 2026/11/18", "noteAlways": True},
                     {"id": "sect", "label": "晶圓剖面", "en": "WAFER SECTION", "field": "3 µm", "ruler": "1 µm", "art": "none", "readout": True, "note": "查證截至 2026/11/18", "noteAlways": True}],
          "theme": "dark", "schematic": {"text": "Schematic – not to scale", "zh": "示意圖，非實際比例・電漿與離子為示意"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
  "cover": {"title": ["洞又深又直", "靠電漿往下打"], "sub": "蝕刻機", "frame": 40},

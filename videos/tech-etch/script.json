@@ -44,17 +44,6 @@
     "noteAlways": true
    },
    {
-    "id": "chuck",
-    "label": "晶圓座",
-    "en": "WAFER CHUCK",
-    "field": "10 cm",
-    "ruler": "2 cm",
-    "art": "none",
-    "readout": true,
-    "note": "查證截至 2026/11/18",
-    "noteAlways": true
-   },
-   {
     "id": "sect",
     "label": "晶圓剖面",
     "en": "WAFER SECTION",
@@ -916,7 +905,7 @@
       "type": "section",
       "kind": "etch-sect",
       "at": "hit-10",
-      "until": "s7:start-16",
+      "until": "s8:start-16",
       "x": 64,
       "y": 940,
       "w": 952,
@@ -1077,13 +1066,13 @@
      {
       "id": "w_ion4",
       "at": "s6:straight+8",
-      "until": "s7:start-2",
+      "until": "s8:start-2",
       "ramp": 6
      },
      {
       "id": "w_by",
       "at": "wall",
-      "until": "s7:start-2",
+      "until": "s8:start-2",
       "ramp": 6
      }
     ],
@@ -1094,7 +1083,7 @@
       "en": "Protective film",
       "color": "blue",
       "at": "film",
-      "until": "s7:start-8"
+      "until": "s8:start-8"
      },
      {
       "part": "w_hole",
@@ -1102,134 +1091,12 @@
       "en": "Bottom keeps etching",
       "color": "coral",
       "at": "straight",
-      "until": "s7:start-8"
+      "until": "s8:start-8"
      }
     ]
    },
    "sources": [
     "美國專利 US7166233；清大論文；MKS"
-   ],
-   "pauseAfter": 0.7
-  },
-  {
-   "id": "s7",
-   "beat": "twist",
-   "para": 7,
-   "narration": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
-   "tts": "不過洞越深，底部越難刻，所以改把晶圓降到零下七十度。",
-   "subtitle": {
-    "zh": "不過洞越深\n底部越難刻\n所以改把晶圓降到零下七十度",
-    "en": "But the deeper the hole, | the harder the bottom is to etch, | so the wafer is chilled to minus 70 degrees."
-   },
-   "keywords": [
-    "越難刻",
-    "零下七十度"
-   ],
-   "cues": [
-    {
-     "id": "but",
-     "text": "不過"
-    },
-    {
-     "id": "deep",
-     "text": "洞越深"
-    },
-    {
-     "id": "hard",
-     "text": "底部越難刻"
-    },
-    {
-     "id": "so",
-     "text": "所以"
-    },
-    {
-     "id": "cold",
-     "text": "零下七十度"
-    }
-   ],
-   "component": "ThreeScene",
-   "props": {
-    "zoom": [
-     {
-      "to": "chuck",
-      "at": "start-6",
-      "dur": 40
-     }
-    ],
-    "shot": [
-     {
-      "at": "start-2",
-      "dur": 40,
-      "x": 58.5,
-      "y": 1.3,
-      "d": 31,
-      "elev": 26
-     }
-    ],
-    "run": [
-     {
-      "id": "c_chill",
-      "at": "hard",
-      "until": "s8:start-2",
-      "ramp": 6
-     },
-     {
-      "id": "c_cold",
-      "at": "cold-6",
-      "until": "s8:start-2",
-      "ramp": 10
-     }
-    ],
-    "labels": [
-     {
-      "part": "c_cath",
-      "text": "冷卻水道",
-      "en": "Coolant channel",
-      "color": "blue",
-      "at": "so",
-      "until": "s8:start-8"
-     },
-     {
-      "part": "c_wf",
-      "text": "晶圓",
-      "en": "Wafer",
-      "color": "coral",
-      "at": "cold",
-      "until": "s8:start-8"
-     }
-    ],
-    "overlay": [
-     {
-      "type": "section",
-      "kind": "etch-cold",
-      "at": "start+2",
-      "until": "s8:start-16",
-      "x": 64,
-      "y": 940,
-      "w": 952,
-      "h": 330,
-      "avoid": false,
-      "title": "常溫對照低溫",
-      "tag": "廠商公布（TEL）・示意",
-      "t": {
-       "deep": {
-        "at": "s7:deep"
-       },
-       "hard": {
-        "at": "s7:hard"
-       },
-       "so": {
-        "at": "s7:so"
-       },
-       "cold": {
-        "at": "s7:cold"
-       }
-      }
-     }
-    ]
-   },
-   "sources": [
-    "Tom's Hardware；TechPowerUp"
    ],
    "pauseAfter": 0.7
   },

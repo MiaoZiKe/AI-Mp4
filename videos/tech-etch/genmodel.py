@@ -213,6 +213,7 @@ anchor("w_mask", "w_mask", [WX + 2.2, YM + .25, .0], dx=150, dy=-60); anchor("w_
 anchor("w_hole", "w_l7", [WX - .0, YM - .8, .0], dx=-160, dy=-100); anchor("w_sub", "w_sub", [WX - 3.0, .6, 0], dx=-150, dy=40)
 anchor("w_wall", "w_f0", [WX - .45, Y0 + 1.0, .0], dx=-160, dy=-30)
 
+anchor("c_cath2", "ch_cool", [CX - 4.5, 1.2, .6], dx=-60, dy=130)
 anchor("m_wf", "m_wafer", [MX - 3.1, 1.8, 0], dx=0, dy=-170)
 anchor("c_gas", "ch_top", [CX - 3.2, 8.2, 0], dx=-130, dy=40); anchor("c_rfa", "ch_top", [CX + 1.4, 7.9, 0], dx=150, dy=-40); anchor("c_ionlab", "plasma", [CX + 1.6, 3.3, 1.0], dx=150, dy=10)
 
