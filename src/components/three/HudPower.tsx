@@ -51,11 +51,11 @@ const Compare: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={(1 - aV)}>
-          <g opacity={aP}><rect x={110} y={90} width={200} height={150} fill={H.amber} /><text x={210} y={150} textAnchor="middle" style={zh(sm(34), onC(H.amber), 900)}>功率 P</text><text x={210} y={206} textAnchor="middle" style={mono(46, onC(H.amber), 900)}>送出去的電</text></g>
-          <g opacity={aVI}><text x={338} y={190} textAnchor="middle" style={mono(70, H.text, 900)}>＝</text>
-            <rect x={380} y={90} width={200} height={150} fill={H.line} /><text x={480} y={150} textAnchor="middle" style={zh(sm(34), onC(H.line), 900)}>電壓 V</text><text x={480} y={206} textAnchor="middle" style={mono(46, onC(H.line), 900)}>推力</text>
-            <text x={608} y={190} textAnchor="middle" style={mono(70, H.text, 900)}>×</text>
-            <rect x={640} y={90} width={200} height={150} fill={c("lp_sig")} /><text x={740} y={150} textAnchor="middle" style={zh(sm(34), H.onAccent, 900)}>電流 I</text><text x={740} y={206} textAnchor="middle" style={mono(46, H.onAccent, 900)}>流量</text></g>
+          <g opacity={aP}><rect x={40} y={90} width={230} height={150} fill={H.amber} /><text x={155} y={146} textAnchor="middle" style={zh(sm(34), onC(H.amber), 900)}>功率 P</text><text x={155} y={204} textAnchor="middle" style={zh(sm(30), onC(H.amber), 800)}>送出去的電</text></g>
+          <g opacity={aVI}><text x={316} y={190} textAnchor="middle" style={mono(60, H.text, 900)}>＝</text>
+            <rect x={362} y={90} width={230} height={150} fill={H.line} /><text x={477} y={146} textAnchor="middle" style={zh(sm(34), onC(H.line), 900)}>電壓 V</text><text x={477} y={204} textAnchor="middle" style={zh(sm(30), onC(H.line), 800)}>推力</text>
+            <text x={638} y={190} textAnchor="middle" style={mono(60, H.text, 900)}>×</text>
+            <rect x={684} y={90} width={230} height={150} fill={c("lp_sig")} /><text x={799} y={146} textAnchor="middle" style={zh(sm(34), H.onAccent, 900)}>電流 I</text><text x={799} y={204} textAnchor="middle" style={zh(sm(30), H.onAccent, 800)}>流量</text></g>
         </g>
         <text x={24} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aP}>P ＝</text>
         <text x={110} y={Hh - 12} style={mono(40, H.text, 900)} opacity={aVI}>V × I</text>
@@ -149,7 +149,7 @@ const Chain: React.FC<P> = ({ o, f, k, m }) => {
 const Unk: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 345;
   const a = tween(f, T(o, "save"), 12, EASE.move), b = tween(f, T(o, "none"), 18, EASE.move), r = tween(f, T(o, "real"), 8, EASE.enter);
-  const L = 640;
+  const L = 420;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
