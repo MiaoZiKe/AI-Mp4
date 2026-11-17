@@ -2,187 +2,418 @@
  "version": 2,
  "slug": "caffaine-rules-file",
  "fps": 30,
- "totalFrames": 1463,
- "totalSec": 48.77,
- "gapSec": 0.3,
+ "totalFrames": 1560,
+ "totalSec": 52,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 6.327,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-rules-file/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 7.02,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 203,
+   "durationFrames": 230,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 195,
-   "stillFrame": 193,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 210,
+   "stillFrame": 220,
    "subtitleWindow": [
     0,
-    200
+    227
    ],
    "sourceWindow": [
     0,
-    198
+    225
    ],
    "lines": [
     {
      "text": "同一句請求",
      "start": 0,
      "chars": [
-      4,
+      0,
+      5,
       8,
-      13,
-      18,
-      23
+      12,
+      18
      ]
     },
     {
      "text": "沒規則的 AI 回了",
-     "start": 32,
+     "start": 29,
      "chars": [
-      34,
-      39,
-      44,
-      49,
-      49,
-      54,
-      59,
-      59,
-      64,
-      69
+      32,
+      38,
+      43,
+      48,
+      48,
+      52,
+      56,
+      56,
+      65,
+      70
      ]
     },
     {
      "text": "一大串版本",
-     "start": 78,
+     "start": 71,
      "chars": [
-      80,
-      85,
+      74,
+      78,
+      84,
       90,
-      95,
-      100
+      95
      ]
     },
     {
      "text": "先寫好規則的",
-     "start": 109,
+     "start": 112,
      "chars": [
-      111,
-      116,
-      121,
-      126,
-      131,
-      136
+      114,
+      120,
+      125,
+      129,
+      134,
+      139
      ]
     },
     {
      "text": "三行就交差",
-     "start": 145,
+     "start": 149,
      "chars": [
-      147,
-      152,
-      157,
-      162,
-      167
+      151,
+      159,
+      165,
+      169,
+      174
      ]
     },
     {
      "text": "差在哪",
-     "start": 176,
+     "start": 190,
      "chars": [
-      178,
-      183,
-      188
+      192,
+      198,
+      203
      ]
     }
    ],
    "keywords": [
     {
      "text": "一大串版本",
-     "start": 80
+     "start": 74
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "一大串版本",
-     "frame": 82
+     "frame": 75,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "先寫好規則的",
-     "frame": 113
+     "frame": 115,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "三行就交差",
-     "frame": 149
+     "frame": 152,
+     "early": 0
     },
     {
      "id": "k4",
      "text": "差在哪",
-     "frame": 180
+     "frame": 193,
+     "early": 0
     }
    ],
+   "hash": "8c071a5a0cd8-a0dc9f8f58",
    "sub": "同一句請求\n沒規則的 AI 回了\n一大串版本\n先寫好規則的\n三行就交差\n差在哪",
-   "provider": "estimate",
-   "syllables": 31,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.843,
+    "minScore": 0.055,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 1.09,
+      "start": 1.1,
+      "ch": "沒",
+      "errMs": 10
+     },
+     {
+      "onset": 2.19,
+      "start": 2.2,
+      "ch": "回",
+      "errMs": 10
+     },
+     {
+      "onset": 3.81,
+      "start": 3.84,
+      "ch": "先",
+      "errMs": 30
+     },
+     {
+      "onset": 5.02,
+      "start": 5.08,
+      "ch": "三",
+      "errMs": 60
+     },
+     {
+      "onset": 6.45,
+      "start": 6.44,
+      "ch": "差",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "同",
+     "start": 0.02,
+     "end": 0.2,
+     "score": 0.972
+    },
+    {
+     "text": "一",
+     "start": 0.2,
+     "end": 0.26,
+     "score": 0.273
+    },
+    {
+     "text": "句",
+     "start": 0.3,
+     "end": 0.38,
+     "score": 0.992
+    },
+    {
+     "text": "請",
+     "start": 0.44,
+     "end": 0.6,
+     "score": 0.968
+    },
+    {
+     "text": "求",
+     "start": 0.64,
+     "end": 0.84,
+     "score": 0.891
+    },
+    {
+     "text": "沒",
+     "start": 1.1,
+     "end": 1.24,
+     "score": 0.999
+    },
+    {
+     "text": "規",
+     "start": 1.3,
+     "end": 1.42,
+     "score": 0.998
+    },
+    {
+     "text": "則",
+     "start": 1.48,
+     "end": 1.58,
+     "score": 0.984
+    },
+    {
+     "text": "的",
+     "start": 1.64,
+     "end": 1.7,
+     "score": 0.998
+    },
+    {
+     "text": "A",
+     "start": 1.78,
+     "end": 1.84,
+     "score": 0.072
+    },
+    {
+     "text": "I",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.527
+    },
+    {
+     "text": "回",
+     "start": 2.2,
+     "end": 2.34,
+     "score": 0.939
+    },
+    {
+     "text": "了",
+     "start": 2.38,
+     "end": 2.44,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 2.5,
+     "end": 2.56,
+     "score": 0.768
+    },
+    {
+     "text": "大",
+     "start": 2.66,
+     "end": 2.74,
+     "score": 0.974
+    },
+    {
+     "text": "串",
+     "start": 2.84,
+     "end": 3,
+     "score": 0.961
+    },
+    {
+     "text": "版",
+     "start": 3.04,
+     "end": 3.14,
+     "score": 0.995
+    },
+    {
+     "text": "本",
+     "start": 3.2,
+     "end": 3.34,
+     "score": 0.666
+    },
+    {
+     "text": "先",
+     "start": 3.84,
+     "end": 4,
+     "score": 0.989
+    },
+    {
+     "text": "寫",
+     "start": 4.04,
+     "end": 4.14,
+     "score": 0.862
+    },
+    {
+     "text": "好",
+     "start": 4.2,
+     "end": 4.32,
+     "score": 0.995
+    },
+    {
+     "text": "規",
+     "start": 4.36,
+     "end": 4.46,
+     "score": 0.998
+    },
+    {
+     "text": "則",
+     "start": 4.52,
+     "end": 4.6,
+     "score": 0.989
+    },
+    {
+     "text": "的",
+     "start": 4.68,
+     "end": 4.76,
+     "score": 0.998
+    },
+    {
+     "text": "三",
+     "start": 5.08,
+     "end": 5.26,
+     "score": 0.055
+    },
+    {
+     "text": "行",
+     "start": 5.34,
+     "end": 5.5,
+     "score": 0.476
+    },
+    {
+     "text": "就",
+     "start": 5.54,
+     "end": 5.64,
+     "score": 0.991
+    },
+    {
+     "text": "交",
+     "start": 5.68,
+     "end": 5.82,
+     "score": 0.95
+    },
+    {
+     "text": "差",
+     "start": 5.84,
+     "end": 6.04,
+     "score": 0.733
+    },
+    {
+     "text": "差",
+     "start": 6.44,
+     "end": 6.56,
+     "score": 0.967
+    },
+    {
+     "text": "在",
+     "start": 6.64,
+     "end": 6.78,
+     "score": 1
+    },
+    {
+     "text": "哪",
+     "start": 6.82,
+     "end": 6.88,
+     "score": 0.997
+    }
+   ],
    "charTimes": [
-    0,
-    0.166,
-    0.333,
-    0.499,
-    0.666,
-    1.032,
-    1.199,
-    1.365,
-    1.532,
-    1.698,
-    1.865,
-    2.031,
-    2.198,
-    2.564,
-    2.73,
-    2.897,
-    3.063,
-    3.23,
-    3.596,
-    3.763,
-    3.929,
-    4.096,
-    4.262,
-    4.429,
-    4.795,
-    4.961,
-    5.128,
-    5.294,
-    5.461,
-    5.827,
-    5.994,
-    6.16
+    0.02,
+    0.2,
+    0.3,
+    0.44,
+    0.64,
+    1.1,
+    1.3,
+    1.48,
+    1.64,
+    1.78,
+    1.92,
+    2.2,
+    2.38,
+    2.5,
+    2.66,
+    2.84,
+    3.04,
+    3.2,
+    3.84,
+    4.04,
+    4.2,
+    4.36,
+    4.52,
+    4.68,
+    5.08,
+    5.34,
+    5.54,
+    5.68,
+    5.84,
+    6.44,
+    6.64,
+    6.82
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 204,
-   "audioSec": 5.714,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 193,
-   "durationFrames": 191,
+   "audio": "audio/caffaine-rules-file/02-s02.wav",
+   "audioFrame": 229,
+   "audioSec": 5.45,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 220,
+   "durationFrames": 192,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -196,136 +427,336 @@
      8
     ]
    },
-   "voiceStartFrame": 203,
-   "voiceEndFrame": 376,
-   "stillFrame": 374,
+   "voiceStartFrame": 230,
+   "voiceEndFrame": 392,
+   "stillFrame": 402,
    "subtitleWindow": [
-    200,
-    381
+    227,
+    409
    ],
    "sourceWindow": [
-    198,
-    379
+    225,
+    407
    ],
    "lines": [
     {
      "text": "因為 AI 不記得你是誰",
-     "start": 200,
+     "start": 227,
      "chars": [
-      203,
-      208,
-      208,
-      213,
-      219,
-      219,
-      224,
-      230,
-      235,
-      241,
-      246,
-      252
+      228,
+      232,
+      232,
+      237,
+      242,
+      242,
+      248,
+      253,
+      258,
+      262,
+      266,
+      270
      ]
     },
     {
      "text": "所以每次它都先客套一輪",
-     "start": 262,
+     "start": 288,
      "chars": [
-      264,
-      269,
-      275,
-      280,
-      285,
       291,
-      296,
-      302,
-      307,
-      313,
-      318
+      294,
+      297,
+      303,
+      310,
+      315,
+      319,
+      325,
+      330,
+      336,
+      339
      ]
     },
     {
      "text": "你還得再叫它改短",
-     "start": 328,
+     "start": 351,
      "chars": [
-      330,
-      336,
-      341,
-      347,
-      352,
-      358,
-      363,
-      368
+      354,
+      357,
+      361,
+      366,
+      371,
+      376,
+      381,
+      385
      ]
     }
    ],
    "keywords": [
     {
      "text": "不記得你是誰",
-     "start": 224
+     "start": 248
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "不記得你是誰",
-     "frame": 226
+     "frame": 249,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "客套一輪",
-     "frame": 303
+     "frame": 326,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "改短",
-     "frame": 365
+     "frame": 382,
+     "early": 0
     }
    ],
+   "hash": "d480ed239437-a0dc9f8f58",
    "sub": "因為 AI 不記得你是誰\n所以每次它都先客套一輪\n你還得再叫它改短",
-   "provider": "estimate",
-   "syllables": 28,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.894,
+    "minScore": 0.091,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 2.06,
+      "start": 2.1,
+      "ch": "所",
+      "errMs": 40
+     },
+     {
+      "onset": 4.22,
+      "start": 4.2,
+      "ch": "你",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "因",
+     "start": 0.02,
+     "end": 0.12,
+     "score": 0.998
+    },
+    {
+     "text": "為",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 1
+    },
+    {
+     "text": "A",
+     "start": 0.32,
+     "end": 0.38,
+     "score": 0.091
+    },
+    {
+     "text": "I",
+     "start": 0.48,
+     "end": 0.58,
+     "score": 0.539
+    },
+    {
+     "text": "不",
+     "start": 0.68,
+     "end": 0.76,
+     "score": 0.998
+    },
+    {
+     "text": "記",
+     "start": 0.84,
+     "end": 0.94,
+     "score": 0.999
+    },
+    {
+     "text": "得",
+     "start": 1.02,
+     "end": 1.08,
+     "score": 0.997
+    },
+    {
+     "text": "你",
+     "start": 1.14,
+     "end": 1.22,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 1.28,
+     "end": 1.36,
+     "score": 0.938
+    },
+    {
+     "text": "誰",
+     "start": 1.42,
+     "end": 1.6,
+     "score": 0.994
+    },
+    {
+     "text": "所",
+     "start": 2.1,
+     "end": 2.18,
+     "score": 0.618
+    },
+    {
+     "text": "以",
+     "start": 2.22,
+     "end": 2.26,
+     "score": 0.94
+    },
+    {
+     "text": "每",
+     "start": 2.32,
+     "end": 2.46,
+     "score": 0.999
+    },
+    {
+     "text": "次",
+     "start": 2.52,
+     "end": 2.64,
+     "score": 0.999
+    },
+    {
+     "text": "它",
+     "start": 2.76,
+     "end": 2.84,
+     "score": 0.987
+    },
+    {
+     "text": "都",
+     "start": 2.9,
+     "end": 3,
+     "score": 0.681
+    },
+    {
+     "text": "先",
+     "start": 3.04,
+     "end": 3.18,
+     "score": 0.946
+    },
+    {
+     "text": "客",
+     "start": 3.24,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "套",
+     "start": 3.42,
+     "end": 3.58,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 3.6,
+     "end": 3.64,
+     "score": 0.416
+    },
+    {
+     "text": "輪",
+     "start": 3.7,
+     "end": 3.86,
+     "score": 0.996
+    },
+    {
+     "text": "你",
+     "start": 4.2,
+     "end": 4.28,
+     "score": 0.985
+    },
+    {
+     "text": "還",
+     "start": 4.32,
+     "end": 4.42,
+     "score": 0.998
+    },
+    {
+     "text": "得",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.997
+    },
+    {
+     "text": "再",
+     "start": 4.6,
+     "end": 4.74,
+     "score": 0.999
+    },
+    {
+     "text": "叫",
+     "start": 4.78,
+     "end": 4.92,
+     "score": 0.998
+    },
+    {
+     "text": "它",
+     "start": 4.94,
+     "end": 5.02,
+     "score": 0.983
+    },
+    {
+     "text": "改",
+     "start": 5.1,
+     "end": 5.22,
+     "score": 0.992
+    },
+    {
+     "text": "短",
+     "start": 5.26,
+     "end": 5.4,
+     "score": 0.853
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.546,
-    0.728,
-    0.91,
-    1.092,
-    1.274,
-    1.456,
-    1.638,
-    2.038,
+    0.02,
+    0.16,
+    0.32,
+    0.48,
+    0.68,
+    0.84,
+    1.02,
+    1.14,
+    1.28,
+    1.42,
+    2.1,
     2.22,
-    2.402,
-    2.584,
-    2.766,
-    2.948,
-    3.13,
-    3.312,
-    3.494,
-    3.676,
-    3.858,
-    4.258,
+    2.32,
+    2.52,
+    2.76,
+    2.9,
+    3.04,
+    3.24,
+    3.42,
+    3.6,
+    3.7,
+    4.2,
+    4.32,
     4.44,
-    4.622,
-    4.804,
-    4.986,
-    5.168,
-    5.35,
-    5.532
+    4.6,
+    4.78,
+    4.94,
+    5.1,
+    5.26
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 384,
-   "audioSec": 5.918,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 374,
-   "durationFrames": 208,
+   "audio": "audio/caffaine-rules-file/03-s03.wav",
+   "audioFrame": 411,
+   "audioSec": 7.29,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 402,
+   "durationFrames": 248,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -339,163 +770,395 @@
      8
     ]
    },
-   "voiceStartFrame": 384,
-   "voiceEndFrame": 562,
-   "stillFrame": 572,
+   "voiceStartFrame": 412,
+   "voiceEndFrame": 629,
+   "stillFrame": 640,
    "subtitleWindow": [
-    381,
-    579
+    409,
+    647
    ],
    "sourceWindow": [
-    379,
-    577
+    407,
+    645
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "解法是把要求寫成",
-     "start": 381,
+     "start": 409,
      "chars": [
-      383,
-      387,
-      392,
-      397,
-      401,
-      406,
       411,
-      416
+      416,
+      422,
+      435,
+      440,
+      446,
+      453,
+      458
      ]
     },
     {
      "text": "一份規則檔",
-     "start": 424,
+     "start": 461,
      "chars": [
-      426,
-      431,
-      436,
-      440,
-      445
+      463,
+      466,
+      471,
+      476,
+      481
      ]
     },
     {
      "text": "只寫一次",
-     "start": 454,
+     "start": 491,
      "chars": [
-      456,
-      460,
-      465,
-      470
+      493,
+      500,
+      506,
+      510
      ]
     },
     {
      "text": "身分口氣",
-     "start": 478,
+     "start": 529,
      "chars": [
-      480,
-      485,
-      495,
-      500
+      531,
+      537,
+      549,
+      555
      ]
     },
     {
      "text": "格式禁忌",
-     "start": 509,
+     "start": 566,
      "chars": [
-      511,
-      515,
-      526,
-      531
+      569,
+      576,
+      587,
+      594
      ]
     },
     {
      "text": "四行就夠",
-     "start": 539,
+     "start": 605,
      "chars": [
-      541,
-      546,
-      551,
-      555
+      607,
+      612,
+      618,
+      623
      ]
     }
    ],
    "keywords": [
     {
      "text": "規則檔",
-     "start": 436
+     "start": 471
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "規則檔",
-     "frame": 437
+     "frame": 473,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "身分",
-     "frame": 482
+     "frame": 532,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "口氣",
-     "frame": 497
+     "frame": 550,
+     "early": 0
     },
     {
      "id": "k4",
      "text": "格式",
-     "frame": 512
+     "frame": 570,
+     "early": 0
     },
     {
      "id": "k5",
      "text": "禁忌",
-     "frame": 527
+     "frame": 588,
+     "early": 0
     }
    ],
+   "hash": "24e35cf97e26-a0dc9f8f58",
    "sub": "解法是把要求寫成\n一份規則檔\n只寫一次\n身分\n口氣\n格式\n禁忌\n四行就夠",
-   "provider": "estimate",
-   "syllables": 29,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.894,
+    "minScore": 0.074,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 0.88,
+      "start": 0.86,
+      "ch": "把",
+      "errMs": -20
+     },
+     {
+      "onset": 2.78,
+      "start": 2.78,
+      "ch": "只",
+      "errMs": 0
+     },
+     {
+      "onset": 4,
+      "start": 4.04,
+      "ch": "身",
+      "errMs": 40
+     },
+     {
+      "onset": 4.64,
+      "start": 4.64,
+      "ch": "口",
+      "errMs": 0
+     },
+     {
+      "onset": 5.31,
+      "start": 5.3,
+      "ch": "格",
+      "errMs": -10
+     },
+     {
+      "onset": 5.92,
+      "start": 5.9,
+      "ch": "禁",
+      "errMs": -20
+     },
+     {
+      "onset": 6.52,
+      "start": 6.58,
+      "ch": "四",
+      "errMs": 60
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "解",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.732
+    },
+    {
+     "text": "法",
+     "start": 0.2,
+     "end": 0.28,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 0.4,
+     "end": 0.52,
+     "score": 0.999
+    },
+    {
+     "text": "把",
+     "start": 0.86,
+     "end": 0.92,
+     "score": 0.994
+    },
+    {
+     "text": "要",
+     "start": 1.02,
+     "end": 1.16,
+     "score": 0.998
+    },
+    {
+     "text": "求",
+     "start": 1.2,
+     "end": 1.36,
+     "score": 0.987
+    },
+    {
+     "text": "寫",
+     "start": 1.44,
+     "end": 1.54,
+     "score": 0.877
+    },
+    {
+     "text": "成",
+     "start": 1.6,
+     "end": 1.76,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 1.78,
+     "end": 1.82,
+     "score": 0.112
+    },
+    {
+     "text": "份",
+     "start": 1.88,
+     "end": 2,
+     "score": 0.999
+    },
+    {
+     "text": "規",
+     "start": 2.06,
+     "end": 2.16,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 2.22,
+     "end": 2.32,
+     "score": 0.996
+    },
+    {
+     "text": "檔",
+     "start": 2.38,
+     "end": 2.56,
+     "score": 0.939
+    },
+    {
+     "text": "只",
+     "start": 2.78,
+     "end": 2.9,
+     "score": 0.993
+    },
+    {
+     "text": "寫",
+     "start": 3,
+     "end": 3.12,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 3.2,
+     "end": 3.24,
+     "score": 0.074
+    },
+    {
+     "text": "次",
+     "start": 3.34,
+     "end": 3.46,
+     "score": 0.997
+    },
+    {
+     "text": "身",
+     "start": 4.04,
+     "end": 4.2,
+     "score": 0.96
+    },
+    {
+     "text": "分",
+     "start": 4.24,
+     "end": 4.42,
+     "score": 0.978
+    },
+    {
+     "text": "口",
+     "start": 4.64,
+     "end": 4.8,
+     "score": 0.999
+    },
+    {
+     "text": "氣",
+     "start": 4.86,
+     "end": 5.02,
+     "score": 0.997
+    },
+    {
+     "text": "格",
+     "start": 5.3,
+     "end": 5.38,
+     "score": 0.999
+    },
+    {
+     "text": "式",
+     "start": 5.54,
+     "end": 5.64,
+     "score": 0.982
+    },
+    {
+     "text": "禁",
+     "start": 5.9,
+     "end": 6.06,
+     "score": 0.999
+    },
+    {
+     "text": "忌",
+     "start": 6.14,
+     "end": 6.24,
+     "score": 0.998
+    },
+    {
+     "text": "四",
+     "start": 6.58,
+     "end": 6.68,
+     "score": 0.884
+    },
+    {
+     "text": "行",
+     "start": 6.76,
+     "end": 6.92,
+     "score": 0.505
+    },
+    {
+     "text": "就",
+     "start": 6.96,
+     "end": 7.06,
+     "score": 0.961
+    },
+    {
+     "text": "夠",
+     "start": 7.12,
+     "end": 7.24,
+     "score": 0.993
+    }
+   ],
    "charTimes": [
-    0,
-    0.158,
-    0.316,
-    0.475,
-    0.633,
-    0.791,
-    0.949,
-    1.108,
-    1.456,
-    1.614,
-    1.772,
-    1.931,
-    2.089,
-    2.437,
-    2.595,
-    2.753,
-    2.912,
-    3.26,
-    3.418,
-    3.766,
-    3.924,
-    4.273,
-    4.431,
-    4.779,
-    4.937,
-    5.285,
-    5.444,
-    5.602,
-    5.76
+    0.04,
+    0.2,
+    0.4,
+    0.86,
+    1.02,
+    1.2,
+    1.44,
+    1.6,
+    1.78,
+    1.88,
+    2.06,
+    2.22,
+    2.38,
+    2.78,
+    3,
+    3.2,
+    3.34,
+    4.04,
+    4.24,
+    4.64,
+    4.86,
+    5.3,
+    5.54,
+    5.9,
+    6.14,
+    6.58,
+    6.76,
+    6.96,
+    7.12
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 583,
-   "audioSec": 9.184,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 572,
-   "durationFrames": 295,
+   "audio": "audio/caffaine-rules-file/04-s04.wav",
+   "audioFrame": 649,
+   "audioSec": 8.61,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 640,
+   "durationFrames": 287,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -509,219 +1172,588 @@
      8
     ]
    },
-   "voiceStartFrame": 582,
-   "voiceEndFrame": 859,
-   "stillFrame": 857,
+   "voiceStartFrame": 650,
+   "voiceEndFrame": 907,
+   "stillFrame": 917,
    "subtitleWindow": [
-    579,
-    864
+    647,
+    924
    ],
    "sourceWindow": [
-    577,
-    862
+    645,
+    922
    ],
    "lines": [
     {
      "text": "寫好以後",
-     "start": 579,
+     "start": 647,
      "chars": [
-      582,
-      586,
-      591,
-      595
+      650,
+      655,
+      660,
+      663
      ]
     },
     {
      "text": "貼進 ChatGPT 的",
-     "start": 603,
+     "start": 673,
      "chars": [
-      605,
-      609,
-      609,
-      614,
-      618,
-      623,
-      627,
-      632,
-      636,
-      641,
-      641,
-      645
+      675,
+      681,
+      681,
+      686,
+      687,
+      689,
+      691,
+      693,
+      697,
+      700,
+      700,
+      705
      ]
     },
     {
      "text": "自訂指令",
-     "start": 653,
+     "start": 709,
      "chars": [
-      655,
-      660,
-      664,
-      669
+      711,
+      717,
+      722,
+      727
      ]
     },
     {
      "text": "或是 Gemini 的技能",
-     "start": 677,
+     "start": 736,
      "chars": [
-      679,
-      683,
-      683,
-      688,
-      692,
-      697,
-      701,
-      706,
-      710,
-      710,
-      715,
-      719,
-      724
+      738,
+      742,
+      742,
+      747,
+      749,
+      751,
+      752,
+      753,
+      757,
+      757,
+      758,
+      762,
+      768
      ]
     },
     {
      "text": "或是 Claude 的專案指示",
-     "start": 732,
+     "start": 779,
      "chars": [
-      734,
-      738,
-      738,
-      743,
-      747,
-      752,
-      756,
-      761,
-      765,
-      765,
-      770,
-      774,
-      779,
-      783,
-      788
+      781,
+      786,
+      786,
+      790,
+      793,
+      795,
+      796,
+      798,
+      798,
+      798,
+      799,
+      802,
+      809,
+      813,
+      819
      ]
     },
     {
      "text": "之後每次新對話",
-     "start": 795,
+     "start": 837,
      "chars": [
-      798,
-      802,
-      807,
-      811,
-      816,
-      820,
-      825
+      840,
+      844,
+      849,
+      854,
+      859,
+      864,
+      868
      ]
     },
     {
      "text": "它都先讀過",
-     "start": 832,
+     "start": 877,
      "chars": [
-      834,
-      839,
-      843,
-      848,
-      853
+      879,
+      883,
+      888,
+      894,
+      900
      ]
     }
    ],
    "keywords": [
     {
      "text": "自訂指令",
-     "start": 655
+     "start": 711
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "自訂指令",
-     "frame": 657
+     "frame": 713,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "技能",
-     "frame": 721
+     "frame": 764,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "專案指示",
-     "frame": 776
+     "frame": 804,
+     "early": 0
     },
     {
      "id": "k4",
      "text": "每次新對話",
-     "frame": 808
+     "frame": 851,
+     "early": 0
     }
    ],
+   "hash": "0d6df93afafa-a0dc9f8f58",
    "sub": "寫好以後\n貼進 ChatGPT 的\n自訂指令\n或是 Gemini 的技能\n或是 Claude 的專案指示\n之後每次新對話\n它都先讀過",
-   "provider": "estimate",
-   "syllables": 45,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.799,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.94,
+      "start": 0.92,
+      "ch": "貼",
+      "errMs": -20
+     },
+     {
+      "onset": 3.01,
+      "start": 3.02,
+      "ch": "或",
+      "errMs": 10
+     },
+     {
+      "onset": 4.46,
+      "start": 4.46,
+      "ch": "或",
+      "errMs": 0
+     },
+     {
+      "onset": 6.42,
+      "start": 6.4,
+      "ch": "之",
+      "errMs": -20
+     },
+     {
+      "onset": 7.74,
+      "start": 7.72,
+      "ch": "它",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "寫",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.993
+    },
+    {
+     "text": "好",
+     "start": 0.26,
+     "end": 0.38,
+     "score": 0.926
+    },
+    {
+     "text": "以",
+     "start": 0.4,
+     "end": 0.44,
+     "score": 0.941
+    },
+    {
+     "text": "後",
+     "start": 0.52,
+     "end": 0.68,
+     "score": 0.999
+    },
+    {
+     "text": "貼",
+     "start": 0.92,
+     "end": 1.04,
+     "score": 0.975
+    },
+    {
+     "text": "進",
+     "start": 1.1,
+     "end": 1.22,
+     "score": 0.999
+    },
+    {
+     "text": "C",
+     "start": 1.28,
+     "end": 1.3,
+     "score": 0.94
+    },
+    {
+     "text": "h",
+     "start": 1.32,
+     "end": 1.34,
+     "score": 0.734
+    },
+    {
+     "text": "a",
+     "start": 1.38,
+     "end": 1.4,
+     "score": 0.229
+    },
+    {
+     "text": "t",
+     "start": 1.44,
+     "end": 1.46,
+     "score": 0.005
+    },
+    {
+     "text": "G",
+     "start": 1.5,
+     "end": 1.52,
+     "score": 0.001
+    },
+    {
+     "text": "P",
+     "start": 1.64,
+     "end": 1.66,
+     "score": 0.151
+    },
+    {
+     "text": "T",
+     "start": 1.76,
+     "end": 1.78,
+     "score": 0.991
+    },
+    {
+     "text": "的",
+     "start": 1.92,
+     "end": 2,
+     "score": 0.998
+    },
+    {
+     "text": "自",
+     "start": 2.12,
+     "end": 2.22,
+     "score": 0.998
+    },
+    {
+     "text": "訂",
+     "start": 2.3,
+     "end": 2.44,
+     "score": 0.99
+    },
+    {
+     "text": "指",
+     "start": 2.48,
+     "end": 2.58,
+     "score": 0.886
+    },
+    {
+     "text": "令",
+     "start": 2.64,
+     "end": 2.82,
+     "score": 0.995
+    },
+    {
+     "text": "或",
+     "start": 3.02,
+     "end": 3.1,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 3.16,
+     "end": 3.24,
+     "score": 0.999
+    },
+    {
+     "text": "G",
+     "start": 3.3,
+     "end": 3.32,
+     "score": 0
+    },
+    {
+     "text": "e",
+     "start": 3.38,
+     "end": 3.4,
+     "score": 0.666
+    },
+    {
+     "text": "m",
+     "start": 3.44,
+     "end": 3.46,
+     "score": 0.997
+    },
+    {
+     "text": "i",
+     "start": 3.48,
+     "end": 3.5,
+     "score": 0.001
+    },
+    {
+     "text": "n",
+     "start": 3.5,
+     "end": 3.52,
+     "score": 0.924
+    },
+    {
+     "text": "i",
+     "start": 3.64,
+     "end": 3.66,
+     "score": 0.982
+    },
+    {
+     "text": "的",
+     "start": 3.68,
+     "end": 3.76,
+     "score": 0.998
+    },
+    {
+     "text": "技",
+     "start": 3.82,
+     "end": 3.92,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 4,
+     "end": 4.18,
+     "score": 0.985
+    },
+    {
+     "text": "或",
+     "start": 4.46,
+     "end": 4.54,
+     "score": 0.929
+    },
+    {
+     "text": "是",
+     "start": 4.6,
+     "end": 4.68,
+     "score": 1
+    },
+    {
+     "text": "C",
+     "start": 4.74,
+     "end": 4.76,
+     "score": 0.008
+    },
+    {
+     "text": "l",
+     "start": 4.84,
+     "end": 4.86,
+     "score": 0.998
+    },
+    {
+     "text": "a",
+     "start": 4.9,
+     "end": 4.92,
+     "score": 0.001
+    },
+    {
+     "text": "u",
+     "start": 4.96,
+     "end": 4.98,
+     "score": 0.992
+    },
+    {
+     "text": "d",
+     "start": 5,
+     "end": 5.02,
+     "score": 0.997
+    },
+    {
+     "text": "e",
+     "start": 5.02,
+     "end": 5.04,
+     "score": 0
+    },
+    {
+     "text": "的",
+     "start": 5.04,
+     "end": 5.08,
+     "score": 0.498
+    },
+    {
+     "text": "專",
+     "start": 5.16,
+     "end": 5.3,
+     "score": 0.768
+    },
+    {
+     "text": "案",
+     "start": 5.38,
+     "end": 5.46,
+     "score": 0.997
+    },
+    {
+     "text": "指",
+     "start": 5.52,
+     "end": 5.6,
+     "score": 0.896
+    },
+    {
+     "text": "示",
+     "start": 5.7,
+     "end": 5.82,
+     "score": 0.999
+    },
+    {
+     "text": "之",
+     "start": 6.4,
+     "end": 6.5,
+     "score": 0.808
+    },
+    {
+     "text": "後",
+     "start": 6.56,
+     "end": 6.7,
+     "score": 0.999
+    },
+    {
+     "text": "每",
+     "start": 6.72,
+     "end": 6.84,
+     "score": 0.999
+    },
+    {
+     "text": "次",
+     "start": 6.88,
+     "end": 6.98,
+     "score": 0.999
+    },
+    {
+     "text": "新",
+     "start": 7.04,
+     "end": 7.16,
+     "score": 0.999
+    },
+    {
+     "text": "對",
+     "start": 7.2,
+     "end": 7.32,
+     "score": 0.999
+    },
+    {
+     "text": "話",
+     "start": 7.36,
+     "end": 7.46,
+     "score": 0.999
+    },
+    {
+     "text": "它",
+     "start": 7.72,
+     "end": 7.8,
+     "score": 0.995
+    },
+    {
+     "text": "都",
+     "start": 7.86,
+     "end": 7.98,
+     "score": 0.994
+    },
+    {
+     "text": "先",
+     "start": 8.02,
+     "end": 8.18,
+     "score": 0.994
+    },
+    {
+     "text": "讀",
+     "start": 8.22,
+     "end": 8.3,
+     "score": 0.997
+    },
+    {
+     "text": "過",
+     "start": 8.4,
+     "end": 8.5,
+     "score": 0.97
+    }
+   ],
    "charTimes": [
-    0,
-    0.15,
-    0.3,
-    0.45,
-    0.78,
-    0.93,
-    1.08,
-    1.23,
-    1.381,
-    1.531,
-    1.681,
-    1.831,
-    1.981,
-    2.131,
-    2.461,
-    2.611,
-    2.761,
-    2.911,
-    3.241,
-    3.391,
-    3.541,
-    3.691,
-    3.842,
-    3.992,
-    4.142,
-    4.292,
-    4.442,
-    4.592,
-    4.742,
-    5.072,
-    5.222,
-    5.372,
-    5.522,
-    5.672,
-    5.822,
-    5.972,
-    6.122,
-    6.273,
-    6.423,
-    6.573,
-    6.723,
-    6.873,
-    7.203,
-    7.353,
-    7.503,
-    7.653,
-    7.803,
-    7.953,
-    8.103,
-    8.433,
-    8.583,
-    8.733,
-    8.884,
-    9.034
+    0.08,
+    0.26,
+    0.4,
+    0.52,
+    0.92,
+    1.1,
+    1.28,
+    1.32,
+    1.38,
+    1.44,
+    1.5,
+    1.64,
+    1.76,
+    1.92,
+    2.12,
+    2.3,
+    2.48,
+    2.64,
+    3.02,
+    3.16,
+    3.3,
+    3.38,
+    3.44,
+    3.48,
+    3.5,
+    3.64,
+    3.68,
+    3.82,
+    4,
+    4.46,
+    4.6,
+    4.74,
+    4.84,
+    4.9,
+    4.96,
+    5,
+    5.02,
+    5.04,
+    5.16,
+    5.38,
+    5.52,
+    5.7,
+    6.4,
+    6.56,
+    6.72,
+    6.88,
+    7.04,
+    7.2,
+    7.36,
+    7.72,
+    7.86,
+    8.02,
+    8.22,
+    8.4
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 867,
-   "audioSec": 6.531,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 857,
-   "durationFrames": 221,
+   "audio": "audio/caffaine-rules-file/05-s05.wav",
+   "audioFrame": 926,
+   "audioSec": 7.34,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 917,
+   "durationFrames": 243,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -735,155 +1767,397 @@
      8
     ]
    },
-   "voiceStartFrame": 867,
-   "voiceEndFrame": 1064,
-   "stillFrame": 1068,
+   "voiceStartFrame": 927,
+   "voiceEndFrame": 1145,
+   "stillFrame": 1150,
    "subtitleWindow": [
-    864,
-    1075
+    924,
+    1157
    ],
    "sourceWindow": [
-    862,
-    1073
+    922,
+    1155
    ],
    "pauseAfter": 0.5,
    "lines": [
     {
      "text": "我用 Gemini 實測",
-     "start": 864,
+     "start": 924,
      "chars": [
-      866,
-      871,
-      871,
-      876,
-      881,
-      886,
-      891,
-      896,
-      901,
-      901,
-      906,
-      911
+      925,
+      929,
+      929,
+      934,
+      936,
+      938,
+      939,
+      940,
+      944,
+      944,
+      947,
+      952
      ]
     },
     {
      "text": "同一句請求各跑五次",
-     "start": 920,
+     "start": 966,
      "chars": [
-      922,
-      927,
-      932,
-      938,
-      943,
-      948,
-      953,
-      958,
-      963
+      968,
+      973,
+      977,
+      981,
+      987,
+      997,
+      1002,
+      1009,
+      1014
      ]
     },
     {
      "text": "沒規則平均一點六分",
-     "start": 972,
+     "start": 1033,
      "chars": [
-      974,
-      979,
-      984,
-      989,
-      994,
-      1000,
-      1005,
-      1010,
-      1015
+      1036,
+      1042,
+      1046,
+      1054,
+      1061,
+      1067,
+      1071,
+      1076,
+      1081
      ]
     },
     {
      "text": "有規則次次滿分",
-     "start": 1024,
+     "start": 1095,
      "chars": [
-      1026,
-      1031,
-      1036,
-      1041,
-      1046,
-      1051,
-      1056
+      1097,
+      1103,
+      1108,
+      1118,
+      1126,
+      1130,
+      1137
      ]
     }
    ],
    "keywords": [
     {
      "text": "各跑五次",
-     "start": 948
+     "start": 997
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "各跑五次",
-     "frame": 949
+     "frame": 998,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "一點六分",
-     "frame": 1001
+     "frame": 1069,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "次次滿分",
-     "frame": 1043
+     "frame": 1119,
+     "early": 0
     }
    ],
+   "hash": "b3a14c0aea20-a0dc9f8f58",
    "sub": "我用 Gemini 實測\n同一句請求各跑五次\n沒規則平均一點六分\n有規則次次滿分",
-   "provider": "estimate",
-   "syllables": 32,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.817,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.46,
+      "start": 1.44,
+      "ch": "同",
+      "errMs": -20
+     },
+     {
+      "onset": 3.7,
+      "start": 3.7,
+      "ch": "沒",
+      "errMs": 0
+     },
+     {
+      "onset": 5.74,
+      "start": 5.76,
+      "ch": "有",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 0.14,
+     "end": 0.28,
+     "score": 0.991
+    },
+    {
+     "text": "G",
+     "start": 0.3,
+     "end": 0.32,
+     "score": 0
+    },
+    {
+     "text": "e",
+     "start": 0.38,
+     "end": 0.4,
+     "score": 0.86
+    },
+    {
+     "text": "m",
+     "start": 0.46,
+     "end": 0.48,
+     "score": 0.986
+    },
+    {
+     "text": "i",
+     "start": 0.48,
+     "end": 0.5,
+     "score": 0.003
+    },
+    {
+     "text": "n",
+     "start": 0.52,
+     "end": 0.58,
+     "score": 0.585
+    },
+    {
+     "text": "i",
+     "start": 0.64,
+     "end": 0.68,
+     "score": 0.793
+    },
+    {
+     "text": "實",
+     "start": 0.74,
+     "end": 0.82,
+     "score": 0.995
+    },
+    {
+     "text": "測",
+     "start": 0.92,
+     "end": 1.04,
+     "score": 0.995
+    },
+    {
+     "text": "同",
+     "start": 1.44,
+     "end": 1.62,
+     "score": 0.94
+    },
+    {
+     "text": "一",
+     "start": 1.62,
+     "end": 1.66,
+     "score": 0.03
+    },
+    {
+     "text": "句",
+     "start": 1.74,
+     "end": 1.82,
+     "score": 0.855
+    },
+    {
+     "text": "請",
+     "start": 1.88,
+     "end": 2.04,
+     "score": 0.882
+    },
+    {
+     "text": "求",
+     "start": 2.08,
+     "end": 2.28,
+     "score": 0.852
+    },
+    {
+     "text": "各",
+     "start": 2.4,
+     "end": 2.48,
+     "score": 0.997
+    },
+    {
+     "text": "跑",
+     "start": 2.58,
+     "end": 2.76,
+     "score": 0.796
+    },
+    {
+     "text": "五",
+     "start": 2.8,
+     "end": 2.86,
+     "score": 0.837
+    },
+    {
+     "text": "次",
+     "start": 2.98,
+     "end": 3.14,
+     "score": 0.995
+    },
+    {
+     "text": "沒",
+     "start": 3.7,
+     "end": 3.84,
+     "score": 1
+    },
+    {
+     "text": "規",
+     "start": 3.9,
+     "end": 4.02,
+     "score": 0.998
+    },
+    {
+     "text": "則",
+     "start": 4.06,
+     "end": 4.18,
+     "score": 0.999
+    },
+    {
+     "text": "平",
+     "start": 4.3,
+     "end": 4.5,
+     "score": 0.942
+    },
+    {
+     "text": "均",
+     "start": 4.54,
+     "end": 4.7,
+     "score": 0.991
+    },
+    {
+     "text": "一",
+     "start": 4.76,
+     "end": 4.82,
+     "score": 0.189
+    },
+    {
+     "text": "點",
+     "start": 4.88,
+     "end": 5.02,
+     "score": 0.978
+    },
+    {
+     "text": "六",
+     "start": 5.04,
+     "end": 5.18,
+     "score": 0.322
+    },
+    {
+     "text": "分",
+     "start": 5.22,
+     "end": 5.4,
+     "score": 0.982
+    },
+    {
+     "text": "有",
+     "start": 5.76,
+     "end": 5.88,
+     "score": 0.895
+    },
+    {
+     "text": "規",
+     "start": 5.94,
+     "end": 6.06,
+     "score": 0.996
+    },
+    {
+     "text": "則",
+     "start": 6.12,
+     "end": 6.22,
+     "score": 0.998
+    },
+    {
+     "text": "次",
+     "start": 6.44,
+     "end": 6.58,
+     "score": 0.957
+    },
+    {
+     "text": "次",
+     "start": 6.7,
+     "end": 6.8,
+     "score": 0.97
+    },
+    {
+     "text": "滿",
+     "start": 6.86,
+     "end": 7.02,
+     "score": 0.99
+    },
+    {
+     "text": "分",
+     "start": 7.08,
+     "end": 7.22,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.169,
-    0.338,
-    0.508,
-    0.677,
-    0.846,
-    1.015,
-    1.184,
-    1.353,
-    1.523,
-    1.895,
-    2.064,
-    2.233,
-    2.402,
-    2.572,
-    2.741,
-    2.91,
-    3.079,
-    3.248,
-    3.621,
-    3.79,
-    3.959,
-    4.128,
-    4.297,
-    4.467,
-    4.636,
-    4.805,
-    4.974,
-    5.346,
-    5.515,
-    5.685,
-    5.854,
-    6.023,
-    6.192,
-    6.361
+    0.02,
+    0.14,
+    0.3,
+    0.38,
+    0.46,
+    0.48,
+    0.52,
+    0.64,
+    0.74,
+    0.92,
+    1.44,
+    1.62,
+    1.74,
+    1.88,
+    2.08,
+    2.4,
+    2.58,
+    2.8,
+    2.98,
+    3.7,
+    3.9,
+    4.06,
+    4.3,
+    4.54,
+    4.76,
+    4.88,
+    5.04,
+    5.22,
+    5.76,
+    5.94,
+    6.12,
+    6.44,
+    6.7,
+    6.86,
+    7.08
    ]
   },
   {
    "id": "s06",
-   "audio": null,
-   "audioFrame": 1078,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1068,
-   "durationFrames": 153,
+   "audio": "audio/caffaine-rules-file/06-s06.wav",
+   "audioFrame": 1159,
+   "audioSec": 4.48,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1150,
+   "durationFrames": 163,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -897,124 +2171,288 @@
      8
     ]
    },
-   "voiceStartFrame": 1078,
-   "voiceEndFrame": 1213,
-   "stillFrame": 1211,
+   "voiceStartFrame": 1160,
+   "voiceEndFrame": 1293,
+   "stillFrame": 1303,
    "subtitleWindow": [
-    1075,
-    1218
+    1157,
+    1310
    ],
    "sourceWindow": [
-    1073,
-    1216
+    1155,
+    1308
    ],
    "lines": [
     {
      "text": "所以不是 AI 變聰明",
-     "start": 1075,
+     "start": 1157,
      "chars": [
-      1077,
-      1082,
-      1087,
-      1092,
-      1092,
-      1098,
-      1103,
-      1103,
-      1108,
-      1114,
-      1119
+      1160,
+      1164,
+      1167,
+      1170,
+      1170,
+      1175,
+      1179,
+      1179,
+      1183,
+      1188,
+      1194
      ]
     },
     {
      "text": "是你把規矩寫成檔",
-     "start": 1128,
+     "start": 1206,
      "chars": [
-      1131,
-      1136,
-      1141,
-      1146,
-      1152,
-      1157,
-      1162,
-      1168
+      1209,
+      1213,
+      1217,
+      1222,
+      1228,
+      1234,
+      1239,
+      1245
      ]
     },
     {
      "text": "它每次先讀過",
-     "start": 1177,
+     "start": 1254,
      "chars": [
-      1179,
-      1185,
-      1190,
-      1195,
-      1201,
-      1206
+      1257,
+      1261,
+      1268,
+      1274,
+      1280,
+      1286
      ]
     }
    ],
    "keywords": [
     {
      "text": "不是 AI 變聰明",
-     "start": 1087
+     "start": 1167
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "不是 AI 變聰明",
-     "frame": 1089
+     "frame": 1168,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "規矩寫成檔",
-     "frame": 1148
+     "frame": 1224,
+     "early": 0
     },
     {
      "id": "k3",
      "text": "先讀過",
-     "frame": 1197
+     "frame": 1275,
+     "early": 0
     }
    ],
+   "hash": "d594119cb0b4-a0dc9f8f58",
    "sub": "所以不是 AI 變聰明\n是你把規矩寫成檔\n它每次先讀過",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.94,
+    "minScore": 0.242,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.67,
+      "start": 1.7,
+      "ch": "是",
+      "errMs": 30
+     },
+     {
+      "onset": 3.32,
+      "start": 3.3,
+      "ch": "它",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.08,
+     "end": 0.14,
+     "score": 0.857
+    },
+    {
+     "text": "以",
+     "start": 0.2,
+     "end": 0.24,
+     "score": 0.97
+    },
+    {
+     "text": "不",
+     "start": 0.3,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 0.42,
+     "end": 0.5,
+     "score": 0.999
+    },
+    {
+     "text": "A",
+     "start": 0.58,
+     "end": 0.64,
+     "score": 0.242
+    },
+    {
+     "text": "I",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.862
+    },
+    {
+     "text": "變",
+     "start": 0.84,
+     "end": 0.96,
+     "score": 0.993
+    },
+    {
+     "text": "聰",
+     "start": 1,
+     "end": 1.2,
+     "score": 0.979
+    },
+    {
+     "text": "明",
+     "start": 1.22,
+     "end": 1.4,
+     "score": 0.958
+    },
+    {
+     "text": "是",
+     "start": 1.7,
+     "end": 1.8,
+     "score": 0.999
+    },
+    {
+     "text": "你",
+     "start": 1.86,
+     "end": 1.92,
+     "score": 0.998
+    },
+    {
+     "text": "把",
+     "start": 1.98,
+     "end": 2.06,
+     "score": 0.998
+    },
+    {
+     "text": "規",
+     "start": 2.16,
+     "end": 2.28,
+     "score": 0.999
+    },
+    {
+     "text": "矩",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.99
+    },
+    {
+     "text": "寫",
+     "start": 2.54,
+     "end": 2.66,
+     "score": 0.995
+    },
+    {
+     "text": "成",
+     "start": 2.72,
+     "end": 2.88,
+     "score": 0.948
+    },
+    {
+     "text": "檔",
+     "start": 2.92,
+     "end": 3.1,
+     "score": 0.923
+    },
+    {
+     "text": "它",
+     "start": 3.3,
+     "end": 3.38,
+     "score": 0.997
+    },
+    {
+     "text": "每",
+     "start": 3.46,
+     "end": 3.6,
+     "score": 0.999
+    },
+    {
+     "text": "次",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.997
+    },
+    {
+     "text": "先",
+     "start": 3.88,
+     "end": 4.04,
+     "score": 0.938
+    },
+    {
+     "text": "讀",
+     "start": 4.08,
+     "end": 4.16,
+     "score": 0.996
+    },
+    {
+     "text": "過",
+     "start": 4.28,
+     "end": 4.38,
+     "score": 0.985
+    }
+   ],
    "charTimes": [
-    0,
-    0.177,
-    0.354,
-    0.53,
-    0.707,
-    0.884,
-    1.061,
-    1.237,
-    1.414,
-    1.803,
+    0.08,
+    0.2,
+    0.3,
+    0.42,
+    0.58,
+    0.72,
+    0.84,
+    1,
+    1.22,
+    1.7,
+    1.86,
     1.98,
-    2.157,
-    2.333,
-    2.51,
-    2.687,
-    2.864,
-    3.04,
-    3.429,
-    3.606,
-    3.783,
-    3.96,
-    4.136,
-    4.313
+    2.16,
+    2.34,
+    2.54,
+    2.72,
+    2.92,
+    3.3,
+    3.46,
+    3.68,
+    3.88,
+    4.08,
+    4.28
    ]
   },
   {
    "id": "s07",
-   "audio": null,
-   "audioFrame": 1222,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1211,
-   "durationFrames": 154,
+   "audio": "audio/caffaine-rules-file/07-s07.wav",
+   "audioFrame": 1312,
+   "audioSec": 4.77,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1303,
+   "durationFrames": 159,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1028,122 +2466,285 @@
      8
     ]
    },
-   "voiceStartFrame": 1221,
-   "voiceEndFrame": 1357,
-   "stillFrame": 1355,
+   "voiceStartFrame": 1313,
+   "voiceEndFrame": 1454,
+   "stillFrame": 1452,
    "subtitleWindow": [
-    1218,
-    1365
+    1310,
+    1462
    ],
    "sourceWindow": [
-    1216,
-    1360
+    1308,
+    1457
    ],
    "lines": [
     {
      "text": "存起來",
-     "start": 1218,
+     "start": 1310,
      "chars": [
-      1221,
-      1226,
-      1231
+      1312,
+      1317,
+      1321
      ]
     },
     {
      "text": "換成你自己的規矩",
-     "start": 1241,
+     "start": 1332,
      "chars": [
-      1243,
-      1248,
-      1253,
-      1258,
-      1264,
-      1269,
-      1274,
-      1279
+      1334,
+      1339,
+      1345,
+      1350,
+      1354,
+      1359,
+      1362,
+      1367
      ]
     },
     {
      "text": "留言「規則檔」",
-     "start": 1289,
+     "start": 1386,
      "chars": [
-      1291,
-      1296,
-      1296,
-      1302,
-      1307,
-      1312,
-      1312
+      1389,
+      1395,
+      1395,
+      1404,
+      1408,
+      1413,
+      1413
      ]
     },
     {
      "text": "我把範本給你",
-     "start": 1322,
+     "start": 1422,
      "chars": [
-      1324,
-      1329,
-      1334,
-      1339,
-      1345,
-      1350
+      1425,
+      1428,
+      1433,
+      1438,
+      1443,
+      1449
      ]
     }
    ],
    "keywords": [
     {
      "text": "換成你自己的規矩",
-     "start": 1243
+     "start": 1334
     }
    ],
    "cues": [
     {
      "id": "k1",
      "text": "換成你自己的規矩",
-     "frame": 1244
+     "frame": 1335,
+     "early": 0
     },
     {
      "id": "k2",
      "text": "規則檔",
-     "frame": 1303
+     "frame": 1405,
+     "early": 0
     }
    ],
+   "hash": "15129b07d639-a0dc9f8f58",
    "sub": "存起來\n換成你自己的規矩\n留言「規則檔」\n我把範本給你",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.991,
+    "minScore": 0.926,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 0.78,
+      "start": 0.78,
+      "ch": "換",
+      "errMs": 0
+     },
+     {
+      "onset": 2.62,
+      "start": 2.6,
+      "ch": "留",
+      "errMs": -20
+     },
+     {
+      "onset": 3.84,
+      "start": 3.8,
+      "ch": "我",
+      "errMs": -40
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "存",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.999
+    },
+    {
+     "text": "起",
+     "start": 0.22,
+     "end": 0.32,
+     "score": 0.998
+    },
+    {
+     "text": "來",
+     "start": 0.36,
+     "end": 0.54,
+     "score": 0.998
+    },
+    {
+     "text": "換",
+     "start": 0.78,
+     "end": 0.92,
+     "score": 0.998
+    },
+    {
+     "text": "成",
+     "start": 0.96,
+     "end": 1.12,
+     "score": 0.926
+    },
+    {
+     "text": "你",
+     "start": 1.14,
+     "end": 1.2,
+     "score": 0.983
+    },
+    {
+     "text": "自",
+     "start": 1.3,
+     "end": 1.4,
+     "score": 0.999
+    },
+    {
+     "text": "己",
+     "start": 1.46,
+     "end": 1.54,
+     "score": 1
+    },
+    {
+     "text": "的",
+     "start": 1.6,
+     "end": 1.66,
+     "score": 0.999
+    },
+    {
+     "text": "規",
+     "start": 1.7,
+     "end": 1.84,
+     "score": 0.999
+    },
+    {
+     "text": "矩",
+     "start": 1.9,
+     "end": 2,
+     "score": 0.998
+    },
+    {
+     "text": "留",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 0.997
+    },
+    {
+     "text": "言",
+     "start": 2.8,
+     "end": 2.96,
+     "score": 0.984
+    },
+    {
+     "text": "規",
+     "start": 3.1,
+     "end": 3.22,
+     "score": 0.999
+    },
+    {
+     "text": "則",
+     "start": 3.26,
+     "end": 3.36,
+     "score": 0.986
+    },
+    {
+     "text": "檔",
+     "start": 3.42,
+     "end": 3.6,
+     "score": 0.994
+    },
+    {
+     "text": "我",
+     "start": 3.8,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "把",
+     "start": 3.92,
+     "end": 3.98,
+     "score": 0.985
+    },
+    {
+     "text": "範",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.97
+    },
+    {
+     "text": "本",
+     "start": 4.26,
+     "end": 4.36,
+     "score": 0.994
+    },
+    {
+     "text": "給",
+     "start": 4.42,
+     "end": 4.54,
+     "score": 0.999
+    },
+    {
+     "text": "你",
+     "start": 4.6,
+     "end": 4.68,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.175,
-    0.351,
-    0.737,
-    0.912,
-    1.087,
-    1.263,
-    1.438,
-    1.614,
-    1.789,
-    1.964,
-    2.35,
-    2.526,
-    2.701,
-    2.876,
-    3.052,
-    3.437,
-    3.613,
-    3.788,
-    3.964,
-    4.139,
-    4.314
+    0.04,
+    0.22,
+    0.36,
+    0.78,
+    0.96,
+    1.14,
+    1.3,
+    1.46,
+    1.6,
+    1.7,
+    1.9,
+    2.6,
+    2.8,
+    3.1,
+    3.26,
+    3.42,
+    3.8,
+    3.92,
+    4.08,
+    4.26,
+    4.42,
+    4.6
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1355,
+   "audioFrame": 1452,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1355,
+   "startFrame": 1452,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1158,24 +2759,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1365,
-   "voiceEndFrame": 1365,
-   "stillFrame": 1451,
+   "voiceStartFrame": 1462,
+   "voiceEndFrame": 1462,
+   "stillFrame": 1548,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1360,
-    1463
+    1457,
+    1560
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-rules-file/voice.wav",
+  "lufsIn": -15.44,
+  "lufs": -16,
+  "sec": 52
+ }
 }
