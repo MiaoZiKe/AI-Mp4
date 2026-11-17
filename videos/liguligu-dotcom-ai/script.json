@@ -76,8 +76,8 @@
         "mark": "那斯達克",
         "markAt": "c2",
         "doc": {
-          "title": "那斯達克綜合指數收盤",
-          "date": "2026/11/17",
+          "title": "那斯達克收盤",
+          "date": "2000/3/10",
           "field": "高點：",
           "fill": "5,048.62",
           "fillPx": 30,
@@ -119,13 +119,12 @@
         "en": "What is the same: | then, the internet. | Same story. | Now, AI."
       },
       "keywords": [
-        "當年",
-        "現在"
+        "相同"
       ],
       "cues": [
         {
           "id": "c1",
-          "text": "當年"
+          "text": "相同的"
         },
         {
           "id": "c2",
@@ -137,44 +136,44 @@
         },
         {
           "id": "c4",
-          "text": "現在"
-        },
-        {
-          "id": "c5",
           "text": "AI"
         }
       ],
       "beat": "you",
       "component": "DossierScene",
       "props": {
-        "panel": "notequal",
-        "a": "當年",
-        "op": "＝",
-        "opLabel": "同一種故事",
-        "b": "現在",
-        "aAt": "c1+4",
-        "opAt": "c3",
-        "bAt": "c4",
-        "rows": [
-          {
-            "text": "網路改變一切",
-            "at": "c2",
-            "tag": {
-              "kind": "none",
-              "text": "媒體比較",
-              "at": "c3+8"
-            }
-          },
-          {
-            "text": "AI 改變一切",
-            "at": "c5",
-            "tag": {
-              "kind": "none",
-              "text": "媒體比較",
-              "at": "c5+8"
-            }
+        "panel": "claim",
+        "head": {
+          "text": "先看相同的",
+          "mark": "相同",
+          "at": "start-16",
+          "markAt": "c1+10"
+        },
+        "photo": {
+          "name": "story",
+          "caption": "關鍵詞卡（自繪示意）",
+          "date": "1999→2026",
+          "at": "start-22",
+          "dateAt": "c1+4"
+        },
+        "quote": {
+          "by": "兩個年代都說",
+          "byAt": "c2-4",
+          "pre": "新技術將",
+          "big": "改變",
+          "post": "一切",
+          "at": "c2-6",
+          "bigAt": "c3",
+          "masthead": {
+            "name": "媒體比較",
+            "date": "2026"
           }
-        ],
+        },
+        "tag": {
+          "kind": "report",
+          "text": "媒體比較（財星）",
+          "at": "c4+6"
+        },
         "news": {
           "dateline": "NEW YORK・2026/11/17",
           "lt": "相同點"
@@ -186,11 +185,11 @@
     },
     {
       "id": "s03",
-      "narration": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫花約 7,200 億美元，蓋資料中心、買晶片，比去年大增。",
-      "tts": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫花約七千二百億美元，蓋資料中心、買晶片，比去年大增。",
+      "narration": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫約 7,200 億美元，比去年大增。",
+      "tts": "另一個相同點，都在砸錢蓋設施。四家美國雲端大廠，今年計畫約七千二百億美元，比去年大增。",
       "subtitle": {
-        "zh": "另一個相同點\n都在砸錢蓋設施\n四家美國雲端大廠\n今年計畫約 7,200 億美元\n蓋資料中心、買晶片\n比去年大增",
-        "en": "Also alike: heavy spending. | Four US cloud giants plan | about $720B this year | on data centers and chips, | far above last year."
+        "zh": "另一個相同點\n都在砸錢蓋設施\n四家美國雲端大廠\n今年計畫約 7,200 億美元\n比去年大增",
+        "en": "Also alike: heavy spending. | Four US cloud giants plan | about $720B this year, | far above last year."
       },
       "keywords": [
         "砸錢"
@@ -225,7 +224,7 @@
         },
         "photo": {
           "name": "capex",
-          "caption": "資本支出長條圖（示意）",
+          "caption": "資本支出（示意，單位：億美元）",
           "date": "2026",
           "at": "start-22",
           "dateAt": "c1+4"
@@ -259,11 +258,11 @@
     },
     {
       "id": "s04",
-      "narration": "第一個差別，是本益比，就是股價是一年獲利的幾倍。現在約 25 倍，2000 年約 60 倍。",
-      "tts": "第一個差別，是本益比，就是股價是一年獲利的幾倍。現在約二十五倍，二零零零年約六十倍。",
+      "narration": "第一個差別，是本益比，就是股價是獲利的幾倍。現在預估約 25 倍，2000 年預估約 60 倍。",
+      "tts": "第一個差別，是本益比，就是股價是獲利的幾倍。現在預估約二十五倍，二零零零年預估約六十倍。",
       "subtitle": {
-        "zh": "第一個差別\n是本益比\n就是股價是一年獲利的幾倍\n現在約 25 倍\n2000 年約 60 倍",
-        "en": "First difference: P/E, | price as a multiple of yearly profit. | Now about 25x, | in 2000 about 60x."
+        "zh": "第一個差別\n是本益比\n就是股價是獲利的幾倍\n現在預估約 25 倍\n2000 年預估約 60 倍",
+        "en": "First difference: P/E, | price as a multiple of yearly profit. | Now about 25x (forward), | in 2000 about 60x (forward)."
       },
       "keywords": [
         "60 倍",
@@ -297,14 +296,14 @@
           "doc": "預估本益比（約）",
           "big": "60 倍",
           "bigPx": 120,
-          "src": "LPL 估計（引述）",
+          "src": "口徑：預估，非落後",
           "headAt": "start-20",
           "at": "start-16",
           "bigAt": "c4",
           "srcAt": "c4+8",
           "tag": {
             "kind": "none",
-            "text": "分析推測",
+            "text": "分析推測（LPL 引述）",
             "at": "c4+14"
           }
         },
@@ -314,10 +313,10 @@
             "約",
             "25 倍"
           ],
-          "src": "那斯達克一百指數，估計值",
+          "src": "口徑：預估，非落後",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c3-4",
+          "bigAt": "c2+6",
           "srcAt": "c3+6",
           "tag": {
             "kind": "none",
@@ -340,94 +339,105 @@
         }
       },
       "sources": [
-        "財星 2026/5、Trefis 2026/11/5；估計值非官方"
+        "財星 2026/5、Trefis 11/5；預估口徑，非落後本益比"
       ]
     },
     {
       "id": "s05",
-      "narration": "另一個差別是獲利。當年，許多公司沒賺錢。不一樣，現在，領頭的輝達是真的有獲利。",
-      "tts": "另一個差別是獲利。當年，許多公司沒賺錢。不一樣，現在，領頭的輝達是真的有獲利。",
+      "narration": "另一種算法，只看過去一年已經賺到的錢。現在落後本益比，約 30 多倍。當年，100 多倍。",
+      "tts": "另一種算法，只看過去一年已經賺到的錢。現在落後本益比，約三十多倍。當年，一百多倍。",
       "subtitle": {
-        "zh": "另一個差別是獲利\n當年許多公司沒賺錢\n不一樣\n現在領頭的輝達\n是真的有獲利",
-        "en": "Second difference: profit. | Many then made no money. | Not now: Nvidia, | the leader, does make money."
+        "zh": "另一種算法\n只看已經賺到的錢\n現在落後本益比\n約 30 多倍\n當年 100 多倍",
+        "en": "Another way: only profit already earned. | Trailing P/E now: about 30s. | Back then: 100s."
       },
       "keywords": [
-        "當年",
-        "現在"
+        "100 多",
+        "30 多"
       ],
       "cues": [
         {
           "id": "c1",
-          "text": "當年"
+          "text": "另一種算法"
         },
         {
           "id": "c2",
-          "text": "沒賺錢"
-        },
-        {
-          "id": "c3",
-          "text": "不一樣"
-        },
-        {
-          "id": "c4",
           "text": "現在"
         },
         {
-          "id": "c5",
-          "text": "有獲利"
+          "id": "c3",
+          "text": "30 多倍"
+        },
+        {
+          "id": "c4",
+          "text": "100 多倍"
         }
       ],
       "beat": "twist",
       "component": "DossierScene",
       "props": {
-        "panel": "notequal",
-        "a": "當年",
-        "op": "≠",
-        "opLabel": "賺不賺錢",
-        "b": "現在",
-        "aAt": "c1+4",
-        "opAt": "c3",
-        "bAt": "c4",
-        "rows": [
-          {
-            "text": "許多沒賺錢",
-            "at": "c2",
-            "tag": {
-              "kind": "none",
-              "text": "Nasdaq 摘要",
-              "at": "c3+8"
-            }
-          },
-          {
-            "text": "輝達有獲利",
-            "at": "c5",
-            "tag": {
-              "kind": "report",
-              "text": "公司公告（摘要）",
-              "at": "c5+8"
-            }
+        "panel": "versus",
+        "left": {
+          "head": "1990 年代末",
+          "doc": "落後本益比（倍）",
+          "big": "100 多",
+          "bigPx": 120,
+          "src": "高點曾到 150–200 倍",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c2+14",
+          "srcAt": "c4+8",
+          "tag": {
+            "kind": "none",
+            "text": "媒體摘要（Nasdaq 研究）",
+            "at": "c4+14"
           }
-        ],
+        },
+        "right": {
+          "head": "現在（2026）",
+          "big": [
+            "30 多",
+            "（倍）"
+          ],
+          "src": "同一指標，同一指數",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "c2+4",
+          "srcAt": "c3+6",
+          "tag": {
+            "kind": "none",
+            "text": "媒體摘要（同上）",
+            "at": "c3+10"
+          },
+          "masthead": {
+            "name": "媒體摘要",
+            "date": "2026",
+            "at": "c2+4"
+          }
+        },
+        "mid": {
+          "text": "vs",
+          "at": "c4+4"
+        },
         "news": {
           "dateline": "NEW YORK・2026/11/17",
           "lt": "不同點"
         }
       },
       "sources": [
-        "Nasdaq 指數研究摘要；輝達 2025/11/19 財報新聞稿"
+        "Nasdaq 指數研究摘要（原文未讀）；落後口徑"
       ]
     },
     {
       "id": "s06",
-      "narration": "相關公司，現在的代表是輝達，當年的代表是思科。",
-      "tts": "相關公司，現在的代表是輝達，當年的代表是思科。",
+      "narration": "相關公司。現在領頭的輝達有獲利，不過這只是一家。當年高估值的代表是思科，25 年後才回到高點。",
+      "tts": "相關公司。現在領頭的輝達有獲利，不過這只是一家。當年高估值的代表是思科，二十五年後才回到高點。",
       "subtitle": {
-        "zh": "相關公司\n現在的代表是輝達\n當年的代表是思科",
-        "en": "Related companies: | Nvidia now, | Cisco then."
+        "zh": "相關公司\n現在領頭的輝達\n有獲利\n不過這只是一家\n當年高估值的代表是思科\n25 年後才回到高點",
+        "en": "Related companies. | Nvidia, the leader, is profitable, | but it is only one firm. | Cisco, the 2000 high-valuation name, | took 25 years to get back."
       },
       "keywords": [
-        "思科",
-        "輝達"
+        "輝達",
+        "有獲利"
       ],
       "cues": [
         {
@@ -436,11 +446,11 @@
         },
         {
           "id": "c2",
-          "text": "現在"
+          "text": "輝達"
         },
         {
           "id": "c3",
-          "text": "輝達"
+          "text": "有獲利"
         },
         {
           "id": "c4",
@@ -452,18 +462,18 @@
       "props": {
         "panel": "versus",
         "left": {
-          "head": "當年的代表",
+          "head": "2000/3/27 高點",
           "doc": "思科 CSCO",
-          "big": "思科",
+          "big": "80.06",
           "bigPx": 120,
-          "src": "股價 25 年後才回到當年高點",
+          "src": "2025/12 才回到這價位",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c4",
+          "bigAt": "start+6",
           "srcAt": "c4+8",
           "tag": {
             "kind": "report",
-            "text": "媒體報導（雅虎財經）",
+            "text": "媒體報導（Sherwood）",
             "at": "c4+14"
           }
         },
@@ -471,21 +481,21 @@
           "head": "現在的代表",
           "big": [
             "輝達",
-            "NVDA"
+            "有獲利"
           ],
-          "src": "11/5 單日跌 8.9%",
+          "src": "FY26 Q3 淨利 319 億美元",
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c3-4",
+          "bigAt": "start+10",
           "srcAt": "c3+6",
           "tag": {
             "kind": "report",
-            "text": "媒體報導（CNBC 轉述）",
+            "text": "媒體報導（Verdict）",
             "at": "c3+10"
           },
           "masthead": {
-            "name": "相關公司",
-            "date": "非投資建議",
+            "name": "非投資建議",
+            "date": "2025/11",
             "at": "c2+4"
           }
         },
@@ -499,7 +509,7 @@
         }
       },
       "sources": [
-        "雅虎財經 2025/12；CNBC 2026/11/5；非投資建議"
+        "Sherwood；Verdict 摘要 FY26 Q3；非投資建議"
       ]
     },
     {
@@ -539,7 +549,7 @@
             "caption": "10/6 高點後修正（示意）",
             "at": "start-20"
           },
-          "row": "10/6 高點後已修正",
+          "row": "已修正",
           "rowAt": "c2"
         },
         "right": {
@@ -623,8 +633,8 @@
           "label": "下一集",
           "at": "c2+8",
           "photo": {
-            "name": "nasdaq00",
-            "caption": "示意照片",
+            "name": "nikkei89",
+            "caption": "日經 225 高點資料卡（示意）",
             "at": "c2+12"
           },
           "title": "1990 日本泡沫",
@@ -637,7 +647,7 @@
         }
       },
       "sources": [
-        "研究整理；非投資建議"
+        "日經高點 38,915.87（AP／Reuters）；非投資建議"
       ]
     },
     {

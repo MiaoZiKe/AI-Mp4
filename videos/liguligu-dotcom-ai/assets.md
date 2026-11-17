@@ -1,12 +1,9 @@
-# assets.md — liguligu-dotcom-ai
-
-沒有照片、沒有 AI 生成圖；Pexels 與其他圖庫這台機器連不到。三張素材都是用 PIL 畫的灰階資料圖（`/tmp` 外的腳本在 session scratchpad，輸出到 `out/liguligu-dotcom-ai/assets-raw/photos/`，再由 `make-photos.py` 轉黑白低對比），**每張都標示資料來源與「示意」**，不重用前幾支的照片。
-
-| 代號 | 內容 | 資料點（來源） | 用在 |
+# assets.md — liguligu-dotcom-ai（第 2 版）
+沒有照片、沒有 AI 生成圖；全為 PIL 自繪灰階資料／關鍵詞圖（腳本在 session scratchpad，輸出 out/liguligu-dotcom-ai/assets-raw/photos/，再由 make-photos.py 轉黑白低對比），數字來自 research.md，圖說標「示意」。
+| 代號 | 內容 | 資料點 | 用在 |
 |---|---|---|---|
-| nasdaq00 | 那斯達克綜合指數 2000/3/10 高點 5,048.62 → 2002/10/9 低點 1,114.11，約 −78%（示意連線，非逐日資料） | Kiplinger、DQYDJ／Wikipedia 摘要 | s08 下一集預告（輔助） |
-| capex | 四大雲端公司資本支出長條：2025 約 4,100 億、2026 計畫約 7,250 億美元 | Yahoo Finance、AI Weekly、Silicon Canals、Motley Fool 摘要 | s03 主素材 |
-| nasdaq26 | 那斯達克綜合指數 10/6 紀錄高點 27,599.89 → 11/5 單日 −5.5%、較高點跌逾 10%（走勢為示意，只有兩個日期是查證數據） | CNBC（經 FourWeekMBA）、Star-Advertiser | s07 主素材 |
-
-文件框（hook、pending）都標「示意，非文件原件」。無人物、無商標。
-已知問題：capex 圖內的小字在成片縮小後看不清，主資訊靠旁邊的大字「7200 億美元」。
+| story | 兩張關鍵詞卡：1999 網路（瀏覽器線稿）、2026 AI（晶片線稿） | 無數據，只有年份與關鍵詞 | s02 主素材 |
+| capex | 兩根長條 4,100（2025）、7,200（2026，億美元） | Yahoo Finance、AI Weekly、Silicon Canals、Motley Fool 摘要 | s03 主素材 |
+| nasdaq26 | 10/6 高點 27,600、11/5 −10%+（走勢為示意） | CNBC（經 FourWeekMBA）、Star-Advertiser | s07 |
+| nikkei89 | 日經 225 收盤高點 1989/12/29：38,915 | AP／Reuters 報導 38,915.87 | s08 下一集預告 |
+已移除 nasdaq00（那斯達克 2000 圖不再用）。文件框標「示意，非文件原件」。無人物、無商標。
