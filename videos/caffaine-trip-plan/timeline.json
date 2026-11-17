@@ -2,79 +2,73 @@
  "version": 2,
  "slug": "caffaine-trip-plan",
  "fps": 30,
- "totalFrames": 1518,
- "totalSec": 50.6,
- "gapSec": 0.3,
+ "totalFrames": 1698,
+ "totalSec": 56.6,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-trip-plan/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 4.46,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 142,
+   "durationFrames": 153,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 134,
-   "stillFrame": 132,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 133,
+   "stillFrame": 143,
    "subtitleWindow": [
     0,
-    139
+    150
    ],
    "sourceWindow": [
     0,
-    137
+    148
    ],
    "lines": [
     {
      "text": "行程亂躺在備忘錄",
      "start": 0,
      "chars": [
-      4,
-      9,
+      1,
+      7,
       14,
       19,
       25,
       30,
       35,
-      40
+      39
      ]
     },
     {
      "text": "丟給 AI",
-     "start": 50,
+     "start": 49,
      "chars": [
-      52,
-      57,
-      57,
-      63,
+      51,
+      56,
+      56,
+      62,
       68
      ]
     },
     {
      "text": "變成一頁能點的行程表",
-     "start": 77,
+     "start": 75,
      "chars": [
-      79,
-      85,
+      77,
+      83,
       90,
-      95,
-      100,
-      106,
-      111,
-      116,
-      122,
-      127
+      94,
+      99,
+      104,
+      110,
+      114,
+      119,
+      125
      ]
     }
    ],
@@ -88,57 +82,215 @@
     {
      "id": "lost",
      "text": "行程亂躺在備忘錄",
-     "frame": 5
+     "frame": 2,
+     "early": 0
     },
     {
      "id": "ai",
      "text": "丟給",
-     "frame": 53
+     "frame": 52,
+     "early": 0
     },
     {
      "id": "page",
      "text": "一頁能點的行程表",
-     "frame": 91
+     "frame": 91,
+     "early": 0
     }
    ],
+   "hash": "359ac0f3718c-d4b5ab0528",
    "sub": "行程亂躺在備忘錄\n丟給 AI\n變成一頁能點的行程表",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.878,
+    "minScore": 0.011,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.76,
+      "start": 1.74,
+      "ch": "丟",
+      "errMs": -20
+     },
+     {
+      "onset": 2.65,
+      "start": 2.62,
+      "ch": "變",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "行",
+     "start": 0.08,
+     "end": 0.24,
+     "score": 0.949
+    },
+    {
+     "text": "程",
+     "start": 0.28,
+     "end": 0.48,
+     "score": 0.938
+    },
+    {
+     "text": "亂",
+     "start": 0.52,
+     "end": 0.66,
+     "score": 0.948
+    },
+    {
+     "text": "躺",
+     "start": 0.7,
+     "end": 0.86,
+     "score": 0.967
+    },
+    {
+     "text": "在",
+     "start": 0.88,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "備",
+     "start": 1.06,
+     "end": 1.16,
+     "score": 0.999
+    },
+    {
+     "text": "忘",
+     "start": 1.2,
+     "end": 1.34,
+     "score": 0.982
+    },
+    {
+     "text": "錄",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 0.978
+    },
+    {
+     "text": "丟",
+     "start": 1.74,
+     "end": 1.88,
+     "score": 0.949
+    },
+    {
+     "text": "給",
+     "start": 1.92,
+     "end": 2.02,
+     "score": 0.671
+    },
+    {
+     "text": "A",
+     "start": 2.12,
+     "end": 2.18,
+     "score": 0.011
+    },
+    {
+     "text": "I",
+     "start": 2.3,
+     "end": 2.42,
+     "score": 0.489
+    },
+    {
+     "text": "變",
+     "start": 2.62,
+     "end": 2.78,
+     "score": 0.965
+    },
+    {
+     "text": "成",
+     "start": 2.82,
+     "end": 3,
+     "score": 0.957
+    },
+    {
+     "text": "一",
+     "start": 3.04,
+     "end": 3.12,
+     "score": 0.635
+    },
+    {
+     "text": "頁",
+     "start": 3.18,
+     "end": 3.26,
+     "score": 0.983
+    },
+    {
+     "text": "能",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.998
+    },
+    {
+     "text": "點",
+     "start": 3.52,
+     "end": 3.68,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.72,
+     "end": 3.78,
+     "score": 0.999
+    },
+    {
+     "text": "行",
+     "start": 3.84,
+     "end": 4,
+     "score": 0.935
+    },
+    {
+     "text": "程",
+     "start": 4.02,
+     "end": 4.18,
+     "score": 0.962
+    },
+    {
+     "text": "表",
+     "start": 4.22,
+     "end": 4.4,
+     "score": 0.997
+    }
+   ],
    "charTimes": [
-    0,
-    0.176,
-    0.351,
-    0.527,
-    0.703,
-    0.878,
-    1.054,
-    1.23,
-    1.616,
-    1.792,
-    1.967,
-    2.143,
-    2.529,
-    2.705,
-    2.881,
-    3.056,
-    3.232,
-    3.407,
-    3.583,
-    3.759,
-    3.934,
-    4.11
+    0.08,
+    0.28,
+    0.52,
+    0.7,
+    0.88,
+    1.06,
+    1.2,
+    1.36,
+    1.74,
+    1.92,
+    2.12,
+    2.3,
+    2.62,
+    2.82,
+    3.04,
+    3.18,
+    3.34,
+    3.52,
+    3.72,
+    3.84,
+    4.02,
+    4.22
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 143,
-   "audioSec": 3.265,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 132,
-   "durationFrames": 117,
+   "audio": "audio/caffaine-trip-plan/02-s02.wav",
+   "audioFrame": 152,
+   "audioSec": 3.04,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 143,
+   "durationFrames": 111,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -152,97 +304,212 @@
      8
     ]
    },
-   "voiceStartFrame": 142,
-   "voiceEndFrame": 241,
-   "stillFrame": 239,
+   "voiceStartFrame": 153,
+   "voiceEndFrame": 242,
+   "stillFrame": 244,
    "subtitleWindow": [
-    139,
-    246
+    150,
+    251
    ],
    "sourceWindow": [
-    137,
-    244
+    148,
+    249
    ],
    "lines": [
     {
      "text": "我先貼上亂排的草稿",
-     "start": 139,
+     "start": 150,
      "chars": [
-      142,
-      147,
-      153,
-      159,
-      164,
-      170,
+      151,
+      155,
+      160,
+      165,
+      171,
       176,
       181,
-      187
+      185,
+      191
      ]
     },
     {
      "text": "只有時間和地點",
-     "start": 197,
+     "start": 201,
      "chars": [
-      200,
-      205,
-      211,
-      217,
-      222,
-      228,
-      234
+      203,
+      207,
+      214,
+      218,
+      226,
+      230,
+      235
      ]
     }
    ],
    "keywords": [
     {
      "text": "草稿",
-     "start": 181
+     "start": 185
     }
    ],
    "cues": [
     {
      "id": "paste",
      "text": "貼上亂排的草稿",
-     "frame": 154
+     "frame": 161,
+     "early": 0
     },
     {
      "id": "plain",
      "text": "只有時間和地點",
-     "frame": 201
+     "frame": 204,
+     "early": 0
     }
    ],
+   "hash": "272172d5e925-d4b5ab0528",
    "sub": "我先貼上亂排的草稿\n只有時間和地點",
-   "provider": "estimate",
-   "syllables": 16,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.905,
+    "minScore": 0.499,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 1.74,
+      "start": 1.74,
+      "ch": "只",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 1
+    },
+    {
+     "text": "先",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.986
+    },
+    {
+     "text": "貼",
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.985
+    },
+    {
+     "text": "上",
+     "start": 0.48,
+     "end": 0.64,
+     "score": 0.947
+    },
+    {
+     "text": "亂",
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.891
+    },
+    {
+     "text": "排",
+     "start": 0.86,
+     "end": 1,
+     "score": 0.995
+    },
+    {
+     "text": "的",
+     "start": 1.02,
+     "end": 1.08,
+     "score": 0.998
+    },
+    {
+     "text": "草",
+     "start": 1.14,
+     "end": 1.3,
+     "score": 0.996
+    },
+    {
+     "text": "稿",
+     "start": 1.34,
+     "end": 1.52,
+     "score": 0.997
+    },
+    {
+     "text": "只",
+     "start": 1.74,
+     "end": 1.84,
+     "score": 0.993
+    },
+    {
+     "text": "有",
+     "start": 1.9,
+     "end": 2,
+     "score": 0.999
+    },
+    {
+     "text": "時",
+     "start": 2.1,
+     "end": 2.18,
+     "score": 0.697
+    },
+    {
+     "text": "間",
+     "start": 2.26,
+     "end": 2.42,
+     "score": 0.985
+    },
+    {
+     "text": "和",
+     "start": 2.5,
+     "end": 2.56,
+     "score": 0.499
+    },
+    {
+     "text": "地",
+     "start": 2.66,
+     "end": 2.74,
+     "score": 0.552
+    },
+    {
+     "text": "點",
+     "start": 2.82,
+     "end": 3,
+     "score": 0.965
+    }
+   ],
    "charTimes": [
-    0,
-    0.19,
-    0.38,
-    0.57,
-    0.759,
-    0.949,
-    1.139,
-    1.329,
-    1.519,
-    1.936,
-    2.126,
-    2.316,
-    2.506,
-    2.696,
-    2.886,
-    3.075
+    0.02,
+    0.14,
+    0.3,
+    0.48,
+    0.68,
+    0.86,
+    1.02,
+    1.14,
+    1.34,
+    1.74,
+    1.9,
+    2.1,
+    2.26,
+    2.5,
+    2.66,
+    2.82
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 250,
-   "audioSec": 4.694,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 239,
-   "durationFrames": 160,
+   "audio": "audio/caffaine-trip-plan/03-s03.wav",
+   "audioFrame": 253,
+   "audioSec": 5.37,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 244,
+   "durationFrames": 189,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -256,128 +523,298 @@
      8
     ]
    },
-   "voiceStartFrame": 249,
-   "voiceEndFrame": 391,
-   "stillFrame": 389,
+   "voiceStartFrame": 254,
+   "voiceEndFrame": 413,
+   "stillFrame": 423,
    "subtitleWindow": [
-    246,
-    396
+    251,
+    430
    ],
    "sourceWindow": [
-    244,
-    394
+    249,
+    428
    ],
    "lines": [
     {
      "text": "然後說",
-     "start": 246,
+     "start": 251,
      "chars": [
-      249,
-      254,
-      259
+      253,
+      258,
+      262
      ]
     },
     {
      "text": "做成手機行程頁",
-     "start": 269,
+     "start": 278,
      "chars": [
-      271,
-      276,
-      281,
-      287,
+      280,
+      285,
       292,
-      297,
-      303
+      298,
+      303,
+      308,
+      315
      ]
     },
     {
      "text": "每一項能勾選",
-     "start": 312,
+     "start": 326,
      "chars": [
-      314,
-      319,
-      325,
-      330,
-      335,
-      341
+      328,
+      333,
+      337,
+      343,
+      349,
+      354
      ]
     },
     {
      "text": "重新整理還記得",
-     "start": 350,
+     "start": 368,
      "chars": [
-      352,
-      358,
-      363,
-      368,
-      373,
-      379,
-      384
+      370,
+      376,
+      381,
+      387,
+      393,
+      398,
+      403
      ]
     }
    ],
    "keywords": [
     {
      "text": "勾選",
-     "start": 335
+     "start": 349
     }
    ],
    "cues": [
     {
      "id": "say",
      "text": "做成手機行程頁",
-     "frame": 272
+     "frame": 281,
+     "early": 0
     },
     {
      "id": "tick",
      "text": "每一項能勾選",
-     "frame": 316
+     "frame": 329,
+     "early": 0
     },
     {
      "id": "keep",
      "text": "重新整理還記得",
-     "frame": 354
+     "frame": 371,
+     "early": 0
     }
    ],
+   "hash": "1480fdfb860c-d4b5ab0528",
    "sub": "然後說\n做成手機行程頁\n每一項能勾選\n重新整理還記得",
-   "provider": "estimate",
-   "syllables": 23,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.947,
+    "minScore": 0.294,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.94,
+      "start": 0.94,
+      "ch": "做",
+      "errMs": 0
+     },
+     {
+      "onset": 2.56,
+      "start": 2.54,
+      "ch": "每",
+      "errMs": -20
+     },
+     {
+      "onset": 3.94,
+      "start": 3.94,
+      "ch": "重",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "然",
+     "start": 0.06,
+     "end": 0.16,
+     "score": 0.998
+    },
+    {
+     "text": "後",
+     "start": 0.2,
+     "end": 0.32,
+     "score": 0.998
+    },
+    {
+     "text": "說",
+     "start": 0.36,
+     "end": 0.5,
+     "score": 0.988
+    },
+    {
+     "text": "做",
+     "start": 0.94,
+     "end": 1.04,
+     "score": 0.987
+    },
+    {
+     "text": "成",
+     "start": 1.12,
+     "end": 1.28,
+     "score": 0.993
+    },
+    {
+     "text": "手",
+     "start": 1.34,
+     "end": 1.5,
+     "score": 1
+    },
+    {
+     "text": "機",
+     "start": 1.54,
+     "end": 1.62,
+     "score": 1
+    },
+    {
+     "text": "行",
+     "start": 1.72,
+     "end": 1.88,
+     "score": 0.954
+    },
+    {
+     "text": "程",
+     "start": 1.9,
+     "end": 2.06,
+     "score": 0.949
+    },
+    {
+     "text": "頁",
+     "start": 2.12,
+     "end": 2.22,
+     "score": 0.997
+    },
+    {
+     "text": "每",
+     "start": 2.54,
+     "end": 2.66,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.7,
+     "end": 2.74,
+     "score": 0.294
+    },
+    {
+     "text": "項",
+     "start": 2.84,
+     "end": 3.02,
+     "score": 0.94
+    },
+    {
+     "text": "能",
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.937
+    },
+    {
+     "text": "勾",
+     "start": 3.24,
+     "end": 3.38,
+     "score": 0.999
+    },
+    {
+     "text": "選",
+     "start": 3.42,
+     "end": 3.64,
+     "score": 0.997
+    },
+    {
+     "text": "重",
+     "start": 3.94,
+     "end": 4.12,
+     "score": 0.857
+    },
+    {
+     "text": "新",
+     "start": 4.14,
+     "end": 4.28,
+     "score": 0.992
+    },
+    {
+     "text": "整",
+     "start": 4.32,
+     "end": 4.48,
+     "score": 0.911
+    },
+    {
+     "text": "理",
+     "start": 4.5,
+     "end": 4.58,
+     "score": 0.997
+    },
+    {
+     "text": "還",
+     "start": 4.7,
+     "end": 4.84,
+     "score": 0.999
+    },
+    {
+     "text": "記",
+     "start": 4.88,
+     "end": 4.98,
+     "score": 0.998
+    },
+    {
+     "text": "得",
+     "start": 5.06,
+     "end": 5.16,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
-    0,
-    0.176,
-    0.353,
-    0.741,
-    0.918,
-    1.094,
-    1.271,
-    1.447,
-    1.623,
-    1.8,
-    2.188,
-    2.365,
-    2.541,
-    2.718,
-    2.894,
-    3.07,
-    3.459,
-    3.635,
-    3.812,
-    3.988,
-    4.164,
-    4.341,
-    4.517
+    0.06,
+    0.2,
+    0.36,
+    0.94,
+    1.12,
+    1.34,
+    1.54,
+    1.72,
+    1.9,
+    2.12,
+    2.54,
+    2.7,
+    2.84,
+    3.06,
+    3.24,
+    3.42,
+    3.94,
+    4.14,
+    4.32,
+    4.5,
+    4.7,
+    4.88,
+    5.06
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 399,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 389,
-   "durationFrames": 147,
+   "audio": "audio/caffaine-trip-plan/04-s04.wav",
+   "audioFrame": 433,
+   "audioSec": 5.145,
+   "headSilSec": 0.025,
+   "tailSilSec": 0.04,
+   "startFrame": 423,
+   "durationFrames": 176,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -391,135 +828,299 @@
      8
     ]
    },
-   "voiceStartFrame": 399,
-   "voiceEndFrame": 528,
-   "stillFrame": 526,
+   "voiceStartFrame": 433,
+   "voiceEndFrame": 587,
+   "stillFrame": 589,
    "subtitleWindow": [
-    396,
-    533
+    430,
+    596
    ],
    "sourceWindow": [
-    394,
-    531
+    428,
+    594
    ],
    "lines": [
     {
      "text": "它交回一頁",
-     "start": 396,
+     "start": 430,
      "chars": [
-      398,
-      402,
-      407,
-      412,
-      417
-     ]
-    },
-    {
-     "text": "分兩天、",
-     "start": 425,
-     "chars": [
-      427,
-      432,
+      433,
       437,
-      437
-     ]
-    },
-    {
-     "text": "時間軸",
-     "start": 440,
-     "chars": [
-      442,
-      447,
+      443,
+      448,
       452
      ]
     },
     {
-     "text": "每項有時間地點",
-     "start": 460,
+     "text": "分兩天、",
+     "start": 465,
      "chars": [
-      462,
-      467,
-      472,
-      477,
-      482,
-      486,
-      491
+      468,
+      473,
+      480,
+      480
+     ]
+    },
+    {
+     "text": "時間軸",
+     "start": 491,
+     "chars": [
+      493,
+      498,
+      504
+     ]
+    },
+    {
+     "text": "每項有時間地點",
+     "start": 517,
+     "chars": [
+      519,
+      525,
+      531,
+      537,
+      542,
+      553,
+      559
      ]
     },
     {
      "text": "還有怎麼去",
-     "start": 500,
+     "start": 564,
      "chars": [
-      502,
-      507,
-      512,
-      516,
-      521
+      566,
+      568,
+      570,
+      574,
+      577
      ]
     }
    ],
    "keywords": [
     {
      "text": "時間軸",
-     "start": 442
+     "start": 493
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "交回一頁",
-     "frame": 404
+     "frame": 438,
+     "early": 0
     },
     {
      "id": "tl",
      "text": "時間軸",
-     "frame": 443
+     "frame": 495,
+     "early": 0
     },
     {
      "id": "how",
      "text": "怎麼去",
-     "frame": 513
+     "frame": 571,
+     "early": 0
     }
    ],
+   "hash": "be3caa6479c0-d4b5ab0528",
    "sub": "它交回一頁\n分兩天、時間軸\n每項有時間地點\n還有怎麼去",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.926,
+    "minScore": 0.143,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.24,
+      "start": 1.2,
+      "ch": "分",
+      "errMs": -40
+     },
+     {
+      "onset": 2.95,
+      "start": 2.92,
+      "ch": "每",
+      "errMs": -30
+     },
+     {
+      "onset": 4.09,
+      "start": 4.06,
+      "ch": "地",
+      "errMs": -30
+     },
+     {
+      "onset": 4.62,
+      "start": 4.6,
+      "ch": "怎",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "它",
+     "start": 0.06,
+     "end": 0.12,
+     "score": 0.99
+    },
+    {
+     "text": "交",
+     "start": 0.18,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "回",
+     "start": 0.38,
+     "end": 0.5,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 0.56,
+     "end": 0.6,
+     "score": 0.143
+    },
+    {
+     "text": "頁",
+     "start": 0.7,
+     "end": 0.82,
+     "score": 0.988
+    },
+    {
+     "text": "分",
+     "start": 1.2,
+     "end": 1.32,
+     "score": 0.999
+    },
+    {
+     "text": "兩",
+     "start": 1.38,
+     "end": 1.56,
+     "score": 0.952
+    },
+    {
+     "text": "天",
+     "start": 1.6,
+     "end": 1.84,
+     "score": 0.999
+    },
+    {
+     "text": "時",
+     "start": 2.06,
+     "end": 2.14,
+     "score": 0.978
+    },
+    {
+     "text": "間",
+     "start": 2.2,
+     "end": 2.36,
+     "score": 0.932
+    },
+    {
+     "text": "軸",
+     "start": 2.4,
+     "end": 2.62,
+     "score": 0.983
+    },
+    {
+     "text": "每",
+     "start": 2.92,
+     "end": 3.06,
+     "score": 1
+    },
+    {
+     "text": "項",
+     "start": 3.1,
+     "end": 3.28,
+     "score": 0.962
+    },
+    {
+     "text": "有",
+     "start": 3.32,
+     "end": 3.42,
+     "score": 1
+    },
+    {
+     "text": "時",
+     "start": 3.5,
+     "end": 3.6,
+     "score": 0.881
+    },
+    {
+     "text": "間",
+     "start": 3.68,
+     "end": 3.9,
+     "score": 0.914
+    },
+    {
+     "text": "地",
+     "start": 4.06,
+     "end": 4.16,
+     "score": 0.75
+    },
+    {
+     "text": "點",
+     "start": 4.24,
+     "end": 4.44,
+     "score": 0.985
+    },
+    {
+     "text": "怎",
+     "start": 4.6,
+     "end": 4.72,
+     "score": 0.998
+    },
+    {
+     "text": "麼",
+     "start": 4.74,
+     "end": 4.8,
+     "score": 0.999
+    },
+    {
+     "text": "去",
+     "start": 4.86,
+     "end": 5,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.161,
-    0.322,
-    0.483,
-    0.644,
-    0.999,
-    1.16,
-    1.321,
-    1.482,
-    1.643,
-    1.805,
-    2.159,
-    2.32,
-    2.481,
-    2.642,
-    2.803,
-    2.965,
-    3.126,
-    3.48,
-    3.641,
-    3.802,
-    3.963,
-    4.125
+    0.06,
+    0.18,
+    0.38,
+    0.56,
+    0.7,
+    1.2,
+    1.38,
+    1.6,
+    2.06,
+    2.2,
+    2.4,
+    2.92,
+    3.1,
+    3.32,
+    3.5,
+    3.68,
+    4.06,
+    4.24,
+    4.493,
+    4.547,
+    4.6,
+    4.74,
+    4.86
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 537,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 526,
-   "durationFrames": 148,
+   "audio": "audio/caffaine-trip-plan/05-s05.wav",
+   "audioFrame": 598,
+   "audioSec": 4.28,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 589,
+   "durationFrames": 157,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -533,120 +1134,278 @@
      8
     ]
    },
-   "voiceStartFrame": 536,
-   "voiceEndFrame": 666,
-   "stillFrame": 664,
+   "voiceStartFrame": 599,
+   "voiceEndFrame": 726,
+   "stillFrame": 736,
    "subtitleWindow": [
-    533,
-    671
+    596,
+    743
    ],
    "sourceWindow": [
-    531,
-    669
+    594,
+    741
    ],
    "lines": [
     {
      "text": "手機勾了三項",
-     "start": 533,
+     "start": 596,
      "chars": [
-      536,
-      541,
-      547,
-      553,
-      558,
-      564
-     ]
-    },
-    {
-     "text": "計數跟著變",
-     "start": 574,
-     "chars": [
-      576,
-      582,
-      588,
-      594,
-      599
-     ]
-    },
-    {
-     "text": "重新整理",
-     "start": 610,
-     "chars": [
-      612,
-      617,
+      606,
+      610,
+      614,
+      619,
       623,
       629
      ]
     },
     {
-     "text": "勾的還在",
-     "start": 639,
+     "text": "計數跟著變",
+     "start": 641,
      "chars": [
-      641,
-      647,
-      653,
-      658
+      643,
+      649,
+      655,
+      659,
+      664
+     ]
+    },
+    {
+     "text": "重新整理",
+     "start": 675,
+     "chars": [
+      677,
+      684,
+      689,
+      694
+     ]
+    },
+    {
+     "text": "勾的還在",
+     "start": 701,
+     "chars": [
+      703,
+      708,
+      712,
+      718
      ]
     }
    ],
    "keywords": [
     {
      "text": "勾的還在",
-     "start": 641
+     "start": 703
     }
    ],
    "cues": [
     {
      "id": "tick",
      "text": "勾了三項",
-     "frame": 548
+     "frame": 616,
+     "early": 0
     },
     {
      "id": "cnt",
      "text": "計數跟著變",
-     "frame": 578
+     "frame": 645,
+     "early": 0
     },
     {
      "id": "keep",
      "text": "勾的還在",
-     "frame": 643
+     "frame": 705,
+     "early": 0
     }
    ],
+   "hash": "1eceda0a9736-d4b5ab0528",
    "sub": "手機勾了三項\n計數跟著變\n重新整理\n勾的還在",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.913,
+    "minScore": 0.005,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.56,
+      "start": 1.56,
+      "ch": "計",
+      "errMs": 0
+     },
+     {
+      "onset": 2.69,
+      "start": 2.68,
+      "ch": "重",
+      "errMs": -10
+     },
+     {
+      "onset": 3.57,
+      "start": 3.56,
+      "ch": "勾",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 1
+    },
+    {
+     "text": "用",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.999
+    },
+    {
+     "text": "手",
+     "start": 0.3,
+     "end": 0.42,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.999
+    },
+    {
+     "text": "勾",
+     "start": 0.6,
+     "end": 0.72,
+     "score": 0.999
+    },
+    {
+     "text": "了",
+     "start": 0.74,
+     "end": 0.82,
+     "score": 0.925
+    },
+    {
+     "text": "三",
+     "start": 0.88,
+     "end": 1,
+     "score": 0.005
+    },
+    {
+     "text": "項",
+     "start": 1.08,
+     "end": 1.3,
+     "score": 0.964
+    },
+    {
+     "text": "計",
+     "start": 1.56,
+     "end": 1.66,
+     "score": 0.999
+    },
+    {
+     "text": "數",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.894
+    },
+    {
+     "text": "跟",
+     "start": 1.94,
+     "end": 2.04,
+     "score": 1
+    },
+    {
+     "text": "著",
+     "start": 2.08,
+     "end": 2.18,
+     "score": 0.729
+    },
+    {
+     "text": "變",
+     "start": 2.24,
+     "end": 2.44,
+     "score": 0.932
+    },
+    {
+     "text": "重",
+     "start": 2.68,
+     "end": 2.88,
+     "score": 0.918
+    },
+    {
+     "text": "新",
+     "start": 2.9,
+     "end": 3.02,
+     "score": 0.905
+    },
+    {
+     "text": "整",
+     "start": 3.08,
+     "end": 3.24,
+     "score": 0.926
+    },
+    {
+     "text": "理",
+     "start": 3.26,
+     "end": 3.34,
+     "score": 0.997
+    },
+    {
+     "text": "勾",
+     "start": 3.56,
+     "end": 3.7,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.72,
+     "end": 3.8,
+     "score": 0.997
+    },
+    {
+     "text": "還",
+     "start": 3.86,
+     "end": 3.98,
+     "score": 0.998
+    },
+    {
+     "text": "在",
+     "start": 4.04,
+     "end": 4.22,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.19,
-    0.379,
-    0.569,
-    0.759,
-    0.948,
-    1.365,
-    1.555,
-    1.745,
-    1.934,
-    2.124,
-    2.541,
-    2.731,
-    2.92,
-    3.11,
-    3.527,
-    3.717,
-    3.906,
-    4.096
+    0.3,
+    0.44,
+    0.6,
+    0.74,
+    0.88,
+    1.08,
+    1.56,
+    1.76,
+    1.94,
+    2.08,
+    2.24,
+    2.68,
+    2.9,
+    3.08,
+    3.26,
+    3.56,
+    3.72,
+    3.86,
+    4.04
    ]
   },
   {
    "id": "s06",
-   "audio": null,
-   "audioFrame": 674,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 664,
-   "durationFrames": 141,
+   "audio": "audio/caffaine-trip-plan/06-s06.wav",
+   "audioFrame": 745,
+   "audioSec": 4.2,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 736,
+   "durationFrames": 155,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -660,116 +1419,262 @@
      8
     ]
    },
-   "voiceStartFrame": 674,
-   "voiceEndFrame": 797,
-   "stillFrame": 795,
+   "voiceStartFrame": 746,
+   "voiceEndFrame": 870,
+   "stillFrame": 881,
    "subtitleWindow": [
-    671,
-    802
+    743,
+    888
    ],
    "sourceWindow": [
-    669,
-    800
+    741,
+    886
    ],
    "lines": [
     {
      "text": "但有個小毛病",
-     "start": 671,
+     "start": 743,
      "chars": [
-      673,
-      678,
-      683,
-      689,
-      694,
-      700
+      746,
+      751,
+      755,
+      758,
+      763,
+      768
      ]
     },
     {
      "text": "一打開寫十一項",
-     "start": 710,
+     "start": 782,
      "chars": [
-      712,
-      717,
-      723,
-      728,
-      734,
-      739,
-      745
+      784,
+      788,
+      793,
+      800,
+      807,
+      812,
+      816
      ]
     },
     {
      "text": "勾了卻變十二項",
-     "start": 755,
+     "start": 828,
      "chars": [
-      757,
-      762,
-      768,
-      773,
-      779,
-      784,
-      789
+      831,
+      836,
+      841,
+      846,
+      852,
+      857,
+      862
      ]
     }
    ],
    "keywords": [
     {
      "text": "小毛病",
-     "start": 689
+     "start": 758
     }
    ],
    "cues": [
     {
      "id": "but",
      "text": "但有個小毛病",
-     "frame": 674
+     "frame": 747,
+     "early": 0
     },
     {
      "id": "open",
      "text": "一打開寫十一項",
-     "frame": 713
+     "frame": 786,
+     "early": 0
     },
     {
      "id": "twelve",
      "text": "變十二項",
-     "frame": 775
+     "frame": 847,
+     "early": 0
     }
    ],
+   "hash": "73f658a09410-d4b5ab0528",
    "sub": "但有個小毛病\n一打開寫十一項\n勾了卻變十二項",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.817,
+    "minScore": 0.069,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.39,
+      "start": 1.36,
+      "ch": "一",
+      "errMs": -30
+     },
+     {
+      "onset": 2.93,
+      "start": 2.9,
+      "ch": "勾",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 0.26,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "個",
+     "start": 0.38,
+     "end": 0.44,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 0.48,
+     "end": 0.62,
+     "score": 0.995
+    },
+    {
+     "text": "毛",
+     "start": 0.64,
+     "end": 0.8,
+     "score": 0.992
+    },
+    {
+     "text": "病",
+     "start": 0.82,
+     "end": 1.02,
+     "score": 0.91
+    },
+    {
+     "text": "一",
+     "start": 1.36,
+     "end": 1.42,
+     "score": 0.165
+    },
+    {
+     "text": "打",
+     "start": 1.48,
+     "end": 1.54,
+     "score": 0.991
+    },
+    {
+     "text": "開",
+     "start": 1.64,
+     "end": 1.82,
+     "score": 0.667
+    },
+    {
+     "text": "寫",
+     "start": 1.9,
+     "end": 2.02,
+     "score": 0.99
+    },
+    {
+     "text": "十",
+     "start": 2.12,
+     "end": 2.22,
+     "score": 0.779
+    },
+    {
+     "text": "一",
+     "start": 2.28,
+     "end": 2.32,
+     "score": 0.069
+    },
+    {
+     "text": "項",
+     "start": 2.42,
+     "end": 2.64,
+     "score": 0.998
+    },
+    {
+     "text": "勾",
+     "start": 2.9,
+     "end": 3.04,
+     "score": 0.996
+    },
+    {
+     "text": "了",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.993
+    },
+    {
+     "text": "卻",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.996
+    },
+    {
+     "text": "變",
+     "start": 3.4,
+     "end": 3.56,
+     "score": 0.997
+    },
+    {
+     "text": "十",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.754
+    },
+    {
+     "text": "二",
+     "start": 3.78,
+     "end": 3.86,
+     "score": 0.098
+    },
+    {
+     "text": "項",
+     "start": 3.96,
+     "end": 4.14,
+     "score": 0.96
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.547,
-    0.729,
-    0.911,
-    1.312,
-    1.494,
-    1.676,
-    1.859,
-    2.041,
-    2.223,
-    2.405,
-    2.806,
-    2.988,
-    3.171,
-    3.353,
-    3.535,
-    3.717,
-    3.899
+    0.08,
+    0.26,
+    0.38,
+    0.48,
+    0.64,
+    0.82,
+    1.36,
+    1.48,
+    1.64,
+    1.9,
+    2.12,
+    2.28,
+    2.42,
+    2.9,
+    3.08,
+    3.24,
+    3.4,
+    3.62,
+    3.78,
+    3.96
    ]
   },
   {
    "id": "s07",
-   "audio": null,
-   "audioFrame": 806,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 795,
-   "durationFrames": 124,
+   "audio": "audio/caffaine-trip-plan/07-s07.wav",
+   "audioFrame": 890,
+   "audioSec": 3.56,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 881,
+   "durationFrames": 125,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -783,105 +1688,232 @@
      8
     ]
    },
-   "voiceStartFrame": 805,
-   "voiceEndFrame": 911,
-   "stillFrame": 909,
+   "voiceStartFrame": 891,
+   "voiceEndFrame": 996,
+   "stillFrame": 996,
    "subtitleWindow": [
-    802,
-    916
+    888,
+    1003
    ],
    "sourceWindow": [
-    800,
-    914
+    886,
+    1001
    ],
    "lines": [
     {
      "text": "我照實說",
-     "start": 802,
+     "start": 888,
      "chars": [
-      805,
-      810,
-      815,
-      821
+      889,
+      893,
+      899,
+      904
      ]
     },
     {
      "text": "總數一打開就要對",
-     "start": 830,
+     "start": 920,
      "chars": [
-      832,
-      838,
-      843,
-      848,
-      854,
-      859,
-      865,
-      870
+      922,
+      929,
+      935,
+      938,
+      943,
+      949,
+      953,
+      958
      ]
     },
     {
      "text": "其他不要動",
-     "start": 880,
+     "start": 968,
      "chars": [
-      882,
-      887,
-      892,
-      898,
-      903
+      970,
+      975,
+      980,
+      983,
+      988
      ]
     }
    ],
    "keywords": [
     {
      "text": "要對",
-     "start": 865
+     "start": 953
     }
    ],
    "cues": [
     {
      "id": "say",
      "text": "總數一打開就要對",
-     "frame": 834
+     "frame": 924,
+     "early": 0
     },
     {
      "id": "keep",
      "text": "其他不要動",
-     "frame": 883
+     "frame": 972,
+     "early": 0
     }
    ],
+   "hash": "d817b24f6aaf-d4b5ab0528",
    "sub": "我照實說\n總數一打開就要對\n其他不要動",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.917,
+    "minScore": 0.123,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.14,
+      "start": 1.12,
+      "ch": "總",
+      "errMs": -20
+     },
+     {
+      "onset": 2.74,
+      "start": 2.72,
+      "ch": "其",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.998
+    },
+    {
+     "text": "照",
+     "start": 0.14,
+     "end": 0.3,
+     "score": 0.986
+    },
+    {
+     "text": "實",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.992
+    },
+    {
+     "text": "說",
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.958
+    },
+    {
+     "text": "總",
+     "start": 1.12,
+     "end": 1.3,
+     "score": 0.919
+    },
+    {
+     "text": "數",
+     "start": 1.36,
+     "end": 1.44,
+     "score": 0.992
+    },
+    {
+     "text": "一",
+     "start": 1.54,
+     "end": 1.58,
+     "score": 0.123
+    },
+    {
+     "text": "打",
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.992
+    },
+    {
+     "text": "開",
+     "start": 1.8,
+     "end": 1.96,
+     "score": 0.997
+    },
+    {
+     "text": "就",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.849
+    },
+    {
+     "text": "要",
+     "start": 2.14,
+     "end": 2.26,
+     "score": 0.976
+    },
+    {
+     "text": "對",
+     "start": 2.3,
+     "end": 2.48,
+     "score": 0.999
+    },
+    {
+     "text": "其",
+     "start": 2.72,
+     "end": 2.84,
+     "score": 0.998
+    },
+    {
+     "text": "他",
+     "start": 2.88,
+     "end": 2.96,
+     "score": 0.991
+    },
+    {
+     "text": "不",
+     "start": 3.06,
+     "end": 3.12,
+     "score": 0.874
+    },
+    {
+     "text": "要",
+     "start": 3.16,
+     "end": 3.3,
+     "score": 0.95
+    },
+    {
+     "text": "動",
+     "start": 3.32,
+     "end": 3.5,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.179,
-    0.358,
-    0.537,
-    0.93,
-    1.109,
-    1.288,
-    1.466,
-    1.645,
-    1.824,
-    2.003,
-    2.182,
-    2.575,
-    2.754,
-    2.933,
-    3.112,
-    3.291
+    0.02,
+    0.14,
+    0.34,
+    0.52,
+    1.12,
+    1.36,
+    1.54,
+    1.64,
+    1.8,
+    2.02,
+    2.14,
+    2.3,
+    2.72,
+    2.88,
+    3.06,
+    3.16,
+    3.32
    ]
   },
   {
    "id": "s08",
-   "audio": null,
-   "audioFrame": 919,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 909,
-   "durationFrames": 147,
+   "audio": "audio/caffaine-trip-plan/08-s08.wav",
+   "audioFrame": 1005,
+   "audioSec": 5.24,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.035,
+   "startFrame": 996,
+   "durationFrames": 186,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -895,129 +1927,288 @@
      8
     ]
    },
-   "voiceStartFrame": 919,
-   "voiceEndFrame": 1048,
-   "stillFrame": 1046,
+   "voiceStartFrame": 1006,
+   "voiceEndFrame": 1162,
+   "stillFrame": 1172,
    "subtitleWindow": [
-    916,
-    1053
+    1003,
+    1179
    ],
    "sourceWindow": [
-    914,
-    1051
+    1001,
+    1177
    ],
    "lines": [
     {
      "text": "再試一次",
-     "start": 916,
+     "start": 1003,
      "chars": [
-      918,
-      923,
-      928,
-      933
+      1006,
+      1012,
+      1016,
+      1020
      ]
     },
     {
      "text": "一打開就寫十二項",
-     "start": 943,
+     "start": 1034,
      "chars": [
-      945,
-      950,
-      955,
-      960,
-      966,
-      971,
-      976,
-      981
+      1036,
+      1040,
+      1044,
+      1050,
+      1056,
+      1062,
+      1067,
+      1072
      ]
     },
     {
      "text": "勾三項",
-     "start": 991,
+     "start": 1085,
      "chars": [
-      993,
-      998,
-      1003
+      1087,
+      1093,
+      1100
      ]
     },
     {
      "text": "重新整理也對",
-     "start": 1013,
+     "start": 1109,
      "chars": [
-      1015,
-      1020,
-      1025,
-      1030,
-      1036,
-      1041
+      1112,
+      1118,
+      1124,
+      1129,
+      1136,
+      1141
      ]
     }
    ],
    "keywords": [
     {
      "text": "十二項",
-     "start": 971
+     "start": 1062
     }
    ],
    "cues": [
     {
      "id": "again",
      "text": "再試一次",
-     "frame": 919
+     "frame": 1007,
+     "early": 0
     },
     {
      "id": "open",
      "text": "一打開就寫十二項",
-     "frame": 946
+     "frame": 1037,
+     "early": 0
     },
     {
      "id": "three",
      "text": "勾三項",
-     "frame": 994
+     "frame": 1088,
+     "early": 0
     },
     {
      "id": "ok",
      "text": "重新整理也對",
-     "frame": 1016
+     "frame": 1113,
+     "early": 0
     }
    ],
+   "hash": "68cd09ca829e-d4b5ab0528",
    "sub": "再試一次\n一打開就寫十二項\n勾三項\n重新整理也對",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.755,
+    "minScore": 0.007,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.12,
+      "start": 1.08,
+      "ch": "一",
+      "errMs": -40
+     },
+     {
+      "onset": 2.79,
+      "start": 2.78,
+      "ch": "勾",
+      "errMs": -10
+     },
+     {
+      "onset": 3.61,
+      "start": 3.6,
+      "ch": "重",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "再",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.998
+    },
+    {
+     "text": "試",
+     "start": 0.28,
+     "end": 0.36,
+     "score": 0.9
+    },
+    {
+     "text": "一",
+     "start": 0.4,
+     "end": 0.46,
+     "score": 0.103
+    },
+    {
+     "text": "次",
+     "start": 0.54,
+     "end": 0.68,
+     "score": 0.996
+    },
+    {
+     "text": "一",
+     "start": 1.08,
+     "end": 1.14,
+     "score": 0.094
+    },
+    {
+     "text": "打",
+     "start": 1.2,
+     "end": 1.26,
+     "score": 0.99
+    },
+    {
+     "text": "開",
+     "start": 1.36,
+     "end": 1.52,
+     "score": 0.972
+    },
+    {
+     "text": "就",
+     "start": 1.56,
+     "end": 1.7,
+     "score": 0.995
+    },
+    {
+     "text": "寫",
+     "start": 1.74,
+     "end": 1.84,
+     "score": 0.972
+    },
+    {
+     "text": "十",
+     "start": 1.94,
+     "end": 2.02,
+     "score": 0.109
+    },
+    {
+     "text": "二",
+     "start": 2.12,
+     "end": 2.2,
+     "score": 0.007
+    },
+    {
+     "text": "項",
+     "start": 2.28,
+     "end": 2.5,
+     "score": 0.921
+    },
+    {
+     "text": "勾",
+     "start": 2.78,
+     "end": 2.92,
+     "score": 0.99
+    },
+    {
+     "text": "三",
+     "start": 2.98,
+     "end": 3.14,
+     "score": 0.019
+    },
+    {
+     "text": "項",
+     "start": 3.2,
+     "end": 3.42,
+     "score": 0.924
+    },
+    {
+     "text": "重",
+     "start": 3.6,
+     "end": 3.8,
+     "score": 0.97
+    },
+    {
+     "text": "新",
+     "start": 3.82,
+     "end": 3.94,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 4,
+     "end": 4.16,
+     "score": 0.905
+    },
+    {
+     "text": "理",
+     "start": 4.18,
+     "end": 4.26,
+     "score": 0.997
+    },
+    {
+     "text": "也",
+     "start": 4.4,
+     "end": 4.48,
+     "score": 0.999
+    },
+    {
+     "text": "對",
+     "start": 4.58,
+     "end": 4.78,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.174,
-    0.348,
-    0.523,
-    0.906,
+    0.08,
+    0.28,
+    0.4,
+    0.54,
     1.08,
-    1.254,
-    1.429,
-    1.603,
-    1.777,
-    1.951,
-    2.125,
-    2.509,
-    2.683,
-    2.857,
-    3.24,
-    3.415,
-    3.589,
-    3.763,
-    3.937,
-    4.111
+    1.2,
+    1.36,
+    1.56,
+    1.74,
+    1.94,
+    2.12,
+    2.28,
+    2.78,
+    2.98,
+    3.2,
+    3.6,
+    3.82,
+    4,
+    4.18,
+    4.4,
+    4.58
    ]
   },
   {
    "id": "s09",
-   "audio": null,
-   "audioFrame": 1057,
-   "audioSec": 4.694,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1046,
-   "durationFrames": 160,
+   "audio": "audio/caffaine-trip-plan/09-s09.wav",
+   "audioFrame": 1182,
+   "audioSec": 4.285,
+   "headSilSec": 0.015,
+   "tailSilSec": 0.04,
+   "startFrame": 1172,
+   "durationFrames": 158,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1031,123 +2222,280 @@
      8
     ]
    },
-   "voiceStartFrame": 1056,
-   "voiceEndFrame": 1198,
-   "stillFrame": 1196,
+   "voiceStartFrame": 1182,
+   "voiceEndFrame": 1310,
+   "stillFrame": 1320,
    "subtitleWindow": [
-    1053,
-    1203
+    1179,
+    1327
    ],
    "sourceWindow": [
-    1051,
-    1201
+    1177,
+    1325
    ],
    "lines": [
     {
      "text": "不過行程是",
-     "start": 1053,
+     "start": 1179,
      "chars": [
-      1056,
-      1061,
-      1066,
-      1071,
-      1077
+      1181,
+      1184,
+      1188,
+      1193,
+      1200
      ]
     },
     {
      "text": "我虛構的草稿",
-     "start": 1086,
+     "start": 1202,
      "chars": [
-      1088,
-      1094,
-      1099,
-      1104,
-      1110,
-      1115
+      1205,
+      1209,
+      1214,
+      1218,
+      1221,
+      1227
      ]
     },
     {
      "text": "真的出門好不好用",
-     "start": 1124,
+     "start": 1240,
      "chars": [
-      1126,
-      1132,
-      1137,
-      1142,
-      1148,
-      1153,
-      1158,
-      1164
+      1242,
+      1247,
+      1251,
+      1256,
+      1263,
+      1268,
+      1271,
+      1276
      ]
     },
     {
      "text": "還不知道",
-     "start": 1173,
+     "start": 1283,
      "chars": [
-      1175,
-      1180,
-      1186,
-      1191
+      1286,
+      1291,
+      1295,
+      1299
      ]
     }
    ],
    "keywords": [
     {
      "text": "還不知道",
-     "start": 1175
+     "start": 1286
     }
    ],
    "cues": [
     {
      "id": "known",
      "text": "虛構的草稿",
-     "frame": 1095
+     "frame": 1210,
+     "early": 0
     },
     {
      "id": "q",
      "text": "真的出門",
-     "frame": 1128
+     "frame": 1244,
+     "early": 0
     }
    ],
+   "hash": "b295bc5a2d28-d4b5ab0528",
    "sub": "不過行程是\n我虛構的草稿\n真的出門好不好用\n還不知道",
-   "provider": "estimate",
-   "syllables": 23,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.99,
+    "minScore": 0.941,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.08,
+      "start": 2.06,
+      "ch": "真",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0,
+     "end": 0.06,
+     "score": 1
+    },
+    {
+     "text": "過",
+     "start": 0.1,
+     "end": 0.18,
+     "score": 0.996
+    },
+    {
+     "text": "行",
+     "start": 0.24,
+     "end": 0.4,
+     "score": 0.941
+    },
+    {
+     "text": "程",
+     "start": 0.42,
+     "end": 0.6,
+     "score": 0.941
+    },
+    {
+     "text": "是",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.999
+    },
+    {
+     "text": "我",
+     "start": 0.8,
+     "end": 0.86,
+     "score": 1
+    },
+    {
+     "text": "虛",
+     "start": 0.94,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "構",
+     "start": 1.1,
+     "end": 1.22,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.26,
+     "end": 1.32,
+     "score": 0.998
+    },
+    {
+     "text": "草",
+     "start": 1.36,
+     "end": 1.52,
+     "score": 0.997
+    },
+    {
+     "text": "稿",
+     "start": 1.56,
+     "end": 1.74,
+     "score": 0.999
+    },
+    {
+     "text": "真",
+     "start": 2.06,
+     "end": 2.2,
+     "score": 0.945
+    },
+    {
+     "text": "的",
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 2.36,
+     "end": 2.46,
+     "score": 0.981
+    },
+    {
+     "text": "門",
+     "start": 2.52,
+     "end": 2.66,
+     "score": 0.999
+    },
+    {
+     "text": "好",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 2.9,
+     "end": 2.94,
+     "score": 0.997
+    },
+    {
+     "text": "好",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 3.18,
+     "end": 3.38,
+     "score": 0.978
+    },
+    {
+     "text": "還",
+     "start": 3.5,
+     "end": 3.64,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 3.68,
+     "end": 3.76,
+     "score": 0.999
+    },
+    {
+     "text": "知",
+     "start": 3.82,
+     "end": 3.9,
+     "score": 0.999
+    },
+    {
+     "text": "道",
+     "start": 3.94,
+     "end": 4.14,
+     "score": 0.998
+    }
+   ],
    "charTimes": [
     0,
-    0.176,
-    0.353,
-    0.529,
-    0.706,
-    1.094,
-    1.271,
-    1.447,
-    1.623,
-    1.8,
-    1.976,
-    2.365,
-    2.541,
-    2.718,
-    2.894,
-    3.07,
-    3.247,
-    3.423,
-    3.6,
-    3.988,
-    4.164,
-    4.341,
-    4.517
+    0.1,
+    0.24,
+    0.42,
+    0.66,
+    0.8,
+    0.94,
+    1.1,
+    1.26,
+    1.36,
+    1.56,
+    2.06,
+    2.22,
+    2.36,
+    2.52,
+    2.74,
+    2.9,
+    3,
+    3.18,
+    3.5,
+    3.68,
+    3.82,
+    3.94
    ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1206,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1196,
-   "durationFrames": 154,
+   "audio": "audio/caffaine-trip-plan/10-s10.wav",
+   "audioFrame": 1329,
+   "audioSec": 5.39,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.02,
+   "startFrame": 1320,
+   "durationFrames": 190,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1161,135 +2509,311 @@
      8
     ]
    },
-   "voiceStartFrame": 1206,
-   "voiceEndFrame": 1342,
-   "stillFrame": 1340,
+   "voiceStartFrame": 1330,
+   "voiceEndFrame": 1491,
+   "stillFrame": 1500,
    "subtitleWindow": [
-    1203,
-    1347
+    1327,
+    1507
    ],
    "sourceWindow": [
-    1201,
-    1345
+    1325,
+    1505
    ],
    "lines": [
     {
      "text": "所以做法三步",
-     "start": 1203,
+     "start": 1327,
      "chars": [
-      1205,
-      1209,
-      1214,
-      1219,
-      1224,
-      1229
+      1329,
+      1334,
+      1337,
+      1342,
+      1348,
+      1353
      ]
     },
     {
      "text": "貼上行程",
-     "start": 1237,
+     "start": 1368,
      "chars": [
-      1239,
-      1244,
-      1249,
-      1254
+      1370,
+      1375,
+      1382,
+      1387
      ]
     },
     {
      "text": "交給 AI",
-     "start": 1262,
+     "start": 1398,
      "chars": [
-      1265,
-      1269,
-      1269,
-      1274,
-      1279
+      1400,
+      1406,
+      1406,
+      1413,
+      1418
      ]
     },
     {
      "text": "用手機點",
-     "start": 1288,
+     "start": 1427,
      "chars": [
-      1290,
-      1295,
-      1299,
-      1304
+      1430,
+      1436,
+      1441,
+      1446
      ]
     },
     {
      "text": "有毛病就說",
-     "start": 1313,
+     "start": 1457,
      "chars": [
-      1315,
-      1320,
-      1325,
-      1330,
-      1334
+      1459,
+      1464,
+      1469,
+      1474,
+      1480
      ]
     }
    ],
    "keywords": [
     {
      "text": "三步",
-     "start": 1224
+     "start": 1348
     }
    ],
    "cues": [
     {
      "id": "a",
      "text": "貼上行程",
-     "frame": 1241
+     "frame": 1372,
+     "early": 0
     },
     {
      "id": "b",
      "text": "交給 AI",
-     "frame": 1266
+     "frame": 1402,
+     "early": 0
     },
     {
      "id": "c",
      "text": "用手機點",
-     "frame": 1291
+     "frame": 1431,
+     "early": 0
     }
    ],
+   "hash": "fabe2023ab38-d4b5ab0528",
    "sub": "所以做法三步\n貼上行程\n交給 AI\n用手機點\n有毛病就說",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.858,
+    "minScore": 0.023,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.43,
+      "start": 1.42,
+      "ch": "貼",
+      "errMs": -10
+     },
+     {
+      "onset": 2.44,
+      "start": 2.42,
+      "ch": "交",
+      "errMs": -20
+     },
+     {
+      "onset": 3.42,
+      "start": 3.4,
+      "ch": "用",
+      "errMs": -20
+     },
+     {
+      "onset": 4.4,
+      "start": 4.38,
+      "ch": "有",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.06,
+     "end": 0.14,
+     "score": 0.999
+    },
+    {
+     "text": "以",
+     "start": 0.2,
+     "end": 0.24,
+     "score": 0.955
+    },
+    {
+     "text": "做",
+     "start": 0.32,
+     "end": 0.42,
+     "score": 0.949
+    },
+    {
+     "text": "法",
+     "start": 0.48,
+     "end": 0.56,
+     "score": 0.996
+    },
+    {
+     "text": "三",
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.085
+    },
+    {
+     "text": "步",
+     "start": 0.86,
+     "end": 0.96,
+     "score": 0.987
+    },
+    {
+     "text": "貼",
+     "start": 1.42,
+     "end": 1.52,
+     "score": 0.993
+    },
+    {
+     "text": "上",
+     "start": 1.58,
+     "end": 1.76,
+     "score": 0.934
+    },
+    {
+     "text": "行",
+     "start": 1.8,
+     "end": 1.96,
+     "score": 0.439
+    },
+    {
+     "text": "程",
+     "start": 1.98,
+     "end": 2.22,
+     "score": 0.989
+    },
+    {
+     "text": "交",
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.997
+    },
+    {
+     "text": "給",
+     "start": 2.62,
+     "end": 2.72,
+     "score": 0.994
+    },
+    {
+     "text": "A",
+     "start": 2.84,
+     "end": 2.88,
+     "score": 0.023
+    },
+    {
+     "text": "I",
+     "start": 3.02,
+     "end": 3.16,
+     "score": 0.496
+    },
+    {
+     "text": "用",
+     "start": 3.4,
+     "end": 3.56,
+     "score": 1
+    },
+    {
+     "text": "手",
+     "start": 3.62,
+     "end": 3.76,
+     "score": 0.998
+    },
+    {
+     "text": "機",
+     "start": 3.78,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "點",
+     "start": 3.96,
+     "end": 4.16,
+     "score": 0.997
+    },
+    {
+     "text": "有",
+     "start": 4.38,
+     "end": 4.5,
+     "score": 1
+    },
+    {
+     "text": "毛",
+     "start": 4.54,
+     "end": 4.68,
+     "score": 0.996
+    },
+    {
+     "text": "病",
+     "start": 4.72,
+     "end": 4.86,
+     "score": 0.997
+    },
+    {
+     "text": "就",
+     "start": 4.88,
+     "end": 5.02,
+     "score": 0.999
+    },
+    {
+     "text": "說",
+     "start": 5.08,
+     "end": 5.2,
+     "score": 0.908
+    }
+   ],
    "charTimes": [
-    0,
-    0.162,
-    0.323,
-    0.485,
-    0.646,
-    0.808,
-    1.163,
-    1.324,
-    1.486,
-    1.647,
-    2.003,
-    2.164,
-    2.326,
-    2.487,
-    2.842,
-    3.004,
-    3.165,
-    3.327,
-    3.682,
-    3.844,
-    4.005,
-    4.167,
-    4.328
+    0.06,
+    0.2,
+    0.32,
+    0.48,
+    0.68,
+    0.86,
+    1.42,
+    1.58,
+    1.8,
+    1.98,
+    2.42,
+    2.62,
+    2.84,
+    3.02,
+    3.4,
+    3.62,
+    3.78,
+    3.96,
+    4.38,
+    4.54,
+    4.72,
+    4.88,
+    5.08
    ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 1350,
-   "audioSec": 2.041,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1340,
-   "durationFrames": 80,
+   "audio": "audio/caffaine-trip-plan/11-s11.wav",
+   "audioFrame": 1510,
+   "audioSec": 2.76,
+   "headSilSec": 0.03,
+   "tailSilSec": 0.04,
+   "startFrame": 1500,
+   "durationFrames": 100,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1303,86 +2827,165 @@
      8
     ]
    },
-   "voiceStartFrame": 1350,
-   "voiceEndFrame": 1412,
-   "stillFrame": 1410,
+   "voiceStartFrame": 1510,
+   "voiceEndFrame": 1592,
+   "stillFrame": 1590,
    "subtitleWindow": [
-    1347,
-    1420
+    1507,
+    1600
    ],
    "sourceWindow": [
-    1345,
-    1415
+    1505,
+    1595
    ],
    "lines": [
     {
      "text": "留言「行程」",
-     "start": 1347,
+     "start": 1507,
      "chars": [
-      1349,
-      1354,
-      1354,
-      1359,
-      1365,
-      1365
+      1520,
+      1526,
+      1526,
+      1533,
+      1540,
+      1540
      ]
     },
     {
      "text": "拿這段提示詞",
-     "start": 1375,
+     "start": 1551,
      "chars": [
-      1377,
-      1382,
-      1388,
-      1393,
-      1399,
-      1404
+      1553,
+      1559,
+      1564,
+      1569,
+      1574,
+      1580
      ]
     }
    ],
    "keywords": [
     {
      "text": "行程",
-     "start": 1359
+     "start": 1533
     }
    ],
    "cues": [
     {
      "id": "kw",
      "text": "行程",
-     "frame": 1361
+     "frame": 1535,
+     "early": 0
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 1395
+     "frame": 1571,
+     "early": 0
     }
    ],
+   "hash": "09a27dce0e46-d4b5ab0528",
    "sub": "留言「行程」\n拿這段提示詞",
-   "provider": "estimate",
-   "syllables": 10,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.914,
+    "minScore": 0.249,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.51,
+      "start": 1.48,
+      "ch": "拿",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.38,
+     "end": 0.54,
+     "score": 0.994
+    },
+    {
+     "text": "言",
+     "start": 0.58,
+     "end": 0.74,
+     "score": 0.993
+    },
+    {
+     "text": "行",
+     "start": 0.82,
+     "end": 1,
+     "score": 0.978
+    },
+    {
+     "text": "程",
+     "start": 1.06,
+     "end": 1.3,
+     "score": 0.963
+    },
+    {
+     "text": "拿",
+     "start": 1.48,
+     "end": 1.58,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 1.68,
+     "end": 1.76,
+     "score": 0.971
+    },
+    {
+     "text": "段",
+     "start": 1.86,
+     "end": 1.98,
+     "score": 0.249
+    },
+    {
+     "text": "提",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.998
+    },
+    {
+     "text": "示",
+     "start": 2.18,
+     "end": 2.28,
+     "score": 0.998
+    },
+    {
+     "text": "詞",
+     "start": 2.38,
+     "end": 2.5,
+     "score": 0.997
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.547,
-    0.948,
-    1.13,
-    1.312,
-    1.494,
-    1.676,
-    1.859
+    0.38,
+    0.58,
+    0.82,
+    1.06,
+    1.48,
+    1.68,
+    1.86,
+    2.02,
+    2.18,
+    2.38
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1410,
+   "audioFrame": 1590,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1410,
+   "startFrame": 1590,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1397,24 +3000,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1420,
-   "voiceEndFrame": 1420,
-   "stillFrame": 1506,
+   "voiceStartFrame": 1600,
+   "voiceEndFrame": 1600,
+   "stillFrame": 1686,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1415,
-    1518
+    1595,
+    1698
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-trip-plan/voice.wav",
+  "lufsIn": -13.8,
+  "lufs": -16,
+  "sec": 56.6
+ }
 }

@@ -2,151 +2,315 @@
  "version": 2,
  "slug": "caffaine-pdf-quiz",
  "fps": 30,
- "totalFrames": 1506,
- "totalSec": 50.2,
- "gapSec": 0.3,
+ "totalFrames": 1596,
+ "totalSec": 53.2,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 4.694,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-pdf-quiz/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 4.695,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.025,
    "startFrame": 0,
-   "durationFrames": 154,
+   "durationFrames": 161,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 146,
-   "stillFrame": 144,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 141,
+   "stillFrame": 151,
    "subtitleWindow": [
     0,
-    151
+    158
    ],
    "sourceWindow": [
     0,
-    149
+    156
    ],
    "lines": [
     {
      "text": "一份講義丟給 AI",
      "start": 0,
      "chars": [
-      4,
-      9,
+      0,
+      3,
+      8,
       14,
       19,
-      25,
+      24,
+      24,
       30,
-      30,
-      35,
-      41
+      36
      ]
     },
     {
      "text": "約十秒",
-     "start": 50,
+     "start": 45,
      "chars": [
-      52,
-      58,
-      63
+      47,
+      54,
+      59
      ]
     },
     {
      "text": "變成能自己測驗的",
-     "start": 72,
+     "start": 74,
      "chars": [
-      74,
-      80,
-      85,
-      90,
-      96,
-      101,
-      106,
+      77,
+      81,
+      87,
+      93,
+      97,
+      102,
+      108,
       112
      ]
     },
     {
      "text": "小考網頁",
-     "start": 121,
+     "start": 113,
      "chars": [
-      123,
-      128,
-      134,
-      139
+      116,
+      121,
+      126,
+      132
      ]
     }
    ],
    "keywords": [
     {
      "text": "小考",
-     "start": 123
+     "start": 116
     }
    ],
    "cues": [
     {
      "id": "hand",
      "text": "一份講義",
-     "frame": 5
+     "frame": 1,
+     "early": 0
     },
     {
      "id": "sec",
      "text": "約十秒",
-     "frame": 54
+     "frame": 49,
+     "early": 0
     },
     {
      "id": "quiz",
      "text": "小考網頁",
-     "frame": 125
+     "frame": 117,
+     "early": 0
     }
    ],
+   "hash": "9f41e19f881d-d4b5ab0528",
    "sub": "一份講義丟給 AI\n約十秒\n變成能自己測驗的\n小考網頁",
-   "provider": "estimate",
-   "syllables": 23,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.882,
+    "minScore": 0.01,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.64,
+      "start": 1.62,
+      "ch": "約",
+      "errMs": -20
+     },
+     {
+      "onset": 2.46,
+      "start": 2.44,
+      "ch": "就",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "一",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.877
+    },
+    {
+     "text": "份",
+     "start": 0.14,
+     "end": 0.26,
+     "score": 0.999
+    },
+    {
+     "text": "講",
+     "start": 0.3,
+     "end": 0.48,
+     "score": 0.953
+    },
+    {
+     "text": "義",
+     "start": 0.52,
+     "end": 0.56,
+     "score": 0.694
+    },
+    {
+     "text": "丟",
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.635
+    },
+    {
+     "text": "給",
+     "start": 0.84,
+     "end": 0.96,
+     "score": 0.987
+    },
+    {
+     "text": "A",
+     "start": 1.04,
+     "end": 1.1,
+     "score": 0.01
+    },
+    {
+     "text": "I",
+     "start": 1.24,
+     "end": 1.38,
+     "score": 0.475
+    },
+    {
+     "text": "約",
+     "start": 1.62,
+     "end": 1.74,
+     "score": 0.987
+    },
+    {
+     "text": "十",
+     "start": 1.84,
+     "end": 1.92,
+     "score": 0.881
+    },
+    {
+     "text": "秒",
+     "start": 2,
+     "end": 2.22,
+     "score": 0.991
+    },
+    {
+     "text": "就",
+     "start": 2.44,
+     "end": 2.56,
+     "score": 0.998
+    },
+    {
+     "text": "變",
+     "start": 2.6,
+     "end": 2.72,
+     "score": 0.98
+    },
+    {
+     "text": "成",
+     "start": 2.76,
+     "end": 2.92,
+     "score": 0.973
+    },
+    {
+     "text": "能",
+     "start": 2.96,
+     "end": 3.1,
+     "score": 0.903
+    },
+    {
+     "text": "自",
+     "start": 3.14,
+     "end": 3.22,
+     "score": 0.998
+    },
+    {
+     "text": "己",
+     "start": 3.28,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "測",
+     "start": 3.44,
+     "end": 3.56,
+     "score": 0.997
+    },
+    {
+     "text": "驗",
+     "start": 3.64,
+     "end": 3.76,
+     "score": 0.972
+    },
+    {
+     "text": "的",
+     "start": 3.78,
+     "end": 3.84,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 3.9,
+     "end": 4.04,
+     "score": 0.998
+    },
+    {
+     "text": "考",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.909
+    },
+    {
+     "text": "網",
+     "start": 4.24,
+     "end": 4.4,
+     "score": 0.955
+    },
+    {
+     "text": "頁",
+     "start": 4.46,
+     "end": 4.56,
+     "score": 0.991
+    }
+   ],
    "charTimes": [
-    0,
-    0.176,
-    0.353,
-    0.529,
-    0.706,
-    0.882,
-    1.059,
-    1.235,
-    1.623,
-    1.8,
-    1.976,
-    2.365,
-    2.541,
-    2.718,
-    2.894,
-    3.07,
-    3.247,
-    3.423,
-    3.6,
-    3.988,
-    4.164,
-    4.341,
-    4.517
+    0.02,
+    0.14,
+    0.3,
+    0.52,
+    0.68,
+    0.84,
+    1.04,
+    1.24,
+    1.62,
+    1.84,
+    2,
+    2.6,
+    2.76,
+    2.96,
+    3.14,
+    3.28,
+    3.44,
+    3.64,
+    3.78,
+    3.9,
+    4.08,
+    4.24,
+    4.46
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 155,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 144,
-   "durationFrames": 148,
+   "audio": "audio/caffaine-pdf-quiz/02-s02.wav",
+   "audioFrame": 160,
+   "audioSec": 4.68,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 151,
+   "durationFrames": 157,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -160,124 +324,282 @@
      8
     ]
    },
-   "voiceStartFrame": 154,
-   "voiceEndFrame": 284,
-   "stillFrame": 282,
+   "voiceStartFrame": 161,
+   "voiceEndFrame": 300,
+   "stillFrame": 298,
    "subtitleWindow": [
-    151,
-    289
+    158,
+    305
    ],
    "sourceWindow": [
-    149,
-    287
+    156,
+    303
    ],
    "lines": [
     {
      "text": "我貼上虛構講義",
-     "start": 151,
+     "start": 158,
      "chars": [
-      154,
       159,
-      164,
-      169,
+      162,
+      167,
       174,
-      180,
-      185
+      178,
+      183,
+      190
      ]
     },
     {
      "text": "請它出五題",
-     "start": 194,
+     "start": 199,
      "chars": [
-      196,
-      202,
+      201,
       207,
-      212,
-      217
+      211,
+      217,
+      222
      ]
     },
     {
      "text": "選完有對錯",
-     "start": 227,
+     "start": 237,
      "chars": [
-      229,
-      234,
       239,
       244,
-      250
+      250,
+      255,
+      260
      ]
     },
     {
      "text": "最後算分",
-     "start": 259,
+     "start": 270,
      "chars": [
-      261,
-      266,
-      272,
-      277
+      273,
+      277,
+      283,
+      289
      ]
     }
    ],
    "keywords": [
     {
      "text": "五題",
-     "start": 212
+     "start": 217
     }
    ],
    "cues": [
     {
      "id": "paste",
      "text": "貼上虛構講義",
-     "frame": 160
+     "frame": 164,
+     "early": 0
     },
     {
      "id": "ask",
      "text": "出五題",
-     "frame": 208
+     "frame": 213,
+     "early": 0
     },
     {
      "id": "end",
      "text": "最後算分",
-     "frame": 263
+     "frame": 274,
+     "early": 0
     }
    ],
+   "hash": "1aa3c4c94bfd-d4b5ab0528",
    "sub": "我貼上虛構講義\n請它出五題\n選完有對錯\n最後算分",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.885,
+    "minScore": 0.003,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.43,
+      "start": 1.42,
+      "ch": "請",
+      "errMs": -10
+     },
+     {
+      "onset": 2.64,
+      "start": 2.68,
+      "ch": "選",
+      "errMs": 40
+     },
+     {
+      "onset": 3.81,
+      "start": 3.8,
+      "ch": "最",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.923
+    },
+    {
+     "text": "貼",
+     "start": 0.12,
+     "end": 0.22,
+     "score": 0.9
+    },
+    {
+     "text": "上",
+     "start": 0.28,
+     "end": 0.46,
+     "score": 0.98
+    },
+    {
+     "text": "虛",
+     "start": 0.5,
+     "end": 0.58,
+     "score": 0.99
+    },
+    {
+     "text": "構",
+     "start": 0.66,
+     "end": 0.78,
+     "score": 0.651
+    },
+    {
+     "text": "講",
+     "start": 0.82,
+     "end": 1,
+     "score": 0.952
+    },
+    {
+     "text": "義",
+     "start": 1.06,
+     "end": 1.12,
+     "score": 0.812
+    },
+    {
+     "text": "請",
+     "start": 1.42,
+     "end": 1.58,
+     "score": 0.988
+    },
+    {
+     "text": "它",
+     "start": 1.6,
+     "end": 1.66,
+     "score": 0.993
+    },
+    {
+     "text": "出",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.976
+    },
+    {
+     "text": "五",
+     "start": 1.96,
+     "end": 2.04,
+     "score": 0.515
+    },
+    {
+     "text": "題",
+     "start": 2.12,
+     "end": 2.26,
+     "score": 0.994
+    },
+    {
+     "text": "選",
+     "start": 2.68,
+     "end": 2.8,
+     "score": 0.949
+    },
+    {
+     "text": "完",
+     "start": 2.84,
+     "end": 2.98,
+     "score": 0.996
+    },
+    {
+     "text": "有",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.999
+    },
+    {
+     "text": "對",
+     "start": 3.2,
+     "end": 3.32,
+     "score": 0.999
+    },
+    {
+     "text": "錯",
+     "start": 3.38,
+     "end": 3.52,
+     "score": 0.988
+    },
+    {
+     "text": "最",
+     "start": 3.8,
+     "end": 3.92,
+     "score": 0.998
+    },
+    {
+     "text": "後",
+     "start": 3.96,
+     "end": 4.08,
+     "score": 0.993
+    },
+    {
+     "text": "算",
+     "start": 4.14,
+     "end": 4.3,
+     "score": 0.003
+    },
+    {
+     "text": "分",
+     "start": 4.36,
+     "end": 4.54,
+     "score": 0.991
+    }
+   ],
    "charTimes": [
-    0,
-    0.174,
-    0.348,
-    0.523,
-    0.697,
-    0.871,
-    1.045,
-    1.429,
-    1.603,
-    1.777,
-    1.951,
-    2.125,
-    2.509,
-    2.683,
-    2.857,
-    3.031,
-    3.206,
-    3.589,
-    3.763,
-    3.937,
-    4.111
+    0.02,
+    0.12,
+    0.28,
+    0.5,
+    0.66,
+    0.82,
+    1.06,
+    1.42,
+    1.6,
+    1.76,
+    1.96,
+    2.12,
+    2.68,
+    2.84,
+    3.04,
+    3.2,
+    3.38,
+    3.8,
+    3.96,
+    4.14,
+    4.36
    ]
   },
   {
    "id": "s03",
-   "audio": null,
-   "audioFrame": 292,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 282,
-   "durationFrames": 135,
+   "audio": "audio/caffaine-pdf-quiz/03-s03.wav",
+   "audioFrame": 307,
+   "audioSec": 3.96,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.03,
+   "startFrame": 298,
+   "durationFrames": 137,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -291,120 +613,260 @@
      8
     ]
    },
-   "voiceStartFrame": 292,
-   "voiceEndFrame": 409,
-   "stillFrame": 407,
+   "voiceStartFrame": 308,
+   "voiceEndFrame": 425,
+   "stillFrame": 425,
    "subtitleWindow": [
-    289,
-    414
+    305,
+    432
    ],
    "sourceWindow": [
-    287,
-    412
+    303,
+    430
    ],
    "lines": [
     {
      "text": "它交回網頁檔",
-     "start": 289,
+     "start": 305,
      "chars": [
-      291,
-      296,
-      301,
-      306,
-      311,
-      316
+      308,
+      312,
+      317,
+      322,
+      327,
+      331
      ]
     },
     {
      "text": "一次一題",
-     "start": 325,
+     "start": 341,
      "chars": [
-      328,
-      333,
-      338,
-      343
+      343,
+      348,
+      354,
+      357
      ]
     },
     {
      "text": "選完跳出",
-     "start": 352,
+     "start": 370,
      "chars": [
-      354,
-      359,
-      365,
-      370
+      372,
+      378,
+      382,
+      388
      ]
     },
     {
      "text": "對錯和解釋",
-     "start": 379,
+     "start": 392,
      "chars": [
-      381,
-      386,
-      391,
-      397,
-      402
+      394,
+      399,
+      405,
+      410,
+      418
      ]
     }
    ],
    "keywords": [
     {
      "text": "一次一題",
-     "start": 328
+     "start": 343
     }
    ],
    "cues": [
     {
      "id": "file",
      "text": "網頁檔",
-     "frame": 307
+     "frame": 323,
+     "early": 0
     },
     {
      "id": "one",
      "text": "一次一題",
-     "frame": 329
+     "frame": 344,
+     "early": 0
     },
     {
      "id": "expl",
      "text": "對錯和解釋",
-     "frame": 383
+     "frame": 396,
+     "early": 0
     }
    ],
+   "hash": "13bb214fe9f0-d4b5ab0528",
    "sub": "它交回網頁檔\n一次一題\n選完跳出\n對錯和解釋",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.895,
+    "minScore": 0.207,
+    "onsetMedianMs": 35,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.28,
+      "start": 1.24,
+      "ch": "一",
+      "errMs": -40
+     },
+     {
+      "onset": 2.19,
+      "start": 2.22,
+      "ch": "選",
+      "errMs": 30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "它",
+     "start": 0.08,
+     "end": 0.14,
+     "score": 0.99
+    },
+    {
+     "text": "交",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.997
+    },
+    {
+     "text": "回",
+     "start": 0.38,
+     "end": 0.5,
+     "score": 1
+    },
+    {
+     "text": "網",
+     "start": 0.54,
+     "end": 0.68,
+     "score": 0.998
+    },
+    {
+     "text": "頁",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.998
+    },
+    {
+     "text": "檔",
+     "start": 0.86,
+     "end": 1.04,
+     "score": 0.988
+    },
+    {
+     "text": "一",
+     "start": 1.24,
+     "end": 1.32,
+     "score": 0.538
+    },
+    {
+     "text": "次",
+     "start": 1.42,
+     "end": 1.52,
+     "score": 0.943
+    },
+    {
+     "text": "一",
+     "start": 1.6,
+     "end": 1.66,
+     "score": 0.207
+    },
+    {
+     "text": "題",
+     "start": 1.72,
+     "end": 1.86,
+     "score": 0.994
+    },
+    {
+     "text": "選",
+     "start": 2.22,
+     "end": 2.36,
+     "score": 0.994
+    },
+    {
+     "text": "完",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.997
+    },
+    {
+     "text": "跳",
+     "start": 2.56,
+     "end": 2.74,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 0.992
+    },
+    {
+     "text": "對",
+     "start": 2.96,
+     "end": 3.08,
+     "score": 0.999
+    },
+    {
+     "text": "錯",
+     "start": 3.12,
+     "end": 3.24,
+     "score": 0.91
+    },
+    {
+     "text": "和",
+     "start": 3.32,
+     "end": 3.4,
+     "score": 0.496
+    },
+    {
+     "text": "解",
+     "start": 3.48,
+     "end": 3.6,
+     "score": 0.967
+    },
+    {
+     "text": "釋",
+     "start": 3.74,
+     "end": 3.84,
+     "score": 0.994
+    }
+   ],
    "charTimes": [
-    0,
-    0.172,
-    0.343,
-    0.515,
-    0.686,
-    0.858,
-    1.235,
-    1.407,
-    1.578,
-    1.75,
-    2.128,
-    2.299,
-    2.471,
-    2.642,
-    3.02,
-    3.191,
-    3.363,
-    3.534,
-    3.706
+    0.08,
+    0.2,
+    0.38,
+    0.54,
+    0.72,
+    0.86,
+    1.24,
+    1.42,
+    1.6,
+    1.72,
+    2.22,
+    2.4,
+    2.56,
+    2.76,
+    2.96,
+    3.12,
+    3.32,
+    3.48,
+    3.74
    ]
   },
   {
    "id": "s04",
-   "audio": null,
-   "audioFrame": 418,
-   "audioSec": 2.653,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 407,
-   "durationFrames": 99,
+   "audio": "audio/caffaine-pdf-quiz/04-s04.wav",
+   "audioFrame": 434,
+   "audioSec": 2.42,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 425,
+   "durationFrames": 101,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -418,96 +880,194 @@
      8
     ]
    },
-   "voiceStartFrame": 417,
-   "voiceEndFrame": 498,
-   "stillFrame": 496,
+   "voiceStartFrame": 435,
+   "voiceEndFrame": 506,
+   "stillFrame": 516,
    "subtitleWindow": [
-    414,
-    503
+    432,
+    523
    ],
    "sourceWindow": [
-    412,
-    501
+    430,
+    521
    ],
    "lines": [
     {
      "text": "我逐題對過講義",
-     "start": 414,
+     "start": 432,
      "chars": [
-      417,
-      422,
-      427,
-      432,
-      437,
-      442,
-      448
+      434,
+      438,
+      443,
+      448,
+      453,
+      457,
+      464
      ]
     },
     {
      "text": "五題都對得上",
-     "start": 457,
+     "start": 472,
      "chars": [
-      459,
-      464,
-      475,
-      481,
-      486,
-      491
+      474,
+      480,
+      485,
+      489,
+      494,
+      498
      ]
     }
    ],
    "keywords": [
     {
      "text": "對得上",
-     "start": 481
+     "start": 489
     }
    ],
    "cues": [
     {
      "id": "cmp",
      "text": "逐題對過講義",
-     "frame": 423
+     "frame": 439,
+     "early": 0
     },
     {
      "id": "five",
      "text": "五題",
-     "frame": 460
+     "frame": 476,
+     "early": 0
     },
     {
      "id": "ok",
      "text": "都對得上",
-     "frame": 477
+     "frame": 486,
+     "early": 0
     }
    ],
+   "hash": "dc4b87d35184-d4b5ab0528",
    "sub": "我逐題對過講義\n五題\n都對得上",
-   "provider": "estimate",
-   "syllables": 13,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.918,
+    "minScore": 0.665,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.42,
+      "start": 1.4,
+      "ch": "五",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.06,
+     "end": 0.14,
+     "score": 0.998
+    },
+    {
+     "text": "逐",
+     "start": 0.18,
+     "end": 0.26,
+     "score": 0.858
+    },
+    {
+     "text": "題",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.998
+    },
+    {
+     "text": "對",
+     "start": 0.52,
+     "end": 0.62,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.68,
+     "end": 0.76,
+     "score": 0.952
+    },
+    {
+     "text": "講",
+     "start": 0.82,
+     "end": 1,
+     "score": 0.865
+    },
+    {
+     "text": "義",
+     "start": 1.04,
+     "end": 1.12,
+     "score": 0.869
+    },
+    {
+     "text": "五",
+     "start": 1.4,
+     "end": 1.48,
+     "score": 0.74
+    },
+    {
+     "text": "題",
+     "start": 1.58,
+     "end": 1.66,
+     "score": 0.997
+    },
+    {
+     "text": "都",
+     "start": 1.74,
+     "end": 1.86,
+     "score": 0.998
+    },
+    {
+     "text": "對",
+     "start": 1.9,
+     "end": 2,
+     "score": 0.665
+    },
+    {
+     "text": "得",
+     "start": 2.04,
+     "end": 2.1,
+     "score": 0.997
+    },
+    {
+     "text": "上",
+     "start": 2.18,
+     "end": 2.36,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.172,
-    0.345,
-    0.517,
-    0.689,
-    0.861,
-    1.034,
-    1.413,
-    1.585,
-    1.964,
-    2.136,
-    2.309,
-    2.481
+    0.06,
+    0.18,
+    0.34,
+    0.52,
+    0.68,
+    0.82,
+    1.04,
+    1.4,
+    1.58,
+    1.74,
+    1.9,
+    2.04,
+    2.18
    ]
   },
   {
    "id": "s05",
-   "audio": null,
-   "audioFrame": 506,
-   "audioSec": 5.306,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 496,
-   "durationFrames": 178,
+   "audio": "audio/caffaine-pdf-quiz/05-s05.wav",
+   "audioFrame": 525,
+   "audioSec": 5.355,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.025,
+   "startFrame": 516,
+   "durationFrames": 190,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -521,134 +1081,322 @@
      8
     ]
    },
-   "voiceStartFrame": 506,
-   "voiceEndFrame": 666,
-   "stillFrame": 664,
+   "voiceStartFrame": 526,
+   "voiceEndFrame": 685,
+   "stillFrame": 696,
    "subtitleWindow": [
-    503,
-    671
+    523,
+    703
    ],
    "sourceWindow": [
-    501,
-    669
+    521,
+    701
    ],
    "lines": [
     {
      "text": "但有個小毛病",
-     "start": 503,
+     "start": 523,
      "chars": [
-      505,
-      510,
-      515,
-      521,
       526,
-      531
+      531,
+      534,
+      538,
+      542,
+      548
      ]
     },
     {
      "text": "選完後選項全變灰",
-     "start": 541,
+     "start": 562,
      "chars": [
-      543,
-      549,
-      554,
-      559,
-      565,
-      570,
+      564,
+      569,
       575,
-      581
+      581,
+      587,
+      593,
+      599,
+      605
      ]
     },
     {
      "text": "看不出我選了哪個",
-     "start": 591,
+     "start": 617,
      "chars": [
-      593,
-      598,
-      603,
-      609,
-      614,
-      620,
-      625,
-      630
+      619,
+      624,
+      627,
+      633,
+      638,
+      642,
+      645,
+      651
      ]
     },
     {
      "text": "哪個才對",
-     "start": 640,
+     "start": 660,
      "chars": [
-      642,
-      648,
-      653,
-      658
+      662,
+      668,
+      671,
+      677
      ]
     }
    ],
    "keywords": [
     {
      "text": "變灰",
-     "start": 575
+     "start": 599
     }
    ],
    "cues": [
     {
      "id": "but",
      "text": "有個小毛病",
-     "frame": 511
+     "frame": 532,
+     "early": 0
     },
     {
      "id": "gray",
      "text": "選項全變灰",
-     "frame": 561
+     "frame": 583,
+     "early": 0
     },
     {
      "id": "which",
      "text": "看不出我選了哪個",
-     "frame": 594
+     "frame": 620,
+     "early": 0
     }
    ],
+   "hash": "c2a28cce9064-d4b5ab0528",
    "sub": "但有個小毛病\n選完後選項全變灰\n看不出我選了哪個\n哪個才對",
-   "provider": "estimate",
-   "syllables": 26,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.978,
+    "minScore": 0.87,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.32,
+      "start": 1.36,
+      "ch": "選",
+      "errMs": 40
+     },
+     {
+      "onset": 3.2,
+      "start": 3.18,
+      "ch": "看",
+      "errMs": -20
+     },
+     {
+      "onset": 4.62,
+      "start": 4.62,
+      "ch": "哪",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.08,
+     "end": 0.2,
+     "score": 1
+    },
+    {
+     "text": "有",
+     "start": 0.24,
+     "end": 0.34,
+     "score": 1
+    },
+    {
+     "text": "個",
+     "start": 0.36,
+     "end": 0.42,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 0.48,
+     "end": 0.6,
+     "score": 0.87
+    },
+    {
+     "text": "毛",
+     "start": 0.62,
+     "end": 0.76,
+     "score": 0.964
+    },
+    {
+     "text": "病",
+     "start": 0.8,
+     "end": 0.98,
+     "score": 0.896
+    },
+    {
+     "text": "選",
+     "start": 1.36,
+     "end": 1.48,
+     "score": 0.991
+    },
+    {
+     "text": "完",
+     "start": 1.52,
+     "end": 1.64,
+     "score": 0.997
+    },
+    {
+     "text": "後",
+     "start": 1.72,
+     "end": 1.86,
+     "score": 0.999
+    },
+    {
+     "text": "選",
+     "start": 1.92,
+     "end": 2.06,
+     "score": 0.937
+    },
+    {
+     "text": "項",
+     "start": 2.1,
+     "end": 2.3,
+     "score": 0.915
+    },
+    {
+     "text": "全",
+     "start": 2.32,
+     "end": 2.46,
+     "score": 0.964
+    },
+    {
+     "text": "變",
+     "start": 2.5,
+     "end": 2.66,
+     "score": 0.987
+    },
+    {
+     "text": "灰",
+     "start": 2.72,
+     "end": 2.9,
+     "score": 1
+    },
+    {
+     "text": "看",
+     "start": 3.18,
+     "end": 3.32,
+     "score": 0.994
+    },
+    {
+     "text": "不",
+     "start": 3.34,
+     "end": 3.4,
+     "score": 0.994
+    },
+    {
+     "text": "出",
+     "start": 3.46,
+     "end": 3.56,
+     "score": 0.979
+    },
+    {
+     "text": "我",
+     "start": 3.64,
+     "end": 3.7,
+     "score": 0.994
+    },
+    {
+     "text": "選",
+     "start": 3.8,
+     "end": 3.92,
+     "score": 0.991
+    },
+    {
+     "text": "了",
+     "start": 3.96,
+     "end": 4,
+     "score": 0.971
+    },
+    {
+     "text": "哪",
+     "start": 4.06,
+     "end": 4.12,
+     "score": 0.999
+    },
+    {
+     "text": "個",
+     "start": 4.26,
+     "end": 4.34,
+     "score": 0.999
+    },
+    {
+     "text": "哪",
+     "start": 4.62,
+     "end": 4.7,
+     "score": 0.999
+    },
+    {
+     "text": "個",
+     "start": 4.8,
+     "end": 4.88,
+     "score": 0.998
+    },
+    {
+     "text": "才",
+     "start": 4.92,
+     "end": 5.08,
+     "score": 0.979
+    },
+    {
+     "text": "對",
+     "start": 5.12,
+     "end": 5.26,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.179,
-    0.359,
-    0.538,
-    0.717,
-    0.896,
-    1.291,
-    1.47,
-    1.649,
-    1.828,
-    2.008,
-    2.187,
-    2.366,
-    2.546,
-    2.94,
-    3.119,
-    3.298,
-    3.478,
-    3.657,
-    3.836,
-    4.015,
-    4.195,
-    4.589,
-    4.768,
-    4.948,
-    5.127
+    0.08,
+    0.24,
+    0.36,
+    0.48,
+    0.62,
+    0.8,
+    1.36,
+    1.52,
+    1.72,
+    1.92,
+    2.1,
+    2.32,
+    2.5,
+    2.72,
+    3.18,
+    3.34,
+    3.46,
+    3.64,
+    3.8,
+    3.96,
+    4.06,
+    4.26,
+    4.62,
+    4.8,
+    4.92,
+    5.12
    ]
   },
   {
    "id": "s06",
-   "audio": null,
-   "audioFrame": 674,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 664,
-   "durationFrames": 141,
+   "audio": "audio/caffaine-pdf-quiz/06-s06.wav",
+   "audioFrame": 705,
+   "audioSec": 4.44,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 696,
+   "durationFrames": 150,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -662,116 +1410,268 @@
      8
     ]
    },
-   "voiceStartFrame": 674,
-   "voiceEndFrame": 797,
-   "stillFrame": 795,
+   "voiceStartFrame": 706,
+   "voiceEndFrame": 837,
+   "stillFrame": 836,
    "subtitleWindow": [
-    671,
-    802
+    703,
+    843
    ],
    "sourceWindow": [
-    669,
-    800
+    701,
+    841
    ],
    "lines": [
     {
      "text": "我說答對標綠色",
-     "start": 671,
+     "start": 703,
      "chars": [
-      673,
-      678,
-      689,
-      694,
-      699,
-      705,
-      710
+      704,
+      708,
+      725,
+      731,
+      735,
+      741,
+      746
      ]
     },
     {
      "text": "答錯標紅色",
-     "start": 719,
+     "start": 756,
      "chars": [
-      721,
-      726,
-      732,
-      737,
-      742
+      758,
+      763,
+      769,
+      775,
+      781
      ]
     },
     {
      "text": "也把正確答案標綠",
-     "start": 751,
+     "start": 793,
      "chars": [
-      753,
-      759,
-      764,
-      769,
-      774,
-      779,
-      785,
-      790
+      795,
+      798,
+      804,
+      809,
+      814,
+      819,
+      824,
+      830
      ]
     }
    ],
    "keywords": [
     {
      "text": "標綠",
-     "start": 699
+     "start": 735
     }
    ],
    "cues": [
     {
      "id": "say",
      "text": "答對標綠色",
-     "frame": 691
+     "frame": 727,
+     "early": 0
     },
     {
      "id": "rg",
      "text": "答錯標紅色",
-     "frame": 723
+     "frame": 760,
+     "early": 0
     },
     {
      "id": "fix",
      "text": "正確答案標綠",
-     "frame": 765
+     "frame": 805,
+     "early": 0
     }
    ],
+   "hash": "5308e442f322-d4b5ab0528",
    "sub": "我說\n答對標綠色\n答錯標紅色\n也把正確答案標綠",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.889,
+    "minScore": 0.488,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.74,
+      "start": 0.72,
+      "ch": "答",
+      "errMs": -20
+     },
+     {
+      "onset": 1.83,
+      "start": 1.82,
+      "ch": "答",
+      "errMs": -10
+     },
+     {
+      "onset": 3.06,
+      "start": 3.04,
+      "ch": "也",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.999
+    },
+    {
+     "text": "說",
+     "start": 0.16,
+     "end": 0.28,
+     "score": 0.998
+    },
+    {
+     "text": "答",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.951
+    },
+    {
+     "text": "對",
+     "start": 0.9,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "標",
+     "start": 1.06,
+     "end": 1.2,
+     "score": 0.917
+    },
+    {
+     "text": "綠",
+     "start": 1.24,
+     "end": 1.32,
+     "score": 0.495
+    },
+    {
+     "text": "色",
+     "start": 1.42,
+     "end": 1.52,
+     "score": 0.488
+    },
+    {
+     "text": "答",
+     "start": 1.82,
+     "end": 1.88,
+     "score": 0.998
+    },
+    {
+     "text": "錯",
+     "start": 1.98,
+     "end": 2.1,
+     "score": 0.803
+    },
+    {
+     "text": "標",
+     "start": 2.18,
+     "end": 2.34,
+     "score": 0.996
+    },
+    {
+     "text": "紅",
+     "start": 2.38,
+     "end": 2.54,
+     "score": 0.929
+    },
+    {
+     "text": "色",
+     "start": 2.58,
+     "end": 2.7,
+     "score": 0.968
+    },
+    {
+     "text": "也",
+     "start": 3.04,
+     "end": 3.12,
+     "score": 0.999
+    },
+    {
+     "text": "把",
+     "start": 3.16,
+     "end": 3.24,
+     "score": 0.998
+    },
+    {
+     "text": "正",
+     "start": 3.34,
+     "end": 3.5,
+     "score": 0.88
+    },
+    {
+     "text": "確",
+     "start": 3.52,
+     "end": 3.62,
+     "score": 0.895
+    },
+    {
+     "text": "答",
+     "start": 3.68,
+     "end": 3.74,
+     "score": 0.997
+    },
+    {
+     "text": "案",
+     "start": 3.86,
+     "end": 3.94,
+     "score": 0.998
+    },
+    {
+     "text": "標",
+     "start": 4,
+     "end": 4.16,
+     "score": 0.968
+    },
+    {
+     "text": "綠",
+     "start": 4.2,
+     "end": 4.3,
+     "score": 0.497
+    }
+   ],
    "charTimes": [
-    0,
-    0.173,
-    0.553,
-    0.726,
-    0.899,
-    1.072,
-    1.245,
-    1.626,
-    1.799,
-    1.972,
-    2.145,
-    2.318,
-    2.698,
-    2.871,
-    3.044,
-    3.217,
-    3.39,
-    3.563,
-    3.736,
-    3.909
+    0.02,
+    0.16,
+    0.72,
+    0.9,
+    1.06,
+    1.24,
+    1.42,
+    1.82,
+    1.98,
+    2.18,
+    2.38,
+    2.58,
+    3.04,
+    3.16,
+    3.34,
+    3.52,
+    3.68,
+    3.86,
+    4,
+    4.2
    ]
   },
   {
    "id": "s07",
-   "audio": null,
-   "audioFrame": 806,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 795,
-   "durationFrames": 142,
+   "audio": "audio/caffaine-pdf-quiz/07-s07.wav",
+   "audioFrame": 845,
+   "audioSec": 4.36,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 836,
+   "durationFrames": 150,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -785,116 +1685,262 @@
      8
     ]
    },
-   "voiceStartFrame": 805,
-   "voiceEndFrame": 929,
-   "stillFrame": 927,
+   "voiceStartFrame": 846,
+   "voiceEndFrame": 975,
+   "stillFrame": 976,
    "subtitleWindow": [
-    802,
-    934
+    843,
+    983
    ],
    "sourceWindow": [
-    800,
-    932
+    841,
+    981
    ],
    "lines": [
     {
      "text": "改完選錯的是紅色",
-     "start": 802,
+     "start": 843,
      "chars": [
-      805,
-      810,
-      821,
-      826,
-      831,
-      837,
-      842,
-      847
+      846,
+      851,
+      864,
+      870,
+      875,
+      879,
+      883,
+      889
      ]
     },
     {
      "text": "正確答案是綠色",
-     "start": 856,
+     "start": 902,
      "chars": [
-      858,
-      864,
-      869,
-      874,
-      879,
-      884,
-      890
+      904,
+      910,
+      914,
+      919,
+      924,
+      928,
+      934
      ]
     },
     {
      "text": "一眼就看懂",
-     "start": 899,
+     "start": 946,
      "chars": [
-      901,
-      906,
-      911,
-      917,
-      922
+      949,
+      953,
+      958,
+      962,
+      968
      ]
     }
    ],
    "keywords": [
     {
      "text": "一眼",
-     "start": 901
+     "start": 949
     }
    ],
    "cues": [
     {
      "id": "done",
      "text": "選錯的是紅色",
-     "frame": 823
+     "frame": 865,
+     "early": 0
     },
     {
      "id": "ok",
      "text": "正確答案是綠色",
-     "frame": 860
+     "frame": 906,
+     "early": 0
     },
     {
      "id": "see",
      "text": "一眼就看懂",
-     "frame": 903
+     "frame": 950,
+     "early": 0
     }
    ],
+   "hash": "eabd56f3fd53-d4b5ab0528",
    "sub": "改完\n選錯的是紅色\n正確答案是綠色\n一眼就看懂",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.924,
+    "minScore": 0.492,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.02,
+      "start": 2.02,
+      "ch": "正",
+      "errMs": 0
+     },
+     {
+      "onset": 3.53,
+      "start": 3.5,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "改",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.998
+    },
+    {
+     "text": "完",
+     "start": 0.26,
+     "end": 0.44,
+     "score": 0.999
+    },
+    {
+     "text": "選",
+     "start": 0.68,
+     "end": 0.84,
+     "score": 0.982
+    },
+    {
+     "text": "錯",
+     "start": 0.88,
+     "end": 0.98,
+     "score": 0.971
+    },
+    {
+     "text": "的",
+     "start": 1.06,
+     "end": 1.12,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 1.18,
+     "end": 1.26,
+     "score": 0.948
+    },
+    {
+     "text": "紅",
+     "start": 1.32,
+     "end": 1.48,
+     "score": 0.991
+    },
+    {
+     "text": "色",
+     "start": 1.52,
+     "end": 1.78,
+     "score": 0.997
+    },
+    {
+     "text": "正",
+     "start": 2.02,
+     "end": 2.18,
+     "score": 0.954
+    },
+    {
+     "text": "確",
+     "start": 2.2,
+     "end": 2.3,
+     "score": 0.91
+    },
+    {
+     "text": "答",
+     "start": 2.34,
+     "end": 2.42,
+     "score": 0.993
+    },
+    {
+     "text": "案",
+     "start": 2.52,
+     "end": 2.62,
+     "score": 0.991
+    },
+    {
+     "text": "是",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.955
+    },
+    {
+     "text": "綠",
+     "start": 2.82,
+     "end": 2.9,
+     "score": 0.492
+    },
+    {
+     "text": "色",
+     "start": 3,
+     "end": 3.26,
+     "score": 0.996
+    },
+    {
+     "text": "一",
+     "start": 3.5,
+     "end": 3.58,
+     "score": 0.7
+    },
+    {
+     "text": "眼",
+     "start": 3.64,
+     "end": 3.78,
+     "score": 0.996
+    },
+    {
+     "text": "就",
+     "start": 3.82,
+     "end": 3.92,
+     "score": 0.734
+    },
+    {
+     "text": "看",
+     "start": 3.96,
+     "end": 4.12,
+     "score": 0.999
+    },
+    {
+     "text": "懂",
+     "start": 4.16,
+     "end": 4.32,
+     "score": 0.883
+    }
+   ],
    "charTimes": [
-    0,
-    0.173,
-    0.553,
-    0.726,
-    0.899,
-    1.072,
-    1.245,
-    1.418,
-    1.799,
-    1.972,
-    2.145,
-    2.318,
-    2.49,
-    2.663,
-    2.836,
-    3.217,
-    3.39,
-    3.563,
-    3.736,
-    3.909
+    0.08,
+    0.26,
+    0.68,
+    0.88,
+    1.06,
+    1.18,
+    1.32,
+    1.52,
+    2.02,
+    2.2,
+    2.34,
+    2.52,
+    2.68,
+    2.82,
+    3,
+    3.5,
+    3.64,
+    3.82,
+    3.96,
+    4.16
    ]
   },
   {
    "id": "s08",
-   "audio": null,
-   "audioFrame": 937,
-   "audioSec": 3.469,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 927,
-   "durationFrames": 123,
+   "audio": "audio/caffaine-pdf-quiz/08-s08.wav",
+   "audioFrame": 985,
+   "audioSec": 3.405,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.02,
+   "startFrame": 976,
+   "durationFrames": 131,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -908,110 +1954,232 @@
      8
     ]
    },
-   "voiceStartFrame": 937,
-   "voiceEndFrame": 1042,
-   "stillFrame": 1040,
+   "voiceStartFrame": 986,
+   "voiceEndFrame": 1087,
+   "stillFrame": 1097,
    "subtitleWindow": [
-    934,
-    1047
+    983,
+    1104
    ],
    "sourceWindow": [
-    932,
-    1045
+    981,
+    1102
    ],
    "lines": [
     {
      "text": "我故意答錯第一題",
-     "start": 934,
+     "start": 983,
      "chars": [
-      936,
-      941,
-      946,
-      952,
-      957,
-      962,
-      968,
-      973
+      985,
+      988,
+      993,
+      997,
+      1002,
+      1008,
+      1011,
+      1015
      ]
     },
     {
      "text": "其餘答對",
-     "start": 983,
+     "start": 1025,
      "chars": [
-      985,
-      990,
-      996,
-      1001
+      1027,
+      1033,
+      1038,
+      1044
      ]
     },
     {
      "text": "總分八十分",
-     "start": 1011,
+     "start": 1053,
      "chars": [
-      1013,
-      1018,
-      1023,
-      1029,
-      1034
+      1056,
+      1062,
+      1068,
+      1072,
+      1077
      ]
     }
    ],
    "keywords": [
     {
      "text": "八十分",
-     "start": 1023
+     "start": 1068
     }
    ],
    "cues": [
     {
      "id": "bad",
      "text": "故意答錯第一題",
-     "frame": 942
+     "frame": 990,
+     "early": 0
     },
     {
      "id": "rest",
      "text": "其餘答對",
-     "frame": 986
+     "frame": 1029,
+     "early": 0
     },
     {
      "id": "eighty",
      "text": "八十分",
-     "frame": 1025
+     "frame": 1069,
+     "early": 0
     }
    ],
+   "hash": "a44d26072f81-d4b5ab0528",
    "sub": "我故意答錯第一題\n其餘答對\n總分八十分",
-   "provider": "estimate",
-   "syllables": 17,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.788,
+    "minScore": 0.053,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 2.4,
+      "start": 2.4,
+      "ch": "總",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.06,
+     "end": 0.12,
+     "score": 0.998
+    },
+    {
+     "text": "故",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 0.869
+    },
+    {
+     "text": "意",
+     "start": 0.32,
+     "end": 0.36,
+     "score": 0.834
+    },
+    {
+     "text": "答",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.998
+    },
+    {
+     "text": "錯",
+     "start": 0.62,
+     "end": 0.72,
+     "score": 0.676
+    },
+    {
+     "text": "第",
+     "start": 0.8,
+     "end": 0.86,
+     "score": 0.862
+    },
+    {
+     "text": "一",
+     "start": 0.92,
+     "end": 0.98,
+     "score": 0.053
+    },
+    {
+     "text": "題",
+     "start": 1.04,
+     "end": 1.16,
+     "score": 0.993
+    },
+    {
+     "text": "其",
+     "start": 1.46,
+     "end": 1.58,
+     "score": 0.996
+    },
+    {
+     "text": "餘",
+     "start": 1.66,
+     "end": 1.72,
+     "score": 0.938
+    },
+    {
+     "text": "答",
+     "start": 1.8,
+     "end": 1.88,
+     "score": 0.998
+    },
+    {
+     "text": "對",
+     "start": 2,
+     "end": 2.16,
+     "score": 0.903
+    },
+    {
+     "text": "總",
+     "start": 2.4,
+     "end": 2.58,
+     "score": 0.946
+    },
+    {
+     "text": "分",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 0.902
+    },
+    {
+     "text": "八",
+     "start": 2.8,
+     "end": 2.86,
+     "score": 0.247
+    },
+    {
+     "text": "十",
+     "start": 2.96,
+     "end": 3.06,
+     "score": 0.196
+    },
+    {
+     "text": "分",
+     "start": 3.12,
+     "end": 3.3,
+     "score": 0.99
+    }
+   ],
    "charTimes": [
-    0,
-    0.179,
-    0.358,
-    0.537,
-    0.715,
-    0.894,
-    1.073,
-    1.252,
-    1.645,
-    1.824,
-    2.003,
-    2.182,
-    2.575,
-    2.754,
-    2.933,
-    3.112,
-    3.291
+    0.06,
+    0.16,
+    0.32,
+    0.44,
+    0.62,
+    0.8,
+    0.92,
+    1.04,
+    1.46,
+    1.66,
+    1.8,
+    2,
+    2.4,
+    2.6,
+    2.8,
+    2.96,
+    3.12
    ]
   },
   {
    "id": "s09",
-   "audio": null,
-   "audioFrame": 1050,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1040,
-   "durationFrames": 154,
+   "audio": "audio/caffaine-pdf-quiz/09-s09.wav",
+   "audioFrame": 1106,
+   "audioSec": 4.325,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.015,
+   "startFrame": 1097,
+   "durationFrames": 159,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1025,115 +2193,266 @@
      8
     ]
    },
-   "voiceStartFrame": 1050,
-   "voiceEndFrame": 1186,
-   "stillFrame": 1184,
+   "voiceStartFrame": 1107,
+   "voiceEndFrame": 1236,
+   "stillFrame": 1246,
    "subtitleWindow": [
-    1047,
-    1191
+    1104,
+    1253
    ],
    "sourceWindow": [
-    1045,
-    1189
+    1102,
+    1251
    ],
    "lines": [
     {
      "text": "不過只試了這一份講義",
-     "start": 1047,
+     "start": 1104,
      "chars": [
-      1049,
-      1054,
-      1060,
-      1065,
-      1071,
-      1076,
-      1082,
-      1087,
-      1093,
-      1098
+      1107,
+      1110,
+      1115,
+      1120,
+      1124,
+      1129,
+      1132,
+      1135,
+      1140,
+      1147
      ]
     },
     {
      "text": "更長的講義行不行",
-     "start": 1108,
+     "start": 1158,
      "chars": [
-      1110,
-      1116,
-      1121,
-      1127,
-      1132,
-      1138,
-      1143,
-      1149
+      1160,
+      1166,
+      1171,
+      1174,
+      1180,
+      1185,
+      1190,
+      1193
      ]
     },
     {
      "text": "還不知道",
-     "start": 1159,
+     "start": 1203,
      "chars": [
-      1161,
-      1167,
-      1172,
-      1178
+      1205,
+      1210,
+      1214,
+      1217
      ]
     }
    ],
    "keywords": [
     {
      "text": "還不知道",
-     "start": 1161
+     "start": 1205
     }
    ],
    "cues": [
     {
      "id": "known",
      "text": "只試了這一份講義",
-     "frame": 1061
+     "frame": 1116,
+     "early": 0
     },
     {
      "id": "q",
      "text": "還不知道",
-     "frame": 1163
+     "frame": 1206,
+     "early": 0
     }
    ],
+   "hash": "f703f79a46aa-d4b5ab0528",
    "sub": "不過只試了這一份講義\n更長的講義行不行\n還不知道",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.937,
+    "minScore": 0.192,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.88,
+      "start": 1.86,
+      "ch": "更",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.08,
+     "end": 0.14,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.18,
+     "end": 0.26,
+     "score": 0.979
+    },
+    {
+     "text": "只",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.992
+    },
+    {
+     "text": "試",
+     "start": 0.52,
+     "end": 0.6,
+     "score": 0.996
+    },
+    {
+     "text": "了",
+     "start": 0.66,
+     "end": 0.72,
+     "score": 0.993
+    },
+    {
+     "text": "這",
+     "start": 0.8,
+     "end": 0.88,
+     "score": 0.978
+    },
+    {
+     "text": "一",
+     "start": 0.92,
+     "end": 0.98,
+     "score": 0.192
+    },
+    {
+     "text": "份",
+     "start": 1.02,
+     "end": 1.14,
+     "score": 0.998
+    },
+    {
+     "text": "講",
+     "start": 1.18,
+     "end": 1.36,
+     "score": 0.999
+    },
+    {
+     "text": "義",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.917
+    },
+    {
+     "text": "更",
+     "start": 1.86,
+     "end": 2.02,
+     "score": 0.971
+    },
+    {
+     "text": "長",
+     "start": 2.04,
+     "end": 2.2,
+     "score": 0.852
+    },
+    {
+     "text": "的",
+     "start": 2.22,
+     "end": 2.28,
+     "score": 0.993
+    },
+    {
+     "text": "講",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 0.993
+    },
+    {
+     "text": "義",
+     "start": 2.5,
+     "end": 2.56,
+     "score": 0.842
+    },
+    {
+     "text": "行",
+     "start": 2.68,
+     "end": 2.82,
+     "score": 0.976
+    },
+    {
+     "text": "不",
+     "start": 2.84,
+     "end": 2.9,
+     "score": 0.998
+    },
+    {
+     "text": "行",
+     "start": 2.96,
+     "end": 3.18,
+     "score": 0.973
+    },
+    {
+     "text": "還",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 3.52,
+     "end": 3.58,
+     "score": 0.999
+    },
+    {
+     "text": "知",
+     "start": 3.64,
+     "end": 3.72,
+     "score": 0.981
+    },
+    {
+     "text": "道",
+     "start": 3.76,
+     "end": 3.94,
+     "score": 0.994
+    }
+   ],
    "charTimes": [
-    0,
-    0.184,
-    0.368,
-    0.552,
-    0.736,
+    0.08,
+    0.18,
+    0.34,
+    0.52,
+    0.66,
+    0.8,
     0.92,
-    1.104,
-    1.288,
-    1.472,
-    1.656,
-    2.061,
-    2.245,
-    2.429,
-    2.613,
-    2.797,
-    2.981,
-    3.165,
-    3.349,
-    3.754,
-    3.938,
-    4.122,
-    4.306
+    1.02,
+    1.18,
+    1.42,
+    1.86,
+    2.04,
+    2.22,
+    2.32,
+    2.5,
+    2.68,
+    2.84,
+    2.96,
+    3.34,
+    3.52,
+    3.64,
+    3.76
    ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1194,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1184,
-   "durationFrames": 141,
+   "audio": "audio/caffaine-pdf-quiz/10-s10.wav",
+   "audioFrame": 1256,
+   "audioSec": 4.45,
+   "headSilSec": 0.015,
+   "tailSilSec": 0.025,
+   "startFrame": 1246,
+   "durationFrames": 164,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1147,127 +2466,280 @@
      8
     ]
    },
-   "voiceStartFrame": 1194,
-   "voiceEndFrame": 1317,
-   "stillFrame": 1315,
+   "voiceStartFrame": 1256,
+   "voiceEndFrame": 1389,
+   "stillFrame": 1400,
    "subtitleWindow": [
-    1191,
-    1322
+    1253,
+    1407
    ],
    "sourceWindow": [
-    1189,
-    1320
+    1251,
+    1405
    ],
    "lines": [
     {
      "text": "所以做法三步",
-     "start": 1191,
+     "start": 1253,
      "chars": [
-      1193,
-      1198,
-      1203,
-      1208,
-      1213,
-      1218
+      1256,
+      1260,
+      1264,
+      1269,
+      1274,
+      1280
      ]
     },
     {
      "text": "貼講義",
-     "start": 1228,
+     "start": 1294,
      "chars": [
-      1230,
-      1235,
-      1240
+      1296,
+      1301,
+      1307
      ]
     },
     {
      "text": "檢查題目",
-     "start": 1250,
+     "start": 1317,
      "chars": [
-      1252,
-      1257,
-      1262,
-      1267
+      1319,
+      1325,
+      1331,
+      1337
      ]
     },
     {
      "text": "哪裡看不懂就說",
-     "start": 1277,
+     "start": 1348,
      "chars": [
-      1279,
-      1284,
-      1289,
-      1294,
-      1299,
-      1305,
-      1310
+      1350,
+      1355,
+      1360,
+      1364,
+      1367,
+      1373,
+      1379
      ]
     }
    ],
    "keywords": [
     {
      "text": "三步",
-     "start": 1213
+     "start": 1274
     }
    ],
    "cues": [
     {
      "id": "so",
      "text": "做法三步",
-     "frame": 1204
+     "frame": 1265,
+     "early": 0
     },
     {
      "id": "a",
      "text": "貼講義",
-     "frame": 1231
+     "frame": 1297,
+     "early": 0
     },
     {
      "id": "b",
      "text": "檢查題目",
-     "frame": 1253
+     "frame": 1321,
+     "early": 0
     },
     {
      "id": "c",
      "text": "哪裡看不懂就說",
-     "frame": 1280
+     "frame": 1351,
+     "early": 0
     }
    ],
+   "hash": "952de03d87cf-d4b5ab0528",
    "sub": "所以做法三步\n貼講義\n檢查題目\n哪裡看不懂就說",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.908,
+    "minScore": 0.11,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 1.33,
+      "start": 1.38,
+      "ch": "貼",
+      "errMs": 50
+     },
+     {
+      "onset": 2.16,
+      "start": 2.16,
+      "ch": "檢",
+      "errMs": 0
+     },
+     {
+      "onset": 3.2,
+      "start": 3.18,
+      "ch": "哪",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.883
+    },
+    {
+     "text": "以",
+     "start": 0.18,
+     "end": 0.24,
+     "score": 0.908
+    },
+    {
+     "text": "做",
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.775
+    },
+    {
+     "text": "法",
+     "start": 0.48,
+     "end": 0.54,
+     "score": 0.985
+    },
+    {
+     "text": "三",
+     "start": 0.66,
+     "end": 0.8,
+     "score": 0.11
+    },
+    {
+     "text": "步",
+     "start": 0.86,
+     "end": 0.94,
+     "score": 0.973
+    },
+    {
+     "text": "貼",
+     "start": 1.38,
+     "end": 1.5,
+     "score": 0.894
+    },
+    {
+     "text": "講",
+     "start": 1.56,
+     "end": 1.72,
+     "score": 0.989
+    },
+    {
+     "text": "義",
+     "start": 1.76,
+     "end": 1.86,
+     "score": 0.829
+    },
+    {
+     "text": "檢",
+     "start": 2.16,
+     "end": 2.32,
+     "score": 0.982
+    },
+    {
+     "text": "查",
+     "start": 2.36,
+     "end": 2.48,
+     "score": 0.918
+    },
+    {
+     "text": "題",
+     "start": 2.56,
+     "end": 2.66,
+     "score": 0.998
+    },
+    {
+     "text": "目",
+     "start": 2.74,
+     "end": 2.82,
+     "score": 0.997
+    },
+    {
+     "text": "哪",
+     "start": 3.18,
+     "end": 3.26,
+     "score": 0.998
+    },
+    {
+     "text": "裡",
+     "start": 3.36,
+     "end": 3.42,
+     "score": 0.994
+    },
+    {
+     "text": "看",
+     "start": 3.5,
+     "end": 3.62,
+     "score": 0.996
+    },
+    {
+     "text": "不",
+     "start": 3.66,
+     "end": 3.72,
+     "score": 0.997
+    },
+    {
+     "text": "懂",
+     "start": 3.76,
+     "end": 3.92,
+     "score": 0.967
+    },
+    {
+     "text": "就",
+     "start": 3.94,
+     "end": 4.08,
+     "score": 0.989
+    },
+    {
+     "text": "說",
+     "start": 4.14,
+     "end": 4.26,
+     "score": 0.979
+    }
+   ],
    "charTimes": [
-    0,
-    0.173,
-    0.346,
-    0.519,
-    0.692,
-    0.865,
-    1.245,
-    1.418,
-    1.591,
-    1.972,
-    2.145,
-    2.318,
-    2.49,
-    2.871,
-    3.044,
-    3.217,
-    3.39,
-    3.563,
-    3.736,
-    3.909
+    0.04,
+    0.18,
+    0.3,
+    0.48,
+    0.66,
+    0.86,
+    1.38,
+    1.56,
+    1.76,
+    2.16,
+    2.36,
+    2.56,
+    2.74,
+    3.18,
+    3.36,
+    3.5,
+    3.66,
+    3.76,
+    3.94,
+    4.14
    ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 1326,
-   "audioSec": 2.449,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1315,
-   "durationFrames": 93,
+   "audio": "audio/caffaine-pdf-quiz/11-s11.wav",
+   "audioFrame": 1409,
+   "audioSec": 2.691,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.021,
+   "startFrame": 1400,
+   "durationFrames": 98,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1281,90 +2753,181 @@
      8
     ]
    },
-   "voiceStartFrame": 1325,
-   "voiceEndFrame": 1400,
-   "stillFrame": 1398,
+   "voiceStartFrame": 1410,
+   "voiceEndFrame": 1490,
+   "stillFrame": 1488,
    "subtitleWindow": [
-    1322,
-    1408
+    1407,
+    1498
    ],
    "sourceWindow": [
-    1320,
-    1403
+    1405,
+    1493
    ],
    "lines": [
     {
      "text": "留言「小考」",
-     "start": 1322,
+     "start": 1407,
      "chars": [
-      1325,
-      1330,
-      1330,
-      1336,
-      1341,
-      1341
+      1409,
+      1415,
+      1415,
+      1421,
+      1428,
+      1428
      ]
     },
     {
      "text": "拿這句出題提示詞",
-     "start": 1351,
+     "start": 1439,
      "chars": [
-      1353,
-      1359,
-      1365,
-      1370,
-      1376,
-      1381,
-      1387,
-      1392
+      1441,
+      1447,
+      1451,
+      1457,
+      1462,
+      1467,
+      1472,
+      1477
      ]
     }
    ],
    "keywords": [
     {
      "text": "小考",
-     "start": 1336
+     "start": 1421
     }
    ],
    "cues": [
     {
      "id": "kw",
      "text": "小考",
-     "frame": 1337
+     "frame": 1423,
+     "early": 0
     },
     {
      "id": "all",
      "text": "出題提示詞",
-     "frame": 1372
+     "frame": 1458,
+     "early": 0
     }
    ],
+   "hash": "2d94e42118a9-d4b5ab0528",
    "sub": "留言「小考」\n拿這句出題提示詞",
-   "provider": "estimate",
-   "syllables": 12,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.965,
+    "minScore": 0.877,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.11,
+      "start": 1.12,
+      "ch": "拿",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.928
+    },
+    {
+     "text": "言",
+     "start": 0.24,
+     "end": 0.38,
+     "score": 0.947
+    },
+    {
+     "text": "小",
+     "start": 0.46,
+     "end": 0.64,
+     "score": 0.958
+    },
+    {
+     "text": "考",
+     "start": 0.7,
+     "end": 0.92,
+     "score": 0.996
+    },
+    {
+     "text": "拿",
+     "start": 1.12,
+     "end": 1.2,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 1.3,
+     "end": 1.38,
+     "score": 0.877
+    },
+    {
+     "text": "句",
+     "start": 1.44,
+     "end": 1.54,
+     "score": 0.902
+    },
+    {
+     "text": "出",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.991
+    },
+    {
+     "text": "題",
+     "start": 1.8,
+     "end": 1.9,
+     "score": 0.998
+    },
+    {
+     "text": "提",
+     "start": 1.98,
+     "end": 2.06,
+     "score": 0.998
+    },
+    {
+     "text": "示",
+     "start": 2.16,
+     "end": 2.24,
+     "score": 0.991
+    },
+    {
+     "text": "詞",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 0.992
+    }
+   ],
    "charTimes": [
-    0,
-    0.186,
-    0.371,
-    0.557,
-    0.965,
-    1.15,
-    1.336,
-    1.521,
-    1.707,
-    1.892,
-    2.078,
-    2.263
+    0.04,
+    0.24,
+    0.46,
+    0.7,
+    1.12,
+    1.3,
+    1.44,
+    1.64,
+    1.8,
+    1.98,
+    2.16,
+    2.32
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1398,
+   "audioFrame": 1488,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1398,
+   "startFrame": 1488,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1379,24 +2942,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1408,
-   "voiceEndFrame": 1408,
-   "stillFrame": 1494,
+   "voiceStartFrame": 1498,
+   "voiceEndFrame": 1498,
+   "stillFrame": 1584,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1403,
-    1506
+    1493,
+    1596
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-pdf-quiz/voice.wav",
+  "lufsIn": -12.05,
+  "lufs": -16,
+  "sec": 53.2
+ }
 }

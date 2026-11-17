@@ -2,752 +2,271 @@
  "version": 2,
  "slug": "caffaine-invite-page",
  "fps": 30,
- "totalFrames": 1392,
- "totalSec": 46.4,
- "gapSec": 0.3,
+ "totalFrames": 1575,
+ "totalSec": 52.5,
+ "gapSec": 0.15,
  "transitionFrames": 10,
- "estimated": {
-  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
-  "rate": 4.9,
-  "gap": 0.3,
-  "tailEndFrames": 18
- },
  "scenes": [
   {
    "id": "s01",
-   "audio": null,
-   "audioFrame": 5,
-   "audioSec": 4.082,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/caffaine-invite-page/01-s01.wav",
+   "audioFrame": 0,
+   "audioSec": 4.2,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 136,
+   "durationFrames": 146,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 5,
-   "voiceEndFrame": 128,
-   "stillFrame": 126,
+   "voiceStartFrame": 1,
+   "voiceEndFrame": 125,
+   "stillFrame": 136,
    "subtitleWindow": [
     0,
-    133
+    143
    ],
    "sourceWindow": [
     0,
-    131
+    141
    ],
    "lines": [
     {
      "text": "要辦生日聚會",
      "start": 0,
      "chars": [
-      4,
+      0,
+      3,
       9,
       14,
-      20,
-      25,
-      31
+      18,
+      24
      ]
     },
     {
      "text": "邀請網頁不用找人做",
-     "start": 41,
+     "start": 37,
      "chars": [
-      43,
-      48,
-      54,
-      59,
+      39,
+      44,
+      49,
+      55,
+      62,
       65,
-      70,
-      76,
-      81,
-      87
+      69,
+      75,
+      80
      ]
     },
     {
      "text": "一句話就行",
-     "start": 97,
+     "start": 89,
      "chars": [
-      99,
+      92,
+      98,
       104,
-      110,
-      115,
-      120
+      109,
+      114
      ]
     }
    ],
    "keywords": [
     {
      "text": "一句話",
-     "start": 99
+     "start": 92
     }
    ],
    "cues": [
     {
      "id": "party",
      "text": "生日聚會",
-     "frame": 16
+     "frame": 11,
+     "early": 0
     },
     {
      "id": "one",
      "text": "一句話",
-     "frame": 100
+     "frame": 93,
+     "early": 0
     }
    ],
+   "hash": "2701b37a7d85-d4b5ab0528",
    "sub": "要辦生日聚會\n邀請網頁不用找人做\n一句話就行",
-   "provider": "estimate",
-   "syllables": 20,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.955,
+    "minScore": 0.582,
+    "onsetMedianMs": 35,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.38,
+      "start": 1.34,
+      "ch": "邀",
+      "errMs": -40
+     },
+     {
+      "onset": 3.13,
+      "start": 3.1,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "要",
+     "start": 0.02,
+     "end": 0.14,
+     "score": 0.996
+    },
+    {
+     "text": "辦",
+     "start": 0.16,
+     "end": 0.3,
+     "score": 0.958
+    },
+    {
+     "text": "生",
+     "start": 0.36,
+     "end": 0.5,
+     "score": 0.582
+    },
+    {
+     "text": "日",
+     "start": 0.52,
+     "end": 0.58,
+     "score": 0.979
+    },
+    {
+     "text": "聚",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.998
+    },
+    {
+     "text": "會",
+     "start": 0.84,
+     "end": 1.02,
+     "score": 1
+    },
+    {
+     "text": "邀",
+     "start": 1.34,
+     "end": 1.48,
+     "score": 0.997
+    },
+    {
+     "text": "請",
+     "start": 1.5,
+     "end": 1.66,
+     "score": 0.939
+    },
+    {
+     "text": "網",
+     "start": 1.68,
+     "end": 1.84,
+     "score": 0.988
+    },
+    {
+     "text": "頁",
+     "start": 1.9,
+     "end": 1.98,
+     "score": 0.998
+    },
+    {
+     "text": "不",
+     "start": 2.1,
+     "end": 2.16,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 2.2,
+     "end": 2.34,
+     "score": 0.99
+    },
+    {
+     "text": "找",
+     "start": 2.36,
+     "end": 2.5,
+     "score": 0.952
+    },
+    {
+     "text": "人",
+     "start": 2.54,
+     "end": 2.66,
+     "score": 1
+    },
+    {
+     "text": "做",
+     "start": 2.7,
+     "end": 2.84,
+     "score": 0.82
+    },
+    {
+     "text": "一",
+     "start": 3.1,
+     "end": 3.18,
+     "score": 0.941
+    },
+    {
+     "text": "句",
+     "start": 3.3,
+     "end": 3.4,
+     "score": 0.998
+    },
+    {
+     "text": "話",
+     "start": 3.5,
+     "end": 3.58,
+     "score": 0.999
+    },
+    {
+     "text": "就",
+     "start": 3.68,
+     "end": 3.8,
+     "score": 0.997
+    },
+    {
+     "text": "行",
+     "start": 3.84,
+     "end": 4.08,
+     "score": 0.968
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.547,
-    0.729,
-    0.911,
-    1.312,
-    1.494,
-    1.676,
-    1.859,
-    2.041,
-    2.223,
-    2.405,
-    2.587,
-    2.77,
-    3.171,
-    3.353,
-    3.535,
-    3.717,
-    3.899
+    0.02,
+    0.16,
+    0.36,
+    0.52,
+    0.66,
+    0.84,
+    1.34,
+    1.5,
+    1.68,
+    1.9,
+    2.1,
+    2.2,
+    2.36,
+    2.54,
+    2.7,
+    3.1,
+    3.3,
+    3.5,
+    3.68,
+    3.84
    ]
   },
   {
    "id": "s02",
-   "audio": null,
-   "audioFrame": 136,
-   "audioSec": 3.878,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 126,
-   "durationFrames": 135,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 136,
-   "voiceEndFrame": 253,
-   "stillFrame": 251,
-   "subtitleWindow": [
-    133,
-    258
-   ],
-   "sourceWindow": [
-    131,
-    256
-   ],
-   "lines": [
-    {
-     "text": "我只說",
-     "start": 133,
-     "chars": [
-      135,
-      140,
-      145
-     ]
-    },
-    {
-     "text": "要有時間地點",
-     "start": 154,
-     "chars": [
-      156,
-      161,
-      166,
-      172,
-      177,
-      182
-     ]
-    },
-    {
-     "text": "倒數天數",
-     "start": 191,
-     "chars": [
-      193,
-      198,
-      203,
-      209
-     ]
-    },
-    {
-     "text": "還有回覆按鈕",
-     "start": 218,
-     "chars": [
-      220,
-      225,
-      230,
-      235,
-      241,
-      246
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "回覆按鈕",
-     "start": 230
-    }
-   ],
-   "cues": [
-    {
-     "id": "say",
-     "text": "時間地點",
-     "frame": 168
-    },
-    {
-     "id": "cnt",
-     "text": "倒數天數",
-     "frame": 195
-    },
-    {
-     "id": "btn",
-     "text": "回覆按鈕",
-     "frame": 232
-    }
-   ],
-   "sub": "我只說\n要有時間地點\n倒數天數\n還有回覆按鈕",
-   "provider": "estimate",
-   "syllables": 19,
-   "words": [],
-   "charTimes": [
-    0,
-    0.172,
-    0.343,
-    0.721,
-    0.892,
-    1.064,
-    1.235,
-    1.407,
-    1.578,
-    1.956,
-    2.128,
-    2.299,
-    2.471,
-    2.848,
-    3.02,
-    3.191,
-    3.363,
-    3.534,
-    3.706
-   ]
-  },
-  {
-   "id": "s03",
-   "audio": null,
-   "audioFrame": 262,
-   "audioSec": 4.898,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 251,
-   "durationFrames": 166,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 261,
-   "voiceEndFrame": 409,
-   "stillFrame": 407,
-   "subtitleWindow": [
-    258,
-    414
-   ],
-   "sourceWindow": [
-    256,
-    412
-   ],
-   "lines": [
-    {
-     "text": "時間地點都有",
-     "start": 258,
-     "chars": [
-      261,
-      267,
-      273,
-      280,
-      287,
-      293
-     ]
-    },
-    {
-     "text": "倒數三十二天",
-     "start": 305,
-     "chars": [
-      307,
-      314,
-      320,
-      327,
-      333,
-      340
-     ]
-    },
-    {
-     "text": "我核對過",
-     "start": 352,
-     "chars": [
-      354,
-      361,
-      367,
-      374
-     ]
-    },
-    {
-     "text": "算對了",
-     "start": 386,
-     "chars": [
-      388,
-      394,
-      401
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "三十二天",
-     "start": 320
-    }
-   ],
-   "cues": [
-    {
-     "id": "open",
-     "text": "時間地點",
-     "frame": 262
-    },
-    {
-     "id": "cnt",
-     "text": "倒數三十二天",
-     "frame": 309
-    },
-    {
-     "id": "ok",
-     "text": "算對了",
-     "frame": 389
-    }
-   ],
-   "sub": "時間地點都有\n倒數三十二天\n我核對過\n算對了",
-   "provider": "estimate",
-   "syllables": 24,
-   "words": [],
-   "charTimes": [
-    0,
-    0.217,
-    0.433,
-    0.65,
-    0.867,
-    1.084,
-    1.56,
-    1.777,
-    1.994,
-    2.211,
-    2.427,
-    2.644,
-    3.121,
-    3.338,
-    3.554,
-    3.771,
-    4.248,
-    4.465,
-    4.681
-   ]
-  },
-  {
-   "id": "s04",
-   "audio": null,
-   "audioFrame": 418,
-   "audioSec": 3.061,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 407,
-   "durationFrames": 111,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 417,
-   "voiceEndFrame": 510,
-   "stillFrame": 508,
-   "subtitleWindow": [
-    414,
-    515
-   ],
-   "sourceWindow": [
-    412,
-    513
-   ],
-   "lines": [
-    {
-     "text": "點「我會去」",
-     "start": 414,
-     "chars": [
-      417,
-      417,
-      422,
-      427,
-      432,
-      432
-     ]
-    },
-    {
-     "text": "填名字送出",
-     "start": 442,
-     "chars": [
-      444,
-      449,
-      455,
-      460,
-      465
-     ]
-    },
-    {
-     "text": "名單多一個人",
-     "start": 475,
-     "chars": [
-      477,
-      482,
-      487,
-      492,
-      498,
-      503
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "名單",
-     "start": 477
-    }
-   ],
-   "cues": [
-    {
-     "id": "tap",
-     "text": "點「我會去」",
-     "frame": 418
-    },
-    {
-     "id": "fill",
-     "text": "填名字送出",
-     "frame": 445
-    },
-    {
-     "id": "add",
-     "text": "名單多一個人",
-     "frame": 478
-    }
-   ],
-   "sub": "點「我會去」\n填名字送出\n名單多一個人",
-   "provider": "estimate",
-   "syllables": 15,
-   "words": [],
-   "charTimes": [
-    0,
-    0.176,
-    0.352,
-    0.528,
-    0.915,
-    1.091,
-    1.267,
-    1.443,
-    1.619,
-    2.006,
-    2.182,
-    2.357,
-    2.533,
-    2.709,
-    2.885
-   ]
-  },
-  {
-   "id": "s05",
-   "audio": null,
-   "audioFrame": 519,
-   "audioSec": 4.898,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 508,
-   "durationFrames": 166,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 518,
-   "voiceEndFrame": 666,
-   "stillFrame": 664,
-   "subtitleWindow": [
-    515,
-    671
-   ],
-   "sourceWindow": [
-    513,
-    669
-   ],
-   "lines": [
-    {
-     "text": "但有兩個毛病",
-     "start": 515,
-     "chars": [
-      518,
-      523,
-      528,
-      533,
-      539,
-      544
-     ]
-    },
-    {
-     "text": "名單有我沒輸入的人",
-     "start": 554,
-     "chars": [
-      556,
-      561,
-      566,
-      572,
-      577,
-      582,
-      588,
-      593,
-      598
-     ]
-    },
-    {
-     "text": "回覆重新整理",
-     "start": 608,
-     "chars": [
-      610,
-      615,
-      621,
-      626,
-      631,
-      637
-     ]
-    },
-    {
-     "text": "就不見",
-     "start": 646,
-     "chars": [
-      648,
-      654,
-      659
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "兩個毛病",
-     "start": 528
-    }
-   ],
-   "cues": [
-    {
-     "id": "two",
-     "text": "兩個毛病",
-     "frame": 530
-    },
-    {
-     "id": "fake",
-     "text": "我沒輸入的人",
-     "frame": 573
-    },
-    {
-     "id": "gone",
-     "text": "重新整理就不見",
-     "frame": 622
-    }
-   ],
-   "sub": "但有兩個毛病\n名單有我沒輸入的人\n回覆重新整理\n就不見",
-   "provider": "estimate",
-   "syllables": 24,
-   "words": [],
-   "charTimes": [
-    0,
-    0.177,
-    0.355,
-    0.532,
-    0.71,
-    0.887,
-    1.278,
-    1.455,
-    1.633,
-    1.81,
-    1.988,
-    2.165,
-    2.343,
-    2.52,
-    2.697,
-    3.088,
-    3.265,
-    3.443,
-    3.62,
-    3.798,
-    3.975,
-    4.366,
-    4.543,
-    4.72
-   ]
-  },
-  {
-   "id": "s06",
-   "audio": null,
-   "audioFrame": 674,
-   "audioSec": 3.673,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 664,
-   "durationFrames": 129,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 674,
-   "voiceEndFrame": 785,
-   "stillFrame": 783,
-   "subtitleWindow": [
-    671,
-    790
-   ],
-   "sourceWindow": [
-    669,
-    788
-   ],
-   "lines": [
-    {
-     "text": "我照實說",
-     "start": 671,
-     "chars": [
-      673,
-      678,
-      683,
-      689
-     ]
-    },
-    {
-     "text": "拿掉預填名單",
-     "start": 698,
-     "chars": [
-      701,
-      706,
-      711,
-      717,
-      722,
-      728
-     ]
-    },
-    {
-     "text": "回覆要存在手機裡",
-     "start": 737,
-     "chars": [
-      739,
-      745,
-      750,
-      756,
-      761,
-      766,
-      772,
-      777
-     ]
-    }
-   ],
-   "keywords": [
-    {
-     "text": "存在手機裡",
-     "start": 756
-    }
-   ],
-   "cues": [
-    {
-     "id": "say",
-     "text": "拿掉預填名單",
-     "frame": 702
-    },
-    {
-     "id": "keep",
-     "text": "存在手機裡",
-     "frame": 757
-    }
-   ],
-   "sub": "我照實說\n拿掉預填名單\n回覆要存在手機裡",
-   "provider": "estimate",
-   "syllables": 18,
-   "words": [],
-   "charTimes": [
-    0,
-    0.18,
-    0.36,
-    0.54,
-    0.936,
-    1.116,
-    1.297,
-    1.477,
-    1.657,
-    1.837,
-    2.233,
-    2.413,
-    2.593,
-    2.773,
-    2.953,
-    3.133,
-    3.313,
-    3.493
-   ]
-  },
-  {
-   "id": "s07",
-   "audio": null,
-   "audioFrame": 794,
-   "audioSec": 4.49,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 783,
+   "audio": "audio/caffaine-invite-page/02-s02.wav",
+   "audioFrame": 145,
+   "audioSec": 4.18,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 136,
    "durationFrames": 154,
    "transitionFrames": 10,
    "transition": {
@@ -762,131 +281,1663 @@
      8
     ]
    },
-   "voiceStartFrame": 793,
-   "voiceEndFrame": 929,
-   "stillFrame": 927,
+   "voiceStartFrame": 146,
+   "voiceEndFrame": 270,
+   "stillFrame": 280,
    "subtitleWindow": [
-    790,
-    934
+    143,
+    287
    ],
    "sourceWindow": [
-    788,
-    932
+    141,
+    285
+   ],
+   "lines": [
+    {
+     "text": "我只說",
+     "start": 143,
+     "chars": [
+      144,
+      148,
+      152
+     ]
+    },
+    {
+     "text": "要有時間地點",
+     "start": 167,
+     "chars": [
+      169,
+      174,
+      180,
+      184,
+      190,
+      195
+     ]
+    },
+    {
+     "text": "倒數天數",
+     "start": 204,
+     "chars": [
+      207,
+      213,
+      217,
+      225
+     ]
+    },
+    {
+     "text": "還有回覆按鈕",
+     "start": 233,
+     "chars": [
+      235,
+      241,
+      246,
+      252,
+      258,
+      262
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "回覆按鈕",
+     "start": 246
+    }
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "時間地點",
+     "frame": 181,
+     "early": 0
+    },
+    {
+     "id": "cnt",
+     "text": "倒數天數",
+     "frame": 208,
+     "early": 0
+    },
+    {
+     "id": "btn",
+     "text": "回覆按鈕",
+     "frame": 248,
+     "early": 0
+    }
+   ],
+   "hash": "f3c884c94a46-d4b5ab0528",
+   "sub": "我只說\n要有時間地點\n倒數天數\n還有回覆按鈕",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.905,
+    "minScore": 0.271,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 0.9,
+      "start": 0.86,
+      "ch": "要",
+      "errMs": -40
+     },
+     {
+      "onset": 2.13,
+      "start": 2.1,
+      "ch": "倒",
+      "errMs": -30
+     },
+     {
+      "onset": 3.06,
+      "start": 3.06,
+      "ch": "還",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.999
+    },
+    {
+     "text": "只",
+     "start": 0.14,
+     "end": 0.22,
+     "score": 0.994
+    },
+    {
+     "text": "說",
+     "start": 0.28,
+     "end": 0.4,
+     "score": 0.989
+    },
+    {
+     "text": "要",
+     "start": 0.86,
+     "end": 1,
+     "score": 0.917
+    },
+    {
+     "text": "有",
+     "start": 1.02,
+     "end": 1.12,
+     "score": 0.999
+    },
+    {
+     "text": "時",
+     "start": 1.2,
+     "end": 1.28,
+     "score": 0.762
+    },
+    {
+     "text": "間",
+     "start": 1.34,
+     "end": 1.5,
+     "score": 0.936
+    },
+    {
+     "text": "地",
+     "start": 1.54,
+     "end": 1.62,
+     "score": 0.584
+    },
+    {
+     "text": "點",
+     "start": 1.7,
+     "end": 1.9,
+     "score": 0.915
+    },
+    {
+     "text": "倒",
+     "start": 2.1,
+     "end": 2.26,
+     "score": 0.996
+    },
+    {
+     "text": "數",
+     "start": 2.3,
+     "end": 2.4,
+     "score": 0.965
+    },
+    {
+     "text": "天",
+     "start": 2.46,
+     "end": 2.62,
+     "score": 0.942
+    },
+    {
+     "text": "數",
+     "start": 2.7,
+     "end": 2.82,
+     "score": 0.959
+    },
+    {
+     "text": "還",
+     "start": 3.06,
+     "end": 3.2,
+     "score": 0.998
+    },
+    {
+     "text": "有",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.99
+    },
+    {
+     "text": "回",
+     "start": 3.42,
+     "end": 3.56,
+     "score": 0.999
+    },
+    {
+     "text": "覆",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.995
+    },
+    {
+     "text": "按",
+     "start": 3.82,
+     "end": 3.92,
+     "score": 0.988
+    },
+    {
+     "text": "鈕",
+     "start": 3.96,
+     "end": 4.12,
+     "score": 0.271
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.14,
+    0.28,
+    0.86,
+    1.02,
+    1.2,
+    1.34,
+    1.54,
+    1.7,
+    2.1,
+    2.3,
+    2.46,
+    2.7,
+    3.06,
+    3.24,
+    3.42,
+    3.62,
+    3.82,
+    3.96
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": "audio/caffaine-invite-page/03-s03.wav",
+   "audioFrame": 289,
+   "audioSec": 5.745,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.035,
+   "startFrame": 280,
+   "durationFrames": 189,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 290,
+   "voiceEndFrame": 461,
+   "stillFrame": 459,
+   "subtitleWindow": [
+    287,
+    466
+   ],
+   "sourceWindow": [
+    285,
+    464
+   ],
+   "lines": [
+    {
+     "text": "時間地點都有",
+     "start": 287,
+     "chars": [
+      325,
+      329,
+      336,
+      340,
+      345,
+      350
+     ]
+    },
+    {
+     "text": "倒數三十二天",
+     "start": 363,
+     "chars": [
+      366,
+      372,
+      378,
+      383,
+      389,
+      392
+     ]
+    },
+    {
+     "text": "我核對過",
+     "start": 404,
+     "chars": [
+      406,
+      411,
+      416,
+      421
+     ]
+    },
+    {
+     "text": "算對了",
+     "start": 431,
+     "chars": [
+      433,
+      439,
+      444
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "三十二天",
+     "start": 378
+    }
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "時間地點",
+     "frame": 327,
+     "early": 0
+    },
+    {
+     "id": "cnt",
+     "text": "倒數三十二天",
+     "frame": 367,
+     "early": 0
+    },
+    {
+     "id": "ok",
+     "text": "算對了",
+     "frame": 434,
+     "early": 0
+    }
+   ],
+   "hash": "4dc77ab4388b-d4b5ab0528",
+   "sub": "時間地點都有\n倒數三十二天\n我核對過\n算對了",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.789,
+    "minScore": 0.002,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 1.21,
+      "start": 1.26,
+      "ch": "時",
+      "errMs": 50
+     },
+     {
+      "onset": 2.62,
+      "start": 2.6,
+      "ch": "倒",
+      "errMs": -20
+     },
+     {
+      "onset": 3.98,
+      "start": 3.96,
+      "ch": "我",
+      "errMs": -20
+     },
+     {
+      "onset": 4.82,
+      "start": 4.84,
+      "ch": "算",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "它",
+     "start": 0.06,
+     "end": 0.12,
+     "score": 0.989
+    },
+    {
+     "text": "交",
+     "start": 0.18,
+     "end": 0.32,
+     "score": 0.998
+    },
+    {
+     "text": "回",
+     "start": 0.36,
+     "end": 0.48,
+     "score": 0.999
+    },
+    {
+     "text": "網",
+     "start": 0.52,
+     "end": 0.68,
+     "score": 0.994
+    },
+    {
+     "text": "頁",
+     "start": 0.74,
+     "end": 0.84,
+     "score": 0.998
+    },
+    {
+     "text": "時",
+     "start": 1.26,
+     "end": 1.36,
+     "score": 0.906
+    },
+    {
+     "text": "間",
+     "start": 1.4,
+     "end": 1.56,
+     "score": 0.958
+    },
+    {
+     "text": "地",
+     "start": 1.6,
+     "end": 1.66,
+     "score": 0.588
+    },
+    {
+     "text": "點",
+     "start": 1.74,
+     "end": 1.88,
+     "score": 0.979
+    },
+    {
+     "text": "都",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.992
+    },
+    {
+     "text": "有",
+     "start": 2.08,
+     "end": 2.26,
+     "score": 0.998
+    },
+    {
+     "text": "倒",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 0.998
+    },
+    {
+     "text": "數",
+     "start": 2.8,
+     "end": 2.9,
+     "score": 0.965
+    },
+    {
+     "text": "三",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.005
+    },
+    {
+     "text": "十",
+     "start": 3.18,
+     "end": 3.26,
+     "score": 0.004
+    },
+    {
+     "text": "二",
+     "start": 3.38,
+     "end": 3.44,
+     "score": 0.002
+    },
+    {
+     "text": "天",
+     "start": 3.48,
+     "end": 3.72,
+     "score": 0.66
+    },
+    {
+     "text": "我",
+     "start": 3.96,
+     "end": 4.02,
+     "score": 0.999
+    },
+    {
+     "text": "核",
+     "start": 4.1,
+     "end": 4.18,
+     "score": 0.999
+    },
+    {
+     "text": "對",
+     "start": 4.28,
+     "end": 4.4,
+     "score": 0.917
+    },
+    {
+     "text": "過",
+     "start": 4.46,
+     "end": 4.56,
+     "score": 0.999
+    },
+    {
+     "text": "算",
+     "start": 4.84,
+     "end": 5,
+     "score": 0.013
+    },
+    {
+     "text": "對",
+     "start": 5.04,
+     "end": 5.16,
+     "score": 0.99
+    },
+    {
+     "text": "了",
+     "start": 5.22,
+     "end": 5.32,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    1.26,
+    1.4,
+    1.6,
+    1.74,
+    1.92,
+    2.08,
+    2.6,
+    2.8,
+    3,
+    3.18,
+    3.38,
+    3.48,
+    3.96,
+    4.1,
+    4.28,
+    4.46,
+    4.84,
+    5.04,
+    5.22
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": "audio/caffaine-invite-page/04-s04.wav",
+   "audioFrame": 468,
+   "audioSec": 3.785,
+   "headSilSec": 0.035,
+   "tailSilSec": 0.03,
+   "startFrame": 459,
+   "durationFrames": 142,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 469,
+   "voiceEndFrame": 581,
+   "stillFrame": 591,
+   "subtitleWindow": [
+    466,
+    598
+   ],
+   "sourceWindow": [
+    464,
+    596
+   ],
+   "lines": [
+    {
+     "text": "點「我會去」",
+     "start": 466,
+     "chars": [
+      467,
+      467,
+      474,
+      479,
+      484,
+      484
+     ]
+    },
+    {
+     "text": "填名字送出",
+     "start": 498,
+     "chars": [
+      500,
+      506,
+      512,
+      517,
+      523
+     ]
+    },
+    {
+     "text": "名單多一個人",
+     "start": 534,
+     "chars": [
+      536,
+      542,
+      548,
+      553,
+      557,
+      561
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "名單",
+     "start": 536
+    }
+   ],
+   "cues": [
+    {
+     "id": "tap",
+     "text": "點「我會去」",
+     "frame": 469,
+     "early": 0
+    },
+    {
+     "id": "fill",
+     "text": "填名字送出",
+     "frame": 502,
+     "early": 0
+    },
+    {
+     "id": "add",
+     "text": "名單多一個人",
+     "frame": 538,
+     "early": 0
+    }
+   ],
+   "hash": "b9a2941bc736-d4b5ab0528",
+   "sub": "點「我會去」\n填名字送出\n名單多一個人",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.919,
+    "minScore": 0.001,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.13,
+      "start": 1.12,
+      "ch": "填",
+      "errMs": -10
+     },
+     {
+      "onset": 2.33,
+      "start": 2.32,
+      "ch": "名",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "點",
+     "start": 0.02,
+     "end": 0.2,
+     "score": 0.995
+    },
+    {
+     "text": "我",
+     "start": 0.26,
+     "end": 0.32,
+     "score": 0.997
+    },
+    {
+     "text": "會",
+     "start": 0.4,
+     "end": 0.54,
+     "score": 1
+    },
+    {
+     "text": "去",
+     "start": 0.58,
+     "end": 0.74,
+     "score": 1
+    },
+    {
+     "text": "填",
+     "start": 1.12,
+     "end": 1.28,
+     "score": 0.959
+    },
+    {
+     "text": "名",
+     "start": 1.3,
+     "end": 1.46,
+     "score": 0.866
+    },
+    {
+     "text": "字",
+     "start": 1.5,
+     "end": 1.58,
+     "score": 0.999
+    },
+    {
+     "text": "送",
+     "start": 1.68,
+     "end": 1.84,
+     "score": 0.994
+    },
+    {
+     "text": "出",
+     "start": 1.88,
+     "end": 2.02,
+     "score": 0.997
+    },
+    {
+     "text": "名",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 0.994
+    },
+    {
+     "text": "單",
+     "start": 2.52,
+     "end": 2.66,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.985
+    },
+    {
+     "text": "一",
+     "start": 2.88,
+     "end": 2.92,
+     "score": 0.001
+    },
+    {
+     "text": "個",
+     "start": 3,
+     "end": 3.06,
+     "score": 0.999
+    },
+    {
+     "text": "人",
+     "start": 3.14,
+     "end": 3.34,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.26,
+    0.4,
+    0.58,
+    1.12,
+    1.3,
+    1.5,
+    1.68,
+    1.88,
+    2.32,
+    2.52,
+    2.72,
+    2.88,
+    3,
+    3.14
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": "audio/caffaine-invite-page/05-s05.wav",
+   "audioFrame": 601,
+   "audioSec": 4.85,
+   "headSilSec": 0.02,
+   "tailSilSec": 0.04,
+   "startFrame": 591,
+   "durationFrames": 175,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 601,
+   "voiceEndFrame": 746,
+   "stillFrame": 756,
+   "subtitleWindow": [
+    598,
+    763
+   ],
+   "sourceWindow": [
+    596,
+    761
+   ],
+   "lines": [
+    {
+     "text": "但有兩個毛病",
+     "start": 598,
+     "chars": [
+      600,
+      605,
+      609,
+      614,
+      617,
+      622
+     ]
+    },
+    {
+     "text": "名單有我沒輸入的人",
+     "start": 635,
+     "chars": [
+      637,
+      643,
+      648,
+      654,
+      660,
+      666,
+      670,
+      674,
+      678
+     ]
+    },
+    {
+     "text": "回覆重新整理",
+     "start": 692,
+     "chars": [
+      694,
+      700,
+      705,
+      711,
+      717,
+      722
+     ]
+    },
+    {
+     "text": "就不見",
+     "start": 726,
+     "chars": [
+      728,
+      733,
+      736
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "兩個毛病",
+     "start": 609
+    }
+   ],
+   "cues": [
+    {
+     "id": "two",
+     "text": "兩個毛病",
+     "frame": 610,
+     "early": 0
+    },
+    {
+     "id": "fake",
+     "text": "我沒輸入的人",
+     "frame": 656,
+     "early": 0
+    },
+    {
+     "id": "gone",
+     "text": "重新整理就不見",
+     "frame": 707,
+     "early": 0
+    }
+   ],
+   "hash": "464367e8bf16-d4b5ab0528",
+   "sub": "但有兩個毛病\n名單有我沒輸入的人\n回覆重新整理\n就不見",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.961,
+    "minScore": 0.468,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.29,
+      "start": 1.26,
+      "ch": "名",
+      "errMs": -30
+     },
+     {
+      "onset": 3.14,
+      "start": 3.14,
+      "ch": "回",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.02,
+     "end": 0.14,
+     "score": 0.468
+    },
+    {
+     "text": "有",
+     "start": 0.18,
+     "end": 0.28,
+     "score": 0.999
+    },
+    {
+     "text": "兩",
+     "start": 0.3,
+     "end": 0.46,
+     "score": 0.928
+    },
+    {
+     "text": "個",
+     "start": 0.48,
+     "end": 0.54,
+     "score": 0.998
+    },
+    {
+     "text": "毛",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.994
+    },
+    {
+     "text": "病",
+     "start": 0.76,
+     "end": 0.94,
+     "score": 0.981
+    },
+    {
+     "text": "名",
+     "start": 1.26,
+     "end": 1.42,
+     "score": 0.978
+    },
+    {
+     "text": "單",
+     "start": 1.44,
+     "end": 1.56,
+     "score": 0.997
+    },
+    {
+     "text": "有",
+     "start": 1.62,
+     "end": 1.76,
+     "score": 1
+    },
+    {
+     "text": "我",
+     "start": 1.82,
+     "end": 1.88,
+     "score": 0.998
+    },
+    {
+     "text": "沒",
+     "start": 2,
+     "end": 2.12,
+     "score": 0.999
+    },
+    {
+     "text": "輸",
+     "start": 2.2,
+     "end": 2.28,
+     "score": 0.901
+    },
+    {
+     "text": "入",
+     "start": 2.36,
+     "end": 2.44,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.48,
+     "end": 2.56,
+     "score": 0.999
+    },
+    {
+     "text": "人",
+     "start": 2.62,
+     "end": 2.82,
+     "score": 1
+    },
+    {
+     "text": "回",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 1
+    },
+    {
+     "text": "覆",
+     "start": 3.34,
+     "end": 3.42,
+     "score": 0.998
+    },
+    {
+     "text": "重",
+     "start": 3.52,
+     "end": 3.7,
+     "score": 0.948
+    },
+    {
+     "text": "新",
+     "start": 3.72,
+     "end": 3.86,
+     "score": 0.934
+    },
+    {
+     "text": "整",
+     "start": 3.9,
+     "end": 4.06,
+     "score": 0.969
+    },
+    {
+     "text": "理",
+     "start": 4.08,
+     "end": 4.16,
+     "score": 0.997
+    },
+    {
+     "text": "就",
+     "start": 4.28,
+     "end": 4.4,
+     "score": 0.999
+    },
+    {
+     "text": "不",
+     "start": 4.44,
+     "end": 4.5,
+     "score": 0.992
+    },
+    {
+     "text": "見",
+     "start": 4.56,
+     "end": 4.78,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.18,
+    0.3,
+    0.48,
+    0.58,
+    0.76,
+    1.26,
+    1.44,
+    1.62,
+    1.82,
+    2,
+    2.2,
+    2.36,
+    2.48,
+    2.62,
+    3.14,
+    3.34,
+    3.52,
+    3.72,
+    3.9,
+    4.08,
+    4.28,
+    4.44,
+    4.56
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": "audio/caffaine-invite-page/06-s06.wav",
+   "audioFrame": 765,
+   "audioSec": 3.87,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 756,
+   "durationFrames": 134,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 766,
+   "voiceEndFrame": 880,
+   "stillFrame": 880,
+   "subtitleWindow": [
+    763,
+    887
+   ],
+   "sourceWindow": [
+    761,
+    885
+   ],
+   "lines": [
+    {
+     "text": "我照實說",
+     "start": 763,
+     "chars": [
+      764,
+      767,
+      773,
+      779
+     ]
+    },
+    {
+     "text": "拿掉預填名單",
+     "start": 794,
+     "chars": [
+      797,
+      801,
+      808,
+      812,
+      818,
+      823
+     ]
+    },
+    {
+     "text": "回覆要存在手機裡",
+     "start": 833,
+     "chars": [
+      836,
+      842,
+      847,
+      852,
+      858,
+      864,
+      869,
+      874
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "存在手機裡",
+     "start": 852
+    }
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "拿掉預填名單",
+     "frame": 798,
+     "early": 0
+    },
+    {
+     "id": "keep",
+     "text": "存在手機裡",
+     "frame": 854,
+     "early": 0
+    }
+   ],
+   "hash": "562fc0724bf8-d4b5ab0528",
+   "sub": "我照實說\n拿掉預填名單\n回覆要存在手機裡",
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.919,
+    "minScore": 0.33,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.11,
+      "start": 1.1,
+      "ch": "拿",
+      "errMs": -10
+     },
+     {
+      "onset": 2.42,
+      "start": 2.4,
+      "ch": "回",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "我",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 1
+    },
+    {
+     "text": "照",
+     "start": 0.12,
+     "end": 0.28,
+     "score": 0.89
+    },
+    {
+     "text": "實",
+     "start": 0.32,
+     "end": 0.4,
+     "score": 0.33
+    },
+    {
+     "text": "說",
+     "start": 0.5,
+     "end": 0.62,
+     "score": 0.993
+    },
+    {
+     "text": "拿",
+     "start": 1.1,
+     "end": 1.16,
+     "score": 0.999
+    },
+    {
+     "text": "掉",
+     "start": 1.26,
+     "end": 1.44,
+     "score": 0.935
+    },
+    {
+     "text": "預",
+     "start": 1.48,
+     "end": 1.54,
+     "score": 0.811
+    },
+    {
+     "text": "填",
+     "start": 1.62,
+     "end": 1.76,
+     "score": 0.615
+    },
+    {
+     "text": "名",
+     "start": 1.8,
+     "end": 1.94,
+     "score": 0.989
+    },
+    {
+     "text": "單",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.999
+    },
+    {
+     "text": "回",
+     "start": 2.4,
+     "end": 2.54,
+     "score": 1
+    },
+    {
+     "text": "覆",
+     "start": 2.6,
+     "end": 2.7,
+     "score": 0.998
+    },
+    {
+     "text": "要",
+     "start": 2.78,
+     "end": 2.92,
+     "score": 0.998
+    },
+    {
+     "text": "存",
+     "start": 2.96,
+     "end": 3.1,
+     "score": 0.998
+    },
+    {
+     "text": "在",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.999
+    },
+    {
+     "text": "手",
+     "start": 3.34,
+     "end": 3.48,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 3.52,
+     "end": 3.6,
+     "score": 0.998
+    },
+    {
+     "text": "裡",
+     "start": 3.68,
+     "end": 3.78,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.12,
+    0.32,
+    0.5,
+    1.1,
+    1.26,
+    1.48,
+    1.62,
+    1.8,
+    1.98,
+    2.4,
+    2.6,
+    2.78,
+    2.96,
+    3.14,
+    3.34,
+    3.52,
+    3.68
+   ]
+  },
+  {
+   "id": "s07",
+   "audio": "audio/caffaine-invite-page/07-s07.wav",
+   "audioFrame": 889,
+   "audioSec": 5.24,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.03,
+   "startFrame": 880,
+   "durationFrames": 185,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 890,
+   "voiceEndFrame": 1046,
+   "stillFrame": 1055,
+   "subtitleWindow": [
+    887,
+    1062
+   ],
+   "sourceWindow": [
+    885,
+    1060
    ],
    "lines": [
     {
      "text": "再試一次",
-     "start": 790,
+     "start": 887,
      "chars": [
-      793,
-      798,
-      803,
-      808
+      891,
+      897,
+      901,
+      905
      ]
     },
     {
      "text": "名單是空的",
-     "start": 818,
+     "start": 918,
      "chars": [
-      820,
-      825,
-      830,
-      836,
-      841
+      921,
+      926,
+      931,
+      936,
+      942
      ]
     },
     {
      "text": "我送三個回覆",
-     "start": 850,
+     "start": 954,
      "chars": [
-      852,
-      858,
-      863,
-      868,
-      874,
-      879
+      957,
+      961,
+      967,
+      973,
+      976,
+      982
      ]
     },
     {
      "text": "重新整理都還在",
-     "start": 888,
+     "start": 991,
      "chars": [
-      890,
-      896,
-      901,
-      906,
-      911,
-      917,
-      922
+      993,
+      1000,
+      1005,
+      1011,
+      1016,
+      1021,
+      1026
      ]
     }
    ],
    "keywords": [
     {
      "text": "都還在",
-     "start": 911
+     "start": 1016
     }
    ],
    "cues": [
     {
      "id": "again",
      "text": "再試一次",
-     "frame": 794
+     "frame": 892,
+     "early": 0
     },
     {
      "id": "empty",
      "text": "名單是空的",
-     "frame": 821
+     "frame": 922,
+     "early": 0
     },
     {
      "id": "three",
      "text": "送三個回覆",
-     "frame": 859
+     "frame": 962,
+     "early": 0
     },
     {
      "id": "still",
      "text": "都還在",
-     "frame": 913
+     "frame": 1017,
+     "early": 0
     }
    ],
+   "hash": "56e8c673d79e-d4b5ab0528",
    "sub": "再試一次\n名單是空的\n我送三個回覆\n重新整理都還在",
-   "provider": "estimate",
-   "syllables": 22,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.9,
+    "minScore": 0.011,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.12,
+      "start": 1.1,
+      "ch": "名",
+      "errMs": -20
+     },
+     {
+      "onset": 2.32,
+      "start": 2.3,
+      "ch": "我",
+      "errMs": -20
+     },
+     {
+      "onset": 3.53,
+      "start": 3.52,
+      "ch": "重",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "再",
+     "start": 0.1,
+     "end": 0.26,
+     "score": 0.999
+    },
+    {
+     "text": "試",
+     "start": 0.32,
+     "end": 0.4,
+     "score": 0.98
+    },
+    {
+     "text": "一",
+     "start": 0.46,
+     "end": 0.5,
+     "score": 0.048
+    },
+    {
+     "text": "次",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.996
+    },
+    {
+     "text": "名",
+     "start": 1.1,
+     "end": 1.26,
+     "score": 0.984
+    },
+    {
+     "text": "單",
+     "start": 1.28,
+     "end": 1.4,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 1.46,
+     "end": 1.54,
+     "score": 0.997
+    },
+    {
+     "text": "空",
+     "start": 1.6,
+     "end": 1.78,
+     "score": 0.981
+    },
+    {
+     "text": "的",
+     "start": 1.82,
+     "end": 1.9,
+     "score": 0.999
+    },
+    {
+     "text": "我",
+     "start": 2.3,
+     "end": 2.36,
+     "score": 0.999
+    },
+    {
+     "text": "送",
+     "start": 2.44,
+     "end": 2.6,
+     "score": 0.993
+    },
+    {
+     "text": "三",
+     "start": 2.66,
+     "end": 2.8,
+     "score": 0.011
+    },
+    {
+     "text": "個",
+     "start": 2.84,
+     "end": 2.9,
+     "score": 0.932
+    },
+    {
+     "text": "回",
+     "start": 2.96,
+     "end": 3.08,
+     "score": 0.999
+    },
+    {
+     "text": "覆",
+     "start": 3.16,
+     "end": 3.26,
+     "score": 0.998
+    },
+    {
+     "text": "重",
+     "start": 3.52,
+     "end": 3.72,
+     "score": 0.921
+    },
+    {
+     "text": "新",
+     "start": 3.76,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 3.92,
+     "end": 4.08,
+     "score": 0.99
+    },
+    {
+     "text": "理",
+     "start": 4.12,
+     "end": 4.18,
+     "score": 0.995
+    },
+    {
+     "text": "都",
+     "start": 4.28,
+     "end": 4.4,
+     "score": 0.982
+    },
+    {
+     "text": "還",
+     "start": 4.44,
+     "end": 4.58,
+     "score": 0.999
+    },
+    {
+     "text": "在",
+     "start": 4.62,
+     "end": 4.82,
+     "score": 0.999
+    }
+   ],
    "charTimes": [
-    0,
-    0.175,
-    0.351,
-    0.526,
-    0.912,
-    1.087,
-    1.263,
-    1.438,
-    1.614,
-    1.999,
-    2.175,
-    2.35,
-    2.526,
-    2.701,
-    2.876,
-    3.262,
-    3.437,
-    3.613,
-    3.788,
-    3.964,
-    4.139,
-    4.314
+    0.1,
+    0.32,
+    0.46,
+    0.58,
+    1.1,
+    1.28,
+    1.46,
+    1.6,
+    1.82,
+    2.3,
+    2.44,
+    2.66,
+    2.84,
+    2.96,
+    3.16,
+    3.52,
+    3.76,
+    3.92,
+    4.12,
+    4.28,
+    4.44,
+    4.62
    ]
   },
   {
    "id": "s08",
-   "audio": null,
-   "audioFrame": 937,
-   "audioSec": 4.286,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 927,
-   "durationFrames": 147,
+   "audio": "audio/caffaine-invite-page/08-s08.wav",
+   "audioFrame": 1065,
+   "audioSec": 4.31,
+   "headSilSec": 0.03,
+   "tailSilSec": 0.04,
+   "startFrame": 1055,
+   "durationFrames": 159,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -900,119 +1951,270 @@
      8
     ]
    },
-   "voiceStartFrame": 937,
-   "voiceEndFrame": 1066,
-   "stillFrame": 1064,
+   "voiceStartFrame": 1065,
+   "voiceEndFrame": 1194,
+   "stillFrame": 1204,
    "subtitleWindow": [
-    934,
-    1071
+    1062,
+    1211
    ],
    "sourceWindow": [
-    932,
-    1069
+    1060,
+    1209
    ],
    "lines": [
     {
      "text": "不過回覆只存在",
-     "start": 934,
+     "start": 1062,
      "chars": [
-      936,
-      941,
-      946,
-      951,
-      956,
-      962,
-      967
+      1064,
+      1067,
+      1072,
+      1077,
+      1083,
+      1088,
+      1094
      ]
     },
     {
      "text": "這支手機",
-     "start": 976,
+     "start": 1097,
      "chars": [
-      978,
-      984,
-      989,
-      994
+      1100,
+      1105,
+      1110,
+      1115
      ]
     },
     {
      "text": "要收所有人的",
-     "start": 1003,
+     "start": 1130,
      "chars": [
-      1006,
-      1011,
-      1016,
-      1021,
-      1026,
-      1032
+      1133,
+      1138,
+      1145,
+      1150,
+      1155,
+      1160
      ]
     },
     {
      "text": "這次沒做",
-     "start": 1041,
+     "start": 1166,
      "chars": [
-      1043,
-      1048,
-      1054,
-      1059
+      1168,
+      1175,
+      1179,
+      1184
      ]
     }
    ],
    "keywords": [
     {
      "text": "沒做",
-     "start": 1054
+     "start": 1179
     }
    ],
    "cues": [
     {
      "id": "known",
      "text": "只存在這支手機",
-     "frame": 958
+     "frame": 1085,
+     "early": 0
     },
     {
      "id": "q",
      "text": "要收所有人的",
-     "frame": 1007
+     "frame": 1134,
+     "early": 0
     }
    ],
+   "hash": "0c98c3072d5a-d4b5ab0528",
    "sub": "不過回覆只存在\n這支手機\n要收所有人的\n這次沒做",
-   "provider": "estimate",
-   "syllables": 21,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.986,
+    "minScore": 0.895,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.31,
+      "start": 2.3,
+      "ch": "要",
+      "errMs": -10
+     },
+     {
+      "onset": 3.5,
+      "start": 3.48,
+      "ch": "這",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.999
+    },
+    {
+     "text": "過",
+     "start": 0.12,
+     "end": 0.2,
+     "score": 0.999
+    },
+    {
+     "text": "回",
+     "start": 0.28,
+     "end": 0.4,
+     "score": 1
+    },
+    {
+     "text": "覆",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.998
+    },
+    {
+     "text": "只",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.989
+    },
+    {
+     "text": "存",
+     "start": 0.82,
+     "end": 0.96,
+     "score": 0.998
+    },
+    {
+     "text": "在",
+     "start": 1,
+     "end": 1.14,
+     "score": 0.999
+    },
+    {
+     "text": "這",
+     "start": 1.2,
+     "end": 1.28,
+     "score": 0.895
+    },
+    {
+     "text": "支",
+     "start": 1.38,
+     "end": 1.46,
+     "score": 0.99
+    },
+    {
+     "text": "手",
+     "start": 1.54,
+     "end": 1.68,
+     "score": 0.998
+    },
+    {
+     "text": "機",
+     "start": 1.72,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "要",
+     "start": 2.3,
+     "end": 2.44,
+     "score": 0.998
+    },
+    {
+     "text": "收",
+     "start": 2.48,
+     "end": 2.64,
+     "score": 0.987
+    },
+    {
+     "text": "所",
+     "start": 2.72,
+     "end": 2.82,
+     "score": 0.993
+    },
+    {
+     "text": "有",
+     "start": 2.88,
+     "end": 3,
+     "score": 0.999
+    },
+    {
+     "text": "人",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.2,
+     "end": 3.3,
+     "score": 1
+    },
+    {
+     "text": "這",
+     "start": 3.48,
+     "end": 3.58,
+     "score": 0.91
+    },
+    {
+     "text": "次",
+     "start": 3.7,
+     "end": 3.8,
+     "score": 0.991
+    },
+    {
+     "text": "沒",
+     "start": 3.84,
+     "end": 3.96,
+     "score": 0.997
+    },
+    {
+     "text": "做",
+     "start": 4.02,
+     "end": 4.14,
+     "score": 0.974
+    }
+   ],
    "charTimes": [
-    0,
-    0.174,
-    0.348,
-    0.523,
-    0.697,
-    0.871,
-    1.045,
-    1.429,
-    1.603,
-    1.777,
-    1.951,
-    2.334,
-    2.509,
-    2.683,
-    2.857,
-    3.031,
-    3.206,
-    3.589,
-    3.763,
-    3.937,
-    4.111
+    0.02,
+    0.12,
+    0.28,
+    0.46,
+    0.66,
+    0.82,
+    1,
+    1.2,
+    1.38,
+    1.54,
+    1.72,
+    2.3,
+    2.48,
+    2.72,
+    2.88,
+    3.04,
+    3.2,
+    3.48,
+    3.7,
+    3.84,
+    4.02
    ]
   },
   {
    "id": "s09",
-   "audio": null,
-   "audioFrame": 1075,
-   "audioSec": 4.694,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1064,
-   "durationFrames": 160,
+   "audio": "audio/caffaine-invite-page/09-s09.wav",
+   "audioFrame": 1213,
+   "audioSec": 5.62,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1204,
+   "durationFrames": 197,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1026,137 +2228,319 @@
      8
     ]
    },
-   "voiceStartFrame": 1074,
-   "voiceEndFrame": 1216,
-   "stillFrame": 1214,
+   "voiceStartFrame": 1214,
+   "voiceEndFrame": 1381,
+   "stillFrame": 1391,
    "subtitleWindow": [
-    1071,
-    1221
+    1211,
+    1398
    ],
    "sourceWindow": [
-    1069,
-    1219
+    1209,
+    1396
    ],
    "lines": [
     {
      "text": "所以做法三步",
-     "start": 1071,
+     "start": 1211,
      "chars": [
-      1074,
-      1078,
-      1083,
-      1088,
-      1093,
-      1098
+      1213,
+      1218,
+      1221,
+      1227,
+      1232,
+      1238
      ]
     },
     {
      "text": "講清楚",
-     "start": 1107,
+     "start": 1252,
      "chars": [
-      1109,
-      1114,
-      1118
+      1254,
+      1260,
+      1267
      ]
     },
     {
      "text": "交給 AI",
-     "start": 1127,
+     "start": 1279,
      "chars": [
-      1129,
-      1134,
-      1134,
-      1139,
-      1144
+      1281,
+      1287,
+      1287,
+      1293,
+      1298
      ]
     },
     {
      "text": "用手機點一遍",
-     "start": 1153,
+     "start": 1308,
      "chars": [
-      1155,
-      1160,
-      1164,
-      1169,
-      1174,
-      1179
+      1310,
+      1317,
+      1321,
+      1326,
+      1332,
+      1336
      ]
     },
     {
      "text": "有毛病就說",
-     "start": 1188,
+     "start": 1347,
      "chars": [
-      1190,
-      1195,
-      1200,
-      1205,
-      1209
+      1350,
+      1354,
+      1359,
+      1365,
+      1371
      ]
     }
    ],
    "keywords": [
     {
      "text": "三步",
-     "start": 1093
+     "start": 1232
     }
    ],
    "cues": [
     {
      "id": "a",
      "text": "講清楚",
-     "frame": 1110
+     "frame": 1256,
+     "early": 0
     },
     {
      "id": "b",
      "text": "交給 AI",
-     "frame": 1131
+     "frame": 1283,
+     "early": 0
     },
     {
      "id": "c",
      "text": "用手機點一遍",
-     "frame": 1156
+     "frame": 1311,
+     "early": 0
     }
    ],
+   "hash": "50032d3ccf77-d4b5ab0528",
    "sub": "所以做法三步\n講清楚\n交給 AI\n用手機點一遍\n有毛病就說",
-   "provider": "estimate",
-   "syllables": 23,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.845,
+    "minScore": 0.014,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.43,
+      "start": 1.42,
+      "ch": "講",
+      "errMs": -10
+     },
+     {
+      "onset": 2.32,
+      "start": 2.32,
+      "ch": "交",
+      "errMs": 0
+     },
+     {
+      "onset": 3.3,
+      "start": 3.28,
+      "ch": "用",
+      "errMs": -20
+     },
+     {
+      "onset": 4.62,
+      "start": 4.6,
+      "ch": "有",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.06,
+     "end": 0.16,
+     "score": 0.984
+    },
+    {
+     "text": "以",
+     "start": 0.2,
+     "end": 0.26,
+     "score": 0.95
+    },
+    {
+     "text": "做",
+     "start": 0.32,
+     "end": 0.42,
+     "score": 0.994
+    },
+    {
+     "text": "法",
+     "start": 0.5,
+     "end": 0.58,
+     "score": 0.994
+    },
+    {
+     "text": "三",
+     "start": 0.7,
+     "end": 0.84,
+     "score": 0.092
+    },
+    {
+     "text": "步",
+     "start": 0.88,
+     "end": 0.98,
+     "score": 0.97
+    },
+    {
+     "text": "講",
+     "start": 1.42,
+     "end": 1.6,
+     "score": 0.97
+    },
+    {
+     "text": "清",
+     "start": 1.62,
+     "end": 1.8,
+     "score": 0.928
+    },
+    {
+     "text": "楚",
+     "start": 1.84,
+     "end": 1.96,
+     "score": 0.979
+    },
+    {
+     "text": "交",
+     "start": 2.32,
+     "end": 2.46,
+     "score": 0.987
+    },
+    {
+     "text": "給",
+     "start": 2.5,
+     "end": 2.6,
+     "score": 0.947
+    },
+    {
+     "text": "A",
+     "start": 2.7,
+     "end": 2.76,
+     "score": 0.014
+    },
+    {
+     "text": "I",
+     "start": 2.88,
+     "end": 3.02,
+     "score": 0.49
+    },
+    {
+     "text": "用",
+     "start": 3.28,
+     "end": 3.44,
+     "score": 0.995
+    },
+    {
+     "text": "手",
+     "start": 3.5,
+     "end": 3.62,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 3.66,
+     "end": 3.76,
+     "score": 0.787
+    },
+    {
+     "text": "點",
+     "start": 3.82,
+     "end": 3.98,
+     "score": 0.926
+    },
+    {
+     "text": "一",
+     "start": 4.02,
+     "end": 4.08,
+     "score": 0.338
+    },
+    {
+     "text": "遍",
+     "start": 4.14,
+     "end": 4.36,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 4.6,
+     "end": 4.72,
+     "score": 0.999
+    },
+    {
+     "text": "毛",
+     "start": 4.76,
+     "end": 4.9,
+     "score": 0.993
+    },
+    {
+     "text": "病",
+     "start": 4.92,
+     "end": 5.08,
+     "score": 0.995
+    },
+    {
+     "text": "就",
+     "start": 5.1,
+     "end": 5.22,
+     "score": 0.968
+    },
+    {
+     "text": "說",
+     "start": 5.3,
+     "end": 5.4,
+     "score": 0.987
+    }
+   ],
    "charTimes": [
-    0,
-    0.163,
-    0.326,
-    0.489,
-    0.652,
-    0.815,
-    1.173,
-    1.336,
-    1.499,
-    1.858,
-    2.021,
-    2.184,
-    2.347,
-    2.705,
-    2.868,
-    3.031,
-    3.194,
-    3.357,
-    3.52,
-    3.879,
-    4.042,
-    4.205,
-    4.368,
-    4.531
+    0.06,
+    0.2,
+    0.32,
+    0.5,
+    0.7,
+    0.88,
+    1.42,
+    1.62,
+    1.84,
+    2.32,
+    2.5,
+    2.7,
+    2.88,
+    3.28,
+    3.5,
+    3.66,
+    3.82,
+    4.02,
+    4.14,
+    4.6,
+    4.76,
+    4.92,
+    5.1,
+    5.3
    ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1225,
-   "audioSec": 2.041,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1214,
-   "durationFrames": 80,
+   "audio": "audio/caffaine-invite-page/10-s10.wav",
+   "audioFrame": 1400,
+   "audioSec": 2.34,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1391,
+   "durationFrames": 86,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1170,86 +2554,165 @@
      8
     ]
    },
-   "voiceStartFrame": 1224,
-   "voiceEndFrame": 1286,
-   "stillFrame": 1284,
+   "voiceStartFrame": 1401,
+   "voiceEndFrame": 1469,
+   "stillFrame": 1467,
    "subtitleWindow": [
-    1221,
-    1294
+    1398,
+    1477
    ],
    "sourceWindow": [
-    1219,
-    1289
+    1396,
+    1472
    ],
    "lines": [
     {
      "text": "留言「邀請」",
-     "start": 1221,
+     "start": 1398,
      "chars": [
-      1224,
-      1229,
-      1229,
-      1234,
-      1240,
-      1240
+      1400,
+      1406,
+      1406,
+      1412,
+      1418,
+      1418
      ]
     },
     {
      "text": "拿這段提示詞",
-     "start": 1250,
+     "start": 1429,
      "chars": [
-      1252,
-      1257,
-      1263,
-      1268,
-      1274,
-      1279
+      1431,
+      1437,
+      1441,
+      1447,
+      1452,
+      1458
      ]
     }
    ],
    "keywords": [
     {
      "text": "邀請",
-     "start": 1234
+     "start": 1412
     }
    ],
    "cues": [
     {
      "id": "kw",
      "text": "邀請",
-     "frame": 1236
+     "frame": 1413,
+     "early": 0
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 1270
+     "frame": 1448,
+     "early": 0
     }
    ],
+   "hash": "e7666d72cb3d-d4b5ab0528",
    "sub": "留言「邀請」\n拿這段提示詞",
-   "provider": "estimate",
-   "syllables": 10,
-   "words": [],
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.958,
+    "minScore": 0.836,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.09,
+      "start": 1.08,
+      "ch": "拿",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "留",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.992
+    },
+    {
+     "text": "言",
+     "start": 0.24,
+     "end": 0.38,
+     "score": 0.984
+    },
+    {
+     "text": "邀",
+     "start": 0.44,
+     "end": 0.6,
+     "score": 0.995
+    },
+    {
+     "text": "請",
+     "start": 0.66,
+     "end": 0.88,
+     "score": 0.88
+    },
+    {
+     "text": "拿",
+     "start": 1.08,
+     "end": 1.16,
+     "score": 0.998
+    },
+    {
+     "text": "這",
+     "start": 1.28,
+     "end": 1.36,
+     "score": 0.836
+    },
+    {
+     "text": "段",
+     "start": 1.42,
+     "end": 1.56,
+     "score": 0.971
+    },
+    {
+     "text": "提",
+     "start": 1.6,
+     "end": 1.7,
+     "score": 0.997
+    },
+    {
+     "text": "示",
+     "start": 1.78,
+     "end": 1.86,
+     "score": 0.993
+    },
+    {
+     "text": "詞",
+     "start": 1.98,
+     "end": 2.1,
+     "score": 0.937
+    }
+   ],
    "charTimes": [
-    0,
-    0.182,
-    0.364,
-    0.547,
-    0.948,
-    1.13,
-    1.312,
-    1.494,
-    1.676,
-    1.859
+    0.04,
+    0.24,
+    0.44,
+    0.66,
+    1.08,
+    1.28,
+    1.42,
+    1.6,
+    1.78,
+    1.98
    ]
   },
   {
    "id": "end",
    "audio": null,
-   "audioFrame": 1284,
+   "audioFrame": 1467,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1284,
+   "startFrame": 1467,
    "durationFrames": 108,
    "transitionFrames": 10,
    "transition": {
@@ -1264,24 +2727,25 @@
      8
     ]
    },
-   "voiceStartFrame": 1294,
-   "voiceEndFrame": 1294,
-   "stillFrame": 1380,
+   "voiceStartFrame": 1477,
+   "voiceEndFrame": 1477,
+   "stillFrame": 1563,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    1289,
-    1392
+    1472,
+    1575
    ],
    "lines": [],
    "keywords": [],
-   "isEnd": true,
    "cues": [],
-   "sub": "",
-   "provider": "estimate",
-   "syllables": 0,
-   "words": [],
-   "charTimes": []
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/caffaine-invite-page/voice.wav",
+  "lufsIn": -15.38,
+  "lufs": -16,
+  "sec": 52.5
+ }
 }

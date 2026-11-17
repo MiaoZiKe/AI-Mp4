@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1484,
- "totalSec": 49.47,
+ "totalFrames": 1606,
+ "totalSec": 53.53,
  "scenes": [
   {
    "id": "s01",
    "startFrame": 0,
-   "durationFrames": 142,
+   "durationFrames": 140,
    "startSec": 0,
-   "durationSec": 4.73,
+   "durationSec": 4.67,
    "component": "IsoScene",
    "beat": "hook",
    "transition": {
@@ -20,50 +20,54 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1,
+    "endFrame": 120,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "zero",
      "text": "不用寫一行程式",
-     "frame": 61,
-     "sceneFrame": 61
+     "frame": 46,
+     "sceneFrame": 46
     },
     {
      "id": "one",
      "text": "一句話",
-     "frame": 106,
-     "sceneFrame": 106
+     "frame": 87,
+     "sceneFrame": 87
     }
    ],
-   "stillFrame": 132,
+   "stillFrame": 130,
    "subtitles": [
     {
      "zh": "想要自己的記帳工具",
      "en": "Your own expense tracker, no code.",
      "startFrame": 0,
-     "endFrame": 57
+     "endFrame": 42
     },
     {
      "zh": "不用寫一行程式",
      "en": "Your own expense tracker, no code.",
-     "startFrame": 57,
-     "endFrame": 103
+     "startFrame": 42,
+     "endFrame": 83
     },
     {
      "zh": "一句話就行",
      "en": "Just one prompt.",
-     "startFrame": 103,
-     "endFrame": 139
+     "startFrame": 83,
+     "endFrame": 137
     }
    ],
    "narration": "想要自己的記帳工具，不用寫一行程式，一句話就行。"
   },
   {
    "id": "s02",
-   "startFrame": 132,
-   "durationFrames": 135,
-   "startSec": 4.4,
-   "durationSec": 4.5,
+   "startFrame": 130,
+   "durationFrames": 158,
+   "startSec": 4.33,
+   "durationSec": 5.27,
    "component": "IsoScene",
    "beat": "you",
    "transition": {
@@ -72,56 +76,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 140,
+    "endFrame": 268,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "say",
      "text": "輸入金額",
-     "frame": 166,
+     "frame": 164,
      "sceneFrame": 34
     },
     {
      "id": "sum",
      "text": "算出本月總共花多少",
-     "frame": 210,
-     "sceneFrame": 78
+     "frame": 215,
+     "sceneFrame": 85
     }
    ],
-   "stillFrame": 257,
+   "stillFrame": 278,
    "subtitles": [
     {
      "zh": "我只說",
      "en": "I asked for amounts and categories.",
-     "startFrame": 139,
-     "endFrame": 162
+     "startFrame": 137,
+     "endFrame": 161
     },
     {
      "zh": "輸入金額",
      "en": "I asked for amounts and categories.",
-     "startFrame": 162,
-     "endFrame": 184
+     "startFrame": 161,
+     "endFrame": 188
     },
     {
      "zh": "選分類",
      "en": "I also wanted a monthly total.",
-     "startFrame": 184,
-     "endFrame": 207
+     "startFrame": 188,
+     "endFrame": 212
     },
     {
      "zh": "算出本月總共花多少",
      "en": "I also wanted a monthly total.",
-     "startFrame": 207,
-     "endFrame": 264
+     "startFrame": 212,
+     "endFrame": 285
     }
    ],
    "narration": "我只說：輸入金額、選分類，算出本月總共花多少。"
   },
   {
    "id": "s03",
-   "startFrame": 257,
-   "durationFrames": 197,
-   "startSec": 8.57,
-   "durationSec": 6.57,
+   "startFrame": 278,
+   "durationFrames": 196,
+   "startSec": 9.27,
+   "durationSec": 6.53,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -130,62 +138,66 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 288,
+    "endFrame": 465,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "open",
      "text": "一開始是空的",
-     "frame": 318,
-     "sceneFrame": 61
+     "frame": 336,
+     "sceneFrame": 58
     },
     {
      "id": "four",
      "text": "記了四筆",
-     "frame": 363,
-     "sceneFrame": 106
+     "frame": 379,
+     "sceneFrame": 101
     },
     {
      "id": "sum",
      "text": "本月總共四百九十五元",
-     "frame": 391,
-     "sceneFrame": 134
+     "frame": 407,
+     "sceneFrame": 129
     }
    ],
-   "stillFrame": 444,
+   "stillFrame": 464,
    "subtitles": [
     {
      "zh": "它交回一個網頁檔",
      "en": "It returned one web file.",
-     "startFrame": 264,
-     "endFrame": 314
+     "startFrame": 285,
+     "endFrame": 332
     },
     {
      "zh": "一開始是空的",
      "en": "It was empty at first.",
-     "startFrame": 314,
-     "endFrame": 354
+     "startFrame": 332,
+     "endFrame": 372
     },
     {
      "zh": "我記了四筆",
      "en": "I logged four items.",
-     "startFrame": 354,
-     "endFrame": 387
+     "startFrame": 372,
+     "endFrame": 403
     },
     {
      "zh": "本月總共四百九十五元",
      "en": "The total is NT$495.",
-     "startFrame": 387,
-     "endFrame": 451
+     "startFrame": 403,
+     "endFrame": 471
     }
    ],
    "narration": "它交回一個網頁檔，一開始是空的。我記了四筆，本月總共四百九十五元。"
   },
   {
    "id": "s04",
-   "startFrame": 444,
-   "durationFrames": 135,
-   "startSec": 14.8,
-   "durationSec": 4.5,
+   "startFrame": 464,
+   "durationFrames": 144,
+   "startSec": 15.47,
+   "durationSec": 4.8,
    "component": "IsoScene",
    "beat": "check",
    "transition": {
@@ -194,56 +206,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 474,
+    "endFrame": 588,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "reload",
      "text": "重新整理",
-     "frame": 454,
-     "sceneFrame": 10
+     "frame": 475,
+     "sceneFrame": 11
     },
     {
      "id": "still",
      "text": "資料還在",
-     "frame": 484,
-     "sceneFrame": 40
+     "frame": 502,
+     "sceneFrame": 38
     },
     {
      "id": "store",
      "text": "存在這支手機的瀏覽器",
-     "frame": 513,
-     "sceneFrame": 69
+     "frame": 532,
+     "sceneFrame": 68
     }
    ],
-   "stillFrame": 569,
+   "stillFrame": 598,
    "subtitles": [
     {
      "zh": "重新整理",
      "en": "Reload the page: the data is still there.",
-     "startFrame": 451,
-     "endFrame": 480
+     "startFrame": 471,
+     "endFrame": 498
     },
     {
      "zh": "資料還在",
      "en": "Reload the page: the data is still there.",
-     "startFrame": 480,
-     "endFrame": 510
+     "startFrame": 498,
+     "endFrame": 528
     },
     {
      "zh": "存在這支手機的瀏覽器",
      "en": "It's saved in this phone's browser.",
-     "startFrame": 510,
-     "endFrame": 576
+     "startFrame": 528,
+     "endFrame": 605
     }
    ],
    "narration": "重新整理，資料還在，存在這支手機的瀏覽器裡。"
   },
   {
    "id": "s05",
-   "startFrame": 569,
-   "durationFrames": 142,
-   "startSec": 18.97,
-   "durationSec": 4.73,
+   "startFrame": 598,
+   "durationFrames": 156,
+   "startSec": 19.93,
+   "durationSec": 5.2,
    "component": "IsoScene",
    "beat": "twist",
    "transition": {
@@ -252,62 +268,66 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 608,
+    "endFrame": 734,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "but",
      "text": "但有個小毛病",
-     "frame": 580,
+     "frame": 609,
      "sceneFrame": 11
     },
     {
      "id": "del",
      "text": "點一下刪",
-     "frame": 617,
-     "sceneFrame": 48
+     "frame": 647,
+     "sceneFrame": 49
     },
     {
      "id": "gone",
      "text": "馬上不見",
-     "frame": 655,
+     "frame": 684,
      "sceneFrame": 86
     }
    ],
-   "stillFrame": 701,
+   "stillFrame": 744,
    "subtitles": [
     {
      "zh": "但有個小毛病",
      "en": "One flaw: tap Delete and the entry vanishes.",
-     "startFrame": 576,
-     "endFrame": 614
+     "startFrame": 605,
+     "endFrame": 644
     },
     {
      "zh": "點一下「刪」",
      "en": "One flaw: tap Delete and the entry vanishes.",
-     "startFrame": 614,
-     "endFrame": 641
+     "startFrame": 644,
+     "endFrame": 671
     },
     {
      "zh": "紀錄馬上不見",
      "en": "No confirmation.",
-     "startFrame": 641,
-     "endFrame": 678
+     "startFrame": 671,
+     "endFrame": 709
     },
     {
      "zh": "沒有確認",
      "en": "No confirmation.",
-     "startFrame": 678,
-     "endFrame": 708
+     "startFrame": 709,
+     "endFrame": 751
     }
    ],
    "narration": "但有個小毛病：點一下刪，紀錄馬上不見，沒有確認。"
   },
   {
    "id": "s06",
-   "startFrame": 701,
-   "durationFrames": 147,
-   "startSec": 23.37,
-   "durationSec": 4.9,
+   "startFrame": 744,
+   "durationFrames": 152,
+   "startSec": 24.8,
+   "durationSec": 5.07,
    "component": "IsoScene",
    "beat": "fix",
    "transition": {
@@ -316,50 +336,54 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 754,
+    "endFrame": 884,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "say",
      "text": "刪除前先問我一次",
-     "frame": 751,
+     "frame": 794,
      "sceneFrame": 50
     },
     {
      "id": "keep",
      "text": "其他地方不要動",
-     "frame": 801,
-     "sceneFrame": 100
+     "frame": 848,
+     "sceneFrame": 104
     }
    ],
-   "stillFrame": 838,
+   "stillFrame": 886,
    "subtitles": [
     {
      "zh": "我照實跟它說",
      "en": "I told it: ask before deleting.",
-     "startFrame": 708,
-     "endFrame": 747
+     "startFrame": 751,
+     "endFrame": 790
     },
     {
      "zh": "刪除前先問我一次",
      "en": "I told it: ask before deleting.",
-     "startFrame": 747,
-     "endFrame": 798
+     "startFrame": 790,
+     "endFrame": 845
     },
     {
      "zh": "其他地方不要動",
      "en": "And leave everything else alone.",
-     "startFrame": 798,
-     "endFrame": 845
+     "startFrame": 845,
+     "endFrame": 893
     }
    ],
    "narration": "我照實跟它說：刪除前先問我一次，其他地方不要動。"
   },
   {
    "id": "s07",
-   "startFrame": 838,
-   "durationFrames": 166,
-   "startSec": 27.93,
-   "durationSec": 5.53,
+   "startFrame": 886,
+   "durationFrames": 204,
+   "startSec": 29.53,
+   "durationSec": 6.8,
    "component": "IsoScene",
    "beat": "fix",
    "transition": {
@@ -368,68 +392,72 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 896,
+    "endFrame": 1069,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "again",
      "text": "再試一次",
-     "frame": 849,
-     "sceneFrame": 11
+     "frame": 896,
+     "sceneFrame": 10
     },
     {
      "id": "ask",
      "text": "先跳確認",
-     "frame": 893,
-     "sceneFrame": 55
+     "frame": 945,
+     "sceneFrame": 59
     },
     {
      "id": "cancel",
      "text": "按取消",
-     "frame": 920,
-     "sceneFrame": 82
+     "frame": 978,
+     "sceneFrame": 92
     },
     {
      "id": "ok",
      "text": "按確定才刪一筆",
-     "frame": 959,
-     "sceneFrame": 121
+     "frame": 1022,
+     "sceneFrame": 136
     }
    ],
-   "stillFrame": 994,
+   "stillFrame": 1080,
    "subtitles": [
     {
      "zh": "再試一次",
      "en": "Retest: Delete now asks first.",
-     "startFrame": 845,
-     "endFrame": 873
+     "startFrame": 893,
+     "endFrame": 923
     },
     {
      "zh": "按刪除先跳確認",
      "en": "Retest: Delete now asks first.",
-     "startFrame": 873,
-     "endFrame": 917
+     "startFrame": 923,
+     "endFrame": 974
     },
     {
      "zh": "按取消都還在",
      "en": "Cancel keeps both items.",
-     "startFrame": 917,
-     "endFrame": 955
+     "startFrame": 974,
+     "endFrame": 1019
     },
     {
      "zh": "按確定才刪一筆",
      "en": "OK removes just one.",
-     "startFrame": 955,
-     "endFrame": 1001
+     "startFrame": 1019,
+     "endFrame": 1087
     }
    ],
    "narration": "再試一次，按刪除先跳確認，按取消都還在，按確定才刪一筆。"
   },
   {
    "id": "s08",
-   "startFrame": 994,
-   "durationFrames": 185,
-   "startSec": 33.13,
-   "durationSec": 6.17,
+   "startFrame": 1080,
+   "durationFrames": 174,
+   "startSec": 36,
+   "durationSec": 5.8,
    "component": "IsoScene",
    "beat": "unknown",
    "transition": {
@@ -438,56 +466,60 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1090,
+    "endFrame": 1234,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "known",
      "text": "只試了一個模型",
-     "frame": 1022,
-     "sceneFrame": 28
+     "frame": 1102,
+     "sceneFrame": 22
     },
     {
      "id": "q",
      "text": "別的需求行不行",
-     "frame": 1102,
-     "sceneFrame": 108
+     "frame": 1175,
+     "sceneFrame": 95
     }
    ],
-   "stillFrame": 1169,
+   "stillFrame": 1244,
    "subtitles": [
     {
      "zh": "不過我只試了",
      "en": "But I tried one model and one app.",
-     "startFrame": 1001,
-     "endFrame": 1042
+     "startFrame": 1087,
+     "endFrame": 1111
     },
     {
      "zh": "一個模型和一種工具",
      "en": "But I tried one model and one app.",
-     "startFrame": 1042,
-     "endFrame": 1099
+     "startFrame": 1111,
+     "endFrame": 1172
     },
     {
      "zh": "別的需求行不行",
      "en": "Other requests: unknown.",
-     "startFrame": 1099,
-     "endFrame": 1144
+     "startFrame": 1172,
+     "endFrame": 1211
     },
     {
      "zh": "還不知道",
      "en": "Other requests: unknown.",
-     "startFrame": 1144,
-     "endFrame": 1176
+     "startFrame": 1211,
+     "endFrame": 1251
     }
    ],
    "narration": "不過我只試了一個模型和這一種工具，別的需求行不行，還不知道。"
   },
   {
    "id": "s09",
-   "startFrame": 1169,
-   "durationFrames": 147,
-   "startSec": 38.97,
-   "durationSec": 4.9,
+   "startFrame": 1244,
+   "durationFrames": 188,
+   "startSec": 41.47,
+   "durationSec": 6.27,
    "component": "IsoScene",
    "beat": "so",
    "transition": {
@@ -496,68 +528,72 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1254,
+    "endFrame": 1411,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "a",
      "text": "講清楚",
-     "frame": 1214,
-     "sceneFrame": 45
+     "frame": 1295,
+     "sceneFrame": 51
     },
     {
      "id": "b",
      "text": "交給 AI",
-     "frame": 1234,
-     "sceneFrame": 65
+     "frame": 1322,
+     "sceneFrame": 78
     },
     {
      "id": "c",
      "text": "用手機試",
-     "frame": 1259,
-     "sceneFrame": 90
+     "frame": 1351,
+     "sceneFrame": 107
     }
    ],
-   "stillFrame": 1306,
+   "stillFrame": 1422,
    "subtitles": [
     {
      "zh": "所以做法三步",
      "en": "Three steps: be specific, hand it to AI.",
-     "startFrame": 1176,
-     "endFrame": 1210
+     "startFrame": 1251,
+     "endFrame": 1291
     },
     {
      "zh": "講清楚",
      "en": "Three steps: be specific, hand it to AI.",
-     "startFrame": 1210,
-     "endFrame": 1230
+     "startFrame": 1291,
+     "endFrame": 1318
     },
     {
      "zh": "交給 AI",
      "en": "Three steps: be specific, hand it to AI.",
-     "startFrame": 1230,
-     "endFrame": 1255
+     "startFrame": 1318,
+     "endFrame": 1348
     },
     {
      "zh": "用手機試",
      "en": "Try it on a phone, report problems.",
-     "startFrame": 1255,
-     "endFrame": 1280
+     "startFrame": 1348,
+     "endFrame": 1378
     },
     {
      "zh": "有毛病就說",
      "en": "Try it on a phone, report problems.",
-     "startFrame": 1280,
-     "endFrame": 1313
+     "startFrame": 1378,
+     "endFrame": 1429
     }
    ],
    "narration": "所以做法三步：講清楚、交給 AI、用手機試，有毛病就說。"
   },
   {
    "id": "s10",
-   "startFrame": 1306,
-   "durationFrames": 80,
-   "startSec": 43.53,
-   "durationSec": 2.67,
+   "startFrame": 1422,
+   "durationFrames": 86,
+   "startSec": 47.4,
+   "durationSec": 2.87,
    "component": "IsoScene",
    "beat": "cta",
    "transition": {
@@ -566,43 +602,47 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1432,
+    "endFrame": 1500,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "kw",
      "text": "記帳",
-     "frame": 1328,
-     "sceneFrame": 22
+     "frame": 1445,
+     "sceneFrame": 23
     },
     {
      "id": "all",
      "text": "提示詞",
-     "frame": 1362,
-     "sceneFrame": 56
+     "frame": 1480,
+     "sceneFrame": 58
     }
    ],
-   "stillFrame": 1376,
+   "stillFrame": 1498,
    "subtitles": [
     {
      "zh": "留言「記帳」",
      "en": "Comment “記帳” to get the prompt.",
-     "startFrame": 1313,
-     "endFrame": 1342
+     "startFrame": 1429,
+     "endFrame": 1460
     },
     {
      "zh": "拿這段提示詞",
      "en": "Comment “記帳” to get the prompt.",
-     "startFrame": 1342,
-     "endFrame": 1386
+     "startFrame": 1460,
+     "endFrame": 1508
     }
    ],
    "narration": "留言「記帳」，拿這段提示詞。"
   },
   {
    "id": "end",
-   "startFrame": 1376,
+   "startFrame": 1498,
    "durationFrames": 108,
-   "startSec": 45.87,
+   "startSec": 49.93,
    "durationSec": 3.6,
    "component": "IsoScene",
    "beat": null,
@@ -614,7 +654,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1472,
+   "stillFrame": 1594,
    "subtitles": [],
    "narration": ""
   }
