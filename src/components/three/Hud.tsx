@@ -591,7 +591,74 @@ const HudSectionScan: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
     </SecCard>
   );
 };
+/** 矽穿孔（TSV）加工剖面（overlay section 加 kind: "tsv"；2026/11/17 tech-hbm v2）：一塊矽的側面剖開。
+ *  依序：打孔（由上往下）→ 填銅（由下往上）→ 貼載板、翻面 → 磨輪從背面磨掉多餘的矽 → 銅柱頭露出。t＝{ holes, fill, car, flip, grind, end: { at } }（巢狀 at 會被 engine 換成幀）；
+ *  磨輪連續磨 grindDur 幀（預設 60），磨輪轉動、矽變薄；items＝右側步驟列（沒寫就用預設五步）。示意，不是實際比例。 */
+const HudSectionTsv: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D }> = ({ o, f, k, m }) => {
+  const W = o.w ?? 952, Hh = o.h ?? 340, t = ((o as any).t ?? {}) as Record<string, { at: number }>, gd = (o as any).grindDur ?? 60;
+  const A = (n: string) => t[n]?.at ?? o.at;
+  const c = (n: string) => col(m.product, n);
+  const si = c("si"), siDk = c("siDk"), cu = c("cu"), cuHi = c("cuHi"), liner = c("liner"), slot = c("slot"), car = c("carrier"), adh = c("adh"), tr = c("siTop"), steel = c("steel"), teeth = c("teeth");
+  const bx = 30, bw = 440, oy = 196, py = 62, S = 150, CY0 = 12, HD = 100, REM = 42, NC = 8;
+  const drill = tween(f, A("holes"), 36, EASE.move), fill = tween(f, A("fill"), 16, EASE.move);
+  const carP = tween(f, A("car"), 8, EASE.enter), flP = tween(f, A("flip"), 14, EASE.move);
+  const gr = Math.min(1, Math.max(0, (f - A("grind")) / gd)), grE = gr * gr * (3 - 2 * gr);
+  const botY = S - REM * grE, flipped = flP > 0.5, ang = 180 * flP;
+  const ysc = (y: number) => (flipped ? oy + py - y : oy + y - py);
+  const hx = (i: number) => bx + 32 + i * 52;
+  const cols: React.ReactNode[] = [];
+  for (let i = 0; i < NC; i++) {
+    const x = hx(i), dh = HD * drill, ch = (HD - 2) * fill;
+    cols.push(<g key={i}>
+      <rect x={x - 11} y={CY0} width={22} height={dh} fill={liner} />
+      <rect x={x - 8} y={CY0} width={16} height={dh} fill={slot} />
+      <rect x={x - 8} y={CY0 + HD - ch} width={16} height={ch} fill={cu} />
+      {gr > 0.92 ? <rect x={x - 8} y={CY0 + HD - 1} width={16} height={6} fill={cuHi} /> : null}
+    </g>);
+  }
+  const ex = Math.max(0, Math.min(1, (f - (A("grind") + gd)) / 8)); // 磨完：銅柱頭亮起
+  const wOn = tween(f, A("grind") - 8, 8, EASE.move), wOff = tween(f, A("grind") + gd + 2, 8, EASE.move);
+  const wTop = ysc(Math.min(botY, S)) ; // 磨輪底面＝矽的外表面
+  const wy = wTop - 46 - 70 * (1 - wOn) - 90 * wOff, wcx = bx + bw / 2, spin = (f * 7) % 24;
+  const items = ((o as any).items ?? ["打孔", "填銅", "翻面貼載板", "背面磨薄", "銅柱露出"]) as string[];
+  const marks = [A("holes"), A("fill"), A("flip"), A("grind") - 8, A("end")];
+  let act = -1; marks.forEach((a, j) => { if (f >= a) act = j; });
+  const labA = flP < 0.02 ? 1 : flP > 0.98 ? 1 : 0;
+  return (
+    <SecCard o={o} k={k} W={W} Hh={Hh}>
+      <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <g transform={`rotate(${ang.toFixed(2)} ${bx + bw / 2} ${oy})`}>
+          <g transform={`translate(0 ${oy - py})`}>
+            <rect x={bx} y={CY0} width={bw} height={botY - CY0} fill={si} />
+            <rect x={bx} y={CY0 + HD} width={bw} height={Math.max(0, botY - (CY0 + HD))} fill={siDk} opacity={0.9} />
+            <rect x={bx} y={0} width={bw} height={CY0} fill={tr} />
+            {cols}
+          </g>
+        </g>
+        {/* 載板與黏著層：翻面後貼在電路面那一側（畫面下方） */}
+        <g opacity={carP} transform={`translate(0 ${(1 - carP) * 24})`}>
+          <rect x={bx - 14} y={oy + py - 0} width={bw + 28} height={6} fill={adh} />
+          <rect x={bx - 14} y={oy + py + 6} width={bw + 28} height={20} fill={car} stroke={H.text3} strokeWidth={1.5} />
+        </g>
+        {/* 磨輪（轉動）：從背面往下壓、把多餘的矽磨掉 */}
+        {wOn > 0 && wOff < 1 ? <g>
+          <rect x={wcx - 120} y={wy} width={240} height={26} fill={steel} stroke={H.text3} strokeWidth={1.5} />
+          <rect x={wcx - 120} y={wy + 26} width={240} height={12} fill={teeth} />
+          {Array.from({ length: 12 }, (_, j) => <rect key={j} x={wcx - 120 + ((j * 24 + spin) % 240)} y={wy + 26} width={8} height={12} fill={cuHi} opacity={0.9} />)}
+          <rect x={wcx - 10} y={wy - 50} width={20} height={50} fill={steel} />
+        </g> : null}
+        {/* 標籤 */}
+        {labA && fill > 0.98 && gr < 0.02 ? <text x={bx + bw + 10} y={ysc(CY0 + HD + REM / 2) + 8} style={zh(sm(30), H.text2, 800)}>磨掉</text> : null}
+        {ex > 0 ? <text x={bx + bw + 10} y={ysc(CY0 + HD) + 8} style={zh(sm(30), H.amber, 900)} opacity={ex}>銅柱露出</text> : null}
+        {ex > 0 ? Array.from({ length: NC }, (_, i) => <circle key={i} cx={hx(i)} cy={ysc(CY0 + HD + 3)} r={9 * ex} fill={cuHi} opacity={0.35 * ex} />) : null}
+        <g>{[["矽", si], ["銅", cu], ["孔襯層", liner], ["載板", car]].map(([n, cl], j) => <g key={j}><rect x={24 + j * 150} y={Hh - 40} width={28} height={22} fill={cl as string} stroke={H.text3} strokeWidth={1.5} /><text x={60 + j * 150} y={Hh - 20} style={zh(sm(30), H.text, 800)}>{n as string}</text></g>)}</g>
+      </svg>
+      <SecSteps items={items.map((text, j) => ({ text: `${"①②③④⑤"[j]} ${text}`, at: marks[j] - 4 }))} f={f} active={act} x={bx + bw + 150} y={62} w={W - (bx + bw + 150) - 16} gap={50} px={28} />
+    </SecCard>
+  );
+};
 const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: State3D }> = ({ o, f, k, m, s }) => {
+  if ((o as any).kind === "tsv") return <HudSectionTsv o={o} f={f} k={k} m={m} />;
   if (String((o as any).kind ?? "").startsWith("pkg-")) return <PkgSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/16 tech-packaging（HudPkg.tsx）
   if ((o as any).kind === "path") return <HudSectionPath o={o} f={f} k={k} m={m} s={s} />;
   if ((o as any).kind === "lpp") return <HudSectionLpp o={o} f={f} k={k} m={m} s={s} />;
