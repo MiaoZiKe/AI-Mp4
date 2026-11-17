@@ -834,15 +834,24 @@ const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s: State
               <path d={`M0 ${bk} V0 H${bk}`} fill="none" stroke={H.line} strokeWidth={4} /><path d={`M${W - bk} 0 H${W} V${bk}`} fill="none" stroke={H.line} strokeWidth={4} />
             </svg>
             {o.kicker ? <div style={{ display: "inline-block", ...zh(36, onC(H.amber), 800), background: H.amber, padding: "6px 24px 8px", letterSpacing: "0.1em", marginBottom: 16 }}>{o.kicker}</div> : null}
-            {lines.map((ln, j) => {
+            {(o as any).rows ? (
+              <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", columnGap: 36, rowGap: 6, alignItems: "center", marginTop: 6 }}>
+                {((o as any).rows as string[][]).map((r, j) => { const on = !!o.hi && r[0].includes(o.hi), u = on ? under : 0, c0 = on && under > 0.3 ? H.amber : H.text;
+                  return (<React.Fragment key={j}>
+                    <div style={{ ...zh(size, c0, 900), lineHeight: 1.2, whiteSpace: "nowrap", borderBottom: `${on ? 6 : 0}px solid ${H.amber}`, opacity: 1 }}>{r[0]}</div>
+                    <div style={{ ...zh(Math.round(size * 0.92), on && u > 0.3 ? H.amber : H.text2, 700), lineHeight: 1.2 }}>{r[1]}</div>
+                  </React.Fragment>); })}
+              </div>
+            ) : null}
+            {!(o as any).rows ? lines.map((ln, j) => {
               const hi = o.hi && ln.includes(o.hi) ? ln.split(o.hi) : null;
               return (
                 <div key={j} style={{ ...zh(size, H.text), lineHeight: 1.28 }}>
                   {hi ? <>{hi[0]}<span style={{ position: "relative", color: under > 0.3 ? H.amber : H.text }}>{o.hi}<span style={{ position: "absolute", left: 0, bottom: 2, height: 10, width: `${(100 * under).toFixed(1)}%`, background: H.amber }} /></span>{hi[1]}</> : ln}
                 </div>
               );
-            })}
-            {o.foot ? <div style={{ ...mono(32, H.line, 600), marginTop: 18, fontFamily: `${H.font.mono}, ${FONT_ZH}` }}>NEXT ▸ {o.foot}</div> : null}
+            }) : null}
+            {o.foot ? <div style={{ ...mono(32, H.line, 600), marginTop: 18, fontFamily: `${H.font.mono}, ${FONT_ZH}` }}>{(o as any).rows ? "" : "NEXT ▸ "}{o.foot}</div> : null}
           </div>
         );
       }

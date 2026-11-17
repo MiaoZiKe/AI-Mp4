@@ -103,8 +103,8 @@ box("wh_dB","wh",mm("dram2"),[HW,0.066,HW],[WX-4.3,IPY+BASEH+0.051,1.6],at=[[0,i
 lib.append({"part":"die","id":"wai","pos":[WX+4.3,IPY,1.6],"w":3.0,"d":2.6,"t":0.42,"bumps":False})
 
 # ───────── X：晶圓局部剖面（TSV 加工） ─────────
-XX = HX["X"]; BW = 7.2; BY = 3.2; BZ = 1.6; SLOT_X = [R(-3.0+0.5*i) for i in range(13)][::2]  # 7 孔
-SLOT_X = [R(-2.7+0.9*i) for i in range(7)]
+XX = HX["X"]; BW = 7.2; BY = 3.2; BZ = 2.4; SLOT_X = [R(-3.0+0.5*i) for i in range(13)][::2]  # 7 孔
+SLOT_X = [R(-3.0+0.5*i) for i in range(13)]   # 13 孔（剖面前緣），頂面另有 14×10 密集陣列
 HOLE_TOP = BY; HOLE_BOT = 1.0; HD = HOLE_TOP-HOLE_BOT   # 2.2
 FZ = BZ/2   # 前面 z
 XP = []  # 會跟著翻面的零件 id
@@ -119,20 +119,19 @@ xbox("x_ckt", "x_ckt", mm("traces"), [BW, 0.08, BZ], [0, BY+0.04, 0])
 SEG = 4; sh = HD/SEG
 for s in range(SEG):
     ytop = HOLE_TOP - s*sh
-    xbox(f"x_ln{s}", f"x_ho{s}", mm("liner"), [0.34, sh, 0.02], [0, ytop-sh/2, FZ+0.004], at=[[x,0,0] for x in SLOT_X])
-    xbox(f"x_sl{s}", f"x_ho{s}", mm("slot"), [0.22, sh, 0.02], [0, ytop-sh/2, FZ+0.012], at=[[x,0,0] for x in SLOT_X])
+    xbox(f"x_ln{s}", f"x_ho{s}", mm("liner"), [0.2, sh, 0.02], [0, ytop-sh/2, FZ+0.004], at=[[x,0,0] for x in SLOT_X])
+    xbox(f"x_sl{s}", f"x_ho{s}", mm("slot"), [0.13, sh, 0.02], [0, ytop-sh/2, FZ+0.012], at=[[x,0,0] for x in SLOT_X])
 # 孔口（頂面）：前排 7 個＋密集一整片（幾萬個）
-xbox("x_top0", "x_ho0", mm("slot"), [0.22, 0.012, 0.22], [0, BY+0.086, FZ-0.14], at=[[x,0,0] for x in SLOT_X])
-dense = [[-3.3+0.3*i, 0, -0.5+0.33*j] for i in range(23) for j in range(4)]
-xbox("x_dense", "x_dense", mm("slot"), [0.15, 0.012, 0.15], [0, BY+0.087, 0], at=dense)
+dense = [[-3.25+0.5*i, 0, -1.05+0.233*j] for i in range(14) for j in range(10)]   # 14×10＝140 孔（示意：實際每層數萬個）
+xbox("x_dense", "x_dense", mm("slot"), [0.12, 0.012, 0.12], [0, BY+0.087, 0], at=dense)
 # 銅：5 段，由下往上長滿
 CN = 5; cs = HD/CN
 for s in range(CN):
     ybot = HOLE_BOT + s*cs
-    xbox(f"x_cu{s}", f"x_cu{s}", mm("cuHi") if s==CN-1 else mm("cu"), [0.17, cs, 0.02], [0, ybot+cs/2, FZ+0.02], at=[[x,0,0] for x in SLOT_X])
+    xbox(f"x_cu{s}", f"x_cu{s}", mm("cuHi") if s==CN-1 else mm("cu"), [0.1, cs, 0.02], [0, ybot+cs/2, FZ+0.02], at=[[x,0,0] for x in SLOT_X])
 xbox("x_ovf", "x_ovf", mm("cu"), [BW-0.2, 0.05, BZ-0.1], [0, BY+0.105, 0])   # 溢出的銅（再被磨平）
 # 露出的銅柱頭（背面磨薄後亮起）
-xbox("x_tip", "x_tip", mm("cuHi"), [0.2, 0.03, 0.2], [0, HOLE_BOT-0.012, FZ-0.14], at=[[x,0,0] for x in SLOT_X])
+xbox("x_tip", "x_tip", mm("cuHi"), [0.12, 0.03, 0.12], [0, HOLE_BOT-0.012, FZ-0.14], at=[[x,0,0] for x in SLOT_X])
 # 載板與黏著層（翻面後在最下面）
 box("x_adh", "x_carrier", mm("adh"), [BW-0.4, 0.1, BZ-0.1], [XX, -0.05, 0])
 box("x_car", "x_carrier", mm("carrier"), [BW+1.0, 0.4, BZ+0.6], [XX, -0.3, 0])
@@ -221,7 +220,7 @@ box("rk_tray", "rk_tray", mm("steel2"), [14.4, 0.15, 3.4], [0, 2.4, -5.2])
 anchor("rk", "rk", [8.0, 5.5, -7.0], dx=-140, dy=-60)
 
 # 動作：X 的電漿、翻面、磨輪、CMP 等
-actions["x_plasma"] = {"type":"flow","layer":"x_ho0","path":[[XX,BY+1.3,FZ+0.05],[XX,BY-0.2,FZ+0.05]],"n":4,"lanes":7,"laneGap":0.9,"laneDir":[1,0,0],"size":0.09,"shape":"dot","rate":2.0,"color":"plasma","rim":"plasma","rimScale":1.5,"rimO":0.4,"trail":3,"trailGap":0.03,"trailColor":"plasma","track":False}
+actions["x_plasma"] = {"type":"flow","layer":"x_ho0","path":[[XX,BY+1.3,FZ+0.05],[XX,BY-0.2,FZ+0.05]],"n":4,"lanes":13,"laneGap":0.5,"laneDir":[1,0,0],"size":0.07,"shape":"dot","rate":2.0,"color":"plasma","rim":"plasma","rimScale":1.5,"rimO":0.4,"trail":3,"trailGap":0.03,"trailColor":"plasma","track":False}
 palette["plasma"]="#9B6BFF"
 actions["x_flip"] = {"type":"rotate","parts":XP,"axis":[0,0,1],"pivot":[XX,BY/2,0],"angle":180,"hold":True,"layer":"x_body"}
 actions["x_whspin"] = {"type":"rotate","parts":WHEEL_IDS,"axis":[0,1,0],"pivot":[XX,WHY,0],"rps":3.5,"rampSpin":True,"layer":"x_wheel"}

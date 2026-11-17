@@ -295,8 +295,8 @@
    "narration": "這種記憶體叫高頻寬記憶體，HBM。高頻寬，就是一次能送很多資料。",
    "tts": "這種記憶體叫高頻寬記憶體，HBM。高頻寬，就是一次能送很多資料。",
    "subtitle": {
-    "zh": "這種記憶體叫\n高頻寬記憶體\nHBM\n高頻寬\n就是一次能送很多資料",
-    "en": "This memory is called | High Bandwidth Memory, | HBM. | High bandwidth means | a lot of data at once."
+    "zh": "這種記憶體叫\n高頻寬記憶體\nHBM，高頻寬\n就是一次能送很多資料",
+    "en": "This memory is called | High Bandwidth Memory, | HBM. High bandwidth means | a lot of data at once."
    },
    "keywords": [
     "高頻寬記憶體",
@@ -546,9 +546,9 @@
       "at": "chip",
       "dur": 1,
       "x": 120,
-      "y": 1.2,
-      "d": 34,
-      "elev": 12
+      "y": 1.4,
+      "d": 19,
+      "elev": 30
      }
     ],
     "shift": [
@@ -628,13 +628,46 @@
      {
       "type": "stamp",
       "at": "chip",
-      "until": "s6:start-2",
+      "until": "s5:fill+104",
       "text": "放大示意",
       "color": "amber",
       "size": 40,
       "rot": -4,
       "y": 330,
       "x": 230
+     },
+     {
+      "type": "section",
+      "kind": "tsv",
+      "at": "hole",
+      "until": "s5:fill+104",
+      "x": 64,
+      "y": 905,
+      "w": 952,
+      "h": 340,
+      "title": "矽穿孔怎麼做",
+      "tag": "示意，非實際比例",
+      "t": {
+       "holes": {
+        "at": "hole"
+       },
+       "fill": {
+        "at": "s5:fill-8"
+       },
+       "flip": {
+        "at": "s5:fill+8"
+       },
+       "car": {
+        "at": "s5:fill+14"
+       },
+       "grind": {
+        "at": "s5:fill+24"
+       },
+       "end": {
+        "at": "s5:fill+84"
+       }
+      },
+      "grindDur": 60
      }
     ]
    },
@@ -650,8 +683,8 @@
    "narration": "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
    "tts": "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
    "subtitle": {
-    "zh": "每一層打上幾萬個\n比頭髮細的孔\n填銅\n再從背面磨薄\n一層一層往下接通",
-    "en": "Each layer gets tens of thousands of holes | thinner than a hair, | filled with copper, | then thinned from the back, | layer by layer, connected downward."
+    "zh": "每一層打上幾萬個\n比頭髮細的孔\n填銅，再從背面磨薄\n一層一層往下接通",
+    "en": "Each layer gets tens of thousands of holes | thinner than a hair, | filled with copper, then thinned from the back, | layer by layer, connected downward."
    },
    "keywords": [
     "幾萬個",
@@ -696,12 +729,12 @@
       "at": "start-2",
       "dur": 1,
       "x": 120,
-      "y": 1.2,
-      "d": 34,
-      "elev": 12
+      "y": 1.4,
+      "d": 19,
+      "elev": 30
      },
      {
-      "at": "fill+52",
+      "at": "fill+92",
       "dur": 1,
       "x": 183.0,
       "y": 1.0,
@@ -776,13 +809,13 @@
      {
       "layer": "x_cmp",
       "at": "fill+3",
-      "until": "fill+9",
+      "until": "fill+7",
       "dy": -0.2,
       "dur": 3
      },
      {
       "layer": "x_cmp",
-      "at": "fill+9",
+      "at": "fill+7",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 3
@@ -790,7 +823,7 @@
      {
       "layer": "x_carrier",
       "at": "s1:start-40",
-      "until": "fill+30",
+      "until": "fill+14",
       "opacity": 0,
       "dur": 10,
       "dy": -1.6
@@ -798,83 +831,83 @@
      {
       "layer": "x_wheel",
       "at": "s1:start-40",
-      "until": "fill+24",
+      "until": "fill+12",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "x_wheel",
-      "at": "fill+30",
+      "at": "fill+16",
       "until": "s9:end+400",
       "dy": -1.25,
-      "dur": 6
+      "dur": 8
      },
      {
       "layer": "x_wheel",
       "at": "fill+36",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 3
+      "dur": 12
      },
      {
       "layer": "x_u0",
       "at": "fill+36",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 2
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+39",
+      "at": "fill+50",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 3
+      "dur": 12
      },
      {
       "layer": "x_u1",
-      "at": "fill+39",
+      "at": "fill+50",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 2
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+42",
+      "at": "fill+64",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 3
+      "dur": 12
      },
      {
       "layer": "x_u2",
-      "at": "fill+42",
+      "at": "fill+64",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 2
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+45",
+      "at": "fill+78",
       "until": "s9:end+400",
       "dy": -0.25,
-      "dur": 3
+      "dur": 12
      },
      {
       "layer": "x_u3",
-      "at": "fill+45",
+      "at": "fill+78",
       "until": "s9:end+400",
       "opacity": 0,
-      "dur": 2
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+47",
+      "at": "fill+84",
       "until": "s9:end+400",
       "dy": 2.6,
-      "dur": 5
+      "dur": 6
      },
      {
       "layer": "x_wheel",
-      "at": "fill+51",
+      "at": "fill+90",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 2
@@ -882,14 +915,14 @@
      {
       "layer": "x_tip",
       "at": "s1:start-40",
-      "until": "fill+46",
+      "until": "fill+80",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_d1",
       "at": "s1:start-40",
-      "until": "fill+50",
+      "until": "fill+96",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -903,7 +936,7 @@
      {
       "layer": "y_d2",
       "at": "s1:start-40",
-      "until": "fill+56",
+      "until": "fill+102",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -917,7 +950,7 @@
      {
       "layer": "y_d3",
       "at": "s1:start-40",
-      "until": "fill+62",
+      "until": "fill+108",
       "dy": 1.1,
       "opacity": 0,
       "dur": 12,
@@ -931,7 +964,7 @@
      {
       "layer": "y_base",
       "at": "s1:start-40",
-      "until": "fill+46",
+      "until": "fill+92",
       "opacity": 0,
       "dur": 2
      }
@@ -941,7 +974,7 @@
       "preset": "pick-place",
       "tool": "y_nz",
       "item": "y_d4",
-      "at": "stack",
+      "at": "fill+104",
       "down": 1.2,
       "to": [
        -7.8,
@@ -951,7 +984,7 @@
       "press": [
        "y_d3"
       ],
-      "k": 0.5
+      "k": 0.35
      }
     ],
     "run": [
@@ -959,12 +992,12 @@
       "id": "x_flip",
       "at": "fill+8",
       "until": "s9:end+400",
-      "ramp": 22
+      "ramp": 14
      },
      {
       "id": "x_whspin",
-      "at": "fill+24",
-      "until": "fill+50",
+      "at": "fill+12",
+      "until": "fill+90",
       "ramp": 8
      },
      {
@@ -975,7 +1008,7 @@
      },
      {
       "id": "x_tipglow",
-      "at": "fill+46",
+      "at": "fill+82",
       "until": "s9:end+400",
       "ramp": 6
      }
@@ -1055,7 +1088,7 @@
       "elev": 24
      },
      {
-      "at": "same-12",
+      "at": "same-8",
       "dur": 1,
       "x": 240,
       "y": 0.8,
@@ -1067,41 +1100,41 @@
      {
       "layer": "y_uf0",
       "at": "s1:start-40",
-      "until": "vendor+64",
+      "until": "vendor+72",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf1",
       "at": "s1:start-40",
-      "until": "vendor+69",
+      "until": "vendor+77",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf2",
       "at": "s1:start-40",
-      "until": "vendor+74",
+      "until": "vendor+82",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_uf3",
       "at": "s1:start-40",
-      "until": "vendor+79",
+      "until": "vendor+87",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_bh",
       "at": "s1:start-40",
-      "until": "vendor+18",
+      "until": "vendor+26",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "y_bh",
-      "at": "vendor+84",
+      "at": "vendor+92",
       "until": "s9:end+400",
       "opacity": 0,
       "dur": 6
@@ -1412,7 +1445,7 @@
      {
       "preset": "press-bond",
       "tool": "y_bh",
-      "at": "vendor+22",
+      "at": "vendor+30",
       "down": 1.2,
       "press": [
        "y_d4",
@@ -1561,18 +1594,34 @@
       "type": "card",
       "at": "skh",
       "until": "s7b:start-2",
-      "y": 880,
-      "lines": [
-       "SK 海力士　HBM",
-       "三星　HBM",
-       "美光　HBM",
-       "台積電　新一代底層晶片",
-       "韓美半導體、ASMPT　鍵合設備"
+      "y": 850,
+      "kicker": "媒體報導",
+      "rows": [
+       [
+        "SK 海力士",
+        "HBM"
+       ],
+       [
+        "三星",
+        "HBM"
+       ],
+       [
+        "美光",
+        "HBM"
+       ],
+       [
+        "台積電",
+        "新一代底層晶片"
+       ],
+       [
+        "韓美半導體、ASMPT",
+        "鍵合設備"
+       ]
       ],
       "hi": "台積電",
       "hiAt": "tsmc",
-      "size": 34,
-      "foot": "媒體報導，查證截至 2026/11/19，非投資建議"
+      "size": 42,
+      "foot": "查證截至 2026/11/19，非投資建議"
      }
     ]
    },

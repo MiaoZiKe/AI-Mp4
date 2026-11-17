@@ -60,8 +60,8 @@ scenes.append(scene("s1", "hook", 1,
 # ───────────── s2 HBM 是什麼（H）─────────────
 scenes.append(scene("s2", "you", 2,
     "這種記憶體叫高頻寬記憶體，HBM。高頻寬，就是一次能送很多資料。",
-    ["這種記憶體叫", "高頻寬記憶體", "HBM", "高頻寬", "就是一次能送很多資料"],
-    ["This memory is called", "High Bandwidth Memory,", "HBM.", "High bandwidth means", "a lot of data at once."],
+    ["這種記憶體叫", "高頻寬記憶體", "HBM，高頻寬", "就是一次能送很多資料"],
+    ["This memory is called", "High Bandwidth Memory,", "HBM. High bandwidth means", "a lot of data at once."],
     ["高頻寬記憶體", "一次能送很多資料"],
     [cue("hbm", "HBM"), cue("band", "一次能送"), cue("much", "很多資料")],
     {"zoom": [{"to": "pk", "at": "start-2", "dur": 1}], "shot": [{"at": "start-2", "dur": 14, "x": 1.4, "y": 0.5, "d": 20, "elev": 30}],
@@ -98,41 +98,44 @@ scenes.append(scene("s4", "mechanism", 4,
     ["拉不出來", "打洞"],
     [cue("many", "線這麼多"), cue("side", "拉不出來"), cue("chip", "晶片上"), cue("hole", "打洞")],
     {"shot": [{"at": "start-2", "dur": 1, "x": 3.8, "y": 0.6, "d": 19, "elev": 24},
-              {"at": "chip", "dur": 1, "x": XX, "y": 1.2, "d": 34, "elev": 12}],
+              {"at": "chip", "dur": 1, "x": XX, "y": 1.4, "d": 19, "elev": 30}],
      "shift": s4_shift,
      "run": [run("x_plasma", "hole-20", "hole+40", 6)],
      "labels": [],
      "overlay": [stamp("放不下（示意）", "side", "chip", "coral", 44, y=1060, x=540),
                  {"type": "cross", "at": "side", "until": "chip", "part": "sl", "size": 190, "color": "coral"},
-                 stamp("放大示意", "chip", "s6:start-2", "amber", 40, y=330, x=230)]},
+                 stamp("放大示意", "chip", "s5:fill+104", "amber", 40, y=330, x=230),
+                 {"type": "section", "kind": "tsv", "at": "hole", "until": "s5:fill+104", "x": 64, "y": 905, "w": 952, "h": 340, "title": "矽穿孔怎麼做", "tag": "示意，非實際比例",
+                  "t": {"holes": {"at": "hole"}, "fill": {"at": "s5:fill-8"}, "flip": {"at": "s5:fill+8"}, "car": {"at": "s5:fill+14"}, "grind": {"at": "s5:fill+24"}, "end": {"at": "s5:fill+84"}}, "grindDur": 60}]},
     ["三星新聞稿；TrendForce（示意：2,048 條線擠不出來）"], pause=0.7))
 
 # ───────────── s5 TSV 加工（X → Y）─────────────
 s5_shift = []
 for k in range(5): s5_shift.append(hide_until(f"x_cu{k}", off("fill", -8 + 3 * k)))
 s5_shift += [hide_until("x_dense", "holes"), hide_until("x_ovf", "fill+2"), gone("x_ovf", "fill+8", 3)]
-s5_shift += [hide_until("x_cmp", "fill+2"), {"layer": "x_cmp", "at": "fill+3", "until": "fill+9", "dy": -0.2, "dur": 3}, gone("x_cmp", "fill+9", 3)]
-s5_shift += [{**hide_until("x_carrier", "fill+30", dy=-1.6, dur=10)}]
-s5_shift += [hide_until("x_wheel", "fill+24"), {"layer": "x_wheel", "at": "fill+30", "until": FAR, "dy": -1.25, "dur": 6}]
+s5_shift += [hide_until("x_cmp", "fill+2"), {"layer": "x_cmp", "at": "fill+3", "until": "fill+7", "dy": -0.2, "dur": 3}, gone("x_cmp", "fill+7", 3)]
+s5_shift += [hide_until("x_carrier", "fill+14", dy=-1.6, dur=10)]
+# 磨薄：磨輪 F+16 下降、F+24 接觸，連續磨到 F+84（2 秒），四片矽依序磨掉，F+84 才抬起
+s5_shift += [hide_until("x_wheel", "fill+12"), {"layer": "x_wheel", "at": "fill+16", "until": FAR, "dy": -1.25, "dur": 8}]
 for k in range(4):
-    s5_shift.append({"layer": "x_wheel", "at": off("fill", 36 + 3 * k), "until": FAR, "dy": -0.25, "dur": 3})
-    s5_shift.append({"layer": f"x_u{k}", "at": off("fill", 36 + 3 * k), "until": FAR, "opacity": 0, "dur": 2})
-s5_shift += [{"layer": "x_wheel", "at": "fill+47", "until": FAR, "dy": 2.6, "dur": 5}, gone("x_wheel", "fill+51", 2), hide_until("x_tip", "fill+46")]
+    s5_shift.append({"layer": "x_wheel", "at": off("fill", 36 + 14 * k), "until": FAR, "dy": -0.25, "dur": 12})
+    s5_shift.append({"layer": f"x_u{k}", "at": off("fill", 36 + 14 * k), "until": FAR, "opacity": 0, "dur": 6})
+s5_shift += [{"layer": "x_wheel", "at": "fill+84", "until": FAR, "dy": 2.6, "dur": 6}, gone("x_wheel", "fill+90", 2), hide_until("x_tip", "fill+80")]
 for k in (1, 2, 3):
-    s5_shift.append(fall(f"y_d{k}", off("fill", 50 + 6 * (k - 1)), press=[("y_base" if k == 1 else f"y_d{k-1}")], dy=1.1, bounce=0.05))
-s5_shift.append(hide_until("y_base", "fill+46"))
+    s5_shift.append(fall(f"y_d{k}", off("fill", 96 + 6 * (k - 1)), press=[("y_base" if k == 1 else f"y_d{k-1}")], dy=1.1, bounce=0.05))
+s5_shift.append(hide_until("y_base", "fill+92"))
 scenes.append(scene("s5", "mechanism", 5,
     "每一層打上幾萬個比頭髮細的孔，填銅，再從背面磨薄，一層一層往下接通。",
-    ["每一層打上幾萬個", "比頭髮細的孔", "填銅", "再從背面磨薄", "一層一層往下接通"],
-    ["Each layer gets tens of thousands of holes", "thinner than a hair,", "filled with copper,", "then thinned from the back,", "layer by layer, connected downward."],
+    ["每一層打上幾萬個", "比頭髮細的孔", "填銅，再從背面磨薄", "一層一層往下接通"],
+    ["Each layer gets tens of thousands of holes", "thinner than a hair,", "filled with copper, then thinned from the back,", "layer by layer, connected downward."],
     ["幾萬個", "填銅", "背面磨薄", "往下接通"],
     [cue("holes", "幾萬個"), cue("hair", "比頭髮細"), cue("fill", "填銅"), cue("back", "背面"), cue("thin", "磨薄"), cue("stack", "一層一層"), cue("thru", "往下接通")],
-    {"shot": [{"at": "start-2", "dur": 1, "x": XX, "y": 1.2, "d": 34, "elev": 12},
-              {"at": "fill+52", "dur": 1, "x": YX + 3.0, "y": 1.0, "d": 40, "elev": 24}],
+    {"shot": [{"at": "start-2", "dur": 1, "x": XX, "y": 1.4, "d": 19, "elev": 30},
+              {"at": "fill+92", "dur": 1, "x": YX + 3.0, "y": 1.0, "d": 40, "elev": 24}],
      "shift": s5_shift,
-     "motion": [{"preset": "pick-place", "tool": "y_nz", "item": "y_d4", "at": "stack", "down": 1.2, "to": [-7.8, 0], "dyEnd": 1.72, "press": ["y_d3"], "k": 0.5}],
-     "run": [run("x_flip", "fill+8", FAR, 22), run("x_whspin", "fill+24", "fill+50", 8), run("x_cmpvib", "fill+3", "fill+9", 2),
-             run("x_tipglow", "fill+46", FAR, 6)],
+     "motion": [{"preset": "pick-place", "tool": "y_nz", "item": "y_d4", "at": "fill+104", "down": 1.2, "to": [-7.8, 0], "dyEnd": 1.72, "press": ["y_d3"], "k": 0.35}],
+     "run": [run("x_flip", "fill+8", FAR, 14), run("x_whspin", "fill+12", "fill+90", 8), run("x_cmpvib", "fill+3", "fill+9", 2),
+             run("x_tipglow", "fill+82", FAR, 6)],
      "labels": [],
      "overlay": [stamp("共數萬個", "holes", "fill", "amber", 44, x=840, y=300),
                  stamp("孔徑約人髮 1/20", "hair", "fill+2", "blue", 38, x=800, y=380)]},
@@ -140,9 +143,9 @@ scenes.append(scene("s5", "mechanism", 5,
 
 # ───────────── s6 同高（Y → Z）─────────────
 s6_shift = []
-for k in range(4): s6_shift.append(hide_until(f"y_uf{k}", off("vendor", 64 + 5 * k)))
-s6_shift.append(hide_until("y_bh", "vendor+18"))
-s6_shift.append(gone("y_bh", "vendor+84", 6))
+for k in range(4): s6_shift.append(hide_until(f"y_uf{k}", off("vendor", 72 + 5 * k)))
+s6_shift.append(hide_until("y_bh", "vendor+26"))
+s6_shift.append(gone("y_bh", "vendor+92", 6))
 for side, n in (("a", 8), ("b", 12)):
     s6_shift.append(hide_until(f"z{side}_base", "same-8"))
     for i in range(n): s6_shift.append(fall(f"z{side}_{i}", off("same", -2 + (2 if side == "b" else 3) * i), press=[f"z{side}_base" if i == 0 else f"z{side}_{i-1}"], dy=1.0, bounce=0.03))
@@ -154,9 +157,9 @@ scenes.append(scene("s6", "payoff", 6,
     ["磨得更薄", "原本八層"],
     [cue("vendor", "廠商說"), cue("thin2", "磨得更薄"), cue("same", "原本八層"), cue("height", "高度")],
     {"shot": [{"at": "start-2", "dur": 1, "x": YX + 3.0, "y": 1.0, "d": 40, "elev": 24},
-              {"at": "same-12", "dur": 1, "x": ZX, "y": 0.8, "d": 28, "elev": 22}],
+              {"at": "same-8", "dur": 1, "x": ZX, "y": 0.8, "d": 28, "elev": 22}],
      "shift": s6_shift,
-     "motion": [{"preset": "press-bond", "tool": "y_bh", "at": "vendor+22", "down": 1.2, "press": ["y_d4", "y_d3"], "melt": ["y_melt4"], "current": ["y_cur"], "k": 0.6}],
+     "motion": [{"preset": "press-bond", "tool": "y_bh", "at": "vendor+30", "down": 1.2, "press": ["y_d4", "y_d3"], "melt": ["y_melt4"], "current": ["y_cur"], "k": 0.6}],
      "run": [run("zl_glow", "height", FAR, 6)],
      "labels": [lab("za", "原本 8 層", "original 8", "blue", "same+10", "s7a:start-2"), lab("zb", "12 層，每片更薄", "12, thinner each", "amber", "same+16", "s7a:start-2")],
      "overlay": [stamp("同高", "height", "s7a:start-2", "blue", 52, x=830, y=1000), stamp("做法依廠商而異", "vendor+30", "same-8", "amber", 34, x=760, y=330)]},
@@ -172,7 +175,7 @@ scenes.append(scene("s7a", "payoff", 7,
     {"shot": [{"at": "start-2", "dur": 1, "x": 2.0, "y": -1.2, "d": 28, "elev": 28}],
      "run": [run("h_hmglow", "skh", "tsmc", 6), run("h_basehot", "base", "s7b:start-2", 6)],
      "labels": [lab("hm_base", "基底晶片（橘）", "base die", "amber", "base", "s7b:start-2")],
-     "overlay": [{"type": "card", "at": "skh", "until": "s7b:start-2", "y": 880, "lines": ["SK 海力士　HBM", "三星　HBM", "美光　HBM", "台積電　新一代底層晶片", "韓美半導體、ASMPT　鍵合設備"], "hi": "台積電", "hiAt": "tsmc", "size": 34, "foot": "媒體報導，查證截至 2026/11/19，非投資建議"}]},
+     "overlay": [{"type": "card", "at": "skh", "until": "s7b:start-2", "y": 850, "kicker": "媒體報導", "rows": [["SK 海力士", "HBM"], ["三星", "HBM"], ["美光", "HBM"], ["台積電", "新一代底層晶片"], ["韓美半導體、ASMPT", "鍵合設備"]], "hi": "台積電", "hiAt": "tsmc", "size": 42, "foot": "查證截至 2026/11/19，非投資建議"}]},
     ["各公司新聞稿；科技新報；TrendForce 2025/12"]))
 
 # ───────────── s7b 良率沒公布 ─────────────
