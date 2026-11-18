@@ -1,4 +1,4 @@
-# tech-icdesign 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-icdesign.v1.mp4 在 cue 後 0.3 秒）
+# tech-icdesign 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-icdesign.v2.mp4 在 cue 後 0.3 秒）
 
 | 幕 | cue | 秒 | 念到 | 該時刻畫面 | 截圖 |
 |---|---|---|---|---|---|
@@ -35,7 +35,9 @@
 | s7 | four | 38.1 | 縮小四倍 | 2D 卡「光罩 vs 晶圓」：縮小 4 倍；標籤「縮小鏡組」 | s7-four.png |
 | s7 | wafer | 39.0 | 印在晶圓上 | 中央晶粒被打亮、縮小的圖案出現；標籤「晶圓上的圖案」 | s7-wafer.png |
 | s8 | who | 41.7 | 誰在做 | 鏡頭到整顆晶片與設計電腦 | s8-who.png |
+| s8 | svc | 42.7 | 設計服務 |  | s8-svc.png |
 | s8 | guc | 43.5 | 創意電子 | 引線「創意、世芯：設計服務」指到晶片本體；卡上第一列；章「媒體報導」 | s8-guc.png |
+| s8 | ip | 45.3 | 矽智財 |  | s8-ip.png |
 | s8 | em | 46.0 | 力旺 | 引線「力旺：記憶體矽智財」指到記憶體區塊；卡上第二列 | s8-em.png |
 | s8 | andes | 46.5 | 晶心科 | 引線「晶心科：CPU 智財」指到 CPU 區塊 | s8-andes.png |
 | s8 | eda | 47.5 | 設計軟體靠 | 引線「三大 EDA：設計軟體」指到設計電腦；卡上第三列 | s8-eda.png |
