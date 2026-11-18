@@ -17,13 +17,13 @@ EV = {
 }
 sd = json.load(open(f"{R}/videos/tech-800v/script.json"))
 lines = {s["id"]: s for s in sd["scenes"]}
-out = ["# tech-800v 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-800v.v1.mp4 在 cue 後 0.3 秒）", "", "| 幕 | cue | 秒 | 念到 | 該時刻畫面 | 截圖 |", "|---|---|---|---|---|---|"]
+out = ["# tech-800v 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-800v.v2.mp4 在 cue 後 0.3 秒）", "", "| 幕 | cue | 秒 | 念到 | 該時刻畫面 | 截圖 |", "|---|---|---|---|---|---|"]
 tiles = []
 for s in sc:
     for c in s.get("cues", []):
         f = c.get("frame", c.get("abs")); img = f"out/tech-800v-sync/{s['id']}-{c['id']}.png"
         os.makedirs(f"{R}/out/tech-800v-sync", exist_ok=True)
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", f"{(f+9)/30:.3f}", "-i", f"{R}/out/tech-800v.v1.mp4", "-frames:v", "1", f"{R}/{img}"])
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", f"{(f+9)/30:.3f}", "-i", f"{R}/out/tech-800v.v2.mp4", "-frames:v", "1", f"{R}/{img}"])
         out.append(f"| {s['id']} | {c['id']} | {f/30:.1f} | {c['text']} | {EV.get((s['id'], c['id']), '')} | {os.path.basename(img)} |")
         if os.path.exists(f"{R}/{img}"): tiles.append((f"{s['id']} {c['text']} {f/30:.1f}s", Image.open(f"{R}/{img}").resize((270, 480))))
 open(f"{R}/videos/tech-800v/sync-table.md", "w").write("\n".join(out) + "\n")

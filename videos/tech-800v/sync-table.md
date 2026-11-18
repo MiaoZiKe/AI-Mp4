@@ -1,4 +1,4 @@
-# tech-800v 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-800v.v1.mp4 在 cue 後 0.3 秒）
+# tech-800v 逐句念稿 ↔ 該時刻畫面對照表（storyboard 抽 cue；截圖＝成片 out/tech-800v.v2.mp4 在 cue 後 0.3 秒）
 
 | 幕 | cue | 秒 | 念到 | 該時刻畫面 | 截圖 |
 |---|---|---|---|---|---|
