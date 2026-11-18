@@ -135,7 +135,7 @@
     "hook": {
      "kicker": "TrendForce 2026 年第二季｜誰在代工？",
      "title": "台積電 72.5%",
-     "size": 96,
+     "size": 88,
      "top": 236
     },
     "zoom": [
@@ -150,8 +150,8 @@
       "at": "start-30",
       "dur": 1,
       "x": 0,
-      "y": -2.6,
-      "d": 72,
+      "y": -1.0,
+      "d": 60,
       "elev": 46
      }
     ],
@@ -264,11 +264,64 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 16,
-      "x": -0.6,
-      "y": -2.6,
-      "d": 64,
+      "dur": 1,
+      "x": 0,
+      "y": -1.0,
+      "d": 60,
       "elev": 46
+     },
+     {
+      "at": "build-8",
+      "dur": 1,
+      "x": -3.6,
+      "y": -3.8,
+      "d": 36,
+      "elev": 42
+     },
+     {
+      "at": "design-10",
+      "dur": 1,
+      "x": 0,
+      "y": -1.0,
+      "d": 60,
+      "elev": 46
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bB",
+      "at": "build-8",
+      "until": "design-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "build-8",
+      "until": "design-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "build-8",
+      "until": "design-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_util",
+      "at": "build-8",
+      "until": "design-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_van",
+      "at": "build-8",
+      "until": "design-10",
+      "dur": 1,
+      "opacity": 0.2
      }
     ],
     "run": [
@@ -374,7 +427,7 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 18,
+      "dur": 6,
       "x": 60,
       "y": 2.0,
       "d": 46,
@@ -541,7 +594,7 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 18,
+      "dur": 6,
       "x": 56.0,
       "y": 2.0,
       "d": 42,
@@ -557,7 +610,7 @@
      },
      {
       "at": "tool+20",
-      "dur": 22,
+      "dur": 6,
       "x": 120,
       "y": -2.4,
       "d": 33,
@@ -979,15 +1032,15 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 18,
+      "dur": 6,
       "x": 180,
       "y": -2.2,
-      "d": 24,
+      "d": 29,
       "elev": 38
      },
      {
       "at": "open-16",
-      "dur": 34,
+      "dur": 6,
       "x": 240,
       "y": 0.5,
       "d": 52,
@@ -1191,11 +1244,99 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 30,
+      "dur": 1,
       "x": 0,
-      "y": -2.6,
-      "d": 72,
+      "y": -1.0,
+      "d": 60,
       "elev": 46
+     },
+     {
+      "at": "adv-10",
+      "dur": 1,
+      "x": -3.6,
+      "y": -3.8,
+      "d": 36,
+      "elev": 42
+     },
+     {
+      "at": "mat-10",
+      "dur": 1,
+      "x": 3.8,
+      "y": -3.8,
+      "d": 36,
+      "elev": 42
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bB",
+      "at": "adv-10",
+      "until": "mat-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "adv-10",
+      "until": "mat-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "adv-10",
+      "until": "mat-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_util",
+      "at": "adv-10",
+      "until": "mat-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_van",
+      "at": "adv-10",
+      "until": "mat-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bA",
+      "at": "mat-10",
+      "until": "s7:start-2",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "mat-10",
+      "until": "s7:start-2",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "mat-10",
+      "until": "s7:start-2",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_util",
+      "at": "mat-10",
+      "until": "s7:start-2",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_van",
+      "at": "mat-10",
+      "until": "s7:start-2",
+      "dur": 1,
+      "opacity": 0.2
      }
     ],
     "run": [
@@ -1210,27 +1351,21 @@
       "at": "mat",
       "until": "s7:start-2",
       "ramp": 8
-     },
-     {
-      "id": "f_hotC",
-      "at": "mat+6",
-      "until": "s7:start-2",
-      "ramp": 8
      }
     ],
     "labels": [
      {
       "part": "bA_f",
-      "text": "先進製程廠區",
+      "text": "先進廠區",
       "en": "Leading-edge fabs",
       "color": "blue",
       "at": "adv",
       "until": "mat-8"
      },
      {
-      "part": "bB_f",
-      "text": "成熟製程廠區",
-      "en": "Mature-node fabs",
+      "part": "bB_l",
+      "text": "成熟廠區",
+      "en": "Mature fabs",
       "color": "amber",
       "at": "mat",
       "until": "s7:start-6"
@@ -1324,11 +1459,143 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 20,
+      "dur": 1,
       "x": 0,
-      "y": -2.6,
-      "d": 72,
+      "y": -1.0,
+      "d": 60,
       "elev": 46
+     },
+     {
+      "at": "ts-10",
+      "dur": 1,
+      "x": -3.6,
+      "y": -3.8,
+      "d": 36,
+      "elev": 42
+     },
+     {
+      "at": "um-10",
+      "dur": 1,
+      "x": 3.8,
+      "y": -3.8,
+      "d": 36,
+      "elev": 42
+     },
+     {
+      "at": "vi-10",
+      "dur": 1,
+      "x": -3.6,
+      "y": 2.4,
+      "d": 32,
+      "elev": 58
+     },
+     {
+      "at": "ps-10",
+      "dur": 1,
+      "x": 3.8,
+      "y": 2.4,
+      "d": 32,
+      "elev": 58
+     }
+    ],
+    "shift": [
+     {
+      "layer": "f_util",
+      "at": "ts-10",
+      "until": "s8:start-6",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "f_van",
+      "at": "ts-10",
+      "until": "s8:start-6",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bB",
+      "at": "ts-10",
+      "until": "um-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "ts-10",
+      "until": "um-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "ts-10",
+      "until": "um-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bA",
+      "at": "um-10",
+      "until": "vi-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "um-10",
+      "until": "vi-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "um-10",
+      "until": "vi-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bA",
+      "at": "vi-10",
+      "until": "ps-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bB",
+      "at": "vi-10",
+      "until": "ps-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bD",
+      "at": "vi-10",
+      "until": "ps-10",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bA",
+      "at": "ps-10",
+      "until": "s8:start-6",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bB",
+      "at": "ps-10",
+      "until": "s8:start-6",
+      "dur": 1,
+      "opacity": 0.2
+     },
+     {
+      "layer": "bC",
+      "at": "ps-10",
+      "until": "s8:start-6",
+      "dur": 1,
+      "opacity": 0.2
      }
     ],
     "run": [
@@ -1376,16 +1643,16 @@
      },
      {
       "part": "bC",
-      "text": "世界先進 8吋",
-      "en": "Vanguard",
+      "text": "世界先進",
+      "en": "Vanguard・8-inch",
       "color": "amber",
       "at": "vi",
       "until": "ps+20"
      },
      {
       "part": "bD",
-      "text": "力積電 記憶體",
-      "en": "PSMC",
+      "text": "力積電",
+      "en": "PSMC・memory",
       "color": "blue",
       "at": "ps",
       "until": "s8:start-6"
@@ -1482,10 +1749,10 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 20,
+      "dur": 3,
       "x": 0,
-      "y": -2.6,
-      "d": 74,
+      "y": -1.0,
+      "d": 60,
       "elev": 46
      }
     ],

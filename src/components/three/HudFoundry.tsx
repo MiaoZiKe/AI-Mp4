@@ -57,14 +57,14 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {/* 代工廠（右）：廠房＋煙囪 */}
-        <g opacity={0.25 + 0.75 * Math.max(aF, aX)} transform="translate(640 44)">
+        <g opacity={0.8 + 0.2 * Math.max(aF, aX)} transform="translate(640 44)">
           <rect x={0} y={40} width={200} height={84} fill={c("wall")} stroke={H.text3} strokeWidth={3} /><rect x={0} y={40} width={200} height={14} fill={c("aBlue")} />
           {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={12 + i * 30} y={70} width={16} height={36} fill={c("win")} />)}
           <rect x={150} y={0} width={18} height={44} fill={c("steelHi")} /><rect x={178} y={14} width={14} height={30} fill={c("steelHi")} />
           <text x={100} y={150} textAnchor="middle" style={zh(34, H.text, 900)}>代工廠：蓋廠＋製造</text>
         </g>
         {/* 設計公司（左）：藍圖 */}
-        <g opacity={0.25 + 0.75 * aD} transform="translate(64 44)">
+        <g opacity={0.8 + 0.2 * aD} transform="translate(64 44)">
           <rect x={0} y={20} width={200} height={104} fill={c("wall")} stroke={H.text3} strokeWidth={3} />
           <path d="M20 100 H100 V60 H180 M20 70 H70 M120 100 H180" stroke={c("aBlue")} strokeWidth={4} fill="none" />
           <rect x={86} y={46} width={28} height={28} fill="none" stroke={c("aOrange")} strokeWidth={4} />
@@ -78,8 +78,8 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
           <text x={445} y={176} textAnchor="middle" style={zh(sm(30), H.text2, 800)}>做好的晶片</text>
         </g>
         {/* 成本條 */}
-        <text x={64} y={Hh - 70} opacity={aC} style={zh(32, H.text, 800)}>一座先進晶圓廠</text>
-        <rect x={64} y={Hh - 56} width={520} height={26} fill={H.lineSoft} opacity={aC} />
+        <text x={64} y={Hh - 70} style={zh(32, H.text, 800)}>一座先進晶圓廠</text>
+        <rect x={64} y={Hh - 56} width={520} height={26} fill={H.lineSoft} />
         <rect x={64} y={Hh - 56} width={520 * aC} height={26} fill={c("lp_bad")} />
         <text x={600} y={Hh - 34} opacity={aC} style={zh(34, c("lp_bad"), 900)}>一百億美元以上</text>
         <text x={340} y={Hh - 70} opacity={aN} style={zh(32, c("lp_bad"), 800)}>訂單不夠大，就攤不平</text>
@@ -111,9 +111,9 @@ const Air: React.FC<P> = ({ o, f, k, m }) => {
         {d > 0 ? Array.from({ length: 12 }, (_, j) => { const x = x0 + 40 + j * 66, u = ph(f, 0.011, j, 12, j % 4), y = yC + 40 + u * (yF + 44 - yC - 40); return <circle key={j} cx={x + (j % 3) * 8} cy={y} r={5.5} fill={c("lp_bad")} opacity={d} />; }) : null}
         {/* 地板下往兩側，再沿回風牆往上 */}
         {b > 0 ? <g opacity={b}><path d={`M${(x0 + x1) / 2} ${yF + 34} H${x0 + 14} V${yC + 26}`} stroke={c("lp_sig")} strokeWidth={4} fill="none" strokeDasharray="10 10" opacity={0.7} /><path d={`M${(x0 + x1) / 2} ${yF + 34} H${x1 - 14} V${yC + 26}`} stroke={c("lp_sig")} strokeWidth={4} fill="none" strokeDasharray="10 10" opacity={0.7} /></g> : null}
-        <text x={x0 + 4} y={Hh - 16} opacity={a} style={zh(sm(30), H.text, 800)}>① 濾網過濾</text>
-        <text x={x0 + 230} y={Hh - 16} opacity={b} style={zh(sm(30), H.text, 800)}>② 空氣往下吹</text>
-        <text x={x0 + 480} y={Hh - 16} opacity={d} style={zh(sm(30), c("lp_bad"), 900)}>③ 灰塵穿過地板被帶走</text>
+        <text x={x0 + 4} y={Hh - 16} opacity={0.8 + 0.2 * a} style={zh(sm(30), H.text, 800)}>① 濾網過濾</text>
+        <text x={x0 + 230} y={Hh - 16} opacity={0.8 + 0.2 * b} style={zh(sm(30), H.text, 800)}>② 空氣往下吹</text>
+        <text x={x0 + 480} y={Hh - 16} opacity={0.8 + 0.2 * d} style={zh(sm(30), c("lp_bad"), 900)}>③ 灰塵穿過地板被帶走</text>
       </svg>
     </Card>
   );
@@ -129,7 +129,7 @@ const Path: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {names.map(([n, d], i) => { const x = x0 + i * (bw + gap), a = on[i], act = a > 0.5 && (i === 4 || on[i + 1] < 0.5);
-          return <g key={i} opacity={0.25 + 0.75 * a}>
+          return <g key={i} opacity={0.8 + 0.2 * a}>
             <rect x={x} y={y0} width={bw} height={bh} fill={H.cardCompare} stroke={act ? H.amber : H.text3} strokeWidth={act ? 6 : 3} />
             <text x={x + bw / 2} y={y0 + 54} textAnchor="middle" style={zh(i === 1 || i === 3 ? 30 : 34, H.text, 900)}>{n}</text>
             <text x={x + bw / 2} y={y0 + 96} textAnchor="middle" style={zh(sm(26), H.text2, 700)}>{d}</text>
@@ -137,7 +137,7 @@ const Path: React.FC<P> = ({ o, f, k, m }) => {
         {[0, 1, 2, 3].map((i) => { const xa = x0 + i * (bw + gap) + bw, xb = xa + gap, a = Math.min(on[i], on[i + 1]);
           return <g key={i} opacity={a}><path d={`M${xa} ${y0 + bh / 2} H${xb}`} stroke={c("aOrange")} strokeWidth={6} /><path d={`M${xb - 12} ${y0 + bh / 2 - 12} l12 12 l-12 12`} stroke={c("aOrange")} strokeWidth={6} fill="none" />
             <circle cx={xa + gap * ph(f, 0.03, 0, 1)} cy={y0 + bh / 2} r={7} fill={c("wafer")} stroke={H.text3} strokeWidth={2} /></g>; })}
-        <text x={W / 2} y={y0 + bh + 62} textAnchor="middle" opacity={on[0]} style={zh(sm(32), H.text2, 800)}>晶圓全程在盒子與機台裡走，不碰外面的空氣</text>
+        <text x={W / 2} y={y0 + bh + 62} textAnchor="middle" style={zh(sm(32), H.text2, 800)}>晶圓全程在盒子與機台裡走，不碰外面的空氣</text>
       </svg>
     </Card>
   );
@@ -148,7 +148,7 @@ const Die: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 320, c = (n: string) => col(m.product, n);
   const zw = T(o, "zw"), dies = T(o, "dies"), open = T(o, "open"), tr = T(o, "tr"), metal = T(o, "metal"), sig = T(o, "sig");
   const aW = tween(f, zw, 10, EASE.enter), aD = tween(f, dies, 12, EASE.enter), aO = tween(f, open, 12, EASE.move), aT = tween(f, tr, 8, EASE.enter), aM = tween(f, metal, 8, EASE.enter), aS = tween(f, sig, 12, EASE.enter);
-  const wx = 150, wy = 180, wr = 104, st = 24;
+  const wx = 150, wy = 170, wr = 96, st = 24;
   const dies_: React.ReactNode[] = [];
   for (let i = -4; i <= 4; i++) for (let j = -4; j <= 4; j++) { const x = wx + i * st, y = wy + j * st; if (Math.hypot(x - wx, y - wy) < wr - 14) dies_.push(<rect key={`${i}_${j}`} x={x - 10} y={y - 10} width={20} height={20} fill={c("aBlue")} opacity={aD * 0.8} stroke={c("wafer")} strokeWidth={1} />); }
   const sx = 400, sw = 440, ys = [250, 226, 200, 174, 148, 122], lh = 24;   // 由下往上：矽、電晶體、金屬 1～4、接點
@@ -159,11 +159,11 @@ const Die: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={aW}><circle cx={wx} cy={wy} r={wr} fill={c("wafer")} stroke={H.text3} strokeWidth={3} /><rect x={wx - 14} y={wy + wr - 6} width={28} height={10} fill={H.cardCompare} />{dies_}
           <rect x={wx + 2 * st - 10} y={wy + 1 * st - 10} width={20} height={20} fill={c("aOrange")} opacity={aD} /></g>
-        <text x={wx} y={Hh - 18} textAnchor="middle" opacity={aW} style={zh(sm(30), H.text2, 800)}>晶圓上排滿晶粒</text>
+        <text x={wx} y={Hh - 8} textAnchor="middle" opacity={aW} style={zh(sm(30), H.text2, 800)}>晶圓上排滿晶粒</text>
         <g opacity={aO}>
           <path d={`M${wx + 2 * st + 10} ${wy + st} L${sx - 20} ${ys[1]}`} stroke={c("aOrange")} strokeWidth={3} strokeDasharray="8 8" fill="none" />
           {base.map(([n, mt, a], i) => { const y = ys[i] - i * 0, hh = i === 0 ? 40 : lh; return <g key={i}>
-            <rect x={sx} y={y - hh / 2} width={sw} height={hh} fill={c(mt)} stroke={H.text3} strokeWidth={2} opacity={0.35 + 0.65 * (i === 0 ? aO : a)} />
+            <rect x={sx} y={y - hh / 2} width={sw} height={hh} fill={c(mt)} stroke={H.text3} strokeWidth={2} opacity={0.8 + 0.2 * (i === 0 ? aO : a)} />
             {i === 1 ? Array.from({ length: 12 }, (_, j) => <g key={j} opacity={aT}><rect x={sx + 14 + j * 36} y={y - 8} width={8} height={16} fill={c("aBlue")} /><rect x={sx + 26 + j * 36} y={y - 10} width={6} height={20} fill={c("aOrange")} /></g>) : null}
             {i >= 2 && i <= 4 ? Array.from({ length: 6 }, (_, j) => <rect key={j} x={sx + 10 + j * 70 + (i % 2) * 20} y={y - 2} width={58} height={5} fill={c("cuHi")} opacity={aM} />) : null}
             {i === 5 ? Array.from({ length: 7 }, (_, j) => <rect key={j} x={sx + 14 + j * 60} y={y - 14} width={34} height={8} fill={c("gold")} opacity={aM} />) : null}
@@ -186,28 +186,28 @@ const Nodes: React.FC<P> = ({ o, f, k, m }) => {
   const aR = tween(f, two, 10, EASE.enter), aA = tween(f, adv, 10, EASE.enter), aP = tween(f, phone, 8, EASE.enter), aM = tween(f, mat, 10, EASE.enter), aC = tween(f, car, 8, EASE.enter);
   const ticks: [string, number][] = [["2", 0], ["3", 1], ["5", 2], ["7", 3], ["28", 5], ["40", 6], ["65", 7], ["90", 8]];
   const tx = (i: number) => 160 + i * 96;
-  const chip = (x: number, y: number, t: string, a: number, cc: string) => <g opacity={a}><rect x={x} y={y} width={190} height={46} fill={cc} /><text x={x + 95} y={y + 33} textAnchor="middle" style={zh(30, onC(cc), 900)}>{t}</text></g>;
+  const chip = (x: number, y: number, t: string, a: number, cc: string) => <g opacity={0.8 + 0.2 * a}><rect x={x} y={y} width={190} height={46} fill={cc} /><text x={x + 95} y={y + 33} textAnchor="middle" style={zh(30, onC(cc), 900)}>{t}</text></g>;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={aR}>
+        <g>
           <line x1={60} y1={96} x2={W - 60} y2={96} stroke={H.text3} strokeWidth={3} />
           {ticks.map(([t, i]) => <g key={t}><line x1={tx(i)} y1={88} x2={tx(i)} y2={104} stroke={H.text3} strokeWidth={3} /><text x={tx(i)} y={128} textAnchor="middle" style={zh(sm(28), H.text2, 700)}>{t}</text></g>)}
           <text x={64} y={128} style={zh(sm(28), H.text3, 700)}>奈米</text>
           <rect x={tx(0) - 20} y={74} width={tx(3) - tx(0) + 40} height={10} fill={c("aBlue")} opacity={0.4 + 0.6 * aA} />
           <rect x={tx(5) - 20} y={74} width={tx(8) - tx(5) + 40} height={10} fill={c("aOrange")} opacity={0.4 + 0.6 * aM} />
         </g>
-        <g opacity={0.3 + 0.7 * aA}>
+        <g opacity={0.8 + 0.2 * aA}>
           <rect x={64} y={140} width={400} height={126} fill="none" stroke={c("aBlue")} strokeWidth={aA > 0.5 ? 5 : 3} />
           <text x={264} y={180} textAnchor="middle" style={zh(33, c("aBlue"), 900)}>先進製程　約 7 奈米以下</text>
         </g>
         {chip(84, 200, "手機處理器", aP, c("aBlue"))}{chip(274, 200, "AI 加速晶片", aP, c("aBlue"))}
-        <g opacity={0.3 + 0.7 * aM}>
+        <g opacity={0.8 + 0.2 * aM}>
           <rect x={488} y={140} width={400} height={126} fill="none" stroke={c("aOrange")} strokeWidth={aM > 0.5 ? 5 : 3} />
           <text x={688} y={180} textAnchor="middle" style={zh(33, c("aOrange"), 900)}>成熟製程　約 28 奈米以上</text>
         </g>
         {chip(508, 200, "車用晶片", aC, c("aOrange"))}{chip(698, 200, "電源管理晶片", aC, c("aOrange"))}
-        <text x={W / 2} y={Hh - 18} textAnchor="middle" opacity={aM} style={zh(sm(30), H.text2, 700)}>台積電公布：2026 年第三季，7 奈米以下占晶圓營收 79%</text>
+        <text x={W / 2} y={Hh - 18} textAnchor="middle" style={zh(sm(30), H.text2, 700)}>台積電公布：2026 年第三季，7 奈米以下占晶圓營收 79%</text>
       </svg>
     </Card>
   );
@@ -222,7 +222,7 @@ const Who: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key, cc], i) => { const [a, act] = hi(key, rows[i + 1]?.[2]); const y = 80 + i * 56;
-          return <g key={i} opacity={0.25 + 0.75 * a}>
+          return <g key={i} opacity={0.8 + 0.2 * a}>
             <rect x={64} y={y} width={230} height={46} fill={c(cc)} /><text x={179} y={y + 34} textAnchor="middle" style={zh(34, "#FFFFFF", 900)}>{n}</text>
             <rect x={294} y={y} width={594} height={46} fill="none" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 5 : 2} /><text x={318} y={y + 34} style={zh(34, H.text, 800)}>{d}</text>
           </g>; })}
@@ -236,7 +236,7 @@ const Next: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
   const split = T(o, "split"), how = T(o, "how"), next = T(o, "next"), flow = T(o, "flow");
   const a = tween(f, split, 10, EASE.enter), b = tween(f, how, 10, EASE.enter), n = tween(f, next, 10, EASE.enter), e = tween(f, flow, 8, EASE.enter);
-  const box = (x: number, t: string, al: number, cc: string, tc: string) => <g opacity={al}><rect x={x} y={70} width={250} height={96} fill={cc} /><text x={x + 125} y={128} textAnchor="middle" style={zh(t.length > 5 ? 31 : 38, tc, 900)}>{t}</text></g>;
+  const box = (x: number, t: string, al: number, cc: string, tc: string) => <g opacity={0.8 + 0.2 * al}><rect x={x} y={70} width={250} height={96} fill={cc} /><text x={x + 125} y={128} textAnchor="middle" style={zh(t.length > 5 ? 31 : 38, tc, 900)}>{t}</text></g>;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>

@@ -73,7 +73,8 @@ for bid, acc, w, h, d, c, zc in BLD:
     box(f"{bid}_door", bid, "dark2", [1.1, 1.15, .08], [c, .62, zc + d / 2 + .05])
     box(f"{bid}_hv", bid, "steelHi", [.9, .5, .8], [c, h + .45, zc], at=[[-w / 2 + 1.0, 0, -.5], [w / 2 - 1.0, 0, .3]], bevel=.03)
     cyl(f"{bid}_vent", bid, "steel", .12, .8, [c, h + .6, zc], axis="y", at=[[-.4, 0, .9], [.4, 0, .9], [0, 0, -.8]])
-    anchor(bid, bid, [c + (w / 2 - .5) * (1 if c > 0 else -1), h + .15, zc + d / 2 - .3], dx=(150 if c > 0 else -150) if zc > 0 else (230 if c > 0 else -230), dy=(-170 if zc > 0 else -10))
+    anchor(bid, bid, [c + (w / 2 - .5) * (1 if c > 0 else -1), h + .15, zc + d / 2 - .3], dx=(150 if c > 0 else -150) if zc > 0 else (110 if c > 0 else -110), dy=(-170 if zc > 0 else 290))
+    anchor(bid + "_l", bid, [c - (w / 2 - .5), h + .15, zc + d / 2 - .3], dx=-150, dy=-170)
     anchor(bid + "_f", bid, [c, h - .6, zc + d / 2 + .08], dx=0, dy=-110)
 # 公用設施：排氣塔（冒蒸氣）、冷卻水塔、冰水機
 cyl("f_stack", "f_util", "steelHi", .3, 4.2, [FX0 + 9.0, 2.1, -10.0], axis="y", at=[[0, 0, 0], [1.1, 0, 0]])
@@ -258,6 +259,8 @@ anchor("d_m1", "d_m1", [DXX + 3.0, 1.7, 2.0], dx=140, dy=10)
 anchor("d_tr", "d_tr", [DXX + 3.0, 1.0, 2.2], dx=140, dy=20)
 anchor("d_si", "d_si", [DXX + 3.0, .4, 2.5], dx=140, dy=60)
 
+for _l in layers:
+    if _l["id"] in ("f_gnd", "f_bg"): _l["bg"] = True
 model = {
  "name": "tech-foundry：晶圓代工。零件用基本形狀＋庫的 wafer（genmodel.py 產生）。站別：F 廠區 x=0、C 無塵室 x=60、T 機台內 x=120、W 晶圓 x=180、D 晶粒爆炸剖析 x=240。",
  "unit": "示意，非實際比例", "size": {"w": 14, "h": 2, "r": .1, "t": 6},
