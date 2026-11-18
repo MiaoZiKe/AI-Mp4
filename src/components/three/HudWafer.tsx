@@ -160,12 +160,12 @@ const Who: React.FC<P> = ({ o, f, k, m }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([what, who, key, tag], i) => { const a = tween(f, T(o, key), 8, EASE.enter), y = 96 + i * 46, tw = i < 2;
-          return <g key={i} opacity={a}>
-            <text x={30} y={y} style={zh(34, H.text2, 800)}>{what}</text>
-            <text x={330} y={y} style={zh(40, H.text, 900)}>{who}</text>
-            <rect x={640} y={y - 32} width={150} height={40} fill={tw ? c("lp_good") : H.amber} />
+          return <g key={i}>
+            <g opacity={0.42 + 0.58 * a}><text x={30} y={y} style={zh(34, H.text2, 800)}>{what}</text>
+            <text x={330} y={y} style={zh(40, H.text, 900)}>{who}</text></g>
+            <g opacity={a}><rect x={640} y={y - 32} width={150} height={40} fill={tw ? c("lp_good") : H.amber} />
             <text x={715} y={y - 2} textAnchor="middle" style={zh(sm(30), tw ? H.onAccent : onC(H.amber), 800)}>{tag}</text>
-            <text x={810} y={y} style={zh(sm(30), H.text2, 700)}>{i < 2 ? "國際" : "台灣"}</text></g>; })}
+            <text x={810} y={y} style={zh(sm(30), H.text2, 700)}>{i < 2 ? "國際" : "台灣"}</text></g></g>; })}
       </svg>
     </Card>
   );
@@ -175,7 +175,7 @@ const Who: React.FC<P> = ({ o, f, k, m }) => {
 const Next: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, c = (n: string) => col(m.product, n);
   const tr = T(o, "tricks"), nx = T(o, "next"), hw = T(o, "how"), kw = T(o, "kw");
-  const a = tween(f, tr - 8, 10, EASE.enter), b = tween(f, nx, 10, EASE.enter), cI = tween(f, hw, 14, EASE.move), d = tween(f, kw - 10, 10, EASE.enter);
+  const a = tween(f, tr - 8, 10, EASE.enter), b = tween(f, nx, 10, EASE.enter), cI = tween(f, hw, 14, EASE.move), d = tween(f, T(o, "full"), 10, EASE.enter);
   const X0 = 28, U = 38, base = 284;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -186,13 +186,13 @@ const Next: React.FC<P> = ({ o, f, k, m }) => {
           {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 36} width={U} height={18} fill={c("metalL")} />)}
           {Array.from({ length: 6 }, (_, i) => <rect key={i} x={X0 + U + i * 1.8 * U} y={base - 36} width={0.8 * U * (1 - cI)} height={18} fill={c("metalL")} />)}
           {Array.from({ length: 7 }, (_, i) => <rect key={i} x={X0 + i * 1.8 * U} y={base - 64} width={U} height={28} fill={c("resist")} />)}
-          {cI > 0 ? Array.from({ length: 6 }, (_, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={X0 + U + i * 1.8 * U + 0.4 * U} cy={100 + ph(f, 0.03, j, 3, i) * 120} r={6.5} fill={c("lp_ion")} opacity={cI} />)) : null}
-          <text x={X0} y={88} style={zh(34, H.text2, 800)}>離子往下打，圖形刻進去</text>
+          {cI > 0 ? Array.from({ length: 6 }, (_, i) => [0, 1, 2].map((j) => <circle key={`${i}${j}`} cx={X0 + U + i * 1.8 * U + 0.4 * U} cy={128 + ph(f, 0.03, j, 3, i) * 100} r={6.5} fill={c("lp_ion")} opacity={cI} />)) : null}
+          <text x={X0} y={112} style={zh(34, H.text2, 800)}>離子往下打，圖形刻進去</text>
         </g>
-        <text x={540} y={110} opacity={b} style={zh(60, H.text, 900)}>下一支</text>
-        <g opacity={b}><rect x={540} y={132} width={380} height={92} fill={H.amber} /><text x={730} y={200} textAnchor="middle" style={zh(60, onC(H.amber), 900)}>蝕刻機 ▸</text></g>
-        <text x={540} y={266} opacity={d} style={zh(46, c("lp_proc"), 900)}>留言「流程」</text>
-        <text x={540} y={312} opacity={d} style={zh(36, H.text, 800)}>看完整解說</text>
+        <text x={540} y={100} opacity={b} style={zh(56, H.text, 900)}>下一支</text>
+        <g opacity={b}><rect x={540} y={116} width={380} height={84} fill={H.amber} /><text x={730} y={180} textAnchor="middle" style={zh(60, onC(H.amber), 900)}>蝕刻機 ▸</text></g>
+        <text x={540} y={254} opacity={d} style={zh(44, c("lp_proc"), 900)}>留言「流程」</text>
+        <text x={540} y={304} opacity={d} style={zh(36, H.text, 800)}>看完整解說</text>
       </svg>
     </Card>
   );

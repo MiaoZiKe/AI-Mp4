@@ -77,7 +77,7 @@ SRC["s3"] = ["示意；光阻（正光阻）照到光的部分在顯影時被洗
 # ───────── s4 曝光 ─────────
 P["s4"] = {
  "shot": [shot("start-2", SX, 2.0, 58, 16, 26)],
- "shift": tool("t_exp", [("s4:start-6", "s5:start-6"), ("s10:asml-6", "s10:lam-6"), ("s10:gd-6", "s10:sf-6")]) + tool("t_exp_w", [("lt", "s5:start-6"), ("s10:asml-2", "s10:lam-6")]) + tool("t_exp_l", [("msk", "s5:start-6"), ("s10:asml-2", "s10:lam-6")]),
+ "shift": tool("t_exp", [("s4:start-6", "s5:start-6"), ("s10:start-2", "s10:lam-6"), ("s10:gd-6", "s10:sf-6")]) + tool("t_exp_w", [("lt", "s5:start-6"), ("s10:asml-2", "s10:lam-6")]) + tool("t_exp_l", [("msk", "s5:start-6"), ("s10:asml-2", "s10:lam-6")]),
  "run": [run("e_lampg", "start-4", "s5:start-2", 6), run("e_rayw", "lt", "s5:start-6", 6), run("e_ray", "msk", "s5:start-6", 6), run("s_rsx", "prt", "s5:wash", 8)],
  "labels": [lab("e_retA", "光罩（圖形）", "Photomask", "amber", "msk", "s5:start-6"), lab("e_lensA", "鏡頭", "Lens", "blue", "prt-6", "s5:start-6"), lab("a_gap", "照到光的地方", "Exposed resist", "coral", "prt+4", "s5:start-6")],
  "overlay": [stamp("③ 曝光", "lt", "s5:start-6", "amber", 56, x=200, y=330)]}
@@ -135,9 +135,9 @@ SRC["s9"] = ["產業估計：80～120 層光罩"]
 
 # ───────── s10 誰做哪一步 ─────────
 P["s10"] = {
- "zoom": [{"to": "equip", "at": "start-6", "dur": 30}],
- "shot": [shot("start-2", SX, 2.6, 58, 16, 24), shot("lam-12", SX, 2.0, 52, 18, 24), shot("gd-12", SX + 3.5, 2.6, 62, 16, 24), shot("sf-12", SX, -0.1, 45, 20, 24), shot("kn-14", CX, -0.4, 46, 22, 28)],
- "run": [run("e_lampg", "asml-6", "lam-6", 6), run("e_ray", "asml", "lam-6", 6), run("t_plg", off("lam", -4), "gd-6", 6), run("t_ion0", "lam", "gd-6", 6), run("t_ion1", "lam", "gd-6", 6), run("t_blk", "lam", "gd-6", 6),
+ "zoom": [{"to": "equip", "at": "start-6", "dur": 8}],
+ "shot": [shot("start-2", SX, 2.6, 58, 16, 1), shot("lam-12", SX, 2.0, 52, 18, 24), shot("gd-12", SX + 3.5, 2.6, 62, 16, 24), shot("sf-12", SX, -0.1, 45, 20, 24), shot("kn-14", CX, -0.4, 46, 22, 28)],
+ "run": [run("e_lampg", "start", "lam-6", 6), run("e_ray", "asml", "lam-6", 6), run("t_plg", off("lam", -4), "gd-6", 6), run("t_ion0", "lam", "gd-6", 6), run("t_ion1", "lam", "gd-6", 6), run("t_blk", "lam", "gd-6", 6),
          run("x_flow", off("sf", -2), "kn-10", 6), run("m_padspin", off("kn", -20), "s11:start-2", 12), run("m_headspin", off("kn", -20), "s11:start-2", 12), run("m_sweep", off("kn", -10), "s11:start-2", 10)],
  "labels": [lab("e_lensA", "艾司摩爾：曝光機", "ASML: scanner", "amber", "asml", "lam-8"), lab("t_elA", "科林研發：蝕刻機", "Lam Research: etcher", "amber", "lam", "gd-8"), lab("e_podA", "家登：光罩盒", "Mask pod", "amber", "gd", "sf-8"),
             lab("x_A", "三福化：去光阻藥水", "Resist stripper", "amber", "sf", "kn-18"), lab("m_discA", "中砂：修整研磨墊的鑽石碟", "Pad conditioner", "amber", "kn", "s11:start-6")],
@@ -150,7 +150,7 @@ P["s11"] = {
  "shot": [shot("start-2", SX, 2.0, 52, 18, 24)],
  "run": [run("t_plg", "next-4", "s12:end", 6), run("t_ion0", "next", "s12:end", 6), run("t_ion1", "next", "s12:end", 6), run("t_blk", "next", "s12:end", 6)],
  "labels": [],
- "overlay": [card("wf-next", "start+2", "kw-10", 930, 330, "下一支", "示意", {"tricks": "tricks", "next": "next", "how": "how", "kw": "kw"}), stamp("完整解說在留言", "full", "kw-6", "blue", 36, x=780, y=336, avoid=False)]}
+ "overlay": [card("wf-next", "start+2", "kw-10", 930, 330, "下一支", "示意", {"tricks": "tricks", "next": "next", "how": "how", "full": "full", "kw": "kw"}), stamp("完整解說在留言", "full", "kw-6", "blue", 36, x=780, y=336, avoid=False)]}
 SRC["s11"] = ["下一支 11/26 蝕刻機"]
 
 scenes = []

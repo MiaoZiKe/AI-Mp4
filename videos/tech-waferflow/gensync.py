@@ -47,5 +47,5 @@ for s in sb["scenes"]:
     for sub in s.get("subtitles", []):
         n += 1; t = sub["startFrame"] / 30
         rows.append(f"| {n} | {s['id']} | {sub['zh']} | {t:.1f} | {EV.get(sub['zh'], '（未寫）')} |")
-open("/home/user/ai-mp4/videos/tech-waferflow/sync-table.md", "w").write("# tech-waferflow v1 逐句念稿 ↔ 畫面事件對照（2026/11/18）\n\n每句取字幕起始後 20 幀的畫面，截圖在 `out/tech-waferflow.v1-sync1～4.jpg`（每張 10 句，左到右、上到下）。事件由 script.json 的 cue 觸發。\n\n| # | 幕 | 字幕 | 起始（秒） | 畫面事件 |\n|---|---|---|---|---|\n" + "\n".join(rows) + "\n")
+open("/home/user/ai-mp4/videos/tech-waferflow/sync-table.md", "w").write("# tech-waferflow v3 逐句念稿 ↔ 畫面事件對照（2026/11/18）\n\n每句取字幕起始後 20 幀的畫面，截圖在 `out/tech-waferflow.v3-sync1～4.jpg`（每張 10 句，左到右、上到下）。事件由 script.json 的 cue 觸發。\n\n| # | 幕 | 字幕 | 起始（秒） | 畫面事件 |\n|---|---|---|---|---|\n" + "\n".join(rows) + "\n")
 print(n, "未寫:", [r for r in rows if "未寫" in r])

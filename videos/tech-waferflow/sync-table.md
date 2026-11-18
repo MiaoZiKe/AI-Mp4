@@ -1,6 +1,6 @@
-# tech-waferflow v1 逐句念稿 ↔ 畫面事件對照（2026/11/18）
+# tech-waferflow v3 逐句念稿 ↔ 畫面事件對照（2026/11/18）
 
-每句取字幕起始後 20 幀的畫面，截圖在 `out/tech-waferflow.v1-sync1～4.jpg`（每張 10 句，左到右、上到下）。事件由 script.json 的 cue 觸發。
+每句取字幕起始後 20 幀的畫面，截圖在 `out/tech-waferflow.v3-sync1～4.jpg`（每張 10 句，左到右、上到下）。事件由 script.json 的 cue 觸發。
 
 | # | 幕 | 字幕 | 起始（秒） | 畫面事件 |
 |---|---|---|---|---|
