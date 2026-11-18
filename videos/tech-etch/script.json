@@ -1197,21 +1197,21 @@
      {
       "layer": "ch_lid",
       "at": "start-6",
-      "until": "s8:start-2",
+      "until": "s8:start-20",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ch_top",
       "at": "start-6",
-      "until": "s8:start-2",
+      "until": "s8:start-20",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ch_sh",
       "at": "start-6",
-      "until": "s8:start-2",
+      "until": "s8:start-20",
       "opacity": 0,
       "dur": 8
      }
@@ -1220,13 +1220,13 @@
      {
       "id": "c_chill",
       "at": "hard",
-      "until": "s8:start-2",
+      "until": "s8:start-20",
       "ramp": 6
      },
      {
       "id": "c_cold",
       "at": "cold-6",
-      "until": "s8:start-2",
+      "until": "s8:start-20",
       "ramp": 10
      }
     ],
@@ -1237,7 +1237,7 @@
       "en": "Coolant channel",
       "color": "blue",
       "at": "so",
-      "until": "s8:start-8"
+      "until": "cold20"
      },
      {
       "part": "c_wf",
@@ -1245,7 +1245,7 @@
       "en": "Wafer",
       "color": "coral",
       "at": "cold",
-      "until": "s8:start-8"
+      "until": "s8:start-20"
      }
     ],
     "overlay": [
@@ -1253,7 +1253,7 @@
       "type": "section",
       "kind": "etch-cold",
       "at": "start+34",
-      "until": "s8:start-16",
+      "until": "s8:start-20",
       "x": 64,
       "y": 940,
       "w": 952,
@@ -1322,13 +1322,13 @@
      {
       "to": "mach",
       "at": "start-6",
-      "dur": 40
+      "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "start-2",
-      "dur": 40,
+      "at": "start-6",
+      "dur": 1,
       "x": 0,
       "y": 0.4,
       "d": 42,
