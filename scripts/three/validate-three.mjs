@@ -173,6 +173,15 @@ export function validateThree(script, h) {
       for (const i of res.issues ?? []) (i.level === "error" ? E : W)(`關節鏈［${i.kind}］${i.msg}${fr(i.frames)}`);
     } catch { E(`關節鏈檢查沒跑成功（node scripts/three/kinematics-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 300)}`); }
   }
+  // flow（光點流動）：每個光點可能出現的位置都要貼著零件、不准在路徑末端累積（scripts/three/flow-check.mjs；2026/11/18 tech-server 光點懸在機櫃下方半空）。
+  // 暫時算警告（W）：其他科技片還在排程中，等各片修完把 W 改成 E（FLOW_STRICT=1 可先當 error 用）
+  if (model && Object.values(model.actions ?? {}).some((d) => d.type === "flow")) {
+    const r = spawnSync("node", [path.join(path.dirname(new URL(import.meta.url).pathname), "flow-check.mjs"), String(script.slug), "--json"], { encoding: "utf8" });
+    try {
+      const res = JSON.parse(String(r.stdout).trim().split("\n").slice(-1000).join("\n"))[0];
+      for (const e of res?.detail ?? []) (process.env.FLOW_STRICT ? E : W)(`光點［flow-check］${e}`);
+    } catch { W(`光點檢查沒跑成功（node scripts/three/flow-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 200)}`); }
+  }
   const est = Math.round(scenes.reduce((a, s) => a + (s.silent === true ? Number(s.durationSec) || 0 : h.voicedSeconds(s, true)), 0));
   if (script.sample !== false && (est < 9 || est > 20)) W(`估算 ${est} 秒（旁白 ${total} 字）：風格試片建議 10–15 秒`);
   return { errors, warns, est };

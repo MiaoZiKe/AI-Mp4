@@ -198,15 +198,15 @@ anchor("t_nic", "tp_nic", [TX-4.5+0.8, TY+0.2, 3.9], dx=-140, dy=40)
 def flow(key, layer, path, n, lanes, gap, laneDir, size, rate, color="lp_sig", rim="lp_sigRim", shape="dot"):
     actions[key] = {"type":"flow","layer":layer,"path":path,"n":n,"lanes":lanes,"laneGap":gap,"laneDir":laneDir,"size":size,"shape":shape,"rate":rate,"color":color,"rim":rim,"rimScale":1.6,"rimO":0.45,"trail":3,"trailGap":0.03,"trailColor":color,"track":False}
 palette.update({"lp_cool":"#3FA9F5","lp_hot":"#FF7A2F"})
-YA = Y0+PITCH*2; YB = Y0+PITCH*29
+YA = Y0+PITCH*2; YB = Y0+PITCH*29; YMID = Y0+PITCH*15+TH/2   # 27 條 lanes 對稱展開在 YMID 上下各 13 條（2026/11/18 修：原本放在最底層，一半光點掉到機櫃底下堆成點陣）
 # A 資料：背板垂直銅線束上下流動（兩條道），支線往交換器
 flow("d_spine", "spine", [[-0.18, YA, BZ+0.2], [-0.18, YB, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.075, 1.6, "lp_sig", "lp_sigRim")
 flow("d_spine2", "spine", [[0.18, YB, BZ+0.2], [0.18, YA, BZ+0.2]], 5, 3, 0.18, [1,0,0], 0.075, 1.6, "lp_sig", "lp_sigRim")
-flow("d_arms", "spine", [[-1.8, Y0+PITCH*2+TH/2, BZ+0.2], [-0.4, Y0+PITCH*2+TH/2, BZ+0.2]], 3, 27, PITCH, [0,1,0], 0.08, 1.2, "lp_sig", "lp_sigRim")
-flow("p_arm_l", "bus", [[-W/2+0.45, Y0+PITCH*2+TH/2, BZ+0.16], [-W/2+1.2, Y0+PITCH*2+TH/2, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
-flow("p_arm_r", "bus", [[W/2-0.45, Y0+PITCH*2+TH/2, BZ+0.16], [W/2-1.2, Y0+PITCH*2+TH/2, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
-flow("c_arm_c", "cool", [[W/2+0.45, Y0+PITCH*2+TH/2, BZ+0.05], [W/2-0.6, Y0+PITCH*2+TH/2, -D/2+0.6]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_cool", "lp_cool")
-flow("c_arm_h", "cool", [[W/2-0.6, Y0+PITCH*2+TH/2+0.05, -D/2+0.6], [W/2+0.85, Y0+PITCH*2+TH/2+0.05, BZ+0.05]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_hot", "lp_hot")
+flow("d_arms", "spine", [[-1.8, YMID, BZ+0.2], [-0.4, YMID, BZ+0.2]], 3, 27, PITCH, [0,1,0], 0.08, 1.2, "lp_sig", "lp_sigRim")
+flow("p_arm_l", "bus", [[-W/2+0.45, YMID, BZ+0.16], [-W/2+1.2, YMID, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
+flow("p_arm_r", "bus", [[W/2-0.45, YMID, BZ+0.16], [W/2-1.2, YMID, -D/2+0.5]], 3, 27, PITCH, [0,1,0], 0.07, 1.2, "lp_proc", "lp_proc")
+flow("c_arm_c", "cool", [[W/2+0.45, YMID, BZ+0.05], [W/2-0.6, YMID, -D/2+0.6]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_cool", "lp_cool")
+flow("c_arm_h", "cool", [[W/2-0.6, YMID+0.05, -D/2+0.6], [W/2+0.85, YMID+0.05, BZ+0.05]], 3, 27, PITCH, [0,1,0], 0.07, 1.1, "lp_hot", "lp_hot")
 # B 電：電源層 → 銅排往上下送
 flow("p_up", "bus", [[-W/2+0.45, Y0+PITCH*29, BZ+0.18], [-W/2+0.45, Y0+PITCH*12, BZ+0.18]], 5, 1, 0.1, [1,0,0], 0.12, 1.2, "lp_proc", "lp_proc")
 flow("p_dn", "bus", [[-W/2+0.45, Y0+PITCH*2, BZ+0.18], [-W/2+0.45, Y0+PITCH*11, BZ+0.18]], 5, 1, 0.1, [1,0,0], 0.12, 1.2, "lp_proc", "lp_proc")
@@ -217,15 +217,16 @@ flow("c_cold", "cool", [[W/2+0.45, 0.5, BZ+0.18], [W/2+0.45, HR-0.4, BZ+0.18]], 
 flow("c_hot", "cool", [[W/2+0.85, HR-0.4, BZ+0.18], [W/2+0.85, 0.5, BZ+0.18]], 6, 1, 0.1, [1,0,0], 0.12, 1.1, "lp_hot", "lp_hot")
 flow("t_cold", "tcool", [[TX-0.4, PY+0.17, 4.5], [TX-0.4, PY+0.17, -3.0]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_cool", "lp_cool")
 flow("t_hot", "tcool", [[TX+0.4, PY+0.17, -3.0], [TX+0.4, PY+0.17, 4.5]], 5, 1, 0.1, [1,0,0], 0.13, 1.1, "lp_hot", "lp_hot")
-flow("t_data", "tp_nic", [[TX-3.7, TY+0.4, 3.9], [TX-3.7, TY+0.4, 0.6]], 3, 3, 0.2, [1,0,0], 0.1, 1.2, "lp_sig", "lp_sigRim")
-flow("t_vrm", "tpw", [[TX+7.0, TY+0.5, -3.0], [TX-6.4, TY+0.5, -3.0]], 5, 1, 0.1, [0,1,0], 0.1, 1.1, "lp_proc", "lp_proc")
-flow("t_vrm0", "vrm0", [[TX-3.9, TY+0.45, -3.0], [TX-3.9, TY+0.45, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
-flow("t_vrm1", "vrm1", [[TX+3.9, TY+0.45, -3.0], [TX+3.9, TY+0.45, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
-flow("t_rear", "trc", [[TX-1.5, TY+0.8, -0.8], [TX-3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
-flow("t_rear2", "trc", [[TX+1.5, TY+0.8, -0.8], [TX+3.9, TY+0.8, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
-flow("t_pwr", "tpw", [[TX+7.0, TY+0.7, -3.0], [TX+7.0, TY+0.7, -0.6], [TX+4.6, TY+0.7, -0.6]], 4, 2, 0.16, [0,1,0], 0.1, 1.2, "lp_proc", "lp_proc")
+flow("t_data", "tp_nic", [[TX-3.7, TY+0.15, 3.9], [TX-3.7, TY+0.15, 0.6]], 3, 3, 0.2, [1,0,0], 0.1, 1.2, "lp_sig", "lp_sigRim")
+flow("t_vrm", "tpw", [[TX+7.0, TY+0.15, -3.0], [TX-6.4, TY+0.15, -3.0]], 5, 1, 0.1, [0,1,0], 0.1, 1.1, "lp_proc", "lp_proc")
+flow("t_vrm0", "vrm0", [[TX-3.9, TY+0.15, -3.0], [TX-3.9, TY+0.15, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
+flow("t_vrm1", "vrm1", [[TX+3.9, TY+0.15, -3.0], [TX+3.9, TY+0.15, -1.9]], 3, 6, 0.9, [1,0,0], 0.09, 1.0, "lp_proc", "lp_proc")
+flow("t_rear", "trc", [[TX-1.5, TY+0.15, -0.8], [TX-3.9, TY+0.15, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
+flow("t_rear2", "trc", [[TX+1.5, TY+0.15, -0.8], [TX+3.9, TY+0.15, -4.4]], 3, 3, 0.18, [1,0,0], 0.09, 1.3, "lp_sig", "lp_sigRim")
+flow("t_pwr", "tpw", [[TX+7.0, TY+0.15, -3.0], [TX+7.0, TY+0.15, -0.6], [TX+4.6, TY+0.15, -0.6]], 4, 2, 0.16, [0,1,0], 0.1, 1.2, "lp_proc", "lp_proc")
 palette["lp_air"] = "#9FB7D1"
 flow("t_air", "trc", [[TX-6.2, TY+1.6, 4.8], [TX-6.2, TY+1.6, -4.2]], 4, 1, 0.1, [1,0,0], 0.15, 1.0, "lp_air", "lp_air", "arrow")
+actions["t_air"]["free"] = True
 actions["t_air2"] = {**actions["t_air"], "path": [[TX-1.8, TY+2.0, 4.8], [TX-1.8, TY+2.0, -4.2]]}
 actions["t_air3"] = {**actions["t_air"], "path": [[TX+1.8, TY+2.0, 4.8], [TX+1.8, TY+2.0, -4.2]]}
 actions["t_air4"] = {**actions["t_air"], "path": [[TX+6.2, TY+1.6, 4.8], [TX+6.2, TY+1.6, -4.2]]}
