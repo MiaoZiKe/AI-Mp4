@@ -7,5 +7,5 @@ const script = loadScript(slug);
 const serveUrl = await makeBundle();
 const opts = { serveUrl, inputProps: script, browserExecutable: BROWSER, chromiumOptions, logLevel: "error" };
 const comp = await selectComposition({ ...opts, id: "Video" });
-await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: renderTuning.concurrency, frameRange: [Number(a), Number(b)], muted: true });
+await renderMedia({ ...opts, composition: comp, codec: "h264", pixelFormat: "yuv420p", colorSpace: "bt709", outputLocation: out, concurrency: renderTuning.concurrency, ...(process.env.RENDER_TIMEOUT_MS ? { timeoutInMilliseconds: Number(process.env.RENDER_TIMEOUT_MS) } : {}), frameRange: [Number(a), Number(b)], muted: true });
 console.log(`✔ ${out}（第 ${a}–${b} 幀）`);
