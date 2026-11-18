@@ -140,7 +140,7 @@ scenes.append(scene("s7", "twist", 7,
      "shot": [shot("start-2", CX - 1.0, 1.4, 30, 26, 40)],
      "shift": [{"layer": l, "at": "start-6", "until": "s8:start-20", "opacity": 0, "dur": 8} for l in ("ch_lid", "ch_top", "ch_sh")],
      "run": [run("c_chill", "hard", "s8:start-20", 6), run("c_cold", "cold-6", "s8:start-20", 10)],
-     "labels": [lab("c_cath2", "冷卻水道", "Coolant channel", "blue", "so", "cold20"), lab("c_wf", "晶圓", "Wafer", "coral", "cold", "s8:start-20")],
+     "labels": [lab("c_cath2", "冷卻水道", "Coolant channel", "blue", "so", "cold-4"), lab("c_wf", "晶圓", "Wafer", "coral", "cold", "s8:start-20")],
      "overlay": [sec("etch-cold", "start+34", "s8:start-20", 940, 330, "常溫對照低溫", "廠商公布（TEL）・示意", {"deep": "s7:deep", "hard": "s7:hard", "so": "s7:so", "cold": "s7:cold"})]},
     ["Tom's Hardware；TechPowerUp"], pause=0.7))
 
