@@ -1,5 +1,12 @@
 # 產生 videos/tech-foundry/script.json（改這支再重產）
-import json
+import json, math
+L1, L2 = 2.4, 2.0
+def ik(r, th, thf):
+    X, Y = r * math.cos(math.radians(th)), r * math.sin(math.radians(th))
+    cb = (X * X + Y * Y - L1 * L1 - L2 * L2) / (2 * L1 * L2); b = math.acos(max(-1, min(1, cb)))
+    a1 = math.atan2(Y, X) - math.atan2(L2 * math.sin(b), L1 + L2 * math.cos(b))
+    j1, j2 = math.degrees(a1), math.degrees(b)
+    return {"j1": round(j1, 3), "j2": round(j2, 3), "j3": round(thf - (j1 + j2), 3)}
 FX, CX, TX, WX, DX = 0, 60, 120, 180, 240
 FAR = "s9:end+400"
 def off(c, n): return f"{c}{'+' if n >= 0 else '-'}{abs(n)}"
@@ -78,21 +85,25 @@ scenes.append(scene("s3", "mechanism", 3,
     ["SemiconductorX；MKS 無塵室氣流介紹（FFU 垂直氣流）"], pause=0.7))
 
 # ───────── s4 傳送盒 → 軌道 → 機台 → 手臂（C → T）─────────
-OHT = ["ov", "ob0", "ob1", "ob2", "ob3", "ob4", "og", "of"]
-dyb = {"ob0": 0.0, "ob1": -.55, "ob2": -1.1, "ob3": -1.65, "ob4": -2.2, "og": -2.2, "of": -2.2}
-sh4 = [sh(l, off("rail", -6), 64, dx=9.0) for l in OHT]
-sh4 += [sh(l, off("tool", -4), 30, dy=v) for l, v in dyb.items() if v]
-Z = -2.2; ARM = "arm"
-def ext(at, sign=1, wafer=False, dur=10):
-    z = Z * sign
-    r = [sh("rp1", at, dur, dz=z / 3), sh("rp2", at, dur, dz=2 * z / 3), sh("rbl", at, dur, dz=z)]
-    if wafer: r.append(sh("tw", at, dur, dz=z))
-    return r
-A0 = None
-def AA(n): return off(ARM, 12 + n)
-armshift = (ext(AA(0)) + [sh("rbl", AA(12), 4, dy=.07), sh("tw", AA(12), 4, dy=.07)] + ext(AA(16), -1, True) +
-            [sh(l, AA(28), 18, dx=7.2) for l in ("rb", "rp1", "rp2", "rbl", "tw")] + ext(AA(48), 1, True) +
-            [sh("rbl", AA(60), 3, dy=-.07), sh("tw", AA(60), 3, dy=-.07)] + ext(AA(63), -1, False))
+D_ = 1.95; ARM = "arm"
+BELTS = [f"ob{i}" for i in range(5)]
+HOIST = ["og", "ogl", "ogr"]; CARGO = ["of", "ofd", "ofw"]
+def belts_dy(at, dur, sign): return [sh(f"ob{i}", at, dur, dy=sign * D_ * i / 4) for i in range(1, 5)]
+sh4 = ([sh(l, off("box", -29), 18, dy=-D_) for l in HOIST] + belts_dy(off("box", -29), 18, -1) +                      # 夾具放下
+       [sh("ogl", off("box", -8), 5, dx=.2), sh("ogr", off("box", -8), 5, dx=-.2)] +                                  # 夾爪夾緊把手
+       [sh(l, off("box", -3), 16, dy=D_) for l in HOIST + CARGO] + belts_dy(off("box", -3), 16, 1) +                  # 吊起
+       [sh(l, off("rail", -35), 50, dx=7.0) for l in ["ov"] + BELTS + HOIST + CARGO] +                                # 沿軌道前進（緩入緩出＝加減速）
+       [sh(l, off("tool", 0), 18, dy=-D_) for l in HOIST + CARGO] + belts_dy(off("tool", 0), 18, -1) +                # 停在機台上方、吊帶放下
+       [sh("ogl", off("tool", 20), 5, dx=-.2), sh("ogr", off("tool", 20), 5, dx=.2)] +                                # 夾爪張開
+       [sh("ofd", off("tool", 22), 6, dz=.45), sh("ofd", off("tool", 28), 6, dy=-.85)] +                              # 門打開（先拉出再降入裝載口）
+       [sh(l, off("tool", 27), 14, dy=D_) for l in HOIST] + belts_dy(off("tool", 27), 14, 1))                         # 夾具收起
+def pose(r, th, thf, lift): return {**ik(r, th, thf), "lift": lift}
+RF, RW = .85, 3.15   # 折疊時／伸進去時的手腕半徑
+P0 = pose(RF, 0, 0, 0); P1 = pose(RW, 0, 0, 0); Pt = pose(RW, 0, 0, .02); P2 = pose(RW, 0, 0, .09); P3 = pose(RF, 0, 0, .09)
+P4 = pose(RF, 180, 180, .09); P5 = pose(RW, 180, 180, .09); P6 = pose(RW, 180, 180, -.04); P7 = pose(RF, 180, 180, -.04)
+def AA(n): return off(ARM, 6 + n)
+karm = [{"arm": "ta", "at": "s1:start", "keys": [[0, P0]]},
+        {"arm": "ta", "at": AA(0), "keys": [[0, P0], [7, pose(2.0, 0, 0, 0)], [14, P1], [17, Pt], [20, P2], [27, pose(2.0, 0, 0, .09)], [34, P3], [53, P4], [60, pose(2.0, 180, 180, .09)], [67, P5], [70, P6], [76, pose(2.0, 180, 180, -.04)], [82, P7]], "carry": [{"layer": "tw", "grab": 17, "release": 70}]}]
 scenes.append(scene("s4", "mechanism", 4,
     "晶圓裝在傳送盒裡，沿著天花板的軌道，送進機台。機械手臂再把晶圓一片片放進去。",
     ["晶圓裝在傳送盒裡", "沿著天花板的軌道", "送進機台", "機械手臂再把晶圓", "一片片放進去"],
@@ -100,11 +111,11 @@ scenes.append(scene("s4", "mechanism", 4,
     ["傳送盒", "軌道", "機械手臂"],
     [cue("box", "傳送盒"), cue("rail", "軌道"), cue("tool", "送進機台"), cue("arm", "機械手臂"), cue("put", "放進去")],
     {"zoom": [{"to": "room", "at": "start-6", "dur": 1}, {"to": "tool", "at": off("arm", -20), "dur": 40}],
-     "shot": [shot("start-2", CX - 4.0, 2.0, 42, 12, 6), shot(off("rail", 4), CX - 2.0, 2.0, 42, 12, 60), shot(off("tool", 20), TX, -2.4, 33, 36, 6)],
-     "shift": sh4 + armshift,
-     "run": [run("o_foupHi", "box", off("rail", -6), 6), run("t_gas", AA(62), "s5:start-2", 6), run("t_plasma", AA(66), "s5:start-2", 8)],
+     "shot": [shot("start-2", CX - 6.5, 3.2, 24, 12, 6), shot(off("rail", -36), CX - 3.0, 3.2, 30, 12, 50), shot(off("tool", -8), CX + .5, 3.0, 24, 12, 14), shot(off(ARM, -2), TX, -2.4, 38, 34, 4)],
+     "shift": sh4, "kin": karm,
+     "run": [run("o_foupHi", "box", off("rail", -6), 6), run("t_gas", AA(72), "s5:start-2", 6), run("t_plasma", AA(76), "s5:start-2", 8)],
      "labels": [lab("o_foup", "晶圓傳送盒（FOUP）", "Wafer carrier (FOUP)", "amber", "box", off("rail", 20)), lab("o_rail", "天花板軌道", "Overhead rail", "blue", "rail", "tool"),
-                lab("t_wafer", "25 片晶圓為一盒", "25 wafers per pod", "amber", off("tool", 40), off(ARM, -4)), lab("t_arm", "機械手臂", "Robot arm", "blue", off(ARM, 18), off(ARM, 70)), lab("t_ch", "反應腔", "Process chamber", "amber", "put", "s5:start-6")],
+                lab("t_wafer", "25 片晶圓為一盒", "25 wafers per pod", "amber", off(ARM, 10), off(ARM, 40)), lab("t_arm", "機械手臂", "Robot arm", "blue", off(ARM, 44), off(ARM, 80)), lab("t_ch", "反應腔", "Process chamber", "amber", "put", "s5:start-6")],
      "overlay": [sec("fdy-path", "start+2", "s5:start-12", 930, 320, "晶圓怎麼進機台", "示意", {"box": "box", "rail": "rail", "tool": "tool", "arm": "arm", "put": "put"})]},
     ["SEMI FOUP 標準；Entegris、Muratec"], pause=1.2))
 
@@ -146,15 +157,15 @@ scenes.append(scene("s6", "mechanism", 6,
 # ───────── s7 各家做什麼（引線指到廠區）─────────
 scenes.append(scene("s7", "payoff", 7,
     "所以各家分工不同。台積電從先進做到成熟，聯電主攻成熟，世界先進主力是八吋電源管理，力積電做記憶體與驅動晶片。",
-    ["所以各家分工不同", "台積電從先進做到成熟", "聯電主攻成熟", "世界先進", "主力是八吋電源管理", "力積電", "做記憶體與驅動晶片"],
-    ["So each has its own niche.", "TSMC runs from leading-edge to mature,", "UMC focuses on mature nodes,", "Vanguard's mainstay", "is 8-inch power-management chips,", "and PSMC", "makes memory and driver chips."],
+    ["所以各家分工不同", "台積電以先進為主", "也做成熟", "聯電主攻成熟", "世界先進", "主力是八吋電源管理", "力積電", "做記憶體與驅動晶片"],
+    ["So each has its own niche.", "TSMC leads in advanced nodes,", "and also makes mature ones.", "UMC focuses on mature nodes,", "Vanguard's mainstay", "is 8-inch power-management chips,", "and PSMC", "makes memory and driver chips."],
     ["台積電", "聯電", "世界先進", "力積電"],
     [cue("div", "分工不同"), cue("ts", "台積電"), cue("um", "聯電"), cue("vi", "世界先進"), cue("ps", "力積電")],
     {"zoom": [{"to": "fab", "at": "start-6", "dur": 1}],
      "shot": [shot("start-2", FX, -1.0, 60, 46, 1), shot(off("ts", -10), FX - 3.6, -3.8, 36, 42, 1), shot(off("um", -10), FX + 3.8, -3.8, 36, 42, 1), shot(off("vi", -10), FX - 3.6, 2.4, 32, 58, 1), shot(off("ps", -10), FX + 3.8, 2.4, 32, 58, 1)],
      "shift": dim(OTH, off("ts", -10), "s8:start-6") + dim(["bB", "bC", "bD"], off("ts", -10), off("um", -10)) + dim(["bA", "bC", "bD"], off("um", -10), off("vi", -10)) + dim(["bA", "bB", "bD"], off("vi", -10), off("ps", -10)) + dim(["bA", "bB", "bC"], off("ps", -10), "s8:start-6"),
      "run": [run("f_hotA", "ts", off("um", -10), 8), run("f_hotB", "ts", "s8:start-2", 8), run("f_hotC", "vi", "s8:start-2", 8), run("f_hotD", "ps", "s8:start-2", 8)],
-     "labels": [lab("bA", "台積電 先進＋成熟", "TSMC", "blue", "ts", off("um", 20)), lab("bB", "聯電 成熟製程", "UMC", "amber", "um", off("vi", 20)),
+     "labels": [lab("bA", "台積電 先進為主", "TSMC", "blue", "ts", off("um", 20)), lab("bB", "聯電 成熟製程", "UMC", "amber", "um", off("vi", 20)),
                 lab("bC", "世界先進", "Vanguard・8-inch", "amber", "vi", off("ps", 20)), lab("bD", "力積電", "PSMC・memory", "blue", "ps", "s8:start-6")],
      "overlay": [sec("fdy-who", "start+2", "s8:start-12", 930, 320, "各家主力", "公司法說・媒體報導", {"div": "div", "ts": "ts", "um": "um", "vi": "vi", "ps": "ps"})]},
     ["台積電、聯電、世界先進、力積電法說"], pause=0.7))

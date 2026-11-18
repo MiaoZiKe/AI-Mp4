@@ -216,15 +216,17 @@ const Nodes: React.FC<P> = ({ o, f, k, m }) => {
 // ── fdy-who：各家主力（補充，主要靠 3D 引線）──
 const Who: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 320, c = (n: string) => col(m.product, n);
-  const rows: [string, string, string, string][] = [["台積電", "先進到成熟", "ts", "aBlue"], ["聯電", "成熟製程為主", "um", "aOrange"], ["世界先進", "8 吋・電源管理晶片", "vi", "aTeal"], ["力積電", "記憶體、驅動晶片", "ps", "aPurple"]];
+  const rows: [string, string, string, string][] = [["台積電", "以先進為主，也做成熟", "ts", "aBlue"], ["聯電", "成熟製程為主", "um", "aOrange"], ["世界先進", "8 吋・電源管理晶片", "vi", "aTeal"], ["力積電", "記憶體、驅動晶片", "ps", "aPurple"]];
   const hi = (key: string, next?: string) => { const a = tween(f, T(o, key), 8, EASE.enter); return [a, a > 0.5 && (!next || tween(f, T(o, next), 8, EASE.enter) < 0.5)] as const; };
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {rows.map(([n, d, key, cc], i) => { const [a, act] = hi(key, rows[i + 1]?.[2]); const y = 80 + i * 56;
+        {rows.map(([n, d, key, cc], i) => { const [a, act] = hi(key, rows[i + 1]?.[2]); const y = i === 0 ? 76 : 152 + (i - 1) * 52, hh = i === 0 ? 70 : 46;
           return <g key={i} opacity={0.8 + 0.2 * a}>
-            <rect x={64} y={y} width={230} height={46} fill={c(cc)} /><text x={179} y={y + 34} textAnchor="middle" style={zh(34, "#FFFFFF", 900)}>{n}</text>
-            <rect x={294} y={y} width={594} height={46} fill="none" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 5 : 2} /><text x={318} y={y + 34} style={zh(34, H.text, 800)}>{d}</text>
+            <rect x={64} y={y} width={230} height={hh} fill={c(cc)} /><text x={179} y={y + hh / 2 + 12} textAnchor="middle" style={zh(34, "#FFFFFF", 900)}>{n}</text>
+            <rect x={294} y={y} width={594} height={hh} fill="none" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 5 : 2} />
+            {i === 0 ? <><text x={318} y={y + 30} style={zh(30, H.text, 800)}>以先進為主，也做成熟</text><text x={318} y={y + 62} style={zh(28, H.text2, 700)}>7 奈米以下占晶圓營收 79%（台積電 2026Q3）</text></>
+              : <text x={318} y={y + 34} style={zh(34, H.text, 800)}>{d}</text>}
           </g>; })}
       </svg>
     </Card>
