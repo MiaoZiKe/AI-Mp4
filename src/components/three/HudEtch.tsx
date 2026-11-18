@@ -160,7 +160,7 @@ const Cold: React.FC<P> = ({ o, f, k, m }) => {
 const Next: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 300, c = (n: string) => col(m.product, n);
   const ans = T(o, "ans"), ion = T(o, "ion"), prot = T(o, "prot"), fill = T(o, "fill"), next = T(o, "next"), dep = T(o, "dep");
-  const a = tween(f, ans, 10, EASE.enter), b = tween(f, ion, 10, EASE.enter), p = tween(f, prot, 10, EASE.enter), fl = tween(f, fill, 10, EASE.enter), n = tween(f, next, 10, EASE.enter), d = tween(f, dep, 8, EASE.enter);
+  const L = (t: number) => 0.28 + 0.72 * t, a = 1, b = L(tween(f, ion, 10, EASE.enter)), p = L(tween(f, prot, 10, EASE.enter)), fl = L(tween(f, fill, 10, EASE.enter)), n = L(tween(f, next, 10, EASE.enter)), d = tween(f, dep, 8, EASE.enter);
   const pulse = 1 + 0.05 * Math.sin(f * 0.25);
   const chip = (x: number, w: number, t: string, cl: string, al: number) => <g opacity={al}><rect x={x} y={104} width={w} height={72} fill="none" stroke={cl} strokeWidth={6} /><text x={x + w / 2} y={152} textAnchor="middle" style={zh(36, H.text, 900)}>{t}</text></g>;
   return (
@@ -190,6 +190,10 @@ const Ion: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
+        <rect x={40} y={102} width={400} height={184} fill={c("lp_pl")} opacity={0.12 + 0.06 * Math.sin(f * 0.2)} />
+        {[0, 1, 2, 3, 4].map((j) => { const u = ph(f, 0.004, j, 5, j), bx = 70 + ((u * 340 + j * 97) % 340), by = 130 + ((j * 41 + Math.sin(f * 0.05 + j) * 14) % 140); if (Math.abs(bx - mx) < 50 && Math.abs(by - my) < 40) return null;
+          return <g key={j} opacity={0.75}><circle cx={bx} cy={by} r={11} fill={blue} /><circle cx={bx + 13} cy={by + 6} r={7} fill={blue} opacity={0.8} /></g>; })}
+        {[0, 1, 2].map((j) => { const u = ph(f, 0.02, j, 3, j), ex2 = 60 + u * 360, ey = 120 + ((j * 67 + u * 80) % 150); return <g key={"e" + j} opacity={0.9}><circle cx={ex2} cy={ey} r={7} fill={amb} /><text x={ex2} y={ey + 4} textAnchor="middle" style={zh(12, H.onAccent, 900)}>－</text></g>; })}
         <rect x={40} y={96} width={400} height={6} fill={c("steelHi")} /><text x={436} y={86} textAnchor="end" style={zh(sm(28), H.text2, 700)}>電漿</text>
         <rect x={40} y={286} width={400} height={8} fill={c("si")} /><text x={44} y={318} style={zh(sm(28), H.text2, 700)}>晶圓</text>
         {split < 0.5 ? <><circle cx={mx} cy={my} r={20} fill={blue} /><circle cx={mx + 22} cy={my + 10} r={13} fill={blue} opacity={0.85} /></> : null}
@@ -217,7 +221,7 @@ const Co: React.FC<P & { rows: [string, string, string][]; head?: string; headAt
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {head ? <text x={40} y={102} opacity={tween(f, T(o, headAt ?? "no"), 10, EASE.enter)} style={zh(38, H.text, 900)}>{head}</text> : null}
         {sub ? <text x={400} y={102} opacity={tween(f, T(o, subAt ?? "parts"), 10, EASE.enter)} style={zh(36, H.amber, 900)}>{sub}</text> : null}
-        {rows.map(([name, desc, key], i) => { const y = (head ? 160 : 100) + i * (head ? 56 : 70), al = tween(f, T(o, key), 10, EASE.enter);
+        {rows.map(([name, desc, key], i) => { const y = (head ? 168 : 120) + i * (head ? 56 : 76), al = 0.3 + 0.7 * tween(f, T(o, key), 10, EASE.enter);
           return <g key={i} opacity={al}><rect x={40} y={y - 36} width={8} height={46} fill={H.amber} />
             <text x={62} y={y} style={zh(40, H.text, 900)}>{name}</text><text x={330} y={y} style={zh(32, H.text2, 800)}>{desc}</text></g>; })}
       </svg>
