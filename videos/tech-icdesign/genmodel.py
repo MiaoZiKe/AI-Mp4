@@ -26,7 +26,7 @@ palette = {"dark": "#3F4E6B", "dark2": "#2E3340", "steel": "#9AA8BE", "steel2": 
  "nSi": "#7FB6E8", "pSi": "#EDA0B5", "nSD": "#2F7FE0", "pSD": "#E0536F", "gate": "#F2A93B", "ct": "#D5DCE8", "via": "#9AA8BE",
  "m1": "#F08A24", "m2": "#E8613C", "m3": "#8A5CE0", "m4": "#2A9D8F", "m5": "#2F6FE0",
  "elec": "#FFFFFF", "elecRim": "#1F6FEB", "elecTrail": "#38B6FF", "gOn": "#FFC23D",
- "cpu": "#3F6FD8", "cpu2": "#6B93EA", "npu": "#7A5CE0", "npu2": "#A58CF2", "mem": "#2A9D8F", "mem2": "#4CBDAE", "io": "#F2A93B", "io2": "#F6C46B",
+ "cpu": "#3F6FD8", "cpu2": "#6B93EA", "cpuHi": "#C9D8FA", "cpuDk": "#2A4FB0", "npu": "#7A5CE0", "npu2": "#A58CF2", "mem": "#2A9D8F", "mem2": "#4CBDAE", "io": "#F2A93B", "io2": "#F6C46B",
  "code1": "#2A9D8F", "code2": "#F2A93B", "code3": "#6B93EA", "code4": "#E8613C", "wv1": "#38B6FF", "wv2": "#FFB020", "wv3": "#14A38B",
  "glass": "#CFE6F5", "chrome": "#1E2433", "beam": "#8E7CFF", "beamHi": "#C7BFFF", "lens": "#9EC3E8", "wafer": "#B4C2DA", "die": "#7FA4E0", "dieHi": "#E8613C",
  "screen": "#14213D", "led": "#FF5A1F", "lp_heat": "#FF7A2F", "lp_bad": "#E0472F", "lp_sig": "#38B6FF", "lp_sigRim": "#1F6FEB", "lp_good": "#14A38B", "lp_warm": "#FFB020", "dashC": "#E0472F"}
@@ -41,7 +41,7 @@ materials = {
  "gate": M("gate", rough=.3, metal=.9, tex="brushed", texScale=1.6, env=.6), "ct": M("ct", rough=.3, metal=.85, env=.6), "via": M("via", rough=.3, metal=.85, env=.6),
  "m1": M("m1", rough=.28, metal=.9, tex="brushed", texScale=1.8, env=.6), "m2": M("m2", rough=.28, metal=.9, tex="brushed", texScale=1.8, env=.6),
  "m3": M("m3", rough=.28, metal=.85, tex="brushed", texScale=1.8, env=.6), "m4": M("m4", rough=.28, metal=.85, tex="brushed", texScale=1.8, env=.6), "m5": M("m5", rough=.25, metal=.85, tex="brushed", texScale=2.0, env=.7),
- "cpu": M("cpu", rough=.4, metal=.2), "cpu2": M("cpu2", rough=.4, metal=.2), "npu": M("npu", rough=.4, metal=.2), "npu2": M("npu2", rough=.4, metal=.2),
+ "cpu": M("cpu", rough=.4, metal=.2), "cpuHi": M("cpuHi", rough=.4, metal=.2), "cpuDk": M("cpuDk", rough=.4, metal=.2), "cpu2": M("cpu2", rough=.4, metal=.2), "npu": M("npu", rough=.4, metal=.2), "npu2": M("npu2", rough=.4, metal=.2),
  "mem": M("mem", rough=.4, metal=.2), "mem2": M("mem2", rough=.4, metal=.2), "io": M("io", rough=.35, metal=.4), "io2": M("io2", rough=.35, metal=.4),
  "code1": {"kind": "unlit", "color": "code1"}, "code2": {"kind": "unlit", "color": "code2"}, "code3": {"kind": "unlit", "color": "code3"}, "code4": {"kind": "unlit", "color": "code4"},
  "wv1": {"kind": "unlit", "color": "wv1"}, "wv2": {"kind": "unlit", "color": "wv2"}, "wv3": {"kind": "unlit", "color": "wv3"}, "cur": {"kind": "unlit", "color": "lp_bad"},
@@ -230,23 +230,46 @@ anchor("m_a_lens", "m_lens", [MX + 3.0, 5.7, 1.5], dx=140, dy=-10)
 anchor("m_a_wafer", "m_wafer", [MX + 4.0, .6, 1.2], dx=140, dy=30)
 anchor("m_a_print", "m_print", [MX + .5, .72, .6], dx=-150, dy=40)
 
-# ═════════ Z：整顆晶片＋設計電腦（x=450） ═════════
+# ═════════ Z：整顆晶片＋設計電腦（x=450）；照真實 die shot：密封環、四周焊墊（含焊球）、各區塊自己的內部樣子、區塊間多色走線、粗的供電網格 ═════════
 ZX = 450
 box("z_base", "z_die", "siDk", [14.4, .7, 14.4], [ZX, .35, 0], bevel=.08)
 box("z_top", "z_die", "siTop", [13.8, .06, 13.8], [ZX, .73, 0])
-box("z_ring", "z_die", "steelHi", [.5, .12, .5], [ZX, .8, 0], at=[[-6.5 + 1.0 * i, 0, 6.5] for i in range(14)] + [[-6.5 + 1.0 * i, 0, -6.5] for i in range(14)] + [[6.5, 0, -5.5 + 1.0 * i] for i in range(12)] + [[-6.5, 0, -5.5 + 1.0 * i] for i in range(12)])
-# CPU：2×2 核心
+# 密封環（晶粒最外一圈）與四周焊墊＋焊球
+box("z_seal", "z_die", "steelHi", [14.0, .1, .16], [ZX, .78, 0], at=[[0, 0, -6.98], [0, 0, 6.98]])
+box("z_seal2", "z_die", "steelHi", [.16, .1, 13.7], [ZX, .78, 0], at=[[-6.98, 0, 0], [6.98, 0, 0]])
+PADS = [[-6.5 + 1.0 * i, 0, 6.5] for i in range(14)] + [[-6.5 + 1.0 * i, 0, -6.5] for i in range(14)] + [[6.5, 0, -5.5 + 1.0 * i] for i in range(12)] + [[-6.5, 0, -5.5 + 1.0 * i] for i in range(12)]
+box("z_ring", "z_die", "steelHi", [.5, .12, .5], [ZX, .8, 0], at=PADS)
+box("z_ball", "z_die", "gate", [.26, .1, .26], [ZX, .88, 0], at=PADS)
+# 區塊之間的多方向、多顏色金屬走線（橫五條、直五條，高度略不同）
+for i, m in enumerate(("m1", "m2", "m3", "m4", "m5")):
+    box(f"z_wx{i}", "z_die", m, [12.9, .05, .1], [ZX + .05, .8 + .02 * i, -.8 + .25 * i])
+    box(f"z_wz{i}", "z_die", m, [.1, .05, 11.0], [ZX - .6 + .2 * i, .82 + .02 * i, -.8])
+# CPU：2×2 核心（各有取指條、三個運算單元、暫存器格）＋二級快取
 box("z_cpuF", "z_cpu", "cpu", [5.6, .5, 5.2], [ZX - 3.6, 1.0, -3.7], bevel=.05)
-box("z_core", "z_cpu", "cpu2", [2.2, .5, 2.0], [ZX - 3.6, 1.4, -3.7], at=[[-1.2, 0, -1.1], [1.2, 0, -1.1], [-1.2, 0, 1.1], [1.2, 0, 1.1]], bevel=.05)
-# NPU：3×3 運算單元
+CORES = [(-1.2, -1.1), (1.2, -1.1), (-1.2, 1.1), (1.2, 1.1)]
+box("z_core", "z_cpu", "cpu2", [2.2, .5, 2.0], [ZX - 3.6, 1.4, -3.7], at=[[cx, 0, cz] for cx, cz in CORES], bevel=.05)
+box("z_fetch", "z_cpu", "cpu", [2.0, .1, .38], [ZX - 3.6, 1.68, -3.7], at=[[cx, 0, cz - .72] for cx, cz in CORES])
+box("z_alu", "z_cpu", "cpuHi", [.58, .12, .42], [ZX - 3.6, 1.7, -3.7], at=[[cx + dx, 0, cz - .12] for cx, cz in CORES for dx in (-.65, 0, .65)])
+box("z_reg", "z_cpu", "cpuDk", [.11, .08, .08], [ZX - 3.6, 1.68, -3.7], at=[[cx - .9 + .15 * i, 0, cz + .5 + .13 * j] for cx, cz in CORES for i in range(13) for j in range(3)])
+box("z_l2", "z_cpu", "cpu2", [.18, .1, .2], [ZX - 3.6, 1.28, -1.3], at=[[-2.4 + .22 * i, 0, .0] for i in range(23)])
+# NPU：4×3 運算陣列（每格一個乘加器）＋緩衝格
 box("z_npuF", "z_npu", "npu", [6.2, .5, 5.2], [ZX + 3.4, 1.0, -3.7], bevel=.05)
-box("z_mac", "z_npu", "npu2", [1.5, .4, 1.3], [ZX + 3.4, 1.35, -3.7], at=[[-1.8 + 1.8 * i, 0, -1.5 + 1.5 * j] for i in range(3) for j in range(3)], bevel=.04)
-# 記憶體：條紋
+MAC = [[-2.25 + 1.5 * i, 0, -1.45 + 1.4 * j] for i in range(4) for j in range(3)]
+box("z_mac", "z_npu", "npu2", [1.3, .4, 1.2], [ZX + 3.4, 1.35, -4.0], at=MAC, bevel=.04)
+box("z_macin", "z_npu", "white", [.5, .08, .45], [ZX + 3.4, 1.58, -4.0], at=MAC)
+box("z_buf", "z_npu", "npu2", [.2, .1, .16], [ZX + 3.4, 1.28, -1.5], at=[[-2.7 + .22 * i, 0, 0] for i in range(26)])
+# 記憶體（SRAM）：密集小格陣列，分四個子陣列
 box("z_memF", "z_mem", "mem", [5.6, .5, 4.2], [ZX - 3.6, 1.0, 2.6], bevel=.05)
-box("z_bar", "z_mem", "mem2", [.45, .4, 3.4], [ZX - 3.6, 1.35, 2.6], at=[[-2.3 + .575 * i, 0, 0] for i in range(9)], bevel=.03)
-# 輸入輸出：一排小介面
+box("z_cell", "z_mem", "mem2", [.2, .08, .19], [ZX - 3.6, 1.27, 2.6], at=[[-2.45 + .245 * i, 0, -1.7 + .27 * j] for i in range(21) if i % 5 != 4 for j in range(13)])
+# 輸入輸出：介面電路條（手指狀）＋收發器小方塊
 box("z_ioF", "z_io", "io", [6.2, .5, 4.2], [ZX + 3.4, 1.0, 2.6], bevel=.05)
-box("z_port", "z_io", "io2", [.9, .4, 3.2], [ZX + 3.4, 1.35, 2.6], at=[[-2.4 + 1.2 * i, 0, 0] for i in range(5)], bevel=.03)
+box("z_port", "z_io", "io2", [.9, .4, 3.0], [ZX + 3.4, 1.35, 2.4], at=[[-2.4 + 1.2 * i, 0, 0] for i in range(5)], bevel=.03)
+box("z_finger", "z_io", "white", [.7, .06, .07], [ZX + 3.4, 1.58, 2.4], at=[[-2.4 + 1.2 * i, 0, -1.25 + .25 * j] for i in range(5) for j in range(11)])
+box("z_trx1", "z_io", "m1", [.2, .1, .3], [ZX + 3.4, 1.28, 4.4], at=[[-2.6 + .4 * i, 0, 0] for i in range(14) if i % 2 == 0])
+box("z_trx2", "z_io", "m2", [.2, .1, .3], [ZX + 3.4, 1.28, 4.4], at=[[-2.6 + .4 * i, 0, 0] for i in range(14) if i % 2 == 1])
+# 粗的供電網格（電源帶，紅藍交替，橫跨在區塊上方）
+for i, zz in enumerate((-5.6, -1.7, 1.8, 4.0)): box(f"z_pgx{i}", "z_die", "m2" if i % 2 else "m5", [12.8, .06, .16], [ZX, 1.8, zz])
+for i, xx in enumerate((-5.6, -2.0, 1.8, 5.4)): box(f"z_pgz{i}", "z_die", "m5" if i % 2 else "m2", [.16, .06, 12.8], [ZX + xx, 1.84, 0])
 # 設計電腦（螢幕＋支架＋鍵盤）
 MXZ = ZX + 12.8
 box("z_mon", "z_mon", "dark2", [6.6, 4.4, .4], [MXZ, 3.4, 1.0], bevel=.08)
@@ -254,10 +277,15 @@ box("z_scr", "z_mon", "screen", [6.0, 3.8, .06], [MXZ, 3.4, 1.24])
 box("z_stand", "z_mon", "dark", [.8, 1.4, .5], [MXZ, .95, 1.0])
 box("z_foot", "z_mon", "dark", [3.0, .2, 2.0], [MXZ, .1, 1.0], bevel=.04)
 box("z_kb", "z_mon", "dark2", [4.2, .16, 1.3], [MXZ, .08, 3.0], bevel=.04)
-# 螢幕上的版圖：小色塊與走線
-for i, (bx, by, bw, bh, c) in enumerate([(-1.6, 1.0, 2.0, 1.2, "cpu"), (.8, 1.0, 2.2, 1.2, "npu"), (-1.6, -.5, 2.0, 1.0, "mem"), (.8, -.5, 2.2, 1.0, "io")]):
-    box(f"z_sb{i}", "z_mon", c, [bw, bh, .05], [MXZ + bx, 3.4 + by, 1.29])
-box("z_sl", "z_mon", "rt1", [.05, 3.2, .04], [MXZ, 3.4, 1.3], at=[[-2.5 + .35 * i, 0, 0] for i in range(14)])
+# 螢幕上的版圖：晶粒外框、焊墊、四個區塊（各有小格紋）、走線
+box("z_sfr", "z_mon", "steelHi", [5.4, 3.4, .03], [MXZ, 3.4, 1.28])
+box("z_sfr2", "z_mon", "screen", [5.2, 3.2, .04], [MXZ, 3.4, 1.285])
+box("z_spad", "z_mon", "gate", [.1, .1, .04], [MXZ, 3.4, 1.3], at=[[-2.5 + .25 * i, 1.55, 0] for i in range(21)] + [[-2.5 + .25 * i, -1.55, 0] for i in range(21)])
+for i, (bx, by, bw, bh, c) in enumerate([(-1.3, .65, 2.3, 1.3, "cpu"), (1.05, .65, 2.2, 1.3, "npu"), (-1.3, -.7, 2.3, 1.2, "mem"), (1.05, -.7, 2.2, 1.2, "io")]):
+    box(f"z_sb{i}", "z_mon", c, [bw, bh, .05], [MXZ + bx, 3.4 + by, 1.31])
+    box(f"z_sg{i}", "z_mon", "white", [.16, .1, .03], [MXZ + bx, 3.4 + by, 1.34], at=[[-bw / 2 + .2 + .26 * ii, -bh / 2 + .18 + .22 * jj, 0] for ii in range(int((bw - .3) / .26)) for jj in range(int((bh - .25) / .22))])
+box("z_sl", "z_mon", "rt1", [.04, 3.0, .04], [MXZ, 3.4, 1.36], at=[[-2.4 + .3 * i, 0, 0] for i in range(17) if i % 2 == 0])
+box("z_sl2", "z_mon", "rt2", [4.8, .04, .04], [MXZ, 3.4, 1.37], at=[[0, -1.3 + .3 * i, 0] for i in range(9)])
 glow("z_glow", "z_die", ["z_top"], "gOn", steady=True, g=.6)
 anchor("z_cpu", "z_cpu", [ZX - 3.6, 1.65, -3.7], dx=-150, dy=-80)
 anchor("z_mem", "z_mem", [ZX - 3.6, 1.6, 2.6], dx=-150, dy=80)

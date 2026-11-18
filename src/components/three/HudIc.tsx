@@ -52,31 +52,77 @@ const CellArt: React.FC = () => {
   );
 };
 
-/** 整顆晶片：功能區塊 2×2＋十字縫＋四周接點；正中央是下一級（一個區塊，寬 40＝field 比例） */
+/** 小格陣列（SRAM、運算單元、快取）：用 pattern 鋪，一格 cw×ch、間隙 g；inner＝格子裡再畫一個小方塊（運算單元的乘加器） */
+const Grid: React.FC<{ id: string; x: number; y: number; w: number; h: number; cw: number; ch: number; g?: number; c: string; o?: number; inner?: string }> = ({ id, x, y, w, h, cw, ch, g = 1.5, c, o = 1, inner }) => (
+  <g>
+    <defs><pattern id={id} x={x} y={y} width={cw} height={ch} patternUnits="userSpaceOnUse">
+      <rect width={cw - g} height={ch - g} fill={c} opacity={o} />{inner ? <rect x={cw * 0.28} y={ch * 0.28} width={cw * 0.4} height={ch * 0.4} fill={inner} opacity={0.55} /> : null}
+    </pattern></defs>
+    <rect x={x} y={y} width={w} height={h} fill={`url(#${id})`} />
+  </g>
+);
+const WIRE = [IC.m1, IC.m2, IC.m3, IC.m4, IC.m5];
+/** CPU 核心：取指解碼條、三個運算單元、暫存器格 */
+const Core: React.FC<{ id: string; x: number; y: number; w: number; h: number }> = ({ id, x, y, w, h }) => (
+  <g>
+    <rect x={x} y={y} width={w} height={h} rx={4} fill={IC.cpu2} stroke="#FFFFFF" strokeOpacity={0.7} strokeWidth={2} />
+    <rect x={x + 6} y={y + 6} width={w - 12} height={h * 0.2} fill={IC.cpu} />
+    {range(3).map((i) => <rect key={i} x={x + 6 + i * ((w - 12) / 3)} y={y + h * 0.3} width={(w - 12) / 3 - 4} height={h * 0.26} fill="#C9D8FA" stroke={IC.cpu} strokeWidth={1.5} />)}
+    <Grid id={id} x={x + 6} y={y + h * 0.62} w={w - 12} h={h * 0.32} cw={8} ch={6} c="#2A4FB0" />
+  </g>
+);
+/** 整顆晶片：密封環＋四周焊墊、四個功能區塊（各有自己的內部樣子）、標準元件列細紋、多方向多色金屬走線、粗的供電網格；正中央是下一級（一個區塊，寬 40＝field 比例） */
 const DieArt: React.FC = () => {
-  const pads = range(30);
+  const pads = range(30), L = 29;
   const blk = (x: number, y: number, w: number, h: number, c: string, t: string) => (
     <g key={t}>
-      <rect x={x} y={y} width={w} height={h} rx={10} fill={c} opacity={0.92} stroke={H.line} strokeOpacity={0.6} strokeWidth={3} />
-      <text x={x + 20} y={y + 48} style={mono(36, "#FFFFFF", 800)}>{t}</text>
+      <rect x={x} y={y} width={w} height={h} rx={8} fill={c} stroke={H.line} strokeOpacity={0.6} strokeWidth={3} />
+      <text x={x + 16} y={y + 40} style={mono(32, "#FFFFFF", 800)}>{t}</text>
     </g>
   );
   return (
     <g>
       <g transform="scale(0.7)">
-      <rect x={-470} y={-470} width={940} height={940} rx={20} fill={H.bg2} stroke={H.line} strokeWidth={6} />
-      {pads.map((i) => <React.Fragment key={i}>
-        <rect x={-432 + i * 29} y={-456} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} /><rect x={-432 + i * 29} y={436} width={14} height={20} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} />
-        <rect x={-456} y={-432 + i * 29} width={20} height={14} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} /><rect x={436} y={-432 + i * 29} width={20} height={14} fill={IC.ct} stroke={H.lineSoft} strokeWidth={1.5} />
-      </React.Fragment>)}
-      {blk(-400, -400, 370, 370, IC.cpu, "CPU")}
-      {range(4).map((i) => <rect key={`k${i}`} x={-370 + (i % 2) * 170} y={-340 + Math.floor(i / 2) * 150} width={150} height={130} rx={6} fill={IC.cpu2} stroke="#FFFFFF" strokeOpacity={0.6} strokeWidth={2} />)}
-      {blk(30, -400, 370, 370, IC.npu, "NPU")}
-      {range(9).map((i) => <rect key={`m${i}`} x={52 + (i % 3) * 113} y={-340 + Math.floor(i / 3) * 100} width={100} height={86} rx={5} fill={IC.npu2} stroke="#FFFFFF" strokeOpacity={0.6} strokeWidth={2} />)}
-      {blk(-400, 30, 370, 370, IC.mem, "記憶體")}
-      {range(10).map((i) => <rect key={`r${i}`} x={-380 + i * 34} y={96} width={22} height={282} rx={3} fill={IC.mem2} />)}
-      {blk(30, 30, 370, 370, IC.io, "I/O")}
-      {range(5).map((i) => <rect key={`p${i}`} x={54 + i * 68} y={104} width={52} height={270} rx={5} fill={IC.io2} />)}
+        <defs>
+          <pattern id="icSc" x={-430} y={-430} width={12} height={6} patternUnits="userSpaceOnUse"><rect width={12} height={6} fill={H.bg2} /><rect y={0} width={12} height={1.6} fill={H.lineSoft} opacity={0.9} /><rect x={3} y={2} width={2} height={3} fill={H.lineSoft} opacity={0.6} /></pattern>
+        </defs>
+        {/* 晶粒外框與密封環 */}
+        <rect x={-470} y={-470} width={940} height={940} rx={18} fill={H.bg2} stroke={H.line} strokeWidth={6} />
+        <rect x={-452} y={-452} width={904} height={904} rx={10} fill="none" stroke={IC.ct} strokeWidth={9} /><rect x={-452} y={-452} width={904} height={904} rx={10} fill="none" stroke={H.line} strokeWidth={1.5} strokeOpacity={0.8} />
+        <rect x={-436} y={-436} width={872} height={872} fill="url(#icSc)" />
+        {/* 四周焊墊（每邊 30 個）＋焊球與往內的走線 */}
+        {pads.map((i) => { const u = -420 + i * 29; return <React.Fragment key={i}>
+          {[[u, -462, 0], [u, 442, 1]].map(([x, y, d], k) => <g key={k}><rect x={x} y={y} width={16} height={20} fill={IC.ct} stroke={H.line} strokeWidth={1.2} /><rect x={x + 4} y={y + 5} width={8} height={10} fill={IC.gate} opacity={0.85} /><path d={`M ${x + 8} ${d ? y : y + 20} V ${d ? 412 - (i % 4) * 5 : -412 + (i % 4) * 5}`} stroke={WIRE[i % 5]} strokeWidth={2.2} fill="none" /></g>)}
+          {[[-462, u, 0], [442, u, 1]].map(([x, y, d], k) => <g key={k}><rect x={x} y={y} width={20} height={16} fill={IC.ct} stroke={H.line} strokeWidth={1.2} /><rect x={x + 5} y={y + 4} width={10} height={8} fill={IC.gate} opacity={0.85} /><path d={`M ${d ? x : x + 20} ${y + 8} H ${d ? 412 - (i % 4) * 5 : -412 + (i % 4) * 5}`} stroke={WIRE[(i + 2) % 5]} strokeWidth={2.2} fill="none" /></g>)}
+        </React.Fragment>; })}
+        {/* 區塊之間：多方向、多顏色的金屬走線束（橫、直各五條，轉彎處用 45 度） */}
+        {range(5).map((i) => <React.Fragment key={`w${i}`}>
+          <path d={`M -400 ${-16 + i * 8} H -60 L -44 ${-16 + i * 8 + (i % 2 ? 6 : -6)} H 44 L 60 ${-16 + i * 8} H 400`} stroke={WIRE[i]} strokeWidth={2.6} fill="none" />
+          <path d={`M ${-16 + i * 8} -400 V -60 L ${-16 + i * 8 + (i % 2 ? -6 : 6)} -44 V 44 L ${-16 + i * 8} 60 V 400`} stroke={WIRE[(i + 2) % 5]} strokeWidth={2.6} fill="none" />
+        </React.Fragment>)}
+        {range(5).map((i) => <React.Fragment key={`r${i}`}>
+          <path d={`M ${-410 + i * 4} ${-410 + i * 4} H ${410 - i * 4} V ${410 - i * 4} H ${-410 + i * 4} Z`} stroke={WIRE[i]} strokeWidth={1.8} strokeOpacity={0.9} fill="none" />
+        </React.Fragment>)}
+        {/* CPU：2×2 核心＋下方二級快取 */}
+        {blk(-400, -400, 370, 370, IC.cpu, "CPU")}
+        {[[-384, -356], [-206, -356], [-384, -226], [-206, -226]].map(([x, y], i) => <Core key={i} id={`icCore${i}`} x={x} y={y} w={170} h={122} />)}
+        <Grid id="icL2" x={-384} y={-96} w={340} h={56} cw={10} ch={8} c={IC.cpu2} />
+        {/* NPU：整齊的運算陣列（乘加單元）＋緩衝區 */}
+        {blk(30, -400, 370, 370, IC.npu, "NPU")}
+        <Grid id="icMac" x={46} y={-356} w={336} h={252} cw={42} ch={42} g={5} c={IC.npu2} inner="#FFFFFF" />
+        <Grid id="icBuf" x={46} y={-92} w={336} h={52} cw={14} ch={10} c="#6E55C8" />
+        {/* 記憶體（SRAM）：密集小格陣列，分四個子陣列，右側是感測放大器 */}
+        {blk(-400, 30, 370, 370, IC.mem, "SRAM")}
+        <Grid id="icSram" x={-384} y={78} w={296} h={306} cw={8} ch={6} g={1.2} c={IC.mem2} />
+        {[-312, -238, -164].map((x) => <rect key={x} x={x} y={78} width={4} height={306} fill={IC.mem} />)}
+        <rect x={-80} y={78} width={42} height={306} fill="#1F7A6F" /><Grid id="icSense" x={-76} y={84} w={34} h={294} cw={12} ch={14} c="#7FE0D0" o={0.8} />
+        {/* I/O：介面電路條（手指狀電晶體排）＋上下收發器 */}
+        {blk(30, 30, 370, 370, IC.io, "I/O")}
+        {range(7).map((i) => <Grid key={i} id={`icIo${i}`} x={46 + i * 48} y={78} w={38} h={250} cw={38} ch={7} g={2.5} c={IC.io2} />)}
+        {range(14).map((i) => <rect key={`p${i}`} x={46 + i * 24} y={338} width={18} height={40} fill={i % 2 ? IC.m1 : IC.m2} opacity={0.8} />)}
+        {/* 粗的供電網格（電源帶，紅藍交替） */}
+        {[-350, -230, -110, 110, 230, 350].map((x, i) => <rect key={`gv${x}`} x={x - 4} y={-436} width={8} height={872} fill={i % 2 ? IC.m5 : IC.m2} opacity={0.4} />)}
+        {[-350, -230, -110, 110, 230, 350].map((y, i) => <rect key={`gh${y}`} x={-436} y={y - 4} width={872} height={8} fill={i % 2 ? IC.m5 : IC.m2} opacity={0.35} />)}
       </g>
       <rect x={-20} y={-20} width={40} height={40} fill="none" stroke={H.amber} strokeWidth={3} vectorEffect="non-scaling-stroke" />
     </g>
