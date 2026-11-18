@@ -9,7 +9,7 @@ for ((a=0; a<N; a+=240)); do b=$((a+239)); [ $b -ge $N ] && b=$((N-1))
   f=$D/c$(printf %05d $a).mp4; echo "file '$(basename $f)'" >> $D/list.txt
   [ -s $f ] && continue
   echo "▶ 段 $a-$b / $N"
-  flock out/.render.lock env THREE_CONCURRENCY=4 RENDER_TIMEOUT_MS=180000 node scripts/three/render-range.mjs $SLUG $a $b $f.tmp.mp4 && mv $f.tmp.mp4 $f
+  flock out/.render.lock env THREE_CONCURRENCY=${CONC:-2} RENDER_TIMEOUT_MS=180000 node scripts/three/render-range.mjs $SLUG $a $b $f.tmp.mp4 && mv $f.tmp.mp4 $f
 done
 ffmpeg -loglevel error -y -f concat -safe 0 -i $D/list.txt -c copy out/$SLUG.video.mp4
 sed 's#^run "3 渲染.*#echo "▶ 3 渲染（分段已完成）"#' scripts/three/.make-foundry-nostep2.sh > out/.make-norender.sh
