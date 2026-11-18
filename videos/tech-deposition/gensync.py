@@ -47,6 +47,6 @@ for s in sb["scenes"]:
     for sub in s.get("subtitles", []):
         n += 1; z = sub["zh"].replace("\n", ""); t = sub["startFrame"] / 30
         rows.append(f"| {n} | {s['id']} | {z} | {t:.1f} | {EV.get(z, '（未寫）')} |"); fr.append(sub["startFrame"] + 20)
-open("sync-table.md", "w").write("# tech-deposition v1 逐句念稿 ↔ 畫面事件對照\n\n每句取字幕起始後 20 幀的畫面（格子圖 `out/tech-deposition.v1-sync*.jpg`，左到右、上到下，每張 12 句）。事件由 script.json 的 cue 觸發（CTC 對齊字時間）。\n\n| # | 幕 | 字幕 | 起始（秒） | 畫面事件 |\n|---|---|---|---|---|\n" + "\n".join(rows) + "\n")
+open("sync-table.md", "w").write("# tech-deposition v2 逐句念稿 ↔ 畫面事件對照\n\n每句取字幕起始後 20 幀的畫面（格子圖 `out/tech-deposition.v2-sync*.jpg`，左到右、上到下，每張 12 句）。事件由 script.json 的 cue 觸發（CTC 對齊字時間）。\n\n| # | 幕 | 字幕 | 起始（秒） | 畫面事件 |\n|---|---|---|---|---|\n" + "\n".join(rows) + "\n")
 json.dump(fr, open("/tmp/dep-sync-frames.json", "w"))
 print(n, "句", [r for r in rows if "未寫" in r])

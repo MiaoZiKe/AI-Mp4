@@ -1,6 +1,6 @@
-# tech-deposition v1 逐句念稿 ↔ 畫面事件對照
+# tech-deposition v2 逐句念稿 ↔ 畫面事件對照
 
-每句取字幕起始後 20 幀的畫面（格子圖 `out/tech-deposition.v1-sync*.jpg`，左到右、上到下，每張 12 句）。事件由 script.json 的 cue 觸發（CTC 對齊字時間）。
+每句取字幕起始後 20 幀的畫面（格子圖 `out/tech-deposition.v2-sync*.jpg`，左到右、上到下，每張 12 句）。事件由 script.json 的 cue 觸發（CTC 對齊字時間）。
 
 | # | 幕 | 字幕 | 起始（秒） | 畫面事件 |
 |---|---|---|---|---|
