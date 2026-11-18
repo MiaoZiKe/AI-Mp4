@@ -13,3 +13,10 @@
 - 搬運臂是「伸縮臂＋載片刀」示意，不是實際 SCARA 機型；傳送盒內只畫 11 片（實際 25 片）。
 - 廠區四棟是製程類型的代表；各家真實廠址、產能不上片。
 - 發布當天（11/24）要再查一次 TrendForce 有沒有出 2026 年第三季排名，並更新「查證截至」。
+
+## v3（2026/11/18，退回 v2 後修正）：out/tech-foundry.v3.mp4（67.5 秒；格子圖 out/tech-foundry.v3-grid.jpg；對照表 sync-table.md、out/tech-foundry-sync.jpg；近景 out/tech-foundry.v3-closeup-tool.png／closeup-die.png）
+- 沿用同一份錄音（atempo 1.08），沒送 TTS（tts-requests.json 仍 1 筆）。
+- 過場不留空場：換站的鏡頭一律 ≤6 幀快切（F→C、C→T、T→W、W→D、D→F）；實測空畫面最多約 4 幀（0.13 秒）。
+- 說明卡全部改成不透明度 ≥0.8、沒念到的項目也清楚可讀，念到的項目亮橘框；「接下來」卡一開始就有三個方塊。
+- 先進 vs 成熟、各家主力：鏡頭拉近到單一廠區（先進廠區→成熟 12 吋廠區→各家 4 個廠區輪流），其餘廠房淡到 0.2 當背景；引線與標籤清楚。廠區地面與樹等背景層標 bg，不算主素材框。
+- 檢查：validate 0 error、layout-check 0 error、kinematics 0 error。
