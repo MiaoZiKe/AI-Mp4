@@ -155,7 +155,7 @@ scenes.append(scene("s8", "payoff", 8,
      "shift": [],
      "labels": [lab("z_die", "創意、世芯：設計服務", "", "amber", "svc", "ip-6"), lab("z_mem", "力旺：記憶體矽智財", "", "blue", "em", "andes-6"), lab("z_cpu", "晶心科：CPU 智財", "", "blue", "andes", "eda-6"),
                 lab("z_mon", "三大 EDA：設計軟體", "", "amber", "eda", "s9:start-8")],
-     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "svc", "em": "ip", "eda": "eda"}), stamp("媒體報導", "em", "s9:start-8", "blue", 40, x=880, y=880, avoid=False)]},
+     "overlay": [sec("ic-who", "start+2", "s9:start-16", 930, 300, "台灣誰在做", "示意・媒體報導", {"guc": "svc", "em": "ip", "eda": "eda"})]},
     ["媒體報導：數位時代、科技新報、工商時報"], pause=0.7))
 
 # ───────── s9 結尾 ─────────
