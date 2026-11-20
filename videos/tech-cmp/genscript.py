@@ -17,7 +17,10 @@ def run(i, at, until=None, ramp=None, **kw):
     if until: d["until"] = until
     if ramp: d["ramp"] = ramp
     d.update(kw); return d
-def lab(part, text, en, color, at, until): return {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+def lab(part, text, en, color, at, until, xy=None):
+    d = {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+    if xy: d["xy"] = xy  # 手動指定標籤卡中心（2026/11/21：引線穿過別張卡時用）
+    return d
 def stamp(text, at, until, color="amber", size=44, rot=-4, **kw):
     d = {"type": "stamp", "at": at, "until": until, "text": text, "color": color, "size": size, "rot": rot}
     d.update(kw); return d
@@ -140,7 +143,7 @@ scenes.append(scene("s6", "mechanism", 6,
      "shot": [shot("start-2", WX, 2.8, 62, 12, 1)],
      "shift": W_SHIFT,
      "run": [run("w_slide", "start", "s9:start-2", 10), run("w_liq", "slurry", "s7:start-2", 6), run("w_grit", "grit", "s7:start-2", 6), run("w_mol", "chem", "s7:start-2", 6), run("w_softlit", "soft", "s7:start-2", 8), run("w_flk", "scrape", "s7:start-2", 6), run("w_flk2", "scrape+8", "s7:start-2", 6)],
-     "labels": [lab("w_pad", "研磨墊", "Pad", "blue", "slurry", "chem-6"), lab("w_grit", "磨粒：負責刮", "Abrasive grains", "amber", "grit", "soft-4"), lab("w_b1", "藥劑讓表面變軟", "Chemical softens", "coral", "chem", "scrape+10")],
+     "labels": [lab("w_pad", "研磨墊", "Pad", "blue", "slurry", "chem-6", xy=[910, 311]), lab("w_grit", "磨粒：負責刮", "Abrasive grains", "amber", "grit", "soft-4", xy=[251, 311]), lab("w_b1", "藥劑讓表面變軟", "Chemical softens", "coral", "chem", "scrape+10", xy=[799.5, 311])],
      "overlay": [sec("cmp-slurry", "start+2", "s7:start-2", 930, 340, "研磨液裡有什麼", "示意，非實際比例", {"grit": "grit", "chem": "chem", "soft": "soft", "scrape": "scrape"})]},
     ["專利：研磨液含磨粒與化學藥劑；科技新報"], pause=0.7))
 
