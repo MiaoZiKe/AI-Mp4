@@ -1,5 +1,5 @@
 # tech-metrology：量測與檢測（科技透明圈，接化學機械研磨；預定 11/29 日 18:00）
-前製完成（Sonnet）：研究、腳本、畫面規格、配音、對齊。**尚未建 3D 模型、未渲染**——下一棒（Opus）照 `visual-spec.md` 建 `model.json` 並補 script.json 各幕 props（鏡頭、shift、run、labels、overlay）。
+前製（Sonnet）：研究、腳本、畫面規格、配音、對齊。建模與成片（Opus，2026/11/20）：`genmodel.py`→model.json（六站：T 量測島 x=0、F 膜厚 x=60、E 電子束線寬 x=120、O 疊對 x=180、D 缺陷檢測 x=240、P 線路疊層 x=300）、`genscript.py`→script.json（旁白／字幕／cue 未改，只補各幕 props）、`gensync.py`→sync-table.md；2D 卡 `src/components/three/HudMet.tsx`（kind 以 met- 開頭，9 張）。成片 `out/tech-metrology.v1.mp4`（分段渲染，音軌＝voice.wav＋片尾招牌音 `out/tech-metrology.v1.wav`）。
 - 片長：時間軸 67.9 秒（2038 幀，含 3.2 秒片尾卡）；旁白 9 幕＋片尾卡 s10。留言關鍵字「量測」；片尾預告系列下一支「離子佈植」。
 - 配音：Iapetus＋tech-b，整篇 1 次請求（tts-requests.json 1 筆，原始 76.53 秒、含停頓 4.00 字/秒）。
 - 聲音統一（#56）：以 `.take-e1796e78d6.raw.orig.wav`（未動原檔）為源，先把 ≥0.7 秒的句中停頓（2 處，0.73）修到 0.65，再 `asetrate=0.895 倍,aresample=24000,atempo=1.3408`（音高約 −1.9 半音、整體 ×1.20）。成片音軌 `voice.wav` 量測：含停頓 4.72 字/秒（基準 4.7，+0.4%）、音高中位數 116.5 Hz（基準 114.6，+1.7%）；段落間停頓最長 0.70 秒。整體加速 1.20（未超過 1.25）。
