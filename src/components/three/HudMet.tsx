@@ -44,7 +44,7 @@ const Check: React.FC<{ x: number; y: number; s: number; c: string; o?: number }
 const Prev: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, c = cc(m);
   const a = lit(f, T(o, "flat")), ck = on(f, T(o, "check")), tw = lit(f, T(o, "two"), 0.35), nm = on(f, T(o, "nm")), q = on(f, T(o, "ask"));
-  const x0 = 34, w = 470, yT = 196;          // 膜頂
+  const x0 = 34, w = 470, yT = 184;          // 膜頂
   const scan = x0 + 20 + (w - 40) * ph(f, 0.012, 0, 1);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -52,7 +52,7 @@ const Prev: React.FC<P> = ({ o, f, k, m }) => {
         <g opacity={a}>
           <rect x={x0} y={yT} width={w} height={70} fill={c("film")} /><rect x={x0} y={yT + 70} width={w} height={36} fill={c("si")} />
           {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={x0 + 24 + i * 76} y={yT + 26} width={40} height={30} fill={c("m1")} />)}
-          <text x={x0} y={yT + 140} style={zh(sm(30), H.text2, 800)}>磨平的膜（下層線路埋在裡面）</text>
+          <text x={x0} y={yT + 136} style={zh(sm(30), H.text2, 800)}>磨平的膜（下層線路在裡面）</text>
         </g>
         <g opacity={ck}>
           <path d={`M${x0} ${yT - 4} H${x0 + w}`} stroke={c("lp_good")} strokeWidth={4} strokeDasharray="12 8" />
