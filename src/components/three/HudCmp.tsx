@@ -159,7 +159,7 @@ const Spin: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const sm_ = T(o, "same"), df = T(o, "diff"), ev = T(o, "even");
   const a = lit(f, sm_), b = lit(f, df), e = tween(f, ev, 10, EASE.enter);
-  const cx = 250, cy = 190, R = 128, hr = 38, ho = 62; // 盤半徑、頭半徑、頭中心離盤心
+  const cx = 300, cy = 186, R = 118, hr = 38, ho = 62; // 盤半徑、頭半徑、頭中心離盤心
   const wp = 0.03, wh = 0.072;                         // 角速度（弧度／幀）：頭轉得比盤快，同方向
   const t = Math.max(0, f - sm_ + 20);
   const tr = (r: number, color: string) => {
@@ -191,11 +191,11 @@ const Spin: React.FC<P> = ({ o, f, k, m }) => {
           <Arc cx={cx + ho} cy={cy} r={hr + 14} a0={-30} a1={-140} c={c("rot")} w={5} />
         </g>
         <g opacity={e}>{tr(0, c("lp_bad"))}{tr(hr - 8, c("film"))}{tr(18, c("atomG"))}</g>
-        <text x={cx - R} y={Hh - 14} opacity={a} style={zh(sm(28), H.text, 800)}>研磨盤：慢</text><text x={cx + 20} y={Hh - 14} opacity={b} style={zh(sm(28), H.text, 800)}>研磨頭：快</text>
-        <text x={560} y={118} opacity={a} style={zh(36, H.text, 900)}>① 兩個都朝同一方向轉</text>
-        <text x={560} y={182} opacity={b} style={zh(36, H.text, 900)}>② 轉速不一樣</text>
-        <text x={560} y={246} opacity={e} style={zh(36, c("lp_good"), 900)}>③ 晶圓每一點都磨得到</text>
-        <text x={560} y={296} opacity={e} style={zh(sm(28), H.text2, 700)}>線＝晶圓上三個點走過的路</text>
+        <text x={24} y={Hh - 44} opacity={a} style={zh(sm(28), H.text, 800)}>研磨盤：慢</text><text x={24} y={Hh - 12} opacity={b} style={zh(sm(28), H.text, 800)}>研磨頭：快</text>
+        <text x={580} y={118} opacity={a} style={zh(32, H.text, 900)}>① 兩個都朝同一方向轉</text>
+        <text x={580} y={182} opacity={b} style={zh(32, H.text, 900)}>② 轉速不一樣</text>
+        <text x={580} y={246} opacity={e} style={zh(32, c("lp_good"), 900)}>③ 晶圓每一點都磨得到</text>
+        <text x={580} y={296} opacity={e} style={zh(sm(28), H.text2, 700)}>線＝晶圓三個點的路徑</text>
       </svg>
     </Card>
   );
@@ -282,7 +282,7 @@ const Cond: React.FC<P> = ({ o, f, k, m }) => {
           <path d={`M${sw - 80} 74 h150`} stroke={H.text3} strokeWidth={4} /><path d={`M${sw - 80} 74 l16 -10 v20 z M${sw + 70} 74 l-16 -10 v20 z`} fill={H.text3} />
         </g>
         {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.02, j, 4); return <ellipse key={j} cx={sw + 70 + u * 60} cy={yP - 40 - u * 40} rx={9} ry={3.5} fill={c("flake")} opacity={b * (1 - u)} />; })}
-        <text x={x0} y={yP + 100} opacity={a} style={zh(sm(30), c("flakeRim"), 900)}>墊面被碎屑塞住</text><text x={x1 - 190} y={yP + 100} opacity={e} style={zh(sm(30), c("lp_good"), 900)}>墊面刮新</text>
+        <text x={x0} y={yP + 112} opacity={a} style={zh(sm(30), c("flakeRim"), 900)}>墊面被碎屑塞住</text><text x={x1 - 190} y={yP + 112} opacity={e} style={zh(sm(30), c("lp_good"), 900)}>墊面刮新</text>
         <text x={640} y={118} opacity={a} style={zh(34, H.text, 800)}>① 碎屑塞住墊面</text><text x={640} y={176} opacity={b} style={zh(34, H.text, 800)}>② 鑽石碟來回掃</text><text x={640} y={234} opacity={e} style={zh(34, c("lp_good"), 900)}>③ 墊面刮新</text>
       </svg>
     </Card>
@@ -294,7 +294,7 @@ const Flat: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const pr = T(o, "press"), lo = T(o, "low"), fl = T(o, "flat");
   const a = lit(f, pr), b = lit(f, lo), e = tween(f, fl, 40, EASE.move);
-  const bump = 1 - e, x = 40, w = 520, yF = 200;
+  const bump = 1 - e, x = 40, w = 520, yF = 196;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -302,9 +302,9 @@ const Flat: React.FC<P> = ({ o, f, k, m }) => {
         <Prof x={x} y={yF} w={w} bump={bump} si={c("siB")} siT={c("siF")} film={c("film")} bh={52} fh={50} />
         {[0.1 + 0.13, 0.64 + 0.13].map((u, i) => <Dn key={i} x={x + u * w} y={yF - 84} len={40 + 0 * i + (1 - e) * 26} c={c("press")} w={9} o={a} />)}
         <Dn x={x + 0.46 * w} y={yF - 84} len={18} c={c("press")} w={4} o={0.5 * b} /><Dn x={x + 0.96 * w - 4} y={yF - 84} len={18} c={c("press")} w={4} o={0.5 * b} />
-        <text x={x + 0.1 * w} y={yF - 128} opacity={a} style={zh(sm(30), c("press"), 900)}>凸起：壓力大，磨得快</text>
-        <text x={x + 0.34 * w} y={yF + 150} opacity={b} style={zh(sm(30), H.text, 800)}>凹處：磨得慢</text>
-        <text x={x + 0.1 * w} y={yF + 178} opacity={e} style={zh(sm(34), c("lp_good"), 900)}>最後就變平了</text>
+        <text x={230} y={44} opacity={a} style={zh(sm(30), c("press"), 900)}>凸起：壓力大，磨得快</text>
+        <text x={x + 4} y={yF + 132} opacity={b} style={zh(sm(30), H.text, 800)}>凹處：磨得慢</text>
+        <text x={x + 300} y={yF + 132} opacity={e} style={zh(sm(34), c("lp_good"), 900)}>最後就變平了</text>
         <text x={620} y={118} opacity={a} style={zh(34, H.text, 800)}>① 凸起先被磨掉</text><text x={620} y={176} opacity={b} style={zh(34, H.text, 800)}>② 凹處慢慢跟上</text><text x={620} y={234} opacity={e} style={zh(34, c("lp_good"), 900)}>③ 整面一樣高</text>
       </svg>
     </Card>
