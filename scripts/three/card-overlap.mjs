@@ -214,7 +214,7 @@ for (const r of found) {
   merged.set(key, e);
 }
 const issues = [...merged.values()];
-const res = { slug, issues, stats: { overlays: new Set(list.map((s) => s.i)).size, shots: list.length, fonts: fontsOk, kinds: [...new Set(list.map((s) => s.kind ?? s.type))] } };
+const res = { slug, issues, stats: { overlays: new Set(list.map((s) => s.i)).size, shots: list.length, fonts: fontsOk, kinds: [...new Set(list.map((s) => s.kind ?? s.type))], ranges: Object.values(Object.fromEntries(list.map((s) => [s.i, { overlay: s.i, kind: s.kind ?? s.type, at: s.at, until: s.until }]))) } };
 fs.mkdirSync(path.join(ROOT, "out", slug), { recursive: true });
 fs.writeFileSync(path.join(ROOT, "out", slug, "card-overlap.json"), JSON.stringify(res, null, 1));
 const ne = issues.filter((i) => i.level === "error").length;

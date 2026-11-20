@@ -17,7 +17,7 @@ const atsOf = (o: any, out: number[] = [], depth = 0): number[] => {
   return out;
 };
 
-export type Shot = { i: number; type: string; kind?: string; title?: string; tag?: string; frame: number; why: string; html: string };
+export type Shot = { i: number; at: number; until: number; type: string; kind?: string; title?: string; tag?: string; frame: number; why: string; html: string };
 
 export const shots = (script: any, only?: string): Shot[] => {
   const hud = script.hud, tl = script.timeline;
@@ -41,7 +41,7 @@ export const shots = (script: any, only?: string): Shot[] => {
       if (f < o.at) continue;
       const s = stateAt(m, f);
       const html = renderToStaticMarkup(<HudOverlays m={m} f={f} list={[o]} s={s} />);
-      out.push({ i, type: o.type, kind: oo.kind, title: oo.title, tag: oo.tag, frame: f, why, html });
+      out.push({ i, at: o.at, until: end + 2, type: o.type, kind: oo.kind, title: oo.title, tag: oo.tag, frame: f, why, html });
     }
   });
   return out;
