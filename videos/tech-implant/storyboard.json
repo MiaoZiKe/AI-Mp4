@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 2163,
- "totalSec": 72.1,
+ "totalFrames": 2203,
+ "totalSec": 73.43,
  "scenes": [
   {
    "id": "s1",
    "startFrame": 0,
-   "durationFrames": 245,
+   "durationFrames": 250,
    "startSec": 0,
-   "durationSec": 8.17,
+   "durationSec": 8.33,
    "component": "ThreeScene",
    "beat": "hook",
    "transition": {
@@ -22,7 +22,7 @@
    "cueEarly": [],
    "voice": {
     "startFrame": 1,
-    "endFrame": 225,
+    "endFrame": 229,
     "pauseAfterSec": 0.7
    },
    "cues": [
@@ -35,29 +35,29 @@
     {
      "id": "ok",
      "text": "表面平",
-     "frame": 31,
-     "sceneFrame": 31
+     "frame": 32,
+     "sceneFrame": 32
     },
     {
      "id": "no",
      "text": "還不會導電",
-     "frame": 107,
-     "sceneFrame": 107
+     "frame": 109,
+     "sceneFrame": 109
     },
     {
      "id": "shoot",
      "text": "把離子打進去",
-     "frame": 146,
-     "sceneFrame": 146
+     "frame": 149,
+     "sceneFrame": 149
     },
     {
      "id": "speed",
      "text": "每秒飛一千三百公里",
-     "frame": 180,
-     "sceneFrame": 180
+     "frame": 184,
+     "sceneFrame": 184
     }
    ],
-   "stillFrame": 235,
+   "stillFrame": 240,
    "subtitles": [
     {
      "zh": "上一支量完",
@@ -69,40 +69,126 @@
      "zh": "表面平",
      "en": "Last time we measured:",
      "startFrame": 28,
-     "endFrame": 52
+     "endFrame": 53
     },
     {
      "zh": "膜厚也對",
      "en": "the surface is flat, the film is right.",
-     "startFrame": 52,
-     "endFrame": 83
+     "startFrame": 53,
+     "endFrame": 85
     },
     {
      "zh": "但這片矽還不會導電",
      "en": "But this silicon still can't conduct,",
-     "startFrame": 83,
-     "endFrame": 136
+     "startFrame": 85,
+     "endFrame": 138
     },
     {
      "zh": "所以把離子打進去",
      "en": "so we shoot ions into it,",
-     "startFrame": 136,
-     "endFrame": 176
+     "startFrame": 138,
+     "endFrame": 180
     },
     {
      "zh": "每秒飛一千三百公里",
      "en": "at 1,300 km per second.",
-     "startFrame": 176,
-     "endFrame": 242
+     "startFrame": 180,
+     "endFrame": 247
     }
    ],
    "narration": "上一支量完，表面平，膜厚也對。但這片矽還不會導電，所以把離子打進去，每秒飛一千三百公里。"
   },
   {
    "id": "s2",
-   "startFrame": 235,
+   "startFrame": 240,
+   "durationFrames": 214,
+   "startSec": 8,
+   "durationSec": 7.13,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "fade",
+    "frames": 10
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": {
+    "startFrame": 250,
+    "endFrame": 434,
+    "pauseAfterSec": 0.7
+   },
+   "cues": [
+    {
+     "id": "pure",
+     "text": "純矽導電很差",
+     "frame": 250,
+     "sceneFrame": 10
+    },
+    {
+     "id": "ph",
+     "text": "打進磷",
+     "frame": 291,
+     "sceneFrame": 51
+    },
+    {
+     "id": "ntype",
+     "text": "叫N型",
+     "frame": 335,
+     "sceneFrame": 95
+    },
+    {
+     "id": "bo",
+     "text": "打進硼",
+     "frame": 364,
+     "sceneFrame": 124
+    },
+    {
+     "id": "hole",
+     "text": "留下電洞",
+     "frame": 386,
+     "sceneFrame": 146
+    },
+    {
+     "id": "ptype",
+     "text": "叫P型",
+     "frame": 413,
+     "sceneFrame": 173
+    }
+   ],
+   "stillFrame": 444,
+   "subtitles": [
+    {
+     "zh": "純矽導電很差",
+     "en": "Pure silicon barely conducts.",
+     "startFrame": 247,
+     "endFrame": 287
+    },
+    {
+     "zh": "打進磷多出電子",
+     "en": "Phosphorus adds electrons,",
+     "startFrame": 287,
+     "endFrame": 332
+    },
+    {
+     "zh": "叫N型打進硼留下電洞",
+     "en": "called N-type.",
+     "startFrame": 332,
+     "endFrame": 409
+    },
+    {
+     "zh": "叫P型",
+     "en": "Boron leaves holes,",
+     "startFrame": 409,
+     "endFrame": 451
+    }
+   ],
+   "narration": "純矽導電很差。打進磷多出電子，叫N型；打進硼留下電洞，叫P型。"
+  },
+  {
+   "id": "s3",
+   "startFrame": 444,
    "durationFrames": 212,
-   "startSec": 7.83,
+   "startSec": 14.8,
    "durationSec": 7.07,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -113,187 +199,101 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 245,
-    "endFrame": 426,
-    "pauseAfterSec": 0.7
-   },
-   "cues": [
-    {
-     "id": "pure",
-     "text": "純矽導電很差",
-     "frame": 245,
-     "sceneFrame": 10
-    },
-    {
-     "id": "ph",
-     "text": "打進磷",
-     "frame": 287,
-     "sceneFrame": 52
-    },
-    {
-     "id": "ntype",
-     "text": "叫N型",
-     "frame": 330,
-     "sceneFrame": 95
-    },
-    {
-     "id": "bo",
-     "text": "打進硼",
-     "frame": 358,
-     "sceneFrame": 123
-    },
-    {
-     "id": "hole",
-     "text": "留下電洞",
-     "frame": 380,
-     "sceneFrame": 145
-    },
-    {
-     "id": "ptype",
-     "text": "叫P型",
-     "frame": 405,
-     "sceneFrame": 170
-    }
-   ],
-   "stillFrame": 437,
-   "subtitles": [
-    {
-     "zh": "純矽導電很差",
-     "en": "Pure silicon barely conducts.",
-     "startFrame": 242,
-     "endFrame": 283
-    },
-    {
-     "zh": "打進磷多出電子",
-     "en": "Phosphorus adds electrons,",
-     "startFrame": 283,
-     "endFrame": 326
-    },
-    {
-     "zh": "叫N型打進硼留下電洞",
-     "en": "called N-type.",
-     "startFrame": 326,
-     "endFrame": 402
-    },
-    {
-     "zh": "叫P型",
-     "en": "Boron leaves holes,",
-     "startFrame": 402,
-     "endFrame": 444
-    }
-   ],
-   "narration": "純矽導電很差。打進磷多出電子，叫N型；打進硼留下電洞，叫P型。"
-  },
-  {
-   "id": "s3",
-   "startFrame": 437,
-   "durationFrames": 207,
-   "startSec": 14.57,
-   "durationSec": 6.9,
-   "component": "ThreeScene",
-   "beat": "mechanism",
-   "transition": {
-    "type": "fade",
-    "frames": 10
-   },
-   "camera": null,
-   "cueEarly": [],
-   "voice": {
-    "startFrame": 447,
-    "endFrame": 624,
+    "startFrame": 454,
+    "endFrame": 636,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "mask",
      "text": "光阻先遮住",
-     "frame": 447,
+     "frame": 454,
      "sceneFrame": 10
     },
     {
      "id": "line",
      "text": "離子一路飛過",
-     "frame": 507,
-     "sceneFrame": 70
+     "frame": 515,
+     "sceneFrame": 71
     },
     {
      "id": "src",
      "text": "離子源",
-     "frame": 537,
-     "sceneFrame": 100
+     "frame": 546,
+     "sceneFrame": 102
     },
     {
      "id": "acc",
      "text": "加速管",
-     "frame": 558,
-     "sceneFrame": 121
+     "frame": 568,
+     "sceneFrame": 124
     },
     {
      "id": "mag",
      "text": "分析磁鐵",
-     "frame": 582,
-     "sceneFrame": 145
+     "frame": 592,
+     "sceneFrame": 148
     },
     {
      "id": "end",
      "text": "終端站",
-     "frame": 609,
-     "sceneFrame": 172
+     "frame": 619,
+     "sceneFrame": 175
     }
    ],
-   "stillFrame": 634,
+   "stillFrame": 646,
    "subtitles": [
     {
      "zh": "光阻先遮住",
      "en": "Photoresist first covers the spots to skip.",
-     "startFrame": 444,
-     "endFrame": 469
+     "startFrame": 451,
+     "endFrame": 477
     },
     {
      "zh": "不要打的地方",
      "en": "Photoresist first covers the spots to skip.",
-     "startFrame": 469,
-     "endFrame": 503
+     "startFrame": 477,
+     "endFrame": 511
     },
     {
      "zh": "離子一路飛過",
      "en": "Ions fly through the beam line:",
-     "startFrame": 503,
-     "endFrame": 533
+     "startFrame": 511,
+     "endFrame": 542
     },
     {
      "zh": "離子源",
      "en": "Ions fly through the beam line:",
-     "startFrame": 533,
-     "endFrame": 555
+     "startFrame": 542,
+     "endFrame": 565
     },
     {
      "zh": "加速管",
      "en": "ion source, accelerator tube,",
-     "startFrame": 555,
-     "endFrame": 578
+     "startFrame": 565,
+     "endFrame": 589
     },
     {
      "zh": "分析磁鐵",
      "en": "ion source, accelerator tube,",
-     "startFrame": 578,
-     "endFrame": 605
+     "startFrame": 589,
+     "endFrame": 616
     },
     {
      "zh": "終端站",
      "en": "analyzer magnet, end station.",
-     "startFrame": 605,
-     "endFrame": 641
+     "startFrame": 616,
+     "endFrame": 653
     }
    ],
    "narration": "光阻先遮住不要打的地方。離子一路飛過離子源、加速管、分析磁鐵、終端站。"
   },
   {
    "id": "s4",
-   "startFrame": 634,
-   "durationFrames": 229,
-   "startSec": 21.13,
-   "durationSec": 7.63,
+   "startFrame": 646,
+   "durationFrames": 234,
+   "startSec": 21.53,
+   "durationSec": 7.8,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -303,83 +303,83 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 644,
-    "endFrame": 843,
+    "startFrame": 656,
+    "endFrame": 860,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "gas",
      "text": "把氣體",
-     "frame": 658,
+     "frame": 670,
      "sceneFrame": 24
     },
     {
      "id": "plasma",
      "text": "變成電漿",
-     "frame": 675,
-     "sceneFrame": 41
+     "frame": 688,
+     "sceneFrame": 42
     },
     {
      "id": "ph3",
      "text": "磷化氫",
-     "frame": 721,
-     "sceneFrame": 87
+     "frame": 734,
+     "sceneFrame": 88
     },
     {
      "id": "bf3",
      "text": "三氟化硼",
-     "frame": 763,
-     "sceneFrame": 129
+     "frame": 777,
+     "sceneFrame": 131
     },
     {
      "id": "pull",
      "text": "把離子拉出來",
-     "frame": 815,
-     "sceneFrame": 181
+     "frame": 830,
+     "sceneFrame": 184
     }
    ],
-   "stillFrame": 853,
+   "stillFrame": 870,
    "subtitles": [
     {
      "zh": "離子源把氣體",
      "en": "The ion source turns gas into plasma.",
-     "startFrame": 641,
-     "endFrame": 672
+     "startFrame": 653,
+     "endFrame": 684
     },
     {
      "zh": "變成電漿",
      "en": "The ion source turns gas into plasma.",
-     "startFrame": 672,
-     "endFrame": 704
+     "startFrame": 684,
+     "endFrame": 716
     },
     {
      "zh": "磷用磷化氫",
      "en": "Phosphine for phosphorus,",
-     "startFrame": 704,
-     "endFrame": 742
+     "startFrame": 716,
+     "endFrame": 756
     },
     {
      "zh": "硼用三氟化硼",
      "en": "boron trifluoride for boron,",
-     "startFrame": 742,
-     "endFrame": 789
+     "startFrame": 756,
+     "endFrame": 805
     },
     {
      "zh": "再用電場把離子拉出來",
      "en": "then an electric field pulls the ions out.",
-     "startFrame": 789,
-     "endFrame": 860
+     "startFrame": 805,
+     "endFrame": 877
     }
    ],
    "narration": "離子源把氣體變成電漿。磷用磷化氫，硼用三氟化硼，再用電場把離子拉出來。"
   },
   {
    "id": "s5",
-   "startFrame": 853,
-   "durationFrames": 223,
-   "startSec": 28.43,
-   "durationSec": 7.43,
+   "startFrame": 870,
+   "durationFrames": 228,
+   "startSec": 29,
+   "durationSec": 7.6,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -389,71 +389,71 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 863,
-    "endFrame": 1056,
+    "startFrame": 880,
+    "endFrame": 1077,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "ring",
      "text": "一環一環加電壓",
-     "frame": 879,
+     "frame": 896,
      "sceneFrame": 26
     },
     {
      "id": "fast",
      "text": "越跑越快",
-     "frame": 929,
-     "sceneFrame": 76
+     "frame": 947,
+     "sceneFrame": 77
     },
     {
      "id": "kev",
      "text": "十萬電子伏特",
-     "frame": 960,
-     "sceneFrame": 107
+     "frame": 980,
+     "sceneFrame": 110
     },
     {
      "id": "v",
      "text": "每秒約一千三百公里",
-     "frame": 1011,
-     "sceneFrame": 158
+     "frame": 1032,
+     "sceneFrame": 162
     }
    ],
-   "stillFrame": 1066,
+   "stillFrame": 1088,
    "subtitles": [
     {
      "zh": "加速管一環一環加電壓",
      "en": "The accelerator tube adds voltage ring by ring,",
-     "startFrame": 860,
-     "endFrame": 915
+     "startFrame": 877,
+     "endFrame": 933
     },
     {
      "zh": "離子越跑越快",
      "en": "so ions keep getting faster.",
-     "startFrame": 915,
-     "endFrame": 957
+     "startFrame": 933,
+     "endFrame": 976
     },
     {
      "zh": "十萬電子伏特的硼離子",
      "en": "A 100 keV boron ion",
-     "startFrame": 957,
-     "endFrame": 1008
+     "startFrame": 976,
+     "endFrame": 1028
     },
     {
      "zh": "每秒約一千三百公里",
      "en": "moves about 1,300 km per second.",
-     "startFrame": 1008,
-     "endFrame": 1073
+     "startFrame": 1028,
+     "endFrame": 1095
     }
    ],
    "narration": "加速管一環一環加電壓，離子越跑越快。十萬電子伏特的硼離子，每秒約一千三百公里。"
   },
   {
    "id": "s6",
-   "startFrame": 1066,
-   "durationFrames": 248,
-   "startSec": 35.53,
-   "durationSec": 8.27,
+   "startFrame": 1088,
+   "durationFrames": 253,
+   "startSec": 36.27,
+   "durationSec": 8.43,
    "component": "ThreeScene",
    "beat": "twist",
    "transition": {
@@ -463,83 +463,83 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 1076,
-    "endFrame": 1294,
+    "startFrame": 1098,
+    "endFrame": 1320,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "all",
      "text": "什麼都有",
-     "frame": 1099,
-     "sceneFrame": 33
+     "frame": 1122,
+     "sceneFrame": 34
     },
     {
      "id": "bend",
      "text": "讓離子轉彎",
-     "frame": 1147,
-     "sceneFrame": 81
+     "frame": 1170,
+     "sceneFrame": 82
     },
     {
      "id": "miss",
      "text": "轉不過去",
-     "frame": 1206,
-     "sceneFrame": 140
+     "frame": 1230,
+     "sceneFrame": 142
     },
     {
      "id": "wall",
      "text": "撞牆被擋掉",
-     "frame": 1230,
-     "sceneFrame": 164
+     "frame": 1255,
+     "sceneFrame": 167
     },
     {
      "id": "pass",
      "text": "只剩對的過關",
-     "frame": 1263,
-     "sceneFrame": 197
+     "frame": 1289,
+     "sceneFrame": 201
     }
    ],
-   "stillFrame": 1304,
+   "stillFrame": 1331,
    "subtitles": [
     {
      "zh": "但離子源裡什麼都有",
      "en": "But the source makes all kinds of ions.",
-     "startFrame": 1073,
-     "endFrame": 1122
+     "startFrame": 1095,
+     "endFrame": 1144
     },
     {
      "zh": "分析磁鐵讓離子轉彎",
      "en": "The analyzer magnet bends the beam;",
-     "startFrame": 1122,
-     "endFrame": 1176
+     "startFrame": 1144,
+     "endFrame": 1200
     },
     {
      "zh": "太重太輕的轉不過去",
      "en": "too heavy or too light can't turn,",
-     "startFrame": 1176,
-     "endFrame": 1226
+     "startFrame": 1200,
+     "endFrame": 1251
     },
     {
      "zh": "撞牆被擋掉",
      "en": "they hit the wall and stop,",
-     "startFrame": 1226,
-     "endFrame": 1260
+     "startFrame": 1251,
+     "endFrame": 1285
     },
     {
      "zh": "只剩對的過關",
      "en": "and only the right ones pass.",
-     "startFrame": 1260,
-     "endFrame": 1311
+     "startFrame": 1285,
+     "endFrame": 1338
     }
    ],
    "narration": "但離子源裡什麼都有。分析磁鐵讓離子轉彎，太重太輕的轉不過去，撞牆被擋掉，只剩對的過關。"
   },
   {
    "id": "s7",
-   "startFrame": 1304,
-   "durationFrames": 190,
-   "startSec": 43.47,
-   "durationSec": 6.33,
+   "startFrame": 1331,
+   "durationFrames": 194,
+   "startSec": 44.37,
+   "durationSec": 6.47,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -549,83 +549,83 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 1314,
-    "endFrame": 1474,
+    "startFrame": 1341,
+    "endFrame": 1505,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "enter",
      "text": "進終端站",
-     "frame": 1332,
+     "frame": 1359,
      "sceneFrame": 28
     },
     {
      "id": "sweep",
      "text": "射束左右掃",
-     "frame": 1362,
-     "sceneFrame": 58
+     "frame": 1390,
+     "sceneFrame": 59
     },
     {
      "id": "move",
      "text": "晶圓上下動",
-     "frame": 1393,
-     "sceneFrame": 89
+     "frame": 1422,
+     "sceneFrame": 91
     },
     {
      "id": "every",
      "text": "每一點",
-     "frame": 1428,
-     "sceneFrame": 124
+     "frame": 1458,
+     "sceneFrame": 127
     },
     {
      "id": "same",
      "text": "打進的量才一樣",
-     "frame": 1443,
-     "sceneFrame": 139
+     "frame": 1472,
+     "sceneFrame": 141
     }
    ],
-   "stillFrame": 1484,
+   "stillFrame": 1515,
    "subtitles": [
     {
      "zh": "對的離子進終端站",
      "en": "The right ions enter the end station.",
-     "startFrame": 1311,
-     "endFrame": 1359
+     "startFrame": 1338,
+     "endFrame": 1387
     },
     {
      "zh": "射束左右掃",
      "en": "The beam sweeps side to side,",
-     "startFrame": 1359,
-     "endFrame": 1389
+     "startFrame": 1387,
+     "endFrame": 1419
     },
     {
      "zh": "晶圓上下動",
      "en": "the wafer moves up and down,",
-     "startFrame": 1389,
-     "endFrame": 1425
+     "startFrame": 1419,
+     "endFrame": 1454
     },
     {
      "zh": "每一點",
      "en": "so every point",
-     "startFrame": 1425,
-     "endFrame": 1439
+     "startFrame": 1454,
+     "endFrame": 1468
     },
     {
      "zh": "打進的量才一樣",
      "en": "gets the same dose.",
-     "startFrame": 1439,
-     "endFrame": 1491
+     "startFrame": 1468,
+     "endFrame": 1522
     }
    ],
    "narration": "對的離子進終端站。射束左右掃，晶圓上下動，每一點打進的量才一樣。"
   },
   {
    "id": "s8",
-   "startFrame": 1484,
-   "durationFrames": 209,
-   "startSec": 49.47,
-   "durationSec": 6.97,
+   "startFrame": 1515,
+   "durationFrames": 212,
+   "startSec": 50.5,
+   "durationSec": 7.07,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
@@ -635,83 +635,83 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 1494,
-    "endFrame": 1672,
+    "startFrame": 1525,
+    "endFrame": 1707,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "in",
      "text": "打進矽",
-     "frame": 1503,
+     "frame": 1534,
      "sceneFrame": 19
     },
     {
      "id": "slow",
      "text": "一路撞一路慢",
-     "frame": 1524,
+     "frame": 1555,
      "sceneFrame": 40
     },
     {
      "id": "stop",
      "text": "停在某個深度",
-     "frame": 1558,
-     "sceneFrame": 74
+     "frame": 1591,
+     "sceneFrame": 76
     },
     {
      "id": "energy",
      "text": "能量決定多深",
-     "frame": 1596,
-     "sceneFrame": 112
+     "frame": 1628,
+     "sceneFrame": 113
     },
     {
      "id": "dose",
      "text": "打多久決定多濃",
-     "frame": 1634,
-     "sceneFrame": 150
+     "frame": 1667,
+     "sceneFrame": 152
     }
    ],
-   "stillFrame": 1683,
+   "stillFrame": 1717,
    "subtitles": [
     {
      "zh": "離子打進矽",
      "en": "Ions drive into silicon,",
-     "startFrame": 1491,
-     "endFrame": 1520
+     "startFrame": 1522,
+     "endFrame": 1552
     },
     {
      "zh": "一路撞一路慢",
      "en": "slowing with every collision,",
-     "startFrame": 1520,
-     "endFrame": 1555
+     "startFrame": 1552,
+     "endFrame": 1588
     },
     {
      "zh": "停在某個深度",
      "en": "and stop at a certain depth.",
-     "startFrame": 1555,
-     "endFrame": 1593
+     "startFrame": 1588,
+     "endFrame": 1625
     },
     {
      "zh": "能量決定多深",
      "en": "Energy sets how deep,",
-     "startFrame": 1593,
-     "endFrame": 1630
+     "startFrame": 1625,
+     "endFrame": 1664
     },
     {
      "zh": "打多久決定多濃",
      "en": "dose sets how dense.",
-     "startFrame": 1630,
-     "endFrame": 1690
+     "startFrame": 1664,
+     "endFrame": 1724
     }
    ],
    "narration": "離子打進矽，一路撞一路慢，停在某個深度。能量決定多深，打多久決定多濃。"
   },
   {
    "id": "s9",
-   "startFrame": 1683,
-   "durationFrames": 144,
-   "startSec": 56.1,
-   "durationSec": 4.8,
+   "startFrame": 1717,
+   "durationFrames": 146,
+   "startSec": 57.23,
+   "durationSec": 4.87,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
@@ -721,59 +721,59 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 1693,
-    "endFrame": 1806,
+    "startFrame": 1727,
+    "endFrame": 1843,
     "pauseAfterSec": 0.7
    },
    "cues": [
     {
      "id": "am",
      "text": "應用材料",
-     "frame": 1709,
+     "frame": 1743,
      "sceneFrame": 26
     },
     {
      "id": "ax",
      "text": "亞舍立",
-     "frame": 1733,
-     "sceneFrame": 50
+     "frame": 1768,
+     "sceneFrame": 51
     },
     {
      "id": "gas",
      "text": "植入氣體",
-     "frame": 1756,
-     "sceneFrame": 73
+     "frame": 1791,
+     "sceneFrame": 74
     },
     {
      "id": "jc",
      "text": "兆捷",
-     "frame": 1793,
-     "sceneFrame": 110
+     "frame": 1830,
+     "sceneFrame": 113
     }
    ],
-   "stillFrame": 1817,
+   "stillFrame": 1853,
    "subtitles": [
     {
      "zh": "機台有應用材料和亞舍立",
      "en": "Tools: Applied Materials and Axcelis.",
-     "startFrame": 1690,
-     "endFrame": 1752
+     "startFrame": 1724,
+     "endFrame": 1788
     },
     {
      "zh": "植入氣體有台灣的兆捷",
      "en": "Implant gases: Taiwan's Jmax.",
-     "startFrame": 1752,
-     "endFrame": 1824
+     "startFrame": 1788,
+     "endFrame": 1860
     }
    ],
    "narration": "機台有應用材料和亞舍立，植入氣體有台灣的兆捷。"
   },
   {
    "id": "s10",
-   "startFrame": 1817,
-   "durationFrames": 260,
-   "startSec": 60.57,
-   "durationSec": 8.67,
+   "startFrame": 1853,
+   "durationFrames": 264,
+   "startSec": 61.77,
+   "durationSec": 8.8,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
@@ -783,106 +783,106 @@
    "camera": null,
    "cueEarly": [],
    "voice": {
-    "startFrame": 1827,
-    "endFrame": 2069,
+    "startFrame": 1863,
+    "endFrame": 2109,
     "pauseAfterSec": null
    },
    "cues": [
     {
      "id": "so",
      "text": "這樣矽就有了",
-     "frame": 1827,
+     "frame": 1863,
      "sceneFrame": 10
     },
     {
      "id": "zone",
      "text": "導電的區域",
-     "frame": 1854,
+     "frame": 1890,
      "sceneFrame": 37
     },
     {
      "id": "hard",
      "text": "打到焦硬",
-     "frame": 1908,
-     "sceneFrame": 91
+     "frame": 1943,
+     "sceneFrame": 90
     },
     {
      "id": "dirty",
      "text": "表面也髒",
-     "frame": 1932,
+     "frame": 1968,
      "sceneFrame": 115
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 1969,
-     "sceneFrame": 152
+     "frame": 2007,
+     "sceneFrame": 154
     },
     {
      "id": "kw",
      "text": "留言離子",
-     "frame": 2015,
-     "sceneFrame": 198
+     "frame": 2053,
+     "sceneFrame": 200
     }
    ],
-   "stillFrame": 2067,
+   "stillFrame": 2107,
    "subtitles": [
     {
      "zh": "這樣矽就有了",
      "en": "So silicon now has",
-     "startFrame": 1824,
-     "endFrame": 1850
+     "startFrame": 1860,
+     "endFrame": 1887
     },
     {
      "zh": "導電的區域",
      "en": "its conductive zones.",
-     "startFrame": 1850,
-     "endFrame": 1883
+     "startFrame": 1887,
+     "endFrame": 1919
     },
     {
      "zh": "但光阻被打到焦硬",
      "en": "But the resist is baked hard,",
-     "startFrame": 1883,
-     "endFrame": 1928
+     "startFrame": 1919,
+     "endFrame": 1964
     },
     {
      "zh": "表面也髒",
      "en": "and the surface is dirty,",
-     "startFrame": 1928,
-     "endFrame": 1958
+     "startFrame": 1964,
+     "endFrame": 1995
     },
     {
      "zh": "所以下一支",
      "en": "so next:",
-     "startFrame": 1958,
-     "endFrame": 1983
+     "startFrame": 1995,
+     "endFrame": 2020
     },
     {
      "zh": "看清洗",
      "en": "cleaning.",
-     "startFrame": 1983,
-     "endFrame": 2011
+     "startFrame": 2020,
+     "endFrame": 2050
     },
     {
      "zh": "留言離子",
      "en": "Comment \"離子\"",
-     "startFrame": 2011,
-     "endFrame": 2035
+     "startFrame": 2050,
+     "endFrame": 2074
     },
     {
      "zh": "看完整解說",
      "en": "for the full notes.",
-     "startFrame": 2035,
-     "endFrame": 2077
+     "startFrame": 2074,
+     "endFrame": 2117
     }
    ],
    "narration": "這樣矽就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。"
   },
   {
    "id": "s11",
-   "startFrame": 2067,
+   "startFrame": 2107,
    "durationFrames": 96,
-   "startSec": 68.9,
+   "startSec": 70.23,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
@@ -894,7 +894,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 2151,
+   "stillFrame": 2191,
    "subtitles": []
   }
  ]
