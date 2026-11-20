@@ -36,6 +36,11 @@
 | 反應腔爆炸＋四段運作（氣流、反應、濺鍍、ALD） | tech-deposition v3 | videos/tech-deposition/ | 四種運作各有 2D 卡 |
 | 分段渲染（可續渲） | — | scripts/three/chunk-render.sh | 容器重開不用重來 |
 | flow 路徑自動檢查 | — | scripts/three/flow-check.mjs | 抓流動物懸空 |
+| 離子佈植機整台（氣瓶櫃→離子源→加速管→分析磁鐵→射束管→終端站） | tech-implant v1 0:00、0:20 | videos/tech-implant/genmodel.py | 沿用 test-ion-opus 並補氣瓶櫃、空心離子源腔（看得到電漿與電子） |
+| 帶「＋」離子、等加速度、拖尾隨速度變長、撞壁火花 | tech-implant v1 0:29–0:43 | genmodel.py `add_ion`／`path_bad` | 用 shift 串路徑（fallOut＝t²），不改共用檔 |
+| 放大鏡＋方框＋四條引線把剖面連回晶圓 | tech-implant v1 0:08、0:50 | genmodel.py「放大鏡」段 | 剖面不再浮在半空 |
+| 主素材框 px_*（給 layout-check） | tech-implant 全片 | genmodel.py `PX` | 機台近景時層外框會投影到鏡頭後面變無限大；改用看不見的主體框，每幕一個 |
+| 卡片時間全部用 cue（imp-*） | tech-implant | src/components/three/HudImplant.tsx | 結構一開始完整，念到才亮 |
 
 ## 踩過的坑（不要再犯）
 - 說明卡空白／淡到看不清／只剩條紋方塊（11/18 五支 v1 全退）。
@@ -48,3 +53,9 @@
 
 ## 每支復盤（做完就加一段：比上一支好在哪、花多久、新增哪些可重用的、下次要改什麼）
 （從 tech-cmp 開始填）
+
+### tech-implant 離子佈植（2026/11/20，Opus 建模＋成片）
+- 比上一支好在哪：主角機台直接沿用比較片 test-ion-opus 的模型，只補缺點（剖面用放大鏡＋引線連回晶圓、遠景離子放大 2 倍、標籤往外推、開場置中），建模時間省一半；流動物依物理種類分形狀（氣體＝分子、電子＝小藍點、離子＝球＋「＋」、電場＝箭頭、碎屑＝薄片）；3D 與 2D 卡同一份 cue。
+- 花多久：建模與動作約 1.5 小時、版面調到 layout-check 0 error 約 40 分鐘、渲染見 README。
+- 新增可重用：`A(f)`（絕對幀換成「幕id:cue±幀」）、主素材框 `px_*`、機台零件自動分「貼地底座／後方設備（bg）」與「射束高度主體」、HudImplant 的 Ion／Ele／Lattice 小元件。
+- 下次改什麼：遠景（s1、s9）整台機台只佔畫面中段約 400px 高，主體偏小；分析磁鐵掀蓋可以再做成真正的爆炸剖析（線圈、磁極、飛行腔分層標名）；離子 shift 數量大（7,600 筆），之後改成一條「離子流」動作會更省。
