@@ -213,7 +213,7 @@ NOTE = "查證截至 2026/11/20"
 script = {
  "slug": "tech-metrology", "title": "量測與檢測：每做完一步，都要量一次（科技透明圈）", "asOf": "2026/11/20", "styleVersion": 3, "stage": "three",
  "channel": {"name": "科技透明圈", "tag": "放大來看", "slogan": "一支講透一件事"}, "hudSkin": "light",
- "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
+ "voice": {"voiceName": "Iapetus", "model": "gemini-3.8-flash-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
            "_說明": "念稿：docs/prompts/tech-metrology-旁白.txt；整篇 1 次請求"},
  "hud": {"levels": [
    {"id": "tool", "label": "量測檢測機台", "en": "METROLOGY TOOL", "field": "3 m", "ruler": "1 m", "art": "none", "handoff3D": True, "readout": True, "note": NOTE, "noteAlways": True},
