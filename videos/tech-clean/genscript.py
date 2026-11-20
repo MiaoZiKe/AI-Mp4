@@ -2,11 +2,11 @@
 只寫前製資料（旁白、cue、字幕、hook、片尾卡、hud、voice）；3D 動作（zoom/shot/shift/run/labels/overlay）由 genmodel.py 依 visual-spec.md 併進來。"""
 import json, re, os
 HERE = os.path.dirname(os.path.abspath(__file__))
-STYLE = "知識科普頻道的旁白。男聲，音高比一般男聲稍高一點、較明亮，不要低沉。台灣口音，不捲舌、不兒化，咬字清楚。語氣平穩、中性，從頭到尾維持同一個平穩的語調，不帶任何情緒：不興奮、不好奇、不溫柔、不戲劇化，不像跟朋友聊天，也不像主播或廣告。問句也用平穩的陳述語調念，句尾不刻意上揚。不加語助詞，照稿念，不加字。語速略快、節奏平均。所有字詞用台灣國語標準讀音；疊對（ㄉㄧㄝˊ ㄉㄨㄟˋ）、電子束（ㄉㄧㄢˋ ㄗˇ ㄕㄨˋ）、左右（ㄗㄨㄛˇ ㄧㄡˋ）。直接說："
+STYLE_38_STOPPED = "知識科普頻道的旁白。男聲，音高比一般男聲稍高一點、較明亮，不要低沉。台灣口音，不捲舌、不兒化，咬字清楚。語氣平穩、中性，從頭到尾維持同一個平穩的語調，不帶任何情緒：不興奮、不好奇、不溫柔、不戲劇化，不像跟朋友聊天，也不像主播或廣告。問句也用平穩的陳述語調念，句尾不刻意上揚。不加語助詞，照稿念，不加字。語速略快、節奏平均。所有字詞用台灣國語標準讀音；疊對（ㄉㄧㄝˊ ㄉㄨㄟˋ）、電子束（ㄉㄧㄢˋ ㄗˇ ㄕㄨˋ）、左右（ㄗㄨㄛˇ ㄧㄡˋ）。直接說："
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "上一支打完離子，光阻焦硬，表面也髒。先進晶片要洗五十次以上，為什麼？",
+ "上一支打完離子，光阻焦硬，表面也髒。先進晶片要洗，五十次以上，為什麼？",
  ["上一支打完離子", "光阻焦硬，表面也髒", "先進晶片要洗五十次以上", "為什麼？"],
  ["After implanting ions,", "the resist is baked hard and the surface is dirty.", "Advanced chips get cleaned 50+ times.", "Why?"],
  [("prev", "打完離子"), ("hard", "光阻焦硬"), ("dirty", "表面也髒"), ("n50", "五十次以上"), ("why", "為什麼")],
@@ -90,10 +90,8 @@ levels = [lv("tool", "單片清洗機", "SINGLE-WAFER CLEANER", "3 m", "1 m"), l
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-clean", "title": "清洗：先進晶片為什麼要洗五十次以上（科技透明圈）", "asOf": "2026/11/20", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "放大來看", "slogan": "一支講透一件事"}, "hudSkin": "light",
-       "voice": {"voiceName": "Iapetus", "model": "gemini-3.8-flash-tts", "styleText": STYLE,
-                 "_說明_金手指": "2026-11-20 Andy：旁白金手指（docs/prompts/tech-旁白金手指.md），Style 原文一字不改",
-                 "styleMode": "profile", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
-                 "_說明": "念稿：docs/prompts/tech-clean-旁白.txt；整篇 1 次請求（TTS_NO_RETRY=1）"},
+       "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
+                 "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；念稿 docs/prompts/tech-clean-旁白.txt；整篇 1 次請求（TTS_NO_RETRY=1）"},
        "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "Schematic – not to scale", "zh": "示意圖，非實際比例"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
        "cover": {"title": ["晶片要洗", "五十次以上"], "sub": "清洗", "frame": 40}, "sample": False, "scenes": scenes}
 json.dump(out, open(os.path.join(HERE, "script.json"), "w"), ensure_ascii=False, indent=1)

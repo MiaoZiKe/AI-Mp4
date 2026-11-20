@@ -64,7 +64,7 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
           <text x={324} y={292} style={zh(30, H.text2, 800)}>每做一步，就洗一次</text>
         </g>
         <Sep x={644} />
-        <g opacity={0.3 + 0.7 * n50}>
+        <g opacity={n50}>
           <text x={790} y={176} textAnchor="middle" style={zh(96, DIW, 900)}>{`${n}+`}</text>
           <text x={790} y={226} textAnchor="middle" style={zh(32, H.text, 900)}>次清洗</text>
         </g>
