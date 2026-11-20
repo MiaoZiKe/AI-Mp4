@@ -26,7 +26,7 @@ type Res = { mat: THREE.MeshBasicMaterial; mats: THREE.MeshBasicMaterial[]; halo
 
 export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s }) => {
   const acts = model.actions ?? {};
-  const geo = useMemo(() => ({ ball: new THREE.SphereGeometry(1, 14, 10), cone: new THREE.ConeGeometry(0.75, 2, 12), rod: new THREE.CylinderGeometry(1, 1, 1, 8) }), []);
+  const geo = useMemo(() => ({ ball: new THREE.SphereGeometry(1, 14, 10), cone: new THREE.ConeGeometry(0.75, 2, 12), rod: new THREE.CylinderGeometry(1, 1, 1, 8), box: new THREE.BoxGeometry(1, 1, 1), disc: new THREE.CylinderGeometry(1, 1, 0.18, 10) }), []);
   const res = useMemo(() => {
     const out: Record<string, Res> = {};
     for (const [id, d] of Object.entries(acts)) {
@@ -116,6 +116,26 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
           const mats = r.mats.slice(id2 * (2 + trail), (id2 + 1) * (2 + trail));
           const core = mats[0] ?? r.mats[i];
           core.opacity = vis * e * fadeK;
+          // 2026/11/20 tech-cmp 新增的流動物形狀（只在 shape 寫這幾個值時走這裡，舊片不受影響）：
+          //   liquid＝水滴形（沿行進方向拉長的橢球）＋整條路徑一條連續液體帶（d.band＝帶寬、d.bandO＝帶的不透明度）｜grit＝磨粒（小方塊，翻滾）｜
+          //   mol＝分子（兩顆球黏在一起，慢慢轉）｜flake＝碎屑（薄片，翻滾）
+          if (d.shape === "liquid") {
+            if (ln === 0 && i === 0) { r.mat.opacity = (d.bandO ?? 0.5) * vis; pts0.slice(1).forEach((p, j) => rod(`${id}-b${j}`, pts0[j], p, d.band ?? 0.12, r.mat)); }
+            nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.ball} material={core} position={pos} quaternion={new THREE.Quaternion().setFromUnitVectors(UP, dir)} scale={[size * 0.62, size * 1.5, size * 0.62]} renderOrder={10} frustumCulled={false} />);
+            continue;
+          }
+          if (d.shape === "grit" || d.shape === "flake") {
+            const tq = new THREE.Quaternion().setFromEuler(new THREE.Euler(raw * 9 + id2, raw * 7 + id2 * 2, id2));
+            nodes.push(<mesh key={`${id}-p${id2}`} geometry={d.shape === "grit" ? geo.box : geo.disc} material={core} position={pos} quaternion={tq} scale={d.shape === "grit" ? size : [size * 1.5, size * 1.5, size * 1.5]} renderOrder={10} frustumCulled={false} />);
+            if (d.rim && mats[1]) { mats[1].opacity = vis * e * fadeK * (d.rimO ?? 0.9); nodes.push(<mesh key={`${id}-r${id2}`} geometry={d.shape === "grit" ? geo.box : geo.disc} material={mats[1]} position={pos} quaternion={tq} scale={d.shape === "grit" ? size * 1.45 : size * 1.9} renderOrder={9} frustumCulled={false} />); }
+            continue;
+          }
+          if (d.shape === "mol") {
+            const ax = new THREE.Vector3(Math.cos(raw * 5 + id2), Math.sin(raw * 4 + id2 * 1.3), Math.sin(raw * 3 + id2)).normalize();
+            nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.ball} material={core} position={pos.clone().addScaledVector(ax, size * 0.55)} scale={size * 0.8} renderOrder={10} frustumCulled={false} />);
+            if (mats[1]) { mats[1].opacity = vis * e * fadeK; nodes.push(<mesh key={`${id}-r${id2}`} geometry={geo.ball} material={mats[1]} position={pos.clone().addScaledVector(ax, -size * 0.55)} scale={size * 0.62} renderOrder={10} frustumCulled={false} />); }
+            continue;
+          }
           if (d.shape === "arrow") { nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.cone} material={core} position={pos} quaternion={new THREE.Quaternion().setFromUnitVectors(UP, dir)} scale={size} renderOrder={9} frustumCulled={false} />); continue; }
           nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.ball} material={core} position={pos} scale={size * (0.7 + 0.3 * e)} renderOrder={10} frustumCulled={false} />);
           if (d.rim && mats[1]) { mats[1].opacity = vis * e * fadeK * (d.rimO ?? 0.9); nodes.push(<mesh key={`${id}-r${id2}`} geometry={geo.ball} material={mats[1]} position={pos} scale={size * (d.rimScale ?? 1.55) * (0.7 + 0.3 * e)} renderOrder={9} frustumCulled={false} />); }

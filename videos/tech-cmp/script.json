@@ -1,0 +1,2499 @@
+{
+ "slug": "tech-cmp",
+ "title": "化學機械研磨：每一層都要磨平（科技透明圈）",
+ "asOf": "2026/11/20",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-cmp-旁白.txt；整篇 1 次請求"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "CMP 機台",
+    "en": "CMP TOOL",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "handoff3D": true,
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   },
+   {
+    "id": "head",
+    "label": "研磨頭",
+    "en": "CARRIER HEAD",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   },
+   {
+    "id": "surface",
+    "label": "晶圓表面",
+    "en": "WAFER SURFACE",
+    "field": "300 nm",
+    "ruler": "100 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "每一層",
+   "都要磨平"
+  ],
+  "sub": "化學機械研磨",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一支的膜，長得凹凸不平。下一層曝光，光就會對不準。那要怎麼把它磨平？",
+   "tts": "上一支的膜，長得凹凸不平。下一層曝光，光就會對不準。那要怎麼把它磨平？",
+   "subtitle": {
+    "zh": "上一支的膜\n長得凹凸不平\n下一層曝光\n光就會對不準\n那要怎麼把它磨平？",
+    "en": "Last time's film | grew bumpy and uneven. | For the next exposure, | the light won't focus right. | So how do we grind it flat?"
+   },
+   "keywords": [
+    "凹凸不平",
+    "對不準",
+    "磨平"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "上一支的膜"
+    },
+    {
+     "id": "bump",
+     "text": "凹凸不平"
+    },
+    {
+     "id": "expo",
+     "text": "下一層曝光"
+    },
+    {
+     "id": "mis",
+     "text": "對不準"
+    },
+    {
+     "id": "ask",
+     "text": "怎麼把它磨平"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "hook": {
+     "kicker": "接上一支｜怎麼磨平？",
+     "title": "膜凹凸不平",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 120,
+      "y": 2.0,
+      "d": 76,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_softlit",
+      "at": "start",
+      "until": "expo-4",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray0",
+      "at": "expo",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray1",
+      "at": "expo",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray2",
+      "at": "expo",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray3",
+      "at": "expo",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray4",
+      "at": "expo",
+      "until": "s3:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_bumpbad",
+      "at": "mis",
+      "until": "s3:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_b1",
+      "text": "凸起",
+      "en": "Bump",
+      "color": "coral",
+      "at": "bump",
+      "until": "expo-6"
+     },
+     {
+      "part": "w_dip",
+      "text": "凹下去",
+      "en": "Dip",
+      "color": "blue",
+      "at": "bump+8",
+      "until": "expo-6"
+     },
+     {
+      "part": "w_lens",
+      "text": "曝光的光",
+      "en": "Exposure light",
+      "color": "amber",
+      "at": "expo",
+      "until": "ask-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-prev",
+      "at": "prev+4",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "上一支的結果",
+      "tag": "示意，非實際比例",
+      "t": {
+       "bump": {
+        "at": "bump"
+       },
+       "mis": {
+        "at": "mis"
+       },
+       "ask": {
+        "at": "ask"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "上一支：薄膜沉積；曝光景深通則"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "曝光的景深很淺，高低差太大，圖案就會糊掉，所以每長一層，就要磨平。",
+   "tts": "曝光的景深很淺，高低差太大，圖案就會糊掉，所以每長一層，就要磨平。",
+   "subtitle": {
+    "zh": "曝光的景深很淺\n高低差太大\n圖案就會糊掉\n所以每長一層\n就要磨平",
+    "en": "Exposure depth of focus is shallow, | the height gap is too big, | so patterns blur. | So after every layer, | we must grind it flat."
+   },
+   "keywords": [
+    "景深很淺",
+    "高低差",
+    "磨平"
+   ],
+   "cues": [
+    {
+     "id": "depth",
+     "text": "景深很淺"
+    },
+    {
+     "id": "diff",
+     "text": "高低差太大"
+    },
+    {
+     "id": "blur",
+     "text": "圖案就會糊掉"
+    },
+    {
+     "id": "layer",
+     "text": "每長一層"
+    },
+    {
+     "id": "flat",
+     "text": "就要磨平"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 2.0,
+      "d": 76,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ray0",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_ray1",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_ray2",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_ray3",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_ray4",
+      "at": "start-2",
+      "until": "s3:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_bumpbad",
+      "at": "diff",
+      "until": "s3:start-2",
+      "ramp": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_focus",
+      "text": "對焦的那一層",
+      "en": "Focus plane",
+      "color": "amber",
+      "at": "depth",
+      "until": "diff-6"
+     },
+     {
+      "part": "w_b1",
+      "text": "凸起失焦",
+      "en": "Out of focus",
+      "color": "coral",
+      "at": "blur",
+      "until": "flat-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-why",
+      "at": "start+2",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "為什麼要磨平",
+      "tag": "示意：曝光景深",
+      "t": {
+       "depth": {
+        "at": "depth"
+       },
+       "diff": {
+        "at": "diff"
+       },
+       "blur": {
+        "at": "blur"
+       },
+       "flat": {
+        "at": "flat"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "曝光景深通則；科技新報「什麼是 CMP」"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "這叫化學機械研磨，晶圓朝下，壓在旋轉的研磨墊上，一邊磨，一邊淋研磨液。",
+   "tts": "這叫化學機械研磨，晶圓朝下，壓在旋轉的研磨墊上，一邊磨，一邊淋研磨液。",
+   "subtitle": {
+    "zh": "這叫化學機械研磨\n晶圓朝下\n壓在旋轉的研磨墊上\n一邊磨\n一邊淋研磨液",
+    "en": "This is chemical mechanical polishing: | wafer face down, | pressed onto a spinning pad, | grinding as it goes, | while slurry pours on."
+   },
+   "keywords": [
+    "化學機械研磨",
+    "朝下",
+    "研磨液"
+   ],
+   "cues": [
+    {
+     "id": "cmp",
+     "text": "化學機械研磨"
+    },
+    {
+     "id": "wafer",
+     "text": "晶圓朝下"
+    },
+    {
+     "id": "pad",
+     "text": "旋轉的研磨墊"
+    },
+    {
+     "id": "slurry",
+     "text": "淋研磨液"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0.6,
+      "y": -2.0,
+      "d": 92,
+      "elev": 36
+     }
+    ],
+    "shift": [
+     {
+      "layer": "t_head",
+      "at": "s1:start-40",
+      "until": "wafer+2",
+      "dy": 1.7,
+      "dur": 2,
+      "spring": {
+       "tau": 7,
+       "period": 20
+      }
+     },
+     {
+      "layer": "t_head",
+      "at": "cmp+20",
+      "until": "wafer-4",
+      "dy": 0.4,
+      "dur": 10
+     },
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "t_ledlit",
+      "at": "start-30",
+      "until": "s10:start",
+      "ramp": 2
+     },
+     {
+      "id": "t_spinP",
+      "at": "pad",
+      "until": "s10:start",
+      "ramp": 24
+     },
+     {
+      "id": "t_spinH",
+      "at": "wafer+10",
+      "until": "s10:start",
+      "ramp": 24
+     },
+     {
+      "id": "t_pres",
+      "at": "wafer+4",
+      "until": "s4:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_presH",
+      "at": "wafer+4",
+      "until": "s4:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_slPipe",
+      "at": "slurry",
+      "until": "s4:start",
+      "ramp": 6
+     },
+     {
+      "id": "t_slDrop",
+      "at": "slurry",
+      "until": "s4:start",
+      "ramp": 6
+     },
+     {
+      "id": "t_slPad",
+      "at": "slurry",
+      "until": "s4:start",
+      "ramp": 6
+     },
+     {
+      "id": "t_slGrit",
+      "at": "slurry",
+      "until": "s4:start",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_head",
+      "text": "研磨頭",
+      "en": "Carrier head",
+      "color": "amber",
+      "at": "wafer",
+      "until": "pad-4"
+     },
+     {
+      "part": "t_plat",
+      "text": "研磨盤與研磨墊",
+      "en": "Platen and pad",
+      "color": "blue",
+      "at": "pad",
+      "until": "slurry-6"
+     },
+     {
+      "part": "t_noz",
+      "text": "研磨液噴嘴",
+      "en": "Slurry nozzle",
+      "color": "coral",
+      "at": "slurry",
+      "until": "s4:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-tool",
+      "at": "start+2",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "機台的樣子",
+      "tag": "示意，非實際比例",
+      "t": {
+       "wafer": {
+        "at": "wafer"
+       },
+       "pad": {
+        "at": "pad"
+       },
+       "slurry": {
+        "at": "slurry"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "專利 US 6796885 等；科技新報「什麼是 CMP」"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "研磨頭夾住晶圓往下壓。拆開來看，有轉軸、頭體、橡膠膜、固定環，氣壓把膜往下推。",
+   "tts": "研磨頭夾住晶圓往下壓。拆開來看，有轉軸、頭體、橡膠膜、固定環，氣壓把膜往下推。",
+   "subtitle": {
+    "zh": "研磨頭夾住晶圓往下壓\n拆開來看\n有轉軸、頭體\n橡膠膜、固定環\n氣壓把膜往下推",
+    "en": "The carrier head clamps the wafer and presses down. | Take it apart: | a shaft, a head body, | a rubber membrane, a retaining ring, | and air pressure pushes the membrane down."
+   },
+   "keywords": [
+    "研磨頭",
+    "橡膠膜",
+    "氣壓"
+   ],
+   "cues": [
+    {
+     "id": "clamp",
+     "text": "夾住晶圓"
+    },
+    {
+     "id": "split",
+     "text": "拆開來看"
+    },
+    {
+     "id": "sh",
+     "text": "轉軸"
+    },
+    {
+     "id": "bd",
+     "text": "頭體"
+    },
+    {
+     "id": "mm",
+     "text": "橡膠膜"
+    },
+    {
+     "id": "rg",
+     "text": "固定環"
+    },
+    {
+     "id": "air",
+     "text": "氣壓把膜"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "head",
+      "at": "start-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60,
+      "y": 0.2,
+      "d": 50,
+      "elev": 22
+     },
+     {
+      "at": "split-4",
+      "dur": 28,
+      "x": 60,
+      "y": 3.4,
+      "d": 50,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "h_shaft",
+      "at": "split",
+      "until": "s5:start-4",
+      "dy": 6.6,
+      "dur": 24
+     },
+     {
+      "layer": "h_body",
+      "at": "split+6",
+      "until": "s5:start-4",
+      "dy": 5.0,
+      "dur": 24
+     },
+     {
+      "layer": "h_mem",
+      "at": "split+12",
+      "until": "s5:start-4",
+      "dy": 3.5,
+      "dur": 24
+     },
+     {
+      "layer": "h_rg",
+      "at": "split+18",
+      "until": "s5:start-4",
+      "dy": 2.2,
+      "dur": 24
+     },
+     {
+      "layer": "h_wf",
+      "at": "split+24",
+      "until": "s5:start-4",
+      "dy": 0.9,
+      "dur": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "h_air",
+      "at": "air-6",
+      "until": "s5:start-4",
+      "ramp": 6
+     },
+     {
+      "id": "h_presB",
+      "at": "air",
+      "until": "s5:start-4",
+      "ramp": 6
+     },
+     {
+      "id": "h_presM",
+      "at": "air+8",
+      "until": "s5:start-4",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "h_wf",
+      "text": "晶圓（朝下）",
+      "en": "Wafer, face down",
+      "color": "coral",
+      "at": "clamp",
+      "until": "sh-6"
+     },
+     {
+      "part": "h_shaft",
+      "text": "轉軸",
+      "en": "Shaft",
+      "color": "blue",
+      "at": "sh",
+      "until": "mm-8"
+     },
+     {
+      "part": "h_body",
+      "text": "頭體",
+      "en": "Head body",
+      "color": "amber",
+      "at": "bd",
+      "until": "air+20"
+     },
+     {
+      "part": "h_mem",
+      "text": "橡膠膜",
+      "en": "Membrane",
+      "color": "coral",
+      "at": "mm",
+      "until": "air+30"
+     },
+     {
+      "part": "h_ring",
+      "text": "固定環",
+      "en": "Retaining ring",
+      "color": "blue",
+      "at": "rg",
+      "until": "air+30"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-head",
+      "at": "start+2",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "研磨頭拆開",
+      "tag": "示意，非實際比例",
+      "t": {
+       "wf": {
+        "at": "clamp"
+       },
+       "sh": {
+        "at": "sh"
+       },
+       "bd": {
+        "at": "bd"
+       },
+       "mm": {
+        "at": "mm"
+       },
+       "rg": {
+        "at": "rg"
+       },
+       "air": {
+        "at": "air"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "專利：研磨頭與固定環"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "研磨盤和研磨頭同方向轉，只是轉速不同，晶圓每一點都磨得到。",
+   "tts": "研磨盤和研磨頭同方向轉，只是轉速不同，晶圓每一點都磨得到。",
+   "subtitle": {
+    "zh": "研磨盤和研磨頭\n同方向轉\n只是轉速不同\n晶圓每一點都磨得到",
+    "en": "The platen and the head | spin the same way, | only at different speeds, | so every point on the wafer gets ground."
+   },
+   "keywords": [
+    "同方向轉",
+    "轉速不同",
+    "每一點"
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "研磨盤和研磨頭"
+    },
+    {
+     "id": "same",
+     "text": "同方向轉"
+    },
+    {
+     "id": "diff",
+     "text": "轉速不同"
+    },
+    {
+     "id": "even",
+     "text": "每一點都磨得到"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 1.2,
+      "y": -2.0,
+      "d": 90,
+      "elev": 38
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "t_arcP",
+      "at": "same",
+      "until": "even+30",
+      "ramp": 6
+     },
+     {
+      "id": "t_arcH",
+      "at": "same+6",
+      "until": "even+30",
+      "ramp": 6
+     },
+     {
+      "id": "t_flk",
+      "at": "even",
+      "until": "s6:start",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_plat",
+      "text": "研磨盤：轉得慢",
+      "en": "Platen: slower",
+      "color": "blue",
+      "at": "who",
+      "until": "diff+10"
+     },
+     {
+      "part": "t_head",
+      "text": "研磨頭：轉得快",
+      "en": "Head: faster",
+      "color": "amber",
+      "at": "same",
+      "until": "even-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-spin",
+      "at": "start+2",
+      "until": "s6:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "同向、不同速",
+      "tag": "示意：俯視",
+      "t": {
+       "same": {
+        "at": "same"
+       },
+       "diff": {
+        "at": "diff"
+       },
+       "even": {
+        "at": "even"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "專利通則；CMP 設備說明"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "研磨液有細小磨粒，還有讓表面變軟的藥劑，藥劑軟化，磨粒刮掉。",
+   "tts": "研磨液有細小磨粒，還有讓表面變軟的藥劑，藥劑軟化，磨粒刮掉。",
+   "subtitle": {
+    "zh": "研磨液有細小磨粒\n還有讓表面變軟的藥劑\n藥劑軟化\n磨粒刮掉",
+    "en": "Slurry carries tiny abrasive grains, | and a chemical that softens the surface. | The chemical softens, | the grains scrape it off."
+   },
+   "keywords": [
+    "磨粒",
+    "藥劑",
+    "刮掉"
+   ],
+   "cues": [
+    {
+     "id": "slurry",
+     "text": "研磨液有"
+    },
+    {
+     "id": "grit",
+     "text": "細小磨粒"
+    },
+    {
+     "id": "chem",
+     "text": "讓表面變軟的藥劑"
+    },
+    {
+     "id": "soft",
+     "text": "藥劑軟化"
+    },
+    {
+     "id": "scrape",
+     "text": "磨粒刮掉"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 4.2,
+      "d": 60,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_slide",
+      "at": "start",
+      "until": "s9:start-2",
+      "ramp": 10
+     },
+     {
+      "id": "w_liq",
+      "at": "slurry",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_grit",
+      "at": "grit",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_mol",
+      "at": "chem",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_softlit",
+      "at": "soft",
+      "until": "s7:start-2",
+      "ramp": 8
+     },
+     {
+      "id": "w_flk",
+      "at": "scrape",
+      "until": "s7:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_flk2",
+      "at": "scrape+8",
+      "until": "s7:start-2",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_pad",
+      "text": "研磨墊",
+      "en": "Pad",
+      "color": "blue",
+      "at": "slurry",
+      "until": "chem-6"
+     },
+     {
+      "part": "w_grit",
+      "text": "磨粒：負責刮",
+      "en": "Abrasive grains",
+      "color": "amber",
+      "at": "grit",
+      "until": "soft-4"
+     },
+     {
+      "part": "w_b1",
+      "text": "藥劑讓表面變軟",
+      "en": "Chemical softens",
+      "color": "coral",
+      "at": "chem",
+      "until": "scrape+10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-slurry",
+      "at": "start+2",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "研磨液裡有什麼",
+      "tag": "示意，非實際比例",
+      "t": {
+       "grit": {
+        "at": "grit"
+       },
+       "chem": {
+        "at": "chem"
+       },
+       "soft": {
+        "at": "soft"
+       },
+       "scrape": {
+        "at": "scrape"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "專利：研磨液含磨粒與化學藥劑；科技新報"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "墊子會被碎屑塞住，所以鑽石碟來回掃過，把墊面刮新。",
+   "tts": "墊子會被碎屑塞住，所以鑽石碟來回掃過，把墊面刮新。",
+   "subtitle": {
+    "zh": "墊子會被碎屑塞住\n所以鑽石碟來回掃過\n把墊面刮新",
+    "en": "The pad clogs with debris, | so a diamond disc sweeps back and forth | and scrapes the surface fresh."
+   },
+   "keywords": [
+    "碎屑",
+    "鑽石碟",
+    "刮新"
+   ],
+   "cues": [
+    {
+     "id": "clog",
+     "text": "碎屑塞住"
+    },
+    {
+     "id": "disc",
+     "text": "鑽石碟來回掃過"
+    },
+    {
+     "id": "fresh",
+     "text": "墊面刮新"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": -1.0,
+      "y": -2.0,
+      "d": 84,
+      "elev": 38
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "t_flk",
+      "at": "start",
+      "until": "disc",
+      "ramp": 4
+     },
+     {
+      "id": "t_sweep",
+      "at": "disc-6",
+      "until": "s9:start",
+      "ramp": 14
+     },
+     {
+      "id": "t_flkC",
+      "at": "disc",
+      "until": "s9:start",
+      "ramp": 6
+     },
+     {
+      "id": "t_slPipe",
+      "at": "start",
+      "until": "s8:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slDrop",
+      "at": "start",
+      "until": "s8:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slPad",
+      "at": "start",
+      "until": "s8:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slGrit",
+      "at": "start",
+      "until": "s8:start",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_pad",
+      "text": "被碎屑塞住的墊面",
+      "en": "Clogged pad",
+      "color": "coral",
+      "at": "clog",
+      "until": "disc-4"
+     },
+     {
+      "part": "t_cdisc",
+      "text": "鑽石碟（修整器）",
+      "en": "Diamond conditioner",
+      "color": "amber",
+      "at": "disc",
+      "until": "s8:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-cond",
+      "at": "start+2",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "修整器刮新墊面",
+      "tag": "示意，非實際比例",
+      "t": {
+       "clog": {
+        "at": "clog"
+       },
+       "disc": {
+        "at": "disc"
+       },
+       "fresh": {
+        "at": "fresh"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "專利 US 6796885（conditioning arm）；財訊、優分析"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "凸起處壓力大磨得快，凹處磨得慢，最後就變平了。",
+   "tts": "凸起處壓力大磨得快，凹處磨得慢，最後就變平了。",
+   "subtitle": {
+    "zh": "凸起處壓力大磨得快\n凹處磨得慢\n最後就變平了",
+    "en": "Bumps take more pressure and wear faster, | dips wear slowly, | and in the end it is flat."
+   },
+   "keywords": [
+    "壓力大",
+    "磨得快",
+    "變平"
+   ],
+   "cues": [
+    {
+     "id": "press",
+     "text": "壓力大"
+    },
+    {
+     "id": "fast",
+     "text": "磨得快"
+    },
+    {
+     "id": "low",
+     "text": "凹處磨得慢"
+    },
+    {
+     "id": "flat",
+     "text": "變平"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 4.4,
+      "d": 58,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_slide",
+      "at": "start-2",
+      "until": "s9:start-2",
+      "ramp": 6
+     },
+     {
+      "id": "w_liq",
+      "at": "start",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_grit",
+      "at": "start",
+      "until": "s9:start-2",
+      "ramp": 4
+     },
+     {
+      "id": "w_pres",
+      "at": "press-4",
+      "until": "flat+20",
+      "ramp": 6
+     },
+     {
+      "id": "w_flk",
+      "at": "fast",
+      "until": "flat+20",
+      "ramp": 6
+     },
+     {
+      "id": "w_flk2",
+      "at": "fast+6",
+      "until": "flat+20",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_b1",
+      "text": "凸起：壓力大",
+      "en": "Bump: more pressure",
+      "color": "coral",
+      "at": "press",
+      "until": "low-4"
+     },
+     {
+      "part": "w_dip",
+      "text": "凹處：磨得慢",
+      "en": "Dip: slower",
+      "color": "blue",
+      "at": "low",
+      "until": "flat+4"
+     },
+     {
+      "part": "w_pad",
+      "text": "研磨墊",
+      "en": "Pad",
+      "color": "amber",
+      "at": "flat",
+      "until": "s9:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-flat",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "凸起先被磨掉",
+      "tag": "示意，非實際比例",
+      "t": {
+       "press": {
+        "at": "press"
+       },
+       "low": {
+        "at": "low"
+       },
+       "flat": {
+        "at": "flat"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "CMP 平坦化通則（壓力與移除率成正比）"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "機台有應用材料和荏原，研磨液有英特格和富士軟片，研磨墊有杜邦和頌勝，鑽石碟是中砂。",
+   "tts": "機台有應用材料和荏原，研磨液有英特格和富士軟片，研磨墊有杜邦和頌勝，鑽石碟是中砂。",
+   "subtitle": {
+    "zh": "機台有應用材料和荏原\n研磨液有英特格和富士軟片\n研磨墊有杜邦和頌勝\n鑽石碟是中砂",
+    "en": "Tools: Applied Materials and Ebara. | Slurry: Entegris and Fujifilm. | Pads: DuPont and Soulbrain-Taiwan's Songsheng. | Diamond discs: Kinik (Taiwan)."
+   },
+   "keywords": [
+    "應用材料",
+    "研磨液",
+    "頌勝",
+    "中砂"
+   ],
+   "cues": [
+    {
+     "id": "am",
+     "text": "應用材料"
+    },
+    {
+     "id": "eb",
+     "text": "荏原"
+    },
+    {
+     "id": "sl",
+     "text": "研磨液有"
+    },
+    {
+     "id": "ent",
+     "text": "英特格"
+    },
+    {
+     "id": "fuji",
+     "text": "富士軟片"
+    },
+    {
+     "id": "pd",
+     "text": "杜邦"
+    },
+    {
+     "id": "ss",
+     "text": "頌勝"
+    },
+    {
+     "id": "zs",
+     "text": "中砂"
+    },
+    {
+     "id": "disc",
+     "text": "鑽石碟是"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0.6,
+      "y": -2.0,
+      "d": 92,
+      "elev": 36
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "t_sweep",
+      "at": "start-4",
+      "until": "s10:start",
+      "ramp": 8
+     },
+     {
+      "id": "t_slPipe",
+      "at": "start",
+      "until": "s10:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slDrop",
+      "at": "start",
+      "until": "s10:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slPad",
+      "at": "start",
+      "until": "s10:start",
+      "ramp": 4
+     },
+     {
+      "id": "t_slGrit",
+      "at": "start",
+      "until": "s10:start",
+      "ramp": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_body",
+      "text": "機台：應用材料、荏原",
+      "en": "Tools",
+      "color": "amber",
+      "at": "am",
+      "until": "sl-6"
+     },
+     {
+      "part": "t_tank",
+      "text": "研磨液：英特格、富士軟片",
+      "en": "Slurry",
+      "color": "coral",
+      "at": "sl",
+      "until": "pd-6"
+     },
+     {
+      "part": "t_pad",
+      "text": "研磨墊：杜邦",
+      "en": "Pad",
+      "color": "blue",
+      "at": "pd",
+      "until": "ss-4"
+     },
+     {
+      "part": "t_plat",
+      "text": "研磨墊：頌勝（台灣）",
+      "en": "Pad (Taiwan)",
+      "color": "blue",
+      "at": "ss",
+      "until": "zs-6"
+     },
+     {
+      "part": "t_cdisc",
+      "text": "鑽石碟：中砂（台灣）",
+      "en": "Diamond disc (Taiwan)",
+      "color": "amber",
+      "at": "zs",
+      "until": "s10:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-co",
+      "at": "start+2",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 965,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "媒體報導",
+      "t": {
+       "mc": {
+        "at": "am"
+       },
+       "sl": {
+        "at": "ent"
+       },
+       "pd": {
+        "at": "pd"
+       },
+       "ss": {
+        "at": "ss"
+       },
+       "zs": {
+        "at": "zs"
+       }
+      }
+     }
+    ]
+   },
+   "sources": [
+    "市場研究頁；財訊；工商時報；優分析"
+   ],
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "所以每長一層，就磨平一次，下一層才對得準。但磨完真的平嗎？下一支，看量測檢測。留言研磨，看完整解說。",
+   "tts": "所以每長一層，就磨平一次，下一層才對得準。但磨完真的平嗎？下一支，看量測檢測。留言研磨，看完整解說。",
+   "subtitle": {
+    "zh": "所以每長一層\n就磨平一次\n下一層才對得準\n但磨完真的平嗎？\n下一支\n看量測檢測\n留言研磨\n看完整解說",
+    "en": "So after every layer, | we grind it flat once, | so the next layer lines up. | But is it really flat? | Next: | metrology and inspection. | Comment \"研磨\" | for the full notes."
+   },
+   "keywords": [
+    "磨平",
+    "對得準",
+    "量測檢測",
+    "研磨"
+   ],
+   "cues": [
+    {
+     "id": "so",
+     "text": "所以每長一層"
+    },
+    {
+     "id": "once",
+     "text": "就磨平一次"
+    },
+    {
+     "id": "fit",
+     "text": "下一層才對得準"
+    },
+    {
+     "id": "ask",
+     "text": "真的平嗎"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "mea",
+     "text": "量測檢測"
+    },
+    {
+     "id": "kw",
+     "text": "留言研磨"
+    },
+    {
+     "id": "full",
+     "text": "看完整解說"
+    }
+   ],
+   "component": "ThreeScene",
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 2.0,
+      "d": 76,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "w_b2",
+      "at": "s1:start-40",
+      "until": "s8:fast+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b2",
+      "at": "s8:flat-6",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_b1",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s1:start-40",
+      "until": "s6:soft-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_soft",
+      "at": "s8:fast+4",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_pad",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s1:start-40",
+      "until": "s6:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_slr",
+      "at": "s9:start-2",
+      "until": "s11:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s1:start-40",
+      "until": "s2:depth-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_foc",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "w_lite",
+      "at": "s3:start-2",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 2
+     }
+    ],
+    "run": [
+     {
+      "id": "w_ray0",
+      "at": "fit-6",
+      "until": "s11:end+400",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray1",
+      "at": "fit-6",
+      "until": "s11:end+400",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray2",
+      "at": "fit-6",
+      "until": "s11:end+400",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray3",
+      "at": "fit-6",
+      "until": "s11:end+400",
+      "ramp": 6
+     },
+     {
+      "id": "w_ray4",
+      "at": "fit-6",
+      "until": "s11:end+400",
+      "ramp": 6
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_focus",
+      "text": "全部對焦",
+      "en": "All in focus",
+      "color": "amber",
+      "at": "fit",
+      "until": "next-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cmp-step",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 250,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一支：量測檢測",
+      "t": {
+       "dep": {
+        "at": "so"
+       },
+       "cmp": {
+        "at": "once"
+       },
+       "next": {
+        "at": "next"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "kw+60",
+      "text": "留言「研磨」",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
+   "sources": [
+    "製程通則；下一支：量測檢測"
+   ]
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "props": {
+    "endCard": {
+     "next": "量測檢測",
+     "trail": [
+      "量測",
+      "檢測",
+      "奈米級"
+     ],
+     "at": "s10:kw-8",
+     "comment": "研磨",
+     "logoAnim": "transparent"
+    }
+   },
+   "sources": []
+  }
+ ]
+}

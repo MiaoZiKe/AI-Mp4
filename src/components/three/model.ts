@@ -61,7 +61,7 @@ export type ActionDef = {
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */
-  path?: Pt[]; n?: number; size?: number; shape?: "dot" | "arrow"; rate?: number; track?: boolean;
+  path?: Pt[]; n?: number; size?: number; shape?: "dot" | "arrow" | "liquid" | "grit" | "mol" | "flake"; band?: number; bandO?: number; rate?: number; track?: boolean;
   /** flow 進階（2026/11/15，電流效果）：drive＝速度與密度跟著強度（強度降下來＝慢下來、變稀疏、停住）；trail＝每顆後面幾格拖尾、trailGap＝拖尾間距（路徑比例，乘上當下速度）、trailColor；
    *  rim＝每顆外圈的顏色（白點加深色外圈，淺底深底都看得到）、rimScale；minVisible＝最慢時還看得到幾成的點；rest＝停住後留幾幀再淡出、restO＝停住時的不透明度；
    *  jitter＝每顆垂直路徑方向的小抖動（模型單位，讓一群點看起來像流而不是排隊）；lanes＝同一條路徑上並排幾道（間距 laneGap，方向 laneDir） */
