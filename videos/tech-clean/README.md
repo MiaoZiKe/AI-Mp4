@@ -1,5 +1,5 @@
 # tech-clean：清洗（科技透明圈系列 1 第 9 支；接離子佈植，下一支氧化與熱處理）
-- 狀態：研究、腳本、配音、對齊、建模、2D 卡、成片（2026/11/20–21，Opus 一人做完）。成片 `out/tech-clean.gold.mp4`、整片縮圖 `out/tech-clean.gold-grid.jpg`（不進 git）。
+- 狀態（11/21 00:34）：研究、腳本、金手指配音、對齊、建模、2D 卡完成；渲染停在第 4 段後（已渲 0–959 幀，out/chunks/tech-clean/ 保留）。原因：Andy 11/21 00:40 不採用金手指旁白，改回 2.5＋Iapetus＋說明 B，等 CEO 定語速規則後重配（整篇 1 次）→ align → 重跑 genmodel.py → 全片重渲（舊 4 段時間軸會變，不能沿用）。
 - 片長：時間軸 78.2 秒（2346 幀，含 3.2 秒片尾卡 s12）。留言關鍵字「清洗」（Andy 之後若給固定內容，改 genscript.py 的 s11 念稿與 endCard.comment，需重配音）。
 - 產生：`python3 videos/tech-clean/genmodel.py`（自動先跑 genscript.py）→ model.json＋script.json。改稿只改 genscript.py；改畫面只改 genmodel.py／HudClean.tsx。
 - 2D 卡：`src/components/three/HudClean.tsx`（cln-hook／kill／ash／pop／spm／spin／mega／chem／dry／co／next），Hud.tsx 只加 import 與一行分派。
