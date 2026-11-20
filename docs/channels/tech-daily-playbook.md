@@ -179,6 +179,15 @@ Andy 11-15 傳了 8 格參考圖：「結尾的 LOGO 動畫使用這個，並且
 - 改了版面或鏡頭，跑 `node scripts/three/layout-check.mjs <slug>`（幾秒）再抽格，不要直接整支渲染。
 - 只改畫面、不改時間時，不重新配音：渲無聲版，再用 ffmpeg 把原成片的音軌接回去（`-map 0:v -map 1:a -c copy`），接之前確認幀數一樣。
 
+### 2D 示意卡不准字壓字、字壓線（固定規則，2026/11/20）
+
+使用者看量測檢測 s2「一層層做，一步歪全白做」那張卡（「金屬二」壓到中間分隔線、上層色塊貼著標題）時說：「這邊會出現這樣覆蓋問題 修復並避免後續發生」。
+
+- `npm run validate` 對有 hud 的片自動跑 `node scripts/three/card-overlap.mjs <slug>`（不開 3D，約 10 秒）：每個疊層（section 各 kind、stamp、legend、compare、bars、card）在出場＋12 幀、每個 cue＋12 幀、結束前 2 幀，用 react-dom/server 輸出靜態 HTML，以 Playwright 載入本地字型量實際墨跡框。抓：字壓字、字被描邊的線／外框穿過（被後畫的實心圖形蓋住的那段不算）、字一半壓在色塊上一半在外面、字被後畫的圖形蓋掉一部分、字超出卡片、字被標題擋到、標題壓到內容圖形（貼著 0–6px 給 warning）。容許 2px。結果在 `out/<slug>/card-overlap.json`。
+- asOf 2026/11/20 以後的片，這些都是 error（validate 不過）；之前的舊片只出 warning。
+- 畫新的示意卡時：標題下緣約 y60，內容圖形從 y≥66 開始；文字放在色塊裡面或完全在外面，不要騎在邊上；跟著東西移動的標籤（例如電子束）到卡片邊緣要換邊；字級以 `sm()` 實際放大後（smallPx 30）的寬度排版。
+- 要看每一格長怎樣：`node scripts/three/card-overlap.mjs <slug> --shots=<資料夾>`（每個時間點一張卡片截圖）；只查一種卡加 `--only=met-layer`。
+
 ## 十、敘述邏輯（照哩股哩股，科技頻道版）
 
 Andy 2026/11/16：「影片內容需要按照哩股哩股的敘述……若不知道請去問他需要注意什麼」。來源：tw-rotation `docs/marketing/channels/video_logic.md`＋主控 11-16 回覆（哩股哩股最新版在分支 `claude/nifty-goodall-syke8a` 的 `docs/channels/liguligu-daily-playbook.md`、`liguligu.md`、範本 `videos/liguligu-jensen-pro/`）。

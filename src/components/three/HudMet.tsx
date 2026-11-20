@@ -56,12 +56,12 @@ const Prev: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <g opacity={ck}>
           <path d={`M${x0} ${yT - 4} H${x0 + w}`} stroke={c("lp_good")} strokeWidth={4} strokeDasharray="12 8" />
-          <rect x={scan - 16} y={84} width={32} height={26} rx={4} fill={H.text2} /><path d={`M${scan} 110 V${yT - 6}`} stroke={c("litWRim")} strokeWidth={4} />
-          <text x={x0 + 4} y={78} style={zh(sm(30), c("lp_good"), 900)}>量量看：平不平？</text>
+          <rect x={scan - 16} y={106} width={32} height={24} rx={4} fill={H.text2} /><path d={`M${scan} 130 V${yT - 6}`} stroke={c("litWRim")} strokeWidth={4} />
+          <text x={x0 + 4} y={96} style={zh(sm(30), c("lp_good"), 900)}>量量看：平不平？</text>
         </g>
         <g opacity={tw}>
           {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={x0 + 24 + i * 76 + 7 * nm} y={yT - 34} width={40} height={30} fill={c("m2")} />)}
-          <text x={x0 + w - 4} y={yT - 44} textAnchor="end" style={zh(sm(30), c("m2"), 900)}>上層線路</text>
+          <text x={x0 + w - 4} y={96} textAnchor="end" style={zh(sm(30), c("m2"), 900)}>上層線路</text>
         </g>
         <g opacity={nm}>
           <path d={`M${x0 + 24 + 2 * 76} ${yT - 60} V${yT + 64}`} stroke={H.amber} strokeWidth={3} /><path d={`M${x0 + 24 + 2 * 76 + 7} ${yT - 60} V${yT + 64}`} stroke={H.amber} strokeWidth={3} />
@@ -69,7 +69,7 @@ const Prev: React.FC<P> = ({ o, f, k, m }) => {
         <line x1={540} y1={60} x2={540} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={lit(f, T(o, "two"), 0.45)}>
           <text x={572} y={110} style={zh(36, H.text, 900)}>兩層線路疊起來</text>
-          <text x={572} y={196} style={zh(64, H.amber, 900)} opacity={0.35 + 0.65 * nm}>只差約 2 奈米</text>
+          <text x={572} y={192} style={zh(56, H.amber, 900)} opacity={0.35 + 0.65 * nm}>只差約 2 奈米</text>
         </g>
         <g opacity={0.35 + 0.65 * q}><rect x={572} y={226} width={330} height={76} fill={q > 0.5 ? H.amber : H.cardCompare} stroke={H.amber} strokeWidth={4} />
           <text x={737} y={278} textAnchor="middle" style={zh(42, q > 0.5 ? onC(H.amber) : H.amber, 900)}>這要怎麼量？</text></g>
@@ -115,13 +115,13 @@ const Film: React.FC<P> = ({ o, f, k, m }) => {
         <rect x={30} y={yT} width={480} height={yB - yT} fill={c("film")} /><rect x={30} y={yB} width={480} height={44} fill={c("si")} />
         <text x={40} y={yT + 38} style={zh(sm(30), "#fff", 900)}>膜</text><text x={40} y={yB + 34} style={zh(sm(30), "#fff", 900)}>矽基板</text>
         <path d={`M18 ${yT} v${yB - yT}`} stroke={H.amber} strokeWidth={4} opacity={0.4 + 0.6 * ca} /><path d={`M10 ${yT} h16 M10 ${yB} h16`} stroke={H.amber} strokeWidth={4} opacity={0.4 + 0.6 * ca} />
-        <g opacity={0.35 + 0.65 * hi}><path d={`M90 70 L${px} ${yT}`} stroke={c("litWRim")} strokeWidth={6} /><Dots pts={[[90, 70], [px, yT]]} f={f} n={4} sp={0.04} c={c("litWRim")} r={6} o={hi} />
-          <text x={60} y={60} style={zh(sm(30), H.text, 900)}>光</text></g>
+        <g opacity={0.35 + 0.65 * hi}><path d={`M80 80 L${px} ${yT}`} stroke={c("litWRim")} strokeWidth={6} /><Dots pts={[[80, 80], [px, yT]]} f={f} n={4} sp={0.04} c={c("litWRim")} r={6} o={hi} />
+          <text x={40} y={118} style={zh(sm(30), H.text, 900)}>光</text></g>
         <g opacity={0.3 + 0.7 * rf}>
           <path d={`M${px} ${yT} L${px + 150} 70`} stroke={c("litARim")} strokeWidth={6} />
           <path d={`M${px} ${yT} L${px + 30} ${yB} L${qx} ${yT} L${qx + 150} 70`} stroke={c("litCRim")} strokeWidth={6} fill="none" />
           <Dots pts={[[px, yT], [px + 150, 70]]} f={f} n={3} sp={0.04} c={c("litARim")} r={6} o={rf} /><Dots pts={[[px, yT], [px + 30, yB], [qx, yT], [qx + 150, 70]]} f={f} n={4} sp={0.035} c={c("litCRim")} r={6} o={rf} />
-          <text x={px + 92} y={120} style={zh(sm(30), c("litARim"), 900)}>表面</text><text x={px + 100} y={yT + 46} style={zh(sm(30), c("litCRim"), 900)}>底部</text>
+          <text x={px + 58} y={152} textAnchor="end" style={zh(sm(30), c("litARim"), 900)}>表面</text><text x={px + 100} y={yT + 46} style={zh(sm(30), c("litCRim"), 900)}>底部</text>
         </g>
         <line x1={540} y1={60} x2={540} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         {/* 兩道光疊起來：兩條波（相位差跟著膜厚變）＋相加 */}
@@ -162,10 +162,10 @@ const Cd: React.FC<P> = ({ o, f, k, m }) => {
         <g opacity={ed}>{lines.flatMap(([a, b]) => [a, b]).map((x, i) => <rect key={i} x={x - 6} y={yL} width={12} height={lh} fill={c("eSec")} opacity={0.7 + 0.3 * Math.sin(f * 0.3 + i)} />)}</g>
         <g opacity={0.3 + 0.7 * s1}>
           <path d={`M${bx} 64 L${bx} ${yL - 2}`} stroke={c("eBeamRim")} strokeWidth={5} /><Dots pts={[[bx, 64], [bx, yL - 2]]} f={f} n={4} sp={0.06} c={c("eBeam")} r={5} minus />
-          <text x={bx + 14} y={92} style={zh(sm(30), c("eBeamRim"), 900)}>電子束</text>
+          <text x={bx < x1 - 130 ? bx + 14 : bx - 14} y={92} textAnchor={bx < x1 - 130 ? "start" : "end"} style={zh(sm(30), c("eBeamRim"), 900)}>電子束</text>
         </g>
         <g opacity={el}>{[0, 1, 2, 3].map((j) => { const t = ph(f, 0.05, j, 4); return <g key={j} opacity={1 - t}><circle cx={bx + (j % 2 ? 1 : -1) * (12 + 50 * t)} cy={yL - 8 - 60 * t} r={7} fill={c("eSec")} /><path d={`M${bx + (j % 2 ? 1 : -1) * (12 + 50 * t) - 4} ${yL - 8 - 60 * t} h8`} stroke="#fff" strokeWidth={2} /></g>; })}
-          <text x={x1 - 8} y={yL - 12} textAnchor="end" style={zh(sm(30), c("eSecRim"), 900)}>跑出來的電子</text></g>
+          <text x={x1} y={yS + 30} textAnchor="end" style={zh(sm(30), c("eSecRim"), 900)}>跑出來的電子</text></g>
         <path d={`M${x0} ${yS} H${x1}`} stroke={H.text3} strokeWidth={2} />
         <path d={Array.from({ length: 220 }, (_, i) => { const x = x0 + ((x1 - x0) * i) / 219; return x <= drawTo ? `${i ? "L" : "M"}${x} ${yS - amp * sig(x)}` : ""; }).join(" ")} stroke={c("eSecRim")} strokeWidth={4} fill="none" opacity={0.4 + 0.6 * el} />
         <text x={x0} y={yS + 30} style={zh(sm(30), H.text2, 800)} opacity={0.4 + 0.6 * ed}>訊號：邊緣是兩個峰</text>
@@ -196,7 +196,7 @@ const Ovl: React.FC<P> = ({ o, f, k, m }) => {
           <path d={`M${P[0] - 6} 66 V${P[1]}`} stroke={c("litWRim")} strokeWidth={6} /><Dots pts={[[P[0] - 6, 66], [P[0] - 6, P[1]]]} f={f} n={3} sp={0.05} c={c("litWRim")} r={6} o={li} />
           <path d={`M${P[0] + 6} ${P[1]} V66`} stroke={c("litWRim")} strokeWidth={3} opacity={0.6} /><text x={P[0] + 14} y={86} style={zh(sm(30), H.text2, 800)}>0 階</text>
           <path d={`M${P[0]} ${P[1]} L${P[0] + 170} 80`} stroke={c("litARim")} strokeWidth={4 + 6 * df} /><path d={`M${P[0]} ${P[1]} L${P[0] - 170} 80`} stroke={c("litCRim")} strokeWidth={4 + 1.5 * df} opacity={1 - 0.5 * df} />
-          <text x={P[0] + 150} y={70} style={zh(sm(30), c("litARim"), 900)}>+1</text><text x={P[0] - 196} y={70} style={zh(sm(30), c("litCRim"), 900)}>−1</text>
+          <text x={P[0] + 150} y={70} style={zh(sm(30), c("litARim"), 900)}>+1</text><text x={58} y={116} style={zh(sm(30), c("litCRim"), 900)}>−1</text>
         </g>
         {/* 歪了多少：上下兩層的錯開量 */}
         <g opacity={of}><path d={`M${x0 + 152} ${yG - 52} V${yG + 34} M${x0 + 152 + sh} ${yG - 52} V${yG + 34}`} stroke={c("lp_bad")} strokeWidth={3} />
@@ -204,14 +204,14 @@ const Ovl: React.FC<P> = ({ o, f, k, m }) => {
         <line x1={600} y1={60} x2={600} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={0.3 + 0.7 * df}>
           <text x={630} y={92} style={zh(sm(30), H.text, 900)}>兩邊的亮度</text>
-          <path d={`M640 ${Hh - 56} H900`} stroke={H.text3} strokeWidth={2} />
-          <rect x={668} y={Hh - 56 - 170 * (0.5 + 0.45 * df)} width={70} height={170 * (0.5 + 0.45 * df)} fill={c("litCRim")} opacity={0.5} />
-          <rect x={668} y={Hh - 56 - 170 * (0.5 - 0.2 * df)} width={70} height={170 * (0.5 - 0.2 * df)} fill={c("litCRim")} />
-          <rect x={800} y={Hh - 56 - 170 * (0.5 + 0.45 * df)} width={70} height={170 * (0.5 + 0.45 * df)} fill={c("litARim")} />
-          <text x={703} y={Hh - 22} textAnchor="middle" style={zh(sm(30), c("litCRim"), 900)}>−1</text><text x={835} y={Hh - 22} textAnchor="middle" style={zh(sm(30), c("litARim"), 900)}>+1</text>
+          <path d={`M626 ${Hh - 56} H924`} stroke={H.text3} strokeWidth={2} />
+          <rect x={640} y={Hh - 56 - 170 * (0.5 + 0.45 * df)} width={70} height={170 * (0.5 + 0.45 * df)} fill={c("litCRim")} opacity={0.5} />
+          <rect x={640} y={Hh - 56 - 170 * (0.5 - 0.2 * df)} width={70} height={170 * (0.5 - 0.2 * df)} fill={c("litCRim")} />
+          <rect x={840} y={Hh - 56 - 170 * (0.5 + 0.45 * df)} width={70} height={170 * (0.5 + 0.45 * df)} fill={c("litARim")} />
+          <text x={675} y={Hh - 22} textAnchor="middle" style={zh(sm(30), c("litCRim"), 900)}>−1</text><text x={875} y={Hh - 22} textAnchor="middle" style={zh(sm(30), c("litARim"), 900)}>+1</text>
         </g>
-        <g opacity={hw}><path d={`M752 ${Hh - 56 - 170 * 0.95} V${Hh - 56 - 170 * 0.3}`} stroke={H.amber} strokeWidth={5} /><path d={`M742 ${Hh - 56 - 170 * 0.95} h20 M742 ${Hh - 56 - 170 * 0.3} h20`} stroke={H.amber} strokeWidth={5} />
-          <text x={762} y={Hh - 56 - 170 * 0.6} style={zh(sm(30), H.amber, 900)}>差多少</text></g>
+        <g opacity={hw}><path d={`M724 ${Hh - 56 - 170 * 0.95} V${Hh - 56 - 170 * 0.3}`} stroke={H.amber} strokeWidth={5} /><path d={`M714 ${Hh - 56 - 170 * 0.95} h20 M714 ${Hh - 56 - 170 * 0.3} h20`} stroke={H.amber} strokeWidth={5} />
+          <text x={738} y={Hh - 56 - 170 * 0.6} style={zh(sm(30), H.amber, 900)}>差多少</text></g>
       </svg>
     </Card>
   );
@@ -243,14 +243,15 @@ const Def: React.FC<P> = ({ o, f, k, m }) => {
           <path d={`M0 52 H310 M0 114 H310`} stroke={H.lineSoft} strokeWidth={2} />
         </g>
         {/* 兩段式：先光學 → 再電子束；電子束視窗看到顆粒外形 */}
-        <g opacity={0.35 + 0.65 * so}><rect x={330} y={258} width={150} height={56} fill={so > 0.5 && lk < 0.5 ? H.amber : H.cardCompare} stroke={H.amber} strokeWidth={3} />
-          <text x={405} y={296} textAnchor="middle" style={zh(sm(30), so > 0.5 && lk < 0.5 ? onC(H.amber) : H.amber, 900)}>① 光學找</text></g>
-        <Arr x1={486} y1={286} x2={520} y2={286} c={H.text3} w={4} o={0.35 + 0.65 * so} />
-        <g opacity={0.35 + 0.65 * lk}><rect x={526} y={258} width={150} height={56} fill={lk > 0.5 ? H.line : H.cardCompare} stroke={H.line} strokeWidth={3} />
-          <text x={601} y={296} textAnchor="middle" style={zh(sm(30), lk > 0.5 ? "#fff" : H.line, 900)}>② 電子束看</text></g>
-        <g transform="translate(800 186)">
+        <g opacity={0.35 + 0.65 * so}><rect x={330} y={258} width={140} height={56} fill={so > 0.5 && lk < 0.5 ? H.amber : H.cardCompare} stroke={H.amber} strokeWidth={3} />
+          <text x={400} y={296} textAnchor="middle" style={zh(sm(30), so > 0.5 && lk < 0.5 ? onC(H.amber) : H.amber, 900)}>① 光學找</text></g>
+        <Arr x1={474} y1={286} x2={502} y2={286} c={H.text3} w={4} o={0.35 + 0.65 * so} />
+        <g opacity={0.35 + 0.65 * lk}><rect x={506} y={258} width={170} height={56} fill={lk > 0.5 ? H.line : H.cardCompare} stroke={H.line} strokeWidth={3} />
+          <text x={591} y={296} textAnchor="middle" style={zh(sm(30), lk > 0.5 ? "#fff" : H.line, 900)}>② 電子束看</text></g>
+        <g transform="translate(800 180)">
           <circle r={112} fill="#3a3f4a" stroke={H.line} strokeWidth={4} opacity={0.4 + 0.6 * Math.max(fi * (1 - so), lk)} />
-          <g opacity={Math.max(fi * (1 - so), lk)}>
+          <defs><clipPath id="mzoom"><circle r={110} /></clipPath></defs>
+          <g opacity={Math.max(fi * (1 - so), lk)} clipPath="url(#mzoom)">
             {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M-100 ${-90 + i * 30} H100`} stroke="#5a606c" strokeWidth={8} />)}
             <path d="M-34 -10 C-30 -44 10 -50 30 -26 C52 -4 40 30 10 36 C-20 42 -40 24 -34 -10 Z" fill="#c9ccd3" /><path d="M-14 -16 C-6 -30 14 -28 18 -14" stroke="#eef0f4" strokeWidth={6} fill="none" />
             <path d="M-112 0 H-60 M60 0 H112 M0 -112 V-64 M0 64 V112" stroke={c("lp_warm")} strokeWidth={3} />
@@ -297,7 +298,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key], i) => { const a = tween(f, T(o, key), 10, EASE.enter); const cur = a > 0.5 && (i === rows.length - 1 || tween(f, T(o, rows[i + 1][2]), 4) < 0.5);
-          const y = 56 + i * 40;
+          const y = 66 + i * 40;
           return <g key={i}>
             <rect x={20} y={y} width={W - 40} height={36} fill={cur ? H.amber : a > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={cur ? 4 : 2} />
             <text x={36} y={y + 28} style={zh(30, cur ? onC(H.amber) : H.text, 900)}>{n}</text>

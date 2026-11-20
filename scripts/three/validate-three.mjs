@@ -162,6 +162,15 @@ export function validateThree(script, h) {
       const fr = (x) => (x ? `（第 ${x[0]}–${x[1]} 幀）` : "");
       for (const i of res.issues ?? []) (i.level === "error" ? HE : W)(`版面［${i.kind}］${i.msg}${fr(i.frames)}`);
     } catch { W(`版面檢查沒跑成功（node scripts/three/layout-check.mjs ${script.slug}）：${String(r.stderr).slice(0, 300)}`); }
+    // 2D 示意卡（疊層）的字與圖重疊（2026/11/20 使用者看量測檢測：「這邊會出現這樣覆蓋問題 修復並避免後續發生」）：
+    // 跑 scripts/three/card-overlap.mjs（react-dom/server 輸出靜態 HTML＋Playwright 量實際字框，不開 3D），它的 error 算這裡的 error
+    const r2 = spawnSync("node", [path.join(path.dirname(new URL(import.meta.url).pathname), "card-overlap.mjs"), String(script.slug), "--json"], { encoding: "utf8", maxBuffer: 64 << 20 });
+    try {
+      const res = JSON.parse(String(r2.stdout).trim().split("\n").pop());
+      // asOf 在 2026/11/20 之前的舊片（這條規則之前就做好、已交件）只出 warning，不擋重驗；之後的片一律算 error
+      const ymd = String(script.asOf ?? "").split(/[\/-]/).map(Number), old = ymd.length === 3 && ymd[0] * 10000 + ymd[1] * 100 + ymd[2] < 20261120, CE = old ? W : HE;
+      for (const i of res.issues ?? []) (i.level === "error" ? CE : W)(`示意卡［${i.kind}］疊層 #${i.overlay} ${i.ovKind ?? i.type}${i.title ? `「${i.title}」` : ""}：${i.msg}（第 ${i.frames.join("、")} 幀）`);
+    } catch { W(`示意卡重疊檢查沒跑成功（node scripts/three/card-overlap.mjs ${script.slug}）：${String(r2.stderr).slice(0, 300)}`); }
   }
   // 關節鏈（機械手臂等；2026/11/17 Andy：「旋轉部分沒做好」）：有 model.kin 或舊式關節鏈（rotate 寫 chain／3D pivot）就跑 scripts/three/kinematics-check.mjs，
   // 逐幀檢查脫節、夾爪沒夾住、穿模、關節上下限；它的 error 算這裡的 error

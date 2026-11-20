@@ -92,7 +92,7 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
 
 // ── 小晶格（4×3 原子＋鍵），center＝中間那顆換成什麼 ──
 const Lattice: React.FC<{ x: number; y: number; dop?: "P" | "B" | null; dopO?: number; f: number; eO?: number; hO?: number }> = ({ x, y, dop, dopO = 0, f, eO = 0, hO = 0 }) => {
-  const g = 62, cols = 4, rows = 3, pts: [number, number][] = [];
+  const g = 56, cols = 4, rows = 3, pts: [number, number][] = [];
   for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) pts.push([x + i * g, y + j * g]);
   const ci = 1, cj = 1, cx = x + ci * g, cy = y + cj * g;
   return (
@@ -109,25 +109,26 @@ const Lattice: React.FC<{ x: number; y: number; dop?: "P" | "B" | null; dopO?: n
 const Np: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const a = lit(f, T(o, "pure")), p = on(f, T(o, "ph")), nt = on(f, T(o, "ntype")), b = on(f, T(o, "bo")), ho = on(f, T(o, "hole")), pt = on(f, T(o, "ptype"));
-  const drop = (t: number) => -60 * (1 - t);
+  // 2026/11/20 示意卡重疊檢查：晶格不再從 −60 掉下來（會壓到右上小字）、N型／P型標籤放在晶格右邊中間（不蓋原子）
+  const drop = (t: number) => -16 * (1 - t);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}>
-          <Lattice x={60} y={100} f={f} />
+          <Lattice x={60} y={104} f={f} />
           <text x={40} y={300} style={zh(30, H.text, 900)}>純矽：導電差</text>
         </g>
         <line x1={318} y1={70} x2={318} y2={315} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={lit(f, T(o, "ph"))}>
-          <g transform={`translate(0 ${drop(p)})`}><Lattice x={370} y={100} dop="P" dopO={p} f={f} eO={on(f, T(o, "ph") + 10)} /></g>
+          <g transform={`translate(0 ${drop(p)})`}><Lattice x={370} y={104} dop="P" dopO={p} f={f} eO={on(f, T(o, "ph") + 10)} /></g>
           <text x={350} y={300} style={zh(30, H.text, 900)}>打進磷：多出電子</text>
-          <Badge x={556} y={64} w={70} text="N型" bg={N_C} o={nt} px={28} />
+          <Badge x={562} y={138} w={64} text="N型" bg={N_C} o={nt} px={28} />
         </g>
         <line x1={634} y1={70} x2={634} y2={315} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={lit(f, T(o, "bo"))}>
-          <g transform={`translate(0 ${drop(b)})`}><Lattice x={686} y={100} dop="B" dopO={b} f={f} hO={ho} /></g>
+          <g transform={`translate(0 ${drop(b)})`}><Lattice x={680} y={104} dop="B" dopO={b} f={f} hO={ho} /></g>
           <text x={666} y={300} style={zh(30, H.text, 900)}>打進硼：留下電洞</text>
-          <Badge x={866} y={64} w={70} text="P型" bg={P_C} o={pt} px={28} />
+          <Badge x={876} y={138} w={64} text="P型" bg={P_C} o={pt} px={28} />
         </g>
       </svg>
     </Card>
@@ -150,8 +151,8 @@ const Mask: React.FC<P> = ({ o, f, k }) => {
           <rect x={x0} y={ySi - 34} width={oL - x0} height={34} fill={RES} /><rect x={oR} y={ySi - 34} width={x1 - oR} height={34} fill={RES} />
           <text x={x0 + 12} y={ySi - 8} style={zh(sm(28), "#FFFFFF", 900)}>光阻（遮罩）</text>
           <text x={x0 + 12} y={ySi + 60} style={zh(sm(28), H.text, 900)}>矽</text>
-          <text x={oR + 20} y={ySi + 60} style={zh(sm(28), N_C, 900)} opacity={dope}>只有開口打進去</text>
-          {Array.from({ length: 7 }, (_, j) => { const x = 60 + j * 74, u = ph(f, 0.05, j, 7, 3); const inside = x > oL && x < oR; const yEnd = inside ? ySi + 26 : ySi - 46; const y = 76 + u * (yEnd - 76);
+          <text x={oR + 24} y={ySi + 62} style={zh(sm(28), N_C, 900)} opacity={dope}>只打進開口</text>
+          {Array.from({ length: 7 }, (_, j) => { const x = 60 + j * 74, u = ph(f, 0.05, j, 7, 3); const inside = x > oL && x < oR; const yEnd = inside ? ySi + 26 : ySi - 46; const y = 96 + u * (yEnd - 96);
             return <Ion key={j} x={x} y={y} r={12} c={ION_C} tail={8} dir={[0, 1]} o={go * Math.min(1, (1 - u) * 5)} />; })}
           {go > 0 ? null : <text x={60} y={110} style={zh(sm(28), H.text2, 700)}>離子從上往下打</text>}
         </g>
@@ -187,7 +188,7 @@ const Src: React.FC<P> = ({ o, f, k }) => {
           <path d={`M72 128 V112 H240 V170 H${cx0}`} stroke={H.text3} strokeWidth={5} fill="none" /><path d="M172 128 V112" stroke={H.text3} strokeWidth={5} />
           {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.02, j, 4); const x = 72 + u * 228, y = u < 0.6 ? 112 : 170; const c = j % 2 ? P_C : N_C;
             return <g key={j} opacity={g > 0.9 ? 1 : 0}><circle cx={x} cy={y} r={9} fill={c} /><circle cx={x + 9} cy={y - 6} r={5} fill={c} /><circle cx={x + 9} cy={y + 6} r={5} fill={c} /></g>; })}
-          <text x={248} y={150} style={zh(sm(28), H.text2, 800)}>氣體</text>
+          <text x={186} y={100} style={zh(sm(28), H.text2, 800)}>氣體</text>
         </g>
         {/* 腔體 */}
         <rect x={cx0} y={cy0} width={cx1 - cx0} height={cy1 - cy0} fill="#3B465E" stroke={H.text3} strokeWidth={3} />
@@ -195,7 +196,7 @@ const Src: React.FC<P> = ({ o, f, k }) => {
         <path d={`M${cx0 + 26} 120 l8 12 l-8 12 l8 12 l-8 12 l8 12 l-8 12`} stroke={pl > 0.3 ? "#FFB347" : "#9AA8BE"} strokeWidth={5} fill="none" />
         <text x={cx0 + 14} y={cy1 - 14} style={zh(sm(28), "#FFFFFF", 800)}>燈絲</text>
         {Array.from({ length: 7 }, (_, j) => { const t = f * 0.09 + j * 0.9; return <Ele key={j} x={cx0 + 70 + ((j * 47 + f * 2.2) % 220)} y={185 + 60 * Math.sin(t)} r={8} c={ELEC} o={pl} />; })}
-        {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.025, j, 4, 1); return <Ion key={j} x={cx0 + 140 + u * 170} y={110 + j * 46} r={12} c={ION_C} o={pl * (u > 0.3 ? 1 : u / 0.3)} />; })}
+        {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.025, j, 4, 1); return <Ion key={j} x={cx0 + 140 + u * 170} y={132 + j * 44} r={12} c={ION_C} o={pl * (u > 0.3 ? 1 : u / 0.3)} />; })}
         <text x={cx0 + 60} y={cy0 + 34} style={zh(sm(28), "#FFFFFF", 900)} opacity={pl}>撞散分子→＋離子</text>
         {/* 引出電極＋電場 */}
         <g opacity={lit(f, T(o, "pull"), 0.55)}>
@@ -265,13 +266,13 @@ const Sel: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g transform="translate(60 12)">
+        <g transform="translate(60 -4)">
           <path d={arc(R + w)} stroke={H.text2} strokeWidth={8} fill="none" /><path d={arc(R - w)} stroke={H.text2} strokeWidth={8} fill="none" />
           <path d={arc(R)} stroke="#FFB24A" strokeWidth={34} fill="none" opacity={0.18 * be} />
           <path d={`M${cx - 120} ${cy - R} H${cx}`} stroke={H.text3} strokeWidth={4} strokeDasharray="8 6" />
-          <path d={`M${cx + R - w - 10} ${cy + 26} H${cx + R - 14} M${cx + R + 14} ${cy + 26} H${cx + R + w + 10}`} stroke={H.text} strokeWidth={8} />
-          <text x={cx + R + w + 16} y={cy + 30} style={zh(22, H.text2, 800)}>狹縫</text>
-          <text x={cx - 120} y={cy - R - 18} style={zh(sm(26), H.text2, 800)}>進來</text>
+          <path d={`M${cx + R - w - 10} ${cy + 20} H${cx + R - 14} M${cx + R + 14} ${cy + 20} H${cx + R + w + 10}`} stroke={H.text} strokeWidth={8} />
+          <text x={cx + R + w + 16} y={cy + 30} style={zh(sm(26), H.text2, 800)}>狹縫</text>
+          <text x={cx - 120} y={cy - R + 40} style={zh(sm(26), H.text2, 800)}>進來</text>
           {kinds.map((kd, j) => { const u = ph(f, 0.022, j, 4); const show = kd === "ok" ? be : mi; if (show < 0.05) return null;
             const [x, y] = path(kd, u * 1.15); const hit = kd !== "ok" && u * 1.15 >= 1; const r = kd === "heavy" ? 15 : kd === "light" ? 9 : 12;
             return <g key={j}>{hit ? <g opacity={wa}><path d={`M${x - 16} ${y} H${x + 16} M${x} ${y - 16} V${y + 16} M${x - 11} ${y - 11} L${x + 11} ${y + 11} M${x + 11} ${y - 11} L${x - 11} ${y + 11}`} stroke="#FFC21A" strokeWidth={4} /></g>
@@ -281,8 +282,8 @@ const Sel: React.FC<P> = ({ o, f, k }) => {
         <g transform="translate(560 0)">
           {[["什麼都有", H.text, "all"], ["太重：撞外壁", HEAVY, "miss"], ["太輕：撞內壁", LIGHT, "miss"], ["剛好：過關", ION_C, "pass"]].map(([t, c, id], j) =>
             <g key={j} opacity={lit(f, T(o, id as string), 0.35)}>
-              {j ? <Ion x={22} y={96 + j * 58} r={[0, 15, 9, 12][j]} c={c as string} /> : <g>{[0, 1, 2].map((q) => <circle key={q} cx={12 + q * 12} cy={96} r={7} fill={[ION_C, HEAVY, LIGHT][q]} />)}</g>}
-              <text x={56} y={106 + j * 58} style={zh(30, j === 3 && pa > 0.5 ? ION_C : H.text, 900)}>{t as string}</text>
+              {j ? <Ion x={22} y={80 + j * 52} r={[0, 15, 9, 12][j]} c={c as string} /> : <g>{[0, 1, 2].map((q) => <circle key={q} cx={12 + q * 12} cy={80} r={7} fill={[ION_C, HEAVY, LIGHT][q]} />)}</g>}
+              <text x={56} y={90 + j * 52} style={zh(30, j === 3 && pa > 0.5 ? ION_C : H.text, 900)}>{t as string}</text>
             </g>)}
           <Badge x={56} y={262} w={300} text="只剩對的離子" bg={H.amber} o={pa} px={30} />
         </g>
@@ -295,7 +296,7 @@ const Sel: React.FC<P> = ({ o, f, k }) => {
 const Scan: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const sw = T(o, "sweep"), mv = T(o, "move"), ev = on(f, T(o, "every")), sa = on(f, T(o, "same"));
-  const cx = 190, cy = 185, R = 120;
+  const cx = 190, cy = 192, R = 120;
   const tMax = Math.max(0, f - sw), pts: string[] = [];
   for (let t = 0; t <= tMax; t += 1) { const x = cx + R * Math.sin(t * 0.32), y = cy - R + (Math.max(0, t + sw - mv) / 90) * 2 * R; if (y > cy + R) break; pts.push(`${x.toFixed(1)},${(f >= mv ? y : cy - R + 6).toFixed(1)}`); }
   const fill = Math.min(1, Math.max(0, (f - mv) / 80));
@@ -316,7 +317,7 @@ const Scan: React.FC<P> = ({ o, f, k }) => {
           <g opacity={lit(f, mv, 0.4)}><path d="M55 176 v60 m0 -60 l-10 14 m10 -14 l10 14 m-10 46 l-10 -14 m10 14 l10 -14" stroke="#1F6FEB" strokeWidth={5} fill="none" /><text x={110} y={218} style={zh(30, H.text, 900)}>③ 晶圓上下動</text></g>
           <g opacity={lit(f, T(o, "every"), 0.4)}><text x={110} y={282} style={zh(30, H.text, 900)}>④ 每一點打進的量一樣</text></g>
         </g>
-        <g opacity={ev}><circle cx={cx + 50} cy={cy + 30} r={16} fill="none" stroke={H.text} strokeWidth={3} /><path d={`M${cx + 30} ${cy + 30} h40 M${cx + 50} ${cy + 10} v40`} stroke={H.text} strokeWidth={2} /></g>
+        <g opacity={ev}><circle cx={cx - 60} cy={cy + 70} r={16} fill="none" stroke={H.text} strokeWidth={3} /><path d={`M${cx - 80} ${cy + 70} h40 M${cx - 60} ${cy + 50} v40`} stroke={H.text} strokeWidth={2} /></g>
         <g opacity={sa} transform={`translate(${cx} ${cy}) rotate(-8) scale(${1 + 0.4 * (1 - sa)})`}><rect x={-70} y={-30} width={140} height={60} fill={H.amber} /><text x={0} y={14} textAnchor="middle" style={zh(40, onC(H.amber), 900)}>均勻</text></g>
       </svg>
     </Card>
@@ -332,7 +333,7 @@ const Cmp: React.FC<P> = ({ o, f, k }) => {
   const peak = 0.38 + 0.22 * en, hgt = 0.55 + 0.4 * ds;
   const knob = (x: number, y: number, a: number, name: string, act: number) => (
     <g opacity={0.5 + 0.5 * act}><circle cx={x} cy={y} r={28} fill={H.cardCompare} stroke={act > 0.5 ? H.amber : H.text3} strokeWidth={5} />
-      <path d={`M${x} ${y} L${x + 22 * Math.cos(a)} ${y + 22 * Math.sin(a)}`} stroke={H.text} strokeWidth={5} /><text x={x} y={y + 54} textAnchor="middle" style={zh(sm(26), H.text, 900)}>{name}</text></g>);
+      <path d={`M${x} ${y} L${x + 22 * Math.cos(a)} ${y + 22 * Math.sin(a)}`} stroke={H.text} strokeWidth={5} /><text x={x} y={y + 66} textAnchor="middle" style={zh(sm(26), H.text, 900)}>{name}</text></g>);
   const diff = () => { const pts: string[] = []; for (let i = 0; i <= 40; i++) { const d = i / 40; pts.push(`${(560 + 250 * Math.exp(-d * 3.2)).toFixed(1)},${(ay0 + d * ah).toFixed(1)}`); } return pts.join(" "); };
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -343,7 +344,7 @@ const Cmp: React.FC<P> = ({ o, f, k }) => {
           <text x={ax0 - 50} y={ay0 + ah} style={zh(22, H.text2, 800)}>深</text><text x={ax0 - 50} y={ay0 + 18} style={zh(22, H.text2, 800)}>表面</text>
           <polyline points={curve(peak, hgt, 0.11)} stroke={ION_C} strokeWidth={5} fill="none" opacity={st} />
           <path d={`M${ax0} ${ay0 + peak * ah} H${ax0 + aw}`} stroke="#C2441F" strokeWidth={3} strokeDasharray="10 7" opacity={st} />
-          <text x={ax0 + aw - 120} y={ay0 + peak * ah - 10} style={zh(22, "#C2441F", 900)} opacity={st}>停在這裡</text>
+          <text x={ax0 + 150} y={ay0 + peak * ah + 44} style={zh(22, "#C2441F", 900)} opacity={st}>停在這裡</text>
           {Array.from({ length: 5 }, (_, j) => { const u = Math.min(1, Math.max(0, (f - T(o, "in") - j * 6) / 40)); const d = (peak + (j - 2) * 0.04) * (1 - Math.exp(-u * 4)) / (1 - Math.exp(-4));
             return <Ion key={j} x={ax0 + 40 + j * 44} y={ay0 + d * ah} r={10} c={ION_C} o={u > 0 && u < 1 ? 1 : 0.6 * (u >= 1 ? 1 : 0)} />; })}
         </g>
@@ -354,8 +355,8 @@ const Cmp: React.FC<P> = ({ o, f, k }) => {
           <text x={510} y={ay0 - 14} style={zh(sm(26), H.text2, 900)}>傳統擴散（高溫爐）</text>
           <path d={`M560 ${ay0} V${ay0 + ah} M560 ${ay0} H${560 + 270}`} stroke={H.text3} strokeWidth={3} />
           <polyline points={diff()} stroke={H.text3} strokeWidth={5} fill="none" />
-          <text x={590} y={ay0 + 130} style={zh(sm(26), H.text2, 800)}>表面最濃、往內漸淡</text>
-          <text x={590} y={ay0 + 166} style={zh(sm(26), H.text2, 800)}>沒有固定停止深度</text>
+          <text x={620} y={ay0 + 130} style={zh(sm(26), H.text2, 800)}>表面最濃、往內漸淡</text>
+          <text x={620} y={ay0 + 166} style={zh(sm(26), H.text2, 800)}>沒有固定停止深度</text>
         </g>
         <text x={510} y={318} style={zh(22, H.text2, 800)} opacity={ds}>擴散看溫度與時間｜佈植看能量與劑量</text>
       </svg>

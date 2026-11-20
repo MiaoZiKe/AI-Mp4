@@ -771,7 +771,7 @@ const HudMeters: React.FC<{ m: Model3D; s: State3D; f: number }> = ({ m, s }) =>
 };
 
 /** HUD 版的疊層：stamp 蓋章（實心色塊、微歪、先大後小）、card 下一支提問卡（深色框＋四角括號） */
-const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s: State3D }> = ({ m, f, list, s }) => {
+export const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s: State3D }> = ({ m, f, list, s }) => {
   const { CX, CY } = cxy();
   return (
   <>
