@@ -24,3 +24,7 @@ Andy 之後指出念錯的詞，以「詞（注音）」接在 Style 最後一�
 ## 不要（已確認）
 
 溫柔／輕聲／安慰腔；聊天裝熟；情緒化、戲劇化、興奮、刻意好奇；問句拉高音；語助詞（欸啦喔呢嘛）、自行加字；念太慢、拖尾音；把風格說明放進講稿框。
+
+## 確認紀錄
+- 2026/11/20 使用者聽完量測檢測（tech-metrology.gold.mp4，3.8＋Iapetus＋本頁 Style）回覆「量測ok」：金手指旁白定案，之後科技片照這份配。
+- API 送法：Style 放在 `prefix`、`parts` 都會被念出來，`systemInstruction` 會被 3.8 拒絕（400）。改用結構化單段文字才成功：`# AUDIO PROFILE` → `## DIRECTOR'S NOTES`（Style 去掉「直接說：」）→ `#### TRANSCRIPT`（念稿）。script.json 寫 `voice.styleMode: "profile"`（scripts/tts-take.mjs）。
