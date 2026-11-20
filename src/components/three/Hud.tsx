@@ -32,6 +32,7 @@ import { WfSection } from "./HudWafer";
 import { DepSection } from "./HudDep";
 import { CmpSection } from "./HudCmp";
 import { MetSection } from "./HudMet";
+import { MetSection } from "./HudMet";
 import { PwSection } from "./HudPower";
 import { FdySection } from "./HudFoundry";
 import { IcSection } from "./HudIc";
@@ -674,6 +675,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("srv-")) return <SrvSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-server（HudServer.tsx）
   if (String((o as any).kind ?? "").startsWith("pw-")) return <PwSection o={o} f={f} k={k} m={m} />; // 2026/11/17 tech-800v（HudPower.tsx）
   if (String((o as any).kind ?? "").startsWith("cmp-")) return <CmpSection o={o} f={f} k={k} m={m} />; // 2026/11/20 tech-cmp（HudCmp.tsx）
+  if (String((o as any).kind ?? "").startsWith("met-")) return <MetSection o={o} f={f} k={k} m={m} />; // 2026/11/20 tech-metrology（HudMet.tsx）
   if (String((o as any).kind ?? "").startsWith("met-")) return <MetSection o={o} f={f} k={k} m={m} />; // 2026/11/20 tech-metrology（HudMet.tsx）
   if (String((o as any).kind ?? "").startsWith("imp-")) return <ImpSection o={o} f={f} k={k} m={m} />; // 2026/11/20 tech-implant（HudImplant.tsx）
   if (String((o as any).kind ?? "").startsWith("dep-")) return <DepSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-deposition（HudDep.tsx）

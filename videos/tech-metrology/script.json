@@ -119,7 +119,303 @@
      "title": "兩奈米都不能歪",
      "size": 120,
      "top": 236
-    }
+    },
+    "zoom": [
+     {
+      "to": "pattern",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 300,
+      "y": 1.1,
+      "d": 66,
+      "elev": 18
+     },
+     {
+      "at": "nm-6",
+      "dur": 26,
+      "x": 301.0,
+      "y": 1.4,
+      "d": 58,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "p_m2",
+      "at": "s1:start-40",
+      "until": "s1:two",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08,
+      "press": [
+       "p_m1"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "p_mark",
+      "at": "s1:start-40",
+      "until": "s1:nm-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "p_mark",
+      "at": "s2:start",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "p_probe",
+      "at": "s1:two-6",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "p_def",
+      "at": "s1:start-40",
+      "until": "s2:defect-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "f_wf",
+      "at": "s1:start-40",
+      "until": "s3:start+2",
+      "dur": 2,
+      "dx": -5.0,
+      "dy": 0,
+      "dz": 0,
+      "spring": {
+       "tau": 7,
+       "period": 18
+      }
+     },
+     {
+      "layer": "f_stage",
+      "at": "s1:start-40",
+      "until": "s3:start+2",
+      "dur": 2,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "e_beam",
+      "at": "s1:start-40",
+      "until": "s4:scan-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "o_opt",
+      "at": "s1:start-40",
+      "until": "s5:light-8",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "o_lite",
+      "at": "s1:start-40",
+      "until": "s5:light-8",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "d_ok",
+      "at": "s1:start-40",
+      "until": "s9:ok-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_ion",
+      "at": "s1:start-40",
+      "until": "s9:ion-14",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "d_def0",
+      "at": "s1:start-40",
+      "until": "s6:fast+12",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def0",
+      "at": "s9:start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def1",
+      "at": "s1:start-40",
+      "until": "s6:fast+15",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def1",
+      "at": "s9:start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def2",
+      "at": "s1:start-40",
+      "until": "s6:fast+17",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def2",
+      "at": "s9:start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def3",
+      "at": "s1:start-40",
+      "until": "s6:fast+19",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def3",
+      "at": "s9:start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def4",
+      "at": "s1:start-40",
+      "until": "s6:fast+20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "d_def4",
+      "at": "s9:start-2",
+      "until": "s10:end+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "p_probe",
+      "at": "start",
+      "until": "s10:end+400",
+      "dur": 70,
+      "dx": 9.0,
+      "dy": 0,
+      "dz": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "p_probeLt",
+      "at": "start",
+      "ramp": 4,
+      "until": "two-8"
+     },
+     {
+      "id": "p_markOn",
+      "at": "nm",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_flat",
+      "text": "磨平的膜",
+      "en": "Polished film",
+      "color": "blue",
+      "at": "flat+4",
+      "until": "two-4"
+     },
+     {
+      "part": "p_probe",
+      "text": "量量看平不平",
+      "en": "Check flatness",
+      "color": "amber",
+      "at": "check",
+      "until": "two-12"
+     },
+     {
+      "part": "p_m2",
+      "text": "上層線路",
+      "en": "Upper wiring",
+      "color": "coral",
+      "at": "two+10",
+      "until": "s2:start-4"
+     },
+     {
+      "part": "p_m1",
+      "text": "下層線路",
+      "en": "Lower wiring",
+      "color": "blue",
+      "at": "two+16",
+      "until": "nm-4"
+     },
+     {
+      "part": "p_mark",
+      "text": "只差約兩奈米",
+      "en": "About 2 nm off",
+      "color": "amber",
+      "at": "nm",
+      "until": "s2:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-prev",
+      "at": "flat+4",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "上一支：磨平之後",
+      "tag": "示意，非實際比例",
+      "t": {
+       "flat": {
+        "at": "flat"
+       },
+       "check": {
+        "at": "check"
+       },
+       "two": {
+        "at": "two"
+       },
+       "nm": {
+        "at": "nm"
+       },
+       "ask": {
+        "at": "ask"
+       }
+      }
+     }
+    ]
    },
    "sources": [
     "疊對約 2 奈米：SEMI Engineering"
@@ -164,7 +460,206 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "pattern",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 300,
+      "y": 2.0,
+      "d": 60,
+      "elev": 18
+     },
+     {
+      "at": "layer+2",
+      "dur": 24,
+      "x": 300,
+      "y": 3.4,
+      "d": 74,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "p_tr",
+      "at": "layer+2",
+      "until": "s3:start",
+      "dur": 22,
+      "dx": 0,
+      "dy": 1.4,
+      "dz": 0
+     },
+     {
+      "layer": "p_m1",
+      "at": "layer+7",
+      "until": "s3:start",
+      "dur": 22,
+      "dx": 0,
+      "dy": 2.8,
+      "dz": 0
+     },
+     {
+      "layer": "p_m2",
+      "at": "layer+12",
+      "until": "s3:start",
+      "dur": 22,
+      "dx": 0,
+      "dy": 4.2,
+      "dz": 0
+     },
+     {
+      "layer": "p_def",
+      "at": "layer+17",
+      "until": "s3:start",
+      "dur": 22,
+      "dx": 0,
+      "dy": 4.2,
+      "dz": 0
+     },
+     {
+      "layer": "p_m1",
+      "at": "early",
+      "until": "s3:start",
+      "dur": 12,
+      "dx": 0.7,
+      "dy": 0,
+      "dz": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "p_m1bad",
+      "at": "early",
+      "ramp": 6,
+      "until": "every-4"
+     },
+     {
+      "id": "p_waste",
+      "at": "waste",
+      "ramp": 8,
+      "until": "every-4"
+     },
+     {
+      "id": "p_ok0",
+      "at": "every+0",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "p_ok1",
+      "at": "every+8",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "p_ok2",
+      "at": "every+16",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "p_ok3",
+      "at": "every+24",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "p_defOn",
+      "at": "defect",
+      "ramp": 6,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_si",
+      "text": "矽基板",
+      "en": "Silicon",
+      "color": "blue",
+      "at": "layer+4",
+      "until": "early-2"
+     },
+     {
+      "part": "p_tr",
+      "text": "電晶體層",
+      "en": "Transistors",
+      "color": "amber",
+      "at": "layer+10",
+      "until": "early-2"
+     },
+     {
+      "part": "p_m1",
+      "text": "前面這層歪了",
+      "en": "This layer drifted",
+      "color": "coral",
+      "at": "early",
+      "until": "every-4"
+     },
+     {
+      "part": "p_m2",
+      "text": "後面全白做",
+      "en": "All wasted",
+      "color": "coral",
+      "at": "waste",
+      "until": "every-4"
+     },
+     {
+      "part": "p_tr",
+      "text": "每一層都量",
+      "en": "Measure every layer",
+      "color": "blue",
+      "at": "every+8",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "p_def",
+      "text": "缺陷",
+      "en": "Defect",
+      "color": "amber",
+      "at": "defect",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-layer",
+      "at": "start+2",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "一層層做，一步歪全白做",
+      "tag": "示意",
+      "t": {
+       "ly": {
+        "at": "layer"
+       },
+       "early": {
+        "at": "early"
+       },
+       "waste": {
+        "at": "waste"
+       },
+       "every": {
+        "at": "every"
+       },
+       "defect": {
+        "at": "defect"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
     "製程通則"
    ],
@@ -212,9 +707,183 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 60.6,
+      "y": 2.4,
+      "d": 84,
+      "elev": 10
+     },
+     {
+      "at": "refl-4",
+      "dur": 30,
+      "x": 61.0,
+      "y": 3.2,
+      "d": 76,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "f_lampOn",
+      "at": "hit-10",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_in",
+      "at": "hit",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_hitP",
+      "at": "hit+6",
+      "ramp": 6,
+      "until": "refl"
+     },
+     {
+      "id": "f_r1",
+      "at": "refl",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_r2",
+      "at": "refl+8",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_fringe",
+      "at": "overlap",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_specOn",
+      "at": "bd",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_wave",
+      "at": "bd",
+      "ramp": 10,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_film",
+      "text": "膜：要量多厚",
+      "en": "Film thickness",
+      "color": "blue",
+      "at": "thick",
+      "until": "refl-4"
+     },
+     {
+      "part": "f_lamp",
+      "text": "光源",
+      "en": "Light source",
+      "color": "amber",
+      "at": "hit",
+      "until": "overlap-4"
+     },
+     {
+      "part": "f_pol",
+      "text": "偏振片",
+      "en": "Polarizer",
+      "color": "blue",
+      "at": "hit+10",
+      "until": "overlap-4"
+     },
+     {
+      "part": "f_top",
+      "text": "表面反射",
+      "en": "Top reflection",
+      "color": "amber",
+      "at": "refl",
+      "until": "bd-4"
+     },
+     {
+      "part": "f_bot",
+      "text": "底部反射",
+      "en": "Bottom reflection",
+      "color": "blue",
+      "at": "refl+8",
+      "until": "bd-4"
+     },
+     {
+      "part": "f_det",
+      "text": "兩道光疊起來",
+      "en": "Beams overlap",
+      "color": "coral",
+      "at": "overlap",
+      "until": "calc-4"
+     },
+     {
+      "part": "f_spec",
+      "text": "光譜儀：亮暗→厚度",
+      "en": "Spectrometer",
+      "color": "amber",
+      "at": "bd",
+      "until": "s4:start-4"
+     },
+     {
+      "part": "f_si",
+      "text": "矽基板",
+      "en": "Silicon",
+      "color": "blue",
+      "at": "calc",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-film",
+      "at": "start+2",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "光怎麼量出厚度",
+      "tag": "示意，非實際比例",
+      "t": {
+       "hit": {
+        "at": "hit"
+       },
+       "refl": {
+        "at": "refl"
+       },
+       "overlap": {
+        "at": "overlap"
+       },
+       "bd": {
+        "at": "bd"
+       },
+       "calc": {
+        "at": "calc"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
-    "膜厚量測：halbleiter.org"
+    "膜厚量測：halbleiter.org；橢圓偏光說明"
    ],
    "pauseAfter": 0.7
   },
@@ -256,9 +925,189 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     },
+     {
+      "to": "pattern",
+      "at": "el",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 120,
+      "y": 3.8,
+      "d": 90,
+      "elev": 10
+     },
+     {
+      "at": "el-4",
+      "dur": 30,
+      "x": 121.0,
+      "y": 3.0,
+      "d": 78,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "e_gunOn",
+      "at": "start",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_pri",
+      "at": "scan-8",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_scan",
+      "at": "scan",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_deflOn",
+      "at": "scan",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_sec0",
+      "at": "el+0",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_sec1",
+      "at": "el+3",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_sec2",
+      "at": "el+6",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_sec3",
+      "at": "el+9",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_edgeOn",
+      "at": "el+6",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_wave",
+      "at": "edge",
+      "ramp": 10,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_gun",
+      "text": "電子槍",
+      "en": "Electron gun",
+      "color": "amber",
+      "at": "cd",
+      "until": "el-4"
+     },
+     {
+      "part": "e_cond",
+      "text": "聚光鏡",
+      "en": "Condenser lens",
+      "color": "blue",
+      "at": "cd+10",
+      "until": "el-4"
+     },
+     {
+      "part": "e_defl",
+      "text": "偏轉線圈：讓束掃動",
+      "en": "Scan coils",
+      "color": "coral",
+      "at": "scan",
+      "until": "el-4"
+     },
+     {
+      "part": "e_obj",
+      "text": "物鏡",
+      "en": "Objective lens",
+      "color": "blue",
+      "at": "scan+12",
+      "until": "el-4"
+     },
+     {
+      "part": "e_det",
+      "text": "偵測器",
+      "en": "Detector",
+      "color": "amber",
+      "at": "el",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "e_edge",
+      "text": "邊緣：電子特別多",
+      "en": "Edges glow",
+      "color": "coral",
+      "at": "edge",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "e_line",
+      "text": "線寬",
+      "en": "Line width",
+      "color": "blue",
+      "at": "wid",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-cd",
+      "at": "start+2",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "電子束怎麼量線寬",
+      "tag": "示意，非實際比例",
+      "t": {
+       "scan": {
+        "at": "scan"
+       },
+       "el": {
+        "at": "el"
+       },
+       "edge": {
+        "at": "edge"
+       },
+       "wid": {
+        "at": "wid"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
-    "CD-SEM：SemiconductorX"
+    "CD-SEM：SemiconductorX；日立／應材 CD-SEM 說明"
    ],
    "pauseAfter": 0.7
   },
@@ -304,7 +1153,184 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "pattern",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 180,
+      "y": -1.2,
+      "d": 58,
+      "elev": 16
+     },
+     {
+      "at": "two+24",
+      "dur": 26,
+      "x": 180,
+      "y": 2.4,
+      "d": 82,
+      "elev": 10
+     }
+    ],
+    "shift": [
+     {
+      "layer": "o_up",
+      "at": "ov+8",
+      "until": "light-14",
+      "dur": 18,
+      "dx": 0,
+      "dy": 2.6,
+      "dz": 0
+     },
+     {
+      "layer": "o_mid",
+      "at": "ov+8",
+      "until": "light-14",
+      "dur": 18,
+      "dx": 0,
+      "dy": 1.3,
+      "dz": 0
+     },
+     {
+      "layer": "o_up",
+      "at": "two+30",
+      "until": "s10:end+400",
+      "dur": 16,
+      "dx": 0.4,
+      "dy": 0,
+      "dz": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "o_in",
+      "at": "light",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "o_m0",
+      "at": "light+10",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "o_p1",
+      "at": "diff-6",
+      "ramp": 6,
+      "until": "s6:start",
+      "gain": 1.0
+     },
+     {
+      "id": "o_n1",
+      "at": "diff-6",
+      "ramp": 6,
+      "until": "s6:start",
+      "gain": 0.45
+     },
+     {
+      "id": "o_detPon",
+      "at": "diff",
+      "ramp": 8,
+      "until": "s6:start",
+      "gain": 1.0
+     },
+     {
+      "id": "o_detNon",
+      "at": "diff",
+      "ramp": 8,
+      "until": "s6:start",
+      "gain": 0.35
+     },
+     {
+      "id": "o_offOn",
+      "at": "how",
+      "ramp": 6,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "o_up",
+      "text": "上層紋路",
+      "en": "Upper grating",
+      "color": "coral",
+      "at": "two",
+      "until": "two+22"
+     },
+     {
+      "part": "o_lo",
+      "text": "下層紋路",
+      "en": "Lower grating",
+      "color": "blue",
+      "at": "two+8",
+      "until": "two+22"
+     },
+     {
+      "part": "o_detP",
+      "text": "這邊比較亮",
+      "en": "Brighter",
+      "color": "coral",
+      "at": "diff",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "o_detN",
+      "text": "這邊比較暗",
+      "en": "Dimmer",
+      "color": "blue",
+      "at": "diff+8",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "o_off",
+      "text": "錯開量＝歪多少",
+      "en": "Offset",
+      "color": "coral",
+      "at": "how",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-ovl",
+      "at": "start+2",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "兩層歪了多少",
+      "tag": "示意，非實際比例",
+      "t": {
+       "two": {
+        "at": "two"
+       },
+       "light": {
+        "at": "light"
+       },
+       "diff": {
+        "at": "diff"
+       },
+       "how": {
+        "at": "how"
+       },
+       "off": {
+        "at": "off"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
     "繞射式疊對：SPIE、ASML 官網"
    ],
@@ -352,9 +1378,207 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     },
+     {
+      "to": "pattern",
+      "at": "fine+10",
+      "dur": 24
+     },
+     {
+      "to": "wafer",
+      "at": "so-6",
+      "dur": 20
+     },
+     {
+      "to": "pattern",
+      "at": "look+6",
+      "dur": 24
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 240,
+      "y": -1.2,
+      "d": 58,
+      "elev": 32
+     },
+     {
+      "at": "fine+4",
+      "dur": 22,
+      "x": 238.2,
+      "y": -0.6,
+      "d": 34,
+      "elev": 30
+     },
+     {
+      "at": "so-6",
+      "dur": 22,
+      "x": 240,
+      "y": -1.2,
+      "d": 58,
+      "elev": 32
+     },
+     {
+      "at": "look+4",
+      "dur": 22,
+      "x": 239.4,
+      "y": -0.6,
+      "d": 34,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "d_scan",
+      "at": "fast-4",
+      "until": "fine-14",
+      "dur": 40,
+      "dx": 0,
+      "dy": 0,
+      "dz": 9.6
+     },
+     {
+      "layer": "d_rev",
+      "at": "fine-8",
+      "until": "s9:start",
+      "dur": 22,
+      "dx": -5.800000000000011,
+      "dy": 0,
+      "dz": -5.6,
+      "spring": {
+       "tau": 7,
+       "period": 18
+      }
+     },
+     {
+      "layer": "d_rev",
+      "at": "look-8",
+      "until": "s9:start",
+      "dur": 22,
+      "dx": 1.2,
+      "dy": 0,
+      "dz": 2.6
+     }
+    ],
+    "run": [
+     {
+      "id": "d_bandOn",
+      "at": "fast-6",
+      "ramp": 6,
+      "until": "fine-8"
+     },
+     {
+      "id": "d_dotsOn",
+      "at": "fast+10",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "d_rBeamE",
+      "at": "fine+12",
+      "ramp": 6,
+      "until": "so-4"
+     },
+     {
+      "id": "d_rBeamE",
+      "at": "look+14",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_wf",
+      "text": "整片晶圓",
+      "en": "Whole wafer",
+      "color": "blue",
+      "at": "def",
+      "until": "fast-4"
+     },
+     {
+      "part": "d_head",
+      "text": "光學：掃得快、看不細",
+      "en": "Optical: fast",
+      "color": "amber",
+      "at": "fast",
+      "until": "fine-6"
+     },
+     {
+      "part": "d_map",
+      "text": "可疑處（色點）",
+      "en": "Suspect spots",
+      "color": "coral",
+      "at": "fast+20",
+      "until": "fine-6"
+     },
+     {
+      "part": "d_def0",
+      "text": "電子束：看得細、很慢",
+      "en": "E-beam: fine, slow",
+      "color": "blue",
+      "at": "fine+20",
+      "until": "so-8"
+     },
+     {
+      "part": "d_map",
+      "text": "先找出可疑處",
+      "en": "Flag suspects",
+      "color": "coral",
+      "at": "so",
+      "until": "look-4"
+     },
+     {
+      "part": "d_def2",
+      "text": "再看清楚：一顆顆粒",
+      "en": "Close look: a particle",
+      "color": "blue",
+      "at": "look+20",
+      "until": "s7:start-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-def",
+      "at": "start+2",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "快的先找，細的再看",
+      "tag": "示意",
+      "t": {
+       "fast": {
+        "at": "fast"
+       },
+       "fine": {
+        "at": "fine"
+       },
+       "slow": {
+        "at": "slow"
+       },
+       "so": {
+        "at": "so"
+       },
+       "look": {
+        "at": "look"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
-    "光學快、電子束細：SemiconductorX"
+    "SemiconductorX；SEMVision 說明"
    ],
    "pauseAfter": 0.7
   },
@@ -392,7 +1616,144 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": -11.0,
+      "y": -1.0,
+      "d": 150,
+      "elev": 24
+     },
+     {
+      "at": "bad-20",
+      "dur": 26,
+      "x": 5.0,
+      "y": -2.5,
+      "d": 64,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "s_stage",
+      "at": "back+36",
+      "until": "back+40",
+      "dur": 8,
+      "dx": 0.5,
+      "dy": 0,
+      "dz": 0,
+      "spring": {
+       "tau": 6,
+       "period": 14
+      }
+     }
+    ],
+    "motion": [
+     {
+      "preset": "arm-transfer",
+      "arm": "ar",
+      "at": "bad-24",
+      "item": "a_wf",
+      "grab": 0.65,
+      "put": -0.8,
+      "raise": 0.15
+     }
+    ],
+    "run": [
+     {
+      "id": "m_leds",
+      "at": "start-30",
+      "ramp": 2,
+      "until": "s10:start"
+     },
+     {
+      "id": "t_data",
+      "at": "back-4",
+      "ramp": 6,
+      "until": "bad"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_optL",
+      "text": "量到歪了",
+      "en": "Offset measured",
+      "color": "coral",
+      "at": "off",
+      "until": "back-4"
+     },
+     {
+      "part": "t_data",
+      "text": "數字送回去",
+      "en": "Data sent back",
+      "color": "blue",
+      "at": "back",
+      "until": "bad-14"
+     },
+     {
+      "part": "t_scan",
+      "text": "曝光機：修正位置",
+      "en": "Scanner corrects",
+      "color": "amber",
+      "at": "back+10",
+      "until": "bad-14"
+     },
+     {
+      "part": "t_arm",
+      "text": "有缺陷的晶圓",
+      "en": "Defective wafer",
+      "color": "coral",
+      "at": "bad",
+      "until": "pull-4"
+     },
+     {
+      "part": "t_bin",
+      "text": "挑出來：檢出盒",
+      "en": "Pulled out",
+      "color": "coral",
+      "at": "pull",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-loop",
+      "at": "start+2",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 340,
+      "avoid": false,
+      "title": "量完之後",
+      "tag": "示意",
+      "t": {
+       "off": {
+        "at": "off"
+       },
+       "back": {
+        "at": "back"
+       },
+       "bad": {
+        "at": "bad"
+       },
+       "pull": {
+        "at": "pull"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
     "量測回饋曝光機：SEMI Engineering"
    ],
@@ -445,7 +1806,110 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 18,
+      "x": 0.5,
+      "y": -1.4,
+      "d": 110,
+      "elev": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_insp",
+      "text": "科磊：疊對、缺陷檢測",
+      "en": "KLA",
+      "color": "amber",
+      "at": "kla",
+      "until": "am-4"
+     },
+     {
+      "part": "t_optL",
+      "text": "艾司摩爾：疊對量測",
+      "en": "ASML",
+      "color": "blue",
+      "at": "asml",
+      "until": "hit-4"
+     },
+     {
+      "part": "t_sem",
+      "text": "應用材料：電子束複檢、線寬",
+      "en": "Applied Materials",
+      "color": "coral",
+      "at": "am",
+      "until": "tw-4"
+     },
+     {
+      "part": "t_semR",
+      "text": "日立先端科技：線寬",
+      "en": "Hitachi High-Tech",
+      "color": "blue",
+      "at": "hit",
+      "until": "hy-4"
+     },
+     {
+      "part": "t_ret",
+      "text": "華洋精機（台）：光罩微粒檢測",
+      "en": "Hwa Yang (TW)",
+      "color": "amber",
+      "at": "hy",
+      "until": "s9:start-4"
+     },
+     {
+      "part": "t_wf",
+      "text": "牧德（台）：晶圓外觀檢查",
+      "en": "MAK Tech (TW)",
+      "color": "coral",
+      "at": "mak",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "met-co",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 965,
+      "w": 952,
+      "h": 300,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "各公司官網、媒體報導",
+      "t": {
+       "kla": {
+        "at": "kla"
+       },
+       "asml": {
+        "at": "asml"
+       },
+       "am": {
+        "at": "am"
+       },
+       "hit": {
+        "at": "hit"
+       },
+       "hy": {
+        "at": "hy"
+       },
+       "mak": {
+        "at": "mak"
+       }
+      }
+     }
+    ]
+   },
    "sources": [
     "各公司官網與科技新報、工商時報"
    ],
@@ -509,7 +1973,123 @@
     }
    ],
    "component": "ThreeScene",
-   "props": {},
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 240,
+      "y": -1.2,
+      "d": 58,
+      "elev": 30
+     },
+     {
+      "at": "next-4",
+      "dur": 30,
+      "x": 240,
+      "y": 0.8,
+      "d": 70,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "d_okOn",
+      "at": "ok",
+      "ramp": 8,
+      "until": "next+10"
+     },
+     {
+      "id": "d_ions",
+      "at": "ion",
+      "ramp": 8,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_wf",
+      "text": "量過沒問題",
+      "en": "Checked OK",
+      "color": "blue",
+      "at": "ok",
+      "until": "next-4"
+     },
+     {
+      "part": "d_ion",
+      "text": "離子：帶正電",
+      "en": "Ions (+)",
+      "color": "coral",
+      "at": "ion",
+      "until": "nx-4"
+     },
+     {
+      "part": "d_map",
+      "text": "雜質打進矽裡",
+      "en": "Dopants go in",
+      "color": "amber",
+      "at": "imp",
+      "until": "nx-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "go",
+      "until": "next+6",
+      "text": "放行",
+      "color": "blue",
+      "size": 64,
+      "rot": -4,
+      "x": 860,
+      "y": 330,
+      "avoid": false
+     },
+     {
+      "type": "section",
+      "kind": "met-step",
+      "at": "start+2",
+      "until": "kw-14",
+      "x": 64,
+      "y": 940,
+      "w": 952,
+      "h": 250,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一支：離子佈植",
+      "t": {
+       "cmp": {
+        "at": "ok"
+       },
+       "met": {
+        "at": "go"
+       },
+       "next": {
+        "at": "nx"
+       }
+      }
+     },
+     {
+      "type": "stamp",
+      "at": "kw",
+      "until": "kw+60",
+      "text": "留言「量測」",
+      "color": "blue",
+      "size": 36,
+      "rot": -4,
+      "x": 780,
+      "y": 336,
+      "avoid": false
+     }
+    ]
+   },
    "sources": [
     "系列：離子佈植"
    ]
