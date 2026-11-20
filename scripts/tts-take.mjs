@@ -43,10 +43,13 @@ const styled = /gemini-2\.5/.test(MODEL);
 // 旁白設定檔（voice.profile，docs/voice-profiles.md）：有就用它組「導演筆記」說明；沒有的舊片照舊用 voice.style（提示與快取雜湊都不變）
 const profile = opt.style ? null : resolveProfile(voice);
 if (profile) { const bad = profileIssues(profile); if (bad.length) { console.error("✖ voice.profile 有問題：\n  " + bad.join("\n  ")); process.exit(2); } }
-const STYLE = profile ? buildDirection(profile) : (opt.style ?? voice.style ?? "").replace(/[。：:]+$/, "");
+// 3.x 的「金手指」Style（2026/11/20 Andy）：voice.styleText 逐字全文；voice.styleMode＝"prefix"（預設，接在念稿前一行）｜"system"（systemInstruction）
+const STYLE_TEXT = voice.styleText ? String(voice.styleText).trim() : "";
+const STYLE_MODE = ["system", "parts", "profile"].includes(voice.styleMode) ? voice.styleMode : "prefix";
+const STYLE = STYLE_TEXT ? `${STYLE_TEXT}\u0001${STYLE_MODE}` : profile ? buildDirection(profile) : (opt.style ?? voice.style ?? "").replace(/[。：:]+$/, "");
 if (styled && !STYLE) { console.error("script.json 缺 voice.profile 或 voice.style（或用 --style=）"); process.exit(2); }
 // 3.x 系列會把說明念出來 → 只送念稿，口音靠 languageCode；各段情緒在 3.x 目前不送（見 docs/voice-profiles.md）
-const prompt = (text) => (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
+const prompt = (text) => STYLE_TEXT ? (STYLE_MODE === "prefix" ? `${STYLE_TEXT}\n${text}` : STYLE_MODE === "profile" ? `# AUDIO PROFILE: 科技透明圈旁白\n## DIRECTOR'S NOTES\n${STYLE_TEXT.replace(/\s*直接說：\s*$/, "")}\n\n#### TRANSCRIPT\n${text}` : text) : (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
 // languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
 let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
 const SR = 24000, KEEP = 0.04, FADE = 0.004, VOICE_DB = -40;
@@ -61,7 +64,7 @@ const reqLog = path.join(dir, "tts-requests.json");
 const logReq = (row) => { const a = fs.existsSync(reqLog) ? JSON.parse(fs.readFileSync(reqLog, "utf8")) : []; a.push(row); fs.writeFileSync(reqLog, JSON.stringify(a, null, 1) + "\n"); };
 
 async function synth(text, purpose) {
-  const mk = () => ({ contents: [{ parts: [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], ...(process.env.TTS_TEMPERATURE ? { temperature: Number(process.env.TTS_TEMPERATURE) } : {}), speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
+  const mk = () => ({ ...(STYLE_TEXT && STYLE_MODE === "system" ? { systemInstruction: { parts: [{ text: STYLE_TEXT }] } } : {}), contents: [{ parts: STYLE_TEXT && STYLE_MODE === "parts" ? [{ text: STYLE_TEXT }, { text }] : [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], ...(process.env.TTS_TEMPERATURE ? { temperature: Number(process.env.TTS_TEMPERATURE) } : {}), speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
   for (let i = 0; i < 2; i++) {
     const body = mk();
     const r = await fetch(`${API}/models/${MODEL}:generateContent`, { method: "POST", headers, body: JSON.stringify(body) });
