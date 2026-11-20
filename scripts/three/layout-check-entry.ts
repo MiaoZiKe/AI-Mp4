@@ -91,6 +91,7 @@ export const check = (script: any) => {
   const meters = Object.entries(m.product.actions ?? {}).filter(([, d]) => d.type === "meter" && d.x !== undefined);
   const bands = L.BAND_TOP ? hudReserved(L) : [];
   const HE = hud.layout === "fill" ? "E" : "W";
+  const ymd = String(script.asOf ?? "").split(/[\/-]/).map(Number), LE = ymd.length === 3 && ymd[0] * 10000 + ymd[1] * 100 + ymd[2] >= 20261121 ? "E" : "W";
   let occl = 0;
   for (let f = 0; f < total; f++) {
     const s = stateAt(m, f), main = visibleMain(plan.mainAt(f), L, !plan.is3D(f)), mr = plan.is3D(f) ? main : null;
@@ -119,6 +120,19 @@ export const check = (script: any) => {
         else if (area(it.r, main) / A0 > 0.05) add(`W|主素材邊緣|${it.name} 蓋到主素材（${what}）邊緣（超過 5%，沒蓋到中央）`, f);
       }
     }
+    // 3D 標籤卡互相距離 <8px（2026/11/21 Andy 退件：量測 s3、s8 兩框貼在一起）＋引線穿過別張標籤卡：asOf 11/21 以後的片 error，舊片 warning
+    const labOn = items.filter((it) => it.kind === "label");
+    for (let i = 0; i < labOn.length; i++) for (let j = i + 1; j < labOn.length; j++) if (!hit(labOn[i].r, labOn[j].r) && hit(labOn[i].r, labOn[j].r, 8)) add(`${LE}|標籤間距|${labOn[i].name} 和 ${labOn[j].name} 距離 <8px（貼在一起）`, f);
+    if (labOn.length > 1) {
+      const cam = cameraFor(s), yv = plan.base3D;
+      for (const { l, an, x, y, left, rect } of lab) {
+        const k = tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)); if (k < 0.15) continue;
+        const p0 = projectPoint(s, cam, an.layer, an.p), p = { x: p0.x * yv.s + yv.ox, y: p0.y * yv.s + yv.oy }, kx = x + (left ? 30 : -30);
+        const segs: [number, number, number, number][] = [[p.x, p.y, kx, y], [kx, y, x, y]];
+        for (const o of labOn) { if (o.r === rect) continue; const r = { x0: o.r.x0 + 2, y0: o.r.y0 + 2, x1: o.r.x1 - 2, y1: o.r.y1 - 2 };
+          if (segs.some(([ax, ay, bx, by]) => segHitsRect(ax, ay, bx, by, r))) add(`${LE}|引線穿過標籤|標籤「${l.text}」的引線穿過 ${o.name}`, f); }
+      }
+    }
     for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
       const a = items[i], b = items[j];
       if (!hit(a.r, b.r)) continue;
@@ -130,6 +144,8 @@ export const check = (script: any) => {
   return { issues: out, stats: { ...edgeStats, frames: total, labels: lab.length, overlays: ovs.length, occlusionFrames: occl }, mainSamples: Array.from({ length: Math.ceil(total / 15) }, (_, i) => { const r = plan.mainAt(i * 15); return [i * 15, r ? [r.x0, r.y0, r.x1, r.y1].map(Math.round) : null]; }), labels: lab.map((p) => ({ text: p.l.text, at: p.l.at, until: p.l.until, rect: p.rect })), overlays: ovs.map((o) => ({ type: o.type, text: o.text ?? o.title ?? o.kicker, at: o.at, until: o.until, x: o.x, y: o.y, rect: o.type === "stamp" ? stampRect(o, o.x ?? 540, o.y ?? 856) : cardRect(o, L) })) };
 };
 
+/** 線段 (ax,ay)–(bx,by) 有沒有穿過矩形 r（取樣 2px） */
+const segHitsRect = (ax: number, ay: number, bx: number, by: number, r: Rect) => { const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / 2)); for (let i = 0; i <= n; i++) { const x = ax + ((bx - ax) * i) / n, y = ay + ((by - ay) * i) / n; if (x > r.x0 && x < r.x1 && y > r.y0 && y < r.y1) return true; } return false; };
 const resolveAt = (tl: any, sceneId: string, spec: string) => {
   const by: Record<string, any> = Object.fromEntries(tl.scenes.map((x: any, i: number) => [x.id, { ...x, exit: tl.scenes[i + 1]?.startFrame ?? tl.totalFrames }]));
   const r = /^(?:([^\s:+-]+):)?([^\s:+-]+)([+-]\d+)?$/.exec(spec)!, t = r[1] ? by[r[1]] : by[sceneId];

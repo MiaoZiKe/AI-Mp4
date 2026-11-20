@@ -17,7 +17,10 @@ def run(i, at, until=None, ramp=6, **kw):
     d = {"id": i, "at": at, "ramp": ramp}
     if until: d["until"] = until
     d.update(kw); return d
-def lab(part, text, en, color, at, until): return {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+def lab(part, text, en, color, at, until, xy=None):
+    d = {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+    if xy: d["xy"] = xy  # 手動指定標籤卡中心（畫面座標）；2026/11/21 自動空位會蓋到 3D 光束或引線穿過別張卡時用
+    return d
 def stamp(text, at, until, color="amber", size=44, rot=-4, **kw):
     d = {"type": "stamp", "at": at, "until": until, "text": text, "color": color, "size": size, "rot": rot}; d.update(kw); return d
 def sec(kind, at, until, y, h, title, tag, t, **kw):
@@ -95,8 +98,8 @@ S.append(scene("s2", "you", "晶圓一層層做，前面歪了，後面全白做
    "shot": [shot("start-2", PX, 2.0, 60, 18, 1), shot("layer+2", PX, 3.4, 74, 18, 24)],
    "shift": s2_shift,
    "run": [run("p_m1bad", "early", "every-4", 6), run("p_waste", "waste", "every-4", 8)] + [run(f"p_ok{k}", off("every", 8 * k), "s3:start", 6) for k in range(4)] + [run("p_defOn", "defect", "s3:start", 6)],
-   "labels": [lab("p_si", "矽基板", "Silicon", "blue", "layer+4", "early-2"), lab("p_tr", "電晶體層", "Transistors", "amber", "layer+10", "early-2"), lab("p_m1", "前面這層歪了", "This layer drifted", "coral", "early", "every-4"),
-              lab("p_m2", "後面全白做", "All wasted", "coral", "waste", "every-4"), lab("p_tr", "每一層都量", "Measure every layer", "blue", "every+8", "s3:start-4"), lab("p_def", "缺陷", "Defect", "amber", "defect", "s3:start-4")],
+   "labels": [lab("p_si", "矽基板", "Silicon", "blue", "layer+4", "early-2", xy=[910, 612]), lab("p_tr", "電晶體層", "Transistors", "amber", "layer+10", "early-2", xy=[882, 467]), lab("p_m1", "前面這層歪了", "This layer drifted", "coral", "early", "every-4", xy=[790, 311]),
+              lab("p_m2", "後面全白做", "All wasted", "coral", "waste", "every-4", xy=[224, 311]), lab("p_tr", "每一層都量", "Measure every layer", "blue", "every+8", "s3:start-4"), lab("p_def", "缺陷", "Defect", "amber", "defect", "s3:start-4")],
    "overlay": [sec("met-layer", "start+2", "s3:start-2", 930, 340, "一層層做，一步歪全白做", "示意", {"ly": "layer", "early": "early", "waste": "waste", "every": "every", "defect": "defect"})]},
   ["製程通則"]))
 
@@ -110,9 +113,9 @@ S.append(scene("s3", "mechanism", "先量厚度。光打在膜上，表面和底
    "shot": [shot("start-2", FX + .6, 2.4, 84, 10, 1), shot("refl-4", FX + 1.0, 3.2, 76, 10, 30)],
    "run": [run("f_lampOn", "hit-10", "s4:start", 6), run("f_in", "hit", "s4:start", 6), run("f_hitP", "hit+6", "refl", 6), run("f_r1", "refl", "s4:start", 6), run("f_r2", "refl+8", "s4:start", 6),
            run("f_fringe", "overlap", "s4:start", 8), run("f_specOn", "bd", "s4:start", 8), run("f_wave", "bd", "s4:start", 10)],
-   "labels": [lab("f_film", "膜：要量多厚", "Film thickness", "blue", "thick", "refl-4"), lab("f_lamp", "光源", "Light source", "amber", "hit", "overlap-4"), lab("f_pol", "偏振片", "Polarizer", "blue", "hit+10", "overlap-4"),
-              lab("f_top", "表面反射", "Top reflection", "amber", "refl", "bd-4"), lab("f_bot", "底部反射", "Bottom reflection", "blue", "refl+8", "bd-4"),
-              lab("f_det", "兩道光疊起來", "Beams overlap", "coral", "overlap", "calc-4"), lab("f_spec", "光譜儀：亮暗→厚度", "Spectrometer", "amber", "bd", "s4:start-4"), lab("f_si", "矽基板", "Silicon", "blue", "calc", "s4:start-4")],
+   "labels": [lab("f_film", "膜：要量多厚", "Film thickness", "blue", "thick", "refl-4", xy=[251, 839]), lab("f_lamp", "光源", "Light source", "amber", "hit", "refl-4", xy=[203.5, 311]), lab("f_pol", "偏振片", "Polarizer", "blue", "hit+10", "refl-4", xy=[524, 311]),
+              lab("f_top", "表面反射", "Top reflection", "amber", "refl", "bd-4", xy=[228, 313]), lab("f_bot", "底部反射", "Bottom reflection", "blue", "refl+8", "bd-4", xy=[817, 311]),
+              lab("f_det", "兩道光疊起來", "Beams overlap", "coral", "overlap", "calc-4", xy=[251, 827]), lab("f_spec", "光譜儀：亮暗→厚度", "Spectrometer", "amber", "bd", "s4:start-4", xy=[346, 311]), lab("f_si", "矽基板", "Silicon", "blue", "calc", "s4:start-4", xy=[902, 839])],
    "overlay": [sec("met-film", "start+2", "s4:start-2", 930, 340, "光怎麼量出厚度", "示意，非實際比例", {"hit": "hit", "refl": "refl", "overlap": "overlap", "bd": "bd", "calc": "calc"})]},
   ["膜厚量測：halbleiter.org；橢圓偏光說明"]))
 
@@ -127,7 +130,7 @@ S.append(scene("s4", "mechanism", "再量線寬。電子束掃過去，從跑出
    "run": [run("e_gunOn", "start", "s5:start", 6), run("e_pri", "scan-8", "s5:start", 6), run("e_scan", "scan", "s5:start", 10), run("e_deflOn", "scan", "s5:start", 6)]
           + [run(f"e_sec{k}", off("el", 3 * k), "s5:start", 6) for k in range(4)] + [run("e_edgeOn", "el+6", "s5:start", 6), run("e_wave", "edge", "s5:start", 10)],
    "labels": [lab("e_gun", "電子槍", "Electron gun", "amber", "cd", "el-4"), lab("e_cond", "聚光鏡", "Condenser lens", "blue", "cd+10", "el-4"), lab("e_defl", "偏轉線圈：讓束掃動", "Scan coils", "coral", "scan", "el-4"), lab("e_obj", "物鏡", "Objective lens", "blue", "scan+12", "el-4"),
-              lab("e_det", "偵測器", "Detector", "amber", "el", "s5:start-4"), lab("e_edge", "邊緣：電子特別多", "Edges glow", "coral", "edge", "s5:start-4"), lab("e_line", "線寬", "Line width", "blue", "wid", "s5:start-4")],
+              lab("e_det", "偵測器", "Detector", "amber", "el", "s5:start-4"), lab("e_edge", "邊緣最亮", "Edges glow", "coral", "edge", "s5:start-4", xy=[846, 313]), lab("e_line", "線寬", "Line width", "blue", "wid", "s5:start-4")],
    "overlay": [sec("met-cd", "start+2", "s5:start-2", 930, 340, "電子束怎麼量線寬", "示意，非實際比例", {"scan": "scan", "el": "el", "edge": "edge", "wid": "wid"})]},
   ["CD-SEM：SemiconductorX；日立／應材 CD-SEM 說明"]))
 
@@ -143,7 +146,7 @@ S.append(scene("s5", "mechanism", "接著量疊對。兩層各刻一組紋路，
    "run": [run("o_in", "light", "s6:start", 6), run("o_m0", "light+10", "s6:start", 6), run("o_p1", "diff-6", "s6:start", 6, gain=1.0), run("o_n1", "diff-6", "s6:start", 6, gain=.45),
            run("o_detPon", "diff", "s6:start", 8, gain=1.0), run("o_detNon", "diff", "s6:start", 8, gain=.35), run("o_offOn", "how", "s6:start", 6)],
    "labels": [lab("o_up", "上層紋路", "Upper grating", "coral", "two", "two+22"), lab("o_lo", "下層紋路", "Lower grating", "blue", "two+8", "two+22"),
-              lab("o_detP", "這邊比較亮", "Brighter", "coral", "diff", "s6:start-4"), lab("o_detN", "這邊比較暗", "Dimmer", "blue", "diff+8", "s6:start-4"), lab("o_off", "錯開量＝歪多少", "Offset", "coral", "how", "s6:start-4")],
+              lab("o_detP", "這邊比較亮", "Brighter", "coral", "diff", "s6:start-9"), lab("o_detN", "這邊比較暗", "Dimmer", "blue", "diff+8", "s6:start-9"), lab("o_off", "錯開量＝歪多少", "Offset", "coral", "how", "s6:start-4")],
    "overlay": [sec("met-ovl", "start+2", "s6:start-2", 930, 340, "兩層歪了多少", "示意，非實際比例", {"two": "two", "light": "light", "diff": "diff", "how": "how", "off": "off"})]},
   ["繞射式疊對：SPIE、ASML 官網"]))
 
@@ -174,7 +177,7 @@ S.append(scene("s7", "payoff", "量到歪了，數字送回曝光機修正；量
    "shift": [mv("s_stage", "back+36", "back+40", dur=8, dx=.5, spring={"tau": 6, "period": 14})],
    "motion": [{"preset": "arm-transfer", "arm": "ar", "at": "bad-24", "item": "a_wf", "grab": .65, "put": -.8, "raise": .15}],
    "run": [run("m_leds", "start-30", "s10:start", 2), run("t_data", "back-4", "bad", 6)],
-   "labels": [lab("t_optL", "量到歪了", "Offset measured", "coral", "off", "back-4"), lab("t_data", "數字送回去", "Data sent back", "blue", "back", "bad-14"), lab("t_scan", "曝光機：修正位置", "Scanner corrects", "amber", "back+10", "bad-14"),
+   "labels": [lab("t_optL", "量到歪了", "Offset measured", "coral", "off", "back-4"), lab("t_data", "數字送回去", "Data sent back", "blue", "back", "bad-14", xy=[850, 311]), lab("t_scan", "曝光機：修正位置", "Scanner corrects", "amber", "back+10", "bad-14", xy=[305.5, 311]),
               lab("t_arm", "有缺陷的晶圓", "Defective wafer", "coral", "bad", "pull-4"), lab("t_bin", "挑出來：檢出盒", "Pulled out", "coral", "pull", "s8:start-4")],
    "overlay": [sec("met-loop", "start+2", "s8:start-2", 930, 340, "量完之後", "示意", {"off": "off", "back": "back", "bad": "bad", "pull": "pull"})]},
   ["量測回饋曝光機：SEMI Engineering"]))
@@ -188,7 +191,7 @@ S.append(scene("s8", "payoff", "疊對有科磊和艾司摩爾，電子束有應
   {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
    "shot": [shot("start-2", TX + .5, -1.4, 110, 22, 18)],
    "labels": [lab("t_insp", "科磊：疊對、缺陷檢測", "KLA", "amber", "kla", "am-4"), lab("t_optL", "艾司摩爾：疊對量測", "ASML", "blue", "asml", "hit-4"),
-              lab("t_sem", "應用材料：電子束複檢、線寬", "Applied Materials", "coral", "am", "tw-4"), lab("t_semR", "日立先端科技：線寬", "Hitachi High-Tech", "blue", "hit", "hy-4"),
+              lab("t_sem", "應用材料", "Applied Materials", "coral", "am", "tw-4", xy=[800, 455]), lab("t_semR", "日立先端科技", "Hitachi High-Tech", "blue", "hit", "hy-4", xy=[262, 455]),
               lab("t_ret", "華洋精機（台）：光罩微粒檢測", "Hwa Yang (TW)", "amber", "hy", "s9:start-4"), lab("t_wf", "牧德（台）：晶圓外觀檢查", "MAK Tech (TW)", "coral", "mak", "s9:start-4")],
    "overlay": [sec("met-co", "start+2", "s9:start-2", 955, 310, "誰在做", "各公司官網、媒體報導", {"kla": "kla", "asml": "asml", "am": "am", "hit": "hit", "hy": "hy", "mak": "mak"})]},
   ["各公司官網與科技新報、工商時報"]))

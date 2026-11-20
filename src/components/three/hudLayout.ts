@@ -326,7 +326,8 @@ export const placeLabels = (m: Model3D, b: Box, mainAt: (f: number) => Rect | nu
     const obs: Rect[] = [...hudReserved(b), ...obstacles(l.at, f1), ...out.filter((q) => q.l.at < f1 && q.l.until + 6 > l.at).map((q) => q.rect)];
     obs.push(...mainObstacles(modelUnion(m, mainAt, l.at, f1)));
     const pref: [number, number] = [p0.x + an.dx + (an.dx < 0 ? -w / 2 : w / 2), p0.y + an.dy];
-    const { c, cost } = freeSpot(w, h, pref, obs, stage, 18);
+    // xy＝手動指定標籤卡中心（script.json 的 labels[].xy，2026/11/21：自動找的空位會蓋到 3D 光束／零件、引線穿過別張卡時用）
+    const { c, cost } = (l as any).xy ? { c: (l as any).xy as [number, number], cost: 0 } : freeSpot(w, h, pref, obs, stage, 18);
     const left = c[0] < p0.x, rect = { x0: c[0] - w / 2, x1: c[0] + w / 2, y0: c[1] - h / 2, y1: c[1] + h / 2 };
     out.push({ l, an, p0, x: left ? rect.x1 : rect.x0, y: c[1], left, rect, cost });
   }

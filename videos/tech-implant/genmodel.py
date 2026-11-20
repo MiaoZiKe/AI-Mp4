@@ -857,13 +857,16 @@ mk("s10", F("s10", "start", -6), *WAF, 30)
 mk("s10", F("s10", "hard", -6), (BX + 0.3, YB - 0.6, WZ), 10.5, 8, -0.62, 40)
 
 # ── 標籤（同時最多 4 張）──
-def lab(part, text, en, color, at, until): return {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+def lab(part, text, en, color, at, until, xy=None):
+    d = {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until}
+    if xy: d["xy"] = xy  # 手動指定標籤卡中心（2026/11/21：引線穿過別張卡時用，layout-check 的「引線穿過標籤」）
+    return d
 LABELS = {
  "s3": [lab("resist", "光阻（遮罩）", "Photoresist mask", "coral", F("s3", "mask", 4), F("s3", "line", -10)),
         lab("src", "離子源", "Ion source", "amber", F("s3", "src"), F("s4", "start", 8)),
         lab("tube", "加速管", "Accelerator tube", "blue", F("s3", "acc"), F("s4", "start", 8)),
-        lab("mag", "分析磁鐵", "Analyzer magnet", "amber", F("s3", "mag"), F("s4", "start", 8)),
-        lab("end", "終端站", "End station", "blue", F("s3", "end", -8), F("s4", "start", 8))],
+        lab("mag", "分析磁鐵", "Analyzer magnet", "amber", F("s3", "mag"), F("s4", "start", 8), xy=[790, 479]),
+        lab("end", "終端站", "End station", "blue", F("s3", "end", -8), F("s4", "start", 8), xy=[877.4, 335])],
  "s4": [lab("plasma", "電漿", "Plasma", "amber", F("s4", "plasma"), F("s4", "pull", -6)),
         lab("cylP", "磷化氫 PH₃", "Phosphine", "blue", F("s4", "ph3"), F("s5", "start", -4)),
         lab("cylB", "三氟化硼 BF₃", "Boron trifluoride", "coral", F("s4", "bf3"), F("s5", "start", -4)),
@@ -871,10 +874,10 @@ LABELS = {
  "s5": [lab("tube", "電極環", "Electrode rings", "blue", F("s5", "ring"), F("s5", "v", -10))],
  "s6": [lab("magTop", "上磁軛（掀開）", "Upper yoke, lifted", "blue", F("s6", "all", -4), F("s6", "miss", -8)),
         lab("flight", "飛行腔", "Flight chamber", "amber", F("s6", "bend"), F("s7", "start", -6))],
- "s7": [lab("end", "終端站", "End station", "blue", F("s7", "enter"), F("s7", "every", -6)),
-        lab("wafer", "晶圓上下動", "Wafer moves", "amber", F("s7", "move"), F("s8", "start", -6))],
+ "s7": [lab("end", "終端站", "End station", "blue", F("s7", "enter"), F("s7", "every", -6), xy=[224, 335]),
+        lab("wafer", "晶圓上下動", "Wafer moves", "amber", F("s7", "move"), F("s8", "start", -6), xy=[850, 335])],
  "s8": [lab("secBand", "摻雜區", "Doped layer", "amber", F("s8", "stop", 4), F("s9", "start", -6))],
- "s9": [lab("endTop", "應用材料", "Applied Materials", "blue", F("s9", "am"), F("s10", "start", -6)),
+ "s9": [lab("endTop", "應用材料", "Applied Materials", "blue", F("s9", "am"), F("s10", "start", -6), xy=[827, 335]),
         lab("farAx", "亞舍立", "Axcelis", "amber", F("s9", "ax"), F("s10", "start", -6)),
         lab("gascab", "兆捷（台灣）", "Implant gas", "coral", F("s9", "jc", -10), F("s10", "start", -6))],
  "s10": [lab("zone", "導電區域", "Doped zones", "blue", F("s10", "zone", 4), F("s10", "hard", -6)),

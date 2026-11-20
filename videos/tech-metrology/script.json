@@ -584,7 +584,11 @@
       "en": "Silicon",
       "color": "blue",
       "at": "layer+4",
-      "until": "early-2"
+      "until": "early-2",
+      "xy": [
+       910,
+       612
+      ]
      },
      {
       "part": "p_tr",
@@ -592,7 +596,11 @@
       "en": "Transistors",
       "color": "amber",
       "at": "layer+10",
-      "until": "early-2"
+      "until": "early-2",
+      "xy": [
+       882,
+       467
+      ]
      },
      {
       "part": "p_m1",
@@ -600,7 +608,11 @@
       "en": "This layer drifted",
       "color": "coral",
       "at": "early",
-      "until": "every-4"
+      "until": "every-4",
+      "xy": [
+       790,
+       311
+      ]
      },
      {
       "part": "p_m2",
@@ -608,7 +620,11 @@
       "en": "All wasted",
       "color": "coral",
       "at": "waste",
-      "until": "every-4"
+      "until": "every-4",
+      "xy": [
+       224,
+       311
+      ]
      },
      {
       "part": "p_tr",
@@ -790,7 +806,11 @@
       "en": "Film thickness",
       "color": "blue",
       "at": "thick",
-      "until": "refl-4"
+      "until": "refl-4",
+      "xy": [
+       251,
+       839
+      ]
      },
      {
       "part": "f_lamp",
@@ -798,7 +818,11 @@
       "en": "Light source",
       "color": "amber",
       "at": "hit",
-      "until": "overlap-4"
+      "until": "refl-4",
+      "xy": [
+       203.5,
+       311
+      ]
      },
      {
       "part": "f_pol",
@@ -806,7 +830,11 @@
       "en": "Polarizer",
       "color": "blue",
       "at": "hit+10",
-      "until": "overlap-4"
+      "until": "refl-4",
+      "xy": [
+       524,
+       311
+      ]
      },
      {
       "part": "f_top",
@@ -814,7 +842,11 @@
       "en": "Top reflection",
       "color": "amber",
       "at": "refl",
-      "until": "bd-4"
+      "until": "bd-4",
+      "xy": [
+       228,
+       313
+      ]
      },
      {
       "part": "f_bot",
@@ -822,7 +854,11 @@
       "en": "Bottom reflection",
       "color": "blue",
       "at": "refl+8",
-      "until": "bd-4"
+      "until": "bd-4",
+      "xy": [
+       817,
+       311
+      ]
      },
      {
       "part": "f_det",
@@ -830,7 +866,11 @@
       "en": "Beams overlap",
       "color": "coral",
       "at": "overlap",
-      "until": "calc-4"
+      "until": "calc-4",
+      "xy": [
+       251,
+       827
+      ]
      },
      {
       "part": "f_spec",
@@ -838,7 +878,11 @@
       "en": "Spectrometer",
       "color": "amber",
       "at": "bd",
-      "until": "s4:start-4"
+      "until": "s4:start-4",
+      "xy": [
+       346,
+       311
+      ]
      },
      {
       "part": "f_si",
@@ -846,7 +890,11 @@
       "en": "Silicon",
       "color": "blue",
       "at": "calc",
-      "until": "s4:start-4"
+      "until": "s4:start-4",
+      "xy": [
+       902,
+       839
+      ]
      }
     ],
     "overlay": [
@@ -1061,11 +1109,15 @@
      },
      {
       "part": "e_edge",
-      "text": "邊緣：電子特別多",
+      "text": "邊緣最亮",
       "en": "Edges glow",
       "color": "coral",
       "at": "edge",
-      "until": "s5:start-4"
+      "until": "s5:start-4",
+      "xy": [
+       846,
+       313
+      ]
      },
      {
       "part": "e_line",
@@ -1279,7 +1331,7 @@
       "en": "Brighter",
       "color": "coral",
       "at": "diff",
-      "until": "s6:start-4"
+      "until": "s6:start-9"
      },
      {
       "part": "o_detN",
@@ -1287,7 +1339,7 @@
       "en": "Dimmer",
       "color": "blue",
       "at": "diff+8",
-      "until": "s6:start-4"
+      "until": "s6:start-9"
      },
      {
       "part": "o_off",
@@ -1697,7 +1749,11 @@
       "en": "Data sent back",
       "color": "blue",
       "at": "back",
-      "until": "bad-14"
+      "until": "bad-14",
+      "xy": [
+       850,
+       311
+      ]
      },
      {
       "part": "t_scan",
@@ -1705,7 +1761,11 @@
       "en": "Scanner corrects",
       "color": "amber",
       "at": "back+10",
-      "until": "bad-14"
+      "until": "bad-14",
+      "xy": [
+       305.5,
+       311
+      ]
      },
      {
       "part": "t_arm",
@@ -1843,19 +1903,27 @@
      },
      {
       "part": "t_sem",
-      "text": "應用材料：電子束複檢、線寬",
+      "text": "應用材料",
       "en": "Applied Materials",
       "color": "coral",
       "at": "am",
-      "until": "tw-4"
+      "until": "tw-4",
+      "xy": [
+       800,
+       455
+      ]
      },
      {
       "part": "t_semR",
-      "text": "日立先端科技：線寬",
+      "text": "日立先端科技",
       "en": "Hitachi High-Tech",
       "color": "blue",
       "at": "hit",
-      "until": "hy-4"
+      "until": "hy-4",
+      "xy": [
+       262,
+       455
+      ]
      },
      {
       "part": "t_ret",

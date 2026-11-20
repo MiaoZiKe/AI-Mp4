@@ -46,3 +46,20 @@ export const shots = (script: any, only?: string): Shot[] => {
   });
   return out;
 };
+
+/** 3D 標籤卡（HudLabels）：每張在出場＋12 幀的畫法，配上版面規劃（placeLabels）算的框，量實際大小用 */
+import { HudLabels } from "../../src/components/three/Hud";
+export const labelShots = (script: any) => {
+  const hud = script.hud, tl = script.timeline;
+  setHudSkin(script.hudSkin, hud.smallPx);
+  const L = setHudLayout(hud.layout) as any;
+  const model = { ...script.model, palette: { ...script.model.palette, ...(H as any).parts } };
+  const m = buildModel(script.scenes, tl, model);
+  const keys = zoomKeys(script.scenes, tl, hud);
+  const hookOut = keys.find((k: any) => !k.drift && k.at > 0)?.at ?? 1e9;
+  const plan = planHud(m, L, hud, keys, sm(28), hookOut);
+  return plan.labels.map((pl: any, i: number) => {
+    const f = Math.min(pl.l.at + 12, tl.totalFrames - 1), s = stateAt(m, f);
+    return { i, text: pl.l.text, at: pl.l.at, until: pl.l.until, rect: pl.rect, frame: f, html: renderToStaticMarkup(<HudLabels s={s} f={f} max={99} placed={[pl]} enPx={sm(28)} y={plan.base3D} />) };
+  });
+};

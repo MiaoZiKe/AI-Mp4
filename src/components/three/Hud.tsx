@@ -188,7 +188,7 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
 
 /** 標籤：圓點釘在零件上、引線、小框。同畫面最多 max 張（多的照時間先後留最新的）。
  *  2026/11/15：標籤一律放在模型外面（hudLayout.ts 的 placeLabel）：位置用標籤落定那一幀（at+8）的模型範圍算一次，之後跟著零件平移，引線拉到模型外 */
-const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number; y?: Yield }> = ({ s, f, max, placed, enPx, y: yv = ID }) => {
+export const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number; y?: Yield }> = ({ s, f, max, placed, enPx, y: yv = ID }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
   const on = placed.filter(({ l }) => f >= l.at - 2 && f < l.until + 6).slice(-max);
   return (
