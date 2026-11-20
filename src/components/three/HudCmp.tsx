@@ -22,7 +22,7 @@ const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children:
 );
 const ph = (f: number, sp: number, j: number, n: number, seed = 0) => (((f * sp + j / n + seed * 0.17) % 1) + 1) % 1;
 const cc = (m: Model3D) => (n: string) => col(m.product, n);
-const lit = (f: number, at: number, lo = 0.4) => lo + (1 - lo) * tween(f, at, 10, EASE.enter);
+const lit = (f: number, at: number, lo = 0.62) => lo + (1 - lo) * tween(f, at, 10, EASE.enter);
 /** 下箭頭（壓力） */
 const Dn: React.FC<{ x: number; y: number; len: number; c: string; w?: number; o?: number }> = ({ x, y, len, c, w = 7, o = 1 }) => <g opacity={o}><path d={`M${x} ${y} v${len}`} stroke={c} strokeWidth={w} /><path d={`M${x - w * 1.6} ${y + len - w * 1.4} L${x} ${y + len + w * 0.9} L${x + w * 1.6} ${y + len - w * 1.4} Z`} fill={c} /></g>;
 /** 弧形箭頭：圓心 (cx,cy)、半徑 r、從角度 a0 轉到 a1（度，螢幕座標，順時針為正） */
@@ -48,7 +48,7 @@ const Prof: React.FC<{ x: number; y: number; w: number; bump: number; si: string
 // ── cmp-prev：上一支的結果（膜凹凸不平）→ 下一層對不準 → 怎麼磨平 ──
 const Prev: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, c = cc(m);
-  const a = lit(f, T(o, "bump"), 0.5), b = tween(f, T(o, "mis"), 12, EASE.enter), q = tween(f, T(o, "ask"), 10, EASE.enter);
+  const a = lit(f, T(o, "bump"), 0.7), b = tween(f, T(o, "mis"), 12, EASE.enter), q = tween(f, T(o, "ask"), 10, EASE.enter);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -63,12 +63,12 @@ const Prev: React.FC<P> = ({ o, f, k, m }) => {
           {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M${100 + i * 80} 224 v-70`} stroke={c("uv")} strokeWidth={4} opacity={0.5 + 0.5 * ph(f, 0.05, i, 5)} />)}
         </g>
         <g opacity={b}>
-          <rect x={560} y={96} width={340} height={96} fill={H.cardCompare} stroke={c("lp_bad")} strokeWidth={4} />
-          <text x={730} y={142} textAnchor="middle" style={zh(38, c("lp_bad"), 900)}>下一層曝光</text><text x={730} y={180} textAnchor="middle" style={zh(sm(34), c("lp_bad"), 900)}>光就會對不準</text>
+          <rect x={640} y={96} width={290} height={96} fill={H.cardCompare} stroke={c("lp_bad")} strokeWidth={4} />
+          <text x={785} y={142} textAnchor="middle" style={zh(38, c("lp_bad"), 900)}>下一層曝光</text><text x={785} y={180} textAnchor="middle" style={zh(sm(32), c("lp_bad"), 900)}>光就會對不準</text>
         </g>
         <g opacity={q}>
-          <rect x={560} y={216} width={340} height={78} fill={H.amber} />
-          <text x={730} y={268} textAnchor="middle" style={zh(44, onC(H.amber), 900)}>怎麼磨平？</text>
+          <rect x={640} y={216} width={290} height={78} fill={H.amber} />
+          <text x={785} y={268} textAnchor="middle" style={zh(44, onC(H.amber), 900)}>怎麼磨平？</text>
         </g>
       </svg>
     </Card>
@@ -294,7 +294,7 @@ const Flat: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const pr = T(o, "press"), lo = T(o, "low"), fl = T(o, "flat");
   const a = lit(f, pr), b = lit(f, lo), e = tween(f, fl, 40, EASE.move);
-  const bump = 1 - e, x = 40, w = 520, yF = 196;
+  const bump = 1 - e, x = 40, w = 520, yF = 172;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -303,8 +303,8 @@ const Flat: React.FC<P> = ({ o, f, k, m }) => {
         {[0.1 + 0.13, 0.64 + 0.13].map((u, i) => <Dn key={i} x={x + u * w} y={yF - 84} len={40 + 0 * i + (1 - e) * 26} c={c("press")} w={9} o={a} />)}
         <Dn x={x + 0.46 * w} y={yF - 84} len={18} c={c("press")} w={4} o={0.5 * b} /><Dn x={x + 0.96 * w - 4} y={yF - 84} len={18} c={c("press")} w={4} o={0.5 * b} />
         <text x={230} y={44} opacity={a} style={zh(sm(30), c("press"), 900)}>凸起：壓力大，磨得快</text>
-        <text x={x + 4} y={yF + 132} opacity={b} style={zh(sm(30), H.text, 800)}>凹處：磨得慢</text>
-        <text x={x + 300} y={yF + 132} opacity={e} style={zh(sm(34), c("lp_good"), 900)}>最後就變平了</text>
+        <text x={x + 4} y={yF + 144} opacity={b} style={zh(sm(30), H.text, 800)}>凹處：磨得慢</text>
+        <text x={x + 300} y={yF + 144} opacity={e} style={zh(sm(34), c("lp_good"), 900)}>最後就變平了</text>
         <text x={620} y={118} opacity={a} style={zh(34, H.text, 800)}>① 凸起先被磨掉</text><text x={620} y={176} opacity={b} style={zh(34, H.text, 800)}>② 凹處慢慢跟上</text><text x={620} y={234} opacity={e} style={zh(34, c("lp_good"), 900)}>③ 整面一樣高</text>
       </svg>
     </Card>
