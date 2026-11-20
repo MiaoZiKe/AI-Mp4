@@ -1,0 +1,2624 @@
+{
+ "slug": "tech-clean",
+ "title": "清洗：先進晶片為什麼要洗五十次以上（科技透明圈）",
+ "asOf": "2026/11/20",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-3.8-flash-tts",
+  "styleText": "知識科普頻道的旁白。男聲，音高比一般男聲稍高一點、較明亮，不要低沉。台灣口音，不捲舌、不兒化，咬字清楚。語氣平穩、中性，從頭到尾維持同一個平穩的語調，不帶任何情緒：不興奮、不好奇、不溫柔、不戲劇化，不像跟朋友聊天，也不像主播或廣告。問句也用平穩的陳述語調念，句尾不刻意上揚。不加語助詞，照稿念，不加字。語速略快、節奏平均。所有字詞用台灣國語標準讀音；疊對（ㄉㄧㄝˊ ㄉㄨㄟˋ）、電子束（ㄉㄧㄢˋ ㄗˇ ㄕㄨˋ）、左右（ㄗㄨㄛˇ ㄧㄡˋ）。直接說：",
+  "_說明_金手指": "2026-11-20 Andy：旁白金手指（docs/prompts/tech-旁白金手指.md），Style 原文一字不改",
+  "styleMode": "profile",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "念稿：docs/prompts/tech-clean-旁白.txt；整篇 1 次請求（TTS_NO_RETRY=1）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "單片清洗機",
+    "en": "SINGLE-WAFER CLEANER",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   },
+   {
+    "id": "surface",
+    "label": "表面剖面",
+    "en": "SURFACE CROSS-SECTION",
+    "field": "200 nm",
+    "ruler": "50 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/20",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "晶片要洗",
+   "五十次以上"
+  ],
+  "sub": "清洗",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一支打完離子，光阻焦硬，表面也髒。先進晶片要洗五十次以上，為什麼？",
+   "tts": "上一支打完離子，光阻焦硬，表面也髒。先進晶片要洗五十次以上，為什麼？",
+   "subtitle": {
+    "zh": "上一支打完離子\n光阻焦硬，表面也髒\n先進晶片要洗五十次以上\n為什麼？",
+    "en": "After implanting ions, | the resist is baked hard and the surface is dirty. | Advanced chips get cleaned 50+ times. | Why?"
+   },
+   "keywords": [
+    "焦硬",
+    "五十次以上"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "打完離子"
+    },
+    {
+     "id": "hard",
+     "text": "光阻焦硬"
+    },
+    {
+     "id": "dirty",
+     "text": "表面也髒"
+    },
+    {
+     "id": "n50",
+     "text": "五十次以上"
+    },
+    {
+     "id": "why",
+     "text": "為什麼"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiconductorX：7 奈米以下約 50 次以上"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接離子佈植",
+     "title": "要洗50次以上？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 1.6,
+      "d": 66,
+      "elev": 20
+     },
+     {
+      "at": "hard",
+      "dur": 90,
+      "x": 0,
+      "y": 1.2,
+      "d": 58,
+      "elev": 22
+     }
+    ],
+    "shift": [
+     {
+      "layer": "f_sc1",
+      "at": "s1:start-40",
+      "until": "s6:spin-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_sc1",
+      "at": "s8:sc2-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_sc2",
+      "at": "s1:start-40",
+      "until": "s8:sc2-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_sc2",
+      "at": "s8:rinse-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_diw",
+      "at": "s1:why+20",
+      "until": "s8:rinse-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_diw",
+      "at": "s9:ipa+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "s_dirt",
+      "at": "s1:dirty+40",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 30
+     },
+     {
+      "layer": "s_dirt",
+      "at": "s6:fling+10",
+      "until": "s7:stuck-4",
+      "opacity": 0,
+      "dur": 30
+     },
+     {
+      "layer": "s_dirt",
+      "at": "s7:away+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 26
+     },
+     {
+      "layer": "s_mega",
+      "at": "s1:start-40",
+      "until": "s7:mega-10",
+      "dur": 18,
+      "dx": -2.0,
+      "dy": 3.2,
+      "dz": 0
+     },
+     {
+      "layer": "s_mega",
+      "at": "s8:start",
+      "until": "s12:start+400",
+      "dur": 18,
+      "dx": -2.0,
+      "dy": 3.2,
+      "dz": 0
+     },
+     {
+      "layer": "a_pl",
+      "at": "s1:start-40",
+      "until": "s3:plasma-4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "a_pl",
+      "at": "s5:spm",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "a_crust",
+      "at": "s3:slow",
+      "until": "s12:start+400",
+      "dur": 60,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "opacity": 0.45
+     },
+     {
+      "layer": "a_crust",
+      "at": "s5:through-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "a_res",
+      "at": "s5:warm+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 40
+     },
+     {
+      "layer": "a_rsd",
+      "at": "s1:start-40",
+      "until": "s5:warm+24",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "a_rsd",
+      "at": "s5:spm+8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 30
+     },
+     {
+      "layer": "a_bub",
+      "at": "s1:start-40",
+      "until": "s4:gas-2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "a_bub",
+      "at": "s5:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "a_bub",
+      "at": "s4:gas-2",
+      "until": "s5:start",
+      "dur": 30,
+      "dx": 0,
+      "dy": 0.06,
+      "dz": 0
+     },
+     {
+      "layer": "x_pt",
+      "at": "s1:start-40",
+      "until": "s2:half-4",
+      "dy": 2.4,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "x_spk",
+      "at": "s1:start-40",
+      "until": "s2:short-2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "x_mark",
+      "at": "s1:start-40",
+      "until": "s2:width",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_ipa0",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa0",
+      "at": "s9:front-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa1",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa1",
+      "at": "s9:front-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa2",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa2",
+      "at": "s9:front+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa3",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa3",
+      "at": "s9:front+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa4",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa4",
+      "at": "s9:front+20",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa5",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa5",
+      "at": "s9:front+27",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "f_ipa6",
+      "at": "s1:start-40",
+      "until": "s9:ipa+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "f_ipa6",
+      "at": "s9:front+34",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "px_tool",
+      "at": "s1:start-60",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_tool",
+      "at": "s9:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cup",
+      "at": "s1:start-60",
+      "until": "s1:start-40",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cup",
+      "at": "s2:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_wf",
+      "at": "s1:start-60",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_wf",
+      "at": "s8:start-4",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_wf",
+      "at": "s10:start-4",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_wf",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ash",
+      "at": "s1:start-60",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ash",
+      "at": "s6:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_x",
+      "at": "s1:start-60",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_x",
+      "at": "s3:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s1:start-60",
+      "until": "s10:start+34",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "s_noz",
+      "at": "s1:hard",
+      "until": "s1:why",
+      "dur": 50,
+      "dx": 2.6,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "s_noz",
+      "at": "s6:sweep-6",
+      "until": "s6:sweep+50",
+      "dur": 44,
+      "dx": 2.7,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "s_noz",
+      "at": "s6:sweep+62",
+      "until": "s6:fling+60",
+      "dur": 44,
+      "dx": 2.7,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "s_noz",
+      "at": "s8:turn",
+      "until": "s8:rinse+30",
+      "dur": 40,
+      "dx": 1.2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "s_noz",
+      "at": "s9:ipa-4",
+      "until": "s9:front+46",
+      "dur": 60,
+      "dx": 2.6,
+      "dy": 0,
+      "dz": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "spin",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start+10"
+     },
+     {
+      "id": "ledG",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "sp_diw_0",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "sp_diw_1",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "sp_diw_2",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "sp_diw_3",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "sp_diw_4",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet0",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet1",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet2",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet3",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet4",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet5",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet6",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "sheet7",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling0",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling1",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling2",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling3",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling4",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling5",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling6",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling7",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling8",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling9",
+      "at": "start-20",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "grit0",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "grit1",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "grit2",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "grit3",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "grit4",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "grit5",
+      "at": "dirty",
+      "ramp": 6,
+      "until": "why+20"
+     },
+     {
+      "id": "pf_diw",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "vOn_diw",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_wf",
+      "text": "表面有顆粒",
+      "en": "Particles on the surface",
+      "color": "coral",
+      "at": "dirty",
+      "until": "n50-6"
+     },
+     {
+      "part": "t_noz",
+      "text": "噴嘴：一直沖",
+      "en": "Rinse nozzle",
+      "color": "blue",
+      "at": "n50",
+      "until": "s2:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-hook",
+      "at": "prev",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接上一支：離子佈植",
+      "tag": "業界整理",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "hard": {
+        "at": "hard"
+       },
+       "dirty": {
+        "at": "dirty"
+       },
+       "n50": {
+        "at": "n50"
+       },
+       "why": {
+        "at": "why"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "因為線寬只剩幾十奈米，一顆線寬一半大的顆粒，就可能讓線路短路。",
+   "tts": "因為線寬只剩幾十奈米，一顆線寬一半大的顆粒，就可能讓線路短路。",
+   "subtitle": {
+    "zh": "因為線寬只剩幾十奈米\n一顆線寬一半大的顆粒\n就可能讓線路短路",
+    "en": "Lines are only tens of nanometers wide; | a particle half that size | can short the circuit."
+   },
+   "keywords": [
+    "幾十奈米",
+    "一半",
+    "短路"
+   ],
+   "cues": [
+    {
+     "id": "width",
+     "text": "線寬只剩幾十奈米"
+    },
+    {
+     "id": "half",
+     "text": "線寬一半大的顆粒"
+    },
+    {
+     "id": "short",
+     "text": "線路短路"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 10332741；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "surface",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 120,
+      "y": 0.4,
+      "d": 40,
+      "elev": 18
+     },
+     {
+      "at": "short-6",
+      "dur": 30,
+      "x": 120.2,
+      "y": 0.8,
+      "d": 34,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "x_short",
+      "at": "short",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "x_sparkOn",
+      "at": "short",
+      "ramp": 2,
+      "until": "s3:start"
+     },
+     {
+      "id": "x_cur",
+      "at": "short+4",
+      "ramp": 4,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_line",
+      "text": "線寬：幾十奈米",
+      "en": "Line width",
+      "color": "blue",
+      "at": "width+6",
+      "until": "short-4"
+     },
+     {
+      "part": "x_pt",
+      "text": "線寬一半大的顆粒",
+      "en": "Half-width particle",
+      "color": "coral",
+      "at": "half+6",
+      "until": "short-4"
+     },
+     {
+      "part": "x_short",
+      "text": "兩條線被接通：短路",
+      "en": "Short circuit",
+      "color": "coral",
+      "at": "short+6",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-kill",
+      "at": "start+2",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一顆顆粒就夠",
+      "tag": "示意，非實際比例",
+      "t": {
+       "width": {
+        "at": "width"
+       },
+       "half": {
+        "at": "half"
+       },
+       "short": {
+        "at": "short"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "先去光阻。焦硬的殼，用氧電漿低溫慢慢燒掉，叫灰化。",
+   "tts": "先去光阻。焦硬的殼，用氧電漿低溫慢慢燒掉，叫灰化。",
+   "subtitle": {
+    "zh": "先去光阻\n焦硬的殼\n用氧電漿低溫慢慢燒掉\n叫灰化",
+    "en": "First, strip the resist. | The hardened crust | is burned off slowly by low-temperature oxygen plasma: | ashing."
+   },
+   "keywords": [
+    "氧電漿",
+    "灰化"
+   ],
+   "cues": [
+    {
+     "id": "strip",
+     "text": "先去光阻"
+    },
+    {
+     "id": "crust",
+     "text": "焦硬的殼"
+    },
+    {
+     "id": "plasma",
+     "text": "氧電漿"
+    },
+    {
+     "id": "slow",
+     "text": "低溫慢慢燒掉"
+    },
+    {
+     "id": "ash",
+     "text": "灰化"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8193096、9564344；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 0.9,
+      "d": 50,
+      "elev": 20
+     },
+     {
+      "at": "plasma-6",
+      "dur": 40,
+      "x": 60.2,
+      "y": 1.2,
+      "d": 40,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "o2in",
+      "at": "plasma-14",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "a_coilOn",
+      "at": "plasma-6",
+      "ramp": 6,
+      "until": "s5:spm"
+     },
+     {
+      "id": "a_plGlow",
+      "at": "plasma-4",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "orad0",
+      "at": "slow-4",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "orad1",
+      "at": "slow-4",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "orad2",
+      "at": "slow-4",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "orad3",
+      "at": "slow-4",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "co20",
+      "at": "slow+10",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "co21",
+      "at": "slow+10",
+      "ramp": 8,
+      "until": "s5:spm"
+     },
+     {
+      "id": "co22",
+      "at": "slow+10",
+      "ramp": 8,
+      "until": "s5:spm"
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_crust",
+      "text": "焦硬的殼",
+      "en": "Hardened crust",
+      "color": "coral",
+      "at": "crust",
+      "until": "s4:start-4"
+     },
+     {
+      "part": "a_src",
+      "text": "氧電漿",
+      "en": "Oxygen plasma",
+      "color": "blue",
+      "at": "plasma",
+      "until": "ash-4"
+     },
+     {
+      "part": "a_plasma",
+      "text": "灰化：低溫慢慢燒掉",
+      "en": "Ashing",
+      "color": "amber",
+      "at": "ash",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-ash",
+      "at": "start+2",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "灰化：燒掉硬殼",
+      "tag": "示意，非實際比例",
+      "t": {
+       "strip": {
+        "at": "strip"
+       },
+       "crust": {
+        "at": "crust"
+       },
+       "plasma": {
+        "at": "plasma"
+       },
+       "slow": {
+        "at": "slow"
+       },
+       "ash": {
+        "at": "ash"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "twist",
+   "para": 4,
+   "narration": "不能高溫，因為底下的光阻會冒氣，把殼撐破，碎片噴滿晶圓。",
+   "tts": "不能高溫，因為底下的光阻會冒氣，把殼撐破，碎片噴滿晶圓。",
+   "subtitle": {
+    "zh": "不能高溫\n底下的光阻會冒氣\n把殼撐破\n碎片噴滿晶圓",
+    "en": "Not too hot: | the resist underneath outgasses, | bursts the crust, | and sprays debris across the wafer."
+   },
+   "keywords": [
+    "冒氣",
+    "撐破"
+   ],
+   "cues": [
+    {
+     "id": "hot",
+     "text": "不能高溫"
+    },
+    {
+     "id": "gas",
+     "text": "會冒氣"
+    },
+    {
+     "id": "pop",
+     "text": "把殼撐破"
+    },
+    {
+     "id": "spray",
+     "text": "碎片噴滿晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "光阻爆裂（popping）：USPTO 8367555、9564344"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60.2,
+      "y": 1.6,
+      "d": 42,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "a_heatHot",
+      "at": "hot",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "a_crackOn",
+      "at": "pop",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake0",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake1",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake2",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake3",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake4",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "flake5",
+      "at": "spray-4",
+      "ramp": 4,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_chuck",
+      "text": "如果直接高溫",
+      "en": "If heated fast",
+      "color": "coral",
+      "at": "hot+4",
+      "until": "pop-6"
+     },
+     {
+      "part": "a_bub",
+      "text": "底下光阻冒氣",
+      "en": "Resist outgasses",
+      "color": "amber",
+      "at": "gas+4",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "a_crust",
+      "text": "殼被撐破、碎片噴出",
+      "en": "Crust pops",
+      "color": "coral",
+      "at": "pop+6",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-pop",
+      "at": "start+2",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "為什麼不能高溫",
+      "tag": "示意",
+      "t": {
+       "hot": {
+        "at": "hot"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "pop": {
+        "at": "pop"
+       },
+       "spray": {
+        "at": "spray"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "殼燒穿後再加溫燒乾淨，殘渣用硫酸加雙氧水溶掉。",
+   "tts": "殼燒穿後再加溫燒乾淨，殘渣用硫酸加雙氧水溶掉。",
+   "subtitle": {
+    "zh": "殼燒穿後\n再加溫燒乾淨\n殘渣用硫酸加雙氧水溶掉",
+    "en": "Once the crust is through, | the rest burns off hotter, | and sulfuric acid with peroxide dissolves the residue."
+   },
+   "keywords": [
+    "加溫",
+    "硫酸加雙氧水"
+   ],
+   "cues": [
+    {
+     "id": "through",
+     "text": "殼燒穿後"
+    },
+    {
+     "id": "warm",
+     "text": "再加溫燒乾淨"
+    },
+    {
+     "id": "spm",
+     "text": "硫酸加雙氧水"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9564344；HAL hal-01882454"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 0.9,
+      "d": 42,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "a_heatWarm",
+      "at": "warm-4",
+      "ramp": 10,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_rsd",
+      "text": "殘渣",
+      "en": "Residue",
+      "color": "amber",
+      "at": "warm+30",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "a_chuck",
+      "text": "殼穿了才加溫",
+      "en": "Then heat up",
+      "color": "amber",
+      "at": "warm",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-spm",
+      "at": "start+2",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "先穿殼，再燒，再溶",
+      "tag": "示意",
+      "t": {
+       "through": {
+        "at": "through"
+       },
+       "warm": {
+        "at": "warm"
+       },
+       "spm": {
+        "at": "spm"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "接著是單片清洗。晶圓在轉盤上旋轉，噴嘴從中心掃到邊緣，把顆粒往外甩。",
+   "tts": "接著是單片清洗。晶圓在轉盤上旋轉，噴嘴從中心掃到邊緣，把顆粒往外甩。",
+   "subtitle": {
+    "zh": "接著是單片清洗\n晶圓在轉盤上旋轉\n噴嘴從中心掃到邊緣\n把顆粒往外甩",
+    "en": "Next: single-wafer cleaning. | The wafer spins on a chuck, | the nozzle sweeps from center to edge, | flinging particles outward."
+   },
+   "keywords": [
+    "單片清洗",
+    "旋轉",
+    "噴嘴"
+   ],
+   "cues": [
+    {
+     "id": "single",
+     "text": "單片清洗"
+    },
+    {
+     "id": "spin",
+     "text": "晶圓在轉盤上旋轉"
+    },
+    {
+     "id": "sweep",
+     "text": "噴嘴從中心掃到邊緣"
+    },
+    {
+     "id": "fling",
+     "text": "把顆粒往外甩"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "單晶圓旋轉清洗：USPTO 8303724；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0.4,
+      "y": 1.6,
+      "d": 36,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "spin",
+      "at": "spin-6",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sp_sc1_0",
+      "at": "sweep-8",
+      "ramp": 4,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "sp_sc1_1",
+      "at": "sweep-8",
+      "ramp": 4,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "sp_sc1_2",
+      "at": "sweep-8",
+      "ramp": 4,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "sp_sc1_3",
+      "at": "sweep-8",
+      "ramp": 4,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "sp_sc1_4",
+      "at": "sweep-8",
+      "ramp": 4,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "sheet0",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet1",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet2",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet3",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet4",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet5",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet6",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "sheet7",
+      "at": "sweep",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling0",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling1",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling2",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling3",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling4",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling5",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling6",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling7",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling8",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "fling9",
+      "at": "sweep+6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "grit0",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "grit1",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "grit2",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "grit3",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "grit4",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "grit5",
+      "at": "fling-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "pf_sc1",
+      "at": "single",
+      "ramp": 6,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "vOn_sc1",
+      "at": "single",
+      "ramp": 6,
+      "until": "s7:start+10"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_chuck",
+      "text": "轉盤：晶圓吸住旋轉",
+      "en": "Spin chuck",
+      "color": "blue",
+      "at": "spin",
+      "until": "fling-4"
+     },
+     {
+      "part": "t_noz",
+      "text": "噴嘴：中心→邊緣",
+      "en": "Nozzle sweeps out",
+      "color": "amber",
+      "at": "sweep",
+      "until": "s7:start-4"
+     },
+     {
+      "part": "t_edge",
+      "text": "顆粒往外甩",
+      "en": "Flung outward",
+      "color": "coral",
+      "at": "fling",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-spin",
+      "at": "start+2",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "單片旋轉清洗",
+      "tag": "俯視示意",
+      "t": {
+       "single": {
+        "at": "single"
+       },
+       "spin": {
+        "at": "spin"
+       },
+       "sweep": {
+        "at": "sweep"
+       },
+       "fling": {
+        "at": "fling"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "黏太緊的小顆粒，用兆音波。每秒振動約一百萬次，推出細小水流，把顆粒推走。",
+   "tts": "黏太緊的小顆粒，用兆音波。每秒振動約一百萬次，推出細小水流，把顆粒推走。",
+   "subtitle": {
+    "zh": "黏太緊的小顆粒\n用兆音波\n每秒振動約一百萬次\n推出細小水流\n把顆粒推走",
+    "en": "Stubborn tiny particles | get megasonics: | about a million vibrations per second | push fine currents in the liquid | that carry particles away."
+   },
+   "keywords": [
+    "兆音波",
+    "一百萬次"
+   ],
+   "cues": [
+    {
+     "id": "stuck",
+     "text": "黏太緊的小顆粒"
+    },
+    {
+     "id": "mega",
+     "text": "兆音波"
+    },
+    {
+     "id": "mhz",
+     "text": "一百萬次"
+    },
+    {
+     "id": "stream",
+     "text": "推出細小水流"
+    },
+    {
+     "id": "away",
+     "text": "把顆粒推走"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "兆音波約 1 MHz、聲流：USPTO 6006765；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -1.0,
+      "y": 1.7,
+      "d": 30,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "sp_diw_0",
+      "at": "start",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "sp_diw_1",
+      "at": "start",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "sp_diw_2",
+      "at": "start",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "sp_diw_3",
+      "at": "start",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "sp_diw_4",
+      "at": "start",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "megaOn",
+      "at": "mega",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "mwave0",
+      "at": "mhz-6",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "mwave1",
+      "at": "mhz-6",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "mwave2",
+      "at": "mhz-6",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "mgrit0",
+      "at": "stream",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "mgrit1",
+      "at": "stream",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "mgrit2",
+      "at": "stream",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "mgrit3",
+      "at": "stream",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "pf_diw",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_wfL",
+      "text": "黏太緊的小顆粒",
+      "en": "Stuck particles",
+      "color": "coral",
+      "at": "stuck+4",
+      "until": "mega-4"
+     },
+     {
+      "part": "t_mega",
+      "text": "兆音波棒",
+      "en": "Megasonic bar",
+      "color": "blue",
+      "at": "mega",
+      "until": "s8:start-4"
+     },
+     {
+      "part": "t_wf",
+      "text": "水流推走顆粒",
+      "en": "Streaming lifts them",
+      "color": "amber",
+      "at": "stream",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-mega",
+      "at": "start+2",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "兆音波清洗",
+      "tag": "示意，非實際比例",
+      "t": {
+       "stuck": {
+        "at": "stuck"
+       },
+       "mega": {
+        "at": "mega"
+       },
+       "mhz": {
+        "at": "mhz"
+       },
+       "stream": {
+        "at": "stream"
+       },
+       "away": {
+        "at": "away"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "藥液輪流換，一種去顆粒和有機物，一種去金屬，每換一次都用超純水沖淨。",
+   "tts": "藥液輪流換，一種去顆粒和有機物，一種去金屬，每換一次都用超純水沖淨。",
+   "subtitle": {
+    "zh": "藥液輪流換\n一種去顆粒和有機物\n一種去金屬\n每換一次都用超純水沖淨",
+    "en": "Chemicals take turns: | one removes particles and organics, | one removes metals, | with an ultrapure-water rinse after each."
+   },
+   "keywords": [
+    "顆粒",
+    "金屬",
+    "超純水"
+   ],
+   "cues": [
+    {
+     "id": "turn",
+     "text": "藥液輪流換"
+    },
+    {
+     "id": "sc1",
+     "text": "去顆粒和有機物"
+    },
+    {
+     "id": "sc2",
+     "text": "去金屬"
+    },
+    {
+     "id": "rinse",
+     "text": "超純水沖淨"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "RCA 清洗：Wikipedia；USPTO 5695572"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": -0.6,
+      "y": 1.4,
+      "d": 52,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "sp_sc1_0",
+      "at": "turn",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "sp_sc1_1",
+      "at": "turn",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "sp_sc1_2",
+      "at": "turn",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "sp_sc1_3",
+      "at": "turn",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "sp_sc1_4",
+      "at": "turn",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "sp_sc2_0",
+      "at": "sc2",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "sp_sc2_1",
+      "at": "sc2",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "sp_sc2_2",
+      "at": "sc2",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "sp_sc2_3",
+      "at": "sc2",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "sp_sc2_4",
+      "at": "sc2",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "sp_diw_0",
+      "at": "rinse",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sp_diw_1",
+      "at": "rinse",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sp_diw_2",
+      "at": "rinse",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sp_diw_3",
+      "at": "rinse",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sp_diw_4",
+      "at": "rinse",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "pf_sc1",
+      "at": "turn-10",
+      "ramp": 6,
+      "until": "sc2-4"
+     },
+     {
+      "id": "vOn_sc1",
+      "at": "turn-6",
+      "ramp": 4,
+      "until": "sc2-4"
+     },
+     {
+      "id": "pf_sc2",
+      "at": "sc2-14",
+      "ramp": 6,
+      "until": "rinse-4"
+     },
+     {
+      "id": "vOn_sc2",
+      "at": "sc2-6",
+      "ramp": 4,
+      "until": "rinse-4"
+     },
+     {
+      "id": "pf_diw",
+      "at": "rinse-14",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "vOn_diw",
+      "at": "rinse-6",
+      "ramp": 4,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_sc1",
+      "text": "藥液瓶：輪流送",
+      "en": "Chemical supply",
+      "color": "blue",
+      "at": "turn",
+      "until": "sc1-6"
+     },
+     {
+      "part": "t_wf",
+      "text": "藍：去顆粒、有機物",
+      "en": "SC1: particles",
+      "color": "blue",
+      "at": "sc1",
+      "until": "sc2-4"
+     },
+     {
+      "part": "t_wfL",
+      "text": "黃：去金屬",
+      "en": "SC2: metals",
+      "color": "amber",
+      "at": "sc2",
+      "until": "rinse-4"
+     },
+     {
+      "part": "t_noz",
+      "text": "超純水沖淨",
+      "en": "DI water rinse",
+      "color": "blue",
+      "at": "rinse",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-chem",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "藥液輪流換",
+      "tag": "示意",
+      "t": {
+       "turn": {
+        "at": "turn"
+       },
+       "sc1": {
+        "at": "sc1"
+       },
+       "sc2": {
+        "at": "sc2"
+       },
+       "rinse": {
+        "at": "rinse"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "最後是乾燥。直接甩乾會留水痕、拉倒細線，所以用異丙醇把水換掉，從中心往外推乾。",
+   "tts": "最後是乾燥。直接甩乾會留水痕、拉倒細線，所以用異丙醇把水換掉，從中心往外推乾。",
+   "subtitle": {
+    "zh": "最後是乾燥\n直接甩乾會留水痕\n拉倒細線\n所以用異丙醇把水換掉\n從中心往外推乾",
+    "en": "Finally, drying. | Spinning water off leaves watermarks | and can topple fine lines, | so IPA replaces the water | and the dry front moves from center out."
+   },
+   "keywords": [
+    "水痕",
+    "異丙醇"
+   ],
+   "cues": [
+    {
+     "id": "dry",
+     "text": "最後是乾燥"
+    },
+    {
+     "id": "mark",
+     "text": "留水痕"
+    },
+    {
+     "id": "fall",
+     "text": "拉倒細線"
+    },
+    {
+     "id": "ipa",
+     "text": "異丙醇"
+    },
+    {
+     "id": "front",
+     "text": "從中心往外推乾"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IPA 乾燥、水痕與圖形倒塌：USPTO 8303724、11069520"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0.6,
+      "y": 1.6,
+      "d": 34,
+      "elev": 40
+     }
+    ],
+    "run": [
+     {
+      "id": "sp_diw_0",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     },
+     {
+      "id": "sp_diw_1",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     },
+     {
+      "id": "sp_diw_2",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     },
+     {
+      "id": "sp_diw_3",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     },
+     {
+      "id": "sp_diw_4",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     },
+     {
+      "id": "sp_ipa_0",
+      "at": "ipa-2",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "sp_ipa_1",
+      "at": "ipa-2",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "sp_ipa_2",
+      "at": "ipa-2",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "sp_ipa_3",
+      "at": "ipa-2",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "sp_ipa_4",
+      "at": "ipa-2",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "pf_ipa",
+      "at": "ipa-14",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "vOn_ipa",
+      "at": "ipa-6",
+      "ramp": 4,
+      "until": "s10:start"
+     },
+     {
+      "id": "pf_diw",
+      "at": "start",
+      "ramp": 4,
+      "until": "ipa-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_wf",
+      "text": "水直接甩乾：留水痕",
+      "en": "Water leaves marks",
+      "color": "coral",
+      "at": "mark",
+      "until": "ipa-4"
+     },
+     {
+      "part": "t_tipL",
+      "text": "異丙醇把水換掉",
+      "en": "IPA replaces water",
+      "color": "blue",
+      "at": "ipa",
+      "until": "s10:start-4"
+     },
+     {
+      "part": "t_wfL",
+      "text": "從中心往外乾",
+      "en": "Dries center-out",
+      "color": "amber",
+      "at": "front",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-dry",
+      "at": "start+2",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "乾燥不留水痕",
+      "tag": "示意，非實際比例",
+      "t": {
+       "dry": {
+        "at": "dry"
+       },
+       "mark": {
+        "at": "mark"
+       },
+       "fall": {
+        "at": "fall"
+       },
+       "ipa": {
+        "at": "ipa"
+       },
+       "front": {
+        "at": "front"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "機台有日本的迪恩士、東京威力科創、美國科林研發；台灣辛耘、弘塑做先進封裝的濕製程。",
+   "tts": "機台有日本的迪恩士、東京威力科創、美國科林研發；台灣辛耘、弘塑做先進封裝的濕製程。",
+   "subtitle": {
+    "zh": "機台有日本的迪恩士\n東京威力科創\n美國科林研發\n台灣辛耘、弘塑\n做先進封裝的濕製程",
+    "en": "Tools: Japan's SCREEN, | Tokyo Electron, | and America's Lam Research; | Taiwan's Scientech and GPTC | supply wet process for advanced packaging."
+   },
+   "keywords": [
+    "迪恩士",
+    "東京威力科創",
+    "科林研發",
+    "辛耘",
+    "弘塑"
+   ],
+   "cues": [
+    {
+     "id": "screen",
+     "text": "迪恩士"
+    },
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "lam",
+     "text": "科林研發"
+    },
+    {
+     "id": "tw",
+     "text": "台灣辛耘"
+    },
+    {
+     "id": "pkg",
+     "text": "先進封裝的濕製程"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "市場研究摘要；經濟日報、工商時報報導"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 4.0,
+      "y": 1.4,
+      "d": 80,
+      "elev": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_tool",
+      "text": "單片清洗機",
+      "en": "SCREEN · TEL · Lam",
+      "color": "blue",
+      "at": "screen",
+      "until": "s11:start-4"
+     },
+     {
+      "part": "t_wb",
+      "text": "辛耘、弘塑（台）",
+      "en": "Wet bench · packaging",
+      "color": "amber",
+      "at": "tw",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-co",
+      "at": "start+2",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "市場研究摘要、媒體報導",
+      "t": {
+       "screen": {
+        "at": "screen"
+       },
+       "tel": {
+        "at": "tel"
+       },
+       "lam": {
+        "at": "lam"
+       },
+       "tw": {
+        "at": "tw"
+       },
+       "pkg": {
+        "at": "pkg"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "表面洗乾淨，才長得出均勻的氧化層；離子也要加熱才會歸位導電。所以下一支，看氧化與熱處理。留言清洗，看完整解說。",
+   "tts": "表面洗乾淨，才長得出均勻的氧化層；離子也要加熱才會歸位導電。所以下一支，看氧化與熱處理。留言清洗，看完整解說。",
+   "subtitle": {
+    "zh": "表面洗乾淨\n才長得出均勻的氧化層\n離子也要加熱\n才會歸位導電\n所以下一支\n看氧化與熱處理\n留言清洗\n看完整解說",
+    "en": "A clean surface | grows an even oxide; | the ions also need heat | to settle in and conduct. | So next: | oxidation and heat treatment. | Comment \"清洗\" | for the full notes."
+   },
+   "keywords": [
+    "氧化層",
+    "加熱",
+    "清洗"
+   ],
+   "cues": [
+    {
+     "id": "clean",
+     "text": "表面洗乾淨"
+    },
+    {
+     "id": "oxide",
+     "text": "均勻的氧化層"
+    },
+    {
+     "id": "heat",
+     "text": "加熱"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "kw",
+     "text": "留言清洗"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia RCA clean；UW ECE528 Ch8"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 0.2,
+      "y": 1.4,
+      "d": 30,
+      "elev": 40
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_wf",
+      "text": "洗乾淨的表面",
+      "en": "Clean surface",
+      "color": "blue",
+      "at": "clean+4",
+      "until": "next-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cln-next",
+      "at": "start+2",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一支：氧化與熱處理",
+      "t": {
+       "clean": {
+        "at": "clean"
+       },
+       "oxide": {
+        "at": "oxide"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "氧化與熱處理",
+     "trail": [
+      "氧化",
+      "退火",
+      "熱處理"
+     ],
+     "at": "s11:kw-8",
+     "comment": "清洗",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

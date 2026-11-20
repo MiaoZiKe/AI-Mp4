@@ -1,0 +1,14 @@
+# tech-clean：清洗（科技透明圈系列 1 第 9 支；接離子佈植，下一支氧化與熱處理）
+- 狀態：研究、腳本、配音、對齊、建模、2D 卡、成片（2026/11/20–21，Opus 一人做完）。成片 `out/tech-clean.gold.mp4`、整片縮圖 `out/tech-clean.gold-grid.jpg`（不進 git）。
+- 片長：時間軸 78.2 秒（2346 幀，含 3.2 秒片尾卡 s12）。留言關鍵字「清洗」（Andy 之後若給固定內容，改 genscript.py 的 s11 念稿與 endCard.comment，需重配音）。
+- 產生：`python3 videos/tech-clean/genmodel.py`（自動先跑 genscript.py）→ model.json＋script.json。改稿只改 genscript.py；改畫面只改 genmodel.py／HudClean.tsx。
+- 2D 卡：`src/components/three/HudClean.tsx`（cln-hook／kill／ash／pop／spm／spin／mega／chem／dry／co／next），Hud.tsx 只加 import 與一行分派。
+- 配音（旁白金手指）：gemini-3.8-flash-tts＋Iapetus＋單一說話者，`voice.styleMode: "profile"`，Style 全文逐字（docs/prompts/tech-旁白金手指.md）；念稿 `docs/prompts/tech-clean-旁白.txt`。**TTS 請求 1 次**（`TTS_NO_RETRY=1`，tts-requests.json 1 筆 200）；Style 沒被念出來（聽寫第一句就是念稿）。
+- 後製：**不加速（atempo 1.00）**。用 voice-normalize.py 的同一把尺量：原始音檔純說話 5.71 字/秒（目標約 5.45，已超過，不需加速；Andy 確認過的量測檢測金手指版同一把尺是 5.84、也沒加速）、含停頓 4.33；成片人聲軌（align 疊軌＋loudnorm）純說話 5.77、含停頓 4.42 字/秒；音高中位數 125.8 Hz（p10 95、p90 169；量測檢測金手指 122）；停頓 48 處、中位 0.26 秒、最長 0.79 秒；人聲 −16.1 LUFS、峰值 −1.5 dBTP。
+- 對齊：整篇信心 0.89；低信心字：s1「五十次」（0.07–0.34）、s2「因為」、s7「一百」、s11「也」（0.0，可能漏念）。
+- 聽寫疑似錯字（gemini-3.5-transcribe，偏中國用語，要人耳確認）：「焦硬」→膠印、「五十次以上」→54以上、「灰化」→揮發、s6「顆粒」→殼裡、「兆音波」→超音波、「溶掉」→沖掉、「迪恩士」→DNS、s11「離子也要」→離子要。
+- 片尾音：`sfx-logo-tech.py` → `G=22 mix-endsting.sh voice.wav sting 73.0667 75.0667 78.2 out/tech-clean.gold.wav`（片尾段 −11.1 LUFS、峰值 −1.3 dBFS）。
+- 渲染：`AUDIO=out/tech-clean.gold.wav CONC=2 bash scripts/three/chunk-render.sh tech-clean gold`。
+- 檢查：validate 0 error；layout-check 0 error（21 warning：換幕自動延後、主素材邊緣）；card-overlap 0 error 0 warning（11 張、68 個時間點）；flow-check 67 條 0 error；kinematics 0。
+- 主素材框：所有層 bg，另放看不見的 px_cup／px_x／px_ash／px_wf／px_tool／px_all（每段只亮鏡頭對準的那一個）。
+- 待人耳確認：「五十次」「焦硬」「灰化」「兆音波」「迪恩士」「辛耘」「弘塑」讀音，s11 是否漏「也」。
