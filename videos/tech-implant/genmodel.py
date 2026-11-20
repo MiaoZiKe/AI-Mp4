@@ -852,7 +852,7 @@ mk("s5", F("s5", "v", -10), (-0.6, 4.3, 4.0), 12, 15, -0.38, 50)
 mk("s6", F("s6", "start", -4), (3.4, 5.0, 4.4), 32, 52, -0.5, 30)
 mk("s7", F("s7", "start", -6), (BX + 0.2, 4.0, -6.0), 22, 14, YAW_END, 30)
 mk("s8", F("s8", "start", -6), *SECV, 30)
-mk("s9", F("s9", "start", -6), (-4.4, 4.2, -1.0), 84, 14, -0.18, 30)
+mk("s9", F("s9", "start", -6), (-5.0, 4.2, -1.0), 88, 14, -0.18, 30)
 mk("s10", F("s10", "start", -6), *WAF, 30)
 mk("s10", F("s10", "hard", -6), (BX + 0.3, YB - 0.6, WZ), 10.5, 8, -0.62, 40)
 
@@ -892,7 +892,7 @@ OVER = {
  "s5": [sec_("imp-acc", "s5", F("s5", "start", 2), F("s6", "start", -2), {k: F("s5", k) for k in ["ring", "fast", "kev", "v"]}, title="一環環加電壓", tag="示意舉例：100 keV 硼離子")],
  "s6": [sec_("imp-sel", "s6", F("s6", "start", 2), F("s7", "start", -2), {k: F("s6", k) for k in ["all", "bend", "miss", "wall", "pass"]}, title="磁鐵分選", tag="俯視示意")],
  "s7": [sec_("imp-scan", "s7", F("s7", "start", 2), F("s8", "start", -2), {k: F("s7", k) for k in ["enter", "sweep", "move", "every", "same"]}, title="左右掃上下動", tag="示意軌跡")],
- "s8": [sec_("imp-cmp", "s8", F("s8", "start", 2), F("s9", "start", -2), {k: F("s8", k) for k in ["in", "slow", "stop", "energy", "dose"]}, title="深度與濃度", tag="示意，非實際比例")],
+ "s8": [sec_("imp-cmp", "s8", F("s8", "start", 2), F("s9", "start", -2), {k: F("s8", k) for k in ["in", "slow", "stop", "energy", "dose"]}, title="深度與濃度", tag="示意")],
  "s9": [sec_("imp-co", "s9", F("s9", "start", 2), F("s10", "start", -2), {k: F("s9", k) for k in ["am", "ax", "gas", "jc"]}, title="誰在做", tag="廠商公布／媒體報導")],
  "s10": [sec_("imp-next", "s10", F("s10", "start", 2), F("s10", "kw", -10), {k: F("s10", k) for k in ["zone", "hard", "dirty", "next", "kw"]}, title="接下來", tag="下一支：清洗")],
 }
