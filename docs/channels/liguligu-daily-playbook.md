@@ -41,6 +41,8 @@
 
 - **網站文章結構**（使用者 2026/11/20：「Tech & 哩股哩股照就在原本網站上，但還是需要補充完善內容，因為後續會提供連結給讀者」）：新片交件的 `site-article.json` blocks 依序＝結論 → 3 個重點 → 小標（每段講因果）→ 名詞框 → 影片（可播可下載）→ 可以怎麼做（不給買賣建議）→ 延伸閱讀 → 出處。已發的舊文由主控補強；留言私訊由③處理，這裡不用動。
 
+- **子 agent 依工作配 model＋effort**（使用者 2026/11/20 全頻道：「好 照這樣做 並且每個頻道都是」；取代「子 agent 一律 sonnet」；共用版 tw-rotation `docs/marketing/channels/token_budget.md` 第七節）：寫腳本＝opus＋medium；最後審片／打分／看圖＝opus＋high；配音／剪輯／渲染／autofix＝sonnet＋low；選題查證／素材規格／輪播／caption／文章＝sonnet＋medium。派工一定明寫 model 與 effort；每支 `retro.md` 記 Token 用量與品質變化，週檢討再調。
+
 ## 一、每天的分工
 
 | 步驟 | 誰做 | 產出 |
