@@ -9,22 +9,22 @@ S = [
  "上一支量完，表面平，膜厚也對。但這片夕還不會導電，所以把離子打進去，每秒飛一千三百公里。",
  ["上一支量完","表面平，膜厚也對","但這片矽還不會導電","所以把離子打進去","每秒飛一千三百公里"],
  ["Last time we measured:","the surface is flat, the film is right.","But this silicon still can't conduct,","so we shoot ions into it,","at 1,300 km per second."],
- [("prev","上一支量完了"),("ok","表面平"),("no","還不會導電"),("shoot","把離子打進去"),("speed","每秒飛一千三百公里")],
- ["不導電","離子","一千三百公里"],["上一支：量測與檢測；速度＝動能公式計算（100 keV 硼離子，見 research.md）"],0.7),
+ [("prev","上一支量完"),("ok","表面平"),("no","還不會導電"),("shoot","把離子打進去"),("speed","每秒飛一千三百公里")],
+ ["導電","離子","一千三百公里"],["速度＝v=√(2E/m) 計算，100 keV 硼離子（示意舉例）"],0.7),
 ("s2","mechanism",2,
  "純矽導電很差。打進磷多出電子，叫N型；打進硼留下電洞，叫P型。",
  "純夕導電很差。打進磷多出電子，叫恩型；打進硼留下電洞，叫皮型。",
  ["純矽導電很差","打進磷多出電子","叫N型","打進硼留下電洞","叫P型"],
  ["Pure silicon barely conducts.","Phosphorus adds electrons,","called N-type.","Boron leaves holes,","called P-type."],
  [("pure","純矽導電很差"),("ph","打進磷"),("ntype","叫N型"),("bo","打進硼"),("hole","留下電洞"),("ptype","叫P型")],
- ["磷","硼","N型","P型"],["摻雜通則：P 為 5 價（N 型）、B 為 3 價（P 型）；NTU 半導體製程講義、wevolver"],0.7),
+ ["磷","硼","N型","P型"],["NTU 半導體製程講義；摻雜通則"],0.7),
 ("s3","mechanism",3,
  "光阻先遮住不要打的地方。離子一路飛過離子源、加速管、分析磁鐵、終端站。",
  "光阻先遮住不要打的地方。離子一路飛過離子源、加速管、分析磁鐵、終端站。",
  ["光阻先遮住","不要打的地方","離子一路飛過","離子源、加速管","分析磁鐵、終端站"],
  ["Photoresist first covers the spots to skip.","Ions fly through the beam line:","ion source, accelerator tube,","analyzer magnet, end station."],
  [("mask","光阻先遮住"),("line","離子一路飛過"),("src","離子源"),("acc","加速管"),("mag","分析磁鐵"),("end","終端站")],
- ["光阻","射束線","離子源","終端站"],["uptogo 離子佈植；USPTO 6191012；光阻遮罩通則"],0.7),
+ ["光阻","離子源","加速管","終端站"],["uptogo 離子佈植；USPTO 6191012；光阻遮罩通則"],0.7),
 ("s4","mechanism",4,
  "離子源把氣體變成電漿。磷用磷化氫，硼用三氟化硼，再用電場把離子拉出來。",
  None,
@@ -38,7 +38,7 @@ S = [
  ["加速管一環一環加電壓","離子越跑越快","十萬電子伏特的硼離子","每秒約一千三百公里"],
  ["The accelerator tube adds voltage ring by ring,","so ions keep getting faster.","A 100 keV boron ion","moves about 1,300 km per second."],
  [("ring","一環一環加電壓"),("fast","越跑越快"),("kev","十萬電子伏特"),("v","每秒約一千三百公里")],
- ["加速管","十萬電子伏特","一千三百公里"],["USPTO 6191012（萃取 5–80 keV、加速至約 180 keV）；速度由 v=√(2E/m) 計算"],0.7),
+ ["加速管","十萬電子伏特","一千三百公里"],["USPTO 6191012；速度 v=√(2E/m) 計算（示意舉例）"],0.7),
 ("s6","twist",6,
  "但離子源裡什麼都有。分析磁鐵讓離子轉彎，太重太輕的轉不過去，撞牆被擋掉，只剩對的過關。",
  None,
@@ -59,21 +59,21 @@ S = [
  ["離子打進矽","一路撞一路慢","停在某個深度","能量決定多深","打多久決定多濃"],
  ["Ions drive into silicon,","slowing with every collision,","and stop at a certain depth.","Energy sets how deep,","dose sets how dense."],
  [("in","打進矽"),("slow","一路撞一路慢"),("stop","停在某個深度"),("energy","能量決定多深"),("dose","打多久決定多濃")],
- ["停在深度","能量","劑量"],["UW ECE528 Ch8、Berkeley EE143（投影射程、劑量 10^11–10^16 /cm²）"],0.7),
+ ["某個深度","能量","多濃"],["UW ECE528 Ch8；Berkeley EE143（示意）"],0.7),
 ("s9","payoff",9,
  "機台有應用材料和亞舍立，植入氣體有台灣的兆捷。",
  None,
  ["機台有應用材料和亞舍立","植入氣體有台灣的兆捷"],
  ["Tools: Applied Materials and Axcelis.","Implant gases: Taiwan's Jmax."],
  [("am","應用材料"),("ax","亞舍立"),("gas","植入氣體"),("jc","兆捷")],
- ["應用材料","亞舍立","兆捷"],["市場研究摘要（Allied／Stratview／Technavio）；經濟日報／聯合報報導兆捷"],0.7),
+ ["應用材料","亞舍立","兆捷"],["市場研究摘要；聯合報、經濟日報報導"],0.7),
 ("s10","cta",10,
  "這樣矽就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。",
  "這樣夕就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。",
  ["這樣矽就有了","導電的區域","但光阻被打到焦硬","表面也髒","所以下一支","看清洗","留言離子","看完整解說"],
  ["So silicon now has","its conductive zones.","But the resist is baked hard,","and the surface is dirty,","so next:","cleaning.","Comment \"離子\"","for the full notes."],
  [("so","這樣矽就有了"),("zone","導電的區域"),("hard","打到焦硬"),("dirty","表面也髒"),("next","下一支"),("kw","留言離子")],
- ["離子佈植","焦硬","清洗","離子"],["高劑量佈植後光阻碳化難除：長庚大學論文摘要、US 5503964、台聯大／交大論文"],None),
+ ["導電","焦硬","清洗","離子"],["長庚大學論文摘要；US 5503964"],None),
 ]
 scenes=[]
 for sid,beat,para,nar,tts,zh,en,cues,kws,src,pa in S:
@@ -83,7 +83,7 @@ for sid,beat,para,nar,tts,zh,en,cues,kws,src,pa in S:
         "component":"ThreeScene","sources":src,"props":{}}
     if pa is not None: sc["pauseAfter"]=pa
     scenes.append(sc)
-scenes[0]["props"]["hook"]={"kicker":"接上一支｜怎麼讓矽導電？","title":"離子每秒飛1,300公里","size":120,"top":236}
+scenes[0]["props"]["hook"]={"kicker":"接量測｜怎麼導電？","title":"離子每秒飛1,300公里","size":120,"top":236}
 scenes[-1]["props"]["_endCard說明"]="片尾卡在 s11（silent）"
 scenes.append({"id":"s11","beat":"end","silent":True,"durationSec":3.2,"subtitle":{"zh":"","en":""},"keywords":[],"cues":[],"component":"ThreeScene","sources":[],
  "props":{"endCard":{"next":"清洗","trail":["清洗","光阻","殘留"],"at":"s10:kw-8","comment":"離子","logoAnim":"transparent"}}})
