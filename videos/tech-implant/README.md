@@ -17,3 +17,11 @@
 2. `node scripts/three/layout-check.mjs tech-implant`、`node scripts/three/flow-check.mjs tech-implant`、`npm run validate tech-implant`、`node scripts/three/kinematics-check.mjs tech-implant` 都要 0 error（11/20 舊時間軸：全部 0 error）
 3. 片尾招牌音：`python3 scripts/three/sfx-logo-tech.py out/tech-implant.sting.wav`；用 storyboard 算 AT＝s10:kw−8 幀÷30、FADE＝最後人聲結束÷30、DUR＝總幀÷30，再 `G=28 bash scripts/three/mix-endsting.sh public/audio/tech-implant/voice.wav out/tech-implant.sting.wav $AT $FADE $DUR out/tech-implant.v1.wav`（舊時間軸：66.9 68.97 72.1）
 4. `AUDIO=out/tech-implant.v1.wav bash scripts/three/chunk-render.sh tech-implant v1`
+
+## v2（2026/11/21，旁白金手指：2.5＋Iapetus＋說明 B＋整篇 atempo）
+- 配音：`voice` 改回 2.5＋Iapetus＋tech-b（雜湊 b6555c277d）；原始錄音 `.take-b6555c277d.raw.orig.wav`（備份 `out/old-tech-implant-take-2.5/`）只做整篇 `atempo=1.25` → `.raw.wav`，不改音高、不剪停頓。0 次 TTS 請求。
+- **佈植原始錄音偏慢，×1.25 只到 5.42 字/秒**（同一把尺：扣掉 ≥0.16 秒、−40 dB 靜音；原始 4.43、×1.20＝5.26、×1.25＝5.42、×1.30＝5.64；要到金手指目標 5.75 約需 ×1.33，超過上限 1.25，Andy／CEO 11/21 決定照上限 ×1.25）。含停頓 4.64 字/秒。
+- `tts-take --resplit` → `ALIGN_PROVIDER=fa align --force`（整篇信心 0.922）→ `python3 genmodel.py`（依新時間軸重算 cue，只差 ±1–2 幀；genscript.py 的 voice 也改回 2.5）→ validate／layout-check／card-overlap／flow-check／kinematics-check 全 0 error。時間軸 2162 幀（72.07 秒）。
+- 片尾音：`G=28 bash scripts/three/mix-endsting.sh public/audio/tech-implant/voice.wav out/tech-implant.sting.wav 66.8667 68.9333 72.0667 out/tech-implant.v2.wav`。
+- 成片 `out/tech-implant.v2.mp4`（`AUDIO=out/tech-implant.v2.wav bash scripts/three/chunk-render.sh tech-implant v2`）；3.8 金手指版 `out/tech-implant.gold.mp4` 保留，其分段在 `out/chunks/tech-implant-gold/`。
+- 磁鐵分選卡「狹縫」改放在狹縫左邊（新時間軸下太重離子撞壁的火花會壓到右邊的字，card-overlap 抓到）。

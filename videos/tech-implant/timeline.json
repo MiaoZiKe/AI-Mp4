@@ -2,8 +2,8 @@
  "version": 2,
  "slug": "tech-implant",
  "fps": 30,
- "totalFrames": 2222,
- "totalSec": 74.07,
+ "totalFrames": 2162,
+ "totalSec": 72.07,
  "gapSec": 0.15,
  "transitionFrames": 10,
  "scenes": [
@@ -11,23 +11,23 @@
    "id": "s1",
    "audio": "audio/tech-implant/01-s1.wav",
    "audioFrame": 0,
-   "audioSec": 7.74,
+   "audioSec": 7.52,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 252,
+   "durationFrames": 245,
    "transitionFrames": 0,
    "transition": null,
    "voiceStartFrame": 1,
-   "voiceEndFrame": 231,
-   "stillFrame": 242,
+   "voiceEndFrame": 225,
+   "stillFrame": 235,
    "subtitleWindow": [
     0,
-    249
+    242
    ],
    "sourceWindow": [
     0,
-    247
+    240
    ],
    "pauseAfter": 0.7,
    "lines": [
@@ -35,7 +35,7 @@
      "text": "上一支量完",
      "start": 0,
      "chars": [
-      2,
+      1,
       6,
       9,
       13,
@@ -44,37 +44,37 @@
     },
     {
      "text": "表面平，",
-     "start": 25,
+     "start": 28,
      "chars": [
-      27,
-      33,
-      39,
-      39
+      30,
+      35,
+      40,
+      40
      ]
     },
     {
      "text": "膜厚也對",
-     "start": 51,
+     "start": 52,
      "chars": [
-      53,
-      59,
-      64,
-      68
+      54,
+      61,
+      66,
+      70
      ]
     },
     {
      "text": "但這片矽還不會導電",
-     "start": 87,
+     "start": 84,
      "chars": [
-      89,
+      86,
+      90,
       94,
-      98,
-      105,
-      109,
+      102,
+      106,
+      111,
       114,
-      116,
-      120,
-      126
+      118,
+      123
      ]
     },
     {
@@ -83,109 +83,115 @@
      "chars": [
       138,
       142,
-      146,
-      152,
-      156,
-      161,
-      165,
-      170
+      145,
+      150,
+      155,
+      158,
+      163,
+      168
      ]
     },
     {
      "text": "每秒飛一千三百公里",
-     "start": 182,
+     "start": 177,
      "chars": [
-      185,
-      189,
-      196,
-      203,
+      179,
+      184,
+      191,
+      197,
+      201,
       207,
-      213,
-      218,
-      221,
-      225
+      212,
+      215,
+      219
      ]
     }
    ],
    "keywords": [
     {
      "text": "導電",
-     "start": 120
+     "start": 118
     },
     {
      "text": "離子",
-     "start": 152
+     "start": 150
     },
     {
      "text": "一千三百公里",
-     "start": 203
+     "start": 197
     }
    ],
    "cues": [
     {
      "id": "prev",
      "text": "上一支量完",
-     "frame": 3,
+     "frame": 2,
      "early": 0
     },
     {
      "id": "ok",
      "text": "表面平",
-     "frame": 29,
+     "frame": 31,
      "early": 0
     },
     {
      "id": "no",
      "text": "還不會導電",
-     "frame": 110,
+     "frame": 107,
      "early": 0
     },
     {
      "id": "shoot",
      "text": "把離子打進去",
-     "frame": 147,
+     "frame": 146,
      "early": 0
     },
     {
      "id": "speed",
      "text": "每秒飛一千三百公里",
-     "frame": 186,
+     "frame": 181,
      "early": 0
     }
    ],
-   "hash": "35674121b382-0f3e4e3feb",
+   "hash": "92e5b5edb59a-b6555c277d",
    "sub": "上一支量完\n表面平，膜厚也對\n但這片矽還不會導電\n所以把離子打進去\n每秒飛一千三百公里",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.792,
-    "minScore": 0,
-    "onsetMedianMs": 10,
-    "onsetMaxMs": 20,
+    "confidence": 0.833,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 1.83,
-      "start": 1.82,
-      "ch": "膜",
-      "errMs": -10
+      "onset": 1.07,
+      "start": 1.04,
+      "ch": "表",
+      "errMs": -30
      },
      {
-      "onset": 3.04,
-      "start": 3.02,
+      "onset": 1.82,
+      "start": 1.84,
+      "ch": "膜",
+      "errMs": 20
+     },
+     {
+      "onset": 2.94,
+      "start": 2.92,
       "ch": "但",
       "errMs": -20
      },
      {
-      "onset": 4.65,
+      "onset": 4.63,
       "start": 4.66,
       "ch": "所",
-      "errMs": 10
+      "errMs": 30
      },
      {
-      "onset": 6.2,
-      "start": 6.2,
+      "onset": 6,
+      "start": 6.02,
       "ch": "每",
-      "errMs": 0
+      "errMs": 20
      }
     ]
    },
@@ -193,283 +199,283 @@
    "words": [
     {
      "text": "上",
-     "start": 0.1,
-     "end": 0.24,
-     "score": 0.921
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.993
     },
     {
      "text": "一",
-     "start": 0.26,
-     "end": 0.3,
-     "score": 0.166
+     "start": 0.24,
+     "end": 0.28,
+     "score": 0.005
     },
     {
      "text": "支",
-     "start": 0.36,
-     "end": 0.44,
-     "score": 0.766
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.97
     },
     {
      "text": "量",
      "start": 0.48,
      "end": 0.66,
-     "score": 0.957
+     "score": 0.96
     },
     {
      "text": "完",
-     "start": 0.68,
-     "end": 0.82,
-     "score": 0.998
+     "start": 0.7,
+     "end": 0.88,
+     "score": 0.996
     },
     {
      "text": "表",
-     "start": 0.96,
-     "end": 1.14,
-     "score": 0.949
+     "start": 1.04,
+     "end": 1.22,
+     "score": 0.981
     },
     {
      "text": "面",
-     "start": 1.16,
-     "end": 1.32,
+     "start": 1.22,
+     "end": 1.36,
      "score": 0.999
     },
     {
      "text": "平",
-     "start": 1.36,
-     "end": 1.62,
-     "score": 0.9
+     "start": 1.4,
+     "end": 1.66,
+     "score": 0.836
     },
     {
      "text": "膜",
-     "start": 1.82,
-     "end": 1.92,
+     "start": 1.84,
+     "end": 1.94,
      "score": 0.999
     },
     {
      "text": "厚",
-     "start": 2.02,
-     "end": 2.14,
+     "start": 2.08,
+     "end": 2.22,
      "score": 1
     },
     {
      "text": "也",
-     "start": 2.18,
-     "end": 2.26,
-     "score": 0.999
+     "start": 2.24,
+     "end": 2.32,
+     "score": 0.993
     },
     {
      "text": "對",
-     "start": 2.32,
-     "end": 2.48,
-     "score": 1
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.999
     },
     {
      "text": "但",
-     "start": 3.02,
-     "end": 3.14,
+     "start": 2.92,
+     "end": 3.04,
      "score": 0.999
     },
     {
      "text": "這",
-     "start": 3.18,
-     "end": 3.26,
-     "score": 0.221
+     "start": 3.06,
+     "end": 3.14,
+     "score": 0.968
     },
     {
      "text": "片",
-     "start": 3.3,
-     "end": 3.44,
-     "score": 0.964
+     "start": 3.18,
+     "end": 3.32,
+     "score": 0.963
     },
     {
      "text": "夕",
-     "start": 3.48,
-     "end": 3.58,
-     "score": 0.862
+     "start": 3.38,
+     "end": 3.48,
+     "score": 0.999
     },
     {
      "text": "還",
-     "start": 3.68,
-     "end": 3.8,
+     "start": 3.58,
+     "end": 3.72,
      "score": 0.999
     },
     {
      "text": "不",
-     "start": 3.84,
-     "end": 3.9,
-     "score": 0.997
+     "start": 3.76,
+     "end": 3.82,
+     "score": 0.998
     },
     {
      "text": "會",
-     "start": 3.92,
-     "end": 4.04,
+     "start": 3.86,
+     "end": 3.96,
      "score": 0.999
     },
     {
      "text": "導",
-     "start": 4.06,
-     "end": 4.2,
+     "start": 3.98,
+     "end": 4.12,
      "score": 0.99
     },
     {
      "text": "電",
-     "start": 4.24,
-     "end": 4.42,
+     "start": 4.14,
+     "end": 4.32,
      "score": 0.999
     },
     {
      "text": "所",
      "start": 4.66,
-     "end": 4.76,
-     "score": 0.662
+     "end": 4.74,
+     "score": 0.998
     },
     {
      "text": "以",
      "start": 4.78,
      "end": 4.82,
-     "score": 0.502
+     "score": 0.975
     },
     {
      "text": "把",
-     "start": 4.9,
-     "end": 5,
-     "score": 0.419
+     "start": 4.88,
+     "end": 4.96,
+     "score": 0.43
     },
     {
      "text": "離",
-     "start": 5.1,
-     "end": 5.16,
-     "score": 0.871
+     "start": 5.04,
+     "end": 5.12,
+     "score": 0.637
     },
     {
      "text": "子",
-     "start": 5.26,
-     "end": 5.36,
-     "score": 0.97
+     "start": 5.2,
+     "end": 5.28,
+     "score": 0.986
     },
     {
      "text": "打",
-     "start": 5.42,
-     "end": 5.48,
-     "score": 0.996
+     "start": 5.32,
+     "end": 5.38,
+     "score": 0.993
     },
     {
      "text": "進",
-     "start": 5.56,
-     "end": 5.68,
-     "score": 0.999
+     "start": 5.48,
+     "end": 5.6,
+     "score": 1
     },
     {
      "text": "去",
-     "start": 5.72,
-     "end": 5.82,
+     "start": 5.66,
+     "end": 5.76,
      "score": 0.999
     },
     {
      "text": "每",
-     "start": 6.2,
-     "end": 6.32,
+     "start": 6.02,
+     "end": 6.14,
      "score": 0.999
     },
     {
      "text": "秒",
-     "start": 6.36,
-     "end": 6.54,
+     "start": 6.18,
+     "end": 6.34,
      "score": 0.998
     },
     {
      "text": "飛",
-     "start": 6.58,
-     "end": 6.72,
-     "score": 1
+     "start": 6.4,
+     "end": 6.54,
+     "score": 0.999
     },
     {
      "text": "一",
-     "start": 6.8,
-     "end": 6.86,
-     "score": 0
+     "start": 6.62,
+     "end": 6.68,
+     "score": 0.001
     },
     {
      "text": "千",
-     "start": 6.94,
-     "end": 7.1,
-     "score": 0.002
+     "start": 6.76,
+     "end": 6.92,
+     "score": 0.001
     },
     {
      "text": "三",
-     "start": 7.14,
-     "end": 7.26,
+     "start": 6.96,
+     "end": 7.08,
      "score": 0.001
     },
     {
      "text": "百",
-     "start": 7.3,
-     "end": 7.38,
-     "score": 0.002
+     "start": 7.1,
+     "end": 7.2,
+     "score": 0.008
     },
     {
      "text": "公",
-     "start": 7.42,
-     "end": 7.54,
-     "score": 1
+     "start": 7.22,
+     "end": 7.36,
+     "score": 0.991
     },
     {
      "text": "里",
-     "start": 7.56,
-     "end": 7.64,
-     "score": 0.983
+     "start": 7.36,
+     "end": 7.44,
+     "score": 0.996
     }
    ],
    "charTimes": [
-    0.1,
-    0.26,
-    0.36,
+    0.08,
+    0.24,
+    0.34,
     0.48,
-    0.68,
-    0.96,
-    1.16,
-    1.36,
-    1.82,
-    2.02,
-    2.18,
-    2.32,
-    3.02,
+    0.7,
+    1.04,
+    1.22,
+    1.4,
+    1.84,
+    2.08,
+    2.24,
+    2.38,
+    2.92,
+    3.06,
     3.18,
-    3.3,
-    3.56,
-    3.68,
-    3.84,
-    3.92,
-    4.06,
-    4.24,
+    3.45,
+    3.58,
+    3.76,
+    3.86,
+    3.98,
+    4.14,
     4.66,
     4.78,
-    4.9,
-    5.1,
-    5.26,
-    5.42,
-    5.56,
-    5.72,
-    6.2,
-    6.36,
-    6.58,
-    6.8,
-    6.94,
-    7.14,
-    7.3,
-    7.42,
-    7.56
+    4.88,
+    5.04,
+    5.2,
+    5.32,
+    5.48,
+    5.66,
+    6.02,
+    6.18,
+    6.4,
+    6.62,
+    6.76,
+    6.96,
+    7.1,
+    7.22,
+    7.36
    ]
   },
   {
    "id": "s2",
    "audio": "audio/tech-implant/02-s2.wav",
-   "audioFrame": 251,
-   "audioSec": 6.1,
+   "audioFrame": 244,
+   "audioSec": 6.11,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 242,
-   "durationFrames": 214,
+   "startFrame": 235,
+   "durationFrames": 212,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -483,159 +489,165 @@
      8
     ]
    },
-   "voiceStartFrame": 252,
-   "voiceEndFrame": 433,
-   "stillFrame": 446,
+   "voiceStartFrame": 245,
+   "voiceEndFrame": 427,
+   "stillFrame": 437,
    "subtitleWindow": [
-    249,
-    453
+    242,
+    444
    ],
    "sourceWindow": [
-    247,
-    451
+    240,
+    442
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "純矽導電很差",
-     "start": 249,
+     "start": 242,
      "chars": [
+      244,
       251,
-      258,
-      262,
-      265,
-      270,
-      274
+      254,
+      259,
+      264,
+      268
      ]
     },
     {
      "text": "打進磷多出電子",
-     "start": 294,
+     "start": 284,
      "chars": [
+      286,
+      291,
       296,
-      301,
-      307,
-      317,
-      321,
-      326,
-      332
+      305,
+      310,
+      314,
+      321
      ]
     },
     {
      "text": "叫N型打進硼留下電洞",
-     "start": 341,
+     "start": 327,
      "chars": [
-      343,
-      352,
-      356,
-      371,
-      375,
-      380,
-      388,
-      392,
-      397,
-      403
+      329,
+      338,
+      342,
+      357,
+      362,
+      367,
+      379,
+      384,
+      390,
+      396
      ]
     },
     {
      "text": "叫P型",
-     "start": 411,
+     "start": 402,
      "chars": [
-      413,
-      421,
-      425
+      405,
+      414,
+      418
      ]
     }
    ],
    "keywords": [
     {
      "text": "磷",
-     "start": 307
+     "start": 296
     },
     {
      "text": "硼",
-     "start": 380
+     "start": 367
     },
     {
      "text": "N型",
-     "start": 352
+     "start": 338
     },
     {
      "text": "P型",
-     "start": 421
+     "start": 414
     }
    ],
    "cues": [
     {
      "id": "pure",
      "text": "純矽導電很差",
-     "frame": 252,
+     "frame": 245,
      "early": 0
     },
     {
      "id": "ph",
      "text": "打進磷",
-     "frame": 298,
+     "frame": 287,
      "early": 0
     },
     {
      "id": "ntype",
      "text": "叫N型",
-     "frame": 345,
+     "frame": 330,
      "early": 0
     },
     {
      "id": "bo",
      "text": "打進硼",
-     "frame": 372,
+     "frame": 358,
      "early": 0
     },
     {
      "id": "hole",
      "text": "留下電洞",
-     "frame": 390,
+     "frame": 380,
      "early": 0
     },
     {
      "id": "ptype",
      "text": "叫P型",
-     "frame": 414,
+     "frame": 406,
      "early": 0
     }
    ],
-   "hash": "ad6af8ad3918-0f3e4e3feb",
+   "hash": "e2de7e3e1c63-b6555c277d",
    "sub": "純矽導電很差\n打進磷多出電子\n叫N型\n打進硼留下電洞\n叫P型",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.979,
-    "minScore": 0.742,
-    "onsetMedianMs": 15,
-    "onsetMaxMs": 20,
+    "confidence": 0.975,
+    "minScore": 0.749,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 1.58,
-      "start": 1.56,
+      "onset": 1.47,
+      "start": 1.44,
+      "ch": "打",
+      "errMs": -30
+     },
+     {
+      "onset": 2.88,
+      "start": 2.88,
+      "ch": "叫",
+      "errMs": 0
+     },
+     {
+      "onset": 3.82,
+      "start": 3.8,
       "ch": "打",
       "errMs": -20
      },
      {
-      "onset": 3.13,
-      "start": 3.12,
-      "ch": "叫",
-      "errMs": -10
+      "onset": 4.54,
+      "start": 4.54,
+      "ch": "留",
+      "errMs": 0
      },
      {
-      "onset": 4.06,
-      "start": 4.04,
-      "ch": "打",
-      "errMs": -20
-     },
-     {
-      "onset": 5.45,
-      "start": 5.44,
+      "onset": 5.4,
+      "start": 5.4,
       "ch": "叫",
-      "errMs": -10
+      "errMs": 0
      }
     ]
    },
@@ -644,198 +656,198 @@
     {
      "text": "純",
      "start": 0.04,
-     "end": 0.18,
-     "score": 0.963
+     "end": 0.2,
+     "score": 0.971
     },
     {
      "text": "夕",
-     "start": 0.24,
-     "end": 0.3,
-     "score": 0.998
+     "start": 0.26,
+     "end": 0.34,
+     "score": 0.996
     },
     {
      "text": "導",
-     "start": 0.4,
-     "end": 0.5,
-     "score": 0.993
+     "start": 0.38,
+     "end": 0.52,
+     "score": 0.997
     },
     {
      "text": "電",
-     "start": 0.52,
-     "end": 0.64,
-     "score": 0.977
+     "start": 0.56,
+     "end": 0.68,
+     "score": 0.999
     },
     {
      "text": "很",
-     "start": 0.68,
-     "end": 0.78,
-     "score": 0.998
+     "start": 0.72,
+     "end": 0.82,
+     "score": 0.999
     },
     {
      "text": "差",
-     "start": 0.82,
-     "end": 0.96,
-     "score": 0.993
+     "start": 0.86,
+     "end": 0.98,
+     "score": 0.994
     },
     {
      "text": "打",
-     "start": 1.56,
-     "end": 1.62,
+     "start": 1.44,
+     "end": 1.52,
      "score": 0.999
     },
     {
      "text": "進",
-     "start": 1.72,
-     "end": 1.84,
+     "start": 1.6,
+     "end": 1.72,
      "score": 1
     },
     {
      "text": "磷",
-     "start": 1.92,
-     "end": 2.08,
-     "score": 0.993
-    },
-    {
-     "text": "多",
-     "start": 2.24,
-     "end": 2.32,
+     "start": 1.78,
+     "end": 1.94,
      "score": 0.998
     },
     {
+     "text": "多",
+     "start": 2.08,
+     "end": 2.18,
+     "score": 0.994
+    },
+    {
      "text": "出",
-     "start": 2.38,
-     "end": 2.48,
-     "score": 0.991
+     "start": 2.24,
+     "end": 2.34,
+     "score": 0.963
     },
     {
      "text": "電",
-     "start": 2.54,
-     "end": 2.68,
-     "score": 0.986
+     "start": 2.38,
+     "end": 2.54,
+     "score": 1
     },
     {
      "text": "子",
-     "start": 2.74,
-     "end": 2.84,
-     "score": 0.999
+     "start": 2.6,
+     "end": 2.7,
+     "score": 0.998
     },
     {
      "text": "叫",
-     "start": 3.12,
-     "end": 3.28,
+     "start": 2.88,
+     "end": 3.06,
      "score": 0.998
     },
     {
      "text": "恩",
-     "start": 3.38,
-     "end": 3.46,
-     "score": 0.998
+     "start": 3.14,
+     "end": 3.22,
+     "score": 0.995
     },
     {
      "text": "型",
-     "start": 3.54,
-     "end": 3.74,
-     "score": 0.913
+     "start": 3.32,
+     "end": 3.52,
+     "score": 0.978
     },
     {
      "text": "打",
-     "start": 4.04,
-     "end": 4.1,
+     "start": 3.8,
+     "end": 3.88,
      "score": 0.999
     },
     {
      "text": "進",
-     "start": 4.18,
-     "end": 4.28,
-     "score": 1
+     "start": 3.98,
+     "end": 4.1,
+     "score": 0.946
     },
     {
      "text": "硼",
-     "start": 4.36,
-     "end": 4.56,
-     "score": 0.742
+     "start": 4.14,
+     "end": 4.38,
+     "score": 0.749
     },
     {
      "text": "留",
-     "start": 4.62,
-     "end": 4.74,
-     "score": 0.995
+     "start": 4.54,
+     "end": 4.68,
+     "score": 0.999
     },
     {
      "text": "下",
-     "start": 4.76,
-     "end": 4.84,
-     "score": 0.994
+     "start": 4.72,
+     "end": 4.82,
+     "score": 1
     },
     {
      "text": "電",
-     "start": 4.92,
-     "end": 5.06,
-     "score": 0.998
+     "start": 4.9,
+     "end": 5.04,
+     "score": 1
     },
     {
      "text": "洞",
-     "start": 5.12,
-     "end": 5.3,
-     "score": 0.947
+     "start": 5.1,
+     "end": 5.26,
+     "score": 0.994
     },
     {
      "text": "叫",
-     "start": 5.44,
-     "end": 5.6,
-     "score": 0.999
+     "start": 5.4,
+     "end": 5.56,
+     "score": 0.998
     },
     {
      "text": "皮",
      "start": 5.62,
-     "end": 5.72,
-     "score": 0.996
+     "end": 5.74,
+     "score": 0.806
     },
     {
      "text": "型",
-     "start": 5.84,
-     "end": 6.02,
-     "score": 0.992
+     "start": 5.86,
+     "end": 6.04,
+     "score": 0.987
     }
    ],
    "charTimes": [
     0.04,
     0.29,
-    0.4,
-    0.52,
-    0.68,
-    0.82,
-    1.56,
-    1.72,
-    1.92,
+    0.38,
+    0.56,
+    0.72,
+    0.86,
+    1.44,
+    1.6,
+    1.78,
+    2.08,
     2.24,
     2.38,
-    2.54,
-    2.74,
-    3.12,
-    3.41,
-    3.54,
-    4.04,
-    4.18,
-    4.36,
-    4.62,
-    4.76,
-    4.92,
-    5.12,
-    5.44,
-    5.72,
-    5.84
+    2.6,
+    2.88,
+    3.19,
+    3.32,
+    3.8,
+    3.98,
+    4.14,
+    4.54,
+    4.72,
+    4.9,
+    5.1,
+    5.4,
+    5.71,
+    5.86
    ]
   },
   {
    "id": "s3",
    "audio": "audio/tech-implant/03-s3.wav",
-   "audioFrame": 455,
-   "audioSec": 6,
+   "audioFrame": 446,
+   "audioSec": 5.96,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 446,
-   "durationFrames": 210,
+   "startFrame": 437,
+   "durationFrames": 208,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -849,183 +861,183 @@
      8
     ]
    },
-   "voiceStartFrame": 456,
-   "voiceEndFrame": 634,
-   "stillFrame": 646,
+   "voiceStartFrame": 447,
+   "voiceEndFrame": 624,
+   "stillFrame": 635,
    "subtitleWindow": [
-    453,
-    653
+    444,
+    642
    ],
    "sourceWindow": [
-    451,
-    651
+    442,
+    640
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "光阻先遮住",
-     "start": 453,
+     "start": 444,
      "chars": [
-      454,
-      460,
-      464,
-      470,
-      474
+      445,
+      451,
+      457,
+      462,
+      467
      ]
     },
     {
      "text": "不要打的地方",
-     "start": 478,
+     "start": 469,
      "chars": [
-      480,
+      472,
+      475,
+      479,
       482,
-      487,
-      491,
-      494,
-      499
+      485,
+      489
      ]
     },
     {
      "text": "離子一路飛過",
-     "start": 514,
+     "start": 503,
      "chars": [
+      505,
+      511,
       517,
       521,
       526,
-      529,
-      534,
-      539
+      530
      ]
     },
     {
      "text": "離子源、",
-     "start": 540,
+     "start": 533,
      "chars": [
-      542,
-      547,
-      552,
-      552
+      535,
+      540,
+      545,
+      545
      ]
     },
     {
      "text": "加速管",
-     "start": 563,
+     "start": 555,
      "chars": [
-      565,
-      571,
-      576
+      557,
+      563,
+      568
      ]
     },
     {
      "text": "分析磁鐵、",
-     "start": 588,
+     "start": 578,
      "chars": [
-      590,
-      595,
-      599,
-      604,
-      604
+      580,
+      586,
+      591,
+      596,
+      596
      ]
     },
     {
      "text": "終端站",
-     "start": 615,
+     "start": 604,
      "chars": [
-      617,
-      622,
-      627
+      607,
+      612,
+      617
      ]
     }
    ],
    "keywords": [
     {
      "text": "光阻",
-     "start": 454
+     "start": 445
     },
     {
      "text": "離子源",
-     "start": 542
+     "start": 535
     },
     {
      "text": "加速管",
-     "start": 565
+     "start": 557
     },
     {
      "text": "終端站",
-     "start": 617
+     "start": 607
     }
    ],
    "cues": [
     {
      "id": "mask",
      "text": "光阻先遮住",
-     "frame": 456,
+     "frame": 447,
      "early": 0
     },
     {
      "id": "line",
      "text": "離子一路飛過",
-     "frame": 518,
+     "frame": 507,
      "early": 0
     },
     {
      "id": "src",
      "text": "離子源",
-     "frame": 544,
+     "frame": 537,
      "early": 0
     },
     {
      "id": "acc",
      "text": "加速管",
-     "frame": 567,
+     "frame": 558,
      "early": 0
     },
     {
      "id": "mag",
      "text": "分析磁鐵",
-     "frame": 591,
+     "frame": 582,
      "early": 0
     },
     {
      "id": "end",
      "text": "終端站",
-     "frame": 618,
+     "frame": 608,
      "early": 0
     }
    ],
-   "hash": "fc72372c3511-0f3e4e3feb",
+   "hash": "55d9c2a7cc7a-b6555c277d",
    "sub": "光阻先遮住\n不要打的地方\n離子一路飛過\n離子源、加速管\n分析磁鐵、終端站",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.921,
-    "minScore": 0.316,
+    "confidence": 0.94,
+    "minScore": 0.499,
     "onsetMedianMs": 15,
-    "onsetMaxMs": 40,
+    "onsetMaxMs": 20,
     "onsetCheck": [
      {
-      "onset": 2.09,
-      "start": 2.1,
+      "onset": 2.01,
+      "start": 2.02,
       "ch": "離",
       "errMs": 10
      },
      {
-      "onset": 3.74,
-      "start": 3.72,
+      "onset": 3.75,
+      "start": 3.74,
       "ch": "加",
+      "errMs": -10
+     },
+     {
+      "onset": 4.54,
+      "start": 4.52,
+      "ch": "分",
       "errMs": -20
      },
      {
-      "onset": 4.58,
-      "start": 4.54,
-      "ch": "分",
-      "errMs": -40
-     },
-     {
-      "onset": 5.44,
-      "start": 5.44,
+      "onset": 5.42,
+      "start": 5.4,
       "ch": "終",
-      "errMs": 0
+      "errMs": -20
      }
     ]
    },
@@ -1035,225 +1047,225 @@
      "text": "光",
      "start": 0.02,
      "end": 0.18,
-     "score": 0.999
+     "score": 0.996
     },
     {
      "text": "阻",
-     "start": 0.2,
-     "end": 0.3,
-     "score": 0.998
+     "start": 0.22,
+     "end": 0.32,
+     "score": 0.978
     },
     {
      "text": "先",
-     "start": 0.36,
-     "end": 0.5,
-     "score": 0.975
+     "start": 0.42,
+     "end": 0.56,
+     "score": 0.997
     },
     {
      "text": "遮",
-     "start": 0.54,
-     "end": 0.62,
-     "score": 0.985
+     "start": 0.6,
+     "end": 0.68,
+     "score": 0.94
     },
     {
      "text": "住",
-     "start": 0.7,
-     "end": 0.78,
-     "score": 0.772
+     "start": 0.74,
+     "end": 0.82,
+     "score": 0.987
     },
     {
      "text": "不",
-     "start": 0.88,
-     "end": 0.92,
-     "score": 0.994
+     "start": 0.9,
+     "end": 0.96,
+     "score": 0.998
     },
     {
      "text": "要",
-     "start": 0.96,
-     "end": 1.08,
+     "start": 1,
+     "end": 1.12,
      "score": 0.998
     },
     {
      "text": "打",
-     "start": 1.12,
-     "end": 1.18,
-     "score": 0.998
+     "start": 1.14,
+     "end": 1.2,
+     "score": 0.999
     },
     {
      "text": "的",
-     "start": 1.24,
+     "start": 1.26,
      "end": 1.32,
      "score": 0.499
     },
     {
      "text": "地",
-     "start": 1.36,
-     "end": 1.42,
-     "score": 0.503
+     "start": 1.34,
+     "end": 1.4,
+     "score": 0.501
     },
     {
      "text": "方",
-     "start": 1.5,
-     "end": 1.7,
-     "score": 0.96
+     "start": 1.48,
+     "end": 1.66,
+     "score": 0.701
     },
     {
      "text": "離",
-     "start": 2.1,
-     "end": 2.18,
-     "score": 0.99
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.998
     },
     {
      "text": "子",
-     "start": 2.26,
-     "end": 2.34,
-     "score": 0.987
+     "start": 2.2,
+     "end": 2.28,
+     "score": 0.996
     },
     {
      "text": "一",
      "start": 2.4,
-     "end": 2.44,
-     "score": 0.316
+     "end": 2.46,
+     "score": 0.966
     },
     {
      "text": "路",
-     "start": 2.52,
-     "end": 2.6,
-     "score": 0.991
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.997
     },
     {
      "text": "飛",
-     "start": 2.68,
-     "end": 2.8,
-     "score": 0.999
+     "start": 2.7,
+     "end": 2.82,
+     "score": 1
     },
     {
      "text": "過",
-     "start": 2.84,
-     "end": 2.92,
-     "score": 0.981
+     "start": 2.86,
+     "end": 2.94,
+     "score": 0.999
     },
     {
      "text": "離",
-     "start": 2.96,
-     "end": 3.04,
-     "score": 0.993
+     "start": 3.02,
+     "end": 3.1,
+     "score": 0.997
     },
     {
      "text": "子",
-     "start": 3.12,
-     "end": 3.2,
-     "score": 0.992
+     "start": 3.18,
+     "end": 3.28,
+     "score": 0.984
     },
     {
      "text": "源",
-     "start": 3.28,
-     "end": 3.5,
-     "score": 0.998
+     "start": 3.34,
+     "end": 3.52,
+     "score": 0.922
     },
     {
      "text": "加",
-     "start": 3.72,
-     "end": 3.84,
+     "start": 3.74,
+     "end": 3.86,
      "score": 0.999
     },
     {
      "text": "速",
-     "start": 3.92,
-     "end": 4,
-     "score": 0.995
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.997
     },
     {
      "text": "管",
-     "start": 4.08,
-     "end": 4.26,
-     "score": 0.999
+     "start": 4.12,
+     "end": 4.3,
+     "score": 0.983
     },
     {
      "text": "分",
-     "start": 4.54,
-     "end": 4.66,
+     "start": 4.52,
+     "end": 4.64,
      "score": 0.999
     },
     {
      "text": "析",
-     "start": 4.72,
+     "start": 4.7,
      "end": 4.78,
-     "score": 0.997
+     "score": 0.999
     },
     {
      "text": "磁",
-     "start": 4.86,
-     "end": 4.96,
-     "score": 0.871
+     "start": 4.88,
+     "end": 4.98,
+     "score": 0.998
     },
     {
      "text": "鐵",
-     "start": 5.02,
-     "end": 5.16,
-     "score": 0.975
+     "start": 5.06,
+     "end": 5.2,
+     "score": 0.98
     },
     {
      "text": "終",
-     "start": 5.44,
-     "end": 5.6,
-     "score": 0.913
+     "start": 5.4,
+     "end": 5.56,
+     "score": 0.946
     },
     {
      "text": "端",
-     "start": 5.62,
-     "end": 5.74,
-     "score": 0.993
+     "start": 5.58,
+     "end": 5.72,
+     "score": 0.939
     },
     {
      "text": "站",
-     "start": 5.78,
-     "end": 5.94,
-     "score": 0.949
+     "start": 5.76,
+     "end": 5.92,
+     "score": 0.92
     }
    ],
    "charTimes": [
     0.02,
-    0.2,
-    0.36,
-    0.54,
-    0.7,
-    0.88,
-    0.96,
-    1.12,
-    1.24,
-    1.36,
-    1.5,
-    2.1,
-    2.26,
+    0.22,
+    0.42,
+    0.6,
+    0.74,
+    0.9,
+    1,
+    1.14,
+    1.26,
+    1.34,
+    1.48,
+    2.02,
+    2.2,
     2.4,
-    2.52,
-    2.68,
-    2.84,
-    2.96,
-    3.12,
-    3.28,
-    3.72,
-    3.92,
-    4.08,
-    4.54,
-    4.72,
-    4.86,
-    5.02,
-    5.44,
-    5.62,
-    5.78
+    2.54,
+    2.7,
+    2.86,
+    3.02,
+    3.18,
+    3.34,
+    3.74,
+    3.96,
+    4.12,
+    4.52,
+    4.7,
+    4.88,
+    5.06,
+    5.4,
+    5.58,
+    5.76
    ]
   },
   {
    "id": "s4",
    "audio": "audio/tech-implant/04-s4.wav",
-   "audioFrame": 655,
-   "audioSec": 6.23,
+   "audioFrame": 644,
+   "audioSec": 6.69,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 646,
-   "durationFrames": 218,
+   "startFrame": 635,
+   "durationFrames": 229,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1267,89 +1279,89 @@
      8
     ]
    },
-   "voiceStartFrame": 656,
-   "voiceEndFrame": 841,
+   "voiceStartFrame": 645,
+   "voiceEndFrame": 844,
    "stillFrame": 854,
    "subtitleWindow": [
-    653,
+    642,
     861
    ],
    "sourceWindow": [
-    651,
+    640,
     859
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "離子源把氣體",
-     "start": 653,
+     "start": 642,
      "chars": [
-      654,
-      659,
+      644,
+      648,
+      652,
+      657,
       663,
-      668,
-      673,
-      678
+      669
      ]
     },
     {
      "text": "變成電漿",
-     "start": 681,
+     "start": 672,
      "chars": [
+      674,
+      679,
       684,
-      688,
-      693,
-      698
+      689
      ]
     },
     {
      "text": "磷用磷化氫",
-     "start": 713,
+     "start": 704,
      "chars": [
+      706,
       715,
-      721,
-      727,
-      732,
-      738
+      720,
+      725,
+      731
      ]
     },
     {
      "text": "硼用三氟化硼",
-     "start": 749,
+     "start": 742,
      "chars": [
-      751,
-      757,
+      745,
+      756,
       763,
-      769,
+      768,
       772,
       777
      ]
     },
     {
      "text": "再用電場把離子拉出來",
-     "start": 791,
+     "start": 790,
      "chars": [
-      793,
+      792,
       797,
       801,
-      807,
-      813,
-      817,
-      821,
-      826,
-      831,
-      835
+      806,
+      814,
+      818,
+      824,
+      828,
+      833,
+      837
      ]
     }
    ],
    "keywords": [
     {
      "text": "電漿",
-     "start": 693
+     "start": 684
     },
     {
      "text": "磷化氫",
-     "start": 727
+     "start": 720
     },
     {
      "text": "三氟化硼",
@@ -1360,19 +1372,19 @@
     {
      "id": "gas",
      "text": "把氣體",
-     "frame": 669,
+     "frame": 658,
      "early": 0
     },
     {
      "id": "plasma",
      "text": "變成電漿",
-     "frame": 685,
+     "frame": 676,
      "early": 0
     },
     {
      "id": "ph3",
      "text": "磷化氫",
-     "frame": 728,
+     "frame": 721,
      "early": 0
     },
     {
@@ -1384,35 +1396,35 @@
     {
      "id": "pull",
      "text": "把離子拉出來",
-     "frame": 814,
+     "frame": 815,
      "early": 0
     }
    ],
-   "hash": "9866c3e37bf4-0f3e4e3feb",
+   "hash": "b8c923da9e3e-b6555c277d",
    "sub": "離子源把氣體\n變成電漿\n磷用磷化氫\n硼用三氟化硼\n再用電場把離子拉出來",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
     "confidence": 0.923,
-    "minScore": 0.009,
+    "minScore": 0.03,
     "onsetMedianMs": 10,
-    "onsetMaxMs": 20,
+    "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 2.06,
-      "start": 2.06,
+      "onset": 2.11,
+      "start": 2.12,
       "ch": "磷",
-      "errMs": 0
+      "errMs": 10
      },
      {
-      "onset": 3.28,
-      "start": 3.26,
+      "onset": 3.41,
+      "start": 3.4,
       "ch": "硼",
-      "errMs": -20
+      "errMs": -10
      },
      {
-      "onset": 4.65,
-      "start": 4.64,
+      "onset": 4.99,
+      "start": 4.98,
       "ch": "再",
       "errMs": -10
      }
@@ -1422,234 +1434,234 @@
    "words": [
     {
      "text": "離",
-     "start": 0.02,
+     "start": 0.04,
      "end": 0.1,
-     "score": 0.954
+     "score": 0.994
     },
     {
      "text": "子",
      "start": 0.18,
      "end": 0.26,
-     "score": 0.996
+     "score": 0.999
     },
     {
      "text": "源",
      "start": 0.3,
      "end": 0.44,
-     "score": 0.998
+     "score": 0.889
     },
     {
      "text": "把",
      "start": 0.48,
      "end": 0.56,
-     "score": 0.975
+     "score": 0.967
     },
     {
      "text": "氣",
-     "start": 0.64,
-     "end": 0.74,
-     "score": 0.913
+     "start": 0.7,
+     "end": 0.82,
+     "score": 0.883
     },
     {
      "text": "體",
-     "start": 0.82,
-     "end": 0.9,
-     "score": 0.994
+     "start": 0.88,
+     "end": 0.98,
+     "score": 0.996
     },
     {
      "text": "變",
-     "start": 1,
-     "end": 1.12,
-     "score": 0.926
-    },
-    {
-     "text": "成",
-     "start": 1.14,
-     "end": 1.28,
-     "score": 0.902
-    },
-    {
-     "text": "電",
-     "start": 1.3,
-     "end": 1.44,
-     "score": 0.929
-    },
-    {
-     "text": "漿",
-     "start": 1.48,
-     "end": 1.7,
-     "score": 0.914
-    },
-    {
-     "text": "磷",
-     "start": 2.06,
-     "end": 2.2,
-     "score": 0.992
-    },
-    {
-     "text": "用",
-     "start": 2.26,
-     "end": 2.4,
-     "score": 0.998
-    },
-    {
-     "text": "磷",
-     "start": 2.44,
-     "end": 2.56,
-     "score": 0.988
-    },
-    {
-     "text": "化",
-     "start": 2.6,
-     "end": 2.7,
-     "score": 0.999
-    },
-    {
-     "text": "氫",
-     "start": 2.8,
-     "end": 3.02,
-     "score": 0.92
-    },
-    {
-     "text": "硼",
-     "start": 3.26,
-     "end": 3.42,
-     "score": 0.776
-    },
-    {
-     "text": "用",
-     "start": 3.44,
-     "end": 3.58,
-     "score": 0.998
-    },
-    {
-     "text": "三",
-     "start": 3.64,
-     "end": 3.78,
-     "score": 0.009
-    },
-    {
-     "text": "氟",
-     "start": 3.84,
-     "end": 3.9,
-     "score": 0.985
-    },
-    {
-     "text": "化",
-     "start": 3.96,
-     "end": 4.04,
+     "start": 1.06,
+     "end": 1.18,
      "score": 0.91
     },
     {
-     "text": "硼",
-     "start": 4.12,
-     "end": 4.34,
-     "score": 0.797
-    },
-    {
-     "text": "再",
-     "start": 4.64,
-     "end": 4.76,
-     "score": 0.992
-    },
-    {
-     "text": "用",
-     "start": 4.78,
-     "end": 4.9,
-     "score": 0.924
+     "text": "成",
+     "start": 1.22,
+     "end": 1.36,
+     "score": 0.927
     },
     {
      "text": "電",
-     "start": 4.92,
-     "end": 5.06,
+     "start": 1.4,
+     "end": 1.52,
+     "score": 0.999
+    },
+    {
+     "text": "漿",
+     "start": 1.56,
+     "end": 1.76,
+     "score": 0.966
+    },
+    {
+     "text": "磷",
+     "start": 2.12,
+     "end": 2.3,
+     "score": 0.993
+    },
+    {
+     "text": "用",
+     "start": 2.4,
+     "end": 2.56,
+     "score": 0.981
+    },
+    {
+     "text": "磷",
+     "start": 2.58,
+     "end": 2.7,
+     "score": 0.997
+    },
+    {
+     "text": "化",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 0.98
+    },
+    {
+     "text": "氫",
+     "start": 2.94,
+     "end": 3.16,
+     "score": 0.858
+    },
+    {
+     "text": "硼",
+     "start": 3.4,
+     "end": 3.66,
+     "score": 0.786
+    },
+    {
+     "text": "用",
+     "start": 3.78,
+     "end": 3.94,
+     "score": 0.97
+    },
+    {
+     "text": "三",
+     "start": 4,
+     "end": 4.14,
+     "score": 0.03
+    },
+    {
+     "text": "氟",
+     "start": 4.18,
+     "end": 4.24,
+     "score": 0.92
+    },
+    {
+     "text": "化",
+     "start": 4.3,
+     "end": 4.38,
+     "score": 0.932
+    },
+    {
+     "text": "硼",
+     "start": 4.48,
+     "end": 4.7,
+     "score": 0.781
+    },
+    {
+     "text": "再",
+     "start": 4.98,
+     "end": 5.1,
      "score": 1
     },
     {
-     "text": "場",
-     "start": 5.1,
+     "text": "用",
+     "start": 5.14,
      "end": 5.26,
-     "score": 0.969
+     "score": 0.994
+    },
+    {
+     "text": "電",
+     "start": 5.28,
+     "end": 5.42,
+     "score": 0.986
+    },
+    {
+     "text": "場",
+     "start": 5.46,
+     "end": 5.66,
+     "score": 0.978
     },
     {
      "text": "把",
-     "start": 5.3,
-     "end": 5.36,
-     "score": 0.995
+     "start": 5.7,
+     "end": 5.78,
+     "score": 0.989
     },
     {
      "text": "離",
-     "start": 5.44,
-     "end": 5.5,
-     "score": 0.988
+     "start": 5.86,
+     "end": 5.94,
+     "score": 0.995
     },
     {
      "text": "子",
-     "start": 5.58,
-     "end": 5.68,
-     "score": 0.998
+     "start": 6.04,
+     "end": 6.12,
+     "score": 0.999
     },
     {
      "text": "拉",
-     "start": 5.76,
-     "end": 5.84,
-     "score": 0.935
+     "start": 6.18,
+     "end": 6.26,
+     "score": 0.98
     },
     {
      "text": "出",
-     "start": 5.92,
-     "end": 6.02,
-     "score": 0.936
+     "start": 6.34,
+     "end": 6.44,
+     "score": 0.93
     },
     {
      "text": "來",
-     "start": 6.04,
-     "end": 6.18,
+     "start": 6.48,
+     "end": 6.62,
      "score": 0.999
     }
    ],
    "charTimes": [
-    0.02,
+    0.04,
     0.18,
     0.3,
     0.48,
-    0.64,
-    0.82,
-    1,
-    1.14,
-    1.3,
-    1.48,
-    2.06,
-    2.26,
-    2.44,
-    2.6,
-    2.8,
-    3.26,
-    3.44,
-    3.64,
-    3.84,
-    3.96,
-    4.12,
-    4.64,
-    4.78,
-    4.92,
-    5.1,
-    5.3,
-    5.44,
-    5.58,
-    5.76,
-    5.92,
-    6.04
+    0.7,
+    0.88,
+    1.06,
+    1.22,
+    1.4,
+    1.56,
+    2.12,
+    2.4,
+    2.58,
+    2.76,
+    2.94,
+    3.4,
+    3.78,
+    4,
+    4.18,
+    4.3,
+    4.48,
+    4.98,
+    5.14,
+    5.28,
+    5.46,
+    5.7,
+    5.86,
+    6.04,
+    6.18,
+    6.34,
+    6.48
    ]
   },
   {
    "id": "s5",
    "audio": "audio/tech-implant/05-s5.wav",
    "audioFrame": 863,
-   "audioSec": 6.59,
+   "audioSec": 6.48,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
    "startFrame": 854,
-   "durationFrames": 228,
+   "durationFrames": 223,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -1664,15 +1676,15 @@
     ]
    },
    "voiceStartFrame": 864,
-   "voiceEndFrame": 1060,
-   "stillFrame": 1072,
+   "voiceEndFrame": 1057,
+   "stillFrame": 1067,
    "subtitleWindow": [
     861,
-    1079
+    1074
    ],
    "sourceWindow": [
     859,
-    1077
+    1072
    ],
    "pauseAfter": 0.7,
    "lines": [
@@ -1683,56 +1695,56 @@
       863,
       868,
       872,
-      879,
+      878,
       882,
-      886,
-      889,
-      895,
-      899,
+      887,
+      891,
+      896,
+      901,
       905
      ]
     },
     {
      "text": "離子越跑越快",
-     "start": 916,
+     "start": 915,
      "chars": [
-      918,
+      917,
       923,
       928,
       932,
       937,
-      941
+      942
      ]
     },
     {
      "text": "十萬電子伏特的硼離子",
-     "start": 960,
+     "start": 958,
      "chars": [
-      962,
-      968,
-      972,
-      977,
-      980,
-      985,
+      960,
+      965,
+      970,
+      974,
+      979,
+      982,
+      986,
       989,
-      992,
-      997,
-      1002
+      995,
+      1000
      ]
     },
     {
      "text": "每秒約一千三百公里",
-     "start": 1013,
+     "start": 1009,
      "chars": [
-      1015,
-      1019,
-      1025,
-      1032,
-      1036,
-      1042,
+      1011,
+      1016,
+      1022,
+      1029,
+      1033,
+      1039,
+      1043,
       1046,
-      1050,
-      1055
+      1051
      ]
     }
    ],
@@ -1743,11 +1755,11 @@
     },
     {
      "text": "十萬電子伏特",
-     "start": 962
+     "start": 960
     },
     {
      "text": "一千三百公里",
-     "start": 1032
+     "start": 1029
     }
    ],
    "cues": [
@@ -1760,49 +1772,49 @@
     {
      "id": "fast",
      "text": "越跑越快",
-     "frame": 929,
+     "frame": 930,
      "early": 0
     },
     {
      "id": "kev",
      "text": "十萬電子伏特",
-     "frame": 964,
+     "frame": 961,
      "early": 0
     },
     {
      "id": "v",
      "text": "每秒約一千三百公里",
-     "frame": 1017,
+     "frame": 1012,
      "early": 0
     }
    ],
-   "hash": "5bd8bd2c4452-0f3e4e3feb",
+   "hash": "8df27b1f5777-b6555c277d",
    "sub": "加速管一環一環加電壓\n離子越跑越快\n十萬電子伏特的硼離子\n每秒約一千三百公里",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.813,
-    "minScore": 0.002,
+    "confidence": 0.783,
+    "minScore": 0,
     "onsetMedianMs": 10,
-    "onsetMaxMs": 70,
+    "onsetMaxMs": 40,
     "onsetCheck": [
      {
-      "onset": 1.89,
-      "start": 1.88,
+      "onset": 1.87,
+      "start": 1.86,
       "ch": "離",
       "errMs": -10
      },
      {
-      "onset": 3.29,
-      "start": 3.36,
+      "onset": 3.24,
+      "start": 3.28,
       "ch": "十",
-      "errMs": 70
+      "errMs": 40
      },
      {
-      "onset": 5.13,
-      "start": 5.12,
+      "onset": 4.97,
+      "start": 4.98,
       "ch": "每",
-      "errMs": -10
+      "errMs": 10
      }
     ]
    },
@@ -1811,80 +1823,80 @@
     {
      "text": "加",
      "start": 0.04,
-     "end": 0.14,
-     "score": 0.958
+     "end": 0.12,
+     "score": 0.934
     },
     {
      "text": "速",
      "start": 0.2,
-     "end": 0.3,
-     "score": 0.871
+     "end": 0.28,
+     "score": 0.99
     },
     {
      "text": "管",
-     "start": 0.36,
-     "end": 0.52,
-     "score": 0.996
+     "start": 0.34,
+     "end": 0.48,
+     "score": 0.994
     },
     {
      "text": "一",
-     "start": 0.58,
+     "start": 0.56,
      "end": 0.62,
-     "score": 0.384
+     "score": 0.259
     },
     {
      "text": "環",
      "start": 0.7,
-     "end": 0.8,
-     "score": 0.842
+     "end": 0.84,
+     "score": 0.981
     },
     {
      "text": "一",
-     "start": 0.82,
-     "end": 0.86,
-     "score": 0.753
+     "start": 0.86,
+     "end": 0.9,
+     "score": 0.186
     },
     {
      "text": "環",
-     "start": 0.92,
-     "end": 1.06,
-     "score": 0.993
+     "start": 0.98,
+     "end": 1.1,
+     "score": 0.992
     },
     {
      "text": "加",
-     "start": 1.12,
-     "end": 1.2,
+     "start": 1.14,
+     "end": 1.22,
      "score": 0.998
     },
     {
      "text": "電",
-     "start": 1.26,
-     "end": 1.4,
-     "score": 0.974
+     "start": 1.3,
+     "end": 1.42,
+     "score": 0.93
     },
     {
      "text": "壓",
-     "start": 1.44,
+     "start": 1.46,
      "end": 1.54,
-     "score": 0.997
+     "score": 0.998
     },
     {
      "text": "離",
-     "start": 1.88,
-     "end": 1.96,
-     "score": 0.988
+     "start": 1.86,
+     "end": 1.94,
+     "score": 0.998
     },
     {
      "text": "子",
      "start": 2.04,
-     "end": 2.12,
-     "score": 0.989
+     "end": 2.14,
+     "score": 0.991
     },
     {
      "text": "越",
-     "start": 2.2,
-     "end": 2.28,
-     "score": 0.866
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.913
     },
     {
      "text": "跑",
@@ -1895,177 +1907,177 @@
     {
      "text": "越",
      "start": 2.52,
-     "end": 2.6,
-     "score": 0.993
+     "end": 2.62,
+     "score": 0.956
     },
     {
      "text": "快",
-     "start": 2.66,
-     "end": 2.84,
-     "score": 0.994
+     "start": 2.68,
+     "end": 2.86,
+     "score": 0.997
     },
     {
      "text": "十",
-     "start": 3.36,
-     "end": 3.48,
-     "score": 0.305
+     "start": 3.28,
+     "end": 3.38,
+     "score": 0.118
     },
     {
      "text": "萬",
-     "start": 3.54,
-     "end": 3.66,
-     "score": 0.897
+     "start": 3.46,
+     "end": 3.56,
+     "score": 0.596
     },
     {
      "text": "電",
-     "start": 3.68,
-     "end": 3.8,
-     "score": 0.947
+     "start": 3.6,
+     "end": 3.72,
+     "score": 0.96
     },
     {
      "text": "子",
-     "start": 3.84,
-     "end": 3.92,
-     "score": 0.929
+     "start": 3.76,
+     "end": 3.84,
+     "score": 0.967
     },
     {
      "text": "伏",
-     "start": 3.96,
-     "end": 4.04,
-     "score": 0.996
+     "start": 3.9,
+     "end": 3.96,
+     "score": 0.997
     },
     {
      "text": "特",
-     "start": 4.1,
-     "end": 4.18,
-     "score": 0.995
+     "start": 4.02,
+     "end": 4.1,
+     "score": 0.997
     },
     {
      "text": "的",
-     "start": 4.24,
-     "end": 4.3,
-     "score": 0.996
+     "start": 4.14,
+     "end": 4.2,
+     "score": 0.891
     },
     {
      "text": "硼",
-     "start": 4.34,
-     "end": 4.48,
-     "score": 0.788
+     "start": 4.26,
+     "end": 4.42,
+     "score": 0.765
     },
     {
      "text": "離",
-     "start": 4.52,
-     "end": 4.6,
-     "score": 0.993
+     "start": 4.44,
+     "end": 4.5,
+     "score": 0.998
     },
     {
      "text": "子",
-     "start": 4.68,
-     "end": 4.8,
-     "score": 0.999
+     "start": 4.6,
+     "end": 4.7,
+     "score": 0.996
     },
     {
      "text": "每",
-     "start": 5.12,
-     "end": 5.24,
+     "start": 4.98,
+     "end": 5.1,
      "score": 0.999
     },
     {
      "text": "秒",
-     "start": 5.26,
-     "end": 5.42,
-     "score": 0.999
+     "start": 5.14,
+     "end": 5.3,
+     "score": 0.998
     },
     {
      "text": "約",
-     "start": 5.46,
-     "end": 5.56,
-     "score": 0.994
+     "start": 5.36,
+     "end": 5.46,
+     "score": 0.997
     },
     {
      "text": "一",
-     "start": 5.68,
-     "end": 5.74,
-     "score": 0.002
+     "start": 5.58,
+     "end": 5.64,
+     "score": 0
     },
     {
      "text": "千",
-     "start": 5.8,
-     "end": 5.96,
-     "score": 0.006
+     "start": 5.72,
+     "end": 5.86,
+     "score": 0.002
     },
     {
      "text": "三",
-     "start": 6,
-     "end": 6.12,
-     "score": 0.003
+     "start": 5.9,
+     "end": 6.02,
+     "score": 0.002
     },
     {
      "text": "百",
-     "start": 6.14,
-     "end": 6.24,
-     "score": 0.019
+     "start": 6.04,
+     "end": 6.14,
+     "score": 0.036
     },
     {
      "text": "公",
-     "start": 6.28,
-     "end": 6.42,
-     "score": 0.993
+     "start": 6.16,
+     "end": 6.3,
+     "score": 0.986
     },
     {
      "text": "里",
-     "start": 6.46,
-     "end": 6.52,
-     "score": 0.993
+     "start": 6.32,
+     "end": 6.38,
+     "score": 0.997
     }
    ],
    "charTimes": [
     0.04,
     0.2,
-    0.36,
-    0.58,
+    0.34,
+    0.56,
     0.7,
-    0.82,
-    0.92,
-    1.12,
-    1.26,
-    1.44,
-    1.88,
+    0.86,
+    0.98,
+    1.14,
+    1.3,
+    1.46,
+    1.86,
     2.04,
-    2.2,
+    2.22,
     2.36,
     2.52,
-    2.66,
-    3.36,
-    3.54,
-    3.68,
-    3.84,
-    3.96,
-    4.1,
-    4.24,
-    4.34,
-    4.52,
-    4.68,
-    5.12,
-    5.26,
-    5.46,
-    5.68,
-    5.8,
-    6,
-    6.14,
-    6.28,
-    6.46
+    2.68,
+    3.28,
+    3.46,
+    3.6,
+    3.76,
+    3.9,
+    4.02,
+    4.14,
+    4.26,
+    4.44,
+    4.6,
+    4.98,
+    5.14,
+    5.36,
+    5.58,
+    5.72,
+    5.9,
+    6.04,
+    6.16,
+    6.32
    ]
   },
   {
    "id": "s6",
    "audio": "audio/tech-implant/06-s6.wav",
-   "audioFrame": 1081,
-   "audioSec": 7.5,
+   "audioFrame": 1076,
+   "audioSec": 7.29,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 1072,
-   "durationFrames": 257,
+   "startFrame": 1067,
+   "durationFrames": 247,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2079,167 +2091,167 @@
      8
     ]
    },
-   "voiceStartFrame": 1082,
-   "voiceEndFrame": 1305,
-   "stillFrame": 1319,
+   "voiceStartFrame": 1077,
+   "voiceEndFrame": 1294,
+   "stillFrame": 1304,
    "subtitleWindow": [
-    1079,
-    1326
+    1074,
+    1311
    ],
    "sourceWindow": [
-    1077,
-    1324
+    1072,
+    1309
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "但離子源裡什麼都有",
-     "start": 1079,
+     "start": 1074,
      "chars": [
-      1080,
+      1075,
+      1081,
       1085,
-      1090,
-      1095,
-      1099,
-      1104,
-      1108,
-      1111,
-      1116
+      1089,
+      1093,
+      1098,
+      1102,
+      1105,
+      1109
      ]
     },
     {
      "text": "分析磁鐵讓離子轉彎",
-     "start": 1132,
+     "start": 1122,
      "chars": [
-      1134,
-      1140,
-      1144,
-      1149,
+      1124,
+      1130,
+      1135,
+      1139,
+      1146,
+      1151,
       1155,
-      1160,
-      1164,
-      1168,
-      1174
+      1159,
+      1165
      ]
     },
     {
      "text": "太重太輕的轉不過去",
-     "start": 1184,
+     "start": 1176,
      "chars": [
-      1186,
-      1194,
-      1200,
-      1205,
-      1210,
-      1213,
-      1218,
-      1221,
-      1225
+      1178,
+      1184,
+      1190,
+      1196,
+      1201,
+      1204,
+      1209,
+      1212,
+      1216
      ]
     },
     {
      "text": "撞牆被擋掉",
-     "start": 1236,
+     "start": 1226,
      "chars": [
-      1238,
-      1245,
-      1251,
-      1255,
-      1260
+      1228,
+      1234,
+      1240,
+      1244,
+      1249
      ]
     },
     {
      "text": "只剩對的過關",
-     "start": 1271,
+     "start": 1260,
      "chars": [
+      1262,
+      1267,
       1273,
       1278,
-      1283,
-      1288,
-      1292,
-      1297
+      1281,
+      1286
      ]
     }
    ],
    "keywords": [
     {
      "text": "分析磁鐵",
-     "start": 1134
+     "start": 1124
     },
     {
      "text": "太重",
-     "start": 1186
+     "start": 1178
     },
     {
      "text": "太輕",
-     "start": 1200
+     "start": 1190
     }
    ],
    "cues": [
     {
      "id": "all",
      "text": "什麼都有",
-     "frame": 1106,
+     "frame": 1099,
      "early": 0
     },
     {
      "id": "bend",
      "text": "讓離子轉彎",
-     "frame": 1157,
+     "frame": 1147,
      "early": 0
     },
     {
      "id": "miss",
      "text": "轉不過去",
-     "frame": 1214,
+     "frame": 1206,
      "early": 0
     },
     {
      "id": "wall",
      "text": "撞牆被擋掉",
-     "frame": 1239,
+     "frame": 1230,
      "early": 0
     },
     {
      "id": "pass",
      "text": "只剩對的過關",
-     "frame": 1274,
+     "frame": 1264,
      "early": 0
     }
    ],
-   "hash": "3310bfad739b-0f3e4e3feb",
+   "hash": "cbccfd703cc0-b6555c277d",
    "sub": "但離子源裡什麼都有\n分析磁鐵讓離子轉彎\n太重太輕的轉不過去\n撞牆被擋掉\n只剩對的過關",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.976,
-    "minScore": 0.8,
+    "confidence": 0.983,
+    "minScore": 0.882,
     "onsetMedianMs": 15,
-    "onsetMaxMs": 20,
+    "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 1.84,
-      "start": 1.82,
+      "onset": 1.69,
+      "start": 1.66,
       "ch": "分",
-      "errMs": -20
+      "errMs": -30
      },
      {
-      "onset": 3.57,
-      "start": 3.56,
+      "onset": 3.47,
+      "start": 3.46,
       "ch": "太",
       "errMs": -10
      },
      {
-      "onset": 5.29,
-      "start": 5.28,
+      "onset": 5.14,
+      "start": 5.12,
       "ch": "撞",
-      "errMs": -10
+      "errMs": -20
      },
      {
-      "onset": 6.46,
-      "start": 6.44,
+      "onset": 6.27,
+      "start": 6.26,
       "ch": "只",
-      "errMs": -20
+      "errMs": -10
      }
     ]
    },
@@ -2248,282 +2260,282 @@
     {
      "text": "但",
      "start": 0.02,
-     "end": 0.14,
+     "end": 0.16,
      "score": 1
     },
     {
      "text": "離",
-     "start": 0.18,
+     "start": 0.2,
      "end": 0.26,
-     "score": 0.997
+     "score": 0.999
     },
     {
      "text": "子",
      "start": 0.36,
      "end": 0.44,
-     "score": 0.999
+     "score": 0.988
     },
     {
      "text": "源",
-     "start": 0.5,
-     "end": 0.62,
-     "score": 0.974
+     "start": 0.48,
+     "end": 0.58,
+     "score": 0.999
     },
     {
      "text": "裡",
-     "start": 0.66,
-     "end": 0.72,
-     "score": 0.999
+     "start": 0.62,
+     "end": 0.68,
+     "score": 1
     },
     {
      "text": "什",
-     "start": 0.82,
-     "end": 0.94,
-     "score": 0.996
+     "start": 0.78,
+     "end": 0.9,
+     "score": 1
     },
     {
      "text": "麼",
-     "start": 0.96,
-     "end": 1.02,
-     "score": 0.999
+     "start": 0.92,
+     "end": 0.98,
+     "score": 1
     },
     {
      "text": "都",
-     "start": 1.04,
-     "end": 1.14,
-     "score": 0.8
+     "start": 1,
+     "end": 1.12,
+     "score": 0.897
     },
     {
      "text": "有",
-     "start": 1.22,
-     "end": 1.38,
-     "score": 0.999
+     "start": 1.16,
+     "end": 1.3,
+     "score": 1
     },
     {
      "text": "分",
-     "start": 1.82,
-     "end": 1.94,
+     "start": 1.66,
+     "end": 1.78,
      "score": 1
     },
     {
      "text": "析",
-     "start": 2,
-     "end": 2.08,
-     "score": 0.999
+     "start": 1.84,
+     "end": 1.92,
+     "score": 0.98
     },
     {
      "text": "磁",
-     "start": 2.16,
-     "end": 2.24,
-     "score": 0.989
+     "start": 2,
+     "end": 2.1,
+     "score": 0.999
     },
     {
      "text": "鐵",
-     "start": 2.3,
-     "end": 2.42,
-     "score": 0.989
+     "start": 2.16,
+     "end": 2.28,
+     "score": 0.994
     },
     {
      "text": "讓",
-     "start": 2.52,
-     "end": 2.66,
-     "score": 0.99
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.993
     },
     {
      "text": "離",
-     "start": 2.68,
-     "end": 2.74,
-     "score": 0.998
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.999
     },
     {
      "text": "子",
+     "start": 2.68,
+     "end": 2.76,
+     "score": 0.997
+    },
+    {
+     "text": "轉",
      "start": 2.82,
-     "end": 2.9,
+     "end": 2.94,
+     "score": 0.998
+    },
+    {
+     "text": "彎",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.998
+    },
+    {
+     "text": "太",
+     "start": 3.46,
+     "end": 3.62,
+     "score": 0.998
+    },
+    {
+     "text": "重",
+     "start": 3.66,
+     "end": 3.82,
+     "score": 0.965
+    },
+    {
+     "text": "太",
+     "start": 3.84,
+     "end": 4,
+     "score": 0.998
+    },
+    {
+     "text": "輕",
+     "start": 4.04,
+     "end": 4.18,
+     "score": 0.973
+    },
+    {
+     "text": "的",
+     "start": 4.2,
+     "end": 4.26,
      "score": 0.999
     },
     {
      "text": "轉",
-     "start": 2.96,
-     "end": 3.08,
-     "score": 0.992
-    },
-    {
-     "text": "彎",
-     "start": 3.14,
-     "end": 3.3,
-     "score": 0.991
-    },
-    {
-     "text": "太",
-     "start": 3.56,
-     "end": 3.74,
-     "score": 0.995
-    },
-    {
-     "text": "重",
-     "start": 3.8,
-     "end": 3.96,
-     "score": 0.973
-    },
-    {
-     "text": "太",
-     "start": 4,
-     "end": 4.14,
-     "score": 0.997
-    },
-    {
-     "text": "輕",
-     "start": 4.18,
-     "end": 4.32,
-     "score": 0.978
-    },
-    {
-     "text": "的",
-     "start": 4.34,
-     "end": 4.4,
-     "score": 0.971
-    },
-    {
-     "text": "轉",
-     "start": 4.44,
-     "end": 4.56,
-     "score": 0.915
+     "start": 4.32,
+     "end": 4.46,
+     "score": 0.882
     },
     {
      "text": "不",
-     "start": 4.6,
-     "end": 4.66,
+     "start": 4.48,
+     "end": 4.54,
      "score": 0.997
     },
     {
      "text": "過",
-     "start": 4.7,
-     "end": 4.78,
-     "score": 0.986
+     "start": 4.58,
+     "end": 4.66,
+     "score": 0.982
     },
     {
      "text": "去",
-     "start": 4.86,
-     "end": 4.98,
+     "start": 4.72,
+     "end": 4.84,
      "score": 1
     },
     {
      "text": "撞",
-     "start": 5.28,
-     "end": 5.46,
-     "score": 0.981
+     "start": 5.12,
+     "end": 5.3,
+     "score": 0.967
     },
     {
      "text": "牆",
-     "start": 5.5,
-     "end": 5.7,
-     "score": 0.959
+     "start": 5.32,
+     "end": 5.5,
+     "score": 0.973
     },
     {
      "text": "被",
-     "start": 5.7,
-     "end": 5.82,
-     "score": 0.879
+     "start": 5.52,
+     "end": 5.62,
+     "score": 0.999
     },
     {
      "text": "擋",
-     "start": 5.86,
-     "end": 6,
-     "score": 0.951
+     "start": 5.66,
+     "end": 5.8,
+     "score": 0.904
     },
     {
      "text": "掉",
-     "start": 6.02,
-     "end": 6.22,
+     "start": 5.82,
+     "end": 6,
      "score": 0.997
     },
     {
      "text": "只",
-     "start": 6.44,
-     "end": 6.54,
-     "score": 0.935
+     "start": 6.26,
+     "end": 6.34,
+     "score": 0.982
     },
     {
      "text": "剩",
-     "start": 6.6,
-     "end": 6.74,
-     "score": 0.87
+     "start": 6.42,
+     "end": 6.58,
+     "score": 0.963
     },
     {
      "text": "對",
-     "start": 6.78,
-     "end": 6.92,
+     "start": 6.62,
+     "end": 6.74,
      "score": 1
     },
     {
      "text": "的",
-     "start": 6.96,
-     "end": 7.02,
-     "score": 0.999
-    },
-    {
-     "text": "過",
-     "start": 7.08,
-     "end": 7.18,
+     "start": 6.78,
+     "end": 6.84,
      "score": 0.998
     },
     {
+     "text": "過",
+     "start": 6.88,
+     "end": 6.96,
+     "score": 0.995
+    },
+    {
      "text": "關",
-     "start": 7.26,
-     "end": 7.42,
-     "score": 0.992
+     "start": 7.04,
+     "end": 7.2,
+     "score": 0.926
     }
    ],
    "charTimes": [
     0.02,
-    0.18,
+    0.2,
     0.36,
-    0.5,
-    0.66,
-    0.82,
-    0.96,
-    1.04,
-    1.22,
-    1.82,
+    0.48,
+    0.62,
+    0.78,
+    0.92,
+    1,
+    1.16,
+    1.66,
+    1.84,
     2,
     2.16,
-    2.3,
-    2.52,
+    2.38,
+    2.54,
     2.68,
     2.82,
-    2.96,
-    3.14,
-    3.56,
-    3.8,
-    4,
-    4.18,
-    4.34,
-    4.44,
-    4.6,
-    4.7,
-    4.86,
-    5.28,
-    5.5,
-    5.7,
-    5.86,
-    6.02,
-    6.44,
-    6.6,
+    3,
+    3.46,
+    3.66,
+    3.84,
+    4.04,
+    4.2,
+    4.32,
+    4.48,
+    4.58,
+    4.72,
+    5.12,
+    5.32,
+    5.52,
+    5.66,
+    5.82,
+    6.26,
+    6.42,
+    6.62,
     6.78,
-    6.96,
-    7.08,
-    7.26
+    6.88,
+    7.04
    ]
   },
   {
    "id": "s7",
    "audio": "audio/tech-implant/07-s7.wav",
-   "audioFrame": 1328,
-   "audioSec": 5.66,
+   "audioFrame": 1313,
+   "audioSec": 5.37,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 1319,
-   "durationFrames": 199,
+   "startFrame": 1304,
+   "durationFrames": 190,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2537,151 +2549,151 @@
      8
     ]
    },
-   "voiceStartFrame": 1329,
-   "voiceEndFrame": 1497,
-   "stillFrame": 1508,
+   "voiceStartFrame": 1314,
+   "voiceEndFrame": 1473,
+   "stillFrame": 1484,
    "subtitleWindow": [
-    1326,
-    1515
+    1311,
+    1491
    ],
    "sourceWindow": [
-    1324,
-    1513
+    1309,
+    1489
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "對的離子進終端站",
-     "start": 1326,
+     "start": 1311,
      "chars": [
-      1327,
-      1332,
+      1312,
+      1316,
+      1319,
+      1324,
+      1330,
       1336,
-      1340,
-      1346,
-      1351,
-      1356,
-      1361
+      1341,
+      1346
      ]
     },
     {
      "text": "射束左右掃",
-     "start": 1377,
+     "start": 1359,
      "chars": [
-      1379,
-      1386,
-      1393,
-      1397,
-      1403
+      1361,
+      1366,
+      1371,
+      1376,
+      1381
      ]
     },
     {
      "text": "晶圓上下動",
-     "start": 1411,
+     "start": 1389,
      "chars": [
-      1414,
-      1420,
-      1426,
-      1430,
-      1436
+      1391,
+      1397,
+      1404,
+      1409,
+      1414
      ]
     },
     {
      "text": "每一點",
-     "start": 1450,
+     "start": 1425,
      "chars": [
-      1452,
-      1456,
-      1459
+      1427,
+      1430,
+      1435
      ]
     },
     {
      "text": "打進的量才一樣",
-     "start": 1463,
+     "start": 1438,
      "chars": [
-      1465,
-      1470,
-      1474,
-      1477,
-      1481,
-      1487,
-      1491
+      1441,
+      1446,
+      1450,
+      1453,
+      1459,
+      1464,
+      1467
      ]
     }
    ],
    "keywords": [
     {
      "text": "終端站",
-     "start": 1351
+     "start": 1336
     },
     {
      "text": "左右掃",
-     "start": 1393
+     "start": 1371
     },
     {
      "text": "上下動",
-     "start": 1426
+     "start": 1404
     }
    ],
    "cues": [
     {
      "id": "enter",
      "text": "進終端站",
-     "frame": 1347,
+     "frame": 1332,
      "early": 0
     },
     {
      "id": "sweep",
      "text": "射束左右掃",
-     "frame": 1381,
+     "frame": 1362,
      "early": 0
     },
     {
      "id": "move",
      "text": "晶圓上下動",
-     "frame": 1415,
+     "frame": 1393,
      "early": 0
     },
     {
      "id": "every",
      "text": "每一點",
-     "frame": 1453,
+     "frame": 1428,
      "early": 0
     },
     {
      "id": "same",
      "text": "打進的量才一樣",
-     "frame": 1467,
+     "frame": 1442,
      "early": 0
     }
    ],
-   "hash": "c7763a1cda05-0f3e4e3feb",
+   "hash": "0671890698a4-b6555c277d",
    "sub": "對的離子進終端站\n射束左右掃\n晶圓上下動\n每一點\n打進的量才一樣",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.913,
-    "minScore": 0,
-    "onsetMedianMs": 40,
-    "onsetMaxMs": 70,
+    "confidence": 0.902,
+    "minScore": 0.004,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 40,
     "onsetCheck": [
      {
-      "onset": 1.69,
-      "start": 1.76,
+      "onset": 1.6,
+      "start": 1.64,
       "ch": "射",
-      "errMs": 70
+      "errMs": 40
      },
      {
-      "onset": 2.94,
-      "start": 2.9,
+      "onset": 2.67,
+      "start": 2.66,
       "ch": "晶",
-      "errMs": -40
+      "errMs": -10
      },
      {
-      "onset": 4.16,
-      "start": 4.18,
+      "onset": 3.83,
+      "start": 3.84,
       "ch": "每",
-      "errMs": 20
+      "errMs": 10
      }
     ]
    },
@@ -2691,211 +2703,211 @@
      "text": "對",
      "start": 0.02,
      "end": 0.14,
-     "score": 0.999
+     "score": 0.864
     },
     {
      "text": "的",
-     "start": 0.18,
-     "end": 0.24,
-     "score": 0.997
+     "start": 0.16,
+     "end": 0.22,
+     "score": 0.996
     },
     {
      "text": "離",
-     "start": 0.3,
-     "end": 0.38,
-     "score": 0.989
+     "start": 0.26,
+     "end": 0.32,
+     "score": 0.997
     },
     {
      "text": "子",
-     "start": 0.46,
-     "end": 0.56,
-     "score": 0.947
+     "start": 0.42,
+     "end": 0.52,
+     "score": 0.983
     },
     {
      "text": "進",
-     "start": 0.64,
+     "start": 0.62,
      "end": 0.76,
-     "score": 0.999
+     "score": 1
     },
     {
      "text": "終",
      "start": 0.82,
      "end": 0.96,
-     "score": 0.975
+     "score": 0.982
     },
     {
      "text": "端",
      "start": 0.98,
      "end": 1.1,
-     "score": 0.933
+     "score": 0.991
     },
     {
      "text": "站",
-     "start": 1.14,
-     "end": 1.34,
-     "score": 0.924
+     "start": 1.16,
+     "end": 1.32,
+     "score": 0.997
     },
     {
      "text": "射",
-     "start": 1.76,
-     "end": 1.88,
-     "score": 0.959
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.97
     },
     {
      "text": "束",
-     "start": 1.98,
-     "end": 2.08,
-     "score": 0.966
+     "start": 1.82,
+     "end": 1.92,
+     "score": 0.906
     },
     {
      "text": "左",
-     "start": 2.2,
-     "end": 2.3,
-     "score": 0.973
+     "start": 1.98,
+     "end": 2.08,
+     "score": 0.977
     },
     {
      "text": "右",
-     "start": 2.36,
-     "end": 2.48,
+     "start": 2.14,
+     "end": 2.24,
      "score": 0.999
     },
     {
      "text": "掃",
-     "start": 2.54,
-     "end": 2.72,
+     "start": 2.3,
+     "end": 2.48,
      "score": 0.998
     },
     {
      "text": "晶",
-     "start": 2.9,
-     "end": 3.08,
-     "score": 0.924
+     "start": 2.66,
+     "end": 2.82,
+     "score": 0.899
     },
     {
      "text": "圓",
-     "start": 3.1,
-     "end": 3.24,
-     "score": 0.953
+     "start": 2.86,
+     "end": 3.02,
+     "score": 0.997
     },
     {
      "text": "上",
-     "start": 3.3,
-     "end": 3.44,
+     "start": 3.08,
+     "end": 3.22,
      "score": 0.999
     },
     {
      "text": "下",
-     "start": 3.46,
-     "end": 3.56,
-     "score": 1
+     "start": 3.24,
+     "end": 3.32,
+     "score": 0.991
     },
     {
      "text": "動",
-     "start": 3.64,
-     "end": 3.82,
-     "score": 0.938
+     "start": 3.4,
+     "end": 3.56,
+     "score": 0.908
     },
     {
      "text": "每",
-     "start": 4.18,
-     "end": 4.32,
-     "score": 0.999
+     "start": 3.84,
+     "end": 3.96,
+     "score": 0.934
     },
     {
      "text": "一",
-     "start": 4.32,
-     "end": 4.4,
-     "score": 0
+     "start": 3.96,
+     "end": 4.02,
+     "score": 0.004
     },
     {
      "text": "點",
-     "start": 4.4,
-     "end": 4.54,
-     "score": 0.964
+     "start": 4.1,
+     "end": 4.24,
+     "score": 0.932
     },
     {
      "text": "打",
-     "start": 4.62,
-     "end": 4.68,
-     "score": 0.999
+     "start": 4.3,
+     "end": 4.38,
+     "score": 0.998
     },
     {
      "text": "進",
-     "start": 4.78,
-     "end": 4.9,
-     "score": 0.986
+     "start": 4.48,
+     "end": 4.58,
+     "score": 0.999
     },
     {
      "text": "的",
-     "start": 4.92,
-     "end": 4.98,
-     "score": 0.997
+     "start": 4.62,
+     "end": 4.66,
+     "score": 0.998
     },
     {
      "text": "量",
-     "start": 5.02,
-     "end": 5.16,
-     "score": 0.959
+     "start": 4.7,
+     "end": 4.88,
+     "score": 0.963
     },
     {
      "text": "才",
-     "start": 5.16,
-     "end": 5.32,
-     "score": 0.933
+     "start": 4.9,
+     "end": 5.04,
+     "score": 0.928
     },
     {
      "text": "一",
-     "start": 5.34,
-     "end": 5.4,
-     "score": 0.272
+     "start": 5.08,
+     "end": 5.12,
+     "score": 0.152
     },
     {
      "text": "樣",
-     "start": 5.48,
-     "end": 5.62,
-     "score": 0.997
+     "start": 5.18,
+     "end": 5.34,
+     "score": 0.885
     }
    ],
    "charTimes": [
     0.02,
-    0.18,
-    0.3,
-    0.46,
-    0.64,
+    0.16,
+    0.26,
+    0.42,
+    0.62,
     0.82,
     0.98,
-    1.14,
-    1.76,
+    1.16,
+    1.64,
+    1.82,
     1.98,
-    2.2,
-    2.36,
-    2.54,
-    2.9,
-    3.1,
-    3.3,
-    3.46,
-    3.64,
-    4.18,
-    4.32,
-    4.4,
+    2.14,
+    2.3,
+    2.66,
+    2.86,
+    3.08,
+    3.24,
+    3.4,
+    3.84,
+    3.96,
+    4.1,
+    4.3,
+    4.48,
     4.62,
-    4.78,
-    4.92,
-    5.02,
-    5.16,
-    5.34,
-    5.48
+    4.7,
+    4.9,
+    5.08,
+    5.18
    ]
   },
   {
    "id": "s8",
    "audio": "audio/tech-implant/08-s8.wav",
-   "audioFrame": 1517,
-   "audioSec": 6.38,
+   "audioFrame": 1493,
+   "audioSec": 6.01,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 1508,
-   "durationFrames": 222,
+   "startFrame": 1484,
+   "durationFrames": 209,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -2909,159 +2921,159 @@
      8
     ]
    },
-   "voiceStartFrame": 1518,
-   "voiceEndFrame": 1708,
-   "stillFrame": 1720,
+   "voiceStartFrame": 1494,
+   "voiceEndFrame": 1673,
+   "stillFrame": 1683,
    "subtitleWindow": [
-    1515,
-    1727
+    1491,
+    1690
    ],
    "sourceWindow": [
-    1513,
-    1725
+    1489,
+    1688
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "離子打進矽",
-     "start": 1515,
+     "start": 1491,
      "chars": [
-      1517,
-      1522,
-      1526,
-      1530,
-      1540
+      1493,
+      1498,
+      1501,
+      1505,
+      1515
      ]
     },
     {
      "text": "一路撞一路慢",
-     "start": 1545,
+     "start": 1519,
      "chars": [
-      1547,
-      1552,
-      1556,
-      1565,
-      1569,
-      1574
+      1522,
+      1526,
+      1530,
+      1537,
+      1541,
+      1545
      ]
     },
     {
      "text": "停在某個深度",
-     "start": 1584,
+     "start": 1555,
      "chars": [
-      1586,
-      1592,
-      1597,
-      1601,
-      1604,
-      1609
+      1557,
+      1563,
+      1568,
+      1571,
+      1574,
+      1579
      ]
     },
     {
      "text": "能量決定多深",
-     "start": 1628,
+     "start": 1593,
      "chars": [
-      1630,
-      1635,
-      1640,
-      1645,
-      1649,
-      1654
+      1595,
+      1600,
+      1606,
+      1610,
+      1614,
+      1619
      ]
     },
     {
      "text": "打多久決定多濃",
-     "start": 1665,
+     "start": 1630,
      "chars": [
-      1667,
-      1673,
-      1679,
-      1685,
-      1690,
-      1694,
-      1700
+      1633,
+      1638,
+      1643,
+      1649,
+      1654,
+      1658,
+      1664
      ]
     }
    ],
    "keywords": [
     {
      "text": "某個深度",
-     "start": 1597
+     "start": 1568
     },
     {
      "text": "能量",
-     "start": 1630
+     "start": 1595
     },
     {
      "text": "多濃",
-     "start": 1694
+     "start": 1658
     }
    ],
    "cues": [
     {
      "id": "in",
      "text": "打進矽",
-     "frame": 1527,
+     "frame": 1503,
      "early": 0
     },
     {
      "id": "slow",
      "text": "一路撞一路慢",
-     "frame": 1549,
+     "frame": 1523,
      "early": 0
     },
     {
      "id": "stop",
      "text": "停在某個深度",
-     "frame": 1587,
+     "frame": 1558,
      "early": 0
     },
     {
      "id": "energy",
      "text": "能量決定多深",
-     "frame": 1632,
+     "frame": 1596,
      "early": 0
     },
     {
      "id": "dose",
      "text": "打多久決定多濃",
-     "frame": 1669,
+     "frame": 1634,
      "early": 0
     }
    ],
-   "hash": "e17e289e0dcd-0f3e4e3feb",
+   "hash": "f4a3f1e050dd-b6555c277d",
    "sub": "離子打進矽\n一路撞一路慢\n停在某個深度\n能量決定多深\n打多久決定多濃",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.932,
-    "minScore": 0.515,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 30,
+    "confidence": 0.972,
+    "minScore": 0.878,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
     "onsetCheck": [
      {
-      "onset": 1.09,
-      "start": 1.06,
+      "onset": 1.02,
+      "start": 1,
       "ch": "一",
-      "errMs": -30
+      "errMs": -20
      },
      {
-      "onset": 2.35,
-      "start": 2.34,
+      "onset": 2.19,
+      "start": 2.18,
       "ch": "停",
       "errMs": -10
      },
      {
-      "onset": 3.83,
-      "start": 3.82,
+      "onset": 3.43,
+      "start": 3.44,
       "ch": "能",
-      "errMs": -10
+      "errMs": 10
      },
      {
-      "onset": 5.09,
-      "start": 5.06,
+      "onset": 4.71,
+      "start": 4.7,
       "ch": "打",
-      "errMs": -30
+      "errMs": -10
      }
     ]
    },
@@ -3069,227 +3081,227 @@
    "words": [
     {
      "text": "離",
-     "start": 0.06,
+     "start": 0.04,
      "end": 0.12,
-     "score": 0.937
+     "score": 0.99
     },
     {
      "text": "子",
-     "start": 0.22,
-     "end": 0.3,
-     "score": 0.515
+     "start": 0.2,
+     "end": 0.28,
+     "score": 0.984
     },
     {
      "text": "打",
-     "start": 0.34,
-     "end": 0.42,
-     "score": 0.996
+     "start": 0.32,
+     "end": 0.38,
+     "score": 0.998
     },
     {
      "text": "進",
-     "start": 0.48,
-     "end": 0.6,
+     "start": 0.46,
+     "end": 0.58,
      "score": 0.999
     },
     {
      "text": "夕",
-     "start": 0.68,
-     "end": 0.78,
-     "score": 0.842
+     "start": 0.66,
+     "end": 0.76,
+     "score": 0.999
     },
     {
      "text": "一",
-     "start": 1.06,
-     "end": 1.14,
-     "score": 0.983
+     "start": 1,
+     "end": 1.08,
+     "score": 0.972
     },
     {
      "text": "路",
-     "start": 1.2,
-     "end": 1.28,
-     "score": 0.985
-    },
-    {
-     "text": "撞",
-     "start": 1.36,
-     "end": 1.58,
-     "score": 0.91
-    },
-    {
-     "text": "一",
-     "start": 1.64,
-     "end": 1.72,
-     "score": 0.979
-    },
-    {
-     "text": "路",
-     "start": 1.78,
-     "end": 1.86,
-     "score": 0.986
-    },
-    {
-     "text": "慢",
-     "start": 1.94,
-     "end": 2.1,
-     "score": 0.976
-    },
-    {
-     "text": "停",
-     "start": 2.34,
-     "end": 2.54,
-     "score": 0.991
-    },
-    {
-     "text": "在",
-     "start": 2.56,
-     "end": 2.7,
-     "score": 0.999
-    },
-    {
-     "text": "某",
-     "start": 2.72,
-     "end": 2.82,
-     "score": 0.646
-    },
-    {
-     "text": "個",
-     "start": 2.84,
-     "end": 2.9,
-     "score": 0.73
-    },
-    {
-     "text": "深",
-     "start": 2.94,
-     "end": 3.08,
-     "score": 0.978
-    },
-    {
-     "text": "度",
-     "start": 3.12,
-     "end": 3.2,
-     "score": 0.993
-    },
-    {
-     "text": "能",
-     "start": 3.82,
-     "end": 3.96,
-     "score": 0.965
-    },
-    {
-     "text": "量",
-     "start": 3.98,
-     "end": 4.14,
-     "score": 0.967
-    },
-    {
-     "text": "決",
-     "start": 4.16,
-     "end": 4.26,
-     "score": 0.999
-    },
-    {
-     "text": "定",
-     "start": 4.3,
-     "end": 4.42,
-     "score": 0.939
-    },
-    {
-     "text": "多",
-     "start": 4.44,
-     "end": 4.52,
-     "score": 0.914
-    },
-    {
-     "text": "深",
-     "start": 4.6,
-     "end": 4.76,
-     "score": 0.998
-    },
-    {
-     "text": "打",
-     "start": 5.06,
-     "end": 5.14,
-     "score": 0.999
-    },
-    {
-     "text": "多",
-     "start": 5.26,
-     "end": 5.36,
+     "start": 1.14,
+     "end": 1.22,
      "score": 0.997
     },
     {
-     "text": "久",
-     "start": 5.44,
-     "end": 5.6,
-     "score": 0.95
+     "text": "撞",
+     "start": 1.28,
+     "end": 1.48,
+     "score": 0.968
     },
     {
-     "text": "決",
-     "start": 5.66,
-     "end": 5.76,
-     "score": 0.999
+     "text": "一",
+     "start": 1.52,
+     "end": 1.58,
+     "score": 0.967
     },
     {
-     "text": "定",
-     "start": 5.8,
-     "end": 5.92,
+     "text": "路",
+     "start": 1.64,
+     "end": 1.72,
+     "score": 0.997
+    },
+    {
+     "text": "慢",
+     "start": 1.78,
+     "end": 1.96,
+     "score": 0.878
+    },
+    {
+     "text": "停",
+     "start": 2.18,
+     "end": 2.36,
+     "score": 0.994
+    },
+    {
+     "text": "在",
+     "start": 2.38,
+     "end": 2.52,
      "score": 0.955
     },
     {
+     "text": "某",
+     "start": 2.54,
+     "end": 2.64,
+     "score": 0.887
+    },
+    {
+     "text": "個",
+     "start": 2.66,
+     "end": 2.72,
+     "score": 0.994
+    },
+    {
+     "text": "深",
+     "start": 2.76,
+     "end": 2.88,
+     "score": 0.909
+    },
+    {
+     "text": "度",
+     "start": 2.92,
+     "end": 3,
+     "score": 0.997
+    },
+    {
+     "text": "能",
+     "start": 3.44,
+     "end": 3.58,
+     "score": 0.944
+    },
+    {
+     "text": "量",
+     "start": 3.6,
+     "end": 3.76,
+     "score": 0.951
+    },
+    {
+     "text": "決",
+     "start": 3.8,
+     "end": 3.9,
+     "score": 0.997
+    },
+    {
+     "text": "定",
+     "start": 3.96,
+     "end": 4.06,
+     "score": 0.993
+    },
+    {
      "text": "多",
-     "start": 5.96,
-     "end": 6.06,
-     "score": 0.876
+     "start": 4.08,
+     "end": 4.16,
+     "score": 0.999
+    },
+    {
+     "text": "深",
+     "start": 4.26,
+     "end": 4.42,
+     "score": 0.958
+    },
+    {
+     "text": "打",
+     "start": 4.7,
+     "end": 4.76,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 4.88,
+     "end": 4.98,
+     "score": 0.906
+    },
+    {
+     "text": "久",
+     "start": 5.04,
+     "end": 5.2,
+     "score": 0.99
+    },
+    {
+     "text": "決",
+     "start": 5.26,
+     "end": 5.36,
+     "score": 0.996
+    },
+    {
+     "text": "定",
+     "start": 5.42,
+     "end": 5.54,
+     "score": 0.972
+    },
+    {
+     "text": "多",
+     "start": 5.56,
+     "end": 5.66,
+     "score": 0.983
     },
     {
      "text": "濃",
-     "start": 6.14,
-     "end": 6.3,
-     "score": 0.945
+     "start": 5.74,
+     "end": 5.9,
+     "score": 0.983
     }
    ],
    "charTimes": [
-    0.06,
-    0.22,
-    0.34,
-    0.48,
-    0.83,
-    1.06,
-    1.2,
-    1.36,
+    0.04,
+    0.2,
+    0.32,
+    0.46,
+    0.79,
+    1,
+    1.14,
+    1.28,
+    1.52,
     1.64,
     1.78,
-    1.94,
-    2.34,
-    2.56,
-    2.72,
-    2.84,
-    2.94,
-    3.12,
-    3.82,
-    3.98,
-    4.16,
-    4.3,
-    4.44,
-    4.6,
-    5.06,
+    2.18,
+    2.38,
+    2.54,
+    2.66,
+    2.76,
+    2.92,
+    3.44,
+    3.6,
+    3.8,
+    3.96,
+    4.08,
+    4.26,
+    4.7,
+    4.88,
+    5.04,
     5.26,
-    5.44,
-    5.66,
-    5.8,
-    5.96,
-    6.14
+    5.42,
+    5.56,
+    5.74
    ]
   },
   {
    "id": "s9",
    "audio": "audio/tech-implant/09-s9.wav",
-   "audioFrame": 1729,
-   "audioSec": 3.96,
+   "audioFrame": 1692,
+   "audioSec": 3.82,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 1720,
-   "durationFrames": 151,
+   "startFrame": 1683,
+   "durationFrames": 143,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -3303,106 +3315,106 @@
      8
     ]
    },
-   "voiceStartFrame": 1730,
-   "voiceEndFrame": 1847,
-   "stillFrame": 1861,
+   "voiceStartFrame": 1693,
+   "voiceEndFrame": 1806,
+   "stillFrame": 1816,
    "subtitleWindow": [
-    1727,
-    1868
+    1690,
+    1823
    ],
    "sourceWindow": [
-    1725,
-    1866
+    1688,
+    1821
    ],
    "pauseAfter": 0.7,
    "lines": [
     {
      "text": "機台有應用材料和亞舍立",
-     "start": 1727,
+     "start": 1690,
      "chars": [
-      1729,
-      1734,
-      1739,
-      1744,
-      1749,
-      1753,
-      1758,
-      1764,
-      1769,
-      1775,
-      1780
+      1692,
+      1697,
+      1702,
+      1707,
+      1711,
+      1715,
+      1721,
+      1726,
+      1731,
+      1737,
+      1742
      ]
     },
     {
      "text": "植入氣體有台灣的兆捷",
-     "start": 1791,
+     "start": 1752,
      "chars": [
-      1794,
-      1798,
-      1803,
-      1808,
-      1814,
-      1819,
-      1825,
-      1829,
-      1832,
-      1838
+      1754,
+      1758,
+      1763,
+      1767,
+      1773,
+      1779,
+      1785,
+      1788,
+      1792,
+      1797
      ]
     }
    ],
    "keywords": [
     {
      "text": "應用材料",
-     "start": 1744
+     "start": 1707
     },
     {
      "text": "亞舍立",
-     "start": 1769
+     "start": 1731
     },
     {
      "text": "兆捷",
-     "start": 1832
+     "start": 1792
     }
    ],
    "cues": [
     {
      "id": "am",
      "text": "應用材料",
-     "frame": 1746,
+     "frame": 1709,
      "early": 0
     },
     {
      "id": "ax",
      "text": "亞舍立",
-     "frame": 1770,
+     "frame": 1733,
      "early": 0
     },
     {
      "id": "gas",
      "text": "植入氣體",
-     "frame": 1795,
+     "frame": 1756,
      "early": 0
     },
     {
      "id": "jc",
      "text": "兆捷",
-     "frame": 1833,
+     "frame": 1793,
      "early": 0
     }
    ],
-   "hash": "8204d987a3f1-0f3e4e3feb",
+   "hash": "1f948f73d2f4-b6555c277d",
    "sub": "機台有應用材料和亞舍立\n植入氣體有台灣的兆捷",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.921,
-    "minScore": 0.478,
+    "confidence": 0.965,
+    "minScore": 0.5,
     "onsetMedianMs": 10,
     "onsetMaxMs": 10,
     "onsetCheck": [
      {
-      "onset": 2.21,
-      "start": 2.2,
+      "onset": 2.13,
+      "start": 2.12,
       "ch": "植",
       "errMs": -10
      }
@@ -3414,127 +3426,127 @@
      "text": "機",
      "start": 0.04,
      "end": 0.12,
-     "score": 0.966
+     "score": 0.998
     },
     {
      "text": "台",
      "start": 0.2,
      "end": 0.34,
-     "score": 0.988
+     "score": 0.997
     },
     {
      "text": "有",
      "start": 0.38,
      "end": 0.5,
-     "score": 0.999
+     "score": 1
     },
     {
      "text": "應",
      "start": 0.56,
-     "end": 0.7,
-     "score": 0.812
+     "end": 0.68,
+     "score": 0.961
     },
     {
      "text": "用",
-     "start": 0.72,
-     "end": 0.84,
-     "score": 0.997
+     "start": 0.68,
+     "end": 0.8,
+     "score": 0.999
     },
     {
      "text": "材",
-     "start": 0.86,
-     "end": 0.98,
+     "start": 0.82,
+     "end": 0.96,
      "score": 0.994
     },
     {
      "text": "料",
-     "start": 1.02,
-     "end": 1.18,
-     "score": 0.948
-    },
-    {
-     "text": "和",
-     "start": 1.22,
-     "end": 1.28,
-     "score": 0.498
-    },
-    {
-     "text": "亞",
-     "start": 1.38,
-     "end": 1.46,
-     "score": 0.994
-    },
-    {
-     "text": "舍",
-     "start": 1.58,
-     "end": 1.66,
-     "score": 0.908
-    },
-    {
-     "text": "立",
-     "start": 1.74,
-     "end": 1.82,
-     "score": 0.98
-    },
-    {
-     "text": "植",
-     "start": 2.2,
-     "end": 2.3,
+     "start": 1,
+     "end": 1.14,
      "score": 0.982
     },
     {
+     "text": "和",
+     "start": 1.18,
+     "end": 1.26,
+     "score": 0.5
+    },
+    {
+     "text": "亞",
+     "start": 1.36,
+     "end": 1.44,
+     "score": 0.998
+    },
+    {
+     "text": "舍",
+     "start": 1.56,
+     "end": 1.64,
+     "score": 0.998
+    },
+    {
+     "text": "立",
+     "start": 1.7,
+     "end": 1.78,
+     "score": 0.998
+    },
+    {
+     "text": "植",
+     "start": 2.12,
+     "end": 2.2,
+     "score": 0.96
+    },
+    {
      "text": "入",
-     "start": 2.36,
-     "end": 2.42,
-     "score": 0.478
+     "start": 2.26,
+     "end": 2.32,
+     "score": 0.999
     },
     {
      "text": "氣",
-     "start": 2.5,
-     "end": 2.62,
-     "score": 0.956
+     "start": 2.4,
+     "end": 2.5,
+     "score": 0.918
     },
     {
      "text": "體",
-     "start": 2.68,
-     "end": 2.78,
+     "start": 2.56,
+     "end": 2.66,
      "score": 0.992
     },
     {
      "text": "有",
-     "start": 2.88,
-     "end": 3,
-     "score": 0.999
+     "start": 2.76,
+     "end": 2.9,
+     "score": 1
     },
     {
      "text": "台",
-     "start": 3.04,
-     "end": 3.2,
-     "score": 0.989
+     "start": 2.96,
+     "end": 3.1,
+     "score": 0.997
     },
     {
      "text": "灣",
-     "start": 3.24,
-     "end": 3.36,
-     "score": 0.996
+     "start": 3.14,
+     "end": 3.24,
+     "score": 0.998
     },
     {
      "text": "的",
-     "start": 3.38,
-     "end": 3.44,
-     "score": 0.974
+     "start": 3.26,
+     "end": 3.32,
+     "score": 0.999
     },
     {
      "text": "兆",
-     "start": 3.48,
-     "end": 3.64,
-     "score": 0.901
+     "start": 3.38,
+     "end": 3.54,
+     "score": 0.996
     },
     {
      "text": "捷",
-     "start": 3.68,
-     "end": 3.82,
-     "score": 0.991
+     "start": 3.56,
+     "end": 3.7,
+     "score": 0.98
     }
    ],
    "charTimes": [
@@ -3542,34 +3554,34 @@
     0.2,
     0.38,
     0.56,
-    0.72,
-    0.86,
-    1.02,
-    1.22,
-    1.38,
-    1.58,
-    1.74,
-    2.2,
-    2.36,
-    2.5,
-    2.68,
-    2.88,
-    3.04,
-    3.24,
+    0.68,
+    0.82,
+    1,
+    1.18,
+    1.36,
+    1.56,
+    1.7,
+    2.12,
+    2.26,
+    2.4,
+    2.56,
+    2.76,
+    2.96,
+    3.14,
+    3.26,
     3.38,
-    3.48,
-    3.68
+    3.56
    ]
   },
   {
    "id": "s10",
    "audio": "audio/tech-implant/10-s10.wav",
-   "audioFrame": 1870,
-   "audioSec": 8.61,
+   "audioFrame": 1825,
+   "audioSec": 8.13,
    "headSilSec": 0.04,
    "tailSilSec": 0.04,
-   "startFrame": 1861,
-   "durationFrames": 275,
+   "startFrame": 1816,
+   "durationFrames": 260,
    "transitionFrames": 10,
    "transition": {
     "type": "fade",
@@ -3583,208 +3595,208 @@
      8
     ]
    },
-   "voiceStartFrame": 1871,
-   "voiceEndFrame": 2128,
-   "stillFrame": 2126,
+   "voiceStartFrame": 1826,
+   "voiceEndFrame": 2068,
+   "stillFrame": 2066,
    "subtitleWindow": [
-    1868,
-    2136
+    1823,
+    2076
    ],
    "sourceWindow": [
-    1866,
-    2131
+    1821,
+    2071
    ],
    "lines": [
     {
      "text": "這樣矽就有了",
-     "start": 1868,
+     "start": 1823,
      "chars": [
-      1870,
-      1872,
-      1879,
-      1883,
-      1888,
-      1891
+      1824,
+      1827,
+      1835,
+      1839,
+      1844,
+      1848
      ]
     },
     {
      "text": "導電的區域",
-     "start": 1895,
+     "start": 1849,
      "chars": [
-      1897,
-      1902,
-      1907,
-      1910,
-      1915
+      1851,
+      1856,
+      1860,
+      1863,
+      1868
      ]
     },
     {
      "text": "但光阻被打到焦硬",
-     "start": 1932,
+     "start": 1883,
      "chars": [
-      1935,
-      1941,
-      1948,
-      1952,
-      1956,
-      1960,
-      1964,
-      1971
+      1885,
+      1890,
+      1896,
+      1901,
+      1905,
+      1909,
+      1914,
+      1919
      ]
     },
     {
      "text": "表面也髒",
-     "start": 1979,
+     "start": 1927,
      "chars": [
-      1981,
-      1987,
-      1993,
-      1997
+      1929,
+      1935,
+      1939,
+      1944
      ]
     },
     {
      "text": "所以下一支",
-     "start": 2008,
+     "start": 1957,
      "chars": [
-      2010,
-      2014,
-      2017,
-      2022,
-      2025
+      1959,
+      1963,
+      1966,
+      1971,
+      1975
      ]
     },
     {
      "text": "看清洗",
-     "start": 2035,
+     "start": 1982,
      "chars": [
-      2037,
-      2043,
-      2050
+      1984,
+      1990,
+      1997
      ]
     },
     {
      "text": "留言離子",
-     "start": 2069,
+     "start": 2010,
      "chars": [
-      2071,
-      2076,
-      2080,
-      2086
+      2013,
+      2017,
+      2022,
+      2027
      ]
     },
     {
      "text": "看完整解說",
-     "start": 2096,
+     "start": 2034,
      "chars": [
-      2098,
-      2104,
-      2109,
-      2114,
-      2119
+      2037,
+      2043,
+      2049,
+      2054,
+      2060
      ]
     }
    ],
    "keywords": [
     {
      "text": "導電",
-     "start": 1897
+     "start": 1851
     },
     {
      "text": "焦硬",
-     "start": 1964
+     "start": 1914
     },
     {
      "text": "清洗",
-     "start": 2043
+     "start": 1990
     },
     {
      "text": "離子",
-     "start": 2080
+     "start": 2022
     }
    ],
    "cues": [
     {
      "id": "so",
      "text": "這樣矽就有了",
-     "frame": 1871,
+     "frame": 1826,
      "early": 0
     },
     {
      "id": "zone",
      "text": "導電的區域",
-     "frame": 1898,
+     "frame": 1853,
      "early": 0
     },
     {
      "id": "hard",
      "text": "打到焦硬",
-     "frame": 1958,
+     "frame": 1906,
      "early": 0
     },
     {
      "id": "dirty",
      "text": "表面也髒",
-     "frame": 1982,
+     "frame": 1931,
      "early": 0
     },
     {
      "id": "next",
      "text": "下一支",
-     "frame": 2019,
+     "frame": 1968,
      "early": 0
     },
     {
      "id": "kw",
      "text": "留言離子",
-     "frame": 2072,
+     "frame": 2014,
      "early": 0
     }
    ],
-   "hash": "4eb9b2ffcdf1-0f3e4e3feb",
+   "hash": "0cb08d0e96aa-b6555c277d",
    "sub": "這樣矽就有了\n導電的區域\n但光阻被打到焦硬\n表面也髒\n所以下一支\n看清洗\n留言離子\n看完整解說",
    "provider": "ctc-fa",
    "cer": null,
    "fa": {
-    "confidence": 0.912,
-    "minScore": 0,
-    "onsetMedianMs": 20,
+    "confidence": 0.955,
+    "minScore": 0.154,
+    "onsetMedianMs": 15,
     "onsetMaxMs": 30,
     "onsetCheck": [
      {
-      "onset": 2.23,
-      "start": 2.2,
+      "onset": 2.05,
+      "start": 2.04,
       "ch": "但",
-      "errMs": -30
+      "errMs": -10
      },
      {
-      "onset": 3.76,
-      "start": 3.74,
+      "onset": 3.54,
+      "start": 3.52,
       "ch": "表",
       "errMs": -20
      },
      {
-      "onset": 4.7,
-      "start": 4.72,
+      "onset": 4.49,
+      "start": 4.52,
       "ch": "所",
-      "errMs": 20
+      "errMs": 30
      },
      {
-      "onset": 5.64,
-      "start": 5.62,
+      "onset": 5.36,
+      "start": 5.34,
       "ch": "看",
       "errMs": -20
      },
      {
-      "onset": 6.75,
-      "start": 6.74,
+      "onset": 6.3,
+      "start": 6.3,
       "ch": "留",
-      "errMs": -10
+      "errMs": 0
      },
      {
-      "onset": 7.64,
-      "start": 7.64,
+      "onset": 7.11,
+      "start": 7.1,
       "ch": "看",
-      "errMs": 0
+      "errMs": -10
      }
     ]
    },
@@ -3792,296 +3804,296 @@
    "words": [
     {
      "text": "這",
-     "start": 0.04,
+     "start": 0.02,
      "end": 0.1,
-     "score": 0
+     "score": 0.999
     },
     {
      "text": "樣",
-     "start": 0.1,
-     "end": 0.24,
-     "score": 0.79
+     "start": 0.12,
+     "end": 0.26,
+     "score": 0.963
     },
     {
      "text": "夕",
-     "start": 0.28,
-     "end": 0.38,
-     "score": 0.996
+     "start": 0.3,
+     "end": 0.4,
+     "score": 0.999
     },
     {
      "text": "就",
-     "start": 0.48,
-     "end": 0.6,
-     "score": 0.997
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.999
     },
     {
      "text": "有",
-     "start": 0.64,
-     "end": 0.74,
+     "start": 0.68,
+     "end": 0.78,
      "score": 0.999
     },
     {
      "text": "了",
-     "start": 0.76,
-     "end": 0.84,
+     "start": 0.82,
+     "end": 0.88,
      "score": 0.997
     },
     {
      "text": "導",
-     "start": 0.94,
-     "end": 1.08,
-     "score": 0.998
+     "start": 0.92,
+     "end": 1.06,
+     "score": 0.997
     },
     {
      "text": "電",
-     "start": 1.12,
-     "end": 1.26,
-     "score": 0.999
+     "start": 1.08,
+     "end": 1.2,
+     "score": 0.959
     },
     {
      "text": "的",
-     "start": 1.28,
-     "end": 1.34,
-     "score": 0.986
+     "start": 1.22,
+     "end": 1.26,
+     "score": 0.998
     },
     {
      "text": "區",
-     "start": 1.38,
-     "end": 1.48,
+     "start": 1.3,
+     "end": 1.4,
      "score": 0.998
     },
     {
      "text": "域",
-     "start": 1.56,
-     "end": 1.64,
-     "score": 0.983
+     "start": 1.48,
+     "end": 1.56,
+     "score": 0.986
     },
     {
      "text": "但",
-     "start": 2.2,
-     "end": 2.34,
+     "start": 2.04,
+     "end": 2.16,
      "score": 1
     },
     {
      "text": "光",
-     "start": 2.42,
-     "end": 2.6,
-     "score": 0.998
+     "start": 2.22,
+     "end": 2.38,
+     "score": 0.99
     },
     {
      "text": "阻",
-     "start": 2.64,
-     "end": 2.72,
-     "score": 0.999
+     "start": 2.42,
+     "end": 2.5,
+     "score": 0.998
     },
     {
      "text": "被",
-     "start": 2.78,
-     "end": 2.88,
+     "start": 2.58,
+     "end": 2.68,
      "score": 0.999
     },
     {
      "text": "打",
-     "start": 2.92,
-     "end": 2.98,
+     "start": 2.7,
+     "end": 2.76,
      "score": 0.999
     },
     {
      "text": "到",
-     "start": 3.04,
-     "end": 3.16,
-     "score": 0.996
+     "start": 2.84,
+     "end": 2.96,
+     "score": 0.997
     },
     {
      "text": "焦",
-     "start": 3.18,
-     "end": 3.36,
-     "score": 0.996
-    },
-    {
-     "text": "硬",
-     "start": 3.4,
-     "end": 3.56,
-     "score": 0.821
-    },
-    {
-     "text": "表",
-     "start": 3.74,
-     "end": 3.9,
+     "start": 3,
+     "end": 3.16,
      "score": 0.999
     },
     {
+     "text": "硬",
+     "start": 3.18,
+     "end": 3.34,
+     "score": 0.814
+    },
+    {
+     "text": "表",
+     "start": 3.52,
+     "end": 3.68,
+     "score": 0.904
+    },
+    {
      "text": "面",
-     "start": 3.94,
-     "end": 4.08,
-     "score": 0.965
+     "start": 3.7,
+     "end": 3.82,
+     "score": 0.994
     },
     {
      "text": "也",
-     "start": 4.14,
-     "end": 4.2,
+     "start": 3.86,
+     "end": 3.94,
      "score": 0.999
     },
     {
      "text": "髒",
-     "start": 4.28,
-     "end": 4.5,
-     "score": 0.992
+     "start": 4,
+     "end": 4.2,
+     "score": 0.917
     },
     {
      "text": "所",
-     "start": 4.72,
-     "end": 4.8,
-     "score": 0.435
+     "start": 4.52,
+     "end": 4.6,
+     "score": 0.903
     },
     {
      "text": "以",
-     "start": 4.84,
-     "end": 4.88,
-     "score": 0.523
+     "start": 4.64,
+     "end": 4.7,
+     "score": 0.998
     },
     {
      "text": "下",
-     "start": 4.96,
-     "end": 5.04,
-     "score": 0.997
+     "start": 4.76,
+     "end": 4.86,
+     "score": 0.999
     },
     {
      "text": "一",
-     "start": 5.1,
-     "end": 5.14,
-     "score": 0.405
+     "start": 4.92,
+     "end": 4.98,
+     "score": 0.154
     },
     {
      "text": "支",
-     "start": 5.22,
-     "end": 5.32,
-     "score": 0.988
+     "start": 5.04,
+     "end": 5.14,
+     "score": 0.953
     },
     {
      "text": "看",
-     "start": 5.62,
-     "end": 5.76,
+     "start": 5.34,
+     "end": 5.52,
      "score": 0.999
     },
     {
      "text": "清",
-     "start": 5.82,
-     "end": 6,
-     "score": 0.91
+     "start": 5.56,
+     "end": 5.74,
+     "score": 0.85
     },
     {
      "text": "洗",
-     "start": 6.04,
-     "end": 6.14,
-     "score": 0.959
+     "start": 5.78,
+     "end": 5.9,
+     "score": 0.987
     },
     {
      "text": "留",
-     "start": 6.74,
-     "end": 6.88,
-     "score": 0.995
+     "start": 6.3,
+     "end": 6.44,
+     "score": 0.963
     },
     {
      "text": "言",
-     "start": 6.9,
-     "end": 7.02,
-     "score": 0.971
+     "start": 6.46,
+     "end": 6.58,
+     "score": 0.951
     },
     {
      "text": "離",
-     "start": 7.06,
-     "end": 7.14,
-     "score": 0.975
+     "start": 6.6,
+     "end": 6.68,
+     "score": 0.996
     },
     {
      "text": "子",
-     "start": 7.24,
-     "end": 7.36,
-     "score": 0.997
+     "start": 6.78,
+     "end": 6.88,
+     "score": 0.984
     },
     {
      "text": "看",
-     "start": 7.64,
-     "end": 7.78,
+     "start": 7.1,
+     "end": 7.26,
      "score": 0.999
     },
     {
      "text": "完",
-     "start": 7.84,
-     "end": 7.98,
-     "score": 0.998
-    },
-    {
-     "text": "整",
-     "start": 8.02,
-     "end": 8.16,
-     "score": 0.849
-    },
-    {
-     "text": "解",
-     "start": 8.18,
-     "end": 8.3,
+     "start": 7.32,
+     "end": 7.46,
      "score": 0.999
     },
     {
+     "text": "整",
+     "start": 7.5,
+     "end": 7.66,
+     "score": 0.952
+    },
+    {
+     "text": "解",
+     "start": 7.68,
+     "end": 7.8,
+     "score": 0.995
+    },
+    {
      "text": "說",
-     "start": 8.36,
-     "end": 8.48,
-     "score": 0.988
+     "start": 7.88,
+     "end": 7.98,
+     "score": 0.999
     }
    ],
    "charTimes": [
-    0.04,
-    0.1,
-    0.36,
-    0.48,
-    0.64,
-    0.76,
-    0.94,
-    1.12,
-    1.28,
-    1.38,
-    1.56,
-    2.2,
+    0.02,
+    0.12,
+    0.39,
+    0.52,
+    0.68,
+    0.82,
+    0.92,
+    1.08,
+    1.22,
+    1.3,
+    1.48,
+    2.04,
+    2.22,
     2.42,
-    2.64,
-    2.78,
-    2.92,
-    3.04,
+    2.58,
+    2.7,
+    2.84,
+    3,
     3.18,
-    3.4,
-    3.74,
-    3.94,
-    4.14,
-    4.28,
-    4.72,
-    4.84,
-    4.96,
-    5.1,
-    5.22,
-    5.62,
-    5.82,
-    6.04,
-    6.74,
-    6.9,
-    7.06,
-    7.24,
-    7.64,
-    7.84,
-    8.02,
-    8.18,
-    8.36
+    3.52,
+    3.7,
+    3.86,
+    4,
+    4.52,
+    4.64,
+    4.76,
+    4.92,
+    5.04,
+    5.34,
+    5.56,
+    5.78,
+    6.3,
+    6.46,
+    6.6,
+    6.78,
+    7.1,
+    7.32,
+    7.5,
+    7.68,
+    7.88
    ]
   },
   {
    "id": "s11",
    "audio": null,
-   "audioFrame": 2126,
+   "audioFrame": 2066,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 2126,
+   "startFrame": 2066,
    "durationFrames": 96,
    "transitionFrames": 10,
    "transition": {
@@ -4096,14 +4108,14 @@
      8
     ]
    },
-   "voiceStartFrame": 2136,
-   "voiceEndFrame": 2136,
-   "stillFrame": 2210,
+   "voiceStartFrame": 2076,
+   "voiceEndFrame": 2076,
+   "stillFrame": 2150,
    "silent": true,
    "subtitleWindow": null,
    "sourceWindow": [
-    2131,
-    2222
+    2071,
+    2162
    ],
    "lines": [],
    "keywords": [],
@@ -4113,8 +4125,8 @@
  ],
  "voice": {
   "file": "audio/tech-implant/voice.wav",
-  "lufsIn": -19.37,
+  "lufsIn": -15.09,
   "lufs": -16,
-  "sec": 74.067
+  "sec": 72.067
  }
 }

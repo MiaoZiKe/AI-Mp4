@@ -271,7 +271,7 @@ const Sel: React.FC<P> = ({ o, f, k }) => {
           <path d={arc(R)} stroke="#FFB24A" strokeWidth={34} fill="none" opacity={0.18 * be} />
           <path d={`M${cx - 120} ${cy - R} H${cx}`} stroke={H.text3} strokeWidth={4} strokeDasharray="8 6" />
           <path d={`M${cx + R - w - 10} ${cy + 20} H${cx + R - 14} M${cx + R + 14} ${cy + 20} H${cx + R + w + 10}`} stroke={H.text} strokeWidth={8} />
-          <text x={cx + R + w + 16} y={cy + 30} style={zh(sm(26), H.text2, 800)}>狹縫</text>
+          <text x={cx + R - w - 18} y={cy + 30} textAnchor="end" style={zh(sm(26), H.text2, 800)}>狹縫</text>
           <text x={cx - 120} y={cy - R + 40} style={zh(sm(26), H.text2, 800)}>進來</text>
           {kinds.map((kd, j) => { const u = ph(f, 0.022, j, 4); const show = kd === "ok" ? be : mi; if (show < 0.05) return null;
             const [x, y] = path(kd, u * 1.15); const hit = kd !== "ok" && u * 1.15 >= 1; const r = kd === "heavy" ? 15 : kd === "light" ? 9 : 12;

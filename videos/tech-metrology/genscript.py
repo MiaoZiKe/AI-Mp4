@@ -190,7 +190,7 @@ S.append(scene("s8", "payoff", "疊對有科磊和艾司摩爾，電子束有應
    "labels": [lab("t_insp", "科磊：疊對、缺陷檢測", "KLA", "amber", "kla", "am-4"), lab("t_optL", "艾司摩爾：疊對量測", "ASML", "blue", "asml", "hit-4"),
               lab("t_sem", "應用材料：電子束複檢、線寬", "Applied Materials", "coral", "am", "tw-4"), lab("t_semR", "日立先端科技：線寬", "Hitachi High-Tech", "blue", "hit", "hy-4"),
               lab("t_ret", "華洋精機（台）：光罩微粒檢測", "Hwa Yang (TW)", "amber", "hy", "s9:start-4"), lab("t_wf", "牧德（台）：晶圓外觀檢查", "MAK Tech (TW)", "coral", "mak", "s9:start-4")],
-   "overlay": [sec("met-co", "start+2", "s9:start-2", 965, 300, "誰在做", "各公司官網、媒體報導", {"kla": "kla", "asml": "asml", "am": "am", "hit": "hit", "hy": "hy", "mak": "mak"})]},
+   "overlay": [sec("met-co", "start+2", "s9:start-2", 955, 310, "誰在做", "各公司官網、媒體報導", {"kla": "kla", "asml": "asml", "am": "am", "hit": "hit", "hy": "hy", "mak": "mak"})]},
   ["各公司官網與科技新報、工商時報"]))
 
 # ───────── s9 結尾（D：乾淨的晶圓放行 → 離子束預告） ─────────
@@ -213,7 +213,7 @@ NOTE = "查證截至 2026/11/20"
 script = {
  "slug": "tech-metrology", "title": "量測與檢測：每做完一步，都要量一次（科技透明圈）", "asOf": "2026/11/20", "styleVersion": 3, "stage": "three",
  "channel": {"name": "科技透明圈", "tag": "放大來看", "slogan": "一支講透一件事"}, "hudSkin": "light",
- "voice": {"voiceName": "Iapetus", "model": "gemini-3.8-flash-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
+ "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
            "_說明": "念稿：docs/prompts/tech-metrology-旁白.txt；整篇 1 次請求"},
  "hud": {"levels": [
    {"id": "tool", "label": "量測檢測機台", "en": "METROLOGY TOOL", "field": "3 m", "ruler": "1 m", "art": "none", "handoff3D": True, "readout": True, "note": NOTE, "noteAlways": True},

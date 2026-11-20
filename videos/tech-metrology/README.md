@@ -8,3 +8,10 @@
 - 檔案：`research.md`（查證 2026/11/20）、`script.json`（genscript.py 產生）、`visual-spec.md`、`pronunciation.md`、念稿 `docs/prompts/tech-metrology-旁白.txt`。
 - 待人耳確認：「量量看」「疊對」「科磊」「曝光機」。
 - 前製復盤：①鉤子用「兩奈米」＋問句，接 CMP 片尾；②科磊、艾司摩爾的中文名只有 WebSearch 摘要出處，審稿時請再看一眼；③稿子 306 字，原始 4.0 字/秒，後製只要 1.20 倍，比 tech-cmp（1.30）順；④公司只列有來源的 6 家，台灣華洋精機（光罩）與牧德（晶圓外觀）要在畫面分清楚。
+
+## v2（2026/11/21，旁白金手指＝本片「原來規則」版）
+- Andy 11/21 聽完比較後指定「量測-原來規則-整篇」當科技頻道旁白金手指（`docs/prompts/tech-旁白金手指.md`）；3.8 版（gold）停用，成片 `out/tech-metrology.gold.mp4` 保留。
+- 配音：`voice` 改回 2.5＋Iapetus＋tech-b（雜湊 e1796e78d6，與 be791b6 相同）；原始錄音 `.take-e1796e78d6.raw.orig.wav`、成品 `.raw.wav`（×1.20）沿用，`tts-take --resplit` → `ALIGN_PROVIDER=fa align --force`，0 次 TTS 請求。語速（≥0.16 秒、−40 dB 靜音扣掉）：純說話 5.77 字/秒、含停頓 4.81。
+- 時間軸 2038 幀（與 v1 相同），音軌沿用 `out/tech-metrology.v1.wav`（voice.wav＋片尾招牌音，voice.wav 與 v1 位元相同）。
+- 2D 示意卡（11/20 重疊修正後）card-overlap 0 error、layout-check 0 error；met-co 卡 y955／h310 已寫進 genscript.py。
+- 成片 `out/tech-metrology.v2.mp4`（整支分段重渲，`AUDIO=out/tech-metrology.v1.wav bash scripts/three/chunk-render.sh tech-metrology v2`）；gold 的分段移到 `out/chunks/tech-metrology-gold/`。

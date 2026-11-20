@@ -92,7 +92,7 @@ levels=[lv("tool","離子佈植機","ION IMPLANTER","10 m","1 m"),lv("magnet","�
 levels[0]["handoff3D"]=True
 out={"slug":"tech-implant","title":"離子佈植：把離子打進矽，讓它能導電（科技透明圈）","asOf":"2026/11/20","styleVersion":3,"stage":"three",
  "channel":{"name":"科技透明圈","tag":"放大來看","slogan":"一支講透一件事"},"hudSkin":"light",
- "voice":{"voiceName":"Iapetus","model":"gemini-3.8-flash-tts","mode":"take","languageCode":"cmn-TW","profile":"tech-b","_說明":"念稿：docs/prompts/tech-implant-旁白.txt；整篇 1 次請求"},
+ "voice":{"voiceName":"Iapetus","model":"gemini-2.5-flash-preview-tts","mode":"take","languageCode":"cmn-TW","profile":"tech-b","_說明":"念稿：docs/prompts/tech-implant-旁白.txt；整篇 1 次請求"},
  "hud":{"levels":levels,"theme":"dark","schematic":{"text":"Schematic – not to scale","zh":"示意圖，非實際比例"},"maxLabels":4,"smallPx":30,"layout":"fill","scanBand":0.3},
  "cover":{"title":["打進離子","矽才導電"],"sub":"離子佈植","frame":40},"sample":False,"scenes":scenes}
 json.dump(out,open(os.path.join(HERE,"script.json"),"w"),ensure_ascii=False,indent=1)
