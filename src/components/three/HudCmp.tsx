@@ -80,7 +80,7 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const dp = T(o, "depth"), df = T(o, "diff"), bl = T(o, "blur"), fl = T(o, "flat");
   const d1 = lit(f, dp), b1 = lit(f, df), s1 = tween(f, bl, 12, EASE.enter), r1 = lit(f, fl);
-  const yF = 190, xL = 40, xR = 520, w = 400;
+  const yF = 168, xL = 40, xR = 520, w = 400;
   const rays = (x0: number, hits: number[]) => hits.map((hx, i) => <path key={i} d={`M${x0 + 20 + i * 90} 72 L${hx} ${yF - 2}`} stroke={c("uv")} strokeWidth={4} opacity={0.4 + 0.6 * ph(f, 0.06, i, 5)} />);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -93,9 +93,9 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
         <g opacity={b1}><Prof x={xL} y={yF} w={w} bump={1} si={c("siB")} siT={c("siF")} film={c("film")} bh={44} /></g>
         <g opacity={s1}>
           {[xL + 60 + 0.1 * w * 0, xL + 0.1 * w + 20, xL + 0.64 * w + 20].map((x, i) => <circle key={i} cx={x + 14} cy={yF - 46} r={20} fill={c("lp_bad")} opacity={0.35 + 0.15 * Math.sin(f * 0.3 + i)} />)}
-          <text x={xL + 8} y={yF + 150} style={zh(34, c("lp_bad"), 900)}>凸起處失焦，圖案糊掉</text>
+          <text x={xL + 8} y={yF + 148} style={zh(34, c("lp_bad"), 900)}>凸起處失焦，圖案糊掉</text>
         </g>
-        <text x={xL + 8} y={Hh - 18} opacity={b1} style={zh(sm(30), H.text, 800)}>高低差太大</text>
+        <g opacity={b1}><rect x={xL + 4} y={100} width={150} height={36} fill={H.cardCompare} /><text x={xL + 10} y={128} style={zh(sm(30), H.text, 900)}>高低差太大</text></g>
         <line x1={W / 2 + 10} y1={60} x2={W / 2 + 10} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={r1}>
           <rect x={xR} y={62} width={w - 20} height={14} fill={c("steel")} />
@@ -103,7 +103,7 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
           <path d={`M${xR} ${yF} H${xR + w - 20}`} stroke={c("focus")} strokeWidth={3} strokeDasharray="10 8" />
           <Prof x={xR} y={yF} w={w - 20} bump={0} si={c("siB")} siT={c("siF")} film={c("film")} />
           {[40, 130, 210, 290, 360].map((x, i) => <circle key={i} cx={xR + x} cy={yF - 2} r={6} fill={c("lp_good")} />)}
-          <text x={xR + 8} y={yF + 150} style={zh(34, c("lp_good"), 900)}>磨平後，每一處都對焦</text>
+          <text x={xR + 8} y={yF + 148} style={zh(34, c("lp_good"), 900)}>磨平後，每一處都對焦</text>
         </g>
       </svg>
     </Card>
@@ -115,40 +115,40 @@ const Tool: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const wf = T(o, "wafer"), pd = T(o, "pad"), sl = T(o, "slurry");
   const a = lit(f, wf), b = lit(f, pd), s = lit(f, sl);
-  const yP = 232, x0 = 70, x1 = 640, hx = 360;
+  const yP = 232, x0 = 50, x1 = 600, hx = 300;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={b}>
-          <rect x={x0 - 20} y={yP + 20} width={x1 - x0 + 40} height={30} fill={c("steel")} /><rect x={x0 - 20} y={yP + 50} width={60} height={34} fill={c("dark2")} />
+          <rect x={x0 - 14} y={yP + 20} width={x1 - x0 + 28} height={34} fill={c("steel")} />
           <rect x={x0} y={yP} width={x1 - x0} height={20} fill={c("padB")} />
-          {Array.from({ length: 9 }, (_, i) => <rect key={i} x={x0 + 30 + i * 62} y={yP} width={8} height={6} fill={c("padG")} />)}
-          <rect x={(x0 + x1) / 2 - 18} y={yP + 50} width={36} height={34} fill={c("steel2")} />
-          <Arc cx={(x0 + x1) / 2} cy={yP + 66} r={52} rx={150} a0={190} a1={350} c={c("rot")} w={6} />
-          <text x={x1 + 12} y={yP + 36} style={zh(sm(30), H.text, 800)}>研磨墊與研磨盤</text>
+          {Array.from({ length: 9 }, (_, i) => <rect key={i} x={x0 + 26 + i * 60} y={yP} width={8} height={6} fill={c("padG")} />)}
+          <rect x={(x0 + x1) / 2 - 22} y={yP + 54} width={44} height={36} fill={c("steel2")} />
+          <Arc cx={(x0 + x1) / 2} cy={yP + 37} r={11} rx={230} a0={30} a1={150} c={c("rot")} w={6} />
+          <text x={x0} y={Hh - 8} style={zh(sm(28), H.text, 800)}>研磨盤與研磨墊（轉動）</text>
         </g>
         <g opacity={a}>
-          <rect x={hx - 28} y={26} width={56} height={52} fill={c("steelHi")} />
-          <rect x={hx - 100} y={78} width={200} height={50} fill={c("steel")} />
-          <rect x={hx - 112} y={128} width={14} height={yP - 128} fill={c("steel2")} /><rect x={hx + 98} y={128} width={14} height={yP - 128} fill={c("steel2")} />
-          <rect x={hx - 84} y={yP - 24} width={168} height={22} fill={c("siTop")} />
-          <rect x={hx - 98} y={128} width={196} height={yP - 152} fill={c("dark2")} opacity={0.25} />
-          {[-60, -20, 20, 60].map((dx, i) => <Dn key={i} x={hx + dx} y={134} len={46 + 4 * Math.sin(f * 0.2 + i)} c={c("press")} w={6} />)}
-          <Arc cx={hx} cy={52} r={22} rx={60} a0={200} a1={340} c={c("rot")} w={5} />
-          <text x={hx - 90} y={yP - 34} style={zh(sm(28), H.text, 900)}>晶圓（朝下）</text>
-          <text x={hx + 126} y={104} style={zh(sm(30), H.text, 800)}>研磨頭</text><text x={hx + 126} y={146} style={zh(sm(28), c("press"), 900)}>往下壓</text>
+          <rect x={hx - 28} y={64} width={56} height={40} fill={c("steelHi")} />
+          <rect x={hx - 100} y={104} width={200} height={42} fill={c("steel")} />
+          <rect x={hx - 112} y={146} width={14} height={yP - 146} fill={c("steel2")} /><rect x={hx + 98} y={146} width={14} height={yP - 146} fill={c("steel2")} />
+          <rect x={hx - 84} y={yP - 22} width={168} height={20} fill={c("siTop")} />
+          {[-60, -20, 20, 60].map((dx, i) => <Dn key={i} x={hx + dx} y={152} len={34 + 4 * Math.sin(f * 0.2 + i)} c={c("press")} w={6} />)}
+          <Arc cx={hx} cy={74} r={14} rx={52} a0={200} a1={340} c={c("rot")} w={5} />
+          <text x={hx - 80} y={yP - 28} style={zh(sm(28), H.text, 900)}>晶圓（朝下）</text>
+          <text x={hx + 120} y={96} style={zh(sm(30), H.text, 800)}>研磨頭</text>
+          <text x={hx - 120} y={176} textAnchor="end" style={zh(sm(28), c("press"), 900)}>壓力</text>
         </g>
         <g opacity={s}>
-          <rect x={150} y={52} width={14} height={80} fill={c("pipe")} /><rect x={140} y={52} width={60} height={14} fill={c("pipe")} />
-          {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.03, j, 4); return <ellipse key={j} cx={157} cy={140 + u * 84} rx={6} ry={10} fill={c("slurry")} />; })}
-          <path d={`M157 ${yP - 6} h${hx - 190}`} stroke={c("slurry")} strokeWidth={6} opacity={0.7} />
-          <text x={x0} y={42} style={zh(sm(30), c("slurryRim"), 900)}>研磨液</text>
+          <rect x={70} y={66} width={14} height={80} fill={c("pipe")} /><rect x={40} y={66} width={60} height={14} fill={c("pipe")} />
+          {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.03, j, 4); return <ellipse key={j} cx={77} cy={152 + u * 74} rx={6} ry={10} fill={c("slurry")} />; })}
+          <path d={`M77 ${yP - 6} h${hx - 190}`} stroke={c("slurry")} strokeWidth={6} opacity={0.7} />
+          <text x={92} y={206} style={zh(sm(28), c("slurryRim"), 900)}>研磨液</text>
         </g>
-        <g opacity={0.8}>
-          <rect x={x1 - 90} y={110} width={14} height={yP - 110} fill={c("steel2")} /><rect x={x1 - 120} y={yP - 26} width={90} height={26} fill={c("dia")} />
-          <text x={x1 - 150} y={104} style={zh(sm(28), H.text2, 800)}>鑽石碟</text>
+        <g opacity={0.85}>
+          <rect x={x1 - 90} y={120} width={14} height={yP - 120} fill={c("steel2")} /><rect x={x1 - 130} y={yP - 24} width={92} height={24} fill={c("dia")} />
+          <text x={x1 - 98} y={160} textAnchor="end" style={zh(sm(28), H.text2, 800)}>鑽石碟</text>
         </g>
-        <text x={700} y={118} opacity={a} style={zh(34, H.text, 800)}>① 晶圓朝下</text><text x={700} y={176} opacity={b} style={zh(34, H.text, 800)}>② 壓在旋轉的墊上</text><text x={700} y={234} opacity={s} style={zh(34, H.text, 800)}>③ 一邊磨、一邊淋液</text>
+        <text x={650} y={118} opacity={a} style={zh(34, H.text, 800)}>① 晶圓朝下</text><text x={650} y={176} opacity={b} style={zh(34, H.text, 800)}>② 壓在轉動的墊上</text><text x={650} y={234} opacity={s} style={zh(34, H.text, 800)}>③ 邊磨邊淋液</text>
       </svg>
     </Card>
   );
@@ -204,7 +204,7 @@ const Spin: React.FC<P> = ({ o, f, k, m }) => {
 // ── cmp-head：研磨頭爆炸剖面（由上到下：轉軸、頭體、橡膠膜、固定環、晶圓；氣壓往下推膜） ──
 const Head: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
-  const names: [string, string, string][] = [["sh", "轉軸", "steelHi"], ["bd", "頭體（有氣孔）", "steel"], ["mm", "橡膠膜", "memC"], ["rg", "固定環", "steel2"], ["wf", "晶圓（朝下）", "siTop"]];
+  const names: [string, string, string][] = [["sh", "轉軸", "steelHi"], ["bd", "頭體（有氣孔）", "steel"], ["mm", "橡膠膜", "press"], ["rg", "固定環", "steel2"], ["wf", "晶圓（朝下）", "siTop"]];
   const x0 = 60, w = 320, cxx = x0 + w / 2;
   const ys = [34, 98, 162, 212, 268];
   const hs = [46, 46, 14, 26, 14];
@@ -222,9 +222,9 @@ const Head: React.FC<P> = ({ o, f, k, m }) => {
           </g>);
         })}
         {[-100, -30, 30, 100].map((dx, i) => <Dn key={i} x={cxx + dx} y={ys[1] + 48} len={22 + 3 * Math.sin(f * 0.25 + i)} c={c("press")} w={5} o={air} />)}
-        <text x={620} y={122} opacity={air} style={zh(34, c("press"), 900)}>氣壓往下推膜</text>
-        <text x={620} y={176} opacity={air} style={zh(sm(30), H.text2, 700)}>壓力就傳到整片晶圓</text>
-        <text x={620} y={300} opacity={tween(f, T(o, "wf"), 10)} style={zh(sm(28), H.text2, 700)}>固定環擋住晶圓不滑出</text>
+        <text x={700} y={122} opacity={air} style={zh(34, c("press"), 900)}>氣壓往下推膜</text>
+        <text x={700} y={176} opacity={air} style={zh(sm(30), H.text2, 700)}>壓力傳到整片晶圓</text>
+        <text x={700} y={300} opacity={tween(f, T(o, "wf"), 10)} style={zh(sm(28), H.text2, 700)}>擋住晶圓不滑出</text>
       </svg>
     </Card>
   );
