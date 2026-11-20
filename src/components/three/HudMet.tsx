@@ -83,18 +83,19 @@ const Layer: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 340, c = cc(m);
   const ly = T(o, "ly"), ea = on(f, T(o, "early")), wa = on(f, T(o, "waste")), ev = T(o, "every"), df = on(f, T(o, "defect"));
   const names = [["矽基板", "si"], ["電晶體", "gate"], ["金屬一", "m1"], ["金屬二", "m2"]] as const;
-  const x0 = 60, bw = 360, bh = 46, y0 = 290;
+  // 2026/11/20 使用者回饋：「金屬二」字壓到中間分隔線、上層色塊貼著標題。版面固定：色塊 40–366（含歪掉位移 26）、打勾 376–408、字 420–520、分隔線 560；最上層 y≥92（標題下緣約 52）
+  const x0 = 40, bw = 300, bh = 44, y0 = 312, sh = 26;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {names.map(([n, cl], i) => { const y = y0 - i * (bh + 16) - bh, a = lit(f, ly + i * 5, 0.5), dx = i === 2 ? 34 * ea : 0, bad = i === 2 ? ea : i === 3 ? wa : 0, ok = on(f, ev + 8 * i);
+        {names.map(([n, cl], i) => { const y = y0 - i * (bh + 14) - bh, a = lit(f, ly + i * 5, 0.5), dx = i === 2 ? sh * ea : 0, bad = i === 2 ? ea : i === 3 ? wa : 0, ok = on(f, ev + 8 * i);
           return <g key={i} opacity={a}>
             <rect x={x0 + dx} y={y} width={bw} height={bh} fill={c(cl)} stroke={bad > 0.5 ? c("lp_bad") : H.text3} strokeWidth={bad > 0.5 ? 5 : 2} />
-            {i === 3 && wa > 0 ? <g opacity={wa}>{Array.from({ length: 9 }, (_, j) => <path key={j} d={`M${x0 + j * 42} ${y + bh} l30 ${-bh}`} stroke={c("lp_bad")} strokeWidth={4} />)}</g> : null}
-            <text x={x0 + bw + 50} y={y + 34} style={zh(sm(30), bad > 0.5 ? c("lp_bad") : H.text, 900)}>{n}</text>
-            <g opacity={ok}><circle cx={x0 + bw + 22} cy={y + bh / 2} r={16} fill={c("lp_good")} /><Check x={x0 + bw + 13} y={y + bh / 2} s={18} c="#fff" /></g>
+            {i === 3 && wa > 0 ? <g opacity={wa}>{Array.from({ length: 8 }, (_, j) => <path key={j} d={`M${x0 + 4 + j * 37} ${y + bh} l28 ${-bh}`} stroke={c("lp_bad")} strokeWidth={4} />)}</g> : null}
+            <text x={x0 + bw + sh + 54} y={y + 33} style={zh(sm(30), bad > 0.5 ? c("lp_bad") : H.text, 900)}>{n}</text>
+            <g opacity={ok}><circle cx={x0 + bw + sh + 26} cy={y + bh / 2} r={16} fill={c("lp_good")} /><Check x={x0 + bw + sh + 17} y={y + bh / 2} s={18} c="#fff" /></g>
           </g>; })}
-        <g opacity={df}><circle cx={x0 + 260} cy={y0 - 3 * (bh + 16) - bh - 8} r={14} fill={c("defO")} /><circle cx={x0 + 260} cy={y0 - 3 * (bh + 16) - bh - 8} r={24} fill="none" stroke={c("defO")} strokeWidth={4} opacity={0.5 + 0.5 * Math.sin(f * 0.3)} /></g>
+        <g opacity={df}><circle cx={x0 + 260} cy={y0 - 3 * (bh + 14) - bh + bh / 2} r={14} fill={c("defO")} /><circle cx={x0 + 260} cy={y0 - 3 * (bh + 14) - bh + bh / 2} r={24} fill="none" stroke={c("defO")} strokeWidth={4} opacity={0.5 + 0.5 * Math.sin(f * 0.3)} /></g>
         <line x1={560} y1={60} x2={560} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         {[["① 前面歪了", ea, c("lp_bad")], ["② 後面全白做", wa, c("lp_bad")], ["③ 每一步都要量", on(f, ev), c("lp_good")], ["④ 還要找缺陷", df, H.amber]].map(([t, a, cl], i) =>
           <text key={i} x={590} y={112 + i * 62} opacity={0.4 + 0.6 * (a as number)} style={zh(38, (a as number) > 0.5 ? (cl as string) : H.text, 900)}>{t as string}</text>)}
