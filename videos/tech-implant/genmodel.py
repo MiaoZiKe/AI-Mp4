@@ -754,7 +754,7 @@ acts["spotX"] = {"type": "vibrate", "parts": ["spot", "spotRing"], "axis": [1, 0
 acts["fanSwing"] = {"type": "rotate", "parts": ["fanRod"], "axis": [0, 1, 0], "pivot": PIV, "swing": -15, "freq": SCAN_F}
 acts["spotGlow"] = {"type": "pulse", "parts": ["spot"], "color": "spot", "steady": True, "glow": 1, "halo": 0.9}
 for k in range(19):
-    acts[f"ring{k}"] = {"type": "pulse", "parts": [f"ring{k}"], "color": "ringHi", "steady": True, "glow": 0.35 + 0.65 * k / 18, "halo": 0.25 + 0.35 * k / 18}
+    acts[f"ring{k}"] = {"type": "pulse", "parts": [f"ring{k}"], "color": "ringHi", "steady": True, "glow": 0.12 + 0.3 * k / 18, "halo": 0.15 + 0.3 * k / 18}
 acts["cylPOn"] = {"type": "pulse", "parts": ["cylP"], "color": "cylP", "freq": 1.4, "glow": 0.9, "halo": 0.9}
 acts["cylBOn"] = {"type": "pulse", "parts": ["cylB"], "color": "cylB", "freq": 1.4, "glow": 0.9, "halo": 0.9}
 acts["s2eSpin"] = {"type": "rotate", "parts": ["s2e"], "axis": [R2(math.sin(RY)), 0, R2(math.cos(RY))], "pivot": [R2(v) for v in pP], "rps": 0.8}
@@ -769,7 +769,7 @@ hel = [[-9.45 + 1.3 * t / 40, 5.0 + 0.32 * math.sin(t * 0.9), 4.0 + 0.32 * math.
 flowx("elec", hel, "dot", n=9, size=0.05, rate=0.55, color="elec", rim="elecR", rimO=0.9)
 flowx("field", [[-7.55, YB, TZ], [-6.9, YB, TZ]], "arrow", n=3, size=0.12, rate=0.9, color="field", rim="field", lanes=3, gap=0.28, ldir=(0, 1, 0))
 fl = [[BX + 0.4, YB + 0.9, WZ + 0.12], [BX + 0.55, YB + 0.2, WZ + 0.35], [BX + 0.75, YB - 0.9, WZ + 0.55], [BX + 0.9, YB - 2.2, WZ + 0.7]]
-flowx("flakes", fl, "flake", n=6, size=0.09, rate=0.35, color="flake", rim="flakeR", lanes=3, gap=0.5, ldir=(1, 0, 0))
+flowx("flakes", fl, "flake", n=6, size=0.04, rate=0.35, color="flake", rim="flakeR", lanes=3, gap=0.5, ldir=(1, 0, 0))
 
 F = lambda sid, cue="start", d=0: C(sid, cue, d)
 first_hit = cf("s1", "start")
@@ -839,7 +839,7 @@ def mk(sid, at, focus, D_, elev, yaw, dur):
     r = shot(at, focus, D_, elev, yaw, dur); shot.yaw = yaw; SHOTS.setdefault(sid, []).append(r)
 FULL = ((-4.4, 4.0, -0.6), 82, 12, -0.18)
 WAF = ((BX + 0.1, YB - 0.9, WZ), 13.5, 8, -0.62)
-SECV = ((BX + 3.0, 4.6, -6.3), 24, 9, YAW_END)
+SECV = ((BX + 3.3, 4.8, -6.3), 25, 9, YAW_END)
 mk("s1", "s1:start-30", FULL[0], FULL[1], FULL[2], FULL[3], 1)
 mk("s1", "s1:start", (-4.2, 4.1, -0.6), 76, 12, -0.22, 220)
 mk("s2", F("s2", "start", -6), *SECV, 34)
@@ -894,7 +894,7 @@ OVER = {
  "s7": [sec_("imp-scan", "s7", F("s7", "start", 2), F("s8", "start", -2), {k: F("s7", k) for k in ["enter", "sweep", "move", "every", "same"]}, title="左右掃上下動", tag="示意軌跡")],
  "s8": [sec_("imp-cmp", "s8", F("s8", "start", 2), F("s9", "start", -2), {k: F("s8", k) for k in ["in", "slow", "stop", "energy", "dose"]}, title="深度與濃度", tag="示意，非實際比例")],
  "s9": [sec_("imp-co", "s9", F("s9", "start", 2), F("s10", "start", -2), {k: F("s9", k) for k in ["am", "ax", "gas", "jc"]}, title="誰在做", tag="廠商公布／媒體報導")],
- "s10": [sec_("imp-next", "s10", F("s10", "start", 2), F("s11", "start", -2), {k: F("s10", k) for k in ["zone", "hard", "dirty", "next", "kw"]}, title="接下來", tag="下一支：清洗")],
+ "s10": [sec_("imp-next", "s10", F("s10", "start", 2), F("s10", "kw", -10), {k: F("s10", k) for k in ["zone", "hard", "dirty", "next", "kw"]}, title="接下來", tag="下一支：清洗")],
 }
 ZOOM = {"s1": [{"to": "tool", "at": "start-30", "dur": 1}], "s2": [{"to": "wafer", "at": "start+4", "dur": 30}], "s3": [{"to": "tool", "at": "start-2", "dur": 26}],
         "s6": [{"to": "magnet", "at": "start", "dur": 26}], "s7": [{"to": "tool", "at": "start", "dur": 24}], "s8": [{"to": "wafer", "at": "start+4", "dur": 30}], "s9": [{"to": "tool", "at": "start-2", "dur": 26}]}
