@@ -277,3 +277,15 @@ Andy 原話：「記得我提到的規則 影片內容的安排方式 鉤子試�
 3. **範例庫** `docs/channels/caffaine-examples.md`：收 Andy 核准成片裡最好的物件、場景、動作，寫到檔案與秒數；下一支先沿用庫裡的，再加細節。Andy 打分後才把該支標成「已核准」。
 4. **每支復盤**：成片交件時在 `videos/<slug>/retro.md` 寫：比上一支好在哪、花多久（各步驟分鐘數）、新增哪些可重用（元件／view／套版）、下次改什麼。沒寫復盤不算交件。
 5. IG Reels 從 11/20 起一律只進 Reels 分頁（share_to_feed=false），共用發文函式已改，頻道不用動。
+
+## 二十二、子 agent 依工作搭配 model＋effort（2026/11/20 Andy 全頻道：「好 照這樣做 並且每個頻道都是」）
+
+取代「子 agent 一律 sonnet」。派工時一定明寫 model 與 effort：
+| 工作 | model | effort |
+|---|---|---|
+| 寫腳本 | opus | medium |
+| 最後審片、打分、看圖 | opus | high |
+| 配音、剪輯、渲染、autofix | sonnet | low |
+| 選題查證、素材規格、輪播、caption、文章 | sonnet | medium |
+
+每支片的 `retro.md` 記 Token 與品質變化，週檢討再調（全站版在 tw-rotation `docs/marketing/channels/token_budget.md` 第七節）。
