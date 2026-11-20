@@ -43,6 +43,8 @@
 
 - **子 agent 依工作配 model＋effort**（使用者 2026/11/20 全頻道：「好 照這樣做 並且每個頻道都是」；取代「子 agent 一律 sonnet」；共用版 tw-rotation `docs/marketing/channels/token_budget.md` 第七節）：寫腳本＝opus＋medium；最後審片／打分／看圖＝opus＋high；配音／剪輯／渲染／autofix＝sonnet＋low；選題查證／素材規格／輪播／caption／文章＝sonnet＋medium。派工一定明寫 model 與 effort；每支 `retro.md` 記 Token 用量與品質變化，週檢討再調。
 
+- **留言關鍵字改固定內容**（使用者 2026/11/20 全頻道：「往後文章越來越多，所以以後影片結尾的『留言XX』我把資訊傳給你，這『XX』都要改成固定內容」）：固定內容等 Andy 給（主控轉）；在那之前新片結尾**不要自己發明新的留言關鍵字**，結尾提問照留；片尾卡 `endCard.comment` 先空著或沿用 Andy 給的固定字。這條優先於上面「最後一句念留言關鍵字」的舊寫法。
+
 ## 一、每天的分工
 
 | 步驟 | 誰做 | 產出 |
