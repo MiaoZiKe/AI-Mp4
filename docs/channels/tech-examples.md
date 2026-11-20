@@ -36,6 +36,10 @@
 | 反應腔爆炸＋四段運作（氣流、反應、濺鍍、ALD） | tech-deposition v3 | videos/tech-deposition/ | 四種運作各有 2D 卡 |
 | 分段渲染（可續渲） | — | scripts/three/chunk-render.sh | 容器重開不用重來 |
 | flow 路徑自動檢查 | — | scripts/three/flow-check.mjs | 抓流動物懸空 |
+| 光束＝連續光帶＋光點（入射／兩道反射／穿膜折返） | tech-metrology v1 0:13–0:19 | videos/tech-metrology/genmodel.py（F 站，flow shape liquid＋band） | 不改 Ops.tsx，用 liquid 的連續帶當光束；路徑放在膜前 0.15 的剖面平面上 |
+| 電子束鏡柱（槍→聚光鏡→偏轉線圈→物鏡）＋下段束擺動掃描 | tech-metrology v1 0:20–0:25 | 同上（E 站；rotate swing 以物鏡出口為軸） | 束真的在線條上來回掃，二次電子沿弧線進偵測器 |
+| 光學掃描橋架＋掃到才冒出的缺陷點 | tech-metrology v1 0:34–0:37 | genscript.py（ease_inv 算每個缺陷被光帶掃到的幀） | 色點出現時刻和光帶位置一致 |
+| 多站量測島（機台剖開看到量測頭、曝光機、手臂＋檢出盒） | tech-metrology v1 0:43–0:54 | genmodel.py（T 站，庫的 arm＋bin、arm-transfer） | 公司引線可以指到機台內部的頭 |
 | 離子佈植機整台（氣瓶櫃→離子源→加速管→分析磁鐵→射束管→終端站） | tech-implant v1 0:00、0:20 | videos/tech-implant/genmodel.py | 沿用 test-ion-opus 並補氣瓶櫃、空心離子源腔（看得到電漿與電子） |
 | 帶「＋」離子、等加速度、拖尾隨速度變長、撞壁火花 | tech-implant v1 0:29–0:43 | genmodel.py `add_ion`／`path_bad` | 用 shift 串路徑（fallOut＝t²），不改共用檔 |
 | 放大鏡＋方框＋四條引線把剖面連回晶圓 | tech-implant v1 0:08、0:50 | genmodel.py「放大鏡」段 | 剖面不再浮在半空 |
@@ -53,6 +57,12 @@
 
 ## 每支復盤（做完就加一段：比上一支好在哪、花多久、新增哪些可重用的、下次要改什麼）
 （從 tech-cmp 開始填）
+
+### tech-metrology（量測與檢測）v1｜2026/11/20｜建模 Opus
+- 比上一支好在哪：一支片裡 4 種量測各有自己的站與運作動畫（膜厚光路、電子束掃描、疊對 ±1 階、光學→電子束缺陷複檢），加上回饋（資料線→曝光機微調、手臂挑片）共 5 段，句句有畫面事件（sync-table.md 49 句全寫）；流動物依種類分形狀（光＝連續光帶、電子＝小點拖尾、資料＝箭頭、離子＝紅點拖尾）。
+- 花多久：建模＋分鏡＋2D 卡約 1 小時 20 分；版面檢查來回 6 輪約 20 分；分段渲染約 70 分（2038 幀）。
+- 新增可重用：`HudMet.tsx` 的 `Dots`（沿折線跑的光點，可加「−」號）、`Arr` 箭頭；genscript 的 `ease_inv`（照緩入緩出反算「被掃到」的幀）；Hud.tsx 只加一行分派、用 `git update-index --cacheinfo` 只提交自己那一行，避開同時在做的片。
+- 下次改：①鏡頭太近時 layout-check 會把整片晶圓／機台當主素材、卡片判成蓋到中央——近景前先把底座、腔壁設 `bg`；②工具全景（s8）主素材偏小、手臂近景（s7 後半）手臂與檢出盒偏下，下次手臂放在機台正前方、鏡頭從斜上看；③離子、電子目前只是小圓點，沒有「＋」「−」記號（2D 卡有），要做就在 Ops.tsx 加新 shape（共用檔先回報）；④曝光機只是簡化外殼，沒沿用 tech-euv 內部光路。
 
 ### tech-implant 離子佈植（2026/11/20，Opus 建模＋成片）
 - 比上一支好在哪：主角機台直接沿用比較片 test-ion-opus 的模型，只補缺點（剖面用放大鏡＋引線連回晶圓、遠景離子放大 2 倍、標籤往外推、開場置中），建模時間省一半；流動物依物理種類分形狀（氣體＝分子、電子＝小藍點、離子＝球＋「＋」、電場＝箭頭、碎屑＝薄片）；3D 與 2D 卡同一份 cue。
