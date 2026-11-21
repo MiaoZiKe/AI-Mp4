@@ -64,7 +64,7 @@ const reqLog = path.join(dir, "tts-requests.json");
 const logReq = (row) => { const a = fs.existsSync(reqLog) ? JSON.parse(fs.readFileSync(reqLog, "utf8")) : []; a.push(row); fs.writeFileSync(reqLog, JSON.stringify(a, null, 1) + "\n"); };
 
 async function synth(text, purpose) {
-  const mk = () => ({ ...(STYLE_TEXT && STYLE_MODE === "system" ? { systemInstruction: { parts: [{ text: STYLE_TEXT }] } } : {}), contents: [{ parts: STYLE_TEXT && STYLE_MODE === "parts" ? [{ text: STYLE_TEXT }, { text }] : [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], ...(process.env.TTS_TEMPERATURE ? { temperature: Number(process.env.TTS_TEMPERATURE) } : {}), speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
+  const mk = () => ({ ...(STYLE_TEXT && STYLE_MODE === "system" ? { systemInstruction: { parts: [{ text: STYLE_TEXT }] } } : {}), contents: [{ parts: STYLE_TEXT && STYLE_MODE === "parts" ? [{ text: STYLE_TEXT }, { text }] : [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], ...(process.env.TTS_TEMPERATURE ? { temperature: Number(process.env.TTS_TEMPERATURE) } : {}), ...(process.env.TTS_SEED ? { seed: Number(process.env.TTS_SEED) } : {}), speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
   for (let i = 0; i < 2; i++) {
     const body = mk();
     const r = await fetch(`${API}/models/${MODEL}:generateContent`, { method: "POST", headers, body: JSON.stringify(body) });
