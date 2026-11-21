@@ -15,3 +15,4 @@
 - 時間軸 2038 幀（與 v1 相同），音軌沿用 `out/tech-metrology.v1.wav`（voice.wav＋片尾招牌音，voice.wav 與 v1 位元相同）。
 - 2D 示意卡（11/20 重疊修正後）card-overlap 0 error、layout-check 0 error；met-co 卡 y955／h310 已寫進 genscript.py。
 - 成片 `out/tech-metrology.v2.mp4`（整支分段重渲，`AUDIO=out/tech-metrology.v1.wav bash scripts/three/chunk-render.sh tech-metrology v2`）；gold 的分段移到 `out/chunks/tech-metrology-gold/`。
+- 11/21 標籤退件修正（Andy：s3 兩框貼在一起、表面反射壓光束；s8 日立／應用材料互疊；s4 邊緣框蓋 3D 方塊）：genscript.py 的 `lab(..., xy=[...])` 固定位置；「邊緣：電子特別多」→「邊緣最亮」、s8 改公司名並排（細節在「誰在做」卡）。layout-check 新增標籤間距與引線穿過檢查，本片 0。只重渲 0–1679 幀（7 段），接回 `out/tech-metrology.v2.mp4`，前一版備份 `out/tech-metrology.v2.prev.mp4`。

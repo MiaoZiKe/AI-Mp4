@@ -25,3 +25,4 @@
 - 片尾音：`G=28 bash scripts/three/mix-endsting.sh public/audio/tech-implant/voice.wav out/tech-implant.sting.wav 66.8667 68.9333 72.0667 out/tech-implant.v2.wav`。
 - 成片 `out/tech-implant.v2.mp4`（`AUDIO=out/tech-implant.v2.wav bash scripts/three/chunk-render.sh tech-implant v2`）；3.8 金手指版 `out/tech-implant.gold.mp4` 保留，其分段在 `out/chunks/tech-implant-gold/`。
 - 磁鐵分選卡「狹縫」改放在狹縫左邊（新時間軸下太重離子撞壁的火花會壓到右邊的字，card-overlap 抓到）。
+- 11/21 成片：`out/tech-implant.v2.mp4`（2162 幀、72.07 秒），九格 `out/tech-implant.v2-grid9.jpg`；s3／s7／s9 標籤用 `xy` 固定位置（引線不穿過別張卡，layout-check 0）。

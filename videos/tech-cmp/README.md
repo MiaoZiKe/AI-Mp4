@@ -5,3 +5,6 @@
 - 新增流動物形狀（Ops.tsx，只在 shape 寫新值時走新分支）：`liquid` 水滴＋連續液體帶、`grit` 磨粒小方塊、`mol` 雙球分子、`flake` 碎屑薄片。
 - 物件清單與實物參考：`visual-spec.md`；研究：`research.md`；念稿：`docs/prompts/tech-cmp-旁白.txt`。
 - 待人耳確認：「荏原」「朝下」「曝光」讀音。
+
+## 11/21 示意卡與標籤修正
+- 示意卡重疊（card-overlap）修前 20 error → 0；s6 三張 3D 標籤用 `xy` 固定位置（引線不穿過別張卡）。只重渲受影響段落（0–1679、960–1199 幀），音軌不動；成片 `out/tech-cmp.v1.mp4`，備份 `.v1.prev.mp4`（修卡前）、`.v1.prev2.mp4`（修標籤前），九格 `out/tech-cmp.v1-grid9.jpg`。
