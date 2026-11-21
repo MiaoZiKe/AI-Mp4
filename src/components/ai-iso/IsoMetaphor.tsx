@@ -105,7 +105,7 @@ const BeltsView: React.FC<VP> = ({ f, p }) => {
 
 // ───────── paper：一張紙逐行被寫出來，蓋章、釘住，再交給 AI ─────────
 const PaperView: React.FC<VP> = ({ f, p }) => {
-  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), lines = q.lines as { t: string; at: any; dur?: number; label?: string; color?: string; mark?: any[] }[];
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), lines = q.lines as { t: string; at: any; dur?: number; label?: string; color?: string; mark?: any[]; skel?: string }[];
   const bot = q.bot, cw = bot ? 640 : IW, fs = q.fs ?? 40, chH = q.h ?? 720, py = TOP + 10, tStamp = A(q.stamp?.at, FAR), tPin = A(q.pin?.at, FAR), tChip = A(q.chip?.at, FAR);
   const ats = lines.map((ln, i) => A(ln.at, p.in + 4 + i * 20)), cur = lines.findIndex((ln, i) => f >= ats[i] && f < ats[i] + (ln.dur ?? 26) + 4);
   const mini = E(f, tPin + 10, 18), bx = X0 + cw + (IW - cw) / 2, by = py + chH - 40;
@@ -117,9 +117,9 @@ const PaperView: React.FC<VP> = ({ f, p }) => {
           const [a] = typed(ln.t, f, ats[i], ln.dur ?? 26), c = col(ln.color ?? "primary");
           const act = ((ln.mark ?? []) as any[]).map((m) => ({ i: ln.t.indexOf(m.word), n: m.word.length, c: col(m.color), on: f >= A(m.at, FAR) })).filter((m) => m.i >= 0 && m.on);
           return (
-            <div key={i} data-ov={`紙行${i + 1}`} style={{ display: "flex", gap: 20, alignItems: "flex-start", marginBottom: 22, opacity: f >= ats[i] ? 1 : 0.15 }}>
+            <div key={i} data-ov={`紙行${i + 1}`} style={{ display: "flex", gap: 20, alignItems: "flex-start", marginBottom: 22, opacity: f >= ats[i] || ln.skel ? 1 : 0.15 }}>
               {q.num === false ? null : <div style={{ ...zh, flexShrink: 0, width: 56, height: 56, borderRadius: 28, background: c.fill, color: c.on, fontWeight: 900, fontSize: 34, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 4, boxShadow: `0 4px 0 ${c.side}`, transform: cur === i ? `rotate(${(8 * Math.sin(f / 3)).toFixed(1)}deg)` : undefined }}>{ln.label ?? i + 1}</div>}
-              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: fs, lineHeight: 1.32, color: T.ink }}>{[...ln.t].map((ch: string, k: number) => { const m = act.find((x) => k >= x.i && k < x.i + x.n); return <span key={k} style={{ opacity: k < a.length ? 1 : 0, background: m ? m.c.soft : undefined, boxShadow: m ? `inset 0 -8px 0 ${m.c.fill}` : undefined }}>{ch}</span>; })}</div>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: fs, lineHeight: 1.32, color: T.ink }}>{a.length === 0 && ln.skel ? <span style={{ color: T.ink3, opacity: 0.4 }}>{ln.skel}</span> : null}{[...ln.t].map((ch: string, k: number) => { const m = act.find((x) => k >= x.i && k < x.i + x.n); return <span key={k} style={{ opacity: k < a.length ? 1 : 0, background: m ? m.c.soft : undefined, boxShadow: m ? `inset 0 -8px 0 ${m.c.fill}` : undefined }}>{ch}</span>; })}</div>
             </div>
           );
         })}
@@ -167,7 +167,7 @@ const SlotsView: React.FC<VP> = ({ f, p }) => {
 // ───────── scoreboard：計分牌＋星星＋每次得分 ─────────
 const starPts = (cx: number, cy: number, r: number) => Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.46 : r; return `${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`; }).join(" ");
 const ScoreView: React.FC<VP> = ({ f, p }) => {
-  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), bs = q.boards as any[], BW = 460, BH = 640, y0 = TOP + 10, tRuns = A(q.runsAt, p.in + 6);
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), bs = q.boards as any[], BW = 460, BH = 640, y0 = TOP + 50, tRuns = A(q.runsAt, p.in + 6);
   return (
     <>
       {bs.map((b, i) => {
@@ -240,26 +240,29 @@ const VolumeView: React.FC<VP> = ({ f, p }) => {
 
 // ───────── lostmid：一長排方塊，開頭結尾亮、中間暗 ─────────
 const LostMidView: React.FC<VP> = ({ f, p }) => {
-  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), N = q.n as number, tG = A(q.growAt, p.in + 4), tW = A(q.wobbleAt, FAR), tM = A(q.midAt, FAR), BW = 56, GAP = (IW - N * BW) / (N - 1), by = TOP + 290, BH = 230;
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), N = q.n as number, tG = A(q.growAt, p.in + 4), tW = A(q.wobbleAt, FAR), tM = A(q.midAt, FAR), BW = 56, GAP = (IW - N * BW) / (N - 1), by = TOP + 235, BH = 240, y0 = TOP + 50, t0 = p.in + 2;
   const cnt = Math.round(lerp(q.n0 ?? 5, N, E(f, tG - 6, 34))), amp = f >= tW ? 12 * E(f, tW, 20) : 0, mid0 = Math.floor(N * 0.3), mid1 = Math.ceil(N * 0.7), pm = E(f, tM, 14);
-  const cxs = Array.from({ length: N }, (_, i) => X0 + i * (BW + GAP) + BW / 2), curve = cxs.map((x, i) => { const u = i / (N - 1), dip = 4 * u * (1 - u); return [x, TOP + 90 + dip * 170 * pm + amp * 0.9 * Math.sin(f / 3 + i * 1.7)] as [number, number]; });
-  const path = curve.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
+  const cxs = Array.from({ length: N }, (_, i) => X0 + i * (BW + GAP) + BW / 2), curve = cxs.map((x, i) => { const u = i / (N - 1), dip = 4 * u * (1 - u); return [x, y0 + dip * 150 * pm + amp * 0.9 * Math.sin(f / 3 + i * 1.7)] as [number, number]; });
+  const path = curve.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" "), ay = by + BH + 70;
   return (
     <>
       <Full>
-        {f >= tG ? <path d={path} fill="none" stroke={col(f >= tM ? "wrong" : "primary").fill} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 10)} /> : null}
+        <path d={`M${X0} ${y0 + 70} H${X0 + IW}`} stroke={T.line} strokeWidth={4} strokeDasharray="10 12" opacity={O(f, t0, 8)} />
+        <path d={path} fill="none" stroke={col(f >= tM ? "wrong" : "primary").fill} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, t0, 10)} />
         {f >= tM ? <><rect x={cxs[mid0] - BW / 2 - 12} y={by - 20} width={cxs[mid1 - 1] - cxs[mid0] + BW + 24} height={BH + 40} rx={26} fill="none" stroke={col("wrong").fill} strokeWidth={8} strokeDasharray="22 14" opacity={pm} /></> : null}
         {Array.from({ length: N }, (_, i) => {
           const on = i < cnt, isMid = i >= mid0 && i < mid1, dim = f >= tM && isMid, c = col("primary"), jig = on ? amp * Math.sin(f / 2.6 + i * 1.9) : 0;
           return <g key={i} opacity={on ? 1 : 0} transform={`translate(0,${jig.toFixed(1)}) rotate(${(f >= tW ? (amp / 12) * 6 * Math.sin(f / 3.1 + i) : 0).toFixed(1)} ${cxs[i]} ${by + BH / 2})`}><rect x={cxs[i] - BW / 2} y={by + 8} width={BW} height={BH} rx={14} fill={dim ? T.cardSide : c.side} /><rect x={cxs[i] - BW / 2} y={by} width={BW} height={BH} rx={14} fill={dim ? T.line : c.fill} stroke={dim ? T.cardSide : "none"} strokeWidth={3} /></g>;
         })}
-        <path d={`M${X0} ${by + BH + 70} H${X0 + IW - 20} M${X0 + IW - 48} ${by + BH + 46} L${X0 + IW - 18} ${by + BH + 70} L${X0 + IW - 48} ${by + BH + 94}`} fill="none" stroke={T.ink3} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 8)} />
+        <path d={`M${X0} ${ay} H${X0 + IW - 20} M${X0 + IW - 48} ${ay - 24} L${X0 + IW - 18} ${ay} L${X0 + IW - 48} ${ay + 24}`} fill="none" stroke={T.ink3} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, t0, 8)} />
+        {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${X0 + 30 + i * ((IW - 100) / 7)} ${ay - 14} V${ay + 14}`} stroke={T.ink3} strokeWidth={5} strokeLinecap="round" opacity={O(f, t0 + i, 6)} />)}
       </Full>
-      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: by + BH + 104, ...bounce(f, tG) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
-      {f >= tW ? <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: by + BH + 104, ...bounce(f, tW) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div> : null}
-      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: by + BH + 196, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
-      {f >= tM ? <div data-ov="開頭標籤" style={{ position: "absolute", left: X0, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>開頭 表現好</div> : null}
-      {f >= tM ? <div data-ov="結尾標籤" style={{ position: "absolute", left: X0 + IW - 270, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>結尾 表現好</div> : null}
+      <div data-ov="表現標籤" style={{ position: "absolute", left: X0 + IW / 2 - 120, top: TOP - 22, opacity: O(f, t0, 8), ...zh, fontWeight: 900, fontSize: 38, color: T.ink2 }}>回答表現</div>
+      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: ay + 34, ...bounce(f, t0) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
+      <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: ay + 34, ...bounce(f, t0 + 6) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div>
+      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: ay + 140, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
+      {f >= tM ? <div data-ov="開頭標籤" style={{ position: "absolute", left: X0, top: TOP - 22, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>開頭 表現好</div> : null}
+      {f >= tM ? <div data-ov="結尾標籤" style={{ position: "absolute", left: X0 + IW - 270, top: TOP - 22, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>結尾 表現好</div> : null}
     </>
   );
 };

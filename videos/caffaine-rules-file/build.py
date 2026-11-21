@@ -16,6 +16,12 @@ apply("caffaine-rules-file", {
     "readAt": "k4", "chip": {"text": "貼一次，每次新對話都先讀", "at": "k4+14", "color": "right"}},
   "s05": {"view": "scoreboard", "tone": "principle", "runsAt": "k1", "note": "實測：同一句請求各跑 5 次，滿分 5 分",
     "boards": [{"label": "沒規則", "color": "wrong", "value": 1.6, "max": 5, "dec": True, "runs": [1, 2, 1, 2, 2], "countAt": "k2"}, {"label": "有規則", "color": "right", "value": 5, "max": 5, "dec": False, "runs": [5, 5, 5, 5, 5], "countAt": "k3"}]},
-  "s06": {"view": "kinetic", "tone": "principle", "rows": [{"big": "不是變聰明", "unit": "", "at": "start-10", "color": "wrong", "size": 170, "usize": 90}, {"big": "是規矩寫成檔", "unit": "", "at": "k2", "color": "right", "size": 138, "usize": 90}, {"big": "每次先讀過", "unit": "", "at": "k3", "color": "primary", "size": 150, "usize": 90}],
+  "s06": {"view": "kinetic", "tone": "principle", "rows": [{"big": "不是變聰明", "unit": "", "at": "start-10", "color": "wrong", "size": 170, "usize": 90}, {"big": "是規矩寫成檔", "unit": "", "at": "k2", "color": "right", "size": 126, "usize": 90}, {"big": "每次先讀過", "unit": "", "at": "k3", "color": "primary", "size": 126, "usize": 90}],
     "recap": [{"text": "沒規則", "sub": "平均 1.6 分", "at": "start+8", "color": "wrong"}, {"text": "有規則", "sub": "次次滿分", "at": "k2", "color": "right"}, {"text": "寫一次", "sub": "每次先讀", "at": "k3", "color": "primary"}]},
 }, pause={"s03": 0.7, "s05": 0.5})
+# 2026/11/22 驗證第三輪：s02 對話窗上方（主視覺區 330–450）補一張「沒規則：每次都要重講」提示卡
+import json as _j
+_F = "videos/caffaine-rules-file/script.json"; _d = _j.load(open(_F))
+for _s in _d["scenes"]:
+    if _s["id"] == "s02": _s["props"]["topChip"] = "沒規則：每次都要重講"
+_j.dump(_d, open(_F, "w"), ensure_ascii=False, indent=1)

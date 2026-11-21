@@ -272,6 +272,7 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
   const chips = (q.chips ?? []) as { text: string; at: any; color: string; hot?: boolean }[];
   return (
     <div style={{ position: "absolute", left: X0, top: TOP, width: IW, height: 780, background: T.card, borderRadius: 36, boxShadow: `0 10px 0 ${T.cardSide}, ${T.depth.soft}` }}>
+      {q.topChip ? <div data-ov="頂部提示卡" style={{ position: "absolute", left: 0, width: IW, top: -112, display: "flex", justifyContent: "center", ...bounce(f, p.in + 4) }}><Chip text={q.topChip} bg={col("wrong").fill} fg="#fff" px={48} side={col("wrong").side} /></div> : null}
       <div data-ov="對話標題" style={{ position: "absolute", left: 28, top: 20, height: 60, display: "flex", alignItems: "center", gap: 18 }}>
         <div style={{ width: 58, height: 58, borderRadius: 29, background: col("primary").fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 28, color: "#fff" }}>AI</div>
         <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: T.ink }}>{q.title ?? "和 AI 對話"}</div>
@@ -485,19 +486,19 @@ const LensView: React.FC<VP> = ({ f, p, tone }) => {
 const KineticView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), rows = (q.rows ?? []) as { big: string; unit: string; at: any; color: string; size?: number; usize?: number }[];
   const RP = (r: { size?: number }) => (r.size ? Math.round(r.size * 1.04) + 10 : 270);
-  const rcOff = q.recap ? 198 : 0, rowTop = (i: number) => TOP + 20 + rows.slice(0, i).reduce((a, r) => a + RP(r), 0) + (i >= 1 ? rcOff : 0), rowsEnd = rowTop(rows.length), rcTop = TOP + 20 + RP(rows[0]) + 2;
+  const rcOff = q.recap ? 290 : 0, rowTop = (i: number) => TOP + 20 + rows.slice(0, i).reduce((a, r) => a + RP(r), 0) + (i >= 1 ? rcOff : 0), rowsEnd = rowTop(rows.length), rcTop = TOP + 20 + RP(rows[0]) + 2;
   const tQ = A(q.q?.at, FAR), eq = E(f, tQ, 16);
   return (
     <>
-      {rows.map((r, i) => { const t = A(r.at, p.in + 3), e = E(f, t, 14), c = col(r.color); if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: rowTop(i) + 20, width: IW, height: RP(r) - 40, ...zh, fontWeight: 900, fontSize: 150, color: c.fill }}>？</Ghost>; return (
+      {rows.map((r, i) => { const t = A(r.at, p.in + 3), e = E(f, t, 14), c = col(r.color); if (f < t) return <Ghost key={i} color={c.fill} style={{ left: X0, top: rowTop(i) + 20, width: IW, height: RP(r) - 40, ...zh, fontWeight: 900, fontSize: q.recap ? (r.size ?? 150) : 150, color: c.fill }}>{q.recap ? r.big : "？"}</Ghost>; return (
         <div key={i} data-ov={`大字${i + 1}`} style={{ position: "absolute", left: X0, top: rowTop(i), width: IW, height: RP(r) - 30, display: "flex", alignItems: "center", gap: 34, opacity: O(f, t, 4) }}>
           <div style={{ perspective: 900, opacity: Math.min(1, e * 3) }}><div style={{ ...zh, fontWeight: 900, fontSize: r.size ?? 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
           <div style={{ ...zh, fontWeight: 900, fontSize: r.usize ?? 120, color: T.ink, opacity: Math.min(1, Math.max(0, (e - 0.15) * 3)), transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
         </div>); })}
       {(q.recap as { text: string; sub?: string; at: any; color: string }[] | undefined)?.map((r, i, arr) => { const t = A(r.at, p.in + 6 + i * 8), e = E(f, t, 12), c = col(r.color), w = (IW - 24 * (arr.length - 1)) / arr.length; return f < t ? null : (
-        <div key={i} data-ov={`重點卡${i + 1}`} style={{ position: "absolute", left: X0 + i * (w + 24), top: rcTop, width: w, height: 168, boxSizing: "border-box", background: T.card, borderRadius: 28, boxShadow: `0 8px 0 ${c.side}`, border: `5px solid ${c.fill}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, opacity: O(f, t, 4), transform: `scale(${(0.7 + 0.3 * Math.min(1, e)).toFixed(3)})` }}>
-          <div style={{ ...zh, fontWeight: 900, fontSize: 50, color: c.text, lineHeight: 1.1 }}>{r.text}</div>
-          {r.sub ? <div style={{ ...zh, fontWeight: 800, fontSize: 34, color: T.ink }}>{r.sub}</div> : null}
+        <div key={i} data-ov={`重點卡${i + 1}`} style={{ position: "absolute", left: X0 + i * (w + 24), top: rcTop, width: w, height: 260, boxSizing: "border-box", background: T.card, borderRadius: 28, boxShadow: `0 8px 0 ${c.side}`, border: `5px solid ${c.fill}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, opacity: O(f, t, 4), transform: `scale(${(0.7 + 0.3 * Math.min(1, e)).toFixed(3)})` }}>
+          <div style={{ ...zh, fontWeight: 900, fontSize: Math.min(84, Math.floor((w - 24) / Math.max(...arr.map((x) => x.text.length)))), color: c.text, lineHeight: 1.1 }}>{r.text}</div>
+          {r.sub ? <div style={{ ...zh, fontWeight: 800, fontSize: 40, color: T.ink }}>{r.sub}</div> : null}
         </div>); })}
       {q.q && f < tQ ? <Ghost color={col("plum").fill} style={{ left: X0, top: rowsEnd, width: IW, height: 190, ...zh, fontWeight: 900, fontSize: 120, color: col("plum").fill }}>？</Ghost> : null}
       {q.q && f >= tQ ? (
