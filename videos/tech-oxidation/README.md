@@ -1,5 +1,5 @@
 # tech-oxidation：氧化與熱處理（科技透明圈系列 1 第 10 支；接清洗，下一支光阻塗佈與顯影）
-- 狀態（11/21）：研究、腳本、配音（新金手指）、對齊、建模、2D 卡完成，成片 `out/tech-oxidation.mp4`（70.9 秒、2127 幀、1080×1920、整片 −15.6 LUFS）、每 4.5 秒縮圖 `out/tech-oxidation-grid.jpg`（16 格，不進 git）；11/21 10:xx 渲完（9 段，每段約 8 分鐘）。
+- 狀態（11/21）：研究、腳本、配音（新金手指）、對齊、建模、2D 卡完成，成片 `out/tech-oxidation.mp4`（70.9 秒、2127 幀、1080×1920、整片 −15.6 LUFS）、每 4.5 秒縮圖 `out/tech-oxidation-grid.jpg`（16 格，不進 git）；11/21 09:57 渲完（9 段，每段約 8 分鐘）。
 - 片長：時間軸 70.9 秒（2127 幀，含 3.2 秒片尾卡 s12）。留言關鍵字「氧化」。
 - 產生：`python3 videos/tech-oxidation/genmodel.py`（自動先跑 genscript.py）→ model.json＋script.json。改稿只改 genscript.py；改畫面只改 genmodel.py／HudOx.tsx。
 - 2D 卡：`src/components/three/HudOx.tsx`（ox-hook／grow／dw／batch／dmg／act／diff／spike／laser／co／next），Hud.tsx 只加 import 與一行分派。
