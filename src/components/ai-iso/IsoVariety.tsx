@@ -276,8 +276,8 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
         <div style={{ width: 58, height: 58, borderRadius: 29, background: col("primary").fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 28, color: "#fff" }}>AI</div>
         <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: T.ink }}>{q.title ?? "和 AI 對話"}</div>
       </div>
-      <div data-ov="對話區" style={{ position: "absolute", left: 28, top: 104, width: IW - 56, height: 530, display: "flex", flexDirection: "column", gap: 20, overflow: "hidden" }}>
-        <div style={{ alignSelf: "flex-start", ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: 42, padding: "16px 28px", borderRadius: 32, borderBottomLeftRadius: 8, background: "#EEF2FC", color: T.ink, opacity: O(f, p.in, 4) }}>{q.hello ?? "嗨，今天想做什麼？"}</div>
+      <div data-ov="對話區" style={{ position: "absolute", left: 28, top: 104, width: IW - 56, height: 530, display: "flex", flexDirection: "column", gap: (q.big ? 40 : 20), overflow: "hidden" }}>
+        <div style={{ alignSelf: "flex-start", ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: (q.big ? 48 : 42), padding: (q.big ? "20px 32px" : "16px 28px"), borderRadius: 32, borderBottomLeftRadius: 8, background: "#EEF2FC", color: T.ink, opacity: O(f, p.in, 4) }}>{q.hello ?? "嗨，今天想做什麼？"}</div>
         {f < Math.min(...msgs.map(T0)) ? <div style={{ position: "absolute", left: (IW - 56 - 230) / 2, top: 190, width: 230, height: 230, borderRadius: 115, background: col("primary").fill, boxShadow: `0 10px 0 ${col("primary").side}, 0 0 0 ${Math.round(14 + 10 * Math.sin(f / 6))}px ${col("primary").soft}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 112, color: "#fff", opacity: 1 - O(f, Math.min(...msgs.map(T0)) - 6, 6) }}>AI</div> : null}
         {msgs.map((m, i) => {
           const t = T0(m), me = m.who === "me", e = E(f, t, 10);
@@ -290,7 +290,7 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
                   <div style={{ ...zh, fontWeight: 800, fontSize: 32, color: T.ink2, paddingRight: 18 }}>{m.attach.cap}</div>
                 </div>
               ) : (
-                <div style={{ ...zh, whiteSpace: "normal", maxWidth: 760, fontWeight: 800, fontSize: 48, lineHeight: 1.3, padding: "16px 28px", borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{ ...zh, whiteSpace: "normal", maxWidth: (q.big ? 900 : 760), fontWeight: 800, fontSize: (q.big ? 54 : 48), lineHeight: 1.3, padding: (q.big ? "20px 32px" : "16px 28px"), borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
                   {m.check ? <Ico n="check" size={46} color="#fff" fill={col("right").fill} /> : null}{m.text}
                 </div>
               )}
@@ -513,9 +513,9 @@ const KineticView: React.FC<VP> = ({ f, p, tone }) => {
 // ───────── T8 流程路徑 ─────────
 const FlowView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), nodes = q.nodes as { icon: IconName; label: string; sub: string; color: string; at: any }[];
-  const NW = nodes.length > 3 ? 214 : 280, NH = 420, gap = (IW - nodes.length * NW) / Math.max(1, nodes.length - 1), y0 = TOP + 40, cxs = nodes.map((_, i) => X0 + i * (NW + gap) + NW / 2);
+  const NW = nodes.length > 3 ? 214 : 280, NH = nodes.length > 3 ? 420 : 620, gap = (IW - nodes.length * NW) / Math.max(1, nodes.length - 1), y0 = TOP + 40, cxs = nodes.map((_, i) => X0 + i * (NW + gap) + NW / 2);
   const tN = nodes.map((n, i) => A(n.at, p.in + 3 + i * 6)), tLoop = A(q.loopAt, FAR), tChip = A(q.chipAt, FAR);
-  const midY = y0 + 150;
+  const midY = y0 + Math.round(NH * 0.36);
   // 光點：節點之間沿線移動（lightAt 兩個時間：到站出發）
   const legs = (q.lights ?? []) as { from: any; to: any }[];
   let dot = null as { x: number; y: number } | null;
@@ -532,12 +532,12 @@ const FlowView: React.FC<VP> = ({ f, p, tone }) => {
         {dot ? <circle cx={dot.x} cy={dot.y} r={16} fill={col("primary").fill} stroke="#fff" strokeWidth={5} /> : null}
         {ld >= 0 ? (() => { const pts = [[cxs[2], y0 + NH + 6], [cxs[2], y0 + NH + 190], [cxs[1], y0 + NH + 190], [cxs[1], y0 + NH + 14]]; const segs = [144, cxs[2] - cxs[1], 136], tot = segs[0] + segs[1] + segs[2]; let d = ld * tot, i = 0; while (i < 2 && d > segs[i]) { d -= segs[i]; i++; } const a = pts[i], b = pts[i + 1]; return <circle cx={lerp(a[0], b[0], d / segs[i])} cy={lerp(a[1], b[1], d / segs[i])} r={13} fill={col("wrong").fill} stroke="#fff" strokeWidth={4} />; })() : null}
       </svg>
-      {nodes.map((n, i) => f < tN[i] ? <Ghost key={`g${i}`} ov={undefined} color={col(n.color).fill} style={{ left: cxs[i] - NW / 2, top: y0, width: NW, height: NH, ...en, fontWeight: 900, fontSize: 120, color: col(n.color).fill }}>{i + 1}</Ghost> : null)}
+      {nodes.map((n, i) => f < tN[i] ? <div key={`g${i}`} style={{ position: "absolute", left: cxs[i] - NW / 2, top: y0, width: NW, height: NH, boxSizing: "border-box", borderRadius: 36, border: `6px dashed ${col(n.color).fill}`, background: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 150, color: col(n.color).fill, opacity: 0.55 }}>{i + 1}</div> : null)}
       {nodes.map((n, i) => { if (f < tN[i]) return null; const e = E(f, tN[i], 14), c = col(n.color), lit = f >= tN[i] && f < tN[i] + 40; return (
         <div key={i} data-ov={`節點${i + 1}`} style={{ position: "absolute", left: cxs[i] - NW / 2, top: y0 + Math.round((1 - e) * 90 + 7 * Math.sin(f / 12 + i * 2)), width: NW, height: NH, opacity: O(f, tN[i], 4), transform: `scale(${(lit ? 1 + 0.05 * Math.sin((f - tN[i]) / 4) : 1).toFixed(3)})`, background: T.card, borderRadius: 36, boxShadow: `0 10px 0 ${c.side}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, padding: "0 12px", boxSizing: "border-box" }}>
-          <div style={{ width: 190, height: 190, borderRadius: 48, background: c.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><Ico n={n.icon} size={130} fill={c.soft} /></div>
-          <div style={{ ...zh, fontWeight: 900, fontSize: nodes.length > 3 ? 44 : 52, color: T.ink }}>{n.label}</div>
-          <div style={{ ...zh, fontWeight: 700, fontSize: nodes.length > 3 ? 28 : 30, color: T.ink2 }}>{n.sub}</div>
+          <div style={{ width: NH > 500 ? 240 : 190, height: NH > 500 ? 240 : 190, borderRadius: 48, background: c.soft, display: "flex", alignItems: "center", justifyContent: "center" }}><Ico n={n.icon} size={NH > 500 ? 168 : 130} fill={c.soft} /></div>
+          <div style={{ ...zh, fontWeight: 900, fontSize: nodes.length > 3 ? 44 : 60, color: T.ink }}>{n.label}</div>
+          <div style={{ ...zh, fontWeight: 700, fontSize: nodes.length > 3 ? 28 : 34, color: T.ink2 }}>{n.sub}</div>
           <div style={{ position: "absolute", left: -16, top: -16, width: 56, height: 56, borderRadius: 28, background: c.fill, color: c.on, ...en, fontWeight: 900, fontSize: 34, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 4px 0 ${c.side}` }}>{i + 1}</div>
         </div>); })}
       {q.chip && f >= tChip ? <div data-ov="迴圈標籤" style={{ position: "absolute", left: (q.chipCenter ? X0 + IW / 2 : (cxs[1] + cxs[2]) / 2) - 400, width: 800, top: y0 + NH + (q.chipTop ?? 230), display: "flex", justifyContent: "center", ...bounce(f, tChip) }}><Chip text={q.chip} bg={col(q.chipColor ?? "wrong").fill} fg="#fff" px={44} /></div> : null}

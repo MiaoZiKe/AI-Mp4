@@ -240,7 +240,7 @@ const VolumeView: React.FC<VP> = ({ f, p }) => {
 
 // ───────── lostmid：一長排方塊，開頭結尾亮、中間暗 ─────────
 const LostMidView: React.FC<VP> = ({ f, p }) => {
-  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), N = q.n as number, tG = A(q.growAt, p.in + 4), tW = A(q.wobbleAt, FAR), tM = A(q.midAt, FAR), BW = 56, GAP = (IW - N * BW) / (N - 1), by = TOP + 330;
+  const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), N = q.n as number, tG = A(q.growAt, p.in + 4), tW = A(q.wobbleAt, FAR), tM = A(q.midAt, FAR), BW = 56, GAP = (IW - N * BW) / (N - 1), by = TOP + 290, BH = 230;
   const cnt = Math.round(lerp(q.n0 ?? 5, N, E(f, tG - 6, 34))), amp = f >= tW ? 12 * E(f, tW, 20) : 0, mid0 = Math.floor(N * 0.3), mid1 = Math.ceil(N * 0.7), pm = E(f, tM, 14);
   const cxs = Array.from({ length: N }, (_, i) => X0 + i * (BW + GAP) + BW / 2), curve = cxs.map((x, i) => { const u = i / (N - 1), dip = 4 * u * (1 - u); return [x, TOP + 90 + dip * 170 * pm + amp * 0.9 * Math.sin(f / 3 + i * 1.7)] as [number, number]; });
   const path = curve.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
@@ -248,16 +248,16 @@ const LostMidView: React.FC<VP> = ({ f, p }) => {
     <>
       <Full>
         {f >= tG ? <path d={path} fill="none" stroke={col(f >= tM ? "wrong" : "primary").fill} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 10)} /> : null}
-        {f >= tM ? <><rect x={cxs[mid0] - BW / 2 - 12} y={by - 20} width={cxs[mid1 - 1] - cxs[mid0] + BW + 24} height={200} rx={26} fill="none" stroke={col("wrong").fill} strokeWidth={8} strokeDasharray="22 14" opacity={pm} /></> : null}
+        {f >= tM ? <><rect x={cxs[mid0] - BW / 2 - 12} y={by - 20} width={cxs[mid1 - 1] - cxs[mid0] + BW + 24} height={BH + 40} rx={26} fill="none" stroke={col("wrong").fill} strokeWidth={8} strokeDasharray="22 14" opacity={pm} /></> : null}
         {Array.from({ length: N }, (_, i) => {
           const on = i < cnt, isMid = i >= mid0 && i < mid1, dim = f >= tM && isMid, c = col("primary"), jig = on ? amp * Math.sin(f / 2.6 + i * 1.9) : 0;
-          return <g key={i} opacity={on ? 1 : 0} transform={`translate(0,${jig.toFixed(1)}) rotate(${(f >= tW ? (amp / 12) * 6 * Math.sin(f / 3.1 + i) : 0).toFixed(1)} ${cxs[i]} ${by + 80})`}><rect x={cxs[i] - BW / 2} y={by + 8} width={BW} height={160} rx={14} fill={dim ? T.cardSide : c.side} /><rect x={cxs[i] - BW / 2} y={by} width={BW} height={160} rx={14} fill={dim ? T.line : c.fill} stroke={dim ? T.cardSide : "none"} strokeWidth={3} /></g>;
+          return <g key={i} opacity={on ? 1 : 0} transform={`translate(0,${jig.toFixed(1)}) rotate(${(f >= tW ? (amp / 12) * 6 * Math.sin(f / 3.1 + i) : 0).toFixed(1)} ${cxs[i]} ${by + BH / 2})`}><rect x={cxs[i] - BW / 2} y={by + 8} width={BW} height={BH} rx={14} fill={dim ? T.cardSide : c.side} /><rect x={cxs[i] - BW / 2} y={by} width={BW} height={BH} rx={14} fill={dim ? T.line : c.fill} stroke={dim ? T.cardSide : "none"} strokeWidth={3} /></g>;
         })}
-        <path d={`M${X0} ${by + 230} H${X0 + IW - 20} M${X0 + IW - 48} ${by + 206} L${X0 + IW - 18} ${by + 230} L${X0 + IW - 48} ${by + 254}`} fill="none" stroke={T.ink3} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 8)} />
+        <path d={`M${X0} ${by + BH + 70} H${X0 + IW - 20} M${X0 + IW - 48} ${by + BH + 46} L${X0 + IW - 18} ${by + BH + 70} L${X0 + IW - 48} ${by + BH + 94}`} fill="none" stroke={T.ink3} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 8)} />
       </Full>
-      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: by + 280, ...bounce(f, tG) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
-      {f >= tW ? <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: by + 280, ...bounce(f, tW) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div> : null}
-      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: by + 400, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
+      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: by + BH + 120, ...bounce(f, tG) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
+      {f >= tW ? <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: by + BH + 120, ...bounce(f, tW) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div> : null}
+      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: by + BH + 240, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
       {f >= tM ? <div data-ov="開頭標籤" style={{ position: "absolute", left: X0, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>開頭 表現好</div> : null}
       {f >= tM ? <div data-ov="結尾標籤" style={{ position: "absolute", left: X0 + IW - 270, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>結尾 表現好</div> : null}
     </>
