@@ -485,7 +485,7 @@ const LensView: React.FC<VP> = ({ f, p, tone }) => {
 const KineticView: React.FC<VP> = ({ f, p, tone }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), rows = (q.rows ?? []) as { big: string; unit: string; at: any; color: string; size?: number; usize?: number }[];
   const RP = (r: { size?: number }) => (r.size ? Math.round(r.size * 1.04) + 10 : 270);
-  const rowTop = (i: number) => TOP + 20 + rows.slice(0, i).reduce((a, r) => a + RP(r), 0), rowsEnd = rowTop(rows.length);
+  const rcOff = q.recap ? 204 : 0, rowTop = (i: number) => TOP + 20 + rows.slice(0, i).reduce((a, r) => a + RP(r), 0) + (i >= 1 ? rcOff : 0), rowsEnd = rowTop(rows.length), rcTop = TOP + 20 + RP(rows[0]) + 14;
   const tQ = A(q.q?.at, FAR), eq = E(f, tQ, 16);
   return (
     <>
@@ -493,6 +493,11 @@ const KineticView: React.FC<VP> = ({ f, p, tone }) => {
         <div key={i} data-ov={`大字${i + 1}`} style={{ position: "absolute", left: X0, top: rowTop(i), width: IW, height: RP(r) - 30, display: "flex", alignItems: "center", gap: 34, opacity: O(f, t, 4) }}>
           <div style={{ perspective: 900, opacity: Math.min(1, e * 3) }}><div style={{ ...zh, fontWeight: 900, fontSize: r.size ?? 330, lineHeight: 1, color: c.fill, textShadow: `0 10px 0 ${c.side}`, transform: `translateY(${(6 * Math.sin(f / 10 + i * 2)).toFixed(1)}px) rotate(${(1.6 * Math.sin(f / 17 + i)).toFixed(2)}deg) rotateX(${((1 - e) * -90).toFixed(1)}deg) scale(${(1 + 0.06 * Math.sin(Math.min(1, e) * 3.14)).toFixed(3)})`, transformOrigin: "50% 100%" }}>{r.big}</div></div>
           <div style={{ ...zh, fontWeight: 900, fontSize: r.usize ?? 120, color: T.ink, opacity: Math.min(1, Math.max(0, (e - 0.15) * 3)), transform: `translateX(${Math.round((1 - e) * 80)}px)` }}>{r.unit}</div>
+        </div>); })}
+      {(q.recap as { text: string; sub?: string; at: any; color: string }[] | undefined)?.map((r, i, arr) => { const t = A(r.at, p.in + 6 + i * 8), e = E(f, t, 12), c = col(r.color), w = (IW - 24 * (arr.length - 1)) / arr.length; return f < t ? null : (
+        <div key={i} data-ov={`重點卡${i + 1}`} style={{ position: "absolute", left: X0 + i * (w + 24), top: rcTop, width: w, height: 190, boxSizing: "border-box", background: T.card, borderRadius: 28, boxShadow: `0 8px 0 ${c.side}`, border: `5px solid ${c.fill}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, opacity: O(f, t, 4), transform: `translateY(${Math.round((1 - e) * 70)}px)` }}>
+          <div style={{ ...zh, fontWeight: 900, fontSize: 52, color: c.text, lineHeight: 1.1 }}>{r.text}</div>
+          {r.sub ? <div style={{ ...zh, fontWeight: 800, fontSize: 34, color: T.ink }}>{r.sub}</div> : null}
         </div>); })}
       {q.q && f < tQ ? <Ghost color={col("plum").fill} style={{ left: X0, top: rowsEnd, width: IW, height: 190, ...zh, fontWeight: 900, fontSize: 120, color: col("plum").fill }}>？</Ghost> : null}
       {q.q && f >= tQ ? (

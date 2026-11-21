@@ -17,4 +17,5 @@ apply("caffaine-new-chat", {
     "stamp": {"text": "規定＋主題", "at": "k2+22", "color": "right"}},
   "s07": {"view": "carry", "tone": "principle", "left": {"label": "舊對話", "n": 9}, "right": {"label": "新對話"}, "note": {"at": "k1"}, "okAt": "k2", "ticks": {"at": "k3", "n": 4, "text": "守住"}},
 }, pause={"s07": 0.6})
-apply("caffaine-new-chat", {"s08": {"view": "kinetic", "tone": "claim", "rows": [{"big": "不是變笨", "unit": "", "at": "start-10", "color": "primary", "size": 210, "usize": 100}, {"big": "是越長越不穩", "unit": "", "at": "k2", "color": "wrong", "size": 130, "usize": 100}, {"big": "留言「交接」", "unit": "", "at": "k3", "color": "right", "size": 130, "usize": 100}]}})
+apply("caffaine-new-chat", {"s08": {"view": "kinetic", "tone": "claim", "rows": [{"big": "不是變笨", "unit": "", "at": "start-10", "color": "primary", "size": 190, "usize": 100}, {"big": "是越長越不穩", "unit": "", "at": "k2", "color": "wrong", "size": 134, "usize": 100}, {"big": "留言「交接」", "unit": "", "at": "k3", "color": "right", "size": 134, "usize": 100}],
+  "recap": [{"text": "九萬字", "sub": "整段重讀", "at": "start+8", "color": "wrong"}, {"text": "三百字", "sub": "交接摘要", "at": "k2", "color": "right"}, {"text": "四次都守住", "sub": "實測", "at": "k3", "color": "primary"}]}})

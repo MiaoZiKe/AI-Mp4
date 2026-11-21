@@ -16,5 +16,6 @@ apply("caffaine-rules-file", {
     "readAt": "k4", "chip": {"text": "貼一次，每次新對話都先讀", "at": "k4+14", "color": "right"}},
   "s05": {"view": "scoreboard", "tone": "principle", "runsAt": "k1", "note": "實測：同一句請求各跑 5 次，滿分 5 分",
     "boards": [{"label": "沒規則", "color": "wrong", "value": 1.6, "max": 5, "dec": True, "runs": [1, 2, 1, 2, 2], "countAt": "k2"}, {"label": "有規則", "color": "right", "value": 5, "max": 5, "dec": False, "runs": [5, 5, 5, 5, 5], "countAt": "k3"}]},
-  "s06": {"view": "kinetic", "tone": "principle", "rows": [{"big": "不是變聰明", "unit": "", "at": "start-10", "color": "wrong", "size": 150, "usize": 90}, {"big": "是規矩寫成檔", "unit": "", "at": "k2", "color": "right", "size": 130, "usize": 90}, {"big": "每次先讀過", "unit": "", "at": "k3", "color": "primary", "size": 150, "usize": 90}]},
+  "s06": {"view": "kinetic", "tone": "principle", "rows": [{"big": "不是變聰明", "unit": "", "at": "start-10", "color": "wrong", "size": 170, "usize": 90}, {"big": "是規矩寫成檔", "unit": "", "at": "k2", "color": "right", "size": 138, "usize": 90}, {"big": "每次先讀過", "unit": "", "at": "k3", "color": "primary", "size": 150, "usize": 90}],
+    "recap": [{"text": "沒規則", "sub": "平均 1.6 分", "at": "start+8", "color": "wrong"}, {"text": "有規則", "sub": "次次滿分", "at": "k2", "color": "right"}, {"text": "寫一次", "sub": "每次先讀", "at": "k3", "color": "primary"}]},
 }, pause={"s03": 0.7, "s05": 0.5})
