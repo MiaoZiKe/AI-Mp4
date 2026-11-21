@@ -1,13 +1,14 @@
 {
   "_meta": { "desc": "文件／說法引句：上方標題＋左側情境照＋右側報紙引文（大字數字或關鍵詞）＋狀態標籤", "cues": 4, "beat": "mechanism", "kw": ["headMark", "quoteBig"],
-    "cueHint": "c1 標題關鍵詞｜c2 誰說的（引文出處名）｜c3 引文大字念出的詞｜c4 標籤前的收尾詞" },
+    "cueHint": "c1 標題關鍵詞｜c2 誰說的（引文出處名）｜c3 引文大字念出的詞｜c4 標籤前的收尾詞",
+    "optional": "選填（2026/11/21，沒填就是原本的樣子）：photoPx、noteAt、quoteCount（true＝引文大字的數字從 0 跳到定值）、photoSteps（簡圖分段畫出的時間點陣列，每個點擦出下一段；有它就不用 photoEndAt）、photoStepP（每段畫到的比例 0–1）、photoDir（right｜down）、photoColor（true＝彩色資料圖，不蓋暗色）" },
   "props": {
     "panel": "claim",
     "head": { "text": "{{head}}", "mark": "{{headMark}}", "at": "start-16", "markAt": "c1+10" },
-    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "date": "{{photoDate}}", "size": "{{photoPx?}}", "at": "start-22", "dateAt": "c1+4" },
+    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "date": "{{photoDate}}", "size": "{{photoPx?}}", "at": "start-22", "dateAt": "c1+4", "stepAts": "{{photoSteps?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" },
     "quote": {
       "by": "{{quoteBy}}", "byAt": "c2-4", "pre": "{{quotePre}}", "big": "{{quoteBig}}", "post": "{{quotePost|}}",
-      "at": "c2-6", "bigAt": "c3",
+      "at": "c2-6", "bigAt": "c3", "count": "{{quoteCount?}}",
       "masthead": { "name": "{{mastName}}", "date": "{{mastDate}}" }
     },
     "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+6" },

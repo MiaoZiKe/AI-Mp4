@@ -22,5 +22,11 @@
 6. **pending**（還不知道，4 cue：日期／左列事件／右列疑問／還不知道）：photoName, photoCaption, leftRow, rightTitle, rightField(（未公布）), rightRow, tagText(截至 asOf 尚未確定), dateline, lt(還不知道)
 7. **ask**（最後內容幕，4 cue：問句前半／問句後半／下一集題目／留言詞）：headLine1, headLine2, headMark1, headMark2, comment 由 endCard 帶入, photoName, nextTitle, dateline, lt(提問)。之後 build 自動接片尾卡（3.6 秒）
 
+## 選填欄位（2026/11/21，沒填就是原本的樣子；各範本 `_meta.optional` 有全文）
+- 有照片的鏡型（hook、claim、versus、pending、ask）：`photoSteps`（陣列，簡圖分段畫出的時間點，每個點擦出下一段；`events.mjs` 會算進事件）、`photoStepP`（每段畫到的比例 0–1，個數＝photoSteps＋1）、`photoDir`（right｜down）、`photoColor: true`（彩色資料圖不蓋暗色；`assets.json` 的 `photos.<名稱>.color: true` 讓 make-photos 保留彩色）。
+- versus `leftCount`／`rightCount`、claim `quoteCount`：大字裡的數字從 0 跳到定值。versus 另有 `leftBigAt` 等時間欄位（兩欄同一幀出現用）。
+- ask `nextAt`／`photoAt`／`titleAt`／`frameAt`：結論卡提早出、停 ≥1.5 秒。
+- 範例：`videos/liguligu-hike2022/plan.json`（第 3 版）。
+
 ## 寫稿提醒（審查「下次避免」）
 每鏡要有主素材（照片、文件框、圖表）＋一個對上關鍵詞的細節；不用通用照片（會議桌、鐵塔）；一支一題；原文沒讀就不當主論點；反駁前先在畫面放出誰說過那句。
