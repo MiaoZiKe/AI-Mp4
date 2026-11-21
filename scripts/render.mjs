@@ -37,3 +37,12 @@ if (V2MIX) {
   const r = spawnSync("node", [path.join(ROOT, "scripts", "mix.mjs"), slug], { stdio: "inherit" });
   if (r.status !== 0) { console.error("✖ 混音失敗"); process.exit(1); }
 }
+// 音訊不斷續規則（tw-rotation docs/marketing/channels/video_logic.md「〇」，2026-11-21 Andy：「全部影片 前面聲音斷斷續續 需要避免後續發生」）：
+// 成片一律跑 audio-check（數位靜音 ≥30ms／斷音／死寂起音），有任何一處就 exit 1 擋下、不准交件。AUDIT 量測片與 AUDIO_CHECK=0 例外。
+if (!script.audit && process.env.AUDIO_CHECK !== "0") {
+  const finalMp4 = path.join(ROOT, "out", `${slug}.mp4`);
+  if (fs.existsSync(finalMp4)) {
+    const c = spawnSync("python3", [path.join(ROOT, "scripts", "dossier", "audio-check.py"), slug, "--file", finalMp4], { stdio: "inherit" });
+    if (c.status !== 0) { console.error(`✖ out/${slug}.mp4 沒通過音訊檢查：先修（python3 scripts/three/audio-repair.py out/${slug}.mp4 -o out/${slug}.mp4 --slug ${slug}，或重跑 align），不准交件`); process.exit(1); }
+  }
+}

@@ -141,6 +141,7 @@ function speechBounds(file, total) {
  *  - 前一幕 durationFrames 延伸到本幕轉場結束（重疊 TRANS 幀）
  *  - 限制：TRANS/30 ≤ TAIL + LEAD + 殘留靜音 − 0.08 ⇔ 相鄰人聲間隔 ≥ 0.08 秒（validate 檢查）
  */
+const LEAD_IN = Number(process.env.ALIGN_LEAD_IN ?? 0.3);
 function buildV2(cs) {
   const out = [];
   let prevEnd = null, prevGap = GAP;
@@ -159,10 +160,11 @@ function buildV2(cs) {
     const sc = script.scenes.find((x) => x.id === c.id);
     const pause = typeof sc?.pauseAfter === "number" ? sc.pauseAfter : 0;
     // P0-4：換幕人聲間隔＝上一幕的 pauseAfter（有設定時，是「整個間隔」秒數），否則預設 GAP（0.15 秒）
-    const audioFrame = i === 0 ? 0 : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
+    // 音訊不斷續規則（2026-11-21）：首字不早於 0.3 秒（片頭 0.3 秒淡入，播放器也常吃掉最前面的聲音）
+    const audioFrame = i === 0 ? Math.max(0, Math.ceil((LEAD_IN - b.head) * FPS)) : Math.max(0, Math.round((prevEnd + prevGap - b.head) * FPS));
     const vs = audioFrame / FPS + b.head, ve = audioFrame / FPS + b.tail;
     // v3 整篇模式：下一幕從「沒有取整的」收聲時間往後排，取整誤差（≤ 半幀）不會一幕一幕累積
-    prevEnd = V3 && c.take ? (i === 0 ? b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
+    prevEnd = V3 && c.take ? (i === 0 ? audioFrame / FPS + b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
     prevGap = pause > 0 ? pause : GAP;
     if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
@@ -245,6 +247,10 @@ function buildVoiceStem(tl) {
   const p2 = spawnSync("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", `${graph},${ln2},aresample=48000`, "-ac", "1", "-c:a", "pcm_s16le", out], { encoding: "utf8" });
   if (p2.status !== 0) { console.warn(`⚠ voice.wav 失敗：${(p2.stderr ?? "").slice(0, 200)}`); return null; }
   console.log(`✔ 人聲軌 public/${rel}（整條 loudnorm：輸入 ${j.input_i} LUFS → −16）`);
+  // 音訊不斷續規則（tw-rotation docs/marketing/channels/video_logic.md「〇」，2026-11-21）：adelay／amix／apad 在幕與幕之間補的是純 0，
+  // 改用該段錄音自己的底噪填（15ms 等功率交叉淡化）＋片頭 0.3 秒淡入＋−90 dBFS dither，再跑 audio-check，沒過就擋下（exit 1）
+  const fix = spawnSync("python3", [path.join(ROOT, "scripts", "three", "audio-repair.py"), out, "-o", out, "--stem"], { stdio: "inherit" });
+  if (fix.status !== 0) { console.error(`✖ public/${rel} 沒通過音訊檢查（數位靜音／斷音／死寂起音），不准往下渲染`); process.exit(1); }
   return { file: rel, lufsIn: Number(j.input_i), lufs: -16, sec: Number(dur) };
 }
 

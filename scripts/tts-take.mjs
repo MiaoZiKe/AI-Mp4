@@ -52,7 +52,7 @@ if (styled && !STYLE) { console.error("script.json 缺 voice.profile 或 voice.s
 const prompt = (text) => STYLE_TEXT ? (STYLE_MODE === "prefix" ? `${STYLE_TEXT}\n${text}` : STYLE_MODE === "profile" ? `# AUDIO PROFILE: 科技透明圈旁白\n## DIRECTOR'S NOTES\n${STYLE_TEXT.replace(/\s*直接說：\s*$/, "")}\n\n#### TRANSCRIPT\n${text}` : text) : (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
 // languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
 let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
-const SR = 24000, KEEP = 0.04, FADE = 0.004, VOICE_DB = -40;
+const SR = 24000, KEEP = 0.04, FADE = 0.004, FADE_IN = 0.02, VOICE_DB = -40; // FADE_IN：每段切出後 20ms 淡入（音訊不斷續規則，2026-11-21）
 
 /** 有旁白的幕；同一個 para 接成同一行，換段空一行 */
 let spoken = script.scenes.map((s, i) => ({ n: i + 1, id: s.id, text: (s.tts ?? s.narration ?? "").trim(), para: s.para ?? i })).filter((x) => x.text);
@@ -77,7 +77,8 @@ async function synth(text, purpose) {
       const buf = Buffer.from(part.inlineData.data, "base64");
       if (buf.subarray(0, 4).toString() === "RIFF") return readWav(buf);
       const rate = Number(/rate=(\d+)/.exec(part.inlineData.mimeType ?? "")?.[1] ?? SR);
-      return { rate, pcm: new Int16Array(buf.buffer, buf.byteOffset, buf.length >> 1) };
+      const pcmBytes = stripC2PA(buf); // 2026-11-21：raw PCM 尾端也可能夾 C2PA，不能整包當聲音
+      return { rate, pcm: new Int16Array(pcmBytes.buffer.slice(pcmBytes.byteOffset, pcmBytes.byteOffset + (pcmBytes.length & ~1))) };
     }
     const t = (await r.text()).replace(/\s+/g, " ");
     logReq({ ...row, error: t.slice(0, 300) });
@@ -88,12 +89,21 @@ async function synth(text, purpose) {
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;
   }
 }
+/** 音訊不斷續規則（tw-rotation docs/marketing/channels/video_logic.md「〇」）：Gemini 3.x 的 WAV 會在 data 後面（或 data 長度欄位寫錯時「在 data 裡面」）
+ *  夾 C2PA 憑證（RIFF chunk「C2PA」＋JUMBF「jumb」盒）。當成 PCM 播出來是旁白最後 0.16 秒 −8 dBFS 雜訊 → 從第一個 C2PA 標記起整段切掉。 */
+function stripC2PA(d) {
+  for (let k = d.indexOf("C2PA"); k >= 0; k = d.indexOf("C2PA", k + 1)) {
+    if (d.subarray(k + 4, k + 24).indexOf("jumb") >= 0) { console.warn(`⚠ 音檔第 ${k} byte 起夾著 C2PA 附加資料（${d.length - k} bytes），已剪掉，不當成聲音`); return d.subarray(0, k & ~1); }
+  }
+  return d;
+}
 function readWav(buf) {
   let p = 12, rate = SR;
   while (p + 8 <= buf.length) {
     const id = buf.subarray(p, p + 4).toString(), n = buf.readUInt32LE(p + 4);
     if (id === "fmt ") rate = buf.readUInt32LE(p + 12);
-    if (id === "data") { const d = buf.subarray(p + 8, Math.min(buf.length, p + 8 + n)); return { rate, pcm: new Int16Array(d.buffer.slice(d.byteOffset, d.byteOffset + (d.length & ~1))) }; }
+    // 只取 data 區塊本身；長度欄位超出檔案（串流寫成 0xFFFFFFFF）時，再把裡面夾到的 C2PA 剪掉
+    if (id === "data") { const d = stripC2PA(buf.subarray(p + 8, Math.min(buf.length, p + 8 + n))); return { rate, pcm: new Int16Array(d.buffer.slice(d.byteOffset, d.byteOffset + (d.length & ~1))) }; }
     p += 8 + n + (n & 1);
   }
   throw new Error("WAV 沒有 data 區塊");
@@ -174,7 +184,7 @@ for (let k = 0; k < spoken.length - 1; k++) {
 }
 cuts.push(total);
 
-// ── 每幕：說話區間（−40 dBFS）頭尾各留 40ms、4ms 淡入淡出；不逐段 loudnorm（align 整條做） ──
+// ── 每幕：說話區間（−40 dBFS）頭尾各留 40ms、20ms 淡入、4ms 淡出；不逐段 loudnorm（align 整條做） ──
 const entries = [];
 for (const [k, x] of spoken.entries()) {
   const a = F(cuts[k]), b = Math.min(db.length, F(cuts[k + 1]) + (k === spoken.length - 1 ? 1 : 0));
@@ -184,8 +194,9 @@ for (const [k, x] of spoken.entries()) {
   x.vs = vs / 100; x.ve = (ve + 1) / 100;
   const t0 = Math.max(cuts[k], x.vs - KEEP), t1 = Math.min(cuts[k + 1], x.ve + KEEP);
   const seg = pcm.slice(Math.round(t0 * rate), Math.round(t1 * rate));
-  const nf = Math.min(Math.round(FADE * rate), seg.length >> 1);
-  for (let i = 0; i < nf; i++) { seg[i] = Math.round(seg[i] * (i / nf)); seg[seg.length - 1 - i] = Math.round(seg[seg.length - 1 - i] * (i / nf)); }
+  const nf = Math.min(Math.round(FADE * rate), seg.length >> 1), ni = Math.min(Math.round(FADE_IN * rate), seg.length >> 1);
+  for (let i = 0; i < ni; i++) seg[i] = Math.round(seg[i] * Math.sin((Math.PI / 2) * (i / ni)));
+  for (let i = 0; i < nf; i++) seg[seg.length - 1 - i] = Math.round(seg[seg.length - 1 - i] * (i / nf));
   const file = `audio/${slug}/${String(x.n).padStart(2, "0")}-${x.id}.wav`;
   writeWav(path.join(ROOT, "public", file), seg, rate);
   const sc = x.units.map((u) => u.score);

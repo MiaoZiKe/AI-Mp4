@@ -12,3 +12,5 @@ MS=$(python3 -c "print(int(round($AT*1000)))")
 G=${G:-22}
 ffmpeg -loglevel error -y -i "$SRC" -i "$STING" -filter_complex "[0:a]aresample=48000,apad=whole_dur=$DUR,volume='if(lt(t,$FADE),1,max(0.3,1-(t-$FADE)/0.25*0.7))':eval=frame[bg];[1:a]adelay=$MS|$MS,volume=$G,alimiter=limit=0.86:attack=20:release=${LR:-200}:level=disabled:latency=1[s];[bg][s]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.85:attack=3:release=60:level=disabled[o]" -map "[o]" -ar 48000 -c:a pcm_s16le "$OUT"
 echo "片尾段："; ffmpeg -nostats -ss $AT -i "$OUT" -af ebur128=peak=true -f null - 2>&1 | grep -E "^\s+(I:|Peak:)"
+# 音訊不斷續規則（2026-11-21）：混完自動跑 audio-check（片尾卡開始之後不查），沒過就 exit 1 擋下；AUDIO_CHECK=0 可關
+if [ "${AUDIO_CHECK:-1}" != "0" ]; then python3 "$(dirname "$0")/../dossier/audio-check.py" --file "$(realpath "$OUT")" --end "$AT"; fi
