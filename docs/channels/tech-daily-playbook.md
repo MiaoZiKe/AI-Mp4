@@ -196,6 +196,17 @@ Andy 11-15 傳了 8 格參考圖：「結尾的 LOGO 動畫使用這個，並且
 - 自動找的空位（`placeLabels` 的 freeSpot）會為了靠近零件蓋到主素材外圈；蓋到光束、運作中的零件或讓引線穿過別張卡時，在 script.json 的 `labels[]` 加 `xy: [中心x, 中心y]`（畫面座標）手動指定。改一張會讓之後同時出現的標籤重新找位置，改完要把同一幕其他標籤也看一遍（量測檢測在 genscript.py、離子佈植在 genmodel.py 的 `lab(..., xy=[...])`）。
 - 交件前抽每幕標籤最多的那一格看：框與框之間留白、框不壓光束與運作中的零件、引線不穿框。
 
+### 交件前四道驗證（固定規則，2026/11/22）
+
+Andy 11/22（全頻道）：「請你務必確實檢查影片是否丟問題 我就用的問題非常大 為何沒有安排驗證 請重做」。規則全文在 tw-rotation `docs/marketing/channels/video_logic.md`「交件前四道驗證」，科技頻道帳本是 tw-rotation `docs/marketing/channels/tc/lessons.md` 第 72 條。
+
+- 工具：`python3 scripts/verify4.py <成片.mp4> <slug>`，結果寫 `out/<slug>/verify4/`（report.md、report.json、sheet.png 每 1 秒一格拼圖、flagged/ 要親眼看的格）。四道都過才結束碼 0。
+- 第 1 道：句中停頓 0 處。silencedetect（−40 dB、≥0.25 秒）找停頓，用 timeline.json 的逐字時間分成「換幕／句號後／句中（逗號）／句中（無標點）／句中（字內）」；逗號處也算句中。
+- 第 2 道：聽感。片尾卡之前的成品音訊送 Gemini 音訊理解（gemini-3.8-flash，忙線 429／503 才換 3.7／3.5 flash），逐句回報斷續、卡頓、字被切、停頓不自然並附時間點；再做 ASR 聽寫，跟念稿（script.json 的 tts）逐字比對。任一處被標＝不合格。每支最多 2 次有回內容的請求，結果依音訊雜湊快取（`--refresh` 才重送）；不送任何 TTS 請求。
+- 第 3 道：全片停頓數 ≤ 句數＋2，且 `scripts/dossier/audio-check.py` 0 處。
+- 第 4 道：畫面。程式標出「>1 秒幾乎沒變化而且大片空白」「下半部（y960 到字幕區上緣）空洞」「小字」「layout-check 錯誤」的格，這些格加上隨機 5 格都要用眼睛看過。
+- 交件時附四項結果；CEO 自己再跑一次 verify4.py、看 sheet.png 與 flagged/，之後才給 Andy。四項沒有全過不准排程。
+
 ## 十、敘述邏輯（照哩股哩股，科技頻道版）
 
 Andy 2026/11/16：「影片內容需要按照哩股哩股的敘述……若不知道請去問他需要注意什麼」。來源：tw-rotation `docs/marketing/channels/video_logic.md`＋主控 11-16 回覆（哩股哩股最新版在分支 `claude/nifty-goodall-syke8a` 的 `docs/channels/liguligu-daily-playbook.md`、`liguligu.md`、範本 `videos/liguligu-jensen-pro/`）。
