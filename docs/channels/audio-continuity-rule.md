@@ -8,3 +8,4 @@
 6. 交件前必跑 `python3 scripts/dossier/audio-check.py <slug> [--file 成品] [--end 片尾卡秒]`，exit 1 不交：數位靜音 ≥30ms、斷音（≥ −40 dBFS 在 10ms 內掉 ≥40 dB）、死寂起音（≤ −85 dBFS 在 10ms 內升 ≥35 dB）、wav 夾 C2PA。
 7. 工具：哩股哩股 `scripts/dossier/`（insert-pauses.py、voice-take.mjs、voice-prep.py、mix-final.sh、make.mjs 已接）；其他頻道自己插靜音或接段的腳本照 2–5 條改，`scripts/tts-take.mjs` 原本就只取 data 區塊。
 8. 已發的片不重做；證據與量測表：`docs/channels/audio-dropout-report.md`。
+9. 2026/11/22 修訂（取代「數字前後插停頓」）：不准在句中插停頓（不用 `insert-pauses.py --nums`／`--sentence`），只允許換幕處 `--scene`（0.6–0.8 秒、最多 6 處）；語速靠念稿字數（≤190 字）與 TTS 提示控制。交件前除了 audio-check 還要過 `pause-density.py`（句內不得有 ≥0.25 秒停頓、總數 ≤ 句數＋2）、`listen-check.mjs`（Gemini 聽感，CER ≤3%）、`frame-check.py`；完整規則見 liguligu-daily-playbook.md「交件四關」。

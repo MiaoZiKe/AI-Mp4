@@ -23,7 +23,7 @@ SMAP = {a.split("=")[0]: float(a.split("=")[1]) for a in opt("--scene-map", "").
 XF = float(opt("--xfade", 15)) / 1000; LEAD = float(opt("--lead", 0.3)); FORCE = "--force-cut" in args
 if FORCE: args.remove("--force-cut")
 MINQ = float(opt("--min-quiet", 30)) / 1000; QDB = float(opt("--quiet-db", -50)); SEEK = float(opt("--seek", 0)) / 1000  # 切點門檻（11/22 加）：--seek 80＝找不到安靜點時，在句界 ±80ms 取能量最低的 10ms 窗口
-SMAX = float(opt("--scene-max", 0)); NUMS = [x for x in opt("--nums", "").split(",") if x]; NUMPAD = float(opt("--num-pad", 0.4))  # 重點數字前後補停頓（11/17 加）
+SMAX = float(opt("--scene-max", 0)); NUMS = [x for x in opt("--nums", "").split(",") if x]; NUMPAD = float(opt("--num-pad", 0.4)); MAXSCENE = int(opt("--max-scene", 0))  # 2026/11/22：換幕處停頓最多幾處（0＝不限；make 預設 6）  # 重點數字前後補停頓（11/17 加）
 if not args: sys.exit(__doc__)
 slug = args[0]
 rec = args[1] if len(args) > 1 else f"public/audio/{slug}/voice-api.wav"
@@ -155,6 +155,11 @@ for ui, (target, label, e, s_) in want.items():
     elif SMAX and "段落" in label and g - SMAX > 0.005: cuts.append((c, SMAX - g, label, g))  # 超過上限：剪掉多出來的靜音
     else: print(f"  {label} 已有 {g:.2f} 秒（對齊間隔 {s_-e:.2f}），不動")
 
+if MAXSCENE:
+    sc_cuts = sorted([c for c in cuts if "段落" in c[2]], key=lambda c: -c[1])
+    drop = set(id(c) for c in sc_cuts[MAXSCENE:])
+    if drop: print(f"  ⚠ 換幕停頓超過 {MAXSCENE} 處，捨棄 {len(drop)} 處（不加停頓，改稿加逗號）")
+    cuts = [c for c in cuts if id(c) not in drop]
 cuts.sort()
 nx = int(sr * XF)
 y, prev, splice = np.zeros((0, ch), np.float32), 0, False

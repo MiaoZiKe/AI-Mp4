@@ -95,6 +95,22 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
   let props = fill(tpl.props, fields, where, used);
   props = mapCues(props, ids);
   if (sc.hold !== undefined) props.hold = sc.hold;
+  // 選填（2026/11/22）：下半部資訊帶 band＝{ title（≤5 字，直排）, cells: [{ top, big, sub?, tone?（red｜cool｜q｜text）, at?（cue） }]（1–4 格）, arrows?, bigPx? }
+  if (sc.band !== undefined) {
+    const b = sc.band, cells = Array.isArray(b?.cells) ? b.cells : [];
+    if (typeof b?.title !== "string" || !b.title || [...b.title].length > 5) E(`${where}: band.title 要 1–5 字（直排小標）`);
+    if (cells.length < 1 || cells.length > 4) E(`${where}: band.cells 要 1–4 格`);
+    const n = Math.max(1, cells.length), cellW = (920 - 4 - 70 - (n - 1) * (b?.arrows ? 40 : 2)) / n - 36;
+    const em = (t, px) => [...String(t ?? "")].reduce((a, ch) => a + (ch.charCodeAt(0) < 256 ? 0.6 : 1), 0) * px;
+    cells.forEach((c, k) => {
+      for (const key of ["top", "big"]) if (typeof c?.[key] !== "string" || !c[key]) E(`${where}: band.cells[${k}].${key} 沒填（不能留空）`);
+      if (c?.tone !== undefined && !["red", "cool", "q", "text"].includes(c.tone)) E(`${where}: band.cells[${k}].tone 只能是 red｜cool｜q｜text`);
+      if (em(c?.big, b?.bigPx ?? 58) + (c?.tone === "q" ? 24 : 0) > cellW) E(`${where}: band.cells[${k}].big「${c.big}」太寬（約 ${Math.round(em(c.big, b?.bigPx ?? 58))}px > 格寬 ${Math.round(cellW)}px），請縮字或減格`);
+      for (const key of ["top", "sub"]) if (c?.[key] && em(c[key], 30) > cellW) E(`${where}: band.cells[${k}].${key}「${c[key]}」太寬（> ${Math.round(cellW)}px）`);
+      if (c?.at !== undefined && !/^(c\d|start|end|voice|exit)([+-]\d+)?$/.test(String(c.at))) E(`${where}: band.cells[${k}].at 只寫 cue（c1…）或 start｜end｜voice｜exit 加減幀`);
+    });
+    props.band = mapCues(JSON.parse(JSON.stringify(b)), ids);
+  }
   if (sc.type === "ask" && !plan.endCard?.comment) delete props.cta; // 沒有留言關鍵字：不放「留言「」拿完整資料」那一行
   for (const k of Object.keys(fields)) if (!used.has(k)) E(`${where}: 欄位「${k}」這個鏡型用不到（拼錯了嗎？）`);
   const kwFrom = (meta.kw ?? []).map((k) => fields[k]).flat().filter((x) => typeof x === "string" && x);
@@ -124,7 +140,7 @@ const script = {
   channel: plan.channel ?? { name: "哩股哩股", tag: "查到底", slogan: "數字，查過再信" },
   news: {
     layout: "fill", mark: "LIGULIGU", section: plan.news?.section ?? "國際", sectionEn: plan.news?.sectionEn ?? "INTERNATIONAL",
-    places: plan.places ?? {}, ...(plan.link ? { link: plan.link } : {}), ...(plan.news?.tickerStatic ? { tickerStatic: plan.news.tickerStatic } : {}),
+    places: plan.places ?? {}, ...(plan.link ? { link: plan.link } : {}), ...(plan.news?.tickerStatic ? { tickerStatic: plan.news.tickerStatic } : {}), ...(plan.news?.capEnPx ? { capEnPx: plan.news.capEnPx } : {}),
   },
   voice: plan.voice ?? { voiceName: "Charon", model: "gemini-3.8-flash-tts", mode: "take", profile: "liguligu", note: "API 整篇一次生成" },
   cover: plan.cover ?? { title: [plan.title], sub: "" },

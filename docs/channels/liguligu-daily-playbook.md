@@ -4,6 +4,17 @@
 新片照這支做。規則全文另見 `docs/channels/liguligu.md`；這支片的每鏡內容、指令與已知問題見 `videos/liguligu-jensen-pro/README.md`，旁白做法見同資料夾的 `voice.md`。
 
 
+## 交件四關（2026/11/22 Andy：「請你務必確實檢查影片是否丟問題…為何沒有安排驗證」）
+
+渲染混音後 `make.mjs` 依序自動跑四關，四關全跑完一起報，任何一關不過就停（exit 1，`out/<slug>/make.json` 的 `gates` 寫哪關、哪些時間點）；`--no-gate-fail` 只供除錯，不可交件。全過之後還要**非製作者的審查（opus high）≥7 分**才交件（看 `out/<slug>/frames-1s.jpg` 與四份 json，分數記 `docs/scores.md`）。
+
+1. **聽感驗證** `node scripts/dossier/listen-check.mjs <slug> [--file mp4]`：成品音訊送 Gemini 音訊理解（gemini-3.8-flash，不行才退 2.5-flash／2.5-flash-lite），逐句回報斷續、卡頓、字被切、停頓不自然與時間點，並逐字轉寫對 script.json 的 tts 算 CER；任何一處被標或 CER >3% 不過；模型都不可用 exit 2＝「聽感驗證未完成」，視為不通過。結果 `out/<slug>/listen-check.json`。
+2. **停頓密度** `python3 scripts/dossier/pause-density.py <slug> [--file]`：全片 ≥0.25 秒的停頓，一句話內（兩個 。？！ 之間）不得有（逗號處只列出）、總數 ≤ 句數＋2。
+3. **audio-check** `python3 scripts/dossier/audio-check.py <slug> --file mp4`：數位靜音、斷音、死寂起音（見下一節）。
+4. **1 秒抽格** `python3 scripts/dossier/frame-check.py <slug> [--file]`：每秒一格拼成 `frames-1s.jpg`；檢查主視覺區連續空白、下半部（y1280–1700）大片空洞；文字過小要 tesseract，沒裝就註明「未檢查」，要靠審查肉眼看。
+
+**語速與停頓的新做法**：語速改由念稿字數（≤190 字）＋TTS 提示控制，**不准在句中插停頓**（`--nums`、`--sentence` 都不用；`voice-take.mjs` 現在只呼叫 `--scene 0.7 --sentence 0 --max-scene 6`：只在換幕處補 0.6–0.8 秒、最多 6 處）。舊做法「數字前後插停頓」已取消——4b 版 hike2022 就是這樣被聽成斷斷續續（pause-density 抓到 17 處句內停頓、listen-check 標出「三成三」「利率約／四趴」中間斷音）。要停就改稿加逗號重配。
+
 ## 〇、音訊不斷續（2026/11/21 Andy：「全部影片 前面聲音斷斷續續 需要避免後續發生」；證據 `docs/channels/audio-dropout-report.md`）
 
 - **根因**：`insert-pauses.py` 補停頓時插的是樣本值全 0 的數位靜音，接縫只有 5ms 淡出／淡入；`--nums` 的數字前後、對齊間隔 0.00 的句界沒有氣口，切點落在字中間（切點兩側 −20～−39 dBFS），等於把字切斷再塞 0.3–0.45 秒死寂（hike2022 0.44 秒、dotcom-ai 2.69 秒、power-bill 3.74 秒）。另外舊版 `voice-take.mjs` 把 Gemini 回的整個 WAV 當 PCM，尾端 C2PA 憑證區塊變成旁白最後 0.16 秒 −8 dBFS 雜訊；切說明句後首字 0.07–0.16 秒就起音、沒淡入。

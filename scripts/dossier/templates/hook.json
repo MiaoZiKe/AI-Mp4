@@ -1,7 +1,7 @@
 {
   "_meta": { "desc": "第 1 鏡：大數字＋文件蓋章（第 0 幀就有掃描線、1 秒內有紅框與引線）", "cues": 4, "beat": "hook", "kw": ["mark", "num"],
     "cueHint": "c1 開場詞｜c2 標記詞（mark 與文件填字在這裡出現）｜c3 輔助詞｜c4 數字念出的詞",
-    "optional": "選填（2026/11/21，沒填就是原本的樣子）：photoName＋photoCaption（文件框右邊一張從第 0 幀就逐格長出的簡圖，長到 photoEndAt，預設 end；有圖時 callout 可省略）、askText（第 0 幀就在的實心問句小標）、stampText（stampAt，預設 start+12，蓋在大數字上的章）；2026/11/21 再加、photoSteps（簡圖分段畫出的時間點陣列，每個點擦出下一段；有它就不用 photoEndAt）、photoStepP（每段畫到的比例 0–1）、photoDir（right｜down）、photoColor（true＝彩色資料圖，不蓋暗色）" },
+    "optional": "選填（2026/11/21，沒填就是原本的樣子）：photoName＋photoCaption（文件框右邊一張從第 0 幀就逐格長出的簡圖，長到 photoEndAt，預設 end；有圖時 callout 可省略）、askText（第 0 幀就在的實心問句小標）、stampText（stampAt，預設 start+12，蓋在大數字上的章）、stampPos（right＝章改蓋在右上角，不壓大數字；2026/11/22）；2026/11/21 再加、photoSteps（簡圖分段畫出的時間點陣列，每個點擦出下一段；有它就不用 photoEndAt）、photoStepP（每段畫到的比例 0–1）、photoDir（right｜down）、photoColor（true＝彩色資料圖，不蓋暗色）" },
   "props": {
     "panel": "hook",
     "kicker": "{{kicker}}",
@@ -19,7 +19,7 @@
     "callout": { "label": "{{calloutLabel?}}", "text": "{{calloutText?}}", "at": "start+20", "markAt": "c4+4" },
     "photo": { "name": "{{photoName?}}", "caption": "{{photoCaption?}}", "at": "start", "endAt": "{{photoEndAt|end}}", "stepAts": "{{photoSteps?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" },
     "ask": "{{askText?}}",
-    "stamp": { "text": "{{stampText?}}", "at": "{{stampAt|start+12}}" },
+    "stamp": { "text": "{{stampText?}}", "at": "{{stampAt|start+12}}", "pos": "{{stampPos?}}" },
     "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+14" },
     "news": { "dateline": "{{dateline}}", "lt": "{{lt|事件}}", "place": "{{place?}}" }
   }

@@ -34,6 +34,14 @@ spoken.forEach((s, k) => {
 });
 if (errs.length) { console.error("\n✖ 念稿檢查未過，不送請求：\n" + errs.map((e) => "  - " + e).join("\n")); process.exit(1); }
 console.log("✔ 念稿檢查通過（無「欸」、無句首英文字母、無「A I」、無阿拉伯數字）");
+// 說明句：docs/prompts/liguligu-男聲試聽-短說明.txt 的那一行；script.json 的 voice.styleExtra（選填，2026/11/22）會接在「直接說：」前面（沒填就是原本那一句）
+const BASE_STYLE = fs.readFileSync(path.join(ROOT, "docs/prompts/liguligu-男聲試聽-短說明.txt"), "utf8").split("\n").map((l) => l.trim()).find((l) => l.startsWith("用台灣人平常講話"));
+if (!BASE_STYLE) { console.error("✖ 找不到說明句（docs/prompts/liguligu-男聲試聽-短說明.txt 以「用台灣人平常講話」開頭的那一行）"); process.exit(1); }
+const EXTRA = String(script.voice?.styleExtra ?? "").trim().replace(/[，。、,.\s]+$/, "");
+if (EXTRA && /[0-9A-Za-z「」"]/.test(EXTRA)) { console.error("✖ voice.styleExtra 只寫說話方式，不放數字、英文或引號（會被念出來）"); process.exit(1); }
+const STYLE = EXTRA ? BASE_STYLE.replace(/，?直接說：$/, `，${EXTRA}，直接說：`) : BASE_STYLE;
+console.log(`說明句${EXTRA ? "（含 voice.styleExtra）" : ""}：${STYLE}`);
+console.log(`念稿總字數（不含標點）：${texts.join("").replace(/[\s，。？！、；：,.?!]/g, "").length}`);
 if (DRY) process.exit(0);
 
 if (!FROM && (process.env.NODE_USE_ENV_PROXY !== "1" || !process.env.NODE_EXTRA_CA_CERTS)) {
@@ -67,8 +75,6 @@ const wavBuf = (pcm, rate, ch = 1) => {
 
 const origPath = path.join(adir, "voice-api.orig.wav"), cutPath = path.join(adir, "voice-api.wav"), pausedPath = path.join(adir, "voice-api.paused.wav");
 fs.mkdirSync(adir, { recursive: true });
-const STYLE = fs.readFileSync(path.join(ROOT, "docs/prompts/liguligu-男聲試聽-短說明.txt"), "utf8").split("\n").map((l) => l.trim()).find((l) => l.startsWith("用台灣人平常講話"));
-if (!STYLE) { console.error("✖ 找不到說明句（docs/prompts/liguligu-男聲試聽-短說明.txt 以「用台灣人平常講話」開頭的那一行）"); process.exit(1); }
 const voiceName = script.voice?.voiceName ?? "Charon";
 const sendText = STYLE + "\n" + texts.join("\n\n");
 let model = script.voice?.model ?? "gemini-3.8-flash-tts", requests = 0;
@@ -141,7 +147,7 @@ for (let i = 0; i < fin; i++) { const g = Math.sin((Math.PI / 2) * (i / fin)); f
 fs.writeFileSync(cutPath, wavBuf(cutPcm, sr, wav.ch));
 
 // ── 4. 補停頓 → 時間軸 → script.json ──
-const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0.3", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
+const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0", "--max-scene", "6", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
 console.log(pauseOut.trimEnd());
 const nIns = (pauseOut.match(/^\s+\+[\d.]+ 秒/gm) ?? []).length;
 const durM = /（([\d.]+) → ([\d.]+) 秒）/.exec(pauseOut), totalSec = durM ? Number(durM[2]) : NaN;

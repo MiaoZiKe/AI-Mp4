@@ -7,7 +7,8 @@
 //   --keep-timeline   沿用手動調好的 timeline.json 與 paused 錄音（insert-pauses --scene-map／cutDelayF 調過的），略過 voice-take
 //   --skip-render     略過渲染與其後的混音／網站版／拼圖（測試用）
 //   --no-overlap-fail overlap-check 有 error 只警告不停；--no-edge-fail 同理，edge-check 有 error 只警告
-//   --no-audio-fail   audio-check（數位靜音／斷音／死寂起音，2026/11/21 加）有 error 只警告；預設擋下
+//   --no-audio-fail   網站版音軌的 audio-check 有 error 只警告；預設擋下
+//   --no-gate-fail    交件四關（audio-check／pause-density／listen-check／frame-check，2026/11/22）有不過只警告，僅供除錯；預設任何一關不過就停
 //   --force-scheduled 允許動已排程要發的片（liguligu-nvda-kress、liguligu-power-bill），預設拒絕
 // 全新 slug 會自動處理：plan/script 預檢（cue 詞要在字幕裡、hook 字數上限、缺 pronunciation.md 自動建骨架）、字型缺字自動補抓、
 // 時間軸後自動寫 storyboard.json、事件間隔 >1.2 秒列 warn（不擋）。--silent 重生無聲時間軸；若已有真配音時間軸會拒絕（要蓋掉加 --force-silent）。
@@ -235,7 +236,29 @@ const audioCheck = (name, file, jsonName) => step(name, () => {
   if (r.code !== 0 && flag("no-audio-fail")) return { ok: true, note: "有 error，但 --no-audio-fail 只警告", warn: tail(r.out, 6) };
   return { ok: r.code === 0, note: r.code === 0 ? tail(r.out, 1) : tail(r.out, 8) + "\n→ 找出是哪一步產生的（insert-pauses 的切點、TTS 回應的 C2PA 區塊、混音），修好重混；規則見 docs/channels/audio-continuity-rule.md" };
 });
-audioCheck("5c audio-check（成品音軌不斷續）", mp4, "audio-check.json");
+// ── 5c. 交件四關（2026/11/22）：audio-check → pause-density → listen-check（Gemini 聽感）→ frame-check（1 秒抽格）；
+//    四關全跑完再一起報，任何一關不過就停（exit 1），寫進 make.json 的 gates。--no-gate-fail 只供除錯（照樣記錄但不停）。
+const gateRows = [];
+const gate = (name, fn) => {
+  const t = Date.now(); let r;
+  try { r = fn(); } catch (e) { r = { code: 1, out: e.message }; }
+  const row = { gate: name, exit: r.code, pass: r.code === 0, tail: tail(r.out, 8), sec: +((Date.now() - t) / 1000).toFixed(1) };
+  if (r.code === 2) row.note = "未完成（視為不通過）";
+  gateRows.push(row); console.log(`${row.pass ? "✔" : "✖"} 關卡 ${name}（${row.sec} 秒）${row.pass ? "" : " — " + tail(r.out, 3).split("\n").join(" ｜ ").slice(0, 300)}`);
+};
+const eStr = String(endAt);
+gate("1 audio-check", () => run("python3", ["scripts/dossier/audio-check.py", slug, "--file", rel(mp4), "--end", eStr, "--json", rel(path.join(outDir, "audio-check.json"))]));
+if (!SILENT) {
+  gate("2 pause-density", () => run("python3", ["scripts/dossier/pause-density.py", slug, "--file", rel(mp4)]));
+  gate("3 listen-check（Gemini 聽感）", () => run("node", ["scripts/dossier/listen-check.mjs", slug, "--file", rel(mp4)]));
+} else console.log("－ 無聲版：略過 pause-density／listen-check");
+gate("4 frame-check（1 秒抽格）", () => run("python3", ["scripts/dossier/frame-check.py", slug, "--file", rel(mp4)]));
+rec.gates = gateRows; save();
+const gateBad = gateRows.filter((g) => !g.pass);
+if (gateBad.length && !flag("no-gate-fail")) {
+  fail("5c 交件四關", gateBad.map((g) => `【${g.gate}】${g.note ?? ""}\n${g.tail}`).join("\n---\n") + "\n→ 細節：out/<slug>/{audio-check,pause-density,listen-check,frame-check}.json；frames-1s.jpg 給審查看。規則：docs/channels/liguligu-daily-playbook.md「交件四關」");
+}
+if (gateBad.length) console.log(`  ⚠ --no-gate-fail：${gateBad.length} 關未過仍繼續（僅供除錯，不可交件）`);
 const finalDur = ffprobeDur(mp4);
 
 // ── 6. 網站版 ──
@@ -278,6 +301,8 @@ rec.status = "ok"; rec.totalSec = +((Date.now() - T0) / 1000).toFixed(1);
 rec.result = {
   durationSec: +finalDur.toFixed(2), endCardStartSec: +endAt.toFixed(2), ...mixInfo,
   overlap: rec.overlap?.exit === 0 ? "pass" : "error（--no-overlap-fail 放行）",
+  gates: Object.fromEntries((rec.gates ?? []).map((g) => [g.gate, g.pass ? "pass" : "FAIL"])),
+  review: "frames-1s.jpg 要給非製作者審查（opus high ≥7）才交件",
   web: { dir: rel(webDir), ...webInfo, files: fs.readdirSync(webDir) },
   outputs: [rel(mp4), rel(prev), rel(path.join(outDir, "sheet.jpg"))].filter((p) => fs.existsSync(path.join(ROOT, p))),
 };
