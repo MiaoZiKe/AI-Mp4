@@ -53,6 +53,7 @@
 ## 11/18 停工
 - 使用者 11/18：Token 快到上限，正在做的做完，其餘延到 11/21（五）之後。power-bill（11/19）、dotcom-ai（11/20）已交件不動；新片／企劃／備用／重做／工具建置一律暫停；只有主控轉排程發文失敗要修檔時才動；子 agent 依工作配 model＋effort（見 playbook）。
 - 待辦（11/21 後）：mix-auto 收斂問題追蹤、overlap 範本字數上限擴到所有鏡型、事件間隔自動補事件。
+- 待辦：voice-take.mjs 收到 --help 等未知參數會照常送 TTS，要改成報錯。
 | liguligu-hike2022（歷史對照第 3 支，2026/11/21 選題） | 選 2022 升息熊市（關聯最強：12/9 FOMC、12/10 CPI、10 年債約 5%）；`research.md`（候選比較、F1–F13、相同 3／不同 4、相關公司台積電 2330／輝達 NVDA）與 `visual-spec.md` 已備；Fed／BLS 原文讀不到，全部標媒體報導、無已確定 | 主控確認題目與 dotcom-ai 片尾「下一集 1990」預告衝突後，寫念稿（opus）；上片當天重查機率與殖利率 |
 
 - liguligu-hike2022（11/21 有聲版）：TTS 1 次（Charon）；沒有 atempo；含停頓 4.29 字／秒、段落最小 1.5 秒、句間最小 0.35（數字）／0.5、落定最短 1.43 秒；片長 57.4 秒；overlap 0 error；片尾 −11.7 LUFS／−1.3 dBTP；捲舌 4.28 kHz；對齊最低 0.61。make 第一次停在預檢與 overlap（plan 的 rightBig 要陣列、幾個畫面字串太長）；停頓用 insert-pauses --scene-map／--nums 重插後以 --keep-timeline 重出；cutDelayF 對提早進場的下一幕不適用（會讓畫面晚於配音）。尚未發布，待使用者聽過。

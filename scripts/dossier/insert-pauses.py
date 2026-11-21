@@ -15,7 +15,7 @@ def opt(name, default):
     return default
 SCENE = float(opt("--scene", 0.7)); SENT = float(opt("--sentence", 0.3)); OUT = opt("--out", None)
 SMAP = {a.split("=")[0]: float(a.split("=")[1]) for a in opt("--scene-map", "").split(",") if "=" in a}  # 個別段落停頓（幕id=秒，段落＝該幕結束到下一幕開口）
-NUMS = [x for x in opt("--nums", "").split(",") if x]; NUMPAD = float(opt("--num-pad", 0.4))  # 重點數字前後補停頓（11/17 加）
+SMAX = float(opt("--scene-max", 0)); NUMS = [x for x in opt("--nums", "").split(",") if x]; NUMPAD = float(opt("--num-pad", 0.4))  # 重點數字前後補停頓（11/17 加）
 if not args: sys.exit(__doc__)
 slug = args[0]
 rec = args[1] if len(args) > 1 else f"public/audio/{slug}/voice-api.wav"
@@ -91,12 +91,19 @@ for k, t in enumerate(texts):
 for ui, (target, label, e, s_) in want.items():
     c = cut_point(e, s_); g = silence_len(c)
     if target - g > 0.005: cuts.append((c, target - g, label, g))
+    elif SMAX and "段落" in label and g - SMAX > 0.005: cuts.append((c, SMAX - g, label, g))  # 超過上限：剪掉多出來的靜音
     else: print(f"  {label} 已有 {g:.2f} 秒（對齊間隔 {s_-e:.2f}），不動")
 
 cuts.sort()
 f5 = int(sr * 0.005)
 pieces, prev = [], 0
 for smp, ins, label, gap in cuts:
+    if ins < 0:  # 剪靜音：兩側各去掉一半（都在靜音內）
+        h = int(round(-ins * sr / 2)); seg = x[prev:smp - h].copy()
+        if len(seg) > f5: seg[-f5:] *= np.linspace(1, 0, f5)[:, None]
+        pieces.append(seg); prev = smp + h
+        if prev < len(x): x[prev:prev + f5] *= np.linspace(0, 1, f5)[:, None]
+        print(f"  {ins:.2f} 秒  {label}  原間隔 {gap:.2f} → {gap+ins:.2f}（剪）"); continue
     seg = x[prev:smp].copy()
     if len(seg) > f5: seg[-f5:] *= np.linspace(1, 0, f5)[:, None]
     pieces.append(seg); pieces.append(np.zeros((int(round(ins * sr)), ch), np.float32)); prev = smp
@@ -107,5 +114,5 @@ pieces.append(tail)
 y = np.concatenate(pieces)
 with wave.open(f"{ROOT}/{OUT}", "wb") as o:
     o.setnchannels(ch); o.setsampwidth(2); o.setframerate(sr); o.writeframes(np.clip(y, -32768, 32767).astype(np.int16).tobytes())
-tot = sum(c[1] for c in cuts)
+tot = sum(c[1] for c in cuts)  # 含負值（剪掉）
 print(f"✔ {OUT}：{len(cuts)} 處、共加 {tot:.2f} 秒（{n/sr:.2f} → {len(y)/sr:.2f} 秒）；對齊信心 {fa['confidence']}")
