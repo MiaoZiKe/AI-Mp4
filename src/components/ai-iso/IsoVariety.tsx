@@ -572,7 +572,7 @@ const ClaimView: React.FC<VP> = ({ f, p, tone }) => {
 
 // ───────── 共用：虛線空位（開頭 0.3 秒內版面就有東西，不留大片空白） ─────────
 // 2026-11-16 Andy：虛線空位／問號／灰編號一律拿掉，下一項到 cue 才進場
-const Ghost: React.FC<{ style: React.CSSProperties; color: string; ov?: string; children?: React.ReactNode }> = () => null;
+const Ghost: React.FC<{ style: React.CSSProperties; color: string; ov?: string; children?: React.ReactNode }> = ({ style, children }) => <div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.28, ...style }}>{children}</div>;
 
 const bounceOut = (t: number) => { const n = 7.5625, d = 2.75; if (t < 1 / d) return n * t * t; if (t < 2 / d) { t -= 1.5 / d; return n * t * t + 0.75; } if (t < 2.5 / d) { t -= 2.25 / d; return n * t * t + 0.9375; } t -= 2.625 / d; return n * t * t + 0.984375; };
 const CheckMark: React.FC<{ t: number; size: number; color: string; bad?: boolean }> = ({ t, size, color, bad }) => (

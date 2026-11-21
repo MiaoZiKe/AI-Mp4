@@ -255,9 +255,9 @@ const LostMidView: React.FC<VP> = ({ f, p }) => {
         })}
         <path d={`M${X0} ${by + BH + 70} H${X0 + IW - 20} M${X0 + IW - 48} ${by + BH + 46} L${X0 + IW - 18} ${by + BH + 70} L${X0 + IW - 48} ${by + BH + 94}`} fill="none" stroke={T.ink3} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" opacity={O(f, tG, 8)} />
       </Full>
-      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: by + BH + 120, ...bounce(f, tG) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
-      {f >= tW ? <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: by + BH + 120, ...bounce(f, tW) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div> : null}
-      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: by + BH + 240, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
+      <div data-ov="長度標籤" style={{ position: "absolute", left: X0, top: by + BH + 104, ...bounce(f, tG) }}><Chip text={q.lenLabel ?? "輸入越長"} bg={col("primary").fill} fg="#fff" px={44} side={col("primary").side} /></div>
+      {f >= tW ? <div data-ov="不穩標籤" style={{ position: "absolute", left: X0 + IW - 380, top: by + BH + 104, ...bounce(f, tW) }}><Chip text={q.wobbleLabel ?? "越不穩"} bg={col("note").fill} fg={T.ink} px={44} side={col("note").side} /></div> : null}
+      {f >= tM ? <div data-ov="中間最差" style={{ position: "absolute", left: X0, width: IW, top: by + BH + 196, display: "flex", justifyContent: "center", ...bounce(f, tM + 6) }}><Chip text={q.midLabel ?? "放在中間，表現最差"} bg={col("wrong").fill} fg="#fff" px={46} side={col("wrong").side} /></div> : null}
       {f >= tM ? <div data-ov="開頭標籤" style={{ position: "absolute", left: X0, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>開頭 表現好</div> : null}
       {f >= tM ? <div data-ov="結尾標籤" style={{ position: "absolute", left: X0 + IW - 270, top: TOP + 4, opacity: O(f, tM, 6), ...zh, fontWeight: 900, fontSize: 40, color: col("right").text }}>結尾 表現好</div> : null}
     </>
