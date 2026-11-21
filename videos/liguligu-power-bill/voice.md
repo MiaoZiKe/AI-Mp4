@@ -57,3 +57,8 @@
 
 所以誰付還沒定案。你覺得呢？留言電費。
 ```
+
+## 11/22 音訊重混（不送 TTS、不改念稿、不改畫面）
+- 用 `voice-api.wav` 以新 `insert-pauses.py --scene 0.8 --sentence 0.45 --scene-map s01=1.05,s02=1.0,s03=1.25,s04=1.05,s05=1.0 --nums 十一倍,兩百九十四億美元,十二月 --num-pad 0.35`（同 paused5 參數）→ `voice-api.rm.wav` 29.20 秒；`make.mjs --keep-timeline --force-scheduled` 在獨立 worktree 跑，`out/` 正式檔與網站版未動。
+- 跳過 5 處連音（s01、s05 十一倍前；s04 兩百九十四億美元前；s06 十二月前後）。片長 35.57→34.0 秒；含停頓語速 4.15→4.40（略高於 4.3）；畫面落定最短 1.47→1.53 秒。
+- audio-check：Z／C／R 0／0／0（原 12／7／12），首字起音 0.32 秒；片尾 −11.7 LUFS、真峰值 −1.3 dBTP；overlap 0 error（1 warn）；網站版 3.16 MiB。

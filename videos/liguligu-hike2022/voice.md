@@ -93,3 +93,8 @@
 - 用切好說明句的錄音重跑 `insert-pauses.py --scene 0.75 --scene-max 0.8 --sentence 0.55 --nums … --num-pad 0.45`（新增 `--scene-max`：段落靜音超過上限就剪到上限，只剪靜音）。
 - 含停頓語速 4.17 音節／秒（215 ÷ 51.6 秒，原 4.54）；片長 54.8 秒；段落約 0.74–0.8、句間 0.55 起、數字前後 0.45。
 - s06 圖表補一格步進，每鏡事件最大間隔 ≤1.2 秒；overlap 0 error；整條 alimiter 後真峰值 −1.2 dBTP、片尾 −11.4 LUFS。
+
+## 11/22 音訊重混（不送 TTS、不改念稿、不改畫面）
+- 起因：`docs/channels/audio-dropout-report.md`。用 `voice-api.wav` 以新 `insert-pauses.py`（15ms 交叉淡化、補底噪、切點要安靜）重插：`--scene 0.75 --scene-max 0.8 --sentence 0.55 --nums 二零二二,三成三,三點七,九點一,四點五,零點五 --num-pad 0.45` → `voice-api.rm.wav`（45.57 秒）；`recording-timeline.mjs … 7` 重接、`make.mjs --keep-timeline` 重渲混音。
+- 數字前後 12 處停頓因切點沒有 ≥30ms 安靜被跳過（沒硬切）；只剩 14 處（句末與段落）。片長 54.8→48.8 秒；含停頓語速 4.20→4.78 音節/秒（高於目標 4.3，要降只能改稿加逗號重配）；畫面落定 s02 0.87、s03 1.07、s06 0.93 秒（<1.5）。
+- audio-check：數位靜音 0／斷音 0／死寂起音 0（原 Z23／C11／R24），首字起音 0.30 秒；片尾 −11.7 LUFS、真峰值 −1.3 dBTP；overlap 0 error；網站版 3.21 MiB。
