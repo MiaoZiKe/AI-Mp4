@@ -349,7 +349,11 @@
       "en": "Silicon wafer",
       "color": "blue",
       "at": "dep+4",
-      "until": "ox-6"
+      "until": "ox-6",
+      "xy": [
+       280,
+       380
+      ]
      },
      {
       "part": "d_head",
@@ -357,7 +361,11 @@
       "en": "Deposition head",
       "color": "amber",
       "at": "dep+8",
-      "until": "ox-6"
+      "until": "ox-6",
+      "xy": [
+       740,
+       300
+      ]
      },
      {
       "part": "a_ox",
@@ -634,7 +642,11 @@
       "en": "Metal",
       "color": "coral",
       "at": "film+20",
-      "until": "s4:start-8"
+      "until": "s4:start-8",
+      "xy": [
+       200,
+       320
+      ]
      },
      {
       "part": "a_rs",
@@ -813,7 +825,7 @@
       "en": "Photomask",
       "color": "amber",
       "at": "msk",
-      "until": "s5:start-6"
+      "until": "prt-2"
      },
      {
       "part": "e_lensA",
@@ -1288,7 +1300,15 @@
      },
      {
       "at": "pol-18",
-      "dur": 30,
+      "dur": 1,
+      "x": 120,
+      "y": 1.4,
+      "d": 60,
+      "elev": 22
+     },
+     {
+      "at": "pol-16",
+      "dur": 26,
       "x": 120,
       "y": 1.4,
       "d": 46,
@@ -1404,7 +1424,11 @@
       "en": "Carrier head",
       "color": "amber",
       "at": "pol+16",
-      "until": "next-6"
+      "until": "next-6",
+      "xy": [
+       360,
+       380
+      ]
      },
      {
       "part": "m_slA",
@@ -1957,7 +1981,15 @@
     "shot": [
      {
       "at": "start-2",
-      "dur": 24,
+      "dur": 1,
+      "x": 60,
+      "y": 2.0,
+      "d": 64,
+      "elev": 18
+     },
+     {
+      "at": "start",
+      "dur": 22,
       "x": 60,
       "y": 2.0,
       "d": 52,
