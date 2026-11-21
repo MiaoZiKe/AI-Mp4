@@ -95,22 +95,33 @@ const Tag: React.FC<{ tag: TagSpec; f: number; big?: boolean }> = ({ tag, f, big
 };
 
 /** 黑白低對比照片：遮罩擦入、極慢推近、細框；圖說在照片下面（都要標「示意」） */
-const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: number; y: number; w: number; h: number; caption?: string; life: number; children?: React.ReactNode }> = ({ slug, name, f, at, x, y, w, h, caption, life, children }) => {
+const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: number; y: number; w: number; h: number; caption?: string; life: number; endAt?: number; children?: React.ReactNode }> = ({ slug, name, f, at, x, y, w, h, caption, life, endAt, children }) => {
   const noPush = useLN().STAGE_SCALE !== 1;
-  const p = wipeP(f, at, M.wipe + 4);
+  // endAt（選填）：簡圖從左往右一格一格長出來（每 M.stepF 幀一格，第 0 幀已露出第一段），到 endAt 長滿；沒寫就是原本的往下擦入
+  const grow = endAt !== undefined && endAt > at;
+  const p = grow ? (f < at ? 0 : Math.min(1, M.growP0 + (1 - M.growP0) * Math.floor((f - at) / M.stepF) * M.stepF / (endAt - at))) : wipeP(f, at, M.wipe + 4);
   if (p <= 0) return null;
   // 填滿版不做「整張圖慢慢放大」（使用者 2026/11/15 禁止事項，改用物件本身的動作）
   const s = noPush ? 1 : 1 + M.photoPush * linear(f, at, Math.max(1, life));
   return (
     <>
-      <div data-box="card" style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
+      <div data-box="card" style={{ position: "absolute", left: x, top: y, width: w, height: h, overflow: "hidden", clipPath: clip(p, grow ? "right" : "down"), boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }}>
         <Img src={staticFile(`dossier/${slug}/${name}.jpg`)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${s.toFixed(4)})` }} />
         <div style={{ position: "absolute", inset: 0, background: T.photoTint, boxShadow: `inset 0 0 0 ${T.stroke.hair}px ${T.hair}` }} />
         {children}
       </div>
-      {caption ? <div data-box="text" style={{ position: "absolute", left: x, top: y + h + 10, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, at + M.wipe) }}>{caption}</div> : null}
+      {caption ? <div data-box="text" style={{ position: "absolute", left: x, top: y + h + 10, ...sans(L.NOTE_PX, T.weight.body, T.text3), opacity: fadeP(f, grow ? at : at + M.wipe) }}>{caption}</div> : null}
     </>
   );
+};
+/** 實心問句小標（鉤子第 0 幀就在）＋蓋章（stamp：1 秒內壓下，先放大再落定） */
+const SolidAsk: React.FC<{ text: string; style?: React.CSSProperties }> = ({ text, style }) => (
+  <div data-box="text" style={{ position: "absolute", ...style, padding: "10px 22px 14px", background: T.accent, ...serif(64, T.weight.head, T.bg), lineHeight: 1.1 }}>{text}</div>
+);
+const Stamp: React.FC<{ text: string; f: number; at: number; style?: React.CSSProperties }> = ({ text, f, at, style }) => {
+  if (f < at) return null;
+  const q = tween(f, at, M.stamp, EASE.move), s = 1.5 - 0.5 * q;
+  return <div style={{ position: "absolute", ...style, padding: "6px 18px 10px", border: `${T.stroke.frame + 2}px solid ${T.accent}`, background: T.bg, ...serif(52, T.weight.head, T.accentText), lineHeight: 1.1, transform: `rotate(-7deg) scale(${s.toFixed(3)})`, transformOrigin: "50% 50%", opacity: Math.min(1, 0.4 + q) }}>{text}</div>;
 };
 
 /** 文件摹本的紙面 */
@@ -154,10 +165,10 @@ const useLN = () => React.useContext(LNC);
 type PanelProps = { sh: DsShot; f: number; slug: string; news?: boolean };
 
 // ── 鏡 1 鉤子：大字＋公告摹本（掃描線、原因欄紅框、引線「公告：沒寫原因」） ──
-const Hook: React.FC<PanelProps> = ({ sh, f }) => {
-  const p = sh.p, d = p.doc, c = p.callout;
+const Hook: React.FC<PanelProps> = ({ sh, f, slug }) => {
+  const p = sh.p, d = p.doc, c = p.callout, ph = p.photo; // photo（選填）：文件框右邊放一張會長的簡圖，取代引線標註；沒有就是原本的樣子
   const DX = 0, DY = 508, DW = 540, DH = 360, FX = 246, FY = 150, FW = 260, FH = 70; // 文件框與「原因」空白欄（相對文件）
-  const fx = DX + FX, fy = DY + FY, midY = fy + FH / 2, cx = 596;
+  const fx = DX + FX, fy = DY + FY, midY = fy + FH / 2, cx = 596, PX = 564;
   return (
     <>
       <div style={{ position: "absolute", left: 0, top: 0, display: "flex", alignItems: "baseline", gap: 28 }}>
@@ -190,11 +201,16 @@ const Hook: React.FC<PanelProps> = ({ sh, f }) => {
       <Note text={d.note} x={DX} y={DY + DH + 12} f={f} at={sh.start - M.fade} />
       <StageSvg>
         <RedFrame f={f} at={d.frameAt} flashAt={d.flashAt} x={fx} y={fy} w={FW} h={FH} />
-        <path d={`M ${fx + FW} ${midY} H ${cx - 30} V ${DY + 76} H ${cx}`} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} {...pen(drawP(f, c.at))} opacity={drawP(f, c.at) > 0 ? 1 : 0} />
+        {c ? <path d={`M ${fx + FW} ${midY} H ${cx - 30} V ${DY + 76} H ${cx}`} fill="none" stroke={T.accent} strokeWidth={T.stroke.hair} {...pen(drawP(f, c.at))} opacity={drawP(f, c.at) > 0 ? 1 : 0} /> : null}
       </StageSvg>
-      <Fade f={f} at={c.at + 4} style={{ left: cx + 14, top: DY + 14, ...sans(32, T.weight.bold, T.text2), letterSpacing: "0.2em" }}>{c.label}</Fade>
-      <Reveal f={f} at={c.at + 6} style={{ left: cx + 12, top: DY + 62, paddingBottom: 14, ...serif(76) }}><Marked f={f} at={c.markAt} w={T.stroke.line} gap={4}>{c.text}</Marked></Reveal>
-      {p.tag ? <div style={{ position: "absolute", left: cx + 14, top: DY + 196 }}><Tag tag={p.tag} f={f} /></div> : null}
+      {c ? <>
+        <Fade f={f} at={c.at + 4} style={{ left: cx + 14, top: DY + 14, ...sans(32, T.weight.bold, T.text2), letterSpacing: "0.2em" }}>{c.label}</Fade>
+        <Reveal f={f} at={c.at + 6} style={{ left: cx + 12, top: DY + 62, paddingBottom: 14, ...serif(76) }}><Marked f={f} at={c.markAt} w={T.stroke.line} gap={4}>{c.text}</Marked></Reveal>
+      </> : null}
+      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} x={PX} y={DY} w={L.INNER_W - PX} h={DH} caption={ph.caption} life={sh.end - sh.start} /> : null}
+      {p.ask ? <SolidAsk text={p.ask} style={{ right: 0, top: 318 }} /> : null}
+      {p.stamp ? <Stamp text={p.stamp.text} f={f} at={p.stamp.at} style={{ left: 250, top: 214 }} /> : null}
+      {p.tag ? <div style={{ position: "absolute", ...(ph ? { right: 0, top: 150 } : { left: cx + 14, top: DY + 196 }) }}><Tag tag={p.tag} f={f} /></div> : null}
     </>
   );
 };
@@ -266,8 +282,10 @@ const Timeline: React.FC<PanelProps> = ({ sh, f, slug, news }) => {
 };
 
 // ── 鏡 3 兩種說法並排：官方文件（紙面摹本）對媒體報導（深色引述卡） ──
-const Versus: React.FC<PanelProps> = ({ sh, f }) => {
-  const p = sh.p, l = p.left, r = p.right, CW = 445, RX = 475, TOP = 30, CY = TOP + 104, CH = 500;
+const Versus: React.FC<PanelProps> = ({ sh, f, slug }) => {
+  // photo（選填）：兩欄卡縮矮（不畫內文橫條），出處與標籤往上收，下方放一張撐滿寬度、會逐格長出的簡圖；不畫 mid 圈（兩欄縫只有 30px，圈會壓到卡）；右欄大字整字一次出現。沒有 photo 就是原本的樣子。
+  const p = sh.p, l = p.left, r = p.right, ph = p.photo, cpt = !!ph, CW = 445, RX = 475, TOP = 30, CY = TOP + 104, CH = cpt ? 270 : 500;
+  const SRC_Y = cpt ? CY + CH + 20 : CY + CH + 64, TAG_Y = cpt ? CY + CH + 78 : CY + CH + 130, PY = CY + CH + 156;
   const head = (x: number, text: string, at: number, color: string) => (
     <>
       <Rule f={f} at={at} x={x} y={TOP} len={CW} color={color} w={T.stroke.line} />
@@ -275,7 +293,7 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
     </>
   );
   const src = (x: number, text: string, at: number) => (
-    <Fade f={f} at={at} style={{ left: x, top: CY + CH + 64, display: "flex", alignItems: "center", gap: 14 }}>
+    <Fade f={f} at={at} style={{ left: x, top: SRC_Y, display: "flex", alignItems: "center", gap: 14 }}>
       <span style={{ width: 28, height: T.stroke.hair, background: T.line }} /><span style={sans(32, T.weight.bold, T.text2)}>{text}</span>
     </Fade>
   );
@@ -285,23 +303,24 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
       {head(RX, r.head, r.headAt, T.text2)}
       <Reveal f={f} at={l.at} dir="down" style={{ ...paperBox(0, CY, CW, CH) }}>
         <DocHead title={l.doc} />
-        <Bars widths={[100, 58]} />
-        <div style={{ marginTop: 40, ...serif(l.bigPx ?? 160, T.weight.head, T.paperInk) }}><Marked f={f} at={l.bigAt + 8} color={T.accentOnPaper}><Typed text={l.big} f={f} at={l.bigAt} /></Marked></div>
-        <Bars widths={[100, 82, 100]} mt={44} />
+        {cpt ? null : <Bars widths={[100, 58]} />}
+        <div style={{ marginTop: cpt ? 24 : 40, ...serif(l.bigFit ?? l.bigPx ?? 160, T.weight.head, T.paperInk) }}><Marked f={f} at={l.bigAt + 8} color={T.accentOnPaper}><Typed text={l.big} f={f} at={l.bigAt} /></Marked></div>
+        {cpt ? null : <Bars widths={[100, 82, 100]} mt={44} />}
       </Reveal>
       <Note text={l.note} x={0} y={CY + CH + 12} f={f} at={l.at + M.wipe} />
       {/* 右欄：先有一個空框（還沒有東西可放），媒體的說法念到才進來 */}
       <Fade f={f} at={r.headAt} style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", border: `${T.stroke.hair}px dashed ${T.hair}` }}>{null}</Fade>
       <Reveal f={f} at={r.at} dir="down" style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", background: T.panel, border: `${T.stroke.hair}px solid ${T.panelLine}`, padding: "18px 34px" }}>
         <div style={{ marginTop: 16, width: 64, height: T.stroke.mark, background: r.masthead ? "transparent" : T.text3 }} />
-        {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(r.bigPx ?? 112), clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }}>{t}</div>)}
+        {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(r.bigPx ?? 112), ...(cpt ? { opacity: f >= r.bigAt + k * 6 ? 1 : 0 } : { clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }) }}>{t}</div>)}
       </Reveal>
       {r.masthead ? <Masthead f={f} at={r.masthead.at} x={RX + 34} y={CY + 30} w={CW - 68} name={r.masthead.name} date={r.masthead.date} /> : null}
       {src(0, l.src, l.srcAt)}
       {src(RX, r.src, r.srcAt)}
-      <div style={{ position: "absolute", left: 0, top: CY + CH + 130 }}><Tag tag={l.tag} f={f} /></div>
-      <div style={{ position: "absolute", left: RX, top: CY + CH + 130 }}><Tag tag={r.tag} f={f} /></div>
-      {p.mid ? (
+      <div style={{ position: "absolute", left: 0, top: TAG_Y }}><Tag tag={l.tag} f={f} /></div>
+      <div style={{ position: "absolute", left: RX, top: TAG_Y }}><Tag tag={r.tag} f={f} /></div>
+      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} x={0} y={PY} w={L.INNER_W} h={310} caption={ph.caption} life={sh.end - sh.start} /> : null}
+      {p.mid && !cpt ? (
         <Fade f={f} at={p.mid.at} style={{ left: (L.INNER_W - 76) / 2, top: CY + CH / 2 - 38, width: 76, height: 76, boxSizing: "border-box", borderRadius: 38, background: T.bg, border: `${T.stroke.frame}px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <span style={{ ...serif(48, T.weight.head, T.accentText), lineHeight: 1 }}>{p.mid.text}</span>
         </Fade>
@@ -312,7 +331,7 @@ const Versus: React.FC<PanelProps> = ({ sh, f }) => {
 
 // ── 鏡 4 外界的懷疑：問句大標＋報導（示意照片）＋報導裡的說法 ──
 const Claim: React.FC<PanelProps> = ({ sh, f, slug }) => {
-  const p = sh.p, h = p.head, ph = p.photo, q = p.quote, TOP = 50, PY = TOP + 196, PS = 440, QX = 486;
+  const p = sh.p, h = p.head, ph = p.photo, q = p.quote, TOP = 50, PY = TOP + 196, PS = ph.size ?? 440, QX = PS + 46; // photo.size（選填）：簡圖要看得清楚時放大，引文往右收
   return (
     <>
       <Reveal f={f} at={h.at} style={{ left: 0, top: TOP, paddingBottom: 16, paddingRight: 8, ...serif(116) }}>{withMark(h.text, h.mark, f, h.markAt)}</Reveal>
@@ -364,7 +383,7 @@ const Pending: React.FC<PanelProps> = ({ sh, f, slug }) => {
   const row = (x: number, text: string, at: number) => (
     <>
       <Rule f={f} at={at} x={x} y={TOP + CH + 84} len={96} vertical color={T.accent} w={T.stroke.mark} dur={8} />
-      <Reveal f={f} at={at + 2} style={{ left: x + 26, top: TOP + CH + 80, ...serif(88) }}>{text}</Reveal>
+      <Reveal f={f} at={at + 2} style={{ left: x + 26, top: TOP + CH + 80, ...serif(p.rowPx ?? 88) }}>{text}</Reveal>
     </>
   );
   return (

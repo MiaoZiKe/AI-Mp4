@@ -135,7 +135,7 @@ export function validateDossier(script, h) {
       if (!/\d/.test(String(p.num ?? ""))) E(`${tag}: hook 要有數字（props.num）`);
       if (!p.doc?.scanAts?.includes("start")) E(`${tag}: hook 的掃描線要從 start 開始（第 0 幀就有東西在動）`);
       const early = (a) => /^start(\+\d+)?$/.test(String(a)) && Number(String(a).split("+")[1] ?? 0) <= 24;
-      if (!early(p.doc?.frameAt) || !early(p.callout?.at)) E(`${tag}: hook 的紅框與引線標註要在 start+24 幀以內（1 秒內出現標註）`);
+      if (!early(p.doc?.frameAt) || !(early(p.callout?.at) || early(p.photo?.at))) E(`${tag}: hook 的紅框與引線標註（或右邊的簡圖 photo）要在 start+24 幀以內（1 秒內出現標註）`);
     }
     // 同屏主要東西 ≤3 樣；每鏡的事件數夠不夠密（每 2–3 秒至少一個）
     if (found.photos.length + found.tags.length > 4) W(`${tag}: 照片＋狀態標籤 ${found.photos.length + found.tags.length} 個，確認同屏主要東西 ≤3 樣`);

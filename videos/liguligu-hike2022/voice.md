@@ -27,3 +27,8 @@
 - 畫面落定後最短 1.43 秒（s02），片長 57.4 秒；對齊信心最低 s07 0.61、整體 0.80；捲舌指標 4.28 kHz（基準 4.3）。
 - 片尾 −11.7 LUFS／真峰值 −1.3 dBTP（mix-auto 一次收斂，未手動調 G）。
 - plan.json 調整（畫面字，非念稿）：versus 的 rightBig 改陣列；縮短 hook line2、quoteBig、tagText、rightHead、leftBig／leftDoc、rightMast、calloutText 以通過 overlap-check。
+
+## 2026/11/21 第 2 輪改稿後（待重配，主控已核准整篇重配 1 次；本輪未送 TTS）
+- 念稿改了 6 幕（見 script.md「最終 tts 逐句」），舊的 `voice-api.*.wav` 不能再用；`timeline.json`／`storyboard.json` 目前是為了抽格產生的**無聲時間軸**，voice-take 會重寫。
+- 送出前照手冊逐句印 tts（`voice-take.mjs --dry` 已通過：無「欸」、無句首英文字母、無「A I」、無阿拉伯數字）。
+- 念稿 236 字：含停頓要 ≤4.3 字/秒 → 從第一字到最後一字 ≥54.9 秒；片長 ≤60 秒 → 這段 ≤56.4 秒。停頓建議沿用第 1 版參數再依實測調：`insert-pauses.py --scene 0.7 --sentence 0.5 --nums 二零二二,三成三,三點七,九點一,四點五,零點五 --num-pad 0.35`，`--scene-map` 先給 s01=1.2,s02=2.0（B4：s02 落定後要 ≥1.5 秒）,s03=1.3,s04=1.3,s05=1.5,s06=1.4；量出來超過 4.3 就拉長 s03–s06，不到 54.9 秒也不要硬拉過 56.4 秒。

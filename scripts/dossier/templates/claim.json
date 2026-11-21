@@ -4,14 +4,14 @@
   "props": {
     "panel": "claim",
     "head": { "text": "{{head}}", "mark": "{{headMark}}", "at": "start-16", "markAt": "c1+10" },
-    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "date": "{{photoDate}}", "at": "start-22", "dateAt": "c1+4" },
+    "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "date": "{{photoDate}}", "size": "{{photoPx?}}", "at": "start-22", "dateAt": "c1+4" },
     "quote": {
       "by": "{{quoteBy}}", "byAt": "c2-4", "pre": "{{quotePre}}", "big": "{{quoteBig}}", "post": "{{quotePost|}}",
       "at": "c2-6", "bigAt": "c3",
       "masthead": { "name": "{{mastName}}", "date": "{{mastDate}}" }
     },
     "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+6" },
-    "note": { "text": "{{note?}}", "at": "c4+30" },
+    "note": { "text": "{{note?}}", "at": "{{noteAt|c4+30}}" },
     "news": { "dateline": "{{dateline}}", "lt": "{{lt|查證}}", "place": "{{place?}}" }
   }
 }

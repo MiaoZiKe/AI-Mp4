@@ -967,7 +967,9 @@ export const THEME_DOSSIER = {
   weight: { head: 900, serif: 600, num: 800, bold: 700, body: 400, sub: 900 },
   /** 動作（幀）：遮罩擦入 wipe、淡入 fade、描線 draw、打字每字 type、紅框閃一下 flash、掃描線走完 scan、
    *  換鏡（舊鏡在下一鏡開始後 hold 幀開始淡出、淡 out 幀）、字幕換段 cap；每鏡慢推放大 push、照片慢推 photoPush */
-  motion: { wipe: 14, fade: 10, draw: 16, type: 2, flash: 14, scan: 44, hold: 2, out: 6, cap: 5, push: 0.03, photoPush: 0.05, caret: 12 },
+  motion: { wipe: 14, fade: 10, draw: 16, type: 2, flash: 14, scan: 44, hold: 2, out: 6, cap: 5, push: 0.03, photoPush: 0.05, caret: 12,
+    /** 選填：簡圖逐格長出（每幾幀一格、第 0 幀已露出的比例）、蓋章壓下的幀數 */
+    stepF: 6, growP0: 0.14, stamp: 6 },
   /** 「國際新聞」版（script.json 頂層有 news 才用）：頂部新聞條、下三分之一標題條、跑馬燈、點陣世界地圖、報頭式小標、橫向擦切。
    *  顏色仍是墨藍炭灰＋白灰＋一個紅；新聞條與標題籤的紅底比 accent 深一階（白字對比 ≥5:1）。 */
   news: {
