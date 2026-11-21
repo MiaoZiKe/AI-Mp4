@@ -28,5 +28,11 @@
 - ask `nextAt`／`photoAt`／`titleAt`／`frameAt`：結論卡提早出、停 ≥1.5 秒。
 - 範例：`videos/liguligu-hike2022/plan.json`（第 3 版）。
 
+## 選填欄位（2026/11/22，沒填就是原本的樣子）
+- 每幕 `band`（下半部資訊帶，字幕條下方到出處列之間 y 約 1478–1692）：`{ title（≤5 字，左邊直排）, cells: [{ top, big, sub?, tone?（red＝2022／過去｜cool＝現在｜q＝未定虛線框｜text）, at?（cue） }]（1–4 格）, arrows?（格間畫 →）, bigPx?（預設 58） }`。整條從鏡頭開始就在，有 `at` 的格子念到前降亮度、念到時亮起並描底線；build-script 會估寬度，太寬就報錯。用來放時間線、對照數字、放大的出處卡，讓下半部不空。
+- hook `stampPos: "right"`：章改蓋在右上角，不壓大數字。pending `leftRowAt`／`rightRowAt`／`tagAt`：兩列與「尚未確定」標籤提早出。
+- 頂層 `news.capEnPx`：字幕條英文字級（例 38，字色改主文字色）。頂層 `voice.styleExtra`：一句說話方式（不放數字、英文、引號），voice-take.mjs 接在說明句「直接說：」前面。
+- 範例：`videos/liguligu-hike2022/plan.json`（第 5 版）。
+
 ## 寫稿提醒（審查「下次避免」）
 每鏡要有主素材（照片、文件框、圖表）＋一個對上關鍵詞的細節；不用通用照片（會議桌、鐵塔）；一支一題；原文沒讀就不當主論點；反駁前先在畫面放出誰說過那句。

@@ -224,7 +224,7 @@ const Hook: React.FC<PanelProps> = ({ sh, f, slug }) => {
       </> : null}
       {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, dir: ph.dir, color: ph.color }} x={PX} y={DY} w={L.INNER_W - PX} h={DH} caption={ph.caption} life={sh.end - sh.start} /> : null}
       {p.ask ? <SolidAsk text={p.ask} style={{ right: 0, top: 318 }} /> : null}
-      {p.stamp ? <Stamp text={p.stamp.text} f={f} at={p.stamp.at} style={{ left: 250, top: 214 }} /> : null}
+      {p.stamp ? <Stamp text={p.stamp.text} f={f} at={p.stamp.at} style={p.stamp.pos === "right" ? { right: 8, top: 46 } : { left: 250, top: 214 }} /> : null}
       {p.tag ? <div style={{ position: "absolute", ...(ph ? { right: 0, top: 150 } : { left: cx + 14, top: DY + 196 }) }}><Tag tag={p.tag} f={f} /></div> : null}
     </>
   );
@@ -445,6 +445,39 @@ const Ask: React.FC<PanelProps> = ({ sh, f, slug }) => {
 const PANELS: Record<string, React.FC<PanelProps>> = { hook: Hook, timeline: Timeline, versus: Versus, claim: Claim, notequal: NotEqual, pending: Pending, ask: Ask };
 
 /** 一鏡：內容畫在主舞台框裡，整鏡極慢推近；換鏡時舊鏡淡出 */
+/** 下半部資訊帶（選填 props.band，2026/11/22；沒填就是原本的樣子）：字幕條下方到出處列之間（約 y 1480–1692）一條深色資料帶，
+ *  左邊直排小標，右邊 1–4 格「小字／大字／註」（時間線、對照數字、放大的出處卡）。整條從這一鏡開始就在（跟著換鏡擦切），
+ *  格子有 at 的念到之前降亮度、念到時亮起並描一條底線；tone＝red（2022／過去）｜cool（現在）｜q（未定，虛線框）｜text。 */
+type BandCell = { top: string; big: string; sub?: string; tone?: "red" | "cool" | "q" | "text"; at?: number };
+const LowerBand: React.FC<{ band: { title: string; cells: BandCell[]; arrows?: boolean; bigPx?: number }; f: number }> = ({ band, f }) => {
+  const ln = useLN();
+  const top = ln.LT_TOP + ln.LT_H + 16, h = ln.SRC_TOP - 14 - top, TW = 70, px = band.bigPx ?? 58;
+  const tone = (t?: string) => (t === "red" ? T.accentText : t === "cool" ? T.cool : t === "q" ? T.text2 : T.text);
+  return (
+    <div data-box="card" style={{ position: "absolute", left: L.X, top, width: L.INNER_W, height: h, boxSizing: "border-box", background: N.ltBg, border: `${T.stroke.hair}px solid ${T.panelLine}`, display: "flex", alignItems: "stretch" }}>
+      <div style={{ width: TW, flexShrink: 0, background: N.red, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ ...sans(30, T.weight.bold, N.onRed), writingMode: "vertical-rl", letterSpacing: "0.16em", lineHeight: 1 }}>{band.title}</span>
+      </div>
+      {band.cells.map((c, k) => {
+        const on = c.at === undefined || f >= c.at, lp = c.at === undefined ? 1 : drawP(f, c.at);
+        return (
+          <React.Fragment key={k}>
+            {k ? <div style={{ width: band.arrows ? 40 : T.stroke.hair, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: band.arrows ? "transparent" : T.panelLine, ...sans(36, T.weight.bold, T.text3) }}>{band.arrows ? "→" : null}</div> : null}
+            <div style={{ flex: 1, minWidth: 0, padding: "0 18px", display: "flex", flexDirection: "column", justifyContent: "center", opacity: on ? 1 : 0.62 }}>
+              <div style={{ ...sans(30, T.weight.bold, T.text2), letterSpacing: "0.04em" }}>{c.top}</div>
+              <div style={{ marginTop: 6, alignSelf: "flex-start", position: "relative", padding: c.tone === "q" ? "0 10px" : 0, border: c.tone === "q" ? `${T.stroke.hair}px dashed ${T.line}` : undefined }}>
+                <span style={{ ...NUMB, fontFamily: `${FONT_EN}, ${FONT_ZH}`, fontWeight: T.weight.num, fontSize: px, lineHeight: 1.12, color: tone(c.tone), whiteSpace: "nowrap" }}>{c.big}</span>
+                {c.at !== undefined && lp > 0 ? <span style={{ position: "absolute", left: 0, bottom: -4, height: T.stroke.mark - 2, width: `${r1(100 * lp)}%`, background: T.accent }} /> : null}
+              </div>
+              {c.sub ? <div style={{ marginTop: 8, ...sans(30, T.weight.body, T.text2) }}>{c.sub}</div> : null}
+            </div>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+};
+
 const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = ({ sh, f, slug, cut }) => {
   const P = PANELS[sh.panel];
   const ln = useLN();
@@ -461,6 +494,7 @@ const Shot: React.FC<{ sh: DsShot; f: number; slug: string; cut?: boolean }> = (
             <P sh={sh} f={f} slug={slug} news />
           </div>
         </div>
+        {sh.p.band ? <LowerBand band={sh.p.band} f={f} /> : null}
       </AbsoluteFill>
     );
   }
@@ -680,7 +714,7 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
 // 頂部新聞條＋電頭、下三分之一標題條（取代左邊紅線的字幕）、出處、點陣世界地圖（淡背景，標出地點與連線）、底部跑馬燈、橫向擦切。
 // 顏色與時間讀 THEME_DOSSIER.news，版面讀 LAYOUT_DOSSIER_NEWS。不放任何媒體或公司的商標圖案，媒體名只用文字。
 type Place = { zh: string; en: string; lon: number; lat: number };
-type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string }; /** 選填：底部欄右側改放固定短字（不跑馬燈，不會被「查證截至」徽章切到） */ tickerStatic?: string };
+type NewsSpec = { layout?: "fill"; /** 左上新聞條的頻道字樣（哩股哩股預設 LIGULIGU，和網站站名一致；使用者 2026/11/15） */ mark?: string; section: string; sectionEn?: string; places?: Record<string, Place>; link?: { from: string; to: string; at: string }; /** 選填：底部欄右側改放固定短字（不跑馬燈，不會被「查證截至」徽章切到） */ tickerStatic?: string; /** 選填（2026/11/22）：字幕條英文字級（填了就改用較亮的字色，沒填＝CAP_EN_PX） */ capEnPx?: number };
 type ShotNews = { dateline?: string; place?: string; lt?: string };
 const shotNews = (sh: DsShot): ShotNews => (sh.p.news ?? {}) as ShotNews;
 const curShot = (shots: DsShot[], f: number) => { let c = shots[0]; for (const sh of shots) if (f >= sh.start) c = sh; return c; };
@@ -780,7 +814,7 @@ const NewsBar: React.FC<{ name: string; tag: string; news: NewsSpec; shots: DsSh
   );
 };
 /** 下三分之一標題條：紅色欄目籤（這一鏡在講什麼）＋深色條，左邊紅色粗邊；中文一次一段、英文跟著換，換段時從左邊擦出來。條本身一直在。 */
-const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string }> = ({ cues, shots, f, fixed }) => {
+const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: string; capEnPx?: number }> = ({ cues, shots, f, fixed, capEnPx }) => {
   const ln = useLN();
   const cur = curShot(shots, f), label = shotNews(cur).lt;
   if (cur.panel === "end" && f >= cur.start) return null;
@@ -800,7 +834,7 @@ const LowerThird: React.FC<{ cues: Cap[]; shots: DsShot[]; f: number; fixed?: st
       <div data-box="subtitle" style={{ position: "absolute", left: L.X, top: ln.LT_TOP, width: L.INNER_W, height: ln.LT_H, boxSizing: "border-box", background: N.ltBg, borderLeft: `${ln.LT_EDGE}px solid ${N.red}`, borderTop: `${T.stroke.hair}px solid ${T.panelLine}`, borderBottom: `${T.stroke.hair}px solid ${T.panelLine}`, paddingLeft: ln.LT_PAD, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div style={{ clipPath: clip(p, "right") }}>
           <div style={fixed ? { ...serif(ln.CAP_ZH_PX + 4), lineHeight: 1.3 } : { ...sans(ln.CAP_ZH_PX, T.weight.sub), lineHeight: 1.3 }}>{zh}</div>
-          {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: 400, fontSize: ln.CAP_EN_PX, lineHeight: 1.3, color: T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
+          {en ? <div style={{ marginTop: 6, fontFamily: FONT_EN, fontWeight: capEnPx ? 500 : 400, fontSize: capEnPx ?? ln.CAP_EN_PX, lineHeight: 1.3, color: capEnPx ? T.text : T.text2, whiteSpace: "nowrap" }}>{en}</div> : null}
         </div>
       </div>
     </>
@@ -877,7 +911,7 @@ export const VideoDossier: React.FC<Script & { timeline: TimelineV2 }> = (props)
       <WorldMap news={news} shots={m.shots} f={f} linkAt={news.link ? m.time(news.link.at, 0) : 1e9} />
       {m.shots.map((sh) => <Shot key={sh.id} sh={sh} f={f} slug={slug} cut />)}
       <SweepBand shots={m.shots} f={f} />
-      <LowerThird cues={caps} shots={m.shots} f={f} />
+      <LowerThird cues={caps} shots={m.shots} f={f} capEnPx={news.capEnPx} />
       <SourceTicker shots={m.shots} f={f} asOf={asOf} fixedText={news.tickerStatic} />
       {m.shots.filter((sh) => sh.panel === "end").map((sh) => <EndCardDossier key={sh.id} sh={sh} f={f} name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} slogan={channel?.slogan ?? "數字，查過再信"} />)}
       <NewsBar name={channel?.name ?? "哩股哩股"} tag={channel?.tag ?? "查到底"} news={news} shots={m.shots} f={f} progress={f / Math.max(1, m.total - 1)} />

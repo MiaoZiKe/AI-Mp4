@@ -15,14 +15,16 @@
     "section": "國際",
     "sectionEn": "INTERNATIONAL",
     "places": {},
-    "tickerStatic": "非投資建議・出處見上方"
+    "tickerStatic": "非投資建議・出處見上方",
+    "capEnPx": 38
   },
   "voice": {
     "voiceName": "Charon",
     "model": "gemini-3.8-flash-tts",
     "mode": "take",
     "profile": "liguligu",
-    "note": "voice-take.mjs（2026/11/22，1 次請求）整篇一次生成，切說明句、段落插靜音"
+    "note": "第 5 版（2026/11/22）：念稿 ≤190 字、短句；不在句中插停頓，只在換幕處補 0.6–0.8 秒",
+    "styleExtra": "整體放慢一點，每句講完在句號自然停一下，不趕"
   },
   "cover": {
     "title": [
@@ -38,11 +40,11 @@
   "scenes": [
     {
       "id": "s01",
-      "narration": "2022 年美國升息，科技股為主的那斯達克，全年跌 33%。今年 9 月又升息，市場預期 12 月再升。會重演嗎？",
-      "tts": "二零二二年，美國升息，科技股為主的那斯達克，全年跌，三成三。今年，九月，又升息，市場預期，十二月，再升。會重演嗎？",
+      "narration": "市場預期美國 12 月再升息。2022 年連續升息，科技股為主的那斯達克全年跌 33%。這次會重演嗎？",
+      "tts": "市場預期美國十二月再升息。二零二二年連續升息，科技股為主的那斯達克全年跌三成三。這次會重演嗎？",
       "subtitle": {
-        "zh": "2022 年美國升息\n科技股為主的那斯達克\n全年跌 33%\n今年 9 月又升息\n市場預期 12 月再升\n會重演嗎？",
-        "en": "In 2022 the US raised rates, | and the tech-heavy Nasdaq | fell 33% for the year. | The US hiked again in September, | and markets expect another in December. | A repeat?"
+        "zh": "市場預期美國\n12 月再升息\n2022 年連續升息\n科技股為主的那斯達克\n全年跌 33%\n這次會重演嗎？",
+        "en": "Markets expect the US | to hike again in December. | In 2022 the US kept hiking, | and the tech-heavy Nasdaq | fell 33% for the year. | Will it happen again?"
       },
       "keywords": [
         "那斯達克"
@@ -50,15 +52,15 @@
       "cues": [
         {
           "id": "c1",
-          "text": "2022 年"
+          "text": "市場預期"
         },
         {
           "id": "c2",
-          "text": "那斯達克"
+          "text": "12 月"
         },
         {
           "id": "c3",
-          "text": "全年"
+          "text": "那斯達克"
         },
         {
           "id": "c4",
@@ -69,8 +71,8 @@
       "component": "DossierScene",
       "props": {
         "panel": "hook",
-        "kicker": "2022 升息熊市・全年",
-        "span": "2022/1/3 → 2022/12/30",
+        "kicker": "2022 升息熊市",
+        "span": "2022/1/3 → 12/30",
         "num": "−33",
         "numText": "%",
         "line2": "那斯達克",
@@ -97,20 +99,12 @@
           "at": "start",
           "endAt": "end",
           "stepAts": [
-            "c1+8",
-            "c1+80",
-            "c4+24",
-            "c4+52",
-            "end-60",
-            "end-30"
+            "start+14",
+            "start+28"
           ],
           "stepP": [
-            0.14,
-            0.3,
-            0.5,
-            0.62,
+            0.42,
             0.78,
-            0.9,
             1
           ],
           "color": true
@@ -118,7 +112,8 @@
         "ask": "會重演嗎？",
         "stamp": {
           "text": "2022 全年",
-          "at": "start+12"
+          "at": "start+12",
+          "pos": "right"
         },
         "tag": {
           "kind": "report",
@@ -128,6 +123,32 @@
         "news": {
           "dateline": "NEW YORK・2022/12/30",
           "lt": "事件"
+        },
+        "band": {
+          "title": "時間線",
+          "arrows": true,
+          "cells": [
+            {
+              "top": "2022 全年",
+              "big": "−33%",
+              "sub": "那斯達克",
+              "tone": "red",
+              "at": "c4"
+            },
+            {
+              "top": "2026/9/16",
+              "big": "又升息",
+              "sub": "媒體報導",
+              "tone": "cool"
+            },
+            {
+              "top": "12 月",
+              "big": "再升？",
+              "sub": "市場預期",
+              "tone": "q",
+              "at": "c1"
+            }
+          ]
         }
       },
       "sources": [
@@ -136,125 +157,282 @@
     },
     {
       "id": "s02",
-      "narration": "先看現在。美國央行聯準會，利率約 4%。",
-      "tts": "先看現在。美國央行聯準會，利率約，四趴。",
+      "narration": "先看那年。物價年增衝到 9.1%，所以美國央行聯準會，一年內把利率從 0.5% 拉到 4.5%。",
+      "tts": "先看那年。物價年增衝到九點一趴，所以美國央行聯準會，一年內把利率從零點五趴拉到四點五趴。",
       "subtitle": {
-        "zh": "先看現在\n美國央行聯準會\n利率約 4%",
-        "en": "First, where things stand. | The Fed, America's central bank, | has rates around 4%."
+        "zh": "先看那年\n物價年增衝到 9.1%\n所以美國央行聯準會\n一年內把利率\n從 0.5% 拉到 4.5%",
+        "en": "First, 2022. | Inflation hit 9.1%, | so the Fed, America's central bank, | within a year pushed rates | from 0.5% to 4.5%."
       },
       "keywords": [
-        "約 4%",
-        "4%"
+        "9.1%"
       ],
       "cues": [
         {
           "id": "c1",
-          "text": "現在"
+          "text": "那年"
         },
         {
           "id": "c2",
-          "text": "聯準會"
+          "text": "9.1%"
         },
         {
           "id": "c3",
-          "text": "利率"
+          "text": "聯準會"
+        },
+        {
+          "id": "c4",
+          "text": "4.5%"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "2022 全年",
+          "doc": "利率上限（%）",
+          "big": "0.5→4.5",
+          "bigPx": 120,
+          "bigFit": 84,
+          "src": "3/16 起升、12/14 到頂",
+          "count": true,
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "start+6",
+          "srcAt": "start+8",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（CNBC 等）",
+            "at": "start+12"
+          }
+        },
+        "right": {
+          "head": "2022 年 6 月",
+          "big": [
+            "9.1%"
+          ],
+          "src": "1981 年以來最大",
+          "count": true,
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "start+2",
+          "srcAt": "start+8",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（CBS 等）",
+            "at": "start+12"
+          },
+          "masthead": {
+            "name": "物價年增",
+            "date": "2022/7",
+            "at": "c2+4"
+          }
+        },
+        "mid": {
+          "text": "？",
+          "at": "c4+4"
+        },
+        "photo": {
+          "name": "y2022",
+          "caption": "簡圖示意，只標查到的點",
+          "at": "start",
+          "endAt": "c4",
+          "stepAts": [
+            "start+12",
+            "start+26"
+          ],
+          "stepP": [
+            0.4,
+            0.75,
+            1
+          ],
+          "color": true
+        },
+        "news": {
+          "dateline": "WASHINGTON・2022/12/14",
+          "lt": "2022 年"
+        },
+        "band": {
+          "title": "那一年",
+          "arrows": true,
+          "cells": [
+            {
+              "top": "3/16",
+              "big": "0.5%",
+              "sub": "首次升息",
+              "tone": "red",
+              "at": "c3"
+            },
+            {
+              "top": "6 月",
+              "big": "9.1%",
+              "sub": "物價年增",
+              "tone": "red",
+              "at": "c2"
+            },
+            {
+              "top": "12/14",
+              "big": "4.5%",
+              "sub": "第 7 次升息",
+              "tone": "red",
+              "at": "c4"
+            }
+          ]
+        }
+      },
+      "sources": [
+        "CBS 2022/7/13；CNBC 3/16；ABA 12/15"
+      ]
+    },
+    {
+      "id": "s03",
+      "narration": "這次哪裡一樣？9 月又升息了。11 月 10 日物價比預期高，輝達也跟著跌。",
+      "tts": "這次哪裡一樣？九月又升息了。十一月十日物價比預期高，輝達也跟著跌。",
+      "subtitle": {
+        "zh": "這次哪裡一樣？\n9 月又升息了\n11 月 10 日物價比預期高\n輝達也跟著跌",
+        "en": "What's the same this time? | Rates went up again in September. | Nov 10 prices beat forecasts, | and Nvidia fell too."
+      },
+      "keywords": [
+        "又升息"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "一樣"
+        },
+        {
+          "id": "c2",
+          "text": "9 月"
+        },
+        {
+          "id": "c3",
+          "text": "物價"
+        },
+        {
+          "id": "c4",
+          "text": "輝達"
+        }
+      ],
+      "beat": "mechanism",
+      "component": "DossierScene",
+      "props": {
+        "panel": "versus",
+        "left": {
+          "head": "2026/9/16",
+          "doc": "聯準會決議",
+          "big": "又升息",
+          "bigPx": 120,
+          "src": "區間 3.75–4.00%",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "start+2",
+          "srcAt": "start+8",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（原文未讀）",
+            "at": "start+12"
+          }
+        },
+        "right": {
+          "head": "2026/11/10 物價",
+          "big": [
+            "高於預期"
+          ],
+          "bigPx": 84,
+          "src": "輝達 NVDA 也跟著跌",
+          "headAt": "start-20",
+          "at": "start-16",
+          "bigAt": "start+6",
+          "srcAt": "start+8",
+          "tag": {
+            "kind": "report",
+            "text": "媒體報導（FXStreet 等）",
+            "at": "start+12"
+          },
+          "masthead": {
+            "name": "非投資建議",
+            "date": "11/10",
+            "at": "c2+4"
+          }
+        },
+        "mid": {
+          "text": "？",
+          "at": "c4+4"
+        },
+        "photo": {
+          "name": "same",
+          "caption": "簡圖示意，資料媒體報導",
+          "at": "start",
+          "endAt": "c4",
+          "stepAts": [
+            "c1"
+          ],
+          "stepP": [
+            0.63,
+            1
+          ],
+          "dir": "right",
+          "color": true
+        },
+        "news": {
+          "dateline": "WASHINGTON・2026/11/10",
+          "lt": "一樣的地方"
+        },
+        "band": {
+          "title": "出處",
+          "bigPx": 50,
+          "cells": [
+            {
+              "top": "9/16 升息",
+              "big": "媒體報導",
+              "sub": "Nation Thailand 等",
+              "tone": "text",
+              "at": "c2"
+            },
+            {
+              "top": "11/10 物價・輝達",
+              "big": "媒體報導",
+              "sub": "CBS；FXStreet、TMGM",
+              "tone": "text",
+              "at": "c3"
+            }
+          ]
+        }
+      },
+      "sources": [
+        "Nation Thailand；CBS；FXStreet、TMGM 11/10"
+      ]
+    },
+    {
+      "id": "s04",
+      "narration": "哪裡不一樣？最新的物價年增是 3.7%。利率起點也不同，這次已經在 4%。",
+      "tts": "哪裡不一樣？最新的物價年增是三點七趴。利率起點也不同，這次已經在四趴。",
+      "subtitle": {
+        "zh": "哪裡不一樣？\n最新的物價年增是 3.7%\n利率起點也不同\n這次已經在 4%",
+        "en": "What's different? | The latest inflation is 3.7%. | Rates also start higher: | this time they're already at 4%."
+      },
+      "keywords": [
+        "3.7%"
+      ],
+      "cues": [
+        {
+          "id": "c1",
+          "text": "不一樣"
+        },
+        {
+          "id": "c2",
+          "text": "3.7%"
+        },
+        {
+          "id": "c3",
+          "text": "起點"
         },
         {
           "id": "c4",
           "text": "4%"
         }
       ],
-      "beat": "you",
-      "component": "DossierScene",
-      "props": {
-        "panel": "claim",
-        "head": {
-          "text": "現在：利率約 4%",
-          "mark": "約 4%",
-          "at": "start-16",
-          "markAt": "c1+10"
-        },
-        "photo": {
-          "name": "rate26",
-          "caption": "簡圖示意，資料媒體報導",
-          "date": "2026/9/16",
-          "size": 470,
-          "at": "start-22",
-          "dateAt": "c1+4",
-          "stepAts": [
-            "c3",
-            "end+4"
-          ],
-          "stepP": [
-            0.06,
-            0.5,
-            1
-          ],
-          "color": true
-        },
-        "quote": {
-          "by": "聯準會 9/16 決議後",
-          "byAt": "c2-4",
-          "pre": "利率區間上緣",
-          "big": "4%",
-          "post": "3.75–4.00%",
-          "at": "c2-6",
-          "bigAt": "c3",
-          "count": true,
-          "masthead": {
-            "name": "媒體報導",
-            "date": "2026/9/16"
-          }
-        },
-        "tag": {
-          "kind": "report",
-          "text": "媒體報導（原文未讀）",
-          "at": "c4+6"
-        },
-        "note": {
-          "text": "12 月再升：CME FedWatch 等預期",
-          "at": "c4+14"
-        },
-        "news": {
-          "dateline": "WASHINGTON・2026/9/16",
-          "lt": "現在"
-        }
-      },
-      "sources": [
-        "Nation Thailand 等；預期：FedWatch、Polymarket"
-      ]
-    },
-    {
-      "id": "s03",
-      "narration": "為什麼預期再升？因為物價還在漲，9 月比去年漲 3.7%。2022 年 6 月卻是 9.1%。",
-      "tts": "為什麼預期再升？因為物價還在漲，九月，比去年漲，三點七趴。二零二二年六月，卻是，九點一趴。",
-      "subtitle": {
-        "zh": "為什麼預期再升？\n因為物價還在漲\n9 月比去年漲 3.7%\n2022 年 6 月\n卻是 9.1%",
-        "en": "Why expect another hike? | Because prices are still rising: | September was up 3.7% from a year earlier. | But in June 2022, | it was 9.1%."
-      },
-      "keywords": [
-        "9.1%",
-        "3.7%"
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "為什麼"
-        },
-        {
-          "id": "c2",
-          "text": "物價"
-        },
-        {
-          "id": "c3",
-          "text": "3.7%"
-        },
-        {
-          "id": "c4",
-          "text": "9.1%"
-        }
-      ],
-      "beat": "mechanism",
+      "beat": "twist",
       "component": "DossierScene",
       "props": {
         "panel": "versus",
@@ -267,12 +445,12 @@
           "count": true,
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c2-4",
-          "srcAt": "c1",
+          "bigAt": "start+2",
+          "srcAt": "start+8",
           "tag": {
             "kind": "report",
             "text": "媒體報導（CBS 等）",
-            "at": "c1+10"
+            "at": "start+12"
           }
         },
         "right": {
@@ -280,16 +458,16 @@
           "big": [
             "3.7%"
           ],
-          "src": "再升預期的原因：分析推測",
+          "src": "最新一期年增率",
           "count": true,
           "headAt": "start-20",
           "at": "start-16",
-          "bigAt": "c2-4",
-          "srcAt": "c1",
+          "bigAt": "start+6",
+          "srcAt": "start+8",
           "tag": {
             "kind": "report",
             "text": "媒體報導（AP 轉載）",
-            "at": "c1+10"
+            "at": "start+12"
           },
           "masthead": {
             "name": "媒體報導",
@@ -298,119 +476,7 @@
           }
         },
         "mid": {
-          "text": "vs",
-          "at": "c4+4"
-        },
-        "photo": {
-          "name": "thermo",
-          "caption": "簡圖示意，資料媒體報導",
-          "at": "start",
-          "endAt": "c4",
-          "stepAts": [
-            "c1+30",
-            "c2",
-            "c2+50",
-            "c3",
-            "c3+44",
-            "c3+66",
-            "c4",
-            "c4+30"
-          ],
-          "stepP": [
-            0.3,
-            0.36,
-            0.45,
-            0.56,
-            0.64,
-            0.72,
-            0.82,
-            0.92,
-            1
-          ],
-          "color": true
-        },
-        "news": {
-          "dateline": "WASHINGTON・2026/10/15",
-          "lt": "對照一"
-        }
-      },
-      "sources": [
-        "CBS 2022/7/13；AP 轉載 2026/10/15"
-      ],
-      "cutDelayF": 8
-    },
-    {
-      "id": "s04",
-      "narration": "起點也不同。2022 年從 0.5% 一年拉到 4.5%，這次起點就在 4%。",
-      "tts": "起點也不同。二零二二年從，零點五趴，一年，拉到，四點五趴，這次起點就在，四趴。",
-      "subtitle": {
-        "zh": "起點也不同\n2022 年從 0.5%\n一年拉到 4.5%\n這次起點就在 4%",
-        "en": "The starting point differs too. | In 2022 rates went from 0.5% | to 4.5% within a year. | This time they start at 4%."
-      },
-      "keywords": [],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "起點"
-        },
-        {
-          "id": "c2",
-          "text": "0.5%"
-        },
-        {
-          "id": "c3",
-          "text": "4.5%"
-        },
-        {
-          "id": "c4",
-          "text": "這次"
-        }
-      ],
-      "beat": "mechanism",
-      "component": "DossierScene",
-      "props": {
-        "panel": "versus",
-        "left": {
-          "head": "2022 年",
-          "doc": "利率上限（%）",
-          "big": "0.5→4.5",
-          "bigPx": 120,
-          "bigFit": 84,
-          "src": "3/16 起跳、12/14 到頂",
-          "headAt": "start-20",
-          "at": "start-16",
-          "bigAt": "c1-4",
-          "srcAt": "c1+6",
-          "tag": {
-            "kind": "report",
-            "text": "媒體報導（CNBC 等）",
-            "at": "c2+6"
-          }
-        },
-        "right": {
-          "head": "2026/9/16 起",
-          "big": [
-            "4→？"
-          ],
-          "bigPx": 96,
-          "src": "區間 3.75–4.00%",
-          "headAt": "start-20",
-          "at": "start-16",
-          "bigAt": "c1-4",
-          "srcAt": "c1+6",
-          "tag": {
-            "kind": "report",
-            "text": "媒體報導（原文未讀）",
-            "at": "c2+6"
-          },
-          "masthead": {
-            "name": "12 月再升？",
-            "date": "2026/11",
-            "at": "c2+4"
-          }
-        },
-        "mid": {
-          "text": "vs",
+          "text": "？",
           "at": "c4+4"
         },
         "photo": {
@@ -419,145 +485,57 @@
           "at": "start",
           "endAt": "c4",
           "stepAts": [
-            "c1+50",
-            "c2",
-            "c3-18",
-            "c3",
-            "c3+20",
-            "c4+4",
-            "end-16"
+            "start+16"
           ],
           "stepP": [
-            0.18,
-            0.24,
-            0.27,
-            0.3,
-            0.55,
-            0.86,
-            0.93,
-            1
-          ],
-          "color": true
-        },
-        "news": {
-          "dateline": "WASHINGTON・2026/11/21",
-          "lt": "對照二"
-        }
-      },
-      "sources": [
-        "CNBC 2022/3/16、ABA 2022/12/15"
-      ]
-    },
-    {
-      "id": "s05",
-      "narration": "利率高，科技股比較敏感，因為未來獲利折回現在會變少。像輝達，11 月 10 日物價公布也跟著跌。",
-      "tts": "利率高，科技股比較敏感，因為未來獲利折回現在會變少。像輝達，十一月十日，物價公布也跟著跌。",
-      "subtitle": {
-        "zh": "利率高\n科技股比較敏感\n因為未來獲利\n折回現在會變少\n像輝達\n11 月 10 日物價公布\n也跟著跌",
-        "en": "With rates high, | tech stocks are more sensitive, | because future profits | are worth less today. | Nvidia, for one, | when inflation data came out on Nov 10, | fell too."
-      },
-      "keywords": [
-        "較敏感",
-        "跟著跌"
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "敏感"
-        },
-        {
-          "id": "c2",
-          "text": "變少"
-        },
-        {
-          "id": "c3",
-          "text": "輝達"
-        },
-        {
-          "id": "c4",
-          "text": "跟著跌"
-        }
-      ],
-      "beat": "mechanism",
-      "component": "DossierScene",
-      "props": {
-        "panel": "versus",
-        "left": {
-          "head": "科技股",
-          "doc": "對升息",
-          "big": "較敏感",
-          "bigPx": 120,
-          "src": "利率高，現在值少",
-          "headAt": "start-20",
-          "at": "start-16",
-          "bigAt": "c1-4",
-          "srcAt": "c1+6",
-          "tag": {
-            "kind": "none",
-            "text": "分析推測",
-            "at": "c1+14"
-          }
-        },
-        "right": {
-          "head": "輝達 NVDA",
-          "big": [
-            "跟著跌"
-          ],
-          "src": "11/10 物價公布日",
-          "headAt": "start-20",
-          "at": "start-16",
-          "bigAt": "c1-4",
-          "srcAt": "c3+30",
-          "tag": {
-            "kind": "report",
-            "text": "媒體報導（FXStreet 等）",
-            "at": "c3+56"
-          },
-          "masthead": {
-            "name": "非投資建議",
-            "date": "11/10",
-            "at": "c2+4"
-          }
-        },
-        "mid": {
-          "text": "・",
-          "at": "c4+4"
-        },
-        "photo": {
-          "name": "discount",
-          "caption": "簡圖示意，非估值模型",
-          "at": "start",
-          "endAt": "c4",
-          "stepAts": [
-            "c1",
-            "c1+36",
-            "c2-4"
-          ],
-          "stepP": [
-            0.2,
-            0.4,
-            0.58,
+            0.45,
             1
           ],
           "dir": "down",
           "color": true
         },
         "news": {
-          "dateline": "NEW YORK・2026/11/10",
-          "lt": "相關公司"
+          "dateline": "WASHINGTON・2026/10/15",
+          "lt": "不一樣"
+        },
+        "band": {
+          "title": "出處",
+          "bigPx": 50,
+          "cells": [
+            {
+              "top": "9.1%",
+              "big": "CBS",
+              "sub": "2022/7/13",
+              "tone": "red"
+            },
+            {
+              "top": "3.7%",
+              "big": "AP 轉載",
+              "sub": "2026/10/15",
+              "tone": "cool",
+              "at": "c2"
+            },
+            {
+              "top": "利率起點",
+              "big": "CNBC 等",
+              "sub": "2022/3/16",
+              "tone": "text",
+              "at": "c4"
+            }
+          ]
         }
       },
       "sources": [
-        "FXStreet、TMGM 2026/11/10；非投資建議"
+        "CBS 2022/7/13；AP 轉載 10/15；CNBC 3/16"
       ]
     },
     {
-      "id": "s06",
-      "narration": "那會不會重演？要看聯準會預計 12 月 9 日的決定，隔天是 11 月物價。還沒確定。",
-      "tts": "那會不會重演？要看聯準會預計，十二月九日，的決定，隔天是，十一月，物價。還沒確定。",
+      "id": "s05",
+      "narration": "所以要看聯準會預計 12 月 9 日的決定。隔天還有 11 月物價。目前都還沒確定。",
+      "tts": "所以要看聯準會預計十二月九日的決定。隔天還有十一月物價。目前都還沒確定。",
       "subtitle": {
-        "zh": "那會不會重演？\n要看聯準會預計\n12 月 9 日的決定\n隔天是 11 月物價\n還沒確定",
-        "en": "So, a repeat? | Watch the Fed's decision, | expected on December 9, | then November prices the next day. | Nothing is settled yet."
+        "zh": "所以要看聯準會預計\n12 月 9 日的決定\n隔天還有 11 月物價\n目前都還沒確定",
+        "en": "So watch the Fed's decision, | expected on December 9. | November prices come the next day. | Nothing is settled yet."
       },
       "keywords": [],
       "cues": [
@@ -589,29 +567,19 @@
             "caption": "日程示意（日期為預計）",
             "at": "start-20",
             "stepAts": [
-              "start+22",
-              "start+46",
-              "start+70",
-              "c1",
-              "c3",
-              "start+172",
-              "c4+10"
+              "start+10",
+              "start+22"
             ],
             "stepP": [
-              0.25,
-              0.28,
-              0.31,
-              0.37,
-              0.62,
-              0.9,
-              0.95,
+              0.34,
+              0.66,
               1
             ],
             "dir": "down",
             "color": true
           },
           "row": "12/9 決議",
-          "rowAt": "c2"
+          "rowAt": "start+10"
         },
         "right": {
           "title": "11 月物價",
@@ -621,30 +589,47 @@
           "titleAt": "start-12",
           "frameAt": "c1+6",
           "row": "12/10 公布",
-          "rowAt": "c3"
+          "rowAt": "start+18"
         },
         "tag": {
           "kind": "pending",
           "text": "截至 2026/11/21 尚未確定",
-          "at": "c3+4"
+          "at": "start+26"
         },
         "news": {
           "dateline": "WASHINGTON・2026/11/21",
-          "lt": "還不知道"
+          "lt": "接下來看"
+        },
+        "band": {
+          "title": "截至今天",
+          "cells": [
+            {
+              "top": "利率區間（9/16 起）",
+              "big": "3.75–4.00%",
+              "sub": "媒體報導",
+              "tone": "cool"
+            },
+            {
+              "top": "12 月再升",
+              "big": "市場預期",
+              "sub": "CME FedWatch 等",
+              "tone": "q",
+              "at": "c1"
+            }
+          ]
         }
       },
       "sources": [
-        "Portfolio Adviser 日程；CBS（CPI 12/10）"
-      ],
-      "cutDelayF": 14
+        "Portfolio Adviser 日程；CBS；FedWatch"
+      ]
     },
     {
-      "id": "s07",
-      "narration": "你覺得差最多的，是物價，還是起點？",
-      "tts": "你覺得差最多的，是物價，還是起點？",
+      "id": "s06",
+      "narration": "你覺得差最多的，是物價還是起點？",
+      "tts": "你覺得差最多的，是物價還是起點？",
       "subtitle": {
         "zh": "你覺得差最多的\n是物價還是起點？",
-        "en": "What do you think differs most: | prices, or the starting point?"
+        "en": "What differs most? | Prices, or the starting point?"
       },
       "keywords": [
         "差最多",
@@ -689,37 +674,53 @@
         },
         "next": {
           "label": "對照整理",
-          "at": "start",
+          "at": "start-20",
           "photo": {
             "name": "steps",
             "caption": "簡圖示意，只標已查到的點",
-            "at": "start+2",
+            "at": "start-18",
             "stepAts": [
-              "c1+4",
-              "c2+4",
-              "c4"
+              "start-14",
+              "start-10"
             ],
             "stepP": [
-              0.2,
-              0.45,
-              0.75,
+              0.5,
+              0.8,
               1
             ],
             "color": true
           },
-          "title": "通膨低、起點高",
-          "titleAt": "c1",
+          "title": "通膨較低、起點較高",
+          "titleAt": "start-10",
           "frameAt": "c3"
         },
         "news": {
           "dateline": "WASHINGTON・2026/11/21",
           "lt": "提問"
+        },
+        "band": {
+          "title": "對照",
+          "cells": [
+            {
+              "top": "物價年增",
+              "big": "9.1→3.7",
+              "sub": "2022/6 → 2026/9",
+              "tone": "cool",
+              "at": "c3"
+            },
+            {
+              "top": "利率起點",
+              "big": "0.5→4",
+              "sub": "2022/3 → 現在",
+              "tone": "cool",
+              "at": "c4"
+            }
+          ]
         }
       },
       "sources": [
         "整理自本片各鏡出處；非投資建議"
-      ],
-      "cutDelayF": 11
+      ]
     },
     {
       "id": "end",
@@ -741,5 +742,5 @@
       "sources": []
     }
   ],
-  "thesis": "9 月美國又升息、市場預期 12 月再升，但物價和起點都跟 2022 年不同，會不會重演要看 12 月 9 日"
+  "thesis": "又要升息了，2022 年那樣的重挫會重演嗎？物價和起點其實不太一樣"
 }
