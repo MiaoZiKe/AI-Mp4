@@ -4,7 +4,7 @@
 抓全片「≥0.25 秒的停頓」（10ms RMS 低於 −45 dBFS 的連續區段，只看第一個字到最後一個字之間），
 用 timeline.json 的字時間把每個停頓對到念稿（script.json 的 tts）的標點位置：
   句內（兩個 。？！ 之間、非逗號處）有停頓 → error（人耳聽成斷斷續續）
-  逗號／頓號處的停頓 → 只列出（info）
+  逗號／頓號處 ≤0.45 秒的自然停頓 → 只列出（info），不計入總數；>0.45 秒算句中停頓（error）（主控 11/22 定義）
   句末或幕界的停頓 → 正常
 規則：全片 ≥0.25 秒停頓數 ≤ 句數＋2，否則 error。exit 1＝不過。
 沒給 --file：用 timeline.json 的 recording.file（旁白 wav）；成品 mp4 也可（會用 timeline 的 voice 區間，片尾卡不算）。"""
@@ -80,9 +80,13 @@ for a, b in zip(qs, qe):
 errs, infos = [], []
 for p in pauses:
     if p["kind"] == "inside_sentence": errs.append(f"{p['start']:.2f}s 句內停頓 {p['dur']:.2f} 秒（第 {p['afterCharIndex']} 字後，念稿該處沒有標點）")
-    elif p["kind"] == "comma": infos.append(f"{p['start']:.2f}s 逗號處停頓 {p['dur']:.2f} 秒")
+    elif p["kind"] == "comma":
+        if p["dur"] > 0.45: errs.append(f"{p['start']:.2f}s 逗號處停頓 {p['dur']:.2f} 秒 >0.45（算句中停頓）")
+        else: infos.append(f"{p['start']:.2f}s 逗號處自然停頓 {p['dur']:.2f} 秒（不計入總數）")
 limit = n_sent + 2
-if len(pauses) > limit: errs.append(f"全片 ≥{MINP} 秒停頓 {len(pauses)} 處 > 句數 {n_sent}＋2 = {limit}")
+# 主控 11/22 定義：TTS 在逗號自然念出、≤0.45 秒的停頓不算、不計入總數
+counted = [q for q in pauses if not (q["kind"] == "comma" and q["dur"] <= 0.45)]
+if len(counted) > limit: errs.append(f"全片 ≥{MINP} 秒停頓（不含逗號自然停頓）{len(counted)} 處 > 句數 {n_sent}＋2 = {limit}")
 res = {"slug": slug, "file": os.path.relpath(path, ROOT), "sentences": n_sent, "pauseCount": len(pauses), "limit": limit, "pauses": pauses, "errors": errs, "info": infos, "ok": not errs}
 out = JOUT or os.path.join(ROOT, "out", slug, "pause-density.json")
 os.makedirs(os.path.dirname(out), exist_ok=True); json.dump(res, open(out, "w"), ensure_ascii=False, indent=2)
