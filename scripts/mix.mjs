@@ -88,10 +88,11 @@ const placed = events.map((e) => {
 
 // ───────── BGM：自合成中性和弦底（Cmaj9 開放和聲＋緩慢呼吸），長度剛好等於片長 ─────────
 const bgmFile = path.join(ROOT, "out", `${slug}.bgm.wav`);
+const BGM_LEAD = Number(process.env.BGM_LEAD || 0).toFixed(2); // 片頭先靜音幾秒再淡入背景音（交件前驗證：第一個字起音 ≥0.25 秒），預設 0＝舊行為
 if (opt.bgm) {
   const tones = [[130.81, 0.32], [196.0, 0.26], [246.94, 0.18], [293.66, 0.16], [329.63, 0.14]];
   const expr = tones.map(([f, a], i) => `${a}*sin(2*PI*${f}*t)*(0.75+0.25*sin(2*PI*${(0.05 + i * 0.013).toFixed(3)}*t+${i}))`).join("+");
-  ff(["-f", "lavfi", "-i", `aevalsrc='${expr}':s=48000:d=${DUR.toFixed(3)}`, "-af", `lowpass=f=900,${NOTCH},afade=t=in:st=0:d=1.5,afade=t=out:st=${(DUR - 2.5).toFixed(2)}:d=2.5,loudnorm=I=${opt.bgmLufs}:TP=-9:LRA=7`, "-ar", "48000", "-ac", "1", bgmFile]);
+  ff(["-f", "lavfi", "-i", `aevalsrc='${expr}':s=48000:d=${DUR.toFixed(3)}`, "-af", `lowpass=f=900,${NOTCH},volume=0:enable='lt(t,${BGM_LEAD})',afade=t=in:st=${BGM_LEAD}:d=1.5,afade=t=out:st=${(DUR - 2.5).toFixed(2)}:d=2.5,loudnorm=I=${opt.bgmLufs}:TP=-9:LRA=7`, "-ar", "48000", "-ac", "1", bgmFile]);
 }
 
 // ───────── 混音 ─────────
