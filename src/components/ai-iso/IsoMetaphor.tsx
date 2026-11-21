@@ -176,7 +176,7 @@ const ScoreView: React.FC<VP> = ({ f, p }) => {
           <React.Fragment key={i}>
             <Panel2 x={x} y={y0} w={BW} h={BH} color={b.color} ov={`計分牌${i + 1}`} style={{ ...riseIn(f, p.in + 2 + i * 4, 60), outline: full ? `8px solid ${c.fill}` : undefined, outlineOffset: 6 }}>
               <div style={{ position: "absolute", left: 0, right: 0, top: 22, display: "flex", justifyContent: "center" }}><Chip text={b.label} bg={c.fill} fg={c.on} px={44} side={c.side} /></div>
-              <div style={{ position: "absolute", left: 0, right: 0, top: 120, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 10, transform: full ? `scale(${(1 + 0.04 * Math.sin(f / 4)).toFixed(3)})` : undefined }}>
+              <div style={{ position: "absolute", left: "50%", top: 120, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 10, transform: `translateX(-50%)${full ? ` scale(${(1 + 0.04 * Math.sin(f / 4)).toFixed(3)})` : ""}` }}>
                 <div style={{ ...zh, fontWeight: 900, fontSize: 190, lineHeight: 1, color: c.text }}>{shown}</div><div style={{ ...zh, fontWeight: 900, fontSize: 56, color: T.ink2 }}>分</div>
               </div>
               <div style={{ position: "absolute", left: 0, right: 0, top: 360, textAlign: "center", ...zh, fontWeight: 800, fontSize: 34, color: T.ink2 }}>各跑 5 次</div>
@@ -304,7 +304,7 @@ const BalanceView: React.FC<VP> = ({ f, p }) => {
           </g>); })}
       </Full>
       {ends.map(([ex, ey], i) => f >= ts[i] ? <div key={i} data-ov={f >= ts[i] + 18 ? `天平字${i + 1}` : undefined} style={{ position: "absolute", left: ex - 95, top: ey + 190 - 150 + Math.round((1 - E(f, ts[i], 16)) * -260), width: 190, height: 146, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: O(f, ts[i], 3), ...zh, fontWeight: 900, fontSize: 62, color: blk[i].light ? col(blk[i].color).text : col(blk[i].color).on }}>{blk[i].label}</div> : null)}
-      {f >= tNe ? <div data-ov="不等於" style={{ position: "absolute", left: px - 90, top: TOP - 14, width: 180, textAlign: "center", ...slam(f, tNe, 0, 2.4), ...zh, fontWeight: 900, fontSize: 150, lineHeight: 1, color: col("wrong").fill }}>≠</div> : null}
+      {f >= tNe ? <div data-ov="不等於" style={{ position: "absolute", left: px - 90, top: TOP - 14, width: 180, textAlign: "center", ...slam(f, tNe, 0, 1.5), ...zh, fontWeight: 900, fontSize: 150, lineHeight: 1, color: col("wrong").fill }}>≠</div> : null}
       {q.q && f >= tQ ? <div data-ov="天平問句" style={{ position: "absolute", left: X0, width: IW, top: TOP + 725, display: "flex", justifyContent: "center", ...bounce(f, tQ) }}><Chip text={q.q.text} bg={col("plum").fill} fg="#fff" px={46} side={col("plum").side} /></div> : null}
     </>
   );

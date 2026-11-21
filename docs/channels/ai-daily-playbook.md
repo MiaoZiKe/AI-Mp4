@@ -267,6 +267,7 @@ Andy 原話：「我的頻道是中文，不能上面放英文要自己轉換」
 2. 對話框（`chat`）只在「真的示範提問給 AI」時用，每支最多 1 幕（validate 會警告）；其餘用比喻 view。三支互相版型不同，結尾留言引導也各不同（領取卡／大字／小卡蓋章）。
 3. 動作跟著旁白 cue；一幕裡最後一個動作落定後盡量留 ≥1 秒（結尾撞在最後一個詞時，在該幕加 `pauseAfter`）；每 2～4 秒要有事件，靜止時有機器人呼吸、傳送帶滾動。
 4. 新增的 11 種 view 與寫法見 `docs/channels/caffaine-visual-plan-1116.md` 第 5 節；範例套版 `videos/caffaine-rules-file|new-chat|feynman/build.py`（共用 `scripts/caffaine/metaphor_build.py`，不要再對這三支跑 `autoscript --force`）。
+   - **落定後 ≥1.5 秒的做法（2026/11/21）**：`metaphor_build.apply` 結束會自動跑 `hold_pass`，把不足 45 幀的幕整幕事件按比例往前移（順序、cue 基準不變，旁白與 pauseAfter 不動）；用 `python3 scripts/caffaine/hold-check.py <slug>` 列每幕「落定→下一幕開始」秒數（要 ≥1.5），再 `make.sh` 出片並用 `freezedetect=n=0.003:d=1.2` 確認 0 次。事件提前後要看 ov-check：撞入／掉落動畫的起始倍率或距離別蓋到頁首的查證日期。
 
 ## 二十一、鉤子試問法、細緻度六面向、範例庫、每支復盤（2026/11/20 Andy，所有做影片的頻道）
 

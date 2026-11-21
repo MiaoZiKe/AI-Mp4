@@ -78,7 +78,7 @@
      "一大串版本": "primary"
     },
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1",
     "asOf": "查證截至 2026/11/17",
     "view": "belts",
     "tone": "event",
@@ -90,7 +90,11 @@
       "reqAt": "start-4",
       "items": [
        {
-        "at": "k1-22",
+        "at": "k1-26",
+        "kind": "sheet"
+       },
+       {
+        "at": "k1-21",
         "kind": "sheet"
        },
        {
@@ -104,10 +108,6 @@
        {
         "at": "k1-7",
         "kind": "sheet"
-       },
-       {
-        "at": "k1-2",
-        "kind": "sheet"
        }
       ]
      },
@@ -115,13 +115,13 @@
       "label": "有規則",
       "color": "right",
       "at": "start-6",
-      "reqAt": "k2-30",
+      "reqAt": "k2-36",
       "gate": {
-       "at": "k2"
+       "at": "k2-9"
       },
       "items": [
        {
-        "at": "k3-8",
+        "at": "k3-19",
         "kind": "card"
        }
       ]
@@ -129,7 +129,7 @@
     ],
     "mid": {
      "text": "差在哪？",
-     "at": "k4-4",
+     "at": "k4-18",
      "color": "plum"
     }
    },
@@ -174,25 +174,25 @@
     "view": "chat",
     "tone": "bug",
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1+1",
     "title": "和 AI 對話",
     "msgs": [
      {
       "who": "me",
       "text": "回覆同事：會議改週四三點",
-      "typeAt": "start+4",
+      "typeAt": "start+3",
       "typeDur": 24,
-      "at": "start+30"
+      "at": "start+25"
      },
      {
       "who": "ai",
       "text": "給你三種版本：標準、簡短、輕鬆",
-      "at": "k2"
+      "at": "k2-16"
      },
      {
       "who": "me",
       "text": "太長了，改短",
-      "at": "k3"
+      "at": "k3-25"
      }
     ]
    },
@@ -251,41 +251,41 @@
     "lines": [
      {
       "t": "我是行銷部專案經理，同事都很忙，我要的是能直接貼進群組的訊息。",
-      "at": "start+10",
+      "at": "start+3",
       "dur": 55,
       "color": "primary"
      },
      {
       "t": "口氣：直接、不客套。",
-      "at": "k3-6",
+      "at": "k3-22",
       "dur": 12,
       "color": "sky"
      },
      {
       "t": "格式：第一行只放結論，後面最多三點條列，全文不超過 80 字。",
-      "at": "k4-6",
+      "at": "k4-25",
       "dur": 12,
       "color": "right"
      },
      {
       "t": "禁忌：不寫「您好」「謝謝」「希望」這類開場或結尾，不用表情符號。",
-      "at": "k5-6",
+      "at": "k5-26",
       "dur": 12,
       "color": "wrong"
      }
     ],
     "stamp": {
      "text": "只寫一次",
-     "at": "k5+16",
+     "at": "k5-6",
      "color": "wrong"
     },
     "pin": {
-     "at": "k5+24"
+     "at": "k5+2"
     },
     "bot": true,
     "chip": {
      "text": "每次先讀",
-     "at": "k5+30",
+     "at": "k5+7",
      "color": "right"
     }
    },
@@ -403,10 +403,10 @@
      "各跑五次": "right"
     },
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1",
     "view": "scoreboard",
     "tone": "principle",
-    "runsAt": "k1",
+    "runsAt": "k1-6",
     "note": "實測：同一句請求各跑 5 次，滿分 5 分",
     "boards": [
      {
@@ -422,7 +422,7 @@
        2,
        2
       ],
-      "countAt": "k2"
+      "countAt": "k2-11"
      },
      {
       "label": "有規則",
@@ -437,7 +437,7 @@
        5,
        5
       ],
-      "countAt": "k3"
+      "countAt": "k3-14"
      }
     ]
    },
@@ -494,7 +494,7 @@
      {
       "big": "是規矩寫成檔",
       "unit": "",
-      "at": "k2",
+      "at": "k2-10",
       "color": "right",
       "size": 130,
       "usize": 90
@@ -502,7 +502,7 @@
      {
       "big": "每次先讀過",
       "unit": "",
-      "at": "k3",
+      "at": "k3-17",
       "color": "primary",
       "size": 150,
       "usize": 90

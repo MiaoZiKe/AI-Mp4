@@ -80,20 +80,20 @@
     "left": {
      "label": "看懂",
      "color": "primary",
-     "at": "k1-6"
+     "at": "k1-10"
     },
     "right": {
      "label": "學會",
      "color": "wrong",
-     "at": "k2-4",
+     "at": "k2-10",
      "light": true
     },
     "mid": {
-     "at": "k2"
+     "at": "k2-7"
     },
     "q": {
      "text": "怎麼逼自己真的學會？",
-     "at": "k3"
+     "at": "k3-10"
     }
    },
    "sources": [
@@ -141,35 +141,35 @@
     "view": "flow",
     "tone": "fix",
     "status": "通用做法",
-    "statusAt": "k1+6",
+    "statusAt": "k1-8",
     "nodes": [
      {
       "icon": "bubble",
       "label": "AI 先講",
       "sub": "國中生版",
       "color": "primary",
-      "at": "k1"
+      "at": "k1-13"
      },
      {
       "icon": "pencil",
       "label": "你再講",
       "sub": "用自己的話",
       "color": "sky",
-      "at": "k2"
+      "at": "k2-19"
      },
      {
       "icon": "mag",
       "label": "AI 挑錯",
       "sub": "還反問你",
       "color": "wrong",
-      "at": "k3"
+      "at": "k3-23"
      },
      {
       "icon": "check",
       "label": "再簡化",
       "sub": "一句話",
       "color": "right",
-      "at": "k4"
+      "at": "k4-32"
      }
     ],
     "lights": [
@@ -230,7 +230,7 @@
      "國中生聽得懂的話": "right"
     },
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1-2",
     "view": "board",
     "tone": "principle",
     "fs": 72,
@@ -241,7 +241,7 @@
        "利息會變成新的本金，",
        "繼續幫你賺錢"
       ],
-      "at": "start+10",
+      "at": "start+1",
       "dur": 60,
       "color": "primary"
      },
@@ -252,12 +252,12 @@
        "固定給你一筆利息，",
        "存越久領越多"
       ],
-      "at": "k3",
+      "at": "k3-24",
       "dur": 38,
       "color": "note",
       "note": {
        "text": "故意講錯",
-       "at": "k4+6",
+       "at": "k4-21",
        "color": "wrong"
       }
      }
@@ -268,7 +268,7 @@
       "row": 1,
       "c0": 0,
       "c1": 8,
-      "at": "k4",
+      "at": "k4-26",
       "color": "note"
      }
     ]
@@ -316,7 +316,7 @@
      "抓你講錯的地方": "wrong"
     },
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1+4",
     "view": "compound",
     "tone": "bug",
     "years": 8,
@@ -328,14 +328,14 @@
     },
     "comp": {
      "label": "實際：複利",
-     "at": "k3"
+     "at": "k3-8"
     },
     "hit": {
      "text": "漏了：利息再生利息",
-     "at": "k3+22"
+     "at": "k3+13"
     },
     "ticks": {
-     "at": "k4",
+     "at": "k4-11",
      "n": 3,
      "text": "三次都抓到"
     }
@@ -376,7 +376,7 @@
      "再簡化成一句話": "sky"
     },
     "status": "已確定・實測",
-    "statusAt": "k1+6",
+    "statusAt": "k1-5",
     "view": "volume",
     "tone": "fix",
     "bigW": 380,
@@ -386,23 +386,23 @@
      "label": "正確版本",
      "sub": "一大段",
      "n": 3,
-     "at": "start+6",
+     "at": "start+5",
      "color": "wrong"
     },
     "small": {
      "label": "一句話",
      "sub": "",
      "text": "複利就是利滾利，賺到的利息留下來繼續賺",
-     "at": "k1",
+     "at": "k1-10",
      "color": "right"
     },
     "arrow": {
      "text": "簡化",
-     "at": "k1-6"
+     "at": "k1-15"
     },
     "end": {
      "text": "直接講給同事聽",
-     "at": "k2",
+     "at": "k2-19",
      "color": "plum"
     }
    },
@@ -455,7 +455,7 @@
        "繼續幫你賺錢"
       ],
       "pre": true,
-      "dimAt": "k1+8",
+      "dimAt": "k1+5",
       "color": "primary"
      },
      {
@@ -464,12 +464,12 @@
        "複利就是銀行每年",
        "固定給你一筆利息"
       ],
-      "at": "k2-6",
+      "at": "k2-15",
       "dur": 30,
       "color": "note",
       "note": {
        "text": "卡在這裡",
-       "at": "k3-16",
+       "at": "k3-26",
        "color": "wrong"
       }
      }
@@ -480,7 +480,7 @@
       "row": 1,
       "c0": 0,
       "c1": 8,
-      "at": "k3-24",
+      "at": "k3-33",
       "color": "wrong"
      }
     ]
