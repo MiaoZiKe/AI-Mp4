@@ -7,7 +7,7 @@
   預設 out＝out/<slug>/verify4/（out/ 不 commit）
 
 第 1、3 道（停頓）：silencedetect 找 ≥0.25 秒停頓（片尾卡之前），用 videos/<slug>/timeline.json 的逐字時間分成
-  「換幕」「句號後」「句中（逗號）」「句中（無標點）」「句中（字內）」；標準＝句中 0 處、全片停頓數 ≤ 句數＋2；
+  「換幕」「句號後」「句中（逗號）」「句中（無標點）」「句中（字內）」；標準＝句中 0 處、全片停頓數 ≤ 句數＋2（逗號處 TTS 自然停頓 ≤0.45 秒不算句中、也不計入總數）；
   再跑 scripts/dossier/audio-check.py（Z／C／R／N 要 0）。
 第 2 道（聽感）：片尾卡之前的成品音訊送 Gemini 音訊理解（generativelanguage.googleapis.com，代理自動補金鑰，curl 走 HTTPS_PROXY）
   ① 逐句回報斷續／卡頓／字被切／停頓不自然＋時間點 ② ASR 聽寫與念稿（script.json 的 tts，沒有就 narration）逐字比對。
@@ -40,6 +40,8 @@ OUT = os.path.abspath(OUT or os.path.join(ROOT, "out", SLUG, "verify4"))
 os.makedirs(OUT, exist_ok=True)
 FPS = 30
 END_PUNCT, COMMA_PUNCT = "。？！?!…", "，、,；;：:"
+
+COMMA_OK = 0.45  # tw-rotation video_logic.md 四道驗證 11/22 補定義（b0f840395）
 
 def run(cmd, **kw): return subprocess.run(cmd, capture_output=True, text=True, **kw)
 def tc(s): return f"{int(s // 60)}:{s % 60:05.2f}"
@@ -101,7 +103,7 @@ for a, b in sil:
         if L["t1"] - 0.12 <= mid <= R["t0"] + 0.12 and L["t0"] < mid:
             if L["scene"] != R["scene"]: kind = "換幕"
             elif L["after"] == "end": kind = "句號後"
-            elif L["after"] == "comma": kind = "句中（逗號）"
+            elif L["after"] == "comma": kind = "逗號自然" if (b - a) <= COMMA_OK else "句中（逗號）"
             else: kind = "句中（無標點）"
             ctx = "".join(c["ch"] for c in chars[max(0, i - 5):i + 1]) + "｜" + "".join(c["ch"] for c in chars[i + 1:i + 6])
             break
@@ -110,16 +112,17 @@ for a, b in sil:
         ctx = "".join(c["ch"] for c in chars[max(0, near - 5):near + 5])
     pauses.append({"start": round(a, 3), "end": round(b, 3), "sec": round(b - a, 3), "kind": kind, "context": ctx})
 mid_pauses = [p for p in pauses if p["kind"].startswith("句中")]
+counted = [p for p in pauses if p["kind"] != "逗號自然"]  # 11/22 定義：TTS 在逗號自然念出、≤0.45 秒的不算，也不計入第 3 項總數
 limit = sentences + 2
-g13 = {"pauses": len(pauses), "sentences": sentences, "limit": limit, "midSentence": len(mid_pauses),
-       "byKind": {k: sum(1 for p in pauses if p["kind"] == k) for k in ("換幕", "句號後", "句中（逗號）", "句中（無標點）", "句中（字內）")},
+g13 = {"pauses": len(counted), "commaNatural": len(pauses) - len(counted), "sentences": sentences, "limit": limit, "midSentence": len(mid_pauses),
+       "byKind": {k: sum(1 for p in pauses if p["kind"] == k) for k in ("換幕", "句號後", "逗號自然", "句中（逗號）", "句中（無標點）", "句中（字內）")},
        "list": pauses, "noiseDb": NOISE, "minSec": MIN_SIL}
 ac_json = os.path.join(OUT, "audio-check.json")
 acr = run(["python3", os.path.join(ROOT, "scripts/dossier/audio-check.py"), SLUG, "--file", MP4, "--end", f"{END:.3f}", "--json", ac_json, "--quiet"])
 ac = json.load(open(ac_json)) if os.path.exists(ac_json) else {"pass": False, "counts": {}, "issues": [], "err": acr.stderr[-500:]}
 g13["audioCheck"] = {"pass": ac.get("pass"), "counts": ac.get("counts"), "issues": ac.get("issues", [])[:30], "summary": acr.stdout.strip()}
 g1 = {"pass": len(mid_pauses) == 0}
-g3 = {"pass": len(mid_pauses) == 0 and len(pauses) <= limit and bool(ac.get("pass"))}
+g3 = {"pass": len(mid_pauses) == 0 and len(counted) <= limit and bool(ac.get("pass"))}
 
 # ── 第 2 道：Gemini 聽感＋ASR ───────────────────────────────────
 mp3 = os.path.join(OUT, "voice-before-endcard.mp3")
@@ -265,7 +268,7 @@ L = [f"# 四道驗證：{SLUG}", "", f"- 成片：`{MP4}`（{dur:.2f} 秒，片�
      "| 道 | 結果 | 摘要 |", "|---|---|---|",
      f"| 1 句中不停頓 | {yn(g1['pass'])} | 句中停頓 {len(mid_pauses)} 處 |",
      f"| 2 聽感 | {yn(g2['pass'])} | Gemini 標 {len(gem_issues)} 處；ASR 差異 {len(diffs)} 處（{listen_model}／{asr_model}） |",
-     f"| 3 停頓密度 | {yn(g3['pass'])} | 停頓 {len(pauses)}／句數 {sentences}（上限 {limit}）；audio-check {ac.get('counts')} |",
+     f"| 3 停頓密度 | {yn(g3['pass'])} | 停頓 {len(counted)}（另有逗號自然 {len(pauses) - len(counted)}）／句數 {sentences}（上限 {limit}）；audio-check {ac.get('counts')} |",
      f"| 4 畫面 | {yn(g4['pass'])} | 靜止空白 {len([r for r in static_runs if r['blank'] > 0.5])} 段、下半部空洞 {len(lower)} 格、小字 {len(small_txt)}、layout 錯誤 {len(lc_err)}；待人看 {len(flag_t)}＋隨機 {len(rand_t)} 格 |", "",
      "## 停頓（≥%.2f 秒，%g dB）" % (MIN_SIL, NOISE), ""]
 L += [f"- {tc(p['start'])}–{tc(p['end'])}（{p['sec']:.2f} 秒）{p['kind']}：{p['context']}" for p in pauses]
@@ -275,6 +278,6 @@ L += ["", "## 畫面", "", f"- 靜止段：{static_runs}", f"- 下半部空洞�
       f"- layout-check 錯誤：" + "；".join(f"{i['kind']} {i['msg']}" for i in lc_err), f"- 小字：" + "；".join(i["msg"] for i in small_txt),
       f"- 待人看：{flag_t}；隨機：{rand_t}（檔案在 flagged/）", f"- 拼圖：sheet.png"]
 open(os.path.join(OUT, "report.md"), "w").write("\n".join(L) + "\n")
-print(f"{SLUG}：1 {yn(g1['pass'])}｜2 {yn(g2['pass'])}｜3 {yn(g3['pass'])}｜4 {yn(g4['pass'])}｜停頓 {len(pauses)}/{sentences} 句中 {len(mid_pauses)}｜"
+print(f"{SLUG}：1 {yn(g1['pass'])}｜2 {yn(g2['pass'])}｜3 {yn(g3['pass'])}｜4 {yn(g4['pass'])}｜停頓 {len(counted)}/{sentences} 句中 {len(mid_pauses)}｜"
       f"Gemini {len(gem_issues)}｜ASR {len(diffs)}｜audio-check {ac.get('counts')}｜→ {OUT}")
 sys.exit(0 if all(g.get("pass") for g in (g1, g2, g3, g4)) else 1)
