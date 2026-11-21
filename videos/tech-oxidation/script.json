@@ -1,0 +1,1899 @@
+{
+ "slug": "tech-oxidation",
+ "title": "氧化與熱處理：破千度只要千分之一秒（科技透明圈）",
+ "asOf": "2026/11/21",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "放大來看",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；念稿 docs/prompts/tech-oxidation-旁白.txt；整篇 1 次請求（TTS_NO_RETRY=1）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "熱處理機台",
+    "en": "THERMAL PROCESSING",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true
+   },
+   {
+    "id": "lattice",
+    "label": "晶格剖面",
+    "en": "LATTICE CROSS-SECTION",
+    "field": "5 nm",
+    "ruler": "1 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/21",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "破千度",
+   "只要千分之一秒"
+  ],
+  "sub": "氧化與熱處理",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一支洗乾淨了，接著要加熱。最先進的，超過一千度，卻不到千分之一秒，為什麼這麼急？",
+   "tts": "上一支洗乾淨了，接著要加熱。最先進的，超過一千度，卻不到千分之一秒，為什麼這麼急？",
+   "subtitle": {
+    "zh": "上一支洗乾淨了\n接著要加熱\n最先進的\n超過一千度\n卻不到千分之一秒\n為什麼這麼急？",
+    "en": "The surface is clean now; | next comes heat. | The most advanced way: | over 1,000 °C, | in under a millisecond. | Why the rush?"
+   },
+   "keywords": [
+    "加熱",
+    "一千度",
+    "千分之一秒"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "洗乾淨"
+    },
+    {
+     "id": "heat",
+     "text": "加熱"
+    },
+    {
+     "id": "k1000",
+     "text": "超過一千度"
+    },
+    {
+     "id": "ms",
+     "text": "千分之一秒"
+    },
+    {
+     "id": "why",
+     "text": "為什麼"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "應用材料 Vantage Astra DSA 產品頁（廠商）"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接清洗：加熱",
+     "title": "1毫秒破千度？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 30,
+      "y": 3.2,
+      "d": 30,
+      "elev": 26
+     },
+     {
+      "at": "k1000",
+      "dur": 80,
+      "x": 30,
+      "y": 3.0,
+      "d": 27,
+      "elev": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "f_boat",
+      "at": "s1:start-40",
+      "until": "s2:tube",
+      "dur": 50,
+      "dx": 0,
+      "dy": -6.4,
+      "dz": 0
+     },
+     {
+      "layer": "f_ox",
+      "at": "s1:start-40",
+      "until": "s2:grow",
+      "opacity": 0,
+      "dur": 40
+     },
+     {
+      "layer": "f_ox",
+      "at": "s1:start-40",
+      "until": "s2:tube",
+      "dur": 50,
+      "dx": 0,
+      "dy": -6.4,
+      "dz": 0
+     },
+     {
+      "layer": "x_ox",
+      "at": "s1:start-40",
+      "until": "s11:done",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "x_res",
+      "at": "s1:start-40",
+      "until": "s11:resist",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "x_d0",
+      "at": "s1:start-40",
+      "until": "s6:order+0",
+      "dur": 18,
+      "dx": 0.42,
+      "dy": 0.38,
+      "dz": 0.55
+     },
+     {
+      "layer": "x_d1",
+      "at": "s1:start-40",
+      "until": "s6:order+3",
+      "dur": 18,
+      "dx": -0.4,
+      "dy": 0.42,
+      "dz": 0.5
+     },
+     {
+      "layer": "x_d2",
+      "at": "s1:start-40",
+      "until": "s6:order+6",
+      "dur": 18,
+      "dx": 0.35,
+      "dy": -0.4,
+      "dz": 0.6
+     },
+     {
+      "layer": "x_d3",
+      "at": "s1:start-40",
+      "until": "s6:order+9",
+      "dur": 18,
+      "dx": -0.45,
+      "dy": 0.35,
+      "dz": 0.5
+     },
+     {
+      "layer": "x_d4",
+      "at": "s1:start-40",
+      "until": "s6:order+12",
+      "dur": 18,
+      "dx": 0.4,
+      "dy": 0.4,
+      "dz": 0.55
+     },
+     {
+      "layer": "x_d5",
+      "at": "s1:start-40",
+      "until": "s6:order+15",
+      "dur": 18,
+      "dx": -0.38,
+      "dy": -0.42,
+      "dz": 0.6
+     },
+     {
+      "layer": "x_d6",
+      "at": "s1:start-40",
+      "until": "s6:order+18",
+      "dur": 18,
+      "dx": 0.45,
+      "dy": 0.3,
+      "dz": 0.5
+     },
+     {
+      "layer": "x_i0",
+      "at": "s1:start-40",
+      "until": "s6:site+0",
+      "dur": 16,
+      "dx": 0.5,
+      "dy": 0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i0",
+      "at": "s7:diff+0",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": -1.6,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "x_i1",
+      "at": "s1:start-40",
+      "until": "s6:site+4",
+      "dur": 16,
+      "dx": 0.5,
+      "dy": -0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i1",
+      "at": "s7:diff+2",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": -1.2,
+      "dy": -3.3,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i2",
+      "at": "s1:start-40",
+      "until": "s6:site+8",
+      "dur": 16,
+      "dx": -0.5,
+      "dy": 0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i2",
+      "at": "s7:diff+4",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": 0.6,
+      "dy": -3.6,
+      "dz": 0
+     },
+     {
+      "layer": "x_i3",
+      "at": "s1:start-40",
+      "until": "s6:site+12",
+      "dur": 16,
+      "dx": 0.5,
+      "dy": 0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i3",
+      "at": "s7:diff+6",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": 1.4,
+      "dy": -2.6,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i4",
+      "at": "s1:start-40",
+      "until": "s6:site+16",
+      "dur": 16,
+      "dx": -0.5,
+      "dy": -0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i4",
+      "at": "s7:diff+8",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": 1.9,
+      "dy": -3.8,
+      "dz": 0
+     },
+     {
+      "layer": "x_i5",
+      "at": "s1:start-40",
+      "until": "s6:site+20",
+      "dur": 16,
+      "dx": -0.5,
+      "dy": 0.5,
+      "dz": 0.3
+     },
+     {
+      "layer": "x_i5",
+      "at": "s7:diff+10",
+      "until": "s8:start+20",
+      "dur": 40,
+      "dx": 2.3,
+      "dy": -2.2,
+      "dz": 0.3
+     },
+     {
+      "layer": "px_laser",
+      "at": "s1:start-60",
+      "until": "s1:start-40",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_laser",
+      "at": "s2:start-4",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_laser",
+      "at": "s10:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_furn",
+      "at": "s1:start-60",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_furn",
+      "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s1:start-60",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s8:start-4",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_rtp",
+      "at": "s1:start-60",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_rtp",
+      "at": "s9:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s1:start-60",
+      "until": "s10:start+34",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "z_scan",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "z_hotOn",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "f_ledG",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "z_headA",
+      "text": "雷射頭左右掃",
+      "en": "Laser head scans",
+      "color": "blue",
+      "at": "heat",
+      "until": "s2:start-4"
+     },
+     {
+      "part": "z_lineA",
+      "text": "只有這一條在發燙",
+      "en": "Only this line is hot",
+      "color": "coral",
+      "at": "k1000",
+      "until": "s2:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-hook",
+      "at": "prev",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接上一支：清洗",
+      "tag": "應用材料產品說明",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "k1000": {
+        "at": "k1000"
+       },
+       "ms": {
+        "at": "ms"
+       },
+       "why": {
+        "at": "why"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "先看氧化。晶圓排進爐管，通氧氣加熱到八百到一千兩百度，表面的矽就長成二氧化矽。",
+   "tts": "先看氧化。晶圓排進爐管，通氧氣加熱到八百到一千兩百度，表面的夕就長成二氧化夕。",
+   "subtitle": {
+    "zh": "先看氧化\n晶圓排進爐管\n通氧氣\n加熱到八百到一千兩百度\n表面的矽\n就長成二氧化矽",
+    "en": "First, oxidation. | Wafers go into a tube furnace, | oxygen flows in, | heated to 800–1,200 °C, | and the silicon surface | grows a layer of silicon dioxide."
+   },
+   "keywords": [
+    "爐管",
+    "八百到一千兩百度",
+    "二氧化矽"
+   ],
+   "cues": [
+    {
+     "id": "ox",
+     "text": "先看氧化"
+    },
+    {
+     "id": "tube",
+     "text": "排進爐管"
+    },
+    {
+     "id": "o2",
+     "text": "通氧氣"
+    },
+    {
+     "id": "temp",
+     "text": "八百到一千兩百度"
+    },
+    {
+     "id": "grow",
+     "text": "長成二氧化矽"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Thermal oxidation；KTH 講義"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0,
+      "y": 6.0,
+      "d": 70,
+      "elev": 14
+     },
+     {
+      "at": "temp",
+      "dur": 50,
+      "x": 0,
+      "y": 6.2,
+      "d": 66,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "f_heatOn",
+      "at": "temp-4",
+      "ramp": 12,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_heatPulse",
+      "at": "temp",
+      "ramp": 12,
+      "until": "s5:start"
+     },
+     {
+      "id": "o2in0",
+      "at": "o2",
+      "ramp": 8,
+      "until": "s3:wet"
+     },
+     {
+      "id": "o2in1",
+      "at": "o2",
+      "ramp": 8,
+      "until": "s3:wet"
+     },
+     {
+      "id": "o2in2",
+      "at": "o2",
+      "ramp": 8,
+      "until": "s3:wet"
+     },
+     {
+      "id": "f_o2pf",
+      "at": "o2-12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_exhf",
+      "at": "o2+20",
+      "ramp": 8,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_boatA",
+      "text": "晶舟",
+      "en": "Wafer boat",
+      "color": "blue",
+      "at": "tube",
+      "until": "temp-4",
+      "xy": [
+       220,
+       640
+      ]
+     },
+     {
+      "part": "f_coilA",
+      "text": "加熱線圈",
+      "en": "Heater coils",
+      "color": "coral",
+      "at": "temp",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "f_o2A",
+      "text": "氧氣",
+      "en": "Oxygen",
+      "color": "blue",
+      "at": "o2",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-grow",
+      "at": "start+2",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱氧化：矽長成二氧化矽",
+      "tag": "示意，非實際比例",
+      "t": {
+       "ox": {
+        "at": "ox"
+       },
+       "tube": {
+        "at": "tube"
+       },
+       "o2": {
+        "at": "o2"
+       },
+       "temp": {
+        "at": "temp"
+       },
+       "grow": {
+        "at": "grow"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "乾式只通氧氣，慢但緻密；濕式加水氣，快很多。",
+   "tts": "乾式只通氧氣，慢但緻密；濕式加水氣，快很多。",
+   "subtitle": {
+    "zh": "乾式只通氧氣\n慢但緻密\n濕式加水氣\n快很多",
+    "en": "Dry: oxygen only, | slow but dense. | Wet: add water vapor, | much faster."
+   },
+   "keywords": [
+    "乾式",
+    "濕式",
+    "緻密"
+   ],
+   "cues": [
+    {
+     "id": "dry",
+     "text": "乾式只通氧氣"
+    },
+    {
+     "id": "dense",
+     "text": "慢但緻密"
+    },
+    {
+     "id": "wet",
+     "text": "濕式加水氣"
+    },
+    {
+     "id": "fast",
+     "text": "快很多"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Thermal oxidation"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0,
+      "y": 6.4,
+      "d": 62,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "h2oin0",
+      "at": "wet",
+      "ramp": 8,
+      "until": "s4:start+10"
+     },
+     {
+      "id": "h2oin1",
+      "at": "wet",
+      "ramp": 8,
+      "until": "s4:start+10"
+     },
+     {
+      "id": "h2oin2",
+      "at": "wet",
+      "ramp": 8,
+      "until": "s4:start+10"
+     },
+     {
+      "id": "f_h2opf",
+      "at": "wet-12",
+      "ramp": 8,
+      "until": "s4:start+10"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_tube",
+      "text": "乾式：只通氧氣",
+      "en": "Dry: O₂ only",
+      "color": "blue",
+      "at": "dry",
+      "until": "wet-4"
+     },
+     {
+      "part": "f_h2oA",
+      "text": "濕式：加水氣",
+      "en": "Wet: add steam",
+      "color": "amber",
+      "at": "wet",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-dw",
+      "at": "start+2",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "乾式 vs 濕式",
+      "tag": "示意",
+      "t": {
+       "dry": {
+        "at": "dry"
+       },
+       "dense": {
+        "at": "dense"
+       },
+       "wet": {
+        "at": "wet"
+       },
+       "fast": {
+        "at": "fast"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "一管放一百多片。表面有一點髒，氧化層就長不均勻，所以上一支才要洗。",
+   "tts": "一管放一百多片。表面有一點髒，氧化層就長不均勻，所以上一支才要洗。",
+   "subtitle": {
+    "zh": "一管放一百多片\n表面有一點髒\n氧化層就長不均勻\n所以上一支才要洗",
+    "en": "One tube holds 100+ wafers. | A little dirt on the surface | and the oxide grows unevenly, | which is why we cleaned first."
+   },
+   "keywords": [
+    "一百多片",
+    "不均勻"
+   ],
+   "cues": [
+    {
+     "id": "batch",
+     "text": "一百多片"
+    },
+    {
+     "id": "dirt",
+     "text": "有一點髒"
+    },
+    {
+     "id": "uneven",
+     "text": "長不均勻"
+    },
+    {
+     "id": "clean",
+     "text": "才要洗"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Thermal oxidation；日立評論 2006"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0,
+      "y": 6.0,
+      "d": 66,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "f_batchOn",
+      "at": "batch",
+      "ramp": 6,
+      "until": "dirt"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_boatL",
+      "text": "一管一百多片",
+      "en": "100+ wafers per batch",
+      "color": "amber",
+      "at": "batch",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-batch",
+      "at": "start+2",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "表面乾淨才長得均勻",
+      "tag": "示意",
+      "t": {
+       "batch": {
+        "at": "batch"
+       },
+       "dirt": {
+        "at": "dirt"
+       },
+       "uneven": {
+        "at": "uneven"
+       },
+       "clean": {
+        "at": "clean"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "再看退火。佈植的離子卡在縫裡，晶格也被撞亂，還不會導電。",
+   "tts": "再看退火。佈植的離子卡在縫裡，晶格也被撞亂，還不會導電。",
+   "subtitle": {
+    "zh": "再看退火\n佈植的離子\n卡在縫裡\n晶格也被撞亂\n還不會導電",
+    "en": "Next, annealing. | Implanted ions | sit in the gaps, | the lattice is knocked out of order, | so nothing conducts yet."
+   },
+   "keywords": [
+    "退火",
+    "晶格"
+   ],
+   "cues": [
+    {
+     "id": "anneal",
+     "text": "再看退火"
+    },
+    {
+     "id": "ion",
+     "text": "佈植的離子"
+    },
+    {
+     "id": "gap",
+     "text": "卡在縫裡"
+    },
+    {
+     "id": "mess",
+     "text": "撞亂"
+    },
+    {
+     "id": "noc",
+     "text": "還不會導電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "UW ECE528 Ch8；tech-implant research.md"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "lattice",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 0.8,
+      "d": 40,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_ionGlow",
+      "at": "ion",
+      "ramp": 6,
+      "until": "s6:site"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_ionA",
+      "text": "離子卡在縫裡",
+      "en": "Ions in the gaps",
+      "color": "coral",
+      "at": "gap",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "x_dmgA",
+      "text": "被撞亂的原子",
+      "en": "Displaced atoms",
+      "color": "amber",
+      "at": "mess",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-dmg",
+      "at": "start+2",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "佈植之後：還不導電",
+      "tag": "示意，非實際比例",
+      "t": {
+       "anneal": {
+        "at": "anneal"
+       },
+       "ion": {
+        "at": "ion"
+       },
+       "gap": {
+        "at": "gap"
+       },
+       "mess": {
+        "at": "mess"
+       },
+       "noc": {
+        "at": "noc"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "加熱讓晶格排回整齊，離子補進原子的位置，才會導電，叫活化。",
+   "tts": "加熱讓晶格排回整齊，離子補進原子的位置，才會導電，叫活化。",
+   "subtitle": {
+    "zh": "加熱讓晶格\n排回整齊\n離子補進原子的位置\n才會導電\n叫活化",
+    "en": "Heat lets the lattice | reorder, | ions take lattice sites, | and current can flow: | activation."
+   },
+   "keywords": [
+    "排回整齊",
+    "活化"
+   ],
+   "cues": [
+    {
+     "id": "move",
+     "text": "加熱讓晶格"
+    },
+    {
+     "id": "order",
+     "text": "排回整齊"
+    },
+    {
+     "id": "site",
+     "text": "補進原子的位置"
+    },
+    {
+     "id": "cond",
+     "text": "才會導電"
+    },
+    {
+     "id": "act",
+     "text": "活化"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7846803；Cambridge MRS 論文"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "lattice",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 0.8,
+      "d": 40,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_latHot",
+      "at": "start",
+      "ramp": 10,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_jit0",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_jit1",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_jit2",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_jitD",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_jitI",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start+20"
+     },
+     {
+      "id": "x_cur",
+      "at": "cond",
+      "ramp": 8,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_dmgA",
+      "text": "原子排回整齊",
+      "en": "Lattice reorders",
+      "color": "blue",
+      "at": "order",
+      "until": "s7:start-4",
+      "xy": [
+       252,
+       311
+      ]
+     },
+     {
+      "part": "x_ionB",
+      "text": "離子補進原子的位置",
+      "en": "Ions take lattice sites",
+      "color": "amber",
+      "at": "site",
+      "until": "s7:start-4",
+      "xy": [
+       748,
+       790
+      ]
+     },
+     {
+      "part": "x_curL",
+      "text": "開始導電",
+      "en": "Current flows",
+      "color": "blue",
+      "at": "cond",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-act",
+      "at": "start+2",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "退火：修好、活化",
+      "tag": "示意，非實際比例",
+      "t": {
+       "move": {
+        "at": "move"
+       },
+       "order": {
+        "at": "order"
+       },
+       "site": {
+        "at": "site"
+       },
+       "cond": {
+        "at": "cond"
+       },
+       "act": {
+        "at": "act"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "但加熱太久，離子會擴散出去；電晶體這麼小，界線一糊就關不起來。",
+   "tts": "但加熱太久，離子會擴散出去；電晶體這麼小，界線一糊就關不起來。",
+   "subtitle": {
+    "zh": "但加熱太久\n離子會擴散出去\n電晶體這麼小\n界線一糊就關不起來",
+    "en": "But heat too long | and the ions diffuse outward; | transistors are so small | a blurred edge won't switch off."
+   },
+   "keywords": [
+    "擴散",
+    "界線"
+   ],
+   "cues": [
+    {
+     "id": "long",
+     "text": "加熱太久"
+    },
+    {
+     "id": "diff",
+     "text": "擴散出去"
+    },
+    {
+     "id": "small",
+     "text": "電晶體這麼小"
+    },
+    {
+     "id": "blur",
+     "text": "界線一糊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Cambridge MRS 論文（尖峰退火擴散過多）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "lattice",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 0.6,
+      "d": 42,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_latHot",
+      "at": "long",
+      "ramp": 10,
+      "until": "s8:start"
+     },
+     {
+      "id": "x_jitI",
+      "at": "long",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "x_ionGlow",
+      "at": "diff",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_ionB",
+      "text": "加熱太久：離子擴散",
+      "en": "Too long: ions diffuse",
+      "color": "coral",
+      "at": "diff",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-diff",
+      "at": "start+2",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "加熱太久會怎樣",
+      "tag": "示意",
+      "t": {
+       "long": {
+        "at": "long"
+       },
+       "diff": {
+        "at": "diff"
+       },
+       "small": {
+        "at": "small"
+       },
+       "blur": {
+        "at": "blur"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "所以改用燈管，幾秒把晶圓拉到一千度，到頂就降溫，叫尖峰退火。",
+   "tts": "所以改用燈管，幾秒把晶圓拉到一千度，到頂就降溫，叫尖峰退火。",
+   "subtitle": {
+    "zh": "所以改用燈管\n幾秒\n把晶圓拉到一千度\n到頂就降溫\n叫尖峰退火",
+    "en": "So we switch to lamps: | in seconds | the wafer hits 1,000 °C | and cool it right at the peak: | spike anneal."
+   },
+   "keywords": [
+    "燈管",
+    "一千度",
+    "尖峰退火"
+   ],
+   "cues": [
+    {
+     "id": "lamp",
+     "text": "改用燈管"
+    },
+    {
+     "id": "sec",
+     "text": "幾秒"
+    },
+    {
+     "id": "up",
+     "text": "拉到一千度"
+    },
+    {
+     "id": "peak",
+     "text": "到頂就降溫"
+    },
+    {
+     "id": "spike",
+     "text": "尖峰退火"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8232114、7968440"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 18,
+      "y": 1.0,
+      "d": 40,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "r_lampOn",
+      "at": "lamp",
+      "ramp": 6,
+      "until": "peak+6"
+     },
+     {
+      "id": "r_wfHot",
+      "at": "up-6",
+      "ramp": 10,
+      "until": "peak+10"
+     },
+     {
+      "id": "r_wave0",
+      "at": "lamp+4",
+      "ramp": 6,
+      "until": "peak"
+     },
+     {
+      "id": "r_wave1",
+      "at": "lamp+4",
+      "ramp": 6,
+      "until": "peak"
+     },
+     {
+      "id": "r_wave2",
+      "at": "lamp+4",
+      "ramp": 6,
+      "until": "peak"
+     }
+    ],
+    "labels": [
+     {
+      "part": "r_lampA",
+      "text": "燈管陣列",
+      "en": "Lamp array",
+      "color": "amber",
+      "at": "lamp",
+      "until": "s9:start-4"
+     },
+     {
+      "part": "r_wfA",
+      "text": "一次一片",
+      "en": "One wafer at a time",
+      "color": "blue",
+      "at": "up",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-spike",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "尖峰退火：到頂就降",
+      "tag": "示意",
+      "t": {
+       "lamp": {
+        "at": "lamp"
+       },
+       "sec": {
+        "at": "sec"
+       },
+       "up": {
+        "at": "up"
+       },
+       "peak": {
+        "at": "peak"
+       },
+       "spike": {
+        "at": "spike"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "更先進的用雷射，只燒表面幾層原子，不到千分之一秒，離子來不及跑遠。",
+   "tts": "更先進的用雷射，只燒表面幾層原子，不到千分之一秒，離子來不及跑遠。",
+   "subtitle": {
+    "zh": "更先進的用雷射\n只燒表面幾層原子\n不到千分之一秒\n離子來不及跑遠",
+    "en": "More advanced: lasers | heat only the top few atomic layers | for under a millisecond, | too short for ions to wander."
+   },
+   "keywords": [
+    "雷射",
+    "千分之一秒"
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "用雷射"
+    },
+    {
+     "id": "top",
+     "text": "表面幾層原子"
+    },
+    {
+     "id": "ms",
+     "text": "千分之一秒"
+    },
+    {
+     "id": "stay",
+     "text": "來不及跑遠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "應用材料 Vantage Astra DSA 產品頁（廠商）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30,
+      "y": 1.2,
+      "d": 38,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "z_scan",
+      "at": "laser-4",
+      "ramp": 6,
+      "until": "s10:start+20"
+     },
+     {
+      "id": "z_hotOn",
+      "at": "laser",
+      "ramp": 6,
+      "until": "s10:start+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "z_headA",
+      "text": "雷射頭",
+      "en": "Laser head",
+      "color": "blue",
+      "at": "laser",
+      "until": "s10:start-4"
+     },
+     {
+      "part": "z_lineA",
+      "text": "只燒表面幾層原子",
+      "en": "Heats only the top layers",
+      "color": "coral",
+      "at": "top",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-laser",
+      "at": "start+2",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "雷射退火",
+      "tag": "應用材料產品說明（廠商）",
+      "t": {
+       "laser": {
+        "at": "laser"
+       },
+       "top": {
+        "at": "top"
+       },
+       "ms": {
+        "at": "ms"
+       },
+       "stay": {
+        "at": "stay"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "爐管有日本國際電氣、東京威力科創；雷射退火有美國應用材料、日本迪恩士。台積電也是國際電氣的客戶。",
+   "tts": "爐管有日本國際電氣、東京威力科創；雷射退火有美國應用材料、日本迪恩士。台積電也是國際電氣的客戶。",
+   "subtitle": {
+    "zh": "爐管有日本國際電氣\n東京威力科創\n雷射退火有美國應用材料\n日本迪恩士\n台積電\n也是國際電氣的客戶",
+    "en": "Furnaces: Japan's Kokusai Electric | and Tokyo Electron; | laser anneal: Applied Materials | and SCREEN. | TSMC | is a Kokusai customer."
+   },
+   "keywords": [
+    "國際電氣",
+    "東京威力科創",
+    "應用材料",
+    "迪恩士",
+    "台積電"
+   ],
+   "cues": [
+    {
+     "id": "koku",
+     "text": "國際電氣"
+    },
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "rtp",
+     "text": "雷射退火"
+    },
+    {
+     "id": "amat",
+     "text": "應用材料"
+    },
+    {
+     "id": "screen",
+     "text": "迪恩士"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "公司產品頁；科技新報 2023/09"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 14.0,
+      "y": 4.0,
+      "d": 110,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "f_heatOn",
+      "at": "start",
+      "ramp": 10,
+      "until": "s11:start"
+     },
+     {
+      "id": "r_lampOn",
+      "at": "rtp",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "z_scan",
+      "at": "rtp",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "z_hotOn",
+      "at": "rtp",
+      "ramp": 8,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_tool",
+      "text": "國際電氣、東京威力科創",
+      "en": "Vertical furnace",
+      "color": "blue",
+      "at": "koku",
+      "until": "s11:start-4",
+      "xy": [
+       386,
+       311
+      ]
+     },
+     {
+      "part": "z_tool",
+      "text": "應用材料、迪恩士",
+      "en": "Laser anneal",
+      "color": "amber",
+      "at": "amat",
+      "until": "s11:start-4",
+      "xy": [
+       774,
+       862
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-co",
+      "at": "start+2",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "公司產品頁、科技新報",
+      "t": {
+       "koku": {
+        "at": "koku"
+       },
+       "tel": {
+        "at": "tel"
+       },
+       "rtp": {
+        "at": "rtp"
+       },
+       "amat": {
+        "at": "amat"
+       },
+       "screen": {
+        "at": "screen"
+       },
+       "tsmc": {
+        "at": "tsmc"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "氧化層長好、離子歸位，接著要先塗光阻，才能畫線路，所以下一支，看光阻塗佈與顯影。留言氧化，看完整解說。",
+   "tts": "氧化層長好、離子歸位，接著要先塗光阻，才能畫線路，所以下一支，看光阻塗佈與顯影。留言氧化，看完整解說。",
+   "subtitle": {
+    "zh": "氧化層長好\n離子歸位\n接著要先塗光阻\n才能畫線路\n所以下一支\n看光阻塗佈與顯影\n留言氧化\n看完整解說",
+    "en": "The oxide is grown, | the ions are in place; | next we coat photoresist | so circuits can be drawn. | So next: | resist coating and developing. | Comment \"氧化\" | for the full notes."
+   },
+   "keywords": [
+    "光阻",
+    "氧化"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "氧化層長好"
+    },
+    {
+     "id": "ions",
+     "text": "離子歸位"
+    },
+    {
+     "id": "resist",
+     "text": "先塗光阻"
+    },
+    {
+     "id": "draw",
+     "text": "畫線路"
+    },
+    {
+     "id": "next",
+     "text": "下一支"
+    },
+    {
+     "id": "kw",
+     "text": "留言氧化"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "光阻塗佈：TEL 塗佈顯影機產品說明"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "lattice",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 60,
+      "y": 1.6,
+      "d": 44,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_oxA",
+      "text": "氧化層",
+      "en": "Oxide layer",
+      "color": "blue",
+      "at": "done+4",
+      "until": "next-4"
+     },
+     {
+      "part": "x_resA",
+      "text": "光阻",
+      "en": "Photoresist",
+      "color": "amber",
+      "at": "resist+8",
+      "until": "next-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ox-next",
+      "at": "start+2",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一支：光阻塗佈與顯影",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "ions": {
+        "at": "ions"
+       },
+       "resist": {
+        "at": "resist"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光阻塗佈與顯影",
+     "trail": [
+      "塗佈",
+      "曝光",
+      "顯影"
+     ],
+     "at": "s11:kw-8",
+     "comment": "氧化",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
