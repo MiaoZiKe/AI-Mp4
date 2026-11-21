@@ -90,7 +90,8 @@ export function validateDossier(script, h) {
       if (s.silent !== true || !(s.durationSec >= 3)) E(`${tag}: 片尾卡要 silent: true、durationSec ≥ 3`);
       if (s.props?.panel !== "end") E(`${tag}: 片尾卡 props.panel 要是 "end"`);
       const c = s.props?.endCard?.comment;
-      if (typeof c !== "string" || h.len(c) < 2 || h.len(c) > 4) E(`${tag}: props.endCard.comment 要是 2–4 個字的留言關鍵字`);
+      if (c === undefined) { /* 留言關鍵字改固定內容（2026/11/20）：Andy 給固定字之前可以不放 */ }
+      else if (typeof c !== "string" || h.len(c) < 2 || h.len(c) > 4) E(`${tag}: props.endCard.comment 有填就要是 2–4 個字的留言關鍵字`);
       else if (!String(scenes[i - 1]?.tts ?? scenes[i - 1]?.narration ?? "").includes(c)) W(`${tag}: 最後一句念稿沒有念到留言關鍵字「${c}」`);
       continue;
     }

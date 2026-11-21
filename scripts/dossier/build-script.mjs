@@ -21,7 +21,9 @@ const outPath = opt("out") ?? path.join(ROOT, "videos", slug ?? plan.slug, "scri
 const types = fs.readdirSync(TPL_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""));
 
 for (const k of ["slug", "title", "asOf", "thesis"]) if (typeof plan[k] !== "string" || !plan[k]) E(`頂層缺少 ${k}`);
-if (!plan.endCard?.comment) E("頂層 endCard 要有 comment（2–4 字留言關鍵字）；next（下一集題目）可省略");
+// 留言關鍵字改固定內容（2026/11/20）：Andy 給固定字之前 endCard.comment 可省略；有填就是 2–4 字
+if (!plan.endCard || typeof plan.endCard !== "object") E("頂層要有 endCard（comment、next 都可省略）");
+else if (plan.endCard.comment !== undefined && !(typeof plan.endCard.comment === "string" && plan.endCard.comment.length >= 2 && plan.endCard.comment.length <= 4)) E("endCard.comment 有填就要是 2–4 字（留言關鍵字）；沒有固定字就整個省略");
 if (!Array.isArray(plan.scenes) || !plan.scenes.length) E("scenes 是空的");
 
 const PH = /\{\{(\w+)(\?)?(?:\|([^}]*))?\}\}/g;
@@ -93,6 +95,7 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
   let props = fill(tpl.props, fields, where, used);
   props = mapCues(props, ids);
   if (sc.hold !== undefined) props.hold = sc.hold;
+  if (sc.type === "ask" && !plan.endCard?.comment) delete props.cta; // 沒有留言關鍵字：不放「留言「」拿完整資料」那一行
   for (const k of Object.keys(fields)) if (!used.has(k)) E(`${where}: 欄位「${k}」這個鏡型用不到（拼錯了嗎？）`);
   const kwFrom = (meta.kw ?? []).map((k) => fields[k]).flat().filter((x) => typeof x === "string" && x);
   const keywords = sc.keywords ?? kwFrom.filter((w) => subZh.includes(w) || spoken.includes(w));
@@ -113,7 +116,7 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
 
 if (plan.endCard) scenes.push({
   id: "end", narration: "", subtitle: { zh: "", en: "" }, keywords: [], cues: [], beat: "cta", component: "EndCard",
-  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { comment: plan.endCard.comment, ...(plan.endCard.next ? { next: plan.endCard.next } : {}) } }, sources: [],
+  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { ...(plan.endCard.comment ? { comment: plan.endCard.comment } : {}), ...(plan.endCard.next ? { next: plan.endCard.next } : {}) } }, sources: [],
 });
 
 const script = {

@@ -393,9 +393,9 @@ const Ask: React.FC<PanelProps> = ({ sh, f, slug }) => {
       {(h.lines as string[]).map((t, k) => (
         <Reveal key={k} f={f} at={h.at + k * 5} style={{ left: 0, top: k ? 172 : 0, paddingBottom: 16, paddingRight: 8, ...serif(sizes[k] ?? 128) }}>{withMark(t, h.marks?.[k], f, h.markAts?.[k] ?? h.at)}</Reveal>
       ))}
-      <Fade f={f} at={p.cta.at} style={{ left: 0, top: 354, display: "flex", alignItems: "center", gap: 18 }}>
+      {p.cta ? <Fade f={f} at={p.cta.at} style={{ left: 0, top: 354, display: "flex", alignItems: "center", gap: 18 }}>
         <span style={{ width: 44, height: T.stroke.hair, background: T.line }} /><span style={sans(40, T.weight.bold, T.text2)}>{p.cta.text}</span>
-      </Fade>
+      </Fade> : null}
       <Rule f={f} at={nx.at} x={0} y={PY - 70} len={L.INNER_W} color={T.line} />
       <Fade f={f} at={nx.at + 2} style={{ left: 0, top: PY - 54, ...sans(34, T.weight.bold, T.accentText), letterSpacing: "0.24em" }}>{nx.label}</Fade>
       <Photo slug={slug} name={nx.photo.name} f={f} at={nx.photo.at} x={0} y={PY} w={L.INNER_W} h={PH} life={sh.end - nx.photo.at + 30}>
