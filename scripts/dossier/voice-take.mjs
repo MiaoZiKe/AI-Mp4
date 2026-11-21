@@ -41,8 +41,11 @@ if (!FROM && (process.env.NODE_USE_ENV_PROXY !== "1" || !process.env.NODE_EXTRA_
 }
 
 // ── wav 小工具（16-bit PCM）──
-const readWav = (p) => {
-  const b = fs.readFileSync(p); let o = 12, fmt = null, data = null;
+// Gemini 3.x 的 inlineData 是完整 WAV（RIFF 檔頭＋data＋尾端「C2PA」憑證區塊），不是裸 PCM。
+// 2026/11/21 以前這裡把整包當 PCM：檔頭 44 bytes 變成開頭 1ms 喀聲、C2PA 區塊（約 7.7KB）變成旁白最後 0.16 秒 −8 dBFS 雜訊。
+// 現在只取 data 區塊；舊的 orig.wav（外層檔頭包著內層 WAV）也會自動拆開。
+const parseWav = (b, label) => {
+  let o = 12, fmt = null, data = null;
   while (o + 8 <= b.length) {
     const id = b.toString("ascii", o, o + 4); let sz = b.readUInt32LE(o + 4);
     if (id === "data") sz = Math.min(sz, b.length - o - 8);
@@ -50,9 +53,12 @@ const readWav = (p) => {
     if (id === "data") { data = b.subarray(o + 8, o + 8 + sz); break; }
     o += 8 + sz + (sz & 1);
   }
-  if (!fmt || !data || fmt.bits !== 16) throw new Error("只支援 16-bit PCM wav：" + p);
-  return { ...fmt, pcm: data };
+  if (!fmt || !data || fmt.bits !== 16) throw new Error("只支援 16-bit PCM wav：" + label);
+  if (data.length > 44 && data.toString("ascii", 0, 4) === "RIFF" && data.toString("ascii", 8, 12) === "WAVE") return parseWav(data, label + "（內層 WAV）");
+  return { ...fmt, pcm: data.subarray(0, data.length & ~1) };
 };
+const readWav = (p) => parseWav(fs.readFileSync(p), p);
+const isRiff = (b) => b.length > 12 && b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WAVE";
 const wavBuf = (pcm, rate, ch = 1) => {
   const h = Buffer.alloc(44); h.write("RIFF", 0); h.writeUInt32LE(36 + pcm.length, 4); h.write("WAVEfmt ", 8); h.writeUInt32LE(16, 16); h.writeUInt16LE(1, 20); h.writeUInt16LE(ch, 22);
   h.writeUInt32LE(rate, 24); h.writeUInt32LE(rate * 2 * ch, 28); h.writeUInt16LE(2 * ch, 32); h.writeUInt16LE(16, 34); h.write("data", 36); h.writeUInt32LE(pcm.length, 40);
@@ -88,7 +94,11 @@ if (FROM) {
       });
       const j = await r.json().catch(() => null);
       const p = j?.candidates?.[0]?.content?.parts?.find((x) => x.inlineData);
-      if (r.status === 200 && p) return { pcm: Buffer.from(p.inlineData.data, "base64"), rate: Number(/rate=(\d+)/.exec(p.inlineData.mimeType ?? "")?.[1] ?? 24000) };
+      if (r.status === 200 && p) {
+        const buf = Buffer.from(p.inlineData.data, "base64");
+        if (isRiff(buf)) { const w = parseWav(buf, "TTS 回應"); return { pcm: w.pcm, rate: w.rate }; } // 只取 data，丟掉檔頭與 C2PA
+        return { pcm: buf, rate: Number(/rate=(\d+)/.exec(p.inlineData.mimeType ?? "")?.[1] ?? 24000) };
+      }
       console.error(`  ${m} 第 ${k} 次失敗：${r.status} ${String(j?.error?.message ?? j?.candidates?.[0]?.finishReason ?? "").slice(0, 160)}`);
       if (k < 3) { console.error("  等 120 秒重試…"); await sleep(120000); }
     }
@@ -124,7 +134,11 @@ if (first.start > 0.3) {
   if (bv > 330) console.warn("  ⚠ 切點窗內不夠安靜（> −40 dBFS），請人耳確認首字沒被吃掉或殘留說明句");
 } else console.log(`  首字起音 ${first.start.toFixed(2)} 秒，模型沒念說明句，不切`);
 const cutSmp = Math.round(cutSec * sr);
-fs.writeFileSync(cutPath, wavBuf(wav.pcm.subarray(cutSmp * wav.ch * 2), sr, wav.ch));
+// 切點後 20ms 正弦淡入（不讓檔頭從切點硬起）；片頭留空與接縫交叉淡化由 insert-pauses.py 做
+const cutPcm = Buffer.from(wav.pcm.subarray(cutSmp * wav.ch * 2));
+const fin = Math.min(Math.round(sr * 0.02), cutPcm.length / 2 / wav.ch);
+for (let i = 0; i < fin; i++) { const g = Math.sin((Math.PI / 2) * (i / fin)); for (let c = 0; c < wav.ch; c++) { const o = (i * wav.ch + c) * 2; cutPcm.writeInt16LE(Math.round(cutPcm.readInt16LE(o) * g), o); } }
+fs.writeFileSync(cutPath, wavBuf(cutPcm, sr, wav.ch));
 
 // ── 4. 補停頓 → 時間軸 → script.json ──
 const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0.3", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();

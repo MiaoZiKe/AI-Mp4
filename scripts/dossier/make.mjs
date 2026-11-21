@@ -7,6 +7,7 @@
 //   --keep-timeline   沿用手動調好的 timeline.json 與 paused 錄音（insert-pauses --scene-map／cutDelayF 調過的），略過 voice-take
 //   --skip-render     略過渲染與其後的混音／網站版／拼圖（測試用）
 //   --no-overlap-fail overlap-check 有 error 只警告不停；--no-edge-fail 同理，edge-check 有 error 只警告
+//   --no-audio-fail   audio-check（數位靜音／斷音／死寂起音，2026/11/21 加）有 error 只警告；預設擋下
 //   --force-scheduled 允許動已排程要發的片（liguligu-nvda-kress、liguligu-power-bill），預設拒絕
 // 全新 slug 會自動處理：plan/script 預檢（cue 詞要在字幕裡、hook 字數上限、缺 pronunciation.md 自動建骨架）、字型缺字自動補抓、
 // 時間軸後自動寫 storyboard.json、事件間隔 >1.2 秒列 warn（不擋）。--silent 重生無聲時間軸；若已有真配音時間軸會拒絕（要蓋掉加 --force-silent）。
@@ -227,6 +228,14 @@ step("5b mix-auto → out/<slug>.mp4", () => {
   mixInfo = { gain: Number(m[1]), endLufs: Number(m[2]), endTruePeak: Number(m[3]) };
   return { ok: true, note: `片尾 ${m[2]} LUFS／真峰值 ${m[3]} dBTP`, data: mixInfo };
 });
+// ── 5c. 音訊不斷續檢查（docs/channels/audio-continuity-rule.md）──
+const audioCheck = (name, file, jsonName) => step(name, () => {
+  const r = run("python3", ["scripts/dossier/audio-check.py", slug, "--file", rel(file), "--end", String(endAt), "--json", rel(path.join(outDir, jsonName))]);
+  rec[jsonName.replace(".json", "")] = { exit: r.code, tail: tail(r.out, 4) }; save();
+  if (r.code !== 0 && flag("no-audio-fail")) return { ok: true, note: "有 error，但 --no-audio-fail 只警告", warn: tail(r.out, 6) };
+  return { ok: r.code === 0, note: r.code === 0 ? tail(r.out, 1) : tail(r.out, 8) + "\n→ 找出是哪一步產生的（insert-pauses 的切點、TTS 回應的 C2PA 區塊、混音），修好重混；規則見 docs/channels/audio-continuity-rule.md" };
+});
+audioCheck("5c audio-check（成品音軌不斷續）", mp4, "audio-check.json");
 const finalDur = ffprobeDur(mp4);
 
 // ── 6. 網站版 ──
@@ -245,6 +254,7 @@ step("6a 網站版 video.mp4（≤20MiB）", () => {
   webInfo = { crf, mp4Bytes: size };
   return { ok: true, note: `CRF ${crf}，${(size / 1048576).toFixed(2)} MiB`, data: webInfo };
 });
+audioCheck("6a2 audio-check（網站版音軌）", webMp4, "audio-check-web.json");
 step("6b cover.jpg（第 0 幀）", () => {
   const r = run("ffmpeg", ["-loglevel", "error", "-y", "-i", mp4, "-frames:v", "1", "-q:v", "2", path.join(webDir, "cover.jpg")]);
   return { ok: r.code === 0, note: "" };

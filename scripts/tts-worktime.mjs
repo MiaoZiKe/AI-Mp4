@@ -16,7 +16,10 @@ async function tts(model, voice) {
   const p = j?.candidates?.[0]?.content?.parts?.find((x) => x.inlineData);
   if (st !== 200 || !p) return { err: `${st} ${JSON.stringify(j?.error?.message ?? j?.candidates?.[0]?.finishReason ?? t).slice(0, 200)}` };
   const rate = Number(/rate=(\d+)/.exec(p.inlineData.mimeType ?? "")?.[1] ?? 24000);
-  return { pcm: Buffer.from(p.inlineData.data, "base64"), rate };
+  let pcm = Buffer.from(p.inlineData.data, "base64");
+  // Gemini 3.x 回的是完整 WAV（RIFF 檔頭＋data＋尾端 C2PA 區塊）：只取 data，不然檔頭變喀聲、C2PA 變 0.16 秒雜訊（2026/11/21，docs/channels/audio-continuity-rule.md）
+  if (pcm.toString("ascii", 0, 4) === "RIFF") for (let o = 12; o + 8 <= pcm.length;) { const id = pcm.toString("ascii", o, o + 4), n = pcm.readUInt32LE(o + 4); if (id === "data") { pcm = pcm.subarray(o + 8, Math.min(pcm.length, o + 8 + n)); break; } o += 8 + n + (n & 1); }
+  return { pcm, rate };
 }
 async function asr(buf) {
   const r = await fetch(`${API}/models/gemini-2.5-flash:generateContent`, { method: "POST", headers: H, body: JSON.stringify({ contents: [{ parts: [{ inlineData: { mimeType: "audio/wav", data: buf.toString("base64") } }, { text: "逐字聽寫這段中文語音，數字照念出來的中文字寫（例如「兩千零二十七」），只輸出聽寫文字，不加任何說明。" }] }], generationConfig: { temperature: 0 } }) });
