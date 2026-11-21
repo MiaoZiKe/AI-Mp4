@@ -1,6 +1,7 @@
 # tech-clean：清洗（科技透明圈系列 1 第 9 支；接離子佈植，下一支氧化與熱處理）
+- **11/22 換旁白**（成片 `out/tech-clean.mp4` 71.03 秒、2131 幀，11/22 重渲）：Andy 選 11/22 重配的 seed 22 錄音（Gemini 2.5、Iapetus、tech-b；原始 81.5 秒，備份 `out/old-tech-clean-take-1121/take-seed22.raw.wav`）。複製成 `.take-a91a0d69ed.raw.orig.wav`（前一版原檔改名 `.raw.orig.prev.wav`），整篇 atempo 1.25（上限；要到 5.75 需 1.257）。silencedetect 量：原始純說話 332 字／72.58 秒＝4.57 字/秒 → 加速後 5.68（65.23 秒、靜音 6.82 秒）。`--resplit`＋`ALIGN_PROVIDER=fa align --force`，整篇信心 0.92，這輪沒有送 TTS 請求。片尾音 `G=22 mix-endsting.sh voice.wav out/tech-clean.sting.wav 66.1 67.9 71.0333 out/tech-clean.final.wav`（片尾段 −11.0 LUFS、峰值 −1.1 dBFS）。舊成片備份 `out/tech-clean.v1-prev.mp4`、舊分段 `out/old-tech-clean-chunks-v1-prev/`。
 - 狀態（11/21）：研究、腳本、配音（新金手指）、對齊、建模、2D 卡完成，成片 `out/tech-clean.mp4`（72.8 秒、2184 幀、整片 −15.4 LUFS、峰值 −0.8 dBFS）、九格圖 `out/tech-clean-grid9.jpg`、每 4.5 秒縮圖 `out/tech-clean-grid.jpg`（不進 git）；11/21 05:06 渲完。
-- 片長：時間軸 72.8 秒（2184 幀，含 3.2 秒片尾卡 s12）。留言關鍵字「清洗」（Andy 之後若給固定內容，改 genscript.py 的 s11 念稿與 endCard.comment，需重配音）。
+- 片長：時間軸 71.03 秒（2131 幀，含 3.2 秒片尾卡 s12；11/22 換 seed22 錄音後）。留言關鍵字「清洗」（Andy 之後若給固定內容，改 genscript.py 的 s11 念稿與 endCard.comment，需重配音）。
 - 產生：`python3 videos/tech-clean/genmodel.py`（自動先跑 genscript.py）→ model.json＋script.json。改稿只改 genscript.py；改畫面只改 genmodel.py／HudClean.tsx。
 - 2D 卡：`src/components/three/HudClean.tsx`（cln-hook／kill／ash／pop／spm／spin／mega／chem／dry／co／next），Hud.tsx 只加 import 與一行分派。
 - 配音（旁白金手指 2026/11/21 版）：gemini-2.5-flash-preview-tts＋Iapetus＋說明 B（profile tech-b，不寫 styleMode），念稿 `docs/prompts/tech-clean-旁白.txt`（s1「五十次」前後加逗號）。這輪 TTS 請求 1 次（`TTS_NO_RETRY=1`；tts-requests.json 共 2 筆，第 1 筆是 11/20 被否決的 3.8 版，音檔備份在 out/old-tech-clean-take-3.8/）。
