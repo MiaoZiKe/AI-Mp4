@@ -9,3 +9,6 @@
 - 改了什麼：`scripts/caffaine/metaphor_build.py` 新增 `hold_pass`（apply 結束自動跑）：每幕所有 at／xxxAt 解析成幀，最後一個動作（at 有 dur 的算 at+dur）落定後到下一幕開始不足 45 幀時，整幕事件依「離幕首越遠移越多」的比例往前移，順序不變、仍寫成 cue±幀；旁白、cue、pauseAfter 都沒動。共 5 幕提前 4～23 幀（0.13～0.77 秒）；出片約 8 分鐘。
 - 驗收：`python3 scripts/caffaine/hold-check.py caffaine-new-chat` 每幕落定後最小 1.50 秒、0 幕不足；freezedetect（n=0.003:d=1.2）0 次；重疊 0 筆；拼圖已看過。
 - 下次直接沿用：新片的 build.py 照舊寫 at，跑 `python3 videos/<slug>/build.py` 會自動套用落定保護，再跑 `hold-check.py` 看表；提前不了的幕沒有（三支全過）。出片前先 `rm -rf out/.bundle` 並留 ≥1.5GB 磁碟，否則 Remotion 會 Page crashed。
+
+## 2026/11/22 修後
+句中停頓 0、重疊 0、停住 0、ZCR 0、起音 0.34 秒；0 次 TTS；詳見 docs/channels/caffaine-verify4-1122.md「修後結果」。

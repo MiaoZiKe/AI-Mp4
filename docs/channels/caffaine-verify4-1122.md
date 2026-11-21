@@ -191,3 +191,19 @@ Gemini 請求：共送 14 次（另 1 次列模型清單，不算生成）。6 �
 **已發 4 支**：照指示不重發。問題記下來給之後的新片避免：大字幕只佔上方、步驟小卡只排左上、`tts` 改了卻沒同步字幕（made-by-ai s09、same-look s05、sketch-game s01）、英文副字幕。
 
 **feynman（無聲版）**：之後配音前先修 6～10 秒的步驟卡版面；配音時照上面第 1 點的停頓寫法。
+
+## 修後結果（2026/11/22，0 次 TTS，只後製現有人聲＋重渲染畫面）
+
+做法：`scripts/caffaine/trim-pauses.py prep`（每幕錄音只剪逗號處 ≥0.22 秒的停頓、剪點在靜音區內前後各留 65ms、10ms 交叉淡化、片頭補 0.3 秒底噪）→ `npm run align -- --force`（本機 fa.py 重對齊，字幕與 cue 跟新時間）→ `trim-pauses.py fill`（換幕純數位靜音換同段錄音底噪）→ `BGM_LEAD=0.3 scripts/caffaine/make.sh <slug> --voice`。量測用 `scripts/caffaine/pause-report.py`。
+
+| 項目 | rules-file（51.3 秒） | new-chat（46.9 秒） |
+|---|---|---|
+| 句中 ≥0.25 秒停頓 | 0（原 5） | 0（原 5） |
+| 全片停頓數／上限 | 11／16 | 12／15 |
+| audio-check Z／C／R、起音 | 0／0／0、0.34 秒 | 0／0／0、0.35 秒 |
+| freezedetect n=0.003:d=1.2 | 0 | 0 |
+| ov-check 重疊 | 0 | 0 |
+| 拼圖 | verify4/caffaine-rules-file-fixed.png | verify4/caffaine-new-chat-fixed.png |
+
+畫面：rules-file「只寫一次」印章移到規則紙外側右上、不遮字；兩支的大字幕頁（rules-file 38 秒起、new-chat 38 秒起）下半部補三張重點卡（IsoVariety 的 recap，進場用縮放、不位移，避免撞到下一行大字）。起音過早原因是背景音樂淡入在 0.2 秒越過 −40dB，加 `BGM_LEAD` 環境變數（mix.mjs）延後淡入。
+未解：new-chat 18–19 秒（步驟卡只在左上、下半部空約 2 秒）與 12 秒前後仍有空洞；rules-file 8–13 秒對話窗下半留白。人耳待確認：「交差」、「這句」、「貼上去」。
