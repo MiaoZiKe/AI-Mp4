@@ -297,3 +297,9 @@ Andy 原話：「往後文章越來越多，所以以後影片結尾的『留言
 - 固定字由 Andy 決定，主控轉達後填在這裡：**（待 Andy 提供）**。
 - 在那之前：新片結尾不要再自己發明新的留言關鍵字；已排程的片要不要改，等固定字來時一併確認。
 - 固定字定下來後，`dm_config.json` 的關鍵字與 Meta Business Suite 的留言自動私訊設定要一起改。
+
+## 二十四、音訊不斷續（2026/11/21 Andy 全頻道：「全部影片 前面聲音斷斷續續 需要避免後續發生 請先找原因 再把方法寫近規則」）
+
+根因與規則全文在 tw-rotation main `docs/marketing/channels/video_logic.md`「〇、音訊不斷續」：補停頓不准插純數位靜音（值全 0）、切點不准落在字中間、Gemini WAV 要去掉檔尾 C2PA 區塊、切句後要淡入。
+- 交件必附一行「音訊檢查」：`python3 scripts/dossier/audio-check.py <slug>`（Z 數位靜音、C 斷音、R 死寂起音都要 0）。
+- CaffAIne 11/21 全掃：已發 4 支（two-answers、made-by-ai、same-look、sketch-game）與待發的有聲片 Z／C／R 全 0；但**第一個字起音都在 0.04～0.06 秒**（工具警告門檻 0.25 秒，播放器常吃掉第一個字）。之後新片片頭先留 0.3 秒再開口（align 的開頭留白），舊片不重發。
