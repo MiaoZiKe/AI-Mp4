@@ -101,6 +101,8 @@
 
 ## 五、一支指令：make.mjs（分步用法在下面保留）
 
+- 數字旁連音太多、含停頓語速偏高時，`insert-pauses.py` 可放寬切點：`--min-quiet <ms>`（預設 30）、`--quiet-db <dB>`（預設 −50）；hike2022 用 `--min-quiet 20 --quiet-db -45`，跳過 20→14 處、audio-check 0／0／0。**不要用 `--seek <ms>`**（找不到安靜點就在句界取最低能量窗口），會切進字裡、audio-check 出現 3–7 處斷音。每次換參數都要跑 audio-check，且插停頓後仍要 `--lead 0.35` 讓成品首字起音 ≥0.3 秒。
+
     node scripts/dossier/make.mjs <slug> [--silent] [--from-plan] [--from-audio=<orig.wav>] [--skip-render] [--no-overlap-fail] [--no-edge-fail]
 
 一路跑 validate＋字型 → 時間軸（有聲＝voice-take，`--silent`＝silent-timeline）→ overlap-check → render → edge-check → 招牌音＋mix-auto → 網站版（out/web/<slug>/video.mp4 ≤20MiB、cover.jpg、voice.mp3）→ 抽格拼圖 out/<slug>/sheet.jpg。每步印一行狀態與耗時，失敗就停並把停在哪一步寫進 `out/<slug>/make.json`（成功時記每步耗時、片長、片尾 LUFS／真峰值、overlap 結果、網站版大小）。不加 `--from-audio` 的有聲版會送 TTS 1 次。已排程的 liguligu-nvda-kress、liguligu-power-bill 會被拒絕（要動加 `--force-scheduled`）。實測（2008-check 有聲完整版）約 3.5 分鐘，最慢是 render（約 86 秒）與 voice-take 對齊（約 60 秒）。

@@ -22,6 +22,7 @@ SCENE = float(opt("--scene", 0.7)); SENT = float(opt("--sentence", 0.3)); OUT = 
 SMAP = {a.split("=")[0]: float(a.split("=")[1]) for a in opt("--scene-map", "").split(",") if "=" in a}  # 個別段落停頓（幕id=秒，段落＝該幕結束到下一幕開口）
 XF = float(opt("--xfade", 15)) / 1000; LEAD = float(opt("--lead", 0.3)); FORCE = "--force-cut" in args
 if FORCE: args.remove("--force-cut")
+MINQ = float(opt("--min-quiet", 30)) / 1000; QDB = float(opt("--quiet-db", -50)); SEEK = float(opt("--seek", 0)) / 1000  # 切點門檻（11/22 加）：--seek 80＝找不到安靜點時，在句界 ±80ms 取能量最低的 10ms 窗口
 SMAX = float(opt("--scene-max", 0)); NUMS = [x for x in opt("--nums", "").split(",") if x]; NUMPAD = float(opt("--num-pad", 0.4))  # 重點數字前後補停頓（11/17 加）
 if not args: sys.exit(__doc__)
 slug = args[0]
@@ -47,7 +48,7 @@ mono = np.abs(x).mean(axis=1)
 win = int(sr * 0.01)
 rms = np.sqrt(np.convolve(mono ** 2, np.ones(win) / win, mode="same"))
 
-QMAX = 32768 * 10 ** (-50 / 20)  # 切點要 ≤ −50 dBFS
+QMAX = 32768 * 10 ** (QDB / 20)  # 切點要 ≤ --quiet-db（預設 −50 dBFS）
 _q = rms[(rms > 0) & (rms < QMAX)]
 FLOOR = float(np.clip(np.median(_q) if len(_q) else 3.0, 32768 * 10 ** (-90 / 20), 32768 * 10 ** (-60 / 20)))
 _rng = np.random.default_rng(20261121)
@@ -79,7 +80,11 @@ def quiet_cut(e, s):
             cur += 1
             if cur > best[1]: best = (bs, cur)
         else: cur = 0
-    if best[1] < int(0.03 * sr): return None
+    if best[1] < int(MINQ * sr):
+        if SEEK > 0:  # 沒有夠長的安靜：句界 ±SEEK 內能量最低的 10ms 窗口
+            a2, b2 = max(0, int((e - SEEK) * sr)), min(len(rms) - 1, int((s + SEEK) * sr))
+            if b2 > a2: return a2 + int(np.argmin(rms[a2:b2]))
+        return None
     seg = rms[a + best[0]:a + best[0] + best[1]]
     # 安靜段裡最低的那一點附近（避開邊緣 10ms）
     m = int(0.01 * sr); inner = seg[m:-m] if len(seg) > 2 * m + 1 else seg
