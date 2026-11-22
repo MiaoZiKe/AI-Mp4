@@ -65,3 +65,4 @@
 - 其餘一律延到 11/27 後：不開新題、不做新企劃、不擴產、不做非必要重做（下週企劃、量產工具實測、11/25 歷史對照下一支）。
 - 11/22 Andy：動畫要優化，排在 11/27 重置後第一件事（待辦寫在手冊最後一節）；hike2022 不為動畫重做。
 - 11/22 主控換新對話：之後回報主控送 session_018gakVS9fT8s4wYTHYVL3Ga（交接檔 main docs/marketing/channels/handoff/ceo_20261122.md）；①的回報仍送舊主控 session_018gakVR9LpeawrULpFdnTw4。hike2022 第 7 版已轉 Andy，等回覆。
+- 11/22 ①主聊天室新地址 session_018gakVVF2kUztDYFQmT1PCU（舊 session_018gakVR9LpeawrULpFdnTw4 停用）；主控仍是 session_018gakVS9fT8s4wYTHYVL3Ga。
