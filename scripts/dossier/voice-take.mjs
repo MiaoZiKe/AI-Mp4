@@ -39,7 +39,10 @@ const BASE_STYLE = fs.readFileSync(path.join(ROOT, "docs/prompts/liguligu-男聲
 if (!BASE_STYLE) { console.error("✖ 找不到說明句（docs/prompts/liguligu-男聲試聽-短說明.txt 以「用台灣人平常講話」開頭的那一行）"); process.exit(1); }
 const EXTRA = String(script.voice?.styleExtra ?? "").trim().replace(/[，。、,.\s]+$/, "");
 if (EXTRA && /[0-9A-Za-z「」"]/.test(EXTRA)) { console.error("✖ voice.styleExtra 只寫說話方式，不放數字、英文或引號（會被念出來）"); process.exit(1); }
-const STYLE = EXTRA ? BASE_STYLE.replace(/，?直接說：$/, `，${EXTRA}，直接說：`) : BASE_STYLE;
+const BASE_OVR = String(script.voice?.styleBase ?? "").trim();
+if (BASE_OVR && /[0-9A-Za-z「」"]/.test(BASE_OVR)) { console.error("✖ voice.styleBase 只寫說話方式，不放數字、英文或引號"); process.exit(1); }
+const BASE_USED = BASE_OVR || BASE_STYLE; // voice.styleBase（選填）取代基礎說明句，須以「直接說：」結尾
+const STYLE = EXTRA ? BASE_USED.replace(/，?直接說：$/, `，${EXTRA}，直接說：`) : BASE_USED;
 console.log(`說明句${EXTRA ? "（含 voice.styleExtra）" : ""}：${STYLE}`);
 console.log(`念稿總字數（不含標點）：${texts.join("").replace(/[\s，。？！、；：,.?!]/g, "").length}`);
 if (DRY) process.exit(0);
