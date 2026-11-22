@@ -8,6 +8,7 @@
 //       只有填色、沒有描邊的色塊視為底色，不算；卡片本身的外框歸 (c)
 //   (c) 字超出卡片（卡片 overflow:hidden 會被裁掉）、或被標題／右上小字擋到
 //   (d) 卡片標題（與右上小字）壓到內容圖形（不含整張卡的底圖）：相交或間距 <4px 是 error（11/22 起，成片比靜態頁多壓 1–3px）；4–6px 給 warning
+//   (f) 字壓色條（<20px 的實心長條，相交或間距 <4px）、(g) 字貼圖形（字在實心圖形外、間距 <4px）＝error；(h) 字離卡片內緣 <4px＝warning（11/22 起）
 //   容許 2px。不算：透明度 <0.05 的元素（還沒出場）。不涵蓋：3D 標籤與蓋章壓模型、兩張疊層互壓（layout-check.mjs 管）、字幕卡、片尾卡、HudArt 的縮放圖。
 // 結果寫 out/<slug>/card-overlap.json；有 error 時結束碼 1。validate-three.mjs 對有 hud 的片自動跑。
 import fs from "node:fs";
@@ -68,7 +69,7 @@ await pg.evaluate(async () => { await document.fonts.ready; await new Promise((r
 const fontsOk = await pg.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family).filter((v, i, a) => a.indexOf(v) === i));
 
 const meta = list.map((s) => ({ title: s.title ?? null, tag: s.tag ?? null }));
-const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH }) => {
+const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH, GAP }) => {
   const res = [];
   const effOp = (el, stop) => { let o = 1; for (let e = el; e && e !== stop; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= Number(cs.opacity); } return o; };
   const ctx = document.createElement("canvas").getContext("2d");
@@ -168,6 +169,30 @@ const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH }) => {
         const n = ins.filter(Boolean).length; if (n === 0 || n === ins.length) continue;
         push("error", "字壓色塊", `「${T.str}」一半壓在色塊（${g.tagName}）上、一半在外面`, T.box);
       }
+      // (f) 字壓色條：寬或高 <20px 的實心長條（頂線、底板線、溫度計管…），(e) 不管這種細條；字的墨跡框和它相交或間距 <GAP 就算（11/22 etch-ion「離子（帶正電）」貼在電漿框頂線上）
+      // (g) 字貼圖形：字整段在一塊實心圖形（≥20px）外面、但墨跡框往外擴 GAP 後碰到它（11/22 etch-cold 溫度計的球碰到「−70°」字頂）
+      for (const T of texts) {
+        if (T.inv && Math.abs(T.M.b) > 0.01) continue; // 旋轉的字（蓋章）不查貼邊
+        const b = T.box, ex = { l: b.l - GAP, t: b.t - GAP, r: b.r + GAP, b: b.b + GAP };
+        for (const g of fillers) {
+          if (g.contains(T.el) || T.el.contains(g) || effOp(g, scr) < 0.3) continue;
+          const r = R(g.getBoundingClientRect()), gw = r.r - r.l, gh = r.b - r.t; if (Math.max(gw, gh) < 20 || gw * gh >= 0.6 * cardArea) continue;
+          const [w0, h0] = inter(ex, r); if (!(w0 > 0 && h0 > 0)) continue;
+          const M = g.getScreenCTM(); if (!M) continue; const Mi = M.inverse();
+          const inF = (x, y) => { const q = new DOMPoint(x, y).matrixTransform(Mi); try { return g.isPointInFill(q) && !covered(g, x, y); } catch { return false; } };
+          const pts = inkPts(T), nIn = pts.filter(([x, y]) => inF(x, y)).length;
+          if (Math.min(gw, gh) < 20) {
+            if (nIn === pts.length && pts.length) continue; // 字整段在色條上（色條當底）
+            const ring = []; for (let x = ex.l; x <= ex.r; x += 3) ring.push([x, ex.t], [x, ex.b], [x, (b.t + b.b) / 2]); for (let y = ex.t; y <= ex.b; y += 3) ring.push([ex.l, y], [ex.r, y]);
+            if (nIn > 0 || ring.some(([x, y]) => inF(x, y))) push("error", "字壓色條", `「${T.str}」${nIn > 0 ? "壓在" : `離不到 ${GAP}px 就碰到`}一條實心長條（${g.tagName} ${Math.round(gw)}×${Math.round(gh)}）`, T.box);
+          } else if (nIn === 0) {
+            const ring = []; for (let x = ex.l; x <= ex.r; x += 3) ring.push([x, ex.t], [x, ex.b]); for (let y = ex.t; y <= ex.b; y += 3) ring.push([ex.l, y], [ex.r, y]);
+            if (ring.some(([x, y]) => inF(x, y))) push("error", "字貼圖形", `「${T.str}」和實心圖形（${g.tagName}）間距不到 ${GAP}px`, T.box);
+          }
+        }
+      }
+      // (h) 字貼卡片邊：墨跡框離卡片內緣 <GAP（還沒超出）
+      for (const T of texts) { const d = Math.min(T.box.l - inner.l, inner.r - T.box.r, T.box.t - inner.t, inner.b - T.box.b); if (d >= -TOL && d < GAP) push("warn", "字貼卡片邊", `「${T.str}」離卡片邊只有 ${Math.max(0, Math.round(d))}px（建議 ≥${GAP}px）`, T.box); }
       // (c) 字超出卡片、被標題／右上小字擋到
       for (const T of texts) {
         const o = Math.max(inner.l - T.box.l, T.box.r - inner.r, inner.t - T.box.t, T.box.b - inner.b);
@@ -196,7 +221,7 @@ const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH }) => {
     }
   });
   return res;
-}, { meta, TOL: 2, NEAR: 6, TOUCH: 4 });
+}, { meta, TOL: 2, NEAR: 6, TOUCH: 4, GAP: 4 });
 if (shotDir) {
   fs.mkdirSync(shotDir, { recursive: true });
   for (let j = 0; j < list.length; j++) {

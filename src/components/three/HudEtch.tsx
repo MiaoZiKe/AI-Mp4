@@ -85,7 +85,7 @@ const Gas: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={x0} y={yT + 14} width={x1 - x0} height={yB - yT - 14} fill={pur} opacity={0.22 * p * (0.7 + 0.3 * gg * Math.abs(Math.sin(f * 0.18)))} />
         <rect x={x0 - 10} y={yT - 12} width={x1 - x0 + 20} height={14} fill={c("steelHi")} /><text x={x0 - 6} y={yT - 20} style={zh(sm(30), H.text2, 700)}>噴氣頭（上電極）</text>
-        <rect x={x0 - 10} y={yB + 4} width={x1 - x0 + 20} height={14} fill={c("ceramic")} /><text x={x0 - 6} y={yB + 46} style={zh(sm(30), H.text2, 700)}>靜電吸盤（下電極）</text>
+        <rect x={x0 - 10} y={yB + 4} width={x1 - x0 + 20} height={14} fill={c("ceramic")} /><text x={x0 - 6} y={yB + 54} style={zh(sm(30), H.text2, 700)}>靜電吸盤（下電極）</text>
         {r > 0 ? <path d={`M${x1 + 6} ${yT - 6} h30 v${yB - yT + 16} h-30`} stroke={c("lp_proc")} strokeWidth={5} fill="none" opacity={r} /> : null}
         {r > 0 ? <path d={Array.from({ length: 41 }, (_, j) => `${j ? "L" : "M"}${x1 + 56 + j * 2.2} ${(yT + yB) / 2 + Math.sin(j * 0.5 - f * 0.4) * 26 * r}`).join(" ")} stroke={c("lp_proc")} strokeWidth={4} fill="none" opacity={r} /> : null}
         {Array.from({ length: N }, (_, j) => {
@@ -147,12 +147,12 @@ const Cold: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <text x={190} y={100} textAnchor="middle" opacity={a > 0.1 ? 1 : 0} style={zh(34, H.text, 800)}>一般溫度</text>
         <Profile m={m} x={60} y={112} w={260} lh={16} hw={20} depth={0.78 * a} taper={0.55} f={f} />
-        <text x={190} y={Hh - 18} textAnchor="middle" opacity={b} style={zh(34, bad, 900)}>越挖越窄，底部刻不動</text>
+        <text x={190} y={Hh - 14} textAnchor="middle" opacity={b} style={zh(32, bad, 900)}>越挖越窄，底部刻不動</text>
         <text x={620} y={100} textAnchor="middle" opacity={r > 0.1 ? 1 : 0} style={zh(34, H.text, 800)}>晶圓降到零下 70 度</text>
         <Profile m={m} x={490} y={112} w={260} lh={16} hw={20} depth={r} f={f} />
-        <text x={620} y={Hh - 18} textAnchor="middle" opacity={cc} style={zh(34, blue, 900)}>一路挖到底，還是直的</text>
-        <g opacity={cc} transform="translate(850 116)"><rect x={-9} y={0} width={18} height={150} fill="none" stroke={H.text3} strokeWidth={3} /><rect x={-5} y={50} width={10} height={96} fill={blue} /><circle cx={0} cy={158} r={18} fill={blue} />
-          <text x={0} y={206} textAnchor="middle" style={zh(40, blue, 900)}>−70°</text></g>
+        <text x={620} y={Hh - 14} textAnchor="middle" opacity={cc} style={zh(32, blue, 900)}>一路挖到底，還是直的</text>
+        <g opacity={cc} transform="translate(850 116)"><rect x={-9} y={0} width={18} height={118} fill="none" stroke={H.text3} strokeWidth={3} /><rect x={-5} y={40} width={10} height={74} fill={blue} /><circle cx={0} cy={126} r={18} fill={blue} />{/* 11/22：溫度計縮短，球和「−70°」留 ≥8px、字離卡片下緣也留距離 */}
+          <text x={0} y={192} textAnchor="middle" style={zh(40, blue, 900)}>−70°</text></g>
       </svg>
     </Card>
   );
@@ -196,14 +196,14 @@ const Ion: React.FC<P> = ({ o, f, k, m }) => {
         {[0, 1, 2, 3, 4].map((j) => { const u = ph(f, 0.004, j, 5, j), bx = 70 + ((u * 340 + j * 97) % 340), by = 130 + ((j * 41 + Math.sin(f * 0.05 + j) * 14) % 140); if (Math.abs(bx - mx) < 50 && Math.abs(by - my) < 40) return null;
           return <g key={j} opacity={0.75}><circle cx={bx} cy={by} r={11} fill={blue} /><circle cx={bx + 13} cy={by + 6} r={7} fill={blue} opacity={0.8} /></g>; })}
         {[0, 1, 2].map((j) => { const u = ph(f, 0.02, j, 3, j), ex2 = 60 + u * 360, ey = 120 + ((j * 67 + u * 80) % 150); return <g key={"e" + j} opacity={0.9}><circle cx={ex2} cy={ey} r={7} fill={amb} /><Sign x={ex2} y={ey} s={3.5} w={2} c={H.onAccent} minus /></g>; })}
-        <rect x={40} y={96} width={400} height={6} fill={c("steelHi")} /><text x={436} y={86} textAnchor="end" style={zh(sm(28), H.text2, 700)}>電漿</text>
-        <rect x={40} y={286} width={400} height={8} fill={c("si")} /><text x={44} y={318} style={zh(sm(28), H.text2, 700)}>晶圓</text>
+        <rect x={40} y={100} width={400} height={6} fill={c("steelHi")} /><text x={436} y={86} textAnchor="end" style={zh(sm(28), H.text2, 700)}>電漿</text>
+        <rect x={40} y={280} width={400} height={8} fill={c("si")} /><text x={44} y={320} style={zh(sm(28), H.text2, 700)}>晶圓</text>
         {split < 0.5 ? <><circle cx={mx} cy={my} r={20} fill={blue} /><circle cx={mx + 22} cy={my + 10} r={13} fill={blue} opacity={0.85} /></> : null}
         {el(ex, my + 4, 1 - split)}
         {split > 0 ? <>
-          {el(mx - 20 - 70 * split, my - 40 * split, split)}{el(mx - 20 - 70 * split, my + 48 * split, split)}
+          {el(mx - 20 - 70 * split, my - 34 * split, split)}{el(mx - 20 - 70 * split, my + 48 * split, split)}
           <g transform={`translate(${mx} ${iy})`} opacity={split}><circle r={26} fill={pink} /><Sign x={0} y={0} s={12} w={5} c={H.onAccent} /></g>
-          <text x={mx} y={my - 52} textAnchor="middle" opacity={split * (1 - pull)} style={zh(sm(30), pink, 900)}>離子（帶正電）</text>
+          <text x={mx} y={89} textAnchor="middle" opacity={split * (1 - pull)} style={zh(sm(26), pink, 900)}>離子（帶正電）</text>{/* 11/22：放在電漿框頂線上方、標題下面，和頂線、電子都留 ≥8px */}
         </> : null}
         {fa > 0 ? [0, 1, 2].map((j) => <path key={j} d={`M${mx + 80 + j * 40} 130 v${120 - 0 * j} m-9 -16 l9 18 l9 -18`} stroke={c("lp_proc")} strokeWidth={5} fill="none" opacity={fa} />) : null}
         <text x={mx + 174} y={206} opacity={fa} style={zh(sm(30), c("lp_proc"), 900)}>電場</text>{/* 11/22：原本在箭頭上方，和「離子（帶正電）」重疊 */}
