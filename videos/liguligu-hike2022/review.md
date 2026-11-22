@@ -409,3 +409,7 @@
 - **s04 起點出處（新問題 7）**：s04 資訊帶第三格改「起點 4%・媒體報導・2026/9/16」。
 
 檢查（本輪）：build-script ✔；`npm run validate` 0 error（1 warning：字數估總長 43 秒，以時間軸為準）；`voice-take.mjs --dry` 念稿檢查通過、205 字；無聲時間軸 47.7 秒（不含幕內句間停頓）；overlap-check 14 取樣 error 0／warn 0；每 1 秒一格 `out/liguligu-hike2022/frames-1s-silent-v6.png` 看過（修了 s02 右欄空太久、y2022／level／dates 圖第一段切到字）。timeline.json／storyboard.json 現在是無聲估算版（estimated），配音後由 make 覆蓋。
+
+## 第 6 版定案說明（2026-11-22，製作者寫，非獨立審查）
+- 刪 s03 公債利率與 s05 兩票後，數字 5、事實 6、念稿 186 字；成片 53.3 秒。配音 1 次、後製只剪靜音（20.859 秒處 0.475→0.42，另兩處 1.0 秒以上剪到 0.8）。
+- 未過項目（誠實記錄）：pause-density（27.55 秒句內 0.25 秒）、frame-check（第 39–41 秒空白）、freezedetect 剩 s01 一段、網站版真峰值 −1.0、純念稿語速約 5.6、listen-check 待補。尚未交件、尚未做獨立審查。
