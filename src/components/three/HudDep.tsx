@@ -81,7 +81,7 @@ const Scale: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <text x={372} y={172} opacity={b} style={zh(32, H.text, 900)}>放大到原子</text>
         <text x={gx} y={gy + 6 * R * 1.7 + 36} opacity={q} style={zh(sm(32), H.text2, 800)}>約 3～5 層原子（示意）</text>
-        <g opacity={q}><path d={`M${gx + 12 * R * 1.9 - 40} ${gy - 12} v${3 * R * 1.7 + 8}`} stroke={H.amber} strokeWidth={5} /><rect x={gx + 12 * R * 1.9 - 34} y={gy + 6} width={sm(30) + 8} height={sm(30) + 10} rx={6} fill={H.cardCompare} /><text x={gx + 12 * R * 1.9 - 30} y={gy + 40} style={zh(sm(30), H.amber, 900)}>膜</text></g>{/* 11/22：「膜」墊底色，不再一半壓在原子上 */}
+        <g opacity={q}><path d={`M${gx + 11 * R * 1.9 + 2 * R + 8} ${gy - R} V${gy + 3 * R * 1.7 + R}`} stroke={H.amber} strokeWidth={5} /><text x={gx + 11 * R * 1.9 + 2 * R + 8} y={gy - R - 10} textAnchor="middle" style={zh(sm(30), H.amber, 900)}>膜</text></g>{/* 11/22：標線移到原子右邊、「膜」放在標線上方，不碰原子 */}
       </svg>
     </Card>
   );
@@ -93,7 +93,7 @@ const Chamber: React.FC<P> = ({ o, f, k, m }) => {
   const sh = T(o, "shower"), wf = T(o, "wafer"), pu = T(o, "pump");
   const lit = (at: number) => 0.4 + 0.6 * tween(f, at, 10, EASE.enter);
   const b = lit(sh), w = lit(wf), p = lit(pu), gb = tween(f, sh, 10, EASE.enter), gp = tween(f, pu, 10, EASE.enter);
-  const cx = 300, x0 = 70, x1 = 530, yS = 118, yW = 238;
+  const cx = 300, x0 = 70, x1 = 530, yS = 118, yW = 222; // 11/22：加熱座加高、字和加熱條分開，整組上移 16px
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -108,9 +108,9 @@ const Chamber: React.FC<P> = ({ o, f, k, m }) => {
         {Array.from({ length: 12 }, (_, i) => Array.from({ length: 3 }, (_, j) => { const u = ph(f, 0.018, j, 3, i % 4); return <circle key={`${i}-${j}`} cx={x0 + 50 + i * 36} cy={yS + 22 + u * (yW - yS - 28)} r={5} fill={c("lp_sig")} opacity={0.15 + 0.85 * gb} />; }))}
         {Array.from({ length: 3 }, (_, j) => { const u = ph(f, 0.02, j, 3); return <circle key={`in${j}`} cx={cx} cy={52 + u * 60} r={7} fill={c("lp_sig")} opacity={0.2 + 0.8 * gb} />; })}
         <g opacity={w}>
-          <rect x={x0 + 60} y={yW} width={x1 - x0 - 120} height={10} fill={c("si")} /><rect x={x0 + 50} y={yW + 10} width={x1 - x0 - 100} height={30} fill={c("steel")} />
-          <rect x={x0 + 50} y={yW + 10} width={x1 - x0 - 100} height={6} fill={c("lp_heat")} opacity={0.5 + 0.4 * Math.sin(f * 0.15)} />
-          <text x={x0 + 66} y={yW - 10} style={zh(sm(30), H.text, 800)}>晶圓</text><text x={cx + 20} y={yW + 36} style={zh(sm(30), onC(H.amber), 800)}>加熱座</text>
+          <rect x={x0 + 60} y={yW} width={x1 - x0 - 120} height={10} fill={c("si")} /><rect x={x0 + 50} y={yW + 10} width={x1 - x0 - 100} height={46} fill={c("steel")} />
+          <rect x={x0 + 50} y={yW + 50} width={x1 - x0 - 100} height={6} fill={c("lp_heat")} opacity={0.5 + 0.4 * Math.sin(f * 0.15)} />
+          <text x={x0 + 66} y={yW - 10} style={zh(sm(30), H.text, 800)}>晶圓</text><text x={cx + 20} y={yW + 42} style={zh(sm(26), onC(H.amber), 800)}>加熱座</text>
         </g>
         <g opacity={p}>
           {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.018, j, 4); return <g key={j}><circle cx={x0 + 30} cy={yW - 6 + u * 70} r={6} fill={c("lp_bad")} opacity={0.2 + 0.8 * gp} /><circle cx={x1 - 30} cy={yW - 6 + u * 70} r={6} fill={c("lp_bad")} opacity={0.2 + 0.8 * gp} /></g>; })}
