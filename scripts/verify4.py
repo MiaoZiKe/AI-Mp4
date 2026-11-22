@@ -95,7 +95,8 @@ if st is not None and END - st >= MIN_SIL: sil.append((st, END))
 first_on = chars[0]["t0"] if chars else 0; last_off = chars[-1]["t1"] if chars else END
 pauses = []
 for a, b in sil:
-    if b <= first_on + 0.02 or a >= last_off - 0.02: continue  # 片頭、片尾
+    # 片頭、片尾；從 0 秒開始的靜音＝規定的片頭留空（首字不早於 0.3 秒＋淡入），FA 的首字起點可能比 silencedetect 早幾十毫秒，不算句中
+    if b <= first_on + 0.02 or a <= 0.05 or a >= last_off - 0.02: continue
     mid = (a + b) / 2
     kind, ctx = "句中（字內）", ""
     for i in range(len(chars) - 1):
