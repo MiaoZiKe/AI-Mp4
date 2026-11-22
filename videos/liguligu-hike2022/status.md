@@ -8,3 +8,5 @@
 - 2026/11/22 第 5 版重配 1 次：停在 pause-density（句中 6 處模型自停，最長 1.45 秒），其餘三關過；未做交件資料夾。
 
 - 2026/11/22 pause-density 修正：舊版用 timeline.json 的 charTimes（對字幕字、數字一字一格）去查 tts 字索引，數字唸法字數不同造成偏移，6 處「句中停頓」其實全在句號處；改成直接對 tts 全文跑 fa.py。修後 0 處句中、四關全過。片頭起音 0.28→0.34（head-pad.py，不送 TTS）。未過：片尾音前空檔 0.11 秒（規則 ≥0.4，需動時間軸）；捲舌 gap 3.47 kHz 待人耳。
+
+- 2026/11/22 片尾卡延後 11 幀（0.37 秒）：timeline 的 s06 延長、end 往後移（沿用 --keep-timeline，不送 TTS、不改念稿）；片尾音前空檔 0.11→0.48 秒（最後字 46.02、招牌音 46.50）；片長 49.84 秒；片頭起音 0.34（head-pad 0.07 重套到 paused.wav，備份在 scratchpad）；片尾 −11.7 LUFS、真峰值 −1.2。audio-check、pause-density、frame-check、overlap 過；**listen-check 未過：gemini-3.8-flash 連續 429 配額用完（4 次、間隔 2 分鐘，另一輪 503×2＋429×2），無結果，不沿用舊結果 → 交件資料夾未更新，待配額恢復後重跑 listen-check 再交件。**
