@@ -3,7 +3,7 @@
 // 全部示意；顏色讀 H 與 model.json 的 palette；時間全部來自 script.json 的 t（cue）。
 import React from "react";
 import { FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
 import { col } from "./model";
@@ -14,7 +14,7 @@ type P = { o: Overlay3D; f: number; k: number; m: Model3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>

@@ -6,7 +6,7 @@
 //   pkg-xsec 封裝剖面（晶片→微凸塊→中介層 RDL／TSV→C4→基板）＋一般電路板對照；pkg-warp 大面積翹曲示意；pkg-choice 往旁邊拼／往上疊。
 import React from "react";
 import { FONT_EN, FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { EASE, seeded, tween } from "../anim";
 import type { Model3D, Overlay3D, State3D } from "./engine";
 import { col } from "./model";
@@ -29,7 +29,7 @@ export const dropY = (n: number, T: number, h: number, A: number) => {
 
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>

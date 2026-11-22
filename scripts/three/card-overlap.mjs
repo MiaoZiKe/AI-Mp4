@@ -7,7 +7,7 @@
 //   (b) 字壓線：字被有描邊的線段／外框（SVG line、path、polyline、polygon、有 stroke 的 rect／circle／ellipse，HTML 的 border 邊）穿過；
 //       只有填色、沒有描邊的色塊視為底色，不算；卡片本身的外框歸 (c)
 //   (c) 字超出卡片（卡片 overflow:hidden 會被裁掉）、或被標題／右上小字擋到
-//   (d) 卡片標題（與右上小字）壓到內容圖形（不含整張卡的底圖）；只差 0–6px 貼著的給 warning
+//   (d) 卡片標題（與右上小字）壓到內容圖形（不含整張卡的底圖）：相交或間距 <4px 是 error（11/22 起，成片比靜態頁多壓 1–3px）；4–6px 給 warning
 //   容許 2px。不算：透明度 <0.05 的元素（還沒出場）。不涵蓋：3D 標籤與蓋章壓模型、兩張疊層互壓（layout-check.mjs 管）、字幕卡、片尾卡、HudArt 的縮放圖。
 // 結果寫 out/<slug>/card-overlap.json；有 error 時結束碼 1。validate-three.mjs 對有 hud 的片自動跑。
 import fs from "node:fs";
@@ -68,7 +68,7 @@ await pg.evaluate(async () => { await document.fonts.ready; await new Promise((r
 const fontsOk = await pg.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family).filter((v, i, a) => a.indexOf(v) === i));
 
 const meta = list.map((s) => ({ title: s.title ?? null, tag: s.tag ?? null }));
-const found = await pg.evaluate(({ meta, TOL, NEAR }) => {
+const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH }) => {
   const res = [];
   const effOp = (el, stop) => { let o = 1; for (let e = el; e && e !== stop; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= Number(cs.opacity); } return o; };
   const ctx = document.createElement("canvas").getContext("2d");
@@ -188,13 +188,15 @@ const found = await pg.evaluate(({ meta, TOL, NEAR }) => {
       }
       for (const hd of heads) for (const S of shapes) {
         const [w, h] = inter(hd.box, S.r);
-        if (w > TOL && h > TOL) push("error", "標題壓圖", `${hd.name}「${hd.el.textContent.trim()}」壓到內容圖形（${S.name}）${Math.round(w)}×${Math.round(h)}px`, S.r);
-        else if (w > TOL && h > -NEAR && h <= TOL) push("warn", "貼著標題", `內容圖形（${S.name}）和${hd.name}「${hd.el.textContent.trim()}」只差 ${Math.max(0, Math.round(-h))}px（建議 ≥${NEAR}px）`, S.r);
+        // 2026/11/22 起：標題框和內容框（膠囊、色塊、圖）相交或貼著（間距 < TOUCH）一律 error。靜態頁和 Remotion 成片會差 1–3px（tech-icdesign ic-who 這裡量 0px、成片實際壓到 3px），
+        // 所以不能再用 TOL 放過。Andy 原話：「這邊發生重疊 需要避免以後繼續發生」。
+        if (w > TOL && h > -TOUCH) push("error", "標題壓圖", `${hd.name}「${hd.el.textContent.trim()}」${h > 0 ? `壓到內容圖形（${S.name}）${Math.round(w)}×${Math.round(h)}px` : `和內容圖形（${S.name}）只差 ${Math.round(-h)}px（成片會壓到，至少留 ${TOUCH}px）`}`, S.r);
+        else if (w > TOL && h > -NEAR) push("warn", "貼著標題", `內容圖形（${S.name}）和${hd.name}「${hd.el.textContent.trim()}」只差 ${Math.max(0, Math.round(-h))}px（建議 ≥${NEAR}px）`, S.r);
       }
     }
   });
   return res;
-}, { meta, TOL: 2, NEAR: 6 });
+}, { meta, TOL: 2, NEAR: 6, TOUCH: 4 });
 if (shotDir) {
   fs.mkdirSync(shotDir, { recursive: true });
   for (let j = 0; j < list.length; j++) {

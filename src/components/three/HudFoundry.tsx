@@ -4,7 +4,7 @@
 // 全部示意；顏色讀 H 與 model.json 的 palette；時間全部來自 script.json 的 t（cue）。
 import React from "react";
 import { FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
 import { col } from "./model";
@@ -15,7 +15,7 @@ type P = { o: Overlay3D; f: number; k: number; m: Model3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(28), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>
@@ -60,7 +60,7 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
         <g opacity={0.8 + 0.2 * Math.max(aF, aX)} transform="translate(640 44)">
           <rect x={0} y={40} width={200} height={84} fill={c("wall")} stroke={H.text3} strokeWidth={3} /><rect x={0} y={40} width={200} height={14} fill={c("aBlue")} />
           {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={12 + i * 30} y={70} width={16} height={36} fill={c("win")} />)}
-          <rect x={150} y={0} width={18} height={44} fill={c("steelHi")} /><rect x={178} y={14} width={14} height={30} fill={c("steelHi")} />
+          {/* 煙囪頂要在右上小字下緣＋4px 以下（11/22 Andy：「這邊發生重疊 需要避免以後繼續發生」） */}<rect x={150} y={CARD_CONTENT_TOP - 44} width={18} height={84 - CARD_CONTENT_TOP} fill={c("steelHi")} /><rect x={178} y={CARD_CONTENT_TOP - 38} width={14} height={78 - CARD_CONTENT_TOP} fill={c("steelHi")} />
           <text x={100} y={150} textAnchor="middle" style={zh(34, H.text, 900)}>代工廠：蓋廠＋製造</text>
         </g>
         {/* 設計公司（左）：藍圖 */}
@@ -93,7 +93,7 @@ const Air: React.FC<P> = ({ o, f, k, m }) => {
   const W = o.w ?? 952, Hh = o.h ?? 320, c = (n: string) => col(m.product, n);
   const enter = T(o, "enter"), air = T(o, "air"), dust = T(o, "dust");
   const a = tween(f, enter, 10, EASE.enter), b = tween(f, air, 12, EASE.enter), d = tween(f, dust, 10, EASE.enter);
-  const x0 = 70, x1 = 880, yC = 80, yF = 224;
+  const x0 = 70, x1 = 880, yC = CARD_CONTENT_TOP + 20, yF = 224; // 天花板（yC−20）從標題下緣＋8px 開始
   const nF = 8, fw = (x1 - x0) / nF;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>

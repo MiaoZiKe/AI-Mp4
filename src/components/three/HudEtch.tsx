@@ -4,7 +4,7 @@
 // 全部示意；顏色讀 model.json 的 palette；時間全部來自 script.json 的 t（cue）。
 import React from "react";
 import { FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
 import { col } from "./model";
@@ -15,7 +15,7 @@ type P = { o: Overlay3D; f: number; k: number; m: Model3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>
@@ -24,7 +24,7 @@ const ph = (f: number, sp: number, j: number, n: number, seed = 0) => (((f * sp 
 const NL = 8;
 
 /** 孔的剖面：堆疊 8 層、孔寬 hw；depth＝0..1（已挖到的深度比例）；wall＝0..1 保護膜；taper＝孔越深越窄（對照用） */
-const Profile: React.FC<{ m: Model3D; x: number; y: number; w: number; lh: number; hw: number; depth: number; films?: number[]; taper?: number; bowl?: number; ions?: number; f?: number; mask?: boolean }> = ({ m, x, y, w, lh, hw, depth, films, taper = 0, bowl = 0, ions = 0, f = 0, mask = true }) => {
+const Profile: React.FC<{ m: Model3D; x: number; y: number; w: number; lh: number; hw: number; depth: number; films?: number[]; taper?: number; bowl?: number; ions?: number; f?: number; mask?: boolean; ionTop?: number }> = ({ m, x, y, w, lh, hw, depth, films, taper = 0, bowl = 0, ions = 0, f = 0, mask = true, ionTop = -1e9 }) => {
   const c = (n: string) => col(m.product, n);
   const ox = c("oxide"), ni = c("nitride"), rs = c("resist"), fl = c("film"), si = c("si"), ion = c("lp_ion");
   const cx = x + w / 2, H0 = NL * lh, hd = depth * H0, my = y + 14;
@@ -40,7 +40,7 @@ const Profile: React.FC<{ m: Model3D; x: number; y: number; w: number; lh: numbe
       {hd > 0.5 ? <path d={hole} fill={H.cardCompare} /> : null}
       {films ? films.map((a, g) => { const gy0 = my + (3 - g) * 2 * lh, gy1 = gy0 + 2 * lh; const yEnd = Math.min(gy1, my + hd); if (a <= 0.01 || yEnd <= gy0) return null;
         return <g key={g} opacity={a}><rect x={cx - hw / 2 - 5} y={gy0} width={5} height={yEnd - gy0} fill={fl} /><rect x={cx + hw / 2} y={gy0} width={5} height={yEnd - gy0} fill={fl} /></g>; }) : null}
-      {ions > 0 && hd < H0 + 1 ? [0, 1, 2].map((j) => { const p = ph(f, 0.03, j, 3), yy = my - 70 + p * (70 + hd); return <g key={j} opacity={ions * (1 - 0.3 * p)}><circle cx={cx + (j - 1) * hw * 0.28} cy={yy} r={5.5} fill={ion} /></g>; }) : null}
+      {ions > 0 && hd < H0 + 1 ? [0, 1, 2].map((j) => { const p = ph(f, 0.03, j, 3), y0 = Math.max(my - 70, ionTop), yy = y0 + p * (my + hd - y0); /* ionTop：離子起點不進標題列（11/22） */ return <g key={j} opacity={ions * (1 - 0.3 * p)}><circle cx={cx + (j - 1) * hw * 0.28} cy={yy} r={5.5} fill={ion} /></g>; }) : null}
     </g>
   );
 };
@@ -117,7 +117,7 @@ const Sect: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <Profile m={m} x={40} y={66} w={240} lh={20} hw={18} depth={depth} films={films} ions={hit} f={f} />
+        <Profile m={m} x={40} y={66} w={240} lh={20} hw={18} depth={depth} films={films} ions={hit} f={f} ionTop={CARD_CONTENT_TOP + 6} />
         <text x={300} y={110} opacity={hit} style={zh(30, H.text, 800)}><tspan fill={c("lp_ion")}>①</tspan> 離子往下打，孔底被打掉</text>
         <text x={300} y={160} opacity={film} style={zh(30, H.text, 800)}><tspan fill={good}>②</tspan> 保護膜留在洞壁</text>
         <text x={300} y={210} opacity={side} style={zh(30, H.text, 800)}><tspan fill={good}>③</tspan> 側面不被刻到，洞才直</text>

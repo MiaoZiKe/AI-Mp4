@@ -13,7 +13,7 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remo
 import { ThreeCanvas } from "@remotion/three";
 import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
-import { H, L, canvasBox, setHudLayout, setHudSkin, sm } from "./hudSkin";
+import { H, L, canvasBox, setHudLayout, setHudSkin, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
 import { BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
@@ -358,7 +358,7 @@ const HudSectionPath: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
   const euv = (m.product.palette as any)?.euv ?? "#8B5CF6";
   return (
     <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
-      {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px" }}>{o.title}</div> : null}
+      {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line }}>{o.title}</div> : null}
       {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600) }}>{o.tag}</div> : null}
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <polyline points={P.map((p) => p.join(",")).join(" ")} fill="none" stroke={euv} strokeOpacity={0.35} strokeWidth={3} strokeDasharray="10 8" />
@@ -403,7 +403,7 @@ const HudSectionPath: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D;
 /** 卡片外框（section 共用）：白底細框、左上藍底標題、右上小字標示 */
 const SecCard: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>
@@ -720,7 +720,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   });
   return (
     <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box" }}>
-      {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px" }}>{o.title}</div> : null}
+      {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line }}>{o.title}</div> : null}
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={sx0} y={top} width={sx1 - sx0} height={bot - top} fill={A.sd} opacity={0.85} />
         <rect x={dx0} y={top} width={dx1 - dx0} height={bot - top} fill={A.sd} opacity={0.85} />

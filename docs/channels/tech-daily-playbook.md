@@ -183,10 +183,11 @@ Andy 11-15 傳了 8 格參考圖：「結尾的 LOGO 動畫使用這個，並且
 
 使用者看量測檢測 s2「一層層做，一步歪全白做」那張卡（「金屬二」壓到中間分隔線、上層色塊貼著標題）時說：「這邊會出現這樣覆蓋問題 修復並避免後續發生」。
 
-- `npm run validate` 對有 hud 的片自動跑 `node scripts/three/card-overlap.mjs <slug>`（不開 3D，約 10 秒）：每個疊層（section 各 kind、stamp、legend、compare、bars、card）在出場＋12 幀、每個 cue＋12 幀、結束前 2 幀，用 react-dom/server 輸出靜態 HTML，以 Playwright 載入本地字型量實際墨跡框。抓：字壓字、字被描邊的線／外框穿過（被後畫的實心圖形蓋住的那段不算）、字一半壓在色塊上一半在外面、字被後畫的圖形蓋掉一部分、字超出卡片、字被標題擋到、標題壓到內容圖形（貼著 0–6px 給 warning）。容許 2px。結果在 `out/<slug>/card-overlap.json`。
+- `npm run validate` 對有 hud 的片自動跑 `node scripts/three/card-overlap.mjs <slug>`（不開 3D，約 10 秒）：每個疊層（section 各 kind、stamp、legend、compare、bars、card）在出場＋12 幀、每個 cue＋12 幀、結束前 2 幀，用 react-dom/server 輸出靜態 HTML，以 Playwright 載入本地字型量實際墨跡框。抓：字壓字、字被描邊的線／外框穿過（被後畫的實心圖形蓋住的那段不算）、字一半壓在色塊上一半在外面、字被後畫的圖形蓋掉一部分、字超出卡片、字被標題擋到、標題壓到內容圖形（相交或間距 <4px 是 error，4–6px 給 warning）。其餘容許 2px。結果在 `out/<slug>/card-overlap.json`。
 - asOf 2026/11/20 以後的片，這些都是 error（validate 不過）；之前的舊片只出 warning。
 - 畫新的示意卡時：標題下緣約 y60，內容圖形從 y≥66 開始；文字放在色塊裡面或完全在外面，不要騎在邊上；跟著東西移動的標籤（例如電子束）到卡片邊緣要換邊；字級以 `sm()` 實際放大後（smallPx 30）的寬度排版。
 - 要看每一格長怎樣：`node scripts/three/card-overlap.mjs <slug> --shots=<資料夾>`（每個時間點一張卡片截圖）；只查一種卡加 `--only=met-layer`。
+- **示意卡標題不准碰到內容**（2026/11/22 Andy 看 tech-icdesign「台灣誰在做」標題壓到「設計服務」膠囊：「這邊發生重疊 需要避免以後繼續發生」）：標題色塊的高度在 `hudSkin.ts` 的 `CARD_HEAD`（行高寫明確像素），卡片內第一列（膠囊、色塊、圖）一律從 `CARD_CONTENT_TOP`（標題下緣＋8px）以下開始，不准寫死 58 這種數字；card-overlap 的「標題壓圖」改成標題框／右上小字和內容框相交**或間距 <4px 就是 error**（靜態頁量 0px 的那張，成片實際壓到 3px），4–6px 才是 warning。
 
 ### 3D 標籤卡不准貼在一起、引線不准穿過別張卡（固定規則，2026/11/21）
 

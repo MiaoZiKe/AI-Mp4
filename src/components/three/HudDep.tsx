@@ -4,7 +4,7 @@
 // 全部示意；顏色讀 model.json 的 palette；時間全部來自 script.json 的 t（cue）。
 import React from "react";
 import { FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
 import { col } from "./model";
@@ -15,7 +15,7 @@ type P = { o: Overlay3D; f: number; k: number; m: Model3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>
@@ -166,7 +166,7 @@ const Pvd: React.FC<P> = ({ o, f, k, m }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <rect x={x0} y={yT - 30} width={x1 - x0} height={30} fill={c("atomG")} opacity={0.55 + 0.45 * g} />
+        <rect x={x0} y={CARD_CONTENT_TOP} width={x1 - x0} height={yT - CARD_CONTENT_TOP} fill={c("atomG")} opacity={0.55 + 0.45 * g} />{/* 靶材從標題下緣＋8px 開始（11/22） */}
         <text x={x1 + 10} y={yT - 6} style={zh(sm(30), H.text, 800)}>靶材</text>
         <rect x={x0} y={yT} width={x1 - x0} height={112} fill={c("ion")} opacity={0.12 * a + 0.1 * i1} />
         {Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.02, j, 9, j % 3); const x = x0 + 30 + j * 56; return <circle key={j} cx={x} cy={yT + 100 - u * 92} r={8} fill={c("ion")} opacity={(0.3 + 0.7 * i1) * (u < 0.96 ? 1 : 0)} />; })}
@@ -228,8 +228,8 @@ const Ald: React.FC<P> = ({ o, f, k, m }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}>
           <Trench x={cx} y={yTop} layers={layers} si={c("siB")} siT={c("siF")} s={s} />
-          {(gasA || gasB) ? Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.016, j, 9, j % 3); const x = cx - 220 + j * 55; const inT = Math.abs(x - cx) < 40; return <circle key={j} cx={x} cy={60 + u * (inT ? 170 : 60)} r={9} fill={gasA ? c("gasA") : c("gasB")} />; }) : null}
-          {purging ? Array.from({ length: 7 }, (_, j) => { const u = ph(f, 0.014, j, 7); return <circle key={`p${j}`} cx={cx - 160 + j * 52} cy={yTop - 4 - u * 70} r={7} fill={c("purge")} opacity={1 - u} />; }) : null}
+          {(gasA || gasB) ? Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.016, j, 9, j % 3); const x = cx - 220 + j * 55; const inT = Math.abs(x - cx) < 40; return <circle key={j} cx={x} cy={CARD_CONTENT_TOP + 9 + u * (inT ? 230 - CARD_CONTENT_TOP - 9 : 120 - CARD_CONTENT_TOP - 9)} r={9} fill={gasA ? c("gasA") : c("gasB")} />; }) : null}
+          {purging ? Array.from({ length: 7 }, (_, j) => { const u = ph(f, 0.014, j, 7); return <circle key={`p${j}`} cx={cx - 160 + j * 52} cy={yTop - 4 - u * (yTop - 11 - CARD_CONTENT_TOP)} r={7} fill={c("purge")} opacity={1 - u} />; }) : null}
         </g>
         {steps.map(([n, t, col2], i) => {
           const hl = step === i + 1;
@@ -273,9 +273,9 @@ const Co: React.FC<P> = ({ o, f, k, m }) => {
       <div style={{ position: "absolute", inset: 0, background: H.cardCompare }} />
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key], i) => { const on = tween(f, T(o, key), 10, EASE.enter); const cur = on > 0.5 && (i === 5 || tween(f, T(o, rows[i + 1][2]), 4) < 0.5);
-          const y = 60 + i * 40;
+          const y = CARD_CONTENT_TOP + i * 38; // 第一列從標題下緣＋8px 開始（11/22）
           return <g key={i}>
-            <rect x={20} y={y} width={W - 40} height={35} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={cur ? 4 : 2} />
+            <rect x={20} y={y} width={W - 40} height={34} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={cur ? 4 : 2} />
             <text x={36} y={y + 27} style={zh(30, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
             <text x={W - 36} y={y + 27} textAnchor="end" style={zh(28, cur ? onC(H.amber) : H.text2, 800)}>{d}</text></g>; })}
       </svg>

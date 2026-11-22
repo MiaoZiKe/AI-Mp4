@@ -4,7 +4,7 @@
 // 全部示意；顏色資料色票和 videos/tech-icdesign/genmodel.py 的 palette 一致（金屬層分色是資料，不是主題色）；時間來自 script.json 的 t（cue）。
 import React from "react";
 import { FONT_ZH } from "../../theme";
-import { H, L, sm } from "./hudSkin";
+import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
 
@@ -193,7 +193,7 @@ type P = { o: Overlay3D; f: number; k: number; m: Model3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
-    {o.title ? <div style={{ position: "absolute", left: 16, top: 10, ...zh(30, onC(H.line), 800), background: H.line, padding: "2px 14px 4px", zIndex: 2 }}>{o.title}</div> : null}
+    {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(30), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
   </div>
@@ -306,7 +306,7 @@ const Who: React.FC<P> = ({ o, f, k }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([a, b, c, key], i) => {
-          const on = tween(f, T(o, key), 8, EASE.enter), y = 58 + i * 66;
+          const on = tween(f, T(o, key), 8, EASE.enter), y = CARD_CONTENT_TOP + i * 64; // 第一列從標題下緣＋8px 開始（11/22 Andy：標題壓到膠囊）
           return (
             <g key={key} opacity={on} transform={`translate(${(1 - on) * -30} 0)`}>
               <rect x={28} y={y} width={230} height={58} rx={8} fill={c} /><text x={143} y={y + 41} textAnchor="middle" style={zh(sm(34), "#FFFFFF", 900)}>{a}</text>
