@@ -200,7 +200,7 @@ const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children:
 );
 
 // ── ic-sec：側面剖面，訊號從最上層一層一層穿到電晶體，再從汲極往上流出去（t：top 最上層｜lay 一層一層｜tr 電晶體｜out 流出去）──
-const ROWY: Record<string, number> = { m5: 102, m4: 136, m3: 170, m2: 204, m1: 238, dev: 278, sub: 318 };
+const ROWY: Record<string, number> = { m5: 110, m4: 142, m3: 174, m2: 206, m1: 238, dev: 278, sub: 318 }; // 11/22：M5 下移 8px，上方「流出去」才不會碰到右上小字（行距 34→32）
 type Seg = { x: number; y: number };
 const PATH_IN: Seg[] = [{ x: 150, y: ROWY.m5 }, { x: 250, y: ROWY.m5 }, { x: 250, y: ROWY.m4 }, { x: 330, y: ROWY.m4 }, { x: 330, y: ROWY.m3 }, { x: 410, y: ROWY.m3 }, { x: 410, y: ROWY.m2 }, { x: 470, y: ROWY.m2 }, { x: 470, y: ROWY.m1 }, { x: 520, y: ROWY.m1 }, { x: 520, y: 260 }];
 const PATH_OUT: Seg[] = [{ x: 640, y: 260 }, { x: 640, y: ROWY.m1 }, { x: 690, y: ROWY.m1 }, { x: 690, y: ROWY.m2 }, { x: 750, y: ROWY.m2 }, { x: 750, y: ROWY.m3 }, { x: 810, y: ROWY.m3 }, { x: 810, y: ROWY.m4 }, { x: 860, y: ROWY.m4 }, { x: 860, y: ROWY.m5 }, { x: 920, y: ROWY.m5 }];
@@ -255,8 +255,8 @@ const Flow: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <text x={W - 28} y={104} textAnchor="end" style={zh(sm(34), H.text2, 800)} opacity={hand}>手畫每一條線</text>
-        <line x1={W - 290} x2={W - 28} y1={92} y2={92} stroke={H.coral} strokeWidth={6} opacity={hand} /><text x={W - 330} y={106} style={zh(44, H.coral, 900)} opacity={hand}>✕</text>
+        {/* 11/22：原本用一條紅線劃過字（字壓線），改成 ✕＋珊瑚色字「手畫每一條線」，意思不變 */}
+        <text x={W - 28} y={104} textAnchor="end" style={zh(sm(34), H.coral, 900)} opacity={hand}>手畫每一條線</text><text x={W - 244} y={106} textAnchor="end" style={zh(44, H.coral, 900)} opacity={hand}>✕</text>
         {steps.map(([t, s, key], i) => {
           const on = tween(f, T(o, key), 8, EASE.enter), x = x0 + i * (cw + gap), c = i < 2 ? IC.cpu : i === 2 ? IC.mem : IC.io;
           return (

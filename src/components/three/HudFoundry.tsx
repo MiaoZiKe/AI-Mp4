@@ -61,14 +61,14 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
           <rect x={0} y={40} width={200} height={84} fill={c("wall")} stroke={H.text3} strokeWidth={3} /><rect x={0} y={40} width={200} height={14} fill={c("aBlue")} />
           {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={12 + i * 30} y={70} width={16} height={36} fill={c("win")} />)}
           {/* 煙囪頂要在右上小字下緣＋4px 以下（11/22 Andy：「這邊發生重疊 需要避免以後繼續發生」） */}<rect x={150} y={CARD_CONTENT_TOP - 44} width={18} height={84 - CARD_CONTENT_TOP} fill={c("steelHi")} /><rect x={178} y={CARD_CONTENT_TOP - 38} width={14} height={78 - CARD_CONTENT_TOP} fill={c("steelHi")} />
-          <text x={100} y={150} textAnchor="middle" style={zh(34, H.text, 900)}>代工廠：蓋廠＋製造</text>
+          <text x={100} y={162} textAnchor="middle" style={zh(34, H.text, 900)}>代工廠：蓋廠＋製造</text>
         </g>
         {/* 設計公司（左）：藍圖 */}
         <g opacity={0.8 + 0.2 * aD} transform="translate(64 44)">
           <rect x={0} y={20} width={200} height={104} fill={c("wall")} stroke={H.text3} strokeWidth={3} />
           <path d="M20 100 H100 V60 H180 M20 70 H70 M120 100 H180" stroke={c("aBlue")} strokeWidth={4} fill="none" />
           <rect x={86} y={46} width={28} height={28} fill="none" stroke={c("aOrange")} strokeWidth={4} />
-          <text x={100} y={150} textAnchor="middle" style={zh(34, H.text, 900)}>設計公司：只管設計</text>
+          <text x={100} y={162} textAnchor="middle" style={zh(34, H.text, 900)}>設計公司：只管設計</text>
         </g>
         <g opacity={aX}>
           <path d="M290 96 H600" stroke={c("aOrange")} strokeWidth={6} /><path d="M588 84 l14 12 l-14 12" stroke={c("aOrange")} strokeWidth={6} fill="none" />
@@ -131,12 +131,12 @@ const Path: React.FC<P> = ({ o, f, k, m }) => {
         {names.map(([n, d], i) => { const x = x0 + i * (bw + gap), a = on[i], act = a > 0.5 && (i === 4 || on[i + 1] < 0.5);
           return <g key={i} opacity={0.8 + 0.2 * a}>
             <rect x={x} y={y0} width={bw} height={bh} fill={H.cardCompare} stroke={act ? H.amber : H.text3} strokeWidth={act ? 6 : 3} />
-            <text x={x + bw / 2} y={y0 + 54} textAnchor="middle" style={zh(i === 1 || i === 3 ? 30 : 34, H.text, 900)}>{n}</text>
+            <text x={x + bw / 2} y={y0 + 54} textAnchor="middle" style={zh(i === 1 || i === 3 ? 28 : 34, H.text, 900)}>{n}</text>
             <text x={x + bw / 2} y={y0 + 96} textAnchor="middle" style={zh(sm(26), H.text2, 700)}>{d}</text>
           </g>; })}
         {[0, 1, 2, 3].map((i) => { const xa = x0 + i * (bw + gap) + bw, xb = xa + gap, a = Math.min(on[i], on[i + 1]);
           return <g key={i} opacity={a}><path d={`M${xa} ${y0 + bh / 2} H${xb}`} stroke={c("aOrange")} strokeWidth={6} /><path d={`M${xb - 12} ${y0 + bh / 2 - 12} l12 12 l-12 12`} stroke={c("aOrange")} strokeWidth={6} fill="none" />
-            <circle cx={xa + gap * ph(f, 0.03, 0, 1)} cy={y0 + bh / 2} r={7} fill={c("wafer")} stroke={H.text3} strokeWidth={2} /></g>; })}
+            <circle cx={xa + 8 + (gap - 16) * ph(f, 0.03, 0, 1)} cy={y0 + bh / 2} r={7} fill={c("wafer")} stroke={H.text3} strokeWidth={2} /></g>; })}
         <text x={W / 2} y={y0 + bh + 62} textAnchor="middle" style={zh(sm(32), H.text2, 800)}>晶圓全程在盒子與機台裡走，不碰外面的空氣</text>
       </svg>
     </Card>
@@ -225,7 +225,7 @@ const Who: React.FC<P> = ({ o, f, k, m }) => {
           return <g key={i} opacity={0.8 + 0.2 * a}>
             <rect x={64} y={y} width={230} height={hh} fill={c(cc)} /><text x={179} y={y + hh / 2 + 12} textAnchor="middle" style={zh(34, "#FFFFFF", 900)}>{n}</text>
             <rect x={294} y={y} width={594} height={hh} fill="none" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 5 : 2} />
-            {i === 0 ? <><text x={318} y={y + 30} style={zh(30, H.text, 800)}>以先進為主，也做成熟</text><text x={318} y={y + 62} style={zh(28, H.text2, 700)}>7 奈米以下占晶圓營收 79%（台積電 2026Q3）</text></>
+            {i === 0 ? <><text x={318} y={y + 30} style={zh(30, H.text, 800)}>以先進為主，也做成熟</text><text x={318} y={y + 62} style={zh(28, H.text2, 700)}>7 奈米以下占晶圓營收 79%（2026Q3）</text></>
               : <text x={318} y={y + 34} style={zh(34, H.text, 800)}>{d}</text>}
           </g>; })}
       </svg>

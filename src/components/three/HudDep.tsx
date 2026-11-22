@@ -81,7 +81,7 @@ const Scale: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <text x={372} y={172} opacity={b} style={zh(32, H.text, 900)}>放大到原子</text>
         <text x={gx} y={gy + 6 * R * 1.7 + 36} opacity={q} style={zh(sm(32), H.text2, 800)}>約 3～5 層原子（示意）</text>
-        <g opacity={q}><path d={`M${gx + 12 * R * 1.9 - 40} ${gy - 12} v${3 * R * 1.7 + 8}`} stroke={H.amber} strokeWidth={5} /><text x={gx + 12 * R * 1.9 - 30} y={gy + 40} style={zh(sm(30), H.amber, 900)}>膜</text></g>
+        <g opacity={q}><path d={`M${gx + 12 * R * 1.9 - 40} ${gy - 12} v${3 * R * 1.7 + 8}`} stroke={H.amber} strokeWidth={5} /><rect x={gx + 12 * R * 1.9 - 34} y={gy + 6} width={sm(30) + 8} height={sm(30) + 10} rx={6} fill={H.cardCompare} /><text x={gx + 12 * R * 1.9 - 30} y={gy + 40} style={zh(sm(30), H.amber, 900)}>膜</text></g>{/* 11/22：「膜」墊底色，不再一半壓在原子上 */}
       </svg>
     </Card>
   );
@@ -139,7 +139,7 @@ const Cvd: React.FC<P> = ({ o, f, k, m }) => {
         <rect x={x0} y={yS} width={x1 - x0} height={50} fill={c("si")} />
         <rect x={x0} y={yS} width={x1 - x0} height={7} fill={c("lp_heat")} opacity={0.35 + 0.65 * r} />
         {Array.from({ length: N }, (_, i) => <rect key={i} x={x0 + 20 + i * 86} y={yS - 22 * s} width={64} height={22 * s} fill={c("film")} />)}
-        {Array.from({ length: N }, (_, i) => { const u = ph(f, 0.011, i, N, i % 3); const px = x0 + 50 + i * 86; const y = 80 + u * (yS - 22 * s - 80 - 18);
+        {Array.from({ length: N }, (_, i) => { const u = ph(f, 0.011, i, N, i % 3); const px = x0 + 50 + i * 86; const y = 118 + u * (yS - 22 * s - 118 - 18); // 11/22：起點在「兩種氣體分子」字下面
           const merged = r > 0.5 && u > 0.82;
           return <g key={i} opacity={a}>
             {!merged ? <><circle cx={px - 14} cy={y} r={11} fill={c("lp_sig")} /><circle cx={px + 14} cy={y + 8} r={11} fill={c("lp_proc")} /></> : null}
@@ -172,7 +172,7 @@ const Pvd: React.FC<P> = ({ o, f, k, m }) => {
         {Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.02, j, 9, j % 3); const x = x0 + 30 + j * 56; return <circle key={j} cx={x} cy={yT + 100 - u * 92} r={8} fill={c("ion")} opacity={(0.3 + 0.7 * i1) * (u < 0.96 ? 1 : 0)} />; })}
         {Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.014, j, 9, j % 3); const x = x0 + 40 + j * 56 + (j % 2 ? 10 : -10) * u; return <circle key={j} cx={x} cy={yT + 6 + u * 124} r={6} fill={c("atomG")} opacity={0.2 + 0.8 * t1} />; })}
         <Trench x={cx} y={yT + 138} layers={[{ c: c("atomG"), t: 1, a: 0.05 + 0.95 * l1 }]} mode="pvd" si={c("siB")} siT={c("siF")} s={0.95} />
-        <text x={x0 + 4} y={Hh - 10} style={zh(sm(30), H.text, 800)}>晶圓上的溝槽</text>
+        <text x={490} y={Hh - 10} style={zh(sm(30), H.text, 800)}>晶圓上的溝槽</text>{/* 11/22：移到溝槽右邊，不再一半壓在溝槽上 */}
         <text x={620} y={118} opacity={0.35 + 0.65 * i1} style={zh(34, H.text, 800)}>① 離子加速撞靶</text>
         <text x={620} y={176} opacity={0.35 + 0.65 * t1} style={zh(34, H.text, 800)}>② 靶材原子被打出來</text>
         <text x={620} y={234} opacity={0.35 + 0.65 * l1} style={zh(34, c("atomG"), 900)}>③ 直線落到晶圓上</text>
