@@ -39,7 +39,7 @@ const Share: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <text x={cx} y={cy + 8} textAnchor="middle" opacity={tween(f, pct, 8, EASE.enter)} style={zh(40, c("aBlue"), 900)}>72.5%</text>
         <text x={cx} y={cy + 36} textAnchor="middle" opacity={tween(f, pct, 8, EASE.enter)} style={zh(26, H.text2, 700)}>台積電</text>
-        {SHARE.map(([n, v, cc], i) => { const y = 92 + i * 40, hi = i === 0; const on = tween(f, wc + 4 + i * 5, 8, EASE.enter);
+        {SHARE.map(([n, v, cc], i) => { const y = 92 + i * 38, hi = i === 0; /* 11/22：行距 40→38，「其他」和下方橘色條留距離 */ const on = tween(f, wc + 4 + i * 5, 8, EASE.enter);
           return <g key={i} opacity={on}><rect x={400} y={y - 24} width={26} height={26} fill={c(cc)} /><text x={440} y={y} style={zh(hi ? 38 : 32, H.text, hi ? 900 : 700)}>{n}</text>
             <text x={900} y={y} textAnchor="end" style={zh(hi ? 38 : 32, hi ? c("aBlue") : H.text2, 900)}>{v.toFixed(1)}%</text></g>; })}
         <g opacity={q}><rect x={400} y={Hh - 62} width={500} height={46} fill={H.amber} /><text x={650} y={Hh - 28} textAnchor="middle" style={zh(32, onC(H.amber), 900)}>設計公司為什麼不自己蓋廠？</text></g>
