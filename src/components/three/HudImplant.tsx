@@ -100,8 +100,8 @@ const Lattice: React.FC<{ x: number; y: number; dop?: "P" | "B" | null; dopO?: n
       {pts.map(([px, py], i) => <g key={i}>{px < x + (cols - 1) * g ? <path d={`M${px} ${py} H${px + g}`} stroke={SI_D} strokeWidth={4} /> : null}{py < y + (rows - 1) * g ? <path d={`M${px} ${py} V${py + g}`} stroke={SI_D} strokeWidth={4} /> : null}</g>)}
       {pts.map(([px, py], i) => <g key={i}><circle cx={px} cy={py} r={17} fill={SI} stroke={SI_D} strokeWidth={2.5} /><text x={px} y={py + 8} textAnchor="middle" style={zh(20, H.text2, 800)}>Si</text></g>)}
       {dop ? <g opacity={dopO}><circle cx={cx} cy={cy} r={21} fill={dop === "P" ? N_C : P_C} stroke="#FFFFFF" strokeWidth={3} /><text x={cx} y={cy + 9} textAnchor="middle" style={zh(24, "#FFFFFF", 900)}>{dop}</text></g> : null}
-      {dop === "P" ? <Ele x={cx + 34 * Math.cos(f * 0.16)} y={cy + 24 * Math.sin(f * 0.16)} r={10} c={ELEC} o={eO} /> : null}
-      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={cy - 22} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text></g> : null}
+      {dop === "P" ? <Ele x={cx + 32 * Math.cos(f * 0.16)} y={cy + 30 * Math.sin(f * 0.16)} r={10} c={ELEC} o={eO} /* 11/22：電子軌道不貼「P」也不壓旁邊的 Si */ /> : null}
+      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={y - 28} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text>{/* 11/22：「洞」放到晶格上方同一欄，原子間放不下字 */}</g> : null}
     </g>
   );
 };
@@ -272,7 +272,7 @@ const Sel: React.FC<P> = ({ o, f, k }) => {
           <path d={`M${cx - 120} ${cy - R} H${cx}`} stroke={H.text3} strokeWidth={4} strokeDasharray="8 6" />
           <path d={`M${cx + R - w - 10} ${cy + 20} H${cx + R - 14} M${cx + R + 14} ${cy + 20} H${cx + R + w + 10}`} stroke={H.text} strokeWidth={8} />
           <text x={cx + R - w - 18} y={cy + 30} textAnchor="end" style={zh(sm(26), H.text2, 800)}>狹縫</text>
-          <text x={cx - 120} y={cy - R + 40} style={zh(sm(26), H.text2, 800)}>進來</text>
+          <text x={cx - 120} y={cy - R + 48} style={zh(sm(26), H.text2, 800)}>進來</text>
           {kinds.map((kd, j) => { const u = ph(f, 0.022, j, 4); const show = kd === "ok" ? be : mi; if (show < 0.05) return null;
             const [x, y] = path(kd, u * 1.15); const hit = kd !== "ok" && u * 1.15 >= 1; const r = kd === "heavy" ? 15 : kd === "light" ? 9 : 12;
             return <g key={j}>{hit ? <g opacity={wa}><path d={`M${x - 16} ${y} H${x + 16} M${x} ${y - 16} V${y + 16} M${x - 11} ${y - 11} L${x + 11} ${y + 11} M${x + 11} ${y - 11} L${x - 11} ${y + 11}`} stroke="#FFC21A" strokeWidth={4} /></g>
@@ -344,7 +344,7 @@ const Cmp: React.FC<P> = ({ o, f, k }) => {
           <text x={ax0 - 50} y={ay0 + ah} style={zh(22, H.text2, 800)}>深</text><text x={ax0 - 50} y={ay0 + 18} style={zh(22, H.text2, 800)}>表面</text>
           <polyline points={curve(peak, hgt, 0.11)} stroke={ION_C} strokeWidth={5} fill="none" opacity={st} />
           <path d={`M${ax0} ${ay0 + peak * ah} H${ax0 + aw}`} stroke="#C2441F" strokeWidth={3} strokeDasharray="10 7" opacity={st} />
-          <text x={ax0 + 150} y={ay0 + peak * ah + 44} style={zh(22, "#C2441F", 900)} opacity={st}>停在這裡</text>
+          <text x={ax0 + 150} y={ay0 + peak * ah + 50} style={zh(22, "#C2441F", 900)} opacity={st}>停在這裡</text>
           {Array.from({ length: 5 }, (_, j) => { const u = Math.min(1, Math.max(0, (f - T(o, "in") - j * 6) / 40)); const d = (peak + (j - 2) * 0.04) * (1 - Math.exp(-u * 4)) / (1 - Math.exp(-4));
             return <Ion key={j} x={ax0 + 40 + j * 44} y={ay0 + d * ah} r={10} c={ION_C} o={u > 0 && u < 1 ? 1 : 0.6 * (u >= 1 ? 1 : 0)} />; })}
         </g>

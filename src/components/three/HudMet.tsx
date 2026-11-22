@@ -256,7 +256,7 @@ const Def: React.FC<P> = ({ o, f, k, m }) => {
             <path d="M-34 -10 C-30 -44 10 -50 30 -26 C52 -4 40 30 10 36 C-20 42 -40 24 -34 -10 Z" fill="#c9ccd3" /><path d="M-14 -16 C-6 -30 14 -28 18 -14" stroke="#eef0f4" strokeWidth={6} fill="none" />
             <path d="M-112 0 H-60 M60 0 H112 M0 -112 V-64 M0 64 V112" stroke={c("lp_warm")} strokeWidth={3} />
           </g>
-          <text x={0} y={140} textAnchor="middle" style={zh(sm(30), H.text2, 800)} opacity={0.4 + 0.6 * Math.max(fi, lk)}>電子束看到的顆粒</text>
+          <text x={0} y={150} textAnchor="middle" style={zh(sm(30), H.text2, 800)} opacity={0.4 + 0.6 * Math.max(fi, lk)}>電子束看到的顆粒</text>
         </g>
       </svg>
     </Card>

@@ -242,7 +242,7 @@ const Mega: React.FC<P> = ({ o, f, k }) => {
         <g opacity={0.4 + 0.6 * mg}><rect x={70} y={100} width={460} height={42} fill={MEGA} /><text x={300} y={132} textAnchor="middle" style={zh(30, "#FFFFFF", 900)}>兆音波棒</text></g>
         {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.06, j, 4); const y = 152 + u * 76;
           return <path key={j} d={`M70 ${y} q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0`} stroke={MEGA} strokeWidth={3} fill="none" opacity={hz * (1 - u) * 0.9} />; })}
-        {[0, 1, 2].map((j) => { const x = 165 + j * 120, y = 248 - 70 * lift - 40 * aw, dx = 60 * aw; return <g key={j}>
+        {[0, 1, 2].map((j) => { const x = 165 + j * 120, y = 248 - 70 * lift - 16 * aw, dx = 60 * aw; /* 11/22：顆粒不再飄進兆音波棒（不碰棒上的字） */ return <g key={j}>
           <circle cx={x + dx} cy={y} r={10} fill={DIRT} opacity={st * (1 - aw * 0.6)} />
           <Arrow x1={x - 30} y1={232} x2={x + 10} y2={204} c={DIW} w={4} o={sr * (0.6 + 0.4 * Math.sin(f * 0.5 + j))} /></g>; })}
         <Sep x={584} />
