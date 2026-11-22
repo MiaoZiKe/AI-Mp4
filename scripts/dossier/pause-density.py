@@ -85,7 +85,7 @@ limit = n_sent + 2
 # 主控 11/22 定義：TTS 在逗號自然念出、≤0.45 秒的停頓不算、不計入總數
 counted = [q for q in pauses if not (q["kind"] == "comma" and q["dur"] <= 0.45)]
 if len(counted) > limit: errs.append(f"全片 ≥{MINP} 秒停頓（不含逗號自然停頓）{len(counted)} 處 > 句數 {n_sent}＋2 = {limit}")
-res = {"slug": slug, "file": os.path.relpath(path, ROOT), "sentences": n_sent, "pauseCount": len(pauses), "limit": limit, "pauses": pauses, "errors": errs, "info": infos, "ok": not errs}
+res = {"slug": slug, "file": os.path.relpath(path, ROOT), "sentences": n_sent, "pauseCount": len(pauses), "limit": limit, "firstSec": round(float(first), 2), "lastSec": round(float(last), 2), "chars": len(chars), "countedPauses": len(counted), "pauses": pauses, "errors": errs, "info": infos, "ok": not errs}
 out = JOUT or os.path.join(ROOT, "out", slug, "pause-density.json")
 os.makedirs(os.path.dirname(out), exist_ok=True); json.dump(res, open(out, "w"), ensure_ascii=False, indent=2)
 print(f"停頓密度：{len(pauses)} 處 ≥{MINP}s（句數 {n_sent}，上限 {limit}）；句內 {sum(p['kind']=='inside_sentence' for p in pauses)}、逗號 {len(infos)}、句末／幕界 {sum(p['kind']=='sentence_end' for p in pauses)}")

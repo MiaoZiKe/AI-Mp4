@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """1 秒抽格檢查（交件四關之一，2026/11/22）。
-用法：python3 scripts/dossier/frame-check.py <slug> [--file mp4] [--json 路徑] [--hole 0.40] [--blank 0.40]
+用法：python3 scripts/dossier/frame-check.py <slug> [--file mp4] [--json 路徑] [--hole 0.40] [--blank 0.40] [--step 1]
+--step 0.5（2026/11/22 新流程）：每 0.5 秒一格、拼成 frames-0.5s.jpg（格號×0.5＝秒）；連續空白門檻自動換算成「超過 1 秒」（3 格）。
 每 1 秒抽一格（寬 270），拼成 out/<slug>/frames-1s.jpg（10 格一排，格號＝秒數，給審查直接看）。自動檢查（片尾卡不算）：
   A 主視覺空白：y 330–1250 內最大「單色空白矩形」≥ 該區 40%，且連續 ≥2 格（>1 秒）幾乎不變（平均差 <1.5）→ 列格號
   B 下半部空洞：y 1280–1700（字卡以下到頁尾）內最大單色空白矩形 ≥ 該區 40%（下半部有淡地圖點紋，門檻放寬量測），≥2 格 → 列格號與比例（版面規則：不留死白帶）
@@ -17,21 +18,23 @@ def opt(name, default=None):
     return default
 FILE, JOUT = opt("--file"), opt("--json")
 HOLE, BLANK = float(opt("--hole", 0.40)), float(opt("--blank", 0.40))
+STEP = float(opt("--step", 1)); FPS = 1 / STEP; MINRUN = int(round(1 / STEP)) + 1  # 超過 1 秒需要幾格
+TAG = "1s" if STEP == 1 else f"{STEP:g}s"
 if not args: sys.exit(__doc__)
 slug = args[0]
 path = FILE or os.path.join("out", f"{slug}.mp4")
 if not os.path.isabs(path): path = os.path.join(ROOT, path)
 outdir = os.path.join(ROOT, "out", slug); os.makedirs(outdir, exist_ok=True)
 W, H = 270, 480  # 縮 1/4
-sheet = os.path.join(outdir, "frames-1s.jpg")
+sheet = os.path.join(outdir, f"frames-{TAG}.jpg")
 
 dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip())
-n = int(dur)  # 0..n-1 秒
+n = int(dur / STEP)  # 0..n-1 格
 cols = 10; rows = -(-n // cols)
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", path, "-vf", f"fps=1,scale={W}:{H},drawtext=text='%{{n}}':x=4:y=4:fontsize=22:fontcolor=yellow:box=1:boxcolor=black@0.6,tile={cols}x{rows}", "-frames:v", "1", "-q:v", "3", sheet], capture_output=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", path, "-vf", f"fps={FPS},scale={W}:{H},drawtext=text='%{{n}}':x=4:y=4:fontsize=22:fontcolor=yellow:box=1:boxcolor=black@0.6,tile={cols}x{rows}", "-frames:v", "1", "-q:v", "3", sheet], capture_output=True)
 if not os.path.exists(sheet):  # drawtext 可能缺字型：不標號再試
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", path, "-vf", f"fps=1,scale={W}:{H},tile={cols}x{rows}", "-frames:v", "1", "-q:v", "3", sheet], capture_output=True)
-raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vf", f"fps=1,scale={W}:{H},format=gray", "-f", "rawvideo", "-"], capture_output=True).stdout
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", path, "-vf", f"fps={FPS},scale={W}:{H},tile={cols}x{rows}", "-frames:v", "1", "-q:v", "3", sheet], capture_output=True)
+raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-vf", f"fps={FPS},scale={W}:{H},format=gray", "-f", "rawvideo", "-"], capture_output=True).stdout
 fr = np.frombuffer(raw, np.uint8)
 nf = len(fr) // (W * H)
 fr = fr[: nf * W * H].reshape(nf, H, W).astype(np.float32)
@@ -40,7 +43,7 @@ end_t = None
 sbp = os.path.join(ROOT, "videos", slug, "storyboard.json")
 if os.path.exists(sbp):
     sb = json.load(open(sbp)); e = sb["scenes"][-1]; end_t = float(e.get("startSec", e["startFrame"] / sb.get("fps", 30)))
-use = [t for t in range(nf) if end_t is None or t + 0.5 < end_t]
+use = [t for t in range(nf) if end_t is None or t * STEP + 0.5 * STEP < end_t]
 
 B = 8
 def empty_rect_frac(img, y0, y1, sd=5, md=18):
@@ -69,17 +72,17 @@ rowsB = {t: empty_rect_frac(fr[t], *B_ROI, sd=12, md=30) for t in use}  # 下半
 diff = {t: float(np.abs(fr[t, A_ROI[0] // 4:A_ROI[1] // 4] - fr[t - 1, A_ROI[0] // 4:A_ROI[1] // 4]).mean()) if t > 0 else 99 for t in use}
 
 problems = []
-# A：連續 ≥2 格空白且不變
+# A：連續超過 1 秒（MINRUN 格）空白且不變
 runA, cur = [], []
 for t in use:
     if rowsA[t] >= BLANK and (not cur or diff[t] < 1.5): cur.append(t)
     else:
-        if len(cur) >= 2: runA.append(cur)
+        if len(cur) >= MINRUN: runA.append(cur)
         cur = [t] if rowsA[t] >= BLANK else []
-if len(cur) >= 2: runA.append(cur)
-for r in runA: problems.append(f"A 主視覺區空白：第 {r[0]}–{r[-1]} 秒（最大空白矩形 {max(rowsA[t] for t in r):.0%}，畫面幾乎不動）")
+if len(cur) >= MINRUN: runA.append(cur)
+for r in runA: problems.append(f"A 主視覺區空白：第 {r[0]*STEP:g}–{r[-1]*STEP:g} 秒（最大空白矩形 {max(rowsA[t] for t in r):.0%}，畫面幾乎不動）")
 holesB = [t for t in use if rowsB[t] >= HOLE]
-if len(holesB) >= 2: problems.append(f"B 下半部（y1280–1700）大片空洞：第 {','.join(map(str, holesB))} 秒（空白矩形 {min(rowsB[t] for t in holesB):.0%}–{max(rowsB[t] for t in holesB):.0%}，門檻 {HOLE:.0%}）")
+if len(holesB) >= MINRUN: problems.append(f"B 下半部（y1280–1700）大片空洞：第 {','.join(f'{t*STEP:g}' for t in holesB)} 秒（空白矩形 {min(rowsB[t] for t in holesB):.0%}–{max(rowsB[t] for t in holesB):.0%}，門檻 {HOLE:.0%}）")
 ocr = "未檢查（沒有 tesseract）" if not shutil.which("tesseract") else "有 tesseract 但本版尚未接字高估算"
 res = {"slug": slug, "file": os.path.relpath(path, ROOT), "frames": nf, "sheet": os.path.relpath(sheet, ROOT), "endCardStartSec": end_t,
        "blankMain": {str(t): round(rowsA[t], 2) for t in use}, "holeLower": {str(t): round(rowsB[t], 2) for t in use},

@@ -9,6 +9,11 @@
 //   --no-overlap-fail overlap-check 有 error 只警告不停；--no-edge-fail 同理，edge-check 有 error 只警告
 //   --no-audio-fail   網站版音軌的 audio-check 有 error 只警告；預設擋下
 //   --no-gate-fail    交件四關（audio-check／pause-density／listen-check／frame-check，2026/11/22）有不過只警告，僅供除錯；預設任何一關不過就停
+//   --stage voice|visual  （2026/11/22「聲音先定、畫面後排」，有聲版預設兩段串起來，聲音關不過就停）
+//        voice：念稿檢查 → TTS 1 次 → 只裁前後切說明句 → 片頭 0.3 秒淡入 → 強制對齊寫 timeline 字時間 → audio-check／pause-density／listen-check
+//               → out/<slug>/voice-gate.json（含音檔 sha256、語速、停頓量測）；不 render；絕不插停頓、不拉伸
+//        visual：不碰音檔：讀定案音檔與字時間 → 排畫面（重算 timeline）→ render → mix → 四關＋0.5 秒抽格；音檔 hash 與 voice-gate.json 不同就拒絕
+//        --legacy-voice  走舊流程（單階段、voice-take 照舊）；--keep-timeline／--silent 也維持舊的單階段
 //   --force-scheduled 允許動已排程要發的片（liguligu-nvda-kress、liguligu-power-bill），預設拒絕
 // 全新 slug 會自動處理：plan/script 預檢（cue 詞要在字幕裡、hook 字數上限、缺 pronunciation.md 自動建骨架）、字型缺字自動補抓、
 // 時間軸後自動寫 storyboard.json、事件間隔 >1.2 秒列 warn（不擋）。--silent 重生無聲時間軸；若已有真配音時間軸會拒絕（要蓋掉加 --force-silent）。
@@ -33,6 +38,17 @@ if (SCHEDULED.includes(slug) && !flag("force-scheduled")) {
 }
 
 const SILENT = flag("silent"), SKIP_RENDER = flag("skip-render");
+const STAGE = opt("stage");
+if (STAGE && !["voice", "visual"].includes(STAGE)) { console.error("✖ --stage 只能是 voice 或 visual"); process.exit(2); }
+if (!STAGE && !SILENT && !flag("keep-timeline") && !flag("legacy-voice") && !flag("skip-render")) {
+  // 預設＝兩段串起來：先聲音，關不過就停；過了才排畫面
+  const self = process.argv[1];
+  const common = args.filter((a) => !a.startsWith("--stage"));
+  const r1 = spawnSync(process.execPath, [self, ...common, "--stage=voice"], { stdio: "inherit" });
+  if ((r1.status ?? 1) !== 0) { console.error("\n✖ 聲音階段沒過，不排畫面。修聲音（換提示或砍字重配）後再跑。"); process.exit(r1.status ?? 1); }
+  const r2 = spawnSync(process.execPath, [self, ...common.filter((a) => !a.startsWith("--from-audio")), "--stage=visual"], { stdio: "inherit" });
+  process.exit(r2.status ?? 1);
+}
 const outDir = path.join(ROOT, "out", slug), webDir = path.join(ROOT, "out", "web", slug);
 const vdir = path.join(ROOT, "videos", slug);
 fs.mkdirSync(outDir, { recursive: true });
@@ -72,6 +88,16 @@ const step = (name, fn) => {
 const readJson = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 const ffprobeDur = (f) => Number(run("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]).out.trim());
 
+// 交件關卡小工具（voice 階段與交件四關共用）
+const gateRows = [];
+const gate = (name, fn) => {
+  const t = Date.now(); let r;
+  try { r = fn(); } catch (e) { r = { code: 1, out: e.message }; }
+  const row = { gate: name, exit: r.code, pass: r.code === 0, tail: tail(r.out, 8), sec: +((Date.now() - t) / 1000).toFixed(1) };
+  if (r.code === 2) row.note = "未完成（視為不通過）";
+  gateRows.push(row); console.log(`${row.pass ? "✔" : "✖"} 關卡 ${name}（${row.sec} 秒）${row.pass ? "" : " — " + tail(r.out, 3).split("\n").join(" ｜ ").slice(0, 300)}`);
+};
+
 // ── 0. plan → script ──
 if (flag("from-plan")) {
   step("0 build-script（plan.json → script.json）", () => {
@@ -81,6 +107,60 @@ if (flag("from-plan")) {
   });
 }
 if (!fs.existsSync(path.join(vdir, "script.json"))) fail("0 前置檢查", `找不到 ${rel(path.join(vdir, "script.json"))}（沒有 script.json 就加 --from-plan）`);
+
+const sha = (f) => { const r = run("sha256sum", [f]); return r.out.split(/\s+/)[0]; };
+const spokenCount = () => { const sc = readJson(path.join(vdir, "script.json")); let n = 0; for (const x of sc.scenes) { if (x.silent || x.component === "EndCard") break; n++; } return n; };
+const gatePath = path.join(outDir, "voice-gate.json");
+
+// ── 聲音階段（--stage voice）：只做聲音，不 render ──
+if (STAGE === "voice") {
+  step("V1 配音（念稿檢查→TTS 1 次→只裁前後→0.3 秒淡入→強制對齊）", () => {
+    const from = opt("from-audio");
+    const a = ["scripts/dossier/voice-take.mjs", slug]; if (from) a.push(`--from=${from}`);
+    const r = run("node", a);
+    return { ok: r.code === 0, note: r.code === 0 ? tail(r.out, 1) : tail(r.out, 12), data: { tts: from ? "from-audio（未送請求）" : "API" } };
+  });
+  const tlv = readJson(path.join(vdir, "timeline.json"));
+  const wavRel = path.join("public", tlv.recording.file), wavAbs = path.join(ROOT, wavRel);
+  gate("1 audio-check（旁白 wav）", () => run("python3", ["scripts/dossier/audio-check.py", slug, "--file", wavRel, "--end", "9999", "--json", rel(path.join(outDir, "audio-check.json"))]));
+  gate("2 pause-density", () => run("python3", ["scripts/dossier/pause-density.py", slug, "--file", wavRel]));
+  gate("3 listen-check（Gemini 聽感，備援模型清單）", () => run("node", ["scripts/dossier/listen-check.mjs", slug, "--file", wavRel]));
+  let pd = {}, lc = {};
+  try { pd = readJson(path.join(outDir, "pause-density.json")); } catch { /* 沒有就留空 */ }
+  try { lc = readJson(path.join(outDir, "listen-check.json")); } catch { /* 同上 */ }
+  const ps = pd.pauses ?? [], span = (pd.lastSec ?? 0) - (pd.firstSec ?? 0), pauseSum = ps.reduce((t, q) => t + q.dur, 0);
+  const sentP = ps.filter((q) => q.kind === "sentence_end").map((q) => q.dur);
+  const pureRate = span > 0 ? +((pd.chars ?? 0) / (span - pauseSum)).toFixed(2) : null, withPause = span > 0 ? +((pd.chars ?? 0) / span).toFixed(2) : null;
+  const counted = ps.filter((q) => !(q.kind === "comma" && q.dur <= 0.45)).length;
+  const rateOk = pureRate !== null && pureRate <= 5.0;
+  const gates = Object.fromEntries(gateRows.map((g) => [g.gate, g.pass ? "pass" : "FAIL"]));
+  const pass = gateRows.every((g) => g.pass) && rateOk;
+  const sc0 = readJson(path.join(vdir, "script.json"));
+  const gj = {
+    slug, at: new Date().toISOString(), wav: wavRel, sha256: sha(wavAbs), model: sc0.voice?.model, voiceName: sc0.voice?.voiceName,
+    wavSec: +ffprobeDur(wavAbs).toFixed(2), firstOnsetSec: pd.firstSec, lastCharSec: pd.lastSec, chars: pd.chars,
+    pureRate, rateWithPauses: withPause, rateLimit: 5.0, rateOk,
+    pauses025: { total: ps.length, counted, notCountedComma: ps.length - counted, sentenceEndRange: sentP.length ? [Math.min(...sentP), Math.max(...sentP)] : null, list: ps },
+    listen: { model: lc.model, status: lc.status, cer: lc.cer, issues: (lc.issues ?? []).length },
+    gates, pass,
+    verdict: pass ? "聲音定案：畫面依這條音檔的字時間排，之後不再改聲音" : (rateOk ? "有關卡沒過：看 out/<slug>/ 的 audio-check／pause-density／listen-check .json" : `純念稿語速 ${pureRate} > 5.0：砍字重配，不拉伸`),
+  };
+  fs.writeFileSync(gatePath, JSON.stringify(gj, null, 2));
+  rec.voiceGate = { pass, pureRate, withPause, gates }; rec.status = pass ? "ok-voice" : "voice-gate-failed"; rec.totalSec = +((Date.now() - T0) / 1000).toFixed(1); save();
+  console.log(`\n聲音階段：${pass ? "✔ 通過" : "✖ 未通過"}｜純念稿 ${pureRate} 音節/秒、含停頓 ${withPause}｜≥0.25 秒停頓 ${ps.length} 處（計入 ${counted}）｜聽感 ${lc.status ?? "?"}（${lc.model ?? "-"}，CER ${lc.cer !== undefined ? (lc.cer * 100).toFixed(2) + "%" : "?"}）\n紀錄：${rel(gatePath)}`);
+  process.exit(pass ? 0 : 1);
+}
+
+// ── 畫面階段（--stage visual）：音檔不准動 ──
+const guardVoice = (when) => {
+  if (!fs.existsSync(gatePath)) fail(when, `找不到 ${rel(gatePath)}：先跑 --stage voice 並通過`);
+  const g = readJson(gatePath), tlg = readJson(path.join(vdir, "timeline.json"));
+  if (!g.pass) fail(when, "voice-gate.json 記錄聲音階段沒過，不排畫面");
+  const cur = sha(path.join(ROOT, "public", tlg.recording.file));
+  if (path.join("public", tlg.recording.file) !== g.wav || cur !== g.sha256) fail(when, `旁白音檔和 voice-gate.json 記的不同（${g.wav} ${String(g.sha256).slice(0, 10)} ≠ ${tlg.recording.file} ${cur.slice(0, 10)}）：畫面階段不准改聲音；要改聲音就重跑 --stage voice，畫面整個依新時間戳重排`);
+  return g;
+};
+if (STAGE === "visual") step("V0 音檔 hash 與 voice-gate.json 一致", () => { const g = guardVoice("V0 音檔鎖定"); return { ok: true, note: `${g.wav} ${g.sha256.slice(0, 10)}…（純念稿 ${g.pureRate}）` }; });
 
 // 動手前備份可能被覆蓋的成片
 const mp4 = path.join(ROOT, "out", `${slug}.mp4`), prev = path.join(ROOT, "out", `${slug}.prev.mp4`);
@@ -143,12 +223,18 @@ if (SILENT) {
     const r = run("node", ["scripts/ui/silent-timeline.mjs", slug, "--force"], { env: { SILENT_RATE: "4.9", SILENT_GAP: "0.7", ALIGN_TAIL_END_F: "14" } });
     return { ok: r.code === 0, note: tail(r.out, 2) };
   });
+} else if (STAGE === "visual") {
+  step("2 時間軸（recording-timeline：依定案音檔的字時間重算，不碰音檔）", () => {
+    const g = readJson(gatePath);
+    const r = run("node", ["scripts/dossier/recording-timeline.mjs", slug, g.wav.replace(/^public\//, ""), String(spokenCount())]);
+    return { ok: r.code === 0, note: tail(r.out, 1), data: { tts: "不送（聲音階段已定案）" } };
+  });
 } else if (flag("keep-timeline")) {
   step("2 時間軸（沿用現有 timeline.json／paused 錄音，--keep-timeline）", () => ({ ok: fs.existsSync(path.join(vdir, "timeline.json")), note: "不送 TTS、不重插停頓" }));
 } else {
   step("2 時間軸（voice-take）", () => {
     const from = opt("from-audio");
-    const a = ["scripts/dossier/voice-take.mjs", slug]; if (from) a.push(`--from=${from}`);
+    const a = ["scripts/dossier/voice-take.mjs", slug]; if (from) a.push(`--from=${from}`); if (flag("legacy-voice")) a.push("--legacy-pauses");
     const r = run("node", a);
     return { ok: r.code === 0, note: r.code === 0 ? tail(r.out, 1) : tail(r.out, 12), data: { tts: from ? "from-audio（未送請求）" : "API" } };
   });
@@ -216,6 +302,7 @@ if (!SILENT) {
   if (!f) fail("5 混音", "timeline.json 沒有 recording.file（有聲版要先跑 voice-take／recording-timeline）");
   voiceWav = path.join(ROOT, "public", f);
 }
+if (STAGE === "visual") step("5-pre 混音前再驗音檔 hash", () => { guardVoice("5-pre 音檔鎖定"); return { ok: true, note: "未變" }; });
 const sting = path.join(outDir, "sting.wav");
 step("5a 招牌音", () => {
   const r = run("python3", ["scripts/dossier/sfx-logo-ligu.py", sting]);
@@ -238,21 +325,13 @@ const audioCheck = (name, file, jsonName) => step(name, () => {
 });
 // ── 5c. 交件四關（2026/11/22）：audio-check → pause-density → listen-check（Gemini 聽感）→ frame-check（1 秒抽格）；
 //    四關全跑完再一起報，任何一關不過就停（exit 1），寫進 make.json 的 gates。--no-gate-fail 只供除錯（照樣記錄但不停）。
-const gateRows = [];
-const gate = (name, fn) => {
-  const t = Date.now(); let r;
-  try { r = fn(); } catch (e) { r = { code: 1, out: e.message }; }
-  const row = { gate: name, exit: r.code, pass: r.code === 0, tail: tail(r.out, 8), sec: +((Date.now() - t) / 1000).toFixed(1) };
-  if (r.code === 2) row.note = "未完成（視為不通過）";
-  gateRows.push(row); console.log(`${row.pass ? "✔" : "✖"} 關卡 ${name}（${row.sec} 秒）${row.pass ? "" : " — " + tail(r.out, 3).split("\n").join(" ｜ ").slice(0, 300)}`);
-};
 const eStr = String(endAt);
 gate("1 audio-check", () => run("python3", ["scripts/dossier/audio-check.py", slug, "--file", rel(mp4), "--end", eStr, "--json", rel(path.join(outDir, "audio-check.json"))]));
 if (!SILENT) {
   gate("2 pause-density", () => run("python3", ["scripts/dossier/pause-density.py", slug, "--file", rel(mp4)]));
   gate("3 listen-check（Gemini 聽感）", () => run("node", ["scripts/dossier/listen-check.mjs", slug, "--file", rel(mp4)]));
 } else console.log("－ 無聲版：略過 pause-density／listen-check");
-gate("4 frame-check（1 秒抽格）", () => run("python3", ["scripts/dossier/frame-check.py", slug, "--file", rel(mp4)]));
+gate(STAGE === "visual" ? "4 frame-check（0.5 秒抽格）" : "4 frame-check（1 秒抽格）", () => run("python3", ["scripts/dossier/frame-check.py", slug, "--file", rel(mp4), ...(STAGE === "visual" ? ["--step", "0.5"] : [])]));
 rec.gates = gateRows; save();
 const gateBad = gateRows.filter((g) => !g.pass);
 if (gateBad.length && !flag("no-gate-fail")) {
@@ -302,7 +381,7 @@ rec.result = {
   durationSec: +finalDur.toFixed(2), endCardStartSec: +endAt.toFixed(2), ...mixInfo,
   overlap: rec.overlap?.exit === 0 ? "pass" : "error（--no-overlap-fail 放行）",
   gates: Object.fromEntries((rec.gates ?? []).map((g) => [g.gate, g.pass ? "pass" : "FAIL"])),
-  review: "frames-1s.jpg 要給非製作者審查（opus high ≥7）才交件",
+  review: "frames-0.5s.jpg（新流程）或 frames-1s.jpg 要給非製作者審查（opus high ≥7）才交件",
   web: { dir: rel(webDir), ...webInfo, files: fs.readdirSync(webDir) },
   outputs: [rel(mp4), rel(prev), rel(path.join(outDir, "sheet.jpg"))].filter((p) => fs.existsSync(path.join(ROOT, p))),
 };

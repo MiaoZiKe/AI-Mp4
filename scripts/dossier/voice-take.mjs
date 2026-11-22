@@ -1,5 +1,6 @@
-// 哩股哩股 dossier 片的配音一條龍：檢查念稿 → 送 TTS（整篇 1 次）→ 切掉說明句 → 補停頓 → 接時間軸。
-// 用法：node scripts/dossier/voice-take.mjs <slug> [--dry] [--from=<既有 orig.wav>]
+// 哩股哩股 dossier 片的配音一條龍：檢查念稿 → 送 TTS（整篇 1 次）→ 切掉說明句（只裁前後）→ 片頭 0.3 秒淡入 → 強制對齊接時間軸。
+// 2026/11/22「聲音先定、畫面後排」：新流程不插停頓、不拉伸、不剪句內靜音，聲音本身就是定案；插停頓的舊做法只剩 --legacy-pauses（給舊片重跑）。
+// 用法：node scripts/dossier/voice-take.mjs <slug> [--dry] [--from=<既有 orig.wav>] [--legacy-pauses]
 //   --dry   只做念稿檢查（不送請求、不動檔案）
 //   --from  跳過送 TTS，直接用給的 orig.wav（測試用，不花請求）
 // 送請求需要環境變數：NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt（金鑰由代理帶入，不寫進檔案）
@@ -11,6 +12,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../.
 const args = process.argv.slice(2);
 const slug = args.find((a) => !a.startsWith("--"));
 const DRY = args.includes("--dry");
+const LEGACY = args.includes("--legacy-pauses");
 const FROM = args.find((a) => a.startsWith("--from="))?.slice(7);
 if (!slug) { console.error("用法：node scripts/dossier/voice-take.mjs <slug> [--dry] [--from=<既有 orig.wav>]"); process.exit(2); }
 
@@ -142,23 +144,44 @@ if (first.start > 0.3) {
   console.log(`  念稿首字「${first.ch}」起音 ${first.start.toFixed(2)} 秒；切點 ${cutSec.toFixed(3)} 秒（起音前 ${(first.start - cutSec).toFixed(2)} 秒，窗內平均振幅約 ${(20 * Math.log10(Math.max(bv, 1) / 32768)).toFixed(0)} dBFS）`);
   if (bv > 330) console.warn("  ⚠ 切點窗內不夠安靜（> −40 dBFS），請人耳確認首字沒被吃掉或殘留說明句");
 } else console.log(`  首字起音 ${first.start.toFixed(2)} 秒，模型沒念說明句，不切`);
+const rngState = { v: 12345 };
+const noise = () => { rngState.v = (rngState.v * 1103515245 + 12345) & 0x7fffffff; return ((rngState.v >> 16) % 3) - 1; }; // ±1 LSB，約 −90 dBFS，不是數位 0
 const cutSmp = Math.round(cutSec * sr);
-// 切點後 20ms 正弦淡入（不讓檔頭從切點硬起）；片頭留空與接縫交叉淡化由 insert-pauses.py 做
-const cutPcm = Buffer.from(wav.pcm.subarray(cutSmp * wav.ch * 2));
-const fin = Math.min(Math.round(sr * 0.02), cutPcm.length / 2 / wav.ch);
-for (let i = 0; i < fin; i++) { const g = Math.sin((Math.PI / 2) * (i / fin)); for (let c = 0; c < wav.ch; c++) { const o = (i * wav.ch + c) * 2; cutPcm.writeInt16LE(Math.round(cutPcm.readInt16LE(o) * g), o); } }
+let cutPcm = Buffer.from(wav.pcm.subarray(cutSmp * wav.ch * 2));
+let tailTrimSec = 0, leadPadSec = 0, fadeInSec = 0;
+if (LEGACY) {
+  // 舊做法（只給舊片重跑）：切點後 20ms 淡入，後面交給 insert-pauses.py
+  const fin = Math.min(Math.round(sr * 0.02), cutPcm.length / 2 / wav.ch);
+  for (let i = 0; i < fin; i++) { const g = Math.sin((Math.PI / 2) * (i / fin)); for (let c = 0; c < wav.ch; c++) { const o = (i * wav.ch + c) * 2; cutPcm.writeInt16LE(Math.round(cutPcm.readInt16LE(o) * g), o); } }
+} else {
+  // 新做法：只允許整段前後裁切＋片頭淡入。
+  // 尾端：最後一字起音後留 0.8 秒，之後裁掉（30ms 淡出）。
+  const lastU = fa.units[fa.units.length - 1];
+  const keepEnd = Math.round((lastU.start + 0.8 - cutSec) * sr);
+  if (keepEnd > 0 && keepEnd < cutPcm.length / 2 / wav.ch) { tailTrimSec = (cutPcm.length / 2 / wav.ch - keepEnd) / sr; cutPcm = cutPcm.subarray(0, keepEnd * wav.ch * 2); const fo = Math.round(sr * 0.03), n = cutPcm.length / 2 / wav.ch; for (let i = 0; i < fo; i++) { const g = Math.cos((Math.PI / 2) * (i / fo)); for (let c = 0; c < wav.ch; c++) { const o = ((n - fo + i) * wav.ch + c) * 2; cutPcm.writeInt16LE(Math.round(cutPcm.readInt16LE(o) * g), o); } } }
+  // 頭端：首字起音不到 0.36 秒就在前面補底噪（±1 LSB，不是 0），再對前 0.3 秒做淡入（淡入不超過首字前 0.03 秒）
+  let leadSec = first.start - cutSec;
+  if (leadSec < 0.36) { leadPadSec = 0.36 - leadSec; const padN = Math.round(leadPadSec * sr) * wav.ch, pad = Buffer.alloc(padN * 2); for (let i = 0; i < padN; i++) pad.writeInt16LE(noise(), i * 2); cutPcm = Buffer.concat([pad, cutPcm]); leadSec += leadPadSec; }
+  fadeInSec = Math.min(0.3, leadSec - 0.03);
+  const fi = Math.round(fadeInSec * sr);
+  for (let i = 0; i < fi; i++) { const g = Math.sin((Math.PI / 2) * (i / fi)); for (let c = 0; c < wav.ch; c++) { const o = (i * wav.ch + c) * 2; const v = Math.round(cutPcm.readInt16LE(o) * g); cutPcm.writeInt16LE(Math.abs(v) < 1 ? noise() : v, o); } } // 淡入起點以 ±1 LSB 取代 0
+  console.log(`  新流程（不插停頓、不拉伸）：片頭補底噪 ${leadPadSec.toFixed(2)} 秒、淡入 ${fadeInSec.toFixed(2)} 秒、尾端裁掉 ${tailTrimSec.toFixed(2)} 秒`);
+}
 fs.writeFileSync(cutPath, wavBuf(cutPcm, sr, wav.ch));
 
-// ── 4. 補停頓 → 時間軸 → script.json ──
-const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0", "--max-scene", "6", "--lead", "0.4", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
-console.log(pauseOut.trimEnd());
-const nIns = (pauseOut.match(/^\s+\+[\d.]+ 秒/gm) ?? []).length;
-const durM = /（([\d.]+) → ([\d.]+) 秒）/.exec(pauseOut), totalSec = durM ? Number(durM[2]) : NaN;
-const tlOut = execFileSync("node", [path.join(ROOT, "scripts/dossier/recording-timeline.mjs"), slug, `audio/${slug}/voice-api.paused.wav`, String(spoken.length)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
+// ── 4. 接時間軸 ──
+let pauseOut = "", nIns = 0, totalSec = NaN, finalPath = cutPath;
+if (LEGACY) {
+  pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0", "--max-scene", "6", "--lead", "0.4", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
+  console.log(pauseOut.trimEnd());
+  nIns = (pauseOut.match(/^\s+\+[\d.]+ 秒/gm) ?? []).length;
+  const durM = /（([\d.]+) → ([\d.]+) 秒）/.exec(pauseOut); totalSec = durM ? Number(durM[2]) : NaN; finalPath = pausedPath;
+} else { totalSec = +(cutPcm.length / 2 / wav.ch / sr).toFixed(2); }
+const tlOut = execFileSync("node", [path.join(ROOT, "scripts/dossier/recording-timeline.mjs"), slug, `audio/${slug}/${path.basename(finalPath)}`, String(spoken.length)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
 console.log(tlOut.trimEnd().split("\n").slice(0, 3).join("\n"));
 
-// 對齊信心最低的幕（對停頓後的錄音）
-const fa2 = align(rel(pausedPath), texts.join(""));
+// 對齊信心最低的幕
+const fa2 = align(rel(finalPath), texts.join(""));
 let lowId = "?", lowC = 2, off = 0;
 spoken.forEach((s, k) => {
   const us = fa2.units.filter((u) => u.i >= off && u.i < off + texts[k].length); off += texts[k].length;
@@ -169,7 +192,7 @@ const today = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10).repla
 const md = `
 ## ${today} voice-take.mjs 配音（${FROM ? `--from=${FROM}，未送請求` : `API ${requests} 次請求`}）
 - 設定：${model}、${voiceName}、說明句＋各幕念稿（空一行）；原始錄音 \`public/audio/${slug}/voice-api.orig.wav\`（不進 git）。
-- 切說明句：首字「${first.ch}」起音 ${first.start.toFixed(2)} 秒，切點 ${cutSec.toFixed(3)} 秒 → \`voice-api.wav\`；插停頓 ${nIns} 處（段落 0.7、句間 0.3）→ \`voice-api.paused.wav\` ${totalSec} 秒；對齊信心最低 ${lowId} ${lowC.toFixed(3)}。
+- 切說明句：首字「${first.ch}」起音 ${first.start.toFixed(2)} 秒，切點 ${cutSec.toFixed(3)} 秒 → \`${path.basename(finalPath)}\`（${LEGACY ? `舊做法：插停頓 ${nIns} 處` : `新流程：不插停頓、不拉伸；片頭補底噪 ${leadPadSec.toFixed(2)} 秒、淡入 ${fadeInSec.toFixed(2)} 秒、尾端裁 ${tailTrimSec.toFixed(2)} 秒`}）${totalSec} 秒；對齊信心最低 ${lowId} ${lowC.toFixed(3)}。
 - 送出的全文：
 
 \`\`\`
@@ -179,9 +202,9 @@ ${sendText}
 fs.appendFileSync(path.join(dir, "voice.md"), md);
 
 const raw = fs.readFileSync(scriptPath, "utf8");
-script.voice = { ...(script.voice ?? {}), voiceName, model, mode: "take", profile: "liguligu", note: `voice-take.mjs（${today}，${FROM ? "--from" : requests + " 次請求"}）整篇一次生成，切說明句、段落插靜音` };
+script.voice = { ...(script.voice ?? {}), voiceName, model, mode: "take", profile: "liguligu", note: `voice-take.mjs（${today}，${FROM ? "--from" : requests + " 次請求"}）整篇一次生成，切說明句${LEGACY ? "、段落插靜音" : "（只裁前後，不插停頓、不拉伸）"}` };
 const ind = [2, 1, 0].find((n) => { try { return JSON.stringify(JSON.parse(raw), null, n) === raw.trimEnd(); } catch { return false; } });
 fs.writeFileSync(scriptPath, JSON.stringify(script, null, ind ?? 2) + (raw.endsWith("\n") ? "\n" : ""));
 if (ind === undefined) console.warn("  ⚠ script.json 原本的排版不是標準縮排，已改成 2 格縮排（git diff 會比較大）");
 
-console.log(`\n摘要：模型 ${model}｜請求 ${requests} 次｜切點 ${cutSec.toFixed(3)}s｜插停頓 ${nIns} 處｜總長 ${totalSec}s｜對齊信心最低 ${lowId} ${lowC.toFixed(3)}`);
+console.log(`\n摘要：模型 ${model}｜請求 ${requests} 次｜切點 ${cutSec.toFixed(3)}s｜${LEGACY ? `插停頓 ${nIns} 處` : "不插停頓"}｜總長 ${totalSec}s｜對齊信心最低 ${lowId} ${lowC.toFixed(3)}`);

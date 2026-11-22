@@ -4,6 +4,16 @@
 新片照這支做。規則全文另見 `docs/channels/liguligu.md`；這支片的每鏡內容、指令與已知問題見 `videos/liguligu-jensen-pro/README.md`，旁白做法見同資料夾的 `voice.md`。
 
 
+## 聲音先定、畫面後排（2026/11/22 Andy：「畫面要修 聲音直接重新配，修正後的影片 要馬是影片正常 旁白斷續，或是影片斷續 旁白正常，幫我處理到好」；取代先前插停頓／拉伸的做法）
+
+根因：先做畫面、再事後改聲音（插停頓、拉伸、剪靜音），兩邊互相拉扯，不是聲音斷續就是畫面斷續。新流程把順序倒過來，聲音只做一次、定案後鎖住。
+
+1. **先定聲音**（`node scripts/dossier/make.mjs <slug> --stage voice`，只做聲音、不 render）：先重配 1 次，TTS 提示用自然語速（`voice.styleBase` 不寫語速偏快，`voice.styleExtra` 寫「語速放慢、像在跟朋友解釋、自然換氣」），**不加「停一下」之類的停頓指令**；**不拉伸、不插停頓、不剪句內靜音**，只允許整段前後裁切（切說明句、裁尾端）與片頭 0.3 秒淡入。配完自動跑 audio-check、停頓密度、聽感驗證（備援模型清單），結果與量測寫 `out/<slug>/voice-gate.json`（音檔 sha256、純念稿語速、含停頓語速、≥0.25 秒停頓、聽感）。不過就換提示再配，直到聲音本身乾淨自然；**純念稿語速 >5.0 就砍字重配，不拉伸**。
+2. **再依最終聲音的逐字時間戳排畫面**（`--stage visual`；時間戳是 timeline.json 的字時間）：每個畫面事件對齊字幕時間；換幕放在句號停頓裡；任何時刻畫面不准靜止 >1.2 秒（加緩慢推移、數字跳動等持續動作）；擦出動畫必須完整播完、不准停在字上；右欄不准空卡；下半部不准空 >200px。
+3. **畫面做完後絕對不再改聲音**：`--stage visual` 開頭與混音前都比對音檔 hash 和 voice-gate.json，不同就拒絕。要改聲音，就重跑 `--stage voice`，畫面整個依新時間戳重排。
+4. **交件**：四關（audio-check、停頓密度、聽感驗證、抽格）＋ **0.5 秒一格抽格**（`frame-check.py --step 0.5`，visual 階段自動用）＋ 非製作者審查 opus high ≥7，才交。
+5. 不帶 `--stage` 的預設＝兩段串起來，聲音關不過就停；`--silent`、`--keep-timeline`、`--legacy-voice` 維持舊的單階段（舊片重跑用）。`insert-pauses.py` 的 `--nums`／`--sentence`／`--scene` 與 atempo／rubberband 拉伸在新流程停用。
+
 ## 交件四關（2026/11/22 Andy：「請你務必確實檢查影片是否丟問題…為何沒有安排驗證」）
 
 渲染混音後 `make.mjs` 依序自動跑四關，四關全跑完一起報，任何一關不過就停（exit 1，`out/<slug>/make.json` 的 `gates` 寫哪關、哪些時間點）；`--no-gate-fail` 只供除錯，不可交件。全過之後還要**非製作者的審查（opus high）≥7 分**才交件（看 `out/<slug>/frames-1s.jpg` 與四份 json，分數記 `docs/scores.md`）。
