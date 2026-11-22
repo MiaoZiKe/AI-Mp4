@@ -86,10 +86,23 @@
         "stampPos": "right",
         "photoColor": true,
         "stampAt": "start+6",
-        "photoEndAt": "c4+70",
         "scan3": "c1+36",
         "scan4": "c2+38",
-        "scan5": "c4+40"
+        "scan5": "c4+40",
+        "photoSteps": [
+          "start-10",
+          "c2-4"
+        ],
+        "photoStepP": [
+          0,
+          0.58,
+          1.0
+        ],
+        "photoStepDurs": [
+          8,
+          6,
+          8
+        ]
       },
       "band": {
         "title": "時間線",
@@ -142,15 +155,9 @@
         "lt": "2022 年",
         "photoName": "y2022",
         "photoCaption": "簡圖示意，只標查到的點",
-        "photoSteps": [
-          "start+2",
-          "c1+24",
-          "c3-10"
-        ],
         "photoStepP": [
-          0,
           0.34,
-          0.58,
+          0.62,
           1.0
         ],
         "photoColor": true,
@@ -158,12 +165,12 @@
         "leftDoc": "利率上限（%）",
         "leftBig": "0.5→4.5",
         "leftBigPx": 84,
-        "leftSrc": "3/16 起升、12/14 到頂",
+        "leftSrc": "2022/3/16 起升息",
         "leftTag": "媒體報導（CNBC 等）",
         "leftKind": "report",
         "leftBigAt": "c2-10",
-        "leftSrcAt": "c3-6",
-        "leftTagAt": "c3+6",
+        "leftSrcAt": "c1+6",
+        "leftTagAt": "c1+16",
         "leftCount": true,
         "rightHead": "2022 年 6 月",
         "rightBig": [
@@ -190,10 +197,13 @@
           true
         ],
         "photoStepDurs": [
+          6,
           8,
-          36,
-          70,
-          50
+          10
+        ],
+        "photoSteps": [
+          "c2-8",
+          "c3-14"
         ]
       },
       "band": {
@@ -272,15 +282,11 @@
         "photoCaption": "簡圖示意，資料媒體報導",
         "photoDir": "down",
         "photoSteps": [
-          "c1-10",
-          "c2-4",
           "c3-20",
           "c4-14"
         ],
         "photoStepP": [
-          0,
-          0.2,
-          0.435,
+          0.465,
           0.67,
           1.0
         ],
@@ -294,10 +300,8 @@
         ],
         "photoStepDurs": [
           8,
-          14,
-          20,
-          24,
-          70
+          10,
+          10
         ]
       },
       "band": {
@@ -369,14 +373,12 @@
         "photoCaption": "簡圖示意，資料媒體報導",
         "photoDir": "down",
         "photoSteps": [
-          "c1+4",
-          "c3-10",
+          "c1+20",
           "c4-24"
         ],
         "photoStepP": [
-          0,
-          0.27,
-          0.62,
+          0.31,
+          0.635,
           1.0
         ],
         "photoColor": true,
@@ -393,9 +395,8 @@
         ],
         "photoStepDurs": [
           8,
-          70,
-          30,
-          56
+          10,
+          12
         ]
       },
       "band": {
@@ -451,15 +452,13 @@
         "rightRow": "12/10 公布",
         "dateline": "WASHINGTON・2026/11/21",
         "lt": "接下來看",
-        "rowPx": 72,
+        "rowPx": 88,
         "photoSteps": [
-          "c1-6",
-          "c2-22",
+          "c1+4",
           "c3-34",
           "c4-8"
         ],
         "photoStepP": [
-          0,
           0.26,
           0.6,
           0.895,
@@ -467,16 +466,15 @@
         ],
         "photoDir": "down",
         "photoColor": true,
-        "leftRowAt": "c2-4",
-        "rightRowAt": "c3-14",
+        "leftRowAt": "c1+6",
+        "rightRowAt": "c2+30",
         "tagAt": "c4-4",
         "cardH": 540,
         "photoStepDurs": [
           8,
-          36,
-          55,
-          60,
-          14
+          10,
+          10,
+          10
         ]
       },
       "band": {

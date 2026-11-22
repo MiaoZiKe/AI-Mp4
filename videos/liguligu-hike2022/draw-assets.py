@@ -86,12 +86,12 @@ base, top, vmax = 390, 112, 5
 Y = lambda v: base - (base - top) * v / vmax
 for g in (1, 2, 3, 4, 5): d.line([X0 - 30, Y(g), X1 + 30, Y(g)], fill=GRID, width=4)
 d.line([X0 - 30, base, X1 + 30, base], fill=TXT3, width=8)
-for m in (1, 4, 7, 10): txt(d, (X(m), base + 14), f'{m} 月', 50, TXT3, 'mt', bold=1)
+for m in (1, 6, 12): txt(d, (X(m), base + 14), f'{m} 月', 50, TXT3, 'mt', bold=1)   # 月份標籤避開分段擦出的停點（x≈476、868）
 a, b = (X(3.5), Y(0.5)), (X(12.45), Y(4.5))
 d.line([a, b], fill=RED, width=22)
 dot(d, a, 28, RED); dot(d, b, 28, RED)
-txt(d, (a[0] - 34, a[1] - 22), '3/16  0.5%', 62, REDT, 'rb')          # 標籤在點的左上方，線往右上走，不壓線
-txt(d, (b[0] - 48, b[1] - 30), '12/14  4.5%', 66, REDT, 'rb')
+txt(d, (500, 228), '3/16  0.5%', 56, REDT, 'lb')          # 第 7 版修：標籤放在第二段（停點 x≈476 與 868 之間），念到零點五趴才擦出；在線的上方、不壓線
+txt(d, (b[0] - 48, b[1] - 30), '12/14  4.5%', 56, REDT, 'rb')
 txt(d, (30, 10), '2022 年', 96, TXT2, 'lt', bold=2)
 save(im, 'y2022')
 

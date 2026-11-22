@@ -110,7 +110,21 @@
           "name": "climb",
           "caption": "簡圖示意・12 月為市場預期",
           "at": "start",
-          "endAt": "c4+70",
+          "endAt": "end",
+          "stepAts": [
+            "start-10",
+            "c2-4"
+          ],
+          "stepDurs": [
+            8,
+            6,
+            8
+          ],
+          "stepP": [
+            0,
+            0.58,
+            1
+          ],
           "color": true
         },
         "ask": "會重演嗎？",
@@ -199,16 +213,16 @@
           "big": "0.5→4.5",
           "bigPx": 120,
           "bigFit": 84,
-          "src": "3/16 起升、12/14 到頂",
+          "src": "2022/3/16 起升息",
           "count": true,
           "headAt": "start-20",
           "at": "start-16",
           "bigAt": "c2-10",
-          "srcAt": "c3-6",
+          "srcAt": "c1+6",
           "tag": {
             "kind": "report",
             "text": "媒體報導（CNBC 等）",
-            "at": "c3+6"
+            "at": "c1+16"
           }
         },
         "right": {
@@ -254,20 +268,17 @@
           "at": "start",
           "endAt": "c4",
           "stepAts": [
-            "start+2",
-            "c1+24",
-            "c3-10"
+            "c2-8",
+            "c3-14"
           ],
           "stepDurs": [
+            6,
             8,
-            36,
-            70,
-            50
+            10
           ],
           "stepP": [
-            0,
             0.34,
-            0.58,
+            0.62,
             1
           ],
           "color": true
@@ -397,22 +408,16 @@
           "at": "start",
           "endAt": "c4",
           "stepAts": [
-            "c1-10",
-            "c2-4",
             "c3-20",
             "c4-14"
           ],
           "stepDurs": [
             8,
-            14,
-            20,
-            24,
-            70
+            10,
+            10
           ],
           "stepP": [
-            0,
-            0.2,
-            0.435,
+            0.465,
             0.67,
             1
           ],
@@ -541,20 +546,17 @@
           "at": "start",
           "endAt": "c4",
           "stepAts": [
-            "c1+4",
-            "c3-10",
+            "c1+20",
             "c4-24"
           ],
           "stepDurs": [
             8,
-            70,
-            30,
-            56
+            10,
+            12
           ],
           "stepP": [
-            0,
-            0.27,
-            0.62,
+            0.31,
+            0.635,
             1
           ],
           "dir": "down",
@@ -627,7 +629,7 @@
       "component": "DossierScene",
       "props": {
         "panel": "pending",
-        "rowPx": 72,
+        "rowPx": 88,
         "cardH": 540,
         "left": {
           "photo": {
@@ -635,20 +637,17 @@
             "caption": "日程示意（日期為預計）",
             "at": "start-20",
             "stepAts": [
-              "c1-6",
-              "c2-22",
+              "c1+4",
               "c3-34",
               "c4-8"
             ],
             "stepDurs": [
               8,
-              36,
-              55,
-              60,
-              14
+              10,
+              10,
+              10
             ],
             "stepP": [
-              0,
               0.26,
               0.6,
               0.895,
@@ -658,7 +657,7 @@
             "color": true
           },
           "row": "12/9 決議",
-          "rowAt": "c2-4"
+          "rowAt": "c1+6"
         },
         "right": {
           "title": "11 月物價",
@@ -668,7 +667,7 @@
           "titleAt": "start-12",
           "frameAt": "c1+6",
           "row": "12/10 公布",
-          "rowAt": "c3-14"
+          "rowAt": "c2+30"
         },
         "tag": {
           "kind": "pending",
