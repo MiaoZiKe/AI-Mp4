@@ -75,7 +75,7 @@ scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for c in cues: assert c[1] in nar, (sid, c)
-    sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": nar.replace("矽", "夕"),
+    sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": nar.replace("矽", "細"),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
           "component": "ThreeScene", "sources": src, "props": {}}

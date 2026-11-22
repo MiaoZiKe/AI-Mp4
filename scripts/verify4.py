@@ -128,7 +128,12 @@ g3 = {"pass": len(mid_pauses) == 0 and len(counted) <= limit and bool(ac.get("pa
 mp3 = os.path.join(OUT, "voice-before-endcard.mp3")
 run(["ffmpeg", "-v", "error", "-y", "-t", f"{END:.3f}", "-i", MP4, "-map", "0:a:0", "-ac", "1", "-ar", "24000", "-b:a", "64k", mp3])
 ahash = hashlib.sha1(open(mp3, "rb").read()).hexdigest()[:16]
-tts_text = "\n".join((sc_by_id.get(s["id"], {}).get("tts") or sc_by_id.get(s["id"], {}).get("narration") or "") for s in tl["scenes"] if s.get("audio"))
+def ref_line(sc):
+    """比對用念稿：tts 為了讀音把「矽」寫成「細」（2026/11/22），比對時換回「矽」，免得聽寫／聽感把正確讀音判成念錯。"""
+    t, n = sc.get("tts") or sc.get("narration") or "", sc.get("narration") or ""
+    if n and len(n) == len(t): t = "".join(a if (a == "矽" and b == "細") else b for a, b in zip(n, t))
+    return t
+tts_text = "\n".join(ref_line(sc_by_id.get(s["id"], {})) for s in tl["scenes"] if s.get("audio"))
 requests_used = 0
 
 def gemini(prompt, tag):

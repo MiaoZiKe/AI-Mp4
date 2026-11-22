@@ -26,3 +26,10 @@
 - 成片 `out/tech-implant.v2.mp4`（`AUDIO=out/tech-implant.v2.wav bash scripts/three/chunk-render.sh tech-implant v2`）；3.8 金手指版 `out/tech-implant.gold.mp4` 保留，其分段在 `out/chunks/tech-implant-gold/`。
 - 磁鐵分選卡「狹縫」改放在狹縫左邊（新時間軸下太重離子撞壁的火花會壓到右邊的字，card-overlap 抓到）。
 - 11/21 成片：`out/tech-implant.v2.mp4`（2162 幀、72.07 秒），九格 `out/tech-implant.v2-grid9.jpg`；s3／s7／s9 標籤用 `xy` 固定位置（引線不穿過別張卡，layout-check 0）。
+
+## 11/22 重配 v3（「矽」念錯，Andy 11/22 18:45 同意重配）
+- 根因：念稿寫「夕」被念成一聲 xī（大陸讀音）。改成念稿寫「細」（兩岸都念第四聲 xì），字幕維持「矽」；genscript.py 的自動替換改 `.replace("矽","細")`。
+- 配音：旁白金手指（2.5＋Iapetus＋tech-b），TTS 請求 1 次（`.take-495f048a8d`，原始 82.85 秒，備份 `.raw.orig.wav`）。原始音高中位數 114.7 Hz（金手指 113.7，+0.9%）、純說話 4.65 字/秒；整篇 atempo 1.237 → 純說話 5.66、含停頓 4.73。align 整篇信心 0.90；時間軸 70.27 秒（2108 幀）。
+- 片尾音：`G=28 mix-endsting.sh voice.wav out/tech-implant.sting.wav 65.2333 67.1333 70.2667 out/tech-implant.v3.wav`（片尾段 −10.9 LUFS、峰值 −1.2 dBFS；audio-check 全 0）。
+- 渲染：`AUDIO=out/tech-implant.v3.wav CONC=2 bash scripts/three/chunk-render.sh tech-implant v3` → `out/tech-implant.v3.mp4`（舊檔不動）。
+- 試聽：`out/voice-compare/1122/離子佈植-重配-前20秒.m4a`、`離子佈植-矽-修正後.m4a`（四處「矽」接在一起）。

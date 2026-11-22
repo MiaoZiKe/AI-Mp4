@@ -6,14 +6,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 S = [
 ("s1","hook",1,
  "上一支量完，表面平，膜厚也對。但這片矽還不會導電，所以把離子打進去，每秒飛一千三百公里。",
- "上一支量完，表面平，膜厚也對。但這片夕還不會導電，所以把離子打進去，每秒飛一千三百公里。",
+ "上一支量完，表面平，膜厚也對。但這片細還不會導電，所以把離子打進去，每秒飛一千三百公里。",
  ["上一支量完","表面平，膜厚也對","但這片矽還不會導電","所以把離子打進去","每秒飛一千三百公里"],
  ["Last time we measured:","the surface is flat, the film is right.","But this silicon still can't conduct,","so we shoot ions into it,","at 1,300 km per second."],
  [("prev","上一支量完"),("ok","表面平"),("no","還不會導電"),("shoot","把離子打進去"),("speed","每秒飛一千三百公里")],
  ["導電","離子","一千三百公里"],["速度＝v=√(2E/m) 計算，100 keV 硼離子（示意舉例）"],0.7),
 ("s2","mechanism",2,
  "純矽導電很差。打進磷多出電子，叫N型；打進硼留下電洞，叫P型。",
- "純夕導電很差。打進磷多出電子，叫恩型；打進硼留下電洞，叫皮型。",
+ "純細導電很差。打進磷多出電子，叫恩型；打進硼留下電洞，叫皮型。",
  ["純矽導電很差","打進磷多出電子","叫N型","打進硼留下電洞","叫P型"],
  ["Pure silicon barely conducts.","Phosphorus adds electrons,","called N-type.","Boron leaves holes,","called P-type."],
  [("pure","純矽導電很差"),("ph","打進磷"),("ntype","叫N型"),("bo","打進硼"),("hole","留下電洞"),("ptype","叫P型")],
@@ -69,7 +69,7 @@ S = [
  ["應用材料","亞舍立","兆捷"],["市場研究摘要；聯合報、經濟日報報導"],0.7),
 ("s10","cta",10,
  "這樣矽就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。",
- "這樣夕就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。",
+ "這樣細就有了導電的區域。但光阻被打到焦硬，表面也髒，所以下一支，看清洗。留言離子，看完整解說。",
  ["這樣矽就有了","導電的區域","但光阻被打到焦硬","表面也髒","所以下一支","看清洗","留言離子","看完整解說"],
  ["So silicon now has","its conductive zones.","But the resist is baked hard,","and the surface is dirty,","so next:","cleaning.","Comment \"離子\"","for the full notes."],
  [("so","這樣矽就有了"),("zone","導電的區域"),("hard","打到焦硬"),("dirty","表面也髒"),("next","下一支"),("kw","留言離子")],
@@ -77,7 +77,7 @@ S = [
 ]
 scenes=[]
 for sid,beat,para,nar,tts,zh,en,cues,kws,src,pa in S:
-    sc={"id":sid,"beat":beat,"para":para,"narration":nar,"tts":(tts or nar).replace("矽","夕"),
+    sc={"id":sid,"beat":beat,"para":para,"narration":nar,"tts":(tts or nar).replace("矽","細"),
         "subtitle":{"zh":"\n".join(zh),"en":" | ".join(en)},
         "keywords":kws,"cues":[{"id":i,"text":t} for i,t in cues],
         "component":"ThreeScene","sources":src,"props":{}}

@@ -21,7 +21,7 @@ def stamp(text, at, until, color="amber", size=44, rot=-4, **kw):
     d.update(kw); return d
 def cue(i, t): return {"id": i, "text": t}
 def scene(i, beat, para, tts, zh, en, kw, cues, props, src, pause=None):
-    s = {"id": i, "beat": beat, "para": para, "narration": tts, "tts": tts,
+    s = {"id": i, "beat": beat, "para": para, "narration": tts, "tts": tts.replace("矽", "細"),  # 矽念ㄒㄧˋ：念稿寫「細」（2026/11/22）
          "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)}, "keywords": kw, "cues": cues, "component": "ThreeScene", "props": props, "sources": src}
     if pause: s["pauseAfter"] = pause
     assert len(zh) == len(en), (i, len(zh), len(en))

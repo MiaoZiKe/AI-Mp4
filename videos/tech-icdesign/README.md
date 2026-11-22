@@ -21,3 +21,10 @@ A 訊號沿 M5→M1 穿過各層到閘極、再從汲極流出（3D 光點＋2D 
 
 ## v2（2026/11/18，依 CEO 退回意見）
 `out/tech-icdesign.v2.mp4`，同一份音軌與時間軸（沒送 TTS）。改：查證日改 2026/11/18（畫面、research、說明檔）；s6 步驟標籤一次只留一個；s8 念到「設計服務」就出卡片第一列與引線；s9「設計公司」方塊不再淡化；s1 大標縮小上移、取消漂移不壓主素材。
+
+## 11/22 重配（「矽」念錯，Andy 11/22 18:45 同意重配）
+- 根因：舊念稿 s8 漏改，直接送「矽智財」，被念成 guì。改成念稿寫「細智財」（「細」兩岸都念第四聲 xì；寫「夕」會被念成一聲 xī），字幕維持「矽」。genscript.py 的 scene() 自動把 tts 的「矽」換成「細」。⚠ script.json 有 11/22 第 4 道修正（s4／s7 鏡頭、s8 卡片提早）沒回寫 genscript.py，這次只直接改 script.json 的 s8 tts，不要重跑 genscript 蓋掉。
+- 配音：旁白金手指（2.5＋Iapetus＋tech-b），TTS 請求 1 次（`.take-a33eed9084`，原始 61.93 秒，備份 `.raw.orig.wav`）。原始音高中位數 107.4 Hz（金手指原始 113.7，−5.5%）、純說話 4.90 字/秒；整篇 atempo 1.1735 → 純說話 5.70、含停頓 4.75。`--resplit`＋`ALIGN_PROVIDER=fa align --force`，整篇信心 0.94；時間軸 57.2 秒（1716 幀）。
+- 片尾音：`G=22 mix-endsting.sh voice.wav out/tech-icdesign.sting.wav 52.8 54.0667 57.2 out/tech-icdesign.revoice.wav`（片尾段 −11.3 LUFS、峰值 −1.3 dBFS；audio-check 全 0）。
+- 渲染：`AUDIO=out/tech-icdesign.revoice.wav CONC=2 bash scripts/three/chunk-render.sh tech-icdesign revoice` → `out/tech-icdesign.revoice.mp4`。
+- 試聽：`out/voice-compare/1122/IC設計-重配-前20秒.m4a`、`IC設計-矽-修正後.m4a`。

@@ -11,3 +11,10 @@
 - 檢查：validate 0 error；layout-check 0 error；card-overlap 0 error 0 warning（11 張、72 個時間點）；flow-check 10 條 0 error。
 - 主素材框：所有層 bg，另放看不見的 px_furn／px_rtp／px_laser／px_lat／px_all（每段只亮鏡頭對準的那一個）。標籤手動定位（labels[].xy）：s2 晶舟、s6 兩張、s10 兩張。
 - 台灣相關：查不到台灣自製量產的爐管或雷射退火設備（research.md 第 13 組），只寫台積電是國際電氣的客戶（科技新報）。ASM 中文名只查到一則，不念，卡片寫英文。
+
+## 11/22 重配 v2（「矽」念錯，Andy 11/22 18:45 同意重配）
+- 根因：念稿寫「夕」被念成一聲 xī（大陸讀音）。改成念稿寫「細」（表面的細、二氧化細；兩岸都念第四聲 xì），字幕維持「矽」；genscript.py 改 `.replace("矽", "細")`。
+- 配音：旁白金手指（2.5＋Iapetus＋tech-b），TTS 請求 2 次：第 1 次錄音結尾「解說」被截斷（最後 0.2 秒仍 −14 dBFS 就斷，audio-check 斷音 1），作廢（備份 `out/new-tech-oxidation-take1-1122/`）；第 2 次（`.take-4c3cc53338`，原始 90.81 秒，備份 `.raw.orig.wav`）原始音高中位數 106.5 Hz（金手指 113.7，−6.3%）、純說話 4.87 字/秒；整篇 atempo 1.181 → 純說話 5.75、含停頓 4.34。align 整篇信心 0.90；時間軸 80.53 秒（2416 幀，比舊版長 9.6 秒：這次錄音停頓較多，照規則不剪停頓）。
+- 片尾音：`G=22 mix-endsting.sh voice.wav out/tech-oxidation.sting.wav 75.2667 77.4 80.5333 out/tech-oxidation.v2.wav`（片尾段 −11.1 LUFS、峰值 −1.3 dBFS；audio-check 全 0）。
+- 渲染：`AUDIO=out/tech-oxidation.v2.wav CONC=2 bash scripts/three/chunk-render.sh tech-oxidation v2` → `out/tech-oxidation.v2.mp4`（舊檔不動）。
+- 試聽：`out/voice-compare/1122/氧化-重配-前20秒.m4a`、`氧化-矽-修正後.m4a`。
