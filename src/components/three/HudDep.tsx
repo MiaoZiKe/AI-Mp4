@@ -105,12 +105,12 @@ const Chamber: React.FC<P> = ({ o, f, k, m }) => {
           {Array.from({ length: 12 }, (_, i) => <rect key={i} x={x0 + 46 + i * 36} y={yS + 3} width={8} height={10} fill={H.cardCompare} />)}
           <text x={x1 + 10} y={yS + 14} style={zh(sm(30), H.text, 800)}>噴氣頭</text>
         </g>
-        {Array.from({ length: 12 }, (_, i) => Array.from({ length: 3 }, (_, j) => { const u = ph(f, 0.018, j, 3, i % 4); return <circle key={`${i}-${j}`} cx={x0 + 50 + i * 36} cy={yS + 22 + u * (yW - yS - 28)} r={5} fill={c("lp_sig")} opacity={0.15 + 0.85 * gb} />; }))}
+        {Array.from({ length: 12 }, (_, i) => Array.from({ length: 3 }, (_, j) => { const u = ph(f, 0.018, j, 3, i % 4), px = x0 + 50 + i * 36, yEnd = px > x0 + 50 && px < x0 + 150 ? yW - 52 : yW - 6; /* 11/22：「晶圓」字上方那幾行氣體點在字的上緣停住 */ return <circle key={`${i}-${j}`} cx={px} cy={yS + 22 + u * (yEnd - yS - 22)} r={5} fill={c("lp_sig")} opacity={0.15 + 0.85 * gb} />; }))}
         {Array.from({ length: 3 }, (_, j) => { const u = ph(f, 0.02, j, 3); return <circle key={`in${j}`} cx={cx} cy={52 + u * 60} r={7} fill={c("lp_sig")} opacity={0.2 + 0.8 * gb} />; })}
         <g opacity={w}>
           <rect x={x0 + 60} y={yW} width={x1 - x0 - 120} height={10} fill={c("si")} /><rect x={x0 + 50} y={yW + 10} width={x1 - x0 - 100} height={46} fill={c("steel")} />
           <rect x={x0 + 50} y={yW + 50} width={x1 - x0 - 100} height={6} fill={c("lp_heat")} opacity={0.5 + 0.4 * Math.sin(f * 0.15)} />
-          <rect x={x0 + 60} y={yW - 42} width={sm(30) * 2 + 12} height={36} rx={6} fill={H.cardCompare} opacity={0.92} /><text x={x0 + 66} y={yW - 13} style={zh(sm(30), H.text, 800)}>晶圓</text>{/* 11/22：墊底色，落下的氣體點不再穿過「晶圓」 */}<text x={cx + 20} y={yW + 42} style={zh(sm(26), onC(H.amber), 800)}>加熱座</text>
+          <text x={x0 + 66} y={yW - 13} style={zh(sm(30), H.text, 800)}>晶圓</text><text x={cx + 20} y={yW + 42} style={zh(sm(26), onC(H.amber), 800)}>加熱座</text>
         </g>
         <g opacity={p}>
           {Array.from({ length: 4 }, (_, j) => { const u = ph(f, 0.018, j, 4); return <g key={j}><circle cx={x0 + 30} cy={yW - 6 + u * 70} r={6} fill={c("lp_bad")} opacity={0.2 + 0.8 * gp} /><circle cx={x1 - 30} cy={yW - 6 + u * 70} r={6} fill={c("lp_bad")} opacity={0.2 + 0.8 * gp} /></g>; })}
