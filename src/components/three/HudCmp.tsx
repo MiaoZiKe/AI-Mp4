@@ -57,7 +57,7 @@ const Prev: React.FC<P> = ({ o, f, k, m }) => {
           <path d="M60 164 H480" stroke={c("focus")} strokeWidth={3} strokeDasharray="10 8" />
           <path d="M498 170 v-46" stroke={H.amber} strokeWidth={5} /><path d="M488 124 h20 M488 170 h20" stroke={H.amber} strokeWidth={4} />
           <text x={514} y={158} style={zh(sm(32), H.amber, 900)}>高低不平</text>
-          <text x={60} y={118} style={zh(36, H.text, 900)}>上一支長出的膜</text>
+          <text x={60} y={112} style={zh(36, H.text, 900)}>上一支長出的膜</text>
         </g>
         <g opacity={b}>
           {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M${100 + i * 80} 224 v-70`} stroke={c("uv")} strokeWidth={4} opacity={0.5 + 0.5 * ph(f, 0.05, i, 5)} />)}
@@ -96,7 +96,7 @@ const Why: React.FC<P> = ({ o, f, k, m }) => {
           {[xL + 60 + 0.1 * w * 0, xL + 0.1 * w + 20, xL + 0.64 * w + 20].map((x, i) => <circle key={i} cx={x + 14} cy={yF - 46} r={20} fill={c("lp_bad")} opacity={0.35 + 0.15 * Math.sin(f * 0.3 + i)} />)}
           <text x={xL + 4} y={yF + 158} style={zh(34, c("lp_bad"), 900)}>凸起處失焦，圖案糊掉</text>
         </g>
-        <rect x={xL + 4} y={104} width={166} height={36} fill={H.cardCompare} /><g opacity={b1}><text x={xL + 12} y={132} style={zh(sm(30), H.text, 900)}>高低差太大</text></g>
+        <rect x={xL - 2} y={101} width={178} height={45} fill={H.cardCompare} />{/* 11/22：遮住後面的紅圈，字四周不露出圓 */}<g opacity={b1}><text x={xL + 12} y={132} style={zh(sm(30), H.text, 900)}>高低差太大</text></g>
         <line x1={W / 2 + 10} y1={60} x2={W / 2 + 10} y2={Hh - 20} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={r1}>
           <rect x={xR} y={66} width={wR} height={34} fill={c("steel")} />
@@ -126,7 +126,7 @@ const Tool: React.FC<P> = ({ o, f, k, m }) => {
           {Array.from({ length: 9 }, (_, i) => <rect key={i} x={x0 + 26 + i * 60} y={yP} width={8} height={6} fill={c("padG")} />)}
           <rect x={(x0 + x1) / 2 - 22} y={yP + 54} width={44} height={36} fill={c("steel2")} />
           <Arc cx={(x0 + x1) / 2} cy={yP + 37} r={11} rx={230} a0={30} a1={150} c={c("rot")} w={6} />
-          <text x={x0} y={Hh - 8} style={zh(sm(28), H.text, 800)}>研磨盤與研磨墊（轉動）</text>
+          <text x={(x0 + x1) / 2 + 40} y={Hh - 8} style={zh(sm(28), H.text, 800)}>研磨盤與研磨墊（轉動）</text>{/* 11/22：移到轉軸右邊，不貼轉軸 */}
         </g>
         <g opacity={a}>
           <rect x={hx - 28} y={64} width={56} height={40} fill={c("steelHi")} />
@@ -135,7 +135,7 @@ const Tool: React.FC<P> = ({ o, f, k, m }) => {
           <rect x={hx - 84} y={yP - 22} width={168} height={20} fill={c("siTop")} />
           {[-60, -20, 20, 60].map((dx, i) => <Dn key={i} x={hx + dx} y={148} len={14 + 2 * Math.sin(f * 0.2 + i)} c={c("press")} w={6} />)}
           <Arc cx={hx} cy={74} r={14} rx={52} a0={200} a1={340} c={c("rot")} w={5} />
-          <text x={hx - 80} y={yP - 28} style={zh(sm(28), H.text, 900)}>晶圓（朝下）</text>
+          <text x={hx} y={yP - 32} textAnchor="middle" style={zh(sm(26), H.text, 900)}>晶圓（朝下）</text>
           <text x={hx + 120} y={96} style={zh(sm(30), H.text, 800)}>研磨頭</text>
           <text x={hx - 120} y={168} textAnchor="end" style={zh(sm(28), c("press"), 900)}>壓力</text>
         </g>
@@ -147,7 +147,7 @@ const Tool: React.FC<P> = ({ o, f, k, m }) => {
         </g>
         <g opacity={0.85}>
           <rect x={x1 - 90} y={120} width={14} height={yP - 120} fill={c("steel2")} /><rect x={x1 - 130} y={yP - 24} width={92} height={24} fill={c("dia")} />
-          <text x={x1 - 98} y={160} textAnchor="end" style={zh(sm(28), H.text2, 800)}>鑽石碟</text>
+          <text x={x1 - 68} y={160} style={zh(sm(28), H.text2, 800)}>鑽石碟</text>{/* 11/22：移到修整臂右邊，不貼研磨頭的支架 */}
         </g>
         <text x={650} y={118} opacity={a} style={zh(34, H.text, 800)}>① 晶圓朝下</text><text x={650} y={176} opacity={b} style={zh(34, H.text, 800)}>② 壓在轉動的墊上</text><text x={650} y={234} opacity={s} style={zh(34, H.text, 800)}>③ 邊磨邊淋液</text>
       </svg>
@@ -252,7 +252,7 @@ const Slurry: React.FC<P> = ({ o, f, k, m }) => {
           return <g key={i} opacity={cm}><circle cx={x - 6} cy={y} r={7} fill={c("mol")} /><circle cx={x + 6} cy={y + 4} r={5.5} fill={c("mol2")} /></g>; })}
         {Array.from({ length: 5 }, (_, i) => { const u = ph(f, 0.012, i, 5, i % 2); return <ellipse key={i} cx={x0 + 120 + i * 80 + u * 40} cy={yF - 52 - u * 40} rx={9} ry={3.5} fill={c("flake")} opacity={s2 * (1 - u)} transform={`rotate(${u * 160} ${x0 + 120 + i * 80 + u * 40} ${yF - 52 - u * 40})`} />; })}
         <text x={x0 + 10} y={yPad - 7} style={zh(sm(28), "#FFFFFF", 800)}>研磨墊</text>
-        <text x={x0 + 0.36 * (x1 - x0) + 14} y={yF - 6} opacity={s1} style={zh(sm(28), H.text, 900)}>表面變軟</text>
+        <text x={x0 + 0.36 * (x1 - x0) + 14} y={yF - 7} opacity={s1} style={zh(26, H.text, 900)}>表面變軟</text>
         <g opacity={g}><rect x={620} y={96} width={26} height={26} fill={c("grit")} stroke={c("gritRim")} strokeWidth={3} /><text x={660} y={120} style={zh(34, H.text, 900)}>磨粒：負責刮</text></g>
         <g opacity={cm}><circle cx={628} cy={176} r={9} fill={c("mol")} /><circle cx={642} cy={182} r={7} fill={c("mol2")} /><text x={660} y={190} style={zh(34, H.text, 900)}>藥劑：讓表面變軟</text></g>
         <text x={620} y={250} opacity={s1} style={zh(sm(32), c("lp_good"), 900)}>藥劑先軟化</text><text x={620} y={296} opacity={s2} style={zh(sm(32), c("gritRim"), 900)}>磨粒再刮掉</text>
