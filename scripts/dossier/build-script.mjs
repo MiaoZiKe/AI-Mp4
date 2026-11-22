@@ -25,6 +25,12 @@ for (const k of ["slug", "title", "asOf", "thesis"]) if (typeof plan[k] !== "str
 if (!plan.endCard || typeof plan.endCard !== "object") E("頂層要有 endCard（comment、next 都可省略）");
 else if (plan.endCard.comment !== undefined && !(typeof plan.endCard.comment === "string" && plan.endCard.comment.length >= 2 && plan.endCard.comment.length <= 4)) E("endCard.comment 有填就要是 2–4 字（留言關鍵字）；沒有固定字就整個省略");
 if (!Array.isArray(plan.scenes) || !plan.scenes.length) E("scenes 是空的");
+// 選填 endCard.tags（2026/11/22）：片尾卡地圖上飛進字標的碎片字，換成本片關鍵字（1–12 個，每個 ≤104px：中文 ≤3 字、英數 ≤6 字元）；沒填就是共用預設字
+if (plan.endCard?.tags !== undefined) {
+  const tg = plan.endCard.tags;
+  if (!Array.isArray(tg) || tg.length < 1 || tg.length > 12) E("endCard.tags 要是 1–12 個字串");
+  else tg.forEach((t, k) => { const w = [...String(t ?? "")].reduce((a, ch) => a + (ch.charCodeAt(0) < 256 ? 17 : 28), 0); if (typeof t !== "string" || !t) E(`endCard.tags[${k}] 不能留空`); else if (w > 104) E(`endCard.tags[${k}]「${t}」太寬（約 ${w}px > 104px）`); });
+}
 
 const PH = /\{\{(\w+)(\?)?(?:\|([^}]*))?\}\}/g;
 const REMOVE = Symbol("remove");
@@ -132,7 +138,7 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
 
 if (plan.endCard) scenes.push({
   id: "end", narration: "", subtitle: { zh: "", en: "" }, keywords: [], cues: [], beat: "cta", component: "EndCard",
-  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { ...(plan.endCard.comment ? { comment: plan.endCard.comment } : {}), ...(plan.endCard.next ? { next: plan.endCard.next } : {}) } }, sources: [],
+  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { ...(plan.endCard.comment ? { comment: plan.endCard.comment } : {}), ...(plan.endCard.next ? { next: plan.endCard.next } : {}), ...(plan.endCard.tags?.length ? { tags: plan.endCard.tags } : {}) } }, sources: [],
 });
 
 const script = {

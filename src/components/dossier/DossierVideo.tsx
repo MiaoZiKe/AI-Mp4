@@ -602,7 +602,7 @@ const LiTile: React.FC<{ size: number }> = ({ size }) => (
     <LiMark size={Math.round(size * 0.92)} />
   </div>
 );
-type EndSpec = { comment?: string; next?: string };
+type EndSpec = { comment?: string; next?: string; tags?: string[] };
 /** 固定 seed 的亂數（片尾用；每一幀算出來都一樣） */
 const rng = (seed: number) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
 const easeOut3 = (x: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
@@ -615,23 +615,28 @@ const EMX = (lon: number) => L.W / 2 + lon * 3, EMY = (lat: number) => DE.MAP_Y 
 const END_MAP = (() => { let d = ""; WORLD.rows.forEach((row: string, r: number) => { const y = EMY(WORLD.lat0 - r * WORLD.step); for (let c = 0; c < row.length; c++) if (row[c] === "1") { const x = EMX(WORLD.lon0 + c * WORLD.step); d += `M${r1(x - 2)} ${r1(y - 2)}h4v4h-4z`; } }); return d; })();
 const END_DOTS = (() => { const out: [number, number][] = []; WORLD.rows.forEach((row: string, r: number) => { for (let c = 0; c < row.length; c++) if (row[c] === "1") out.push([EMX(WORLD.lon0 + c * WORLD.step), EMY(WORLD.lat0 - r * WORLD.step)]); }); return out; })();
 /** 世界各地的新聞來源點：每一點飛出一張數字／文件碎片，沿弧線收進 L（全球資訊被收進檔案） */
-const FRAGS = (() => {
-  const cities: [number, number, string][] = [[-74, 40.7, "+4.3%"], [-77, 38.9, "8-K"], [-0.1, 51.5, "28.92"], [4.4, 50.9, "2026"], [8.7, 50.1, "±2%"], [139.7, 35.7, "10-Q"], [121.5, 25, "1080"], [116.4, 39.9, "CPI"], [103.8, 1.4, "325"], [-46.6, -23.5, "EPFR"], [-122, 37.4, "Q3"], [72.9, 19.1, "FOMC"]];
+// 選填 endCard.tags（2026/11/22）：本片關鍵字依序換掉碎片上的字（不足 12 個就循環）；位置、時間不變。沒填就是下面的預設字（舊片不變）
+const END_CITIES: [number, number, string][] = [[-74, 40.7, "+4.3%"], [-77, 38.9, "8-K"], [-0.1, 51.5, "28.92"], [4.4, 50.9, "2026"], [8.7, 50.1, "±2%"], [139.7, 35.7, "10-Q"], [121.5, 25, "1080"], [116.4, 39.9, "CPI"], [103.8, 1.4, "325"], [-46.6, -23.5, "EPFR"], [-122, 37.4, "Q3"], [72.9, 19.1, "FOMC"]];
+const makeFrags = (tags?: string[]) => {
   const r = rng(1115);
-  return cities.map(([lon, lat, txt], k) => {
+  return END_CITIES.map(([lon, lat, dft], k) => {
+    const txt = tags?.length ? tags[k % tags.length] : dft;
     const foot = k % 3 === 0, tx = LX(foot ? 140 + r() * 180 : 135 + r() * 40), ty = LY(foot ? 345 + r() * 40 : 125 + r() * 190);
     const sx = EMX(lon), sy = EMY(lat), cx = (sx + tx) / 2 + (r() - 0.5) * 200, cy = Math.min(sy, ty) - 160 - r() * 120;
     return { sx, sy, tx, ty, cx, cy, txt, d: k * 1.1 + r() * 2 };
   });
-})();
+};
+const FRAGS = makeFrags();
 const bez = (f: (typeof FRAGS)[number], q: number) => [(1 - q) * (1 - q) * f.sx + 2 * (1 - q) * q * f.cx + q * q * f.tx, (1 - q) * (1 - q) * f.sy + 2 * (1 - q) * q * f.cy + q * q * f.ty] as const;
 /** 撞擊時迸開的紙屑（小紙片，往外飛、受重力往下、減速） */
 const CONFETTI = (() => { const r = rng(808); return Array.from({ length: 22 }, (_, k) => ({ a: (k / 22) * Math.PI * 2 + r() * 0.25, v: 220 + r() * 260, w: 10 + r() * 14, h: 6 + r() * 6, rot: (r() - 0.5) * 2, c: k % 3 })); })();
 
 const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: string; tag: string }> = ({ sh, f, slogan, name, tag }) => {
   const e = f - sh.start, F = DE.f;
-  if (e < 0) return null;
   const spec = (sh.p.endCard ?? {}) as EndSpec;
+  const tagKey = (spec.tags ?? []).join("|");
+  const frags = useMemo(() => (tagKey ? makeFrags(tagKey.split("|")) : FRAGS), [tagKey]);
+  if (e < 0) return null;
   const pin = tween(f, sh.start, NM.cut, EASE.move);
   const ease = (a: number, d: number) => tween(e, a, d, EASE.enter);
   const k = e >= F.impact && e < F.shakeEnd ? 1 - (e - F.impact) / (F.shakeEnd - F.impact) : 0;
@@ -660,7 +665,7 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
             return hit > 0.05 ? <rect key={i} x={x - 2.5} y={y - 2.5} width={5} height={5} fill={DE.darkCopper} opacity={r1(hit)} /> : null;
           }) : null}
           {/* 各地新聞來源點：脈衝亮起 → 銅紅連線往字標長出 → 數字／文件碎片沿線飛進來，越近越小、最後收進 L */}
-          {FRAGS.map((fr, i) => {
+          {frags.map((fr, i) => {
             if (e < fr.d - 3) return null;
             const q = easeOut3((e - fr.d) / F.gatherDur), lineO = e < F.solid ? 1 : Math.max(0, 1 - (e - F.solid) / 10);
             const n = 18, pts: string[] = []; for (let j = 0; j <= n; j++) { const [x, y] = bez(fr, (j / n) * q); pts.push(`${j ? "L" : "M"}${r1(x)} ${r1(y)}`); }
@@ -671,7 +676,7 @@ const EndCardDossier: React.FC<{ sh: DsShot; f: number; slogan: string; name: st
               {q > 0 ? <path d={pts.join("")} fill="none" stroke={DE.darkCopper} strokeWidth={2} strokeDasharray="6 6" opacity={r1(0.8 * lineO)} /> : null}
               {q > 0 && q < 1 ? <g transform={`translate(${r1(hx)},${r1(hy)}) scale(${r1(1.2 - 0.8 * q)})`}>
                 <rect x={-58} y={-24} width={116} height={48} fill={DE.paper} />
-                <text x={0} y={10} textAnchor="middle" style={{ fontFamily: FONT_EN, fontWeight: 700, fontSize: 28 }} fill={DE.navy}>{fr.txt}</text>
+                <text x={0} y={10} textAnchor="middle" style={{ fontFamily: FONT_ZH, fontWeight: 700, fontSize: 28 }} fill={DE.navy}>{fr.txt}</text>
               </g> : null}
             </g>;
           })}

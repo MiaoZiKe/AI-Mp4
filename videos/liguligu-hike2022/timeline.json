@@ -1,1053 +1,1075 @@
 {
-  "version": 2,
-  "slug": "liguligu-hike2022",
-  "fps": 30,
-  "totalFrames": 1498,
-  "totalSec": 49.93,
-  "gapSec": 0.3,
-  "transitionFrames": 10,
-  "recording": {
-    "file": "audio/liguligu-hike2022/voice-api.paused.wav",
-    "scenes": [
-      "s01",
-      "s02",
-      "s03",
-      "s04",
-      "s05",
-      "s06"
-    ],
-    "sec": 46.305,
-    "confidence": 0.866,
-    "minScore": 0.01,
-    "lastVoiceSec": 46.02
-  },
-  "scenes": [
+ "version": 2,
+ "slug": "liguligu-hike2022",
+ "fps": 30,
+ "totalFrames": 1431,
+ "totalSec": 47.7,
+ "gapSec": 0.6,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 5,
+  "gap": 0.6,
+  "tailEndFrames": 14
+ },
+ "scenes": [
+  {
+   "id": "s01",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 8.6,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 280,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 263,
+   "stillFrame": 270,
+   "subtitleWindow": [
+    0,
+    277
+   ],
+   "sourceWindow": [
+    0,
+    275
+   ],
+   "lines": [
     {
-      "id": "s01",
-      "audio": null,
-      "audioFrame": 9,
-      "audioSec": 8.88,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 0,
-      "durationFrames": 319,
-      "transitionFrames": 0,
-      "transition": null,
-      "voiceStartFrame": 9,
-      "voiceEndFrame": 276,
-      "stillFrame": 309,
-      "subtitleWindow": [
-        0,
-        316
-      ],
-      "sourceWindow": [
-        0,
-        314
-      ],
-      "lines": [
-        {
-          "text": "市場預期美國",
-          "start": 0,
-          "chars": [
-            8,
-            11,
-            17,
-            21,
-            27,
-            32
-          ]
-        },
-        {
-          "text": "12 月再升息",
-          "start": 33,
-          "chars": [
-            35,
-            40,
-            40,
-            44,
-            48,
-            53,
-            59
-          ]
-        },
-        {
-          "text": "2022 年連續升息",
-          "start": 69,
-          "chars": [
-            72,
-            85,
-            98,
-            111,
-            111,
-            124,
-            129,
-            135,
-            140,
-            145
-          ]
-        },
-        {
-          "text": "科技股為主的那斯達克",
-          "start": 157,
-          "chars": [
-            159,
-            164,
-            168,
-            173,
-            177,
-            182,
-            185,
-            189,
-            192,
-            197
-          ]
-        },
-        {
-          "text": "全年跌 33%",
-          "start": 202,
-          "chars": [
-            204,
-            212,
-            216,
-            216,
-            224,
-            232,
-            240
-          ]
-        },
-        {
-          "text": "這次會重演嗎？",
-          "start": 246,
-          "chars": [
-            248,
-            253,
-            257,
-            261,
-            267,
-            272,
-            272
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "那斯達克",
-          "start": 185
-        }
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "市場預期",
-          "frame": 9
-        },
-        {
-          "id": "c2",
-          "text": "12 月",
-          "frame": 37
-        },
-        {
-          "id": "c3",
-          "text": "那斯達克",
-          "frame": 187
-        },
-        {
-          "id": "c4",
-          "text": "33%",
-          "frame": 226
-        }
-      ],
-      "sub": "市場預期美國\n12 月再升息\n2022 年連續升息\n科技股為主的那斯達克\n全年跌 33%\n這次會重演嗎？",
-      "provider": "recording+fa",
-      "syllables": 43,
-      "words": [],
-      "charTimes": [
-        0,
-        0.12,
-        0.3,
-        0.44,
-        0.66,
-        0.8,
-        0.933,
-        1.067,
-        1.2,
-        1.34,
-        1.52,
-        1.7,
-        2.136,
-        2.572,
-        3.008,
-        3.444,
-        3.88,
-        4.06,
-        4.24,
-        4.4,
-        4.58,
-        5.04,
-        5.2,
-        5.36,
-        5.5,
-        5.66,
-        5.8,
-        5.92,
-        6.06,
-        6.16,
-        6.32,
-        6.56,
-        6.8,
-        6.96,
-        7.225,
-        7.49,
-        7.755,
-        8.02,
-        8.18,
-        8.3,
-        8.44,
-        8.64,
-        8.8
-      ],
-      "fa": {
-        "confidence": 0.793,
-        "minScore": 0.013
-      }
+     "text": "市場預期美國",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      14,
+      19,
+      25,
+      30
+     ]
     },
     {
-      "id": "s02",
-      "audio": null,
-      "audioFrame": 320,
-      "audioSec": 7.3,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 309,
-      "durationFrames": 276,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 319,
-      "voiceEndFrame": 539,
-      "stillFrame": 575,
-      "subtitleWindow": [
-        316,
-        582
-      ],
-      "sourceWindow": [
-        314,
-        580
-      ],
-      "lines": [
-        {
-          "text": "先看那年",
-          "start": 316,
-          "chars": [
-            319,
-            323,
-            327,
-            331
-          ]
-        },
-        {
-          "text": "物價年增衝到 9.1%",
-          "start": 351,
-          "chars": [
-            353,
-            356,
-            362,
-            367,
-            374,
-            379,
-            379,
-            387,
-            387,
-            396,
-            405
-          ]
-        },
-        {
-          "text": "所以美國央行聯準會",
-          "start": 411,
-          "chars": [
-            413,
-            416,
-            420,
-            424,
-            428,
-            433,
-            437,
-            442,
-            447
-          ]
-        },
-        {
-          "text": "一年內把利率",
-          "start": 452,
-          "chars": [
-            454,
-            458,
-            463,
-            469,
-            474,
-            479
-          ]
-        },
-        {
-          "text": "從 0.5% 拉到 4.5%",
-          "start": 481,
-          "chars": [
-            484,
-            484,
-            491,
-            491,
-            498,
-            505,
-            505,
-            512,
-            516,
-            516,
-            521,
-            521,
-            527,
-            532
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "9.1%",
-          "start": 387
-        }
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "那年",
-          "frame": 328
-        },
-        {
-          "id": "c2",
-          "text": "9.1%",
-          "frame": 389
-        },
-        {
-          "id": "c3",
-          "text": "聯準會",
-          "frame": 438
-        },
-        {
-          "id": "c4",
-          "text": "4.5%",
-          "frame": 523
-        }
-      ],
-      "sub": "先看那年\n物價年增衝到 9.1%\n所以美國央行聯準會\n一年內把利率\n從 0.5% 拉到 4.5%",
-      "provider": "recording+fa",
-      "syllables": 40,
-      "words": [],
-      "charTimes": [
-        0,
-        0.14,
-        0.28,
-        0.42,
-        1.14,
-        1.26,
-        1.44,
-        1.62,
-        1.84,
-        2,
-        2.29,
-        2.58,
-        2.87,
-        3.16,
-        3.26,
-        3.38,
-        3.52,
-        3.64,
-        3.8,
-        3.94,
-        4.1,
-        4.28,
-        4.52,
-        4.64,
-        4.82,
-        5.02,
-        5.18,
-        5.34,
-        5.5,
-        5.735,
-        5.97,
-        6.205,
-        6.44,
-        6.58,
-        6.76,
-        6.94,
-        7.12
-      ],
-      "fa": {
-        "confidence": 0.896,
-        "minScore": 0.239
-      }
+     "text": "12 月再升息",
+     "start": 39,
+     "chars": [
+      41,
+      47,
+      47,
+      52,
+      57,
+      62,
+      68
+     ]
     },
     {
-      "id": "s03",
-      "audio": null,
-      "audioFrame": 585,
-      "audioSec": 6.48,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 575,
-      "durationFrames": 247,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 585,
-      "voiceEndFrame": 780,
-      "stillFrame": 812,
-      "subtitleWindow": [
-        582,
-        819
-      ],
-      "sourceWindow": [
-        580,
-        817
-      ],
-      "lines": [
-        {
-          "text": "這次哪裡一樣？",
-          "start": 582,
-          "chars": [
-            584,
-            588,
-            591,
-            596,
-            599,
-            601,
-            601
-          ]
-        },
-        {
-          "text": "9 月又升息了",
-          "start": 614,
-          "chars": [
-            616,
-            616,
-            631,
-            635,
-            640,
-            645,
-            650
-          ]
-        },
-        {
-          "text": "11 月 10 日物價比預期高",
-          "start": 664,
-          "chars": [
-            666,
-            682,
-            682,
-            698,
-            698,
-            701,
-            704,
-            704,
-            708,
-            719,
-            723,
-            729,
-            733,
-            737,
-            741
-          ]
-        },
-        {
-          "text": "輝達也跟著跌",
-          "start": 751,
-          "chars": [
-            753,
-            759,
-            764,
-            767,
-            771,
-            774
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "又升息",
-          "start": 635
-        }
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "一樣",
-          "frame": 600
-        },
-        {
-          "id": "c2",
-          "text": "9 月",
-          "frame": 618
-        },
-        {
-          "id": "c3",
-          "text": "物價",
-          "frame": 720
-        },
-        {
-          "id": "c4",
-          "text": "輝達",
-          "frame": 755
-        }
-      ],
-      "sub": "這次哪裡一樣？\n9 月又升息了\n11 月 10 日物價比預期高\n輝達也跟著跌",
-      "provider": "recording+fa",
-      "syllables": 29,
-      "words": [],
-      "charTimes": [
-        0,
-        0.14,
-        0.26,
-        0.4,
-        0.5,
-        0.6,
-        1.09,
-        1.58,
-        1.72,
-        1.88,
-        2.06,
-        2.2,
-        2.74,
-        3.28,
-        3.82,
-        3.927,
-        4.033,
-        4.14,
-        4.5,
-        4.66,
-        4.84,
-        4.98,
-        5.1,
-        5.26,
-        5.66,
-        5.84,
-        6,
-        6.12,
-        6.24,
-        6.36
-      ],
-      "fa": {
-        "confidence": 0.863,
-        "minScore": 0.01
-      }
+     "text": "2022 年連續升息",
+     "start": 77,
+     "chars": [
+      79,
+      85,
+      90,
+      95,
+      95,
+      100,
+      106,
+      111,
+      116,
+      121
+     ]
     },
     {
-      "id": "s04",
-      "audio": null,
-      "audioFrame": 822,
-      "audioSec": 7,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 812,
-      "durationFrames": 259,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 822,
-      "voiceEndFrame": 1032,
-      "stillFrame": 1061,
-      "subtitleWindow": [
-        819,
-        1068
-      ],
-      "sourceWindow": [
-        817,
-        1066
-      ],
-      "lines": [
-        {
-          "text": "哪裡不一樣？",
-          "start": 819,
-          "chars": [
-            821,
-            824,
-            828,
-            831,
-            834,
-            834
-          ]
-        },
-        {
-          "text": "先看物價",
-          "start": 856,
-          "chars": [
-            858,
-            862,
-            867,
-            871
-          ]
-        },
-        {
-          "text": "最新年增 3.7%",
-          "start": 891,
-          "chars": [
-            893,
-            898,
-            903,
-            908,
-            908,
-            921,
-            921,
-            934,
-            947
-          ]
-        },
-        {
-          "text": "再看利率起點",
-          "start": 958,
-          "chars": [
-            960,
-            965,
-            968,
-            972,
-            976,
-            981
-          ]
-        },
-        {
-          "text": "這次已經在 4%",
-          "start": 995,
-          "chars": [
-            998,
-            1004,
-            1010,
-            1014,
-            1019,
-            1019,
-            1023,
-            1027
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "3.7%",
-          "start": 921
-        }
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "不一樣",
-          "frame": 829
-        },
-        {
-          "id": "c2",
-          "text": "3.7%",
-          "frame": 923
-        },
-        {
-          "id": "c3",
-          "text": "起點",
-          "frame": 977
-        },
-        {
-          "id": "c4",
-          "text": "4%",
-          "frame": 1024
-        }
-      ],
-      "sub": "哪裡不一樣？\n先看物價\n最新年增 3.7%\n再看利率起點\n這次已經在 4%",
-      "provider": "recording+fa",
-      "syllables": 30,
-      "words": [],
-      "charTimes": [
-        0,
-        0.12,
-        0.24,
-        0.36,
-        0.46,
-        1.26,
-        1.4,
-        1.54,
-        1.68,
-        2.42,
-        2.58,
-        2.74,
-        2.92,
-        3.355,
-        3.79,
-        4.225,
-        4.66,
-        4.8,
-        4.92,
-        5.04,
-        5.18,
-        5.36,
-        5.9,
-        6.1,
-        6.32,
-        6.46,
-        6.62,
-        6.747,
-        6.873
-      ],
-      "fa": {
-        "confidence": 0.897,
-        "minScore": 0.011
-      }
+     "text": "科技股為主的那斯達克",
+     "start": 131,
+     "chars": [
+      133,
+      138,
+      144,
+      149,
+      154,
+      159,
+      165,
+      170,
+      175,
+      180
+     ]
     },
     {
-      "id": "s05",
-      "audio": null,
-      "audioFrame": 1072,
-      "audioSec": 6.62,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1061,
-      "durationFrames": 253,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1071,
-      "voiceEndFrame": 1271,
-      "stillFrame": 1304,
-      "subtitleWindow": [
-        1068,
-        1311
-      ],
-      "sourceWindow": [
-        1066,
-        1309
-      ],
-      "lines": [
-        {
-          "text": "所以要看聯準會預計",
-          "start": 1068,
-          "chars": [
-            1071,
-            1074,
-            1077,
-            1081,
-            1085,
-            1090,
-            1095,
-            1101,
-            1105
-          ]
-        },
-        {
-          "text": "12 月 9 日的決定",
-          "start": 1109,
-          "chars": [
-            1111,
-            1116,
-            1116,
-            1122,
-            1122,
-            1127,
-            1127,
-            1132,
-            1137,
-            1139,
-            1144
-          ]
-        },
-        {
-          "text": "隔天還有 11 月物價",
-          "start": 1194,
-          "chars": [
-            1196,
-            1200,
-            1205,
-            1209,
-            1209,
-            1212,
-            1215,
-            1215,
-            1219,
-            1223,
-            1227
-          ]
-        },
-        {
-          "text": "目前都還沒確定",
-          "start": 1236,
-          "chars": [
-            1239,
-            1243,
-            1250,
-            1254,
-            1257,
-            1261,
-            1265
-          ]
-        }
-      ],
-      "keywords": [],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "12 月 9 日",
-          "frame": 1112
-        },
-        {
-          "id": "c2",
-          "text": "決定",
-          "frame": 1140
-        },
-        {
-          "id": "c3",
-          "text": "11 月物價",
-          "frame": 1213
-        },
-        {
-          "id": "c4",
-          "text": "還沒確定",
-          "frame": 1255
-        }
-      ],
-      "sub": "所以要看聯準會預計\n12 月 9 日的決定\n隔天還有 11 月物價\n目前都還沒確定",
-      "provider": "recording+fa",
-      "syllables": 33,
-      "words": [],
-      "charTimes": [
-        0,
-        0.12,
-        0.22,
-        0.34,
-        0.48,
-        0.64,
-        0.8,
-        1.02,
-        1.16,
-        1.34,
-        1.52,
-        1.7,
-        1.88,
-        2.06,
-        2.2,
-        2.28,
-        2.44,
-        4.18,
-        4.3,
-        4.48,
-        4.6,
-        4.713,
-        4.827,
-        4.94,
-        5.08,
-        5.22,
-        5.6,
-        5.74,
-        5.98,
-        6.1,
-        6.22,
-        6.34,
-        6.48
-      ],
-      "fa": {
-        "confidence": 0.853,
-        "minScore": 0.03
-      }
+     "text": "全年跌 33%",
+     "start": 190,
+     "chars": [
+      192,
+      197,
+      203,
+      203,
+      208,
+      213,
+      218
+     ]
     },
     {
-      "id": "s06",
-      "audio": null,
-      "audioFrame": 1315,
-      "audioSec": 2.2,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1304,
-      "durationFrames": 96,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1314,
-      "voiceEndFrame": 1381,
-      "stillFrame": 1379,
-      "subtitleWindow": [
-        1311,
-        1400
-      ],
-      "sourceWindow": [
-        1309,
-        1395
-      ],
-      "lines": [
-        {
-          "text": "你覺得差最多的",
-          "start": 1311,
-          "chars": [
-            1314,
-            1317,
-            1321,
-            1323,
-            1328,
-            1333,
-            1338
-          ]
-        },
-        {
-          "text": "是物價還是起點？",
-          "start": 1344,
-          "chars": [
-            1346,
-            1351,
-            1357,
-            1363,
-            1367,
-            1370,
-            1375,
-            1375
-          ]
-        }
-      ],
-      "keywords": [
-        {
-          "text": "差最多",
-          "start": 1323
-        },
-        {
-          "text": "物價還是起點",
-          "start": 1351
-        }
-      ],
-      "cues": [
-        {
-          "id": "c1",
-          "text": "你覺得",
-          "frame": 1315
-        },
-        {
-          "id": "c2",
-          "text": "差最多",
-          "frame": 1325
-        },
-        {
-          "id": "c3",
-          "text": "物價",
-          "frame": 1352
-        },
-        {
-          "id": "c4",
-          "text": "起點",
-          "frame": 1372
-        }
-      ],
-      "sub": "你覺得差最多的\n是物價還是起點？",
-      "provider": "recording+fa",
-      "syllables": 14,
-      "words": [],
-      "charTimes": [
-        0,
-        0.12,
-        0.24,
-        0.32,
-        0.48,
-        0.64,
-        0.8,
-        1.08,
-        1.24,
-        1.44,
-        1.66,
-        1.78,
-        1.9,
-        2.06
-      ],
-      "fa": {
-        "confidence": 0.972,
-        "minScore": 0.872
-      }
-    },
-    {
-      "id": "end",
-      "audio": null,
-      "audioFrame": 1390,
-      "audioSec": 0,
-      "headSilSec": 0,
-      "tailSilSec": 0,
-      "startFrame": 1390,
-      "durationFrames": 108,
-      "transitionFrames": 10,
-      "transition": {
-        "type": "fade",
-        "frames": 10,
-        "exit": [
-          0,
-          5
-        ],
-        "enter": [
-          3,
-          8
-        ]
-      },
-      "voiceStartFrame": 1400,
-      "voiceEndFrame": 1400,
-      "stillFrame": 1486,
-      "silent": true,
-      "subtitleWindow": null,
-      "sourceWindow": [
-        1395,
-        1498
-      ],
-      "lines": [],
-      "keywords": [],
-      "isEnd": true,
-      "cues": [],
-      "sub": "",
-      "provider": "estimate",
-      "syllables": 0,
-      "words": [],
-      "charTimes": []
+     "text": "這次會重演嗎？",
+     "start": 228,
+     "chars": [
+      230,
+      235,
+      240,
+      246,
+      251,
+      256,
+      256
+     ]
     }
-  ]
+   ],
+   "keywords": [
+    {
+     "text": "那斯達克",
+     "start": 165
+    }
+   ],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "12 月",
+     "frame": 43
+    },
+    {
+     "id": "c2",
+     "text": "連續升息",
+     "frame": 107
+    },
+    {
+     "id": "c3",
+     "text": "那斯達克",
+     "frame": 166
+    },
+    {
+     "id": "c4",
+     "text": "33%",
+     "frame": 209
+    }
+   ],
+   "sub": "市場預期美國\n12 月再升息\n2022 年連續升息\n科技股為主的那斯達克\n全年跌 33%\n這次會重演嗎？",
+   "provider": "estimate",
+   "syllables": 43,
+   "words": [],
+   "charTimes": [
+    0,
+    0.176,
+    0.351,
+    0.527,
+    0.702,
+    0.878,
+    1.264,
+    1.439,
+    1.615,
+    1.79,
+    1.966,
+    2.141,
+    2.527,
+    2.703,
+    2.878,
+    3.054,
+    3.229,
+    3.405,
+    3.58,
+    3.756,
+    3.931,
+    4.318,
+    4.493,
+    4.669,
+    4.844,
+    5.02,
+    5.195,
+    5.371,
+    5.546,
+    5.722,
+    5.897,
+    6.283,
+    6.459,
+    6.634,
+    6.81,
+    6.985,
+    7.161,
+    7.547,
+    7.722,
+    7.898,
+    8.073,
+    8.249,
+    8.424
+   ]
+  },
+  {
+   "id": "s02",
+   "audio": null,
+   "audioFrame": 281,
+   "audioSec": 8,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 270,
+   "durationFrames": 269,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 280,
+   "voiceEndFrame": 521,
+   "stillFrame": 529,
+   "subtitleWindow": [
+    277,
+    536
+   ],
+   "sourceWindow": [
+    275,
+    534
+   ],
+   "lines": [
+    {
+     "text": "先看那年",
+     "start": 277,
+     "chars": [
+      280,
+      285,
+      291,
+      296
+     ]
+    },
+    {
+     "text": "美國央行聯準會",
+     "start": 306,
+     "chars": [
+      309,
+      314,
+      320,
+      325,
+      331,
+      336,
+      342
+     ]
+    },
+    {
+     "text": "一年內把利率",
+     "start": 352,
+     "chars": [
+      354,
+      360,
+      365,
+      371,
+      377,
+      382
+     ]
+    },
+    {
+     "text": "從 0.5% 拉到 4.5%",
+     "start": 392,
+     "chars": [
+      394,
+      394,
+      400,
+      400,
+      406,
+      411,
+      411,
+      417,
+      422,
+      422,
+      428,
+      428,
+      434,
+      439
+     ]
+    },
+    {
+     "text": "期間物價",
+     "start": 449,
+     "chars": [
+      451,
+      457,
+      463,
+      468
+     ]
+    },
+    {
+     "text": "一度年增 9.1%",
+     "start": 478,
+     "chars": [
+      480,
+      486,
+      492,
+      497,
+      497,
+      503,
+      503,
+      508,
+      514
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "9.1%",
+     "start": 503
+    }
+   ],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "那年",
+     "frame": 292
+    },
+    {
+     "id": "c2",
+     "text": "0.5%",
+     "frame": 402
+    },
+    {
+     "id": "c3",
+     "text": "4.5%",
+     "frame": 429
+    },
+    {
+     "id": "c4",
+     "text": "9.1%",
+     "frame": 504
+    }
+   ],
+   "sub": "先看那年\n美國央行聯準會\n一年內把利率\n從 0.5% 拉到 4.5%\n期間物價\n一度年增 9.1%",
+   "provider": "estimate",
+   "syllables": 40,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.372,
+    0.558,
+    0.967,
+    1.153,
+    1.34,
+    1.526,
+    1.712,
+    1.898,
+    2.084,
+    2.493,
+    2.679,
+    2.865,
+    3.051,
+    3.237,
+    3.423,
+    3.833,
+    4.019,
+    4.205,
+    4.391,
+    4.577,
+    4.763,
+    4.949,
+    5.135,
+    5.321,
+    5.73,
+    5.916,
+    6.102,
+    6.288,
+    6.698,
+    6.884,
+    7.07,
+    7.256,
+    7.442,
+    7.628,
+    7.814
+   ]
+  },
+  {
+   "id": "s03",
+   "audio": null,
+   "audioFrame": 539,
+   "audioSec": 7.6,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 529,
+   "durationFrames": 256,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 539,
+   "voiceEndFrame": 768,
+   "stillFrame": 775,
+   "subtitleWindow": [
+    536,
+    782
+   ],
+   "sourceWindow": [
+    534,
+    780
+   ],
+   "lines": [
+    {
+     "text": "這次哪裡一樣？",
+     "start": 536,
+     "chars": [
+      538,
+      543,
+      548,
+      553,
+      558,
+      564,
+      564
+     ]
+    },
+    {
+     "text": "9 月又升息",
+     "start": 573,
+     "chars": [
+      575,
+      575,
+      580,
+      585,
+      591,
+      596
+     ]
+    },
+    {
+     "text": "11 月 10 日物價比預期高",
+     "start": 605,
+     "chars": [
+      607,
+      612,
+      612,
+      618,
+      618,
+      623,
+      628,
+      628,
+      633,
+      638,
+      644,
+      649,
+      654,
+      659,
+      665
+     ]
+    },
+    {
+     "text": "公債利率回到 5% 以上",
+     "start": 674,
+     "chars": [
+      676,
+      681,
+      686,
+      692,
+      697,
+      702,
+      702,
+      707,
+      712,
+      712,
+      718,
+      723
+     ]
+    },
+    {
+     "text": "輝達也跟著跌",
+     "start": 732,
+     "chars": [
+      734,
+      739,
+      745,
+      750,
+      755,
+      760
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "又升息",
+     "start": 585
+    }
+   ],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "一樣",
+     "frame": 560
+    },
+    {
+     "id": "c2",
+     "text": "9 月",
+     "frame": 576
+    },
+    {
+     "id": "c3",
+     "text": "物價",
+     "frame": 640
+    },
+    {
+     "id": "c4",
+     "text": "輝達",
+     "frame": 736
+    }
+   ],
+   "sub": "這次哪裡一樣？\n9 月又升息\n11 月 10 日物價比預期高\n公債利率回到 5% 以上\n輝達也跟著跌",
+   "provider": "estimate",
+   "syllables": 38,
+   "words": [],
+   "charTimes": [
+    0,
+    0.174,
+    0.347,
+    0.521,
+    0.694,
+    0.868,
+    1.249,
+    1.423,
+    1.596,
+    1.77,
+    1.943,
+    2.325,
+    2.499,
+    2.672,
+    2.846,
+    3.019,
+    3.193,
+    3.366,
+    3.54,
+    3.713,
+    3.887,
+    4.06,
+    4.234,
+    4.616,
+    4.789,
+    4.963,
+    5.136,
+    5.31,
+    5.483,
+    5.657,
+    5.83,
+    6.004,
+    6.177,
+    6.559,
+    6.732,
+    6.906,
+    7.079,
+    7.253,
+    7.426
+   ]
+  },
+  {
+   "id": "s04",
+   "audio": null,
+   "audioFrame": 785,
+   "audioSec": 5.8,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 775,
+   "durationFrames": 202,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 785,
+   "voiceEndFrame": 960,
+   "stillFrame": 967,
+   "subtitleWindow": [
+    782,
+    974
+   ],
+   "sourceWindow": [
+    780,
+    972
+   ],
+   "lines": [
+    {
+     "text": "哪裡不一樣？",
+     "start": 782,
+     "chars": [
+      784,
+      789,
+      795,
+      800,
+      806,
+      806
+     ]
+    },
+    {
+     "text": "物價最新年增 3.7%",
+     "start": 816,
+     "chars": [
+      818,
+      823,
+      829,
+      834,
+      840,
+      845,
+      845,
+      851,
+      851,
+      856,
+      862
+     ]
+    },
+    {
+     "text": "利率起點也不同",
+     "start": 872,
+     "chars": [
+      874,
+      879,
+      885,
+      890,
+      896,
+      901,
+      907
+     ]
+    },
+    {
+     "text": "這次已經在 4%",
+     "start": 917,
+     "chars": [
+      919,
+      924,
+      930,
+      935,
+      941,
+      941,
+      946,
+      952
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "3.7%",
+     "start": 851
+    }
+   ],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "不一樣",
+     "frame": 796
+    },
+    {
+     "id": "c2",
+     "text": "3.7%",
+     "frame": 852
+    },
+    {
+     "id": "c3",
+     "text": "起點",
+     "frame": 886
+    },
+    {
+     "id": "c4",
+     "text": "4%",
+     "frame": 948
+    }
+   ],
+   "sub": "哪裡不一樣？\n物價最新年增 3.7%\n利率起點也不同\n這次已經在 4%",
+   "provider": "estimate",
+   "syllables": 29,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.367,
+    0.551,
+    0.734,
+    1.138,
+    1.322,
+    1.505,
+    1.689,
+    1.872,
+    2.056,
+    2.239,
+    2.423,
+    2.606,
+    3.01,
+    3.194,
+    3.377,
+    3.561,
+    3.744,
+    3.928,
+    4.111,
+    4.515,
+    4.699,
+    4.882,
+    5.066,
+    5.249,
+    5.433,
+    5.616
+   ]
+  },
+  {
+   "id": "s05",
+   "audio": null,
+   "audioFrame": 977,
+   "audioSec": 8.2,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 967,
+   "durationFrames": 274,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 977,
+   "voiceEndFrame": 1223,
+   "stillFrame": 1231,
+   "subtitleWindow": [
+    974,
+    1238
+   ],
+   "sourceWindow": [
+    972,
+    1236
+   ],
+   "lines": [
+    {
+     "text": "10 月沒升",
+     "start": 974,
+     "chars": [
+      976,
+      981,
+      981,
+      986,
+      991,
+      996
+     ]
+    },
+    {
+     "text": "但有兩票想升",
+     "start": 1005,
+     "chars": [
+      1007,
+      1012,
+      1018,
+      1023,
+      1028,
+      1033
+     ]
+    },
+    {
+     "text": "所以要看聯準會預計",
+     "start": 1042,
+     "chars": [
+      1044,
+      1049,
+      1054,
+      1060,
+      1065,
+      1070,
+      1075,
+      1080,
+      1085
+     ]
+    },
+    {
+     "text": "12 月 9 日的決定",
+     "start": 1094,
+     "chars": [
+      1096,
+      1102,
+      1102,
+      1107,
+      1107,
+      1112,
+      1112,
+      1117,
+      1122,
+      1127,
+      1132
+     ]
+    },
+    {
+     "text": "隔天還有 11 月物價",
+     "start": 1141,
+     "chars": [
+      1144,
+      1149,
+      1154,
+      1159,
+      1159,
+      1164,
+      1169,
+      1169,
+      1174,
+      1179,
+      1185
+     ]
+    },
+    {
+     "text": "都還沒確定",
+     "start": 1194,
+     "chars": [
+      1196,
+      1201,
+      1206,
+      1211,
+      1216
+     ]
+    }
+   ],
+   "keywords": [],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "兩票",
+     "frame": 1019
+    },
+    {
+     "id": "c2",
+     "text": "12 月 9 日",
+     "frame": 1098
+    },
+    {
+     "id": "c3",
+     "text": "11 月物價",
+     "frame": 1166
+    },
+    {
+     "id": "c4",
+     "text": "還沒確定",
+     "frame": 1203
+    }
+   ],
+   "sub": "10 月沒升\n但有兩票想升\n所以要看聯準會預計\n12 月 9 日的決定\n隔天還有 11 月物價\n都還沒確定",
+   "provider": "estimate",
+   "syllables": 41,
+   "words": [],
+   "charTimes": [
+    0,
+    0.171,
+    0.342,
+    0.512,
+    0.683,
+    1.059,
+    1.23,
+    1.401,
+    1.572,
+    1.742,
+    1.913,
+    2.289,
+    2.46,
+    2.631,
+    2.802,
+    2.972,
+    3.143,
+    3.314,
+    3.485,
+    3.656,
+    4.032,
+    4.202,
+    4.373,
+    4.544,
+    4.715,
+    4.886,
+    5.057,
+    5.227,
+    5.603,
+    5.774,
+    5.945,
+    6.116,
+    6.287,
+    6.457,
+    6.628,
+    6.799,
+    6.97,
+    7.346,
+    7.517,
+    7.687,
+    7.858,
+    8.029
+   ]
+  },
+  {
+   "id": "s06",
+   "audio": null,
+   "audioFrame": 1241,
+   "audioSec": 2.8,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1231,
+   "durationFrames": 102,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1241,
+   "voiceEndFrame": 1325,
+   "stillFrame": 1323,
+   "subtitleWindow": [
+    1238,
+    1333
+   ],
+   "sourceWindow": [
+    1236,
+    1328
+   ],
+   "lines": [
+    {
+     "text": "你覺得差最多的",
+     "start": 1238,
+     "chars": [
+      1240,
+      1245,
+      1251,
+      1256,
+      1262,
+      1267,
+      1273
+     ]
+    },
+    {
+     "text": "是物價還是起點？",
+     "start": 1283,
+     "chars": [
+      1285,
+      1290,
+      1296,
+      1301,
+      1307,
+      1312,
+      1318,
+      1318
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "差最多",
+     "start": 1256
+    },
+    {
+     "text": "物價還是起點",
+     "start": 1290
+    }
+   ],
+   "cues": [
+    {
+     "id": "c1",
+     "text": "你覺得",
+     "frame": 1241
+    },
+    {
+     "id": "c2",
+     "text": "差最多",
+     "frame": 1258
+    },
+    {
+     "id": "c3",
+     "text": "物價",
+     "frame": 1292
+    },
+    {
+     "id": "c4",
+     "text": "起點",
+     "frame": 1314
+    }
+   ],
+   "sub": "你覺得差最多的\n是物價還是起點？",
+   "provider": "estimate",
+   "syllables": 14,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.553,
+    0.737,
+    0.921,
+    1.105,
+    1.511,
+    1.695,
+    1.879,
+    2.063,
+    2.247,
+    2.432,
+    2.616
+   ]
+  },
+  {
+   "id": "end",
+   "audio": null,
+   "audioFrame": 1323,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1323,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1333,
+   "voiceEndFrame": 1333,
+   "stillFrame": 1419,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1328,
+    1431
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
 }

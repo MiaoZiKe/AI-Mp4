@@ -3,7 +3,7 @@
 `videos/<slug>/plan.json` → `node scripts/dossier/build-script.mjs <slug>` → `script.json`（補 id、keywords、cues、片尾卡、頻道固定設定），再 `npm run validate <slug>`。範本在 `scripts/dossier/templates/<鏡型>.json`，版面參數已固定成審查較好的寫法。照片檔另做：`public/dossier/<slug>/<photoName>.jpg`（`make-photos.py`）。
 
 ## 頂層
-`slug`、`title`、`asOf`（YYYY/M/D，畫面「查證截至」）、`thesis`（一句主旨）、`endCard: { comment（2–4 字，最後一句念稿要念到）, next（下一集題目） }`、`cover: { title: ["兩行","封面字"], sub }`；可選 `voice`（預設 Charon／gemini-3.8-flash-tts／liguligu）、`places`（news.places）、`link`。
+`slug`、`title`、`asOf`（YYYY/M/D，畫面「查證截至」）、`thesis`（一句主旨）、`endCard: { comment（2–4 字，最後一句念稿要念到）, next（下一集題目）, tags?（選填，1–12 個本片關鍵字，換掉片尾地圖碎片上的共用預設字 8-K／10-Q…；中文 ≤3 字、英數 ≤6 字元，不足 12 個循環） }`、`cover: { title: ["兩行","封面字"], sub }`；可選 `voice`（預設 Charon／gemini-3.8-flash-tts／liguligu）、`places`（news.places）、`link`。
 
 ## 每一幕
 `{ type, narration, tts?, subtitle: {zh, en}, cues: [...], fields: {...}, sources: [...], keywords?, beat?, hold? }`
