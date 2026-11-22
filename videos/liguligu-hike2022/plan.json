@@ -36,7 +36,6 @@
     "styleBase": "用台灣人平常講話的口音，不特別捲舌、不兒化，像國際新聞記者把查到的事講清楚，語氣沉穩篤定、不拖尾音、不演，直接說："
   },
   "news": {
-    "tickerStatic": "非投資建議・出處見上方",
     "capEnPx": 38
   },
   "scenes": [
@@ -75,22 +74,28 @@
         "stampText": "2022 全年",
         "stampPos": "right",
         "photoSteps": [
+          "start+30",
           "c1+4",
           "c1+16",
           "c1+63",
           "c2+6",
           "c2+28",
+          "c3-6",
+          "c3+30",
           "c4+55",
           "c4+80"
         ],
         "photoStepP": [
           0.42,
-          0.52,
-          0.6,
-          0.7,
+          0.45,
+          0.5,
+          0.56,
+          0.62,
+          0.68,
+          0.74,
           0.8,
-          0.88,
-          0.94,
+          0.86,
+          0.93,
           1.0
         ],
         "photoColor": true,
@@ -264,6 +269,7 @@
         "photoDir": "down",
         "photoSteps": [
           "c2-4",
+          "c2+30",
           "c2+60",
           "c2+82",
           "c3",
@@ -274,6 +280,7 @@
         "photoStepP": [
           0.19,
           0.45,
+          0.48,
           0.52,
           0.6,
           0.68,
@@ -339,9 +346,9 @@
         "rightSrc": "最新一期年增率",
         "rightTag": "媒體報導（AP 轉載）",
         "rightKind": "report",
-        "rightBigAt": "c2-4",
-        "rightSrcAt": "c2+8",
-        "rightTagAt": "c2+14",
+        "rightBigAt": "c2-38",
+        "rightSrcAt": "c2-26",
+        "rightTagAt": "c2-20",
         "rightCount": true,
         "leftCount": true,
         "rightMast": "媒體報導",
@@ -353,12 +360,14 @@
         "photoDir": "down",
         "photoSteps": [
           "c1+55",
+          "c2+25",
           "c3",
           "c4-2"
         ],
         "photoStepP": [
           0.38,
           0.43,
+          0.55,
           0.75,
           1.0
         ],
@@ -419,7 +428,7 @@
         "lt": "接下來看",
         "rowPx": 72,
         "photoSteps": [
-          "c2-30",
+          "c1+10",
           "c2+30",
           "c2+55",
           "c3-4"
@@ -433,7 +442,7 @@
         ],
         "photoDir": "down",
         "photoColor": true,
-        "leftRowAt": "c2",
+        "leftRowAt": "c1+28",
         "rightRowAt": "c3",
         "tagAt": "c4-4"
       },

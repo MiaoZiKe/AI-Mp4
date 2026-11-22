@@ -150,7 +150,7 @@ for (let i = 0; i < fin; i++) { const g = Math.sin((Math.PI / 2) * (i / fin)); f
 fs.writeFileSync(cutPath, wavBuf(cutPcm, sr, wav.ch));
 
 // ── 4. 補停頓 → 時間軸 → script.json ──
-const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0", "--max-scene", "6", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
+const pauseOut = execFileSync("python3", [path.join(ROOT, "scripts/dossier/insert-pauses.py"), slug, rel(cutPath), "--scene", "0.7", "--sentence", "0", "--max-scene", "6", "--lead", "0.4", "--out", rel(pausedPath)], { cwd: ROOT, maxBuffer: 1 << 26 }).toString();
 console.log(pauseOut.trimEnd());
 const nIns = (pauseOut.match(/^\s+\+[\d.]+ 秒/gm) ?? []).length;
 const durM = /（([\d.]+) → ([\d.]+) 秒）/.exec(pauseOut), totalSec = durM ? Number(durM[2]) : NaN;

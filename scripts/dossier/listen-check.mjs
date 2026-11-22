@@ -2,7 +2,7 @@
 // 並逐字轉寫，與 script.json 的 tts（去標點）比對算 CER，列出漏字／多字／錯字。
 // 用法：node scripts/dossier/listen-check.mjs <slug> [--file out/xxx.mp4] [--models=a,b] [--cer=0.03]
 // 結果寫 out/<slug>/listen-check.json。exit 0＝通過；1＝有被標的問題或 CER>3%；2＝模型都不可用（聽感驗證未完成，視為不通過）。
-// 模型順序：gemini-3.8-flash → gemini-2.5-flash → gemini-2.5-flash-lite。每個模型 timeout 120 秒、重試 2 次。
+// 模型順序：gemini-3.8-flash → gemini-2.5-pro → 再用 v1beta/models 列表挑「支援 generateContent、名稱像 gemini 文字／多模態模型」的其他模型（排除 tts、image、embedding、live、veo、imagen、robotics…）依序試；全失敗才 exit 2。--models=a,b 可指定自己的清單。每個模型 timeout 120 秒、重試 2 次。
 // 金鑰由代理注入（header x-goog-api-key: injected-by-proxy）；需 NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt（沒設會自動補）。
 import fs from "node:fs";
 import path from "node:path";
@@ -22,8 +22,23 @@ const jsonOut = path.join(outDir, "listen-check.json");
 const file = opt("file") ? path.resolve(ROOT, opt("file")) : [`out/${slug}.mp4`, `out/web/${slug}/video.mp4`].map((p) => path.join(ROOT, p)).find((p) => fs.existsSync(p));
 if (!file || !fs.existsSync(file)) { console.error(`✖ 找不到 ${slug} 的成品`); process.exit(2); }
 const CER_MAX = Number(opt("cer") ?? 0.03);
-const MODELS = (opt("models") ?? "gemini-3.8-flash,gemini-2.5-flash,gemini-2.5-flash-lite").split(",");
+let MODELS = (opt("models") ?? "gemini-3.8-flash,gemini-2.5-pro").split(",");
 const BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+// 其他可用模型：ListModels 查得到、支援 generateContent、看起來能吃音訊（gemini 系列，排除專用的 tts／image／embedding 等）
+if (!opt("models")) {
+  try {
+    const lr = await fetch(`${BASE}?pageSize=200`, { signal: AbortSignal.timeout(30000) });
+    if (lr.ok) {
+      const lj = await lr.json();
+      const bad = /tts|image|embed|imagen|veo|live|native-audio|robotics|computer-use|learnlm|aqa|gemma|banana|lyria/i;
+      const extra = (lj.models ?? []).filter((m) => (m.supportedGenerationMethods ?? []).includes("generateContent") && /^models\/gemini/.test(m.name) && !bad.test(m.name))
+        .map((m) => m.name.replace(/^models\//, "")).filter((n) => !MODELS.includes(n))
+        .sort((a, b) => (/flash/.test(a) && !/lite/.test(a) ? 0 : /lite/.test(a) ? 2 : 1) - (/flash/.test(b) && !/lite/.test(b) ? 0 : /lite/.test(b) ? 2 : 1) || (a < b ? 1 : -1));
+      MODELS = [...MODELS, ...extra];
+      console.error(`  ℹ 模型清單：${MODELS.join(" → ")}`);
+    } else console.error(`  ⚠ ListModels HTTP ${lr.status}，只用預設兩個`);
+  } catch (e) { console.error(`  ⚠ ListModels 失敗：${String(e.message).slice(0, 100)}，只用預設兩個`); }
+}
 
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", slug, "script.json"), "utf8"));
 const spoken = script.scenes.filter((s) => !s.silent).map((s) => s.tts ?? s.narration);
