@@ -76,7 +76,13 @@ for a, b in zip(qs, qe):
     pauses.append({"start": round(float(a), 2), "dur": round(float(b - a), 2), "kind": kind, "afterCharIndex": i, "context": ctx})
 
 errs, infos = [], []
+# 主控 11/22：script.json 的 voice.acceptedPauses＝[{ "sec": 秒, "note": 理由 }] 逐處接受（±0.15 秒），降為 info 並照樣計入總數
+accepted = (sc.get("voice") or {}).get("acceptedPauses") or []
+def _acc(p): return next((a for a in accepted if abs(float(a["sec"]) - p["start"]) <= 0.15), None)
 for p in pauses:
+    a = _acc(p)
+    if a and p["kind"] in ("inside_sentence", "comma"):
+        p["accepted"] = a.get("note", "已接受"); infos.append(f"{p['start']:.2f}s 停頓 {p['dur']:.2f} 秒（{p['context']}）：主控已接受（{p['accepted']}）"); continue
     if p["kind"] == "inside_sentence": errs.append(f"{p['start']:.2f}s 句內停頓 {p['dur']:.2f} 秒（{p['context']}，念稿該處沒有標點）")
     elif p["kind"] == "comma":
         if p["dur"] > 0.45: errs.append(f"{p['start']:.2f}s 逗號處停頓 {p['dur']:.2f} 秒 >0.45（算句中停頓）")

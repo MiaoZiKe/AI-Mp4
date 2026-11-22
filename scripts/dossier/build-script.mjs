@@ -55,7 +55,7 @@ function fill(node, fields, where, used) {
     if (whole) return get(whole[1], whole[2], whole[3]);
     return s.replace(PH, (_, name, opt, def) => { const v = get(name, opt, def); return v === REMOVE ? "" : String(v); });
   }
-  if (Array.isArray(node)) return node.map((x) => fill(x, fields, where, used));
+  if (Array.isArray(node)) return node.map((x) => fill(x, fields, where, used)).filter((x) => x !== REMOVE);
   if (node && typeof node === "object") {
     const out = {}; let removed = false;
     for (const [k, v] of Object.entries(node)) {
@@ -138,7 +138,7 @@ for (const [i, sc] of (plan.scenes ?? []).entries()) {
 
 if (plan.endCard) scenes.push({
   id: "end", narration: "", subtitle: { zh: "", en: "" }, keywords: [], cues: [], beat: "cta", component: "EndCard",
-  silent: true, durationSec: 3.6, props: { panel: "end", endCard: { ...(plan.endCard.comment ? { comment: plan.endCard.comment } : {}), ...(plan.endCard.next ? { next: plan.endCard.next } : {}), ...(plan.endCard.tags?.length ? { tags: plan.endCard.tags } : {}) } }, sources: [],
+  silent: true, durationSec: 3.6, ...(plan.endCard.cutDelayF ? { cutDelayF: plan.endCard.cutDelayF } : {}), props: { panel: "end", endCard: { ...(plan.endCard.comment ? { comment: plan.endCard.comment } : {}), ...(plan.endCard.next ? { next: plan.endCard.next } : {}), ...(plan.endCard.tags?.length ? { tags: plan.endCard.tags } : {}) } }, sources: [],
 });
 
 const script = {

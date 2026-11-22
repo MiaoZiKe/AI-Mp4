@@ -101,13 +101,13 @@ const Tag: React.FC<{ tag: TagSpec; f: number; big?: boolean }> = ({ tag, f, big
 };
 
 /** 黑白低對比照片：遮罩擦入、極慢推近、細框；圖說在照片下面（都要標「示意」） */
-type PhotoOpt = { stepAts?: number[]; stepP?: number[]; dir?: Dir; color?: boolean };
+type PhotoOpt = { stepAts?: number[]; stepP?: number[]; stepDurs?: number[]; dir?: Dir; color?: boolean };
 /** 選填（2026/11/21）：stepAts＝簡圖分段畫出（at 先露出第一段，之後每個時間點再擦出下一段，像線段一段一段畫上去）；stepP＝每段畫到的比例（0–1，預設平均）；
  *  dir＝分段擦出的方向（預設 right）；color＝彩色資料圖不蓋暗色壓色。沒填就是原本的樣子。 */
 const stepReveal = (f: number, at: number, o: PhotoOpt) => {
   const stops = [at, ...(o.stepAts ?? [])], P = stops.map((_, i) => o.stepP?.[i] ?? (i + 1) / stops.length);
   let p = 0;
-  stops.forEach((s, i) => { if (f >= s) p = (i ? P[i - 1] : 0) + (P[i] - (i ? P[i - 1] : 0)) * tween(f, s, M.stepWipe, EASE.move); });
+  stops.forEach((s, i) => { if (f >= s) p = (i ? P[i - 1] : 0) + (P[i] - (i ? P[i - 1] : 0)) * tween(f, s, o.stepDurs?.[i] ?? M.stepWipe, EASE.move); });
   return p;
 };
 const Photo: React.FC<{ slug: string; name: string; f: number; at: number; x: number; y: number; w: number; h: number; caption?: string; life: number; endAt?: number; opt?: PhotoOpt; children?: React.ReactNode }> = ({ slug, name, f, at, x, y, w, h, caption, life, endAt, opt, children }) => {
@@ -222,7 +222,7 @@ const Hook: React.FC<PanelProps> = ({ sh, f, slug }) => {
         <Fade f={f} at={c.at + 4} style={{ left: cx + 14, top: DY + 14, ...sans(32, T.weight.bold, T.text2), letterSpacing: "0.2em" }}>{c.label}</Fade>
         <Reveal f={f} at={c.at + 6} style={{ left: cx + 12, top: DY + 62, paddingBottom: 14, ...serif(76) }}><Marked f={f} at={c.markAt} w={T.stroke.line} gap={4}>{c.text}</Marked></Reveal>
       </> : null}
-      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, dir: ph.dir, color: ph.color }} x={PX} y={DY} w={L.INNER_W - PX} h={DH} caption={ph.caption} life={sh.end - sh.start} /> : null}
+      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, stepDurs: ph.stepDurs, dir: ph.dir, color: ph.color }} x={PX} y={DY} w={L.INNER_W - PX} h={DH} caption={ph.caption} life={sh.end - sh.start} /> : null}
       {p.ask ? <SolidAsk text={p.ask} style={{ right: 0, top: 318 }} /> : null}
       {p.stamp ? <Stamp text={p.stamp.text} f={f} at={p.stamp.at} style={p.stamp.pos === "right" ? { right: 8, top: 46 } : { left: 250, top: 214 }} /> : null}
       {p.tag ? <div style={{ position: "absolute", ...(ph ? { right: 0, top: 150 } : { left: cx + 14, top: DY + 196 }) }}><Tag tag={p.tag} f={f} /></div> : null}
@@ -327,14 +327,20 @@ const Versus: React.FC<PanelProps> = ({ sh, f, slug }) => {
       <Fade f={f} at={r.headAt} style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", border: `${T.stroke.hair}px dashed ${T.hair}` }}>{null}</Fade>
       <Reveal f={f} at={r.at} dir="down" style={{ left: RX, top: CY, width: CW, height: CH, boxSizing: "border-box", background: T.panel, border: `${T.stroke.hair}px solid ${T.panelLine}`, padding: "18px 34px" }}>
         <div style={{ marginTop: 16, width: 64, height: T.stroke.mark, background: r.masthead ? "transparent" : T.text3 }} />
-        {(r.big as string[]).map((t, k) => <div key={k} style={{ marginTop: k ? 10 : 84, ...serif(r.bigPx ?? 112), ...(cpt ? { opacity: f >= r.bigAt + k * 6 ? 1 : 0 } : { clipPath: clip(wipeP(f, r.bigAt + k * 6), "right"), opacity: wipeP(f, r.bigAt + k * 6) > 0 ? 1 : 0 }) }}>{r.count ? <Counted text={t} f={f} at={r.bigAt + k * 6} /> : t}</div>)}
+        {(r.big as string[]).map((t, k, arr) => {
+          // 選填（2026/11/22）：bigAts＝每一行各自的出現時間；bigOutAts＝這一行在這個時間消失（後面的行補位，用來「先放問句、念到數字再換成數字」）；沒填就是原本每行 +6 幀
+          const at = (r.bigAts as number[] | undefined)?.[k] ?? r.bigAt + k * 6, out = (r.bigOutAts as number[] | undefined)?.[k];
+          if (out !== undefined && f >= out) return null;
+          const firstShown = !arr.some((_, j) => j < k && !((r.bigOutAts as number[] | undefined)?.[j] !== undefined && f >= (r.bigOutAts as number[])[j]));
+          return <div key={k} style={{ marginTop: firstShown ? 84 : 10, ...serif(r.bigPx ?? 112), ...(cpt ? { opacity: f >= at ? 1 : 0 } : { clipPath: clip(wipeP(f, at), "right"), opacity: wipeP(f, at) > 0 ? 1 : 0 }) }}>{(r.counts as boolean[] | undefined)?.[k] ?? r.count ? <Counted text={t} f={f} at={at} /> : t}</div>;
+        })}
       </Reveal>
       {r.masthead ? <Masthead f={f} at={r.masthead.at} x={RX + 34} y={CY + 30} w={CW - 68} name={r.masthead.name} date={r.masthead.date} /> : null}
       {src(0, l.src, l.srcAt)}
       {src(RX, r.src, r.srcAt)}
       <div style={{ position: "absolute", left: 0, top: TAG_Y }}><Tag tag={l.tag} f={f} /></div>
       <div style={{ position: "absolute", left: RX, top: TAG_Y }}><Tag tag={r.tag} f={f} /></div>
-      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, dir: ph.dir, color: ph.color }} x={0} y={PY} w={L.INNER_W} h={310} caption={ph.caption} life={sh.end - sh.start} /> : null}
+      {ph ? <Photo slug={slug} name={ph.name} f={f} at={ph.at} endAt={ph.endAt} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, stepDurs: ph.stepDurs, dir: ph.dir, color: ph.color }} x={0} y={PY} w={L.INNER_W} h={310} caption={ph.caption} life={sh.end - sh.start} /> : null}
       {p.mid && !cpt ? (
         <Fade f={f} at={p.mid.at} style={{ left: (L.INNER_W - 76) / 2, top: CY + CH / 2 - 38, width: 76, height: 76, boxSizing: "border-box", borderRadius: 38, background: T.bg, border: `${T.stroke.frame}px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <span style={{ ...serif(48, T.weight.head, T.accentText), lineHeight: 1 }}>{p.mid.text}</span>
@@ -350,7 +356,7 @@ const Claim: React.FC<PanelProps> = ({ sh, f, slug }) => {
   return (
     <>
       <Reveal f={f} at={h.at} style={{ left: 0, top: TOP, paddingBottom: 16, paddingRight: 8, ...serif(116) }}>{withMark(h.text, h.mark, f, h.markAt)}</Reveal>
-      <Photo slug={slug} name={ph.name} f={f} at={ph.at} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, dir: ph.dir, color: ph.color }} x={0} y={PY} w={PS} h={PS} caption={ph.caption} life={sh.end - sh.start}>
+      <Photo slug={slug} name={ph.name} f={f} at={ph.at} opt={{ stepAts: ph.stepAts, stepP: ph.stepP, stepDurs: ph.stepDurs, dir: ph.dir, color: ph.color }} x={0} y={PY} w={PS} h={PS} caption={ph.caption} life={sh.end - sh.start}>
         {ph.date ? <div style={{ position: "absolute", left: 0, top: 0, padding: "10px 18px", background: T.bg, ...NUMB, fontWeight: T.weight.num, fontSize: 40, lineHeight: 1, color: T.text, opacity: fadeP(f, ph.dateAt) }}>{ph.date}</div> : null}
       </Photo>
       {q.masthead ? <Masthead f={f} at={q.byAt} x={QX} y={PY} w={L.INNER_W - QX} name={q.masthead.name} date={q.masthead.date} /> : (
@@ -394,7 +400,7 @@ const NotEqual: React.FC<PanelProps> = ({ sh, f }) => {
 
 // ── 鏡 6 還不知道的：調查（示意照片）還沒結論；本人的說明是一張空白的紙 ──
 const Pending: React.FC<PanelProps> = ({ sh, f, slug }) => {
-  const p = sh.p, l = p.left, r = p.right, CW = 445, RX = 475, TOP = 40, CH = 430, FX = 62, FY = 170, FW = CW - 124, FH = 96;
+  const p = sh.p, l = p.left, r = p.right, CW = 445, RX = 475, TOP = 40, CH = p.cardH ?? 430, FX = 62, FY = 170, FW = CW - 124, FH = 96;
   const row = (x: number, text: string, at: number) => (
     <>
       <Rule f={f} at={at} x={x} y={TOP + CH + 84} len={96} vertical color={T.accent} w={T.stroke.mark} dur={8} />
@@ -403,7 +409,7 @@ const Pending: React.FC<PanelProps> = ({ sh, f, slug }) => {
   );
   return (
     <>
-      <Photo slug={slug} name={l.photo.name} f={f} at={l.photo.at} opt={{ stepAts: l.photo.stepAts, stepP: l.photo.stepP, dir: l.photo.dir, color: l.photo.color }} x={0} y={TOP} w={CW} h={CH} caption={l.photo.caption} life={sh.end - sh.start} />
+      <Photo slug={slug} name={l.photo.name} f={f} at={l.photo.at} opt={{ stepAts: l.photo.stepAts, stepP: l.photo.stepP, stepDurs: l.photo.stepDurs, dir: l.photo.dir, color: l.photo.color }} x={0} y={TOP} w={CW} h={CH} caption={l.photo.caption} life={sh.end - sh.start} />
       {row(0, l.row, l.rowAt)}
       <Reveal f={f} at={r.at} dir="down" style={{ ...paperBox(RX, TOP, CW, CH) }}>
         <DocHead title={<Typed text={r.title} f={f} at={r.titleAt} />} />
@@ -432,7 +438,7 @@ const Ask: React.FC<PanelProps> = ({ sh, f, slug }) => {
       </Fade> : null}
       <Rule f={f} at={nx.at} x={0} y={PY - 70} len={L.INNER_W} color={T.line} />
       <Fade f={f} at={nx.at + 2} style={{ left: 0, top: PY - 54, ...sans(34, T.weight.bold, T.accentText), letterSpacing: "0.24em" }}>{nx.label}</Fade>
-      <Photo slug={slug} name={nx.photo.name} f={f} at={nx.photo.at} opt={{ stepAts: nx.photo.stepAts, stepP: nx.photo.stepP, dir: nx.photo.dir, color: nx.photo.color }} x={0} y={PY} w={L.INNER_W} h={PH} life={sh.end - nx.photo.at + 30}>
+      <Photo slug={slug} name={nx.photo.name} f={f} at={nx.photo.at} opt={{ stepAts: nx.photo.stepAts, stepP: nx.photo.stepP, stepDurs: nx.photo.stepDurs, dir: nx.photo.dir, color: nx.photo.color }} x={0} y={PY} w={L.INNER_W} h={PH} life={sh.end - nx.photo.at + 30}>
         <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 240, background: `linear-gradient(180deg, ${T.photoFade0} 0%, ${T.photoFade} 78%)` }} />
         <div style={{ position: "absolute", right: 0, top: 0, padding: "10px 16px", background: T.bg, ...sans(L.NOTE_PX, T.weight.body, T.text2), lineHeight: 1 }}>{nx.photo.caption}</div>
         <div style={{ position: "absolute", left: 36, bottom: 34, ...serif(84) }}><Typed text={nx.title} f={f} at={nx.titleAt} /></div>

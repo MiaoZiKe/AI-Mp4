@@ -76,26 +76,23 @@ txt(d, (150, base + 40), '2022', 128, REDT, 'lt', bold=2)
 txt(d, (1320, base + 40), '2026', 128, COOL, 'rt', bold=2)
 save(im, 'climb')
 
-# ── y2022（s02 versus 下方 920×310，分段畫出 right）：2022 年一條時間軸：3/16 首次升息上限 0.5%（F1）→ 12/14 第 7 次升息上限 4.5%（F2）；6 月物價年增 9.1%（F3，標在軸上的旗子）
+# ── y2022（s02 versus 下方 920×310，分段畫出 right）：2022 年一條時間軸：3/16 首次升息上限 0.5%（F1）→ 12/14 第 7 次升息上限 4.5%（F2）
+# 第 7 版：拿掉「6 月物價」旗子與「利率上限（%）」標題（9.1% 由右欄卡片念到才出），圖撐滿高度、加橫向格線，擦出時不會有一大塊空
 W, H = 1400, 472
 im, d = new(W, H)
 X0, X1 = 90, 1330
 X = lambda m: X0 + (X1 - X0) * (m - 1) / 12          # m＝月份（1＝1/1），可小數
-base, top, vmax = 380, 130, 5
+base, top, vmax = 390, 112, 5
 Y = lambda v: base - (base - top) * v / vmax
-d.line([X0, base, X1, base], fill=TXT3, width=8)
-for m in (1, 4, 7, 10): txt(d, (X(m), base + 18), f'{m} 月', 50, TXT3, 'mt', bold=1)
+for g in (1, 2, 3, 4, 5): d.line([X0 - 30, Y(g), X1 + 30, Y(g)], fill=GRID, width=4)
+d.line([X0 - 30, base, X1 + 30, base], fill=TXT3, width=8)
+for m in (1, 4, 7, 10): txt(d, (X(m), base + 14), f'{m} 月', 50, TXT3, 'mt', bold=1)
 a, b = (X(3.5), Y(0.5)), (X(12.45), Y(4.5))
-d.line([a, b], fill=RED, width=20)
-dot(d, a, 26, RED); dot(d, b, 26, RED)
-txt(d, (a[0] - 30, a[1] - 30), '3/16  0.5%', 56, REDT, 'rb')          # 標籤在點的左上方，線往右上走，不壓線
-txt(d, (b[0] - 44, b[1] - 34), '12/14  4.5%', 60, REDT, 'rb')
-fx = X(6.5)                                             # 6 月物價旗子：竿子只畫到紅線上方 24px，不穿過線
-ly = a[1] + (b[1] - a[1]) * (fx - a[0]) / (b[0] - a[0])
-d.line([fx, 118, fx, ly - 24], fill=TXT2, width=6)
-d.rectangle([fx - 165, 40, fx + 165, 118], fill=PAPER)
-txt(d, (fx, 79), '6 月物價 9.1%', 50, BG, 'mm', bold=2)
-txt(d, (X0, 20), '利率上限（%）', 50, TXT2, 'lt', bold=2)
+d.line([a, b], fill=RED, width=22)
+dot(d, a, 28, RED); dot(d, b, 28, RED)
+txt(d, (a[0] - 34, a[1] - 22), '3/16  0.5%', 62, REDT, 'rb')          # 標籤在點的左上方，線往右上走，不壓線
+txt(d, (b[0] - 48, b[1] - 30), '12/14  4.5%', 66, REDT, 'rb')
+txt(d, (30, 10), '2022 年', 96, TXT2, 'lt', bold=2)
 save(im, 'y2022')
 
 # ── same（s03 versus 下方 920×310，分段畫出 down）：哪裡一樣（只放查到的）：在升息 2022/3/16 起（F1）｜2026/9/16 又升（F5）；物價 2022/6 9.1%（F3）｜11/10 高於預期（F8）；科技股 那斯達克 −33%（F4）｜輝達跟著跌（11/10）
@@ -112,40 +109,46 @@ for k, (lab, l, r) in enumerate(rows):
     dot(d, (cols[1] - 40, y), 18, COOL); txt(d, (cols[1], y), r, 62, COOL, 'lm')
 save(im, 'same')
 
-# ── level（s04 versus 下方 920×310，分段畫出 down＝先 2022 列、再現在列）：同一刻度 0–5%。2022：起點 0.5（F1）一年升到 4.5（F2）；現在：起點已在 4.0（F5），12 月再升只是預期（F10）
-# 第 5 版：不畫外框（4b 版「4.5」「12月？」壓到框線），數字放在條的右邊空白
+# ── level（s04 versus 下方 920×310，分段畫出 down，三列＝物價｜2022 起點｜現在起點）：第 7 版重畫，物價列在最上面（念到物價就能先擦出來），三列之間各有 26px 空縫當停點
+# 物價 2022/6 9.1%（F3）、2026/9 3.7%（F6）刻度 0–10；起點 2022：0.5（F1）一年升到 4.5（F2）；現在已在 4.0（F5），12 月再升只是預期（F10）；起點兩列刻度 0–5
 im, d = new(W, H)
-X0, X1, vmax = 250, 1110, 5
-X = lambda v: X0 + (X1 - X0) * v / vmax
 hh = 62
-cy = 100
+X0, X1 = 250, 1110
+XA = lambda v: X0 + (X1 - X0) * v / 10
+cy = 75
+txt(d, (24, cy), '物價', 76, TXT, 'lm')
+d.rectangle([X0, cy - hh, XA(9.1), cy + hh], fill=RED)
+d.rectangle([X0, cy - 30, XA(3.7), cy + 30], fill=COOL)
+txt(d, (X0 + 20, cy), '現在 3.7%', 52, BG, 'lm', bold=2)
+txt(d, (XA(3.7) + 36, cy), '2022/6', 52, BG, 'lm', bold=2)
+txt(d, (XA(9.1) + 24, cy), '9.1%', 84, REDT, 'lm')
+X = lambda v: X0 + (X1 - X0) * v / 5
+cy = 225
 txt(d, (24, cy), '2022', 76, REDT, 'lm')
 d.rectangle([X0, cy - hh, X(0.5), cy + hh], fill=RED)
 d.rectangle([X(0.5), cy - 20, X(4.5) - 56, cy + 20], fill=REDT)
 d.polygon([(X(4.5) - 64, cy - 52), (X(4.5), cy), (X(4.5) - 64, cy + 52)], fill=REDT)
 txt(d, (X(0.5) + 24, cy - 32), '起點 0.5', 54, TXT, 'lb', bold=2)
 txt(d, (X(4.5) + 24, cy), '4.5', 84, REDT, 'lm')
-cy = 280
+cy = 375
 txt(d, (24, cy), '現在', 76, COOL, 'lm')
 d.rectangle([X0, cy - hh, X(4.0), cy + hh], fill=COOL)
 txt(d, (X(2.0), cy), '起點已在 4', 72, BG, 'mm')
 dashed_box(d, X(4.0) + 6, cy - hh, X(4.25), cy + hh, w=8, fill=COOL)
 txt(d, (X(4.25) + 24, cy), '12 月？', 60, COOL, 'lm')
-for g in range(6):
-    d.line([X(g), 380, X(g), 396], fill=TXT3, width=4)
-    txt(d, (X(g), 404), f'{g}%', 50, TXT3, 'mt', bold=1)
 save(im, 'level')
 
 # ── dates（s05 pending 左，分段畫出 down）：日程（F11，預計）：11/21 查證 → 12/9 聯準會決議（預計）→ 12/10 11 月物價（預計）
-im, d = new(1400, 1350)
+# 第 7 版：卡片加高到 445×540（plan.json cardH＝540），圖 1400×1698，三項之間各有空縫當停點，下方不再空
+im, d = new(1400, 1698)
 xs = 150
-d.line([xs, 150, xs, 1200], fill=GRID, width=12)
-for y, dd, lab, c, ct in ((190, '11/21', '查證截至今天', TXT3, TXT2), (610, '12/9', '聯準會決議', RED, REDT), (1030, '12/10', '11 月物價', COOL, COOL)):
+d.line([xs, 200, xs, 1560], fill=GRID, width=12)
+for y, dd, lab, c, ct in ((250, '11/21', '查證截至今天', TXT3, TXT2), (790, '12/9', '聯準會決議', RED, REDT), (1330, '12/10', '11 月物價', COOL, COOL)):
     dot(d, (xs, y), 70, c)
     dot(d, (xs, y), 34, BG)
-    txt(d, (290, y - 20), dd, 190, ct, 'lb')
-    txt(d, (290, y + 30), lab, 110, TXT, 'lt')
-txt(d, (1360, 1330), '日期為預計', 96, TXT3, 'rb', bold=1)
+    txt(d, (290, y - 20), dd, 200, ct, 'lb')
+    txt(d, (290, y + 36), lab, 116, TXT, 'lt')
+txt(d, (1360, 1672), '日期為預計', 96, TXT3, 'rb', bold=1)
 save(im, 'dates')
 
 # ── steps（s06 ask 920×380，分段畫出 right）：首尾呼應 hook 的線：2022/3 0.5 → 2022/12 4.5（紅實線）；2026/9 4.0（青）；12 月虛線格＋問號（未決定）

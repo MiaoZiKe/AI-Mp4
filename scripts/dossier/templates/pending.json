@@ -4,8 +4,8 @@
     "optional": "選填（2026/11/21，沒填就是原本的樣子）：rowPx、photoSteps（簡圖分段畫出的時間點陣列）、photoStepP（每段畫到的比例 0–1）、photoDir（right｜down）、photoColor（true＝彩色資料圖，不蓋暗色）；2026/11/22 再加 leftRowAt／rightRowAt／tagAt（兩列與標籤提早出，避免下方空著）" },
   "props": {
     "panel": "pending",
-    "rowPx": "{{rowPx?}}",
-    "left": { "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "at": "start-20", "stepAts": "{{photoSteps?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" }, "row": "{{leftRow}}", "rowAt": "{{leftRowAt|c2}}" },
+    "rowPx": "{{rowPx?}}", "cardH": "{{cardH?}}",
+    "left": { "photo": { "name": "{{photoName}}", "caption": "{{photoCaption}}", "at": "start-20", "stepAts": "{{photoSteps?}}", "stepDurs": "{{photoStepDurs?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" }, "row": "{{leftRow}}", "rowAt": "{{leftRowAt|c2}}" },
     "right": {
       "title": "{{rightTitle}}", "field": "{{rightField|（未公布）}}", "note": "示意，非文件原件",
       "at": "start-16", "titleAt": "start-12", "frameAt": "c1+6", "row": "{{rightRow}}", "rowAt": "{{rightRowAt|c3}}"

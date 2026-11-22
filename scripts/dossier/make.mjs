@@ -132,18 +132,18 @@ if (STAGE === "voice") {
   const sentP = ps.filter((q) => q.kind === "sentence_end").map((q) => q.dur);
   const pureRate = span > 0 ? +((pd.chars ?? 0) / (span - pauseSum)).toFixed(2) : null, withPause = span > 0 ? +((pd.chars ?? 0) / span).toFixed(2) : null;
   const counted = ps.filter((q) => !(q.kind === "comma" && q.dur <= 0.45)).length;
-  const rateOk = pureRate !== null && pureRate <= 5.0;
+  const rateOk = pureRate !== null && pureRate <= 5.5 && withPause !== null && withPause <= 4.3; // 主控 11/22：純念稿 ≤5.5（以聽感驗證為準）、含停頓 ≤4.3
   const gates = Object.fromEntries(gateRows.map((g) => [g.gate, g.pass ? "pass" : "FAIL"]));
   const pass = gateRows.every((g) => g.pass) && rateOk;
   const sc0 = readJson(path.join(vdir, "script.json"));
   const gj = {
     slug, at: new Date().toISOString(), wav: wavRel, sha256: sha(wavAbs), model: sc0.voice?.model, voiceName: sc0.voice?.voiceName,
     wavSec: +ffprobeDur(wavAbs).toFixed(2), firstOnsetSec: pd.firstSec, lastCharSec: pd.lastSec, chars: pd.chars,
-    pureRate, rateWithPauses: withPause, rateLimit: 5.0, rateOk,
+    pureRate, rateWithPauses: withPause, rateLimit: 5.5, rateWithPausesLimit: 4.3, rateOk,
     pauses025: { total: ps.length, counted, notCountedComma: ps.length - counted, sentenceEndRange: sentP.length ? [Math.min(...sentP), Math.max(...sentP)] : null, list: ps },
     listen: { model: lc.model, status: lc.status, cer: lc.cer, issues: (lc.issues ?? []).length },
     gates, pass,
-    verdict: pass ? "聲音定案：畫面依這條音檔的字時間排，之後不再改聲音" : (rateOk ? "有關卡沒過：看 out/<slug>/ 的 audio-check／pause-density／listen-check .json" : `純念稿語速 ${pureRate} > 5.0：砍字重配，不拉伸`),
+    verdict: pass ? "聲音定案：畫面依這條音檔的字時間排，之後不再改聲音" : (rateOk ? "有關卡沒過：看 out/<slug>/ 的 audio-check／pause-density／listen-check .json" : `純念稿語速 ${pureRate} > 5.5 或含停頓 ${withPause} > 4.3：砍字重配，不拉伸`),
   };
   fs.writeFileSync(gatePath, JSON.stringify(gj, null, 2));
   rec.voiceGate = { pass, pureRate, withPause, gates }; rec.status = pass ? "ok-voice" : "voice-gate-failed"; rec.totalSec = +((Date.now() - T0) / 1000).toFixed(1); save();

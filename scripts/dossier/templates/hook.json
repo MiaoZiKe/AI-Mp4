@@ -14,10 +14,10 @@
     "doc": {
       "title": "{{docTitle}}", "date": "{{docDate|{{asOf}}}}", "field": "{{docField}}",
       "fill": "{{docFill}}", "fillPx": 30, "fillAt": "c2", "note": "示意，非文件原件",
-      "scanAts": ["start", "c4-6"], "frameAt": "start+10", "flashAt": "c1+30"
+      "scanAts": ["start", "c4-6", "{{scan3?}}", "{{scan4?}}", "{{scan5?}}"], "frameAt": "start+10", "flashAt": "c1+30"
     },
     "callout": { "label": "{{calloutLabel?}}", "text": "{{calloutText?}}", "at": "start+20", "markAt": "c4+4" },
-    "photo": { "name": "{{photoName?}}", "caption": "{{photoCaption?}}", "at": "start", "endAt": "{{photoEndAt|end}}", "stepAts": "{{photoSteps?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" },
+    "photo": { "name": "{{photoName?}}", "caption": "{{photoCaption?}}", "at": "start", "endAt": "{{photoEndAt|end}}", "stepAts": "{{photoSteps?}}", "stepDurs": "{{photoStepDurs?}}", "stepP": "{{photoStepP?}}", "dir": "{{photoDir?}}", "color": "{{photoColor?}}" },
     "ask": "{{askText?}}",
     "stamp": { "text": "{{stampText?}}", "at": "{{stampAt|start+12}}", "pos": "{{stampPos?}}" },
     "tag": { "kind": "{{tagKind|report}}", "text": "{{tagText}}", "at": "c4+14" },
