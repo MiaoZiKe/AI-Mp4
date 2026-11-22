@@ -106,26 +106,26 @@ const BeltsView: React.FC<VP> = ({ f, p }) => {
 // ───────── paper：一張紙逐行被寫出來，蓋章、釘住，再交給 AI ─────────
 const PaperView: React.FC<VP> = ({ f, p }) => {
   const q = p.p as any, A = (s: any, fb: number) => p.at(s, fb), lines = q.lines as { t: string; at: any; dur?: number; label?: string; color?: string; mark?: any[]; skel?: string }[];
-  const bot = q.bot, cw = bot ? 640 : IW, fs = q.fs ?? 40, chH = q.h ?? 720, py = TOP + 10, tStamp = A(q.stamp?.at, FAR), tPin = A(q.pin?.at, FAR), tChip = A(q.chip?.at, FAR);
+  const bot = q.bot, cw = bot ? 640 : IW, fs = q.fs ?? 40, chH = q.h ?? 720, py = TOP + 10 + (q.dy ?? 0), LH = q.lh ?? 1.32, GP = q.gap ?? 22, tStamp = A(q.stamp?.at, FAR), tPin = A(q.pin?.at, FAR), tChip = A(q.chip?.at, FAR);
   const ats = lines.map((ln, i) => A(ln.at, p.in + 4 + i * 20)), cur = lines.findIndex((ln, i) => f >= ats[i] && f < ats[i] + (ln.dur ?? 26) + 4);
   const mini = E(f, tPin + 10, 18), bx = X0 + cw + (IW - cw) / 2, by = py + chH - 40;
   return (
     <>
       <div style={{ position: "absolute", left: X0, top: py, width: cw, height: chH, boxSizing: "border-box", padding: "46px 36px 24px", background: T.card, borderRadius: 28, boxShadow: `0 10px 0 ${col(q.color ?? "primary").side}`, ...riseIn(f, p.in + 1, 60) }}>
-        {q.title ? <div style={{ ...zh, fontWeight: 900, fontSize: 40, color: col(q.color ?? "primary").text, marginBottom: 20 }}>{q.title}</div> : null}
+        {q.title ? <div style={{ ...zh, fontWeight: 900, fontSize: 40, color: col(q.color ?? "primary").text, marginBottom: q.tgap ?? 20 }}>{q.title}</div> : null}
         {lines.map((ln, i) => {
           const [a] = typed(ln.t, f, ats[i], ln.dur ?? 26), c = col(ln.color ?? "primary");
           const act = ((ln.mark ?? []) as any[]).map((m) => ({ i: ln.t.indexOf(m.word), n: m.word.length, c: col(m.color), on: f >= A(m.at, FAR) })).filter((m) => m.i >= 0 && m.on);
           return (
-            <div key={i} data-ov={`紙行${i + 1}`} style={{ display: "flex", gap: 20, alignItems: "flex-start", marginBottom: 22, opacity: f >= ats[i] || ln.skel ? 1 : 0.15 }}>
+            <div key={i} data-ov={`紙行${i + 1}`} style={{ display: "flex", gap: 20, alignItems: "flex-start", marginBottom: GP, opacity: f >= ats[i] || ln.skel ? 1 : 0.15 }}>
               {q.num === false ? null : <div style={{ ...zh, flexShrink: 0, width: 56, height: 56, borderRadius: 28, background: c.fill, color: c.on, fontWeight: 900, fontSize: 34, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 4, boxShadow: `0 4px 0 ${c.side}`, transform: cur === i ? `rotate(${(8 * Math.sin(f / 3)).toFixed(1)}deg)` : undefined }}>{ln.label ?? i + 1}</div>}
-              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: fs, lineHeight: 1.32, color: T.ink }}>{a.length === 0 && ln.skel ? <span style={{ color: T.ink3, opacity: 0.4 }}>{ln.skel}</span> : null}{[...ln.t].map((ch: string, k: number) => { const m = act.find((x) => k >= x.i && k < x.i + x.n); return <span key={k} style={{ opacity: k < a.length ? 1 : 0, background: m ? m.c.soft : undefined, boxShadow: m ? `inset 0 -8px 0 ${m.c.fill}` : undefined }}>{ch}</span>; })}</div>
+              <div style={{ ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: fs, lineHeight: LH, color: T.ink }}>{a.length === 0 && ln.skel ? <span style={{ color: T.ink3, opacity: 0.4 }}>{ln.skel}</span> : null}{[...ln.t].map((ch: string, k: number) => { const m = act.find((x) => k >= x.i && k < x.i + x.n); return <span key={k} style={{ opacity: k < a.length ? 1 : 0, background: m ? m.c.soft : undefined, boxShadow: m ? `inset 0 -8px 0 ${m.c.fill}` : undefined }}>{ch}</span>; })}</div>
             </div>
           );
         })}
       </div>
       {tPin < FAR ? <Full><g transform={`translate(0,${Math.round((1 - E(f, tPin, 8)) * -90)})`} opacity={f >= tPin ? 1 : 0}><circle cx={X0 + cw / 2} cy={py + 6} r={22} fill={col("wrong").fill} stroke={T.card} strokeWidth={5} /><circle cx={X0 + cw / 2 - 7} cy={py - 1} r={6} fill="#fff" opacity={0.7} /></g></Full> : null}
-      {q.stamp && f >= tStamp ? <div data-ov={f >= tStamp + 8 ? "印章" : undefined} style={{ position: "absolute", left: bot ? X0 + IW - (q.stamp.text.length * 52 + 72) : X0 + cw - (q.stamp.text.length * 64 + 100), top: bot ? py + 40 : py + chH - 130, ...slam(f, tStamp, -9, bot ? 1.35 : 2.6), border: `8px solid ${col(q.stamp.color ?? "wrong").fill}`, borderRadius: 18, padding: "6px 26px", ...zh, fontWeight: 900, fontSize: bot ? 52 : 64, color: col(q.stamp.color ?? "wrong").fill, background: "rgba(255,255,255,0.7)" }}>{q.stamp.text}</div> : null}
+      {q.stamp && f >= tStamp ? <div data-ov={f >= tStamp + 8 ? "印章" : undefined} style={{ position: "absolute", left: bot ? X0 + IW - (q.stamp.text.length * 52 + 72) : X0 + cw - (q.stamp.text.length * 64 + 100), top: bot ? py + 40 : py + (q.stamp.y ?? chH - 130), ...slam(f, tStamp, -9, bot ? 1.35 : 2.6), border: `8px solid ${col(q.stamp.color ?? "wrong").fill}`, borderRadius: 18, padding: "6px 26px", ...zh, fontWeight: 900, fontSize: bot ? 52 : 64, color: col(q.stamp.color ?? "wrong").fill, background: "rgba(255,255,255,0.7)" }}>{q.stamp.text}</div> : null}
       {bot ? <Full><Bot x={bx} y={by} s={1.45} f={f} mood={f >= tPin + 22 ? "happy" : f >= tPin ? "read" : "idle"} />
         {f >= tPin + 10 ? <g opacity={O(f, tPin + 10, 4)}><Sheet x={lerp(X0 + cw - 150, bx - 130, mini)} y={lerp(py + 60, by - 190 - 30 * Math.sin(mini * 3.14), mini)} w={86} h={108} rot={lerp(-8, 8, mini)} lines={3} accent={col("note").fill} /></g> : null}</Full> : null}
       {bot && q.chip && f >= tChip ? <div data-ov="紙旁標籤" style={{ position: "absolute", left: X0 + cw + 10, width: IW - cw - 10, top: by + 36, display: "flex", justifyContent: "center", ...bounce(f, tChip) }}><Chip text={q.chip.text} bg={col(q.chip.color ?? "right").fill} fg="#fff" px={38} side={col(q.chip.color ?? "right").side} /></div> : null}

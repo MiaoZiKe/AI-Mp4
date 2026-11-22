@@ -277,12 +277,12 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
         <div style={{ width: 58, height: 58, borderRadius: 29, background: col("primary").fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 28, color: "#fff" }}>AI</div>
         <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: T.ink }}>{q.title ?? "和 AI 對話"}</div>
       </div>
-      <div data-ov="對話區" style={{ position: "absolute", left: 28, top: 104, width: IW - 56, height: 530, display: "flex", flexDirection: "column", gap: (q.big ? 40 : 20), overflow: "hidden" }}>
-        <div style={{ alignSelf: "flex-start", ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: (q.big ? 48 : 42), padding: (q.big ? "20px 32px" : "16px 28px"), borderRadius: 32, borderBottomLeftRadius: 8, background: "#EEF2FC", color: T.ink, opacity: O(f, p.in, 4) }}>{q.hello ?? "嗨，今天想做什麼？"}</div>
+      <div data-ov="對話區" style={{ position: "absolute", left: 28, top: 104, width: IW - 56, height: 530, display: "flex", flexDirection: "column", gap: (q.big ? 52 : 20), overflow: "hidden" }}>
+        <div style={{ alignSelf: "flex-start", ...zh, whiteSpace: "normal", fontWeight: 800, fontSize: (q.big ? 58 : 42), padding: (q.big ? "28px 40px" : "16px 28px"), borderRadius: 32, borderBottomLeftRadius: 8, background: "#EEF2FC", color: T.ink, opacity: O(f, p.in, 4) }}>{q.hello ?? "嗨，今天想做什麼？"}</div>
         {f < Math.min(...msgs.map(T0)) ? <div style={{ position: "absolute", left: (IW - 56 - 230) / 2, top: 190, width: 230, height: 230, borderRadius: 115, background: col("primary").fill, boxShadow: `0 10px 0 ${col("primary").side}, 0 0 0 ${Math.round(14 + 10 * Math.sin(f / 6))}px ${col("primary").soft}`, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 112, color: "#fff", opacity: 1 - O(f, Math.min(...msgs.map(T0)) - 6, 6) }}>AI</div> : null}
         {msgs.map((m, i) => {
           const t = T0(m), me = m.who === "me", e = E(f, t, 10);
-          if (f < t) return null;
+          if (f < t) return q.big && f >= Math.min(...msgs.map(T0)) ? <div key={i} style={{ alignSelf: me ? "flex-end" : "flex-start", width: Math.min(880, 60 * ((m.text ?? "").length + 1) + 80), height: 60 * 1.3 + 56, borderRadius: 32, background: me ? col("primary").soft : "#EEF2FC", opacity: 0.55 }} /> : null;
           return (
             <div key={i} style={{ alignSelf: me ? "flex-end" : "flex-start", opacity: O(f, t, 4), transform: `translateY(${Math.round((1 - e) * 36)}px) scale(${(0.9 + 0.1 * e).toFixed(3)})`, transformOrigin: me ? "100% 100%" : "0 100%" }}>
               {m.attach ? (
@@ -291,7 +291,7 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
                   <div style={{ ...zh, fontWeight: 800, fontSize: 32, color: T.ink2, paddingRight: 18 }}>{m.attach.cap}</div>
                 </div>
               ) : (
-                <div style={{ ...zh, whiteSpace: "normal", maxWidth: (q.big ? 900 : 760), fontWeight: 800, fontSize: (q.big ? 54 : 48), lineHeight: 1.3, padding: (q.big ? "20px 32px" : "16px 28px"), borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{ ...zh, whiteSpace: "normal", maxWidth: (q.big ? 880 : 760), fontWeight: 800, fontSize: (q.big ? 60 : 48), lineHeight: 1.3, padding: (q.big ? "28px 40px" : "16px 28px"), borderRadius: 32, borderBottomRightRadius: me ? 8 : 32, borderBottomLeftRadius: me ? 32 : 8, background: me ? col("primary").fill : "#EEF2FC", color: me ? "#fff" : T.ink, display: "flex", alignItems: "center", gap: 14 }}>
                   {m.check ? <Ico n="check" size={46} color="#fff" fill={col("right").fill} /> : null}{m.text}
                 </div>
               )}
