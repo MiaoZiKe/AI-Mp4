@@ -18,3 +18,4 @@
 - 片尾音：`G=22 mix-endsting.sh voice.wav out/tech-oxidation.sting.wav 75.2667 77.4 80.5333 out/tech-oxidation.v2.wav`（片尾段 −11.1 LUFS、峰值 −1.3 dBFS；audio-check 全 0）。
 - 渲染：`AUDIO=out/tech-oxidation.v2.wav CONC=2 bash scripts/three/chunk-render.sh tech-oxidation v2` → `out/tech-oxidation.v2.mp4`（舊檔不動）。
 - 試聽：`out/voice-compare/1122/氧化-重配-前20秒.m4a`、`氧化-矽-修正後.m4a`。
+- 成片：`out/tech-oxidation.v2.mp4`（80.53 秒，11/23 03:25 渲完）。四道驗證第 1 道抓到 41.8 秒逗號停頓 0.50 秒（上限 0.45）：成品音軌剪 0.07 秒、補進 45.4 秒的換幕停頓，時間軸不變，只重 mux（修前 `out/tech-oxidation.v2.pre-pausefix.wav`）。修後 1、3 過、audio-check 全 0；2 的「矽」差異消失，其餘誤判；4 只標片尾卡轉場。結論在 `out/tech-oxidation/verify4/human.md`。

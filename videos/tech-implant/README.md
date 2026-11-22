@@ -33,3 +33,4 @@
 - 片尾音：`G=28 mix-endsting.sh voice.wav out/tech-implant.sting.wav 65.2333 67.1333 70.2667 out/tech-implant.v3.wav`（片尾段 −10.9 LUFS、峰值 −1.2 dBFS；audio-check 全 0）。
 - 渲染：`AUDIO=out/tech-implant.v3.wav CONC=2 bash scripts/three/chunk-render.sh tech-implant v3` → `out/tech-implant.v3.mp4`（舊檔不動）。
 - 試聽：`out/voice-compare/1122/離子佈植-重配-前20秒.m4a`、`離子佈植-矽-修正後.m4a`（四處「矽」接在一起）。
+- 成片：`out/tech-implant.v3.mp4`（70.27 秒，11/22 23:35 渲完）。四道驗證：1、3 過（句中停頓 0、停頓 16／上限 22、audio-check 全 0）；2 的「矽」相關差異全部消失，其餘 ASR 差異（N/P 刻意寫法、同音字、公司名、片頭聽寫幻覺）經本機 whisper 交叉確認為誤判；4 只標片尾卡轉場。結論在 `out/tech-implant/verify4/human.md`。
