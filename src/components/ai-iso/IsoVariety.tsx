@@ -272,7 +272,7 @@ const ChatView: React.FC<VP> = ({ f, p }) => {
   const chips = (q.chips ?? []) as { text: string; at: any; color: string; hot?: boolean }[];
   return (
     <div style={{ position: "absolute", left: X0, top: TOP, width: IW, height: 780, background: T.card, borderRadius: 36, boxShadow: `0 10px 0 ${T.cardSide}, ${T.depth.soft}` }}>
-      {q.topChip ? <div data-ov="頂部提示卡" style={{ position: "absolute", left: 0, width: IW, top: -112, display: "flex", justifyContent: "center", ...bounce(f, p.in + 4) }}><Chip text={q.topChip} bg={col("wrong").fill} fg="#fff" px={48} side={col("wrong").side} /></div> : null}
+      {q.topChip && f < p.out - 40 ? <div data-ov="頂部提示卡" style={{ position: "absolute", left: 0, width: IW, top: -34, paddingRight: 28, boxSizing: "border-box", display: "flex", justifyContent: "flex-end", ...bounce(f, p.in + 4) }}><Chip text={q.topChip} bg={col("wrong").fill} fg="#fff" px={28} side={col("wrong").side} /></div> : null}
       <div data-ov="對話標題" style={{ position: "absolute", left: 28, top: 20, height: 60, display: "flex", alignItems: "center", gap: 18 }}>
         <div style={{ width: 58, height: 58, borderRadius: 29, background: col("primary").fill, display: "flex", alignItems: "center", justifyContent: "center", ...en, fontWeight: 900, fontSize: 28, color: "#fff" }}>AI</div>
         <div style={{ ...zh, fontWeight: 900, fontSize: 36, color: T.ink }}>{q.title ?? "和 AI 對話"}</div>
