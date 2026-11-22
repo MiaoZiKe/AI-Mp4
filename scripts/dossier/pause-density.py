@@ -31,29 +31,26 @@ raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-map", "0:a:0", "-ac
 x = np.frombuffer(raw, np.float32)
 if not len(x): sys.exit(f"✖ {path} 沒有音軌")
 
-# 字時間（絕對秒）＋該字後面的標點種類
+# 字時間：直接對「念稿 tts 全文」做強制對齊（scripts/fa.py，本機不花請求）。
+# 不能用 timeline.json 的 charTimes：那是對字幕 subtitle.zh 的（阿拉伯數字一字一格、與 tts 唸法字數不同），
+# 用 tts 的字索引去查會整段偏移，停頓會被誤對到句中（2026/11/22 hike2022 第 5 版 6 處誤報的原因）。
 PUNCT_SENT, PUNCT_COMMA = "。？！?!", "，、,"
-SKIP = re.compile(r"[\s：；「」『』（）()・｜|—–\-\"'“”‘’…%]")
-chars = []  # (start_sec, after: 's'|'c'|'')
-tl_scenes = {s["id"]: s for s in tl["scenes"]}
-n_sent = 0
-for s in [s for s in sc["scenes"] if not s.get("silent")]:
-    t = s.get("tts") or s["narration"]
-    ts = tl_scenes.get(s["id"])
-    if not ts or "charTimes" not in ts: continue
-    base = ts["voiceStartFrame"] / fps
-    k = 0; seq = []
-    for ch in t:
-        if ch in PUNCT_SENT + PUNCT_COMMA:
-            if seq: seq[-1][1] = "s" if ch in PUNCT_SENT else ("c" if seq[-1][1] != "s" else "s")
-            continue
-        if SKIP.match(ch): continue
-        seq.append([ch, ""])
-    n_sent += sum(1 for c in seq if c[1] == "s") or 1
-    for i, (ch, aft) in enumerate(seq):
-        if i < len(ts["charTimes"]):
-            chars.append((base + ts["charTimes"][i], "s" if (i == len(seq) - 1) else aft))
-if not chars: sys.exit("✖ timeline.json 沒有 charTimes（要先跑對齊）")
+texts = [s.get("tts") or s["narration"] for s in sc["scenes"] if not s.get("silent")]
+n_sent = sum(max(1, sum(t.count(c) for c in PUNCT_SENT)) for t in texts)
+full = "".join(texts)
+rec = os.path.join(ROOT, "public", tl["recording"]["file"])
+py = os.path.join(ROOT, ".venv/bin/python")
+if not os.path.exists(py): py = "python3"
+fa = json.loads(subprocess.run([py, os.path.join(ROOT, "scripts/fa.py")], input=json.dumps([{"id": "rec", "file": rec, "text": full}]).encode(), cwd=ROOT, capture_output=True).stdout)[0]
+if not fa.get("ok"): sys.exit("✖ 強制對齊失敗")
+units = fa["chars"] if "chars" in fa else fa.get("units")
+# 每個有聲字：後面接什麼標點（取到下一個有聲字之前的第一個標點；句末優先）
+chars = []  # (start_sec, after, ch, ctx)
+for k, u in enumerate(units):
+    nxt = units[k + 1]["i"] if k + 1 < len(units) else len(full)
+    gap = full[u["i"] + 1:nxt]
+    aft = "s" if any(c in PUNCT_SENT for c in gap) or k == len(units) - 1 else ("c" if any(c in PUNCT_COMMA for c in gap) else "")
+    chars.append((u["start"], aft, u["ch"], k))
 starts = [c[0] for c in chars]
 first, last = starts[0], starts[-1] + 0.3
 
@@ -75,11 +72,12 @@ for a, b in zip(qs, qe):
     i = max(i, 0)
     aft = chars[i][1]
     kind = "sentence_end" if aft == "s" else ("comma" if aft == "c" else "inside_sentence")
-    pauses.append({"start": round(float(a), 2), "dur": round(float(b - a), 2), "kind": kind, "afterCharIndex": i})
+    ctx = "".join(c[2] for c in chars[max(0, i - 2):i + 1]) + "｜" + "".join(c[2] for c in chars[i + 1:i + 4])
+    pauses.append({"start": round(float(a), 2), "dur": round(float(b - a), 2), "kind": kind, "afterCharIndex": i, "context": ctx})
 
 errs, infos = [], []
 for p in pauses:
-    if p["kind"] == "inside_sentence": errs.append(f"{p['start']:.2f}s 句內停頓 {p['dur']:.2f} 秒（第 {p['afterCharIndex']} 字後，念稿該處沒有標點）")
+    if p["kind"] == "inside_sentence": errs.append(f"{p['start']:.2f}s 句內停頓 {p['dur']:.2f} 秒（{p['context']}，念稿該處沒有標點）")
     elif p["kind"] == "comma":
         if p["dur"] > 0.45: errs.append(f"{p['start']:.2f}s 逗號處停頓 {p['dur']:.2f} 秒 >0.45（算句中停頓）")
         else: infos.append(f"{p['start']:.2f}s 逗號處自然停頓 {p['dur']:.2f} 秒（不計入總數）")
