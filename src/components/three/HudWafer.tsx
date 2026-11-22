@@ -76,7 +76,7 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
   const fillTop = (x: number) => yM - 2 - 12 * (1 - flat) * bump(x) * (1 - 0) ;
   const pts: string[] = []; for (let x = X0; x <= X0 + 11.8 * U; x += 6) pts.push(`${x},${fillTop(x)}`);
   const fillPath = `M${X0},${yO} L${pts.join(" L")} L${X0 + 11.8 * U},${yO} Z`;
-  const padX = X0 + 40 + (Math.sin(f * 0.07) * 0.5 + 0.5) * (11.8 * U - 200);
+  const padX = X0 + 20 + (Math.sin(f * 0.07) * 0.5 + 0.5) * (11.8 * U - 240); // 11/22：研磨墊不滑出基板，不碰右邊「金屬層」
   const Lbl = (x: number, y: number, s: string, a: number, cl: string) => <text x={x} y={y} opacity={a} style={zh(sm(30), cl, 800)}>{s}</text>;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -85,13 +85,13 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
         <g opacity={mask}>
           <rect x={X0 - 10} y={92} width={11.8 * U + 20} height={8} fill={c("reticleG")} />
           {LN.map((x, i) => <rect key={i} x={x} y={82} width={wL} height={12} fill={c("chrome")} />)}
-          {Lbl(X0 + 11.8 * U - 6, 76, "光罩", mask, H.text2)}
+          {Lbl(X0 + 11.8 * U + 20, 98, "光罩", mask, H.text2)}{/* 11/22：移到光罩條右邊，不碰最後一塊鉻 */}
         </g>
         {light > 0 ? GP.map((x, i) => <g key={i} opacity={light}><rect x={x} y={100} width={wG} height={yR - 100} fill={c("beamL")} opacity={0.35} />
           {[0, 1, 2].map((j) => <circle key={j} cx={x + wG / 2} cy={100 + ((f * 3 + j * 40) % (yR - 100))} r={5} fill={c("lp_light")} />)}</g>) : null}
         {/* 基板與摻雜 */}
         <rect x={X0} y={base} width={11.8 * U} height={hS} fill={si} />
-        <text x={X0 + 8} y={base + 34} style={zh(sm(30), H.onAccent, 800)}>矽基板</text>
+        {/* 11/22：「矽基板」移到右側標名欄，不再被摻雜區蓋到 */}
         {GP.map((x, i) => <rect key={i} x={x} y={base} width={wG} height={16} fill={c("dope")} opacity={dope} />)}
         {depG > 0.02 ? Array.from({ length: 12 }, (_, i) => [0, 1].map((j) => <circle key={`d${i}${j}`} cx={X0 + 20 + i * ((11.8 * U - 40) / 11)} cy={104 + ph(f, 0.025, j, 2, i) * (topY - 104)} r={5} fill={depCol} opacity={depG} />)) : null}
         {depG > 0.02 ? <rect x={X0} y={92} width={11.8 * U} height={8} fill={c("steel2")} opacity={depG} /> : null}
@@ -118,12 +118,13 @@ const Sec: React.FC<P> = ({ o, f, k, m }) => {
         {/* 標名 */}
         {Lbl(X0 + 5.5 * U, base - 2 - 0, "", 0, H.text)}
         {Lbl(X0 + 12.1 * U, yO + 18, "氧化層", gO, c("lp_ox"))}
+        {Lbl(X0 + 12.1 * U, base + 34, "矽基板", 1, H.text2)}
         {Lbl(X0 + 12.1 * U, yM - 2, "金屬層", gM * (1 - 0), c("lp_mt"))}
         {Lbl(X0 + 12.1 * U, yR - 20, "光阻", gR * (1 - strip), c("lp_res"))}
         {/* 步驟清單（兩欄） */}
         {STEPS.map((s, i) => { const col2 = i < 4 ? 0 : 1, row = i % 4, x = 652 + col2 * 138, y = 104 + row * 52; const on = i === act, past = i < act;
           return <g key={i} opacity={f >= st[i] - 6 ? 1 : 0.28}>
-            <rect x={x - 6} y={y - 32} width={136} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
+            <rect x={x - 6} y={y - 32} width={col2 ? 152 : 136} height={42} fill={on ? H.amber : "none"} stroke={on ? H.amber : "none"} />
             <text x={x} y={y} style={zh(28, on ? onC(H.amber) : past ? c("lp_good") : H.text, 800)}>{past ? "✓" : "①②③④⑤⑥⑦⑧"[i]}{s}</text></g>; })}
       </svg>
     </Card>
