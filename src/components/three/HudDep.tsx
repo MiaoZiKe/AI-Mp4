@@ -172,7 +172,7 @@ const Pvd: React.FC<P> = ({ o, f, k, m }) => {
         {Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.02, j, 9, j % 3); const x = x0 + 30 + j * 56; return <circle key={j} cx={x} cy={yT + 100 - u * 92} r={8} fill={c("ion")} opacity={(0.3 + 0.7 * i1) * (u < 0.96 ? 1 : 0)} />; })}
         {Array.from({ length: 9 }, (_, j) => { const u = ph(f, 0.014, j, 9, j % 3); const x = x0 + 40 + j * 56 + (j % 2 ? 10 : -10) * u; return <circle key={j} cx={x} cy={yT + 6 + u * 124} r={6} fill={c("atomG")} opacity={0.2 + 0.8 * t1} />; })}
         <Trench x={cx} y={yT + 138} layers={[{ c: c("atomG"), t: 1, a: 0.05 + 0.95 * l1 }]} mode="pvd" si={c("siB")} siT={c("siF")} s={0.95} />
-        <text x={490} y={Hh - 10} style={zh(sm(30), H.text, 800)}>晶圓上的溝槽</text>{/* 11/22：移到溝槽右邊，不再一半壓在溝槽上 */}
+        <text x={490} y={Hh - 18} style={zh(sm(30), H.text, 800)}>晶圓上的溝槽</text>{/* 11/22：移到溝槽右邊，不再一半壓在溝槽上 */}
         <text x={620} y={118} opacity={0.35 + 0.65 * i1} style={zh(34, H.text, 800)}>① 離子加速撞靶</text>
         <text x={620} y={176} opacity={0.35 + 0.65 * t1} style={zh(34, H.text, 800)}>② 靶材原子被打出來</text>
         <text x={620} y={234} opacity={0.35 + 0.65 * l1} style={zh(34, c("atomG"), 900)}>③ 直線落到晶圓上</text>
@@ -273,11 +273,11 @@ const Co: React.FC<P> = ({ o, f, k, m }) => {
       <div style={{ position: "absolute", inset: 0, background: H.cardCompare }} />
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key], i) => { const on = tween(f, T(o, key), 10, EASE.enter); const cur = on > 0.5 && (i === 5 || tween(f, T(o, rows[i + 1][2]), 4) < 0.5);
-          const y = CARD_CONTENT_TOP + i * 38; // 第一列從標題下緣＋8px 開始（11/22）
+          const y = CARD_CONTENT_TOP + i * 38; // 第一列從標題下緣＋8px 開始；每列 38 高（相鄰列共用框線）、字 24px，字和上下框線各留 ≥6px（11/23）
           return <g key={i}>
-            <rect x={20} y={y} width={W - 40} height={34} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={cur ? 4 : 2} />
-            <text x={36} y={y + 27} style={zh(30, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
-            <text x={W - 36} y={y + 27} textAnchor="end" style={zh(28, cur ? onC(H.amber) : H.text2, 800)}>{d}</text></g>; })}
+            <rect x={20} y={y} width={W - 40} height={38} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={2} />
+            <text x={36} y={y + 28.5} style={zh(24, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
+            <text x={W - 36} y={y + 28.5} textAnchor="end" style={zh(24, cur ? onC(H.amber) : H.text2, 800)}>{d}</text></g>; })}
       </svg>
     </Card>
   );
