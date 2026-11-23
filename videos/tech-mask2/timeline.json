@@ -1,0 +1,1717 @@
+{
+ "version": 2,
+ "slug": "tech-mask2",
+ "fps": 30,
+ "totalFrames": 1890,
+ "totalSec": 63,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 176,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 159,
+   "stillFrame": 166,
+   "subtitleWindow": [
+    0,
+    173
+   ],
+   "sourceWindow": [
+    0,
+    171
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "上一集說光罩",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      20,
+      26,
+      31
+     ]
+    },
+    {
+     "text": "是晶片的底片",
+     "start": 35,
+     "chars": [
+      37,
+      43,
+      48,
+      54,
+      59,
+      65
+     ]
+    },
+    {
+     "text": "這張底片誰做？",
+     "start": 75,
+     "chars": [
+      77,
+      83,
+      88,
+      94,
+      100,
+      105,
+      105
+     ]
+    },
+    {
+     "text": "怎麼送進曝光機？",
+     "start": 115,
+     "chars": [
+      117,
+      123,
+      129,
+      134,
+      140,
+      145,
+      151,
+      151
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "光罩",
+     "start": 26
+    },
+    {
+     "text": "底片",
+     "start": 59
+    },
+    {
+     "text": "曝光機",
+     "start": 140
+    }
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "晶片的底片",
+     "frame": 44
+    },
+    {
+     "id": "who",
+     "text": "誰做",
+     "frame": 101
+    },
+    {
+     "id": "how",
+     "text": "怎麼送進",
+     "frame": 119
+    },
+    {
+     "id": "scan",
+     "text": "曝光機",
+     "frame": 141
+    }
+   ],
+   "sub": "上一集說光罩是晶片的底片\n這張底片誰做？\n怎麼送進曝光機？",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.372,
+    0.559,
+    0.745,
+    0.931,
+    1.117,
+    1.303,
+    1.49,
+    1.676,
+    1.862,
+    2.048,
+    2.458,
+    2.644,
+    2.83,
+    3.017,
+    3.203,
+    3.389,
+    3.799,
+    3.985,
+    4.171,
+    4.357,
+    4.543,
+    4.73,
+    4.916
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 176,
+   "audioSec": 4.286,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 166,
+   "durationFrames": 156,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 176,
+   "voiceEndFrame": 305,
+   "stillFrame": 312,
+   "subtitleWindow": [
+    173,
+    319
+   ],
+   "sourceWindow": [
+    171,
+    317
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "最先進的光罩",
+     "start": 173,
+     "chars": [
+      175,
+      180,
+      185,
+      191,
+      196,
+      202
+     ]
+    },
+    {
+     "text": "台積電、",
+     "start": 212,
+     "chars": [
+      214,
+      220,
+      225,
+      225
+     ]
+    },
+    {
+     "text": "英特爾、",
+     "start": 228,
+     "chars": [
+      231,
+      236,
+      242,
+      242
+     ]
+    },
+    {
+     "text": "三星自己做",
+     "start": 245,
+     "chars": [
+      247,
+      253,
+      258,
+      264,
+      269
+     ]
+    },
+    {
+     "text": "改版最快",
+     "start": 279,
+     "chars": [
+      281,
+      287,
+      292,
+      298
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "台積電",
+     "start": 214
+    },
+    {
+     "text": "英特爾",
+     "start": 231
+    },
+    {
+     "text": "三星",
+     "start": 247
+    },
+    {
+     "text": "自己做",
+     "start": 258
+    }
+   ],
+   "cues": [
+    {
+     "id": "adv",
+     "text": "最先進的光罩",
+     "frame": 176
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電",
+     "frame": 216
+    },
+    {
+     "id": "intel",
+     "text": "英特爾",
+     "frame": 232
+    },
+    {
+     "id": "ss",
+     "text": "三星",
+     "frame": 249
+    },
+    {
+     "id": "fast",
+     "text": "改版最快",
+     "frame": 283
+    }
+   ],
+   "sub": "最先進的光罩\n台積電、英特爾、三星自己做\n改版最快",
+   "provider": "estimate",
+   "syllables": 21,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.733,
+    0.916,
+    1.319,
+    1.502,
+    1.685,
+    1.868,
+    2.051,
+    2.234,
+    2.418,
+    2.601,
+    2.784,
+    2.967,
+    3.15,
+    3.553,
+    3.736,
+    3.919,
+    4.103
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 323,
+   "audioSec": 4.49,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 312,
+   "durationFrames": 163,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 322,
+   "voiceEndFrame": 458,
+   "stillFrame": 465,
+   "subtitleWindow": [
+    319,
+    472
+   ],
+   "sourceWindow": [
+    317,
+    470
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "其他公司交給專業光罩廠",
+     "start": 319,
+     "chars": [
+      322,
+      327,
+      333,
+      338,
+      344,
+      349,
+      355,
+      360,
+      366,
+      371,
+      377
+     ]
+    },
+    {
+     "text": "主要是日本兩家",
+     "start": 387,
+     "chars": [
+      389,
+      394,
+      400,
+      405,
+      411,
+      416,
+      422
+     ]
+    },
+    {
+     "text": "美國一家",
+     "start": 432,
+     "chars": [
+      434,
+      440,
+      445,
+      451
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "專業光罩廠",
+     "start": 355
+    },
+    {
+     "text": "日本",
+     "start": 405
+    },
+    {
+     "text": "美國",
+     "start": 434
+    }
+   ],
+   "cues": [
+    {
+     "id": "mer",
+     "text": "專業光罩廠",
+     "frame": 356
+    },
+    {
+     "id": "jp",
+     "text": "日本兩家",
+     "frame": 407
+    },
+    {
+     "id": "us",
+     "text": "美國一家",
+     "frame": 436
+    }
+   ],
+   "sub": "其他公司交給專業光罩廠\n主要是日本兩家\n美國一家",
+   "provider": "estimate",
+   "syllables": 22,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.736,
+    0.92,
+    1.104,
+    1.288,
+    1.472,
+    1.656,
+    1.84,
+    2.245,
+    2.429,
+    2.613,
+    2.797,
+    2.981,
+    3.165,
+    3.349,
+    3.754,
+    3.938,
+    4.122,
+    4.306
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 475,
+   "audioSec": 3.469,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 465,
+   "durationFrames": 132,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 475,
+   "voiceEndFrame": 580,
+   "stillFrame": 587,
+   "subtitleWindow": [
+    472,
+    594
+   ],
+   "sourceWindow": [
+    470,
+    592
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "台灣有台灣光罩",
+     "start": 472,
+     "chars": [
+      474,
+      479,
+      485,
+      491,
+      496,
+      502,
+      508
+     ]
+    },
+    {
+     "text": "主力是成熟製程的光罩",
+     "start": 518,
+     "chars": [
+      520,
+      526,
+      532,
+      538,
+      543,
+      549,
+      555,
+      560,
+      566,
+      572
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "台灣光罩",
+     "start": 491
+    },
+    {
+     "text": "成熟製程",
+     "start": 538
+    }
+   ],
+   "cues": [
+    {
+     "id": "tmc",
+     "text": "台灣光罩",
+     "frame": 492
+    },
+    {
+     "id": "mat",
+     "text": "成熟製程",
+     "frame": 539
+    }
+   ],
+   "sub": "台灣有台灣光罩\n主力是成熟製程的光罩",
+   "provider": "estimate",
+   "syllables": 17,
+   "words": [],
+   "charTimes": [
+    0,
+    0.191,
+    0.381,
+    0.572,
+    0.763,
+    0.953,
+    1.144,
+    1.563,
+    1.754,
+    1.944,
+    2.135,
+    2.326,
+    2.516,
+    2.707,
+    2.898,
+    3.088,
+    3.279
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 597,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 587,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 597,
+   "voiceEndFrame": 751,
+   "stillFrame": 758,
+   "subtitleWindow": [
+    594,
+    765
+   ],
+   "sourceWindow": [
+    592,
+    763
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "怎麼做？",
+     "start": 594,
+     "chars": [
+      596,
+      601,
+      606,
+      606
+     ]
+    },
+    {
+     "text": "鍍鉻的石英板塗上光阻",
+     "start": 616,
+     "chars": [
+      618,
+      623,
+      629,
+      634,
+      639,
+      645,
+      650,
+      655,
+      661,
+      666
+     ]
+    },
+    {
+     "text": "電子束把電路",
+     "start": 676,
+     "chars": [
+      678,
+      683,
+      689,
+      694,
+      699,
+      705
+     ]
+    },
+    {
+     "text": "一筆筆寫上去",
+     "start": 714,
+     "chars": [
+      716,
+      722,
+      727,
+      733,
+      738,
+      743
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "鉻",
+     "start": 623
+    },
+    {
+     "text": "石英",
+     "start": 634
+    },
+    {
+     "text": "光阻",
+     "start": 661
+    },
+    {
+     "text": "電子束",
+     "start": 678
+    }
+   ],
+   "cues": [
+    {
+     "id": "how",
+     "text": "怎麼做",
+     "frame": 597
+    },
+    {
+     "id": "qz",
+     "text": "石英板",
+     "frame": 636
+    },
+    {
+     "id": "cr",
+     "text": "鍍鉻",
+     "frame": 619
+    },
+    {
+     "id": "res",
+     "text": "塗上光阻",
+     "frame": 652
+    },
+    {
+     "id": "eb",
+     "text": "電子束",
+     "frame": 679
+    },
+    {
+     "id": "wr",
+     "text": "一筆筆寫上去",
+     "frame": 718
+    }
+   ],
+   "sub": "怎麼做？\n鍍鉻的石英板塗上光阻\n電子束把電路\n一筆筆寫上去",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.749,
+    0.928,
+    1.106,
+    1.284,
+    1.463,
+    1.641,
+    1.82,
+    1.998,
+    2.176,
+    2.355,
+    2.747,
+    2.926,
+    3.104,
+    3.282,
+    3.461,
+    3.639,
+    4.032,
+    4.21,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 768,
+   "audioSec": 4.49,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 758,
+   "durationFrames": 163,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 768,
+   "voiceEndFrame": 904,
+   "stillFrame": 911,
+   "subtitleWindow": [
+    765,
+    918
+   ],
+   "sourceWindow": [
+    763,
+    916
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "線路越細",
+     "start": 765,
+     "chars": [
+      767,
+      772,
+      777,
+      782
+     ]
+    },
+    {
+     "text": "一道寫太慢",
+     "start": 792,
+     "chars": [
+      794,
+      799,
+      804,
+      810,
+      815
+     ]
+    },
+    {
+     "text": "最先進的用",
+     "start": 824,
+     "chars": [
+      826,
+      832,
+      837,
+      842,
+      848
+     ]
+    },
+    {
+     "text": "二十六萬道一起寫",
+     "start": 857,
+     "chars": [
+      859,
+      864,
+      870,
+      875,
+      880,
+      885,
+      891,
+      896
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "一道",
+     "start": 794
+    },
+    {
+     "text": "二十六萬道",
+     "start": 859
+    },
+    {
+     "text": "電子束",
+     "start": 765
+    }
+   ],
+   "cues": [
+    {
+     "id": "fine",
+     "text": "線路越細",
+     "frame": 768
+    },
+    {
+     "id": "slow",
+     "text": "一道寫太慢",
+     "frame": 795
+    },
+    {
+     "id": "adv",
+     "text": "最先進的",
+     "frame": 828
+    },
+    {
+     "id": "n26",
+     "text": "二十六萬道",
+     "frame": 861
+    },
+    {
+     "id": "all",
+     "text": "一起寫",
+     "frame": 887
+    }
+   ],
+   "sub": "線路越細\n一道寫太慢\n最先進的用\n二十六萬道一起寫",
+   "provider": "estimate",
+   "syllables": 22,
+   "words": [],
+   "charTimes": [
+    0,
+    0.175,
+    0.351,
+    0.526,
+    0.912,
+    1.087,
+    1.263,
+    1.438,
+    1.614,
+    1.999,
+    2.175,
+    2.35,
+    2.526,
+    2.701,
+    3.087,
+    3.262,
+    3.437,
+    3.613,
+    3.788,
+    3.964,
+    4.139,
+    4.314
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 921,
+   "audioSec": 4.694,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 911,
+   "durationFrames": 168,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 921,
+   "voiceEndFrame": 1062,
+   "stillFrame": 1069,
+   "subtitleWindow": [
+    918,
+    1076
+   ],
+   "sourceWindow": [
+    916,
+    1074
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "寫完要檢查",
+     "start": 918,
+     "chars": [
+      920,
+      925,
+      931,
+      936,
+      942
+     ]
+    },
+    {
+     "text": "因為光罩上一個瑕疵",
+     "start": 952,
+     "chars": [
+      954,
+      959,
+      965,
+      971,
+      976,
+      982,
+      987,
+      993,
+      998
+     ]
+    },
+    {
+     "text": "每次曝光都會印上去",
+     "start": 1008,
+     "chars": [
+      1010,
+      1016,
+      1022,
+      1027,
+      1033,
+      1038,
+      1044,
+      1049,
+      1055
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "檢查",
+     "start": 936
+    },
+    {
+     "text": "瑕疵",
+     "start": 993
+    },
+    {
+     "text": "每次曝光",
+     "start": 1010
+    }
+   ],
+   "cues": [
+    {
+     "id": "ins",
+     "text": "寫完要檢查",
+     "frame": 921
+    },
+    {
+     "id": "def",
+     "text": "一個瑕疵",
+     "frame": 983
+    },
+    {
+     "id": "rep",
+     "text": "每次曝光",
+     "frame": 1012
+    }
+   ],
+   "sub": "寫完要檢查\n因為光罩上一個瑕疵\n每次曝光都會印上去",
+   "provider": "estimate",
+   "syllables": 23,
+   "words": [],
+   "charTimes": [
+    0,
+    0.185,
+    0.37,
+    0.554,
+    0.739,
+    1.146,
+    1.331,
+    1.515,
+    1.7,
+    1.885,
+    2.07,
+    2.255,
+    2.439,
+    2.624,
+    3.031,
+    3.215,
+    3.4,
+    3.585,
+    3.77,
+    3.955,
+    4.139,
+    4.324,
+    4.509
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": null,
+   "audioFrame": 1080,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1069,
+   "durationFrames": 188,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1079,
+   "voiceEndFrame": 1240,
+   "stillFrame": 1247,
+   "subtitleWindow": [
+    1076,
+    1254
+   ],
+   "sourceWindow": [
+    1074,
+    1252
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "光罩裝進光罩盒",
+     "start": 1076,
+     "chars": [
+      1079,
+      1084,
+      1089,
+      1095,
+      1100,
+      1105,
+      1111
+     ]
+    },
+    {
+     "text": "極紫外光用的有兩層",
+     "start": 1121,
+     "chars": [
+      1123,
+      1128,
+      1133,
+      1139,
+      1144,
+      1149,
+      1155,
+      1160,
+      1166
+     ]
+    },
+    {
+     "text": "外盒擋灰塵",
+     "start": 1175,
+     "chars": [
+      1177,
+      1183,
+      1188,
+      1194,
+      1199
+     ]
+    },
+    {
+     "text": "內盒是金屬",
+     "start": 1209,
+     "chars": [
+      1211,
+      1216,
+      1222,
+      1227,
+      1232
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "光罩盒",
+     "start": 1100
+    },
+    {
+     "text": "兩層",
+     "start": 1160
+    },
+    {
+     "text": "外盒",
+     "start": 1177
+    },
+    {
+     "text": "內盒",
+     "start": 1211
+    }
+   ],
+   "cues": [
+    {
+     "id": "pod",
+     "text": "裝進光罩盒",
+     "frame": 1091
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光用的",
+     "frame": 1124
+    },
+    {
+     "id": "two",
+     "text": "有兩層",
+     "frame": 1156
+    },
+    {
+     "id": "out",
+     "text": "外盒擋灰塵",
+     "frame": 1179
+    },
+    {
+     "id": "inn",
+     "text": "內盒是金屬",
+     "frame": 1212
+    }
+   ],
+   "sub": "光罩裝進光罩盒\n極紫外光用的有兩層\n外盒擋灰塵\n內盒是金屬",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.179,
+    0.359,
+    0.538,
+    0.717,
+    0.896,
+    1.076,
+    1.47,
+    1.649,
+    1.828,
+    2.008,
+    2.187,
+    2.366,
+    2.546,
+    2.725,
+    2.904,
+    3.298,
+    3.478,
+    3.657,
+    3.836,
+    4.015,
+    4.41,
+    4.589,
+    4.768,
+    4.948,
+    5.127
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": null,
+   "audioFrame": 1257,
+   "audioSec": 4.898,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1247,
+   "durationFrames": 175,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1257,
+   "voiceEndFrame": 1405,
+   "stillFrame": 1412,
+   "subtitleWindow": [
+    1254,
+    1419
+   ],
+   "sourceWindow": [
+    1252,
+    1417
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "極紫外光罩",
+     "start": 1254,
+     "chars": [
+      1256,
+      1261,
+      1266,
+      1271,
+      1277
+     ]
+    },
+    {
+     "text": "很難加保護膜",
+     "start": 1286,
+     "chars": [
+      1289,
+      1294,
+      1299,
+      1304,
+      1310,
+      1315
+     ]
+    },
+    {
+     "text": "所以內盒到",
+     "start": 1325,
+     "chars": [
+      1327,
+      1332,
+      1337,
+      1343,
+      1348
+     ]
+    },
+    {
+     "text": "真空機台裡才打開",
+     "start": 1358,
+     "chars": [
+      1360,
+      1365,
+      1370,
+      1376,
+      1381,
+      1386,
+      1392,
+      1397
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "保護膜",
+     "start": 1304
+    },
+    {
+     "text": "真空",
+     "start": 1360
+    },
+    {
+     "text": "內盒",
+     "start": 1337
+    }
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "極紫外光罩",
+     "frame": 1257
+    },
+    {
+     "id": "film",
+     "text": "很難加保護膜",
+     "frame": 1290
+    },
+    {
+     "id": "vac",
+     "text": "真空機台",
+     "frame": 1361
+    },
+    {
+     "id": "open",
+     "text": "才打開",
+     "frame": 1388
+    }
+   ],
+   "sub": "極紫外光罩\n很難加保護膜\n所以內盒到\n真空機台裡才打開",
+   "provider": "estimate",
+   "syllables": 24,
+   "words": [],
+   "charTimes": [
+    0,
+    0.177,
+    0.355,
+    0.532,
+    0.71,
+    1.1,
+    1.278,
+    1.455,
+    1.633,
+    1.81,
+    1.988,
+    2.378,
+    2.555,
+    2.733,
+    2.91,
+    3.088,
+    3.478,
+    3.656,
+    3.833,
+    4.011,
+    4.188,
+    4.366,
+    4.543,
+    4.72
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 1422,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1412,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1422,
+   "voiceEndFrame": 1576,
+   "stillFrame": 1583,
+   "subtitleWindow": [
+    1419,
+    1590
+   ],
+   "sourceWindow": [
+    1417,
+    1588
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "最早通過曝光",
+     "start": 1419,
+     "chars": [
+      1421,
+      1426,
+      1432,
+      1437,
+      1443,
+      1448
+     ]
+    },
+    {
+     "text": "機大廠認證的",
+     "start": 1452,
+     "chars": [
+      1454,
+      1460,
+      1465,
+      1471,
+      1476,
+      1482
+     ]
+    },
+    {
+     "text": "是美國的英特格",
+     "start": 1492,
+     "chars": [
+      1494,
+      1500,
+      1505,
+      1511,
+      1517,
+      1522,
+      1528
+     ]
+    },
+    {
+     "text": "和台灣的家登",
+     "start": 1538,
+     "chars": [
+      1540,
+      1546,
+      1551,
+      1557,
+      1562,
+      1568
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "認證",
+     "start": 1471
+    },
+    {
+     "text": "英特格",
+     "start": 1517
+    },
+    {
+     "text": "家登",
+     "start": 1562
+    }
+   ],
+   "cues": [
+    {
+     "id": "cert",
+     "text": "通過曝光機大廠認證",
+     "frame": 1433
+    },
+    {
+     "id": "ent",
+     "text": "英特格",
+     "frame": 1518
+    },
+    {
+     "id": "gd",
+     "text": "家登",
+     "frame": 1564
+    }
+   ],
+   "sub": "最早通過曝光機大廠認證的\n是美國的英特格\n和台灣的家登",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.372,
+    0.559,
+    0.745,
+    0.931,
+    1.117,
+    1.303,
+    1.49,
+    1.676,
+    1.862,
+    2.048,
+    2.458,
+    2.644,
+    2.83,
+    3.017,
+    3.203,
+    3.389,
+    3.575,
+    3.985,
+    4.171,
+    4.357,
+    4.543,
+    4.73,
+    4.916
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 1593,
+   "audioSec": 6.735,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1583,
+   "durationFrames": 221,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1593,
+   "voiceEndFrame": 1796,
+   "stillFrame": 1794,
+   "subtitleWindow": [
+    1590,
+    1804
+   ],
+   "sourceWindow": [
+    1588,
+    1799
+   ],
+   "lines": [
+    {
+     "text": "光罩到了",
+     "start": 1590,
+     "chars": [
+      1592,
+      1597,
+      1602,
+      1607
+     ]
+    },
+    {
+     "text": "還要一層膠接住圖案",
+     "start": 1616,
+     "chars": [
+      1618,
+      1624,
+      1629,
+      1634,
+      1639,
+      1644,
+      1650,
+      1655,
+      1660
+     ]
+    },
+    {
+     "text": "照到光就會變",
+     "start": 1669,
+     "chars": [
+      1671,
+      1676,
+      1682,
+      1687,
+      1692,
+      1697
+     ]
+    },
+    {
+     "text": "下一集看",
+     "start": 1706,
+     "chars": [
+      1709,
+      1714,
+      1719,
+      1724
+     ]
+    },
+    {
+     "text": "留言光罩盒",
+     "start": 1733,
+     "chars": [
+      1736,
+      1741,
+      1746,
+      1751,
+      1756
+     ]
+    },
+    {
+     "text": "拿完整資料",
+     "start": 1766,
+     "chars": [
+      1768,
+      1773,
+      1778,
+      1783,
+      1788
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "光阻",
+     "start": 1590
+    },
+    {
+     "text": "膠",
+     "start": 1639
+    },
+    {
+     "text": "光罩盒",
+     "start": 1746
+    }
+   ],
+   "cues": [
+    {
+     "id": "arr",
+     "text": "光罩到了",
+     "frame": 1593
+    },
+    {
+     "id": "glue",
+     "text": "一層膠",
+     "frame": 1630
+    },
+    {
+     "id": "light",
+     "text": "照到光就會變",
+     "frame": 1673
+    },
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 1710
+    },
+    {
+     "id": "kw",
+     "text": "留言光罩盒",
+     "frame": 1737
+    }
+   ],
+   "sub": "光罩到了\n還要一層膠接住圖案\n照到光就會變\n下一集看\n留言光罩盒\n拿完整資料",
+   "provider": "estimate",
+   "syllables": 33,
+   "words": [],
+   "charTimes": [
+    0,
+    0.173,
+    0.345,
+    0.518,
+    0.898,
+    1.071,
+    1.243,
+    1.416,
+    1.589,
+    1.761,
+    1.934,
+    2.107,
+    2.279,
+    2.659,
+    2.832,
+    3.005,
+    3.177,
+    3.35,
+    3.523,
+    3.903,
+    4.075,
+    4.248,
+    4.421,
+    4.801,
+    4.973,
+    5.146,
+    5.319,
+    5.491,
+    5.871,
+    6.044,
+    6.217,
+    6.389,
+    6.562
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1794,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1794,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1804,
+   "voiceEndFrame": 1804,
+   "stillFrame": 1878,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1799,
+    1890
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}
