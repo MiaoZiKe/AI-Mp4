@@ -248,15 +248,15 @@ const Def: React.FC<P> = ({ o, f, k, m }) => {
         <Arr x1={474} y1={286} x2={502} y2={286} c={H.text3} w={4} o={0.35 + 0.65 * so} />
         <g opacity={0.35 + 0.65 * lk}><rect x={506} y={258} width={170} height={56} fill={lk > 0.5 ? H.line : H.cardCompare} stroke={H.line} strokeWidth={3} />
           <text x={591} y={296} textAnchor="middle" style={zh(sm(30), lk > 0.5 ? "#fff" : H.line, 900)}>② 電子束看</text></g>
-        <g transform="translate(800 180)">
-          <circle r={112} fill="#3a3f4a" stroke={H.line} strokeWidth={4} opacity={0.4 + 0.6 * Math.max(fi * (1 - so), lk)} />
-          <defs><clipPath id="mzoom"><circle r={110} /></clipPath></defs>
+        <g transform="translate(800 164)">{/* 11/23：放大圓縮小上移，下方說明字離圓 ≥8px、離卡片下緣 ≥10px */}
+          <circle r={100} fill="#3a3f4a" stroke={H.line} strokeWidth={4} opacity={0.4 + 0.6 * Math.max(fi * (1 - so), lk)} />
+          <defs><clipPath id="mzoom"><circle r={98} /></clipPath></defs>
           <g opacity={Math.max(fi * (1 - so), lk)} clipPath="url(#mzoom)">
-            {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M-100 ${-90 + i * 30} H100`} stroke="#5a606c" strokeWidth={8} />)}
+            {Array.from({ length: 7 }, (_, i) => { const yy = -90 + i * 30, hw = Math.sqrt(Math.max(0, 98 * 98 - yy * yy)); return <path key={i} d={`M${-hw} ${yy} H${hw}`} stroke="#5a606c" strokeWidth={8} />; })}
             <path d="M-34 -10 C-30 -44 10 -50 30 -26 C52 -4 40 30 10 36 C-20 42 -40 24 -34 -10 Z" fill="#c9ccd3" /><path d="M-14 -16 C-6 -30 14 -28 18 -14" stroke="#eef0f4" strokeWidth={6} fill="none" />
-            <path d="M-112 0 H-60 M60 0 H112 M0 -112 V-64 M0 64 V112" stroke={c("lp_warm")} strokeWidth={3} />
+            <path d="M-98 0 H-60 M60 0 H98 M0 -98 V-64 M0 64 V98" stroke={c("lp_warm")} strokeWidth={3} />
           </g>
-          <text x={0} y={150} textAnchor="middle" style={zh(sm(30), H.text2, 800)} opacity={0.4 + 0.6 * Math.max(fi, lk)}>電子束看到的顆粒</text>
+          <text x={10} y={138} textAnchor="middle" style={zh(sm(28), H.text2, 800)} opacity={0.4 + 0.6 * Math.max(fi, lk)}>電子束看到的顆粒</text>
         </g>
       </svg>
     </Card>
