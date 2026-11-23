@@ -1,0 +1,1737 @@
+{
+ "version": 2,
+ "slug": "tech-wafer2",
+ "fps": 30,
+ "totalFrames": 1957,
+ "totalSec": 65.23,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 4.694,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 163,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 146,
+   "stillFrame": 153,
+   "subtitleWindow": [
+    0,
+    160
+   ],
+   "sourceWindow": [
+    0,
+    158
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "同樣是晶圓",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      14,
+      19,
+      25
+     ]
+    },
+    {
+     "text": "有的拋光完",
+     "start": 34,
+     "chars": [
+      36,
+      42,
+      47,
+      52,
+      58
+     ]
+    },
+    {
+     "text": "還要再長一層矽",
+     "start": 67,
+     "chars": [
+      69,
+      74,
+      80,
+      85,
+      90,
+      96,
+      101
+     ]
+    },
+    {
+     "text": "叫磊晶，",
+     "start": 110,
+     "chars": [
+      113,
+      118,
+      123,
+      123
+     ]
+    },
+    {
+     "text": "差在哪？",
+     "start": 126,
+     "chars": [
+      128,
+      134,
+      139,
+      139
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "晶圓",
+     "start": 19
+    },
+    {
+     "text": "拋光",
+     "start": 47
+    },
+    {
+     "text": "磊晶",
+     "start": 118
+    }
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同樣是晶圓",
+     "frame": 5
+    },
+    {
+     "id": "pol",
+     "text": "拋光完",
+     "frame": 48
+    },
+    {
+     "id": "grow",
+     "text": "再長一層矽",
+     "frame": 81
+    },
+    {
+     "id": "epi",
+     "text": "叫磊晶",
+     "frame": 114
+    },
+    {
+     "id": "why",
+     "text": "差在哪",
+     "frame": 130
+    }
+   ],
+   "sub": "同樣是晶圓\n有的拋光完\n還要再長一層矽\n叫磊晶，差在哪？",
+   "provider": "estimate",
+   "syllables": 23,
+   "words": [],
+   "charTimes": [
+    0,
+    0.176,
+    0.353,
+    0.529,
+    0.706,
+    1.094,
+    1.271,
+    1.447,
+    1.623,
+    1.8,
+    2.188,
+    2.365,
+    2.541,
+    2.718,
+    2.894,
+    3.07,
+    3.247,
+    3.635,
+    3.812,
+    3.988,
+    4.164,
+    4.341,
+    4.517
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 164,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 153,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 163,
+   "voiceEndFrame": 317,
+   "stillFrame": 324,
+   "subtitleWindow": [
+    160,
+    331
+   ],
+   "sourceWindow": [
+    158,
+    329
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "上一集做好的鏡面晶圓",
+     "start": 160,
+     "chars": [
+      163,
+      168,
+      174,
+      179,
+      185,
+      190,
+      196,
+      202,
+      207,
+      213
+     ]
+    },
+    {
+     "text": "叫拋光晶圓",
+     "start": 223,
+     "chars": [
+      225,
+      231,
+      236,
+      242,
+      247
+     ]
+    },
+    {
+     "text": "整片的雜質濃度都一樣",
+     "start": 258,
+     "chars": [
+      260,
+      265,
+      271,
+      276,
+      282,
+      288,
+      293,
+      299,
+      304,
+      310
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "拋光晶圓",
+     "start": 231
+    },
+    {
+     "text": "雜質濃度",
+     "start": 276
+    }
+   ],
+   "cues": [
+    {
+     "id": "last",
+     "text": "上一集",
+     "frame": 164
+    },
+    {
+     "id": "polw",
+     "text": "拋光晶圓",
+     "frame": 232
+    },
+    {
+     "id": "same",
+     "text": "濃度都一樣",
+     "frame": 289
+    }
+   ],
+   "sub": "上一集做好的鏡面晶圓\n叫拋光晶圓\n整片的雜質濃度都一樣",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.372,
+    0.559,
+    0.745,
+    0.931,
+    1.117,
+    1.303,
+    1.49,
+    1.676,
+    2.086,
+    2.272,
+    2.458,
+    2.644,
+    2.83,
+    3.24,
+    3.426,
+    3.612,
+    3.799,
+    3.985,
+    4.171,
+    4.357,
+    4.543,
+    4.73,
+    4.916
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 335,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 324,
+   "durationFrames": 188,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 334,
+   "voiceEndFrame": 495,
+   "stillFrame": 502,
+   "subtitleWindow": [
+    331,
+    509
+   ],
+   "sourceWindow": [
+    329,
+    507
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "磊晶是送進反應腔",
+     "start": 331,
+     "chars": [
+      334,
+      339,
+      344,
+      350,
+      355,
+      360,
+      366,
+      371
+     ]
+    },
+    {
+     "text": "燈管加熱",
+     "start": 381,
+     "chars": [
+      383,
+      388,
+      394,
+      399
+     ]
+    },
+    {
+     "text": "到一千一百度上下",
+     "start": 409,
+     "chars": [
+      411,
+      416,
+      422,
+      427,
+      432,
+      438,
+      443,
+      449
+     ]
+    },
+    {
+     "text": "通入含矽氣體",
+     "start": 458,
+     "chars": [
+      460,
+      466,
+      471,
+      477,
+      482,
+      487
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "反應腔",
+     "start": 360
+    },
+    {
+     "text": "燈管",
+     "start": 383
+    },
+    {
+     "text": "一千一百度",
+     "start": 416
+    },
+    {
+     "text": "含矽氣體",
+     "start": 471
+    }
+   ],
+   "cues": [
+    {
+     "id": "in",
+     "text": "送進反應腔",
+     "frame": 351
+    },
+    {
+     "id": "lamp",
+     "text": "燈管加熱",
+     "frame": 384
+    },
+    {
+     "id": "deg",
+     "text": "一千一百度",
+     "frame": 418
+    },
+    {
+     "id": "gas",
+     "text": "含矽氣體",
+     "frame": 473
+    }
+   ],
+   "sub": "磊晶是送進反應腔\n燈管加熱\n到一千一百度上下\n通入含矽氣體",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.179,
+    0.359,
+    0.538,
+    0.717,
+    0.896,
+    1.076,
+    1.255,
+    1.649,
+    1.828,
+    2.008,
+    2.187,
+    2.581,
+    2.761,
+    2.94,
+    3.119,
+    3.298,
+    3.478,
+    3.657,
+    3.836,
+    4.231,
+    4.41,
+    4.589,
+    4.768,
+    4.948,
+    5.127
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 512,
+   "audioSec": 5.51,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 502,
+   "durationFrames": 193,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 512,
+   "voiceEndFrame": 678,
+   "stillFrame": 685,
+   "subtitleWindow": [
+    509,
+    692
+   ],
+   "sourceWindow": [
+    507,
+    690
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "托盤帶著晶圓慢慢轉",
+     "start": 509,
+     "chars": [
+      511,
+      516,
+      522,
+      527,
+      533,
+      539,
+      544,
+      550,
+      555
+     ]
+    },
+    {
+     "text": "矽原子照底下的排列",
+     "start": 566,
+     "chars": [
+      568,
+      573,
+      579,
+      585,
+      590,
+      596,
+      602,
+      607,
+      613
+     ]
+    },
+    {
+     "text": "長出一層新的單晶矽",
+     "start": 623,
+     "chars": [
+      625,
+      631,
+      636,
+      642,
+      648,
+      653,
+      659,
+      665,
+      670
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "托盤",
+     "start": 511
+    },
+    {
+     "text": "排列",
+     "start": 607
+    },
+    {
+     "text": "單晶矽",
+     "start": 659
+    }
+   ],
+   "cues": [
+    {
+     "id": "spin",
+     "text": "慢慢轉",
+     "frame": 546
+    },
+    {
+     "id": "atom",
+     "text": "照底下的排列",
+     "frame": 586
+    },
+    {
+     "id": "layer",
+     "text": "長出一層",
+     "frame": 627
+    }
+   ],
+   "sub": "托盤帶著晶圓慢慢轉\n矽原子照底下的排列\n長出一層新的單晶矽",
+   "provider": "estimate",
+   "syllables": 27,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.375,
+    0.562,
+    0.75,
+    0.937,
+    1.125,
+    1.312,
+    1.499,
+    1.912,
+    2.099,
+    2.287,
+    2.474,
+    2.661,
+    2.849,
+    3.036,
+    3.224,
+    3.411,
+    3.823,
+    4.011,
+    4.198,
+    4.386,
+    4.573,
+    4.761,
+    4.948,
+    5.135,
+    5.323
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 695,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 685,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 695,
+   "voiceEndFrame": 849,
+   "stillFrame": 856,
+   "subtitleWindow": [
+    692,
+    863
+   ],
+   "sourceWindow": [
+    690,
+    861
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "好處是這層雜質能另外調",
+     "start": 692,
+     "chars": [
+      694,
+      699,
+      704,
+      710,
+      715,
+      720,
+      726,
+      731,
+      736,
+      742,
+      747
+     ]
+    },
+    {
+     "text": "底下摻多",
+     "start": 757,
+     "chars": [
+      759,
+      764,
+      769,
+      775
+     ]
+    },
+    {
+     "text": "上面摻少",
+     "start": 785,
+     "chars": [
+      787,
+      792,
+      797,
+      803
+     ]
+    },
+    {
+     "text": "功率晶片常用",
+     "start": 812,
+     "chars": [
+      814,
+      820,
+      825,
+      831,
+      836,
+      841
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "雜質",
+     "start": 720
+    },
+    {
+     "text": "摻多",
+     "start": 769
+    },
+    {
+     "text": "摻少",
+     "start": 797
+    },
+    {
+     "text": "功率晶片",
+     "start": 814
+    }
+   ],
+   "cues": [
+    {
+     "id": "adj",
+     "text": "另外調",
+     "frame": 738
+    },
+    {
+     "id": "heavy",
+     "text": "底下摻多",
+     "frame": 760
+    },
+    {
+     "id": "light",
+     "text": "上面摻少",
+     "frame": 788
+    },
+    {
+     "id": "power",
+     "text": "功率晶片",
+     "frame": 816
+    }
+   ],
+   "sub": "好處是這層雜質能另外調\n底下摻多\n上面摻少\n功率晶片常用",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.535,
+    0.714,
+    0.892,
+    1.07,
+    1.249,
+    1.427,
+    1.606,
+    1.784,
+    2.176,
+    2.355,
+    2.533,
+    2.712,
+    3.104,
+    3.282,
+    3.461,
+    3.639,
+    4.032,
+    4.21,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 866,
+   "audioSec": 5.51,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 856,
+   "durationFrames": 193,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 866,
+   "voiceEndFrame": 1032,
+   "stillFrame": 1039,
+   "subtitleWindow": [
+    863,
+    1046
+   ],
+   "sourceWindow": [
+    861,
+    1044
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "尺寸也分工",
+     "start": 863,
+     "chars": [
+      865,
+      870,
+      875,
+      881,
+      886
+     ]
+    },
+    {
+     "text": "十二吋做先進",
+     "start": 896,
+     "chars": [
+      898,
+      903,
+      909,
+      914,
+      920,
+      925
+     ]
+    },
+    {
+     "text": "邏輯和記憶體",
+     "start": 928,
+     "chars": [
+      930,
+      936,
+      941,
+      947,
+      952,
+      957
+     ]
+    },
+    {
+     "text": "八吋、",
+     "start": 967,
+     "chars": [
+      969,
+      975,
+      975
+     ]
+    },
+    {
+     "text": "六吋多做功率晶片",
+     "start": 978,
+     "chars": [
+      980,
+      986,
+      997,
+      1003,
+      1008,
+      1014,
+      1019,
+      1024
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "十二吋",
+     "start": 898
+    },
+    {
+     "text": "八吋",
+     "start": 969
+    },
+    {
+     "text": "六吋",
+     "start": 980
+    }
+   ],
+   "cues": [
+    {
+     "id": "size",
+     "text": "尺寸也分工",
+     "frame": 866
+    },
+    {
+     "id": "w12",
+     "text": "十二吋",
+     "frame": 899
+    },
+    {
+     "id": "w8",
+     "text": "八吋、六吋",
+     "frame": 971
+    },
+    {
+     "id": "pw",
+     "text": "功率晶片",
+     "frame": 1010
+    }
+   ],
+   "sub": "尺寸也分工\n十二吋做先進邏輯和記憶體\n八吋、六吋\n多做功率晶片",
+   "provider": "estimate",
+   "syllables": 27,
+   "words": [],
+   "charTimes": [
+    0,
+    0.18,
+    0.36,
+    0.54,
+    0.72,
+    1.116,
+    1.297,
+    1.477,
+    1.657,
+    1.837,
+    2.017,
+    2.197,
+    2.377,
+    2.557,
+    2.737,
+    2.917,
+    3.097,
+    3.493,
+    3.673,
+    3.854,
+    4.034,
+    4.43,
+    4.61,
+    4.79,
+    4.97,
+    5.15,
+    5.33
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 1050,
+   "audioSec": 4.898,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1039,
+   "durationFrames": 175,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1049,
+   "voiceEndFrame": 1197,
+   "stillFrame": 1204,
+   "subtitleWindow": [
+    1046,
+    1211
+   ],
+   "sourceWindow": [
+    1044,
+    1209
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "台灣最大的是環球晶",
+     "start": 1046,
+     "chars": [
+      1049,
+      1054,
+      1060,
+      1065,
+      1071,
+      1076,
+      1082,
+      1087,
+      1093
+     ]
+    },
+    {
+     "text": "全球五大之一",
+     "start": 1103,
+     "chars": [
+      1105,
+      1111,
+      1116,
+      1122,
+      1128,
+      1133
+     ]
+    },
+    {
+     "text": "去年營收六百多億元",
+     "start": 1143,
+     "chars": [
+      1145,
+      1151,
+      1156,
+      1162,
+      1168,
+      1173,
+      1179,
+      1184,
+      1190
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "環球晶",
+     "start": 1082
+    },
+    {
+     "text": "五大",
+     "start": 1116
+    },
+    {
+     "text": "六百多億",
+     "start": 1168
+    }
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "台灣最大",
+     "frame": 1050
+    },
+    {
+     "id": "gw",
+     "text": "環球晶",
+     "frame": 1083
+    },
+    {
+     "id": "top5",
+     "text": "全球五大",
+     "frame": 1107
+    },
+    {
+     "id": "rev",
+     "text": "六百多億元",
+     "frame": 1169
+    }
+   ],
+   "sub": "台灣最大的是環球晶\n全球五大之一\n去年營收六百多億元",
+   "provider": "estimate",
+   "syllables": 24,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.371,
+    0.557,
+    0.742,
+    0.928,
+    1.113,
+    1.299,
+    1.484,
+    1.892,
+    2.078,
+    2.263,
+    2.449,
+    2.635,
+    2.82,
+    3.228,
+    3.414,
+    3.599,
+    3.785,
+    3.97,
+    4.156,
+    4.341,
+    4.527,
+    4.712
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": null,
+   "audioFrame": 1215,
+   "audioSec": 5.714,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1204,
+   "durationFrames": 200,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1214,
+   "voiceEndFrame": 1387,
+   "stillFrame": 1394,
+   "subtitleWindow": [
+    1211,
+    1401
+   ],
+   "sourceWindow": [
+    1209,
+    1399
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "台勝科是台塑",
+     "start": 1211,
+     "chars": [
+      1214,
+      1219,
+      1224,
+      1230,
+      1235,
+      1241
+     ]
+    },
+    {
+     "text": "和日本勝高合資",
+     "start": 1250,
+     "chars": [
+      1253,
+      1258,
+      1263,
+      1269,
+      1274,
+      1280,
+      1285
+     ]
+    },
+    {
+     "text": "主力十二吋",
+     "start": 1295,
+     "chars": [
+      1297,
+      1302,
+      1308,
+      1313,
+      1319
+     ]
+    },
+    {
+     "text": "公司說占營收七成以上",
+     "start": 1329,
+     "chars": [
+      1331,
+      1336,
+      1342,
+      1347,
+      1352,
+      1358,
+      1363,
+      1369,
+      1374,
+      1379
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "台勝科",
+     "start": 1214
+    },
+    {
+     "text": "勝高",
+     "start": 1269
+    },
+    {
+     "text": "七成",
+     "start": 1363
+    }
+   ],
+   "cues": [
+    {
+     "id": "fst",
+     "text": "台勝科",
+     "frame": 1215
+    },
+    {
+     "id": "jv",
+     "text": "勝高合資",
+     "frame": 1270
+    },
+    {
+     "id": "main",
+     "text": "十二吋",
+     "frame": 1309
+    },
+    {
+     "id": "p70",
+     "text": "七成以上",
+     "frame": 1365
+    }
+   ],
+   "sub": "台勝科是台塑\n和日本勝高合資\n主力十二吋\n公司說占營收七成以上",
+   "provider": "estimate",
+   "syllables": 28,
+   "words": [],
+   "charTimes": [
+    0,
+    0.181,
+    0.362,
+    0.542,
+    0.723,
+    0.904,
+    1.302,
+    1.483,
+    1.664,
+    1.844,
+    2.025,
+    2.206,
+    2.387,
+    2.785,
+    2.966,
+    3.146,
+    3.327,
+    3.508,
+    3.906,
+    4.087,
+    4.268,
+    4.448,
+    4.629,
+    4.81,
+    4.991,
+    5.172,
+    5.353,
+    5.533
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": null,
+   "audioFrame": 1404,
+   "audioSec": 4.082,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1394,
+   "durationFrames": 150,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1404,
+   "voiceEndFrame": 1527,
+   "stillFrame": 1534,
+   "subtitleWindow": [
+    1401,
+    1541
+   ],
+   "sourceWindow": [
+    1399,
+    1539
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "合晶主攻六吋、",
+     "start": 1401,
+     "chars": [
+      1403,
+      1408,
+      1413,
+      1419,
+      1424,
+      1430,
+      1430
+     ]
+    },
+    {
+     "text": "八吋供應功率元件",
+     "start": 1433,
+     "chars": [
+      1435,
+      1441,
+      1453,
+      1458,
+      1464,
+      1469,
+      1475,
+      1480
+     ]
+    },
+    {
+     "text": "也在擴十二吋",
+     "start": 1490,
+     "chars": [
+      1492,
+      1498,
+      1503,
+      1509,
+      1514,
+      1519
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "合晶",
+     "start": 1403
+    },
+    {
+     "text": "六吋",
+     "start": 1424
+    },
+    {
+     "text": "八吋",
+     "start": 1435
+    },
+    {
+     "text": "功率元件",
+     "start": 1464
+    }
+   ],
+   "cues": [
+    {
+     "id": "ww",
+     "text": "合晶",
+     "frame": 1404
+    },
+    {
+     "id": "p68",
+     "text": "六吋、八吋",
+     "frame": 1426
+    },
+    {
+     "id": "pwr",
+     "text": "功率元件",
+     "frame": 1465
+    },
+    {
+     "id": "x12",
+     "text": "擴十二吋",
+     "frame": 1505
+    }
+   ],
+   "sub": "合晶主攻六吋、八吋\n供應功率元件\n也在擴十二吋",
+   "provider": "estimate",
+   "syllables": 20,
+   "words": [],
+   "charTimes": [
+    0,
+    0.182,
+    0.364,
+    0.547,
+    0.729,
+    0.911,
+    1.093,
+    1.276,
+    1.676,
+    1.859,
+    2.041,
+    2.223,
+    2.405,
+    2.587,
+    2.988,
+    3.171,
+    3.353,
+    3.535,
+    3.717,
+    3.899
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 1545,
+   "audioSec": 4.286,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1534,
+   "durationFrames": 157,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1544,
+   "voiceEndFrame": 1674,
+   "stillFrame": 1681,
+   "subtitleWindow": [
+    1541,
+    1688
+   ],
+   "sourceWindow": [
+    1539,
+    1686
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "嘉晶專做磊晶",
+     "start": 1541,
+     "chars": [
+      1544,
+      1549,
+      1554,
+      1560,
+      1565,
+      1571
+     ]
+    },
+    {
+     "text": "除了矽",
+     "start": 1581,
+     "chars": [
+      1583,
+      1589,
+      1594
+     ]
+    },
+    {
+     "text": "也做碳化矽和",
+     "start": 1604,
+     "chars": [
+      1606,
+      1612,
+      1617,
+      1623,
+      1628,
+      1634
+     ]
+    },
+    {
+     "text": "氮化鎵的磊晶",
+     "start": 1637,
+     "chars": [
+      1639,
+      1645,
+      1650,
+      1656,
+      1661,
+      1667
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "嘉晶",
+     "start": 1544
+    },
+    {
+     "text": "碳化矽",
+     "start": 1617
+    },
+    {
+     "text": "氮化鎵",
+     "start": 1639
+    }
+   ],
+   "cues": [
+    {
+     "id": "epi",
+     "text": "嘉晶專做磊晶",
+     "frame": 1545
+    },
+    {
+     "id": "si",
+     "text": "除了矽",
+     "frame": 1585
+    },
+    {
+     "id": "sic",
+     "text": "碳化矽",
+     "frame": 1619
+    },
+    {
+     "id": "gan",
+     "text": "氮化鎵",
+     "frame": 1641
+    }
+   ],
+   "sub": "嘉晶專做磊晶\n除了矽\n也做碳化矽和氮化鎵的磊晶",
+   "provider": "estimate",
+   "syllables": 21,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.733,
+    0.916,
+    1.319,
+    1.502,
+    1.685,
+    2.088,
+    2.271,
+    2.454,
+    2.637,
+    2.821,
+    3.004,
+    3.187,
+    3.37,
+    3.553,
+    3.736,
+    3.919,
+    4.103
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 1691,
+   "audioSec": 5.714,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1681,
+   "durationFrames": 190,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1691,
+   "voiceEndFrame": 1863,
+   "stillFrame": 1861,
+   "subtitleWindow": [
+    1688,
+    1871
+   ],
+   "sourceWindow": [
+    1686,
+    1866
+   ],
+   "lines": [
+    {
+     "text": "晶圓備好了",
+     "start": 1688,
+     "chars": [
+      1690,
+      1695,
+      1700,
+      1705,
+      1710
+     ]
+    },
+    {
+     "text": "電路怎麼印上去？",
+     "start": 1720,
+     "chars": [
+      1722,
+      1727,
+      1732,
+      1738,
+      1743,
+      1748,
+      1753,
+      1753
+     ]
+    },
+    {
+     "text": "靠光罩，",
+     "start": 1763,
+     "chars": [
+      1765,
+      1770,
+      1775,
+      1775
+     ]
+    },
+    {
+     "text": "下一集看",
+     "start": 1778,
+     "chars": [
+      1780,
+      1786,
+      1791,
+      1796
+     ]
+    },
+    {
+     "text": "留言磊晶",
+     "start": 1806,
+     "chars": [
+      1808,
+      1813,
+      1818,
+      1823
+     ]
+    },
+    {
+     "text": "拿完整資料",
+     "start": 1833,
+     "chars": [
+      1835,
+      1840,
+      1845,
+      1850,
+      1856
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "光罩",
+     "start": 1770
+    },
+    {
+     "text": "磊晶",
+     "start": 1818
+    }
+   ],
+   "cues": [
+    {
+     "id": "ready",
+     "text": "晶圓備好了",
+     "frame": 1691
+    },
+    {
+     "id": "print",
+     "text": "怎麼印上去",
+     "frame": 1734
+    },
+    {
+     "id": "mask",
+     "text": "靠光罩",
+     "frame": 1766
+    },
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 1782
+    },
+    {
+     "id": "kw",
+     "text": "留言磊晶",
+     "frame": 1809
+    }
+   ],
+   "sub": "晶圓備好了\n電路怎麼印上去？\n靠光罩，下一集看\n留言磊晶\n拿完整資料",
+   "provider": "estimate",
+   "syllables": 28,
+   "words": [],
+   "charTimes": [
+    0,
+    0.174,
+    0.348,
+    0.523,
+    0.697,
+    1.08,
+    1.254,
+    1.429,
+    1.603,
+    1.777,
+    1.951,
+    2.125,
+    2.509,
+    2.683,
+    2.857,
+    3.031,
+    3.206,
+    3.38,
+    3.554,
+    3.937,
+    4.111,
+    4.286,
+    4.46,
+    4.843,
+    5.017,
+    5.192,
+    5.366,
+    5.54
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1861,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1861,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1871,
+   "voiceEndFrame": 1871,
+   "stillFrame": 1945,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1866,
+    1957
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}

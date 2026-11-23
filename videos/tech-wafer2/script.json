@@ -1,0 +1,1997 @@
+{
+ "slug": "tech-wafer2",
+ "title": "矽晶圓-2：台灣誰在做（科技透明圈）",
+ "asOf": "2026/11/23",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "plant",
+    "label": "晶圓廠",
+    "en": "WAFER MAKERS",
+    "field": "4 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "tool",
+    "label": "磊晶爐",
+    "en": "EPI REACTOR",
+    "field": "1.5 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "atom",
+    "label": "原子",
+    "en": "ATOMS",
+    "field": "2 nm",
+    "ruler": "0.5 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "同一片晶圓",
+   "為何再長一層"
+  ],
+  "sub": "矽晶圓-2：磊晶",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "同樣是晶圓，有的拋光完還要再長一層矽，叫磊晶，差在哪？",
+   "tts": "同樣是晶圓，有的拋光完還要再長一層細，叫磊晶，差在哪？",
+   "subtitle": {
+    "zh": "同樣是晶圓\n有的拋光完\n還要再長一層矽\n叫磊晶，差在哪？",
+    "en": "Same wafer, but some | after polishing | grow one more layer of silicon: | epitaxy. Why?"
+   },
+   "keywords": [
+    "晶圓",
+    "拋光",
+    "磊晶"
+   ],
+   "cues": [
+    {
+     "id": "same",
+     "text": "同樣是晶圓"
+    },
+    {
+     "id": "pol",
+     "text": "拋光完"
+    },
+    {
+     "id": "grow",
+     "text": "再長一層矽"
+    },
+    {
+     "id": "epi",
+     "text": "叫磊晶"
+    },
+    {
+     "id": "why",
+     "text": "差在哪"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 6995077；Okmetic"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "代工的供應商 2",
+     "title": "磊晶差在哪？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 3.4,
+      "d": 38,
+      "elev": 24
+     },
+     {
+      "at": "epi",
+      "dur": 60,
+      "x": 0,
+      "y": 3.4,
+      "d": 37,
+      "elev": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "e_g0",
+      "at": "s2:start+20",
+      "until": "s4:atom",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "e_g1",
+      "at": "s2:start+20",
+      "until": "s4:atom+30",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "e_g2",
+      "at": "s2:start+20",
+      "until": "s4:layer",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "e_wafer",
+      "at": "s2:start+20",
+      "until": "s3:start+6",
+      "dur": 40,
+      "dx": 7.6,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "e_wafer",
+      "at": "s2:start+20",
+      "until": "s3:in+14",
+      "dur": 14,
+      "dx": 0,
+      "dy": 0.55,
+      "dz": 0
+     },
+     {
+      "layer": "e_blade",
+      "at": "s3:start+6",
+      "until": "s3:in+30",
+      "dur": 40,
+      "dx": -7.6,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "k_e12",
+      "at": "s1:start-40",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "k_w8",
+      "at": "s1:start-40",
+      "until": "s6:w8-6",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "k_w6",
+      "at": "s1:start-40",
+      "until": "s6:w8+8",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "x_e4",
+      "at": "s1:start-40",
+      "until": "s5:start+8",
+      "dy": 1.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "x_e5",
+      "at": "s1:start-40",
+      "until": "s5:start+20",
+      "dy": 1.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "x_e6",
+      "at": "s1:start-40",
+      "until": "s5:start+32",
+      "dy": 1.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "x_dE",
+      "at": "s1:start-40",
+      "until": "s5:start+20",
+      "dy": 1.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "m_mask",
+      "at": "s1:start-40",
+      "until": "s11:mask-4",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "m_mask",
+      "at": "s1:start-40",
+      "until": "s11:mask-4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "px_ew",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ew",
+      "at": "s2:start-4",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ew",
+      "at": "s4:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ec",
+      "at": "s1:start-400",
+      "until": "s4:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ec",
+      "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_kp",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_kp",
+      "at": "s3:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s6:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_kall",
+      "at": "s1:start-400",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_kall",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_m",
+      "at": "s1:start-400",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_m",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "e_lampOn",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_lampUOn",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_refOn",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_hot",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_suscHot",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_heatW",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_rotS",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_rotW",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_rotG0",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_rotG1",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_rotG2",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_tcs0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_tcs1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_tcs2",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_tcs3",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_h20",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_h21",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_gIn",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_noz",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep0",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep1",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep2",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep3",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep4",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_dep5",
+      "at": "grow",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_g0On",
+      "at": "epi",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_g1On",
+      "at": "epi",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_g2On",
+      "at": "epi",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "e_ledG",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-hook",
+      "at": "same",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：矽晶圓",
+      "tag": "示意，非實際比例",
+      "t": {
+       "same": {
+        "at": "same"
+       },
+       "pol": {
+        "at": "pol"
+       },
+       "grow": {
+        "at": "grow"
+       },
+       "epi": {
+        "at": "epi"
+       },
+       "why": {
+        "at": "why"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "上一集做好的鏡面晶圓，叫拋光晶圓，整片的雜質濃度都一樣。",
+   "tts": "上一集做好的鏡面晶圓，叫拋光晶圓，整片的雜質濃度都一樣。",
+   "subtitle": {
+    "zh": "上一集做好的鏡面晶圓\n叫拋光晶圓\n整片的雜質濃度都一樣",
+    "en": "The mirror wafer from last episode | is a polished wafer: | the doping is the same all the way through."
+   },
+   "keywords": [
+    "拋光晶圓",
+    "雜質濃度"
+   ],
+   "cues": [
+    {
+     "id": "last",
+     "text": "上一集"
+    },
+    {
+     "id": "polw",
+     "text": "拋光晶圓"
+    },
+    {
+     "id": "same",
+     "text": "濃度都一樣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Wafer (electronics)"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 25.8,
+      "y": 1.6,
+      "d": 16,
+      "elev": 42
+     }
+    ],
+    "run": [
+     {
+      "id": "k_p12On",
+      "at": "polw",
+      "ramp": 6,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_p12A",
+      "text": "拋光晶圓",
+      "en": "Polished wafer",
+      "color": "blue",
+      "at": "polw",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-pol",
+      "at": "start+6",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "拋光晶圓：整片一樣",
+      "tag": "示意，非實際比例",
+      "t": {
+       "last": {
+        "at": "last"
+       },
+       "polw": {
+        "at": "polw"
+       },
+       "same": {
+        "at": "same"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "磊晶是送進反應腔，燈管加熱到一千一百度上下，通入含矽氣體。",
+   "tts": "磊晶是送進反應腔，燈管加熱到一千一百度上下，通入含細氣體。",
+   "subtitle": {
+    "zh": "磊晶是送進反應腔\n燈管加熱\n到一千一百度上下\n通入含矽氣體",
+    "en": "For epitaxy, it goes into a reactor; | lamps heat it | to about 1,100 °C, | then silicon-bearing gas flows in."
+   },
+   "keywords": [
+    "反應腔",
+    "燈管",
+    "一千一百度",
+    "含矽氣體"
+   ],
+   "cues": [
+    {
+     "id": "in",
+     "text": "送進反應腔"
+    },
+    {
+     "id": "lamp",
+     "text": "燈管加熱"
+    },
+    {
+     "id": "deg",
+     "text": "一千一百度"
+    },
+    {
+     "id": "gas",
+     "text": "含矽氣體"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8038793、9240316"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 2.4,
+      "y": 3.0,
+      "d": 46,
+      "elev": 22
+     },
+     {
+      "at": "in+30",
+      "dur": 40,
+      "x": 0,
+      "y": 3.2,
+      "d": 40,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "e_lampOn",
+      "at": "lamp",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_lampUOn",
+      "at": "lamp",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_refOn",
+      "at": "lamp",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_hot",
+      "at": "deg",
+      "ramp": 16,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_suscHot",
+      "at": "deg",
+      "ramp": 16,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_heatW",
+      "at": "deg",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_gIn",
+      "at": "gas-12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_noz",
+      "at": "gas",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_tcs0",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_tcs1",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_tcs2",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_tcs3",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_h20",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_h21",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_ledG",
+      "at": "start",
+      "ramp": 1,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_tcA",
+      "text": "傳送腔→反應腔",
+      "en": "Into the chamber",
+      "color": "blue",
+      "at": "in-10",
+      "until": "lamp+20",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "e_lampA",
+      "text": "鹵素燈管",
+      "en": "Halogen lamps",
+      "color": "coral",
+      "at": "lamp",
+      "until": "s4:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "e_gasA",
+      "text": "含矽氣體＋氫氣",
+      "en": "SiHCl₃ + H₂",
+      "color": "amber",
+      "at": "gas",
+      "until": "s4:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-cvd",
+      "at": "start+6",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "磊晶爐：加熱＋通氣",
+      "tag": "USPTO 8038793",
+      "t": {
+       "in": {
+        "at": "in"
+       },
+       "lamp": {
+        "at": "lamp"
+       },
+       "deg": {
+        "at": "deg"
+       },
+       "gas": {
+        "at": "gas"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "托盤帶著晶圓慢慢轉，矽原子照底下的排列，長出一層新的單晶矽。",
+   "tts": "托盤帶著晶圓慢慢轉，細原子照底下的排列，長出一層新的單晶細。",
+   "subtitle": {
+    "zh": "托盤帶著晶圓慢慢轉\n矽原子照底下的排列\n長出一層新的單晶矽",
+    "en": "The susceptor slowly spins the wafer; | silicon atoms follow the lattice below | and grow a new single-crystal layer."
+   },
+   "keywords": [
+    "托盤",
+    "排列",
+    "單晶矽"
+   ],
+   "cues": [
+    {
+     "id": "spin",
+     "text": "慢慢轉"
+    },
+    {
+     "id": "atom",
+     "text": "照底下的排列"
+    },
+    {
+     "id": "layer",
+     "text": "長出一層"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8216920；USPTO 6995077"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0,
+      "y": 3.6,
+      "d": 21,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "e_rotS",
+      "at": "spin",
+      "ramp": 14,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_rotW",
+      "at": "spin",
+      "ramp": 14,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_rotG0",
+      "at": "spin",
+      "ramp": 14,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_rotG1",
+      "at": "spin",
+      "ramp": 14,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_rotG2",
+      "at": "spin",
+      "ramp": 14,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep0",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep1",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep2",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep3",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep4",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_dep5",
+      "at": "atom-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_g0On",
+      "at": "atom",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_g1On",
+      "at": "atom+30",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "e_g2On",
+      "at": "layer",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_suscA",
+      "text": "托盤在轉",
+      "en": "Susceptor spins",
+      "color": "blue",
+      "at": "spin",
+      "until": "s5:start-4",
+      "xy": [
+       260,
+       300
+      ]
+     },
+     {
+      "part": "e_epiA",
+      "text": "新的單晶矽層",
+      "en": "New crystal layer",
+      "color": "amber",
+      "at": "layer",
+      "until": "s5:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-grow",
+      "at": "start+6",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "原子照底下排列",
+      "tag": "示意，非實際比例",
+      "t": {
+       "spin": {
+        "at": "spin"
+       },
+       "atom": {
+        "at": "atom"
+       },
+       "lay": {
+        "at": "layer"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "好處是這層雜質能另外調，底下摻多、上面摻少，功率晶片常用。",
+   "tts": "好處是這層雜質能另外調，底下摻多、上面摻少，功率晶片常用。",
+   "subtitle": {
+    "zh": "好處是這層雜質能另外調\n底下摻多\n上面摻少\n功率晶片常用",
+    "en": "The payoff: this layer's doping is set separately, | heavy below, | light on top; | power chips use this a lot."
+   },
+   "keywords": [
+    "雜質",
+    "摻多",
+    "摻少",
+    "功率晶片"
+   ],
+   "cues": [
+    {
+     "id": "adj",
+     "text": "另外調"
+    },
+    {
+     "id": "heavy",
+     "text": "底下摻多"
+    },
+    {
+     "id": "light",
+     "text": "上面摻少"
+    },
+    {
+     "id": "power",
+     "text": "功率晶片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Okmetic N++ epi；USPTO 5306939"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "atom",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 60,
+      "y": 1.6,
+      "d": 40,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_lineOn",
+      "at": "adj",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "x_dSOn",
+      "at": "heavy",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "x_dEOn",
+      "at": "light",
+      "ramp": 6,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_dSA",
+      "text": "底材：雜質多",
+      "en": "Heavily doped",
+      "color": "coral",
+      "at": "heavy",
+      "until": "s6:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "x_epiA",
+      "text": "磊晶層：雜質少",
+      "en": "Lightly doped",
+      "color": "blue",
+      "at": "light",
+      "until": "s6:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-dope",
+      "at": "start+6",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "雜質濃度分開調",
+      "tag": "Okmetic；USPTO 5306939",
+      "t": {
+       "adj": {
+        "at": "adj"
+       },
+       "heavy": {
+        "at": "heavy"
+       },
+       "light": {
+        "at": "light"
+       },
+       "power": {
+        "at": "power"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "payoff",
+   "para": 6,
+   "narration": "尺寸也分工，十二吋做先進邏輯和記憶體，八吋、六吋多做功率晶片。",
+   "tts": "尺寸也分工，十二吋做先進邏輯和記憶體，八吋、六吋多做功率晶片。",
+   "subtitle": {
+    "zh": "尺寸也分工\n十二吋做先進邏輯和記憶體\n八吋、六吋\n多做功率晶片",
+    "en": "Sizes split the work too: | 12-inch for advanced logic and memory, | 8- and 6-inch | mostly for power chips."
+   },
+   "keywords": [
+    "十二吋",
+    "八吋",
+    "六吋"
+   ],
+   "cues": [
+    {
+     "id": "size",
+     "text": "尺寸也分工"
+    },
+    {
+     "id": "w12",
+     "text": "十二吋"
+    },
+    {
+     "id": "w8",
+     "text": "八吋、六吋"
+    },
+    {
+     "id": "pw",
+     "text": "功率晶片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台勝科法說 2025/11；TrendForce"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30.3,
+      "y": 1.2,
+      "d": 44,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_p12On",
+      "at": "w12",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "k_e12On",
+      "at": "w12",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "k_w8On",
+      "at": "w8",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "k_w6On",
+      "at": "w8+8",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_p12A",
+      "text": "12 吋",
+      "en": "300 mm",
+      "color": "blue",
+      "at": "w12",
+      "until": "s7:start-4",
+      "xy": [
+       250,
+       300
+      ]
+     },
+     {
+      "part": "k_w8A",
+      "text": "8 吋",
+      "en": "200 mm",
+      "color": "amber",
+      "at": "w8",
+      "until": "s7:start-4",
+      "xy": [
+       640,
+       300
+      ]
+     },
+     {
+      "part": "k_w6A",
+      "text": "6 吋",
+      "en": "150 mm",
+      "color": "amber",
+      "at": "w8+8",
+      "until": "s7:start-4",
+      "xy": [
+       880,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-size",
+      "at": "start+6",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "尺寸分工",
+      "tag": "台勝科法說；TrendForce",
+      "t": {
+       "size": {
+        "at": "size"
+       },
+       "w12": {
+        "at": "w12"
+       },
+       "w8": {
+        "at": "w8"
+       },
+       "pw": {
+        "at": "pw"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "台灣最大的是環球晶，全球五大之一，去年營收六百多億元。",
+   "tts": "台灣最大的是環球晶，全球五大之一，去年營收六百多億元。",
+   "subtitle": {
+    "zh": "台灣最大的是環球晶\n全球五大之一\n去年營收六百多億元",
+    "en": "Taiwan's biggest is GlobalWafers, | one of the global top five; | 2025 revenue: over NT$60 billion."
+   },
+   "keywords": [
+    "環球晶",
+    "五大",
+    "六百多億"
+   ],
+   "cues": [
+    {
+     "id": "who",
+     "text": "台灣最大"
+    },
+    {
+     "id": "gw",
+     "text": "環球晶"
+    },
+    {
+     "id": "top5",
+     "text": "全球五大"
+    },
+    {
+     "id": "rev",
+     "text": "六百多億元"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "旺得富 2026/03；經濟日報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30.3,
+      "y": 1.2,
+      "d": 44,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_p12On",
+      "at": "gw",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_p12A",
+      "text": "環球晶 6488",
+      "en": "GlobalWafers",
+      "color": "amber",
+      "at": "gw",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-co",
+      "at": "start+6",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "2025 營收：公司公告",
+      "t": {
+       "gw": {
+        "at": "gw"
+       },
+       "top5": {
+        "at": "top5"
+       },
+       "rev": {
+        "at": "rev"
+       }
+      },
+      "focus": "gw"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台勝科是台塑和日本勝高合資，主力十二吋，公司說占營收七成以上。",
+   "tts": "台勝科是台塑和日本勝高合資，主力十二吋，公司說占營收七成以上。",
+   "subtitle": {
+    "zh": "台勝科是台塑\n和日本勝高合資\n主力十二吋\n公司說占營收七成以上",
+    "en": "FST is a joint venture | of Formosa Plastics and SUMCO; | its focus is 12-inch, | over 70% of revenue, per the company."
+   },
+   "keywords": [
+    "台勝科",
+    "勝高",
+    "七成"
+   ],
+   "cues": [
+    {
+     "id": "fst",
+     "text": "台勝科"
+    },
+    {
+     "id": "jv",
+     "text": "勝高合資"
+    },
+    {
+     "id": "main",
+     "text": "十二吋"
+    },
+    {
+     "id": "p70",
+     "text": "七成以上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台勝科法說 2025/11（旺得富、優分析）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30.3,
+      "y": 1.2,
+      "d": 44,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_p12On",
+      "at": "main",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_p12A",
+      "text": "台勝科 3532",
+      "en": "FST",
+      "color": "blue",
+      "at": "fst",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-co",
+      "at": "start+6",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "2025 營收：公司公告",
+      "t": {
+       "fst": {
+        "at": "fst"
+       },
+       "jv": {
+        "at": "jv"
+       },
+       "main": {
+        "at": "main"
+       },
+       "p70": {
+        "at": "p70"
+       }
+      },
+      "focus": "fst"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "合晶主攻六吋、八吋，供應功率元件，也在擴十二吋。",
+   "tts": "合晶主攻六吋、八吋，供應功率元件，也在擴十二吋。",
+   "subtitle": {
+    "zh": "合晶主攻六吋、八吋\n供應功率元件\n也在擴十二吋",
+    "en": "Wafer Works focuses on 6- and 8-inch, | supplying power devices, | and is now adding 12-inch."
+   },
+   "keywords": [
+    "合晶",
+    "六吋",
+    "八吋",
+    "功率元件"
+   ],
+   "cues": [
+    {
+     "id": "ww",
+     "text": "合晶"
+    },
+    {
+     "id": "p68",
+     "text": "六吋、八吋"
+    },
+    {
+     "id": "pwr",
+     "text": "功率元件"
+    },
+    {
+     "id": "x12",
+     "text": "擴十二吋"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "經濟日報；工商時報 2026/03"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30.3,
+      "y": 1.2,
+      "d": 44,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_w8On",
+      "at": "p68",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "k_w6On",
+      "at": "p68",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_w8A",
+      "text": "合晶 6182",
+      "en": "Wafer Works",
+      "color": "amber",
+      "at": "ww",
+      "until": "s10:start-4",
+      "xy": [
+       400,
+       300
+      ]
+     },
+     {
+      "part": "k_w6A",
+      "text": "合晶 6182",
+      "en": "Wafer Works",
+      "color": "amber",
+      "at": "p68",
+      "until": "s10:start-4",
+      "xy": [
+       850,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-co",
+      "at": "start+6",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "2025 營收：公司公告",
+      "t": {
+       "ww": {
+        "at": "ww"
+       },
+       "p68": {
+        "at": "p68"
+       },
+       "pwr": {
+        "at": "pwr"
+       },
+       "x12": {
+        "at": "x12"
+       }
+      },
+      "focus": "ww"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "嘉晶專做磊晶，除了矽，也做碳化矽和氮化鎵的磊晶。",
+   "tts": "嘉晶專做磊晶，除了細，也做碳化細和氮化鎵的磊晶。",
+   "subtitle": {
+    "zh": "嘉晶專做磊晶\n除了矽\n也做碳化矽和氮化鎵的磊晶",
+    "en": "Episil focuses on epitaxy: | besides silicon, | it grows SiC and GaN epi layers too."
+   },
+   "keywords": [
+    "嘉晶",
+    "碳化矽",
+    "氮化鎵"
+   ],
+   "cues": [
+    {
+     "id": "epi",
+     "text": "嘉晶專做磊晶"
+    },
+    {
+     "id": "si",
+     "text": "除了矽"
+    },
+    {
+     "id": "sic",
+     "text": "碳化矽"
+    },
+    {
+     "id": "gan",
+     "text": "氮化鎵"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "富果投研 2025/09；旺得富 2026/05"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30.3,
+      "y": 1.2,
+      "d": 44,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_e12On",
+      "at": "epi",
+      "ramp": 6,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_e12A",
+      "text": "嘉晶 3016",
+      "en": "Episil",
+      "color": "blue",
+      "at": "epi",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-co",
+      "at": "start+6",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "2025 營收：公司公告",
+      "t": {
+       "epi": {
+        "at": "epi"
+       },
+       "si": {
+        "at": "si"
+       },
+       "sic": {
+        "at": "sic"
+       },
+       "gan": {
+        "at": "gan"
+       }
+      },
+      "focus": "epi"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "晶圓備好了，電路怎麼印上去？靠光罩，下一集看。留言磊晶，拿完整資料。",
+   "tts": "晶圓備好了，電路怎麼印上去？靠光罩，下一集看。留言磊晶，拿完整資料。",
+   "subtitle": {
+    "zh": "晶圓備好了\n電路怎麼印上去？\n靠光罩，下一集看\n留言磊晶\n拿完整資料",
+    "en": "The wafer is ready. | How do circuits get printed on it? | With a photomask: next episode. | Comment \"磊晶\" | for the full notes."
+   },
+   "keywords": [
+    "光罩",
+    "磊晶"
+   ],
+   "cues": [
+    {
+     "id": "ready",
+     "text": "晶圓備好了"
+    },
+    {
+     "id": "print",
+     "text": "怎麼印上去"
+    },
+    {
+     "id": "mask",
+     "text": "靠光罩"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言磊晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "series_plan 系列 2 第 3 集"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 90,
+      "y": 2.4,
+      "d": 24,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "m_uv",
+      "at": "mask+10",
+      "ramp": 6,
+      "until": "s12:start"
+     },
+     {
+      "id": "m_on",
+      "at": "mask+10",
+      "ramp": 6,
+      "until": "s12:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "m_wA",
+      "text": "晶圓備好了",
+      "en": "Wafer ready",
+      "color": "blue",
+      "at": "ready",
+      "until": "kw-10",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "m_maskA",
+      "text": "光罩（下一集）",
+      "en": "Photomask (next)",
+      "color": "amber",
+      "at": "mask",
+      "until": "kw-10",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "w2-next",
+      "at": "start+6",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：光罩",
+      "tag": "光罩-1：晶片的底片",
+      "t": {
+       "ready": {
+        "at": "ready"
+       },
+       "print": {
+        "at": "print"
+       },
+       "mask": {
+        "at": "mask"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光罩-1 晶片的底片",
+     "trail": [
+      "環球晶",
+      "台勝科",
+      "合晶",
+      "嘉晶"
+     ],
+     "at": "s11:kw-8",
+     "comment": "磊晶",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
