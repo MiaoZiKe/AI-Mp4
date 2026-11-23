@@ -39,6 +39,7 @@ import { ImpSection } from "./HudImplant";
 import { ClnSection } from "./HudClean";
 import { OxSection } from "./HudOx";
 import { SiSection } from "./HudSi";
+import { ResistSection } from "./HudResist";
 import { Mask1Section } from "./HudMask1";
 import { Mask2Section } from "./HudMask2";
 import { EpiSection } from "./HudEpi";
@@ -685,6 +686,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("cln-")) return <ClnSection o={o} f={f} k={k} m={m} />; // 2026/11/21 tech-clean（HudClean.tsx）
   if (String((o as any).kind ?? "").startsWith("ox-")) return <OxSection o={o} f={f} k={k} m={m} />; // 2026/11/21 tech-oxidation（HudOx.tsx）
   if (String((o as any).kind ?? "").startsWith("si-")) return <SiSection o={o} f={f} k={k} m={m} />; // 2026/11/24 tech-wafer1（HudSi.tsx）
+  if (String((o as any).kind ?? "").startsWith("pr1-")) return <ResistSection o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-resist1（HudResist.tsx）
   if (String((o as any).kind ?? "").startsWith("mk1-")) return <Mask1Section o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-mask1（HudMask1.tsx）
   if (String((o as any).kind ?? "").startsWith("mk2-")) return <Mask2Section o={o} f={f} k={k} m={m} />; // 2026/11/24 tech-mask2（HudMask2.tsx）
   if (String((o as any).kind ?? "").startsWith("w2-")) return <EpiSection o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-wafer2（HudEpi.tsx）
