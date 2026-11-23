@@ -273,11 +273,11 @@ const Co: React.FC<P> = ({ o, f, k, m }) => {
       <div style={{ position: "absolute", inset: 0, background: H.cardCompare }} />
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {rows.map(([n, d, key], i) => { const on = tween(f, T(o, key), 10, EASE.enter); const cur = on > 0.5 && (i === 5 || tween(f, T(o, rows[i + 1][2]), 4) < 0.5);
-          const y = CARD_CONTENT_TOP + i * 38; // 第一列從標題下緣＋8px 開始；每列 38 高（相鄰列共用框線）、字 24px，字和上下框線各留 ≥6px（11/23）
+          const y = CARD_CONTENT_TOP + i * 36; // 第一列從標題下緣＋8px 開始；每列 36 高（相鄰列共用框線）、字 22px，字和上下框線各留 ≥6px，表底離卡片內緣 ≥8px（11/23）
           return <g key={i}>
-            <rect x={20} y={y} width={W - 40} height={38} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={2} />
-            <text x={36} y={y + 28.5} style={zh(24, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
-            <text x={W - 36} y={y + 28.5} textAnchor="end" style={zh(24, cur ? onC(H.amber) : H.text2, 800)}>{d}</text></g>; })}
+            <rect x={20} y={y} width={W - 40} height={36} fill={cur ? H.amber : on > 0.5 ? "#E7EEF8" : "#F1F4F8"} stroke={cur ? H.amber : H.text3} strokeWidth={2} />
+            <text x={36} y={y + 26.5} style={zh(22, cur ? onC(H.amber) : H.text, 900)}>{n}</text>
+            <text x={W - 36} y={y + 26.5} textAnchor="end" style={zh(22, cur ? onC(H.amber) : H.text2, 800)}>{d}</text></g>; })}
       </svg>
     </Card>
   );
