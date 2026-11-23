@@ -1,0 +1,2521 @@
+{
+ "slug": "tech-wafer1",
+ "title": "矽晶圓-1：一塊砂怎麼變成晶圓（科技透明圈）",
+ "asOf": "2026/11/24",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "plant",
+    "label": "材料工廠",
+    "en": "MATERIALS PLANT",
+    "field": "10 m",
+    "ruler": "2 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "tool",
+    "label": "設備",
+    "en": "EQUIPMENT",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "atom",
+    "label": "原子",
+    "en": "ATOMS",
+    "field": "2 nm",
+    "ruler": "0.5 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "一把砂",
+   "怎麼變晶圓"
+  ],
+  "sub": "矽晶圓-1：拉晶",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片做在晶圓上，晶圓是砂子變的，怎麼變成一面鏡子？",
+   "tts": "晶片做在晶圓上，晶圓是砂子變的，怎麼變成一面鏡子？",
+   "subtitle": {
+    "zh": "晶片做在晶圓上\n晶圓是砂子變的\n怎麼變成一面鏡子？",
+    "en": "Chips are built on wafers, | and wafers start as sand. | How does sand become a mirror?"
+   },
+   "keywords": [
+    "晶圓",
+    "砂子",
+    "鏡子"
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "晶片做在晶圓上"
+    },
+    {
+     "id": "sand",
+     "text": "砂子變的"
+    },
+    {
+     "id": "how",
+     "text": "怎麼變成"
+    },
+    {
+     "id": "mirror",
+     "text": "一面鏡子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Wafer (electronics)"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "代工的供應商 1",
+     "title": "砂子變晶圓？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 48,
+      "y": 5.6,
+      "d": 60,
+      "elev": 16
+     },
+     {
+      "at": "how",
+      "dur": 70,
+      "x": 48,
+      "y": 5.6,
+      "d": 58,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "c_xtal",
+      "at": "s1:start-300",
+      "until": "s1:start+5",
+      "dur": 120,
+      "dx": 0,
+      "dy": -2.0,
+      "dz": 0
+     },
+     {
+      "layer": "c_seed",
+      "at": "s1:start-300",
+      "until": "s1:start+5",
+      "dur": 120,
+      "dx": 0,
+      "dy": -2.0,
+      "dz": 0
+     },
+     {
+      "layer": "c_xtal",
+      "at": "s2:start+20",
+      "until": "s6:pull",
+      "dur": 84,
+      "dx": 0,
+      "dy": -5.1,
+      "dz": 0
+     },
+     {
+      "layer": "c_seed",
+      "at": "s2:start+20",
+      "until": "s6:pull",
+      "dur": 84,
+      "dx": 0,
+      "dy": -5.1,
+      "dz": 0
+     },
+     {
+      "layer": "c_seed",
+      "at": "s2:start+20",
+      "until": "s6:seed",
+      "dur": 24,
+      "dx": 0,
+      "dy": 1.5,
+      "dz": 0
+     },
+     {
+      "layer": "c_xtal",
+      "at": "s2:start+20",
+      "until": "s5:melt+34",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "c_seed",
+      "at": "s2:start+20",
+      "until": "s5:melt+34",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "c_melt",
+      "at": "s2:start+20",
+      "until": "s5:melt",
+      "opacity": 0,
+      "dur": 24
+     },
+     {
+      "layer": "c_men",
+      "at": "s2:start+20",
+      "until": "s6:seed+22",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_chunk",
+      "at": "s1:start-40",
+      "until": "s5:cruc",
+      "dy": 1.8,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "c_chunk",
+      "at": "s5:melt+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 30
+     },
+     {
+      "layer": "s_g1",
+      "at": "s1:start-40",
+      "until": "s4:rod",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "s_g2",
+      "at": "s1:start-40",
+      "until": "s4:rod+24",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "s_g3",
+      "at": "s1:start-40",
+      "until": "s4:poly",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "w_hold",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_hold",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0
+     },
+     {
+      "layer": "p_wm",
+      "at": "s1:start-40",
+      "until": "s8:pol+20",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "p_wr",
+      "at": "s8:pol+20",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "p_head",
+      "at": "s8:pol+6",
+      "until": "s12:start+400",
+      "dur": 20,
+      "dx": 0,
+      "dy": 1.3,
+      "dz": 0
+     },
+     {
+      "layer": "k_epi",
+      "at": "s1:start-40",
+      "until": "s11:next",
+      "opacity": 0,
+      "dur": 16
+     },
+     {
+      "layer": "w_sl0",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl0",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -1.2
+     },
+     {
+      "layer": "w_sl1",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl1",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -1.04
+     },
+     {
+      "layer": "w_sl2",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl2",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.88
+     },
+     {
+      "layer": "w_sl3",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl3",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.72
+     },
+     {
+      "layer": "w_sl4",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl4",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.56
+     },
+     {
+      "layer": "w_sl5",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl5",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.4
+     },
+     {
+      "layer": "w_sl6",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl6",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.24
+     },
+     {
+      "layer": "w_sl7",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl7",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": -0.08
+     },
+     {
+      "layer": "w_sl8",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl8",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.08
+     },
+     {
+      "layer": "w_sl9",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl9",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.24
+     },
+     {
+      "layer": "w_sl10",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl10",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.4
+     },
+     {
+      "layer": "w_sl11",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl11",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.56
+     },
+     {
+      "layer": "w_sl12",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl12",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.72
+     },
+     {
+      "layer": "w_sl13",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl13",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 0.88
+     },
+     {
+      "layer": "w_sl14",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl14",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 1.04
+     },
+     {
+      "layer": "w_sl15",
+      "at": "s7:saw-8",
+      "until": "s12:start+400",
+      "dur": 40,
+      "dx": 0,
+      "dy": -2.3,
+      "dz": 0
+     },
+     {
+      "layer": "w_sl15",
+      "at": "s7:slice+4",
+      "until": "s12:start+400",
+      "dur": 24,
+      "dx": 0,
+      "dy": 2.9,
+      "dz": 1.2
+     },
+     {
+      "layer": "px_czc",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_czc",
+      "at": "s2:start-4",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_czc",
+      "at": "s7:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_czm",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_czm",
+      "at": "s6:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s1:start-400",
+      "until": "s10:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_arc",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_arc",
+      "at": "s3:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s1:start-400",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_lat",
+      "at": "s4:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_sie",
+      "at": "s1:start-400",
+      "until": "s4:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_sie",
+      "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_saw",
+      "at": "s1:start-400",
+      "until": "s7:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_saw",
+      "at": "s8:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_pol",
+      "at": "s1:start-400",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_pol",
+      "at": "s9:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_k",
+      "at": "s1:start-400",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_k",
+      "at": "s10:start-4",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_k",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "c_rotX",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_rotS",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_rotC",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_heatOn",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_heatP",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_meltOn",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_menOn",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_arF0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_arF1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_wave0",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_wave1",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_ledG",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_ingA",
+      "text": "晶棒正在長",
+      "en": "An ingot growing",
+      "color": "blue",
+      "at": "sand",
+      "until": "s2:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-hook",
+      "at": "chip",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：矽晶圓",
+      "tag": "示意，非實際比例",
+      "t": {
+       "chip": {
+        "at": "chip"
+       },
+       "sand": {
+        "at": "sand"
+       },
+       "how": {
+        "at": "how"
+       },
+       "mirror": {
+        "at": "mirror"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "砂子是二氧化矽，先跟碳一起燒掉氧，變成九成八純的冶金級矽。",
+   "tts": "砂子是二氧化細，先跟碳一起燒掉氧，變成九成八純的冶金級細。",
+   "subtitle": {
+    "zh": "砂子是二氧化矽\n先跟碳一起燒掉氧\n變成九成八純的冶金級矽",
+    "en": "Sand is silicon dioxide. | Burn it with carbon to strip the oxygen, | giving 98%-pure metallurgical silicon."
+   },
+   "keywords": [
+    "二氧化矽",
+    "碳",
+    "九成八",
+    "冶金級矽"
+   ],
+   "cues": [
+    {
+     "id": "sio2",
+     "text": "二氧化矽"
+    },
+    {
+     "id": "carbon",
+     "text": "跟碳一起燒"
+    },
+    {
+     "id": "oxy",
+     "text": "燒掉氧"
+    },
+    {
+     "id": "p98",
+     "text": "九成八"
+    },
+    {
+     "id": "mg",
+     "text": "冶金級矽"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9067338；Fraunhofer ISE 多晶矽報告"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -1.5,
+      "y": 1.2,
+      "d": 56,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "q_feed",
+      "at": "start",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_sandOn",
+      "at": "sio2",
+      "ramp": 6,
+      "until": "carbon"
+     },
+     {
+      "id": "q_arcOn",
+      "at": "carbon-6",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_hot",
+      "at": "carbon",
+      "ramp": 10,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_co0",
+      "at": "oxy-4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_co1",
+      "at": "oxy-4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_co2",
+      "at": "oxy-4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_co3",
+      "at": "oxy-4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_tap",
+      "at": "mg-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "q_ladHot",
+      "at": "mg",
+      "ramp": 8,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "q_sandA",
+      "text": "石英砂",
+      "en": "Quartz sand (SiO₂)",
+      "color": "amber",
+      "at": "sio2",
+      "until": "carbon-4"
+     },
+     {
+      "part": "q_elA",
+      "text": "石墨電極放電",
+      "en": "Graphite arc",
+      "color": "blue",
+      "at": "carbon",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "q_coA",
+      "text": "一氧化碳排出",
+      "en": "O leaves as CO",
+      "color": "coral",
+      "at": "oxy",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "q_mgA",
+      "text": "冶金級矽",
+      "en": "Metallurgical Si",
+      "color": "blue",
+      "at": "mg",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-mg",
+      "at": "start+2",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電弧爐：砂變冶金級矽",
+      "tag": "USPTO 9067338",
+      "t": {
+       "sio2": {
+        "at": "sio2"
+       },
+       "carbon": {
+        "at": "carbon"
+       },
+       "oxy": {
+        "at": "oxy"
+       },
+       "p98": {
+        "at": "p98"
+       },
+       "mg": {
+        "at": "mg"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "twist",
+   "para": 3,
+   "narration": "但晶片要十一個九，一千億個原子，雜質不到一個，電晶體才準。",
+   "tts": "但晶片要十一個九，一千億個原子，雜質不到一個，電晶體才準。",
+   "subtitle": {
+    "zh": "但晶片要十一個九\n一千億個原子\n雜質不到一個\n電晶體才準",
+    "en": "But chips need eleven nines: | in 100 billion atoms, | less than one impurity, | or transistors drift."
+   },
+   "keywords": [
+    "十一個九",
+    "一千億",
+    "雜質"
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "但晶片要"
+    },
+    {
+     "id": "n11",
+     "text": "十一個九"
+    },
+    {
+     "id": "e11",
+     "text": "一千億個原子"
+    },
+    {
+     "id": "imp",
+     "text": "雜質不到一個"
+    },
+    {
+     "id": "ok",
+     "text": "電晶體才準"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Bernreuter Research；USPTO 11512001"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "atom",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 125,
+      "y": 0.7,
+      "d": 32,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "x_ele0",
+      "at": "start",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "x_ele1",
+      "at": "start",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "x_impOn",
+      "at": "imp",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "x_siA",
+      "text": "矽原子",
+      "en": "Silicon atoms",
+      "color": "blue",
+      "at": "e11",
+      "until": "s4:start-4"
+     },
+     {
+      "part": "x_impA",
+      "text": "一顆雜質",
+      "en": "One impurity",
+      "color": "coral",
+      "at": "imp",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-pure",
+      "at": "start+2",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "十一個九有多純",
+      "tag": "Bernreuter Research",
+      "t": {
+       "but": {
+        "at": "but"
+       },
+       "n11": {
+        "at": "n11"
+       },
+       "e11": {
+        "at": "e11"
+       },
+       "imp": {
+        "at": "imp"
+       },
+       "ok": {
+        "at": "ok"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "所以用西門子法，把矽變成氣體蒸餾，再長回棒子上，叫多晶矽。",
+   "tts": "所以用西門子法，把細變成氣體蒸餾，再長回棒子上，叫多晶細。",
+   "subtitle": {
+    "zh": "所以用西門子法\n把矽變成氣體蒸餾\n再長回棒子上\n叫多晶矽",
+    "en": "So we use the Siemens process: | turn silicon into a gas and distill it, | then grow it back onto rods: | polysilicon."
+   },
+   "keywords": [
+    "西門子法",
+    "蒸餾",
+    "多晶矽"
+   ],
+   "cues": [
+    {
+     "id": "siem",
+     "text": "西門子法"
+    },
+    {
+     "id": "gas",
+     "text": "變成氣體"
+    },
+    {
+     "id": "dist",
+     "text": "蒸餾"
+    },
+    {
+     "id": "rod",
+     "text": "長回棒子上"
+    },
+    {
+     "id": "poly",
+     "text": "多晶矽"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Fraunhofer ISE；Wacker 2022 年報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 22.4,
+      "y": 1.9,
+      "d": 54,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "s_pin",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_vap0",
+      "at": "dist-6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_vap1",
+      "at": "dist-6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_vap2",
+      "at": "dist-6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_vap3",
+      "at": "dist-6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_pout",
+      "at": "dist+10",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_gas0",
+      "at": "rod-12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_gas1",
+      "at": "rod-12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_gas2",
+      "at": "rod-12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_dep0",
+      "at": "rod",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_dep1",
+      "at": "rod",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_dep2",
+      "at": "rod",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_dep3",
+      "at": "rod",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_rodHot",
+      "at": "rod-12",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_g1Hot",
+      "at": "rod",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_g2Hot",
+      "at": "rod+24",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "s_g3Hot",
+      "at": "poly",
+      "ramp": 10,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "s_fbrA",
+      "text": "矽＋氯化氫→氣體",
+      "en": "Si + HCl → gas",
+      "color": "amber",
+      "at": "gas",
+      "until": "s5:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "s_colA",
+      "text": "蒸餾塔",
+      "en": "Distillation",
+      "color": "blue",
+      "at": "dist",
+      "until": "s5:start-4",
+      "xy": [
+       300,
+       853
+      ]
+     },
+     {
+      "part": "s_rodA",
+      "text": "矽棒越長越粗",
+      "en": "Rods grow thicker",
+      "color": "coral",
+      "at": "rod",
+      "until": "s5:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "s_polyA",
+      "text": "多晶矽",
+      "en": "Polysilicon",
+      "color": "blue",
+      "at": "poly",
+      "until": "s5:start-4",
+      "xy": [
+       790,
+       853
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-siem",
+      "at": "start+2",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "西門子法：氣體→蒸餾→長回棒",
+      "tag": "Fraunhofer ISE；Wacker",
+      "t": {
+       "siem": {
+        "at": "siem"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "dist": {
+        "at": "dist"
+       },
+       "rod": {
+        "at": "rod"
+       },
+       "poly": {
+        "at": "poly"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "但多晶矽原子排得亂，放進石英坩堝，加熱到一千四百多度熔掉。",
+   "tts": "但多晶細原子排得亂，放進石英甘鍋，加熱到一千四百多度熔掉。",
+   "subtitle": {
+    "zh": "但多晶矽原子排得亂\n放進石英坩堝\n加熱到一千四百多度\n熔掉",
+    "en": "But polysilicon atoms are jumbled. | Load it into a quartz crucible, | heat past 1,400 °C, | and melt it."
+   },
+   "keywords": [
+    "多晶矽",
+    "石英坩堝",
+    "一千四百多度"
+   ],
+   "cues": [
+    {
+     "id": "messy",
+     "text": "排得亂"
+    },
+    {
+     "id": "cruc",
+     "text": "石英坩堝"
+    },
+    {
+     "id": "heat",
+     "text": "加熱"
+    },
+    {
+     "id": "deg",
+     "text": "一千四百多度"
+    },
+    {
+     "id": "melt",
+     "text": "熔掉"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Czochralski method；PVA TePla"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 48,
+      "y": 2.4,
+      "d": 50,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "c_heatOn",
+      "at": "heat-4",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_heatP",
+      "at": "heat",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_chunkHot",
+      "at": "heat",
+      "ramp": 12,
+      "until": "s6:start"
+     },
+     {
+      "id": "c_meltOn",
+      "at": "melt",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_wave0",
+      "at": "melt+10",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_wave1",
+      "at": "melt+10",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_rotC",
+      "at": "heat",
+      "ramp": 14,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_chunkA",
+      "text": "多晶矽塊",
+      "en": "Polysilicon chunks",
+      "color": "blue",
+      "at": "cruc+10",
+      "until": "melt+6",
+      "xy": [
+       290,
+       300
+      ]
+     },
+     {
+      "part": "c_crucA",
+      "text": "石英坩堝",
+      "en": "Crucible",
+      "color": "amber",
+      "at": "cruc",
+      "until": "s6:start-4",
+      "xy": [
+       225,
+       640
+      ]
+     },
+     {
+      "part": "c_heatA",
+      "text": "石墨加熱器",
+      "en": "Heater",
+      "color": "coral",
+      "at": "heat",
+      "until": "s6:start-4",
+      "xy": [
+       855,
+       640
+      ]
+     },
+     {
+      "part": "c_meltA",
+      "text": "熔湯",
+      "en": "Silicon melt",
+      "color": "coral",
+      "at": "melt+10",
+      "until": "s6:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-melt",
+      "at": "start+2",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "多晶→熔湯",
+      "tag": "示意，非實際比例",
+      "t": {
+       "messy": {
+        "at": "messy"
+       },
+       "cruc": {
+        "at": "cruc"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "deg": {
+        "at": "deg"
+       },
+       "melt": {
+        "at": "melt"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "接著晶種浸下去，一邊慢轉一邊往上拉，原子跟著排隊，長成單晶晶棒。",
+   "tts": "接著晶種浸下去，一邊慢轉一邊往上拉，原子跟著排隊，長成單晶晶棒。",
+   "subtitle": {
+    "zh": "接著晶種浸下去\n一邊慢轉\n一邊往上拉\n原子跟著排隊\n長成單晶晶棒",
+    "en": "Then a seed crystal dips in, | turning slowly | while it is pulled up; | atoms line up behind it | into a single-crystal ingot."
+   },
+   "keywords": [
+    "晶種",
+    "往上拉",
+    "單晶晶棒"
+   ],
+   "cues": [
+    {
+     "id": "seed",
+     "text": "晶種浸下去"
+    },
+    {
+     "id": "rot",
+     "text": "慢轉"
+    },
+    {
+     "id": "pull",
+     "text": "往上拉"
+    },
+    {
+     "id": "line",
+     "text": "跟著排隊"
+    },
+    {
+     "id": "ingot",
+     "text": "單晶晶棒"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Czochralski method；USPTO 6689209"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 48,
+      "y": 3.6,
+      "d": 46,
+      "elev": 24
+     },
+     {
+      "at": "pull",
+      "dur": 120,
+      "x": 48,
+      "y": 4.0,
+      "d": 50,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "c_seedOn",
+      "at": "seed",
+      "ramp": 6,
+      "until": "pull+20"
+     },
+     {
+      "id": "c_rotX",
+      "at": "rot",
+      "ramp": 12,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "c_rotS",
+      "at": "rot",
+      "ramp": 12,
+      "until": "s7:start+10"
+     },
+     {
+      "id": "c_menOn",
+      "at": "seed+18",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_arF0",
+      "at": "pull",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "c_arF1",
+      "at": "pull",
+      "ramp": 8,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_seedA",
+      "text": "晶種",
+      "en": "Seed crystal",
+      "color": "amber",
+      "at": "seed",
+      "until": "pull+40",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "c_crucA",
+      "text": "坩堝反轉",
+      "en": "Counter-spin",
+      "color": "blue",
+      "at": "rot",
+      "until": "s7:start-4",
+      "xy": [
+       235,
+       720
+      ]
+     },
+     {
+      "part": "c_ingA",
+      "text": "單晶晶棒",
+      "en": "Single crystal",
+      "color": "blue",
+      "at": "ingot",
+      "until": "s7:start-4",
+      "xy": [
+       845,
+       640
+      ]
+     },
+     {
+      "part": "c_arA",
+      "text": "氬氣往下吹",
+      "en": "Argon flows down",
+      "color": "blue",
+      "at": "line",
+      "until": "s7:start-4",
+      "xy": [
+       290,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-cz",
+      "at": "start+2",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "拉晶：原子照晶種排隊",
+      "tag": "Wikipedia；USPTO 6689209",
+      "t": {
+       "seed": {
+        "at": "seed"
+       },
+       "rot": {
+        "at": "rot"
+       },
+       "pull": {
+        "at": "pull"
+       },
+       "line": {
+        "at": "line"
+       },
+       "ingot": {
+        "at": "ingot"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "晶棒用鑽石線，切成一片片薄片。",
+   "tts": "晶棒用鑽石線，切成一片片薄片。",
+   "subtitle": {
+    "zh": "晶棒用鑽石線\n切成一片片薄片",
+    "en": "Diamond wire slices the ingot | into thin discs."
+   },
+   "keywords": [
+    "鑽石線",
+    "薄片"
+   ],
+   "cues": [
+    {
+     "id": "saw",
+     "text": "鑽石線"
+    },
+    {
+     "id": "slice",
+     "text": "切成一片片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Wafer (electronics)"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 72,
+      "y": 3.2,
+      "d": 37,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "w_wireF",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "w_cool",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "w_wireA",
+      "text": "鑽石線",
+      "en": "Diamond wire",
+      "color": "blue",
+      "at": "saw",
+      "until": "s8:start-4"
+     },
+     {
+      "part": "w_sliceA",
+      "text": "一片片薄片",
+      "en": "Thin slices",
+      "color": "amber",
+      "at": "slice+20",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-saw",
+      "at": "start+2",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "線鋸切片",
+      "tag": "Wikipedia Wafer",
+      "t": {
+       "saw": {
+        "at": "saw"
+       },
+       "slice": {
+        "at": "slice"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "再研磨、拋光成鏡面，就是晶圓。",
+   "tts": "再研磨、拋光成鏡面，就是晶圓。",
+   "subtitle": {
+    "zh": "再研磨\n拋光成鏡面\n就是晶圓",
+    "en": "Then grind them, | polish to a mirror: | a wafer."
+   },
+   "keywords": [
+    "研磨",
+    "拋光",
+    "鏡面"
+   ],
+   "cues": [
+    {
+     "id": "grind",
+     "text": "研磨"
+    },
+    {
+     "id": "pol",
+     "text": "拋光成鏡面"
+    },
+    {
+     "id": "wafer",
+     "text": "就是晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Wafer (electronics)；USPTO 9108289"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 81.0,
+      "y": 1.2,
+      "d": 26,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "p_rotP",
+      "at": "start",
+      "ramp": 12,
+      "until": "s9:start"
+     },
+     {
+      "id": "p_rotH",
+      "at": "start",
+      "ramp": 12,
+      "until": "pol+6"
+     },
+     {
+      "id": "p_slF",
+      "at": "start",
+      "ramp": 6,
+      "until": "pol+6"
+     },
+     {
+      "id": "p_shine",
+      "at": "pol+24",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_padA",
+      "text": "拋光墊＋研磨液",
+      "en": "Pad + slurry",
+      "color": "blue",
+      "at": "grind",
+      "until": "s9:start-4"
+     },
+     {
+      "part": "p_wmA",
+      "text": "鏡面晶圓",
+      "en": "Mirror wafer",
+      "color": "amber",
+      "at": "pol+24",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-pol",
+      "at": "start+2",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "研磨→拋光",
+      "tag": "USPTO 9108289",
+      "t": {
+       "grind": {
+        "at": "grind"
+       },
+       "pol": {
+        "at": "pol"
+       },
+       "wafer": {
+        "at": "wafer"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "為什麼是十二吋？面積是八吋的兩倍多，一次能做更多晶片。",
+   "tts": "為什麼是十二吋？面積是八吋的兩倍多，一次能做更多晶片。",
+   "subtitle": {
+    "zh": "為什麼是十二吋？\n面積是八吋的兩倍多\n一次能做更多晶片",
+    "en": "Why 12 inches? | It has over twice the area of 8-inch, | so each step makes more chips."
+   },
+   "keywords": [
+    "十二吋",
+    "八吋",
+    "兩倍多"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "十二吋"
+    },
+    {
+     "id": "area",
+     "text": "兩倍多"
+    },
+    {
+     "id": "more",
+     "text": "更多晶片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wevolver 200 mm vs 300 mm；Wikipedia Wafer"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 98.9,
+      "y": 1.4,
+      "d": 24,
+      "elev": 44
+     }
+    ],
+    "run": [
+     {
+      "id": "k_shine12",
+      "at": "why",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "k_d12On",
+      "at": "more",
+      "ramp": 8,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_w12A",
+      "text": "12 吋",
+      "en": "300 mm",
+      "color": "blue",
+      "at": "why",
+      "until": "s10:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "k_w8A",
+      "text": "8 吋",
+      "en": "200 mm",
+      "color": "amber",
+      "at": "area",
+      "until": "s10:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-size",
+      "at": "start+2",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "12 吋 vs 8 吋",
+      "tag": "Wevolver；Wikipedia",
+      "t": {
+       "why": {
+        "at": "why"
+       },
+       "area": {
+        "at": "area"
+       },
+       "more": {
+        "at": "more"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "全球主要是信越、勝高、環球晶、世創，和一家韓國廠，五家超過八成。",
+   "tts": "全球主要是信越、勝高、環球晶、世創，和一家韓國廠，五家超過八成。",
+   "subtitle": {
+    "zh": "全球主要是信越\n勝高\n環球晶\n世創\n和一家韓國廠\n五家超過八成",
+    "en": "Globally: Shin-Etsu, | SUMCO, | GlobalWafers, | Siltronic, | and Korea's SK Siltron; | the five hold over 80%."
+   },
+   "keywords": [
+    "信越",
+    "勝高",
+    "環球晶",
+    "世創",
+    "八成"
+   ],
+   "cues": [
+    {
+     "id": "shin",
+     "text": "信越"
+    },
+    {
+     "id": "sumco",
+     "text": "勝高"
+    },
+    {
+     "id": "gw",
+     "text": "環球晶"
+    },
+    {
+     "id": "sil",
+     "text": "世創"
+    },
+    {
+     "id": "sk",
+     "text": "韓國廠"
+    },
+    {
+     "id": "top5",
+     "text": "超過八成"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "旺得富（中時）2026/07；官股投顧報告（鉅亨轉載）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 60.0,
+      "y": 5.0,
+      "d": 96,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "c_rotX",
+      "at": "start",
+      "ramp": 12,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_rotS",
+      "at": "start",
+      "ramp": 12,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_rotC",
+      "at": "start",
+      "ramp": 12,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_heatOn",
+      "at": "start",
+      "ramp": 10,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_heatP",
+      "at": "start",
+      "ramp": 10,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_meltOn",
+      "at": "start",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_menOn",
+      "at": "start",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_arF0",
+      "at": "start",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_arF1",
+      "at": "start",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_wave0",
+      "at": "start",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "c_wave1",
+      "at": "start",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "w_wireF",
+      "at": "start",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "p_rotP",
+      "at": "start",
+      "ramp": 10,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_toolA",
+      "text": "拉晶",
+      "en": "Crystal pulling",
+      "color": "blue",
+      "at": "shin",
+      "until": "s11:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "w_wireA",
+      "text": "切片、拋光",
+      "en": "Slicing & polishing",
+      "color": "amber",
+      "at": "gw",
+      "until": "s11:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-co",
+      "at": "start+2",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "全球誰在做",
+      "tag": "旺得富、官股投顧報告",
+      "t": {
+       "shin": {
+        "at": "shin"
+       },
+       "sumco": {
+        "at": "sumco"
+       },
+       "gw": {
+        "at": "gw"
+       },
+       "sil": {
+        "at": "sil"
+       },
+       "sk": {
+        "at": "sk"
+       },
+       "top5": {
+        "at": "top5"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "台灣除了環球晶，還有台勝科、合晶，各做什麼？下一集看。留言拉晶，拿完整資料。",
+   "tts": "台灣除了環球晶，還有台勝科、合晶，各做什麼？下一集看。留言拉晶，拿完整資料。",
+   "subtitle": {
+    "zh": "台灣除了環球晶\n還有台勝科、合晶\n各做什麼？\n下一集看\n留言拉晶\n拿完整資料",
+    "en": "Besides GlobalWafers, Taiwan has | FST and Wafer Works. | What does each do? | Next episode. | Comment \"拉晶\" | for the full notes."
+   },
+   "keywords": [
+    "環球晶",
+    "台勝科",
+    "合晶"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣除了環球晶"
+    },
+    {
+     "id": "fst",
+     "text": "台勝科"
+    },
+    {
+     "id": "ww",
+     "text": "合晶"
+    },
+    {
+     "id": "what",
+     "text": "各做什麼"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言拉晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "series_plan 系列 2 第 2 集"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 100.6,
+      "y": 1.6,
+      "d": 18,
+      "elev": 40
+     }
+    ],
+    "run": [
+     {
+      "id": "k_shine12",
+      "at": "start",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "k_epiOn",
+      "at": "next",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "k_epiA",
+      "text": "磊晶層（下一集）",
+      "en": "Epitaxial layer (next)",
+      "color": "blue",
+      "at": "next+6",
+      "until": "kw-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "si-next",
+      "at": "start+2",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣誰在做",
+      "tag": "下一集：矽晶圓-2",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "fst": {
+        "at": "fst"
+       },
+       "ww": {
+        "at": "ww"
+       },
+       "what": {
+        "at": "what"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "矽晶圓-2 台灣誰在做",
+     "trail": [
+      "環球晶",
+      "台勝科",
+      "合晶"
+     ],
+     "at": "s11:kw-8",
+     "comment": "拉晶",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

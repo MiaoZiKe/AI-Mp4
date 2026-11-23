@@ -1,0 +1,1714 @@
+{
+ "version": 2,
+ "slug": "tech-wafer1",
+ "fps": 30,
+ "totalFrames": 1859,
+ "totalSec": 61.97,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 4.49,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 157,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 140,
+   "stillFrame": 147,
+   "subtitleWindow": [
+    0,
+    154
+   ],
+   "sourceWindow": [
+    0,
+    152
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "晶片做在晶圓上",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      20,
+      26,
+      31,
+      37
+     ]
+    },
+    {
+     "text": "晶圓是砂子變的",
+     "start": 47,
+     "chars": [
+      49,
+      54,
+      60,
+      65,
+      71,
+      76,
+      82
+     ]
+    },
+    {
+     "text": "怎麼變成一面鏡子？",
+     "start": 92,
+     "chars": [
+      94,
+      100,
+      105,
+      111,
+      116,
+      122,
+      127,
+      133,
+      133
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "晶圓",
+     "start": 26
+    },
+    {
+     "text": "砂子",
+     "start": 65
+    },
+    {
+     "text": "鏡子",
+     "start": 127
+    }
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "晶片做在晶圓上",
+     "frame": 5
+    },
+    {
+     "id": "sand",
+     "text": "砂子變的",
+     "frame": 67
+    },
+    {
+     "id": "how",
+     "text": "怎麼變成",
+     "frame": 96
+    },
+    {
+     "id": "mirror",
+     "text": "一面鏡子",
+     "frame": 118
+    }
+   ],
+   "sub": "晶片做在晶圓上\n晶圓是砂子變的\n怎麼變成一面鏡子？",
+   "provider": "estimate",
+   "syllables": 22,
+   "words": [],
+   "charTimes": [
+    0,
+    0.184,
+    0.368,
+    0.552,
+    0.736,
+    0.92,
+    1.104,
+    1.509,
+    1.693,
+    1.877,
+    2.061,
+    2.245,
+    2.429,
+    2.613,
+    3.018,
+    3.202,
+    3.386,
+    3.57,
+    3.754,
+    3.938,
+    4.122,
+    4.306
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 158,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 147,
+   "durationFrames": 187,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 157,
+   "voiceEndFrame": 317,
+   "stillFrame": 324,
+   "subtitleWindow": [
+    154,
+    331
+   ],
+   "sourceWindow": [
+    152,
+    329
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "砂子是二氧化矽",
+     "start": 154,
+     "chars": [
+      157,
+      162,
+      168,
+      173,
+      179,
+      185,
+      190
+     ]
+    },
+    {
+     "text": "先跟碳一起燒掉氧",
+     "start": 200,
+     "chars": [
+      202,
+      208,
+      214,
+      219,
+      225,
+      230,
+      236,
+      242
+     ]
+    },
+    {
+     "text": "變成九成八純的冶金級矽",
+     "start": 252,
+     "chars": [
+      254,
+      260,
+      265,
+      271,
+      276,
+      282,
+      288,
+      293,
+      299,
+      304,
+      310
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "二氧化矽",
+     "start": 173
+    },
+    {
+     "text": "碳",
+     "start": 214
+    },
+    {
+     "text": "九成八",
+     "start": 265
+    },
+    {
+     "text": "冶金級矽",
+     "start": 293
+    }
+   ],
+   "cues": [
+    {
+     "id": "sio2",
+     "text": "二氧化矽",
+     "frame": 175
+    },
+    {
+     "id": "carbon",
+     "text": "跟碳一起燒",
+     "frame": 210
+    },
+    {
+     "id": "oxy",
+     "text": "燒掉氧",
+     "frame": 232
+    },
+    {
+     "id": "p98",
+     "text": "九成八",
+     "frame": 267
+    },
+    {
+     "id": "mg",
+     "text": "冶金級矽",
+     "frame": 295
+    }
+   ],
+   "sub": "砂子是二氧化矽\n先跟碳一起燒掉氧\n變成九成八純的冶金級矽",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.121,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466,
+    2.653,
+    2.84,
+    3.251,
+    3.438,
+    3.625,
+    3.811,
+    3.998,
+    4.185,
+    4.372,
+    4.559,
+    4.746,
+    4.932,
+    5.119
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 335,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 324,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 334,
+   "voiceEndFrame": 488,
+   "stillFrame": 495,
+   "subtitleWindow": [
+    331,
+    502
+   ],
+   "sourceWindow": [
+    329,
+    500
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "但晶片要十一個九",
+     "start": 331,
+     "chars": [
+      334,
+      339,
+      344,
+      350,
+      355,
+      360,
+      366,
+      371
+     ]
+    },
+    {
+     "text": "一千億個原子",
+     "start": 381,
+     "chars": [
+      383,
+      388,
+      393,
+      399,
+      404,
+      409
+     ]
+    },
+    {
+     "text": "雜質不到一個",
+     "start": 419,
+     "chars": [
+      421,
+      427,
+      432,
+      437,
+      443,
+      448
+     ]
+    },
+    {
+     "text": "電晶體才準",
+     "start": 458,
+     "chars": [
+      460,
+      465,
+      471,
+      476,
+      481
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "十一個九",
+     "start": 355
+    },
+    {
+     "text": "一千億",
+     "start": 383
+    },
+    {
+     "text": "雜質",
+     "start": 421
+    }
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "但晶片要",
+     "frame": 335
+    },
+    {
+     "id": "n11",
+     "text": "十一個九",
+     "frame": 356
+    },
+    {
+     "id": "e11",
+     "text": "一千億個原子",
+     "frame": 384
+    },
+    {
+     "id": "imp",
+     "text": "雜質不到一個",
+     "frame": 423
+    },
+    {
+     "id": "ok",
+     "text": "電晶體才準",
+     "frame": 461
+    }
+   ],
+   "sub": "但晶片要十一個九\n一千億個原子\n雜質不到一個\n電晶體才準",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.535,
+    0.714,
+    0.892,
+    1.07,
+    1.249,
+    1.641,
+    1.82,
+    1.998,
+    2.176,
+    2.355,
+    2.533,
+    2.926,
+    3.104,
+    3.282,
+    3.461,
+    3.639,
+    3.818,
+    4.21,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 506,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 495,
+   "durationFrames": 182,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 505,
+   "voiceEndFrame": 659,
+   "stillFrame": 667,
+   "subtitleWindow": [
+    502,
+    674
+   ],
+   "sourceWindow": [
+    500,
+    672
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "所以用西門子法",
+     "start": 502,
+     "chars": [
+      505,
+      510,
+      515,
+      521,
+      526,
+      531,
+      537
+     ]
+    },
+    {
+     "text": "把矽變成氣體蒸餾",
+     "start": 546,
+     "chars": [
+      548,
+      554,
+      559,
+      564,
+      570,
+      575,
+      580,
+      586
+     ]
+    },
+    {
+     "text": "再長回棒子上",
+     "start": 596,
+     "chars": [
+      598,
+      603,
+      608,
+      614,
+      619,
+      624
+     ]
+    },
+    {
+     "text": "叫多晶矽",
+     "start": 634,
+     "chars": [
+      636,
+      642,
+      647,
+      652
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "西門子法",
+     "start": 521
+    },
+    {
+     "text": "蒸餾",
+     "start": 580
+    },
+    {
+     "text": "多晶矽",
+     "start": 642
+    }
+   ],
+   "cues": [
+    {
+     "id": "siem",
+     "text": "西門子法",
+     "frame": 522
+    },
+    {
+     "id": "gas",
+     "text": "變成氣體",
+     "frame": 561
+    },
+    {
+     "id": "dist",
+     "text": "蒸餾",
+     "frame": 582
+    },
+    {
+     "id": "rod",
+     "text": "長回棒子上",
+     "frame": 604
+    },
+    {
+     "id": "poly",
+     "text": "多晶矽",
+     "frame": 643
+    }
+   ],
+   "sub": "所以用西門子法\n把矽變成氣體蒸餾\n再長回棒子上\n叫多晶矽",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.535,
+    0.714,
+    0.892,
+    1.07,
+    1.463,
+    1.641,
+    1.82,
+    1.998,
+    2.176,
+    2.355,
+    2.533,
+    2.712,
+    3.104,
+    3.282,
+    3.461,
+    3.639,
+    3.818,
+    3.996,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 677,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 667,
+   "durationFrames": 187,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 677,
+   "voiceEndFrame": 837,
+   "stillFrame": 844,
+   "subtitleWindow": [
+    674,
+    851
+   ],
+   "sourceWindow": [
+    672,
+    849
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "但多晶矽原子排得亂",
+     "start": 674,
+     "chars": [
+      676,
+      681,
+      686,
+      692,
+      697,
+      702,
+      708,
+      713,
+      719
+     ]
+    },
+    {
+     "text": "放進石英坩堝",
+     "start": 728,
+     "chars": [
+      730,
+      736,
+      741,
+      746,
+      752,
+      757
+     ]
+    },
+    {
+     "text": "加熱到一千四百多度",
+     "start": 767,
+     "chars": [
+      769,
+      774,
+      780,
+      785,
+      791,
+      796,
+      801,
+      807,
+      812
+     ]
+    },
+    {
+     "text": "熔掉",
+     "start": 822,
+     "chars": [
+      824,
+      829
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "多晶矽",
+     "start": 681
+    },
+    {
+     "text": "石英坩堝",
+     "start": 741
+    },
+    {
+     "text": "一千四百多度",
+     "start": 785
+    }
+   ],
+   "cues": [
+    {
+     "id": "messy",
+     "text": "排得亂",
+     "frame": 709
+    },
+    {
+     "id": "cruc",
+     "text": "石英坩堝",
+     "frame": 743
+    },
+    {
+     "id": "heat",
+     "text": "加熱",
+     "frame": 771
+    },
+    {
+     "id": "deg",
+     "text": "一千四百多度",
+     "frame": 787
+    },
+    {
+     "id": "melt",
+     "text": "熔掉",
+     "frame": 825
+    }
+   ],
+   "sub": "但多晶矽原子排得亂\n放進石英坩堝\n加熱到一千四百多度\n熔掉",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.179,
+    0.359,
+    0.538,
+    0.717,
+    0.896,
+    1.076,
+    1.255,
+    1.434,
+    1.828,
+    2.008,
+    2.187,
+    2.366,
+    2.546,
+    2.725,
+    3.119,
+    3.298,
+    3.478,
+    3.657,
+    3.836,
+    4.015,
+    4.195,
+    4.374,
+    4.553,
+    4.948,
+    5.127
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 854,
+   "audioSec": 5.714,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 844,
+   "durationFrames": 199,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 854,
+   "voiceEndFrame": 1026,
+   "stillFrame": 1033,
+   "subtitleWindow": [
+    851,
+    1040
+   ],
+   "sourceWindow": [
+    849,
+    1038
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "接著晶種浸下去",
+     "start": 851,
+     "chars": [
+      853,
+      858,
+      863,
+      868,
+      873,
+      879,
+      884
+     ]
+    },
+    {
+     "text": "一邊慢轉",
+     "start": 893,
+     "chars": [
+      895,
+      901,
+      906,
+      911
+     ]
+    },
+    {
+     "text": "一邊往上拉",
+     "start": 920,
+     "chars": [
+      923,
+      928,
+      933,
+      938,
+      943
+     ]
+    },
+    {
+     "text": "原子跟著排隊",
+     "start": 953,
+     "chars": [
+      955,
+      960,
+      965,
+      971,
+      976,
+      981
+     ]
+    },
+    {
+     "text": "長成單晶晶棒",
+     "start": 990,
+     "chars": [
+      993,
+      998,
+      1003,
+      1008,
+      1013,
+      1019
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "晶種",
+     "start": 863
+    },
+    {
+     "text": "往上拉",
+     "start": 933
+    },
+    {
+     "text": "單晶晶棒",
+     "start": 1003
+    }
+   ],
+   "cues": [
+    {
+     "id": "seed",
+     "text": "晶種浸下去",
+     "frame": 864
+    },
+    {
+     "id": "rot",
+     "text": "慢轉",
+     "frame": 907
+    },
+    {
+     "id": "pull",
+     "text": "往上拉",
+     "frame": 934
+    },
+    {
+     "id": "line",
+     "text": "跟著排隊",
+     "frame": 967
+    },
+    {
+     "id": "ingot",
+     "text": "單晶晶棒",
+     "frame": 1005
+    }
+   ],
+   "sub": "接著晶種浸下去\n一邊慢轉\n一邊往上拉\n原子跟著排隊\n長成單晶晶棒",
+   "provider": "estimate",
+   "syllables": 28,
+   "words": [],
+   "charTimes": [
+    0,
+    0.174,
+    0.348,
+    0.523,
+    0.697,
+    0.871,
+    1.045,
+    1.429,
+    1.603,
+    1.777,
+    1.951,
+    2.334,
+    2.509,
+    2.683,
+    2.857,
+    3.031,
+    3.415,
+    3.589,
+    3.763,
+    3.937,
+    4.111,
+    4.286,
+    4.669,
+    4.843,
+    5.017,
+    5.192,
+    5.366,
+    5.54
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 1044,
+   "audioSec": 2.653,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1033,
+   "durationFrames": 108,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1043,
+   "voiceEndFrame": 1124,
+   "stillFrame": 1131,
+   "subtitleWindow": [
+    1040,
+    1138
+   ],
+   "sourceWindow": [
+    1038,
+    1136
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "晶棒用鑽石線",
+     "start": 1040,
+     "chars": [
+      1043,
+      1048,
+      1054,
+      1059,
+      1065,
+      1071
+     ]
+    },
+    {
+     "text": "切成一片片薄片",
+     "start": 1081,
+     "chars": [
+      1083,
+      1088,
+      1094,
+      1100,
+      1105,
+      1111,
+      1116
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "鑽石線",
+     "start": 1059
+    },
+    {
+     "text": "薄片",
+     "start": 1111
+    }
+   ],
+   "cues": [
+    {
+     "id": "saw",
+     "text": "鑽石線",
+     "frame": 1061
+    },
+    {
+     "id": "slice",
+     "text": "切成一片片",
+     "frame": 1084
+    }
+   ],
+   "sub": "晶棒用鑽石線\n切成一片片薄片",
+   "provider": "estimate",
+   "syllables": 13,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.374,
+    0.561,
+    0.747,
+    0.934,
+    1.345,
+    1.532,
+    1.719,
+    1.906,
+    2.093,
+    2.279,
+    2.466
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": null,
+   "audioFrame": 1141,
+   "audioSec": 2.449,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1131,
+   "durationFrames": 101,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1141,
+   "voiceEndFrame": 1215,
+   "stillFrame": 1222,
+   "subtitleWindow": [
+    1138,
+    1229
+   ],
+   "sourceWindow": [
+    1136,
+    1227
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "再研磨",
+     "start": 1138,
+     "chars": [
+      1140,
+      1145,
+      1150
+     ]
+    },
+    {
+     "text": "拋光成鏡面",
+     "start": 1159,
+     "chars": [
+      1161,
+      1166,
+      1171,
+      1176,
+      1181
+     ]
+    },
+    {
+     "text": "就是晶圓",
+     "start": 1190,
+     "chars": [
+      1193,
+      1198,
+      1203,
+      1208
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "研磨",
+     "start": 1145
+    },
+    {
+     "text": "拋光",
+     "start": 1161
+    },
+    {
+     "text": "鏡面",
+     "start": 1176
+    }
+   ],
+   "cues": [
+    {
+     "id": "grind",
+     "text": "研磨",
+     "frame": 1146
+    },
+    {
+     "id": "pol",
+     "text": "拋光成鏡面",
+     "frame": 1162
+    },
+    {
+     "id": "wafer",
+     "text": "就是晶圓",
+     "frame": 1194
+    }
+   ],
+   "sub": "再研磨\n拋光成鏡面\n就是晶圓",
+   "provider": "estimate",
+   "syllables": 12,
+   "words": [],
+   "charTimes": [
+    0,
+    0.17,
+    0.34,
+    0.714,
+    0.884,
+    1.054,
+    1.224,
+    1.395,
+    1.769,
+    1.939,
+    2.109,
+    2.279
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": null,
+   "audioFrame": 1233,
+   "audioSec": 4.898,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1222,
+   "durationFrames": 175,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1232,
+   "voiceEndFrame": 1380,
+   "stillFrame": 1387,
+   "subtitleWindow": [
+    1229,
+    1394
+   ],
+   "sourceWindow": [
+    1227,
+    1392
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "為什麼是十二吋？",
+     "start": 1229,
+     "chars": [
+      1232,
+      1237,
+      1243,
+      1248,
+      1254,
+      1259,
+      1265,
+      1265
+     ]
+    },
+    {
+     "text": "面積是八吋的兩倍多",
+     "start": 1275,
+     "chars": [
+      1277,
+      1283,
+      1288,
+      1294,
+      1299,
+      1305,
+      1311,
+      1316,
+      1322
+     ]
+    },
+    {
+     "text": "一次能做更多晶片",
+     "start": 1332,
+     "chars": [
+      1334,
+      1339,
+      1345,
+      1351,
+      1356,
+      1362,
+      1367,
+      1373
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "十二吋",
+     "start": 1254
+    },
+    {
+     "text": "八吋",
+     "start": 1294
+    },
+    {
+     "text": "兩倍多",
+     "start": 1311
+    }
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "十二吋",
+     "frame": 1255
+    },
+    {
+     "id": "area",
+     "text": "兩倍多",
+     "frame": 1312
+    },
+    {
+     "id": "more",
+     "text": "更多晶片",
+     "frame": 1358
+    }
+   ],
+   "sub": "為什麼是十二吋？\n面積是八吋的兩倍多\n一次能做更多晶片",
+   "provider": "estimate",
+   "syllables": 24,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.371,
+    0.557,
+    0.742,
+    0.928,
+    1.113,
+    1.521,
+    1.707,
+    1.892,
+    2.078,
+    2.263,
+    2.449,
+    2.635,
+    2.82,
+    3.006,
+    3.414,
+    3.599,
+    3.785,
+    3.97,
+    4.156,
+    4.341,
+    4.527,
+    4.712
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 1398,
+   "audioSec": 5.306,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1387,
+   "durationFrames": 187,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1397,
+   "voiceEndFrame": 1557,
+   "stillFrame": 1564,
+   "subtitleWindow": [
+    1394,
+    1571
+   ],
+   "sourceWindow": [
+    1392,
+    1569
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "全球主要是信越",
+     "start": 1394,
+     "chars": [
+      1397,
+      1401,
+      1406,
+      1411,
+      1416,
+      1421,
+      1426
+     ]
+    },
+    {
+     "text": "勝高環球晶",
+     "start": 1435,
+     "chars": [
+      1437,
+      1442,
+      1453,
+      1458,
+      1463
+     ]
+    },
+    {
+     "text": "世創和一家韓國廠",
+     "start": 1472,
+     "chars": [
+      1474,
+      1479,
+      1490,
+      1495,
+      1500,
+      1505,
+      1510,
+      1515
+     ]
+    },
+    {
+     "text": "五家超過八成",
+     "start": 1524,
+     "chars": [
+      1526,
+      1531,
+      1536,
+      1541,
+      1546,
+      1551
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "信越",
+     "start": 1421
+    },
+    {
+     "text": "勝高",
+     "start": 1437
+    },
+    {
+     "text": "環球晶",
+     "start": 1453
+    },
+    {
+     "text": "世創",
+     "start": 1474
+    },
+    {
+     "text": "八成",
+     "start": 1546
+    }
+   ],
+   "cues": [
+    {
+     "id": "shin",
+     "text": "信越",
+     "frame": 1423
+    },
+    {
+     "id": "sumco",
+     "text": "勝高",
+     "frame": 1439
+    },
+    {
+     "id": "gw",
+     "text": "環球晶",
+     "frame": 1455
+    },
+    {
+     "id": "sil",
+     "text": "世創",
+     "frame": 1476
+    },
+    {
+     "id": "sk",
+     "text": "韓國廠",
+     "frame": 1506
+    },
+    {
+     "id": "top5",
+     "text": "超過八成",
+     "frame": 1537
+    }
+   ],
+   "sub": "全球主要是信越\n勝高\n環球晶\n世創\n和一家韓國廠\n五家超過八成",
+   "provider": "estimate",
+   "syllables": 26,
+   "words": [],
+   "charTimes": [
+    0,
+    0.166,
+    0.332,
+    0.497,
+    0.663,
+    0.829,
+    0.995,
+    1.36,
+    1.526,
+    1.89,
+    2.056,
+    2.222,
+    2.587,
+    2.753,
+    3.117,
+    3.283,
+    3.449,
+    3.615,
+    3.781,
+    3.946,
+    4.311,
+    4.477,
+    4.643,
+    4.809,
+    4.974,
+    5.14
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 1575,
+   "audioSec": 6.327,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1564,
+   "durationFrames": 209,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1574,
+   "voiceEndFrame": 1765,
+   "stillFrame": 1763,
+   "subtitleWindow": [
+    1571,
+    1773
+   ],
+   "sourceWindow": [
+    1569,
+    1768
+   ],
+   "lines": [
+    {
+     "text": "台灣除了環球晶",
+     "start": 1571,
+     "chars": [
+      1574,
+      1579,
+      1584,
+      1589,
+      1594,
+      1599,
+      1604
+     ]
+    },
+    {
+     "text": "還有台勝科、",
+     "start": 1613,
+     "chars": [
+      1616,
+      1621,
+      1626,
+      1631,
+      1636,
+      1636
+     ]
+    },
+    {
+     "text": "合晶各做什麼？",
+     "start": 1639,
+     "chars": [
+      1641,
+      1646,
+      1658,
+      1663,
+      1668,
+      1673,
+      1673
+     ]
+    },
+    {
+     "text": "下一集看",
+     "start": 1682,
+     "chars": [
+      1684,
+      1689,
+      1695,
+      1700
+     ]
+    },
+    {
+     "text": "留言拉晶",
+     "start": 1709,
+     "chars": [
+      1711,
+      1716,
+      1721,
+      1726
+     ]
+    },
+    {
+     "text": "拿完整資料",
+     "start": 1736,
+     "chars": [
+      1738,
+      1743,
+      1748,
+      1753,
+      1758
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "環球晶",
+     "start": 1594
+    },
+    {
+     "text": "台勝科",
+     "start": 1626
+    },
+    {
+     "text": "合晶",
+     "start": 1641
+    }
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣除了環球晶",
+     "frame": 1575
+    },
+    {
+     "id": "fst",
+     "text": "台勝科",
+     "frame": 1627
+    },
+    {
+     "id": "ww",
+     "text": "合晶",
+     "frame": 1643
+    },
+    {
+     "id": "what",
+     "text": "各做什麼",
+     "frame": 1659
+    },
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 1686
+    },
+    {
+     "id": "kw",
+     "text": "留言拉晶",
+     "frame": 1712
+    }
+   ],
+   "sub": "台灣除了環球晶\n還有台勝科、合晶\n各做什麼？\n下一集看\n留言拉晶\n拿完整資料",
+   "provider": "estimate",
+   "syllables": 31,
+   "words": [],
+   "charTimes": [
+    0,
+    0.171,
+    0.342,
+    0.513,
+    0.684,
+    0.855,
+    1.026,
+    1.402,
+    1.573,
+    1.744,
+    1.915,
+    2.086,
+    2.257,
+    2.428,
+    2.804,
+    2.975,
+    3.146,
+    3.317,
+    3.693,
+    3.864,
+    4.035,
+    4.206,
+    4.582,
+    4.753,
+    4.924,
+    5.095,
+    5.472,
+    5.643,
+    5.814,
+    5.985,
+    6.156
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1763,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1763,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1773,
+   "voiceEndFrame": 1773,
+   "stillFrame": 1847,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1768,
+    1859
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}
