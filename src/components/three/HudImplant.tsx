@@ -101,7 +101,7 @@ const Lattice: React.FC<{ x: number; y: number; dop?: "P" | "B" | null; dopO?: n
       {pts.map(([px, py], i) => <g key={i}><circle cx={px} cy={py} r={17} fill={SI} stroke={SI_D} strokeWidth={2.5} /><text x={px} y={py + 8} textAnchor="middle" style={zh(20, H.text2, 800)}>Si</text></g>)}
       {dop ? <g opacity={dopO}><circle cx={cx} cy={cy} r={21} fill={dop === "P" ? N_C : P_C} stroke="#FFFFFF" strokeWidth={3} /><text x={cx} y={cy + 9} textAnchor="middle" style={zh(24, "#FFFFFF", 900)}>{dop}</text></g> : null}
       {dop === "P" ? <Ele x={cx + 21 * Math.cos(f * 0.16)} y={cy + 21 * Math.sin(f * 0.16)} r={7} c={ELEC} o={eO} /* 11/23：電子沿 P 外圈轉，外緣離旁邊 Si 原子 ≥8px */ /> : null}
-      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={y - 28} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text><path d={`M${cx + g / 2} ${y - 22} V${cy - 18}`} stroke={P_C} strokeWidth={2} strokeDasharray="3 3" />{/* 11/23：虛線從「洞」拉到電洞，看得出指的是哪裡 */}{/* 11/22：「洞」放到晶格上方同一欄，原子間放不下字 */}</g> : null}
+      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={y - 26} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text><path d={`M${cx + g / 2} ${y - 20} V${cy - 17}`} stroke={P_C} strokeWidth={2} strokeDasharray="3 3" />{/* 11/23：虛線從「洞」拉到電洞，看得出指的是哪裡 */}{/* 11/22：「洞」放到晶格上方同一欄，原子間放不下字 */}</g> : null}
     </g>
   );
 };
@@ -110,25 +110,26 @@ const Np: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const a = lit(f, T(o, "pure")), p = on(f, T(o, "ph")), nt = on(f, T(o, "ntype")), b = on(f, T(o, "bo")), ho = on(f, T(o, "hole")), pt = on(f, T(o, "ptype"));
   // 2026/11/20 示意卡重疊檢查：晶格不再從 −60 掉下來（會壓到右上小字）、N型／P型標籤放在晶格右邊中間（不蓋原子）
+  // 2026/11/23：三組晶格下移 12px，「洞」放在頂排上方、離右上小字 ≥14px，虛線只從「洞」連到電洞
   const drop = (t: number) => -16 * (1 - t);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={a}>
-          <Lattice x={60} y={104} f={f} />
+          <Lattice x={60} y={116} f={f} />
           <text x={40} y={300} style={zh(30, H.text, 900)}>純矽：導電差</text>
         </g>
         <line x1={318} y1={70} x2={318} y2={315} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={lit(f, T(o, "ph"))}>
-          <g transform={`translate(0 ${drop(p)})`}><Lattice x={370} y={104} dop="P" dopO={p} f={f} eO={on(f, T(o, "ph") + 10)} /></g>
+          <g transform={`translate(0 ${drop(p)})`}><Lattice x={370} y={116} dop="P" dopO={p} f={f} eO={on(f, T(o, "ph") + 10)} /></g>
           <text x={350} y={300} style={zh(30, H.text, 900)}>打進磷：多出電子</text>
-          <Badge x={562} y={138} w={64} text="N型" bg={N_C} o={nt} px={28} />
+          <Badge x={562} y={150} w={64} text="N型" bg={N_C} o={nt} px={28} />
         </g>
         <line x1={634} y1={70} x2={634} y2={315} stroke={H.lineSoft} strokeWidth={3} />
         <g opacity={lit(f, T(o, "bo"))}>
-          <g transform={`translate(0 ${drop(b)})`}><Lattice x={680} y={104} dop="B" dopO={b} f={f} hO={ho} /></g>
+          <g transform={`translate(0 ${drop(b)})`}><Lattice x={680} y={116} dop="B" dopO={b} f={f} hO={ho} /></g>
           <text x={666} y={300} style={zh(30, H.text, 900)}>打進硼：留下電洞</text>
-          <Badge x={876} y={138} w={64} text="P型" bg={P_C} o={pt} px={28} />
+          <Badge x={876} y={150} w={64} text="P型" bg={P_C} o={pt} px={28} />
         </g>
       </svg>
     </Card>
