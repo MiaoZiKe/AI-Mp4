@@ -100,8 +100,8 @@ const Lattice: React.FC<{ x: number; y: number; dop?: "P" | "B" | null; dopO?: n
       {pts.map(([px, py], i) => <g key={i}>{px < x + (cols - 1) * g ? <path d={`M${px} ${py} H${px + g}`} stroke={SI_D} strokeWidth={4} /> : null}{py < y + (rows - 1) * g ? <path d={`M${px} ${py} V${py + g}`} stroke={SI_D} strokeWidth={4} /> : null}</g>)}
       {pts.map(([px, py], i) => <g key={i}><circle cx={px} cy={py} r={17} fill={SI} stroke={SI_D} strokeWidth={2.5} /><text x={px} y={py + 8} textAnchor="middle" style={zh(20, H.text2, 800)}>Si</text></g>)}
       {dop ? <g opacity={dopO}><circle cx={cx} cy={cy} r={21} fill={dop === "P" ? N_C : P_C} stroke="#FFFFFF" strokeWidth={3} /><text x={cx} y={cy + 9} textAnchor="middle" style={zh(24, "#FFFFFF", 900)}>{dop}</text></g> : null}
-      {dop === "P" ? <Ele x={cx + 32 * Math.cos(f * 0.16)} y={cy + 30 * Math.sin(f * 0.16)} r={10} c={ELEC} o={eO} /* 11/22：電子軌道不貼「P」也不壓旁邊的 Si */ /> : null}
-      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={y - 28} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text>{/* 11/22：「洞」放到晶格上方同一欄，原子間放不下字 */}</g> : null}
+      {dop === "P" ? <Ele x={cx + 26 * Math.cos(f * 0.16)} y={cy + 26 * Math.sin(f * 0.16)} r={9} c={ELEC} o={eO} /* 11/23：電子貼著 P 外圈轉，不碰旁邊的 Si 原子 */ /> : null}
+      {dop === "B" ? <g opacity={hO}><circle cx={cx + g / 2} cy={cy} r={14} fill="#FFFFFF" stroke={P_C} strokeWidth={3} strokeDasharray="5 4" /><text x={cx + g / 2} y={y - 28} textAnchor="middle" style={zh(22, P_C, 900)}>洞</text><path d={`M${cx + g / 2} ${y - 22} V${cy - 18}`} stroke={P_C} strokeWidth={2} strokeDasharray="3 3" />{/* 11/23：虛線從「洞」拉到電洞，看得出指的是哪裡 */}{/* 11/22：「洞」放到晶格上方同一欄，原子間放不下字 */}</g> : null}
     </g>
   );
 };
