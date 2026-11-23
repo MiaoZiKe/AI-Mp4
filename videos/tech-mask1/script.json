@@ -1,0 +1,1841 @@
+{
+ "slug": "tech-mask1",
+ "title": "光罩-1：晶片的底片（科技透明圈）",
+ "asOf": "2026/11/23",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪不配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "曝光光路",
+    "en": "LITHO OPTICS",
+    "field": "1 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "mask",
+    "label": "光罩",
+    "en": "PHOTOMASK",
+    "field": "15 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "cut",
+    "label": "光罩剖面",
+    "en": "MASK CROSS-SECTION",
+    "field": "2 μm",
+    "ruler": "0.5 μm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "layer",
+    "label": "多層膜",
+    "en": "MULTILAYER",
+    "field": "400 nm",
+    "ruler": "100 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "晶片的底片",
+   "長什麼樣"
+  ],
+  "sub": "光罩-1",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片的電路，是用光照著底片印上去的。這張底片，叫光罩。",
+   "tts": "晶片的電路，是用光照著底片印上去的。這張底片，叫光罩。",
+   "subtitle": {
+    "zh": "晶片的電路\n是用光照著底片印上去的\n這張底片，叫光罩",
+    "en": "A chip's circuits are printed | by shining light through a negative. | That negative is the photomask."
+   },
+   "keywords": [
+    "電路",
+    "底片",
+    "光罩"
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "晶片的電路"
+    },
+    {
+     "id": "light",
+     "text": "用光照著"
+    },
+    {
+     "id": "film",
+     "text": "底片印上去"
+    },
+    {
+     "id": "mask",
+     "text": "叫光罩"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia Photomask"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "代工的供應商 3",
+     "title": "晶片的底片？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": 5.285,
+      "d": 122.086,
+      "elev": 10
+     },
+     {
+      "at": "film",
+      "dur": 60,
+      "x": 0.0,
+      "y": 5.24,
+      "d": 122.862,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "d_img",
+      "at": "s2:start+10",
+      "until": "s4:wafer",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "h_dust",
+      "at": "s1:start-40",
+      "until": "s8:dust",
+      "dy": 3.0,
+      "opacity": 0,
+      "dur": 16,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "h_dust2",
+      "at": "s1:start-40",
+      "until": "s8:dust+12",
+      "dy": 3.0,
+      "opacity": 0,
+      "dur": 16,
+      "fallIn": true,
+      "bounce": 0.05
+     },
+     {
+      "layer": "l_st1",
+      "at": "s1:start-40",
+      "until": "s9:many+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "l_st2",
+      "at": "s1:start-40",
+      "until": "s9:many+22",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "l_def",
+      "at": "s1:start-40",
+      "until": "s9:def",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "l_scan",
+      "at": "s1:start-40",
+      "until": "s9:def-24",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "l_scan",
+      "at": "s9:def-24",
+      "until": "s12:start+400",
+      "dur": 70,
+      "dx": 3.8,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "b_e1",
+      "at": "s10:paper",
+      "until": "s12:start+400",
+      "dur": 22,
+      "dx": 0,
+      "dy": 0.35,
+      "dz": 0
+     },
+     {
+      "layer": "b_e2",
+      "at": "s10:paper",
+      "until": "s12:start+400",
+      "dur": 22,
+      "dx": 0,
+      "dy": 0.75,
+      "dz": 0
+     },
+     {
+      "layer": "b_e3",
+      "at": "s10:paper",
+      "until": "s12:start+400",
+      "dur": 22,
+      "dx": 0,
+      "dy": 1.15,
+      "dz": 0
+     },
+     {
+      "layer": "b_e4",
+      "at": "s10:paper",
+      "until": "s12:start+400",
+      "dur": 22,
+      "dx": 0,
+      "dy": 1.55,
+      "dz": 0
+     },
+     {
+      "layer": "px_d",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s2:start-4",
+      "until": "s4:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_dm",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_dm",
+      "at": "s4:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_g",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_g",
+      "at": "s6:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_e",
+      "at": "s1:start-400",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_e",
+      "at": "s8:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h",
+      "at": "s1:start-400",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h",
+      "at": "s9:start-4",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_l",
+      "at": "s1:start-400",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_l",
+      "at": "s10:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_b",
+      "at": "s1:start-400",
+      "until": "s10:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_b",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "d_in",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_out0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_out1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_out2",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_out3",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_out4",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+20"
+     },
+     {
+      "id": "d_imgOn",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "d_crOn",
+      "at": "mask",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_lightA",
+      "text": "光",
+      "en": "Light",
+      "color": "blue",
+      "at": "light",
+      "until": "s2:start-4"
+     },
+     {
+      "part": "d_maskA",
+      "text": "光罩",
+      "en": "Photomask",
+      "color": "amber",
+      "at": "mask",
+      "until": "s2:start-4"
+     },
+     {
+      "part": "d_wafA",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "film",
+      "until": "s2:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-hook",
+      "at": "chip",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：光罩",
+      "tag": "示意，非實際比例",
+      "t": {
+       "chip": {
+        "at": "chip"
+       },
+       "light": {
+        "at": "light"
+       },
+       "film": {
+        "at": "film"
+       },
+       "mask": {
+        "at": "mask"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "傳統光罩是一片石英玻璃，鍍上一層鉻，電路就刻在鉻上。",
+   "tts": "傳統光罩是一片石英玻璃，鍍上一層各，電路就刻在各上。",
+   "subtitle": {
+    "zh": "傳統光罩是一片石英玻璃\n鍍上一層鉻\n電路就刻在鉻上",
+    "en": "A classic mask is a quartz plate | coated with chrome; | the circuit is etched into the chrome."
+   },
+   "keywords": [
+    "石英玻璃",
+    "鉻"
+   ],
+   "cues": [
+    {
+     "id": "quartz",
+     "text": "石英玻璃"
+    },
+    {
+     "id": "cr",
+     "text": "鍍上一層鉻"
+    },
+    {
+     "id": "pat",
+     "text": "電路就刻在鉻上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7767365；Wikipedia Photomask"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "cut",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0.0,
+      "y": 8.053,
+      "d": 36.156,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "d_qzOn",
+      "at": "quartz",
+      "ramp": 6,
+      "until": "cr"
+     },
+     {
+      "id": "d_crOn",
+      "at": "cr",
+      "ramp": 6,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_qzA",
+      "text": "石英玻璃",
+      "en": "Quartz",
+      "color": "blue",
+      "at": "quartz",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "d_crA",
+      "text": "鉻（刻出電路）",
+      "en": "Chrome pattern",
+      "color": "amber",
+      "at": "cr",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-cr",
+      "at": "start+6",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "傳統光罩：石英＋鉻",
+      "tag": "USPTO 7767365",
+      "t": {
+       "quartz": {
+        "at": "quartz"
+       },
+       "cr": {
+        "at": "cr"
+       },
+       "pat": {
+        "at": "pat"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "光照下來，鉻擋住，玻璃透光，圖案就被光帶下去。",
+   "tts": "光照下來，各擋住，玻璃透光，圖案就被光帶下去。",
+   "subtitle": {
+    "zh": "光照下來\n鉻擋住，玻璃透光\n圖案就被光帶下去",
+    "en": "Light shines down: | chrome blocks it, glass lets it through, | so the pattern rides down with the light."
+   },
+   "keywords": [
+    "擋住",
+    "透光",
+    "圖案"
+   ],
+   "cues": [
+    {
+     "id": "duv",
+     "text": "光照下來"
+    },
+    {
+     "id": "block",
+     "text": "鉻擋住"
+    },
+    {
+     "id": "pass",
+     "text": "玻璃透光"
+    },
+    {
+     "id": "carry",
+     "text": "帶下去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7767365"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "cut",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0.0,
+      "y": 8.074,
+      "d": 36.156,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "d_in",
+      "at": "duv",
+      "ramp": 8,
+      "until": "s4:start+40"
+     },
+     {
+      "id": "d_out0",
+      "at": "pass",
+      "ramp": 8,
+      "until": "s4:start+40"
+     },
+     {
+      "id": "d_out1",
+      "at": "pass",
+      "ramp": 8,
+      "until": "s4:start+40"
+     },
+     {
+      "id": "d_out2",
+      "at": "pass",
+      "ramp": 8,
+      "until": "s4:start+40"
+     },
+     {
+      "id": "d_out3",
+      "at": "pass",
+      "ramp": 8,
+      "until": "s4:start+40"
+     },
+     {
+      "id": "d_out4",
+      "at": "pass",
+      "ramp": 8,
+      "until": "s4:start+40"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_blockA",
+      "text": "鉻擋住：光斷開",
+      "en": "Blocked",
+      "color": "coral",
+      "at": "block",
+      "until": "s4:start-4"
+     },
+     {
+      "part": "d_passA",
+      "text": "玻璃透光",
+      "en": "Passes",
+      "color": "blue",
+      "at": "pass",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-duv",
+      "at": "start+6",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "鉻擋光、玻璃透光",
+      "tag": "示意，非實際比例",
+      "t": {
+       "duv": {
+        "at": "duv"
+       },
+       "block": {
+        "at": "block"
+       },
+       "pass": {
+        "at": "pass"
+       },
+       "carry": {
+        "at": "carry"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "接著經過鏡頭縮小四倍，投影到晶圓上。",
+   "tts": "接著經過鏡頭縮小四倍，投影到晶圓上。",
+   "subtitle": {
+    "zh": "接著經過鏡頭\n縮小四倍\n投影到晶圓上",
+    "en": "Then a lens | shrinks it four times | onto the wafer."
+   },
+   "keywords": [
+    "鏡頭",
+    "四倍",
+    "晶圓"
+   ],
+   "cues": [
+    {
+     "id": "lens",
+     "text": "經過鏡頭"
+    },
+    {
+     "id": "x4",
+     "text": "縮小四倍"
+    },
+    {
+     "id": "wafer",
+     "text": "投影到晶圓上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 光罩設計手冊；Wikipedia"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 0.0,
+      "y": -0.641,
+      "d": 131.985,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "d_in",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_out0",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_out1",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_out2",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_out3",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_out4",
+      "at": "start",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_lnOn",
+      "at": "lens",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "d_imgOn",
+      "at": "wafer",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "d_lensA",
+      "text": "縮小鏡頭",
+      "en": "Reduction lens",
+      "color": "blue",
+      "at": "lens",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "d_imgA",
+      "text": "縮小 4 倍的圖案",
+      "en": "Pattern ÷4",
+      "color": "amber",
+      "at": "wafer",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "d_maskA",
+      "text": "光罩：圖案大 4 倍",
+      "en": "Mask: 4× larger",
+      "color": "amber",
+      "at": "x4",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-x4",
+      "at": "start+6",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "縮小 4 倍投影",
+      "tag": "ASML 光罩設計手冊",
+      "t": {
+       "lens": {
+        "at": "lens"
+       },
+       "x4": {
+        "at": "x4"
+       },
+       "wafer": {
+        "at": "wafer"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "twist",
+   "para": 5,
+   "narration": "但更先進的極紫外光，會被玻璃吃掉，根本穿不過去。",
+   "tts": "但更先進的極紫外光，會被玻璃吃掉，根本穿不過去。",
+   "subtitle": {
+    "zh": "但更先進的極紫外光\n會被玻璃吃掉\n根本穿不過去",
+    "en": "But advanced extreme-ultraviolet light | is swallowed by glass; | it can't get through at all."
+   },
+   "keywords": [
+    "極紫外光",
+    "吃掉",
+    "穿不過去"
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    },
+    {
+     "id": "eat",
+     "text": "被玻璃吃掉"
+    },
+    {
+     "id": "no",
+     "text": "穿不過去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia EUV lithography；USPTO 12353120"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "cut",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 40.0,
+      "y": 1.505,
+      "d": 79.06,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "g_duv",
+      "at": "start",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "g_spotDOn",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "g_euv",
+      "at": "euv",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "g_spotEOn",
+      "at": "eat",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "g_blkHot",
+      "at": "eat",
+      "ramp": 10,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "g_duvA",
+      "text": "深紫外光：穿過",
+      "en": "DUV passes",
+      "color": "blue",
+      "at": "start+6",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "g_euvA",
+      "text": "極紫外光：被吃掉",
+      "en": "EUV absorbed",
+      "color": "coral",
+      "at": "eat",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-euv",
+      "at": "start+6",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "玻璃擋住極紫外光",
+      "tag": "Wikipedia EUV lithography",
+      "t": {
+       "euv": {
+        "at": "euv"
+       },
+       "eat": {
+        "at": "eat"
+       },
+       "no": {
+        "at": "no"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "所以改用反射：鉬和矽交錯疊四十對左右，像鏡子把光彈回去。",
+   "tts": "所以改用反射：目和細交錯疊四十對左右，像鏡子把光彈回去。",
+   "subtitle": {
+    "zh": "所以改用反射\n鉬和矽交錯疊\n四十對左右\n像鏡子把光彈回去",
+    "en": "So the mask reflects instead: | molybdenum and silicon alternate, | about forty pairs, | bouncing light back like a mirror."
+   },
+   "keywords": [
+    "反射",
+    "鉬和矽",
+    "四十對"
+   ],
+   "cues": [
+    {
+     "id": "refl",
+     "text": "改用反射"
+    },
+    {
+     "id": "mo",
+     "text": "鉬和矽"
+    },
+    {
+     "id": "n40",
+     "text": "四十對"
+    },
+    {
+     "id": "mirror",
+     "text": "像鏡子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 11846881、11448956"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "layer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 70.0,
+      "y": 1.869,
+      "d": 83.239,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "e_in0",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in1",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in2",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in3",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in4",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in5",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in6",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_in7",
+      "at": "refl",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "e_mlOn",
+      "at": "mo",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_uleA",
+      "text": "低熱膨脹玻璃",
+      "en": "Low-expansion glass",
+      "color": "amber",
+      "at": "refl",
+      "until": "s7:start-4"
+     },
+     {
+      "part": "e_mlA",
+      "text": "鉬／矽 約 40 對",
+      "en": "Mo/Si ×40 pairs",
+      "color": "blue",
+      "at": "mo",
+      "until": "s7:start-4"
+     },
+     {
+      "part": "e_reflA",
+      "text": "反射回去",
+      "en": "Reflected",
+      "color": "blue",
+      "at": "mirror",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-ml",
+      "at": "start+6",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "反射式光罩：多層膜",
+      "tag": "USPTO 11846881",
+      "t": {
+       "refl": {
+        "at": "refl"
+       },
+       "mo": {
+        "at": "mo"
+       },
+       "n40": {
+        "at": "n40"
+       },
+       "mirror": {
+        "at": "mirror"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "電路改用吸收層畫，蓋到的地方不反光，圖案就留在反射光裡。",
+   "tts": "電路改用吸收層畫，蓋到的地方不反光，圖案就留在反射光裡。",
+   "subtitle": {
+    "zh": "電路改用吸收層畫\n蓋到的地方不反光\n圖案就留在反射光裡",
+    "en": "The circuit is drawn in an absorber layer: | covered spots don't reflect, | so the pattern stays in the reflected light."
+   },
+   "keywords": [
+    "吸收層",
+    "不反光",
+    "圖案"
+   ],
+   "cues": [
+    {
+     "id": "abs",
+     "text": "吸收層"
+    },
+    {
+     "id": "dark",
+     "text": "不反光"
+    },
+    {
+     "id": "pattern",
+     "text": "圖案就留在"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 12353120、12181797"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "cut",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 70.0,
+      "y": 2.255,
+      "d": 76.477,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "e_absOn",
+      "at": "abs",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_absA",
+      "text": "吸收層：不反光",
+      "en": "Absorber",
+      "color": "coral",
+      "at": "abs",
+      "until": "s8:start-4"
+     },
+     {
+      "part": "e_reflA",
+      "text": "帶著圖案的反射光",
+      "en": "Patterned light",
+      "color": "blue",
+      "at": "pattern",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-abs",
+      "at": "start+6",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "吸收層畫出電路",
+      "tag": "USPTO 12353120",
+      "t": {
+       "abs": {
+        "at": "abs"
+       },
+       "dark": {
+        "at": "dark"
+       },
+       "pattern": {
+        "at": "pattern"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "光罩上方還繃著一層護膜，灰塵落在膜上，對不到焦，印不出來。",
+   "tts": "光罩上方還繃著一層護膜，灰塵落在膜上，對不到焦，印不出來。",
+   "subtitle": {
+    "zh": "光罩上方還繃著一層護膜\n灰塵落在膜上\n對不到焦\n印不出來",
+    "en": "A thin pellicle is stretched above the mask. | Dust lands on the film, | out of focus, | so it never prints."
+   },
+   "keywords": [
+    "護膜",
+    "灰塵",
+    "對不到焦"
+   ],
+   "cues": [
+    {
+     "id": "pel",
+     "text": "護膜"
+    },
+    {
+     "id": "dust",
+     "text": "灰塵落在膜上"
+    },
+    {
+     "id": "focus",
+     "text": "對不到焦"
+    },
+    {
+     "id": "no",
+     "text": "印不出來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 11635681；Brouns et al. 2017"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mask",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 100.0,
+      "y": -0.344,
+      "d": 44.53,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "h_memOn",
+      "at": "pel",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "h_dustOn",
+      "at": "dust+16",
+      "ramp": 6,
+      "until": "focus+30"
+     },
+     {
+      "id": "h_patOn",
+      "at": "no",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "h_pelA",
+      "text": "護膜框",
+      "en": "Pellicle frame",
+      "color": "blue",
+      "at": "pel",
+      "until": "s9:start-4"
+     },
+     {
+      "part": "h_memA",
+      "text": "護膜（薄膜）",
+      "en": "Pellicle film",
+      "color": "blue",
+      "at": "pel+8",
+      "until": "s9:start-4"
+     },
+     {
+      "part": "h_dustA",
+      "text": "灰塵在膜上",
+      "en": "Dust on the film",
+      "color": "coral",
+      "at": "dust+16",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-pel",
+      "at": "start+6",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "護膜：灰塵對不到焦",
+      "tag": "USPTO 11635681",
+      "t": {
+       "pel": {
+        "at": "pel"
+       },
+       "dust": {
+        "at": "dust"
+       },
+       "focus": {
+        "at": "focus"
+       },
+       "no": {
+        "at": "no"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "一顆先進晶片要幾十片光罩，片片不能有缺陷，一整套上千萬美元。",
+   "tts": "一顆先進晶片要幾十片光罩，片片不能有缺陷，一整套上千萬美元。",
+   "subtitle": {
+    "zh": "一顆先進晶片要幾十片光罩\n片片不能有缺陷\n一整套上千萬美元",
+    "en": "An advanced chip needs dozens of masks, | each one defect-free; | a full set can top ten million dollars."
+   },
+   "keywords": [
+    "幾十片",
+    "缺陷",
+    "上千萬美元"
+   ],
+   "cues": [
+    {
+     "id": "many",
+     "text": "幾十片光罩"
+    },
+    {
+     "id": "def",
+     "text": "不能有缺陷"
+    },
+    {
+     "id": "cost",
+     "text": "上千萬美元"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IC Knowledge；IBS；SemiAnalysis"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mask",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 130.0,
+      "y": -1.056,
+      "d": 70.59,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "l_stOn",
+      "at": "many",
+      "ramp": 6,
+      "until": "def"
+     },
+     {
+      "id": "l_defOn",
+      "at": "def",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "l_setA",
+      "text": "一整套：幾十片",
+      "en": "A full mask set",
+      "color": "blue",
+      "at": "many",
+      "until": "s10:start-4"
+     },
+     {
+      "part": "l_defA",
+      "text": "一個缺陷就不能用",
+      "en": "One defect = reject",
+      "color": "coral",
+      "at": "def",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-cost",
+      "at": "start+6",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "幾十片、上千萬",
+      "tag": "IC Knowledge；IBS；SemiAnalysis",
+      "t": {
+       "many": {
+        "at": "many"
+       },
+       "def": {
+        "at": "def"
+       },
+       "cost": {
+        "at": "cost"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "空白光罩就是還沒畫圖的白紙，極紫外光用的，幾乎都來自日本的豪雅和旭硝子。",
+   "tts": "空白光罩就是還沒畫圖的白紙，極紫外光用的，幾乎都來自日本的豪雅和旭硝子。",
+   "subtitle": {
+    "zh": "空白光罩\n就是還沒畫圖的白紙\n極紫外光用的\n幾乎都來自日本的\n豪雅和旭硝子",
+    "en": "A mask blank | is blank paper with no circuit yet. | For EUV, | nearly all come from Japan: | HOYA and AGC."
+   },
+   "keywords": [
+    "空白光罩",
+    "豪雅",
+    "旭硝子"
+   ],
+   "cues": [
+    {
+     "id": "blank",
+     "text": "空白光罩"
+    },
+    {
+     "id": "paper",
+     "text": "還沒畫圖的白紙"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光用的"
+    },
+    {
+     "id": "jp",
+     "text": "日本的"
+    },
+    {
+     "id": "hoya",
+     "text": "豪雅"
+    },
+    {
+     "id": "agc",
+     "text": "旭硝子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "QYResearch；Morningstar；DigitalToday 2026"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mask",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 160.0,
+      "y": -0.362,
+      "d": 53.373,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "b_e2On",
+      "at": "paper",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "b_s1On",
+      "at": "hoya",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "b_s2On",
+      "at": "agc",
+      "ramp": 6,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "b_blankA",
+      "text": "空白光罩（還沒畫圖）",
+      "en": "Mask blank",
+      "color": "amber",
+      "at": "blank",
+      "until": "s11:start-4"
+     },
+     {
+      "part": "b_s1A",
+      "text": "豪雅 HOYA",
+      "en": "Japan",
+      "color": "blue",
+      "at": "hoya",
+      "until": "s11:start-4"
+     },
+     {
+      "part": "b_s2A",
+      "text": "旭硝子 AGC",
+      "en": "Japan",
+      "color": "blue",
+      "at": "agc",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-co",
+      "at": "start+6",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "上游：空白光罩誰做",
+      "tag": "QYResearch；Morningstar",
+      "t": {
+       "blank": {
+        "at": "blank"
+       },
+       "paper": {
+        "at": "paper"
+       },
+       "euv": {
+        "at": "euv"
+       },
+       "jp": {
+        "at": "jp"
+       },
+       "hoya": {
+        "at": "hoya"
+       },
+       "agc": {
+        "at": "agc"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "白紙有了，誰把電路畫上去？又怎麼送進工廠？下一集看。留言光罩，拿完整資料。",
+   "tts": "白紙有了，誰把電路畫上去？又怎麼送進工廠？下一集看。留言光罩，拿完整資料。",
+   "subtitle": {
+    "zh": "白紙有了\n誰把電路畫上去？\n又怎麼送進工廠？\n下一集看\n留言光罩\n拿完整資料",
+    "en": "The blank paper is ready. | Who draws the circuit on it? | How does it reach the fab? | Next episode. | Comment \"光罩\" | for the full notes."
+   },
+   "keywords": [
+    "誰把電路畫上去",
+    "送進工廠",
+    "光罩"
+   ],
+   "cues": [
+    {
+     "id": "paper",
+     "text": "白紙有了"
+    },
+    {
+     "id": "who",
+     "text": "誰把電路畫上去"
+    },
+    {
+     "id": "ship",
+     "text": "送進工廠"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言光罩"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "series_plan 系列 2 第 4 集"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mask",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 34,
+      "x": 100.0,
+      "y": 0.097,
+      "d": 41.036,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "h_patOn",
+      "at": "who",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "shift": [
+     {
+      "layer": "h_dust",
+      "at": "s11:start-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "h_dust2",
+      "at": "s11:start-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "h_patA",
+      "text": "誰畫上電路？",
+      "en": "Who draws it?",
+      "color": "amber",
+      "at": "who",
+      "until": "kw-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk1-next",
+      "at": "start+6",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "白紙有了，接下來呢？",
+      "tag": "光罩-2 預告",
+      "t": {
+       "paper": {
+        "at": "paper"
+       },
+       "who": {
+        "at": "who"
+       },
+       "ship": {
+        "at": "ship"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光罩-2 誰做、怎麼運送",
+     "trail": [
+      "畫電路",
+      "光罩盒"
+     ],
+     "at": "s11:kw-8",
+     "comment": "光罩",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

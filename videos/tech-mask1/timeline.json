@@ -1,0 +1,1699 @@
+{
+ "version": 2,
+ "slug": "tech-mask1",
+ "fps": 30,
+ "totalFrames": 1920,
+ "totalSec": 64,
+ "gapSec": 0.3,
+ "transitionFrames": 10,
+ "estimated": {
+  "note": "無聲估算時間軸（scripts/ui/silent-timeline.mjs）；配音後跑 tts-take → align 會覆蓋",
+  "rate": 4.9,
+  "gap": 0.3,
+  "tailEndFrames": 18
+ },
+ "scenes": [
+  {
+   "id": "s1",
+   "audio": null,
+   "audioFrame": 5,
+   "audioSec": 4.694,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 0,
+   "durationFrames": 163,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 5,
+   "voiceEndFrame": 146,
+   "stillFrame": 153,
+   "subtitleWindow": [
+    0,
+    160
+   ],
+   "sourceWindow": [
+    0,
+    158
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "晶片的電路",
+     "start": 0,
+     "chars": [
+      4,
+      9,
+      15,
+      20,
+      26
+     ]
+    },
+    {
+     "text": "是用光照著底片印上去的",
+     "start": 36,
+     "chars": [
+      38,
+      43,
+      49,
+      55,
+      60,
+      66,
+      71,
+      77,
+      82,
+      88,
+      93
+     ]
+    },
+    {
+     "text": "這張底片，",
+     "start": 103,
+     "chars": [
+      106,
+      111,
+      117,
+      122,
+      122
+     ]
+    },
+    {
+     "text": "叫光罩",
+     "start": 126,
+     "chars": [
+      128,
+      133,
+      139
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "電路",
+     "start": 20
+    },
+    {
+     "text": "底片",
+     "start": 66
+    },
+    {
+     "text": "光罩",
+     "start": 133
+    }
+   ],
+   "cues": [
+    {
+     "id": "chip",
+     "text": "晶片的電路",
+     "frame": 5
+    },
+    {
+     "id": "light",
+     "text": "用光照著",
+     "frame": 45
+    },
+    {
+     "id": "film",
+     "text": "底片印上去",
+     "frame": 67
+    },
+    {
+     "id": "mask",
+     "text": "叫光罩",
+     "frame": 129
+    }
+   ],
+   "sub": "晶片的電路\n是用光照著底片印上去的\n這張底片，叫光罩",
+   "provider": "estimate",
+   "syllables": 23,
+   "words": [],
+   "charTimes": [
+    0,
+    0.185,
+    0.37,
+    0.554,
+    0.739,
+    1.146,
+    1.331,
+    1.515,
+    1.7,
+    1.885,
+    2.07,
+    2.255,
+    2.439,
+    2.624,
+    2.809,
+    2.994,
+    3.4,
+    3.585,
+    3.77,
+    3.955,
+    4.139,
+    4.324,
+    4.509
+   ]
+  },
+  {
+   "id": "s2",
+   "audio": null,
+   "audioFrame": 164,
+   "audioSec": 4.694,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 153,
+   "durationFrames": 169,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 163,
+   "voiceEndFrame": 305,
+   "stillFrame": 312,
+   "subtitleWindow": [
+    160,
+    319
+   ],
+   "sourceWindow": [
+    158,
+    317
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "傳統光罩是一片石英玻璃",
+     "start": 160,
+     "chars": [
+      163,
+      168,
+      174,
+      179,
+      185,
+      190,
+      196,
+      201,
+      207,
+      212,
+      218
+     ]
+    },
+    {
+     "text": "鍍上一層鉻",
+     "start": 228,
+     "chars": [
+      230,
+      236,
+      241,
+      247,
+      252
+     ]
+    },
+    {
+     "text": "電路就刻在鉻上",
+     "start": 262,
+     "chars": [
+      265,
+      270,
+      276,
+      281,
+      287,
+      292,
+      298
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "石英玻璃",
+     "start": 201
+    },
+    {
+     "text": "鉻",
+     "start": 252
+    }
+   ],
+   "cues": [
+    {
+     "id": "quartz",
+     "text": "石英玻璃",
+     "frame": 203
+    },
+    {
+     "id": "cr",
+     "text": "鍍上一層鉻",
+     "frame": 232
+    },
+    {
+     "id": "pat",
+     "text": "電路就刻在鉻上",
+     "frame": 266
+    }
+   ],
+   "sub": "傳統光罩是一片石英玻璃\n鍍上一層鉻\n電路就刻在鉻上",
+   "provider": "estimate",
+   "syllables": 23,
+   "words": [],
+   "charTimes": [
+    0,
+    0.185,
+    0.37,
+    0.554,
+    0.739,
+    0.924,
+    1.109,
+    1.294,
+    1.478,
+    1.663,
+    1.848,
+    2.255,
+    2.439,
+    2.624,
+    2.809,
+    2.994,
+    3.4,
+    3.585,
+    3.77,
+    3.955,
+    4.139,
+    4.324,
+    4.509
+   ]
+  },
+  {
+   "id": "s3",
+   "audio": null,
+   "audioFrame": 323,
+   "audioSec": 3.878,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 312,
+   "durationFrames": 144,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 322,
+   "voiceEndFrame": 439,
+   "stillFrame": 446,
+   "subtitleWindow": [
+    319,
+    453
+   ],
+   "sourceWindow": [
+    317,
+    451
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "光照下來",
+     "start": 319,
+     "chars": [
+      322,
+      327,
+      332,
+      338
+     ]
+    },
+    {
+     "text": "鉻擋住，",
+     "start": 348,
+     "chars": [
+      350,
+      355,
+      361,
+      361
+     ]
+    },
+    {
+     "text": "玻璃透光",
+     "start": 364,
+     "chars": [
+      366,
+      372,
+      377,
+      382
+     ]
+    },
+    {
+     "text": "圖案就被光帶下去",
+     "start": 392,
+     "chars": [
+      394,
+      400,
+      405,
+      411,
+      416,
+      422,
+      427,
+      432
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "擋住",
+     "start": 355
+    },
+    {
+     "text": "透光",
+     "start": 377
+    },
+    {
+     "text": "圖案",
+     "start": 394
+    }
+   ],
+   "cues": [
+    {
+     "id": "duv",
+     "text": "光照下來",
+     "frame": 323
+    },
+    {
+     "id": "block",
+     "text": "鉻擋住",
+     "frame": 351
+    },
+    {
+     "id": "pass",
+     "text": "玻璃透光",
+     "frame": 368
+    },
+    {
+     "id": "carry",
+     "text": "帶下去",
+     "frame": 423
+    }
+   ],
+   "sub": "光照下來\n鉻擋住，玻璃透光\n圖案就被光帶下去",
+   "provider": "estimate",
+   "syllables": 19,
+   "words": [],
+   "charTimes": [
+    0,
+    0.181,
+    0.362,
+    0.544,
+    0.942,
+    1.123,
+    1.305,
+    1.486,
+    1.667,
+    1.848,
+    2.029,
+    2.428,
+    2.609,
+    2.79,
+    2.972,
+    3.153,
+    3.334,
+    3.515,
+    3.696
+   ]
+  },
+  {
+   "id": "s4",
+   "audio": null,
+   "audioFrame": 457,
+   "audioSec": 3.265,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 446,
+   "durationFrames": 126,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 456,
+   "voiceEndFrame": 555,
+   "stillFrame": 562,
+   "subtitleWindow": [
+    453,
+    569
+   ],
+   "sourceWindow": [
+    451,
+    567
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "接著經過鏡頭",
+     "start": 453,
+     "chars": [
+      456,
+      461,
+      466,
+      471,
+      477,
+      482
+     ]
+    },
+    {
+     "text": "縮小四倍",
+     "start": 492,
+     "chars": [
+      494,
+      499,
+      504,
+      510
+     ]
+    },
+    {
+     "text": "投影到晶圓上",
+     "start": 519,
+     "chars": [
+      522,
+      527,
+      532,
+      537,
+      543,
+      548
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "鏡頭",
+     "start": 477
+    },
+    {
+     "text": "四倍",
+     "start": 504
+    },
+    {
+     "text": "晶圓",
+     "start": 537
+    }
+   ],
+   "cues": [
+    {
+     "id": "lens",
+     "text": "經過鏡頭",
+     "frame": 468
+    },
+    {
+     "id": "x4",
+     "text": "縮小四倍",
+     "frame": 495
+    },
+    {
+     "id": "wafer",
+     "text": "投影到晶圓上",
+     "frame": 523
+    }
+   ],
+   "sub": "接著經過鏡頭\n縮小四倍\n投影到晶圓上",
+   "provider": "estimate",
+   "syllables": 16,
+   "words": [],
+   "charTimes": [
+    0,
+    0.177,
+    0.355,
+    0.532,
+    0.71,
+    0.887,
+    1.278,
+    1.455,
+    1.633,
+    1.81,
+    2.201,
+    2.378,
+    2.555,
+    2.733,
+    2.91,
+    3.088
+   ]
+  },
+  {
+   "id": "s5",
+   "audio": null,
+   "audioFrame": 573,
+   "audioSec": 4.286,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 562,
+   "durationFrames": 157,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 572,
+   "voiceEndFrame": 702,
+   "stillFrame": 709,
+   "subtitleWindow": [
+    569,
+    716
+   ],
+   "sourceWindow": [
+    567,
+    714
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "但更先進的極紫外光",
+     "start": 569,
+     "chars": [
+      572,
+      577,
+      582,
+      588,
+      593,
+      599,
+      604,
+      610,
+      615
+     ]
+    },
+    {
+     "text": "會被玻璃吃掉",
+     "start": 625,
+     "chars": [
+      628,
+      633,
+      639,
+      644,
+      650,
+      655
+     ]
+    },
+    {
+     "text": "根本穿不過去",
+     "start": 665,
+     "chars": [
+      667,
+      673,
+      678,
+      684,
+      689,
+      695
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "極紫外光",
+     "start": 599
+    },
+    {
+     "text": "吃掉",
+     "start": 650
+    },
+    {
+     "text": "穿不過去",
+     "start": 678
+    }
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光",
+     "frame": 600
+    },
+    {
+     "id": "eat",
+     "text": "被玻璃吃掉",
+     "frame": 635
+    },
+    {
+     "id": "no",
+     "text": "穿不過去",
+     "frame": 680
+    }
+   ],
+   "sub": "但更先進的極紫外光\n會被玻璃吃掉\n根本穿不過去",
+   "provider": "estimate",
+   "syllables": 21,
+   "words": [],
+   "charTimes": [
+    0,
+    0.183,
+    0.366,
+    0.549,
+    0.733,
+    0.916,
+    1.099,
+    1.282,
+    1.465,
+    1.868,
+    2.051,
+    2.234,
+    2.418,
+    2.601,
+    2.784,
+    3.187,
+    3.37,
+    3.553,
+    3.736,
+    3.919,
+    4.103
+   ]
+  },
+  {
+   "id": "s6",
+   "audio": null,
+   "audioFrame": 719,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 709,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 719,
+   "voiceEndFrame": 873,
+   "stillFrame": 880,
+   "subtitleWindow": [
+    716,
+    887
+   ],
+   "sourceWindow": [
+    714,
+    885
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "所以改用反射",
+     "start": 716,
+     "chars": [
+      718,
+      723,
+      728,
+      734,
+      739,
+      744
+     ]
+    },
+    {
+     "text": "鉬和矽交錯疊",
+     "start": 754,
+     "chars": [
+      756,
+      761,
+      767,
+      772,
+      777,
+      783
+     ]
+    },
+    {
+     "text": "四十對左右",
+     "start": 792,
+     "chars": [
+      795,
+      800,
+      805,
+      811,
+      816
+     ]
+    },
+    {
+     "text": "像鏡子把光彈回去",
+     "start": 826,
+     "chars": [
+      828,
+      833,
+      838,
+      844,
+      849,
+      855,
+      860,
+      865
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "反射",
+     "start": 739
+    },
+    {
+     "text": "鉬和矽",
+     "start": 756
+    },
+    {
+     "text": "四十對",
+     "start": 795
+    }
+   ],
+   "cues": [
+    {
+     "id": "refl",
+     "text": "改用反射",
+     "frame": 730
+    },
+    {
+     "id": "mo",
+     "text": "鉬和矽",
+     "frame": 758
+    },
+    {
+     "id": "n40",
+     "text": "四十對",
+     "frame": 796
+    },
+    {
+     "id": "mirror",
+     "text": "像鏡子",
+     "frame": 829
+    }
+   ],
+   "sub": "所以改用反射\n鉬和矽交錯疊\n四十對左右\n像鏡子把光彈回去",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.535,
+    0.714,
+    0.892,
+    1.284,
+    1.463,
+    1.641,
+    1.82,
+    1.998,
+    2.176,
+    2.569,
+    2.747,
+    2.926,
+    3.104,
+    3.282,
+    3.675,
+    3.853,
+    4.032,
+    4.21,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s7",
+   "audio": null,
+   "audioFrame": 891,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 880,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 890,
+   "voiceEndFrame": 1044,
+   "stillFrame": 1051,
+   "subtitleWindow": [
+    887,
+    1058
+   ],
+   "sourceWindow": [
+    885,
+    1056
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "電路改用吸收層畫",
+     "start": 887,
+     "chars": [
+      890,
+      895,
+      901,
+      906,
+      912,
+      917,
+      923,
+      929
+     ]
+    },
+    {
+     "text": "蓋到的地方不反光",
+     "start": 939,
+     "chars": [
+      941,
+      946,
+      952,
+      958,
+      963,
+      969,
+      974,
+      980
+     ]
+    },
+    {
+     "text": "圖案就留在反射光裡",
+     "start": 990,
+     "chars": [
+      992,
+      998,
+      1003,
+      1009,
+      1015,
+      1020,
+      1026,
+      1031,
+      1037
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "吸收層",
+     "start": 912
+    },
+    {
+     "text": "不反光",
+     "start": 969
+    },
+    {
+     "text": "圖案",
+     "start": 992
+    }
+   ],
+   "cues": [
+    {
+     "id": "abs",
+     "text": "吸收層",
+     "frame": 913
+    },
+    {
+     "id": "dark",
+     "text": "不反光",
+     "frame": 970
+    },
+    {
+     "id": "pattern",
+     "text": "圖案就留在",
+     "frame": 994
+    }
+   ],
+   "sub": "電路改用吸收層畫\n蓋到的地方不反光\n圖案就留在反射光裡",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.186,
+    0.372,
+    0.559,
+    0.745,
+    0.931,
+    1.117,
+    1.303,
+    1.713,
+    1.899,
+    2.086,
+    2.272,
+    2.458,
+    2.644,
+    2.83,
+    3.017,
+    3.426,
+    3.612,
+    3.799,
+    3.985,
+    4.171,
+    4.357,
+    4.543,
+    4.73,
+    4.916
+   ]
+  },
+  {
+   "id": "s8",
+   "audio": null,
+   "audioFrame": 1062,
+   "audioSec": 5.102,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1051,
+   "durationFrames": 181,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1061,
+   "voiceEndFrame": 1215,
+   "stillFrame": 1222,
+   "subtitleWindow": [
+    1058,
+    1229
+   ],
+   "sourceWindow": [
+    1056,
+    1227
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "光罩上方還繃著一層護膜",
+     "start": 1058,
+     "chars": [
+      1061,
+      1066,
+      1071,
+      1077,
+      1082,
+      1087,
+      1093,
+      1098,
+      1103,
+      1109,
+      1114
+     ]
+    },
+    {
+     "text": "灰塵落在膜上",
+     "start": 1124,
+     "chars": [
+      1126,
+      1131,
+      1136,
+      1142,
+      1147,
+      1153
+     ]
+    },
+    {
+     "text": "對不到焦",
+     "start": 1162,
+     "chars": [
+      1164,
+      1170,
+      1175,
+      1180
+     ]
+    },
+    {
+     "text": "印不出來",
+     "start": 1190,
+     "chars": [
+      1192,
+      1198,
+      1203,
+      1208
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "護膜",
+     "start": 1109
+    },
+    {
+     "text": "灰塵",
+     "start": 1126
+    },
+    {
+     "text": "對不到焦",
+     "start": 1164
+    }
+   ],
+   "cues": [
+    {
+     "id": "pel",
+     "text": "護膜",
+     "frame": 1110
+    },
+    {
+     "id": "dust",
+     "text": "灰塵落在膜上",
+     "frame": 1127
+    },
+    {
+     "id": "focus",
+     "text": "對不到焦",
+     "frame": 1166
+    },
+    {
+     "id": "no",
+     "text": "印不出來",
+     "frame": 1194
+    }
+   ],
+   "sub": "光罩上方還繃著一層護膜\n灰塵落在膜上\n對不到焦\n印不出來",
+   "provider": "estimate",
+   "syllables": 25,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.357,
+    0.535,
+    0.714,
+    0.892,
+    1.07,
+    1.249,
+    1.427,
+    1.606,
+    1.784,
+    2.176,
+    2.355,
+    2.533,
+    2.712,
+    2.89,
+    3.068,
+    3.461,
+    3.639,
+    3.818,
+    3.996,
+    4.388,
+    4.567,
+    4.745,
+    4.924
+   ]
+  },
+  {
+   "id": "s9",
+   "audio": null,
+   "audioFrame": 1233,
+   "audioSec": 5.51,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1222,
+   "durationFrames": 193,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1232,
+   "voiceEndFrame": 1398,
+   "stillFrame": 1405,
+   "subtitleWindow": [
+    1229,
+    1412
+   ],
+   "sourceWindow": [
+    1227,
+    1410
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "一顆先進晶片",
+     "start": 1229,
+     "chars": [
+      1232,
+      1237,
+      1243,
+      1248,
+      1254,
+      1260
+     ]
+    },
+    {
+     "text": "要幾十片光罩",
+     "start": 1263,
+     "chars": [
+      1265,
+      1271,
+      1276,
+      1282,
+      1288,
+      1293
+     ]
+    },
+    {
+     "text": "片片不能有缺陷",
+     "start": 1304,
+     "chars": [
+      1306,
+      1311,
+      1317,
+      1323,
+      1328,
+      1334,
+      1339
+     ]
+    },
+    {
+     "text": "一整套上千萬美元",
+     "start": 1350,
+     "chars": [
+      1352,
+      1357,
+      1363,
+      1369,
+      1374,
+      1380,
+      1386,
+      1391
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "幾十片",
+     "start": 1271
+    },
+    {
+     "text": "缺陷",
+     "start": 1334
+    },
+    {
+     "text": "上千萬美元",
+     "start": 1369
+    }
+   ],
+   "cues": [
+    {
+     "id": "many",
+     "text": "幾十片光罩",
+     "frame": 1272
+    },
+    {
+     "id": "def",
+     "text": "不能有缺陷",
+     "frame": 1318
+    },
+    {
+     "id": "cost",
+     "text": "上千萬美元",
+     "frame": 1370
+    }
+   ],
+   "sub": "一顆先進晶片要幾十片光罩\n片片不能有缺陷\n一整套上千萬美元",
+   "provider": "estimate",
+   "syllables": 27,
+   "words": [],
+   "charTimes": [
+    0,
+    0.187,
+    0.375,
+    0.562,
+    0.75,
+    0.937,
+    1.125,
+    1.312,
+    1.499,
+    1.687,
+    1.874,
+    2.062,
+    2.474,
+    2.661,
+    2.849,
+    3.036,
+    3.224,
+    3.411,
+    3.599,
+    4.011,
+    4.198,
+    4.386,
+    4.573,
+    4.761,
+    4.948,
+    5.135,
+    5.323
+   ]
+  },
+  {
+   "id": "s10",
+   "audio": null,
+   "audioFrame": 1416,
+   "audioSec": 6.735,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1405,
+   "durationFrames": 231,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1415,
+   "voiceEndFrame": 1619,
+   "stillFrame": 1626,
+   "subtitleWindow": [
+    1412,
+    1633
+   ],
+   "sourceWindow": [
+    1410,
+    1631
+   ],
+   "pauseAfter": 0.6,
+   "lines": [
+    {
+     "text": "空白光罩",
+     "start": 1412,
+     "chars": [
+      1415,
+      1420,
+      1425,
+      1431
+     ]
+    },
+    {
+     "text": "就是還沒畫圖的白紙",
+     "start": 1440,
+     "chars": [
+      1442,
+      1448,
+      1453,
+      1458,
+      1464,
+      1469,
+      1474,
+      1480,
+      1485
+     ]
+    },
+    {
+     "text": "極紫外光用的",
+     "start": 1495,
+     "chars": [
+      1497,
+      1502,
+      1508,
+      1513,
+      1518,
+      1524
+     ]
+    },
+    {
+     "text": "幾乎都來自日本的",
+     "start": 1533,
+     "chars": [
+      1535,
+      1541,
+      1546,
+      1551,
+      1557,
+      1562,
+      1567,
+      1573
+     ]
+    },
+    {
+     "text": "豪雅和旭硝子",
+     "start": 1582,
+     "chars": [
+      1584,
+      1590,
+      1595,
+      1601,
+      1606,
+      1611
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "空白光罩",
+     "start": 1415
+    },
+    {
+     "text": "豪雅",
+     "start": 1584
+    },
+    {
+     "text": "旭硝子",
+     "start": 1601
+    }
+   ],
+   "cues": [
+    {
+     "id": "blank",
+     "text": "空白光罩",
+     "frame": 1416
+    },
+    {
+     "id": "paper",
+     "text": "還沒畫圖的白紙",
+     "frame": 1454
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光用的",
+     "frame": 1498
+    },
+    {
+     "id": "jp",
+     "text": "日本的",
+     "frame": 1564
+    },
+    {
+     "id": "hoya",
+     "text": "豪雅",
+     "frame": 1586
+    },
+    {
+     "id": "agc",
+     "text": "旭硝子",
+     "frame": 1602
+    }
+   ],
+   "sub": "空白光罩\n就是還沒畫圖的白紙\n極紫外光用的\n幾乎都來自日本的\n豪雅和旭硝子",
+   "provider": "estimate",
+   "syllables": 33,
+   "words": [],
+   "charTimes": [
+    0,
+    0.178,
+    0.356,
+    0.534,
+    0.926,
+    1.105,
+    1.283,
+    1.461,
+    1.639,
+    1.817,
+    1.995,
+    2.174,
+    2.352,
+    2.744,
+    2.922,
+    3.1,
+    3.278,
+    3.456,
+    3.635,
+    4.027,
+    4.205,
+    4.383,
+    4.561,
+    4.739,
+    4.917,
+    5.096,
+    5.274,
+    5.666,
+    5.844,
+    6.022,
+    6.2,
+    6.378,
+    6.557
+   ]
+  },
+  {
+   "id": "s11",
+   "audio": null,
+   "audioFrame": 1636,
+   "audioSec": 6.327,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1626,
+   "durationFrames": 208,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1636,
+   "voiceEndFrame": 1826,
+   "stillFrame": 1824,
+   "subtitleWindow": [
+    1633,
+    1834
+   ],
+   "sourceWindow": [
+    1631,
+    1829
+   ],
+   "lines": [
+    {
+     "text": "白紙有了",
+     "start": 1633,
+     "chars": [
+      1635,
+      1640,
+      1645,
+      1650
+     ]
+    },
+    {
+     "text": "誰把電路畫上去？",
+     "start": 1659,
+     "chars": [
+      1661,
+      1666,
+      1671,
+      1677,
+      1682,
+      1687,
+      1692,
+      1692
+     ]
+    },
+    {
+     "text": "又怎麼送進工廠？",
+     "start": 1701,
+     "chars": [
+      1703,
+      1708,
+      1713,
+      1719,
+      1724,
+      1729,
+      1734,
+      1734
+     ]
+    },
+    {
+     "text": "下一集看",
+     "start": 1743,
+     "chars": [
+      1745,
+      1750,
+      1756,
+      1761
+     ]
+    },
+    {
+     "text": "留言光罩",
+     "start": 1770,
+     "chars": [
+      1772,
+      1777,
+      1782,
+      1787
+     ]
+    },
+    {
+     "text": "拿完整資料",
+     "start": 1797,
+     "chars": [
+      1799,
+      1804,
+      1809,
+      1814,
+      1819
+     ]
+    }
+   ],
+   "keywords": [
+    {
+     "text": "誰把電路畫上去",
+     "start": 1661
+    },
+    {
+     "text": "送進工廠",
+     "start": 1719
+    },
+    {
+     "text": "光罩",
+     "start": 1782
+    }
+   ],
+   "cues": [
+    {
+     "id": "paper",
+     "text": "白紙有了",
+     "frame": 1636
+    },
+    {
+     "id": "who",
+     "text": "誰把電路畫上去",
+     "frame": 1663
+    },
+    {
+     "id": "ship",
+     "text": "送進工廠",
+     "frame": 1720
+    },
+    {
+     "id": "next",
+     "text": "下一集",
+     "frame": 1747
+    },
+    {
+     "id": "kw",
+     "text": "留言光罩",
+     "frame": 1773
+    }
+   ],
+   "sub": "白紙有了\n誰把電路畫上去？\n又怎麼送進工廠？\n下一集看\n留言光罩\n拿完整資料",
+   "provider": "estimate",
+   "syllables": 31,
+   "words": [],
+   "charTimes": [
+    0,
+    0.171,
+    0.342,
+    0.513,
+    0.889,
+    1.06,
+    1.231,
+    1.402,
+    1.573,
+    1.744,
+    1.915,
+    2.291,
+    2.462,
+    2.633,
+    2.804,
+    2.975,
+    3.146,
+    3.317,
+    3.693,
+    3.864,
+    4.035,
+    4.206,
+    4.582,
+    4.753,
+    4.924,
+    5.095,
+    5.472,
+    5.643,
+    5.814,
+    5.985,
+    6.156
+   ]
+  },
+  {
+   "id": "s12",
+   "audio": null,
+   "audioFrame": 1824,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1824,
+   "durationFrames": 96,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1834,
+   "voiceEndFrame": 1834,
+   "stillFrame": 1908,
+   "silent": true,
+   "subtitleWindow": null,
+   "sourceWindow": [
+    1829,
+    1920
+   ],
+   "lines": [],
+   "keywords": [],
+   "isEnd": true,
+   "cues": [],
+   "sub": "",
+   "provider": "estimate",
+   "syllables": 0,
+   "words": [],
+   "charTimes": []
+  }
+ ]
+}
