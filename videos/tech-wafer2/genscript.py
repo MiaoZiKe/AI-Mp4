@@ -70,7 +70,7 @@ S = [
  ["晶圓備好了", "電路怎麼印上去？", "靠光罩，下一集看", "留言磊晶", "拿完整資料"],
  ["The wafer is ready.", "How do circuits get printed on it?", "With a photomask: next episode.", "Comment \"磊晶\"", "for the full notes."],
  [("ready", "晶圓備好了"), ("print", "怎麼印上去"), ("mask", "靠光罩"), ("next", "下一集"), ("kw", "留言磊晶")],
- ["光罩", "磊晶"], ["下一集：光罩-1（晶片的底片）"]),
+ ["光罩", "磊晶"], ["示意動畫，不是量測"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []

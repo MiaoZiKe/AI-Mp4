@@ -100,7 +100,7 @@ const Pol: React.FC<P> = ({ o, f, k }) => {
         <text x={506} y={CT + 42} style={zh(34, BLUE, 900)} opacity={0.35 + 0.65 * pw}>拋光晶圓</text>
         <g opacity={0.35 + 0.65 * sm_}>
           <text x={506} y={164} style={zh(30, H.text2, 800)}>雜質濃度</text>
-          <text x={660} y={164} style={zh(32, H.amber, 900)}>都一樣</text>
+          <text x={660} y={164} style={zh(32, "#B4530A", 900)}>都一樣</text>
           <line x1={506} y1={184} x2={506} y2={252} stroke={H.text3} strokeWidth={3} />
           <line x1={506} y1={252} x2={900} y2={252} stroke={H.text3} strokeWidth={3} />
           <line x1={510} y1={214} x2={510 + 386 * EASE.move(cl((f - T(o, "same")) / 24))} y2={214} stroke={RED} strokeWidth={7} />
@@ -234,7 +234,7 @@ const Size: React.FC<P> = ({ o, f, k }) => {
           <text x={576} y={CT + 92} style={zh(30, H.text, 900)}>先進邏輯、記憶體</text>
         </g>
         <g opacity={0.35 + 0.65 * Math.max(s8 * 0.6, pw)}>
-          <text x={576} y={CT + 172} style={zh(34, H.amber, 900)}>8 吋、6 吋</text>
+          <text x={576} y={CT + 172} style={zh(34, "#B4530A", 900)}>8 吋、6 吋</text>
           <text x={576} y={CT + 218} style={zh(30, H.text, 900)}>多做功率晶片</text>
         </g>
       </svg>
@@ -253,7 +253,7 @@ const COS: Co[] = [
 const CoCard: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const focus = String((o as any).focus ?? "gw"), fi = Math.max(0, COS.findIndex((c) => c.id === focus)), c = COS[fi];
-  const a0 = on(f, T(o, c.cues[0])), a1 = on(f, T(o, c.cues[1])), a2 = on(f, T(o, c.cues[2])), a3 = cl((f - T(o, c.cues[3])) / 24);
+  const a0 = on(f, T(o, c.cues[0])), a1 = on(f, T(o, c.cues[1])), a2 = on(f, T(o, c.cues[2])), a3 = Math.max(0.55 * on(f, T(o, c.cues[0]), 18), cl((f - T(o, c.cues[3])) / 24));   // 審片 W3：一進場營收條就先長到 55%，念到營收補滿
   const BW = 400;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -272,9 +272,9 @@ const CoCard: React.FC<P> = ({ o, f, k }) => {
               <rect x={312} y={y - 19 - lh / 2 - 4} width={lw + 10} height={lh + 8} fill="#FFFFFF" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 4 : 1.5} /><LogoSvg id={r.logo} x={317} y={y - 19 - lh / 2} h={lh} /></g> : null}
           </g>; })}
         <Sep x={466} />
-        <text x={496} y={CT + 46} style={zh(34, H.text, 900)} opacity={0.35 + 0.65 * a1}>{c.l1}</text>
-        <text x={496} y={CT + 100} style={zh(30, H.text, 800)} opacity={0.35 + 0.65 * a2}>{c.l2}</text>
-        <g opacity={0.4 + 0.6 * a3}>
+        <text x={496} y={CT + 46} style={zh(34, H.text, 900)} opacity={0.6 + 0.4 * a1}>{c.l1}</text>
+        <text x={496} y={CT + 100} style={zh(30, H.text, 800)} opacity={0.6 + 0.4 * a2}>{c.l2}</text>
+        <g opacity={0.7 + 0.3 * a3}>
           <text x={496} y={CT + 166} style={zh(30, H.text2, 800)}>2025 營收</text>
           <text x={W - 30} y={CT + 166} textAnchor="end" style={zh(32, BLUE, 900)}>{c.revT}</text>
           <rect x={496} y={CT + 190} width={BW} height={34} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={3} />

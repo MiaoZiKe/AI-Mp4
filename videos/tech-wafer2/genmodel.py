@@ -371,16 +371,91 @@ box("t_ground", "t_site", "floor", [70, .1, 40], [TX, -.05, -2])
 box("t_pad", "t_site", "conc", [36, .2, 9], [TX, .1, .5])
 box("t_road", "t_site", "cabD", [34, .03, 1.4], [TX, .21, 4.6])
 box("t_lane", "t_site", "ffu", [.8, .02, .12], [TX, .23, 4.6], at=[[-16 + 2 * i, 0, 0] for i in range(17)])
-for k, (cid, sg, dx) in enumerate(TWF):
-    wins = fab(f"t{k}", f"t_fab{k}", TX + dx, -.6, sg, anc=f"t_{cid}A", logo=f"sign-{cid}T", flag="flag-TW", flay=f"t_flag{k}", kind=["twin", "tanks", "std", "dome"][k])
-    glow(f"t_on{k}", f"t_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
-    box(f"t_dock{k}", f"t_prod{k}", "cab2", [2.6, .3, 1.6], [TX + dx + .6, .15, 2.9], bevel=.03)
+# 2026/11/24 審片 6.8（W1）：四家輪廓要一眼不同 → 不共用 fab()，各畫一種：
+#   環球晶＝廠房群（主廠＋左側第二廠＋空橋＋晶圓盒堆）｜台勝科＝12 吋大型單棟（高、平頂、屋頂機組排、三支高煙囪、藍色腰帶）
+#   合晶＝較小的雙斜頂廠房＋門口晶舟｜嘉晶＝磊晶爐棚（開放式鋼構棚，棚下三座鐘罩磊晶爐，跟 s3 反應腔同款語彙）
+materials.update({"m_" + k: v for k, v in {"wallG": M("#D9E3EE", rough=.7, metal=0), "wallW": M("#F4F6F9", rough=.6, metal=0), "wallY": M("#E9DFCC", rough=.7, metal=0),
+  "wallM": M("#D6E8E0", rough=.7, metal=0), "beltB": M("#2F6BD0", rough=.4, metal=.1), "roofG": M("#9AA6B8", rough=.5, metal=.4)}.items()})
+def sign_on(pre, lay, name, cx, cy, cz, w):
+    h = w / SIGN[name]["aspect"]
+    box(f"{pre}_sgB", lay, "cabD", [w + .14, h + .14, .06], [cx, cy, cz - .02]); plate(f"{pre}_sg", lay, name, w, cx, cy, cz + .02)
+def pole(pre, lay, flay, name, x, z, ph=4.4):
+    cyl(f"{pre}_fp", lay, "steelHi", .05, ph, [x, .3 + ph / 2, z]); sph(f"{pre}_fb", lay, "steelHi", .09, [x, ph + .32, z])
+    fw = 1.1; fh = fw / SIGN[name]["aspect"]; plate(f"{pre}_fg", flay, name, fw, x + fw / 2 + .06, ph + .3 - fh / 2 - .06, z)
+def saw(pre, lay, cx, y, z, w, d, n=3):
+    st = w / n
+    box(f"{pre}_saw", lay, "roofS", [st * 1.05, .12, d + .1], [cx, y, z], rot=[0, 0, -24], at=[[R(-w / 2 + st * (i + .5)), 0, 0] for i in range(n)])
+    box(f"{pre}_sawG", lay, "win", [.05, .46, d], [cx, y - .03, z], at=[[R(-w / 2 + st * (i + 1) - .05), 0, 0] for i in range(n)])
+WINS = {}
+# ── 環球晶：廠房群 ──
+x0, z0, L0 = TX - 13.5, -.6, "t_fab0"
+box("g_pl", L0, "conc", [8.4, .3, 4.6], [x0 - 1.2, .15, z0])
+box("g_h1", L0, "wallG", [4.6, 2.6, 3.0], [x0 + .4, 1.6, z0], bevel=.05); saw("g_h1", L0, x0 + .4, 3.1, z0, 4.6, 3.0, 3)
+box("g_h2", L0, "wall2", [3.0, 2.0, 2.6], [x0 - 3.6, 1.3, z0 - .3], bevel=.05); saw("g_h2", L0, x0 - 3.6, 2.5, z0 - .3, 3.0, 2.6, 2)
+box("g_br", L0, "win", [1.0, .5, .8], [x0 - 1.85, 2.0, z0 + .2])
+box("g_w1", L0, "win", [4.3, .3, .05], [x0 + .4, 2.35, z0 + 1.53]); box("g_w2", L0, "win", [2.7, .26, .05], [x0 - 3.6, 1.85, z0 + 1.03])
+box("g_ahu", L0, "cab2", [.7, .45, .7], [x0 + .4, 3.55, z0 - .8], at=[[-1.4, 0, 0], [0, 0, 0], [1.4, 0, 0]], bevel=.03)
+box("g_door", L0, "cabD", [1.0, 1.1, .05], [x0 + 1.9, .85, z0 + 1.53])
+sign_on("g", L0, "sign-gwT", x0 - .3, 1.15, z0 + 1.56, 2.0)
+pole("g", L0, "t_flag0", "flag-TW", x0 - 2.5, z0 + 2.0)
+WINS[0] = ["g_w1", "g_w2", "g_h1_sawG", "g_h2_sawG"]
+anchor("t_gwA", L0, [x0 + .4, 3.6, z0], dx=0, dy=-120)
+# ── 台勝科：12 吋大型單棟 ──
+x1, z1, L1 = TX - 4.5, -.8, "t_fab1"
+box("f_pl", L1, "conc", [6.6, .3, 4.8], [x1, .15, z1])
+box("f_h", L1, "wallW", [5.6, 4.0, 3.6], [x1, 2.3, z1], bevel=.05)
+box("f_belt", L1, "beltB", [5.62, .35, 3.62], [x1, 3.2, z1])
+box("f_w", L1, "win", [5.3, .32, .05], [x1, 2.55, z1 + 1.83])
+box("f_roof", L1, "roofG", [5.7, .12, 3.7], [x1, 4.36, z1])
+box("f_ahu", L1, "cab2", [.7, .5, .7], [x1, 4.67, z1 - .5], at=[[-2.0 + 1.0 * i, 0, 0] for i in range(5)], bevel=.03)
+cyl("f_stk", L1, "steelHi", .26, 3.4, [x1 + 1.6, 6.0, z1 - 1.2], at=[[0, 0, 0], [.75, 0, 0], [1.5, 0, 0]])
+box("f_door", L1, "cabD", [1.2, 1.4, .05], [x1 + 1.9, 1.0, z1 + 1.83])
+sign_on("f", L1, "sign-fstT", x1 + .1, 1.45, z1 + 1.86, 2.2)
+pole("f", L1, "t_flag1", "flag-TW", x1 - 2.4, z1 + 2.2)
+WINS[1] = ["f_w"]
+anchor("t_fstA", L1, [x1, 4.6, z1], dx=0, dy=-120)
+# ── 合晶：較小的雙斜頂廠房 ──
+x2, z2, L2 = TX + 4.5, -.4, "t_fab2"
+box("w_pl", L2, "conc", [5.0, .3, 4.0], [x2, .15, z2])
+box("w_h", L2, "wallY", [3.8, 2.0, 2.8], [x2, 1.3, z2], bevel=.05)
+box("w_rf", L2, "roofG", [2.1, .12, 3.0], [x2, 0, z2], rot=[0, 0, 0], at=[[-.95, 2.62, 0]], shape="box")
+box("w_rf2", L2, "roofG", [2.1, .12, 3.0], [x2, 0, z2], at=[[.95, 2.62, 0]])
+for p_ in parts[-2:]: p_["rot"] = [0, 0, 22 if p_["id"] == "w_rf" else -22]
+box("w_gab", L2, "wallY", [3.8, .02, .02], [x2, 2.3, z2 + 1.41])
+box("w_w", L2, "win", [3.4, .26, .05], [x2, 1.75, z2 + 1.43])
+cyl("w_stk", L2, "steelHi", .16, 1.6, [x2 + 1.3, 3.0, z2 - .9])
+box("w_door", L2, "cabD", [.8, .9, .05], [x2 + 1.3, .75, z2 + 1.43])
+sign_on("w", L2, "sign-wwT", x2 - .6, 1.0, z2 + 1.46, 1.7)
+pole("w", L2, "t_flag2", "flag-TW", x2 - 2.6, z2 + 1.9, ph=3.8)
+WINS[2] = ["w_w"]
+anchor("t_wwF", L2, [x2, 2.9, z2], dx=0, dy=-120)
+# ── 嘉晶：磊晶爐棚 ──
+x3, z3, L3 = TX + 13.5, -.6, "t_fab3"
+box("e2_pl", L3, "conc", [6.0, .3, 4.4], [x3, .15, z3])
+box("e2_back", L3, "wallM", [5.4, 3.0, .3], [x3, 1.8, z3 - 1.8])
+box("e2_col", L3, "steel2", [.22, 3.0, .22], [x3, 1.8, z3], at=[[sx * 2.6, 0, sz * 1.7] for sx in (-1, 1) for sz in (-1, 1)])
+box("e2_roof", L3, "roofG", [5.8, .16, 3.9], [x3, 3.35, z3])
+box("e2_beam", L3, "steel2", [5.6, .2, .18], [x3, 3.15, z3 + 1.7])
+for j in range(3):
+    ex = x3 - 1.7 + 1.7 * j
+    box(f"e2_rb{j}", L3, "cab", [1.2, .9, 1.2], [ex, .75, z3 - .3], bevel=.04)
+    tube(f"e2_ring{j}", L3, "gold", .5, .4, .14, [ex, 1.27, z3 - .3])
+    sph(f"e2_bell{j}", L3, "glass", .46, [ex, 1.34, z3 - .3], scale=[1, .9, 1])
+    sph(f"e2_glow{j}", L3, "lamp", .28, [ex, 1.38, z3 - .3], scale=[1, .7, 1])
+    cyl(f"e2_gas{j}", L3, "steelHi", .06, 1.6, [ex + .45, 2.0, z3 - .9])
+sign_on("e2", L3, "sign-epiT", x3, 2.75, z3 + 1.8, 2.0)
+pole("e2", L3, "t_flag3", "flag-TW", x3 - 3.2, z3 + 2.0)
+WINS[3] = [f"e2_glow{j}" for j in range(3)]
+anchor("t_epiA", L3, [x3, 3.5, z3], dx=0, dy=-120)
+for k in range(4):
+    glow(f"t_on{k}", f"t_fab{k}", WINS[k], "#FFC85A" if k == 3 else "#9CC3FF", steady=False, g=.7, freq=1.2)
 PY_ = .32
+for k, (cid, sg, dx) in enumerate(TWF): box(f"t_dock{k}", f"t_prod{k}", "cab2", [2.6, .3, 1.6], [TX + dx + (2.8 if k == 1 else .6), .15, 2.9], bevel=.03)   # 台勝科的晶圓盒放到右前方，不擋廠牌
 # 環球晶：12 吋晶圓疊（鏡面）
 cyl("t_gwS", "t_prod0", "mirror", .72, .05, [TX - 13.5 + .6, PY_ + .03, 2.9], at=[[0, .07 * j, 0] for j in range(8)])
 # 台勝科：12 吋晶圓盒（前開）×2
-box("t_fstB", "t_prod1", "pvdf", [.9, .85, .85], [TX - 4.5 + .6, PY_ + .43, 2.9], at=[[-.55, 0, 0], [.55, 0, 0]], bevel=.08)
-box("t_fstD", "t_prod1", "cab2", [.7, .65, .04], [TX - 4.5 + .6, PY_ + .43, 3.33], at=[[-.55, 0, 0], [.55, 0, 0]])
+box("t_fstB", "t_prod1", "pvdf", [.9, .85, .85], [TX - 4.5 + 2.8, PY_ + .43, 2.9], at=[[-.55, 0, 0], [.55, 0, 0]], bevel=.08)
+box("t_fstD", "t_prod1", "cab2", [.7, .65, .04], [TX - 4.5 + 2.8, PY_ + .43, 3.33], at=[[-.55, 0, 0], [.55, 0, 0]])
 # 合晶：8 吋＋6 吋晶圓疊（同一組）
 cyl("t_ww8", "t_prod2", "mirror", .5, .05, [TX + 4.5 + .1, PY_ + .03, 2.9], at=[[0, .07 * j, 0] for j in range(6)])
 cyl("t_ww6", "t_prod2", "mirror", .38, .05, [TX + 4.5 + 1.2, PY_ + .03, 2.9], at=[[0, .07 * j, 0] for j in range(6)])
@@ -388,10 +463,10 @@ cyl("t_ww6", "t_prod2", "mirror", .38, .05, [TX + 4.5 + 1.2, PY_ + .03, 2.9], at
 for j, mt in enumerate(["epi", "sicW", "gan"]):
     cyl(f"t_ep{j}", "t_prod3", "mirror", .4, .05, [TX + 13.5 - .25 + .85 * j, PY_ + .03, 2.9])
     cyl(f"t_epL{j}", "t_prod3", mt, .4, .03, [TX + 13.5 - .25 + .85 * j, PY_ + .07, 2.9])
-cyl("t_fp2", "t_fab1", "steelHi", .05, 4.2, [TX - 4.5 + 2.75 + 1.3, 2.4, 1.25])
-sph("t_fb2", "t_fab1", "steelHi", .09, [TX - 4.5 + 2.75 + 1.3, 4.52, 1.25])
-plate("t_fg2", "t_flagJ", "flag-JP", 1.15, TX - 4.5 + 2.75 + 1.3 + .63, 4.5 - 1.15 / SIGN["flag-JP"]["aspect"] / 2 - .06, 1.25)
-anchor("t_jpA", "t_flagJ", [TX - 4.5 + 2.75 + 1.9, 4.2, 1.25], dx=0, dy=120)
+cyl("t_fp2", "t_fab1", "steelHi", .05, 4.2, [TX - 4.5 + 3.0, 2.4, -.8 + 2.2])
+sph("t_fb2", "t_fab1", "steelHi", .09, [TX - 4.5 + 3.0, 4.52, -.8 + 2.2])
+plate("t_fg2", "t_flagJ", "flag-JP", 1.1, TX - 4.5 + 3.0 + .61, 4.5 - 1.1 / SIGN["flag-JP"]["aspect"] / 2 - .06, -.8 + 2.2)
+anchor("t_jpA", "t_flagJ", [TX - 4.5 + 3.0 + .6, 4.2, -.8 + 2.2], dx=0, dy=120)
 anchor("t_wwA", "t_prod2", [TX + 4.5 + .6, PY_ + .4, 2.9], dx=0, dy=110)
 anchor("t_sicA", "t_prod3", [TX + 13.5 + .6, PY_ + .1, 2.9], dx=0, dy=110)
 
@@ -479,9 +554,9 @@ VIS = [
  fall("x_e4", HIDE, "s5:start+8", dy=1.2), fall("x_e5", HIDE, "s5:start+20", dy=1.2), fall("x_e6", HIDE, "s5:start+32", dy=1.2), fall("x_dE", HIDE, "s5:start+20", dy=1.2),
  # 光罩：念「靠光罩」從上方降下來
  mv("n_mask", HIDE, "s11:mask-4", dur=24, dy=2.0), hid("n_mask", HIDE, "s11:mask-4", 10),
-] + [fall(f"t_fab{k}", HIDE, f"s{7 + k}:{c}" + ("-6" if k == 0 else ""), dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(TWF)] \
-  + [x for k, (c, _, _) in enumerate(TWF) for x in (hid(f"t_flag{k}", HIDE, f"s{7 + k}:{c}", 6), mv(f"t_flag{k}", HIDE, f"s{7 + k}:{c}+10", dur=22, dy=-2.4))] \
-  + [hid("t_flagJ", HIDE, "s8:jv", 6), mv("t_flagJ", HIDE, "s8:jv+8", dur=22, dy=-2.4)] \
+] + [fall(f"t_fab{k}", HIDE, f"s{7 + k}:{c}" if k else "s7:start-2", dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(TWF)] \
+  + [x for k, (c, _, _) in enumerate(TWF) for x in (hid(f"t_flag{k}", HIDE, f"s{7 + k}:{c}", 6), mv(f"t_flag{k}", HIDE, f"s{7 + k}:{c}+10", dur=22, dy=-.9))] \
+  + [hid("t_flagJ", HIDE, "s8:jv", 6), mv("t_flagJ", HIDE, "s8:jv+8", dur=22, dy=-.9)] \
   + [fall(f"t_prod{k}", HIDE, f"s{7 + k}:{c}+10", dy=1.0, bounce=.08) for k, (c, _, _) in enumerate(TWF)]
 PXW = {"px_ew": [(EARLY, "s2:start-4"), ("s3:start+30", "s4:start-4")], "px_ec": [("s4:start+30", "s5:start-4")], "px_kp": [("s2:start+30", "s3:start-4")],
        "px_lat": [("s5:start+30", "s6:start-4")], "px_kall": [("s6:start+30", "s7:start-4")], "px_m": [("s11:start+30", FAR)],
@@ -528,7 +603,7 @@ P["s5"] = {"zoom": [{"to": "atom", "at": "start-4", "dur": 30}],
 P["s6"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", KX + .3, 1.2, 44, 44, 30)],
  "run": [run("k_p12On", "w12", "s7:start", 6), run("k_e12On", "w12", "s7:start", 6), run("k_w8On", "w8", "s7:start", 6), run("k_w6On", "w8+8", "s7:start", 6)],
- "labels": [lab("k_p12A", "12 吋", "300 mm", "blue", "w12", "s7:start-4", xy=[250, 300]), lab("k_w8A", "8 吋", "200 mm", "amber", "w8", "s7:start-4", xy=[640, 300]), lab("k_w6A", "6 吋", "150 mm", "amber", "w8+8", "s7:start-4", xy=[880, 300])],
+ "labels": [lab("k_p12A", "12 吋", "300 mm", "blue", "w12", "s7:start-10", xy=[250, 300]), lab("k_w8A", "8 吋", "200 mm", "amber", "w8", "s7:start-10", xy=[640, 300]), lab("k_w6A", "6 吋", "150 mm", "amber", "w8+8", "s7:start-10", xy=[880, 300])],
  "overlay": [sec("w2-size", "start+6", "s7:start-2", "尺寸分工", "台勝科法說；TrendForce", {"size": "size", "w12": "w12", "w8": "w8", "pw": "pw"})]}
 # s7–s10：台灣四家（2026/11/24 審片必改：廠房＋產品＋國旗；台勝科另標「日本勝高合資」＋日本旗；合晶只留一個標籤）
 TFX = {c: TX + dx for c, _, dx in TWF}
@@ -536,16 +611,16 @@ for k, (sid, focus, labs, t) in enumerate([
     ("s7", "gw", [dict(lab("t_gwA", "環球晶 6488", "Taiwan", "amber", "gw", "s8:start-4", xy=[540, 360]), flag="TW")], {"sid": "s7", "gw": "gw", "top5": "top5", "rev": "rev"}),
     ("s8", "fst", [dict(lab("t_fstA", "台勝科 3532", "Taiwan", "blue", "fst", "s9:start-4", xy=[400, 360]), flag="TW"),
                    dict(lab("t_jpA", "日本勝高（合資）", "SUMCO, Japan", "coral", "jv", "s9:start-4", xy=[700, 820]), flag="JP")], {"sid": "s8", "fst": "fst", "jv": "jv", "main": "main", "p70": "p70"}),
-    ("s9", "ww", [dict(lab("t_wwA", "合晶 6182", "Taiwan", "amber", "ww", "s10:start-4", xy=[540, 360]), flag="TW"),
+    ("s9", "ww", [dict(lab("t_wwF", "合晶 6182", "Taiwan", "amber", "ww", "s10:start-4", xy=[540, 360]), flag="TW"),
                   lab("t_wwA", "6 吋＋8 吋", "150 / 200 mm", "blue", "p68", "s10:start-4", xy=[540, 830])], {"sid": "s9", "ww": "ww", "p68": "p68", "pwr": "pwr", "x12": "x12"}),
     ("s10", "epi", [dict(lab("t_epiA", "嘉晶 3016", "Taiwan", "blue", "epi", "s11:start-4", xy=[540, 360]), flag="TW"),
                     lab("t_sicA", "矽／碳化矽／氮化鎵", "Si / SiC / GaN epi", "amber", "sic", "s11:start-4", xy=[540, 830])], {"sid": "s10", "epi": "epi", "si": "si", "sic": "sic", "gan": "gan"})]):
     fx = TFX[focus]
     P[sid] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
-              "shot": ([shot("start-4", TX, -.4, 62, 20, 26)] if k == 0 else []) + [shot(focus + ("-10" if k else ""), fx + .4, -1.4, 40, 20, 30)],
+              "shot": [shot("start-1" if k == 0 else focus + "-10", fx + .4, -.6, 28, 18, 1 if k == 0 else 30)],
               "run": [run(f"t_on{k}", focus, "s11:start", 6)], "labels": labs, "overlay": [CO(focus, t)]}
 P["s11"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", NX, 3.6, 34, 20, 34)],
+ "shot": [shot("start-4", NX, 3.6, 34, 20, 1)],
  "run": [run("n_uv", "mask+10", "s12:start", 6), run("n_on", "mask+10", "s12:start", 6), run("n_wOn", "mask+30", "s12:start", 6)],
  "labels": [lab("n_wA", "晶圓備好了", "Wafer ready", "blue", "ready", "kw-10", xy=[280, 760]), lab("n_maskA", "光罩（下一集）", "Photomask (next)", "amber", "mask", "kw-10", xy=[800, 360])],
  "overlay": [sec("w2-next", "start+6", "kw-10", "下一集：光罩", "光罩-1：晶片的底片", {"ready": "ready", "print": "print", "mask": "mask", "next": "next", "kw": "kw"})]}
