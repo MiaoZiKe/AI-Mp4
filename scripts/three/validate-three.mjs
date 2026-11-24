@@ -152,6 +152,12 @@ export function validateThree(script, h) {
   // 深色 HUD 片的版面檢查（2026/11/15 使用者回饋：LOGO 固定左上、下方空白、換幕字壓字、標籤與蓋章壓模型、小字）：
   // 跑 scripts/three/layout-check.mjs（和畫面同一份的版面計算，逐幀），它的 error 算這裡的 error。沒有 timeline.json 時略過。
   if (script.hud) {
+    // 念稿替身字表（2026/11/24 Andy 聽到光罩-2「上集」念成「喪集」、「光罩」念成「光掃」）：tts 出現原字就是 error；表在 scripts/three/tts-subst.json
+    try {
+      const ST = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "tts-subst.json"), "utf8"));
+      const SE = ST.exempt?.[script.slug] ? W : E;
+      for (const s of scenes) { const t = s.tts ?? s.narration ?? ""; for (const x of ST.subst) if (t.includes(x.from)) SE(`${s.id}: 念稿（tts）有「${x.from}」，要寫成「${x.to}」（${x.why}；scripts/three/tts-subst.json）${ST.exempt?.[script.slug] ? `［豁免：${ST.exempt[script.slug]}］` : ""}`); }
+    } catch (e) { W(`替身字表讀不到：${e.message}`); }
     if (script.hud.layout !== "fill") W("hud.layout 不是 \"fill\"：頁首 LOGO 小、下方空白沒填滿（docs/channels/tech-daily-playbook.md 第九節）");
     // 11/15 之前做好的舊片（沒寫 layout: "fill"）只出 warning，不擋；新片一律照新規則
     const HE = script.hud.layout === "fill" ? E : W;

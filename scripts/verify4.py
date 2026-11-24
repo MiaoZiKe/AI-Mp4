@@ -131,10 +131,15 @@ g3 = {"pass": len(mid_pauses) == 0 and len(counted) <= limit and bool(ac.get("pa
 mp3 = os.path.join(OUT, "voice-before-endcard.mp3")
 run(["ffmpeg", "-v", "error", "-y", "-t", f"{END:.3f}", "-i", MP4, "-map", "0:a:0", "-ac", "1", "-ar", "24000", "-b:a", "64k", mp3])
 ahash = hashlib.sha1(open(mp3, "rb").read()).hexdigest()[:16]
+SUBST = json.load(open(os.path.join(ROOT, "scripts", "three", "tts-subst.json")))["subst"]  # 念稿替身字表（2026/11/24）
 def ref_line(sc):
-    """比對用念稿：tts 為了讀音把「矽」寫成「細」（2026/11/22），比對時換回「矽」，免得聽寫／聽感把正確讀音判成念錯。"""
+    """比對用念稿：tts 為了讀音把原字寫成替身字（矽→細、光罩→光照、上集→上一集…，scripts/three/tts-subst.json），
+    比對時換回原字，免得聽寫／聽感把正確讀音判成念錯。多字的替身整詞換回（narration 有原詞才換）；單字的逐字對位換回。"""
     t, n = sc.get("tts") or sc.get("narration") or "", sc.get("narration") or ""
-    if n and len(n) == len(t): t = "".join(a if (a == "矽" and b == "細") else b for a, b in zip(n, t))
+    for x in SUBST:
+        if (len(x["from"]) > 1 or len(x["to"]) > 1) and x["from"] in n: t = t.replace(x["to"], x["from"])
+    one = {(x["from"], x["to"]) for x in SUBST if len(x["from"]) == 1 and len(x["to"]) == 1}
+    if n and len(n) == len(t): t = "".join(a if (a, b) in one else b for a, b in zip(n, t))
     return t
 tts_text = "\n".join(ref_line(sc_by_id.get(s["id"], {})) for s in tl["scenes"] if s.get("audio"))
 requests_used = 0
@@ -193,9 +198,24 @@ def norm(s): return re.sub(r"[\s，。？！、,.?!：:；;「」『』（）()�
 diffs = []
 if isinstance(asr, dict) and asr.get("text"):
     A, B = norm(tts_text), norm(asr["text"])
+    SPANS, _k = [], 0  # 每幕在 A 裡的範圍 → 估差異的時間點
+    for s_ in tl["scenes"]:
+        if not s_.get("audio"): continue
+        _n = len(norm(ref_line(sc_by_id.get(s_["id"], {})))); SPANS.append((_k, _k + _n, s_)); _k += _n
     sm = difflib.SequenceMatcher(None, A, B, autojunk=False)
     for op, i1, i2, j1, j2 in sm.get_opcodes():
-        if op != "equal": diffs.append({"op": {"replace": "念成", "delete": "漏念", "insert": "多念"}[op], "script": A[i1:i2], "heard": B[j1:j2], "context": A[max(0, i1 - 6):i2 + 6]})
+        if op == "equal": continue
+        # 2026/11/24 Andy：光罩-2「上集」被念成「喪集」，前一版把 ASR「上集→上期」判成「意思相同」放過＝錯判。
+        # 分類：落在替身字（tts-subst.json 的原字）上＝替身字；英文／數字＝專有名詞；其他一律「需人耳確認」，不准用同音／同義放過
+        # 替身字只在「聽到的就是替身字本身」時放過（例：矽→聽到細、光罩→聽到光照）；聽到別的字（上集→上期）照樣要人耳確認
+        hit = any(i1 < k + len(x["from"]) and k < max(i2, i1 + 1) and B[j1:j2] and B[j1:j2] in x["to"] for x in SUBST for k in [m.start() for m in re.finditer(re.escape(x["from"]), A)])
+        kind = "替身字" if hit else ("專有名詞（英文／數字）" if re.search(r"[A-Z0-9]", A[i1:i2] + B[j1:j2]) else "需人耳確認")
+        sid, t_est = None, None
+        for (a0, a1, sc_t) in SPANS:
+            if a0 <= i1 < a1 or (i1 == a1 and sc_t is SPANS[-1][2]):
+                sid = sc_t["id"]; v0, v1 = sc_t.get("voiceStartFrame", sc_t["startFrame"]) / FPS, sc_t.get("voiceEndFrame", sc_t["startFrame"] + sc_t["durationFrames"]) / FPS
+                t_est = round(v0 + (v1 - v0) * (i1 - a0) / max(1, a1 - a0), 1); break
+        diffs.append({"op": {"replace": "念成", "delete": "漏念", "insert": "多念"}[op], "script": A[i1:i2], "heard": B[j1:j2], "context": A[max(0, i1 - 6):i2 + 6], "kind": kind, "scene": sid, "tApprox": t_est})
     cer = round(1 - sm.ratio(), 4)
 else:
     cer = None
@@ -281,11 +301,18 @@ L = [f"# 四道驗證：{SLUG}", "", f"- 成片：`{MP4}`（{dur:.2f} 秒，片�
      "## 停頓（≥%.2f 秒，%g dB）" % (MIN_SIL, NOISE), ""]
 L += [f"- {tc(p['start'])}–{tc(p['end'])}（{p['sec']:.2f} 秒）{p['kind']}：{p['context']}" for p in pauses]
 L += ["", "## Gemini 聽感", ""] + [f"- {tc(float(i.get('t', 0)))} {i.get('type')}（{i.get('severity', '')}）：{i.get('sentence', '')}—{i.get('detail', '')}" for i in gem_issues]
-L += ["", "## ASR 差異（念稿→聽到）", ""] + [f"- {d['op']}：「{d['script']}」→「{d['heard']}」（…{d['context']}…）" for d in diffs]
+L += ["", "## ASR 差異（念稿→聽到）", ""] + [f"- ［{d['kind']}］{d['op']}：「{d['script']}」→「{d['heard']}」（…{d['context']}…；{d['scene']} 約 {d['tApprox']} 秒）" for d in diffs]
+need = [d for d in diffs if d["kind"] == "需人耳確認"]
+# human.md：自動維護「需人耳確認」區塊（人工判讀寫在區塊外面）；這些不准用「同音／同義」放過，要人耳聽過該時間點
+hp = os.path.join(OUT, "human.md"); H0, H1 = "<!-- verify4:asr-need-ear:start -->", "<!-- verify4:asr-need-ear:end -->"
+old_h = open(hp).read() if os.path.exists(hp) else f"# {SLUG} 四道驗證人工判讀\n"
+blk = [H0, "## ASR 差異：需人耳確認（verify4 自動產生，不准用「同音／同義」直接放過）", ""] + ([f"- ⚠ 需人耳確認：{d['scene']} 約 {tc(d['tApprox'] or 0)}，念稿「{d['script']}」→ 聽到「{d['heard']}」（…{d['context']}…）" for d in need] or ["- （無）"]) + [H1]
+old_h = re.sub(re.escape(H0) + r".*?" + re.escape(H1), "", old_h, flags=re.S).rstrip() + "\n\n"
+open(hp, "w").write(old_h + "\n".join(blk) + "\n")
 L += ["", "## 畫面", "", f"- 靜止段：{static_runs}", f"- 下半部空洞：{[r['t'] for r in lower]}",
       f"- layout-check 錯誤：" + "；".join(f"{i['kind']} {i['msg']}" for i in lc_err), f"- 小字：" + "；".join(i["msg"] for i in small_txt),
       f"- 待人看：{flag_t}；隨機：{rand_t}（檔案在 flagged/）", f"- 拼圖：sheet.png"]
 open(os.path.join(OUT, "report.md"), "w").write("\n".join(L) + "\n")
 print(f"{SLUG}：1 {yn(g1['pass'])}｜2 {yn(g2['pass'])}｜3 {yn(g3['pass'])}｜4 {yn(g4['pass'])}｜停頓 {len(counted)}/{sentences} 句中 {len(mid_pauses)}｜"
-      f"Gemini {len(gem_issues)}｜ASR {len(diffs)}｜audio-check {ac.get('counts')}｜→ {OUT}")
+      f"Gemini {len(gem_issues)}｜ASR {len(diffs)}（需人耳確認 {len(need)}）｜audio-check {ac.get('counts')}｜→ {OUT}")
 sys.exit(0 if all(g.get("pass") for g in (g1, g2, g3, g4)) else 1)

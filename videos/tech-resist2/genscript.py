@@ -79,7 +79,7 @@ S = [
  ["曝光機", "艾司摩爾"], ["系列「代工的供應商」下一集：設備五大-1"]),
 ]
 # 念稿替換：沒有「矽」；「艾司摩爾」照寫。
-TTS = lambda t: t.replace("矽", "細")
+TTS = lambda t: t.replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))

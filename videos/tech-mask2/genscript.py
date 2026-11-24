@@ -73,7 +73,7 @@ S = [
  ["光阻", "膠", "光罩盒"], ["下一集：光阻-1"]),
 ]
 # 念稿替換：「鉻」（ㄍㄜˋ）寫成同音「各」，避免模型念錯；字幕維持「鉻」
-TTS = lambda t: t.replace("鉻", "各").replace("矽", "細")
+TTS = lambda t: t.replace("鉻", "各").replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))

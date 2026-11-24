@@ -72,7 +72,7 @@ S = [
  [("ready", "晶圓備好了"), ("print", "怎麼印上去"), ("mask", "靠光罩"), ("next", "下一集"), ("kw", "留言磊晶")],
  ["光罩", "磊晶"], ["series_plan 系列 2 第 3 集"]),
 ]
-TTS = lambda t: t.replace("矽", "細")
+TTS = lambda t: t.replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
