@@ -22,7 +22,7 @@ export const LPP = { pre: 0.32, main: 0.58 };
 /** lpp 的相位（0–1）：觸發後的時間 ÷ 一輪幾秒；3D（Ops）和 2D 剖面（Hud.tsx section kind: "lpp"）共用 */
 export const lppPhase = (d: ActionDef, t: number) => { const per = d.lpp?.period ?? 1.1; const x = t / per + (d.phase ?? 0); return x - Math.floor(x); };
 
-type Res = { mat: THREE.MeshBasicMaterial; mats: THREE.MeshBasicMaterial[]; halo?: THREE.SpriteMaterial; ring?: THREE.BufferGeometry; tube?: THREE.BufferGeometry; axis: THREE.MeshBasicMaterial };
+type Res = { mat: THREE.MeshBasicMaterial; mats: THREE.MeshBasicMaterial[]; pm?: THREE.MeshBasicMaterial[]; halo?: THREE.SpriteMaterial; ring?: THREE.BufferGeometry; tube?: THREE.BufferGeometry; axis: THREE.MeshBasicMaterial };
 
 export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s }) => {
   const acts = model.actions ?? {};
@@ -42,6 +42,8 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         // 每顆一份核心材質；有 rim／trail 時再加外圈與拖尾（各自淡入淡出）
         const per = 2 + (d.trail ?? 0), tc = col(model, d.trailColor ?? d.color ?? T.ink), rc = col(model, d.rim ?? d.color ?? T.ink);
         r.mats = Array.from({ length: (d.n ?? 4) * Math.max(1, d.lanes ?? 1) * per }, (_, j) => flat(j % per === 0 ? c : j % per === 1 ? rc : tc, dp));
+        // plus（2026/11/24 tech-resist1）：每顆點一個白色「＋」（正離子），畫在點的上層
+        if (d.plus) r.pm = Array.from({ length: (d.n ?? 4) * Math.max(1, d.lanes ?? 1) }, () => flat(typeof d.plus === "string" ? col(model, d.plus) : "#FFFFFF", false));
       }
       if (d.type === "lpp") {
         // 0–7 錫滴（排隊往下掉）、8 預脈衝光束、9 主脈衝光束、10 扁平錫餅、11 電漿球、12–19 噴出的碎點；halo＝電漿閃光
@@ -138,6 +140,12 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
           }
           if (d.shape === "arrow") { nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.cone} material={core} position={pos} quaternion={new THREE.Quaternion().setFromUnitVectors(UP, dir)} scale={size} renderOrder={9} frustumCulled={false} />); continue; }
           nodes.push(<mesh key={`${id}-p${id2}`} geometry={geo.ball} material={core} position={pos} scale={size * (0.7 + 0.3 * e)} renderOrder={10} frustumCulled={false} />);
+          if (r.pm && r.pm[id2]) {
+            const pm = r.pm[id2], sc = size * (0.7 + 0.3 * e);
+            pm.opacity = core.opacity;
+            nodes.push(<mesh key={`${id}-x${id2}`} geometry={geo.box} material={pm} position={pos} scale={[sc * 1.25, sc * 0.3, sc * 0.1]} renderOrder={12} frustumCulled={false} />);
+            nodes.push(<mesh key={`${id}-y${id2}`} geometry={geo.box} material={pm} position={pos} scale={[sc * 0.3, sc * 1.25, sc * 0.1]} renderOrder={12} frustumCulled={false} />);
+          }
           if (d.rim && mats[1]) { mats[1].opacity = vis * e * fadeK * (d.rimO ?? 0.9); nodes.push(<mesh key={`${id}-r${id2}`} geometry={geo.ball} material={mats[1]} position={pos} scale={size * (d.rimScale ?? 1.55) * (0.7 + 0.3 * e)} renderOrder={9} frustumCulled={false} />); }
           // 拖尾：間距乘上當下速度（慢下來時拖尾縮短、停住時收成一點）
           for (let j = 1; j <= trail; j++) {

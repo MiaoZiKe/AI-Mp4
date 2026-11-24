@@ -6,10 +6,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "晶片的圖案，先畫在一層膠上，它照到光就會變。",
- ["晶片的圖案", "先畫在一層膠上", "它照到光就會變"],
+ "晶片圖案，先畫在一層膠上，它照到光就會變。",
+ ["晶片圖案", "先畫在一層膠上", "它照到光就會變"],
  ["A chip's pattern", "is first drawn on a layer of glue", "that changes when light hits it."],
- [("chip", "晶片的圖案"), ("glue", "一層膠"), ("light", "照到光"), ("change", "就會變")],
+ [("chip", "晶片圖案"), ("glue", "一層膠"), ("light", "照到光"), ("change", "就會變")],
  ["晶片", "膠", "光"], ["Wevolver"]),
 ("s2", "mechanism",
  "這層膠叫光阻，是感光的高分子，薄薄塗在晶圓上。",
@@ -48,10 +48,10 @@ S = [
  [("hv", "照到光"), ("pag", "光酸產生劑"), ("acid", "一點酸")],
  ["光酸產生劑", "酸"], ["IBM RJ10223"]),
 ("s8", "mechanism",
- "再加熱烘烤，一個酸能連續反應幾百次。",
- ["再加熱烘烤", "一個酸", "能連續反應幾百次"],
+ "再烘烤，一個酸能連續反應幾百次。",
+ ["再烘烤", "一個酸", "能連續反應幾百次"],
  ["Then a bake:", "one acid molecule", "drives hundreds of reactions."],
- [("bake", "加熱烘烤"), ("one", "一個酸"), ("chain", "連續反應"), ("hund", "幾百次")],
+ [("bake", "烘烤"), ("one", "一個酸"), ("chain", "連續反應"), ("hund", "幾百次")],
  ["烘烤", "幾百次"], ["IBM RJ10223"]),
 ("s9", "twist",
  "到了極紫外光，同樣能量，光子只剩十四分之一。",
@@ -71,18 +71,12 @@ S = [
  ["So the industry is testing", "stronger-absorbing", "metal-oxide resists."],
  [("try", "業界在試"), ("abs", "吸光更強"), ("mor", "金屬氧化物光阻")],
  ["金屬氧化物光阻"], ["SemiEngineering；JSR 2025/9/16"]),
-("s12", "payoff",
- "供應商以日本廠為主，像捷時雅、東京應化、信越化學。",
- ["供應商以日本廠為主", "像捷時雅", "東京應化", "信越化學"],
- ["Suppliers are mostly Japanese:", "JSR,", "TOK,", "Shin-Etsu."],
- [("jp", "日本廠為主"), ("jsr", "捷時雅"), ("tok", "東京應化"), ("shin", "信越化學")],
- ["日本廠", "捷時雅", "東京應化", "信越化學"], ["日經 2026/5/5；Mizuho 報告"]),
 ("s13", "payoff",
- "捷時雅也找夥伴，在雲林合資蓋光阻廠，最快 2028 年投產。",
- ["捷時雅也找夥伴", "在雲林合資蓋光阻廠", "最快 2028 年投產"],
- ["JSR has also teamed up with partners", "to build a resist plant in Yunlin, Taiwan,", "starting as early as 2028."],
- [("tw", "捷時雅也找夥伴"), ("yl", "雲林"), ("jv", "合資"), ("y28", "2028")],
- ["雲林", "合資", "2028"], ["日經 2026/5/5；Tom's Hardware"]),
+ "這些光阻以日本廠為主，捷時雅還找夥伴，在雲林合資蓋廠，最快 2028 年投產。",
+ ["這些光阻以日本廠為主", "捷時雅還找夥伴", "在雲林合資蓋廠", "最快 2028 年投產"],
+ ["These resists come mostly from Japan;", "JSR even teamed up with partners", "to build a plant in Yunlin, Taiwan,", "starting as early as 2028."],
+ [("jp", "日本廠為主"), ("tw", "捷時雅還找夥伴"), ("yl", "雲林"), ("jv", "合資"), ("y28", "2028")],
+ ["日本", "雲林", "合資", "2028"], ["日經 2026/5/5；Tom's Hardware"]),
 ("s14", "cta",
  "但膠要塗得又薄又平，下集看塗佈顯影機。留言光阻，拿完整資料。",
  ["但膠要塗得又薄又平", "下集看", "塗佈顯影機", "留言光阻", "拿完整資料"],
@@ -92,7 +86,7 @@ S = [
 ]
 TTS = lambda t: t.replace("矽", "細").replace(" 2028 ", "二零二八")
 scenes = []
-PAUSE = {"s1": 0.6, "s2": 0.4, "s3": 0.4, "s4": 0.4, "s5": 0.6, "s6": 0.4, "s7": 0.3, "s8": 0.6, "s9": 0.4, "s10": 0.4, "s11": 0.6, "s12": 0.3, "s13": 0.6}
+PAUSE = {"s1": 0.6, "s2": 0.4, "s3": 0.4, "s4": 0.4, "s5": 0.6, "s6": 0.4, "s7": 0.3, "s8": 0.6, "s9": 0.4, "s10": 0.4, "s11": 0.6, "s13": 0.6}
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for c in cues: assert c[1] in nar, (sid, c)

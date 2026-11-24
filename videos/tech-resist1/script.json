@@ -79,10 +79,10 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "晶片的圖案，先畫在一層膠上，它照到光就會變。",
-   "tts": "晶片的圖案，先畫在一層膠上，它照到光就會變。",
+   "narration": "晶片圖案，先畫在一層膠上，它照到光就會變。",
+   "tts": "晶片圖案，先畫在一層膠上，它照到光就會變。",
    "subtitle": {
-    "zh": "晶片的圖案\n先畫在一層膠上\n它照到光就會變",
+    "zh": "晶片圖案\n先畫在一層膠上\n它照到光就會變",
     "en": "A chip's pattern | is first drawn on a layer of glue | that changes when light hits it."
    },
    "keywords": [
@@ -93,7 +93,7 @@
    "cues": [
     {
      "id": "chip",
-     "text": "晶片的圖案"
+     "text": "晶片圖案"
     },
     {
      "id": "glue",
@@ -932,6 +932,13 @@
       "dur": 14
      },
      {
+      "layer": "d_src",
+      "at": "s10:start-4",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "px_b",
       "at": "s1:start-400",
       "until": "s1:start-300",
@@ -1045,20 +1052,6 @@
      },
      {
       "layer": "px_e",
-      "at": "s12:start-4",
-      "until": "s15:start+500",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "px_f",
-      "at": "s1:start-400",
-      "until": "s12:start+30",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "px_f",
       "at": "s13:start-4",
       "until": "s15:start+500",
       "opacity": 0,
@@ -2053,10 +2046,10 @@
    "id": "s8",
    "beat": "mechanism",
    "para": 8,
-   "narration": "再加熱烘烤，一個酸能連續反應幾百次。",
-   "tts": "再加熱烘烤，一個酸能連續反應幾百次。",
+   "narration": "再烘烤，一個酸能連續反應幾百次。",
+   "tts": "再烘烤，一個酸能連續反應幾百次。",
    "subtitle": {
-    "zh": "再加熱烘烤\n一個酸\n能連續反應幾百次",
+    "zh": "再烘烤\n一個酸\n能連續反應幾百次",
     "en": "Then a bake: | one acid molecule | drives hundreds of reactions."
    },
    "keywords": [
@@ -2066,7 +2059,7 @@
    "cues": [
     {
      "id": "bake",
-     "text": "加熱烘烤"
+     "text": "烘烤"
     },
     {
      "id": "one",
@@ -2253,6 +2246,14 @@
       "y": -2.54,
       "d": 70,
       "elev": 12
+     },
+     {
+      "at": "euv",
+      "dur": 36,
+      "x": 102,
+      "y": -0.012,
+      "d": 56,
+      "elev": 12
      }
     ],
     "run": [
@@ -2380,9 +2381,17 @@
       "at": "start-4",
       "dur": 30,
       "x": 102,
-      "y": -2.124,
-      "d": 62,
-      "elev": 34
+      "y": -1.504,
+      "d": 52,
+      "elev": 36
+     },
+     {
+      "at": "brk-14",
+      "dur": 30,
+      "x": 104.6,
+      "y": -0.984,
+      "d": 42,
+      "elev": 40
      }
     ],
     "run": [
@@ -2498,6 +2507,14 @@
       "y": -1.332,
       "d": 66,
       "elev": 12
+     },
+     {
+      "at": "try",
+      "dur": 36,
+      "x": 130,
+      "y": -0.496,
+      "d": 48,
+      "elev": 16
      }
     ],
     "run": [
@@ -2505,19 +2522,19 @@
       "id": "ec_ph",
       "at": "try",
       "ramp": 6,
-      "until": "s12:start"
+      "until": "s13:start"
      },
      {
       "id": "em_ph",
       "at": "try",
       "ramp": 6,
-      "until": "s12:start"
+      "until": "s13:start"
      },
      {
       "id": "em_coreG",
       "at": "abs",
       "ramp": 8,
-      "until": "s12:start"
+      "until": "s13:start"
      }
     ],
     "labels": [
@@ -2527,7 +2544,7 @@
       "en": "Chemically amplified",
       "color": "blue",
       "at": "try",
-      "until": "s12:start-4",
+      "until": "s13:start-4",
       "xy": [
        300,
        300
@@ -2539,7 +2556,7 @@
       "en": "Metal oxide",
       "color": "amber",
       "at": "abs",
-      "until": "s12:start-4",
+      "until": "s13:start-4",
       "xy": [
        780,
        300
@@ -2551,7 +2568,7 @@
       "type": "section",
       "kind": "pr1-mor",
       "at": "start+5",
-      "until": "s12:start-2",
+      "until": "s13:start-2",
       "x": 64,
       "y": 930,
       "w": 952,
@@ -2576,20 +2593,20 @@
    "pauseAfter": 0.6
   },
   {
-   "id": "s12",
+   "id": "s13",
    "beat": "payoff",
    "para": 12,
-   "narration": "供應商以日本廠為主，像捷時雅、東京應化、信越化學。",
-   "tts": "供應商以日本廠為主，像捷時雅、東京應化、信越化學。",
+   "narration": "這些光阻以日本廠為主，捷時雅還找夥伴，在雲林合資蓋廠，最快 2028 年投產。",
+   "tts": "這些光阻以日本廠為主，捷時雅還找夥伴，在雲林合資蓋廠，最快二零二八年投產。",
    "subtitle": {
-    "zh": "供應商以日本廠為主\n像捷時雅\n東京應化\n信越化學",
-    "en": "Suppliers are mostly Japanese: | JSR, | TOK, | Shin-Etsu."
+    "zh": "這些光阻以日本廠為主\n捷時雅還找夥伴\n在雲林合資蓋廠\n最快 2028 年投產",
+    "en": "These resists come mostly from Japan; | JSR even teamed up with partners | to build a plant in Yunlin, Taiwan, | starting as early as 2028."
    },
    "keywords": [
-    "日本廠",
-    "捷時雅",
-    "東京應化",
-    "信越化學"
+    "日本",
+    "雲林",
+    "合資",
+    "2028"
    ],
    "cues": [
     {
@@ -2597,117 +2614,8 @@
      "text": "日本廠為主"
     },
     {
-     "id": "jsr",
-     "text": "捷時雅"
-    },
-    {
-     "id": "tok",
-     "text": "東京應化"
-    },
-    {
-     "id": "shin",
-     "text": "信越化學"
-    }
-   ],
-   "component": "ThreeScene",
-   "sources": [
-    "日經 2026/5/5；Mizuho 報告"
-   ],
-   "props": {
-    "zoom": [
-     {
-      "to": "wafer",
-      "at": "start-4",
-      "dur": 30
-     }
-    ],
-    "shot": [
-     {
-      "at": "start-4",
-      "dur": 30,
-      "x": 158,
-      "y": 1.404,
-      "d": 48,
-      "elev": 12
-     }
-    ],
-    "labels": [
-     {
-      "part": "f_btlA",
-      "text": "光阻瓶",
-      "en": "Photoresist",
-      "color": "amber",
-      "at": "jp",
-      "until": "s13:start-4",
-      "xy": [
-       300,
-       300
-      ]
-     },
-     {
-      "part": "f_drumA",
-      "text": "顯影液桶",
-      "en": "Developer drums",
-      "color": "blue",
-      "at": "tok",
-      "until": "s13:start-4",
-      "xy": [
-       780,
-       300
-      ]
-     }
-    ],
-    "overlay": [
-     {
-      "type": "section",
-      "kind": "pr1-co",
-      "at": "start+5",
-      "until": "s13:start-2",
-      "x": 64,
-      "y": 930,
-      "w": 952,
-      "h": 330,
-      "avoid": false,
-      "title": "誰在供應光阻",
-      "tag": "日經、Mizuho（媒體報導）",
-      "t": {
-       "jp": {
-        "at": "jp"
-       },
-       "jsr": {
-        "at": "jsr"
-       },
-       "tok": {
-        "at": "tok"
-       },
-       "shin": {
-        "at": "shin"
-       }
-      }
-     }
-    ]
-   },
-   "pauseAfter": 0.3
-  },
-  {
-   "id": "s13",
-   "beat": "payoff",
-   "para": 13,
-   "narration": "捷時雅也找夥伴，在雲林合資蓋光阻廠，最快 2028 年投產。",
-   "tts": "捷時雅也找夥伴，在雲林合資蓋光阻廠，最快二零二八年投產。",
-   "subtitle": {
-    "zh": "捷時雅也找夥伴\n在雲林合資蓋光阻廠\n最快 2028 年投產",
-    "en": "JSR has also teamed up with partners | to build a resist plant in Yunlin, Taiwan, | starting as early as 2028."
-   },
-   "keywords": [
-    "雲林",
-    "合資",
-    "2028"
-   ],
-   "cues": [
-    {
      "id": "tw",
-     "text": "捷時雅也找夥伴"
+     "text": "捷時雅還找夥伴"
     },
     {
      "id": "yl",
@@ -2813,7 +2721,7 @@
   {
    "id": "s14",
    "beat": "cta",
-   "para": 14,
+   "para": 13,
    "narration": "但膠要塗得又薄又平，下集看塗佈顯影機。留言光阻，拿完整資料。",
    "tts": "但膠要塗得又薄又平，下集看塗佈顯影機。留言光阻，拿完整資料。",
    "subtitle": {

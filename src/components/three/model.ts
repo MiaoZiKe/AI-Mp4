@@ -58,6 +58,8 @@ export type ActionDef = {
    *  hold＝angle 轉到之後 until 也不轉回來（被手臂抓著搬走、放下後留在原地）；rampSpin＝rps 的轉速跟著進出場強度（起轉加速、停轉減速）；chain＝同一個零件有好幾個 rotate 時，各自繞自己的轉軸、依動作順序（先寫的在外層）串成關節鏈 */
   pivots?: Record<string, number[]>; hold?: boolean; chain?: boolean; rampSpin?: boolean;
   damp?: { f: number; tau: number }; level?: string[]; hang?: number[][]; accel?: boolean;
+  /** flow：每顆點上畫白色「＋」（正離子；2026/11/24 tech-resist1 的酸 H⁺） */
+  plus?: boolean | string;
   /** pulse：零件發光強度（0–1）、光暈大小（0＝不要）、光暈位置（預設第一個零件的 pos） */
   glow?: number; halo?: number; at?: Pt; steady?: boolean;
   /** flow：路徑、顆數、大小、形狀、每秒跑幾趟、要不要畫軌道 */

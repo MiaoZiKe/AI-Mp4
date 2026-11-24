@@ -8,7 +8,7 @@
 #   C x=72   化學放大分子特寫（三條高分子主鏈＋保護基、光酸產生劑、光子打中→放出酸（H⁺）、烤盤加熱→酸沿鏈一路把保護基拆掉）  s6、s7、s8
 #   D x=102  ArF 對 EUV：兩塊光阻，上面光子密度不同；s10 顯影後 EUV 那塊線條隨機斷線、橋接          s9、s10
 #   E x=130  金屬氧化物光阻：左邊化學放大（光子穿過）、右邊金屬氧化物團簇（光子被吸住、團簇發亮）      s11
-#   F x=158  材料倉：化學品櫃＋光阻瓶＋桶槽；x=176 光阻工廠（外牆窗格、屋頂空調、排氣管、儲槽、管架） s12、s13
+#   F x=158  材料倉：化學品櫃＋光阻瓶＋桶槽；x=176 光阻工廠（外牆窗格、屋頂空調、排氣管、儲槽、管架） s13（11/24 刪掉公司名稱句 s12，材料倉不再入鏡）
 # 所有動作的 at 都寫成「幕id:cue±幀」（cue 來自 timeline.json；配音重跑 align 後重跑本檔即可）。
 import json, math, os, random, subprocess, sys
 D = os.path.dirname(os.path.abspath(__file__))
@@ -260,8 +260,8 @@ flowx("c_hv", "c_mol", [[CX - 4.8, 10.5, .3], [PAG[0][0], PAG[0][1] + .3, .3]], 
 # 酸（H⁺）：紅球＋白色十字
 def acid(name, p):
     sph(f"{name}S", name, "acid", .24, p)
-    box(f"{name}P", name, "plus", [.26, .06, .04], [p[0], p[1], p[2] + .25])
-    box(f"{name}Q", name, "plus", [.06, .26, .04], [p[0], p[1], p[2] + .25])
+    box(f"{name}P", name, "plus", [.32, .08, .04], [p[0], p[1], p[2] + .26])        # 正離子「＋」
+    box(f"{name}Q", name, "plus", [.08, .32, .04], [p[0], p[1], p[2] + .26])
 acid("c_a0", [PAG[0][0] + .5, PAG[0][1] + .45, .3])
 acid("c_a1", [PAG[2][0] - .5, PAG[2][1] + .45, .3])
 glow("c_a0G", "c_a0", ["c_a0S"], "acid", steady=False, g=.8, freq=2.4, halo=.6)
@@ -271,6 +271,7 @@ HOP1 = [[CX - 4.3, 3.85, .5]] + [[PGL[(1, i)][2][0], PGL[(1, i)][2][1] + (.32 if
 flowx("c_hop0", "c_mol", HOP1, shape="dot", n=1, size=.2, rate=.3, color="acid", rim="acidR", trail=6)
 HOP2 = [[CX + 4.1, 3.85, .5]] + [[PGL[(0, i)][2][0], PGL[(0, i)][2][1] + (.32 if PGL[(0, i)][2][1] > BB[0] else -.32), .55] for i in range(23, 0, -2)]
 flowx("c_hop1", "c_mol", HOP2, shape="dot", n=1, size=.2, rate=.3, color="acid", rim="acidR", trail=6)
+actions["c_hop0"]["plus"] = actions["c_hop1"]["plus"] = True          # 流動的酸 H⁺ 也標「＋」（正離子）
 glow("c_coilOn", "c_plate", ["c_coil"], "heat", steady=True, g=.95)
 for j, x in enumerate([-4.5, 0, 4.5]):
     actions[f"c_wave{j}"] = {"type": "wave", "layer": "c_plate", "from": [R(CX + x), 1.0, 2.2], "dir": [0, 1, 0], "reach": 1.0, "count": 3, "r0": .14, "spread": 1.2, "rate": 1.2, "phase": j / 3, "width": .18, "color": "heat"}
@@ -447,10 +448,10 @@ for (ci, i), (L, O, _) in PGL.items():
 VIS += [hid("da_ln", HIDE, "s10:uneven", 14), hid("da_rs", "s10:uneven", FAR, 14), hid("de_ln", HIDE, "s10:uneven", 14), hid("de_rs", "s10:uneven", FAR, 14),
         hid("da_hit", HIDE, "s9:same", 8), hid("de_hit", HIDE, "s9:frac", 8), hid("da_hit", "s10:uneven", FAR, 8), hid("de_hit", "s10:uneven", FAR, 8),
         hid("de_bad", HIDE, "s10:brk", 8)]
-VIS += [hid("t_fab", HIDE, "s13:yl-6", 14)]
+VIS += [hid("t_fab", HIDE, "s13:yl-6", 14), hid("d_src", "s10:start-4", FAR, 10)]   # s10 推近後光源收起來，不壓頂端讀數
 PXW = {"px_b": [(EARLY, "s2:start-4"), ("s3:start+30", "s3:hit")], "px_br": [("s3:hit", "s5:start-4")], "px_bn": [("s5:start+30", "s6:start-4")], "px_a": [("s2:start+30", "s3:start-4")],
-       "px_a2": [("s14:start+30", FAR)], "px_c": [("s6:start+30", "s9:start-4")], "px_d": [("s9:start+30", "s11:start-4")], "px_e": [("s11:start+30", "s12:start-4")],
-       "px_f": [("s12:start+30", "s13:start-4")], "px_t": [("s13:start+30", "s14:start-4")]}
+       "px_a2": [("s14:start+30", FAR)], "px_c": [("s6:start+30", "s9:start-4")], "px_d": [("s9:start+30", "s11:start-4")], "px_e": [("s11:start+30", "s13:start-4")],
+       "px_t": [("s13:start+30", "s14:start-4")]}
 for lid, wins in PXW.items():
     prev = "s1:start-400"
     for a_, b_ in wins:
@@ -501,24 +502,20 @@ P["s8"] = {"zoom": [{"to": "mol", "at": "start-4", "dur": 1}],
  "labels": [lab("c_plateA", "烤盤加熱", "Post-exposure bake", "coral", "bake", "s9:start-4", xy=[RX, LY]), lab("c_ohA", "保護基被拆掉", "Group removed", "amber", "chain", "s9:start-4", xy=[LX, LY])],
  "overlay": [sec("pr1-peb", "start+5", "s9:start-2", "一個酸，反應幾百次", "IBM RJ10223", {"bake": "bake", "one": "one", "chain": "chain", "hund": "hund"})]}
 P["s9"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 30}],
- "shot": [S("start-4", DX, 1.1, 70, 12, 30)],
+ "shot": [S("start-4", DX, 1.1, 70, 12, 30), S("euv", DX, 2.9, 56, 12, 36)],          # 11/24 推近：念到 EUV 時推到主物件
  "run": [run("da_ph", "euv-10", "s10:uneven", 6), run("da_ph2", "euv-10", "s10:uneven", 6), run("de_ph", "euv", "s10:uneven", 6)],
  "labels": [lab("da_A", "ArF 深紫外光", "ArF 193 nm", "blue", "euv", "s10:start-4", xy=[LX, LY]), lab("de_A", "EUV 極紫外光", "EUV 13.5 nm", "amber", "euv", "s10:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-euv", "start+5", "s10:start-2", "同樣能量比光子", "arXiv 2405.11717", {"euv": "euv", "same": "same", "frac": "frac"})]}
 P["s10"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
- "shot": [S("start-4", DX, 1.1, 62, 34, 30)],
+ "shot": [S("start-4", DX, 1.2, 52, 36, 30), S("brk-14", DX + 2.6, 1.2, 42, 40, 30)],  # 11/24 推近：缺陷那塊
  "run": [run("de_badG", "brk", "s11:start", 8)],
  "labels": [lab("de_brkA", "斷線", "Line break", "coral", "brk", "s11:start-4", xy=[LX, LY]), lab("de_brgA", "黏在一起", "Bridge", "coral", "brg", "s11:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-stoch", "start+5", "s11:start-2", "光子少→隨機缺陷", "JM3 17(4)；SemiEngineering", {"few": "few", "uneven": "uneven", "brk": "brk", "brg": "brg"})]}
 P["s11"] = {"zoom": [{"to": "mol", "at": "start-4", "dur": 30}],
- "shot": [S("start-4", EX, 2.1, 66, 12, 30)],
- "run": [run("ec_ph", "try", "s12:start", 6), run("em_ph", "try", "s12:start", 6), run("em_coreG", "abs", "s12:start", 8)],
- "labels": [lab("ec_A", "化學放大", "Chemically amplified", "blue", "try", "s12:start-4", xy=[LX, LY]), lab("em_A", "金屬氧化物", "Metal oxide", "amber", "abs", "s12:start-4", xy=[RX, LY])],
- "overlay": [sec("pr1-mor", "start+5", "s12:start-2", "金屬氧化物光阻", "SemiEngineering；JSR 2025/9", {"try": "try", "abs": "abs", "mor": "mor"})]}
-P["s12"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [S("start-4", FX, 3.9, 48, 12, 30)],
- "labels": [lab("f_btlA", "光阻瓶", "Photoresist", "amber", "jp", "s13:start-4", xy=[LX, LY]), lab("f_drumA", "顯影液桶", "Developer drums", "blue", "tok", "s13:start-4", xy=[RX, LY])],
- "overlay": [sec("pr1-co", "start+5", "s13:start-2", "誰在供應光阻", "日經、Mizuho（媒體報導）", {"jp": "jp", "jsr": "jsr", "tok": "tok", "shin": "shin"})]}
+ "shot": [S("start-4", EX, 2.1, 66, 12, 30), S("try", EX, 2.0, 48, 16, 36)],          # 11/24 推近
+ "run": [run("ec_ph", "try", "s13:start", 6), run("em_ph", "try", "s13:start", 6), run("em_coreG", "abs", "s13:start", 8)],
+ "labels": [lab("ec_A", "化學放大", "Chemically amplified", "blue", "try", "s13:start-4", xy=[LX, LY]), lab("em_A", "金屬氧化物", "Metal oxide", "amber", "abs", "s13:start-4", xy=[RX, LY])],
+ "overlay": [sec("pr1-mor", "start+5", "s13:start-2", "金屬氧化物光阻", "SemiEngineering；JSR 2025/9", {"try": "try", "abs": "abs", "mor": "mor"})]}
 P["s13"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [S("start-4", TX + 1.7, 2.8, 66, 18, 30)],
  "run": [run("t_lit", "yl", "s14:start", 8)],
