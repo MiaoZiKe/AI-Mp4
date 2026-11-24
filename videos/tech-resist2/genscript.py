@@ -6,10 +6,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "光阻是誰塗上去的？是黏在曝光機旁邊的這台機器。",
- ["光阻是誰塗上去的？", "是黏在曝光機旁邊的", "這台機器"],
- ["Who coats the photoresist?", "A machine bolted to the scanner:", "this one."],
- [("who", "誰塗上去"), ("stick", "黏在曝光機旁邊"), ("this", "這台機器")],
+ "上集說光阻要塗得又薄又平，誰塗得出來？是黏在曝光機旁邊的這台機器。",
+ ["上集說光阻要塗得又薄又平", "誰塗得出來？", "是黏在曝光機旁邊的", "這台機器"],
+ ["Last time: resist must be thin and flat.", "Who can coat it like that?", "A machine bolted to the scanner:", "this one."],
+ [("prev", "又薄又平"), ("who", "誰塗得出來"), ("stick", "黏在曝光機旁邊"), ("this", "這台機器")],
  ["光阻", "曝光機"], ["EPFL CMi；USPTO 6770424"]),
 ("s2", "mechanism",
  "它叫塗佈顯影機，晶圓進出曝光機，都要經過它。",
@@ -90,7 +90,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 6", "title": "光阻誰塗的？", "size": 120, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：光阻要又薄又平", "title": "誰塗得出來？", "size": 120, "top": 236}
 # 11/24 審片必改 3：片尾卡不再提早到 s12:kw-8（會蓋掉「留言顯影」那句字幕、出處與下一集卡）；改成 s13 開始才蓋上（s13 3.2 秒＝96 幀 ≥ 落定 64＋停 30）
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "設備五大-1 ASML", "trail": ["曝光機"], "comment": "顯影", "logoAnim": "transparent"}}})
@@ -98,7 +98,7 @@ lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r
 levels = [lv("bay", "黃光區", "LITHO BAY", "12 m", "2 m"), lv("tool", "塗佈顯影機", "COATER / DEVELOPER", "4 m", "1 m"),
           lv("module", "模組", "MODULE", "60 cm", "10 cm")]
 levels[0]["handoff3D"] = True
-out = {"slug": "tech-resist2", "title": "光阻-2：塗上去、洗出來的機器（科技透明圈）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
+out = {"slug": "tech-resist2", "prevEpisode": "光阻-1", "title": "光阻-2：塗上去、洗出來的機器（科技透明圈）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪不配音（等通知）"},

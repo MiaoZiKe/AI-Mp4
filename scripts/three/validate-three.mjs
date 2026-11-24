@@ -76,6 +76,16 @@ export function validateThree(script, h) {
   const scenes = Array.isArray(script.scenes) ? expandScript(script, (() => { try { const mp0 = path.join(path.dirname(new URL(import.meta.url).pathname), "../../videos", String(script.slug), "model.json"); return expandModel(script.model ?? (fs.existsSync(mp0) ? JSON.parse(fs.readFileSync(mp0, "utf8")) : null)); } catch { return null; } })()).scenes : [];
   if (!scenes.length) { E("scenes 是空的"); return { errors, warns, est: 0 }; }
   const ids = scenes.map((s) => s.id);
+  // 2026-11-25 Andy：「每部影片應該是銜接上一部的，並且開頭為何沒有鉤子問法，需要補充上一個影片與這影片相關再進行三秒吸引，之後的都需要照規範」
+  //   科技系列片第一幕：旁白先接上一集（含「上集／上一集」）、前 30 字內要有問句「？」；第一幕的 hook.kicker 以「接上集」開頭。
+  //   適用：script.prevEpisode 有填，或 asOf ≥ 2026/11/25 的新片；系列第一集寫 seriesFirst: true 豁免。
+  { const d = String(script.asOf ?? "").split("/").map(Number), newer = d.length === 3 && (d[0] * 10000 + d[1] * 100 + d[2]) >= 20261125;
+    if ((script.prevEpisode || newer) && !script.seriesFirst) {
+      const s1 = scenes[0], nar = String(s1.narration ?? ""), kick = String(s1.props?.hook?.kicker ?? "");
+      if (!/上一?集/.test(nar)) E(`開場銜接：第一幕旁白要先接上一集（含「上集」或「上一集」），現在是「${nar.slice(0, 24)}…」`);
+      if (!/？/.test(nar.slice(0, 30))) E("開場鉤子：第一幕旁白前 30 字內要有問句（？），3 秒內丟出問題");
+      if (!kick.startsWith("接上集")) E(`開場銜接：第一幕 hook.kicker 要以「接上集」開頭（現在「${kick}」）`);
+    } }
   const model = checkModel(script, E, W);
   const PARTS = Object.keys(model?.anchors ?? {}), LAYERS = (model?.layers ?? []).map((l) => l.id);
   const cuesOf = Object.fromEntries(scenes.map((s) => [s.id, new Set((s.cues ?? []).map((c) => c.id))]));

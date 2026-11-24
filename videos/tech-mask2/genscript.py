@@ -84,7 +84,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "光罩誰做？怎麼送？", "title": "26萬道電子束寫光罩", "size": 96, "top": 236}  # 審片必改 4：鉤子要有數字（research 第 11 列，IMS 512×512）
+scenes[0]["props"]["hook"] = {"kicker": "接上集：光罩＝晶片底片", "title": "26萬道電子束寫光罩", "size": 96, "top": 236}  # 審片必改 4：鉤子要有數字（research 第 11 列，IMS 512×512）
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光阻-1 照光就變的膠", "trail": [], "at": "s11:kw-8", "comment": "光罩盒", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/24", "noteAlways": True}
@@ -92,7 +92,7 @@ levels = [lv("plant", "光罩廠", "MASK SHOP", "10 m", "2 m"), lv("tool", "設�
           lv("pod", "光罩盒", "RETICLE POD", "30 cm", "10 cm"), lv("mask", "光罩", "PHOTOMASK", "15 cm", "5 cm")]
 levels[0]["handoff3D"] = True
 levels[0]["readout"] = False  # 地圖幕（s2–s4）不放倍率與「2 m」比例尺（地圖本來就不照比例；審片 R2-7）
-out = {"slug": "tech-mask2", "title": "光罩-2：誰做光罩、怎麼運送（科技透明圈）", "asOf": "2026/11/24", "styleVersion": 3, "stage": "three",
+out = {"slug": "tech-mask2", "prevEpisode": "光罩-1", "title": "光罩-2：誰做光罩、怎麼運送（科技透明圈）", "asOf": "2026/11/24", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）"},

@@ -6,10 +6,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "晶片圖案，先畫在一層膠上，它照到光就會變。",
- ["晶片圖案", "先畫在一層膠上", "它照到光就會變"],
- ["A chip's pattern", "is first drawn on a layer of glue", "that changes when light hits it."],
- [("chip", "晶片圖案"), ("glue", "一層膠"), ("light", "照到光"), ("change", "就會變")],
+ "上集光罩送進了曝光機，光一打，圖案印在哪？印在一層膠上，它照到光就會變。",
+ ["上集光罩送進了曝光機", "光一打，圖案印在哪？", "印在一層膠上", "它照到光就會變"],
+ ["Last time the mask reached the scanner.", "Light hits. Where does the pattern land?", "On a layer of glue", "that changes when light hits it."],
+ [("prev", "光罩送進了曝光機"), ("chip", "圖案印在哪"), ("glue", "一層膠"), ("light", "照到光"), ("change", "就會變")],
  ["晶片", "膠", "光"], ["Wevolver"]),
 ("s2", "mechanism",
  "這層膠叫光阻，是感光的高分子，薄薄塗在晶圓上。",
@@ -98,14 +98,14 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if sid in PAUSE: sc["pauseAfter"] = PAUSE[sid]
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 5", "title": "照到光就變的膠", "size": 110, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：光罩送進曝光機", "title": "圖案印在哪？", "size": 110, "top": 236}
 scenes.append({"id": "s15", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光阻-2 塗佈機", "trail": ["塗佈顯影機"], "at": "s14:kw-8", "comment": "光阻", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("wafer", "晶圓", "WAFER", "30 cm", "10 cm"), lv("film", "光阻層剖面", "RESIST CROSS-SECTION", "2 µm", "500 nm"),
           lv("mol", "分子", "MOLECULES", "20 nm", "5 nm")]
 levels[0]["handoff3D"] = True
-out = {"slug": "tech-resist1", "title": "光阻-1：照到光就會變的膠（科技透明圈）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
+out = {"slug": "tech-resist1", "prevEpisode": "光罩-2", "title": "光阻-1：照到光就會變的膠（科技透明圈）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪只做前段，不配音"},
