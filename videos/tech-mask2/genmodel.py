@@ -645,7 +645,7 @@ P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
  "overlay": [sec("mk2-mer", "start+4", "s4:start-8", "專業光罩廠", "SemiEng；Photronics 10-K", {"mer": "mer", "jp": "jp", "us": "us"})]}
 # s4：推近台灣：念「台灣光罩」廠區落下、光柱亮；念「成熟製程」光罩盒推上潔淨物流車，車沿路開往南部客戶晶圓廠
 P["s4"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", TWC[0] + .3, TWC[1] + 1.2, 44, 54, 26), shotZ("tmc", SM[0] + .15, SM[1] + .95, 7.5, 38, 30)],
+ "shot": [shotZ("start-4", TWC[0] + .3, TWC[1] + 1.2, 44, 54, 26), shotZ("tmc", SM[0] - .05, SM[1] + .95, 8.8, 38, 30)],
  "run": [run("f_tmcOn", "tmc", "s5:start", 6), run("f_cTWOn", "mat", "s5:start", 6), run("f_rTMCF", "mat+30", "s5:start", 8)],
  "labels": [LG("m_twA", "台灣", "Taiwan", "blue", "start-2", "tmc+16", [270, 300], None, "TW"),
             LG("f_tmcA", "台灣光罩", "Taiwan Mask", "blue", "tmc", "s5:start-4", [720, 300], None, "TW"),
