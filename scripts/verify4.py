@@ -67,6 +67,8 @@ for si, s in enumerate(tl["scenes"]):
     base = s["audioFrame"] / FPS
     src = sc_by_id.get(s["id"], {})
     text = src.get("narration") or s.get("sub", "")
+    # 2026/11/24 tech-wafer1：words 是念稿（tts）的字（矽→細、坩堝→甘鍋），用 narration 找不到字，逗號後的停頓會被誤判成「句中（無標點）」；改用念稿（標點和 narration 相同）
+    if src.get("tts") and "".join(w["text"] for w in s["words"]) and all(src["tts"].find(w["text"]) >= 0 for w in s["words"][:3]): text = src["tts"]
     for seg in re.split(f"[{END_PUNCT}]", text):
         if seg.strip(): sentences += 1; sent_texts.append(seg.strip())
     # 把 words（逐字）對回 narration，找每個字後面的標點
