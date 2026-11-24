@@ -314,7 +314,7 @@ materials.update({"m_" + k: v for k, v in {
  "gan": {"kind": "phys", "color": "#7FA8E8", "rough": .1, "metal": .2, "clearcoat": 1, "env": .9}, "sicW": M("#5E7A6A", rough=.3, metal=.4, env=.7),
  "pvdf": {"kind": "phys", "color": "#EFEAE0", "rough": .3, "metal": 0, "clearcoat": .5}, "conc": M("#C9CDD3", rough=.85, metal=0)}.items()})
 ROOT = os.path.normpath(os.path.join(D, "..", ".."))
-TEX = ["flag:TW", "flag:JP", "text:gwT=環球晶|6488", "text:fstT=台勝科|3532", "text:wwT=合晶|6182", "text:epiT=嘉晶|3016"]
+TEX = ["flag:TW", "flag:JP", "text:gwT=環球晶|6488", "logo:fst", "text:wwT=合晶|6182", "text:epiT=嘉晶|3016"]
 subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-wafer2", *TEX], check=True, stdout=subprocess.DEVNULL)
 SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
 def tex(name):
@@ -412,7 +412,7 @@ box("f_roof", L1, "roofG", [5.7, .12, 3.7], [x1, 4.36, z1])
 box("f_ahu", L1, "cab2", [.7, .5, .7], [x1, 4.67, z1 - .5], at=[[-2.0 + 1.0 * i, 0, 0] for i in range(5)], bevel=.03)
 cyl("f_stk", L1, "steelHi", .26, 3.4, [x1 + 1.6, 6.0, z1 - 1.2], at=[[0, 0, 0], [.75, 0, 0], [1.5, 0, 0]])
 box("f_door", L1, "cabD", [1.2, 1.4, .05], [x1 + 1.9, 1.0, z1 + 1.83])
-sign_on("f", L1, "sign-fstT", x1 + .1, 1.45, z1 + 1.86, 2.2)
+sign_on("f", L1, "sign-fst", x1 + .1, 1.45, z1 + 1.86, 2.2)   # 台勝科官方 LOGO（Commons 原檔經 thumb.php 轉 PNG）
 pole("f", L1, "t_flag1", "flag-TW", x1 + 2.0, z1 + 2.2, ph=4.0)
 WINS[1] = ["f_w"]
 anchor("t_fstA", L1, [x1, 4.6, z1], dx=0, dy=-120)

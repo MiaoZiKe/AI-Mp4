@@ -461,13 +461,13 @@ materials.update({"m_" + k: v for k, v in {
 # 3D 貼圖（2026/11/24 審片 N1）：國旗（Brand.tsx／BrandWafer.tsx 程式繪製）＋廠牌（public/logos 官方原檔不改色；沒有原檔的用文字名牌）
 #   → public/tex/brand/（不進 git；本檔每次重產），做法同 tech-mask2（scripts/three/make-brand-tex.mjs）
 ROOT = os.path.normpath(os.path.join(D, "..", ".."))
-def _lg(id_, fb): return f"logo:{id_}" if os.path.exists(os.path.join(ROOT, f"public/logos/{id_}.svg")) else fb
+def _lg(id_, fb): return f"logo:{id_}" if any(os.path.exists(os.path.join(ROOT, f"public/logos/{id_}.{e}")) for e in ("svg", "png")) else fb
 TEX = ["flag:JP", "flag:TW", "flag:DE", "flag:KR", _lg("shinetsu", "text:shinT=信越化學|Shin-Etsu"), _lg("siltronic", "text:silT=世創|Siltronic"),
-       _lg("sumco", "text:sumT=勝高|SUMCO"), "text:gwT=環球晶|GlobalWafers", "text:skT=SK Siltron|", "text:fstT=台勝科|3532", "text:wwT=合晶|6182"]
+       _lg("sumco", "text:sumT=勝高|SUMCO"), "text:gwT=環球晶|GlobalWafers", "text:skT=SK Siltron|", _lg("fst", "text:fstT=台勝科|3532"), "text:wwT=合晶|6182"]
 subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-wafer1", *TEX], check=True, stdout=subprocess.DEVNULL)
 SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
 SG = lambda id_, t: f"sign-{id_}" if t.startswith("logo:") else "sign-" + t.split(":")[1].split("=")[0]
-SIGNS = {k: SG(i, t) for k, i, t in [("shin", "shinetsu", TEX[4]), ("sil", "siltronic", TEX[5]), ("sumco", "sumco", TEX[6]), ("gw", "", TEX[7]), ("sk", "", TEX[8]), ("fst", "", TEX[9]), ("ww", "", TEX[10])]}
+SIGNS = {k: SG(i, t) for k, i, t in [("shin", "shinetsu", TEX[4]), ("sil", "siltronic", TEX[5]), ("sumco", "sumco", TEX[6]), ("gw", "", TEX[7]), ("sk", "", TEX[8]), ("fst", "fst", TEX[9]), ("ww", "", TEX[10])]}
 def tex(name):
     materials["m_t_" + name] = {"kind": "unlit", "color": "#FFFFFF", "img": f"tex/brand/{name}.png"}; return "t_" + name
 def plate(pid, lay, name, w, cx, cy, cz):
