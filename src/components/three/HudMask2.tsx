@@ -149,7 +149,7 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
   const nodes: [string, number][] = [["80", 0.55], ["65", 0.75], ["55", 0.95]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
-      <Row x={28} y={CT + 8} a={t1}><Flag code="TW" h={40} /><Plate text="台灣光罩" w={200} h={40} a={t1} c={OK} /><Tx a={t1} w={800}>代號 2338・1988 年成立</Tx></Row>
+      <Row x={28} y={CT + 8} a={t1}><Flag code="TW" h={40} /><Logo id="tmc" h={34} pad={2} style={{ opacity: t1 }} /><Tx a={t1} w={800}>代號 2338・1988 年成立</Tx></Row>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={0.7 + 0.3 * t2}>
           <text x={28} y={176} style={zh(30, H.text, 800)}>製程世代</text>

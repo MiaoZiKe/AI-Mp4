@@ -13,6 +13,10 @@ import { Img, staticFile } from "remotion";
 export type LogoSpec = { file: string; w: number; h: number; name: string; source: string; bg?: string; /** 方形、字在圖下方的 LOGO（例如 Photronics）在標籤裡要放大才看得清：標籤用這個高度（沒寫＝46） */ labelH?: number };
 /** 公司 LOGO 表（w:h＝原檔 viewBox 比例） */
 export const LOGOS: Record<string, LogoSpec> = {
+  // 2026-11-24 Andy 在②聊天室提供原圖（官方 LOGO 截圖；白底只裁邊、SK Siltron 灰底換白，未改色）
+  globalwafers: { file: "logos/globalwafers.png", w: 488, h: 112, name: "環球晶 GlobalWafers", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },
+  sksiltron: { file: "logos/sksiltron.png", w: 190, h: 96, name: "SK Siltron", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF", labelH: 56 },
+  tmc: { file: "logos/tmc.png", w: 383, h: 118, name: "台灣光罩", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },
   asml: { file: "logos/asml.svg", w: 1065, h: 300, name: "ASML", source: "https://commons.wikimedia.org/wiki/File:ASML_Holding_N.V._logo.svg" },
   // HOYA、AGC：Commons 原檔 SVG 由 Wikimedia 自己轉出的 960px PNG（thumb.php；upload 伺服器限流，SVG 原檔當天抓不到），未重畫、未改色
   hoya: { file: "logos/hoya.png", w: 960, h: 273, name: "HOYA", source: "https://commons.wikimedia.org/wiki/File:Hoya_Corporation_logo.svg" },
