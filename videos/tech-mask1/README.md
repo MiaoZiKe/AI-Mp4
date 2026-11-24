@@ -22,3 +22,7 @@
 - s10：B 站重做：兩個透明運送盒（插槽、各 8 片空白光罩，側面看得到玻璃／多層膜／吸收層）；前面一片拆開距離加大；念「極紫外光用的」紫光打進縫裡在多層膜上彈回；念「日本」兩盒輕跳、念「豪雅」「旭硝子」各自再跳＋亮；標籤加官方 LOGO＋日本國旗；mk1-co 卡兩家改白框＋官方 LOGO、底列加日本國旗；鏡頭拉近。
 - s11 出處列「series_plan 系列 2 第 4 集」→「下一集：光罩-2」。
 - LOGO／國旗來源：assets.md；共用元件 src/components/three/Brand.tsx。
+- 審片：第一輪 7.5（必改 N1–N4＋建議 N5–N11）→ 修完第二輪 8.3（docs/reviews/2026-11-24-tech-mask1.md）；渲染前再修建議 R1（卡片 3 幀退場）、R2（比例尺深橘，共用 Hud.tsx）、R3（豪雅標籤提早到約 45 秒）、R4（綠燈已拿掉）。
+- 成片 v2：`bash scripts/three/make-tech.sh tech-mask1 --take=out/tech-mask1-take.orig.wav --atempo=1.23 --ver=v2` → out/tech-mask1.v2.mp4（57.03 秒、正片 −15.8 LUFS、片尾 −11.2 LUFS、TTS 請求 0 次），複製成 out/tech-mask1.mp4；渲染 11:16–12:17（台北）。
+- 檢查：validate 0 error、layout-check 0 error（3 warning）、card-overlap 0/0、flow 0（17 條）、kinematics 0；verify4 1、3 過，2 有兩處需人耳確認（0:01.9 ASR「光照」＝原文；0:40.70「套」偏濁），4 標 52、53 秒＝片尾 LOGO 動畫（out/tech-mask1/verify4/human.md）。
+- 預覽：out/preview/tech-mask1-sheet.png（每秒一格）、tech-mask1-close-hook／duv／euv／pellicle／set／brand.png（brand＝豪雅、旭硝子 LOGO＋日本國旗）。
