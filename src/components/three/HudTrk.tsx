@@ -366,10 +366,11 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={lit(f, T(o, "tw"), 0.45)}>
-          <path d="M150 82 C192 96 206 150 198 206 C192 252 166 296 136 304 C114 282 100 236 102 186 C104 134 118 92 150 82Z" fill={OK} opacity={0.35 + 0.4 * tw} />
-          <circle cx={124} cy={250} r={11 * pulse} fill={H.amber} opacity={0.3 + 0.7 * tn} />
-          <line x1={136} y1={250} x2={220} y2={250} stroke={H.amber} strokeWidth={3} opacity={0.3 + 0.7 * tn} />
-          <text x={228} y={262} style={zh(32, H.text, 900)} opacity={0.3 + 0.7 * tn}>台南</text>
+          {/* 台灣本島輪廓：照經緯度（富貴角、三貂角、鵝鑾鼻、安平…27 點）等距投影，11-25 Andy：「台灣需要描繪更清楚」 */}
+          <path d="M180.3 82.0 L192.0 91.6 L202.6 99.9 L207.3 100.6 L197.3 110.2 L199.1 127.4 L195.6 136.4 L185.0 166.5 L179.1 190.8 L170.9 222.8 L157.4 245.2 L142.8 271.4 L139.9 299.6 L132.8 297.7 L125.2 270.2 L116.4 263.8 L105.8 253.5 L98.8 229.8 L94.7 219.6 L98.8 204.9 L101.7 179.3 L113.5 162.0 L119.3 147.9 L129.3 133.2 L144.0 112.7 L153.3 99.3 L172.1 89.7Z" fill={OK} opacity={0.35 + 0.4 * tw} stroke={OK} strokeWidth={3} strokeLinejoin="round" />
+          <circle cx={103} cy={229} r={11 * pulse} fill={H.amber} opacity={0.3 + 0.7 * tn} />
+          <line x1={115} y1={229} x2={220} y2={229} stroke={H.amber} strokeWidth={3} opacity={0.3 + 0.7 * tn} />
+          <text x={228} y={241} style={zh(32, H.text, 900)} opacity={0.3 + 0.7 * tn}>台南</text>
         </g>
         <g><rect x={224} y={CT + 14} width={50} height={36} fill="none" stroke={tw > 0.5 ? H.amber : H.lineSoft} strokeWidth={tw > 0.5 ? 4 : 1.5} /><Flag code="TW" h={28} x={228} y={CT + 18} asSvg /></g>
         <Sep x={320} />
