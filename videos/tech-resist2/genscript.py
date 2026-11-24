@@ -10,7 +10,7 @@ S = [
  ["光阻是誰塗上去的？", "是黏在曝光機旁邊的", "這台機器"],
  ["Who coats the photoresist?", "A machine bolted to the scanner:", "this one."],
  [("who", "誰塗上去"), ("stick", "黏在曝光機旁邊"), ("this", "這台機器")],
- ["光阻", "曝光機"], ["research.md 第 8 列（EPFL CMi、USPTO 6770424）"]),
+ ["光阻", "曝光機"], ["EPFL CMi；USPTO 6770424"]),
 ("s2", "mechanism",
  "它叫塗佈顯影機，晶圓進出曝光機，都要經過它。",
  ["它叫塗佈顯影機", "晶圓進出曝光機", "都要經過它"],
@@ -76,7 +76,7 @@ S = [
  ["塗得再均勻", "圖案準不準，還是看曝光機", "下一集看艾司摩爾", "留言顯影，拿完整資料"],
  ["However even the coat,", "pattern accuracy comes down to the scanner.", "Next: ASML.", "Comment \"顯影\" for the full notes."],
  [("even", "塗得再均勻"), ("acc", "準不準"), ("scan", "看曝光機"), ("next", "艾司摩爾"), ("kw", "留言顯影")],
- ["曝光機", "艾司摩爾"], ["系列「代工的供應商」下一集：設備五大-1"]),
+ ["曝光機", "艾司摩爾"], ["示意動畫，不是量測"]),
 ]
 # 念稿替換：沒有「矽」；「艾司摩爾」照寫。
 TTS = lambda t: t.replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
@@ -92,7 +92,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     scenes.append(sc)
 scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 6", "title": "光阻誰塗的？", "size": 120, "top": 236}
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "設備五大-1 ASML", "trail": ["曝光機", "艾司摩爾"], "at": "s12:kw-8", "comment": "顯影", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "設備五大-1 ASML", "trail": ["曝光機"], "at": "s12:kw-8", "comment": "顯影", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("bay", "黃光區", "LITHO BAY", "12 m", "2 m"), lv("tool", "塗佈顯影機", "COATER / DEVELOPER", "4 m", "1 m"),
           lv("module", "模組", "MODULE", "60 cm", "10 cm")]

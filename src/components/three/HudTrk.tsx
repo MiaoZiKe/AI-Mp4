@@ -9,6 +9,8 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
+import { Flag, LogoSvg, hasLogo, logoW } from "./Brand";
+import "./BrandWafer";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -330,20 +332,25 @@ const Co: React.FC<P> = ({ o, f, k }) => {
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={lit(f, T(o, "tel"), 0.4)}>
-          <text x={36} y={CT + 48} style={zh(40, H.text, 900)}>東京威力科創（日本）</text>
+          <text x={36} y={CT + 48} style={zh(40, H.text, 900)}>東京威力科創</text>
           <text x={36} y={CT + 104} style={zh(32, H.text, 800)} opacity={0.35 + 0.65 * eu}>極紫外光用的塗佈顯影機</text>
           <text x={36} y={CT + 176} style={zh(56, RES_D, 900)} opacity={0.3 + 0.7 * al}>幾乎全包</text>
           <rect x={300} y={CT + 132} width={150} height={52} fill={H.amber} opacity={0.3 + 0.7 * al} />
           <text x={375} y={CT + 170} textAnchor="middle" style={zh(30, onC(H.amber), 900)} opacity={0.3 + 0.7 * al}>公司說法</text>
           <text x={36} y={312} style={zh(30, H.text2, 800)}>2020 新聞稿、2026 年 9 月記者會</text>
         </g>
+        <g><rect x={292} y={CT + 14} width={50} height={36} fill="none" stroke={te > 0.5 ? H.amber : H.lineSoft} strokeWidth={te > 0.5 ? 4 : 1.5} />
+          <Flag code="JP" h={28} x={296} y={CT + 18} asSvg />
+          {hasLogo("tel") ? (() => { const lw = Math.min(200, logoW("tel", 34)); return <g><rect x={356} y={CT + 12} width={lw + 12} height={44} fill="#FFFFFF" stroke={te > 0.5 ? H.amber : H.lineSoft} strokeWidth={te > 0.5 ? 4 : 1.5} /><LogoSvg id="tel" x={362} y={CT + 17} h={34 * lw / logoW("tel", 34)} /></g>; })() : null}
+          <rect x={632} y={CT + 222} width={50} height={36} fill="none" stroke={al > 0.5 ? H.amber : H.lineSoft} strokeWidth={al > 0.5 ? 4 : 1.5} />
+          <Flag code="JP" h={28} x={636} y={CT + 226} asSvg /></g>
         <Sep x={610} />
         <g opacity={lit(f, T(o, "all"), 0.4)}>
           <text x={636} y={CT + 40} style={zh(30, H.text2, 800)}>全部塗佈顯影機</text>
           <text x={636} y={CT + 92} style={zh(40, H.text, 900)}>八成五以上</text>
           <text x={636} y={CT + 132} style={zh(30, H.text2, 800)}>兩份估計</text>
           <text x={636} y={CT + 198} style={zh(30, H.text, 800)}>另一家日廠</text>
-          <text x={636} y={CT + 240} style={zh(30, H.text, 900)}>SCREEN</text>
+          <text x={696} y={CT + 250} style={zh(30, H.text, 900)}>SCREEN</text>
         </g>
       </svg>
     </Card>
@@ -364,6 +371,7 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
           <line x1={136} y1={250} x2={220} y2={250} stroke={H.amber} strokeWidth={3} opacity={0.3 + 0.7 * tn} />
           <text x={228} y={262} style={zh(32, H.text, 900)} opacity={0.3 + 0.7 * tn}>台南</text>
         </g>
+        <g><rect x={224} y={CT + 14} width={50} height={36} fill="none" stroke={tw > 0.5 ? H.amber : H.lineSoft} strokeWidth={tw > 0.5 ? 4 : 1.5} /><Flag code="TW" h={28} x={228} y={CT + 18} asSvg /></g>
         <Sep x={320} />
         <g opacity={lit(f, T(o, "tainan"), 0.4)}>
           <text x={348} y={CT + 44} style={zh(36, H.text, 900)}>東京威力科創 台南營運中心</text>

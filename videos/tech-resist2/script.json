@@ -105,7 +105,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "research.md 第 8 列（EPFL CMi、USPTO 6770424）"
+    "EPFL CMi；USPTO 6770424"
    ],
    "props": {
     "hook": {
@@ -527,6 +527,20 @@
       "until": "s13:start+600",
       "opacity": 0,
       "dur": 1
+     },
+     {
+      "layer": "k_sign",
+      "at": "s1:start-40",
+      "until": "s10:tel",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "k_sign",
+      "at": "s12:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
      },
      {
       "layer": "px_trk",
@@ -2404,15 +2418,16 @@
     "labels": [
      {
       "part": "t_track",
-      "text": "東京威力科創（日本）",
-      "en": "Tokyo Electron",
+      "text": "東京威力科創",
+      "en": "Japan",
       "color": "amber",
       "at": "tel",
       "until": "s11:start-4",
       "xy": [
        400,
        347
-      ]
+      ],
+      "flag": "JP"
      }
     ],
     "overlay": [
@@ -2503,10 +2518,11 @@
      {
       "part": "t_track",
       "text": "台南：維修中心",
-      "en": "Tainan service center",
+      "en": "Taiwan",
       "color": "amber",
       "at": "tainan",
-      "until": "s12:start-4"
+      "until": "s12:start-4",
+      "flag": "TW"
      }
     ],
     "overlay": [
@@ -2579,7 +2595,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "系列「代工的供應商」下一集：設備五大-1"
+    "示意動畫，不是量測"
    ],
    "props": {
     "zoom": [
@@ -2660,8 +2676,7 @@
     "endCard": {
      "next": "設備五大-1 ASML",
      "trail": [
-      "曝光機",
-      "艾司摩爾"
+      "曝光機"
      ],
      "at": "s12:kw-8",
      "comment": "顯影",

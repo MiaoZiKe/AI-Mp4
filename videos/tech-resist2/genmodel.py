@@ -368,6 +368,21 @@ glow("k_ledG", "k_body", ["k_twG", "cn_led", "ds_led", "a_pedL", "h1_baseL", "h2
 
 # 錨點（標籤引線接的地方）
 anchor("t_track", "k_body", [TX0 + 1.0, TH, TZ1], dx=-60, dy=-120)
+# 2026/11/24（tech-andy-fixes 審片反覆退件：念到公司就要有廠牌）：s10 念「東京威力科創」時機台頂端亮出廠牌（官方 LOGO 有原檔就貼原檔，否則公司名牌）
+ROOT = os.path.normpath(os.path.join(D, "..", ".."))
+_TEL = "logo:tel" if os.path.exists(os.path.join(ROOT, "public/logos/tel.png")) else "text:telT=東京威力科創|Tokyo Electron"
+subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-resist2", "flag:JP", "flag:TW", _TEL], check=True, stdout=subprocess.DEVNULL)
+SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
+def tex(name):
+    materials["m_t_" + name] = {"kind": "unlit", "color": "#FFFFFF", "img": f"tex/brand/{name}.png"}; return "t_" + name
+def plate(pid, lay, name, w, cx, cy, cz):
+    h = w / SIGN[name]["aspect"]; box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
+_SG = "sign-tel" if _TEL.startswith("logo:") else "sign-telT"
+_sw = 3.4; _sh = _sw / SIGN[_SG]["aspect"]
+box("k_sgB", "k_sign", "steel2", [_sw + .2, _sh + .2, .08], [TX0 + 3.2, TH + .2 + _sh / 2, TZ1 - .4])
+plate("k_sg", "k_sign", _SG, _sw, TX0 + 3.2, TH + .2 + _sh / 2, TZ1 - .34)
+_fh = 1.6 / SIGN["flag-JP"]["aspect"]
+plate("k_fgJ", "k_sign", "flag-JP", 1.6, TX0 + 3.2 + _sw / 2 + 1.0, TH + .2 + _fh / 2, TZ1 - .34)
 anchor("t_scan", "s_body", [SX0 + 2.0, SY, 4.0], dx=60, dy=-110)
 anchor("t_cup", "c_mod", [C[0] - 1.9, WT + .4, C[1] + .6], dx=-140, dy=90)
 anchor("t_wfC", "c_mod", [C[0] + .8, WT + .05, C[1] + .8], dx=150, dy=110)
@@ -472,6 +487,7 @@ for lid, wins in PXW.items():
         VIS.append({"layer": lid, "at": prev, "until": a_, "opacity": 0, "dur": 1}); prev = b_
     VIS.append({"layer": lid, "at": prev, "until": "s13:start+600", "opacity": 0, "dur": 1})
 VIS.append({"layer": "air", "at": "s1:start-400", "until": "s13:start+600", "opacity": 0, "dur": 1})
+VIS.append(hid("k_sign", HIDE, "s10:tel", 8)); VIS.append(hid("k_sign", "s12:start", FAR, 8))   # 廠牌只在 s10–s11（念到東京威力科創起）
 for lid in ("px_trk",):
     VIS.append({"layer": lid, "at": "s1:start-400", "until": "s13:start+600", "opacity": 0, "dur": 1})
 COAT = lambda a, b: [run("c_drop", a, b, 4)] + [run(f"c_sheet{j}", a, b, 8) for j in range(8)] + [run(f"c_fling{j}", a, b, 6) for j in range(10)]
@@ -529,11 +545,11 @@ P["s9"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "overlay": [sec("trk-wait", "start+2", "s10:start-5", "為什麼要連在一起", "專利文獻整理，示意", {"why": "why", "link": "link", "wait": "wait", "bad": "bad"})]}
 P["s10"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", 4.6, 2.0, 86, 34, 30)],
- "labels": [lab("t_track", "東京威力科創（日本）", "Tokyo Electron", "amber", "tel", "s11:start-4", xy=[400, 347])],
+ "labels": [dict(lab("t_track", "東京威力科創", "Japan", "amber", "tel", "s11:start-4", xy=[400, 347]), flag="JP")],
  "overlay": [sec("trk-co", "start+2", "s11:start-5", "誰在做", "公司說法＋研究機構估計", {"tel": "tel", "euv": "euv", "all": "all"})]}
 P["s11"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 1}],
  "shot": [shot("start-4", 2.0, 2.4, 64, 36, 30)],
- "labels": [lab("t_track", "台南：維修中心", "Tainan service center", "amber", "tainan", "s12:start-4")],
+ "labels": [dict(lab("t_track", "台南：維修中心", "Taiwan", "amber", "tainan", "s12:start-4"), flag="TW")],
  "overlay": [sec("trk-tw", "start+2", "s12:start-5", "在台灣", "公司說法、媒體報導", {"tw": "tw", "tainan": "tainan", "repair": "repair", "parts": "parts"})]}
 P["s12"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", 8.6, 3.8, 72, 26, 30)],

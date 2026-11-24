@@ -322,6 +322,16 @@
    "color": "#FFFFFF",
    "opacity": 0.0
   },
+  "m_t_sign-telT": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-telT.png"
+  },
+  "m_t_flag-JP": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-JP.png"
+  },
   "m_proxy": {
    "kind": "unlit",
    "color": "#FFFFFF",
@@ -541,6 +551,12 @@
   },
   {
    "id": "wE_ex",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
+   "id": "k_sign",
    "z": 0,
    "k": 0,
    "bg": true
@@ -11888,6 +11904,56 @@
     2.2
    ],
    "mat": "m_expo"
+  },
+  {
+   "id": "k_sgB",
+   "layer": "k_sign",
+   "shape": "box",
+   "size": [
+    3.6,
+    1.632,
+    0.08
+   ],
+   "pos": [
+    -4.6,
+    9.116,
+    3.8
+   ],
+   "mat": "m_steel2"
+  },
+  {
+   "id": "k_sg",
+   "layer": "k_sign",
+   "shape": "plane",
+   "size": [
+    3.4,
+    1.432
+   ],
+   "pos": [
+    -4.6,
+    9.116,
+    3.86
+   ],
+   "mat": "m_t_sign-telT",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "k_fgJ",
+   "layer": "k_sign",
+   "shape": "plane",
+   "size": [
+    1.6,
+    1.067
+   ],
+   "pos": [
+    -1.9,
+    8.933,
+    3.86
+   ],
+   "mat": "m_t_flag-JP",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "px_all",
