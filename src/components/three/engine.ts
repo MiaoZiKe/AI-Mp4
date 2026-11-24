@@ -8,7 +8,7 @@ import { EASE, seeded, tween } from "../anim";
 import type { ActionDef, ProductModel, Pt, ThermalDef } from "./model";
 import { kinState, type KinCarry, type KinTrack } from "./kin";
 
-export type Label3D = { part: string; text: string; en?: string; color: string; at: number; until: number; xy?: [number, number] };
+export type Label3D = { part: string; text: string; en?: string; color: string; at: number; until: number; xy?: [number, number]; logo?: string; flag?: string };
 export type Model3D = {
   total: number;
   product: ProductModel;

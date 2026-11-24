@@ -15,7 +15,8 @@ import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
 import { H, L, canvasBox, setHudLayout, setHudSkin, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
-import { BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
+import { Logo, Flag, hasLogo, hasFlag } from "./Brand";
+import { LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -216,7 +217,11 @@ export const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: P
             </svg>
             <div style={{ position: "absolute", left: Math.round(x), top: Math.round(y), opacity: tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)`, background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
               <div style={{ ...zh(52, c), lineHeight: 1.25, letterSpacing: "0.04em" }}>{l.text}</div>
-              {l.en ? <div style={mono(enPx, H.text2, 500)}>{l.en}</div> : null}
+              {hasLogo(l.logo) ? <Logo id={l.logo as string} h={LABEL_LOGO_H} pad={4} style={{ margin: "4px 0 6px" }} /> : null}
+              {l.en || hasFlag(l.flag) ? <div style={{ display: "flex", alignItems: "center", gap: 12, flexDirection: left ? "row-reverse" : "row" }}>
+                {hasFlag(l.flag) ? <Flag code={l.flag as string} h={Math.round(enPx * 1.05)} /> : null}
+                {l.en ? <div style={mono(enPx, H.text2, 500)}>{l.en}</div> : null}
+              </div> : null}
             </div>
           </React.Fragment>
         );

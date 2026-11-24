@@ -1,6 +1,7 @@
 // HUD 片（Hud.tsx）的版面計算：縮放級數、模型在畫面上佔的範圍、標籤與蓋章避開模型、換幕時大卡片不重疊。
 // 2026/11/15 從 Hud.tsx 拆出來（使用者回饋：「源極」「汲極」貼在模型底座上、「2 在哪？」壓在模型上、換幕時兩張卡半透明疊在一起）。
 // 這裡只有純計算（不畫東西），所以 Hud.tsx 畫面與 scripts/three/layout-check.mjs（不開瀏覽器的版面檢查）用同一份：檢查到的就是畫出來的。
+import { hasFlag, flagW, hasLogo, logoW } from "./Brand";
 import { EASE, tween } from "../anim";
 import { cameraFor, projectPoint, stateAt, type Label3D, type Model3D, type Overlay3D, type State3D } from "./engine";
 import type { PartDef, ProductModel } from "./model";
@@ -335,7 +336,13 @@ export const placeLabels = (m: Model3D, b: Box, mainAt: (f: number) => Rect | nu
 };
 
 /** 標籤卡的大小（中文 52px＋英文 30px） */
-export const labelSize = (l: { text: string; en?: string }, enPx = 30) => ({ w: Math.max(textW(l.text, 52), textW(l.en ?? "", enPx, 0.06)) + 50, h: 52 * 1.25 + (l.en ? enPx * 1.3 : 0) + 22 });
+// 2026/11/24：標籤可帶公司 LOGO（多一列，高 LABEL_LOGO_H＋上下距 10）與國旗（英文前面，寬 flagW）——Brand.tsx
+export const LABEL_LOGO_H = 46;
+export const labelSize = (l: { text: string; en?: string; logo?: string; flag?: string }, enPx = 30) => {
+  const fw = hasFlag(l.flag) ? flagW(l.flag as string, Math.round(enPx * 1.05)) + 12 : 0;
+  const lw = hasLogo(l.logo) ? logoW(l.logo as string, LABEL_LOGO_H) + 12 : 0;
+  return { w: Math.max(textW(l.text, 52), textW(l.en ?? "", enPx, 0.06) + fw, lw) + 50, h: 52 * 1.25 + (l.en || fw ? enPx * 1.3 : 0) + (lw ? LABEL_LOGO_H + 16 : 0) + 22 };
+};
 /**
  * 標籤放在模型外面：先照 anchors 的 dx／dy 放，壓到模型就往同一側推出去；左右放不下就放到模型下方（再不行放上方），引線一路拉出去。
  * 回傳標籤卡的錨點（x＝靠模型那一側的邊，y＝中心）、left（卡片往左長）。

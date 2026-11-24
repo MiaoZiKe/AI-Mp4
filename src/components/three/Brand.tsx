@@ -1,0 +1,78 @@
+// 2026/11/24 共用：國旗（程式繪製）與公司 LOGO（官方原檔），科技片的 3D 標籤與 2D 卡共用。
+//   Andy 11/24：「有國家就標上國旗，有公司就附上 LOGO」。
+//   ・國旗：照各國官方比例與色碼用 SVG 畫（不用 emoji、不用點陣圖）。<Flag code="JP" h={30} />
+//   ・LOGO：只用官網或 Wikimedia Commons 原檔，放 public/logos/<檔名>，不重畫、不改色；來源寫在 LOGOS 表與各片 assets.md。
+//     <Logo id="hoya" h={44} />（HTML <Img>，Remotion 會等圖載入才渲染該幀）；在 SVG 裡用 <LogoSvg id x y h />。
+//   ・標籤（Hud.tsx 的 HudLabels）：labels 加 `logo: "hoya"`、`flag: "JP"` 就會在中文名下方多一列 LOGO、英文前面加國旗；
+//     hudLayout.ts 的 labelSize 也會把這一列算進去（版面檢查才準）。
+// 新增 LOGO：檔案放 public/logos/，在 LOGOS 加一筆（w／h＝原檔長寬比，source＝原檔網址），各片 assets.md 記來源。
+// 新增國旗：在 FLAGS 加一個函式（viewBox 寬高照官方比例），色碼寫官方值並註明出處。
+import React from "react";
+import { Img, staticFile } from "remotion";
+
+export type LogoSpec = { file: string; w: number; h: number; name: string; source: string; bg?: string };
+/** 公司 LOGO 表（w:h＝原檔 viewBox 比例） */
+export const LOGOS: Record<string, LogoSpec> = {
+  asml: { file: "logos/asml.svg", w: 1065, h: 300, name: "ASML", source: "https://commons.wikimedia.org/wiki/File:ASML_Holding_N.V._logo.svg" },
+  hoya: { file: "logos/hoya.svg", w: 512, h: 130, name: "HOYA", source: "https://commons.wikimedia.org/wiki/File:Hoya_Corporation_logo.svg" },
+  agc: { file: "logos/agc.svg", w: 512, h: 238, name: "AGC", source: "https://commons.wikimedia.org/wiki/File:AGC_logo.svg" },
+};
+export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
+export const logoW = (id: string, h: number) => (LOGOS[id] ? Math.round((h * LOGOS[id].w) / LOGOS[id].h) : 0);
+
+/** LOGO（HTML）：高 h，寬照原檔比例；白底小板讓深色／彩色 LOGO 在任何皮膚上都看得清楚（pad＝板邊距，0＝不加板） */
+export const Logo: React.FC<{ id: string; h: number; pad?: number; style?: React.CSSProperties }> = ({ id, h, pad = 0, style }) => {
+  const s = LOGOS[id];
+  if (!s) return null;
+  const img = <Img src={staticFile(s.file)} style={{ height: h, width: logoW(id, h), display: "block" }} />;
+  if (!pad) return <div style={style}>{img}</div>;
+  return <div style={{ background: s.bg ?? "#FFFFFF", padding: pad, border: "2px solid #E3E7EE", display: "inline-block", ...style }}>{img}</div>;
+};
+/** LOGO（放在 <svg> 裡）：x,y＝左上角 */
+export const LogoSvg: React.FC<{ id: string; x: number; y: number; h: number; opacity?: number }> = ({ id, x, y, h, opacity = 1 }) => {
+  const s = LOGOS[id];
+  if (!s) return null;
+  return <image href={staticFile(s.file)} x={x} y={y} height={h} width={logoW(id, h)} opacity={opacity} preserveAspectRatio="xMidYMid meet" />;
+};
+
+// ── 國旗（viewBox 照官方比例；色碼出處寫在每一面旁邊） ──
+type FlagDef = { w: number; h: number; draw: () => React.ReactNode; name: string };
+const star5 = (cx: number, cy: number, r: number) => {
+  const p: string[] = [];
+  for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.382 : r; p.push(`${(cx + rr * Math.cos(a)).toFixed(2)},${(cy + rr * Math.sin(a)).toFixed(2)}`); }
+  return p.join(" ");
+};
+export const FLAGS: Record<string, FlagDef> = {
+  // 日本：國旗國歌法（1999）2:3、日章直徑＝旗高 3/5、置中；紅＝#BC002D（內閣府建議色）
+  JP: { name: "日本", w: 3, h: 2, draw: () => <><rect width={3} height={2} fill="#FFFFFF" /><circle cx={1.5} cy={1} r={0.6} fill="#BC002D" /></> },
+  // 荷蘭：2:3 紅白藍三等分；紅 #AE1C28、藍 #21468B（荷蘭政府標準色）
+  NL: { name: "荷蘭", w: 3, h: 2, draw: () => <><rect width={3} height={2 / 3} fill="#AE1C28" /><rect y={2 / 3} width={3} height={2 / 3} fill="#FFFFFF" /><rect y={4 / 3} width={3} height={2 / 3} fill="#21468B" /></> },
+  // 德國：3:5 黑紅金；#000000、#DD0000、#FFCE00（聯邦政府設計規範）
+  DE: { name: "德國", w: 5, h: 3, draw: () => <><rect width={5} height={1} fill="#000000" /><rect y={1} width={5} height={1} fill="#DD0000" /><rect y={2} width={5} height={1} fill="#FFCE00" /></> },
+  // 中華民國（台灣）：2:3 紅地 #FE0000、左上青天 #000095 佔 1/4（寬 1/2、高 1/2）、白日 12 道光芒（國旗法；以 240×160 繪製）
+  TW: { name: "台灣", w: 240, h: 160, draw: () => {
+    const pts: string[] = [];
+    for (let i = 0; i < 24; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 12, r = i % 2 ? 16 : 30; pts.push(`${(60 + r * Math.cos(a)).toFixed(2)},${(40 + r * Math.sin(a)).toFixed(2)}`); }
+    return <><rect width={240} height={160} fill="#FE0000" /><rect width={120} height={80} fill="#000095" /><polygon points={pts.join(" ")} fill="#FFFFFF" /><circle cx={60} cy={40} r={17} fill="#000095" /><circle cx={60} cy={40} r={15} fill="#FFFFFF" /></>;
+  } },
+  // 美國：10:19、13 道紅白條、藍區寬 0.76、高 7 條；紅 #B22234、藍 #3C3B6E（美國國務院色）；50 星
+  US: { name: "美國", w: 1.9, h: 1, draw: () => {
+    const sh = 1 / 13, st: React.ReactNode[] = [];
+    for (let i = 0; i < 13; i += 2) st.push(<rect key={`s${i}`} y={i * sh} width={1.9} height={sh} fill="#B22234" />);
+    const stars: React.ReactNode[] = [];
+    for (let r = 0; r < 9; r++) for (let c = 0; c < (r % 2 ? 5 : 6); c++) stars.push(<polygon key={`t${r}-${c}`} points={star5(0.063 + (r % 2 ? 0.063 : 0) + c * 0.126, 0.054 + r * 0.054, 0.0308)} fill="#FFFFFF" />);
+    return <><rect width={1.9} height={1} fill="#FFFFFF" />{st}<rect width={0.76} height={7 * sh} fill="#3C3B6E" />{stars}</>;
+  } },
+};
+export const hasFlag = (code?: string) => !!code && !!FLAGS[code];
+export const flagW = (code: string, h: number) => (FLAGS[code] ? Math.round((h * FLAGS[code].w) / FLAGS[code].h) : 0);
+/** 國旗（HTML 或 SVG 都可用：asSvg＝true 時回傳 <svg> 子元素，x,y＝左上角） */
+export const Flag: React.FC<{ code: string; h: number; x?: number; y?: number; asSvg?: boolean; opacity?: number }> = ({ code, h, x = 0, y = 0, asSvg, opacity = 1 }) => {
+  const d = FLAGS[code];
+  if (!d) return null;
+  const w = flagW(code, h);
+  const inner = <svg x={x} y={y} width={w} height={h} viewBox={`0 0 ${d.w} ${d.h}`} preserveAspectRatio="none" opacity={opacity} style={asSvg ? undefined : { display: "block" }}>{d.draw()}</svg>;
+  // 細灰邊：白底國旗（日本）放在白卡上才看得出旗面範圍
+  return asSvg ? <g>{inner}<rect x={x} y={y} width={w} height={h} fill="none" stroke="#9AA3B2" strokeWidth={1.5} opacity={opacity} /></g>
+    : <div style={{ display: "inline-block", outline: "1.5px solid #9AA3B2", lineHeight: 0 }}>{inner}</div>;
+};
