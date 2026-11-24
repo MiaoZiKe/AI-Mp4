@@ -70,7 +70,7 @@ S = [
  ["白紙有了", "誰把電路畫上去？", "又怎麼送進工廠？", "下一集看", "留言光罩", "拿完整資料"],
  ["The blank paper is ready.", "Who draws the circuit on it?", "How does it reach the fab?", "Next episode.", "Comment \"光罩\"", "for the full notes."],
  [("paper", "白紙有了"), ("who", "誰把電路畫上去"), ("ship", "送進工廠"), ("next", "下一集"), ("kw", "留言光罩")],
- ["誰把電路畫上去", "送進工廠", "光罩"], ["系列：代工的供應商"]),
+ ["誰把電路畫上去", "送進工廠", "光罩"], []),  # 11-24 審片：s11 拿掉出處列
 ]
 TTS = lambda t: t.replace("矽", "細").replace("鉻", "各").replace("鉬", "目")
 scenes = []
