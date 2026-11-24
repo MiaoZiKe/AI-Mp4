@@ -29,6 +29,8 @@ const comp = await selectComposition({ ...opts, id: "Video" });
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "peek-"));
 const files = [];
 for (const fr of frames) { const f = path.join(tmp, `${String(files.length).padStart(3, "0")}.png`); await renderStill({ ...opts, composition: comp, frame: Math.max(0, Math.min(tl.totalFrames - 1, fr)), output: f, scale }); files.push(f); }
+// PEEK_KEEP=<資料夾>：另外把每一格原圖存成 <資料夾>/f<幀>-<秒>s.png（給審片看單張原尺寸）
+if (process.env.PEEK_KEEP) { fs.mkdirSync(process.env.PEEK_KEEP, { recursive: true }); files.forEach((f, i) => fs.copyFileSync(f, path.join(process.env.PEEK_KEEP, `f${String(frames[i]).padStart(4, "0")}-${(frames[i] / 30).toFixed(1)}s.png`))); }
 const w = Math.round(1080 * scale), h = Math.round(1920 * scale), c = Math.min(cols, files.length);
 execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-framerate", "1", "-pattern_type", "glob", "-i", path.join(tmp, "*.png"), "-vf", `tile=${c}x${Math.ceil(files.length / c)}:padding=6:color=0x1E1B16`, "-frames:v", "1", out]);
 fs.rmSync(tmp, { recursive: true, force: true });
