@@ -1,7 +1,13 @@
 # tech-wafer2：矽晶圓-2：台灣誰在做（科技透明圈 系列 2「代工的供應商」第 2 集；上一集矽晶圓-1；下一集光罩-1：晶片的底片）
-- 狀態（11/23）：前段完成（研究、腳本、建模、2D 卡、無聲時間軸）。配音與渲染等通知（渲染機同時只跑一支）。
+- 狀態（11/24）：成片 v1 完成（58.4 秒），見文末「11/24 配音與成片」。
 - 產生：`python3 videos/tech-wafer2/genmodel.py`（自動先跑 genscript.py）→ model.json＋script.json。改稿只改 genscript.py；改畫面只改 genmodel.py／HudEpi.tsx。
 - 2D 卡：`src/components/three/HudEpi.tsx`（w2-hook／pol／cvd／grow／dope／size／co／next），Hud.tsx 只加 import 與一行分派（kind 以 w2- 開頭），不動 HudSi.tsx。
 - 主素材框：px_ew（磊晶爐）／px_ec（晶圓近景）／px_kp（拋光晶圓）／px_kall（晶圓桌）／px_lat（原子）／px_m（光罩），每段只亮一個。標籤手動定位（labels[].xy）。
 - 驗證（無聲時間軸）：layout-check 0 error（1 warning＝IG 底部出處列，規則允許）；card-overlap 0 error、0 warning；validate 0 error。
 - 留言關鍵字「磊晶」（Andy 本集指定）。
+
+## 11/24 配音與成片
+- 配音（旁白金手指）：gemini-2.5-flash-preview-tts＋Iapetus＋說明 B（tech-b），整篇 1 次請求（tts-requests.json 1 筆）。原始 69.05 秒（備份 `out/tech-wafer2-take.orig.wav`），靜音（−40 dB、≥0.16 秒）8.83 秒 → 純說話 274÷60.22＝4.55 字/秒；倍數 5.75÷4.55＝1.264 超過上限，用 atempo 1.25 → 純說話約 5.69 字/秒。音高中位數 135.6 Hz（voice-measure.py）。對齊整篇信心 0.889。
+- 一條龍：`bash scripts/three/make-tech.sh tech-wafer2 --take=out/tech-wafer2-take.orig.wav --atempo=1.25 --ver=v1` → `out/tech-wafer2.v1.mp4`（58.43 秒、正片 −16.1 LUFS、片尾 −10.5 LUFS），複製成 `out/tech-wafer2.mp4`。渲染約 32 分鐘（08:05–08:37）。配音後重跑 genmodel.py（script.json／model.json 無變化）。
+- 檢查：layout-check 0 error（1 warning＝IG 底部出處列）、card-overlap 0/0、flow-check 0、kinematics 0；verify4：1、3 過，2（ASR 再→在、占→佔同音異體）與 4（53、54 秒片尾 LOGO 轉場）經人工判讀為誤判（out/tech-wafer2/verify4/human.md）。
+- 預覽：out/preview/tech-wafer2-sheet.png、tech-wafer2-close-reactor／atoms／table.png。
