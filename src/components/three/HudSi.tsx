@@ -349,12 +349,17 @@ const Co: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {L5.map(([n, c, id, fl, lg], j) => { const a = on(f, T(o, id)), y = Y0 + j * RH, cy = y + RH / 2;
           const lw = hasLogo(lg) ? Math.min(160, logoW(lg, 30)) : 0, lh = lw ? Math.round(30 * lw / logoW(lg, 30)) : 0;
-          return <g key={j} opacity={0.3 + 0.7 * a}>
-            {a > 0.01 ? <rect x={22} y={y + 3} width={566} height={RH - 6} fill={id === "gw" ? H.amber : BLUE} opacity={0.14 * a} /> : null}
-            <Flag code={fl} h={28} x={32} y={cy - 14} asSvg />
-            <text x={78} y={cy + 10} style={zh(28, H.text2, 800)}>{c}</text>
-            <text x={150} y={cy + 12} style={zh(32, H.text, 900)}>{n}</text>
-            {lw ? <g><rect x={402} y={cy - lh / 2 - 5} width={lw + 12} height={lh + 10} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={1.5} /><LogoSvg id={lg} x={410} y={cy - lh / 2} h={lh} /></g> : null}
+          // 2026/11/24 審片規則：國旗、LOGO 全程 100% 不透明（不用 opacity 變淡＝改色）；未輪到＝細灰框，輪到＝粗色框＋放大
+          const hc = id === "gw" ? H.amber : BLUE, sc = 1 + 0.08 * a;
+          return <g key={j}>
+            {a > 0.01 ? <rect x={22} y={y + 3} width={566} height={RH - 6} fill={hc} opacity={0.14 * a} /> : null}
+            <g opacity={0.3 + 0.7 * a}><text x={92} y={cy + 10} style={zh(28, H.text2, 800)}>{c}</text>
+              <text x={162} y={cy + 12} style={zh(32, H.text, 900)}>{n}</text></g>
+            <g transform={`translate(${53} ${cy}) scale(${sc}) translate(${-53} ${-cy})`}>
+              <rect x={29} y={cy - 17} width={48} height={34} fill="none" stroke={a > 0.5 ? hc : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 1.5} />
+              <Flag code={fl} h={28} x={32} y={cy - 14} asSvg /></g>
+            {lw ? <g transform={`translate(${408 + lw / 2} ${cy}) scale(${sc}) translate(${-(408 + lw / 2)} ${-cy})`}>
+              <rect x={402} y={cy - lh / 2 - 5} width={lw + 12} height={lh + 10} fill="#FFFFFF" stroke={a > 0.5 ? hc : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 1.5} /><LogoSvg id={lg} x={408} y={cy - lh / 2} h={lh} /></g> : null}
           </g>; })}
         <Sep x={606} />
         <g opacity={lit(f, T(o, "top5"), 0.35)}>
@@ -380,10 +385,10 @@ const Next: React.FC<P> = ({ o, f, k }) => {
         {items.map(([a, b, id, c], j) => { const x = 30 + j * 312, l = lit(f, T(o, id), 0.4), hl = f >= T(o, id) && f < T(o, "kw");
           return <g key={j} opacity={l}>
             <rect x={x} y={CT + 6} width={262} height={118} fill={hl ? c : H.cardCompare} stroke={c} strokeWidth={hl ? 5 : 3} />
-            <Flag code="TW" h={26} x={x + 14} y={CT + 22} asSvg />
             <text x={x + 146} y={CT + 56} textAnchor="middle" style={zh(40, hl ? "#FFFFFF" : H.text, 900)}>{a}</text>
             <text x={x + 131} y={CT + 104} textAnchor="middle" style={zh(sm(30), hl ? "#FFFFFF" : H.text2, 800)}>{b}</text>
           </g>; })}
+        {items.map(([, , id], j) => <Flag key={`f${j}`} code="TW" h={26} x={30 + j * 312 + 14} y={CT + 22} asSvg />)}
         <text x={W / 2} y={238} textAnchor="middle" style={zh(34, H.text, 900)} opacity={0.3 + 0.7 * nx}>下一集：矽晶圓-2</text>
         <g opacity={kw} transform={`translate(${W / 2} 288) rotate(-2) scale(${1 + 0.3 * (1 - kw)})`}>
           <rect x={-220} y={-32} width={440} height={64} fill={H.amber} /><text x={0} y={14} textAnchor="middle" style={zh(38, onC(H.amber), 900)}>留言「拉晶」拿完整資料</text>

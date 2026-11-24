@@ -82,7 +82,7 @@ S = [
  ["但膠要塗得又薄又平", "下集看", "塗佈顯影機", "留言光阻", "拿完整資料"],
  ["But it must go on thin and flat.", "Next episode:", "the coater-developer.", "Comment \"光阻\"", "for the full notes."],
  [("ok", "膠要塗得"), ("flat", "又薄又平"), ("next", "下集"), ("track", "塗佈顯影機"), ("kw", "留言光阻")],
- ["塗佈顯影機"], ["系列「代工的供應商」第 6 集"]),
+ ["塗佈顯影機"], ["下一集：塗佈顯影機"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace(" 2028 ", "二零二八").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []

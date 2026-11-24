@@ -258,14 +258,18 @@ const CoCard: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {COS.map((r, j) => { const y = CT + 46 + j * 60, me = j === fi;
-          return <g key={r.id} opacity={me ? 0.4 + 0.6 * a0 : j < fi ? 0.6 : 0.35}>
+        {COS.map((r, j) => { const y = CT + 46 + j * 60, me = j === fi, op = me ? 0.4 + 0.6 * a0 : j < fi ? 0.6 : 0.35, act = me && a0 > 0.5, sc = me ? 1 + 0.08 * a0 : 1;
+          // 2026/11/24 審片規則：國旗、LOGO 全程 100% 不透明；未輪到＝細灰框，輪到＝粗色框＋放大（文字照舊變淡）
+          const lw = hasLogo(r.logo) ? Math.min(140, logoW(r.logo, 26)) : 0, lh = lw ? Math.round(26 * lw / logoW(r.logo, 26)) : 0, fw = r.flags.length * 46 - 6;
+          return <g key={r.id}>
             {me ? <rect x={26} y={y - 40} width={410} height={54} fill={H.amber} opacity={0.28 * a0} /> : null}
-            {r.flags.map((fl, q) => <Flag key={fl} code={fl} h={26} x={34 + q * 46} y={y - 32} asSvg />)}
-            <text x={130} y={y} style={zh(34, H.text, 900)}>{r.name}</text>
-            <text x={242} y={y} style={zh(26, H.text2, 800)}>{r.code}</text>
-            {hasLogo(r.logo) ? (() => { const lw = Math.min(140, logoW(r.logo, 26)), lh = Math.round(26 * lw / logoW(r.logo, 26));
-              return <g><rect x={312} y={y - 19 - lh / 2 - 4} width={lw + 10} height={lh + 8} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={1.5} /><LogoSvg id={r.logo} x={317} y={y - 19 - lh / 2} h={lh} /></g>; })() : null}
+            <g opacity={op}><text x={130} y={y} style={zh(34, H.text, 900)}>{r.name}</text>
+              <text x={242} y={y} style={zh(26, H.text2, 800)}>{r.code}</text></g>
+            <g transform={`translate(${34 + fw / 2} ${y - 19}) scale(${sc}) translate(${-(34 + fw / 2)} ${-(y - 19)})`}>
+              <rect x={30} y={y - 36} width={fw + 8} height={34} fill="none" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 4 : 1.5} />
+              {r.flags.map((fl, q) => <Flag key={fl} code={fl} h={26} x={34 + q * 46} y={y - 32} asSvg />)}</g>
+            {lw ? <g transform={`translate(${317 + lw / 2} ${y - 19}) scale(${sc}) translate(${-(317 + lw / 2)} ${-(y - 19)})`}>
+              <rect x={312} y={y - 19 - lh / 2 - 4} width={lw + 10} height={lh + 8} fill="#FFFFFF" stroke={act ? H.amber : H.lineSoft} strokeWidth={act ? 4 : 1.5} /><LogoSvg id={r.logo} x={317} y={y - 19 - lh / 2} h={lh} /></g> : null}
           </g>; })}
         <Sep x={466} />
         <text x={496} y={CT + 46} style={zh(34, H.text, 900)} opacity={0.35 + 0.65 * a1}>{c.l1}</text>

@@ -10,6 +10,7 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
+import { Flag } from "./Brand";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: sm(px), fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -417,7 +418,9 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
         <text x={250} y={200} style={zh(30, H.amber, 900)} opacity={dim(yl)}>雲林</text>
         <line x1={150} y1={190} x2={240} y2={190} stroke={H.amber} strokeWidth={3} opacity={yl} />
         <Sep x={330} />
-        <text x={356} y={CT + 48} style={zh(32, H.text, 900)} opacity={dim(jv)}>台灣捷時雅先進製造</text>
+        <g><rect x={352} y={CT + 20} width={96} height={34} fill="none" stroke={jv > 0.5 ? H.amber : H.lineSoft} strokeWidth={jv > 0.5 ? 4 : 1.5} />
+          <Flag code="JP" h={26} x={356} y={CT + 24} asSvg /><Flag code="TW" h={26} x={404} y={CT + 24} asSvg /></g>
+        <text x={456} y={CT + 48} style={zh(32, H.text, 900)} opacity={dim(jv)}>台灣捷時雅先進製造</text>
         <text x={356} y={CT + 98} style={zh(30, H.text2, 800)} opacity={dim(jv)}>JSR 持股過半，和台灣夥伴合資</text>
         <text x={356} y={CT + 160} style={zh(32, H.text, 900)} opacity={dim(yl)}>台灣首座光阻廠（規劃）</text>
         <text x={356} y={CT + 222} style={zh(32, H.amber, 900)} opacity={dim(y8)}>最快 2028 年投產</text>
