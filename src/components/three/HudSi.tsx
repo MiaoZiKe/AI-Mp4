@@ -229,7 +229,7 @@ const Cz: React.FC<P> = ({ o, f, k }) => {
   for (let r = 0; r < rows; r++) {
     const ta = ln + r * 14 - 20, u = EASE.move(cl((f - ta) / 16));
     for (let c = 0; c < 9; c++) {
-      const tx = 556 + c * 40, ty = 110 + r * 30, sx = tx + ((c * 37 + r * 19) % 60) - 30, sy = 290;
+      const tx = 556 + c * 40, ty = 110 + r * 30, sx = tx + ((c * 37 + r * 19) % 60) - 30, sy = 258;   // 審片 B：起點在文字（y≈280 起）上方，不掃過字
       const x = r === 0 ? tx : sx + (tx - sx) * u, y = r === 0 ? ty : sy + (ty - sy) * u;
       atoms.push(<circle key={`${r}_${c}`} cx={x} cy={y} r={9} fill={r === 0 ? INGOT : u > 0.98 ? SI_D : MELT} opacity={r === 0 ? 1 : 0.25 + 0.75 * Math.max(u, f > ta - 30 ? 0.5 : 0)} />);
     }
@@ -367,7 +367,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
           <rect x={630} y={140} width={290} height={50} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={3} />
           <rect x={632} y={142} width={286 * 0.83 * Math.max(nOn * 0.9, EASE.move(t5))} height={46} fill={BLUE} />
           <line x1={632 + 286 * 0.8} y1={130} x2={632 + 286 * 0.8} y2={200} stroke={H.amber} strokeWidth={4} />
-          <text x={630} y={270} style={zh(52, H.text, 900)} opacity={lit(f, T(o, "top5"), 0.25)}>超過八成</text>
+          {(() => { const t8 = on(f, T(o, "top5"), 6); return <text x={630} y={274} style={zh(52 + 8 * t8, t8 > 0.5 ? "#D9480F" : H.text, 900)} opacity={0.25 + 0.75 * t8}>超過八成</text>; })()}
         </g>
       </svg>
     </Card>

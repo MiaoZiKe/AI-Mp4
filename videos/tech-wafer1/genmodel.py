@@ -473,7 +473,7 @@ def tex(name):
 def plate(pid, lay, name, w, cx, cy, cz):
     h = w / SIGN[name]["aspect"]
     box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
-def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, kind="std"):
+def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, kind="std", fside=1):
     """一棟晶圓廠（原點在地面中心，s＝縮放）。kind：std｜tall（高一層＋屋頂塔）｜tanks（側邊三座原料儲槽）｜twin（雙廠房）｜dome（圓頂潔淨室）
     logo＝正面廠牌貼圖、flag＝旗桿國旗貼圖（flay＝國旗自己的層，念到時升旗）"""
     S_ = lambda v: [R(a * s) for a in v]
@@ -509,11 +509,11 @@ def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, 
         box(f"{pre}_sgB", lay, "cabD", [sw + .12 * s, sh + .12 * s, .06], P_(.3, 1.25, 1.585))
         plate(f"{pre}_sg", lay, logo, sw, *P_(.3, 1.25, 1.62))
     if flag:                                                                                       # 旗桿＋國旗
-        ph = 4.2 * s
-        cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(2.75, ph / s / 2 + .3, 1.85))
-        sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(2.75, ph / s + .32, 1.85))
+        ph = 4.2 * s; px_ = 2.75 if fside > 0 else -3.55
+        cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(px_, ph / s / 2 + .3, 1.85))
+        sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(px_, ph / s + .32, 1.85))
         fw = 1.15 * s; fh = fw / SIGN[flag]["aspect"]
-        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(2.75 + 1.15 / 2 + .06, ph / s + .3 - fh / s / 2 - .06, 1.85))
+        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(px_ + 1.15 / 2 + .06, ph / s + .3 - fh / s / 2 - .06, 1.85))
     if anc: anchor(anc, lay, P_(-.4, hh + .9, .6), dx=0, dy=-120)
     return [f"{pre}_win", f"{pre}_sawG", f"{pre}_crW"]
 FX = 125
@@ -521,7 +521,7 @@ FABS = [("shin", "signB", "JP"), ("sumco", "signR", "JP"), ("gw", "signA", "TW")
 FAB_POS = [(-6.4, -3.2), (-3.2, 2.2), (0, -3.2), (6.4, -3.2), (3.2, 2.2)]      # 後排 3 棟（信越、環球晶、世創）、前排 2 棟（勝高、SK）
 FKIND = {"shin": "tall", "sumco": "tanks", "gw": "twin", "sil": "dome", "sk": "std"}
 for k, ((cid, sg, fl), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
-    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid])
+    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid], fside=-1 if cid == "sumco" else 1)
     glow(f"f_on{k}", f"f_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
 box("f_pad", "f_site", "conc", [24, .2, 15], [FX, .1, .4])
 box("f_road", "f_site", "cabD", [22, .03, 1.2], [FX, .21, 5.9])
@@ -673,17 +673,17 @@ P["s9"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 FLAB = {"shin": ("信越化學", "Japan", "blue"), "sumco": ("勝高", "Japan", "coral"), "gw": ("環球晶", "Taiwan", "amber"), "sil": ("世創", "Germany", "blue"), "sk": ("SK Siltron", "Korea", "coral")}
 FXY = {"shin": [205, 360], "sumco": [300, 830], "gw": [530, 360], "sil": [840, 360], "sk": [760, 830]}
 P["s10"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", FX, -1.8, 45, 24, 30), shot("top5", FX, -1.6, 44, 28, 60)],
+ "shot": [shot("start-4", FX + .9, -1.8, 48, 24, 30), shot("top5", FX + .9, -1.6, 47, 28, 60)],
  "run": [run(f"f_on{k}", c, "s11:start", 6) for k, (c, _, _) in enumerate(FABS)] + [run(f"f_ship{k}", "top5", "s11:start", 8) for k in range(5)],
  "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c + "+6", "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
- "overlay": [sec("si-co", "start+2", "s11:start-2", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
+ "overlay": [sec("si-co", "start+2", "s11:start+30", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
 P["s11"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", KX, 2.2, 34, 22, 34), shot("next", W12X, 1.8, 20, 34, 40)],
  "run": [run("k_shine12", "start", FAR, 6), run("k_spin12", "start-4", FAR, 12), run("k_epiOn", "next", FAR, 6)] + [run(f"k_on{k}", c, FAR, 6) for k, (c, _, _) in enumerate(TWF)],
  "labels": [dict(lab("k_twA", "環球晶", "Taiwan", "amber", "tw", "next-4", xy=[230, 360]), flag="TW"), dict(lab("k_fstA", "台勝科", "Taiwan", "blue", "fst", "next-4", xy=[540, 360]), flag="TW"),
             dict(lab("k_wwA", "合晶", "Taiwan", "blue", "ww+4", "next-4", xy=[850, 360]), flag="TW"),
             lab("k_epiA", "磊晶層（下一集）", "Epitaxial layer (next)", "blue", "next+6", "kw-10")],
- "overlay": [sec("si-next", "start+2", "kw-10", "台灣誰在做", "下一集：矽晶圓-2", {"tw": "tw", "fst": "fst", "ww": "ww", "what": "what", "next": "next", "kw": "kw"})]}
+ "overlay": [sec("si-next", "start+32", "kw-10", "台灣誰在做", "下一集：矽晶圓-2", {"tw": "tw", "fst": "fst", "ww": "ww", "what": "what", "next": "next", "kw": "kw"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 json.dump(script, open(sp, "w"), ensure_ascii=False, indent=1)
