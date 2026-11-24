@@ -9,6 +9,8 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
+import { Flag, LogoSvg, hasLogo, logoW } from "./Brand";
+import "./BrandWafer";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -336,24 +338,31 @@ const Size: React.FC<P> = ({ o, f, k }) => {
 };
 
 // ── si-co：全球五大（不列個別市占）｜五家合計超過八成 ──
+// 2026/11/24 審片必改：每列＝國旗＋官方 LOGO（Brand.tsx；抓不到原檔的只留文字）＋公司名，念到那家整列亮
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
-  const L5: [string, string, string][] = [["信越化學", "日本", "shin"], ["勝高 SUMCO", "日本", "sumco"], ["環球晶", "台灣", "gw"], ["世創 Siltronic", "德國", "sil"], ["SK Siltron", "韓國", "sk"]];
+  const L5: [string, string, string, string, string][] = [["信越化學", "日本", "shin", "JP", "shinetsu"], ["勝高 SUMCO", "日本", "sumco", "JP", "sumco"], ["環球晶", "台灣", "gw", "TW", "globalwafers"], ["世創 Siltronic", "德國", "sil", "DE", "siltronic"], ["SK Siltron", "韓國", "sk", "KR", "sksiltron"]];
   const t5 = cl((f - T(o, "top5")) / 30);
+  const RH = 50, Y0 = CT + 6;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {L5.map(([n, c, id], j) => { const a = on(f, T(o, id)), y = CT + 40 + j * 50;
+        {L5.map(([n, c, id, fl, lg], j) => { const a = on(f, T(o, id)), y = Y0 + j * RH, cy = y + RH / 2;
+          const lw = hasLogo(lg) ? Math.min(160, logoW(lg, 30)) : 0, lh = lw ? Math.round(30 * lw / logoW(lg, 30)) : 0;
           return <g key={j} opacity={0.3 + 0.7 * a}>
-            {id === "gw" ? <rect x={30} y={y - 34} width={440} height={46} fill={H.amber} opacity={0.25 * a} /> : null}
-            <text x={40} y={y} style={zh(34, H.text, 900)}>{n}</text><text x={460} y={y} textAnchor="end" style={zh(30, H.text2, 800)}>{c}</text></g>; })}
-        <Sep x={500} />
+            {a > 0.01 ? <rect x={22} y={y + 3} width={566} height={RH - 6} fill={id === "gw" ? H.amber : BLUE} opacity={0.14 * a} /> : null}
+            <Flag code={fl} h={28} x={32} y={cy - 14} asSvg />
+            <text x={78} y={cy + 10} style={zh(28, H.text2, 800)}>{c}</text>
+            <text x={150} y={cy + 12} style={zh(32, H.text, 900)}>{n}</text>
+            {lw ? <g><rect x={402} y={cy - lh / 2 - 5} width={lw + 12} height={lh + 10} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={1.5} /><LogoSvg id={lg} x={410} y={cy - lh / 2} h={lh} /></g> : null}
+          </g>; })}
+        <Sep x={606} />
         <g opacity={lit(f, T(o, "top5"), 0.35)}>
-          <text x={530} y={CT + 40} style={zh(32, H.text, 900)}>五家合計</text>
-          <rect x={530} y={140} width={380} height={50} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={3} />
-          <rect x={532} y={142} width={376 * 0.83 * EASE.move(t5)} height={46} fill={BLUE} />
-          <line x1={532 + 376 * 0.8} y1={130} x2={532 + 376 * 0.8} y2={200} stroke={H.amber} strokeWidth={4} />
-          <text x={530} y={270} style={zh(52, H.text, 900)}>超過八成</text>
+          <text x={630} y={CT + 40} style={zh(32, H.text, 900)}>五家合計</text>
+          <rect x={630} y={140} width={290} height={50} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={3} />
+          <rect x={632} y={142} width={286 * 0.83 * EASE.move(t5)} height={46} fill={BLUE} />
+          <line x1={632 + 286 * 0.8} y1={130} x2={632 + 286 * 0.8} y2={200} stroke={H.amber} strokeWidth={4} />
+          <text x={630} y={270} style={zh(52, H.text, 900)}>超過八成</text>
         </g>
       </svg>
     </Card>
@@ -371,7 +380,8 @@ const Next: React.FC<P> = ({ o, f, k }) => {
         {items.map(([a, b, id, c], j) => { const x = 30 + j * 312, l = lit(f, T(o, id), 0.4), hl = f >= T(o, id) && f < T(o, "kw");
           return <g key={j} opacity={l}>
             <rect x={x} y={CT + 6} width={262} height={118} fill={hl ? c : H.cardCompare} stroke={c} strokeWidth={hl ? 5 : 3} />
-            <text x={x + 131} y={CT + 56} textAnchor="middle" style={zh(40, hl ? "#FFFFFF" : H.text, 900)}>{a}</text>
+            <Flag code="TW" h={26} x={x + 14} y={CT + 22} asSvg />
+            <text x={x + 146} y={CT + 56} textAnchor="middle" style={zh(40, hl ? "#FFFFFF" : H.text, 900)}>{a}</text>
             <text x={x + 131} y={CT + 104} textAnchor="middle" style={zh(sm(30), hl ? "#FFFFFF" : H.text2, 800)}>{b}</text>
           </g>; })}
         <text x={W / 2} y={238} textAnchor="middle" style={zh(34, H.text, 900)} opacity={0.3 + 0.7 * nx}>下一集：矽晶圓-2</text>

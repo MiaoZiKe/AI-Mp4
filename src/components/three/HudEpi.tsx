@@ -9,6 +9,8 @@ import { FONT_ZH } from "../../theme";
 import { H, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
+import { Flag, LogoSvg, hasLogo, logoW } from "./Brand";
+import "./BrandWafer";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -241,12 +243,12 @@ const Size: React.FC<P> = ({ o, f, k }) => {
 };
 
 // ── w2-co：台灣四家（左：名單，念到的那家亮）｜右：角色兩行＋2025 營收長條 ──
-type Co = { id: string; name: string; code: string; l1: string; l2: string; rev: number; revT: string; cues: [string, string, string, string] };
+type Co = { id: string; name: string; code: string; flags: string[]; logo: string; l1: string; l2: string; rev: number; revT: string; cues: [string, string, string, string] };
 const COS: Co[] = [
-  { id: "gw", name: "環球晶", code: "6488", l1: "台灣最大", l2: "全球五大之一", rev: 606, revT: "606 億元", cues: ["gw", "gw", "top5", "rev"] },
-  { id: "fst", name: "台勝科", code: "3532", l1: "台塑＋日本勝高合資", l2: "12吋逾七成（公司說法）", rev: 123, revT: "123 億元", cues: ["fst", "jv", "p70", "p70"] },
-  { id: "ww", name: "合晶", code: "6182", l1: "6吋、8吋為主", l2: "功率元件；擴 12 吋", rev: 98, revT: "約 98 億元", cues: ["ww", "p68", "x12", "x12"] },
-  { id: "epi", name: "嘉晶", code: "3016", l1: "專業磊晶廠", l2: "矽、碳化矽、氮化鎵", rev: 39, revT: "39 億元", cues: ["epi", "epi", "sic", "gan"] },
+  { id: "gw", name: "環球晶", flags: ["TW"], logo: "globalwafers", code: "6488", l1: "台灣最大", l2: "全球五大之一", rev: 606, revT: "606 億元", cues: ["gw", "gw", "top5", "rev"] },
+  { id: "fst", name: "台勝科", flags: ["TW", "JP"], logo: "fst", code: "3532", l1: "台塑＋日本勝高合資", l2: "12吋逾七成（公司說法）", rev: 123, revT: "123 億元", cues: ["fst", "jv", "p70", "p70"] },
+  { id: "ww", name: "合晶", flags: ["TW"], logo: "waferworks", code: "6182", l1: "6吋、8吋為主", l2: "功率元件；擴 12 吋", rev: 98, revT: "約 98 億元", cues: ["ww", "p68", "x12", "x12"] },
+  { id: "epi", name: "嘉晶", flags: ["TW"], logo: "episil", code: "3016", l1: "專業磊晶廠", l2: "矽、碳化矽、氮化鎵", rev: 39, revT: "39 億元", cues: ["epi", "epi", "sic", "gan"] },
 ];
 const CoCard: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
@@ -259,8 +261,11 @@ const CoCard: React.FC<P> = ({ o, f, k }) => {
         {COS.map((r, j) => { const y = CT + 46 + j * 60, me = j === fi;
           return <g key={r.id} opacity={me ? 0.4 + 0.6 * a0 : j < fi ? 0.6 : 0.35}>
             {me ? <rect x={26} y={y - 40} width={410} height={54} fill={H.amber} opacity={0.28 * a0} /> : null}
-            <text x={40} y={y} style={zh(34, H.text, 900)}>{r.name}</text>
-            <text x={420} y={y} textAnchor="end" style={zh(30, H.text2, 800)}>{r.code}</text>
+            {r.flags.map((fl, q) => <Flag key={fl} code={fl} h={26} x={34 + q * 46} y={y - 32} asSvg />)}
+            <text x={130} y={y} style={zh(34, H.text, 900)}>{r.name}</text>
+            <text x={242} y={y} style={zh(26, H.text2, 800)}>{r.code}</text>
+            {hasLogo(r.logo) ? (() => { const lw = Math.min(140, logoW(r.logo, 26)), lh = Math.round(26 * lw / logoW(r.logo, 26));
+              return <g><rect x={312} y={y - 19 - lh / 2 - 4} width={lw + 10} height={lh + 8} fill="#FFFFFF" stroke={H.lineSoft} strokeWidth={1.5} /><LogoSvg id={r.logo} x={317} y={y - 19 - lh / 2} h={lh} /></g>; })() : null}
           </g>; })}
         <Sep x={466} />
         <text x={496} y={CT + 46} style={zh(34, H.text, 900)} opacity={0.35 + 0.65 * a1}>{c.l1}</text>

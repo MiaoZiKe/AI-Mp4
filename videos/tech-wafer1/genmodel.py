@@ -5,8 +5,9 @@
 #   C x=48   拉晶爐＝主角（爐體剖開：保溫層、石墨加熱器、石墨承座＋石英坩堝、熔湯、熱遮罩、晶種夾頭、晶種／晶頸／肩部／晶身；
 #            上方拉晶室、收線機構；氬氣由上往下流、熱往上冒；晶棒與坩堝反向旋轉；多晶矽塊落進坩堝→熔掉）                s1、s5、s6、s10
 #   W x=72   線鋸（兩支導輪＋上下兩層鑽石線網、晶棒 16 片往下切、切完抬起分開）；x=81 拋光機（轉盤＋拋光墊溝槽、載具頭、研磨液）  s7、s10
-#   K x=100  8 吋與 12 吋鏡面晶圓（晶粒格）、晶圓盒、磊晶層（下一集預告）                                                 s9、s11
-#   P x=125  矽晶格（原子＋鍵）裡一顆雜質原子、電子流繞過它                                                              s3
+#   K x=100  8 吋與 12 吋鏡面晶圓（晶粒格）、晶圓盒、磊晶層（下一集預告）；後方台灣三棟廠房                                 s9、s11
+#   F x=125  全球五家矽晶圓廠（2026/11/24 審片後新增；晶格站移到 x=-26，免得 s10→s11 鏡頭橫移時掃過晶格）               s10
+#   P x=-26  矽晶格（原子＋鍵）裡一顆雜質原子、電子流繞過它                                                              s3
 # 所有動作的 at 都寫成「幕id:cue±幀」（cue 來自 timeline.json；配音重跑 align 後重跑本檔即可）。
 import json, math, os, random, subprocess, sys
 D = os.path.dirname(os.path.abspath(__file__))
@@ -104,10 +105,10 @@ def spin(key, lay, ps, cx, rps, cz=0.0, axis=(0, 1, 0)):
 def lp(lay): return [p["id"] for p in parts if p["layer"] == lay]
 
 # ═════════ 廠房（背景，各站共用） ═════════
-box("r_floor", "t_room", "floor", [160, .3, 40], [60, -.15, -2])
+box("r_floor", "t_room", "floor", [174, .3, 40], [53, -.15, -2])
 box("r_grate", "t_room", "floorG", [.1, .03, 40], [60, .02, -2], at=[[-79 + 2.0 * i, 0, 0] for i in range(80)])
 box("r_grate2", "t_room", "floorG", [160, .03, .1], [60, .02, -2], at=[[0, 0, -19 + 2.0 * j] for j in range(20)])
-box("r_wall", "t_room", "wall", [160, 26, .4], [60, 13, -16])
+box("r_wall", "t_room", "wall", [174, 26, .4], [53, 13, -16])
 box("r_wallS", "t_room", "wall2", [.12, 25.6, .45], [60, 13, -15.9], at=[[-78 + 6 * i, 0, 0] for i in range(27)])
 box("r_ffu", "t_room", "ffu", [5.6, .4, 5.6], [60, 26.2, -10], at=[[-78 + 6 * i, 0, k * 6] for i in range(27) for k in (0, 1)])
 box("r_tray", "t_room", "steel2", [160, .25, .6], [60, 14.5, -14.6])                                       # 牆上管線架
@@ -427,7 +428,7 @@ anchor("k_w8A", "k_w8", [W8X - .8, WY, .6], dx=-160, dy=60)
 anchor("k_epiA", "k_epi", [W12X + 1.0, WY + .08, -.6], dx=170, dy=-70)
 
 # ═════════ P：矽晶格＋雜質 x=125 ═════════
-PX = 125; SPc = 1.0
+PX = -26; SPc = 1.0
 IMP = (1, 3)
 G = [[], [], []]
 for i in range(-4, 5):
@@ -449,12 +450,61 @@ air("x_airE", "x_lat", [PX - 4.8, 1.8, -.2], [PX + 4.8, 4.2, 1.1])
 anchor("x_siA", "x_lat", [PX - 3.0, 5.0, .2], dx=-150, dy=-90)
 anchor("x_impA", "x_imp", [PX + 1.0, 3.3, .3], dx=170, dy=-100)
 
+# ═════════ F：全球五家矽晶圓廠 x=150（s10）／K 後方台灣三家（s11） ═════════
+# 2026/11/24 審片必改：s10「全球誰在做」主畫面要換成跟公司有關的場景 → 五棟看得出是晶圓廠的廠房（鋸齒屋頂、屋頂空調、排氣塔、
+# 潔淨室側翼、亮燈窗帶、門口晶圓盒），念到哪家就落下那一棟、窗帶亮起；念「超過八成」時五棟的晶圓盒沿虛線流到前方集貨台。
+# 公司識別＝3D 標籤（中文名＋國旗）與 2D 卡（官方 LOGO＋國旗）；廠房招牌只用公司色塊，不畫 LOGO（LOGO 只用原檔）。
+materials.update({"m_" + k: v for k, v in {
+ "win": {"kind": "std", "color": "#BFD8FF", "emissive": "#9CC3FF", "ei": .35, "rough": .2, "metal": .1},
+ "roofS": M("#B7C3D4", rough=.5, metal=.3), "signB": M("#1D4293", rough=.4, metal=.1), "signA": M("#F2A21E", rough=.4, metal=.1),
+ "signR": M("#D9363E", rough=.4, metal=.1), "signT": M("#00857C", rough=.4, metal=.1), "signP": M("#6A4FB3", rough=.4, metal=.1)}.items()})
+def fab(pre, lay, x, z, sign, s=1.0, anc=None):
+    """一棟晶圓廠（原點在地面中心，s＝縮放）"""
+    S_ = lambda v: [R(a * s) for a in v]
+    P_ = lambda dx, dy, dz: [x + dx * s, dy * s, z + dz * s]
+    box(f"{pre}_pl", lay, "conc", S_([5.6, .3, 4.2]), P_(0, .15, 0))
+    box(f"{pre}_hall", lay, "wall", S_([4.2, 2.4, 3.0]), P_(-.4, 1.5, 0), bevel=.05)
+    box(f"{pre}_rib", lay, "wall2", S_([.08, 2.3, .06]), P_(-.4, 1.5, 1.52), at=[[R(k * .7 * s), 0, 0] for k in range(-3, 4)])
+    box(f"{pre}_win", lay, "win", S_([3.9, .34, .05]), P_(-.4, 2.05, 1.53))
+    box(f"{pre}_saw", lay, "roofS", S_([1.45, .12, 3.1]), P_(-.4, 2.98, 0), rot=[0, 0, -24], at=[[R(k * 1.38 * s), 0, 0] for k in (-1, 0, 1)])
+    box(f"{pre}_sawG", lay, "win", S_([.05, .5, 3.0]), P_(-.4, 2.95, 0), at=[[R((k * 1.38 + .66) * s), 0, 0] for k in (-1, 0, 1)])
+    box(f"{pre}_ahu", lay, "cab2", S_([.8, .5, .8]), P_(-.4, 3.25, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]], bevel=.03)
+    cyl(f"{pre}_fan", lay, "steel2", .28 * s, .08 * s, P_(-.4, 3.53, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]])
+    cyl(f"{pre}_stk", lay, "steelHi", .17 * s, 1.9 * s, P_(1.2, 3.35, -1.1), at=[[0, 0, 0], [R(-.5 * s), 0, 0]])
+    box(f"{pre}_cr", lay, "cab", S_([1.5, 1.7, 2.6]), P_(2.45, 1.15, -.1), bevel=.04)
+    box(f"{pre}_crW", lay, "win", S_([1.2, .22, .05]), P_(2.45, 1.55, 1.21))
+    box(f"{pre}_door", lay, "cabD", S_([.9, 1.0, .05]), P_(-1.6, .8, 1.53))
+    box(f"{pre}_sign", lay, sign, S_([1.9, .5, .07]), P_(.55, 1.05, 1.55))
+    box(f"{pre}_foup", lay, "pvdf", S_([.42, .42, .42]), P_(1.6, .51, 1.75), at=[[R(i * .48 * s), R(j * .44 * s), 0] for i in (0, 1) for j in (0, 1)], bevel=.03)
+    if anc: anchor(anc, lay, P_(-.4, 3.3, .6), dx=0, dy=-120)
+    return [f"{pre}_win", f"{pre}_sawG", f"{pre}_crW"]
+FX = 125
+FABS = [("shin", "signB", "JP"), ("sumco", "signR", "JP"), ("gw", "signA", "TW"), ("sil", "signT", "DE"), ("sk", "signP", "KR")]
+FAB_POS = [(-6.4, -3.2), (-3.2, 2.2), (0, -3.2), (6.4, -3.2), (3.2, 2.2)]      # 後排 3 棟（信越、環球晶、世創）、前排 2 棟（勝高、SK）
+for k, ((cid, sg, _), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
+    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A")
+    glow(f"f_on{k}", f"f_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
+box("f_pad", "f_site", "conc", [24, .2, 15], [FX, .1, .4])
+box("f_road", "f_site", "cabD", [22, .03, 1.2], [FX, .21, 5.9])
+box("f_lane", "f_site", "ffu", [.8, .02, .12], [FX, .23, 5.9], at=[[-10 + 2 * i, 0, 0] for i in range(11)])
+box("f_dock", "f_hub", "cab2", [3.6, .4, 2.0], [FX, .2, 7.4], bevel=.04)
+box("f_hubB", "f_hub", "pvdf", [.42, .42, .42], [FX, .61, 7.4], at=[[-1.2 + .48 * i, .44 * j, -.5 + .5 * m] for i in range(6) for j in range(2) for m in range(3)], bevel=.03)
+for k, (dx, dz) in enumerate(FAB_POS):
+    flowx(f"f_ship{k}", "f_site", [[FX + dx + 1.8, .4, dz + 1.9], [FX + dx + 1.8, .4, 5.9], [FX, .4, 5.9], [FX, .4, 6.6]], shape="dot", n=3, size=.2, rate=.45, color="#FFFFFF", rim="steel2", trail=2)
+anchor("f_hubA", "f_hub", [FX, 1.2, 7.4], dx=0, dy=110)
+# 台灣三家（s11，K 站晶圓桌後方，縮小 0.62）
+TWF = [("tw", "signA", -5.6), ("fst", "signB", 0), ("ww", "signT", 5.6)]
+for k, (cid, sg, dx) in enumerate(TWF):
+    wins = fab(f"t{k}", f"k_fab{k}", KX + dx, -6.6, sg, s=.8, anc=f"k_{cid}A")
+    glow(f"k_on{k}", f"k_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
+spin("k_spin12", "k_w12", ["k_w12", "k_d12", "k_notch12"], W12X, .06)
+
 # 主素材框（看不見；給 layout-check 判斷「卡片／標籤有沒有蓋到主體中央」）：每段只亮鏡頭對準的那一個，其他層全部標 bg
 materials["m_proxy"] = {"kind": "unlit", "color": "#FFFFFF", "opacity": 0}
 PXB = {"px_arc": (QX - 4.2, QX + 4.8, .3, 9.9, -4.0, 4.6), "px_sie": (DX - 1.2, SX + 3.4, .2, 10.4, -3.2, 3.2),
        "px_czm": (CX - 4.2, CX + 4.2, 1.4, 7.8, -4.2, 4.2), "px_czc": (CX - 4.2, CX + 4.2, 1.4, 11.2, -4.2, 4.2),
        "px_saw": (WX - 4.2, WX + 4.2, 1.8, 10.0, -2.4, 2.4), "px_pol": (PX0 - 3.3, PX0 + 3.3, 1.6, 4.9, -3.3, 3.3),
-       "px_k": (W8X - 1.1, W12X + 1.6, 2.2, 2.6, -1.6, 1.6), "px_lat": (PX - 4.4, PX + 4.4, .2, 5.6, -1.3, .9), "px_all": (CX - 4.3, WX + 4.2, 0, 19.6, -4.3, 4.3)}
+       "px_k": (W8X - 1.1, W12X + 1.6, 2.2, 2.6, -1.6, 1.6), "px_lat": (PX - 4.4, PX + 4.4, .2, 5.6, -1.3, .9), "px_fab": (FX - 9.2, FX + 9.6, .2, 3.6, -5.3, 4.3)}
 for lid, (x0, x1, y0, y1, z0, z1) in PXB.items():
     box(lid, lid, "proxy", [x1 - x0, y1 - y0, z1 - z0], [(x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2])
 for l in layers:
@@ -510,11 +560,12 @@ VIS = [
  hid("p_wm", HIDE, "s8:pol+20", 10), hid("p_wr", "s8:pol+20", FAR, 10), mv("p_head", "s8:pol+6", FAR, dur=20, dy=1.3),
  # 下一集預告：磊晶層
  hid("k_epi", HIDE, "s11:next", 16),
-]
+ fall("f_hub", "s10:top5", dy=1.2),
+] + [fall(f"f_fab{k}", f"s10:{c}", dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(FABS)] + [fall(f"k_fab{k}", f"s11:{c}" + ("+4" if c == "ww" else ""), dy=1.6, bounce=.1) for k, (c, _, _) in enumerate(TWF)]
 for k in range(NSL):
     VIS.append(mv(f"w_sl{k}", "s7:saw-8", FAR, dur=40, dy=-2.3))
     VIS.append(mv(f"w_sl{k}", "s7:slice+4", FAR, dur=24, dy=2.9, dz=(k - (NSL - 1) / 2) * .16))
-PXW = {"px_czc": [(EARLY, "s2:start-4"), ("s6:start+30", "s7:start-4")], "px_czm": [("s5:start+30", "s6:start-4")], "px_all": [("s10:start+30", "s11:start-4")], "px_arc": [("s2:start+30", "s3:start-4")], "px_lat": [("s3:start+30", "s4:start-4")],
+PXW = {"px_czc": [(EARLY, "s2:start-4"), ("s6:start+30", "s7:start-4")], "px_czm": [("s5:start+30", "s6:start-4")], "px_fab": [("s10:start+30", "s11:start-4")], "px_arc": [("s2:start+30", "s3:start-4")], "px_lat": [("s3:start+30", "s4:start-4")],
        "px_sie": [("s4:start+30", "s5:start-4")], "px_saw": [("s7:start+30", "s8:start-4")], "px_pol": [("s8:start+30", "s9:start-4")],
        "px_k": [("s9:start+30", "s10:start-4"), ("s11:start+30", FAR)]}
 for lid, wins in PXW.items():
@@ -529,7 +580,7 @@ P["s1"] = {"zoom": [{"to": "tool", "at": "start-30", "dur": 1}],
  "shot": [shot("start-30", CX, 5.6, 60, 16, 1), shot("how", CX, 5.6, 58, 18, 70)],
  "shift": VIS,
  "run": CZRUN("start-30", "s2:start") + [run("c_ledG", "start-30", FAR, 1)],
- "labels": [lab("c_ingA", "晶棒正在長", "An ingot growing", "blue", "sand", "s2:start-4")],
+ "labels": [lab("c_ingA", "晶棒正在長", "An ingot growing", "blue", "how", "s2:start-4")],
  "overlay": [sec("si-hook", "chip", "s2:start-2", "代工的供應商：矽晶圓", "示意，非實際比例", {"chip": "chip", "sand": "sand", "how": "how", "mirror": "mirror"})]}
 P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", QX - 1.5, 1.2, 56, 18, 30)],
@@ -552,7 +603,7 @@ P["s4"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
             lab("s_rodA", "矽棒越長越粗", "Rods grow thicker", "coral", "rod", "s5:start-4", xy=[780, 300]), lab("s_polyA", "多晶矽", "Polysilicon", "blue", "poly", "s5:start-4", xy=[790, 853])],
  "overlay": [sec("si-siem", "start+2", "s5:start-2", "西門子法：氣體→蒸餾→長回棒", "Fraunhofer ISE；Wacker", {"siem": "siem", "gas": "gas", "dist": "dist", "rod": "rod", "poly": "poly"})]}
 P["s5"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", CX, 2.4, 50, 26, 30)],
+ "shot": [shot("start-4", CX, 2.6, 48, 24, 24)],
  "run": [run("c_heatOn", "heat-4", "s7:start", 10), run("c_heatP", "heat", "s7:start", 10), run("c_chunkHot", "heat", "s6:start", 12), run("c_meltOn", "melt", "s7:start", 10),
          run("c_wave0", "melt+10", "s7:start", 6), run("c_wave1", "melt+10", "s7:start", 6), run("c_rotC", "heat", "s7:start", 14)],
  "labels": [lab("c_chunkA", "多晶矽塊", "Polysilicon chunks", "blue", "cruc+10", "melt+6", xy=[290, 300]), lab("c_crucA", "石英坩堝", "Crucible", "amber", "cruc", "s6:start-4", xy=[225, 640]),
@@ -579,15 +630,19 @@ P["s9"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "run": [run("k_shine12", "why", "s10:start", 6), run("k_d12On", "more", "s10:start", 8)],
  "labels": [lab("k_w12A", "12 吋", "300 mm", "blue", "why", "s10:start-4", xy=[780, 300]), lab("k_w8A", "8 吋", "200 mm", "amber", "area", "s10:start-4", xy=[300, 300])],
  "overlay": [sec("si-size", "start+2", "s10:start-2", "12 吋 vs 8 吋", "Wevolver；Wikipedia", {"why": "why", "area": "area", "more": "more"})]}
+FLAB = {"shin": ("信越化學", "Japan", "blue"), "sumco": ("勝高", "Japan", "coral"), "gw": ("環球晶", "Taiwan", "amber"), "sil": ("世創", "Germany", "blue"), "sk": ("SK Siltron", "Korea", "coral")}
+FXY = {"shin": [205, 360], "sumco": [300, 830], "gw": [530, 360], "sil": [840, 360], "sk": [760, 830]}
 P["s10"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", (CX + WX) / 2, 5.0, 96, 16, 34)],
- "run": CZRUN("start", "s11:start") + [run("w_wireF", "start", "s11:start", 6), run("p_rotP", "start", "s11:start", 10)],
- "labels": [lab("c_toolA", "拉晶", "Crystal pulling", "blue", "shin", "s11:start-4", xy=[300, 300]), lab("w_wireA", "切片、拋光", "Slicing & polishing", "amber", "gw", "s11:start-4", xy=[780, 300])],
+ "shot": [shot("start-4", FX, -2.2, 54, 26, 30), shot("top5", FX, -2.0, 52, 30, 60)],
+ "run": [run(f"f_on{k}", c, "s11:start", 6) for k, (c, _, _) in enumerate(FABS)] + [run(f"f_ship{k}", "top5", "s11:start", 8) for k in range(5)],
+ "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c, "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
  "overlay": [sec("si-co", "start+2", "s11:start-2", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
 P["s11"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", W12X, 1.6, 18, 40, 34)],
- "run": [run("k_shine12", "start", FAR, 6), run("k_epiOn", "next", FAR, 6)],
- "labels": [lab("k_epiA", "磊晶層（下一集）", "Epitaxial layer (next)", "blue", "next+6", "kw-10")],
+ "shot": [shot("start-4", KX, 2.2, 34, 22, 34), shot("next", W12X, 1.8, 20, 34, 40)],
+ "run": [run("k_shine12", "start", FAR, 6), run("k_spin12", "start-4", FAR, 12), run("k_epiOn", "next", FAR, 6)] + [run(f"k_on{k}", c, FAR, 6) for k, (c, _, _) in enumerate(TWF)],
+ "labels": [dict(lab("k_twA", "環球晶", "Taiwan", "amber", "tw", "next-4", xy=[230, 360]), flag="TW"), dict(lab("k_fstA", "台勝科", "Taiwan", "blue", "fst", "next-4", xy=[540, 360]), flag="TW"),
+            dict(lab("k_wwA", "合晶", "Taiwan", "blue", "ww+4", "next-4", xy=[850, 360]), flag="TW"),
+            lab("k_epiA", "磊晶層（下一集）", "Epitaxial layer (next)", "blue", "next+6", "kw-10")],
  "overlay": [sec("si-next", "start+2", "kw-10", "台灣誰在做", "下一集：矽晶圓-2", {"tw": "tw", "fst": "fst", "ww": "ww", "what": "what", "next": "next", "kw": "kw"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])

@@ -129,9 +129,9 @@
    ],
    "props": {
     "hook": {
-     "kicker": "代工的供應商 2",
-     "title": "磊晶差在哪？",
-     "size": 120,
+     "kicker": "代工的供應商 2｜磊晶差在哪",
+     "title": "1100°C 長一層矽",
+     "size": 112,
      "top": 236
     },
     "zoom": [
@@ -270,20 +270,100 @@
       "bounce": 0.08
      },
      {
-      "layer": "m_mask",
+      "layer": "n_mask",
       "at": "s1:start-40",
       "until": "s11:mask-4",
       "dur": 24,
       "dx": 0,
-      "dy": 2.4,
+      "dy": 2.0,
       "dz": 0
      },
      {
-      "layer": "m_mask",
+      "layer": "n_mask",
       "at": "s1:start-40",
       "until": "s11:mask-4",
       "opacity": 0,
       "dur": 10
+     },
+     {
+      "layer": "t_fab0",
+      "at": "s1:start-40",
+      "until": "s7:gw-6",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "t_fab1",
+      "at": "s1:start-40",
+      "until": "s8:fst",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "t_fab2",
+      "at": "s1:start-40",
+      "until": "s9:ww",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "t_fab3",
+      "at": "s1:start-40",
+      "until": "s10:epi",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "t_prod0",
+      "at": "s1:start-40",
+      "until": "s7:gw+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "t_prod1",
+      "at": "s1:start-40",
+      "until": "s8:fst+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "t_prod2",
+      "at": "s1:start-40",
+      "until": "s9:ww+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "t_prod3",
+      "at": "s1:start-40",
+      "until": "s10:epi+10",
+      "dy": 1.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
      },
      {
       "layer": "px_ew",
@@ -357,7 +437,7 @@
      },
      {
       "layer": "px_kall",
-      "at": "s11:start-4",
+      "at": "s7:start-4",
       "until": "s12:start+500",
       "opacity": 0,
       "dur": 1
@@ -372,6 +452,62 @@
      {
       "layer": "px_m",
       "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t0",
+      "at": "s1:start-400",
+      "until": "s7:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t0",
+      "at": "s8:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t1",
+      "at": "s1:start-400",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t1",
+      "at": "s9:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t2",
+      "at": "s1:start-400",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t2",
+      "at": "s10:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t3",
+      "at": "s1:start-400",
+      "until": "s10:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t3",
+      "at": "s11:start-4",
       "until": "s12:start+500",
       "opacity": 0,
       "dur": 1
@@ -494,37 +630,37 @@
      },
      {
       "id": "e_dep0",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
      {
       "id": "e_dep1",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
      {
       "id": "e_dep2",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
      {
       "id": "e_dep3",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
      {
       "id": "e_dep4",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
      {
       "id": "e_dep5",
-      "at": "grow",
+      "at": "start-30",
       "ramp": 6,
       "until": "s2:start"
      },
@@ -634,9 +770,17 @@
       "at": "start-4",
       "dur": 30,
       "x": 25.8,
+      "y": 1.8,
+      "d": 26,
+      "elev": 30
+     },
+     {
+      "at": "polw",
+      "dur": 50,
+      "x": 25.8,
       "y": 1.6,
-      "d": 16,
-      "elev": 42
+      "d": 17,
+      "elev": 40
      }
     ],
     "run": [
@@ -901,7 +1045,7 @@
         "at": "lamp"
        },
        "deg": {
-        "at": "deg"
+        "at": "deg-30"
        },
        "gas": {
         "at": "gas"
@@ -1437,29 +1581,42 @@
     "shot": [
      {
       "at": "start-4",
+      "dur": 26,
+      "x": 138,
+      "y": 1.6,
+      "d": 66,
+      "elev": 20
+     },
+     {
+      "at": "gw",
       "dur": 30,
-      "x": 30.3,
-      "y": 1.2,
-      "d": 44,
-      "elev": 44
+      "x": 124.8,
+      "y": 1.5,
+      "d": 26,
+      "elev": 20
      }
     ],
     "run": [
      {
-      "id": "k_p12On",
+      "id": "t_on0",
       "at": "gw",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s11:start"
      }
     ],
     "labels": [
      {
-      "part": "k_p12A",
+      "part": "t_gwA",
       "text": "環球晶 6488",
-      "en": "GlobalWafers",
+      "en": "Taiwan",
       "color": "amber",
       "at": "gw",
-      "until": "s8:start-4"
+      "until": "s8:start-4",
+      "xy": [
+       540,
+       360
+      ],
+      "flag": "TW"
      }
     ],
     "overlay": [
@@ -1539,30 +1696,48 @@
     ],
     "shot": [
      {
-      "at": "start-4",
+      "at": "fst-10",
       "dur": 30,
-      "x": 30.3,
-      "y": 1.2,
-      "d": 44,
-      "elev": 44
+      "x": 133.8,
+      "y": 1.5,
+      "d": 26,
+      "elev": 20
      }
     ],
     "run": [
      {
-      "id": "k_p12On",
-      "at": "main",
+      "id": "t_on1",
+      "at": "fst",
       "ramp": 6,
-      "until": "s9:start"
+      "until": "s11:start"
      }
     ],
     "labels": [
      {
-      "part": "k_p12A",
+      "part": "t_fstA",
       "text": "台勝科 3532",
-      "en": "FST",
+      "en": "Taiwan",
       "color": "blue",
       "at": "fst",
-      "until": "s9:start-4"
+      "until": "s9:start-4",
+      "xy": [
+       400,
+       360
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "t_jpA",
+      "text": "日本勝高（合資）",
+      "en": "SUMCO, Japan",
+      "color": "coral",
+      "at": "jv",
+      "until": "s9:start-4",
+      "xy": [
+       700,
+       820
+      ],
+      "flag": "JP"
      }
     ],
     "overlay": [
@@ -1646,51 +1821,46 @@
     ],
     "shot": [
      {
-      "at": "start-4",
+      "at": "ww-10",
       "dur": 30,
-      "x": 30.3,
-      "y": 1.2,
-      "d": 44,
-      "elev": 44
+      "x": 142.8,
+      "y": 1.5,
+      "d": 26,
+      "elev": 20
      }
     ],
     "run": [
      {
-      "id": "k_w8On",
-      "at": "p68",
+      "id": "t_on2",
+      "at": "ww",
       "ramp": 6,
-      "until": "s10:start"
-     },
-     {
-      "id": "k_w6On",
-      "at": "p68",
-      "ramp": 6,
-      "until": "s10:start"
+      "until": "s11:start"
      }
     ],
     "labels": [
      {
-      "part": "k_w8A",
+      "part": "t_wwA",
       "text": "合晶 6182",
-      "en": "Wafer Works",
+      "en": "Taiwan",
       "color": "amber",
       "at": "ww",
       "until": "s10:start-4",
       "xy": [
-       400,
-       300
-      ]
+       540,
+       360
+      ],
+      "flag": "TW"
      },
      {
-      "part": "k_w6A",
-      "text": "合晶 6182",
-      "en": "Wafer Works",
-      "color": "amber",
+      "part": "t_wwA",
+      "text": "6 吋＋8 吋",
+      "en": "150 / 200 mm",
+      "color": "blue",
       "at": "p68",
       "until": "s10:start-4",
       "xy": [
-       850,
-       300
+       540,
+       830
       ]
      }
     ],
@@ -1774,17 +1944,17 @@
     ],
     "shot": [
      {
-      "at": "start-4",
+      "at": "epi-10",
       "dur": 30,
-      "x": 30.3,
-      "y": 1.2,
-      "d": 44,
-      "elev": 44
+      "x": 151.8,
+      "y": 1.5,
+      "d": 26,
+      "elev": 20
      }
     ],
     "run": [
      {
-      "id": "k_e12On",
+      "id": "t_on3",
       "at": "epi",
       "ramp": 6,
       "until": "s11:start"
@@ -1792,12 +1962,29 @@
     ],
     "labels": [
      {
-      "part": "k_e12A",
+      "part": "t_epiA",
       "text": "嘉晶 3016",
-      "en": "Episil",
+      "en": "Taiwan",
       "color": "blue",
       "at": "epi",
-      "until": "s11:start-4"
+      "until": "s11:start-4",
+      "xy": [
+       540,
+       360
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "t_sicA",
+      "text": "矽／碳化矽／氮化鎵",
+      "en": "Si / SiC / GaN epi",
+      "color": "amber",
+      "at": "sic",
+      "until": "s11:start-4",
+      "xy": [
+       540,
+       830
+      ]
      }
     ],
     "overlay": [
@@ -1871,7 +2058,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "series_plan 系列 2 第 3 集"
+    "下一集：光罩-1（晶片的底片）"
    ],
    "props": {
     "zoom": [
@@ -1885,49 +2072,55 @@
      {
       "at": "start-4",
       "dur": 34,
-      "x": 90,
-      "y": 2.4,
-      "d": 24,
-      "elev": 30
+      "x": 180,
+      "y": 4.4,
+      "d": 34,
+      "elev": 20
      }
     ],
     "run": [
      {
-      "id": "m_uv",
+      "id": "n_uv",
       "at": "mask+10",
       "ramp": 6,
       "until": "s12:start"
      },
      {
-      "id": "m_on",
+      "id": "n_on",
       "at": "mask+10",
+      "ramp": 6,
+      "until": "s12:start"
+     },
+     {
+      "id": "n_wOn",
+      "at": "mask+30",
       "ramp": 6,
       "until": "s12:start"
      }
     ],
     "labels": [
      {
-      "part": "m_wA",
+      "part": "n_wA",
       "text": "晶圓備好了",
       "en": "Wafer ready",
       "color": "blue",
       "at": "ready",
       "until": "kw-10",
       "xy": [
-       300,
-       300
+       280,
+       760
       ]
      },
      {
-      "part": "m_maskA",
+      "part": "n_maskA",
       "text": "光罩（下一集）",
       "en": "Photomask (next)",
       "color": "amber",
       "at": "mask",
       "until": "kw-10",
       "xy": [
-       780,
-       300
+       800,
+       360
       ]
      }
     ],

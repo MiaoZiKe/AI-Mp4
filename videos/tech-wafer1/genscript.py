@@ -70,7 +70,7 @@ S = [
  ["台灣除了環球晶", "還有台勝科、合晶", "各做什麼？", "下一集看", "留言拉晶", "拿完整資料"],
  ["Besides GlobalWafers, Taiwan has", "FST and Wafer Works.", "What does each do?", "Next episode.", "Comment \"拉晶\"", "for the full notes."],
  [("tw", "台灣除了環球晶"), ("fst", "台勝科"), ("ww", "合晶"), ("what", "各做什麼"), ("next", "下一集"), ("kw", "留言拉晶")],
- ["環球晶", "台勝科", "合晶"], ["series_plan 系列 2 第 2 集"]),
+ ["環球晶", "台勝科", "合晶"], ["SemiEngineering；股感；鉅亨"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace("坩堝", "甘鍋")
 scenes = []
@@ -83,7 +83,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 1", "title": "砂子變晶圓？", "size": 120, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 1｜砂子變晶圓", "title": "純度 11 個 9", "size": 120, "top": 236}
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "矽晶圓-2 台灣誰在做", "trail": ["環球晶", "台勝科", "合晶"], "at": "s11:kw-8", "comment": "拉晶", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/24", "noteAlways": True}

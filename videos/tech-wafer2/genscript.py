@@ -70,7 +70,7 @@ S = [
  ["晶圓備好了", "電路怎麼印上去？", "靠光罩，下一集看", "留言磊晶", "拿完整資料"],
  ["The wafer is ready.", "How do circuits get printed on it?", "With a photomask: next episode.", "Comment \"磊晶\"", "for the full notes."],
  [("ready", "晶圓備好了"), ("print", "怎麼印上去"), ("mask", "靠光罩"), ("next", "下一集"), ("kw", "留言磊晶")],
- ["光罩", "磊晶"], ["series_plan 系列 2 第 3 集"]),
+ ["光罩", "磊晶"], ["下一集：光罩-1（晶片的底片）"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []
@@ -83,7 +83,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 2", "title": "磊晶差在哪？", "size": 120, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 2｜磊晶差在哪", "title": "1100°C 長一層矽", "size": 112, "top": 236}
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光罩-1 晶片的底片", "trail": ["環球晶", "台勝科", "合晶", "嘉晶"], "at": "s11:kw-8", "comment": "磊晶", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}

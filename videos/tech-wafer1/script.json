@@ -125,8 +125,8 @@
    ],
    "props": {
     "hook": {
-     "kicker": "代工的供應商 1",
-     "title": "砂子變晶圓？",
+     "kicker": "代工的供應商 1｜砂子變晶圓",
+     "title": "純度 11 個 9",
      "size": 120,
      "top": 236
     },
@@ -314,6 +314,96 @@
       "until": "s11:next",
       "opacity": 0,
       "dur": 16
+     },
+     {
+      "layer": "f_hub",
+      "at": "s1:start-40",
+      "until": "s10:top5",
+      "dy": 1.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.08
+     },
+     {
+      "layer": "f_fab0",
+      "at": "s1:start-40",
+      "until": "s10:shin",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_fab1",
+      "at": "s1:start-40",
+      "until": "s10:sumco",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_fab2",
+      "at": "s1:start-40",
+      "until": "s10:gw",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_fab3",
+      "at": "s1:start-40",
+      "until": "s10:sil",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_fab4",
+      "at": "s1:start-40",
+      "until": "s10:sk",
+      "dy": 2.2,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "k_fab0",
+      "at": "s1:start-40",
+      "until": "s11:tw",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "k_fab1",
+      "at": "s1:start-40",
+      "until": "s11:fst",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "k_fab2",
+      "at": "s1:start-40",
+      "until": "s11:ww+4",
+      "dy": 1.6,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
      },
      {
       "layer": "w_sl0",
@@ -639,14 +729,14 @@
       "dur": 1
      },
      {
-      "layer": "px_all",
+      "layer": "px_fab",
       "at": "s1:start-400",
       "until": "s10:start+30",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "px_all",
+      "layer": "px_fab",
       "at": "s11:start-4",
       "until": "s12:start+500",
       "opacity": 0,
@@ -824,7 +914,7 @@
       "text": "晶棒正在長",
       "en": "An ingot growing",
       "color": "blue",
-      "at": "sand",
+      "at": "how",
       "until": "s2:start-4"
      }
     ],
@@ -1104,7 +1194,7 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": 125,
+      "x": -26,
       "y": 0.7,
       "d": 32,
       "elev": 12
@@ -1483,11 +1573,11 @@
     "shot": [
      {
       "at": "start-4",
-      "dur": 30,
+      "dur": 24,
       "x": 48,
-      "y": 2.4,
-      "d": 50,
-      "elev": 26
+      "y": 2.6,
+      "d": 48,
+      "elev": 24
      }
     ],
     "run": [
@@ -2215,117 +2305,148 @@
     "shot": [
      {
       "at": "start-4",
-      "dur": 34,
-      "x": 60.0,
-      "y": 5.0,
-      "d": 96,
-      "elev": 16
+      "dur": 30,
+      "x": 125,
+      "y": -2.2,
+      "d": 54,
+      "elev": 26
+     },
+     {
+      "at": "top5",
+      "dur": 60,
+      "x": 125,
+      "y": -2.0,
+      "d": 52,
+      "elev": 30
      }
     ],
     "run": [
      {
-      "id": "c_rotX",
-      "at": "start",
-      "ramp": 12,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_rotS",
-      "at": "start",
-      "ramp": 12,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_rotC",
-      "at": "start",
-      "ramp": 12,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_heatOn",
-      "at": "start",
-      "ramp": 10,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_heatP",
-      "at": "start",
-      "ramp": 10,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_meltOn",
-      "at": "start",
-      "ramp": 8,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_menOn",
-      "at": "start",
-      "ramp": 8,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_arF0",
-      "at": "start",
-      "ramp": 8,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_arF1",
-      "at": "start",
-      "ramp": 8,
-      "until": "s11:start"
-     },
-     {
-      "id": "c_wave0",
-      "at": "start",
+      "id": "f_on0",
+      "at": "shin",
       "ramp": 6,
       "until": "s11:start"
      },
      {
-      "id": "c_wave1",
-      "at": "start",
+      "id": "f_on1",
+      "at": "sumco",
       "ramp": 6,
       "until": "s11:start"
      },
      {
-      "id": "w_wireF",
-      "at": "start",
+      "id": "f_on2",
+      "at": "gw",
       "ramp": 6,
       "until": "s11:start"
      },
      {
-      "id": "p_rotP",
-      "at": "start",
-      "ramp": 10,
+      "id": "f_on3",
+      "at": "sil",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_on4",
+      "at": "sk",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_ship0",
+      "at": "top5",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_ship1",
+      "at": "top5",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_ship2",
+      "at": "top5",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_ship3",
+      "at": "top5",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "f_ship4",
+      "at": "top5",
+      "ramp": 8,
       "until": "s11:start"
      }
     ],
     "labels": [
      {
-      "part": "c_toolA",
-      "text": "拉晶",
-      "en": "Crystal pulling",
+      "part": "f_shinA",
+      "text": "信越化學",
+      "en": "Japan",
       "color": "blue",
       "at": "shin",
       "until": "s11:start-4",
       "xy": [
-       300,
-       300
-      ]
+       205,
+       360
+      ],
+      "flag": "JP"
      },
      {
-      "part": "w_wireA",
-      "text": "切片、拋光",
-      "en": "Slicing & polishing",
+      "part": "f_sumcoA",
+      "text": "勝高",
+      "en": "Japan",
+      "color": "coral",
+      "at": "sumco",
+      "until": "s11:start-4",
+      "xy": [
+       300,
+       830
+      ],
+      "flag": "JP"
+     },
+     {
+      "part": "f_gwA",
+      "text": "環球晶",
+      "en": "Taiwan",
       "color": "amber",
       "at": "gw",
       "until": "s11:start-4",
       "xy": [
-       780,
-       300
-      ]
+       530,
+       360
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "f_silA",
+      "text": "世創",
+      "en": "Germany",
+      "color": "blue",
+      "at": "sil",
+      "until": "s11:start-4",
+      "xy": [
+       840,
+       360
+      ],
+      "flag": "DE"
+     },
+     {
+      "part": "f_skA",
+      "text": "SK Siltron",
+      "en": "Korea",
+      "color": "coral",
+      "at": "sk",
+      "until": "s11:start-4",
+      "xy": [
+       760,
+       830
+      ],
+      "flag": "KR"
      }
     ],
     "overlay": [
@@ -2409,7 +2530,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "series_plan 系列 2 第 2 集"
+    "SemiEngineering；股感；鉅亨"
    ],
    "props": {
     "zoom": [
@@ -2423,10 +2544,18 @@
      {
       "at": "start-4",
       "dur": 34,
+      "x": 100,
+      "y": 2.2,
+      "d": 34,
+      "elev": 22
+     },
+     {
+      "at": "next",
+      "dur": 40,
       "x": 100.6,
-      "y": 1.6,
-      "d": 18,
-      "elev": 40
+      "y": 1.8,
+      "d": 20,
+      "elev": 34
      }
     ],
     "run": [
@@ -2437,13 +2566,76 @@
       "until": "s12:start+400"
      },
      {
+      "id": "k_spin12",
+      "at": "start-4",
+      "ramp": 12,
+      "until": "s12:start+400"
+     },
+     {
       "id": "k_epiOn",
       "at": "next",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "k_on0",
+      "at": "tw",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "k_on1",
+      "at": "fst",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "k_on2",
+      "at": "ww",
       "ramp": 6,
       "until": "s12:start+400"
      }
     ],
     "labels": [
+     {
+      "part": "k_twA",
+      "text": "環球晶",
+      "en": "Taiwan",
+      "color": "amber",
+      "at": "tw",
+      "until": "next-4",
+      "xy": [
+       230,
+       360
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "k_fstA",
+      "text": "台勝科",
+      "en": "Taiwan",
+      "color": "blue",
+      "at": "fst",
+      "until": "next-4",
+      "xy": [
+       540,
+       360
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "k_wwA",
+      "text": "合晶",
+      "en": "Taiwan",
+      "color": "blue",
+      "at": "ww+4",
+      "until": "next-4",
+      "xy": [
+       850,
+       360
+      ],
+      "flag": "TW"
+     },
      {
       "part": "k_epiA",
       "text": "磊晶層（下一集）",
