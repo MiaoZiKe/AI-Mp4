@@ -545,7 +545,7 @@ P["s9"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "overlay": [sec("trk-wait", "start+2", "s10:start-5", "為什麼要連在一起", "專利文獻整理，示意", {"why": "why", "link": "link", "wait": "wait", "bad": "bad"})]}
 P["s10"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", 4.6, 2.0, 86, 34, 30)],
- "labels": [dict(lab("t_track", "東京威力科創", "Japan", "amber", "tel", "s11:start-4", xy=[400, 347]), flag="JP")],
+ "labels": [dict(lab("t_track", "東京威力科創", "Japan", "amber", "tel", "s11:start-4", xy=[400, 347]), flag="JP", logo="tel")],
  "overlay": [sec("trk-co", "start+2", "s11:start-5", "誰在做", "公司說法＋研究機構估計", {"tel": "tel", "euv": "euv", "all": "all"})]}
 P["s11"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 1}],
  "shot": [shot("start-4", 2.0, 2.4, 64, 36, 30)],

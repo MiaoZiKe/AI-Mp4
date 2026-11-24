@@ -13,6 +13,7 @@ add("siltronic", { file: "logos/siltronic.svg", w: 744.09448, h: 288.4252, name:
 // 2026/11/24 下午：Commons 的 thumb.php（伺服器把原檔轉 PNG，不改色）拿到勝高、台勝科、捷時雅（原檔 GIF）
 add("sumco", { file: "logos/sumco.png", w: 800, h: 395, name: "勝高 SUMCO", source: "https://commons.wikimedia.org/wiki/File:Sumco_Logo.svg（commons.wikimedia.org/w/thumb.php?f=Sumco_Logo.svg&w=800）" });
 add("fst", { file: "logos/fst.png", w: 800, h: 303, name: "台勝科 FST", source: "https://commons.wikimedia.org/wiki/File:Formosa_Sumco_Technology_logo.svg（thumb.php 轉 PNG）" });
+add("tel", { file: "logos/tel.png", w: 800, h: 476, name: "東京威力科創 TEL", source: "https://commons.wikimedia.org/wiki/File:Tokyo_Electron_logo.svg（thumb.php 轉 PNG）" });
 add("jsr", { file: "logos/jsr.png", w: 600, h: 600, name: "捷時雅 JSR", source: "https://commons.wikimedia.org/wiki/File:JSRlogo.gif（thumb.php；原檔是低解析 GIF）" });
 
 // 韓國（太極旗）：3:2；太極直徑＝旗高 1/2；卦長＝旗高 1/4、卦線寬 1/24、間距 1/48；紅 #CD2E3A、藍 #0047A0、黑 #000000
