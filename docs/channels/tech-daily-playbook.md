@@ -197,6 +197,14 @@ Andy 11-15 傳了 8 格參考圖：「結尾的 LOGO 動畫使用這個，並且
 - 自動找的空位（`placeLabels` 的 freeSpot）會為了靠近零件蓋到主素材外圈；蓋到光束、運作中的零件或讓引線穿過別張卡時，在 script.json 的 `labels[]` 加 `xy: [中心x, 中心y]`（畫面座標）手動指定。改一張會讓之後同時出現的標籤重新找位置，改完要把同一幕其他標籤也看一遍（量測檢測在 genscript.py、離子佈植在 genmodel.py 的 `lab(..., xy=[...])`）。
 - 交件前抽每幕標籤最多的那一格看：框與框之間留白、框不壓光束與運作中的零件、引線不穿框。
 
+### 旁白音高關卡（固定規則，2026/11/24）
+
+Andy 11/24 聽出矽晶圓與光罩的旁白音色差很多，要求之後旁白都是同一個音色。量測：同一套設定（2.5 flash TTS＋Iapetus＋說明 B），tech-wafer1 137、tech-wafer2 135.6、tech-resist1 137.9 Hz（偏高），tech-mask1 121.5、tech-mask2 121.8 Hz（正常）——差別是每次生成的隨機落差。
+
+- 基準音高 **121.5 Hz**（光罩-1／光罩-2 原始錄音實測，`voice-measure.py` 的 f0Median），允許 **112–126 Hz**。
+- 配音一律 `bash scripts/three/tts-pitch-take.sh <slug>`：整篇 1 次請求 → 量原始錄音 → 合格才收下成 `out/<slug>-take.orig.wav`；不合格存 `out/<slug>-take-reject-N.wav` 再重配，最多共 3 次請求；3 次都不合格就選最接近 121.5 的那版並標 ⚠️。每次結果寫 `videos/<slug>/tts-pitch.json`。
+- `make-tech.sh` 渲染前會量 `--take` 的音高，超出 112–126 就停（`--allow-pitch` 才放行，要在 README 寫原因）。
+
 ### 交件前四道驗證（固定規則，2026/11/22）
 
 Andy 11/22（全頻道）：「請你務必確實檢查影片是否丟問題 我就用的問題非常大 為何沒有安排驗證 請重做」。規則全文在 tw-rotation `docs/marketing/channels/video_logic.md`「交件前四道驗證」，科技頻道帳本是 tw-rotation `docs/marketing/channels/tc/lessons.md` 第 72 條。

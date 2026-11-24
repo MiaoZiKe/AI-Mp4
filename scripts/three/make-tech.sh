@@ -5,13 +5,14 @@
 #   --atempo 整篇加速倍數（只在有 --take 時用；預設 1.0）
 #   --ver    成片版本名（預設 v1），輸出 out/<slug>.<ver>.mp4
 #   --dry    只跑到 layout-check，跳過渲染與混音（驗證用）
+#   --allow-pitch  --take 的音高中位數超出 112–126 Hz 也照做（預設停下；2026/11/24 音高關卡，基準 121.5 Hz，配音請用 tts-pitch-take.sh）
 # 全程不送 TTS 請求（跑完比對 tts-requests.json 筆數）。任一步失敗就停，印出是哪一步與 log 路徑。
 set -u
 SLUG=${1:-}; shift || true
 [ -z "$SLUG" ] && { echo "用法：bash scripts/three/make-tech.sh <slug> [--atempo=1.23] [--take=<wav>] [--ver=v1] [--dry]"; exit 2; }
-ATEMPO=1.0; TAKE=""; VER=v1; DRY=0
+ATEMPO=1.0; TAKE=""; VER=v1; DRY=0; ALLOWPITCH=0
 for a in "$@"; do case $a in
-  --atempo=*) ATEMPO=${a#*=};; --take=*) TAKE=${a#*=};; --ver=*) VER=${a#*=};; --dry) DRY=1;;
+  --atempo=*) ATEMPO=${a#*=};; --take=*) TAKE=${a#*=};; --ver=*) VER=${a#*=};; --dry) DRY=1;; --allow-pitch) ALLOWPITCH=1;;
   *) echo "不認得的參數：$a"; exit 2;; esac; done
 cd "$(dirname "$0")/../.."
 V=videos/$SLUG; PUB=public/audio/$SLUG; LOGD=out/$SLUG-make; mkdir -p "$LOGD" out
@@ -26,6 +27,10 @@ REQ0=$(nreq)
 # 1. 換配音
 if [ -n "$TAKE" ]; then
   [ -f "$TAKE" ] || { echo "找不到 --take 檔：$TAKE"; exit 2; }
+  F0=$(.venv/bin/python -I scripts/voice-measure.py "$TAKE" | python3 -c "import json,sys;print(json.load(sys.stdin)['f0Median'])")
+  if python3 -c "import sys;sys.exit(0 if 112<=$F0<=126 else 1)"; then echo "  音高關卡：$TAKE f0Median $F0 Hz（112–126）✔"
+  elif [ "$ALLOWPITCH" = 1 ]; then echo "  ⚠️ 音高關卡：$TAKE f0Median $F0 Hz 超出 112–126，--allow-pitch 照做"
+  else echo "✖ 音高關卡：$TAKE f0Median $F0 Hz 超出 112–126 Hz（基準 121.5）。請用 bash scripts/three/tts-pitch-take.sh $SLUG 重配，或加 --allow-pitch 覆寫"; exit 2; fi
   STEP="1 找正式原始音檔"; LOG="$LOGD/hash.log"
   RAWREL=$(node scripts/tts-take.mjs "$SLUG" --hash 2>"$LOG") || fail
   RAW=public/$RAWREL; ORIG=${RAW%.raw.wav}.raw.orig.wav
