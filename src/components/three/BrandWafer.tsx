@@ -10,6 +10,11 @@ add("shinetsu", { file: "logos/shinetsu.svg", w: 179, h: 39.425, name: "信越�
 // 世創：原檔只寫 width／height 沒有 viewBox（縮放時會被裁切），只補上同尺寸的 viewBox，圖形與顏色不動
 add("siltronic", { file: "logos/siltronic.svg", w: 744.09448, h: 288.4252, name: "世創 Siltronic", source: "https://commons.wikimedia.org/wiki/File:Siltronic_Logo.svg" });
 
+// 2026/11/24 下午：Commons 的 thumb.php（伺服器把原檔轉 PNG，不改色）拿到勝高、台勝科、捷時雅（原檔 GIF）
+add("sumco", { file: "logos/sumco.png", w: 800, h: 395, name: "勝高 SUMCO", source: "https://commons.wikimedia.org/wiki/File:Sumco_Logo.svg（commons.wikimedia.org/w/thumb.php?f=Sumco_Logo.svg&w=800）" });
+add("fst", { file: "logos/fst.png", w: 800, h: 303, name: "台勝科 FST", source: "https://commons.wikimedia.org/wiki/File:Formosa_Sumco_Technology_logo.svg（thumb.php 轉 PNG）" });
+add("jsr", { file: "logos/jsr.png", w: 600, h: 600, name: "捷時雅 JSR", source: "https://commons.wikimedia.org/wiki/File:JSRlogo.gif（thumb.php；原檔是低解析 GIF）" });
+
 // 韓國（太極旗）：3:2；太極直徑＝旗高 1/2；卦長＝旗高 1/4、卦線寬 1/24、間距 1/48；紅 #CD2E3A、藍 #0047A0、黑 #000000
 // （대한민국 국기법 시행령；畫法同 Wikimedia Commons「Flag of South Korea.svg」的幾何，以 72×48 繪製）
 if (!FLAGS.KR) FLAGS.KR = { name: "韓國", w: 72, h: 48, draw: () => (
