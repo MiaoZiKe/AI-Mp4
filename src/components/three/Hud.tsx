@@ -16,7 +16,7 @@ import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
 import { H, L, canvasBox, setHudLayout, setHudSkin, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
 import { Logo, Flag, hasLogo, logoLabelH, hasFlag } from "./Brand";
-import { rulerLen, LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
+import { endNextBox, endCommentTail, ENDNEXT, rulerLen, LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -1036,9 +1036,11 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
       <div style={{ position: "absolute", left: (L.W - 760 * line) / 2, top: cy + o(418), width: 760 * line, height: 6, background: H.amber }} />
       <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(450), textAlign: "center", opacity: slogan, transform: `translateY(${Math.round(18 * (1 - slogan))}px)`, ...zh(72, H.line, 700), letterSpacing: "0.12em" }}>{channel?.slogan ?? ""}</div>
       {trail.length ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(600), display: "flex", justifyContent: "center", gap: 16 }}>{trail.map((t, i) => <div key={i} style={{ ...zh(40, i === trail.length - 1 ? H.onAccent : H.text2, 700), background: i === trail.length - 1 ? H.line : "transparent", border: `2px solid ${H.lineSoft}`, padding: "6px 20px 8px", opacity: tween(f, at + Et.trail + i * 2, 5, EASE.enter), transform: `translateY(${Math.round(12 * (1 - tween(f, at + Et.trail + i * 2, 5, EASE.enter)))}px)` }}>{t}</div>)}</div> : null}
-      {spec?.next ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(708), display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(68, onC(H.amber), 800), background: H.amber, padding: "10px 48px 16px", letterSpacing: "0.06em", transform: `scale(${nxPop.toFixed(3)})` }}>{spec.kicker ?? "下一支"} ▸ {spec.next}</div></div> : null}
+      {/* 2026/11/24：橫條寬度上限＝左右各留 64px（endNextBox：先縮字、再換行），彈跳放大也不准超出 */}
+      {spec?.next ? (() => { const nb = endNextBox(spec, L), pop = Math.min(nxPop, nb.maxW / nb.w);
+        return <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(708), display: "flex", justifyContent: "center", opacity: nx }}><div style={{ ...zh(nb.px, onC(H.amber), 800), background: H.amber, padding: `${ENDNEXT.padTop}px ${ENDNEXT.padX}px ${ENDNEXT.padBottom}px`, letterSpacing: `${ENDNEXT.spacing}em`, maxWidth: nb.maxW, boxSizing: "border-box", whiteSpace: nb.wrap ? "normal" : "nowrap", textAlign: "center", lineHeight: 1.3, transform: `scale(${pop.toFixed(3)})` }}>{nb.text}</div></div>; })() : null}
       {/* 留言關鍵字（2026/11/15 Andy：「往後製作影片後面可以補上 留言『XXXX』我就把資訊傳給他，IG Thread 都是」）：LOGO 落定後才出現，在「下一支」下方 */}
-      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(868), display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」拿完整解說</div></div> : null}
+      {spec?.comment ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(868), display: "flex", justifyContent: "center", opacity: cm, transform: `translateY(${Math.round(14 * (1 - cm))}px)` }}><div style={{ ...zh(L.ENDCARD_COMMENT_PX ?? 46, H.text, 800), letterSpacing: "0.04em" }}>留言「<span style={{ color: H.line, borderBottom: `5px solid ${H.amber}` }}>{spec.comment}</span>」{(spec as any)._tail ?? "拿完整解說"}</div></div> : null}
     </AbsoluteFill>
   );
 };
@@ -1142,7 +1144,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <HudOverlays m={m} f={f} list={overlays} s={s} />
       <HudCaption cues={subCues as Cue[]} f={f} />
       <HudSource cues={srcCues} f={f} px={Math.max((m.product.fx as any)?.srcPx ?? 30, L.SRC_PX)} />
-      {ecAt !== null ? <HudEndCard f={f} at={ecAt} nextAt={ecNext} spec={ec} channel={channel} /> : null}
+      {ecAt !== null ? <HudEndCard f={f} at={ecAt} nextAt={ecNext} spec={{ ...ec, _tail: endCommentTail(ec, scenes as any) }} channel={channel} /> : null}
       {/* 頁首（頻道 LOGO）畫在最上層：每一幕、包括片尾卡都在左上同一個位置 */}
       <HudHeader name={channel?.name ?? "科技"} tag={channel?.tag ?? "放大來看"} total={timeline.totalFrames} f={f} corner={(hud as any).logoCorner} />
       <HudFooter name={channel?.name ?? "科技"} slogan={channel?.slogan} total={timeline.totalFrames} f={f} />

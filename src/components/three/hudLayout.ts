@@ -127,6 +127,29 @@ export const modelRect = (pr: ProductModel, s: State3D, minO = 0.3): Rect | null
 
 // ── 文字與卡片的大小（估算；字型是 Noto Sans TC 粗體，全形字約 1em、半形約 0.58em） ──
 export const textW = (t: string, px: number, spacing = 0.04) => [...String(t ?? "")].reduce((a, ch) => a + (/[⺀-￿]/.test(ch) && !/[▸·・]/.test(ch) ? 1 : ch === " " ? 0.3 : 0.6) * px + spacing * px, 0);
+/** 片尾卡橘色橫條「下一支 ▸ …」（2026/11/24：長字串撐到 x7–1073，超出左右 64px 安全邊距，mask1／resist1／wafer1 被審片退件）：
+ *  寬度上限＝左右各留 L.X（64px）；放不下先等比縮字（不低於 ENDNEXT.min），還放不下就換行（最多兩行）。Hud.tsx 畫圖與 layout-check 用同一支。 */
+export const ENDNEXT = { px: 68, min: 46, padX: 48, padTop: 10, padBottom: 16, spacing: 0.06, pop: 1.12 } as const;
+export const endNextBox = (spec: { next?: string; kicker?: string }, b: { W: number; X: number }) => {
+  const text = `${spec.kicker ?? "下一支"} ▸ ${spec.next ?? ""}`, maxW = b.W - 2 * b.X, pad = 2 * ENDNEXT.padX;
+  const w0 = textW(text, ENDNEXT.px, ENDNEXT.spacing) + pad;
+  const px = w0 <= maxW ? ENDNEXT.px : Math.max(ENDNEXT.min, Math.floor((ENDNEXT.px * (maxW - pad)) / (w0 - pad)));
+  const wFull = textW(text, px, ENDNEXT.spacing) + pad, wrap = wFull > maxW + 0.5, w = Math.min(wFull, maxW);
+  const lines = wrap ? Math.ceil((wFull - pad) / (maxW - pad)) : 1;
+  return { text, px, w, maxW, wrap, lines, x0: (b.W - w) / 2, x1: (b.W + w) / 2, h: lines * px * 1.3 + ENDNEXT.padTop + ENDNEXT.padBottom };
+};
+/** 片尾卡「留言「關鍵字」拿完整○○」的尾巴：endCard.commentTail 優先；沒寫就從旁白（最後一句有「留言」的幕）抓「拿完整○○」，
+ *  讓畫面和旁白同一個詞（wafer1 畫面「拿完整解說」、旁白「拿完整資料」被審片抓到）；都沒有才用預設「拿完整解說」 */
+export const endCommentTail = (ec: { commentTail?: string } | null | undefined, scenes: { narration?: string; silent?: boolean }[] = []) => {
+  if (ec?.commentTail) return ec.commentTail;
+  for (let i = scenes.length - 1; i >= 0; i--) {
+    const n = String(scenes[i]?.narration ?? "");
+    if (!n.includes("留言")) continue;
+    const m = /留言[^。！？]*?[，,\s]*((?:拿|看)[^。！？，,\s]{1,8})/.exec(n);
+    if (m) return m[1];
+  }
+  return "拿完整解說";
+};
 /** 蓋章（實心色塊＋外框）與小標（細框）的外接矩形，中心在 (x, y) */
 export const stampRect = (o: Overlay3D, cx: number, cy: number): Rect => {
   const size = o.size ?? (o.style === "tag" ? 34 : 76), tx = (o as any).countTo !== undefined ? String(o.text).replace("{n}", Math.max(Number((o as any).countTo), Number((o as any).countFrom ?? 0)).toLocaleString("en-US")) : o.text;
