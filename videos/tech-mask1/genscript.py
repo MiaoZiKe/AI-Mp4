@@ -70,7 +70,7 @@ S = [
  ["白紙有了", "誰把電路畫上去？", "又怎麼送進工廠？", "下一集看", "留言光罩", "拿完整資料"],
  ["The blank paper is ready.", "Who draws the circuit on it?", "How does it reach the fab?", "Next episode.", "Comment \"光罩\"", "for the full notes."],
  [("paper", "白紙有了"), ("who", "誰把電路畫上去"), ("ship", "送進工廠"), ("next", "下一集"), ("kw", "留言光罩")],
- ["誰把電路畫上去", "送進工廠", "光罩"], ["下一集：光罩-2"]),
+ ["誰把電路畫上去", "送進工廠", "光罩"], ["系列：代工的供應商"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace("鉻", "各").replace("鉬", "目")
 scenes = []
@@ -84,9 +84,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
 # 2026/11/24 審片必改 4：第 0 幀要有數字（旁白不改，s9 的「一套上千萬美元」提前當鉤子大字）
-scenes[0]["props"]["hook"] = {"kicker": "晶片的底片＝光罩", "title": "一套上千萬美元", "size": 118, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "晶片的底片＝光罩", "title": "一套上千萬美元", "size": 104, "top": 136}
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "光罩-2 誰做、怎麼運送", "trail": ["畫電路", "光罩盒"], "at": "s11:kw-8", "comment": "光罩", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "光罩-2 誰在做", "trail": ["畫電路", "光罩盒"], "at": "s11:kw-8", "comment": "光罩", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("tool", "曝光光路", "LITHO OPTICS", "1 m", "20 cm"), lv("mask", "光罩", "PHOTOMASK", "15 cm", "5 cm"),
           lv("cut", "光罩剖面", "MASK CROSS-SECTION", "2 μm", "0.5 μm"), lv("layer", "多層膜", "MULTILAYER", "400 nm", "100 nm")]

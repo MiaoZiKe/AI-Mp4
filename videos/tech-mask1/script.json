@@ -128,8 +128,8 @@
     "hook": {
      "kicker": "晶片的底片＝光罩",
      "title": "一套上千萬美元",
-     "size": 118,
-     "top": 236
+     "size": 104,
+     "top": 136
     },
     "zoom": [
      {
@@ -143,16 +143,16 @@
       "at": "start-30",
       "dur": 1,
       "x": 0.0,
-      "y": 5.285,
-      "d": 122.086,
+      "y": 6.012,
+      "d": 81.391,
       "elev": 10
      },
      {
       "at": "film",
       "dur": 60,
       "x": 0.0,
-      "y": 5.24,
-      "d": 122.862,
+      "y": 5.976,
+      "d": 81.908,
       "elev": 12
      }
     ],
@@ -375,7 +375,7 @@
      {
       "layer": "px_h",
       "at": "s9:start-4",
-      "until": "s11:start+30",
+      "until": "s11:who+26",
       "opacity": 0,
       "dur": 1
      },
@@ -409,7 +409,7 @@
      },
      {
       "layer": "px_b",
-      "at": "s11:start-4",
+      "at": "s11:who-2",
       "until": "s12:start+500",
       "opacity": 0,
       "dur": 1
@@ -495,10 +495,10 @@
      {
       "type": "section",
       "kind": "mk1-hook",
-      "at": "chip",
+      "at": "start-30",
       "until": "s2:start-2",
       "x": 64,
-      "y": 930,
+      "y": 1020,
       "w": 952,
       "h": 330,
       "avoid": false,
@@ -614,7 +614,7 @@
       "x": 64,
       "y": 930,
       "w": 952,
-      "h": 330,
+      "h": 360,
       "avoid": false,
       "title": "傳統光罩：石英＋鉻",
       "tag": "USPTO 7767365",
@@ -823,8 +823,8 @@
       "at": "start-4",
       "dur": 34,
       "x": 0.0,
-      "y": -0.641,
-      "d": 131.985,
+      "y": 4.311,
+      "d": 77.515,
       "elev": 10
      }
     ],
@@ -911,7 +911,7 @@
       "at": "start+6",
       "until": "s5:start-2",
       "x": 64,
-      "y": 930,
+      "y": 1020,
       "w": 952,
       "h": 330,
       "avoid": false,
@@ -1685,25 +1685,25 @@
       "id": "b_e2On",
       "at": "paper",
       "ramp": 6,
-      "until": "s11:start"
+      "until": "s11:who"
      },
      {
       "id": "b_euv",
       "at": "euv",
       "ramp": 8,
-      "until": "s11:start"
+      "until": "s11:who"
      },
      {
       "id": "b_s1On",
       "at": "hoya",
       "ramp": 6,
-      "until": "s11:start"
+      "until": "s11:who"
      },
      {
       "id": "b_s2On",
       "at": "agc",
       "ramp": 6,
-      "until": "s11:start"
+      "until": "s11:who"
      }
     ],
     "labels": [
@@ -1713,7 +1713,7 @@
       "en": "Mask blank",
       "color": "amber",
       "at": "blank",
-      "until": "s11:start-4"
+      "until": "s11:who-2"
      },
      {
       "part": "b_s1A",
@@ -1721,7 +1721,7 @@
       "en": "Japan",
       "color": "blue",
       "at": "hoya",
-      "until": "s11:start-4",
+      "until": "s11:who-2",
       "logo": "hoya",
       "flag": "JP"
      },
@@ -1731,7 +1731,7 @@
       "en": "Japan",
       "color": "blue",
       "at": "agc",
-      "until": "s11:start-4",
+      "until": "s11:who-2",
       "logo": "agc",
       "flag": "JP"
      }
@@ -1741,7 +1741,7 @@
       "type": "section",
       "kind": "mk1-co",
       "at": "start+6",
-      "until": "s11:start-2",
+      "until": "s11:who-2",
       "x": 64,
       "y": 930,
       "w": 952,
@@ -1813,7 +1813,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "下一集：光罩-2"
+    "系列：代工的供應商"
    ],
    "props": {
     "zoom": [
@@ -1825,8 +1825,8 @@
     ],
     "shot": [
      {
-      "at": "start-4",
-      "dur": 34,
+      "at": "who-2",
+      "dur": 24,
       "x": 100.0,
       "y": 0.097,
       "d": 41.036,
@@ -1863,7 +1863,7 @@
       "text": "誰畫上電路？",
       "en": "Who draws it?",
       "color": "amber",
-      "at": "who",
+      "at": "who+12",
       "until": "kw-10"
      }
     ],
@@ -1871,7 +1871,7 @@
      {
       "type": "section",
       "kind": "mk1-next",
-      "at": "start+6",
+      "at": "who+6",
       "until": "kw-10",
       "x": 64,
       "y": 930,
@@ -1916,7 +1916,7 @@
    "sources": [],
    "props": {
     "endCard": {
-     "next": "光罩-2 誰做、怎麼運送",
+     "next": "光罩-2 誰在做",
      "trail": [
       "畫電路",
       "光罩盒"

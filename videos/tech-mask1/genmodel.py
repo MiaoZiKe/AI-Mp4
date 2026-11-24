@@ -156,7 +156,6 @@ box("d_illP", "d_ill", "cab2", [6.2, 1.6, .06], [DX, 15.3, 2.32])
 box("d_illV", "d_ill", "steel2", [.08, 1.4, .06], [DX, 15.3, 2.36], at=[[-2.4 + .6 * i, 0, 0] for i in range(9)])
 cyl("d_cond", "d_ill", "lens", 3.0, .34, [DX, 13.7, 0])
 box("d_win", "d_win", "duvU", [5.6, .06, 5.0], [DX, 13.95, 0])
-box("d_led", "d_ill", "led", [.22, .22, .06], [DX + 3.0, 16.0, 2.34])
 # 光：上面整片平行光（9 道）；鉻擋住的 4 道停在鉻上（斷開）；穿過開口的 5 道經鏡頭收斂到晶圓（縮小 4 倍）
 ZB = 0.0
 flowx("d_in", "d_beam", [[DX, 13.5, ZB], [DX, MB + .01, ZB]], shape="liquid", n=4, lanes=9, gap=.6, size=.16, rate=.9, color="duv", rim="duvR", band=.09, bandO=.75)
@@ -197,7 +196,7 @@ glow("g_spotDOn", "g_spot", ["g_spotD"], "duv", steady=False, g=.9, freq=2.0, ha
 glow("g_spotEOn", "g_spotE", ["g_spotE"], "euv", steady=False, g=1.0, freq=2.4, halo=.6)
 glow("g_blkHot", "g_glass", [f"g_blk{int(G2)}"], "hot", steady=True, g=.35)
 air("g_airB", "g_beam", [GX - 4, 2.4, -.4], [GX + 4, 10, .4])
-anchor("g_duvA", "g_glass", [G1 - 1.4, 6.2, 1.3], dx=-150, dy=-80)
+anchor("g_duvA", "g_beam", [G1, 8.2, 0], dx=-150, dy=-80)
 anchor("g_euvA", "g_spotE", [G2 + .2, 6.42, .3], dx=160, dy=-90)
 anchor("g_passA", "g_spot", [G1 - .3, 2.56, 1.0], dx=-150, dy=70)
 
@@ -346,7 +345,7 @@ glow("b_s2On", "b_s2", [p["id"] for p in parts if p["layer"] == "b_s2" and p["id
 YMLT = 2.7 + 10 * .07 + .85
 flowx("b_euv", "b_beam", [[BX - 5.6, YMLT + .42, FZ + 1.75], [BX - .4, YMLT + .02, FZ + 1.75], [BX + 4.8, YMLT + .42, FZ + 1.75]], shape="liquid", n=5, size=.13, rate=.9, color="euv", rim="euvR", band=.06, bandO=.85)
 air("b_airB", "b_beam", [BX - 5.6, YMLT, FZ + 1.5], [BX + 4.8, YMLT + .5, FZ + 2.0])
-anchor("b_blankA", "b_e4", [BX + 2.2, 3.54, FZ + 1.7], dx=170, dy=-40)
+anchor("b_blankA", "b_e4", [BX - 2.2, 3.54, FZ + 1.7], dx=-170, dy=70)
 anchor("b_mlA", "b_e2", [BX - 2.2, 3.0, FZ + 1.7], dx=-160, dy=60)
 anchor("b_s1A", "b_s1", [BX - 3.5, 5.2, -2.2], dx=-140, dy=-100)
 anchor("b_s2A", "b_s2", [BX + 3.5, 5.2, -2.2], dx=140, dy=-100)
@@ -417,8 +416,8 @@ VIS = [
  mv("b_s1", "s10:hoya", "s10:hoya+10", dur=6, dy=.3), mv("b_s2", "s10:agc", "s10:agc+10", dur=6, dy=.3),
 ]
 PXW = {"px_d": [(EARLY, "s2:start-4"), ("s4:start+30", "s5:start-4")], "px_dm": [("s2:start+30", "s4:start-4")], "px_g": [("s5:start+30", "s6:start-4")],
-       "px_e": [("s6:start+30", "s8:start-4")], "px_h": [("s8:start+30", "s9:start-4"), ("s11:start+30", FAR)], "px_l": [("s9:start+30", "s10:start-4")],
-       "px_b": [("s10:start+30", "s11:start-4")]}
+       "px_e": [("s6:start+30", "s8:start-4")], "px_h": [("s8:start+30", "s9:start-4"), ("s11:who+26", FAR)], "px_l": [("s9:start+30", "s10:start-4")],
+       "px_b": [("s10:start+30", "s11:who-2")]}
 for lid, wins in PXW.items():
     prev = "s1:start-400"
     for a_, b_ in wins:
@@ -429,28 +428,28 @@ DUVRUN = lambda a, b: [run("d_in", a, b, 8)] + [run(x, a, b, 8) for x in DOUT]
 EIN = [f"e_in{i}" for i in range(len(L_X))]
 P = {}
 P["s1"] = {"zoom": [{"to": "tool", "at": "start-30", "dur": 1}],
- "shot": [fit("start-30", "px_d", 10, 1, hmax=400, cy=705), fit("film", "px_d", 12, 60, hmax=400, cy=705)],
+ "shot": [fit("start-30", "px_d", 10, 1, hmax=600, cy=690), fit("film", "px_d", 12, 60, hmax=600, cy=690)],
  "shift": VIS,
  "run": DUVRUN("start-30", "s2:start+20") + [run("d_imgOn", "start-30", "s2:start", 6), run("d_crOn", "mask", "s2:start", 6)],
  "labels": [lab("d_lightA", "光", "Light", "blue", "light", "s2:start-4"), lab("d_maskA", "光罩", "Photomask", "amber", "mask", "s2:start-4"),
             lab("d_wafA", "晶圓", "Wafer", "blue", "film", "s2:start-4")],
- "overlay": [sec("mk1-hook", "chip", "s2:start-2", "代工的供應商：光罩", "示意，非實際比例", {"chip": "chip", "light": "light", "film": "film", "mask": "mask"})]}
+ "overlay": [sec("mk1-hook", "start-30", "s2:start-2", "代工的供應商：光罩", "示意，非實際比例", {"chip": "chip", "light": "light", "film": "film", "mask": "mask"}, y=1020)]}
 P["s2"] = {"zoom": [{"to": "cut", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_dm", 14, 30)],
  "run": [run("d_qzOn", "quartz", "cr", 6), run("d_crOn", "cr", "s3:start", 6)],
  "labels": [lab("d_qzA", "石英玻璃", "Quartz", "blue", "quartz", "s3:start-4"), lab("d_crA", "鉻（刻出電路）", "Chrome pattern", "amber", "cr", "s3:start-4")],
- "overlay": [sec("mk1-cr", "start+6", "s3:start-2", "傳統光罩：石英＋鉻", "USPTO 7767365", {"quartz": "quartz", "cr": "cr", "pat": "pat"})]}
+ "overlay": [sec("mk1-cr", "start+6", "s3:start-2", "傳統光罩：石英＋鉻", "USPTO 7767365", {"quartz": "quartz", "cr": "cr", "pat": "pat"}, h=360)]}
 P["s3"] = {"zoom": [{"to": "cut", "at": "start-4", "dur": 1}],
  "shot": [fit("start-4", "px_dm", 12, 30)],
  "run": [run("d_in", "duv", "s4:start+40", 8)] + [run(x, "pass", "s4:start+40", 8) for x in DOUT],
  "labels": [lab("d_blockA", "鉻擋住：光斷開", "Blocked", "coral", "block", "s4:start-4"), lab("d_passA", "玻璃透光", "Passes", "blue", "pass", "s4:start-4")],
  "overlay": [sec("mk1-duv", "start+6", "s4:start-2", "鉻擋光、玻璃透光", "示意，非實際比例", {"duv": "duv", "block": "block", "pass": "pass", "carry": "carry"})]}
 P["s4"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [fit("start-4", "px_d", 10, 34)],
+ "shot": [fit("start-4", "px_d", 10, 34, hmax=630, cy=620)],
  "run": DUVRUN("start", "s5:start") + [run("d_lnOn", "lens", "s5:start", 6), run("d_imgOn", "wafer", "s5:start", 6)],
  "labels": [lab("d_lensA", "縮小鏡頭", "Reduction lens", "blue", "lens", "s5:start-4"), lab("d_imgA", "縮小 4 倍的圖案", "Pattern ÷4", "amber", "wafer", "s5:start-4"),
             lab("d_maskA", "光罩：圖案大 4 倍", "Mask: 4× larger", "amber", "x4", "s5:start-4")],
- "overlay": [sec("mk1-x4", "start+6", "s5:start-2", "縮小 4 倍投影", "光罩設計手冊", {"lens": "lens", "x4": "x4", "wafer": "wafer"}, tagLogo="asml", tagFlag="NL")]}
+ "overlay": [sec("mk1-x4", "start+6", "s5:start-2", "縮小 4 倍投影", "光罩設計手冊", {"lens": "lens", "x4": "x4", "wafer": "wafer"}, y=1020, tagLogo="asml", tagFlag="NL")]}
 P["s5"] = {"zoom": [{"to": "cut", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_g", 10, 30)],
  "run": [run("g_duv", "start", "s6:start", 8), run("g_spotDOn", "start+10", "s6:start", 6), run("g_euv", "euv", "s6:start", 8), run("g_spotEOn", "eat", "s6:start", 6), run("g_blkHot", "eat", "s6:start", 10)],
@@ -480,16 +479,16 @@ P["s9"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
  "overlay": [sec("mk1-cost", "start+6", "s10:start-2", "幾十片、上千萬", "IC Knowledge；IBS；SemiAnalysis", {"many": "many", "def": "def", "cost": "cost"})]}
 P["s10"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_b", 22, 30, hmax=440, wmax=820)],
- "run": [run("b_e2On", "paper", "s11:start", 6), run("b_euv", "euv", "s11:start", 8), run("b_s1On", "hoya", "s11:start", 6), run("b_s2On", "agc", "s11:start", 6)],
- "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:start-4"), dict(lab("b_s1A", "豪雅", "Japan", "blue", "hoya", "s11:start-4"), logo="hoya", flag="JP"),
-            dict(lab("b_s2A", "旭硝子", "Japan", "blue", "agc", "s11:start-4"), logo="agc", flag="JP")],
- "overlay": [sec("mk1-co", "start+6", "s11:start-2", "上游：空白光罩誰做", "QYResearch；Morningstar", {"blank": "blank", "paper": "paper", "euv": "euv", "jp": "jp", "hoya": "hoya", "agc": "agc"})]}
+ "run": [run("b_e2On", "paper", "s11:who", 6), run("b_euv", "euv", "s11:who", 8), run("b_s1On", "hoya", "s11:who", 6), run("b_s2On", "agc", "s11:who", 6)],
+ "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:who-2"), dict(lab("b_s1A", "豪雅", "Japan", "blue", "hoya", "s11:who-2"), logo="hoya", flag="JP"),
+            dict(lab("b_s2A", "旭硝子", "Japan", "blue", "agc", "s11:who-2"), logo="agc", flag="JP")],
+ "overlay": [sec("mk1-co", "start+6", "s11:who-2", "上游：空白光罩誰做", "QYResearch；Morningstar", {"blank": "blank", "paper": "paper", "euv": "euv", "jp": "jp", "hoya": "hoya", "agc": "agc"})]}
 P["s11"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
- "shot": [fit("start-4", "px_h", 30, 34)],
+ "shot": [fit("who-2", "px_h", 30, 24)],
  "run": [run("h_patOn", "who", FAR, 6)],
  "shift": [hid("h_dust", "s11:start-6", FAR, 4), hid("h_dust2", "s11:start-6", FAR, 4)],
- "labels": [lab("h_patA", "誰畫上電路？", "Who draws it?", "amber", "who", "kw-10")],
- "overlay": [sec("mk1-next", "start+6", "kw-10", "白紙有了，接下來呢？", "光罩-2 預告", {"paper": "paper", "who": "who", "ship": "ship", "next": "next", "kw": "kw"})]}
+ "labels": [lab("h_patA", "誰畫上電路？", "Who draws it?", "amber", "who+12", "kw-10")],
+ "overlay": [sec("mk1-next", "who+6", "kw-10", "白紙有了，接下來呢？", "光罩-2 預告", {"paper": "paper", "who": "who", "ship": "ship", "next": "next", "kw": "kw"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 json.dump(script, open(sp, "w"), ensure_ascii=False, indent=1)

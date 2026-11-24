@@ -326,17 +326,18 @@ const Co: React.FC<P> = ({ o, f, k }) => {
         {([["豪雅", "HOYA", "hoya"], ["旭硝子", "AGC", "agc"]] as const).map(([a, b, id], j) => { const x = 506 + j * 220, hl = on(f, T(o, id));
           // LOGO 用官方原檔（白底、不改色）；念到時框變粗＋上方色條＋往上跳一下
           const up = -8 * Math.sin(Math.PI * cl((f - T(o, id)) / 10));
-          return <g key={id} opacity={0.4 + 0.6 * hl} transform={`translate(0 ${up.toFixed(1)})`}>
-            <rect x={x} y={CT + 56} width={196} height={124} fill="#FFFFFF" stroke={H.amber} strokeWidth={2 + 4 * hl} />
+          // 2026/11/24 審片 N2：LOGO 與國旗不准用透明度降亮（等於改色）；還沒輪到＝細灰框、輪到＝粗橘框＋上方色條＋跳一下
+          return <g key={id} transform={`translate(0 ${up.toFixed(1)})`}>
+            <rect x={x} y={CT + 56} width={196} height={124} fill="#FFFFFF" stroke={hl > 0.5 ? H.amber : H.lineSoft} strokeWidth={2 + 4 * hl} />
             <rect x={x} y={CT + 56} width={196} height={10} fill={H.amber} opacity={hl} />
             <text x={x + 98} y={CT + 108} textAnchor="middle" style={zh(38, H.text, 900)}>{a}</text>
           </g>; })}
-        <g opacity={0.3 + 0.7 * jp}><Flag code="JP" h={30} x={506} y={274} asSvg />
-          <text x={506 + flagW("JP", 30) + 14} y={300} style={zh(32, H.text, 900)}>幾乎都來自日本這兩家</text></g>
+        <Flag code="JP" h={30} x={506} y={274} asSvg />
+        <text x={506 + flagW("JP", 30) + 14} y={300} style={zh(32, H.text, 900)} opacity={0.3 + 0.7 * jp}>幾乎都來自日本這兩家</text>
       </svg>
       {/* 官方 LOGO 用 HTML <Img>（Remotion 等圖載入才出幀），位置對齊上面兩個白框的下半部 */}
       {(["hoya", "agc"] as const).map((id, j) => { const hl = on(f, T(o, id)), lh = id === "hoya" ? 34 : 44, lw = logoW(id, lh), up = -8 * Math.sin(Math.PI * cl((f - T(o, id)) / 10));
-        return <div key={id} style={{ position: "absolute", left: 506 + j * 220 + 98 - lw / 2, top: CT + 168 - lh + up, opacity: 0.4 + 0.6 * hl }}><Logo id={id} h={lh} /></div>; })}
+        return <div key={id} style={{ position: "absolute", left: 506 + j * 220 + 98 - lw / 2, top: CT + 168 - lh + up, transform: `scale(${(0.95 + 0.05 * hl).toFixed(3)})` }}><Logo id={id} h={lh} /></div>; })}
     </Card>
   );
 };
