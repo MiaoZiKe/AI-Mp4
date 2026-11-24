@@ -91,8 +91,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
 scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 6", "title": "光阻誰塗的？", "size": 120, "top": 236}
+# 11/24 審片必改 3：片尾卡不再提早到 s12:kw-8（會蓋掉「留言顯影」那句字幕、出處與下一集卡）；改成 s13 開始才蓋上（s13 3.2 秒＝96 幀 ≥ 落定 64＋停 30）
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "設備五大-1 ASML", "trail": ["曝光機"], "at": "s12:kw-8", "comment": "顯影", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "設備五大-1 ASML", "trail": ["曝光機"], "comment": "顯影", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("bay", "黃光區", "LITHO BAY", "12 m", "2 m"), lv("tool", "塗佈顯影機", "COATER / DEVELOPER", "4 m", "1 m"),
           lv("module", "模組", "MODULE", "60 cm", "10 cm")]

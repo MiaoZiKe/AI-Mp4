@@ -284,14 +284,14 @@
       "layer": "wC",
       "at": "s6:start+58",
       "until": "s13:start+400",
-      "dur": 22,
+      "dur": 36,
       "dx": 5.6,
       "dy": 0,
       "dz": 0
      },
      {
       "layer": "wC",
-      "at": "s6:start+80",
+      "at": "s6:start+94",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
@@ -299,7 +299,7 @@
      {
       "layer": "wC2",
       "at": "s1:start-40",
-      "until": "s6:start+80",
+      "until": "s6:start+94",
       "opacity": 0,
       "dur": 1
      },
@@ -1477,10 +1477,26 @@
      {
       "at": "start-10",
       "dur": 30,
-      "x": 6.8,
-      "y": 3.9,
-      "d": 34,
-      "elev": 38
+      "x": 3.4,
+      "y": 2.4,
+      "d": 28,
+      "elev": 36
+     },
+     {
+      "at": "scan-6",
+      "dur": 26,
+      "x": 7.2,
+      "y": 2.0,
+      "d": 24,
+      "elev": 40
+     },
+     {
+      "at": "expose-8",
+      "dur": 24,
+      "x": 12.4,
+      "y": 3.6,
+      "d": 25,
+      "elev": 20
      }
     ],
     "kin": [
@@ -1595,7 +1611,7 @@
       "en": "Interface stage",
       "color": "amber",
       "at": "scan",
-      "until": "s7:start-4"
+      "until": "expose-2"
      },
      {
       "part": "t_win",
@@ -2623,7 +2639,7 @@
       "en": "Next: the scanner",
       "color": "blue",
       "at": "scan",
-      "until": "kw-10"
+      "until": "s13:start-4"
      }
     ],
     "overlay": [
@@ -2631,7 +2647,7 @@
       "type": "section",
       "kind": "trk-next",
       "at": "start+2",
-      "until": "kw-10",
+      "until": "s13:start-5",
       "x": 64,
       "y": 930,
       "w": 952,
@@ -2679,7 +2695,6 @@
      "trail": [
       "曝光機"
      ],
-     "at": "s12:kw-8",
      "comment": "顯影",
      "logoAnim": "transparent"
     }

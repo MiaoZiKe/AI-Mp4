@@ -457,7 +457,7 @@ KIN["S0"] = {"arm": "rb", "at": "s1:start-30", "keys": swing("IF", "H1", 70)}
 KIN["S1"] = {"arm": "rb", "at": "s4:nm-10", "keys": swing("H1", "C", 34)}
 KIN["L0"]["keys"][0] = [0, with_(POSE["C"], lift=0, claw=0)]
 SLIDE_IN = cue(T["L1"]["end"], 2)          # 放下、手臂抬起後滑進曝光機
-INSIDE = cue(SLIDE_IN, 22)
+INSIDE = cue(SLIDE_IN, 36)   # 11/24 審片：滑進曝光機放慢（22→36 幀），穿過傳送口那段看得到
 VIS = [
  # 旋塗：s1 已經塗好一層（轉著）；s2 起收掉，s3 念「甩成薄膜」從中心一圈圈鋪開
  *[hid(f"cr{i}", "s2:start", cue("s3:film", -14 + 5 * i), 5) for i in range(len(RINGS))],
@@ -467,7 +467,7 @@ VIS = [
  # 每一趟放下那一幀：舊的藏起來、新的出現
  hid("wA2", T["L0"]["rel"], FAR, 1), hid("wB", HIDE, T["L0"]["rel"], 1),
  hid("wB", T["L1"]["rel"], FAR, 1), hid("wC", HIDE, T["L1"]["rel"], 1),
- mv("wC", SLIDE_IN, FAR, dur=22, dx=SLIDE), hid("wC", INSIDE, FAR, 1),
+ mv("wC", SLIDE_IN, FAR, dur=36, dx=SLIDE), hid("wC", INSIDE, FAR, 1),
  hid("wC2", HIDE, INSIDE, 1), mv("wC2", EARLY, "s7:back-16", dur=20, dx=SLIDE),
  hid("wC2", T["L2"]["rel"], FAR, 1), hid("wD", HIDE, T["L2"]["rel"], 1),
  hid("wD", T["L3"]["rel"], FAR, 1), hid("wE", HIDE, T["L3"]["rel"], 1), hid("wE_ex", HIDE, T["L3"]["rel"], 1), hid("wE_ex", "s8:dissolve", FAR, 20),
@@ -520,10 +520,11 @@ P["s5"] = {"zoom": [{"to": "module", "at": "start-4", "dur": 30}],
  "labels": [lab("t_arm", "機械手臂", "Transfer robot", "blue", "start", "plate-2"), lab("t_h1", "加熱板", "Hot plate", "amber", "plate", "s6:start-4"), lab("t_h1w", "溶劑蒸發", "Solvent leaves", "coral", "solv", "s6:start-4")],
  "overlay": [sec("trk-sb", "start+2", "s6:start-5", "軟烤：趕走溶劑", "示意", {"plate": "plate", "bake": "bake", "solv": "solv"})]}
 P["s6"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [shot("start-10", 6.8, 3.9, 34, 38, 30)],
+ # 11/24 審片必改 1：原本 FIELD 4 m 遠景，曝光機被切出畫面；改成綁 cue 的三段運鏡：手臂交接 → 跟著晶圓往右滑進曝光機 → 推近觀察窗
+ "shot": [shot("start-10", 3.4, 2.4, 28, 36, 30), shot("scan-6", 7.2, 2.0, 24, 40, 26), shot("expose-8", 12.4, 3.6, 25, 20, 24)],
  "kin": [KIN["L1"]],
  "run": [run("s_winOn", "expose", "s7:start", 6), run("s_beam", "expose", "s7:start", 6)],
- "labels": [lab("t_arm", "手臂搬晶圓", "Robot handoff", "blue", "arm", "scan-2"), lab("t_if", "介面台", "Interface stage", "amber", "scan", "s7:start-4"), lab("t_win", "曝光", "Exposure", "blue", "expose", "s7:start-4")],
+ "labels": [lab("t_arm", "手臂搬晶圓", "Robot handoff", "blue", "arm", "scan-2"), lab("t_if", "介面台", "Interface stage", "amber", "scan", "expose-2"), lab("t_win", "曝光", "Exposure", "blue", "expose", "s7:start-4")],
  "overlay": [sec("trk-exp", "start+2", "s7:start-5", "曝光：照出潛像", "示意", {"arm": "arm", "scan": "scan", "expose": "expose", "latent": "latent"})]}
 P["s7"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
  "shot": [shot("start-4", 3.0, 4.9, 26, 45, 30)],
@@ -553,8 +554,8 @@ P["s11"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 1}],
  "overlay": [sec("trk-tw", "start+2", "s12:start-5", "在台灣", "公司說法、媒體報導", {"tw": "tw", "tainan": "tainan", "repair": "repair", "parts": "parts"})]}
 P["s12"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", 8.6, 3.8, 72, 26, 30)],
- "labels": [lab("t_scan", "下一集：曝光機", "Next: the scanner", "blue", "scan", "kw-10")],
- "overlay": [sec("trk-next", "start+2", "kw-10", "接下來", "下一集：設備五大-1", {"even": "even", "acc": "acc", "scan": "scan", "next": "next", "kw": "kw"})]}
+ "labels": [lab("t_scan", "下一集：曝光機", "Next: the scanner", "blue", "scan", "s13:start-4")],
+ "overlay": [sec("trk-next", "start+2", "s13:start-5", "接下來", "下一集：設備五大-1", {"even": "even", "acc": "acc", "scan": "scan", "next": "next", "kw": "kw"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 json.dump(script, open(sp, "w"), ensure_ascii=False, indent=1)
