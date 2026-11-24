@@ -61,3 +61,7 @@ Andy 2026/11/24 原話：「往後只要有修正，會被我點出來的地方�
 - 事故：矽晶圓-1 v3 渲染超過 70 分鐘（平常 23～42 分）。原因：約 12:29 中斷的渲染遺留孤兒 headless Chrome（父程序已死、掛在 init 下），吃約 200% CPU 三小時；同時還有配音子 agent 在跑。
 - 改善：`make-tech.sh` 渲染前在 flock 內跑 `scripts/three/render-guard.sh`（清孤兒 Chrome、印負載與前 5 名程序）；渲染記開始／結束與分鐘數，寫進 `out/render-times.tsv`；超過 `RENDER_WARN_MIN`（預設 60 分）自動印警告與當下吃 CPU 的程序。
 - 規矩：渲染期間不跑配音、抽格、審片截圖等任何吃 CPU 的工作；渲染超過 60 分鐘先查負載與孤兒程序，不要只等。
+
+## 2026-11-24 渲染程序卡住（②自查，非 Andy 指出）
+- 經過：矽晶圓-2 渲染到 40% 時停掉 make-tech 要改 LOGO，但 `node scripts/render.mjs` 子程序沒被停掉，19:52 輸出後卡住不結束、一直握著 out/.render.lock；新一輪排隊 1 小時 20 分鐘沒開始，查進度只看到舊 log 的 100%。
+- 以後：停渲染一律 `pkill -f "render.mjs <slug>"` 後再 `pgrep -fa render.mjs` 確認沒有；查進度先看 `ps -o etime=` 與 log 修改時間，對得上這一輪的開始時間才算數。
