@@ -480,7 +480,7 @@ P["s9"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
 P["s10"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_b", 22, 30, hmax=440, wmax=820)],
  "run": [run("b_e2On", "paper", "s11:who", 6), run("b_euv", "euv", "s11:who", 8), run("b_s1On", "hoya", "s11:who", 6), run("b_s2On", "agc", "s11:who", 6)],
- "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:who-2"), dict(lab("b_s1A", "豪雅", "Japan", "blue", "hoya", "s11:who-2"), logo="hoya", flag="JP"),
+ "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:who-2"), dict(lab("b_s1A", "豪雅", "Japan", "blue", "euv+20", "s11:who-2"), logo="hoya", flag="JP"),
             dict(lab("b_s2A", "旭硝子", "Japan", "blue", "agc", "s11:who-2"), logo="agc", flag="JP")],
  "overlay": [sec("mk1-co", "start+6", "s11:who-2", "上游：空白光罩誰做", "QYResearch；Morningstar", {"blank": "blank", "paper": "paper", "euv": "euv", "jp": "jp", "hoya": "hoya", "agc": "agc"})]}
 P["s11"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],

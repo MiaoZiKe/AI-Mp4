@@ -28,6 +28,8 @@ const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children:
     {children}
   </div>
 );
+// 2026/11/24 審片 R1：卡片退場不停在半透明（地板網格會穿過字）；共用疊層是 6 幀淡出，這支的卡改成 3 幀
+const fastOut = (o: Overlay3D, f: number, k: number) => (f >= o.until ? Math.max(0, 1 - (f - o.until) / 3) : k);
 const lit = (f: number, at: number, lo = 0.4) => lo + (1 - lo) * tween(f, at, 10, EASE.enter);
 const on = (f: number, at: number, d = 10) => tween(f, at, d, EASE.enter);
 const cl = (x: number) => Math.min(1, Math.max(0, x));
@@ -59,7 +61,7 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
   const ch = on(f, T(o, "chip")), li = on(f, T(o, "light")), fi = on(f, T(o, "film")), mk = on(f, T(o, "mask"));
   const lanes = [0, 1, 2, 3, 4, 5, 6].map((j) => 100 + j * 32), C0 = 196;
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={120} y={CT + 8} width={152} height={26} fill={CAB} />
         {lanes.map((x, j) => <Beam key={`a${j}`} x1={x} y1={CT + 40} x2={x} y2={156} c={DUV} a={0.25 + 0.75 * li} f={f} w={6} />)}
@@ -84,7 +86,7 @@ const Cr: React.FC<P> = ({ o, f, k }) => {
   const q = on(f, T(o, "quartz")), c = on(f, T(o, "cr")), p = on(f, T(o, "pat"));
   const gaps = [96, 176, 256, 336];
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={lit(f, T(o, "quartz"), 0.45)}>
           <rect x={40} y={CT + 26} width={400} height={104} fill={QZ} stroke={QZ_D} strokeWidth={3} />
@@ -112,7 +114,7 @@ const Duv: React.FC<P> = ({ o, f, k }) => {
   const d = on(f, T(o, "duv")), b = on(f, T(o, "block")), p = on(f, T(o, "pass")), ca = on(f, T(o, "carry"));
   const lanes = Array.from({ length: 9 }, (_, j) => 64 + j * 56);
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {lanes.map((x, j) => <Beam key={`a${j}`} x1={x} y1={CT + 10} x2={x} y2={150} c={DUV} a={0.2 + 0.8 * d} f={f} />)}
         <rect x={36} y={150} width={500} height={34} fill={QZ} stroke={QZ_D} strokeWidth={2} opacity={0.85} />
@@ -134,7 +136,7 @@ const X4: React.FC<P> = ({ o, f, k }) => {
   const s = 1 - 0.75 * EASE.move(x4);
   const bars = (cx: number, cy: number, sc: number, c: string, op: number) => [-2, -1, 0, 1, 2].map((j) => <rect key={j} x={cx + j * 40 * sc - 9 * sc} y={cy - 80 * sc} width={18 * sc} height={160 * sc} fill={c} opacity={op} />);
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={40} y={CT + 14} width={220} height={190} fill={QZ} stroke={QZ_D} strokeWidth={3} />
         {bars(150, CT + 109, 1, DUV, 0.85)}
@@ -161,7 +163,7 @@ const Euv: React.FC<P> = ({ o, f, k }) => {
   const e = on(f, T(o, "euv")), ea = on(f, T(o, "eat")), no = on(f, T(o, "no"));
   const glow = 10 + 4 * Math.sin(f * 0.4);
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <text x={40} y={CT + 36} style={zh(32, H.text, 900)}>深紫外光</text>
         <text x={226} y={CT + 36} style={zh(sm(30), H.text2, 800)}>193 奈米</text>
@@ -197,7 +199,7 @@ const Ml: React.FC<P> = ({ o, f, k }) => {
     layers.push(<rect key={`s${j}`} x={40} y={Y0 + j * PH + 6} width={440} height={8} fill={SI} />);
   }
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={lit(f, T(o, "mo"), 0.5)}>{layers}</g>
         <rect x={40} y={Y0 + NP * PH} width={440} height={6} fill={ULE} />
@@ -225,7 +227,7 @@ const Abs: React.FC<P> = ({ o, f, k }) => {
   const isAbs = (x: number) => AB.some(([ax, w]) => x >= ax && x <= ax + w);
   const YS = 226, YA = 190;
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {Array.from({ length: 6 }, (_, j) => <g key={j}><rect x={40} y={YS + j * 12} width={440} height={5} fill={MO} /><rect x={40} y={YS + j * 12 + 5} width={440} height={7} fill={SI} /></g>)}
         <rect x={40} y={YS + 72} width={440} height={10} fill={ULE} />
@@ -253,7 +255,7 @@ const Pel: React.FC<P> = ({ o, f, k }) => {
   const pe = on(f, T(o, "pel")), du = cl((f - T(o, "dust")) / 16), fo = on(f, T(o, "focus")), no = on(f, T(o, "no"));
   const YF = 140, YM = 226, dy = YF - 9 - (1 - EASE.move(du)) * 50;
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <Beam x1={170} y1={CT + 12} x2={258} y2={YM} c={DUV} a={0.3 + 0.7 * fo} f={f} w={6} />
         <Beam x1={346} y1={CT + 12} x2={262} y2={YM} c={DUV} a={0.3 + 0.7 * fo} f={f} w={6} />
@@ -283,7 +285,7 @@ const Cost: React.FC<P> = ({ o, f, k }) => {
   const ma = cl((f - T(o, "many")) / 40), de = on(f, T(o, "def"));
   const N = 14, shown = Math.round(N * (0.3 + 0.7 * EASE.move(ma)));
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {Array.from({ length: shown }, (_, j) => <g key={j}><path d={`M${50} ${298 - j * 15} l120 0 l40 -12 l-120 0 Z`} fill={QZ} stroke={QZ_D} strokeWidth={2} />
           <path d={`M${84} ${292 - j * 15} l60 0 l14 -4 l-60 0 Z`} fill={CR} /></g>)}
@@ -311,7 +313,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
   const ex = 22 * EASE.move(cl((f - T(o, "paper")) / 22));
   const lay: [number, number, string, string][] = [[CT + 14, 14, ABS, "吸收層（整片）"], [CT + 34, 8, RU, ""], [CT + 48, 44, "ML", "鉬／矽多層膜"], [CT + 98, 56, ULE, "玻璃基板"], [CT + 160, 8, "#6E6A62", ""]];
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={lit(f, T(o, "blank"), 0.4)}>
           {lay.map(([y, h, c, t], j) => { const yy = y + ex * j * 0.35;
@@ -348,7 +350,7 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   const items: [string, string][] = [["誰把電路畫上去？", "who"], ["怎麼送進工廠？", "ship"]];
   const kw = on(f, T(o, "kw")), nx = on(f, T(o, "next"));
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={fastOut(o, f, k)} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         {items.map(([a, id], j) => { const x = 30 + j * 462, l = lit(f, T(o, id), 0.4), hl = f >= T(o, id) && f < T(o, "kw");
           return <g key={id} opacity={l}>
