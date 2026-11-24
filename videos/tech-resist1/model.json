@@ -330,9 +330,9 @@
   },
   "m_drum": {
    "kind": "std",
-   "color": "drum",
-   "rough": 0.4,
-   "metal": 0.2
+   "color": "#C8701E",
+   "rough": 0.45,
+   "metal": 0.3
   },
   "m_drumB": {
    "kind": "std",
@@ -413,6 +413,22 @@
   "m_lit": {
    "kind": "unlit",
    "color": "#FFE36A"
+  },
+  "m_drumL": {
+   "kind": "std",
+   "color": "#3A3F48",
+   "rough": 0.4,
+   "metal": 0.5
+  },
+  "m_t_sign-jsr": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-jsr.png"
+  },
+  "m_t_flag-JP": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-JP.png"
   },
   "m_proxy": {
    "kind": "unlit",
@@ -1256,6 +1272,24 @@
    "bg": true
   },
   {
+   "id": "j_fab",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
+   "id": "j_flag",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
+   "id": "j_drum",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
    "id": "px_a",
    "z": 0,
    "k": 0
@@ -1302,6 +1336,11 @@
   },
   {
    "id": "px_t",
+   "z": 0,
+   "k": 0
+  },
+  {
+   "id": "px_j",
    "z": 0,
    "k": 0
   }
@@ -1603,6 +1642,26 @@
     184.3,
     4.2,
     2.0
+   ],
+   "dx": 150,
+   "dy": -80
+  },
+  "j_fabA": {
+   "layer": "j_fab",
+   "p": [
+    197.0,
+    4.8,
+    -1.0
+   ],
+   "dx": -150,
+   "dy": -90
+  },
+  "j_drumA": {
+   "layer": "j_drum",
+   "p": [
+    200.4,
+    1.6,
+    3.2
    ],
    "dx": 150,
    "dy": -80
@@ -19872,6 +19931,379 @@
    "mat": "m_bld2"
   },
   {
+   "id": "j_bld",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    9,
+    4.2,
+    6
+   ],
+   "pos": [
+    198,
+    2.1,
+    -1.5
+   ],
+   "mat": "m_bld",
+   "bevel": 0.05
+  },
+  {
+   "id": "j_band",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    9.05,
+    0.25,
+    6.05
+   ],
+   "pos": [
+    198,
+    2.4,
+    -1.5
+   ],
+   "mat": "m_bld2"
+  },
+  {
+   "id": "j_win",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    8.4,
+    0.45,
+    0.05
+   ],
+   "pos": [
+    198,
+    3.3,
+    1.53
+   ],
+   "mat": "m_win"
+  },
+  {
+   "id": "j_saw",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    2.3,
+    0.14,
+    6.1
+   ],
+   "pos": [
+    198,
+    4.55,
+    -1.5
+   ],
+   "mat": "m_roof",
+   "at": [
+    [
+     -3.3,
+     0,
+     0
+    ],
+    [
+     -1.1,
+     0,
+     0
+    ],
+    [
+     1.1,
+     0,
+     0
+    ],
+    [
+     3.3,
+     0,
+     0
+    ]
+   ],
+   "rot": [
+    0,
+    0,
+    -24
+   ]
+  },
+  {
+   "id": "j_ahu",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.6,
+    1.0
+   ],
+   "pos": [
+    198,
+    5.0,
+    -3.6
+   ],
+   "mat": "m_bld2",
+   "at": [
+    [
+     -3,
+     0,
+     0
+    ],
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0
+    ]
+   ],
+   "bevel": 0.03
+  },
+  {
+   "id": "j_stack",
+   "layer": "j_fab",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    2.4
+   ],
+   "pos": [
+    201.6,
+    5.6,
+    -3.8
+   ],
+   "mat": "m_steelHi",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     -0.8,
+     0,
+     0
+    ]
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "j_door",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    2.0,
+    1.8,
+    0.06
+   ],
+   "pos": [
+    200.8,
+    0.9,
+    1.52
+   ],
+   "mat": "m_bld2"
+  },
+  {
+   "id": "j_sgB",
+   "layer": "j_fab",
+   "shape": "box",
+   "size": [
+    2.5,
+    2.5,
+    0.06
+   ],
+   "pos": [
+    196.4,
+    1.55,
+    1.53
+   ],
+   "mat": "m_steel2"
+  },
+  {
+   "id": "j_sg",
+   "layer": "j_fab",
+   "shape": "plane",
+   "size": [
+    2.3,
+    2.3
+   ],
+   "pos": [
+    196.4,
+    1.55,
+    1.58
+   ],
+   "mat": "m_t_sign-jsr",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "j_fp",
+   "layer": "j_fab",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    5.2
+   ],
+   "pos": [
+    192.4,
+    2.6,
+    2.2
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "j_fb",
+   "layer": "j_fab",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    192.4,
+    5.22,
+    2.2
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "j_fgB",
+   "layer": "j_flag",
+   "shape": "box",
+   "size": [
+    1.58,
+    1.08,
+    0.02
+   ],
+   "pos": [
+    193.21,
+    4.64,
+    2.18
+   ],
+   "mat": "m_steel2"
+  },
+  {
+   "id": "j_fg",
+   "layer": "j_flag",
+   "shape": "plane",
+   "size": [
+    1.5,
+    1.0
+   ],
+   "pos": [
+    193.21,
+    4.64,
+    2.2
+   ],
+   "mat": "m_t_flag-JP",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "j_drum",
+   "layer": "j_drum",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    1.0
+   ],
+   "pos": [
+    199.4,
+    0.5,
+    3.2
+   ],
+   "mat": "m_drum",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.0,
+     0,
+     0
+    ],
+    [
+     2.0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     1.0,
+     0
+    ],
+    [
+     1.5,
+     1.0,
+     0
+    ]
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "j_drumL",
+   "layer": "j_drum",
+   "shape": "cyl",
+   "size": [
+    0.47,
+    0.06
+   ],
+   "pos": [
+    199.4,
+    1.0,
+    3.2
+   ],
+   "mat": "m_drumL",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.0,
+     0,
+     0
+    ],
+    [
+     2.0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     1.0,
+     0
+    ],
+    [
+     1.5,
+     1.0,
+     0
+    ]
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
    "id": "px_a",
    "layer": "px_a",
    "shape": "box",
@@ -20028,6 +20460,22 @@
     177.7,
     2.8,
     -1.15
+   ],
+   "mat": "m_proxy"
+  },
+  {
+   "id": "px_j",
+   "layer": "px_j",
+   "shape": "box",
+   "size": [
+    9.0,
+    4.6,
+    8.1
+   ],
+   "pos": [
+    198.0,
+    2.3,
+    -0.45
    ],
    "mat": "m_proxy"
   }

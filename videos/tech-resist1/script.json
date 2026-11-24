@@ -925,6 +925,22 @@
       "dur": 8
      },
      {
+      "layer": "j_flag",
+      "at": "s1:start-40",
+      "until": "s13:jp",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "j_flag",
+      "at": "s1:start-40",
+      "until": "s13:jp+8",
+      "dur": 24,
+      "dx": 0,
+      "dy": -1.2,
+      "dz": 0
+     },
+     {
       "layer": "t_fab",
       "at": "s1:start-40",
       "until": "s13:yl-6",
@@ -1058,9 +1074,23 @@
       "dur": 1
      },
      {
-      "layer": "px_t",
+      "layer": "px_j",
       "at": "s1:start-400",
       "until": "s13:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_j",
+      "at": "s13:tw-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t",
+      "at": "s1:start-400",
+      "until": "s13:tw+26",
       "opacity": 0,
       "dur": 1
      },
@@ -2646,6 +2676,14 @@
      {
       "at": "start-4",
       "dur": 30,
+      "x": 198,
+      "y": -0.104,
+      "d": 52,
+      "elev": 18
+     },
+     {
+      "at": "tw-4",
+      "dur": 30,
       "x": 177.7,
       "y": -0.632,
       "d": 66,
@@ -2661,6 +2699,32 @@
      }
     ],
     "labels": [
+     {
+      "part": "j_fabA",
+      "text": "日本光阻廠",
+      "en": "Japan",
+      "color": "coral",
+      "at": "jp",
+      "until": "tw-6",
+      "xy": [
+       260,
+       300
+      ],
+      "flag": "JP"
+     },
+     {
+      "part": "j_drumA",
+      "text": "捷時雅 JSR",
+      "en": "光阻桶",
+      "color": "blue",
+      "at": "jp+12",
+      "until": "tw-6",
+      "xy": [
+       810,
+       300
+      ],
+      "logo": "jsr"
+     },
      {
       "part": "t_fabA",
       "text": "雲林光阻廠",
@@ -2755,9 +2819,7 @@
     }
    ],
    "component": "ThreeScene",
-   "sources": [
-    "下一集：塗佈顯影機"
-   ],
+   "sources": [],
    "props": {
     "zoom": [
      {
@@ -2770,28 +2832,28 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": 1.0,
-      "y": 2.704,
-      "d": 48,
-      "elev": 26
+      "x": 0.4,
+      "y": 2.432,
+      "d": 34,
+      "elev": 28
      }
     ],
     "run": [
      {
       "id": "a_drop",
-      "at": "ok",
+      "at": "start+10",
       "ramp": 6,
       "until": "flat"
      },
      {
       "id": "a_rot",
-      "at": "flat-10",
+      "at": "start+20",
       "ramp": 14,
       "until": "s15:start+400"
      },
      {
       "id": "a_spread",
-      "at": "flat",
+      "at": "start+30",
       "ramp": 8,
       "until": "s15:start+400"
      }
@@ -2802,7 +2864,7 @@
       "text": "滴下光阻",
       "en": "Resist dispense",
       "color": "amber",
-      "at": "ok",
+      "at": "start+10",
       "until": "kw-10",
       "xy": [
        300,
@@ -2868,11 +2930,9 @@
    "sources": [],
    "props": {
     "endCard": {
-     "next": "光阻-2 塗佈顯影機",
+     "next": "光阻-2 塗佈機",
      "trail": [
-      "塗佈",
-      "曝光",
-      "顯影"
+      "塗佈顯影機"
      ],
      "at": "s14:kw-8",
      "comment": "光阻",

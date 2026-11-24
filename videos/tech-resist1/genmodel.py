@@ -377,13 +377,41 @@ anchor("f_btlA", "f_btl", [FX - 3.3, 3.8, .8], dx=-150, dy=-90)
 anchor("f_drumA", "f_btl", [FX + 2.6, 7.3, .6], dx=150, dy=-60)
 anchor("t_fabA", "t_fab", [TX - 3.0, 5.6, 1.0], dx=-150, dy=-90)
 anchor("t_tankA", "t_fab", [TX + 8.3, 4.2, 2.0], dx=150, dy=-80)
+# ═════════ J：日本光阻廠 x=198（s13 開頭念「以日本廠為主」；2026/11/24 審片必改 2：念到時不能是空地板）══════════
+# 廠房＋鋸齒屋頂＋屋頂機組＋排氣塔＋正面捷時雅官方 LOGO 廠牌（Commons 原檔經 thumb.php 轉 PNG，不改色）＋日本國旗旗桿（念到升旗）＋門口光阻桶
+ROOT = os.path.normpath(os.path.join(D, "..", ".."))
+subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-resist1", "flag:JP", "flag:TW", "logo:jsr"], check=True, stdout=subprocess.DEVNULL)
+SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
+def tex(name):
+    materials["m_t_" + name] = {"kind": "unlit", "color": "#FFFFFF", "img": f"tex/brand/{name}.png"}; return "t_" + name
+def plate(pid, lay, name, w, cx, cy, cz):
+    h = w / SIGN[name]["aspect"]; box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
+JX = 198
+materials["m_drum"] = M("#C8701E", rough=.45, metal=.3); materials["m_drumL"] = M("#3A3F48", rough=.4, metal=.5)
+box("j_bld", "j_fab", "bld", [9, 4.2, 6], [JX, 2.1, -1.5], bevel=.05)
+box("j_band", "j_fab", "bld2", [9.05, .25, 6.05], [JX, 2.4, -1.5])
+box("j_win", "j_fab", "win", [8.4, .45, .05], [JX, 3.3, 1.53])
+box("j_saw", "j_fab", "roof", [2.3, .14, 6.1], [JX, 4.55, -1.5], rot=[0, 0, -24], at=[[-3.3 + 2.2 * i, 0, 0] for i in range(4)])
+box("j_ahu", "j_fab", "bld2", [1.2, .6, 1.0], [JX, 5.0, -3.6], at=[[-3 + 2 * i, 0, 0] for i in range(4)], bevel=.03)
+cyl("j_stack", "j_fab", "steelHi", .28, 2.4, [JX + 3.6, 5.6, -3.8], at=[[0, 0, 0], [-.8, 0, 0]])
+box("j_door", "j_fab", "bld2", [2.0, 1.8, .06], [JX + 2.8, .9, 1.52])
+box("j_sgB", "j_fab", "steel2", [2.5, 2.5, .06], [JX - 1.6, 1.55, 1.53])
+plate("j_sg", "j_fab", "sign-jsr", 2.3, JX - 1.6, 1.55, 1.58)
+cyl("j_fp", "j_fab", "steelHi", .06, 5.2, [JX - 5.6, 2.6, 2.2]); sph("j_fb", "j_fab", "steelHi", .1, [JX - 5.6, 5.22, 2.2])
+_fh = 1.5 / SIGN["flag-JP"]["aspect"]
+box("j_fgB", "j_flag", "steel2", [1.58, _fh + .08, .02], [JX - 5.6 + .81, 5.2 - _fh / 2 - .06, 2.18])
+plate("j_fg", "j_flag", "flag-JP", 1.5, JX - 5.6 + .81, 5.2 - _fh / 2 - .06, 2.2)
+cyl("j_drum", "j_drum", "drum", .45, 1.0, [JX + 1.4, .5, 3.2], at=[[0, 0, 0], [1.0, 0, 0], [2.0, 0, 0], [.5, 1.0, 0], [1.5, 1.0, 0]])
+cyl("j_drumL", "j_drum", "drumL", .47, .06, [JX + 1.4, 1.0, 3.2], at=[[0, 0, 0], [1.0, 0, 0], [2.0, 0, 0], [.5, 1.0, 0], [1.5, 1.0, 0]])
+anchor("j_fabA", "j_fab", [JX - 1.0, 4.8, -1.0], dx=-150, dy=-90)
+anchor("j_drumA", "j_drum", [JX + 2.4, 1.6, 3.2], dx=150, dy=-80)
 
 # 主素材框（看不見；給 layout-check 判斷「卡片／標籤有沒有蓋到主體中央」）：每段只亮鏡頭對準的那一個，其他層全部標 bg
 materials["m_proxy"] = {"kind": "unlit", "color": "#FFFFFF", "opacity": 0}
 PXB = {"px_a": (AX - 4.0, AX + 4.0, 3.0, 4.2, -4.0, 4.0), "px_a2": (AX - 4.0, AX + 6.0, 3.0, 7.4, -4.0, 4.0), "px_br": (BX - 6.0, BX + 6.0, 0, Y_RT, -2.0, 2.0),
        "px_b": (BX - 6.2, BX + 6.2, 0, 8.4, -2.2, 2.2), "px_bn": (BX - 6.2, NX + 6.2, 0, 8.4, -2.2, 2.2),
        "px_c": (CX - 6.8, CX + 6.8, 1.6, 7.2, -.4, .6), "px_d": (DX - 8.6, DX + 8.6, .2, 2.0, -2.2, 2.2),
-       "px_e": (EX - 8.0, EX + 8.0, .4, 3.8, -2.0, 2.0), "px_f": (FX - 4.6, FX + 4.6, 0, 7.8, -2.2, 2.2), "px_t": (TX - 6.0, TX + 9.4, 0, 5.6, -4.5, 2.2)}
+       "px_e": (EX - 8.0, EX + 8.0, .4, 3.8, -2.0, 2.0), "px_f": (FX - 4.6, FX + 4.6, 0, 7.8, -2.2, 2.2), "px_t": (TX - 6.0, TX + 9.4, 0, 5.6, -4.5, 2.2), "px_j": (JX - 4.5, JX + 4.5, 0, 4.6, -4.5, 3.6)}
 for lid, (x0, x1, y0, y1, z0, z1) in PXB.items():
     box(lid, lid, "proxy", [x1 - x0, y1 - y0, z1 - z0], [(x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2])
 for l in layers:
@@ -448,10 +476,10 @@ for (ci, i), (L, O, _) in PGL.items():
 VIS += [hid("da_ln", HIDE, "s10:uneven", 14), hid("da_rs", "s10:uneven", FAR, 14), hid("de_ln", HIDE, "s10:uneven", 14), hid("de_rs", "s10:uneven", FAR, 14),
         hid("da_hit", HIDE, "s9:same", 8), hid("de_hit", HIDE, "s9:frac", 8), hid("da_hit", "s10:uneven", FAR, 8), hid("de_hit", "s10:uneven", FAR, 8),
         hid("de_bad", HIDE, "s10:brk", 8)]
-VIS += [hid("t_fab", HIDE, "s13:yl-6", 14), hid("d_src", "s10:start-4", FAR, 10)]   # s10 推近後光源收起來，不壓頂端讀數
+VIS += [hid("j_flag", HIDE, "s13:jp", 6), mv("j_flag", HIDE, "s13:jp+8", dur=24, dy=-1.2), hid("t_fab", HIDE, "s13:yl-6", 14), hid("d_src", "s10:start-4", FAR, 10)]   # s10 推近後光源收起來，不壓頂端讀數
 PXW = {"px_b": [(EARLY, "s2:start-4"), ("s3:start+30", "s3:hit")], "px_br": [("s3:hit", "s5:start-4")], "px_bn": [("s5:start+30", "s6:start-4")], "px_a": [("s2:start+30", "s3:start-4")],
        "px_a2": [("s14:start+30", FAR)], "px_c": [("s6:start+30", "s9:start-4")], "px_d": [("s9:start+30", "s11:start-4")], "px_e": [("s11:start+30", "s13:start-4")],
-       "px_t": [("s13:start+30", "s14:start-4")]}
+       "px_j": [("s13:start+30", "s13:tw-4")], "px_t": [("s13:tw+26", "s14:start-4")]}
 for lid, wins in PXW.items():
     prev = "s1:start-400"
     for a_, b_ in wins:
@@ -517,14 +545,14 @@ P["s11"] = {"zoom": [{"to": "mol", "at": "start-4", "dur": 30}],
  "labels": [lab("ec_A", "化學放大", "Chemically amplified", "blue", "try", "s13:start-4", xy=[LX, LY]), lab("em_A", "金屬氧化物", "Metal oxide", "amber", "abs", "s13:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-mor", "start+5", "s13:start-2", "金屬氧化物光阻", "SemiEngineering；JSR 2025/9", {"try": "try", "abs": "abs", "mor": "mor"})]}
 P["s13"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [S("start-4", TX + 1.7, 2.8, 66, 18, 30)],
+ "shot": [S("start-4", JX, 2.6, 52, 18, 30), S("tw-4", TX + 1.7, 2.8, 66, 18, 30)],
  "run": [run("t_lit", "yl", "s14:start", 8)],
- "labels": [dict(lab("t_fabA", "雲林光阻廠", "Plant (schematic)", "amber", "yl", "s14:start-4", xy=[LX + 20, LY]), flag="TW"), lab("t_tankA", "原料儲槽", "Raw tanks", "blue", "y28", "s14:start-4", xy=[RX, LY])],
+ "labels": [dict(lab("j_fabA", "日本光阻廠", "Japan", "coral", "jp", "tw-6", xy=[LX - 40, LY]), flag="JP"), dict(lab("j_drumA", "捷時雅 JSR", "光阻桶", "blue", "jp+12", "tw-6", xy=[RX + 30, LY]), logo="jsr"), dict(lab("t_fabA", "雲林光阻廠", "Plant (schematic)", "amber", "yl", "s14:start-4", xy=[LX + 20, LY]), flag="TW"), lab("t_tankA", "原料儲槽", "Raw tanks", "blue", "y28", "s14:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-tw", "start+5", "s14:start-2", "台灣：在地生產光阻", "日經、Tom's Hardware（媒體報導）", {"tw": "tw", "jv": "jv", "yl": "yl", "y28": "y28"})]}
 P["s14"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [S("start-4", AX + 1.0, 5.2, 48, 26, 30)],
- "run": [run("a_drop", "ok", "flat", 6), run("a_rot", "flat-10", FAR, 14), run("a_spread", "flat", FAR, 8)],
- "labels": [lab("a_nozA", "滴下光阻", "Resist dispense", "amber", "ok", "kw-10", xy=[LX, LY]), lab("a_resA", "轉起來攤平", "Spin to spread", "blue", "flat", "kw-10", xy=[RX, LY])],
+ "shot": [S("start-4", AX + .4, 4.2, 34, 28, 30)],
+ "run": [run("a_drop", "start+10", "flat", 6), run("a_rot", "start+20", FAR, 14), run("a_spread", "start+30", FAR, 8)],
+ "labels": [lab("a_nozA", "滴下光阻", "Resist dispense", "amber", "start+10", "kw-10", xy=[LX, LY]), lab("a_resA", "轉起來攤平", "Spin to spread", "blue", "flat", "kw-10", xy=[RX, LY])],
  "overlay": [sec("pr1-next", "start+5", "kw-10", "下一集：塗佈顯影機", "光阻-2", {"ok": "ok", "flat": "flat", "next": "next", "track": "track"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])

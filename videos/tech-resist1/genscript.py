@@ -82,7 +82,7 @@ S = [
  ["但膠要塗得又薄又平", "下集看", "塗佈顯影機", "留言光阻", "拿完整資料"],
  ["But it must go on thin and flat.", "Next episode:", "the coater-developer.", "Comment \"光阻\"", "for the full notes."],
  [("ok", "膠要塗得"), ("flat", "又薄又平"), ("next", "下集"), ("track", "塗佈顯影機"), ("kw", "留言光阻")],
- ["塗佈顯影機"], ["下一集：塗佈顯影機"]),
+ ["塗佈顯影機"], []),
 ]
 # 11/24：v1「最快二零二八年投產」疑似吞掉「年」（對齊 0.08 秒、字分數 0）→ 念稿改寫成不易吞字的說法，字幕不變
 TTS = lambda t: t.replace("矽", "細").replace("最快 2028 年投產", "最快在二零二八年開始投產").replace(" 2028 ", "二零二八").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
@@ -100,7 +100,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     scenes.append(sc)
 scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 5", "title": "照到光就變的膠", "size": 110, "top": 236}
 scenes.append({"id": "s15", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "光阻-2 塗佈顯影機", "trail": ["塗佈", "曝光", "顯影"], "at": "s14:kw-8", "comment": "光阻", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "光阻-2 塗佈機", "trail": ["塗佈顯影機"], "at": "s14:kw-8", "comment": "光阻", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("wafer", "晶圓", "WAFER", "30 cm", "10 cm"), lv("film", "光阻層剖面", "RESIST CROSS-SECTION", "2 µm", "500 nm"),
           lv("mol", "分子", "MOLECULES", "20 nm", "5 nm")]

@@ -10,7 +10,8 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
-import { Flag } from "./Brand";
+import { Flag, LogoSvg, hasLogo } from "./Brand";
+import "./BrandWafer";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: sm(px), fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -421,6 +422,7 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
         <g><rect x={352} y={CT + 20} width={96} height={34} fill="none" stroke={jv > 0.5 ? H.amber : H.lineSoft} strokeWidth={jv > 0.5 ? 4 : 1.5} />
           <Flag code="JP" h={26} x={356} y={CT + 24} asSvg /><Flag code="TW" h={26} x={404} y={CT + 24} asSvg /></g>
         <text x={456} y={CT + 48} style={zh(32, H.text, 900)} opacity={dim(jv)}>台灣捷時雅先進製造</text>
+        {hasLogo("jsr") ? <g><rect x={862} y={CT + 6} width={58} height={58} fill="#FFFFFF" stroke={jv > 0.5 ? H.amber : H.lineSoft} strokeWidth={jv > 0.5 ? 4 : 1.5} /><LogoSvg id="jsr" x={866} y={CT + 10} h={50} /></g> : null}
         <text x={356} y={CT + 98} style={zh(30, H.text2, 800)} opacity={dim(jv)}>JSR 持股過半，和台灣夥伴合資</text>
         <text x={356} y={CT + 160} style={zh(32, H.text, 900)} opacity={dim(yl)}>台灣首座光阻廠（規劃）</text>
         <text x={356} y={CT + 222} style={zh(32, H.amber, 900)} opacity={dim(y8)}>最快 2028 年投產</text>
