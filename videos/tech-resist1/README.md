@@ -15,3 +15,10 @@
 - 檢查：layout-check 0 error、card-overlap 0/0、flow 0（26 條）、kinematics 0；verify4 四道不全過，判讀在 out/tech-resist1/verify4/human.md。
 - 渲染之後另一個 session 改了原始碼（念稿光罩→光照、雲林廠標籤加台灣旗、合資卡加日台國旗）；v1 成片不含這些，要的話需重渲（0 次 TTS，約 1 小時）。
 - 預覽：out/preview/tech-resist1-sheet.png、tech-resist1-close-acid／euv／stoch／mor.png。
+
+## 11/24 v2 準備（重配待額度重置）
+- v1 音高 137.9 Hz（基準 121.5，允許 112–126）作廢，要用 `bash scripts/three/tts-pitch-take.sh tech-resist1` 重配；11/24 11:18 第 1 次請求回 429（當日免費額度用完），等 16:00 後重配。
+- 念稿：光罩→光照（替身字表）；「最快 2028 年投產」改念「最快在二零二八年開始投產」（v1 疑似吞「年」），字幕不變。
+- 審片 7.4 必改已修：s13 開頭加日本光阻廠（捷時雅官方 LOGO 廠牌、日本國旗念「日本廠」時升旗、門口光阻桶），念「捷時雅還找夥伴」時鏡頭移到雲林廠（台灣旗）；合資卡加 JSR LOGO 與日台國旗（不透明，輪到粗框）；s14 一開場就滴膠、晶圓轉起來攤平，鏡頭對準晶圓台；s14 出處拿掉「下一集」；片尾「下一支」縮短成「光阻-2 塗佈機」、小標只留「塗佈顯影機」。
+- LOGO：捷時雅 JSR＝Commons File:JSRlogo.gif（thumb.php 轉 PNG；原檔是低解析 GIF）。
+- 檢查：validate 0 error、layout-check 0 error、card-overlap 0/0（時間軸仍是 v1 錄音的，重配後要重跑 genmodel 與檢查，並重抽 44–54 秒原尺寸送審）。
