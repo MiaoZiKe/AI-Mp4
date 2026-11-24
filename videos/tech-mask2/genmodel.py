@@ -642,12 +642,12 @@ P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
  "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "晶圓廠自己做光罩", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
 # s3：拉到太平洋全景：日本兩家（東京周邊）、美國一家（東岸）；念「專業光罩廠」三條出貨航線開始跑（光罩盒沿弧線飛往客戶晶圓廠）
 P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-22", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-16", SP[0], SP[1] + .9, 6.0, 36, 22)],
+ "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-22", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-16", SP[0] - .3, SP[1] + .9, 6.4, 36, 22)],
  "run": [run("f_rDNPF", "mer", "s5:start", 8), run("f_rTEKF", "mer+6", "s5:start", 8), run("f_rPHRF", "mer+12", "s5:start", 8),
          run("f_dnpOn", "jp", "s4:start", 6), run("f_tekOn", "jp+8", "s4:start", 6), run("f_phrOn", "us", "s4:start", 6),
          run("f_cTWOn", "mer", "s4:start", 6), run("f_cKROn", "mer+6", "s4:start", 6), run("f_cUSOn", "mer+12", "s4:start", 6)],
  "labels": [LG("f_dnpA", "大日本印刷", "DNP", "amber", "jp", "us-18", [260, 380], DNPL, "JP"), LG("f_tekA", "Tekscend", "ex-Toppan", "amber", "jp+8", "us-18", [790, 300], "tekscend", "JP"),
-            LG("f_phrA", "Photronics", "US", "blue", "us-4", "s4:start-10", [262, 262], PHRL, "US")],
+            LG("f_phrA", "Photronics", "US", "blue", "us-4", "s4:start-10", [262, 372], PHRL, "US")],
  "overlay": [sec("mk2-mer", "start+4", "s4:start-8", "專業光罩廠", "SemiEng；Photronics 10-K", {"mer": "mer", "jp": "jp", "us": "us"})]}
 # s4：推近台灣：念「台灣光罩」廠區落下、光柱亮；念「成熟製程」光罩盒推上潔淨物流車，車沿路開往南部客戶晶圓廠
 P["s4"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
