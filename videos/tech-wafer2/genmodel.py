@@ -314,7 +314,7 @@ materials.update({"m_" + k: v for k, v in {
  "gan": {"kind": "phys", "color": "#7FA8E8", "rough": .1, "metal": .2, "clearcoat": 1, "env": .9}, "sicW": M("#5E7A6A", rough=.3, metal=.4, env=.7),
  "pvdf": {"kind": "phys", "color": "#EFEAE0", "rough": .3, "metal": 0, "clearcoat": .5}, "conc": M("#C9CDD3", rough=.85, metal=0)}.items()})
 ROOT = os.path.normpath(os.path.join(D, "..", ".."))
-TEX = ["flag:TW", "flag:JP", "text:gwT=環球晶|6488", "logo:fst", "text:wwT=合晶|6182", "text:epiT=嘉晶|3016"]
+TEX = ["flag:TW", "flag:JP", "logo:globalwafers", "logo:fst", "text:wwT=合晶|6182", "text:epiT=嘉晶|3016"]
 subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-wafer2", *TEX], check=True, stdout=subprocess.DEVNULL)
 SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
 def tex(name):
@@ -398,7 +398,7 @@ box("g_br", L0, "win", [1.0, .5, .8], [x0 - 1.85, 2.0, z0 + .2])
 box("g_w1", L0, "win", [4.3, .3, .05], [x0 + .4, 2.35, z0 + 1.53]); box("g_w2", L0, "win", [2.7, .26, .05], [x0 - 3.6, 1.85, z0 + 1.03])
 box("g_ahu", L0, "cab2", [.7, .45, .7], [x0 + .4, 3.55, z0 - .8], at=[[-1.4, 0, 0], [0, 0, 0], [1.4, 0, 0]], bevel=.03)
 box("g_door", L0, "cabD", [1.0, 1.1, .05], [x0 + 1.9, .85, z0 + 1.53])
-sign_on("g", L0, "sign-gwT", x0 - .3, 1.15, z0 + 1.56, 2.0)
+sign_on("g", L0, "sign-globalwafers", x0 - .3, 1.15, z0 + 1.56, 2.0)
 pole("g", L0, "t_flag0", "flag-TW", x0 - 2.5, z0 + 2.0)
 WINS[0] = ["g_w1", "g_w2", "g_h1_sawG", "g_h2_sawG"]
 anchor("t_gwA", L0, [x0 + .4, 3.6, z0], dx=0, dy=-120)
