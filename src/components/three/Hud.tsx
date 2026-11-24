@@ -16,7 +16,7 @@ import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
 import { H, L, canvasBox, setHudLayout, setHudSkin, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
 import { Logo, Flag, hasLogo, logoLabelH, hasFlag } from "./Brand";
-import { LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
+import { rulerLen, LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
 import { buildModel, cameraFor, projectPoint, signalLevel, stateAt, type Model3D, type Overlay3D, type State3D } from "./engine";
@@ -119,7 +119,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
   const band = (f * (H.scan.sweep / 30)) % (y1 - y0 + H.scan.bandH);
   const lvl = z.level ?? hud.levels[0];
   // 尺標長度：ruler ÷ 目前 field × 畫面寬（縮放途中跟著伸縮）；3D 之後固定在那一級
-  const rulerPx = Math.max(40, Math.min(L.INNER_W * (L.BAND_TOP ? 0.4 : 0.5), (meters(lvl.ruler) / Math.pow(10, z.logField)) * L.INNER_W * camK));
+  const rulerPx = rulerLen(L, lvl.ruler, z.logField, camK);
   // quiet＝提問卡出現時收掉層級名、倍率、FIELD（只留右上的示意圖標示，全片都在）
   const rq = 1 - quiet;
   // 讀數換級時閃一下（換字的那幾幀亮起來）

@@ -25,8 +25,13 @@ export type HudLevel = { id: string; label: string; en?: string; field: string; 
 export type HudSpec = { theme?: "dark"; levels: HudLevel[]; schematic?: { text?: string; zh?: string }; maxLabels?: number; layout?: string; smallPx?: number };
 export type ZoomKey = { to: number; at: number; dur: number; drift?: boolean };
 const UNIT: Record<string, number> = { m: 1, cm: 1e-2, mm: 1e-3, "µm": 1e-6, um: 1e-6, nm: 1e-9 };
-/** "15 cm" → 0.15（公尺） */
-export const meters = (s: string) => { const r = /^([\d.]+)\s*(m|cm|mm|µm|um|nm)$/.exec(s.trim()); return r ? Number(r[1]) * UNIT[r[2]] : NaN; };
+/** "15 cm" → 0.15（公尺）。2026/11/24：微米的 μ 有兩個字碼——微符號 µ（U+00B5）與希臘字母 μ（U+03BC，輸入法常打出這個）；
+ *  以前只認 U+00B5，tech-mask1 寫「2 μm」（U+03BC）→ NaN → 那一級與相鄰級的 logField 全變 NaN → 比例尺長度 NaN，只剩一根豎線。兩個都收。 */
+export const meters = (s: string) => { const r = /^([\d.]+)\s*(m|cm|mm|[µμu]m|nm)$/.exec(String(s ?? "").trim()); return r ? Number(r[1]) * UNIT[/[µμu]m/.test(r[2]) ? "um" : r[2]] : NaN; };
+/** 比例尺長度（px）：ruler ÷ 目前畫面寬 × 畫面寬，鏡頭推近拉遠跟著 camK 伸縮；夾在 40 到 0.4（或 0.5）× 內寬。
+ *  Hud.tsx 畫比例尺與 layout-check 檢查用同一支（非有限數字＝單位寫錯或某一級 field 讀不懂，layout-check 判 error） */
+export const rulerLen = (b: { INNER_W: number; BAND_TOP?: number }, ruler: string, logField: number, camK = 1) =>
+  Math.max(40, Math.min(b.INNER_W * (b.BAND_TOP ? 0.4 : 0.5), (meters(ruler) / Math.pow(10, logField)) * b.INNER_W * camK));
 
 /** at（cue id 或 start｜voice｜end｜exit ±N，可寫「幕id:cue」）→ 絕對幀；規則和 engine.ts 的 at 一樣 */
 export const atOf = (tl: TimelineV2) => {

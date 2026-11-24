@@ -1,7 +1,7 @@
 // scripts/three/layout-check.mjs 用 esbuild 打包這支（不開瀏覽器）：用和畫面同一份的 engine.ts／hudLayout.ts 算每一幀的版面，找出
 // 標籤／蓋章壓到模型、兩張卡同時出現又重疊、內容超出安全區、內容底部太高（下方空白太多）、小字太小、片尾卡太短。
 import { buildModel, stateAt } from "../../src/components/three/engine";
-import { cardRect, centerOf, endcardGeom, endcardTimes, visibleMain, hit, area, hookRect, hudReserved, planHud, stampRect, textW, visible, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
+import { rulerLen, zoomAt, meters as metersOf, cardRect, centerOf, endcardGeom, endcardTimes, visibleMain, hit, area, hookRect, hudReserved, planHud, stampRect, textW, visible, zoomKeys, ENDCARD_SETTLED, ENDCARD, METER_H, type Rect } from "../../src/components/three/hudLayout";
 import { setHudLayout, setHudSkin, H } from "../../src/components/three/hudSkin";
 import { cameraFor, projectPoint } from "../../src/components/three/engine";
 import { EASE, tween } from "../../src/components/anim";
@@ -89,6 +89,21 @@ export const check = (script: any) => {
   const runs: Record<string, [number, number][]> = {};
   const add = (key: string, f: number) => { const rs = (runs[key] ??= []), r = rs[rs.length - 1]; if (r && r[1] >= f - 2) r[1] = f; else rs.push([f, f]); };
   const meters = Object.entries(m.product.actions ?? {}).filter(([, d]) => d.type === "meter" && d.x !== undefined);
+  // 比例尺（2026/11/24 tech-mask1：「2 μm」用了希臘 μ 讀不懂 → 比例尺長度 NaN，只剩一根豎線）：
+  // 靜態：每一級 field、ruler 都要讀得懂；逐幀：照 Hud.tsx 同一支 rulerLen 算長度（含 3D 鏡頭推拉的 camK），非有限數字判 error
+  for (const lv of hud.levels) for (const [k, v] of [["field", lv.field], ["ruler", lv.ruler]] as const)
+    if (!(metersOf(v) > 0)) E("比例尺", `層級「${lv.label}」的 ${k}「${v}」讀不懂（單位要是 m／cm／mm／µm 或 μm／nm，數字在前）`);
+  {
+    const hand = keys.find((k) => hud.levels[k.to]?.handoff3D), d0 = hand ? stateAt(m, hand.at + hand.dur).cam.d : 0;
+    const bad: number[] = [];
+    for (let f = 0; f < total; f += 3) {
+      const z = zoomAt(hud, keys, f), lvl = z.level ?? hud.levels[0];
+      if (lvl.readout === false) continue;
+      const camK = z.handoff > 0.99 && d0 > 0 ? d0 / stateAt(m, f).cam.d : 1, px = rulerLen(L, lvl.ruler, z.logField, camK);
+      if (!Number.isFinite(px) || px <= 0) bad.push(f);
+    }
+    if (bad.length) E("比例尺", `比例尺長度算不出來（NaN／0）共 ${bad.length} 個抽樣幀，例如第 ${bad.slice(0, 5).join("、")} 幀：畫面只會剩一根豎線`, [bad[0], bad[bad.length - 1]]);
+  }
   const bands = L.BAND_TOP ? hudReserved(L) : [];
   const HE = hud.layout === "fill" ? "E" : "W";
   const ymd = String(script.asOf ?? "").split(/[\/-]/).map(Number), LE = ymd.length === 3 && ymd[0] * 10000 + ymd[1] * 100 + ymd[2] >= 20261121 ? "E" : "W";
