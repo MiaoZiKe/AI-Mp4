@@ -3,12 +3,13 @@
 只寫前製資料（旁白、cue、字幕、hook、片尾卡、hud、voice）；3D 動作（zoom/shot/shift/run/labels/overlay）由 genmodel.py 併進來。"""
 import json, re, os
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 11/24 審片：英文以「|」切成和中文字幕短語同數（Tracks.tsx 依比例對應，數量不同會落後一句）
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
  "同樣是晶圓，有的拋光完還要再長一層矽，叫磊晶，差在哪？",
  ["同樣是晶圓", "有的拋光完", "還要再長一層矽", "叫磊晶，差在哪？"],
- ["Same wafer, but some", "after polishing", "grow one more layer of silicon:", "epitaxy. Why?"],
+ ["Same wafer,", "but some, after polishing,", "grow one more layer of silicon: | it's called epitaxy.", "Why?"],
  [("same", "同樣是晶圓"), ("pol", "拋光完"), ("grow", "再長一層矽"), ("epi", "叫磊晶"), ("why", "差在哪")],
  ["晶圓", "拋光", "磊晶"], ["USPTO 6995077；Okmetic"]),
 ("s2", "mechanism",
@@ -38,7 +39,7 @@ S = [
 ("s6", "payoff",
  "尺寸也分工，十二吋做先進邏輯和記憶體，八吋、六吋多做功率晶片。",
  ["尺寸也分工", "十二吋做先進邏輯和記憶體", "八吋、六吋", "多做功率晶片"],
- ["Sizes split the work too:", "12-inch for advanced logic and memory,", "8- and 6-inch", "mostly for power chips."],
+ ["Sizes split the work too:", "12-inch for advanced | logic and memory;", "8-inch,", "6-inch mostly for power chips."],
  [("size", "尺寸也分工"), ("w12", "十二吋"), ("w8", "八吋、六吋"), ("pw", "功率晶片")],
  ["十二吋", "八吋", "六吋"], ["台勝科法說 2025/11；TrendForce"]),
 ("s7", "payoff",
@@ -56,19 +57,19 @@ S = [
 ("s9", "payoff",
  "合晶主攻六吋、八吋，供應功率元件，也在擴十二吋。",
  ["合晶主攻六吋、八吋", "供應功率元件", "也在擴十二吋"],
- ["Wafer Works focuses on 6- and 8-inch,", "supplying power devices,", "and is now adding 12-inch."],
+ ["Wafer Works focuses on 6-inch", "and 8-inch, supplying power devices,", "and is now adding 12-inch."],
  [("ww", "合晶"), ("p68", "六吋、八吋"), ("pwr", "功率元件"), ("x12", "擴十二吋")],
  ["合晶", "六吋", "八吋", "功率元件"], ["經濟日報；工商時報 2026/03"]),
 ("s10", "payoff",
  "嘉晶專做磊晶，除了矽，也做碳化矽和氮化鎵的磊晶。",
  ["嘉晶專做磊晶", "除了矽", "也做碳化矽和氮化鎵的磊晶"],
- ["Episil focuses on epitaxy:", "besides silicon,", "it grows SiC and GaN epi layers too."],
+ ["Episil focuses on epitaxy:", "besides silicon,", "it also grows SiC and | GaN epi layers."],
  [("epi", "嘉晶專做磊晶"), ("si", "除了矽"), ("sic", "碳化矽"), ("gan", "氮化鎵")],
  ["嘉晶", "碳化矽", "氮化鎵"], ["富果投研 2025/09；旺得富 2026/05"]),
 ("s11", "cta",
  "晶圓備好了，電路怎麼印上去？靠光罩，下一集看。留言磊晶，拿完整資料。",
  ["晶圓備好了", "電路怎麼印上去？", "靠光罩，下一集看", "留言磊晶", "拿完整資料"],
- ["The wafer is ready.", "How do circuits get printed on it?", "With a photomask: next episode.", "Comment \"磊晶\"", "for the full notes."],
+ ["The wafer is ready.", "How do circuits get printed on it?", "With a photomask; | next episode.", "Comment \"磊晶\"", "for the full notes."],
  [("ready", "晶圓備好了"), ("print", "怎麼印上去"), ("mask", "靠光罩"), ("next", "下一集"), ("kw", "留言磊晶")],
  ["光罩", "磊晶"], ["示意動畫，不是量測"]),
 ]

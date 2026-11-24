@@ -580,7 +580,7 @@ P["s1"] = {"zoom": [{"to": "tool", "at": "start-30", "dur": 1}],
  "labels": [],
  "overlay": [sec("w2-hook", "same", "s2:start-2", "代工的供應商：矽晶圓", "示意，非實際比例", {"same": "same", "pol": "pol", "grow": "grow", "epi": "epi", "why": "why"})]}
 P["s2"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", W12P, 1.8, 26, 30, 30), shot("polw", W12P, 1.6, 17, 40, 50)],
+ "shot": [shot("start-4", W12P, KY - 1.2, 16, 46, 30), shot("polw", W12P, KY - 1.4, 13, 55, 50)],
  "run": [run("k_p12On", "polw", "s3:start", 6)],
  "labels": [lab("k_p12A", "拋光晶圓", "Polished wafer", "blue", "polw", "s3:start-4")],
  "overlay": [sec("w2-pol", "start+6", "s3:start-2", "拋光晶圓：整片一樣", "示意，非實際比例", {"last": "last", "polw": "polw", "same": "same"})]}
@@ -604,7 +604,7 @@ P["s5"] = {"zoom": [{"to": "atom", "at": "start-4", "dur": 30}],
  "labels": [lab("x_dSA", "底材：雜質多", "Heavily doped", "coral", "heavy", "s6:start-4", xy=[300, 300]), lab("x_epiA", "磊晶層：雜質少", "Lightly doped", "blue", "light", "s6:start-4", xy=[780, 300])],
  "overlay": [sec("w2-dope", "start+6", "s6:start-2", "雜質濃度分開調", "Okmetic；USPTO 5306939", {"adj": "adj", "heavy": "heavy", "light": "light", "power": "power"})]}
 P["s6"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", KX + .3, 1.2, 44, 44, 30)],
+ "shot": [shot("start-4", KX + .3, KY - 2.6, 37, 46, 30)],
  "run": [run("k_p12On", "w12", "s7:start", 6), run("k_e12On", "w12", "s7:start", 6), run("k_w8On", "w8", "s7:start", 6), run("k_w6On", "w8+8", "s7:start", 6)],
  "labels": [lab("k_p12A", "12 吋", "300 mm", "blue", "w12", "s7:start-10", xy=[250, 300]), lab("k_w8A", "8 吋", "200 mm", "amber", "w8", "s7:start-10", xy=[640, 300]), lab("k_w6A", "6 吋", "150 mm", "amber", "w8+8", "s7:start-10", xy=[880, 300])],
  "overlay": [sec("w2-size", "start+6", "s7:start-2", "尺寸分工", "台勝科法說；TrendForce", {"size": "size", "w12": "w12", "w8": "w8", "pw": "pw"})]}
@@ -612,7 +612,7 @@ P["s6"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 TFX = {c: TX + dx for c, _, dx in TWF}
 for k, (sid, focus, labs, t) in enumerate([
     ("s7", "gw", [dict(lab("t_gwA", "環球晶 6488", "Taiwan", "amber", "gw", "s8:start-4", xy=[540, 360]), flag="TW")], {"sid": "s7", "gw": "gw", "top5": "top5", "rev": "rev"}),
-    ("s8", "fst", [dict(lab("t_fstA", "台勝科 3532", "Taiwan", "blue", "fst", "s9:start-4", xy=[300, 330]), flag="TW"),
+    ("s8", "fst", [dict(lab("t_fstA", "台勝科 3532", "Taiwan", "blue", "fst+6", "s9:start-4", xy=[300, 330]), flag="TW"),
                    dict(lab("t_jpA", "勝高（合資）", "SUMCO, Japan", "coral", "jv", "s9:start-4", xy=[800, 330]), flag="JP")], {"sid": "s8", "fst": "fst", "jv": "jv", "main": "main", "p70": "p70"}),
     ("s9", "ww", [dict(lab("t_wwF", "合晶 6182", "Taiwan", "amber", "ww", "s10:start-4", xy=[540, 360]), flag="TW"),
                   lab("t_wwA", "6 吋＋8 吋", "150 / 200 mm", "blue", "p68", "s10:start-4", xy=[540, 830])], {"sid": "s9", "ww": "ww", "p68": "p68", "pwr": "pwr", "x12": "x12"}),
@@ -620,7 +620,7 @@ for k, (sid, focus, labs, t) in enumerate([
                     lab("t_sicA", "矽／碳化矽／氮化鎵", "Si / SiC / GaN epi", "amber", "sic", "s11:start-4", xy=[540, 830])], {"sid": "s10", "epi": "epi", "si": "si", "sic": "sic", "gan": "gan"})]):
     fx = TFX[focus]
     P[sid] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
-              "shot": [shot("start-1" if k == 0 else focus + "-10", fx + .4, *{1: (.6, 36, 16)}.get(k, (-.6, 28, 18)), 1 if k == 0 else 30)],
+              "shot": [shot("start-1" if k == 0 else "start-4", fx + .4, *{1: (.6, 36, 16)}.get(k, (-.6, 28, 18)), 1 if k == 0 else 24)],   # 11/24 審片：鏡頭在念到公司名之前就定位，標籤出現時引線不會掃過右上角標
               "run": [run(f"t_on{k}", focus, "s11:start", 6)], "labels": labs, "overlay": [CO(focus, t)]}
 P["s11"] = {"zoom": [{"to": "litho", "at": "start-1", "dur": 1}],
  "shot": [shot("start-4", NX, 3.6, 34, 20, 1)],
