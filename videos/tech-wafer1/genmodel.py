@@ -509,11 +509,11 @@ def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, 
         box(f"{pre}_sgB", lay, "cabD", [sw + .12 * s, sh + .12 * s, .06], P_(.3, 1.25, 1.585))
         plate(f"{pre}_sg", lay, logo, sw, *P_(.3, 1.25, 1.62))
     if flag:                                                                                       # 旗桿＋國旗
-        ph = 4.2 * s; px_ = 2.75 if fside > 0 else -3.55
-        cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(px_, ph / s / 2 + .3, 1.85))
-        sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(px_, ph / s + .32, 1.85))
+        ph = 4.2 * s; px_ = 2.75 if fside > 0 else -3.55 if fside < 0 else 1.9; pz_ = -1.4 if fside == 0 else 1.85
+        cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(px_, ph / s / 2 + .3, pz_))
+        sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(px_, ph / s + .32, pz_))
         fw = 1.15 * s; fh = fw / SIGN[flag]["aspect"]
-        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(px_ + 1.15 / 2 + .06, ph / s + .3 - fh / s / 2 - .06, 1.85))
+        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(px_ + 1.15 / 2 + .06, ph / s + .3 - fh / s / 2 - .06, pz_))
     if anc: anchor(anc, lay, P_(-.4, hh + .9, .6), dx=0, dy=-120)
     return [f"{pre}_win", f"{pre}_sawG", f"{pre}_crW"]
 FX = 125
@@ -521,7 +521,7 @@ FABS = [("shin", "signB", "JP"), ("sumco", "signR", "JP"), ("gw", "signA", "TW")
 FAB_POS = [(-6.4, -3.2), (-3.2, 2.2), (0, -3.2), (6.4, -3.2), (3.2, 2.2)]      # 後排 3 棟（信越、環球晶、世創）、前排 2 棟（勝高、SK）
 FKIND = {"shin": "tall", "sumco": "tanks", "gw": "twin", "sil": "dome", "sk": "std"}
 for k, ((cid, sg, fl), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
-    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid], fside=-1 if cid == "sumco" else 1)
+    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid], fside=-1 if cid == "sumco" else 0 if cid == "sk" else 1)
     glow(f"f_on{k}", f"f_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
 box("f_pad", "f_site", "conc", [24, .2, 15], [FX, .1, .4])
 box("f_road", "f_site", "cabD", [22, .03, 1.2], [FX, .21, 5.9])
@@ -673,7 +673,7 @@ P["s9"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 FLAB = {"shin": ("信越化學", "Japan", "blue"), "sumco": ("勝高", "Japan", "coral"), "gw": ("環球晶", "Taiwan", "amber"), "sil": ("世創", "Germany", "blue"), "sk": ("SK Siltron", "Korea", "coral")}
 FXY = {"shin": [205, 360], "sumco": [300, 830], "gw": [530, 360], "sil": [840, 360], "sk": [760, 830]}
 P["s10"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", FX + .9, -1.8, 48, 24, 30), shot("top5", FX + .9, -1.6, 47, 28, 60)],
+ "shot": [shot("start-4", FX + 1.1, -1.8, 48, 24, 30), shot("top5", FX + 1.1, -1.6, 47, 28, 60)],
  "run": [run(f"f_on{k}", c, "s11:start", 6) for k, (c, _, _) in enumerate(FABS)] + [run(f"f_ship{k}", "top5", "s11:start", 8) for k in range(5)],
  "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c + "+6", "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
  "overlay": [sec("si-co", "start+2", "s11:start+30", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
