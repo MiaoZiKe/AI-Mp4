@@ -11,6 +11,12 @@
 # 所有動作的 at 都寫成「幕id:cue±幀」（cue 來自 timeline.json；配音重跑 align 後重跑本檔即可）。
 import json, math, os, random, subprocess, sys
 D = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.normpath(os.path.join(D, "..", ".."))
+# 3D 貼圖：國旗（Brand.tsx 程式繪製）＋廠牌（public/logos 官方原檔，不改色；沒有原檔的用文字名牌）→ public/tex/brand/（不進 git）
+TEX = ["flag:JP", "flag:US", "flag:TW", "flag:KR", "logo:tsmc", "logo:intel", "logo:samsung", "logo:tekscend", "logo:entegris", "logo:gudeng", "text:tmc=台灣光罩|2338"]
+TEX += ["logo:dnp" if os.path.exists(os.path.join(ROOT, "public/logos/dnp.svg")) else "text:dnpT=大日本印刷|DNP",
+        "logo:photronics" if os.path.exists(os.path.join(ROOT, "public/logos/photronics.svg")) else "text:phrT=Photronics|"]
+subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-mask2", *TEX], check=True, stdout=subprocess.DEVNULL)
 R = lambda x: round(x, 3)
 rnd = random.Random(20261206)
 parts = []; layers = []; anchors = {}; actions = {}
@@ -56,10 +62,12 @@ palette = {"floor": "#E3E9F1", "floorG": "#A8B4C6", "wall": "#DCE4EE", "wall2": 
  "cab": "#EEF2F7", "cab2": "#D7DEE8", "cabD": "#4A5873", "steel": "#A9B6CA", "steel2": "#7F8CA3", "steelHi": "#C9D3E2",
  "copper": "#C9763A", "granite": "#3E4350", "ground": "#CBD5C0", "road": "#6B7280", "roadL": "#F4F1E6",
  "fab": "#E9EDF3", "fabR": "#8FA3BF", "capR": "#2F7FE0", "merR": "#E58A1F", "twR": "#14A38B", "win": "#7FA6D8", "glassB": "#BFD5EE",
- "quartz": "#D6E6F8", "chrome": "#3A3F48", "resist": "#E8A33C", "line": "#2F5FB0", "absorb": "#2B3346",
- "pod": "#F2F2EE", "podD": "#C9CCC9", "podR": "#B5BCC6", "latch": "#4A5873", "inner": "#B9C4D4", "innerD": "#8C99AD", "seal": "#14C38E",
+ "quartz": "#D6E6F8", "chrome": "#3A3F48", "resist": "#E8A33C", "line": "#2F5FB0", "absorb": "#1F3F8F",
+ "pod": "#FBFBF8", "podD": "#AEB4BC", "podR": "#B5BCC6", "latch": "#4A5873", "inner": "#7D8AA0", "innerD": "#55627A", "seal": "#14C38E",
  "ele": "#2F7FE0", "eleR": "#1C5DB0", "euv": "#8B5CF6", "euvR": "#6D3FD8", "insp": "#38C6D9", "def": "#E0472F", "dust": "#8A8F98", "dustR": "#5E636B",
- "airM": "#9CC3FF", "airR": "#5C95F0", "die": "#7FA4E0", "mirror": "#C8D5EA", "led": "#14C38E", "ledA": "#FF9F1C", "screen": "#2E6FD8", "truck": "#E9EDF3", "truckC": "#2F7FE0"}
+ "airM": "#9CC3FF", "airR": "#5C95F0", "die": "#7FA4E0", "mirror": "#C8D5EA", "led": "#14C38E", "ledA": "#FF9F1C", "screen": "#2E6FD8", "truck": "#E9EDF3", "truckC": "#2F7FE0",
+ "sea": "#9DC1E3", "rim": "#6F8DB0", "grid": "#C9DDF0", "gridD": "#6F8FB5", "land": "#E6EDD2", "pad": "#D3D8DE", "clean": "#F7F9FB", "seam": "#C3CCD8", "roof": "#B7C1CE", "tank": "#EEF1F4",
+ "pinR": "#2F7FE0", "route": "#E58A1F"}
 def M(color, **k): return {"kind": "std", "color": color, "rough": .45, "metal": .1, **k}
 U = lambda c, o=None: {"kind": "unlit", "color": c, **({"opacity": o} if o is not None else {})}
 materials = {
@@ -83,7 +91,10 @@ materials = {
  "led": {"kind": "std", "color": "led", "emissive": "led", "ei": .9}, "ledA": {"kind": "std", "color": "ledA", "emissive": "ledA", "ei": .6},
  "screen": {"kind": "screen", "color": "screen", "ei": .7}, "screenUI": U("#BFD8FF"),
  "truck": M("truck", rough=.4, metal=.2), "truckC": M("truckC", rough=.4, metal=.2), "tire": M("#2F3136", rough=.8, metal=0),
- "air": U("#FFFFFF", .0),
+ "air": U("#FFFFFF", .0), "eleB": U("ele", .55), "defR": U("def", .9),
+ "sea": M("sea", rough=.6, metal=0), "rim": M("rim", rough=.5, metal=.2), "grid": U("grid"), "gridD": U("gridD"), "land": M("land", rough=.8, metal=0),
+ "pad": M("pad", rough=.85, metal=0), "clean": {"kind": "phys", "color": "clean", "rough": .35, "metal": 0, "clearcoat": .4, "env": .4}, "seam": U("seam"), "roof": M("roof", rough=.6, metal=.3),
+ "tank": M("tank", rough=.3, metal=.4, env=.6), "pinR": U("pinR", .85), "pinB": U("#7FB7FF", .35), "route": U("route"),
 }
 materials = {"m_" + k: v for k, v in materials.items()}
 def flowx(key, lay, path, shape="dot", n=4, lanes=1, gap=.2, ldir=(1, 0, 0), size=.1, rate=1.0, color="ele", rim="eleR", trail=0, band=None, bandO=.5, rimO=.6):
@@ -114,56 +125,148 @@ box("r_ffu", "t_room", "ffu", [5.6, .4, 5.6], [80, 26.2, -10], at=[[-54 + 6 * i,
 box("r_tray", "t_room", "steel2", [110, .25, .6], [80, 14.5, -14.6])
 cyl("r_pipeW", "t_room", "steelHi", .18, 110, [80, 15.0, -14.6], axis="x", at=[[0, 0, 0], [0, .55, 0], [0, 1.1, 0]])
 
-# ═════════ F：廠區 x=0（室外，鳥瞰） ═════════
-FX = 0
-box("f_ground", "f_site", "ground", [40, .2, 26], [FX, -.1, 0])
-box("f_road", "f_site", "road", [36, .04, 1.4], [FX, .02, 4.2])
-box("f_roadL", "f_site", "roadL", [.9, .02, .12], [FX, .05, 4.2], at=[[-17 + 1.8 * i, 0, 0] for i in range(20)])
-box("f_road2", "f_site", "road", [1.4, .04, 8.4], [FX + 1.6, .02, -.2])
-def building(pid, lay, x0, x1, z0, z1, h, roof, floors=3):
-    w, dpt = x1 - x0, z1 - z0; cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
-    box(f"{pid}B", lay, "fab", [w, h, dpt], [cx, h / 2, cz], bevel=.04)
-    box(f"{pid}R", lay, roof, [w + .2, .25, dpt + .2], [cx, h + .12, cz], bevel=.03)
-    nx = max(2, int(w / .9)); fh = h / floors
-    box(f"{pid}W", lay, "win", [.55, fh * .42, .04], [x0, 0, z1 + .02], at=[[ (i + .5) * w / nx, fh * (f + .55), 0] for i in range(nx) for f in range(floors)])
-    box(f"{pid}L", lay, "fabR", [w + .02, .06, .06], [cx, 0, z1 + .03], at=[[0, fh * f, 0] for f in range(1, floors)])
-    box(f"{pid}H", lay, "steel2", [.7, .4, .7], [x0 + .8, h + .45, cz], at=[[1.3 * i, 0, k * 1.1 - .5] for i in range(max(1, int((w - 1) / 1.3))) for k in (0, 1)])
-    cyl(f"{pid}S", lay, "steelHi", .16, 1.1, [x1 - .5, h + .8, z0 + .5])
-# 晶圓廠（大）＋自有光罩廠（藍屋頂，緊鄰）＋天橋
-building("f_fab", "f_fab", FX - 12, FX - 3.4, -4.6, 1.6, 4.2, "fabR", 3)
-building("f_cap", "f_cap", FX - 3.0, FX + .2, -2.6, 1.0, 2.8, "capR", 2)
-box("f_bridge", "f_cap", "glassB", [.8, .55, .9], [FX - 3.2, 2.2, -.6])
-box("f_bridgeF", "f_cap", "steel2", [.86, .06, .96], [FX - 3.2, 1.92, -.6])
-# 專業光罩廠：日本兩家（橘屋頂）、美國一家（橘屋頂），台灣光罩（綠屋頂，s4 才落下）
-MER = [(FX + 4.0, FX + 7.0, -5.0, -2.2), (FX + 8.0, FX + 11.0, -5.0, -2.2), (FX + 12.0, FX + 15.0, -5.0, -2.2)]
-for k, (a, b, c, d) in enumerate(MER):
-    building(f"f_m{k}", f"f_m{k}", a, b, c, d, 2.6, "merR", 2)
-building("f_tw", "f_tw", FX + 8.2, FX + 11.4, .2, 2.8, 2.4, "twR", 2)
-# 樹（低多邊形）
-TR = [[-14.5, 0, 3.0], [-13, 0, 6.5], [-7, 0, 7.0], [3.5, 0, 7.2], [13.5, 0, 6.8], [17, 0, 1.0], [17, 0, -4.0], [-15.5, 0, -3.0]]
-cyl("f_trunk", "f_site", "concD", .1, .6, [FX, .3, 0], at=TR)
-sph("f_tree", "f_site", "twR", .55, [FX, .95, 0], at=TR, scale=[1, 1.2, 1])
-# 光罩盒在路上（小方塊）：自有光罩廠→天橋→晶圓廠；專業光罩廠→道路→晶圓廠與畫面外的客戶
-flowx("f_capF", "f_cap", [[FX - .2, 2.2, -.6], [FX - 3.4, 2.2, -.6], [FX - 4.2, 2.2, -.6]], shape="grit", n=4, size=.22, rate=.6, color="pod", rim="podR")
-flowx("f_merF", "f_m1", [[FX + 9.5, .3, -2.0], [FX + 9.5, .3, 3.9], [FX + 1.6, .3, 3.9], [FX + 1.6, .3, -.6], [FX + .3, .3, -.6]], shape="grit", n=7, size=.24, rate=.25, color="pod", rim="podR")
-flowx("f_merF2", "f_m1", [[FX + 9.5, .3, 3.9], [FX + 18.0, .3, 3.9]], shape="grit", n=4, size=.24, rate=.3, color="pod", rim="podR")
-flowx("f_twF", "f_tw", [[FX + 9.8, .3, 2.9], [FX + 9.8, .3, 4.5], [FX + 1.6, .3, 4.5]], shape="grit", n=4, size=.22, rate=.3, color="pod", rim="podR")
-air("f_airR", "f_site", [FX - 1.0, .1, -1.0], [FX + 18.0, .6, 5.0])
-# 卡車（專業光罩廠送貨）
-TKX = FX + 5.0
-box("f_tkB", "f_truck", "truck", [1.9, .95, .9], [TKX, .72, 4.25], bevel=.04)
-box("f_tkC", "f_truck", "truckC", [.7, .75, .86], [TKX + 1.35, .62, 4.25], bevel=.05)
-box("f_tkW", "f_truck", "win", [.04, .3, .7], [TKX + 1.71, .8, 4.25])
-cyl("f_tire", "f_truck", "tire", .2, .16, [TKX, .2, 4.25], axis="z", at=[[x, 0, s * .42] for x in (-.6, .5, 1.35) for s in (-1, 1)])
-glow("f_capOn", "f_cap", ["f_capR"], "capR", steady=False, g=.6, freq=1.4)
-for k in range(3): glow(f"f_m{k}On", f"f_m{k}", [f"f_m{k}R"], "merR", steady=False, g=.6, freq=1.4)
-glow("f_twOn", "f_tw", ["f_twR"], "twR", steady=False, g=.6, freq=1.4)
-glow("f_fabOn", "f_fab", ["f_fabR"], "fabR", steady=False, g=.4, freq=1.2)
-anchor("f_capA", "f_cap", [FX - 1.4, 3.0, .4], dx=-150, dy=-80)
-anchor("f_fabA", "f_fab", [FX - 8.0, 4.3, 1.0], dx=-150, dy=-80)
-anchor("f_m0A", "f_m0", [FX + 5.5, 2.8, -2.4], dx=-150, dy=-90)
-anchor("f_m2A", "f_m2", [FX + 13.5, 2.8, -2.4], dx=150, dy=-90)
-anchor("f_twA", "f_tw", [FX + 9.8, 2.6, 2.4], dx=150, dy=60)
+# ═════════ F：地圖桌 x=-40（2026/11/24 v3 重做：Andy「動畫太簡陋，有國家就標上國旗，有公司就附上 LOGO」） ═════════
+# 一張地圖桌（海＝淺藍桌面、經緯線），陸地是 Natural Earth 1:50m 的國界輪廓擠出（map.json，公有領域）：韓國、日本、台灣（亞洲一個比例）、美國本土（另一個比例，中間虛線＝比例不同）。
+# 每個據點是一座有識別度的迷你廠區：潔淨室廠房（白色外牆板＋接縫、橫向窗帶、屋頂空調箱＋風扇、排氣管）、氮氣儲槽、卸貨門、
+# 白色廠牌掛官方 LOGO（public/logos 原檔轉貼圖，不改色；台灣光罩找不到原檔→文字名牌）、旗桿掛國旗（Brand.tsx 程式繪製，官方比例）、
+# 地上的定位光圈＋光柱（念到才亮）。自有光罩廠＝晶圓廠旁邊的小廠，用玻璃天橋接過去（光罩盒在天橋裡來回）；
+# 專業光罩廠出貨＝光罩盒上潔淨物流車→沿弧線航線（虛點＋移動的光罩盒）送到客戶晶圓廠（灰色、無 LOGO，示意）。
+FX = -40
+MAPJ = json.load(open(os.path.join(D, "map.json")))["rings"]
+def PA(lon, lat): return (FX - 11 + (lon - 132.5) * .9, -(lat - 33.5) * 1.08)      # 亞洲（韓、日、台）
+def PU(lon, lat): return (FX + 12.5 + (lon + 96) * .32, -(lat - 37) * .4)            # 美國本土
+TWC = PA(120.95, 23.7)
+def PT(lon, lat):                                                                   # 台灣：在亞洲比例上再放大 1.8 倍（示意，廠區才放得下）
+    x, z = PA(lon, lat); return (TWC[0] + (x - TWC[0]) * 1.8, TWC[1] + (z - TWC[1]) * 1.8)
+PROJ = {"US": PU, "TW": PT, "JP": PA, "KR": PA}
+LAND_T = .22; LAND_Y = .15 + LAND_T / 2; TOP = .15 + LAND_T                        # 海面 y≈.15，陸地頂面 y＝TOP
+def inside(x, z, ring):
+    c = False
+    for i in range(len(ring)):
+        x1, z1 = ring[i]; x2, z2 = ring[i - 1]
+        if (z1 > z) != (z2 > z) and x < (x2 - x1) * (z - z1) / (z2 - z1) + x1: c = not c
+    return c
+LANDP = []
+box("m_sea", "m_base", "sea", [50, .3, 30], [FX, 0, 0], bevel=.08)
+box("m_rim", "m_base", "rim", [50.6, .5, 30.6], [FX, -.12, 0], bevel=.1)
+box("m_latA", "m_base", "grid", [25, .012, .04], [FX - 11, .156, 0], at=[[0, 0, -(la - 33.5) * 1.08] for la in range(25, 46, 5)])
+box("m_lonA", "m_base", "grid", [.04, .012, 28], [FX - 11, .156, 0], at=[[(lo - 132.5) * .9, 0, 0] for lo in range(120, 146, 5)])
+box("m_latU", "m_base", "grid", [19, .012, .04], [FX + 12.5, .156, 0], at=[[0, 0, -(la - 37) * .4] for la in range(25, 50, 5)])
+box("m_lonU", "m_base", "grid", [.04, .012, 10], [FX + 12.5, .156, 0], at=[[(lo + 96) * .32, 0, 0] for lo in range(-120, -69, 10)])
+box("m_brk", "m_base", "gridD", [.08, .02, .5], [FX + 1.9, .16, 0], at=[[0, 0, -13 + .9 * i] for i in range(30)])   # 比例不同的分界（虛線）
+for cc, rings in MAPJ.items():
+    proj = PROJ[cc]
+    for k, ring in enumerate(rings):
+        P = [proj(lo, la) for lo, la in ring]
+        xs = [p[0] for p in P]; zs = [p[1] for p in P]; cx, cz = (min(xs) + max(xs)) / 2, (min(zs) + max(zs)) / 2
+        LANDP.append([(x, z) for x, z in P])
+        box(f"m_{cc}{k}", "m_land", "land", [max(xs) - min(xs), max(zs) - min(zs), LAND_T], [cx, LAND_Y, cz], shape="poly", rot=[-90, 0, 0], pts=[[R(x - cx), R(-(z - cz))] for x, z in P])
+def onland(x, z): return any(inside(x, z, r) for r in LANDP)
+# ── 廠區零件 ──
+SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
+def tex(name):
+    materials["m_t_" + name] = {"kind": "unlit", "color": "#FFFFFF", "img": f"tex/brand/{name}.png"}; return "t_" + name
+def plate(pid, lay, name, w, cx, cy, cz):
+    a = SIGN[name]["aspect"]; h = w / a
+    box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
+def plant(pid, lay, x, z, w, d, h, roof, sign=None, flag=None, gen=False):
+    """一座潔淨室廠房（w 寬、d 深、h 高，左下前角在 x-w/2, z+d/2）；sign＝廠牌貼圖、flag＝國旗貼圖"""
+    y0 = TOP
+    box(f"{pid}Pad", lay, "pad", [w + .5, .04, d + .55], [x, y0 + .02, z + .1])
+    box(f"{pid}B", lay, "clean" if not gen else "fab", [w, h, d], [x, y0 + h / 2, z], bevel=.02)
+    nseam = max(2, int(w / .14))
+    box(f"{pid}Sm", lay, "seam", [.012, h * .92, .01], [x - w / 2, y0 + h / 2, z + d / 2 + .006], at=[[w * (i + 1) / (nseam + 1), 0, 0] for i in range(nseam)])
+    box(f"{pid}Wn", lay, "win", [w * .9, h * .12, .012], [x, y0 + h * .72, z + d / 2 + .008])
+    box(f"{pid}Bd", lay, roof, [w + .02, h * .07, d + .02], [x, y0 + h * .93, z])
+    box(f"{pid}R", lay, "roof", [w + .04, .03, d + .04], [x, y0 + h + .015, z])
+    na = max(2, int(w / .3))
+    box(f"{pid}Ah", lay, "steel2", [.16, .08, .12], [x - w / 2 + .14, y0 + h + .07, z - d * .15], at=[[(w - .28) * i / (na - 1), 0, 0] for i in range(na)], bevel=.01)
+    cyl(f"{pid}Fn", lay, "cabD", .035, .02, [x - w / 2 + .14, y0 + h + .12, z - d * .15], at=[[(w - .28) * i / (na - 1) + s * .04, 0, 0] for i in range(na) for s in (-1, 1)])
+    cyl(f"{pid}St", lay, "steelHi", .022, .22, [x + w / 2 - .1, y0 + h + .11, z + d * .25], at=[[0, 0, 0], [-.09, 0, 0]])
+    box(f"{pid}Dk", lay, "cabD", [.16, .12, .012], [x + w * .3, y0 + .06, z + d / 2 + .008])
+    if not gen:
+        cyl(f"{pid}N2", lay, "tank", .055, .3, [x + w / 2 + .14, y0 + .15, z - d * .2])
+        cyl(f"{pid}N2b", lay, "tank", .055, .3, [x + w / 2 + .14, y0 + .15, z + d * .05])
+    if sign:
+        sw = min(.62, w * .9); sh = SIGN[sign]["aspect"] and sw / SIGN[sign]["aspect"]
+        cyl(f"{pid}Sp", lay, "steel2", .012, .16, [x - w / 2 + .05, y0 + .08, z + d / 2 + .3], at=[[0, 0, 0], [sw - .1, 0, 0]])
+        plate(f"{pid}Sg", lay, sign, sw, x - w / 2 + sw / 2, y0 + .16 + sh / 2, z + d / 2 + .3)
+    if flag:
+        ph_ = .62
+        cyl(f"{pid}Fp", lay, "steelHi", .01, ph_, [x + w / 2 + .1, y0 + ph_ / 2, z + d / 2 + .25])
+        sph(f"{pid}Fb", lay, "steelHi", .018, [x + w / 2 + .1, y0 + ph_ + .01, z + d / 2 + .25])
+        fw = .26; plate(f"{pid}Fg", lay, flag, fw, x + w / 2 + .1 + fw / 2 + .01, y0 + ph_ - fw / SIGN[flag]["aspect"] / 2 - .02, z + d / 2 + .25)
+def pin(pid, lay, x, z, r=.75):
+    tube(f"{pid}Ring", lay, "pinR", r, r - .04, .02, [x, TOP + .05, z])
+    cyl(f"{pid}Beam", lay, "pinB", .02, 1.3, [x, TOP + .9, z - r * .6])
+    sph(f"{pid}Head", lay, "pinR", .05, [x, TOP + 1.56, z - r * .6])
+SITES = {}
+def site(key, cc, lon, lat, kind, roof, sign, flag):
+    x, z = PROJ[cc](lon, lat)
+    if not onland(x, z): print("⚠ 據點不在陸地上", key, round(x, 2), round(z, 2))
+    lay = f"f_{key}"; SITES[key] = (x, z)
+    if kind == "captive":
+        plant(f"{lay}F", lay, x - .45, z, 1.1, .7, .5, "fabR", gen=True)                  # 晶圓廠（大）
+        plant(f"{lay}M", lay, x + .62, z + .05, .55, .45, .32, roof, sign=sign, flag=flag)  # 自有光罩廠（小）
+        box(f"{lay}Br", lay, "glassB", [.32, .1, .14], [x + .2, TOP + .26, z + .02])        # 玻璃天橋
+        box(f"{lay}BrF", lay, "steel2", [.34, .02, .16], [x + .2, TOP + .2, z + .02])
+    elif kind == "merchant":
+        plant(f"{lay}M", lay, x, z, .8, .55, .36, roof, sign=sign, flag=flag)
+    else:
+        plant(f"{lay}C", lay, x, z, .7, .45, .34, "fabR", gen=True)                         # 客戶晶圓廠（灰、無 LOGO）
+    pin(f"{lay}P", f"{lay}_pin", x, z, 1.15 if kind == "captive" else .62)
+    glow(f"{lay}On", f"{lay}_pin", [f"{lay}PRing", f"{lay}PBeam", f"{lay}PHead"], roof if kind != "cust" else "fabR", steady=False, g=1.0, freq=1.6, halo=.6)
+    return x, z
+# 自有光罩廠（s2）：台積電（新竹）、英特爾（奧勒岡）、三星（華城）
+site("tsmc", "TW", 121.2, 24.8, "captive", "capR", "sign-tsmc", "flag-TW")
+site("intel", "US", -122.9, 45.4, "captive", "capR", "sign-intel", "flag-US")
+site("ss", "KR", 127.05, 37.2, "captive", "capR", "sign-samsung", "flag-KR")
+# 專業光罩廠（s3）：大日本印刷、Tekscend（都在東京周邊的埼玉）、Photronics（康乃狄克）；台灣光罩（s4，新竹）
+site("dnp", "JP", 139.0, 36.1, "merchant", "merR", "sign-dnp" if "sign-dnp" in SIGN else "sign-dnpT", "flag-JP")
+site("tek", "JP", 140.15, 35.75, "merchant", "merR", "sign-tekscend", "flag-JP")
+site("phr", "US", -73.4, 41.6, "merchant", "merR", "sign-photronics" if "sign-photronics" in SIGN else "sign-phrT", "flag-US")
+site("tmc", "TW", 120.75, 24.05, "merchant", "twR", "sign-tmc", "flag-TW")
+# 客戶晶圓廠（示意，無 LOGO）：台灣南部、韓國東南、美國德州
+site("cTW", "TW", 120.45, 23.0, "cust", "fabR", None, None)
+site("cKR", "KR", 128.7, 35.95, "cust", "fabR", None, None)
+site("cUS", "US", -97.7, 31.0, "cust", "fabR", None, None)
+# 天橋裡的光罩盒（自有光罩廠 → 晶圓廠，s2 念「改版最快」來回跑）
+for k in ("tsmc", "intel", "ss"):
+    x, z = SITES[k]
+    flowx(f"f_{k}Br", f"f_{k}", [[x + .38, TOP + .26, z + .02], [x + .02, TOP + .26, z + .02]], shape="grit", n=2, size=.07, rate=.9, color="pod", rim="podR")
+    air(f"f_{k}BrA", f"f_{k}", [x - .02, TOP + .2, z - .06], [x + .42, TOP + .32, z + .1])
+# 航線：專業光罩廠 → 客戶（弧線虛點＋移動的光罩盒，方向＝光罩盒前進方向）
+def route(key, lay, a, b, hgt, n_dash=26):
+    (x0, z0), (x1, z1) = a, b
+    pts = []
+    for i in range(n_dash + 1):
+        t = i / n_dash; pts.append([x0 + (x1 - x0) * t, TOP + .25 + 4 * hgt * t * (1 - t), z0 + (z1 - z0) * t])
+    sph(f"{key}D", lay, "route", .035, [0, 0, 0], at=[[R(p[0]), R(p[1]), R(p[2])] for p in pts[1:-1]])
+    flowx(f"{key}F", lay, [pts[i] for i in range(0, n_dash + 1, 2)], shape="grit", n=3, size=.13, rate=.32, color="pod", rim="podR")
+    lo = [min(p[i] for p in pts) - .2 for i in range(3)]; hi = [max(p[i] for p in pts) + .2 for i in range(3)]
+    air(f"{key}A", lay, lo, hi)
+route("f_rDNP", "f_rDNP", (SITES["dnp"][0] - .3, SITES["dnp"][1] + .5), (SITES["cTW"][0] + .3, SITES["cTW"][1] - .3), 2.2)
+route("f_rTEK", "f_rTEK", (SITES["tek"][0] - .2, SITES["tek"][1] + .4), (SITES["cKR"][0] + .35, SITES["cKR"][1]), 1.6)
+route("f_rPHR", "f_rPHR", (SITES["phr"][0] - .3, SITES["phr"][1] + .3), (SITES["cUS"][0] + .3, SITES["cUS"][1] - .2), 1.4)
+route("f_rTMC", "f_rTMC", (SITES["tmc"][0] + .1, SITES["tmc"][1] + .45), (SITES["cTW"][0] + .05, SITES["cTW"][1] - .35), .6, 12)
+# 潔淨物流車（s4：台灣光罩出貨；光罩盒先推上車、車再開往南部客戶）
+TMX, TMZ = SITES["tmc"]; VX0, VZ0 = TMX + .55, TMZ + .55
+box("f_vanB", "f_van", "truck", [.36, .2, .18], [VX0, TOP + .14, VZ0], bevel=.02)
+box("f_vanC", "f_van", "truckC", [.13, .16, .17], [VX0 + .24, TOP + .12, VZ0], bevel=.02)
+box("f_vanW", "f_van", "win", [.012, .07, .14], [VX0 + .305, TOP + .15, VZ0])
+box("f_vanS", "f_van", "truckC", [.36, .03, .185], [VX0, TOP + .19, VZ0])
+cyl("f_vanT", "f_van", "tire", .035, .03, [VX0, TOP + .04, VZ0], axis="z", at=[[x_, 0, s * .09] for x_ in (-.11, .1, .24) for s in (-1, 1)])
+box("f_vanP", "f_vanP", "pod", [.09, .07, .09], [TMX + .3, TOP + .09, TMZ + .36], bevel=.01)          # 光罩盒（先放在卸貨門口）
+ST, SI, SS, SD, SK, SP, SM, SC = (SITES[k] for k in ("tsmc", "intel", "ss", "dnp", "tek", "phr", "tmc", "cTW"))
+anchor("f_tsmcA", "f_tsmc", [SITES["tsmc"][0] + .6, TOP + .4, SITES["tsmc"][1]], dx=-150, dy=-80)
+anchor("f_intelA", "f_intel", [SITES["intel"][0] + .6, TOP + .4, SITES["intel"][1]], dx=150, dy=-80)
+anchor("f_ssA", "f_ss", [SITES["ss"][0] + .6, TOP + .4, SITES["ss"][1]], dx=-150, dy=-80)
+anchor("f_dnpA", "f_dnp", [SITES["dnp"][0], TOP + .4, SITES["dnp"][1]], dx=-150, dy=-80)
+anchor("f_tekA", "f_tek", [SITES["tek"][0], TOP + .4, SITES["tek"][1]], dx=150, dy=-80)
+anchor("f_phrA", "f_phr", [SITES["phr"][0], TOP + .4, SITES["phr"][1]], dx=150, dy=-80)
+anchor("f_tmcA", "f_tmc", [SITES["tmc"][0], TOP + .4, SITES["tmc"][1]], dx=150, dy=60)
+anchor("f_cTWA", "f_cTW", [SITES["cTW"][0], TOP + .3, SITES["cTW"][1]], dx=150, dy=60)
+anchor("f_vanA", "f_van", [VX0, TOP + .2, VZ0], dx=150, dy=60)
 
 # ═════════ E：電子束寫入機 x=30 ═════════
 EX = 30
@@ -225,6 +328,8 @@ pipe("e_vac", "e_ctl", "steel2", [[EX - 3.9, 2.3, -.8], [EX - 3.9, 3.0, -.8], [E
 # 單束：電子從陰極往下，穿過三組透鏡收成一點，打到光阻上
 flowx("e_beam", "e_col", [[EX, 9.75, 0], [EX, 7.0, 0], [EX, 3.0, 0]], shape="dot", n=9, size=.07, rate=1.4, color="ele", rim="eleR", trail=3)
 sph("e_spot", "e_col", "cath", .07, [EX, 2.99, 0])
+cyl("e_beamL", "e_beamL", "eleB", .025, 6.9, [EX, 6.45, 0])
+glow("e_beamOn", "e_beamL", ["e_beamL"], "ele", steady=False, g=1.0, freq=5.0, halo=.5)
 glow("e_spotOn", "e_col", ["e_spot"], "ele", steady=False, g=1.0, freq=6.0, halo=.8)
 glow("e_cathOn", "e_col", ["e_cath"], "#FFE9A8", steady=False, g=1.0, freq=3.0, halo=.6)
 glow("e_coilOn", "e_col", ["e_coil0", "e_coil1", "e_coil2"], "copper", steady=True, g=.45)
@@ -260,7 +365,10 @@ box("i_arm", "i_head", "steel2", [.4, .4, 1.2], [IX - 1.2, 5.4, -1.2])
 cyl("i_ray", "i_head", "inspB", .05, .55, [IX - 1.2, 2.66, -.6])
 glow("i_rayOn", "i_head", ["i_ray"], "insp", steady=False, g=1.0, freq=4.0, halo=.6)
 sph("i_def", "i_def", "def", .07, [IX + .35, 2.345, .3])
-glow("i_defOn", "i_def", ["i_def"], "def", steady=False, g=1.0, freq=2.4, halo=1.0)
+glow("i_defOn", "i_def", ["i_def", "i_defR"], "def", steady=False, g=1.0, freq=2.4, halo=1.0)
+tube("i_defR", "i_def", "defR", .26, .2, .02, [IX + .35, 2.36, .3])
+box("i_scanB", "i_head", "inspB", [.12, .012, 1.8], [IX - 1.2, 2.34, -.6 + .6])
+glow("i_scanOn", "i_head", ["i_scanB"], "insp", steady=False, g=1.0, freq=3.0, halo=.4)
 # 旁邊：晶圓（晶粒格），每顆晶粒同一處出現紅點（瑕疵重複印）
 WIX, WIY = IX + 4.6, 2.2
 box("i_tab", "i_wf", "cab2", [3.0, 2.0, 3.0], [WIX, 1.0, .4], bevel=.05)
@@ -311,6 +419,11 @@ box("p_ocF", "p_oc", "pod", [3.6, .22, 3.6], [PX, PY + 3.0, 0], bevel=.04)
 box("p_ocH", "p_oc", "podR", [.3, .3, 3.0], [PX, PY + 1.6, 0], at=[[-4.15, 0, 0], [4.15, 0, 0]], bevel=.04)
 box("p_ocRib", "p_oc", "podD", [7.0, .06, .1], [PX, PY + 2.48, 0], at=[[0, 0, -2.6 + 1.3 * i] for i in range(5)])
 box("p_ocL", "p_oc", "latch", [.8, .35, .2], [PX, PY + .2, 4.06])
+box("p_ocE", "p_oc", "podD", [8.04, .14, 8.04], [PX, PY + .2, 0])                                  # 外盒下緣灰色邊條（看得出是蓋子）
+box("p_ocW", "p_oc", "podD", [2.4, .9, .04], [PX, PY + 1.3, 4.01])                                    # 正面識別窗框
+box("p_ocWg", "p_oc", "glassB", [2.2, .7, .03], [PX, PY + 1.3, 4.03])
+cyl("p_icRv", "p_ic", "steelHi", .07, .06, [PX, PY + 2.13, 0], at=[[sx * (2.75 - .5 * i), 0, sz * 2.75] for sx in (-1, 1) for sz in (-1, 1) for i in range(4)])  # 內盒上蓋鉚釘
+cyl("p_ibRv", "p_ib", "steelHi", .06, .05, [PX, PY + .56, 0], at=[[sx * 2.75, 0, (i - 2) * 1.3] for sx in (-1, 1) for i in range(5)])
 # 灰塵：飄過來撞到外盒就彈開
 flowx("p_dust", "p_dust", [[PX - 7.0, PY + 5.0, 1.5], [PX - 2.0, PY + 3.25, 1.0], [PX - 5.5, PY + 4.8, 2.5]], shape="grit", n=6, lanes=3, gap=1.4, ldir=(0, 0, 1), size=.12, rate=.35, color="dust", rim="dustR")
 air("p_airD", "p_dust", [PX - 7.2, PY + 3.1, -.2], [PX - 1.8, PY + 5.2, 4.2])
@@ -318,6 +431,18 @@ glow("p_ocOn", "p_oc", ["p_oc", "p_ocF"], "#7FB7FF", steady=False, g=.4, freq=1.
 glow("p_icOn", "p_ic", ["p_ic"], "#7FB7FF", steady=False, g=.55, freq=1.6)
 glow("p_sealOn", "p_seal", ["p_seal"], "seal", steady=False, g=.9, freq=2.0, halo=.5)
 glow("p_retOn", "p_ret", ["p_retA"], "#7FB7FF", steady=False, g=.5, freq=1.4)
+def stand(pid, lay, name, flag, x, z, w=3.6):
+    h = w / SIGN[name]["aspect"]; y0 = PY + 1.6
+    box(f"{pid}Bs", lay, "steel2", [w * .5, .12, .6], [x, y0 + .06, z])
+    cyl(f"{pid}Po", lay, "steel2", .06, 1.2, [x, y0 + .6, z])
+    plate(f"{pid}Sg", lay, name, w, x, y0 + 1.2 + h / 2, z)
+    cyl(f"{pid}Fp", lay, "steelHi", .03, 2.6, [x + w / 2 + .35, y0 + 1.3, z])
+    sph(f"{pid}Fb", lay, "steelHi", .06, [x + w / 2 + .35, y0 + 2.62, z])
+    fw = 1.2; plate(f"{pid}Fg", lay, flag, fw, x + w / 2 + .35 + fw / 2 + .03, y0 + 2.55 - fw / SIGN[flag]["aspect"] / 2, z)
+stand("p_ent", "p_ent", "sign-entegris", "flag-US", PX - 3.6, -5.2)
+stand("p_gd", "p_gd", "sign-gudeng", "flag-TW", PX + 2.4, -5.2)
+anchor("p_entA", "p_ent", [PX - 3.6, PY + 3.4, -5.2], dx=-170, dy=-60)
+anchor("p_gdA", "p_gd", [PX + 2.4, PY + 3.4, -5.2], dx=170, dy=-60)
 anchor("p_ocA", "p_oc", [PX + 3.6, PY + 2.3, 2.5], dx=170, dy=-80)
 anchor("p_icA", "p_ic", [PX + 2.8, PY + 1.8, 2.4], dx=170, dy=-40)
 anchor("p_retA", "p_ret", [PX - 2.0, RY + .15, 1.8], dx=-170, dy=-40)
@@ -332,8 +457,9 @@ box("v_baseP", "v_body", "cabPanel", [2.4, 1.0, .06], [VX, .8, 3.23], at=[[-4.5 
 LPX = VX - 4.6
 box("v_lp", "v_body", "steel2", [2.6, .3, 2.6], [LPX, VY + .15, 0], bevel=.03)
 box("v_lpB", "v_lpod", "pod", [2.3, .3, 2.3], [LPX, VY + .45, 0], bevel=.06)
-box("v_lpC", "v_lpod", "pod", [2.3, .8, 2.3], [LPX, VY + 2.2, 0], bevel=.12)
-box("v_lpF", "v_lpod", "podR", [.8, .2, .8], [LPX, VY + 2.7, 0])
+box("v_lpC", "v_lpC", "pod", [2.3, 1.3, 2.3], [LPX, VY + 1.3, 0], bevel=.12)
+box("v_lpE", "v_lpC", "podD", [2.34, .1, 2.34], [LPX, VY + .7, 0])
+box("v_lpF", "v_lpC", "podR", [.8, .2, .8], [LPX, VY + 2.05, 0])
 # 真空腔（前半剖開）：後牆、左右牆、頂板、閘門
 VC0, VC1 = VX - 3.0, VX + 1.6
 box("v_chB", "v_body", "steel", [VC1 - VC0, 3.2, .25], [(VC0 + VC1) / 2, VY + 1.6, -1.6])
@@ -362,34 +488,37 @@ flowx("v_dust", "v_lpod", [[LPX - 3.0, VY + 4.0, 1.0], [LPX - .6, VY + 2.75, .6]
 air("v_airD", "v_lpod", [LPX - 3.2, VY + 2.6, .2], [LPX - .4, VY + 4.3, 2.4])
 # 光罩台＋極紫外光：光從左上打到光罩（反射式）→ 往下打到晶圓的光阻上（下一集）
 SX_ = VX + 5.0
-box("v_rs", "v_scan", "steel2", [2.6, .35, 2.2], [SX_, VY + 5.6, 0], bevel=.03)
-box("v_rsR", "v_scan", "quartz", [1.6, .14, 1.6], [SX_, VY + 5.36, 0])
-box("v_rsA", "v_scan", "absorb", [1.2, .015, 1.2], [SX_, VY + 5.28, 0])
-box("v_post", "v_scan", "steel", [.4, 4.4, .4], [SX_ - 1.6, VY + 3.6, -1.0])
+box("v_rs", "v_scan", "steel2", [2.6, .35, 2.2], [SX_, VY + 3.6, 0], bevel=.03)
+box("v_rsR", "v_scan", "quartz", [1.6, .14, 1.6], [SX_, VY + 3.36, 0])
+box("v_rsA", "v_scan", "absorb", [1.2, .015, 1.2], [SX_, VY + 3.28, 0])
+box("v_post", "v_scan", "steel", [.4, 3.0, .4], [SX_ - 1.6, VY + 2.3, -1.0])
 box("v_wch", "v_scan", "steel2", [2.4, .3, 2.4], [SX_, VY + .6, 0], bevel=.03)
 cyl("v_wf", "v_scan", "mirror", 1.0, .05, [SX_, VY + .8, 0])
-cyl("v_pr", "v_pr", "resist", 1.0, .03, [SX_, VY + .84, 0])
-box("v_prL", "v_prL", "line", [1.4, .01, .05], [SX_, VY + .86, 0], at=[[0, 0, -.5 + .2 * i] for i in range(6)])
-seg("v_inB", "v_scan", "euvB", [SX_ - 3.4, VY + 5.25, 0], [SX_, VY + 5.25, 0], .07)
-seg("v_outB", "v_scan", "euvB", [SX_, VY + 5.25, 0], [SX_, VY + .9, 0], .07)
-flowx("v_euvF", "v_scan", [[SX_ - 3.4, VY + 5.2, 0], [SX_, VY + 5.2, 0], [SX_, VY + .9, 0]], shape="dot", n=8, size=.07, rate=1.2, color="euv", rim="euvR", trail=3)
-air("v_airE", "v_scan", [SX_ - 3.5, VY + .8, -.2], [SX_ + .2, VY + 5.4, .2])
+cyl("v_pr", "v_pr", "resist", 1.0, .08, [SX_, VY + .865, 0])
+box("v_sbase", "v_scan", "cab", [3.4, .5, 3.0], [SX_, VY + .2, 0], bevel=.05)
+box("v_sbaseP", "v_scan", "cabPanel", [1.2, .3, .04], [SX_, VY + .2, 1.52], at=[[-.8, 0, 0], [.8, 0, 0]])
+for i in range(8):
+    box(f"v_prL{i}", f"v_prL{i}", "line", [1.5 - .12 * abs(i - 3.5), .02, .08], [SX_, VY + .915, -.62 + .177 * i])
+seg("v_inB", "v_scan", "euvB", [SX_ - 3.4, VY + 3.25, 0], [SX_, VY + 3.25, 0], .07)
+seg("v_outB", "v_scan", "euvB", [SX_, VY + 3.25, 0], [SX_, VY + .9, 0], .07)
+flowx("v_euvF", "v_scan", [[SX_ - 3.4, VY + 3.2, 0], [SX_, VY + 3.2, 0], [SX_, VY + .9, 0]], shape="dot", n=8, size=.07, rate=1.2, color="euv", rim="euvR", trail=3)
+air("v_airE", "v_scan", [SX_ - 3.5, VY + .8, -.2], [SX_ + .2, VY + 3.4, .2])
 glow("v_euvOn", "v_scan", ["v_inB", "v_outB"], "euv", steady=False, g=1.0, freq=3.0, halo=.6)
 glow("v_prOn", "v_pr", ["v_pr"], "resist", steady=False, g=.6, freq=1.4)
 anchor("v_gateA", "v_gate", [VC0, VY + 2.6, 1.2], dx=-170, dy=-80)
 anchor("v_icA", "v_ic", [VX - .2, VY + 1.5, .9], dx=170, dy=-60)
 anchor("v_pumpA", "v_body", [VX + 2.6, VY + .9, -.6], dx=170, dy=60)
-anchor("v_lpA", "v_lpod", [LPX - 1.0, VY + 2.4, 1.0], dx=-170, dy=60)
-anchor("v_rsA", "v_scan", [SX_ + 1.2, VY + 5.6, .8], dx=170, dy=-60)
+anchor("v_lpA", "v_lpC", [LPX - 1.0, VY + 1.6, 1.0], dx=-170, dy=60)
+anchor("v_rsA", "v_scan", [SX_ + 1.2, VY + 3.6, .8], dx=170, dy=-60)
 anchor("v_prA", "v_pr", [SX_ + .8, VY + .86, .6], dx=170, dy=60)
-anchor("v_euvA", "v_scan", [SX_ - 2.4, VY + 5.25, 0], dx=-170, dy=-80)
+anchor("v_euvA", "v_scan", [SX_ - 2.4, VY + 3.25, 0], dx=-170, dy=-80)
 
 # 主素材框（看不見；給 layout-check 判斷主體位置）：每段只亮鏡頭對準的那一個，其他層全部標 bg
 materials["m_proxy"] = {"kind": "unlit", "color": "#FFFFFF", "opacity": 0}
-PXB = {"px_cap": (FX - 12, FX + .4, 0, 4.6, -4.6, 1.8), "px_mer": (FX + 1.0, FX + 15.2, 0, 3.0, -5.0, 4.6), "px_tw": (FX + 3.8, FX + 15.2, 0, 3.0, -5.0, 4.6),
+PXB = {"px_cap": (ST[0] - 1.1, ST[0] + 1.1, TOP, TOP + .7, ST[1] - .5, ST[1] + .6), "px_mer": (SD[0] - 1, SK[0] + 1, TOP, TOP + .8, -3.2, -1.2), "px_mer2": (SP[0] - 1, SP[0] + 1, TOP, TOP + .8, -2.8, -.8), "px_tw": (SM[0] - .6, SM[0] + .6, TOP, TOP + .7, SM[1] - .4, SM[1] + .9),
        "px_eb": (EX - 3.2, EX + 3.2, 1.8, 10.8, -2.2, 2.2), "px_ins": (IX - 2.9, WIX + 1.4, 1.6, 5.9, -2.0, 1.8),
-       "px_pod": (PX - 4.2, PX + 4.2, PY - .6, PY + 3.2, -4.2, 4.2), "px_podX": (PX - 4.2, PX + 4.2, PY - .6, PY + 8.6, -4.2, 4.2),
-       "px_vac": (LPX - 1.4, VX + 3.2, VY, VY + 3.5, -1.6, 1.6), "px_scan": (SX_ - 3.4, SX_ + 1.4, VY + .6, VY + 5.9, -1.2, 1.2)}
+       "px_map": (SS[0] + 1.5, SD[0] + 1, TOP, TOP + 1.2, -4, 2), "px_pod": (PX - 4.2, PX + 4.2, PY - .6, PY + 3.2, -4.2, 4.2), "px_podX": (PX - 4.2, PX + 4.2, PY - .6, PY + 8.6, -4.2, 4.2),
+       "px_vac": (LPX - 1.4, VX + 3.2, VY, VY + 3.5, -1.6, 1.6), "px_scan": (SX_ - 1.1, SX_ + 1.1, VY + .6, VY + 1.0, -1.2, 1.2)}
 for lid, (x0, x1, y0, y1, z0, z1) in PXB.items():
     box(lid, lid, "proxy", [x1 - x0, y1 - y0, z1 - z0], [(x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2])
 for l in layers:
@@ -429,7 +558,18 @@ def sec(kind, at, until, title, tag, t, y=930, h=330, **kw):
 
 VIS = [
  # F：台灣光罩 s4 念到才落下
- fall("f_tw", "s4:tmc", dy=2.0, bounce=.1),
+ fall("f_tmc", "s4:tmc", dy=2.0, bounce=.1),
+ hid("f_tsmc_pin", HIDE, "s2:tsmc", 4), hid("f_intel_pin", HIDE, "s2:intel", 4), hid("f_ss_pin", HIDE, "s2:ss", 4),
+ hid("f_tsmc_pin", "s2:fast-8", FAR, 6), hid("f_intel_pin", "s2:fast-8", FAR, 6), hid("f_ss_pin", "s2:fast-8", FAR, 6),
+ hid("f_dnp_pin", HIDE, "s3:jp", 4), hid("f_tek_pin", HIDE, "s3:jp+8", 4), hid("f_phr_pin", HIDE, "s3:us", 4),
+ hid("f_cTW_pin", HIDE, "s3:mer", 4), hid("f_cKR_pin", HIDE, "s3:mer+6", 4), hid("f_cUS_pin", HIDE, "s3:mer+12", 4), hid("f_cKR_pin", "s4:start", FAR, 4), hid("f_cUS_pin", "s4:start", FAR, 4),
+ hid("f_rDNP", HIDE, "s3:mer", 6), hid("f_rTEK", HIDE, "s3:mer+6", 6), hid("f_rPHR", HIDE, "s3:mer+12", 6), hid("f_rTMC", HIDE, "s4:mat+30", 6),
+ hid("f_rDNP", "s4:start", FAR, 4), hid("f_rTEK", "s4:start", FAR, 4), hid("f_rPHR", "s4:start", FAR, 4), fall("f_tmc_pin", "s4:tmc", dy=2.0, bounce=.1),
+ # 物流車：念「成熟製程」光罩盒從卸貨門推上車（往右前），車再沿路開往南部客戶（z 往觀眾、x 往左）
+ hid("f_vanP", HIDE, "s4:tmc+14", 4), hid("f_van", HIDE, "s4:tmc+14", 4),
+ mv("f_vanP", "s4:mat", FAR, dur=12, dx=VX0 - (SITES["tmc"][0] + .3), dy=.12, dz=VZ0 - (SITES["tmc"][1] + .36)),
+ mv("f_van", "s4:mat+14", FAR, dur=26, dz=.7), mv("f_vanP", "s4:mat+14", FAR, dur=26, dz=.7),
+ mv("f_van", "s4:mat+40", FAR, dur=30, dx=-.55, dz=.35), mv("f_vanP", "s4:mat+40", FAR, dur=30, dx=-.55, dz=.35),
  # E：寫過的線一條條出現（s5 念「一筆筆寫上去」）；多束 s6 才出現、單束 s6 收掉；多束一次寫一整塊
  hid("e_mb", HIDE, "s6:all-6", 8), hid("e_mb", "s7:start", FAR, 4),
 ] + [hid(f"e_ln{k}", HIDE, f"s5:wr+{k * 5}" if k else "s5:wr", 4) for k in range(12)] + [
@@ -438,17 +578,22 @@ VIS = [
  hid("i_def", HIDE, "s7:def", 6), hid("i_rep", HIDE, "s7:rep", 10),
  mv("i_head", "s7:start", "s7:def", dur=40, dx=1.55, dz=.9),
  # P：s1 念「怎麼送進」外盒上蓋抬起；s8 爆炸分層（外盒上蓋最高、內盒上蓋中間、光罩先懸在上面，念「裝進光罩盒」才放下）；s10 合回
- mv("p_oc", "s1:how", "s2:start", dur=24, dy=3.4),
- mv("p_oc", "s8:start-4", "s10:start", dur=26, dy=6.0), mv("p_ic", "s8:start-4", "s10:start", dur=26, dy=3.0),
- mv("p_ret", "s8:start-4", "s8:pod+4", dur=26, dy=1.6),
+ mv("p_oc", HIDE, "s1:how", dur=14, dy=3.8), mv("p_ic", HIDE, "s1:how-6", dur=14, dy=1.9),
+ mv("p_ob", "s8:start-4", "s10:start", dur=26, dy=-1.4),
+ mv("v_lpC", "s9:start-30", "s9:vac", dur=14, dy=1.6),
+ hid("e_beamL", HIDE, "s5:eb", 4), hid("e_beamL", "s6:slow", FAR, 4),
+ fall("p_ent", "s10:ent", dy=2.0, bounce=.1), fall("p_gd", "s10:gd", dy=2.0, bounce=.1), hid("p_ent", "s11:start", FAR, 4), hid("p_gd", "s11:start", FAR, 4),
+ hid("v_body", "s11:start-4", FAR, 8), hid("v_lpC", "s11:start-4", FAR, 8), hid("v_lpod", "s11:start-4", FAR, 8), hid("v_ib", "s11:start-4", FAR, 8), hid("v_ret", "s11:start-4", FAR, 8), hid("v_ic", "s11:start-4", FAR, 8),
+ mv("p_oc", "s8:start-4", "s10:start", dur=26, dy=6.6), mv("p_ic", "s8:start-4", "s10:start", dur=26, dy=3.4),
+ mv("p_ret", "s8:start-4", "s8:pod+4", dur=26, dy=1.8),
  # V：內盒從裝載埠搬進腔（x 往右），閘門關上，念「才打開」內盒上蓋抬起；s11 光罩搬到光罩台（同一份光罩，另做一片在光罩台上，念「光罩到了」才出現）
  mv("v_ib", "s9:start-30", "s9:why", dur=30, dx=-3.9), mv("v_ret", "s9:start-30", "s9:why", dur=30, dx=-3.9), mv("v_ic", "s9:start-30", "s9:why", dur=30, dx=-3.9),
  mv("v_gate", "s9:start-30", "s9:why+34", dur=14, dy=2.6),
  mv("v_ic", "s9:open", "s10:start", dur=20, dy=1.0),
- hid("v_prL", HIDE, "s11:light", 12),
+ *[hid(f"v_prL{i}", HIDE, f"s11:light+{4 * i}", 4) for i in range(8)],
 ]
-PXW = {"px_pod": [(EARLY, "s2:start-4"), ("s10:start+30", "s11:start-4")], "px_cap": [("s2:start+30", "s3:start-4")], "px_mer": [("s3:start+30", "s4:start-4")],
-       "px_tw": [("s4:start+30", "s5:start-4")], "px_eb": [("s5:start+30", "s7:start-4")], "px_ins": [("s7:start+30", "s8:start-4")],
+PXW = {"px_pod": [(EARLY, "s2:start-4"), ("s10:start+30", "s11:start-4")], "px_cap": [("s2:fast+24", "s3:start-4")], "px_mer": [("s3:start+30", "s3:us-8")], "px_mer2": [("s3:us+26", "s4:start-4")],
+       "px_tw": [("s4:start+30", "s5:start-4")], "px_map": [("s2:start+30", "s2:fast-8")], "px_eb": [("s5:start+30", "s7:start-4")], "px_ins": [("s7:start+30", "s8:start-4")],
        "px_podX": [("s8:start+30", "s9:start-4")], "px_vac": [("s9:start+30", "s10:start-4")], "px_scan": [("s11:start+30", FAR)]}
 for lid, wins in PXW.items():
     prev = "s1:start-400"
@@ -457,29 +602,51 @@ for lid, wins in PXW.items():
     VIS.append({"layer": lid, "at": prev, "until": "s12:start+500", "opacity": 0, "dur": 1})
 P = {}
 P["s1"] = {"zoom": [{"to": "pod", "at": "start-30", "dur": 1}],
- "shot": [shot("start-30", PX, PY - .4, 44, 24, 1), shot("how", PX, PY - .3, 46, 22, 60)],
+ "shot": [shot("start-30", PX, PY + .6, 50, 26, 1), shot("how", PX, PY + .2, 46, 24, 60)],
  "shift": VIS,
- "run": [run("p_ocOn", "start-30", "how", 6), run("p_retOn", "how+10", "s2:start", 6), run("p_icOn", "how+10", "s2:start", 6)],
+ "run": [run("p_retOn", "start-30", "how", 6), run("p_icOn", "how", "s2:start", 6), run("p_ocOn", "how+10", "s2:start", 6)],
  "labels": [],
  "overlay": [sec("mk2-hook", "prev", "s2:start-8", "代工的供應商：光罩", "示意，非實際比例", {"prev": "prev", "who": "who", "how": "how", "scan": "scan"})]}
+def shotZ(at, X, Z, deff, elev, dur=24, Y=None):
+    """看向地圖上 (X, TOP, Z) 這一點（鏡頭只能看 z=0 的平面：換算成看 z=0 的高度與距離）"""
+    e = math.radians(elev); y = (TOP if Y is None else Y) - Z * math.tan(e)
+    return shot(at, R(X), R(y), R(deff + Z / math.cos(e)), elev, dur)
+ST, SI, SS, SD, SK, SP, SM, SC = (SITES[k] for k in ("tsmc", "intel", "ss", "dnp", "tek", "phr", "tmc", "cTW"))
+def LG(part, text, en, color, at, until, xy, logo=None, flag=None):
+    d = lab(part, text, en, color, at, until, xy=xy)
+    if logo: d["logo"] = logo
+    if flag: d["flag"] = flag
+    return d
+DNPL = "dnp" if os.path.exists(os.path.join(ROOT, "public/logos/dnp.svg")) else None
+PHRL = "photronics" if os.path.exists(os.path.join(ROOT, "public/logos/photronics.svg")) else None
+# s2：地圖全景（台灣、韓國、美國三個自有光罩廠），念到哪家哪家的定位光柱亮、標籤（LOGO＋國旗）出來；念「改版最快」推近台積電：光罩盒在天橋裡來回
 P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", FX - 5.5, -.48, 47.6, 30, 30)],
- "run": [run("f_capF", "start", "s3:start", 8), run("f_capOn", "adv", "s3:start", 8), run("f_fabOn", "tsmc", "s3:start", 8)],
- "labels": [lab("f_fabA", "晶圓廠", "Fab", "blue", "tsmc", "s3:start-4", xy=[270, 300]), lab("f_capA", "自己的光罩廠", "Captive shop", "amber", "adv", "s3:start-4", xy=[810, 300])],
- "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "自己的光罩廠", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
+ "shot": [shotZ("start-4", -48.5, 7.0, 56, 50, 30), shotZ("fast-6", ST[0] + .1, ST[1] + .7, 6.5, 36, 30)],
+ "run": [run("f_tsmcOn", "tsmc", "s3:start", 6), run("f_intelOn", "intel", "s3:start", 6), run("f_ssOn", "ss", "s3:start", 6)] +
+        [run(f"f_{k}Br", "fast-10", "s3:start", 8) for k in ("tsmc", "intel", "ss")],
+ "labels": [LG("f_tsmcA", "台積電", "TSMC", "blue", "tsmc", "fast-8", [270, 740], "tsmc", "TW"), LG("f_intelA", "英特爾", "Intel", "blue", "intel", "fast-8", [810, 300], "intel", "US"),
+            LG("f_ssA", "三星", "Samsung", "blue", "ss", "fast-8", [270, 300], "samsung", "KR"),
+            lab("f_tsmcA", "光罩廠在隔壁", "Next door", "amber", "fast", "s3:start-4", xy=[760, 300])],
+ "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "晶圓廠自己做光罩", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
+# s3：拉到太平洋全景：日本兩家（東京周邊）、美國一家（東岸）；念「專業光罩廠」三條出貨航線開始跑（光罩盒沿弧線飛往客戶晶圓廠）
 P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shot("start-4", FX + 8.1, -1.37, 56.7, 30, 30)],
- "run": [run("f_merF", "mer", "s5:start", 8), run("f_merF2", "mer", "s5:start", 8), run("f_m0On", "jp", "s4:start", 6), run("f_m1On", "jp+8", "s4:start", 6), run("f_m2On", "us", "s4:start", 6)],
- "labels": [lab("f_m0A", "日本兩家", "Two in Japan", "amber", "jp", "s4:start-4", xy=[270, 300]), lab("f_m2A", "美國一家", "One in the US", "blue", "us", "s4:start-4", xy=[810, 300])],
+ "shot": [shotZ("start-4", SD[0] + 1.2, SD[1] + 2.4, 30, 50, 30), shotZ("us-6", SP[0] - 2.5, SP[1] + 2.4, 30, 50, 30)],
+ "run": [run("f_rDNPF", "mer", "s5:start", 8), run("f_rTEKF", "mer+6", "s5:start", 8), run("f_rPHRF", "mer+12", "s5:start", 8),
+         run("f_dnpOn", "jp", "s4:start", 6), run("f_tekOn", "jp+8", "s4:start", 6), run("f_phrOn", "us", "s4:start", 6),
+         run("f_cTWOn", "mer", "s4:start", 6), run("f_cKROn", "mer+6", "s4:start", 6), run("f_cUSOn", "mer+12", "s4:start", 6)],
+ "labels": [LG("f_dnpA", "大日本印刷", "DNP", "amber", "jp", "us-8", [260, 300], DNPL, "JP"), LG("f_tekA", "Tekscend", "ex-Toppan", "amber", "jp+8", "us-8", [790, 300], "tekscend", "JP"),
+            LG("f_phrA", "Photronics", "US", "blue", "us", "s4:start-4", [790, 300], PHRL, "US")],
  "overlay": [sec("mk2-mer", "start+4", "s4:start-8", "專業光罩廠", "SemiEng；Photronics 10-K", {"mer": "mer", "jp": "jp", "us": "us"})]}
+# s4：推近台灣：念「台灣光罩」廠區落下、光柱亮；念「成熟製程」光罩盒推上潔淨物流車，車沿路開往南部客戶晶圓廠
 P["s4"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shot("start-4", FX + 9.5, -1.0, 46.8, 30, 30)],
- "run": [run("f_twOn", "tmc", "s5:start", 6), run("f_twF", "mat", "s5:start", 8)],
- "labels": [lab("f_twA", "台灣光罩", "Taiwan Mask", "blue", "tmc", "s5:start-4", xy=[810, 300])],
+ "shot": [shotZ("start-4", SM[0] + .15, SM[1] + .95, 7.5, 38, 30)],
+ "run": [run("f_tmcOn", "tmc", "s5:start", 6), run("f_cTWOn", "mat", "s5:start", 6), run("f_rTMCF", "mat+30", "s5:start", 8)],
+ "labels": [LG("f_tmcA", "台灣光罩", "Taiwan Mask", "blue", "tmc", "s5:start-4", [720, 300], None, "TW"),
+            lab("f_vanA", "潔淨物流車", "Clean logistics", "amber", "mat", "s5:start-4", xy=[810, 853])],
  "overlay": [sec("mk2-tw", "start+4", "s5:start-8", "台灣光罩（2338）", "公司說法", {"tmc": "tmc", "mat": "mat"})]}
 P["s5"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", EX, 2.94, 47, 14, 30)],
- "run": [run("e_cathOn", "eb-6", "s7:start", 6), run("e_coilOn", "eb-6", "s7:start", 8), run("e_beam", "eb", "s6:slow", 8), run("e_spotOn", "eb+10", "s6:slow", 6),
+ "run": [run("e_cathOn", "eb-6", "s7:start", 6), run("e_coilOn", "eb-6", "s7:start", 8), run("e_beam", "eb", "s6:slow", 8), run("e_spotOn", "eb+10", "s6:slow", 6), run("e_beamOn", "eb", "s6:slow", 6),
          run("e_scan", "wr", "s7:start", 10), run("e_ledG", "start", "s7:start", 1)],
  "labels": [lab("e_qzA", "石英板＋鉻", "Quartz + chrome", "blue", "qz", "s6:start-4", xy=[270, 853]), lab("e_rsA", "光阻", "Resist", "amber", "res", "s6:start-4", xy=[810, 853]),
             lab("e_colA", "電子束鏡筒", "E-beam column", "blue", "eb", "s6:start-4", xy=[270, 300]), lab("e_cathA", "電子槍", "Electron gun", "coral", "eb+8", "s6:start-4", xy=[810, 300])],
@@ -491,7 +658,7 @@ P["s6"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
  "overlay": [sec("mk2-mb", "start+4", "s7:start-8", "單束 vs 多束", "IMS；NuFlare", {"fine": "fine", "slow": "slow", "adv": "adv", "n26": "n26", "all": "all"})]}
 P["s7"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", IX + 1.6, 1.38, 34.8, 24, 30)],
- "run": [run("i_rayOn", "ins", "s8:start", 6), run("i_defOn", "def", "s8:start", 6), run("i_repOn", "rep", "s8:start", 6)],
+ "run": [run("i_rayOn", "ins", "s8:start", 6), run("i_scanOn", "ins", "def", 6), run("i_defOn", "def", "s8:start", 6), run("i_repOn", "rep", "s8:start", 6)],
  "labels": [lab("i_headA", "檢測頭", "Inspection head", "blue", "ins", "s8:start-4", xy=[270, 300]), lab("i_defA", "一個瑕疵", "One defect", "coral", "def", "s8:start-4", xy=[810, 300]),
             lab("i_wfA", "每顆都印上", "Every die", "coral", "rep", "s8:start-4", xy=[810, 853])],
  "overlay": [sec("mk2-ins", "start+4", "s8:start-8", "為什麼要檢查", "Lasertec；SemiEng", {"ins": "ins", "def": "def", "rep": "rep"})]}
@@ -504,20 +671,20 @@ P["s8"] = {"zoom": [{"to": "pod", "at": "start-4", "dur": 30}],
 P["s9"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", VX - 1.6, VY - .57, 34.5, 20, 30)],
  "run": [run("v_dust", "start", "s10:start", 8)] + [run(f"v_air{j}", "vac-4", "s10:start", 8) for j in range(4)] + [run("v_icOn", "open", "s10:start", 6)],
- "labels": [lab("v_lpA", "外盒在外面", "Outer pod", "amber", "why", "s10:start-4", xy=[270, 300]), lab("v_pumpA", "抽真空", "Pump down", "blue", "vac", "s10:start-4", xy=[810, 853]),
-            lab("v_icA", "真空裡才開", "Opens in vacuum", "coral", "open", "s10:start-4", xy=[810, 300])],
+ "labels": [lab("v_lpA", "① 外盒留外面", "Stays outside", "amber", "start+6", "vac", xy=[270, 853]), lab("v_gateA", "② 內盒進腔", "Inner pod in", "blue", "why+10", "vac-8", xy=[810, 320]),
+            lab("v_pumpA", "③ 抽真空", "Pump down", "blue", "vac", "s10:start-4", xy=[810, 853]), lab("v_icA", "④ 真空裡才開", "Opens in vacuum", "coral", "open", "s10:start-4", xy=[270, 300])],
  "overlay": [sec("mk2-vac", "start+4", "s10:start-8", "很難加保護膜", "USPTO 7477358；SPIE", {"why": "why", "film": "film", "vac": "vac", "open": "open"})]}
 P["s10"] = {"zoom": [{"to": "pod", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", PX, PY - 1.0, 42, 26, 30)],
  "run": [run("p_ocOn", "cert", "s11:start", 6), run("p_sealOn", "gd", "s11:start", 6)],
- "labels": [lab("p_ocA", "英特格", "Entegris (US)", "blue", "ent", "s11:start-4", xy=[810, 300]), lab("p_obA", "家登", "Gudeng (TW)", "amber", "gd", "s11:start-4", xy=[270, 300])],
+ "labels": [],  # 兩家的 LOGO＋國旗做成 3D 廠牌立在盒子後面（p_ent／p_gd），中文名稱在 2D 卡
  "overlay": [sec("mk2-co", "start+4", "s11:start-8", "誰做光罩盒", "Entegris 2018；中央社 2018", {"cert": "cert", "ent": "ent", "gd": "gd"})]}
 P["s11"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", SX_ - 1.0, VY + 1.31, 31, 14, 34)],
+ "shot": [shot("start-4", SX_ - .9, VY + .8, 15, 22, 34)],
  "run": [run("v_euvOn", "arr", FAR, 6), run("v_euvF", "arr", FAR, 8), run("v_prOn", "glue", FAR, 6)],
- "labels": [lab("v_rsA", "光罩", "Reticle", "blue", "arr", "kw-10", xy=[810, 300]), lab("v_euvA", "極紫外光", "EUV light", "coral", "arr+10", "kw-10", xy=[270, 300]),
-            lab("v_prA", "光阻", "Resist (next)", "amber", "glue", "kw-10", xy=[810, 853])],
- "overlay": [sec("mk2-next", "start+2", "kw-10", "下一集：光阻", "下一集：光阻-1", {"arr": "arr", "glue": "glue", "light": "light", "next": "next", "kw": "kw"})]}
+ "labels": [lab("v_rsA", "光罩", "Reticle", "blue", "arr", "kw-10", xy=[900, 300]), lab("v_euvA", "極紫外光", "EUV light", "coral", "arr+10", "kw-10", xy=[230, 300]),
+            lab("v_prA", "光阻", "Resist (next)", "amber", "glue", "kw-10", xy=[230, 640])],
+ "overlay": [sec("mk2-next", "start+2", "kw-10", "還要一層膠", "示意動畫", {"arr": "arr", "glue": "glue", "light": "light", "next": "next", "kw": "kw"})]}
 for sc in script["scenes"]:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 json.dump(script, open(sp, "w"), ensure_ascii=False, indent=1)

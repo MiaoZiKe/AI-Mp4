@@ -125,8 +125,8 @@
    ],
    "props": {
     "hook": {
-     "kicker": "代工的供應商 4",
-     "title": "光罩誰做？怎麼送？",
+     "kicker": "光罩誰做？怎麼送？",
+     "title": "26萬道電子束寫光罩",
      "size": 96,
      "top": 236
     },
@@ -142,22 +142,22 @@
       "at": "start-30",
       "dur": 1,
       "x": 80,
-      "y": 2.0,
-      "d": 44,
-      "elev": 24
+      "y": 3.0,
+      "d": 50,
+      "elev": 26
      },
      {
       "at": "how",
       "dur": 60,
       "x": 80,
-      "y": 2.1,
+      "y": 2.6,
       "d": 46,
-      "elev": 22
+      "elev": 24
      }
     ],
     "shift": [
      {
-      "layer": "f_tw",
+      "layer": "f_tmc",
       "at": "s1:start-40",
       "until": "s4:tmc",
       "dy": 2.0,
@@ -165,6 +165,222 @@
       "dur": 12,
       "fallIn": true,
       "bounce": 0.1
+     },
+     {
+      "layer": "f_tsmc_pin",
+      "at": "s1:start-40",
+      "until": "s2:tsmc",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_intel_pin",
+      "at": "s1:start-40",
+      "until": "s2:intel",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_ss_pin",
+      "at": "s1:start-40",
+      "until": "s2:ss",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tsmc_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_intel_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_ss_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_dnp_pin",
+      "at": "s1:start-40",
+      "until": "s3:jp",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tek_pin",
+      "at": "s1:start-40",
+      "until": "s3:jp+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_phr_pin",
+      "at": "s1:start-40",
+      "until": "s3:us",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cTW_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cKR_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer+6",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cUS_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cKR_pin",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cUS_pin",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rDNP",
+      "at": "s1:start-40",
+      "until": "s3:mer",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rTEK",
+      "at": "s1:start-40",
+      "until": "s3:mer+6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rPHR",
+      "at": "s1:start-40",
+      "until": "s3:mer+12",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rTMC",
+      "at": "s1:start-40",
+      "until": "s4:mat+30",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rDNP",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rTEK",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rPHR",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tmc_pin",
+      "at": "s1:start-40",
+      "until": "s4:tmc",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s1:start-40",
+      "until": "s4:tmc+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_van",
+      "at": "s1:start-40",
+      "until": "s4:tmc+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 0.25,
+      "dy": 0.12,
+      "dz": 0.19000000000000128
+     },
+     {
+      "layer": "f_van",
+      "at": "s4:mat+14",
+      "until": "s12:start+400",
+      "dur": 26,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0.7
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat+14",
+      "until": "s12:start+400",
+      "dur": 26,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0.7
+     },
+     {
+      "layer": "f_van",
+      "at": "s4:mat+40",
+      "until": "s12:start+400",
+      "dur": 30,
+      "dx": -0.55,
+      "dy": 0,
+      "dz": 0.35
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat+40",
+      "until": "s12:start+400",
+      "dur": 30,
+      "dx": -0.55,
+      "dy": 0,
+      "dz": 0.35
      },
      {
       "layer": "e_mb",
@@ -331,12 +547,129 @@
      },
      {
       "layer": "p_oc",
-      "at": "s1:how",
-      "until": "s2:start",
-      "dur": 24,
+      "at": "s1:start-40",
+      "until": "s1:how",
+      "dur": 14,
       "dx": 0,
-      "dy": 3.4,
+      "dy": 3.8,
       "dz": 0
+     },
+     {
+      "layer": "p_ic",
+      "at": "s1:start-40",
+      "until": "s1:how-6",
+      "dur": 14,
+      "dx": 0,
+      "dy": 1.9,
+      "dz": 0
+     },
+     {
+      "layer": "p_ob",
+      "at": "s8:start-4",
+      "until": "s10:start",
+      "dur": 26,
+      "dx": 0,
+      "dy": -1.4,
+      "dz": 0
+     },
+     {
+      "layer": "v_lpC",
+      "at": "s9:start-30",
+      "until": "s9:vac",
+      "dur": 14,
+      "dx": 0,
+      "dy": 1.6,
+      "dz": 0
+     },
+     {
+      "layer": "e_beamL",
+      "at": "s1:start-40",
+      "until": "s5:eb",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_beamL",
+      "at": "s6:slow",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "p_ent",
+      "at": "s1:start-40",
+      "until": "s10:ent",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "p_gd",
+      "at": "s1:start-40",
+      "until": "s10:gd",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "p_ent",
+      "at": "s11:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "p_gd",
+      "at": "s11:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_body",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_lpC",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_lpod",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ib",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ret",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ic",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
      },
      {
       "layer": "p_oc",
@@ -344,7 +677,7 @@
       "until": "s10:start",
       "dur": 26,
       "dx": 0,
-      "dy": 6.0,
+      "dy": 6.6,
       "dz": 0
      },
      {
@@ -353,7 +686,7 @@
       "until": "s10:start",
       "dur": 26,
       "dx": 0,
-      "dy": 3.0,
+      "dy": 3.4,
       "dz": 0
      },
      {
@@ -362,7 +695,7 @@
       "until": "s8:pod+4",
       "dur": 26,
       "dx": 0,
-      "dy": 1.6,
+      "dy": 1.8,
       "dz": 0
      },
      {
@@ -411,11 +744,60 @@
       "dz": 0
      },
      {
-      "layer": "v_prL",
+      "layer": "v_prL0",
       "at": "s1:start-40",
-      "until": "s11:light",
+      "until": "s11:light+0",
       "opacity": 0,
-      "dur": 12
+      "dur": 4
+     },
+     {
+      "layer": "v_prL1",
+      "at": "s1:start-40",
+      "until": "s11:light+4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL2",
+      "at": "s1:start-40",
+      "until": "s11:light+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL3",
+      "at": "s1:start-40",
+      "until": "s11:light+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL4",
+      "at": "s1:start-40",
+      "until": "s11:light+16",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL5",
+      "at": "s1:start-40",
+      "until": "s11:light+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL6",
+      "at": "s1:start-40",
+      "until": "s11:light+24",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL7",
+      "at": "s1:start-40",
+      "until": "s11:light+28",
+      "opacity": 0,
+      "dur": 4
      },
      {
       "layer": "px_pod",
@@ -441,7 +823,7 @@
      {
       "layer": "px_cap",
       "at": "s1:start-400",
-      "until": "s2:start+30",
+      "until": "s2:fast+24",
       "opacity": 0,
       "dur": 1
      },
@@ -461,6 +843,20 @@
      },
      {
       "layer": "px_mer",
+      "at": "s3:us-8",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer2",
+      "at": "s1:start-400",
+      "until": "s3:us+26",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer2",
       "at": "s4:start-4",
       "until": "s12:start+500",
       "opacity": 0,
@@ -476,6 +872,20 @@
      {
       "layer": "px_tw",
       "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_map",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_map",
+      "at": "s2:fast-8",
       "until": "s12:start+500",
       "opacity": 0,
       "dur": 1
@@ -553,19 +963,19 @@
     ],
     "run": [
      {
-      "id": "p_ocOn",
+      "id": "p_retOn",
       "at": "start-30",
       "ramp": 6,
       "until": "how"
      },
      {
-      "id": "p_retOn",
-      "at": "how+10",
+      "id": "p_icOn",
+      "at": "how",
       "ramp": 6,
       "until": "s2:start"
      },
      {
-      "id": "p_icOn",
+      "id": "p_ocOn",
       "at": "how+10",
       "ramp": 6,
       "until": "s2:start"
@@ -658,54 +1068,110 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": -5.5,
-      "y": -0.48,
-      "d": 47.6,
-      "elev": 30
+      "x": -48.5,
+      "y": -7.972,
+      "d": 66.89,
+      "elev": 50
+     },
+     {
+      "at": "fast-6",
+      "dur": 30,
+      "x": -60.89,
+      "y": -6.275,
+      "d": 17.805,
+      "elev": 36
      }
     ],
     "run": [
      {
-      "id": "f_capF",
-      "at": "start",
-      "ramp": 8,
-      "until": "s3:start"
-     },
-     {
-      "id": "f_capOn",
-      "at": "adv",
-      "ramp": 8,
-      "until": "s3:start"
-     },
-     {
-      "id": "f_fabOn",
+      "id": "f_tsmcOn",
       "at": "tsmc",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_intelOn",
+      "at": "intel",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_ssOn",
+      "at": "ss",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_tsmcBr",
+      "at": "fast-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_intelBr",
+      "at": "fast-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_ssBr",
+      "at": "fast-10",
       "ramp": 8,
       "until": "s3:start"
      }
     ],
     "labels": [
      {
-      "part": "f_fabA",
-      "text": "晶圓廠",
-      "en": "Fab",
+      "part": "f_tsmcA",
+      "text": "台積電",
+      "en": "TSMC",
       "color": "blue",
       "at": "tsmc",
-      "until": "s3:start-4",
+      "until": "fast-8",
+      "xy": [
+       270,
+       740
+      ],
+      "logo": "tsmc",
+      "flag": "TW"
+     },
+     {
+      "part": "f_intelA",
+      "text": "英特爾",
+      "en": "Intel",
+      "color": "blue",
+      "at": "intel",
+      "until": "fast-8",
+      "xy": [
+       810,
+       300
+      ],
+      "logo": "intel",
+      "flag": "US"
+     },
+     {
+      "part": "f_ssA",
+      "text": "三星",
+      "en": "Samsung",
+      "color": "blue",
+      "at": "ss",
+      "until": "fast-8",
       "xy": [
        270,
        300
-      ]
+      ],
+      "logo": "samsung",
+      "flag": "KR"
      },
      {
-      "part": "f_capA",
-      "text": "自己的光罩廠",
-      "en": "Captive shop",
+      "part": "f_tsmcA",
+      "text": "光罩廠在隔壁",
+      "en": "Next door",
       "color": "amber",
-      "at": "adv",
+      "at": "fast",
       "until": "s3:start-4",
       "xy": [
-       810,
+       760,
        300
       ]
      }
@@ -721,7 +1187,7 @@
       "w": 952,
       "h": 330,
       "avoid": false,
-      "title": "自己的光罩廠",
+      "title": "晶圓廠自己做光罩",
       "tag": "Semiconductor Engineering",
       "t": {
        "adv": {
@@ -790,68 +1256,118 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": 8.1,
-      "y": -1.37,
-      "d": 56.7,
-      "elev": 30
+      "x": -43.95,
+      "y": 0.856,
+      "d": 29.365,
+      "elev": 50
+     },
+     {
+      "at": "us-6",
+      "dur": 30,
+      "x": -22.768,
+      "y": -0.297,
+      "d": 30.871,
+      "elev": 50
      }
     ],
     "run": [
      {
-      "id": "f_merF",
+      "id": "f_rDNPF",
       "at": "mer",
       "ramp": 8,
       "until": "s5:start"
      },
      {
-      "id": "f_merF2",
-      "at": "mer",
+      "id": "f_rTEKF",
+      "at": "mer+6",
       "ramp": 8,
       "until": "s5:start"
      },
      {
-      "id": "f_m0On",
+      "id": "f_rPHRF",
+      "at": "mer+12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_dnpOn",
       "at": "jp",
       "ramp": 6,
       "until": "s4:start"
      },
      {
-      "id": "f_m1On",
+      "id": "f_tekOn",
       "at": "jp+8",
       "ramp": 6,
       "until": "s4:start"
      },
      {
-      "id": "f_m2On",
+      "id": "f_phrOn",
       "at": "us",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cTWOn",
+      "at": "mer",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cKROn",
+      "at": "mer+6",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cUSOn",
+      "at": "mer+12",
       "ramp": 6,
       "until": "s4:start"
      }
     ],
     "labels": [
      {
-      "part": "f_m0A",
-      "text": "日本兩家",
-      "en": "Two in Japan",
+      "part": "f_dnpA",
+      "text": "大日本印刷",
+      "en": "DNP",
       "color": "amber",
       "at": "jp",
-      "until": "s4:start-4",
+      "until": "us-8",
       "xy": [
-       270,
+       260,
        300
-      ]
+      ],
+      "logo": "dnp",
+      "flag": "JP"
      },
      {
-      "part": "f_m2A",
-      "text": "美國一家",
-      "en": "One in the US",
+      "part": "f_tekA",
+      "text": "Tekscend",
+      "en": "ex-Toppan",
+      "color": "amber",
+      "at": "jp+8",
+      "until": "us-8",
+      "xy": [
+       790,
+       300
+      ],
+      "logo": "tekscend",
+      "flag": "JP"
+     },
+     {
+      "part": "f_phrA",
+      "text": "Photronics",
+      "en": "US",
       "color": "blue",
       "at": "us",
       "until": "s4:start-4",
       "xy": [
-       810,
+       790,
        300
-      ]
+      ],
+      "logo": "photronics",
+      "flag": "US"
      }
     ],
     "overlay": [
@@ -923,37 +1439,56 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": 9.5,
-      "y": -1.0,
-      "d": 46.8,
-      "elev": 30
+      "x": -61.569,
+      "y": -8.11,
+      "d": 21.273,
+      "elev": 38
      }
     ],
     "run": [
      {
-      "id": "f_twOn",
+      "id": "f_tmcOn",
       "at": "tmc",
       "ramp": 6,
       "until": "s5:start"
      },
      {
-      "id": "f_twF",
+      "id": "f_cTWOn",
       "at": "mat",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_rTMCF",
+      "at": "mat+30",
       "ramp": 8,
       "until": "s5:start"
      }
     ],
     "labels": [
      {
-      "part": "f_twA",
+      "part": "f_tmcA",
       "text": "台灣光罩",
       "en": "Taiwan Mask",
       "color": "blue",
       "at": "tmc",
       "until": "s5:start-4",
       "xy": [
-       810,
+       720,
        300
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "f_vanA",
+      "text": "潔淨物流車",
+      "en": "Clean logistics",
+      "color": "amber",
+      "at": "mat",
+      "until": "s5:start-4",
+      "xy": [
+       810,
+       853
       ]
      }
     ],
@@ -1069,6 +1604,12 @@
      {
       "id": "e_spotOn",
       "at": "eb+10",
+      "ramp": 6,
+      "until": "s6:slow"
+     },
+     {
+      "id": "e_beamOn",
+      "at": "eb",
       "ramp": 6,
       "until": "s6:slow"
      },
@@ -1408,6 +1949,12 @@
       "until": "s8:start"
      },
      {
+      "id": "i_scanOn",
+      "at": "ins",
+      "ramp": 6,
+      "until": "def"
+     },
+     {
       "id": "i_defOn",
       "at": "def",
       "ramp": 6,
@@ -1699,7 +2246,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "USPTO 7477358；SPIE"
+    "Entegris 產品頁；USPTO 7477358；SPIE"
    ],
    "props": {
     "zoom": [
@@ -1760,19 +2307,31 @@
     "labels": [
      {
       "part": "v_lpA",
-      "text": "外盒在外面",
-      "en": "Outer pod",
+      "text": "① 外盒留外面",
+      "en": "Stays outside",
       "color": "amber",
-      "at": "why",
-      "until": "s10:start-4",
+      "at": "start+6",
+      "until": "vac",
       "xy": [
        270,
-       300
+       853
+      ]
+     },
+     {
+      "part": "v_gateA",
+      "text": "② 內盒進腔",
+      "en": "Inner pod in",
+      "color": "blue",
+      "at": "why+10",
+      "until": "vac-8",
+      "xy": [
+       810,
+       320
       ]
      },
      {
       "part": "v_pumpA",
-      "text": "抽真空",
+      "text": "③ 抽真空",
       "en": "Pump down",
       "color": "blue",
       "at": "vac",
@@ -1784,13 +2343,13 @@
      },
      {
       "part": "v_icA",
-      "text": "真空裡才開",
+      "text": "④ 真空裡才開",
       "en": "Opens in vacuum",
       "color": "coral",
       "at": "open",
       "until": "s10:start-4",
       "xy": [
-       810,
+       270,
        300
       ]
      }
@@ -1892,32 +2451,7 @@
       "until": "s11:start"
      }
     ],
-    "labels": [
-     {
-      "part": "p_ocA",
-      "text": "英特格",
-      "en": "Entegris (US)",
-      "color": "blue",
-      "at": "ent",
-      "until": "s11:start-4",
-      "xy": [
-       810,
-       300
-      ]
-     },
-     {
-      "part": "p_obA",
-      "text": "家登",
-      "en": "Gudeng (TW)",
-      "color": "amber",
-      "at": "gd",
-      "until": "s11:start-4",
-      "xy": [
-       270,
-       300
-      ]
-     }
-    ],
+    "labels": [],
     "overlay": [
      {
       "type": "section",
@@ -1986,7 +2520,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "下一集：光阻-1"
+    "示意動畫，不是量測"
    ],
    "props": {
     "zoom": [
@@ -2000,10 +2534,10 @@
      {
       "at": "start-4",
       "dur": 34,
-      "x": 114.0,
-      "y": 2.91,
-      "d": 31,
-      "elev": 14
+      "x": 114.1,
+      "y": 2.4000000000000004,
+      "d": 15,
+      "elev": 22
      }
     ],
     "run": [
@@ -2035,7 +2569,7 @@
       "at": "arr",
       "until": "kw-10",
       "xy": [
-       810,
+       900,
        300
       ]
      },
@@ -2047,7 +2581,7 @@
       "at": "arr+10",
       "until": "kw-10",
       "xy": [
-       270,
+       230,
        300
       ]
      },
@@ -2059,8 +2593,8 @@
       "at": "glue",
       "until": "kw-10",
       "xy": [
-       810,
-       853
+       230,
+       640
       ]
      }
     ],
@@ -2075,8 +2609,8 @@
       "w": 952,
       "h": 330,
       "avoid": false,
-      "title": "下一集：光阻",
-      "tag": "下一集：光阻-1",
+      "title": "還要一層膠",
+      "tag": "示意動畫",
       "t": {
        "arr": {
         "at": "arr"
@@ -2114,11 +2648,7 @@
    "props": {
     "endCard": {
      "next": "光阻-1 照光就變的膠",
-     "trail": [
-      "塗佈",
-      "曝光",
-      "顯影"
-     ],
+     "trail": [],
      "at": "s11:kw-8",
      "comment": "光罩盒",
      "logoAnim": "transparent"

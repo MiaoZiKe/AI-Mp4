@@ -58,7 +58,7 @@ S = [
  ["極紫外光罩", "很難加保護膜", "所以內盒到", "真空機台才打開"],
  ["EUV masks", "can hardly carry a protective film,", "so the inner pod opens only", "inside the vacuum tool."],
  [("why", "極紫外光罩"), ("film", "很難加保護膜"), ("vac", "真空機台"), ("open", "才打開")],
- ["保護膜", "真空", "內盒"], ["USPTO 7477358；SPIE"]),
+ ["保護膜", "真空", "內盒"], ["Entegris 產品頁；USPTO 7477358；SPIE"]),
 ("s10", "payoff",
  "最早通過曝光機大廠認證的，是美國英特格和台灣家登。",
  ["最早通過曝光機大廠認證的", "是美國英特格", "和台灣家登"],
@@ -70,7 +70,7 @@ S = [
  ["光罩到了", "還要一層膠接住圖案", "照到光就會變", "下一集看", "留言光罩盒", "拿完整資料"],
  ["The mask has arrived,", "but a film of resist must catch the pattern;", "it changes when light hits it.", "Next episode.", "Comment \"光罩盒\"", "for the full notes."],
  [("arr", "光罩到了"), ("glue", "一層膠"), ("light", "照到光就會變"), ("next", "下一集"), ("kw", "留言光罩盒")],
- ["光阻", "膠", "光罩盒"], ["下一集：光阻-1"]),
+ ["光阻", "膠", "光罩盒"], ["示意動畫，不是量測"]),
 ]
 # 念稿替換：「鉻」（ㄍㄜˋ）寫成同音「各」，避免模型念錯；字幕維持「鉻」
 TTS = lambda t: t.replace("鉻", "各").replace("矽", "細").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
@@ -84,9 +84,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 4", "title": "光罩誰做？怎麼送？", "size": 96, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "光罩誰做？怎麼送？", "title": "26萬道電子束寫光罩", "size": 96, "top": 236}  # 審片必改 4：鉤子要有數字（research 第 11 列，IMS 512×512）
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "光阻-1 照光就變的膠", "trail": ["塗佈", "曝光", "顯影"], "at": "s11:kw-8", "comment": "光罩盒", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "光阻-1 照光就變的膠", "trail": [], "at": "s11:kw-8", "comment": "光罩盒", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/24", "noteAlways": True}
 levels = [lv("plant", "光罩廠", "MASK SHOP", "10 m", "2 m"), lv("tool", "設備", "EQUIPMENT", "2 m", "50 cm"),
           lv("pod", "光罩盒", "RETICLE POD", "30 cm", "10 cm"), lv("mask", "光罩", "PHOTOMASK", "15 cm", "5 cm")]

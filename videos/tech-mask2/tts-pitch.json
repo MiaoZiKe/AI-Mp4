@@ -1,0 +1,32 @@
+{
+ "rule": "f0Median 112–126 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求",
+ "runs": [
+  {
+   "startedAt": "2026-11-24T03:17:05.379105+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-24T03:17:05.379117+00:00",
+     "f0Median": 131.9,
+     "sec": 65.65,
+     "accepted": false,
+     "file": "out/tech-mask2-take-reject-1.wav",
+     "note": "超出 112–126 Hz"
+    },
+    {
+     "n": 2,
+     "at": "2026-11-24T03:17:05.743196+00:00",
+     "f0Median": null,
+     "sec": null,
+     "accepted": false,
+     "file": "",
+     "note": "請求失敗：✖ 429 { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metr"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-mask2-take-reject-1.wav",
+   "chosenF0": 131.9,
+   "status": "fallback-closest"
+  }
+ ]
+}

@@ -2,6 +2,7 @@
 // 2026/11/15 從 Hud.tsx 拆出來（使用者回饋：「源極」「汲極」貼在模型底座上、「2 在哪？」壓在模型上、換幕時兩張卡半透明疊在一起）。
 // 這裡只有純計算（不畫東西），所以 Hud.tsx 畫面與 scripts/three/layout-check.mjs（不開瀏覽器的版面檢查）用同一份：檢查到的就是畫出來的。
 import { hasFlag, flagW, hasLogo, logoW } from "./Brand";
+import "./BrandWafer"; // 2026/11/24 韓國國旗等登記（標籤尺寸要算得到）
 import { EASE, tween } from "../anim";
 import { cameraFor, projectPoint, stateAt, type Label3D, type Model3D, type Overlay3D, type State3D } from "./engine";
 import type { PartDef, ProductModel } from "./model";

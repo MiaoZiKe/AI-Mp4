@@ -1,6 +1,7 @@
 // 3D 產品台的「產品資料」：零件清單（形狀、尺寸、材質、所在層）寫在 videos/<slug>/model.json（或 script.json 的 model），
 // 這裡把資料變成 three.js 的幾何與材質。換產品只改資料，不改這個資料夾的程式。資料格式見 docs/three-stage.md。
 import * as THREE from "three";
+import { continueRender, delayRender, staticFile } from "remotion";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { THEME_3D as T } from "../../theme";
 import { seeded } from "../anim";
@@ -14,10 +15,15 @@ export type MatDef = {
   emissive?: string; ei?: number; env?: number; opacity?: number;
   /** 程式產生的紋理：wick 毛細網、traces 線路、brushed 髮絲紋；texScale＝一格紋理多大（模型單位）；bump＝凹凸強度 */
   tex?: "wick" | "traces" | "brushed"; texScale?: number; bump?: number;
+  /** 2026/11/24 tech-mask2：貼圖檔（public 底下的路徑，例如 "logos/dnp.png"：公司官方 LOGO 原檔轉的 PNG、程式畫的國旗）。
+   *  只用在 unlit 材質；零件用 shape "plane"＋uv01: true（整張圖貼滿一面，不重複、不拉伸要自己照圖的比例給尺寸） */
+  img?: string;
 };
 export type PartDef = {
   id?: string; layer: string;
-  shape: "slab" | "ring" | "plane" | "box" | "cyl" | "tube" | "sphere";
+  shape: "slab" | "ring" | "plane" | "box" | "cyl" | "tube" | "sphere" | "poly";
+  /** poly（2026/11/24 tech-mask2 地圖）：平面多邊形 [[u, v], …]（已置中），沿 z 擠出 size[2] 厚；size[0]／size[1]＝外接框（版面檢查用）。躺平用 rot [-90, 0, 0]（v＝−z） */
+  pts?: number[][];
   size: number[]; r?: number; wall?: number; bevel?: number;
   pos?: number[]; rot?: number[]; scale?: number[];
   /** 同一個零件複製到多個位置（[x, y] 或 [x, y, z]，加在 pos 上）；grid＝排成 nx×ny 的陣列 */
@@ -26,6 +32,8 @@ export type PartDef = {
   /** lid＝掀蓋時滑開的上蓋、heatFloor＝會依熱度變色的底板、heatSource＝發熱的零件、xray＝念到「燙」時變透明 */
   role?: "lid" | "heatFloor" | "heatSource" | "xray";
   shadow?: boolean;
+  /** plane 用 0–1 的 UV（貼圖整張貼滿；給 img 材質用） */
+  uv01?: boolean;
 };
 /** bg（2026/11/16 tech-offer）：背景層（例如整張桌面），不算進主素材框（版面檢查與疊層避讓都不看它） */
 export type LayerDef = { id: string; z: number; k: number; outline?: [number, number, number, number]; bg?: boolean };
@@ -130,9 +138,11 @@ const baseGeo = (p: PartDef): THREE.BufferGeometry => {
         g.setAttribute("color", new THREE.BufferAttribute(new Float32Array(pos.count * 3).fill(1), 3));
         return g;
       }
+      if (p.uv01) return new THREE.PlaneGeometry(a, b);
       return new THREE.ShapeGeometry(rr(a, b, r), segs(r));
     }
     case "box": return new THREE.BoxGeometry(a, b, c);
+    case "poly": { const sh = new THREE.Shape(); (p.pts ?? []).forEach(([u, v], i) => (i ? sh.lineTo(u, v) : sh.moveTo(u, v))); sh.closePath(); return extrude(sh, c, bv, 4); }
     case "cyl": { const g = new THREE.CylinderGeometry(a, a, b, a > 0.3 ? 32 : 14); g.rotateX(Math.PI / 2); return g; }
     case "sphere": return new THREE.SphereGeometry(a, 28, 16);
   }
@@ -200,6 +210,18 @@ const texture = (kind: string, scale: number) => {
   return t;
 };
 
+/** 圖檔貼圖（public 底下的檔案；載入完成前 delayRender 擋住截圖，同一個分頁共用） */
+const imgCache = new Map<string, THREE.Texture>();
+const imgTex = (file: string) => {
+  const hit = imgCache.get(file);
+  if (hit) return hit;
+  const h = delayRender(`貼圖 ${file}`);
+  const t = new THREE.TextureLoader().load(staticFile(file), (x) => { x.needsUpdate = true; continueRender(h); }, undefined, () => { console.error(`貼圖載入失敗：${file}`); continueRender(h); });
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  imgCache.set(file, t);
+  return t;
+};
+
 /** 柔邊圓點（蒸氣、熱浪用的貼圖） */
 let puffTex: THREE.Texture | null = null;
 export const puff = () => {
@@ -253,6 +275,7 @@ export const studioEnv = (soft = false) => {
 export const makeMaterial = (m: ProductModel, name: string, fx: Fx, vertexColors = false): THREE.Material => {
   const d = m.materials[name] ?? { color: T.ink };
   const c = col(m, d.color), kind = d.kind ?? "std", rough = d.rough ?? (kind === "screen" ? 0.12 : 0.6), metal = d.metal ?? 0.05;
+  if (kind === "unlit" && d.img) return new THREE.MeshBasicMaterial({ color: "#FFFFFF", map: imgTex(d.img), transparent: true, side: THREE.DoubleSide, toneMapped: false });
   if (kind === "unlit") return new THREE.MeshBasicMaterial({ color: c });
   const map = d.tex && fx.textures ? texture(d.tex, d.texScale ?? 1) : null;
   if (fx.pbr) {

@@ -17,6 +17,15 @@ export const LOGOS: Record<string, LogoSpec> = {
   // HOYA、AGC：Commons 原檔 SVG 由 Wikimedia 自己轉出的 960px PNG（thumb.php；upload 伺服器限流，SVG 原檔當天抓不到），未重畫、未改色
   hoya: { file: "logos/hoya.png", w: 960, h: 273, name: "HOYA", source: "https://commons.wikimedia.org/wiki/File:Hoya_Corporation_logo.svg" },
   agc: { file: "logos/agc.png", w: 960, h: 332, name: "AGC", source: "https://commons.wikimedia.org/wiki/File:AGC_Logo.svg（2018 起現行版）" },
+  // 2026/11/24 光罩-2（tech-mask2）：官網或 Commons 原檔，未重畫、未改色；來源同時記在 videos/tech-mask2/assets.md
+  tsmc: { file: "logos/tsmc.svg", w: 273, h: 215, name: "台積電 TSMC", source: "https://commons.wikimedia.org/wiki/File:Tsmc-text.svg" },
+  intel: { file: "logos/intel.svg", w: 388.2, h: 150.6, name: "英特爾 Intel", source: "https://commons.wikimedia.org/wiki/File:Intel_logo_2023.svg" },
+  samsung: { file: "logos/samsung.svg", w: 7051.4024, h: 1080, name: "三星 Samsung", source: "https://commons.wikimedia.org/wiki/File:Samsung_wordmark.svg" },
+  dnp: { file: "logos/dnp.svg", w: 110, h: 33, name: "大日本印刷 DNP", source: "https://www.global.dnp/content/dam/dnp-global/common/img/logo.svg" },
+  tekscend: { file: "logos/tekscend.svg", w: 199, h: 32, name: "Tekscend Photomask", source: "https://www.photomask.com/assets/img/common/header_logo.svg" },
+  photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
+  entegris: { file: "logos/entegris.svg", w: 181, h: 43, name: "英特格 Entegris", source: "https://www.entegris.com/content/dam/web/ux/global/header/logo-header-desktop.svg" },
+  gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
 export const logoW = (id: string, h: number) => (LOGOS[id] ? Math.round((h * LOGOS[id].w) / LOGOS[id].h) : 0);
