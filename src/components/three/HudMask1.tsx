@@ -10,6 +10,7 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
+import { Flag, Logo, logoW, flagW } from "./Brand";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
 const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent) : H.onAccent);
@@ -19,7 +20,11 @@ const CT = CARD_CONTENT_TOP;
 const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
   <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
     {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
-    {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(sm(28), H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
+    {o.tag || (o as any).tagLogo ? <div style={{ position: "absolute", right: 16, top: 12, display: "flex", alignItems: "center", gap: 10, zIndex: 2 }}>
+      {(o as any).tagFlag ? <Flag code={(o as any).tagFlag} h={26} /> : null}
+      {(o as any).tagLogo ? <Logo id={(o as any).tagLogo} h={26} /> : null}
+      {o.tag ? <div style={{ ...zh(sm(28), H.text2, 600) }}>{o.tag}</div> : null}
+    </div> : null}
     {children}
   </div>
 );
@@ -319,13 +324,19 @@ const Co: React.FC<P> = ({ o, f, k }) => {
         <Sep x={478} />
         <text x={506} y={CT + 36} style={zh(sm(30), H.text2, 800)} opacity={0.35 + 0.65 * eu}>極紫外光用的空白光罩</text>
         {([["豪雅", "HOYA", "hoya"], ["旭硝子", "AGC", "agc"]] as const).map(([a, b, id], j) => { const x = 506 + j * 220, hl = on(f, T(o, id));
-          return <g key={id} opacity={0.35 + 0.65 * hl}>
-            <rect x={x} y={CT + 56} width={196} height={124} fill={hl > 0.5 ? H.amber : H.cardCompare} stroke={H.amber} strokeWidth={4} />
-            <text x={x + 98} y={CT + 108} textAnchor="middle" style={zh(40, hl > 0.5 ? onC(H.amber) : H.text, 900)}>{a}</text>
-            <text x={x + 98} y={CT + 156} textAnchor="middle" style={zh(sm(30), hl > 0.5 ? onC(H.amber) : H.text2, 800)}>{b}</text>
+          // LOGO 用官方原檔（白底、不改色）；念到時框變粗＋上方色條＋往上跳一下
+          const up = -8 * Math.sin(Math.PI * cl((f - T(o, id)) / 10));
+          return <g key={id} opacity={0.4 + 0.6 * hl} transform={`translate(0 ${up.toFixed(1)})`}>
+            <rect x={x} y={CT + 56} width={196} height={124} fill="#FFFFFF" stroke={H.amber} strokeWidth={2 + 4 * hl} />
+            <rect x={x} y={CT + 56} width={196} height={10} fill={H.amber} opacity={hl} />
+            <text x={x + 98} y={CT + 108} textAnchor="middle" style={zh(38, H.text, 900)}>{a}</text>
           </g>; })}
-        <text x={506} y={300} style={zh(32, H.text, 900)} opacity={0.3 + 0.7 * jp}>幾乎都來自日本這兩家</text>
+        <g opacity={0.3 + 0.7 * jp}><Flag code="JP" h={30} x={506} y={274} asSvg />
+          <text x={506 + flagW("JP", 30) + 14} y={300} style={zh(32, H.text, 900)}>幾乎都來自日本這兩家</text></g>
       </svg>
+      {/* 官方 LOGO 用 HTML <Img>（Remotion 等圖載入才出幀），位置對齊上面兩個白框的下半部 */}
+      {(["hoya", "agc"] as const).map((id, j) => { const hl = on(f, T(o, id)), lh = id === "hoya" ? 34 : 44, lw = logoW(id, lh), up = -8 * Math.sin(Math.PI * cl((f - T(o, id)) / 10));
+        return <div key={id} style={{ position: "absolute", left: 506 + j * 220 + 98 - lw / 2, top: CT + 168 - lh + up, opacity: 0.4 + 0.6 * hl }}><Logo id={id} h={lh} /></div>; })}
     </Card>
   );
 };

@@ -57,7 +57,7 @@ palette = {"floor": "#E3E9F1", "floorG": "#A8B4C6", "wall": "#DCE4EE", "wall2": 
  "quartz": "#CFE3F6", "chrome": "#3A3F48", "chromeHi": "#626A78", "ule": "#E7D7BE", "mo": "#4E5A70", "si": "#C3CFE2", "ru": "#C9B79C", "absb": "#262A31", "crn": "#6E6A62",
  "lens": "#BFD9F5", "mirror": "#C8D5EA", "resist": "#E8A23A", "expo": "#4F8DFF", "film": "#E6EEF8", "dust": "#7B6F60",
  "duv": "#2F6BFF", "duvR": "#1C4FD0", "euv": "#8B5CF6", "euvR": "#5B21B6", "hot": "#FF7A2F", "led": "#14C38E", "ledA": "#FF9F1C", "screen": "#2E6FD8",
- "label": "#F2F5FA", "bar": "#1F2430", "ok": "#14A38B", "bad": "#E0472F", "scan": "#FFF6D0"}
+ "label": "#F2F5FA", "bar": "#1F2430", "ok": "#14A38B", "bad": "#E0472F", "scan": "#FFF6D0", "patL": "#9AA6BA", "absM": "#4A5262", "pc": "#E6EEF8"}
 U = lambda c, o=None: {"kind": "unlit", "color": c, **({"opacity": o} if o is not None else {})}
 materials = {
  "floor": M("floor", rough=.55, metal=0), "floorG": U("floorG"), "wall": M("wall", rough=.7, metal=0), "wall2": M("wall2", rough=.7, metal=0), "ffu": U("ffu"),
@@ -78,6 +78,8 @@ materials = {
  "led": {"kind": "std", "color": "led", "emissive": "led", "ei": .9}, "ledA": {"kind": "std", "color": "ledA", "emissive": "ledA", "ei": .6},
  "screen": {"kind": "screen", "color": "screen", "ei": .7}, "label": M("label", rough=.6, metal=0), "bar": U("bar"),
  "air": U("#FFFFFF", .0),
+ "patL": M("patL", rough=.25, metal=.75, env=.9, tex="traces", texScale=.5), "absM": M("absM", rough=.22, metal=.65, env=1.0),
+ "pc": {"kind": "phys", "color": "pc", "rough": .08, "metal": 0, "clearcoat": 1, "opacity": .18, "env": .9}, "bad": {"kind": "std", "color": "bad", "emissive": "bad", "ei": .6},
 }
 materials = {"m_" + k: v for k, v in materials.items()}
 def flowx(key, lay, path, shape="dot", n=4, lanes=1, gap=.2, ldir=(1, 0, 0), size=.1, rate=1.0, color="ar", rim="arR", trail=0, band=None, bandO=.5, rimO=.6):
@@ -236,6 +238,7 @@ anchor("e_uleA", "e_sub", [EX - 4.4, 4.6, 2.0], dx=-170, dy=70)
 anchor("e_absA", "e_abs", [EX - 1.0, YA, 2.0], dx=-150, dy=-110)
 anchor("e_reflA", "e_beam", [EX + 2.0, 9.0, ZE], dx=170, dy=-60)
 anchor("e_capA", "e_cap", [EX + 4.4, YCAP, 2.0], dx=170, dy=-40)
+anchor("e_srcA", "e_src", [EX - 6.6, YT + .6, ZE], dx=-150, dy=-60)
 
 # ═════════ H：整片光罩（6 吋見方石英板、圖案區、對位記號、條碼、護膜框＋薄膜、灰塵）x=100 ═════════
 HX = 100.0; HY = 3.0
@@ -253,8 +256,8 @@ box("h_mem", "h_mem", "film", [6.3, .012, 6.3], [HX, HY + .915, 0])
 glow("h_memOn", "h_mem", ["h_mem"], "#FFFFFF", steady=False, g=.45, freq=1.1)
 glow("h_patOn", "h_mask", ["h_pat"], "#7FB7FF", steady=False, g=.5, freq=1.4)
 DUST = [[-1.6, 0, -.8], [1.2, 0, 1.4], [.3, 0, -1.9], [2.0, 0, -.4], [-.6, 0, 1.0], [-2.2, 0, 1.9]]
-sph("h_dust", "h_dust", "dust", .11, [HX, HY + .99, 0], at=DUST, scale=[1, .7, 1])
-sph("h_dust2", "h_dust2", "dust", .08, [HX, HY + .97, 0], at=[[-1.0, 0, -2.4], [2.4, 0, 1.8], [.9, 0, .1]])
+sph("h_dust", "h_dust", "dust", .22, [HX, HY + .99, 0], at=DUST, scale=[1, .7, 1])
+sph("h_dust2", "h_dust2", "dust", .16, [HX, HY + .97, 0], at=[[-1.0, 0, -2.4], [2.4, 0, 1.8], [.9, 0, .1]])
 glow("h_dustOn", "h_dust", ["h_dust"], "bad", steady=False, g=.8, freq=2.0, halo=.3)
 anchor("h_maskA", "h_mask", [HX + 3.9, HY + .4, 3.6], dx=170, dy=60)
 anchor("h_patA", "h_mask", [HX - 2.0, HY + .41, 2.2], dx=-170, dy=70)
@@ -262,37 +265,72 @@ anchor("h_pelA", "h_pel", [HX + 3.2, HY + .9, -3.2], dx=170, dy=-80)
 anchor("h_memA", "h_mem", [HX - 2.4, HY + .92, -2.4], dx=-170, dy=-80)
 anchor("h_dustA", "h_dust", [HX + 1.2, HY + 1.0, 1.4], dx=170, dy=-50)
 
-# ═════════ L：一整套光罩（三疊各 20 片，共 60 片）＋檢查中的一片（掃描光帶）x=130 ═════════
+# ═════════ L：一整套光罩（三座光罩架，每座 14 片同款光罩：石英板＋鉻圖樣＋護膜框）＋前面一台缺陷檢查機（龍門、光學頭掃過、螢幕缺陷圖）x=130 ═════════
+# 2026/11/24 v2（審片必改 5：原本三堆灰黑方塊看不出是光罩）：每片做成和 H 站同款的光罩，架子留縫看得出一片一片
 LX = 130.0
 box("l_tab", "l_tab", "cab2", [20, .35, 8], [LX, 2.0, -1.0], bevel=.05)
 box("l_leg", "l_tab", "steel2", [.35, 1.85, .35], [LX, .92, -1.0], at=[[sx * 9.4, 0, sz * 3.6] for sx in (-1, 1) for sz in (-1, 1)])
-NL = 20
-for g, sx in enumerate((-6.2, 0.0, 6.2)):
-    lay = f"l_st{g}"
-    box(f"l_q{g}", lay, "quartz", [4.0, .12, 4.0], [LX + sx, 0, -1.6], at=[[0, 2.25 + k * .2, 0] for k in range(NL)])
-    box(f"l_p{g}", lay, "pattern", [3.0, .02, 3.0], [LX + sx, 0, -1.6], at=[[0, 2.32 + k * .2, 0] for k in range(NL)])
-    box(f"l_s{g}", lay, "steel", [.12, .2, 4.0], [LX + sx, 0, -1.6], at=[[sd * 2.1, 2.25 + k * .2, 0] for k in range(NL) for sd in (-1, 1)])
-box("l_one", "l_one", "quartz", [4.6, .14, 4.6], [LX, 2.6, 2.4])
-box("l_oneP", "l_one", "pattern", [3.6, .02, 3.6], [LX, 2.68, 2.4])
-box("l_def", "l_def", "absb", [.16, .03, .16], [LX + .9, 2.7, 2.0])
-glow("l_defOn", "l_def", ["l_def"], "bad", steady=False, g=1.0, freq=2.4, halo=.5)
-box("l_scan", "l_scan", "scan", [.16, .03, 3.8], [LX - 1.9, 2.72, 2.4])
-box("l_gan", "l_one", "steel2", [.3, 1.6, .3], [LX, 3.4, 2.4], at=[[-2.6, 0, -2.3], [2.6, 0, -2.3]])
-box("l_ganT", "l_one", "steel", [5.5, .3, .4], [LX, 4.2, .1])
+NL, PIT, Y1 = 14, .27, 2.42
+for g, sx in enumerate((-4.7, 0.0, 4.7)):
+    lay = f"l_st{g}"; cx = LX + sx; ZR = -1.8
+    box(f"l_post{g}", lay, "steel2", [.16, 4.1, .16], [cx, 4.22, ZR], at=[[a * 1.95, 0, b * 1.95] for a in (-1, 1) for b in (-1, 1)])
+    box(f"l_cap{g}", lay, "cab2", [4.2, .14, 4.2], [cx, 6.3, ZR], bevel=.03)
+    box(f"l_led{g}", lay, "led", [.3, .1, .08], [cx + 1.5, 6.3, ZR + 2.1])
+    box(f"l_rail{g}", lay, "steelHi", [.18, .05, 3.7], [cx, 0, ZR], at=[[sd * 1.78, Y1 - .07 + k * PIT, 0] for k in range(NL) for sd in (-1, 1)])
+    box(f"l_q{g}", lay, "quartz", [3.4, .1, 3.4], [cx, 0, ZR], at=[[0, Y1 + k * PIT, 0] for k in range(NL)])
+    box(f"l_p{g}", lay, "patL", [2.5, .015, 2.5], [cx, 0, ZR], at=[[0, Y1 + .058 + k * PIT, 0] for k in range(NL)])
+    box(f"l_e{g}", lay, "chrome", [3.4, .012, 3.4], [cx, 0, ZR], at=[[0, Y1 + .052 + k * PIT, 0] for k in range(NL)])
+    box(f"l_f{g}", lay, "steel", [2.7, .07, .08], [cx, 0, ZR], at=[[0, Y1 + .1 + k * PIT, sd * 1.31] for k in range(NL) for sd in (-1, 1)])
+    box(f"l_fS{g}", lay, "steel", [.08, .07, 2.6], [cx, 0, ZR], at=[[sd * 1.31, Y1 + .1 + k * PIT, 0] for k in range(NL) for sd in (-1, 1)])
+# 前面：缺陷檢查機（花崗岩底座、XY 平台、受檢光罩、龍門橫樑、會掃過去的光學頭、旁邊螢幕）
+box("l_ib", "l_one", "granite", [6.2, .4, 3.6], [LX, 2.38, 2.4], bevel=.05)
+box("l_xy", "l_one", "cabD", [5.0, .12, 3.0], [LX, 2.64, 2.4])
+box("l_one", "l_one", "quartz", [4.4, .14, 4.4], [LX, 2.77, 2.4])
+box("l_oneE", "l_one", "chrome", [4.4, .012, 4.4], [LX, 2.845, 2.4])
+box("l_oneP", "l_one", "patL", [3.3, .015, 3.3], [LX, 2.855, 2.4])
+cross("l_mk", "l_one", "chromeHi", LX, [[sx * 1.95, 0, 2.4 + sz * 1.95] for sx in (-1, 1) for sz in (-1, 1)], s=.3, t=.03, y=2.86)
+box("l_gan", "l_one", "steel2", [.35, 2.0, .45], [LX, 3.5, 2.4], at=[[-2.9, 0, -1.4], [2.9, 0, -1.4]], bevel=.03)
+box("l_ganT", "l_one", "steel", [6.2, .4, .5], [LX, 4.6, 1.0], bevel=.03)
+box("l_ganR", "l_one", "steelHi", [5.6, .08, .12], [LX, 4.36, 1.3])
+# 光學頭（跟著掃描光帶一起從左走到右）：掛座＋鏡筒＋發光環＋往下的檢查光
+box("l_hd", "l_head", "cabD", [.6, .7, .7], [LX - 1.9, 4.2, 1.5], bevel=.04)
+cyl("l_hdL", "l_head", "steelHi", .2, .7, [LX - 1.9, 3.55, 1.9])
+tube("l_hdR", "l_head", "led", .24, .17, .06, [LX - 1.9, 3.2, 1.9])
+box("l_scan", "l_scan", "scan", [.16, .03, 3.6], [LX - 1.9, 2.875, 2.4])
+cyl("l_ray", "l_scan", "scan", .05, .3, [LX - 1.9, 3.03, 1.9])
+box("l_def", "l_def", "bad", [.2, .03, .2], [LX + .9, 2.88, 2.0])
+# 螢幕：缺陷地圖（格線＋紅點）
+box("l_mon", "l_mon", "steel2", [.2, 1.6, .2], [LX + 4.6, 3.0, 2.6])
+box("l_scr", "l_mon", "cabD", [2.3, 1.5, .14], [LX + 4.6, 4.4, 2.6], bevel=.04)
+box("l_scrS", "l_mon", "screen", [2.06, 1.28, .02], [LX + 4.6, 4.4, 2.68])
+box("l_scrG", "l_mon", "steelHi", [.02, 1.2, .01], [LX + 4.6, 4.4, 2.7], at=[[-.84 + .42 * i, 0, 0] for i in range(5)])
+box("l_scrH", "l_mon", "steelHi", [1.96, .02, .01], [LX + 4.6, 4.4, 2.7], at=[[0, -.48 + .32 * i, 0] for i in range(4)])
+box("l_def2", "l_def", "bad", [.16, .16, .02], [LX + 4.95, 4.55, 2.72])
+glow("l_defOn", "l_def", ["l_def", "l_def2"], "bad", steady=False, g=1.0, freq=2.4, halo=.5)
+glow("l_hdOn", "l_head", ["l_hdR"], "#FFF6D0", steady=False, g=.9, freq=3.0)
 glow("l_stOn", "l_st0", lp("l_st0"), "#9CC8FF", steady=False, g=.35, freq=1.2)
-anchor("l_setA", "l_st2", [LX + 6.2, 6.25, -.2], dx=150, dy=-80)
-anchor("l_oneA", "l_one", [LX - 2.0, 2.68, 4.4], dx=-170, dy=50)
-anchor("l_defA", "l_def", [LX + .9, 2.72, 2.0], dx=170, dy=40)
+for g in range(3): glow(f"l_cost{g}", f"l_st{g}", [f"l_p{g}", f"l_e{g}"], "#FFC46B", steady=False, g=.45, freq=1.0 + .15 * g)
+anchor("l_setA", "l_st2", [LX + 4.7, 6.3, -1.8], dx=150, dy=-80)
+anchor("l_oneA", "l_one", [LX - 2.0, 2.86, 4.4], dx=-170, dy=50)
+anchor("l_defA", "l_def", [LX + .9, 2.9, 2.0], dx=170, dy=40)
 
-# ═════════ B：空白光罩（還沒畫圖）：兩疊 EUV 空白光罩＋前面一片分層拆開 x=160 ═════════
+# ═════════ B：空白光罩（還沒畫圖）：兩個透明運送盒（各 8 片 EUV 空白光罩）＋前面一片分層拆開 x=160 ═════════
+# 2026/11/24 v2（Andy：動畫太簡陋）：原本兩疊黑方塊 → 透明運送盒＋插槽＋片片之間留縫、側面看得到玻璃與多層膜；拆開距離加大；念「極紫外光用的」紫光打在多層膜上彈回
 BX = 160.0
 box("b_tab", "b_tab", "cab2", [16, .35, 8], [BX, 2.0, -.6], bevel=.05)
 box("b_leg", "b_tab", "steel2", [.35, 1.85, .35], [BX, .92, -.6], at=[[sx * 7.4, 0, sz * 3.6] for sx in (-1, 1) for sz in (-1, 1)])
-def blank_stack(pid, cx, n=12):
-    box(pid + "g", pid, "ule", [3.6, .14, 3.6], [cx, 0, -2.2], at=[[0, 2.27 + k * .2, 0] for k in range(n)])
-    box(pid + "m", pid, "mo", [3.6, .03, 3.6], [cx, 0, -2.2], at=[[0, 2.355 + k * .2, 0] for k in range(n)])
-    box(pid + "a", pid, "absb", [3.6, .02, 3.6], [cx, 0, -2.2], at=[[0, 2.38 + k * .2, 0] for k in range(n)])
-blank_stack("b_s1", BX - 4.4); blank_stack("b_s2", BX + 4.4)
+def blank_box(pid, cx, n=8, cz=-2.2):
+    PB = .3; y1 = 2.5
+    box(pid + "base", pid, "cabD", [4.3, .16, 4.3], [cx, 2.26, cz], bevel=.03)
+    box(pid + "rib", pid, "cab2", [.12, .06, 3.8], [cx, 0, cz], at=[[sd * 1.98, y1 - .08 + k * PB, 0] for k in range(n) for sd in (-1, 1)])
+    box(pid + "g", pid, "ule", [3.6, .14, 3.6], [cx, 0, cz], at=[[0, y1 + k * PB, 0] for k in range(n)])
+    box(pid + "m", pid, "mo", [3.6, .04, 3.6], [cx, 0, cz], at=[[0, y1 + .09 + k * PB, 0] for k in range(n)])
+    box(pid + "a", pid, "absM", [3.6, .02, 3.6], [cx, 0, cz], at=[[0, y1 + .12 + k * PB, 0] for k in range(n)])
+    box(pid + "w", pid, "pc", [4.3, 2.75, 4.3], [cx, 2.34 + 1.375, cz], bevel=.06)
+    box(pid + "lid", pid, "cab2", [4.4, .14, 4.4], [cx, 5.16, cz], bevel=.04)
+    box(pid + "h", pid, "steel", [1.2, .12, .25], [cx, 5.28, cz])
+    box(pid + "tag", pid, "label", [1.6, .5, .03], [cx, 3.0, cz + 2.17])
+blank_box("b_s1", BX - 3.5); blank_box("b_s2", BX + 3.5)
 # 前面一片拆開（由下到上）：背面導電層、低熱膨脹玻璃、鉬／矽多層膜（示意 10 對）、保護層、整片吸收層（還沒畫圖）
 FZ = 1.6
 box("b_e0", "b_e0", "crn", [4.4, .05, 3.4], [BX, 2.22, FZ])
@@ -300,21 +338,25 @@ box("b_e1", "b_e1", "ule", [4.4, .4, 3.4], [BX, 2.47, FZ])
 box("b_e2m", "b_e2", "mo", [4.4, .03, 3.4], [BX, 0, FZ], at=[[0, 2.7 + k * .07, 0] for k in range(10)])
 box("b_e2s", "b_e2", "si", [4.4, .04, 3.4], [BX, 0, FZ], at=[[0, 2.735 + k * .07, 0] for k in range(10)])
 box("b_e3", "b_e3", "ru", [4.4, .04, 3.4], [BX, 3.4, FZ])
-box("b_e4", "b_e4", "absb", [4.4, .12, 3.4], [BX, 3.48, FZ])
+box("b_e4", "b_e4", "absM", [4.4, .12, 3.4], [BX, 3.48, FZ])
 glow("b_e2On", "b_e2", ["b_e2m", "b_e2s"], "#B9A6FF", steady=False, g=.45, freq=1.3)
-glow("b_s1On", "b_s1", lp("b_s1"), "#FFD08A", steady=False, g=.35, freq=1.2)
-glow("b_s2On", "b_s2", lp("b_s2"), "#FFD08A", steady=False, g=.35, freq=1.2)
-anchor("b_blankA", "b_e4", [BX + 2.2, 3.54, FZ + 1.7], dx=160, dy=-60)
+glow("b_s1On", "b_s1", [p["id"] for p in parts if p["layer"] == "b_s1" and p["id"].endswith(("g", "m"))], "#FFD08A", steady=False, g=.35, freq=1.2)
+glow("b_s2On", "b_s2", [p["id"] for p in parts if p["layer"] == "b_s2" and p["id"].endswith(("g", "m"))], "#FFD08A", steady=False, g=.35, freq=1.2)
+# 拆開後多層膜頂面 ≈ 2.7+.7+0.85（b_e2 上移）＝4.25；保護層在 3.4+1.4＝4.8 → 紫光從左低角度打進縫裡、在多層膜上彈回右邊
+YMLT = 2.7 + 10 * .07 + .85
+flowx("b_euv", "b_beam", [[BX - 5.6, YMLT + .42, FZ + 1.75], [BX - .4, YMLT + .02, FZ + 1.75], [BX + 4.8, YMLT + .42, FZ + 1.75]], shape="liquid", n=5, size=.13, rate=.9, color="euv", rim="euvR", band=.06, bandO=.85)
+air("b_airB", "b_beam", [BX - 5.6, YMLT, FZ + 1.5], [BX + 4.8, YMLT + .5, FZ + 2.0])
+anchor("b_blankA", "b_e4", [BX + 2.2, 3.54, FZ + 1.7], dx=170, dy=-40)
 anchor("b_mlA", "b_e2", [BX - 2.2, 3.0, FZ + 1.7], dx=-160, dy=60)
-anchor("b_s1A", "b_s1", [BX - 4.4, 4.7, -2.2], dx=-140, dy=-100)
-anchor("b_s2A", "b_s2", [BX + 4.4, 4.7, -2.2], dx=140, dy=-100)
+anchor("b_s1A", "b_s1", [BX - 3.5, 5.2, -2.2], dx=-140, dy=-100)
+anchor("b_s2A", "b_s2", [BX + 3.5, 5.2, -2.2], dx=140, dy=-100)
 
 # 主素材框（看不見；給 layout-check 判斷「卡片／標籤有沒有蓋到主體中央」）：每段只亮鏡頭對準的那一個，其他層全部標 bg
 materials["m_proxy"] = {"kind": "unlit", "color": "#FFFFFF", "opacity": 0}
 PXB = {"px_d": (DX - 5.0, DX + 5.0, 1.0, 16.4, -3.0, 3.0), "px_dm": (DX - 4.2, DX + 4.2, MB - .9, MY + .45, -3.6, 3.6),
        "px_g": (G1 - 1.6, G2 + 1.6, 2.4, 11.8, -1.3, 1.3), "px_e": (EX - 5.0, EX + 5.0, 3.0, YT, -2.0, 2.0),
-       "px_h": (HX - 4.0, HX + 4.0, HY - .2, HY + 1.0, -4.0, 4.0), "px_l": (LX - 8.2, LX + 8.2, 2.2, 6.3, -3.6, 4.7),
-       "px_b": (BX - 6.2, BX + 6.2, 2.2, 5.1, -4.0, 3.3)}
+       "px_h": (HX - 4.0, HX + 4.0, HY - .2, HY + 1.0, -4.0, 4.0), "px_l": (LX - 6.9, LX + 6.9, 2.2, 6.4, -3.8, 4.6),
+       "px_b": (BX - 5.8, BX + 5.8, 2.2, 5.8, -4.4, 3.3)}
 for lid, (x0, x1, y0, y1, z0, z1) in PXB.items():
     box(lid, lid, "proxy", [x1 - x0, y1 - y0, z1 - z0], [(x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2])
 for l in layers:
@@ -367,9 +409,12 @@ VIS = [
  fall("h_dust", HIDE, "s8:dust"), fall("h_dust2", HIDE, "s8:dust+12"),
  # L：三疊光罩依序出現（念「幾十片」）；有缺陷的點念「不能有缺陷」才閃；掃描光帶從左掃到右
  hid("l_st1", HIDE, "s9:many+10", 10), hid("l_st2", HIDE, "s9:many+22", 10),
- hid("l_def", HIDE, "s9:def", 6), hid("l_scan", HIDE, "s9:def-24", 6), mv("l_scan", "s9:def-24", FAR, dur=70, dx=3.8),
+ hid("l_def", HIDE, "s9:def", 6), hid("l_scan", HIDE, "s9:def-24", 6), mv("l_scan", "s9:def-24", FAR, dur=70, dx=3.8), mv("l_head", "s9:def-24", FAR, dur=70, dx=3.8),
  # B：前面那片空白光罩念「還沒畫圖的白紙」一層層拆開
- mv("b_e1", "s10:paper", FAR, dur=22, dy=.35), mv("b_e2", "s10:paper", FAR, dur=22, dy=.75), mv("b_e3", "s10:paper", FAR, dur=22, dy=1.15), mv("b_e4", "s10:paper", FAR, dur=22, dy=1.55),
+ mv("b_e1", "s10:paper", FAR, dur=22, dy=.3), mv("b_e2", "s10:paper", FAR, dur=22, dy=.85), mv("b_e3", "s10:paper", FAR, dur=22, dy=1.4), mv("b_e4", "s10:paper", FAR, dur=22, dy=1.95),
+ # B：念「日本」兩個運送盒一起輕跳一下；念「豪雅」「旭硝子」各自再跳一下
+ mv("b_s1", "s10:jp", "s10:jp+10", dur=6, dy=.3), mv("b_s2", "s10:jp+3", "s10:jp+13", dur=6, dy=.3),
+ mv("b_s1", "s10:hoya", "s10:hoya+10", dur=6, dy=.3), mv("b_s2", "s10:agc", "s10:agc+10", dur=6, dy=.3),
 ]
 PXW = {"px_d": [(EARLY, "s2:start-4"), ("s4:start+30", "s5:start-4")], "px_dm": [("s2:start+30", "s4:start-4")], "px_g": [("s5:start+30", "s6:start-4")],
        "px_e": [("s6:start+30", "s8:start-4")], "px_h": [("s8:start+30", "s9:start-4"), ("s11:start+30", FAR)], "px_l": [("s9:start+30", "s10:start-4")],
@@ -405,7 +450,7 @@ P["s4"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  "run": DUVRUN("start", "s5:start") + [run("d_lnOn", "lens", "s5:start", 6), run("d_imgOn", "wafer", "s5:start", 6)],
  "labels": [lab("d_lensA", "縮小鏡頭", "Reduction lens", "blue", "lens", "s5:start-4"), lab("d_imgA", "縮小 4 倍的圖案", "Pattern ÷4", "amber", "wafer", "s5:start-4"),
             lab("d_maskA", "光罩：圖案大 4 倍", "Mask: 4× larger", "amber", "x4", "s5:start-4")],
- "overlay": [sec("mk1-x4", "start+6", "s5:start-2", "縮小 4 倍投影", "ASML 光罩設計手冊", {"lens": "lens", "x4": "x4", "wafer": "wafer"})]}
+ "overlay": [sec("mk1-x4", "start+6", "s5:start-2", "縮小 4 倍投影", "光罩設計手冊", {"lens": "lens", "x4": "x4", "wafer": "wafer"}, tagLogo="asml", tagFlag="NL")]}
 P["s5"] = {"zoom": [{"to": "cut", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_g", 10, 30)],
  "run": [run("g_duv", "start", "s6:start", 8), run("g_spotDOn", "start+10", "s6:start", 6), run("g_euv", "euv", "s6:start", 8), run("g_spotEOn", "eat", "s6:start", 6), run("g_blkHot", "eat", "s6:start", 10)],
@@ -415,7 +460,7 @@ P["s6"] = {"zoom": [{"to": "layer", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_e", 12, 30)],
  "run": [run(x, "refl", "s8:start", 8) for x in EIN] + [run("e_mlOn", "mo", "s7:start", 6)],
  "labels": [lab("e_uleA", "低熱膨脹玻璃", "Low-expansion glass", "amber", "refl", "s7:start-4"), lab("e_mlA", "鉬／矽 約 40 對", "Mo/Si ×40 pairs", "blue", "mo", "s7:start-4"),
-            lab("e_reflA", "反射回去", "Reflected", "blue", "mirror", "s7:start-4")],
+            lab("e_reflA", "反射回去", "Reflected", "blue", "mirror", "s7:start-4"), lab("e_srcA", "極紫外光源", "EUV source", "blue", "refl+6", "s7:start-4")],
  "overlay": [sec("mk1-ml", "start+6", "s7:start-2", "反射式光罩：多層膜", "USPTO 11846881", {"refl": "refl", "mo": "mo", "n40": "n40", "mirror": "mirror"})]}
 P["s7"] = {"zoom": [{"to": "cut", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_e", 16, 30, zoom=1.1)],
@@ -429,15 +474,15 @@ P["s8"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
             lab("h_dustA", "灰塵在膜上", "Dust on the film", "coral", "dust+16", "s9:start-4")],
  "overlay": [sec("mk1-pel", "start+6", "s9:start-2", "護膜：灰塵對不到焦", "USPTO 11635681", {"pel": "pel", "dust": "dust", "focus": "focus", "no": "no"})]}
 P["s9"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
- "shot": [fit("start-4", "px_l", 22, 30)],
- "run": [run("l_stOn", "many", "def", 6), run("l_defOn", "def", "s10:start", 6)],
- "labels": [lab("l_setA", "一整套：幾十片", "A full mask set", "blue", "many", "s10:start-4"), lab("l_defA", "一個缺陷就不能用", "One defect = reject", "coral", "def", "s10:start-4")],
+ "shot": [fit("start-4", "px_l", 22, 30, hmax=440, wmax=820)],
+ "run": [run("l_stOn", "many", "def", 6), run("l_hdOn", "def-24", "s10:start", 6), run("l_defOn", "def", "s10:start", 6)] + [run(f"l_cost{g}", f"cost+{4 * g}", "s10:start", 6) for g in range(3)],
+ "labels": [lab("l_setA", "一整套：幾十片", "×60–100 (est.)", "blue", "many", "s10:start-4"), lab("l_defA", "一個缺陷就不能用", "One defect = reject", "coral", "def", "s10:start-4")],
  "overlay": [sec("mk1-cost", "start+6", "s10:start-2", "幾十片、上千萬", "IC Knowledge；IBS；SemiAnalysis", {"many": "many", "def": "def", "cost": "cost"})]}
 P["s10"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
- "shot": [fit("start-4", "px_b", 22, 30)],
- "run": [run("b_e2On", "paper", "s11:start", 6), run("b_s1On", "hoya", "s11:start", 6), run("b_s2On", "agc", "s11:start", 6)],
- "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:start-4"), lab("b_s1A", "豪雅 HOYA", "Japan", "blue", "hoya", "s11:start-4"),
-            lab("b_s2A", "旭硝子 AGC", "Japan", "blue", "agc", "s11:start-4")],
+ "shot": [fit("start-4", "px_b", 22, 30, hmax=440, wmax=820)],
+ "run": [run("b_e2On", "paper", "s11:start", 6), run("b_euv", "euv", "s11:start", 8), run("b_s1On", "hoya", "s11:start", 6), run("b_s2On", "agc", "s11:start", 6)],
+ "labels": [lab("b_blankA", "空白光罩（還沒畫圖）", "Mask blank", "amber", "blank", "s11:start-4"), dict(lab("b_s1A", "豪雅", "Japan", "blue", "hoya", "s11:start-4"), logo="hoya", flag="JP"),
+            dict(lab("b_s2A", "旭硝子", "Japan", "blue", "agc", "s11:start-4"), logo="agc", flag="JP")],
  "overlay": [sec("mk1-co", "start+6", "s11:start-2", "上游：空白光罩誰做", "QYResearch；Morningstar", {"blank": "blank", "paper": "paper", "euv": "euv", "jp": "jp", "hoya": "hoya", "agc": "agc"})]}
 P["s11"] = {"zoom": [{"to": "mask", "at": "start-4", "dur": 30}],
  "shot": [fit("start-4", "px_h", 30, 34)],

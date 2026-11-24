@@ -11,3 +11,14 @@
 - 一條龍：`bash scripts/three/make-tech.sh tech-mask1 --take=out/tech-mask1-take.orig.wav --atempo=1.23 --ver=v1` → `out/tech-mask1.v1.mp4`（57.03 秒、正片 −15.8 LUFS、片尾 −11.2 LUFS），複製成 `out/tech-mask1.mp4`。第一次渲染遇容器重啟中斷，清掉殘留鎖檔後同參數重跑（不送 TTS），渲染 08:57–09:30。配音後重跑 genmodel.py（script.json／model.json 無變化）。
 - 檢查：layout-check 0 error（1 warning＝IG 底部出處列）、card-overlap 0/0、flow-check 0（16 條）、kinematics 0；verify4：1、3 過，2（ASR 各→鉻、目→鉬＝替身字；Gemini 輕微「套」偏濁）與 4（52、53 秒片尾 LOGO 動畫）經人工判讀為誤判（out/tech-mask1/verify4/human.md）。
 - 預覽：out/preview/tech-mask1-sheet.png、tech-mask1-close-duv／euv／pellicle.png。
+
+## 11/24 v2 畫面優化（旁白、配音、時間軸不動）
+- 依據：Andy「光罩-1 聲音 OK，但影片也需要優化」＋光罩-2 回饋（國旗、LOGO、動畫要專業）＋審片報告 docs/reviews/2026-11-24-wafer-mask-review.md（必改 5 條）。
+- s1 鉤子大字：第 0 幀「一套上千萬美元」（kicker「晶片的底片＝光罩」；s9 的數字提前，旁白不改）。
+- s2–s3 等：hud.readoutPlate＝讀數與尺標墊底板（原本被機架與晶圓台吃掉）。
+- s4：mk1-x4 卡右上 ASML 官方 LOGO＋荷蘭國旗（出處「光罩設計手冊」）。
+- s6：加標籤「極紫外光源」。s8：灰塵放大一倍。
+- s9：L 站重做：三座光罩架（每座 14 片同款光罩：石英板＋鉻圖樣＋護膜框、插槽留縫）依序出現；前面缺陷檢查機（花崗岩底座、XY 平台、龍門、光學頭帶檢查光掃過、螢幕缺陷地圖）；念「不能有缺陷」光罩上與螢幕上紅點同步閃；念「上千萬美元」三座架子依序亮；標籤「×60–100 (est.)」；鏡頭拉近（框寬 16.4→13.8）。
+- s10：B 站重做：兩個透明運送盒（插槽、各 8 片空白光罩，側面看得到玻璃／多層膜／吸收層）；前面一片拆開距離加大；念「極紫外光用的」紫光打進縫裡在多層膜上彈回；念「日本」兩盒輕跳、念「豪雅」「旭硝子」各自再跳＋亮；標籤加官方 LOGO＋日本國旗；mk1-co 卡兩家改白框＋官方 LOGO、底列加日本國旗；鏡頭拉近。
+- s11 出處列「series_plan 系列 2 第 4 集」→「下一集：光罩-2」。
+- LOGO／國旗來源：assets.md；共用元件 src/components/three/Brand.tsx。

@@ -70,7 +70,7 @@ S = [
  ["白紙有了", "誰把電路畫上去？", "又怎麼送進工廠？", "下一集看", "留言光罩", "拿完整資料"],
  ["The blank paper is ready.", "Who draws the circuit on it?", "How does it reach the fab?", "Next episode.", "Comment \"光罩\"", "for the full notes."],
  [("paper", "白紙有了"), ("who", "誰把電路畫上去"), ("ship", "送進工廠"), ("next", "下一集"), ("kw", "留言光罩")],
- ["誰把電路畫上去", "送進工廠", "光罩"], ["series_plan 系列 2 第 4 集"]),
+ ["誰把電路畫上去", "送進工廠", "光罩"], ["下一集：光罩-2"]),
 ]
 TTS = lambda t: t.replace("矽", "細").replace("鉻", "各").replace("鉬", "目")
 scenes = []
@@ -83,7 +83,8 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 3", "title": "晶片的底片？", "size": 120, "top": 236}
+# 2026/11/24 審片必改 4：第 0 幀要有數字（旁白不改，s9 的「一套上千萬美元」提前當鉤子大字）
+scenes[0]["props"]["hook"] = {"kicker": "晶片的底片＝光罩", "title": "一套上千萬美元", "size": 118, "top": 236}
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光罩-2 誰做、怎麼運送", "trail": ["畫電路", "光罩盒"], "at": "s11:kw-8", "comment": "光罩", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
@@ -94,7 +95,7 @@ out = {"slug": "tech-mask1", "title": "光罩-1：晶片的底片（科技透明
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪不配音"},
-       "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "Schematic – not to scale", "zh": "示意圖，非實際比例"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
+       "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "Schematic – not to scale", "zh": "示意圖，非實際比例"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3, "readoutPlate": True},
        "cover": {"title": ["晶片的底片", "長什麼樣"], "sub": "光罩-1", "frame": 40}, "sample": False, "scenes": scenes}
 json.dump(out, open(os.path.join(HERE, "script.json"), "w"), ensure_ascii=False, indent=1)
 bad = []

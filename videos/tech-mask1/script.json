@@ -74,7 +74,8 @@
   "maxLabels": 4,
   "smallPx": 30,
   "layout": "fill",
-  "scanBand": 0.3
+  "scanBand": 0.3,
+  "readoutPlate": true
  },
  "cover": {
   "title": [
@@ -125,9 +126,9 @@
    ],
    "props": {
     "hook": {
-     "kicker": "代工的供應商 3",
-     "title": "晶片的底片？",
-     "size": 120,
+     "kicker": "晶片的底片＝光罩",
+     "title": "一套上千萬美元",
+     "size": 118,
      "top": 236
     },
     "zoom": [
@@ -221,12 +222,21 @@
       "dz": 0
      },
      {
+      "layer": "l_head",
+      "at": "s9:def-24",
+      "until": "s12:start+400",
+      "dur": 70,
+      "dx": 3.8,
+      "dy": 0,
+      "dz": 0
+     },
+     {
       "layer": "b_e1",
       "at": "s10:paper",
       "until": "s12:start+400",
       "dur": 22,
       "dx": 0,
-      "dy": 0.35,
+      "dy": 0.3,
       "dz": 0
      },
      {
@@ -235,7 +245,7 @@
       "until": "s12:start+400",
       "dur": 22,
       "dx": 0,
-      "dy": 0.75,
+      "dy": 0.85,
       "dz": 0
      },
      {
@@ -244,7 +254,7 @@
       "until": "s12:start+400",
       "dur": 22,
       "dx": 0,
-      "dy": 1.15,
+      "dy": 1.4,
       "dz": 0
      },
      {
@@ -253,7 +263,43 @@
       "until": "s12:start+400",
       "dur": 22,
       "dx": 0,
-      "dy": 1.55,
+      "dy": 1.95,
+      "dz": 0
+     },
+     {
+      "layer": "b_s1",
+      "at": "s10:jp",
+      "until": "s10:jp+10",
+      "dur": 6,
+      "dx": 0,
+      "dy": 0.3,
+      "dz": 0
+     },
+     {
+      "layer": "b_s2",
+      "at": "s10:jp+3",
+      "until": "s10:jp+13",
+      "dur": 6,
+      "dx": 0,
+      "dy": 0.3,
+      "dz": 0
+     },
+     {
+      "layer": "b_s1",
+      "at": "s10:hoya",
+      "until": "s10:hoya+10",
+      "dur": 6,
+      "dx": 0,
+      "dy": 0.3,
+      "dz": 0
+     },
+     {
+      "layer": "b_s2",
+      "at": "s10:agc",
+      "until": "s10:agc+10",
+      "dur": 6,
+      "dx": 0,
+      "dy": 0.3,
       "dz": 0
      },
      {
@@ -870,7 +916,7 @@
       "h": 330,
       "avoid": false,
       "title": "縮小 4 倍投影",
-      "tag": "ASML 光罩設計手冊",
+      "tag": "光罩設計手冊",
       "t": {
        "lens": {
         "at": "lens"
@@ -881,7 +927,9 @@
        "wafer": {
         "at": "wafer"
        }
-      }
+      },
+      "tagLogo": "asml",
+      "tagFlag": "NL"
      }
     ]
    },
@@ -1151,6 +1199,14 @@
       "en": "Reflected",
       "color": "blue",
       "at": "mirror",
+      "until": "s7:start-4"
+     },
+     {
+      "part": "e_srcA",
+      "text": "極紫外光源",
+      "en": "EUV source",
+      "color": "blue",
+      "at": "refl+6",
       "until": "s7:start-4"
      }
     ],
@@ -1471,8 +1527,8 @@
       "at": "start-4",
       "dur": 30,
       "x": 130.0,
-      "y": -1.056,
-      "d": 70.59,
+      "y": 0.488,
+      "d": 50.707,
       "elev": 22
      }
     ],
@@ -1484,8 +1540,32 @@
       "until": "def"
      },
      {
+      "id": "l_hdOn",
+      "at": "def-24",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
       "id": "l_defOn",
       "at": "def",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "l_cost0",
+      "at": "cost+0",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "l_cost1",
+      "at": "cost+4",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "l_cost2",
+      "at": "cost+8",
       "ramp": 6,
       "until": "s10:start"
      }
@@ -1494,7 +1574,7 @@
      {
       "part": "l_setA",
       "text": "一整套：幾十片",
-      "en": "A full mask set",
+      "en": "×60–100 (est.)",
       "color": "blue",
       "at": "many",
       "until": "s10:start-4"
@@ -1595,8 +1675,8 @@
       "at": "start-4",
       "dur": 30,
       "x": 160.0,
-      "y": -0.362,
-      "d": 53.373,
+      "y": 0.796,
+      "d": 42.623,
       "elev": 22
      }
     ],
@@ -1605,6 +1685,12 @@
       "id": "b_e2On",
       "at": "paper",
       "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "b_euv",
+      "at": "euv",
+      "ramp": 8,
       "until": "s11:start"
      },
      {
@@ -1631,19 +1717,23 @@
      },
      {
       "part": "b_s1A",
-      "text": "豪雅 HOYA",
+      "text": "豪雅",
       "en": "Japan",
       "color": "blue",
       "at": "hoya",
-      "until": "s11:start-4"
+      "until": "s11:start-4",
+      "logo": "hoya",
+      "flag": "JP"
      },
      {
       "part": "b_s2A",
-      "text": "旭硝子 AGC",
+      "text": "旭硝子",
       "en": "Japan",
       "color": "blue",
       "at": "agc",
-      "until": "s11:start-4"
+      "until": "s11:start-4",
+      "logo": "agc",
+      "flag": "JP"
      }
     ],
     "overlay": [
@@ -1723,7 +1813,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "series_plan 系列 2 第 4 集"
+    "下一集：光罩-2"
    ],
    "props": {
     "zoom": [
