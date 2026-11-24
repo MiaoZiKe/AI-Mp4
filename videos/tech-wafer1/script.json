@@ -376,6 +376,86 @@
       "bounce": 0.1
      },
      {
+      "layer": "f_flag0",
+      "at": "s1:start-40",
+      "until": "s10:shin",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_flag0",
+      "at": "s1:start-40",
+      "until": "s10:shin+10",
+      "dur": 22,
+      "dx": 0,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "f_flag1",
+      "at": "s1:start-40",
+      "until": "s10:sumco",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_flag1",
+      "at": "s1:start-40",
+      "until": "s10:sumco+10",
+      "dur": 22,
+      "dx": 0,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "f_flag2",
+      "at": "s1:start-40",
+      "until": "s10:gw",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_flag2",
+      "at": "s1:start-40",
+      "until": "s10:gw+10",
+      "dur": 22,
+      "dx": 0,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "f_flag3",
+      "at": "s1:start-40",
+      "until": "s10:sil",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_flag3",
+      "at": "s1:start-40",
+      "until": "s10:sil+10",
+      "dur": 22,
+      "dx": 0,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "f_flag4",
+      "at": "s1:start-40",
+      "until": "s10:sk",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_flag4",
+      "at": "s1:start-40",
+      "until": "s10:sk+10",
+      "dur": 22,
+      "dx": 0,
+      "dy": -2.4,
+      "dz": 0
+     },
+     {
       "layer": "k_fab0",
       "at": "s1:start-40",
       "until": "s11:tw",
@@ -922,7 +1002,7 @@
      {
       "type": "section",
       "kind": "si-hook",
-      "at": "chip",
+      "at": "start-30",
       "until": "s2:start-2",
       "x": 64,
       "y": 930,
@@ -2307,17 +2387,17 @@
       "at": "start-4",
       "dur": 30,
       "x": 125,
-      "y": -2.2,
-      "d": 54,
-      "elev": 26
+      "y": -1.8,
+      "d": 45,
+      "elev": 24
      },
      {
       "at": "top5",
       "dur": 60,
       "x": 125,
-      "y": -2.0,
-      "d": 52,
-      "elev": 30
+      "y": -1.6,
+      "d": 44,
+      "elev": 28
      }
     ],
     "run": [
@@ -2388,7 +2468,7 @@
       "text": "信越化學",
       "en": "Japan",
       "color": "blue",
-      "at": "shin",
+      "at": "shin+6",
       "until": "s11:start-4",
       "xy": [
        205,
@@ -2401,7 +2481,7 @@
       "text": "勝高",
       "en": "Japan",
       "color": "coral",
-      "at": "sumco",
+      "at": "sumco+6",
       "until": "s11:start-4",
       "xy": [
        300,
@@ -2414,7 +2494,7 @@
       "text": "環球晶",
       "en": "Taiwan",
       "color": "amber",
-      "at": "gw",
+      "at": "gw+6",
       "until": "s11:start-4",
       "xy": [
        530,
@@ -2427,7 +2507,7 @@
       "text": "世創",
       "en": "Germany",
       "color": "blue",
-      "at": "sil",
+      "at": "sil+6",
       "until": "s11:start-4",
       "xy": [
        840,
@@ -2440,7 +2520,7 @@
       "text": "SK Siltron",
       "en": "Korea",
       "color": "coral",
-      "at": "sk",
+      "at": "sk+6",
       "until": "s11:start-4",
       "xy": [
        760,

@@ -537,6 +537,36 @@
    "metal": 0.4,
    "env": 0.7
   },
+  "m_t_sign-gwT": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-gwT.png"
+  },
+  "m_t_flag-TW": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-TW.png"
+  },
+  "m_t_sign-fstT": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-fstT.png"
+  },
+  "m_t_sign-wwT": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-wwT.png"
+  },
+  "m_t_sign-epiT": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-epiT.png"
+  },
+  "m_t_flag-JP": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-JP.png"
+  },
   "m_proxy": {
    "kind": "unlit",
    "color": "#FFFFFF",
@@ -713,6 +743,12 @@
    "bg": true
   },
   {
+   "id": "t_flag0",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
    "id": "t_prod0",
    "z": 0,
    "k": 0,
@@ -720,6 +756,12 @@
   },
   {
    "id": "t_fab1",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
+   "id": "t_flag1",
    "z": 0,
    "k": 0,
    "bg": true
@@ -737,6 +779,12 @@
    "bg": true
   },
   {
+   "id": "t_flag2",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
    "id": "t_prod2",
    "z": 0,
    "k": 0,
@@ -749,7 +797,19 @@
    "bg": true
   },
   {
+   "id": "t_flag3",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
    "id": "t_prod3",
+   "z": 0,
+   "k": 0,
+   "bg": true
+  },
+  {
+   "id": "t_flagJ",
    "z": 0,
    "k": 0,
    "bg": true
@@ -1025,11 +1085,11 @@
    "dy": -120
   },
   "t_jpA": {
-   "layer": "t_fab1",
+   "layer": "t_flagJ",
    "p": [
-    135.1,
-    1.8,
-    0.9
+    138.15,
+    4.2,
+    1.25
    ],
    "dx": 0,
    "dy": 120
@@ -8045,16 +8105,193 @@
    "layer": "t_fab0",
    "shape": "box",
    "size": [
-    1.9,
-    0.5,
-    0.07
+    4.2,
+    0.12,
+    0.08
    ],
    "pos": [
-    125.05,
-    1.05,
-    0.95
+    124.1,
+    0.36,
+    0.96
    ],
    "mat": "m_signA"
+  },
+  {
+   "id": "t0_foup",
+   "layer": "t_fab0",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.42,
+    0.42
+   ],
+   "pos": [
+    126.1,
+    0.51,
+    1.15
+   ],
+   "mat": "m_pvdf",
+   "at": [
+    [
+     0.0,
+     0.0,
+     0
+    ],
+    [
+     0.0,
+     0.44,
+     0
+    ],
+    [
+     0.48,
+     0.0,
+     0
+    ],
+    [
+     0.48,
+     0.44,
+     0
+    ]
+   ],
+   "bevel": 0.03
+  },
+  {
+   "id": "t0_h2",
+   "layer": "t_fab0",
+   "shape": "box",
+   "size": [
+    2.0,
+    1.8,
+    2.2
+   ],
+   "pos": [
+    123.6,
+    1.2,
+    -3.2
+   ],
+   "mat": "m_wall2",
+   "bevel": 0.04
+  },
+  {
+   "id": "t0_stk2",
+   "layer": "t_fab0",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    2.6
+   ],
+   "pos": [
+    122.9,
+    3.3,
+    -3.2
+   ],
+   "mat": "m_steelHi",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.6,
+     0,
+     0
+    ],
+    [
+     1.2,
+     0,
+     0
+    ]
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t0_sgB",
+   "layer": "t_fab0",
+   "shape": "box",
+   "size": [
+    2.42,
+    1.088,
+    0.06
+   ],
+   "pos": [
+    124.8,
+    1.25,
+    0.985
+   ],
+   "mat": "m_cabD"
+  },
+  {
+   "id": "t0_sg",
+   "layer": "t_fab0",
+   "shape": "plane",
+   "size": [
+    2.3,
+    0.968
+   ],
+   "pos": [
+    124.8,
+    1.25,
+    1.02
+   ],
+   "mat": "m_t_sign-gwT",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "t0_fp",
+   "layer": "t_fab0",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    4.2
+   ],
+   "pos": [
+    127.25,
+    2.4,
+    1.25
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t0_fb",
+   "layer": "t_fab0",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    127.25,
+    4.52,
+    1.25
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "t0_fg",
+   "layer": "t_flag0",
+   "shape": "plane",
+   "size": [
+    1.15,
+    0.767
+   ],
+   "pos": [
+    127.885,
+    4.057,
+    1.25
+   ],
+   "mat": "m_t_flag-TW",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "t_dock0",
@@ -8393,16 +8630,207 @@
    "layer": "t_fab1",
    "shape": "box",
    "size": [
-    1.9,
-    0.5,
-    0.07
+    4.2,
+    0.12,
+    0.08
    ],
    "pos": [
-    134.05,
-    1.05,
-    0.95
+    133.1,
+    0.36,
+    0.96
    ],
    "mat": "m_signB"
+  },
+  {
+   "id": "t1_foup",
+   "layer": "t_fab1",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.42,
+    0.42
+   ],
+   "pos": [
+    135.1,
+    0.51,
+    1.15
+   ],
+   "mat": "m_pvdf",
+   "at": [
+    [
+     0.0,
+     0.0,
+     0
+    ],
+    [
+     0.0,
+     0.44,
+     0
+    ],
+    [
+     0.48,
+     0.0,
+     0
+    ],
+    [
+     0.48,
+     0.44,
+     0
+    ]
+   ],
+   "bevel": 0.03
+  },
+  {
+   "id": "t1_tk",
+   "layer": "t_fab1",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    2.4
+   ],
+   "pos": [
+    130.55,
+    1.5,
+    -1.5
+   ],
+   "mat": "m_steelHi",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.95
+    ],
+    [
+     0,
+     0,
+     1.9
+    ]
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t1_tkD",
+   "layer": "t_fab1",
+   "shape": "sphere",
+   "size": [
+    0.42
+   ],
+   "pos": [
+    130.55,
+    2.7,
+    -1.5
+   ],
+   "mat": "m_steelHi",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.95
+    ],
+    [
+     0,
+     0,
+     1.9
+    ]
+   ]
+  },
+  {
+   "id": "t1_sgB",
+   "layer": "t_fab1",
+   "shape": "box",
+   "size": [
+    2.42,
+    1.088,
+    0.06
+   ],
+   "pos": [
+    133.8,
+    1.25,
+    0.985
+   ],
+   "mat": "m_cabD"
+  },
+  {
+   "id": "t1_sg",
+   "layer": "t_fab1",
+   "shape": "plane",
+   "size": [
+    2.3,
+    0.968
+   ],
+   "pos": [
+    133.8,
+    1.25,
+    1.02
+   ],
+   "mat": "m_t_sign-fstT",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "t1_fp",
+   "layer": "t_fab1",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    4.2
+   ],
+   "pos": [
+    136.25,
+    2.4,
+    1.25
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t1_fb",
+   "layer": "t_fab1",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    136.25,
+    4.52,
+    1.25
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "t1_fg",
+   "layer": "t_flag1",
+   "shape": "plane",
+   "size": [
+    1.15,
+    0.767
+   ],
+   "pos": [
+    136.885,
+    4.057,
+    1.25
+   ],
+   "mat": "m_t_flag-TW",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "t_dock1",
@@ -8741,16 +9169,139 @@
    "layer": "t_fab2",
    "shape": "box",
    "size": [
-    1.9,
-    0.5,
-    0.07
+    4.2,
+    0.12,
+    0.08
    ],
    "pos": [
-    143.05,
-    1.05,
-    0.95
+    142.1,
+    0.36,
+    0.96
    ],
    "mat": "m_signT"
+  },
+  {
+   "id": "t2_foup",
+   "layer": "t_fab2",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.42,
+    0.42
+   ],
+   "pos": [
+    144.1,
+    0.51,
+    1.15
+   ],
+   "mat": "m_pvdf",
+   "at": [
+    [
+     0.0,
+     0.0,
+     0
+    ],
+    [
+     0.0,
+     0.44,
+     0
+    ],
+    [
+     0.48,
+     0.0,
+     0
+    ],
+    [
+     0.48,
+     0.44,
+     0
+    ]
+   ],
+   "bevel": 0.03
+  },
+  {
+   "id": "t2_sgB",
+   "layer": "t_fab2",
+   "shape": "box",
+   "size": [
+    2.42,
+    1.088,
+    0.06
+   ],
+   "pos": [
+    142.8,
+    1.25,
+    0.985
+   ],
+   "mat": "m_cabD"
+  },
+  {
+   "id": "t2_sg",
+   "layer": "t_fab2",
+   "shape": "plane",
+   "size": [
+    2.3,
+    0.968
+   ],
+   "pos": [
+    142.8,
+    1.25,
+    1.02
+   ],
+   "mat": "m_t_sign-wwT",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "t2_fp",
+   "layer": "t_fab2",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    4.2
+   ],
+   "pos": [
+    145.25,
+    2.4,
+    1.25
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t2_fb",
+   "layer": "t_fab2",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    145.25,
+    4.52,
+    1.25
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "t2_fg",
+   "layer": "t_flag2",
+   "shape": "plane",
+   "size": [
+    1.15,
+    0.767
+   ],
+   "pos": [
+    145.885,
+    4.057,
+    1.25
+   ],
+   "mat": "m_t_flag-TW",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "t_dock2",
@@ -9089,16 +9640,158 @@
    "layer": "t_fab3",
    "shape": "box",
    "size": [
-    1.9,
-    0.5,
-    0.07
+    4.2,
+    0.12,
+    0.08
    ],
    "pos": [
-    152.05,
-    1.05,
-    0.95
+    151.1,
+    0.36,
+    0.96
    ],
    "mat": "m_signP"
+  },
+  {
+   "id": "t3_foup",
+   "layer": "t_fab3",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.42,
+    0.42
+   ],
+   "pos": [
+    153.1,
+    0.51,
+    1.15
+   ],
+   "mat": "m_pvdf",
+   "at": [
+    [
+     0.0,
+     0.0,
+     0
+    ],
+    [
+     0.0,
+     0.44,
+     0
+    ],
+    [
+     0.48,
+     0.0,
+     0
+    ],
+    [
+     0.48,
+     0.44,
+     0
+    ]
+   ],
+   "bevel": 0.03
+  },
+  {
+   "id": "t3_dm",
+   "layer": "t_fab3",
+   "shape": "sphere",
+   "size": [
+    1.0
+   ],
+   "pos": [
+    151.1,
+    2.7,
+    -1.0
+   ],
+   "mat": "m_wall2",
+   "scale": [
+    1.4,
+    0.55,
+    1.0
+   ]
+  },
+  {
+   "id": "t3_sgB",
+   "layer": "t_fab3",
+   "shape": "box",
+   "size": [
+    2.42,
+    1.088,
+    0.06
+   ],
+   "pos": [
+    151.8,
+    1.25,
+    0.985
+   ],
+   "mat": "m_cabD"
+  },
+  {
+   "id": "t3_sg",
+   "layer": "t_fab3",
+   "shape": "plane",
+   "size": [
+    2.3,
+    0.968
+   ],
+   "pos": [
+    151.8,
+    1.25,
+    1.02
+   ],
+   "mat": "m_t_sign-epiT",
+   "uv01": true,
+   "shadow": false
+  },
+  {
+   "id": "t3_fp",
+   "layer": "t_fab3",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    4.2
+   ],
+   "pos": [
+    154.25,
+    2.4,
+    1.25
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t3_fb",
+   "layer": "t_fab3",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    154.25,
+    4.52,
+    1.25
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "t3_fg",
+   "layer": "t_flag3",
+   "shape": "plane",
+   "size": [
+    1.15,
+    0.767
+   ],
+   "pos": [
+    154.885,
+    4.057,
+    1.25
+   ],
+   "mat": "m_t_flag-TW",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "t_dock3",
@@ -9459,6 +10152,57 @@
     0,
     0
    ]
+  },
+  {
+   "id": "t_fp2",
+   "layer": "t_fab1",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    4.2
+   ],
+   "pos": [
+    137.55,
+    2.4,
+    1.25
+   ],
+   "mat": "m_steelHi",
+   "rot": [
+    90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "t_fb2",
+   "layer": "t_fab1",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    137.55,
+    4.52,
+    1.25
+   ],
+   "mat": "m_steelHi"
+  },
+  {
+   "id": "t_fg2",
+   "layer": "t_flagJ",
+   "shape": "plane",
+   "size": [
+    1.15,
+    0.767
+   ],
+   "pos": [
+    138.18,
+    4.057,
+    1.25
+   ],
+   "mat": "m_t_flag-JP",
+   "uv01": true,
+   "shadow": false
   },
   {
    "id": "n_base",

@@ -458,31 +458,70 @@ materials.update({"m_" + k: v for k, v in {
  "win": {"kind": "std", "color": "#BFD8FF", "emissive": "#9CC3FF", "ei": .35, "rough": .2, "metal": .1},
  "roofS": M("#B7C3D4", rough=.5, metal=.3), "signB": M("#1D4293", rough=.4, metal=.1), "signA": M("#F2A21E", rough=.4, metal=.1),
  "signR": M("#D9363E", rough=.4, metal=.1), "signT": M("#00857C", rough=.4, metal=.1), "signP": M("#6A4FB3", rough=.4, metal=.1)}.items()})
-def fab(pre, lay, x, z, sign, s=1.0, anc=None):
-    """一棟晶圓廠（原點在地面中心，s＝縮放）"""
+# 3D 貼圖（2026/11/24 審片 N1）：國旗（Brand.tsx／BrandWafer.tsx 程式繪製）＋廠牌（public/logos 官方原檔不改色；沒有原檔的用文字名牌）
+#   → public/tex/brand/（不進 git；本檔每次重產），做法同 tech-mask2（scripts/three/make-brand-tex.mjs）
+ROOT = os.path.normpath(os.path.join(D, "..", ".."))
+def _lg(id_, fb): return f"logo:{id_}" if os.path.exists(os.path.join(ROOT, f"public/logos/{id_}.svg")) else fb
+TEX = ["flag:JP", "flag:TW", "flag:DE", "flag:KR", _lg("shinetsu", "text:shinT=信越化學|Shin-Etsu"), _lg("siltronic", "text:silT=世創|Siltronic"),
+       _lg("sumco", "text:sumT=勝高|SUMCO"), "text:gwT=環球晶|GlobalWafers", "text:skT=SK Siltron|", "text:fstT=台勝科|3532", "text:wwT=合晶|6182"]
+subprocess.run(["node", os.path.join(ROOT, "scripts/three/make-brand-tex.mjs"), "tech-wafer1", *TEX], check=True, stdout=subprocess.DEVNULL)
+SIGN = json.load(open(os.path.join(ROOT, "public/tex/brand/meta.json")))
+SG = lambda id_, t: f"sign-{id_}" if t.startswith("logo:") else "sign-" + t.split(":")[1].split("=")[0]
+SIGNS = {k: SG(i, t) for k, i, t in [("shin", "shinetsu", TEX[4]), ("sil", "siltronic", TEX[5]), ("sumco", "sumco", TEX[6]), ("gw", "", TEX[7]), ("sk", "", TEX[8]), ("fst", "", TEX[9]), ("ww", "", TEX[10])]}
+def tex(name):
+    materials["m_t_" + name] = {"kind": "unlit", "color": "#FFFFFF", "img": f"tex/brand/{name}.png"}; return "t_" + name
+def plate(pid, lay, name, w, cx, cy, cz):
+    h = w / SIGN[name]["aspect"]
+    box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
+def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, kind="std"):
+    """一棟晶圓廠（原點在地面中心，s＝縮放）。kind：std｜tall（高一層＋屋頂塔）｜tanks（側邊三座原料儲槽）｜twin（雙廠房）｜dome（圓頂潔淨室）
+    logo＝正面廠牌貼圖、flag＝旗桿國旗貼圖（flay＝國旗自己的層，念到時升旗）"""
     S_ = lambda v: [R(a * s) for a in v]
     P_ = lambda dx, dy, dz: [x + dx * s, dy * s, z + dz * s]
+    hh = 3.2 if kind == "tall" else 2.4
     box(f"{pre}_pl", lay, "conc", S_([5.6, .3, 4.2]), P_(0, .15, 0))
-    box(f"{pre}_hall", lay, "wall", S_([4.2, 2.4, 3.0]), P_(-.4, 1.5, 0), bevel=.05)
-    box(f"{pre}_rib", lay, "wall2", S_([.08, 2.3, .06]), P_(-.4, 1.5, 1.52), at=[[R(k * .7 * s), 0, 0] for k in range(-3, 4)])
-    box(f"{pre}_win", lay, "win", S_([3.9, .34, .05]), P_(-.4, 2.05, 1.53))
-    box(f"{pre}_saw", lay, "roofS", S_([1.45, .12, 3.1]), P_(-.4, 2.98, 0), rot=[0, 0, -24], at=[[R(k * 1.38 * s), 0, 0] for k in (-1, 0, 1)])
-    box(f"{pre}_sawG", lay, "win", S_([.05, .5, 3.0]), P_(-.4, 2.95, 0), at=[[R((k * 1.38 + .66) * s), 0, 0] for k in (-1, 0, 1)])
-    box(f"{pre}_ahu", lay, "cab2", S_([.8, .5, .8]), P_(-.4, 3.25, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]], bevel=.03)
-    cyl(f"{pre}_fan", lay, "steel2", .28 * s, .08 * s, P_(-.4, 3.53, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]])
-    cyl(f"{pre}_stk", lay, "steelHi", .17 * s, 1.9 * s, P_(1.2, 3.35, -1.1), at=[[0, 0, 0], [R(-.5 * s), 0, 0]])
+    box(f"{pre}_hall", lay, "wall", S_([4.2, hh, 3.0]), P_(-.4, .3 + hh / 2, 0), bevel=.05)
+    box(f"{pre}_rib", lay, "wall2", S_([.08, hh - .1, .06]), P_(-.4, .3 + hh / 2, 1.52), at=[[R(k * .7 * s), 0, 0] for k in range(-3, 4)])
+    box(f"{pre}_win", lay, "win", S_([3.9, .34, .05]), P_(-.4, hh - .35, 1.53))
+    box(f"{pre}_saw", lay, "roofS", S_([1.45, .12, 3.1]), P_(-.4, hh + .58, 0), rot=[0, 0, -24], at=[[R(k * 1.38 * s), 0, 0] for k in (-1, 0, 1)])
+    box(f"{pre}_sawG", lay, "win", S_([.05, .5, 3.0]), P_(-.4, hh + .55, 0), at=[[R((k * 1.38 + .66) * s), 0, 0] for k in (-1, 0, 1)])
+    box(f"{pre}_ahu", lay, "cab2", S_([.8, .5, .8]), P_(-.4, hh + .85, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]], bevel=.03)
+    cyl(f"{pre}_fan", lay, "steel2", .28 * s, .08 * s, P_(-.4, hh + 1.13, 0), at=[[R(-1.3 * s), 0, R(-.8 * s)], [R(.2 * s), 0, R(-.8 * s)]])
+    cyl(f"{pre}_stk", lay, "steelHi", .17 * s, 1.9 * s, P_(1.2, hh + .95, -1.1), at=[[0, 0, 0], [R(-.5 * s), 0, 0]])
     box(f"{pre}_cr", lay, "cab", S_([1.5, 1.7, 2.6]), P_(2.45, 1.15, -.1), bevel=.04)
     box(f"{pre}_crW", lay, "win", S_([1.2, .22, .05]), P_(2.45, 1.55, 1.21))
     box(f"{pre}_door", lay, "cabD", S_([.9, 1.0, .05]), P_(-1.6, .8, 1.53))
-    box(f"{pre}_sign", lay, sign, S_([1.9, .5, .07]), P_(.55, 1.05, 1.55))
+    box(f"{pre}_sign", lay, sign, S_([4.2, .12, .08]), P_(-.4, .36, 1.56))          # 公司色的勒腳色帶
     box(f"{pre}_foup", lay, "pvdf", S_([.42, .42, .42]), P_(1.6, .51, 1.75), at=[[R(i * .48 * s), R(j * .44 * s), 0] for i in (0, 1) for j in (0, 1)], bevel=.03)
-    if anc: anchor(anc, lay, P_(-.4, 3.3, .6), dx=0, dy=-120)
+    if kind == "tall":
+        box(f"{pre}_twr", lay, "wall2", S_([1.2, 1.4, 1.2]), P_(-1.6, hh + 1.0, -.6), bevel=.04)
+        box(f"{pre}_twrW", lay, "win", S_([1.0, .16, .04]), P_(-1.6, hh + 1.3, .02))
+    if kind == "tanks":
+        cyl(f"{pre}_tk", lay, "steelHi", .42 * s, 2.4 * s, P_(-2.95, 1.5, -.9), at=[[0, 0, 0], [0, 0, R(.95 * s)], [0, 0, R(1.9 * s)]])
+        sph(f"{pre}_tkD", lay, "steelHi", .42 * s, P_(-2.95, 2.7, -.9), at=[[0, 0, 0], [0, 0, R(.95 * s)], [0, 0, R(1.9 * s)]])
+    if kind == "twin":
+        box(f"{pre}_h2", lay, "wall2", S_([2.0, 1.8, 2.2]), P_(-.9, 1.2, -2.6), bevel=.04)
+        cyl(f"{pre}_stk2", lay, "steelHi", .2 * s, 2.6 * s, P_(-1.6, 3.3, -2.6), at=[[0, 0, 0], [R(.6 * s), 0, 0], [R(1.2 * s), 0, 0]])
+    if kind == "dome":
+        sph(f"{pre}_dm", lay, "wall2", 1.0 * s, P_(-.4, hh + .3, -.4), scale=[1.4, .55, 1.0])
+    if logo:                                                                                       # 正面廠牌（貼圖）
+        sw = 2.3 * s; sh = sw / SIGN[logo]["aspect"]
+        box(f"{pre}_sgB", lay, "cabD", [sw + .12 * s, sh + .12 * s, .06], P_(.3, 1.25, 1.585))
+        plate(f"{pre}_sg", lay, logo, sw, *P_(.3, 1.25, 1.62))
+    if flag:                                                                                       # 旗桿＋國旗
+        ph = 4.2 * s
+        cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(2.75, ph / s / 2 + .3, 1.85))
+        sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(2.75, ph / s + .32, 1.85))
+        fw = 1.15 * s; fh = fw / SIGN[flag]["aspect"]
+        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(2.75 + 1.15 / 2 + .06, ph / s + .3 - fh / s / 2 - .06, 1.85))
+    if anc: anchor(anc, lay, P_(-.4, hh + .9, .6), dx=0, dy=-120)
     return [f"{pre}_win", f"{pre}_sawG", f"{pre}_crW"]
 FX = 125
 FABS = [("shin", "signB", "JP"), ("sumco", "signR", "JP"), ("gw", "signA", "TW"), ("sil", "signT", "DE"), ("sk", "signP", "KR")]
 FAB_POS = [(-6.4, -3.2), (-3.2, 2.2), (0, -3.2), (6.4, -3.2), (3.2, 2.2)]      # 後排 3 棟（信越、環球晶、世創）、前排 2 棟（勝高、SK）
-for k, ((cid, sg, _), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
-    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A")
+FKIND = {"shin": "tall", "sumco": "tanks", "gw": "twin", "sil": "dome", "sk": "std"}
+for k, ((cid, sg, fl), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
+    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid])
     glow(f"f_on{k}", f"f_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
 box("f_pad", "f_site", "conc", [24, .2, 15], [FX, .1, .4])
 box("f_road", "f_site", "cabD", [22, .03, 1.2], [FX, .21, 5.9])
@@ -495,7 +534,7 @@ anchor("f_hubA", "f_hub", [FX, 1.2, 7.4], dx=0, dy=110)
 # 台灣三家（s11，K 站晶圓桌後方，縮小 0.62）
 TWF = [("tw", "signA", -5.6), ("fst", "signB", 0), ("ww", "signT", 5.6)]
 for k, (cid, sg, dx) in enumerate(TWF):
-    wins = fab(f"t{k}", f"k_fab{k}", KX + dx, -6.6, sg, s=.8, anc=f"k_{cid}A")
+    wins = fab(f"t{k}", f"k_fab{k}", KX + dx, -6.6, sg, s=.8, anc=f"k_{cid}A", logo=SIGNS[cid if cid != "tw" else "gw"], flag="flag-TW", kind=["twin", "std", "tanks"][k])
     glow(f"k_on{k}", f"k_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
 spin("k_spin12", "k_w12", ["k_w12", "k_d12", "k_notch12"], W12X, .06)
 
@@ -561,7 +600,8 @@ VIS = [
  # 下一集預告：磊晶層
  hid("k_epi", HIDE, "s11:next", 16),
  fall("f_hub", "s10:top5", dy=1.2),
-] + [fall(f"f_fab{k}", f"s10:{c}", dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(FABS)] + [fall(f"k_fab{k}", f"s11:{c}" + ("+4" if c == "ww" else ""), dy=1.6, bounce=.1) for k, (c, _, _) in enumerate(TWF)]
+] + [fall(f"f_fab{k}", f"s10:{c}", dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(FABS)] \
+  + [x for k, (c, _, _) in enumerate(FABS) for x in (hid(f"f_flag{k}", HIDE, f"s10:{c}", 6), mv(f"f_flag{k}", HIDE, f"s10:{c}+10", dur=22, dy=-2.4))] + [fall(f"k_fab{k}", f"s11:{c}" + ("+4" if c == "ww" else ""), dy=1.6, bounce=.1) for k, (c, _, _) in enumerate(TWF)]
 for k in range(NSL):
     VIS.append(mv(f"w_sl{k}", "s7:saw-8", FAR, dur=40, dy=-2.3))
     VIS.append(mv(f"w_sl{k}", "s7:slice+4", FAR, dur=24, dy=2.9, dz=(k - (NSL - 1) / 2) * .16))
@@ -581,7 +621,7 @@ P["s1"] = {"zoom": [{"to": "tool", "at": "start-30", "dur": 1}],
  "shift": VIS,
  "run": CZRUN("start-30", "s2:start") + [run("c_ledG", "start-30", FAR, 1)],
  "labels": [lab("c_ingA", "晶棒正在長", "An ingot growing", "blue", "how", "s2:start-4")],
- "overlay": [sec("si-hook", "chip", "s2:start-2", "代工的供應商：矽晶圓", "示意，非實際比例", {"chip": "chip", "sand": "sand", "how": "how", "mirror": "mirror"})]}
+ "overlay": [sec("si-hook", "start-30", "s2:start-2", "代工的供應商：矽晶圓", "示意，非實際比例", {"chip": "chip", "sand": "sand", "how": "how", "mirror": "mirror"})]}
 P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", QX - 1.5, 1.2, 56, 18, 30)],
  "run": [run("q_feed", "start", "s3:start", 8), run("q_sandOn", "sio2", "carbon", 6), run("q_arcOn", "carbon-6", "s3:start", 4), run("q_hot", "carbon", "s3:start", 10)]
@@ -633,9 +673,9 @@ P["s9"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 FLAB = {"shin": ("信越化學", "Japan", "blue"), "sumco": ("勝高", "Japan", "coral"), "gw": ("環球晶", "Taiwan", "amber"), "sil": ("世創", "Germany", "blue"), "sk": ("SK Siltron", "Korea", "coral")}
 FXY = {"shin": [205, 360], "sumco": [300, 830], "gw": [530, 360], "sil": [840, 360], "sk": [760, 830]}
 P["s10"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", FX, -2.2, 54, 26, 30), shot("top5", FX, -2.0, 52, 30, 60)],
+ "shot": [shot("start-4", FX, -1.8, 45, 24, 30), shot("top5", FX, -1.6, 44, 28, 60)],
  "run": [run(f"f_on{k}", c, "s11:start", 6) for k, (c, _, _) in enumerate(FABS)] + [run(f"f_ship{k}", "top5", "s11:start", 8) for k in range(5)],
- "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c, "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
+ "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c + "+6", "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
  "overlay": [sec("si-co", "start+2", "s11:start-2", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
 P["s11"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", KX, 2.2, 34, 22, 34), shot("next", W12X, 1.8, 20, 34, 40)],
