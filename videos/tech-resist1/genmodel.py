@@ -547,7 +547,7 @@ P["s11"] = {"zoom": [{"to": "mol", "at": "start-4", "dur": 30}],
 P["s13"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [S("start-4", JX, 2.6, 52, 18, 30), S("tw-4", TX + 1.7, 2.8, 66, 18, 30)],
  "run": [run("t_lit", "yl", "s14:start", 8)],
- "labels": [dict(lab("j_fabA", "日本光阻廠", "Japan", "coral", "jp", "tw-6", xy=[LX - 40, LY]), flag="JP"), dict(lab("j_drumA", "捷時雅 JSR", "光阻桶", "blue", "jp+12", "tw-6", xy=[RX + 30, LY]), logo="jsr"), dict(lab("t_fabA", "雲林光阻廠", "Plant (schematic)", "amber", "yl", "s14:start-4", xy=[LX + 20, LY]), flag="TW"), lab("t_tankA", "原料儲槽", "Raw tanks", "blue", "y28", "s14:start-4", xy=[RX, LY])],
+ "labels": [dict(lab("j_fabA", "日本光阻廠", "Japan", "coral", "jp", "tw-6", xy=[LX - 40, LY]), flag="JP"), dict(lab("j_drumA", "捷時雅 JSR", "光阻桶", "blue", "jp+12", "tw-6", xy=[850, 480]), logo="jsr"), dict(lab("t_fabA", "雲林光阻廠", "Plant (schematic)", "amber", "yl", "s14:start-4", xy=[LX + 20, LY]), flag="TW"), lab("t_tankA", "原料儲槽", "Raw tanks", "blue", "y28", "s14:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-tw", "start+5", "s14:start-2", "台灣：在地生產光阻", "日經、Tom's Hardware（媒體報導）", {"tw": "tw", "jv": "jv", "yl": "yl", "y28": "y28"})]}
 P["s14"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [S("start-4", AX + .4, 4.2, 34, 28, 30)],
