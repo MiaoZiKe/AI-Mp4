@@ -1,0 +1,41 @@
+{
+ "rule": "f0Median 112–126 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求",
+ "runs": [
+  {
+   "startedAt": "2026-11-24T02:32:47.596442+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-24T02:32:47.596458+00:00",
+     "f0Median": 137.1,
+     "sec": 63.37,
+     "accepted": false,
+     "file": "out/tech-wafer1-take-reject-1.wav",
+     "note": "超出 112–126 Hz"
+    },
+    {
+     "n": 2,
+     "at": "2026-11-24T02:37:01.427151+00:00",
+     "f0Median": 140.4,
+     "sec": 66.93,
+     "accepted": false,
+     "file": "out/tech-wafer1-take-reject-2.wav",
+     "note": "超出 112–126 Hz"
+    },
+    {
+     "n": 3,
+     "at": "2026-11-24T02:42:09.086186+00:00",
+     "f0Median": 123.7,
+     "sec": 63.97,
+     "accepted": true,
+     "file": "out/tech-wafer1-take.orig.wav",
+     "note": "合格"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-wafer1-take.orig.wav",
+   "chosenF0": 123.7,
+   "status": "accepted"
+  }
+ ]
+}
