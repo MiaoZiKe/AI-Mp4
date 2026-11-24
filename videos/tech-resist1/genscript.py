@@ -84,7 +84,8 @@ S = [
  [("ok", "膠要塗得"), ("flat", "又薄又平"), ("next", "下集"), ("track", "塗佈顯影機"), ("kw", "留言光阻")],
  ["塗佈顯影機"], ["下一集：塗佈顯影機"]),
 ]
-TTS = lambda t: t.replace("矽", "細").replace(" 2028 ", "二零二八").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
+# 11/24：v1「最快二零二八年投產」疑似吞掉「年」（對齊 0.08 秒、字分數 0）→ 念稿改寫成不易吞字的說法，字幕不變
+TTS = lambda t: t.replace("矽", "細").replace("最快 2028 年投產", "最快在二零二八年開始投產").replace(" 2028 ", "二零二八").replace("光罩", "光照").replace("上集", "上一集")  # 11/24 Andy：光罩念成光掃、上集念成喪集（scripts/three/tts-subst.json）
 scenes = []
 PAUSE = {"s1": 0.6, "s2": 0.4, "s3": 0.4, "s4": 0.4, "s5": 0.6, "s6": 0.4, "s7": 0.3, "s8": 0.6, "s9": 0.4, "s10": 0.4, "s11": 0.6, "s13": 0.6}
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
