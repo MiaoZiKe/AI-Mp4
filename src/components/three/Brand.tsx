@@ -14,8 +14,9 @@ export type LogoSpec = { file: string; w: number; h: number; name: string; sourc
 /** 公司 LOGO 表（w:h＝原檔 viewBox 比例） */
 export const LOGOS: Record<string, LogoSpec> = {
   asml: { file: "logos/asml.svg", w: 1065, h: 300, name: "ASML", source: "https://commons.wikimedia.org/wiki/File:ASML_Holding_N.V._logo.svg" },
-  hoya: { file: "logos/hoya.svg", w: 512, h: 130, name: "HOYA", source: "https://commons.wikimedia.org/wiki/File:Hoya_Corporation_logo.svg" },
-  agc: { file: "logos/agc.svg", w: 512, h: 238, name: "AGC", source: "https://commons.wikimedia.org/wiki/File:AGC_logo.svg" },
+  // HOYA、AGC：Commons 原檔 SVG 由 Wikimedia 自己轉出的 960px PNG（thumb.php；upload 伺服器限流，SVG 原檔當天抓不到），未重畫、未改色
+  hoya: { file: "logos/hoya.png", w: 960, h: 273, name: "HOYA", source: "https://commons.wikimedia.org/wiki/File:Hoya_Corporation_logo.svg" },
+  agc: { file: "logos/agc.png", w: 960, h: 332, name: "AGC", source: "https://commons.wikimedia.org/wiki/File:AGC_Logo.svg（2018 起現行版）" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
 export const logoW = (id: string, h: number) => (LOGOS[id] ? Math.round((h * LOGOS[id].w) / LOGOS[id].h) : 0);

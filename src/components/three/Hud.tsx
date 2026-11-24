@@ -143,6 +143,13 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
       </g>
       {L.BAND_TOP ? <>
         {/* 2026/11/15 讀數帶版面：上帶＝左邊層級名、右邊倍率＋FIELD；下帶＝左邊尺標、右邊示意圖標示。主素材只畫在兩條帶子中間，讀數不會壓到它 */}
+        {/* 2026/11/24 hud.readoutPlate（tech-mask1 審片必改 1）：3D 機台頂到上下帶時，讀數與尺標後面墊底板，字不會被淺色或深色零件吃掉（只有寫了這個欄位的片才畫） */}
+        {(hud as any).readoutPlate ? <g opacity={H.plateO ?? 0.85}>
+          <rect x={x0 + 14} y={L.STAGE_TOP + 12} width={Math.max(300, [...lvl.label].length * H.font.px.label + 40, (lvl.en ?? "").length * sm(H.font.px.readout) * 0.62 + 40)} height={92} fill={H.bg} opacity={rq} />
+          <rect x={x1 - 300} y={L.STAGE_TOP + 12} width={286} height={96} fill={H.bg} opacity={rq} />
+          <rect x={x0 + 14} y={L.STAGE_TOP + L.STAGE_H - 22 - H.ruler.h - 12 - H.font.px.readout - 8} width={Math.max(220, rulerPx + 40)} height={H.ruler.h + H.font.px.readout + 34} fill={H.bg} opacity={roK} />
+          {sc ? <rect x={x1 - 470} y={L.STAGE_TOP + L.STAGE_H - 52 - ((sc as any).lift ?? 0) - 34} width={456} height={84} fill={H.bg} /> : null}
+        </g> : null}
         <text x={x0 + 28} y={L.STAGE_TOP + 50} style={zh(H.font.px.label, H.line, 700)} opacity={rq}>{lvl.label}</text>
         <text x={x0 + 28} y={L.STAGE_TOP + 90} style={mono(sm(H.font.px.readout), H.text2)} opacity={rq}>{lvl.en ?? ""}</text>
         {ro ? <text x={x1 - 24} y={L.STAGE_TOP + 62} textAnchor="end" style={mono(56, H.text, 700)} opacity={(0.75 + 0.25 * lvF) * rq}>{magText(z.mag * camK)}</text> : null}
