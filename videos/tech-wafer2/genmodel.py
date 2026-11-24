@@ -381,7 +381,9 @@ def sign_on(pre, lay, name, cx, cy, cz, w):
     box(f"{pre}_sgB", lay, "cabD", [w + .14, h + .14, .06], [cx, cy, cz - .02]); plate(f"{pre}_sg", lay, name, w, cx, cy, cz + .02)
 def pole(pre, lay, flay, name, x, z, ph=4.4):
     cyl(f"{pre}_fp", lay, "steelHi", .05, ph, [x, .3 + ph / 2, z]); sph(f"{pre}_fb", lay, "steelHi", .09, [x, ph + .32, z])
-    fw = 1.1; fh = fw / SIGN[name]["aspect"]; plate(f"{pre}_fg", flay, name, fw, x + fw / 2 + .06, ph + .3 - fh / 2 - .06, z)
+    fw = 1.1; fh = fw / SIGN[name]["aspect"]
+    box(f"{pre}_fgB", flay, "cabD", [fw + .08, fh + .08, .02], [x + fw / 2 + .06, ph + .3 - fh / 2 - .06, z - .02])   # 深色襯板：白底國旗在淺牆前也看得清
+    plate(f"{pre}_fg", flay, name, fw, x + fw / 2 + .06, ph + .3 - fh / 2 - .06, z)
 def saw(pre, lay, cx, y, z, w, d, n=3):
     st = w / n
     box(f"{pre}_saw", lay, "roofS", [st * 1.05, .12, d + .1], [cx, y, z], rot=[0, 0, -24], at=[[R(-w / 2 + st * (i + .5)), 0, 0] for i in range(n)])
@@ -463,10 +465,11 @@ cyl("t_ww6", "t_prod2", "mirror", .38, .05, [TX + 4.5 + 1.2, PY_ + .03, 2.9], at
 for j, mt in enumerate(["epi", "sicW", "gan"]):
     cyl(f"t_ep{j}", "t_prod3", "mirror", .4, .05, [TX + 13.5 - .25 + .85 * j, PY_ + .03, 2.9])
     cyl(f"t_epL{j}", "t_prod3", mt, .4, .03, [TX + 13.5 - .25 + .85 * j, PY_ + .07, 2.9])
-cyl("t_fp2", "t_fab1", "steelHi", .05, 4.2, [TX - 4.5 + 3.0, 2.4, -.8 + 2.2])
-sph("t_fb2", "t_fab1", "steelHi", .09, [TX - 4.5 + 3.0, 4.52, -.8 + 2.2])
-plate("t_fg2", "t_flagJ", "flag-JP", 1.1, TX - 4.5 + 3.0 + .61, 4.5 - 1.1 / SIGN["flag-JP"]["aspect"] / 2 - .06, -.8 + 2.2)
-anchor("t_jpA", "t_flagJ", [TX - 4.5 + 3.0 + .6, 4.2, -.8 + 2.2], dx=0, dy=120)
+cyl("t_fp2", "t_fab1", "steelHi", .05, 3.2, [TX - 4.5 + 3.0, 1.9, -.8 + 2.2])
+sph("t_fb2", "t_fab1", "steelHi", .09, [TX - 4.5 + 3.0, 3.52, -.8 + 2.2])
+box("t_fgB2", "t_flagJ", "cabD", [1.18, 1.1 / SIGN["flag-JP"]["aspect"] + .08, .02], [TX - 4.5 + 3.0 + .61, 3.5 - 1.1 / SIGN["flag-JP"]["aspect"] / 2 - .06, -.8 + 2.2 - .02])
+plate("t_fg2", "t_flagJ", "flag-JP", 1.1, TX - 4.5 + 3.0 + .61, 3.5 - 1.1 / SIGN["flag-JP"]["aspect"] / 2 - .06, -.8 + 2.2)
+anchor("t_jpA", "t_flagJ", [TX - 4.5 + 3.0 + .6, 3.2, -.8 + 2.2], dx=0, dy=120)
 anchor("t_wwA", "t_prod2", [TX + 4.5 + .6, PY_ + .4, 2.9], dx=0, dy=110)
 anchor("t_sicA", "t_prod3", [TX + 13.5 + .6, PY_ + .1, 2.9], dx=0, dy=110)
 
@@ -609,17 +612,17 @@ P["s6"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 TFX = {c: TX + dx for c, _, dx in TWF}
 for k, (sid, focus, labs, t) in enumerate([
     ("s7", "gw", [dict(lab("t_gwA", "環球晶 6488", "Taiwan", "amber", "gw", "s8:start-4", xy=[540, 360]), flag="TW")], {"sid": "s7", "gw": "gw", "top5": "top5", "rev": "rev"}),
-    ("s8", "fst", [dict(lab("t_fstA", "台勝科 3532", "Taiwan", "blue", "fst", "s9:start-4", xy=[400, 360]), flag="TW"),
+    ("s8", "fst", [dict(lab("t_fstA", "台勝科 3532", "Taiwan", "blue", "fst", "s9:start-4", xy=[790, 330]), flag="TW"),
                    dict(lab("t_jpA", "日本勝高（合資）", "SUMCO, Japan", "coral", "jv", "s9:start-4", xy=[700, 820]), flag="JP")], {"sid": "s8", "fst": "fst", "jv": "jv", "main": "main", "p70": "p70"}),
     ("s9", "ww", [dict(lab("t_wwF", "合晶 6182", "Taiwan", "amber", "ww", "s10:start-4", xy=[540, 360]), flag="TW"),
                   lab("t_wwA", "6 吋＋8 吋", "150 / 200 mm", "blue", "p68", "s10:start-4", xy=[540, 830])], {"sid": "s9", "ww": "ww", "p68": "p68", "pwr": "pwr", "x12": "x12"}),
-    ("s10", "epi", [dict(lab("t_epiA", "嘉晶 3016", "Taiwan", "blue", "epi", "s11:start-4", xy=[540, 360]), flag="TW"),
+    ("s10", "epi", [dict(lab("t_epiA", "嘉晶 3016", "Taiwan", "blue", "epi", "s11:start-4", xy=[760, 340]), flag="TW"),
                     lab("t_sicA", "矽／碳化矽／氮化鎵", "Si / SiC / GaN epi", "amber", "sic", "s11:start-4", xy=[540, 830])], {"sid": "s10", "epi": "epi", "si": "si", "sic": "sic", "gan": "gan"})]):
     fx = TFX[focus]
     P[sid] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
-              "shot": [shot("start-1" if k == 0 else focus + "-10", fx + .4, -.6, 28, 18, 1 if k == 0 else 30)],
+              "shot": [shot("start-1" if k == 0 else focus + "-10", fx + .4, *{1: (.6, 36, 16)}.get(k, (-.6, 28, 18)), 1 if k == 0 else 30)],
               "run": [run(f"t_on{k}", focus, "s11:start", 6)], "labels": labs, "overlay": [CO(focus, t)]}
-P["s11"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
+P["s11"] = {"zoom": [{"to": "litho", "at": "start-1", "dur": 1}],
  "shot": [shot("start-4", NX, 3.6, 34, 20, 1)],
  "run": [run("n_uv", "mask+10", "s12:start", 6), run("n_on", "mask+10", "s12:start", 6), run("n_wOn", "mask+30", "s12:start", 6)],
  "labels": [lab("n_wA", "晶圓備好了", "Wafer ready", "blue", "ready", "kw-10", xy=[280, 760]), lab("n_maskA", "光罩（下一集）", "Photomask (next)", "amber", "mask", "kw-10", xy=[800, 360])],

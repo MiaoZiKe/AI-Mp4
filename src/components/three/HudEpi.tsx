@@ -293,13 +293,13 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {items.map(([a, b, id, c], j) => { const x = 30 + j * 312, l = lit(f, T(o, id), 0.4), hl = f >= T(o, id) && f < T(o, "kw");
+        {items.map(([a, b, id, c], j) => { const x = 30 + j * 312, l = 1, hl = f >= T(o, id) && f < T(o, "kw");
           return <g key={j} opacity={l}>
             <rect x={x} y={CT + 6} width={262} height={118} fill={hl ? c : H.cardCompare} stroke={c} strokeWidth={hl ? 5 : 3} />
             <text x={x + 131} y={CT + 56} textAnchor="middle" style={zh(40, hl ? "#FFFFFF" : H.text, 900)}>{a}</text>
             <text x={x + 131} y={CT + 104} textAnchor="middle" style={zh(sm(30), hl ? "#FFFFFF" : H.text2, 800)}>{b}</text>
           </g>; })}
-        <text x={W / 2} y={238} textAnchor="middle" style={zh(34, H.text, 900)} opacity={0.3 + 0.7 * nx}>下一集：光罩-1</text>
+        <text x={W / 2} y={238} textAnchor="middle" style={zh(34, H.text, 900)} opacity={0.75 + 0.25 * nx}>下一集：光罩-1</text>
         <g opacity={kw} transform={`translate(${W / 2} 288) rotate(-2) scale(${1 + 0.3 * (1 - kw)})`}>
           <rect x={-220} y={-32} width={440} height={64} fill={H.amber} /><text x={0} y={14} textAnchor="middle" style={zh(38, onC(H.amber), 900)}>留言「磊晶」拿完整資料</text>
         </g>

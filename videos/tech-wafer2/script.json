@@ -44,6 +44,17 @@
     "noteAlways": true
    },
    {
+    "id": "litho",
+    "label": "曝光機（下一集）",
+    "en": "LITHOGRAPHY",
+    "field": "1.2 m",
+    "ruler": "30 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
     "id": "wafer",
     "label": "晶圓",
     "en": "WAFER",
@@ -1771,9 +1782,9 @@
       "at": "fst-10",
       "dur": 30,
       "x": 133.9,
-      "y": -0.6,
-      "d": 28,
-      "elev": 18
+      "y": 0.6,
+      "d": 36,
+      "elev": 16
      }
     ],
     "run": [
@@ -1793,8 +1804,8 @@
       "at": "fst",
       "until": "s9:start-4",
       "xy": [
-       400,
-       360
+       790,
+       330
       ],
       "flag": "TW"
      },
@@ -2041,8 +2052,8 @@
       "at": "epi",
       "until": "s11:start-4",
       "xy": [
-       540,
-       360
+       760,
+       340
       ],
       "flag": "TW"
      },
@@ -2135,9 +2146,9 @@
    "props": {
     "zoom": [
      {
-      "to": "wafer",
-      "at": "start-4",
-      "dur": 30
+      "to": "litho",
+      "at": "start-1",
+      "dur": 1
      }
     ],
     "shot": [
