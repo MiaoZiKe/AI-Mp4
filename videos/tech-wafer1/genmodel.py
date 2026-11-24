@@ -473,7 +473,7 @@ def tex(name):
 def plate(pid, lay, name, w, cx, cy, cz):
     h = w / SIGN[name]["aspect"]
     box(pid, lay, tex(name), [w, h], [cx, cy, cz], shape="plane", uv01=True, shadow=False); return h
-def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, kind="std", fside=1):
+def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, kind="std", fside=1, fph=4.2):
     """一棟晶圓廠（原點在地面中心，s＝縮放）。kind：std｜tall（高一層＋屋頂塔）｜tanks（側邊三座原料儲槽）｜twin（雙廠房）｜dome（圓頂潔淨室）
     logo＝正面廠牌貼圖、flag＝旗桿國旗貼圖（flay＝國旗自己的層，念到時升旗）"""
     S_ = lambda v: [R(a * s) for a in v]
@@ -508,8 +508,14 @@ def fab(pre, lay, x, z, sign, s=1.0, anc=None, logo=None, flag=None, flay=None, 
         sw = 2.3 * s; sh = sw / SIGN[logo]["aspect"]
         box(f"{pre}_sgB", lay, "cabD", [sw + .12 * s, sh + .12 * s, .06], P_(.3, 1.25, 1.585))
         plate(f"{pre}_sg", lay, logo, sw, *P_(.3, 1.25, 1.62))
+    if flag and fside == 2:                                                                        # 國旗掛在自家廠房正面（廠牌左邊），一看就是這棟的
+        fw = 1.15 * s; fh = fw / SIGN[flag]["aspect"]
+        fy = 1.95 if z > 0 else hh + .5                                                            # 後排掛到屋簷上（不被前排擋住）
+        if z <= 0: box(f"{pre}_fgM", lay, "steel2", [.08 * s, .9 * s, .08 * s], P_(.3 - 1.3 - 1.15 / 2, hh + .2, 1.5))
+        plate(f"{pre}_fg", flay or lay, flag, fw, *P_(.3 - 1.15 - .15 - 1.15 / 2, fy, 1.64 if z > 0 else 1.56))
+        flag = None
     if flag:                                                                                       # 旗桿＋國旗
-        ph = 4.2 * s; px_ = 2.75 if fside > 0 else -3.55 if fside < 0 else 1.9; pz_ = -1.4 if fside == 0 else 1.85
+        ph = fph * s; px_ = 2.75 if fside > 0 else -3.55 if fside < 0 else 1.9; pz_ = -1.4 if fside == 0 else 1.85
         cyl(f"{pre}_fp", lay, "steelHi", .05 * s, ph, P_(px_, ph / s / 2 + .3, pz_))
         sph(f"{pre}_fb", lay, "steelHi", .09 * s, P_(px_, ph / s + .32, pz_))
         fw = 1.15 * s; fh = fw / SIGN[flag]["aspect"]
@@ -520,8 +526,11 @@ FX = 125
 FABS = [("shin", "signB", "JP"), ("sumco", "signR", "JP"), ("gw", "signA", "TW"), ("sil", "signT", "DE"), ("sk", "signP", "KR")]
 FAB_POS = [(-6.4, -3.2), (-3.2, 2.2), (0, -3.2), (6.4, -3.2), (3.2, 2.2)]      # 後排 3 棟（信越、環球晶、世創）、前排 2 棟（勝高、SK）
 FKIND = {"shin": "tall", "sumco": "tanks", "gw": "twin", "sil": "dome", "sk": "std"}
+# 旗桿一律由「那棟廠房」的位置推算（fab() 內的 px_／pz_），不手填座標（11/24 審片 7.8：SK 旗曾立在世創上方被讀成世創＝韓國）。
+# 五棟都把國旗掛在自家正面、廠牌左邊（旗桿在前後排錯位時會被讀成別家的旗）。
+FSIDE = {"shin": 2, "sumco": 2, "gw": 2, "sil": 2, "sk": 2}      # 2＝國旗掛在自家廠房正面（11/24 審片 7.8 後改，不再用旗桿）
 for k, ((cid, sg, fl), (dx, dz)) in enumerate(zip(FABS, FAB_POS)):
-    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid], fside=-1 if cid == "sumco" else 0 if cid == "sk" else 1)
+    wins = fab(f"f{k}", f"f_fab{k}", FX + dx, dz, sg, anc=f"f_{cid}A", logo=SIGNS[cid], flag=f"flag-{fl}", flay=f"f_flag{k}", kind=FKIND[cid], fside=FSIDE[cid], fph=2.9 if dz > 0 else 4.2)
     glow(f"f_on{k}", f"f_fab{k}", wins, "#9CC3FF", steady=False, g=.7, freq=1.2)
 box("f_pad", "f_site", "conc", [24, .2, 15], [FX, .1, .4])
 box("f_road", "f_site", "cabD", [22, .03, 1.2], [FX, .21, 5.9])
@@ -601,7 +610,7 @@ VIS = [
  hid("k_epi", HIDE, "s11:next", 16),
  fall("f_hub", "s10:top5", dy=1.2),
 ] + [fall(f"f_fab{k}", f"s10:{c}", dy=2.2, bounce=.1) for k, (c, _, _) in enumerate(FABS)] \
-  + [x for k, (c, _, _) in enumerate(FABS) for x in (hid(f"f_flag{k}", HIDE, f"s10:{c}", 6), mv(f"f_flag{k}", HIDE, f"s10:{c}+10", dur=22, dy=-2.4))] + [fall(f"k_fab{k}", f"s11:{c}" + ("+4" if c == "ww" else ""), dy=1.6, bounce=.1) for k, (c, _, _) in enumerate(TWF)]
+  + [x for k, (c, _, _) in enumerate(FABS) for x in (hid(f"f_flag{k}", HIDE, f"s10:{c}", 6), mv(f"f_flag{k}", HIDE, f"s10:{c}+10", dur=22, dy=-.5))] + [fall(f"k_fab{k}", f"s11:{c}" + ("+4" if c == "ww" else ""), dy=1.6, bounce=.1) for k, (c, _, _) in enumerate(TWF)]
 for k in range(NSL):
     VIS.append(mv(f"w_sl{k}", "s7:saw-8", FAR, dur=40, dy=-2.3))
     VIS.append(mv(f"w_sl{k}", "s7:slice+4", FAR, dur=24, dy=2.9, dz=(k - (NSL - 1) / 2) * .16))
@@ -673,7 +682,7 @@ P["s9"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 FLAB = {"shin": ("信越化學", "Japan", "blue"), "sumco": ("勝高", "Japan", "coral"), "gw": ("環球晶", "Taiwan", "amber"), "sil": ("世創", "Germany", "blue"), "sk": ("SK Siltron", "Korea", "coral")}
 FXY = {"shin": [205, 360], "sumco": [300, 830], "gw": [530, 360], "sil": [840, 360], "sk": [760, 830]}
 P["s10"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", FX + 1.1, -1.8, 48, 24, 30), shot("top5", FX + 1.1, -1.6, 47, 28, 60)],
+ "shot": [shot("start-4", FX + 1.6, -1.8, 51, 24, 30), shot("top5", FX + 1.6, -1.6, 50, 28, 60)],
  "run": [run(f"f_on{k}", c, "s11:start", 6) for k, (c, _, _) in enumerate(FABS)] + [run(f"f_ship{k}", "top5", "s11:start", 8) for k in range(5)],
  "labels": [dict(lab(f"f_{c}A", FLAB[c][0], FLAB[c][1], FLAB[c][2], c + "+6", "s11:start-4", xy=FXY[c]), flag=fl) for c, _, fl in FABS],
  "overlay": [sec("si-co", "start+2", "s11:start+30", "全球誰在做", "旺得富、官股投顧報告", {"shin": "shin", "sumco": "sumco", "gw": "gw", "sil": "sil", "sk": "sk", "top5": "top5"})]}
