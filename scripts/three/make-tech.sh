@@ -82,7 +82,12 @@ fi
 AVAIL=$(df -BG --output=avail / | tail -1 | tr -dc 0-9)
 [ "$AVAIL" -lt 2 ] && { STEP="3 磁碟"; LOG="df -h /"; echo "可用 ${AVAIL}GB <2GB"; fail; }
 mkdir -p out; : >> out/.render.lock
-run "3 渲染（flock out/.render.lock）" flock out/.render.lock env THREE_CONCURRENCY=4 node scripts/render.mjs "$SLUG"
+# 2026-11-24：渲染前清孤兒 Chrome、記負載；渲染記開始／結束與分鐘數；超過 RENDER_WARN_MIN（預設 60 分，平常 23～42 分）印警告與當下前 5 名程序
+T0=$(date +%s); echo "渲染開始 $(TZ=Asia/Taipei date +%H:%M)"
+( sleep $(( ${RENDER_WARN_MIN:-60} * 60 )); if pgrep -f "scripts/render.mjs $SLUG" >/dev/null; then echo "⚠ 渲染已超過 ${RENDER_WARN_MIN:-60} 分鐘（平常 23～42 分），負載 $(cut -d' ' -f1-3 /proc/loadavg)："; ps -eo pcpu=,pid=,ppid=,args= --sort=-pcpu | head -5 | cut -c1-100; fi ) & WATCH=$!
+run "3 渲染（flock out/.render.lock）" flock out/.render.lock bash -c 'bash scripts/three/render-guard.sh && THREE_CONCURRENCY=4 node scripts/render.mjs "$0"' "$SLUG"
+kill $WATCH 2>/dev/null; MIN=$(( ($(date +%s)-T0)/60 )); echo "渲染結束 $(TZ=Asia/Taipei date +%H:%M)，共 ${MIN} 分鐘"; head -3 "$LOG"
+echo -e "$(TZ=Asia/Taipei date +%F_%H:%M)\t$SLUG\t$VER\t${MIN}" >> out/render-times.tsv
 VID=out/$SLUG.video.mp4; [ -f $VID ] || VID=out/$SLUG.mp4
 
 # 4. 片尾音
