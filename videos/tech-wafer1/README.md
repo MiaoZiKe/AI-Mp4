@@ -16,3 +16,6 @@
 - 配音：`bash scripts/three/tts-pitch-take.sh tech-wafer1`，3 次請求：137.1 ✖、140.4 ✖、123.7 ✔（`videos/tech-wafer1/tts-pitch.json`；退件檔 out/tech-wafer1-take-reject-1／2.wav）。純說話 258 字 ÷（63.97−7.96）＝4.61 字/秒 → atempo 1.248 → 片長約 56.2 秒。
 - 審片必改（docs/reviews/2026-11-24-wafer-mask-review.md）：s10 主畫面換成五棟晶圓廠（後排信越、環球晶、世創；前排勝高、SK），念到哪家落下哪棟、窗帶亮，念「超過八成」晶圓盒沿路送到集貨台；標籤加國旗；2D 卡每列國旗＋官方 LOGO（信越、世創；其他抓不到見 assets.md）；s11 晶圓慢轉＋後方台灣三棟廠（台灣旗）；s1 鉤子標題「純度 11 個 9」、標籤延到 how 才進；s5 鏡頭對準爐體；出處拿掉 series_plan。晶格站移到 x=-26、五家廠在 x=125（免得鏡頭橫移時掃過晶格）。
 - 檢查：layout-check 0 error、card-overlap 0/0、validate 0 error。國旗／LOGO 全程不透明（未輪到細灰框、輪到粗框＋放大）。
+- 成片 v2（11/24 13:33）：`out/tech-wafer1.v2.mp4`（56.23 秒、正片 −16.0 LUFS、片尾 −11.0 LUFS），複製成 `out/tech-wafer1.mp4`。無聲版審片三輪 7.6 → 7.9 → 8.3（docs/reviews/2026-11-24-tech-wafer1.md）。2D 卡勝高 LOGO 已用上（3D 廠牌仍是文字名牌，下次重產 genmodel 會換成原檔）。
+- verify4：1、3 過；2 聽感請求兩次「回應無法解析」未驗，ASR 4 處需人耳確認（0:02、0:04.6 砂→沙；0:26.3 浸→進；0:52.7 資料→字卡）；4 標 52 秒＝片尾卡 LOGO 動畫誤判。見 out/tech-wafer1/verify4/human.md。
+- 預覽：out/preview/tech-wafer1-sheet.png（每秒一格）、tech-wafer1-close-puller／saw／fabs.png。
