@@ -87,8 +87,9 @@ scenes[0]["props"]["hook"] = {"kicker": "代工的供應商 2｜磊晶差在哪"
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光罩-1 晶片的底片", "trail": ["環球晶", "台勝科", "合晶", "嘉晶"], "at": "s11:kw-8", "comment": "磊晶", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
-levels = [lv("plant", "晶圓廠", "WAFER MAKERS", "4 m", "1 m"), lv("tool", "磊晶爐", "EPI REACTOR", "1.5 m", "50 cm"), lv("litho", "曝光機（下一集）", "LITHOGRAPHY", "1.2 m", "30 cm"),
-          lv("wafer", "晶圓", "WAFER", "30 cm", "10 cm"), lv("atom", "原子", "ATOMS", "2 nm", "0.5 nm")]
+levels = [lv("plant", "晶圓廠", "WAFER MAKERS", "4 m", "1 m"), lv("tool", "磊晶爐", "EPI REACTOR", "1.5 m", "50 cm"),
+          lv("wafer", "晶圓", "WAFER", "30 cm", "10 cm"), lv("atom", "原子", "ATOMS", "2 nm", "0.5 nm"),
+          lv("litho", "曝光機（下一集）", "LITHOGRAPHY", "1.2 m", "30 cm")]   # 放最後：其他幕的縮放路徑不會經過它（v2 放在中間，s3、s7 開頭閃過「曝光機」）
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-wafer2", "title": "矽晶圓-2：台灣誰在做（科技透明圈）", "asOf": "2026/11/23", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
