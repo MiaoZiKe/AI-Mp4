@@ -91,7 +91,7 @@ materials = {
  "led": {"kind": "std", "color": "led", "emissive": "led", "ei": .9}, "ledA": {"kind": "std", "color": "ledA", "emissive": "ledA", "ei": .6},
  "screen": {"kind": "screen", "color": "screen", "ei": .7}, "screenUI": U("#BFD8FF"),
  "truck": M("truck", rough=.4, metal=.2), "truckC": M("truckC", rough=.4, metal=.2), "tire": M("#2F3136", rough=.8, metal=0),
- "air": U("#FFFFFF", .0), "winB": {"kind": "phys", "color": "#5C8FD6", "rough": .08, "metal": 0, "clearcoat": 1, "opacity": .75, "env": .7}, "labelW": U("#FFFFFF"), "eleB": U("ele", .55), "defR": U("def", .9),
+ "air": U("#FFFFFF", .0), "rsQ": {"kind": "phys", "color": "#3F6FC8", "rough": .1, "metal": .2, "clearcoat": 1, "env": .8}, "winB": {"kind": "phys", "color": "#5C8FD6", "rough": .08, "metal": 0, "clearcoat": 1, "opacity": .75, "env": .7}, "labelW": U("#FFFFFF"), "eleB": U("ele", .55), "defR": U("def", .9),
  "sea": M("sea", rough=.6, metal=0), "rim": M("rim", rough=.5, metal=.2), "grid": U("grid"), "gridD": U("gridD"), "land": M("land", rough=.8, metal=0),
  "pad": M("pad", rough=.85, metal=0), "clean": {"kind": "phys", "color": "clean", "rough": .35, "metal": 0, "clearcoat": .4, "env": .4}, "seam": U("seam"), "roof": M("roof", rough=.6, metal=.3),
  "tank": M("tank", rough=.3, metal=.4, env=.6), "pinR": U("pinR", .85), "pinB": U("#7FB7FF", .35), "route": U("route"),
@@ -450,8 +450,8 @@ def stand(pid, lay, name, flag, x, z, w=3.6, y0=None):
     cyl(f"{pid}Fp", lay, "steelHi", .03, 1.7, [x + w / 2 - .25, top + .85, z - .05])
     sph(f"{pid}Fb", lay, "steelHi", .06, [x + w / 2 - .25, top + 1.72, z - .05])
     fw = 1.3; plate(f"{pid}Fg", lay, flag, fw, x + w / 2 - .25 - fw / 2 - .03, top + 1.65 - fw / SIGN[flag]["aspect"] / 2, z - .05)
-stand("p_ent", "p_ent", "sign-entegris", "flag-US", PX - 3.0, -5.0, w=4.6, y0=PY + 2.2)
-stand("p_gd", "p_gd", "sign-gudeng", "flag-TW", PX + 3.0, -5.0, w=4.6, y0=PY + 2.2)
+stand("p_ent", "p_ent", "sign-entegris", "flag-US", PX - 3.0, -5.0, w=4.6, y0=PY + 1.8)
+stand("p_gd", "p_gd", "sign-gudeng", "flag-TW", PX + 3.0, -5.0, w=4.6, y0=PY + 1.8)
 anchor("p_entA", "p_ent", [PX - 3.6, PY + 3.4, -5.2], dx=-170, dy=-60)
 anchor("p_gdA", "p_gd", [PX + 2.4, PY + 3.4, -5.2], dx=170, dy=-60)
 anchor("p_ocA", "p_oc", [PX + 3.6, PY + 2.3, 2.5], dx=170, dy=-80)
@@ -500,7 +500,7 @@ air("v_airD", "v_lpod", [LPX - 3.2, VY + 2.6, .2], [LPX - .4, VY + 4.3, 2.4])
 # 光罩台＋極紫外光：光從左上打到光罩（反射式）→ 往下打到晶圓的光阻上（下一集）
 SX_ = VX + 5.0
 box("v_rs", "v_scan", "steel2", [2.6, .35, 2.2], [SX_, VY + 3.6, 0], bevel=.03)
-box("v_rsR", "v_rsR", "quartz", [2.2, .34, 2.0], [SX_, VY + 3.26, 0])
+box("v_rsR", "v_rsR", "rsQ", [2.2, .34, 2.0], [SX_, VY + 3.26, 0])
 box("v_rsA", "v_rsR", "absorb", [1.8, .02, 1.7], [SX_, VY + 3.08, 0])
 glow("v_rsOn", "v_rsR", ["v_rsR"], "#4F8FF0", steady=False, g=.9, freq=1.4, halo=.5)
 box("v_post", "v_scan", "steel", [.4, 3.0, .4], [SX_ - 1.6, VY + 2.3, -1.0])
@@ -527,7 +527,7 @@ anchor("v_euvA", "v_scan", [SX_ - 2.4, VY + 3.25, 0], dx=-170, dy=-80)
 
 # 主素材框（看不見；給 layout-check 判斷主體位置）：每段只亮鏡頭對準的那一個，其他層全部標 bg
 materials["m_proxy"] = {"kind": "unlit", "color": "#FFFFFF", "opacity": 0}
-PXB = {"px_cap": (ST[0] - 1.1, ST[0] + 1.1, TOP, TOP + .7, ST[1] - .5, ST[1] + .6), "px_mer": (SD[0] - 1, SK[0] + 1, TOP, TOP + .8, -3.2, -1.2), "px_mer2": (SP[0] - 1, SP[0] + 1, TOP, TOP + .8, -2.8, -.8), "px_tw": (SM[0] - .6, SM[0] + .6, TOP, TOP + .7, SM[1] - .4, SM[1] + .9),
+PXB = {"px_cap": (ST[0] - 1.1, ST[0] + 1.1, TOP, TOP + .7, ST[1] - .5, ST[1] + .6), "px_mer": (SD[0] - 1, SK[0] + 1, TOP, TOP + .8, -3.2, -1.2), "px_mer2": (SP[0] - .5, SP[0] + .5, TOP, TOP + .5, SP[1] - .3, SP[1] + .4), "px_tw": (SM[0] - .6, SM[0] + .6, TOP, TOP + .7, SM[1] - .4, SM[1] + .9),
        "px_eb": (EX - 3.2, EX + 3.2, 1.8, 10.8, -2.2, 2.2), "px_ins": (IX - 2.9, WIX + 1.4, 1.6, 5.9, -2.0, 1.8),
        "px_map": (SS[0] + 1.5, SD[0] + 1, TOP, TOP + 1.2, -4, 2), "px_pod": (PX - 4.2, PX + 4.2, PY - .6, PY + 3.2, -4.2, 4.2), "px_podX": (PX - 4.2, PX + 4.2, PY - .6, PY + 8.6, -4.2, 4.2),
        "px_vac": (LPX - 1.4, VX + 3.2, VY, VY + 3.5, -1.6, 1.6), "px_scan": (SX_ - 1.1, SX_ + 1.1, VY + .6, VY + 1.0, -1.2, 1.2)}
@@ -604,7 +604,7 @@ VIS = [
  mv("v_ic", "s9:open", "s10:start", dur=20, dy=1.0),
  *[hid(f"v_prL{i}", HIDE, f"s11:light+{4 * i}", 4) for i in range(8)],
 ]
-PXW = {"px_pod": [(EARLY, "s2:start-4"), ("s10:start+30", "s11:start-4")], "px_cap": [("s2:fast+24", "s3:start-4")], "px_mer": [("s3:start+30", "s3:us-8")], "px_mer2": [("s3:us+26", "s4:start-4")],
+PXW = {"px_pod": [(EARLY, "s2:start-4"), ("s10:start+30", "s11:start-4")], "px_cap": [("s2:fast+24", "s3:start-4")], "px_mer": [("s3:start+30", "s3:us-18")], "px_mer2": [("s3:us+8", "s4:start-4")],
        "px_tw": [("s4:start+30", "s5:start-4")], "px_map": [("s2:start+30", "s2:fast-8")], "px_eb": [("s5:start+30", "s7:start-4")], "px_ins": [("s7:start+30", "s8:start-4")],
        "px_podX": [("s8:start+30", "s9:start-4")], "px_vac": [("s9:start+30", "s10:start-4")], "px_scan": [("s11:start+30", FAR)]}
 for lid, wins in PXW.items():
@@ -642,12 +642,12 @@ P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
  "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "晶圓廠自己做光罩", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
 # s3：拉到太平洋全景：日本兩家（東京周邊）、美國一家（東岸）；念「專業光罩廠」三條出貨航線開始跑（光罩盒沿弧線飛往客戶晶圓廠）
 P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-12", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-6", SP[0], SP[1] + .9, 6.0, 36, 30)],
+ "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-22", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-16", SP[0], SP[1] + .9, 6.0, 36, 22)],
  "run": [run("f_rDNPF", "mer", "s5:start", 8), run("f_rTEKF", "mer+6", "s5:start", 8), run("f_rPHRF", "mer+12", "s5:start", 8),
          run("f_dnpOn", "jp", "s4:start", 6), run("f_tekOn", "jp+8", "s4:start", 6), run("f_phrOn", "us", "s4:start", 6),
          run("f_cTWOn", "mer", "s4:start", 6), run("f_cKROn", "mer+6", "s4:start", 6), run("f_cUSOn", "mer+12", "s4:start", 6)],
- "labels": [LG("f_dnpA", "大日本印刷", "DNP", "amber", "jp", "us-8", [260, 380], DNPL, "JP"), LG("f_tekA", "Tekscend", "ex-Toppan", "amber", "jp+8", "us-8", [790, 300], "tekscend", "JP"),
-            LG("f_phrA", "Photronics", "US", "blue", "us", "s4:start-10", [790, 440], PHRL, "US")],
+ "labels": [LG("f_dnpA", "大日本印刷", "DNP", "amber", "jp", "us-18", [260, 380], DNPL, "JP"), LG("f_tekA", "Tekscend", "ex-Toppan", "amber", "jp+8", "us-18", [790, 300], "tekscend", "JP"),
+            LG("f_phrA", "Photronics", "US", "blue", "us-4", "s4:start-10", [262, 262], PHRL, "US")],
  "overlay": [sec("mk2-mer", "start+4", "s4:start-8", "專業光罩廠", "SemiEng；Photronics 10-K", {"mer": "mer", "jp": "jp", "us": "us"})]}
 # s4：推近台灣：念「台灣光罩」廠區落下、光柱亮；念「成熟製程」光罩盒推上潔淨物流車，車沿路開往南部客戶晶圓廠
 P["s4"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],

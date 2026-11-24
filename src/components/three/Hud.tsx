@@ -146,7 +146,7 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
         const ry = L.STAGE_TOP + L.STAGE_H - 22;
         return <g opacity={H.plateO ?? 0.9}>
           <rect x={x0 + 14} y={L.STAGE_TOP + 12} width={tlW} height={92} fill={H.bg} opacity={rq} />
-          <rect x={x1 - 300} y={L.STAGE_TOP + 12} width={286} height={96} fill={H.bg} opacity={rq} />
+          {(() => { const nw = ro ? 286 : Math.max(286, [...(lvl.note ?? "示意")].length * sm(34) + 48); /* 2026/11/24 mask2 審片 T2：readout:false 時右上顯示 note，底板照字數加寬 */ return <rect x={x1 - 14 - nw} y={L.STAGE_TOP + 12} width={nw} height={96} fill={H.bg} opacity={ro ? rq : (lvl.noteAlways ? 1 : rq)} />; })()}
           <rect x={x0 + 14} y={ry - H.ruler.h - 12 - rp - 10} width={Math.max(Number.isFinite(rulerPx) ? rulerPx : 0, [...(lvl.ruler ?? "")].length * rp * 0.62) + 36} height={H.ruler.h + rp + 32} fill={H.bg} opacity={roK} />
           {sc ? <rect x={x1 - 10 - scW} y={L.STAGE_TOP + L.STAGE_H - 52 - ((sc as any).lift ?? 0) - 34} width={scW} height={84} fill={H.bg} /> : null}
         </g>;

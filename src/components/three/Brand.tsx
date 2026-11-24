@@ -23,7 +23,7 @@ export const LOGOS: Record<string, LogoSpec> = {
   samsung: { file: "logos/samsung.svg", w: 7051.4024, h: 1080, name: "三星 Samsung", source: "https://commons.wikimedia.org/wiki/File:Samsung_wordmark.svg" },
   dnp: { file: "logos/dnp.svg", w: 110, h: 33, name: "大日本印刷 DNP", source: "https://www.global.dnp/content/dam/dnp-global/common/img/logo.svg" },
   tekscend: { file: "logos/tekscend.svg", w: 199, h: 32, name: "Tekscend Photomask", source: "https://www.photomask.com/assets/img/common/header_logo.svg" },
-  photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, labelH: 110, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
+  photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, labelH: 90, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
   entegris: { file: "logos/entegris.svg", w: 181, h: 43, name: "英特格 Entegris", source: "https://www.entegris.com/content/dam/web/ux/global/header/logo-header-desktop.svg" },
   gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
 };
