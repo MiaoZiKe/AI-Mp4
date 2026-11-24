@@ -71,13 +71,13 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
           <MaskTop x={50} y={CT + 22} s={150} a={pv} />
           <text x={40} y={296} style={zh(32, H.text, 900)}>晶片的底片</text>
         </g>
-        <g opacity={0.35 + 0.65 * wh}>
-          <text x={300} y={CT + 60} style={zh(36, H.amber, 900)}>誰做？</text>
+        <g opacity={0.6 + 0.4 * wh}>
+          <text x={300} y={CT + 60} style={zh(40, H.text, 900)}>誰做？</text>
         </g>
         <g opacity={box}>
           <rect x={px} y={176} width={60} height={46} rx={6} fill={POD} stroke={POD_D} strokeWidth={3} />
           <Arrow x1={300} y1={256} x2={600} y2={256} c={H.amber} w={6} />
-          <text x={300} y={306} style={zh(30, H.text2, 800)}>裝盒運送</text>
+          <text x={300} y={306} style={zh(32, H.text, 900)}>裝盒運送</text>
         </g>
         <Sep x={640} />
         <g opacity={lit(f, T(o, "scan"), 0.35)}>
@@ -123,20 +123,21 @@ const Cap: React.FC<P> = ({ o, f, k }) => {
 const Mer: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const jp = on(f, T(o, "jp"), 8), jp2 = on(f, T(o, "jp") + 8, 8), us = on(f, T(o, "us"), 8), me = on(f, T(o, "mer"), 8);
-  const seg = (x: number, y: number, a: number, logo: string, col: string) => (
-    <div style={{ position: "absolute", left: x, top: y, width: 236, height: 72 }}>
-      <div style={{ position: "absolute", left: 0, top: 0, width: 236 * a, height: 72, background: col }} />
-      <div style={{ position: "absolute", left: 6, top: 6 }}><Plate logo={logo} w={224} h={44} a={a} c={col} /></div></div>);
+  const seg = (x: number, y: number, a: number, logo: string, col: string, lh = 44) => (
+    <div style={{ position: "absolute", left: x, top: y, width: 236, height: lh + 28 }}>
+      <div style={{ position: "absolute", left: 0, top: 0, width: 236 * a, height: lh + 28, background: col }} />
+      <div style={{ position: "absolute", left: 6, top: 6 }}><Plate logo={logo} w={224} h={lh} a={a} c={col} /></div></div>);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
-      <div style={{ position: "absolute", left: 28, top: CT + 2, ...zh(30, H.text2, 800), opacity: 0.4 + 0.6 * me }}>主要的專業光罩廠：家數</div>
+      <div style={{ position: "absolute", left: 28, top: CT + 2, ...zh(30, H.text, 800), opacity: 0.6 + 0.4 * me }}>主要的專業光罩廠：家數</div>
       <Row x={28} y={CT + 52} a={jp}><Flag code="JP" h={40} /><Tx a={jp} px={34}>日本</Tx></Row>
       {seg(214, CT + 42, jp, "dnp", "#E58A1F")}{seg(458, CT + 42, jp2, "tekscend", "#E58A1F")}
       <div style={{ position: "absolute", left: 714, top: CT + 52, ...zh(40, H.text, 900), opacity: jp2 }}>2 家</div>
-      <Row x={28} y={CT + 134} a={us}><Flag code="US" h={40} /><Tx a={us} px={34}>美國</Tx></Row>
-      {seg(214, CT + 124, us, "photronics", BLUE)}
-      <div style={{ position: "absolute", left: 470, top: CT + 134, ...zh(40, H.text, 900), opacity: us }}>1 家</div>
-      <div style={{ position: "absolute", left: 28, top: CT + 206, ...zh(30, H.text2, 800), opacity: 0.4 + 0.6 * me }}>Tekscend＝原凸版光罩（2024 改名）</div>
+      <Row x={28} y={CT + 160} a={us}><Flag code="US" h={40} /><Tx a={us} px={34}>美國</Tx></Row>
+      {seg(214, CT + 128, us, "photronics", BLUE, 100)}
+      <div style={{ position: "absolute", left: 470, top: CT + 160, ...zh(40, H.text, 900), opacity: us }}>1 家</div>
+      <div style={{ position: "absolute", left: 600, top: CT + 132, ...zh(30, H.text, 800) }}>Tekscend＝</div>
+      <div style={{ position: "absolute", left: 600, top: CT + 176, ...zh(30, H.text, 800) }}>原凸版光罩</div>
     </Card>
   );
 };
@@ -148,19 +149,19 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
   const nodes: [string, number][] = [["80", 0.55], ["65", 0.75], ["55", 0.95]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
-      <Row x={28} y={CT + 8} a={t1}><Flag code="TW" h={40} /><Plate text="台灣光罩" w={200} h={40} a={t1} c={OK} /><Tx a={t1} c={H.text2} w={800}>代號 2338・1988 年成立</Tx></Row>
+      <Row x={28} y={CT + 8} a={t1}><Flag code="TW" h={40} /><Plate text="台灣光罩" w={200} h={40} a={t1} c={OK} /><Tx a={t1} w={800}>代號 2338・1988 年成立</Tx></Row>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={0.35 + 0.65 * t2}>
-          <text x={28} y={176} style={zh(30, H.text2, 800)}>製程世代</text>
+        <g opacity={0.7 + 0.3 * t2}>
+          <text x={28} y={176} style={zh(30, H.text, 800)}>製程世代</text>
           <rect x={200} y={146} width={250} height={46} fill={H.cardCompare} stroke={H.lineSoft} strokeWidth={3} />
-          <text x={216} y={180} style={zh(30, H.text2, 800)}>最先進</text>
+          <text x={216} y={180} style={zh(30, H.text, 800)}>最先進</text>
           <rect x={470} y={146} width={450 * t2} height={46} fill={OK} opacity={0.85} />
           <text x={486} y={180} style={zh(30, "#FFFFFF", 900)} opacity={t2}>成熟製程：主力</text>
-          <text x={200} y={238} style={zh(30, H.text2, 800)}>晶圓廠多半自己做</text>
+          <text x={200} y={238} style={zh(30, H.text, 800)}>晶圓廠多半自己做</text>
           {nodes.map(([n, v], j) => <g key={n} opacity={on(f, T(o, "mat") + 8 + j * 6)}>
             <rect x={470 + j * 150} y={300 - 50 * v} width={44} height={50 * v} fill={OK} opacity={0.55} />
             <text x={522 + j * 150} y={300} style={zh(30, H.text, 900)}>{n}</text></g>)}
-          <text x={28} y={300} style={zh(30, H.text2, 800)}>奈米（公司說法）</text>
+          <text x={28} y={300} style={zh(30, H.text, 800)}>奈米（公司說法）</text>
         </g>
       </svg>
     </Card>
@@ -278,16 +279,16 @@ const Pod: React.FC<P> = ({ o, f, k }) => {
         </g>
         <g opacity={0.75 + 0.25 * pd}>
           <rect x={cx - 130} y={retY} width={260} height={18} fill={QZ} stroke={QZ_D} strokeWidth={3} />
-          <rect x={cx - 100} y={retY + 18} width={200} height={6} fill={CR} />
+          <rect x={cx - 100} y={retY + 2} width={200} height={8} fill="#1F3F8F" />
         </g>
         {[0, 1, 2].map((j) => { const u = ph(f, 0.03, j, 3), hit = 0.55; const x = u < hit ? 10 + u / hit * (cx - 250 - 10 + 30) : cx - 210 - (u - hit) / (1 - hit) * 150, y = u < hit ? CT + 20 + 30 * j - 20 * (u / hit) : CT + 0 + 30 * j - 10 + (u - hit) * 120;
           return <rect key={j} x={x} y={y} width={9} height={9} fill={DUST} opacity={ou * Math.min(1, u * 6, (1 - u) * 6)} transform={`rotate(${f * 4 + j * 40} ${x + 4} ${y + 4})`} />; })}
         <Sep x={560} />
         <g>
           <text x={590} y={CT + 40} style={zh(32, H.text, 900)} opacity={0.75 + 0.25 * tw}>有兩層</text>
-          <g opacity={0.8 + 0.2 * ou}><rect x={590} y={130} width={22} height={30} fill={POD} stroke="#6B7380" strokeWidth={3} /><text x={628} y={156} style={zh(30, H.text, 900)}>外盒：擋灰塵</text><Check x={870} y={144} o={ou} /></g>
-          <g opacity={0.8 + 0.2 * inn}><rect x={590} y={186} width={22} height={30} fill={INNER} stroke={INNER_D} strokeWidth={3} /><text x={628} y={212} style={zh(30, H.text, 900)}>內盒：金屬</text><Check x={870} y={200} o={inn} /></g>
-          <g opacity={0.8 + 0.2 * pd}><rect x={590} y={242} width={22} height={30} fill={QZ} stroke={QZ_D} strokeWidth={3} /><text x={628} y={268} style={zh(30, H.text, 900)}>光罩在最裡面</text></g>
+          <g opacity={0.8 + 0.2 * ou}><rect x={586} y={128} width={30} height={34} fill={POD} stroke="#6B7380" strokeWidth={4} /><text x={628} y={156} style={zh(30, H.text, 900)}>外盒：擋灰塵</text><Check x={870} y={144} o={ou} /></g>
+          <g opacity={0.8 + 0.2 * inn}><rect x={586} y={184} width={30} height={34} fill={INNER} stroke={INNER_D} strokeWidth={4} /><text x={628} y={212} style={zh(30, H.text, 900)}>內盒：金屬</text><Check x={870} y={200} o={inn} /></g>
+          <g opacity={0.8 + 0.2 * pd}><rect x={586} y={240} width={30} height={34} fill="#1F3F8F" stroke={QZ_D} strokeWidth={4} /><text x={628} y={268} style={zh(30, H.text, 900)}>光罩在最裡面</text></g>
         </g>
       </svg>
     </Card>

@@ -243,6 +243,10 @@ def route(key, lay, a, b, hgt, n_dash=26):
         t = i / n_dash; pts.append([x0 + (x1 - x0) * t, TOP + .25 + 4 * hgt * t * (1 - t), z0 + (z1 - z0) * t])
     sph(f"{key}D", lay, "route", .035, [0, 0, 0], at=[[R(p[0]), R(p[1]), R(p[2])] for p in pts[1:-1]])
     flowx(f"{key}F", lay, [pts[i] for i in range(0, n_dash + 1, 2)], shape="grit", n=3, size=.13, rate=.32, color="pod", rim="podR")
+    ex, ez = pts[-1][0] - pts[-3][0], pts[-1][2] - pts[-3][2]; ang = math.degrees(math.atan2(-ez, ex))
+    for sgn in (-1, 1):
+        a2 = math.radians(ang + 180 + sgn * 32); L2 = .34
+        box(f"{key}H{sgn + 1}", lay, "route", [L2, .04, .07], [R(pts[-1][0] + math.cos(a2) * L2 / 2), R(pts[-1][1]), R(pts[-1][2] - math.sin(a2) * L2 / 2)], rot=[0, R(ang + 180 + sgn * 32), 0])
     lo = [min(p[i] for p in pts) - .2 for i in range(3)]; hi = [max(p[i] for p in pts) + .2 for i in range(3)]
     air(f"{key}A", lay, lo, hi)
 route("f_rDNP", "f_rDNP", (SITES["dnp"][0] - .3, SITES["dnp"][1] + .5), (SITES["cTW"][0] + .3, SITES["cTW"][1] - .3), 2.2)
@@ -258,6 +262,7 @@ box("f_vanS", "f_van", "truckC", [.36, .03, .185], [VX0, TOP + .19, VZ0])
 cyl("f_vanT", "f_van", "tire", .035, .03, [VX0, TOP + .04, VZ0], axis="z", at=[[x_, 0, s * .09] for x_ in (-.11, .1, .24) for s in (-1, 1)])
 box("f_vanP", "f_vanP", "pod", [.09, .07, .09], [TMX + .3, TOP + .09, TMZ + .36], bevel=.01)          # 光罩盒（先放在卸貨門口）
 ST, SI, SS, SD, SK, SP, SM, SC = (SITES[k] for k in ("tsmc", "intel", "ss", "dnp", "tek", "phr", "tmc", "cTW"))
+anchor("m_twA", "m_land", [TWC[0] - .2, TOP, TWC[1] - 1.6], dx=-150, dy=-80)
 anchor("f_tsmcA", "f_tsmc", [SITES["tsmc"][0] + .6, TOP + .4, SITES["tsmc"][1]], dx=-150, dy=-80)
 anchor("f_intelA", "f_intel", [SITES["intel"][0] + .6, TOP + .4, SITES["intel"][1]], dx=150, dy=-80)
 anchor("f_ssA", "f_ss", [SITES["ss"][0] + .6, TOP + .4, SITES["ss"][1]], dx=-150, dy=-80)
@@ -432,15 +437,16 @@ glow("p_icOn", "p_ic", ["p_ic"], "#7FB7FF", steady=False, g=.55, freq=1.6)
 glow("p_sealOn", "p_seal", ["p_seal"], "seal", steady=False, g=.9, freq=2.0, halo=.5)
 glow("p_retOn", "p_ret", ["p_retA"], "#7FB7FF", steady=False, g=.5, freq=1.4)
 def stand(pid, lay, name, flag, x, z, w=3.6):
-    h = w / SIGN[name]["aspect"]; y0 = PY + 1.6
+    h = w / SIGN[name]["aspect"]; y0 = PY - .5
     box(f"{pid}Bs", lay, "steel2", [w * .5, .12, .6], [x, y0 + .06, z])
     cyl(f"{pid}Po", lay, "steel2", .06, 1.2, [x, y0 + .6, z])
     plate(f"{pid}Sg", lay, name, w, x, y0 + 1.2 + h / 2, z)
-    cyl(f"{pid}Fp", lay, "steelHi", .03, 2.6, [x + w / 2 + .35, y0 + 1.3, z])
-    sph(f"{pid}Fb", lay, "steelHi", .06, [x + w / 2 + .35, y0 + 2.62, z])
-    fw = 1.2; plate(f"{pid}Fg", lay, flag, fw, x + w / 2 + .35 + fw / 2 + .03, y0 + 2.55 - fw / SIGN[flag]["aspect"] / 2, z)
-stand("p_ent", "p_ent", "sign-entegris", "flag-US", PX - 3.6, -5.2)
-stand("p_gd", "p_gd", "sign-gudeng", "flag-TW", PX + 2.4, -5.2)
+    top = y0 + 1.2 + h                                                     # 旗桿立在廠牌右上角後面，旗子在廠牌上方
+    cyl(f"{pid}Fp", lay, "steelHi", .03, 1.7, [x + w / 2 - .25, top + .85, z - .05])
+    sph(f"{pid}Fb", lay, "steelHi", .06, [x + w / 2 - .25, top + 1.72, z - .05])
+    fw = 1.3; plate(f"{pid}Fg", lay, flag, fw, x + w / 2 - .25 - fw / 2 - .03, top + 1.65 - fw / SIGN[flag]["aspect"] / 2, z - .05)
+stand("p_ent", "p_ent", "sign-entegris", "flag-US", PX - 6.9, 0.5, w=4.8)
+stand("p_gd", "p_gd", "sign-gudeng", "flag-TW", PX + 6.9, 0.5, w=4.8)
 anchor("p_entA", "p_ent", [PX - 3.6, PY + 3.4, -5.2], dx=-170, dy=-60)
 anchor("p_gdA", "p_gd", [PX + 2.4, PY + 3.4, -5.2], dx=170, dy=-60)
 anchor("p_ocA", "p_oc", [PX + 3.6, PY + 2.3, 2.5], dx=170, dy=-80)
@@ -582,7 +588,7 @@ VIS = [
  mv("p_ob", "s8:start-4", "s10:start", dur=26, dy=-1.4),
  mv("v_lpC", "s9:start-30", "s9:vac", dur=14, dy=1.6),
  hid("e_beamL", HIDE, "s5:eb", 4), hid("e_beamL", "s6:slow", FAR, 4),
- fall("p_ent", "s10:ent", dy=2.0, bounce=.1), fall("p_gd", "s10:gd", dy=2.0, bounce=.1), hid("p_ent", "s11:start", FAR, 4), hid("p_gd", "s11:start", FAR, 4),
+ fall("p_ent", "s10:ent", dy=2.0, bounce=.1), fall("p_gd", "s10:gd", dy=2.0, bounce=.1), hid("p_ent", "s11:start", FAR, 1), hid("p_gd", "s11:start", FAR, 1),
  hid("v_body", "s11:start-4", FAR, 8), hid("v_lpC", "s11:start-4", FAR, 8), hid("v_lpod", "s11:start-4", FAR, 8), hid("v_ib", "s11:start-4", FAR, 8), hid("v_ret", "s11:start-4", FAR, 8), hid("v_ic", "s11:start-4", FAR, 8),
  mv("p_oc", "s8:start-4", "s10:start", dur=26, dy=6.6), mv("p_ic", "s8:start-4", "s10:start", dur=26, dy=3.4),
  mv("p_ret", "s8:start-4", "s8:pod+4", dur=26, dy=1.8),
@@ -621,27 +627,28 @@ DNPL = "dnp" if os.path.exists(os.path.join(ROOT, "public/logos/dnp.svg")) else 
 PHRL = "photronics" if os.path.exists(os.path.join(ROOT, "public/logos/photronics.svg")) else None
 # s2：地圖全景（台灣、韓國、美國三個自有光罩廠），念到哪家哪家的定位光柱亮、標籤（LOGO＋國旗）出來；念「改版最快」推近台積電：光罩盒在天橋裡來回
 P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shotZ("start-4", -48.5, 7.0, 56, 50, 30), shotZ("fast-6", ST[0] + .1, ST[1] + .7, 6.5, 36, 30)],
+ "shot": [shotZ("start-4", -48.5, 6.0, 128, 58, 30), shotZ("fast-6", ST[0] + .1, ST[1] + .7, 7.5, 36, 30)],
  "run": [run("f_tsmcOn", "tsmc", "s3:start", 6), run("f_intelOn", "intel", "s3:start", 6), run("f_ssOn", "ss", "s3:start", 6)] +
         [run(f"f_{k}Br", "fast-10", "s3:start", 8) for k in ("tsmc", "intel", "ss")],
- "labels": [LG("f_tsmcA", "台積電", "TSMC", "blue", "tsmc", "fast-8", [270, 740], "tsmc", "TW"), LG("f_intelA", "英特爾", "Intel", "blue", "intel", "fast-8", [810, 300], "intel", "US"),
+ "labels": [LG("f_tsmcA", "台積電", "TSMC", "blue", "tsmc", "fast-8", [700, 720], "tsmc", "TW"), LG("f_intelA", "英特爾", "Intel", "blue", "intel", "fast-8", [810, 300], "intel", "US"),
             LG("f_ssA", "三星", "Samsung", "blue", "ss", "fast-8", [270, 300], "samsung", "KR"),
             lab("f_tsmcA", "光罩廠在隔壁", "Next door", "amber", "fast", "s3:start-4", xy=[760, 300])],
  "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "晶圓廠自己做光罩", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
 # s3：拉到太平洋全景：日本兩家（東京周邊）、美國一家（東岸）；念「專業光罩廠」三條出貨航線開始跑（光罩盒沿弧線飛往客戶晶圓廠）
 P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", SD[0] + 1.2, SD[1] + 2.4, 30, 50, 30), shotZ("us-6", SP[0] - 2.5, SP[1] + 2.4, 30, 50, 30)],
+ "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-12", (SD[0] + SK[0]) / 2, SD[1] + 1.0, 7.0, 36, 26), shotZ("us-6", SP[0], SP[1] + .9, 6.0, 36, 30)],
  "run": [run("f_rDNPF", "mer", "s5:start", 8), run("f_rTEKF", "mer+6", "s5:start", 8), run("f_rPHRF", "mer+12", "s5:start", 8),
          run("f_dnpOn", "jp", "s4:start", 6), run("f_tekOn", "jp+8", "s4:start", 6), run("f_phrOn", "us", "s4:start", 6),
          run("f_cTWOn", "mer", "s4:start", 6), run("f_cKROn", "mer+6", "s4:start", 6), run("f_cUSOn", "mer+12", "s4:start", 6)],
  "labels": [LG("f_dnpA", "大日本印刷", "DNP", "amber", "jp", "us-8", [260, 300], DNPL, "JP"), LG("f_tekA", "Tekscend", "ex-Toppan", "amber", "jp+8", "us-8", [790, 300], "tekscend", "JP"),
-            LG("f_phrA", "Photronics", "US", "blue", "us", "s4:start-4", [790, 300], PHRL, "US")],
+            LG("f_phrA", "Photronics", "US", "blue", "us", "s4:start-10", [790, 300], PHRL, "US")],
  "overlay": [sec("mk2-mer", "start+4", "s4:start-8", "專業光罩廠", "SemiEng；Photronics 10-K", {"mer": "mer", "jp": "jp", "us": "us"})]}
 # s4：推近台灣：念「台灣光罩」廠區落下、光柱亮；念「成熟製程」光罩盒推上潔淨物流車，車沿路開往南部客戶晶圓廠
 P["s4"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", SM[0] + .15, SM[1] + .95, 7.5, 38, 30)],
+ "shot": [shotZ("start-4", TWC[0] + .3, TWC[1] + 1.2, 44, 54, 26), shotZ("tmc", SM[0] + .15, SM[1] + .95, 7.5, 38, 30)],
  "run": [run("f_tmcOn", "tmc", "s5:start", 6), run("f_cTWOn", "mat", "s5:start", 6), run("f_rTMCF", "mat+30", "s5:start", 8)],
- "labels": [LG("f_tmcA", "台灣光罩", "Taiwan Mask", "blue", "tmc", "s5:start-4", [720, 300], None, "TW"),
+ "labels": [LG("m_twA", "台灣", "Taiwan", "blue", "start-2", "tmc+16", [270, 300], None, "TW"),
+            LG("f_tmcA", "台灣光罩", "Taiwan Mask", "blue", "tmc", "s5:start-4", [720, 300], None, "TW"),
             lab("f_vanA", "潔淨物流車", "Clean logistics", "amber", "mat", "s5:start-4", xy=[810, 853])],
  "overlay": [sec("mk2-tw", "start+4", "s5:start-8", "台灣光罩（2338）", "公司說法", {"tmc": "tmc", "mat": "mat"})]}
 P["s5"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
@@ -669,18 +676,18 @@ P["s8"] = {"zoom": [{"to": "pod", "at": "start-4", "dur": 30}],
             lab("p_retA", "光罩", "Reticle", "blue", "pod", "s9:start-4", xy=[270, 300]), lab("p_obA", "外盒底座", "Outer base", "amber", "two", "s9:start-4", xy=[270, 853])],
  "overlay": [sec("mk2-pod", "start+4", "s9:start-8", "光罩盒：兩層", "Entegris；SEMATECH", {"pod": "pod", "euv": "euv", "two": "two", "out": "out", "inn": "inn"})]}
 P["s9"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", VX - 1.6, VY - .57, 34.5, 20, 30)],
+ "shot": [shot("start-4", VX - 1.6, VY - .57, 34.5, 20, 30), shot("vac-4", VX - .9, VY + .3, 22, 22, 30)],
  "run": [run("v_dust", "start", "s10:start", 8)] + [run(f"v_air{j}", "vac-4", "s10:start", 8) for j in range(4)] + [run("v_icOn", "open", "s10:start", 6)],
  "labels": [lab("v_lpA", "① 外盒留外面", "Stays outside", "amber", "start+6", "vac", xy=[270, 853]), lab("v_gateA", "② 內盒進腔", "Inner pod in", "blue", "why+10", "vac-8", xy=[810, 320]),
             lab("v_pumpA", "③ 抽真空", "Pump down", "blue", "vac", "s10:start-4", xy=[810, 853]), lab("v_icA", "④ 真空裡才開", "Opens in vacuum", "coral", "open", "s10:start-4", xy=[270, 300])],
  "overlay": [sec("mk2-vac", "start+4", "s10:start-8", "很難加保護膜", "USPTO 7477358；SPIE", {"why": "why", "film": "film", "vac": "vac", "open": "open"})]}
 P["s10"] = {"zoom": [{"to": "pod", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", PX, PY - 1.0, 42, 26, 30)],
+ "shot": [shot("start-4", PX, PY - .6, 60, 22, 30)],
  "run": [run("p_ocOn", "cert", "s11:start", 6), run("p_sealOn", "gd", "s11:start", 6)],
  "labels": [],  # 兩家的 LOGO＋國旗做成 3D 廠牌立在盒子後面（p_ent／p_gd），中文名稱在 2D 卡
  "overlay": [sec("mk2-co", "start+4", "s11:start-8", "誰做光罩盒", "Entegris 2018；中央社 2018", {"cert": "cert", "ent": "ent", "gd": "gd"})]}
 P["s11"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
- "shot": [shot("start-4", SX_ - .9, VY + .8, 15, 22, 34)],
+ "shot": [shot("start-4", SX_ - .9, VY + .8, 15, 22, 1)],
  "run": [run("v_euvOn", "arr", FAR, 6), run("v_euvF", "arr", FAR, 8), run("v_prOn", "glue", FAR, 6)],
  "labels": [lab("v_rsA", "光罩", "Reticle", "blue", "arr", "kw-10", xy=[900, 300]), lab("v_euvA", "極紫外光", "EUV light", "coral", "arr+10", "kw-10", xy=[230, 300]),
             lab("v_prA", "光阻", "Resist (next)", "amber", "glue", "kw-10", xy=[230, 640])],

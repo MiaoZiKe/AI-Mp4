@@ -10,7 +10,7 @@
 import React from "react";
 import { Img, staticFile } from "remotion";
 
-export type LogoSpec = { file: string; w: number; h: number; name: string; source: string; bg?: string };
+export type LogoSpec = { file: string; w: number; h: number; name: string; source: string; bg?: string; /** 方形、字在圖下方的 LOGO（例如 Photronics）在標籤裡要放大才看得清：標籤用這個高度（沒寫＝46） */ labelH?: number };
 /** 公司 LOGO 表（w:h＝原檔 viewBox 比例） */
 export const LOGOS: Record<string, LogoSpec> = {
   asml: { file: "logos/asml.svg", w: 1065, h: 300, name: "ASML", source: "https://commons.wikimedia.org/wiki/File:ASML_Holding_N.V._logo.svg" },
@@ -23,11 +23,12 @@ export const LOGOS: Record<string, LogoSpec> = {
   samsung: { file: "logos/samsung.svg", w: 7051.4024, h: 1080, name: "三星 Samsung", source: "https://commons.wikimedia.org/wiki/File:Samsung_wordmark.svg" },
   dnp: { file: "logos/dnp.svg", w: 110, h: 33, name: "大日本印刷 DNP", source: "https://www.global.dnp/content/dam/dnp-global/common/img/logo.svg" },
   tekscend: { file: "logos/tekscend.svg", w: 199, h: 32, name: "Tekscend Photomask", source: "https://www.photomask.com/assets/img/common/header_logo.svg" },
-  photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
+  photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, labelH: 110, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
   entegris: { file: "logos/entegris.svg", w: 181, h: 43, name: "英特格 Entegris", source: "https://www.entegris.com/content/dam/web/ux/global/header/logo-header-desktop.svg" },
   gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
+export const logoLabelH = (id: string, base: number) => LOGOS[id]?.labelH ?? base;
 export const logoW = (id: string, h: number) => (LOGOS[id] ? Math.round((h * LOGOS[id].w) / LOGOS[id].h) : 0);
 
 /** LOGO（HTML）：高 h，寬照原檔比例；白底小板讓深色／彩色 LOGO 在任何皮膚上都看得清楚（pad＝板邊距，0＝不加板） */

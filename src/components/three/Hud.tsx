@@ -15,7 +15,7 @@ import type { Scene, Script, TimelineV2 } from "../../types";
 import { FONT_EN, FONT_ZH, FPS, THEME_3D as T } from "../../theme";
 import { H, L, canvasBox, setHudLayout, setHudSkin, sm, CARD_HEAD, cardTitleBox } from "./hudSkin";
 import { LogoAnim, hasLogoAnim } from "./LogoAnims";
-import { Logo, Flag, hasLogo, hasFlag } from "./Brand";
+import { Logo, Flag, hasLogo, logoLabelH, hasFlag } from "./Brand";
 import { LABEL_LOGO_H, BACKDROP_O, ENDCARD, ENDCARD_TC, endcardGeom, textW, artRegion, applyY, planHud, ID, type Yield, arrangeOverlays, atOf, meters, modelRect, obstaclesOf, placeLabels, type PlacedLabel, zoomAt as zoomAtL, zoomKeys as zoomKeysL, type HudSpec, type Rect, type ZoomKey } from "./hudLayout";
 import { EASE, tween } from "../anim";
 import { splitParts } from "../Subtitle";
@@ -231,9 +231,13 @@ export const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: P
               <circle cx={p.x} cy={p.y} r={14 + 16 * tween(f, l.at - 2, 14, EASE.enter)} fill="none" stroke={c} strokeWidth={2} opacity={1 - tween(f, l.at + 8, 8, EASE.move)} />
               <circle cx={p.x} cy={p.y} r={7} fill={c} />
             </svg>
-            <div style={{ position: "absolute", left: Math.round(x), top: Math.round(y), opacity: tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)`, background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
+            {/* 2026/11/24 審片（mask2 N2）：帶 LOGO／國旗的標籤不准用透明度淡入淡出（等於把 LOGO 變淡）→ 實色、用縮放進出（退場縮小並往外滑出） */}
+            <div style={{ position: "absolute", left: Math.round(x), top: Math.round(y), ...(hasLogo(l.logo) || hasFlag(l.flag)
+              ? (() => { const ki = tween(f, l.at + 3, 6, EASE.enter), ko = tween(f, l.until, 6, EASE.exit), sc = Math.max(0.001, ki * (1 - ko)), dx = (left ? -1 : 1) * 80 * ko;
+                  return { opacity: sc > 0.02 ? 1 : 0, transform: `translate(${left ? "-100%" : "0"}, -50%) translateX(${dx.toFixed(1)}px) scale(${sc.toFixed(3)})`, transformOrigin: left ? "right center" : "left center" }; })()
+              : { opacity: tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)` }), background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
               <div style={{ ...zh(52, c), lineHeight: 1.25, letterSpacing: "0.04em" }}>{l.text}</div>
-              {hasLogo(l.logo) ? <Logo id={l.logo as string} h={LABEL_LOGO_H} pad={4} style={{ margin: "4px 0 6px" }} /> : null}
+              {hasLogo(l.logo) ? <Logo id={l.logo as string} h={logoLabelH(l.logo as string, LABEL_LOGO_H)} pad={4} style={{ margin: "4px 0 6px" }} /> : null}
               {l.en || hasFlag(l.flag) ? <div style={{ display: "flex", alignItems: "center", gap: 12, flexDirection: left ? "row-reverse" : "row" }}>
                 {hasFlag(l.flag) ? <Flag code={l.flag as string} h={Math.round(enPx * 1.05)} /> : null}
                 {l.en ? <div style={mono(enPx, H.text2, 500)}>{l.en}</div> : null}
