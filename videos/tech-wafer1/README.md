@@ -10,3 +10,9 @@
 - 一條龍：`bash scripts/three/make-tech.sh tech-wafer1 --take=<orig> --atempo=1.173` → `out/tech-wafer1.v1.mp4`（61.77 秒、正片 −15.9 LUFS、片尾 −11.0 LUFS），複製成 `out/tech-wafer1.mp4`。渲染約 42 分鐘（07:06–07:48）。
 - 檢查：layout-check 0 error、card-overlap 0/0、flow-check 0；verify4：1、3 過，2、4 程式標記經人工判讀為誤判（out/tech-wafer1/verify4/human.md）。
 - 環境：這台機器沒有 .venv，已建（torch 2.6.0 CPU 版＋transformers 等，scripts/fa-requirements.txt）。
+
+## 11/24 v2：重配（音高關卡）＋審片必改（渲染待審片人 ≥8 分）
+- 原因：Andy 11/24 聽出矽晶圓與光罩旁白音色差很多（v1 音高 137 Hz，基準 121.5 Hz）。
+- 配音：`bash scripts/three/tts-pitch-take.sh tech-wafer1`，3 次請求：137.1 ✖、140.4 ✖、123.7 ✔（`videos/tech-wafer1/tts-pitch.json`；退件檔 out/tech-wafer1-take-reject-1／2.wav）。純說話 258 字 ÷（63.97−7.96）＝4.61 字/秒 → atempo 1.248 → 片長約 56.2 秒。
+- 審片必改（docs/reviews/2026-11-24-wafer-mask-review.md）：s10 主畫面換成五棟晶圓廠（後排信越、環球晶、世創；前排勝高、SK），念到哪家落下哪棟、窗帶亮，念「超過八成」晶圓盒沿路送到集貨台；標籤加國旗；2D 卡每列國旗＋官方 LOGO（信越、世創；其他抓不到見 assets.md）；s11 晶圓慢轉＋後方台灣三棟廠（台灣旗）；s1 鉤子標題「純度 11 個 9」、標籤延到 how 才進；s5 鏡頭對準爐體；出處拿掉 series_plan。晶格站移到 x=-26、五家廠在 x=125（免得鏡頭橫移時掃過晶格）。
+- 檢查：layout-check 0 error、card-overlap 0/0、validate 0 error。國旗／LOGO 全程不透明（未輪到細灰框、輪到粗框＋放大）。
