@@ -62,6 +62,8 @@ type Zoom = ReturnType<typeof zoomAt>;
 const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
 export const magText = (mag: number) => { const e = Math.round(Math.log10(Math.max(1, mag))); if (mag < 9500) { const v = Math.max(1, mag), p = Math.pow(10, Math.floor(Math.log10(v))); return `×${Math.round(v / p) * p}`; } return e < 4 ? `×${Math.round(Math.pow(10, e))}` : `×10${String(e).split("").map((d) => SUP[Number(d)]).join("")}`; };
 
+/** 淺色底（亮度 > 0.5）才把比例尺字換深橘；深色皮膚維持原本的亮橘 */
+const isLightBg = (c: string) => { const m = /^#?([0-9a-f]{6})$/i.exec(String(c).trim()); if (!m) return false; const n = parseInt(m[1], 16); return (0.2126 * (n >> 16) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255 > 0.5; };
 const mono = (px: number, color: string = H.text, w = 600): React.CSSProperties => ({ fontFamily: `${H.font.mono}, ${FONT_EN}`, fontVariantNumeric: "tabular-nums", fontSize: px, color, fill: color, fontWeight: w, letterSpacing: "0.06em", whiteSpace: "nowrap" });
 const zh = (px: number, color: string = H.text, w = 900): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: px, color, fill: color, fontWeight: w, whiteSpace: "nowrap" });
 /** 色塊上的字色：橘色塊可另用 onAmber（淺色皮膚：藍／紅塊上白字、橘塊上深字） */
@@ -152,7 +154,8 @@ export const HudFrame: React.FC<{ f: number; hud: HudSpec; z: Zoom; camK?: numbe
       <g opacity={roK} transform={`translate(${x0 + 28} ${L.BAND_TOP ? L.STAGE_TOP + L.STAGE_H - 22 : y1 - 34})`}>
         <line x1={0} x2={rulerPx} y1={0} y2={0} stroke={H.amber} strokeWidth={s.bold} />
         {Array.from({ length: H.ruler.ticks + 1 }, (_, i) => <line key={i} x1={(rulerPx * i) / H.ruler.ticks} x2={(rulerPx * i) / H.ruler.ticks} y1={0} y2={i % 5 ? -H.ruler.h / 2 : -H.ruler.h} stroke={H.amber} strokeWidth={s.mid} />)}
-        <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, H.amber)}>{lvl.ruler}</text>
+        {/* 2026/11/24 審片 R2：比例尺數字用深橘（白底板上對比 ≥4.5:1）；皮膚可用 rulerText 覆寫 */}
+        <text x={0} y={-H.ruler.h - 12} style={mono(H.font.px.readout, (H as any).rulerText ?? (isLightBg(H.bg) ? "#B4530A" : H.amber), 600)}>{lvl.ruler}</text>
       </g>
       {L.BAND_TOP ? <>
         {/* 2026/11/15 讀數帶版面：上帶＝左邊層級名、右邊倍率＋FIELD；下帶＝左邊尺標、右邊示意圖標示。主素材只畫在兩條帶子中間，讀數不會壓到它 */}
