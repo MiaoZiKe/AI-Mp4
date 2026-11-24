@@ -57,7 +57,7 @@ const Plate: React.FC<{ logo?: string; text?: string; h?: number; w: number; a?:
   </div>);
 const Row: React.FC<{ x: number; y: number; a: number; children: React.ReactNode }> = ({ x, y, children }) => (
   <div style={{ position: "absolute", left: x, top: y, display: "flex", alignItems: "center", gap: 16 }}>{children}</div>);
-const Tx: React.FC<{ a: number; px?: number; c?: string; w?: number; children: React.ReactNode }> = ({ a, px = 32, c = H.text, w = 900, children }) => <span style={{ ...zh(px, c, w), opacity: 0.3 + 0.7 * a }}>{children}</span>;
+const Tx: React.FC<{ a: number; px?: number; c?: string; w?: number; children: React.ReactNode }> = ({ a, px = 32, c = H.text, w = 900, children }) => <span style={{ ...zh(px, c === H.text2 ? H.text : c, w), opacity: 0.75 + 0.25 * a }}>{children}</span>;
 
 // ── mk2-hook：光罩（晶片的底片）→ 誰做？ → 怎麼送進曝光機 ──
 const Hook: React.FC<P> = ({ o, f, k }) => {
@@ -106,7 +106,7 @@ const Cap: React.FC<P> = ({ o, f, k }) => {
         </Row>))}
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <Sep x={540} />
-        <g opacity={lit(f, T(o, "fast"), 0.45)}>
+        <g opacity={lit(f, T(o, "fast"), 0.75)}>
           <rect x={580} y={122} width={130} height={52} fill={BLUE} opacity={0.18} /><text x={596} y={158} style={zh(30, H.text, 900)}>光罩廠</text>
           <rect x={780} y={208} width={130} height={52} fill={H.amber} opacity={0.25} /><text x={796} y={244} style={zh(30, H.text, 900)}>晶圓廠</text>
           <path d={`M710 148 L845 148 L845 198`} fill="none" stroke={H.lineSoft} strokeWidth={4} /><path d="M838 198 L852 198 L845 208 Z" fill={H.lineSoft} />
@@ -348,22 +348,22 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={0.35 + 0.65 * ar}>
+        <g opacity={0.75 + 0.25 * ar}>
           <rect x={60} y={CT + 10} width={240} height={20} fill={QZ} stroke={QZ_D} strokeWidth={3} />
-          <line x1={180} y1={CT + 36} x2={180} y2={176} stroke={EUV} strokeWidth={6} opacity={0.3 + 0.7 * li} />
+          <line x1={180} y1={CT + 36} x2={180} y2={176} stroke={EUV} strokeWidth={6} opacity={0.75 + 0.25 * li} />
         </g>
-        <g opacity={0.35 + 0.65 * gl}>
+        <g opacity={0.75 + 0.25 * gl}>
           <rect x={60} y={190} width={240} height={14} fill={RES} />
           {li > 0 ? <rect x={150} y={190} width={60} height={14} fill={LINE} opacity={li} /> : null}
           <rect x={60} y={204} width={240} height={22} fill={DIE} />
           <text x={40} y={290} style={zh(32, H.text, 900)}>一層膠接住圖案</text>
         </g>
         <Sep x={440} />
-        <g opacity={0.35 + 0.65 * gl}>
-          <text x={470} y={CT + 36} style={zh(30, H.text2, 800)}>照光前</text>
+        <g opacity={0.75 + 0.25 * gl}>
+          <text x={470} y={CT + 36} style={zh(30, H.text, 800)}>照光前</text>
           <rect x={470} y={CT + 56} width={190} height={40} fill={RES} />
         </g>
-        <g opacity={0.3 + 0.7 * li}>
+        <g opacity={0.75 + 0.25 * li}>
           <text x={710} y={CT + 36} style={zh(30, H.text, 900)}>照光後：變了</text>
           <rect x={710} y={CT + 56} width={190} height={40} fill={RES} />
           {[0, 1, 2, 3, 4].map((j) => <rect key={j} x={716 + j * 38} y={CT + 56} width={20} height={40 * on(f, T(o, "light") + j * 4, 6)} fill={LINE} />)}

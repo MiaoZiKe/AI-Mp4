@@ -91,6 +91,7 @@ lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r
 levels = [lv("plant", "光罩廠", "MASK SHOP", "10 m", "2 m"), lv("tool", "設備", "EQUIPMENT", "2 m", "50 cm"),
           lv("pod", "光罩盒", "RETICLE POD", "30 cm", "10 cm"), lv("mask", "光罩", "PHOTOMASK", "15 cm", "5 cm")]
 levels[0]["handoff3D"] = True
+levels[0]["readout"] = False  # 地圖幕（s2–s4）不放倍率與「2 m」比例尺（地圖本來就不照比例；審片 R2-7）
 out = {"slug": "tech-mask2", "title": "光罩-2：誰做光罩、怎麼運送（科技透明圈）", "asOf": "2026/11/24", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
