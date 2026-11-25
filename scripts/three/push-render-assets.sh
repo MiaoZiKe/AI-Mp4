@@ -15,7 +15,7 @@ cd "$(dirname "$0")/../.."
 ROOT=$(pwd); V=videos/$SLUG; A=public/audio/$SLUG
 [ -f $V/storyboard.json ] || { echo "✖ 找不到 $V/storyboard.json"; exit 2; }
 [ -d $A ] || { echo "✖ 找不到 $A/（先配音）"; exit 2; }
-TRACK=out/$SLUG.$VER.wav; MP4=out/$SLUG.$VER.mp4
+TRACK=${TRACK:-out/$SLUG.$VER.wav}; MP4=${MP4:-out/$SLUG.$VER.mp4}   # TRACK=／MP4= 可指定別處的成品
 if [ ! -f "$TRACK" ] && [ ! -f "$MP4" ]; then echo "✖ 找不到成品音軌 $TRACK（也沒有 $MP4 可抽）"; exit 2; fi
 
 # 程式碼 commit：src/ 與 scripts/ 有沒 commit 的改動就停（雲端拿不到）；HEAD 必須已經在遠端
