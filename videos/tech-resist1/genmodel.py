@@ -101,15 +101,15 @@ def spin(key, lay, ps, cx, rps, cz=0.0):
 def lp(lay): return [p["id"] for p in parts if p["layer"] == lay]
 
 # ═════════ 黃光區（背景，各站共用）：微影區的照明是黃光（光阻怕短波長光），地板格柵、牆面分隔、天花板過濾器、牆上管線架 ═════════
-box("r_floor", "t_room", "floor", [220, .3, 44], [88, -.15, -2])
-box("r_grate", "t_room", "floorG", [.1, .03, 44], [88, .02, -2], at=[[-108 + 2.0 * i, 0, 0] for i in range(109)])
-box("r_grate2", "t_room", "floorG", [220, .03, .1], [88, .02, -2], at=[[0, 0, -21 + 2.0 * j] for j in range(22)])
-box("r_wall", "t_room", "wall", [220, 26, .4], [88, 13, -18])
-box("r_wallS", "t_room", "wall2", [.12, 25.6, .45], [88, 13, -17.9], at=[[-108 + 6 * i, 0, 0] for i in range(37)])
-box("r_ffu", "t_room", "ffu", [5.6, .4, 5.6], [88, 26.2, -12], at=[[-108 + 6 * i, 0, k * 6] for i in range(37) for k in (0, 1)])
-box("r_lamp", "t_room", "lamp", [4.6, .12, .5], [88, 25.9, -9], at=[[-108 + 6 * i, 0, k * 6] for i in range(37) for k in (0, 1)])   # 黃光燈管
-box("r_tray", "t_room", "steel2", [220, .25, .6], [88, 14.5, -16.6])
-cyl("r_pipeW", "t_room", "steelHi", .18, 220, [88, 15.0, -16.6], axis="x", at=[[0, 0, 0], [0, .55, 0], [0, 1.1, 0]])
+box("r_floor", "t_room", "floor", [340, .3, 44], [148, -.15, -2])   # 11/25 審片必改 4：地板牆面加長到 x=318，日本廠（x=198）後面不再是空白
+box("r_grate", "t_room", "floorG", [.1, .03, 44], [88, .02, -2], at=[[-108 + 2.0 * i, 0, 0] for i in range(168)])
+box("r_grate2", "t_room", "floorG", [340, .03, .1], [148, .02, -2], at=[[0, 0, -21 + 2.0 * j] for j in range(22)])
+box("r_wall", "t_room", "wall", [340, 26, .4], [148, 13, -18])
+box("r_wallS", "t_room", "wall2", [.12, 25.6, .45], [88, 13, -17.9], at=[[-108 + 6 * i, 0, 0] for i in range(57)])
+box("r_ffu", "t_room", "ffu", [5.6, .4, 5.6], [88, 26.2, -12], at=[[-108 + 6 * i, 0, k * 6] for i in range(57) for k in (0, 1)])
+box("r_lamp", "t_room", "lamp", [4.6, .12, .5], [88, 25.9, -9], at=[[-108 + 6 * i, 0, k * 6] for i in range(57) for k in (0, 1)])   # 黃光燈管
+box("r_tray", "t_room", "steel2", [340, .25, .6], [148, 14.5, -16.6])
+cyl("r_pipeW", "t_room", "steelHi", .18, 340, [148, 15.0, -16.6], axis="x", at=[[0, 0, 0], [0, .55, 0], [0, 1.1, 0]])
 
 # ═════════ A：晶圓台 x=0（塗了光阻的晶圓、光阻瓶、點膠噴嘴） ═════════
 AX = 0
@@ -494,7 +494,7 @@ P["s1"] = {"zoom": [{"to": "film", "at": "start-30", "dur": 1}],
  "shot": [S("start-30", BX, 5.2, 52, 14, 1), S("light", BX, 5.4, 54, 16, 60)],
  "shift": VIS,
  "run": LIGHT("p", "start-30", "s2:start") + [run(f"p_chg{c}", "change", "s2:start", 8) for c in EXP] + [run(f"p_jit{c}", "change", "s2:start", 8) for c in EXP],
- "overlay": [sec("pr1-hook", "chip", "s2:start-2", "代工的供應商：光阻", "示意，非實際比例", {"chip": "chip", "glue": "glue", "light": "light", "change": "change"}, y=1110, h=300)]}
+ "overlay": [sec("pr1-hook", "chip", "s2:start-2", "代工的供應商：光阻", "示意，非實際比例", {"chip": "chip", "glue": "glue", "light": "light", "change": "change"}, y=950, h=330)]}
 P["s2"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
  "shot": [S("start-4", AX, 3.6, 40, 34, 30)],
  "run": [run("a_shine", "pr", "s3:start", 8)],
@@ -503,7 +503,7 @@ P["s2"] = {"zoom": [{"to": "wafer", "at": "start-4", "dur": 30}],
 P["s3"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 30}],
  "shot": [S("start-4", BX, 4.2, 54, 14, 30), S("hit", BX, 1.8, 42, 12, 40)],
  "run": LIGHT("p", "mask", "s4:start") + [run(f"p_chg{c}", "break", "s4:wash+20", 8) for c in EXP] + [run(f"p_jit{c}", "break", "s4:start", 8) for c in EXP],
- "labels": [lab("p_maskA", "光罩擋光", "Mask blocks light", "blue", "mask", "s4:start-4", xy=[RX, LY]), lab("p_resA", "長鏈斷開", "Chains break", "coral", "break", "s4:start-4", xy=[LX, LY])],
+ "labels": [lab("p_maskA", "光罩擋光", "Mask", "blue", "mask", "break-10", xy=[870, 340]), lab("p_resA", "長鏈斷開", "Break", "coral", "break", "s4:start-4", xy=[210, 340])],   # 11/25 審片必改 2：一次只亮一張、縮窄避開光罩載台與左上 HUD
  "overlay": [sec("pr1-expose", "start+5", "s4:start-2", "曝光：分子斷開", "Wevolver；EPFL", {"mask": "mask", "hit": "hit", "break": "break", "alter": "alter"})]}
 P["s4"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
  "shot": [S("start-4", BX, 1.8, 42, 18, 30)],
@@ -511,7 +511,7 @@ P["s4"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
  "labels": [lab("p_devA", "顯影液", "Developer", "blue", "dev", "s5:start-4", xy=[RX, LY]), lab("p_resA", "沒照到的留下", "Unexposed stays", "amber", "keep", "s5:start-4", xy=[LX, LY])],
  "overlay": [sec("pr1-pos", "start+5", "s5:start-2", "正型：照到的被洗掉", "Wevolver；USPTO 11016386", {"pos": "pos", "dev": "dev", "wash": "wash", "keep": "keep"})]}
 P["s5"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
- "shot": [S("start-4", (BX + NX) / 2, 3.6, 118, 16, 30)],
+ "shot": [S("start-4", (BX + NX) / 2, 2.4, 95, 20, 30)],   # 11/25 審片必改 3：118→96（主素材放大約 1.2 倍，兩塊仍在畫面內）
  "run": LIGHT("n", "start", "net-10") + [run(f"n_netG{c}", "net", "s6:start", 8) for c in EXP] + [run(f"n_chg{c}", "start+6", "s6:start", 8) for c in EXP] + [run("n_dflow", "net+6", "stay+20", 8)],
  "labels": [lab("p_posA", "正型", "Positive", "blue", "neg", "s6:start-4", xy=[LX, LY]), lab("n_negA", "負型", "Negative", "amber", "neg", "s6:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-neg", "start+5", "s6:start-2", "正型 vs 負型", "Wevolver；EPFL", {"neg": "neg", "net": "net", "stay": "stay"})]}

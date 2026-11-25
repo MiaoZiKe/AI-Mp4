@@ -100,7 +100,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     scenes.append(sc)
 scenes[0]["props"]["hook"] = {"kicker": "接上集：光罩送進曝光機", "title": "圖案印在哪？", "size": 110, "top": 236}
 scenes.append({"id": "s15", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "光阻-2 塗佈機", "trail": ["塗佈顯影機"], "at": "s14:kw-8", "comment": "光阻", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "光阻-2 塗佈顯影機", "trail": ["塗佈顯影機"], "at": "s14:kw-8", "comment": "光阻", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/23", "noteAlways": True}
 levels = [lv("wafer", "晶圓", "WAFER", "30 cm", "10 cm"), lv("film", "光阻層剖面", "RESIST CROSS-SECTION", "2 µm", "500 nm"),
           lv("mol", "分子", "MOLECULES", "20 nm", "5 nm")]
