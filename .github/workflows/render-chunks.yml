@@ -1,0 +1,165 @@
+# 多台同時分段渲染（2026-11-25）：一支片切成每段 chunk 幀，每段一台 runner 同時渲，最後 concat＋配上成品音軌。
+# 素材先用 bash scripts/three/push-render-assets.sh <slug> <ver> 推到素材分支（預設 renders/series2 的 assets/<slug>/）。
+# 成品：artifact「<slug>.<ver>」＋素材分支的 renders/<slug>.<ver>.mp4。不送 TTS 請求、不用任何金鑰（只用內建 GITHUB_TOKEN）。
+name: render-chunks
+on:
+  workflow_dispatch:
+    inputs:
+      slug: { description: "片名 slug（例如 tech-mask2）", required: true }
+      ver: { description: "版本名（例如 v4）", required: true, default: "v1" }
+      asset_branch: { description: "素材分支", required: true, default: "renders/series2" }
+      chunk: { description: "每段幾幀", required: false, default: "90" }
+      conc: { description: "每台 Chrome 平行數（THREE_CONCURRENCY）", required: false, default: "2" }
+      src_ref: { description: "程式碼 commit／分支（空白＝用素材 meta.json 記的 commit）", required: false, default: "" }
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-${{ inputs.slug }}-${{ inputs.ver }}
+  cancel-in-progress: false
+
+env:
+  PW_VER: "1.63.0"
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+      src: ${{ steps.m.outputs.src }}
+      n: ${{ steps.m.outputs.n }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.asset_branch }}
+          sparse-checkout: assets/${{ inputs.slug }}
+          path: _assets
+      - id: m
+        run: |
+          set -e
+          M=_assets/assets/${{ inputs.slug }}/meta.json
+          [ -f "$M" ] || { echo "::error::素材分支 ${{ inputs.asset_branch }} 沒有 assets/${{ inputs.slug }}/meta.json（先跑 push-render-assets.sh）"; exit 1; }
+          python3 - "$M" "${{ inputs.chunk }}" "${{ inputs.src_ref }}" >> "$GITHUB_OUTPUT" <<'PY'
+          import json, sys
+          meta = json.load(open(sys.argv[1])); step = int(sys.argv[2]); n = int(meta["totalFrames"])
+          sb = json.load(open(sys.argv[1].replace("meta.json", "video/storyboard.json")))
+          assert sb["totalFrames"] == n, "meta.json 與 storyboard.json 幀數不同"
+          segs = [{"a": a, "b": min(a + step - 1, n - 1)} for a in range(0, n, step)]
+          assert len(segs) <= 256, "段數超過 256，把 chunk 調大"
+          print("matrix=" + json.dumps({"include": segs}))
+          print("src=" + (sys.argv[3] or meta["src"]))
+          print(f"n={n}")
+          PY
+          cat "$GITHUB_OUTPUT"
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.src }}
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.asset_branch }}
+          sparse-checkout: assets/${{ inputs.slug }}
+          path: _assets
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: 安裝套件
+        run: npm ci --no-audit --no-fund
+      - name: 快取 Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ env.PW_VER }}-shell
+      - name: 安裝 Chromium headless shell（和本機同一版 1243）與系統依賴
+        run: |
+          npx -y playwright@$PW_VER install --with-deps --only-shell chromium
+          B=$(ls ~/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell | head -1)
+          echo "REMOTION_BROWSER=$B" >> "$GITHUB_ENV"; echo "瀏覽器：$B"
+      - name: 放入素材（配音、時間軸快照、貼圖）
+        run: |
+          set -e
+          S=${{ inputs.slug }}; D=_assets/assets/$S
+          mkdir -p public/audio/$S videos/$S public/tex
+          cp -r $D/audio/. public/audio/$S/
+          if [ -d $D/tex ] && [ -n "$(ls -A $D/tex)" ]; then cp -r $D/tex/. public/tex/; echo "貼圖：用素材分支的（和本機同一份）"
+          elif [ -f videos/$S/genmodel.py ]; then
+            echo "貼圖：素材分支沒有，跑 genmodel.py 重產"
+            npm i --no-save --no-audit --no-fund playwright@$PW_VER
+            PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright python3 videos/$S/genmodel.py
+          fi
+          cp $D/video/*.json videos/$S/   # 時間軸／script／model 以快照為準（genmodel 之後再蓋一次）
+          ls public/tex/brand 2>/dev/null | head -30 || true
+      - name: 渲染第 ${{ matrix.a }}–${{ matrix.b }} 幀
+        run: |
+          mkdir -p out/chunks
+          T0=$(date +%s)
+          THREE_CONCURRENCY=${{ inputs.conc }} RENDER_TIMEOUT_MS=180000 node scripts/three/render-range.mjs ${{ inputs.slug }} ${{ matrix.a }} ${{ matrix.b }} out/chunks/c$(printf %05d ${{ matrix.a }}).mp4
+          echo "渲染 $(( $(date +%s)-T0 )) 秒（$(nproc) 核）"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chunk-${{ matrix.a }}
+          path: out/chunks/*.mp4
+          retention-days: 3
+          compression-level: 0
+
+  merge:
+    needs: [prepare, render]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.asset_branch }}
+          sparse-checkout: |
+            assets/${{ inputs.slug }}
+            renders
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chunk-*
+          path: chunks
+          merge-multiple: true
+      - name: 裝 ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+      - name: 接段＋配音軌
+        id: mux
+        run: |
+          set -e
+          S=${{ inputs.slug }}; V=${{ inputs.ver }}; D=assets/$S
+          ls chunks/*.mp4 | sort | sed "s/.*/file '&'/; s|chunks/||" > chunks/list.txt
+          echo "段數 $(wc -l < chunks/list.txt)"
+          ffmpeg -loglevel error -y -f concat -safe 0 -i chunks/list.txt -c copy video.mp4
+          NV=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of csv=p=0 video.mp4)
+          [ "$NV" = "${{ needs.prepare.outputs.n }}" ] || { echo "::error::幀數 $NV ≠ ${{ needs.prepare.outputs.n }}"; exit 1; }
+          TR=$D/$(python3 -c "import json;print(json.load(open('$D/meta.json'))['track'])")
+          DUR=$(python3 -c "print(f'{${{ needs.prepare.outputs.n }}/30:.4f}')")
+          mkdir -p renders
+          # 和 make-tech.sh 第 4c 步同一條 mux 指令（影像 copy、音軌 aac 192k、-t 總長）
+          if [ "${TR##*.}" = "wav" ]; then ACODEC="-c:a aac -b:a 192k"; else ACODEC="-c:a copy"; fi
+          ffmpeg -loglevel error -y -i video.mp4 -i "$TR" -map 0:v -map 1:a -c:v copy $ACODEC -t $DUR renders/$S.$V.mp4
+          SZ=$(stat -c %s renders/$S.$V.mp4); L=$(ffprobe -v error -show_entries format=duration -of csv=p=0 renders/$S.$V.mp4)
+          echo "✔ renders/$S.$V.mp4｜$NV 幀｜片長 ${L}s｜$((SZ/1048576)) MB｜本機成品片長 $(python3 -c "import json;print(json.load(open('$D/meta.json')).get('localDuration',''))")"
+          echo "file=renders/$S.$V.mp4" >> "$GITHUB_OUTPUT"; echo "size=$SZ" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.slug }}.${{ inputs.ver }}
+          path: ${{ steps.mux.outputs.file }}
+          compression-level: 0
+      - name: 推到素材分支 renders/
+        run: |
+          set -e
+          [ "${{ steps.mux.outputs.size }}" -lt 99000000 ] || { echo "::warning::成品超過 99MB，不推 git（只留 artifact）"; exit 0; }
+          git config user.name "github-actions[bot]"; git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -f ${{ steps.mux.outputs.file }}
+          git commit -q -m "成品：${{ inputs.slug }}.${{ inputs.ver }}（雲端分段渲染，run ${{ github.run_id }}）"
+          for i in 1 2 3 4 5; do git push -q origin HEAD:${{ inputs.asset_branch }} && exit 0; git pull -q --rebase origin ${{ inputs.asset_branch }}; sleep 5; done
+          exit 1
