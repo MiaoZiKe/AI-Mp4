@@ -16,7 +16,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   stage: "#8FA3C4", vessel: "#DDE7F6", glassC: "#BFD3F2", copper: "#D98A3D", cu: "#C8743A", ti: "#B9C0CA", waferC: "#5F7FB8", dieC: "#7FA4E0",
   lampY: "#F2B632", lampG: "#2FBF71", screen: "#5B8DEF", pipeB: "#3E7BD6", foupC: "#5A6474", magN: "#E5484D", magS: "#2F6FE0",
-  plasma: "#A78BFA", plasmaHot: "#C4B5FD", ar: "#8B5CF6", atomCu: "#E08A4A", atomTi: "#9AA6B8", gasA: "#F08A3C", gasB: "#1FB5C9", purge: "#C8D0DB",
+  plasma: "#A78BFA", plasmaHot: "#C4B5FD", ar: "#8B5CF6", atomCu: "#E08A4A", atomTi: "#9AA6B8", gasA: "#F08A3C", gasB: "#06B6D4", purge: "#C8D0DB",
   heater: "#E5484D", filmCu: "#D9894E", filmA: "#2BA39A", filmC: "#E3A63A", ffuAir: "#9CC8F0",
   ionSel: "#38BDF8", ionLight: "#A3E635", ionHeavy: "#F472B6", beam: "#7DD3FC", srcGlow: "#C084FC", coil: "#D98A3D", insul: "#EDE7DA",
 };
@@ -30,6 +30,7 @@ const materials = {
   glass: M("phys", "glassC", { rough: 0.1, metal: 0, clearcoat: 0.8, opacity: 0.16, env: 0.3 }),
   window: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.45, env: 0.6 }),
   copper: M("std", "copper", { rough: 0.35, metal: 0.9, env: 0.6 }), cu: M("std", "cu", { rough: 0.3, metal: 0.9, env: 0.8 }), ti: M("std", "ti", { rough: 0.25, metal: 0.9, env: 0.9 }),
+  dieM: M("std", "dieC", { rough: 0.25, metal: 0.5, env: 0.8 }),
   wafer: M("phys", "waferC", { rough: 0.15, metal: 0.6, clearcoat: 0.9, env: 0.9 }),
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.4, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.3, rough: 0.4, metal: 0 }),
   screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }), pipeB: M("std", "pipeB", { rough: 0.35, metal: 0.6, env: 0.4 }),
@@ -105,13 +106,19 @@ const L1 = 4, BL = 2.8, yR = 5.75;
 LAY("vr", [9, 1.5, 4, 6]); LAY("wf", [3, 0.3, -3.4, yW]);
 P({ id: "vrBase", layer: "vr", shape: "cyl", size: [0.9, 0.4], rot: V, pos: [0, 5.5, 0], mat: "dark" });
 P({ id: "vrShoulder", layer: "vr", shape: "cyl", size: [0.5, 0.5], rot: V, pos: [0, 5.92, 0], mat: "steel" });
-SEG({ id: "vrLink1", layer: "vr", shape: "box", size: [L1, 0.2, 0.8], pos: [L1 / 2, 6.02, 0], mat: "steel2" }, 0, 6);
-P({ id: "vrElbow", layer: "vr", shape: "cyl", size: [0.4, 0.44], rot: V, pos: [L1, 6.13, 0], mat: "steel" });
-SEG({ id: "vrLink2", layer: "vr", shape: "box", size: [L1, 0.2, 0.62], pos: [L1 * 1.5, 6.24, 0], mat: "steel2" }, 0, 6);
-P({ id: "vrWrist", layer: "vr", shape: "cyl", size: [0.34, 0.16], rot: V, pos: [2 * L1, 6.36, 0], mat: "steel" });
-// 刀片：叉形（兩根指，晶圓放在上面）＋根部
-P({ id: "vrBladeRoot", layer: "vr", shape: "box", size: [0.7, 0.06, 0.7], pos: [2 * L1 + 0.3, 6.44, 0], mat: "dark" });
+// 蛙腿式雙刀（審片 mech 複審 2）：中心兩根同軸上臂（左 j1、右 jr1，反向轉＝伸縮、同向轉＝轉向）各接一根前臂，交會在腕座；
+//   腕座上一支雙頭刀片（前刀取放、後刀空著，一次到腔內換片用）。數學上左右兩條鏈互為鏡像，前臂端點永遠在同一點。
+SEG({ id: "vrLink1", layer: "vr", shape: "box", size: [L1, 0.2, 0.7], pos: [L1 / 2, 6.02, 0], mat: "steel2" }, 0, 6);
+SEG({ id: "vrLinkR1", layer: "vr", shape: "box", size: [L1, 0.2, 0.7], pos: [L1 / 2, 5.8, 0], mat: "steel2" }, 0, 6);
+P({ id: "vrElbow", layer: "vr", shape: "cyl", size: [0.38, 0.44], rot: V, pos: [L1, 6.13, 0], mat: "steel" });
+P({ id: "vrElbowR", layer: "vr", shape: "cyl", size: [0.38, 0.66], rot: V, pos: [L1, 6.02, 0], mat: "steel" });
+SEG({ id: "vrLink2", layer: "vr", shape: "box", size: [L1, 0.2, 0.55], pos: [L1 * 1.5, 6.24, 0], mat: "steel2" }, 0, 6);
+SEG({ id: "vrLinkR2", layer: "vr", shape: "box", size: [L1, 0.2, 0.55], pos: [L1 * 1.5, 6.24, 0], mat: "steel2" }, 0, 6);
+P({ id: "vrWrist", layer: "vr", shape: "cyl", size: [0.42, 0.16], rot: V, pos: [2 * L1, 6.36, 0], mat: "steel" });
+P({ id: "vrBladeRoot", layer: "vr", shape: "box", size: [0.9, 0.06, 0.9], pos: [2 * L1, 6.44, 0], mat: "dark" });
 SEG({ id: "vrBlade", layer: "vr", shape: "box", size: [2.7, 0.06, 0.3], pos: [2 * L1 + BL + 0.0, 6.44, 0], at: [[0, 0, -0.55], [0, 0, 0.55]], mat: "ti" }, 0, 9);
+SEG({ id: "vrBlade2", layer: "vr", shape: "box", size: [2.7, 0.06, 0.3], pos: [2 * L1 - BL, 6.44, 0], at: [[0, 0, -0.55], [0, 0, 0.55]], mat: "ti" }, 0, 9);
+P({ id: "vrBladeNeck", layer: "vr", shape: "box", size: [R2(2 * BL - 2.7), 0.06, 0.5], pos: [2 * L1, 6.44, 0], mat: "ti" });
 P({ id: "vrPad", layer: "vr", shape: "cyl", size: [0.12, 0.05], rot: V, pos: [2 * L1 + BL, 6.495, 0], at: [[-0.9, 0, -0.55], [-0.9, 0, 0.55], [1.0, 0, -0.55], [1.0, 0, 0.55]], mat: "dark" });
 const kinVr = {
   layer: "vr", tip: "lift", size: 2 * L1 + BL, grip: [2 * L1 + BL, 6.52, 0],
@@ -119,10 +126,12 @@ const kinVr = {
     { id: "j1", type: "rot", axis: [0, 1, 0], pivot: [0, 6.02, 0], parts: ["vrShoulder", "vrLink1"], min: -400, max: 400 },
     { id: "j2", parent: "j1", type: "rot", axis: [0, 1, 0], pivot: [L1, 6.13, 0], parts: ["vrElbow", "vrLink2"], min: -175, max: 175 },
     { id: "j3", parent: "j2", type: "rot", axis: [0, 1, 0], pivot: [2 * L1, 6.36, 0], parts: ["vrWrist"], min: -175, max: 175 },
-    { id: "lift", parent: "j3", type: "slide", axis: [0, 1, 0], parts: ["vrBladeRoot", "vrBlade", "vrPad"], min: -0.3, max: 0.5 },
+    { id: "lift", parent: "j3", type: "slide", axis: [0, 1, 0], parts: ["vrBladeRoot", "vrBlade", "vrBlade2", "vrBladeNeck", "vrPad"], min: -0.3, max: 0.5 },
+    { id: "jr1", type: "rot", axis: [0, 1, 0], pivot: [0, 5.8, 0], parts: ["vrLinkR1"], min: -400, max: 400 },
+    { id: "jr2", parent: "jr1", type: "rot", axis: [0, 1, 0], pivot: [L1, 5.88, 0], parts: ["vrElbowR", "vrLinkR2"], min: -175, max: 175 },
   ],
-  body: ["vrBase", "vrShoulder", "vrLink1", "vrElbow", "vrLink2", "vrWrist", "vrBladeRoot", "vrBlade", "vrPad"],
-  info: { L1, BL, yR },
+  body: ["vrBase", "vrShoulder", "vrLink1", "vrLinkR1", "vrElbow", "vrElbowR", "vrLink2", "vrLinkR2", "vrWrist", "vrBladeRoot", "vrBlade", "vrBlade2", "vrBladeNeck", "vrPad"],
+  info: { L1, BL, yR, type: "frog-leg dual blade" },
 };
 
 // 晶圓（被搬的那一片，wf 層）：一開始在左邊晶圓盒裡（x＝左負載鎖中心 x）
@@ -140,7 +149,10 @@ const chamberShell = (key, a, rr, h, lidH) => {
   P({ id: `${body}Fl`, layer: body, shape: "tube", size: [rr + 0.25, rr - 0.1, 0.3], rot: V, pos: [x, 4.6 + h - 0.15, z], mat: "steel" });
   P({ id: `${body}Rib`, layer: body, shape: "tube", size: [rr + 0.12, rr - 0.05, 0.22], rot: V, pos: [x, 4.6 + h * 0.4, z], mat: "steel" });
   P({ id: `${body}Port`, layer: body, shape: "cyl", size: [0.45, 0.3], rot: [0, 50 - a, 0], pos: [...(() => { const [px, pz] = pol(a + 40, rr + 0.1); return [R2(x + px), 4.6 + h * 0.62, R2(z + pz)]; })()], mat: "window" });
-  P({ id: `${body}Legs`, layer: pump, shape: "box", size: [0.35, 4.4, 0.35], pos: [x, 2.3, z], at: [45, 135, 225, 315].map((t) => { const [px, pz] = pol(t, rr - 0.6); return [px, 0, pz]; }), mat: "dark" });
+  // 掛在主機框架上（審片 mech 複審 3）：腔底支撐板＋兩根沿徑向接回主機底座的框架梁（泵吊在腔底法蘭下面）
+  { const r0 = AP - 0.6, r1 = AP + 0.8 + rr, len = R2(r1 - r0 + rr * 0.6), [mx, mz] = pol(a, R2((r0 + r1 + rr * 0.6) / 2));
+    P({ id: `${body}Frame`, layer: pump, shape: "box", size: [len, 0.6, 0.5], rot: [0, -a, 0], pos: [mx, 4.25, mz], at: [-1, 1].map((t) => { const [tx, tz] = pol(a + 90, t * rr * 0.55); return [tx, 0, tz]; }), mat: "band" });
+    P({ id: `${body}Plate`, layer: pump, shape: "cyl", size: [R2(rr - 0.15), 0.3], rot: V, pos: [x, 4.45, z], mat: "dark" }); }
   P({ id: `${pump}`, layer: pump, shape: "cyl", size: [0.9, 2.2], rot: V, pos: [x, 2.6, z], mat: "steel" });
   P({ id: `${pump}Fl`, layer: pump, shape: "tube", size: [1.15, 0.7, 0.3], rot: V, pos: [x, 3.85, z], at: [[0, 0, 0], [0, -2.5, 0]], mat: "dark" });
   P({ id: `${pump}Neck`, layer: pump, shape: "cyl", size: [0.6, 0.7], rot: V, pos: [x, 4.3, z], mat: "steel2" });
@@ -311,25 +323,25 @@ actions.pvdGlow = { type: "pulse", _說明: "氬電漿輝光微微呼吸（不�
 actions.pvdSpin = { type: "rotate", _說明: "磁控管偏心磁鐵組繞腔軸轉（約 1 圈／秒，示意），電漿亮帶跟著轉；起轉、停轉有加減速（rampSpin）", parts: ["pvdMagYoke", "pvdMagN", "pvdMagS", "pvdMagGlow"], axis: [0, 1, 0], pivot: [P1.x, P1.top, P1.z], pivots: Object.fromEntries(["pvdMagYoke", "pvdMagN", "pvdMagS", "pvdMagGlow"].map((k) => [k, [P1.x, P1.top, P1.z]])), rps: 0.8, rampSpin: true };
 { const [ox, oz] = pvdPts(3.3, -1.2), [ix, iz] = pvdPts(2.0, -1.0); actions.pvdArIn = { type: "flow", _說明: "氬氣由腔壁細管慢慢進來（不是噴流）", path: [lpt("pvdBody", [ox, 6.0, oz]), lpt("pvdBody", [ix, 6.5, iz])], n: 4, size: 0.1, shape: "dot", rate: 0.35, color: "ar", track: false }; }
 // CVD：噴頭孔向下均勻噴出（多排簾幕），貼近晶圓轉向往外、流向抽氣環
-const gasCurtain = (key, ch, color, pre, rate = 0.5, zo = 0) => {
+const gasCurtain = (key, ch, color, pre, rate = 0.5, zo = 0, lanes = 7) => {
   const xs = [-1.6, -0.8, 0, 0.8, 1.6], out = [];
   xs.forEach((u, i) => {
     const sx = R2(ch.x + u), z0 = R2(ch.z + zo), y0 = R2(ch.SHY - 0.16), y1 = R2(yW + 0.25), side = u === 0 ? (i % 2 ? 1 : -1) : Math.sign(u);
     const id = `${pre}${i}`;
-    actions[id] = { type: "flow", _說明: "氣體從噴頭小孔往下（整排像簾幕），近晶圓轉向往外，流到抽氣環", path: [lpt(ch.sh, [sx, y0, z0]), lpt(ch.sh, [sx, y1, z0]), lpt(ch.sh, [R2(ch.x + side * 2.15), R2(yW + 0.12), z0]), lpt(ch.sh, [R2(ch.x + side * 2.5), 5.7, z0])], n: 6, lanes: 7, laneGap: 0.48, laneDir: [0, 0, 1], size: 0.085, shape: "dot", rate, phase: i * 0.17, color, track: false };
+    actions[id] = { type: "flow", _說明: "氣體從噴頭小孔往下（整排像簾幕），近晶圓轉向往外，流到抽氣環", path: [lpt(ch.sh, [sx, y0, z0]), lpt(ch.sh, [sx, y1, z0]), lpt(ch.sh, [R2(ch.x + side * 2.15), R2(yW + 0.12), z0]), lpt(ch.sh, [R2(ch.x + side * 2.5), 5.7, z0])], n: 6, lanes, laneGap: R2(3.4 / lanes), laneDir: [0, 0, 1], size: 0.085, shape: "dot", rate, phase: i * 0.17, color, track: false };
     out.push(id);
   });
   return out;
 };
 const cvdA = gasCurtain("cvd", CVD, "gasA", "cvdA", 0.7, 0), cvdB = gasCurtain("cvd", CVD, "gasB", "cvdB", 0.7, 0.24);
-const aldA = gasCurtain("ald", ALD, "gasA", "aldA", 1.2), aldB = gasCurtain("ald", ALD, "gasB", "aldB", 1.2, 0.24), aldP = gasCurtain("ald", ALD, "purge", "aldP", 1.4, 0.12);
+const aldA = gasCurtain("ald", ALD, "gasA", "aldA", 0.9, 0, 9), aldB = gasCurtain("ald", ALD, "gasB", "aldB", 1.2, 0.24), aldP = gasCurtain("ald", ALD, "purge", "aldP", 1.4, 0.12);
 actions.cvdHeat = { type: "pulse", _說明: "加熱基座的線圈暗紅微光（穩定）", parts: ["cvdPedHeat", "cvdPedHeat2"], color: "heater", glow: 0.7, steady: true, halo: 0 };
 actions.aldHeat = { type: "pulse", parts: ["aldPedHeat", "aldPedHeat2"], color: "heater", glow: 0.6, steady: true, halo: 0 };
 // 薄膜：PVD 銅膜 3 層、CVD 膜 3 層、ALD 膜 4 層（一層一層出現，時間在 genscript 的 shift 控制；畫面加厚放大是示意）
 const film = (lay, ch, n, mat, wfY, step) => { LAY(lay, [3.2, 0.4, ch.x, wfY]); for (let i = 0; i < n; i++) { const l = `${lay}${i}`; LAY(l, [3.2, 0.2, ch.x, wfY]); P({ id: l, layer: l, shape: "cyl", size: [1.5, R2(step * 0.9)], rot: V, pos: [ch.x, R2(wfY + WT / 2 + step * (i + 0.5)), ch.z], mat }); } };
 film("fP", PVD, 3, "filmCu", yW, 0.05);
 film("fC", CVD, 3, "filmC", yW, 0.05);
-film("fA", ALD, 4, "filmA", yW, 0.035);
+film("fA", ALD, 4, "filmA", yW, 0.09);
 // EFEM 頂上風扇往下吹（淺藍小點、向下）
 actions.ffuAir = { type: "flow", _說明: "風扇過濾機組往下吹的潔淨空氣（向下的層流）", path: [lpt("efem", [-5.5, 9.2, 14]), lpt("efem", [-5.5, 4.2, 14])], n: 3, lanes: 5, laneGap: 2.6, laneDir: [1, 0, 0], size: 0.09, shape: "dot", rate: 0.45, color: "ffuAir", track: false };
 actions.llPump = { type: "pulse", _說明: "負載鎖抽真空中：黃燈閃", parts: ["llLLampY"], color: "lampY", glow: 0.9, freq: 1.6, halo: 0 };
@@ -380,12 +392,14 @@ P({ id: "impScanPlate", layer: "impScan", shape: "box", size: [1.8, 1.4, 0.12], 
 P({ id: "impScanBox", layer: "impScan", shape: "box", size: [2.2, 0.3, 1.8], pos: [SCX, IY + 0.9, EXZ], mat: "steel2" });
 const CRX = SCX + 3.0, EDX = SCX + 6.6; // 平行化（角度修正）磁鐵在掃描器與終端站之間（審片 mech 必改 4）
 LAY("impEndCov", [4, 4, EDX, IY]);
-P({ id: "impEndCh", layer: "impEnd", shape: "slab", size: [3.6, 4.6, 4.6], r: 0.25, pos: [EDX + 0.6, IY, EXZ - 0.6], mat: "steel2" });
+P({ id: "impEndCh", layer: "impEndCov", shape: "slab", size: [3.6, 4.6, 4.6], r: 0.25, pos: [EDX + 0.6, IY, EXZ - 0.6], mat: "steel2" });
 P({ id: "impEndCov", layer: "impEndCov", shape: "slab", size: [3.6, 4.6, 0.3], r: 0.15, pos: [EDX + 0.6, IY, R2(EXZ + 1.85)], mat: "panel" });
 P({ id: "impEndLL", layer: "impEnd", shape: "slab", size: [2.2, 2.2, 2.2], r: 0.2, pos: [EDX + 3.6, IY - 1.0, EXZ - 0.6], mat: "panel2" });
 P({ id: "impEndLLDoor", layer: "impEnd", shape: "box", size: [0.1, 1.4, 1.6], pos: [EDX + 4.72, IY - 1.0, EXZ - 0.6], mat: "dark" });
-P({ id: "impPlaten", layer: "impEnd", shape: "cyl", size: [1.8, 0.3], rot: [0, 90, 8], pos: [EDX + 0.9, IY, EXZ], mat: "stage" });
-P({ id: "impWafer", layer: "impEnd", shape: "cyl", size: [1.5, WT], rot: [0, 90, 8], pos: [EDX + 0.72, IY, EXZ], mat: "wafer" });
+// 傾斜平台：晶圓面朝束（−x）再轉 45°（高傾角佈植，示意），從前方鏡頭看得到正面
+P({ id: "impPlaten", layer: "impEnd", shape: "cyl", size: [1.8, 0.3], rot: [0, -45, 0], pos: [EDX + 1.05, IY, EXZ - 0.12], mat: "stage" });
+P({ id: "impWafer", layer: "impEnd", shape: "cyl", size: [1.5, WT], rot: [0, -45, 0], pos: [EDX + 0.92, IY, EXZ + 0.01], mat: "wafer" });
+P({ id: "impWaferDies", layer: "impEnd", shape: "box", size: [0.5, 0.5, 0.02], rot: [0, -45, 0], pos: [EDX + 0.9, IY, EXZ + 0.03], at: [-0.6, 0, 0.6].flatMap((u) => [-0.6, 0, 0.6].map((v) => [R2(u * 0.707), v, R2(u * 0.707)])), mat: "dieM" });
 P({ id: "impPlatenArm", layer: "impEnd", shape: "box", size: [0.4, 3.0, 0.4], pos: [EDX + 1.2, IY - 1.7, EXZ], mat: "steel" });
 P({ id: "impEndPump", layer: "impEnd", shape: "cyl", size: [0.8, 2.2], rot: V, pos: [EDX, 2.9, EXZ + 2.2], mat: "steel" });
 P({ id: "impPump", layer: "imp", shape: "cyl", size: [0.7, 1.9], rot: V, pos: [0, 3.6, 0], at: [[SX, 0, SZ + 3.5], [MC[0] + 2, 0, EXZ - 2.6], [ACC0 + 4.5, 0, EXZ + 2.3]], mat: "steel" });
@@ -424,7 +438,7 @@ Object.assign(anchors, {
   efem: A("ffu", [5, EH + 0.8, 14], 130, -120),
   tgt: A("pvdTgt", [PVD.x, PVD.top - 0.4, PVD.z + 2.4], 140, -110), plasma: A("pvdTgt", [PVD.x, PVD.top - 0.95, PVD.z + 2.3], 150, 60), mag: A("pvdMag", [PVD.x, PVD.top + 0.3, PVD.z + 1.6], 140, -150), wfP: A("fP", [PVD.x, yW, PVD.z + 1.4], 140, 120),
   sh: A("cvdSH", [CVD.x, CVD.SHY, CVD.z + 2.3], 150, -100), heat: A("cvdPed", [CVD.x, 5.8, CVD.z + 1.8], 150, 110), aldF: A("fA", [ALD.x, yW, ALD.z + 1.4], 150, 110),
-  src: A("impSrc", [SX, IY + 1.5, SZ - 1.2], -120, -140), magnet: A("impMag", [MC[0] - 1, IY + 1.2, MC[1] + 2], 120, -150), acc: A("impAcc", [ACC0 + 4.5, IY + 1.5, EXZ], 60, -150), end: A("impEnd", [EDX + 0.72, IY + 0.6, EXZ], 110, -150), cor: A("impCor", [CRX, IY + 1.2, EXZ], 60, -150),
+  src: A("impSrc", [SX, IY + 1.5, SZ - 1.2], -120, -140), magnet: A("impMag", [MC[0] - 1, IY + 1.2, MC[1] + 2], 120, -150), acc: A("impAcc", [ACC0 + 4.5, IY + 1.5, EXZ], 60, -150), end: A("impEnd", [EDX + 0.9, IY + 0.3, EXZ + 0.05], 110, -150), cor: A("impCor", [CRX, IY + 1.2, EXZ], 60, -150),
   sign: A("sign", [0, 11.0, EZ1 - 0.4], -150, 130),
 });
 

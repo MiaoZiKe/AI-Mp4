@@ -132,15 +132,15 @@ VIS = []
 # 薄膜：念到才一層一層出現（s5、s7、s8 各自排，在 P 裡加）；這裡先全藏到很後面，之後由各幕的 FILM_ON 拿掉
 FILM_AT = {"fP0": "s5:land", "fP1": "s5:land+24", "fP2": "s6:mag", "fC0": "s7:film-6", "fC1": "s7:film+18", "fC2": "s8:start-10"}
 ALD0 = "s8:turns-6"
-ALD_STEPS = [(0, 26, "A"), (26, 40, "P"), (40, 66, "B"), (66, 80, "P"), (80, 100, "A"), (100, 110, "P"), (110, 130, "B"), (130, 140, "P")]
-FILM_AT["fA0"] = add(ALD0, 76); FILM_AT["fA1"] = add(ALD0, 136); FILM_AT["fA2"] = FAR; FILM_AT["fA3"] = FAR
+ALD_STEPS = [(0, 20, "A"), (20, 30, "P"), (30, 50, "B"), (50, 60, "P"), (60, 75, "A"), (75, 82, "P"), (82, 97, "B"), (97, 104, "P")]
+FILM_AT["fA0"] = add(ALD0, 56); FILM_AT["fA1"] = add(ALD0, 100); FILM_AT["fA2"] = FAR; FILM_AT["fA3"] = FAR
 for k, a in FILM_AT.items(): VIS.append(hid(k, "s1:start-40", a, 8))
 VIS.append(hid("pvdTgtEro", "s1:start-40", "s6:eat-30", 40))
 # 離子佈植機：另一台，s9 前才出現（淡入，不是瞬移：同一位置慢慢顯現）
 for l in IMP: VIS.append(hid(l, "s1:start-40", "s9:start-24", 18))
 
 # ═════════ s2 爆炸分解：腔體掀蓋、模組沿各自的徑向分開，講完組回（s3 開頭前）═════════
-EXP_A, EXP_B = "s2:start-8", "s2:start+186"
+EXP_A, EXP_B = "s2:start-8", "s2:start+150"
 EXPLODE = [mv("tcLid", EXP_A, EXP_B, 20, dy=7.5)]   # 拆機順序：傳送腔頂蓋 → 各腔頂蓋（含靶、噴頭）→ 腔體沿徑向退出 → 負載鎖與 EFEM，每段錯開 5 幀
 def grp(key, a, r, lift):
     dx, dz = pol(a, r); out = []
@@ -183,7 +183,7 @@ S3 = [mv("foupDoor0", at3(0), at3(108), 12, dy=-2.7),
 S3 += [mv("vd_llL", "s3:gate-4", "s4:start+60", 10, dy=-1.2)]
 
 # ═════════ s4 真空手臂（關節鏈 kin）：取片 → 縮回 → 轉向 → 伸進濺鍍腔 → 放到升降銷 → 縮回 ═════════
-def pose(a, al): return {"j1": round(-a + al, 2), "j2": round(-2 * al, 2), "j3": round(al, 2)}
+def pose(a, al): return {"j1": round(-a + al, 2), "j2": round(-2 * al, 2), "j3": round(al, 2), "jr1": round(-a - al, 2), "jr2": round(2 * al, 2)}
 def alpha_for(dist): return round(math.degrees(math.acos((dist - INFO["BL"]) / (2 * INFO["L1"]))), 2)
 A_LL, A_PVD = alpha_for(9.6), alpha_for(10.4)
 FOLD = 85
@@ -241,7 +241,7 @@ P["s3"] = {"shot": [shot("start+22", -2, -12, 100, 44, 30, yaw=0.12)],
  "overlay": [sec("amat-load", "start+2", "s4:start-5", "負載鎖：大氣 → 真空", "示意", {"foup": "foup", "ll": "ll", "vac": "vac", "gate": "gate"})]}
 # s4：真空手臂搬運（從上往下看進傳送腔）
 P["s4"] = {"shot": [shot("start-2", 2, -6, 100, 62, 30)], "kin": [KIN4],
- "labels": [lab("vr", "真空手臂（型式示意）", "Vacuum robot (schematic)", "amber", "start+14", "s5:start-4")],
+ "labels": [lab("vr", "真空手臂（蛙腿雙刀）", "Frog-leg dual-blade robot", "amber", "start+14", "s5:start-4")],
  "overlay": [sec("amat-move", "start+2", "s5:start-5", "手臂搬運的速度", "示意", {"take": "take", "turn": "turn", "acc": "acc", "stop": "stop", "put": "put"})]}
 # s5–s6：濺鍍腔剖面（側視）
 Y_PVD = math.atan2(INFO["PVD"][1], INFO["PVD"][0])
