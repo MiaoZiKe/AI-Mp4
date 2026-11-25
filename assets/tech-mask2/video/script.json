@@ -1,0 +1,2710 @@
+{
+ "slug": "tech-mask2",
+ "prevEpisode": "光罩-1",
+ "title": "光罩-2：誰做光罩、怎麼運送（科技透明圈）",
+ "asOf": "2026/11/24",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "plant",
+    "label": "光罩廠",
+    "en": "MASK SHOP",
+    "field": "10 m",
+    "ruler": "2 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "tool",
+    "label": "設備",
+    "en": "EQUIPMENT",
+    "field": "2 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "pod",
+    "label": "光罩盒",
+    "en": "RETICLE POD",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   },
+   {
+    "id": "mask",
+    "label": "光罩",
+    "en": "PHOTOMASK",
+    "field": "15 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/24",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "光罩誰做",
+   "怎麼送進機台"
+  ],
+  "sub": "光罩-2：光罩盒",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集說光罩是晶片底片，這張底片誰做？怎麼送進曝光機？",
+   "tts": "上一集說光照是晶片底片，這張底片誰做？怎麼送進曝光機？",
+   "subtitle": {
+    "zh": "上集說光罩是晶片底片\n這張底片誰做？\n怎麼送進曝光機？",
+    "en": "Last time: a photomask is the chip's negative. | Who makes it? | How does it reach the scanner?"
+   },
+   "keywords": [
+    "光罩",
+    "底片",
+    "曝光機"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "晶片底片"
+    },
+    {
+     "id": "who",
+     "text": "誰做"
+    },
+    {
+     "id": "how",
+     "text": "怎麼送進"
+    },
+    {
+     "id": "scan",
+     "text": "曝光機"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IMS 規格；SemiEng"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：光罩＝晶片底片",
+     "title": "這張底片誰做？",
+     "size": 96,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "pod",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 80,
+      "y": 3.0,
+      "d": 50,
+      "elev": 26
+     },
+     {
+      "at": "how",
+      "dur": 60,
+      "x": 80,
+      "y": 2.6,
+      "d": 46,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "f_tmc",
+      "at": "s1:start-40",
+      "until": "s4:tmc",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_tsmc_pin",
+      "at": "s1:start-40",
+      "until": "s2:tsmc",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_intel_pin",
+      "at": "s1:start-40",
+      "until": "s2:intel",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_ss_pin",
+      "at": "s1:start-40",
+      "until": "s2:ss",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tsmc_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_intel_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_ss_pin",
+      "at": "s2:fast-8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_dnp_pin",
+      "at": "s1:start-40",
+      "until": "s3:jp",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tek_pin",
+      "at": "s1:start-40",
+      "until": "s3:jp+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_phr_pin",
+      "at": "s1:start-40",
+      "until": "s3:us",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cTW_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cKR_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer+6",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cUS_pin",
+      "at": "s1:start-40",
+      "until": "s3:mer+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cKR_pin",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_cUS_pin",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rDNP",
+      "at": "s1:start-40",
+      "until": "s3:mer",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rTEK",
+      "at": "s1:start-40",
+      "until": "s3:mer+6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rPHR",
+      "at": "s1:start-40",
+      "until": "s3:mer+12",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rTMC",
+      "at": "s1:start-40",
+      "until": "s4:mat+30",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "f_rDNP",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rTEK",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_rPHR",
+      "at": "s4:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_tmc_pin",
+      "at": "s1:start-40",
+      "until": "s4:tmc",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "f_tsmc",
+      "at": "s4:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s1:start-40",
+      "until": "s4:tmc+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_van",
+      "at": "s1:start-40",
+      "until": "s4:tmc+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 0.25,
+      "dy": 0.12,
+      "dz": 0.19000000000000128
+     },
+     {
+      "layer": "f_van",
+      "at": "s4:mat+14",
+      "until": "s12:start+400",
+      "dur": 26,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0.35
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat+14",
+      "until": "s12:start+400",
+      "dur": 26,
+      "dx": 0,
+      "dy": 0,
+      "dz": 0.35
+     },
+     {
+      "layer": "f_van",
+      "at": "s4:mat+40",
+      "until": "s12:start+400",
+      "dur": 30,
+      "dx": -0.3,
+      "dy": 0,
+      "dz": 0.12
+     },
+     {
+      "layer": "f_vanP",
+      "at": "s4:mat+40",
+      "until": "s12:start+400",
+      "dur": 30,
+      "dx": -0.3,
+      "dy": 0,
+      "dz": 0.12
+     },
+     {
+      "layer": "e_mb",
+      "at": "s1:start-40",
+      "until": "s6:all-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "e_mb",
+      "at": "s7:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln0",
+      "at": "s1:start-40",
+      "until": "s5:wr",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln1",
+      "at": "s1:start-40",
+      "until": "s5:wr+5",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln2",
+      "at": "s1:start-40",
+      "until": "s5:wr+10",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln3",
+      "at": "s1:start-40",
+      "until": "s5:wr+15",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln4",
+      "at": "s1:start-40",
+      "until": "s5:wr+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln5",
+      "at": "s1:start-40",
+      "until": "s5:wr+25",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln6",
+      "at": "s1:start-40",
+      "until": "s5:wr+30",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln7",
+      "at": "s1:start-40",
+      "until": "s5:wr+35",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln8",
+      "at": "s1:start-40",
+      "until": "s5:wr+40",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln9",
+      "at": "s1:start-40",
+      "until": "s5:wr+45",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln10",
+      "at": "s1:start-40",
+      "until": "s5:wr+50",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_ln11",
+      "at": "s1:start-40",
+      "until": "s5:wr+55",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk0",
+      "at": "s1:start-40",
+      "until": "s6:all+4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk1",
+      "at": "s1:start-40",
+      "until": "s6:all+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk2",
+      "at": "s1:start-40",
+      "until": "s6:all+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk3",
+      "at": "s1:start-40",
+      "until": "s6:all+28",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk4",
+      "at": "s1:start-40",
+      "until": "s6:all+36",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_blk5",
+      "at": "s1:start-40",
+      "until": "s6:all+44",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "i_def",
+      "at": "s1:start-40",
+      "until": "s7:def",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "i_rep",
+      "at": "s1:start-40",
+      "until": "s7:rep",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "i_head",
+      "at": "s7:start",
+      "until": "s7:def",
+      "dur": 40,
+      "dx": 1.55,
+      "dy": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "p_oc",
+      "at": "s1:start-40",
+      "until": "s1:how",
+      "dur": 14,
+      "dx": 0,
+      "dy": 3.8,
+      "dz": 0
+     },
+     {
+      "layer": "p_ic",
+      "at": "s1:start-40",
+      "until": "s1:how-6",
+      "dur": 14,
+      "dx": 0,
+      "dy": 1.9,
+      "dz": 0
+     },
+     {
+      "layer": "p_ob",
+      "at": "s8:start-4",
+      "until": "s10:start",
+      "dur": 26,
+      "dx": 0,
+      "dy": -1.4,
+      "dz": 0
+     },
+     {
+      "layer": "v_lpC",
+      "at": "s9:start-30",
+      "until": "s9:vac",
+      "dur": 14,
+      "dx": 0,
+      "dy": 1.6,
+      "dz": 0
+     },
+     {
+      "layer": "e_beamL",
+      "at": "s1:start-40",
+      "until": "s5:eb",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "e_beamL",
+      "at": "s6:slow",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "p_ent",
+      "at": "s1:start-40",
+      "until": "s10:ent",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "p_gd",
+      "at": "s1:start-40",
+      "until": "s10:gd",
+      "dy": 2.0,
+      "opacity": 0,
+      "dur": 12,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "p_ent",
+      "at": "s11:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "p_gd",
+      "at": "s11:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "v_body",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_lpC",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_lpod",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ib",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ret",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "v_ic",
+      "at": "s11:start-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "p_oc",
+      "at": "s8:start-4",
+      "until": "s10:start",
+      "dur": 26,
+      "dx": 0,
+      "dy": 6.6,
+      "dz": 0
+     },
+     {
+      "layer": "p_ic",
+      "at": "s8:start-4",
+      "until": "s10:start",
+      "dur": 26,
+      "dx": 0,
+      "dy": 3.4,
+      "dz": 0
+     },
+     {
+      "layer": "p_ret",
+      "at": "s8:start-4",
+      "until": "s8:pod+4",
+      "dur": 26,
+      "dx": 0,
+      "dy": 1.8,
+      "dz": 0
+     },
+     {
+      "layer": "v_ib",
+      "at": "s9:start-30",
+      "until": "s9:why",
+      "dur": 30,
+      "dx": -3.9,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "v_ret",
+      "at": "s9:start-30",
+      "until": "s9:why",
+      "dur": 30,
+      "dx": -3.9,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "v_ic",
+      "at": "s9:start-30",
+      "until": "s9:why",
+      "dur": 30,
+      "dx": -3.9,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "v_gate",
+      "at": "s9:start-30",
+      "until": "s9:why+34",
+      "dur": 14,
+      "dx": 0,
+      "dy": 2.6,
+      "dz": 0
+     },
+     {
+      "layer": "v_ic",
+      "at": "s9:open",
+      "until": "s10:start",
+      "dur": 20,
+      "dx": 0,
+      "dy": 1.0,
+      "dz": 0
+     },
+     {
+      "layer": "v_prL0",
+      "at": "s1:start-40",
+      "until": "s11:light+0",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL1",
+      "at": "s1:start-40",
+      "until": "s11:light+4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL2",
+      "at": "s1:start-40",
+      "until": "s11:light+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL3",
+      "at": "s1:start-40",
+      "until": "s11:light+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL4",
+      "at": "s1:start-40",
+      "until": "s11:light+16",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL5",
+      "at": "s1:start-40",
+      "until": "s11:light+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL6",
+      "at": "s1:start-40",
+      "until": "s11:light+24",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "v_prL7",
+      "at": "s1:start-40",
+      "until": "s11:light+28",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "px_pod",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_pod",
+      "at": "s2:start-4",
+      "until": "s10:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_pod",
+      "at": "s11:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cap",
+      "at": "s1:start-400",
+      "until": "s2:fast+24",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cap",
+      "at": "s3:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer",
+      "at": "s1:start-400",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer",
+      "at": "s3:us-18",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer2",
+      "at": "s1:start-400",
+      "until": "s3:us+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_mer2",
+      "at": "s4:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_tw",
+      "at": "s1:start-400",
+      "until": "s4:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_tw",
+      "at": "s5:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_map",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_map",
+      "at": "s2:fast-8",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_eb",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_eb",
+      "at": "s7:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ins",
+      "at": "s1:start-400",
+      "until": "s7:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_ins",
+      "at": "s8:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_podX",
+      "at": "s1:start-400",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_podX",
+      "at": "s9:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_vac",
+      "at": "s1:start-400",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_vac",
+      "at": "s10:start-4",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_scan",
+      "at": "s1:start-400",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_scan",
+      "at": "s12:start+400",
+      "until": "s12:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "p_retOn",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "how"
+     },
+     {
+      "id": "p_icOn",
+      "at": "how",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_ocOn",
+      "at": "how+10",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-hook",
+      "at": "prev",
+      "until": "s2:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：光罩",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "who": {
+        "at": "who"
+       },
+       "how": {
+        "at": "how"
+       },
+       "scan": {
+        "at": "scan"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "最先進的光罩，台積電、英特爾、三星自己做，改版最快。",
+   "tts": "最先進的光照，台積電、英特爾、三星自己做，改版最快。",
+   "subtitle": {
+    "zh": "最先進的光罩\n台積電、英特爾、三星自己做\n改版最快",
+    "en": "The most advanced masks | are made in-house by TSMC, Intel and Samsung, | so revisions turn fastest."
+   },
+   "keywords": [
+    "台積電",
+    "英特爾",
+    "三星",
+    "自己做"
+   ],
+   "cues": [
+    {
+     "id": "adv",
+     "text": "最先進的光罩"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "intel",
+     "text": "英特爾"
+    },
+    {
+     "id": "ss",
+     "text": "三星"
+    },
+    {
+     "id": "fast",
+     "text": "改版最快"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiEng；遠見 2023/10"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -48.5,
+      "y": -14.033,
+      "d": 144.984,
+      "elev": 58
+     },
+     {
+      "at": "fast-6",
+      "dur": 30,
+      "x": -60.89,
+      "y": -6.275,
+      "d": 21.805,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_tsmcOn",
+      "at": "tsmc",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_intelOn",
+      "at": "intel",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_ssOn",
+      "at": "ss",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_tsmcBr",
+      "at": "fast-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_intelBr",
+      "at": "fast-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "f_ssBr",
+      "at": "fast-10",
+      "ramp": 8,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_tsmcA",
+      "text": "台積電",
+      "en": "TSMC",
+      "color": "blue",
+      "at": "tsmc",
+      "until": "fast-8",
+      "xy": [
+       700,
+       720
+      ],
+      "logo": "tsmc",
+      "flag": "TW"
+     },
+     {
+      "part": "f_intelA",
+      "text": "英特爾",
+      "en": "Intel",
+      "color": "blue",
+      "at": "intel",
+      "until": "fast-8",
+      "xy": [
+       810,
+       400
+      ],
+      "logo": "intel",
+      "flag": "US"
+     },
+     {
+      "part": "f_ssA",
+      "text": "三星",
+      "en": "Samsung",
+      "color": "blue",
+      "at": "ss",
+      "until": "fast-8",
+      "xy": [
+       270,
+       400
+      ],
+      "logo": "samsung",
+      "flag": "KR"
+     },
+     {
+      "part": "f_tsmcA",
+      "text": "光罩廠在隔壁",
+      "en": "Next door",
+      "color": "amber",
+      "at": "fast",
+      "until": "s3:start-4",
+      "xy": [
+       760,
+       360
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-cap",
+      "at": "start+4",
+      "until": "s3:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓廠自己做光罩",
+      "tag": "Semiconductor Engineering",
+      "t": {
+       "adv": {
+        "at": "adv"
+       },
+       "tsmc": {
+        "at": "tsmc"
+       },
+       "intel": {
+        "at": "intel"
+       },
+       "ss": {
+        "at": "ss"
+       },
+       "fast": {
+        "at": "fast"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "其他公司交給專業光罩廠，主要是日本兩家、美國一家。",
+   "tts": "其他公司交給專業光照廠，主要是日本兩家、美國一家。",
+   "subtitle": {
+    "zh": "其他公司交給專業光罩廠\n主要是日本兩家\n美國一家",
+    "en": "Everyone else uses merchant mask shops: | two big ones in Japan, | one in the US."
+   },
+   "keywords": [
+    "專業光罩廠",
+    "日本",
+    "美國"
+   ],
+   "cues": [
+    {
+     "id": "mer",
+     "text": "專業光罩廠"
+    },
+    {
+     "id": "jp",
+     "text": "日本兩家"
+    },
+    {
+     "id": "us",
+     "text": "美國一家"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiEng；Photronics 10-K"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 10,
+      "x": -44.15,
+      "y": 1.621,
+      "d": 20.261,
+      "elev": 46
+     },
+     {
+      "at": "jp-22",
+      "dur": 26,
+      "x": -44.632,
+      "y": 1.974,
+      "d": 4.871,
+      "elev": 36
+     },
+     {
+      "at": "us-16",
+      "dur": 22,
+      "x": -20.568,
+      "y": 1.053,
+      "d": 5.238,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "f_rDNPF",
+      "at": "mer",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_rTEKF",
+      "at": "mer+6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_rPHRF",
+      "at": "mer+12",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_dnpOn",
+      "at": "jp",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_tekOn",
+      "at": "jp+8",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_phrOn",
+      "at": "us",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cTWOn",
+      "at": "mer",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cKROn",
+      "at": "mer+6",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "f_cUSOn",
+      "at": "mer+12",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "f_dnpA",
+      "text": "大日本印刷",
+      "en": "DNP",
+      "color": "amber",
+      "at": "jp",
+      "until": "us-18",
+      "xy": [
+       260,
+       380
+      ],
+      "logo": "dnp",
+      "flag": "JP"
+     },
+     {
+      "part": "f_tekA",
+      "text": "Tekscend",
+      "en": "ex-Toppan",
+      "color": "amber",
+      "at": "jp+8",
+      "until": "us-18",
+      "xy": [
+       790,
+       300
+      ],
+      "logo": "tekscend",
+      "flag": "JP"
+     },
+     {
+      "part": "f_phrA",
+      "text": "Photronics",
+      "en": "US",
+      "color": "blue",
+      "at": "us-4",
+      "until": "s4:start-10",
+      "xy": [
+       262,
+       372
+      ],
+      "logo": "photronics",
+      "flag": "US"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-mer",
+      "at": "start+4",
+      "until": "s4:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "專業光罩廠",
+      "tag": "SemiEng；Photronics 10-K",
+      "t": {
+       "mer": {
+        "at": "mer"
+       },
+       "jp": {
+        "at": "jp"
+       },
+       "us": {
+        "at": "us"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "台灣有台灣光罩，主力是成熟製程光罩。",
+   "tts": "台灣有台灣光照，主力是成熟製程光照。",
+   "subtitle": {
+    "zh": "台灣有台灣光罩\n主力是成熟製程光罩",
+    "en": "Taiwan has Taiwan Mask, | focused on mature-node masks."
+   },
+   "keywords": [
+    "台灣光罩",
+    "成熟製程"
+   ],
+   "cues": [
+    {
+     "id": "tmc",
+     "text": "台灣光罩"
+    },
+    {
+     "id": "mat",
+     "text": "成熟製程"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "鉅亨網；財訊；遠見"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "plant",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 26,
+      "x": -61.095,
+      "y": -15.849,
+      "d": 64.048,
+      "elev": 54
+     },
+     {
+      "at": "tmc",
+      "dur": 30,
+      "x": -61.769,
+      "y": -8.11,
+      "d": 22.573,
+      "elev": 38
+     }
+    ],
+    "run": [
+     {
+      "id": "f_tmcOn",
+      "at": "tmc",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_cTWOn",
+      "at": "mat",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "f_rTMCF",
+      "at": "mat+30",
+      "ramp": 8,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "m_twA",
+      "text": "台灣",
+      "en": "Taiwan",
+      "color": "blue",
+      "at": "start-2",
+      "until": "tmc+16",
+      "xy": [
+       270,
+       380
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "f_tmcA",
+      "text": "台灣光罩",
+      "en": "Taiwan Mask",
+      "color": "blue",
+      "at": "tmc",
+      "until": "s5:start-4",
+      "xy": [
+       720,
+       380
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "f_vanA",
+      "text": "潔淨物流車",
+      "en": "Clean logistics",
+      "color": "amber",
+      "at": "mat",
+      "until": "s5:start-4",
+      "xy": [
+       810,
+       853
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-tw",
+      "at": "start+4",
+      "until": "s5:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣光罩（2338）",
+      "tag": "公司說法",
+      "t": {
+       "tmc": {
+        "at": "tmc"
+       },
+       "mat": {
+        "at": "mat"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "怎麼做？鍍鉻石英板塗上光阻，電子束把電路一筆筆寫上去。",
+   "tts": "怎麼做？鍍各石英板塗上光阻，電子束把電路一筆筆寫上去。",
+   "subtitle": {
+    "zh": "怎麼做？\n鍍鉻石英板塗上光阻\n電子束把電路\n一筆筆寫上去",
+    "en": "How is it made? | A chrome-coated quartz plate gets resist, | and an electron beam | writes the circuit stroke by stroke."
+   },
+   "keywords": [
+    "鉻",
+    "石英",
+    "光阻",
+    "電子束"
+   ],
+   "cues": [
+    {
+     "id": "how",
+     "text": "怎麼做"
+    },
+    {
+     "id": "qz",
+     "text": "石英板"
+    },
+    {
+     "id": "cr",
+     "text": "鍍鉻"
+    },
+    {
+     "id": "res",
+     "text": "塗上光阻"
+    },
+    {
+     "id": "eb",
+     "text": "電子束"
+    },
+    {
+     "id": "wr",
+     "text": "一筆筆寫上去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7220531"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30,
+      "y": 2.94,
+      "d": 47,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "e_cathOn",
+      "at": "eb-6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_coilOn",
+      "at": "eb-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_beam",
+      "at": "eb",
+      "ramp": 8,
+      "until": "s6:slow"
+     },
+     {
+      "id": "e_spotOn",
+      "at": "eb+10",
+      "ramp": 6,
+      "until": "s6:slow"
+     },
+     {
+      "id": "e_beamOn",
+      "at": "eb",
+      "ramp": 6,
+      "until": "s6:slow"
+     },
+     {
+      "id": "e_scan",
+      "at": "wr",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_ledG",
+      "at": "start",
+      "ramp": 1,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_qzA",
+      "text": "石英板＋鉻",
+      "en": "Quartz + chrome",
+      "color": "blue",
+      "at": "qz",
+      "until": "s6:start-4",
+      "xy": [
+       270,
+       853
+      ]
+     },
+     {
+      "part": "e_rsA",
+      "text": "光阻",
+      "en": "Resist",
+      "color": "amber",
+      "at": "res",
+      "until": "s6:start-4",
+      "xy": [
+       810,
+       853
+      ]
+     },
+     {
+      "part": "e_colA",
+      "text": "電子束鏡筒",
+      "en": "E-beam column",
+      "color": "blue",
+      "at": "eb",
+      "until": "s6:start-4",
+      "xy": [
+       270,
+       300
+      ]
+     },
+     {
+      "part": "e_cathA",
+      "text": "電子槍",
+      "en": "Electron gun",
+      "color": "coral",
+      "at": "eb+8",
+      "until": "s6:start-4",
+      "xy": [
+       810,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-eb",
+      "at": "start+4",
+      "until": "s6:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電子束寫入",
+      "tag": "USPTO 7220531",
+      "t": {
+       "how": {
+        "at": "how"
+       },
+       "qz": {
+        "at": "qz"
+       },
+       "cr": {
+        "at": "cr"
+       },
+       "res": {
+        "at": "res"
+       },
+       "eb": {
+        "at": "eb"
+       },
+       "wr": {
+        "at": "wr"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "線路越細，一道寫太慢，最先進的用二十六萬道一起寫。",
+   "tts": "線路越細，一道寫太慢，最先進的用二十六萬道一起寫。",
+   "subtitle": {
+    "zh": "線路越細\n一道寫太慢\n最先進的用\n二十六萬道一起寫",
+    "en": "Finer lines mean | one beam is too slow; | the most advanced use | 262,144 beams at once."
+   },
+   "keywords": [
+    "一道",
+    "二十六萬道",
+    "電子束"
+   ],
+   "cues": [
+    {
+     "id": "fine",
+     "text": "線路越細"
+    },
+    {
+     "id": "slow",
+     "text": "一道寫太慢"
+    },
+    {
+     "id": "adv",
+     "text": "最先進的"
+    },
+    {
+     "id": "n26",
+     "text": "二十六萬道"
+    },
+    {
+     "id": "all",
+     "text": "一起寫"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IMS 規格；SemiEng"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30,
+      "y": 3.0,
+      "d": 47,
+      "elev": 15
+     }
+    ],
+    "run": [
+     {
+      "id": "e_mbF0",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF1",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF2",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF3",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF4",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF5",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF6",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_mbF7",
+      "at": "all-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "e_spotOn",
+      "at": "start",
+      "ramp": 6,
+      "until": "slow"
+     }
+    ],
+    "labels": [
+     {
+      "part": "e_colA",
+      "text": "一道太慢",
+      "en": "One beam: slow",
+      "color": "coral",
+      "at": "slow",
+      "until": "all-6",
+      "xy": [
+       270,
+       300
+      ]
+     },
+     {
+      "part": "e_mbA",
+      "text": "多束一起寫",
+      "en": "Multi-beam",
+      "color": "blue",
+      "at": "all-6",
+      "until": "s7:start-4",
+      "xy": [
+       810,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-mb",
+      "at": "start+4",
+      "until": "s7:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "單束 vs 多束",
+      "tag": "IMS；NuFlare",
+      "t": {
+       "fine": {
+        "at": "fine"
+       },
+       "slow": {
+        "at": "slow"
+       },
+       "adv": {
+        "at": "adv"
+       },
+       "n26": {
+        "at": "n26"
+       },
+       "all": {
+        "at": "all"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "寫完要檢查，因為一個瑕疵，每次曝光都會印上去。",
+   "tts": "寫完要檢查，因為一個瑕疵，每次曝光都會印上去。",
+   "subtitle": {
+    "zh": "寫完要檢查\n因為一個瑕疵\n每次曝光都會印上去",
+    "en": "Then it is inspected, | because one defect on the mask | prints on every exposure."
+   },
+   "keywords": [
+    "檢查",
+    "瑕疵",
+    "每次曝光"
+   ],
+   "cues": [
+    {
+     "id": "ins",
+     "text": "寫完要檢查"
+    },
+    {
+     "id": "def",
+     "text": "一個瑕疵"
+    },
+    {
+     "id": "rep",
+     "text": "每次曝光"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SPIE 12751；SemiEng"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 56.6,
+      "y": 1.38,
+      "d": 34.8,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "i_rayOn",
+      "at": "ins",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "i_scanOn",
+      "at": "ins",
+      "ramp": 6,
+      "until": "def"
+     },
+     {
+      "id": "i_defOn",
+      "at": "def",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "i_repOn",
+      "at": "rep",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "i_headA",
+      "text": "檢測頭",
+      "en": "Inspection head",
+      "color": "blue",
+      "at": "ins",
+      "until": "s8:start-4",
+      "xy": [
+       270,
+       300
+      ]
+     },
+     {
+      "part": "i_defA",
+      "text": "一個瑕疵",
+      "en": "One defect",
+      "color": "coral",
+      "at": "def",
+      "until": "s8:start-4",
+      "xy": [
+       810,
+       300
+      ]
+     },
+     {
+      "part": "i_wfA",
+      "text": "每顆都印上",
+      "en": "Every die",
+      "color": "coral",
+      "at": "rep",
+      "until": "s8:start-4",
+      "xy": [
+       810,
+       853
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-ins",
+      "at": "start+4",
+      "until": "s8:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "為什麼要檢查",
+      "tag": "Lasertec；SemiEng",
+      "t": {
+       "ins": {
+        "at": "ins"
+       },
+       "def": {
+        "at": "def"
+       },
+       "rep": {
+        "at": "rep"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "光罩裝進光罩盒，極紫外光用的有兩層，外盒擋灰塵，內盒是金屬。",
+   "tts": "光照裝進光照盒，極紫外光用的有兩層，外盒擋灰塵，內盒是金屬。",
+   "subtitle": {
+    "zh": "光罩裝進光罩盒\n極紫外光用的有兩層\n外盒擋灰塵\n內盒是金屬",
+    "en": "The mask goes into a pod; | EUV pods have two layers: | the outer pod blocks dust, | the inner pod is metal."
+   },
+   "keywords": [
+    "光罩盒",
+    "兩層",
+    "外盒",
+    "內盒"
+   ],
+   "cues": [
+    {
+     "id": "pod",
+     "text": "裝進光罩盒"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光用的"
+    },
+    {
+     "id": "two",
+     "text": "有兩層"
+    },
+    {
+     "id": "out",
+     "text": "外盒擋灰塵"
+    },
+    {
+     "id": "inn",
+     "text": "內盒是金屬"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris；SEMATECH"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pod",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 80,
+      "y": 2.57,
+      "d": 53.6,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "p_retOn",
+      "at": "pod",
+      "ramp": 6,
+      "until": "two"
+     },
+     {
+      "id": "p_ocOn",
+      "at": "out",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "p_dust",
+      "at": "out-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "p_icOn",
+      "at": "inn",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "p_sealOn",
+      "at": "inn+8",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_ocA",
+      "text": "外盒",
+      "en": "Outer pod",
+      "color": "amber",
+      "at": "out",
+      "until": "s9:start-4",
+      "xy": [
+       810,
+       300
+      ]
+     },
+     {
+      "part": "p_icA",
+      "text": "金屬內盒",
+      "en": "Inner pod",
+      "color": "blue",
+      "at": "inn",
+      "until": "s9:start-4",
+      "xy": [
+       810,
+       853
+      ]
+     },
+     {
+      "part": "p_retA",
+      "text": "光罩",
+      "en": "Reticle",
+      "color": "blue",
+      "at": "pod",
+      "until": "s9:start-4",
+      "xy": [
+       270,
+       300
+      ]
+     },
+     {
+      "part": "p_obA",
+      "text": "外盒底座",
+      "en": "Outer base",
+      "color": "amber",
+      "at": "two",
+      "until": "s9:start-4",
+      "xy": [
+       270,
+       853
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-pod",
+      "at": "start+4",
+      "until": "s9:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "光罩盒：兩層",
+      "tag": "Entegris；SEMATECH",
+      "t": {
+       "pod": {
+        "at": "pod"
+       },
+       "euv": {
+        "at": "euv"
+       },
+       "two": {
+        "at": "two"
+       },
+       "out": {
+        "at": "out"
+       },
+       "inn": {
+        "at": "inn"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "極紫外光罩很難加保護膜，所以內盒到真空機台才打開。",
+   "tts": "極紫外光照很難加保護膜，所以內盒到真空機台才打開。",
+   "subtitle": {
+    "zh": "極紫外光罩\n很難加保護膜\n所以內盒到\n真空機台才打開",
+    "en": "EUV masks | can hardly carry a protective film, | so the inner pod opens only | inside the vacuum tool."
+   },
+   "keywords": [
+    "保護膜",
+    "真空",
+    "內盒"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "極紫外光罩"
+    },
+    {
+     "id": "film",
+     "text": "很難加保護膜"
+    },
+    {
+     "id": "vac",
+     "text": "真空機台"
+    },
+    {
+     "id": "open",
+     "text": "才打開"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris 產品頁；USPTO 7477358；SPIE"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 108.4,
+      "y": 1.0300000000000002,
+      "d": 34.5,
+      "elev": 20
+     },
+     {
+      "at": "vac-4",
+      "dur": 30,
+      "x": 109.1,
+      "y": 1.9000000000000001,
+      "d": 22,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "v_dust",
+      "at": "start",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "v_air0",
+      "at": "vac-4",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "v_air1",
+      "at": "vac-4",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "v_air2",
+      "at": "vac-4",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "v_air3",
+      "at": "vac-4",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "v_icOn",
+      "at": "open",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "v_lpA",
+      "text": "① 外盒留外面",
+      "en": "Stays outside",
+      "color": "amber",
+      "at": "start+6",
+      "until": "vac",
+      "xy": [
+       270,
+       853
+      ]
+     },
+     {
+      "part": "v_gateA",
+      "text": "② 內盒進腔",
+      "en": "Inner pod in",
+      "color": "blue",
+      "at": "why+10",
+      "until": "vac-8",
+      "xy": [
+       810,
+       320
+      ]
+     },
+     {
+      "part": "v_pumpA",
+      "text": "③ 抽真空",
+      "en": "Pump down",
+      "color": "blue",
+      "at": "vac",
+      "until": "s10:start-4",
+      "xy": [
+       810,
+       853
+      ]
+     },
+     {
+      "part": "v_icA",
+      "text": "④ 真空裡才開",
+      "en": "Opens in vacuum",
+      "color": "coral",
+      "at": "open",
+      "until": "s10:start-4",
+      "xy": [
+       270,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-vac",
+      "at": "start+4",
+      "until": "s10:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "很難加保護膜",
+      "tag": "USPTO 7477358；SPIE",
+      "t": {
+       "why": {
+        "at": "why"
+       },
+       "film": {
+        "at": "film"
+       },
+       "vac": {
+        "at": "vac"
+       },
+       "open": {
+        "at": "open"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "最早通過曝光機大廠認證的，是美國英特格和台灣家登。",
+   "tts": "最早通過曝光機大廠認證的，是美國英特格和台灣家登。",
+   "subtitle": {
+    "zh": "最早通過曝光機大廠認證的\n是美國英特格\n和台灣家登",
+    "en": "The first pods qualified by the scanner maker | came from Entegris in the US | and Gudeng in Taiwan."
+   },
+   "keywords": [
+    "認證",
+    "英特格",
+    "家登"
+   ],
+   "cues": [
+    {
+     "id": "cert",
+     "text": "通過曝光機大廠認證"
+    },
+    {
+     "id": "ent",
+     "text": "英特格"
+    },
+    {
+     "id": "gd",
+     "text": "家登"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris 2018；中央社 2018"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pod",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 80,
+      "y": 3.7,
+      "d": 47,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "p_ocOn",
+      "at": "cert",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "p_sealOn",
+      "at": "gd",
+      "ramp": 6,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-co",
+      "at": "start+4",
+      "until": "s11:start-8",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰做光罩盒",
+      "tag": "Entegris 2018；中央社 2018",
+      "t": {
+       "cert": {
+        "at": "cert"
+       },
+       "ent": {
+        "at": "ent"
+       },
+       "gd": {
+        "at": "gd"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "光罩到了，還要一層膠接住圖案，照到光就會變，下一集看。留言光罩盒，拿完整資料。",
+   "tts": "光照到了，還要一層膠接住圖案，照到光就會變，下一集看。留言光照盒，拿完整資料。",
+   "subtitle": {
+    "zh": "光罩到了\n還要一層膠接住圖案\n照到光就會變\n下一集看\n留言光罩盒\n拿完整資料",
+    "en": "The mask has arrived, | but a film of resist must catch the pattern; | it changes when light hits it. | Next episode. | Comment \"光罩盒\" | for the full notes."
+   },
+   "keywords": [
+    "光阻",
+    "膠",
+    "光罩盒"
+   ],
+   "cues": [
+    {
+     "id": "arr",
+     "text": "光罩到了"
+    },
+    {
+     "id": "glue",
+     "text": "一層膠"
+    },
+    {
+     "id": "light",
+     "text": "照到光就會變"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言光罩盒"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 114.3,
+      "y": 2.9000000000000004,
+      "d": 19,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "v_rsOn",
+      "at": "start",
+      "ramp": 6,
+      "until": "glue"
+     },
+     {
+      "id": "v_euvOn",
+      "at": "arr",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "v_euvF",
+      "at": "arr",
+      "ramp": 8,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "v_prOn",
+      "at": "glue",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "v_rsA",
+      "text": "光罩",
+      "en": "Reticle",
+      "color": "blue",
+      "at": "arr",
+      "until": "kw-10",
+      "xy": [
+       880,
+       460
+      ]
+     },
+     {
+      "part": "v_euvA",
+      "text": "極紫外光",
+      "en": "EUV light",
+      "color": "coral",
+      "at": "arr+10",
+      "until": "kw-10",
+      "xy": [
+       230,
+       380
+      ]
+     },
+     {
+      "part": "v_prA",
+      "text": "光阻",
+      "en": "Resist (next)",
+      "color": "amber",
+      "at": "glue",
+      "until": "kw-10",
+      "xy": [
+       230,
+       640
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mk2-next",
+      "at": "start+2",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "還要一層膠",
+      "tag": "示意動畫",
+      "t": {
+       "arr": {
+        "at": "arr"
+       },
+       "glue": {
+        "at": "glue"
+       },
+       "light": {
+        "at": "light"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光阻-1 照光就變的膠",
+     "trail": [],
+     "at": "s11:kw-8",
+     "comment": "光罩盒",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
