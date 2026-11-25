@@ -193,7 +193,7 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         const t = 1 - (P.pre - ph + j) / q;
         if (t < 0) continue;
         r.mats[j].opacity = k * Math.min(1, t * 6);
-        nodes.push(<mesh key={`${id}-d${j}`} geometry={geo.ball} material={r.mats[j]} position={top.clone().lerp(focus, t)} scale={sz} renderOrder={10} frustumCulled={false} />);
+        nodes.push(<mesh key={`${id}-d${j}`} geometry={geo.ball} material={r.mats[j]} position={top.clone().lerp(focus, L.gravity ? (1 - L.gravity) * t + L.gravity * t * t : t)} scale={sz} renderOrder={10} frustumCulled={false} />);
       }
       const tri = (a: number, b: number) => (ph < a || ph > b ? 0 : Math.sin((Math.PI * (ph - a)) / (b - a)));
       const pre = tri(P.pre - 0.05, P.pre + 0.05), main = tri(P.main - 0.05, P.main + 0.06);

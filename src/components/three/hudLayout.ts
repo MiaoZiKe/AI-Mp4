@@ -75,6 +75,7 @@ const half = (p: PartDef): number[] => {
   const s = p.size, sc = p.scale ?? [1, 1, 1];
   let h: number[];
   if (p.shape === "cyl") h = [s[0], s[0], s[1] / 2];
+  else if (p.shape === "cone") h = [Math.max(s[0], s[1]), Math.max(s[0], s[1]), (s[2] ?? 0.1) / 2];
   else if (p.shape === "tube") h = [s[0], s[0], (s[2] ?? 0.1) / 2];
   else if (p.shape === "sphere") h = [s[0], s[0], s[0]];
   else if (p.shape === "plane") h = [s[0] / 2, s[1] / 2, 0.01];

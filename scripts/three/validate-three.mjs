@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { resolveProfile, profileIssues, cnTermIssues } from "../voice-profile.mjs";
 import { expandModel, expandScript } from "./parts/index.mjs";
 
-const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere", "poly"];
+const SHAPES = ["slab", "ring", "plane", "box", "cyl", "tube", "sphere", "poly", "cone"];
 const ROLES = ["lid", "heatFloor", "heatSource", "xray"];
 const ACTION_TYPES = ["vibrate", "rotate", "pulse", "flow", "wave", "trace", "sum", "meter", "lpp"]; // lpp＝雷射打錫滴成電漿的循環（tech-euv）
 const COLORS = ["amber", "blue", "coral", "mint"];

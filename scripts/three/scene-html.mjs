@@ -69,6 +69,7 @@ for (const p of M.parts) {
   const [a, b, c] = p.size;
   let geo;
   if (p.shape === "cyl") { geo = new THREE.CylinderGeometry(a, a, b, 24); geo.rotateX(Math.PI / 2); }
+  else if (p.shape === "cone") { geo = new THREE.CylinderGeometry(a, b, p.size[2] ?? 1, 32, 1, true); geo.rotateX(Math.PI / 2); }
   else if (p.shape === "slab") geo = new RoundedBoxGeometry(a, b, c, 2, Math.min(p.r ?? 0.2, c / 2 - 0.01, 1));
   else geo = new THREE.BoxGeometry(a, b, c);
   const m = mat(p.mat);

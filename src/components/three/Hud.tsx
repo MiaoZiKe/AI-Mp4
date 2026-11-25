@@ -44,6 +44,7 @@ import { TrkSection } from "./HudTrk";
 import { ResistSection } from "./HudResist";
 import { Mask1Section } from "./HudMask1";
 import { Mask2Section } from "./HudMask2";
+import { AsmlSection } from "./HudAsml";
 import { EpiSection } from "./HudEpi";
 
 export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
@@ -716,6 +717,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("pr1-")) return <ResistSection o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-resist1（HudResist.tsx）
   if (String((o as any).kind ?? "").startsWith("mk1-")) return <Mask1Section o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-mask1（HudMask1.tsx）
   if (String((o as any).kind ?? "").startsWith("mk2-")) return <Mask2Section o={o} f={f} k={k} m={m} />; // 2026/11/24 tech-mask2（HudMask2.tsx）
+  if (String((o as any).kind ?? "").startsWith("asml-")) return <AsmlSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-asml（HudAsml.tsx）
   if (String((o as any).kind ?? "").startsWith("w2-")) return <EpiSection o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-wafer2（HudEpi.tsx）
   if (String((o as any).kind ?? "").startsWith("dep-")) return <DepSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-deposition（HudDep.tsx）
   if (String((o as any).kind ?? "").startsWith("ic-")) return <IcSection o={o} f={f} k={k} m={m} />; // 2026/11/18 tech-icdesign（HudIc.tsx）

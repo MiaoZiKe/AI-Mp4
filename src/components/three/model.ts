@@ -144,6 +144,8 @@ const baseGeo = (p: PartDef): THREE.BufferGeometry => {
     case "box": return new THREE.BoxGeometry(a, b, c);
     case "poly": { const sh = new THREE.Shape(); (p.pts ?? []).forEach(([u, v], i) => (i ? sh.lineTo(u, v) : sh.moveTo(u, v))); sh.closePath(); return extrude(sh, c, bv, 4); }
     case "cyl": { const g = new THREE.CylinderGeometry(a, a, b, a > 0.3 ? 32 : 14); g.rotateX(Math.PI / 2); return g; }
+    // 2026/11/26 tech-asml：光錐（size＝[+z 端半徑, −z 端半徑, 長]，兩端開口；跟 cyl 一樣沿 z，rot [0,90,0]＝沿 x、+z 端轉到 +x）
+    case "cone": { const g = new THREE.CylinderGeometry(a, b, c, 40, 1, true); g.rotateX(Math.PI / 2); return g; }
     case "sphere": return new THREE.SphereGeometry(a, 28, 16);
   }
 };

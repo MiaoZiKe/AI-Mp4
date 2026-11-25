@@ -1,0 +1,12 @@
+# tech-asml：設備五大-1：艾司摩爾 ASML（曝光）（科技透明圈 系列「代工的供應商」第 7 集；上一集光阻-2；下一集設備五大-2：應用材料）
+- 狀態（2026/11/26 02:20 台北）：前段完成（研究、腳本、建模、12 張 2D 卡、無聲時間軸、validate／layout-check／card-overlap 0 error、card-overlap 0 warning）。**未配音、未渲染**。12/9（三）18:00 發，留言關鍵字「ASML」。
+- 產生：`python3 videos/tech-asml/genscript.py`（自動先跑 gen-model.mjs）→ model.json＋script.json。改稿、改動作都只改 genscript.py；改模型改 gen-model.mjs；2D 卡在 `src/components/three/HudAsml.tsx`（asml-*）。配音後：tts-take --resplit → align --force → 重跑 genscript.py（cue 自動對上）→ validate。
+- 12 幕＋片尾卡；念稿 293 字；以含停頓 4.5 字／秒估：內容約 65 秒＋片尾 3.2 秒＝約 68 秒（每幕 21–31 字，≥4.5 秒）。
+- 開場接上集：s1「上集說看曝光機，誰做得出來？」（問號約在第 2.5 秒）；kicker「接上集：看曝光機」。
+- 物理表現（Andy 第 15 條）：
+  - 錫滴：3D／2D 同一份 lpp 相位；錫滴下落加速（`lpp.gravity: 0.4`，Ops.tsx 新增、預設關閉，舊片不受影響）→ 預脈衝打扁成餅 → 主脈衝 → 電漿發光衰減、碎點噴開。
+  - 光：新增零件形狀 `cone`（model.ts，兩端開口圓錐）：電漿→收集鏡「發散光錐」、收集鏡→中間焦點「收斂光錐」、末鏡→晶圓收斂光錐；內亮外淡兩層做邊緣柔化，跟著電漿頻率一閃一閃（pulse freq 0.91）。2D 卡 asml-col 也是發散→反射→收斂。
+  - 晶圓台：s6 反向掃描為正弦往復（兩端減速），2D 卡速度條跟著 3D 同一個時間算；s7 換格＝緩入緩出位移（14 幀）＋到位後阻尼過衝（spring），2D 格子框用同一種曲線。
+- 國旗／LOGO：ASML（3D 廠牌＋荷蘭國旗、2D 卡）、尼康、佳能、家登用原檔；帆宣、公準、應用材料沒有可用原檔（見 assets.md）。
+- 配音：TECH_B_LINE 改過，要先給 Andy 試聽到 s3。**本機 API 金鑰無效（400 API_KEY_INVALID），試聽沒有產生**；提示詞全文在 `docs/prompts/tech-asml-試聽.txt`，可在 AI Studio（Gemini 2.5 Flash Preview TTS、Iapetus）自行試聽。
+- 已知：validate 剩 36 個 warning（多為 `FAR` 長時間 until、標題字數、主素材邊緣）；validate 的「配音版估 76 秒」用較慢語速估，偏長。
