@@ -8,7 +8,7 @@ on:
       slug: { description: "片名 slug（例如 tech-mask2）", required: true }
       ver: { description: "版本名（例如 v4）", required: true, default: "v1" }
       asset_branch: { description: "素材分支", required: true, default: "renders/series2" }
-      chunk: { description: "每段幾幀", required: false, default: "90" }
+      chunk: { description: "每段幾幀", required: false, default: "120" }
       conc: { description: "每台 Chrome 平行數（THREE_CONCURRENCY）", required: false, default: "2" }
       src_ref: { description: "程式碼 commit／分支（空白＝用素材 meta.json 記的 commit）", required: false, default: "" }
 
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: render-${{ inputs.slug }}-${{ inputs.ver }}
+  group: render-${{ inputs.slug }}
   cancel-in-progress: false
 
 env:
@@ -59,6 +59,7 @@ jobs:
     timeout-minutes: 40
     strategy:
       fail-fast: false
+      max-parallel: 16   # 帳號同時上限 20 個 job，留 4 個給 tw-rotation 的部署與發文
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
@@ -72,18 +73,33 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - name: 安裝套件
+      # 準備步驟全部快取（段數越多，準備時間浪費越多）：node_modules、Chromium、字型
+      - name: 快取 node_modules
+        id: nm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: nm-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
+      - name: 安裝套件（快取沒中才跑）
+        if: steps.nm.outputs.cache-hit != 'true'
         run: npm ci --no-audit --no-fund
       - name: 快取 Chromium
+        id: pw
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ env.PW_VER }}-shell
-      - name: 安裝 Chromium headless shell（和本機同一版 1243）與系統依賴
+      - name: 快取字型
+        uses: actions/cache@v4
+        with:
+          path: public/fonts
+          key: fonts-${{ hashFiles('scripts/fetch-fonts.mjs', 'package-lock.json') }}
+      - name: Chromium headless shell（和本機同一版 1243）
         run: |
-          npx -y playwright@$PW_VER install --with-deps --only-shell chromium
+          [ "${{ steps.pw.outputs.cache-hit }}" = "true" ] || npx -y playwright@$PW_VER install --only-shell chromium
           B=$(ls ~/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell | head -1)
+          # 系統函式庫：runner 映像通常已經有（內建 Google Chrome）；缺了才裝
+          if ldd "$B" | grep -q "not found"; then ldd "$B" | grep "not found"; npx -y playwright@$PW_VER install-deps chromium-headless-shell; fi
           echo "REMOTION_BROWSER=$B" >> "$GITHUB_ENV"; echo "瀏覽器：$B"
       - name: 放入素材（配音、時間軸快照、貼圖）
         run: |
