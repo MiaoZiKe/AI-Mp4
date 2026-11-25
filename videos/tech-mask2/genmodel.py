@@ -578,6 +578,7 @@ VIS = [
  hid("f_rDNP", HIDE, "s3:mer", 6), hid("f_rTEK", HIDE, "s3:mer+6", 6), hid("f_rPHR", HIDE, "s3:mer+12", 6), hid("f_rTMC", HIDE, "s4:mat+30", 6),
  hid("f_rDNP", "s4:start", FAR, 4), hid("f_rTEK", "s4:start", FAR, 4), hid("f_rPHR", "s4:start", FAR, 4), fall("f_tmc_pin", "s4:tmc", dy=2.0, bounce=.1),
  # 物流車：念「成熟製程」光罩盒從卸貨門推上車（往右前），車再沿路開往南部客戶（z 往觀眾、x 往左）
+ hid("f_tsmc", "s4:start-4", FAR, 4),  # 審片必改 3：台灣光罩幕 TSMC 廠牌退場，不壓標籤
  hid("f_vanP", HIDE, "s4:tmc+14", 4), hid("f_van", HIDE, "s4:tmc+14", 4),
  mv("f_vanP", "s4:mat", FAR, dur=12, dx=VX0 - (SITES["tmc"][0] + .3), dy=.12, dz=VZ0 - (SITES["tmc"][1] + .36)),
  mv("f_van", "s4:mat+14", FAR, dur=26, dz=.35), mv("f_vanP", "s4:mat+14", FAR, dur=26, dz=.35),
@@ -633,7 +634,7 @@ DNPL = "dnp" if os.path.exists(os.path.join(ROOT, "public/logos/dnp.svg")) else 
 PHRL = "photronics" if os.path.exists(os.path.join(ROOT, "public/logos/photronics.svg")) else None
 # s2：地圖全景（台灣、韓國、美國三個自有光罩廠），念到哪家哪家的定位光柱亮、標籤（LOGO＋國旗）出來；念「改版最快」推近台積電：光罩盒在天橋裡來回
 P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
- "shot": [shotZ("start-4", -48.5, 9.0, 128, 58, 30), shotZ("fast-6", ST[0] + .1, ST[1] + .7, 7.5, 36, 30)],
+ "shot": [shotZ("start-4", -48.5, 9.0, 128, 58, 30), shotZ("fast-6", ST[0] + .1, ST[1] + .7, 10.5, 36, 30)],
  "run": [run("f_tsmcOn", "tsmc", "s3:start", 6), run("f_intelOn", "intel", "s3:start", 6), run("f_ssOn", "ss", "s3:start", 6)] +
         [run(f"f_{k}Br", "fast-10", "s3:start", 8) for k in ("tsmc", "intel", "ss")],
  "labels": [LG("f_tsmcA", "台積電", "TSMC", "blue", "tsmc", "fast-8", [700, 720], "tsmc", "TW"), LG("f_intelA", "英特爾", "Intel", "blue", "intel", "fast-8", [810, 400], "intel", "US"),
@@ -642,7 +643,7 @@ P["s2"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 30}],
  "overlay": [sec("mk2-cap", "start+4", "s3:start-8", "晶圓廠自己做光罩", "Semiconductor Engineering", {"adv": "adv", "tsmc": "tsmc", "intel": "intel", "ss": "ss", "fast": "fast"})]}
 # s3：拉到太平洋全景：日本兩家（東京周邊）、美國一家（東岸）；念「專業光罩廠」三條出貨航線開始跑（光罩盒沿弧線飛往客戶晶圓廠）
 P["s3"] = {"zoom": [{"to": "plant", "at": "start-4", "dur": 1}],
- "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 30), shotZ("jp-22", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-16", SP[0] - .3, SP[1] + .9, 6.4, 36, 22)],
+ "shot": [shotZ("start-4", SD[0] + 1.0, SD[1] + 1.6, 22, 46, 10), shotZ("jp-22", (SD[0] + SK[0]) / 2, SD[1] + .6, 7.6, 36, 26), shotZ("us-16", SP[0] - .3, SP[1] + .9, 6.4, 36, 22)],
  "run": [run("f_rDNPF", "mer", "s5:start", 8), run("f_rTEKF", "mer+6", "s5:start", 8), run("f_rPHRF", "mer+12", "s5:start", 8),
          run("f_dnpOn", "jp", "s4:start", 6), run("f_tekOn", "jp+8", "s4:start", 6), run("f_phrOn", "us", "s4:start", 6),
          run("f_cTWOn", "mer", "s4:start", 6), run("f_cKROn", "mer+6", "s4:start", 6), run("f_cUSOn", "mer+12", "s4:start", 6)],

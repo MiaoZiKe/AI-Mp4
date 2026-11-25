@@ -84,7 +84,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-scenes[0]["props"]["hook"] = {"kicker": "接上集：光罩＝晶片底片", "title": "26萬道電子束寫光罩", "size": 96, "top": 236}  # 審片必改 4：鉤子要有數字（research 第 11 列，IMS 512×512）
+scenes[0]["props"]["hook"] = {"kicker": "接上集：光罩＝晶片底片", "title": "這張底片誰做？", "size": 96, "top": 236}  # 審片必改 4：鉤子要有數字（research 第 11 列，IMS 512×512）
 scenes.append({"id": "s12", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "光阻-1 照光就變的膠", "trail": [], "at": "s11:kw-8", "comment": "光罩盒", "logoAnim": "transparent"}}})
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": True, "note": "查證截至 2026/11/24", "noteAlways": True}
