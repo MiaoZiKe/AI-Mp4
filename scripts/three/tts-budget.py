@@ -19,4 +19,4 @@ for f in glob.glob("videos/*/tts-requests.json"):
         if t >= start: ok += r.get("status") == 200; bad += r.get("status") == 429
 used = ok + bad
 tp = lambda d: d.astimezone(ZoneInfo("Asia/Taipei")).strftime("%m/%d %H:%M")
-print(f"這一輪（台北 {tp(start)} 起）已用 {used} 次（成功 {ok}、被擋 {bad}），估計還剩 {max(0, lim - used)} 次；下次重置 台北 {tp(start + timedelta(days=1))}")
+print(f"這一輪（台北 {tp(start)} 起）已送 {used} 次（成功 {ok}、被擋 {bad}）；下次重置 台北 {tp(start + timedelta(days=1))}。⚠ 上限不明：11/25 10:26 回「每日額度用完」，10:42 又成功，次數不能當剩餘額度")

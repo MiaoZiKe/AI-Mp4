@@ -92,7 +92,9 @@ async function synth(text, purpose) {
     //   每天 → 停下並印出是哪一條額度、台北幾點重置（太平洋時間午夜）。完整錯誤寫進 tts-requests.json 的 quota 欄。
     if (r.status === 429) {
       const q = quotaInfo(t); logReq({ ...row, quota: q });
-      if (!q.daily && q429 < 3) { q429++; const w = Math.min(130, (q.retrySec ?? 60) + 5); console.warn(`  ⏳ 429 每分鐘額度（${q.ids.join("、") || "未標示"}）→ 等 ${w} 秒自動重送（第 ${q429} 次）`); await sleep(w * 1000); i--; continue; }
+      if (q429 < 3 && (!q.daily || q429 === 0)) { // 11-25：回「每日」也先等 10 分鐘再試一次（10:26 回每日用完、10:42 卻成功）
+        if (q.daily) { q429++; console.warn(`  ⏳ 429 每日額度（${q.ids.join("、")}）→ 先等 10 分鐘再試一次`); await sleep(600000); i--; continue; }
+ q429++; const w = Math.min(130, (q.retrySec ?? 60) + 5); console.warn(`  ⏳ 429 每分鐘額度（${q.ids.join("、") || "未標示"}）→ 等 ${w} 秒自動重送（第 ${q429} 次）`); await sleep(w * 1000); i--; continue; }
       const e = new Error(`429 ${q.daily ? "每日額度用完" : "額度"}（${q.ids.join("、") || "未標示"}）；${q.daily ? "台北 " + resetTaipei() + " 重置" : "重試 3 次仍失敗"}`); e.quota = true; e.daily = q.daily; throw e;
     }
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;
