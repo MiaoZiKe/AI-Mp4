@@ -153,10 +153,10 @@ for k, a in enumerate(H2_AT):
 # ALE 原子格（s10）：兩圈，每圈 44 幀：改質 12 → 沖洗 8 → 移除 12（變色那層往上飛走）→ 沖洗 8
 ALE = INFO["ALE"]; C0 = "s10:mod-6"; ALE_RUN = []
 for c in range(2):
-    b = add(C0, c * 44)
+    b = add(C0, c * 48)
     VIS += [hid(f"aleG{c}", "s1:start-40", add(b, 8), 6), hid(f"aleL{c}", add(b, 8), FAR, 4),
-            mv(f"aleG{c}", add(b, 24), FAR, 12, dy=1.6), hid(f"aleG{c}", add(b, 28), FAR, 8)]
-    ALE_RUN += [run(ALE["CL"][c], b, add(b, 12), 4), run(ALE["P"][c], add(b, 12), add(b, 20), 4), run(ALE["AR"][c], add(b, 20), add(b, 32), 4), run(ALE["P"][c], add(b, 32), add(b, 40), 4)]
+            mv(f"aleG{c}", add(b, 40), FAR, 10, dy=1.6), hid(f"aleG{c}", add(b, 43), FAR, 7)]
+    ALE_RUN += [run(ALE["CL"][c], b, add(b, 12), 4), run(ALE["P"][c], add(b, 12), add(b, 18), 4), run(ALE["AR"][c], add(b, 16), add(b, 42), 3), run(ALE["P"][c], add(b, 42), add(b, 48), 4)]   # 氬離子先打到那一層（約第 38 幀），那一層才飛走
 
 # ═════════ s2 真空手臂（關節鏈 kin）：裝載閘取片 → 縮回 → 轉向（先加速再減速）→ 伸進 pm1 → 放到升降銷 → 刀片退出 → 吸盤升起托住 ═════════
 def pose(a, al): return {"j1": round(-a + al, 2), "j2": round(-2 * al, 2), "j3": round(al, 2)}
@@ -184,7 +184,7 @@ EXPLODE = [mv("pm1Lid", EXP_A, EXP_B, 18, dy=5.0), mv("pm1Coil", add(EXP_A, 6), 
 CUT = [hid("pm1Pump", "s2:put-34", "s3:start-8", 12), hid("pm1Body", "s2:put-34", "s3:open-6", 12, 0.04), hid("pm1Lid", "s2:put-34", "s3:open-6", 12, 0.0),
        hid("pm1Body", "s4:start+14", "s7:start-8", 14, 0.08), hid("pm1Lid", "s4:start+14", "s7:start-8", 14, 0.0),
        hid("pm4Body", "s9:start-14", "s10:start-14", 14, 0.12), hid("pm4Lid", "s9:start-14", "s10:start-14", 14, 0.0),
-       hid("tcLid", "s2:start-12", "s3:start-6", 12, 0.0),
+       hid("tcLid", "s2:start-12", "s3:start-6", 12, 0.0), hid("tc", "s2:put-34", "s3:start-2", 12, 0.2), hid("main", "s2:put-34", "s3:start-2", 12, 0.2),
        hid("pm1Pump", "s4:start+14", "s6:start-8", 12)]
 # ═════════ 焦點窗接力：鏡頭推近時焦點以外的模組淡出（相鄰兩窗都不是焦點就一直保持淡出）═════════
 ALL = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
@@ -194,7 +194,7 @@ isPM4 = lambda l: l.startswith("pm4")
 isHAR = lambda l: l == "har" or l.startswith("hole")
 isH2 = lambda l: l == "har2" or l.startswith("h2")
 isALE = lambda l: l.startswith("ale")
-isPM1v = lambda l: isPM1(l) or l == "vr"
+isPM1v = lambda l: isPM1(l) or l in ("vr", "tc", "main")
 WIN = [(isS2, "s2:start-6", "s2:put-34"), (isPM1v, "s2:put-34", "s3:start-2"), (isPM1, "s3:start-2", "s7:start-10"), (isH2, "s7:start-10", "s8:start-10"), (isHAR, "s8:start-10", "s9:start-18"),
        (isPM4, "s9:start-18", "s10:start-18"), (isALE, "s10:start-18", "s11:start+24"), (isHAR, "s12:start-2", FAR)]
 FOCUS = []
@@ -227,7 +227,7 @@ P["s3"] = {"shot": [shot("start-8", X1, 4.6, 100, 14, 34)],
  "labels": [lab("coil", "線圈（內外兩組）", "Coil", "amber", "coil-6", "win-8"), lab("win", "介電窗（陶瓷）", "Dielectric window", "blue", "win-6", "esc-8"),
             lab("esc", "靜電吸盤", "Electrostatic chuck", "amber", "esc-6", "ring-8"), lab("ring", "邊緣環", "Edge ring", "blue", "ring-6", "s4:start+12")],
  "overlay": [sec("lam-stack", "start+6", "s4:start-5", "蝕刻腔拆開", "示意", {"open": "open", "coil": "coil", "win": "win", "esc": "esc", "ring": "ring"})]}
-P["s4"] = {"shot": [shot("start", X1, 3.7, 40, 10, 26)],
+P["s4"] = {"shot": [shot("start", X1, 3.7, 40, 3, 26)],
  "run": [run("coilHot", "rf-4", "s7:start", 10), run("match1", "rf-4", "s7:start", 6), run("gasIn", "start+20", "s7:start", 8), run("icpGlow", "glow-6", "s7:start", 12)],
  "labels": [lab("plasma", "電漿（顏色示意）", "Plasma", "blue", "glow", "s5:start-4")],
  "overlay": [sec("lam-plasma", "start+2", "s5:start-5", "點亮電漿", "示意", {"rf": "rf", "gas": "gas", "glow": "glow"})]}

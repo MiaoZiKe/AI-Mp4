@@ -16,8 +16,8 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   stage: "#8FA3C4", glassC: "#BFD3F2", copper: "#D98A3D", coilHot: "#F08A3C", ceramic: "#F4F1EA", escC: "#E9ECEF", ringSi: "#5C6675", waferC: "#5F7FB8",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", pipeB: "#3E7BD6", pipeR: "#D9534F", foupC: "#E8E2D4",
-  plasmaI: "#22C3EE", plasmaIHot: "#8FE6FF", plasmaC: "#E58BF0", plasmaCHot: "#F6C6FA", ion: "#38BDF8", rad: "#F5A524", byp: "#A99BC4", cl2: "#8BD45A", purge: "#C8D0DB",
-  frost: "#DCEFFF", oxideC: "#BCD9F2", nitrideC: "#C9CDD3", maskC: "#6B4A2E", holeC: "#1B2233", polyC: "#8C6B4F", cold: "#BFE3FF", rubber: "#2B2F36",
+  plasmaI: "#0AA8E0", plasmaIHot: "#00C8FF", plasmaC: "#E58BF0", plasmaCHot: "#F6C6FA", ion: "#38BDF8", rad: "#F5A524", byp: "#A99BC4", cl2: "#8BD45A", purge: "#C8D0DB",
+  frost: "#DCEFFF", oxideC: "#BCD9F2", nitrideC: "#C9CDD3", maskC: "#6B4A2E", holeC: "#1B2233", polyC: "#9A7B5C", cold: "#BFE3FF", rubber: "#2B2F36",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const materials = {
@@ -36,11 +36,12 @@ const materials = {
   lampR: M("std", "lampR", { emissive: "lampR", ei: 0.2, rough: 0.4, metal: 0 }),
   screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }), pipeB: M("std", "pipeB", { rough: 0.35, metal: 0.6, env: 0.4 }), pipeR: M("std", "pipeR", { rough: 0.35, metal: 0.6, env: 0.4 }),
   foup: M("phys", "foupC", { rough: 0.35, metal: 0, clearcoat: 0.4, env: 0.3 }), foupWin: M("phys", "glassC", { rough: 0.1, metal: 0, opacity: 0.5, env: 0.4 }),
-  glowI: M("std", "plasmaI", { emissive: "plasmaI", ei: 1, opacity: 0.5, rough: 1, metal: 0 }), glowI2: M("std", "plasmaI", { emissive: "plasmaI", ei: 0.9, opacity: 0.3, rough: 1, metal: 0 }), glowI3: M("std", "plasmaI", { emissive: "plasmaI", ei: 0.8, opacity: 0.16, rough: 1, metal: 0 }), glowIHot: M("std", "plasmaIHot", { emissive: "plasmaIHot", ei: 1, opacity: 0.85, rough: 1, metal: 0 }),
+  glowI: M("std", "plasmaI", { emissive: "plasmaI", ei: 1.2, opacity: 0.8, rough: 1, metal: 0 }), glowI2: M("std", "plasmaI", { emissive: "plasmaI", ei: 0.9, opacity: 0.48, rough: 1, metal: 0 }), glowI3: M("std", "plasmaI", { emissive: "plasmaI", ei: 0.8, opacity: 0.3, rough: 1, metal: 0 }), glowIHot: M("std", "plasmaIHot", { emissive: "plasmaIHot", ei: 1.6, opacity: 1, rough: 1, metal: 0 }),
   glowC: M("std", "plasmaC", { emissive: "plasmaC", ei: 1, opacity: 0.58, rough: 1, metal: 0 }), glowCHot: M("std", "plasmaCHot", { emissive: "plasmaCHot", ei: 1, opacity: 0.75, rough: 1, metal: 0 }),
-  sheath: M("std", "dark", { opacity: 0.35, rough: 1, metal: 0 }),
+  sheath: M("std", "dark", { opacity: 0.62, rough: 1, metal: 0 }),
   oxide: M("std", "oxideC", { rough: 0.5, metal: 0, env: 0.2 }), nitride: M("std", "nitrideC", { rough: 0.5, metal: 0.05, env: 0.2 }),
   maskM: M("std", "maskC", { rough: 0.6, metal: 0.1 }), holeM: M("std", "holeC", { rough: 1, metal: 0 }), polymer: M("std", "polyC", { rough: 0.8, metal: 0 }),
+  glowCold: M("std", "cold", { emissive: "cold", ei: 0.9, opacity: 0.35, rough: 1, metal: 0 }),
   frostRim: M("std", "frost", { emissive: "frost", ei: 0.35, rough: 0.7, metal: 0 }), atomSi: M("std", "steel2", { rough: 0.4, metal: 0.3, env: 0.5 }), atomCl: M("std", "cl2", { rough: 0.5, metal: 0, emissive: "cl2", ei: 0.25 }),
   frost: M("phys", "frost", { rough: 0.6, metal: 0, clearcoat: 0.3, env: 0.5 }), rubber: M("std", "rubber", { rough: 0.9, metal: 0 }),
   t_lam: { kind: "unlit", color: "#FFFFFF", img: "tex/brand/sign-lam.png" }, t_us: { kind: "unlit", color: "#FFFFFF", img: "tex/brand/flag-US.png" },
@@ -214,7 +215,7 @@ const icpBuild = (key, a) => {
   P({ id: `${lid}Gas`, layer: lid, shape: "cyl", size: [0.1, 2.6], rot: [0, 0, 90], pos: [x - 1.6, top + 2.25, z + 0.9], mat: "steel2" });
   // 電漿：介電窗下方厚圓盤（最亮）、往下漸暗；晶圓上方一層暗的鞘層
   const gY = top - 0.75;
-  P({ id: `${glow}Core`, layer: glow, shape: "cyl", size: [2.0, 0.42], rot: V, pos: [x, R2(top - 0.3), z], mat: "glowIHot" });
+  P({ id: `${glow}Core`, layer: glow, shape: "cyl", size: [2.2, 0.6], rot: V, pos: [x, R2(top - 0.42), z], mat: "glowIHot" });
   P({ id: `${glow}`, layer: glow, shape: "cyl", size: [2.6, 0.5], rot: V, pos: [x, R2(top - 0.55), z], mat: "glowI" });
   P({ id: `${glow}Mid`, layer: glow, shape: "cyl", size: [2.6, 0.5], rot: V, pos: [x, R2(top - 1.05), z], mat: "glowI2" });
   P({ id: `${glow}Low`, layer: glow, shape: "cyl", size: [2.6, 0.45], rot: V, pos: [x, R2(top - 1.52), z], mat: "glowI3" });
@@ -236,9 +237,9 @@ const ccpBuild = (key, a, cryo) => {
   for (let r = 1; r <= 5; r++) holes.push(...ring(r * 7, r * 0.4, r * 7));
   P({ id: `${sh}Holes`, layer: sh, shape: "cyl", size: [0.05, 0.04], rot: V, pos: [x, SHY - 0.12, z], at: holes, mat: "dark" });
   P({ id: `${sh}Plen`, layer: sh, shape: "cyl", size: [2.2, 0.28], rot: V, pos: [x, SHY + 0.27, z], mat: "steel" });
-  P({ id: `${conf}`, layer: conf, shape: "tube", size: [2.3, 2.12, 0.05], rot: V, pos: [x, 6.9, z], at: [[0, 0, 0], [0, 0.22, 0], [0, 0.44, 0], [0, 0.66, 0]], mat: "ceramic" });
-  P({ id: `${glow}`, layer: glow, shape: "cyl", size: [2.05, R2(SHY - 0.14 - (yW + 0.2))], rot: V, pos: [x, R2((SHY - 0.14 + yW + 0.2) / 2), z], mat: "glowC" });
-  P({ id: `${glow}Core`, layer: glow, shape: "cyl", size: [1.8, 0.3], rot: V, pos: [x, R2(yW + 0.55), z], mat: "glowCHot" });
+  P({ id: `${conf}`, layer: conf, shape: "tube", size: [2.3, 2.12, 0.05], rot: V, pos: [x, 6.9, z], at: [[0, 0, 0], [0, 0.22, 0], [0, 0.44, 0], [0, 0.66, 0]], mat: cryo ? "frostRim" : "ceramic" });
+  P({ id: `${glow}`, layer: glow, shape: "cyl", size: [2.05, R2(SHY - 0.14 - (yW + 0.2))], rot: V, pos: [x, R2((SHY - 0.14 + yW + 0.2) / 2), z], mat: cryo ? "glowCold" : "glowC" });
+  P({ id: `${glow}Core`, layer: glow, shape: "cyl", size: [1.8, 0.3], rot: V, pos: [x, R2(yW + 0.55), z], mat: cryo ? "glowCold" : "glowCHot" });
   P({ id: `${glow}Sheath`, layer: glow, shape: "cyl", size: [1.62, 0.08], rot: V, pos: [x, yW + 0.11, z], mat: "sheath" });
   if (cryo) P({ id: `${c.esc}Rim`, layer: c.esc, shape: "tube", size: [1.9, 1.66, 0.22], rot: V, pos: [x, R2(c.escTop - 0.4), z], mat: "frostRim" });
   P({ id: `${key}Wf`, layer: c.esc, shape: "cyl", size: [1.5, WT], rot: V, pos: [x, yW, z], mat: "wafer" });
@@ -368,7 +369,7 @@ const at1 = (r, t) => [R2(P1.x + r * Math.cos(t)), R2(P1.z + r * Math.sin(t))];
 actions.coilHot = { type: "pulse", _說明: "射頻通進線圈：銅帶發橙光、微微呼吸（示意）", parts: ["pm1Coil0", "pm1Coil1", "pm1Coil2", "pm1Coil3", "pm1Coil4", "pm1Coil5"], color: "coilHot", glow: 0.7, freq: 1.1, halo: 0 };
 actions.icpGlow = { type: "pulse", _說明: "ICP 電漿：窗下厚圓盤最亮、往下漸暗；輝光微微閃動（氯系青藍白，示意）", parts: ["pm1GlowCore", "pm1Glow", "pm1GlowMid", "pm1GlowLow"], color: "plasmaI", glow: 0.9, freq: 3.6, halo: 0 };
 actions.ccpGlow = { type: "pulse", _說明: "CCP 電漿（含氟介電蝕刻，粉紫，示意）", parts: ["pm3Glow", "pm3GlowCore"], color: "plasmaC", glow: 0.85, freq: 1.4, halo: 0 };
-actions.cryoGlow = { type: "pulse", parts: ["pm4Glow", "pm4GlowCore"], color: "plasmaC", glow: 0.85, freq: 1.4, halo: 0 };
+actions.cryoGlow = { type: "pulse", _說明: "低溫腔電漿（顏色示意，用冷色避免跟加熱混淆）", parts: ["pm4Glow", "pm4GlowCore"], color: "cold", glow: 0.85, freq: 1.4, halo: 0 };
 // 氣體：氣櫃 → 頂部注入口 → 從窗中央往下、往外散開（錐狀）
 { const top = P1.top; actions.gasIn = { type: "flow", _說明: "製程氣體從介電窗中央注入口往下、呈錐狀散開（示意）", path: [lpt("pm1Glow", [P1.x, top - 0.1, P1.z]), lpt("pm1Glow", [P1.x, top - 0.6, P1.z]), lpt("pm1Glow", [R2(P1.x + 1.5), top - 1.4, P1.z])], n: 5, lanes: 6, laneGap: 0.5, laneDir: [0, 0, 1], size: 0.08, shape: "dot", rate: 0.55, color: "purge", track: false }; }
 // 離子：在鞘層被偏壓垂直加速往下（越近晶圓越快：accel），幾乎垂直撞晶圓
@@ -407,7 +408,7 @@ for (let ly = 0; ly < 2; ly++) { LAY(`aleG${ly}`, [6, 0.8, AX, aleY(ly)]); P({ i
 const aleTop = (ly) => R2(aleY(ly) + 0.35);
 const ALE_CL = [0, 1].map((ly) => { const id = `aleCl${ly}`; actions[id] = { type: "flow", _說明: "改質：氯（綠點）落到最上一層，鋪滿就停（自限，示意）", layer: "aleSt", path: [[AX, R2(aleTop(ly) + 3.0), AZ], [AX, aleTop(ly), AZ]], n: 3, lanes: 7, laneGap: ASP, laneDir: [1, 0, 0], size: 0.12, shape: "dot", rate: 0.9, color: "cl2", free: true, track: false }; return id; });
 const ALE_P = [0, 1].map((ly) => { const id = `aleP${ly}`; actions[id] = { type: "flow", _說明: "沖洗：灰點從表面上方橫向帶走多的氣體", layer: "aleSt", path: [[R2(AX - 3.2), R2(aleTop(ly) + 0.6), AZ], [R2(AX + 3.6), R2(aleTop(ly) + 1.0), AZ]], n: 4, lanes: 4, laneGap: 0.6, laneDir: [0, 0, 1], size: 0.1, shape: "dot", rate: 0.9, color: "purge", free: true, track: false }; return id; });
-const ALE_AR = [0, 1].map((ly) => { const id = `aleAr${ly}`; actions[id] = { type: "flow", _說明: "移除：少量低能量氬離子慢慢垂直打下，只打掉變色那一層（示意）", layer: "aleSt", path: [[AX, R2(aleTop(ly) + 3.2), AZ], [AX, aleTop(ly), AZ]], n: 2, lanes: 4, laneGap: 1.4, laneDir: [1, 0, 0], size: 0.1, shape: "dot", rate: 0.5, color: "ion", trail: 2, trailGap: 0.03, trailColor: "ion", free: true, track: false }; return id; });
+const ALE_AR = [0, 1].map((ly) => { const id = `aleAr${ly}`; actions[id] = { type: "flow", _說明: "移除：少量低能量氬離子慢慢垂直打下，只打掉變色那一層（示意）", layer: "aleSt", path: [[AX, R2(aleTop(ly) + 3.2), AZ], [AX, aleTop(ly), AZ]], n: 4, lanes: 4, laneGap: 1.4, laneDir: [1, 0, 0], size: 0.15, shape: "dot", rate: 2.2, accel: true, color: "ion", trail: 3, trailGap: 0.03, trailColor: "ion", free: true, track: false }; return id; });
 // 單孔剖面放大（孔壁長保護膜、孔底被離子打掉）：HAR 剖面塊右邊另一座展示台（孔寬放大示意）
 const H2X = 34, H2Z = 3, H2B = 3.0, H2N = 6, H2W = 1.2, H2T = H2B + 0.2 + 7.0;
 LAY("har2", [7, 9, H2X, 6.5]);
@@ -420,7 +421,7 @@ P({ id: "har2Mask", layer: "har2", shape: "box", size: [2.4, 0.4, 1.4], pos: [H2
 for (let k = 0; k < H2N; k++) {
   const l = `h2s${k}`, yc = R2(H2T - (k + 0.5) * (7.0 / H2N)), hh = R2((7.0 / H2N) * 1.02);
   LAY(l, [2, hh, H2X, yc]); P({ id: l, layer: l, shape: "box", size: [H2W, hh, 0.08], pos: [H2X, yc, R2(H2Z + 0.72)], mat: "holeM" });
-  const lp = `h2p${k}`; LAY(lp, [2, hh, H2X, yc]); P({ id: lp, layer: lp, shape: "box", size: [0.14, hh, 0.1], pos: [H2X, yc, R2(H2Z + 0.73)], at: [[R2(-H2W / 2 + 0.07), 0, 0], [R2(H2W / 2 - 0.07), 0, 0]], mat: "polymer" });
+  const lp = `h2p${k}`; LAY(lp, [2, hh, H2X, yc]); P({ id: lp, layer: lp, shape: "box", size: [0.3, hh, 0.1], pos: [H2X, yc, R2(H2Z + 0.74)], at: [[R2(-H2W / 2 + 0.15), 0, 0], [R2(H2W / 2 - 0.15), 0, 0]], mat: "polymer" });
 }
 [2, 4, 6].forEach((k, si) => { const yb = R2(H2T - k * (7.0 / H2N) + 0.1);
   actions[`h2Ion${si}`] = { type: "flow", _說明: "單孔放大：離子沿孔中央垂直往下、越往下越快，打在孔底（孔底的保護膜被打掉，示意）", layer: "har2", path: [[H2X, R2(H2T + 2.4), R2(H2Z + 0.8)], [H2X, yb, R2(H2Z + 0.8)]], n: 4, lanes: 3, laneGap: 0.28, laneDir: [1, 0, 0], size: 0.09, shape: "dot", rate: 1.0, accel: true, color: "ion", trail: 4, trailGap: 0.03, trailColor: "ion", free: true, track: false };
@@ -446,7 +447,7 @@ Object.assign(anchors, {
   plasma: A("pm1Glow", [PM1.x, PM1.top - 0.8, PM1.z + 2.2], 160, -40), wafer: A("wf", [PM1.x, yW, PM1.z + 1.3], 150, 120),
   gas: A("gas", [GX, 8.4, GZ + 1.6], -140, -130), rfgen: A("rfgen", [7, 6.4, GZ + 1.4], 140, -130),
   rad: A("pm1Glow", [PM1.x + 1.1, yW + 0.9, PM1.z + 1.4], 160, -60), escB4: A("pm4Esc", [PM4.x, yW - 0.5, PM4.z + 1.8], 150, -120),
-  h2wall: A("h2p2", [H2X - H2W / 2 + 0.07, R2(H2T - 2.9), H2Z + 0.78], -160, -40), ale: A("aleL1", [AX + 2.2, aleY(0) + 0.3, AZ + 1.2], 150, -110),
+  h2wall: A("h2p2", [H2X - H2W / 2 + 0.15, R2(H2T - 2.9), H2Z + 0.78], -160, -40), ale: A("aleL1", [AX + 2.2, aleY(0) + 0.3, AZ + 1.2], 150, -110),
   har: A("har", [HX + 3.5, HB + HH + 0.5, HZ + 0.7], 120, -120), harHole: A("hole6", [HX, HB + 6, HZ + 0.75], 150, 40),
   sign: A("sign", [0, EH - 2.6, EZ1 + 0.2], -150, 130),
 });

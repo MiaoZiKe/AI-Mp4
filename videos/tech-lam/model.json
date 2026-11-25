@@ -31,8 +31,8 @@
   "pipeB": "#3E7BD6",
   "pipeR": "#D9534F",
   "foupC": "#E8E2D4",
-  "plasmaI": "#22C3EE",
-  "plasmaIHot": "#8FE6FF",
+  "plasmaI": "#0AA8E0",
+  "plasmaIHot": "#00C8FF",
   "plasmaC": "#E58BF0",
   "plasmaCHot": "#F6C6FA",
   "ion": "#38BDF8",
@@ -45,7 +45,7 @@
   "nitrideC": "#C9CDD3",
   "maskC": "#6B4A2E",
   "holeC": "#1B2233",
-  "polyC": "#8C6B4F",
+  "polyC": "#9A7B5C",
   "cold": "#BFE3FF",
   "rubber": "#2B2F36"
  },
@@ -246,8 +246,8 @@
    "kind": "std",
    "color": "plasmaI",
    "emissive": "plasmaI",
-   "ei": 1,
-   "opacity": 0.5,
+   "ei": 1.2,
+   "opacity": 0.8,
    "rough": 1,
    "metal": 0
   },
@@ -256,7 +256,7 @@
    "color": "plasmaI",
    "emissive": "plasmaI",
    "ei": 0.9,
-   "opacity": 0.3,
+   "opacity": 0.48,
    "rough": 1,
    "metal": 0
   },
@@ -265,7 +265,7 @@
    "color": "plasmaI",
    "emissive": "plasmaI",
    "ei": 0.8,
-   "opacity": 0.16,
+   "opacity": 0.3,
    "rough": 1,
    "metal": 0
   },
@@ -273,8 +273,8 @@
    "kind": "std",
    "color": "plasmaIHot",
    "emissive": "plasmaIHot",
-   "ei": 1,
-   "opacity": 0.85,
+   "ei": 1.6,
+   "opacity": 1,
    "rough": 1,
    "metal": 0
   },
@@ -299,7 +299,7 @@
   "sheath": {
    "kind": "std",
    "color": "dark",
-   "opacity": 0.35,
+   "opacity": 0.62,
    "rough": 1,
    "metal": 0
   },
@@ -333,6 +333,15 @@
    "kind": "std",
    "color": "polyC",
    "rough": 0.8,
+   "metal": 0
+  },
+  "glowCold": {
+   "kind": "std",
+   "color": "cold",
+   "emissive": "cold",
+   "ei": 0.9,
+   "opacity": 0.35,
+   "rough": 1,
    "metal": 0
   },
   "frostRim": {
@@ -8495,8 +8504,8 @@
    "layer": "pm1Glow",
    "shape": "cyl",
    "size": [
-    2,
-    0.42
+    2.2,
+    0.6
    ],
    "rot": [
     90,
@@ -8505,7 +8514,7 @@
    ],
    "pos": [
     10.4,
-    8.2,
+    8.08,
     0
    ],
    "mat": "glowIHot"
@@ -9861,8 +9870,8 @@
    "layer": "pm2Glow",
    "shape": "cyl",
    "size": [
-    2,
-    0.42
+    2.2,
+    0.6
    ],
    "rot": [
     90,
@@ -9871,7 +9880,7 @@
    ],
    "pos": [
     5.2,
-    8.2,
+    8.08,
     -9.007
    ],
    "mat": "glowIHot"
@@ -13204,7 +13213,7 @@
      0
     ]
    ],
-   "mat": "ceramic"
+   "mat": "frostRim"
   },
   {
    "id": "pm4Glow",
@@ -13224,7 +13233,7 @@
     7.295,
     0
    ],
-   "mat": "glowC"
+   "mat": "glowCold"
   },
   {
    "id": "pm4GlowCore",
@@ -13244,7 +13253,7 @@
     7.13,
     0
    ],
-   "mat": "glowCHot"
+   "mat": "glowCold"
   },
   {
    "id": "pm4GlowSheath",
@@ -18257,23 +18266,23 @@
    "layer": "h2p0",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     9.617,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18301,23 +18310,23 @@
    "layer": "h2p1",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     8.45,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18345,23 +18354,23 @@
    "layer": "h2p2",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     7.283,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18389,23 +18398,23 @@
    "layer": "h2p3",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     6.117,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18433,23 +18442,23 @@
    "layer": "h2p4",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     4.95,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18477,23 +18486,23 @@
    "layer": "h2p5",
    "shape": "box",
    "size": [
-    0.14,
+    0.3,
     1.19,
     0.1
    ],
    "pos": [
     34,
     3.783,
-    3.73
+    3.74
    ],
    "at": [
     [
-     -0.53,
+     -0.45,
      0,
      0
     ],
     [
-     0.53,
+     0.45,
      0,
      0
     ]
@@ -18685,7 +18694,7 @@
   "h2wall": {
    "layer": "h2p2",
    "p": [
-    33.47,
+    33.55,
     7.3,
     3.7800000000000002
    ],
@@ -18778,11 +18787,12 @@
   },
   "cryoGlow": {
    "type": "pulse",
+   "_說明": "低溫腔電漿（顏色示意，用冷色避免跟加熱混淆）",
    "parts": [
     "pm4Glow",
     "pm4GlowCore"
    ],
-   "color": "plasmaC",
+   "color": "cold",
    "glow": 0.85,
    "freq": 1.4,
    "halo": 0
@@ -19940,7 +19950,7 @@
      3
     ]
    ],
-   "n": 2,
+   "n": 4,
    "lanes": 4,
    "laneGap": 1.4,
    "laneDir": [
@@ -19948,11 +19958,12 @@
     0,
     0
    ],
-   "size": 0.1,
+   "size": 0.15,
    "shape": "dot",
-   "rate": 0.5,
+   "rate": 2.2,
+   "accel": true,
    "color": "ion",
-   "trail": 2,
+   "trail": 3,
    "trailGap": 0.03,
    "trailColor": "ion",
    "free": true,
@@ -19974,7 +19985,7 @@
      3
     ]
    ],
-   "n": 2,
+   "n": 4,
    "lanes": 4,
    "laneGap": 1.4,
    "laneDir": [
@@ -19982,11 +19993,12 @@
     0,
     0
    ],
-   "size": 0.1,
+   "size": 0.15,
    "shape": "dot",
-   "rate": 0.5,
+   "rate": 2.2,
+   "accel": true,
    "color": "ion",
-   "trail": 2,
+   "trail": 3,
    "trailGap": 0.03,
    "trailColor": "ion",
    "free": true,
