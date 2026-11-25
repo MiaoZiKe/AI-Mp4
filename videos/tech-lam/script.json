@@ -1,0 +1,3333 @@
+{
+ "slug": "tech-lam",
+ "prevEpisode": "設備五大-2：應用材料",
+ "title": "設備五大-3：科林研發（科技透明圈）",
+ "asOf": "2026/11/26",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白：2.5＋Iapetus＋說明 B（捲舌音要念清楚）；音高關卡 tts-pitch-take.sh（112～126 Hz）；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "多腔蝕刻平台（示意）",
+    "en": "ETCH CLUSTER",
+    "field": "4 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/26",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定機型"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "怎麼刻得",
+   "又直又深？"
+  ],
+  "sub": "設備五大-3：科林研發",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集說把多的刻掉，怎麼刻？科林研發的蝕刻機，又直又深。",
+   "tts": "上一集說把多的刻掉，怎麼刻？科林研發的蝕刻機，又直又深。",
+   "subtitle": {
+    "zh": "上集說把多的刻掉\n怎麼刻？\n科林研發的蝕刻機\n又直又深",
+    "en": "Last time: etch away the excess. | But how? | Lam Research's etch tools, | straight and deep."
+   },
+   "keywords": [
+    "蝕刻",
+    "科林研發"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "把多的刻掉"
+    },
+    {
+     "id": "how",
+     "text": "怎麼刻"
+    },
+    {
+     "id": "lam",
+     "text": "科林研發"
+    },
+    {
+     "id": "deep",
+     "text": "又直又深"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科林研發官網；Lam 新聞稿（Sense.i 2020/3/3）"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：把多的刻掉",
+     "title": "怎麼刻掉多的？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": -1.3,
+      "d": 182,
+      "elev": 28
+     },
+     {
+      "at": "start",
+      "dur": 90,
+      "x": 0,
+      "y": -1.3,
+      "d": 175,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "pm1Glow",
+      "at": "s1:start-40",
+      "until": "s4:glow-8",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "pm1Mask",
+      "at": "s1:start-40",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hole0",
+      "at": "s1:start-40",
+      "until": "s7:start+16",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole1",
+      "at": "s1:start-40",
+      "until": "s7:wall+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole2",
+      "at": "s1:start-40",
+      "until": "s7:film",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole3",
+      "at": "s1:start-40",
+      "until": "s7:film+22",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole4",
+      "at": "s1:start-40",
+      "until": "s7:down",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole5",
+      "at": "s1:start-40",
+      "until": "s7:side",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole6",
+      "at": "s1:start-40",
+      "until": "s8:start+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole7",
+      "at": "s1:start-40",
+      "until": "s8:hole+8",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole8",
+      "at": "s1:start-40",
+      "until": "s8:ratio",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole9",
+      "at": "s1:start-40",
+      "until": "s8:ratio+30",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole10",
+      "at": "s1:start-40",
+      "until": "s8:hard",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hole11",
+      "at": "s1:start-40",
+      "until": "s8:hard+40",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "vd_llL",
+      "at": "s1:start-40",
+      "until": "s2:start+60",
+      "dur": 10,
+      "dy": -1.2
+     },
+     {
+      "layer": "vd_pm1",
+      "at": "s2:start+80",
+      "until": "s2:start+164",
+      "dur": 10,
+      "dy": -1.2
+     },
+     {
+      "layer": "pm1Esc",
+      "at": "s1:start-40",
+      "until": "s2:start+166",
+      "dur": 16,
+      "dy": -0.7
+     },
+     {
+      "layer": "pm1Ring",
+      "at": "s1:start-40",
+      "until": "s2:start+166",
+      "dur": 16,
+      "dy": -0.7
+     },
+     {
+      "layer": "pm1Lid",
+      "at": "s3:open-4",
+      "until": "s4:start-16",
+      "dur": 22,
+      "dy": 5.0
+     },
+     {
+      "layer": "pm1Coil",
+      "at": "s3:open+2",
+      "until": "s4:start-13",
+      "dur": 22,
+      "dy": 3.6
+     },
+     {
+      "layer": "pm1Win",
+      "at": "s3:open+8",
+      "until": "s4:start-10",
+      "dur": 22,
+      "dy": 2.2
+     },
+     {
+      "layer": "pm1Ring",
+      "at": "s3:open+14",
+      "until": "s4:start-7",
+      "dur": 22,
+      "dy": 1.0
+     },
+     {
+      "layer": "pm1Pump",
+      "at": "s3:open+20",
+      "until": "s4:start-7",
+      "dur": 22,
+      "dy": -1.2
+     },
+     {
+      "layer": "pm1Body",
+      "at": "s3:open-6",
+      "until": "s4:start-6",
+      "opacity": 0.12,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Body",
+      "at": "s4:start+14",
+      "until": "s7:start-4",
+      "opacity": 0.08,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Lid",
+      "at": "s4:start+14",
+      "until": "s7:start-4",
+      "opacity": 0.0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Body",
+      "at": "s10:start-14",
+      "until": "s11:start-4",
+      "opacity": 0.08,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Lid",
+      "at": "s10:start-14",
+      "until": "s11:start-4",
+      "opacity": 0.0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Body",
+      "at": "s9:start-14",
+      "until": "s10:start-14",
+      "opacity": 0.08,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Lid",
+      "at": "s9:start-14",
+      "until": "s10:start-14",
+      "opacity": 0.0,
+      "dur": 14
+     },
+     {
+      "layer": "tcLid",
+      "at": "s2:start-12",
+      "until": "s3:start-6",
+      "opacity": 0.15,
+      "dur": 12
+     },
+     {
+      "layer": "pm1Pump",
+      "at": "s4:start+14",
+      "until": "s6:start-8",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "pm1Pump",
+      "at": "s10:start-14",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "pm4Pump",
+      "at": "s9:start-14",
+      "until": "s10:start-14",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "main",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "main",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tc",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tc",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tcLid",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tcLid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_llR",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_llR",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_llR",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_llR",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_llL",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_llL",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_llL",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_llL",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm1",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm1",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm1",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm1",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm2",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm2",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm2",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm2",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm3",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm3",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm3",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm3",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm4",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "v_pm4",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm4",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vd_pm4",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vr",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "vr",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "wf",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "wf",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Body",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Body",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Pump",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Pump",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Esc",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Esc",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Ring",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Ring",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Glow",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Glow",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Lid",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Lid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Pins",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Pins",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Coil",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Coil",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Win",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Win",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Body",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Body",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Pump",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Pump",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Esc",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Esc",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Ring",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Ring",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Glow",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Glow",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Lid",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Lid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Pins",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Pins",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Coil",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Coil",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Win",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm2Win",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Body",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Body",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Pump",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Pump",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Esc",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Esc",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Ring",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Ring",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Glow",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Glow",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Lid",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Lid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Pins",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Pins",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3SH",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3SH",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Conf",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm3Conf",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Body",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Body",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Body",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pump",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pump",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pump",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Esc",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Esc",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Esc",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Ring",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Ring",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Ring",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Glow",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Glow",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Glow",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Lid",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Lid",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Lid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pins",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pins",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Pins",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4SH",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4SH",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4SH",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Conf",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Conf",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm4Conf",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Mask",
+      "at": "s7:start-18",
+      "until": "s10:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pm1Mask",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llL",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llL",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llLLid",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llLLid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llLDoor",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llLDoor",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llR",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llR",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llRLid",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llRLid",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llRDoor",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "llRDoor",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "efem",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "efem",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "ffu",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "ffu",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "eb",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "eb",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "foup",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "foup",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "sign",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "sign",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tower",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tower",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "ctrl",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "ctrl",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "gas",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "gas",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "rfgen",
+      "at": "s3:start-2",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "rfgen",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "chill",
+      "at": "s3:start-2",
+      "until": "s9:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "chill",
+      "at": "s10:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "chill",
+      "at": "s12:start-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "har",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "har",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole0",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole0",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole1",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole1",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole2",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole2",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole3",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole3",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole4",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole4",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole5",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole5",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole6",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole6",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole7",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole7",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole8",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole8",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole9",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole9",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole10",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole10",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole11",
+      "at": "s3:start-2",
+      "until": "s7:start-18",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hole11",
+      "at": "s9:start-18",
+      "until": "s11:start+24",
+      "opacity": 0,
+      "dur": 14
+     }
+    ],
+    "kin": [
+     {
+      "arm": "vr",
+      "at": "s1:start-40",
+      "keys": [
+       [
+        0,
+        {
+         "j1": -35,
+         "j2": -170,
+         "j3": 85,
+         "lift": 0
+        }
+       ]
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "status",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "tower",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "ffuAir",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s3:start"
+     },
+     {
+      "id": "ccpGlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s3:start"
+     },
+     {
+      "id": "chillFlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sign",
+      "text": "科林研發",
+      "en": "United States",
+      "color": "amber",
+      "at": "lam",
+      "until": "s2:start-4",
+      "flag": "US",
+      "logo": "lam"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-hook",
+      "at": "how",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "設備五大-3",
+      "tag": "示意佈局，非實際機型",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "how": {
+        "at": "how"
+       },
+       "lam": {
+        "at": "lam"
+       },
+       "deep": {
+        "at": "deep"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "中間是真空傳送腔，手臂先加速再減速，把晶圓送進蝕刻腔。",
+   "tts": "中間是真空傳送腔，手臂先加速再減速，把晶圓送進蝕刻腔。",
+   "subtitle": {
+    "zh": "中間是真空傳送腔\n手臂先加速再減速\n把晶圓送進蝕刻腔",
+    "en": "In the middle: a vacuum transfer chamber. | The arm speeds up, then slows down, | and sets the wafer into an etch chamber."
+   },
+   "keywords": [
+    "傳送腔",
+    "蝕刻腔"
+   ],
+   "cues": [
+    {
+     "id": "mid",
+     "text": "真空傳送腔"
+    },
+    {
+     "id": "arm",
+     "text": "手臂"
+    },
+    {
+     "id": "acc",
+     "text": "先加速"
+    },
+    {
+     "id": "dec",
+     "text": "再減速"
+    },
+    {
+     "id": "put",
+     "text": "送進蝕刻腔"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam Sense.i 新聞稿；集群設備專利（示意佈局）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 3,
+      "y": -2,
+      "d": 200,
+      "elev": 42
+     }
+    ],
+    "kin": [
+     {
+      "arm": "vr",
+      "at": "s2:start-6",
+      "keys": [
+       [
+        0,
+        {
+         "j1": -35,
+         "j2": -170,
+         "j3": 85,
+         "lift": 0
+        }
+       ],
+       [
+        22,
+        {
+         "j1": -88.21,
+         "j2": -63.58,
+         "j3": 31.79
+        }
+       ],
+       [
+        30,
+        {
+         "lift": 0.02
+        }
+       ],
+       [
+        40,
+        {
+         "lift": 0.22
+        }
+       ],
+       [
+        62,
+        {
+         "j1": -35,
+         "j2": -170,
+         "j3": 85
+        }
+       ],
+       [
+        100,
+        {
+         "j1": 85,
+         "j2": -170,
+         "j3": 85
+        }
+       ],
+       [
+        124,
+        {
+         "j1": 28.21,
+         "j2": -56.42,
+         "j3": 28.21
+        }
+       ],
+       [
+        132,
+        {
+         "lift": 0.02
+        }
+       ],
+       [
+        142,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        164,
+        {
+         "j1": 85,
+         "j2": -170,
+         "j3": 85
+        }
+       ],
+       [
+        178,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wf",
+        "grab": 30,
+        "release": 132
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "llReady",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "vr",
+      "text": "真空手臂（型式示意）",
+      "en": "Vacuum robot",
+      "color": "amber",
+      "at": "arm-4",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-move",
+      "at": "start+2",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "手臂搬運",
+      "tag": "示意",
+      "t": {
+       "mid": {
+        "at": "mid"
+       },
+       "arm": {
+        "at": "arm"
+       },
+       "acc": {
+        "at": "acc"
+       },
+       "dec": {
+        "at": "dec"
+       },
+       "put": {
+        "at": "put"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.7,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "我們拆開一個腔，最上面是一圈圈的線圈，下面是陶瓷做的窗，再下面是靜電吸盤，最外圈是邊緣環。",
+   "tts": "我們拆開一個腔，最上面是一圈圈的線圈，下面是陶瓷做的窗，再下面是靜電吸盤，最外圈是邊緣環。",
+   "subtitle": {
+    "zh": "我們拆開一個腔\n最上面是一圈圈的線圈\n下面是陶瓷做的窗\n再下面是靜電吸盤\n最外圈是邊緣環",
+    "en": "Let's open one chamber. | On top: rings of coil, | below that, a ceramic window, | then the electrostatic chuck, | and the edge ring around it."
+   },
+   "keywords": [
+    "線圈",
+    "靜電吸盤",
+    "邊緣環"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "coil",
+     "text": "線圈"
+    },
+    {
+     "id": "win",
+     "text": "陶瓷做的窗"
+    },
+    {
+     "id": "esc",
+     "text": "靜電吸盤"
+    },
+    {
+     "id": "ring",
+     "text": "邊緣環"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam 專利 US9384948、US10056231"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-8",
+      "dur": 34,
+      "x": 9.700000000000001,
+      "y": 4.6,
+      "d": 100,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "coil",
+      "text": "線圈（內外兩組）",
+      "en": "Coil",
+      "color": "amber",
+      "at": "coil-6",
+      "until": "win-8"
+     },
+     {
+      "part": "win",
+      "text": "介電窗（陶瓷）",
+      "en": "Dielectric window",
+      "color": "blue",
+      "at": "win-6",
+      "until": "esc-8"
+     },
+     {
+      "part": "esc",
+      "text": "靜電吸盤",
+      "en": "Electrostatic chuck",
+      "color": "amber",
+      "at": "esc-6",
+      "until": "ring-8"
+     },
+     {
+      "part": "ring",
+      "text": "邊緣環",
+      "en": "Edge ring",
+      "color": "blue",
+      "at": "ring-6",
+      "until": "s4:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-stack",
+      "at": "start+2",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "蝕刻腔拆開",
+      "tag": "示意",
+      "t": {
+       "open": {
+        "at": "open"
+       },
+       "coil": {
+        "at": "coil"
+       },
+       "win": {
+        "at": "win"
+       },
+       "esc": {
+        "at": "esc"
+       },
+       "ring": {
+        "at": "ring"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 8.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "射頻穿過陶瓷窗，把氣體點成會發光的電漿。",
+   "tts": "射頻穿過陶瓷窗，把氣體點成會發光的電漿。",
+   "subtitle": {
+    "zh": "射頻穿過陶瓷窗\n把氣體點成\n會發光的電漿",
+    "en": "RF power passes through the window, | turning the gas into | a glowing plasma."
+   },
+   "keywords": [
+    "射頻",
+    "電漿"
+   ],
+   "cues": [
+    {
+     "id": "rf",
+     "text": "射頻"
+    },
+    {
+     "id": "gas",
+     "text": "氣體"
+    },
+    {
+     "id": "glow",
+     "text": "發光的電漿"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam 專利 US9053908；電漿蝕刻通則"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start+14",
+      "dur": 30,
+      "x": 9.700000000000001,
+      "y": 3.7,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "coilHot",
+      "at": "rf-4",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "match1",
+      "at": "rf-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "gasIn",
+      "at": "start+20",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "icpGlow",
+      "at": "glow-8",
+      "ramp": 12,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "plasma",
+      "text": "電漿（顏色示意）",
+      "en": "Plasma",
+      "color": "blue",
+      "at": "glow",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-plasma",
+      "at": "start+2",
+      "until": "s5:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "點亮電漿",
+      "tag": "示意",
+      "t": {
+       "rf": {
+        "at": "rf"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "glow": {
+        "at": "glow"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "吸盤加上偏壓，離子被往下加速，幾乎垂直撞向晶圓。",
+   "tts": "吸盤加上偏壓，離子被往下加速，幾乎垂直撞向晶圓。",
+   "subtitle": {
+    "zh": "吸盤加上偏壓\n離子被往下加速\n幾乎垂直撞向晶圓",
+    "en": "A bias is applied to the chuck, | ions accelerate downward | and strike the wafer almost vertically."
+   },
+   "keywords": [
+    "偏壓",
+    "離子"
+   ],
+   "cues": [
+    {
+     "id": "bias",
+     "text": "偏壓"
+    },
+    {
+     "id": "ion",
+     "text": "離子"
+    },
+    {
+     "id": "down",
+     "text": "往下加速"
+    },
+    {
+     "id": "hit",
+     "text": "垂直撞向"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "反應性離子蝕刻通則（physics-spec 3.1）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 30,
+      "x": 9.700000000000001,
+      "y": 3.7,
+      "d": 40,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "ion0",
+      "at": "ion-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "ion1",
+      "at": "ion-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "ion2",
+      "at": "ion-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "ion3",
+      "at": "ion-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "ion4",
+      "at": "ion-4",
+      "ramp": 8,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wafer",
+      "text": "離子垂直往下",
+      "en": "Ions accelerate down",
+      "color": "amber",
+      "at": "ion",
+      "until": "s6:start-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-ion",
+      "at": "start+2",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "離子往下加速",
+      "tag": "示意",
+      "t": {
+       "bias": {
+        "at": "bias"
+       },
+       "ion": {
+        "at": "ion"
+       },
+       "down": {
+        "at": "down"
+       },
+       "hit": {
+        "at": "hit"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "自由基到處亂飛負責反應，產物變成氣體，被泵抽走。",
+   "tts": "自由基到處亂飛負責反應，產物變成氣體，被泵抽走。",
+   "subtitle": {
+    "zh": "自由基到處亂飛\n負責反應\n產物變成氣體\n被泵抽走",
+    "en": "Radicals wander everywhere | and drive the chemistry; | the products turn into gas | and get pumped away."
+   },
+   "keywords": [
+    "自由基",
+    "抽走"
+   ],
+   "cues": [
+    {
+     "id": "rad",
+     "text": "自由基"
+    },
+    {
+     "id": "react",
+     "text": "負責反應"
+    },
+    {
+     "id": "gas",
+     "text": "變成氣體"
+    },
+    {
+     "id": "pump",
+     "text": "被泵抽走"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "電漿蝕刻通則；JVSTA 計算研究"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 32,
+      "x": 9.700000000000001,
+      "y": 1.8,
+      "d": 55,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "rad0",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "rad1",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "rad2",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "rad3",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "rad4",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "rad5",
+      "at": "rad-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "byp0",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "byp1",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "byp2",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "byp3",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "turbo",
+      "at": "start",
+      "ramp": 20,
+      "until": "s7:start+10"
+     }
+    ],
+    "labels": [
+     {
+      "part": "plasma",
+      "text": "自由基（亂飛）",
+      "en": "Radicals",
+      "color": "amber",
+      "at": "rad+8",
+      "until": "gas-8"
+     },
+     {
+      "part": "pump",
+      "text": "渦輪分子泵",
+      "en": "Turbo pump",
+      "color": "blue",
+      "at": "gas-6",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-rad",
+      "at": "start+2",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "自由基與產物",
+      "tag": "示意",
+      "t": {
+       "rad": {
+        "at": "rad"
+       },
+       "react": {
+        "at": "react"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "pump": {
+        "at": "pump"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "孔壁長一層保護膜，所以只往下刻，不往旁邊啃。",
+   "tts": "孔壁長一層保護膜，所以只往下刻，不往旁邊啃。",
+   "subtitle": {
+    "zh": "孔壁長一層保護膜\n所以只往下刻\n不往旁邊啃",
+    "en": "A protective film grows on the hole walls, | so it etches only downward, | not sideways."
+   },
+   "keywords": [
+    "保護膜",
+    "往下"
+   ],
+   "cues": [
+    {
+     "id": "wall",
+     "text": "孔壁"
+    },
+    {
+     "id": "film",
+     "text": "保護膜"
+    },
+    {
+     "id": "down",
+     "text": "只往下刻"
+    },
+    {
+     "id": "side",
+     "text": "不往旁邊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "側壁鈍化通則（physics-spec 3.2）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-20",
+      "dur": 10,
+      "x": 17,
+      "y": 2.0,
+      "d": 96,
+      "elev": 10
+     },
+     {
+      "at": "start-10",
+      "dur": 14,
+      "x": 25,
+      "y": 1.4,
+      "d": 104,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "harIon0",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "film+20"
+     },
+     {
+      "id": "harByp0",
+      "at": "start+16",
+      "ramp": 6,
+      "until": "film+20"
+     },
+     {
+      "id": "harIon1",
+      "at": "film+20",
+      "ramp": 6,
+      "until": "s8:start+6"
+     },
+     {
+      "id": "harByp1",
+      "at": "film+20",
+      "ramp": 6,
+      "until": "s8:start+6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "har",
+      "text": "孔壁保護膜",
+      "en": "Sidewall film",
+      "color": "amber",
+      "at": "film-4",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-wall",
+      "at": "start+2",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "側壁保護膜",
+      "tag": "放大示意",
+      "t": {
+       "wall": {
+        "at": "wall"
+       },
+       "film": {
+        "at": "film"
+       },
+       "down": {
+        "at": "down"
+       },
+       "side": {
+        "at": "side"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "記憶孔的深度是寬度的一百倍以上，越深越難刻。",
+   "tts": "記憶孔的深度是寬度的一百倍以上，越深越難刻。",
+   "subtitle": {
+    "zh": "記憶孔的深度\n是寬度的一百倍以上\n越深越難刻",
+    "en": "A memory hole is over | a hundred times deeper than wide; | the deeper it gets, the harder."
+   },
+   "keywords": [
+    "記憶孔",
+    "一百倍"
+   ],
+   "cues": [
+    {
+     "id": "hole",
+     "text": "記憶孔"
+    },
+    {
+     "id": "ratio",
+     "text": "一百倍以上"
+    },
+    {
+     "id": "hard",
+     "text": "越深越難刻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam Cryo 3.0 新聞稿；SemiEngineering"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 40,
+      "x": 25,
+      "y": 1.4,
+      "d": 104,
+      "elev": 4
+     }
+    ],
+    "run": [
+     {
+      "id": "harIon2",
+      "at": "start+6",
+      "ramp": 6,
+      "until": "ratio+30"
+     },
+     {
+      "id": "harByp2",
+      "at": "start+6",
+      "ramp": 6,
+      "until": "ratio+30"
+     },
+     {
+      "id": "harIon3",
+      "at": "ratio+30",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "harByp3",
+      "at": "ratio+30",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "harHole",
+      "text": "深是寬的百倍",
+      "en": "Aspect ratio >100:1",
+      "color": "blue",
+      "at": "ratio-4",
+      "until": "s9:start-22"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-har",
+      "at": "start+2",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "記憶孔變深",
+      "tag": "比例示意",
+      "t": {
+       "hole": {
+        "at": "hole"
+       },
+       "ratio": {
+        "at": "ratio"
+       },
+       "hard": {
+        "at": "hard"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "科林說，晶圓冷到零下幾十度，孔更直，速度快兩倍以上。",
+   "tts": "科林說，晶圓冷到零下幾十度，孔更直，速度快兩倍以上。",
+   "subtitle": {
+    "zh": "科林說\n晶圓冷到零下幾十度\n孔更直\n速度快兩倍以上",
+    "en": "Lam says that chilling the wafer | to tens of degrees below zero | makes holes straighter | and etching over twice as fast."
+   },
+   "keywords": [
+    "零下",
+    "兩倍"
+   ],
+   "cues": [
+    {
+     "id": "say",
+     "text": "科林說"
+    },
+    {
+     "id": "cold",
+     "text": "零下幾十度"
+    },
+    {
+     "id": "str",
+     "text": "孔更直"
+    },
+    {
+     "id": "fast",
+     "text": "兩倍以上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam Cryo 3.0 新聞稿（公司說法）；EE Times Japan"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-18",
+      "dur": 24,
+      "x": -9.700000000000001,
+      "y": 3.05,
+      "d": 38,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "cryoGlow",
+      "at": "start",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "cryoEsc",
+      "at": "cold-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "cryoVapor",
+      "at": "cold-4",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "chillFlow",
+      "at": "cold-4",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pm4",
+      "text": "低溫蝕刻腔",
+      "en": "Cryogenic etch",
+      "color": "blue",
+      "at": "start+6",
+      "until": "cold-6"
+     },
+     {
+      "part": "pm4",
+      "text": "低溫吸盤",
+      "en": "Cryo chuck (claim)",
+      "color": "amber",
+      "at": "cold-4",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-cryo",
+      "at": "start+2",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "低溫蝕刻",
+      "tag": "公司說法；溫度示意",
+      "t": {
+       "say": {
+        "at": "say"
+       },
+       "cold": {
+        "at": "cold"
+       },
+       "str": {
+        "at": "str"
+       },
+       "fast": {
+        "at": "fast"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "更細的用原子層蝕刻，改質、沖洗、移除、再沖洗，一圈只剝一層原子。",
+   "tts": "更細的用原子層蝕刻，改質、沖洗、移除、再沖洗，一圈只剝一層原子。",
+   "subtitle": {
+    "zh": "更細的用原子層蝕刻\n改質、沖洗\n移除、再沖洗\n一圈只剝一層原子",
+    "en": "Finer work uses atomic layer etching: | modify, purge, | remove, purge again — | one atomic layer per cycle."
+   },
+   "keywords": [
+    "原子層蝕刻",
+    "一層"
+   ],
+   "cues": [
+    {
+     "id": "ale",
+     "text": "原子層蝕刻"
+    },
+    {
+     "id": "mod",
+     "text": "改質"
+    },
+    {
+     "id": "rm",
+     "text": "移除"
+    },
+    {
+     "id": "one",
+     "text": "一層原子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Kanarik 等（Lam）；JVSTA 35 031306"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-20",
+      "dur": 12,
+      "x": 0,
+      "y": 1.0,
+      "d": 90,
+      "elev": 16
+     },
+     {
+      "at": "start-8",
+      "dur": 14,
+      "x": 9.700000000000001,
+      "y": 3.55,
+      "d": 40,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "aleCl0",
+      "at": "s10:mod-6",
+      "ramp": 4,
+      "until": "s10:mod+7"
+     },
+     {
+      "id": "aleCl1",
+      "at": "s10:mod-6",
+      "ramp": 4,
+      "until": "s10:mod+7"
+     },
+     {
+      "id": "aleCl2",
+      "at": "s10:mod-6",
+      "ramp": 4,
+      "until": "s10:mod+7"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+7",
+      "ramp": 4,
+      "until": "s10:mod+17"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+7",
+      "ramp": 4,
+      "until": "s10:mod+17"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+7",
+      "ramp": 4,
+      "until": "s10:mod+17"
+     },
+     {
+      "id": "aleAr0",
+      "at": "s10:mod+17",
+      "ramp": 4,
+      "until": "s10:mod+31"
+     },
+     {
+      "id": "aleAr1",
+      "at": "s10:mod+17",
+      "ramp": 4,
+      "until": "s10:mod+31"
+     },
+     {
+      "id": "aleAr2",
+      "at": "s10:mod+17",
+      "ramp": 4,
+      "until": "s10:mod+31"
+     },
+     {
+      "id": "aleAr3",
+      "at": "s10:mod+17",
+      "ramp": 4,
+      "until": "s10:mod+31"
+     },
+     {
+      "id": "aleAr4",
+      "at": "s10:mod+17",
+      "ramp": 4,
+      "until": "s10:mod+31"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+31",
+      "ramp": 4,
+      "until": "s10:mod+41"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+31",
+      "ramp": 4,
+      "until": "s10:mod+41"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+31",
+      "ramp": 4,
+      "until": "s10:mod+41"
+     },
+     {
+      "id": "aleCl0",
+      "at": "s10:mod+44",
+      "ramp": 4,
+      "until": "s10:mod+57"
+     },
+     {
+      "id": "aleCl1",
+      "at": "s10:mod+44",
+      "ramp": 4,
+      "until": "s10:mod+57"
+     },
+     {
+      "id": "aleCl2",
+      "at": "s10:mod+44",
+      "ramp": 4,
+      "until": "s10:mod+57"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+57",
+      "ramp": 4,
+      "until": "s10:mod+67"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+57",
+      "ramp": 4,
+      "until": "s10:mod+67"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+57",
+      "ramp": 4,
+      "until": "s10:mod+67"
+     },
+     {
+      "id": "aleAr0",
+      "at": "s10:mod+67",
+      "ramp": 4,
+      "until": "s10:mod+81"
+     },
+     {
+      "id": "aleAr1",
+      "at": "s10:mod+67",
+      "ramp": 4,
+      "until": "s10:mod+81"
+     },
+     {
+      "id": "aleAr2",
+      "at": "s10:mod+67",
+      "ramp": 4,
+      "until": "s10:mod+81"
+     },
+     {
+      "id": "aleAr3",
+      "at": "s10:mod+67",
+      "ramp": 4,
+      "until": "s10:mod+81"
+     },
+     {
+      "id": "aleAr4",
+      "at": "s10:mod+67",
+      "ramp": 4,
+      "until": "s10:mod+81"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+81",
+      "ramp": 4,
+      "until": "s10:mod+91"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+81",
+      "ramp": 4,
+      "until": "s10:mod+91"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+81",
+      "ramp": 4,
+      "until": "s10:mod+91"
+     },
+     {
+      "id": "aleCl0",
+      "at": "s10:mod+94",
+      "ramp": 4,
+      "until": "s10:mod+107"
+     },
+     {
+      "id": "aleCl1",
+      "at": "s10:mod+94",
+      "ramp": 4,
+      "until": "s10:mod+107"
+     },
+     {
+      "id": "aleCl2",
+      "at": "s10:mod+94",
+      "ramp": 4,
+      "until": "s10:mod+107"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+107",
+      "ramp": 4,
+      "until": "s10:mod+117"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+107",
+      "ramp": 4,
+      "until": "s10:mod+117"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+107",
+      "ramp": 4,
+      "until": "s10:mod+117"
+     },
+     {
+      "id": "aleAr0",
+      "at": "s10:mod+117",
+      "ramp": 4,
+      "until": "s10:mod+131"
+     },
+     {
+      "id": "aleAr1",
+      "at": "s10:mod+117",
+      "ramp": 4,
+      "until": "s10:mod+131"
+     },
+     {
+      "id": "aleAr2",
+      "at": "s10:mod+117",
+      "ramp": 4,
+      "until": "s10:mod+131"
+     },
+     {
+      "id": "aleAr3",
+      "at": "s10:mod+117",
+      "ramp": 4,
+      "until": "s10:mod+131"
+     },
+     {
+      "id": "aleAr4",
+      "at": "s10:mod+117",
+      "ramp": 4,
+      "until": "s10:mod+131"
+     },
+     {
+      "id": "aleP0",
+      "at": "s10:mod+131",
+      "ramp": 4,
+      "until": "s10:mod+141"
+     },
+     {
+      "id": "aleP1",
+      "at": "s10:mod+131",
+      "ramp": 4,
+      "until": "s10:mod+141"
+     },
+     {
+      "id": "aleP2",
+      "at": "s10:mod+131",
+      "ramp": 4,
+      "until": "s10:mod+141"
+     },
+     {
+      "id": "coilHot",
+      "at": "start",
+      "ramp": 8,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wafer",
+      "text": "一圈一層",
+      "en": "One layer per cycle",
+      "color": "amber",
+      "at": "one-4",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-ale",
+      "at": "start+2",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "原子層蝕刻",
+      "tag": "概念圖",
+      "t": {
+       "ale": {
+        "at": "ale"
+       },
+       "mod": {
+        "at": "mod"
+       },
+       "rm": {
+        "at": "rm"
+       },
+       "one": {
+        "at": "one"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "科林研發是美國公司，全球第三大設備商，台灣從新竹到高雄都有據點。",
+   "tts": "科林研發是美國公司，全球第三大設備商，台灣從新竹到高雄都有據點。",
+   "subtitle": {
+    "zh": "科林研發是美國公司\n全球第三大設備商\n台灣從新竹到高雄\n都有據點",
+    "en": "Lam Research is a US company, | the world's No. 3 chip-equipment maker, | with sites in Taiwan | from Hsinchu to Kaohsiung."
+   },
+   "keywords": [
+    "美國",
+    "第三大",
+    "新竹"
+   ],
+   "cues": [
+    {
+     "id": "us",
+     "text": "美國公司"
+    },
+    {
+     "id": "no3",
+     "text": "第三大"
+    },
+    {
+     "id": "tw",
+     "text": "新竹到高雄"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Lam 10-K；TechInsights；TechNews 2024/12/23"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-14",
+      "dur": 34,
+      "x": 0,
+      "y": -1.3,
+      "d": 175,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "ccpGlow",
+      "at": "start",
+      "ramp": 8,
+      "until": "s13:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sign",
+      "text": "科林研發",
+      "en": "United States",
+      "color": "amber",
+      "at": "us",
+      "until": "s12:start-4",
+      "flag": "US",
+      "logo": "lam"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-co",
+      "at": "start+2",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "科林研發",
+      "tag": "公司財報、研究機構、媒體",
+      "t": {
+       "us": {
+        "at": "us"
+       },
+       "no3": {
+        "at": "no3"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.8,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "刻之前，光阻得先塗好、顯影好，下一集看東京威力科創。留言科林，拿完整資料。",
+   "tts": "刻之前，光阻得先塗好、顯影好，下一集看東京威力科創。留言科林，拿完整資料。",
+   "subtitle": {
+    "zh": "刻之前\n光阻得先塗好、顯影好\n下一集看東京威力科創\n留言科林，拿完整資料",
+    "en": "Before etching, | the resist must be coated and developed. | Next: Tokyo Electron. | Comment \"科林\" for the full notes."
+   },
+   "keywords": [
+    "光阻",
+    "東京威力科創"
+   ],
+   "cues": [
+    {
+     "id": "before",
+     "text": "刻之前"
+    },
+    {
+     "id": "coat",
+     "text": "塗好"
+    },
+    {
+     "id": "next",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "kw",
+     "text": "留言科林"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 34,
+      "x": 25,
+      "y": 1.4,
+      "d": 104,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "harHole",
+      "text": "刻好的記憶孔",
+      "en": "Finished holes",
+      "color": "amber",
+      "at": "before",
+      "until": "s13:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "lam-next",
+      "at": "start+2",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：設備五大-4",
+      "t": {
+       "before": {
+        "at": "before"
+       },
+       "coat": {
+        "at": "coat"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.3
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "東京威力科創",
+     "trail": [
+      "爐管",
+      "塗佈顯影"
+     ],
+     "comment": "科林",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
