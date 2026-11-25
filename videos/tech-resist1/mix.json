@@ -1,11 +1,11 @@
 {
  "slug": "tech-resist1",
- "at": "2026-11-25T04:10:18.705Z",
- "durationSec": 62.5,
+ "at": "2026-11-25T09:35:04.503Z",
+ "durationSec": 59.17,
  "final": {
-  "lufs": -14.5,
-  "truePeakDbfs": -4.3,
-  "lra": 2.4,
+  "lufs": -14.4,
+  "truePeakDbfs": -4.4,
+  "lra": 2.3,
   "codec": "aac 256k 48kHz stereo"
  },
  "target": {
@@ -18,7 +18,7 @@
   "source": "ffmpeg 自合成中性和弦（C–G–B–D–E 正弦＋慢速呼吸、低通 900Hz），無授權問題",
   "lufsBeforeDuck": -27,
   "duck": "sidechaincompress threshold 0.03 ratio 6 attack 25ms release 350ms",
-  "underVoiceDuringSpeechLu": 22.4
+  "underVoiceDuringSpeechLu": 24
  },
  "sfx": {
   "meta": {
@@ -42,28 +42,28 @@
   "counts": {
    "whoosh": 3
   },
-  "perThreeSec": 0.14,
+  "perThreeSec": 0.15,
   "events": [
    {
     "type": "whoosh",
-    "frame": 720,
+    "frame": 690,
     "why": "contrast→twist",
-    "startSec": 23.604,
-    "peakSec": 23.933
+    "startSec": 22.604,
+    "peakSec": 22.933
    },
    {
     "type": "whoosh",
-    "frame": 1034,
+    "frame": 988,
     "why": "mechanism→twist",
-    "startSec": 34.071,
-    "peakSec": 34.4
+    "startSec": 32.538,
+    "peakSec": 32.867
    },
    {
     "type": "whoosh",
-    "frame": 1597,
+    "frame": 1522,
     "why": "payoff→cta",
-    "startSec": 52.838,
-    "peakSec": 53.167
+    "startSec": 50.338,
+    "peakSec": 50.667
    }
   ]
  }
