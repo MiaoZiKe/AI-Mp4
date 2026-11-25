@@ -247,7 +247,7 @@ export const rotAngle = (d: ActionDef, op: { k: number; g: number; T: number; t:
   // hold（2026/11/17）：轉到定位後 until 也不轉回來（只跟著進場那一段）
   if (d.angle !== undefined && d.hold) return ((d.angle * Math.PI) / 180) * tween(op.f, op.f - op.n, Math.max(1, op.end - op.until), EASE.move) * (d.gain0 ?? 1);
   if (d.angle !== undefined) return ((d.angle * Math.PI) / 180) * op.k * (d.gain0 ?? 1);
-  if (d.swing !== undefined) return ((d.swing * Math.PI) / 180) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 1) * op.T);
+  if (d.swing !== undefined) { const w0 = Math.PI * 2 * (d.freq ?? 1) * op.T; return ((d.swing * Math.PI) / 180) * op.g * ((d as any).tri ? (2 / Math.PI) * Math.asin(Math.sin(w0)) : Math.sin(w0)); }
   // rampSpin（2026/11/17）：轉速跟著進出場強度（起轉慢慢加速、停轉慢慢減速）；角度＝轉速的累積量 op.u
   if (d.rampSpin) return Math.PI * 2 * (d.rps ?? 1) * op.u;
   return Math.PI * 2 * (d.rps ?? 1) * op.t;
@@ -270,7 +270,8 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, pa
     const op = s.ops[id];
     if (!op) continue;
     if (d.type === "vibrate") {
-      const a = d.axis ?? [0, 0, 1], v = (d.amp ?? 0.1) * op.g * Math.sin(Math.PI * 2 * (d.freq ?? 4) * op.T);
+      // tri（2026/11/26 tech-amat）：等速三角波（到端點直接折返，例如離子束掃描）；沒寫照舊正弦
+      const a = d.axis ?? [0, 0, 1], w0 = Math.PI * 2 * (d.freq ?? 4) * op.T, v = (d.amp ?? 0.1) * op.g * ((d as any).tri ? (2 / Math.PI) * Math.asin(Math.sin(w0)) : Math.sin(w0));
       // grow（2026/11/16 tech-offer）：不是位移，是沿 axis 伸縮（以零件底部為基準；amp＝相對伸縮量，0.4＝±40%）
       if (d.grow) { const g0 = fx.grow ?? [1, 1, 1]; fx.grow = [g0[0] * (1 + Math.abs(a[0]) * v), g0[1] * (1 + Math.abs(a[1]) * v), g0[2] * (1 + Math.abs(a[2] ?? 0) * v)]; }
       else fx.off = [fx.off[0] + a[0] * v, fx.off[1] + a[1] * v, fx.off[2] + (a[2] ?? 0) * v];

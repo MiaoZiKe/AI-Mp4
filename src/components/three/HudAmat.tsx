@@ -159,9 +159,9 @@ const Move: React.FC<P> = ({ o, f, k }) => {
         <text x={x1 - 76} y={yb + 44} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * ac}>減速</text>
         <text x={x0 + 140} y={yb + 44} style={zh(30, H.text2, 800)}>時間 →</text>
         <Sep x={470} />
-        <Row x={500} y={CT + 44} t="伸進去、抬起取片" c={BLUE} a={tk} />
-        <Row x={500} y={CT + 104} t="縮回、轉向" c={BLUE} a={tu} />
-        <Row x={500} y={CT + 164} t="先加速、再減速" c={H.amber} a={ac} />
+        <Row x={500} y={CT + 44} t="伸進去、抬起取片" c={BLUE} a={tk * (1 - 0.6 * tu)} />
+        <Row x={500} y={CT + 104} t="縮回、轉向" c={BLUE} a={tu * (1 - 0.6 * ac)} />
+        <Row x={500} y={CT + 164} t="先加速、再減速" c={H.amber} a={ac * (1 - 0.6 * st)} />
         <Row x={500} y={CT + 224} t="停穩才放到升降銷" c={OK} a={Math.max(st, pt)} />
       </svg>
     </Card>
@@ -254,10 +254,12 @@ const Cvd: React.FC<P> = ({ o, f, k }) => {
 // ── amat-ald：一圈四步：① A 進來貼滿一層 → ② 吹淨 → ③ B 進來反應 → ④ 吹淨；每圈膜多一層（右邊數圈數） ──
 const Ald: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
-  const al = on(f, T(o, "ald")), tu = T(o, "turns"), cyStarts = [tu + 4, T(o, "cycle") + 4, T(o, "one") + 2, T(o, "one") + 30];
-  let ci = -1; cyStarts.forEach((c, i) => { if (f >= c) ci = i; });
-  const ph = ci < 0 ? -1 : f - cyStarts[ci], step = ph < 0 ? -1 : ph < 12 ? 0 : ph < 20 ? 1 : ph < 32 ? 2 : ph < 40 ? 3 : 4;
-  const layers = Math.max(0, ci + (step >= 4 ? 1 : 0)) + (ci >= 0 && step === 4 ? 0 : 0);
+  // 步驟時間表＝script.json 的 steps（[起, 迄, A｜P｜B]，從 turns＋off 起算），和 3D 的氣體同一份
+  const al = on(f, T(o, "ald")), t0 = T(o, "turns") + ((o as any).off ?? 0), st: [number, number, string][] = (o as any).steps ?? [];
+  const n = f - t0, cur = st.findIndex(([a, b]) => n >= a && n < b);
+  const step = cur < 0 ? (n >= (st[st.length - 1]?.[1] ?? 0) ? 4 : -1) : [0, 1, 2, 3][cur % 4];
+  const ph = cur < 0 ? 99 : n - st[cur][0];
+  const layers = st.filter(([, b], i) => i % 4 === 3 && n >= b).length;
   const wY = CT + 196, x0 = 50, w = 320;
   const gasC = step === 0 ? GA : step === 2 ? GB : PG;
   const dots = step >= 0 && step < 4 ? Array.from({ length: 16 }, (_, i) => ({ x: x0 + 10 + rnd(i) * (w - 20), y: CT + 20 + fr(rnd(i + 3) + f / 30) * (wY - CT - 70) })) : [];
@@ -268,7 +270,7 @@ const Ald: React.FC<P> = ({ o, f, k }) => {
         {dots.map((d, i) => <circle key={i} cx={d.x} cy={d.y} r={5} fill={gasC} />)}
         <rect x={x0} y={wY} width={w} height={14} fill={WAF} stroke={WAF_D} strokeWidth={2} />
         {Array.from({ length: layers }, (_, i) => <rect key={i} x={x0} y={wY - 8 * (i + 1)} width={w} height={7} fill="#2BA39A" />)}
-        {step === 0 || step === 1 ? <g>{Array.from({ length: 20 }, (_, i) => <circle key={i} cx={x0 + 8 + i * 16} cy={wY - 8 * layers - 5} r={4} fill={GA} opacity={step === 0 ? cl(ph / 10) : 1} />)}</g> : null}
+        {step === 0 || step === 1 ? <g>{Array.from({ length: 20 }, (_, i) => <circle key={i} cx={x0 + 8 + i * 16} cy={wY - 8 * layers - 5} r={4} fill={GA} opacity={step === 0 ? cl(ph / 14) : 1} />)}</g> : null}
         <text x={x0} y={CT + 252} style={zh(30, H.text2, 800)}>已長 {layers} 層（實際數百圈）</text>
         <Sep x={440} />
         {steps.map((t, i) => <g key={i} opacity={step === i ? 1 : 0.35 + 0.15 * al}><rect x={470} y={CT + 22 + i * 58} width={12} height={24} fill={step === i ? H.amber : H.lineSoft} />
@@ -361,7 +363,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
         <line x1={kx + 8} y1={ky - 4} x2={704} y2={CT + 70} stroke={H.text2} strokeWidth={2} opacity={0.4 + 0.6 * tw} />
         <g opacity={0.4 + 0.6 * tw}><FlagBox code="TW" x={526} y={CT + 220} a={tw} />
           <text x={712} y={CT + 80} style={zh(30, H.text, 900)}>湖口：研究中心</text>
-          <text x={712} y={CT + 160} style={zh(30, H.text, 900)}>新竹：台灣總部</text>
+          <text x={712} y={CT + 160} style={zh(30, H.text, 900)}>新竹：主要據點</text>
           <text x={712} y={CT + 226} style={zh(30, H.text2, 800)}>京鼎：模組代工</text>
           <text x={712} y={CT + 266} style={zh(30, H.text2, 800)}>（媒體報導）</text></g>
       </svg>

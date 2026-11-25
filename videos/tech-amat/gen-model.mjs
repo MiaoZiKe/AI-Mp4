@@ -36,8 +36,8 @@ const materials = {
   foup: M("phys", "foupC", { rough: 0.3, metal: 0, clearcoat: 0.5, env: 0.3 }), foupDoor: M("std", "panel2", { rough: 0.5, metal: 0 }),
   magN: M("std", "magN", { rough: 0.4, metal: 0.3 }), magS: M("std", "magS", { rough: 0.4, metal: 0.3 }),
   glow: M("std", "plasma", { emissive: "plasma", ei: 1, opacity: 0.42, rough: 1, metal: 0 }),
-  glowHot: M("std", "plasmaHot", { emissive: "plasmaHot", ei: 1, opacity: 0.6, rough: 1, metal: 0 }),
-  glowFaint: M("std", "plasma", { emissive: "plasma", ei: 0.8, opacity: 0.16, rough: 1, metal: 0 }),
+  glowHot: M("std", "plasmaHot", { emissive: "plasmaHot", ei: 1, opacity: 0.85, rough: 1, metal: 0 }),
+  glowFaint: M("std", "plasma", { emissive: "plasma", ei: 0.9, opacity: 0.42, rough: 1, metal: 0 }),
   ero: M("std", "dark", { rough: 0.8, metal: 0.2 }),
   heaterM: M("std", "heater", { emissive: "heater", ei: 0.35, rough: 0.6, metal: 0.2 }),
   filmCu: M("std", "filmCu", { rough: 0.3, metal: 0.8, env: 0.8 }), filmA: M("std", "filmA", { rough: 0.3, metal: 0.3, env: 0.6 }), filmC: M("std", "filmC", { rough: 0.35, metal: 0.3, env: 0.6 }),
@@ -127,7 +127,7 @@ const kinVr = {
 
 // 晶圓（被搬的那一片，wf 層）：一開始在左邊晶圓盒裡（x＝左負載鎖中心 x）
 const [LLx, LLz] = pol(FACETS.llL, AP + 0.8 + 2.2);
-const FOUPZ = 19.6;
+const FOUPZ = 18.9;
 P({ id: "wf", layer: "wf", shape: "cyl", size: [1.5, WT], rot: V, pos: [LLx, yW, FOUPZ], mat: "wafer" });
 P({ id: "wfNotch", layer: "wf", shape: "box", size: [0.18, 0.09, 0.12], pos: [LLx, yW + 0.005, FOUPZ - 1.45], mat: "dark" });
 
@@ -166,8 +166,8 @@ const pvdBuild = (key, a, metal) => {
   P({ id: `${mag}N`, layer: mag, shape: "box", size: [0.3, 0.32, 0.3], pos: [x, top + 0.2, z], at: magPts(14, 1.25, 0.8), mat: "magN" });
   P({ id: `${mag}S`, layer: mag, shape: "box", size: [0.3, 0.32, 0.3], pos: [x, top + 0.2, z], at: magPts(6, 0.45, 0.8), mat: "magS" });
   // 電漿：靶面下方 1–2 cm 的環帶（physics-spec 2）；亮的那一段跟著磁鐵轉（magGlow 和磁鐵同一個 rotate），整圈淡淡的
-  P({ id: `${mag}Glow`, layer: mag, shape: "tube", size: [1.45, 0.62, 0.32], rot: V, pos: [x + 0.8, top - 0.86, z], mat: "glowHot" });
-  P({ id: `${tgt}Glow`, layer: tgt, shape: "tube", size: [2.35, 0.55, 0.42], rot: V, pos: [x, top - 0.9, z], mat: "glowFaint" });
+  P({ id: `${mag}Glow`, layer: mag, shape: "tube", size: [1.55, 1.15, 0.26], rot: V, pos: [x + 0.8, top - 0.86, z], mat: "glowHot" });
+  P({ id: `${tgt}Glow`, layer: tgt, shape: "tube", size: [2.2, 1.0, 0.34], rot: V, pos: [x, top - 0.9, z], mat: "glowFaint" });
   P({ id: `${tgt}Ero`, layer: `${tgt}Ero`, shape: "tube", size: [2.05, 0.95, 0.04], rot: V, pos: [x, top - 0.69, z], mat: "ero" });
   LAY(`${tgt}Ero`, [4.2, 0.2, x, top - 0.7]);
   P({ id: `${shield}`, layer: shield, shape: "tube", size: [2.72, 2.6, 1.9], rot: V, pos: [x, 6.65, z], mat: "steel" });
@@ -244,18 +244,27 @@ const LLL = llBuild("llL", FACETS.llL), LLR = llBuild("llR", FACETS.llR);
 
 // 大氣端 EFEM（玻璃牆＋框、頂上風扇過濾機組 FFU）、大氣手臂（eb＋eb刀片 ebB）、對準器、裝載埠、晶圓盒
 const EZ0 = 12.4, EZ1 = 17.2, EX = 8.4, EBZ = 15.0;
-LAY("efem", [17, 10, 0, 5]); LAY("ffu", [17, 1.4, 0, 10]); LAY("eb", [2, 6, LLx, 4]); LAY("ebB", [3, 0.5, LLx, 6.3]); LAY("foup", [12, 4.6, 0, 6.5]); LAY("sign", [11, 5, 0, 13]);
+const EH = 15; // EFEM 高度（約晶圓盒的 5 倍；審片 mech 必改 2）
+LAY("efem", [17, EH, 0, EH / 2]); LAY("efemFront", [17, EH, 0, EH / 2]); LAY("ffu", [17, 1.2, 0, EH + 0.5]); LAY("eb", [2, 6, LLx, 4]); LAY("ebB", [3, 0.5, LLx, 6.3]); LAY("foup", [12, 4.6, 0, 6.5]); LAY("sign", [11, 5, 0, EH - 2]);
 P({ id: "efemBase", layer: "efem", shape: "slab", size: [2 * EX, 3.4, EZ1 - EZ0], r: 0.2, pos: [0, 1.9, (EZ0 + EZ1) / 2], mat: "panel2" });
-P({ id: "efemGlass", layer: "efem", shape: "box", size: [2 * EX, 5.9, EZ1 - EZ0], pos: [0, 6.55, (EZ0 + EZ1) / 2], mat: "glass" });
-P({ id: "efemPost", layer: "efem", shape: "box", size: [0.4, 6.0, 0.4], pos: [0, 6.6, 0], at: [[-EX, 0, EZ0], [EX, 0, EZ0], [-EX, 0, EZ1], [EX, 0, EZ1], [0, 0, EZ1]], mat: "seam" });
-P({ id: "efemFront", layer: "efem", shape: "box", size: [2 * EX, 0.35, 0.35], pos: [0, 9.5, EZ1], mat: "seam" });
+P({ id: "efemGlass", layer: "efem", shape: "box", size: [2 * EX, EH - 3.6, EZ1 - EZ0], pos: [0, R2(3.6 + (EH - 3.6) / 2), (EZ0 + EZ1) / 2], mat: "glass" });
+P({ id: "efemPost", layer: "efem", shape: "box", size: [0.4, EH - 3.5, 0.4], pos: [0, R2(3.6 + (EH - 3.6) / 2), 0], at: [[-EX, 0, EZ0], [EX, 0, EZ0], [-EX, 0, EZ1], [EX, 0, EZ1]], mat: "seam" });
 P({ id: "efemRail", layer: "efem", shape: "box", size: [2 * EX - 1, 0.25, 0.6], pos: [0, 3.75, EBZ], mat: "steel" });
 P({ id: "efemPortTun", layer: "efem", shape: "box", size: [3.2, 1.6, EZ0 - 11.5], pos: [LLx, 6.45, (EZ0 + 11.5) / 2], at: [[0, 0, 0], [-2 * LLx, 0, 0]], mat: "glass" });
 P({ id: "aligner", layer: "efem", shape: "cyl", size: [0.7, 0.9], rot: V, pos: [5.6, 4.35, 14.4], mat: "dark" });
 P({ id: "alignerTop", layer: "efem", shape: "cyl", size: [1.2, 0.08], rot: V, pos: [5.6, 4.85, 14.4], mat: "wafer" });
-P({ id: "ffu", layer: "ffu", shape: "slab", size: [2 * EX + 0.4, 1.1, EZ1 - EZ0 + 0.4], r: 0.15, pos: [0, 10.1, (EZ0 + EZ1) / 2], mat: "panel" });
-P({ id: "ffuGrill", layer: "ffu", shape: "box", size: [2 * EX - 1, 0.06, 0.18], pos: [0, 9.52, (EZ0 + EZ1) / 2], at: Array.from({ length: 11 }, (_, i) => [0, 0, R2(-2.0 + i * 0.4)]), mat: "seam" });
-P({ id: "ffuFan", layer: "ffu", shape: "cyl", size: [1.1, 0.2], rot: V, pos: [0, 10.75, (EZ0 + EZ1) / 2], at: [[-4.5, 0, 0], [0, 0, 0], [4.5, 0, 0]], mat: "dark" });
+// 正面板（不透明，efemFront；講到晶圓搬運時淡出）：兩個裝載埠開口（x＝±LLx、y 4.8–8.2）以外的面板＋一扇觀察窗
+{ const FZ = R2(EZ1 + 0.05), o0 = 4.8, o1 = 8.2, w = 3.4, LX = Math.abs(LLx), xs = [-EX, -LX - w / 2, -LX + w / 2, LX - w / 2, LX + w / 2, EX];
+  P({ id: "efemFrLow", layer: "efemFront", shape: "box", size: [2 * EX, o0 - 0.2, 0.25], pos: [0, R2((o0 + 0.2) / 2), FZ], mat: "panel" });
+  P({ id: "efemFrHigh", layer: "efemFront", shape: "box", size: [2 * EX, EH - o1, 0.25], pos: [0, R2((EH + o1) / 2), FZ], mat: "panel" });
+  for (let k = 0; k < 3; k++) { const a = xs[2 * k], b = xs[2 * k + 1]; P({ id: `efemFrMid${k}`, layer: "efemFront", shape: "box", size: [R2(b - a), o1 - o0, 0.25], pos: [R2((a + b) / 2), R2((o0 + o1) / 2), FZ], mat: "panel" }); }
+  P({ id: "efemFrWin", layer: "efemFront", shape: "box", size: [4.2, 3.0, 0.1], pos: [0, 10.6, R2(FZ + 0.14)], mat: "window" });
+  P({ id: "efemFrBand", layer: "efemFront", shape: "box", size: [2 * EX, 0.5, 0.1], pos: [0, 4.0, R2(FZ + 0.14)], mat: "band" });
+  P({ id: "efemFrScreen", layer: "efemFront", shape: "box", size: [2.0, 1.4, 0.12], pos: [6.6, 10.4, R2(FZ + 0.14)], mat: "screen" }); }
+// 風扇過濾機組：平的過濾面板（格網），不露風扇
+P({ id: "ffu", layer: "ffu", shape: "slab", size: [2 * EX + 0.4, 0.8, EZ1 - EZ0 + 0.4], r: 0.15, pos: [0, EH + 0.4, (EZ0 + EZ1) / 2], mat: "panel" });
+P({ id: "ffuGrill", layer: "ffu", shape: "box", size: [2 * EX - 1, 0.06, 0.12], pos: [0, EH - 0.02, (EZ0 + EZ1) / 2], at: Array.from({ length: 15 }, (_, i) => [0, 0, R2(-2.1 + i * 0.3)]), mat: "seam" });
+P({ id: "ffuGrillX", layer: "ffu", shape: "box", size: [0.1, 0.06, EZ1 - EZ0 - 0.6], pos: [0, EH - 0.02, (EZ0 + EZ1) / 2], at: Array.from({ length: 9 }, (_, i) => [R2(-7.2 + i * 1.8), 0, 0]), mat: "seam" });
 // 大氣手臂：滑座＋立柱＋伸縮臂；刀片（ebB）往晶圓盒／負載鎖伸縮
 
 P({ id: "ebCar", layer: "eb", shape: "slab", size: [1.6, 0.5, 1.4], r: 0.1, pos: [LLx, 4.1, EBZ], mat: "dark" });
@@ -270,14 +279,15 @@ for (const [i, fx] of [LLx, -LLx].entries()) {
   P({ id: `foup${i}`, layer: "foup", shape: "slab", size: [3.4, 3.1, 3.2], r: 0.45, pos: [fx, 6.4, FOUPZ + 0.25], mat: "foup" });
   P({ id: `foupFl${i}`, layer: "foup", shape: "slab", size: [1.7, 0.25, 1.4], r: 0.1, pos: [fx, 8.15, FOUPZ + 0.25], mat: "dark" });
   P({ id: `foupFlNeck${i}`, layer: "foup", shape: "box", size: [0.6, 0.4, 0.6], pos: [fx, 7.9, FOUPZ + 0.25], mat: "dark" });
-  LAY(`foupDoor${i}`, [3, 2.7, fx, 6.4]); P({ id: `foupDoor${i}`, layer: `foupDoor${i}`, shape: "box", size: [3.0, 2.7, 0.14], pos: [fx, 6.4, EZ1 + 0.42], mat: "foupDoor" });
-  P({ id: `foupSlots${i}`, layer: "foup", shape: "box", size: [3.0, 0.04, 0.1], pos: [fx, 5.3, FOUPZ + 1.86], grid: { n: [1, 9], step: [0, 0.26] }, mat: "seam" });
+  LAY(`foupDoor${i}`, [3, 2.7, fx, 6.4]); P({ id: `foupDoor${i}`, layer: `foupDoor${i}`, shape: "box", size: [3.0, 2.7, 0.14], pos: [fx, 6.4, EZ1 + 0.3], mat: "foupDoor" });
+  P({ id: `foupSlots${i}`, layer: "foup", shape: "box", size: [0.08, 0.03, 2.4], pos: [fx, 6.4, FOUPZ + 0.2], at: Array.from({ length: 25 }, (_, k) => [-1.5, R2(-1.2 + k * 0.1), 0]).concat(Array.from({ length: 25 }, (_, k) => [1.5, R2(-1.2 + k * 0.1), 0])), mat: "seam" });
+  P({ id: `foupHandle${i}`, layer: "foup", shape: "slab", size: [0.25, 0.9, 1.6], r: 0.1, pos: [fx, 6.6, FOUPZ + 0.3], at: [[-1.82, 0, 0], [1.82, 0, 0]], mat: "dark" });
 }
 // 廠牌：EFEM 頂上掛 LOGO（Commons 原檔轉貼圖，不改色）＋美國國旗旗桿
-P({ id: "signBack", layer: "sign", shape: "slab", size: [8.8, 3.6, 0.2], r: 0.2, pos: [0, 12.9, EZ1 - 0.6], mat: "panel" });
-P({ id: "signLogo", layer: "sign", shape: "plane", size: [8.2, R2(8.2 / 2.5656)], pos: [0, 12.9, EZ1 - 0.45], uv01: true, shadow: false, mat: "t_amat" });
-P({ id: "signPost", layer: "sign", shape: "cyl", size: [0.12, 5], rot: V, pos: [6.6, 13.2, EZ1 - 0.6], mat: "steel" });
-P({ id: "signFlag", layer: "sign", shape: "plane", size: [3.2, R2(3.2 / 1.9)], pos: [8.25, 14.75, EZ1 - 0.6], uv01: true, shadow: false, mat: "t_us" });
+P({ id: "signBack", layer: "sign", shape: "slab", size: [8.8, 3.6, 0.2], r: 0.2, pos: [0, 12.9, EZ1 + 0.3], mat: "panel" });
+P({ id: "signLogo", layer: "sign", shape: "plane", size: [8.2, R2(8.2 / 2.5656)], pos: [0, 12.9, EZ1 + 0.45], uv01: true, shadow: false, mat: "t_amat" });
+P({ id: "signPost", layer: "sign", shape: "cyl", size: [0.12, 5], rot: V, pos: [EX - 0.6, R2(EH + 2.3), EZ1 - 0.6], mat: "steel" });
+P({ id: "signFlag", layer: "sign", shape: "plane", size: [3.2, R2(3.2 / 1.9)], pos: [R2(EX + 1.05), R2(EH + 3.85), EZ1 - 0.6], uv01: true, shadow: false, mat: "t_us" });
 // 外圍：氣體櫃、射頻電源櫃、控制器（左後方小箱）
 LAY("aux", [8, 9, -15, 4.5], true);
 P({ id: "gasCab", layer: "aux", shape: "slab", size: [3.2, 8.4, 2.6], r: 0.2, pos: [-16.5, 4.2, -2], mat: "panel" });
@@ -293,26 +303,26 @@ const P1 = PVD;
 // PVD：氬離子往靶加速（ease-in：accel）、撞靶後金屬原子往下飛向晶圓（帶散射、比離子慢）
 const tY = P1.top - 0.72, gY = P1.top - 0.95, wY = yW + WT / 2 + 0.02;
 const pvdPts = (r, t) => [R2(P1.x + r * Math.cos(t)), R2(P1.z + r * Math.sin(t))];
-const IONS = [0.3, 1.9, 3.4, 4.9];
-IONS.forEach((t, i) => { const [x, z] = pvdPts(1.5, t); actions[`pvdIon${i}`] = { type: "flow", _說明: "氬離子（淡紫）從電漿環被拉向靶面，越飛越快（accel）", path: [lpt("pvdTgt", [x, gY - 0.45, z]), lpt("pvdTgt", [x, tY, z])], n: 3, size: 0.16, shape: "dot", rate: 1.3, phase: i * 0.21, color: "ar", rim: "plasmaHot", rimScale: 1.8, rimO: 0.35, accel: true, track: false }; });
-const ATOMS = [[0.2, 1.3, 0.5, -0.2], [1.1, 1.5, 1.2, 0.9], [2.0, 1.4, 2.3, 0.3], [2.9, 1.6, 3.1, 1.1], [3.8, 1.2, 3.6, 0.6], [4.7, 1.55, 4.9, 1.2], [5.6, 1.35, 5.2, 0.2]];
-ATOMS.forEach(([t, r, t2, r2], i) => { const [x0, z0] = pvdPts(r, t), [x1, z1] = pvdPts(r2, t2); actions[`pvdAtom${i}`] = { type: "flow", _說明: "被撞出的銅原子（橘）往下飛向晶圓，方向各自散開，比氬離子慢", path: [lpt("pvdTgt", [x0, tY - 0.05, z0]), lpt("pvdTgt", [R2((x0 + x1) / 2 + 0.15 * Math.cos(i)), R2((tY + wY) / 2), R2((z0 + z1) / 2 + 0.15 * Math.sin(i))]), lpt("pvdTgt", [x1, wY, z1])], n: 3, size: 0.13, shape: "dot", rate: 0.55, phase: i * 0.13, color: "atomCu", trail: 2, trailGap: 0.03, trailColor: "atomCu", jitter: 0.1, track: false }; });
+const IONS = [0.3, 1.1, 1.9, 2.7, 3.4, 4.2, 4.9, 5.7];
+IONS.forEach((t, i) => { const [x, z] = pvdPts(1.5, t); actions[`pvdIon${i}`] = { type: "flow", _說明: "氬離子（淡紫）從電漿環被拉向靶面，越飛越快（accel）", path: [lpt("pvdTgt", [x, gY - 0.45, z]), lpt("pvdTgt", [x, tY, z])], n: 4, size: 0.07, shape: "dot", rate: 1.3, phase: i * 0.21, color: "ar", trail: 2, trailGap: 0.04, trailColor: "plasmaHot", accel: true, track: false }; });
+const ATOMS = Array.from({ length: 10 }, (_, i) => { const t = (i / 10) * Math.PI * 2; return [t, 1.4 + 0.25 * Math.sin(i * 1.7), t + 0.35 * Math.sin(i * 2.3), 0.3 + 1.05 * ((i * 7) % 10) / 10]; });
+ATOMS.forEach(([t, r, t2, r2], i) => { const [x0, z0] = pvdPts(r, t), [x1, z1] = pvdPts(r2, t2); actions[`pvdAtom${i}`] = { type: "flow", _說明: "被撞出的銅原子（橘）往下飛向晶圓，方向各自散開，比氬離子慢", path: [lpt("pvdTgt", [x0, tY - 0.05, z0]), lpt("pvdTgt", [R2((x0 + x1) / 2 + 0.15 * Math.cos(i)), R2((tY + wY) / 2), R2((z0 + z1) / 2 + 0.15 * Math.sin(i))]), lpt("pvdTgt", [x1, wY, z1])], n: 5, size: 0.09, shape: "dot", rate: 0.55, phase: i * 0.13, color: "atomCu", trail: 2, trailGap: 0.03, trailColor: "atomCu", jitter: 0.1, track: false }; });
 actions.pvdGlow = { type: "pulse", _說明: "氬電漿輝光微微呼吸（不是白熾光）", parts: ["pvdTgtGlow", "pvdMagGlow"], color: "plasma", glow: 0.9, freq: 1.3, halo: 0 };
 actions.pvdSpin = { type: "rotate", _說明: "磁控管偏心磁鐵組繞腔軸轉（約 1 圈／秒，示意），電漿亮帶跟著轉；起轉、停轉有加減速（rampSpin）", parts: ["pvdMagYoke", "pvdMagN", "pvdMagS", "pvdMagGlow"], axis: [0, 1, 0], pivot: [P1.x, P1.top, P1.z], pivots: Object.fromEntries(["pvdMagYoke", "pvdMagN", "pvdMagS", "pvdMagGlow"].map((k) => [k, [P1.x, P1.top, P1.z]])), rps: 0.8, rampSpin: true };
 { const [ox, oz] = pvdPts(3.3, -1.2), [ix, iz] = pvdPts(2.0, -1.0); actions.pvdArIn = { type: "flow", _說明: "氬氣由腔壁細管慢慢進來（不是噴流）", path: [lpt("pvdBody", [ox, 6.0, oz]), lpt("pvdBody", [ix, 6.5, iz])], n: 4, size: 0.1, shape: "dot", rate: 0.35, color: "ar", track: false }; }
 // CVD：噴頭孔向下均勻噴出（多排簾幕），貼近晶圓轉向往外、流向抽氣環
-const gasCurtain = (key, ch, color, pre, rate = 0.5) => {
+const gasCurtain = (key, ch, color, pre, rate = 0.5, zo = 0) => {
   const xs = [-1.6, -0.8, 0, 0.8, 1.6], out = [];
   xs.forEach((u, i) => {
-    const sx = R2(ch.x + u), z0 = ch.z, y0 = R2(ch.SHY - 0.16), y1 = R2(yW + 0.25), side = u === 0 ? (i % 2 ? 1 : -1) : Math.sign(u);
+    const sx = R2(ch.x + u), z0 = R2(ch.z + zo), y0 = R2(ch.SHY - 0.16), y1 = R2(yW + 0.25), side = u === 0 ? (i % 2 ? 1 : -1) : Math.sign(u);
     const id = `${pre}${i}`;
     actions[id] = { type: "flow", _說明: "氣體從噴頭小孔往下（整排像簾幕），近晶圓轉向往外，流到抽氣環", path: [lpt(ch.sh, [sx, y0, z0]), lpt(ch.sh, [sx, y1, z0]), lpt(ch.sh, [R2(ch.x + side * 2.15), R2(yW + 0.12), z0]), lpt(ch.sh, [R2(ch.x + side * 2.5), 5.7, z0])], n: 6, lanes: 7, laneGap: 0.48, laneDir: [0, 0, 1], size: 0.085, shape: "dot", rate, phase: i * 0.17, color, track: false };
     out.push(id);
   });
   return out;
 };
-const cvdA = gasCurtain("cvd", CVD, "gasA", "cvdA"), cvdB = gasCurtain("cvd", CVD, "gasB", "cvdB");
-const aldA = gasCurtain("ald", ALD, "gasA", "aldA"), aldB = gasCurtain("ald", ALD, "gasB", "aldB"), aldP = gasCurtain("ald", ALD, "purge", "aldP", 0.75);
+const cvdA = gasCurtain("cvd", CVD, "gasA", "cvdA", 0.7, 0), cvdB = gasCurtain("cvd", CVD, "gasB", "cvdB", 0.7, 0.24);
+const aldA = gasCurtain("ald", ALD, "gasA", "aldA", 1.2), aldB = gasCurtain("ald", ALD, "gasB", "aldB", 1.2, 0.24), aldP = gasCurtain("ald", ALD, "purge", "aldP", 1.4, 0.12);
 actions.cvdHeat = { type: "pulse", _說明: "加熱基座的線圈暗紅微光（穩定）", parts: ["cvdPedHeat", "cvdPedHeat2"], color: "heater", glow: 0.7, steady: true, halo: 0 };
 actions.aldHeat = { type: "pulse", parts: ["aldPedHeat", "aldPedHeat2"], color: "heater", glow: 0.6, steady: true, halo: 0 };
 // 薄膜：PVD 銅膜 3 層、CVD 膜 3 層、ALD 膜 4 層（一層一層出現，時間在 genscript 的 shift 控制；畫面加厚放大是示意）
@@ -351,9 +361,13 @@ const sector = (r0, r1, n = 14) => { // 弧心 MC，角度從 180°（入口，x
   return pts;
 };
 // 弧：起點 (SX, MC.z)＝角 180°，往 +z 走時繞弧心轉向 +x；世界座標 x＝MC.x＋r cos t、z＝MC.z＋r sin t（t 從 180° 減到 90° 時 z 增加）
-P({ id: "impMagYoke", layer: "impMag", shape: "poly", pts: sector(RM - 1.5, RM + 1.5), size: [1, 1, 1.4], rot: V, pos: [MC[0], IY, MC[1]], mat: "dark" });
-P({ id: "impMagCoil", layer: "impMag", shape: "poly", pts: sector(RM - 1.1, RM + 1.1), size: [1, 1, 0.5], rot: V, pos: [MC[0], IY, MC[1]], at: [[0, 0.95, 0], [0, -0.95, 0]], mat: "coil" });
-P({ id: "impMagGuide", layer: "impMag", shape: "poly", pts: sector(RM - 0.55, RM + 0.55), size: [1, 1, 0.6], rot: V, pos: [MC[0], IY, MC[1]], mat: "glass" });
+// 上下兩塊磁極（中間 0.5 的間隙給束走）＋上下銅線圈；推鏡俯視時上磁極（impMagUp）剖開，看得到束在間隙裡分岔
+LAY("impMagUp", [9, 1.5, 39, IY + 0.8]);
+P({ id: "impMagPoleLo", layer: "impMag", shape: "poly", pts: sector(RM - 1.5, RM + 1.5), size: [1, 1, 0.5], rot: V, pos: [MC[0], IY - 0.5, MC[1]], mat: "dark" });
+P({ id: "impMagCoilLo", layer: "impMag", shape: "poly", pts: sector(RM - 1.1, RM + 1.1), size: [1, 1, 0.4], rot: V, pos: [MC[0], IY - 0.95, MC[1]], mat: "coil" });
+P({ id: "impMagPoleUp", layer: "impMagUp", shape: "poly", pts: sector(RM - 1.5, RM + 1.5), size: [1, 1, 0.5], rot: V, pos: [MC[0], IY + 0.5, MC[1]], mat: "dark" });
+P({ id: "impMagCoilUp", layer: "impMagUp", shape: "poly", pts: sector(RM - 1.1, RM + 1.1), size: [1, 1, 0.4], rot: V, pos: [MC[0], IY + 0.95, MC[1]], mat: "coil" });
+P({ id: "impMagWall", layer: "impMag", shape: "poly", pts: sector(RM - 1.5, RM - 1.3), size: [1, 1, 0.5], rot: V, pos: [MC[0], IY, MC[1]], at: [[0, 0, 0]], mat: "steel" });
 // 質量解析縫（出口後兩片擋板，中間留縫）、加速管（環形電極＋絕緣環交錯）、掃描（左右偏轉板）、終端站
 const EXZ = MC[1] + RM; // 出口 z（≈2）
 P({ id: "impSlit", layer: "impAcc", shape: "box", size: [0.25, 1.6, 1.0], pos: [MC[0] + 1.2, IY, EXZ], at: [[0, 0, -0.75], [0, 0, 0.75]], mat: "dark" });
@@ -364,28 +378,39 @@ P({ id: "impAccHv", layer: "impAcc", shape: "slab", size: [9.4, 0.5, 0.5], r: 0.
 const SCX = ACC1 + 1.6;
 P({ id: "impScanPlate", layer: "impScan", shape: "box", size: [1.8, 1.4, 0.12], pos: [SCX, IY, EXZ], at: [[0, 0, -0.65], [0, 0, 0.65]], mat: "copper" });
 P({ id: "impScanBox", layer: "impScan", shape: "box", size: [2.2, 0.3, 1.8], pos: [SCX, IY + 0.9, EXZ], mat: "steel2" });
-const EDX = SCX + 4.2;
-P({ id: "impEndCh", layer: "impEnd", shape: "cyl", size: [3.0, 3.4], rot: [0, 90, 0], pos: [EDX, IY, EXZ], mat: "glass" });
-P({ id: "impEndFl", layer: "impEnd", shape: "tube", size: [3.25, 2.9, 0.3], rot: [0, 90, 0], pos: [EDX, IY, EXZ], at: [[-1.7, 0, 0], [1.7, 0, 0]], mat: "steel" });
+const CRX = SCX + 3.0, EDX = SCX + 6.6; // 平行化（角度修正）磁鐵在掃描器與終端站之間（審片 mech 必改 4）
+LAY("impEndCov", [4, 4, EDX, IY]);
+P({ id: "impEndCh", layer: "impEnd", shape: "slab", size: [3.6, 4.6, 4.6], r: 0.25, pos: [EDX + 0.6, IY, EXZ - 0.6], mat: "steel2" });
+P({ id: "impEndCov", layer: "impEndCov", shape: "slab", size: [3.6, 4.6, 0.3], r: 0.15, pos: [EDX + 0.6, IY, R2(EXZ + 1.85)], mat: "panel" });
+P({ id: "impEndLL", layer: "impEnd", shape: "slab", size: [2.2, 2.2, 2.2], r: 0.2, pos: [EDX + 3.6, IY - 1.0, EXZ - 0.6], mat: "panel2" });
+P({ id: "impEndLLDoor", layer: "impEnd", shape: "box", size: [0.1, 1.4, 1.6], pos: [EDX + 4.72, IY - 1.0, EXZ - 0.6], mat: "dark" });
 P({ id: "impPlaten", layer: "impEnd", shape: "cyl", size: [1.8, 0.3], rot: [0, 90, 8], pos: [EDX + 0.9, IY, EXZ], mat: "stage" });
-P({ id: "impWafer", layer: "impEnd", shape: "cyl", size: [1.5, WT], rot: [0, 90, 8], pos: [EDX + 0.7, IY, EXZ], mat: "wafer" });
-P({ id: "impPlatenArm", layer: "impEnd", shape: "box", size: [0.4, 3.4, 0.4], pos: [EDX + 1.2, IY - 1.9, EXZ], mat: "steel" });
+P({ id: "impWafer", layer: "impEnd", shape: "cyl", size: [1.5, WT], rot: [0, 90, 8], pos: [EDX + 0.72, IY, EXZ], mat: "wafer" });
+P({ id: "impPlatenArm", layer: "impEnd", shape: "box", size: [0.4, 3.0, 0.4], pos: [EDX + 1.2, IY - 1.7, EXZ], mat: "steel" });
 P({ id: "impEndPump", layer: "impEnd", shape: "cyl", size: [0.8, 2.2], rot: V, pos: [EDX, 2.9, EXZ + 2.2], mat: "steel" });
 P({ id: "impPump", layer: "imp", shape: "cyl", size: [0.7, 1.9], rot: V, pos: [0, 3.6, 0], at: [[SX, 0, SZ + 3.5], [MC[0] + 2, 0, EXZ - 2.6], [ACC0 + 4.5, 0, EXZ + 2.3]], mat: "steel" });
-P({ id: "impBeamPipe", layer: "imp", shape: "cyl", size: [0.45, EDX - 1.5 - (MC[0] + 0.4)], rot: [0, 90, 0], pos: [R2((EDX - 1.5 + MC[0] + 0.4) / 2), IY, EXZ], mat: "glass" });
+P({ id: "impBeamPipe", layer: "imp", shape: "cyl", size: [0.45, SCX - (MC[0] + 0.4)], rot: [0, 90, 0], pos: [R2((SCX + MC[0] + 0.4) / 2), IY, EXZ], mat: "glass" });
 // 束：混合離子從源出發 → 磁鐵；輕的半徑小（彎得多撞內牆）、重的半徑大（彎得少撞外牆）、選定的剛好過縫 → 加速管（越跑越快）→ 掃描 → 晶圓
 const arc = (r, t1, n = 8, c = MC) => Array.from({ length: n + 1 }, (_, i) => { const t = Math.PI - (i / n) * (Math.PI - t1); return [R2(c[0] + r * Math.cos(t)), IY, R2(c[1] + r * Math.sin(t))]; });
 // 半徑 r 的弧、入口切線都在 (SX, MC.z) 往 +z：弧心＝(SX + r, MC.z)
 const arcR = (r, endDeg) => arc(r, endDeg * D2R, 8, [SX + r, MC[1]]);
 const ipt = (p) => lpt("impMag", p);
 const srcLeg = [[SX, IY, SZ + 0.2], [SX, IY, MC[1]]];
-actions.ionSel = { type: "flow", _說明: "選定質量的離子：剛好沿磁鐵彎 90°、穿過質量解析縫", path: [...srcLeg, ...arcR(RM, 90).slice(1), [MC[0] + 1.6, IY, EXZ]].map(ipt), n: 6, size: 0.2, shape: "dot", rate: 0.42, color: "ionSel", trail: 3, trailGap: 0.012, trailColor: "ionSel", track: false };
-actions.ionLight = { type: "flow", _說明: "較輕的離子：半徑小、彎得多，撞到磁鐵內側（示意）", path: [...srcLeg, ...arcR(2.4, 60).slice(1)].map(ipt), n: 4, size: 0.14, shape: "dot", rate: 0.42, phase: 0.33, color: "ionLight", trail: 2, trailGap: 0.012, trailColor: "ionLight", track: false };
-actions.ionHeavy = { type: "flow", _說明: "較重的離子：半徑大、彎得少，撞到磁鐵外側（示意）", path: [...srcLeg, ...arcR(6.2, 118).slice(1)].map(ipt), n: 4, size: 0.26, shape: "dot", rate: 0.42, phase: 0.66, color: "ionHeavy", trail: 2, trailGap: 0.012, trailColor: "ionHeavy", track: false };
+actions.ionSel = { type: "flow", _說明: "選定質量的離子：剛好沿磁鐵彎 90°、穿過質量解析縫", path: [...srcLeg, ...arcR(RM, 90).slice(1), [MC[0] + 1.6, IY, EXZ]].map(ipt), n: 6, size: 0.3, shape: "dot", rate: 0.42, color: "ionSel", trail: 3, trailGap: 0.012, trailColor: "ionSel", track: true };
+actions.ionLight = { type: "flow", _說明: "較輕的離子：半徑小、彎得多，撞到磁鐵內側（示意）", path: [...srcLeg, ...arcR(2.4, 60).slice(1)].map(ipt), n: 4, size: 0.24, shape: "dot", rate: 0.42, phase: 0.33, color: "ionLight", trail: 2, trailGap: 0.012, trailColor: "ionLight", track: true };
+actions.ionHeavy = { type: "flow", _說明: "較重的離子：半徑大、彎得少，撞到磁鐵外側（示意）", path: [...srcLeg, ...arcR(6.2, 118).slice(1)].map(ipt), n: 4, size: 0.36, shape: "dot", rate: 0.42, phase: 0.66, color: "ionHeavy", trail: 2, trailGap: 0.012, trailColor: "ionHeavy", track: true };
 actions.ionAcc = { type: "flow", _說明: "加速管：離子逐環加速（accel，越後面越快、拖尾越長）", path: [[MC[0] + 1.6, IY, EXZ], [ACC1 + 0.4, IY, EXZ]].map((p) => lpt("impAcc", p)), n: 6, size: 0.2, shape: "dot", rate: 0.7, accel: true, color: "ionSel", trail: 4, trailGap: 0.035, trailColor: "beam", track: false };
-actions.ionHit = { type: "flow", _說明: "掃描後打進晶圓（束左右掃過整片）", path: [[ACC1 + 0.4, IY, EXZ], [SCX, IY, EXZ], [EDX + 0.65, IY, EXZ]].map((p) => lpt("impScan", p)), n: 5, size: 0.18, shape: "dot", rate: 1.0, color: "ionSel", trail: 3, trailGap: 0.02, trailColor: "beam", jitter: 0.0, track: false };
-P({ id: "impFan", layer: "impScan", shape: "box", size: [EDX + 0.6 - SCX, 0.08, 0.12], pos: [R2((EDX + 0.6 + SCX) / 2), IY, EXZ], mat: "beamM" });
-actions.scanSweep = { type: "vibrate", _說明: "束在晶圓前左右掃（電場偏轉，示意）", parts: ["impFan"], axis: [0, 0, 1], amp: 1.2, freq: 0.9 };
+LAY("impCor", [3, 3, CRX, IY]);
+P({ id: "impCorYoke", layer: "impCor", shape: "poly", pts: [[-0.9, -1.9], [0.9, -2.5], [0.9, 2.5], [-0.9, 1.9]], size: [1, 1, 1.4], rot: V, pos: [CRX, IY, EXZ], mat: "dark" });
+P({ id: "impCorCoil", layer: "impCor", shape: "poly", pts: [[-0.7, -1.7], [0.7, -2.2], [0.7, 2.2], [-0.7, 1.7]], size: [1, 1, 0.4], rot: V, pos: [CRX, IY, EXZ], at: [[0, 0.9, 0], [0, -0.9, 0]], mat: "coil" });
+// 掃描後扇形散開（impFanA：繞掃描器轉）→ 修正磁鐵後平行（impFanB：平移），兩段同頻率、等速三角波
+const LA = CRX - SCX, LB = EDX + 0.62 - (CRX + 0.9);
+P({ id: "impFanA", layer: "impScan", shape: "box", size: [LA, 0.07, 0.1], pos: [R2(SCX + LA / 2), IY, EXZ], mat: "beamM" });
+P({ id: "impFanB", layer: "impScan", shape: "box", size: [R2(LB), 0.07, 0.1], pos: [R2(CRX + 0.9 + LB / 2), IY, EXZ], mat: "beamM" });
+const SW = 1.25, SWA = R2((Math.atan2(SW, LA) * 180) / Math.PI);
+actions.scanSweep = { type: "vibrate", tri: true, _說明: "平行束在晶圓前等速左右掃（三角波：到端點直接折返）", parts: ["impFanB"], axis: [0, 0, 1], amp: SW, freq: 0.6 };
+actions.scanFan = { type: "rotate", tri: true, _說明: "掃描器後的扇形束（繞掃描器擺），過修正磁鐵後變平行", parts: ["impFanA"], axis: [0, 1, 0], pivot: [SCX, IY, EXZ], pivots: { impFanA: [SCX, IY, EXZ] }, swing: -SWA, freq: 0.6 };
+actions.ionHit = { type: "flow", _說明: "離子經掃描、修正磁鐵後打進晶圓", path: [[ACC1 + 0.4, IY, EXZ], [SCX, IY, EXZ], [CRX, IY, EXZ], [EDX + 0.62, IY, EXZ]].map((p) => lpt("impScan", p)), n: 5, size: 0.18, shape: "dot", rate: 1.0, color: "ionSel", trail: 3, trailGap: 0.02, trailColor: "beam", track: false };
 actions.srcGlow = { type: "pulse", _說明: "離子源電漿淡紫輝光、燈絲加熱", parts: ["impSrcGlow", "impSrcFil"], color: "srcGlow", glow: 0.9, freq: 1.4, halo: 0 };
 actions.accGlow = { type: "pulse", _說明: "加速管通高壓時電極環亮", parts: ["impAccRing"], color: "beam", glow: 0.5, steady: true, halo: 0 };
 actions.status = { type: "pulse", _說明: "機台運轉：射頻櫃指示燈慢慢呼吸", parts: ["rfCabLed"], color: "screen", glow: 0.6, freq: 0.5, halo: 0 };
@@ -396,13 +421,14 @@ Object.assign(anchors, {
   tc: A("tcLid", [0, 8.6, 2.5], -150, -150), vr: A("vr", [2, 6.2, 0], 130, -140),
   pvd: A("pvdLid", [PVD.x, PVD.top + 1.2, PVD.z], 120, -150), cvd: A("cvdLid", [CVD.x, CVD.top + 1.2, CVD.z], 120, -150), ald: A("aldLid", [ALD.x, ALD.top + 1.2, ALD.z], -120, -150),
   ll: A("llLLid", [LLL.x, 8.3, LLL.z], -150, -120), foup: A("foup", [LLx, 8.3, FOUPZ], -140, -110), valve: A(VALVES.llL.lay, [LLL.x * 0.62, 7.3, LLL.z * 0.62], 140, -120),
-  efem: A("ffu", [5, 10.6, 14], 130, -120),
+  efem: A("ffu", [5, EH + 0.8, 14], 130, -120),
   tgt: A("pvdTgt", [PVD.x, PVD.top - 0.4, PVD.z + 2.4], 140, -110), plasma: A("pvdTgt", [PVD.x, PVD.top - 0.95, PVD.z + 2.3], 150, 60), mag: A("pvdMag", [PVD.x, PVD.top + 0.3, PVD.z + 1.6], 140, -150), wfP: A("fP", [PVD.x, yW, PVD.z + 1.4], 140, 120),
   sh: A("cvdSH", [CVD.x, CVD.SHY, CVD.z + 2.3], 150, -100), heat: A("cvdPed", [CVD.x, 5.8, CVD.z + 1.8], 150, 110), aldF: A("fA", [ALD.x, yW, ALD.z + 1.4], 150, 110),
-  src: A("impSrc", [SX, IY + 1.5, SZ - 1.2], -120, -140), magnet: A("impMag", [MC[0] - 1, IY + 1.2, MC[1] + 2], 120, -150), acc: A("impAcc", [ACC0 + 4.5, IY + 1.5, EXZ], 60, -150), end: A("impEnd", [EDX, IY + 3.1, EXZ], 100, -140),
+  src: A("impSrc", [SX, IY + 1.5, SZ - 1.2], -120, -140), magnet: A("impMag", [MC[0] - 1, IY + 1.2, MC[1] + 2], 120, -150), acc: A("impAcc", [ACC0 + 4.5, IY + 1.5, EXZ], 60, -150), end: A("impEnd", [EDX + 0.72, IY + 0.6, EXZ], 110, -150), cor: A("impCor", [CRX, IY + 1.2, EXZ], 60, -150),
   sign: A("sign", [0, 11.0, EZ1 - 0.4], -150, 130),
 });
 
+for (const d of Object.values(actions)) if (d.type === "flow" && d.path?.[0]?.p) { d.layer = d.path[0].layer; d.path = d.path.map((q) => q.p); d.free = true; }
 const model = {
   name: "示意 集群式沉積平台＋離子佈植機（tech-amat）：中央真空傳送腔（八面閘閥）＋真空手臂（關節鏈）、負載鎖 ×2、脫氣／冷卻腔、濺鍍 PVD ×2（旋轉磁控、靶材、遮罩、基座）、化學氣相沉積 CVD（噴頭孔陣、加熱基座、射頻匹配盒）、原子層沉積 ALD（快速閥群）、EFEM（風扇過濾機組、大氣手臂、對準器、裝載埠、晶圓盒）；離子佈植機（離子源、引出電極、分析磁鐵、質量解析縫、加速管、掃描、終端站）。配置與比例是示意，不仿特定機型。由 gen-model.mjs 產生，不要手改",
   unit: "示意（1＝10 cm；晶圓直徑 300 mm）",

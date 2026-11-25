@@ -93,6 +93,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
           "component": "ThreeScene", "sources": src, "props": {}, "durationSec": max(4.6, round(n / 4.5 - 0.6, 1))}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
+    if sid == "s2": sc["durationSec"] = 6.2; sc["pauseAfter"] = 0.7
     scenes.append(sc)
 scenes[0]["props"]["hook"] = {"kicker": "接上集：先鋪薄膜", "title": "誰來鋪薄膜？", "size": 120, "top": 236}
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
@@ -130,16 +131,17 @@ IMP = ["imp", "impSrc", "impMag", "impAcc", "impEnd", "impScan"]
 VIS = []
 # 薄膜：念到才一層一層出現（s5、s7、s8 各自排，在 P 裡加）；這裡先全藏到很後面，之後由各幕的 FILM_ON 拿掉
 FILM_AT = {"fP0": "s5:land", "fP1": "s5:land+24", "fP2": "s6:mag", "fC0": "s7:film-6", "fC1": "s7:film+18", "fC2": "s8:start-10"}
-ALD_C = ["s8:turns+4", "s8:cycle+4", "s8:one+2", "s8:one+30"]
-for i, a in enumerate(ALD_C): FILM_AT[f"fA{i}"] = add(a, 40)
+ALD0 = "s8:turns-6"
+ALD_STEPS = [(0, 26, "A"), (26, 40, "P"), (40, 66, "B"), (66, 80, "P"), (80, 100, "A"), (100, 110, "P"), (110, 130, "B"), (130, 140, "P")]
+FILM_AT["fA0"] = add(ALD0, 76); FILM_AT["fA1"] = add(ALD0, 136); FILM_AT["fA2"] = FAR; FILM_AT["fA3"] = FAR
 for k, a in FILM_AT.items(): VIS.append(hid(k, "s1:start-40", a, 8))
 VIS.append(hid("pvdTgtEro", "s1:start-40", "s6:eat-30", 40))
 # 離子佈植機：另一台，s9 前才出現（淡入，不是瞬移：同一位置慢慢顯現）
 for l in IMP: VIS.append(hid(l, "s1:start-40", "s9:start-24", 18))
 
 # ═════════ s2 爆炸分解：腔體掀蓋、模組沿各自的徑向分開，講完組回（s3 開頭前）═════════
-EXP_A, EXP_B = "s2:start-6", "s3:start-14"
-EXPLODE = [mv("tcLid", EXP_A, EXP_B, 20, dy=7.5)]
+EXP_A, EXP_B = "s2:start-8", "s2:start+186"
+EXPLODE = [mv("tcLid", EXP_A, EXP_B, 20, dy=7.5)]   # 拆機順序：傳送腔頂蓋 → 各腔頂蓋（含靶、噴頭）→ 腔體沿徑向退出 → 負載鎖與 EFEM，每段錯開 5 幀
 def grp(key, a, r, lift):
     dx, dz = pol(a, r); out = []
     lays = [f"{key}Body", f"{key}Pump", f"v_{key}", f"vd_{key}"]
@@ -151,21 +153,22 @@ def grp(key, a, r, lift):
         if l.endswith("Mag"): dy = lift * 0.8
         if l.endswith("SH"): dy = lift * 0.5
         vk = 0.35 if l.startswith("v") else 1
-        out.append(mv(l, add(EXP_A, 4 + j), EXP_B, 22, dx=round(dx * vk, 3), dy=dy, dz=round(dz * vk, 3)))
-    out.append(mv(f"{key}Lid", add(EXP_A, 2), EXP_B, 22, dx=round(dx, 3), dy=lift, dz=round(dz, 3)))
+        st = 5 if (dy and not l.startswith("v")) else 10
+        out.append(mv(l, add(EXP_A, st + min(j, 3)), EXP_B, 22, dx=round(dx * vk, 3), dy=dy, dz=round(dz * vk, 3)))
+    out.append(mv(f"{key}Lid", add(EXP_A, 5), EXP_B, 22, dx=round(dx, 3), dy=lift, dz=round(dz, 3)))
     return out
 for key in ("pvd", "pvd2", "cvd", "ald"): EXPLODE += grp(key, FAC[key], 5.5, 5.5)
 for key in ("cool", "degas"): EXPLODE += grp(key, FAC[key], 4.0, 3.5)
 for key in ("llL", "llR"):
     dx, dz = pol(FAC[key], 3.2)
-    for l in (key, f"{key}Door", f"v_{key}", f"vd_{key}"): EXPLODE.append(mv(l, add(EXP_A, 6), EXP_B, 22, dx=round(dx, 3), dz=round(dz, 3)))
-    EXPLODE.append(mv(f"{key}Lid", add(EXP_A, 4), EXP_B, 22, dx=round(dx, 3), dy=3.2, dz=round(dz, 3)))
-for l in ("efem", "eb", "ebB", "foup", "foupDoor0", "foupDoor1", "sign", "wf"): EXPLODE.append(mv(l, add(EXP_A, 8), EXP_B, 22, dz=6.5))
-EXPLODE.append(mv("ffu", add(EXP_A, 6), EXP_B, 22, dz=6.5, dy=3.5))
+    for l in (key, f"{key}Door", f"v_{key}", f"vd_{key}"): EXPLODE.append(mv(l, add(EXP_A, 15), EXP_B, 22, dx=round(dx, 3), dz=round(dz, 3)))
+    EXPLODE.append(mv(f"{key}Lid", add(EXP_A, 15), EXP_B, 22, dx=round(dx, 3), dy=3.2, dz=round(dz, 3)))
+for l in ("efem", "efemFront", "eb", "ebB", "foup", "foupDoor0", "foupDoor1", "sign", "wf"): EXPLODE.append(mv(l, add(EXP_A, 20), EXP_B, 22, dz=6.5))
+EXPLODE.append(mv("ffu", add(EXP_A, 18), EXP_B, 22, dz=6.5, dy=3.5))
 
 # ═════════ s3 晶圓盒 → 負載鎖（大氣手臂刀片伸縮；全部緩入緩出）═════════
 LLx, LLz = INFO["LL"]; FZ = INFO["FOUPZ"]; EBZ = INFO["EBZ"]
-T3 = "s3:start+6"
+T3 = "s3:start+24"
 def at3(n): return add(T3, n)
 D_IN = round(FZ - EBZ, 3); D_LL = round(EBZ - LLz, 3)
 S3 = [mv("foupDoor0", at3(0), at3(108), 12, dy=-2.7),
@@ -187,7 +190,7 @@ FOLD = 85
 KIN0 = {"arm": "vr", "at": "s1:start-40", "keys": [[0, {**pose(FAC["llL"], FOLD), "lift": 0}]]}
 K4 = "s4:start-8"
 keys4 = [[0, {**pose(FAC["llL"], FOLD), "lift": 0}], [22, pose(FAC["llL"], A_LL)], [30, {"lift": 0.02}], [38, {"lift": 0.22}],
-         [60, pose(FAC["llL"], FOLD)], [98, pose(FAC["pvd"], FOLD)], [120, pose(FAC["pvd"], A_PVD)], [128, {"lift": 0.02}], [133, {"lift": -0.15}],
+         [60, pose(FAC["llL"], FOLD)], [98, pose(FAC["pvd"], FOLD)], [120, pose(FAC["pvd"], A_PVD)], [128, {"lift": 0.02}], [138, {"lift": -0.15}],
          [156, pose(FAC["pvd"], FOLD)], [170, {"lift": 0}]]
 KIN4 = {"arm": "vr", "at": K4, "keys": keys4, "carry": [{"layer": "wf", "grab": 30, "release": 128}]}
 S4 = [mv("vd_pvd", add(K4, 84), add(K4, 162), 10, dy=-1.2),
@@ -198,44 +201,47 @@ CUT = [hid("tcLid", "s3:start+80", "s5:start+20", 14), hid("llLLid", "s3:start-4
        hid("pvdLid", "s4:start+40", "s7:start-6", 14), hid("pvdBody", "s4:start+60", "s7:start-6", 14), hid("pvdShield", "s4:start+40", "s7:start-6", 14),
        hid("pvdTgt", "s4:start+40", "s5:start-14", 12), hid("pvdMag", "s4:start+40", "s5:start-14", 12),
        hid("cvdBody", "s7:start-14", "s8:start-6", 14),
-       hid("sign", "s3:start-12", "s11:start-6", 12),
+       hid("impMagUp", "s9:mag-20", "s10:start+10", 12), hid("impMagUp", "s1:start-40", "s9:start-24", 18),
+       hid("sign", "s3:start-12", "s11:start-6", 12), hid("efemFront", "s3:start+4", "s4:start+10", 12), hid("impEndCov", "s10:start", "s11:start", 12),
        *[hid(l, "s12:start-4", FAR, 14) for l in ("pvdLid", "pvdBody", "pvdShield", "pvdTgt", "pvdMag")], hid("aldBody", "s8:start-14", "s9:start-6", 14)]
 
 # ═════════ 鏡頭推近時，焦點以外的模組退成半透明（不是消失；主素材＝焦點那一組，2D 卡不會蓋到它）═════════
 ALL = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
-def focus(pred, a, b, o=0.22):
+def focus(pred, a, b, o=0.1):
     return [{"layer": l, "at": a, "until": b, "opacity": o, "dur": 14} for l in ALL if not pred(l)]
 isPVD = lambda l: (l.startswith("pvd") and not l.startswith("pvd2")) or l in ("v_pvd", "vd_pvd", "wf") or l.startswith("fP")
 isCVD = lambda l: l.startswith("cvd") or l in ("v_cvd", "vd_cvd") or l.startswith("fC")
 isALD = lambda l: l.startswith("ald") or l in ("v_ald", "vd_ald") or l.startswith("fA")
 isIMP = lambda l: l.startswith("imp")
+isMAG = lambda l: l in ("impMag", "impMagUp")
 isS4 = lambda l: l in ("tc", "vr", "wf", "llL", "llLDoor", "v_llL", "vd_llL", "v_pvd", "vd_pvd", "main") or (l.startswith("pvd") and not l.startswith("pvd2")) or l.startswith("fP")
 isS3 = lambda l: l in ("efem", "ffu", "eb", "ebB", "foup", "foupDoor0", "foupDoor1", "wf", "llL", "llLDoor", "llLLid", "v_llL", "vd_llL", "sign")
 FOCUS = focus(isS3, "s3:start-2", "s4:start+16") + focus(isS4, "s4:start-2", "s5:start+16") + focus(isPVD, "s5:start-2", "s7:start+16") + focus(isCVD, "s7:start-2", "s8:start+16") + focus(isALD, "s8:start-2", "s9:start+16") \
-      + focus(isIMP, "s9:start-2", "s11:start+16") + focus(isPVD, "s12:start-2", FAR)
+      + focus(isIMP, "s9:start-2", "s9:mag-20") + focus(isMAG, "s9:mag-22", "s10:start+14") + focus(lambda l: False, "s10:start+8", "s10:start+40") + focus(isIMP, "s10:start+36", "s11:start+16") + focus(isPVD, "s12:start-2", FAR)
 P = {}
 # s1：整台平台（看得出是一台大機台：前端 EFEM＋晶圓盒、中間八角傳送腔、後面一圈腔體）＋廠牌
 P["s1"] = {"shot": [shot("start-30", 0, -2, 122, 28, 1), shot("start", 0, -2, 110, 30, 90)],
  "shift": VIS + EXPLODE + S3 + S4 + CUT + FOCUS, "kin": [KIN0],
  "run": [run("status", "start-30", FAR, 1), run("ffuAir", "start-30", "s4:start", 1), run("pvd2Glow0", "start-30", "s2:start", 1) if False else run("status", "start-30", FAR, 1)],
- "labels": [lab("sign", "應用材料", "United States", "amber", "amat", "s2:start-4", flag="US", logo="amat")],
+ "labels": [lab("sign", "應用材料", "United States", "amber", "amat", "s2:start-14", flag="US", logo="amat")],
  "overlay": [sec("amat-hook", "who", "s2:start-5", "設備五大-2", "示意，非實際比例", {"prev": "prev", "who": "who", "amat": "amat"})]}
 P["s1"]["run"] = [run("status", "start-30", FAR, 1), run("ffuAir", "start-30", "s4:start", 1)]
 # s2：爆炸分解（一次一張標籤，每張 ≥1.5 秒）
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-8", 0, -6, 140, 36, 36, yaw=-0.12)],
- "labels": [lab("vr", "傳送腔＋真空手臂", "Transfer chamber & robot", "blue", "start-2", "start+44"),
-            lab("pvd", "濺鍍腔（PVD）", "PVD chamber", "amber", "start+46", "start+92"),
-            lab("cvd", "化學氣相沉積腔", "CVD chamber", "blue", "start+94", "s3:start-6")],
+ "labels": [lab("vr", "傳送腔＋真空手臂", "Transfer chamber & robot", "blue", "start-2", "start+43"),
+            lab("pvd", "濺鍍腔（PVD）", "PVD chamber", "amber", "start+45", "start+90"),
+            lab("cvd", "化學氣相沉積腔", "CVD chamber", "blue", "start+92", "start+137"),
+            lab("ald", "原子層沉積腔", "ALD chamber", "amber", "start+139", "start+184")],
  "overlay": [sec("amat-cluster", "start+2", "s3:start-5", "集群式平台（俯視）", "示意", {"mid": "mid", "ring": "ring", "many": "many", "vac": "vac"})]}
 # s3：前端：晶圓盒 → 負載鎖
-P["s3"] = {"shot": [shot("start-10", -2, -12, 100, 44, 30, yaw=0.12)],
+P["s3"] = {"shot": [shot("start+22", -2, -12, 100, 44, 30, yaw=0.12)],
  "run": [run("llAir", "vac-6", "gate-8", 6), run("llPump", "vac-6", "gate-6", 4), run("llReady", "gate-6", "s4:start+40", 4)],
- "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start", "start+60"),
-            lab("ll", "負載鎖：抽真空", "Load lock", "amber", "start+62", "s4:start-4")],
+ "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+40", "start+90"),
+            lab("ll", "負載鎖：抽真空", "Load lock", "amber", "start+92", "s4:start+12")],
  "overlay": [sec("amat-load", "start+2", "s4:start-5", "負載鎖：大氣 → 真空", "示意", {"foup": "foup", "ll": "ll", "vac": "vac", "gate": "gate"})]}
 # s4：真空手臂搬運（從上往下看進傳送腔）
 P["s4"] = {"shot": [shot("start-2", 2, -6, 100, 62, 30)], "kin": [KIN4],
- "labels": [lab("vr", "真空手臂", "Vacuum robot", "amber", "take", "s5:start-4")],
+ "labels": [lab("vr", "真空手臂（型式示意）", "Vacuum robot (schematic)", "amber", "start+14", "s5:start-4")],
  "overlay": [sec("amat-move", "start+2", "s5:start-5", "手臂搬運的速度", "示意", {"take": "take", "turn": "turn", "acc": "acc", "stop": "stop", "put": "put"})]}
 # s5–s6：濺鍍腔剖面（側視）
 Y_PVD = math.atan2(INFO["PVD"][1], INFO["PVD"][0])
@@ -258,22 +264,22 @@ P["s7"] = {"shot": [shot("start-2", 8.9, 3, 44, 10, 34, yaw=Y_CVD - Y_PVD)],
 Y_ALD = math.atan2(INFO["ALD"][1], INFO["ALD"][0])
 AA = [f"aldA{i}" for i in range(5)]; AB = [f"aldB{i}" for i in range(5)]; AP_ = [f"aldP{i}" for i in range(5)]
 ald_run = [run("aldHeat", "start-6", "s9:start", 10)]
-for i, c in enumerate(ALD_C):
-    ald_run += [run(g, c, add(c, 12), 5) for g in AA] + [run(g, add(c, 12), add(c, 20), 5) for g in AP_] + [run(g, add(c, 20), add(c, 32), 5) for g in AB] + [run(g, add(c, 32), add(c, 40), 5) for g in AP_]
-P["s8"] = {"shot": [shot("start-2", 8.9, 3, 44, 10, 34, yaw=Y_ALD - Y_CVD)], "run": ald_run,
+GAS = {"A": AA, "B": AB, "P": AP_}
+for a0, a1, g in ALD_STEPS: ald_run += [run(x, add(ALD0, a0), add(ALD0, a1), 4) for x in GAS[g]]
+P["s8"] = {"shot": [shot("start-2", 8.9, 4, 34, 12, 34, yaw=Y_ALD - Y_CVD)], "run": ald_run,
  "labels": [lab("aldF", "一圈一層", "One layer per cycle", "amber", "cycle", "s9:start-4", xy=[600, 300])],
- "overlay": [sec("amat-ald", "start+2", "s9:start-5", "原子層沉積：一圈四步", "示意（每圈約 0.1 奈米）", {"ald": "ald", "turns": "turns", "cycle": "cycle", "one": "one"})]}
+ "overlay": [sec("amat-ald", "start+2", "s9:start-5", "原子層沉積：一圈四步", "示意（每圈約 0.1 奈米）", {"ald": "ald", "turns": "turns", "cycle": "cycle", "one": "one"}, steps=[[a, b, g] for a, b, g in ALD_STEPS], off=-6)]}
 # s9–s10：離子佈植機（另一台，鏡頭往右移過去）
 IMPI = INFO["IMP"]
-P["s9"] = {"shot": [shot("start-2", 47, 0, 100, 40, 32, yaw=0 - Y_ALD)],
+P["s9"] = {"shot": [shot("start-2", 47, 0, 100, 40, 32, yaw=0 - Y_ALD), shot("mag-22", 38.5, -1, 46, 72, 24)],
  "run": [run("srcGlow", "src-6", FAR, 8), run("ionSel", "mag-4", "s11:start", 8), run("ionLight", "mag-4", "s10:start+20", 8), run("ionHeavy", "mag-4", "s10:start+20", 8)],
  "labels": [lab("src", "離子源", "Ion source", "blue", "start+30", "mag-2"), lab("magnet", "分析磁鐵", "Analyzer magnet", "amber", "mag", "s10:start-4")],
  "overlay": [sec("amat-imp", "start+30", "s10:start-5", "磁鐵挑離子（俯視）", "示意", {"imp": "imp", "src": "src", "mag": "mag", "pick": "pick"})]}
-P["s10"] = {"shot": [shot("start-2", 52, 1, 70, 26, 34)],
- "run": [run("accGlow", "acc-6", "s11:start", 8), run("ionAcc", "acc-4", "s11:start", 8), run("ionHit", "hit-8", "s11:start", 8), run("scanSweep", "hit-8", "s11:start", 12)],
+P["s10"] = {"shot": [shot("start+12", 50, 5, 62, 24, 34, yaw=0.45)],
+ "run": [run("accGlow", "acc-6", "s11:start", 8), run("ionAcc", "acc-4", "s11:start", 8), run("ionHit", "hit-8", "s11:start", 8), run("scanSweep", "hit-8", "s11:start", 12), run("scanFan", "hit-8", "s11:start", 12)],
  "labels": [lab("acc", "加速管", "Accelerator", "amber", "start-2", "hit-2"), lab("end", "晶圓（傾斜平台）", "Wafer on tilted platen", "blue", "hit", "s11:start-4")],
  "overlay": [sec("amat-acc", "start+2", "s11:start-5", "打進表面底下", "示意（深度、劑量不標）", {"acc": "acc", "hit": "hit", "cond": "cond"})]}
-P["s11"] = {"shot": [shot("start-2", 0, -2, 110, 26, 40, yaw=-0.3)],
+P["s11"] = {"shot": [shot("start-2", 0, -2, 110, 26, 40, yaw=-0.75)],
  "labels": [lab("sign", "應用材料", "United States", "amber", "us", "s12:start-4", flag="US", logo="amat")],
  "overlay": [sec("amat-co", "start+2", "s12:start-5", "應用材料", "公司財報、研究機構、官網", {"us": "us", "no2": "no2", "tw": "tw"}, h=360, y=1040)]}
 P["s12"] = {"shot": [shot("start-2", 8.9, 2, 48, 40, 34, yaw=Y_PVD - (-0.3))],
