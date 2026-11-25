@@ -281,7 +281,7 @@ const Pod: React.FC<P> = ({ o, f, k }) => {
           <rect x={cx - 130} y={retY} width={260} height={18} fill={QZ} stroke={QZ_D} strokeWidth={3} />
           <rect x={cx - 100} y={retY + 2} width={200} height={8} fill="#1F3F8F" />
         </g>
-        {[0, 1, 2].map((j) => { const u = ph(f, 0.03, j, 3), hit = 0.55; const x = u < hit ? 10 + u / hit * (cx - 250 - 10 + 30) : cx - 210 - (u - hit) / (1 - hit) * 150, y = u < hit ? CT + 20 + 30 * j - 20 * (u / hit) : CT + 0 + 30 * j - 10 + (u - hit) * 120;
+        {[0, 1, 2].map((j) => { const u = ph(f, 0.03, j, 3), hit = 0.55; const x = u < hit ? 10 + u / hit * (cx - 250 - 10 + 30) : cx - 210 - (u - hit) / (1 - hit) * 150, y = u < hit ? CT + 32 + 30 * j - 20 * (u / hit) : CT + 12 + 30 * j - 10 + (u - hit) * 120; // 11-25：灰塵整體下移 12px，不壓標題
           return <rect key={j} x={x} y={y} width={9} height={9} fill={DUST} opacity={ou * Math.min(1, u * 6, (1 - u) * 6)} transform={`rotate(${f * 4 + j * 40} ${x + 4} ${y + 4})`} />; })}
         <Sep x={560} />
         <g>

@@ -91,3 +91,10 @@ export const Flag: React.FC<{ code: string; h: number; x?: number; y?: number; a
   return asSvg ? <g>{inner}<rect x={x} y={y} width={w} height={h} fill="none" stroke="#9AA3B2" strokeWidth={1.5} opacity={opacity} /></g>
     : <div style={{ display: "inline-block", outline: "1.5px solid #9AA3B2", lineHeight: 0 }}>{inner}</div>;
 };
+
+// ── 台灣本島輪廓（2026-11-25 Andy：「台灣需要描繪更清楚」）：27 個海岸點（富貴角、三貂角、鵝鑾鼻、安平…）照經緯度等距投影。
+//   twPath(ox, oy, k)：左上基準 (ox, oy)、每度緯度 k px；twPt(lon, lat, ox, oy, k)：城市位置（台南 120.20,23.00；雲林麥寮 120.25,23.75）。
+const TW_COAST: [number, number][] = [[121.54, 25.30], [121.74, 25.15], [121.92, 25.02], [122.00, 25.01], [121.83, 24.86], [121.86, 24.59], [121.80, 24.45], [121.62, 23.98], [121.52, 23.60], [121.38, 23.10], [121.15, 22.75], [120.90, 22.34], [120.85, 21.90], [120.73, 21.93], [120.60, 22.36], [120.45, 22.46], [120.27, 22.62], [120.15, 22.99], [120.08, 23.15], [120.15, 23.38], [120.20, 23.78], [120.40, 24.05], [120.50, 24.27], [120.67, 24.50], [120.92, 24.82], [121.08, 25.03], [121.40, 25.18]];
+const TW_COS = Math.cos((23.6 * Math.PI) / 180);
+export const twPt = (lon: number, lat: number, ox: number, oy: number, k: number): [number, number] => [ox + (lon - 120.08) * k * TW_COS, oy + (25.3 - lat) * k];
+export const twPath = (ox: number, oy: number, k: number) => "M" + TW_COAST.map(([a, b]) => twPt(a, b, ox, oy, k).map((v) => v.toFixed(1)).join(" ")).join(" L") + "Z";

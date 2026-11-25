@@ -10,7 +10,7 @@ import { FONT_ZH } from "../../theme";
 import { H, L, sm, CARD_HEAD, CARD_CONTENT_TOP, cardTitleBox } from "./hudSkin";
 import { EASE, tween } from "../anim";
 import type { Model3D, Overlay3D } from "./engine";
-import { Flag, LogoSvg, hasLogo } from "./Brand";
+import { Flag, LogoSvg, hasLogo, twPath, twPt } from "./Brand";
 import "./BrandWafer";
 
 const zh = (px: number, color: string = H.text, w = 800): React.CSSProperties => ({ fontFamily: FONT_ZH, fontSize: sm(px), fill: color, color, fontWeight: w, whiteSpace: "nowrap" });
@@ -410,14 +410,14 @@ const Co: React.FC<P> = ({ o, f, k }) => {
 const Tw: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const tw = on(f, T(o, "tw")), jv = on(f, T(o, "jv")), yl = on(f, T(o, "yl")), y8 = on(f, T(o, "y28"));
-  const isl = "M196 78 C214 84 226 104 222 130 C220 160 210 190 196 222 C184 250 170 282 152 306 C142 296 128 270 122 240 C116 208 118 178 126 150 C136 118 160 88 196 78 Z";
+  const isl = twPath(112, 82, 64), [yx, yy] = twPt(120.25, 23.75, 112, 82, 64); // 台灣真實輪廓＋雲林麥寮位置（11-25）
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <g opacity={dim(tw)}><path d={isl} fill="#DCE8F8" stroke={H.line} strokeWidth={3} /></g>
-        <g opacity={yl}><circle cx={140} cy={190} r={10 + 4 * Math.sin(f * 0.25)} fill={H.amber} opacity={0.35} /><circle cx={140} cy={190} r={8} fill={H.amber} /></g>
-        <text x={250} y={200} style={zh(30, H.amber, 900)} opacity={dim(yl)}>雲林</text>
-        <line x1={150} y1={190} x2={240} y2={190} stroke={H.amber} strokeWidth={3} opacity={yl} />
+        <g opacity={dim(tw)}><path d={isl} fill="#DCE8F8" stroke={H.line} strokeWidth={3} strokeLinejoin="round" /></g>
+        <g opacity={yl}><circle cx={yx} cy={yy} r={10 + 4 * Math.sin(f * 0.25)} fill={H.amber} opacity={0.35} /><circle cx={yx} cy={yy} r={8} fill={H.amber} /></g>
+        <text x={250} y={yy + 10} style={zh(30, H.amber, 900)} opacity={dim(yl)}>雲林</text>
+        <line x1={yx + 10} y1={yy} x2={240} y2={yy} stroke={H.amber} strokeWidth={3} opacity={yl} />
         <Sep x={330} />
         <g><rect x={352} y={CT + 20} width={96} height={34} fill="none" stroke={jv > 0.5 ? H.amber : H.lineSoft} strokeWidth={jv > 0.5 ? 4 : 1.5} />
           <Flag code="JP" h={26} x={356} y={CT + 24} asSvg /><Flag code="TW" h={26} x={404} y={CT + 24} asSvg /></g>
