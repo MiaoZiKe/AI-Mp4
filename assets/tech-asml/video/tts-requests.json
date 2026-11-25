@@ -1,0 +1,46 @@
+[
+ {
+  "at": "2026-11-25T18:17:34.302Z",
+  "purpose": "audition:asml-try",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-25T18:17:34.322Z",
+  "purpose": "audition:asml-try",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-25T18:49:21.325Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 371,
+   "candidatesTokenCount": 1844,
+   "totalTokenCount": 2215,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 371
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1844
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ }
+]

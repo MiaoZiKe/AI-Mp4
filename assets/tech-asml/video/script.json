@@ -1,0 +1,1806 @@
+{
+ "slug": "tech-asml",
+ "prevEpisode": "光阻-2",
+ "title": "設備五大-1：艾司摩爾 ASML（科技透明圈）",
+ "asOf": "2026/11/25",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B（TECH_B_LINE 11/25 改：捲舌音要念清楚）；第一次用新提示詞，先試聽到 s3 給 Andy 聽，正式整篇配音等同意"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "machine",
+    "label": "曝光機（示意）",
+    "en": "EUV SCANNER",
+    "field": "10 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/25",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，極紫外光實際不可見"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "曝光機",
+   "只有一家？"
+  ],
+  "sub": "設備五大-1：艾司摩爾",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集說看曝光機，誰做得出來？最先進的，全世界只有一家。",
+   "tts": "上一集說看曝光機，誰做得出來？最先進的，全世界只有一家。",
+   "subtitle": {
+    "zh": "上集說看曝光機\n誰做得出來？\n最先進的\n全世界只有一家",
+    "en": "Last time: it comes down to the scanner. | Who can build one? | The most advanced kind: | only one company on Earth."
+   },
+   "keywords": [
+    "曝光機",
+    "只有一家"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "看曝光機"
+    },
+    {
+     "id": "who",
+     "text": "誰做得出來"
+    },
+    {
+     "id": "top",
+     "text": "最先進"
+    },
+    {
+     "id": "one",
+     "text": "只有一家"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia；Tom's Hardware"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：看曝光機",
+     "title": "誰做得出來？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 1.5,
+      "y": 1.2,
+      "d": 184,
+      "elev": 15
+     },
+     {
+      "at": "start",
+      "dur": 70,
+      "x": 1.5,
+      "y": 0.8,
+      "d": 176,
+      "elev": 16
+     },
+     {
+      "at": "who-10",
+      "dur": 30,
+      "x": 1,
+      "y": -10,
+      "d": 200,
+      "elev": 15
+     }
+    ],
+    "shift": [
+     {
+      "layer": "lens",
+      "at": "s1:start-40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "sign",
+      "at": "s1:start-40",
+      "until": "s8:asml-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cone",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cone",
+      "at": "s4:start-8",
+      "until": "s5:bowl-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coneW",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coneW",
+      "at": "s4:start-8",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coneI",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coneI",
+      "at": "s4:start-8",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hullF",
+      "at": "s2:proj-24",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dy": 5,
+      "dz": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullR",
+      "at": "s2:proj-20",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dy": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullE",
+      "at": "s2:proj-18",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dx": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullS",
+      "at": "s2:proj-22",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dx": -6,
+      "dy": 4,
+      "dz": 6,
+      "opacity": 0
+     },
+     {
+      "layer": "hull",
+      "at": "s2:proj-14",
+      "until": "s8:start-16",
+      "dur": 18,
+      "opacity": 0
+     },
+     {
+      "layer": "mask",
+      "at": "s2:proj",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": 6.5
+     },
+     {
+      "layer": "illum",
+      "at": "s2:proj+4",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dx": -4,
+      "dy": 3.5
+     },
+     {
+      "layer": "src",
+      "at": "s2:proj+6",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dx": -9
+     },
+     {
+      "layer": "frame",
+      "at": "s2:proj+8",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -3.5
+     },
+     {
+      "layer": "wafer",
+      "at": "s2:proj+8",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -6.5
+     },
+     {
+      "layer": "laser",
+      "at": "s2:proj+10",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -6
+     },
+     {
+      "layer": "floor",
+      "at": "s2:proj+2",
+      "until": "s3:expo-14",
+      "dur": 14,
+      "opacity": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "status",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "portGlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:proj"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-hook",
+      "at": "who",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "設備五大-1",
+      "tag": "示意，非實際比例",
+      "t": {
+       "who": {
+        "at": "who"
+       },
+       "top": {
+        "at": "top"
+       },
+       "one": {
+        "at": "one"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "它像一台投影機，把光罩上的電路圖，縮小四倍印到晶圓上。",
+   "tts": "它像一台投影機，把光照上的電路圖，縮小四倍印到晶圓上。",
+   "subtitle": {
+    "zh": "它像一台投影機\n把光罩上的電路圖\n縮小四倍\n印到晶圓上",
+    "en": "It works like a projector, | taking the circuit on the mask, | shrinking it four times, | and printing it on the wafer."
+   },
+   "keywords": [
+    "投影機",
+    "縮小四倍"
+   ],
+   "cues": [
+    {
+     "id": "proj",
+     "text": "投影機"
+    },
+    {
+     "id": "mask",
+     "text": "光罩上的電路圖"
+    },
+    {
+     "id": "x4",
+     "text": "縮小四倍"
+    },
+    {
+     "id": "wafer",
+     "text": "印到晶圓上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 官網；Wikipedia"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "machine",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 1,
+      "y": -10,
+      "d": 200,
+      "elev": 15
+     },
+     {
+      "at": "proj-20",
+      "dur": 40,
+      "x": -3,
+      "y": -7,
+      "d": 246,
+      "elev": 15
+     }
+    ],
+    "labels": [
+     {
+      "part": "maskBox",
+      "text": "光罩台：放電路原圖",
+      "en": "Reticle stage",
+      "color": "blue",
+      "at": "mask-4",
+      "until": "x4-2"
+     },
+     {
+      "part": "poBox",
+      "text": "投影鏡組：縮小 4 倍",
+      "en": "Projection optics",
+      "color": "amber",
+      "at": "x4",
+      "until": "x4+44"
+     },
+     {
+      "part": "stageBox",
+      "text": "晶圓台：兩座輪流",
+      "en": "Twin wafer stages",
+      "color": "blue",
+      "at": "wafer+22",
+      "until": "s3:layer+4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-proj",
+      "at": "start+2",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "曝光機像投影機",
+      "tag": "示意",
+      "t": {
+       "proj": {
+        "at": "proj"
+       },
+       "mask": {
+        "at": "mask"
+       },
+       "x4": {
+        "at": "x4"
+       },
+       "wafer": {
+        "at": "wafer"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶片的每一層圖案，都要先被它照過一次，這一步叫曝光。",
+   "tts": "晶片的每一層圖案，都要先被它照過一次，這一步叫曝光。",
+   "subtitle": {
+    "zh": "晶片的每一層圖案\n都要先被它照過一次\n這一步叫曝光",
+    "en": "Every layer of a chip's pattern | has to be printed by it first. | That step is called exposure."
+   },
+   "keywords": [
+    "每一層",
+    "曝光"
+   ],
+   "cues": [
+    {
+     "id": "layer",
+     "text": "每一層"
+    },
+    {
+     "id": "lit",
+     "text": "照過一次"
+    },
+    {
+     "id": "expo",
+     "text": "叫曝光"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "UW EE 527 講義；USPTO 7728953"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "expo-14",
+      "dur": 30,
+      "x": 0,
+      "y": -10,
+      "d": 206,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "light",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "maskScan",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "waferScan",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "expose",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "coneGlow",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "coneWGlow",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "coneIGlow",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "srcBox",
+      "text": "光源艙：雷射打錫滴",
+      "en": "EUV source",
+      "color": "amber",
+      "at": "layer+6",
+      "until": "lit-10"
+     },
+     {
+      "part": "illumBox",
+      "text": "照明系統：把光整形",
+      "en": "Illuminator",
+      "color": "blue",
+      "at": "lit-8",
+      "until": "expo-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-step",
+      "at": "start+2",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "它負責哪一步",
+      "tag": "示意",
+      "t": {
+       "lay": {
+        "at": "layer"
+       },
+       "lit": {
+        "at": "lit"
+       },
+       "expo": {
+        "at": "expo"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "最難的是光。雷射每秒打五萬顆錫滴，打成電漿發出極紫外光。",
+   "tts": "最難的是光。雷射每秒打五萬顆錫滴，打成電漿發出極紫外光。",
+   "subtitle": {
+    "zh": "最難的是光\n雷射每秒打五萬顆錫滴\n打成電漿\n發出極紫外光",
+    "en": "The hard part is the light. | A laser hits 50,000 tin droplets a second, | turning them into plasma | that gives off extreme ultraviolet light."
+   },
+   "keywords": [
+    "雷射",
+    "錫滴",
+    "電漿"
+   ],
+   "cues": [
+    {
+     "id": "hard",
+     "text": "最難的是光"
+    },
+    {
+     "id": "laser",
+     "text": "雷射"
+    },
+    {
+     "id": "tin",
+     "text": "五萬顆錫滴"
+    },
+    {
+     "id": "plasma",
+     "text": "打成電漿"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 官網；Frontiers 論文"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "dur": 30,
+      "x": -12,
+      "y": -11.5,
+      "d": 104,
+      "elev": 10
+     }
+    ],
+    "shift": [
+     {
+      "layer": "optics",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "shell",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "mask",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "wafer",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "frame",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "illum",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "tin",
+      "at": "tin-6",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "lpp",
+      "at": "laser-12",
+      "ramp": 6,
+      "until": "s7:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tin",
+      "text": "錫滴",
+      "en": "Tin droplets",
+      "color": "blue",
+      "at": "tin-2",
+      "until": "s5:start-4"
+     },
+     {
+      "part": "plasma",
+      "text": "電漿",
+      "en": "Plasma",
+      "color": "amber",
+      "at": "plasma",
+      "until": "s5:start-4",
+      "xy": [
+       860,
+       560
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "stamp",
+      "at": "tin-2",
+      "until": "s5:start-6",
+      "x": 540,
+      "y": 970,
+      "text": "每秒 {n} 顆",
+      "color": "amber",
+      "rot": -4,
+      "size": 56,
+      "avoid": false,
+      "countTo": 50000,
+      "countDur": 30
+     },
+     {
+      "type": "section",
+      "kind": "asml-lpp",
+      "at": "laser-6",
+      "until": "s5:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "雷射打錫滴（側視）",
+      "tag": "放大、放慢示意",
+      "source": "lpp"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "這種光會被空氣吸掉，所以整台抽真空，用碗形鏡把光收成一束。",
+   "tts": "這種光會被空氣吸掉，所以整台抽真空，用碗形鏡把光收成一束。",
+   "subtitle": {
+    "zh": "這種光會被空氣吸掉\n所以整台抽真空\n用碗形鏡\n把光收成一束",
+    "en": "Air absorbs this light, | so the whole machine is a vacuum, | and a bowl-shaped mirror | gathers it into one beam."
+   },
+   "keywords": [
+    "真空",
+    "碗形鏡"
+   ],
+   "cues": [
+    {
+     "id": "air",
+     "text": "空氣吸掉"
+    },
+    {
+     "id": "vac",
+     "text": "抽真空"
+    },
+    {
+     "id": "bowl",
+     "text": "碗形鏡"
+    },
+    {
+     "id": "beam",
+     "text": "收成一束"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia；Frontiers 論文"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "dur": 30,
+      "x": -10.5,
+      "y": -10.5,
+      "d": 110,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "coneGlow",
+      "at": "bowl-4",
+      "ramp": 12,
+      "until": "s13:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "collector",
+      "text": "碗形收集鏡",
+      "en": "Collector mirror",
+      "color": "amber",
+      "at": "bowl",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "ifp",
+      "text": "收成一束",
+      "en": "Intermediate focus",
+      "color": "blue",
+      "at": "beam",
+      "until": "s6:start-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-col",
+      "at": "start+2",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "空氣吸光→真空",
+      "tag": "示意",
+      "t": {
+       "air": {
+        "at": "air"
+       },
+       "vac": {
+        "at": "vac"
+       },
+       "bowl": {
+        "at": "bowl"
+       },
+       "beam": {
+        "at": "beam"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "光罩台和晶圓台反方向掃過去，到了盡頭先減速，再折回來。",
+   "tts": "光照台和晶圓台反方向掃過去，到了盡頭先減速，再折回來。",
+   "subtitle": {
+    "zh": "光罩台和晶圓台\n反方向掃過去\n到了盡頭先減速\n再折回來",
+    "en": "The mask stage and wafer stage | sweep in opposite directions, | slow down at the end, | and swing back."
+   },
+   "keywords": [
+    "反方向",
+    "減速"
+   ],
+   "cues": [
+    {
+     "id": "stage",
+     "text": "光罩台和晶圓台"
+    },
+    {
+     "id": "opp",
+     "text": "反方向"
+    },
+    {
+     "id": "slow",
+     "text": "先減速"
+    },
+    {
+     "id": "back",
+     "text": "折回來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 官網；Wikipedia"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "dur": 34,
+      "x": 4.5,
+      "y": -14,
+      "d": 182,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "maskScan",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "waferScan",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "expose",
+      "at": "start",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "light",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-10"
+     },
+     {
+      "id": "coneWGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-6"
+     },
+     {
+      "id": "coneIGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-6"
+     },
+     {
+      "id": "coneGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mask",
+      "text": "光罩台",
+      "en": "Mask stage",
+      "color": "blue",
+      "at": "stage",
+      "until": "s7:start-4"
+     },
+     {
+      "part": "wafer",
+      "text": "晶圓台",
+      "en": "Wafer stage",
+      "color": "amber",
+      "at": "opp",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-scan",
+      "at": "start+2",
+      "until": "s7:start-8",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "掃描曝光（側視）",
+      "tag": "示意",
+      "mask": "maskScan"
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "掃完一格，晶圓台移到下一格，停穩再掃，一片要照好幾十格。",
+   "tts": "掃完一格，晶圓台移到下一格，停穩再掃，一片要照好幾十格。",
+   "subtitle": {
+    "zh": "掃完一格\n晶圓台移到下一格\n停穩再掃\n一片要照好幾十格",
+    "en": "One field done, | the stage moves to the next, | settles, then scans again. | A wafer takes dozens of fields."
+   },
+   "keywords": [
+    "下一格",
+    "停穩"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "掃完一格"
+    },
+    {
+     "id": "move",
+     "text": "移到下一格"
+    },
+    {
+     "id": "settle",
+     "text": "停穩"
+    },
+    {
+     "id": "many",
+     "text": "好幾十格"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia；ASML 官網"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "dur": 30,
+      "x": 10,
+      "y": -17.5,
+      "d": 84,
+      "elev": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "wafer",
+      "at": "s7:move",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 1.6
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:move+12",
+      "until": "s7:move+14",
+      "dur": 2,
+      "dx": 0.22,
+      "spring": {
+       "tau": 5,
+       "period": 10
+      }
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:settle+20",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 1.6
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:settle+32",
+      "until": "s7:settle+34",
+      "dur": 2,
+      "dx": 0.22,
+      "spring": {
+       "tau": 5,
+       "period": 10
+      }
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:many+4",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 1.6
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:many+16",
+      "until": "s7:many+18",
+      "dur": 2,
+      "dx": 0.22,
+      "spring": {
+       "tau": 5,
+       "period": 10
+      }
+     },
+     {
+      "layer": "src",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "optics",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "shell",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "mask",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "illum",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "sign",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "cone",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneI",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneW",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullF",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullR",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullE",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullS",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hull",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "expose",
+      "at": "settle",
+      "ramp": 6,
+      "until": "s13:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "stage",
+      "text": "晶圓台：一格一格走",
+      "en": "Step to next field",
+      "color": "amber",
+      "at": "move",
+      "until": "s8:start-4",
+      "xy": [
+       600,
+       340
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-grid",
+      "at": "start+2",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "照好幾十格",
+      "tag": "示意（一格約 26×33 mm）",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "move": {
+        "at": "move"
+       },
+       "settle": {
+        "at": "settle"
+       },
+       "many": {
+        "at": "many"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "做曝光機的主要三家，荷蘭艾司摩爾，日本尼康和佳能。",
+   "tts": "做曝光機的主要三家，荷蘭艾司摩爾，日本尼康和佳能。",
+   "subtitle": {
+    "zh": "做曝光機的主要三家\n荷蘭艾司摩爾\n日本尼康和佳能",
+    "en": "Three main scanner makers: | ASML of the Netherlands, | and Japan's Nikon and Canon."
+   },
+   "keywords": [
+    "艾司摩爾",
+    "尼康",
+    "佳能"
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "主要三家"
+    },
+    {
+     "id": "asml",
+     "text": "荷蘭艾司摩爾"
+    },
+    {
+     "id": "jp",
+     "text": "日本尼康"
+    },
+    {
+     "id": "canon",
+     "text": "佳能"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "36Kr；MarketResearch；Bits&Chips"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-6",
+      "dur": 34,
+      "x": -1,
+      "y": -9,
+      "d": 200,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "portGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s12:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sign",
+      "text": "艾司摩爾",
+      "en": "Netherlands",
+      "color": "amber",
+      "at": "asml",
+      "until": "s10:start-4",
+      "flag": "NL",
+      "logo": "asml"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-co",
+      "at": "start+2",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "全球誰做曝光機",
+      "tag": "研究機構估計",
+      "t": {
+       "three": {
+        "at": "three"
+       },
+       "asml": {
+        "at": "asml"
+       },
+       "jp": {
+        "at": "jp"
+       },
+       "canon": {
+        "at": "canon"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "但極紫外光機只有艾司摩爾做得出來，一台約兩億美元。",
+   "tts": "但極紫外光機只有艾司摩爾做得出來，一台約兩億美元。",
+   "subtitle": {
+    "zh": "但極紫外光機\n只有艾司摩爾做得出來\n一台約兩億美元",
+    "en": "But only ASML | can build EUV machines, | at about 200 million US dollars each."
+   },
+   "keywords": [
+    "只有艾司摩爾",
+    "兩億美元"
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光機"
+    },
+    {
+     "id": "only",
+     "text": "只有艾司摩爾"
+    },
+    {
+     "id": "price",
+     "text": "兩億美元"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、數位時代（媒體報導）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -1,
+      "y": -9,
+      "d": 194,
+      "elev": 12
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-euv",
+      "at": "start+2",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "極紫外光曝光機",
+      "tag": "價格為媒體報導",
+      "t": {
+       "euv": {
+        "at": "euv"
+       },
+       "only": {
+        "at": "only"
+       },
+       "price": {
+        "at": "price"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "去年它出了四十八台極紫外光機，營收兩成多來自台灣。",
+   "tts": "去年它出了四十八台極紫外光機，營收兩成多來自台灣。",
+   "subtitle": {
+    "zh": "去年它出了\n四十八台極紫外光機\n營收兩成多來自台灣",
+    "en": "Last year it shipped | 48 EUV machines, | with over a fifth of sales from Taiwan."
+   },
+   "keywords": [
+    "四十八台",
+    "台灣"
+   ],
+   "cues": [
+    {
+     "id": "year",
+     "text": "去年"
+    },
+    {
+     "id": "n48",
+     "text": "四十八台"
+    },
+    {
+     "id": "tw",
+     "text": "來自台灣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 2025 年報；Nasdaq"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -1,
+      "y": -9,
+      "d": 200,
+      "elev": 15
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-num",
+      "at": "start+2",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "2025 年",
+      "tag": "公司財報（系統營收地區別）",
+      "t": {
+       "year": {
+        "at": "year"
+       },
+       "n48": {
+        "at": "n48"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "在台灣，總部在新竹，林口在蓋新據點，帆宣、家登、公準是供應商。",
+   "tts": "在台灣，總部在新竹，林口在蓋新據點，帆宣、家登、公準是供應商。",
+   "subtitle": {
+    "zh": "在台灣，總部在新竹\n林口在蓋新據點\n帆宣、家登、公準\n是供應商",
+    "en": "In Taiwan, it's headquartered in Hsinchu, | with a new site going up in Linkou; | Marketech, Gudeng and Kung Chun | are among its suppliers."
+   },
+   "keywords": [
+    "新竹",
+    "林口",
+    "供應商"
+   ],
+   "cues": [
+    {
+     "id": "hq",
+     "text": "新竹"
+    },
+    {
+     "id": "lk",
+     "text": "林口"
+    },
+    {
+     "id": "mic",
+     "text": "帆宣"
+    },
+    {
+     "id": "gd",
+     "text": "家登"
+    },
+    {
+     "id": "kc",
+     "text": "公準"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASML 官網；中央社；科技新報"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -1,
+      "y": -9,
+      "d": 204,
+      "elev": 13
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-tw",
+      "at": "start+2",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "在台灣",
+      "tag": "公司官網、媒體報導",
+      "t": {
+       "hq": {
+        "at": "hq"
+       },
+       "lk": {
+        "at": "lk"
+       },
+       "mic": {
+        "at": "mic"
+       },
+       "gd": {
+        "at": "gd"
+       },
+       "kc": {
+        "at": "kc"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "照之前，晶圓要先鋪好薄膜，下一集看應用材料。留言ASML，拿完整資料。",
+   "tts": "照之前，晶圓要先鋪好薄膜，下一集看應用材料。留言 A S M L，拿完整資料。",
+   "subtitle": {
+    "zh": "照之前，晶圓要先鋪好薄膜\n下一集看應用材料\n留言 ASML，拿完整資料",
+    "en": "Before exposure, films must be laid down. | Next: Applied Materials. | Comment \"ASML\" for the full notes."
+   },
+   "keywords": [
+    "薄膜",
+    "應用材料"
+   ],
+   "cues": [
+    {
+     "id": "film",
+     "text": "鋪好薄膜"
+    },
+    {
+     "id": "next",
+     "text": "應用材料"
+    },
+    {
+     "id": "kw",
+     "text": "留言ASML"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 8,
+      "y": -14,
+      "d": 120,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "src",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "optics",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "shell",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "mask",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "illum",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "sign",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "cone",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneI",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneW",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullF",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullR",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullE",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullS",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hull",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "wafer",
+      "text": "先鋪薄膜",
+      "en": "Films first",
+      "color": "blue",
+      "at": "film",
+      "until": "s13:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "asml-next",
+      "at": "start+2",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：設備五大-2",
+      "t": {
+       "film": {
+        "at": "film"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "應用材料",
+     "trail": [
+      "沉積",
+      "離子佈植"
+     ],
+     "comment": "ASML",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
