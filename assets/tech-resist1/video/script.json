@@ -1,0 +1,2949 @@
+{
+ "slug": "tech-resist1",
+ "prevEpisode": "光罩-2",
+ "title": "光阻-1：照到光就會變的膠（科技透明圈）",
+ "asOf": "2026/11/23",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪只做前段，不配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "wafer",
+    "label": "晶圓",
+    "en": "WAFER",
+    "field": "30 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "film",
+    "label": "光阻層剖面",
+    "en": "RESIST CROSS-SECTION",
+    "field": "2 µm",
+    "ruler": "500 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "mol",
+    "label": "分子",
+    "en": "MOLECULES",
+    "field": "20 nm",
+    "ruler": "5 nm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "照到光",
+   "就會變的膠"
+  ],
+  "sub": "光阻-1：正型、負型、化學放大",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集光罩送進了曝光機，光一打，圖案印在哪？印在一層膠上，它照到光就會變。",
+   "tts": "上一集光照送進了曝光機，光一打，圖案印在哪？印在一層膠上，它照到光就會變。",
+   "subtitle": {
+    "zh": "上集光罩送進了曝光機\n光一打，圖案印在哪？\n印在一層膠上\n它照到光就會變",
+    "en": "Last time the mask reached the scanner. | Light hits. Where does the pattern land? | On a layer of glue | that changes when light hits it."
+   },
+   "keywords": [
+    "晶片",
+    "膠",
+    "光"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "光罩送進了曝光機"
+    },
+    {
+     "id": "chip",
+     "text": "圖案印在哪"
+    },
+    {
+     "id": "glue",
+     "text": "一層膠"
+    },
+    {
+     "id": "light",
+     "text": "照到光"
+    },
+    {
+     "id": "change",
+     "text": "就會變"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wevolver"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：光罩送進曝光機",
+     "title": "圖案印在哪？",
+     "size": 110,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 30,
+      "y": 2.496,
+      "d": 52,
+      "elev": 14
+     },
+     {
+      "at": "light",
+      "dur": 60,
+      "x": 30,
+      "y": 2.592,
+      "d": 54,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "p_b1",
+      "at": "s3:break",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "p_c1",
+      "at": "s4:wash",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_b1",
+      "at": "s5:net-24",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "n_x1",
+      "at": "s1:start-40",
+      "until": "s5:net",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "p_b3",
+      "at": "s3:break",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "p_c3",
+      "at": "s4:wash",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_b3",
+      "at": "s5:net-24",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "n_x3",
+      "at": "s1:start-40",
+      "until": "s5:net",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "p_b5",
+      "at": "s3:break",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "p_c5",
+      "at": "s4:wash",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_b5",
+      "at": "s5:net-24",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "n_x5",
+      "at": "s1:start-40",
+      "until": "s5:net",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "n_c0",
+      "at": "s5:stay",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_c2",
+      "at": "s5:stay",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_c4",
+      "at": "s5:stay",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "n_c6",
+      "at": "s5:stay",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 36
+     },
+     {
+      "layer": "p_dev",
+      "at": "s1:start-40",
+      "until": "s4:dev",
+      "opacity": 0,
+      "dur": 16
+     },
+     {
+      "layer": "p_dev",
+      "at": "s4:keep+12",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "p_dn",
+      "at": "s1:start-40",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "p_dn",
+      "at": "s4:keep+12",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "n_dev",
+      "at": "s1:start-40",
+      "until": "s5:net+16",
+      "opacity": 0,
+      "dur": 16
+     },
+     {
+      "layer": "n_dev",
+      "at": "s5:stay+30",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "n_dn",
+      "at": "s1:start-40",
+      "until": "s5:net+6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "n_dn",
+      "at": "s5:stay+30",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "p_mask",
+      "at": "s4:start",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "p_opt",
+      "at": "s4:start",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "n_mask",
+      "at": "s5:stay-8",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "n_opt",
+      "at": "s5:stay-8",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "c_a0",
+      "at": "s1:start-40",
+      "until": "s7:acid",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "c_a0",
+      "at": "s8:bake+10",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "c_a1",
+      "at": "s1:start-40",
+      "until": "s8:hund-10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "c_a1",
+      "at": "s8:hund+4",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "c_pg1_1",
+      "at": "s8:bake+16",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_1",
+      "at": "s1:start-40",
+      "until": "s8:bake+16",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_3",
+      "at": "s8:bake+24",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_3",
+      "at": "s1:start-40",
+      "until": "s8:bake+24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_5",
+      "at": "s8:bake+32",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_5",
+      "at": "s1:start-40",
+      "until": "s8:bake+32",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_7",
+      "at": "s8:bake+40",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_7",
+      "at": "s1:start-40",
+      "until": "s8:bake+40",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_9",
+      "at": "s8:bake+48",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_9",
+      "at": "s1:start-40",
+      "until": "s8:bake+48",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_11",
+      "at": "s8:bake+56",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_11",
+      "at": "s1:start-40",
+      "until": "s8:bake+56",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_13",
+      "at": "s8:bake+64",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_13",
+      "at": "s1:start-40",
+      "until": "s8:bake+64",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_15",
+      "at": "s8:bake+72",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_15",
+      "at": "s1:start-40",
+      "until": "s8:bake+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_17",
+      "at": "s8:bake+80",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_17",
+      "at": "s1:start-40",
+      "until": "s8:bake+80",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_19",
+      "at": "s8:bake+88",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_19",
+      "at": "s1:start-40",
+      "until": "s8:bake+88",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_21",
+      "at": "s8:bake+96",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_21",
+      "at": "s1:start-40",
+      "until": "s8:bake+96",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg1_23",
+      "at": "s8:bake+104",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": 0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh1_23",
+      "at": "s1:start-40",
+      "until": "s8:bake+104",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_23",
+      "at": "s8:hund+8",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_23",
+      "at": "s1:start-40",
+      "until": "s8:hund+8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_21",
+      "at": "s8:hund+16",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_21",
+      "at": "s1:start-40",
+      "until": "s8:hund+16",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_19",
+      "at": "s8:hund+24",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_19",
+      "at": "s1:start-40",
+      "until": "s8:hund+24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_17",
+      "at": "s8:hund+32",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_17",
+      "at": "s1:start-40",
+      "until": "s8:hund+32",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_15",
+      "at": "s8:hund+40",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_15",
+      "at": "s1:start-40",
+      "until": "s8:hund+40",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_13",
+      "at": "s8:hund+48",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_13",
+      "at": "s1:start-40",
+      "until": "s8:hund+48",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_11",
+      "at": "s8:hund+56",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_11",
+      "at": "s1:start-40",
+      "until": "s8:hund+56",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_9",
+      "at": "s8:hund+64",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_9",
+      "at": "s1:start-40",
+      "until": "s8:hund+64",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_7",
+      "at": "s8:hund+72",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_7",
+      "at": "s1:start-40",
+      "until": "s8:hund+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_5",
+      "at": "s8:hund+80",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_5",
+      "at": "s1:start-40",
+      "until": "s8:hund+80",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_3",
+      "at": "s8:hund+88",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_3",
+      "at": "s1:start-40",
+      "until": "s8:hund+88",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_pg0_1",
+      "at": "s8:hund+96",
+      "until": "s15:start+400",
+      "dur": 12,
+      "dx": 0,
+      "dy": -0.9,
+      "dz": 0,
+      "opacity": 0
+     },
+     {
+      "layer": "c_oh0_1",
+      "at": "s1:start-40",
+      "until": "s8:hund+96",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c_oh2_1",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_3",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_5",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_7",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_9",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_11",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_13",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_15",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_17",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_19",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_21",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "c_oh2_23",
+      "at": "s1:start-40",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "da_ln",
+      "at": "s1:start-40",
+      "until": "s10:uneven",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "da_rs",
+      "at": "s10:uneven",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "de_ln",
+      "at": "s1:start-40",
+      "until": "s10:uneven",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "de_rs",
+      "at": "s10:uneven",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "da_hit",
+      "at": "s1:start-40",
+      "until": "s9:same",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "de_hit",
+      "at": "s1:start-40",
+      "until": "s9:frac",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "da_hit",
+      "at": "s10:uneven",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "de_hit",
+      "at": "s10:uneven",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "de_bad",
+      "at": "s1:start-40",
+      "until": "s10:brk",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "j_flag",
+      "at": "s1:start-40",
+      "until": "s13:jp",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "j_flag",
+      "at": "s1:start-40",
+      "until": "s13:jp+8",
+      "dur": 24,
+      "dx": 0,
+      "dy": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "t_fab",
+      "at": "s1:start-40",
+      "until": "s13:yl-6",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "d_src",
+      "at": "s10:start-4",
+      "until": "s15:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "px_b",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_b",
+      "at": "s2:start-4",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_b",
+      "at": "s3:hit",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_br",
+      "at": "s1:start-400",
+      "until": "s3:hit",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_br",
+      "at": "s5:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_bn",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_bn",
+      "at": "s6:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_a",
+      "at": "s1:start-400",
+      "until": "s2:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_a",
+      "at": "s3:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_a2",
+      "at": "s1:start-400",
+      "until": "s14:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_a2",
+      "at": "s15:start+400",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_c",
+      "at": "s1:start-400",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_c",
+      "at": "s9:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s1:start-400",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s11:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_e",
+      "at": "s1:start-400",
+      "until": "s11:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_e",
+      "at": "s13:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_j",
+      "at": "s1:start-400",
+      "until": "s13:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_j",
+      "at": "s13:tw-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t",
+      "at": "s1:start-400",
+      "until": "s13:tw+26",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_t",
+      "at": "s14:start-4",
+      "until": "s15:start+500",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "p_L0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L2",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L3",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L4",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L5",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_L6",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_chg1",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_chg3",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_chg5",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_jit1",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_jit3",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "p_jit5",
+      "at": "change",
+      "ramp": 8,
+      "until": "s2:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-hook",
+      "at": "chip",
+      "until": "s2:start-2",
+      "x": 64,
+      "y": 950,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：光阻",
+      "tag": "示意，非實際比例",
+      "t": {
+       "chip": {
+        "at": "chip"
+       },
+       "glue": {
+        "at": "glue"
+       },
+       "light": {
+        "at": "light"
+       },
+       "change": {
+        "at": "change"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "這層膠叫光阻，是感光的高分子，薄薄塗在晶圓上。",
+   "tts": "這層膠叫光阻，是感光的高分子，薄薄塗在晶圓上。",
+   "subtitle": {
+    "zh": "這層膠叫光阻\n是感光的高分子\n薄薄塗在晶圓上",
+    "en": "It's called photoresist, | a light-sensitive polymer, | coated thinly on the wafer."
+   },
+   "keywords": [
+    "光阻",
+    "感光",
+    "高分子"
+   ],
+   "cues": [
+    {
+     "id": "pr",
+     "text": "光阻"
+    },
+    {
+     "id": "poly",
+     "text": "感光的高分子"
+    },
+    {
+     "id": "coat",
+     "text": "薄薄塗在晶圓上"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "EPFL CMi"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0,
+      "y": 1.52,
+      "d": 40,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "a_shine",
+      "at": "pr",
+      "ramp": 8,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_resA",
+      "text": "光阻膜",
+      "en": "Photoresist film",
+      "color": "amber",
+      "at": "pr",
+      "until": "s3:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "a_waferA",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "coat",
+      "until": "s3:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-what",
+      "at": "start+5",
+      "until": "s3:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "光阻：感光高分子",
+      "tag": "EPFL；Wevolver",
+      "t": {
+       "pr": {
+        "at": "pr"
+       },
+       "poly": {
+        "at": "poly"
+       },
+       "coat": {
+        "at": "coat"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "光穿過光罩，照到的地方，分子會斷開、變質。",
+   "tts": "光穿過光照，照到的地方，分子會斷開、變質。",
+   "subtitle": {
+    "zh": "光穿過光罩\n照到的地方\n分子會斷開、變質",
+    "en": "Light shines through the mask; | where it lands, | molecules break and change."
+   },
+   "keywords": [
+    "光罩",
+    "斷開",
+    "變質"
+   ],
+   "cues": [
+    {
+     "id": "mask",
+     "text": "光罩"
+    },
+    {
+     "id": "hit",
+     "text": "照到的地方"
+    },
+    {
+     "id": "break",
+     "text": "斷開"
+    },
+    {
+     "id": "alter",
+     "text": "變質"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wevolver；EPFL CMi"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30,
+      "y": 1.392,
+      "d": 54,
+      "elev": 14
+     },
+     {
+      "at": "hit",
+      "dur": 40,
+      "x": 30,
+      "y": -0.384,
+      "d": 42,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "p_L0",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L1",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L2",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L3",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L4",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L5",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_L6",
+      "at": "mask",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_chg1",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:wash+20"
+     },
+     {
+      "id": "p_chg3",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:wash+20"
+     },
+     {
+      "id": "p_chg5",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:wash+20"
+     },
+     {
+      "id": "p_jit1",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_jit3",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "p_jit5",
+      "at": "break",
+      "ramp": 8,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_maskA",
+      "text": "光罩擋光",
+      "en": "Mask",
+      "color": "blue",
+      "at": "mask",
+      "until": "break-10",
+      "xy": [
+       870,
+       340
+      ]
+     },
+     {
+      "part": "p_resA",
+      "text": "長鏈斷開",
+      "en": "Break",
+      "color": "coral",
+      "at": "break",
+      "until": "s4:start-4",
+      "xy": [
+       210,
+       340
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-expose",
+      "at": "start+5",
+      "until": "s4:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "曝光：分子斷開",
+      "tag": "Wevolver；EPFL",
+      "t": {
+       "mask": {
+        "at": "mask"
+       },
+       "hit": {
+        "at": "hit"
+       },
+       "break": {
+        "at": "break"
+       },
+       "alter": {
+        "at": "alter"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "正型光阻，變質的被顯影液洗掉，留下沒照到的。",
+   "tts": "正型光阻，變質的被顯影液洗掉，留下沒照到的。",
+   "subtitle": {
+    "zh": "正型光阻\n變質的被顯影液洗掉\n留下沒照到的",
+    "en": "Positive resist: | developer washes the changed areas away, | leaving the unexposed parts."
+   },
+   "keywords": [
+    "正型",
+    "顯影液",
+    "洗掉"
+   ],
+   "cues": [
+    {
+     "id": "pos",
+     "text": "正型光阻"
+    },
+    {
+     "id": "dev",
+     "text": "顯影液"
+    },
+    {
+     "id": "wash",
+     "text": "洗掉"
+    },
+    {
+     "id": "keep",
+     "text": "留下沒照到的"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wevolver；USPTO 11016386"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 30,
+      "y": -0.384,
+      "d": 42,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "p_dflow",
+      "at": "dev-10",
+      "ramp": 8,
+      "until": "keep+10"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_devA",
+      "text": "顯影液",
+      "en": "Developer",
+      "color": "blue",
+      "at": "dev",
+      "until": "s5:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "p_resA",
+      "text": "沒照到的留下",
+      "en": "Unexposed stays",
+      "color": "amber",
+      "at": "keep",
+      "until": "s5:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-pos",
+      "at": "start+5",
+      "until": "s5:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "正型：照到的被洗掉",
+      "tag": "Wevolver；USPTO 11016386",
+      "t": {
+       "pos": {
+        "at": "pos"
+       },
+       "dev": {
+        "at": "dev"
+       },
+       "wash": {
+        "at": "wash"
+       },
+       "keep": {
+        "at": "keep"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s5",
+   "beat": "contrast",
+   "para": 5,
+   "narration": "負型相反，照到的連成網，洗完反而留下。",
+   "tts": "負型相反，照到的連成網，洗完反而留下。",
+   "subtitle": {
+    "zh": "負型相反\n照到的連成網\n洗完反而留下",
+    "en": "Negative resist is the reverse: | exposed molecules link into a net | and stay after the wash."
+   },
+   "keywords": [
+    "負型",
+    "連成網",
+    "留下"
+   ],
+   "cues": [
+    {
+     "id": "neg",
+     "text": "負型相反"
+    },
+    {
+     "id": "net",
+     "text": "連成網"
+    },
+    {
+     "id": "stay",
+     "text": "反而留下"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wevolver；EPFL CMi"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 36.5,
+      "y": -0.124,
+      "d": 87,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "n_L0",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L1",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L2",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L3",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L4",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L5",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_L6",
+      "at": "start",
+      "ramp": 8,
+      "until": "net-10"
+     },
+     {
+      "id": "n_netG1",
+      "at": "net",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_netG3",
+      "at": "net",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_netG5",
+      "at": "net",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_chg1",
+      "at": "start+6",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_chg3",
+      "at": "start+6",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_chg5",
+      "at": "start+6",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "n_dflow",
+      "at": "net+6",
+      "ramp": 8,
+      "until": "stay+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "p_posA",
+      "text": "正型",
+      "en": "Positive",
+      "color": "blue",
+      "at": "neg",
+      "until": "s6:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "n_negA",
+      "text": "負型",
+      "en": "Negative",
+      "color": "amber",
+      "at": "neg",
+      "until": "s6:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-neg",
+      "at": "start+5",
+      "until": "s6:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "正型 vs 負型",
+      "tag": "Wevolver；EPFL",
+      "t": {
+       "neg": {
+        "at": "neg"
+       },
+       "net": {
+        "at": "net"
+       },
+       "stay": {
+        "at": "stay"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "但線越畫越細，光不夠用，就要化學放大型光阻。",
+   "tts": "但線越畫越細，光不夠用，就要化學放大型光阻。",
+   "subtitle": {
+    "zh": "但線越畫越細\n光不夠用\n就要化學放大型光阻",
+    "en": "But as lines shrink, | there isn't enough light, | so chemically amplified resist was born."
+   },
+   "keywords": [
+    "化學放大",
+    "光阻"
+   ],
+   "cues": [
+    {
+     "id": "thin",
+     "text": "線越畫越細"
+    },
+    {
+     "id": "weak",
+     "text": "光不夠用"
+    },
+    {
+     "id": "car",
+     "text": "化學放大型光阻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IBM RJ10223；SPIE 5376"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mol",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 72,
+      "y": 1.54,
+      "d": 55,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_chainA",
+      "text": "高分子主鏈",
+      "en": "Polymer chain",
+      "color": "blue",
+      "at": "thin",
+      "until": "s7:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "c_pgA",
+      "text": "保護基",
+      "en": "Protecting group",
+      "color": "amber",
+      "at": "weak",
+      "until": "s7:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-why",
+      "at": "start+5",
+      "until": "s7:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "線越細，光越不夠用",
+      "tag": "IBM RJ10223",
+      "t": {
+       "thin": {
+        "at": "thin"
+       },
+       "weak": {
+        "at": "weak"
+       },
+       "car": {
+        "at": "car"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "照到光，光酸產生劑放出一點酸。",
+   "tts": "照到光，光酸產生劑放出一點酸。",
+   "subtitle": {
+    "zh": "照到光\n光酸產生劑\n放出一點酸",
+    "en": "When light hits, | the photoacid generator | releases a little acid."
+   },
+   "keywords": [
+    "光酸產生劑",
+    "酸"
+   ],
+   "cues": [
+    {
+     "id": "hv",
+     "text": "照到光"
+    },
+    {
+     "id": "pag",
+     "text": "光酸產生劑"
+    },
+    {
+     "id": "acid",
+     "text": "一點酸"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IBM RJ10223"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mol",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 72,
+      "y": 1.696,
+      "d": 52,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "c_hv",
+      "at": "hv-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "c_pagG",
+      "at": "pag",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "c_a0G",
+      "at": "acid",
+      "ramp": 6,
+      "until": "s8:bake+10"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_pagA",
+      "text": "光酸產生劑",
+      "en": "Photoacid generator",
+      "color": "blue",
+      "at": "pag",
+      "until": "s8:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "c_acidA",
+      "text": "酸 H⁺",
+      "en": "Acid",
+      "color": "coral",
+      "at": "acid",
+      "until": "s8:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-pag",
+      "at": "start+5",
+      "until": "s8:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "光酸產生劑放酸",
+      "tag": "IBM RJ10223",
+      "t": {
+       "hv": {
+        "at": "hv"
+       },
+       "pag": {
+        "at": "pag"
+       },
+       "acid": {
+        "at": "acid"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.3
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "再烘烤，一個酸能連續反應幾百次。",
+   "tts": "再烘烤，一個酸能連續反應幾百次。",
+   "subtitle": {
+    "zh": "再烘烤\n一個酸\n能連續反應幾百次",
+    "en": "Then a bake: | one acid molecule | drives hundreds of reactions."
+   },
+   "keywords": [
+    "烘烤",
+    "幾百次"
+   ],
+   "cues": [
+    {
+     "id": "bake",
+     "text": "烘烤"
+    },
+    {
+     "id": "one",
+     "text": "一個酸"
+    },
+    {
+     "id": "chain",
+     "text": "連續反應"
+    },
+    {
+     "id": "hund",
+     "text": "幾百次"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IBM RJ10223"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mol",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 72,
+      "y": 1.54,
+      "d": 55,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "c_coilOn",
+      "at": "bake-4",
+      "ramp": 10,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_wave0",
+      "at": "bake",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_wave1",
+      "at": "bake",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_wave2",
+      "at": "bake",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_hop0",
+      "at": "bake+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_hop1",
+      "at": "hund",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "c_a1G",
+      "at": "hund-10",
+      "ramp": 6,
+      "until": "hund+6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "c_plateA",
+      "text": "烤盤加熱",
+      "en": "Post-exposure bake",
+      "color": "coral",
+      "at": "bake",
+      "until": "s9:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     },
+     {
+      "part": "c_ohA",
+      "text": "保護基被拆掉",
+      "en": "Group removed",
+      "color": "amber",
+      "at": "chain",
+      "until": "s9:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-peb",
+      "at": "start+5",
+      "until": "s9:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一個酸，反應幾百次",
+      "tag": "IBM RJ10223",
+      "t": {
+       "bake": {
+        "at": "bake"
+       },
+       "one": {
+        "at": "one"
+       },
+       "chain": {
+        "at": "chain"
+       },
+       "hund": {
+        "at": "hund"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "到了極紫外光，同樣能量，光子只剩十四分之一。",
+   "tts": "到了極紫外光，同樣能量，光子只剩十四分之一。",
+   "subtitle": {
+    "zh": "到了極紫外光\n同樣能量\n光子只剩十四分之一",
+    "en": "With EUV, | at the same energy, | you get just 1/14 the photons."
+   },
+   "keywords": [
+    "極紫外光",
+    "十四分之一"
+   ],
+   "cues": [
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    },
+    {
+     "id": "same",
+     "text": "同樣能量"
+    },
+    {
+     "id": "frac",
+     "text": "十四分之一"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "arXiv 2405.11717；USPTO 11940728"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 102,
+      "y": -2.54,
+      "d": 70,
+      "elev": 12
+     },
+     {
+      "at": "euv",
+      "dur": 36,
+      "x": 102,
+      "y": -0.012,
+      "d": 56,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "da_ph",
+      "at": "euv-10",
+      "ramp": 6,
+      "until": "s10:uneven"
+     },
+     {
+      "id": "da_ph2",
+      "at": "euv-10",
+      "ramp": 6,
+      "until": "s10:uneven"
+     },
+     {
+      "id": "de_ph",
+      "at": "euv",
+      "ramp": 6,
+      "until": "s10:uneven"
+     }
+    ],
+    "labels": [
+     {
+      "part": "da_A",
+      "text": "ArF 深紫外光",
+      "en": "ArF 193 nm",
+      "color": "blue",
+      "at": "euv",
+      "until": "s10:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "de_A",
+      "text": "EUV 極紫外光",
+      "en": "EUV 13.5 nm",
+      "color": "amber",
+      "at": "euv",
+      "until": "s10:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-euv",
+      "at": "start+5",
+      "until": "s10:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "同樣能量比光子",
+      "tag": "arXiv 2405.11717",
+      "t": {
+       "euv": {
+        "at": "euv"
+       },
+       "same": {
+        "at": "same"
+       },
+       "frac": {
+        "at": "frac"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "光子少，落點不均，線條會隨機斷掉、黏在一起。",
+   "tts": "光子少，落點不均，線條會隨機斷掉、黏在一起。",
+   "subtitle": {
+    "zh": "光子少\n落點不均\n線條會隨機斷掉\n黏在一起",
+    "en": "Fewer photons, | uneven hits: | lines randomly break | or bridge together."
+   },
+   "keywords": [
+    "隨機",
+    "斷掉",
+    "黏在一起"
+   ],
+   "cues": [
+    {
+     "id": "few",
+     "text": "光子少"
+    },
+    {
+     "id": "uneven",
+     "text": "落點不均"
+    },
+    {
+     "id": "brk",
+     "text": "隨機斷掉"
+    },
+    {
+     "id": "brg",
+     "text": "黏在一起"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "JM3 17(4)；SemiEngineering"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "film",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 102,
+      "y": -1.504,
+      "d": 52,
+      "elev": 36
+     },
+     {
+      "at": "brk-14",
+      "dur": 30,
+      "x": 104.6,
+      "y": -0.984,
+      "d": 42,
+      "elev": 40
+     }
+    ],
+    "run": [
+     {
+      "id": "de_badG",
+      "at": "brk",
+      "ramp": 8,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "de_brkA",
+      "text": "斷線",
+      "en": "Line break",
+      "color": "coral",
+      "at": "brk",
+      "until": "s11:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "de_brgA",
+      "text": "黏在一起",
+      "en": "Bridge",
+      "color": "coral",
+      "at": "brg",
+      "until": "s11:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-stoch",
+      "at": "start+5",
+      "until": "s11:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "光子少→隨機缺陷",
+      "tag": "JM3 17(4)；SemiEngineering",
+      "t": {
+       "few": {
+        "at": "few"
+       },
+       "uneven": {
+        "at": "uneven"
+       },
+       "brk": {
+        "at": "brk"
+       },
+       "brg": {
+        "at": "brg"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.4
+  },
+  {
+   "id": "s11",
+   "beat": "mechanism",
+   "para": 11,
+   "narration": "所以業界在試吸光更強的金屬氧化物光阻。",
+   "tts": "所以業界在試吸光更強的金屬氧化物光阻。",
+   "subtitle": {
+    "zh": "所以業界在試\n吸光更強的\n金屬氧化物光阻",
+    "en": "So the industry is testing | stronger-absorbing | metal-oxide resists."
+   },
+   "keywords": [
+    "金屬氧化物光阻"
+   ],
+   "cues": [
+    {
+     "id": "try",
+     "text": "業界在試"
+    },
+    {
+     "id": "abs",
+     "text": "吸光更強"
+    },
+    {
+     "id": "mor",
+     "text": "金屬氧化物光阻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiEngineering；JSR 2025/9/16"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mol",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 130,
+      "y": -1.332,
+      "d": 66,
+      "elev": 12
+     },
+     {
+      "at": "try",
+      "dur": 36,
+      "x": 130,
+      "y": -0.496,
+      "d": 48,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "ec_ph",
+      "at": "try",
+      "ramp": 6,
+      "until": "s13:start"
+     },
+     {
+      "id": "em_ph",
+      "at": "try",
+      "ramp": 6,
+      "until": "s13:start"
+     },
+     {
+      "id": "em_coreG",
+      "at": "abs",
+      "ramp": 8,
+      "until": "s13:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ec_A",
+      "text": "化學放大",
+      "en": "Chemically amplified",
+      "color": "blue",
+      "at": "try",
+      "until": "s13:start-4",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "em_A",
+      "text": "金屬氧化物",
+      "en": "Metal oxide",
+      "color": "amber",
+      "at": "abs",
+      "until": "s13:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-mor",
+      "at": "start+5",
+      "until": "s13:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "金屬氧化物光阻",
+      "tag": "SemiEngineering；JSR 2025/9",
+      "t": {
+       "try": {
+        "at": "try"
+       },
+       "abs": {
+        "at": "abs"
+       },
+       "mor": {
+        "at": "mor"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s13",
+   "beat": "payoff",
+   "para": 12,
+   "narration": "這些光阻以日本廠為主，捷時雅還找夥伴，在雲林合資蓋廠，最快 2028 年投產。",
+   "tts": "這些光阻以日本廠為主，捷時雅還找夥伴，在雲林合資蓋廠，最快在二零二八年開始投產。",
+   "subtitle": {
+    "zh": "這些光阻以日本廠為主\n捷時雅還找夥伴\n在雲林合資蓋廠\n最快 2028 年投產",
+    "en": "These resists come mostly from Japan; | JSR even teamed up with partners | to build a plant in Yunlin, Taiwan, | starting as early as 2028."
+   },
+   "keywords": [
+    "日本",
+    "雲林",
+    "合資",
+    "2028"
+   ],
+   "cues": [
+    {
+     "id": "jp",
+     "text": "日本廠為主"
+    },
+    {
+     "id": "tw",
+     "text": "捷時雅還找夥伴"
+    },
+    {
+     "id": "yl",
+     "text": "雲林"
+    },
+    {
+     "id": "jv",
+     "text": "合資"
+    },
+    {
+     "id": "y28",
+     "text": "2028"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "日經 2026/5/5；Tom's Hardware"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 198,
+      "y": -0.104,
+      "d": 52,
+      "elev": 18
+     },
+     {
+      "at": "tw-4",
+      "dur": 30,
+      "x": 177.7,
+      "y": -0.632,
+      "d": 66,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "t_lit",
+      "at": "yl",
+      "ramp": 8,
+      "until": "s14:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "j_fabA",
+      "text": "日本光阻廠",
+      "en": "Japan",
+      "color": "coral",
+      "at": "jp",
+      "until": "tw-6",
+      "xy": [
+       260,
+       300
+      ],
+      "flag": "JP"
+     },
+     {
+      "part": "j_drumA",
+      "text": "捷時雅 JSR",
+      "en": "光阻桶",
+      "color": "blue",
+      "at": "jp+12",
+      "until": "tw-6",
+      "xy": [
+       850,
+       480
+      ],
+      "logo": "jsr"
+     },
+     {
+      "part": "t_fabA",
+      "text": "雲林光阻廠",
+      "en": "Plant (schematic)",
+      "color": "amber",
+      "at": "yl",
+      "until": "s14:start-4",
+      "xy": [
+       320,
+       300
+      ],
+      "flag": "TW"
+     },
+     {
+      "part": "t_tankA",
+      "text": "原料儲槽",
+      "en": "Raw tanks",
+      "color": "blue",
+      "at": "y28",
+      "until": "s14:start-4",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-tw",
+      "at": "start+5",
+      "until": "s14:start-2",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣：在地生產光阻",
+      "tag": "日經、Tom's Hardware（媒體報導）",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "jv": {
+        "at": "jv"
+       },
+       "yl": {
+        "at": "yl"
+       },
+       "y28": {
+        "at": "y28"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s14",
+   "beat": "cta",
+   "para": 13,
+   "narration": "但膠要塗得又薄又平，下集看塗佈顯影機。留言光阻，拿完整資料。",
+   "tts": "但膠要塗得又薄又平，下集看塗佈顯影機。留言光阻，拿完整資料。",
+   "subtitle": {
+    "zh": "但膠要塗得又薄又平\n下集看\n塗佈顯影機\n留言光阻\n拿完整資料",
+    "en": "But it must go on thin and flat. | Next episode: | the coater-developer. | Comment \"光阻\" | for the full notes."
+   },
+   "keywords": [
+    "塗佈顯影機"
+   ],
+   "cues": [
+    {
+     "id": "ok",
+     "text": "膠要塗得"
+    },
+    {
+     "id": "flat",
+     "text": "又薄又平"
+    },
+    {
+     "id": "next",
+     "text": "下集"
+    },
+    {
+     "id": "track",
+     "text": "塗佈顯影機"
+    },
+    {
+     "id": "kw",
+     "text": "留言光阻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 0.4,
+      "y": 2.432,
+      "d": 34,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "a_drop",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "flat"
+     },
+     {
+      "id": "a_rot",
+      "at": "start+20",
+      "ramp": 14,
+      "until": "s15:start+400"
+     },
+     {
+      "id": "a_spread",
+      "at": "start+30",
+      "ramp": 8,
+      "until": "s15:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "a_nozA",
+      "text": "滴下光阻",
+      "en": "Resist dispense",
+      "color": "amber",
+      "at": "start+10",
+      "until": "kw-10",
+      "xy": [
+       300,
+       300
+      ]
+     },
+     {
+      "part": "a_resA",
+      "text": "轉起來攤平",
+      "en": "Spin to spread",
+      "color": "blue",
+      "at": "flat",
+      "until": "kw-10",
+      "xy": [
+       780,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pr1-next",
+      "at": "start+5",
+      "until": "kw-10",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：塗佈顯影機",
+      "tag": "光阻-2",
+      "t": {
+       "ok": {
+        "at": "ok"
+       },
+       "flat": {
+        "at": "flat"
+       },
+       "next": {
+        "at": "next"
+       },
+       "track": {
+        "at": "track"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s15",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光阻-2 塗佈顯影機",
+     "trail": [
+      "塗佈顯影機"
+     ],
+     "at": "s14:kw-8",
+     "comment": "光阻",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
