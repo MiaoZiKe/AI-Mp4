@@ -270,7 +270,8 @@ const Num: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
   const yr = on(f, T(o, "year")), n48 = on(f, T(o, "n48")), tw = on(f, T(o, "tw"));
   const cnt = Math.round(48 * EASE.move(cl((f - T(o, "n48")) / 30)));
-  const cx = 590, cy = 200, R = 92, sw = 40, frac = 0.22 * EASE.move(cl((f - T(o, "tw")) / 24));
+  // 0:51 Andy 看不出 22%：卡片一出來就畫好 22% 實心扇段（深色底環＋中間大字），念到「台灣」時扇段加粗、往外彈一下
+  const cx = 590, cy = 200, R = 92, sw = 40, frac = 0.22 * EASE.move(cl((f - o.at - 4) / 20)), pop = Math.sin(Math.PI * cl((f - T(o, "tw")) / 14)) * 10;
   const arc = (a0: number, a1: number) => { const p = (a: number) => [cx + R * Math.sin(2 * Math.PI * a), cy - R * Math.cos(2 * Math.PI * a)]; const [x0, y0] = p(a0), [x1, y1] = p(a1); return `M${x0} ${y0} A${R} ${R} 0 ${a1 - a0 > 0.5 ? 1 : 0} 1 ${x1} ${y1}`; };
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -282,9 +283,10 @@ const Num: React.FC<P> = ({ o, f, k }) => {
           <text x={36} y={312} style={zh(30, H.text2, 800)}>公司財報</text>
         </g>
         <Sep x={400} />
-        <g opacity={0.35 + 0.65 * tw}>
-          <circle cx={cx} cy={cy} r={R} fill="none" stroke="#DCE4F0" strokeWidth={sw} />
-          {frac > 0.002 ? <path d={arc(0, frac)} stroke={H.amber} strokeWidth={sw} fill="none" /> : null}
+        <g opacity={0.8 + 0.2 * tw}>
+          <circle cx={cx} cy={cy} r={R} fill="none" stroke="#A9B8CF" strokeWidth={sw} />
+          {frac > 0.002 ? <path d={arc(0, frac)} stroke={H.amber} strokeWidth={sw + 6 * tw + pop} fill="none" /> : null}
+          <text x={cx} y={cy + 16} textAnchor="middle" style={zh(46, H.text, 900)}>{Math.round(frac * 100)}%</text>
           <FlagBox code="TW" x={744} y={CT + 40} a={tw} />
           <text x={808} y={CT + 70} style={zh(34, H.text, 900)}>台灣</text>
           <text x={744} y={CT + 160} style={zh(50, H.amber, 900)}>約 22%</text>

@@ -115,11 +115,24 @@ def sec(kind, at, until, title, tag, t=None, y=1066, h=330, **kw):
 def stamp(text, at, until, x, y, color="amber", size=50, rot=-4, **kw):
     d = {"type": "stamp", "at": at, "until": until, "x": x, "y": y, "text": text, "color": color, "rot": rot, "size": size, "avoid": False}; d.update(kw); return d
 
-# 全片固定的可見度：外殼前板一開始就掀開（剖開看裡面）；光錐只在光源段＋之後常亮；廠牌 s8 念到艾司摩爾才出現
-SRC_ONLY = ["optics", "shell", "mask", "wafer", "frame", "coneW", "sign"]
-VIS = [hid("hullF", "s1:start-40", FAR, 1), hid("lens", "s1:start-40", FAR, 1),
-       hid("cone", "s1:start-40", "s5:bowl-6", 1), hid("coneW", "s1:start-40", "s6:start", 1),
-       hid("sign", "s1:start-40", "s8:asml-4", 1)]
+# 全片固定的可見度（v2，Andy 第 16 條）：s1 外殼完整蓋著（看得出是一台大機台）；s2「投影機」外殼掀開＋模組沿軸線分開（爆炸分解）、
+# 一次亮一張標籤講模組，s3「叫曝光」前組回去；外殼一直掀著到 s8 才蓋回（中間看內部運作）。光錐只在組好、而且那一段光路在畫面裡時才亮
+VIS = [hid("lens", "s1:start-40", FAR, 1), hid("sign", "s1:start-40", "s8:asml-4", 1),
+       hid("cone", "s1:start-40", "s3:expo+2", 1), hid("cone", "s4:start-8", "s5:bowl-6", 8),
+       hid("coneW", "s1:start-40", "s3:expo+2", 1), hid("coneW", "s4:start-8", "s6:start", 8),
+       hid("coneI", "s1:start-40", "s3:expo+2", 1), hid("coneI", "s4:start-8", "s6:start", 8)]
+def mv(lay, a, b, dur=22, **kw):
+    d = {"layer": lay, "at": a, "until": b, "dur": dur}; d.update(kw); return d
+# 外殼掀開：前板往上前方掀走、頂板往上、右側板往右、光源艙外殼往左上；s8 開頭蓋回
+OPEN_A, OPEN_B = "s2:proj-24", "s8:start-16"
+HULL_OPEN = [mv("hullF", OPEN_A, OPEN_B, 20, dy=5, dz=9, opacity=0), mv("hullR", "s2:proj-20", OPEN_B, 20, dy=9, opacity=0),
+             mv("hullE", "s2:proj-18", OPEN_B, 20, dx=9, opacity=0), mv("hullS", "s2:proj-22", OPEN_B, 20, dx=-6, dy=4, dz=6, opacity=0),
+             mv("hull", "s2:proj-14", OPEN_B, 18, opacity=0)]
+# 模組沿軸線分開（一層一層錯開幾幀），s3「叫曝光」前組回去
+EXP_B = "s3:expo-18"
+EXPLODE = [mv("mask", "s2:proj", EXP_B, dy=6.5), mv("illum", "s2:proj+4", EXP_B, dx=-4, dy=3.5), mv("src", "s2:proj+6", EXP_B, dx=-9),
+           mv("frame", "s2:proj+8", EXP_B, dy=-3.5), mv("wafer", "s2:proj+8", EXP_B, dy=-6.5), mv("laser", "s2:proj+10", EXP_B, dy=-6),
+           mv("floor", "s2:proj+2", "s3:expo-14", 14, opacity=0)]
 # 換格（s7）：晶圓台沿 z 一格一格移動；每一步緩入緩出（EASE.move）＋到位後阻尼過衝（spring），表示慣性
 STEP = 1.6
 def add(c, n):
@@ -129,45 +142,51 @@ def step(at, n):
     return [{"layer": "wafer", "at": at, "until": FAR, "dur": 14, "dx": STEP},
             {"layer": "wafer", "at": add(at, 12), "until": add(at, 14), "dur": 2, "dx": 0.22, "spring": {"tau": 5, "period": 10}}]
 P = {}
-P["s1"] = {"shot": [shot("start-30", 0, -2, 236, 14, 1), shot("top", 0, -3, 222, 16, 60)], "shift": VIS,
- "run": [run("lpp", "start-30", "s3:start", 1), run("tin", "start-30", "s3:start", 1), run("light", "start-30", "s4:start", 1), run("maskScan", "start-30", "s4:start", 1), run("waferScan", "start-30", "s4:start", 1), run("expose", "start-30", "s4:start", 1)],
+OPS_ALL = lambda a, b: [run(i, a, b, 8) for i in ("light", "maskScan", "waferScan", "expose", "coneGlow", "coneWGlow", "coneIGlow")]
+P["s1"] = {"shot": [shot("start-30", 1.5, 1.2, 184, 15, 1), shot("start", 1.5, 0.8, 176, 16, 70), shot("who-10", 1, -10, 200, 15, 30)],
+ "shift": VIS + HULL_OPEN + EXPLODE,
+ "run": [run("status", "start-30", FAR, 1), run("portGlow", "start-30", "s2:proj", 1)],
  "overlay": [sec("asml-hook", "who", "s2:start-5", "設備五大-1", "示意，非實際比例", {"who": "who", "top": "top", "one": "one"})]}
-P["s2"] = {"zoom": [{"to": "machine", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 2, -13, 184, 14)],
- "labels": [lab("mask", "光罩", "Mask", "blue", "mask", "s3:start-4", xy=[760, 300]), lab("wafer", "晶圓", "Wafer", "amber", "wafer", "s3:start-4", xy=[820, 900])],
+# s2–s3 爆炸分解：一次只亮一張標籤（每張 ≥1.5 秒），名字＋功能
+P["s2"] = {"zoom": [{"to": "machine", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 1, -10, 200, 15, 1), shot("proj-20", -3, -7, 246, 15, 40)],
+ "labels": [lab("maskBox", "光罩台：放電路原圖", "Reticle stage", "blue", "mask-4", "x4-2"),
+            lab("poBox", "投影鏡組：縮小 4 倍", "Projection optics", "amber", "x4", "x4+44"),
+            lab("stageBox", "晶圓台：兩座輪流", "Twin wafer stages", "blue", "wafer+22", "s3:layer+4")],
  "overlay": [sec("asml-proj", "start+2", "s3:start-5", "曝光機像投影機", "示意", {"proj": "proj", "mask": "mask", "x4": "x4", "wafer": "wafer"})]}
-P["s3"] = {"shot": [shot("start-4", 0, -13, 190, 16)],
- "run": [run("maskScan", "lit", "s4:start", 8), run("waferScan", "lit", "s4:start", 8), run("expose", "lit", "s4:start", 8), run("light", "lit", "s4:start", 8)],
+P["s3"] = {"shot": [shot("expo-14", 0, -10, 206, 14, 30)],
+ "run": OPS_ALL("expo+4", "s4:start"),
+ "labels": [lab("srcBox", "光源艙：雷射打錫滴", "EUV source", "amber", "layer+6", "lit-10"),
+            lab("illumBox", "照明系統：把光整形", "Illuminator", "blue", "lit-8", "expo-6")],
  "overlay": [sec("asml-step", "start+2", "s4:start-5", "它負責哪一步", "示意", {"lay": "layer", "lit": "lit", "expo": "expo"})]}
-SRC_HIDE = [hid(l, "s4:start-6", "s6:start-10", 14) for l in SRC_ONLY if l not in ("sign", "coneW")] + [hid("hull", "s4:start-6", "s6:start-10", 14)]
+SRC_HIDE = [hid(l, "s4:start-6", "s6:start-10", 14) for l in ("optics", "shell", "mask", "wafer", "frame", "illum", "laser", "floor")]
 P["s4"] = {"shot": [shot("start-6", -12, -11.5, 104, 10)], "shift": SRC_HIDE,
- "run": [run("tin", "tin-6", "s6:start"), run("lpp", "laser-12", FAR)],
+ "run": [run("tin", "tin-6", "s6:start"), run("lpp", "laser-12", "s7:start-6")],
  "labels": [lab("tin", "錫滴", "Tin droplets", "blue", "tin-2", "s5:start-4"), lab("plasma", "電漿", "Plasma", "amber", "plasma", "s5:start-4", xy=[860, 560])],
  "overlay": [stamp("每秒 {n} 顆", "tin-2", "s5:start-6", 540, 970, size=56, countTo=50000, countDur=30),
              sec("asml-lpp", "laser-6", "s5:start-5", "雷射打錫滴（側視）", "放大、放慢示意", source="lpp")]}
 P["s5"] = {"shot": [shot("start-6", -10.5, -10.5, 110, 12)],
  "run": [run("coneGlow", "bowl-4", FAR, 12)],
- "labels": [lab("collector", "碗形收集鏡", "Collector mirror", "amber", "bowl", "s6:start-4"), lab("ifp", "收成一束", "Intermediate focus", "blue", "beam", "s6:start-4")],
+ "labels": [lab("collector", "碗形收集鏡", "Collector mirror", "amber", "bowl", "s6:start-4"), lab("ifp", "收成一束", "Intermediate focus", "blue", "beam", "s6:start-10")],
  "overlay": [sec("asml-col", "start+2", "s6:start-5", "空氣吸光→真空", "示意", {"air": "air", "vac": "vac", "bowl": "bowl", "beam": "beam"})]}
 P["s6"] = {"shot": [shot("start-6", 4.5, -14, 182, 22, 34)],
- "run": [run("maskScan", "start", "s8:start"), run("waferScan", "start", "s8:start"), run("expose", "start", "s8:start"), run("light", "start", "s7:start-6"), run("coneWGlow", "start", FAR)],
+ "run": [run("maskScan", "start", "s8:start"), run("waferScan", "start", "s8:start"), run("expose", "start", "s8:start"), run("light", "start", "s7:start-10"), run("coneWGlow", "start", "s7:start-6"), run("coneIGlow", "start", "s7:start-6"), run("coneGlow", "start", "s7:start-6")],
  "labels": [lab("mask", "光罩台", "Mask stage", "blue", "stage", "s7:start-4"), lab("wafer", "晶圓台", "Wafer stage", "amber", "opp", "s7:start-4")],
  "overlay": [sec("asml-scan", "start+2", "s7:start-8", "掃描曝光（側視）", "示意", mask="maskScan")]}
-FAR_HIDE = lambda a, b: [hid(l, a, b, 14) for l in ("src", "optics", "shell", "mask", "hull", "sign", "cone")]
+FAR_HIDE = lambda a, b: [hid(l, a, b, 14) for l in ("src", "optics", "shell", "mask", "illum", "sign", "cone", "coneI", "coneW", "laser", "floor", "hullF", "hullR", "hullE", "hullS", "hull")]
 P["s7"] = {"shot": [shot("start-6", 10, -17.5, 84, 28, 30)],
  "shift": step("s7:move", 1) + step("s7:settle+20", 2) + step("s7:many+4", 3) + FAR_HIDE("s7:start-6", "s8:start+24"),
  "run": [run("expose", "settle", FAR)],
  "labels": [lab("stage", "晶圓台：一格一格走", "Step to next field", "amber", "move", "s8:start-4", xy=[600, 340])],
  "overlay": [sec("asml-grid", "start+2", "s8:start-5", "照好幾十格", "示意（一格約 26×33 mm）", {"done": "done", "move": "move", "settle": "settle", "many": "many"})]}
-P["s8"] = {"shot": [shot("start-6", -2, -10, 206, 14, 34)],
- "run": [run("light", "start", "s12:start-6")],
- "labels": [lab("sign", "艾司摩爾", "Netherlands", "amber", "asml", "s10:start-4", xy=[830, 270], flag="NL", logo="asml")],
+P["s8"] = {"shot": [shot("start-6", -1, -9, 200, 12, 34)],
+ "run": [run("portGlow", "start", "s12:start-6")],
+ "labels": [lab("sign", "艾司摩爾", "Netherlands", "amber", "asml", "s10:start-4", flag="NL", logo="asml")],
  "overlay": [sec("asml-co", "start+2", "s9:start-5", "全球誰做曝光機", "研究機構估計", {"three": "three", "asml": "asml", "jp": "jp", "canon": "canon"})]}
-P["s9"] = {"shot": [shot("start-4", -2, -10, 200, 14)],
- "run": [run("coneGlow", "start", FAR)],
+P["s9"] = {"shot": [shot("start-4", -1, -9, 194, 12)],
  "overlay": [sec("asml-euv", "start+2", "s10:start-5", "極紫外光曝光機", "價格為媒體報導", {"euv": "euv", "only": "only", "price": "price"})]}
-P["s10"] = {"shot": [shot("start-4", -2, -10, 206, 18)],
+P["s10"] = {"shot": [shot("start-4", -1, -9, 200, 15)],
  "overlay": [sec("asml-num", "start+2", "s11:start-5", "2025 年", "公司財報（系統營收地區別）", {"year": "year", "n48": "n48", "tw": "tw"})]}
-P["s11"] = {"shot": [shot("start-4", -2, -10, 212, 16)],
+P["s11"] = {"shot": [shot("start-4", -1, -9, 204, 13)],
  "overlay": [sec("asml-tw", "start+2", "s12:start-5", "在台灣", "公司官網、媒體報導", {"hq": "hq", "lk": "lk", "mic": "mic", "gd": "gd", "kc": "kc"}, h=360, y=1040)]}
 P["s12"] = {"shot": [shot("start-4", 8, -14, 120, 30)], "shift": FAR_HIDE("s12:start-4", FAR),
  "labels": [lab("wafer", "先鋪薄膜", "Films first", "blue", "film", "s13:start-4")],
@@ -182,7 +201,7 @@ out = {"slug": "tech-asml", "prevEpisode": "光阻-2", "title": "設備五大-1�
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B（TECH_B_LINE 11/25 改：捲舌音要念清楚）；第一次用新提示詞，先試聽到 s3 給 Andy 聽，正式整篇配音等同意"},
-       "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "Schematic – not to scale", "zh": "示意圖，非實際比例"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
+       "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "", "zh": "示意，極紫外光實際不可見"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
        "cover": {"title": ["曝光機", "只有一家？"], "sub": "設備五大-1：艾司摩爾", "frame": 40}, "sample": False, "model": None, "scenes": scenes}
 del out["model"]
 json.dump(out, open(os.path.join(HERE, "script.json"), "w"), ensure_ascii=False, indent=1)

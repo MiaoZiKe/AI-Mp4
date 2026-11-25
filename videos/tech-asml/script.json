@@ -36,8 +36,8 @@
   ],
   "theme": "dark",
   "schematic": {
-   "text": "Schematic – not to scale",
-   "zh": "示意圖，非實際比例"
+   "text": "",
+   "zh": "示意，極紫外光實際不可見"
   },
   "maxLabels": 4,
   "smallPx": 30,
@@ -101,46 +101,33 @@
      {
       "at": "start-30",
       "dur": 1,
-      "x": 0,
-      "y": -2,
-      "d": 236,
-      "elev": 14
+      "x": 1.5,
+      "y": 1.2,
+      "d": 184,
+      "elev": 15
      },
      {
-      "at": "top",
-      "dur": 60,
-      "x": 0,
-      "y": -3,
-      "d": 222,
+      "at": "start",
+      "dur": 70,
+      "x": 1.5,
+      "y": 0.8,
+      "d": 176,
       "elev": 16
+     },
+     {
+      "at": "who-10",
+      "dur": 30,
+      "x": 1,
+      "y": -10,
+      "d": 200,
+      "elev": 15
      }
     ],
     "shift": [
      {
-      "layer": "hullF",
-      "at": "s1:start-40",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
       "layer": "lens",
       "at": "s1:start-40",
       "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cone",
-      "at": "s1:start-40",
-      "until": "s5:bowl-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "coneW",
-      "at": "s1:start-40",
-      "until": "s6:start",
       "opacity": 0,
       "dur": 1
      },
@@ -150,44 +137,154 @@
       "until": "s8:asml-4",
       "opacity": 0,
       "dur": 1
+     },
+     {
+      "layer": "cone",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cone",
+      "at": "s4:start-8",
+      "until": "s5:bowl-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coneW",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coneW",
+      "at": "s4:start-8",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coneI",
+      "at": "s1:start-40",
+      "until": "s3:expo+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coneI",
+      "at": "s4:start-8",
+      "until": "s6:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hullF",
+      "at": "s2:proj-24",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dy": 5,
+      "dz": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullR",
+      "at": "s2:proj-20",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dy": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullE",
+      "at": "s2:proj-18",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dx": 9,
+      "opacity": 0
+     },
+     {
+      "layer": "hullS",
+      "at": "s2:proj-22",
+      "until": "s8:start-16",
+      "dur": 20,
+      "dx": -6,
+      "dy": 4,
+      "dz": 6,
+      "opacity": 0
+     },
+     {
+      "layer": "hull",
+      "at": "s2:proj-14",
+      "until": "s8:start-16",
+      "dur": 18,
+      "opacity": 0
+     },
+     {
+      "layer": "mask",
+      "at": "s2:proj",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": 6.5
+     },
+     {
+      "layer": "illum",
+      "at": "s2:proj+4",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dx": -4,
+      "dy": 3.5
+     },
+     {
+      "layer": "src",
+      "at": "s2:proj+6",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dx": -9
+     },
+     {
+      "layer": "frame",
+      "at": "s2:proj+8",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -3.5
+     },
+     {
+      "layer": "wafer",
+      "at": "s2:proj+8",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -6.5
+     },
+     {
+      "layer": "laser",
+      "at": "s2:proj+10",
+      "until": "s3:expo-18",
+      "dur": 22,
+      "dy": -6
+     },
+     {
+      "layer": "floor",
+      "at": "s2:proj+2",
+      "until": "s3:expo-14",
+      "dur": 14,
+      "opacity": 0
      }
     ],
     "run": [
      {
-      "id": "lpp",
+      "id": "status",
       "at": "start-30",
       "ramp": 1,
-      "until": "s3:start"
+      "until": "s13:start+400"
      },
      {
-      "id": "tin",
+      "id": "portGlow",
       "at": "start-30",
       "ramp": 1,
-      "until": "s3:start"
-     },
-     {
-      "id": "light",
-      "at": "start-30",
-      "ramp": 1,
-      "until": "s4:start"
-     },
-     {
-      "id": "maskScan",
-      "at": "start-30",
-      "ramp": 1,
-      "until": "s4:start"
-     },
-     {
-      "id": "waferScan",
-      "at": "start-30",
-      "ramp": 1,
-      "until": "s4:start"
-     },
-     {
-      "id": "expose",
-      "at": "start-30",
-      "ramp": 1,
-      "until": "s4:start"
+      "until": "s2:proj"
      }
     ],
     "overlay": [
@@ -266,37 +363,45 @@
     "shot": [
      {
       "at": "start-4",
-      "dur": 30,
-      "x": 2,
-      "y": -13,
-      "d": 184,
-      "elev": 14
+      "dur": 1,
+      "x": 1,
+      "y": -10,
+      "d": 200,
+      "elev": 15
+     },
+     {
+      "at": "proj-20",
+      "dur": 40,
+      "x": -3,
+      "y": -7,
+      "d": 246,
+      "elev": 15
      }
     ],
     "labels": [
      {
-      "part": "mask",
-      "text": "光罩",
-      "en": "Mask",
+      "part": "maskBox",
+      "text": "光罩台：放電路原圖",
+      "en": "Reticle stage",
       "color": "blue",
-      "at": "mask",
-      "until": "s3:start-4",
-      "xy": [
-       760,
-       300
-      ]
+      "at": "mask-4",
+      "until": "x4-2"
      },
      {
-      "part": "wafer",
-      "text": "晶圓",
-      "en": "Wafer",
+      "part": "poBox",
+      "text": "投影鏡組：縮小 4 倍",
+      "en": "Projection optics",
       "color": "amber",
-      "at": "wafer",
-      "until": "s3:start-4",
-      "xy": [
-       820,
-       900
-      ]
+      "at": "x4",
+      "until": "x4+44"
+     },
+     {
+      "part": "stageBox",
+      "text": "晶圓台：兩座輪流",
+      "en": "Twin wafer stages",
+      "color": "blue",
+      "at": "wafer+22",
+      "until": "s3:layer+4"
      }
     ],
     "overlay": [
@@ -366,38 +471,74 @@
    "props": {
     "shot": [
      {
-      "at": "start-4",
+      "at": "expo-14",
       "dur": 30,
       "x": 0,
-      "y": -13,
-      "d": 190,
-      "elev": 16
+      "y": -10,
+      "d": 206,
+      "elev": 14
      }
     ],
     "run": [
      {
+      "id": "light",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
       "id": "maskScan",
-      "at": "lit",
+      "at": "expo+4",
       "ramp": 8,
       "until": "s4:start"
      },
      {
       "id": "waferScan",
-      "at": "lit",
+      "at": "expo+4",
       "ramp": 8,
       "until": "s4:start"
      },
      {
       "id": "expose",
-      "at": "lit",
+      "at": "expo+4",
       "ramp": 8,
       "until": "s4:start"
      },
      {
-      "id": "light",
-      "at": "lit",
+      "id": "coneGlow",
+      "at": "expo+4",
       "ramp": 8,
       "until": "s4:start"
+     },
+     {
+      "id": "coneWGlow",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "coneIGlow",
+      "at": "expo+4",
+      "ramp": 8,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "srcBox",
+      "text": "光源艙：雷射打錫滴",
+      "en": "EUV source",
+      "color": "amber",
+      "at": "layer+6",
+      "until": "lit-10"
+     },
+     {
+      "part": "illumBox",
+      "text": "照明系統：把光整形",
+      "en": "Illuminator",
+      "color": "blue",
+      "at": "lit-8",
+      "until": "expo-6"
      }
     ],
     "overlay": [
@@ -518,7 +659,21 @@
       "dur": 14
      },
      {
-      "layer": "hull",
+      "layer": "illum",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s4:start-6",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
       "at": "s4:start-6",
       "until": "s6:start-10",
       "opacity": 0,
@@ -536,7 +691,7 @@
       "id": "lpp",
       "at": "laser-12",
       "ramp": 6,
-      "until": "s13:start+400"
+      "until": "s7:start-6"
      }
     ],
     "labels": [
@@ -664,7 +819,7 @@
       "en": "Intermediate focus",
       "color": "blue",
       "at": "beam",
-      "until": "s6:start-4"
+      "until": "s6:start-10"
      }
     ],
     "overlay": [
@@ -769,13 +924,25 @@
       "id": "light",
       "at": "start",
       "ramp": 6,
-      "until": "s7:start-6"
+      "until": "s7:start-10"
      },
      {
       "id": "coneWGlow",
       "at": "start",
       "ramp": 6,
-      "until": "s13:start+400"
+      "until": "s7:start-6"
+     },
+     {
+      "id": "coneIGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-6"
+     },
+     {
+      "id": "coneGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-6"
      }
     ],
     "labels": [
@@ -946,7 +1113,7 @@
       "dur": 14
      },
      {
-      "layer": "hull",
+      "layer": "illum",
       "at": "s7:start-6",
       "until": "s8:start+24",
       "opacity": 0,
@@ -961,6 +1128,69 @@
      },
      {
       "layer": "cone",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneI",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneW",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullF",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullR",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullE",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullS",
+      "at": "s7:start-6",
+      "until": "s8:start+24",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hull",
       "at": "s7:start-6",
       "until": "s8:start+24",
       "opacity": 0,
@@ -1063,15 +1293,15 @@
      {
       "at": "start-6",
       "dur": 34,
-      "x": -2,
-      "y": -10,
-      "d": 206,
-      "elev": 14
+      "x": -1,
+      "y": -9,
+      "d": 200,
+      "elev": 12
      }
     ],
     "run": [
      {
-      "id": "light",
+      "id": "portGlow",
       "at": "start",
       "ramp": 6,
       "until": "s12:start-6"
@@ -1085,10 +1315,6 @@
       "color": "amber",
       "at": "asml",
       "until": "s10:start-4",
-      "xy": [
-       830,
-       270
-      ],
       "flag": "NL",
       "logo": "asml"
      }
@@ -1162,18 +1388,10 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": -2,
-      "y": -10,
-      "d": 200,
-      "elev": 14
-     }
-    ],
-    "run": [
-     {
-      "id": "coneGlow",
-      "at": "start",
-      "ramp": 6,
-      "until": "s13:start+400"
+      "x": -1,
+      "y": -9,
+      "d": 194,
+      "elev": 12
      }
     ],
     "overlay": [
@@ -1242,10 +1460,10 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": -2,
-      "y": -10,
-      "d": 206,
-      "elev": 18
+      "x": -1,
+      "y": -9,
+      "d": 200,
+      "elev": 15
      }
     ],
     "overlay": [
@@ -1323,10 +1541,10 @@
      {
       "at": "start-4",
       "dur": 30,
-      "x": -2,
-      "y": -10,
-      "d": 212,
-      "elev": 16
+      "x": -1,
+      "y": -9,
+      "d": 204,
+      "elev": 13
      }
     ],
     "overlay": [
@@ -1437,7 +1655,7 @@
       "dur": 14
      },
      {
-      "layer": "hull",
+      "layer": "illum",
       "at": "s12:start-4",
       "until": "s13:start+400",
       "opacity": 0,
@@ -1452,6 +1670,69 @@
      },
      {
       "layer": "cone",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneI",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "coneW",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "laser",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "floor",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullF",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullR",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullE",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hullS",
+      "at": "s12:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "hull",
       "at": "s12:start-4",
       "until": "s13:start+400",
       "opacity": 0,

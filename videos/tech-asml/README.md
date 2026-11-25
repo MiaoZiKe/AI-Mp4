@@ -10,3 +10,4 @@
 - 國旗／LOGO：ASML（3D 廠牌＋荷蘭國旗、2D 卡）、尼康、佳能、家登用原檔；帆宣、公準、應用材料沒有可用原檔（見 assets.md）。
 - 配音：TECH_B_LINE 改過，要先給 Andy 試聽到 s3。**本機 API 金鑰無效（400 API_KEY_INVALID），試聽沒有產生**；提示詞全文在 `docs/prompts/tech-asml-試聽.txt`，可在 AI Studio（Gemini 2.5 Flash Preview TTS、Iapetus）自行試聽。
 - 已知：validate 剩 36 個 warning（多為 `FAR` 長時間 until、標題字數、主素材邊緣）；validate 的「配音版估 76 秒」用較慢語速估，偏長。
+- **v2 畫面（2026/11/26 03:00 台北，Andy 第 16 條）**：照 `visual-spec.md` 真實模組清單（10 項）重建機台：不透明分塊外殼（前板、頂上機組、右側板、光源艙外殼＋渦輪泵）、地板下 CO2 雷射放大器與光束管、架高地板、雙晶圓台、晶圓搬運口、照明鏡筒骨架、廠牌改掛前面板。s2 proj～s3 expo 爆炸分解（外殼掀開、模組沿軸線分開、5 張標籤一次一張、組回去），s8 外殼蓋回。光路照 `optics-spec.md`：IF→場鏡面發散、場鏡面→瞳鏡面 5 束細光交叉、瞳鏡面→掠射鏡→光罩匯聚；畫面常駐「示意，極紫外光實際不可見」。關鍵幀 `out/tech-asml/keyframes-v2.png`、爆炸分解 `out/tech-asml/explode.png`。
