@@ -34,6 +34,8 @@ export const LOGOS: Record<string, LogoSpec> = {
   canon: { file: "logos/canon.svg", w: 1000.04, h: 209.153, name: "佳能 Canon", source: "https://commons.wikimedia.org/wiki/File:Canon_wordmark.svg" },
   // 2026/11/26 設備五大-2（tech-amat）：Commons 原檔 SVG 由 Wikimedia 自己轉出的 960px PNG（upload 伺服器限流），未重畫、未改色
   amat: { file: "logos/amat.png", w: 960, h: 274, name: "應用材料 Applied Materials", source: "https://commons.wikimedia.org/wiki/File:Applied_Materials_Logo.svg" },
+  // 2026/11/26 設備五大-3（tech-lam）：Commons 原檔 SVG（PD-textlogo），未重畫、未改色；來源同時記在 videos/tech-lam/assets.md
+  lam: { file: "logos/lam.svg", w: 229.748, h: 77.524, name: "科林研發 Lam Research", source: "https://commons.wikimedia.org/wiki/File:Lam_Research_logo.svg" },
   gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
