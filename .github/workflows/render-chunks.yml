@@ -12,6 +12,7 @@ on:
       chunk: { description: "每小段幾幀（交錯分配）", required: false, default: "40" }
       jobs: { description: "幾台同時渲（≤16，留 4 個名額給 tw-rotation）", required: false, default: "16" }
       conc: { description: "每台 Chrome 平行數（THREE_CONCURRENCY）", required: false, default: "2" }
+      audio: { description: "音軌：cloud＝雲端各段帶 PCM 音軌再照 make-tech.sh 4a～4c 混片尾音；asset＝用素材分支的 track", required: false, default: "cloud" }
       src_ref: { description: "程式碼 commit／分支（空白＝用素材 meta.json 記的 commit）", required: false, default: "" }
 
 permissions:
@@ -142,12 +143,13 @@ jobs:
         run: |
           cp _tools/scripts/three/render-ranges.mjs scripts/three/
           T0=$(date +%s)
+          [ "${{ inputs.audio }}" = "asset" ] || export CHUNK_AUDIO=1
           THREE_CONCURRENCY=${{ inputs.conc }} RENDER_TIMEOUT_MS=180000 node scripts/three/render-ranges.mjs ${{ inputs.slug }} out/chunks ${{ matrix.ranges }}
           echo "渲染共 $(( $(date +%s)-T0 )) 秒（$(nproc) 核）"
       - uses: actions/upload-artifact@v4
         with:
           name: chunk-${{ matrix.k }}
-          path: out/chunks/*.mp4
+          path: out/chunks/c*.*
           retention-days: 3
           compression-level: 0
 
@@ -162,29 +164,54 @@ jobs:
             assets/${{ inputs.slug }}
             renders
           fetch-depth: 1
+      - name: 程式碼（混片尾音的腳本與 make-tech.sh 的參數算法，用素材記的同一個 commit）
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.src }}
+          path: _src
+          sparse-checkout: |
+            scripts
+            videos/${{ inputs.slug }}
       - uses: actions/download-artifact@v4
         with:
           pattern: chunk-*
           path: chunks
           merge-multiple: true
-      - name: 裝 ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+      - name: 裝 ffmpeg、numpy
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg python3-numpy >/dev/null
       - name: 接段＋配音軌
         id: mux
         run: |
           set -e
           S=${{ inputs.slug }}; V=${{ inputs.ver }}; D=assets/$S
-          ls chunks/*.mp4 | sort | sed "s/.*/file '&'/; s|chunks/||" > chunks/list.txt
+          EXT=mp4; [ "${{ inputs.audio }}" = "asset" ] || EXT=mkv
+          ls chunks/c*.$EXT | sort | sed "s/.*/file '&'/; s|chunks/||" > chunks/list.txt
           echo "段數 $(wc -l < chunks/list.txt)"
-          ffmpeg -loglevel error -y -f concat -safe 0 -i chunks/list.txt -c copy video.mp4
-          NV=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of csv=p=0 video.mp4)
+          ffmpeg -loglevel error -y -f concat -safe 0 -i chunks/list.txt -c copy video.$EXT
+          NV=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of csv=p=0 video.$EXT)
           [ "$NV" = "${{ needs.prepare.outputs.n }}" ] || { echo "::error::幀數 $NV ≠ ${{ needs.prepare.outputs.n }}"; exit 1; }
-          TR=$D/$(python3 -c "import json;print(json.load(open('$D/meta.json'))['track'])")
-          DUR=$(python3 -c "print(f'{${{ needs.prepare.outputs.n }}/30:.4f}')")
           mkdir -p renders
-          # 和 make-tech.sh 第 4c 步同一條 mux 指令（影像 copy、音軌 aac 192k、-t 總長）
-          if [ "${TR##*.}" = "wav" ]; then ACODEC="-c:a aac -b:a 192k"; else ACODEC="-c:a copy"; fi
-          ffmpeg -loglevel error -y -i video.mp4 -i "$TR" -map 0:v -map 1:a -c:v copy $ACODEC -t $DUR renders/$S.$V.mp4
+          if [ "$EXT" = mkv ]; then
+            # 雲端自己做音軌：各段 PCM 接起來＝Remotion 整支渲染的參考人聲音軌，接著照 make-tech.sh 第 4a～4c 步
+            ffmpeg -loglevel error -y -i video.mkv -map 0:a -c:a pcm_s16le voice.wav
+            echo "人聲音軌 $(ffprobe -v error -show_entries format=duration -of csv=p=0 voice.wav) 秒"
+            cp $D/video/*.json _src/videos/$S/
+            cd _src
+            # 片尾音參數：直接取 make-tech.sh 裡那段 python（不另抄一份，算法改了也跟著走）
+            sed -n '/^read AT FADE DUR/,/^PY$/p' scripts/three/make-tech.sh | sed '1s/.*/python3 - "$S" <<'"'"'PY'"'"'/' > /tmp/params.sh
+            read AT FADE DUR <<<$(S=$S bash /tmp/params.sh); echo "片尾音參數：AT=$AT FADE=$FADE DUR=$DUR"
+            python3 scripts/three/sfx-logo-tech.py /tmp/sting.wav
+            G=28 bash scripts/three/mix-endsting.sh ../voice.wav /tmp/sting.wav $AT $FADE $DUR ../mix.wav
+            cd ..
+            ffmpeg -loglevel error -y -i video.mkv -i mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -t $DUR -movflags +faststart renders/$S.$V.mp4
+          else
+            TR=$D/$(python3 -c "import json;print(json.load(open('$D/meta.json'))['track'])")
+            [ -f "$TR" ] || { echo "::error::audio=asset 但素材分支沒有成品音軌"; exit 1; }
+            DUR=$(python3 -c "print(f'{${{ needs.prepare.outputs.n }}/30:.4f}')")
+            # 和 make-tech.sh 第 4c 步同一條 mux 指令（影像 copy、音軌 aac 192k、-t 總長）
+            if [ "${TR##*.}" = "wav" ]; then ACODEC="-c:a aac -b:a 192k"; else ACODEC="-c:a copy"; fi
+            ffmpeg -loglevel error -y -i video.mp4 -i "$TR" -map 0:v -map 1:a -c:v copy $ACODEC -t $DUR renders/$S.$V.mp4
+          fi
           SZ=$(stat -c %s renders/$S.$V.mp4); L=$(ffprobe -v error -show_entries format=duration -of csv=p=0 renders/$S.$V.mp4)
           echo "✔ renders/$S.$V.mp4｜$NV 幀｜片長 ${L}s｜$((SZ/1048576)) MB｜本機成品片長 $(python3 -c "import json;print(json.load(open('$D/meta.json')).get('localDuration',''))")"
           echo "file=renders/$S.$V.mp4" >> "$GITHUB_OUTPUT"; echo "size=$SZ" >> "$GITHUB_OUTPUT"
@@ -198,6 +225,7 @@ jobs:
           set -e
           [ "${{ steps.mux.outputs.size }}" -lt 99000000 ] || { echo "::warning::成品超過 99MB，不推 git（只留 artifact）"; exit 0; }
           git config user.name "github-actions[bot]"; git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          rm -rf _src chunks video.* voice.wav mix.wav
           git add -f ${{ steps.mux.outputs.file }}
           git commit -q -m "成品：${{ inputs.slug }}.${{ inputs.ver }}（雲端分段渲染，run ${{ github.run_id }}）"
           for i in 1 2 3 4 5; do git push -q origin HEAD:${{ inputs.asset_branch }} && exit 0; git pull -q --rebase origin ${{ inputs.asset_branch }}; sleep 5; done
