@@ -9,6 +9,7 @@
 # 注意：tts-take.mjs 以「念稿＋音色＋提示」的雜湊快取原始錄音（public/audio/<slug>/.take-<hash>.raw.wav），
 #       而 make-tech.sh 會把那個檔換成 atempo 後的版本 → 一律帶 --force 才會真的重新生成；舊檔先備份到 out/old-<slug>-take/。
 set -u
+# 2026-11-25：配音一次只送一支（flock out/.tts.lock），避免兩支同時配音撞到「每分鐘」額度；每分鐘額度 tts-take.mjs 會自動等待重送。
 SLUG=${1:-}; shift || true
 [ -z "$SLUG" ] && { echo "用法：bash scripts/three/tts-pitch-take.sh <slug> [--max=3]"; exit 2; }
 MAX=3
@@ -46,7 +47,7 @@ PY
 BEST=""; BESTF=""; BESTD=999
 for N in $(seq 1 "$MAX"); do
   echo "▶ 第 $N 次配音（TTS 請求 1 次）：$(TZ=Asia/Taipei date '+%H:%M:%S')"
-  if ! TTS_NO_RETRY=1 NODE_USE_ENV_PROXY=1 node scripts/tts-take.mjs "$SLUG" --force > out/$SLUG-pitch-take-$N.log 2>&1; then
+  if ! TTS_NO_RETRY=1 NODE_USE_ENV_PROXY=1 flock out/.tts.lock node scripts/tts-take.mjs "$SLUG" --force > out/$SLUG-pitch-take-$N.log 2>&1; then
     tail -5 out/$SLUG-pitch-take-$N.log
     # 已生成原始錄音但後段（對齊）失敗時仍可量；沒有音檔就停
     if ! grep -q "^✔ public/" out/$SLUG-pitch-take-$N.log; then

@@ -12,7 +12,7 @@
 //   2. 不靠靜音偵測猜切點：整篇先做 CTC 強制對齊，切點＝相鄰兩幕之間能量最低的地方
 //   3. 每幕在原始錄音裡的間隔寫進 manifest 的 gapAfter；align 用它排時間軸 → 成片的節奏就是原始錄音的節奏
 // 提示格式和 tts.mjs 相同：`${voice.style}說：\n${text}`（2.5 系列）。提示裡不要放任何像台詞的句子，會被念出來。
-// 不自動重試 429（免費額度每模型每天約 10 次）；5xx 只重試一次。每次請求都記在 videos/<slug>/tts-requests.json。
+// 429：每分鐘額度照 retryDelay 等完自動重送（最多 3 次），每日額度才停（2026-11-25）；5xx 只重試一次。每次請求都記在 videos/<slug>/tts-requests.json。
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -65,6 +65,7 @@ const logReq = (row) => { const a = fs.existsSync(reqLog) ? JSON.parse(fs.readFi
 
 async function synth(text, purpose) {
   const mk = () => ({ ...(STYLE_TEXT && STYLE_MODE === "system" ? { systemInstruction: { parts: [{ text: STYLE_TEXT }] } } : {}), contents: [{ parts: STYLE_TEXT && STYLE_MODE === "parts" ? [{ text: STYLE_TEXT }, { text }] : [{ text: prompt(text) }] }], generationConfig: { responseModalities: ["AUDIO"], ...(process.env.TTS_TEMPERATURE ? { temperature: Number(process.env.TTS_TEMPERATURE) } : {}), ...(process.env.TTS_SEED ? { seed: Number(process.env.TTS_SEED) } : {}), speechConfig: { ...(LANG ? { languageCode: LANG } : {}), voiceConfig: { prebuiltVoiceConfig: { voiceName: voice.voiceName } } } } });
+  let q429 = 0;
   for (let i = 0; i < 2; i++) {
     const body = mk();
     const r = await fetch(`${API}/models/${MODEL}:generateContent`, { method: "POST", headers, body: JSON.stringify(body) });
@@ -83,11 +84,30 @@ async function synth(text, purpose) {
     const t = (await r.text()).replace(/\s+/g, " ");
     logReq({ ...row, error: t.slice(0, 300) });
     // 這個模型不收 languageCode（400）→ 拿掉再送一次（多花 1 次請求），並提醒把 voice.languageCode 設成 "off"
-    if (process.env.TTS_NO_RETRY === "1") { const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e; } // 嚴格只送 1 次：任何錯誤都不重送
+    if (process.env.TTS_NO_RETRY === "1" && r.status !== 429) { const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e; } // 嚴格只送 1 次：任何錯誤都不重送
     if (r.status === 400 && LANG && /language/i.test(t) && i === 0) { console.warn(`  ⚠ ${MODEL} 不收 languageCode「${LANG}」（400）→ 拿掉重送一次`); LANG = null; continue; }
     if (r.status >= 500 && i === 0) { console.warn(`  ↻ ${r.status}，5 秒後重試一次`); await sleep(5000); continue; }
+    // 2026-11-25 Andy：「配音額度已經恢復了。這需要找個方法處理，不然會浪費時間」
+    //   429 先分辨是「每分鐘」還是「每天」：每分鐘（或 retryDelay ≤ 120 秒）→ 照 Google 給的秒數等完自動重送，最多 3 次；
+    //   每天 → 停下並印出是哪一條額度、台北幾點重置（太平洋時間午夜）。完整錯誤寫進 tts-requests.json 的 quota 欄。
+    if (r.status === 429) {
+      const q = quotaInfo(t); logReq({ ...row, quota: q });
+      if (!q.daily && q429 < 3) { q429++; const w = Math.min(130, (q.retrySec ?? 60) + 5); console.warn(`  ⏳ 429 每分鐘額度（${q.ids.join("、") || "未標示"}）→ 等 ${w} 秒自動重送（第 ${q429} 次）`); await sleep(w * 1000); i--; continue; }
+      const e = new Error(`429 ${q.daily ? "每日額度用完" : "額度"}（${q.ids.join("、") || "未標示"}）；${q.daily ? "台北 " + resetTaipei() + " 重置" : "重試 3 次仍失敗"}`); e.quota = true; e.daily = q.daily; throw e;
+    }
     const e = new Error(`${r.status} ${t.slice(0, 300)}`); e.quota = r.status === 429; throw e;
   }
+}
+function quotaInfo(t) {
+  let d = []; try { d = JSON.parse(t).error?.details ?? []; } catch {}
+  const ids = d.flatMap((x) => (x.violations ?? []).map((v) => v.quotaId ?? v.quotaMetric ?? "")).filter(Boolean);
+  const rd = d.find((x) => x.retryDelay)?.retryDelay, retrySec = rd ? parseFloat(rd) : null;
+  const daily = ids.some((x) => /PerDay/i.test(x)) && !ids.some((x) => /PerMinute/i.test(x)) ? true : ids.some((x) => /PerDay/i.test(x)) && (retrySec ?? 0) > 120;
+  return { ids, retrySec, daily };
+}
+function resetTaipei() { // Gemini 每日額度在太平洋時間午夜重置
+  const now = new Date(), pt = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), next = new Date(now.getTime() + ((24 * 3600e3) - ((pt.getHours() * 3600 + pt.getMinutes() * 60 + pt.getSeconds()) * 1e3)));
+  return next.toLocaleString("zh-TW", { timeZone: "Asia/Taipei", hour12: false, month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
 }
 /** 音訊不斷續規則（tw-rotation docs/marketing/channels/video_logic.md「〇」）：Gemini 3.x 的 WAV 會在 data 後面（或 data 長度欄位寫錯時「在 data 裡面」）
  *  夾 C2PA 憑證（RIFF chunk「C2PA」＋JUMBF「jumb」盒）。當成 PCM 播出來是旁白最後 0.16 秒 −8 dBFS 雜訊 → 從第一個 C2PA 標記起整段切掉。 */
