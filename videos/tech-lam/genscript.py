@@ -137,49 +137,66 @@ PM = INFO["PM"]; HAR = INFO["HAR"]
 X1 = PM["pm1"][0] - 0.7      # pm1（0°）在總 yaw＝0 時位於螢幕 x≈10.4
 X4 = PM["pm4"][0] + 0.7      # pm4（180°）用同一個 yaw，從另一側看
 NSEG = HAR["NSEG"]
+SX = lambda x, z=3.0: round(x * math.cos(-0.3) + z * math.sin(-0.3), 2)   # 模型基礎 yaw −0.3：世界座標 → 鏡頭的 x
 
 # ═════════ 全片可見度 ═════════
-VIS = [hid("pm1Glow", "s1:start-40", "s4:glow-8", 12), hid("pm1Mask", "s1:start-40", "s4:start", 8)]
-# 深孔：12 節依 cue 一節一節出現（s7 前 5 節較快，s8 後 7 節越來越慢＝越深越難刻）
-HOLE_AT = ["s7:start+16", "s7:wall+4", "s7:film", "s7:film+22", "s7:down", "s7:side",
-           "s8:start+10", "s8:hole+8", "s8:ratio", "s8:ratio+30", "s8:hard", "s8:hard+40"]
-for k, a in enumerate(HOLE_AT): VIS.append(hid(f"hole{k}", "s1:start-40", a, 10))
+H2 = INFO["H2"]; AXL = INFO["ALEX"]
+VIS = [hid("pm1Glow", "s1:start-40", "s4:glow-6", 12), hid("pm1Mask", "s1:start-40", "s4:start", 8)]
+# 剖面塊（s8）：12 節依時間一節一節出現，間隔越來越長（越深越慢）
+HOLE_OFF = [0, 6, 12, 19, 27, 36, 46, 57, 69, 82, 96, 110]
+for k, o in enumerate(HOLE_OFF): VIS.append(hid(f"hole{k}", "s1:start-40", add("s8:start-4", o), 8))
+# 單孔放大（s7）：孔一節節往下；保護膜晚一節才長上去（孔底永遠沒有膜＝被離子打掉）
+H2_AT = ["s7:start-2", "s7:wall+10", "s7:film", "s7:film+18", "s7:down", "s7:side"]
+for k, a in enumerate(H2_AT):
+    VIS.append(hid(f"h2s{k}", "s1:start-40", a, 8))
+    VIS.append(hid(f"h2p{k}", "s1:start-40", add(H2_AT[k + 1], 6) if k + 1 < len(H2_AT) else FAR, 12))
+# ALE 原子格（s10）：兩圈，每圈 44 幀：改質 12 → 沖洗 8 → 移除 12（變色那層往上飛走）→ 沖洗 8
+ALE = INFO["ALE"]; C0 = "s10:mod-6"; ALE_RUN = []
+for c in range(2):
+    b = add(C0, c * 44)
+    VIS += [hid(f"aleG{c}", "s1:start-40", add(b, 8), 6), hid(f"aleL{c}", add(b, 8), FAR, 4),
+            mv(f"aleG{c}", add(b, 24), FAR, 12, dy=1.6), hid(f"aleG{c}", add(b, 28), FAR, 8)]
+    ALE_RUN += [run(ALE["CL"][c], b, add(b, 12), 4), run(ALE["P"][c], add(b, 12), add(b, 20), 4), run(ALE["AR"][c], add(b, 20), add(b, 32), 4), run(ALE["P"][c], add(b, 32), add(b, 40), 4)]
 
-# ═════════ s2 真空手臂（關節鏈 kin）：裝載閘取片 → 縮回 → 轉向 → 伸進 pm1 → 放到升降銷 → 縮回 ═════════
+# ═════════ s2 真空手臂（關節鏈 kin）：裝載閘取片 → 縮回 → 轉向（先加速再減速）→ 伸進 pm1 → 放到升降銷 → 刀片退出 → 吸盤升起托住 ═════════
 def pose(a, al): return {"j1": round(-a + al, 2), "j2": round(-2 * al, 2), "j3": round(al, 2)}
 def alpha_for(dist): return round(math.degrees(math.acos((dist - INFO["BL"]) / (2 * INFO["L1"]))), 2)
 DLL = INFO["AP"] + 0.8 + 2.2; DPM = INFO["AP"] + 0.8 + INFO["RR"]
-A_LL, A_PM = alpha_for(DLL), alpha_for(DPM - 0.55)
+A_LL, A_PM = alpha_for(DLL), alpha_for(DPM)     # 伸到吸盤正中央（放片偏差 0）
 FOLD = 85
 KIN0 = {"arm": "vr", "at": "s1:start-40", "keys": [[0, {**pose(FAC["llL"], FOLD), "lift": 0}]]}
-K2 = "s2:start-6"
-keys2 = [[0, {**pose(FAC["llL"], FOLD), "lift": 0}], [22, pose(FAC["llL"], A_LL)], [30, {"lift": 0.02}], [40, {"lift": 0.22}],
-         [62, pose(FAC["llL"], FOLD)], [100, pose(FAC["pm1"], FOLD)], [124, pose(FAC["pm1"], A_PM)], [132, {"lift": 0.02}], [142, {"lift": -0.15}],
-         [164, pose(FAC["pm1"], FOLD)], [178, {"lift": 0}]]
-KIN2 = {"arm": "vr", "at": K2, "keys": keys2, "carry": [{"layer": "wf", "grab": 30, "release": 132}]}
-S2 = [mv("vd_llL", "s1:start-40", add(K2, 66), 10, dy=-1.2),
-      mv("vd_pm1", add(K2, 86), add(K2, 170), 10, dy=-1.2),
-      mv("pm1Esc", "s1:start-40", add(K2, 172), 16, dy=-0.7), mv("pm1Ring", "s1:start-40", add(K2, 172), 16, dy=-0.7)]
+K2 = "s2:start+12"
+keys2 = [[0, {**pose(FAC["llL"], FOLD), "lift": 0}], [20, pose(FAC["llL"], A_LL)], [26, {"lift": 0.02}], [34, {"lift": 0.22}],
+         [52, pose(FAC["llL"], FOLD)], [86, pose(FAC["pm1"], FOLD)], [106, pose(FAC["pm1"], A_PM)], [112, {"lift": 0.02}], [122, {"lift": -0.15}],
+         [142, pose(FAC["pm1"], FOLD)], [152, {"lift": 0}]]
+KIN2 = {"arm": "vr", "at": K2, "keys": keys2, "carry": [{"layer": "wf", "grab": 26, "release": 112}]}
+S2 = [mv("vd_llL", "s1:start-40", add(K2, 56), 10, dy=-1.2),
+      mv("vd_pm1", add(K2, 70), add(K2, 146), 10, dy=-1.2),
+      mv("pm1Esc", "s1:start-40", add(K2, 144), 16, dy=-0.7), mv("pm1Ring", "s1:start-40", add(K2, 144), 16, dy=-0.7)]
 
-# ═════════ s3 爆炸分解（pm1）：腔蓋＋匹配箱 → 線圈 → 介電窗 → 邊緣環 沿軸往上；泵往下；腔壁淡出。依拆機順序每段錯開 6 幀；組回後停住才移鏡 ═════════
-EXP_A, EXP_B = "s3:open-4", "s4:start-16"
-EXPLODE = [mv("pm1Lid", EXP_A, EXP_B, 22, dy=5.0), mv("pm1Coil", add(EXP_A, 6), add(EXP_B, 3), 22, dy=3.6),
-           mv("pm1Win", add(EXP_A, 12), add(EXP_B, 6), 22, dy=2.2), mv("pm1Ring", add(EXP_A, 18), add(EXP_B, 9), 22, dy=1.0),
-           mv("pm1Pump", add(EXP_A, 24), add(EXP_B, 9), 22, dy=-1.2),
-           hid("pm1Body", add(EXP_A, -2), add(EXP_B, 10), 14, 0.12)]
-# ═════════ 剖開：s4–s6、s10 看腔內（腔壁、腔蓋淡出）；s9 看低溫腔 ═════════
-CUT = [hid("pm1Body", "s4:start+14", "s7:start-4", 14, 0.08), hid("pm1Lid", "s4:start+14", "s7:start-4", 14, 0.0),
-       hid("pm1Body", "s10:start-14", "s11:start-4", 14, 0.08), hid("pm1Lid", "s10:start-14", "s11:start-4", 14, 0.0),
-       hid("pm4Body", "s9:start-14", "s10:start-14", 14, 0.08), hid("pm4Lid", "s9:start-14", "s10:start-14", 14, 0.0),
-       hid("tcLid", "s2:start-12", "s3:start-6", 12, 0.15),
-       hid("pm1Pump", "s4:start+14", "s6:start-8", 12), hid("pm1Pump", "s10:start-14", "s11:start-4", 12), hid("pm4Pump", "s9:start-14", "s10:start-14", 12)]
-# ═════════ 鏡頭推近時，焦點以外的模組淡到 10%（看得到位置但不搶）═════════
+# ═════════ s3 爆炸分解（pm1）：拆機順序每段錯開 6 幀；「邊緣環」念到後開始組回（18 幀緩入緩出），組好停住再移鏡 ═════════
+EXP_A, EXP_B = "s3:open-4", "s3:ring+2"
+EXPLODE = [mv("pm1Lid", EXP_A, EXP_B, 18, dy=5.0), mv("pm1Coil", add(EXP_A, 6), EXP_B, 18, dy=3.6),
+           mv("pm1Win", add(EXP_A, 12), EXP_B, 18, dy=2.2), mv("pm1Ring", add(EXP_A, 18), EXP_B, 18, dy=1.0),
+           mv("pm1Pump", add(EXP_A, 24), EXP_B, 18, dy=-1.2),
+           hid("pm1Body", add(EXP_A, -2), EXP_B, 14, 0.12)]
+# ═════════ 剖開 ═════════
+CUT = [hid("pm1Pump", "s2:put-34", "s3:start-8", 12), hid("pm1Body", "s2:put-34", "s3:open-6", 12, 0.04), hid("pm1Lid", "s2:put-34", "s3:open-6", 12, 0.0),
+       hid("pm1Body", "s4:start+14", "s7:start-8", 14, 0.08), hid("pm1Lid", "s4:start+14", "s7:start-8", 14, 0.0),
+       hid("pm4Body", "s9:start-14", "s10:start-14", 14, 0.12), hid("pm4Lid", "s9:start-14", "s10:start-14", 14, 0.0),
+       hid("tcLid", "s2:start-12", "s3:start-6", 12, 0.0),
+       hid("pm1Pump", "s4:start+14", "s6:start-8", 12)]
+# ═════════ 焦點窗接力：鏡頭推近時焦點以外的模組淡出（相鄰兩窗都不是焦點就一直保持淡出）═════════
 ALL = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
+isS2 = lambda l: l in ("tc", "vr", "wf", "main", "llL", "llLDoor", "llLLid", "v_llL", "vd_llL", "v_pm1", "vd_pm1") or l.startswith("pm1")
 isPM1 = lambda l: l.startswith("pm1") or l in ("wf", "vd_pm1", "v_pm1")
-isPM4 = lambda l: l.startswith("pm4") or l == "chill"
+isPM4 = lambda l: l.startswith("pm4")
 isHAR = lambda l: l == "har" or l.startswith("hole")
-# 焦點窗連續接力：同一個模組在相鄰兩窗都不是焦點時一直保持淡（不在換景時閃回全亮，避免鏡頭移動中整台機器跳出來）
-WIN = [(isPM1, "s3:start-2", "s7:start-18"), (isHAR, "s7:start-18", "s9:start-18"), (isPM4, "s9:start-18", "s10:start-18"), (isPM1, "s10:start-18", "s11:start+24"), (isHAR, "s12:start-2", FAR)]
+isH2 = lambda l: l == "har2" or l.startswith("h2")
+isALE = lambda l: l.startswith("ale")
+isPM1v = lambda l: isPM1(l) or l == "vr"
+WIN = [(isS2, "s2:start-6", "s2:put-34"), (isPM1v, "s2:put-34", "s3:start-2"), (isPM1, "s3:start-2", "s7:start-10"), (isH2, "s7:start-10", "s8:start-10"), (isHAR, "s8:start-10", "s9:start-18"),
+       (isPM4, "s9:start-18", "s10:start-18"), (isALE, "s10:start-18", "s11:start+24"), (isHAR, "s12:start-2", FAR)]
 FOCUS = []
 for l in ALL:
     span = None
@@ -194,63 +211,55 @@ for l in ALL:
     if span: FOCUS.append({"layer": l, "at": span[0], "until": span[1], "opacity": 0, "dur": 14})
 
 P = {}
-# s1：整台平台＋廠牌（看得出是一台多腔蝕刻機：前端 EFEM＋三個 FOUP、六角傳送腔、四個蝕刻腔、後面氣櫃與射頻櫃）
+# s1：整台平台（前端 EFEM 正面銘板、三個 FOUP、六角傳送腔、四個蝕刻腔、後面氣櫃與射頻櫃）
 P["s1"] = {"shot": [shot("start-30", 0, -1.3, 182, 28, 1, yaw_to=0.0), shot("start", 0, -1.3, 175, 30, 90)],
  "shift": VIS + S2 + EXPLODE + CUT + FOCUS, "kin": [KIN0],
  "run": [run("status", "start-30", FAR, 1), run("tower", "start-30", FAR, 1), run("ffuAir", "start-30", "s3:start", 1), run("ccpGlow", "start-30", "s3:start", 1), run("chillFlow", "start-30", "s3:start", 1)],
- "labels": [lab("sign", "科林研發", "United States", "amber", "lam", "s2:start-4", flag="US", logo="lam")],
+ "labels": [lab("sign", "科林研發", "Lam Research", "amber", "lam", "s2:start-4", logo="lam")],
  "overlay": [sec("lam-hook", "how", "s2:start-5", "設備五大-3", "示意佈局，非實際機型", {"prev": "prev", "how": "how", "lam": "lam", "deep": "deep"})]}
-# s2：從上往下看進傳送腔，手臂搬片
-P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 3, -2, 200, 42, 30, yaw_to=0.0)], "kin": [KIN2],
+# s2：俯角看進傳送腔（蓋子淡出）→ 結尾切近 pm1 看升降銷接片、刀片退出、吸盤升起
+P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
+ "shot": [shot("start-4", 3.5, 4.0, 84, 62, 30, yaw_to=0.0), shot("put-30", X1 - 1.2, 3.6, 60, 30, 26)], "kin": [KIN2],
  "run": [run("llReady", "start-30", "s3:start", 4)],
- "labels": [lab("vr", "真空手臂（型式示意）", "Vacuum robot", "amber", "arm-4", "s3:start-4")],
+ "labels": [lab("vr", "真空手臂（型式示意）", "Vacuum robot", "amber", "arm-4", "put-32"), lab("wafer", "升降銷接片", "Lift pins", "blue", "put-2", "s3:start-6")],
  "overlay": [sec("lam-move", "start+2", "s3:start-5", "手臂搬運", "示意", {"mid": "mid", "arm": "arm", "acc": "acc", "dec": "dec", "put": "put"})]}
-# s3：爆炸分解（側視 pm1）：一次一張標籤，每張 ≥1.5 秒
-P["s3"] = {"shot": [shot("start-8", X1, 4.6, 100, 14, 34, yaw_to=0.0)],
+P["s3"] = {"shot": [shot("start-8", X1, 4.6, 100, 14, 34)],
  "labels": [lab("coil", "線圈（內外兩組）", "Coil", "amber", "coil-6", "win-8"), lab("win", "介電窗（陶瓷）", "Dielectric window", "blue", "win-6", "esc-8"),
-            lab("esc", "靜電吸盤", "Electrostatic chuck", "amber", "esc-6", "ring-8"), lab("ring", "邊緣環", "Edge ring", "blue", "ring-6", "s4:start-20")],
- "overlay": [sec("lam-stack", "start+2", "s4:start-5", "蝕刻腔拆開", "示意", {"open": "open", "coil": "coil", "win": "win", "esc": "esc", "ring": "ring"})]}
-# s4：剖開的 pm1：射頻 → 線圈發橙光 → 氣體注入 → 電漿點亮（窗下最亮、往下漸暗；鞘層暗區）
-P["s4"] = {"shot": [shot("start+14", X1, 3.7, 40, 10, 30)],
- "run": [run("coilHot", "rf-4", "s7:start", 10), run("match1", "rf-4", "s7:start", 6), run("gasIn", "start+20", "s7:start", 8), run("icpGlow", "glow-8", "s7:start", 12)],
+            lab("esc", "靜電吸盤", "Electrostatic chuck", "amber", "esc-6", "ring-8"), lab("ring", "邊緣環", "Edge ring", "blue", "ring-6", "s4:start+12")],
+ "overlay": [sec("lam-stack", "start+6", "s4:start-5", "蝕刻腔拆開", "示意", {"open": "open", "coil": "coil", "win": "win", "esc": "esc", "ring": "ring"})]}
+P["s4"] = {"shot": [shot("start", X1, 3.7, 40, 10, 26)],
+ "run": [run("coilHot", "rf-4", "s7:start", 10), run("match1", "rf-4", "s7:start", 6), run("gasIn", "start+20", "s7:start", 8), run("icpGlow", "glow-6", "s7:start", 12)],
  "labels": [lab("plasma", "電漿（顏色示意）", "Plasma", "blue", "glow", "s5:start-4")],
  "overlay": [sec("lam-plasma", "start+2", "s5:start-5", "點亮電漿", "示意", {"rf": "rf", "gas": "gas", "glow": "glow"})]}
-# s5：推近晶圓上方：離子在鞘層被垂直加速
 P["s5"] = {"shot": [shot("start-2", X1, 3.7, 40, 6, 30)],
  "run": [run(f"ion{i}", "ion-4", "s7:start", 8) for i in range(5)],
  "labels": [lab("wafer", "離子垂直往下", "Ions accelerate down", "amber", "ion", "s6:start-10")],
  "overlay": [sec("lam-ion", "start+2", "s6:start-5", "離子往下加速", "示意", {"bias": "bias", "ion": "ion", "down": "down", "hit": "hit"})]}
-# s6：拉遠往下看：自由基亂飛、產物被抽走（抽氣口 → 節流閥 → 渦輪泵 → 前級管）
 P["s6"] = {"shot": [shot("start-2", X1, 1.8, 55, 8, 32)],
- "run": [run(f"rad{i}", "rad-4", "s7:start", 8) for i in range(6)] + [run(f"byp{i}", "gas-4", "s7:start", 8) for i in range(4)] + [run("turbo", "start", "s7:start+10", 20)],
- "labels": [lab("plasma", "自由基（亂飛）", "Radicals", "amber", "rad+8", "gas-8"), lab("pump", "渦輪分子泵", "Turbo pump", "blue", "gas-6", "s7:start-4")],
+ "run": [run(f"rad{i}", "rad-6", "s7:start", 8) for i in range(6)] + [run(f"byp{i}", "gas-4", "s7:start", 8) for i in range(4)] + [run("turbo", "start", "s7:start+10", 20)],
+ "labels": [lab("rad", "自由基（亂飛）", "Radicals", "amber", "rad+8", "gas-8"), lab("pump", "渦輪分子泵", "Turbo pump", "blue", "gas-6", "s7:start-12")],
  "overlay": [sec("lam-rad", "start+2", "s7:start-5", "自由基與產物", "示意", {"rad": "rad", "react": "react", "gas": "gas", "pump": "pump"})]}
-# s7–s8：放大剖面模型（3D NAND 記憶孔，比例示意）：孔一節一節變深，離子打孔底、產物往上冒
-P["s7"] = {"shot": [shot("start-20", 17, 2.0, 96, 10, 10), shot("start-10", HAR["HX"], 1.4, 104, 8, 14)],
- "run": [run("harIon0", "start+10", "film+20", 6), run("harByp0", "start+16", "film+20", 6), run("harIon1", "film+20", "s8:start+6", 6), run("harByp1", "film+20", "s8:start+6", 6)],
- "labels": [lab("har", "孔壁保護膜", "Sidewall film", "amber", "film-4", "s8:start-4")],
+# s7：推近單孔剖面（放大示意）：孔一節節往下、孔壁長保護膜、孔底被離子打掉
+P["s7"] = {"shot": [shot("start-10", SX(H2["X"]), 2.6, 68, 6, 22)],
+ "run": [run("h2Ion0", "start", "film", 6), run("h2Byp0", "start+6", "film", 6), run("h2Ion1", "film", "down", 6), run("h2Byp1", "film", "down", 6), run("h2Ion2", "down", "s8:start", 6), run("h2Byp2", "down", "s8:start", 6)],
+ "labels": [lab("h2wall", "孔壁保護膜", "Sidewall film", "amber", "film+4", "s8:start-12")],
  "overlay": [sec("lam-wall", "start+2", "s8:start-5", "側壁保護膜", "放大示意", {"wall": "wall", "film": "film", "down": "down", "side": "side"})]}
-P["s8"] = {"shot": [shot("start-2", HAR["HX"], 1.4, 104, 4, 40)],
- "run": [run("harIon2", "start+6", "ratio+30", 6), run("harByp2", "start+6", "ratio+30", 6), run("harIon3", "ratio+30", "s9:start", 6), run("harByp3", "ratio+30", "s9:start", 6)],
+P["s8"] = {"shot": [shot("start-10", SX(HAR["HX"]), 1.4, 104, 4, 18)],
+ "run": [run("harIon0", "start", "start+19", 6), run("harByp0", "start", "start+19", 6), run("harIon1", "start+19", "start+46", 6), run("harByp1", "start+19", "start+46", 6),
+         run("harIon2", "start+46", "start+82", 6), run("harByp2", "start+46", "start+82", 6), run("harIon3", "start+82", "s9:start", 6), run("harByp3", "start+82", "s9:start", 6)],
  "labels": [lab("harHole", "深是寬的百倍", "Aspect ratio >100:1", "blue", "ratio-4", "s9:start-22")],
  "overlay": [sec("lam-har", "start+2", "s9:start-5", "記憶孔變深", "比例示意", {"hole": "hole", "ratio": "ratio", "hard": "hard"})]}
-# s9：低溫腔（pm4）剖開：霜色吸盤、冷氣下沉、粉紫電漿
 P["s9"] = {"shot": [shot("start-18", X4, 3.05, 38, 10, 24)],
- "run": [run("cryoGlow", "start", "s10:start", 10), run("cryoEsc", "cold-6", "s10:start", 8), run("cryoVapor", "cold-4", "s10:start", 8), run("chillFlow", "cold-4", "s10:start", 6)],
- "labels": [lab("pm4", "低溫蝕刻腔", "Cryogenic etch", "blue", "start+6", "cold-6"), lab("pm4", "低溫吸盤", "Cryo chuck (claim)", "amber", "cold-4", "s10:start-4")],
+ "run": [run("cryoGlow", "start", "s10:start", 10), run("cryoEsc", "cold-6", "s10:start", 8), run("cryoVapor", "cold-4", "s10:start", 8)],
+ "labels": [lab("pm4", "低溫蝕刻腔", "Cryogenic etch", "blue", "start+6", "cold-6"), lab("escB4", "低溫吸盤", "Cryo chuck", "amber", "cold-4", "s10:start-20")],
  "overlay": [sec("lam-cryo", "start+2", "s10:start-5", "低溫蝕刻", "公司說法；溫度示意", {"say": "say", "cold": "cold", "str": "str", "fast": "fast"})]}
-# s10：原子層蝕刻（pm1）：改質（氯，綠）→ 沖洗（灰白）→ 移除（低能量氬離子）→ 沖洗；一圈四步跑 3 圈
-ALE = INFO["ALE"]; C0 = "s10:mod-6"; ale_run = []
-for c in range(3):
-    b = add(C0, c * 50)
-    ale_run += [run(g, b, add(b, 13), 4) for g in ALE["CL"]] + [run(g, add(b, 13), add(b, 23), 4) for g in ALE["P"]] \
-             + [run(g, add(b, 23), add(b, 37), 4) for g in ALE["AR"]] + [run(g, add(b, 37), add(b, 47), 4) for g in ALE["P"]]
-P["s10"] = {"shot": [shot("start-20", 0, 1.0, 90, 16, 12), shot("start-8", X1, 3.55, 40, 8, 14)], "run": ale_run + [run("coilHot", "start", "s11:start", 8)],
- "labels": [lab("wafer", "一圈一層", "One layer per cycle", "amber", "one-4", "s11:start-4")],
+# s10：推近原子格（概念圖）：兩圈改質 → 沖洗 → 移除 → 沖洗，一圈剝掉一層
+P["s10"] = {"shot": [shot("start-20", 16, 2.0, 120, 14, 12), shot("start-8", SX(AXL), -2.8, 60, 14, 16)], "run": ALE_RUN,
+ "labels": [lab("ale", "一圈一層", "One layer per cycle", "amber", "one-4", "s11:start-4")],
  "overlay": [sec("lam-ale", "start+2", "s11:start-5", "原子層蝕刻", "概念圖", {"ale": "ale", "mod": "mod", "rm": "rm", "one": "one"})]}
 P["s11"] = {"shot": [shot("start-14", 0, -1.3, 175, 26, 34)],
  "run": [run("ccpGlow", "start", FAR, 8)],
- "labels": [lab("sign", "科林研發", "United States", "amber", "us", "s12:start-4", flag="US", logo="lam")],
+ "labels": [lab("sign", "科林研發", "Lam Research", "amber", "us", "s12:start-4", logo="lam")],
  "overlay": [sec("lam-co", "start+2", "s12:start-5", "科林研發", "公司財報、研究機構、媒體", {"us": "us", "no3": "no3", "tw": "tw"}, h=360, y=1040)]}
 P["s12"] = {"shot": [shot("start-2", HAR["HX"], 1.4, 104, 10, 34)],
  "labels": [lab("harHole", "刻好的記憶孔", "Finished holes", "amber", "before", "s13:start-4")],
