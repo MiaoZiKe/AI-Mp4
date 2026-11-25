@@ -517,7 +517,7 @@ P["s5"] = {"zoom": [{"to": "module", "at": "start-4", "dur": 30}],
  "shot": [shot("start-20", -3.4, 4.5, 24, 45, 30)],
  "kin": [KIN["L0"]],
  "run": [run("h1_heat", "plate", "s6:start", 10)] + [run(f"h1_wave{j}", T["L0"]["rel"], "s6:start", 8) for j in range(3)] + [run(f"h1_solv{j}", cue(T["L0"]["rel"], 6), "s6:start", 8) for j in range(4)],
- "labels": [lab("t_arm", "機械手臂", "Transfer robot", "blue", "start", "plate-2"), lab("t_h1", "加熱板", "Hot plate", "amber", "plate", "s6:start-4"), lab("t_h1w", "溶劑蒸發", "Solvent leaves", "coral", "solv", "s6:start-4")],
+ "labels": [lab("t_arm", "機械手臂", "Transfer robot", "blue", "start", "plate-8", xy=[270, 430]), lab("t_h1", "加熱板", "Hot plate", "amber", "plate", "s6:start-4"), lab("t_h1w", "溶劑蒸發", "Solvent leaves", "coral", "solv", "s6:start-4")],
  "overlay": [sec("trk-sb", "start+2", "s6:start-5", "軟烤：趕走溶劑", "示意", {"plate": "plate", "bake": "bake", "solv": "solv"})]}
 P["s6"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 30}],
  # 11/24 審片必改 1：原本 FIELD 4 m 遠景，曝光機被切出畫面；改成綁 cue 的三段運鏡：手臂交接 → 跟著晶圓往右滑進曝光機 → 推近觀察窗
@@ -550,7 +550,7 @@ P["s10"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "overlay": [sec("trk-co", "start+2", "s11:start-5", "誰在做", "公司說法＋研究機構估計", {"tel": "tel", "euv": "euv", "all": "all"})]}
 P["s11"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 1}],
  "shot": [shot("start-4", 2.0, 2.4, 64, 36, 30)],
- "labels": [dict(lab("t_track", "台南：維修中心", "Taiwan", "amber", "tainan", "s12:start-4"), flag="TW")],
+ "labels": [dict(lab("t_track", "台南：維修中心", "Taiwan", "amber", "tainan", "s12:start-4", xy=[290, 390]), flag="TW")],
  "overlay": [sec("trk-tw", "start+2", "s12:start-5", "在台灣", "公司說法、媒體報導", {"tw": "tw", "tainan": "tainan", "repair": "repair", "parts": "parts"})]}
 P["s12"] = {"zoom": [{"to": "bay", "at": "start-4", "dur": 30}],
  "shot": [shot("start-4", 8.6, 3.8, 72, 26, 30)],
