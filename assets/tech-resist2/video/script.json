@@ -1,0 +1,2717 @@
+{
+ "slug": "tech-resist2",
+ "prevEpisode": "光阻-1",
+ "title": "光阻-2：塗上去、洗出來的機器（科技透明圈）",
+ "asOf": "2026/11/23",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指（2026/11/21 Andy 定案，docs/prompts/tech-旁白金手指.md）：2.5＋Iapetus＋說明 B；整篇 1 次請求（TTS_NO_RETRY=1）。本輪不配音（等通知）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "bay",
+    "label": "黃光區",
+    "en": "LITHO BAY",
+    "field": "12 m",
+    "ruler": "2 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "tool",
+    "label": "塗佈顯影機",
+    "en": "COATER / DEVELOPER",
+    "field": "4 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   },
+   {
+    "id": "module",
+    "label": "模組",
+    "en": "MODULE",
+    "field": "60 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": true,
+    "note": "查證截至 2026/11/23",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "Schematic – not to scale",
+   "zh": "示意圖，非實際比例"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "光阻",
+   "誰塗上去的"
+  ],
+  "sub": "光阻-2：塗佈顯影機",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集說光阻要塗得又薄又平，誰塗得出來？是黏在曝光機旁邊的這台機器。",
+   "tts": "上一集說光阻要塗得又薄又平，誰塗得出來？是黏在曝光機旁邊的這台機器。",
+   "subtitle": {
+    "zh": "上集說光阻要塗得又薄又平\n誰塗得出來？\n是黏在曝光機旁邊的\n這台機器",
+    "en": "Last time: resist must be thin and flat. | Who can coat it like that? | A machine bolted to the scanner: | this one."
+   },
+   "keywords": [
+    "光阻",
+    "曝光機"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "又薄又平"
+    },
+    {
+     "id": "who",
+     "text": "誰塗得出來"
+    },
+    {
+     "id": "stick",
+     "text": "黏在曝光機旁邊"
+    },
+    {
+     "id": "this",
+     "text": "這台機器"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "EPFL CMi；USPTO 6770424"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：光阻要又薄又平",
+     "title": "誰塗得出來？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-30",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 4.6,
+      "y": 2.0,
+      "d": 86,
+      "elev": 34
+     },
+     {
+      "at": "stick",
+      "dur": 70,
+      "x": 4.2,
+      "y": 2.0,
+      "d": 82,
+      "elev": 36
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cr0",
+      "at": "s2:start",
+      "until": "s3:film-14",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr1",
+      "at": "s2:start",
+      "until": "s3:film-9",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr2",
+      "at": "s2:start",
+      "until": "s3:film-4",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr3",
+      "at": "s2:start",
+      "until": "s3:film+1",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr4",
+      "at": "s2:start",
+      "until": "s3:film+6",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr5",
+      "at": "s2:start",
+      "until": "s3:film+11",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "cr6",
+      "at": "s2:start",
+      "until": "s3:film+16",
+      "opacity": 0,
+      "dur": 5
+     },
+     {
+      "layer": "wA2",
+      "at": "s1:start-40",
+      "until": "s5:start-14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr0",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr1",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr2",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr3",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr4",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr5",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cr6",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wA",
+      "at": "s5:start-14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wA2",
+      "at": "s5:start+43",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wB",
+      "at": "s1:start-40",
+      "until": "s5:start+43",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wB",
+      "at": "s6:start+49",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wC",
+      "at": "s1:start-40",
+      "until": "s6:start+49",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wC",
+      "at": "s6:start+58",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 5.6,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "wC",
+      "at": "s6:start+94",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wC2",
+      "at": "s1:start-40",
+      "until": "s6:start+94",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wC2",
+      "at": "s1:start-300",
+      "until": "s7:back-16",
+      "dur": 20,
+      "dx": 5.6,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "wC2",
+      "at": "s7:back+63",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wD",
+      "at": "s1:start-40",
+      "until": "s7:back+63",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wD",
+      "at": "s8:start+35",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wE",
+      "at": "s1:start-40",
+      "until": "s8:start+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wE_ex",
+      "at": "s1:start-40",
+      "until": "s8:start+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wE_ex",
+      "at": "s8:dissolve",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "d_pud",
+      "at": "s1:start-40",
+      "until": "s8:start+56",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "d_pud",
+      "at": "s8:rinse",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "d_wat",
+      "at": "s1:start-40",
+      "until": "s8:rinse+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "d_wat",
+      "at": "s8:dry+10",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "c_noz",
+      "at": "s2:start",
+      "until": "s3:center-14",
+      "dur": 24,
+      "dx": -2.2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "c_noz",
+      "at": "s3:spin-4",
+      "until": "s13:start+400",
+      "dur": 24,
+      "dx": -2.2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "d_slit",
+      "at": "s8:start+44",
+      "until": "s8:rinse-10",
+      "dur": 34,
+      "dx": 3.5,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "layer": "px_all",
+      "at": "s1:start-400",
+      "until": "s1:start-300",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s3:start-4",
+      "until": "s9:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_all",
+      "at": "s13:start+500",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_c",
+      "at": "s1:start-400",
+      "until": "s3:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_c",
+      "at": "s4:start-4",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cw",
+      "at": "s1:start-400",
+      "until": "s4:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_cw",
+      "at": "s5:start-22",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h1",
+      "at": "s1:start-400",
+      "until": "s5:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h1",
+      "at": "s6:start-4",
+      "until": "s8:hard+26",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h1",
+      "at": "s9:start-4",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_if",
+      "at": "s1:start-400",
+      "until": "s6:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_if",
+      "at": "s7:start-4",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h2",
+      "at": "s1:start-400",
+      "until": "s7:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_h2",
+      "at": "s8:start-4",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s1:start-400",
+      "until": "s8:start+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "px_d",
+      "at": "s8:hard-4",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "air",
+      "at": "s1:start-400",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "k_sign",
+      "at": "s1:start-40",
+      "until": "s10:tel",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "k_sign",
+      "at": "s12:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "px_trk",
+      "at": "s1:start-400",
+      "until": "s13:start+600",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s1:start-30",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 45.556,
+         "j2": -44.273,
+         "j3": -1.283,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        70,
+        {
+         "j1": 98.359,
+         "j2": 72.08,
+         "j3": -170.439
+        }
+       ]
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "spinC1",
+      "at": "start-30",
+      "ramp": 130,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "c_drop",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet2",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet3",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet4",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet5",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet6",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_sheet7",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling0",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling1",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling2",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling3",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling4",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling5",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling6",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling7",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling8",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "c_fling9",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "k_ledG",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "i_ledOn",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-hook",
+      "at": "who",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "代工的供應商：光阻-2",
+      "tag": "示意，非實際比例",
+      "t": {
+       "who": {
+        "at": "who"
+       },
+       "stick": {
+        "at": "stick"
+       },
+       "this": {
+        "at": "this"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "它叫塗佈顯影機，晶圓進出曝光機，都要經過它。",
+   "tts": "它叫塗佈顯影機，晶圓進出曝光機，都要經過它。",
+   "subtitle": {
+    "zh": "它叫塗佈顯影機\n晶圓進出曝光機\n都要經過它",
+    "en": "It's the coater/developer, or track. | Wafers going into and out of the scanner | all pass through it."
+   },
+   "keywords": [
+    "塗佈顯影機",
+    "進出"
+   ],
+   "cues": [
+    {
+     "id": "name",
+     "text": "塗佈顯影機"
+    },
+    {
+     "id": "inout",
+     "text": "進出曝光機"
+    },
+    {
+     "id": "pass",
+     "text": "都要經過它"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 6770424、7728953"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "bay",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 4.6,
+      "y": 2.0,
+      "d": 86,
+      "elev": 36
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_track",
+      "text": "塗佈顯影機",
+      "en": "Track",
+      "color": "amber",
+      "at": "name",
+      "until": "s3:start-4"
+     },
+     {
+      "part": "t_if",
+      "text": "介面：進出曝光機",
+      "en": "Scanner interface",
+      "color": "coral",
+      "at": "inout+10",
+      "until": "s3:start-4",
+      "xy": [
+       770,
+       347
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-flow",
+      "at": "start+2",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓在裡面走一圈",
+      "tag": "示意",
+      "t": {
+       "name": {
+        "at": "name"
+       },
+       "inout": {
+        "at": "inout"
+       },
+       "pass": {
+        "at": "pass"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "先在晶圓中心滴一小灘光阻，再高速旋轉，甩成薄膜。",
+   "tts": "先在晶圓中心滴一小灘光阻，再高速旋轉，甩成薄膜。",
+   "subtitle": {
+    "zh": "先在晶圓中心\n滴一小灘光阻\n再高速旋轉\n甩成薄膜",
+    "en": "First, a small puddle of resist | drops onto the wafer's center, | then it spins fast | and flings it into a thin film."
+   },
+   "keywords": [
+    "滴",
+    "旋轉",
+    "薄膜"
+   ],
+   "cues": [
+    {
+     "id": "center",
+     "text": "晶圓中心"
+    },
+    {
+     "id": "drop",
+     "text": "滴一小灘光阻"
+    },
+    {
+     "id": "spin",
+     "text": "高速旋轉"
+    },
+    {
+     "id": "film",
+     "text": "甩成薄膜"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8465901；BYU Cleanroom"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "module",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -4.4,
+      "y": 2.0,
+      "d": 20,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "spinC2",
+      "at": "spin-4",
+      "ramp": 180,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "c_drop",
+      "at": "drop-6",
+      "ramp": 4,
+      "until": "spin+6"
+     },
+     {
+      "id": "c_sheet0",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet1",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet2",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet3",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet4",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet5",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet6",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_sheet7",
+      "at": "spin+4",
+      "ramp": 10,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling0",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling1",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling2",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling3",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling4",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling5",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling6",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling7",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling8",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     },
+     {
+      "id": "c_fling9",
+      "at": "film-6",
+      "ramp": 8,
+      "until": "s5:start-20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_noz",
+      "text": "光阻噴嘴",
+      "en": "Resist nozzle",
+      "color": "amber",
+      "at": "center",
+      "until": "spin-2"
+     },
+     {
+      "part": "t_wfC",
+      "text": "甩開、多的甩掉",
+      "en": "Spread and flung off",
+      "color": "coral",
+      "at": "film",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-coat",
+      "at": "start+2",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "旋轉塗佈",
+      "tag": "側視示意",
+      "t": {
+       "center": {
+        "at": "center"
+       },
+       "drop": {
+        "at": "drop"
+       },
+       "spin": {
+        "at": "spin"
+       },
+       "film": {
+        "at": "film"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "轉越快，膜越薄，極紫外光用的光阻，只有幾十奈米厚。",
+   "tts": "轉越快，膜越薄，極紫外光用的光阻，只有幾十奈米厚。",
+   "subtitle": {
+    "zh": "轉越快，膜越薄\n極紫外光用的光阻\n只有幾十奈米厚",
+    "en": "Faster spin, thinner film. | Resist for EUV | is only tens of nanometers thick."
+   },
+   "keywords": [
+    "轉越快",
+    "膜越薄",
+    "幾十奈米"
+   ],
+   "cues": [
+    {
+     "id": "fast",
+     "text": "轉越快"
+    },
+    {
+     "id": "thin",
+     "text": "膜越薄"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    },
+    {
+     "id": "nm",
+     "text": "幾十奈米"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "LBL 旋塗講義；USPTO 6327793、8614047"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "module",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": -4.1000000000000005,
+      "y": 1.9,
+      "d": 17,
+      "elev": 42
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s4:nm-10",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 98.359,
+         "j2": 72.08,
+         "j3": -170.439,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        34,
+        {
+         "j1": 162.604,
+         "j2": 71.151,
+         "j3": -233.755
+        }
+       ]
+      ]
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_wfC",
+      "text": "轉越快，膜越薄",
+      "en": "Faster = thinner",
+      "color": "blue",
+      "at": "fast",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-thick",
+      "at": "start+2",
+      "until": "s5:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "厚度靠轉速",
+      "tag": "示意（轉速曲線依廠商）",
+      "t": {
+       "fast": {
+        "at": "fast"
+       },
+       "thin": {
+        "at": "thin"
+       },
+       "euv": {
+        "at": "euv"
+       },
+       "nm": {
+        "at": "nm"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "接著放上加熱板烤一下，把溶劑趕走。",
+   "tts": "接著放上加熱板烤一下，把溶劑趕走。",
+   "subtitle": {
+    "zh": "接著放上加熱板\n烤一下\n把溶劑趕走",
+    "en": "Next, onto a hot plate | for a quick bake | to drive off the solvent."
+   },
+   "keywords": [
+    "加熱板",
+    "溶劑"
+   ],
+   "cues": [
+    {
+     "id": "plate",
+     "text": "加熱板"
+    },
+    {
+     "id": "bake",
+     "text": "烤一下"
+    },
+    {
+     "id": "solv",
+     "text": "溶劑趕走"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9298093"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "module",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-20",
+      "dur": 30,
+      "x": -3.4,
+      "y": 4.5,
+      "d": 24,
+      "elev": 45
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s5:start-16",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 162.604,
+         "j2": 71.151,
+         "j3": -233.755,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        8,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        13,
+        {
+         "claw": 0.12
+        }
+       ],
+       [
+        19,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        41,
+        {
+         "j1": 99.959,
+         "j2": 72.08,
+         "j3": -170.439
+        }
+       ],
+       [
+        46,
+        {
+         "j1": 98.359,
+         "j2": 72.08,
+         "j3": -170.439
+        }
+       ],
+       [
+        53,
+        {
+         "lift": 0.68
+        }
+       ],
+       [
+        56,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        59,
+        {
+         "claw": 0
+        }
+       ],
+       [
+        66,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wA2",
+        "grab": 13,
+        "release": 59
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "h1_heat",
+      "at": "plate",
+      "ramp": 10,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_wave0",
+      "at": "s5:start+43",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_wave1",
+      "at": "s5:start+43",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_wave2",
+      "at": "s5:start+43",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_solv0",
+      "at": "s5:start+49",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_solv1",
+      "at": "s5:start+49",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_solv2",
+      "at": "s5:start+49",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "h1_solv3",
+      "at": "s5:start+49",
+      "ramp": 8,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_arm",
+      "text": "機械手臂",
+      "en": "Transfer robot",
+      "color": "blue",
+      "at": "start",
+      "until": "plate-8",
+      "xy": [
+       270,
+       430
+      ]
+     },
+     {
+      "part": "t_h1",
+      "text": "加熱板",
+      "en": "Hot plate",
+      "color": "amber",
+      "at": "plate",
+      "until": "s6:start-4"
+     },
+     {
+      "part": "t_h1w",
+      "text": "溶劑蒸發",
+      "en": "Solvent leaves",
+      "color": "coral",
+      "at": "solv",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-sb",
+      "at": "start+2",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "軟烤：趕走溶劑",
+      "tag": "示意",
+      "t": {
+       "plate": {
+        "at": "plate"
+       },
+       "bake": {
+        "at": "bake"
+       },
+       "solv": {
+        "at": "solv"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "機械手臂把晶圓送進曝光機，照出看不見的圖案。",
+   "tts": "機械手臂把晶圓送進曝光機，照出看不見的圖案。",
+   "subtitle": {
+    "zh": "機械手臂\n把晶圓送進曝光機\n照出看不見的圖案",
+    "en": "A robot arm | hands the wafer to the scanner, | which exposes an invisible pattern."
+   },
+   "keywords": [
+    "機械手臂",
+    "曝光機",
+    "看不見"
+   ],
+   "cues": [
+    {
+     "id": "arm",
+     "text": "機械手臂"
+    },
+    {
+     "id": "scan",
+     "text": "送進曝光機"
+    },
+    {
+     "id": "expose",
+     "text": "照出"
+    },
+    {
+     "id": "latent",
+     "text": "看不見的圖案"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7728953；EPFL CMi"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-10",
+      "dur": 30,
+      "x": 3.4,
+      "y": 2.4,
+      "d": 28,
+      "elev": 36
+     },
+     {
+      "at": "scan-6",
+      "dur": 26,
+      "x": 7.2,
+      "y": 2.0,
+      "d": 24,
+      "elev": 40
+     },
+     {
+      "at": "expose-8",
+      "dur": 24,
+      "x": 12.4,
+      "y": 3.6,
+      "d": 25,
+      "elev": 20
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s6:start-10",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 98.359,
+         "j2": 72.08,
+         "j3": -170.439,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        8,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        13,
+        {
+         "claw": 0.12
+        }
+       ],
+       [
+        19,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        41,
+        {
+         "j1": 47.156,
+         "j2": -44.273,
+         "j3": -1.283
+        }
+       ],
+       [
+        46,
+        {
+         "j1": 45.556,
+         "j2": -44.273,
+         "j3": -1.283
+        }
+       ],
+       [
+        53,
+        {
+         "lift": 0.68
+        }
+       ],
+       [
+        56,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        59,
+        {
+         "claw": 0
+        }
+       ],
+       [
+        66,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wB",
+        "grab": 13,
+        "release": 59
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "s_winOn",
+      "at": "expose",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "s_beam",
+      "at": "expose",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_arm",
+      "text": "手臂搬晶圓",
+      "en": "Robot handoff",
+      "color": "blue",
+      "at": "arm",
+      "until": "scan-2"
+     },
+     {
+      "part": "t_if",
+      "text": "介面台",
+      "en": "Interface stage",
+      "color": "amber",
+      "at": "scan",
+      "until": "expose-2"
+     },
+     {
+      "part": "t_win",
+      "text": "曝光",
+      "en": "Exposure",
+      "color": "blue",
+      "at": "expose",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-exp",
+      "at": "start+2",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "曝光：照出潛像",
+      "tag": "示意",
+      "t": {
+       "arm": {
+        "at": "arm"
+       },
+       "scan": {
+        "at": "scan"
+       },
+       "expose": {
+        "at": "expose"
+       },
+       "latent": {
+        "at": "latent"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "拿回來再烤一次，讓照到光的地方反應完全。",
+   "tts": "拿回來再烤一次，讓照到光的地方反應完全。",
+   "subtitle": {
+    "zh": "拿回來再烤一次\n讓照到光的地方\n反應完全",
+    "en": "Back it comes for a second bake, | so the exposed areas | finish reacting."
+   },
+   "keywords": [
+    "再烤一次",
+    "反應"
+   ],
+   "cues": [
+    {
+     "id": "back",
+     "text": "拿回來"
+    },
+    {
+     "id": "peb",
+     "text": "再烤一次"
+    },
+    {
+     "id": "lit",
+     "text": "照到光的地方"
+    },
+    {
+     "id": "react",
+     "text": "反應完全"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9298093、8614047"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 3.0,
+      "y": 4.9,
+      "d": 26,
+      "elev": 45
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s7:back+4",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 45.556,
+         "j2": -44.273,
+         "j3": -1.283,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        8,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        13,
+        {
+         "claw": 0.12
+        }
+       ],
+       [
+        19,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        41,
+        {
+         "j1": 106.421,
+         "j2": -63.994,
+         "j3": -40.827
+        }
+       ],
+       [
+        46,
+        {
+         "j1": 104.821,
+         "j2": -63.994,
+         "j3": -40.827
+        }
+       ],
+       [
+        53,
+        {
+         "lift": 0.68
+        }
+       ],
+       [
+        56,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        59,
+        {
+         "claw": 0
+        }
+       ],
+       [
+        66,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wC2",
+        "grab": 13,
+        "release": 59
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "h2_heat",
+      "at": "peb",
+      "ramp": 10,
+      "until": "s8:start"
+     },
+     {
+      "id": "h2_wave0",
+      "at": "s7:back+63",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "h2_wave1",
+      "at": "s7:back+63",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "h2_wave2",
+      "at": "s7:back+63",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "wD_react",
+      "at": "react-6",
+      "ramp": 8,
+      "until": "s8:start+35"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_h2",
+      "text": "加熱板：曝後烤",
+      "en": "Post-exposure bake",
+      "color": "amber",
+      "at": "peb",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-peb",
+      "at": "start+2",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "曝後烤：反應走完",
+      "tag": "示意",
+      "t": {
+       "back": {
+        "at": "back"
+       },
+       "peb": {
+        "at": "peb"
+       },
+       "lit": {
+        "at": "lit"
+       },
+       "react": {
+        "at": "react"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "接著噴顯影液，照到光的光阻溶掉，再沖水、甩乾、烤硬，圖案就出來了。",
+   "tts": "接著噴顯影液，照到光的光阻溶掉，再沖水、甩乾、烤硬，圖案就出來了。",
+   "subtitle": {
+    "zh": "接著噴顯影液\n照到光的光阻溶掉\n再沖水、甩乾、烤硬\n圖案就出來了",
+    "en": "Then developer is sprayed on; | the exposed resist dissolves. | Rinse, spin dry, hard bake, | and the pattern appears."
+   },
+   "keywords": [
+    "顯影液",
+    "溶掉",
+    "圖案"
+   ],
+   "cues": [
+    {
+     "id": "dev",
+     "text": "噴顯影液"
+    },
+    {
+     "id": "dissolve",
+     "text": "溶掉"
+    },
+    {
+     "id": "rinse",
+     "text": "沖水"
+    },
+    {
+     "id": "dry",
+     "text": "甩乾"
+    },
+    {
+     "id": "hard",
+     "text": "烤硬"
+    },
+    {
+     "id": "pattern",
+     "text": "圖案就出來了"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 10281822；Semiconductor Digest；UW EE 527"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "module",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 3.6,
+      "y": -0.9,
+      "d": 28,
+      "elev": 45
+     },
+     {
+      "at": "hard-4",
+      "dur": 30,
+      "x": 0.5,
+      "y": 4.0,
+      "d": 34,
+      "elev": 45
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s8:start-24",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 104.821,
+         "j2": -63.994,
+         "j3": -40.827,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        8,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        13,
+        {
+         "claw": 0.12
+        }
+       ],
+       [
+        19,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        41,
+        {
+         "j1": 5.371,
+         "j2": -70.996,
+         "j3": 67.225
+        }
+       ],
+       [
+        46,
+        {
+         "j1": 3.771,
+         "j2": -70.996,
+         "j3": 67.225
+        }
+       ],
+       [
+        53,
+        {
+         "lift": 0.68
+        }
+       ],
+       [
+        56,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        59,
+        {
+         "claw": 0
+        }
+       ],
+       [
+        66,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wD",
+        "grab": 13,
+        "release": 59
+       }
+      ]
+     },
+     {
+      "arm": "rb",
+      "at": "s8:dry+24",
+      "keys": [
+       [
+        0,
+        {
+         "j1": 3.771,
+         "j2": -70.996,
+         "j3": 67.225,
+         "lift": 0,
+         "claw": 0
+        }
+       ],
+       [
+        8,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        13,
+        {
+         "claw": 0.12
+        }
+       ],
+       [
+        19,
+        {
+         "lift": -0.15
+        }
+       ],
+       [
+        41,
+        {
+         "j1": 99.959,
+         "j2": 72.08,
+         "j3": -170.439
+        }
+       ],
+       [
+        46,
+        {
+         "j1": 98.359,
+         "j2": 72.08,
+         "j3": -170.439
+        }
+       ],
+       [
+        53,
+        {
+         "lift": 0.68
+        }
+       ],
+       [
+        56,
+        {
+         "lift": 0.67
+        }
+       ],
+       [
+        59,
+        {
+         "claw": 0
+        }
+       ],
+       [
+        66,
+        {
+         "lift": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wE",
+        "grab": 13,
+        "release": 59
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "d_devSpray",
+      "at": "s8:start+44",
+      "ramp": 4,
+      "until": "s8:rinse-12"
+     },
+     {
+      "id": "spinD",
+      "at": "dry-4",
+      "ramp": 26,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "h1_heat",
+      "at": "s8:dry+83",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "d_rinse0",
+      "at": "rinse-2",
+      "ramp": 4,
+      "until": "dry+6"
+     },
+     {
+      "id": "d_rinse1",
+      "at": "rinse-2",
+      "ramp": 4,
+      "until": "dry+6"
+     },
+     {
+      "id": "d_rinse2",
+      "at": "rinse-2",
+      "ramp": 4,
+      "until": "dry+6"
+     },
+     {
+      "id": "d_rinse3",
+      "at": "rinse-2",
+      "ramp": 4,
+      "until": "dry+6"
+     },
+     {
+      "id": "d_rinse4",
+      "at": "rinse-2",
+      "ramp": 4,
+      "until": "dry+6"
+     },
+     {
+      "id": "d_fling0",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling1",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling2",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling3",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling4",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling5",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling6",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling7",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling8",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "d_fling9",
+      "at": "rinse+2",
+      "ramp": 6,
+      "until": "dry+30"
+     },
+     {
+      "id": "h1_wave0",
+      "at": "s8:dry+83",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "h1_wave1",
+      "at": "s8:dry+83",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "h1_wave2",
+      "at": "s8:dry+83",
+      "ramp": 8,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_slit",
+      "text": "顯影液噴嘴",
+      "en": "Developer nozzle",
+      "color": "blue",
+      "at": "dev",
+      "until": "dissolve+10"
+     },
+     {
+      "part": "t_rin",
+      "text": "純水沖洗",
+      "en": "DI water rinse",
+      "color": "blue",
+      "at": "rinse",
+      "until": "hard-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-dev",
+      "at": "start+2",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "顯影：洗出圖案",
+      "tag": "示意",
+      "t": {
+       "dev": {
+        "at": "dev"
+       },
+       "dissolve": {
+        "at": "dissolve"
+       },
+       "rinse": {
+        "at": "rinse"
+       },
+       "dry": {
+        "at": "dry"
+       },
+       "hard": {
+        "at": "hard"
+       },
+       "pattern": {
+        "at": "pattern"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "為什麼要跟曝光機連在一起？因為曝光後的光阻怕等，放久了圖案會走樣。",
+   "tts": "為什麼要跟曝光機連在一起？因為曝光後的光阻怕等，放久了圖案會走樣。",
+   "subtitle": {
+    "zh": "為什麼要跟曝光機\n連在一起？\n因為曝光後的光阻怕等\n放久了圖案會走樣",
+    "en": "Why is it bolted | to the scanner? | Exposed resist can't wait; | left too long, the pattern deforms."
+   },
+   "keywords": [
+    "連在一起",
+    "怕等",
+    "走樣"
+   ],
+   "cues": [
+    {
+     "id": "why",
+     "text": "為什麼"
+    },
+    {
+     "id": "link",
+     "text": "連在一起"
+    },
+    {
+     "id": "wait",
+     "text": "光阻怕等"
+    },
+    {
+     "id": "bad",
+     "text": "圖案會走樣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 6743564、6749988"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 4.6,
+      "y": 2.0,
+      "d": 86,
+      "elev": 36
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_if",
+      "text": "曝光完馬上回來烤",
+      "en": "Straight to bake",
+      "color": "blue",
+      "at": "link",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-wait",
+      "at": "start+2",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "為什麼要連在一起",
+      "tag": "專利文獻整理，示意",
+      "t": {
+       "why": {
+        "at": "why"
+       },
+       "link": {
+        "at": "link"
+       },
+       "wait": {
+        "at": "wait"
+       },
+       "bad": {
+        "at": "bad"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "東京威力科創說，極紫外光用的這種機器，幾乎都是他們做的。",
+   "tts": "東京威力科創說，極紫外光用的這種機器，幾乎都是他們做的。",
+   "subtitle": {
+    "zh": "東京威力科創說\n極紫外光用的這種機器\n幾乎都是他們做的",
+    "en": "Tokyo Electron says | nearly every EUV track | is one of theirs."
+   },
+   "keywords": [
+    "東京威力科創",
+    "極紫外光"
+   ],
+   "cues": [
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光用的"
+    },
+    {
+     "id": "all",
+     "text": "幾乎都是"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TEL 新聞稿 2020/9；Yahoo 股市 2026/9（公司說法）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "bay",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 4.6,
+      "y": 2.0,
+      "d": 86,
+      "elev": 34
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_track",
+      "text": "東京威力科創",
+      "en": "Japan",
+      "color": "amber",
+      "at": "tel",
+      "until": "s11:start-4",
+      "xy": [
+       400,
+       347
+      ],
+      "flag": "JP",
+      "logo": "tel"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-co",
+      "at": "start+2",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "公司說法＋研究機構估計",
+      "t": {
+       "tel": {
+        "at": "tel"
+       },
+       "euv": {
+        "at": "euv"
+       },
+       "all": {
+        "at": "all"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "在台灣，它在台南設了維修中心，零組件也找在地廠商加工。",
+   "tts": "在台灣，它在台南設了維修中心，零組件也找在地廠商加工。",
+   "subtitle": {
+    "zh": "在台灣\n它在台南設了維修中心\n零組件也找在地廠商加工",
+    "en": "In Taiwan, it runs | a repair center in Tainan, | with parts machined by local suppliers."
+   },
+   "keywords": [
+    "台南",
+    "維修中心",
+    "零組件"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "在台灣"
+    },
+    {
+     "id": "tainan",
+     "text": "台南"
+    },
+    {
+     "id": "repair",
+     "text": "維修中心"
+    },
+    {
+     "id": "parts",
+     "text": "零組件"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報 2024/12/3；1111 新聞 2022（公司說法）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "bay",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 2.0,
+      "y": 2.4,
+      "d": 64,
+      "elev": 36
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_track",
+      "text": "台南：維修中心",
+      "en": "Taiwan",
+      "color": "amber",
+      "at": "tainan",
+      "until": "s12:start-4",
+      "xy": [
+       290,
+       390
+      ],
+      "flag": "TW"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-tw",
+      "at": "start+2",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "在台灣",
+      "tag": "公司說法、媒體報導",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "tainan": {
+        "at": "tainan"
+       },
+       "repair": {
+        "at": "repair"
+       },
+       "parts": {
+        "at": "parts"
+       }
+      }
+     }
+    ]
+   },
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "塗得再均勻，圖案準不準，還是看曝光機，下一集看艾司摩爾。留言顯影，拿完整資料。",
+   "tts": "塗得再均勻，圖案準不準，還是看曝光機，下一集看艾司摩爾。留言顯影，拿完整資料。",
+   "subtitle": {
+    "zh": "塗得再均勻\n圖案準不準，還是看曝光機\n下一集看艾司摩爾\n留言顯影，拿完整資料",
+    "en": "However even the coat, | pattern accuracy comes down to the scanner. | Next: ASML. | Comment \"顯影\" for the full notes."
+   },
+   "keywords": [
+    "曝光機",
+    "艾司摩爾"
+   ],
+   "cues": [
+    {
+     "id": "even",
+     "text": "塗得再均勻"
+    },
+    {
+     "id": "acc",
+     "text": "準不準"
+    },
+    {
+     "id": "scan",
+     "text": "看曝光機"
+    },
+    {
+     "id": "next",
+     "text": "艾司摩爾"
+    },
+    {
+     "id": "kw",
+     "text": "留言顯影"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "bay",
+      "at": "start-4",
+      "dur": 30
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 30,
+      "x": 8.6,
+      "y": 3.8,
+      "d": 72,
+      "elev": 26
+     }
+    ],
+    "labels": [
+     {
+      "part": "t_scan",
+      "text": "下一集：曝光機",
+      "en": "Next: the scanner",
+      "color": "blue",
+      "at": "scan",
+      "until": "s13:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "trk-next",
+      "at": "start+2",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 930,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：設備五大-1",
+      "t": {
+       "even": {
+        "at": "even"
+       },
+       "acc": {
+        "at": "acc"
+       },
+       "scan": {
+        "at": "scan"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "設備五大-1 ASML",
+     "trail": [
+      "曝光機"
+     ],
+     "comment": "顯影",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

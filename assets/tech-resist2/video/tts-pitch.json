@@ -1,0 +1,55 @@
+{
+ "rule": "f0Median 112–126 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求",
+ "runs": [
+  {
+   "startedAt": "2026-11-25T02:26:33.219513+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-25T02:26:33.219524+00:00",
+     "f0Median": null,
+     "sec": null,
+     "accepted": false,
+     "file": "",
+     "note": "請求失敗：✖ 429 每日額度用完（GenerateRequestsPerDayPerProjectPerModel-FreeTier）；台北 11/25 16:00 重置"
+    }
+   ]
+  },
+  {
+   "startedAt": "2026-11-25T02:43:46.699262+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-25T02:43:46.699270+00:00",
+     "f0Median": 124.4,
+     "sec": 71.45,
+     "accepted": true,
+     "file": "out/tech-resist2-take.orig.wav",
+     "note": "合格"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-resist2-take.orig.wav",
+   "chosenF0": 124.4,
+   "status": "accepted"
+  },
+  {
+   "startedAt": "2026-11-25T07:51:41.824711+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-25T07:51:41.824722+00:00",
+     "f0Median": 118.2,
+     "sec": 71.85,
+     "accepted": true,
+     "file": "out/tech-resist2-take.orig.wav",
+     "note": "合格"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-resist2-take.orig.wav",
+   "chosenF0": 118.2,
+   "status": "accepted"
+  }
+ ]
+}
