@@ -181,7 +181,7 @@ EXPLODE = [mv("pm1Lid", EXP_A, EXP_B, 18, dy=5.0), mv("pm1Coil", add(EXP_A, 6), 
            mv("pm1Pump", add(EXP_A, 24), EXP_B, 18, dy=-1.2),
            hid("pm1Body", add(EXP_A, -2), EXP_B, 14, 0.12)]
 # ═════════ 剖開 ═════════
-CUT = [hid("pm1Pump", "s2:put-34", "s3:start-8", 12), hid("pm1Body", "s2:put-34", "s3:open-6", 12, 0.04), hid("pm1Lid", "s2:put-34", "s3:open-6", 12, 0.0),
+CUT = [hid("pm1Pump", "s2:put-56", "s3:start-8", 12), hid("pm1Body", "s2:put-56", "s3:open-6", 12, 0.04), hid("pm1Lid", "s2:put-56", "s3:open-6", 12, 0.0),
        hid("pm1Body", "s4:start+14", "s7:start-8", 14, 0.08), hid("pm1Lid", "s4:start+14", "s7:start-8", 14, 0.0),
        hid("pm4Body", "s9:start-14", "s10:start-14", 14, 0.12), hid("pm4Lid", "s9:start-14", "s10:start-14", 14, 0.0),
        hid("tcLid", "s2:start-12", "s3:start-6", 12, 0.0), hid("tc", "s2:put-34", "s3:start-2", 12, 0.2), hid("main", "s2:put-34", "s3:start-2", 12, 0.2),
