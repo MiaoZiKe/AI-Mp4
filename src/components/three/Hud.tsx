@@ -1024,7 +1024,7 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
         {(H as any).mark === "ring" ? <g transform={`translate(${L.W - 150} ${L.CAP_TOP + L.CAP_H - 62}) scale(1.6) translate(-50 -50)`} opacity={0.16 * frame}><path d="M74.69 46.09 A25 25 0 1 1 53.91 25.31" fill="none" stroke={H.line} strokeWidth={9} strokeLinecap="round" /><circle cx={67.68} cy={32.32} r={6.6} fill={H.amber} /></g> : null}
       </svg>
       {/* 2026/11/16 tech-offer 美編：飛入的圖層不准壓到出處與頁尾帶（fill 版面裁到片尾卡框下緣 y1 以上） */}
-      {TC ? <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, overflow: "hidden", clipPath: (L as any).FOOT_TOP ? `inset(0 0 ${L.H - y1}px 0)` : undefined }}><g transform={`translate(${L.W / 2} ${cy})`}><LogoAnim name={spec.logoAnim as string} n={n} size={LOGO} /></g></svg>
+      {TC ? <svg width={L.W} height={L.H} style={{ position: "absolute", inset: 0, overflow: "hidden", clipPath: `inset(${L.STAGE_TOP}px 0 ${(L as any).FOOT_TOP ? L.H - y1 : 0}px 0)` }}><g transform={`translate(${L.W / 2} ${cy})`}><LogoAnim name={spec.logoAnim as string} n={n} size={LOGO} /></g></svg>
         : <div style={{ position: "absolute", left: (L.W - LOGO) / 2, top: cy - LOGO / 2, width: LOGO, height: LOGO }}><HudMark size={LOGO} draw={draw} dot={dot} dotS={dotS} ring={ring} /></div>}
       {TC ? <div style={{ position: "absolute", left: 0, right: 0, top: cy + o(210), height: 200, display: "flex", justifyContent: "center", overflow: "hidden", ...zh(148, H.text), letterSpacing: "0.06em" }}>
         {/* 頻道名逐字彈出（鎖定那一幀起每 2 幀一個字）＋一道白光掃過 */}
