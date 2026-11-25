@@ -18,6 +18,7 @@ cd "$(dirname "$0")/../.."
 LO=112; HI=126; BASE=121.5
 V=videos/$SLUG; [ -f $V/script.json ] || { echo "找不到 $V/script.json"; exit 2; }
 PJ=$V/tts-pitch.json
+python3 scripts/three/tts-budget.py || true   # 11-25：配音前先印額度剩幾次
 RAWREL=$(node scripts/tts-take.mjs "$SLUG" --hash) || exit 1
 RAW=public/$RAWREL
 BK=out/old-$SLUG-take; mkdir -p "$BK" out
