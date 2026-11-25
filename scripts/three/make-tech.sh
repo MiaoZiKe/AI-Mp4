@@ -58,15 +58,21 @@ at=None
 for s in sc["scenes"]:
     ec=(s.get("props") or {}).get("endCard")
     if ec and ec.get("at"): at=ec["at"]
-m=re.fullmatch(r"(\w+):(\w+)([+-]\d+)?",at or "")
-if not m: sys.exit("endCard.at 格式看不懂："+str(at))
 fr=None
-for s in sb["scenes"]:
-    if s["id"]==m.group(1):
-        for c in s["cues"]:
-            if c["id"]==m.group(2): fr=c["frame"]
-if fr is None: sys.exit("storyboard 找不到 cue "+at)
-fr+=int(m.group(3) or 0)
+if at is None:  # 2026-11-25 光阻-2：endCard 沒寫 at＝片尾卡從最後一幕（片尾卡那幕）開頭出現
+    ecs=[s["id"] for s in sc["scenes"] if (s.get("props") or {}).get("endCard")]
+    for s in sb["scenes"]:
+        if ecs and s["id"]==ecs[-1]: fr=s["startFrame"]
+    if fr is None: sys.exit("找不到片尾卡那幕")
+else:
+    m=re.fullmatch(r"(\w+):(\w+)([+-]\d+)?",at)
+    if not m: sys.exit("endCard.at 格式看不懂："+str(at))
+    for s in sb["scenes"]:
+        if s["id"]==m.group(1):
+            for c in s["cues"]:
+                if c["id"]==m.group(2): fr=c["frame"]
+    if fr is None: sys.exit("storyboard 找不到 cue "+at)
+    fr+=int(m.group(3) or 0)
 ve=max(s["voice"]["endFrame"] for s in sb["scenes"] if s.get("voice"))
 print(f"{fr/fps:.4f} {ve/fps:.4f} {sb['totalFrames']/fps:.4f}")
 PY
