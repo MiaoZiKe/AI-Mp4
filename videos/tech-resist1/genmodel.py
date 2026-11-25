@@ -212,7 +212,7 @@ def block(P, X, neg):
         vib(f"{P}_jit{c}", f"{P}_c{c}", [f"{P}_bd{c}", f"{P}_pc{c}"], (0, 1, 0), .05, 6)
         if neg: glow(f"{P}_netG{c}", f"{P}_x{c}", [f"{P}_xl{c}"], "net", steady=False, g=.8, freq=1.4)
     air(f"{P}_airL", f"{P}_opt", [X - 6.2, Y_RT, -.2], [X + 6.2, 6.9, 1.4])
-BX, NX = 30, 46
+BX, NX = 30, 43   # 11/25：NX 46→43，兩塊間距 4→1，鏡頭可再放大
 block("p", BX, False); block("n", NX, True)
 anchor("p_resA", "p_c0", [BX - 6 + CW * .5, 3.0, 2.0], dx=-170, dy=-70)
 anchor("p_maskA", "p_mask", [BX + 5.6, 5.4, 2.2], dx=150, dy=-60)
@@ -511,7 +511,7 @@ P["s4"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
  "labels": [lab("p_devA", "顯影液", "Developer", "blue", "dev", "s5:start-4", xy=[RX, LY]), lab("p_resA", "沒照到的留下", "Unexposed stays", "amber", "keep", "s5:start-4", xy=[LX, LY])],
  "overlay": [sec("pr1-pos", "start+5", "s5:start-2", "正型：照到的被洗掉", "Wevolver；USPTO 11016386", {"pos": "pos", "dev": "dev", "wash": "wash", "keep": "keep"})]}
 P["s5"] = {"zoom": [{"to": "film", "at": "start-4", "dur": 1}],
- "shot": [S("start-4", (BX + NX) / 2, 2.4, 95, 20, 30)],   # 11/25 審片必改 3：118→96（主素材放大約 1.2 倍，兩塊仍在畫面內）
+ "shot": [S("start-4", (BX + NX) / 2, 4.4, 87, 14, 30)],   # 11/25 審片必改 3：118→96（主素材放大約 1.2 倍，兩塊仍在畫面內）
  "run": LIGHT("n", "start", "net-10") + [run(f"n_netG{c}", "net", "s6:start", 8) for c in EXP] + [run(f"n_chg{c}", "start+6", "s6:start", 8) for c in EXP] + [run("n_dflow", "net+6", "stay+20", 8)],
  "labels": [lab("p_posA", "正型", "Positive", "blue", "neg", "s6:start-4", xy=[LX, LY]), lab("n_negA", "負型", "Negative", "amber", "neg", "s6:start-4", xy=[RX, LY])],
  "overlay": [sec("pr1-neg", "start+5", "s6:start-2", "正型 vs 負型", "Wevolver；EPFL", {"neg": "neg", "net": "net", "stay": "stay"})]}
