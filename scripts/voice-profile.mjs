@@ -37,7 +37,7 @@ export const DELIVERIES = ["chat", "warm-pro", "probe", "report", "report-lively
  * 整段說明只有一句（和 what-is-server 被接受的 voice.style 同一種寫法：`…說：` 後面直接接念稿），不寫人設、場景、情緒弧線、Avoid。
  * 原因：長篇導演筆記（AUDIO PROFILE＋SCENE＋Arc）會讓 Gemini 2.5 TTS「演」那個角色，短稿尤其明顯——又慢（short-ai 實測 3.3 音節/秒）又怪。
  * persona／scene／tone／arc／avoid 就算寫了也不送；englishTerms 也不送（念法說明放在一句話的提示裡容易被念出來）。 */
-export const REPORT_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，像平常跟人講一件事那樣，正常語速、不拖尾音、不演，直接說：";
+export const REPORT_LINE = "用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，像平常跟人講一件事那樣，正常語速、不拖尾音、不演，直接說：";
 /** "report-lively"＝report 的變體（2026/11/14，使用者聽完 short-ai 第 3 版：「可以，但可以再快那麼一點點，並且有點起伏，依據內容變化」）。
  * 仍然只有一句、沒有人設場景；多了「再快一點點」和「語氣跟著內容起伏」的描述。只描述哪一類句子怎麼講（問句、數字、和預期不一樣的地方、最後一句），
  * 不引用稿子裡的字、不寫成逐句的表演指示。"report" 的輸出不變。 */
