@@ -1,4 +1,5 @@
-# 多台同時分段渲染（2026-11-25）：一支片切成每段 chunk 幀，每段一台 runner 同時渲，最後 concat＋配上成品音軌。
+# 多台同時分段渲染（2026-11-25）：一支片切成每段 chunk 幀的小段，交錯分給 jobs 台 runner（第 k 台渲第 k、k+jobs、k+2·jobs… 段，
+# 重場景平均分散、各台差不多同時完工），最後 concat＋配上成品音軌。
 # 素材先用 bash scripts/three/push-render-assets.sh <slug> <ver> 推到素材分支（預設 renders/series2 的 assets/<slug>/）。
 # 成品：artifact「<slug>.<ver>」＋素材分支的 renders/<slug>.<ver>.mp4。不送 TTS 請求、不用任何金鑰（只用內建 GITHUB_TOKEN）。
 name: render-chunks
@@ -8,7 +9,8 @@ on:
       slug: { description: "片名 slug（例如 tech-mask2）", required: true }
       ver: { description: "版本名（例如 v4）", required: true, default: "v1" }
       asset_branch: { description: "素材分支", required: true, default: "renders/series2" }
-      chunk: { description: "每段幾幀", required: false, default: "120" }
+      chunk: { description: "每小段幾幀（交錯分配）", required: false, default: "40" }
+      jobs: { description: "幾台同時渲（≤16，留 4 個名額給 tw-rotation）", required: false, default: "16" }
       conc: { description: "每台 Chrome 平行數（THREE_CONCURRENCY）", required: false, default: "2" }
       src_ref: { description: "程式碼 commit／分支（空白＝用素材 meta.json 記的 commit）", required: false, default: "" }
 
@@ -40,14 +42,15 @@ jobs:
           set -e
           M=_assets/assets/${{ inputs.slug }}/meta.json
           [ -f "$M" ] || { echo "::error::素材分支 ${{ inputs.asset_branch }} 沒有 assets/${{ inputs.slug }}/meta.json（先跑 push-render-assets.sh）"; exit 1; }
-          python3 - "$M" "${{ inputs.chunk }}" "${{ inputs.src_ref }}" >> "$GITHUB_OUTPUT" <<'PY'
+          python3 - "$M" "${{ inputs.chunk }}" "${{ inputs.src_ref }}" "${{ inputs.jobs }}" >> "$GITHUB_OUTPUT" <<'PY'
           import json, sys
           meta = json.load(open(sys.argv[1])); step = int(sys.argv[2]); n = int(meta["totalFrames"])
           sb = json.load(open(sys.argv[1].replace("meta.json", "video/storyboard.json")))
           assert sb["totalFrames"] == n, "meta.json 與 storyboard.json 幀數不同"
-          segs = [{"a": a, "b": min(a + step - 1, n - 1)} for a in range(0, n, step)]
-          assert len(segs) <= 256, "段數超過 256，把 chunk 調大"
-          print("matrix=" + json.dumps({"include": segs}))
+          segs = [f"{a}-{min(a + step - 1, n - 1)}" for a in range(0, n, step)]
+          J = max(1, min(16, int(sys.argv[4] or 16), len(segs)))
+          jobs = [{"k": k, "ranges": " ".join(segs[k::J])} for k in range(J)]
+          print("matrix=" + json.dumps({"include": jobs}))
           print("src=" + (sys.argv[3] or meta["src"]))
           print(f"n={n}")
           PY
@@ -65,6 +68,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.prepare.outputs.src }}
+      - name: 取 workflow 這一版的工具腳本（render-ranges.mjs，舊 commit 可能沒有）
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: scripts/three
+          path: _tools
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.asset_branch }}
@@ -94,6 +103,20 @@ jobs:
         with:
           path: public/fonts
           key: fonts-${{ hashFiles('scripts/fetch-fonts.mjs', 'package-lock.json') }}
+      # 系統字型：theme 的等寬字 'JetBrains Mono' 與中文後備字是吃系統字型（本機有裝），runner 沒有會換成別的字、畫面對不上
+      - name: 快取系統字型
+        id: sysf
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/fonts
+          key: sysfonts-jbmono-wqy-v1
+      - name: 系統字型（快取沒中才 apt 裝）
+        run: |
+          if [ "${{ steps.sysf.outputs.cache-hit }}" != "true" ]; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-jetbrains-mono fonts-wqy-zenhei >/dev/null
+            mkdir -p ~/.local/share/fonts && cp -r /usr/share/fonts/truetype/jetbrains-mono /usr/share/fonts/truetype/wqy ~/.local/share/fonts/
+          fi
+          fc-cache -f >/dev/null; fc-match "JetBrains Mono"
       - name: Chromium headless shell（和本機同一版 1243）
         run: |
           [ "${{ steps.pw.outputs.cache-hit }}" = "true" ] || npx -y playwright@$PW_VER install --only-shell chromium
@@ -115,15 +138,15 @@ jobs:
           fi
           cp $D/video/*.json videos/$S/   # 時間軸／script／model 以快照為準（genmodel 之後再蓋一次）
           ls public/tex/brand 2>/dev/null | head -30 || true
-      - name: 渲染第 ${{ matrix.a }}–${{ matrix.b }} 幀
+      - name: 渲染 ${{ matrix.ranges }}
         run: |
-          mkdir -p out/chunks
+          cp _tools/scripts/three/render-ranges.mjs scripts/three/
           T0=$(date +%s)
-          THREE_CONCURRENCY=${{ inputs.conc }} RENDER_TIMEOUT_MS=180000 node scripts/three/render-range.mjs ${{ inputs.slug }} ${{ matrix.a }} ${{ matrix.b }} out/chunks/c$(printf %05d ${{ matrix.a }}).mp4
-          echo "渲染 $(( $(date +%s)-T0 )) 秒（$(nproc) 核）"
+          THREE_CONCURRENCY=${{ inputs.conc }} RENDER_TIMEOUT_MS=180000 node scripts/three/render-ranges.mjs ${{ inputs.slug }} out/chunks ${{ matrix.ranges }}
+          echo "渲染共 $(( $(date +%s)-T0 )) 秒（$(nproc) 核）"
       - uses: actions/upload-artifact@v4
         with:
-          name: chunk-${{ matrix.a }}
+          name: chunk-${{ matrix.k }}
           path: out/chunks/*.mp4
           retention-days: 3
           compression-level: 0
