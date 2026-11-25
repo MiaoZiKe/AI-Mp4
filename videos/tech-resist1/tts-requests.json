@@ -35,5 +35,32 @@
   "status": 429,
   "error": "You exceeded your current quota（免費額度用完；tts-pitch-take.sh 第 1 次，TTS_NO_RETRY=1 不重試）",
   "note": "這筆是事後補記：原紀錄被誤還原，內容依 out/tech-resist1-pitch-take-1.log"
+ },
+ {
+  "at": "2026-11-25T02:22:26.814Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 338,
+   "candidatesTokenCount": 1809,
+   "totalTokenCount": 2147,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 338
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1809
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
