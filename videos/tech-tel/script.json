@@ -102,24 +102,24 @@
       "at": "start-30",
       "dur": 1,
       "x": 31,
-      "y": 5.0,
-      "d": 34,
-      "elev": 30
+      "y": 5.4,
+      "d": 40,
+      "elev": 28
      },
      {
       "at": "start",
       "dur": 120,
       "x": 31,
-      "y": 4.7,
-      "d": 32,
-      "elev": 30
+      "y": 5.2,
+      "d": 38,
+      "elev": 28
      }
     ],
     "shift": [
      {
       "layer": "lae",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -145,22 +145,43 @@
       "dur": 10
      },
      {
+      "layer": "upper",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "upper",
+      "at": "s3:start-20",
+      "until": "s11:start-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "upper",
+      "at": "s12:start-20",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "heatL",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "heatL",
       "at": "s4:start-20",
-      "until": "s5:start-2",
+      "until": "s6:start-2",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "heatL",
-      "at": "s8:start-20",
+      "at": "s7:start-20",
       "until": "s9:start-2",
       "opacity": 0,
       "dur": 10
@@ -182,20 +203,13 @@
      {
       "layer": "heatR",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "heatR",
       "at": "s4:start-20",
-      "until": "s5:start-2",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "heatR",
-      "at": "s6:start-20",
       "until": "s11:start-2",
       "opacity": 0,
       "dur": 10
@@ -210,20 +224,20 @@
      {
       "layer": "heatTop",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "heatTop",
       "at": "s4:start-20",
-      "until": "s5:start-2",
+      "until": "s6:start-2",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "heatTop",
-      "at": "s8:start-20",
+      "at": "s7:start-20",
       "until": "s9:start-2",
       "opacity": 0,
       "dur": 10
@@ -245,7 +259,7 @@
      {
       "layer": "otube",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -280,7 +294,7 @@
      {
       "layer": "itube",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -315,7 +329,7 @@
      {
       "layer": "mani",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -350,7 +364,7 @@
      {
       "layer": "shut",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -378,7 +392,7 @@
      {
       "layer": "boat",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -406,7 +420,7 @@
      {
       "layer": "bgap",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -434,7 +448,7 @@
      {
       "layer": "cap",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -469,7 +483,7 @@
      {
       "layer": "elevCol",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -497,7 +511,7 @@
      {
       "layer": "elev",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -525,7 +539,7 @@
      {
       "layer": "fop",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -553,7 +567,7 @@
      {
       "layer": "foup",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -581,7 +595,7 @@
      {
       "layer": "wf5",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -609,7 +623,7 @@
      {
       "layer": "stock",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -630,7 +644,7 @@
      {
       "layer": "rbCol",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -658,7 +672,7 @@
      {
       "layer": "rb",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -686,7 +700,7 @@
      {
       "layer": "gas",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -707,7 +721,7 @@
      {
       "layer": "exh",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -728,7 +742,7 @@
      {
       "layer": "ctrl",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -749,7 +763,7 @@
      {
       "layer": "sign",
       "at": "s1:start-40",
-      "until": "s2:start-2",
+      "until": "s2:start+6",
       "opacity": 0,
       "dur": 10
      },
@@ -985,74 +999,158 @@
       "dur": 10
      },
      {
-      "layer": "rs0",
-      "at": "s1:start-40",
-      "until": "s1:start+0",
+      "layer": "rsT",
+      "at": "s2:start-20",
+      "until": "s10:start-2",
       "opacity": 0,
-      "dur": 8
+      "dur": 10
+     },
+     {
+      "layer": "rsT",
+      "at": "s11:start-20",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "rsB",
+      "at": "s2:start-20",
+      "until": "s10:start-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "rsB",
+      "at": "s11:start-20",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
      },
      {
       "layer": "rs0",
-      "at": "s9:start",
-      "until": "s10:drop+10",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "rs1",
       "at": "s1:start-40",
-      "until": "s1:start+14",
+      "until": "s1:start+20",
       "opacity": 0,
       "dur": 8
+     },
+     {
+      "layer": "rs0",
+      "at": "s1:nine",
+      "until": "s10:spin+6",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs0",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
      },
      {
       "layer": "rs1",
-      "at": "s9:start",
-      "until": "s10:drop+22",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "rs2",
       "at": "s1:start-40",
       "until": "s1:start+28",
       "opacity": 0,
       "dur": 8
      },
      {
+      "layer": "rs1",
+      "at": "s1:nine",
+      "until": "s10:spin+14",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs1",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
       "layer": "rs2",
-      "at": "s9:start",
-      "until": "s10:drop+34",
+      "at": "s1:start-40",
+      "until": "s1:start+36",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rs2",
+      "at": "s1:nine",
+      "until": "s10:spin+22",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs2",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs3",
+      "at": "s1:start-40",
+      "until": "s1:start+44",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rs3",
-      "at": "s1:start-40",
-      "until": "s1:start+42",
+      "at": "s1:nine",
+      "until": "s10:spin+30",
       "opacity": 0,
-      "dur": 8
+      "dur": 20
      },
      {
       "layer": "rs3",
-      "at": "s9:start",
-      "until": "s10:drop+46",
+      "at": "s10:thin",
+      "until": "s13:start+400",
       "opacity": 0,
-      "dur": 8
+      "dur": 20
      },
      {
       "layer": "rs4",
       "at": "s1:start-40",
-      "until": "s1:start+56",
+      "until": "s1:nine-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs4",
+      "at": "s2:start-20",
+      "until": "s10:thin-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rsT",
+      "at": "s1:start+30",
+      "until": "s10:drop-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "rsT",
+      "at": "s10:spin+6",
+      "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "rs4",
-      "at": "s9:start",
-      "until": "s10:drop+58",
+      "layer": "rsB",
+      "at": "s1:start+40",
+      "until": "s10:drop+2",
       "opacity": 0,
       "dur": 8
+     },
+     {
+      "layer": "rsB",
+      "at": "s10:spin+14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 12
      },
      {
       "layer": "fl0",
@@ -1113,28 +1211,28 @@
      {
       "layer": "heatTop",
       "at": "s3:open-4",
-      "until": "s3:back",
+      "until": "s3:cap+2",
       "dur": 18,
       "dy": 11.6
      },
      {
       "layer": "heatL",
       "at": "s3:open+2",
-      "until": "s3:back",
+      "until": "s3:cap+2",
       "dur": 18,
       "dx": -6.5
      },
      {
       "layer": "heatR",
       "at": "s3:open+2",
-      "until": "s3:back",
+      "until": "s3:cap+2",
       "dur": 18,
       "dx": 6.5
      },
      {
       "layer": "otube",
       "at": "s3:open+8",
-      "until": "s3:back",
+      "until": "s3:cap+2",
       "dur": 18,
       "dy": 11.2
      },
@@ -1281,12 +1379,6 @@
       "until": "s2:start"
      },
      {
-      "id": "drop",
-      "at": "start-30",
-      "ramp": 4,
-      "until": "start+40"
-     },
-     {
       "id": "fling0",
       "at": "start+10",
       "ramp": 6,
@@ -1327,16 +1419,6 @@
       "at": "start-30",
       "ramp": 1,
       "until": "s13:start+400"
-     }
-    ],
-    "labels": [
-     {
-      "part": "coat",
-      "text": "塗佈杯（旋轉塗佈）",
-      "en": "Spin coater cup",
-      "color": "blue",
-      "at": "who",
-      "until": "tel-4"
      }
     ],
     "overlay": [
@@ -1414,8 +1496,8 @@
     ],
     "shot": [
      {
-      "at": "start-20",
-      "dur": 20,
+      "at": "start-14",
+      "dur": 16,
       "x": 2.35,
       "y": 8.3,
       "d": 126,
@@ -1441,9 +1523,9 @@
       "until": "heat-2"
      },
      {
-      "part": "heat",
-      "text": "加熱器",
-      "en": "Heater",
+      "part": "upper",
+      "text": "爐管裝在上半部機殼裡",
+      "en": "Furnace inside upper cabinet",
       "color": "blue",
       "at": "heat",
       "until": "s3:start-20"
@@ -1538,8 +1620,8 @@
     "labels": [
      {
       "part": "heat",
-      "text": "加熱器（左右兩半）",
-      "en": "Heater",
+      "text": "加熱器（剖開示意）",
+      "en": "Heater (cutaway)",
       "color": "amber",
       "at": "heat-4",
       "until": "tube-6"
@@ -1566,7 +1648,7 @@
       "en": "Pedestal & seal cap",
       "color": "blue",
       "at": "cap-4",
-      "until": "back+30"
+      "until": "back+28"
      }
     ],
     "overlay": [
@@ -1602,7 +1684,7 @@
      }
     ]
    },
-   "durationSec": 8.3,
+   "durationSec": 9.0,
    "pauseAfter": 0.6
   },
   {
@@ -1650,6 +1732,14 @@
       "y": 3.4,
       "d": 61,
       "elev": 16
+     },
+     {
+      "at": "five-8",
+      "dur": 20,
+      "x": 6.95,
+      "y": 6.2,
+      "d": 57,
+      "elev": 14
      }
     ],
     "labels": [
@@ -1745,8 +1835,8 @@
       "at": "start-20",
       "dur": 20,
       "x": 0.0,
-      "y": 8.3,
-      "d": 126,
+      "y": 9.5,
+      "d": 100,
       "elev": 10
      }
     ],
@@ -1841,7 +1931,8 @@
       "x": 0.0,
       "y": 16.4,
       "d": 75,
-      "elev": 8
+      "elev": 8,
+      "yaw": -0.5
      }
     ],
     "run": [
@@ -1885,31 +1976,37 @@
       "id": "tubeWarm",
       "at": "out+6",
       "ramp": 14,
-      "until": "s10:start"
+      "until": "s7:start-20"
      },
      {
       "id": "heatIn0",
       "at": "out-4",
       "ramp": 8,
-      "until": "s8:start"
+      "until": "s7:start-20"
      },
      {
       "id": "heatIn1",
       "at": "out-4",
       "ramp": 8,
-      "until": "s8:start"
+      "until": "s7:start-20"
      },
      {
       "id": "heatIn2",
       "at": "out-4",
       "ramp": 8,
-      "until": "s8:start"
+      "until": "s7:start-20"
+     },
+     {
+      "id": "edgeWarm",
+      "at": "wafer-4",
+      "ramp": 10,
+      "until": "s7:start-20"
      },
      {
       "id": "waferWarm",
-      "at": "wafer-2",
-      "ramp": 14,
-      "until": "s10:start"
+      "at": "wafer+14",
+      "ramp": 20,
+      "until": "s7:start-20"
      }
     ],
     "labels": [
@@ -1985,7 +2082,7 @@
     },
     {
      "id": "down",
-     "text": "往下抽走"
+     "text": "夾縫"
     }
    ],
    "component": "ThreeScene",
@@ -1997,10 +2094,19 @@
      {
       "at": "start-20",
       "dur": 20,
+      "x": -0.28,
+      "y": 17.2,
+      "d": 46,
+      "elev": 5,
+      "yaw": 0.5
+     },
+     {
+      "at": "down-12",
+      "dur": 20,
       "x": 0.0,
-      "y": 16.4,
-      "d": 75,
-      "elev": 8
+      "y": 16.8,
+      "d": 62,
+      "elev": 7
      }
     ],
     "run": [
@@ -2197,15 +2303,15 @@
    "id": "s9",
    "beat": "twist",
    "para": 9,
-   "narration": "一次上百片很有效率；但一爐出問題，受影響的就是整舟。",
-   "tts": "一次上百片很有效率；但一爐出問題，受影響的就是整舟。",
+   "narration": "一次上百片很有效率；但一爐出問題，受影響的就是整批晶圓。",
+   "tts": "一次上百片很有效率；但一爐出問題，受影響的就是整批晶圓。",
    "subtitle": {
-    "zh": "一次上百片很有效率\n但一爐出問題\n受影響的就是整舟",
+    "zh": "一次上百片很有效率\n但一爐出問題\n受影響的就是整批晶圓",
     "en": "A hundred at once is efficient, | but if one run goes wrong, | the whole boat is affected."
    },
    "keywords": [
     "有效率",
-    "整舟"
+    "整批"
    ],
    "cues": [
     {
@@ -2218,7 +2324,7 @@
     },
     {
      "id": "boat",
-     "text": "整舟"
+     "text": "整批晶圓"
     }
    ],
    "component": "ThreeScene",
@@ -2234,13 +2340,13 @@
       "y": 16.4,
       "d": 75,
       "elev": 8,
-      "yaw": -0.35
+      "yaw": -0.85
      }
     ],
     "labels": [
      {
       "part": "waferHot",
-      "text": "整舟一起處理",
+      "text": "整批一起處理",
       "en": "One batch",
       "color": "amber",
       "at": "eff",
@@ -2274,7 +2380,7 @@
      }
     ]
    },
-   "durationSec": 4.6,
+   "durationSec": 5.0,
    "pauseAfter": 0.6
   },
   {
@@ -2319,53 +2425,47 @@
       "at": "start-20",
       "dur": 20,
       "x": 31,
-      "y": 4.7,
-      "d": 32,
-      "elev": 30,
-      "yaw": 0.35
+      "y": 5.2,
+      "d": 38,
+      "elev": 28,
+      "yaw": 0.85
      }
     ],
     "run": [
      {
       "id": "spin",
       "at": "spin-4",
-      "ramp": 14,
+      "ramp": 60,
       "until": "s11:start"
      },
      {
-      "id": "drop",
-      "at": "drop-4",
-      "ramp": 4,
-      "until": "spin+8"
-     },
-     {
       "id": "fling0",
-      "at": "spin+10",
-      "ramp": 6,
+      "at": "spin+16",
+      "ramp": 10,
       "until": "s11:start"
      },
      {
       "id": "fling1",
-      "at": "spin+10",
-      "ramp": 6,
+      "at": "spin+16",
+      "ramp": 10,
       "until": "s11:start"
      },
      {
       "id": "fling2",
-      "at": "spin+10",
-      "ramp": 6,
+      "at": "spin+16",
+      "ramp": 10,
       "until": "s11:start"
      },
      {
       "id": "fling3",
-      "at": "spin+10",
-      "ramp": 6,
+      "at": "spin+16",
+      "ramp": 10,
       "until": "s11:start"
      },
      {
       "id": "fling4",
-      "at": "spin+10",
-      "ramp": 6,
+      "at": "spin+16",
+      "ramp": 10,
       "until": "s11:start"
      }
     ],
@@ -2384,7 +2484,7 @@
       "en": "Excess flung off",
       "color": "blue",
       "at": "spin+4",
-      "until": "s11:start-20"
+      "until": "s11:start-26"
      }
     ],
     "overlay": [
@@ -2424,11 +2524,11 @@
    "id": "s11",
    "beat": "payoff",
    "para": 11,
-   "narration": "東京威力是日本公司，蝕刻做到零下七十度；台南營運中心，零件就近維修。",
-   "tts": "東京威力是日本公司，蝕刻做到零下七十度；台南營運中心，零件就近維修。",
+   "narration": "東京威力是日本公司，它發表的蝕刻做到零下七十度；台南營運中心，零件就近維修。",
+   "tts": "東京威力是日本公司，它發表的蝕刻做到零下七十度；台南營運中心，零件就近維修。",
    "subtitle": {
-    "zh": "東京威力是日本公司\n蝕刻做到零下七十度\n台南營運中心\n零件就近維修",
-    "en": "Tokyo Electron is a Japanese company; | its etch runs at minus 70 °C. | Its Tainan operation center | repairs parts locally."
+    "zh": "東京威力是日本公司\n它發表的蝕刻做到零下七十度\n台南營運中心\n零件就近維修",
+    "en": "Tokyo Electron is a Japanese company; | its published etch runs at minus 70 °C. | Its Tainan operation center | repairs parts locally."
    },
    "keywords": [
     "日本",
@@ -2509,7 +2609,7 @@
      }
     ]
    },
-   "durationSec": 6.1,
+   "durationSec": 7.0,
    "pauseAfter": 0.6
   },
   {

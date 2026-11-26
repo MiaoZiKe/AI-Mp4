@@ -255,7 +255,7 @@ const Batch: React.FC<P> = ({ o, f, k }) => {
         <line x1={280} y1={CT + 120} x2={400} y2={CT + 120} stroke={WAF_D} strokeWidth={5} />
         <text x={290} y={CT + 248} style={zh(30, H.text, 900)}>單片</text>
         <Sep x={470} />
-        <Rows items={[["一次上百片，效率高", OK, ef * (1 - 0.6 * bd)], ["但一爐出問題", RED, bd * (1 - 0.6 * bt)], ["整舟一起受影響", RED, bt]]} y0={CT + 64} dy={70} />
+        <Rows items={[["一次上百片，效率高", OK, ef * (1 - 0.6 * bd)], ["但一爐出問題", RED, bd * (1 - 0.6 * bt)], ["整批晶圓一起受影響", RED, bt]]} y0={CT + 64} dy={70} />
       </svg>
     </Card>
   );
