@@ -1,0 +1,11962 @@
+{
+ "name": "示意 光學缺陷檢測機＋量測站（tech-kla）：前端搬運區（裝載埠、晶圓盒、大氣 SCARA 手臂、預對準器、風扇過濾機組）、主機（氣墊隔振腳、花崗岩基座、X／Z 雙軸晶圓台、真空吸盤與升降銷、橋式橫梁、光學頭、物鏡、TDI 偵測器、寬頻電漿光源（雷射＋燈泡＋反射鏡）、濾片轉盤、照明管、暗場斜射臂、吸光擋板）、影像運算櫃、後勤櫃、燈塔、觸控螢幕；量測站（成像疊對、橢圓偏光）。外形與比例是示意，不仿特定機型。由 gen-model.mjs 產生，不要手改",
+ "unit": "示意（1＝10 cm；晶圓直徑 300 mm）",
+ "size": {
+  "w": 40,
+  "h": 18,
+  "r": 0.6,
+  "t": 30
+ },
+ "palette": {
+  "floorC": "#C9D2DE",
+  "panel": "#F3F5F8",
+  "panel2": "#E2E8F0",
+  "seam": "#8E9BB0",
+  "band": "#24324C",
+  "steel": "#7D8CA6",
+  "steel2": "#A9B5C7",
+  "dark": "#3E4A60",
+  "stage": "#8FA3C4",
+  "glassC": "#BFD3F2",
+  "granite": "#4A4F58",
+  "graniteL": "#6B717B",
+  "waferC": "#5F7FB8",
+  "dieC": "#7FA4E0",
+  "foupC": "#E8E2D4",
+  "lampY": "#F2B632",
+  "lampG": "#2FBF71",
+  "lampR": "#E5484D",
+  "screen": "#5B8DEF",
+  "pipeB": "#3E7BD6",
+  "pipeR": "#D9534F",
+  "rubber": "#2B2F36",
+  "bulb": "#F4F0FF",
+  "plasma": "#B9A8FF",
+  "laser": "#FF3B3B",
+  "light": "#9FD8FF",
+  "lightW": "#E8F4FF",
+  "lightR": "#7EE0C8",
+  "scanC": "#4FA3FF",
+  "pcbC": "#1F6B45",
+  "chipC": "#1C1F26",
+  "traceC": "#C9A24A",
+  "connC": "#2A2D33",
+  "ribbonC": "#B8BEC8",
+  "estop": "#D93A2B",
+  "knurl": "#5C6678",
+  "dfc": "#FFC857",
+  "defect": "#FF5A36",
+  "filtU": "#7B61FF",
+  "filtB": "#3E8EF7",
+  "filtG": "#2FBF71",
+  "filtV": "#C084FC",
+  "gold": "#C9A24A",
+  "filmC": "#2BA39A",
+  "markA": "#E8613C",
+  "markB": "#2A7F8F"
+ },
+ "materials": {
+  "floor": {
+   "kind": "std",
+   "color": "floorC",
+   "rough": 0.7,
+   "metal": 0.3,
+   "tex": "brushed",
+   "texScale": 3
+  },
+  "panel": {
+   "kind": "std",
+   "color": "panel",
+   "rough": 0.55,
+   "metal": 0.05,
+   "env": 0.25
+  },
+  "panel2": {
+   "kind": "std",
+   "color": "panel2",
+   "rough": 0.6,
+   "metal": 0.05,
+   "env": 0.2
+  },
+  "seam": {
+   "kind": "std",
+   "color": "seam",
+   "rough": 0.6,
+   "metal": 0.3
+  },
+  "band": {
+   "kind": "std",
+   "color": "band",
+   "rough": 0.4,
+   "metal": 0.3,
+   "env": 0.4
+  },
+  "steel": {
+   "kind": "std",
+   "color": "steel",
+   "rough": 0.35,
+   "metal": 0.85,
+   "env": 0.5
+  },
+  "steel2": {
+   "kind": "std",
+   "color": "steel2",
+   "rough": 0.3,
+   "metal": 0.8,
+   "env": 0.6,
+   "tex": "brushed",
+   "texScale": 2
+  },
+  "dark": {
+   "kind": "std",
+   "color": "dark",
+   "rough": 0.5,
+   "metal": 0.4,
+   "env": 0.3
+  },
+  "stage": {
+   "kind": "std",
+   "color": "stage",
+   "rough": 0.45,
+   "metal": 0.5,
+   "tex": "brushed",
+   "texScale": 2.2,
+   "env": 0.4
+  },
+  "granite": {
+   "kind": "std",
+   "color": "granite",
+   "rough": 0.85,
+   "metal": 0.05,
+   "tex": "brushed",
+   "texScale": 5
+  },
+  "graniteL": {
+   "kind": "std",
+   "color": "graniteL",
+   "rough": 0.8,
+   "metal": 0.05
+  },
+  "window": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.45,
+   "env": 0.6
+  },
+  "lens": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.02,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.7,
+   "env": 0.9
+  },
+  "wafer": {
+   "kind": "phys",
+   "color": "waferC",
+   "rough": 0.15,
+   "metal": 0.6,
+   "clearcoat": 0.9,
+   "env": 0.9
+  },
+  "dieM": {
+   "kind": "std",
+   "color": "dieC",
+   "rough": 0.25,
+   "metal": 0.5,
+   "env": 0.8
+  },
+  "foup": {
+   "kind": "phys",
+   "color": "foupC",
+   "rough": 0.35,
+   "metal": 0,
+   "clearcoat": 0.4,
+   "env": 0.3
+  },
+  "foupDoor": {
+   "kind": "std",
+   "color": "panel2",
+   "rough": 0.5,
+   "metal": 0
+  },
+  "lampY": {
+   "kind": "std",
+   "color": "lampY",
+   "emissive": "lampY",
+   "ei": 0.4,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "lampG": {
+   "kind": "std",
+   "color": "lampG",
+   "emissive": "lampG",
+   "ei": 0.35,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "lampR": {
+   "kind": "std",
+   "color": "lampR",
+   "emissive": "lampR",
+   "ei": 0.2,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "screen": {
+   "kind": "std",
+   "color": "screen",
+   "emissive": "screen",
+   "ei": 0.5,
+   "rough": 0.3,
+   "metal": 0
+  },
+  "pipeB": {
+   "kind": "std",
+   "color": "pipeB",
+   "rough": 0.35,
+   "metal": 0.6,
+   "env": 0.4
+  },
+  "pipeR": {
+   "kind": "std",
+   "color": "pipeR",
+   "rough": 0.35,
+   "metal": 0.6,
+   "env": 0.4
+  },
+  "rubber": {
+   "kind": "std",
+   "color": "rubber",
+   "rough": 0.9,
+   "metal": 0
+  },
+  "gold": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.3,
+   "metal": 0.9,
+   "env": 0.8
+  },
+  "bulb": {
+   "kind": "std",
+   "color": "bulb",
+   "emissive": "bulb",
+   "ei": 1,
+   "opacity": 0.95,
+   "rough": 1,
+   "metal": 0
+  },
+  "plasma": {
+   "kind": "std",
+   "color": "plasma",
+   "emissive": "plasma",
+   "ei": 1,
+   "opacity": 0.55,
+   "rough": 1,
+   "metal": 0
+  },
+  "laserM": {
+   "kind": "std",
+   "color": "laser",
+   "emissive": "laser",
+   "ei": 1,
+   "opacity": 0.9,
+   "rough": 1,
+   "metal": 0
+  },
+  "beam": {
+   "kind": "std",
+   "color": "light",
+   "emissive": "light",
+   "ei": 1,
+   "opacity": 0.34,
+   "rough": 1,
+   "metal": 0
+  },
+  "beamCore": {
+   "kind": "std",
+   "color": "lightW",
+   "emissive": "lightW",
+   "ei": 1,
+   "opacity": 0.6,
+   "rough": 1,
+   "metal": 0
+  },
+  "beamRet": {
+   "kind": "std",
+   "color": "lightR",
+   "emissive": "lightR",
+   "ei": 1,
+   "opacity": 0.5,
+   "rough": 1,
+   "metal": 0
+  },
+  "beamDF": {
+   "kind": "std",
+   "color": "dfc",
+   "emissive": "dfc",
+   "ei": 1,
+   "opacity": 0.45,
+   "rough": 1,
+   "metal": 0
+  },
+  "beamDFc": {
+   "kind": "std",
+   "color": "dfc",
+   "emissive": "dfc",
+   "ei": 1,
+   "opacity": 0.2,
+   "rough": 1,
+   "metal": 0
+  },
+  "spot": {
+   "kind": "std",
+   "color": "lightW",
+   "emissive": "lightW",
+   "ei": 1,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "defect": {
+   "kind": "std",
+   "color": "defect",
+   "emissive": "defect",
+   "ei": 0.8,
+   "rough": 0.5,
+   "metal": 0
+  },
+  "defRing": {
+   "kind": "std",
+   "color": "defect",
+   "emissive": "defect",
+   "ei": 1,
+   "opacity": 0.7,
+   "rough": 1,
+   "metal": 0
+  },
+  "filtU": {
+   "kind": "std",
+   "color": "filtU",
+   "emissive": "filtU",
+   "ei": 0.5,
+   "opacity": 0.75,
+   "rough": 1,
+   "metal": 0
+  },
+  "filtB": {
+   "kind": "std",
+   "color": "filtB",
+   "emissive": "filtB",
+   "ei": 0.5,
+   "opacity": 0.75,
+   "rough": 1,
+   "metal": 0
+  },
+  "filtG": {
+   "kind": "std",
+   "color": "filtG",
+   "emissive": "filtG",
+   "ei": 0.5,
+   "opacity": 0.75,
+   "rough": 1,
+   "metal": 0
+  },
+  "filtV": {
+   "kind": "std",
+   "color": "filtV",
+   "emissive": "filtV",
+   "ei": 0.5,
+   "opacity": 0.75,
+   "rough": 1,
+   "metal": 0
+  },
+  "film": {
+   "kind": "std",
+   "color": "filmC",
+   "rough": 0.3,
+   "metal": 0.3,
+   "env": 0.6,
+   "opacity": 0.85
+  },
+  "markA": {
+   "kind": "std",
+   "color": "markA",
+   "rough": 0.4,
+   "metal": 0
+  },
+  "markB": {
+   "kind": "std",
+   "color": "markB",
+   "rough": 0.4,
+   "metal": 0
+  },
+  "dieHi": {
+   "kind": "std",
+   "color": "lightR",
+   "emissive": "lightR",
+   "ei": 1,
+   "opacity": 0.55,
+   "rough": 1,
+   "metal": 0
+  },
+  "scanBand": {
+   "kind": "std",
+   "color": "dfc",
+   "emissive": "dfc",
+   "ei": 0.8,
+   "opacity": 0.62,
+   "rough": 1,
+   "metal": 0
+  },
+  "pcb": {
+   "kind": "std",
+   "color": "pcbC",
+   "rough": 0.5,
+   "metal": 0.1
+  },
+  "chip": {
+   "kind": "std",
+   "color": "chipC",
+   "rough": 0.35,
+   "metal": 0.2,
+   "env": 0.4
+  },
+  "trace": {
+   "kind": "std",
+   "color": "traceC",
+   "rough": 0.3,
+   "metal": 0.9,
+   "env": 0.6
+  },
+  "conn": {
+   "kind": "std",
+   "color": "connC",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "ribbon": {
+   "kind": "std",
+   "color": "ribbonC",
+   "rough": 0.7,
+   "metal": 0
+  },
+  "estop": {
+   "kind": "std",
+   "color": "estop",
+   "rough": 0.4,
+   "metal": 0,
+   "emissive": "estop",
+   "ei": 0.15
+  },
+  "knurl": {
+   "kind": "std",
+   "color": "knurl",
+   "rough": 0.4,
+   "metal": 0.8,
+   "env": 0.5
+  },
+  "glassDoor": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.28,
+   "env": 0.6
+  },
+  "ffuAir": {
+   "kind": "std",
+   "color": "light",
+   "emissive": "light",
+   "ei": 1,
+   "opacity": 0.5,
+   "rough": 1,
+   "metal": 0
+  },
+  "t_kla": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-kla.png"
+  },
+  "t_us": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-US.png"
+  }
+ },
+ "partNames": {
+  "src": "寬頻電漿光源",
+  "head": "光學頭",
+  "obj": "物鏡",
+  "stage": "晶圓台",
+  "pc": "影像運算櫃",
+  "efem": "前端搬運區",
+  "met": "量測站"
+ },
+ "layers": [
+  {
+   "id": "floor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    80,
+    2,
+    6,
+    -0.3
+   ],
+   "bg": true
+  },
+  {
+   "id": "efem",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    17.5,
+    -10.5,
+    8.75
+   ]
+  },
+  {
+   "id": "efemFront",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    17.5,
+    -10.5,
+    8.75
+   ]
+  },
+  {
+   "id": "ffu",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    1,
+    -10.5,
+    17.9
+   ]
+  },
+  {
+   "id": "lp1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    7,
+    -15.5,
+    3.5
+   ]
+  },
+  {
+   "id": "foup1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    4,
+    -15.85,
+    8.4
+   ]
+  },
+  {
+   "id": "foup1Door",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    4,
+    -14.1,
+    8.4
+   ]
+  },
+  {
+   "id": "lp2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    7,
+    -15.5,
+    3.5
+   ]
+  },
+  {
+   "id": "foup2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    4,
+    -15.85,
+    8.4
+   ]
+  },
+  {
+   "id": "foup2Door",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    4,
+    -14.1,
+    8.4
+   ]
+  },
+  {
+   "id": "aligner",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    8.4,
+    -10.5,
+    4.2
+   ]
+  },
+  {
+   "id": "ar",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    8.5,
+    -8.3,
+    4.3
+   ]
+  },
+  {
+   "id": "wfA",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    0.3,
+    -15.85,
+    8.45
+   ]
+  },
+  {
+   "id": "wfR",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    0.3,
+    -10.5,
+    8.45
+   ]
+  },
+  {
+   "id": "wfB",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    0.3,
+    -10.5,
+    8.45
+   ]
+  },
+  {
+   "id": "wfS",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    0.3,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "shell",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    18,
+    17.5,
+    2,
+    8.75
+   ]
+  },
+  {
+   "id": "roof",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    18,
+    1,
+    2,
+    17.8
+   ]
+  },
+  {
+   "id": "front",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    18,
+    17.5,
+    2,
+    8.75
+   ]
+  },
+  {
+   "id": "ui",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    9.5,
+    12
+   ]
+  },
+  {
+   "id": "tower",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    3,
+    10,
+    19
+   ]
+  },
+  {
+   "id": "iso",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    16,
+    4.6,
+    2,
+    2.3
+   ]
+  },
+  {
+   "id": "granite",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    15.4,
+    1.6,
+    2,
+    5.1
+   ]
+  },
+  {
+   "id": "stX",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.6,
+    0.8,
+    2,
+    6.5
+   ]
+  },
+  {
+   "id": "stZ",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.4,
+    0.6,
+    2,
+    7.2
+   ]
+  },
+  {
+   "id": "chuck",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.4,
+    0.7,
+    2,
+    7.9
+   ]
+  },
+  {
+   "id": "pins",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2.4,
+    0.6,
+    2,
+    8.1
+   ]
+  },
+  {
+   "id": "bridge",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    8.4,
+    2,
+    9.8
+   ]
+  },
+  {
+   "id": "bridgeF",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    8,
+    2,
+    9.7
+   ]
+  },
+  {
+   "id": "head",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    1.8,
+    2,
+    11.7
+   ]
+  },
+  {
+   "id": "obj",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1.4,
+    2.2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "det",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2.4,
+    2.4,
+    2,
+    14.6
+   ]
+  },
+  {
+   "id": "srcHouse",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    3.4,
+    -3.4,
+    11.8
+   ]
+  },
+  {
+   "id": "src",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    3,
+    -3.4,
+    11.8
+   ]
+  },
+  {
+   "id": "fw",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    0.4,
+    2,
+    -1.2,
+    11.8
+   ]
+  },
+  {
+   "id": "illum",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    0.8,
+    -0.2,
+    11.8
+   ]
+  },
+  {
+   "id": "dfArm",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2.6,
+    1.2,
+    0.3999999999999999,
+    9.7
+   ]
+  },
+  {
+   "id": "dump",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.8,
+    4,
+    9.4
+   ]
+  },
+  {
+   "id": "lMain",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lBF",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lRet",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lDF",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lSpec",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lDFc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "lSpot",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    2,
+    10
+   ]
+  },
+  {
+   "id": "util",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    9,
+    6,
+    4.5
+   ]
+  },
+  {
+   "id": "pc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4.5,
+    15,
+    14,
+    7.5
+   ]
+  },
+  {
+   "id": "sign",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    1.4,
+    2,
+    15.4
+   ]
+  },
+  {
+   "id": "met",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    10,
+    9,
+    25,
+    4.5
+   ]
+  },
+  {
+   "id": "metOvl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    5,
+    23.6,
+    11
+   ]
+  },
+  {
+   "id": "metEll",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    26.2,
+    10
+   ]
+  },
+  {
+   "id": "wM",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    0.5,
+    25,
+    8.45
+   ]
+  },
+  {
+   "id": "lOvl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    2,
+    24,
+    9
+   ]
+  },
+  {
+   "id": "lEllIn",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    2,
+    26,
+    9
+   ]
+  },
+  {
+   "id": "lEllOut",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    2,
+    26,
+    9
+   ]
+  },
+  {
+   "id": "metLbl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    1,
+    25,
+    7
+   ]
+  },
+  {
+   "id": "sc0_0",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc0_1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc0_2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc0_3",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc1_0",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc1_1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc1_2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc1_3",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc2_0",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc2_1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc2_2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "sc2_3",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    2,
+    8.45
+   ]
+  },
+  {
+   "id": "ovlTop",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    0.1,
+    24.4,
+    8.45
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "floor",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    80,
+    0.5,
+    40
+   ],
+   "r": 0.2,
+   "pos": [
+    6,
+    -0.25,
+    0
+   ],
+   "mat": "floor"
+  },
+  {
+   "id": "floorSeam",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    80,
+    0.04,
+    0.1
+   ],
+   "pos": [
+    6,
+    0.01,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -18
+    ],
+    [
+     0,
+     0,
+     -12
+    ],
+    [
+     0,
+     0,
+     -6
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     6
+    ],
+    [
+     0,
+     0,
+     12
+    ],
+    [
+     0,
+     0,
+     18
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "efemBack",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    7.5,
+    17.5,
+    0.2
+   ],
+   "pos": [
+    -10.25,
+    8.75,
+    -4.6
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemBase",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    7.5,
+    0.6,
+    10.5
+   ],
+   "pos": [
+    -10.25,
+    0.3,
+    0.75
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "efemLw0",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    17.5,
+    2.55
+   ],
+   "pos": [
+    -14.1,
+    8.75,
+    -3.225
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemLw2",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    17.5,
+    0.2
+   ],
+   "pos": [
+    -14.1,
+    8.75,
+    5.9
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemLwLo1",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    6.4,
+    3.9
+   ],
+   "pos": [
+    -14.1,
+    3.2,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemLwHi1",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    7.1,
+    3.9
+   ],
+   "pos": [
+    -14.1,
+    13.95,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemLwLo2",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    6.4,
+    3.9
+   ],
+   "pos": [
+    -14.1,
+    3.2,
+    3.85
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemLwHi2",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    7.1,
+    3.9
+   ],
+   "pos": [
+    -14.1,
+    13.95,
+    3.85
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "slotWallA",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    17.5,
+    2.7
+   ],
+   "pos": [
+    -6.6,
+    8.75,
+    -3.15
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "slotWallB",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    17.5,
+    4.2
+   ],
+   "pos": [
+    -6.6,
+    8.75,
+    3.9
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "slotWallLo",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    7.8,
+    3.6
+   ],
+   "pos": [
+    -6.6,
+    3.9,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "slotWallHi",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.2,
+    8.3,
+    3.6
+   ],
+   "pos": [
+    -6.6,
+    13.35,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "slotLip",
+   "layer": "efem",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.1,
+    3.8
+   ],
+   "pos": [
+    -6.5,
+    9.25,
+    0
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -1.5,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "efemFront",
+   "layer": "efemFront",
+   "shape": "box",
+   "size": [
+    7.5,
+    16.9,
+    0.2
+   ],
+   "pos": [
+    -10.25,
+    9.05,
+    5.9
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "efemFrontWin",
+   "layer": "efemFront",
+   "shape": "box",
+   "size": [
+    5,
+    6,
+    0.08
+   ],
+   "pos": [
+    -10.5,
+    9.5,
+    6.04
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "efemFrontBand",
+   "layer": "efemFront",
+   "shape": "box",
+   "size": [
+    7.5,
+    0.6,
+    0.1
+   ],
+   "pos": [
+    -10.25,
+    1.7,
+    6.05
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "efemFrontHandle",
+   "layer": "efemFront",
+   "shape": "box",
+   "size": [
+    0.4,
+    3,
+    0.22
+   ],
+   "pos": [
+    -8.2,
+    10,
+    6.19
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "ffuBox",
+   "layer": "ffu",
+   "shape": "slab",
+   "size": [
+    7.5,
+    0.8,
+    10.5
+   ],
+   "r": 0.1,
+   "pos": [
+    -10.25,
+    17.9,
+    0.75
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "ffuGrid",
+   "layer": "ffu",
+   "shape": "box",
+   "size": [
+    6.4,
+    0.06,
+    0.05
+   ],
+   "pos": [
+    -10.5,
+    17.48,
+    0.75
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -4.8
+    ],
+    [
+     0,
+     0,
+     -4.2
+    ],
+    [
+     0,
+     0,
+     -3.5999999999999996
+    ],
+    [
+     0,
+     0,
+     -3
+    ],
+    [
+     0,
+     0,
+     -2.4
+    ],
+    [
+     0,
+     0,
+     -1.7999999999999998
+    ],
+    [
+     0,
+     0,
+     -1.2000000000000002
+    ],
+    [
+     0,
+     0,
+     -0.5999999999999996
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.5999999999999996
+    ],
+    [
+     0,
+     0,
+     1.2000000000000002
+    ],
+    [
+     0,
+     0,
+     1.7999999999999998
+    ],
+    [
+     0,
+     0,
+     2.3999999999999995
+    ],
+    [
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     3.6000000000000005
+    ],
+    [
+     0,
+     0,
+     4.2
+    ],
+    [
+     0,
+     0,
+     4.8
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "lp1Shelf",
+   "layer": "lp1",
+   "shape": "box",
+   "size": [
+    3.8,
+    0.35,
+    4.2
+   ],
+   "pos": [
+    -16.1,
+    6.375,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "lp1Leg",
+   "layer": "lp1",
+   "shape": "box",
+   "size": [
+    0.7,
+    6.2,
+    3.2
+   ],
+   "pos": [
+    -14.55,
+    3.1,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "lp1Pin",
+   "layer": "lp1",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -15.9,
+    6.62,
+    0
+   ],
+   "at": [
+    [
+     -1,
+     0,
+     -1.2
+    ],
+    [
+     -1,
+     0,
+     1.2
+    ],
+    [
+     1.1,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "lp1Led",
+   "layer": "lp1",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.25,
+    0.6
+   ],
+   "pos": [
+    -14.95,
+    5.5,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.5
+    ],
+    [
+     0,
+     0,
+     0.5
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "foup1Top",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    3.4,
+    0.25,
+    3.9
+   ],
+   "pos": [
+    -15.9,
+    10.125,
+    0
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup1Bot",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    3.4,
+    0.25,
+    3.9
+   ],
+   "pos": [
+    -15.9,
+    6.725,
+    0
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup1Back",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    0.25,
+    3.65,
+    3.9
+   ],
+   "pos": [
+    -17.525,
+    8.425,
+    0
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup1SideA",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    3.4,
+    3.65,
+    0.2
+   ],
+   "pos": [
+    -15.9,
+    8.425,
+    -1.85
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup1SideB",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    3.4,
+    3.65,
+    0.2
+   ],
+   "pos": [
+    -15.9,
+    8.425,
+    1.85
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup1Flange",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    1.5,
+    0.35,
+    1.6
+   ],
+   "pos": [
+    -15.85,
+    10.425,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "foup1Handle",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.6,
+    0.25
+   ],
+   "pos": [
+    -16,
+    8.3,
+    -2.075
+   ],
+   "mat": "panel2",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     4.15
+    ]
+   ]
+  },
+  {
+   "id": "foup1Stack",
+   "layer": "foup1",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -15.85,
+    7.3,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.3,
+     0
+    ],
+    [
+     0,
+     1.8,
+     0
+    ],
+    [
+     0,
+     2.1,
+     0
+    ],
+    [
+     0,
+     2.4,
+     0
+    ],
+    [
+     0,
+     2.7,
+     0
+    ]
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "foup1Rib",
+   "layer": "foup1",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.04,
+    0.12
+   ],
+   "pos": [
+    -15.85,
+    7.25,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -1.68
+    ],
+    [
+     0,
+     0.225,
+     -1.68
+    ],
+    [
+     0,
+     0.45,
+     -1.68
+    ],
+    [
+     0,
+     0.675,
+     -1.68
+    ],
+    [
+     0,
+     0.9,
+     -1.68
+    ],
+    [
+     0,
+     1.125,
+     -1.68
+    ],
+    [
+     0,
+     1.35,
+     -1.68
+    ],
+    [
+     0,
+     1.575,
+     -1.68
+    ],
+    [
+     0,
+     1.8,
+     -1.68
+    ],
+    [
+     0,
+     2.025,
+     -1.68
+    ],
+    [
+     0,
+     2.25,
+     -1.68
+    ],
+    [
+     0,
+     2.475,
+     -1.68
+    ],
+    [
+     0,
+     2.7,
+     -1.68
+    ],
+    [
+     0,
+     0,
+     1.68
+    ],
+    [
+     0,
+     0.225,
+     1.68
+    ],
+    [
+     0,
+     0.45,
+     1.68
+    ],
+    [
+     0,
+     0.675,
+     1.68
+    ],
+    [
+     0,
+     0.9,
+     1.68
+    ],
+    [
+     0,
+     1.125,
+     1.68
+    ],
+    [
+     0,
+     1.35,
+     1.68
+    ],
+    [
+     0,
+     1.575,
+     1.68
+    ],
+    [
+     0,
+     1.8,
+     1.68
+    ],
+    [
+     0,
+     2.025,
+     1.68
+    ],
+    [
+     0,
+     2.25,
+     1.68
+    ],
+    [
+     0,
+     2.475,
+     1.68
+    ],
+    [
+     0,
+     2.7,
+     1.68
+    ]
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "foup1Door",
+   "layer": "foup1Door",
+   "shape": "box",
+   "size": [
+    0.15,
+    3.55,
+    3.8
+   ],
+   "pos": [
+    -14.125,
+    8.425,
+    0
+   ],
+   "mat": "foupDoor"
+  },
+  {
+   "id": "foup1DoorLatch",
+   "layer": "foup1Door",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.7,
+    2.4
+   ],
+   "pos": [
+    -14,
+    8.45,
+    0
+   ],
+   "mat": "steel",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "lp2Shelf",
+   "layer": "lp2",
+   "shape": "box",
+   "size": [
+    3.8,
+    0.35,
+    4.2
+   ],
+   "pos": [
+    -16.1,
+    6.375,
+    3.85
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "lp2Leg",
+   "layer": "lp2",
+   "shape": "box",
+   "size": [
+    0.7,
+    6.2,
+    3.2
+   ],
+   "pos": [
+    -14.55,
+    3.1,
+    3.85
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "lp2Pin",
+   "layer": "lp2",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -15.9,
+    6.62,
+    3.85
+   ],
+   "at": [
+    [
+     -1,
+     0,
+     -1.2
+    ],
+    [
+     -1,
+     0,
+     1.2
+    ],
+    [
+     1.1,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "lp2Led",
+   "layer": "lp2",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.25,
+    0.6
+   ],
+   "pos": [
+    -14.95,
+    5.5,
+    3.85
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.5
+    ],
+    [
+     0,
+     0,
+     0.5
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "foup2Top",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    3.4,
+    0.25,
+    3.9
+   ],
+   "pos": [
+    -15.9,
+    10.125,
+    3.85
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup2Bot",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    3.4,
+    0.25,
+    3.9
+   ],
+   "pos": [
+    -15.9,
+    6.725,
+    3.85
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup2Back",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    0.25,
+    3.65,
+    3.9
+   ],
+   "pos": [
+    -17.525,
+    8.425,
+    3.85
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup2SideA",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    3.4,
+    3.65,
+    0.2
+   ],
+   "pos": [
+    -15.9,
+    8.425,
+    2
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup2SideB",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    3.4,
+    3.65,
+    0.2
+   ],
+   "pos": [
+    -15.9,
+    8.425,
+    5.7
+   ],
+   "mat": "foup"
+  },
+  {
+   "id": "foup2Flange",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    1.5,
+    0.35,
+    1.6
+   ],
+   "pos": [
+    -15.85,
+    10.425,
+    3.85
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "foup2Handle",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.6,
+    0.25
+   ],
+   "pos": [
+    -16,
+    8.3,
+    1.775
+   ],
+   "mat": "panel2",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     4.15
+    ]
+   ]
+  },
+  {
+   "id": "foup2Stack",
+   "layer": "foup2",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -15.85,
+    7.3,
+    3.85
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.3,
+     0
+    ],
+    [
+     0,
+     1.8,
+     0
+    ],
+    [
+     0,
+     2.1,
+     0
+    ],
+    [
+     0,
+     2.4,
+     0
+    ],
+    [
+     0,
+     2.7,
+     0
+    ]
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "foup2Rib",
+   "layer": "foup2",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.04,
+    0.12
+   ],
+   "pos": [
+    -15.85,
+    7.25,
+    3.85
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -1.68
+    ],
+    [
+     0,
+     0.225,
+     -1.68
+    ],
+    [
+     0,
+     0.45,
+     -1.68
+    ],
+    [
+     0,
+     0.675,
+     -1.68
+    ],
+    [
+     0,
+     0.9,
+     -1.68
+    ],
+    [
+     0,
+     1.125,
+     -1.68
+    ],
+    [
+     0,
+     1.35,
+     -1.68
+    ],
+    [
+     0,
+     1.575,
+     -1.68
+    ],
+    [
+     0,
+     1.8,
+     -1.68
+    ],
+    [
+     0,
+     2.025,
+     -1.68
+    ],
+    [
+     0,
+     2.25,
+     -1.68
+    ],
+    [
+     0,
+     2.475,
+     -1.68
+    ],
+    [
+     0,
+     2.7,
+     -1.68
+    ],
+    [
+     0,
+     0,
+     1.68
+    ],
+    [
+     0,
+     0.225,
+     1.68
+    ],
+    [
+     0,
+     0.45,
+     1.68
+    ],
+    [
+     0,
+     0.675,
+     1.68
+    ],
+    [
+     0,
+     0.9,
+     1.68
+    ],
+    [
+     0,
+     1.125,
+     1.68
+    ],
+    [
+     0,
+     1.35,
+     1.68
+    ],
+    [
+     0,
+     1.575,
+     1.68
+    ],
+    [
+     0,
+     1.8,
+     1.68
+    ],
+    [
+     0,
+     2.025,
+     1.68
+    ],
+    [
+     0,
+     2.25,
+     1.68
+    ],
+    [
+     0,
+     2.475,
+     1.68
+    ],
+    [
+     0,
+     2.7,
+     1.68
+    ]
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "foup2Door",
+   "layer": "foup2Door",
+   "shape": "box",
+   "size": [
+    0.15,
+    3.55,
+    3.8
+   ],
+   "pos": [
+    -14.125,
+    8.425,
+    3.85
+   ],
+   "mat": "foupDoor"
+  },
+  {
+   "id": "foup2DoorLatch",
+   "layer": "foup2Door",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.7,
+    2.4
+   ],
+   "pos": [
+    -14,
+    8.45,
+    3.85
+   ],
+   "mat": "steel",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "alnBase",
+   "layer": "aligner",
+   "shape": "slab",
+   "size": [
+    1.8,
+    7.3,
+    1.8
+   ],
+   "r": 0.15,
+   "pos": [
+    -10.5,
+    4.25,
+    3.8
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "alnHub",
+   "layer": "aligner",
+   "shape": "cyl",
+   "size": [
+    0.24,
+    0.36
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.5,
+    8.2,
+    3.8
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "alnSpin",
+   "layer": "aligner",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.06
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.5,
+    8.39,
+    3.8
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "alnSensorPost",
+   "layer": "aligner",
+   "shape": "box",
+   "size": [
+    0.6,
+    1.8,
+    0.2
+   ],
+   "pos": [
+    -10.5,
+    8.1,
+    5.8
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "alnSensorLo",
+   "layer": "aligner",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.27,
+    0.9
+   ],
+   "pos": [
+    -10.5,
+    8.085,
+    5.45
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "alnSensorHi",
+   "layer": "aligner",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.15,
+    0.9
+   ],
+   "pos": [
+    -10.5,
+    8.925,
+    5.45
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "alnBeam",
+   "layer": "aligner",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.03,
+    0.16
+   ],
+   "pos": [
+    -10.5,
+    8.235,
+    5.2
+   ],
+   "mat": "laserM"
+  },
+  {
+   "id": "arCol",
+   "layer": "ar",
+   "shape": "cyl",
+   "size": [
+    0.75,
+    7.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.3,
+    4.2,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "arColBand",
+   "layer": "ar",
+   "shape": "tube",
+   "size": [
+    0.8,
+    0.6,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.3,
+    6.9,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "arHead",
+   "layer": "ar",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.3,
+    7.9,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "arLink1",
+   "layer": "ar",
+   "shape": "slab",
+   "size": [
+    0.589,
+    0.3,
+    0.9
+   ],
+   "r": 0.4,
+   "pos": [
+    -8.9,
+    8.05,
+    0
+   ],
+   "mat": "panel",
+   "at": [
+    [
+     -1.417,
+     0,
+     0
+    ],
+    [
+     -0.85,
+     0,
+     0
+    ],
+    [
+     -0.283,
+     0,
+     0
+    ],
+    [
+     0.283,
+     0,
+     0
+    ],
+    [
+     0.85,
+     0,
+     0
+    ],
+    [
+     1.417,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "arElbow",
+   "layer": "ar",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    0.32
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -7.500000000000001,
+    8.18,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "arLink2",
+   "layer": "ar",
+   "shape": "slab",
+   "size": [
+    0.572,
+    0.22,
+    0.7
+   ],
+   "r": 0.32,
+   "pos": [
+    -6.100000000000001,
+    8.22,
+    0
+   ],
+   "mat": "panel",
+   "at": [
+    [
+     -1.375,
+     0,
+     0
+    ],
+    [
+     -0.825,
+     0,
+     0
+    ],
+    [
+     -0.275,
+     0,
+     0
+    ],
+    [
+     0.275,
+     0,
+     0
+    ],
+    [
+     0.825,
+     0,
+     0
+    ],
+    [
+     1.375,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "arWrist",
+   "layer": "ar",
+   "shape": "cyl",
+   "size": [
+    0.34,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.700000000000001,
+    8.3,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "arBladeRoot",
+   "layer": "ar",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.05,
+    0.6
+   ],
+   "pos": [
+    -4.550000000000001,
+    8.36,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "arBlade",
+   "layer": "ar",
+   "shape": "box",
+   "size": [
+    0.399,
+    0.04,
+    0.26
+   ],
+   "pos": [
+    -3.1500000000000012,
+    8.37,
+    0
+   ],
+   "at": [
+    [
+     -0.958,
+     0,
+     -0.45
+    ],
+    [
+     -0.575,
+     0,
+     -0.45
+    ],
+    [
+     -0.192,
+     0,
+     -0.45
+    ],
+    [
+     0.192,
+     0,
+     -0.45
+    ],
+    [
+     0.575,
+     0,
+     -0.45
+    ],
+    [
+     0.958,
+     0,
+     -0.45
+    ],
+    [
+     -0.958,
+     0,
+     0.45
+    ],
+    [
+     -0.575,
+     0,
+     0.45
+    ],
+    [
+     -0.192,
+     0,
+     0.45
+    ],
+    [
+     0.192,
+     0,
+     0.45
+    ],
+    [
+     0.575,
+     0,
+     0.45
+    ],
+    [
+     0.958,
+     0,
+     0.45
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "arPad",
+   "layer": "ar",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -3.200000000000001,
+    8.4,
+    0
+   ],
+   "at": [
+    [
+     -0.8,
+     0,
+     -0.45
+    ],
+    [
+     -0.8,
+     0,
+     0.45
+    ],
+    [
+     0.95,
+     0,
+     -0.45
+    ],
+    [
+     0.95,
+     0,
+     0.45
+    ]
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "wfA",
+   "layer": "wfA",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -15.85,
+    8.45,
+    0
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "wfANotch",
+   "layer": "wfA",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    -15.85,
+    8.455,
+    1.46
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wfADie",
+   "layer": "wfA",
+   "shape": "box",
+   "size": [
+    0.27,
+    0.012,
+    0.27
+   ],
+   "pos": [
+    -15.85,
+    8.495999999999999,
+    0
+   ],
+   "at": [
+    [
+     -1.24,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.62,
+     0,
+     -0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.31
+    ],
+    [
+     -0.62,
+     0,
+     0
+    ],
+    [
+     -0.62,
+     0,
+     0.31
+    ],
+    [
+     -0.62,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.62
+    ],
+    [
+     -0.31,
+     0,
+     -0.31
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0.31
+    ],
+    [
+     -0.31,
+     0,
+     0.62
+    ],
+    [
+     -0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -1.24
+    ],
+    [
+     0,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -0.62
+    ],
+    [
+     0,
+     0,
+     -0.31
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.31
+    ],
+    [
+     0,
+     0,
+     0.62
+    ],
+    [
+     0,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     1.24
+    ],
+    [
+     0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.31,
+     0,
+     -0.62
+    ],
+    [
+     0.31,
+     0,
+     -0.31
+    ],
+    [
+     0.31,
+     0,
+     0
+    ],
+    [
+     0.31,
+     0,
+     0.31
+    ],
+    [
+     0.31,
+     0,
+     0.62
+    ],
+    [
+     0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.62
+    ],
+    [
+     0.62,
+     0,
+     -0.31
+    ],
+    [
+     0.62,
+     0,
+     0
+    ],
+    [
+     0.62,
+     0,
+     0.31
+    ],
+    [
+     0.62,
+     0,
+     0.62
+    ],
+    [
+     0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     1.24,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieM"
+  },
+  {
+   "id": "wfR",
+   "layer": "wfR",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.5,
+    8.45,
+    3.8
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "wfRNotch",
+   "layer": "wfR",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    -10.5,
+    8.455,
+    5.26
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wfRDie",
+   "layer": "wfR",
+   "shape": "box",
+   "size": [
+    0.27,
+    0.012,
+    0.27
+   ],
+   "pos": [
+    -10.5,
+    8.495999999999999,
+    3.8
+   ],
+   "at": [
+    [
+     -1.24,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.62,
+     0,
+     -0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.31
+    ],
+    [
+     -0.62,
+     0,
+     0
+    ],
+    [
+     -0.62,
+     0,
+     0.31
+    ],
+    [
+     -0.62,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.62
+    ],
+    [
+     -0.31,
+     0,
+     -0.31
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0.31
+    ],
+    [
+     -0.31,
+     0,
+     0.62
+    ],
+    [
+     -0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -1.24
+    ],
+    [
+     0,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -0.62
+    ],
+    [
+     0,
+     0,
+     -0.31
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.31
+    ],
+    [
+     0,
+     0,
+     0.62
+    ],
+    [
+     0,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     1.24
+    ],
+    [
+     0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.31,
+     0,
+     -0.62
+    ],
+    [
+     0.31,
+     0,
+     -0.31
+    ],
+    [
+     0.31,
+     0,
+     0
+    ],
+    [
+     0.31,
+     0,
+     0.31
+    ],
+    [
+     0.31,
+     0,
+     0.62
+    ],
+    [
+     0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.62
+    ],
+    [
+     0.62,
+     0,
+     -0.31
+    ],
+    [
+     0.62,
+     0,
+     0
+    ],
+    [
+     0.62,
+     0,
+     0.31
+    ],
+    [
+     0.62,
+     0,
+     0.62
+    ],
+    [
+     0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     1.24,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieM"
+  },
+  {
+   "id": "wfB",
+   "layer": "wfB",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.5,
+    8.45,
+    3.8
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "wfBNotch",
+   "layer": "wfB",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    -10.5,
+    8.455,
+    5.26
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wfBDie",
+   "layer": "wfB",
+   "shape": "box",
+   "size": [
+    0.27,
+    0.012,
+    0.27
+   ],
+   "pos": [
+    -10.5,
+    8.495999999999999,
+    3.8
+   ],
+   "at": [
+    [
+     -1.24,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.62,
+     0,
+     -0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.31
+    ],
+    [
+     -0.62,
+     0,
+     0
+    ],
+    [
+     -0.62,
+     0,
+     0.31
+    ],
+    [
+     -0.62,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.62
+    ],
+    [
+     -0.31,
+     0,
+     -0.31
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0.31
+    ],
+    [
+     -0.31,
+     0,
+     0.62
+    ],
+    [
+     -0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -1.24
+    ],
+    [
+     0,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -0.62
+    ],
+    [
+     0,
+     0,
+     -0.31
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.31
+    ],
+    [
+     0,
+     0,
+     0.62
+    ],
+    [
+     0,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     1.24
+    ],
+    [
+     0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.31,
+     0,
+     -0.62
+    ],
+    [
+     0.31,
+     0,
+     -0.31
+    ],
+    [
+     0.31,
+     0,
+     0
+    ],
+    [
+     0.31,
+     0,
+     0.31
+    ],
+    [
+     0.31,
+     0,
+     0.62
+    ],
+    [
+     0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.62
+    ],
+    [
+     0.62,
+     0,
+     -0.31
+    ],
+    [
+     0.62,
+     0,
+     0
+    ],
+    [
+     0.62,
+     0,
+     0.31
+    ],
+    [
+     0.62,
+     0,
+     0.62
+    ],
+    [
+     0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     1.24,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieM"
+  },
+  {
+   "id": "wfS",
+   "layer": "wfS",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.45,
+    0
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "wfSNotch",
+   "layer": "wfS",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    2,
+    8.455,
+    1.46
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wfSDie",
+   "layer": "wfS",
+   "shape": "box",
+   "size": [
+    0.27,
+    0.012,
+    0.27
+   ],
+   "pos": [
+    2,
+    8.495999999999999,
+    0
+   ],
+   "at": [
+    [
+     -1.24,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     -0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.62,
+     0,
+     -0.62
+    ],
+    [
+     -0.62,
+     0,
+     -0.31
+    ],
+    [
+     -0.62,
+     0,
+     0
+    ],
+    [
+     -0.62,
+     0,
+     0.31
+    ],
+    [
+     -0.62,
+     0,
+     0.62
+    ],
+    [
+     -0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     -0.31,
+     0,
+     -0.62
+    ],
+    [
+     -0.31,
+     0,
+     -0.31
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0.31
+    ],
+    [
+     -0.31,
+     0,
+     0.62
+    ],
+    [
+     -0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -1.24
+    ],
+    [
+     0,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     -0.62
+    ],
+    [
+     0,
+     0,
+     -0.31
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.31
+    ],
+    [
+     0,
+     0,
+     0.62
+    ],
+    [
+     0,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0,
+     0,
+     1.24
+    ],
+    [
+     0.31,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.31,
+     0,
+     -0.62
+    ],
+    [
+     0.31,
+     0,
+     -0.31
+    ],
+    [
+     0.31,
+     0,
+     0
+    ],
+    [
+     0.31,
+     0,
+     0.31
+    ],
+    [
+     0.31,
+     0,
+     0.62
+    ],
+    [
+     0.31,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.9299999999999999
+    ],
+    [
+     0.62,
+     0,
+     -0.62
+    ],
+    [
+     0.62,
+     0,
+     -0.31
+    ],
+    [
+     0.62,
+     0,
+     0
+    ],
+    [
+     0.62,
+     0,
+     0.31
+    ],
+    [
+     0.62,
+     0,
+     0.62
+    ],
+    [
+     0.62,
+     0,
+     0.9299999999999999
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.62
+    ],
+    [
+     0.9299999999999999,
+     0,
+     -0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.31
+    ],
+    [
+     0.9299999999999999,
+     0,
+     0.62
+    ],
+    [
+     1.24,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieM"
+  },
+  {
+   "id": "wfSDefect",
+   "layer": "wfS",
+   "shape": "sphere",
+   "size": [
+    0.05
+   ],
+   "pos": [
+    2.05,
+    8.52,
+    -0.04
+   ],
+   "mat": "defect"
+  },
+  {
+   "id": "wfSDefRing",
+   "layer": "wfS",
+   "shape": "tube",
+   "size": [
+    0.2,
+    0.15,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.05,
+    8.52,
+    -0.04
+   ],
+   "mat": "defRing"
+  },
+  {
+   "id": "wfSDieHi",
+   "layer": "wfS",
+   "shape": "tube",
+   "size": [
+    0.2,
+    0.17,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.514999999999999,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieHi"
+  },
+  {
+   "id": "wfBDefect",
+   "layer": "wfB",
+   "shape": "sphere",
+   "size": [
+    0.05
+   ],
+   "pos": [
+    -10.45,
+    8.52,
+    3.76
+   ],
+   "mat": "defect"
+  },
+  {
+   "id": "wfBDefRing",
+   "layer": "wfB",
+   "shape": "tube",
+   "size": [
+    0.2,
+    0.15,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.45,
+    8.52,
+    3.76
+   ],
+   "mat": "defRing"
+  },
+  {
+   "id": "wfBDieHi",
+   "layer": "wfB",
+   "shape": "tube",
+   "size": [
+    0.2,
+    0.17,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -10.5,
+    8.514999999999999,
+    3.8
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0
+    ]
+   ],
+   "mat": "dieHi"
+  },
+  {
+   "id": "shellBack",
+   "layer": "shell",
+   "shape": "box",
+   "size": [
+    17.9,
+    17.5,
+    0.2
+   ],
+   "pos": [
+    2.05,
+    8.75,
+    -6.1
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "shellRight",
+   "layer": "shell",
+   "shape": "box",
+   "size": [
+    0.2,
+    17.5,
+    12
+   ],
+   "pos": [
+    10.9,
+    8.75,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "shellBase",
+   "layer": "shell",
+   "shape": "box",
+   "size": [
+    17.9,
+    0.6,
+    12
+   ],
+   "pos": [
+    2.05,
+    0.3,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "shellVent",
+   "layer": "shell",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.12,
+    3.2
+   ],
+   "pos": [
+    11.03,
+    3,
+    2.5
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.35,
+     0
+    ],
+    [
+     0,
+     0.7,
+     0
+    ],
+    [
+     0,
+     1.0499999999999998,
+     0
+    ],
+    [
+     0,
+     1.4,
+     0
+    ],
+    [
+     0,
+     1.75,
+     0
+    ],
+    [
+     0,
+     2.0999999999999996,
+     0
+    ],
+    [
+     0,
+     2.4499999999999997,
+     0
+    ],
+    [
+     0,
+     2.8,
+     0
+    ],
+    [
+     0,
+     3.15,
+     0
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "roof",
+   "layer": "roof",
+   "shape": "slab",
+   "size": [
+    18,
+    0.5,
+    12.2
+   ],
+   "r": 0.15,
+   "pos": [
+    2.05,
+    17.75,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "roofFfu",
+   "layer": "roof",
+   "shape": "slab",
+   "size": [
+    12,
+    0.5,
+    9
+   ],
+   "r": 0.1,
+   "pos": [
+    2,
+    18.25,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "roofGrid",
+   "layer": "roof",
+   "shape": "box",
+   "size": [
+    11.4,
+    0.04,
+    0.05
+   ],
+   "pos": [
+    2,
+    18.52,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -3.9
+    ],
+    [
+     0,
+     0,
+     -3.3
+    ],
+    [
+     0,
+     0,
+     -2.7
+    ],
+    [
+     0,
+     0,
+     -2.1
+    ],
+    [
+     0,
+     0,
+     -1.5
+    ],
+    [
+     0,
+     0,
+     -0.8999999999999999
+    ],
+    [
+     0,
+     0,
+     -0.30000000000000027
+    ],
+    [
+     0,
+     0,
+     0.30000000000000027
+    ],
+    [
+     0,
+     0,
+     0.8999999999999999
+    ],
+    [
+     0,
+     0,
+     1.4999999999999996
+    ],
+    [
+     0,
+     0,
+     2.1
+    ],
+    [
+     0,
+     0,
+     2.6999999999999997
+    ],
+    [
+     0,
+     0,
+     3.2999999999999994
+    ],
+    [
+     0,
+     0,
+     3.9
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "front",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    17.9,
+    16.9,
+    0.2
+   ],
+   "pos": [
+    2.05,
+    9.05,
+    5.9
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "frontWin",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    11,
+    6.5,
+    0.08
+   ],
+   "pos": [
+    2.5,
+    9.75,
+    6.04
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "frontBand",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    17.9,
+    0.6,
+    0.1
+   ],
+   "pos": [
+    2.05,
+    1.7,
+    6.05
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "frontDoorSeam",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    0.1,
+    14.4,
+    0.1
+   ],
+   "pos": [
+    2.5,
+    7.8,
+    6.05
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "frontHandle",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    0.4,
+    3,
+    0.22
+   ],
+   "pos": [
+    1.8,
+    9,
+    6.19
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "uiArm",
+   "layer": "ui",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.2,
+    1.2
+   ],
+   "pos": [
+    9.5,
+    11.1,
+    6.6
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "uiScreen",
+   "layer": "ui",
+   "shape": "slab",
+   "size": [
+    2.4,
+    1.6,
+    0.18
+   ],
+   "r": 0.1,
+   "pos": [
+    9.5,
+    11.6,
+    7.3
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "uiGlass",
+   "layer": "ui",
+   "shape": "box",
+   "size": [
+    2.2,
+    1.4,
+    0.03
+   ],
+   "pos": [
+    9.5,
+    11.6,
+    7.415
+   ],
+   "mat": "screen"
+  },
+  {
+   "id": "towerPole",
+   "layer": "tower",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    10.2,
+    18.5,
+    5.2
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "towerR",
+   "layer": "tower",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    10.2,
+    20.1,
+    5.2
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "towerY",
+   "layer": "tower",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    10.2,
+    19.65,
+    5.2
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "towerG",
+   "layer": "tower",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    10.2,
+    19.2,
+    5.2
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "isoCan",
+   "layer": "iso",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    2.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2,
+    0
+   ],
+   "at": [
+    [
+     -4.6,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     3.8
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "isoBag",
+   "layer": "iso",
+   "shape": "tube",
+   "size": [
+    0.85,
+    0.3,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    3.8,
+    0
+   ],
+   "at": [
+    [
+     -4.6,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     3.8
+    ]
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "isoTop",
+   "layer": "iso",
+   "shape": "cyl",
+   "size": [
+    0.7,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    4.3,
+    0
+   ],
+   "at": [
+    [
+     -4.6,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     3.8
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "isoFoot",
+   "layer": "iso",
+   "shape": "cyl",
+   "size": [
+    1,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.9,
+    0
+   ],
+   "at": [
+    [
+     -4.6,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     3.8
+    ]
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "granite",
+   "layer": "granite",
+   "shape": "slab",
+   "size": [
+    15.2,
+    1.4,
+    9.6
+   ],
+   "r": 0.1,
+   "pos": [
+    2,
+    5.1,
+    0
+   ],
+   "mat": "granite"
+  },
+  {
+   "id": "railX",
+   "layer": "granite",
+   "shape": "box",
+   "size": [
+    14.8,
+    0.3,
+    0.4
+   ],
+   "pos": [
+    2,
+    5.95,
+    -1.55
+   ],
+   "mat": "steel2",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     3.1
+    ]
+   ]
+  },
+  {
+   "id": "motorX",
+   "layer": "granite",
+   "shape": "box",
+   "size": [
+    14.8,
+    0.15,
+    0.6
+   ],
+   "pos": [
+    2,
+    5.875,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "stX",
+   "layer": "stX",
+   "shape": "slab",
+   "size": [
+    3.6,
+    0.7,
+    4.4
+   ],
+   "r": 0.08,
+   "pos": [
+    2,
+    6.45,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "stXCoil",
+   "layer": "stX",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.07,
+    0.8
+   ],
+   "pos": [
+    2,
+    6.085,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "railZ",
+   "layer": "stX",
+   "shape": "box",
+   "size": [
+    2.6,
+    0.2,
+    4.2
+   ],
+   "pos": [
+    2,
+    6.9,
+    0
+   ],
+   "mat": "steel2",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "railZ2",
+   "layer": "stX",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.2,
+    4.2
+   ],
+   "pos": [
+    0.6,
+    6.9,
+    0
+   ],
+   "mat": "steel2",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     2.8,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "cableX",
+   "layer": "stX",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.4,
+    4
+   ],
+   "pos": [
+    3.9,
+    6.4,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "stZ",
+   "layer": "stZ",
+   "shape": "slab",
+   "size": [
+    3.4,
+    0.5,
+    3.4
+   ],
+   "r": 0.08,
+   "pos": [
+    2,
+    7.25,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stZEnc",
+   "layer": "stZ",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.14,
+    3
+   ],
+   "pos": [
+    3.7199999999999998,
+    7.25,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "chuck",
+   "layer": "chuck",
+   "shape": "cyl",
+   "size": [
+    1.6,
+    0.55
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.125,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "chuckTop",
+   "layer": "chuck",
+   "shape": "cyl",
+   "size": [
+    1.52,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.385,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chuckVac",
+   "layer": "chuck",
+   "shape": "tube",
+   "size": [
+    1.2,
+    1.12,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.405,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "chuckVac2",
+   "layer": "chuck",
+   "shape": "tube",
+   "size": [
+    0.7,
+    0.64,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.405,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pins",
+   "layer": "pins",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.11,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     -0.707,
+     0,
+     -0.707
+    ],
+    [
+     0.707,
+     0,
+     -0.707
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bridgeCol",
+   "layer": "bridge",
+   "shape": "box",
+   "size": [
+    1.6,
+    7.8,
+    0.85
+   ],
+   "pos": [
+    2,
+    9.7,
+    -4.325
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "bridgeColF",
+   "layer": "bridgeF",
+   "shape": "box",
+   "size": [
+    1.6,
+    7.8,
+    0.85
+   ],
+   "pos": [
+    2,
+    9.7,
+    4.325
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "bridgeBeam",
+   "layer": "bridge",
+   "shape": "box",
+   "size": [
+    1.6,
+    1.2,
+    9.5
+   ],
+   "pos": [
+    2,
+    13,
+    0
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "head",
+   "layer": "head",
+   "shape": "slab",
+   "size": [
+    2.6,
+    1.5,
+    2.4
+   ],
+   "r": 0.12,
+   "pos": [
+    2,
+    11.75,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "headEdge",
+   "layer": "head",
+   "shape": "box",
+   "size": [
+    2.64,
+    0.14,
+    2.44
+   ],
+   "pos": [
+    2,
+    12.43,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "headSplit",
+   "layer": "head",
+   "shape": "box",
+   "size": [
+    1,
+    0.04,
+    0.9
+   ],
+   "rot": [
+    0,
+    0,
+    45
+   ],
+   "pos": [
+    2,
+    11.8,
+    0
+   ],
+   "mat": "lens"
+  },
+  {
+   "id": "obj",
+   "layer": "obj",
+   "shape": "cyl",
+   "size": [
+    0.55,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    10.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "objMid",
+   "layer": "obj",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    9.5,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "objTip",
+   "layer": "obj",
+   "shape": "cone",
+   "size": [
+    0.22,
+    0.4,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    9.08,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "objLens",
+   "layer": "obj",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.03
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.95,
+    0
+   ],
+   "mat": "lens"
+  },
+  {
+   "id": "objRing",
+   "layer": "obj",
+   "shape": "tube",
+   "size": [
+    0.6,
+    0.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    10.6,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.4,
+     0
+    ],
+    [
+     0,
+     -0.4,
+     0
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "det",
+   "layer": "det",
+   "shape": "slab",
+   "size": [
+    2,
+    1.4,
+    1.8
+   ],
+   "r": 0.1,
+   "pos": [
+    2,
+    14.3,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "detFin",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    2,
+    0.6,
+    0.06
+   ],
+   "pos": [
+    2,
+    15.3,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.84
+    ],
+    [
+     0,
+     0,
+     -0.6
+    ],
+    [
+     0,
+     0,
+     -0.36
+    ],
+    [
+     0,
+     0,
+     -0.12
+    ],
+    [
+     0,
+     0,
+     0.12
+    ],
+    [
+     0,
+     0,
+     0.36
+    ],
+    [
+     0,
+     0,
+     0.6
+    ],
+    [
+     0,
+     0,
+     0.84
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "detCable",
+   "layer": "det",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    4
+   ],
+   "rot": [
+    0,
+    0,
+    90
+   ],
+   "pos": [
+    5,
+    14.3,
+    0.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "detLed",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.12,
+    0.05
+   ],
+   "pos": [
+    1.5,
+    14.5,
+    0.92
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "srcHouseTop",
+   "layer": "srcHouse",
+   "shape": "box",
+   "size": [
+    3.6,
+    0.3,
+    2.6
+   ],
+   "pos": [
+    -3.6,
+    13.55,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "srcHouseBack",
+   "layer": "srcHouse",
+   "shape": "box",
+   "size": [
+    3.6,
+    3.6,
+    0.2
+   ],
+   "pos": [
+    -3.6,
+    11.9,
+    -1.2
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "srcHouseFront",
+   "layer": "srcHouse",
+   "shape": "box",
+   "size": [
+    3.6,
+    3.6,
+    0.2
+   ],
+   "pos": [
+    -3.6,
+    11.9,
+    1.2
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "srcHouseFin",
+   "layer": "srcHouse",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.6,
+    0.1
+   ],
+   "pos": [
+    -3.6,
+    14,
+    0
+   ],
+   "mat": "steel2",
+   "at": [
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     -0.6
+    ],
+    [
+     0,
+     0,
+     -0.2
+    ],
+    [
+     0,
+     0,
+     0.2
+    ],
+    [
+     0,
+     0,
+     0.6
+    ],
+    [
+     0,
+     0,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "srcHouseBot",
+   "layer": "srcHouse",
+   "shape": "box",
+   "size": [
+    3.6,
+    0.2,
+    2.6
+   ],
+   "pos": [
+    -3.6,
+    10,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "srcRefl",
+   "layer": "src",
+   "shape": "cone",
+   "size": [
+    0.35,
+    0.95,
+    1.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -3.95,
+    11.8,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "srcBulb",
+   "layer": "src",
+   "shape": "sphere",
+   "size": [
+    0.38
+   ],
+   "pos": [
+    -4.2,
+    11.8,
+    0
+   ],
+   "mat": "bulb"
+  },
+  {
+   "id": "srcPlasma",
+   "layer": "src",
+   "shape": "sphere",
+   "size": [
+    0.62
+   ],
+   "pos": [
+    -4.2,
+    11.8,
+    0
+   ],
+   "mat": "plasma"
+  },
+  {
+   "id": "srcStem",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    1.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.2,
+    11,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1.6,
+     0
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "srcLaser",
+   "layer": "src",
+   "shape": "slab",
+   "size": [
+    1.2,
+    0.8,
+    0.9
+   ],
+   "r": 0.08,
+   "pos": [
+    -4.2,
+    11.8,
+    -2.1
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "srcLaserBeam",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    1.3
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    -4.2,
+    11.8,
+    -1.05
+   ],
+   "mat": "laserM"
+  },
+  {
+   "id": "srcWater",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    1.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.6,
+    10.4,
+    -2.2
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     -0.4
+    ]
+   ],
+   "mat": "pipeB"
+  },
+  {
+   "id": "srcWaterH",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.6,
+    10.5,
+    -1.6
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     -0.3
+    ]
+   ],
+   "mat": "pipeB"
+  },
+  {
+   "id": "fwDisc",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.95,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.2,
+    11.8,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "fwHub",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.2,
+    11.8,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fwF0",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    11.8,
+    0.62
+   ],
+   "mat": "filtU"
+  },
+  {
+   "id": "fwF1",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    12.337,
+    0.31
+   ],
+   "mat": "filtB"
+  },
+  {
+   "id": "fwF2",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    12.337,
+    -0.31
+   ],
+   "mat": "filtG"
+  },
+  {
+   "id": "fwF3",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    11.8,
+    -0.62
+   ],
+   "mat": "filtV"
+  },
+  {
+   "id": "fwF4",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    11.263,
+    -0.31
+   ],
+   "mat": "filtU"
+  },
+  {
+   "id": "fwF5",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.18,
+    11.263,
+    0.31
+   ],
+   "mat": "filtB"
+  },
+  {
+   "id": "fwMotor",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.25,
+    0.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.85,
+    11.8,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "illumTube",
+   "layer": "illum",
+   "shape": "cyl",
+   "size": [
+    0.32,
+    1.7
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.2,
+    12.42,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "illumTube2",
+   "layer": "illum",
+   "shape": "cyl",
+   "size": [
+    0.32,
+    0.7
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -2.15,
+    12.42,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "illumFlange",
+   "layer": "illum",
+   "shape": "tube",
+   "size": [
+    0.42,
+    0.3,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.6,
+    12.42,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     2.2,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dfArm",
+   "layer": "dfArm",
+   "shape": "cyl",
+   "size": [
+    0.24,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    65
+   ],
+   "pos": [
+    -0.628,
+    9.716,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dfNozzle",
+   "layer": "dfArm",
+   "shape": "cone",
+   "size": [
+    0.12,
+    0.24,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    65
+   ],
+   "pos": [
+    0.233,
+    9.314,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dfMount",
+   "layer": "dfArm",
+   "shape": "box",
+   "size": [
+    0.5,
+    2.1,
+    0.3
+   ],
+   "pos": [
+    -1.55,
+    10.95,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dump",
+   "layer": "dump",
+   "shape": "slab",
+   "size": [
+    0.7,
+    0.5,
+    0.6
+   ],
+   "r": 0.05,
+   "rot": [
+    0,
+    0,
+    -65
+   ],
+   "pos": [
+    4.085,
+    9.462,
+    0
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "dumpMount",
+   "layer": "dump",
+   "shape": "box",
+   "size": [
+    0.2,
+    2.9,
+    0.24
+   ],
+   "pos": [
+    4.2,
+    10.95,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "lMain",
+   "layer": "lMain",
+   "shape": "cyl",
+   "size": [
+    0.18,
+    5.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.9,
+    12.42,
+    0
+   ],
+   "mat": "beam"
+  },
+  {
+   "id": "lMainCore",
+   "layer": "lMain",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    5.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.9,
+    12.42,
+    0
+   ],
+   "mat": "beamCore"
+  },
+  {
+   "id": "lMainDown",
+   "layer": "lMain",
+   "shape": "cyl",
+   "size": [
+    0.18,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    12.15,
+    0
+   ],
+   "mat": "beam"
+  },
+  {
+   "id": "lBF",
+   "layer": "lBF",
+   "shape": "cone",
+   "size": [
+    0.05,
+    0.42,
+    2.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    9.92,
+    0
+   ],
+   "mat": "beam"
+  },
+  {
+   "id": "lBFCore",
+   "layer": "lBF",
+   "shape": "cone",
+   "size": [
+    0.02,
+    0.16,
+    2.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    9.92,
+    0
+   ],
+   "mat": "beamCore"
+  },
+  {
+   "id": "lRet",
+   "layer": "lRet",
+   "shape": "cyl",
+   "size": [
+    0.11,
+    2.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    12.6,
+    0
+   ],
+   "mat": "beamRet"
+  },
+  {
+   "id": "lRetUp",
+   "layer": "lRet",
+   "shape": "cone",
+   "size": [
+    0.05,
+    0.3,
+    2.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    9.91,
+    0
+   ],
+   "mat": "beamRet"
+  },
+  {
+   "id": "lDF",
+   "layer": "lDF",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    2.1500000000000004
+   ],
+   "rot": [
+    90,
+    0,
+    65
+   ],
+   "pos": [
+    1.026,
+    8.944,
+    0
+   ],
+   "mat": "beamDF"
+  },
+  {
+   "id": "lSpec",
+   "layer": "lSpec",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    2.05
+   ],
+   "rot": [
+    90,
+    0,
+    -65
+   ],
+   "pos": [
+    2.924,
+    8.921,
+    0
+   ],
+   "mat": "beamDF"
+  },
+  {
+   "id": "lDFc",
+   "layer": "lDFc",
+   "shape": "cone",
+   "size": [
+    0.04,
+    0.4,
+    0.45
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.73,
+    0
+   ],
+   "mat": "beamDFc"
+  },
+  {
+   "id": "lSpot",
+   "layer": "lSpot",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.012
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    8.498,
+    0
+   ],
+   "mat": "spot"
+  },
+  {
+   "id": "util",
+   "layer": "util",
+   "shape": "slab",
+   "size": [
+    5,
+    9,
+    3
+   ],
+   "r": 0.15,
+   "pos": [
+    6,
+    4.5,
+    -8.5
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "utilBand",
+   "layer": "util",
+   "shape": "box",
+   "size": [
+    5,
+    0.4,
+    0.05
+   ],
+   "pos": [
+    6,
+    8.4,
+    -6.975
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "utilPipe",
+   "layer": "util",
+   "shape": "cyl",
+   "size": [
+    0.15,
+    2.6
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    5,
+    2.5,
+    -6.9
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ],
+    [
+     1.5,
+     1.2,
+     0
+    ]
+   ],
+   "mat": "pipeB"
+  },
+  {
+   "id": "utilPipeR",
+   "layer": "util",
+   "shape": "cyl",
+   "size": [
+    0.15,
+    2.6
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    6.2,
+    2.5,
+    -6.9
+   ],
+   "mat": "pipeR"
+  },
+  {
+   "id": "pc",
+   "layer": "pc",
+   "shape": "slab",
+   "size": [
+    4.2,
+    15,
+    5
+   ],
+   "r": 0.12,
+   "pos": [
+    14.3,
+    7.5,
+    -1.5
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "pcSideL",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.2,
+    13.8,
+    0.67
+   ],
+   "pos": [
+    12.3,
+    7.5,
+    1.285
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "pcSideR",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.2,
+    13.8,
+    0.67
+   ],
+   "pos": [
+    16.3,
+    7.5,
+    1.285
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "pcDoor",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    4.3,
+    13.4,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    7.5,
+    1.64
+   ],
+   "mat": "glassDoor"
+  },
+  {
+   "id": "pcDoorFrame",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    4.4,
+    0.2,
+    0.12
+   ],
+   "pos": [
+    14.3,
+    0.85,
+    1.66
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     13.4,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "pcDoorFrameV",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.2,
+    13.6,
+    0.12
+   ],
+   "pos": [
+    12.2,
+    7.55,
+    1.66
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     4.2,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "pcHandle",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.5,
+    0.14
+   ],
+   "pos": [
+    15.975,
+    7.75,
+    1.79
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcLed",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.14,
+    0.05
+   ],
+   "pos": [
+    12.9,
+    3.75,
+    1.25
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.3,
+     0,
+     0
+    ],
+    [
+     0.6,
+     0,
+     0
+    ],
+    [
+     0.8999999999999999,
+     0,
+     0
+    ],
+    [
+     1.2,
+     0,
+     0
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     0,
+     2.7,
+     0
+    ],
+    [
+     0.3,
+     2.7,
+     0
+    ],
+    [
+     0.6,
+     2.7,
+     0
+    ],
+    [
+     0.8999999999999999,
+     2.7,
+     0
+    ],
+    [
+     1.2,
+     2.7,
+     0
+    ],
+    [
+     1.5,
+     2.7,
+     0
+    ],
+    [
+     0,
+     5.4,
+     0
+    ],
+    [
+     0.3,
+     5.4,
+     0
+    ],
+    [
+     0.6,
+     5.4,
+     0
+    ],
+    [
+     0.8999999999999999,
+     5.4,
+     0
+    ],
+    [
+     1.2,
+     5.4,
+     0
+    ],
+    [
+     1.5,
+     5.4,
+     0
+    ],
+    [
+     0,
+     8.100000000000001,
+     0
+    ],
+    [
+     0.3,
+     8.100000000000001,
+     0
+    ],
+    [
+     0.6,
+     8.100000000000001,
+     0
+    ],
+    [
+     0.8999999999999999,
+     8.100000000000001,
+     0
+    ],
+    [
+     1.2,
+     8.100000000000001,
+     0
+    ],
+    [
+     1.5,
+     8.100000000000001,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "pcFan",
+   "layer": "pc",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.42,
+    0.06
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    14.3,
+    15.03,
+    -1.2
+   ],
+   "at": [
+    [
+     -1,
+     0,
+     -1.2
+    ],
+    [
+     1,
+     0,
+     -1.2
+    ],
+    [
+     -1,
+     0,
+     1.2
+    ],
+    [
+     1,
+     0,
+     1.2
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcTray",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.4,
+    1.2
+   ],
+   "pos": [
+    11.5,
+    15.7,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "signBack",
+   "layer": "front",
+   "shape": "slab",
+   "size": [
+    4.8,
+    1.3,
+    0.08
+   ],
+   "r": 0.06,
+   "pos": [
+    2.5,
+    15.4,
+    6.06
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "signLogo",
+   "layer": "front",
+   "shape": "plane",
+   "size": [
+    4.4,
+    0.981
+   ],
+   "pos": [
+    2.5,
+    15.4,
+    6.11
+   ],
+   "uv01": true,
+   "shadow": false,
+   "mat": "t_kla"
+  },
+  {
+   "id": "met",
+   "layer": "met",
+   "shape": "slab",
+   "size": [
+    9,
+    7.4,
+    7
+   ],
+   "r": 0.15,
+   "pos": [
+    25,
+    3.7,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "metBand",
+   "layer": "met",
+   "shape": "box",
+   "size": [
+    9,
+    0.4,
+    0.05
+   ],
+   "pos": [
+    25,
+    6.8,
+    3.525
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "metTop",
+   "layer": "met",
+   "shape": "slab",
+   "size": [
+    8,
+    0.5,
+    6
+   ],
+   "r": 0.1,
+   "pos": [
+    25,
+    7.65,
+    0
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "metStage",
+   "layer": "wM",
+   "shape": "cyl",
+   "size": [
+    1.6,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    8.15,
+    0
+   ],
+   "mat": "stage"
+  },
+  {
+   "id": "metPost",
+   "layer": "met",
+   "shape": "box",
+   "size": [
+    0.6,
+    6.5,
+    0.8
+   ],
+   "pos": [
+    21.9,
+    11.15,
+    -0.9
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "metArmH",
+   "layer": "met",
+   "shape": "box",
+   "size": [
+    3.05,
+    0.6,
+    0.8
+   ],
+   "pos": [
+    23.125,
+    14.1,
+    -0.9
+   ],
+   "mat": "graniteL"
+  },
+  {
+   "id": "wM",
+   "layer": "wM",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    8.45,
+    0
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "wMFilm",
+   "layer": "wM",
+   "shape": "cyl",
+   "size": [
+    1.48,
+    0.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    8.514999999999999,
+    0
+   ],
+   "mat": "film"
+  },
+  {
+   "id": "ovlMark0",
+   "layer": "wM",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.02,
+    0.08
+   ],
+   "pos": [
+    24.4,
+    8.549999999999999,
+    -0.9
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.41000000000000003
+    ],
+    [
+     0,
+     0,
+     0.41000000000000003
+    ]
+   ],
+   "mat": "markA"
+  },
+  {
+   "id": "ovlMarkS0",
+   "layer": "wM",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.02,
+    0.9
+   ],
+   "pos": [
+    24.4,
+    8.549999999999999,
+    -0.9
+   ],
+   "at": [
+    [
+     -0.41000000000000003,
+     0,
+     0
+    ],
+    [
+     0.41000000000000003,
+     0,
+     0
+    ]
+   ],
+   "mat": "markA"
+  },
+  {
+   "id": "ovlMark1",
+   "layer": "ovlTop",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.02,
+    0.08
+   ],
+   "pos": [
+    24.459999999999997,
+    8.569999999999999,
+    -0.9400000000000001
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.16999999999999998
+    ],
+    [
+     0,
+     0,
+     0.16999999999999998
+    ]
+   ],
+   "mat": "markB"
+  },
+  {
+   "id": "ovlMarkS1",
+   "layer": "ovlTop",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.02,
+    0.42
+   ],
+   "pos": [
+    24.459999999999997,
+    8.569999999999999,
+    -0.9400000000000001
+   ],
+   "at": [
+    [
+     -0.16999999999999998,
+     0,
+     0
+    ],
+    [
+     0.16999999999999998,
+     0,
+     0
+    ]
+   ],
+   "mat": "markB"
+  },
+  {
+   "id": "metObj",
+   "layer": "metOvl",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    24.4,
+    10,
+    -0.9
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "metObjTip",
+   "layer": "metOvl",
+   "shape": "cone",
+   "size": [
+    0.18,
+    0.34,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    24.4,
+    9.08,
+    -0.9
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "metObjCam",
+   "layer": "metOvl",
+   "shape": "slab",
+   "size": [
+    1.4,
+    1.3,
+    1.4
+   ],
+   "r": 0.1,
+   "pos": [
+    24.4,
+    12.8,
+    -0.9
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "metObjRing",
+   "layer": "metOvl",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.4,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    24.4,
+    10.4,
+    -0.9
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.5,
+     0
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "metArm",
+   "layer": "metOvl",
+   "shape": "box",
+   "size": [
+    0.5,
+    2.2,
+    0.5
+   ],
+   "pos": [
+    24.4,
+    12.7,
+    -0.9
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "lOvl",
+   "layer": "lOvl",
+   "shape": "cone",
+   "size": [
+    0.05,
+    0.36,
+    0.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    24.4,
+    8.95,
+    -0.9
+   ],
+   "mat": "beam"
+  },
+  {
+   "id": "ellIn",
+   "layer": "metEll",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    70
+   ],
+   "pos": [
+    23.057,
+    9.399,
+    0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ellPol",
+   "layer": "metEll",
+   "shape": "cyl",
+   "size": [
+    0.36,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    70
+   ],
+   "pos": [
+    23.903,
+    9.091,
+    0.7
+   ],
+   "mat": "filtV"
+  },
+  {
+   "id": "ellOut",
+   "layer": "metEll",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    -70
+   ],
+   "pos": [
+    27.943,
+    9.399,
+    0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ellAna",
+   "layer": "metEll",
+   "shape": "cyl",
+   "size": [
+    0.36,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    -70
+   ],
+   "pos": [
+    27.097,
+    9.091,
+    0.7
+   ],
+   "mat": "filtB"
+  },
+  {
+   "id": "ellAnaMark",
+   "layer": "metEll",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.05,
+    0.5
+   ],
+   "rot": [
+    0,
+    0,
+    -70
+   ],
+   "pos": [
+    27.022,
+    9.064,
+    0.7
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "ellBox",
+   "layer": "metEll",
+   "shape": "slab",
+   "size": [
+    1,
+    0.9,
+    0.9
+   ],
+   "r": 0.08,
+   "pos": [
+    28.977,
+    9.775,
+    0.7
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ellSrc",
+   "layer": "metEll",
+   "shape": "slab",
+   "size": [
+    1,
+    0.9,
+    0.9
+   ],
+   "r": 0.08,
+   "pos": [
+    22.023,
+    9.775,
+    0.7
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ellMount",
+   "layer": "metEll",
+   "shape": "box",
+   "size": [
+    7.4,
+    0.3,
+    0.3
+   ],
+   "pos": [
+    25.5,
+    10.85,
+    0.7
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "ellPost",
+   "layer": "metEll",
+   "shape": "box",
+   "size": [
+    0.3,
+    2.8,
+    0.3
+   ],
+   "pos": [
+    21.8,
+    9.3,
+    0.7
+   ],
+   "mat": "steel",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     7.4,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "ellHang",
+   "layer": "metEll",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.55,
+    0.12
+   ],
+   "pos": [
+    0,
+    10.43,
+    0.7
+   ],
+   "at": [
+    [
+     22.023,
+     0,
+     0
+    ],
+    [
+     28.977,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "lEllIn",
+   "layer": "lEllIn",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.55
+   ],
+   "rot": [
+    90,
+    0,
+    70
+   ],
+   "pos": [
+    24.748,
+    8.784,
+    0.7
+   ],
+   "mat": "beamCore"
+  },
+  {
+   "id": "lEllOut",
+   "layer": "lEllOut",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.55
+   ],
+   "rot": [
+    90,
+    0,
+    -70
+   ],
+   "pos": [
+    26.252,
+    8.784,
+    0.7
+   ],
+   "mat": "beamRet"
+  },
+  {
+   "id": "frontSeamH",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    17.9,
+    0.05,
+    0.07
+   ],
+   "pos": [
+    2.05,
+    4.975,
+    6.035
+   ],
+   "mat": "seam",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     9,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "frontScrew",
+   "layer": "front",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.04
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     -6.5,
+     1,
+     6.04
+    ],
+    [
+     -6.5,
+     6.3,
+     6.04
+    ],
+    [
+     -6.5,
+     11.6,
+     6.04
+    ],
+    [
+     -6.5,
+     16.9,
+     6.04
+    ],
+    [
+     -3.08,
+     1,
+     6.04
+    ],
+    [
+     -3.08,
+     6.3,
+     6.04
+    ],
+    [
+     -3.08,
+     11.6,
+     6.04
+    ],
+    [
+     -3.08,
+     16.9,
+     6.04
+    ],
+    [
+     0.34,
+     1,
+     6.04
+    ],
+    [
+     0.34,
+     6.3,
+     6.04
+    ],
+    [
+     0.34,
+     11.6,
+     6.04
+    ],
+    [
+     0.34,
+     16.9,
+     6.04
+    ],
+    [
+     3.76,
+     1,
+     6.04
+    ],
+    [
+     3.76,
+     6.3,
+     6.04
+    ],
+    [
+     3.76,
+     11.6,
+     6.04
+    ],
+    [
+     3.76,
+     16.9,
+     6.04
+    ],
+    [
+     7.18,
+     1,
+     6.04
+    ],
+    [
+     7.18,
+     6.3,
+     6.04
+    ],
+    [
+     7.18,
+     11.6,
+     6.04
+    ],
+    [
+     7.18,
+     16.9,
+     6.04
+    ],
+    [
+     10.6,
+     1,
+     6.04
+    ],
+    [
+     10.6,
+     6.3,
+     6.04
+    ],
+    [
+     10.6,
+     11.6,
+     6.04
+    ],
+    [
+     10.6,
+     16.9,
+     6.04
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "frontGrille",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    6,
+    0.08,
+    0.05
+   ],
+   "pos": [
+    -3.6,
+    2.4,
+    6.06
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.3,
+     0
+    ],
+    [
+     0,
+     0.6,
+     0
+    ],
+    [
+     0,
+     0.8999999999999999,
+     0
+    ],
+    [
+     0,
+     1.2,
+     0
+    ],
+    [
+     0,
+     1.5,
+     0
+    ],
+    [
+     0,
+     1.7999999999999998,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "frontGrille2",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    4,
+    0.08,
+    0.05
+   ],
+   "pos": [
+    7.6,
+    2.4,
+    6.06
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.3,
+     0
+    ],
+    [
+     0,
+     0.6,
+     0
+    ],
+    [
+     0,
+     0.8999999999999999,
+     0
+    ],
+    [
+     0,
+     1.2,
+     0
+    ],
+    [
+     0,
+     1.5,
+     0
+    ],
+    [
+     0,
+     1.7999999999999998,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "frontEstop",
+   "layer": "front",
+   "shape": "cyl",
+   "size": [
+    0.32,
+    0.18
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    9.6,
+    9.2,
+    6.12
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "frontEstopRing",
+   "layer": "front",
+   "shape": "tube",
+   "size": [
+    0.48,
+    0.32,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    9.6,
+    9.2,
+    6.05
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "frontLed",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.12,
+    0.05
+   ],
+   "pos": [
+    5.6,
+    14.6,
+    6.07
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.7,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "frontModel",
+   "layer": "front",
+   "shape": "slab",
+   "size": [
+    1.6,
+    0.5,
+    0.05
+   ],
+   "r": 0.04,
+   "pos": [
+    -0.6,
+    14.6,
+    6.06
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "frontWinFrame",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    11.3,
+    0.15,
+    0.1
+   ],
+   "pos": [
+    2.5,
+    6.425,
+    6.05
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     6.65,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "frontWinFrameV",
+   "layer": "front",
+   "shape": "box",
+   "size": [
+    0.15,
+    6.8,
+    0.1
+   ],
+   "pos": [
+    -3.075,
+    9.75,
+    6.05
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     11.15,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "efemScrew",
+   "layer": "efemFront",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.04
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     -13.7,
+     1,
+     6.04
+    ],
+    [
+     -13.7,
+     6.333,
+     6.04
+    ],
+    [
+     -13.7,
+     11.667,
+     6.04
+    ],
+    [
+     -13.7,
+     17,
+     6.04
+    ],
+    [
+     -11.4,
+     1,
+     6.04
+    ],
+    [
+     -11.4,
+     6.333,
+     6.04
+    ],
+    [
+     -11.4,
+     11.667,
+     6.04
+    ],
+    [
+     -11.4,
+     17,
+     6.04
+    ],
+    [
+     -9.1,
+     1,
+     6.04
+    ],
+    [
+     -9.1,
+     6.333,
+     6.04
+    ],
+    [
+     -9.1,
+     11.667,
+     6.04
+    ],
+    [
+     -9.1,
+     17,
+     6.04
+    ],
+    [
+     -6.8,
+     1,
+     6.04
+    ],
+    [
+     -6.8,
+     6.333,
+     6.04
+    ],
+    [
+     -6.8,
+     11.667,
+     6.04
+    ],
+    [
+     -6.8,
+     17,
+     6.04
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "efemEstop",
+   "layer": "efemFront",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.18
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    -7.6,
+    13.6,
+    6.12
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "efemWinFrame",
+   "layer": "efemFront",
+   "shape": "box",
+   "size": [
+    5.2,
+    0.15,
+    0.1
+   ],
+   "pos": [
+    -10.5,
+    6.425,
+    6.05
+   ],
+   "mat": "dark",
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     6.15,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "lp1Panel",
+   "layer": "lp1",
+   "shape": "slab",
+   "size": [
+    0.08,
+    0.9,
+    1.2
+   ],
+   "r": 0.04,
+   "pos": [
+    -14.96,
+    4.6,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "lp1Btn",
+   "layer": "lp1",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.06
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -15.02,
+    4.6,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0.2,
+     -0.3
+    ],
+    [
+     0,
+     0.2,
+     0.3
+    ],
+    [
+     0,
+     -0.2,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "lp2Panel",
+   "layer": "lp2",
+   "shape": "slab",
+   "size": [
+    0.08,
+    0.9,
+    1.2
+   ],
+   "r": 0.04,
+   "pos": [
+    -14.96,
+    4.6,
+    3.85
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "lp2Btn",
+   "layer": "lp2",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.06
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -15.02,
+    4.6,
+    3.85
+   ],
+   "at": [
+    [
+     0,
+     0.2,
+     -0.3
+    ],
+    [
+     0,
+     0.2,
+     0.3
+    ],
+    [
+     0,
+     -0.2,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "stXBlock",
+   "layer": "stX",
+   "shape": "slab",
+   "size": [
+    0.9,
+    0.3,
+    0.6
+   ],
+   "r": 0.05,
+   "pos": [
+    2,
+    6.2,
+    0
+   ],
+   "at": [
+    [
+     -1.1,
+     0,
+     -1.55
+    ],
+    [
+     1.1,
+     0,
+     -1.55
+    ],
+    [
+     -1.1,
+     0,
+     1.55
+    ],
+    [
+     1.1,
+     0,
+     1.55
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stXBlockScrew",
+   "layer": "stX",
+   "shape": "cyl",
+   "size": [
+    0.04,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     0.7,
+     6.36,
+     -1.45
+    ],
+    [
+     1.1,
+     6.36,
+     -1.45
+    ],
+    [
+     3.3,
+     6.36,
+     -1.45
+    ],
+    [
+     2.9,
+     6.36,
+     -1.45
+    ],
+    [
+     0.7,
+     6.36,
+     1.65
+    ],
+    [
+     1.1,
+     6.36,
+     1.65
+    ],
+    [
+     3.3,
+     6.36,
+     1.65
+    ],
+    [
+     2.9,
+     6.36,
+     1.65
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "stZBlock",
+   "layer": "stZ",
+   "shape": "slab",
+   "size": [
+    0.55,
+    0.25,
+    0.8
+   ],
+   "r": 0.05,
+   "pos": [
+    2,
+    7.05,
+    0
+   ],
+   "at": [
+    [
+     -1.4,
+     0,
+     -1
+    ],
+    [
+     -1.4,
+     0,
+     1
+    ],
+    [
+     1.4,
+     0,
+     -1
+    ],
+    [
+     1.4,
+     0,
+     1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "motorMag",
+   "layer": "granite",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.05,
+    0.5
+   ],
+   "pos": [
+    0,
+    5.97,
+    0
+   ],
+   "at": [
+    [
+     -5,
+     0,
+     0
+    ],
+    [
+     -4.6,
+     0,
+     0
+    ],
+    [
+     -4.2,
+     0,
+     0
+    ],
+    [
+     -3.8,
+     0,
+     0
+    ],
+    [
+     -3.4,
+     0,
+     0
+    ],
+    [
+     -3,
+     0,
+     0
+    ],
+    [
+     -2.6,
+     0,
+     0
+    ],
+    [
+     -2.2,
+     0,
+     0
+    ],
+    [
+     -1.8,
+     0,
+     0
+    ],
+    [
+     -1.4,
+     0,
+     0
+    ],
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     -0.6,
+     0,
+     0
+    ],
+    [
+     -0.2,
+     0,
+     0
+    ],
+    [
+     0.2,
+     0,
+     0
+    ],
+    [
+     0.6,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1.4,
+     0,
+     0
+    ],
+    [
+     1.8,
+     0,
+     0
+    ],
+    [
+     2.2,
+     0,
+     0
+    ],
+    [
+     2.6,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0
+    ],
+    [
+     3.4,
+     0,
+     0
+    ],
+    [
+     3.8,
+     0,
+     0
+    ],
+    [
+     4.2,
+     0,
+     0
+    ],
+    [
+     4.6,
+     0,
+     0
+    ],
+    [
+     5,
+     0,
+     0
+    ],
+    [
+     5.4,
+     0,
+     0
+    ],
+    [
+     5.8,
+     0,
+     0
+    ],
+    [
+     6.2,
+     0,
+     0
+    ],
+    [
+     6.6,
+     0,
+     0
+    ],
+    [
+     7,
+     0,
+     0
+    ],
+    [
+     7.4,
+     0,
+     0
+    ],
+    [
+     7.8,
+     0,
+     0
+    ],
+    [
+     8.2,
+     0,
+     0
+    ],
+    [
+     8.6,
+     0,
+     0
+    ],
+    [
+     9,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dragChain",
+   "layer": "granite",
+   "shape": "slab",
+   "size": [
+    0.28,
+    0.3,
+    0.5
+   ],
+   "r": 0.04,
+   "pos": [
+    0,
+    6,
+    4.2
+   ],
+   "at": [
+    [
+     -4.4,
+     0,
+     0
+    ],
+    [
+     -4.04,
+     0,
+     0
+    ],
+    [
+     -3.68,
+     0,
+     0
+    ],
+    [
+     -3.32,
+     0,
+     0
+    ],
+    [
+     -2.96,
+     0,
+     0
+    ],
+    [
+     -2.6,
+     0,
+     0
+    ],
+    [
+     -2.24,
+     0,
+     0
+    ],
+    [
+     -1.88,
+     0,
+     0
+    ],
+    [
+     -1.52,
+     0,
+     0
+    ],
+    [
+     -1.16,
+     0,
+     0
+    ],
+    [
+     -0.8,
+     0,
+     0
+    ],
+    [
+     -0.44,
+     0,
+     0
+    ],
+    [
+     -0.08,
+     0,
+     0
+    ],
+    [
+     0.28,
+     0,
+     0
+    ],
+    [
+     0.64,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1.36,
+     0,
+     0
+    ],
+    [
+     1.72,
+     0,
+     0
+    ],
+    [
+     2.08,
+     0,
+     0
+    ],
+    [
+     2.44,
+     0,
+     0
+    ],
+    [
+     2.8,
+     0,
+     0
+    ],
+    [
+     3.16,
+     0,
+     0
+    ],
+    [
+     3.52,
+     0,
+     0
+    ],
+    [
+     3.88,
+     0,
+     0
+    ]
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "dragTray",
+   "layer": "granite",
+   "shape": "box",
+   "size": [
+    14,
+    0.05,
+    0.8
+   ],
+   "pos": [
+    2,
+    5.825,
+    4.2
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stZRead",
+   "layer": "stZ",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.2,
+    0.25
+   ],
+   "pos": [
+    3.7800000000000002,
+    7.25,
+    1.2
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "chuckFit",
+   "layer": "chuck",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.75,
+    7.95,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.3
+    ],
+    [
+     0,
+     0,
+     0.3
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "graniteBolt",
+   "layer": "granite",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    5.82,
+    0
+   ],
+   "at": [
+    [
+     -5.2,
+     0,
+     -4.4
+    ],
+    [
+     -5.2,
+     0,
+     4.4
+    ],
+    [
+     9.2,
+     0,
+     -4.4
+    ],
+    [
+     9.2,
+     0,
+     4.4
+    ],
+    [
+     2,
+     0,
+     -4.4
+    ],
+    [
+     2,
+     0,
+     4.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "isoFit",
+   "layer": "iso",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    0,
+    3,
+    0
+   ],
+   "at": [
+    [
+     -3.6499999999999995,
+     0,
+     -3.8
+    ],
+    [
+     -3.6499999999999995,
+     0,
+     3.8
+    ],
+    [
+     9.549999999999999,
+     0,
+     -3.8
+    ],
+    [
+     9.549999999999999,
+     0,
+     3.8
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "isoBolt",
+   "layer": "iso",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.25,
+    0
+   ],
+   "at": [
+    [
+     -3.7499999999999996,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     -2.9499999999999997
+    ],
+    [
+     -5.449999999999999,
+     0,
+     -3.8
+    ],
+    [
+     -4.6,
+     0,
+     -4.6499999999999995
+    ],
+    [
+     -3.7499999999999996,
+     0,
+     3.8
+    ],
+    [
+     -4.6,
+     0,
+     4.6499999999999995
+    ],
+    [
+     -5.449999999999999,
+     0,
+     3.8
+    ],
+    [
+     -4.6,
+     0,
+     2.9499999999999997
+    ],
+    [
+     9.45,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     -2.9499999999999997
+    ],
+    [
+     7.75,
+     0,
+     -3.8
+    ],
+    [
+     8.6,
+     0,
+     -4.6499999999999995
+    ],
+    [
+     9.45,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     4.6499999999999995
+    ],
+    [
+     7.75,
+     0,
+     3.8
+    ],
+    [
+     8.6,
+     0,
+     2.9499999999999997
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "objKnurl",
+   "layer": "obj",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.3,
+    0.05
+   ],
+   "pos": [
+    2,
+    10.8,
+    0
+   ],
+   "at": [
+    [
+     0.57,
+     0,
+     0
+    ],
+    [
+     0.542,
+     0,
+     0.176
+    ],
+    [
+     0.461,
+     0,
+     0.335
+    ],
+    [
+     0.335,
+     0,
+     0.461
+    ],
+    [
+     0.176,
+     0,
+     0.542
+    ],
+    [
+     0,
+     0,
+     0.57
+    ],
+    [
+     -0.176,
+     0,
+     0.542
+    ],
+    [
+     -0.335,
+     0,
+     0.461
+    ],
+    [
+     -0.461,
+     0,
+     0.335
+    ],
+    [
+     -0.542,
+     0,
+     0.176
+    ],
+    [
+     -0.57,
+     0,
+     0
+    ],
+    [
+     -0.542,
+     0,
+     -0.176
+    ],
+    [
+     -0.461,
+     0,
+     -0.335
+    ],
+    [
+     -0.335,
+     0,
+     -0.461
+    ],
+    [
+     -0.176,
+     0,
+     -0.542
+    ],
+    [
+     0,
+     0,
+     -0.57
+    ],
+    [
+     0.176,
+     0,
+     -0.542
+    ],
+    [
+     0.335,
+     0,
+     -0.461
+    ],
+    [
+     0.461,
+     0,
+     -0.335
+    ],
+    [
+     0.542,
+     0,
+     -0.176
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "objAdj",
+   "layer": "obj",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.3
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    11,
+    0
+   ],
+   "at": [
+    [
+     0.62,
+     0,
+     0
+    ],
+    [
+     -0.31,
+     0,
+     0.537
+    ],
+    [
+     -0.31,
+     0,
+     -0.537
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "headScrew",
+   "layer": "head",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.04
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    2,
+    11.75,
+    1.22
+   ],
+   "at": [
+    [
+     -1.1,
+     -0.6,
+     0
+    ],
+    [
+     -1.1,
+     0.6,
+     0
+    ],
+    [
+     -0.367,
+     -0.6,
+     0
+    ],
+    [
+     -0.367,
+     0.6,
+     0
+    ],
+    [
+     0.367,
+     -0.6,
+     0
+    ],
+    [
+     0.367,
+     0.6,
+     0
+    ],
+    [
+     1.1,
+     -0.6,
+     0
+    ],
+    [
+     1.1,
+     0.6,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "headConn",
+   "layer": "head",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.42,
+    11.6,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.4
+    ],
+    [
+     0,
+     0,
+     0.4
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "headCable",
+   "layer": "head",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.6,
+    12.4,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.4
+    ],
+    [
+     0,
+     0,
+     0.4
+    ]
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "detPcb",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    1.6,
+    1,
+    0.04
+   ],
+   "pos": [
+    2,
+    14.3,
+    0.93
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "detChip",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.36,
+    0.36,
+    0.05
+   ],
+   "pos": [
+    2,
+    14.35,
+    0.97
+   ],
+   "at": [
+    [
+     -0.4,
+     0,
+     0
+    ],
+    [
+     0.3,
+     0.12,
+     0
+    ]
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "detCap",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.04,
+    0.04
+   ],
+   "pos": [
+    2,
+    14,
+    0.97
+   ],
+   "at": [
+    [
+     -0.7,
+     -0.12,
+     0
+    ],
+    [
+     -0.7,
+     0,
+     0
+    ],
+    [
+     -0.525,
+     -0.12,
+     0
+    ],
+    [
+     -0.525,
+     0,
+     0
+    ],
+    [
+     -0.35,
+     -0.12,
+     0
+    ],
+    [
+     -0.35,
+     0,
+     0
+    ],
+    [
+     -0.175,
+     -0.12,
+     0
+    ],
+    [
+     -0.175,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.12,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.175,
+     -0.12,
+     0
+    ],
+    [
+     0.175,
+     0,
+     0
+    ],
+    [
+     0.35,
+     -0.12,
+     0
+    ],
+    [
+     0.35,
+     0,
+     0
+    ],
+    [
+     0.525,
+     -0.12,
+     0
+    ],
+    [
+     0.525,
+     0,
+     0
+    ],
+    [
+     0.7,
+     -0.12,
+     0
+    ],
+    [
+     0.7,
+     0,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "detTrace",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.012,
+    0.01
+   ],
+   "pos": [
+    2,
+    14.6,
+    0.955
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.06,
+     0
+    ],
+    [
+     0,
+     -0.06,
+     0
+    ],
+    [
+     0.1,
+     -0.14,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "detConn",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.16,
+    0.12
+   ],
+   "pos": [
+    2.45,
+    13.85,
+    0.99
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "detRibbon",
+   "layer": "det",
+   "shape": "box",
+   "size": [
+    0.42,
+    1.2,
+    0.02
+   ],
+   "pos": [
+    2.45,
+    13.2,
+    1
+   ],
+   "mat": "ribbon"
+  },
+  {
+   "id": "srcMount",
+   "layer": "src",
+   "shape": "tube",
+   "size": [
+    1.05,
+    0.9,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -3.3,
+    11.8,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "srcAdj",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -3.2,
+    11.8,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0.98
+    ],
+    [
+     0,
+     0.849,
+     -0.49
+    ],
+    [
+     0,
+     -0.849,
+     -0.49
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "srcLaserFin",
+   "layer": "src",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.4,
+    0.05
+   ],
+   "pos": [
+    -4.2,
+    12.35,
+    -2.1
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.35
+    ],
+    [
+     0,
+     0,
+     -0.21
+    ],
+    [
+     0,
+     0,
+     -0.07
+    ],
+    [
+     0,
+     0,
+     0.07
+    ],
+    [
+     0,
+     0,
+     0.21
+    ],
+    [
+     0,
+     0,
+     0.35
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "srcFiber",
+   "layer": "src",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -5.1,
+    11.6,
+    -2.1
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "srcClamp",
+   "layer": "src",
+   "shape": "tube",
+   "size": [
+    0.16,
+    0.1,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.6,
+    10.3,
+    -2.2
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     -0.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fwCable",
+   "layer": "fw",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -0.6,
+    11.3,
+    0.2
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "utilClamp",
+   "layer": "util",
+   "shape": "tube",
+   "size": [
+    0.22,
+    0.14,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    5,
+    3,
+    -6.9
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ],
+    [
+     1.2,
+     0,
+     0
+    ],
+    [
+     0,
+     1.2,
+     0
+    ],
+    [
+     0.5,
+     1.2,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcBoard0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    3.6,
+    1.9,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    3,
+    1.2
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "pcBga0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.55,
+    0.55,
+    0.06
+   ],
+   "pos": [
+    14.3,
+    3.15,
+    1.24
+   ],
+   "at": [
+    [
+     -1.1,
+     0,
+     0
+    ],
+    [
+     -0.3,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "pcPass0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.05,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    2.45,
+    1.23
+   ],
+   "at": [
+    [
+     -1.5,
+     0,
+     0
+    ],
+    [
+     -1.5,
+     0.12,
+     0
+    ],
+    [
+     -1.227,
+     0,
+     0
+    ],
+    [
+     -1.227,
+     0.12,
+     0
+    ],
+    [
+     -0.955,
+     0,
+     0
+    ],
+    [
+     -0.955,
+     0.12,
+     0
+    ],
+    [
+     -0.682,
+     0,
+     0
+    ],
+    [
+     -0.682,
+     0.12,
+     0
+    ],
+    [
+     -0.409,
+     0,
+     0
+    ],
+    [
+     -0.409,
+     0.12,
+     0
+    ],
+    [
+     -0.136,
+     0,
+     0
+    ],
+    [
+     -0.136,
+     0.12,
+     0
+    ],
+    [
+     0.136,
+     0,
+     0
+    ],
+    [
+     0.136,
+     0.12,
+     0
+    ],
+    [
+     0.409,
+     0,
+     0
+    ],
+    [
+     0.409,
+     0.12,
+     0
+    ],
+    [
+     0.682,
+     0,
+     0
+    ],
+    [
+     0.682,
+     0.12,
+     0
+    ],
+    [
+     0.955,
+     0,
+     0
+    ],
+    [
+     0.955,
+     0.12,
+     0
+    ],
+    [
+     1.227,
+     0,
+     0
+    ],
+    [
+     1.227,
+     0.12,
+     0
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     1.5,
+     0.12,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcTrace0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    2.6,
+    0.015,
+    0.01
+   ],
+   "pos": [
+    14.3,
+    2.7,
+    1.225
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.05,
+     0
+    ],
+    [
+     0,
+     0.1,
+     0
+    ],
+    [
+     0,
+     0.15,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcConn0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.5,
+    0.14
+   ],
+   "pos": [
+    16,
+    3,
+    1.26
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcRibbon0",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.25,
+    0.8,
+    0.02
+   ],
+   "pos": [
+    16,
+    1.9,
+    1.34
+   ],
+   "mat": "ribbon"
+  },
+  {
+   "id": "pcBoard1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    3.6,
+    1.9,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    5.7,
+    1.2
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "pcBga1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.55,
+    0.55,
+    0.06
+   ],
+   "pos": [
+    14.3,
+    5.8500000000000005,
+    1.24
+   ],
+   "at": [
+    [
+     -1.1,
+     0,
+     0
+    ],
+    [
+     -0.3,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "pcPass1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.05,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    5.15,
+    1.23
+   ],
+   "at": [
+    [
+     -1.5,
+     0,
+     0
+    ],
+    [
+     -1.5,
+     0.12,
+     0
+    ],
+    [
+     -1.227,
+     0,
+     0
+    ],
+    [
+     -1.227,
+     0.12,
+     0
+    ],
+    [
+     -0.955,
+     0,
+     0
+    ],
+    [
+     -0.955,
+     0.12,
+     0
+    ],
+    [
+     -0.682,
+     0,
+     0
+    ],
+    [
+     -0.682,
+     0.12,
+     0
+    ],
+    [
+     -0.409,
+     0,
+     0
+    ],
+    [
+     -0.409,
+     0.12,
+     0
+    ],
+    [
+     -0.136,
+     0,
+     0
+    ],
+    [
+     -0.136,
+     0.12,
+     0
+    ],
+    [
+     0.136,
+     0,
+     0
+    ],
+    [
+     0.136,
+     0.12,
+     0
+    ],
+    [
+     0.409,
+     0,
+     0
+    ],
+    [
+     0.409,
+     0.12,
+     0
+    ],
+    [
+     0.682,
+     0,
+     0
+    ],
+    [
+     0.682,
+     0.12,
+     0
+    ],
+    [
+     0.955,
+     0,
+     0
+    ],
+    [
+     0.955,
+     0.12,
+     0
+    ],
+    [
+     1.227,
+     0,
+     0
+    ],
+    [
+     1.227,
+     0.12,
+     0
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     1.5,
+     0.12,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcTrace1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    2.6,
+    0.015,
+    0.01
+   ],
+   "pos": [
+    14.3,
+    5.4,
+    1.225
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.05,
+     0
+    ],
+    [
+     0,
+     0.1,
+     0
+    ],
+    [
+     0,
+     0.15,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcConn1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.5,
+    0.14
+   ],
+   "pos": [
+    16,
+    5.7,
+    1.26
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcRibbon1",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.25,
+    0.8,
+    0.02
+   ],
+   "pos": [
+    16,
+    4.6,
+    1.34
+   ],
+   "mat": "ribbon"
+  },
+  {
+   "id": "pcBoard2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    3.6,
+    1.9,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    8.4,
+    1.2
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "pcBga2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.55,
+    0.55,
+    0.06
+   ],
+   "pos": [
+    14.3,
+    8.55,
+    1.24
+   ],
+   "at": [
+    [
+     -1.1,
+     0,
+     0
+    ],
+    [
+     -0.3,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "pcPass2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.05,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    7.8500000000000005,
+    1.23
+   ],
+   "at": [
+    [
+     -1.5,
+     0,
+     0
+    ],
+    [
+     -1.5,
+     0.12,
+     0
+    ],
+    [
+     -1.227,
+     0,
+     0
+    ],
+    [
+     -1.227,
+     0.12,
+     0
+    ],
+    [
+     -0.955,
+     0,
+     0
+    ],
+    [
+     -0.955,
+     0.12,
+     0
+    ],
+    [
+     -0.682,
+     0,
+     0
+    ],
+    [
+     -0.682,
+     0.12,
+     0
+    ],
+    [
+     -0.409,
+     0,
+     0
+    ],
+    [
+     -0.409,
+     0.12,
+     0
+    ],
+    [
+     -0.136,
+     0,
+     0
+    ],
+    [
+     -0.136,
+     0.12,
+     0
+    ],
+    [
+     0.136,
+     0,
+     0
+    ],
+    [
+     0.136,
+     0.12,
+     0
+    ],
+    [
+     0.409,
+     0,
+     0
+    ],
+    [
+     0.409,
+     0.12,
+     0
+    ],
+    [
+     0.682,
+     0,
+     0
+    ],
+    [
+     0.682,
+     0.12,
+     0
+    ],
+    [
+     0.955,
+     0,
+     0
+    ],
+    [
+     0.955,
+     0.12,
+     0
+    ],
+    [
+     1.227,
+     0,
+     0
+    ],
+    [
+     1.227,
+     0.12,
+     0
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     1.5,
+     0.12,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcTrace2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    2.6,
+    0.015,
+    0.01
+   ],
+   "pos": [
+    14.3,
+    8.1,
+    1.225
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.05,
+     0
+    ],
+    [
+     0,
+     0.1,
+     0
+    ],
+    [
+     0,
+     0.15,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcConn2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.5,
+    0.14
+   ],
+   "pos": [
+    16,
+    8.4,
+    1.26
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcRibbon2",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.25,
+    0.8,
+    0.02
+   ],
+   "pos": [
+    16,
+    7.300000000000001,
+    1.34
+   ],
+   "mat": "ribbon"
+  },
+  {
+   "id": "pcBoard3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    3.6,
+    1.9,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    11.100000000000001,
+    1.2
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "pcBga3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.55,
+    0.55,
+    0.06
+   ],
+   "pos": [
+    14.3,
+    11.250000000000002,
+    1.24
+   ],
+   "at": [
+    [
+     -1.1,
+     0,
+     0
+    ],
+    [
+     -0.3,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "pcPass3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.05,
+    0.04
+   ],
+   "pos": [
+    14.3,
+    10.55,
+    1.23
+   ],
+   "at": [
+    [
+     -1.5,
+     0,
+     0
+    ],
+    [
+     -1.5,
+     0.12,
+     0
+    ],
+    [
+     -1.227,
+     0,
+     0
+    ],
+    [
+     -1.227,
+     0.12,
+     0
+    ],
+    [
+     -0.955,
+     0,
+     0
+    ],
+    [
+     -0.955,
+     0.12,
+     0
+    ],
+    [
+     -0.682,
+     0,
+     0
+    ],
+    [
+     -0.682,
+     0.12,
+     0
+    ],
+    [
+     -0.409,
+     0,
+     0
+    ],
+    [
+     -0.409,
+     0.12,
+     0
+    ],
+    [
+     -0.136,
+     0,
+     0
+    ],
+    [
+     -0.136,
+     0.12,
+     0
+    ],
+    [
+     0.136,
+     0,
+     0
+    ],
+    [
+     0.136,
+     0.12,
+     0
+    ],
+    [
+     0.409,
+     0,
+     0
+    ],
+    [
+     0.409,
+     0.12,
+     0
+    ],
+    [
+     0.682,
+     0,
+     0
+    ],
+    [
+     0.682,
+     0.12,
+     0
+    ],
+    [
+     0.955,
+     0,
+     0
+    ],
+    [
+     0.955,
+     0.12,
+     0
+    ],
+    [
+     1.227,
+     0,
+     0
+    ],
+    [
+     1.227,
+     0.12,
+     0
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     1.5,
+     0.12,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcTrace3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    2.6,
+    0.015,
+    0.01
+   ],
+   "pos": [
+    14.3,
+    10.8,
+    1.225
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.05,
+     0
+    ],
+    [
+     0,
+     0.1,
+     0
+    ],
+    [
+     0,
+     0.15,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcConn3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.5,
+    0.14
+   ],
+   "pos": [
+    16,
+    11.100000000000001,
+    1.26
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcRibbon3",
+   "layer": "pc",
+   "shape": "box",
+   "size": [
+    0.25,
+    0.8,
+    0.02
+   ],
+   "pos": [
+    16,
+    10.000000000000002,
+    1.34
+   ],
+   "mat": "ribbon"
+  },
+  {
+   "id": "sc0_0",
+   "layer": "sc0_0",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    1.138,
+    8.502,
+    0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc0_1",
+   "layer": "sc0_1",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    1.713,
+    8.502,
+    0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc0_2",
+   "layer": "sc0_2",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    2.288,
+    8.502,
+    0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc0_3",
+   "layer": "sc0_3",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    2.863,
+    8.502,
+    0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc1_0",
+   "layer": "sc1_0",
+   "shape": "box",
+   "size": [
+    0.735,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    0.913,
+    8.502,
+    0
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc1_1",
+   "layer": "sc1_1",
+   "shape": "box",
+   "size": [
+    0.735,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    1.638,
+    8.502,
+    0
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc1_2",
+   "layer": "sc1_2",
+   "shape": "box",
+   "size": [
+    0.735,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    2.363,
+    8.502,
+    0
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc1_3",
+   "layer": "sc1_3",
+   "shape": "box",
+   "size": [
+    0.735,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    3.087,
+    8.502,
+    0
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc2_0",
+   "layer": "sc2_0",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    1.138,
+    8.502,
+    -0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc2_1",
+   "layer": "sc2_1",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    1.713,
+    8.502,
+    -0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc2_2",
+   "layer": "sc2_2",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    2.288,
+    8.502,
+    -0.9
+   ],
+   "mat": "scanBand"
+  },
+  {
+   "id": "sc2_3",
+   "layer": "sc2_3",
+   "shape": "box",
+   "size": [
+    0.585,
+    0.01,
+    0.62
+   ],
+   "pos": [
+    2.863,
+    8.502,
+    -0.9
+   ],
+   "mat": "scanBand"
+  }
+ ],
+ "anchors": {
+  "src": {
+   "layer": "src",
+   "p": [
+    -4,
+    12.3,
+    0.6
+   ],
+   "dx": -140,
+   "dy": -150
+  },
+  "head": {
+   "layer": "head",
+   "p": [
+    2,
+    12.5,
+    1.2
+   ],
+   "dx": 150,
+   "dy": -150
+  },
+  "obj": {
+   "layer": "obj",
+   "p": [
+    2.5,
+    9.6,
+    0.4
+   ],
+   "dx": 150,
+   "dy": -110
+  },
+  "stage": {
+   "layer": "stX",
+   "p": [
+    3.6,
+    6.8,
+    2.2
+   ],
+   "dx": 150,
+   "dy": 120
+  },
+  "pc": {
+   "layer": "pc",
+   "p": [
+    14.3,
+    13,
+    1.7
+   ],
+   "dx": -150,
+   "dy": -150
+  },
+  "det": {
+   "layer": "det",
+   "p": [
+    2.8,
+    15,
+    0.9
+   ],
+   "dx": 150,
+   "dy": -120
+  },
+  "foup": {
+   "layer": "foup1",
+   "p": [
+    -16,
+    10.4,
+    -2.2
+   ],
+   "dx": -140,
+   "dy": -120
+  },
+  "aln": {
+   "layer": "aligner",
+   "p": [
+    -10.5,
+    9,
+    4.6
+   ],
+   "dx": 140,
+   "dy": -120
+  },
+  "ar": {
+   "layer": "ar",
+   "p": [
+    -10.3,
+    8.4,
+    0
+   ],
+   "dx": 140,
+   "dy": 110
+  },
+  "plasma": {
+   "layer": "src",
+   "p": [
+    -4.2,
+    11.8,
+    0.3
+   ],
+   "dx": -150,
+   "dy": -140
+  },
+  "laser": {
+   "layer": "src",
+   "p": [
+    -4.2,
+    11.85,
+    -1.5
+   ],
+   "dx": 150,
+   "dy": -120
+  },
+  "fw": {
+   "layer": "fw",
+   "p": [
+    -1.2,
+    12.8,
+    0.2
+   ],
+   "dx": 140,
+   "dy": -140
+  },
+  "bf": {
+   "layer": "lBF",
+   "p": [
+    2.3,
+    9.8,
+    0
+   ],
+   "dx": 150,
+   "dy": -130
+  },
+  "df": {
+   "layer": "dfArm",
+   "p": [
+    -0.6000000000000001,
+    10.3,
+    0
+   ],
+   "dx": -150,
+   "dy": -130
+  },
+  "dump": {
+   "layer": "dump",
+   "p": [
+    4.1,
+    9.8,
+    0.2
+   ],
+   "dx": 150,
+   "dy": -120
+  },
+  "defect": {
+   "layer": "wfS",
+   "p": [
+    2.05,
+    8.569999999999999,
+    -0.04
+   ],
+   "dx": 140,
+   "dy": 120
+  },
+  "iso": {
+   "layer": "iso",
+   "p": [
+    8.6,
+    2.4,
+    3.8
+   ],
+   "dx": 150,
+   "dy": -120
+  },
+  "ovl": {
+   "layer": "metOvl",
+   "p": [
+    24.9,
+    10.6,
+    -0.9
+   ],
+   "dx": 150,
+   "dy": -140
+  },
+  "ell": {
+   "layer": "metEll",
+   "p": [
+    26.7,
+    9.6,
+    0.7
+   ],
+   "dx": 150,
+   "dy": -120
+  },
+  "film": {
+   "layer": "wM",
+   "p": [
+    25.5,
+    8.549999999999999,
+    1
+   ],
+   "dx": 150,
+   "dy": 110
+  },
+  "sign": {
+   "layer": "front",
+   "p": [
+    2.5,
+    14.8,
+    6.1
+   ],
+   "dx": -150,
+   "dy": -130
+  },
+  "chuck": {
+   "layer": "chuck",
+   "p": [
+    3,
+    8.42,
+    0.6
+   ],
+   "dx": 150,
+   "dy": -130
+  }
+ },
+ "actions": {
+  "srcGlow": {
+   "type": "pulse",
+   "_說明": "電漿亮球：雷射持續供能，亮度微微閃動（不是白熾燈絲）",
+   "parts": [
+    "srcPlasma",
+    "srcBulb"
+   ],
+   "color": "plasma",
+   "glow": 1,
+   "freq": 2.2,
+   "halo": 0
+  },
+  "laser": {
+   "type": "pulse",
+   "_說明": "雷射束（紅）打進燈泡",
+   "parts": [
+    "srcLaserBeam"
+   ],
+   "color": "laser",
+   "glow": 1,
+   "steady": true,
+   "halo": 0
+  },
+  "fwSpin": {
+   "type": "rotate",
+   "_說明": "濾片轉盤轉到要的波段（起轉、停轉有加減速）",
+   "parts": [
+    "fwDisc",
+    "fwHub",
+    "fwF0",
+    "fwF1",
+    "fwF2",
+    "fwF3",
+    "fwF4",
+    "fwF5"
+   ],
+   "axis": [
+    1,
+    0,
+    0
+   ],
+   "pivot": [
+    -1.2,
+    11.8,
+    0
+   ],
+   "pivots": {
+    "fwDisc": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwHub": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF0": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF1": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF2": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF3": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF4": [
+     -1.2,
+     11.8,
+     0
+    ],
+    "fwF5": [
+     -1.2,
+     11.8,
+     0
+    ]
+   },
+   "rps": 0.5,
+   "rampSpin": true
+  },
+  "bfPulse": {
+   "type": "pulse",
+   "_說明": "明場光錐：亮度穩定，中心較亮",
+   "parts": [
+    "lBF",
+    "lBFCore",
+    "lMain",
+    "lMainCore",
+    "lMainDown"
+   ],
+   "color": "light",
+   "glow": 0.7,
+   "steady": true,
+   "halo": 0
+  },
+  "spot": {
+   "type": "pulse",
+   "_說明": "照到晶圓的小亮點",
+   "parts": [
+    "lSpot"
+   ],
+   "color": "lightW",
+   "glow": 1,
+   "freq": 1,
+   "halo": 0
+  },
+  "dfPulse": {
+   "type": "pulse",
+   "parts": [
+    "lDF",
+    "lSpec"
+   ],
+   "color": "dfc",
+   "glow": 0.8,
+   "steady": true,
+   "halo": 0
+  },
+  "defGlow": {
+   "type": "pulse",
+   "_說明": "缺陷被照到：散射亮點閃",
+   "parts": [
+    "wfBDefect",
+    "wfSDefect"
+   ],
+   "color": "defect",
+   "glow": 1,
+   "freq": 2.4,
+   "halo": 0
+  },
+  "defRing": {
+   "type": "pulse",
+   "_說明": "比對後圈出缺陷",
+   "parts": [
+    "wfBDefRing",
+    "wfSDefRing"
+   ],
+   "color": "defect",
+   "glow": 1,
+   "freq": 1.4,
+   "halo": 0
+  },
+  "dieHi": {
+   "type": "pulse",
+   "_說明": "相鄰兩顆晶粒框起來比對",
+   "parts": [
+    "wfBDieHi",
+    "wfSDieHi"
+   ],
+   "color": "lightR",
+   "glow": 0.9,
+   "freq": 1,
+   "halo": 0
+  },
+  "pcBlink": {
+   "type": "pulse",
+   "_說明": "運算櫃板卡指示燈（比對中）",
+   "parts": [
+    "pcLed"
+   ],
+   "color": "lampG",
+   "glow": 1,
+   "freq": 3,
+   "halo": 0
+  },
+  "status": {
+   "type": "pulse",
+   "parts": [
+    "towerG",
+    "detLed"
+   ],
+   "color": "lampG",
+   "glow": 0.8,
+   "freq": 0.5,
+   "halo": 0
+  },
+  "alnLaser": {
+   "type": "pulse",
+   "_說明": "缺口感測器紅光",
+   "parts": [
+    "alnBeam"
+   ],
+   "color": "laser",
+   "glow": 1,
+   "freq": 3,
+   "halo": 0
+  },
+  "alnSpin": {
+   "type": "rotate",
+   "_說明": "預對準器帶著晶圓轉，找缺口（起轉、停轉有加減速）",
+   "parts": [
+    "wfR",
+    "wfRNotch",
+    "wfRDie",
+    "alnSpin"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "pivot": [
+    -10.5,
+    8.45,
+    3.8
+   ],
+   "pivots": {
+    "wfR": [
+     -10.5,
+     8.45,
+     3.8
+    ],
+    "wfRNotch": [
+     -10.5,
+     8.45,
+     3.8
+    ],
+    "wfRDie": [
+     -10.5,
+     8.45,
+     3.8
+    ],
+    "alnSpin": [
+     -10.5,
+     8.45,
+     3.8
+    ]
+   },
+   "rps": 0.6,
+   "rampSpin": true
+  },
+  "ffuAir": {
+   "type": "flow",
+   "_說明": "風扇過濾機組往下吹的潔淨空氣（向下層流）",
+   "path": [
+    [
+     -12.5,
+     16.6,
+     4.5
+    ],
+    [
+     -12.5,
+     10.5,
+     4.5
+    ]
+   ],
+   "n": 3,
+   "lanes": 4,
+   "laneGap": 1.4,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 0.45,
+   "color": "light",
+   "track": false,
+   "layer": "efem",
+   "free": true
+  },
+  "scat0": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     2,
+     9.55,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat1": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     2.28,
+     9.49,
+     0.196
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.13,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat2": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     1.72,
+     9.49,
+     0.196
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.26,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat3": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     2.133,
+     9.193,
+     0.754
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.39,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat4": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     1.336,
+     9.257,
+     -0.242
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.52,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat5": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     2,
+     9.369,
+     -0.574
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.65,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "scat6": {
+   "type": "flow",
+   "_說明": "缺陷散射光（從缺陷往外，越遠越淡）",
+   "path": [
+    [
+     2,
+     8.549999999999999,
+     0
+    ],
+    [
+     2.628,
+     9.124,
+     -0.527
+    ]
+   ],
+   "n": 3,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 1.6,
+   "phase": 0.78,
+   "color": "dfc",
+   "trail": 3,
+   "trailGap": 0.03,
+   "trailColor": "dfc",
+   "track": false,
+   "layer": "lDFc",
+   "free": true
+  },
+  "ovlPulse": {
+   "type": "pulse",
+   "parts": [
+    "lOvl",
+    "ovlMark1"
+   ],
+   "color": "light",
+   "glow": 0.8,
+   "freq": 1,
+   "halo": 0
+  },
+  "ellBeam": {
+   "type": "pulse",
+   "parts": [
+    "lEllIn",
+    "lEllOut"
+   ],
+   "color": "lightW",
+   "glow": 0.8,
+   "steady": true,
+   "halo": 0
+  },
+  "ellAna": {
+   "type": "rotate",
+   "_說明": "反射臂上的檢偏器一直轉，量偏振怎麼變",
+   "parts": [
+    "ellAna",
+    "ellAnaMark"
+   ],
+   "axis": [
+    0.94,
+    0.342,
+    0
+   ],
+   "pivot": [
+    27.097,
+    9.091,
+    0.7
+   ],
+   "pivots": {
+    "ellAna": [
+     27.097,
+     9.091,
+     0.7
+    ],
+    "ellAnaMark": [
+     27.097,
+     9.091,
+     0.7
+    ]
+   },
+   "rps": 0.7,
+   "rampSpin": true
+  }
+ },
+ "kin": {
+  "ar": {
+   "layer": "ar",
+   "tip": "lift",
+   "size": 7.1,
+   "grip": [
+    -3.200000000000001,
+    8.41,
+    0
+   ],
+   "joints": [
+    {
+     "id": "j1",
+     "type": "rot",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -10.3,
+      8.05,
+      0
+     ],
+     "parts": [
+      "arLink1"
+     ],
+     "min": -400,
+     "max": 400
+    },
+    {
+     "id": "j2",
+     "parent": "j1",
+     "type": "rot",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -7.500000000000001,
+      8.18,
+      0
+     ],
+     "parts": [
+      "arElbow",
+      "arLink2"
+     ],
+     "min": -178,
+     "max": 178
+    },
+    {
+     "id": "j3",
+     "parent": "j2",
+     "type": "rot",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -4.700000000000001,
+      8.3,
+      0
+     ],
+     "parts": [
+      "arWrist"
+     ],
+     "min": -270,
+     "max": 270
+    },
+    {
+     "id": "lift",
+     "parent": "j3",
+     "type": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "parts": [
+      "arBladeRoot",
+      "arBlade",
+      "arPad"
+     ],
+     "min": -0.3,
+     "max": 0.4
+    }
+   ],
+   "body": [
+    "arCol",
+    "arColBand",
+    "arHead",
+    "arLink1",
+    "arElbow",
+    "arLink2",
+    "arWrist",
+    "arBladeRoot",
+    "arBlade",
+    "arPad"
+   ],
+   "info": {
+    "L1": 2.8,
+    "BL": 1.5,
+    "type": "atmospheric SCARA (single blade)"
+   }
+  }
+ },
+ "pose": {
+  "yaw0": -0.3,
+  "yawIso": -0.3,
+  "drift": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 90,
+   "elev": 24,
+   "y": 8
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "srcPx": 30,
+  "shadows": 0,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ },
+ "info": {
+  "yW": 8.45,
+  "WT": 0.08,
+  "WR": 1.5,
+  "OX": 2,
+  "OZ": 0,
+  "LOADX": -3.6,
+  "RB": [
+   -10.3,
+   0
+  ],
+  "L1": 2.8,
+  "BL": 1.5,
+  "FOUP1": [
+   -15.85,
+   0
+  ],
+  "FOUP2": [
+   -15.85,
+   3.85
+  ],
+  "ALN": [
+   -10.5,
+   3.8
+  ],
+  "MX": 25,
+  "OVX": 24.4,
+  "OVZ": -0.9,
+  "EX": 25.5,
+  "EZ": 0.7,
+  "DFA": 65
+ }
+}
