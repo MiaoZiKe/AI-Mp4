@@ -1,0 +1,2776 @@
+{
+ "slug": "tech-tel",
+ "prevEpisode": "設備五大-3：科林研發",
+ "title": "設備五大-4：東京威力科創（科技透明圈）",
+ "asOf": "2026/11/26",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白：2.5＋Iapetus＋說明 B（捲舌音要念清楚）；音高關卡 tts-pitch-take.sh（112～126 Hz）；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "直立式批次爐管（示意）",
+    "en": "VERTICAL FURNACE",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/26",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定機型"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "一次烤",
+   "上百片？"
+  ],
+  "sub": "設備五大-4：東京威力科創",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上集說光阻得先塗好，誰來塗？東京威力科創，塗佈顯影機約九成是它的。",
+   "tts": "上一集說光阻得先塗好，誰來塗？東京威力科創，塗佈顯影機約九成是它的。",
+   "subtitle": {
+    "zh": "上集說光阻得先塗好\n誰來塗？\n東京威力科創\n塗佈顯影機約九成是它的",
+    "en": "Last time: the resist must be coated first. | Who coats it? | Tokyo Electron. | It makes about 90% of coater-developers."
+   },
+   "keywords": [
+    "塗佈顯影",
+    "九成"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "光阻得先塗好"
+    },
+    {
+     "id": "who",
+     "text": "誰來塗"
+    },
+    {
+     "id": "tel",
+     "text": "東京威力科創"
+    },
+    {
+     "id": "nine",
+     "text": "九成"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TEL 法說會（2025 市占，引述 Gartner）"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：光阻要先塗好",
+     "title": "誰來塗光阻？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 31,
+      "y": 5.4,
+      "d": 40,
+      "elev": 28
+     },
+     {
+      "at": "start",
+      "dur": 120,
+      "x": 31,
+      "y": 5.2,
+      "d": 38,
+      "elev": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "lae",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "lae",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "lae",
+      "at": "s6:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "lae",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "upper",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "upper",
+      "at": "s3:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "upper",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatL",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatL",
+      "at": "s4:start+0",
+      "until": "s6:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatL",
+      "at": "s7:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatL",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatL",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatR",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatR",
+      "at": "s4:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatR",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s4:start+0",
+      "until": "s6:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s7:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "otube",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "otube",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "otube",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "otube",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "otube",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "itube",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "itube",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "itube",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "itube",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "itube",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mani",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mani",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mani",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mani",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mani",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "shut",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "shut",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "shut",
+      "at": "s6:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "shut",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "boat",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "boat",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "boat",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "boat",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bgap",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bgap",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bgap",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bgap",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cap",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cap",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cap",
+      "at": "s8:start+0",
+      "until": "s9:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cap",
+      "at": "s10:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cap",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elevCol",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elevCol",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elevCol",
+      "at": "s6:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elevCol",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elev",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elev",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elev",
+      "at": "s6:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "elev",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fop",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fop",
+      "at": "s3:start+0",
+      "until": "s4:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fop",
+      "at": "s5:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fop",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "foup",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "foup",
+      "at": "s3:start+0",
+      "until": "s4:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "foup",
+      "at": "s5:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "foup",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wf5",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wf5",
+      "at": "s3:start+0",
+      "until": "s4:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wf5",
+      "at": "s5:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wf5",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "stock",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "stock",
+      "at": "s3:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "stock",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rbCol",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rbCol",
+      "at": "s3:start+0",
+      "until": "s4:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rbCol",
+      "at": "s5:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rbCol",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rb",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rb",
+      "at": "s3:start+0",
+      "until": "s4:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rb",
+      "at": "s5:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rb",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gas",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gas",
+      "at": "s3:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gas",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "exh",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "exh",
+      "at": "s3:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "exh",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "ctrl",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "ctrl",
+      "at": "s3:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "ctrl",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "sign",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "sign",
+      "at": "s4:start+0",
+      "until": "s5:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "sign",
+      "at": "s6:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "sign",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "film",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "film",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl0",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl0",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl1",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl1",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl2",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl2",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl3",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl3",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl4",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl4",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl5",
+      "at": "s1:start-40",
+      "until": "s8:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fl5",
+      "at": "s9:start+0",
+      "until": "s12:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bz",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bz",
+      "at": "s3:start+0",
+      "until": "s7:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bz",
+      "at": "s8:start+0",
+      "until": "s11:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bz",
+      "at": "s12:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coatCab",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coatCab",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coat",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "coat",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "noz",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "noz",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs0",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs0",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs1",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs1",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs2",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs2",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs3",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs3",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs4",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs4",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rsT",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rsT",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rsB",
+      "at": "s2:start+6",
+      "until": "s10:start+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rsB",
+      "at": "s11:start+0",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rs0",
+      "at": "s1:start-40",
+      "until": "s1:start+20",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rs0",
+      "at": "s1:nine",
+      "until": "s10:spin+6",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs0",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs1",
+      "at": "s1:start-40",
+      "until": "s1:start+28",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rs1",
+      "at": "s1:nine",
+      "until": "s10:spin+14",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs1",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs2",
+      "at": "s1:start-40",
+      "until": "s1:start+36",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rs2",
+      "at": "s1:nine",
+      "until": "s10:spin+22",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs2",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs3",
+      "at": "s1:start-40",
+      "until": "s1:start+44",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rs3",
+      "at": "s1:nine",
+      "until": "s10:spin+30",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs3",
+      "at": "s10:thin",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs4",
+      "at": "s1:start-40",
+      "until": "s1:nine-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rs4",
+      "at": "s2:start-20",
+      "until": "s10:thin-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "rsT",
+      "at": "s1:start+30",
+      "until": "s10:drop-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "rsT",
+      "at": "s10:spin+6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rsB",
+      "at": "s1:start+40",
+      "until": "s10:drop+2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rsB",
+      "at": "s10:spin+14",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "fl0",
+      "at": "s1:start-40",
+      "until": "s8:react+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fl1",
+      "at": "s1:start-40",
+      "until": "s8:react+20",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fl2",
+      "at": "s1:start-40",
+      "until": "s8:react+36",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fl3",
+      "at": "s1:start-40",
+      "until": "s8:react+52",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fl4",
+      "at": "s1:start-40",
+      "until": "s8:react+68",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fl5",
+      "at": "s1:start-40",
+      "until": "s8:react+84",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wf5",
+      "at": "s4:start+122",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bgap",
+      "at": "s1:start-40",
+      "until": "s4:start+121",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "heatTop",
+      "at": "s3:open-4",
+      "until": "s3:cap+2",
+      "dur": 18,
+      "dy": 11.6
+     },
+     {
+      "layer": "heatL",
+      "at": "s3:open+2",
+      "until": "s3:cap+2",
+      "dur": 18,
+      "dx": -6.5
+     },
+     {
+      "layer": "heatR",
+      "at": "s3:open+2",
+      "until": "s3:cap+2",
+      "dur": 18,
+      "dx": 6.5
+     },
+     {
+      "layer": "otube",
+      "at": "s3:open+8",
+      "until": "s3:cap+2",
+      "dur": 18,
+      "dy": 11.2
+     },
+     {
+      "layer": "shut",
+      "at": "s5:shut-4",
+      "until": "s13:start+400",
+      "dur": 20,
+      "dx": 4.4
+     },
+     {
+      "layer": "boat",
+      "at": "s5:acc-6",
+      "until": "s13:start+400",
+      "dur": 60,
+      "dy": 11
+     },
+     {
+      "layer": "bgap",
+      "at": "s5:acc-6",
+      "until": "s13:start+400",
+      "dur": 60,
+      "dy": 11
+     },
+     {
+      "layer": "cap",
+      "at": "s5:acc-6",
+      "until": "s13:start+400",
+      "dur": 60,
+      "dy": 11
+     },
+     {
+      "layer": "elev",
+      "at": "s5:acc-6",
+      "until": "s13:start+400",
+      "dur": 60,
+      "dy": 11
+     }
+    ],
+    "kin": [
+     {
+      "arm": "rb",
+      "at": "s1:start-40",
+      "keys": [
+       [
+        0,
+        {
+         "z": 0,
+         "th": 0,
+         "ex": 0
+        }
+       ]
+      ]
+     },
+     {
+      "arm": "rb",
+      "at": "s4:start+24",
+      "keys": [
+       [
+        0,
+        {
+         "z": 0,
+         "th": 0,
+         "ex": 0
+        }
+       ],
+       [
+        18,
+        {
+         "ex": 3.8
+        }
+       ],
+       [
+        24,
+        {
+         "z": 0.025
+        }
+       ],
+       [
+        30,
+        {
+         "z": 0.045
+        }
+       ],
+       [
+        46,
+        {
+         "ex": 0
+        }
+       ],
+       [
+        74,
+        {
+         "th": -180,
+         "z": 2.3449999999999998
+        }
+       ],
+       [
+        92,
+        {
+         "ex": 3.4
+        }
+       ],
+       [
+        97,
+        {
+         "z": 2.3249999999999997
+        }
+       ],
+       [
+        103,
+        {
+         "z": 2.3
+        }
+       ],
+       [
+        118,
+        {
+         "ex": 0
+        }
+       ],
+       [
+        140,
+        {
+         "th": 0,
+         "z": 0
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wf5",
+        "grab": 24,
+        "release": 97
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "spin",
+      "at": "start-30",
+      "ramp": 12,
+      "until": "s2:start"
+     },
+     {
+      "id": "fling0",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s2:start-18"
+     },
+     {
+      "id": "fling1",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s2:start-18"
+     },
+     {
+      "id": "fling2",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s2:start-18"
+     },
+     {
+      "id": "fling3",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s2:start-18"
+     },
+     {
+      "id": "fling4",
+      "at": "start+10",
+      "ramp": 6,
+      "until": "s2:start-18"
+     },
+     {
+      "id": "tower",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "status",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-hook",
+      "at": "who",
+      "until": "s2:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "設備五大-4",
+      "tag": "示意，非實際機型",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "who": {
+        "at": "who"
+       },
+       "tel": {
+        "at": "tel"
+       },
+       "nine": {
+        "at": "nine"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.8,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "它還有一台直立式爐管，一次把上百片晶圓一起加熱。",
+   "tts": "它還有一台直立式爐管，一次把上百片晶圓一起加熱。",
+   "subtitle": {
+    "zh": "它還有一台直立式爐管\n一次把上百片晶圓\n一起加熱",
+    "en": "It also builds vertical furnaces, | heating over a hundred wafers | at once."
+   },
+   "keywords": [
+    "爐管",
+    "上百片"
+   ],
+   "cues": [
+    {
+     "id": "furn",
+     "text": "直立式爐管"
+    },
+    {
+     "id": "batch",
+     "text": "上百片"
+    },
+    {
+     "id": "heat",
+     "text": "一起加熱"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TEL 產品線；立式爐專利（通用構造）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start+6",
+      "dur": 1,
+      "x": 2.35,
+      "y": 8.3,
+      "d": 126,
+      "elev": 12,
+      "yaw": -0.35
+     }
+    ],
+    "run": [
+     {
+      "id": "lae",
+      "at": "start",
+      "ramp": 8,
+      "until": "s3:start-30"
+     }
+    ],
+    "labels": [
+     {
+      "part": "boat",
+      "text": "晶舟（一次上百片）",
+      "en": "Wafer boat",
+      "color": "amber",
+      "at": "batch",
+      "until": "heat-2"
+     },
+     {
+      "part": "upper",
+      "text": "爐管裝在上半部機殼裡",
+      "en": "Furnace inside upper cabinet",
+      "color": "blue",
+      "at": "heat",
+      "until": "s3:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-tool",
+      "at": "start+2",
+      "until": "s3:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "直立式爐管",
+      "tag": "示意",
+      "t": {
+       "furn": {
+        "at": "furn"
+       },
+       "batch": {
+        "at": "batch"
+       },
+       "heat": {
+        "at": "heat"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "拆開看，最外面是加熱器，裡面是兩層石英管，晶圓疊在晶舟上，底下是保溫座，裝回去就是一台爐管。",
+   "tts": "拆開看，最外面是加熱器，裡面是兩層石英管，晶圓疊在晶舟上，底下是保溫座，裝回去就是一台爐管。",
+   "subtitle": {
+    "zh": "拆開看\n最外面是加熱器\n裡面是兩層石英管\n晶圓疊在晶舟上\n底下是保溫座\n裝回去就是一台爐管",
+    "en": "Let's take it apart. | Outside: the heater, | inside: two quartz tubes, | wafers stacked on a boat, | an insulating pedestal below — | put back together, that is the furnace."
+   },
+   "keywords": [
+    "加熱器",
+    "石英管",
+    "晶舟"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "heat",
+     "text": "加熱器"
+    },
+    {
+     "id": "tube",
+     "text": "石英管"
+    },
+    {
+     "id": "boat",
+     "text": "晶舟"
+    },
+    {
+     "id": "cap",
+     "text": "保溫座"
+    },
+    {
+     "id": "back",
+     "text": "裝回去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "立式爐專利（通用構造，非 TEL 官方圖）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-14",
+      "dur": 14,
+      "x": 0.47,
+      "y": 12.6,
+      "d": 172,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "heat",
+      "text": "加熱器（剖開示意）",
+      "en": "Heater (cutaway)",
+      "color": "amber",
+      "at": "heat-4",
+      "until": "tube-6"
+     },
+     {
+      "part": "otube",
+      "text": "石英管（內外兩層）",
+      "en": "Quartz tubes",
+      "color": "blue",
+      "at": "tube-4",
+      "until": "boat-6"
+     },
+     {
+      "part": "boat",
+      "text": "晶舟（石英）",
+      "en": "Wafer boat",
+      "color": "amber",
+      "at": "boat-4",
+      "until": "cap-6"
+     },
+     {
+      "part": "cap",
+      "text": "保溫座＋密封蓋",
+      "en": "Pedestal & seal cap",
+      "color": "blue",
+      "at": "cap-4",
+      "until": "back+28"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-stack",
+      "at": "start+6",
+      "until": "s4:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "爐管拆開",
+      "tag": "示意",
+      "t": {
+       "open": {
+        "at": "open"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "tube": {
+        "at": "tube"
+       },
+       "boat": {
+        "at": "boat"
+       },
+       "cap": {
+        "at": "cap"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 9.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "手臂一次夾起五片，轉身升高，一層層插進晶舟。",
+   "tts": "手臂一次夾起五片，轉身升高，一層層插進晶舟。",
+   "subtitle": {
+    "zh": "手臂一次夾起五片\n轉身升高\n一層層插進晶舟",
+    "en": "The arm lifts five wafers at a time, | turns and rises, | and slots them into the boat."
+   },
+   "keywords": [
+    "五片",
+    "晶舟"
+   ],
+   "cues": [
+    {
+     "id": "arm",
+     "text": "手臂"
+    },
+    {
+     "id": "five",
+     "text": "五片"
+    },
+    {
+     "id": "turn",
+     "text": "轉身升高"
+    },
+    {
+     "id": "ins",
+     "text": "插進晶舟"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "立式爐專利（通用構造）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-1",
+      "dur": 2,
+      "x": 5.45,
+      "y": 3.4,
+      "d": 61,
+      "elev": 16
+     },
+     {
+      "at": "start+46",
+      "dur": 20,
+      "x": 6.95,
+      "y": 5.6,
+      "d": 64,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "foup",
+      "text": "晶圓盒（FOUP）",
+      "en": "Wafer pod",
+      "color": "blue",
+      "at": "start+50",
+      "until": "s5:start-20"
+     },
+     {
+      "part": "fork",
+      "text": "五支叉片：一次五片",
+      "en": "5-blade fork",
+      "color": "amber",
+      "at": "start+2",
+      "until": "start+46"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-load",
+      "at": "start+2",
+      "until": "s5:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "裝晶舟",
+      "tag": "示意",
+      "t": {
+       "arm": {
+        "at": "arm"
+       },
+       "five": {
+        "at": "five"
+       },
+       "turn": {
+        "at": "turn"
+       },
+       "ins": {
+        "at": "ins"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "擋板滑開，升降機先加速再減速，把整舟推進爐管。",
+   "tts": "擋板滑開，升降機先加速再減速，把整舟推進爐管。",
+   "subtitle": {
+    "zh": "擋板滑開\n升降機先加速再減速\n把整舟推進爐管",
+    "en": "The shutter slides open; | the elevator speeds up, then slows, | pushing the whole boat into the tube."
+   },
+   "keywords": [
+    "升降機",
+    "爐管"
+   ],
+   "cues": [
+    {
+     "id": "shut",
+     "text": "擋板滑開"
+    },
+    {
+     "id": "acc",
+     "text": "先加速"
+    },
+    {
+     "id": "dec",
+     "text": "再減速"
+    },
+    {
+     "id": "push",
+     "text": "推進爐管"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "立式爐專利（通用構造）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-14",
+      "dur": 14,
+      "x": 0.0,
+      "y": 9.5,
+      "d": 100,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "shut",
+      "text": "爐口擋板",
+      "en": "Shutter",
+      "color": "blue",
+      "at": "shut-2",
+      "until": "acc-6"
+     },
+     {
+      "part": "elev",
+      "text": "晶舟升降機",
+      "en": "Boat elevator",
+      "color": "amber",
+      "at": "acc",
+      "until": "s6:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-lift",
+      "at": "start+2",
+      "until": "s6:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "送進爐管",
+      "tag": "示意",
+      "t": {
+       "shut": {
+        "at": "shut"
+       },
+       "acc": {
+        "at": "acc"
+       },
+       "dec": {
+        "at": "dec"
+       },
+       "push": {
+        "at": "push"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "加熱器分好幾區，熱從管外往裡傳，最後才輪到晶圓。",
+   "tts": "加熱器分好幾區，熱從管外往裡傳，最後才輪到晶圓。",
+   "subtitle": {
+    "zh": "加熱器分好幾區\n熱從管外往裡傳\n最後才輪到晶圓",
+    "en": "The heater has several zones; | heat travels from outside in, | reaching the wafers last."
+   },
+   "keywords": [
+    "分區",
+    "往裡傳"
+   ],
+   "cues": [
+    {
+     "id": "zone",
+     "text": "好幾區"
+    },
+    {
+     "id": "out",
+     "text": "管外往裡傳"
+    },
+    {
+     "id": "wafer",
+     "text": "輪到晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "立式爐專利（多區加熱，通用構造）；分區數示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-14",
+      "dur": 14,
+      "x": 0.0,
+      "y": 16.4,
+      "d": 75,
+      "elev": 8,
+      "yaw": -0.5
+     }
+    ],
+    "run": [
+     {
+      "id": "zone0",
+      "at": "s6:zone-4",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "zone1",
+      "at": "s6:zone+2",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "zone2",
+      "at": "s6:zone+8",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "zone3",
+      "at": "s6:zone+14",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "zone4",
+      "at": "s6:zone+20",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "coilGlow",
+      "at": "zone",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "tubeWarm",
+      "at": "out+6",
+      "ramp": 14,
+      "until": "s7:start-20"
+     },
+     {
+      "id": "heatIn0",
+      "at": "out-4",
+      "ramp": 8,
+      "until": "s7:start-18"
+     },
+     {
+      "id": "heatIn1",
+      "at": "out-4",
+      "ramp": 8,
+      "until": "s7:start-18"
+     },
+     {
+      "id": "heatIn2",
+      "at": "out-4",
+      "ramp": 8,
+      "until": "s7:start-18"
+     },
+     {
+      "id": "edgeWarm",
+      "at": "wafer-4",
+      "ramp": 10,
+      "until": "s7:start-20"
+     },
+     {
+      "id": "waferWarm",
+      "at": "wafer+14",
+      "ramp": 20,
+      "until": "s7:start-20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "zone",
+      "text": "加熱線圈（分區）",
+      "en": "Heater zones",
+      "color": "amber",
+      "at": "zone-2",
+      "until": "wafer-8"
+     },
+     {
+      "part": "waferHot",
+      "text": "晶圓最後才熱",
+      "en": "Wafers heat last",
+      "color": "blue",
+      "at": "wafer-2",
+      "until": "s7:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-heat",
+      "at": "start+2",
+      "until": "s7:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱由外往內",
+      "tag": "示意",
+      "t": {
+       "zone": {
+        "at": "zone"
+       },
+       "out": {
+        "at": "out"
+       },
+       "wafer": {
+        "at": "wafer"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "氣體從噴氣管的小孔橫著掃過晶圓，再從夾縫往下抽走。",
+   "tts": "氣體從噴氣管的小孔橫著掃過晶圓，再從夾縫往下抽走。",
+   "subtitle": {
+    "zh": "氣體從噴氣管的小孔\n橫著掃過晶圓\n再從夾縫往下抽走",
+    "en": "Gas jets from holes in the injector, | sweeping across the wafers, | then is pumped down through the gap."
+   },
+   "keywords": [
+    "噴氣管",
+    "抽走"
+   ],
+   "cues": [
+    {
+     "id": "inj",
+     "text": "噴氣管"
+    },
+    {
+     "id": "cross",
+     "text": "橫著掃過"
+    },
+    {
+     "id": "down",
+     "text": "夾縫"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "立式爐專利（雙層管、噴氣管、排氣口，通用構造）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-14",
+      "dur": 14,
+      "x": 0.0,
+      "y": 16.8,
+      "d": 62,
+      "elev": 7,
+      "yaw": 0.5
+     },
+     {
+      "at": "cross-12",
+      "dur": 1,
+      "x": -19,
+      "y": 14.2,
+      "d": 22,
+      "elev": 13,
+      "yaw": 0.35
+     },
+     {
+      "at": "down-14",
+      "dur": 1,
+      "x": 0.0,
+      "y": 16.8,
+      "d": 62,
+      "elev": 7,
+      "yaw": -0.35
+     }
+    ],
+    "run": [
+     {
+      "id": "gasFeed",
+      "at": "inj-8",
+      "ramp": 8,
+      "until": "s8:start-18"
+     },
+     {
+      "id": "gasCross",
+      "at": "cross-4",
+      "ramp": 8,
+      "until": "s8:start-18"
+     },
+     {
+      "id": "gasUp",
+      "at": "inj",
+      "ramp": 8,
+      "until": "s8:start-18"
+     },
+     {
+      "id": "gasDown",
+      "at": "inj+6",
+      "ramp": 8,
+      "until": "s8:start-18"
+     },
+     {
+      "id": "bzGas",
+      "at": "cross-6",
+      "ramp": 8,
+      "until": "down-12"
+     },
+     {
+      "id": "exhaust",
+      "at": "inj+10",
+      "ramp": 8,
+      "until": "s8:start-18"
+     },
+     {
+      "id": "pumpRun",
+      "at": "inj+10",
+      "ramp": 4,
+      "until": "s8:start-18"
+     }
+    ],
+    "labels": [
+     {
+      "part": "inj",
+      "text": "噴氣管（多孔）",
+      "en": "Gas injector",
+      "color": "amber",
+      "at": "inj-2",
+      "until": "cross-14"
+     },
+     {
+      "part": "bzGap",
+      "text": "氣體穿過晶圓間隙（放大）",
+      "en": "Gas between wafers",
+      "color": "blue",
+      "at": "cross+4",
+      "until": "down-16"
+     },
+     {
+      "part": "exh",
+      "text": "夾縫往下抽到排氣口",
+      "en": "Down the gap to exhaust",
+      "color": "amber",
+      "at": "down+6",
+      "until": "s8:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-gas",
+      "at": "start+2",
+      "until": "s8:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣體怎麼走",
+      "tag": "示意",
+      "t": {
+       "inj": {
+        "at": "inj"
+       },
+       "cross": {
+        "at": "cross"
+       },
+       "down": {
+        "at": "down"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "氣體在表面反應，薄膜一層層長厚，上百片一起長。",
+   "tts": "氣體在表面反應，薄膜一層層長厚，上百片一起長。",
+   "subtitle": {
+    "zh": "氣體在表面反應\n薄膜一層層長厚\n上百片一起長",
+    "en": "The gas reacts on the surface; | the film thickens layer by layer, | on a hundred wafers at once."
+   },
+   "keywords": [
+    "薄膜",
+    "長厚"
+   ],
+   "cues": [
+    {
+     "id": "react",
+     "text": "表面反應"
+    },
+    {
+     "id": "film",
+     "text": "一層層長厚"
+    },
+    {
+     "id": "all",
+     "text": "上百片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "化學氣相沉積通則（physics-spec 2B）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": -19,
+      "y": 3.2,
+      "d": 49,
+      "elev": 8,
+      "yaw": 0.35
+     }
+    ],
+    "run": [
+     {
+      "id": "filmGas0",
+      "at": "react-6",
+      "ramp": 8,
+      "until": "s9:start-18"
+     },
+     {
+      "id": "filmGas1",
+      "at": "react-6",
+      "ramp": 8,
+      "until": "s9:start-18"
+     },
+     {
+      "id": "filmGas2",
+      "at": "react-6",
+      "ramp": 8,
+      "until": "s9:start-18"
+     }
+    ],
+    "labels": [
+     {
+      "part": "film",
+      "text": "薄膜（放大示意）",
+      "en": "Film (enlarged)",
+      "color": "amber",
+      "at": "film",
+      "until": "s9:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-film",
+      "at": "start+2",
+      "until": "s9:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "薄膜長厚",
+      "tag": "放大示意",
+      "t": {
+       "react": {
+        "at": "react"
+       },
+       "film": {
+        "at": "film"
+       },
+       "all": {
+        "at": "all"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "twist",
+   "para": 9,
+   "narration": "一次上百片很有效率；但一爐出問題，受影響的就是整批晶圓。",
+   "tts": "一次上百片很有效率；但一爐出問題，受影響的就是整批晶圓。",
+   "subtitle": {
+    "zh": "一次上百片很有效率\n但一爐出問題\n受影響的就是整批晶圓",
+    "en": "A hundred at once is efficient, | but if one run goes wrong, | the whole boat is affected."
+   },
+   "keywords": [
+    "有效率",
+    "整批"
+   ],
+   "cues": [
+    {
+     "id": "eff",
+     "text": "很有效率"
+    },
+    {
+     "id": "bad",
+     "text": "出問題"
+    },
+    {
+     "id": "boat",
+     "text": "整批晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "批次製程通則（分析）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 0.0,
+      "y": 16.4,
+      "d": 75,
+      "elev": 8,
+      "yaw": -0.85
+     }
+    ],
+    "labels": [
+     {
+      "part": "waferHot",
+      "text": "整批一起處理",
+      "en": "One batch",
+      "color": "amber",
+      "at": "eff",
+      "until": "s10:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-batch",
+      "at": "start+2",
+      "until": "s10:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "批次的取捨",
+      "tag": "分析",
+      "t": {
+       "eff": {
+        "at": "eff"
+       },
+       "bad": {
+        "at": "bad"
+       },
+       "boat": {
+        "at": "boat"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "回到開頭的塗佈顯影，光阻滴在中央，一轉就甩成薄膜，轉越快越薄。",
+   "tts": "回到開頭的塗佈顯影，光阻滴在中央，一轉就甩成薄膜，轉越快越薄。",
+   "subtitle": {
+    "zh": "回到開頭的塗佈顯影\n光阻滴在中央\n一轉就甩成薄膜\n轉越快越薄",
+    "en": "Back to coating: | resist drops onto the center, | one spin flings it into a thin film — | the faster, the thinner."
+   },
+   "keywords": [
+    "光阻",
+    "越快越薄"
+   ],
+   "cues": [
+    {
+     "id": "back",
+     "text": "塗佈顯影"
+    },
+    {
+     "id": "drop",
+     "text": "光阻滴在中央"
+    },
+    {
+     "id": "spin",
+     "text": "一轉"
+    },
+    {
+     "id": "thin",
+     "text": "越快越薄"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "旋轉塗佈通則（教科書）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 31,
+      "y": 5.2,
+      "d": 38,
+      "elev": 28,
+      "yaw": 0.85
+     }
+    ],
+    "run": [
+     {
+      "id": "spin",
+      "at": "spin-4",
+      "ramp": 60,
+      "until": "s11:start"
+     },
+     {
+      "id": "fling0",
+      "at": "spin+16",
+      "ramp": 10,
+      "until": "s11:start-22"
+     },
+     {
+      "id": "fling1",
+      "at": "spin+16",
+      "ramp": 10,
+      "until": "s11:start-22"
+     },
+     {
+      "id": "fling2",
+      "at": "spin+16",
+      "ramp": 10,
+      "until": "s11:start-22"
+     },
+     {
+      "id": "fling3",
+      "at": "spin+16",
+      "ramp": 10,
+      "until": "s11:start-22"
+     },
+     {
+      "id": "fling4",
+      "at": "spin+16",
+      "ramp": 10,
+      "until": "s11:start-22"
+     }
+    ],
+    "labels": [
+     {
+      "part": "noz",
+      "text": "光阻噴嘴",
+      "en": "Resist nozzle",
+      "color": "amber",
+      "at": "drop-2",
+      "until": "spin-6"
+     },
+     {
+      "part": "coat",
+      "text": "多的光阻被甩出",
+      "en": "Excess flung off",
+      "color": "blue",
+      "at": "spin+4",
+      "until": "s11:start-26"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-coat",
+      "at": "start+2",
+      "until": "s11:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "旋轉塗佈",
+      "tag": "示意",
+      "t": {
+       "back": {
+        "at": "back"
+       },
+       "drop": {
+        "at": "drop"
+       },
+       "spin": {
+        "at": "spin"
+       },
+       "thin": {
+        "at": "thin"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.4,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "東京威力是日本公司，它發表的蝕刻做到零下七十度；台南營運中心，零件就近維修。",
+   "tts": "東京威力是日本公司，它發表的蝕刻做到零下七十度；台南營運中心，零件就近維修。",
+   "subtitle": {
+    "zh": "東京威力是日本公司\n它發表的蝕刻做到零下七十度\n台南營運中心\n零件就近維修",
+    "en": "Tokyo Electron is a Japanese company; | its published etch runs at minus 70 °C. | Its Tainan operation center | repairs parts locally."
+   },
+   "keywords": [
+    "日本",
+    "台南"
+   ],
+   "cues": [
+    {
+     "id": "jp",
+     "text": "日本公司"
+    },
+    {
+     "id": "cryo",
+     "text": "零下七十度"
+    },
+    {
+     "id": "tn",
+     "text": "台南"
+    },
+    {
+     "id": "rep",
+     "text": "就近維修"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TEL 財報；TEL 論文；TechNews 2024/12/3"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 2.35,
+      "y": 8.3,
+      "d": 126,
+      "elev": 12,
+      "yaw": -0.35
+     }
+    ],
+    "labels": [
+     {
+      "part": "sign",
+      "text": "東京威力科創",
+      "en": "Tokyo Electron",
+      "color": "amber",
+      "at": "jp",
+      "until": "s12:start-20",
+      "logo": "tel"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-co",
+      "at": "start+2",
+      "until": "s12:start-20",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "東京威力科創",
+      "tag": "公司財報、論文、媒體",
+      "t": {
+       "jp": {
+        "at": "jp"
+       },
+       "cryo": {
+        "at": "cryo"
+       },
+       "tn": {
+        "at": "tn"
+       },
+       "rep": {
+        "at": "rep"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "怎麼確認每一步都做對？下一集看量測檢測的科磊。留言東京威力，拿完整資料。",
+   "tts": "怎麼確認每一步都做對？下一集看量測檢測的科磊。留言東京威力，拿完整資料。",
+   "subtitle": {
+    "zh": "怎麼確認每一步都做對？\n下一集看量測檢測的科磊\n留言東京威力，拿完整資料",
+    "en": "How do we know each step went right? | Next: KLA, metrology and inspection. | Comment \"東京威力\" for the full notes."
+   },
+   "keywords": [
+    "量測",
+    "科磊"
+   ],
+   "cues": [
+    {
+     "id": "chk",
+     "text": "做對"
+    },
+    {
+     "id": "next",
+     "text": "科磊"
+    },
+    {
+     "id": "kw",
+     "text": "留言東京威力"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": -19,
+      "y": 3.2,
+      "d": 49,
+      "elev": 8,
+      "yaw": 0.35
+     }
+    ],
+    "labels": [
+     {
+      "part": "film",
+      "text": "膜厚要量",
+      "en": "Film thickness",
+      "color": "amber",
+      "at": "chk",
+      "until": "s13:start-20"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "tel-next",
+      "at": "start+2",
+      "until": "s13:start-20",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：設備五大-5",
+      "t": {
+       "chk": {
+        "at": "chk"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.5
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "科磊",
+     "trail": [
+      "量測",
+      "檢測"
+     ],
+     "comment": "東京威力",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
