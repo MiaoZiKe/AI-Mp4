@@ -83,7 +83,11 @@ S = [
  [("done", "檢查做完了"), ("next", "台灣自己的設備廠"), ("kw", "留言")],
  ["台灣", "設備廠"], ["示意動畫，不是量測"]),
 ]
-TTS = lambda t: t.replace("上集", "上一集").replace("上一一集", "上一集").replace("矽", "細").replace("光罩", "光照").replace("KLA", "K L A")
+def TTS(t):
+    t = t.replace("上集", "上一集").replace("上一一集", "上一集").replace("矽", "細").replace("光罩", "光照").replace("KLA", "K L A")
+    for a, b in [("上一集", "前一集"), ("上百片", "一百多片"), ("往上是", "再過去是"), ("放上晶圓台", "放到晶圓台"), ("正上方照下去", "頭頂正中間照下去"), ("看上下兩層圖案", "看疊在一起的兩層圖案")]:
+        t = t.replace(a, b)  # Andy 11-26 規範第 21 條：念稿避開「上」
+    return t
 scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
