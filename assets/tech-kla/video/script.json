@@ -1,0 +1,4835 @@
+{
+ "slug": "tech-kla",
+ "prevEpisode": "設備五大-4：東京威力科創",
+ "title": "設備五大-5：KLA（科技透明圈）",
+ "asOf": "2026/11/26",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B（捲舌音要念清楚）；音高關卡 tts-pitch-take.sh（112～126 Hz）；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "光學缺陷檢測機（示意）",
+    "en": "OPTICAL INSPECTION",
+    "field": "3 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/26",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定機型"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "每一步做對了",
+   "誰來檢查？"
+  ],
+  "sub": "設備五大-5：KLA",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一集問，每一步做對了沒有？誰來檢查？科磊，也就是 KLA，一片一片找。",
+   "tts": "上一集問，每一步做對了沒有？誰來檢查？科磊，也就是 K L A，一片一片找。",
+   "subtitle": {
+    "zh": "上一集問\n每一步做對了沒有？\n誰來檢查？\n科磊，也就是 KLA\n一片一片找",
+    "en": "Last time we asked: | was every step done right? | Who checks? | KLA, | wafer by wafer."
+   },
+   "keywords": [
+    "做對",
+    "科磊"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "每一步做對了"
+    },
+    {
+     "id": "q",
+     "text": "誰來檢查"
+    },
+    {
+     "id": "kla",
+     "text": "科磊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 缺陷檢測產品頁"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：每一步做對了嗎",
+     "title": "誰來檢查？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": -1,
+      "y": 6,
+      "d": 125,
+      "elev": 22
+     },
+     {
+      "at": "start",
+      "dur": 90,
+      "x": 0,
+      "y": 6,
+      "d": 115,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "lUp",
+      "at": "s1:start-40",
+      "until": "s5:refl-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lUp",
+      "at": "s6:tilt-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMain",
+      "at": "s1:start-40",
+      "until": "s4:broad-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMain",
+      "at": "s6:tilt-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lBF",
+      "at": "s1:start-40",
+      "until": "s5:down-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lBF",
+      "at": "s6:tilt-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lSpot",
+      "at": "s1:start-40",
+      "until": "s5:down+2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lSpot",
+      "at": "s8:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lRet",
+      "at": "s1:start-40",
+      "until": "s5:refl-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lRet",
+      "at": "s6:tilt-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lDF",
+      "at": "s1:start-40",
+      "until": "s6:tilt-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lDF",
+      "at": "s7:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lSpec",
+      "at": "s1:start-40",
+      "until": "s6:tilt+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lSpec",
+      "at": "s7:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lDFc",
+      "at": "s1:start-40",
+      "until": "s6:scat-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lDFc",
+      "at": "s7:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lOvl",
+      "at": "s1:start-40",
+      "until": "s9:ovl-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lOvl",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lEllIn",
+      "at": "s1:start-40",
+      "until": "s10:pol-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lEllIn",
+      "at": "s11:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lEllOut",
+      "at": "s1:start-40",
+      "until": "s10:pol+6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lEllOut",
+      "at": "s11:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lBF",
+      "at": "s6:tilt-6",
+      "until": "s7:scan-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMain",
+      "at": "s6:tilt-6",
+      "until": "s7:scan-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lBF",
+      "at": "s8:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMain",
+      "at": "s8:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "met",
+      "at": "s1:start-40",
+      "until": "s9:start-24",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "metOvl",
+      "at": "s1:start-40",
+      "until": "s9:start-24",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "metEll",
+      "at": "s1:start-40",
+      "until": "s9:start-24",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "wM",
+      "at": "s1:start-40",
+      "until": "s9:start-24",
+      "opacity": 0,
+      "dur": 18
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s3:start-14",
+      "until": "s5:start",
+      "dur": 10,
+      "dx": 0.25
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s3:start-4",
+      "until": "s4:start+20",
+      "dur": 14,
+      "dy": -3.2
+     },
+     {
+      "layer": "wfR",
+      "at": "s1:start-40",
+      "until": "s3:start+99",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfA",
+      "at": "s3:start+99",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfR",
+      "at": "s3:start+136",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfB",
+      "at": "s1:start-40",
+      "until": "s3:start+136",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "stX",
+      "at": "s1:start-40",
+      "until": "s4:start+8",
+      "dur": 40,
+      "dx": -5.6
+     },
+     {
+      "layer": "stZ",
+      "at": "s1:start-40",
+      "until": "s4:start+8",
+      "dur": 40,
+      "dx": -5.6
+     },
+     {
+      "layer": "chuck",
+      "at": "s1:start-40",
+      "until": "s4:start+8",
+      "dur": 40,
+      "dx": -5.6
+     },
+     {
+      "layer": "pins",
+      "at": "s1:start-40",
+      "until": "s4:start+8",
+      "dur": 40,
+      "dx": -5.6
+     },
+     {
+      "layer": "chuck",
+      "at": "s1:start-40",
+      "until": "s3:start+206",
+      "dur": 14,
+      "dy": -0.6
+     },
+     {
+      "layer": "wfB",
+      "at": "s4:start+8",
+      "until": "s13:start+400",
+      "dur": 40,
+      "dx": 5.6
+     },
+     {
+      "layer": "roof",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 7
+     },
+     {
+      "layer": "tower",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 7
+     },
+     {
+      "layer": "front",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 8
+     },
+     {
+      "layer": "ui",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 8
+     },
+     {
+      "layer": "efemFront",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "front",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ui",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "efemFront",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "srcHouse",
+      "at": "s2:src-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": -1.0,
+      "dy": 7.5
+     },
+     {
+      "layer": "src",
+      "at": "s2:src-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": -1.6,
+      "dy": 5.0
+     },
+     {
+      "layer": "fw",
+      "at": "s2:src-2",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": -0.6,
+      "dy": 3.6
+     },
+     {
+      "layer": "det",
+      "at": "s2:obj-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 7.0
+     },
+     {
+      "layer": "head",
+      "at": "s2:obj-5",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 4.0
+     },
+     {
+      "layer": "obj",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 2.4
+     },
+     {
+      "layer": "illum",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 4.0
+     },
+     {
+      "layer": "lMain",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 4.0
+     },
+     {
+      "layer": "dfArm",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": -1.6,
+      "dy": 2.4
+     },
+     {
+      "layer": "dump",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": 1.6,
+      "dy": 2.4
+     },
+     {
+      "layer": "stX",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 5.0
+     },
+     {
+      "layer": "stZ",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 5.0
+     },
+     {
+      "layer": "chuck",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 5.0
+     },
+     {
+      "layer": "pins",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dz": 5.0
+     },
+     {
+      "layer": "pc",
+      "at": "s2:pc-6",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dx": 2.6
+     },
+     {
+      "layer": "stX",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dz": -0.9
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dz": -0.9
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dz": -0.9
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dz": -0.9
+     },
+     {
+      "layer": "stX",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "stX",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dz": 0.9
+     },
+     {
+      "layer": "stX",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4
+     },
+     {
+      "layer": "stX",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2
+     },
+     {
+      "layer": "stZ",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dz": -0.9
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dz": -0.9
+     },
+     {
+      "layer": "pins",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dz": -0.9
+     },
+     {
+      "layer": "wfB",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "efemFront",
+      "at": "s3:start-8",
+      "until": "s4:start+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "front",
+      "at": "s3:start-8",
+      "until": "s11:start-8",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ui",
+      "at": "s3:start-8",
+      "until": "s11:start-8",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "srcHouse",
+      "at": "s4:start-8",
+      "until": "s5:start+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "head",
+      "at": "s5:start-6",
+      "until": "s6:start+10",
+      "opacity": 0.3,
+      "dur": 10
+     },
+     {
+      "layer": "obj",
+      "at": "s5:refl-8",
+      "until": "s6:start+10",
+      "opacity": 0.35,
+      "dur": 10
+     },
+     {
+      "layer": "obj",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "head",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "det",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bridge",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bridgeF",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dfArm",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dump",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "illum",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "src",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "srcHouse",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fw",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "roof",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tower",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "sign",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efem",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ffu",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ar",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "aligner",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "shell",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "pc",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "util",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "roof",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "tower",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "sign",
+      "at": "s9:start-20",
+      "until": "s11:start-12",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "efem",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "efemFront",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ffu",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lp1",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "foup1",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lp2",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "foup2",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "aligner",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ar",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfA",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfR",
+      "at": "s4:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfB",
+      "at": "s4:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfB",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfS",
+      "at": "s3:start+2",
+      "until": "s8:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfS",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "shell",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "roof",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "front",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ui",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "tower",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "iso",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "iso",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "granite",
+      "at": "s4:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "granite",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "stX",
+      "at": "s4:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "stX",
+      "at": "s6:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "stX",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "stZ",
+      "at": "s4:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "stZ",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "chuck",
+      "at": "s4:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "chuck",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "pins",
+      "at": "s4:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "pins",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bridge",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bridge",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bridgeF",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "head",
+      "at": "s3:start+2",
+      "until": "s4:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "head",
+      "at": "s6:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "head",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "obj",
+      "at": "s3:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "obj",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "det",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "srcHouse",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "src",
+      "at": "s3:start+2",
+      "until": "s4:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "src",
+      "at": "s5:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "fw",
+      "at": "s3:start+2",
+      "until": "s4:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "fw",
+      "at": "s5:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "illum",
+      "at": "s3:start+2",
+      "until": "s4:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "illum",
+      "at": "s6:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "illum",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "dfArm",
+      "at": "s3:start+2",
+      "until": "s6:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "dfArm",
+      "at": "s7:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "dump",
+      "at": "s3:start+2",
+      "until": "s6:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "dump",
+      "at": "s7:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lMain",
+      "at": "s3:start+2",
+      "until": "s4:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lMain",
+      "at": "s6:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lMain",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lBF",
+      "at": "s3:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lBF",
+      "at": "s6:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lBF",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lRet",
+      "at": "s3:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lRet",
+      "at": "s6:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lDF",
+      "at": "s3:start+2",
+      "until": "s6:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lDF",
+      "at": "s7:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lSpec",
+      "at": "s3:start+2",
+      "until": "s6:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lSpec",
+      "at": "s7:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lDFc",
+      "at": "s3:start+2",
+      "until": "s6:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lDFc",
+      "at": "s7:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lSpot",
+      "at": "s3:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lSpot",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lUp",
+      "at": "s3:start+2",
+      "until": "s5:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lUp",
+      "at": "s6:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "util",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "pc",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sign",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "met",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "met",
+      "at": "s10:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metOvl",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metOvl",
+      "at": "s10:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metEll",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wM",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lOvl",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lOvl",
+      "at": "s10:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lEllIn",
+      "at": "s3:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lEllOut",
+      "at": "s3:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metLbl",
+      "at": "s3:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh0",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh1",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh2",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh3",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh4",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh4",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh5",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh5",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh6",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh6",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh7",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh7",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh8",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh8",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh9",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh9",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh10",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh10",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh11",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "gh11",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ovlTop",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ovlTop",
+      "at": "s10:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metEll",
+      "at": "s9:align-18",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "metOvl",
+      "at": "s9:align-18",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "met",
+      "at": "s9:align-18",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ovlTop",
+      "at": "s9:align-4",
+      "until": "s10:start",
+      "dur": 20,
+      "dx": 0.14,
+      "dz": -0.08
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+12",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+20",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+28",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+52",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+60",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+68",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+76",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+100",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+108",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+116",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+124",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "lUp",
+      "at": "s5:dark-2",
+      "until": "s6:start",
+      "opacity": 0.2,
+      "dur": 6
+     },
+     {
+      "layer": "lRet",
+      "at": "s5:dark-2",
+      "until": "s6:start",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "lSpot",
+      "at": "s5:dark-2",
+      "until": "s6:start",
+      "opacity": 0.35,
+      "dur": 6
+     },
+     {
+      "layer": "wfS",
+      "at": "s1:start-40",
+      "until": "s8:start+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfB",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfS",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gh0",
+      "at": "s1:start-40",
+      "until": "s7:scan+20",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh0",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh1",
+      "at": "s1:start-40",
+      "until": "s7:scan+24",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh1",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh2",
+      "at": "s1:start-40",
+      "until": "s7:scan+28",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh2",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh3",
+      "at": "s1:start-40",
+      "until": "s7:scan+31",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh3",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh4",
+      "at": "s1:start-40",
+      "until": "s7:scan+33",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh4",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh5",
+      "at": "s1:start-40",
+      "until": "s7:scan+36",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh5",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh6",
+      "at": "s1:start-40",
+      "until": "s7:scan+48",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh6",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh7",
+      "at": "s1:start-40",
+      "until": "s7:scan+51",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh7",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh8",
+      "at": "s1:start-40",
+      "until": "s7:scan+53",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh8",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh9",
+      "at": "s1:start-40",
+      "until": "s7:scan+56",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh9",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh10",
+      "at": "s1:start-40",
+      "until": "s7:scan+60",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh10",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gh11",
+      "at": "s1:start-40",
+      "until": "s7:scan+64",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "gh11",
+      "at": "s8:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "kin": [
+     {
+      "arm": "ar",
+      "at": "s1:start-40",
+      "keys": [
+       [
+        0,
+        {
+         "j1": -94.61,
+         "j2": -170.78,
+         "j3": 85.39,
+         "lift": -0.12
+        }
+       ]
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "status",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "ffuAir",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s4:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-hook",
+      "at": "q",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "設備五大-5",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "kla": {
+        "at": "kla"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.8,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "外殼打開。最左邊是光源；往上是物鏡和感測器，把影像放大；底下是晶圓台；旁邊一整櫃電腦在比對。",
+   "tts": "外殼打開。最左邊是光源；往上是物鏡和感測器，把影像放大；底下是晶圓台；旁邊一整櫃電腦在比對。",
+   "subtitle": {
+    "zh": "外殼打開\n最左邊是光源\n往上是物鏡和感測器，把影像放大\n底下是晶圓台\n旁邊一整櫃電腦在比對",
+    "en": "Open the cover. | On the far left, the light source; | above, the objective and sensor magnify the image; | below, the wafer stage; | and beside it, a cabinet of computers comparing images."
+   },
+   "keywords": [
+    "光源",
+    "物鏡",
+    "晶圓台"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "外殼打開"
+    },
+    {
+     "id": "src",
+     "text": "最左邊"
+    },
+    {
+     "id": "obj",
+     "text": "物鏡"
+    },
+    {
+     "id": "stage",
+     "text": "晶圓台"
+    },
+    {
+     "id": "pc",
+     "text": "電腦"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 檢測產品頁；專利 US9410901"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.5,
+      "y": 7.5,
+      "d": 112,
+      "elev": 32,
+      "yaw": 0.1
+     }
+    ],
+    "labels": [
+     {
+      "part": "src",
+      "text": "寬頻電漿光源",
+      "en": "Broadband plasma source",
+      "color": "amber",
+      "at": "src-2",
+      "until": "obj-4"
+     },
+     {
+      "part": "head",
+      "text": "物鏡＋TDI 偵測器",
+      "en": "Objective & TDI sensor",
+      "color": "blue",
+      "at": "obj-2",
+      "until": "stage-4"
+     },
+     {
+      "part": "stage",
+      "text": "高速晶圓台",
+      "en": "High-speed wafer stage",
+      "color": "amber",
+      "at": "stage-2",
+      "until": "pc-4"
+     },
+     {
+      "part": "pc",
+      "text": "影像運算櫃",
+      "en": "Image computer",
+      "color": "blue",
+      "at": "pc-2",
+      "until": "s3:start-2"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-tour",
+      "at": "start+24",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "拆開檢測機",
+      "tag": "示意",
+      "t": {
+       "open": {
+        "at": "open"
+       },
+       "src": {
+        "at": "src"
+       },
+       "obj": {
+        "at": "obj"
+       },
+       "stage": {
+        "at": "stage"
+       },
+       "pc": {
+        "at": "pc"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 11.6,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "手臂從晶圓盒取出晶圓，找好缺口，放上晶圓台吸住。",
+   "tts": "手臂從晶圓盒取出晶圓，找好缺口，放上晶圓台吸住。",
+   "subtitle": {
+    "zh": "手臂從晶圓盒取出晶圓\n找好缺口\n放上晶圓台吸住",
+    "en": "The robot takes a wafer from its pod, | finds the notch, | and sets it on the stage, held by vacuum."
+   },
+   "keywords": [
+    "手臂",
+    "缺口",
+    "真空"
+   ],
+   "cues": [
+    {
+     "id": "foup",
+     "text": "晶圓盒"
+    },
+    {
+     "id": "notch",
+     "text": "找好缺口"
+    },
+    {
+     "id": "put",
+     "text": "放上晶圓台"
+    },
+    {
+     "id": "vac",
+     "text": "吸住"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "前端搬運通則；KLA 檢測產品頁"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": -10.5,
+      "y": 5.5,
+      "d": 46,
+      "elev": 34,
+      "yaw": -0.1
+     },
+     {
+      "at": "s3:start+156",
+      "dur": 28,
+      "x": -5.5,
+      "y": 6.0,
+      "d": 40,
+      "elev": 30
+     }
+    ],
+    "kin": [
+     {
+      "arm": "ar",
+      "at": "s3:start+6",
+      "keys": [
+       [
+        0,
+        {
+         "j1": -94.61,
+         "j2": -170.78,
+         "j3": 85.39,
+         "lift": -0.12
+        }
+       ],
+       [
+        16,
+        {
+         "j1": -136.32,
+         "j2": -87.36,
+         "j3": 43.68
+        }
+       ],
+       [
+        22,
+        {
+         "lift": 0.0
+        }
+       ],
+       [
+        28,
+        {
+         "lift": 0.2
+        }
+       ],
+       [
+        42,
+        {
+         "j1": -94.61,
+         "j2": -170.78,
+         "j3": 85.39
+        }
+       ],
+       [
+        54,
+        {
+         "j1": -93.07,
+         "j2": -173.86,
+         "j3": 86.93
+        }
+       ],
+       [
+        72,
+        {
+         "j1": -3.07,
+         "j2": -173.86,
+         "j3": 86.93
+        }
+       ],
+       [
+        86,
+        {
+         "j1": -29.32,
+         "j2": -131.31,
+         "j3": 70.62
+        }
+       ],
+       [
+        92,
+        {
+         "lift": 0.0
+        }
+       ],
+       [
+        97,
+        {
+         "lift": -0.12
+        }
+       ],
+       [
+        134,
+        {
+         "lift": 0.0
+        }
+       ],
+       [
+        140,
+        {
+         "lift": 0.2
+        }
+       ],
+       [
+        155,
+        {
+         "j1": -3.07,
+         "j2": -173.86,
+         "j3": 86.93
+        }
+       ],
+       [
+        170,
+        {
+         "j1": 86.93,
+         "j2": -173.86,
+         "j3": 86.93
+        }
+       ],
+       [
+        186,
+        {
+         "j1": 21.79,
+         "j2": -43.57,
+         "j3": 21.79
+        }
+       ],
+       [
+        192,
+        {
+         "lift": 0.0
+        }
+       ],
+       [
+        197,
+        {
+         "lift": -0.12
+        }
+       ],
+       [
+        212,
+        {
+         "j1": 86.93,
+         "j2": -173.86,
+         "j3": 86.93
+        }
+       ]
+      ],
+      "carry": [
+       {
+        "layer": "wfA",
+        "grab": 22,
+        "release": 92
+       },
+       {
+        "layer": "wfB",
+        "grab": 134,
+        "release": 192
+       }
+      ]
+     }
+    ],
+    "run": [
+     {
+      "id": "alnSpin",
+      "at": "s3:start+104",
+      "ramp": 8,
+      "until": "s3:start+128"
+     },
+     {
+      "id": "alnLaser",
+      "at": "s3:start+103",
+      "ramp": 4,
+      "until": "s3:start+134"
+     }
+    ],
+    "labels": [
+     {
+      "part": "foup",
+      "text": "晶圓盒（FOUP）",
+      "en": "Wafer pod",
+      "color": "blue",
+      "at": "start+10",
+      "until": "s3:start+54"
+     },
+     {
+      "part": "aln",
+      "text": "預對準器：找缺口",
+      "en": "Pre-aligner",
+      "color": "amber",
+      "at": "s3:start+92",
+      "until": "s3:start+138"
+     },
+     {
+      "part": "chuck",
+      "text": "真空吸盤＋升降銷",
+      "en": "Vacuum chuck & lift pins",
+      "color": "amber",
+      "at": "s3:start+182",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-load",
+      "at": "start+2",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓怎麼送進去",
+      "tag": "示意",
+      "t": {
+       "foup": {
+        "at": "foup"
+       },
+       "notch": {
+        "at": "notch"
+       },
+       "put": {
+        "at": "put"
+       },
+       "vac": {
+        "at": "vac"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "光源是雷射點燃的電漿，發出寬頻光，再用濾片挑出要的波段。",
+   "tts": "光源是雷射點燃的電漿，發出寬頻光，再用濾片挑出要的波段。",
+   "subtitle": {
+    "zh": "光源是雷射點燃的電漿\n發出寬頻光\n再用濾片挑出要的波段",
+    "en": "The light comes from laser-ignited plasma, | giving broadband light, | and filters pick the band needed."
+   },
+   "keywords": [
+    "雷射",
+    "電漿",
+    "寬頻光"
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "雷射"
+    },
+    {
+     "id": "plasma",
+     "text": "電漿"
+    },
+    {
+     "id": "broad",
+     "text": "寬頻光"
+    },
+    {
+     "id": "filt",
+     "text": "濾片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 寬頻電漿介紹頁；KLA 檢測產品頁"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": -2.2,
+      "y": 11.6,
+      "d": 21,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "laser",
+      "at": "laser-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "srcGlow",
+      "at": "plasma-4",
+      "ramp": 8,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "fwSpin",
+      "at": "filt-6",
+      "ramp": 10,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "laser",
+      "text": "雷射（點燃電漿）",
+      "en": "Pump laser",
+      "color": "amber",
+      "at": "laser-2",
+      "until": "plasma-2"
+     },
+     {
+      "part": "plasma",
+      "text": "電漿燈泡：寬頻光",
+      "en": "Laser-sustained plasma",
+      "color": "blue",
+      "at": "plasma",
+      "until": "filt-4"
+     },
+     {
+      "part": "fw",
+      "text": "濾片轉盤：選波段",
+      "en": "Filter wheel",
+      "color": "amber",
+      "at": "filt-2",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-src",
+      "at": "start+24",
+      "until": "s5:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "寬頻電漿光源",
+      "tag": "示意（光譜不是量測）",
+      "t": {
+       "laser": {
+        "at": "laser"
+       },
+       "plasma": {
+        "at": "plasma"
+       },
+       "broad": {
+        "at": "broad"
+       },
+       "filt": {
+        "at": "filt"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "明場是光從正上方照下去，看反射回來的光，哪裡變暗、變了樣。",
+   "tts": "明場是光從正上方照下去，看反射回來的光，哪裡變暗、變了樣。",
+   "subtitle": {
+    "zh": "明場是光從正上方照下去\n看反射回來的光\n哪裡變暗、變了樣",
+    "en": "Brightfield shines straight down | and reads the reflected light | for spots that turn dark or look different."
+   },
+   "keywords": [
+    "明場",
+    "反射"
+   ],
+   "cues": [
+    {
+     "id": "bf",
+     "text": "明場"
+    },
+    {
+     "id": "down",
+     "text": "正上方照下去"
+    },
+    {
+     "id": "refl",
+     "text": "反射回來"
+    },
+    {
+     "id": "dark",
+     "text": "變暗"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Fraunhofer ENAS 明暗場說明"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 32,
+      "x": 1.6,
+      "y": 9,
+      "d": 24,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "bfPulse",
+      "at": "down-4",
+      "ramp": 8,
+      "until": "s6:tilt-6"
+     },
+     {
+      "id": "upPulse",
+      "at": "refl-6",
+      "ramp": 8,
+      "until": "s6:tilt-6"
+     },
+     {
+      "id": "spot",
+      "at": "down",
+      "ramp": 8,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bf",
+      "text": "明場：垂直照、收反射",
+      "en": "Brightfield",
+      "color": "blue",
+      "at": "down",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-bf",
+      "at": "start+24",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "明場（側視）",
+      "tag": "示意",
+      "t": {
+       "bf": {
+        "at": "bf"
+       },
+       "down": {
+        "at": "down"
+       },
+       "refl": {
+        "at": "refl"
+       },
+       "dark": {
+        "at": "dark"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "暗場是斜著打光，反射光被擋板吃掉，只收缺陷散出來的光。",
+   "tts": "暗場是斜著打光，反射光被擋板吃掉，只收缺陷散出來的光。",
+   "subtitle": {
+    "zh": "暗場是斜著打光\n反射光被擋板吃掉\n只收缺陷散出來的光",
+    "en": "Darkfield lights at a slant; | the mirror reflection hits a light trap, | so only light scattered by defects is collected."
+   },
+   "keywords": [
+    "暗場",
+    "散射"
+   ],
+   "cues": [
+    {
+     "id": "df",
+     "text": "暗場"
+    },
+    {
+     "id": "tilt",
+     "text": "斜著打光"
+    },
+    {
+     "id": "block",
+     "text": "擋板吃掉"
+    },
+    {
+     "id": "scat",
+     "text": "散出來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Fraunhofer ENAS；專利 US6288780"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 32,
+      "x": 1.8,
+      "y": 8.8,
+      "d": 20,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "dfPulse",
+      "at": "tilt-4",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "defGlow",
+      "at": "scat-6",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "scat0",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat1",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat2",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat3",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat4",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat5",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     },
+     {
+      "id": "scat6",
+      "at": "scat-4",
+      "ramp": 6,
+      "until": "s7:start-2"
+     }
+    ],
+    "labels": [
+     {
+      "part": "df",
+      "text": "暗場：斜射照明",
+      "en": "Oblique darkfield light",
+      "color": "amber",
+      "at": "tilt-2",
+      "until": "block-2"
+     },
+     {
+      "part": "dump",
+      "text": "吸光擋板",
+      "en": "Light trap",
+      "color": "blue",
+      "at": "block",
+      "until": "scat-4"
+     },
+     {
+      "part": "obj",
+      "text": "物鏡只收散射光",
+      "en": "Objective collects scatter",
+      "color": "amber",
+      "at": "scat-2",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-df",
+      "at": "start+24",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "暗場（側視）",
+      "tag": "示意",
+      "t": {
+       "df": {
+        "at": "df"
+       },
+       "tilt": {
+        "at": "tilt"
+       },
+       "block": {
+        "at": "block"
+       },
+       "scat": {
+        "at": "scat"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.7,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "晶圓台一條一條來回掃，到頭先減速、轉向，再加速回到等速。",
+   "tts": "晶圓台一條一條來回掃，到頭先減速、轉向，再加速回到等速。",
+   "subtitle": {
+    "zh": "晶圓台一條一條來回掃\n到頭先減速、轉向\n再加速回到等速",
+    "en": "The stage scans strip by strip, | slowing and turning at each end, | then speeding back up to a steady pace."
+   },
+   "keywords": [
+    "來回掃",
+    "減速",
+    "加速"
+   ],
+   "cues": [
+    {
+     "id": "scan",
+     "text": "來回掃"
+    },
+    {
+     "id": "slow",
+     "text": "減速"
+    },
+    {
+     "id": "turn",
+     "text": "轉向"
+    },
+    {
+     "id": "fast",
+     "text": "再加速"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US11776859、US9410901"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 1.8,
+      "y": 5.0,
+      "d": 44,
+      "elev": 30,
+      "yaw": 1.2
+     }
+    ],
+    "labels": [
+     {
+      "part": "stage",
+      "text": "X／Y 雙軸晶圓台",
+      "en": "X/Y scanning stage",
+      "color": "amber",
+      "at": "scan-6",
+      "until": "turn-2"
+     },
+     {
+      "part": "iso",
+      "text": "氣墊隔振腳",
+      "en": "Air isolators",
+      "color": "blue",
+      "at": "turn",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-scan",
+      "at": "start+24",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "蛇行掃描與速度",
+      "tag": "示意（速度不是量測）",
+      "t": {
+       "scan": {
+        "at": "scan"
+       },
+       "slow": {
+        "at": "slow"
+       },
+       "turn": {
+        "at": "turn"
+       },
+       "fast": {
+        "at": "fast"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光罩也要檢查，常拿去跟設計圖比對。",
+   "tts": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光照也要檢查，常拿去跟設計圖比對。",
+   "subtitle": {
+    "zh": "電腦把相鄰兩顆晶粒的影像相減\n一樣的消掉\n剩下的就是缺陷\n光罩也要檢查\n常拿去跟設計圖比對",
+    "en": "Computers subtract images of two neighboring dies; | what matches cancels out, | and what's left is a defect. | Photomasks get checked too, | usually against the design data."
+   },
+   "keywords": [
+    "相減",
+    "缺陷",
+    "光罩"
+   ],
+   "cues": [
+    {
+     "id": "adj",
+     "text": "相鄰兩顆晶粒"
+    },
+    {
+     "id": "sub",
+     "text": "相減"
+    },
+    {
+     "id": "cancel",
+     "text": "消掉"
+    },
+    {
+     "id": "defect",
+     "text": "就是缺陷"
+    },
+    {
+     "id": "mask",
+     "text": "光罩也要"
+    },
+    {
+     "id": "db",
+     "text": "設計圖"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "比對通則；SPIE 13216；KLA Teron；Lasertec（媒體）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 2.0,
+      "y": 8,
+      "d": 24,
+      "elev": 72
+     }
+    ],
+    "run": [
+     {
+      "id": "dieHi",
+      "at": "adj-4",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "defRing",
+      "at": "defect-6",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "pcBlink",
+      "at": "start",
+      "ramp": 4,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "defect",
+      "text": "缺陷（相減後剩下）",
+      "en": "Defect left after subtraction",
+      "color": "amber",
+      "at": "defect-2",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-cmp",
+      "at": "start+24",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 980,
+      "w": 952,
+      "h": 450,
+      "avoid": false,
+      "title": "相鄰晶粒相減",
+      "tag": "示意",
+      "t": {
+       "adj": {
+        "at": "adj"
+       },
+       "sub": {
+        "at": "sub"
+       },
+       "cancel": {
+        "at": "cancel"
+       },
+       "defect": {
+        "at": "defect"
+       },
+       "mask": {
+        "at": "mask"
+       },
+       "db": {
+        "at": "db"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 8.5,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "量測也是它的強項，疊對是看上下兩層圖案，有沒有對準。",
+   "tts": "量測也是它的強項，疊對是看上下兩層圖案，有沒有對準。",
+   "subtitle": {
+    "zh": "量測也是它的強項\n疊對是看上下兩層圖案\n有沒有對準",
+    "en": "Metrology is another strength: | overlay checks whether two layers' patterns | line up."
+   },
+   "keywords": [
+    "量測",
+    "疊對"
+   ],
+   "cues": [
+    {
+     "id": "meas",
+     "text": "量測"
+    },
+    {
+     "id": "ovl",
+     "text": "疊對"
+    },
+    {
+     "id": "align",
+     "text": "有沒有對準"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 量測產品頁（Archer 疊對）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 34,
+      "x": 24.4,
+      "y": 7,
+      "d": 62,
+      "elev": 22,
+      "yaw": -0.9
+     },
+     {
+      "at": "align-16",
+      "dur": 26,
+      "x": 24.4,
+      "y": 8.2,
+      "d": 16,
+      "elev": 50
+     }
+    ],
+    "run": [
+     {
+      "id": "ovlPulse",
+      "at": "ovl-4",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ovl",
+      "text": "成像疊對（框中框標記）",
+      "en": "Imaging overlay",
+      "color": "blue",
+      "at": "ovl-2",
+      "until": "s10:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-ovl",
+      "at": "start+24",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "疊對：兩層對準了嗎",
+      "tag": "示意（偏移放大畫）",
+      "t": {
+       "meas": {
+        "at": "meas"
+       },
+       "ovl": {
+        "at": "ovl"
+       },
+       "align": {
+        "at": "align"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "膜厚是用偏振光斜打進薄膜，看反射回來怎麼變，算出有多厚。",
+   "tts": "膜厚是用偏振光斜打進薄膜，看反射回來怎麼變，算出有多厚。",
+   "subtitle": {
+    "zh": "膜厚是用偏振光斜打進薄膜\n看反射回來怎麼變\n算出有多厚",
+    "en": "Film thickness: polarized light hits the film at a slant; | how the reflection changes | tells how thick it is."
+   },
+   "keywords": [
+    "膜厚",
+    "偏振光"
+   ],
+   "cues": [
+    {
+     "id": "pol",
+     "text": "偏振光"
+    },
+    {
+     "id": "refl",
+     "text": "反射回來"
+    },
+    {
+     "id": "thick",
+     "text": "有多厚"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 量測產品頁（SpectraFilm 膜厚）；橢圓偏光通則"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 25.5,
+      "y": 8.0,
+      "d": 34,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "ellBeam",
+      "at": "pol-2",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "ellAna",
+      "at": "refl-6",
+      "ramp": 10,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ell",
+      "text": "偏光片 → 薄膜 → 檢偏器",
+      "en": "Ellipsometer arms",
+      "color": "amber",
+      "at": "pol-2",
+      "until": "thick-4"
+     },
+     {
+      "part": "film",
+      "text": "薄膜",
+      "en": "Thin film",
+      "color": "blue",
+      "at": "thick-2",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-film",
+      "at": "start+24",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "膜厚：偏振光怎麼變",
+      "tag": "示意（曲線不是量測）",
+      "t": {
+       "pol": {
+        "at": "pol"
+       },
+       "refl": {
+        "at": "refl"
+       },
+       "thick": {
+        "at": "thick"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "KLA 是美國公司，專做量測和檢測，台灣總部在新竹竹北。",
+   "tts": "K L A 是美國公司，專做量測和檢測，台灣總部在新竹竹北。",
+   "subtitle": {
+    "zh": "KLA 是美國公司\n專做量測和檢測\n台灣總部在新竹竹北",
+    "en": "KLA is an American company | focused on metrology and inspection, | with its Taiwan headquarters in Zhubei, Hsinchu."
+   },
+   "keywords": [
+    "美國",
+    "量測",
+    "竹北"
+   ],
+   "cues": [
+    {
+     "id": "us",
+     "text": "美國公司"
+    },
+    {
+     "id": "spec",
+     "text": "量測和檢測"
+    },
+    {
+     "id": "tw",
+     "text": "竹北"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "KLA 公司簡介；DIGITIMES；104 人力銀行"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 40,
+      "x": -1,
+      "y": 7,
+      "d": 120,
+      "elev": 18,
+      "yaw": -0.22
+     }
+    ],
+    "labels": [
+     {
+      "part": "sign",
+      "text": "KLA",
+      "en": "United States",
+      "color": "amber",
+      "at": "us",
+      "until": "s12:start-4",
+      "flag": "US",
+      "logo": "kla"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-co",
+      "at": "start+24",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "KLA 科磊",
+      "tag": "公司簡介、媒體、人力銀行",
+      "t": {
+       "us": {
+        "at": "us"
+       },
+       "spec": {
+        "at": "spec"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.7,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "檢查做完了，下一集看台灣自己的設備廠。留言 KLA，拿完整資料。",
+   "tts": "檢查做完了，下一集看台灣自己的設備廠。留言 K L A，拿完整資料。",
+   "subtitle": {
+    "zh": "檢查做完了\n下一集看台灣自己的設備廠\n留言 KLA，拿完整資料",
+    "en": "Inspection done. | Next: Taiwan's own equipment makers. | Comment \"KLA\" for the full notes."
+   },
+   "keywords": [
+    "台灣",
+    "設備廠"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "檢查做完了"
+    },
+    {
+     "id": "next",
+     "text": "台灣自己的設備廠"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 40,
+      "x": 1.0,
+      "y": 6,
+      "d": 105,
+      "elev": 24
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "kla-next",
+      "at": "start+24",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：12/14",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.4
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "台灣設備廠",
+     "trail": [
+      "國產設備"
+     ],
+     "comment": "KLA",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
