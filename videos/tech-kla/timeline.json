@@ -2,660 +2,1896 @@
  "version": 2,
  "slug": "tech-kla",
  "fps": 30,
- "totalFrames": 2319,
- "totalSec": 77.3,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 2420,
+ "totalSec": 80.67,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-kla/01-s1.wav",
+   "audioFrame": 8,
+   "audioSec": 6.7,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 174,
+   "durationFrames": 226,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 164,
-   "stillFrame": 173,
+   "voiceStartFrame": 9,
+   "voiceEndFrame": 208,
+   "stillFrame": 216,
    "subtitleWindow": [
     0,
-    175
+    223
    ],
    "sourceWindow": [
     0,
-    174
+    221
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "上一集問",
      "start": 0,
      "chars": [
-      0,
-      4,
       9,
-      15
+      14,
+      17,
+      23
      ]
     },
     {
      "text": "每一步做對了沒有？",
-     "start": 19,
+     "start": 34,
      "chars": [
-      21,
-      26,
-      32,
-      38,
-      43,
-      49,
-      55,
-      60,
-      60
+      37,
+      41,
+      46,
+      52,
+      58,
+      63,
+      66,
+      70,
+      70
      ]
     },
     {
      "text": "誰來檢查？",
-     "start": 64,
+     "start": 82,
      "chars": [
-      66,
-      72,
-      77,
-      83,
-      83
+      85,
+      90,
+      95,
+      100,
+      100
      ]
     },
     {
      "text": "科磊，",
-     "start": 86,
+     "start": 117,
      "chars": [
-      88,
-      94,
-      94
+      119,
+      126,
+      126
      ]
     },
     {
      "text": "也就是 KLA",
-     "start": 98,
+     "start": 138,
      "chars": [
-      100,
-      105,
-      111,
-      111,
-      117,
-      122,
-      128
+      140,
+      144,
+      149,
+      149,
+      154,
+      161,
+      166
      ]
     },
     {
      "text": "一片一片找",
-     "start": 132,
+     "start": 177,
      "chars": [
-      134,
-      139,
-      145,
-      151,
-      156
+      179,
+      185,
+      191,
+      194,
+      201
      ]
     }
    ],
    "keywords": [
     {
      "text": "做對",
-     "start": 38
+     "start": 52
     },
     {
      "text": "科磊",
-     "start": 88
+     "start": 119
     }
    ],
    "cues": [
     {
      "id": "prev",
      "text": "每一步做對了",
-     "frame": 23
+     "frame": 38,
+     "early": 0
     },
     {
      "id": "q",
      "text": "誰來檢查",
-     "frame": 68
+     "frame": 86,
+     "early": 0
     },
     {
      "id": "kla",
      "text": "科磊",
-     "frame": 90
+     "frame": 121,
+     "early": 0
     }
    ],
+   "hash": "4184ecce49f6-692af21aa2",
    "sub": "上一集問\n每一步做對了沒有？\n誰來檢查？\n科磊，也就是 KLA\n一片一片找",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.81,
+    "minScore": 0.054,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 60,
+    "onsetCheck": [
+     {
+      "onset": 0.97,
+      "start": 1,
+      "ch": "每",
+      "errMs": 30
+     },
+     {
+      "onset": 2.54,
+      "start": 2.6,
+      "ch": "誰",
+      "errMs": 60
+     },
+     {
+      "onset": 3.77,
+      "start": 3.76,
+      "ch": "科",
+      "errMs": -10
+     },
+     {
+      "onset": 4.45,
+      "start": 4.44,
+      "ch": "也",
+      "errMs": -10
+     },
+     {
+      "onset": 5.77,
+      "start": 5.76,
+      "ch": "一",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "上",
+     "start": 0.08,
+     "end": 0.24,
+     "score": 0.836
+    },
+    {
+     "text": "一",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.209
+    },
+    {
+     "text": "集",
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.995
+    },
+    {
+     "text": "問",
+     "start": 0.54,
+     "end": 0.7,
+     "score": 0.979
+    },
+    {
+     "text": "每",
+     "start": 1,
+     "end": 1.12,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 1.16,
+     "end": 1.22,
+     "score": 0.442
+    },
+    {
+     "text": "步",
+     "start": 1.32,
+     "end": 1.4,
+     "score": 0.998
+    },
+    {
+     "text": "做",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.991
+    },
+    {
+     "text": "對",
+     "start": 1.7,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "了",
+     "start": 1.88,
+     "end": 1.94,
+     "score": 0.847
+    },
+    {
+     "text": "沒",
+     "start": 1.98,
+     "end": 2.06,
+     "score": 0.662
+    },
+    {
+     "text": "有",
+     "start": 2.1,
+     "end": 2.26,
+     "score": 0.999
+    },
+    {
+     "text": "誰",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 0.944
+    },
+    {
+     "text": "來",
+     "start": 2.78,
+     "end": 2.9,
+     "score": 0.997
+    },
+    {
+     "text": "檢",
+     "start": 2.94,
+     "end": 3.08,
+     "score": 0.999
+    },
+    {
+     "text": "查",
+     "start": 3.12,
+     "end": 3.24,
+     "score": 0.982
+    },
+    {
+     "text": "科",
+     "start": 3.76,
+     "end": 3.9,
+     "score": 0.999
+    },
+    {
+     "text": "磊",
+     "start": 3.98,
+     "end": 4.14,
+     "score": 0.99
+    },
+    {
+     "text": "也",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.999
+    },
+    {
+     "text": "就",
+     "start": 4.58,
+     "end": 4.7,
+     "score": 0.984
+    },
+    {
+     "text": "是",
+     "start": 4.74,
+     "end": 4.82,
+     "score": 0.998
+    },
+    {
+     "text": "K",
+     "start": 4.92,
+     "end": 5.06,
+     "score": 0.497
+    },
+    {
+     "text": "L",
+     "start": 5.16,
+     "end": 5.24,
+     "score": 0.22
+    },
+    {
+     "text": "A",
+     "start": 5.32,
+     "end": 5.4,
+     "score": 0.054
+    },
+    {
+     "text": "一",
+     "start": 5.76,
+     "end": 5.84,
+     "score": 0.679
+    },
+    {
+     "text": "片",
+     "start": 5.94,
+     "end": 6.1,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 6.14,
+     "end": 6.18,
+     "score": 0.241
+    },
+    {
+     "text": "片",
+     "start": 6.26,
+     "end": 6.42,
+     "score": 0.983
+    },
+    {
+     "text": "找",
+     "start": 6.48,
+     "end": 6.64,
+     "score": 0.97
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.24,
+    0.36,
+    0.54,
+    1,
+    1.16,
+    1.32,
+    1.5,
+    1.7,
+    1.88,
+    1.98,
+    2.1,
+    2.6,
+    2.78,
+    2.94,
+    3.12,
+    3.76,
+    3.98,
+    4.44,
+    4.58,
+    4.74,
+    4.92,
+    5.16,
+    5.32,
+    5.76,
+    5.94,
+    6.14,
+    6.26,
+    6.48
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 178,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 174,
-   "durationFrames": 348,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 178,
-   "voiceEndFrame": 512,
-   "stillFrame": 521,
+   "audio": "audio/tech-kla/02-s2.wav",
+   "audioFrame": 225,
+   "audioSec": 9.04,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 216,
+   "durationFrames": 299,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 226,
+   "voiceEndFrame": 495,
+   "stillFrame": 505,
    "subtitleWindow": [
-    175,
-    523
+    223,
+    512
    ],
    "sourceWindow": [
-    174,
-    522
+    221,
+    510
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "外殼打開",
-     "start": 175,
+     "start": 223,
      "chars": [
-      176,
-      184,
-      193,
-      201
+      225,
+      230,
+      234,
+      239
      ]
     },
     {
      "text": "最左邊是光源",
-     "start": 207,
+     "start": 251,
      "chars": [
-      209,
-      218,
-      226,
-      234,
-      243,
-      251
+      253,
+      259,
+      264,
+      270,
+      275,
+      280
      ]
     },
     {
      "text": "往上是物鏡和感測器，",
-     "start": 258,
+     "start": 295,
      "chars": [
-      260,
-      268,
-      276,
-      285,
-      293,
-      301,
-      310,
+      297,
+      304,
+      312,
       318,
-      326,
-      326
+      323,
+      330,
+      335,
+      341,
+      346,
+      346
      ]
     },
     {
      "text": "把影像放大",
-     "start": 333,
+     "start": 356,
      "chars": [
-      335,
-      343,
-      351,
-      360,
-      368
+      359,
+      363,
+      369,
+      375,
+      380
      ]
     },
     {
      "text": "底下是晶圓台",
-     "start": 374,
+     "start": 394,
      "chars": [
-      376,
-      385,
-      393,
+      396,
       401,
-      410,
-      418
+      408,
+      413,
+      418,
+      423
      ]
     },
     {
      "text": "旁邊一整櫃電腦在比對",
-     "start": 425,
+     "start": 437,
      "chars": [
-      427,
-      435,
-      443,
-      452,
-      460,
-      468,
-      477,
-      485,
-      493,
-      502
+      440,
+      446,
+      451,
+      455,
+      461,
+      465,
+      471,
+      478,
+      483,
+      488
      ]
     }
    ],
    "keywords": [
     {
      "text": "光源",
-     "start": 243
+     "start": 275
     },
     {
      "text": "物鏡",
-     "start": 285
+     "start": 318
     },
     {
      "text": "晶圓台",
-     "start": 401
+     "start": 413
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "外殼打開",
-     "frame": 178
+     "frame": 226,
+     "early": 0
     },
     {
      "id": "src",
      "text": "最左邊",
-     "frame": 211
+     "frame": 254,
+     "early": 0
     },
     {
      "id": "obj",
      "text": "物鏡",
-     "frame": 287
+     "frame": 319,
+     "early": 0
     },
     {
      "id": "stage",
      "text": "晶圓台",
-     "frame": 403
+     "frame": 414,
+     "early": 0
     },
     {
      "id": "pc",
      "text": "電腦",
-     "frame": 470
+     "frame": 467,
+     "early": 0
     }
    ],
+   "hash": "1c0ad4d08b89-692af21aa2",
    "sub": "外殼打開\n最左邊是光源\n往上是物鏡和感測器，把影像放大\n底下是晶圓台\n旁邊一整櫃電腦在比對",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.947,
+    "minScore": 0.147,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1,
+      "start": 0.98,
+      "ch": "最",
+      "errMs": -20
+     },
+     {
+      "onset": 2.48,
+      "start": 2.46,
+      "ch": "往",
+      "errMs": -20
+     },
+     {
+      "onset": 4.54,
+      "start": 4.5,
+      "ch": "把",
+      "errMs": -40
+     },
+     {
+      "onset": 5.76,
+      "start": 5.74,
+      "ch": "底",
+      "errMs": -20
+     },
+     {
+      "onset": 7.22,
+      "start": 7.2,
+      "ch": "旁",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "外",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.995
+    },
+    {
+     "text": "殼",
+     "start": 0.2,
+     "end": 0.28,
+     "score": 0.998
+    },
+    {
+     "text": "打",
+     "start": 0.34,
+     "end": 0.4,
+     "score": 0.997
+    },
+    {
+     "text": "開",
+     "start": 0.5,
+     "end": 0.7,
+     "score": 0.999
+    },
+    {
+     "text": "最",
+     "start": 0.98,
+     "end": 1.14,
+     "score": 0.998
+    },
+    {
+     "text": "左",
+     "start": 1.18,
+     "end": 1.28,
+     "score": 0.998
+    },
+    {
+     "text": "邊",
+     "start": 1.34,
+     "end": 1.5,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 1.56,
+     "end": 1.64,
+     "score": 0.937
+    },
+    {
+     "text": "光",
+     "start": 1.7,
+     "end": 1.88,
+     "score": 0.991
+    },
+    {
+     "text": "源",
+     "start": 1.9,
+     "end": 2.12,
+     "score": 0.98
+    },
+    {
+     "text": "往",
+     "start": 2.46,
+     "end": 2.64,
+     "score": 0.981
+    },
+    {
+     "text": "上",
+     "start": 2.68,
+     "end": 2.88,
+     "score": 0.933
+    },
+    {
+     "text": "是",
+     "start": 2.94,
+     "end": 3.02,
+     "score": 0.995
+    },
+    {
+     "text": "物",
+     "start": 3.14,
+     "end": 3.2,
+     "score": 0.903
+    },
+    {
+     "text": "鏡",
+     "start": 3.3,
+     "end": 3.48,
+     "score": 0.835
+    },
+    {
+     "text": "和",
+     "start": 3.54,
+     "end": 3.64,
+     "score": 0.999
+    },
+    {
+     "text": "感",
+     "start": 3.72,
+     "end": 3.84,
+     "score": 0.999
+    },
+    {
+     "text": "測",
+     "start": 3.9,
+     "end": 4,
+     "score": 0.997
+    },
+    {
+     "text": "器",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.997
+    },
+    {
+     "text": "把",
+     "start": 4.5,
+     "end": 4.58,
+     "score": 0.998
+    },
+    {
+     "text": "影",
+     "start": 4.66,
+     "end": 4.82,
+     "score": 0.848
+    },
+    {
+     "text": "像",
+     "start": 4.84,
+     "end": 5.02,
+     "score": 0.997
+    },
+    {
+     "text": "放",
+     "start": 5.04,
+     "end": 5.18,
+     "score": 0.936
+    },
+    {
+     "text": "大",
+     "start": 5.22,
+     "end": 5.3,
+     "score": 0.998
+    },
+    {
+     "text": "底",
+     "start": 5.74,
+     "end": 5.82,
+     "score": 0.942
+    },
+    {
+     "text": "下",
+     "start": 5.92,
+     "end": 6.02,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 6.16,
+     "end": 6.24,
+     "score": 0.994
+    },
+    {
+     "text": "晶",
+     "start": 6.3,
+     "end": 6.44,
+     "score": 0.849
+    },
+    {
+     "text": "圓",
+     "start": 6.48,
+     "end": 6.6,
+     "score": 0.997
+    },
+    {
+     "text": "台",
+     "start": 6.64,
+     "end": 6.86,
+     "score": 0.996
+    },
+    {
+     "text": "旁",
+     "start": 7.2,
+     "end": 7.38,
+     "score": 0.992
+    },
+    {
+     "text": "邊",
+     "start": 7.4,
+     "end": 7.56,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 7.58,
+     "end": 7.64,
+     "score": 0.147
+    },
+    {
+     "text": "整",
+     "start": 7.72,
+     "end": 7.88,
+     "score": 0.922
+    },
+    {
+     "text": "櫃",
+     "start": 7.9,
+     "end": 8.02,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 8.06,
+     "end": 8.22,
+     "score": 0.999
+    },
+    {
+     "text": "腦",
+     "start": 8.26,
+     "end": 8.4,
+     "score": 0.726
+    },
+    {
+     "text": "在",
+     "start": 8.48,
+     "end": 8.62,
+     "score": 0.999
+    },
+    {
+     "text": "比",
+     "start": 8.64,
+     "end": 8.72,
+     "score": 0.997
+    },
+    {
+     "text": "對",
+     "start": 8.82,
+     "end": 8.96,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.34,
+    0.5,
+    0.98,
+    1.18,
+    1.34,
+    1.56,
+    1.7,
+    1.9,
+    2.46,
+    2.68,
+    2.94,
+    3.14,
+    3.3,
+    3.54,
+    3.72,
+    3.9,
+    4.08,
+    4.5,
+    4.66,
+    4.84,
+    5.04,
+    5.22,
+    5.74,
+    5.92,
+    6.16,
+    6.3,
+    6.48,
+    6.64,
+    7.2,
+    7.4,
+    7.58,
+    7.72,
+    7.9,
+    8.06,
+    8.26,
+    8.48,
+    8.64,
+    8.82
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 526,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 522,
-   "durationFrames": 210,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 526,
-   "voiceEndFrame": 722,
-   "stillFrame": 731,
+   "audio": "audio/tech-kla/03-s3.wav",
+   "audioFrame": 514,
+   "audioSec": 4.74,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 505,
+   "durationFrames": 168,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 515,
+   "voiceEndFrame": 655,
+   "stillFrame": 663,
    "subtitleWindow": [
-    523,
-    733
+    512,
+    670
    ],
    "sourceWindow": [
-    522,
-    732
+    510,
+    668
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "手臂從晶圓盒取出晶圓",
-     "start": 523,
+     "start": 512,
      "chars": [
-      524,
-      533,
+      515,
+      520,
+      526,
+      532,
+      538,
       543,
-      552,
+      550,
+      556,
       561,
-      571,
-      580,
-      589,
-      599,
-      608
+      567
      ]
     },
     {
      "text": "找好缺口",
-     "start": 615,
+     "start": 580,
      "chars": [
-      617,
-      627,
-      636,
-      645
+      582,
+      588,
+      592,
+      599
      ]
     },
     {
      "text": "放上晶圓台吸住",
-     "start": 653,
+     "start": 612,
      "chars": [
-      655,
-      664,
-      673,
-      683,
-      692,
-      701,
-      711
+      614,
+      620,
+      626,
+      631,
+      636,
+      642,
+      648
      ]
     }
    ],
    "keywords": [
     {
      "text": "手臂",
-     "start": 524
+     "start": 515
     },
     {
      "text": "缺口",
-     "start": 636
+     "start": 592
     },
     {
      "text": "真空",
-     "start": 523
+     "start": 512
     }
    ],
    "cues": [
     {
      "id": "foup",
      "text": "晶圓盒",
-     "frame": 554
+     "frame": 534,
+     "early": 0
     },
     {
      "id": "notch",
      "text": "找好缺口",
-     "frame": 619
+     "frame": 584,
+     "early": 0
     },
     {
      "id": "put",
      "text": "放上晶圓台",
-     "frame": 657
+     "frame": 615,
+     "early": 0
     },
     {
      "id": "vac",
      "text": "吸住",
-     "frame": 703
+     "frame": 644,
+     "early": 0
     }
    ],
+   "hash": "c1e0ef4b9a0e-692af21aa2",
    "sub": "手臂從晶圓盒取出晶圓\n找好缺口\n放上晶圓台吸住",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.969,
+    "minScore": 0.864,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.34,
+      "start": 2.32,
+      "ch": "找",
+      "errMs": -20
+     },
+     {
+      "onset": 3.41,
+      "start": 3.38,
+      "ch": "放",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "手",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.983
+    },
+    {
+     "text": "臂",
+     "start": 0.26,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "從",
+     "start": 0.46,
+     "end": 0.64,
+     "score": 0.997
+    },
+    {
+     "text": "晶",
+     "start": 0.66,
+     "end": 0.82,
+     "score": 0.879
+    },
+    {
+     "text": "圓",
+     "start": 0.84,
+     "end": 0.96,
+     "score": 0.997
+    },
+    {
+     "text": "盒",
+     "start": 1,
+     "end": 1.12,
+     "score": 1
+    },
+    {
+     "text": "取",
+     "start": 1.24,
+     "end": 1.34,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 1.44,
+     "end": 1.52,
+     "score": 0.924
+    },
+    {
+     "text": "晶",
+     "start": 1.6,
+     "end": 1.76,
+     "score": 0.905
+    },
+    {
+     "text": "圓",
+     "start": 1.8,
+     "end": 1.98,
+     "score": 0.986
+    },
+    {
+     "text": "找",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 0.864
+    },
+    {
+     "text": "好",
+     "start": 2.5,
+     "end": 2.64,
+     "score": 0.996
+    },
+    {
+     "text": "缺",
+     "start": 2.66,
+     "end": 2.8,
+     "score": 0.995
+    },
+    {
+     "text": "口",
+     "start": 2.88,
+     "end": 3.08,
+     "score": 0.999
+    },
+    {
+     "text": "放",
+     "start": 3.38,
+     "end": 3.56,
+     "score": 0.981
+    },
+    {
+     "text": "上",
+     "start": 3.58,
+     "end": 3.76,
+     "score": 0.993
+    },
+    {
+     "text": "晶",
+     "start": 3.78,
+     "end": 3.92,
+     "score": 0.926
+    },
+    {
+     "text": "圓",
+     "start": 3.94,
+     "end": 4.06,
+     "score": 0.994
+    },
+    {
+     "text": "台",
+     "start": 4.1,
+     "end": 4.26,
+     "score": 0.994
+    },
+    {
+     "text": "吸",
+     "start": 4.32,
+     "end": 4.42,
+     "score": 0.999
+    },
+    {
+     "text": "住",
+     "start": 4.52,
+     "end": 4.62,
+     "score": 0.947
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.26,
+    0.46,
+    0.66,
+    0.84,
+    1,
+    1.24,
+    1.44,
+    1.6,
+    1.8,
+    2.32,
+    2.5,
+    2.66,
+    2.88,
+    3.38,
+    3.58,
+    3.78,
+    3.94,
+    4.1,
+    4.32,
+    4.52
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 736,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 732,
-   "durationFrames": 168,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 736,
-   "voiceEndFrame": 890,
-   "stillFrame": 899,
+   "audio": "audio/tech-kla/04-s4.wav",
+   "audioFrame": 672,
+   "audioSec": 5.41,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 663,
+   "durationFrames": 188,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 673,
+   "voiceEndFrame": 834,
+   "stillFrame": 841,
    "subtitleWindow": [
-    733,
-    901
+    670,
+    848
    ],
    "sourceWindow": [
-    732,
-    900
+    668,
+    846
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "光源是雷射點燃的電漿",
-     "start": 733,
+     "start": 670,
      "chars": [
-      734,
-      740,
-      746,
-      752,
-      759,
-      765,
-      771,
-      777,
-      783,
-      789
+      671,
+      677,
+      684,
+      689,
+      695,
+      701,
+      706,
+      711,
+      714,
+      720
      ]
     },
     {
      "text": "發出寬頻光",
-     "start": 794,
+     "start": 733,
      "chars": [
-      796,
-      802,
-      808,
-      814,
-      820
+      735,
+      740,
+      747,
+      753,
+      759
      ]
     },
     {
      "text": "再用濾片挑出要的波段",
-     "start": 824,
+     "start": 773,
      "chars": [
-      826,
-      833,
-      839,
-      845,
-      851,
-      857,
-      863,
-      870,
-      876,
-      882
+      776,
+      782,
+      787,
+      792,
+      800,
+      806,
+      812,
+      818,
+      821,
+      826
      ]
     }
    ],
    "keywords": [
     {
      "text": "雷射",
-     "start": 752
+     "start": 689
     },
     {
      "text": "電漿",
-     "start": 783
+     "start": 714
     },
     {
      "text": "寬頻光",
-     "start": 808
+     "start": 747
     }
    ],
    "cues": [
     {
      "id": "laser",
      "text": "雷射",
-     "frame": 754
+     "frame": 691,
+     "early": 0
     },
     {
      "id": "plasma",
      "text": "電漿",
-     "frame": 785
+     "frame": 716,
+     "early": 0
     },
     {
      "id": "broad",
      "text": "寬頻光",
-     "frame": 810
+     "frame": 748,
+     "early": 0
     },
     {
      "id": "filt",
      "text": "濾片",
-     "frame": 841
+     "frame": 788,
+     "early": 0
     }
    ],
+   "hash": "174599a13515-692af21aa2",
    "sub": "光源是雷射點燃的電漿\n發出寬頻光\n再用濾片挑出要的波段",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.96,
+    "minScore": 0.499,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.16,
+      "start": 2.14,
+      "ch": "發",
+      "errMs": -20
+     },
+     {
+      "onset": 3.52,
+      "start": 3.5,
+      "ch": "再",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "光",
+     "start": 0.02,
+     "end": 0.18,
+     "score": 0.972
+    },
+    {
+     "text": "源",
+     "start": 0.22,
+     "end": 0.38,
+     "score": 0.973
+    },
+    {
+     "text": "是",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.998
+    },
+    {
+     "text": "雷",
+     "start": 0.62,
+     "end": 0.74,
+     "score": 0.989
+    },
+    {
+     "text": "射",
+     "start": 0.82,
+     "end": 0.92,
+     "score": 0.991
+    },
+    {
+     "text": "點",
+     "start": 1,
+     "end": 1.14,
+     "score": 0.999
+    },
+    {
+     "text": "燃",
+     "start": 1.18,
+     "end": 1.3,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.34,
+     "end": 1.4,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 1.46,
+     "end": 1.6,
+     "score": 0.999
+    },
+    {
+     "text": "漿",
+     "start": 1.64,
+     "end": 1.86,
+     "score": 0.948
+    },
+    {
+     "text": "發",
+     "start": 2.14,
+     "end": 2.22,
+     "score": 0.998
+    },
+    {
+     "text": "出",
+     "start": 2.32,
+     "end": 2.44,
+     "score": 0.894
+    },
+    {
+     "text": "寬",
+     "start": 2.54,
+     "end": 2.7,
+     "score": 0.911
+    },
+    {
+     "text": "頻",
+     "start": 2.74,
+     "end": 2.88,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 2.94,
+     "end": 3.16,
+     "score": 0.982
+    },
+    {
+     "text": "再",
+     "start": 3.5,
+     "end": 3.66,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 3.7,
+     "end": 3.84,
+     "score": 0.951
+    },
+    {
+     "text": "濾",
+     "start": 3.88,
+     "end": 3.96,
+     "score": 0.499
+    },
+    {
+     "text": "片",
+     "start": 4.04,
+     "end": 4.24,
+     "score": 0.997
+    },
+    {
+     "text": "挑",
+     "start": 4.3,
+     "end": 4.48,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 4.52,
+     "end": 4.64,
+     "score": 0.915
+    },
+    {
+     "text": "要",
+     "start": 4.72,
+     "end": 4.88,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 4.9,
+     "end": 4.96,
+     "score": 0.997
+    },
+    {
+     "text": "波",
+     "start": 5.02,
+     "end": 5.1,
+     "score": 0.996
+    },
+    {
+     "text": "段",
+     "start": 5.18,
+     "end": 5.34,
+     "score": 0.996
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.22,
+    0.46,
+    0.62,
+    0.82,
+    1,
+    1.18,
+    1.34,
+    1.46,
+    1.64,
+    2.14,
+    2.32,
+    2.54,
+    2.74,
+    2.94,
+    3.5,
+    3.7,
+    3.88,
+    4.04,
+    4.3,
+    4.52,
+    4.72,
+    4.9,
+    5.02,
+    5.18
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 904,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 900,
-   "durationFrames": 150,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 904,
-   "voiceEndFrame": 1040,
-   "stillFrame": 1049,
+   "audio": "audio/tech-kla/05-s5.wav",
+   "audioFrame": 850,
+   "audioSec": 5.38,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 841,
+   "durationFrames": 187,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 851,
+   "voiceEndFrame": 1011,
+   "stillFrame": 1018,
    "subtitleWindow": [
-    901,
-    1051
+    848,
+    1025
    ],
    "sourceWindow": [
-    900,
-    1050
+    846,
+    1023
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "明場是光從正上方照下去",
-     "start": 901,
+     "start": 848,
      "chars": [
+      850,
+      856,
+      863,
+      868,
+      874,
+      880,
+      886,
+      892,
+      897,
       902,
-      907,
-      913,
-      918,
-      924,
-      929,
-      935,
-      940,
-      946,
-      951,
-      956
+      907
      ]
     },
     {
      "text": "看反射回來的光",
-     "start": 960,
+     "start": 920,
      "chars": [
-      962,
-      967,
-      973,
-      978,
-      984,
-      989,
-      994
+      922,
+      929,
+      935,
+      940,
+      945,
+      948,
+      952
      ]
     },
     {
      "text": "哪裡變暗、",
-     "start": 998,
+     "start": 965,
      "chars": [
-      1000,
-      1005,
-      1011,
-      1016,
-      1016
+      967,
+      973,
+      977,
+      984,
+      984
      ]
     },
     {
      "text": "變了樣",
-     "start": 1020,
+     "start": 992,
      "chars": [
-      1022,
-      1027,
-      1033
+      994,
+      1000,
+      1003
      ]
     }
    ],
    "keywords": [
     {
      "text": "明場",
-     "start": 902
+     "start": 850
     },
     {
      "text": "反射",
-     "start": 967
+     "start": 929
     }
    ],
    "cues": [
     {
      "id": "bf",
      "text": "明場",
-     "frame": 904
+     "frame": 851,
+     "early": 0
     },
     {
      "id": "down",
      "text": "正上方照下去",
-     "frame": 931
+     "frame": 882,
+     "early": 0
     },
     {
      "id": "refl",
      "text": "反射回來",
-     "frame": 969
+     "frame": 930,
+     "early": 0
     },
     {
      "id": "dark",
      "text": "變暗",
-     "frame": 1013
+     "frame": 978,
+     "early": 0
     }
    ],
+   "hash": "d0575d56d8ce-692af21aa2",
    "sub": "明場是光從正上方照下去\n看反射回來的光\n哪裡變暗、變了樣",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.978,
+    "minScore": 0.878,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.47,
+      "start": 2.46,
+      "ch": "看",
+      "errMs": -10
+     },
+     {
+      "onset": 3.97,
+      "start": 3.96,
+      "ch": "哪",
+      "errMs": -10
+     },
+     {
+      "onset": 4.89,
+      "start": 4.86,
+      "ch": "變",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "明",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.955
+    },
+    {
+     "text": "場",
+     "start": 0.24,
+     "end": 0.44,
+     "score": 0.962
+    },
+    {
+     "text": "是",
+     "start": 0.48,
+     "end": 0.56,
+     "score": 0.998
+    },
+    {
+     "text": "光",
+     "start": 0.64,
+     "end": 0.82,
+     "score": 0.977
+    },
+    {
+     "text": "從",
+     "start": 0.84,
+     "end": 1.02,
+     "score": 0.997
+    },
+    {
+     "text": "正",
+     "start": 1.06,
+     "end": 1.22,
+     "score": 0.952
+    },
+    {
+     "text": "上",
+     "start": 1.26,
+     "end": 1.42,
+     "score": 0.949
+    },
+    {
+     "text": "方",
+     "start": 1.44,
+     "end": 1.58,
+     "score": 0.942
+    },
+    {
+     "text": "照",
+     "start": 1.62,
+     "end": 1.76,
+     "score": 0.99
+    },
+    {
+     "text": "下",
+     "start": 1.78,
+     "end": 1.88,
+     "score": 1
+    },
+    {
+     "text": "去",
+     "start": 1.96,
+     "end": 2.08,
+     "score": 1
+    },
+    {
+     "text": "看",
+     "start": 2.46,
+     "end": 2.62,
+     "score": 1
+    },
+    {
+     "text": "反",
+     "start": 2.68,
+     "end": 2.82,
+     "score": 0.999
+    },
+    {
+     "text": "射",
+     "start": 2.88,
+     "end": 2.96,
+     "score": 0.878
+    },
+    {
+     "text": "回",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 1
+    },
+    {
+     "text": "來",
+     "start": 3.2,
+     "end": 3.3,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.32,
+     "end": 3.38,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 3.44,
+     "end": 3.66,
+     "score": 0.997
+    },
+    {
+     "text": "哪",
+     "start": 3.96,
+     "end": 4.04,
+     "score": 0.999
+    },
+    {
+     "text": "裡",
+     "start": 4.14,
+     "end": 4.22,
+     "score": 0.998
+    },
+    {
+     "text": "變",
+     "start": 4.28,
+     "end": 4.44,
+     "score": 0.998
+    },
+    {
+     "text": "暗",
+     "start": 4.52,
+     "end": 4.64,
+     "score": 0.998
+    },
+    {
+     "text": "變",
+     "start": 4.86,
+     "end": 5.02,
+     "score": 0.998
+    },
+    {
+     "text": "了",
+     "start": 5.06,
+     "end": 5.12,
+     "score": 0.982
+    },
+    {
+     "text": "樣",
+     "start": 5.16,
+     "end": 5.34,
+     "score": 0.891
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.24,
+    0.48,
+    0.64,
+    0.84,
+    1.06,
+    1.26,
+    1.44,
+    1.62,
+    1.78,
+    1.96,
+    2.46,
+    2.68,
+    2.88,
+    3.04,
+    3.2,
+    3.32,
+    3.44,
+    3.96,
+    4.14,
+    4.28,
+    4.52,
+    4.86,
+    5.06,
+    5.16
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 1054,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1050,
-   "durationFrames": 141,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1054,
-   "voiceEndFrame": 1181,
+   "audio": "audio/tech-kla/06-s6.wav",
+   "audioFrame": 1027,
+   "audioSec": 5.22,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1018,
+   "durationFrames": 182,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1028,
+   "voiceEndFrame": 1183,
    "stillFrame": 1190,
    "subtitleWindow": [
-    1051,
-    1192
+    1025,
+    1197
    ],
    "sourceWindow": [
-    1050,
-    1191
+    1023,
+    1195
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "暗場是斜著打光",
-     "start": 1051,
+     "start": 1025,
      "chars": [
-      1052,
-      1057,
-      1063,
-      1068,
-      1073,
-      1078,
-      1084
+      1028,
+      1032,
+      1039,
+      1045,
+      1051,
+      1054,
+      1059
      ]
     },
     {
      "text": "反射光被擋板吃掉",
-     "start": 1087,
+     "start": 1074,
      "chars": [
-      1089,
-      1094,
-      1100,
-      1105,
+      1077,
+      1082,
+      1087,
+      1093,
+      1098,
+      1104,
       1110,
-      1116,
-      1121,
-      1126
+      1115
      ]
     },
     {
      "text": "只收缺陷散出來的光",
-     "start": 1129,
+     "start": 1130,
      "chars": [
-      1131,
+      1132,
       1137,
-      1142,
-      1147,
-      1153,
-      1158,
-      1163,
-      1168,
+      1143,
+      1150,
+      1157,
+      1162,
+      1167,
+      1171,
       1174
      ]
     }
@@ -663,249 +1899,677 @@
    "keywords": [
     {
      "text": "暗場",
-     "start": 1052
+     "start": 1028
     },
     {
      "text": "散射",
-     "start": 1051
+     "start": 1025
     }
    ],
    "cues": [
     {
      "id": "df",
      "text": "暗場",
-     "frame": 1054
+     "frame": 1029,
+     "early": 0
     },
     {
      "id": "tilt",
      "text": "斜著打光",
-     "frame": 1070
+     "frame": 1046,
+     "early": 0
     },
     {
      "id": "block",
      "text": "擋板吃掉",
-     "frame": 1112
+     "frame": 1100,
+     "early": 0
     },
     {
      "id": "scat",
      "text": "散出來",
-     "frame": 1155
+     "frame": 1158,
+     "early": 0
     }
    ],
+   "hash": "ddcac876688f-692af21aa2",
    "sub": "暗場是斜著打光\n反射光被擋板吃掉\n只收缺陷散出來的光",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.934,
+    "minScore": 0.05,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.72,
+      "start": 1.7,
+      "ch": "反",
+      "errMs": -20
+     },
+     {
+      "onset": 3.54,
+      "start": 3.54,
+      "ch": "只",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "暗",
+     "start": 0.08,
+     "end": 0.16,
+     "score": 0.999
+    },
+    {
+     "text": "場",
+     "start": 0.2,
+     "end": 0.42,
+     "score": 0.974
+    },
+    {
+     "text": "是",
+     "start": 0.46,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "斜",
+     "start": 0.64,
+     "end": 0.76,
+     "score": 0.998
+    },
+    {
+     "text": "著",
+     "start": 0.84,
+     "end": 0.9,
+     "score": 0.666
+    },
+    {
+     "text": "打",
+     "start": 0.96,
+     "end": 1.02,
+     "score": 0.998
+    },
+    {
+     "text": "光",
+     "start": 1.12,
+     "end": 1.34,
+     "score": 0.998
+    },
+    {
+     "text": "反",
+     "start": 1.7,
+     "end": 1.84,
+     "score": 0.999
+    },
+    {
+     "text": "射",
+     "start": 1.88,
+     "end": 1.96,
+     "score": 0.981
+    },
+    {
+     "text": "光",
+     "start": 2.04,
+     "end": 2.22,
+     "score": 0.94
+    },
+    {
+     "text": "被",
+     "start": 2.26,
+     "end": 2.38,
+     "score": 0.99
+    },
+    {
+     "text": "擋",
+     "start": 2.42,
+     "end": 2.58,
+     "score": 0.981
+    },
+    {
+     "text": "板",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 0.975
+    },
+    {
+     "text": "吃",
+     "start": 2.8,
+     "end": 2.9,
+     "score": 0.972
+    },
+    {
+     "text": "掉",
+     "start": 2.98,
+     "end": 3.18,
+     "score": 0.998
+    },
+    {
+     "text": "只",
+     "start": 3.54,
+     "end": 3.64,
+     "score": 0.945
+    },
+    {
+     "text": "收",
+     "start": 3.72,
+     "end": 3.88,
+     "score": 0.99
+    },
+    {
+     "text": "缺",
+     "start": 3.92,
+     "end": 4.06,
+     "score": 0.998
+    },
+    {
+     "text": "陷",
+     "start": 4.14,
+     "end": 4.3,
+     "score": 0.999
+    },
+    {
+     "text": "散",
+     "start": 4.38,
+     "end": 4.52,
+     "score": 0.05
+    },
+    {
+     "text": "出",
+     "start": 4.56,
+     "end": 4.66,
+     "score": 0.966
+    },
+    {
+     "text": "來",
+     "start": 4.7,
+     "end": 4.8,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 4.84,
+     "end": 4.9,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 4.94,
+     "end": 5.14,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.2,
+    0.46,
+    0.64,
+    0.84,
+    0.96,
+    1.12,
+    1.7,
+    1.88,
+    2.04,
+    2.26,
+    2.42,
+    2.6,
+    2.8,
+    2.98,
+    3.54,
+    3.72,
+    3.92,
+    4.14,
+    4.38,
+    4.56,
+    4.7,
+    4.84,
+    4.94
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1195,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1191,
-   "durationFrames": 186,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1195,
-   "voiceEndFrame": 1367,
-   "stillFrame": 1376,
+   "audio": "audio/tech-kla/07-s7.wav",
+   "audioFrame": 1199,
+   "audioSec": 5.44,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1190,
+   "durationFrames": 189,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1200,
+   "voiceEndFrame": 1361,
+   "stillFrame": 1369,
    "subtitleWindow": [
-    1192,
-    1378
+    1197,
+    1376
    ],
    "sourceWindow": [
-    1191,
-    1377
+    1195,
+    1374
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "晶圓台一條一條來回掃",
-     "start": 1192,
+     "start": 1197,
      "chars": [
-      1193,
-      1200,
-      1207,
+      1199,
+      1204,
+      1208,
       1215,
-      1222,
-      1229,
-      1236,
-      1243,
-      1250,
-      1258
+      1219,
+      1225,
+      1228,
+      1235,
+      1239,
+      1246
      ]
     },
     {
      "text": "到頭先減速、",
-     "start": 1263,
+     "start": 1259,
      "chars": [
-      1265,
-      1272,
-      1279,
-      1286,
-      1293,
-      1293
+      1261,
+      1267,
+      1273,
+      1280,
+      1287,
+      1287
      ]
     },
     {
      "text": "轉向再加速回到等速",
-     "start": 1299,
+     "start": 1297,
      "chars": [
-      1301,
-      1308,
-      1315,
+      1300,
+      1306,
       1322,
-      1329,
-      1336,
-      1344,
-      1351,
-      1358
+      1327,
+      1333,
+      1339,
+      1343,
+      1348,
+      1354
      ]
     }
    ],
    "keywords": [
     {
      "text": "來回掃",
-     "start": 1243
+     "start": 1235
     },
     {
      "text": "減速",
-     "start": 1286
+     "start": 1280
     },
     {
      "text": "加速",
-     "start": 1322
+     "start": 1327
     }
    ],
    "cues": [
     {
      "id": "scan",
      "text": "來回掃",
-     "frame": 1245
+     "frame": 1236,
+     "early": 0
     },
     {
      "id": "slow",
      "text": "減速",
-     "frame": 1288
+     "frame": 1281,
+     "early": 0
     },
     {
      "id": "turn",
      "text": "轉向",
-     "frame": 1303
+     "frame": 1301,
+     "early": 0
     },
     {
      "id": "fast",
      "text": "再加速",
-     "frame": 1317
+     "frame": 1323,
+     "early": 0
     }
    ],
+   "hash": "d9be83b8e5e6-692af21aa2",
    "sub": "晶圓台一條一條來回掃\n到頭先減速、轉向\n再加速回到等速",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.903,
+    "minScore": 0.009,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.15,
+      "start": 2.12,
+      "ch": "到",
+      "errMs": -30
+     },
+     {
+      "onset": 3.42,
+      "start": 3.4,
+      "ch": "轉",
+      "errMs": -20
+     },
+     {
+      "onset": 4.15,
+      "start": 4.14,
+      "ch": "再",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.917
+    },
+    {
+     "text": "圓",
+     "start": 0.2,
+     "end": 0.32,
+     "score": 0.99
+    },
+    {
+     "text": "台",
+     "start": 0.36,
+     "end": 0.54,
+     "score": 0.978
+    },
+    {
+     "text": "一",
+     "start": 0.6,
+     "end": 0.66,
+     "score": 0.009
+    },
+    {
+     "text": "條",
+     "start": 0.72,
+     "end": 0.9,
+     "score": 0.964
+    },
+    {
+     "text": "一",
+     "start": 0.92,
+     "end": 0.96,
+     "score": 0.023
+    },
+    {
+     "text": "條",
+     "start": 1.02,
+     "end": 1.2,
+     "score": 0.99
+    },
+    {
+     "text": "來",
+     "start": 1.24,
+     "end": 1.36,
+     "score": 0.998
+    },
+    {
+     "text": "回",
+     "start": 1.4,
+     "end": 1.54,
+     "score": 0.999
+    },
+    {
+     "text": "掃",
+     "start": 1.6,
+     "end": 1.78,
+     "score": 0.997
+    },
+    {
+     "text": "到",
+     "start": 2.12,
+     "end": 2.28,
+     "score": 0.999
+    },
+    {
+     "text": "頭",
+     "start": 2.3,
+     "end": 2.46,
+     "score": 0.997
+    },
+    {
+     "text": "先",
+     "start": 2.52,
+     "end": 2.68,
+     "score": 0.96
+    },
+    {
+     "text": "減",
+     "start": 2.74,
+     "end": 2.9,
+     "score": 0.995
+    },
+    {
+     "text": "速",
+     "start": 2.98,
+     "end": 3.08,
+     "score": 0.998
+    },
+    {
+     "text": "轉",
+     "start": 3.4,
+     "end": 3.56,
+     "score": 0.984
+    },
+    {
+     "text": "向",
+     "start": 3.62,
+     "end": 3.86,
+     "score": 0.994
+    },
+    {
+     "text": "再",
+     "start": 4.14,
+     "end": 4.28,
+     "score": 1
+    },
+    {
+     "text": "加",
+     "start": 4.32,
+     "end": 4.42,
+     "score": 0.999
+    },
+    {
+     "text": "速",
+     "start": 4.52,
+     "end": 4.62,
+     "score": 0.999
+    },
+    {
+     "text": "回",
+     "start": 4.7,
+     "end": 4.82,
+     "score": 1
+    },
+    {
+     "text": "到",
+     "start": 4.86,
+     "end": 5,
+     "score": 0.89
+    },
+    {
+     "text": "等",
+     "start": 5.02,
+     "end": 5.16,
+     "score": 0.999
+    },
+    {
+     "text": "速",
+     "start": 5.22,
+     "end": 5.32,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.36,
+    0.6,
+    0.72,
+    0.92,
+    1.02,
+    1.24,
+    1.4,
+    1.6,
+    2.12,
+    2.3,
+    2.52,
+    2.74,
+    2.98,
+    3.4,
+    3.62,
+    4.14,
+    4.32,
+    4.52,
+    4.7,
+    4.86,
+    5.02,
+    5.22
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1381,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1377,
-   "durationFrames": 255,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1381,
-   "voiceEndFrame": 1622,
-   "stillFrame": 1631,
+   "audio": "audio/tech-kla/08-s8.wav",
+   "audioFrame": 1378,
+   "audioSec": 8.54,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1369,
+   "durationFrames": 282,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1379,
+   "voiceEndFrame": 1633,
+   "stillFrame": 1641,
    "subtitleWindow": [
-    1378,
-    1633
+    1376,
+    1648
    ],
    "sourceWindow": [
-    1377,
-    1632
+    1374,
+    1646
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "電腦把相鄰兩顆",
-     "start": 1378,
+     "start": 1376,
      "chars": [
-      1379,
-      1385,
-      1391,
-      1397,
-      1403,
-      1408,
-      1414
+      1377,
+      1383,
+      1387,
+      1393,
+      1399,
+      1404,
+      1410
      ]
     },
     {
      "text": "晶粒的影像相減",
-     "start": 1418,
+     "start": 1413,
      "chars": [
-      1420,
-      1426,
-      1432,
-      1438,
-      1444,
-      1450,
-      1455
+      1416,
+      1421,
+      1425,
+      1428,
+      1433,
+      1439,
+      1446
      ]
     },
     {
      "text": "一樣的消掉",
-     "start": 1459,
+     "start": 1460,
      "chars": [
-      1461,
-      1467,
-      1473,
-      1479,
-      1485
+      1462,
+      1466,
+      1471,
+      1475,
+      1481
      ]
     },
     {
      "text": "剩下的就是缺陷",
-     "start": 1489,
+     "start": 1496,
      "chars": [
-      1491,
-      1497,
-      1502,
+      1498,
+      1503,
       1508,
-      1514,
+      1512,
+      1516,
       1520,
-      1526
+      1527
      ]
     },
     {
      "text": "光罩也要檢查",
-     "start": 1530,
+     "start": 1539,
      "chars": [
-      1532,
-      1538,
-      1544,
-      1549,
-      1555,
-      1561
+      1542,
+      1550,
+      1554,
+      1558,
+      1562,
+      1567
      ]
     },
     {
      "text": "常拿去跟設計圖比對",
-     "start": 1565,
+     "start": 1582,
      "chars": [
-      1567,
-      1573,
-      1579,
-      1585,
+      1584,
       1591,
       1596,
-      1602,
-      1608,
-      1614
+      1601,
+      1607,
+      1612,
+      1616,
+      1621,
+      1626
      ]
     }
    ],
    "keywords": [
     {
      "text": "相減",
-     "start": 1450
+     "start": 1439
     },
     {
      "text": "缺陷",
@@ -913,483 +2577,1695 @@
     },
     {
      "text": "光罩",
-     "start": 1532
+     "start": 1542
     }
    ],
    "cues": [
     {
      "id": "adj",
      "text": "相鄰兩顆晶粒",
-     "frame": 1399
+     "frame": 1395,
+     "early": 0
     },
     {
      "id": "sub",
      "text": "相減",
-     "frame": 1452
+     "frame": 1440,
+     "early": 0
     },
     {
      "id": "cancel",
      "text": "消掉",
-     "frame": 1481
+     "frame": 1476,
+     "early": 0
     },
     {
      "id": "defect",
      "text": "就是缺陷",
-     "frame": 1510
+     "frame": 1513,
+     "early": 0
     },
     {
      "id": "mask",
      "text": "光罩也要",
-     "frame": 1534
+     "frame": 1543,
+     "early": 0
     },
     {
      "id": "db",
      "text": "設計圖",
-     "frame": 1593
+     "frame": 1608,
+     "early": 0
     }
    ],
+   "hash": "3e4c22fe9df3-692af21aa2",
    "sub": "電腦把相鄰兩顆晶粒的影像相減\n一樣的消掉\n剩下的就是缺陷\n光罩也要檢查\n常拿去跟設計圖比對",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.968,
+    "minScore": 0.76,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 2.85,
+      "start": 2.84,
+      "ch": "一",
+      "errMs": -10
+     },
+     {
+      "onset": 3.99,
+      "start": 4.04,
+      "ch": "剩",
+      "errMs": 50
+     },
+     {
+      "onset": 5.53,
+      "start": 5.5,
+      "ch": "光",
+      "errMs": -30
+     },
+     {
+      "onset": 6.93,
+      "start": 6.92,
+      "ch": "常",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "電",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.997
+    },
+    {
+     "text": "腦",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.879
+    },
+    {
+     "text": "把",
+     "start": 0.36,
+     "end": 0.44,
+     "score": 0.964
+    },
+    {
+     "text": "相",
+     "start": 0.56,
+     "end": 0.74,
+     "score": 0.952
+    },
+    {
+     "text": "鄰",
+     "start": 0.76,
+     "end": 0.88,
+     "score": 0.993
+    },
+    {
+     "text": "兩",
+     "start": 0.92,
+     "end": 1.1,
+     "score": 0.949
+    },
+    {
+     "text": "顆",
+     "start": 1.12,
+     "end": 1.22,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 1.3,
+     "end": 1.46,
+     "score": 0.972
+    },
+    {
+     "text": "粒",
+     "start": 1.48,
+     "end": 1.54,
+     "score": 0.99
+    },
+    {
+     "text": "的",
+     "start": 1.6,
+     "end": 1.66,
+     "score": 0.998
+    },
+    {
+     "text": "影",
+     "start": 1.72,
+     "end": 1.84,
+     "score": 0.803
+    },
+    {
+     "text": "像",
+     "start": 1.88,
+     "end": 2.04,
+     "score": 0.994
+    },
+    {
+     "text": "相",
+     "start": 2.08,
+     "end": 2.26,
+     "score": 0.992
+    },
+    {
+     "text": "減",
+     "start": 2.3,
+     "end": 2.48,
+     "score": 0.986
+    },
+    {
+     "text": "一",
+     "start": 2.84,
+     "end": 2.9,
+     "score": 0.945
+    },
+    {
+     "text": "樣",
+     "start": 2.98,
+     "end": 3.14,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 3.16,
+     "end": 3.22,
+     "score": 0.997
+    },
+    {
+     "text": "消",
+     "start": 3.28,
+     "end": 3.46,
+     "score": 0.963
+    },
+    {
+     "text": "掉",
+     "start": 3.48,
+     "end": 3.68,
+     "score": 0.998
+    },
+    {
+     "text": "剩",
+     "start": 4.04,
+     "end": 4.2,
+     "score": 0.939
+    },
+    {
+     "text": "下",
+     "start": 4.22,
+     "end": 4.3,
+     "score": 0.978
+    },
+    {
+     "text": "的",
+     "start": 4.38,
+     "end": 4.44,
+     "score": 0.994
+    },
+    {
+     "text": "就",
+     "start": 4.5,
+     "end": 4.62,
+     "score": 0.885
+    },
+    {
+     "text": "是",
+     "start": 4.66,
+     "end": 4.74,
+     "score": 0.992
+    },
+    {
+     "text": "缺",
+     "start": 4.78,
+     "end": 4.92,
+     "score": 0.986
+    },
+    {
+     "text": "陷",
+     "start": 5,
+     "end": 5.2,
+     "score": 0.999
+    },
+    {
+     "text": "光",
+     "start": 5.5,
+     "end": 5.68,
+     "score": 0.997
+    },
+    {
+     "text": "照",
+     "start": 5.72,
+     "end": 5.86,
+     "score": 0.991
+    },
+    {
+     "text": "也",
+     "start": 5.9,
+     "end": 5.98,
+     "score": 0.999
+    },
+    {
+     "text": "要",
+     "start": 6.04,
+     "end": 6.16,
+     "score": 0.998
+    },
+    {
+     "text": "檢",
+     "start": 6.18,
+     "end": 6.32,
+     "score": 0.999
+    },
+    {
+     "text": "查",
+     "start": 6.36,
+     "end": 6.5,
+     "score": 0.988
+    },
+    {
+     "text": "常",
+     "start": 6.92,
+     "end": 7.12,
+     "score": 0.905
+    },
+    {
+     "text": "拿",
+     "start": 7.14,
+     "end": 7.22,
+     "score": 0.76
+    },
+    {
+     "text": "去",
+     "start": 7.3,
+     "end": 7.4,
+     "score": 1
+    },
+    {
+     "text": "跟",
+     "start": 7.48,
+     "end": 7.6,
+     "score": 0.981
+    },
+    {
+     "text": "設",
+     "start": 7.68,
+     "end": 7.76,
+     "score": 0.925
+    },
+    {
+     "text": "計",
+     "start": 7.84,
+     "end": 7.92,
+     "score": 0.998
+    },
+    {
+     "text": "圖",
+     "start": 7.98,
+     "end": 8.08,
+     "score": 0.998
+    },
+    {
+     "text": "比",
+     "start": 8.16,
+     "end": 8.22,
+     "score": 0.999
+    },
+    {
+     "text": "對",
+     "start": 8.3,
+     "end": 8.46,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.2,
+    0.36,
+    0.56,
+    0.76,
+    0.92,
+    1.12,
+    1.3,
+    1.48,
+    1.6,
+    1.72,
+    1.88,
+    2.08,
+    2.3,
+    2.84,
+    2.98,
+    3.16,
+    3.28,
+    3.48,
+    4.04,
+    4.22,
+    4.38,
+    4.5,
+    4.66,
+    4.78,
+    5,
+    5.5,
+    5.79,
+    5.9,
+    6.04,
+    6.18,
+    6.36,
+    6.92,
+    7.14,
+    7.3,
+    7.48,
+    7.68,
+    7.84,
+    7.98,
+    8.16,
+    8.3
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1636,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1632,
-   "durationFrames": 138,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1636,
-   "voiceEndFrame": 1760,
-   "stillFrame": 1769,
+   "audio": "audio/tech-kla/09-s9.wav",
+   "audioFrame": 1650,
+   "audioSec": 4.71,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1641,
+   "durationFrames": 167,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1651,
+   "voiceEndFrame": 1791,
+   "stillFrame": 1798,
    "subtitleWindow": [
-    1633,
-    1771
+    1648,
+    1805
    ],
    "sourceWindow": [
-    1632,
-    1770
+    1646,
+    1803
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "量測也是它的強項",
-     "start": 1633,
+     "start": 1648,
      "chars": [
-      1634,
-      1639,
-      1645,
       1650,
       1656,
-      1661,
-      1666,
-      1672
+      1662,
+      1667,
+      1671,
+      1676,
+      1679,
+      1686
      ]
     },
     {
      "text": "疊對是看上下兩層圖案",
-     "start": 1675,
+     "start": 1699,
      "chars": [
-      1677,
-      1683,
-      1688,
-      1693,
-      1699,
-      1704,
-      1709,
-      1715,
-      1720,
-      1726
+      1701,
+      1707,
+      1714,
+      1718,
+      1725,
+      1731,
+      1737,
+      1742,
+      1748,
+      1754
      ]
     },
     {
      "text": "有沒有對準",
-     "start": 1729,
+     "start": 1764,
      "chars": [
-      1731,
-      1736,
-      1742,
-      1747,
-      1753
+      1766,
+      1770,
+      1774,
+      1778,
+      1784
      ]
     }
    ],
    "keywords": [
     {
      "text": "量測",
-     "start": 1634
+     "start": 1650
     },
     {
      "text": "疊對",
-     "start": 1677
+     "start": 1701
     }
    ],
    "cues": [
     {
      "id": "meas",
      "text": "量測",
-     "frame": 1636
+     "frame": 1652,
+     "early": 0
     },
     {
      "id": "ovl",
      "text": "疊對",
-     "frame": 1679
+     "frame": 1703,
+     "early": 0
     },
     {
      "id": "align",
      "text": "有沒有對準",
-     "frame": 1733
+     "frame": 1768,
+     "early": 0
     }
    ],
+   "hash": "4643bf1a258c-692af21aa2",
    "sub": "量測也是它的強項\n疊對是看上下兩層圖案\n有沒有對準",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.979,
+    "minScore": 0.866,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.79,
+      "start": 1.76,
+      "ch": "疊",
+      "errMs": -30
+     },
+     {
+      "onset": 3.93,
+      "start": 3.92,
+      "ch": "有",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "量",
+     "start": 0.06,
+     "end": 0.22,
+     "score": 0.978
+    },
+    {
+     "text": "測",
+     "start": 0.24,
+     "end": 0.36,
+     "score": 0.993
+    },
+    {
+     "text": "也",
+     "start": 0.46,
+     "end": 0.56,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 0.62,
+     "end": 0.7,
+     "score": 0.956
+    },
+    {
+     "text": "它",
+     "start": 0.76,
+     "end": 0.84,
+     "score": 0.994
+    },
+    {
+     "text": "的",
+     "start": 0.92,
+     "end": 0.98,
+     "score": 0.998
+    },
+    {
+     "text": "強",
+     "start": 1.02,
+     "end": 1.2,
+     "score": 0.921
+    },
+    {
+     "text": "項",
+     "start": 1.24,
+     "end": 1.46,
+     "score": 0.967
+    },
+    {
+     "text": "疊",
+     "start": 1.76,
+     "end": 1.88,
+     "score": 0.998
+    },
+    {
+     "text": "對",
+     "start": 1.94,
+     "end": 2.1,
+     "score": 1
+    },
+    {
+     "text": "是",
+     "start": 2.18,
+     "end": 2.26,
+     "score": 0.989
+    },
+    {
+     "text": "看",
+     "start": 2.32,
+     "end": 2.48,
+     "score": 1
+    },
+    {
+     "text": "上",
+     "start": 2.56,
+     "end": 2.74,
+     "score": 0.994
+    },
+    {
+     "text": "下",
+     "start": 2.76,
+     "end": 2.86,
+     "score": 1
+    },
+    {
+     "text": "兩",
+     "start": 2.94,
+     "end": 3.1,
+     "score": 0.904
+    },
+    {
+     "text": "層",
+     "start": 3.12,
+     "end": 3.28,
+     "score": 0.866
+    },
+    {
+     "text": "圖",
+     "start": 3.3,
+     "end": 3.4,
+     "score": 0.996
+    },
+    {
+     "text": "案",
+     "start": 3.52,
+     "end": 3.64,
+     "score": 0.996
+    },
+    {
+     "text": "有",
+     "start": 3.92,
+     "end": 4.04,
+     "score": 1
+    },
+    {
+     "text": "沒",
+     "start": 4.06,
+     "end": 4.16,
+     "score": 1
+    },
+    {
+     "text": "有",
+     "start": 4.18,
+     "end": 4.28,
+     "score": 1
+    },
+    {
+     "text": "對",
+     "start": 4.32,
+     "end": 4.44,
+     "score": 1
+    },
+    {
+     "text": "準",
+     "start": 4.5,
+     "end": 4.66,
+     "score": 0.964
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.24,
+    0.46,
+    0.62,
+    0.76,
+    0.92,
+    1.02,
+    1.24,
+    1.76,
+    1.94,
+    2.18,
+    2.32,
+    2.56,
+    2.76,
+    2.94,
+    3.12,
+    3.3,
+    3.52,
+    3.92,
+    4.06,
+    4.18,
+    4.32,
+    4.5
+   ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1774,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1770,
-   "durationFrames": 150,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1774,
-   "voiceEndFrame": 1910,
-   "stillFrame": 1919,
+   "audio": "audio/tech-kla/10-s10.wav",
+   "audioFrame": 1807,
+   "audioSec": 5.31,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1798,
+   "durationFrames": 185,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1808,
+   "voiceEndFrame": 1966,
+   "stillFrame": 1973,
    "subtitleWindow": [
-    1771,
-    1921
+    1805,
+    1980
    ],
    "sourceWindow": [
-    1770,
-    1920
+    1803,
+    1978
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "膜厚是用",
-     "start": 1771,
+     "start": 1805,
      "chars": [
-      1772,
-      1777,
-      1783,
-      1788
+      1807,
+      1813,
+      1820,
+      1824
      ]
     },
     {
      "text": "偏振光斜打進",
-     "start": 1792,
+     "start": 1827,
      "chars": [
-      1794,
-      1799,
-      1805,
-      1810,
-      1816,
-      1821
+      1830,
+      1836,
+      1842,
+      1849,
+      1854,
+      1859
      ]
     },
     {
      "text": "薄膜看反射回來怎麼變",
-     "start": 1824,
+     "start": 1862,
      "chars": [
-      1826,
-      1832,
-      1837,
-      1843,
-      1848,
-      1854,
-      1859,
       1864,
       1870,
-      1875
+      1887,
+      1893,
+      1899,
+      1904,
+      1909,
+      1913,
+      1917,
+      1920
      ]
     },
     {
      "text": "算出有多厚",
-     "start": 1879,
+     "start": 1933,
      "chars": [
-      1881,
-      1886,
-      1892,
-      1897,
-      1903
+      1935,
+      1942,
+      1947,
+      1952,
+      1957
      ]
     }
    ],
    "keywords": [
     {
      "text": "膜厚",
-     "start": 1772
+     "start": 1807
     },
     {
      "text": "偏振光",
-     "start": 1794
+     "start": 1830
     }
    ],
    "cues": [
     {
      "id": "pol",
      "text": "偏振光",
-     "frame": 1796
+     "frame": 1831,
+     "early": 0
     },
     {
      "id": "refl",
      "text": "反射回來",
-     "frame": 1845
+     "frame": 1895,
+     "early": 0
     },
     {
      "id": "thick",
      "text": "有多厚",
-     "frame": 1894
+     "frame": 1949,
+     "early": 0
     }
    ],
+   "hash": "ec90910f7372-692af21aa2",
    "sub": "膜厚是用偏振光斜打進薄膜\n看反射回來怎麼變\n算出有多厚",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.967,
+    "minScore": 0.649,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.71,
+      "start": 2.7,
+      "ch": "看",
+      "errMs": -10
+     },
+     {
+      "onset": 4.31,
+      "start": 4.32,
+      "ch": "算",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "膜",
+     "start": 0.04,
+     "end": 0.12,
+     "score": 1
+    },
+    {
+     "text": "厚",
+     "start": 0.24,
+     "end": 0.4,
+     "score": 1
+    },
+    {
+     "text": "是",
+     "start": 0.48,
+     "end": 0.56,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 0.62,
+     "end": 0.76,
+     "score": 1
+    },
+    {
+     "text": "偏",
+     "start": 0.8,
+     "end": 0.96,
+     "score": 0.977
+    },
+    {
+     "text": "振",
+     "start": 1,
+     "end": 1.14,
+     "score": 0.978
+    },
+    {
+     "text": "光",
+     "start": 1.2,
+     "end": 1.38,
+     "score": 0.826
+    },
+    {
+     "text": "斜",
+     "start": 1.44,
+     "end": 1.54,
+     "score": 0.921
+    },
+    {
+     "text": "打",
+     "start": 1.62,
+     "end": 1.68,
+     "score": 0.999
+    },
+    {
+     "text": "進",
+     "start": 1.78,
+     "end": 1.9,
+     "score": 0.999
+    },
+    {
+     "text": "薄",
+     "start": 1.96,
+     "end": 2.04,
+     "score": 0.649
+    },
+    {
+     "text": "膜",
+     "start": 2.14,
+     "end": 2.26,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 2.7,
+     "end": 2.86,
+     "score": 0.999
+    },
+    {
+     "text": "反",
+     "start": 2.92,
+     "end": 3.06,
+     "score": 0.999
+    },
+    {
+     "text": "射",
+     "start": 3.1,
+     "end": 3.2,
+     "score": 0.996
+    },
+    {
+     "text": "回",
+     "start": 3.28,
+     "end": 3.4,
+     "score": 0.98
+    },
+    {
+     "text": "來",
+     "start": 3.44,
+     "end": 3.56,
+     "score": 0.999
+    },
+    {
+     "text": "怎",
+     "start": 3.58,
+     "end": 3.68,
+     "score": 0.972
+    },
+    {
+     "text": "麼",
+     "start": 3.7,
+     "end": 3.76,
+     "score": 0.999
+    },
+    {
+     "text": "變",
+     "start": 3.82,
+     "end": 4.02,
+     "score": 0.999
+    },
+    {
+     "text": "算",
+     "start": 4.32,
+     "end": 4.5,
+     "score": 0.987
+    },
+    {
+     "text": "出",
+     "start": 4.54,
+     "end": 4.66,
+     "score": 0.906
+    },
+    {
+     "text": "有",
+     "start": 4.72,
+     "end": 4.84,
+     "score": 1
+    },
+    {
+     "text": "多",
+     "start": 4.88,
+     "end": 4.98,
+     "score": 0.982
+    },
+    {
+     "text": "厚",
+     "start": 5.06,
+     "end": 5.24,
+     "score": 1
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.24,
+    0.48,
+    0.62,
+    0.8,
+    1,
+    1.2,
+    1.44,
+    1.62,
+    1.78,
+    1.96,
+    2.14,
+    2.7,
+    2.92,
+    3.1,
+    3.28,
+    3.44,
+    3.58,
+    3.7,
+    3.82,
+    4.32,
+    4.54,
+    4.72,
+    4.88,
+    5.06
+   ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 1924,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1920,
-   "durationFrames": 141,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1924,
-   "voiceEndFrame": 2051,
-   "stillFrame": 2060,
+   "audio": "audio/tech-kla/11-s11.wav",
+   "audioFrame": 1982,
+   "audioSec": 5.32,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1973,
+   "durationFrames": 185,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1983,
+   "voiceEndFrame": 2141,
+   "stillFrame": 2148,
    "subtitleWindow": [
-    1921,
-    2062
+    1980,
+    2155
    ],
    "sourceWindow": [
-    1920,
-    2061
+    1978,
+    2153
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "KLA 是美國公司",
-     "start": 1921,
+     "start": 1980,
      "chars": [
-      1922,
-      1927,
-      1933,
-      1933,
-      1938,
-      1943,
-      1948,
-      1954,
-      1959
+      1982,
+      1989,
+      1994,
+      1994,
+      1999,
+      2004,
+      2009,
+      2014,
+      2020
      ]
     },
     {
      "text": "專做量測和檢測",
-     "start": 1962,
+     "start": 2034,
      "chars": [
-      1964,
-      1970,
-      1975,
-      1980,
-      1986,
-      1991,
-      1996
+      2036,
+      2043,
+      2049,
+      2054,
+      2062,
+      2066,
+      2072
      ]
     },
     {
      "text": "台灣總部在新竹竹北",
-     "start": 1999,
+     "start": 2088,
      "chars": [
-      2001,
-      2007,
-      2012,
-      2017,
-      2023,
-      2028,
-      2033,
-      2038,
-      2044
+      2090,
+      2095,
+      2100,
+      2106,
+      2111,
+      2119,
+      2124,
+      2129,
+      2134
      ]
     }
    ],
    "keywords": [
     {
      "text": "美國",
-     "start": 1943
+     "start": 2004
     },
     {
      "text": "量測",
-     "start": 1975
+     "start": 2049
     },
     {
      "text": "竹北",
-     "start": 2038
+     "start": 2129
     }
    ],
    "cues": [
     {
      "id": "us",
      "text": "美國公司",
-     "frame": 1945
+     "frame": 2005,
+     "early": 0
     },
     {
      "id": "spec",
      "text": "量測和檢測",
-     "frame": 1977
+     "frame": 2050,
+     "early": 0
     },
     {
      "id": "tw",
      "text": "竹北",
-     "frame": 2040
+     "frame": 2130,
+     "early": 0
     }
    ],
+   "hash": "593b2e7074d8-692af21aa2",
    "sub": "KLA 是美國公司\n專做量測和檢測\n台灣總部在新竹竹北",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.906,
+    "minScore": 0.029,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.86,
+      "start": 1.84,
+      "ch": "專",
+      "errMs": -20
+     },
+     {
+      "onset": 3.65,
+      "start": 3.64,
+      "ch": "台",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "K",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.91
+    },
+    {
+     "text": "L",
+     "start": 0.28,
+     "end": 0.36,
+     "score": 0.029
+    },
+    {
+     "text": "A",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.607
+    },
+    {
+     "text": "是",
+     "start": 0.62,
+     "end": 0.72,
+     "score": 0.949
+    },
+    {
+     "text": "美",
+     "start": 0.78,
+     "end": 0.9,
+     "score": 1
+    },
+    {
+     "text": "國",
+     "start": 0.94,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "公",
+     "start": 1.1,
+     "end": 1.26,
+     "score": 0.958
+    },
+    {
+     "text": "司",
+     "start": 1.32,
+     "end": 1.42,
+     "score": 0.998
+    },
+    {
+     "text": "專",
+     "start": 1.84,
+     "end": 2.02,
+     "score": 0.965
+    },
+    {
+     "text": "做",
+     "start": 2.08,
+     "end": 2.18,
+     "score": 0.912
+    },
+    {
+     "text": "量",
+     "start": 2.28,
+     "end": 2.44,
+     "score": 0.962
+    },
+    {
+     "text": "測",
+     "start": 2.46,
+     "end": 2.58,
+     "score": 0.997
+    },
+    {
+     "text": "和",
+     "start": 2.7,
+     "end": 2.78,
+     "score": 0.999
+    },
+    {
+     "text": "檢",
+     "start": 2.84,
+     "end": 3,
+     "score": 0.997
+    },
+    {
+     "text": "測",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.997
+    },
+    {
+     "text": "台",
+     "start": 3.64,
+     "end": 3.78,
+     "score": 0.994
+    },
+    {
+     "text": "灣",
+     "start": 3.82,
+     "end": 3.94,
+     "score": 0.996
+    },
+    {
+     "text": "總",
+     "start": 3.98,
+     "end": 4.14,
+     "score": 0.967
+    },
+    {
+     "text": "部",
+     "start": 4.18,
+     "end": 4.24,
+     "score": 0.999
+    },
+    {
+     "text": "在",
+     "start": 4.36,
+     "end": 4.52,
+     "score": 0.999
+    },
+    {
+     "text": "新",
+     "start": 4.6,
+     "end": 4.72,
+     "score": 0.999
+    },
+    {
+     "text": "竹",
+     "start": 4.78,
+     "end": 4.86,
+     "score": 0.644
+    },
+    {
+     "text": "竹",
+     "start": 4.94,
+     "end": 5.04,
+     "score": 0.877
+    },
+    {
+     "text": "北",
+     "start": 5.12,
+     "end": 5.26,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.28,
+    0.44,
+    0.62,
+    0.78,
+    0.94,
+    1.1,
+    1.32,
+    1.84,
+    2.08,
+    2.28,
+    2.46,
+    2.7,
+    2.84,
+    3.04,
+    3.64,
+    3.82,
+    3.98,
+    4.18,
+    4.36,
+    4.6,
+    4.78,
+    4.94,
+    5.12
+   ]
   },
   {
    "id": "s12",
-   "audio": null,
-   "audioFrame": 2065,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 2061,
-   "durationFrames": 162,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 2065,
-   "voiceEndFrame": 2213,
-   "stillFrame": 2222,
+   "audio": "audio/tech-kla/12-s12.wav",
+   "audioFrame": 2157,
+   "audioSec": 5.66,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 2148,
+   "durationFrames": 186,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 2158,
+   "voiceEndFrame": 2326,
+   "stillFrame": 2324,
    "subtitleWindow": [
-    2062,
-    2224
+    2155,
+    2334
    ],
    "sourceWindow": [
-    2061,
-    2223
+    2153,
+    2329
    ],
    "lines": [
     {
      "text": "檢查做完了",
-     "start": 2062,
+     "start": 2155,
      "chars": [
-      2063,
-      2068,
-      2074,
-      2079,
-      2085
-     ]
-    },
-    {
-     "text": "下一集看台灣",
-     "start": 2088,
-     "chars": [
-      2090,
-      2096,
-      2101,
-      2107,
-      2112,
-      2118
-     ]
-    },
-    {
-     "text": "自己的設備廠",
-     "start": 2121,
-     "chars": [
-      2123,
-      2129,
-      2134,
-      2140,
-      2145,
-      2151
-     ]
-    },
-    {
-     "text": "留言 KLA，",
-     "start": 2154,
-     "chars": [
-      2156,
+      2157,
       2162,
-      2162,
-      2167,
-      2173,
-      2178,
+      2168,
+      2172,
       2178
      ]
     },
     {
-     "text": "拿完整資料",
-     "start": 2182,
+     "text": "下一集看台灣",
+     "start": 2189,
      "chars": [
-      2184,
-      2189,
-      2195,
-      2200,
-      2206
+      2191,
+      2196,
+      2199,
+      2205,
+      2211,
+      2217
+     ]
+    },
+    {
+     "text": "自己的設備廠",
+     "start": 2220,
+     "chars": [
+      2222,
+      2227,
+      2231,
+      2235,
+      2240,
+      2244
+     ]
+    },
+    {
+     "text": "留言 KLA，",
+     "start": 2260,
+     "chars": [
+      2262,
+      2268,
+      2268,
+      2273,
+      2280,
+      2285,
+      2285
+     ]
+    },
+    {
+     "text": "拿完整資料",
+     "start": 2296,
+     "chars": [
+      2298,
+      2304,
+      2309,
+      2314,
+      2319
      ]
     }
    ],
    "keywords": [
     {
      "text": "台灣",
-     "start": 2112
+     "start": 2211
     },
     {
      "text": "設備廠",
-     "start": 2140
+     "start": 2235
     }
    ],
    "cues": [
     {
      "id": "done",
      "text": "檢查做完了",
-     "frame": 2065
+     "frame": 2158,
+     "early": 0
     },
     {
      "id": "next",
      "text": "台灣自己的設備廠",
-     "frame": 2114
+     "frame": 2213,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 2158
+     "frame": 2264,
+     "early": 0
     }
    ],
+   "hash": "b4b757fecd41-692af21aa2",
    "sub": "檢查做完了\n下一集看台灣自己的設備廠\n留言 KLA，拿完整資料",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.889,
+    "minScore": 0.102,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.14,
+      "start": 1.18,
+      "ch": "下",
+      "errMs": 40
+     },
+     {
+      "onset": 3.55,
+      "start": 3.56,
+      "ch": "留",
+      "errMs": 10
+     },
+     {
+      "onset": 4.73,
+      "start": 4.74,
+      "ch": "拿",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "檢",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "查",
+     "start": 0.22,
+     "end": 0.3,
+     "score": 0.985
+    },
+    {
+     "text": "做",
+     "start": 0.4,
+     "end": 0.5,
+     "score": 0.999
+    },
+    {
+     "text": "完",
+     "start": 0.56,
+     "end": 0.68,
+     "score": 0.997
+    },
+    {
+     "text": "了",
+     "start": 0.74,
+     "end": 0.82,
+     "score": 0.995
+    },
+    {
+     "text": "下",
+     "start": 1.18,
+     "end": 1.28,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 1.34,
+     "end": 1.4,
+     "score": 0.353
+    },
+    {
+     "text": "集",
+     "start": 1.46,
+     "end": 1.54,
+     "score": 0.997
+    },
+    {
+     "text": "看",
+     "start": 1.64,
+     "end": 1.8,
+     "score": 0.999
+    },
+    {
+     "text": "台",
+     "start": 1.86,
+     "end": 2,
+     "score": 0.997
+    },
+    {
+     "text": "灣",
+     "start": 2.04,
+     "end": 2.16,
+     "score": 0.998
+    },
+    {
+     "text": "自",
+     "start": 2.22,
+     "end": 2.32,
+     "score": 0.998
+    },
+    {
+     "text": "己",
+     "start": 2.38,
+     "end": 2.46,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 2.52,
+     "end": 2.58,
+     "score": 0.998
+    },
+    {
+     "text": "設",
+     "start": 2.66,
+     "end": 2.74,
+     "score": 0.967
+    },
+    {
+     "text": "備",
+     "start": 2.82,
+     "end": 2.92,
+     "score": 0.998
+    },
+    {
+     "text": "廠",
+     "start": 2.96,
+     "end": 3.18,
+     "score": 0.925
+    },
+    {
+     "text": "留",
+     "start": 3.56,
+     "end": 3.7,
+     "score": 0.989
+    },
+    {
+     "text": "言",
+     "start": 3.74,
+     "end": 3.86,
+     "score": 0.986
+    },
+    {
+     "text": "K",
+     "start": 3.92,
+     "end": 4.06,
+     "score": 0.692
+    },
+    {
+     "text": "L",
+     "start": 4.14,
+     "end": 4.22,
+     "score": 0.102
+    },
+    {
+     "text": "A",
+     "start": 4.3,
+     "end": 4.4,
+     "score": 0.644
+    },
+    {
+     "text": "拿",
+     "start": 4.74,
+     "end": 4.82,
+     "score": 0.992
+    },
+    {
+     "text": "完",
+     "start": 4.94,
+     "end": 5.06,
+     "score": 0.996
+    },
+    {
+     "text": "整",
+     "start": 5.1,
+     "end": 5.26,
+     "score": 0.431
+    },
+    {
+     "text": "資",
+     "start": 5.28,
+     "end": 5.38,
+     "score": 0.993
+    },
+    {
+     "text": "料",
+     "start": 5.44,
+     "end": 5.6,
+     "score": 0.981
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.4,
+    0.56,
+    0.74,
+    1.18,
+    1.34,
+    1.46,
+    1.64,
+    1.86,
+    2.04,
+    2.22,
+    2.38,
+    2.52,
+    2.66,
+    2.82,
+    2.96,
+    3.56,
+    3.74,
+    3.92,
+    4.14,
+    4.3,
+    4.74,
+    4.94,
+    5.1,
+    5.28,
+    5.44
+   ]
   },
   {
    "id": "s13",
    "audio": null,
-   "audioFrame": 2227,
+   "audioFrame": 2324,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 2223,
+   "startFrame": 2324,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 2227,
-   "voiceEndFrame": 2309,
-   "stillFrame": 2307,
-   "subtitleWindow": [
-    2224,
-    2319
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 2334,
+   "voiceEndFrame": 2334,
+   "stillFrame": 2408,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    2223,
-    2319
+    2329,
+    2420
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-kla/voice.wav",
+  "lufsIn": -16.66,
+  "lufs": -16,
+  "sec": 80.667
+ }
 }

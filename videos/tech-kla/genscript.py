@@ -277,11 +277,11 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("s
  "labels": [lab("src", "寬頻電漿光源", "Broadband plasma source", "amber", "src-2", "obj-4"),
             lab("head", "物鏡＋TDI 偵測器", "Objective & TDI sensor", "blue", "obj-2", "stage-4"),
             lab("stage", "高速晶圓台", "High-speed wafer stage", "amber", "stage-2", "pc-4"),
-            lab("pc", "影像運算櫃", "Image computer", "blue", "pc-2", "pc+48")],
+            lab("pc", "影像運算櫃", "Image computer", "blue", "pc-2", "s3:start-2")],
  "overlay": [sec("kla-tour", "start+24", "s3:start-5", "拆開檢測機", "示意", {"open": "open", "src": "src", "obj": "obj", "stage": "stage", "pc": "pc"})]}
 P["s3"] = {"shot": [shot("start", -10.5, 5.5, 46, 34, 30, yaw=-0.1), shot(k3(150), -5.5, 6.0, 40, 30, 28)], "kin": [KIN3],
  "run": [run("alnSpin", k3(98), k3(122), 8), run("alnLaser", k3(97), k3(128), 4)],
- "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+4", k3(48)),
+ "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+10", k3(48)),
             lab("aln", "預對準器：找缺口", "Pre-aligner", "amber", k3(86), k3(132)),
             lab("chuck", "真空吸盤＋升降銷", "Vacuum chuck & lift pins", "amber", k3(176), "s4:start-4")],
  "overlay": [sec("kla-load", "start+2", "s4:start-5", "晶圓怎麼送進去", "示意", {"foup": "foup", "notch": "notch", "put": "put", "vac": "vac"})]}
