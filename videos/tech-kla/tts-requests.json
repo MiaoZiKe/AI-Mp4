@@ -106,5 +106,83 @@
    "serviceTier": "standard"
   },
   "audio": true
+ },
+ {
+  "at": "2026-11-26T08:33:50.118Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 409,
+   "candidatesTokenCount": 2114,
+   "totalTokenCount": 2523,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 409
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 2114
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ },
+ {
+  "at": "2026-11-26T08:34:39.688Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "error": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metr"
+ },
+ {
+  "at": "2026-11-26T08:34:39.688Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "quota": {
+   "ids": [
+    "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+   ],
+   "retrySec": 84320,
+   "daily": true
+  }
+ },
+ {
+  "at": "2026-11-26T08:45:05.748Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 409,
+   "candidatesTokenCount": 2216,
+   "totalTokenCount": 2625,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 409
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 2216
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
