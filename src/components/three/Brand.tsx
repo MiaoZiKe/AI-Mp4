@@ -36,6 +36,7 @@ export const LOGOS: Record<string, LogoSpec> = {
   amat: { file: "logos/amat.png", w: 960, h: 274, name: "應用材料 Applied Materials", source: "https://commons.wikimedia.org/wiki/File:Applied_Materials_Logo.svg" },
   // 2026/11/26 設備五大-3（tech-lam）：Commons 原檔 SVG（PD-textlogo），未重畫、未改色；來源同時記在 videos/tech-lam/assets.md
   lam: { file: "logos/lam.svg", w: 229.748, h: 77.524, name: "科林研發 Lam Research", source: "https://commons.wikimedia.org/wiki/File:Lam_Research_logo.svg" },
+  kla: { file: "logos/kla.png", w: 960, h: 214, name: "KLA 科磊", source: "https://commons.wikimedia.org/wiki/File:KLA_Corp._logo.svg" },
   gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
