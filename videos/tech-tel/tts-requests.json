@@ -208,5 +208,76 @@
    "serviceTier": "standard"
   },
   "audio": true
+ },
+ {
+  "at": "2026-11-26T07:23:03.272Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 457,
+   "candidatesTokenCount": 1743,
+   "totalTokenCount": 2200,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 457
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1743
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ },
+ {
+  "at": "2026-11-26T07:25:37.395Z",
+  "purpose": "audition:gold",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-26T07:25:37.816Z",
+  "purpose": "audition:gold",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "status": 400,
+  "error": "{ \"error\": { \"code\": 400, \"message\": \"API key not valid. Please pass a valid API key.\", \"status\": \"INVALID_ARGUMENT\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.ErrorInfo\", \"reason\": \"API_KEY_INVALID\", \"domain\": \"googleapis.com\", \"metadata\": { \"service\": \"generativelanguage.googleapis.c"
+ },
+ {
+  "at": "2026-11-26T07:25:54.390Z",
+  "purpose": "audition:gold",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 154,
+   "candidatesTokenCount": 658,
+   "totalTokenCount": 812,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 154
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 658
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
