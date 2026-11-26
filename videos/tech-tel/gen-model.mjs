@@ -20,7 +20,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   heatC: "#D7DCE4", insul: "#F1E9D8", quartzC: "#D8ECF7", quartzE: "#9CC9E6", waferC: "#C9D1D9", injC: "#F4FAFF", coilHot: "#F08A3C", hotY: "#FFC247",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", pipeB: "#3E7BD6", pipeR: "#D9534F", foupC: "#D6DEE8",
-  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", rodC: "#6FA3CC", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
+  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", rodC: "#3F78AE", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const materials = {
@@ -35,7 +35,7 @@ const materials = {
   quartzE: M("phys", "quartzE", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.6 }),
   rod: M("phys", "rodC", { rough: 0.1, metal: 0, clearcoat: 1, opacity: 0.95, env: 0.7, emissive: "rodC", ei: 0.12 }),
   quartzRod: M("phys", "quartzC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.85, env: 0.7 }),
-  wafer: M("phys", "waferC", { rough: 0.15, metal: 0.6, clearcoat: 0.9, env: 0.9 }),
+  wafer: M("phys", "waferC", { rough: 0.15, metal: 0.6, clearcoat: 0.9, env: 0.9 }), waferB: M("std", "waferC", { rough: 0.55, metal: 0.2, env: 0.25 }),
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.4, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.3, rough: 0.4, metal: 0 }),
   lampR: M("std", "lampR", { emissive: "lampR", ei: 0.2, rough: 0.4, metal: 0 }),
   screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }), pipeB: M("std", "pipeB", { rough: 0.35, metal: 0.6, env: 0.4 }), pipeR: M("std", "pipeR", { rough: 0.35, metal: 0.6, env: 0.4 }),
@@ -158,13 +158,13 @@ P({ id: "shutRail", layer: "shut", shape: "box", size: [0.2, 0.2, 6.6], pos: [0,
 
 // ── 晶舟＋保溫座＋密封蓋（裝載位置；升降時這幾層一起往上 LIFT）──
 LAY("boat", [3.6, 10.4, 0, 7.8]); LAY("bgap", [3.2, 0.6, 0, slotY(87)]); LAY("cap", [6.2, 2, 0, 1.6]);
-P({ id: "boatRod", layer: "boat", shape: "cyl", size: [0.16, R2(NSLOT * PITCH + 0.3)], rot: V, pos: [0, R2(BY0 + (NSLOT * PITCH) / 2 - 0.1), 0],
-   at: [180, 90, 270].map((a) => { const [x, z] = pol(a, 1.74); return [x, 0, z]; }), mat: "rod" });
-P({ id: "boatGroove", layer: "boat", shape: "tube", size: [0.2, 0.15, 0.025], rot: V, pos: [0, 0, 0], at: [180, 90, 270].flatMap((a) => { const [x, z] = pol(a, 1.74); return [0, 30, 60, 90, 120].map((k) => [x, slotY(k) - PITCH / 2, z]); }), mat: "quartzE" });
+P({ id: "boatRod", layer: "boat", shape: "cyl", size: [0.22, R2(NSLOT * PITCH + 0.3)], rot: V, pos: [0, R2(BY0 + (NSLOT * PITCH) / 2 - 0.1), 0],
+   at: [180, 90, 270].map((a) => { const [x, z] = pol(a, 1.8); return [x, 0, z]; }), mat: "rod" });
+P({ id: "boatGroove", layer: "boat", shape: "tube", size: [0.27, 0.21, 0.03], rot: V, pos: [0, 0, 0], at: [180, 90, 270].flatMap((a) => { const [x, z] = pol(a, 1.8); return [0, 30, 60, 90, 120].map((k) => [x, slotY(k) - PITCH / 2, z]); }), mat: "quartzE" });
 P({ id: "boatPlate", layer: "boat", shape: "cyl", size: [1.95, 0.14], rot: V, pos: [0, 0, 0], at: [[0, BY0 - 0.2, 0], [0, slotY(NSLOT - 1) + 0.2, 0]], mat: "quartzE" });
 const filled = [...Array(NSLOT).keys()].filter((k) => k < GAP[0] || k > GAP[1]);
-P({ id: "boatW", layer: "boat", shape: "cyl", size: [1.5, WT], rot: V, pos: [0, 0, 0], at: filled.map((k) => [0, slotY(k), 0]), mat: "wafer" });
-P({ id: "boatWEdge", layer: "boat", shape: "tube", size: [1.5, 1.1, R2(WT + 0.006)], rot: V, pos: [0, 0, 0], at: filled.map((k) => [0, slotY(k), 0]), mat: "wafer" });   // 晶圓外圈（加熱時先亮，熱從邊緣往中心）
+P({ id: "boatW", layer: "boat", shape: "cyl", size: [1.5, WT], rot: V, pos: [0, 0, 0], at: filled.map((k) => [0, slotY(k), 0]), mat: "waferB" });
+P({ id: "boatWEdge", layer: "boat", shape: "tube", size: [1.5, 1.1, R2(WT + 0.006)], rot: V, pos: [0, 0, 0], at: filled.map((k) => [0, slotY(k), 0]), mat: "waferB" });   // 晶圓外圈（加熱時先亮，熱從邊緣往中心）
 P({ id: "bgapW", layer: "bgap", shape: "cyl", size: [1.5, WT], rot: V, pos: [0, 0, 0], at: [...Array(5).keys()].map((i) => [0, slotY(GAP[0] + i), 0]), mat: "wafer" });
 P({ id: "capIns", layer: "cap", shape: "cyl", size: [1.6, 1.0], rot: V, pos: [0, 2.05, 0], mat: "quartzE" });                     // 保溫座（石英鰭片）
 P({ id: "capFin", layer: "cap", shape: "cyl", size: [1.7, 0.05], rot: V, pos: [0, 0, 0], at: Array.from({ length: 6 }, (_, i) => [0, R2(1.65 + i * 0.16), 0]), mat: "quartzRod" });
@@ -174,9 +174,12 @@ P({ id: "capMotor", layer: "cap", shape: "cyl", size: [0.7, 0.7], rot: V, pos: [
 // ── 晶舟升降機（左後方滾珠螺桿柱＋滑座＋托臂）──
 LAY("elevCol", [1.4, 13, -5.2, 6.5]); LAY("elev", [6, 1, -2.6, 1.0]);
 P({ id: "elevCol", layer: "elevCol", shape: "box", size: [0.9, 12.4, 0.9], pos: [-5.4, 6.6, -3.6], mat: "steel" });
-P({ id: "elevScrew", layer: "elevCol", shape: "cyl", size: [0.13, 12.0], rot: V, pos: [-4.85, 6.6, -3.6], mat: "steel2" });
-P({ id: "elevMotor", layer: "elevCol", shape: "cyl", size: [0.45, 0.9], rot: V, pos: [-5.4, 0.85, -3.6], mat: "dark" });
-P({ id: "elevSled", layer: "elev", shape: "box", size: [1.2, 1.4, 1.2], pos: [-4.7, 1.0, -3.6], mat: "band" });
+P({ id: "elevScrew", layer: "elevCol", shape: "cyl", size: [0.2, 11.6], rot: V, pos: [-4.7, 7.0, -3.6], mat: "steel2" });
+P({ id: "elevThread", layer: "elevCol", shape: "tube", size: [0.24, 0.19, 0.06], rot: V, pos: [-4.7, 0, -3.6], at: Array.from({ length: 36 }, (_, i) => [0, R2(1.6 + i * 0.32), 0]), mat: "dark" });   // 螺紋
+P({ id: "elevMotor", layer: "elevCol", shape: "box", size: [0.9, 0.9, 0.9], pos: [-4.7, 0.5, -3.6], mat: "dark" });
+P({ id: "elevMotorFin", layer: "elevCol", shape: "box", size: [0.95, 0.05, 0.95], pos: [-4.7, 0, -3.6], at: Array.from({ length: 5 }, (_, i) => [0, R2(0.2 + i * 0.15), 0]), mat: "steel" });
+P({ id: "elevMotorPlug", layer: "elevCol", shape: "box", size: [0.22, 0.22, 0.2], pos: [-4.7, 0.6, -3.05], mat: "conn" });
+P({ id: "elevSled", layer: "elev", shape: "box", size: [1.0, 1.0, 0.5], pos: [-5.1, 1.0, -2.95], mat: "band" });
 P({ id: "elevArm", layer: "elev", shape: "box", size: [4.4, 0.4, 1.0], rot: [0, -40, 0], pos: [-2.2, 0.75, -1.8], mat: "steel2" });
 
 // ── 晶圓盒開門台（FOUP opener）＋晶圓盒＋儲存架 ──
@@ -343,8 +346,11 @@ const ebox = (key, layer, cx, cy, z0, w, h, d) => {   // 電控箱：背板＋�
   P({ id: `${key}Back`, layer, shape: "box", size: [w, h, 0.06], pos: [cx, cy, z0 + 0.03], mat: "steel" });
   P({ id: `${key}Wall`, layer, shape: "box", size: [0.06, h, d], pos: [0, cy, R2(z0 + d / 2)], at: [[R2(cx - w / 2), 0, 0], [R2(cx + w / 2), 0, 0]], mat: "panel2" });
   P({ id: `${key}Cap`, layer, shape: "box", size: [w, 0.06, d], pos: [cx, 0, R2(z0 + d / 2)], at: [[0, R2(cy - h / 2), 0], [0, R2(cy + h / 2), 0]], mat: "panel2" });
-  P({ id: `${key}Door`, layer, shape: "box", size: [0.06, h, w], pos: [R2(cx + w / 2 + 0.05), cy, R2(z0 + d + w / 2)], mat: "panel" });
-  P({ id: `${key}DoorH`, layer, shape: "box", size: [0.06, 0.5, 0.08], pos: [R2(cx + w / 2 + 0.1), cy, R2(z0 + d + w - 0.15)], mat: "steel" });
+  P({ id: `${key}DoorV`, layer, shape: "box", size: [0.22, h, 0.06], pos: [0, cy, R2(z0 + d + 0.03)], at: [[R2(cx - w / 2 + 0.11), 0, 0], [R2(cx + w / 2 - 0.11), 0, 0]], mat: "panel" });   // 門關著：門框
+  P({ id: `${key}DoorHz`, layer, shape: "box", size: [w, 0.22, 0.06], pos: [cx, 0, R2(z0 + d + 0.03)], at: [[0, R2(cy - h / 2 + 0.11), 0], [0, R2(cy + h / 2 - 0.11), 0]], mat: "panel" });
+  P({ id: `${key}DoorWin`, layer, shape: "box", size: [R2(w - 0.4), R2(h - 0.4), 0.02], pos: [cx, cy, R2(z0 + d + 0.03)], mat: "win" });   // 壓克力觀察窗
+  P({ id: `${key}DoorH`, layer, shape: "box", size: [0.08, 0.5, 0.1], pos: [R2(cx + w / 2 - 0.11), cy, R2(z0 + d + 0.1)], mat: "steel" });
+  P({ id: `${key}Hinge`, layer, shape: "cyl", size: [0.05, 0.3], rot: V, pos: [R2(cx - w / 2 + 0.02), 0, R2(z0 + d + 0.05)], at: [[0, R2(cy - h / 3), 0], [0, R2(cy + h / 3), 0]], mat: "steel" });
   P({ id: `${key}Rail`, layer, shape: "box", size: [R2(w - 0.2), 0.08, 0.06], pos: [cx, R2(cy - h / 2 + 0.25), z0 + 0.09], mat: "steel2" });   // DIN 導軌
   P({ id: `${key}Term`, layer, shape: "box", size: [0.1, 0.22, 0.14], pos: [0, R2(cy - h / 2 + 0.25), z0 + 0.15], at: Array.from({ length: 8 }, (_, i) => [R2(cx - w / 2 + 0.3 + i * 0.16), 0, 0]), mat: "conn" });   // 端子台
 };
@@ -359,10 +365,12 @@ P({ id: "rbColChain", layer: "rbCol", shape: "box", size: [0.2, 0.16, 0.26], pos
 P({ id: "rbColMotor", layer: "rbCol", shape: "cyl", size: [0.3, 0.6], rot: V, pos: [RX + 0.62, 12.75, CZ], mat: "dark" });
 P({ id: "rbColPlug", layer: "rbCol", shape: "box", size: [0.18, 0.18, 0.18], pos: [RX + 0.92, 12.75, CZ], mat: "conn" });
 // 晶舟升降機：導軌滑塊、軸承座、聯軸器
-P({ id: "elevRail", layer: "elevCol", shape: "box", size: [0.12, 12.0, 0.1], pos: [-5.4, 6.6, -3.1], at: [[-0.3, 0, 0], [0.3, 0, 0]], mat: "steel2" });
-P({ id: "elevBear", layer: "elevCol", shape: "box", size: [0.5, 0.4, 0.5], pos: [-4.85, 0, -3.6], at: [[0, 1.5, 0], [0, 12.4, 0]], mat: "dark" });
-P({ id: "elevCoup", layer: "elevCol", shape: "cyl", size: [0.2, 0.3], rot: V, pos: [-4.85, 1.15, -3.6], mat: "steel" });
-P({ id: "elevSlide", layer: "elev", shape: "box", size: [0.26, 0.5, 0.1], pos: [-5.4, 1.0, -3.0], at: [[-0.3, 0, 0], [0.3, 0, 0]], mat: "steel2" });
+P({ id: "elevRail", layer: "elevCol", shape: "box", size: [0.18, 12.0, 0.16], pos: [-5.4, 6.6, -3.08], at: [[-0.3, 0, 0], [0.3, 0, 0]], mat: "steel2" });
+P({ id: "elevBear", layer: "elevCol", shape: "box", size: [0.7, 0.45, 0.7], pos: [-4.7, 0, -3.6], at: [[0, 1.45, 0], [0, 12.9, 0]], mat: "band" });
+P({ id: "elevCoup", layer: "elevCol", shape: "cyl", size: [0.28, 0.32], rot: V, pos: [-4.7, 1.1, -3.6], mat: "steel" });
+P({ id: "elevCoupBolt", layer: "elevCol", shape: "cyl", size: [0.05, 0.36], rot: V, pos: [-4.7, 1.1, -3.6], at: ring(4, 0.24), mat: "dark" });
+P({ id: "elevSlide", layer: "elev", shape: "box", size: [0.34, 0.6, 0.14], pos: [-5.4, 1.0, -2.93], at: [[-0.3, 0, 0], [0.3, 0, 0]], mat: "band" });
+P({ id: "elevNut", layer: "elev", shape: "cyl", size: [0.34, 0.5], rot: V, pos: [-4.7, 1.0, -3.6], mat: "band" });   // 螺帽座（跟著托臂上升）
 // 加熱器接線盒：蓋板螺絲、電纜固定頭、銘板
 screws("heatRBoxScrew", "heatR", Array.from({ length: ZONES }, (_, i) => [[HR1 + 0.96, zoneY(i) + 0.45, 0.15], [HR1 + 0.96, zoneY(i) - 0.45, 1.05]]).flat(), "x", 0.045);
 P({ id: "heatRGland", layer: "heatR", shape: "cyl", size: [0.09, 0.2], rot: [0, 0, 0], pos: [HR1 + 0.55, 0, 1.25], at: Array.from({ length: ZONES }, (_, i) => [0, zoneY(i), 0]), mat: "steel" });
