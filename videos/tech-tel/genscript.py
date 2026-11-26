@@ -153,12 +153,12 @@ VIS = []
 for l in ALL:
     span = None
     for i, sid in enumerate(ORDER):
-        a = "s1:start-40" if i == 0 else f"{sid}:start+4" if sid == "s2" else f"{sid}:start-16" if sid in ("s8", "s12") else f"{sid}:start-12"   # 舊的模組留到旁白念完（幕間停頓 18 幀）才淡出
         b = "s1:start-40" if i == 0 else f"{sid}:start+6" if sid == "s2" else f"{sid}:start+0"    # 新的模組等鏡頭到位才出現（s2 等鉤子大字收掉）
+        a = b   # 舊的模組一直留到新模組出現那一幀才換掉（不留空桌面；粒子與液滴另外提早收）
         if l not in SHOW[sid]:
             if span is None: span = a
-        elif span is not None: VIS.append(hid(l, span, b, 10)); span = None
-    if span is not None: VIS.append(hid(l, span, FAR, 10))
+        elif span is not None: VIS.append(hid(l, span, b, 1)); span = None   # 同一幀交接
+    if span is not None: VIS.append(hid(l, span, FAR, 1))
 # 光阻（稠液體）：連續細絲落下 → 中央堆成一坨 → 起轉後四圈由內往外鋪開（厚、深橘）→「越薄」時換成甩薄後的淡色薄膜
 for i in range(4):
     VIS += [hid(f"rs{i}", "s1:start-40", f"s1:start+{20 + i * 8}", 8), hid(f"rs{i}", "s1:nine", add("s10:spin", 6 + i * 8), 20), hid(f"rs{i}", "s10:thin", FAR, 20)]
@@ -184,6 +184,7 @@ LIFTS = [mv("shut", "s5:shut-4", FAR, 20, dx=4.4)] + [mv(l, "s5:acc-6", FAR, 60,
 CUT = []
 
 P = {}
+# 換到距離很遠的區（塗佈區、爐管、放大台）一律同一幀切鏡（不在空桌面上平移）；同一區內才平移
 # 鏡頭（x＝鏡頭座標、y＝看的高度、距離、仰角）：主素材要整個落在頁首下緣到示意卡上緣之間（layout-check 量 mainSamples）
 CAM = {"s1a": (CX, 5.4, 40, 28), "s1": (CX, 5.2, 38, 28), "s2": (SX(2.5), 8.3, 126, 12), "s3": (SX(0.5), 12.6, 172, 10), "s4": (SX(5.8), 3.4, 61, 16),
        "s4b": (SX(7.4), 5.6, 64, 14), "s5": (SX(0.0), 9.5, 100, 10), "s6": (SX(0.0), 16.4, 75, 8), "s7": (FL, 14.2, 22, 13), "s7b": (SX(0.0), 16.8, 62, 7), "s8": (FL, 3.2, 49, 8), "s9": (SX(0.0), 16.4, 75, 8),
@@ -193,7 +194,7 @@ P["s1"] = {"shot": [shot("start-30", *CAM["s1a"], 1, yaw_to=0.0), shot("start", 
  "run": [run("spin", "start-30", "s2:start", 12), *[run(f"fling{i}", "start+10", "s2:start-18", 6) for i in range(5)], run("tower", "start-30", FAR, 1), run("status", "start-30", FAR, 1)],
   "overlay": [sec("tel-hook", "who", "s2:start-20", "設備五大-4", "示意，非實際機型", {"prev": "prev", "who": "who", "tel": "tel", "nine": "nine"})]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
- "shot": [shot("start-14", *CAM["s2"], 16, yaw_to=YB)],
+ "shot": [shot("start+6", *CAM["s2"], 1, yaw_to=YB)],
  "run": [run("lae", "start", "s3:start-30", 8)],
  "labels": [lab("boat", "晶舟（一次上百片）", "Wafer boat", "amber", "batch", "heat-2"), lab("upper", "爐管裝在上半部機殼裡", "Furnace inside upper cabinet", "blue", "heat", "s3:start-20")],
  "overlay": [sec("tel-tool", "start+2", "s3:start-20", "直立式爐管", "示意", {"furn": "furn", "batch": "batch", "heat": "heat"})]}
@@ -201,7 +202,7 @@ P["s3"] = {"shot": [shot("start-14", *CAM["s3"], 14, yaw_to=YB)],
  "labels": [lab("heat", "加熱器（剖開示意）", "Heater (cutaway)", "amber", "heat-4", "tube-6"), lab("otube", "石英管（內外兩層）", "Quartz tubes", "blue", "tube-4", "boat-6"),
             lab("boat", "晶舟（石英）", "Wafer boat", "amber", "boat-4", "cap-6"), lab("cap", "保溫座＋密封蓋", "Pedestal & seal cap", "blue", "cap-4", "back+28")],
  "overlay": [sec("tel-stack", "start+6", "s4:start-20", "爐管拆開", "示意", {"open": "open", "heat": "heat", "tube": "tube", "boat": "boat", "cap": "cap"})]}
-P["s4"] = {"shot": [shot("start-14", *CAM["s4"], 14, yaw_to=YB), shot("start+46", *CAM["s4b"], 20)],
+P["s4"] = {"shot": [shot("start-1", *CAM["s4"], 2, yaw_to=YB), shot("start+46", *CAM["s4b"], 20)],
  "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+50", "s5:start-20"), lab("fork", "五支叉片：一次五片", "5-blade fork", "amber", "start+2", "start+46")],
  "overlay": [sec("tel-load", "start+2", "s5:start-20", "裝晶舟", "示意", {"arm": "arm", "five": "five", "turn": "turn", "ins": "ins"})]}
 P["s5"] = {"shot": [shot("start-14", *CAM["s5"], 14, yaw_to=YB)],
@@ -212,26 +213,26 @@ P["s6"] = {"shot": [shot("start-14", *CAM["s6"], 14, yaw_to=YCUT)],
          run("tubeWarm", "out+6", "s7:start-20", 14), *[run(f"heatIn{i}", "out-4", "s7:start-18", 8) for i in range(3)], run("edgeWarm", "wafer-4", "s7:start-20", 10), run("waferWarm", "wafer+14", "s7:start-20", 20)],
  "labels": [lab("zone", "加熱線圈（分區）", "Heater zones", "amber", "zone-2", "wafer-8"), lab("waferHot", "晶圓最後才熱", "Wafers heat last", "blue", "wafer-2", "s7:start-20")],
  "overlay": [sec("tel-heat", "start+2", "s7:start-20", "熱由外往內", "示意", {"zone": "zone", "out": "out", "wafer": "wafer"})]}
-P["s7"] = {"shot": [shot("start-14", *CAM["s7b"], 14, yaw_to=YB), shot("cross-12", *CAM["s7"], 20, yaw_to=0.0), shot("down-14", *CAM["s7b"], 18, yaw_to=YB)],
+P["s7"] = {"shot": [shot("start-14", *CAM["s7b"], 14, yaw_to=YB), shot("cross-12", *CAM["s7"], 1, yaw_to=0.0), shot("down-14", *CAM["s7b"], 1, yaw_to=YB)],
  "run": [run("gasFeed", "inj-8", "s8:start-18", 8), run("gasCross", "cross-4", "s8:start-18", 8), run("gasUp", "inj", "s8:start-18", 8), run("gasDown", "inj+6", "s8:start-18", 8), run("bzGas", "cross-6", "down-12", 8),
          run("exhaust", "inj+10", "s8:start-18", 8), run("pumpRun", "inj+10", "s8:start-18", 4)],
  "labels": [lab("inj", "噴氣管（多孔）", "Gas injector", "amber", "inj-2", "cross-14"), lab("bzGap", "氣體穿過晶圓間隙（放大）", "Gas between wafers", "blue", "cross+4", "down-16"), lab("exh", "夾縫往下抽到排氣口", "Down the gap to exhaust", "amber", "down+6", "s8:start-20")],
  "overlay": [sec("tel-gas", "start+2", "s8:start-20", "氣體怎麼走", "示意", {"inj": "inj", "cross": "cross", "down": "down"})]}
-P["s8"] = {"shot": [shot("start-14", *CAM["s8"], 14, yaw_to=0.0)],
+P["s8"] = {"shot": [shot("start", *CAM["s8"], 1, yaw_to=0.0)],
  "run": [run(f"filmGas{i}", "react-6", "s9:start-18", 8) for i in range(3)],
  "labels": [lab("film", "薄膜（放大示意）", "Film (enlarged)", "amber", "film", "s9:start-20")],
  "overlay": [sec("tel-film", "start+2", "s9:start-20", "薄膜長厚", "放大示意", {"react": "react", "film": "film", "all": "all"})]}
-P["s9"] = {"shot": [shot("start-14", *CAM["s9"], 14, yaw_to=YCUT)],
+P["s9"] = {"shot": [shot("start", *CAM["s9"], 1, yaw_to=YCUT)],
  "labels": [lab("waferHot", "整批一起處理", "One batch", "amber", "eff", "s10:start-20")],
  "overlay": [sec("tel-batch", "start+2", "s10:start-20", "批次的取捨", "分析", {"eff": "eff", "bad": "bad", "boat": "boat"})]}
-P["s10"] = {"shot": [shot("start-14", *CAM["s10"], 14, yaw_to=0.0)],
+P["s10"] = {"shot": [shot("start", *CAM["s10"], 1, yaw_to=0.0)],
  "run": [run("spin", "spin-4", "s11:start", 60), *[run(f"fling{i}", "spin+16", "s11:start-22", 10) for i in range(5)]],
  "labels": [lab("noz", "光阻噴嘴", "Resist nozzle", "amber", "drop-2", "spin-6"), lab("coat", "多的光阻被甩出", "Excess flung off", "blue", "spin+4", "s11:start-26")],
  "overlay": [sec("tel-coat", "start+2", "s11:start-20", "旋轉塗佈", "示意", {"back": "back", "drop": "drop", "spin": "spin", "thin": "thin"})]}
-P["s11"] = {"shot": [shot("start-14", *CAM["s11"], 14, yaw_to=YB)],
+P["s11"] = {"shot": [shot("start", *CAM["s11"], 1, yaw_to=YB)],
  "labels": [lab("sign", "東京威力科創", "Tokyo Electron", "amber", "jp", "s12:start-20", logo="tel")],
  "overlay": [sec("tel-co", "start+2", "s12:start-20", "東京威力科創", "公司財報、論文、媒體", {"jp": "jp", "cryo": "cryo", "tn": "tn", "rep": "rep"}, h=360, y=1040)]}
-P["s12"] = {"shot": [shot("start-14", *CAM["s12"], 14, yaw_to=0.0)],
+P["s12"] = {"shot": [shot("start", *CAM["s12"], 1, yaw_to=0.0)],
  "labels": [lab("film", "膜厚要量", "Film thickness", "amber", "chk", "s13:start-20")],
  "overlay": [sec("tel-next", "start+2", "s13:start-20", "接下來", "下一集：設備五大-5", {"chk": "chk", "next": "next", "kw": "kw"})]}
 for sc in scenes:

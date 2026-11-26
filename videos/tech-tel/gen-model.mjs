@@ -20,7 +20,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   heatC: "#D7DCE4", insul: "#F1E9D8", quartzC: "#D8ECF7", quartzE: "#9CC9E6", waferC: "#C9D1D9", injC: "#F4FAFF", coilHot: "#F08A3C", hotY: "#FFC247",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", pipeB: "#3E7BD6", pipeR: "#D9534F", foupC: "#D6DEE8",
-  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", rodC: "#3F78AE", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
+  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", rodC: "#9FB8C4", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const materials = {
@@ -93,6 +93,10 @@ P({ id: "deckB", layer: "lae", shape: "box", size: [6, 0.5, 2.6], pos: [0, DECK,
 P({ id: "deckF", layer: "lae", shape: "box", size: [6, 0.5, 2.6], pos: [0, DECK, 4.3], mat: "panel2" });
 P({ id: "deckEdge", layer: "lae", shape: "box", size: [21, 0.35, 0.3], pos: [3.2, DECK + 0.4, 5.55], mat: "band" });
 P({ id: "laeBase", layer: "lae", shape: "box", size: [21, 0.4, 11.2], pos: [3.2, 0.2, 0], mat: "band" });
+P({ id: "laeSeam", layer: "lae", shape: "box", size: [0.06, 12.6, 0.06], pos: [0, 6.5, -5.42], at: [-4, 0, 4, 10].map((x) => [x, 0, 0]), mat: "seam" });   // 大面板接縫
+P({ id: "laeSeamH", layer: "lae", shape: "box", size: [20.6, 0.06, 0.06], pos: [3.2, 0, -5.42], at: [[0, 4.4, 0], [0, 8.8, 0]], mat: "seam" });
+P({ id: "laeScrew", layer: "lae", shape: "cyl", size: [0.06, 0.04], rot: [0, 0, 0], pos: [0, 0, -5.42], at: [-6.8, -4, 0, 4, 10, 13.2].flatMap((x) => [0.5, 4.4, 8.8, 12.5].map((y) => [x, y, 0])), mat: "dark" });
+P({ id: "laeLScrew", layer: "lae", shape: "cyl", size: [0.06, 0.04], rot: [0, 90, 0], pos: [-7.03, 0, 0], at: [0.6, 4.4, 8.8, 12.4].flatMap((y) => [-5, -2, 2, 5].map((z) => [0, y, z])), mat: "dark" });
 P({ id: "laeFilter", layer: "lae", shape: "box", size: [0.25, 8, 6], pos: [-7.0, 6.5, -1], mat: "panel" });   // 側牆潔淨氣流過濾面（平面，不露風扇）
 P({ id: "laeFilterGrid", layer: "lae", shape: "box", size: [0.1, 0.06, 5.8], pos: [-6.85, 0, -1], at: Array.from({ length: 9 }, (_, i) => [0, 2.9 + i * 0.9, 0]), mat: "seam" });
 
