@@ -46,8 +46,8 @@
  },
  "cover": {
   "title": [
-   "晶片做壞了",
-   "誰抓得到？"
+   "每一步做對了",
+   "誰來檢查？"
   ],
   "sub": "設備五大-5：KLA",
   "frame": 40
@@ -58,28 +58,28 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "上一集圖案做好了，有沒有做壞？KLA 的檢測機，一片一片找。",
-   "tts": "上一集圖案做好了，有沒有做壞？K L A 的檢測機，一片一片找。",
+   "narration": "上一集問，每一步做對了沒有？誰來檢查？科磊，也就是 KLA，一片一片找。",
+   "tts": "上一集問，每一步做對了沒有？誰來檢查？科磊，也就是 K L A，一片一片找。",
    "subtitle": {
-    "zh": "上一集圖案做好了\n有沒有做壞？\nKLA 的檢測機\n一片一片找",
-    "en": "Last time the pattern was made. | Was anything ruined? | KLA's inspection tools | check wafer by wafer."
+    "zh": "上一集問\n每一步做對了沒有？\n誰來檢查？\n科磊，也就是 KLA\n一片一片找",
+    "en": "Last time we asked: | was every step done right? | Who checks? | KLA, | wafer by wafer."
    },
    "keywords": [
-    "做壞",
-    "檢測機"
+    "做對",
+    "科磊"
    ],
    "cues": [
     {
      "id": "prev",
-     "text": "圖案做好了"
+     "text": "每一步做對了"
     },
     {
      "id": "q",
-     "text": "有沒有做壞"
+     "text": "誰來檢查"
     },
     {
      "id": "kla",
-     "text": "檢測機"
+     "text": "科磊"
     }
    ],
    "component": "ThreeScene",
@@ -88,8 +88,8 @@
    ],
    "props": {
     "hook": {
-     "kicker": "接上集：圖案做好了",
-     "title": "有沒有做壞？",
+     "kicker": "接上集：每一步做對了嗎",
+     "title": "誰來檢查？",
      "size": 120,
      "top": 236
     },
@@ -325,20 +325,20 @@
      {
       "layer": "wfR",
       "at": "s1:start-40",
-      "until": "s3:start+129",
+      "until": "s3:start+99",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "wfA",
-      "at": "s3:start+129",
+      "at": "s3:start+99",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "wfR",
-      "at": "s3:start+180",
+      "at": "s3:start+136",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
@@ -346,7 +346,7 @@
      {
       "layer": "wfB",
       "at": "s1:start-40",
-      "until": "s3:start+180",
+      "until": "s3:start+136",
       "opacity": 0,
       "dur": 1
      },
@@ -381,7 +381,7 @@
      {
       "layer": "chuck",
       "at": "s1:start-40",
-      "until": "s3:start+272",
+      "until": "s3:start+206",
       "dur": 14,
       "dy": -0.6
      },
@@ -394,176 +394,169 @@
      },
      {
       "layer": "roof",
-      "at": "s2:start+2",
-      "until": "s2:start+206",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 6
+      "dy": 7
      },
      {
       "layer": "tower",
-      "at": "s2:start+2",
-      "until": "s2:start+206",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 6
-     },
-     {
-      "layer": "sign",
-      "at": "s2:start+2",
-      "until": "s2:start+206",
-      "dur": 22,
-      "dy": 6
+      "dy": 7
      },
      {
       "layer": "front",
-      "at": "s2:start+5",
-      "until": "s2:start+206",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 7
+      "dz": 8
      },
      {
       "layer": "ui",
-      "at": "s2:start+5",
-      "until": "s2:start+206",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 7
+      "dz": 8
      },
      {
       "layer": "efemFront",
-      "at": "s2:start+5",
-      "until": "s2:start+206",
+      "at": "s2:open-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 5
+      "dz": 6
      },
      {
       "layer": "front",
-      "at": "s2:start+16",
-      "until": "s2:start+206",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "ui",
-      "at": "s2:start+16",
-      "until": "s2:start+206",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "efemFront",
-      "at": "s2:start+16",
-      "until": "s2:start+206",
+      "at": "s2:open+12",
+      "until": "s2:pc+50",
       "opacity": 0,
       "dur": 10
      },
      {
       "layer": "srcHouse",
-      "at": "s2:start+10",
-      "until": "s2:start+206",
+      "at": "s2:src-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 3.2,
-      "dx": -1.5
+      "dx": -1.0,
+      "dy": 7.5
      },
      {
       "layer": "src",
-      "at": "s2:start+12",
-      "until": "s2:start+206",
+      "at": "s2:src-4",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dx": -2.6,
-      "dy": 0.8
+      "dx": -1.6,
+      "dy": 5.0
      },
      {
       "layer": "fw",
-      "at": "s2:start+12",
-      "until": "s2:start+206",
+      "at": "s2:src-2",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dx": -0.8,
-      "dy": 1.4
-     },
-     {
-      "layer": "illum",
-      "at": "s2:start+12",
-      "until": "s2:start+206",
-      "dur": 22,
-      "dy": 2.0
-     },
-     {
-      "layer": "lMain",
-      "at": "s2:start+12",
-      "until": "s2:start+206",
-      "dur": 22,
-      "dy": 2.0
+      "dx": -0.6,
+      "dy": 3.6
      },
      {
       "layer": "det",
-      "at": "s2:start+14",
-      "until": "s2:start+206",
+      "at": "s2:obj-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 5.5
+      "dy": 7.0
      },
      {
       "layer": "head",
-      "at": "s2:start+14",
-      "until": "s2:start+206",
+      "at": "s2:obj-5",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 3.0
+      "dy": 4.0
      },
      {
       "layer": "obj",
-      "at": "s2:start+14",
-      "until": "s2:start+206",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dy": 1.6
+      "dy": 2.4
+     },
+     {
+      "layer": "illum",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 4.0
+     },
+     {
+      "layer": "lMain",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
+      "dur": 22,
+      "dy": 4.0
      },
      {
       "layer": "dfArm",
-      "at": "s2:start+14",
-      "until": "s2:start+206",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dx": -1.2,
-      "dy": 1.2
+      "dx": -1.6,
+      "dy": 2.4
      },
      {
       "layer": "dump",
-      "at": "s2:start+14",
-      "until": "s2:start+206",
+      "at": "s2:obj-4",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dx": 1.2,
-      "dy": 1.2
+      "dx": 1.6,
+      "dy": 2.4
      },
      {
       "layer": "stX",
-      "at": "s2:start+17",
-      "until": "s2:start+206",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 3.8
+      "dz": 5.0
      },
      {
       "layer": "stZ",
-      "at": "s2:start+17",
-      "until": "s2:start+206",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 3.8
+      "dz": 5.0
      },
      {
       "layer": "chuck",
-      "at": "s2:start+17",
-      "until": "s2:start+206",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 3.8
+      "dz": 5.0
      },
      {
       "layer": "pins",
-      "at": "s2:start+17",
-      "until": "s2:start+206",
+      "at": "s2:stage-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dz": 3.8
+      "dz": 5.0
      },
      {
       "layer": "pc",
-      "at": "s2:start+17",
-      "until": "s2:start+206",
+      "at": "s2:pc-6",
+      "until": "s2:pc+50",
       "dur": 22,
-      "dx": 4.5
+      "dx": 6.0
      },
      {
       "layer": "stX",
@@ -850,6 +843,870 @@
       "at": "s7:scan+134",
       "until": "s13:start+400",
       "dur": 14,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 12,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan-14",
+      "until": "s13:start+400",
+      "dur": 10,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+0",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+38",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+48",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": -2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+86",
+      "until": "s13:start+400",
+      "dur": 9,
+      "dx": 0,
+      "dz": 0.9
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+96",
+      "until": "s13:start+400",
+      "dur": 36,
+      "dx": 2.4,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": -1.2,
+      "dz": 0
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
+      "dz": -0.9
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s7:scan+134",
+      "until": "s13:start+400",
+      "dur": 14,
+      "dx": 0,
       "dz": -0.9
      },
      {
@@ -910,6 +1767,13 @@
      },
      {
       "layer": "bridge",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bridgeF",
       "at": "s8:start+2",
       "until": "s9:start",
       "opacity": 0,
@@ -1190,6 +2054,20 @@
      },
      {
       "layer": "wfB",
+      "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfS",
+      "at": "s3:start+2",
+      "until": "s8:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "wfS",
       "at": "s9:start+2",
       "until": "s11:start+14",
       "opacity": 0,
@@ -1233,6 +2111,13 @@
      {
       "layer": "iso",
       "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "iso",
+      "at": "s8:start+2",
       "until": "s11:start+14",
       "opacity": 0,
       "dur": 10
@@ -1324,6 +2209,13 @@
      {
       "layer": "bridge",
       "at": "s8:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bridgeF",
+      "at": "s3:start+2",
       "until": "s11:start+14",
       "opacity": 0,
       "dur": 10
@@ -1665,6 +2557,195 @@
       "dur": 10
      },
      {
+      "layer": "sc0_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s3:start+2",
+      "until": "s7:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s9:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ovlTop",
+      "at": "s3:start+2",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "ovlTop",
+      "at": "s10:start+2",
+      "until": "s11:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "metEll",
+      "at": "s9:align-18",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
       "layer": "met",
       "at": "s9:align-18",
       "until": "s10:start+14",
@@ -1679,11 +2760,215 @@
       "dur": 8
      },
      {
-      "layer": "metEll",
-      "at": "s9:align-18",
-      "until": "s10:start+14",
+      "layer": "ovlTop",
+      "at": "s9:align-4",
+      "until": "s10:start",
+      "dur": 20,
+      "dx": 0.14,
+      "dz": -0.08
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+4",
       "opacity": 0,
-      "dur": 8
+      "dur": 6
+     },
+     {
+      "layer": "sc0_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+12",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+20",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+28",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc0_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+52",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+60",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+68",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+76",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc1_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s1:start-40",
+      "until": "s7:scan+100",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_3",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s1:start-40",
+      "until": "s7:scan+108",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_2",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s1:start-40",
+      "until": "s7:scan+116",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_1",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s1:start-40",
+      "until": "s7:scan+124",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sc2_0",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "lRet",
+      "at": "s5:dark-2",
+      "until": "s6:start",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "lSpot",
+      "at": "s5:dark-2",
+      "until": "s6:start",
+      "opacity": 0.35,
+      "dur": 6
+     },
+     {
+      "layer": "wfS",
+      "at": "s1:start-40",
+      "until": "s8:start+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfB",
+      "at": "s8:start+2",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wfS",
+      "at": "s9:start",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
      }
     ],
     "kin": [
@@ -1744,18 +3029,18 @@
      }
     ]
    },
-   "durationSec": 5.0,
+   "durationSec": 5.8,
    "pauseAfter": 0.6
   },
   {
    "id": "s2",
    "beat": "mechanism",
    "para": 2,
-   "narration": "外殼打開，裡面有光源、物鏡、晶圓台，還有一整櫃電腦在比對。",
-   "tts": "外殼打開，裡面有光源、物鏡、晶圓台，還有一整櫃電腦在比對。",
+   "narration": "外殼打開。最左邊是光源；往上是物鏡和感測器，把影像放大；底下是晶圓台；旁邊一整櫃電腦在比對。",
+   "tts": "外殼打開。最左邊是光源；往上是物鏡和感測器，把影像放大；底下是晶圓台；旁邊一整櫃電腦在比對。",
    "subtitle": {
-    "zh": "外殼打開\n裡面有光源、物鏡、晶圓台\n還有一整櫃電腦在比對",
-    "en": "Open the cover: | a light source, an objective, a wafer stage, | and a whole cabinet of computers comparing images."
+    "zh": "外殼打開\n最左邊是光源\n往上是物鏡和感測器，把影像放大\n底下是晶圓台\n旁邊一整櫃電腦在比對",
+    "en": "Open the cover. | On the far left, the light source; | above, the objective and sensor magnify the image; | below, the wafer stage; | and beside it, a cabinet of computers comparing images."
    },
    "keywords": [
     "光源",
@@ -1769,7 +3054,7 @@
     },
     {
      "id": "src",
-     "text": "光源"
+     "text": "最左邊"
     },
     {
      "id": "obj",
@@ -1799,11 +3084,11 @@
     "shot": [
      {
       "at": "start",
-      "dur": 34,
+      "dur": 30,
       "x": 0.5,
-      "y": 7,
-      "d": 108,
-      "elev": 30,
+      "y": 7.5,
+      "d": 112,
+      "elev": 32,
       "yaw": 0.1
      }
     ],
@@ -1813,39 +3098,39 @@
       "text": "寬頻電漿光源",
       "en": "Broadband plasma source",
       "color": "amber",
-      "at": "start+22",
-      "until": "start+67"
+      "at": "src-2",
+      "until": "obj-4"
      },
      {
       "part": "head",
       "text": "物鏡＋TDI 偵測器",
       "en": "Objective & TDI sensor",
       "color": "blue",
-      "at": "start+69",
-      "until": "start+114"
+      "at": "obj-2",
+      "until": "stage-4"
      },
      {
       "part": "stage",
       "text": "高速晶圓台",
       "en": "High-speed wafer stage",
       "color": "amber",
-      "at": "start+116",
-      "until": "start+161"
+      "at": "stage-2",
+      "until": "pc-4"
      },
      {
       "part": "pc",
       "text": "影像運算櫃",
       "en": "Image computer",
       "color": "blue",
-      "at": "start+163",
-      "until": "start+208"
+      "at": "pc-2",
+      "until": "pc+48"
      }
     ],
     "overlay": [
      {
       "type": "section",
       "kind": "kla-tour",
-      "at": "start+2",
+      "at": "start+24",
       "until": "s3:start-5",
       "x": 64,
       "y": 1066,
@@ -1874,18 +3159,18 @@
      }
     ]
    },
-   "durationSec": 7.9,
+   "durationSec": 11.6,
    "pauseAfter": 0.7
   },
   {
    "id": "s3",
    "beat": "mechanism",
    "para": 3,
-   "narration": "晶圓被手臂從晶圓盒取出，先在轉盤上轉一圈找缺口，再放上晶圓台，真空吸住。",
-   "tts": "晶圓被手臂從晶圓盒取出，先在轉盤上轉一圈找缺口，再放上晶圓台，真空吸住。",
+   "narration": "手臂從晶圓盒取出晶圓，找好缺口，放上晶圓台吸住。",
+   "tts": "手臂從晶圓盒取出晶圓，找好缺口，放上晶圓台吸住。",
    "subtitle": {
-    "zh": "晶圓被手臂從晶圓盒取出\n先在轉盤上轉一圈找缺口\n再放上晶圓台\n真空吸住",
-    "en": "A robot takes the wafer from its pod, | spins it once to find the notch, | sets it on the stage, | and vacuum holds it."
+    "zh": "手臂從晶圓盒取出晶圓\n找好缺口\n放上晶圓台吸住",
+    "en": "The robot takes a wafer from its pod, | finds the notch, | and sets it on the stage, held by vacuum."
    },
    "keywords": [
     "手臂",
@@ -1899,7 +3184,7 @@
     },
     {
      "id": "notch",
-     "text": "找缺口"
+     "text": "找好缺口"
     },
     {
      "id": "put",
@@ -1907,7 +3192,7 @@
     },
     {
      "id": "vac",
-     "text": "真空吸住"
+     "text": "吸住"
     }
    ],
    "component": "ThreeScene",
@@ -1924,6 +3209,14 @@
       "d": 46,
       "elev": 34,
       "yaw": -0.1
+     },
+     {
+      "at": "s3:start+156",
+      "dur": 28,
+      "x": -5.5,
+      "y": 6.0,
+      "d": 40,
+      "elev": 30
      }
     ],
     "kin": [
@@ -1941,7 +3234,7 @@
         }
        ],
        [
-        22,
+        16,
         {
          "j1": -136.32,
          "j2": -87.36,
@@ -1949,19 +3242,19 @@
         }
        ],
        [
-        30,
+        22,
         {
          "lift": 0.0
         }
        ],
        [
-        38,
+        28,
         {
          "lift": 0.2
         }
        ],
        [
-        56,
+        42,
         {
          "j1": -94.61,
          "j2": -170.78,
@@ -1969,7 +3262,7 @@
         }
        ],
        [
-        70,
+        54,
         {
          "j1": -93.07,
          "j2": -173.86,
@@ -1977,7 +3270,7 @@
         }
        ],
        [
-        96,
+        72,
         {
          "j1": -3.07,
          "j2": -173.86,
@@ -1985,7 +3278,7 @@
         }
        ],
        [
-        114,
+        86,
         {
          "j1": -29.32,
          "j2": -131.31,
@@ -1993,31 +3286,31 @@
         }
        ],
        [
-        122,
+        92,
         {
          "lift": 0.0
         }
        ],
        [
-        128,
+        97,
         {
          "lift": -0.12
         }
        ],
        [
-        178,
+        134,
         {
          "lift": 0.0
         }
        ],
        [
-        186,
+        140,
         {
          "lift": 0.2
         }
        ],
        [
-        206,
+        155,
         {
          "j1": -3.07,
          "j2": -173.86,
@@ -2025,7 +3318,7 @@
         }
        ],
        [
-        226,
+        170,
         {
          "j1": 86.93,
          "j2": -173.86,
@@ -2033,7 +3326,7 @@
         }
        ],
        [
-        248,
+        186,
         {
          "j1": 21.79,
          "j2": -43.57,
@@ -2041,19 +3334,19 @@
         }
        ],
        [
-        256,
+        192,
         {
          "lift": 0.0
         }
        ],
        [
-        262,
+        197,
         {
          "lift": -0.12
         }
        ],
        [
-        282,
+        212,
         {
          "j1": 86.93,
          "j2": -173.86,
@@ -2064,13 +3357,13 @@
       "carry": [
        {
         "layer": "wfA",
-        "grab": 30,
-        "release": 122
+        "grab": 22,
+        "release": 92
        },
        {
         "layer": "wfB",
-        "grab": 178,
-        "release": 256
+        "grab": 134,
+        "release": 192
        }
       ]
      }
@@ -2078,15 +3371,15 @@
     "run": [
      {
       "id": "alnSpin",
-      "at": "s3:start+136",
-      "ramp": 10,
-      "until": "s3:start+172"
+      "at": "s3:start+104",
+      "ramp": 8,
+      "until": "s3:start+128"
      },
      {
       "id": "alnLaser",
-      "at": "s3:start+134",
+      "at": "s3:start+103",
       "ramp": 4,
-      "until": "s3:start+178"
+      "until": "s3:start+134"
      }
     ],
     "labels": [
@@ -2095,31 +3388,23 @@
       "text": "晶圓盒（FOUP）",
       "en": "Wafer pod",
       "color": "blue",
-      "at": "start+6",
-      "until": "start+60"
+      "at": "start+4",
+      "until": "s3:start+54"
      },
      {
       "part": "aln",
       "text": "預對準器：找缺口",
       "en": "Pre-aligner",
       "color": "amber",
-      "at": "s3:start+130",
-      "until": "s3:start+180"
+      "at": "s3:start+92",
+      "until": "s3:start+138"
      },
      {
-      "part": "ar",
-      "text": "大氣手臂（SCARA，型式示意）",
-      "en": "Atmospheric SCARA robot",
-      "color": "blue",
-      "at": "s3:start+182",
-      "until": "s3:start+228"
-     },
-     {
-      "part": "stage",
-      "text": "真空吸盤",
-      "en": "Vacuum chuck",
+      "part": "chuck",
+      "text": "真空吸盤＋升降銷",
+      "en": "Vacuum chuck & lift pins",
       "color": "amber",
-      "at": "s3:start+230",
+      "at": "s3:start+182",
       "until": "s4:start-4"
      }
     ],
@@ -2153,7 +3438,7 @@
      }
     ]
    },
-   "durationSec": 9.8,
+   "durationSec": 7.0,
    "pauseAfter": 0.6
   },
   {
@@ -2590,19 +3875,19 @@
     "shot": [
      {
       "at": "start",
-      "dur": 32,
+      "dur": 30,
       "x": 1.8,
-      "y": 7,
-      "d": 42,
-      "elev": 28,
-      "yaw": 0.08
+      "y": 5.0,
+      "d": 44,
+      "elev": 30,
+      "yaw": 1.2
      }
     ],
     "labels": [
      {
       "part": "stage",
-      "text": "X／Z 雙軸晶圓台",
-      "en": "X/Z scanning stage",
+      "text": "X／Y 雙軸晶圓台",
+      "en": "X/Y scanning stage",
       "color": "amber",
       "at": "scan-6",
       "until": "turn-2"
@@ -2653,11 +3938,11 @@
    "id": "s8",
    "beat": "mechanism",
    "para": 8,
-   "narration": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光罩也要這樣檢查。",
-   "tts": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光照也要這樣檢查。",
+   "narration": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光罩也要檢查，常拿去跟設計圖比對。",
+   "tts": "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光照也要檢查，常拿去跟設計圖比對。",
    "subtitle": {
-    "zh": "電腦把相鄰兩顆晶粒的影像相減\n一樣的消掉\n剩下的就是缺陷\n光罩也要這樣檢查",
-    "en": "Computers subtract images of two neighboring dies; | what matches cancels out, | and what's left is a defect. | Photomasks get checked the same way."
+    "zh": "電腦把相鄰兩顆晶粒的影像相減\n一樣的消掉\n剩下的就是缺陷\n光罩也要檢查\n常拿去跟設計圖比對",
+    "en": "Computers subtract images of two neighboring dies; | what matches cancels out, | and what's left is a defect. | Photomasks get checked too, | usually against the design data."
    },
    "keywords": [
     "相減",
@@ -2684,11 +3969,15 @@
     {
      "id": "mask",
      "text": "光罩也要"
+    },
+    {
+     "id": "db",
+     "text": "設計圖"
     }
    ],
    "component": "ThreeScene",
    "sources": [
-    "比對通則；SPIE 13216；Lasertec（媒體報導）"
+    "比對通則；SPIE 13216；KLA Teron；Lasertec（媒體）"
    ],
    "props": {
     "shot": [
@@ -2696,8 +3985,8 @@
       "at": "start",
       "dur": 30,
       "x": 2.0,
-      "y": 6,
-      "d": 17,
+      "y": 8,
+      "d": 24,
       "elev": 72
      }
     ],
@@ -2738,9 +4027,9 @@
       "at": "start+24",
       "until": "s9:start-5",
       "x": 64,
-      "y": 1010,
+      "y": 980,
       "w": 952,
-      "h": 400,
+      "h": 450,
       "avoid": false,
       "title": "相鄰晶粒相減",
       "tag": "示意",
@@ -2759,12 +4048,15 @@
        },
        "mask": {
         "at": "mask"
+       },
+       "db": {
+        "at": "db"
        }
       }
      }
     ]
    },
-   "durationSec": 7.0,
+   "durationSec": 8.5,
    "pauseAfter": 0.6
   },
   {
@@ -2808,7 +4100,7 @@
       "y": 7,
       "d": 62,
       "elev": 22,
-      "yaw": 0.22
+      "yaw": -0.9
      },
      {
       "at": "align-16",

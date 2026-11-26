@@ -69,11 +69,11 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <g opacity={0.45 + 0.55 * pv}><WaferTop cx={140} cy={CT + 120} r={100} def={q} /></g>
         <g opacity={q}><circle cx={mx} cy={my} r={34} fill="none" stroke={H.text} strokeWidth={5} /><path d={`M${mx + 24} ${my + 24} l26 26`} stroke={H.text} strokeWidth={8} /></g>
-        <text x={290} y={CT + 70} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pv}>上集：圖案做好了</text>
-        <text x={290} y={CT + 130} style={zh(40, H.text, 900)} opacity={0.35 + 0.65 * q}>有沒有做壞？</text>
+        <text x={290} y={CT + 70} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pv}>上集：每步做對了？</text>
+        <text x={290} y={CT + 130} style={zh(40, H.text, 900)} opacity={0.35 + 0.65 * q}>誰來檢查？</text>
         <Sep x={600} />
         <LogoBox id="kla" x={626} y={CT + 30} h={60} a={kl} maxW={290} />
-        <g opacity={0.35 + 0.65 * kl}><FlagBox code="US" x={626} y={CT + 132} a={kl} /><text x={692} y={CT + 162} style={zh(32, H.text, 900)}>美國・KLA</text>
+        <g opacity={0.35 + 0.65 * kl}><FlagBox code="US" x={626} y={CT + 132} a={kl} /><text x={692} y={CT + 162} style={zh(32, H.text, 900)}>美國・科磊</text>
           <text x={626} y={CT + 230} style={zh(30, H.text2, 800)}>檢測機一片一片找</text></g>
       </svg>
     </Card>
@@ -235,8 +235,8 @@ const Scan: React.FC<P> = ({ o, f, k }) => {
 
 // ── kla-cmp：晶粒 A − 晶粒 B ＝ 差異圖（一樣的消掉，只剩缺陷，圈起來） ──
 const Cmp: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 400;
-  const ad = on(f, T(o, "adj")), sb = on(f, T(o, "sub")), cc = on(f, T(o, "cancel")), df = on(f, T(o, "defect")), mk = on(f, T(o, "mask"));
+  const W = o.w ?? 952, Hh = o.h ?? 450;
+  const ad = on(f, T(o, "adj")), sb = on(f, T(o, "sub")), cc = on(f, T(o, "cancel")), df = on(f, T(o, "defect")), mk = on(f, T(o, "mask")), db = on(f, T(o, "db"));
   const pat = (x: number, y: number, op: number) => <g opacity={op}>{[0, 1, 2, 3].map((i) => <rect key={i} x={x + 18} y={y + 22 + i * 36} width={i % 2 ? 110 : 150} height={16} fill={TEAL} />)}
     <rect x={x + 130} y={y + 58} width={20} height={70} fill={TEAL} /></g>;
   const P0 = [30, 330, 630], Y = CT + 20;
@@ -255,10 +255,11 @@ const Cmp: React.FC<P> = ({ o, f, k }) => {
         <text x={425} y={CT + 236} textAnchor="middle" style={zh(30, H.text, 900)}>晶粒 B</text>
         <text x={725} y={CT + 236} textAnchor="middle" style={zh(30, df > 0.5 ? RED : H.text, 900)}>{df > 0.5 ? "剩下＝缺陷" : "相減"}</text>
         <g opacity={0.3 + 0.7 * mk}><line x1={30} y1={CT + 262} x2={W - 30} y2={CT + 262} stroke={H.lineSoft} strokeWidth={2} />
-          <text x={30} y={CT + 306} style={zh(30, H.text, 900)}>光罩也要查：極紫外光光罩</text>
-          <FlagBox code="JP" x={420} y={CT + 278} a={mk} /><rect x={484} y={CT + 276} width={150} height={42} fill="#FFFFFF" stroke={mk > 0.5 ? H.amber : H.lineSoft} strokeWidth={mk > 0.5 ? 4 : 1.5} />
-          <text x={496} y={CT + 306} style={zh(30, "#1F3A5F", 900)}>Lasertec</text>
-          <text x={648} y={CT + 306} style={zh(30, H.text2, 800)}>專門檢測・媒體報導</text></g>
+          <text x={30} y={CT + 306} style={zh(30, H.text, 900)}>光罩也要查：常跟設計圖比對</text>
+          <LogoBox id="kla" x={460} y={CT + 280} h={30} a={db} maxW={150} /><text x={636} y={CT + 306} style={zh(30, H.text2, 800)}>也有光罩檢測機</text></g>
+        <g opacity={0.3 + 0.7 * db}><text x={30} y={CT + 356} style={zh(30, H.text2, 800)}>極紫外光光罩專門檢測：</text>
+          <FlagBox code="JP" x={360} y={CT + 328} a={db} /><rect x={424} y={CT + 326} width={150} height={42} fill="#FFFFFF" stroke={db > 0.5 ? H.amber : H.lineSoft} strokeWidth={db > 0.5 ? 4 : 1.5} />
+          <text x={436} y={CT + 356} style={zh(30, "#1F3A5F", 900)}>Lasertec</text><text x={590} y={CT + 356} style={zh(30, H.text2, 800)}>（媒體報導）</text></g>
       </svg>
     </Card>
   );

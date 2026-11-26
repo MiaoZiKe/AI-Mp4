@@ -17,7 +17,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   stage: "#8FA3C4", glassC: "#BFD3F2", granite: "#4A4F58", graniteL: "#6B717B", waferC: "#5F7FB8", dieC: "#7FA4E0", foupC: "#E8E2D4",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", pipeB: "#3E7BD6", pipeR: "#D9534F", rubber: "#2B2F36",
-  bulb: "#F4F0FF", plasma: "#B9A8FF", laser: "#FF3B3B", light: "#9FD8FF", lightW: "#E8F4FF", lightR: "#7EE0C8", dfc: "#FFC857", defect: "#FF5A36",
+  bulb: "#F4F0FF", plasma: "#B9A8FF", laser: "#FF3B3B", light: "#9FD8FF", lightW: "#E8F4FF", lightR: "#7EE0C8", scanC: "#4FA3FF", pcbC: "#1F6B45", chipC: "#1C1F26", traceC: "#C9A24A", connC: "#2A2D33", ribbonC: "#B8BEC8", estop: "#D93A2B", knurl: "#5C6678", dfc: "#FFC857", defect: "#FF5A36",
   filtU: "#7B61FF", filtB: "#3E8EF7", filtG: "#2FBF71", filtV: "#C084FC", gold: "#C9A24A", filmC: "#2BA39A", markA: "#E8613C", markB: "#2A7F8F",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
@@ -38,11 +38,11 @@ const materials = {
   screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }), pipeB: M("std", "pipeB", { rough: 0.35, metal: 0.6, env: 0.4 }), pipeR: M("std", "pipeR", { rough: 0.35, metal: 0.6, env: 0.4 }),
   rubber: M("std", "rubber", { rough: 0.9, metal: 0 }), gold: M("std", "gold", { rough: 0.3, metal: 0.9, env: 0.8 }),
   bulb: M("std", "bulb", { emissive: "bulb", ei: 1, opacity: 0.95, rough: 1, metal: 0 }), plasma: glowM("plasma", 0.55),
-  laserM: glowM("laser", 0.9), beam: glowM("light", 0.34), beamCore: glowM("lightW", 0.6), beamRet: glowM("lightR", 0.32), beamDF: glowM("dfc", 0.45), beamDFc: glowM("dfc", 0.2),
+  laserM: glowM("laser", 0.9), beam: glowM("light", 0.34), beamCore: glowM("lightW", 0.6), beamRet: glowM("lightR", 0.5), beamDF: glowM("dfc", 0.45), beamDFc: glowM("dfc", 0.2),
   spot: glowM("lightW", 0.85), defect: M("std", "defect", { emissive: "defect", ei: 0.8, rough: 0.5, metal: 0 }), defRing: glowM("defect", 0.7),
   filtU: glowM("filtU", 0.75, 0.5), filtB: glowM("filtB", 0.75, 0.5), filtG: glowM("filtG", 0.75, 0.5), filtV: glowM("filtV", 0.75, 0.5),
   film: M("std", "filmC", { rough: 0.3, metal: 0.3, env: 0.6, opacity: 0.85 }), markA: M("std", "markA", { rough: 0.4, metal: 0 }), markB: M("std", "markB", { rough: 0.4, metal: 0 }),
-  dieHi: glowM("lightR", 0.55), ffuAir: glowM("light", 0.5),
+  dieHi: glowM("lightR", 0.55), scanBand: glowM("dfc", 0.62, 0.8), pcb: M("std", "pcbC", { rough: 0.5, metal: 0.1 }), chip: M("std", "chipC", { rough: 0.35, metal: 0.2, env: 0.4 }), trace: M("std", "traceC", { rough: 0.3, metal: 0.9, env: 0.6 }), conn: M("std", "connC", { rough: 0.5, metal: 0.2 }), ribbon: M("std", "ribbonC", { rough: 0.7, metal: 0 }), estop: M("std", "estop", { rough: 0.4, metal: 0, emissive: "estop", ei: 0.15 }), knurl: M("std", "knurl", { rough: 0.4, metal: 0.8, env: 0.5 }), glassDoor: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.28, env: 0.6 }), ffuAir: glowM("light", 0.5),
   t_kla: { kind: "unlit", color: "#FFFFFF", img: "tex/brand/sign-kla.png" }, t_us: { kind: "unlit", color: "#FFFFFF", img: "tex/brand/flag-US.png" },
 };
 const parts = [], layers = [], anchors = {}, actions = {};
@@ -158,6 +158,11 @@ const wafer = (lay, [x, z], dies) => {
   }
 };
 wafer("wfA", FOUP1, true); wafer("wfR", ALN, true); wafer("wfB", ALN, true);
+// wfS：s8 俯視比對用的同一片晶圓（掃描結束、晶圓台停在物鏡下之後，同位置換成不帶搬運關係的這一層）
+wafer("wfS", [OX, 0], true);
+P({ id: "wfSDefect", layer: "wfS", shape: "sphere", size: [0.05], pos: [OX + 0.05, yW + 0.07, -0.04], mat: "defect" });
+P({ id: "wfSDefRing", layer: "wfS", shape: "tube", size: [0.2, 0.15, 0.02], rot: V, pos: [OX + 0.05, yW + 0.07, -0.04], mat: "defRing" });
+P({ id: "wfSDieHi", layer: "wfS", shape: "tube", size: [0.2, 0.17, 0.02], rot: V, pos: [OX, yW + 0.065, 0], at: [[0, 0, 0], [-0.31, 0, 0]], mat: "dieHi" });
 // wfB：檢測點正下方那顆晶粒上的小缺陷（顆粒）＋缺陷圈（s8 亮）＋比對的兩顆相鄰晶粒框
 P({ id: "wfBDefect", layer: "wfB", shape: "sphere", size: [0.05], pos: [ALN[0] + 0.05, yW + 0.07, ALN[1] - 0.04], mat: "defect" });
 P({ id: "wfBDefRing", layer: "wfB", shape: "tube", size: [0.2, 0.15, 0.02], rot: V, pos: [ALN[0] + 0.05, yW + 0.07, ALN[1] - 0.04], mat: "defRing" });
@@ -213,7 +218,9 @@ P({ id: "chuckVac2", layer: "chuck", shape: "tube", size: [0.7, 0.64, 0.02], rot
 P({ id: "pins", layer: "pins", shape: "cyl", size: [0.06, 0.6], rot: V, pos: [OX, 8.11, 0], at: [90, 225, 315].map((t) => { const [x, z] = pol(t, 1.0); return [x, 0, z]; }), mat: "steel" });
 // 橋式橫梁（兩支花崗岩立柱在晶圓台行程兩側，橫梁沿 z 跨過）
 LAY("bridge", [2, 8.4, OX, 9.8]);
-BOX("bridgeCol", "bridge", OX - 0.8, OX + 0.8, 5.8, 13.6, -4.75, -3.9, "graniteL", { at: [[0, 0, 0], [0, 0, 8.65]] });
+BOX("bridgeCol", "bridge", OX - 0.8, OX + 0.8, 5.8, 13.6, -4.75, -3.9, "graniteL");
+LAY("bridgeF", [2, 8, OX, 9.7]);
+BOX("bridgeColF", "bridgeF", OX - 0.8, OX + 0.8, 5.8, 13.6, 3.9, 4.75, "graniteL");
 BOX("bridgeBeam", "bridge", OX - 0.8, OX + 0.8, 12.4, 13.6, -4.75, 4.75, "graniteL");
 // 光學頭（分光鏡在裡面）＋物鏡（多節鏡筒，最下面一片鏡片）＋ TDI 偵測器（散熱鰭片、訊號線）
 LAY("head", [3, 1.8, OX, 11.7]); LAY("obj", [1.4, 2.2, OX, 10]); LAY("det", [2.4, 2.4, OX, 14.6]);
@@ -236,12 +243,12 @@ BOX("srcHouseBack", "srcHouse", -5.4, -1.8, 10.1, 13.7, -1.3, -1.1, "panel2");
 BOX("srcHouseFront", "srcHouse", -5.4, -1.8, 10.1, 13.7, 1.1, 1.3, "panel2");
 BOX("srcHouseFin", "srcHouse", -5.0, -2.2, 13.7, 14.3, -0.05, 0.05, "steel2", { at: [-1, -0.6, -0.2, 0.2, 0.6, 1].map((z) => [0, 0, z]) });
 BOX("srcHouseBot", "srcHouse", -5.4, -1.8, 9.9, 10.1, -1.3, 1.3, "band");
-P({ id: "srcRefl", layer: "src", shape: "cone", size: [0.95, 0.35, 1.3], rot: [0, 90, 0], pos: [-3.95, 11.8, 0], mat: "steel2" });
-P({ id: "srcBulb", layer: "src", shape: "sphere", size: [0.38], pos: [-3.6, 11.8, 0], mat: "bulb" });
-P({ id: "srcPlasma", layer: "src", shape: "sphere", size: [0.62], pos: [-3.6, 11.8, 0], mat: "plasma" });
-P({ id: "srcStem", layer: "src", shape: "cyl", size: [0.08, 1.4], rot: V, pos: [-3.6, 11.0, 0], at: [[0, 0, 0], [0, 1.6, 0]], mat: "gold" });
-P({ id: "srcLaser", layer: "src", shape: "slab", size: [1.2, 0.8, 0.9], r: 0.08, pos: [-3.6, 11.8, -2.3 + 0.2], mat: "dark" });
-P({ id: "srcLaserBeam", layer: "src", shape: "cyl", size: [0.05, 1.3], rot: [0, 0, 0], pos: [-3.6, 11.8, -1.05], mat: "laserM" });
+P({ id: "srcRefl", layer: "src", shape: "cone", size: [0.35, 0.95, 1.3], rot: [0, 90, 0], pos: [-3.95, 11.8, 0], mat: "steel2" });
+P({ id: "srcBulb", layer: "src", shape: "sphere", size: [0.38], pos: [-4.2, 11.8, 0], mat: "bulb" });
+P({ id: "srcPlasma", layer: "src", shape: "sphere", size: [0.62], pos: [-4.2, 11.8, 0], mat: "plasma" });
+P({ id: "srcStem", layer: "src", shape: "cyl", size: [0.08, 1.4], rot: V, pos: [-4.2, 11.0, 0], at: [[0, 0, 0], [0, 1.6, 0]], mat: "gold" });
+P({ id: "srcLaser", layer: "src", shape: "slab", size: [1.2, 0.8, 0.9], r: 0.08, pos: [-4.2, 11.8, -2.1], mat: "dark" });
+P({ id: "srcLaserBeam", layer: "src", shape: "cyl", size: [0.05, 1.3], rot: [0, 0, 0], pos: [-4.2, 11.8, -1.05], mat: "laserM" });
 P({ id: "srcWater", layer: "src", shape: "cyl", size: [0.1, 1.3], rot: V, pos: [-4.6, 10.4, -2.2], at: [[0, 0, 0], [0, 0, -0.4]], mat: "pipeB" });
 P({ id: "srcWaterH", layer: "src", shape: "cyl", size: [0.1, 1.2], rot: V, pos: [-4.6, 10.5, -1.6], at: [[0, 0, 0], [0, 0, -0.3]], mat: "pipeB" });
 P({ id: "fwDisc", layer: "fw", shape: "cyl", size: [0.95, 0.1], rot: [0, 90, 0], pos: [-1.2, 11.8, 0], mat: "dark" });
@@ -286,19 +293,20 @@ P({ id: "utilPipeR", layer: "util", shape: "cyl", size: [0.15, 2.6], rot: [0, 0,
 
 // ═════ ③ 影像運算櫃（機旁）：機櫃＋前門網孔＋一排排板卡指示燈＋上方線槽通主機 ═════
 LAY("pc", [4.5, 15, 14, 7.5]);
-P({ id: "pc", layer: "pc", shape: "slab", size: [4.2, 15, 5.6], r: 0.12, pos: [14.3, 7.5, -1.2], mat: "band" });
-BOX("pcDoor", "pc", 12.15, 16.45, 0.8, 14.2, 1.6, 1.68, "dark");
-P({ id: "pcSlot", layer: "pc", shape: "box", size: [3.6, 0.5, 0.06], pos: [14.3, 2.2, 1.72], at: Array.from({ length: 11 }, (_, i) => [0, i * 1.08, 0]), mat: "steel" });
-P({ id: "pcLed", layer: "pc", shape: "box", size: [0.14, 0.14, 0.05], pos: [12.8, 2.2, 1.77], at: Array.from({ length: 11 }, (_, i) => Array.from({ length: 6 }, (_, j) => [j * 0.5, i * 1.08, 0])).flat(), mat: "lampG" });
+P({ id: "pc", layer: "pc", shape: "slab", size: [4.2, 15, 5.0], r: 0.12, pos: [14.3, 7.5, -1.5], mat: "band" });
+BOX("pcSideL", "pc", 12.2, 12.4, 0.6, 14.4, 0.95, 1.62, "band"); BOX("pcSideR", "pc", 16.2, 16.4, 0.6, 14.4, 0.95, 1.62, "band");
+BOX("pcDoor", "pc", 12.15, 16.45, 0.8, 14.2, 1.62, 1.66, "glassDoor");
+BOX("pcDoorFrame", "pc", 12.1, 16.5, 0.75, 0.95, 1.6, 1.72, "dark", { at: [[0, 0, 0], [0, 13.4, 0]] });
+BOX("pcDoorFrameV", "pc", 12.1, 12.3, 0.75, 14.35, 1.6, 1.72, "dark", { at: [[0, 0, 0], [4.2, 0, 0]] });
+BOX("pcHandle", "pc", 15.9, 16.05, 6.5, 9.0, 1.72, 1.86, "steel");
+P({ id: "pcLed", layer: "pc", shape: "box", size: [0.14, 0.14, 0.05], pos: [12.9, 3.75, 1.25], at: Array.from({ length: 4 }, (_, b) => Array.from({ length: 6 }, (_, j) => [j * 0.3, b * 2.7, 0])).flat(), mat: "lampG" });
 P({ id: "pcFan", layer: "pc", shape: "tube", size: [0.5, 0.42, 0.06], rot: V, pos: [14.3, 15.03, -1.2], at: [[-1, 0, -1.2], [1, 0, -1.2], [-1, 0, 1.2], [1, 0, 1.2]], mat: "steel" });
 BOX("pcTray", "pc", 10.8, 12.2, 15.5, 15.9, -0.6, 0.6, "steel");
 // 廠牌（主機頂上正面）＋美國國旗
-LAY("sign", [10, 5, 2, MH + 3]);
-P({ id: "signBack", layer: "sign", shape: "slab", size: [8.6, 2.2, 0.2], r: 0.15, pos: [1.0, MH + 2.6, 5.4], mat: "panel" });
-P({ id: "signLogo", layer: "sign", shape: "plane", size: [8.0, R2(8.0 / (960 / 214))], pos: [1.0, MH + 2.6, 5.55], uv01: true, shadow: false, mat: "t_kla" });
-P({ id: "signLeg", layer: "sign", shape: "box", size: [0.2, 1.6, 0.2], pos: [1.0, MH + 1.1, 5.4], at: [[-3.6, 0, 0], [3.6, 0, 0]], mat: "steel" });
-P({ id: "signPost", layer: "sign", shape: "cyl", size: [0.1, 4.6], rot: V, pos: [6.6, MH + 2.3, 5.0], mat: "steel" });
-P({ id: "signFlag", layer: "sign", shape: "plane", size: [2.6, R2(2.6 / 1.9)], pos: [7.95, MH + 3.8, 5.0], uv01: true, shadow: false, mat: "t_us" });
+// 廠牌：正面雙門上方的平面銘板（寬約機身 1/4），國旗只放 2D 公司卡
+LAY("sign", [5, 1.4, 2, 15.4]);
+P({ id: "signBack", layer: "front", shape: "slab", size: [4.8, 1.3, 0.08], r: 0.06, pos: [2.5, 15.4, 6.06], mat: "panel" });
+P({ id: "signLogo", layer: "front", shape: "plane", size: [4.4, R2(4.4 / (960 / 214))], pos: [2.5, 15.4, 6.11], uv01: true, shadow: false, mat: "t_kla" });
 
 // ═════ ④ 量測站（另一台，示意）：機櫃底座＋小晶圓台＋成像物鏡（疊對）＋橢圓偏光兩支臂（膜厚） ═════
 const MX = 25, MY = yW, OVZ0 = -0.9;
@@ -316,8 +324,8 @@ P({ id: "wMFilm", layer: "wM", shape: "cyl", size: [WR - 0.02, 0.05], rot: V, po
 // 疊對標記（框中框，放大示意）：下層外框（珊瑚）＋上層內框（深青），內框中心刻意偏一點；成像物鏡在後排（z −0.9），橢圓偏光在前排（z +0.7），兩排不互擋
 const OVX = MX - 0.6, OVZ = -0.9;
 for (const [i, [w, m, y, dx, dz]] of [[0.9, "markA", MY + 0.1, 0, 0], [0.42, "markB", MY + 0.12, 0.06, -0.04]].entries()) {
-  const t = 0.08; P({ id: `ovlMark${i}`, layer: "wM", shape: "box", size: [w, 0.02, t], pos: [OVX + dx, y, OVZ + dz], at: [[0, 0, -w / 2 + t / 2], [0, 0, w / 2 - t / 2]], mat: m });
-  P({ id: `ovlMarkS${i}`, layer: "wM", shape: "box", size: [t, 0.02, w], pos: [OVX + dx, y, OVZ + dz], at: [[-w / 2 + t / 2, 0, 0], [w / 2 - t / 2, 0, 0]], mat: m });
+  const t = 0.08; P({ id: `ovlMark${i}`, layer: i ? "ovlTop" : "wM", shape: "box", size: [w, 0.02, t], pos: [OVX + dx, y, OVZ + dz], at: [[0, 0, -w / 2 + t / 2], [0, 0, w / 2 - t / 2]], mat: m });
+  P({ id: `ovlMarkS${i}`, layer: i ? "ovlTop" : "wM", shape: "box", size: [t, 0.02, w], pos: [OVX + dx, y, OVZ + dz], at: [[-w / 2 + t / 2, 0, 0], [w / 2 - t / 2, 0, 0]], mat: m });
 }
 P({ id: "metObj", layer: "metOvl", shape: "cyl", size: [0.45, 1.6], rot: V, pos: [OVX, 10.0, OVZ], mat: "steel2" });
 P({ id: "metObjTip", layer: "metOvl", shape: "cone", size: [0.18, 0.34, 0.25], rot: V, pos: [OVX, 9.08, OVZ], mat: "dark" });
@@ -336,8 +344,82 @@ P({ id: "ellAnaMark", layer: "metEll", shape: "box", size: [0.05, 0.05, 0.5], ro
 P({ id: "ellBox", layer: "metEll", shape: "slab", size: [1.0, 0.9, 0.9], r: 0.08, pos: ePt(3.7, 1), mat: "band" });
 P({ id: "ellSrc", layer: "metEll", shape: "slab", size: [1.0, 0.9, 0.9], r: 0.08, pos: ePt(3.7, -1), mat: "band" });
 BOX("ellMount", "metEll", EX - 3.7, EX + 3.7, 10.7, 11.0, EZ - 0.15, EZ + 0.15, "steel");
+BOX("ellPost", "metEll", EX - 3.85, EX - 3.55, 7.9, 10.7, EZ - 0.15, EZ + 0.15, "steel", { at: [[0, 0, 0], [7.4, 0, 0]] });
+P({ id: "ellHang", layer: "metEll", shape: "box", size: [0.12, 0.55, 0.12], pos: [0, 10.43, EZ], at: [ePt(3.7, -1), ePt(3.7, 1)].map(([x]) => [x, 0, 0]), mat: "dark" });
 P({ id: "lEllIn", layer: "lEllIn", shape: "cyl", size: [0.07, 1.55], rot: [90, 0, EA], pos: ePt(0.8, -1), mat: "beamCore" });
 P({ id: "lEllOut", layer: "lEllOut", shape: "cyl", size: [0.07, 1.55], rot: [90, 0, -EA], pos: ePt(0.8, 1), mat: "beamRet" });
+
+
+// ═════ 細節層（Andy 11/26 第 20 條：入鏡 >2 秒或被標籤指到的零件，都要看得出是真的零件，不是積木）═════
+const SCREWS = (id, layer, pts, mat = "steel", r = 0.05, ax = "z") => P({ id, layer, shape: "cyl", size: [r, 0.04], rot: ax === "z" ? [0, 0, 0] : ax === "x" ? [0, 90, 0] : V, pos: [0, 0, 0], at: pts, mat });
+const grid = (x0, x1, nx, y0, y1, ny, z) => { const o = []; for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) o.push([R2(x0 + ((x1 - x0) * i) / Math.max(1, nx - 1)), R2(y0 + ((y1 - y0) * j) / Math.max(1, ny - 1)), z]); return o; };
+// 主機正面：面板接縫、四角螺絲、下方進氣格柵、緊急停止鈕、狀態燈條、型號小銘板
+BOX("frontSeamH", "front", -6.9, 11, 4.95, 5.0, 6.0, 6.07, "seam", { at: [[0, 0, 0], [0, 9.0, 0]] });
+SCREWS("frontScrew", "front", grid(-6.5, 10.6, 6, 1.0, 16.9, 4, 6.04));
+P({ id: "frontGrille", layer: "front", shape: "box", size: [6.0, 0.08, 0.05], pos: [-3.6, 2.4, 6.06], at: Array.from({ length: 7 }, (_, i) => [0, i * 0.3, 0]), mat: "dark" });
+P({ id: "frontGrille2", layer: "front", shape: "box", size: [4.0, 0.08, 0.05], pos: [7.6, 2.4, 6.06], at: Array.from({ length: 7 }, (_, i) => [0, i * 0.3, 0]), mat: "dark" });
+P({ id: "frontEstop", layer: "front", shape: "cyl", size: [0.32, 0.18], rot: [0, 0, 0], pos: [9.6, 9.2, 6.12], mat: "estop" });
+P({ id: "frontEstopRing", layer: "front", shape: "tube", size: [0.48, 0.32, 0.06], rot: [0, 0, 0], pos: [9.6, 9.2, 6.05], mat: "lampY" });
+P({ id: "frontLed", layer: "front", shape: "box", size: [0.5, 0.12, 0.05], pos: [5.6, 14.6, 6.07], at: [[0, 0, 0], [0.7, 0, 0], [1.4, 0, 0]], mat: "lampG" });
+P({ id: "frontModel", layer: "front", shape: "slab", size: [1.6, 0.5, 0.05], r: 0.04, pos: [-0.6, 14.6, 6.06], mat: "dark" });
+BOX("frontWinFrame", "front", -3.15, 8.15, 6.35, 6.5, 6.0, 6.1, "dark", { at: [[0, 0, 0], [0, 6.65, 0]] });
+BOX("frontWinFrameV", "front", -3.15, -3.0, 6.35, 13.15, 6.0, 6.1, "dark", { at: [[0, 0, 0], [11.15, 0, 0]] });
+// 前端搬運區：螺絲、緊急停止鈕、觀察窗框、裝載埠操作面板
+SCREWS("efemScrew", "efemFront", grid(-13.7, -6.8, 4, 1.0, 17.0, 4, 6.04));
+P({ id: "efemEstop", layer: "efemFront", shape: "cyl", size: [0.3, 0.18], rot: [0, 0, 0], pos: [-7.6, 13.6, 6.12], mat: "estop" });
+BOX("efemWinFrame", "efemFront", -13.1, -7.9, 6.35, 6.5, 6.0, 6.1, "dark", { at: [[0, 0, 0], [0, 6.15, 0]] });
+for (const n of ["1", "2"]) { const fz = n === "1" ? FOUP1[1] : FOUP2[1];
+  P({ id: `lp${n}Panel`, layer: `lp${n}`, shape: "slab", size: [0.08, 0.9, 1.2], r: 0.04, pos: [-14.96, 4.6, fz], mat: "dark" });
+  P({ id: `lp${n}Btn`, layer: `lp${n}`, shape: "cyl", size: [0.12, 0.06], rot: [0, 90, 0], pos: [-15.02, 4.6, fz], at: [[0, 0.2, -0.3], [0, 0.2, 0.3], [0, -0.2, 0]], mat: "lampG" }); }
+// 晶圓台：導軌滑塊（X 軸 4 顆、Y 軸 4 顆）、線性馬達磁軌（深淺交錯）、拖鏈、光學尺讀頭、吸盤真空接頭
+P({ id: "stXBlock", layer: "stX", shape: "slab", size: [0.9, 0.3, 0.6], r: 0.05, pos: [OX, 6.2, 0], at: [[-1.1, 0, -1.55], [1.1, 0, -1.55], [-1.1, 0, 1.55], [1.1, 0, 1.55]], mat: "steel" });
+SCREWS("stXBlockScrew", "stX", [[-1.3, 6.36, -1.45], [-0.9, 6.36, -1.45], [1.3, 6.36, -1.45], [0.9, 6.36, -1.45], [-1.3, 6.36, 1.65], [-0.9, 6.36, 1.65], [1.3, 6.36, 1.65], [0.9, 6.36, 1.65]].map(([x, y, z]) => [OX + x, y, z]), "dark", 0.04, "y");
+P({ id: "stZBlock", layer: "stZ", shape: "slab", size: [0.55, 0.25, 0.8], r: 0.05, pos: [OX, 7.05, 0], at: [[-1.4, 0, -1.0], [-1.4, 0, 1.0], [1.4, 0, -1.0], [1.4, 0, 1.0]], mat: "steel" });
+P({ id: "motorMag", layer: "granite", shape: "box", size: [0.35, 0.05, 0.5], pos: [0, 5.97, 0], at: Array.from({ length: 36 }, (_, i) => [R2(-5.0 + i * 0.4), 0, 0]), mat: "dark" });
+P({ id: "dragChain", layer: "granite", shape: "slab", size: [0.28, 0.3, 0.5], r: 0.04, pos: [0, 6.0, 4.2], at: Array.from({ length: 24 }, (_, i) => [R2(-4.4 + i * 0.36), 0, 0]), mat: "conn" });
+BOX("dragTray", "granite", -5.0, 9.0, 5.8, 5.85, 3.8, 4.6, "steel");
+P({ id: "stZRead", layer: "stZ", shape: "box", size: [0.3, 0.2, 0.25], pos: [OX + 1.78, 7.25, 1.2], mat: "conn" });
+P({ id: "chuckFit", layer: "chuck", shape: "cyl", size: [0.1, 0.4], rot: [0, 90, 0], pos: [OX + 1.75, 7.95, 0.0], at: [[0, 0, -0.3], [0, 0, 0.3]], mat: "trace" });
+P({ id: "graniteBolt", layer: "granite", shape: "cyl", size: [0.12, 0.08], rot: V, pos: [0, 5.82, 0], at: [[-5.2, 0, -4.4], [-5.2, 0, 4.4], [9.2, 0, -4.4], [9.2, 0, 4.4], [2, 0, -4.4], [2, 0, 4.4]], mat: "steel" });
+// 隔振腳：氣管接頭＋管夾、底座螺栓
+P({ id: "isoFit", layer: "iso", shape: "cyl", size: [0.08, 0.5], rot: [0, 90, 0], pos: [0, 3.0, 0], at: ISO.map(([x, , z]) => [x + 0.95, 0, z]), mat: "trace" });
+P({ id: "isoBolt", layer: "iso", shape: "cyl", size: [0.08, 0.08], rot: V, pos: [0, 1.25, 0], at: ISO.flatMap(([x, , z]) => [0, 90, 180, 270].map((t) => { const [dx, dz] = pol(t, 0.85); return [x + dx, 0, z + dz]; })), mat: "dark" });
+// 物鏡：鏡座三顆調整螺絲、滾花環、遮光筒；光學頭：接頭與線纜、蓋板螺絲
+P({ id: "objKnurl", layer: "obj", shape: "box", size: [0.05, 0.3, 0.05], pos: [OX, 10.8, 0], at: Array.from({ length: 20 }, (_, i) => { const [x, z] = pol(i * 18, 0.57); return [x, 0, z]; }), mat: "knurl" });
+P({ id: "objAdj", layer: "obj", shape: "cyl", size: [0.06, 0.3], rot: [0, 0, 0], pos: [OX, 11.0, 0], at: [0, 120, 240].map((t) => { const [x, z] = pol(t, 0.62); return [x, 0, z]; }), mat: "dark" });
+P({ id: "headScrew", layer: "head", shape: "cyl", size: [0.05, 0.04], rot: [0, 0, 0], pos: [OX, 11.75, 1.22], at: grid(-1.1, 1.1, 4, -0.6, 0.6, 2, 0), mat: "steel" });
+P({ id: "headConn", layer: "head", shape: "cyl", size: [0.14, 0.3], rot: [0, 90, 0], pos: [OX + 1.42, 11.6, 0], at: [[0, 0, -0.4], [0, 0, 0.4]], mat: "trace" });
+P({ id: "headCable", layer: "head", shape: "cyl", size: [0.07, 1.6], rot: V, pos: [OX + 1.6, 12.4, 0], at: [[0, 0, -0.4], [0, 0, 0.4]], mat: "conn" });
+// 偵測器：側面外露的電路板（晶片、被動元件、走線、連接器、排線）
+P({ id: "detPcb", layer: "det", shape: "box", size: [1.6, 1.0, 0.04], pos: [OX, 14.3, 0.93], mat: "pcb" });
+P({ id: "detChip", layer: "det", shape: "box", size: [0.36, 0.36, 0.05], pos: [OX, 14.35, 0.97], at: [[-0.4, 0, 0], [0.3, 0.12, 0]], mat: "chip" });
+P({ id: "detCap", layer: "det", shape: "box", size: [0.06, 0.04, 0.04], pos: [OX, 14.0, 0.97], at: grid(-0.7, 0.7, 9, -0.12, 0.0, 2, 0), mat: "trace" });
+P({ id: "detTrace", layer: "det", shape: "box", size: [0.9, 0.012, 0.01], pos: [OX, 14.6, 0.955], at: [[0, 0, 0], [0, 0.06, 0], [0, -0.06, 0], [0.1, -0.14, 0]], mat: "trace" });
+P({ id: "detConn", layer: "det", shape: "box", size: [0.5, 0.16, 0.12], pos: [OX + 0.45, 13.85, 0.99], mat: "conn" });
+P({ id: "detRibbon", layer: "det", shape: "box", size: [0.42, 1.2, 0.02], pos: [OX + 0.45, 13.2, 1.0], mat: "ribbon" });
+// 光源：鏡座法蘭＋調整螺絲、雷射散熱鰭片＋光纖接頭、冷卻水管接頭與管夾
+P({ id: "srcMount", layer: "src", shape: "tube", size: [1.05, 0.9, 0.12], rot: [0, 90, 0], pos: [-3.3, 11.8, 0], mat: "knurl" });
+P({ id: "srcAdj", layer: "src", shape: "cyl", size: [0.05, 0.3], rot: [0, 90, 0], pos: [-3.2, 11.8, 0], at: [0, 120, 240].map((t) => [0, R2(Math.sin((t * Math.PI) / 180) * 0.98), R2(Math.cos((t * Math.PI) / 180) * 0.98)]), mat: "dark" });
+P({ id: "srcLaserFin", layer: "src", shape: "box", size: [1.1, 0.4, 0.05], pos: [-4.2, 12.35, -2.1], at: Array.from({ length: 6 }, (_, i) => [0, 0, R2(-0.35 + i * 0.14)]), mat: "steel2" });
+P({ id: "srcFiber", layer: "src", shape: "cyl", size: [0.07, 1.4], rot: [0, 90, 0], pos: [-5.1, 11.6, -2.1], mat: "lampY" });
+P({ id: "srcClamp", layer: "src", shape: "tube", size: [0.16, 0.1, 0.08], rot: V, pos: [-4.6, 10.3, -2.2], at: [[0, 0, 0], [0, 0, -0.4]], mat: "steel" });
+// 濾片轉盤馬達接頭與線、後勤管夾、運算櫃電路板（晶片、被動元件、走線、連接器、排線）
+P({ id: "fwCable", layer: "fw", shape: "cyl", size: [0.05, 0.9], rot: V, pos: [-0.6, 11.3, 0.2], mat: "conn" });
+P({ id: "utilClamp", layer: "util", shape: "tube", size: [0.22, 0.14, 0.1], rot: V, pos: [5, 3.0, -6.9], at: [[0, 0, 0], [0.5, 0, 0], [1.2, 0, 0], [0, 1.2, 0], [0.5, 1.2, 0]], mat: "steel" });
+for (let b = 0; b < 4; b++) { const y = 3.0 + b * 2.7;
+  P({ id: `pcBoard${b}`, layer: "pc", shape: "box", size: [3.6, 1.9, 0.04], pos: [14.3, y, 1.2], mat: "pcb" });
+  P({ id: `pcBga${b}`, layer: "pc", shape: "box", size: [0.55, 0.55, 0.06], pos: [14.3, y + 0.15, 1.24], at: [[-1.1, 0, 0], [-0.3, 0, 0], [0.5, 0, 0]], mat: "chip" });
+  P({ id: `pcPass${b}`, layer: "pc", shape: "box", size: [0.08, 0.05, 0.04], pos: [14.3, y - 0.55, 1.23], at: grid(-1.5, 1.5, 12, 0, 0.12, 2, 0), mat: "trace" });
+  P({ id: `pcTrace${b}`, layer: "pc", shape: "box", size: [2.6, 0.015, 0.01], pos: [14.3, y - 0.3, 1.225], at: [[0, 0, 0], [0, 0.05, 0], [0, 0.1, 0], [0, 0.15, 0]], mat: "trace" });
+  P({ id: `pcConn${b}`, layer: "pc", shape: "box", size: [0.3, 1.5, 0.14], pos: [16.0, y, 1.26], mat: "conn" });
+  P({ id: `pcRibbon${b}`, layer: "pc", shape: "box", size: [0.25, 0.8, 0.02], pos: [16.0, y - 1.1, 1.34], mat: "ribbon" }); }
+
+// ═════ 掃描條帶（s7，每條 4 段，層 sc<條>_<段>，跟著晶圓台一起移動）═════
+const LANEZ = [0.9, 0, -0.9];
+LANEZ.forEach((lz, i) => { for (let j = 0; j < 4; j++) { const id = `sc${i}_${j}`, half = Math.sqrt(Math.max(0, WR * WR - lz * lz)) - 0.05, x0 = -half + (j * 2 * half) / 4;
+  LAY(id, [1, 0.1, OX, yW]); P({ id, layer: id, shape: "box", size: [R2((2 * half) / 4 + 0.01), 0.01, 0.62], pos: [R2(OX + x0 + half / 4), R2(yW + WT / 2 + 0.012), lz], mat: "scanBand" }); } });
+// 疊對：上層內框獨立一層（推近時往一邊偏）
+LAY("ovlTop", [1, 0.1, OVX, MY]);
 
 // ═════ 運作動畫 ═════
 const lpt = (layer, p) => ({ layer, p });
@@ -347,9 +429,9 @@ actions.fwSpin = { type: "rotate", _說明: "濾片轉盤轉到要的波段（�
 actions.bfPulse = { type: "pulse", _說明: "明場光錐：亮度穩定，中心較亮", parts: ["lBF", "lBFCore", "lMain", "lMainCore", "lMainDown"], color: "light", glow: 0.7, steady: true, halo: 0 };
 actions.spot = { type: "pulse", _說明: "照到晶圓的小亮點", parts: ["lSpot"], color: "lightW", glow: 1, freq: 1.0, halo: 0 };
 actions.dfPulse = { type: "pulse", parts: ["lDF", "lSpec"], color: "dfc", glow: 0.8, steady: true, halo: 0 };
-actions.defGlow = { type: "pulse", _說明: "缺陷被照到：散射亮點閃", parts: ["wfBDefect"], color: "defect", glow: 1, freq: 2.4, halo: 0 };
-actions.defRing = { type: "pulse", _說明: "比對後圈出缺陷", parts: ["wfBDefRing"], color: "defect", glow: 1, freq: 1.4, halo: 0 };
-actions.dieHi = { type: "pulse", _說明: "相鄰兩顆晶粒框起來比對", parts: ["wfBDieHi"], color: "lightR", glow: 0.9, freq: 1.0, halo: 0 };
+actions.defGlow = { type: "pulse", _說明: "缺陷被照到：散射亮點閃", parts: ["wfBDefect", "wfSDefect"], color: "defect", glow: 1, freq: 2.4, halo: 0 };
+actions.defRing = { type: "pulse", _說明: "比對後圈出缺陷", parts: ["wfBDefRing", "wfSDefRing"], color: "defect", glow: 1, freq: 1.4, halo: 0 };
+actions.dieHi = { type: "pulse", _說明: "相鄰兩顆晶粒框起來比對", parts: ["wfBDieHi", "wfSDieHi"], color: "lightR", glow: 0.9, freq: 1.0, halo: 0 };
 actions.pcBlink = { type: "pulse", _說明: "運算櫃板卡指示燈（比對中）", parts: ["pcLed"], color: "lampG", glow: 1, freq: 3.0, halo: 0 };
 actions.status = { type: "pulse", parts: ["towerG", "detLed"], color: "lampG", glow: 0.8, freq: 0.5, halo: 0 };
 actions.alnLaser = { type: "pulse", _說明: "缺口感測器紅光", parts: ["alnBeam"], color: "laser", glow: 1, freq: 3, halo: 0 };
@@ -368,14 +450,14 @@ actions.ellAna = { type: "rotate", _說明: "反射臂上的檢偏器一直轉�
 // ── 標註點 ──
 const A = (layer, p, dx, dy) => ({ layer, p, dx, dy });
 Object.assign(anchors, {
-  src: A("src", [-3.6, 12.3, 0.6], -140, -150), head: A("head", [OX, 12.5, 1.2], 150, -150), obj: A("obj", [OX + 0.5, 9.6, 0.4], 150, -110),
+  src: A("src", [-4.0, 12.3, 0.6], -140, -150), head: A("head", [OX, 12.5, 1.2], 150, -150), obj: A("obj", [OX + 0.5, 9.6, 0.4], 150, -110),
   stage: A("stX", [OX + 1.6, 6.8, 2.2], 150, 120), pc: A("pc", [14.3, 13, 1.7], -150, -150), det: A("det", [OX + 0.8, 15, 0.9], 150, -120),
   foup: A("foup1", [-16, 10.4, -2.2], -140, -120), aln: A("aligner", [ALN[0], 9.0, ALN[1] + 0.8], 140, -120), ar: A("ar", [RB[0], 8.4, RB[1]], 140, 110),
-  plasma: A("src", [-3.6, 12.3, 0.4], -150, -140), laser: A("src", [-3.6, 11.9, -1.6], 150, -120), fw: A("fw", [-1.2, 12.8, 0.2], 140, -140),
+  plasma: A("src", [-4.2, 11.8, 0.3], -150, -140), laser: A("src", [-4.2, 11.85, -1.5], 150, -120), fw: A("fw", [-1.2, 12.8, 0.2], 140, -140),
   bf: A("lBF", [OX + 0.3, 9.8, 0], 150, -130), df: A("dfArm", [OX - 2.6, 10.3, 0], -150, -130), dump: A("dump", [OX + 2.1, 9.8, 0.2], 150, -120),
-  defect: A("wfB", [ALN[0], yW + 0.12, ALN[1]], 140, 120), iso: A("iso", [8.6, 3.5, 3.8], 150, 110),
+  defect: A("wfS", [OX + 0.05, yW + 0.12, -0.04], 140, 120), iso: A("iso", [8.6, 2.4, 3.8], 150, -120),
   ovl: A("metOvl", [OVX + 0.5, 10.6, OVZ], 150, -140), ell: A("metEll", [EX + 1.2, 9.6, EZ], 150, -120), film: A("wM", [EX, MY + 0.1, 1.0], 150, 110),
-  sign: A("sign", [1, MH + 1.5, 5.6], -150, 130),
+  sign: A("front", [2.5, 14.8, 6.1], -150, -130), chuck: A("chuck", [OX + 1.0, 8.42, 0.6], 150, -130),
 });
 
 for (const d of Object.values(actions)) if (d.type === "flow" && d.path?.[0]?.p) { d.layer = d.path[0].layer; d.path = d.path.map((q) => q.p); d.free = true; }

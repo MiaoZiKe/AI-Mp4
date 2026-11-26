@@ -11,22 +11,22 @@ INFO = MODEL["info"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "上一集圖案做好了，有沒有做壞？KLA 的檢測機，一片一片找。",
- ["上一集圖案做好了", "有沒有做壞？", "KLA 的檢測機", "一片一片找"],
- ["Last time the pattern was made.", "Was anything ruined?", "KLA's inspection tools", "check wafer by wafer."],
- [("prev", "圖案做好了"), ("q", "有沒有做壞"), ("kla", "檢測機")],
- ["做壞", "檢測機"], ["KLA 缺陷檢測產品頁"]),
+ "上一集問，每一步做對了沒有？誰來檢查？科磊，也就是 KLA，一片一片找。",
+ ["上一集問", "每一步做對了沒有？", "誰來檢查？", "科磊，也就是 KLA", "一片一片找"],
+ ["Last time we asked:", "was every step done right?", "Who checks?", "KLA,", "wafer by wafer."],
+ [("prev", "每一步做對了"), ("q", "誰來檢查"), ("kla", "科磊")],
+ ["做對", "科磊"], ["KLA 缺陷檢測產品頁"]),
 ("s2", "mechanism",
- "外殼打開，裡面有光源、物鏡、晶圓台，還有一整櫃電腦在比對。",
- ["外殼打開", "裡面有光源、物鏡、晶圓台", "還有一整櫃電腦在比對"],
- ["Open the cover:", "a light source, an objective, a wafer stage,", "and a whole cabinet of computers comparing images."],
- [("open", "外殼打開"), ("src", "光源"), ("obj", "物鏡"), ("stage", "晶圓台"), ("pc", "電腦")],
+ "外殼打開。最左邊是光源；往上是物鏡和感測器，把影像放大；底下是晶圓台；旁邊一整櫃電腦在比對。",
+ ["外殼打開", "最左邊是光源", "往上是物鏡和感測器，把影像放大", "底下是晶圓台", "旁邊一整櫃電腦在比對"],
+ ["Open the cover.", "On the far left, the light source;", "above, the objective and sensor magnify the image;", "below, the wafer stage;", "and beside it, a cabinet of computers comparing images."],
+ [("open", "外殼打開"), ("src", "最左邊"), ("obj", "物鏡"), ("stage", "晶圓台"), ("pc", "電腦")],
  ["光源", "物鏡", "晶圓台"], ["KLA 檢測產品頁；專利 US9410901"]),
 ("s3", "mechanism",
- "晶圓被手臂從晶圓盒取出，先在轉盤上轉一圈找缺口，再放上晶圓台，真空吸住。",
- ["晶圓被手臂從晶圓盒取出", "先在轉盤上轉一圈找缺口", "再放上晶圓台", "真空吸住"],
- ["A robot takes the wafer from its pod,", "spins it once to find the notch,", "sets it on the stage,", "and vacuum holds it."],
- [("foup", "晶圓盒"), ("notch", "找缺口"), ("put", "放上晶圓台"), ("vac", "真空吸住")],
+ "手臂從晶圓盒取出晶圓，找好缺口，放上晶圓台吸住。",
+ ["手臂從晶圓盒取出晶圓", "找好缺口", "放上晶圓台吸住"],
+ ["The robot takes a wafer from its pod,", "finds the notch,", "and sets it on the stage, held by vacuum."],
+ [("foup", "晶圓盒"), ("notch", "找好缺口"), ("put", "放上晶圓台"), ("vac", "吸住")],
  ["手臂", "缺口", "真空"], ["前端搬運通則；KLA 檢測產品頁"]),
 ("s4", "mechanism",
  "光源是雷射點燃的電漿，發出寬頻光，再用濾片挑出要的波段。",
@@ -53,11 +53,11 @@ S = [
  [("scan", "來回掃"), ("slow", "減速"), ("turn", "轉向"), ("fast", "再加速")],
  ["來回掃", "減速", "加速"], ["專利 US11776859、US9410901"]),
 ("s8", "mechanism",
- "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光罩也要這樣檢查。",
- ["電腦把相鄰兩顆晶粒的影像相減", "一樣的消掉", "剩下的就是缺陷", "光罩也要這樣檢查"],
- ["Computers subtract images of two neighboring dies;", "what matches cancels out,", "and what's left is a defect.", "Photomasks get checked the same way."],
- [("adj", "相鄰兩顆晶粒"), ("sub", "相減"), ("cancel", "消掉"), ("defect", "就是缺陷"), ("mask", "光罩也要")],
- ["相減", "缺陷", "光罩"], ["比對通則；SPIE 13216；Lasertec（媒體報導）"]),
+ "電腦把相鄰兩顆晶粒的影像相減，一樣的消掉，剩下的就是缺陷。光罩也要檢查，常拿去跟設計圖比對。",
+ ["電腦把相鄰兩顆晶粒的影像相減", "一樣的消掉", "剩下的就是缺陷", "光罩也要檢查", "常拿去跟設計圖比對"],
+ ["Computers subtract images of two neighboring dies;", "what matches cancels out,", "and what's left is a defect.", "Photomasks get checked too,", "usually against the design data."],
+ [("adj", "相鄰兩顆晶粒"), ("sub", "相減"), ("cancel", "消掉"), ("defect", "就是缺陷"), ("mask", "光罩也要"), ("db", "設計圖")],
+ ["相減", "缺陷", "光罩"], ["比對通則；SPIE 13216；KLA Teron；Lasertec（媒體）"]),
 ("s9", "mechanism",
  "量測也是它的強項，疊對是看上下兩層圖案，有沒有對準。",
  ["量測也是它的強項", "疊對是看上下兩層圖案", "有沒有對準"],
@@ -95,11 +95,11 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}, "durationSec": max(4.6, round(n / 4.5 - 0.6, 1))}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-DUR = {"s2": 7.9, "s3": 9.8, "s4": 5.6, "s7": 6.2}
+DUR = {"s2": 11.6, "s3": 7.0, "s4": 5.6, "s7": 6.2}
 for sc in scenes:
     if sc["id"] in DUR: sc["durationSec"] = DUR[sc["id"]]
 scenes[1]["pauseAfter"] = 0.7
-scenes[0]["props"]["hook"] = {"kicker": "接上集：圖案做好了", "title": "有沒有做壞？", "size": 120, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：每一步做對了嗎", "title": "誰來檢查？", "size": 120, "top": 236}
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "台灣設備廠", "trail": ["國產設備"], "comment": "KLA", "logoAnim": "transparent"}}})
 
@@ -148,9 +148,9 @@ F1, ALN, LX = INFO["FOUP1"], INFO["ALN"], INFO["LOADX"]
 LO, HI = -0.12, 0.2
 K3 = "s3:start+6"
 PRE = pose(F1[0] + 3.6, F1[1], 180)   # 晶圓盒口外：刀片對正盒口，直直伸進去、直直退出來
-keys3 = [[0, {**PRE, "lift": LO}], [22, pose(F1[0], F1[1], 180)], [30, {"lift": 0.0}], [38, {"lift": HI}], [56, PRE], [70, park(180)], [96, park(90)],
-         [114, pose(ALN[0], ALN[1], 90)], [122, {"lift": 0.0}], [128, {"lift": LO}],
-         [178, {"lift": 0.0}], [186, {"lift": HI}], [206, park(90)], [226, park(0)], [248, pose(LX, 0, 0)], [256, {"lift": 0.0}], [262, {"lift": LO}], [282, park(0)]]
+keys3 = [[0, {**PRE, "lift": LO}], [16, pose(F1[0], F1[1], 180)], [22, {"lift": 0.0}], [28, {"lift": HI}], [42, PRE], [54, park(180)], [72, park(90)],
+         [86, pose(ALN[0], ALN[1], 90)], [92, {"lift": 0.0}], [97, {"lift": LO}],
+         [134, {"lift": 0.0}], [140, {"lift": HI}], [155, park(90)], [170, park(0)], [186, pose(LX, 0, 0)], [192, {"lift": 0.0}], [197, {"lift": LO}], [212, park(0)]]
 def unwrap(keys, prev):
     """關節角沿時間連續（每格和上一格差不超過 180°），避免內插時繞一整圈"""
     keys = [[t, dict(v)] for t, v in keys]
@@ -168,29 +168,31 @@ def unwrap(keys, prev):
     return keys
 keys3 = unwrap(keys3, PRE)
 KIN0 = {"arm": "ar", "at": "s1:start-40", "keys": [[0, dict(keys3[0][1])]]}
-KIN3 = {"arm": "ar", "at": K3, "keys": keys3, "carry": [{"layer": "wfA", "grab": 30, "release": 122}, {"layer": "wfB", "grab": 178, "release": 256}]}
+KIN3 = {"arm": "ar", "at": K3, "keys": keys3, "carry": [{"layer": "wfA", "grab": 22, "release": 92}, {"layer": "wfB", "grab": 134, "release": 192}]}
 def k3(n): return add(K3, n)
 # 晶圓盒前門：被裝載埠吸住往內 0.4、再往下 3.2（緩入緩出），之後關回
 S3 = [mv("foup1Door", add(K3, -20), "s5:start", 10, dx=0.25), mv("foup1Door", add(K3, -10), "s4:start+20", 14, dy=-3.2)]
 # 預對準器換片：wfA 放下 → wfR（轉一圈找缺口）→ wfB（手臂再取走）；同位置瞬間換，不位移
-S3 += [hid("wfR", "s1:start-40", k3(123), 1), hid("wfA", k3(123), FAR, 1), hid("wfR", k3(174), FAR, 1), hid("wfB", "s1:start-40", k3(174), 1)]
+S3 += [hid("wfR", "s1:start-40", k3(93), 1), hid("wfA", k3(93), FAR, 1), hid("wfR", k3(130), FAR, 1), hid("wfB", "s1:start-40", k3(130), 1)]
 # 晶圓台：一開始停在裝片位置（往 −x 5.6），吸盤先降 0.6（升降銷頂著），放片、刀片退出後吸盤升起吸住，接著整台回到物鏡正下方
 STG = ["stX", "stZ", "chuck", "pins"]
 S3 += [mv(l, "s1:start-40", "s4:start+8", 40, dx=round(LX - INFO["OX"], 3)) for l in STG]
-S3 += [mv("chuck", "s1:start-40", k3(266), 14, dy=-0.6)]
+S3 += [mv("chuck", "s1:start-40", k3(200), 14, dy=-0.6)]
 # wfB 放到升降銷之後跟著晶圓台走（放開之後的位移才算）
 S3 += [mv("wfB", "s4:start+8", FAR, 40, dx=round(INFO["OX"] - LX, 3))]
 
 # ═════════ s2 爆炸分解：外殼掀開、模組各自沿軸線分開；一次一張標籤，講完組回才移鏡 ═════════
-EXP_A, EXP_B = "s2:start+2", "s2:start+206"
-EXPLODE = [mv("roof", EXP_A, EXP_B, 22, dy=6), mv("tower", EXP_A, EXP_B, 22, dy=6), mv("sign", EXP_A, EXP_B, 22, dy=6),
-           mv("front", add(EXP_A, 3), EXP_B, 22, dz=7), mv("ui", add(EXP_A, 3), EXP_B, 22, dz=7), mv("efemFront", add(EXP_A, 3), EXP_B, 22, dz=5),
+EXP_A, EXP_B = "s2:open-2", "s2:pc+50"
+# 依光走的順序拆：外殼往上掀開停在上方 → 光源往左上（往左會躲到前端搬運區牆後） → 物鏡、光學頭、偵測器沿光軸往上拉開 → 晶圓台往前滑出 → 運算櫃往右（每段拉開超過自己長度的一半）
+OPT = ["head", "obj", "det", "illum", "lMain", "dfArm", "dump"]
+EXPLODE = [mv("roof", EXP_A, EXP_B, 22, dy=7), mv("tower", EXP_A, EXP_B, 22, dy=7),
+           mv("front", EXP_A, EXP_B, 22, dz=8), mv("ui", EXP_A, EXP_B, 22, dz=8), mv("efemFront", EXP_A, EXP_B, 22, dz=6),
            hid("front", add(EXP_A, 14), EXP_B, 10), hid("ui", add(EXP_A, 14), EXP_B, 10), hid("efemFront", add(EXP_A, 14), EXP_B, 10),
-           mv("srcHouse", add(EXP_A, 8), EXP_B, 22, dy=3.2, dx=-1.5), mv("src", add(EXP_A, 10), EXP_B, 22, dx=-2.6, dy=0.8), mv("fw", add(EXP_A, 10), EXP_B, 22, dx=-0.8, dy=1.4),
-           mv("illum", add(EXP_A, 10), EXP_B, 22, dy=2.0), mv("lMain", add(EXP_A, 10), EXP_B, 22, dy=2.0),
-           mv("det", add(EXP_A, 12), EXP_B, 22, dy=5.5), mv("head", add(EXP_A, 12), EXP_B, 22, dy=3.0), mv("obj", add(EXP_A, 12), EXP_B, 22, dy=1.6),
-           mv("dfArm", add(EXP_A, 12), EXP_B, 22, dx=-1.2, dy=1.2), mv("dump", add(EXP_A, 12), EXP_B, 22, dx=1.2, dy=1.2),
-           *[mv(l, add(EXP_A, 15), EXP_B, 22, dz=3.8) for l in STG], mv("pc", add(EXP_A, 15), EXP_B, 22, dx=4.5)]
+           mv("srcHouse", "s2:src-6", EXP_B, 22, dx=-1.0, dy=7.5), mv("src", "s2:src-4", EXP_B, 22, dx=-1.6, dy=5.0), mv("fw", "s2:src-2", EXP_B, 22, dx=-0.6, dy=3.6),
+           mv("det", "s2:obj-6", EXP_B, 22, dy=7.0), mv("head", "s2:obj-5", EXP_B, 22, dy=4.0), mv("obj", "s2:obj-4", EXP_B, 22, dy=2.4),
+           mv("illum", "s2:obj-4", EXP_B, 22, dy=4.0), mv("lMain", "s2:obj-4", EXP_B, 22, dy=4.0),
+           mv("dfArm", "s2:obj-4", EXP_B, 22, dx=-1.6, dy=2.4), mv("dump", "s2:obj-4", EXP_B, 22, dx=1.6, dy=2.4),
+           *[mv(l, "s2:stage-6", EXP_B, 22, dz=5.0) for l in STG], mv("pc", "s2:pc-6", EXP_B, 22, dx=6.0)]
 
 # ═════════ 全片可見度 ═════════
 LIGHT = ["lMain", "lBF", "lRet", "lDF", "lSpec", "lDFc", "lSpot"]
@@ -222,7 +224,7 @@ SCAN += [mv(l, add(T7, t), FAR, 14, dx=-1.2) for l in XL] + [mv(l, add(T7, t), F
 # ═════════ 剖開與隱藏（不需要的模組直接藏起來，不留糊殘影） ═════════
 CUT = [hid("efemFront", "s3:start-8", "s4:start+10", 10), hid("front", "s3:start-8", "s11:start-8", 10), hid("ui", "s3:start-8", "s11:start-8", 10),
        hid("srcHouse", "s4:start-8", "s5:start+10", 10), hid("head", "s5:start-6", "s6:start+10", 10, 0.3),
-       *[hid(l, "s8:start+2", "s9:start", 8) for l in ["obj", "head", "det", "bridge", "dfArm", "dump", "illum", "src", "srcHouse", "fw", "roof", "tower", "sign", "efem", "ffu", "ar", "lp1", "lp2", "foup1", "foup2", "foup1Door", "foup2Door", "aligner"]],
+       *[hid(l, "s8:start+2", "s9:start", 8) for l in ["obj", "head", "det", "bridge", "bridgeF", "dfArm", "dump", "illum", "src", "srcHouse", "fw", "roof", "tower", "sign", "efem", "ffu", "ar", "lp1", "lp2", "foup1", "foup2", "foup1Door", "foup2Door", "aligner"]],
        *[hid(l, "s9:start-20", "s11:start-12", 14) for l in ["shell", "pc", "util", "roof", "tower", "sign"]]]
 
 ALL = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
@@ -233,10 +235,10 @@ F_S3 = {"lp1", "lp2", "foup1", "foup2", "foup1Door", "foup2Door", "aligner", "ar
 F_S4 = {"src", "fw", "illum", "lMain", "head"}
 F_S5 = {"obj", "head", "lBF", "lRet", "lSpot", "lMain", "illum", *STAGE}
 F_S6 = {"obj", "dfArm", "dump", "lDF", "lSpec", "lDFc", "lSpot", "chuck", "pins", "stZ", "wfB"}
-F_S7 = {*STAGE, "granite", "obj", "head", "bridge", "lBF", "lMain", "lSpot", "illum"}
-F_S8 = {"wfB", "chuck", "pins", "stZ"}
-F_S9 = {"met", "metOvl", "wM", "lOvl", "metEll"}
-F_S9b = {"wM", "lOvl"}
+F_S7 = {*STAGE, "granite", "iso", "obj", "head", "bridge", "lBF", "lMain", "lSpot", "illum", *[f"sc{i}_{j}" for i in range(3) for j in range(4)]}
+F_S8 = {"wfS", "chuck", "pins", "stZ", *[f"sc{i}_{j}" for i in range(3) for j in range(4)]}
+F_S9 = {"met", "metOvl", "wM", "lOvl", "metEll", "ovlTop"}
+F_S9b = {"wM", "lOvl", "ovlTop"}
 F_S10 = {"metEll", "wM", "lEllIn", "lEllOut"}
 FSETS = {3: F_S3, 4: F_S4, 5: F_S5, 6: F_S6, 7: F_S7, 8: F_S8, 9: F_S9, 10: F_S10}
 FOCUS = []
@@ -249,23 +251,34 @@ for l in ALL:   # 每一層：連續幾幕都不在焦點裡 → 合成一段隱
             FOCUS.append(hid(l, f"s{run_}:start+2", f"s{i if i != 99 else 11}:start+14", 10)); run_ = None
 # s9 推近框中框：量測站其他部分也藏
 FOCUS += [hid(l, "s9:align-18", "s10:start+14", 8) for l in F_S9 - F_S9b]
+OVL = [mv("ovlTop", "s9:align-4", "s10:start", 20, dx=0.14, dz=-0.08)]
+# 掃描條帶：每條 4 段，跟著物鏡看到的位置依序亮起（偶數條 +x 走、奇數條 −x 走）
+STRIP = []
+for i in range(3):
+    t0 = 14 + i * 48
+    order = [3, 2, 1, 0] if i % 2 == 0 else [0, 1, 2, 3]
+    for k, j in enumerate(order):
+        STRIP += [hid(f"sc{i}_{j}", "s1:start-40", add(T7, t0 + 4 + k * 8), 6), hid(f"sc{i}_{j}", "s9:start", FAR, 6)]
+SCAN += [mv(sh["layer"].replace("wfB", f"sc{i}_{j}"), sh["at"], sh["until"], sh["dur"], dx=sh.get("dx", 0), dz=sh.get("dz", 0)) for sh in list(SCAN) if sh["layer"] == "wfB" for i in range(3) for j in range(4)]
+# 明場：念到「變暗」時缺陷在光點下，反射回來的光變暗
+WFS = [hid("wfS", "s1:start-40", "s8:start+2", 1), hid("wfB", "s8:start+2", "s9:start", 1), hid("wfS", "s9:start", FAR, 6)]
+BFD = [hid("lRet", "s5:dark-2", "s6:start", 6, 0.22), hid("lSpot", "s5:dark-2", "s6:start", 6, 0.35)]
 P = {}
 P["s1"] = {"shot": [shot("start-30", -1, 6, 125, 22, 1), shot("start", 0, 6, 115, 24, 90)],
- "shift": VIS + S3 + EXPLODE + SCAN + CUT + FOCUS, "kin": [KIN0],
+ "shift": VIS + S3 + EXPLODE + SCAN + CUT + FOCUS + OVL + STRIP + BFD + WFS, "kin": [KIN0],
  "run": [run("status", "start-30", FAR, 1), run("ffuAir", "start-30", "s4:start", 1)],
  "overlay": [sec("kla-hook", "q", "s2:start-5", "設備五大-5", "示意，非實際比例", {"prev": "prev", "q": "q", "kla": "kla"})]}
-P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 0.5, 7, 108, 30, 34, yaw=0.1)],
- "labels": [lab("src", "寬頻電漿光源", "Broadband plasma source", "amber", "start+22", "start+67"),
-            lab("head", "物鏡＋TDI 偵測器", "Objective & TDI sensor", "blue", "start+69", "start+114"),
-            lab("stage", "高速晶圓台", "High-speed wafer stage", "amber", "start+116", "start+161"),
-            lab("pc", "影像運算櫃", "Image computer", "blue", "start+163", "start+208")],
- "overlay": [sec("kla-tour", "start+2", "s3:start-5", "拆開檢測機", "示意", {"open": "open", "src": "src", "obj": "obj", "stage": "stage", "pc": "pc"})]}
-P["s3"] = {"shot": [shot("start", -10.5, 5.5, 46, 34, 30, yaw=-0.1)], "kin": [KIN3],
- "run": [run("alnSpin", k3(130), k3(166), 10), run("alnLaser", k3(128), k3(172), 4)],
- "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+6", "start+60"),
-            lab("aln", "預對準器：找缺口", "Pre-aligner", "amber", k3(124), k3(174)),
-            lab("ar", "大氣手臂（SCARA，型式示意）", "Atmospheric SCARA robot", "blue", k3(176), k3(222)),
-            lab("stage", "真空吸盤", "Vacuum chuck", "amber", k3(224), "s4:start-4")],
+P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 0.5, 7.5, 112, 32, 30, yaw=0.1)],
+ "labels": [lab("src", "寬頻電漿光源", "Broadband plasma source", "amber", "src-2", "obj-4"),
+            lab("head", "物鏡＋TDI 偵測器", "Objective & TDI sensor", "blue", "obj-2", "stage-4"),
+            lab("stage", "高速晶圓台", "High-speed wafer stage", "amber", "stage-2", "pc-4"),
+            lab("pc", "影像運算櫃", "Image computer", "blue", "pc-2", "pc+48")],
+ "overlay": [sec("kla-tour", "start+24", "s3:start-5", "拆開檢測機", "示意", {"open": "open", "src": "src", "obj": "obj", "stage": "stage", "pc": "pc"})]}
+P["s3"] = {"shot": [shot("start", -10.5, 5.5, 46, 34, 30, yaw=-0.1), shot(k3(150), -5.5, 6.0, 40, 30, 28)], "kin": [KIN3],
+ "run": [run("alnSpin", k3(98), k3(122), 8), run("alnLaser", k3(97), k3(128), 4)],
+ "labels": [lab("foup", "晶圓盒（FOUP）", "Wafer pod", "blue", "start+4", k3(48)),
+            lab("aln", "預對準器：找缺口", "Pre-aligner", "amber", k3(86), k3(132)),
+            lab("chuck", "真空吸盤＋升降銷", "Vacuum chuck & lift pins", "amber", k3(176), "s4:start-4")],
  "overlay": [sec("kla-load", "start+2", "s4:start-5", "晶圓怎麼送進去", "示意", {"foup": "foup", "notch": "notch", "put": "put", "vac": "vac"})]}
 P["s4"] = {"shot": [shot("start", -2.2, 11.6, 21, 14, 30)],
  "run": [run("laser", "laser-4", "s7:start", 6), run("srcGlow", "plasma-4", FAR, 8), run("fwSpin", "filt-6", "s5:start", 10)],
@@ -282,15 +295,15 @@ P["s6"] = {"shot": [shot("start", 1.8, 8.8, 20, 6, 32)],
  "labels": [lab("df", "暗場：斜射照明", "Oblique darkfield light", "amber", "tilt-2", "block-2"),
             lab("dump", "吸光擋板", "Light trap", "blue", "block", "scat-4"), lab("obj", "物鏡只收散射光", "Objective collects scatter", "amber", "scat-2", "s7:start-4")],
  "overlay": [sec("kla-df", "start+24", "s7:start-5", "暗場（側視）", "示意", {"df": "df", "tilt": "tilt", "block": "block", "scat": "scat"})]}
-P["s7"] = {"shot": [shot("start", 1.8, 7, 42, 28, 32, yaw=0.08)],
- "labels": [lab("stage", "X／Z 雙軸晶圓台", "X/Z scanning stage", "amber", "scan-6", "turn-2"), lab("iso", "氣墊隔振腳", "Air isolators", "blue", "turn", "s8:start-4")],
+P["s7"] = {"shot": [shot("start", 1.8, 5.0, 44, 30, 30, yaw=1.2)],
+ "labels": [lab("stage", "X／Y 雙軸晶圓台", "X/Y scanning stage", "amber", "scan-6", "turn-2"), lab("iso", "氣墊隔振腳", "Air isolators", "blue", "turn", "s8:start-4")],
  "overlay": [sec("kla-scan", "start+24", "s8:start-5", "蛇行掃描與速度", "示意（速度不是量測）", {"scan": "scan", "slow": "slow", "turn": "turn", "fast": "fast"})]}
-P["s8"] = {"shot": [shot("start", 2.0, 6, 17, 72, 30)],
+P["s8"] = {"shot": [shot("start", 2.0, 8, 24, 72, 30)],
  "run": [run("dieHi", "adj-4", "s9:start", 6), run("defRing", "defect-6", "s9:start", 6), run("pcBlink", "start", "s9:start", 4)],
  "labels": [lab("defect", "缺陷（相減後剩下）", "Defect left after subtraction", "amber", "defect-2", "s9:start-4")],
- "overlay": [sec("kla-cmp", "start+24", "s9:start-5", "相鄰晶粒相減", "示意", {"adj": "adj", "sub": "sub", "cancel": "cancel", "defect": "defect", "mask": "mask"}, h=400, y=1010)]}
+ "overlay": [sec("kla-cmp", "start+24", "s9:start-5", "相鄰晶粒相減", "示意", {"adj": "adj", "sub": "sub", "cancel": "cancel", "defect": "defect", "mask": "mask", "db": "db"}, h=450, y=980)]}
 MX = INFO["MX"]
-P["s9"] = {"shot": [shot("start", MX - 0.6, 7, 62, 22, 34, yaw=0.22), shot("align-16", INFO["OVX"], 8.2, 16, 50, 26)],
+P["s9"] = {"shot": [shot("start", MX - 0.6, 7, 62, 22, 34, yaw=-0.9), shot("align-16", INFO["OVX"], 8.2, 16, 50, 26)],
  "run": [run("ovlPulse", "ovl-4", "s10:start", 6)],
  "labels": [lab("ovl", "成像疊對（框中框標記）", "Imaging overlay", "blue", "ovl-2", "s10:start-4")],
  "overlay": [sec("kla-ovl", "start+24", "s10:start-5", "疊對：兩層對準了嗎", "示意（偏移放大畫）", {"meas": "meas", "ovl": "ovl", "align": "align"})]}
@@ -314,7 +327,7 @@ out = {"slug": "tech-kla", "prevEpisode": "設備五大-4：東京威力科創",
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "languageCode": "cmn-TW", "profile": "tech-b",
                  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B（捲舌音要念清楚）；音高關卡 tts-pitch-take.sh（112～126 Hz）；本支尚未配音"},
        "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "", "zh": "示意，非特定機型"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},
-       "cover": {"title": ["晶片做壞了", "誰抓得到？"], "sub": "設備五大-5：KLA", "frame": 40}, "sample": False, "scenes": scenes}
+       "cover": {"title": ["每一步做對了", "誰來檢查？"], "sub": "設備五大-5：KLA", "frame": 40}, "sample": False, "scenes": scenes}
 json.dump(out, open(os.path.join(HERE, "script.json"), "w"), ensure_ascii=False, indent=1)
 bad = []
 subst = json.load(open(os.path.join(HERE, "..", "..", "scripts", "three", "tts-subst.json")))["subst"]
