@@ -192,7 +192,7 @@ EXPLODE = [mv("roof", EXP_A, EXP_B, 22, dy=7), mv("tower", EXP_A, EXP_B, 22, dy=
            mv("det", "s2:obj-6", EXP_B, 22, dy=7.0), mv("head", "s2:obj-5", EXP_B, 22, dy=4.0), mv("obj", "s2:obj-4", EXP_B, 22, dy=2.4),
            mv("illum", "s2:obj-4", EXP_B, 22, dy=4.0), mv("lMain", "s2:obj-4", EXP_B, 22, dy=4.0),
            mv("dfArm", "s2:obj-4", EXP_B, 22, dx=-1.6, dy=2.4), mv("dump", "s2:obj-4", EXP_B, 22, dx=1.6, dy=2.4),
-           *[mv(l, "s2:stage-6", EXP_B, 22, dz=5.0) for l in STG], mv("pc", "s2:pc-6", EXP_B, 22, dx=6.0)]
+           *[mv(l, "s2:stage-6", EXP_B, 22, dz=5.0) for l in STG], mv("pc", "s2:pc-6", EXP_B, 22, dx=2.6)]
 
 # ═════════ 全片可見度 ═════════
 LIGHT = ["lMain", "lBF", "lRet", "lDF", "lSpec", "lDFc", "lSpot"]
@@ -201,7 +201,7 @@ VIS = []
 def show(lay, a, b, dur=8):
     """預設藏著的層：a～b 之間顯示（淡入淡出）"""
     return [hid(lay, "s1:start-40", a, dur), hid(lay, b, FAR, dur)]
-LV = {"lMain": ("s4:broad-2", "s6:tilt-6"), "lBF": ("s5:down-4", "s6:tilt-6"), "lSpot": ("s5:down+2", "s8:start-6"), "lRet": ("s5:refl-4", "s6:tilt-6"),
+LV = {"lUp": ("s5:refl-6", "s6:tilt-6"), "lMain": ("s4:broad-2", "s6:tilt-6"), "lBF": ("s5:down-4", "s6:tilt-6"), "lSpot": ("s5:down+2", "s8:start-6"), "lRet": ("s5:refl-4", "s6:tilt-6"),
       "lDF": ("s6:tilt-4", "s7:start-4"), "lSpec": ("s6:tilt+4", "s7:start-4"), "lDFc": ("s6:scat-4", "s7:start-4"), "lOvl": ("s9:ovl-4", "s10:start-4"),
       "lEllIn": ("s10:pol-2", "s11:start-4"), "lEllOut": ("s10:pol+6", "s11:start-4")}
 for l, (a, b) in LV.items(): VIS += show(l, a, b)
@@ -223,7 +223,7 @@ SCAN += [mv(l, add(T7, t), FAR, 14, dx=-1.2) for l in XL] + [mv(l, add(T7, t), F
 
 # ═════════ 剖開與隱藏（不需要的模組直接藏起來，不留糊殘影） ═════════
 CUT = [hid("efemFront", "s3:start-8", "s4:start+10", 10), hid("front", "s3:start-8", "s11:start-8", 10), hid("ui", "s3:start-8", "s11:start-8", 10),
-       hid("srcHouse", "s4:start-8", "s5:start+10", 10), hid("head", "s5:start-6", "s6:start+10", 10, 0.3),
+       hid("srcHouse", "s4:start-8", "s5:start+10", 10), hid("head", "s5:start-6", "s6:start+10", 10, 0.3), hid("obj", "s5:refl-8", "s6:start+10", 10, 0.35),
        *[hid(l, "s8:start+2", "s9:start", 8) for l in ["obj", "head", "det", "bridge", "bridgeF", "dfArm", "dump", "illum", "src", "srcHouse", "fw", "roof", "tower", "sign", "efem", "ffu", "ar", "lp1", "lp2", "foup1", "foup2", "foup1Door", "foup2Door", "aligner"]],
        *[hid(l, "s9:start-20", "s11:start-12", 14) for l in ["shell", "pc", "util", "roof", "tower", "sign"]]]
 
@@ -233,9 +233,9 @@ def focus(keep, a, b):
 STAGE = STG + ["wfB"]
 F_S3 = {"lp1", "lp2", "foup1", "foup2", "foup1Door", "foup2Door", "aligner", "ar", "wfA", "wfR", "wfB", *STG, "granite"}
 F_S4 = {"src", "fw", "illum", "lMain", "head"}
-F_S5 = {"obj", "head", "lBF", "lRet", "lSpot", "lMain", "illum", *STAGE}
+F_S5 = {"obj", "head", "lBF", "lRet", "lUp", "lSpot", "lMain", "illum", *STAGE}
 F_S6 = {"obj", "dfArm", "dump", "lDF", "lSpec", "lDFc", "lSpot", "chuck", "pins", "stZ", "wfB"}
-F_S7 = {*STAGE, "granite", "iso", "obj", "head", "bridge", "lBF", "lMain", "lSpot", "illum", *[f"sc{i}_{j}" for i in range(3) for j in range(4)]}
+F_S7 = {*STAGE, *[f"gh{k}" for k in range(12)], "granite", "iso", "obj", "head", "bridge", "lBF", "lMain", "lSpot", "illum", *[f"sc{i}_{j}" for i in range(3) for j in range(4)]}
 F_S8 = {"wfS", "chuck", "pins", "stZ", *[f"sc{i}_{j}" for i in range(3) for j in range(4)]}
 F_S9 = {"met", "metOvl", "wM", "lOvl", "metEll", "ovlTop"}
 F_S9b = {"wM", "lOvl", "ovlTop"}
@@ -260,12 +260,17 @@ for i in range(3):
     for k, j in enumerate(order):
         STRIP += [hid(f"sc{i}_{j}", "s1:start-40", add(T7, t0 + 4 + k * 8), 6), hid(f"sc{i}_{j}", "s9:start", FAR, 6)]
 SCAN += [mv(sh["layer"].replace("wfB", f"sc{i}_{j}"), sh["at"], sh["until"], sh["dur"], dx=sh.get("dx", 0), dz=sh.get("dz", 0)) for sh in list(SCAN) if sh["layer"] == "wfB" for i in range(3) for j in range(4)]
+# 掃描殘影：第一條尾端（G0）與第二條開頭（G1）照等時間取樣的位置，取樣那一刻亮起、留到 s8；間距由大變小 → 折返 → 由小變大
+G0 = [0.55, 0.68, 0.78, 0.86, 0.93, 1.0]; G1 = [0.0, 0.07, 0.14, 0.22, 0.32, 0.45]
+GH = []
+for k, u in enumerate(G0): GH += [hid(f"gh{k}", "s1:start-40", add(T7, 14 + round(36 * u)), 3), hid(f"gh{k}", "s8:start+2", FAR, 8)]
+for k, u in enumerate(G1): GH += [hid(f"gh{6 + k}", "s1:start-40", add(T7, 14 + 48 + round(36 * u)), 3), hid(f"gh{6 + k}", "s8:start+2", FAR, 8)]
 # 明場：念到「變暗」時缺陷在光點下，反射回來的光變暗
 WFS = [hid("wfS", "s1:start-40", "s8:start+2", 1), hid("wfB", "s8:start+2", "s9:start", 1), hid("wfS", "s9:start", FAR, 6)]
-BFD = [hid("lRet", "s5:dark-2", "s6:start", 6, 0.22), hid("lSpot", "s5:dark-2", "s6:start", 6, 0.35)]
+BFD = [hid("lUp", "s5:dark-2", "s6:start", 6, 0.2), hid("lRet", "s5:dark-2", "s6:start", 6, 0.22), hid("lSpot", "s5:dark-2", "s6:start", 6, 0.35)]
 P = {}
 P["s1"] = {"shot": [shot("start-30", -1, 6, 125, 22, 1), shot("start", 0, 6, 115, 24, 90)],
- "shift": VIS + S3 + EXPLODE + SCAN + CUT + FOCUS + OVL + STRIP + BFD + WFS, "kin": [KIN0],
+ "shift": VIS + S3 + EXPLODE + SCAN + CUT + FOCUS + OVL + STRIP + BFD + WFS + GH, "kin": [KIN0],
  "run": [run("status", "start-30", FAR, 1), run("ffuAir", "start-30", "s4:start", 1)],
  "overlay": [sec("kla-hook", "q", "s2:start-5", "設備五大-5", "示意，非實際比例", {"prev": "prev", "q": "q", "kla": "kla"})]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 0.5, 7.5, 112, 32, 30, yaw=0.1)],
@@ -287,7 +292,7 @@ P["s4"] = {"shot": [shot("start", -2.2, 11.6, 21, 14, 30)],
             lab("fw", "濾片轉盤：選波段", "Filter wheel", "amber", "filt-2", "s5:start-4")],
  "overlay": [sec("kla-src", "start+24", "s5:start-5", "寬頻電漿光源", "示意（光譜不是量測）", {"laser": "laser", "plasma": "plasma", "broad": "broad", "filt": "filt"})]}
 P["s5"] = {"shot": [shot("start", 1.6, 9, 24, 8, 32)],
- "run": [run("bfPulse", "down-4", "s6:tilt-6", 8), run("spot", "down", "s8:start", 8)],
+ "run": [run("bfPulse", "down-4", "s6:tilt-6", 8), run("upPulse", "refl-6", "s6:tilt-6", 8), run("spot", "down", "s8:start", 8)],
  "labels": [lab("bf", "明場：垂直照、收反射", "Brightfield", "blue", "down", "s6:start-4")],
  "overlay": [sec("kla-bf", "start+24", "s6:start-5", "明場（側視）", "示意", {"bf": "bf", "down": "down", "refl": "refl", "dark": "dark"})]}
 P["s6"] = {"shot": [shot("start", 1.8, 8.8, 20, 6, 32)],
