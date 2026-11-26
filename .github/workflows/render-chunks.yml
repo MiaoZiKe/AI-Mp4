@@ -14,16 +14,19 @@ on:
       conc: { description: "每台 Chrome 平行數（THREE_CONCURRENCY）", required: false, default: "2" }
       audio: { description: "音軌：cloud＝雲端各段帶 PCM 音軌再照 make-tech.sh 4a～4c 混片尾音；asset＝用素材分支的 track", required: false, default: "cloud" }
       src_ref: { description: "程式碼 commit／分支（空白＝用素材 meta.json 記的 commit）", required: false, default: "" }
+      range: { description: "只渲這幾段幀「起-迄」（含迄，可空格分隔多段；空白＝整支）。有值時輸出無聲 mp4、不混音", required: false, default: "" }
+      asset_dir: { description: "素材在 assets/ 底下的資料夾名（空白＝slug；同一支片不同 commit 同時渲時用）", required: false, default: "" }
 
 permissions:
   contents: write
 
 concurrency:
-  group: render-${{ inputs.slug }}
+  group: render-${{ inputs.slug }}${{ inputs.range != '' && format('-{0}', inputs.ver) || '' }}
   cancel-in-progress: false
 
 env:
   PW_VER: "1.63.0"
+  AD: ${{ inputs.asset_dir || inputs.slug }}
 
 jobs:
   prepare:
@@ -36,19 +39,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.asset_branch }}
-          sparse-checkout: assets/${{ inputs.slug }}
+          sparse-checkout: assets/${{ env.AD }}
           path: _assets
       - id: m
         run: |
           set -e
-          M=_assets/assets/${{ inputs.slug }}/meta.json
-          [ -f "$M" ] || { echo "::error::素材分支 ${{ inputs.asset_branch }} 沒有 assets/${{ inputs.slug }}/meta.json（先跑 push-render-assets.sh）"; exit 1; }
-          python3 - "$M" "${{ inputs.chunk }}" "${{ inputs.src_ref }}" "${{ inputs.jobs }}" >> "$GITHUB_OUTPUT" <<'PY'
+          M=_assets/assets/$AD/meta.json
+          [ -f "$M" ] || { echo "::error::素材分支 ${{ inputs.asset_branch }} 沒有 assets/$AD/meta.json（先跑 push-render-assets.sh）"; exit 1; }
+          python3 - "$M" "${{ inputs.chunk }}" "${{ inputs.src_ref }}" "${{ inputs.jobs }}" "${{ inputs.range }}" >> "$GITHUB_OUTPUT" <<'PY'
           import json, sys
           meta = json.load(open(sys.argv[1])); step = int(sys.argv[2]); n = int(meta["totalFrames"])
           sb = json.load(open(sys.argv[1].replace("meta.json", "video/storyboard.json")))
           assert sb["totalFrames"] == n, "meta.json 與 storyboard.json 幀數不同"
           segs = [f"{a}-{min(a + step - 1, n - 1)}" for a in range(0, n, step)]
+          if sys.argv[5].strip():   # range 模式：只切指定的幾段，n 改成這幾段的總幀數
+              segs, n = [], 0
+              for r in sys.argv[5].split():
+                  a0, b0 = map(int, r.split("-")); assert 0 <= a0 <= b0 < int(meta["totalFrames"]), f"range {r} 超出 0–{meta['totalFrames'] - 1}"
+                  segs += [f"{a}-{min(a + step - 1, b0)}" for a in range(a0, b0 + 1, step)]; n += b0 - a0 + 1
           J = max(1, min(16, int(sys.argv[4] or 16), len(segs)))
           jobs = [{"k": k, "ranges": " ".join(segs[k::J])} for k in range(J)]
           print("matrix=" + json.dumps({"include": jobs}))
@@ -78,7 +86,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.asset_branch }}
-          sparse-checkout: assets/${{ inputs.slug }}
+          sparse-checkout: assets/${{ env.AD }}
           path: _assets
       - uses: actions/setup-node@v4
         with:
@@ -128,9 +136,9 @@ jobs:
       - name: 放入素材（配音、時間軸快照、貼圖）
         run: |
           set -e
-          S=${{ inputs.slug }}; D=_assets/assets/$S
+          S=${{ inputs.slug }}; D=_assets/assets/$AD
           mkdir -p public/audio/$S videos/$S public/tex
-          cp -r $D/audio/. public/audio/$S/
+          [ -d $D/audio ] && cp -r $D/audio/. public/audio/$S/   # 無聲時間軸沒有配音檔
           if [ -d $D/tex ] && [ -n "$(ls -A $D/tex)" ]; then cp -r $D/tex/. public/tex/; echo "貼圖：用素材分支的（和本機同一份）"
           elif [ -f videos/$S/genmodel.py ]; then
             echo "貼圖：素材分支沒有，跑 genmodel.py 重產"
@@ -143,7 +151,7 @@ jobs:
         run: |
           cp _tools/scripts/three/render-ranges.mjs scripts/three/
           T0=$(date +%s)
-          [ "${{ inputs.audio }}" = "asset" ] || export CHUNK_AUDIO=1
+          [ "${{ inputs.audio }}" = "asset" ] || [ -n "${{ inputs.range }}" ] || export CHUNK_AUDIO=1   # range 模式無聲
           THREE_CONCURRENCY=${{ inputs.conc }} RENDER_TIMEOUT_MS=180000 node scripts/three/render-ranges.mjs ${{ inputs.slug }} out/chunks ${{ matrix.ranges }}
           echo "渲染共 $(( $(date +%s)-T0 )) 秒（$(nproc) 核）"
       - uses: actions/upload-artifact@v4
@@ -161,7 +169,7 @@ jobs:
         with:
           ref: ${{ inputs.asset_branch }}
           sparse-checkout: |
-            assets/${{ inputs.slug }}
+            assets/${{ env.AD }}
             renders
           fetch-depth: 1
       - name: 程式碼（混片尾音的腳本與 make-tech.sh 的參數算法，用素材記的同一個 commit）
@@ -183,15 +191,17 @@ jobs:
         id: mux
         run: |
           set -e
-          S=${{ inputs.slug }}; V=${{ inputs.ver }}; D=assets/$S
-          EXT=mp4; [ "${{ inputs.audio }}" = "asset" ] || EXT=mkv
+          S=${{ inputs.slug }}; V=${{ inputs.ver }}; D=assets/$AD
+          EXT=mp4; [ "${{ inputs.audio }}" = "asset" ] || [ -n "${{ inputs.range }}" ] || EXT=mkv
           ls chunks/c*.$EXT | sort | sed "s/.*/file '&'/; s|chunks/||" > chunks/list.txt
           echo "段數 $(wc -l < chunks/list.txt)"
           ffmpeg -loglevel error -y -f concat -safe 0 -i chunks/list.txt -c copy video.$EXT
           NV=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of csv=p=0 video.$EXT)
           [ "$NV" = "${{ needs.prepare.outputs.n }}" ] || { echo "::error::幀數 $NV ≠ ${{ needs.prepare.outputs.n }}"; exit 1; }
           mkdir -p renders
-          if [ "$EXT" = mkv ]; then
+          if [ -n "${{ inputs.range }}" ]; then   # range 模式：無聲、不混音，接好的影像直接當成品
+            cp video.mp4 renders/$S.$V.mp4
+          elif [ "$EXT" = mkv ]; then
             # 雲端自己做音軌：各段 PCM 接起來＝Remotion 整支渲染的參考人聲音軌，接著照 make-tech.sh 第 4a～4c 步
             ffmpeg -loglevel error -y -i video.mkv -map 0:a -c:a pcm_s16le voice.wav
             echo "人聲音軌 $(ffprobe -v error -show_entries format=duration -of csv=p=0 voice.wav) 秒"
