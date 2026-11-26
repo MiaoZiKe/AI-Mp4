@@ -887,6 +887,34 @@
       "dur": 10
      },
      {
+      "layer": "bz",
+      "at": "s1:start-40",
+      "until": "s2:start+6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bz",
+      "at": "s3:start-20",
+      "until": "s7:start-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bz",
+      "at": "s8:start-20",
+      "until": "s11:start-2",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bz",
+      "at": "s12:start-20",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "coatCab",
       "at": "s2:start-20",
       "until": "s10:start-2",
@@ -1196,7 +1224,7 @@
      },
      {
       "layer": "wf5",
-      "at": "s4:start+123",
+      "at": "s4:start+138",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
@@ -1204,7 +1232,7 @@
      {
       "layer": "bgap",
       "at": "s1:start-40",
-      "until": "s4:start+122",
+      "until": "s4:start+137",
       "opacity": 0,
       "dur": 1
      },
@@ -1289,7 +1317,7 @@
      },
      {
       "arm": "rb",
-      "at": "s4:start+2",
+      "at": "s4:start+40",
       "keys": [
        [
         0,
@@ -1300,62 +1328,62 @@
         }
        ],
        [
-        22,
+        18,
         {
          "ex": 3.8
         }
        ],
        [
+        24,
+        {
+         "z": 0.025
+        }
+       ],
+       [
         30,
         {
-         "z": 0.03
+         "z": 0.045
         }
        ],
        [
-        38,
-        {
-         "z": 0.05
-        }
-       ],
-       [
-        58,
+        46,
         {
          "ex": 0
+        }
+       ],
+       [
+        74,
+        {
+         "th": -180,
+         "z": 2.3449999999999998
         }
        ],
        [
         92,
         {
-         "th": -180,
-         "z": 2.05
-        }
-       ],
-       [
-        114,
-        {
          "ex": 3.4
         }
        ],
        [
-        120,
+        97,
         {
-         "z": 2.03
+         "z": 2.3249999999999997
         }
        ],
        [
-        128,
+        103,
         {
-         "z": 1.98
+         "z": 2.3
         }
        ],
        [
-        146,
+        118,
         {
          "ex": 0
         }
        ],
        [
-        172,
+        140,
         {
          "th": 0,
          "z": 0
@@ -1365,8 +1393,8 @@
       "carry": [
        {
         "layer": "wf5",
-        "grab": 30,
-        "release": 120
+        "grab": 24,
+        "release": 97
        }
       ]
      }
@@ -1382,31 +1410,31 @@
       "id": "fling0",
       "at": "start+10",
       "ramp": 6,
-      "until": "s2:start"
+      "until": "s2:start-30"
      },
      {
       "id": "fling1",
       "at": "start+10",
       "ramp": 6,
-      "until": "s2:start"
+      "until": "s2:start-30"
      },
      {
       "id": "fling2",
       "at": "start+10",
       "ramp": 6,
-      "until": "s2:start"
+      "until": "s2:start-30"
      },
      {
       "id": "fling3",
       "at": "start+10",
       "ramp": 6,
-      "until": "s2:start"
+      "until": "s2:start-30"
      },
      {
       "id": "fling4",
       "at": "start+10",
       "ramp": 6,
-      "until": "s2:start"
+      "until": "s2:start-30"
      },
      {
       "id": "tower",
@@ -1510,7 +1538,7 @@
       "id": "lae",
       "at": "start",
       "ramp": 8,
-      "until": "s4:start"
+      "until": "s3:start-30"
      }
     ],
     "labels": [
@@ -1734,11 +1762,11 @@
       "elev": 16
      },
      {
-      "at": "five-8",
+      "at": "start+46",
       "dur": 20,
       "x": 6.95,
-      "y": 6.2,
-      "d": 57,
+      "y": 5.6,
+      "d": 64,
       "elev": 14
      }
     ],
@@ -1748,16 +1776,16 @@
       "text": "晶圓盒（FOUP）",
       "en": "Wafer pod",
       "color": "blue",
-      "at": "start+4",
-      "until": "five-4"
+      "at": "start+50",
+      "until": "s5:start-20"
      },
      {
       "part": "fork",
       "text": "五支叉片：一次五片",
       "en": "5-blade fork",
       "color": "amber",
-      "at": "five",
-      "until": "s5:start-20"
+      "at": "start-4",
+      "until": "start+42"
      }
     ],
     "overlay": [
@@ -1790,7 +1818,7 @@
      }
     ]
    },
-   "durationSec": 5.4,
+   "durationSec": 6.2,
    "pauseAfter": 0.6
   },
   {
@@ -1982,19 +2010,19 @@
       "id": "heatIn0",
       "at": "out-4",
       "ramp": 8,
-      "until": "s7:start-20"
+      "until": "s7:start-30"
      },
      {
       "id": "heatIn1",
       "at": "out-4",
       "ramp": 8,
-      "until": "s7:start-20"
+      "until": "s7:start-30"
      },
      {
       "id": "heatIn2",
       "at": "out-4",
       "ramp": 8,
-      "until": "s7:start-20"
+      "until": "s7:start-30"
      },
      {
       "id": "edgeWarm",
@@ -2094,19 +2122,20 @@
      {
       "at": "start-20",
       "dur": 20,
-      "x": -0.28,
-      "y": 17.2,
-      "d": 46,
-      "elev": 5,
-      "yaw": 0.5
-     },
-     {
-      "at": "down-12",
-      "dur": 20,
       "x": 0.0,
       "y": 16.8,
       "d": 62,
-      "elev": 7
+      "elev": 7,
+      "yaw": 0.5
+     },
+     {
+      "at": "cross-12",
+      "dur": 20,
+      "x": -19,
+      "y": 14.2,
+      "d": 22,
+      "elev": 13,
+      "yaw": 0.35
      }
     ],
     "run": [
@@ -2114,37 +2143,43 @@
       "id": "gasFeed",
       "at": "inj-8",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s8:start-30"
      },
      {
       "id": "gasCross",
       "at": "cross-4",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s8:start-30"
      },
      {
       "id": "gasUp",
-      "at": "cross+6",
+      "at": "inj",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s8:start-30"
      },
      {
       "id": "gasDown",
-      "at": "down-8",
+      "at": "inj+6",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s8:start-30"
+     },
+     {
+      "id": "bzGas",
+      "at": "cross-6",
+      "ramp": 8,
+      "until": "s8:start-30"
      },
      {
       "id": "exhaust",
-      "at": "down-2",
+      "at": "inj+10",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s8:start-30"
      },
      {
       "id": "pumpRun",
-      "at": "down-2",
+      "at": "inj+10",
       "ramp": 4,
-      "until": "s9:start"
+      "until": "s8:start-30"
      }
     ],
     "labels": [
@@ -2154,14 +2189,14 @@
       "en": "Gas injector",
       "color": "amber",
       "at": "inj-2",
-      "until": "down-8"
+      "until": "cross-14"
      },
      {
-      "part": "exh",
-      "text": "排氣到真空泵",
-      "en": "To vacuum pump",
+      "part": "bzGap",
+      "text": "氣體穿過晶圓間隙（放大）",
+      "en": "Gas between wafers",
       "color": "blue",
-      "at": "down",
+      "at": "cross+4",
       "until": "s8:start-20"
      }
     ],
@@ -2235,8 +2270,7 @@
       "x": -19,
       "y": 3.2,
       "d": 49,
-      "elev": 8,
-      "yaw": 0.35
+      "elev": 8
      }
     ],
     "run": [
@@ -2244,19 +2278,19 @@
       "id": "filmGas0",
       "at": "react-6",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s9:start-30"
      },
      {
       "id": "filmGas1",
       "at": "react-6",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s9:start-30"
      },
      {
       "id": "filmGas2",
       "at": "react-6",
       "ramp": 8,
-      "until": "s9:start"
+      "until": "s9:start-30"
      }
     ],
     "labels": [
@@ -2442,31 +2476,31 @@
       "id": "fling0",
       "at": "spin+16",
       "ramp": 10,
-      "until": "s11:start"
+      "until": "s11:start-40"
      },
      {
       "id": "fling1",
       "at": "spin+16",
       "ramp": 10,
-      "until": "s11:start"
+      "until": "s11:start-40"
      },
      {
       "id": "fling2",
       "at": "spin+16",
       "ramp": 10,
-      "until": "s11:start"
+      "until": "s11:start-40"
      },
      {
       "id": "fling3",
       "at": "spin+16",
       "ramp": 10,
-      "until": "s11:start"
+      "until": "s11:start-40"
      },
      {
       "id": "fling4",
       "at": "spin+16",
       "ramp": 10,
-      "until": "s11:start"
+      "until": "s11:start-40"
      }
     ],
     "labels": [

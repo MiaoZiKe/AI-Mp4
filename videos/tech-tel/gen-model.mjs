@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const R2 = (x) => Math.round(x * 1000) / 1000;
+const R4 = (x) => Math.round(x * 10000) / 10000;
 const D2R = Math.PI / 180;
 const pol = (aDeg, r) => [R2(r * Math.cos(aDeg * D2R)), R2(r * Math.sin(aDeg * D2R))]; // (x, z)
 const V = [90, 0, 0];
@@ -19,7 +20,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   heatC: "#D7DCE4", insul: "#F1E9D8", quartzC: "#D8ECF7", quartzE: "#9CC9E6", waferC: "#C9D1D9", injC: "#F4FAFF", coilHot: "#F08A3C", hotY: "#FFC247",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", pipeB: "#3E7BD6", pipeR: "#D9534F", foupC: "#D6DEE8",
-  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
+  gasC: "#7FE3E6", exhC: "#A99BC4", heatP: "#F5873B", filmC: "#2FBF9F", resistC: "#C9772E", resistL: "#E7A65A", cupC: "#EEF1F5", rubber: "#2B2F36", rodC: "#6FA3CC", pcbC: "#1F7A4A", chipC: "#1B1E24", goldC: "#D4A537", connC: "#EDEDE6", cableC: "#7A7F88", ceramC: "#EFEBE2",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const materials = {
@@ -32,6 +33,7 @@ const materials = {
   zone: M("std", "coilHot", { emissive: "coilHot", ei: 0.3, rough: 0.6, metal: 0.2 }), inj: M("phys", "injC", { rough: 0.1, metal: 0, clearcoat: 1, opacity: 0.92, env: 0.6 }),
   quartz: M("phys", "quartzC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.22, env: 0.6 }),
   quartzE: M("phys", "quartzE", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.6 }),
+  rod: M("phys", "rodC", { rough: 0.1, metal: 0, clearcoat: 1, opacity: 0.95, env: 0.7, emissive: "rodC", ei: 0.12 }),
   quartzRod: M("phys", "quartzC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.85, env: 0.7 }),
   wafer: M("phys", "waferC", { rough: 0.15, metal: 0.6, clearcoat: 0.9, env: 0.9 }),
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.4, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.3, rough: 0.4, metal: 0 }),
@@ -72,9 +74,9 @@ P({ id: "floorSeam", layer: "floor", shape: "slab", size: [110, 0.04, 0.1], pos:
 const DECK = 13.0;                         // 裝載區頂板（爐體下緣）
 const HY0 = 13.6, HY1 = 26.0, HR0 = 2.95, HR1 = 4.2;   // 加熱器
 const OT = { r: 2.6, y0: 13.3, y1: 25.2 }, IT = { r: 2.15, y0: 13.4, y1: 24.3 };  // 外管（頂封）、內管（頂開）
-const WT = 0.02, PITCH = 0.1, NSLOT = 100, BY0 = 2.8;  // 晶舟：100 格，片距示意 10 mm
+const WT = 0.02, PITCH = 0.08, NSLOT = 125, BY0 = 2.8;  // 晶舟：125 格（physics-spec 1b，二手型錄），片距示意 8 mm（晶圓盒與叉片同片距）
 const LIFT = 11.0;                         // 晶舟升降行程（裝載位置 → 製程位置）
-const GAP = [85, 89];                      // 這次手臂要補進去的五格
+const GAP = [105, 109];                      // 這次手臂要補進去的五格
 const slotY = (k) => R2(BY0 + k * PITCH);
 const ZONES = 5, ZH = (HY1 - HY0 - 0.8) / ZONES;
 const zoneY = (i) => R2(HY0 + 0.4 + ZH * (i + 0.5));
@@ -141,8 +143,8 @@ P({ id: "itube", layer: "itube", shape: "tube", size: [IT.r, IT.r - 0.07, R2(IT.
 P({ id: "itubeEdge", layer: "itube", shape: "tube", size: [IT.r + 0.02, IT.r - 0.09, 0.05], rot: V, pos: [0, 0, 0], at: [[0, IT.y0 + 0.2, 0], [0, IT.y1 - 0.03, 0]], mat: "quartzE" });
 const INJ = pol(145, 1.86);   // 噴氣管：內管與晶圓邊緣之間，前左方（爐管鏡頭看得到）
 P({ id: "itubeInj", layer: "itube", shape: "cyl", size: [0.15, R2(IT.y1 - IT.y0 - 0.6)], rot: V, pos: [INJ[0], R2((IT.y0 + IT.y1) / 2 - 0.3), INJ[1]], mat: "inj" });
-const HOLE0 = R2(IT.y0 + 1.05);   // 小孔高度＝晶圓與晶圓之間（片距 0.1，孔距 0.6）
-P({ id: "itubeInjHole", layer: "itube", shape: "sphere", size: [0.06], pos: [R2(INJ[0] + 0.12), 0, R2(INJ[1] - 0.08)], at: Array.from({ length: 16 }, (_, i) => [0, R2(HOLE0 + i * 0.6), 0]), mat: "dark" });
+const HOLE0 = R2(BY0 + LIFT + PITCH * 8.5), HOLEP = R2(PITCH * 8);   // 小孔高度＝製程位置的晶圓間隙（每 8 片一孔）
+P({ id: "itubeInjHole", layer: "itube", shape: "sphere", size: [0.06], pos: [R2(INJ[0] + 0.12), 0, R2(INJ[1] - 0.08)], at: Array.from({ length: 15 }, (_, i) => [0, R2(HOLE0 + i * HOLEP), 0]), mat: "dark" });
 LAY("mani", [7, 0.8, 0, DECK + 0.2]);
 P({ id: "mani", layer: "mani", shape: "tube", size: [3.05, OT.r - 0.1, 0.5], rot: V, pos: [0, DECK - 0.05, 0], mat: "steel2" });
 P({ id: "maniBolt", layer: "mani", shape: "cyl", size: [0.1, 0.62], rot: V, pos: [0, DECK - 0.05, 0], at: ring(18, 2.85), mat: "dark" });
@@ -157,7 +159,8 @@ P({ id: "shutRail", layer: "shut", shape: "box", size: [0.2, 0.2, 6.6], pos: [0,
 // ── 晶舟＋保溫座＋密封蓋（裝載位置；升降時這幾層一起往上 LIFT）──
 LAY("boat", [3.6, 10.4, 0, 7.8]); LAY("bgap", [3.2, 0.6, 0, slotY(87)]); LAY("cap", [6.2, 2, 0, 1.6]);
 P({ id: "boatRod", layer: "boat", shape: "cyl", size: [0.16, R2(NSLOT * PITCH + 0.3)], rot: V, pos: [0, R2(BY0 + (NSLOT * PITCH) / 2 - 0.1), 0],
-   at: [180, 90, 270].map((a) => { const [x, z] = pol(a, 1.74); return [x, 0, z]; }), mat: "quartzRod" });
+   at: [180, 90, 270].map((a) => { const [x, z] = pol(a, 1.74); return [x, 0, z]; }), mat: "rod" });
+P({ id: "boatGroove", layer: "boat", shape: "tube", size: [0.2, 0.15, 0.025], rot: V, pos: [0, 0, 0], at: [180, 90, 270].flatMap((a) => { const [x, z] = pol(a, 1.74); return [0, 30, 60, 90, 120].map((k) => [x, slotY(k) - PITCH / 2, z]); }), mat: "quartzE" });
 P({ id: "boatPlate", layer: "boat", shape: "cyl", size: [1.95, 0.14], rot: V, pos: [0, 0, 0], at: [[0, BY0 - 0.2, 0], [0, slotY(NSLOT - 1) + 0.2, 0]], mat: "quartzE" });
 const filled = [...Array(NSLOT).keys()].filter((k) => k < GAP[0] || k > GAP[1]);
 P({ id: "boatW", layer: "boat", shape: "cyl", size: [1.5, WT], rot: V, pos: [0, 0, 0], at: filled.map((k) => [0, slotY(k), 0]), mat: "wafer" });
@@ -191,6 +194,12 @@ P({ id: "foupBack", layer: "foup", shape: "box", size: [0.14, 3.0, 3.5], pos: [F
 P({ id: "foupTopB", layer: "foup", shape: "box", size: [3.3, 0.14, 3.56], pos: [FX + 0.1, FY + 3.05, 0], mat: "foup" });
 P({ id: "foupBot", layer: "foup", shape: "box", size: [3.3, 0.14, 3.56], pos: [FX + 0.1, FY + 0.07, 0], mat: "foup" });
 P({ id: "foupHandle", layer: "foup", shape: "box", size: [1.4, 0.35, 1.4], pos: [FX + 0.1, FY + 3.3, 0], mat: "band" });
+P({ id: "foupRib", layer: "foup", shape: "box", size: [3.0, 0.05, 0.04], pos: [FX + 0.1, 0, 0], at: [0.6, 1.5, 2.4].flatMap((y) => [[0, FY + y, -1.79], [0, FY + y, 1.79]]), mat: "seam" });   // 外殼接縫
+P({ id: "foupGrip", layer: "foup", shape: "box", size: [1.6, 0.22, 0.14], pos: [FX + 0.3, FY + 1.6, 0], at: [[0, 0, -1.86], [0, 0, 1.86]], mat: "band" });   // 側邊把手
+P({ id: "foupLatch", layer: "foup", shape: "box", size: [0.12, 0.3, 0.18], pos: [FX - 1.52, 0, 0], at: [[0, FY + 0.6, -1.6], [0, FY + 0.6, 1.6], [0, FY + 2.5, -1.6], [0, FY + 2.5, 1.6]], mat: "dark" });   // 門框卡榫
+P({ id: "foupLabel", layer: "foup", shape: "box", size: [0.06, 0.5, 1.1], pos: [FX + 1.8, FY + 2.2, 0], mat: "conn" });   // 背面標籤槽
+P({ id: "foupFlange", layer: "foup", shape: "box", size: [1.0, 0.08, 1.0], pos: [FX + 0.1, FY + 3.5, 0], mat: "steel2" });   // 頂部吊掛法蘭
+P({ id: "foupFrame", layer: "foup", shape: "box", size: [0.08, 3.0, 0.1], pos: [FX - 1.5, FY + 1.5, 0], at: [[0, 0, -1.72], [0, 0, 1.72]], mat: "band" });   // 前門框
 P({ id: "foupW", layer: "foup", shape: "cyl", size: [1.5, WT], rot: V, pos: [FX, 0, 0], at: Array.from({ length: 20 }, (_, k) => [0, fslot(k), 0]), mat: "wafer" });
 P({ id: "wf5", layer: "wf5", shape: "cyl", size: [1.5, WT], rot: V, pos: [FX, 0, 0], at: Array.from({ length: 5 }, (_, i) => [0, fslot(20 + i), 0]), mat: "wafer" });
 LAY("stock", [5, 12, FX + 1, 6]);
@@ -200,7 +209,8 @@ P({ id: "stockFoup", layer: "stock", shape: "box", size: [3.1, 2.9, 2.8], pos: [
 
 // ── 晶圓搬運手臂（垂直升降 z → 旋轉 th → 直線伸出 ex；一次五支叉片）──
 const RX = 5.6, RZ = 0, CZ = -4.2;
-const YW20 = fslot(20), YT0 = R2(YW20 - WT / 2 - 0.03 - 0.01 - 0.5);   // 叉片 0 的中心比盒內第 20 格低 0.04
+const FKT = 0.025, FG = 0.025;   // 叉片厚、叉片頂到晶圓底的間隙
+const YW20 = fslot(20), YT0 = R4(YW20 - WT / 2 - FG - FKT / 2 - 0.5);
 const R0 = 2.2;                                                        // 叉片中心到旋轉軸的距離（縮回）
 LAY("rbCol", [1.2, 12.6, RX, 6.3]); LAY("rb", [7, 1.6, RX + 1, YT0]);
 P({ id: "rbCol", layer: "rbCol", shape: "box", size: [0.8, 12.4, 0.6], pos: [RX, 6.4, CZ], mat: "steel" });
@@ -215,15 +225,17 @@ P({ id: "rbTurret", layer: "rb", shape: "cyl", size: [0.62, 0.3], rot: V, pos: [
 SEG({ id: "rbRail", layer: "rb", shape: "box", size: [2.4, 0.12, 0.5], pos: [RX + 0.9, YT0 + 0.15, RZ], mat: "steel2" }, 0, 4);
 SEG({ id: "rbArm", layer: "rb", shape: "box", size: [1.5, 0.16, 0.42], pos: [RX - 0.45, YT0 + 0.29, RZ], mat: "panel" }, 0, 3);   // 滑座只在叉片根部後面（伸進晶舟時不碰下面的晶圓）
 P({ id: "rbRoot", layer: "rb", shape: "box", size: [0.3, 0.58, 0.6], pos: [RX + R0 - 1.78, YT0 + 0.66, RZ], mat: "dark" });
-SEG({ id: "rbFork", layer: "rb", shape: "box", size: [2.7, 0.02, 0.44], pos: [RX + R0 - 0.2, 0, RZ], at: Array.from({ length: 5 }, (_, i) => [0, R2(YT0 + 0.5 + i * PITCH), 0]), mat: "panel2" }, 0, 6);
+SEG({ id: "rbFork", layer: "rb", shape: "box", size: [2.7, FKT, 0.36], pos: [RX + R0 - 0.2, 0, RZ], at: Array.from({ length: 5 }, (_, i) => [0, R4(YT0 + 0.5 + i * PITCH), 0]), mat: "ceramic" }, 0, 6);   // 五片分開的陶瓷薄叉
+P({ id: "rbPad", layer: "rb", shape: "box", size: [0.12, 0.01, 0.3], pos: [RX + R0 + 1.0, 0, RZ], at: Array.from({ length: 5 }, (_, i) => [0, R4(YT0 + 0.5 + i * PITCH + FKT / 2 + 0.005), 0]), mat: "rubber" });   // 止滑墊
+P({ id: "rbRootBolt", layer: "rb", shape: "cyl", size: [0.04, 0.04], rot: [0, 90, 0], pos: [RX + R0 - 1.62, 0, RZ], at: [[0, YT0 + 0.5, -0.2], [0, YT0 + 0.5, 0.2], [0, YT0 + 0.82, -0.2], [0, YT0 + 0.82, 0.2]], mat: "steel" });
 const kinRb = {
-  layer: "rb", tip: "ex", size: R0 + 4, grip: [RX + R0, R2(YT0 + 0.5 + 2 * PITCH + 0.01), RZ],
+  layer: "rb", tip: "ex", size: R0 + 4, grip: [RX + R0, R4(YT0 + 0.5 + 2 * PITCH + FKT / 2), RZ],
   joints: [
     { id: "z", type: "slide", axis: [0, 1, 0], parts: ["rbCarr", "rbBracket", "rbBase", "rbSlider", "rbCarrScrew"], min: -0.5, max: 4.5 },
     { id: "th", parent: "z", type: "rot", axis: [0, 1, 0], pivot: [RX, YT0 - 0.2, RZ], parts: ["rbTurret", "rbRail"], min: -200, max: 200 },
-    { id: "ex", parent: "th", type: "slide", axis: [1, 0, 0], parts: ["rbArm", "rbRoot", "rbFork"], min: 0, max: 4 },
+    { id: "ex", parent: "th", type: "slide", axis: [1, 0, 0], parts: ["rbArm", "rbRoot", "rbFork", "rbPad", "rbRootBolt"], min: 0, max: 4 },
   ],
-  body: ["rbCarr", "rbSlider", "rbCarrScrew", "rbBracket", "rbBase", "rbTurret", "rbRail", "rbArm", "rbRoot", "rbFork"],
+  body: ["rbCarr", "rbSlider", "rbCarrScrew", "rbBracket", "rbBase", "rbTurret", "rbRail", "rbArm", "rbRoot", "rbFork", "rbPad", "rbRootBolt"],
   info: { R0, RX, YT0 },
 };
 
@@ -269,6 +281,22 @@ for (let n = 0; n < NF; n++) {
   P({ id: lay, layer: lay, shape: "box", size: [FW, FTH, 2.2], pos: [FL, 0, 0], at: FLY.flatMap((y) => [[0, R2(y + FT / 2 + FTH * (n + 0.5)), 0], [0, R2(y - FT / 2 - FTH * (n + 0.5)), 0]]), mat: "film" });
 }
 
+// ═════ 晶舟中段放大（s7：剖開半邊，看氣體從噴氣管小孔水平穿過晶圓間隙；放大 2.5 倍示意）═════
+const BZ = { x: FL, y: 15, k: 2.5 }, BZN = 7, BZP = R2(PITCH * BZ.k * 2.2), BZR = R2(1.5 * BZ.k);
+const halfDisc = (r, a0 = 180, a1 = 360, n = 28) => Array.from({ length: n + 1 }, (_, i) => pol(a0 + ((a1 - a0) * i) / n, r));
+LAY("bz", [10, 3.2, BZ.x, BZ.y]);
+P({ id: "bzW", layer: "bz", shape: "poly", pts: halfDisc(BZR), size: [1, 1, 0.06], rot: V, pos: [BZ.x, 0, 0], at: Array.from({ length: BZN }, (_, i) => [0, R2(BZ.y - 1.2 + i * BZP), 0]), mat: "wafer" });   // 剖開半邊的晶圓（前半拿掉）
+P({ id: "bzRod", layer: "bz", shape: "cyl", size: [0.4, 3.0], rot: V, pos: [BZ.x, BZ.y - 0.1, 0], at: [[0, 0, -BZR - 0.45]], mat: "rod" });
+P({ id: "bzWall", layer: "bz", shape: "poly", pts: arcPts(BZR + 1.4, BZR + 1.55, 180, 360), size: [1, 1, 3.2], rot: V, pos: [BZ.x, BZ.y - 0.1, 0], mat: "quartz" });   // 內石英管壁（後半）
+P({ id: "bzInj", layer: "bz", shape: "cyl", size: [0.38, 3.2], rot: V, pos: [BZ.x - BZR - 0.7, BZ.y - 0.1, 0], mat: "inj" });
+P({ id: "bzHole", layer: "bz", shape: "sphere", size: [0.09], pos: [BZ.x - BZR - 0.32, 0, 0.05], at: Array.from({ length: BZN - 1 }, (_, i) => [0, R2(BZ.y - 1.2 + (i + 0.5) * BZP), 0]), mat: "dark" });
+P({ id: "bzBase", layer: "bz", shape: "box", size: [10.5, 0.2, 0.2], pos: [BZ.x, BZ.y - 1.7, -BZR - 0.2], mat: "band" });
+actions.bzGas = { type: "flow", layer: "bz", _說明: "放大：淡青氣體從噴氣管每個小孔水平噴出，穿過每兩片晶圓之間的間隙（示意）",
+  path: [[R2(BZ.x - BZR - 0.3), R2(BZ.y - 1.2 + 2.5 * BZP), 0.1], [R2(BZ.x + BZR - 0.2), R2(BZ.y - 1.2 + 2.5 * BZP), 0.1]],
+  n: 5, lanes: BZN - 1, laneGap: BZP, laneDir: [0, 1, 0], size: 0.08, shape: "dot", rate: 0.4, color: "gasC", trail: 3, trailGap: 0.03, trailColor: "gasC", free: true, track: false };
+anchors.bz = { layer: "bz", p: [BZ.x - BZR - 0.7, BZ.y + 1.2, 0.2], dx: -120, dy: -200 };
+anchors.bzGap = { layer: "bz", p: [BZ.x + 1.0, R2(BZ.y - 1.2 + 3.5 * BZP), 0.1], dx: 140, dy: -230 };
+
 // ═════ 塗佈顯影（x＝CX）：機櫃（前觀察窗敞開）＋塗佈杯＋旋轉吸盤＋晶圓＋光阻噴嘴臂；旁邊熱板堆疊 ═════
 const CX = 31, CY = 6.0;
 LAY("coatCab", [6.6, 5.8, CX, CY + 1.2]); LAY("coat", [5.2, 2, CX, CY + 0.2]); LAY("noz", [4.4, 2, CX - 1.6, CY + 2.0]);
@@ -311,9 +339,17 @@ const pcb = (key, layer, cx, cy, z, w, h) => {
   screws(`${key}Stand`, layer, [[-w / 2 + 0.08, h / 2 - 0.08], [w / 2 - 0.08, h / 2 - 0.08], [-w / 2 + 0.08, -h / 2 + 0.08], [w / 2 - 0.08, -h / 2 + 0.08]].map(([x, y]) => [R2(cx + x), R2(cy + y), R2(z + 0.04)]), "z", 0.04);
 };
 // 開門台的控制箱（正面打開，看得到電路板）
-P({ id: "fopBox", layer: "fop", shape: "box", size: [2.4, 2.2, 0.12], pos: [FX + 0.3, 3.9, 1.86], mat: "steel" });
-pcb("fopPcb", "fop", FX + 0.3, 4.0, 1.94, 2.0, 1.5);
-P({ id: "fopDoorOpen", layer: "fop", shape: "box", size: [0.08, 2.2, 1.2], pos: [FX + 1.55, 3.9, 2.5], mat: "panel" });
+const ebox = (key, layer, cx, cy, z0, w, h, d) => {   // 電控箱：背板＋四面框＋打開的門（門鉸在右邊，朝外打開約 100°）
+  P({ id: `${key}Back`, layer, shape: "box", size: [w, h, 0.06], pos: [cx, cy, z0 + 0.03], mat: "steel" });
+  P({ id: `${key}Wall`, layer, shape: "box", size: [0.06, h, d], pos: [0, cy, R2(z0 + d / 2)], at: [[R2(cx - w / 2), 0, 0], [R2(cx + w / 2), 0, 0]], mat: "panel2" });
+  P({ id: `${key}Cap`, layer, shape: "box", size: [w, 0.06, d], pos: [cx, 0, R2(z0 + d / 2)], at: [[0, R2(cy - h / 2), 0], [0, R2(cy + h / 2), 0]], mat: "panel2" });
+  P({ id: `${key}Door`, layer, shape: "box", size: [0.06, h, w], pos: [R2(cx + w / 2 + 0.05), cy, R2(z0 + d + w / 2)], mat: "panel" });
+  P({ id: `${key}DoorH`, layer, shape: "box", size: [0.06, 0.5, 0.08], pos: [R2(cx + w / 2 + 0.1), cy, R2(z0 + d + w - 0.15)], mat: "steel" });
+  P({ id: `${key}Rail`, layer, shape: "box", size: [R2(w - 0.2), 0.08, 0.06], pos: [cx, R2(cy - h / 2 + 0.25), z0 + 0.09], mat: "steel2" });   // DIN 導軌
+  P({ id: `${key}Term`, layer, shape: "box", size: [0.1, 0.22, 0.14], pos: [0, R2(cy - h / 2 + 0.25), z0 + 0.15], at: Array.from({ length: 8 }, (_, i) => [R2(cx - w / 2 + 0.3 + i * 0.16), 0, 0]), mat: "conn" });   // 端子台
+};
+ebox("fopE", "fop", FX + 0.3, 4.1, 1.8, 2.4, 2.4, 0.5);
+pcb("fopPcb", "fop", FX + 0.3, 4.35, 1.9, 2.0, 1.4);
 screws("fopScrew", "fop", [[-1.6, 6.5], [2.2, 6.5], [-1.6, 0.6], [2.2, 0.6]].map(([x, y]) => [R2(FX + x - 0.05), y, 1.84]));
 P({ id: "fopLed", layer: "fop", shape: "box", size: [0.12, 0.12, 0.05], pos: [FX - 1.2, 5.8, 1.83], at: [[0, 0, 0], [0.25, 0, 0]], mat: "ledY" });
 // 手臂立柱：滾珠螺桿、上下軸承座、拖鏈、馬達與接頭
@@ -347,10 +383,11 @@ P({ id: "gasPlate", layer: "gas", shape: "box", size: [0.06, 0.5, 1.6], pos: [GX
 P({ id: "exhClip", layer: "exh", shape: "tube", size: [0.42, 0.33, 0.14], rot: V, pos: [1.3, 0, -6.1], at: [3, 5, 7, 11].map((y) => [0, y, 0]), mat: "dark" });
 P({ id: "exhPumpPlug", layer: "exh", shape: "box", size: [0.4, 0.3, 0.2], pos: [2.3, 1.2, -6.35], mat: "conn" });
 // 控制櫃：電源與控制電路板（門打開）＋接頭線纜
-pcb("ctrlPcb", "ctrl", 15.4, 3.4, -0.72, 2.0, 1.8);
-P({ id: "ctrlPsu", layer: "ctrl", shape: "box", size: [1.0, 0.8, 0.5], pos: [15.4, 1.3, -0.95], mat: "steel2" });
-P({ id: "ctrlPsuVent", layer: "ctrl", shape: "box", size: [0.8, 0.04, 0.02], pos: [15.4, 0, -0.69], at: Array.from({ length: 5 }, (_, i) => [0, R2(1.05 + i * 0.12), 0]), mat: "dark" });
-P({ id: "ctrlCable", layer: "ctrl", shape: "box", size: [0.12, 1.6, 0.12], pos: [14.8, 1.9, -0.75], at: [[0, 0, 0], [0.25, 0, 0]], mat: "rubber" });
+ebox("ctrlE", "ctrl", 15.4, 3.0, -0.8, 2.4, 3.0, 0.5);
+pcb("ctrlPcb", "ctrl", 15.4, 3.6, -0.7, 2.0, 1.6);
+P({ id: "ctrlPsu", layer: "ctrl", shape: "box", size: [1.0, 0.7, 0.4], pos: [15.0, 2.1, -0.55], mat: "steel2" });
+P({ id: "ctrlPsuVent", layer: "ctrl", shape: "box", size: [0.8, 0.04, 0.02], pos: [15.0, 0, -0.34], at: Array.from({ length: 4 }, (_, i) => [0, R2(1.9 + i * 0.12), 0]), mat: "dark" });
+P({ id: "ctrlCable", layer: "ctrl", shape: "box", size: [0.1, 0.9, 0.1], pos: [15.9, 2.3, -0.45], at: [[0, 0, 0], [0.2, 0, 0]], mat: "rubber" });
 // 上半部機殼：觀察窗框、銘板螺絲、散熱格柵
 P({ id: "upWin", layer: "upper", shape: "box", size: [3.0, 4.0, 0.08], pos: [-0.2, 20.5, 5.8], mat: "win" });
 P({ id: "upWinFrame", layer: "upper", shape: "box", size: [3.2, 0.16, 0.12], pos: [-0.2, 0, 5.84], at: [[0, 18.5, 0], [0, 22.5, 0]], mat: "band" });
@@ -359,8 +396,7 @@ screws("upScrew", "upper", [-6.9, -2.2, 3.0, 8.2, 13.3].flatMap((x) => [[x, UY0 
 screws("coatCupScrew", "coat", ring(8, 2.3, 22.5, CY + 0.19).map(([x, y, z]) => [R2(CX + x), y, z]), "y", 0.05);
 P({ id: "nozBear", layer: "noz", shape: "cyl", size: [0.32, 0.3], rot: V, pos: [CX - 3.2, CY + 2.2, -2.2], mat: "dark" });
 P({ id: "nozClip", layer: "noz", shape: "box", size: [0.12, 0.14, 0.12], pos: [CX - 1.6, CY + 2.42, 0.15], at: [[-1.0, 0, 0], [0, 0, 0], [1.0, 0, 0]], mat: "dark" });
-P({ id: "coatPcbBox", layer: "coatCab", shape: "box", size: [1.8, 1.4, 0.1], pos: [CX + 1.8, CY - 2.2, 3.14], mat: "steel" });
-pcb("coatPcb", "coatCab", CX + 1.8, CY - 2.15, 3.2, 1.5, 1.0);
+P({ id: "coatVent", layer: "coatCab", shape: "box", size: [1.6, 0.06, 0.04], pos: [CX + 1.8, 0, 3.22], at: Array.from({ length: 5 }, (_, i) => [0, R2(CY - 2.6 + i * 0.18), 0]), mat: "seam" });   // 台面散熱格柵（電路板在台面裡面）
 
 // ═════ 動作 ═════
 const lpt = (layer, p) => ({ layer, p });
@@ -380,8 +416,8 @@ actions.gasFeed = { type: "flow", _說明: "製程氣體從歧管進氣口進來
   path: [lpt("mani", [-5.4, DECK - 0.1, INJ[1]]), lpt("mani", [INJ[0], DECK - 0.1, INJ[1]]), lpt("itube", [INJ[0], IT.y1 - 1.2, INJ[1]])],
   n: 6, size: 0.12, shape: "dot", rate: 0.4, color: "gasC", trail: 2, trailGap: 0.03, trailColor: "gasC", track: false };
 actions.gasCross = { type: "flow", layer: "itube", _說明: "氣體從噴氣管的小孔橫向噴出，掃過每一片晶圓之間（一層一條，示意）",
-  path: [[R2(INJ[0] + 0.15), R2(HOLE0 + 7.5 * 0.6), R2(INJ[1] - 0.1)], [R2(-INJ[0] - 0.1), R2(HOLE0 + 7.5 * 0.6), R2(-INJ[1] + 0.05)]],
-  n: 4, lanes: 16, laneGap: 0.6, laneDir: [0, 1, 0], size: 0.08, shape: "dot", rate: 0.45, color: "gasC", free: true, track: false };
+  path: [[R2(INJ[0] + 0.15), R2(HOLE0 + 7 * HOLEP), R2(INJ[1] - 0.1)], [R2(-INJ[0] - 0.1), R2(HOLE0 + 7 * HOLEP), R2(-INJ[1] + 0.05)]],
+  n: 4, lanes: 15, laneGap: HOLEP, laneDir: [0, 1, 0], size: 0.08, shape: "dot", rate: 0.45, color: "gasC", free: true, track: false };
 actions.gasUp = { type: "flow", layer: "itube", _說明: "內管裡的氣體往上走到內管頂端", path: [[1.85, PY0 + 0.2, 0.6], [1.85, IT.y1 - 0.2, 0.6], [1.85, IT.y1 + 0.35, 0.6], [2.38, IT.y1 + 0.35, 0.6]],
   n: 5, lanes: 3, laneGap: 0.6, laneDir: [0, 0, 1], size: 0.09, shape: "dot", rate: 0.35, color: "gasC", free: true, track: false };
 actions.gasDown = { type: "flow", layer: "itube", _說明: "越過內管頂端，從內外管之間的夾縫往下流到歧管排氣口（反應後的氣體偏紫灰，示意）",
@@ -412,9 +448,9 @@ const A = (layer, p, dx, dy) => ({ layer, p, dx, dy });
 Object.assign(anchors, {
   sign: A("sign", [-5.0, DECK + 0.95, 5.9], -140, 120), upper: A("upper", [8, 22, 5.8], 140, -120), heat: A("heatL", [-HR1, HC + 3, 1.2], -150, -100), otube: A("otube", [OT.r, OT.y1 - 2, 0.6], 150, -100),
   itube: A("itube", [IT.r, IT.y1 - 3, 0.6], 150, -60), boat: A("boat", [1.6, 8, 0.6], 150, -40), cap: A("cap", [2.6, 1.4, 1.6], 150, 60),
-  fork: A("foup", [FX - 0.4, fslot(22), 1.3], -150, -200), foup: A("foup", [FX, FY + 3.2, 1.6], 120, -130), elev: A("elevCol", [-5.4, 4, -3.2], -150, -60),
+  fork: A("rb", [RX + R0 + 0.6, R2(YT0 + 0.6), 0.2], 120, -220), foup: A("foup", [FX, FY + 3.2, 1.6], 120, -130), elev: A("elevCol", [-5.4, 4, -3.2], -150, -60),
   shut: A("shut", [3.0, DECK - 0.5, 2.8], 150, 90), zone: A("heatL", [R2(pol(215, HR0 - 0.1)[0]), zoneY(3), R2(pol(215, HR0 - 0.1)[1])], -150, -80), otubeHot: A("otube", [R2(pol(200, OT.r)[0]), 20.5, R2(pol(200, OT.r)[1])], -150, 60), waferHot: A("boat", [1.2, 8.4, 0.8], 160, 60),
-  inj: A("itube", [INJ[0], 20.5, INJ[1]], -120, -260), exh: A("exh", [1.3, 6, -5.9], 150, 40), gasBox: A("gas", [GX + 1.3, 9, 0.5], -120, -120),
+  inj: A("itube", [INJ[0], 20.5, INJ[1]], -120, -260), exh: A("mani", [1.3, DECK - 0.1, -4.6], 150, -140), gasBox: A("gas", [GX + 1.3, 9, 0.5], -120, -120),
   film: A("fl3", [FL + 3, FLY[2] + 0.6, 1.1], 150, -110), coat: A("coat", [CX + 2.0, CY + 0.2, 1.0], 190, -230), noz: A("noz", [CX, CY + 1.9, 0.2], 140, -120),
   coatSign: A("coatCab", [CX - 1.4, CY - 2.2, 3.26], -140, 60), tower: A("ctrl", [15.4, 14.5, -1.2], 140, -80),
 });
@@ -430,9 +466,9 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 }, // 斜角由各鏡頭的 yaw 給（爐管 −0.35；塗佈區、放大台正對 0，遠離原點的區才不會因為深度偏移跑出畫面）,
   camera: { stand: { d: 110, elev: 18, y: 12 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { HOLE0, DECK, HY0, HY1, LIFT, BY0, PITCH, GAP, FX, FY, YW20, YT0, R0, RX, FL, FLY, CX, CY, NF, ZONES, slotGap0: slotY(GAP[0]), fslot20: fslot(20) },
+  info: { HOLE0, FG, DECK, HY0, HY1, LIFT, BY0, PITCH, GAP, FX, FY, YW20, YT0, R0, RX, FL, FLY, CX, CY, NF, ZONES, slotGap0: slotY(GAP[0]), fslot20: fslot(20) },
 };
-const FREE = /^(heatIn|gasCross|gasUp|gasDown|filmGas|drop|fling|lae)/;
+const FREE = /^(bzGas|heatIn|gasCross|gasUp|gasDown|filmGas|drop|fling|lae)/;
 for (const [k, d] of Object.entries(actions)) if (d.type === "flow" && d.path?.[0]?.p) { d.layer = d.path[0].layer; d.path = d.path.map((q) => q.p); if (FREE.test(k)) d.free = true; }
 const out = path.join(path.dirname(new URL(import.meta.url).pathname), "model.json");
 fs.writeFileSync(out, JSON.stringify(model, null, 1) + "\n");
