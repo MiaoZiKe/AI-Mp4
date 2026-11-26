@@ -1,6 +1,6 @@
 #!/bin/bash
 # 科技片「音高關卡」配音（2026/11/24 Andy 聽出矽晶圓與光罩的旁白音色差很多）：
-#   整篇配音一次 → 量原始錄音音高中位數（voice-measure.py 的 f0Median）→ 落在 112–126 Hz 才收下；
+#   整篇配音一次 → 量原始錄音音高中位數（voice-measure.py 的 f0Median）→ 落在 120–135 Hz 才收下；
 #   不合格就把這版存成 out/<slug>-take-reject-N.wav 再重配，最多共 3 次 TTS 請求；
 #   3 次都不合格 → 選最接近基準 121.5 Hz 的那版，輸出標 ⚠️。
 # 收下（或選中）的原始錄音複製到 out/<slug>-take.orig.wav，接著用 make-tech.sh --take=out/<slug>-take.orig.wav。
@@ -15,7 +15,7 @@ SLUG=${1:-}; shift || true
 MAX=3
 for a in "$@"; do case $a in --max=*) MAX=${a#*=};; *) echo "不認得的參數：$a"; exit 2;; esac; done
 cd "$(dirname "$0")/../.."
-LO=112; HI=126; BASE=121.5
+LO=120; HI=135; BASE=127.5   # 2026-11-26 Andy：「131 這音頻OK 以後可以120～135 Hz」
 V=videos/$SLUG; [ -f $V/script.json ] || { echo "找不到 $V/script.json"; exit 2; }
 PJ=$V/tts-pitch.json
 python3 scripts/three/tts-budget.py || true   # 11-25：配音前先印額度剩幾次
@@ -29,7 +29,7 @@ record() { # n f0 sec accepted file note
   python3 - "$PJ" "$@" <<'PY'
 import json,os,sys,datetime
 p,n,f0,sec,acc,file,note=sys.argv[1:8]
-d=json.load(open(p)) if os.path.exists(p) else {"rule":"f0Median 112–126 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求","runs":[]}
+d=json.load(open(p)) if os.path.exists(p) else {"rule":"f0Median 120–135 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求","runs":[]}
 if n=="1" or not d["runs"] or d["runs"][-1].get("closed"): d["runs"].append({"startedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"attempts":[]})
 r=d["runs"][-1]
 r["attempts"].append({"n":int(n),"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"f0Median":float(f0) if f0 else None,"sec":float(sec) if sec else None,"accepted":acc=="1","file":file,"note":note})
