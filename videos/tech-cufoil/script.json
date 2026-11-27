@@ -209,28 +209,28 @@
       "at": "s2:voice+2",
       "until": "s2:grow+10",
       "dur": 14,
-      "dy": 2.6
+      "dy": 3.6
      },
      {
       "layer": "eCuArc",
       "at": "s2:voice+2",
       "until": "s2:grow+10",
       "dur": 14,
-      "dy": 2.6
+      "dy": 3.6
      },
      {
       "layer": "eFrame",
       "at": "s2:voice+2",
       "until": "s2:grow+10",
       "dur": 14,
-      "dy": 2.6
+      "dy": 3.6
      },
      {
       "layer": "eRect",
       "at": "s2:voice+2",
       "until": "s2:grow+10",
       "dur": 14,
-      "dx": -2.6
+      "dx": -2.4
      },
      {
       "layer": "eFoil",
@@ -238,6 +238,13 @@
       "until": "s2:grow+10",
       "dur": 14,
       "dx": 3.0
+     },
+     {
+      "layer": "eTankF",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dz": 2.6
      },
      {
       "layer": "fNod",
@@ -248,13 +255,6 @@
      },
      {
       "layer": "fDrum",
-      "at": "s1:start-40",
-      "until": "s11:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "rFrame",
       "at": "s1:start-40",
       "until": "s11:start+400",
       "opacity": 0,
@@ -305,21 +305,49 @@
       "at": "s8:flat",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 8
+      "dur": 6
+     },
+     {
+      "layer": "xMid0",
+      "at": "s1:start-40",
+      "until": "s8:flat",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "xMid0",
+      "at": "s8:flat+6",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "xMid1",
+      "at": "s1:start-40",
+      "until": "s8:flat+6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "xMid1",
+      "at": "s8:flat+12",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "xFlat",
       "at": "s1:start-40",
-      "until": "s8:flat",
+      "until": "s8:flat+12",
       "opacity": 0,
-      "dur": 8
+      "dur": 6
      },
      {
       "layer": "xFlat",
       "at": "s8:lowdk",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 8
+      "dur": 6
      },
      {
       "layer": "xFlatLD",
@@ -544,6 +572,14 @@
      {
       "at": "voice-4",
       "dur": 1,
+      "x": 33.6,
+      "y": 2.6,
+      "d": 62,
+      "elev": 12
+     },
+     {
+      "at": "grow+8",
+      "dur": 22,
       "x": 33.4,
       "y": 1.4,
       "d": 48,
@@ -608,7 +644,11 @@
       "color": "blue",
       "at": "voice+4",
       "until": "voice+16",
-      "cut": true
+      "cut": true,
+      "xy": [
+       660,
+       300
+      ]
      },
      {
       "part": "eDrum",
@@ -879,9 +919,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 104.0,
-      "y": 4.3,
-      "d": 13,
-      "elev": 8
+      "y": 4.0,
+      "d": 19,
+      "elev": 6
      }
     ],
     "run": [
@@ -988,8 +1028,8 @@
       "at": "low-6",
       "dur": 24,
       "x": 104.0,
-      "y": 2.9,
-      "d": 19,
+      "y": 2.3,
+      "d": 22,
       "elev": 8
      }
     ],
@@ -1165,6 +1205,12 @@
       "until": "s7:start"
      },
      {
+      "id": "gYarnRun",
+      "at": "twist-6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
       "id": "gShedA",
       "at": "weave-6",
       "ramp": 8,
@@ -1205,10 +1251,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 150.0,
-      "y": 1.0,
-      "d": 46,
-      "elev": 12
+      "x": 146.0,
+      "y": 4.4,
+      "d": 36,
+      "elev": 14
+     },
+     {
+      "at": "weave-10",
+      "dur": 22,
+      "x": 153.0,
+      "y": 3.8,
+      "d": 30,
+      "elev": 24
      }
     ],
     "labels": [
@@ -1227,7 +1281,7 @@
       "en": "Twisting",
       "color": "blue",
       "at": "twist",
-      "until": "twist+45",
+      "until": "weave-2",
       "cut": true
      },
      {
@@ -1237,7 +1291,11 @@
       "color": "amber",
       "at": "weave",
       "until": "weave+45",
-      "cut": true
+      "cut": true,
+      "xy": [
+       540,
+       262
+      ]
      }
     ],
     "overlay": [
@@ -1636,9 +1694,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 268.0,
-      "y": 0.5,
-      "d": 44,
-      "elev": 12
+      "y": 1.2,
+      "d": 47,
+      "elev": 26
      }
     ],
     "run": [
@@ -1735,10 +1793,10 @@
      {
       "at": "voice+2",
       "dur": 1,
-      "x": 306.4,
-      "y": -0.2,
-      "d": 46,
-      "elev": 18
+      "x": 307.6,
+      "y": 2.2,
+      "d": 54,
+      "elev": 30
      }
     ],
     "run": [
@@ -1772,7 +1830,11 @@
       "color": "blue",
       "at": "stack-4",
       "until": "stack+41",
-      "cut": true
+      "cut": true,
+      "xy": [
+       540,
+       270
+      ]
      }
     ],
     "overlay": [
