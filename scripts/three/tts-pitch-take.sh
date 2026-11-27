@@ -15,7 +15,7 @@ SLUG=${1:-}; shift || true
 MAX=3
 for a in "$@"; do case $a in --max=*) MAX=${a#*=};; *) echo "不認得的參數：$a"; exit 2;; esac; done
 cd "$(dirname "$0")/../.."
-LO=112; HI=126; BASE=118; IQRMIN=38   # 2026-11-27 晚 Andy：「封裝材料這音高 OK（117.6 Hz、起伏 38.8），反而 129 以後太高」
+LO=115; HI=135; BASE=125; IQRMIN=38   # 2026-11-27 晚 Andy：「音高控制 115~135 先這樣」（封裝材料 117.6 Hz／起伏 38.8 OK）
 V=videos/$SLUG; [ -f $V/script.json ] || { echo "找不到 $V/script.json"; exit 2; }
 PJ=$V/tts-pitch.json
 python3 scripts/three/tts-budget.py || true   # 11-25：配音前先印額度剩幾次

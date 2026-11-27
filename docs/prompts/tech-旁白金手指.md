@@ -29,7 +29,7 @@ Andy 11-27 原話：說明句＋「Pace : Rapid Fire、Accent : American (Gen)�
 | Director's note | Style 不選；**Pace＝Rapid Fire**；**Accent＝American (Gen)** |
 | Scene／Sample Context | 留空 |
 | API 配音 | API 沒有 Pace／Accent 欄位；要用 API 配之前，先拿 Andy 的「Get code」內容，照網站組提示詞的格式寫進 tts-take.mjs，比對過音高語速一致才准用 |
-| 音高 | **f0 中位數基準 118 Hz，允許 112–126；IQR ≥38**（11-27 晚 Andy：「封裝材料這音高 OK，反而 129 以後太高」，封裝材料實測 117.6 Hz／38.8）；不准移調 |
+| 音高 | **f0 中位數 115–135 Hz（基準 125）；IQR ≥38**（11-27 晚 Andy：「音高控制 115~135 先這樣」；封裝材料 117.6 Hz／38.8 他說 OK）；不准移調 |
 | 語速 | 目標兩奈米含停頓 4.71 字／秒；不足才整篇 atempo（上限 1.12），不剪停頓 |
 | 每支交件 | 附音高中位數、IQR、含停頓字／秒 vs 兩奈米 |
 
