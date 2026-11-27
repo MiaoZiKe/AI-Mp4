@@ -198,3 +198,9 @@
 28. Ibiden：https://en.wikipedia.org/wiki/Ibiden ；https://the-shashi.com/en/tse/4062/ ；https://taipeitimes.com/News/biz/archives/2024/12/31/2003829378 ；https://business-standard.com/technology/tech-news/nvidia-supplier-ibiden-weighs-faster-expansion-to-meet-ai-demand-says-ceo-124123000069_1.html ；https://3dnews.ru/1116101/
 29. 新光電氣：東證 https://www.jpx.co.jp/news/1023/20250520-11.html ；公司公告 https://www2.jpx.co.jp/disc/69670/140120250605582118.pdf ；DNP https://www.global.dnp/en/news/detail/2025/03/0319_20176512/ ；Digitimes https://apps.digitimes.com/news/a20250321PD206.html ；j-lic https://j-lic.com/companies/6967
 30. 上一集查證：videos/tech-abf/research.md
+
+## 補充（製作人 2026/11/27，物理初審 r0 必改 12）
+| 內容 | 來源 | 信心 |
+|---|---|---|
+| BT 載板是較便宜、量大的主流選擇，常見於記憶體（DRAM、NAND）、手機用 FC-CSP 封裝與多數消費性電子；ABF 用在佈線密度最要緊的高階處理器、GPU、AI 加速器（→ 念稿「不是每顆晶片都用得起這麼貴的載板」、下一集 BT 載板）；價格無公開單價，片中不標數字 | IEEE EPS「Next Generation Advanced Substrate Technologies for Heterogeneous Integration」（eps.ieee.org/wp-content/uploads/2026/08/…Substrates-ET.pdf）；Digitimes 2024/3/20（apps.digitimes.com/news/a20240320PD221.html）；bestpcbs BT substrate 說明 | 中高（定性，兩源以上一致；無單價） |
+| s8 念稿改為「板子越大、層數越多，受熱越容易翹」：尺寸變大、層數變多，各層材料熱膨脹不一致，翹曲越明顯（原稿「越厚」無來源且物理上相反，已刪） | 本檔 §2-4（iNEMI 大尺寸載板專題、ECTC 2023、Tom's Hardware 2026） | 中高 |

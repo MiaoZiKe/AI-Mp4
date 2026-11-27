@@ -205,7 +205,7 @@ const Warp: React.FC<P> = ({ o, f, k }) => {
 // ── abs-co：台灣欣興、南電、景碩；日本揖斐電；新光電氣 2025/6/6 已下市 ──
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 392, uni = on(f, T(o, "uni")), nya = on(f, T(o, "nya")), kin = on(f, T(o, "kin")), jp = on(f, T(o, "jp"));
-  const rows: [string, string, string, number][] = [["TW", "欣興 3037", "ABF 載板大廠", uni], ["TW", "南電 8046", "台塑集團", nya], ["TW", "景碩 3189", "和碩集團轉投資", kin], ["JP", "揖斐電 4062", "日本大廠；新光電氣 2025/6 已下市", jp]];
+  const rows: [string, string, string, number][] = [["TW", "欣興 3037", "ABF 載板大廠", uni], ["TW", "南電 8046", "ABF、BT 載板（台塑集團）", nya], ["TW", "景碩 3189", "ABF、BT 載板（和碩集團）", kin], ["JP", "揖斐電 4062", "日本大廠；新光電氣 2025/6 已下市", jp]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>

@@ -82,8 +82,9 @@ const PIPE = (id, layer, pts, r, mat, o = {}) => {
 const idsOf = (layer) => parts.filter((q) => q.layer === layer).map((q) => q.id);
 const chord = (r, z) => 2 * Math.sqrt(Math.max(0, r * r - z * z));
 
-Object.assign(palette, { pcbC: "#2F6B4A", pcbTraceC: "#C9A24A", coreC: "#E8D9B0", fiberC: "#CDBB88", abfC: "#9CCFB0", srC: "#2E5A44", resinC: "#E9C46A", cuBrightC: "#D9894A", hotC2: "#F28A3C" });
+Object.assign(palette, { subTopC: "#3E5C8A", pcbC: "#2F6B4A", pcbTraceC: "#C9A24A", coreC: "#E8D9B0", fiberC: "#CDBB88", abfC: "#9CCFB0", srC: "#2E5A44", resinC: "#E9C46A", cuBrightC: "#D9894A", hotC2: "#F28A3C" });
 Object.assign(materials, {
+  subTop: M("std", "subTopC", { rough: 0.45, metal: 0.05, env: 0.3 }), badSolid: M("std", "badC", { emissive: "badC", ei: 0.6, rough: 0.5, metal: 0 }), hotSolid: M("std", "hotC2", { emissive: "hotC2", ei: 0.35, rough: 0.6, metal: 0 }), voidM: M("std", "kerfC", { rough: 1, metal: 0 }),
   pcb: M("std", "pcbC", { rough: 0.6, metal: 0.1, tex: "traces", texScale: 3 }), pcbTrace: M("std", "pcbTraceC", { rough: 0.3, metal: 0.9, env: 0.7 }),
   core: M("std", "coreC", { rough: 0.8, metal: 0, env: 0.15 }), fiber: M("std", "fiberC", { rough: 0.9, metal: 0 }),
   abf: M("phys", "abfC", { rough: 0.35, metal: 0, clearcoat: 0.6, opacity: 0.82, env: 0.4 }), sr: M("std", "srC", { rough: 0.5, metal: 0.05, env: 0.3 }),
@@ -109,55 +110,76 @@ P({ id: "mbHole", layer: "mb", shape: "cyl", size: [0.35, 0.02], rot: V, pos: [0
 LAY("balls", [10, 0.4, 0, MBY + BR0]);
 P({ id: "ballS", layer: "balls", shape: "sphere", size: [BR0], pos: [0, R2(MBY + BR0), 0], at: GXZ(12, 12, 0.8, 0.8), mat: "bump" });
 LAY("sub", [10, SBH, 0, (SBY0 + SBY1) / 2]);
-{ const ys = [0, 0.05, 0.11, 0.16, 0.22, 0.34, 0.4, 0.45, 0.51, SBH]; const mats = ["sr", "abf", "copper", "abf", "core", "abf", "copper", "abf", "sr"];
+{ const ys = [0, 0.05, 0.11, 0.16, 0.22, 0.34, 0.4, 0.45, 0.51, SBH]; const mats = ["subTop", "abf", "copper", "abf", "core", "abf", "copper", "abf", "subTop"];
   for (let k = 0; k < mats.length; k++) BOX(`sbL${k}`, "sub", -SBW / 2, SBW / 2, R2(SBY0 + ys[k]), R2(SBY0 + ys[k + 1]), -SBW / 2, SBW / 2, mats[k]); }
 P({ id: "sbPadT", layer: "sub", shape: "cyl", size: [0.07, 0.02], rot: V, pos: [0, R2(SBY1 + 0.01), 0], at: GXZ(18, 14, 0.25, 0.25), mat: "gold" });
 BOX("sbMark", "sub", -4.8, -4.2, SBY1, SBY1 + 0.02, 4.2, 4.8, "white");
 LAY("chip", [8, 1.2, 0, CHY0 + 0.5]);
-P({ id: "chBump", layer: "chip", shape: "sphere", size: [0.06], pos: [0, R2(CHY0 - 0.07), 0], at: GXZ(18, 14, 0.25, 0.25), mat: "bump" });
+LAY("bumps", [5, 0.2, 0, CHY0 - 0.07]); P({ id: "chBump", layer: "bumps", shape: "sphere", size: [0.06], pos: [0, R2(CHY0 - 0.07), 0], at: GXZ(18, 14, 0.25, 0.25), mat: "bump" });
+P({ id: "hbBump", layer: "bumps", shape: "sphere", size: [0.05], pos: [0, R2(CHY0 - 0.07), 0], at: [-3.3, 3.3].flatMap((x) => [-1.3, 1.3].flatMap((z) => GXZ(4, 5, 0.2, 0.2).map(([a, , c]) => [R2(x + a), 0, R2(z + c)]))), mat: "bump" });
 BOX("chUnderfill", "chip", -2.5, 2.5, SBY1, CHY0, -2.0, 2.0, "liner");
 BOX("chDie", "chip", -2.4, 2.4, CHY0, CHY0 + CHH, -1.9, 1.9, "siTop"); BOX("chDieEdge", "chip", -2.45, 2.45, CHY0, CHY0 + 0.06, -1.95, 1.95, "si");
 P({ id: "chHbm", layer: "chip", shape: "box", size: [0.9, 0.55, 1.1], pos: [0, R2(CHY0 + 0.275), 0], at: [[-3.3, 0, -1.3], [-3.3, 0, 1.3], [3.3, 0, -1.3], [3.3, 0, 1.3]], mat: "si" });
 P({ id: "chHbmLine", layer: "chip", shape: "box", size: [0.92, 0.02, 1.12], pos: [0, CHY0, 0], at: [-3.3, 3.3].flatMap((x) => [-1.3, 1.3].flatMap((z) => [0.12, 0.24, 0.36, 0.48].map((y) => [x, y, z]))), mat: "dark" });
 LAY("chipGlow", [5, 0.4, 0, CHY0 + CHH]); BOX("chGlow", "chipGlow", -2.2, 2.2, CHY0 + CHH, CHY0 + CHH + 0.02, -1.7, 1.7, "okGlow");
 
-// ═════ 站 B：剖面（x 60）：核心板（玻纖＋樹脂＋兩面銅箔）、鑽孔、孔壁鍍銅、塞孔、兩面增層（膜、雷射盲孔、填孔銅、線路） ═════
-const BX = 60, BW = 22, BD = 3.2, BC0 = 4.0, BC1 = 6.0, BF = 0.16, BL = 0.62, BN = 3, HOX = BX, HR = 0.55;
-LAY("bBase", [26, 3.6, BX, 1.6]); BOX("bStand", "bBase", BX - 12, BX + 12, 0, 1.4, -BD / 2 - 0.6, BD / 2 + 0.6, "steel2");
-P({ id: "bPost", layer: "bBase", shape: "box", size: [0.6, BC0 - 2 * BF - BN * BL - 1.4 + 0.02, 0.6], pos: [BX, R2((1.4 + BC0 - BF - BN * BL) / 2), 0], at: [[-10, 0, 0], [10, 0, 0]], mat: "dark" });
+// ═════ 站 B：剖面（x 60；半剖：前切面 z＝0 正好切過貫通孔與盲孔）：核心板（玻纖＋樹脂＋兩面銅箔）、鑽孔、孔壁鍍銅（由薄到厚）、樹脂由孔口往下灌、刮平；兩面增層：壓膜→雷射打盲孔（孔底停在下一層銅墊）→銅填滿→下一層，疊孔對準 ═════
+const BX = 60, BW = 22, BD = 3.2, BZ0 = -BD, BZ1 = 0, BC0 = 4.0, BC1 = 6.0, BF = 0.16, BL = 0.62, BN = 3, HOX = BX, HR = 0.55, WT0 = 0.04, WT1 = 0.13;
+LAY("bBase", [26, 1, BX, 0.4]); BOX("bFoot", "bBase", BX - 12, BX + 12, 0, 0.3, BZ0 - 0.6, BZ1 + 0.6, "steel2");
+P({ id: "bPost", layer: "bBase", shape: "box", size: [0.7, R2(BC0 - BF - BN * BL - 0.3), 0.7], pos: [BX, R2((0.3 + BC0 - BF - BN * BL) / 2), R2(BZ0 / 2)], at: [[-10.4, 0, 0], [10.4, 0, 0]], mat: "dark" });
+const ZB = (id, layer, x0, x1, y0, y1, mat) => BOX(id, layer, x0, x1, y0, y1, BZ0, BZ1, mat);
+const fiberStripes = (pre, layer, x0, x1) => { for (let k = 0; k < 5; k++) { const y = R2(BC0 + 0.25 + k * 0.38); BOX(`${pre}${k}`, layer, x0, x1, y, y + 0.12, BZ1, BZ1 + 0.02, "fiber"); } };
 LAY("bCore", [BW, 2, BX, 5]);
-BOX("bCoreL", "bCore", BX - BW / 2, HOX - HR, BC0, BC1, -BD / 2, BD / 2, "core"); BOX("bCoreR", "bCore", HOX + HR, BX + BW / 2, BC0, BC1, -BD / 2, BD / 2, "core");
-for (let k = 0; k < 5; k++) { const y = R2(BC0 + 0.25 + k * 0.38);
-  BOX(`bFibL${k}`, "bCore", BX - BW / 2, HOX - HR, y, y + 0.12, BD / 2, BD / 2 + 0.02, "fiber"); BOX(`bFibR${k}`, "bCore", HOX + HR, BX + BW / 2, y, y + 0.12, BD / 2, BD / 2 + 0.02, "fiber");
-  P({ id: `bFibDot${k}`, layer: "bCore", shape: "cyl", size: [0.08, 0.03], pos: [BX, R2(y + (k % 2 ? 0.25 : 0.06) + 0.02), R2(BD / 2 + 0.015)], at: Array.from({ length: 26 }, (_, i) => [R2(-10.6 + i * 0.84), 0, 0]).filter(([x]) => Math.abs(x) > 0.8), mat: "fiber" }); }
-BOX("bCuTL", "bCore", BX - BW / 2, HOX - HR, BC1, BC1 + BF, -BD / 2, BD / 2, "copper"); BOX("bCuTR", "bCore", HOX + HR, BX + BW / 2, BC1, BC1 + BF, -BD / 2, BD / 2, "copper");
-BOX("bCuBL", "bCore", BX - BW / 2, HOX - HR, BC0 - BF, BC0, -BD / 2, BD / 2, "copper"); BOX("bCuBR", "bCore", HOX + HR, BX + BW / 2, BC0 - BF, BC0, -BD / 2, BD / 2, "copper");
-LAY("bPlug0", [2, 2, HOX, 5]); BOX("bCoreFill", "bPlug0", HOX - HR, HOX + HR, BC0 - BF, BC1 + BF, -BD / 2, BD / 2, "core");     // 鑽孔前：孔的位置還是實心板
-LAY("bHoleWall", [2, 2, HOX, 5]); P({ id: "bWall", layer: "bHoleWall", shape: "tube", size: [HR, HR - 0.14, R2(BC1 - BC0 + 2 * BF)], rot: V, pos: [HOX, R2((BC0 + BC1) / 2), 0], mat: "cuBright" });
-LAY("bResin", [2, 2, HOX, 5]); VC("bResinC", "bResin", HR - 0.14, BC0 - BF, BC1 + BF, "resin", { x: HOX });
-LAY("bCap", [2, 0.2, HOX, BC1 + BF]); BOX("bCapT", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC1 + BF, BC1 + BF + 0.08, -BD / 2, BD / 2, "copper"); BOX("bCapB", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC0 - BF - 0.08, BC0 - BF, -BD / 2, BD / 2, "copper");
-// 鑽針（主軸＋夾頭＋螺旋槽鑽頭）
-const DRY = 7.0;
-LAY("bDrill", [2, 8, HOX, 11]);
-VC("bdBit", "bDrill", 0.48, DRY, DRY + 2.8, "steel2", { x: HOX }); P({ id: "bdFlute", layer: "bDrill", shape: "box", size: [0.98, 0.1, 0.12], pos: [HOX, DRY + 0.3, 0], at: Array.from({ length: 6 }, (_, i) => [0, i * 0.42, 0]), mat: "dark" });
-VC("bdTip", "bDrill", 0.2, DRY - 0.25, DRY, "steel", { x: HOX }); VC("bdChuck", "bDrill", 0.9, DRY + 2.8, DRY + 3.6, "dark", { x: HOX }); VC("bdSpindle", "bDrill", 1.3, DRY + 3.6, DRY + 5.2, "panel2", { x: HOX });
-BOX("bdMark", "bDrill", HOX - 0.06, HOX + 0.06, DRY + 3.7, DRY + 5.1, 1.3, 1.34, "mark");
-// 增層：上下對稱各 BN 層（每層：膜、膜上的線路銅、往下一層的盲孔銅）
-const VIA = [[HOX, 0], [HOX + 3.6, 1], [HOX - 4.2, 2]];         // 盲孔 x 位置（第 0 組疊在貫通孔正上方＝疊孔）
+ZB("bCoreL", "bCore", BX - BW / 2, HOX - HR, BC0, BC1, "core"); ZB("bCoreR", "bCore", HOX + HR, BX + BW / 2, BC0, BC1, "core");
+fiberStripes("bFibL", "bCore", BX - BW / 2, HOX - HR); fiberStripes("bFibR", "bCore", HOX + HR, BX + BW / 2);
+ZB("bCuTL", "bCore", BX - BW / 2, HOX - HR, BC1, BC1 + BF, "copper"); ZB("bCuTR", "bCore", HOX + HR, BX + BW / 2, BC1, BC1 + BF, "copper");
+ZB("bCuBL", "bCore", BX - BW / 2, HOX - HR, BC0 - BF, BC0, "copper"); ZB("bCuBR", "bCore", HOX + HR, BX + BW / 2, BC0 - BF, BC0, "copper");
+// 鑽孔前：孔的位置跟旁邊一樣是實心板（同材質、同玻纖紋、同銅箔）
+LAY("bPlug0", [2, 2, HOX, 5]); ZB("bP0Core", "bPlug0", HOX - HR, HOX + HR, BC0, BC1, "core"); fiberStripes("bP0Fib", "bPlug0", HOX - HR, HOX + HR);
+ZB("bP0CuT", "bPlug0", HOX - HR, HOX + HR, BC1, BC1 + BF, "copper"); ZB("bP0CuB", "bPlug0", HOX - HR, HOX + HR, BC0 - BF, BC0, "copper");
+// 鑽完：孔裡是空的（深色＝孔的背面）
+LAY("bHole", [2, 2, HOX, 5]); BOX("bHoleBack", "bHole", HOX - HR, HOX + HR, BC0 - BF, BC1 + BF, BZ0, BZ0 + 0.05, "voidM");
+// 孔壁鍍銅：先一層薄的、再加厚（剖面上是左右兩條銅壁）
+LAY("bWall0", [2, 2, HOX, 5]); for (const sx of [-1, 1]) ZB(`bW0${sx > 0 ? "R" : "L"}`, "bWall0", R2(sx > 0 ? HOX + HR - WT0 : HOX - HR), R2(sx > 0 ? HOX + HR : HOX - HR + WT0), BC0 - BF, BC1 + BF, "cuBright");
+LAY("bWall1", [2, 2, HOX, 5]); for (const sx of [-1, 1]) ZB(`bW1${sx > 0 ? "R" : "L"}`, "bWall1", R2(sx > 0 ? HOX + HR - WT1 : HOX - HR), R2(sx > 0 ? HOX + HR : HOX - HR + WT1), BC0 - BF, BC1 + BF, "cuBright");
+// 樹脂由孔口往下灌（4 段，由上往下依序出現）
+const RS = 4, RH = (BC1 - BC0 + 2 * BF) / RS;
+for (let k = 0; k < RS; k++) { LAY(`bResin${k}`, [1, RH, HOX, BC1 - k * RH]); ZB(`bRes${k}`, `bResin${k}`, R2(HOX - HR + WT1), R2(HOX + HR - WT1), R2(BC1 + BF - (k + 1) * RH), R2(BC1 + BF - k * RH), "resin"); }
+LAY("bResinBump", [1, 0.2, HOX, BC1 + BF + 0.1]); ZB("bResBump", "bResinBump", R2(HOX - HR + WT1), R2(HOX + HR - WT1), BC1 + BF, BC1 + BF + 0.14, "resin");
+// 刮平：刮刀從左往右掃過，凸出的樹脂消失、蓋一層銅
+LAY("bBlade", [3, 1, HOX - 3, BC1 + 0.6]); BOX("bBladeB", "bBlade", HOX - 3.4, HOX - 3.1, BC1 + BF + 0.14, BC1 + BF + 1.3, BZ0 - 0.2, BZ1 + 0.2, "steel"); BOX("bBladeH", "bBlade", HOX - 3.6, HOX - 2.9, BC1 + BF + 1.3, BC1 + BF + 1.6, BZ0 - 0.2, BZ1 + 0.2, "dark");
+LAY("bCap", [2, 0.2, HOX, BC1 + BF]); ZB("bCapT", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC1 + BF, BC1 + BF + 0.06, "copper"); ZB("bCapB", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC0 - BF - 0.06, BC0 - BF, "copper");
+// 鑽針（主軸＋夾頭＋斜向螺旋槽鑽頭；鑽頭直徑比孔小）
+const DRY = 7.0, DBR = 0.4;
+LAY("bDrill", [2, 6, HOX, 9]);
+VC("bdBit", "bDrill", DBR, DRY, DRY + 2.8, "steel2", { x: HOX, z: -0.4 });
+P({ id: "bdFlute", layer: "bDrill", shape: "box", size: [0.84, 0.08, 0.1], pos: [HOX, DRY + 0.3, -0.4], at: Array.from({ length: 7 }, (_, i) => [0, i * 0.38, 0]), rot: [0, 0, 25], mat: "dark" });
+VC("bdTip", "bDrill", 0.16, DRY - 0.22, DRY, "steel", { x: HOX, z: -0.4 }); VC("bdChuck", "bDrill", 0.8, DRY + 2.8, DRY + 3.6, "dark", { x: HOX, z: -0.4 }); VC("bdSpindle", "bDrill", 1.2, DRY + 3.6, DRY + 5.0, "panel2", { x: HOX, z: -0.4 });
+BOX("bdMark", "bDrill", HOX - 0.06, HOX + 0.06, DRY + 3.7, DRY + 4.9, 0.8, 0.84, "mark");
+// 增層：上下對稱各 BN 層。每層三件：膜（bF）、雷射打出的孔（bH，深色倒錐）、銅（bV：填孔銅＋孔頂銅墊＋線路）
+const VX = HOX + 3.6;                                    // 盲孔疊在同一個 x（疊孔）
+const BLY = [];
 for (let k = 0; k < BN; k++) for (const side of ["t", "b"]) {
-  const s = side === "t" ? 1 : -1, yA = side === "t" ? R2(BC1 + BF + k * BL) : R2(BC0 - BF - (k + 1) * BL), yB = R2(yA + BL - 0.12);
-  LAY(`bF${k}${side}`, [BW, BL, BX, (yA + yB) / 2]); BOX(`bFilm${k}${side}`, `bF${k}${side}`, BX - BW / 2, BX + BW / 2, yA, yB, -BD / 2, BD / 2, "abf");
-  LAY(`bV${k}${side}`, [BW, BL, BX, (yA + yB) / 2]);
-  const yCu0 = side === "t" ? yB : R2(yA - 0.0), yCu1 = side === "t" ? R2(yB + 0.12) : R2(yA + 0.12);
-  // 線路銅（膜的外側一面）：幾段走線＋盲孔頂的焊墊
-  const cy0 = side === "t" ? yB : R2(yA - 0.12), cy1 = side === "t" ? R2(yB + 0.12) : yA;
-  [[-9.6, -6.6], [-5.6, -2.6], [-1.0, 1.0], [2.6, 5.0], [6.4, 9.8]].forEach(([a, b], i) => BOX(`bTr${k}${side}${i}`, `bV${k}${side}`, R2(BX + a + (k % 2) * 0.4), R2(BX + b + (k % 2) * 0.4), cy0, cy1, -BD / 2, BD / 2, "copper"));
-  for (const [vx] of VIA) P({ id: `bVia${k}${side}${vx}`, layer: `bV${k}${side}`, shape: "cyl", size: [0.32, R2(BL - 0.12)], rot: V, pos: [R2(vx + (k % 2) * 0.0), R2((yA + yB) / 2), 0], mat: "cuBright" });
+  const yA = side === "t" ? R2(BC1 + BF + k * BL) : R2(BC0 - BF - (k + 1) * BL);
+  const filmY0 = side === "t" ? yA : R2(yA + 0.08), filmY1 = side === "t" ? R2(yA + BL - 0.08) : R2(yA + BL);
+  LAY(`bF${k}${side}`, [BW, BL, BX, (filmY0 + filmY1) / 2]); ZB(`bFilm${k}${side}`, `bF${k}${side}`, BX - BW / 2, BX + BW / 2, filmY0, filmY1, "abf");
+  const cone = (id, layer, mat, r) => P({ id, layer, shape: "cone", size: side === "t" ? [r * 0.55, r, R2(filmY1 - filmY0)] : [r, r * 0.55, R2(filmY1 - filmY0)], rot: [90, 0, 0], pos: [VX, R2((filmY0 + filmY1) / 2), 0], mat });
+  LAY(`bH${k}${side}`, [1, BL, VX, (filmY0 + filmY1) / 2]); cone(`bHole${k}${side}`, `bH${k}${side}`, "voidM", 0.42);
+  LAY(`bV${k}${side}`, [BW, BL, BX, (filmY0 + filmY1) / 2]); cone(`bVia${k}${side}`, `bV${k}${side}`, "cuBright", 0.42);
+  P({ id: `bViaFill${k}${side}`, layer: `bV${k}${side}`, shape: "cyl", size: [0.3, R2(filmY1 - filmY0 - 0.02)], rot: V, pos: [VX, R2((filmY0 + filmY1) / 2), 0], mat: "cuBright" });
+  const cy0 = side === "t" ? filmY1 : R2(filmY0 - 0.08), cy1 = side === "t" ? R2(filmY1 + 0.08) : filmY0;
+  ZB(`bPad${k}${side}`, `bV${k}${side}`, VX - 0.75, VX + 0.75, cy0, cy1, "copper");
+  [[-9.6, -6.6], [-5.6, -2.6], [-1.0, 1.6], [5.6, 9.8]].forEach(([a, b], i) => ZB(`bTr${k}${side}${i}`, `bV${k}${side}`, R2(BX + a + (k % 2) * 0.4), R2(BX + b + (k % 2) * 0.4), cy0, cy1, "copper"));
+  BLY.push({ k, side, y: side === "t" ? filmY1 : filmY0 });
 }
-// 雷射頭（從上方往下打；示意：兩面各自打孔，畫面只畫上方那一支）
-LAY("bLaser", [3, 8, HOX, 14]);
-VC("blBody", "bLaser", 1.0, 11.6, 15.4, "panel2", { x: HOX + 3.6 }); VC("blLens", "bLaser", 0.6, 11.2, 11.6, "dark", { x: HOX + 3.6 }); VT("blBand", "bLaser", 1.05, 0.95, 13.6, 13.9, "lampR", { x: HOX + 3.6 });
-P({ id: "blBeam", layer: "bLaser", shape: "cone", size: [0.06, 0.45, 3.6], rot: [90, 0, 0], pos: [HOX + 3.6, 9.4, 0], mat: "laser" });
+// 核心兩面、盲孔正下方的銅墊（第一層盲孔要停在它上面）
+ZB("bPadCoreT", "bCore", VX - 0.75, VX + 0.75, BC1, BC1 + BF + 0.01, "cuBright"); ZB("bPadCoreB", "bCore", VX - 0.75, VX + 0.75, BC0 - BF - 0.01, BC0, "cuBright");
+// 雷射頭：上面一支、下面一支（兩面各自打孔）；光錐尖端落在第 1 層膜面，每打完一層頭往外退一層（genscript 用 shift 移）
+const LT = BLY.filter((q) => q.side === "t")[0].y, LB = BLY.filter((q) => q.side === "b")[0].y;
+LAY("bLaserT", [3, 5, VX, LT + 4]); VC("bltBody", "bLaserT", 0.9, LT + 2.4, LT + 5.2, "panel2", { x: VX }); VC("bltLens", "bLaserT", 0.55, LT + 2.1, LT + 2.4, "dark", { x: VX }); VT("bltBand", "bLaserT", 0.95, 0.85, LT + 4.2, LT + 4.45, "lampR", { x: VX });
+LAY("bBeamT", [1, 2, VX, LT + 1]); P({ id: "bltBeam", layer: "bBeamT", shape: "cone", size: [0.06, 0.4, 2.1], rot: [90, 0, 0], pos: [VX, R2(LT + 1.05), 0], mat: "laser" });
+LAY("bLaserB", [3, 5, VX, LB - 4]); VC("blbBody", "bLaserB", 0.9, LB - 5.2, LB - 2.4, "panel2", { x: VX }); VC("blbLens", "bLaserB", 0.55, LB - 2.4, LB - 2.1, "dark", { x: VX }); VT("blbBand", "bLaserB", 0.95, 0.85, LB - 4.45, LB - 4.2, "lampR", { x: VX });
+LAY("bBeamB", [1, 2, VX, LB - 1]); P({ id: "blbBeam", layer: "bBeamB", shape: "cone", size: [0.4, 0.06, 2.1], rot: [90, 0, 0], pos: [VX, R2(LB - 1.05), 0], mat: "laser" });
 
 // ═════ 站 D：大小對照（x 120）：一般晶片的小載板 vs 人工智慧晶片的大載板＋10 cm 尺標 ═════
 const DX = 120;
@@ -174,20 +196,18 @@ LAY("eBase", [18, 1.4, EX, 0.7]); BOX("ebStand", "eBase", EX - 9, EX + 9, 0, EY0
 LAY("eStack", [16, EN * ET, EX, EY0 + EN * ET / 2]);
 for (let k = 0; k < EN; k++) { const y0 = R2(EY0 + k * ET), core = k === EN / 2 - 1 || k === EN / 2;
   BOX(`esL${k}`, "eStack", EX - 8, EX + 8, y0, R2(y0 + ET - 0.06), -2.5, 2.5, core ? "core" : "abf"); BOX(`esC${k}`, "eStack", EX - 8, EX + 8, R2(y0 + ET - 0.06), R2(y0 + ET), -2.5, 2.5, "copper"); }
-const EBAD = 15;
+const EBAD = 18;      // 外側（上面數來第 4 層）出錯
 for (let k = 0; k < EN; k++) { LAY(`eOk${k}`, [16, ET, EX, EY0 + k * ET]); BOX(`eOkB${k}`, `eOk${k}`, EX - 8.02, EX + 8.02, R2(EY0 + k * ET + 0.04), R2(EY0 + (k + 1) * ET - 0.1), 2.5, 2.54, k === EBAD ? "badGlow" : "okGlow"); }
-LAY("eFail", [16, EN * ET, EX, EY0 + EN * ET / 2]); BOX("efBox", "eFail", EX - 8.1, EX + 8.1, EY0, R2(EY0 + EN * ET + 0.05), -2.6, 2.6, "hot");
-LAY("eX", [3, 3, EX, EY0 + EN * ET + 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, 45], mat: "badGlow" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, -45], mat: "badGlow" });
+LAY("eFail", [16, EN * ET, EX, EY0 + EN * ET / 2]); BOX("efBox", "eFail", EX - 8.1, EX + 8.1, EY0, R2(EY0 + EN * ET + 0.05), 2.5, 2.62, "badSolid");
+LAY("eX", [3, 3, EX, EY0 + EN * ET + 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, 45], mat: "badSolid" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, -45], mat: "badSolid" });
 
-// ═════ 站 F：翹曲（x 240）：大載板分段，受熱發橘、兩端往上翹（示意） ═════
-const FX = 240, FN = 25, FW = 0.6, FY = 3.0;
-LAY("fBase", [18, 3, FX, 1.5]); BOX("ffStand", "fBase", FX - 9, FX + 9, 0, 1.2, -4, 4, "steel2"); P({ id: "ffPin", layer: "fBase", shape: "cyl", size: [0.3, 1.8], rot: V, pos: [FX, 2.1, 0], mat: "dark" });
-const FSEG = [];
-for (let i = 0; i < FN; i++) { const x = R2((i - (FN - 1) / 2) * FW), id = `fS${i}`; LAY(id, [FW, 0.6, FX + x, FY]);
-  BOX(`${id}a`, id, R2(FX + x - FW / 2), R2(FX + x + FW / 2), FY, FY + 0.5, -4, 4, "pcb"); BOX(`${id}b`, id, R2(FX + x - FW / 2), R2(FX + x + FW / 2), FY + 0.5, FY + 0.56, -3.95, 3.95, "sr");
-  LAY(`fH${i}`, [FW, 0.6, FX + x, FY]); BOX(`fHot${i}`, `fH${i}`, R2(FX + x - FW / 2 - 0.01), R2(FX + x + FW / 2 + 0.01), FY - 0.01, FY + 0.58, -4.02, 4.02, "hot");
-  FSEG.push({ id, h: `fH${i}`, x }); }
-LAY("fChip", [5, 0.6, FX, FY + 0.8]); BOX("fcDie", "fChip", FX - 2.2, FX + 2.2, FY + 0.56, FY + 0.86, -1.8, 1.8, "siTop");
+// ═════ 站 F：翹曲（x 240）：連續彎曲的板（poly 剖面沿 z 擠出）；受熱後依序換成越來越彎的四個階段（兩端往上翹，示意） ═════
+const FX = 240, FL = 15, FT = 0.56, FY = 3.0, FDEP = 8;
+LAY("fBase", [18, 3, FX, 1.5]); BOX("ffStand", "fBase", FX - 9, FX + 9, 0, 1.2, -4.5, 4.5, "steel2"); P({ id: "ffPin", layer: "fBase", shape: "cyl", size: [0.3, 1.8], rot: V, pos: [FX, 2.1, 0], mat: "dark" });
+const arcPts = (h) => { const n = 24, top = [], bot = []; for (let i = 0; i <= n; i++) { const u = -FL / 2 + (FL * i) / n, y = h * (u / (FL / 2)) ** 2; top.push([R2(u), R2(y + FT)]); bot.push([R2(u), R2(y)]); } return [...bot, ...top.reverse()]; };
+const FH = [0, 0.5, 1.0, 1.6];
+FH.forEach((h, i) => { LAY(`fB${i}`, [FL, FT + h, FX, FY + h / 2]); P({ id: `fBoard${i}`, layer: `fB${i}`, shape: "poly", pts: arcPts(h), size: [FL, R2(FT + h), FDEP], pos: [FX, FY, 0], mat: i === 0 ? "pcb" : "hotSolid" }); });
+LAY("fChip", [5, 0.6, FX, FY + 0.8]); BOX("fcDie", "fChip", FX - 2.2, FX + 2.2, FY + FT, FY + FT + 0.3, -1.8, 1.8, "siTop");
 
 // ═════ 站 G：出貨盒（x 300）：三只紙箱貼文字貼紙（不仿商標）═════
 const SIGNS = [["abfuni", "欣興|3037"], ["abfnya", "南電|8046"], ["abfkin", "景碩|3189"]];
@@ -206,6 +226,7 @@ SIGNS.forEach(([id], i) => { const cx = PX + (i - 1) * 7.6, ly = `g${i}`; LAY(ly
 
 // ═════ 站 H：下一集（x 360）：手機記憶體用的小薄載板（BT 載板示意）＋兩顆疊晶片＋金線 ═════
 const HX2 = 360;
+LAY("hPcb", [14, 0.6, HX2, 0.3]); BOX("hpBoard", "hPcb", HX2 - 7, HX2 + 7, 0.42, 0.58, -5, 5, "pcb"); P({ id: "hpFoot", layer: "hPcb", shape: "cyl", size: [0.3, 0.42], rot: V, pos: [HX2, 0.21, 0], at: [[-6.4, 0, -4.4], [6.4, 0, -4.4], [-6.4, 0, 4.4], [6.4, 0, 4.4]], mat: "steel" });
 LAY("hSub", [8, 0.6, HX2, 1.2]); BOX("hsBody", "hSub", HX2 - 4, HX2 + 4, 0.9, 1.2, -3, 3, "pcb"); P({ id: "hsBall", layer: "hSub", shape: "sphere", size: [0.16], pos: [HX2, 0.74, 0], at: GXZ(9, 7, 0.8, 0.8), mat: "bump" });
 P({ id: "hsPad", layer: "hSub", shape: "box", size: [0.3, 0.04, 0.3], pos: [HX2, 1.22, 2.4], at: [-2.4, -1.6, -0.8, 0, 0.8, 1.6, 2.4].map((x) => [x, 0, 0]), mat: "gold" });
 LAY("hDie", [5, 0.6, HX2, 1.5]); BOX("hdD1", "hDie", HX2 - 2.6, HX2 + 2.6, 1.2, 1.4, -1.8, 1.8, "si"); BOX("hdD2", "hDie", HX2 - 2.2, HX2 + 2.2, 1.4, 1.6, -1.5, 1.5, "siTop");
@@ -216,21 +237,22 @@ LAY("hWire", [6, 1, HX2, 2]);
 
 // ═════ 動作 ═════
 actions.chipGlow = { type: "pulse", _說明: "晶片運作中（示意）", parts: ["chGlow"], color: "okC", glow: 0.9, freq: 1.0, halo: 0 };
-actions.drillSpin = { type: "rotate", _說明: "鑽針高速自轉（示意），起轉加速", parts: ["bdBit", "bdFlute", "bdTip", "bdChuck", "bdMark"], axis: [0, 1, 0], pivot: [HOX, 0, 0], rps: 3, rampSpin: true };
-actions.drillChips = { type: "flow", _說明: "鑽屑往上排出", layer: "bDrill", path: [[HOX + 0.5, BC1 + 0.2, 1.0], [HOX + 1.6, BC1 + 1.4, 1.4], [HOX + 2.8, BC1 + 0.4, 1.8]], n: 6, size: 0.1, shape: "dot", rate: 0.8, color: "fiberC", track: false, free: true, jitter: 0.2, accel: true };
-actions.laserPulse = { type: "pulse", _說明: "雷射脈衝閃動", parts: ["blBeam"], color: "laserC", glow: 1, freq: 4, halo: 0 };
-actions.heatGlow = { type: "pulse", parts: FSEG.map((s) => `fHot${s.id.slice(2)}`), color: "hotC2", glow: 0.8, freq: 0.8, halo: 0 };
+actions.drillSpin = { type: "rotate", _說明: "鑽針高速自轉（示意），起轉加速", parts: ["bdBit", "bdFlute", "bdTip", "bdChuck", "bdMark"], axis: [0, 1, 0], pivot: [HOX, 0, -0.4], rps: 3, rampSpin: true };
+actions.drillChips = { type: "flow", _說明: "鑽屑從孔口往上、往外排出（跟著板子，不跟鑽針）", layer: "bCore", path: [[HOX + 0.3, BC1 + 0.2, 0.3], [HOX + 1.4, BC1 + 1.2, 0.6], [HOX + 2.6, BC1 + 0.3, 0.9]], n: 6, size: 0.1, shape: "dot", rate: 0.8, color: "fiberC", track: false, free: true, jitter: 0.2, accel: true };
+actions.laserPulseT = { type: "pulse", parts: ["bltBeam"], color: "laserC", glow: 1, freq: 4, halo: 0 };
+actions.laserPulseB = { type: "pulse", parts: ["blbBeam"], color: "laserC", glow: 1, freq: 4, halo: 0 };
+actions.heatGlow = { type: "pulse", parts: ["fBoard1", "fBoard2", "fBoard3"], color: "hotC2", glow: 0.5, freq: 0.8, halo: 0 };
 actions.failPulse = { type: "pulse", parts: ["efBox"], color: "badC", glow: 0.9, freq: 1.2, halo: 0 };
 actions.wirePulse = { type: "pulse", parts: Array.from({ length: 7 }, (_, i) => `hW${i}`), color: "wireC", glow: 0.9, freq: 1.0, halo: 0 };
 
 // 標註點
 Object.assign(anchors, {
   chip: A("chip", [2.4, CHY0 + CHH, 1.9], 150, -90), sub: A("sub", [-5, SBY0 + 0.3, 5], -150, 100), balls: A("balls", [-4.4, MBY + BR0, 4.4], -150, 100), mb: A("mb", [9, MBY, 8], 150, 100),
-  core: A("bCore", [BX - 6, BC0 + 1.0, BD / 2], -150, 100), drill: A("bDrill", [HOX + 0.5, DRY + 2, 0.5], 150, -90), wall: A("bHoleWall", [HOX + HR, BC0 + 0.6, BD / 2], 150, 100), resin: A("bResin", [HOX, BC1, BD / 2], 150, -90),
-  filmT: A("bF0t", [BX - 7, BC1 + BF + 0.3, BD / 2], -150, -90), filmB: A("bF0b", [BX - 7, BC0 - BF - 0.3, BD / 2], -150, 100), via: A("bV1t", [HOX + 3.6, BC1 + BF + BL * 1.5, BD / 2], 150, -90), laser: A("bLaser", [HOX + 3.6, 13.0, 1.0], 150, -90),
+  core: A("bCore", [BX - 6, BC0 + 1.0, 0.02], -150, 100), drill: A("bDrill", [HOX + 0.4, DRY + 2, -0.4], 150, -90), resin: A("bResin2", [HOX, BC0 + 0.8, 0.02], 150, 100),
+  filmT: A("bF0t", [BX - 7, BC1 + BF + 0.3, 0.02], -150, -90), filmB: A("bF0b", [BX - 7, BC0 - BF - 0.3, 0.02], -150, 100), via: A("bV1t", [VX, BC1 + BF + BL * 1.5, 0.3], 150, -90), laser: A("bLaserT", [VX + 0.9, LT + 3.6, 0.5], 150, -90),
   dSmall: A("dSmall", [DX - 9, 1.5, 0.8], -150, -90), dBig: A("dBig", [DX + 6, 1.8, 2.0], 150, -90), dRuler: A("dRuler", [DX + 8.5, 1.0, 6.0], 150, 100),
   eStack: A("eStack", [EX - 8, EY0 + 3, 2.5], -150, -90), eBad: A(`eOk${EBAD}`, [EX + 6, EY0 + EBAD * ET + 0.1, 2.54], 150, -90),
-  fWarp: A("fS0", [FX - 7.2, FY + 0.5, 4], -150, -90), fChip: A("fChip", [FX + 2.2, FY + 0.86, 1.8], 150, -90),
+  fWarp: A("fB3", [FX - 7.0, FY + 2.1, 4], -150, -90), fChip: A("fChip", [FX + 2.2, FY + 0.86, 1.8], 150, -90),
   g0: A("g0", [PX - 7.6, 5.9, 3.3], -150, -90), g1: A("g1", [PX, 5.9, 3.3], 150, -90), g2: A("g2", [PX + 7.6, 5.9, 3.3], 150, -90),
   hSub: A("hSub", [HX2 - 3.5, 1.2, 3], -150, -90),
 });
@@ -244,7 +266,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 60, elev: 24, y: 3 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { MBY, SBY0, SBY1, CHY0, BX, BC0, BC1, BF, BL, BN, HOX, DRY, DX, EX, EN, EBAD, FX, FY, FSEG, PX, HX2 },
+  info: { MBY, SBY0, SBY1, CHY0, BX, BC0, BC1, BF, BL, BN, HOX, VX, DRY, DX, EX, EN, EBAD, FX, FY, FH, PX, HX2, RS, BLY },
 };
 const out = path.join(HERE, "model.json");
 fs.writeFileSync(out, JSON.stringify(model, null, 1) + "\n");
