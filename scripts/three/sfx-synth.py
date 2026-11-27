@@ -255,6 +255,55 @@ def s_rain(dur=3.0, heavy=0.5):
     return norm(y) * env_fade(n, 0.4)
 
 
+
+# ---------------------------------------------------------------- 擬真模式（Andy 2026/11/27：音色偏假）
+# 只在 --style A／B／C 時開（REAL=True），預設音色不變。三招：①多層疊合（瞬間聲加低頻本體、金屬環、鬆動的碎片；持續聲加失諧雙層）
+# ②隨機微變化（每個 cue 播放速度 ±3%、音量 ±1 dB、左右 ±0.05，同一種聲音不會每次一模一樣）③輕微空間殘響（約 0.35 秒機房回音，濕度 12%）。
+REAL = False
+ROOM_RT = 0.35; ROOM_WET = 0.12; ROOM_PRE = 0.011
+
+def _resample(y, r):
+    n = int(len(y) / r); return np.interp(np.arange(n) * r, np.arange(len(y)), y)
+
+def _lay(y, z, at=0, g=1.0):
+    n = len(y); e = min(len(z), n - at)
+    if e > 0: y[at:at + e] += z[:e] * g
+    return y
+
+def realize(kind, y, g, pan):
+    y = np.asarray(y, float)
+    if kind in ('clunk', 'thump', 'slide', 'whoosh', 'valve', 'servo'):
+        y = _resample(y, rng.uniform(0.97, 1.03))
+    n = len(y); t = np.arange(n) / SR
+    if kind == 'clunk':       # 低頻本體（較長衰減）＋失諧金屬環（兩組隨機非整數倍泛音）＋極短的回彈碎片
+        f0 = rng.uniform(52, 66)
+        y = y + 0.55 * np.sin(2 * np.pi * f0 * t) * np.exp(-t / 0.22) * np.minimum(t / 0.004, 1)
+        for _ in range(3):
+            f = rng.uniform(900, 3200)
+            y += 0.14 * np.sin(2 * np.pi * f * t + rng.uniform(0, 6)) * np.exp(-t / rng.uniform(0.04, 0.11))
+        y = _lay(y, fft_filter(white(int(0.05 * SR)), 1500, 5500) * np.exp(-np.arange(int(0.05 * SR)) / SR / 0.012), int(rng.uniform(0.07, 0.13) * SR), 0.25)
+    elif kind == 'valve':     # click 之後加很短的低頻「噗」
+        y = y + 0.35 * np.sin(2 * np.pi * rng.uniform(150, 210) * t) * np.exp(-t / 0.03)
+    elif kind == 'thump':
+        y = y + 0.25 * fft_filter(white(n), 60, 400) * np.exp(-t / 0.08)
+    elif kind in ('motor', 'servo', 'buzz'):   # 失諧雙層（約 0.6%），像兩組軸承拍頻；加輕微不規則抖動
+        y2 = _resample(y, 1.006); y = y + 0.6 * np.pad(y2, (0, max(0, n - len(y2))))[:n]
+        y = y * (1 + 0.04 * fft_filter(white(n), None, 6.0) / (np.std(fft_filter(white(n), None, 6.0)) + 1e-9) * 0.5)
+    elif kind in ('hiss', 'liquid', 'plasma', 'heat'):   # 氣流／液體加一層低頻本體（有物理量感）
+        y = y + 0.3 * fft_filter(pink(n), 60, 350)
+    pk = np.max(np.abs(y)) + 1e-9
+    return y / pk * (np.max(np.abs(y)) > 0), g * db(rng.uniform(-1, 1)), float(np.clip(pan + rng.uniform(-0.05, 0.05), 0.05, 0.95))
+
+def room(buf):
+    n = int(ROOM_RT * 1.3 * SR); t = np.arange(n) / SR
+    out = buf.copy(); m = buf.shape[1]; L = m + n; nf = 1 << (L - 1).bit_length()
+    for ch in range(buf.shape[0]):
+        ir = fft_filter(white(n), None, 5500) * np.exp(-6.9 * t / ROOM_RT); ir[:int(ROOM_PRE * SR)] = 0
+        ir /= np.sqrt((ir ** 2).sum()) + 1e-9
+        w = np.fft.irfft(np.fft.rfft(buf[ch], nf) * np.fft.rfft(ir, nf), nf)[:m]
+        out[ch] = buf[ch] + ROOM_WET * w
+    return out
+
 # ---------------------------------------------------------------- 登錄表
 KINDS = {}   # kind -> (函式 fn(dur, **params) -> 單聲道陣列, 預設音量 dB)
 
@@ -305,12 +354,16 @@ def render_cues(cues, total_sec, end_t=None):
         y = fn(dur, **(c.get('params') or {}))
         if y is None or len(y) == 0: continue
         g = db(gdb + float(c.get('gain') or 0))
-        place(buf, y, t0, float(c.get('pan', 0.5)), g)
+        pan = float(c.get('pan', 0.5))
+        if REAL:      # 擬真模式（--style A／B／C 才開）：多層疊合＋隨機微變化
+            y, g, pan = realize(k, y, g, pan)
+        place(buf, y, t0, pan, g)
         out.append(dict(t=round(t0, 3), t_end=round(t0 + len(y) / SR, 3), type=k, src=c.get('src', ''), gain_db=round(gdb + float(c.get('gain') or 0), 1)))
     if end_t is not None:
         i = int(end_t * SR); k = int(0.1 * SR)
         buf[:, max(0, i - k):i] *= np.linspace(1, 0, min(k, i))
         buf[:, i:] = 0
+    if REAL: buf = room(buf)        # 輕微空間殘響
     pk = np.max(np.abs(buf)) + 1e-9
     return buf / pk * 0.5, out      # 內部參考：峰值 −6 dBFS；實際音量由 mix 依旁白決定
 
@@ -361,6 +414,7 @@ def sp_full(speech, nf):
 
 
 def cmd_mix(argv):
+    if '--style' in argv: sys.exit('--style 請走 sfx-styles.py（它自己讀 cue 表合成，不吃 sfx.wav）')
     voice, sfx, out = argv[0], argv[1], argv[2]
     end = float(argv[argv.index('--end') + 1]) if '--end' in argv else None
     v = read_wav(voice); s = read_wav(sfx)

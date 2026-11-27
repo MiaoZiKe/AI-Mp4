@@ -347,3 +347,38 @@ bash scripts/three/add-sfx.sh <in.mp4> <cues.json 或 sfx.wav> <out.mp4> [--end 
 | 不加 | 標籤出現、字卡、overlay、reveal、片尾卡 |
 
 生活類（給沒有 3D 模型的頻道，只能手寫 cue 表）：`footstep` 腳步、`door` 開關門、`cup` 杯子、`keyboard` 打字、`pageturn` 翻書、`rain` 雨聲。加新種類：在 `sfx-synth.py` 寫 `fn(dur, **params)` 再 `register("名字", fn, 預設dB)`。cue 表格式：`[{"t": 3.2, "dur": 1.5, "kind": "rain", "gain": 0, "pan": 0.5, "params": {}}]`，格式說明在 `sfx-synth.py` 檔頭。
+
+### 13.1 三種混音取向（2026/11/27 Andy 聽完區段壓低版：「改完之後沒有比較好，幫我找人優化」）
+
+診斷：區段壓低版講話時壓 −19～−29 dB、停頓回到原音量，變成「講話時音效幾乎消失、停頓時冒出來」的另一種斷續；合成音色也偏假。
+新檔 `scripts/three/sfx-styles.py`（三種風格＋逐版量測＋對照圖）、`sfx-synth.py` 加「擬真模式」（`REAL`，只在 `--style` 時開，預設音色不變）。
+`add-sfx.sh --style A|B|C` 任何位置都能加；不加 ＝ 舊混音（向下相容）。Andy 選定後再改預設。
+
+```bash
+bash scripts/three/add-sfx.sh --tech <slug> --style A out/<slug>.mp4 out/<slug>-sfx-A.mp4   # B、C 同理
+python3 scripts/three/sfx-styles.py plot <旁白.wav> out/<slug>/sfx-ABC.png A=<A解碼.wav> B=<B解碼.wav> C=<C解碼.wav> --end <片尾卡秒>
+```
+
+| 風格 | 做法 | 關卡 |
+|---|---|---|
+| A 頻段分離 | 音效拆低（<300 Hz）／中（300～4k）／高（>4k）；中頻永遠挖 −13 dB、1～4 kHz 再挖 −22 dB；講話時整體只再輕壓 −5 dB（攻 0.18 s、放 0.9 s）；1～4 kHz 與全頻段各有一道只動最差窗的護欄 | 人聲頻段 1～4 kHz ≥14 dB |
+| B 底噪＋重點 | 整片一條穩定機房底噪（棕噪低頻轟＋60／120／180 Hz 風扇泛音＋>5.5 kHz 空氣，1～4 kHz 清空，不隨旁白起伏）；事件音只留 clunk／閥門／thump，自動搬進旁白停頓（可前移 0.3 s、後移 0.9 s；停頓不夠就縮短、降音量保留） | 人聲頻段 1～4 kHz ≥14 dB |
+| C 上一版改良 | 講話區段固定壓 −12 dB、放開 1.3 s（停頓多半 <0.8 s，所以實際上整段講話連續壓著，不再冒出來）；不再逐區段變動壓低量，只剩零星尖峰護欄（快壓、0.4 s 放開） | 全頻段 ≥14 dB（同舊版） |
+
+人聲頻段關卡的理由：A、B 把音效推到旁白不用的頻段（低頻嗡聲、高頻嘶聲），旁白清晰度更好，但「全頻段 RMS 差距」會被低頻嗡聲拉低而達不到 14 dB；
+清晰度是由 1～4 kHz（子音與可懂度）決定，所以改量這段。只看「旁白在 1～4 kHz 有聲音」的窗（比該頻段最大值低 26 dB 以內）；沒有人聲能量的窗沒東西可遮。
+全頻段差距另外當資訊回報（A 另有 8 dB 的次要護欄，不讓低頻蓋到小聲的字）。
+
+擬真音色（三版共用）：①多層疊合（clunk 加低頻本體＋失諧金屬環＋回彈碎片；閥門加低頻「噗」；馬達加失諧雙層拍頻＋抖動；氣流、液體、電漿、爐火加低頻本體）
+②隨機微變化（每個 cue 播放速度 ±3%、音量 ±1 dB、左右 ±0.05）③輕微空間殘響（RT 約 0.35 s、濕度 12%）。全部程式合成、固定 seed。
+
+## 十四、念完留白 `holdSec`／`headSec`（2026/11/27 Andy 規範 27：少講多停；選用，沒寫的片完全不變）
+- **script.json 每幕可寫**：`headSec`＝開口前只有畫面的秒數；`holdSec`＝本幕念完後只有畫面的秒數（關鍵畫面念完要留 ≥1.2 秒；非爆炸幕上限 2.0 秒）。`genscript.py` 用「整幕秒數 DUR − HEAD − 字數÷4.7」算出 holdSec。
+- **無聲估計**：`scripts/three/silent-timeline.mjs` 依這兩欄位排：人聲區間＝[headSec, 幕長 − holdSec]，cue 只在人聲區間內平均分配。
+- **有 AI Studio 整篇配音（tts-take → align）**：`scripts/align.mjs` 在 v3 take 模式下，若該幕有 `holdSec`，兩幕人聲間隔＝max(原始間隔, 本幕 holdSec ＋ 下一幕 headSec)（不受 `ALIGN_GAP_MAX` 限制；補的是靜音，不加速不移調）；本幕提早 `headSec` 秒進場。沒寫 holdSec 的片：行為與以前完全相同。
+- **有使用者錄音（一幕一段，recording-timeline，影片時間＝錄音時間）**：錄音本身不會有那麼長的停頓，所以多一個選用步驟先補靜音：
+  1. `node scripts/three/pad-recording.mjs <slug> audio/<slug>/take.wav <涵蓋幕數>`：強制對齊（本機、不花請求）量出各幕人聲 → 在每段靜音正中間補足 holdSec＋下一幕 headSec 的差額 → 輸出 `take-padded.wav`，並寫 `videos/<slug>/pad-recording.json`（每幕補幾秒、新的人聲區間）。`--bounds <json>` 可直接給 `[{vs,ve},…]`（跳過對齊，測試用）。
+  2. `node scripts/dossier/recording-timeline.mjs <slug> audio/<slug>/take-padded.wav <涵蓋幕數>`（已認 `headSec`：本幕提早 headSec 秒進場）。
+  3. 之後照原流程渲染，旁白合成用補好的檔。
+- 驗證：合成 10 秒正弦波＋三幕假邊界，補完 15.80 秒＝原 10 秒＋補的 5.80 秒（s1＋1.14、s2＋4.2、s3＋0.46），與公式相符。
+- 第一支使用：`videos/tech-twequip/`（無聲估計總長 84.9 秒；爆炸幕 s2／s6／s8 的 holdSec 較長，這三幕錄音末尾請留白或交給 pad-recording 補）。
