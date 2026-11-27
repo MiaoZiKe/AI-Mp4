@@ -88,7 +88,7 @@ const PIPE = (id, layer, pts, r, mat, o = {}) => {
 Object.assign(palette, {
   hdpeC: "#EEF2F6", drumC: "#2F6DB5", drumDarkC: "#1F4E86", pfaC: "#F2EFE6", pfaDarkC: "#CFC8B8", concC: "#B9B5AD", concDarkC: "#8E8A82", poolC: "#4FC3E8", tileC: "#E6F1F5", tileLineC: "#9FC4D0",
   cleanC: "#7FC8F0", etchC: "#F2C94C", slurryC: "#F1ECE2", silicaC: "#E3EAF5", ceriaC: "#EFD98A", dustC: "#3F444C", rustC: "#B5532B", rustDarkC: "#7E3318", padC: "#8F96A3", padDarkC: "#6E7482",
-  acidC: "#D7E86A", oxidC: "#E5484D", ironC: "#6A727F", ironDarkC: "#3E444E", blueP: "#2F7FE0", lumpC: "#8A8F96", scratchC: "#E5484D", woodC: "#C9A66B", woodDarkC: "#9C7B45", lemonC: "#F5D948", n2mistC: "#DCE6F2", upwC: "#6CB6F0", wasteC: "#9AA1AB", pleatC: "#F7F4EC", oxFilmC: "#A89E92", steelC: "#5C6678",
+  acidC: "#D7E86A", oxidC: "#E5484D", ironC: "#98A1AF", ironDarkC: "#59616E", blueP: "#2F7FE0", lumpC: "#8A8F96", scratchC: "#E5484D", woodC: "#C9A66B", woodDarkC: "#9C7B45", lemonC: "#F5D948", n2mistC: "#DCE6F2", upwC: "#6CB6F0", wasteC: "#9AA1AB", pleatC: "#F7F4EC", oxFilmC: "#A89E92", steelC: "#5C6678",
 });
 Object.assign(materials, {
   hdpe: M("std", "hdpeC", { rough: 0.6, metal: 0.05, env: 0.3 }), hdpeT: M("phys", "hdpeC", { rough: 0.3, metal: 0, clearcoat: 1, opacity: 0.32, env: 0.5 }),
@@ -192,7 +192,7 @@ P({ id: "floorSeamX", layer: "floor", shape: "slab", size: [0.1, 0.04, 60], pos:
 
 // ═════ S1（x＝-90）：一桶藥水＋被放大的一粒灰 ═════
 const X1 = -90;
-LAY("drum", [7, 9.4, X1, 4.6]); LAY("dustS1", [3, 3, X1, 11]); LAY("magS1", [4, 4, X1, 11]);
+LAY("drum", [7, 9.4, X1, 4.6]); LAY("dustS1", [3, 3, X1 + 5.6, 8.2]); LAY("magS1", [4, 4, X1 + 5.6, 8.2]);
 BOX("drumPallet", "drum", X1 - 4.2, X1 + 4.2, 0, 0.9, -4.2, 4.2, "wood");
 P({ id: "palletSlat", layer: "drum", shape: "box", size: [8.4, 0.14, 0.9], pos: [X1, 0.97, 0], at: [[0, 0, -3.3], [0, 0, -1.65], [0, 0, 0], [0, 0, 1.65], [0, 0, 3.3]], mat: "woodDark" });
 P({ id: "palletFoot", layer: "drum", shape: "box", size: [1.1, 0.7, 8.4], pos: [X1, 0.4, 0], at: [[-3.4, 0, 0], [0, 0, 0], [3.4, 0, 0]], mat: "woodDark" });
@@ -206,14 +206,15 @@ P({ id: "drumLabel", layer: "drum", shape: "box", size: [2.8, 3.0, 0.06], pos: [
 P({ id: "drumHaz", layer: "drum", shape: "box", size: [0.9, 0.9, 0.05], rot: [0, 0, 45], pos: [X1 - 0.6, 4.3, 3.0], mat: "warnY" }); P({ id: "drumHaz2", layer: "drum", shape: "box", size: [0.9, 0.9, 0.05], rot: [0, 0, 45], pos: [X1 + 0.7, 4.3, 3.0], mat: "oxid" });
 // 灰塵：桶蓋大口附近的一小團深灰碎屑，旁邊放大鏡圈（放大後是明顯的灰塵團）
 const DUST = [[0, 0, 0, 0.5], [0.45, 0.2, 0.15, 0.36], [-0.4, 0.3, -0.2, 0.4], [0.1, -0.35, 0.3, 0.3], [-0.2, 0.55, 0.3, 0.28], [0.55, -0.15, -0.3, 0.26], [-0.55, -0.2, 0.2, 0.3]];
-DUST.forEach(([dx, dy, dz, r], i) => SPH(`dust${i}`, "dustS1", r, X1 - 1.4 + dx, 12.2 + dy, -0.9 + dz, "dust"));
-P({ id: "dustRing", layer: "dustS1", shape: "tube", size: [1.45, 1.3, 0.1], rot: [0, 0, 0], pos: [X1 - 1.4, 12.2, -0.9], mat: "dustGlow" });
-P({ id: "magRim", layer: "magS1", shape: "tube", size: [1.9, 1.7, 0.22], pos: [X1 - 1.4, 12.2, -0.9 + 0.5], mat: "steel2" });
-P({ id: "magGlass", layer: "magS1", shape: "cyl", size: [1.7, 0.06], pos: [X1 - 1.4, 12.2, -0.9 + 0.5], mat: "window" });
-BOX("magHandle", "magS1", X1 - 0.2, X1 + 1.6, 9.9, 10.6, -0.9 + 0.35, -0.9 + 0.65, "dark"); P({ id: "magArm", layer: "magS1", shape: "box", size: [0.3, 3.2, 0.3], rot: [0, 0, -40], pos: [X1 + 0.55, 10.6, -0.4], mat: "dark" });
-P({ id: "magRay", layer: "magS1", shape: "cyl", size: [0.05, 2.0], pos: [X1 - 1.4, 11.2, -0.4], rot: [20, 0, 0], at: [[0.9, 0, 0], [-0.9, 0, 0]], mat: "edge" });
+const DXc = X1 + 5.6, DYc = 8.2;   // 灰塵與放大鏡放在桶子右側、標題下方（2026/11/27 r1：念到一粒灰時不被大字蓋住）
+DUST.forEach(([dx, dy, dz, r], i) => SPH(`dust${i}`, "dustS1", r, DXc + dx, DYc + dy, -0.9 + dz, "dust"));
+P({ id: "dustRing", layer: "dustS1", shape: "tube", size: [1.45, 1.3, 0.1], rot: [0, 0, 0], pos: [DXc, DYc, -0.9], mat: "dustGlow" });
+P({ id: "magRim", layer: "magS1", shape: "tube", size: [1.9, 1.7, 0.22], pos: [DXc, DYc, -0.9 + 0.5], mat: "steel2" });
+P({ id: "magGlass", layer: "magS1", shape: "cyl", size: [1.7, 0.06], pos: [DXc, DYc, -0.9 + 0.5], mat: "window" });
+BOX("magHandle", "magS1", DXc + 1.2, DXc + 3.0, DYc - 2.3, DYc - 1.6, -0.9 + 0.35, -0.9 + 0.65, "dark"); P({ id: "magArm", layer: "magS1", shape: "box", size: [0.3, 3.2, 0.3], rot: [0, 0, -40], pos: [DXc + 1.95, DYc - 1.6, -0.4], mat: "dark" });
+P({ id: "magRay", layer: "magS1", shape: "cyl", size: [0.05, 2.0], pos: [DXc, DYc - 1.0, -0.4], rot: [20, 0, 0], at: [[0.9, 0, 0], [-0.9, 0, 0]], mat: "edge" });
 actions.dustGlow = { type: "pulse", _說明: "那一粒灰的警示光圈閃（示意）", parts: ["dustRing"], color: "warnC", glow: 1, freq: 1.5, halo: 1.0 };
-actions.dustDrift = { type: "flow", _說明: "灰塵從空中緩緩落向桶口（受重力加速、微小飄動）", layer: "dustS1", path: [[X1 - 1.4, 15.2, -0.9], [X1 - 1.4, 12.4, -0.9]], n: 2, size: 0.18, shape: "dot", rate: 0.22, color: "dustC", track: false, accel: true, jitter: 0.3, free: true };
+actions.dustDrift = { type: "flow", _說明: "灰塵從空中緩緩落向桶口（受重力加速、微小飄動）", layer: "dustS1", path: [[DXc, DYc + 3.2, -0.9], [DXc, DYc + 0.4, -0.9]], n: 2, size: 0.18, shape: "dot", rate: 0.22, color: "dustC", track: false, accel: true, jitter: 0.3, free: true };
 
 // ═════ S2（x＝-60）：三種藥水＋晶圓（洗、蝕刻、磨平） ═════
 const X2 = -60;
@@ -265,7 +266,7 @@ P({ id: "pipeBand", layer: "pipeI", shape: "tube", size: [IR + 0.3, IR - 0.05, 0
 BOX("pipeStand", "pipeI", XQ - 4.4, XQ - 3.6, 0, 3.4 - IR - 0.2, -0.8, 0.8, "steel"); BOX("pipeStand2", "pipeI", XQ + 3.6, XQ + 4.4, 0, 3.4 - IR - 0.2, -0.8, 0.8, "steel");
 actions.ionsBlue = { type: "flow", _說明: "藥液裡的分子（淡藍，密）隨液體向右流（層流：中間快、靠壁慢，示意）", layer: "pipeI", path: [[XQ - 8, 3.4, 0], [XQ + 8, 3.4, 0]], n: 60, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "cleanC", track: false, jitter: 1.4, free: true, trail: 0 };
 actions.ionsRed = { type: "flow", _說明: "混進去的金屬雜質（紅，只有極少幾顆）", layer: "pipeI", path: [[XQ - 8, 3.7, 0.4], [XQ + 8, 3.7, 0.4]], n: 3, size: 0.2, shape: "dot", rate: 0.12, color: "oxidC", track: false, jitter: 0.9, free: true, rim: "dark" };
-Object.assign(anchors, { dust: A("dustS1", [X1 - 1.4, 12.6, -0.9], 150, -90), drumA: A("drum", [X1 + 2.9, 6.2, 0.5], 150, 90), jugA: A("jugs", [X2 - 8, 3.8, -2.0], -150, -90), jugB: A("jugs", [X2 - 4.4, 3.8, -2.0], 150, -110), jugC: A("jugs", [X2 - 0.8, 3.8, -2.0], 150, -90), pool: A("pool", [X3 - 3.5, 1.2, 3.0], -150, 90), spoon: A("spoon", [X3 + 1.6, 4.3, 0], 150, -90), ionRed: A("pipeI", [XQ + 2, 4.1, 0.6], 150, -100) });
+Object.assign(anchors, { dust: A("dustS1", [DXc, DYc + 0.6, -0.9], 150, -90), drumA: A("drum", [X1 + 2.9, 6.2, 0.5], 150, 90), jugA: A("jugs", [X2 - 8, 3.8, -2.0], -150, -90), jugB: A("jugs", [X2 - 4.4, 3.8, -2.0], 150, -110), jugC: A("jugs", [X2 - 0.8, 3.8, -2.0], 150, -90), pool: A("pool", [X3 - 3.5, 1.2, 3.0], -150, 90), spoon: A("spoon", [X3 + 1.6, 4.3, 0], 150, -90), ionRed: A("pipeI", [XQ + 2, 4.1, 0.6], 150, -100) });
 
 // ═════ S4：送液主線（儲槽 x0 → 管理櫃 x26 → 管路架 → 閥箱 x58 → 供液櫃 x76 → 使用點過濾器 x94 → 旋轉清洗腔 x110） ═════
 const XT = 0, XC = 26, XV = 58, XD = 76, XP = 94, XS = 110, XW = 128, ZP = -6.5, YR = 11.0, YB = 9.6;
@@ -284,13 +285,18 @@ BOX("tpTray", "tport", -9.6, -6.8, 0.5, 0.9, -0.5, 2.6, "dark"); BOX("tpGround",
 PIPE("tpHose", "tport", [[-8.3, 3.1, 0.6], [-6.8, 2.4, 1.6], [-5.4, 1.0, 2.4], [-4.0, 0.7, 3.4], [-2.6, 0.7, 3.8]], 0.3, "rubber");
 // 管路：槽出口 → 後方管路架 → 管理櫃入口
 const W0 = XT + 6 + 1.3;
-PIPE("pSup", "loopIn", [[W0, 1.6, 0], [W0 + 3, 1.6, 0], [W0 + 3, 1.6, ZP], [XC - 5.5, 1.6, ZP], [XC - 5.5, 3.6, ZP], [XC - 5.5, 3.6, -4.2]], 0.28, "pfa");
+PIPE("pSup", "loopIn", [[W0, 1.6, 0], [W0 + 3, 1.6, 0], [W0 + 3, 1.6, ZP], [XC - 5.5, 1.6, ZP], [XC - 5.5, 3.6, ZP], [XC - 5.5, 3.6, -4.2]], 0.44, "pfaDark");   // r1：加粗、深一點的塑膠色，讓「塑膠管線」標籤指得到看得見的管子
 LAY("loopIn", [26, 4, 14, 2]);
 CLAMPS("pSupC", "loopIn", W0 + 5, XC - 7, 1.6, ZP, 0.28, 4.5);
-P({ id: "pSupFl", layer: "loopIn", shape: "tube", size: [0.5, 0.26, 0.22], rot: HX, pos: [W0 + 1.2, 1.6, 0], at: [[0, 0, 0]], mat: "steel2" });
+P({ id: "pSupFl", layer: "loopIn", shape: "tube", size: [0.75, 0.4, 0.25], rot: HX, pos: [W0 + 1.2, 1.6, 0], at: [[0, 0, 0], [W0 + 3 - (W0 + 1.2) + 0, 0, 0]], mat: "steel2" });
+P({ id: "pSupCollar", layer: "loopIn", shape: "tube", size: [0.7, 0.4, 0.3], rot: HX, pos: [0, 1.6, ZP], at: [[W0 + 5.5, 0, 0], [W0 + 8.5, 0, 0], [W0 + 11.5, 0, 0]], mat: "steel2" });
 // ── 化學品管理櫃（CDS） ──
 LAY("cdsBase", [15.2, 0.8, XC, 0.3]); LAY("cdsWall", [14, 20, XC, 10]); LAY("cdsDoor", [14, 19.4, XC, 10]); LAY("cdsPump", [6, 6, XC - 4, 4]); LAY("cdsValve", [6, 6, XC, 10]); LAY("cdsFilter", [3.4, 10, XC + 4.6, 7.5]); LAY("cdsCore", [2.4, 8, XC + 4.6, 7]); LAY("cdsMeas", [10, 4, XC, 15.5]); LAY("cdsPipe", [14, 18, XC, 9]);
 const CDS = CAB("cds", XC, 16, 9, 20, "cdsBase", "cdsWall", "cdsDoor");
+LAY("cdsFrame", [16.6, 20.4, XC, 10]);
+{ const fx0 = CDS.x0 - 0.1, fx1 = CDS.x1 + 0.1, fz0 = CDS.z0 - 0.1, fz1 = CDS.z1 + 0.3, fy0 = 0.6, fy1 = 20.1, T = 0.22;
+  for (const [i, x, z] of [[0, fx0, fz0], [1, fx1, fz0], [2, fx0, fz1], [3, fx1, fz1]]) BOX(`cdsFrV${i}`, "cdsFrame", x - T / 2, x + T / 2, fy0, fy1, z - T / 2, z + T / 2, "steel2");
+  for (const [i, y] of [[0, fy0], [1, fy1]]) { BOX(`cdsFrX${i}a`, "cdsFrame", fx0, fx1, y - T / 2, y + T / 2, fz1 - T / 2, fz1 + T / 2, "steel2"); BOX(`cdsFrX${i}b`, "cdsFrame", fx0, fx1, y - T / 2, y + T / 2, fz0 - T / 2, fz0 + T / 2, "steel2"); BOX(`cdsFrZ${i}a`, "cdsFrame", fx0 - T / 2, fx0 + T / 2, y - T / 2, y + T / 2, fz0, fz1, "steel2"); BOX(`cdsFrZ${i}b`, "cdsFrame", fx1 - T / 2, fx1 + T / 2, y - T / 2, y + T / 2, fz0, fz1, "steel2"); } }
 BOX("cdsNameplate", "cdsWall", XC - 3, XC + 3, 18.3, 19.1, CDS.z1 - 0.04, CDS.z1 + 0.01, "steel2");
 P({ id: "cdsTower", layer: "cdsWall", shape: "cyl", size: [0.28, 0.5], rot: V, pos: [XC + 5.5, 20.25, -2], at: [[0, 0, 0]], mat: "lampG" }); P({ id: "cdsTowerB", layer: "cdsWall", shape: "cyl", size: [0.28, 0.5], rot: V, pos: [XC + 5.5, 20.8, -2], mat: "lampY" });
 BOX("cdsLeakTray", "cdsBase", XC - 6.8, XC + 6.8, 0.7, 1.0, -4.2, 4.2, "cabDark"); BOX("cdsLeakSens", "cdsBase", XC - 0.5, XC + 0.5, 1.0, 1.15, 3.0, 3.6, "lampR");
@@ -419,26 +425,28 @@ PIPE("wsDrain", "wsTank", [[XS + 2.6, 1.0, 1.6], [XS + 2.6, 0.9, 3.2], [XW - 2.6
 
 // ═════ S5（x＝150）：鐵管 vs 塑膠管（半透明剖視）＋檸檬與鐵杯 ═════
 const X5 = 152, Y5 = 3.6;
-LAY("ironPipe", [24, 6, X5, Y5]); LAY("ironAcid", [22, 4, X5, Y5]); LAY("rustA", [3, 3, X5 - 6, 2]); LAY("rustB", [3, 3, X5, 2]); LAY("rustC", [3, 3, X5 + 6, 2]);
-LAY("pfaPipe", [24, 6, X5, Y5]); LAY("pfaAcid", [22, 4, X5, Y5]); LAY("lemon", [8, 6, X5 - 17, 3]);
-const Z5I = -4.6, Z5P = 4.6, R5 = 2.3;
-HXC("irWall", "ironPipe", R5, X5 - 11, X5 + 11, Y5, Z5I, "ironGhost"); HXC("irAcid", "ironAcid", R5 - 0.15, X5 - 10.9, X5 + 10.9, Y5, Z5I, "acid");
-P({ id: "irFl", layer: "ironPipe", shape: "tube", size: [R5 + 0.7, R5 - 0.05, 0.45], rot: HX, pos: [0, Y5, Z5I], at: [[X5 - 11, 0, 0], [X5 + 11, 0, 0], [X5 - 3.7, 0, 0], [X5 + 3.7, 0, 0]], mat: "iron" });
-P({ id: "irBolt", layer: "ironPipe", shape: "cyl", size: [0.13, 0.3], rot: HX, pos: [0, Y5, Z5I], at: [X5 - 11, X5 + 11, X5 - 3.7, X5 + 3.7].flatMap((xx) => Array.from({ length: 8 }, (_, i) => { const [y, z] = pol(i * 45, R5 + 0.45); return [xx, y, z]; })), mat: "ironDark" });
-P({ id: "irStand", layer: "ironPipe", shape: "box", size: [0.5, Y5 - R5 - 0.1, 1.2], pos: [0, (Y5 - R5 - 0.1) / 2, Z5I], at: [[X5 - 7, 0, 0], [X5 + 7, 0, 0]], mat: "iron" });
-HXC("pfWall", "pfaPipe", R5, X5 - 11, X5 + 11, Y5, Z5P, "pfaT"); HXC("pfAcid", "pfaAcid", R5 - 0.15, X5 - 10.9, X5 + 10.9, Y5, Z5P, "acid");
-P({ id: "pfFl", layer: "pfaPipe", shape: "tube", size: [R5 + 0.7, R5 - 0.05, 0.45], rot: HX, pos: [0, Y5, Z5P], at: [[X5 - 11, 0, 0], [X5 + 11, 0, 0], [X5 - 3.7, 0, 0], [X5 + 3.7, 0, 0]], mat: "pfa" });
-P({ id: "pfBolt", layer: "pfaPipe", shape: "cyl", size: [0.13, 0.3], rot: HX, pos: [0, Y5, Z5P], at: [X5 - 11, X5 + 11, X5 - 3.7, X5 + 3.7].flatMap((xx) => Array.from({ length: 8 }, (_, i) => { const [y, z] = pol(i * 45, R5 + 0.45); return [xx, y, z]; })), mat: "steel" });
-P({ id: "pfStand", layer: "pfaPipe", shape: "box", size: [0.5, Y5 - R5 - 0.1, 1.2], pos: [0, (Y5 - R5 - 0.1) / 2, Z5P], at: [[X5 - 7, 0, 0], [X5 + 7, 0, 0]], mat: "steel2" });
+LAY("ironPipe", [24, 6, X5, 2.7]); LAY("ironAcid", [22, 4, X5, 2.7]); LAY("rustA", [3, 3, X5 - 6, 2]); LAY("rustB", [3, 3, X5, 2]); LAY("rustC", [3, 3, X5 + 6, 2]);
+LAY("pfaPipe", [24, 6, X5, 8.3]); LAY("pfaAcid", [22, 4, X5, 8.3]); LAY("lemon", [8, 6, X5 - 17, 3]);
+const Z5I = 0, Z5P = 0, R5 = 2.3, YI = 2.7, YP = 8.3;   // r1：兩根管上下分開（塑膠在上、鐵在下），不再前後重疊
+// 鐵管：不透明金屬灰；中段留一段「剖開的透明視窗」看內壁，兩端是實心鐵管（2026/11/27 r1）
+HXC("irWallL", "ironPipe", R5, X5 - 11, X5 - 5, YI, Z5I, "iron"); HXC("irWallR", "ironPipe", R5, X5 + 5, X5 + 11, YI, Z5I, "iron"); HXC("irWall", "ironPipe", R5, X5 - 5, X5 + 5, YI, Z5I, "ironGhost");
+P({ id: "irWinFr", layer: "ironPipe", shape: "tube", size: [R5 + 0.18, R5 - 0.05, 0.3], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 5, 0, 0], [X5 + 5, 0, 0]], mat: "ironDark" }); HXC("irAcid", "ironAcid", R5 - 0.15, X5 - 4.9, X5 + 4.9, YI, Z5I, "acid");
+P({ id: "irFl", layer: "ironPipe", shape: "tube", size: [R5 + 0.7, R5 - 0.05, 0.45], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 11, 0, 0], [X5 + 11, 0, 0], [X5 - 3.7, 0, 0], [X5 + 3.7, 0, 0]], mat: "iron" });
+P({ id: "irBolt", layer: "ironPipe", shape: "cyl", size: [0.13, 0.3], rot: HX, pos: [0, YI, Z5I], at: [X5 - 11, X5 + 11, X5 - 3.7, X5 + 3.7].flatMap((xx) => Array.from({ length: 8 }, (_, i) => { const [y, z] = pol(i * 45, R5 + 0.45); return [xx, y, z]; })), mat: "ironDark" });
+P({ id: "irStand", layer: "ironPipe", shape: "box", size: [0.5, YI - R5 - 0.1, 1.2], pos: [0, (YI - R5 - 0.1) / 2, Z5I], at: [[X5 - 7, 0, 0], [X5 + 7, 0, 0]], mat: "iron" });
+HXC("pfWall", "pfaPipe", R5, X5 - 11, X5 + 11, YP, Z5P, "pfaT"); HXC("pfAcid", "pfaAcid", R5 - 0.15, X5 - 10.9, X5 + 10.9, YP, Z5P, "acid");
+P({ id: "pfFl", layer: "pfaPipe", shape: "tube", size: [R5 + 0.7, R5 - 0.05, 0.45], rot: HX, pos: [0, YP, Z5P], at: [[X5 - 11, 0, 0], [X5 + 11, 0, 0], [X5 - 3.7, 0, 0], [X5 + 3.7, 0, 0]], mat: "pfa" });
+P({ id: "pfBolt", layer: "pfaPipe", shape: "cyl", size: [0.13, 0.3], rot: HX, pos: [0, YP, Z5P], at: [X5 - 11, X5 + 11, X5 - 3.7, X5 + 3.7].flatMap((xx) => Array.from({ length: 8 }, (_, i) => { const [y, z] = pol(i * 45, R5 + 0.45); return [xx, y, z]; })), mat: "steel" });
+BOX("pfRack", "pfaPipe", X5 - 11, X5 + 11, YP - 0.3, YP + 0.3, -3.4, -2.9, "steel2"); P({ id: "pfRackPost", layer: "pfaPipe", shape: "box", size: [0.4, YP, 0.4], pos: [0, YP / 2, -3.15], at: [[X5 - 10.4, 0, 0], [X5 + 10.4, 0, 0]], mat: "steel" }); P({ id: "pfRackArm", layer: "pfaPipe", shape: "box", size: [0.4, 0.25, 3.0], pos: [0, YP - 0.1, -1.4], at: [[X5 - 7, 0, 0], [X5 + 7, 0, 0]], mat: "steel2" });
 // 鐵管內壁的腐蝕斑（三個位置，先後出現）：扁平的紅褐色塊貼在內壁底部＋剝落的鏽塊
-for (const [id, dx] of [["rustA", -6], ["rustB", 0], ["rustC", 6]]) {
-  P({ id: `${id}Patch`, layer: id, shape: "sphere", size: [0.9], scale: [1.4, 0.25, 0.9], pos: [X5 + dx, Y5 - R5 + 0.28, Z5I], mat: "rust" });
-  P({ id: `${id}Pit`, layer: id, shape: "sphere", size: [0.3], scale: [1, 0.3, 1], pos: [X5 + dx, Y5 - R5 + 0.32, Z5I], at: [[-0.7, 0, 0.2], [0.6, 0, -0.3], [0.1, 0, 0.5], [-0.2, 0, -0.5]], mat: "rustDark" });
+for (const [id, dx] of [["rustA", -3.4], ["rustB", 0], ["rustC", 3.4]]) {
+  P({ id: `${id}Patch`, layer: id, shape: "sphere", size: [0.9], scale: [1.4, 0.25, 0.9], pos: [X5 + dx, YI - R5 + 0.28, Z5I], mat: "rust" });
+  P({ id: `${id}Pit`, layer: id, shape: "sphere", size: [0.3], scale: [1, 0.3, 1], pos: [X5 + dx, YI - R5 + 0.32, Z5I], at: [[-0.7, 0, 0.2], [0.6, 0, -0.3], [0.1, 0, 0.5], [-0.2, 0, -0.5]], mat: "rustDark" });
 }
-actions.irBubbles = { type: "flow", _說明: "酸咬金屬：腐蝕斑冒出小氣泡，向上飄到液面（示意）", layer: "ironAcid", path: [[X5 - 6, Y5 - R5 + 0.5, Z5I], [X5 - 6, Y5 + 1.4, Z5I], [X5, Y5 - R5 + 0.5, Z5I], [X5, Y5 + 1.4, Z5I]], n: 8, size: 0.1, shape: "dot", rate: 0.9, color: "bubC", track: false, rise: true, jitter: 0.5, free: true };
-actions.rustFlow = { type: "flow", _說明: "鏽紅色金屬粒子從管壁剝落，被液流帶往下游（示意）", layer: "ironAcid", path: [[X5 - 6, Y5 - R5 + 0.6, Z5I], [X5 - 2, Y5 - 0.6, Z5I], [X5 + 6, Y5 - 0.2, Z5I], [X5 + 10, Y5 - 0.2, Z5I]], n: 12, size: 0.17, shape: "dot", rate: 0.2, color: "rustC", track: false, jitter: 0.5, free: true, rim: "dark" };
-actions.irFlow = { type: "flow", _說明: "鐵管內的酸液流向右（對照組，與塑膠管同速）", layer: "ironAcid", path: [[X5 - 10.5, Y5, Z5I], [X5 + 10.5, Y5, Z5I]], n: 18, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "acidC", track: false, jitter: 0.8, free: true };
-actions.pfFlow = { type: "flow", _說明: "塑膠管內的酸液流向右：沒有雜質", layer: "pfaAcid", path: [[X5 - 10.5, Y5, Z5P], [X5 + 10.5, Y5, Z5P]], n: 18, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "acidC", track: false, jitter: 0.8, free: true };
+actions.irBubbles = { type: "flow", _說明: "酸咬金屬：腐蝕斑冒出小氣泡，向上飄到液面（示意）", layer: "ironAcid", path: [[X5 - 3.4, YI - R5 + 0.5, Z5I], [X5 - 3.4, YI + 1.4, Z5I], [X5, YI - R5 + 0.5, Z5I], [X5, YI + 1.4, Z5I]], n: 8, size: 0.1, shape: "dot", rate: 0.9, color: "bubC", track: false, rise: true, jitter: 0.5, free: true };
+actions.rustFlow = { type: "flow", _說明: "鏽紅色金屬粒子從管壁剝落，被液流帶往下游（示意）", layer: "ironAcid", path: [[X5 - 3.4, YI - R5 + 0.6, Z5I], [X5 - 1, YI - 0.6, Z5I], [X5 + 4, YI - 0.2, Z5I], [X5 + 10, YI - 0.2, Z5I]], n: 12, size: 0.17, shape: "dot", rate: 0.2, color: "rustC", track: false, jitter: 0.5, free: true, rim: "dark" };
+actions.irFlow = { type: "flow", _說明: "鐵管內的酸液流向右（對照組，與塑膠管同速）", layer: "ironAcid", path: [[X5 - 4.6, YI, Z5I], [X5 + 4.6, YI, Z5I]], n: 18, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "acidC", track: false, jitter: 0.8, free: true };
+actions.pfFlow = { type: "flow", _說明: "塑膠管內的酸液流向右：沒有雜質", layer: "pfaAcid", path: [[X5 - 10.5, YP, Z5P], [X5 + 10.5, YP, Z5P]], n: 18, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "acidC", track: false, jitter: 0.8, free: true };
 actions.rustGlowA = { type: "pulse", parts: ["rustAPatch"], color: "rustC", glow: 0.6, steady: true, halo: 0 };
 // 檸檬（半顆，果肉辨識）＋鐵杯（內壁生鏽）
 const XL = X5 - 17;
@@ -449,39 +457,44 @@ VT("cupWall", "lemon", 1.6, 1.45, 0.2, 3.6, "iron", { x: XL, z: -3.0 }); VC("cup
 P({ id: "cupRust", layer: "lemon", shape: "sphere", size: [0.5], scale: [1, 0.5, 1], pos: [XL, 1.6, -3.0], at: [[0.9, 0.6, 0.7], [-0.7, 0.2, 0.9], [0.1, 1.1, -1.1]], mat: "rust" });
 P({ id: "cupHandle", layer: "lemon", shape: "tube", size: [1.0, 0.8, 0.15], rot: [0, 0, 0], pos: [XL + 2.2, 2.3, -3.0], mat: "iron" });
 actions.lemonDrip = { type: "flow", _說明: "檸檬汁滴進鐵杯", layer: "lemon", path: [[XL, 1.0, 3.0], [XL, 0.5, 1.0], [XL, 1.0, -2.6]], n: 3, size: 0.12, shape: "liquid", rate: 0.5, color: "lemonC", track: false, accel: true, free: true };
-Object.assign(anchors, { ironP: A("ironPipe", [X5 - 8, Y5 + 2.3, Z5I], -150, -90), pfaP: A("pfaPipe", [X5 - 8, Y5 + 2.3, Z5P], -150, -90), rustP: A("rustA", [X5 - 6, 1.6, Z5I], 150, 100), cup: A("lemon", [XL, 3.7, -3.0], -150, -90) });
+Object.assign(anchors, { ironP: A("ironPipe", [X5 - 8, YI + 2.3, Z5I], -150, -90), pfaP: A("pfaPipe", [X5 - 8, YP + 2.3, Z5P], -150, -90), rustP: A("rustA", [X5 - 3.4, YI - R5 + 0.5, Z5I], 150, 100), cup: A("lemon", [XL, 3.7, -3.0], -150, -90) });
 
-// ═════ S6（x＝182）：研磨液放大剖面＋晶圓表面（磨粒機械磨＋藥劑溶出氧化層） ═════
-const X6 = 182, XB = X6 + 1.0;
-LAY("slBlock", [20, 9, X6, 7]); LAY("wfSurf", [20, 3, X6, 1.2]); LAY("bumpHi", [4.4, 1.8, XB, 3.0]); LAY("bumpLo", [4.4, 0.8, XB, 2.4]); LAY("oxFilm", [16, 0.5, X6, 2.55]); LAY("slPad", [20, 1.6, X6, 12.6]);
-LAY("grainFree", [18, 7, X6, 7.5]); LAY("grainPress", [5, 3, XB, 4.4]); LAY("oxMol", [18, 7, X6, 7.5]); LAY("debris", [4, 3, XB + 3, 4]);
-BOX("sfSlab", "wfSurf", X6 - 10, X6 + 10, 0, 2.0, -3.4, 3.4, "sub"); BOX("sfSlabTop", "wfSurf", X6 - 10, X6 + 10, 2.0, 2.2, -3.4, 3.4, "steel2");
-P({ id: "sfLat", layer: "wfSurf", shape: "sphere", size: [0.22], pos: [X6 - 9.6, 1.0, 3.45], at: Array.from({ length: 28 }, (_, i) => [i * 0.7, 0, 0]).concat(Array.from({ length: 28 }, (_, i) => [i * 0.7 + 0.35, -0.5, 0])), mat: "subD" });
-BOX("bumpHiBox", "bumpHi", XB - 2.0, XB + 2.0, 2.2, 3.9, -2.0, 2.0, "steel2"); BOX("bumpLoBox", "bumpLo", XB - 2.0, XB + 2.0, 2.2, 3.0, -2.0, 2.0, "steel2");
-BOX("oxFilmBox", "oxFilm", X6 - 10, X6 - 2.0, 2.2, 2.55, -3.4, 3.4, "oxFilmM"); BOX("oxFilmBoxR", "oxFilm", XB + 2.0, X6 + 10, 2.2, 2.55, -3.4, 3.4, "oxFilmM");
-BOX("slBox", "slBlock", X6 - 10, X6 + 10, 2.2, 12.4, -3.4, 3.4, "slurryT");
-BOX("slPadBody", "slPad", X6 - 10, X6 + 10, 12.4, 14.0, -3.4, 3.4, "pad"); P({ id: "slPadGroove", layer: "slPad", shape: "box", size: [0.2, 0.2, 6.8], pos: [X6, 14.02, 0], at: Array.from({ length: 9 }, (_, i) => [-8 + i * 2, 0, 0]), mat: "padDark" });
-BOX("slPadPlaten", "slPad", X6 - 10, X6 + 10, 14.0, 14.4, -3.4, 3.4, "steel2");
-// 磨粒：二氧化矽圓球（淡藍白）。自由漂浮 40 顆（散在液體裡，每顆各自做布朗運動），受壓 4 顆（夾在凸起與墊之間）
+// ═════ S6（x＝182）：研磨液放大剖面＋晶圓表面（磨粒機械磨＋藥劑溶出氧化層）— r1：凸起加大（約磨粒 5 倍高、圓角頂）、墊子有微孔、磨粒被夾在墊與凸起之間 ═════
+const X6 = 182, XB = X6 + 1.0, HW = 7.0, PADY = 6.7;   // HW＝剖面半寬；PADY＝墊子下表面高度
+LAY("slBlock", [14, 4.6, X6, 4.5]); LAY("wfSurf", [14, 3, X6, 1.2]); LAY("bumpHi", [4.6, 4.0, XB, 4.2]); LAY("bumpLo", [4.6, 2.4, XB, 3.4]); LAY("oxFilm", [14, 0.5, X6, 2.55]); LAY("slPad", [14, 2.2, X6, 7.6]);
+LAY("grainFree", [13, 4, X6, 4.6]); LAY("grainPress", [5, 1.4, XB, 6.3]); LAY("oxMol", [13, 4, X6 - 3.5, 4.6]); LAY("debris", [4, 3, XB + 3, 4]);
+BOX("sfSlab", "wfSurf", X6 - HW, X6 + HW, 0, 2.0, -3.4, 3.4, "sub"); BOX("sfSlabTop", "wfSurf", X6 - HW, X6 + HW, 2.0, 2.2, -3.4, 3.4, "steel2");
+P({ id: "sfLat", layer: "wfSurf", shape: "sphere", size: [0.22], pos: [X6 - HW + 0.4, 1.0, 3.45], at: Array.from({ length: 19 }, (_, i) => [i * 0.7, 0, 0]).concat(Array.from({ length: 19 }, (_, i) => [i * 0.7 + 0.35, -0.5, 0])), mat: "subD" });
+// 凸起：高處（磨前）高 3.4、頂部圓角；磨後（bumpLo）矮很多
+BOX("bumpHiBox", "bumpHi", XB - 2.2, XB + 2.2, 2.2, 5.5, -2.2, 2.2, "steel2"); P({ id: "bumpHiCap", layer: "bumpHi", shape: "sphere", size: [2.2], scale: [1, 0.27, 1], pos: [XB, 5.5, 0], mat: "steel2" });
+BOX("bumpLoBox", "bumpLo", XB - 2.2, XB + 2.2, 2.2, 3.7, -2.2, 2.2, "steel2"); P({ id: "bumpLoCap", layer: "bumpLo", shape: "sphere", size: [2.2], scale: [1, 0.2, 1], pos: [XB, 3.7, 0], mat: "steel2" });
+BOX("oxFilmBox", "oxFilm", X6 - HW, XB - 2.2, 2.2, 2.55, -3.4, 3.4, "oxFilmM"); BOX("oxFilmBoxR", "oxFilm", XB + 2.2, X6 + HW, 2.2, 2.55, -3.4, 3.4, "oxFilmM");
+BOX("slBox", "slBlock", X6 - HW, X6 + HW, 2.2, PADY, -3.4, 3.4, "slurryT");
+// 研磨墊：有微孔的軟墊（下表面一排排小孔與纖維顆粒），壓在凸起上方
+BOX("slPadBody", "slPad", X6 - HW, X6 + HW, PADY, PADY + 1.6, -3.4, 3.4, "pad"); P({ id: "slPadGroove", layer: "slPad", shape: "box", size: [0.2, 0.2, 6.8], pos: [X6, PADY + 1.62, 0], at: Array.from({ length: 7 }, (_, i) => [-6 + i * 2, 0, 0]), mat: "padDark" });
+BOX("slPadPlaten", "slPad", X6 - HW, X6 + HW, PADY + 1.6, PADY + 2.0, -3.4, 3.4, "steel2");
 const rnd = (() => { let s = 20261127; return () => { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; })();
-const FREE = Array.from({ length: 44 }, () => [R2(X6 - 9 + rnd() * 18), R2(4.0 + rnd() * 7.6), R2(-3 + rnd() * 6)]).filter(([x, y]) => !(x > XB - 2.6 && x < XB + 2.6 && y < 8.4));
+P({ id: "slPadPore", layer: "slPad", shape: "sphere", size: [0.2], scale: [1, 0.55, 1], pos: [0, PADY + 0.02, 0], at: Array.from({ length: 70 }, () => [R2(X6 - HW + 0.5 + rnd() * (2 * HW - 1)), 0, R2(-3.1 + rnd() * 6.2)]), mat: "padDark" });
+P({ id: "slPadFib", layer: "slPad", shape: "sphere", size: [0.11], pos: [0, PADY + 0.05, 0], at: Array.from({ length: 60 }, () => [R2(X6 - HW + 0.4 + rnd() * (2 * HW - 0.8)), 0, R2(-3.2 + rnd() * 6.4)]), mat: "padDark" });
+// 磨粒：二氧化矽圓球（淡藍白）。自由漂浮的散在液體裡做布朗運動；受壓 3 顆夾在墊與凸起頂之間（略壓扁）
+const inBump = ([x, y]) => x > XB - 2.7 && x < XB + 2.7 && y < 6.2;
+const FREE = Array.from({ length: 40 }, () => [R2(X6 - HW + 0.6 + rnd() * (2 * HW - 1.2)), R2(3.0 + rnd() * 3.3), R2(-3 + rnd() * 6)]).filter((p) => !inBump(p));
 P({ id: "gFree", layer: "grainFree", shape: "sphere", size: [0.36], pos: [0, 0, 0], at: FREE, mat: "silica" });
-P({ id: "gFreeB", layer: "grainFree", shape: "sphere", size: [0.28], pos: [0, 0, 0], at: Array.from({ length: 26 }, () => [R2(X6 - 9 + rnd() * 18), R2(3.6 + rnd() * 8), R2(-3 + rnd() * 6)]).filter(([x, y]) => !(x > XB - 2.6 && x < XB + 2.6 && y < 8.4)), mat: "silica" });
-P({ id: "gPress", layer: "grainPress", shape: "sphere", size: [0.42], pos: [0, 0, 0], at: [[XB - 1.2, 4.35, -0.8], [XB + 0.4, 4.4, 0.6], [XB + 1.4, 4.35, -0.4], [XB - 0.3, 4.4, -1.5]], mat: "silica" });
-P({ id: "gPressStem", layer: "grainPress", shape: "cyl", size: [0.05, 8.0], rot: V, pos: [0, 8.4, 0], at: [[XB - 1.2, 0, -0.8], [XB + 0.4, 0, 0.6], [XB + 1.4, 0, -0.4], [XB - 0.3, 0, -1.5]], mat: "edge" });
+P({ id: "gFreeB", layer: "grainFree", shape: "sphere", size: [0.28], pos: [0, 0, 0], at: Array.from({ length: 24 }, () => [R2(X6 - HW + 0.6 + rnd() * (2 * HW - 1.2)), R2(2.9 + rnd() * 3.5), R2(-3 + rnd() * 6)]).filter((p) => !inBump(p)), mat: "silica" });
+P({ id: "gPress", layer: "grainPress", shape: "sphere", size: [0.42], scale: [1, 0.8, 1], pos: [0, 0, 0], at: [[XB - 1.2, 6.32, -0.8], [XB + 0.4, 6.36, 1.4], [XB + 1.4, 6.3, -0.3]], mat: "silica" });
 // 氧化劑小分子（紅白雙球）：游向表面
-P({ id: "oxA", layer: "oxMol", shape: "sphere", size: [0.17], pos: [0, 0, 0], at: Array.from({ length: 22 }, () => [R2(X6 - 9 + rnd() * 7), R2(5 + rnd() * 6), R2(-3 + rnd() * 6)]), mat: "ohO" });
-P({ id: "oxB", layer: "oxMol", shape: "sphere", size: [0.1], pos: [0.22, 0.12, 0], at: Array.from({ length: 22 }, () => [R2(X6 - 9 + rnd() * 7), R2(5 + rnd() * 6), R2(-3 + rnd() * 6)]), mat: "ohH" });
+P({ id: "oxA", layer: "oxMol", shape: "sphere", size: [0.17], pos: [0, 0, 0], at: Array.from({ length: 20 }, () => [R2(X6 - HW + 0.6 + rnd() * 4.2), R2(3.2 + rnd() * 3), R2(-3 + rnd() * 6)]), mat: "ohO" });
+P({ id: "oxB", layer: "oxMol", shape: "sphere", size: [0.1], pos: [0.22, 0.12, 0], at: Array.from({ length: 20 }, () => [R2(X6 - HW + 0.6 + rnd() * 4.2), R2(3.2 + rnd() * 3), R2(-3 + rnd() * 6)]), mat: "ohH" });
 P({ id: "debrisS", layer: "debris", shape: "sphere", size: [0.14], pos: [0, 0, 0], at: [[XB + 2.6, 3.2, 0.3], [XB + 3.2, 3.6, -0.6], [XB + 2.9, 4.2, 0.8], [XB + 3.8, 3.4, 0.1]], mat: "silica" });
 actions.brown = { type: "vibrate", _說明: "磨粒的布朗運動：微小隨機抖動（示意）", parts: ["gFree", "gFreeB", "oxA", "oxB"], axis: [0.6, 0.8, 0.4], amp: 0.1, freq: 3.2 };
-actions.drift = { type: "flow", _說明: "磨粒隨液體緩緩流動", layer: "grainFree", path: [[X6 - 9, 8, 0], [X6 + 9, 8.6, 0]], n: 10, size: 0.3, shape: "dot", rate: 0.05, color: "silicaC", track: false, jitter: 2.4, free: true, rim: "steelC" };
-actions.oxIn = { type: "flow", _說明: "氧化劑分子游向表面，把凸起處與表面的氧化層溶出（化學）", layer: "oxMol", path: [[X6 - 7, 10, 0], [X6 - 6, 3.2, 0.6]], n: 6, size: 0.16, shape: "mol", rate: 0.3, color: "oxidC", track: false, jitter: 1.4, free: true };
-actions.grit = { type: "flow", _說明: "被磨下來的微小碎屑被液流帶走（機械）", layer: "debris", path: [[XB + 2.3, 3.4, 0], [XB + 5.5, 6.0, 0.8]], n: 6, size: 0.12, shape: "dot", rate: 0.4, color: "silicaC", track: false, jitter: 0.5, free: true };
-actions.padPress = { type: "pulse", _說明: "墊子往下壓（受壓處亮）", parts: ["gPress"], color: "silicaC", glow: 0.6, steady: true, halo: 0 };
-// 刮傷示範：結塊的大顆粒夾在墊與晶圓之間劃出一道紅線（只演一次）；線一段一段露出
-LAY("lump", [3.4, 2.4, X6 - 6, 4.0]); BOX("lumpA", "lump", X6 - 7.4, X6 - 5.2, 2.2, 4.6, -1.0, 1.0, "lump"); P({ id: "lumpB", layer: "lump", shape: "sphere", size: [0.95], pos: [X6 - 5.4, 3.2, 0.6], mat: "lump" }); P({ id: "lumpC", layer: "lump", shape: "sphere", size: [0.8], pos: [X6 - 7.2, 4.3, -0.4], mat: "lump" }); P({ id: "lumpD", layer: "lump", shape: "sphere", size: [0.7], pos: [X6 - 6.4, 3.6, 0.9], mat: "silica" });
-for (let i = 0; i < 6; i++) { LAY(`scr${i}`, [2, 0.4, X6 - 4 + i * 1.9, 2.4]); BOX(`scrBar${i}`, `scr${i}`, X6 - 6.8 + i * 1.9, X6 - 4.8 + i * 1.9, 2.2, 2.4, -0.18, 0.18, "scratch"); }
-Object.assign(anchors, { slurry: A("slBlock", [X6 + 7, 10.4, 3.4], 150, -90), grain: A("grainPress", [XB + 1.4, 4.4, 0.0], 150, 100), ox: A("oxFilm", [X6 - 7.4, 2.5, 3.4], -150, 100), bump: A("bumpHi", [XB + 1.8, 3.5, 2.0], 150, 110), lumpL: A("lump", [X6 - 5.4, 4.3, 0.8], -150, -100), scratchL: A("scr3", [X6 - 0.4, 2.3, 0.2], 150, 100) });
+actions.drift = { type: "flow", _說明: "磨粒隨液體緩緩流動", layer: "grainFree", path: [[X6 - 6, 4.2, 0], [X6 + 6, 4.8, 0]], n: 8, size: 0.3, shape: "dot", rate: 0.05, color: "silicaC", track: false, jitter: 1.6, free: true, rim: "steelC" };
+actions.oxIn = { type: "flow", _說明: "氧化劑分子游向表面，把凸起處與表面的氧化層溶出（化學）", layer: "oxMol", path: [[X6 - 5, 6, 0], [X6 - 4.6, 2.9, 0.6]], n: 6, size: 0.16, shape: "mol", rate: 0.3, color: "oxidC", track: false, jitter: 1.0, free: true };
+actions.grit = { type: "flow", _說明: "被磨下來的微小碎屑被液流帶走（機械）", layer: "debris", path: [[XB + 2.3, 3.4, 0], [XB + 4.6, 5.2, 0.8]], n: 6, size: 0.12, shape: "dot", rate: 0.4, color: "silicaC", track: false, jitter: 0.5, free: true };
+actions.padPress = { type: "pulse", _說明: "墊子往下壓（被夾住的磨粒亮）", parts: ["gPress"], color: "silicaC", glow: 0.6, steady: true, halo: 0 };
+// 刮傷示範（s7 前半）：結塊的大顆粒夾在墊與晶圓之間劃出一道紅線（只演一次）；線一段一段露出
+LAY("lump", [3.4, 2.4, X6 - 5.2, 4.0]); BOX("lumpA", "lump", X6 - 6.4, X6 - 4.2, 2.2, 4.6, -1.0, 1.0, "lump"); P({ id: "lumpB", layer: "lump", shape: "sphere", size: [0.95], pos: [X6 - 4.4, 3.2, 0.6], mat: "lump" }); P({ id: "lumpC", layer: "lump", shape: "sphere", size: [0.8], pos: [X6 - 6.2, 4.3, -0.4], mat: "lump" }); P({ id: "lumpD", layer: "lump", shape: "sphere", size: [0.7], pos: [X6 - 5.4, 3.6, 0.9], mat: "silica" });
+for (let i = 0; i < 6; i++) { LAY(`scr${i}`, [2, 0.4, X6 - 3.2 + i * 1.3, 2.4]); BOX(`scrBar${i}`, `scr${i}`, X6 - 5.8 + i * 1.3, X6 - 4.2 + i * 1.3, 2.2, 2.4, -0.18, 0.18, "scratch"); }
+Object.assign(anchors, { slurry: A("slBlock", [X6 + 6, 6.2, 3.4], 150, -90), grain: A("grainPress", [XB + 0.4, 6.36, 1.4], 150, 100), ox: A("oxFilm", [X6 - 5.4, 2.5, 3.4], -150, 100), bump: A("bumpHi", [XB + 2.2, 4.4, 2.0], 150, 110), lumpL: A("lump", [X6 - 4.4, 4.3, 0.8], -150, -100), scratchL: A("scr3", [X6 + 0.6, 2.3, 0.2], 150, 100) });
 
 // ═════ S7（x＝218）：研磨液混合／循環槽組 ═════
 const X7 = 218;
@@ -578,7 +591,7 @@ actions.tankLevel = { type: "pulse", parts: ["tkGaugeLiq"], color: "cleanC", glo
 actions.pouLed = { type: "pulse", parts: ["pouVentH"], color: "estop", glow: 0.7, freq: 0.5, halo: 0 };
 Object.assign(anchors, {
   sup: A("loopIn", [XC - 10, 1.8, ZP], 150, -90), tank: A("tankFit", [XT + 3.4, 11.0, 5.9], 150, -90), tgauge: A("tankFit", [XT + 6.4, 8.0, 0.3], 150, 90), tladder: A("tankFit", [XT - 6.5, 8.0, 0.5], -150, -100), tcpl: A("tport", [-8.3, 3.4, 0.8], -150, -90), tbund: A("berm", [XT + 9, 1.0, 7.8], 150, 100),
-  cds: A("cdsBase", [XC - 8.2, 0.4, 4.7], -150, -170), cdsDoorA: A("cdsDoor", [XC - 2, 11, 4.8], -150, -80), pump: A("cdsPump", [PX, 4.9, 0.5], -150, -100), valve: A("cdsValve", [VX, 10.8, 0.8], -150, -90), cfilter: A("cdsFilter", [FX2, 11.6, FZ2 + 1.4], 150, -100), meas: A("cdsMeas", [MX, 15.8, 1.2], -150, -90), pres: A("cdsMeas", [NX, 16.0, 0.4], 150, -100), pleats: A("cdsCore", [FX2 + 1.0, 7.5, FZ2 + 0.8], 150, 90),
+  cds: A("cdsBase", [XC - 8.2, 0.4, 4.7], -150, -170), cdsDoorA: A("cdsDoor", [XC - 7.8, 12.5, 4.8], -190, -90), pump: A("cdsPump", [PX, 4.9, 0.5], -150, -100), valve: A("cdsValve", [VX, 10.8, 0.8], -150, -90), cfilter: A("cdsFilter", [FX2, 11.6, FZ2 + 1.4], 150, -100), meas: A("cdsMeas", [MX, 15.8, 1.2], -150, -90), pres: A("cdsMeas", [NX, 16.0, 0.4], 150, -100), pleats: A("cdsCore", [FX2 + 1.0, 7.5, FZ2 + 0.8], 150, 90),
   loop: A("loopOut", [XC + 22, YR + 0.3, ZP], 150, -90), loopR: A("loopRet", [XC + 36, YB, ZP - 1.4], 150, 100), vmb: A("vmbBox", [XV, 8.4, 3.0], -150, -90), dtank: A("dtTank", [XD - 3, 10.8, 0.0], -150, -90), dstir: A("dtStir", [XD - 3, 12.2, 0.4], -150, -100), pou: A("pouShell", [XP + 1.5, 8.0, 0.4], 150, -100), poup: A("pouCore", [XP, 5.5, 1.0], 150, 100),
   spin: A("scChuck", [XS, 5.0, 3.0], 150, 100), nozz: A("scArm", [XS, 6.4, -2.5], -150, -100), upw: A("feedL", [XS + 2.0, 8.8, -3.4], 150, -100), waste: A("wsTank", [XW, 6.8, 1.7], 150, -90),
 });

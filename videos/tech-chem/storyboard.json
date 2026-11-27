@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 2382,
- "totalSec": 79.4,
+ "totalFrames": 2631,
+ "totalSec": 87.7,
  "scenes": [
   {
    "id": "s1",
@@ -219,9 +219,9 @@
   {
    "id": "s4",
    "startFrame": 600,
-   "durationFrames": 486,
+   "durationFrames": 192,
    "startSec": 20,
-   "durationSec": 16.2,
+   "durationSec": 6.4,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -235,74 +235,118 @@
     {
      "id": "tank",
      "text": "大槽",
-     "frame": 633,
-     "sceneFrame": 33
+     "frame": 634,
+     "sceneFrame": 34
     },
     {
      "id": "pipe",
      "text": "管線",
-     "frame": 662,
-     "sceneFrame": 62
+     "frame": 663,
+     "sceneFrame": 63
     },
     {
      "id": "desk",
      "text": "機台旁",
-     "frame": 685,
-     "sceneFrame": 85
-    },
-    {
-     "id": "water",
-     "text": "自來水廠",
-     "frame": 708,
-     "sceneFrame": 108
-    },
-    {
-     "id": "clean",
-     "text": "不准掉渣",
-     "frame": 772,
-     "sceneFrame": 172
+     "frame": 687,
+     "sceneFrame": 87
     }
    ],
-   "stillFrame": 1085,
+   "stillFrame": 791,
    "subtitles": [
     {
      "zh": "藥水從廠外大槽出發",
      "en": "Chemicals leave the outdoor tank,",
      "startFrame": 601,
-     "endFrame": 652
+     "endFrame": 653
     },
     {
      "zh": "沿管線送到機台旁",
      "en": "travel by pipe to the tool,",
-     "startFrame": 652,
-     "endFrame": 698
-    },
+     "startFrame": 653,
+     "endFrame": 793
+    }
+   ],
+   "narration": "藥水從廠外大槽出發，沿管線送到機台旁，"
+  },
+  {
+   "id": "s4b",
+   "startFrame": 792,
+   "durationFrames": 297,
+   "startSec": 26.4,
+   "durationSec": 9.9,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "water",
+     "text": "自來水廠",
+     "frame": 802,
+     "sceneFrame": 10
+    }
+   ],
+   "stillFrame": 1088,
+   "subtitles": [
     {
      "zh": "像自來水廠送水",
      "en": "like a water works,",
-     "startFrame": 698,
-     "endFrame": 739
-    },
+     "startFrame": 793,
+     "endFrame": 1090
+    }
+   ],
+   "narration": "像自來水廠送水，"
+  },
+  {
+   "id": "s4c",
+   "startFrame": 1089,
+   "durationFrames": 168,
+   "startSec": 36.3,
+   "durationSec": 5.6,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "clean",
+     "text": "不准掉渣",
+     "frame": 1122,
+     "sceneFrame": 33
+    }
+   ],
+   "stillFrame": 1256,
+   "subtitles": [
     {
      "zh": "但每一段",
      "en": "but every segment",
-     "startFrame": 739,
-     "endFrame": 762
+     "startFrame": 1090,
+     "endFrame": 1113
     },
     {
      "zh": "都不准掉渣",
      "en": "must shed no particles.",
-     "startFrame": 762,
-     "endFrame": 1087
+     "startFrame": 1113,
+     "endFrame": 1258
     }
    ],
-   "narration": "藥水從廠外大槽出發，沿管線送到機台旁，像自來水廠送水，但每一段都不准掉渣。"
+   "narration": "但每一段都不准掉渣。"
   },
   {
    "id": "s5",
-   "startFrame": 1086,
+   "startFrame": 1257,
    "durationFrames": 228,
-   "startSec": 36.2,
+   "startSec": 41.9,
    "durationSec": 7.6,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -317,86 +361,86 @@
     {
      "id": "plastic",
      "text": "塑膠",
-     "frame": 1108,
+     "frame": 1279,
      "sceneFrame": 22
     },
     {
      "id": "iron",
      "text": "不用鐵",
-     "frame": 1119,
+     "frame": 1290,
      "sceneFrame": 33
     },
     {
      "id": "lemon",
      "text": "檸檬汁",
-     "frame": 1149,
+     "frame": 1320,
      "sceneFrame": 63
     },
     {
      "id": "cup",
      "text": "鐵杯",
-     "frame": 1178,
+     "frame": 1349,
      "sceneFrame": 92
     },
     {
      "id": "bite",
      "text": "咬下金屬",
-     "frame": 1201,
+     "frame": 1372,
      "sceneFrame": 115
     },
     {
      "id": "dirty",
      "text": "污染",
-     "frame": 1225,
+     "frame": 1396,
      "sceneFrame": 139
     }
    ],
-   "stillFrame": 1313,
+   "stillFrame": 1484,
    "subtitles": [
     {
      "zh": "管子用塑膠",
      "en": "Pipes are plastic,",
-     "startFrame": 1087,
-     "endFrame": 1115
+     "startFrame": 1258,
+     "endFrame": 1286
     },
     {
      "zh": "不用鐵",
      "en": "not iron.",
-     "startFrame": 1115,
-     "endFrame": 1133
+     "startFrame": 1286,
+     "endFrame": 1304
     },
     {
      "zh": "就像檸檬汁",
      "en": "Like lemon juice",
-     "startFrame": 1133,
-     "endFrame": 1162
+     "startFrame": 1304,
+     "endFrame": 1333
     },
     {
      "zh": "不裝鐵杯",
      "en": "never in an iron cup,",
-     "startFrame": 1162,
-     "endFrame": 1185
+     "startFrame": 1333,
+     "endFrame": 1356
     },
     {
      "zh": "酸會咬下金屬",
      "en": "acid bites off metal",
-     "startFrame": 1185,
-     "endFrame": 1221
+     "startFrame": 1356,
+     "endFrame": 1392
     },
     {
      "zh": "污染晶圓",
      "en": "and contaminates the wafer.",
-     "startFrame": 1221,
-     "endFrame": 1315
+     "startFrame": 1392,
+     "endFrame": 1486
     }
    ],
    "narration": "管子用塑膠，不用鐵。就像檸檬汁不裝鐵杯，酸會咬下金屬，污染晶圓。"
   },
   {
    "id": "s6",
-   "startFrame": 1314,
+   "startFrame": 1485,
    "durationFrames": 252,
-   "startSec": 43.8,
+   "startSec": 49.5,
    "durationSec": 8.4,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -411,87 +455,87 @@
     {
      "id": "slurry",
      "text": "研磨液",
-     "frame": 1318,
+     "frame": 1489,
      "sceneFrame": 4
     },
     {
      "id": "grain",
      "text": "磨粒",
-     "frame": 1399,
+     "frame": 1570,
      "sceneFrame": 85
     },
     {
      "id": "wash",
      "text": "洗面乳",
-     "frame": 1440,
+     "frame": 1611,
      "sceneFrame": 126
     },
     {
      "id": "sand",
      "text": "砂磨",
-     "frame": 1457,
+     "frame": 1628,
      "sceneFrame": 143
     },
     {
      "id": "chem",
      "text": "藥水溶",
-     "frame": 1468,
+     "frame": 1639,
      "sceneFrame": 154
     },
     {
      "id": "both",
      "text": "一起動手",
-     "frame": 1486,
+     "frame": 1657,
      "sceneFrame": 172
     }
    ],
-   "stillFrame": 1565,
+   "stillFrame": 1736,
    "subtitles": [
     {
      "zh": "研磨液更特別",
      "en": "Slurry is special:",
-     "startFrame": 1315,
-     "endFrame": 1349
+     "startFrame": 1486,
+     "endFrame": 1520
     },
     {
      "zh": "藥水裡混著",
      "en": "tiny abrasive grains",
-     "startFrame": 1349,
-     "endFrame": 1378
+     "startFrame": 1520,
+     "endFrame": 1549
     },
     {
      "zh": "極細的磨粒",
      "en": "mixed into the liquid,",
-     "startFrame": 1378,
-     "endFrame": 1407
+     "startFrame": 1549,
+     "endFrame": 1578
     },
     {
      "zh": "像含細砂的洗面乳",
      "en": "like a scrub with fine sand.",
-     "startFrame": 1407,
-     "endFrame": 1453
+     "startFrame": 1578,
+     "endFrame": 1624
     },
     {
      "zh": "砂磨藥水溶",
      "en": "Grains grind, chemistry dissolves,",
-     "startFrame": 1453,
-     "endFrame": 1482
+     "startFrame": 1624,
+     "endFrame": 1653
     },
     {
      "zh": "一起動手",
      "en": "together.",
-     "startFrame": 1482,
-     "endFrame": 1567
+     "startFrame": 1653,
+     "endFrame": 1738
     }
    ],
    "narration": "研磨液更特別，藥水裡混著極細的磨粒，像含細砂的洗面乳，砂磨、藥水溶，一起動手。"
   },
   {
    "id": "s7",
-   "startFrame": 1566,
-   "durationFrames": 318,
-   "startSec": 52.2,
-   "durationSec": 10.6,
+   "startFrame": 1737,
+   "durationFrames": 144,
+   "startSec": 57.9,
+   "durationSec": 4.8,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -505,92 +549,114 @@
     {
      "id": "lump",
      "text": "結塊",
-     "frame": 1593,
-     "sceneFrame": 27
+     "frame": 1765,
+     "sceneFrame": 28
     },
     {
      "id": "scratch",
      "text": "刮傷",
-     "frame": 1611,
+     "frame": 1782,
      "sceneFrame": 45
-    },
-    {
-     "id": "stir",
-     "text": "攪動",
-     "frame": 1669,
-     "sceneFrame": 103
-    },
-    {
-     "id": "loop",
-     "text": "循環",
-     "frame": 1680,
-     "sceneFrame": 114
-    },
-    {
-     "id": "filter",
-     "text": "過濾",
-     "frame": 1692,
-     "sceneFrame": 126
-    },
-    {
-     "id": "soy",
-     "text": "豆漿",
-     "frame": 1738,
-     "sceneFrame": 172
-    },
-    {
-     "id": "sink",
-     "text": "沉底",
-     "frame": 1767,
-     "sceneFrame": 201
     }
    ],
-   "stillFrame": 1883,
+   "stillFrame": 1880,
    "subtitles": [
     {
      "zh": "磨粒最怕結塊",
      "en": "Grains hate clumping,",
-     "startFrame": 1567,
-     "endFrame": 1601
+     "startFrame": 1738,
+     "endFrame": 1772
     },
     {
      "zh": "會刮傷晶圓",
      "en": "it scratches the wafer.",
-     "startFrame": 1601,
-     "endFrame": 1630
+     "startFrame": 1772,
+     "endFrame": 1882
+    }
+   ],
+   "narration": "磨粒最怕結塊，會刮傷晶圓。"
+  },
+  {
+   "id": "s7b",
+   "startFrame": 1881,
+   "durationFrames": 252,
+   "startSec": 62.7,
+   "durationSec": 8.4,
+   "component": "ThreeScene",
+   "beat": "mechanism",
+   "transition": {
+    "type": "none",
+    "frames": 0
+   },
+   "camera": null,
+   "cueEarly": [],
+   "voice": null,
+   "cues": [
+    {
+     "id": "stir",
+     "text": "攪動",
+     "frame": 1920,
+     "sceneFrame": 39
     },
+    {
+     "id": "loop",
+     "text": "循環",
+     "frame": 1932,
+     "sceneFrame": 51
+    },
+    {
+     "id": "filter",
+     "text": "過濾",
+     "frame": 1943,
+     "sceneFrame": 62
+    },
+    {
+     "id": "soy",
+     "text": "豆漿",
+     "frame": 1990,
+     "sceneFrame": 109
+    },
+    {
+     "id": "sink",
+     "text": "沉底",
+     "frame": 2019,
+     "sceneFrame": 138
+    }
+   ],
+   "stillFrame": 2132,
+   "subtitles": [
     {
      "zh": "所以槽裡一直攪動",
      "en": "So the tank keeps stirring,",
-     "startFrame": 1630,
-     "endFrame": 1676
+     "startFrame": 1882,
+     "endFrame": 1928
     },
     {
      "zh": "循環過濾",
      "en": "recirculating and filtering,",
-     "startFrame": 1676,
-     "endFrame": 1700
+     "startFrame": 1928,
+     "endFrame": 1951
     },
     {
      "zh": "像不停攪拌的豆漿",
      "en": "like soy milk kept stirred",
-     "startFrame": 1700,
-     "endFrame": 1746
+     "startFrame": 1951,
+     "endFrame": 1998
     },
     {
      "zh": "才不會沉底",
      "en": "so it never sinks.",
-     "startFrame": 1746,
-     "endFrame": 1885
+     "startFrame": 1998,
+     "endFrame": 2134
     }
    ],
-   "narration": "磨粒最怕結塊，會刮傷晶圓。所以槽裡一直攪動、循環過濾，像不停攪拌的豆漿，才不會沉底。"
+   "narration": "所以槽裡一直攪動、循環過濾，像不停攪拌的豆漿，才不會沉底。"
   },
   {
    "id": "s8",
-   "startFrame": 1884,
+   "startFrame": 2133,
    "durationFrames": 174,
-   "startSec": 62.8,
+   "startSec": 71.1,
    "durationSec": 5.8,
    "component": "ThreeScene",
    "beat": "payoff",
@@ -605,74 +671,74 @@
     {
      "id": "intl",
      "text": "英特格",
-     "frame": 1905,
+     "frame": 2154,
      "sceneFrame": 21
     },
     {
      "id": "chc",
      "text": "中華化",
-     "frame": 1940,
+     "frame": 2189,
      "sceneFrame": 56
     },
     {
      "id": "acid",
      "text": "硫酸",
-     "frame": 1964,
+     "frame": 2213,
      "sceneFrame": 80
     },
     {
      "id": "sanfu",
      "text": "三福化",
-     "frame": 1975,
+     "frame": 2224,
      "sceneFrame": 91
     },
     {
      "id": "dev",
      "text": "顯影液",
-     "frame": 1999,
+     "frame": 2248,
      "sceneFrame": 115
     }
    ],
-   "stillFrame": 2057,
+   "stillFrame": 2306,
    "subtitles": [
     {
      "zh": "國際有英特格",
      "en": "Internationally: Entegris.",
-     "startFrame": 1885,
-     "endFrame": 1919
+     "startFrame": 2134,
+     "endFrame": 2168
     },
     {
      "zh": "台灣有中華化",
      "en": "In Taiwan: Chung Hwa Chemical",
-     "startFrame": 1919,
-     "endFrame": 1954
+     "startFrame": 2168,
+     "endFrame": 2203
     },
     {
      "zh": "做硫酸",
      "en": "makes sulfuric acid,",
-     "startFrame": 1954,
-     "endFrame": 1971
+     "startFrame": 2203,
+     "endFrame": 2220
     },
     {
      "zh": "三福化",
      "en": "San Fu Chemical",
-     "startFrame": 1971,
-     "endFrame": 1989
+     "startFrame": 2220,
+     "endFrame": 2238
     },
     {
      "zh": "做顯影液",
      "en": "makes developer.",
-     "startFrame": 1989,
-     "endFrame": 2059
+     "startFrame": 2238,
+     "endFrame": 2308
     }
    ],
    "narration": "國際有英特格，台灣有中華化做硫酸，三福化做顯影液。"
   },
   {
    "id": "s9",
-   "startFrame": 2058,
+   "startFrame": 2307,
    "durationFrames": 228,
-   "startSec": 68.6,
+   "startSec": 76.9,
    "durationSec": 7.6,
    "component": "ThreeScene",
    "beat": "cta",
@@ -687,80 +753,80 @@
     {
      "id": "pad",
      "text": "墊子",
-     "frame": 2142,
+     "frame": 2391,
      "sceneFrame": 84
     },
     {
      "id": "next",
      "text": "下一集",
-     "frame": 2153,
+     "frame": 2402,
      "sceneFrame": 95
     },
     {
      "id": "pad2",
      "text": "研磨墊",
-     "frame": 2176,
+     "frame": 2425,
      "sceneFrame": 118
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 2193,
+     "frame": 2442,
      "sceneFrame": 135
     }
    ],
-   "stillFrame": 2285,
+   "stillFrame": 2534,
    "subtitles": [
     {
      "zh": "液體有了",
      "en": "Liquids are ready,",
-     "startFrame": 2059,
-     "endFrame": 2081
+     "startFrame": 2308,
+     "endFrame": 2330
     },
     {
      "zh": "還缺一塊",
      "en": "but one piece is missing,",
-     "startFrame": 2081,
-     "endFrame": 2104
+     "startFrame": 2330,
+     "endFrame": 2353
     },
     {
      "zh": "把晶圓磨平的墊子",
      "en": "the pad that polishes wafers flat.",
-     "startFrame": 2104,
-     "endFrame": 2149
+     "startFrame": 2353,
+     "endFrame": 2398
     },
     {
      "zh": "下一集",
      "en": "Next episode:",
-     "startFrame": 2149,
-     "endFrame": 2166
+     "startFrame": 2398,
+     "endFrame": 2415
     },
     {
      "zh": "看研磨墊",
      "en": "the polishing pad.",
-     "startFrame": 2166,
-     "endFrame": 2189
+     "startFrame": 2415,
+     "endFrame": 2438
     },
     {
      "zh": "留言化學品",
      "en": "Comment \"chemicals\"",
-     "startFrame": 2189,
-     "endFrame": 2218
+     "startFrame": 2438,
+     "endFrame": 2467
     },
     {
      "zh": "拿完整資料",
      "en": "for the full notes.",
-     "startFrame": 2218,
-     "endFrame": 2287
+     "startFrame": 2467,
+     "endFrame": 2536
     }
    ],
    "narration": "液體有了，還缺一塊把晶圓磨平的墊子。下一集，看研磨墊。留言化學品，拿完整資料。"
   },
   {
    "id": "s10",
-   "startFrame": 2286,
+   "startFrame": 2535,
    "durationFrames": 96,
-   "startSec": 76.2,
+   "startSec": 84.5,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
@@ -772,7 +838,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 2370,
+   "stillFrame": 2619,
    "subtitles": []
   }
  ]

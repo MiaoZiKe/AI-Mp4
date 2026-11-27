@@ -225,7 +225,8 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   );
 };
 
-export const ChemSection: React.FC<P> = (p) => {
+export const ChemSection: React.FC<P> = (p0) => {
+  const p = { ...p0, k: Math.min(1, (p0 as any).k * 1.5) } as P;   // r1：退場壓到約 4 幀（原 6 幀），換幕不留舊卡殘影
   const kd = String((p.o as any).kind);
   if (kd === "chem-hook") return <Hook {...p} />;
   if (kd === "chem-kinds") return <Kinds {...p} />;
