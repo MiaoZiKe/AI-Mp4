@@ -52,7 +52,10 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     for e in en: assert len(e) <= 42, (sid, e)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
+    # Andy 第 39 條（11-27 晚）：旁白之間的無聲最多 1 秒 → 念完後留白一律 1.0 秒（本幕 hold＋下一幕 head ≤ 1.0），幕長＝開口前＋念稿估計＋留白
+    head = 0.0      # 開口前不另留白（上一幕的 1.0 秒留白已算進兩幕之間的無聲）
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = 0.85   # 加上 silent-timeline 開口前 4 幀＝兩幕人聲間隔 0.98 秒
+    dur = max(4.5, round(head + 0.2 + nch / 5.2 + hold, 1))
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -152,7 +155,7 @@ P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "
  "run": [run(f"kBrown{i}", "closet-8", "s3:start+4", 6) for i in range(10)] + [run("kGlow", "ten-2", "s3:start+4", 6), run("kSample", "top", "s3:start+4", 6), run("ffuSpin", "cr+10", "s2:closet-6", 8)],
  "labels": [lab("room", "無塵室", "Cleanroom", "blue", "cr", "closet-8", xy=[300, 320]),
             lab("closet", "一立方公尺（衣櫃大）", "1 cubic meter", "amber", "closet+2", "closet+48"),
-            lab("dust1", "灰塵（放大圈）", "Dust (circled)", "blue", "ten", "ten+46")],
+            lab("dust1", "灰塵（放大圈）", "Dust (circled)", "blue", "ten-4", "ten+42")],
  "overlay": [card("s2", "cr-class", "最乾淨那一級", "ISO 14644-1", {"cr": "cr", "top": "top", "closet": "closet", "ten": "ten"})]}
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, RX, RY, RD, RE, 1), shot("ffu-10", 0.0, 4.01, 63.0, 36, 24), shot("down-6", 0.0, 3.8, 44.0, 8, 30)],
