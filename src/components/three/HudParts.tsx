@@ -169,7 +169,7 @@ const Aux: React.FC<P> = ({ o, f, k }) => {
     </Card>
   );
 };
-// parts-co：東陶（官網原檔 LOGO 以 Wikimedia Commons 原檔）、台灣精材、翔名；國旗＋台灣輪廓
+// parts-co：東陶（Wikimedia Commons 原檔 LOGO）、台灣精材（三類來源抓不到，文字名牌）、翔名（官網原檔 LOGO）；國旗＋台灣輪廓
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 392, jp = on(f, T(o, "jp")), to = on(f, T(o, "toto")), tw = on(f, T(o, "tw")), xm = on(f, T(o, "xm")), y = (i: number) => CT + 14 + i * 90;
   const lh = 40, lw = Math.round((lh * 58) / 13);
@@ -181,7 +181,9 @@ const Co: React.FC<P> = ({ o, f, k }) => {
         <text x={92 + lw + 44} y={y(0) + 40} style={zh(30, H.text, 800)} opacity={0.4 + 0.6 * to}>靜電吸盤 1988 年量產</text>
         <FlagBox code="TW" x={26} y={y(1) + 8} a={tw} /><NamePlate x={92} y={y(1)} w={330} h={54} t="台灣精材 3467" a={tw} />
         <text x={442} y={y(1) + 40} style={zh(30, H.text, 800)} opacity={0.4 + 0.6 * tw}>陶瓷、石英、矽耗材</text>
-        <FlagBox code="TW" x={26} y={y(2) + 8} a={xm} /><NamePlate x={92} y={y(2)} w={330} h={54} t="翔名 8091" a={xm} />
+        <FlagBox code="TW" x={26} y={y(2) + 8} a={xm} />
+        <g><rect x={92} y={y(2) - 6} width={102} height={66} fill="#FFFFFF" stroke={xm > 0.5 ? H.amber : H.lineSoft} strokeWidth={xm > 0.5 ? 4 : 1.5} /><LogoSvg id="feedback" x={98} y={y(2) - 2} h={58} /></g>
+        <text x={210} y={y(2) + 40} style={zh(32, "#1F3A5F", 900)}>翔名 8091</text>
         <text x={442} y={y(2) + 40} style={zh(30, H.text, 800)} opacity={0.4 + 0.6 * xm}>蝕刻、離子佈植耗材</text>
         <text x={26} y={y(3) + 22} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * Math.max(tw, xm)}>少數幾家，不排名；非靜電吸盤供應名單</text>
         <path d={twPath(850, 110, 40)} fill={tw > 0.5 || xm > 0.5 ? H.amber : H.lineSoft} opacity={0.5} />

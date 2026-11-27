@@ -277,31 +277,101 @@
      },
      {
       "layer": "sWafer",
-      "at": "s4:clamp",
-      "until": "s4:end-34",
-      "dur": 26,
-      "dy": 4.6
+      "at": "s4:chuck+10",
+      "until": "s4:cer+40",
+      "dur": 22,
+      "dy": 1.5
      },
      {
       "layer": "sTop",
-      "at": "s4:clamp",
-      "until": "s4:end-34",
-      "dur": 26,
-      "dy": 2.2
+      "at": "s4:chuck+10",
+      "until": "s4:cer+40",
+      "dur": 22,
+      "dy": 1.5
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:chuck+10",
+      "until": "s4:cer+40",
+      "dur": 22,
+      "dy": 1.5
+     },
+     {
+      "layer": "sWafer",
+      "at": "s4:balloon",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.9
+     },
+     {
+      "layer": "sTop",
+      "at": "s4:balloon",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.9
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:balloon",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.9
+     },
+     {
+      "layer": "sElec",
+      "at": "s4:balloon",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.9
+     },
+     {
+      "layer": "sWafer",
+      "at": "s4:balloon+18",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.8
+     },
+     {
+      "layer": "sTop",
+      "at": "s4:balloon+18",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.8
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:balloon+18",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.8
+     },
+     {
+      "layer": "sElec",
+      "at": "s4:balloon+18",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.8
      },
      {
       "layer": "sHe",
-      "at": "s4:cer+30",
-      "until": "s4:end-34",
-      "dur": 24,
-      "dy": -0.5
+      "at": "s4:balloon+18",
+      "until": "s4:cer+40",
+      "dur": 20,
+      "dy": 0.8
      },
      {
-      "layer": "sCool",
-      "at": "s4:cer+30",
-      "until": "s4:end-34",
-      "dur": 24,
-      "dy": -1.6
+      "layer": "sWafer",
+      "at": "s4:balloon+30",
+      "until": "s4:cer+40",
+      "dur": 16,
+      "dy": 0.7
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:balloon+30",
+      "until": "s4:cer+40",
+      "dur": 16,
+      "dy": 0.7
      },
      {
       "layer": "sArrows",
@@ -313,6 +383,13 @@
      {
       "layer": "sArrows",
       "at": "s4:clamp+40",
+      "until": "s4:cer+62",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:cer+104",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -354,7 +431,7 @@
      },
      {
       "layer": "cArm",
-      "at": "s6:time-6",
+      "at": "s6:time+6",
       "until": "s10:start+400",
       "dur": 26,
       "dy": -4.0
@@ -362,34 +439,41 @@
      {
       "layer": "cArm",
       "at": "s1:start-40",
-      "until": "s6:time-10",
+      "until": "s6:time+2",
       "opacity": 0,
       "dur": 2
      },
      {
+      "layer": "cArm",
+      "at": "s6:time+32",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": 3.0
+     },
+     {
       "layer": "cORing",
-      "at": "s6:time+20",
+      "at": "s6:time+32",
       "until": "s10:start+400",
       "dur": 24,
       "dy": 3.0
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+20",
+      "at": "s6:time+32",
       "until": "s10:start+400",
       "dur": 24,
       "dy": 3.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+40",
+      "at": "s6:time+64",
       "until": "s10:start+400",
       "dur": 26,
       "dx": 9.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+40",
+      "at": "s6:time+64",
       "until": "s10:start+400",
       "dur": 26,
       "dx": 9.0,
@@ -397,21 +481,21 @@
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+40",
+      "at": "s6:time+64",
       "until": "s10:start+400",
       "dur": 26,
       "dx": 9.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+68",
+      "at": "s6:time+92",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+68",
+      "at": "s6:time+92",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 6
@@ -419,7 +503,7 @@
      {
       "layer": "cNewRing",
       "at": "s1:start-40",
-      "until": "s6:time+62",
+      "until": "s6:time+86",
       "dur": 20,
       "dy": 5.0,
       "fallIn": true,
@@ -467,27 +551,6 @@
       "until": "s6:slow+10",
       "opacity": 0,
       "dur": 3
-     },
-     {
-      "layer": "kA",
-      "at": "s1:start-40",
-      "until": "s8:toto-4",
-      "opacity": 0.3,
-      "dur": 6
-     },
-     {
-      "layer": "kB",
-      "at": "s1:start-40",
-      "until": "s8:tw-4",
-      "opacity": 0.3,
-      "dur": 6
-     },
-     {
-      "layer": "kC",
-      "at": "s1:start-40",
-      "until": "s8:xm-4",
-      "opacity": 0.3,
-      "dur": 6
      },
      {
       "layer": "rParts",
@@ -677,9 +740,9 @@
       "at": "reef-2",
       "dur": 1,
       "x": 33.4,
-      "y": 1.0,
-      "d": 46.8,
-      "elev": 24
+      "y": 1.1,
+      "d": 37.8,
+      "elev": 22
      }
     ],
     "run": [
@@ -733,6 +796,12 @@
      },
      {
       "id": "bIon4",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bPlGlow",
       "at": "reef-2",
       "ramp": 6,
       "until": "s10:start+400"
@@ -901,9 +970,9 @@
       "at": "table-4",
       "dur": 1,
       "x": 33.4,
-      "y": 1.0,
-      "d": 46.8,
-      "elev": 24
+      "y": 1.1,
+      "d": 37.8,
+      "elev": 22
      }
     ],
     "run": [
@@ -918,6 +987,12 @@
       "at": "start",
       "ramp": 6,
       "until": "table-30"
+     },
+     {
+      "id": "bPlGlow",
+      "at": "table-4",
+      "ramp": 6,
+      "until": "s10:start+400"
      },
      {
       "id": "bField0",
@@ -1058,23 +1133,39 @@
       "at": "voice-4",
       "dur": 1,
       "x": 96,
-      "y": 0.6,
-      "d": 46.8,
-      "elev": 28
+      "y": 1.1,
+      "d": 34.2,
+      "elev": 26
+     },
+     {
+      "at": "balloon+4",
+      "dur": 20,
+      "x": 96,
+      "y": 1.9,
+      "d": 34.2,
+      "elev": 26
+     },
+     {
+      "at": "cer+40",
+      "dur": 24,
+      "x": 96,
+      "y": 0.1,
+      "d": 29.7,
+      "elev": 40
      }
     ],
     "run": [
      {
       "id": "sHeFlow",
-      "at": "lie+20",
+      "at": "balloon+30",
       "ramp": 8,
-      "until": "s4:end+30"
+      "until": "cer+40"
      },
      {
       "id": "sHeFlow2",
-      "at": "lie+20",
+      "at": "balloon+30",
       "ramp": 8,
-      "until": "s4:end+30"
+      "until": "cer+40"
      },
      {
       "id": "sPlusGlow",
@@ -1095,6 +1186,12 @@
       "until": "clamp+40"
      },
      {
+      "id": "sArrowP",
+      "at": "cer+62",
+      "ramp": 4,
+      "until": "cer+104"
+     },
+     {
       "id": "sWaterFlow",
       "at": "cer+30",
       "ramp": 8,
@@ -1107,8 +1204,8 @@
       "text": "晶圓",
       "en": "Wafer",
       "color": "blue",
-      "at": "lie",
-      "until": "lie+46",
+      "at": "lie-6",
+      "until": "lie+39",
       "cut": true
      },
      {
@@ -1116,8 +1213,8 @@
       "text": "靜電吸盤",
       "en": "Electrostatic chuck",
       "color": "amber",
-      "at": "chuck+44",
-      "until": "chuck+90",
+      "at": "chuck+30",
+      "until": "chuck+75",
       "cut": true
      },
      {
@@ -1125,17 +1222,8 @@
       "text": "電極",
       "en": "Electrode",
       "color": "blue",
-      "at": "clamp+54",
-      "until": "clamp+100",
-      "cut": true
-     },
-     {
-      "part": "sTop",
-      "text": "陶瓷盤面",
-      "en": "Ceramic face",
-      "color": "amber",
-      "at": "cer+4",
-      "until": "cer+50",
+      "at": "clamp+36",
+      "until": "clamp+81",
       "cut": true
      },
      {
@@ -1143,8 +1231,17 @@
       "text": "氦氣冷卻",
       "en": "Helium cooling",
       "color": "blue",
-      "at": "cer+56",
-      "until": "cer+102",
+      "at": "balloon+42",
+      "until": "balloon+87",
+      "cut": true
+     },
+     {
+      "part": "sTop",
+      "text": "陶瓷盤面",
+      "en": "Ceramic face",
+      "color": "amber",
+      "at": "cer+30",
+      "until": "cer+75",
       "cut": true
      }
     ],
@@ -1243,9 +1340,9 @@
       "at": "resist-4",
       "dur": 1,
       "x": 128.0,
-      "y": 0.6,
-      "d": 68.4,
-      "elev": 24
+      "y": 0.0,
+      "d": 59.4,
+      "elev": 22
      }
     ],
     "run": [
@@ -1413,10 +1510,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 62.9,
-      "y": 0.9,
-      "d": 61.2,
-      "elev": 24
+      "x": 63.0,
+      "y": 0.1,
+      "d": 57.6,
+      "elev": 22
      }
     ],
     "run": [
@@ -1457,8 +1554,8 @@
       "text": "新環",
       "en": "New ring",
       "color": "blue",
-      "at": "slow+2",
-      "until": "slow+48",
+      "at": "slow-28",
+      "until": "slow+17",
       "cut": true
      },
      {
@@ -1466,8 +1563,8 @@
       "text": "舊環",
       "en": "Old ring",
       "color": "amber",
-      "at": "size+30",
-      "until": "size+76",
+      "at": "size-1",
+      "until": "size+44",
       "cut": true
      },
      {
@@ -1475,8 +1572,8 @@
       "text": "電漿邊緣偏移",
       "en": "Plasma edge shifts",
       "color": "amber",
-      "at": "size+82",
-      "until": "size+128",
+      "at": "plasma+8",
+      "until": "plasma+53",
       "cut": true
      },
      {
@@ -1484,8 +1581,8 @@
       "text": "夾具換環",
       "en": "Gripper swaps ring",
       "color": "blue",
-      "at": "size+134",
-      "until": "size+180",
+      "at": "time+23",
+      "until": "time+68",
       "cut": true
      }
     ],
@@ -1574,10 +1671,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 162.5,
-      "y": 0.2,
-      "d": 72.0,
-      "elev": 22
+      "x": 161.4,
+      "y": 0.0,
+      "d": 45.9,
+      "elev": 20
      }
     ],
     "run": [
@@ -1625,7 +1722,7 @@
       "en": "Vacuum pump",
       "color": "blue",
       "at": "pump-12",
-      "until": "pump+34",
+      "until": "pump+32",
       "cut": true
      },
      {
@@ -1633,8 +1730,8 @@
       "text": "閥門",
       "en": "Valve",
       "color": "amber",
-      "at": "pump+34",
-      "until": "pump+80",
+      "at": "valve+16",
+      "until": "valve+60",
       "cut": true
      },
      {
@@ -1642,8 +1739,8 @@
       "text": "射頻電源",
       "en": "RF power supply",
       "color": "blue",
-      "at": "pump+80",
-      "until": "pump+126",
+      "at": "power+45",
+      "until": "power+90",
       "cut": true
      }
     ],
@@ -1736,10 +1833,30 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 210,
-      "y": 0.3,
-      "d": 55.8,
+      "x": 211.1,
+      "y": -0.7,
+      "d": 59.4,
       "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "kAHot",
+      "at": "toto-4",
+      "ramp": 4,
+      "until": "toto+40"
+     },
+     {
+      "id": "kBHot",
+      "at": "tw-4",
+      "ramp": 4,
+      "until": "tw+28"
+     },
+     {
+      "id": "kCHot",
+      "at": "xm-4",
+      "ramp": 4,
+      "until": "xm+40"
      }
     ],
     "overlay": [

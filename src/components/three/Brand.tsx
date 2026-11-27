@@ -17,6 +17,7 @@ export const LOGOS: Record<string, LogoSpec> = {
   globalwafers: { file: "logos/globalwafers.png", w: 488, h: 112, name: "環球晶 GlobalWafers", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },
   sksiltron: { file: "logos/sksiltron.png", w: 190, h: 96, name: "SK Siltron", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF", labelH: 56 },
   tmc: { file: "logos/tmc.png", w: 383, h: 118, name: "台灣光罩", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },
+  feedback: { file: "logos/feedback.svg", w: 202, h: 130, name: "翔名 Feedback Technology", source: "https://www.feedback.com.tw/archive/system/company/logo2023.svg（官網原檔 SVG，2026/11/27 下載）" },
   toto: { file: "logos/toto.svg", w: 58, h: 13, name: "TOTO（東陶）", source: "https://commons.wikimedia.org/wiki/File:TOTO_logo.svg（原檔 SVG，2026/11/27 由 upload.wikimedia.org 下載）" },
   asml: { file: "logos/asml.svg", w: 1065, h: 300, name: "ASML", source: "https://commons.wikimedia.org/wiki/File:ASML_Holding_N.V._logo.svg" },
   // HOYA、AGC：Commons 原檔 SVG 由 Wikimedia 自己轉出的 960px PNG（thumb.php；upload 伺服器限流，SVG 原檔當天抓不到），未重畫、未改色
