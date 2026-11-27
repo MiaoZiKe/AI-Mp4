@@ -14,6 +14,7 @@
 
 二、混進原片音軌（旁白講話時自動壓低）
     python3 sfx-synth.py mix <原片音軌.wav 48k16bit> <sfx.wav> <輸出.wav> [--end <片尾卡開始秒>]
+    python3 sfx-synth.py check <原旁白音軌.wav> <成片解碼音軌.wav> [--end 秒]   成片解碼後關卡，<14 dB 結束碼 1
 
 三、可用的 kind（KINDS 登錄表；加新種類＝寫一個 fn(dur, **params)→單聲道 numpy 陣列，再 register("名字", fn, 預設dB)）
   機械類（科技片用）：motor 轉軸嗡聲｜servo 伺服 whir｜hiss 氣流｜liquid 液體｜plasma 電漿電流｜sputter 濺鍍劈啪｜heat 爐火｜
@@ -419,10 +420,30 @@ def cmd_mix(argv):
 
 
 
+def cmd_check(argv):
+    """成片解碼後關卡：旁白原音軌 vs 成片音軌，講話窗逐窗（成片 − 旁白）殘差（＝sfx＋轉碼誤差）比旁白低 ≥ MIN_GAP_DB。"""
+    v = read_wav(argv[0]); f = read_wav(argv[1])
+    end = float(argv[argv.index('--end') + 1]) if '--end' in argv else None
+    n = min(v.shape[1], f.shape[1]); v = v[:, :n]; f = f[:, :n]
+    c = np.fft.irfft(np.fft.rfft(f[0]) * np.conj(np.fft.rfft(v[0])), n=2 * n)      # 對齊（AAC 編碼延遲）
+    lag = int(np.argmax(c)); lag = lag if lag < n else lag - 2 * n
+    if abs(lag) > 0: f = np.roll(f, -lag, axis=1)
+    k = (f * v).sum() / (v * v).sum()
+    res = f - k * v; hop = int(0.02 * SR); m = n // hop
+    ve = frame_rms(k * v, hop); se = frame_rms(res, hop)
+    lim = int((end if end is not None else n / SR) * SR) // hop
+    spk = np.zeros(len(ve), bool); spk[:lim] = ve[:lim] > ve[:lim].max() * db(-26)
+    gap = 20 * np.log10(ve[spk] / np.maximum(se[spk], 1e-9)); worst = float(gap.min())
+    w = int(np.where(spk)[0][int(gap.argmin())]) * 0.02
+    print(f'成片解碼後講話段逐窗最小差距 {worst:.1f} dB（在 {w:.2f} 秒；門檻 {MIN_GAP_DB} dB；<14 的窗 {(gap < MIN_GAP_DB).sum()} 個；對齊偏移 {lag} 樣本）')
+    if worst < MIN_GAP_DB: sys.exit(1)
+
+
 def main():
     a = sys.argv[1:]
-    if not a or a[0] not in ('render', 'mix'): print(__doc__); sys.exit(1)
+    if not a or a[0] not in ('render', 'mix', 'check'): print(__doc__); sys.exit(1)
     if a[0] == 'mix': return cmd_mix(a[1:])
+    if a[0] == 'check': return cmd_check(a[1:])
     cj = json.load(open(a[1])); cues = cj['cues'] if isinstance(cj, dict) else cj
     end = float(a[a.index('--end') + 1]) if '--end' in a else (cj.get('endCardSec') if isinstance(cj, dict) else None)
     total = float(a[a.index('--total') + 1]) if '--total' in a else (cj.get('total') if isinstance(cj, dict) and cj.get('total') else max(c['t'] + (c.get('dur') or 0) for c in cues) + 1.5)

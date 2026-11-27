@@ -35,6 +35,9 @@ M=$(ffmpeg -nostats -i "$TMP/mix.wav" -af loudnorm=I=-16:TP=-1.5:LRA=11:print_fo
 g() { echo "$M" | python3 -c "import sys,json;print(json.load(sys.stdin)['$1'])"; }
 ffmpeg -loglevel error -y -i "$TMP/mix.wav" -af "loudnorm=I=-16:TP=-1.5:LRA=11:measured_I=$(g input_i):measured_TP=$(g input_tp):measured_LRA=$(g input_lra):measured_thresh=$(g input_thresh):offset=$(g target_offset):linear=true,aresample=48000,alimiter=limit=0.63:attack=3:release=60:level=disabled:latency=1" -ar 48000 -c:a pcm_s16le "$TMP/final.wav"
 [ -n "$KEEP_FINAL" ] && cp "$TMP/final.wav" "$KEEP_FINAL"
-ffmpeg -loglevel error -y -i "$IN" -i "$TMP/final.wav" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -ar 48000 "$OUT"
+ffmpeg -loglevel error -y -i "$IN" -i "$TMP/final.wav" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -ar 48000 "$OUT"
+# 成片解碼後關卡（Andy 聽的是成片）：解碼成片音軌，講話窗逐窗殘差（sfx＋AAC 誤差）要比旁白低 ≥14 dB，不過就刪掉成品。
+ffmpeg -loglevel error -y -i "$OUT" -vn -ac 2 -ar 48000 -c:a pcm_s16le "$TMP/dec.wav"
+if ! python3 "$D/sfx-synth.py" check "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END}; then rm -f "$OUT"; echo "錯誤：成片解碼後講話段有 sfx 太大聲（<14 dB），已刪除 $OUT"; exit 1; fi
 echo "完成：$OUT"
 [ -n "$SUMMARY" ] && python3 -c "import json;d=json.load(open('$SUMMARY'));print('音效',d['count'],d.get('byType',''))"
