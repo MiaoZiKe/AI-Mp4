@@ -223,7 +223,7 @@ const CupCard: React.FC<P> = ({ o, f, k }) => {
         <Row x={450} y={CT + 100} t="擋液杯：三層分路" c={cu > 0.5 ? H.amber : H.lineSoft} a={cu} />
         <Row x={450} y={CT + 154} t="吸盤：抓住晶圓邊緣" c={ch > 0.5 ? H.amber : H.lineSoft} a={ch} />
         <Row x={450} y={CT + 208} t="馬達：帶著它轉" c={mo > 0.5 ? H.amber : H.lineSoft} a={mo} />
-        <text x={450} y={CT + 262} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>通例 1：1：5・70–85℃</text>
+        <text x={450} y={CT + 262} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>各層各接一種，不混在一起</text>
       </svg>
     </Card>
   );
@@ -267,7 +267,7 @@ const Chem: React.FC<P> = ({ o, f, k }) => {
         {nodes.map(([t, a, c], i) => <g key={i} opacity={0.4 + 0.6 * a}><rect x={x0 + i * dx - bw / 2} y={y - 34} width={bw} height={68} fill={a > 0.5 ? "#FFF6E0" : "#FFFFFF"} stroke={a > 0.5 ? c : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 2} />
           <text x={x0 + i * dx} y={y + 10} textAnchor="middle" style={zh(30, H.text, 900)}>{t}</text></g>)}
         <text x={30} y={CT + 152} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * mx}>純水＋藥液，按比例混合</text>
-        <text x={30} y={CT + 198} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * mx}>歷史常見配比 1：1：5（通例，本機不標）</text>
+        <text x={30} y={CT + 198} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * mx}>配比由閥門控制（本機不標數字）</text>
         <g opacity={0.4 + 0.6 * eb}><rect x={30} y={CT + 224} width={330} height={52} fill={eb > 0.5 ? "#FFF6E0" : "#FFFFFF"} stroke={eb > 0.5 ? H.amber : H.lineSoft} strokeWidth={eb > 0.5 ? 4 : 2} />
           <text x={46} y={CT + 260} style={zh(30, H.text, 900)}>電控箱：控制整套動作</text></g>
       </svg>

@@ -563,12 +563,12 @@ Object.assign(anchors, {
   map: A("lMap", [FX + 1.5, 9.0, FZ[1] + 1.7], 150, -110), arm: A("ar", [RB[0] + L1, 8.4, 1.0], 140, 110), blade: A("ar", [-11.8, 8.5, 0.0], 150, -130), aln: A("aligner", [ALN[0], 9.0, ALN[1] + 0.8], 140, -120),
   door: A("foup2Door", [EX0 + 0.1, 9.8, FZ[1] + 1.2], -150, -100), chamber: A("c1Wall", [CX1 + 3.2, 10.4, 3.0], 150, -140),
   nz: A("c1NzA", [R2(info.NZ.tip[0]), 10.2, R2(info.NZ.tip[1])], 150, -140), ip: A("c1IpA", [R2(info.IP.tip[0]), 10.2, R2(info.IP.tip[1])], 150, -100),
-  chuck: A("c1Chuck", [CX1 + 1.2, 7.6, 1.0], -150, 120), pin: A("c1Chuck", [CX1 + 1.5, 8.2, 0.8], 150, 120), motor: A("c1Chuck", [CX1 + 0.9, 1.6, 0.6], 150, 100), cup: A("c1Cup", [CX1 - 2.55, YW - 0.2, 0.4], -150, -80),
+  chuck: A("c1Chuck", [CX1 + 1.2, 7.6, 1.0], -150, 120), pin: A("c1Chuck", [CX1 + 1.5, 8.2, 0.8], 150, 120), motor: A("c1Motor", [CX1 + 0.9, 2.4, 0.6], 150, 100), cup: A("c1Cup", [CX1 - 2.55, YW - 0.2, 0.4], -150, -80),
   drain: A("c1Drain", [CX1 + 2.0, 1.6, 0.4], 150, 110), valve: A("c1Valve", [X0v() + 1.4, 6.8, -CHD + 0.3], -150, -90),
   tank: A("ccTank", [20.6, 6.3, 0.6], 140, -150), pump: A("ccPump", [22.7, 8.3, 0.7], 150, -110), filter: A("ccFilter", [22.7, 12.3, 0.7], 150, -100), mix: A("ccValve", [20.7, 16.5, 0.2], 150, -100),
   eb: A("ebIn", [EBM, 6.0, EZ0 + 0.35], -150, -100), ebpow: A("ebIn", [EBM, 2.0, EZ0 + 0.8], -150, 80),
   armCol: A("arBase", [RB[0], 8.05, 0.7], 150, -120), film: A("c1Cup", [CX1 + 0.6, YW + 0.12, 0.5], 150, -150),
-  efemTop: A("ffu", [-7.55, EH + 1.4, 3.0], -150, -100), ccTop: A("ccDoor", [20.6, 16.5, CCZ + 0.2], 150, -110), bb: A("bbT3", [TKX(3), BBDECK + 3.0, 2.3], 140, -130), cass: A("bbCass", [TKX(0), 8.7, 1.0], 150, -110), bbpump: A("bbT1", [TKX(1) - 0.6, 1.9, 0.9], -150, 110), bbweir: A("bbT1", [TKX(1) - 0.3, BBDECK + 3.7, -2.35], -150, -120), bbht: A("bbT1", [TKX(1) - 0.8, BBDECK + 2.0, -2.05], 150, -90),
+  port: A("c1Shut", [X0v() + 0.1, 8.4, 0.2], 150, -150), efemTop: A("ffu", [-7.55, EH + 1.4, 3.0], -150, -100), ccTop: A("ccDoor", [20.6, 16.5, CCZ + 0.2], 150, -110), bb: A("bbT3", [TKX(3), BBDECK + 3.0, 2.3], 140, -130), cass: A("bbCass", [TKX(0), 8.7, 1.0], 150, -110), bbpump: A("bbT1", [TKX(1) - 0.6, 1.9, 0.9], -150, 110), bbweir: A("bbT1", [TKX(1) - 0.3, BBDECK + 3.7, -2.35], -150, -120), bbht: A("bbT1", [TKX(1) - 0.8, BBDECK + 2.0, -2.05], 150, -90),
 });
 function X0v() { return CX1 - CHW; }
 

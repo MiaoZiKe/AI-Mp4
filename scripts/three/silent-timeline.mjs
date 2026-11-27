@@ -18,7 +18,8 @@ let t = 0;
 const scenes = script.scenes.map((s, i) => {
   const dur = Math.round((s.durationSec ?? clean(s.subtitle.zh).length / 5 + 1) * FPS);
   const startFrame = t; t += dur;
-  const vs = startFrame + (i === 0 ? 0 : LEAD_F), ve = startFrame + dur - TAIL_F;
+  // 選用：headSec＝開口前只有畫面的秒數、holdSec＝念完後只有畫面的秒數（Andy 11-27 第 27 條：關鍵畫面念完留 ≥1.2 秒）
+  const vs = startFrame + Math.max(i === 0 ? 0 : LEAD_F, Math.round((s.headSec ?? 0) * FPS)), ve = startFrame + dur - Math.max(TAIL_F, Math.round((s.holdSec ?? 0) * FPS));
   const cl = clean(s.subtitle.zh);
   // 每個字的開口幀（平均排開）
   const charF = [...cl].map((_, k) => Math.round(vs + ((ve - vs) * k) / Math.max(1, cl.length)));

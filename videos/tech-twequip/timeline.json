@@ -2,4386 +2,1300 @@
  "version": 2,
  "slug": "tech-twequip",
  "fps": 30,
- "totalFrames": 2629,
- "totalSec": 87.63,
- "gapSec": 0.15,
- "transitionFrames": 10,
+ "totalFrames": 3177,
+ "totalSec": 105.9,
+ "gapSec": 0,
+ "transitionFrames": 0,
+ "silent": true,
+ "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
  "scenes": [
   {
    "id": "s1",
-   "audio": "audio/tech-twequip/01-s1.wav",
-   "audioFrame": 8,
-   "audioSec": 5.33,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
+   "audio": null,
+   "audioFrame": 0,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
    "startFrame": 0,
-   "durationFrames": 186,
+   "durationFrames": 156,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 9,
-   "voiceEndFrame": 167,
-   "stillFrame": 176,
+   "voiceStartFrame": 0,
+   "voiceEndFrame": 128,
+   "stillFrame": 155,
    "subtitleWindow": [
     0,
-    183
+    207
    ],
    "sourceWindow": [
     0,
-    181
+    156
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "上一集檢查完了",
+     "text": "上一集檢查完",
      "start": 0,
      "chars": [
-      10,
-      14,
-      18,
-      25,
-      31,
-      37,
-      43
+      0,
+      4,
+      11,
+      17,
+      24,
+      30
      ]
     },
     {
      "text": "晶圓怎麼洗乾淨？",
-     "start": 57,
+     "start": 34,
      "chars": [
-      59,
-      67,
-      73,
-      77,
-      80,
-      85,
-      90,
-      90
+      36,
+      43,
+      49,
+      56,
+      62,
+      68,
+      75,
+      75
      ]
     },
     {
-     "text": "台灣設備廠",
-     "start": 106,
+     "text": "台灣廠做哪一段？",
+     "start": 79,
      "chars": [
-      109,
-      115,
-      119,
-      124,
-      128
-     ]
-    },
-    {
-     "text": "又做哪一段？",
-     "start": 136,
-     "chars": [
-      139,
-      144,
-      151,
-      157,
-      160,
-      160
+      81,
+      88,
+      94,
+      100,
+      107,
+      113,
+      120,
+      120
      ]
     }
    ],
    "keywords": [
     {
      "text": "洗乾淨",
-     "start": 80
+     "start": 62
     },
     {
-     "text": "台灣設備廠",
-     "start": 109
+     "text": "台灣廠",
+     "start": 81
     }
    ],
    "cues": [
     {
      "id": "prev",
-     "text": "檢查完了",
-     "frame": 27,
-     "early": 0
+     "text": "檢查完",
+     "frame": 19
     },
     {
      "id": "q",
      "text": "洗乾淨",
-     "frame": 82,
-     "early": 0
+     "frame": 64
     },
     {
      "id": "tw",
-     "text": "台灣設備廠",
-     "frame": 110,
-     "early": 0
+     "text": "台灣廠",
+     "frame": 83
     }
    ],
-   "hash": "9104e03fc7e9-820c76b393",
-   "sub": "上一集檢查完了\n晶圓怎麼洗乾淨？\n台灣設備廠\n又做哪一段？",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.865,
-    "minScore": 0.099,
-    "onsetMedianMs": 10,
-    "onsetMaxMs": 10,
-    "onsetCheck": [
-     {
-      "onset": 1.76,
-      "start": 1.76,
-      "ch": "晶",
-      "errMs": 0
-     },
-     {
-      "onset": 3.41,
-      "start": 3.4,
-      "ch": "台",
-      "errMs": -10
-     },
-     {
-      "onset": 4.41,
-      "start": 4.4,
-      "ch": "又",
-      "errMs": -10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "前",
-     "start": 0.04,
-     "end": 0.22,
-     "score": 0.859
-    },
-    {
-     "text": "一",
-     "start": 0.24,
-     "end": 0.3,
-     "score": 0.225
-    },
-    {
-     "text": "集",
-     "start": 0.38,
-     "end": 0.46,
-     "score": 0.992
-    },
-    {
-     "text": "檢",
-     "start": 0.62,
-     "end": 0.78,
-     "score": 0.997
-    },
-    {
-     "text": "查",
-     "start": 0.82,
-     "end": 0.92,
-     "score": 0.965
-    },
-    {
-     "text": "完",
-     "start": 1.02,
-     "end": 1.14,
-     "score": 0.998
-    },
-    {
-     "text": "了",
-     "start": 1.2,
-     "end": 1.26,
-     "score": 0.999
-    },
-    {
-     "text": "晶",
-     "start": 1.76,
-     "end": 1.94,
-     "score": 0.881
-    },
-    {
-     "text": "圓",
-     "start": 2,
-     "end": 2.16,
-     "score": 0.958
-    },
-    {
-     "text": "怎",
-     "start": 2.22,
-     "end": 2.32,
-     "score": 0.972
-    },
-    {
-     "text": "麼",
-     "start": 2.34,
-     "end": 2.38,
-     "score": 0.999
-    },
-    {
-     "text": "洗",
-     "start": 2.46,
-     "end": 2.54,
-     "score": 0.999
-    },
-    {
-     "text": "乾",
-     "start": 2.6,
-     "end": 2.74,
-     "score": 0.499
-    },
-    {
-     "text": "淨",
-     "start": 2.78,
-     "end": 2.94,
-     "score": 0.989
-    },
-    {
-     "text": "台",
-     "start": 3.4,
-     "end": 3.56,
-     "score": 0.929
-    },
-    {
-     "text": "灣",
-     "start": 3.6,
-     "end": 3.7,
-     "score": 0.992
-    },
-    {
-     "text": "設",
-     "start": 3.76,
-     "end": 3.84,
-     "score": 0.654
-    },
-    {
-     "text": "備",
-     "start": 3.9,
-     "end": 4,
-     "score": 0.998
-    },
-    {
-     "text": "廠",
-     "start": 4.04,
-     "end": 4.24,
-     "score": 0.906
-    },
-    {
-     "text": "又",
-     "start": 4.4,
-     "end": 4.52,
-     "score": 1
-    },
-    {
-     "text": "做",
-     "start": 4.58,
-     "end": 4.72,
-     "score": 0.939
-    },
-    {
-     "text": "哪",
-     "start": 4.82,
-     "end": 4.92,
-     "score": 0.999
-    },
-    {
-     "text": "一",
-     "start": 5,
-     "end": 5.04,
-     "score": 0.099
-    },
-    {
-     "text": "段",
-     "start": 5.12,
-     "end": 5.24,
-     "score": 0.904
-    }
-   ],
-   "charTimes": [
-    0.12,
-    0.24,
-    0.38,
-    0.62,
-    0.82,
-    1.02,
-    1.2,
-    1.76,
-    2,
-    2.22,
-    2.34,
-    2.46,
-    2.6,
-    2.78,
-    3.4,
-    3.6,
-    3.76,
-    3.9,
-    4.04,
-    4.4,
-    4.58,
-    4.82,
-    5,
-    5.12
-   ]
+   "sub": "上一集檢查完\n晶圓怎麼洗乾淨？\n台灣廠做哪一段？",
+   "silentEstimate": true
   },
   {
    "id": "s2",
-   "audio": "audio/tech-twequip/02-s2.wav",
-   "audioFrame": 185,
-   "audioSec": 9.04,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 176,
-   "durationFrames": 300,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 186,
-   "voiceEndFrame": 456,
-   "stillFrame": 466,
+   "audio": null,
+   "audioFrame": 210,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 156,
+   "durationFrames": 495,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 210,
+   "voiceEndFrame": 408,
+   "stillFrame": 650,
    "subtitleWindow": [
-    183,
-    473
+    207,
+    660
    ],
    "sourceWindow": [
-    181,
-    471
+    156,
+    651
    ],
-   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "外殼打開",
-     "start": 183,
+     "start": 207,
      "chars": [
-      187,
-      192,
-      197,
-      201
+      208,
+      214,
+      221,
+      227
      ]
     },
     {
-     "text": "前端搬運區有手臂、",
-     "start": 225,
+     "text": "晶圓先到玄關",
+     "start": 232,
      "chars": [
-      227,
-      235,
+      234,
       240,
-      245,
-      250,
-      260,
-      267,
-      274,
-      274
+      246,
+      253,
+      259,
+      265
      ]
     },
     {
-     "text": "對準器",
-     "start": 283,
+     "text": "拿出盒子擺正",
+     "start": 270,
      "chars": [
+      272,
+      278,
       285,
-      290,
-      296
+      291,
+      297,
+      304
      ]
     },
     {
-     "text": "管進出",
+     "text": "叫前端搬運區",
      "start": 308,
      "chars": [
       310,
-      316,
-      322
+      317,
+      323,
+      329,
+      336,
+      342
      ]
     },
     {
-     "text": "清洗腔一片一片洗",
-     "start": 342,
+     "text": "再往裡",
+     "start": 347,
      "chars": [
-      344,
-      352,
-      356,
-      366,
-      371,
-      377,
+      349,
+      355,
+      361
+     ]
+    },
+    {
+     "text": "才是洗的地方",
+     "start": 366,
+     "chars": [
+      368,
+      374,
       380,
-      387
-     ]
-    },
-    {
-     "text": "藥液櫃供應藥液",
-     "start": 409,
-     "chars": [
-      411,
-      418,
-      422,
-      432,
-      437,
-      443,
-      448
+      387,
+      393,
+      400
      ]
     }
    ],
    "keywords": [
     {
+     "text": "玄關",
+     "start": 259
+    },
+    {
      "text": "前端搬運區",
-     "start": 227
-    },
-    {
-     "text": "清洗腔",
-     "start": 344
-    },
-    {
-     "text": "藥液櫃",
-     "start": 411
+     "start": 317
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "外殼打開",
-     "frame": 188,
-     "early": 0
+     "frame": 210
+    },
+    {
+     "id": "foyer",
+     "text": "玄關",
+     "frame": 261
     },
     {
      "id": "efem",
      "text": "前端搬運區",
-     "frame": 229,
-     "early": 0
-    },
-    {
-     "id": "arm",
-     "text": "手臂",
-     "frame": 268,
-     "early": 0
+     "frame": 319
     },
     {
      "id": "chamber",
-     "text": "清洗腔",
-     "frame": 346,
-     "early": 0
-    },
-    {
-     "id": "cab",
-     "text": "藥液櫃",
-     "frame": 412,
-     "early": 0
+     "text": "洗的地方",
+     "frame": 382
     }
    ],
-   "hash": "d1f106f01182-820c76b393",
-   "sub": "外殼打開\n前端搬運區有手臂、對準器\n管進出\n清洗腔一片一片洗\n藥液櫃供應藥液",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.923,
-    "minScore": 0.02,
-    "onsetMedianMs": 25,
-    "onsetMaxMs": 40,
-    "onsetCheck": [
-     {
-      "onset": 1.46,
-      "start": 1.46,
-      "ch": "前",
-      "errMs": 0
-     },
-     {
-      "onset": 3.41,
-      "start": 3.38,
-      "ch": "對",
-      "errMs": -30
-     },
-     {
-      "onset": 4.24,
-      "start": 4.22,
-      "ch": "管",
-      "errMs": -20
-     },
-     {
-      "onset": 5.32,
-      "start": 5.36,
-      "ch": "清",
-      "errMs": 40
-     },
-     {
-      "onset": 7.55,
-      "start": 7.58,
-      "ch": "藥",
-      "errMs": 30
-     },
-     {
-      "onset": 8.29,
-      "start": 8.28,
-      "ch": "供",
-      "errMs": -10
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "外",
-     "start": 0.1,
-     "end": 0.22,
-     "score": 0.999
-    },
-    {
-     "text": "殼",
-     "start": 0.28,
-     "end": 0.36,
-     "score": 0.999
-    },
-    {
-     "text": "打",
-     "start": 0.44,
-     "end": 0.5,
-     "score": 0.999
-    },
-    {
-     "text": "開",
-     "start": 0.6,
-     "end": 0.78,
-     "score": 1
-    },
-    {
-     "text": "前",
-     "start": 1.46,
-     "end": 1.68,
-     "score": 0.991
-    },
-    {
-     "text": "端",
-     "start": 1.72,
-     "end": 1.84,
-     "score": 0.935
-    },
-    {
-     "text": "搬",
-     "start": 1.9,
-     "end": 2,
-     "score": 0.996
-    },
-    {
-     "text": "運",
-     "start": 2.04,
-     "end": 2.16,
-     "score": 0.998
-    },
-    {
-     "text": "區",
-     "start": 2.22,
-     "end": 2.36,
-     "score": 0.999
-    },
-    {
-     "text": "有",
-     "start": 2.56,
-     "end": 2.7,
-     "score": 1
-    },
-    {
-     "text": "手",
-     "start": 2.78,
-     "end": 2.96,
-     "score": 0.851
-    },
-    {
-     "text": "臂",
-     "start": 3,
-     "end": 3.08,
-     "score": 0.995
-    },
-    {
-     "text": "對",
-     "start": 3.38,
-     "end": 3.52,
-     "score": 0.999
-    },
-    {
-     "text": "準",
-     "start": 3.56,
-     "end": 3.7,
-     "score": 0.91
-    },
-    {
-     "text": "器",
-     "start": 3.76,
-     "end": 3.9,
-     "score": 0.998
-    },
-    {
-     "text": "管",
-     "start": 4.22,
-     "end": 4.38,
-     "score": 0.998
-    },
-    {
-     "text": "進",
-     "start": 4.42,
-     "end": 4.56,
-     "score": 0.993
-    },
-    {
-     "text": "出",
-     "start": 4.6,
-     "end": 4.72,
-     "score": 0.998
-    },
-    {
-     "text": "清",
-     "start": 5.36,
-     "end": 5.56,
-     "score": 0.957
-    },
-    {
-     "text": "洗",
-     "start": 5.6,
-     "end": 5.68,
-     "score": 0.999
-    },
-    {
-     "text": "腔",
-     "start": 5.74,
-     "end": 5.96,
-     "score": 0.991
-    },
-    {
-     "text": "一",
-     "start": 6.08,
-     "end": 6.14,
-     "score": 0.28
-    },
-    {
-     "text": "片",
-     "start": 6.24,
-     "end": 6.42,
-     "score": 0.748
-    },
-    {
-     "text": "一",
-     "start": 6.44,
-     "end": 6.5,
-     "score": 0.02
-    },
-    {
-     "text": "片",
-     "start": 6.56,
-     "end": 6.7,
-     "score": 0.995
-    },
-    {
-     "text": "洗",
-     "start": 6.78,
-     "end": 6.9,
-     "score": 0.999
-    },
-    {
-     "text": "藥",
-     "start": 7.58,
-     "end": 7.74,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 7.8,
-     "end": 7.88,
-     "score": 0.998
-    },
-    {
-     "text": "櫃",
-     "start": 7.96,
-     "end": 8.1,
-     "score": 0.999
-    },
-    {
-     "text": "供",
-     "start": 8.28,
-     "end": 8.42,
-     "score": 0.996
-    },
-    {
-     "text": "應",
-     "start": 8.46,
-     "end": 8.6,
-     "score": 0.818
-    },
-    {
-     "text": "藥",
-     "start": 8.64,
-     "end": 8.78,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 8.82,
-     "end": 8.92,
-     "score": 0.998
-    }
-   ],
-   "charTimes": [
-    0.1,
-    0.28,
-    0.44,
-    0.6,
-    1.46,
-    1.72,
-    1.9,
-    2.04,
-    2.22,
-    2.56,
-    2.78,
-    3,
-    3.38,
-    3.56,
-    3.76,
-    4.22,
-    4.42,
-    4.6,
-    5.36,
-    5.6,
-    5.74,
-    6.08,
-    6.24,
-    6.44,
-    6.56,
-    6.78,
-    7.58,
-    7.8,
-    7.96,
-    8.28,
-    8.46,
-    8.64,
-    8.82
-   ]
+   "sub": "外殼打開\n晶圓先到玄關\n拿出盒子擺正\n叫前端搬運區\n再往裡\n才是洗的地方",
+   "silentEstimate": true
   },
   {
    "id": "s3",
-   "audio": "audio/tech-twequip/03-s3.wav",
-   "audioFrame": 475,
-   "audioSec": 7.7,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 466,
-   "durationFrames": 256,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 476,
-   "voiceEndFrame": 705,
-   "stillFrame": 712,
+   "audio": null,
+   "audioFrame": 663,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 651,
+   "durationFrames": 216,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 663,
+   "voiceEndFrame": 784,
+   "stillFrame": 866,
    "subtitleWindow": [
-    473,
-    719
+    660,
+    873
    ],
    "sourceWindow": [
-    471,
-    717
+    651,
+    867
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "頂部風扇往下吹乾淨空氣",
-     "start": 473,
+     "text": "風扇吹下乾淨空氣",
+     "start": 660,
      "chars": [
-      474,
-      480,
-      484,
-      489,
-      500,
-      507,
-      513,
-      520,
-      526,
-      530,
-      536
-     ]
-    },
-    {
-     "text": "晶圓盒門被吸開",
-     "start": 556,
-     "chars": [
-      558,
-      564,
-      570,
-      576,
-      585,
-      591,
-      597
-     ]
-    },
-    {
-     "text": "感測器掃過",
-     "start": 618,
-     "chars": [
-      620,
-      625,
-      630,
-      636,
-      642
-     ]
-    },
-    {
-     "text": "數每一槽有沒有片",
-     "start": 657,
-     "chars": [
-      660,
-      665,
-      670,
+      661,
+      667,
       674,
-      685,
-      690,
+      680,
+      686,
       693,
-      696
+      699,
+      706
+     ]
+    },
+    {
+     "text": "盒門打開",
+     "start": 710,
+     "chars": [
+      712,
+      718,
+      725,
+      731
+     ]
+    },
+    {
+     "text": "數每槽有沒有片",
+     "start": 735,
+     "chars": [
+      737,
+      744,
+      750,
+      757,
+      763,
+      769,
+      776
      ]
     }
    ],
    "keywords": [
     {
      "text": "風扇",
-     "start": 484
+     "start": 661
     },
     {
-     "text": "吸開",
-     "start": 591
+     "text": "盒門打開",
+     "start": 712
     },
     {
-     "text": "感測器",
-     "start": 620
+     "text": "數每槽",
+     "start": 737
     }
    ],
    "cues": [
     {
      "id": "fan",
      "text": "風扇",
-     "frame": 485,
-     "early": 0
+     "frame": 663
     },
     {
      "id": "air",
      "text": "乾淨空氣",
-     "frame": 522,
-     "early": 0
+     "frame": 688
     },
     {
      "id": "door",
-     "text": "門被吸開",
-     "frame": 578,
-     "early": 0
+     "text": "盒門打開",
+     "frame": 714
     },
     {
      "id": "map",
-     "text": "感測器",
-     "frame": 621,
-     "early": 0
+     "text": "數每槽",
+     "frame": 739
     },
     {
      "id": "slot",
-     "text": "每一槽",
-     "frame": 666,
-     "early": 0
+     "text": "有沒有片",
+     "frame": 759
     }
    ],
-   "hash": "52660d3cb07c-820c76b393",
-   "sub": "頂部風扇往下吹乾淨空氣\n晶圓盒門被吸開\n感測器掃過\n數每一槽有沒有片",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.926,
-    "minScore": 0.005,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 120,
-    "onsetCheck": [
-     {
-      "onset": 0.87,
-      "start": 0.88,
-      "ch": "往",
-      "errMs": 10
-     },
-     {
-      "onset": 2.79,
-      "start": 2.82,
-      "ch": "晶",
-      "errMs": 30
-     },
-     {
-      "onset": 4.88,
-      "start": 4.88,
-      "ch": "感",
-      "errMs": 0
-     },
-     {
-      "onset": 6.08,
-      "start": 6.2,
-      "ch": "數",
-      "errMs": 120
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "頂",
-     "start": 0.02,
-     "end": 0.18,
-     "score": 0.993
-    },
-    {
-     "text": "部",
-     "start": 0.22,
-     "end": 0.28,
-     "score": 0.999
-    },
-    {
-     "text": "風",
-     "start": 0.34,
-     "end": 0.5,
-     "score": 0.936
-    },
-    {
-     "text": "扇",
-     "start": 0.52,
-     "end": 0.7,
-     "score": 0.998
-    },
-    {
-     "text": "往",
-     "start": 0.88,
-     "end": 1.04,
-     "score": 0.909
-    },
-    {
-     "text": "下",
-     "start": 1.1,
-     "end": 1.2,
-     "score": 1
-    },
-    {
-     "text": "吹",
-     "start": 1.3,
-     "end": 1.46,
-     "score": 0.97
-    },
-    {
-     "text": "乾",
-     "start": 1.56,
-     "end": 1.7,
-     "score": 0.5
-    },
-    {
-     "text": "淨",
-     "start": 1.74,
-     "end": 1.88,
-     "score": 0.818
-    },
-    {
-     "text": "空",
-     "start": 1.9,
-     "end": 2.04,
-     "score": 0.895
-    },
-    {
-     "text": "氣",
-     "start": 2.08,
-     "end": 2.18,
-     "score": 0.999
-    },
-    {
-     "text": "晶",
-     "start": 2.82,
-     "end": 3,
-     "score": 0.922
-    },
-    {
-     "text": "圓",
-     "start": 3.02,
-     "end": 3.16,
-     "score": 0.999
-    },
-    {
-     "text": "盒",
-     "start": 3.22,
-     "end": 3.3,
-     "score": 1
-    },
-    {
-     "text": "門",
-     "start": 3.42,
-     "end": 3.56,
-     "score": 1
-    },
-    {
-     "text": "被",
-     "start": 3.72,
-     "end": 3.84,
-     "score": 0.999
-    },
-    {
-     "text": "吸",
-     "start": 3.92,
-     "end": 4.02,
-     "score": 0.999
-    },
-    {
-     "text": "開",
-     "start": 4.1,
-     "end": 4.28,
-     "score": 0.942
-    },
-    {
-     "text": "感",
-     "start": 4.88,
-     "end": 5,
-     "score": 0.999
-    },
-    {
-     "text": "測",
-     "start": 5.06,
-     "end": 5.14,
-     "score": 0.985
-    },
-    {
-     "text": "器",
-     "start": 5.22,
-     "end": 5.32,
-     "score": 0.997
-    },
-    {
-     "text": "掃",
-     "start": 5.42,
-     "end": 5.58,
-     "score": 0.989
-    },
-    {
-     "text": "過",
-     "start": 5.62,
-     "end": 5.72,
-     "score": 0.998
-    },
-    {
-     "text": "數",
-     "start": 6.2,
-     "end": 6.3,
-     "score": 0.874
-    },
-    {
-     "text": "每",
-     "start": 6.38,
-     "end": 6.52,
-     "score": 0.999
-    },
-    {
-     "text": "一",
-     "start": 6.54,
-     "end": 6.6,
-     "score": 0.005
-    },
-    {
-     "text": "槽",
-     "start": 6.68,
-     "end": 6.9,
-     "score": 0.988
-    },
-    {
-     "text": "有",
-     "start": 7.04,
-     "end": 7.16,
-     "score": 1
-    },
-    {
-     "text": "沒",
-     "start": 7.2,
-     "end": 7.28,
-     "score": 0.999
-    },
-    {
-     "text": "有",
-     "start": 7.3,
-     "end": 7.38,
-     "score": 0.999
-    },
-    {
-     "text": "片",
-     "start": 7.42,
-     "end": 7.6,
-     "score": 0.999
-    }
-   ],
-   "charTimes": [
-    0.02,
-    0.22,
-    0.34,
-    0.52,
-    0.88,
-    1.1,
-    1.3,
-    1.56,
-    1.74,
-    1.9,
-    2.08,
-    2.82,
-    3.02,
-    3.22,
-    3.42,
-    3.72,
-    3.92,
-    4.1,
-    4.88,
-    5.06,
-    5.22,
-    5.42,
-    5.62,
-    6.2,
-    6.38,
-    6.54,
-    6.68,
-    7.04,
-    7.2,
-    7.3,
-    7.42
-   ]
+   "sub": "風扇吹下乾淨空氣\n盒門打開\n數每槽有沒有片",
+   "silentEstimate": true
   },
   {
    "id": "s4",
-   "audio": "audio/tech-twequip/04-s4.wav",
-   "audioFrame": 721,
-   "audioSec": 6.75,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 712,
-   "durationFrames": 229,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 722,
-   "voiceEndFrame": 923,
-   "stillFrame": 931,
+   "audio": null,
+   "audioFrame": 876,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 867,
+   "durationFrames": 228,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 876,
+   "voiceEndFrame": 1010,
+   "stillFrame": 1094,
    "subtitleWindow": [
-    719,
-    938
+    873,
+    1098
    ],
    "sourceWindow": [
-    717,
-    936
+    867,
+    1095
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "雙刀手臂伸進盒子",
-     "start": 719,
+     "text": "手臂托起一片",
+     "start": 873,
      "chars": [
-      723,
-      729,
-      735,
-      740,
-      748,
-      754,
-      760,
-      766
-     ]
-    },
-    {
-     "text": "托起晶圓",
-     "start": 773,
-     "chars": [
-      775,
-      781,
-      786,
-      792
-     ]
-    },
-    {
-     "text": "轉一圈對準缺口",
-     "start": 810,
-     "chars": [
-      812,
-      818,
-      822,
-      830,
-      835,
-      840,
-      846
-     ]
-    },
-    {
-     "text": "再直直送進清洗腔放好",
-     "start": 861,
-     "chars": [
-      864,
-      870,
-      876,
-      882,
-      888,
+      874,
+      880,
+      887,
       893,
       900,
-      904,
-      909,
-      915
+      906
+     ]
+    },
+    {
+     "text": "轉一圈擺正",
+     "start": 910,
+     "chars": [
+      912,
+      919,
+      925,
+      931,
+      938
+     ]
+    },
+    {
+     "text": "邊緣的缺口",
+     "start": 942,
+     "chars": [
+      944,
+      951,
+      957,
+      963,
+      970
+     ]
+    },
+    {
+     "text": "再送進去洗",
+     "start": 974,
+     "chars": [
+      976,
+      982,
+      989,
+      995,
+      1002
      ]
     }
    ],
    "keywords": [
     {
-     "text": "雙刀",
-     "start": 723
+     "text": "托起",
+     "start": 887
     },
     {
-     "text": "對準",
-     "start": 830
+     "text": "缺口",
+     "start": 963
     },
     {
-     "text": "清洗腔",
-     "start": 893
+     "text": "送進去洗",
+     "start": 982
     }
    ],
    "cues": [
     {
      "id": "arm",
-     "text": "雙刀手臂",
-     "frame": 725,
-     "early": 0
+     "text": "手臂",
+     "frame": 876
     },
     {
      "id": "lift",
-     "text": "托起晶圓",
-     "frame": 776,
-     "early": 0
+     "text": "托起一片",
+     "frame": 889
     },
     {
      "id": "align",
-     "text": "對準缺口",
-     "frame": 831,
-     "early": 0
+     "text": "轉一圈",
+     "frame": 914
     },
     {
      "id": "put",
-     "text": "清洗腔放好",
-     "frame": 894,
-     "early": 0
+     "text": "送進去洗",
+     "frame": 984
     }
    ],
-   "hash": "6af6b367bbcd-820c76b393",
-   "sub": "雙刀手臂伸進盒子\n托起晶圓\n轉一圈對準缺口\n再直直送進清洗腔放好",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.941,
-    "minScore": 0.04,
-    "onsetMedianMs": 50,
-    "onsetMaxMs": 60,
-    "onsetCheck": [
-     {
-      "onset": 3.04,
-      "start": 3.08,
-      "ch": "轉",
-      "errMs": 40
-     },
-     {
-      "onset": 4.74,
-      "start": 4.8,
-      "ch": "再",
-      "errMs": 60
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "雙",
-     "start": 0.12,
-     "end": 0.3,
-     "score": 0.961
-    },
-    {
-     "text": "刀",
-     "start": 0.32,
-     "end": 0.44,
-     "score": 0.999
-    },
-    {
-     "text": "手",
-     "start": 0.5,
-     "end": 0.64,
-     "score": 0.975
-    },
-    {
-     "text": "臂",
-     "start": 0.68,
-     "end": 0.76,
-     "score": 0.999
-    },
-    {
-     "text": "伸",
-     "start": 0.96,
-     "end": 1.1,
-     "score": 0.999
-    },
-    {
-     "text": "進",
-     "start": 1.16,
-     "end": 1.28,
-     "score": 0.997
-    },
-    {
-     "text": "盒",
-     "start": 1.36,
-     "end": 1.46,
-     "score": 1
-    },
-    {
-     "text": "子",
-     "start": 1.56,
-     "end": 1.64,
-     "score": 1
-    },
-    {
-     "text": "托",
-     "start": 1.84,
-     "end": 1.96,
-     "score": 0.983
-    },
-    {
-     "text": "起",
-     "start": 2.06,
-     "end": 2.16,
-     "score": 0.998
-    },
-    {
-     "text": "晶",
-     "start": 2.22,
-     "end": 2.38,
-     "score": 0.837
-    },
-    {
-     "text": "圓",
-     "start": 2.4,
-     "end": 2.58,
-     "score": 0.996
-    },
-    {
-     "text": "轉",
-     "start": 3.08,
-     "end": 3.24,
-     "score": 0.995
-    },
-    {
-     "text": "一",
-     "start": 3.28,
-     "end": 3.32,
-     "score": 0.04
-    },
-    {
-     "text": "圈",
-     "start": 3.4,
-     "end": 3.58,
-     "score": 0.891
-    },
-    {
-     "text": "對",
-     "start": 3.68,
-     "end": 3.8,
-     "score": 1
-    },
-    {
-     "text": "準",
-     "start": 3.84,
-     "end": 3.96,
-     "score": 0.869
-    },
-    {
-     "text": "缺",
-     "start": 4.02,
-     "end": 4.14,
-     "score": 0.976
-    },
-    {
-     "text": "口",
-     "start": 4.2,
-     "end": 4.36,
-     "score": 0.964
-    },
-    {
-     "text": "再",
-     "start": 4.8,
-     "end": 4.96,
-     "score": 0.996
-    },
-    {
-     "text": "直",
-     "start": 5.02,
-     "end": 5.12,
-     "score": 0.998
-    },
-    {
-     "text": "直",
-     "start": 5.22,
-     "end": 5.32,
-     "score": 0.993
-    },
-    {
-     "text": "送",
-     "start": 5.42,
-     "end": 5.56,
-     "score": 1
-    },
-    {
-     "text": "進",
-     "start": 5.6,
-     "end": 5.72,
-     "score": 0.998
-    },
-    {
-     "text": "清",
-     "start": 5.78,
-     "end": 5.96,
-     "score": 0.969
-    },
-    {
-     "text": "洗",
-     "start": 6,
-     "end": 6.08,
-     "score": 0.998
-    },
-    {
-     "text": "腔",
-     "start": 6.14,
-     "end": 6.3,
-     "score": 0.978
-    },
-    {
-     "text": "放",
-     "start": 6.32,
-     "end": 6.48,
-     "score": 0.885
-    },
-    {
-     "text": "好",
-     "start": 6.5,
-     "end": 6.66,
-     "score": 0.996
-    }
-   ],
-   "charTimes": [
-    0.12,
-    0.32,
-    0.5,
-    0.68,
-    0.96,
-    1.16,
-    1.36,
-    1.56,
-    1.84,
-    2.06,
-    2.22,
-    2.4,
-    3.08,
-    3.28,
-    3.4,
-    3.68,
-    3.84,
-    4.02,
-    4.2,
-    4.8,
-    5.02,
-    5.22,
-    5.42,
-    5.6,
-    5.78,
-    6,
-    6.14,
-    6.32,
-    6.5
-   ]
+   "sub": "手臂托起一片\n轉一圈擺正\n邊緣的缺口\n再送進去洗",
+   "silentEstimate": true
   },
   {
    "id": "s5",
-   "audio": "audio/tech-twequip/05-s5.wav",
-   "audioFrame": 940,
-   "audioSec": 8.98,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 931,
-   "durationFrames": 297,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 941,
-   "voiceEndFrame": 1209,
-   "stillFrame": 1218,
+   "audio": null,
+   "audioFrame": 1101,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1095,
+   "durationFrames": 240,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 1101,
+   "voiceEndFrame": 1261,
+   "stillFrame": 1334,
    "subtitleWindow": [
-    938,
-    1225
+    1098,
+    1368
    ],
    "sourceWindow": [
-    936,
-    1223
+    1095,
+    1335
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "晶圓轉起來",
-     "start": 938,
+     "text": "像洗盤子",
+     "start": 1098,
      "chars": [
-      940,
-      946,
-      952,
-      958,
-      961
+      1099,
+      1105,
+      1112,
+      1118
      ]
     },
     {
-     "text": "邊緣有銷抓住",
-     "start": 975,
+     "text": "一次一片",
+     "start": 1123,
      "chars": [
-      977,
-      982,
-      988,
-      993,
-      1001,
-      1006
+      1125,
+      1131,
+      1137,
+      1144
      ]
     },
     {
-     "text": "噴嘴臂掃過來",
-     "start": 1022,
+     "text": "邊轉邊沖",
+     "start": 1148,
      "chars": [
-      1024,
-      1030,
-      1035,
-      1041,
-      1046,
-      1050
+      1150,
+      1157,
+      1163,
+      1169
      ]
     },
     {
-     "text": "藥液落在中心",
-     "start": 1065,
+     "text": "藥液落中心",
+     "start": 1174,
      "chars": [
-      1067,
-      1073,
-      1078,
-      1083,
-      1087,
-      1092
-     ]
-    },
-    {
-     "text": "推成薄薄的液膜",
-     "start": 1107,
-     "chars": [
-      1109,
-      1115,
-      1122,
-      1128,
-      1132,
-      1135,
-      1141
-     ]
-    },
-    {
-     "text": "被離心力一路往外甩",
-     "start": 1153,
-     "chars": [
-      1155,
-      1161,
-      1165,
-      1171,
-      1180,
-      1184,
+      1176,
+      1182,
       1189,
       1195,
-      1200
+      1201
+     ]
+    },
+    {
+     "text": "甩成薄膜帶走髒污",
+     "start": 1206,
+     "chars": [
+      1208,
+      1214,
+      1221,
+      1227,
+      1233,
+      1240,
+      1246,
+      1253
      ]
     }
    ],
    "keywords": [
     {
-     "text": "轉起來",
-     "start": 952
+     "text": "洗盤子",
+     "start": 1105
     },
     {
-     "text": "液膜",
-     "start": 1135
+     "text": "邊轉邊沖",
+     "start": 1150
     },
     {
-     "text": "離心力",
-     "start": 1161
+     "text": "薄膜",
+     "start": 1221
     }
    ],
    "cues": [
     {
      "id": "spin",
-     "text": "晶圓轉起來",
-     "frame": 942,
-     "early": 0
-    },
-    {
-     "id": "pin",
-     "text": "有銷抓住",
-     "frame": 989,
-     "early": 0
+     "text": "像洗盤子",
+     "frame": 1101
     },
     {
      "id": "nz",
-     "text": "噴嘴臂",
-     "frame": 1026,
-     "early": 0
+     "text": "邊轉邊沖",
+     "frame": 1152
     },
     {
      "id": "stream",
-     "text": "藥液落在中心",
-     "frame": 1068,
-     "early": 0
+     "text": "落中心",
+     "frame": 1191
     },
     {
      "id": "film",
-     "text": "薄薄的液膜",
-     "frame": 1123,
-     "early": 0
+     "text": "甩成薄膜",
+     "frame": 1210
     },
     {
      "id": "fling",
-     "text": "往外甩",
-     "frame": 1191,
-     "early": 0
+     "text": "帶走髒污",
+     "frame": 1235
     }
    ],
-   "hash": "75eb17883823-820c76b393",
-   "sub": "晶圓轉起來\n邊緣有銷抓住\n噴嘴臂掃過來\n藥液落在中心\n推成薄薄的液膜\n被離心力一路往外甩",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.978,
-    "minScore": 0.874,
-    "onsetMedianMs": 20,
-    "onsetMaxMs": 60,
-    "onsetCheck": [
-     {
-      "onset": 1.27,
-      "start": 1.28,
-      "ch": "邊",
-      "errMs": 10
-     },
-     {
-      "onset": 2.85,
-      "start": 2.86,
-      "ch": "噴",
-      "errMs": 10
-     },
-     {
-      "onset": 4.22,
-      "start": 4.28,
-      "ch": "藥",
-      "errMs": 60
-     },
-     {
-      "onset": 5.65,
-      "start": 5.68,
-      "ch": "推",
-      "errMs": 30
-     },
-     {
-      "onset": 7.2,
-      "start": 7.22,
-      "ch": "被",
-      "errMs": 20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "晶",
-     "start": 0.06,
-     "end": 0.22,
-     "score": 0.925
-    },
-    {
-     "text": "圓",
-     "start": 0.26,
-     "end": 0.38,
-     "score": 0.923
-    },
-    {
-     "text": "轉",
-     "start": 0.44,
-     "end": 0.6,
-     "score": 0.997
-    },
-    {
-     "text": "起",
-     "start": 0.64,
-     "end": 0.72,
-     "score": 0.999
-    },
-    {
-     "text": "來",
-     "start": 0.76,
-     "end": 0.9,
-     "score": 0.999
-    },
-    {
-     "text": "邊",
-     "start": 1.28,
-     "end": 1.42,
-     "score": 0.902
-    },
-    {
-     "text": "緣",
-     "start": 1.46,
-     "end": 1.6,
-     "score": 0.946
-    },
-    {
-     "text": "有",
-     "start": 1.64,
-     "end": 1.76,
-     "score": 0.999
-    },
-    {
-     "text": "銷",
-     "start": 1.82,
-     "end": 2.02,
-     "score": 0.961
-    },
-    {
-     "text": "抓",
-     "start": 2.08,
-     "end": 2.18,
-     "score": 0.989
-    },
-    {
-     "text": "住",
-     "start": 2.26,
-     "end": 2.36,
-     "score": 0.964
-    },
-    {
-     "text": "噴",
-     "start": 2.86,
-     "end": 3,
-     "score": 0.997
-    },
-    {
-     "text": "嘴",
-     "start": 3.06,
-     "end": 3.18,
-     "score": 0.998
-    },
-    {
-     "text": "臂",
-     "start": 3.22,
-     "end": 3.3,
-     "score": 0.995
-    },
-    {
-     "text": "掃",
-     "start": 3.4,
-     "end": 3.56,
-     "score": 0.998
-    },
-    {
-     "text": "過",
-     "start": 3.58,
-     "end": 3.66,
-     "score": 1
-    },
-    {
-     "text": "來",
-     "start": 3.72,
-     "end": 3.86,
-     "score": 1
-    },
-    {
-     "text": "藥",
-     "start": 4.28,
-     "end": 4.44,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 4.48,
-     "end": 4.56,
-     "score": 0.999
-    },
-    {
-     "text": "落",
-     "start": 4.64,
-     "end": 4.74,
-     "score": 0.995
-    },
-    {
-     "text": "在",
-     "start": 4.8,
-     "end": 4.92,
-     "score": 0.999
-    },
-    {
-     "text": "中",
-     "start": 4.94,
-     "end": 5.08,
-     "score": 0.991
-    },
-    {
-     "text": "心",
-     "start": 5.12,
-     "end": 5.26,
-     "score": 1
-    },
-    {
-     "text": "推",
-     "start": 5.68,
-     "end": 5.84,
-     "score": 0.999
-    },
-    {
-     "text": "成",
-     "start": 5.88,
-     "end": 6.04,
-     "score": 0.936
-    },
-    {
-     "text": "薄",
-     "start": 6.1,
-     "end": 6.26,
-     "score": 0.874
-    },
-    {
-     "text": "薄",
-     "start": 6.3,
-     "end": 6.42,
-     "score": 0.995
-    },
-    {
-     "text": "的",
-     "start": 6.44,
-     "end": 6.5,
-     "score": 0.998
-    },
-    {
-     "text": "液",
-     "start": 6.56,
-     "end": 6.64,
-     "score": 0.999
-    },
-    {
-     "text": "膜",
-     "start": 6.74,
-     "end": 6.82,
-     "score": 0.999
-    },
-    {
-     "text": "被",
-     "start": 7.22,
-     "end": 7.34,
-     "score": 0.999
-    },
-    {
-     "text": "離",
-     "start": 7.4,
-     "end": 7.48,
-     "score": 0.997
-    },
-    {
-     "text": "心",
-     "start": 7.56,
-     "end": 7.7,
-     "score": 0.999
-    },
-    {
-     "text": "力",
-     "start": 7.74,
-     "end": 7.82,
-     "score": 0.997
-    },
-    {
-     "text": "一",
-     "start": 8.04,
-     "end": 8.12,
-     "score": 0.914
-    },
-    {
-     "text": "路",
-     "start": 8.18,
-     "end": 8.26,
-     "score": 0.994
-    },
-    {
-     "text": "往",
-     "start": 8.36,
-     "end": 8.5,
-     "score": 0.955
-    },
-    {
-     "text": "外",
-     "start": 8.54,
-     "end": 8.66,
-     "score": 0.996
-    },
-    {
-     "text": "甩",
-     "start": 8.72,
-     "end": 8.88,
-     "score": 0.903
-    }
-   ],
-   "charTimes": [
-    0.06,
-    0.26,
-    0.44,
-    0.64,
-    0.76,
-    1.28,
-    1.46,
-    1.64,
-    1.82,
-    2.08,
-    2.26,
-    2.86,
-    3.06,
-    3.22,
-    3.4,
-    3.58,
-    3.72,
-    4.28,
-    4.48,
-    4.64,
-    4.8,
-    4.94,
-    5.12,
-    5.68,
-    5.88,
-    6.1,
-    6.3,
-    6.44,
-    6.56,
-    6.74,
-    7.22,
-    7.4,
-    7.56,
-    7.74,
-    8.04,
-    8.18,
-    8.36,
-    8.54,
-    8.72
-   ]
+   "sub": "像洗盤子\n一次一片\n邊轉邊沖\n藥液落中心\n甩成薄膜帶走髒污",
+   "silentEstimate": true
   },
   {
    "id": "s6",
-   "audio": "audio/tech-twequip/06-s6.wav",
-   "audioFrame": 1227,
-   "audioSec": 8.12,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 1218,
-   "durationFrames": 270,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1228,
-   "voiceEndFrame": 1470,
-   "stillFrame": 1478,
+   "audio": null,
+   "audioFrame": 1371,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1335,
+   "durationFrames": 285,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 1371,
+   "voiceEndFrame": 1486,
+   "stillFrame": 1619,
    "subtitleWindow": [
-    1225,
-    1485
+    1368,
+    1626
    ],
    "sourceWindow": [
-    1223,
-    1483
+    1335,
+    1620
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "拆開腔體",
-     "start": 1225,
+     "text": "拆開看",
+     "start": 1368,
      "chars": [
-      1228,
-      1235,
-      1239,
-      1245
-     ]
-    },
-    {
-     "text": "噴嘴臂噴藥液",
-     "start": 1262,
-     "chars": [
-      1264,
-      1269,
-      1275,
-      1281,
-      1286,
-      1292
-     ]
-    },
-    {
-     "text": "擋液杯一層一種藥液",
-     "start": 1304,
-     "chars": [
-      1307,
-      1313,
-      1317,
-      1326,
-      1330,
-      1338,
-      1342,
-      1346,
-      1352
-     ]
-    },
-    {
-     "text": "不混在一起",
-     "start": 1361,
-     "chars": [
-      1364,
-      1368,
-      1374,
-      1378,
+      1369,
+      1375,
       1382
      ]
     },
     {
-     "text": "吸盤抓住晶圓",
-     "start": 1400,
+     "text": "擋液杯一層一種藥液",
+     "start": 1386,
      "chars": [
-      1402,
+      1388,
+      1395,
+      1401,
       1407,
-      1415,
-      1419,
-      1424,
-      1428
+      1414,
+      1420,
+      1427,
+      1433,
+      1439
      ]
     },
     {
-     "text": "馬達帶著轉",
-     "start": 1441,
+     "text": "像分類回收桶",
+     "start": 1444,
      "chars": [
-      1443,
-      1448,
-      1454,
+      1446,
+      1452,
       1458,
-      1462
+      1465,
+      1471,
+      1478
      ]
     }
    ],
    "keywords": [
     {
-     "text": "噴嘴臂",
-     "start": 1264
-    },
-    {
      "text": "擋液杯",
-     "start": 1307
+     "start": 1388
     },
     {
-     "text": "吸盤",
-     "start": 1402
+     "text": "分類回收桶",
+     "start": 1452
     }
    ],
    "cues": [
     {
      "id": "split",
-     "text": "拆開腔體",
-     "frame": 1229,
-     "early": 0
-    },
-    {
-     "id": "nz",
-     "text": "噴嘴臂",
-     "frame": 1265,
-     "early": 0
+     "text": "拆開看",
+     "frame": 1371
     },
     {
      "id": "cup",
      "text": "擋液杯",
-     "frame": 1308,
-     "early": 0
+     "frame": 1390
     },
     {
-     "id": "chk",
-     "text": "吸盤",
-     "frame": 1403,
-     "early": 0
-    },
-    {
-     "id": "mot",
-     "text": "馬達",
-     "frame": 1444,
-     "early": 0
+     "id": "bin",
+     "text": "回收桶",
+     "frame": 1467
     }
    ],
-   "hash": "fbd5ce145fe3-820c76b393",
-   "sub": "拆開腔體\n噴嘴臂噴藥液\n擋液杯一層一種藥液\n不混在一起\n吸盤抓住晶圓\n馬達帶著轉",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.89,
-    "minScore": 0.001,
-    "onsetMedianMs": 55,
-    "onsetMaxMs": 90,
-    "onsetCheck": [
-     {
-      "onset": 1.24,
-      "start": 1.28,
-      "ch": "噴",
-      "errMs": 40
-     },
-     {
-      "onset": 2.66,
-      "start": 2.7,
-      "ch": "擋",
-      "errMs": 40
-     },
-     {
-      "onset": 5.79,
-      "start": 5.88,
-      "ch": "吸",
-      "errMs": 90
-     },
-     {
-      "onset": 7.17,
-      "start": 7.24,
-      "ch": "馬",
-      "errMs": 70
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "拆",
-     "start": 0.08,
-     "end": 0.24,
-     "score": 0.836
-    },
-    {
-     "text": "開",
-     "start": 0.3,
-     "end": 0.42,
-     "score": 0.995
-    },
-    {
-     "text": "腔",
-     "start": 0.44,
-     "end": 0.62,
-     "score": 0.996
-    },
-    {
-     "text": "體",
-     "start": 0.66,
-     "end": 0.76,
-     "score": 0.998
-    },
-    {
-     "text": "噴",
-     "start": 1.28,
-     "end": 1.42,
-     "score": 0.998
-    },
-    {
-     "text": "嘴",
-     "start": 1.46,
-     "end": 1.58,
-     "score": 0.904
-    },
-    {
-     "text": "臂",
-     "start": 1.64,
-     "end": 1.7,
-     "score": 0.982
-    },
-    {
-     "text": "噴",
-     "start": 1.84,
-     "end": 1.98,
-     "score": 0.997
-    },
-    {
-     "text": "藥",
-     "start": 2.02,
-     "end": 2.16,
-     "score": 0.998
-    },
-    {
-     "text": "液",
-     "start": 2.2,
-     "end": 2.3,
-     "score": 0.998
-    },
-    {
-     "text": "擋",
-     "start": 2.7,
-     "end": 2.86,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 2.9,
-     "end": 2.98,
-     "score": 0.999
-    },
-    {
-     "text": "杯",
-     "start": 3.04,
-     "end": 3.18,
-     "score": 0.99
-    },
-    {
-     "text": "一",
-     "start": 3.34,
-     "end": 3.4,
-     "score": 0.083
-    },
-    {
-     "text": "層",
-     "start": 3.48,
-     "end": 3.7,
-     "score": 0.935
-    },
-    {
-     "text": "一",
-     "start": 3.76,
-     "end": 3.8,
-     "score": 0.11
-    },
-    {
-     "text": "種",
-     "start": 3.88,
-     "end": 4,
-     "score": 0.964
-    },
-    {
-     "text": "藥",
-     "start": 4.02,
-     "end": 4.16,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 4.2,
-     "end": 4.3,
-     "score": 0.998
-    },
-    {
-     "text": "不",
-     "start": 4.6,
-     "end": 4.68,
-     "score": 0.999
-    },
-    {
-     "text": "混",
-     "start": 4.76,
-     "end": 4.9,
-     "score": 0.983
-    },
-    {
-     "text": "在",
-     "start": 4.94,
-     "end": 5.06,
-     "score": 0.999
-    },
-    {
-     "text": "一",
-     "start": 5.08,
-     "end": 5.12,
-     "score": 0.001
-    },
-    {
-     "text": "起",
-     "start": 5.2,
-     "end": 5.34,
-     "score": 0.999
-    },
-    {
-     "text": "吸",
-     "start": 5.88,
-     "end": 5.98,
-     "score": 0.998
-    },
-    {
-     "text": "盤",
-     "start": 6.06,
-     "end": 6.22,
-     "score": 0.999
-    },
-    {
-     "text": "抓",
-     "start": 6.3,
-     "end": 6.4,
-     "score": 0.949
-    },
-    {
-     "text": "住",
-     "start": 6.46,
-     "end": 6.54,
-     "score": 0.888
-    },
-    {
-     "text": "晶",
-     "start": 6.6,
-     "end": 6.74,
-     "score": 0.953
-    },
-    {
-     "text": "圓",
-     "start": 6.76,
-     "end": 6.94,
-     "score": 0.998
-    },
-    {
-     "text": "馬",
-     "start": 7.24,
-     "end": 7.32,
-     "score": 0.999
-    },
-    {
-     "text": "達",
-     "start": 7.42,
-     "end": 7.5,
-     "score": 0.999
-    },
-    {
-     "text": "帶",
-     "start": 7.62,
-     "end": 7.74,
-     "score": 0.999
-    },
-    {
-     "text": "著",
-     "start": 7.76,
-     "end": 7.82,
-     "score": 0.664
-    },
-    {
-     "text": "轉",
-     "start": 7.88,
-     "end": 8.04,
-     "score": 0.934
-    }
-   ],
-   "charTimes": [
-    0.08,
-    0.3,
-    0.44,
-    0.66,
-    1.28,
-    1.46,
-    1.64,
-    1.84,
-    2.02,
-    2.2,
-    2.7,
-    2.9,
-    3.04,
-    3.34,
-    3.48,
-    3.76,
-    3.88,
-    4.02,
-    4.2,
-    4.6,
-    4.76,
-    4.94,
-    5.08,
-    5.2,
-    5.88,
-    6.06,
-    6.3,
-    6.46,
-    6.6,
-    6.76,
-    7.24,
-    7.42,
-    7.62,
-    7.76,
-    7.88
-   ]
+   "sub": "拆開看\n擋液杯一層一種藥液\n像分類回收桶",
+   "silentEstimate": true
   },
   {
    "id": "s7",
-   "audio": "audio/tech-twequip/07-s7.wav",
-   "audioFrame": 1487,
-   "audioSec": 6.07,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 1478,
-   "durationFrames": 208,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1488,
-   "voiceEndFrame": 1668,
-   "stillFrame": 1676,
+   "audio": null,
+   "audioFrame": 1629,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1620,
+   "durationFrames": 252,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 1629,
+   "voiceEndFrame": 1782,
+   "stillFrame": 1871,
    "subtitleWindow": [
-    1485,
-    1683
+    1626,
+    1893
    ],
    "sourceWindow": [
-    1483,
-    1681
+    1620,
+    1872
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "最後甩乾",
-     "start": 1485,
+     "start": 1626,
      "chars": [
-      1489,
-      1494,
-      1500,
-      1506
+      1627,
+      1633,
+      1640,
+      1646
      ]
     },
     {
-     "text": "乾的地方從中心往外擴大",
-     "start": 1522,
+     "text": "異丙醇是一種酒精",
+     "start": 1651,
      "chars": [
-      1525,
-      1529,
-      1532,
-      1537,
-      1546,
-      1552,
-      1557,
-      1563,
-      1568,
-      1573,
-      1578
-     ]
-    },
-    {
-     "text": "異丙醇噴嘴跟著走",
-     "start": 1593,
-     "chars": [
-      1595,
-      1600,
-      1605,
-      1611,
-      1616,
-      1622,
-      1625,
-      1629
-     ]
-    },
-    {
-     "text": "避免水痕",
-     "start": 1640,
-     "chars": [
-      1642,
-      1647,
       1653,
-      1658
+      1659,
+      1665,
+      1672,
+      1678,
+      1684,
+      1691,
+      1697
+     ]
+    },
+    {
+     "text": "跟著乾區",
+     "start": 1702,
+     "chars": [
+      1704,
+      1710,
+      1716,
+      1723
+     ]
+    },
+    {
+     "text": "把水帶走",
+     "start": 1727,
+     "chars": [
+      1729,
+      1735,
+      1742,
+      1748
+     ]
+    },
+    {
+     "text": "不留水痕",
+     "start": 1753,
+     "chars": [
+      1755,
+      1761,
+      1767,
+      1774
      ]
     }
    ],
    "keywords": [
     {
      "text": "甩乾",
-     "start": 1500
+     "start": 1640
     },
     {
-     "text": "中心",
-     "start": 1552
+     "text": "異丙醇",
+     "start": 1653
     },
     {
      "text": "水痕",
-     "start": 1653
+     "start": 1767
     }
    ],
    "cues": [
     {
      "id": "dry",
      "text": "甩乾",
-     "frame": 1501,
-     "early": 0
-    },
-    {
-     "id": "expand",
-     "text": "從中心往外擴大",
-     "frame": 1547,
-     "early": 0
+     "frame": 1642
     },
     {
      "id": "ipa",
      "text": "異丙醇",
-     "frame": 1597,
-     "early": 0
+     "frame": 1655
+    },
+    {
+     "id": "expand",
+     "text": "乾區",
+     "frame": 1718
     },
     {
      "id": "mark",
      "text": "水痕",
-     "frame": 1654,
-     "early": 0
+     "frame": 1769
     }
    ],
-   "hash": "f9816c741ce8-820c76b393",
-   "sub": "最後甩乾\n乾的地方從中心往外擴大\n異丙醇噴嘴跟著走\n避免水痕",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.895,
-    "minScore": 0.499,
-    "onsetMedianMs": 60,
-    "onsetMaxMs": 70,
-    "onsetCheck": [
-     {
-      "onset": 1.24,
-      "start": 1.3,
-      "ch": "乾",
-      "errMs": 60
-     },
-     {
-      "onset": 3.61,
-      "start": 3.66,
-      "ch": "異",
-      "errMs": 50
-     },
-     {
-      "onset": 5.15,
-      "start": 5.22,
-      "ch": "避",
-      "errMs": 70
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "最",
-     "start": 0.1,
-     "end": 0.22,
-     "score": 0.999
-    },
-    {
-     "text": "後",
-     "start": 0.28,
-     "end": 0.42,
-     "score": 0.998
-    },
-    {
-     "text": "甩",
-     "start": 0.48,
-     "end": 0.64,
-     "score": 0.938
-    },
-    {
-     "text": "乾",
-     "start": 0.68,
-     "end": 0.82,
-     "score": 0.499
-    },
-    {
-     "text": "乾",
-     "start": 1.3,
-     "end": 1.42,
-     "score": 0.5
-    },
-    {
-     "text": "的",
-     "start": 1.46,
-     "end": 1.52,
-     "score": 0.999
-    },
-    {
-     "text": "地",
-     "start": 1.56,
-     "end": 1.62,
-     "score": 0.503
-    },
-    {
-     "text": "方",
-     "start": 1.7,
-     "end": 1.88,
-     "score": 0.915
-    },
-    {
-     "text": "從",
-     "start": 2,
-     "end": 2.18,
-     "score": 0.994
-    },
-    {
-     "text": "中",
-     "start": 2.2,
-     "end": 2.36,
-     "score": 0.984
-    },
-    {
-     "text": "心",
-     "start": 2.38,
-     "end": 2.5,
-     "score": 0.999
-    },
-    {
-     "text": "往",
-     "start": 2.58,
-     "end": 2.74,
-     "score": 0.973
-    },
-    {
-     "text": "外",
-     "start": 2.76,
-     "end": 2.88,
-     "score": 0.999
-    },
-    {
-     "text": "擴",
-     "start": 2.92,
-     "end": 3.02,
-     "score": 0.99
-    },
-    {
-     "text": "大",
-     "start": 3.08,
-     "end": 3.16,
-     "score": 0.998
-    },
-    {
-     "text": "異",
-     "start": 3.66,
-     "end": 3.72,
-     "score": 0.575
-    },
-    {
-     "text": "丙",
-     "start": 3.82,
-     "end": 3.96,
-     "score": 0.914
-    },
-    {
-     "text": "醇",
-     "start": 3.98,
-     "end": 4.12,
-     "score": 0.919
-    },
-    {
-     "text": "噴",
-     "start": 4.18,
-     "end": 4.3,
-     "score": 0.988
-    },
-    {
-     "text": "嘴",
-     "start": 4.34,
-     "end": 4.48,
-     "score": 0.995
-    },
-    {
-     "text": "跟",
-     "start": 4.54,
-     "end": 4.64,
-     "score": 0.929
-    },
-    {
-     "text": "著",
-     "start": 4.66,
-     "end": 4.74,
-     "score": 0.694
-    },
-    {
-     "text": "走",
-     "start": 4.78,
-     "end": 4.92,
-     "score": 0.988
-    },
-    {
-     "text": "避",
-     "start": 5.22,
-     "end": 5.3,
-     "score": 0.994
-    },
-    {
-     "text": "免",
-     "start": 5.38,
-     "end": 5.52,
-     "score": 0.905
-    },
-    {
-     "text": "水",
-     "start": 5.58,
-     "end": 5.72,
-     "score": 0.976
-    },
-    {
-     "text": "痕",
-     "start": 5.76,
-     "end": 5.92,
-     "score": 0.999
-    }
-   ],
-   "charTimes": [
-    0.1,
-    0.28,
-    0.48,
-    0.68,
-    1.3,
-    1.46,
-    1.56,
-    1.7,
-    2,
-    2.2,
-    2.38,
-    2.58,
-    2.76,
-    2.92,
-    3.08,
-    3.66,
-    3.82,
-    3.98,
-    4.18,
-    4.34,
-    4.54,
-    4.66,
-    4.78,
-    5.22,
-    5.38,
-    5.58,
-    5.76
-   ]
+   "sub": "最後甩乾\n異丙醇是一種酒精\n跟著乾區\n把水帶走\n不留水痕",
+   "silentEstimate": true
   },
   {
    "id": "s8",
-   "audio": "audio/tech-twequip/08-s8.wav",
-   "audioFrame": 1685,
-   "audioSec": 7.38,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 1676,
-   "durationFrames": 247,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1686,
-   "voiceEndFrame": 1906,
-   "stillFrame": 1913,
+   "audio": null,
+   "audioFrame": 1896,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 1872,
+   "durationFrames": 396,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 1896,
+   "voiceEndFrame": 2030,
+   "stillFrame": 2267,
    "subtitleWindow": [
-    1683,
-    1920
+    1893,
+    2274
    ],
    "sourceWindow": [
-    1681,
-    1918
+    1872,
+    2268
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "藥液桶供應藥液",
-     "start": 1683,
+     "text": "藥液從桶子出發",
+     "start": 1893,
      "chars": [
-      1687,
-      1691,
-      1696,
-      1704,
-      1709,
-      1715,
-      1720
-     ]
-    },
-    {
-     "text": "幫浦送過來，",
-     "start": 1734,
-     "chars": [
-      1736,
-      1741,
-      1747,
-      1752,
-      1755,
-      1755
-     ]
-    },
-    {
-     "text": "濾芯濾乾淨",
-     "start": 1768,
-     "chars": [
-      1771,
-      1776,
-      1781,
-      1786,
-      1792
-     ]
-    },
-    {
-     "text": "混合閥配好比例",
-     "start": 1807,
-     "chars": [
-      1809,
-      1815,
-      1820,
-      1827,
-      1832,
-      1837,
-      1842
-     ]
-    },
-    {
-     "text": "電控箱管整套動作",
-     "start": 1855,
-     "chars": [
-      1858,
-      1863,
-      1868,
-      1877,
-      1883,
-      1888,
       1894,
-      1898
+      1900,
+      1907,
+      1913,
+      1920,
+      1926,
+      1932
+     ]
+    },
+    {
+     "text": "幫浦推著走",
+     "start": 1937,
+     "chars": [
+      1939,
+      1945,
+      1951,
+      1958,
+      1964
+     ]
+    },
+    {
+     "text": "閥門像調飲料配比例",
+     "start": 1969,
+     "chars": [
+      1971,
+      1977,
+      1983,
+      1990,
+      1996,
+      2002,
+      2009,
+      2015,
+      2022
      ]
     }
    ],
    "keywords": [
     {
-     "text": "藥液桶",
-     "start": 1687
+     "text": "桶子",
+     "start": 1913
     },
     {
      "text": "幫浦",
-     "start": 1736
+     "start": 1939
     },
     {
-     "text": "混合閥",
-     "start": 1809
+     "text": "調飲料",
+     "start": 1990
     }
    ],
    "cues": [
     {
      "id": "tank",
-     "text": "藥液桶",
-     "frame": 1688,
-     "early": 0
+     "text": "桶子",
+     "frame": 1915
     },
     {
      "id": "pump",
      "text": "幫浦",
-     "frame": 1737,
-     "early": 0
+     "frame": 1941
     },
     {
      "id": "mix",
-     "text": "混合閥",
-     "frame": 1810,
-     "early": 0
-    },
-    {
-     "id": "eb",
-     "text": "電控箱",
-     "frame": 1859,
-     "early": 0
+     "text": "閥門",
+     "frame": 1973
     }
    ],
-   "hash": "f72c15b8c44e-820c76b393",
-   "sub": "藥液桶供應藥液\n幫浦送過來，濾芯濾乾淨\n混合閥配好比例\n電控箱管整套動作",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.916,
-    "minScore": 0.495,
-    "onsetMedianMs": 55,
-    "onsetMaxMs": 80,
-    "onsetCheck": [
-     {
-      "onset": 1.69,
-      "start": 1.74,
-      "ch": "幫",
-      "errMs": 50
-     },
-     {
-      "onset": 2.82,
-      "start": 2.9,
-      "ch": "濾",
-      "errMs": 80
-     },
-     {
-      "onset": 4.12,
-      "start": 4.18,
-      "ch": "混",
-      "errMs": 60
-     },
-     {
-      "onset": 5.75,
-      "start": 5.8,
-      "ch": "電",
-      "errMs": 50
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "藥",
-     "start": 0.1,
-     "end": 0.24,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 0.26,
-     "end": 0.34,
-     "score": 0.998
-    },
-    {
-     "text": "桶",
-     "start": 0.4,
-     "end": 0.6,
-     "score": 0.996
-    },
-    {
-     "text": "供",
-     "start": 0.7,
-     "end": 0.84,
-     "score": 0.996
-    },
-    {
-     "text": "應",
-     "start": 0.86,
-     "end": 1,
-     "score": 0.745
-    },
-    {
-     "text": "藥",
-     "start": 1.04,
-     "end": 1.18,
-     "score": 0.999
-    },
-    {
-     "text": "液",
-     "start": 1.22,
-     "end": 1.3,
-     "score": 0.999
-    },
-    {
-     "text": "幫",
-     "start": 1.74,
-     "end": 1.88,
-     "score": 0.999
-    },
-    {
-     "text": "浦",
-     "start": 1.92,
-     "end": 2.02,
-     "score": 0.997
-    },
-    {
-     "text": "送",
-     "start": 2.12,
-     "end": 2.26,
-     "score": 0.924
-    },
-    {
-     "text": "過",
-     "start": 2.28,
-     "end": 2.34,
-     "score": 0.999
-    },
-    {
-     "text": "來",
-     "start": 2.38,
-     "end": 2.54,
-     "score": 0.999
-    },
-    {
-     "text": "濾",
-     "start": 2.9,
-     "end": 2.98,
-     "score": 0.497
-    },
-    {
-     "text": "芯",
-     "start": 3.08,
-     "end": 3.2,
-     "score": 0.999
-    },
-    {
-     "text": "濾",
-     "start": 3.26,
-     "end": 3.34,
-     "score": 0.495
-    },
-    {
-     "text": "乾",
-     "start": 3.42,
-     "end": 3.54,
-     "score": 0.499
-    },
-    {
-     "text": "淨",
-     "start": 3.6,
-     "end": 3.76,
-     "score": 0.847
-    },
-    {
-     "text": "混",
-     "start": 4.18,
-     "end": 4.32,
-     "score": 0.999
-    },
-    {
-     "text": "合",
-     "start": 4.38,
-     "end": 4.46,
-     "score": 0.999
-    },
-    {
-     "text": "閥",
-     "start": 4.54,
-     "end": 4.62,
-     "score": 0.999
-    },
-    {
-     "text": "配",
-     "start": 4.78,
-     "end": 4.92,
-     "score": 0.665
-    },
-    {
-     "text": "好",
-     "start": 4.96,
-     "end": 5.1,
-     "score": 0.995
-    },
-    {
-     "text": "比",
-     "start": 5.12,
-     "end": 5.2,
-     "score": 0.998
-    },
-    {
-     "text": "例",
-     "start": 5.28,
-     "end": 5.34,
-     "score": 0.995
-    },
-    {
-     "text": "電",
-     "start": 5.8,
-     "end": 5.94,
-     "score": 0.99
-    },
-    {
-     "text": "控",
-     "start": 5.98,
-     "end": 6.12,
-     "score": 0.999
-    },
-    {
-     "text": "箱",
-     "start": 6.16,
-     "end": 6.34,
-     "score": 0.933
-    },
-    {
-     "text": "管",
-     "start": 6.44,
-     "end": 6.6,
-     "score": 0.958
-    },
-    {
-     "text": "整",
-     "start": 6.66,
-     "end": 6.8,
-     "score": 0.903
-    },
-    {
-     "text": "套",
-     "start": 6.82,
-     "end": 6.98,
-     "score": 0.881
-    },
-    {
-     "text": "動",
-     "start": 7,
-     "end": 7.12,
-     "score": 0.999
-    },
-    {
-     "text": "作",
-     "start": 7.16,
-     "end": 7.24,
-     "score": 0.999
-    }
-   ],
-   "charTimes": [
-    0.1,
-    0.26,
-    0.4,
-    0.7,
-    0.86,
-    1.04,
-    1.22,
-    1.74,
-    1.92,
-    2.12,
-    2.28,
-    2.38,
-    2.9,
-    3.08,
-    3.26,
-    3.42,
-    3.6,
-    4.18,
-    4.38,
-    4.54,
-    4.78,
-    4.96,
-    5.12,
-    5.28,
-    5.8,
-    5.98,
-    6.16,
-    6.44,
-    6.66,
-    6.82,
-    7,
-    7.16
-   ]
+   "sub": "藥液從桶子出發\n幫浦推著走\n閥門像調飲料配比例",
+   "silentEstimate": true
   },
   {
    "id": "s9",
-   "audio": "audio/tech-twequip/09-s9.wav",
-   "audioFrame": 1922,
-   "audioSec": 5.46,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 1913,
-   "durationFrames": 189,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 1923,
-   "voiceEndFrame": 2085,
-   "stillFrame": 2092,
+   "audio": null,
+   "audioFrame": 2277,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 2268,
+   "durationFrames": 270,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 2277,
+   "voiceEndFrame": 2411,
+   "stillFrame": 2537,
    "subtitleWindow": [
-    1920,
-    2099
+    2274,
+    2544
    ],
    "sourceWindow": [
-    1918,
-    2097
+    2268,
+    2538
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "另有批次酸槽",
-     "start": 1920,
+     "text": "另一種",
+     "start": 2274,
      "chars": [
-      1924,
-      1929,
-      1934,
-      1940,
-      1945,
-      1951
+      2275,
+      2281,
+      2288
      ]
     },
     {
-     "text": "一次泡一批",
-     "start": 1965,
+     "text": "像整籃碗泡進槽裡",
+     "start": 2292,
      "chars": [
-      1967,
-      1972,
-      1977,
-      1984,
-      1987
+      2294,
+      2301,
+      2307,
+      2313,
+      2320,
+      2326,
+      2332,
+      2339
      ]
     },
     {
-     "text": "單片洗則一片一片來",
-     "start": 2003,
+     "text": "一次洗很多",
+     "start": 2343,
      "chars": [
-      2005,
-      2010,
-      2017,
-      2026,
-      2031,
-      2035,
-      2041,
-      2044,
-      2050
+      2345,
+      2352,
+      2358,
+      2364,
+      2371
      ]
     },
     {
-     "text": "各有用途",
-     "start": 2059,
+     "text": "單片逐片洗",
+     "start": 2375,
      "chars": [
-      2062,
-      2066,
-      2071,
-      2077
+      2377,
+      2383,
+      2390,
+      2396,
+      2403
      ]
     }
    ],
    "keywords": [
     {
-     "text": "批次酸槽",
-     "start": 1934
+     "text": "整籃碗",
+     "start": 2301
     },
     {
-     "text": "單片洗",
-     "start": 2005
+     "text": "單片",
+     "start": 2377
     }
    ],
    "cues": [
     {
      "id": "bat",
-     "text": "批次酸槽",
-     "frame": 1935,
-     "early": 0
+     "text": "整籃碗",
+     "frame": 2303
     },
     {
      "id": "one",
-     "text": "一次泡一批",
-     "frame": 1968,
-     "early": 0
+     "text": "泡進槽裡",
+     "frame": 2322
     },
     {
      "id": "sgl",
-     "text": "單片洗",
-     "frame": 2007,
-     "early": 0
+     "text": "單片",
+     "frame": 2379
     },
     {
      "id": "use",
-     "text": "各有用途",
-     "frame": 2063,
-     "early": 0
+     "text": "逐片洗",
+     "frame": 2392
     }
    ],
-   "hash": "657ccc1187f9-820c76b393",
-   "sub": "另有批次酸槽\n一次泡一批\n單片洗則一片一片來\n各有用途",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.913,
-    "minScore": 0.431,
-    "onsetMedianMs": 40,
-    "onsetMaxMs": 50,
-    "onsetCheck": [
-     {
-      "onset": 1.5,
-      "start": 1.54,
-      "ch": "一",
-      "errMs": 40
-     },
-     {
-      "onset": 2.77,
-      "start": 2.82,
-      "ch": "單",
-      "errMs": 50
-     },
-     {
-      "onset": 4.68,
-      "start": 4.7,
-      "ch": "各",
-      "errMs": 20
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "另",
-     "start": 0.1,
-     "end": 0.26,
-     "score": 0.895
-    },
-    {
-     "text": "有",
-     "start": 0.28,
-     "end": 0.4,
-     "score": 0.997
-    },
-    {
-     "text": "批",
-     "start": 0.44,
-     "end": 0.56,
-     "score": 0.842
-    },
-    {
-     "text": "次",
-     "start": 0.66,
-     "end": 0.76,
-     "score": 0.997
-    },
-    {
-     "text": "酸",
-     "start": 0.82,
-     "end": 0.96,
-     "score": 0.909
-    },
-    {
-     "text": "槽",
-     "start": 1,
-     "end": 1.2,
-     "score": 0.995
-    },
-    {
-     "text": "一",
-     "start": 1.54,
-     "end": 1.62,
-     "score": 0.431
-    },
-    {
-     "text": "次",
-     "start": 1.72,
-     "end": 1.82,
-     "score": 0.995
-    },
-    {
-     "text": "泡",
-     "start": 1.9,
-     "end": 2.08,
-     "score": 0.993
-    },
-    {
-     "text": "一",
-     "start": 2.1,
-     "end": 2.16,
-     "score": 0.727
-    },
-    {
-     "text": "批",
-     "start": 2.22,
-     "end": 2.34,
-     "score": 0.988
-    },
-    {
-     "text": "單",
-     "start": 2.82,
-     "end": 2.94,
-     "score": 0.999
-    },
-    {
-     "text": "片",
-     "start": 2.98,
-     "end": 3.16,
-     "score": 0.998
-    },
-    {
-     "text": "洗",
-     "start": 3.22,
-     "end": 3.34,
-     "score": 0.981
-    },
-    {
-     "text": "則",
-     "start": 3.5,
-     "end": 3.58,
-     "score": 0.999
-    },
-    {
-     "text": "一",
-     "start": 3.68,
-     "end": 3.74,
-     "score": 0.516
-    },
-    {
-     "text": "片",
-     "start": 3.82,
-     "end": 3.98,
-     "score": 0.998
-    },
-    {
-     "text": "一",
-     "start": 4.02,
-     "end": 4.06,
-     "score": 0.757
-    },
-    {
-     "text": "片",
-     "start": 4.12,
-     "end": 4.26,
-     "score": 0.997
-    },
-    {
-     "text": "來",
-     "start": 4.3,
-     "end": 4.46,
-     "score": 0.999
-    },
-    {
-     "text": "各",
-     "start": 4.7,
-     "end": 4.78,
-     "score": 0.999
-    },
-    {
-     "text": "有",
-     "start": 4.86,
-     "end": 4.98,
-     "score": 0.999
-    },
-    {
-     "text": "用",
-     "start": 5.02,
-     "end": 5.18,
-     "score": 0.907
-    },
-    {
-     "text": "途",
-     "start": 5.2,
-     "end": 5.3,
-     "score": 0.998
-    }
-   ],
-   "charTimes": [
-    0.1,
-    0.28,
-    0.44,
-    0.66,
-    0.82,
-    1,
-    1.54,
-    1.72,
-    1.9,
-    2.1,
-    2.22,
-    2.82,
-    2.98,
-    3.22,
-    3.5,
-    3.68,
-    3.82,
-    4.02,
-    4.12,
-    4.3,
-    4.7,
-    4.86,
-    5.02,
-    5.2
-   ]
+   "sub": "另一種\n像整籃碗泡進槽裡\n一次洗很多\n單片逐片洗",
+   "silentEstimate": true
   },
   {
    "id": "s10",
-   "audio": "audio/tech-twequip/10-s10.wav",
-   "audioFrame": 2101,
-   "audioSec": 5.73,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 2092,
-   "durationFrames": 198,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 2102,
-   "voiceEndFrame": 2272,
-   "stillFrame": 2280,
+   "audio": null,
+   "audioFrame": 2547,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 2538,
+   "durationFrames": 195,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 2547,
+   "voiceEndFrame": 2675,
+   "stillFrame": 2732,
    "subtitleWindow": [
-    2099,
-    2287
+    2544,
+    2739
    ],
    "sourceWindow": [
-    2097,
-    2285
+    2538,
+    2733
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
-     "text": "最前段的清洗機",
-     "start": 2099,
+     "text": "最前段多是",
+     "start": 2544,
      "chars": [
-      2102,
-      2109,
-      2114,
-      2118,
-      2121,
-      2127,
-      2131
+      2545,
+      2551,
+      2558,
+      2564,
+      2571
      ]
     },
     {
-     "text": "多是日系、",
-     "start": 2145,
+     "text": "日美大廠",
+     "start": 2575,
      "chars": [
-      2147,
-      2152,
-      2157,
-      2163,
-      2163
+      2577,
+      2583,
+      2590,
+      2596
      ]
     },
     {
-     "text": "美系大廠",
-     "start": 2169,
+     "text": "台灣廠主攻",
+     "start": 2601,
      "chars": [
-      2172,
-      2178,
-      2182,
-      2187
+      2603,
+      2609,
+      2615,
+      2622,
+      2628
      ]
     },
     {
-     "text": "台灣廠打進封裝端和中段",
-     "start": 2205,
+     "text": "封裝端與中段",
+     "start": 2633,
      "chars": [
-      2208,
-      2213,
-      2217,
-      2226,
-      2232,
-      2236,
-      2241,
-      2247,
-      2255,
-      2259,
-      2264
+      2635,
+      2641,
+      2647,
+      2654,
+      2660,
+      2667
      ]
     }
    ],
    "keywords": [
     {
      "text": "最前段",
-     "start": 2102
+     "start": 2545
     },
     {
      "text": "台灣廠",
-     "start": 2208
+     "start": 2603
     },
     {
      "text": "中段",
-     "start": 2259
+     "start": 2660
     }
    ],
    "cues": [
     {
      "id": "front",
      "text": "最前段",
-     "frame": 2103,
-     "early": 0
+     "frame": 2547
     },
     {
      "id": "foreign",
-     "text": "日系、美系大廠",
-     "frame": 2159,
-     "early": 0
+     "text": "日美",
+     "frame": 2579
     },
     {
      "id": "tw",
      "text": "台灣廠",
-     "frame": 2209,
-     "early": 0
+     "frame": 2605
     },
     {
      "id": "back",
-     "text": "封裝端和中段",
-     "frame": 2238,
-     "early": 0
+     "text": "封裝端",
+     "frame": 2637
     }
    ],
-   "hash": "87870cca6632-820c76b393",
-   "sub": "最前段的清洗機\n多是日系、美系大廠\n台灣廠打進封裝端和中段",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.98,
-    "minScore": 0.849,
-    "onsetMedianMs": 40,
-    "onsetMaxMs": 50,
-    "onsetCheck": [
-     {
-      "onset": 1.55,
-      "start": 1.58,
-      "ch": "多",
-      "errMs": 30
-     },
-     {
-      "onset": 3.55,
-      "start": 3.6,
-      "ch": "台",
-      "errMs": 50
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "最",
-     "start": 0.08,
-     "end": 0.24,
-     "score": 0.902
-    },
-    {
-     "text": "前",
-     "start": 0.3,
-     "end": 0.44,
-     "score": 0.994
-    },
-    {
-     "text": "段",
-     "start": 0.48,
-     "end": 0.58,
-     "score": 0.999
-    },
-    {
-     "text": "的",
-     "start": 0.62,
-     "end": 0.68,
-     "score": 0.999
-    },
-    {
-     "text": "清",
-     "start": 0.72,
-     "end": 0.88,
-     "score": 0.972
-    },
-    {
-     "text": "洗",
-     "start": 0.92,
-     "end": 1,
-     "score": 0.999
-    },
-    {
-     "text": "機",
-     "start": 1.06,
-     "end": 1.16,
-     "score": 0.999
-    },
-    {
-     "text": "多",
-     "start": 1.58,
-     "end": 1.68,
-     "score": 0.997
-    },
-    {
-     "text": "是",
-     "start": 1.76,
-     "end": 1.86,
-     "score": 0.993
-    },
-    {
-     "text": "日",
-     "start": 1.92,
-     "end": 2,
-     "score": 0.998
-    },
-    {
-     "text": "系",
-     "start": 2.12,
-     "end": 2.22,
-     "score": 0.999
-    },
-    {
-     "text": "美",
-     "start": 2.4,
-     "end": 2.54,
-     "score": 0.997
-    },
-    {
-     "text": "系",
-     "start": 2.62,
-     "end": 2.7,
-     "score": 0.999
-    },
-    {
-     "text": "大",
-     "start": 2.76,
-     "end": 2.84,
-     "score": 0.998
-    },
-    {
-     "text": "廠",
-     "start": 2.92,
-     "end": 3.12,
-     "score": 0.925
-    },
-    {
-     "text": "台",
-     "start": 3.6,
-     "end": 3.74,
-     "score": 0.997
-    },
-    {
-     "text": "灣",
-     "start": 3.78,
-     "end": 3.88,
-     "score": 0.994
-    },
-    {
-     "text": "廠",
-     "start": 3.92,
-     "end": 4.14,
-     "score": 0.976
-    },
-    {
-     "text": "打",
-     "start": 4.22,
-     "end": 4.3,
-     "score": 0.999
-    },
-    {
-     "text": "進",
-     "start": 4.4,
-     "end": 4.52,
-     "score": 0.985
-    },
-    {
-     "text": "封",
-     "start": 4.56,
-     "end": 4.7,
-     "score": 0.995
-    },
-    {
-     "text": "裝",
-     "start": 4.72,
-     "end": 4.88,
-     "score": 0.99
-    },
-    {
-     "text": "端",
-     "start": 4.9,
-     "end": 5.04,
-     "score": 0.943
-    },
-    {
-     "text": "和",
-     "start": 5.18,
-     "end": 5.26,
-     "score": 0.999
-    },
-    {
-     "text": "中",
-     "start": 5.32,
-     "end": 5.46,
-     "score": 0.849
-    },
-    {
-     "text": "段",
-     "start": 5.48,
-     "end": 5.64,
-     "score": 0.972
-    }
-   ],
-   "charTimes": [
-    0.08,
-    0.3,
-    0.48,
-    0.62,
-    0.72,
-    0.92,
-    1.06,
-    1.58,
-    1.76,
-    1.92,
-    2.12,
-    2.4,
-    2.62,
-    2.76,
-    2.92,
-    3.6,
-    3.78,
-    3.92,
-    4.22,
-    4.4,
-    4.56,
-    4.72,
-    4.9,
-    5.18,
-    5.32,
-    5.48
-   ]
+   "sub": "最前段多是\n日美大廠\n台灣廠主攻\n封裝端與中段",
+   "silentEstimate": true
   },
   {
    "id": "s11",
-   "audio": "audio/tech-twequip/11-s11.wav",
-   "audioFrame": 2289,
-   "audioSec": 3.73,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 2280,
-   "durationFrames": 137,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 2290,
-   "voiceEndFrame": 2400,
-   "stillFrame": 2407,
+   "audio": null,
+   "audioFrame": 2742,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 2733,
+   "durationFrames": 156,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 2742,
+   "voiceEndFrame": 2844,
+   "stillFrame": 2888,
    "subtitleWindow": [
-    2287,
-    2414
+    2739,
+    2895
    ],
    "sourceWindow": [
-    2285,
-    2412
+    2733,
+    2889
    ],
-   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "弘塑、",
-     "start": 2287,
+     "start": 2739,
      "chars": [
-      2291,
-      2298,
-      2298
+      2740,
+      2746,
+      2746
      ]
     },
     {
      "text": "辛耘做濕式清洗機",
-     "start": 2305,
+     "start": 2751,
      "chars": [
-      2307,
-      2313,
-      2322,
-      2329,
-      2334,
-      2338,
-      2343,
-      2347
+      2753,
+      2759,
+      2766,
+      2772,
+      2778,
+      2785,
+      2791,
+      2797
      ]
     },
     {
      "text": "家登做晶圓盒",
-     "start": 2360,
+     "start": 2802,
      "chars": [
-      2363,
-      2369,
-      2375,
-      2380,
-      2385,
-      2391
+      2804,
+      2810,
+      2817,
+      2823,
+      2829,
+      2836
      ]
     }
    ],
    "keywords": [
     {
      "text": "弘塑",
-     "start": 2291
+     "start": 2740
     },
     {
      "text": "辛耘",
-     "start": 2307
+     "start": 2753
     },
     {
      "text": "家登",
-     "start": 2363
+     "start": 2804
     }
    ],
    "cues": [
     {
      "id": "gptc",
      "text": "弘塑",
-     "frame": 2293,
-     "early": 0
+     "frame": 2742
     },
     {
      "id": "sci",
      "text": "辛耘",
-     "frame": 2308,
-     "early": 0
+     "frame": 2755
     },
     {
      "id": "gdg",
      "text": "家登",
-     "frame": 2364,
-     "early": 0
+     "frame": 2806
     }
    ],
-   "hash": "f21ab462ae05-820c76b393",
    "sub": "弘塑、辛耘做濕式清洗機\n家登做晶圓盒",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.918,
-    "minScore": 0.363,
-    "onsetMedianMs": 50,
-    "onsetMaxMs": 50,
-    "onsetCheck": [
-     {
-      "onset": 2.45,
-      "start": 2.5,
-      "ch": "家",
-      "errMs": 50
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "弘",
-     "start": 0.12,
-     "end": 0.3,
-     "score": 0.954
-    },
-    {
-     "text": "塑",
-     "start": 0.36,
-     "end": 0.46,
-     "score": 0.997
-    },
-    {
-     "text": "辛",
-     "start": 0.64,
-     "end": 0.78,
-     "score": 0.999
-    },
-    {
-     "text": "耘",
-     "start": 0.84,
-     "end": 1,
-     "score": 0.998
-    },
-    {
-     "text": "做",
-     "start": 1.16,
-     "end": 1.26,
-     "score": 0.928
-    },
-    {
-     "text": "濕",
-     "start": 1.38,
-     "end": 1.46,
-     "score": 0.363
-    },
-    {
-     "text": "式",
-     "start": 1.54,
-     "end": 1.62,
-     "score": 0.744
-    },
-    {
-     "text": "清",
-     "start": 1.68,
-     "end": 1.82,
-     "score": 0.871
-    },
-    {
-     "text": "洗",
-     "start": 1.84,
-     "end": 1.92,
-     "score": 0.997
-    },
-    {
-     "text": "機",
-     "start": 1.98,
-     "end": 2.08,
-     "score": 0.998
-    },
-    {
-     "text": "家",
-     "start": 2.5,
-     "end": 2.6,
-     "score": 0.999
-    },
-    {
-     "text": "登",
-     "start": 2.7,
-     "end": 2.84,
-     "score": 0.978
-    },
-    {
-     "text": "做",
-     "start": 2.9,
-     "end": 3,
-     "score": 0.942
-    },
-    {
-     "text": "晶",
-     "start": 3.08,
-     "end": 3.22,
-     "score": 0.941
-    },
-    {
-     "text": "圓",
-     "start": 3.24,
-     "end": 3.38,
-     "score": 0.979
-    },
-    {
-     "text": "盒",
-     "start": 3.44,
-     "end": 3.54,
-     "score": 0.999
-    }
-   ],
-   "charTimes": [
-    0.12,
-    0.36,
-    0.64,
-    0.84,
-    1.16,
-    1.38,
-    1.54,
-    1.68,
-    1.84,
-    1.98,
-    2.5,
-    2.7,
-    2.9,
-    3.08,
-    3.24,
-    3.44
-   ]
+   "silentEstimate": true
   },
   {
    "id": "s12",
-   "audio": "audio/tech-twequip/12-s12.wav",
-   "audioFrame": 2416,
-   "audioSec": 3.98,
-   "headSilSec": 0.04,
-   "tailSilSec": 0.04,
-   "startFrame": 2407,
-   "durationFrames": 136,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 2417,
-   "voiceEndFrame": 2535,
-   "stillFrame": 2533,
+   "audio": null,
+   "audioFrame": 2898,
+   "audioSec": 0,
+   "headSilSec": 0,
+   "tailSilSec": 0,
+   "startFrame": 2889,
+   "durationFrames": 192,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 2898,
+   "voiceEndFrame": 3045,
+   "stillFrame": 3080,
    "subtitleWindow": [
-    2414,
-    2543
+    2895,
+    3082
    ],
    "sourceWindow": [
-    2412,
-    2538
+    2889,
+    3081
    ],
    "lines": [
     {
-     "text": "下一集看濺鍍靶材",
-     "start": 2414,
+     "text": "洗乾淨就鍍薄膜",
+     "start": 2895,
      "chars": [
-      2419,
-      2424,
-      2428,
-      2435,
-      2442,
-      2447,
-      2451,
-      2456
+      2896,
+      2902,
+      2909,
+      2915,
+      2922,
+      2928,
+      2934
+     ]
+    },
+    {
+     "text": "下一集看濺鍍靶材",
+     "start": 2939,
+     "chars": [
+      2941,
+      2947,
+      2954,
+      2960,
+      2966,
+      2973,
+      2979,
+      2985
      ]
     },
     {
      "text": "留言設備廠",
-     "start": 2475,
+     "start": 2990,
      "chars": [
-      2478,
-      2484,
-      2489,
-      2493,
-      2497
+      2992,
+      2998,
+      3005,
+      3011,
+      3017
      ]
     },
     {
-     "text": "拿完整資料",
-     "start": 2505,
+     "text": "拿資料",
+     "start": 3022,
      "chars": [
-      2508,
-      2514,
-      2518,
-      2524,
-      2528
+      3024,
+      3030,
+      3037
      ]
     }
    ],
    "keywords": [
     {
      "text": "濺鍍靶材",
-     "start": 2442
+     "start": 2966
     },
     {
      "text": "設備廠",
-     "start": 2489
+     "start": 3005
     }
    ],
    "cues": [
     {
      "id": "next",
      "text": "濺鍍靶材",
-     "frame": 2443,
-     "early": 0
+     "frame": 2968
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 2479,
-     "early": 0
+     "frame": 2994
     }
    ],
-   "hash": "d9b4ccf00bad-820c76b393",
-   "sub": "下一集看濺鍍靶材\n留言設備廠\n拿完整資料",
-   "provider": "ctc-fa",
-   "cer": null,
-   "fa": {
-    "confidence": 0.892,
-    "minScore": 0.137,
-    "onsetMedianMs": 60,
-    "onsetMaxMs": 60,
-    "onsetCheck": [
-     {
-      "onset": 2.04,
-      "start": 2.1,
-      "ch": "留",
-      "errMs": 60
-     }
-    ]
-   },
-   "transcript": "",
-   "words": [
-    {
-     "text": "下",
-     "start": 0.14,
-     "end": 0.24,
-     "score": 1
-    },
-    {
-     "text": "一",
-     "start": 0.32,
-     "end": 0.36,
-     "score": 0.137
-    },
-    {
-     "text": "集",
-     "start": 0.44,
-     "end": 0.54,
-     "score": 0.992
-    },
-    {
-     "text": "看",
-     "start": 0.68,
-     "end": 0.84,
-     "score": 0.999
-    },
-    {
-     "text": "濺",
-     "start": 0.9,
-     "end": 1.04,
-     "score": 0.999
-    },
-    {
-     "text": "鍍",
-     "start": 1.08,
-     "end": 1.16,
-     "score": 0.924
-    },
-    {
-     "text": "靶",
-     "start": 1.22,
-     "end": 1.28,
-     "score": 0.499
-    },
-    {
-     "text": "材",
-     "start": 1.38,
-     "end": 1.6,
-     "score": 0.998
-    },
-    {
-     "text": "留",
-     "start": 2.1,
-     "end": 2.24,
-     "score": 0.997
-    },
-    {
-     "text": "言",
-     "start": 2.3,
-     "end": 2.42,
-     "score": 0.948
-    },
-    {
-     "text": "設",
-     "start": 2.48,
-     "end": 2.56,
-     "score": 0.953
-    },
-    {
-     "text": "備",
-     "start": 2.62,
-     "end": 2.72,
-     "score": 0.999
-    },
-    {
-     "text": "廠",
-     "start": 2.74,
-     "end": 2.94,
-     "score": 0.945
-    },
-    {
-     "text": "拿",
-     "start": 3.1,
-     "end": 3.18,
-     "score": 0.999
-    },
-    {
-     "text": "完",
-     "start": 3.3,
-     "end": 3.42,
-     "score": 0.999
-    },
-    {
-     "text": "整",
-     "start": 3.46,
-     "end": 3.62,
-     "score": 0.946
-    },
-    {
-     "text": "資",
-     "start": 3.64,
-     "end": 3.72,
-     "score": 0.741
-    },
-    {
-     "text": "料",
-     "start": 3.78,
-     "end": 3.92,
-     "score": 0.983
-    }
-   ],
-   "charTimes": [
-    0.14,
-    0.32,
-    0.44,
-    0.68,
-    0.9,
-    1.08,
-    1.22,
-    1.38,
-    2.1,
-    2.3,
-    2.48,
-    2.62,
-    2.74,
-    3.1,
-    3.3,
-    3.46,
-    3.64,
-    3.78
-   ]
+   "sub": "洗乾淨就鍍薄膜\n下一集看濺鍍靶材\n留言設備廠\n拿資料",
+   "silentEstimate": true
   },
   {
    "id": "s13",
    "audio": null,
-   "audioFrame": 2533,
+   "audioFrame": 3085,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 2533,
+   "startFrame": 3081,
    "durationFrames": 96,
-   "transitionFrames": 10,
-   "transition": {
-    "type": "fade",
-    "frames": 10,
-    "exit": [
-     0,
-     5
-    ],
-    "enter": [
-     3,
-     8
-    ]
-   },
-   "voiceStartFrame": 2543,
-   "voiceEndFrame": 2543,
-   "stillFrame": 2617,
-   "silent": true,
-   "subtitleWindow": null,
+   "transitionFrames": 0,
+   "transition": null,
+   "voiceStartFrame": 3085,
+   "voiceEndFrame": 3167,
+   "stillFrame": 3165,
+   "subtitleWindow": [
+    3082,
+    3177
+   ],
    "sourceWindow": [
-    2538,
-    2629
+    3081,
+    3177
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": ""
+   "sub": "",
+   "silentEstimate": true
   }
- ],
- "voice": {
-  "file": "audio/tech-twequip/voice.wav",
-  "lufsIn": -14.02,
-  "lufs": -16,
-  "sec": 87.633
- }
+ ]
 }

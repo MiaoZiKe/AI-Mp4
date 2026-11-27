@@ -11,64 +11,64 @@ INFO = MODEL["info"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "上一集檢查完了，晶圓怎麼洗乾淨？台灣設備廠，又做哪一段？",
- ["上一集檢查完了", "晶圓怎麼洗乾淨？", "台灣設備廠", "又做哪一段？"],
- ["Last time: inspection done.", "How does a wafer get clean?", "Taiwan's equipment makers,", "which step do they handle?"],
- [("prev", "檢查完了"), ("q", "洗乾淨"), ("tw", "台灣設備廠")],
- ["洗乾淨", "台灣設備廠"], ["示意動畫，不是量測"]),
+ "上一集檢查完，晶圓怎麼洗乾淨？台灣廠做哪一段？",
+ ["上一集檢查完", "晶圓怎麼洗乾淨？", "台灣廠做哪一段？"],
+ ["Last time: inspection done.", "How does a wafer get clean?", "Which step do Taiwan's makers handle?"],
+ [("prev", "檢查完"), ("q", "洗乾淨"), ("tw", "台灣廠")],
+ ["洗乾淨", "台灣廠"], ["示意動畫，不是量測"]),
 ("s2", "mechanism",
- "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
- ["外殼打開", "前端搬運區有手臂、對準器", "管進出", "清洗腔一片一片洗", "藥液櫃供應藥液"],
- ["Open the cover.", "The front-end module has a robot and an aligner", "and handles transfer;", "the chambers clean one wafer at a time;", "the chemical cabinet supplies liquids."],
- [("open", "外殼打開"), ("efem", "前端搬運區"), ("arm", "手臂"), ("chamber", "清洗腔"), ("cab", "藥液櫃")],
- ["前端搬運區", "清洗腔", "藥液櫃"], ["US 10796937；US 5882433；示意"]),
+ "外殼打開。晶圓先到玄關，拿出盒子擺正，叫前端搬運區。再往裡，才是洗的地方。",
+ ["外殼打開", "晶圓先到玄關", "拿出盒子擺正", "叫前端搬運區", "再往裡", "才是洗的地方"],
+ ["Open the cover.", "A wafer first reaches the foyer,", "is taken from its pod and aligned:", "the front-end module.", "Further in,", "is where it gets washed."],
+ [("open", "外殼打開"), ("foyer", "玄關"), ("efem", "前端搬運區"), ("chamber", "洗的地方")],
+ ["玄關", "前端搬運區"], ["US 10796937；US 5882433；示意"]),
 ("s3", "mechanism",
- "頂部風扇往下吹乾淨空氣；晶圓盒門被吸開；感測器掃過，數每一槽有沒有片。",
- ["頂部風扇往下吹乾淨空氣", "晶圓盒門被吸開", "感測器掃過", "數每一槽有沒有片"],
- ["Fans on top blow clean air downward;", "the wafer pod's door is pulled open;", "a sensor sweeps across", "to check every slot for a wafer."],
- [("fan", "風扇"), ("air", "乾淨空氣"), ("door", "門被吸開"), ("map", "感測器"), ("slot", "每一槽")],
- ["風扇", "吸開", "感測器"], ["US 10796937；US 12557598"]),
+ "風扇吹下乾淨空氣，盒門打開，數每槽有沒有片。",
+ ["風扇吹下乾淨空氣", "盒門打開", "數每槽有沒有片"],
+ ["Fans blow clean air downward,", "the pod door opens,", "and every slot is checked for a wafer."],
+ [("fan", "風扇"), ("air", "乾淨空氣"), ("door", "盒門打開"), ("map", "數每槽"), ("slot", "有沒有片")],
+ ["風扇", "盒門打開", "數每槽"], ["US 10796937；US 12557598"]),
 ("s4", "mechanism",
- "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。",
- ["雙刀手臂伸進盒子", "托起晶圓", "轉一圈對準缺口", "再直直送進清洗腔放好"],
- ["A dual-blade arm reaches into the pod", "and lifts a wafer;", "one turn to align the notch;", "then straight into the chamber."],
- [("arm", "雙刀手臂"), ("lift", "托起晶圓"), ("align", "對準缺口"), ("put", "清洗腔放好")],
- ["雙刀", "對準", "清洗腔"], ["US 6852644；US 10755960"]),
+ "手臂托起一片，轉一圈擺正邊緣的缺口，再送進去洗。",
+ ["手臂托起一片", "轉一圈擺正", "邊緣的缺口", "再送進去洗"],
+ ["The arm lifts one wafer,", "one turn to align", "the notch on its edge,", "then straight in to be washed."],
+ [("arm", "手臂"), ("lift", "托起一片"), ("align", "轉一圈"), ("put", "送進去洗")],
+ ["托起", "缺口", "送進去洗"], ["US 6852644；US 10755960"]),
 ("s5", "mechanism",
- "晶圓轉起來，邊緣有銷抓住。噴嘴臂掃過來，藥液落在中心，推成薄薄的液膜，被離心力一路往外甩。",
- ["晶圓轉起來", "邊緣有銷抓住", "噴嘴臂掃過來", "藥液落在中心", "推成薄薄的液膜", "被離心力一路往外甩"],
- ["The wafer spins,", "held by edge pins.", "The nozzle arm sweeps in,", "liquid lands at the center,", "spreads into a thin film,", "and is flung outward by centrifugal force."],
- [("spin", "晶圓轉起來"), ("pin", "有銷抓住"), ("nz", "噴嘴臂"), ("stream", "藥液落在中心"), ("film", "薄薄的液膜"), ("fling", "往外甩")],
- ["轉起來", "液膜", "離心力"], ["US 5882433；ECS 57301；示意"]),
+ "像洗盤子，一次一片，邊轉邊沖。藥液落中心，甩成薄膜帶走髒污。",
+ ["像洗盤子", "一次一片", "邊轉邊沖", "藥液落中心", "甩成薄膜帶走髒污"],
+ ["Like washing a plate:", "one at a time,", "rinsed while it turns.", "Liquid lands at the center,", "spins into a thin film that carries dirt away."],
+ [("spin", "像洗盤子"), ("nz", "邊轉邊沖"), ("stream", "落中心"), ("film", "甩成薄膜"), ("fling", "帶走髒污")],
+ ["洗盤子", "邊轉邊沖", "薄膜"], ["US 5882433；ECS 57301；示意"]),
 ("s6", "mechanism",
- "拆開腔體。噴嘴臂噴藥液；擋液杯一層一種藥液，不混在一起；吸盤抓住晶圓，馬達帶著轉。",
- ["拆開腔體", "噴嘴臂噴藥液", "擋液杯一層一種藥液", "不混在一起", "吸盤抓住晶圓", "馬達帶著轉"],
- ["Open up the chamber.", "The nozzle arm sprays liquid;", "the cup has one level per liquid,", "so they never mix;", "the chuck holds the wafer,", "and a motor spins it."],
- [("split", "拆開腔體"), ("nz", "噴嘴臂"), ("cup", "擋液杯"), ("chk", "吸盤"), ("mot", "馬達")],
- ["噴嘴臂", "擋液杯", "吸盤"], ["US 7901514；US 9275849"]),
+ "拆開看：擋液杯一層一種藥液，像分類回收桶。",
+ ["拆開看", "擋液杯一層一種藥液", "像分類回收桶"],
+ ["Take it apart:", "the cup has one level per liquid,", "like sorted recycling bins."],
+ [("split", "拆開看"), ("cup", "擋液杯"), ("bin", "回收桶")],
+ ["擋液杯", "分類回收桶"], ["US 7901514；US 9275849"]),
 ("s7", "mechanism",
- "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。",
- ["最後甩乾", "乾的地方從中心往外擴大", "異丙醇噴嘴跟著走", "避免水痕"],
- ["Finally, spin-dry:", "the dry zone grows outward from the center,", "an IPA nozzle follows it,", "avoiding water marks."],
- [("dry", "甩乾"), ("expand", "從中心往外擴大"), ("ipa", "異丙醇"), ("mark", "水痕")],
- ["甩乾", "中心", "水痕"], ["US 8113221；US 7228645"]),
+ "最後甩乾。異丙醇是一種酒精，跟著乾區，把水帶走不留水痕。",
+ ["最後甩乾", "異丙醇是一種酒精", "跟著乾區", "把水帶走", "不留水痕"],
+ ["Finally, spin-dry.", "Isopropanol is a kind of alcohol,", "follows the dry front", "and carries the water away,", "leaving no water marks."],
+ [("dry", "甩乾"), ("ipa", "異丙醇"), ("expand", "乾區"), ("mark", "水痕")],
+ ["甩乾", "異丙醇", "水痕"], ["US 8113221；US 7228645"]),
 ("s8", "mechanism",
- "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。",
- ["藥液桶供應藥液", "幫浦送過來，濾芯濾乾淨", "混合閥配好比例", "電控箱管整套動作"],
- ["Drums supply the chemicals;", "pumps and filters deliver them clean;", "a mixing valve sets the ratio;", "and an electrical cabinet runs it all."],
- [("tank", "藥液桶"), ("pump", "幫浦"), ("mix", "混合閥"), ("eb", "電控箱")],
- ["藥液桶", "幫浦", "混合閥"], ["US 5882433；MKS；配比為通例"]),
+ "藥液從桶子出發，幫浦推著走，閥門像調飲料配比例。",
+ ["藥液從桶子出發", "幫浦推著走", "閥門像調飲料配比例"],
+ ["Liquid starts in the drums,", "pumps push it along,", "and a valve mixes the ratio like a drink."],
+ [("tank", "桶子"), ("pump", "幫浦"), ("mix", "閥門")],
+ ["桶子", "幫浦", "調飲料"], ["US 5882433；MKS；配比為通例"]),
 ("s9", "mechanism",
- "另有批次酸槽，一次泡一批；單片洗則一片一片來，各有用途。",
- ["另有批次酸槽", "一次泡一批", "單片洗則一片一片來", "各有用途"],
- ["There are also batch wet benches,", "soaking a whole batch at once;", "single-wafer tools go one by one;", "each has its use."],
- [("bat", "批次酸槽"), ("one", "一次泡一批"), ("sgl", "單片洗"), ("use", "各有用途")],
- ["批次酸槽", "單片洗"], ["US 7410814；時間為專利範例"]),
+ "另一種像整籃碗泡進槽裡，一次洗很多；單片逐片洗。",
+ ["另一種", "像整籃碗泡進槽裡", "一次洗很多", "單片逐片洗"],
+ ["Another way:", "like soaking a whole basket of bowls,", "many at a time;", "single-wafer goes one by one."],
+ [("bat", "整籃碗"), ("one", "泡進槽裡"), ("sgl", "單片"), ("use", "逐片洗")],
+ ["整籃碗", "單片"], ["US 7410814；時間為專利範例"]),
 ("s10", "mechanism",
- "最前段的清洗機，多是日系、美系大廠；台灣廠打進封裝端和中段。",
- ["最前段的清洗機", "多是日系、美系大廠", "台灣廠打進封裝端和中段"],
- ["The front-most cleaning tools", "mostly come from Japanese and US makers;", "Taiwan's makers sell into packaging and the mid-stage."],
- [("front", "最前段"), ("foreign", "日系、美系大廠"), ("tw", "台灣廠"), ("back", "封裝端和中段")],
+ "最前段多是日美大廠，台灣廠主攻封裝端與中段。",
+ ["最前段多是", "日美大廠", "台灣廠主攻", "封裝端與中段"],
+ ["The very front stage is mostly", "Japanese and US makers;", "Taiwan's makers focus on", "packaging and the mid-stage."],
+ [("front", "最前段"), ("foreign", "日美"), ("tw", "台灣廠"), ("back", "封裝端")],
  ["最前段", "台灣廠", "中段"], ["TechNews 2022；媒體報導"]),
 ("s11", "payoff",
  "弘塑、辛耘做濕式清洗機，家登做晶圓盒。",
@@ -77,9 +77,9 @@ S = [
  [("gptc", "弘塑"), ("sci", "辛耘"), ("gdg", "家登")],
  ["弘塑", "辛耘", "家登"], ["SEMI 會員；公司官網"]),
 ("s12", "cta",
- "下一集看濺鍍靶材。留言設備廠，拿完整資料。",
- ["下一集看濺鍍靶材", "留言設備廠", "拿完整資料"],
- ["Next: sputtering targets.", "Comment \"equipment makers\"", "for the full notes."],
+ "洗乾淨就鍍薄膜，下一集看濺鍍靶材。留言設備廠拿資料。",
+ ["洗乾淨就鍍薄膜", "下一集看濺鍍靶材", "留言設備廠", "拿資料"],
+ ["Clean wafers get coated:", "next, sputtering targets.", "Comment \"equipment makers\"", "for the notes."],
  [("next", "濺鍍靶材"), ("kw", "留言")],
  ["濺鍍靶材", "設備廠"], ["示意動畫，不是量測"]),
 ]
@@ -99,9 +99,15 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}, "durationSec": max(4.6, round(n / 4.5 - 0.6, 1))}
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
-DUR = {"s1": 4.8, "s2": 9.0, "s3": 7.2, "s4": 7.6, "s5": 8.4, "s6": 9.6, "s7": 7.2, "s8": 8.4, "s9": 6.0, "s10": 6.0, "s11": 4.6, "s12": 4.8}
+# 時長與留白（Andy 11-27 第 27 條）：DUR＝整幕秒數；HEAD＝開口前只有畫面；念完後的留白＝DUR − HEAD − 字數/4.7（只有畫面，演出關鍵動作）
+DUR = {"s1": 5.2, "s2": 16.5, "s3": 7.2, "s4": 7.6, "s5": 8.0, "s6": 9.5, "s7": 8.4, "s8": 13.2, "s9": 9.0, "s10": 6.5, "s11": 5.2, "s12": 6.4}
+HEAD = {"s1": 0, "s2": 1.8, "s3": 0.4, "s4": 0.3, "s5": 0.2, "s6": 1.2, "s7": 0.3, "s8": 0.8, "s9": 0.3, "s10": 0.3, "s11": 0.3, "s12": 0.3}
+RATE = 4.7   # 念稿估計速度（字／秒）；重配後以實際錄音為準
 for sc in scenes:
-    if sc["id"] in DUR: sc["durationSec"] = DUR[sc["id"]]
+    if sc["id"] in DUR:
+        n_ = len(re.sub(r"[，。？！、；：\s]", "", sc["tts"]))
+        sc["durationSec"] = DUR[sc["id"]]; sc["headSec"] = HEAD[sc["id"]]
+        sc["holdSec"] = round(DUR[sc["id"]] - HEAD[sc["id"]] - n_ / RATE, 2)
 scenes[1]["pauseAfter"] = 0.7
 scenes[0]["props"]["hook"] = {"kicker": "接上集：檢查完了", "title": "怎麼洗乾淨？", "size": 120, "top": 236}
 scenes.append({"id": "s13", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
@@ -175,9 +181,14 @@ def unwrap(keys):
             if j in v: v[j] = round(v[j] - sh, 2)
     return keys
 keys4 = unwrap(keys4)
+TS = 0.75   # 取放節奏縮到 0.75 倍：念稿變短後，手臂動作和旁白對得上（幾何不變，只是同一條路徑走得快一點）
+def SC(n): return int(round(n * TS))
+_last = -1
+for kk in keys4:
+    kk[0] = max(SC(kk[0]), _last + 1); _last = kk[0]
 KIN0 = {"arm": "ar", "at": "s1:start-40", "keys": [[0, dict(keys4[0][1])]]}
-KIN4 = {"arm": "ar", "at": K4, "keys": keys4, "carry": [{"layer": "wfA", "grab": 22, "release": 93}, {"layer": "wfB", "grab": 134, "release": 192}]}
-def k4(n): return add(K4, n)
+KIN4 = {"arm": "ar", "at": K4, "keys": keys4, "carry": [{"layer": "wfA", "grab": SC(22), "release": SC(93)}, {"layer": "wfB", "grab": SC(134), "release": SC(192)}]}
+def k4(n): return add(K4, SC(n))
 
 # ═════════ 可見度（預設藏著的層：只在需要時顯示） ═════════
 ALL = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
@@ -202,30 +213,41 @@ VIS += show("ipStr", "s7:expand-8", "s7:expand+70", 5)
 DOOR = [mv("foup2Door", "s3:door-6", "s5:start+30", 10, dx=0.25), mv("foup2Door", "s3:door+4", "s5:start+20", 14, dy=-3.3), mv("door2Arm", "s3:door-6", "s5:start+30", 10, dx=0.25), mv("door2Arm", "s3:door+4", "s5:start+20", 14, dy=-3.3),
         mv("lMap", "s3:map-2", "s4:start-4", 78, dy=-2.95)]
 SHUT = [mv("c1Shut", k4(60), k4(205), 14, dy=-2.4)]                        # 手臂伸進腔體前，窄縫擋板往下收進牆裡；退出後關回
-CUPPOS = [mv("c1Cup", "s1:start-40", "s5:spin-4", 22, dy=-2.3), mv("c1Cup", "s7:dry-4", "s7:ipa-8", 22, dy=-0.9), mv("c1Cup", "s7:ipa-8", FAR, 22, dy=0.9)]   # 裝片時杯口降到刀片下面；甩乾時杯口換到純水那一層（杯口升降）
+CUPPOS = [mv("c1Cup", "s1:start-40", "s5:spin-4", 22, dy=-2.3), mv("c1Cup", "s7:dry-4", "s7:start+58", 22, dy=-0.9), mv("c1Cup", "s7:start+58", FAR, 22, dy=0.9)]   # 裝片時杯口降到刀片下面；甩乾時杯口換到純水那一層（杯口升降）
 # 噴嘴臂 IPA 臂：停放 → 掃進（run，不是 kin）
-# ═════════ s2 爆炸分解：外殼掀開、三大模組各自分開；一次一張標籤，講完組回來才移鏡 ═════════
-EXP_A, EXP_B = "s2:open-2", "s3:start-16"
+# ═════════ s2 爆炸分解（規格 10 步中的 1～6 與 10；7 在 s6、8 與 9 在 s8）：一次一張標籤，每張 ≥45 幀；組回後停 ≥1.5 秒才換幕 ═════════
+def st2(n): return f"s2:start+{n}"
+S2 = dict(ffu=54, panel=60, lpPull=208, body=280, lift=354, back=424)          # 步驟 2 風扇濾網上移｜3 外殼面板滑開｜4 裝載端向機外拉開｜5 搬運區整體向左滑開｜6 清洗機上層腔體抬起｜10 全部組回
+EXP_B = st2(S2["back"])
+LPL = ["lp1", "lp2", "lp3", "lp1Base", "lp2Base", "lp3Base"]
 EFEML = ["arBase", "arZ", "lp1Base", "lp2Base", "lp3Base", "efem", "efemFloor", "ffu", "lp1", "lp2", "lp3", "foup1", "foup2", "foup3", "foup1Door", "foup2Door", "foup3Door", "door2Arm", "door2Rail", "aligner", "ar", "wfA"]
-CABL = ["cc", "ccTank", "ccPump", "ccFilter", "ccHeater", "ccValve", "ccPipe", "ccDrain", "ebox", "ebDoor", "ebIn"]
-EXPLODE = [mv("ffu", EXP_A, EXP_B, 22, dy=6.0), mv("efemFront", EXP_A, EXP_B, 22, dz=8), hid("efemFront", add(EXP_A, 14), EXP_B, 10), mv("clFront", EXP_A, EXP_B, 22, dz=8), hid("clFront", add(EXP_A, 14), EXP_B, 10),
-           mv("ccDoor", EXP_A, EXP_B, 22, dz=8), hid("ccDoor", add(EXP_A, 14), EXP_B, 10),
-           *[mv(l, "s2:efem-6", EXP_B, 22, dx=-3.0) for l in EFEML if l != "ffu"], mv("ffu", "s2:efem-6", EXP_B, 22, dx=-3.0),
-           mv("cl", "s2:chamber-6", EXP_B, 22, dy=4.0), mv("c3", "s2:chamber-6", EXP_B, 22, dy=2.4), mv("c4", "s2:chamber-6", EXP_B, 22, dy=2.4),
-           *[mv(l, "s2:cab-6", EXP_B, 22, dx=4.0) for l in CABL],
-           hid("efem", add(EXP_A, 10), EXP_B, 10, 0.2),                                  # 搬運區外殼壁板變半透明：露出裡面的手臂與對準器
-           mv("ccPump", "s2:cab-4", EXP_B, 22, dy=2.6), mv("ccFilter", "s2:cab+6", EXP_B, 22, dy=5.2), mv("ccHeater", "s2:cab+16", EXP_B, 22, dy=7.8), mv("ccValve", "s2:cab+26", EXP_B, 22, dy=10.4),
-           hid("ccPipe", "s2:cab-4", EXP_B, 10, 0.12)]       # 藥液櫃垂直拉開：泵、濾芯、加熱、閥島依序向上排
+CABL = ["cc", "ccTank", "ccPump", "ccFilter", "ccHeater", "ccValve", "ccPipe", "ccDrain"]
+EXPLODE = [mv("ffu", st2(S2["ffu"]), EXP_B, 18, dy=6.0),                                                       # 2：風扇濾網向上滑出（氣流線留在原位）
+           *[mv(l, st2(S2["panel"]), EXP_B, 18, dz=8) for l in ("efemFront", "clFront", "ccDoor")], *[hid(l, st2(S2["panel"] + 14), EXP_B, 8) for l in ("efemFront", "clFront", "ccDoor")],   # 3：前面板整塊移走
+           hid("efem", st2(S2["panel"] + 12), EXP_B, 10, 0.2),                                                   # 搬運區殼板半透明：露出手臂與預對準器
+           *[mv(l, st2(S2["lpPull"]), EXP_B, 18, dx=-2.5) for l in LPL],                                          # 4：裝載端三個向機外（−X）拉開，晶圓盒留在原位
+           *[mv(l, st2(S2["body"]), EXP_B, 22, dx=-4.5) for l in EFEML],                                          # 5：搬運區整體向 −X 滑開，露出清洗機的交接口
+           mv("cl", st2(S2["lift"]), EXP_B, 18, dy=4.0), mv("c3", st2(S2["lift"]), EXP_B, 18, dy=2.4), mv("c4", st2(S2["lift"]), EXP_B, 18, dy=2.4),   # 6：清洗機上層腔體組抬起
+           mv("c1Fan", st2(S2["lift"] + 6), EXP_B, 18, dy=3.0)]                                                   # 6：第一個腔體的頂蓋（風扇濾網）掀開
 # ═════════ s6 拆開腔體：腔體牆隱藏、頂風扇上升、噴嘴臂向外上方旋開、擋液杯整環向上抽出、晶圓取走、吸盤與馬達分開 ═════════
-X6A, X6B = "s6:split-2", "s7:start-14"
-EXP6 = [mv("c1NzA", "s6:nz-8", X6B, 20, dy=4.8, dx=1.6), mv("c1Nz", "s6:nz-8", X6B, 20, dy=4.8, dx=1.6), mv("c1Cup", "s6:cup-8", X6B, 20, dy=6.0), mv("c1CupPipe", "s6:cup-8", X6B, 20, dy=6.0),
-        mv("c1Chuck", "s6:chk-8", X6B, 20, dy=3.0), mv("wfC", "s6:chk-8", X6B, 20, dy=3.0)]
-# ═════════ s8 化學液櫃：門滑開，藥液沿管路流動；之後鏡頭移到電控箱，門打開 ═════════
-CAB8 = [mv("ccDoor", "s8:start+4", FAR, 18, dz=8), hid("ccDoor", "s8:start+14", FAR, 8)]
+def st6(n): return f"s6:start+{n}"
+X6B = st6(210)
+EXP6 = [mv("c1NzA", st6(4), X6B, 20, dy=4.8, dx=1.6), mv("c1Nz", st6(4), X6B, 20, dy=4.8, dx=1.6),                    # 7a：噴嘴臂向外上方旋開
+        mv("c1Cup", st6(58), X6B, 20, dy=6.0), mv("c1CupPipe", st6(58), X6B, 20, dy=6.0),                              # 7b：擋液杯整環向上抽出
+        mv("c1Chuck", st6(108), X6B, 20, dy=3.0), mv("wfC", st6(108), X6B, 20, dy=3.0)]                                # 7c：吸盤（載著晶圓）與底下的馬達分開
+# ═════════ s8 化學液櫃（規格第 8 步）：門滑開 → 液櫃向 +X 拉開、內部儲桶／泵／濾芯／加熱／閥島由下往上依序垂直排開（一次一張標籤）→ 組回 → 藥液沿管路流 → 鏡頭到電控箱、門打開（第 9 步） ═════════
+def st8(n): return f"s8:start+{n}"
+S8 = dict(door=0, pull=20, spread=34, back=184, eb=300)
+EB_B = st8(S8["back"])
+EB = lambda n: st8(S8["eb"] + n)       # 電控箱段的時間（相對幕首的固定幀；不靠念稿，因為念完才演）
+CAB8 = [mv("ccDoor", st8(S8["door"] + 4), FAR, 18, dz=8), hid("ccDoor", st8(S8["door"] + 14), FAR, 8),
+        *[mv(l, st8(S8["pull"]), EB_B, 18, dx=3.0) for l in CABL],
+        mv("ccPump", st8(S8["spread"]), EB_B, 18, dy=2.2), mv("ccFilter", st8(S8["spread"] + 8), EB_B, 18, dy=4.4), mv("ccHeater", st8(S8["spread"] + 16), EB_B, 18, dy=6.6), mv("ccValve", st8(S8["spread"] + 24), EB_B, 18, dy=8.8),
+        hid("ccPipe", st8(S8["spread"]), EB_B, 10, 0.12), hid("cc", st8(S8["spread"] - 8), EB_B, 10, 0.16)]
 # ═════════ s9 批次酸槽：卡匣一槽一槽浸泡（拖車沿導軌走、桿子伸縮、卡匣下降再升起） ═════════
 BB = []
-t0 = "s9:one-4"
-for i in range(4):
+t0 = "s9:start+62"
+for i in range(2):
     a = 56 * i
     if i: BB += [mv("bbCar", add(t0, a - 14), FAR, 16, dx=3.2), mv("bbCass", add(t0, a - 14), FAR, 16, dx=3.2), mv("bbRod", add(t0, a - 14), FAR, 16, dx=3.2)]
     BB += [mv("bbCass", add(t0, a), add(t0, a + 30), 12, dy=-3.0), mv("bbRod", add(t0, a), add(t0, a + 30), 12, dy=-3.0)]
@@ -262,8 +284,8 @@ CL8 = {"ebox", "ebDoor", "ebIn"}
 CL9 = {"bbT0", "bbT1", "bbCass"}
 CL8b = CL8 | G_BB
 CL9_BB = {l for l in G_BB if l in CL9}
-WIN = (CLOSE(CL3, "s3:door-14", "s4:start") + CLOSE(CL4, "s4:start", k4(80)) + CLOSE(CL8b, "s8:eb-24", "s9:start+6")
-       + CLOSE(CL9 | (set(ALL) - G_BB), "s9:one-10", "s10:start-6") + [hid(l, "s9:one-10", FAR, 8) for l in G_BB if l not in CL9])
+WIN = (CLOSE(CL3, "s3:door-14", "s4:start") + CLOSE(CL4, "s4:start", k4(80)) + CLOSE(CL8b, EB(-24), "s9:start+6")
+       + CLOSE(CL9 | (set(ALL) - G_BB), "s9:start+50", "s10:start-6") + [hid(l, "s9:start+50", FAR, 8) for l in G_BB if l not in CL9])
 # ═════════ 各幕 props ═════════
 def lab_(part, text, en, color, at, until, **kw): return lab(part, text, en, color, at, until, **kw)
 P = {}
@@ -273,55 +295,57 @@ P["s1"] = {"shot": [shot("start-30", 5, 8.5, 175, 22, 1), shot("start", 5, 8.5, 
  "run": [run("alnGreen", "start-30", FAR, 1), run("cabLed", "start-30", FAR, 1), run("ebLamp", "start-30", FAR, 1), run("nzPark", "start-30", "s5:nz-2", 1), run("ipPark", "start-30", "s7:dry", 1),
          run("pumpBeat", "s8:pump", "s8:mix", 6)],
  "overlay": [sec("twequip-hook", "q", "s2:start-5", "系列 2 第 12 集", "示意，非實際比例", {"prev": "prev", "q": "q", "tw": "tw"})]}
-P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 5, 9.5, 150, 30, 30, yaw=0.1)],
- "labels": [lab_("efemTop", "前端搬運區（EFEM）", "Front-end module", "blue", "open+6", "arm-9"),
-            lab_("armCol", "雙刀手臂＋預對準器", "Dual-blade robot & aligner", "amber", "arm-2", "chamber-9"),
-            lab_("chamber", "清洗腔（單片旋轉）", "Single-wafer chamber", "blue", "chamber-2", "cab-9"),
-            lab_("ccTop", "藥液櫃（化學液供應）", "Chemical cabinet", "amber", "cab-2", "s3:start-6")],
- "overlay": [sec("twequip-tour", "start+24", "s3:start-5", "拆開清洗機", "示意（非弘塑／辛耘實機）", {"open": "open", "efem": "efem", "chamber": "chamber", "cab": "cab"})]}
-P["s3"] = {"shot": [shot("start", -9.5, 10.6, 98, 30, 30, yaw=-0.1), shot("door-16", FX + 1.05, 9.2, 36, 30, 30)],
+P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 2.5, 9.5, 170, 30, 30, yaw=0.1)],
+ "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+66", "start+111"),
+            lab_("armCol", "搬運手臂（雙刀）", "Dual-blade robot", "amber", "start+114", "start+159"),
+            lab_("aln", "預對準器", "Pre-aligner", "blue", "start+162", "start+207"),
+            lab_("lp", "裝載端＋晶圓盒", "Load ports & wafer pods", "amber", "start+232", "start+277"),
+            lab_("port", "交接口（通往清洗腔）", "Hand-off port to the chamber", "blue", "start+306", "start+351"),
+            lab_("chamber", "清洗腔（單片旋轉）", "Single-wafer chamber", "amber", "start+376", "start+421")],
+ "overlay": [sec("twequip-tour", "start+24", "s3:start-5", "拆開清洗機", "示意（非弘塑／辛耘實機）", {"open": "open", "efem": "efem", "chamber": "chamber", "cab": "start+430"})]}
+P["s3"] = {"shot": [shot("start", -9.5, 10.6, 98, 30, 30, yaw=-0.1), shot("door-8", FX + 1.05, 9.2, 36, 30, 30)],
  "run": [run("ffuAir", "fan-4", "s4:start", 8), run("ffuAir2", "fan-4", "s4:start", 8), run("ffuAir3", "fan-4", "s4:start", 8), run("mapBeam", "map-2", "s4:start-4", 4)],
- "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "fan-2", "door-9"),
-            lab_("door", "裝載端取門器＋晶圓盒", "Load port & wafer pod", "amber", "door-1", "map-9"),
-            lab_("map", "映射感測：數每一槽", "Wafer mapping sensor", "blue", "map-1", "s4:start-4")],
+ "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+8", "start+53"),
+            lab_("door", "裝載端取門器＋晶圓盒", "Load port & wafer pod", "amber", "start+90", "start+135"),
+            lab_("map", "映射感測：數每一槽", "Wafer mapping sensor", "blue", "start+138", "start+183")],
  "overlay": [sec("twequip-foup", "start+2", "s4:start-5", "晶圓盒開門與映射", "示意（片數、片距為示意）", {"fan": "fan", "door": "door", "map": "map", "slot": "slot"})]}
-P["s4"] = {"shot": [shot("start", -10.6, 9.6, 32, 34, 30), shot(k4(56), -7, 6.8, 72, 32, 22)], "kin": [KIN4],
+P["s4"] = {"shot": [shot("start", -10.6, 9.6, 32, 34, 30), shot("start+56", -7, 6.8, 72, 32, 22)], "kin": [KIN4],
  "run": [run("alnLaser", k4(97), k4(128), 4), run("alnSpin", k4(98), k4(122), 8), run("zSpin", k4(18), k4(36), 8), run("zSpin", k4(130), k4(146), 8)],
- "labels": [lab_("blade", "雙刀：上刀載片、下刀空刀", "Dual blade: upper carries, lower empty", "blue", "arm-2", "align-9"),
-            lab_("aln", "預對準器：找缺口", "Pre-aligner", "amber", "align-2", "put-9"),
-            lab_("chuck", "吸盤＋邊緣抓取銷", "Chuck & edge-grip pins", "blue", "put-1", "s5:start-4")],
- "overlay": [sec("twequip-arm", "start+2", "s5:start-5", "手臂直線伸入、雙刀快換", "示意（專利範例：換片約 8–16 秒）", {"arm": "arm", "lift": "lift", "align": "align", "put": "put"})]}
+ "labels": [lab_("blade", "雙刀：上刀載片、下刀空刀", "Dual blade: upper carries, lower empty", "blue", "start+8", "start+53"),
+            lab_("aln", "預對準器：找缺口", "Pre-aligner", "amber", "start+80", "start+125"),
+            lab_("chuck", "吸盤＋邊緣抓取銷", "Chuck & edge-grip pins", "blue", "start+170", "start+215")],
+ "overlay": [sec("twequip-arm", "start+2", "s5:start-5", "手臂直線伸入、雙刀快換", "示意（專利範例）", {"arm": "arm", "lift": "lift", "align": "align", "put": "put"})]}
 P["s5"] = {"shot": [shot("start", CX1, 8.8, 40, 40, 30, yaw=0.05)],
  "run": [run("c1Air", "start", FAR, 8), run("cupHot", "stream", "s7:dry", 8), run("spinLo", "spin", "s7:start", 12), run("nzSwing", "nz+22", "s5:film+60", 8),
          run("nzGlow", "stream", "film+56", 4), run("backJet", "stream", "s6:start", 6)] + [run(f"spir{k}", "film+8", "s6:start", 6) for k in range(4)] + [run(f"fling{k}", "fling-24", "s6:start", 6) for k in range(6)] + [run(f"dr{k}", "film+46", "s7:dry", 6) for k in range(3)] +
          [run("nzPark", "film+60", "s6:split", 24)],
- "labels": [lab_("chuck", "旋轉吸盤＋抓取銷", "Spin chuck & edge-grip pins", "blue", "spin-2", "nz-9"),
-            lab_("nz", "噴嘴臂：中心掃到邊緣", "Swing nozzle arm", "amber", "nz-2", "film-9"),
-            lab_("film", "液膜：離心力推開", "Liquid film", "blue", "film-2", "s6:start-4")],
+ "labels": [lab_("chuck", "旋轉吸盤＋抓取銷", "Spin chuck & edge-grip pins", "blue", "start+4", "start+49"),
+            lab_("nz", "噴嘴臂：中心掃到邊緣", "Swing nozzle arm", "amber", "start+56", "start+101"),
+            lab_("film", "液膜：離心力推開", "Liquid film", "blue", "start+112", "start+157")],
  "overlay": [sec("twequip-chamber", "start+24", "s6:start-5", "單片腔：噴液與液膜", "示意（轉速、溫度為示意）", {"spin": "spin", "nz": "nz", "stream": "stream", "film": "film", "fling": "fling"})]}
-P["s6"] = {"shot": [shot("start", CX1 + 0.5, 9.0, 74, 28, 30, yaw=0.1)],
+P["s6"] = {"shot": [shot("start", CX1 + 0.5, 7.4, 84, 28, 30, yaw=0.1)],
  "run": [run("nzPark", "start", FAR, 1)],
- "labels": [lab_("nz", "噴嘴臂", "Nozzle arm", "amber", "nz-2", "cup-9"),
-            lab_("cup", "擋液杯（三層）", "Splash cup (3 levels)", "blue", "cup-2", "chk-9"),
-            lab_("chuck", "旋轉吸盤", "Spin chuck", "amber", "chk-2", "mot-9"),
-            lab_("motor", "馬達", "Spin motor", "blue", "mot-2", "s7:start-4")],
- "overlay": [sec("twequip-cup", "start+24", "s7:start-5", "杯內分路：一層一種藥液", "示意（SC1 歷史配比、溫度為通例）", {"split": "split", "nz": "nz", "cup": "cup", "chk": "chk", "mot": "mot"})]}
+ "labels": [lab_("nz", "噴嘴臂（旋開）", "Nozzle arm swings out", "amber", "start+12", "start+57"),
+            lab_("cup", "擋液杯（三層）", "Splash cup (3 levels)", "blue", "start+62", "start+107"),
+            lab_("chuck", "旋轉吸盤", "Spin chuck", "amber", "start+112", "start+157"),
+            lab_("motor", "馬達", "Spin motor", "blue", "start+162", "start+207")],
+ "overlay": [sec("twequip-cup", "start+24", "s7:start-5", "杯內分路：一層一種藥液", "示意（配比、溫度不標）", {"split": "split", "nz": "start+12", "cup": "cup", "chk": "start+112", "mot": "start+162"})]}
 P["s7"] = {"shot": [shot("start", CX1, 7.3, 36, 52, 30)],
  "run": [run("spinHi", "dry", FAR, 14), run("c1Air", "start", FAR, 4), run("ipSweep", "expand", FAR, 52), run("n2Glow", "expand-8", "expand+70", 4), run("ipaGlow", "expand-8", "expand+70", 4), run("nzPark", "start", FAR, 1)] + [run(f"dw{k}", "dry", "ipa-8", 6) for k in range(3)] + [run(f"dp{k}", "ipa", "mark+20", 6) for k in range(3)] + [run(f"fling{k}", "dry", "expand", 6) for k in range(6)],
- "labels": [lab_("ip", "IPA／氮氣臂：跟著乾區走", "IPA & N2 arm follows the dry front", "amber", "ipa-2", "s8:start-14")],
+ "labels": [lab_("ip", "異丙醇（IPA）臂：跟著乾區走", "IPA arm follows the dry front", "amber", "start+36", "start+81")],
  "overlay": [sec("twequip-dry", "start+24", "s8:start-5", "甩乾：乾區由中心向外", "示意", {"dry": "dry", "expand": "expand", "ipa": "ipa", "mark": "mark"})]}
-P["s8"] = {"shot": [shot("start", 18.5, 5.9, 95, 22, 30, yaw=0.05), shot("eb-24", 12.2, 4.4, 40, 14, 26)],
- "run": [run("chemFlow", "tank-4", "eb-26", 8), run("chemFlow2", "tank+8", "eb-26", 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", "eb-6", "s9:start", 22), run("ebBlink", "eb", "s9:start", 6)],
- "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "tank+8", "pump-9"),
-            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "pump-2", "mix-9"),
-            lab_("mix", "混合閥島", "Mixing valve island", "blue", "mix-2", "eb-8"),
-            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", "eb", "s9:start-20")],
- "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（歷史配比為通例，本機不標）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": "eb"})]}
-P["s9"] = {"shot": [shot("start-14", 45, 5.2, 105, 24, 24, yaw=-0.05), shot("one-12", TKX_C, -0.5, 50, 30, 30)],
- "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "one+26", FAR, 6)],
- "labels": [lab_("bb", "批次酸槽（卡匣浸泡）", "Batch wet bench", "amber", "bat-2", "one-14"),
-            lab_("bbweir", "溢流堰＋外槽", "Overflow weir & trough", "blue", "one-4", "one+46"),
-            lab_("bbht", "加熱棒＋下方泵與濾芯", "Heater, pump & filter", "amber", "one+54", "s10:start-26")],
+P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot(EB(-24), 12.2, 4.4, 40, 14, 26)],
+ "run": [run("chemFlow", st8(200), EB(-26), 8), run("chemFlow2", st8(208), EB(-26), 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", EB(-6), "s9:start", 22), run("ebBlink", EB(0), "s9:start", 6)],
+ "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "start+40", "start+85"),
+            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "start+88", "start+133"),
+            lab_("mix", "混合閥島", "Mixing valve island", "blue", "start+136", "start+181"),
+            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", EB(0), EB(45))],
+ "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（配比不標數字）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": EB(0)})]}
+P["s9"] = {"shot": [shot("start-14", 45, 5.2, 105, 24, 24, yaw=-0.05), shot("start+56", TKX_C, -0.5, 50, 30, 30)],
+ "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "start+92", FAR, 6)],
+ "labels": [lab_("bb", "批次酸槽（卡匣浸泡）", "Batch wet bench", "amber", "start+8", "start+53"),
+            lab_("bbweir", "溢流堰＋外槽", "Overflow weir & trough", "blue", "start+90", "start+135"),
+            lab_("bbht", "加熱棒＋下方泵與濾芯", "Heater, pump & filter", "amber", "start+166", "start+211")],
  "overlay": [sec("twequip-batch", "start+24", "s10:start-5", "批次 vs 單片", "專利範例，不是弘塑／辛耘機台規格", {"bat": "bat", "one": "one", "sgl": "sgl", "use": "use"})]}
 P["s10"] = {"shot": [shot("start-16", 5, 8.5, 160, 22, 28, yaw=-0.2)],
  "overlay": [sec("twequip-who", "start+24", "s11:start-5", "台灣廠負責哪一段", "媒體報導；不列市占數字", {"front": "front", "foreign": "foreign", "tw": "tw", "back": "back"})]}

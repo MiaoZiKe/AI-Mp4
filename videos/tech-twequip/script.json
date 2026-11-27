@@ -58,20 +58,20 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "上一集檢查完了，晶圓怎麼洗乾淨？台灣設備廠，又做哪一段？",
-   "tts": "前一集檢查完了，晶圓怎麼洗乾淨？台灣設備廠，又做哪一段？",
+   "narration": "上一集檢查完，晶圓怎麼洗乾淨？台灣廠做哪一段？",
+   "tts": "前一集檢查完，晶圓怎麼洗乾淨？台灣廠做哪一段？",
    "subtitle": {
-    "zh": "上一集檢查完了\n晶圓怎麼洗乾淨？\n台灣設備廠\n又做哪一段？",
-    "en": "Last time: inspection done. | How does a wafer get clean? | Taiwan's equipment makers, | which step do they handle?"
+    "zh": "上一集檢查完\n晶圓怎麼洗乾淨？\n台灣廠做哪一段？",
+    "en": "Last time: inspection done. | How does a wafer get clean? | Which step do Taiwan's makers handle?"
    },
    "keywords": [
     "洗乾淨",
-    "台灣設備廠"
+    "台灣廠"
    ],
    "cues": [
     {
      "id": "prev",
-     "text": "檢查完了"
+     "text": "檢查完"
     },
     {
      "id": "q",
@@ -79,7 +79,7 @@
     },
     {
      "id": "tw",
-     "text": "台灣設備廠"
+     "text": "台灣廠"
     }
    ],
    "component": "ThreeScene",
@@ -129,20 +129,20 @@
      {
       "layer": "wfR",
       "at": "s1:start-40",
-      "until": "s4:start+100",
+      "until": "s4:start+76",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "wfR",
-      "at": "s4:start+136",
+      "at": "s4:start+104",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "wfA",
-      "at": "s4:start+100",
+      "at": "s4:start+76",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
@@ -150,13 +150,13 @@
      {
       "layer": "wfB",
       "at": "s1:start-40",
-      "until": "s4:start+136",
+      "until": "s4:start+104",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "wfB",
-      "at": "s4:start+199",
+      "at": "s4:start+151",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 1
@@ -164,7 +164,7 @@
      {
       "layer": "wfC",
       "at": "s1:start-40",
-      "until": "s4:start+198",
+      "until": "s4:start+150",
       "opacity": 0,
       "dur": 1
      },
@@ -464,8 +464,8 @@
      },
      {
       "layer": "c1Shut",
-      "at": "s4:start+66",
-      "until": "s4:start+211",
+      "at": "s4:start+51",
+      "until": "s4:start+160",
       "dur": 14,
       "dy": -2.4
      },
@@ -479,401 +479,338 @@
      {
       "layer": "c1Cup",
       "at": "s7:dry-4",
-      "until": "s7:ipa-8",
+      "until": "s7:start+58",
       "dur": 22,
       "dy": -0.9
      },
      {
       "layer": "c1Cup",
-      "at": "s7:ipa-8",
+      "at": "s7:start+58",
       "until": "s13:start+400",
       "dur": 22,
       "dy": 0.9
      },
      {
       "layer": "ffu",
-      "at": "s2:open-2",
-      "until": "s3:start-16",
-      "dur": 22,
+      "at": "s2:start+54",
+      "until": "s2:start+424",
+      "dur": 18,
       "dy": 6.0
      },
      {
       "layer": "efemFront",
-      "at": "s2:open-2",
-      "until": "s3:start-16",
-      "dur": 22,
+      "at": "s2:start+60",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dz": 8
+     },
+     {
+      "layer": "clFront",
+      "at": "s2:start+60",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dz": 8
+     },
+     {
+      "layer": "ccDoor",
+      "at": "s2:start+60",
+      "until": "s2:start+424",
+      "dur": 18,
       "dz": 8
      },
      {
       "layer": "efemFront",
-      "at": "s2:open+12",
-      "until": "s3:start-16",
+      "at": "s2:start+74",
+      "until": "s2:start+424",
       "opacity": 0,
-      "dur": 10
+      "dur": 8
      },
      {
       "layer": "clFront",
-      "at": "s2:open-2",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dz": 8
-     },
-     {
-      "layer": "clFront",
-      "at": "s2:open+12",
-      "until": "s3:start-16",
+      "at": "s2:start+74",
+      "until": "s2:start+424",
       "opacity": 0,
-      "dur": 10
+      "dur": 8
      },
      {
       "layer": "ccDoor",
-      "at": "s2:open-2",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dz": 8
-     },
-     {
-      "layer": "ccDoor",
-      "at": "s2:open+12",
-      "until": "s3:start-16",
+      "at": "s2:start+74",
+      "until": "s2:start+424",
       "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "arBase",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "arZ",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp1Base",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp2Base",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp3Base",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
+      "dur": 8
      },
      {
       "layer": "efem",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "efemFloor",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp1",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp2",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "lp3",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup1",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup2",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup3",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup1Door",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup2Door",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "foup3Door",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "door2Arm",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "door2Rail",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "aligner",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "ar",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "wfA",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "ffu",
-      "at": "s2:efem-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": -3.0
-     },
-     {
-      "layer": "cl",
-      "at": "s2:chamber-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 4.0
-     },
-     {
-      "layer": "c3",
-      "at": "s2:chamber-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 2.4
-     },
-     {
-      "layer": "c4",
-      "at": "s2:chamber-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 2.4
-     },
-     {
-      "layer": "cc",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccTank",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccPump",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccFilter",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccHeater",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccValve",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccPipe",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ccDrain",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ebox",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ebDoor",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "ebIn",
-      "at": "s2:cab-6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dx": 4.0
-     },
-     {
-      "layer": "efem",
-      "at": "s2:open+8",
-      "until": "s3:start-16",
+      "at": "s2:start+72",
+      "until": "s2:start+424",
       "opacity": 0.2,
       "dur": 10
      },
      {
-      "layer": "ccPump",
-      "at": "s2:cab-4",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 2.6
+      "layer": "lp1",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
      },
      {
-      "layer": "ccFilter",
-      "at": "s2:cab+6",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 5.2
+      "layer": "lp2",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
      },
      {
-      "layer": "ccHeater",
-      "at": "s2:cab+16",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 7.8
+      "layer": "lp3",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
      },
      {
-      "layer": "ccValve",
-      "at": "s2:cab+26",
-      "until": "s3:start-16",
-      "dur": 22,
-      "dy": 10.4
+      "layer": "lp1Base",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
      },
      {
-      "layer": "ccPipe",
-      "at": "s2:cab-4",
-      "until": "s3:start-16",
-      "opacity": 0.12,
-      "dur": 10
+      "layer": "lp2Base",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s2:start+208",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dx": -2.5
+     },
+     {
+      "layer": "arBase",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "arZ",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "efem",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "efemFloor",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "ffu",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp1",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp2",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "lp3",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup1",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup2",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup3",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "foup3Door",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "door2Arm",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "door2Rail",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "aligner",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "ar",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "wfA",
+      "at": "s2:start+280",
+      "until": "s2:start+424",
+      "dur": 22,
+      "dx": -4.5
+     },
+     {
+      "layer": "cl",
+      "at": "s2:start+354",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dy": 4.0
+     },
+     {
+      "layer": "c3",
+      "at": "s2:start+354",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dy": 2.4
+     },
+     {
+      "layer": "c4",
+      "at": "s2:start+354",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dy": 2.4
+     },
+     {
+      "layer": "c1Fan",
+      "at": "s2:start+360",
+      "until": "s2:start+424",
+      "dur": 18,
+      "dy": 3.0
      },
      {
       "layer": "c1NzA",
-      "at": "s6:nz-8",
-      "until": "s7:start-14",
+      "at": "s6:start+4",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 4.8,
       "dx": 1.6
      },
      {
       "layer": "c1Nz",
-      "at": "s6:nz-8",
-      "until": "s7:start-14",
+      "at": "s6:start+4",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 4.8,
       "dx": 1.6
      },
      {
       "layer": "c1Cup",
-      "at": "s6:cup-8",
-      "until": "s7:start-14",
+      "at": "s6:start+58",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 6.0
      },
      {
       "layer": "c1CupPipe",
-      "at": "s6:cup-8",
-      "until": "s7:start-14",
+      "at": "s6:start+58",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 6.0
      },
      {
       "layer": "c1Chuck",
-      "at": "s6:chk-8",
-      "until": "s7:start-14",
+      "at": "s6:start+108",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 3.0
      },
      {
       "layer": "wfC",
-      "at": "s6:chk-8",
-      "until": "s7:start-14",
+      "at": "s6:start+108",
+      "until": "s6:start+210",
       "dur": 20,
       "dy": 3.0
      },
@@ -892,121 +829,149 @@
       "dur": 8
      },
      {
+      "layer": "cc",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccTank",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccPump",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccValve",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccDrain",
+      "at": "s8:start+20",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dx": 3.0
+     },
+     {
+      "layer": "ccPump",
+      "at": "s8:start+34",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dy": 2.2
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s8:start+42",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dy": 4.4
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s8:start+50",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dy": 6.6
+     },
+     {
+      "layer": "ccValve",
+      "at": "s8:start+58",
+      "until": "s8:start+184",
+      "dur": 18,
+      "dy": 8.8
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s8:start+34",
+      "until": "s8:start+184",
+      "opacity": 0.12,
+      "dur": 10
+     },
+     {
+      "layer": "cc",
+      "at": "s8:start+26",
+      "until": "s8:start+184",
+      "opacity": 0.16,
+      "dur": 10
+     },
+     {
       "layer": "bbCass",
-      "at": "s9:one-4",
-      "until": "s9:one+26",
+      "at": "s9:start+62",
+      "until": "s9:start+92",
       "dur": 12,
       "dy": -3.0
      },
      {
       "layer": "bbRod",
-      "at": "s9:one-4",
-      "until": "s9:one+26",
+      "at": "s9:start+62",
+      "until": "s9:start+92",
       "dur": 12,
       "dy": -3.0
      },
      {
       "layer": "bbCar",
-      "at": "s9:one+38",
+      "at": "s9:start+104",
       "until": "s13:start+400",
       "dur": 16,
       "dx": 3.2
      },
      {
       "layer": "bbCass",
-      "at": "s9:one+38",
+      "at": "s9:start+104",
       "until": "s13:start+400",
       "dur": 16,
       "dx": 3.2
      },
      {
       "layer": "bbRod",
-      "at": "s9:one+38",
+      "at": "s9:start+104",
       "until": "s13:start+400",
       "dur": 16,
       "dx": 3.2
      },
      {
       "layer": "bbCass",
-      "at": "s9:one+52",
-      "until": "s9:one+82",
+      "at": "s9:start+118",
+      "until": "s9:start+148",
       "dur": 12,
       "dy": -3.0
      },
      {
       "layer": "bbRod",
-      "at": "s9:one+52",
-      "until": "s9:one+82",
-      "dur": 12,
-      "dy": -3.0
-     },
-     {
-      "layer": "bbCar",
-      "at": "s9:one+94",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbCass",
-      "at": "s9:one+94",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbRod",
-      "at": "s9:one+94",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbCass",
-      "at": "s9:one+108",
-      "until": "s9:one+138",
-      "dur": 12,
-      "dy": -3.0
-     },
-     {
-      "layer": "bbRod",
-      "at": "s9:one+108",
-      "until": "s9:one+138",
-      "dur": 12,
-      "dy": -3.0
-     },
-     {
-      "layer": "bbCar",
-      "at": "s9:one+150",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbCass",
-      "at": "s9:one+150",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbRod",
-      "at": "s9:one+150",
-      "until": "s13:start+400",
-      "dur": 16,
-      "dx": 3.2
-     },
-     {
-      "layer": "bbCass",
-      "at": "s9:one+164",
-      "until": "s9:one+194",
-      "dur": 12,
-      "dy": -3.0
-     },
-     {
-      "layer": "bbRod",
-      "at": "s9:one+164",
-      "until": "s9:one+194",
+      "at": "s9:start+118",
+      "until": "s9:start+148",
       "dur": 12,
       "dy": -3.0
      },
@@ -2315,1238 +2280,1238 @@
      {
       "layer": "efem",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "efemFront",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ffu",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "efemFloor",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp1",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp1Base",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup1",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup1Door",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp2",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp2Base",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup2Door",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp3Base",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup3Door",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "door2Arm",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "door2Rail",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lMap",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "aligner",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "arBase",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfR",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfB",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "cl",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "clFront",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c2",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c4",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Wall",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Chuck",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Motor",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Cup",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Drain",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Exh",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Shut",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Nz",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Ip",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1CupPipe",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Valve",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Fan",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Pipe",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1NzA",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1IpA",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "nzStr",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ipStr",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ebox",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ebDoor",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ebIn",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "cc",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccDoor",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccTank",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccPump",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccFilter",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccHeater",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccValve",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccPipe",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccDrain",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bb",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbRail",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbCar",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbRod",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbCass",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbLid",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT0",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT1",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT2",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT4",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT5",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfC",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film0",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film1",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film2",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film4",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film5",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film6",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film7",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "filmEdge",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry0",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry1",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry2",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry3",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry4",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry5",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry6",
       "at": "s4:start",
-      "until": "s4:start+86",
+      "until": "s4:start+66",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "efem",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "efemFront",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ffu",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "efemFloor",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp1",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp1Base",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup1",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup1Door",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp2",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp2Base",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup2",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup2Door",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp3",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lp3Base",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup3",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "foup3Door",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "door2Arm",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "door2Rail",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lMap",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "aligner",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ar",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "arBase",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "arZ",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfA",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfR",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfB",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "cl",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "clFront",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c2",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c3",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c4",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Wall",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Chuck",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Motor",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Cup",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Drain",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Exh",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Shut",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Nz",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Ip",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1CupPipe",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Valve",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Fan",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1Pipe",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1NzA",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "c1IpA",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "nzStr",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ipStr",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "cc",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccDoor",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccTank",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccPump",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccFilter",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccHeater",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccValve",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccPipe",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ccDrain",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "wfC",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film0",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film1",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film2",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film3",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film4",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film5",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film6",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "film7",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "filmEdge",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry0",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry1",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry2",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry3",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry4",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry5",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dry6",
-      "at": "s8:eb-24",
+      "at": "s8:start+276",
       "until": "s9:start+6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bb",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbRail",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbCar",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbRod",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbLid",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT2",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT3",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT4",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbT5",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s10:start-6",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbT4",
-      "at": "s9:one-10",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbT3",
-      "at": "s9:one-10",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbRail",
-      "at": "s9:one-10",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbCar",
-      "at": "s9:one-10",
-      "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bb",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "bbT5",
-      "at": "s9:one-10",
+      "layer": "bbT4",
+      "at": "s9:start+50",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "bbT2",
-      "at": "s9:one-10",
+      "layer": "bbT3",
+      "at": "s9:start+50",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "bbRod",
-      "at": "s9:one-10",
+      "layer": "bbRail",
+      "at": "s9:start+50",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bbLid",
-      "at": "s9:one-10",
+      "at": "s9:start+50",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT5",
+      "at": "s9:start+50",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRod",
+      "at": "s9:start+50",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT2",
+      "at": "s9:start+50",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
+      "at": "s9:start+50",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -3634,23 +3599,24 @@
      }
     ]
    },
-   "durationSec": 4.8,
-   "pauseAfter": 0.6
+   "durationSec": 5.2,
+   "pauseAfter": 0.6,
+   "headSec": 0,
+   "holdSec": 0.94
   },
   {
    "id": "s2",
    "beat": "mechanism",
    "para": 2,
-   "narration": "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
-   "tts": "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
+   "narration": "外殼打開。晶圓先到玄關，拿出盒子擺正，叫前端搬運區。再往裡，才是洗的地方。",
+   "tts": "外殼打開。晶圓先到玄關，拿出盒子擺正，叫前端搬運區。再往裡，才是洗的地方。",
    "subtitle": {
-    "zh": "外殼打開\n前端搬運區有手臂、對準器\n管進出\n清洗腔一片一片洗\n藥液櫃供應藥液",
-    "en": "Open the cover. | The front-end module has a robot and an aligner | and handles transfer; | the chambers clean one wafer at a time; | the chemical cabinet supplies liquids."
+    "zh": "外殼打開\n晶圓先到玄關\n拿出盒子擺正\n叫前端搬運區\n再往裡\n才是洗的地方",
+    "en": "Open the cover. | A wafer first reaches the foyer, | is taken from its pod and aligned: | the front-end module. | Further in, | is where it gets washed."
    },
    "keywords": [
-    "前端搬運區",
-    "清洗腔",
-    "藥液櫃"
+    "玄關",
+    "前端搬運區"
    ],
    "cues": [
     {
@@ -3658,20 +3624,16 @@
      "text": "外殼打開"
     },
     {
+     "id": "foyer",
+     "text": "玄關"
+    },
+    {
      "id": "efem",
      "text": "前端搬運區"
     },
     {
-     "id": "arm",
-     "text": "手臂"
-    },
-    {
      "id": "chamber",
-     "text": "清洗腔"
-    },
-    {
-     "id": "cab",
-     "text": "藥液櫃"
+     "text": "洗的地方"
     }
    ],
    "component": "ThreeScene",
@@ -3690,45 +3652,61 @@
      {
       "at": "start",
       "dur": 30,
-      "x": 5,
+      "x": 2.5,
       "y": 9.5,
-      "d": 150,
+      "d": 170,
       "elev": 30,
       "yaw": 0.1
      }
     ],
     "labels": [
      {
-      "part": "efemTop",
-      "text": "前端搬運區（EFEM）",
-      "en": "Front-end module",
+      "part": "ffu",
+      "text": "頂部風扇濾網（FFU）",
+      "en": "Fan filter unit",
       "color": "blue",
-      "at": "open+6",
-      "until": "arm-9"
+      "at": "start+66",
+      "until": "start+111"
      },
      {
       "part": "armCol",
-      "text": "雙刀手臂＋預對準器",
-      "en": "Dual-blade robot & aligner",
+      "text": "搬運手臂（雙刀）",
+      "en": "Dual-blade robot",
       "color": "amber",
-      "at": "arm-2",
-      "until": "chamber-9"
+      "at": "start+114",
+      "until": "start+159"
+     },
+     {
+      "part": "aln",
+      "text": "預對準器",
+      "en": "Pre-aligner",
+      "color": "blue",
+      "at": "start+162",
+      "until": "start+207"
+     },
+     {
+      "part": "lp",
+      "text": "裝載端＋晶圓盒",
+      "en": "Load ports & wafer pods",
+      "color": "amber",
+      "at": "start+232",
+      "until": "start+277"
+     },
+     {
+      "part": "port",
+      "text": "交接口（通往清洗腔）",
+      "en": "Hand-off port to the chamber",
+      "color": "blue",
+      "at": "start+306",
+      "until": "start+351"
      },
      {
       "part": "chamber",
       "text": "清洗腔（單片旋轉）",
       "en": "Single-wafer chamber",
-      "color": "blue",
-      "at": "chamber-2",
-      "until": "cab-9"
-     },
-     {
-      "part": "ccTop",
-      "text": "藥液櫃（化學液供應）",
-      "en": "Chemical cabinet",
       "color": "amber",
-      "at": "cab-2",
-      "until": "s3:start-6"
+      "at": "start+376",
+      "until": "start+421"
      }
     ],
     "overlay": [
@@ -3755,29 +3733,31 @@
         "at": "chamber"
        },
        "cab": {
-        "at": "cab"
+        "at": "start+430"
        }
       }
      }
     ]
    },
-   "durationSec": 9.0,
-   "pauseAfter": 0.7
+   "durationSec": 16.5,
+   "pauseAfter": 0.7,
+   "headSec": 1.8,
+   "holdSec": 8.1
   },
   {
    "id": "s3",
    "beat": "mechanism",
    "para": 3,
-   "narration": "頂部風扇往下吹乾淨空氣；晶圓盒門被吸開；感測器掃過，數每一槽有沒有片。",
-   "tts": "頂部風扇往下吹乾淨空氣；晶圓盒門被吸開；感測器掃過，數每一槽有沒有片。",
+   "narration": "風扇吹下乾淨空氣，盒門打開，數每槽有沒有片。",
+   "tts": "風扇吹下乾淨空氣，盒門打開，數每槽有沒有片。",
    "subtitle": {
-    "zh": "頂部風扇往下吹乾淨空氣\n晶圓盒門被吸開\n感測器掃過\n數每一槽有沒有片",
-    "en": "Fans on top blow clean air downward; | the wafer pod's door is pulled open; | a sensor sweeps across | to check every slot for a wafer."
+    "zh": "風扇吹下乾淨空氣\n盒門打開\n數每槽有沒有片",
+    "en": "Fans blow clean air downward, | the pod door opens, | and every slot is checked for a wafer."
    },
    "keywords": [
     "風扇",
-    "吸開",
-    "感測器"
+    "盒門打開",
+    "數每槽"
    ],
    "cues": [
     {
@@ -3790,15 +3770,15 @@
     },
     {
      "id": "door",
-     "text": "門被吸開"
+     "text": "盒門打開"
     },
     {
      "id": "map",
-     "text": "感測器"
+     "text": "數每槽"
     },
     {
      "id": "slot",
-     "text": "每一槽"
+     "text": "有沒有片"
     }
    ],
    "component": "ThreeScene",
@@ -3817,7 +3797,7 @@
       "yaw": -0.1
      },
      {
-      "at": "door-16",
+      "at": "door-8",
       "dur": 30,
       "x": -12.799999999999999,
       "y": 9.2,
@@ -3857,24 +3837,24 @@
       "text": "頂部風扇濾網（FFU）",
       "en": "Fan filter unit",
       "color": "blue",
-      "at": "fan-2",
-      "until": "door-9"
+      "at": "start+8",
+      "until": "start+53"
      },
      {
       "part": "door",
       "text": "裝載端取門器＋晶圓盒",
       "en": "Load port & wafer pod",
       "color": "amber",
-      "at": "door-1",
-      "until": "map-9"
+      "at": "start+90",
+      "until": "start+135"
      },
      {
       "part": "map",
       "text": "映射感測：數每一槽",
       "en": "Wafer mapping sensor",
       "color": "blue",
-      "at": "map-1",
-      "until": "s4:start-4"
+      "at": "start+138",
+      "until": "start+183"
      }
     ],
     "overlay": [
@@ -3908,39 +3888,41 @@
     ]
    },
    "durationSec": 7.2,
-   "pauseAfter": 0.6
+   "pauseAfter": 0.6,
+   "headSec": 0.4,
+   "holdSec": 2.76
   },
   {
    "id": "s4",
    "beat": "mechanism",
    "para": 4,
-   "narration": "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。",
-   "tts": "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。",
+   "narration": "手臂托起一片，轉一圈擺正邊緣的缺口，再送進去洗。",
+   "tts": "手臂托起一片，轉一圈擺正邊緣的缺口，再送進去洗。",
    "subtitle": {
-    "zh": "雙刀手臂伸進盒子\n托起晶圓\n轉一圈對準缺口\n再直直送進清洗腔放好",
-    "en": "A dual-blade arm reaches into the pod | and lifts a wafer; | one turn to align the notch; | then straight into the chamber."
+    "zh": "手臂托起一片\n轉一圈擺正\n邊緣的缺口\n再送進去洗",
+    "en": "The arm lifts one wafer, | one turn to align | the notch on its edge, | then straight in to be washed."
    },
    "keywords": [
-    "雙刀",
-    "對準",
-    "清洗腔"
+    "托起",
+    "缺口",
+    "送進去洗"
    ],
    "cues": [
     {
      "id": "arm",
-     "text": "雙刀手臂"
+     "text": "手臂"
     },
     {
      "id": "lift",
-     "text": "托起晶圓"
+     "text": "托起一片"
     },
     {
      "id": "align",
-     "text": "對準缺口"
+     "text": "轉一圈"
     },
     {
      "id": "put",
-     "text": "清洗腔放好"
+     "text": "送進去洗"
     }
    ],
    "component": "ThreeScene",
@@ -3958,7 +3940,7 @@
       "elev": 34
      },
      {
-      "at": "s4:start+62",
+      "at": "start+56",
       "dur": 22,
       "x": -7,
       "y": 6.8,
@@ -3981,7 +3963,7 @@
         }
        ],
        [
-        16,
+        12,
         {
          "j1": -123.27,
          "j2": -113.46,
@@ -3989,19 +3971,19 @@
         }
        ],
        [
-        22,
+        16,
         {
          "lift": 0.0
         }
        ],
        [
-        28,
+        21,
         {
          "lift": 0.12
         }
        ],
        [
-        42,
+        32,
         {
          "j1": -92.79,
          "j2": -174.43,
@@ -4009,7 +3991,7 @@
         }
        ],
        [
-        54,
+        40,
         {
          "j1": -92.39,
          "j2": -175.22,
@@ -4017,7 +3999,7 @@
         }
        ],
        [
-        72,
+        54,
         {
          "j1": -2.39,
          "j2": -175.22,
@@ -4025,7 +4007,7 @@
         }
        ],
        [
-        78,
+        58,
         {
          "j1": -92.6,
          "j2": -146.72,
@@ -4033,7 +4015,7 @@
         }
        ],
        [
-        80,
+        60,
         {
          "j1": -79.67,
          "j2": -143.03,
@@ -4041,7 +4023,7 @@
         }
        ],
        [
-        82,
+        62,
         {
          "j1": -71.02,
          "j2": -137.24,
@@ -4049,7 +4031,7 @@
         }
        ],
        [
-        84,
+        63,
         {
          "j1": -66.05,
          "j2": -129.91,
@@ -4057,7 +4039,7 @@
         }
        ],
        [
-        86,
+        64,
         {
          "j1": -66.05,
          "j2": -129.91,
@@ -4065,7 +4047,7 @@
         }
        ],
        [
-        89,
+        67,
         {
          "j1": -63.89,
          "j2": -121.41,
@@ -4073,31 +4055,31 @@
         }
        ],
        [
-        93,
+        70,
         {
          "lift": 0.0
         }
        ],
        [
-        98,
+        74,
         {
          "lift": -0.08
         }
        ],
        [
-        134,
+        100,
         {
          "lift": 0.0
         }
        ],
        [
-        140,
+        105,
         {
          "lift": 0.12
         }
        ],
        [
-        142,
+        106,
         {
          "j1": -66.05,
          "j2": -129.91,
@@ -4105,7 +4087,7 @@
         }
        ],
        [
-        144,
+        108,
         {
          "j1": -71.02,
          "j2": -137.24,
@@ -4113,7 +4095,7 @@
         }
        ],
        [
-        146,
+        110,
         {
          "j1": -79.67,
          "j2": -143.03,
@@ -4121,7 +4103,7 @@
         }
        ],
        [
-        148,
+        111,
         {
          "j1": -92.6,
          "j2": -146.72,
@@ -4129,7 +4111,7 @@
         }
        ],
        [
-        156,
+        117,
         {
          "j1": -2.39,
          "j2": -175.22,
@@ -4137,7 +4119,7 @@
         }
        ],
        [
-        159,
+        119,
         {
          "j1": 12.61,
          "j2": -175.22,
@@ -4145,7 +4127,7 @@
         }
        ],
        [
-        162,
+        122,
         {
          "j1": 32.61,
          "j2": -175.22,
@@ -4153,7 +4135,7 @@
         }
        ],
        [
-        165,
+        124,
         {
          "j1": 52.61,
          "j2": -175.22,
@@ -4161,7 +4143,7 @@
         }
        ],
        [
-        168,
+        126,
         {
          "j1": 72.61,
          "j2": -175.22,
@@ -4169,7 +4151,7 @@
         }
        ],
        [
-        171,
+        128,
         {
          "j1": 87.61,
          "j2": -175.22,
@@ -4177,7 +4159,7 @@
         }
        ],
        [
-        186,
+        140,
         {
          "j1": 38.94,
          "j2": -77.88,
@@ -4185,19 +4167,19 @@
         }
        ],
        [
-        192,
+        144,
         {
          "lift": 0.0
         }
        ],
        [
-        197,
+        148,
         {
          "lift": -0.08
         }
        ],
        [
-        212,
+        159,
         {
          "j1": 87.61,
          "j2": -175.22,
@@ -4208,13 +4190,13 @@
       "carry": [
        {
         "layer": "wfA",
-        "grab": 22,
-        "release": 93
+        "grab": 16,
+        "release": 70
        },
        {
         "layer": "wfB",
-        "grab": 134,
-        "release": 192
+        "grab": 100,
+        "release": 144
        }
       ]
      }
@@ -4222,27 +4204,27 @@
     "run": [
      {
       "id": "alnLaser",
-      "at": "s4:start+103",
+      "at": "s4:start+79",
       "ramp": 4,
-      "until": "s4:start+134"
+      "until": "s4:start+102"
      },
      {
       "id": "alnSpin",
+      "at": "s4:start+80",
+      "ramp": 8,
+      "until": "s4:start+98"
+     },
+     {
+      "id": "zSpin",
+      "at": "s4:start+20",
+      "ramp": 8,
+      "until": "s4:start+33"
+     },
+     {
+      "id": "zSpin",
       "at": "s4:start+104",
       "ramp": 8,
-      "until": "s4:start+128"
-     },
-     {
-      "id": "zSpin",
-      "at": "s4:start+24",
-      "ramp": 8,
-      "until": "s4:start+42"
-     },
-     {
-      "id": "zSpin",
-      "at": "s4:start+136",
-      "ramp": 8,
-      "until": "s4:start+152"
+      "until": "s4:start+116"
      }
     ],
     "labels": [
@@ -4251,24 +4233,24 @@
       "text": "雙刀：上刀載片、下刀空刀",
       "en": "Dual blade: upper carries, lower empty",
       "color": "blue",
-      "at": "arm-2",
-      "until": "align-9"
+      "at": "start+8",
+      "until": "start+53"
      },
      {
       "part": "aln",
       "text": "預對準器：找缺口",
       "en": "Pre-aligner",
       "color": "amber",
-      "at": "align-2",
-      "until": "put-9"
+      "at": "start+80",
+      "until": "start+125"
      },
      {
       "part": "chuck",
       "text": "吸盤＋邊緣抓取銷",
       "en": "Chuck & edge-grip pins",
       "color": "blue",
-      "at": "put-1",
-      "until": "s5:start-4"
+      "at": "start+170",
+      "until": "start+215"
      }
     ],
     "overlay": [
@@ -4283,7 +4265,7 @@
       "h": 360,
       "avoid": false,
       "title": "手臂直線伸入、雙刀快換",
-      "tag": "示意（專利範例：換片約 8–16 秒）",
+      "tag": "示意（專利範例）",
       "t": {
        "arm": {
         "at": "arm"
@@ -4302,47 +4284,45 @@
     ]
    },
    "durationSec": 7.6,
-   "pauseAfter": 0.6
+   "pauseAfter": 0.6,
+   "headSec": 0.3,
+   "holdSec": 2.83
   },
   {
    "id": "s5",
    "beat": "mechanism",
    "para": 5,
-   "narration": "晶圓轉起來，邊緣有銷抓住。噴嘴臂掃過來，藥液落在中心，推成薄薄的液膜，被離心力一路往外甩。",
-   "tts": "晶圓轉起來，邊緣有銷抓住。噴嘴臂掃過來，藥液落在中心，推成薄薄的液膜，被離心力一路往外甩。",
+   "narration": "像洗盤子，一次一片，邊轉邊沖。藥液落中心，甩成薄膜帶走髒污。",
+   "tts": "像洗盤子，一次一片，邊轉邊沖。藥液落中心，甩成薄膜帶走髒污。",
    "subtitle": {
-    "zh": "晶圓轉起來\n邊緣有銷抓住\n噴嘴臂掃過來\n藥液落在中心\n推成薄薄的液膜\n被離心力一路往外甩",
-    "en": "The wafer spins, | held by edge pins. | The nozzle arm sweeps in, | liquid lands at the center, | spreads into a thin film, | and is flung outward by centrifugal force."
+    "zh": "像洗盤子\n一次一片\n邊轉邊沖\n藥液落中心\n甩成薄膜帶走髒污",
+    "en": "Like washing a plate: | one at a time, | rinsed while it turns. | Liquid lands at the center, | spins into a thin film that carries dirt away."
    },
    "keywords": [
-    "轉起來",
-    "液膜",
-    "離心力"
+    "洗盤子",
+    "邊轉邊沖",
+    "薄膜"
    ],
    "cues": [
     {
      "id": "spin",
-     "text": "晶圓轉起來"
-    },
-    {
-     "id": "pin",
-     "text": "有銷抓住"
+     "text": "像洗盤子"
     },
     {
      "id": "nz",
-     "text": "噴嘴臂"
+     "text": "邊轉邊沖"
     },
     {
      "id": "stream",
-     "text": "藥液落在中心"
+     "text": "落中心"
     },
     {
      "id": "film",
-     "text": "薄薄的液膜"
+     "text": "甩成薄膜"
     },
     {
      "id": "fling",
-     "text": "往外甩"
+     "text": "帶走髒污"
     }
    ],
    "component": "ThreeScene",
@@ -4489,24 +4469,24 @@
       "text": "旋轉吸盤＋抓取銷",
       "en": "Spin chuck & edge-grip pins",
       "color": "blue",
-      "at": "spin-2",
-      "until": "nz-9"
+      "at": "start+4",
+      "until": "start+49"
      },
      {
       "part": "nz",
       "text": "噴嘴臂：中心掃到邊緣",
       "en": "Swing nozzle arm",
       "color": "amber",
-      "at": "nz-2",
-      "until": "film-9"
+      "at": "start+56",
+      "until": "start+101"
      },
      {
       "part": "film",
       "text": "液膜：離心力推開",
       "en": "Liquid film",
       "color": "blue",
-      "at": "film-2",
-      "until": "s6:start-4"
+      "at": "start+112",
+      "until": "start+157"
      }
     ],
     "overlay": [
@@ -4542,44 +4522,37 @@
      }
     ]
    },
-   "durationSec": 8.4,
-   "pauseAfter": 0.6
+   "durationSec": 8.0,
+   "pauseAfter": 0.6,
+   "headSec": 0.2,
+   "holdSec": 2.48
   },
   {
    "id": "s6",
    "beat": "mechanism",
    "para": 6,
-   "narration": "拆開腔體。噴嘴臂噴藥液；擋液杯一層一種藥液，不混在一起；吸盤抓住晶圓，馬達帶著轉。",
-   "tts": "拆開腔體。噴嘴臂噴藥液；擋液杯一層一種藥液，不混在一起；吸盤抓住晶圓，馬達帶著轉。",
+   "narration": "拆開看：擋液杯一層一種藥液，像分類回收桶。",
+   "tts": "拆開看：擋液杯一層一種藥液，像分類回收桶。",
    "subtitle": {
-    "zh": "拆開腔體\n噴嘴臂噴藥液\n擋液杯一層一種藥液\n不混在一起\n吸盤抓住晶圓\n馬達帶著轉",
-    "en": "Open up the chamber. | The nozzle arm sprays liquid; | the cup has one level per liquid, | so they never mix; | the chuck holds the wafer, | and a motor spins it."
+    "zh": "拆開看\n擋液杯一層一種藥液\n像分類回收桶",
+    "en": "Take it apart: | the cup has one level per liquid, | like sorted recycling bins."
    },
    "keywords": [
-    "噴嘴臂",
     "擋液杯",
-    "吸盤"
+    "分類回收桶"
    ],
    "cues": [
     {
      "id": "split",
-     "text": "拆開腔體"
-    },
-    {
-     "id": "nz",
-     "text": "噴嘴臂"
+     "text": "拆開看"
     },
     {
      "id": "cup",
      "text": "擋液杯"
     },
     {
-     "id": "chk",
-     "text": "吸盤"
-    },
-    {
-     "id": "mot",
-     "text": "馬達"
+     "id": "bin",
+     "text": "回收桶"
     }
    ],
    "component": "ThreeScene",
@@ -4592,8 +4565,8 @@
       "at": "start",
       "dur": 30,
       "x": 0.8,
-      "y": 9.0,
-      "d": 74,
+      "y": 7.4,
+      "d": 84,
       "elev": 28,
       "yaw": 0.1
      }
@@ -4609,35 +4582,35 @@
     "labels": [
      {
       "part": "nz",
-      "text": "噴嘴臂",
-      "en": "Nozzle arm",
+      "text": "噴嘴臂（旋開）",
+      "en": "Nozzle arm swings out",
       "color": "amber",
-      "at": "nz-2",
-      "until": "cup-9"
+      "at": "start+12",
+      "until": "start+57"
      },
      {
       "part": "cup",
       "text": "擋液杯（三層）",
       "en": "Splash cup (3 levels)",
       "color": "blue",
-      "at": "cup-2",
-      "until": "chk-9"
+      "at": "start+62",
+      "until": "start+107"
      },
      {
       "part": "chuck",
       "text": "旋轉吸盤",
       "en": "Spin chuck",
       "color": "amber",
-      "at": "chk-2",
-      "until": "mot-9"
+      "at": "start+112",
+      "until": "start+157"
      },
      {
       "part": "motor",
       "text": "馬達",
       "en": "Spin motor",
       "color": "blue",
-      "at": "mot-2",
-      "until": "s7:start-4"
+      "at": "start+162",
+      "until": "start+207"
      }
     ],
     "overlay": [
@@ -4652,43 +4625,45 @@
       "h": 360,
       "avoid": false,
       "title": "杯內分路：一層一種藥液",
-      "tag": "示意（SC1 歷史配比、溫度為通例）",
+      "tag": "示意（配比、溫度不標）",
       "t": {
        "split": {
         "at": "split"
        },
        "nz": {
-        "at": "nz"
+        "at": "start+12"
        },
        "cup": {
         "at": "cup"
        },
        "chk": {
-        "at": "chk"
+        "at": "start+112"
        },
        "mot": {
-        "at": "mot"
+        "at": "start+162"
        }
       }
      }
     ]
    },
-   "durationSec": 9.6,
-   "pauseAfter": 0.6
+   "durationSec": 9.5,
+   "pauseAfter": 0.6,
+   "headSec": 1.2,
+   "holdSec": 4.47
   },
   {
    "id": "s7",
    "beat": "mechanism",
    "para": 7,
-   "narration": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。",
-   "tts": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。",
+   "narration": "最後甩乾。異丙醇是一種酒精，跟著乾區，把水帶走不留水痕。",
+   "tts": "最後甩乾。異丙醇是一種酒精，跟著乾區，把水帶走不留水痕。",
    "subtitle": {
-    "zh": "最後甩乾\n乾的地方從中心往外擴大\n異丙醇噴嘴跟著走\n避免水痕",
-    "en": "Finally, spin-dry: | the dry zone grows outward from the center, | an IPA nozzle follows it, | avoiding water marks."
+    "zh": "最後甩乾\n異丙醇是一種酒精\n跟著乾區\n把水帶走\n不留水痕",
+    "en": "Finally, spin-dry. | Isopropanol is a kind of alcohol, | follows the dry front | and carries the water away, | leaving no water marks."
    },
    "keywords": [
     "甩乾",
-    "中心",
+    "異丙醇",
     "水痕"
    ],
    "cues": [
@@ -4697,12 +4672,12 @@
      "text": "甩乾"
     },
     {
-     "id": "expand",
-     "text": "從中心往外擴大"
-    },
-    {
      "id": "ipa",
      "text": "異丙醇"
+    },
+    {
+     "id": "expand",
+     "text": "乾區"
     },
     {
      "id": "mark",
@@ -4837,11 +4812,11 @@
     "labels": [
      {
       "part": "ip",
-      "text": "IPA／氮氣臂：跟著乾區走",
-      "en": "IPA & N2 arm follows the dry front",
+      "text": "異丙醇（IPA）臂：跟著乾區走",
+      "en": "IPA arm follows the dry front",
       "color": "amber",
-      "at": "ipa-2",
-      "until": "s8:start-14"
+      "at": "start+36",
+      "until": "start+81"
      }
     ],
     "overlay": [
@@ -4874,28 +4849,30 @@
      }
     ]
    },
-   "durationSec": 7.2,
-   "pauseAfter": 0.6
+   "durationSec": 8.4,
+   "pauseAfter": 0.6,
+   "headSec": 0.3,
+   "holdSec": 2.99
   },
   {
    "id": "s8",
    "beat": "mechanism",
    "para": 8,
-   "narration": "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。",
-   "tts": "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。",
+   "narration": "藥液從桶子出發，幫浦推著走，閥門像調飲料配比例。",
+   "tts": "藥液從桶子出發，幫浦推著走，閥門像調飲料配比例。",
    "subtitle": {
-    "zh": "藥液桶供應藥液\n幫浦送過來，濾芯濾乾淨\n混合閥配好比例\n電控箱管整套動作",
-    "en": "Drums supply the chemicals; | pumps and filters deliver them clean; | a mixing valve sets the ratio; | and an electrical cabinet runs it all."
+    "zh": "藥液從桶子出發\n幫浦推著走\n閥門像調飲料配比例",
+    "en": "Liquid starts in the drums, | pumps push it along, | and a valve mixes the ratio like a drink."
    },
    "keywords": [
-    "藥液桶",
+    "桶子",
     "幫浦",
-    "混合閥"
+    "調飲料"
    ],
    "cues": [
     {
      "id": "tank",
-     "text": "藥液桶"
+     "text": "桶子"
     },
     {
      "id": "pump",
@@ -4903,11 +4880,7 @@
     },
     {
      "id": "mix",
-     "text": "混合閥"
-    },
-    {
-     "id": "eb",
-     "text": "電控箱"
+     "text": "閥門"
     }
    ],
    "component": "ThreeScene",
@@ -4919,14 +4892,14 @@
      {
       "at": "start",
       "dur": 30,
-      "x": 18.5,
-      "y": 5.9,
-      "d": 95,
-      "elev": 22,
+      "x": 22.5,
+      "y": 9.5,
+      "d": 128,
+      "elev": 20,
       "yaw": 0.05
      },
      {
-      "at": "eb-24",
+      "at": "s8:start+276",
       "dur": 26,
       "x": 12.2,
       "y": 4.4,
@@ -4937,15 +4910,15 @@
     "run": [
      {
       "id": "chemFlow",
-      "at": "tank-4",
+      "at": "s8:start+200",
       "ramp": 8,
-      "until": "eb-26"
+      "until": "s8:start+274"
      },
      {
       "id": "chemFlow2",
-      "at": "tank+8",
+      "at": "s8:start+208",
       "ramp": 8,
-      "until": "eb-26"
+      "until": "s8:start+274"
      },
      {
       "id": "pumpBeat",
@@ -4955,13 +4928,13 @@
      },
      {
       "id": "ebDoorOpen",
-      "at": "eb-6",
+      "at": "s8:start+294",
       "ramp": 22,
       "until": "s9:start"
      },
      {
       "id": "ebBlink",
-      "at": "eb",
+      "at": "s8:start+300",
       "ramp": 6,
       "until": "s9:start"
      }
@@ -4972,32 +4945,32 @@
       "text": "藥液桶（PE）",
       "en": "Chemical drums",
       "color": "blue",
-      "at": "tank+8",
-      "until": "pump-9"
+      "at": "start+40",
+      "until": "start+85"
      },
      {
       "part": "pump",
       "text": "幫浦＋濾芯",
       "en": "Pump & filter",
       "color": "amber",
-      "at": "pump-2",
-      "until": "mix-9"
+      "at": "start+88",
+      "until": "start+133"
      },
      {
       "part": "mix",
       "text": "混合閥島",
       "en": "Mixing valve island",
       "color": "blue",
-      "at": "mix-2",
-      "until": "eb-8"
+      "at": "start+136",
+      "until": "start+181"
      },
      {
       "part": "eb",
       "text": "電控箱（門打開）",
       "en": "Electrical cabinet",
       "color": "amber",
-      "at": "eb",
-      "until": "s9:start-20"
+      "at": "s8:start+300",
+      "until": "s8:start+345"
      }
     ],
     "overlay": [
@@ -5012,7 +4985,7 @@
       "h": 360,
       "avoid": false,
       "title": "藥液怎麼送進腔",
-      "tag": "示意（歷史配比為通例，本機不標）",
+      "tag": "示意（配比不標數字）",
       "t": {
        "tank": {
         "at": "tank"
@@ -5024,45 +4997,47 @@
         "at": "mix"
        },
        "eb": {
-        "at": "eb"
+        "at": "s8:start+300"
        }
       }
      }
     ]
    },
-   "durationSec": 8.4,
-   "pauseAfter": 0.6
+   "durationSec": 13.2,
+   "pauseAfter": 0.6,
+   "headSec": 0.8,
+   "holdSec": 7.93
   },
   {
    "id": "s9",
    "beat": "mechanism",
    "para": 9,
-   "narration": "另有批次酸槽，一次泡一批；單片洗則一片一片來，各有用途。",
-   "tts": "另有批次酸槽，一次泡一批；單片洗則一片一片來，各有用途。",
+   "narration": "另一種像整籃碗泡進槽裡，一次洗很多；單片逐片洗。",
+   "tts": "另一種像整籃碗泡進槽裡，一次洗很多；單片逐片洗。",
    "subtitle": {
-    "zh": "另有批次酸槽\n一次泡一批\n單片洗則一片一片來\n各有用途",
-    "en": "There are also batch wet benches, | soaking a whole batch at once; | single-wafer tools go one by one; | each has its use."
+    "zh": "另一種\n像整籃碗泡進槽裡\n一次洗很多\n單片逐片洗",
+    "en": "Another way: | like soaking a whole basket of bowls, | many at a time; | single-wafer goes one by one."
    },
    "keywords": [
-    "批次酸槽",
-    "單片洗"
+    "整籃碗",
+    "單片"
    ],
    "cues": [
     {
      "id": "bat",
-     "text": "批次酸槽"
+     "text": "整籃碗"
     },
     {
      "id": "one",
-     "text": "一次泡一批"
+     "text": "泡進槽裡"
     },
     {
      "id": "sgl",
-     "text": "單片洗"
+     "text": "單片"
     },
     {
      "id": "use",
-     "text": "各有用途"
+     "text": "逐片洗"
     }
    ],
    "component": "ThreeScene",
@@ -5081,7 +5056,7 @@
       "yaw": -0.05
      },
      {
-      "at": "one-12",
+      "at": "start+56",
       "dur": 30,
       "x": 37.6,
       "y": -0.5,
@@ -5110,7 +5085,7 @@
      },
      {
       "id": "bbDrip",
-      "at": "one+26",
+      "at": "start+92",
       "ramp": 6,
       "until": "s13:start+400"
      }
@@ -5121,24 +5096,24 @@
       "text": "批次酸槽（卡匣浸泡）",
       "en": "Batch wet bench",
       "color": "amber",
-      "at": "bat-2",
-      "until": "one-14"
+      "at": "start+8",
+      "until": "start+53"
      },
      {
       "part": "bbweir",
       "text": "溢流堰＋外槽",
       "en": "Overflow weir & trough",
       "color": "blue",
-      "at": "one-4",
-      "until": "one+46"
+      "at": "start+90",
+      "until": "start+135"
      },
      {
       "part": "bbht",
       "text": "加熱棒＋下方泵與濾芯",
       "en": "Heater, pump & filter",
       "color": "amber",
-      "at": "one+54",
-      "until": "s10:start-26"
+      "at": "start+166",
+      "until": "start+211"
      }
     ],
     "overlay": [
@@ -5171,18 +5146,20 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "pauseAfter": 0.6
+   "durationSec": 9.0,
+   "pauseAfter": 0.6,
+   "headSec": 0.3,
+   "holdSec": 4.23
   },
   {
    "id": "s10",
    "beat": "mechanism",
    "para": 10,
-   "narration": "最前段的清洗機，多是日系、美系大廠；台灣廠打進封裝端和中段。",
-   "tts": "最前段的清洗機，多是日系、美系大廠；台灣廠打進封裝端和中段。",
+   "narration": "最前段多是日美大廠，台灣廠主攻封裝端與中段。",
+   "tts": "最前段多是日美大廠，台灣廠主攻封裝端與中段。",
    "subtitle": {
-    "zh": "最前段的清洗機\n多是日系、美系大廠\n台灣廠打進封裝端和中段",
-    "en": "The front-most cleaning tools | mostly come from Japanese and US makers; | Taiwan's makers sell into packaging and the mid-stage."
+    "zh": "最前段多是\n日美大廠\n台灣廠主攻\n封裝端與中段",
+    "en": "The very front stage is mostly | Japanese and US makers; | Taiwan's makers focus on | packaging and the mid-stage."
    },
    "keywords": [
     "最前段",
@@ -5196,7 +5173,7 @@
     },
     {
      "id": "foreign",
-     "text": "日系、美系大廠"
+     "text": "日美"
     },
     {
      "id": "tw",
@@ -5204,7 +5181,7 @@
     },
     {
      "id": "back",
-     "text": "封裝端和中段"
+     "text": "封裝端"
     }
    ],
    "component": "ThreeScene",
@@ -5253,8 +5230,10 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "pauseAfter": 0.6
+   "durationSec": 6.5,
+   "pauseAfter": 0.6,
+   "headSec": 0.3,
+   "holdSec": 1.94
   },
   {
    "id": "s11",
@@ -5328,18 +5307,20 @@
      }
     ]
    },
-   "durationSec": 4.6,
-   "pauseAfter": 0.6
+   "durationSec": 5.2,
+   "pauseAfter": 0.6,
+   "headSec": 0.3,
+   "holdSec": 1.5
   },
   {
    "id": "s12",
    "beat": "cta",
    "para": 12,
-   "narration": "下一集看濺鍍靶材。留言設備廠，拿完整資料。",
-   "tts": "下一集看濺鍍靶材。留言設備廠，拿完整資料。",
+   "narration": "洗乾淨就鍍薄膜，下一集看濺鍍靶材。留言設備廠拿資料。",
+   "tts": "洗乾淨就鍍薄膜，下一集看濺鍍靶材。留言設備廠拿資料。",
    "subtitle": {
-    "zh": "下一集看濺鍍靶材\n留言設備廠\n拿完整資料",
-    "en": "Next: sputtering targets. | Comment \"equipment makers\" | for the full notes."
+    "zh": "洗乾淨就鍍薄膜\n下一集看濺鍍靶材\n留言設備廠\n拿資料",
+    "en": "Clean wafers get coated: | next, sputtering targets. | Comment \"equipment makers\" | for the notes."
    },
    "keywords": [
     "濺鍍靶材",
@@ -5394,7 +5375,9 @@
      }
     ]
    },
-   "durationSec": 4.8
+   "durationSec": 6.4,
+   "headSec": 0.3,
+   "holdSec": 1.21
   },
   {
    "id": "s13",
