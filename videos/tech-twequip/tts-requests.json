@@ -97,5 +97,32 @@
    "retrySec": 21298,
    "daily": true
   }
+ },
+ {
+  "at": "2026-11-27T02:09:17.455Z",
+  "purpose": "audition:s6",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 172,
+   "candidatesTokenCount": 617,
+   "totalTokenCount": 789,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 172
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 617
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
