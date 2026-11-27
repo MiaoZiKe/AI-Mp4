@@ -475,13 +475,14 @@ BOX("slPadBody", "slPad", X6 - HW, X6 + HW, PADY, PADY + 1.6, -3.4, 3.4, "pad");
 BOX("slPadPlaten", "slPad", X6 - HW, X6 + HW, PADY + 1.6, PADY + 2.0, -3.4, 3.4, "steel2");
 const rnd = (() => { let s = 20261127; return () => { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }; })();
 P({ id: "slPadPore", layer: "slPad", shape: "sphere", size: [0.2], scale: [1, 0.55, 1], pos: [0, PADY + 0.02, 0], at: Array.from({ length: 70 }, () => [R2(X6 - HW + 0.5 + rnd() * (2 * HW - 1)), 0, R2(-3.1 + rnd() * 6.2)]), mat: "padDark" });
+P({ id: "slPadPoreF", layer: "slPad", shape: "sphere", size: [0.22], scale: [1, 1, 0.45], pos: [0, 0, 3.42], at: Array.from({ length: 44 }, (_, i) => [R2(X6 - HW + 0.5 + ((i % 22) / 21) * (2 * HW - 1) + (i >= 22 ? 0.3 : 0)), R2(PADY + 0.4 + (i >= 22 ? 0.7 : 0) + rnd() * 0.25), 0]), mat: "padDark" });
 P({ id: "slPadFib", layer: "slPad", shape: "sphere", size: [0.11], pos: [0, PADY + 0.05, 0], at: Array.from({ length: 60 }, () => [R2(X6 - HW + 0.4 + rnd() * (2 * HW - 0.8)), 0, R2(-3.2 + rnd() * 6.4)]), mat: "padDark" });
 // 磨粒：二氧化矽圓球（淡藍白）。自由漂浮的散在液體裡做布朗運動；受壓 3 顆夾在墊與凸起頂之間（略壓扁）
 const inBump = ([x, y]) => x > XB - 2.7 && x < XB + 2.7 && y < 6.2;
 const FREE = Array.from({ length: 40 }, () => [R2(X6 - HW + 0.6 + rnd() * (2 * HW - 1.2)), R2(3.0 + rnd() * 3.3), R2(-3 + rnd() * 6)]).filter((p) => !inBump(p));
 P({ id: "gFree", layer: "grainFree", shape: "sphere", size: [0.36], pos: [0, 0, 0], at: FREE, mat: "silica" });
 P({ id: "gFreeB", layer: "grainFree", shape: "sphere", size: [0.28], pos: [0, 0, 0], at: Array.from({ length: 24 }, () => [R2(X6 - HW + 0.6 + rnd() * (2 * HW - 1.2)), R2(2.9 + rnd() * 3.5), R2(-3 + rnd() * 6)]).filter((p) => !inBump(p)), mat: "silica" });
-P({ id: "gPress", layer: "grainPress", shape: "sphere", size: [0.42], scale: [1, 0.8, 1], pos: [0, 0, 0], at: [[XB - 1.2, 6.32, -0.8], [XB + 0.4, 6.36, 1.4], [XB + 1.4, 6.3, -0.3]], mat: "silica" });
+P({ id: "gPress", layer: "grainPress", shape: "sphere", size: [0.42], scale: [1, 0.8, 1], pos: [0, 0, 0], at: [[XB - 1.3, 6.24, 1.5], [XB + 0.4, 6.3, 1.4], [XB + 1.6, 6.22, 1.2]], mat: "silica" });
 // 氧化劑小分子（紅白雙球）：游向表面
 P({ id: "oxA", layer: "oxMol", shape: "sphere", size: [0.17], pos: [0, 0, 0], at: Array.from({ length: 20 }, () => [R2(X6 - HW + 0.6 + rnd() * 4.2), R2(3.2 + rnd() * 3), R2(-3 + rnd() * 6)]), mat: "ohO" });
 P({ id: "oxB", layer: "oxMol", shape: "sphere", size: [0.1], pos: [0.22, 0.12, 0], at: Array.from({ length: 20 }, () => [R2(X6 - HW + 0.6 + rnd() * 4.2), R2(3.2 + rnd() * 3), R2(-3 + rnd() * 6)]), mat: "ohH" });
@@ -494,7 +495,7 @@ actions.padPress = { type: "pulse", _說明: "墊子往下壓（被夾住的磨�
 // 刮傷示範（s7 前半）：結塊的大顆粒夾在墊與晶圓之間劃出一道紅線（只演一次）；線一段一段露出
 LAY("lump", [3.4, 2.4, X6 - 5.2, 4.0]); BOX("lumpA", "lump", X6 - 6.4, X6 - 4.2, 2.2, 4.6, -1.0, 1.0, "lump"); P({ id: "lumpB", layer: "lump", shape: "sphere", size: [0.95], pos: [X6 - 4.4, 3.2, 0.6], mat: "lump" }); P({ id: "lumpC", layer: "lump", shape: "sphere", size: [0.8], pos: [X6 - 6.2, 4.3, -0.4], mat: "lump" }); P({ id: "lumpD", layer: "lump", shape: "sphere", size: [0.7], pos: [X6 - 5.4, 3.6, 0.9], mat: "silica" });
 for (let i = 0; i < 6; i++) { LAY(`scr${i}`, [2, 0.4, X6 - 3.2 + i * 1.3, 2.4]); BOX(`scrBar${i}`, `scr${i}`, X6 - 5.8 + i * 1.3, X6 - 4.2 + i * 1.3, 2.2, 2.4, -0.18, 0.18, "scratch"); }
-Object.assign(anchors, { slurry: A("slBlock", [X6 + 6, 6.2, 3.4], 150, -90), grain: A("grainPress", [XB + 0.4, 6.36, 1.4], 150, 100), ox: A("oxFilm", [X6 - 5.4, 2.5, 3.4], -150, 100), bump: A("bumpHi", [XB + 2.2, 4.4, 2.0], 150, 110), lumpL: A("lump", [X6 - 4.4, 4.3, 0.8], -150, -100), scratchL: A("scr3", [X6 + 0.6, 2.3, 0.2], 150, 100) });
+Object.assign(anchors, { slurry: A("slBlock", [X6 + 6, 6.2, 3.4], 150, -90), grain: A("grainPress", [XB + 0.4, 6.3, 1.4], 150, 100), ox: A("oxFilm", [X6 - 5.4, 2.5, 3.4], -150, 100), bump: A("bumpHi", [XB + 2.2, 4.4, 2.0], 150, 110), lumpL: A("lump", [X6 - 4.4, 4.3, 0.8], -150, -100), scratchL: A("scr3", [X6 + 0.6, 2.3, 0.2], 150, 100) });
 
 // ═════ S7（x＝218）：研磨液混合／循環槽組 ═════
 const X7 = 218;

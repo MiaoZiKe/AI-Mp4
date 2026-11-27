@@ -171,7 +171,7 @@ P["s3"] = {"shot": [shot("start-1", -33.0, 2.4, 40, 26, 1, yaw=0.0), shot("pool-
 P["s4"] = {"shot": [shot("start-1", 3.0, 8.0, 62, 14, 1, yaw=0.0), shot("start+56", 14.0, 4.5, 62, 22, 26), shot("start+104", 26.0, 9.5, 76, 16, 30)],
  "run": [run("supFlow", "start", "s5:start-4", 10), run("tankLevel", "start", "s5:start-4", 6)],
  "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+16", "start+58"), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+78", "start+106"),
-            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+112", "start+186", xy=[330, 410])],
+            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+112", "start+176", xy=[330, 410])],
  "overlay": [sec("chem-path", "start+30", "s5:start-8", "送液路徑：一路過濾、一路循環", "示意（不標流量與壓力）", {"tank": "tank", "pipe": "pipe", "desk": "desk", "water": "s4b:water", "clean": "s4c:clean", "back": B4})]}
 P["s4b"] = {"shot": [shot("start-1", 26.0, 9.5, 76, 16, 1), shot("start+4", 28.0, 9.0, 60, 22, 20), shot("start+24", 22.0, 8.0, 64, 20, 26, yaw=0.5), shot("start+56", 30.0, 8.0, 62, 22, 26),
                      shot("start+126", 31.0, 9.5, 58, 22, 26), shot("start+168", 27.0, 11.5, 96, 22, 26), shot("start+222", 26.0, 10.0, 80, 20, 30, yaw=0.0)],
@@ -191,14 +191,14 @@ P["s5"] = {"shot": [shot("start-1", 152.0, 3.8, 60, 16, 1, yaw=0.0), shot("lemon
  "labels": [lab("pfaP", "塑膠管：乾淨", "Plastic: clean", "blue", "plastic-2", "lemon-18"), lab("cup", "鐵杯", "Iron cup", "amber", "lemon+2", "bite-14"), lab("rustP", "鐵管內壁：被酸溶出", "Iron: dissolved by acid", "amber", "bite+4", "s6:start-14")],
  "overlay": [sec("chem-pipe", "start+24", "s6:start-8", "酸咬金屬", "示意：多數藥水管線用氟塑膠", {"plastic": "plastic", "iron": "iron", "lemon": "lemon", "bite": "bite"})]}
 # ─── s6：研磨液＝磨粒＋藥劑 ───
-P["s6"] = {"shot": [shot("start-1", 182.0, 4.6, 58, 8, 1, yaw=0.0), shot("grain-6", 183.0, 4.4, 50, 10, 36), shot("sand-12", 182.0, 4.4, 50, 12, 36)],
+P["s6"] = {"shot": [shot("start-1", 182.0, 5.8, 56, 8, 1, yaw=0.0), shot("grain-6", 183.0, 5.8, 48, 10, 36), shot("sand-12", 182.0, 5.8, 48, 12, 36)],
  "run": [run("brown", "start", "s7b:start-1", 8), run("drift", "start", "s7b:start-1", 8), run("padPress", "sand-6", "s7b:start-1", 8), run("grit", "sand+20", "s7b:start-1", 8), run("oxIn", "chem-8", "s7b:start-1", 8)],
  "labels": [lab("slurry", "研磨液（放大）", "Slurry (magnified)", "blue", "slurry+2", "grain-6"), lab("grain", "磨粒", "Abrasive grain", "amber", "grain-2", "sand-6"), lab("bump", "凸起處被磨薄", "High spot gets thinner", "amber", "sand+2", "chem-8"),
-            lab("ox", "藥劑溶出氧化層", "Chemistry dissolves oxide", "blue", "chem-2", "s7:start-4")],
+            lab("ox", "藥劑溶出氧化層", "Chemistry dissolves oxide", "blue", "chem-2", "s7:start-9")],
  "overlay": [sec("chem-slurry", "start+24", "s7:start-8", "磨粒磨、藥劑溶", "示意（不標粒徑與濃度）", {"slurry": "slurry", "grain": "grain", "wash": "wash", "sand": "sand", "chem": "chem", "both": "both"})]}
 # ─── s7（拆兩幕，r1）：s7 結塊刮傷；s7b 槽裡攪動、循環過濾（槽組爆炸分解） ───
 P["s7"] = {"shot": [shot("start-1", 181.0, 4.2, 54, 10, 1, yaw=0.0)],
- "labels": [lab("lumpL", "結塊的大顆粒", "Clumped grain", "amber", "lump+2", "scratch-4"), lab("scratchL", "刮痕", "Scratch", "amber", "scratch+34", "s7b:start-2")],
+ "labels": [lab("lumpL", "結塊的大顆粒", "Clumped grain", "amber", "lump+2", "scratch-4"), lab("scratchL", "刮痕", "Scratch", "amber", "scratch+34", "s7b:start-9")],
  "overlay": [sec("chem-stir", "start+24", "s8:start-8", "不讓磨粒結塊", "示意", {"lump": "lump", "scratch": "scratch", "stir": "s7b:stir", "loop": "s7b:loop", "filter": "s7b:filter", "soy": "s7b:soy"})]}
 P["s7b"] = {"shot": [shot("start-1", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.0, 8.0, 76, 20, 28), shot("loop-4", 218.0, 6.0, 80, 22, 28), shot("filter+4", 220.0, 7.0, 76, 22, 26), shot("stir+150", 218.0, 7.0, 96, 24, 34)],
  "run": [run("stirSpin", "stir+6", "s8:start-4", 10), run("suspend", "stir+6", "s8:start-4", 10), run("n2Mist", "stir-4", "s8:start-4", 8), run("sedWarn", "stir-2", "loop+4", 6),
@@ -206,7 +206,7 @@ P["s7b"] = {"shot": [shot("start-1", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.
  "labels": [lab("stir", "攪拌", "Stirring", "blue", "stir-2", "stir+44"), lab("sed", "結塊沉底、被抽走", "Clumps pulled off", "amber", "stir+50", "filter-6"), lab("filt", "過濾", "Filter", "blue", "filter+2", "filter+52")]}
 # ─── s8：公司（英特格、中華化、三福化） ───
 P["s8"] = {"zoom": [{"to": "co", "at": "start-1", "dur": 1}], "shot": [shot("start-1", 258.0, 4.6, 72, 14, 1, yaw=0.0)],
- "overlay": [sec("chem-co", "start-4", "s9:start-14", "供應商", "Entegris 官網、經濟日報、Yahoo 股市；截至 2026/11/27", {"intl": "intl", "chc": "chc", "acid": "acid", "sanfu": "sanfu", "dev": "dev"}, h=392, y=1000)]}
+ "overlay": [sec("chem-co", "start-4", "s9:start-14", "供應商", "Entegris 官網、經濟日報、Yahoo 股市；截至11/27", {"intl": "intl", "chc": "chc", "acid": "acid", "sanfu": "sanfu", "dev": "dev"}, h=392, y=1000)]}
 # ─── s9：預告研磨墊（一角） ───
 P["s9"] = {"zoom": [{"to": "tool", "at": "start", "dur": 1}], "shot": [shot("start", 292.0, 3.0, 72, 34, 1, yaw=0.0), shot("next-6", 295.0, 2.6, 76, 30, 40)],
  "run": [run("padSpin", "start", FAR, 10), run("padDrip", "start", FAR, 6), run("padSpread", "start+10", FAR, 8), run("padRipple", "start+10", FAR, 6)],
