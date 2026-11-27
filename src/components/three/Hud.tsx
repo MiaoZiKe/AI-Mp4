@@ -840,7 +840,8 @@ export const HudOverlays: React.FC<{ m: Model3D; f: number; list: Overlay3D[]; s
   <>
     {list.map((o: Overlay3D, i) => {
       if (f < o.at - 1) return null;
-      const k = tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
+      // cut（2026/11/27 tech-pad）：1 幀就位、1 幀收走，不淡入淡出（卡片進場第一格不半透明；和 3D 鏡頭、字幕、出處同一幀換幕）
+      const k = (o as any).cut ? (f >= o.at && f < o.until ? 1 : 0) : tween(f, o.at, 5, EASE.enter) * (1 - tween(f, o.until, 6, EASE.exit));
       if (k <= 0) return null;
       const c = hudAccent(o.color);
       if (o.type === "stamp" && o.style === "tag") {
@@ -1135,7 +1136,12 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const ordered = scenes.filter((x) => by[x.id]);
   const atN = atOf(timeline);
   const subCues = ordered.filter((x) => by[x.id].subtitleWindow).map((x) => ({ id: x.id, en: x.subtitle.en, keywords: x.keywords, mark: (x.props as any)?.kwMark, notes: ([] as any[]).concat((x.props as any)?.capNote ?? []).map((n) => ({ a: atN(x.id, n.at, 1e9), b: atN(x.id, n.until, 1e9), zh: n.zh, en: n.en })), window: by[x.id].subtitleWindow as [number, number], phrases: by[x.id].lines, keywords_at: by[x.id].keywords }));
-  const srcCues = ordered.map((x) => ({ sources: x.sources, window: by[x.id].sourceWindow as [number, number] }));
+  // sourceFollowsCaption（2026/11/27 tech-pad，script.json 頂層）：出處列和字幕同一幀換（出處窗起點＝字幕窗起點），不比字幕早換
+  const sfc = Boolean((props as any).sourceFollowsCaption);
+  const srcCues = ordered.map((x, i) => {
+    const w = by[x.id].sourceWindow as [number, number], sw = sfc ? (by[x.id].subtitleWindow as [number, number] | null) : null, nx = ordered[i + 1], nsw = sfc && nx ? (by[nx.id].subtitleWindow as [number, number] | null) : null;
+    return { sources: x.sources, window: [sw ? sw[0] : w[0], nsw ? nsw[0] : w[1]] as [number, number] };
+  });
   // 鉤子在第一次真正縮放（不是 drift）時退場
   const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;
   // 3D 段鏡頭推近拉遠時，尺標與倍率跟著鏡頭距離伸縮（以交棒那一刻的距離為準）

@@ -187,42 +187,52 @@ P({ id: "wArrow", layer: "wSi", shape: "cyl", size: [0.09, 0.8], rot: V, pos: [0
 P({ id: "wArrowHead", layer: "wSi", shape: "cyl", size: [0.22, 0.14], rot: V, pos: [0, 4.32, 0], at: [[14.2, 0, 0], [16.9, 0, 0], [19.6, 0, 0], [22.3, 0, 0]], mat: "mark" });
 P({ id: "wSiNotch", layer: "wSi", shape: "box", size: [0.3, 0.8, 0.06], pos: [0, 3.55, WZ + 0.02], at: [[13.2, 0, 0], [22.8, 0, 0]], mat: "dark" });
 // 剖面標尺：左側黃色括弧（標凸處磨掉的量）
-// ═════ 站 M：墊子顯微剖面（s4～s6）＝研磨層（三塊陸地、兩條溝槽、細孔）＋子墊＋微凸起（新／磨滑／重新刷粗三種）＋鑽石碟修整頭 ═════
-const MX = 38, MZ = 2.2, LANDS = [[32.0, 35.6], [36.4, 40.0], [40.8, 44.0]];
-LAY("mPlinth", [15, 1, MX, 0.5]);
-BOX("mPl", "mPlinth", 30, 46, 0, 0.9, -3.2, 3.2, "band"); BOX("mPlTop", "mPlinth", 30, 46, 0.9, 1.0, -3.2, 3.2, "panel2");
-LAY("mBase", [13, 1, MX, 1.2]); BOX("mSub", "mBase", 31.6, 44.4, 1.0, 1.5, -MZ, MZ, "subpad");
-{ const cells = []; for (let i = 0; i < 26; i++) cells.push([R2(31.9 + rnd() * 12.2), R2(1.08 + rnd() * 0.34), MZ + 0.006]); P({ id: "mSubCell", layer: "mBase", shape: "cyl", size: [0.05, 0.01], pos: [0, 0, 0], at: cells, mat: "dark" }); }
-BOX("mAdhLine", "mBase", 31.6, 44.4, 1.0, 1.04, -MZ - 0.01, MZ + 0.01, "adh");
-const poreXY = []; LANDS.forEach(([a, b]) => { for (let i = 0; i < 9; i++) poreXY.push([R2(a + 0.2 + rnd() * (b - a - 0.4)), R2(1.62 + rnd() * 0.72)]); });
-LANDS.forEach(([a, b], i) => { LAY(`mLand${i}`, [R2(b - a), 1.0, R2((a + b) / 2), 2.0]); BOX(`mLandB${i}`, `mLand${i}`, a, b, 1.5, 2.5, -MZ, MZ, "padCream");
-  P({ id: `mLandPore${i}`, layer: `mLand${i}`, shape: "cyl", size: [0.1, 0.012], pos: [0, 0, 0], at: poreXY.slice(i * 9, i * 9 + 9).map(([x, y]) => [x, y, MZ + 0.006]), mat: "pore" }); });
-LAY("mGrains", [13, 1, MX, 2.0]); P({ id: "mGrain", layer: "mGrains", shape: "sphere", size: [0.055], pos: [0, 0, MZ + 0.05], at: poreXY.filter((_, i) => i % 2 === 0).map(([x, y]) => [x + 0.02, y + 0.02, 0]), mat: "slurryDot" });
-LAY("mSlurry", [2, 1, MX, 1.8]); [[35.6, 36.4], [40.0, 40.8]].forEach(([a, b], i) => BOX(`mSlurryB${i}`, "mSlurry", a, b, 1.5, 2.15, -MZ, MZ, "slurryM"));
-// 微凸起（poly 三角齒，沿 z 拉長）：F 新、G 磨滑（齒尖變平、閃亮）、R 重新刷粗
-const teeth = (w, kind, ph) => { const pitch = 0.34, n = Math.floor(w / pitch), pts = [[-w / 2, -0.03]]; const r2 = () => 0.8 + 0.4 * (((ph * 7 + 3) % 5) / 5 + 0.1);
-  for (let i = 0; i < n; i++) { const x0 = -w / 2 + i * pitch + (w - n * pitch) / 2, h = (kind === "G" ? 0.07 : 0.27) * (0.8 + 0.4 * rnd());
-    if (kind === "G") { pts.push([x0 + 0.06, 0.02], [x0 + 0.1, h], [x0 + pitch - 0.1, h], [x0 + pitch - 0.06, 0.02]); } else { pts.push([x0, 0.02], [x0 + pitch / 2, h], [x0 + pitch, 0.02]); } }
+// ═════ 站 M：墊子顯微剖面（s2 局部放大、s4～s6）＝研磨層（三塊陸地、兩條溝槽、細孔開在墊面）＋子墊＋微凸起（新／磨滑／重新刷粗）＋鑽石碟修整頭 ═════
+// r1（2026/11/27 審查）：橫向縮窄、縱向加高，讓剖面站撐滿主畫面；磨滑＝平滑發亮的頂面（和尖齒一眼分得出）；細孔開在墊面、孔裡卡磨粒；
+// 修整頭降到貼墊面，一塊一塊掃過（每塊陸地被蓋住時是磨滑、頭離開後變尖齒）。
+const MX = 38, MZ = 2.2, LANDS = [[33.2, 35.8], [36.7, 39.3], [40.2, 42.8]], LY0 = 1.6, LTOP = 3.0, TX = 38.0;
+LAY("mPlinth", [12, 1, MX, 0.5]);
+BOX("mPl", "mPlinth", 32.0, 44.0, 0, 0.9, -3.2, 3.2, "band"); BOX("mPlTop", "mPlinth", 32.0, 44.0, 0.9, 1.0, -3.2, 3.2, "panel2");
+LAY("mBase", [11, 1, MX, 1.3]); BOX("mSub", "mBase", 32.8, 43.2, 1.0, LY0, -MZ, MZ, "subpad");
+{ const cells = []; for (let i = 0; i < 22; i++) cells.push([R2(33.0 + rnd() * 10.0), R2(1.08 + rnd() * 0.42), MZ + 0.006]); P({ id: "mSubCell", layer: "mBase", shape: "cyl", size: [0.05, 0.01], pos: [0, 0, 0], at: cells, mat: "dark" }); }
+BOX("mAdhLine", "mBase", 32.8, 43.2, 1.0, 1.06, -MZ - 0.01, MZ + 0.01, "adh");
+// 細孔：靠近墊面（頂邊）的圓孔，一塊陸地 4 個（其中第 3 個＝抓磨粒的孔）＋中下段 3 個較小的孔（剖面裡的內部孔隙）
+const PORE_DX = [-0.95, -0.3, 0.35, 0.95], PORE_DY = [0.0, 0.07, 0.03, 0.1], poreXY = [], poreIn = [];
+LANDS.forEach(([a, b], i) => { const c = (a + b) / 2; PORE_DX.forEach((dx, k) => poreXY.push([R2(c + dx), R2(LTOP - 0.19 - PORE_DY[k])])); [[-0.6, 0.55], [0.1, 0.95], [0.75, 0.62]].forEach(([dx, dy]) => poreIn.push([R2(c + dx), R2(LTOP - 0.19 - dy - 0.3)])); });
+LANDS.forEach(([a, b], i) => { LAY(`mLand${i}`, [R2(b - a), 1.4, R2((a + b) / 2), 2.3]); BOX(`mLandB${i}`, `mLand${i}`, a, b, LY0, LTOP, -MZ, MZ, "padCream");
+  P({ id: `mLandPore${i}`, layer: `mLand${i}`, shape: "cyl", size: [0.18, 0.02], pos: [0, 0, 0], at: poreXY.slice(i * 4, i * 4 + 4).map(([x, y]) => [x, y, MZ + 0.012]), mat: "pore" });
+  P({ id: `mLandPoreIn${i}`, layer: `mLand${i}`, shape: "cyl", size: [0.1, 0.02], pos: [0, 0, 0], at: poreIn.slice(i * 3, i * 3 + 3).map(([x, y]) => [x, y, MZ + 0.012]), mat: "pore" }); });
+// 磨粒：卡在細孔裡（每塊陸地第 1、3 個孔各一顆，亮白球，露出孔口）
+LAY("mGrains", [11, 1.4, MX, 2.3]); P({ id: "mGrain", layer: "mGrains", shape: "sphere", size: [0.085], pos: [0, 0, MZ + 0.05], at: poreXY.filter((_, i) => i % 4 === 0 || i % 4 === 2).map(([x, y]) => [x, R2(y + 0.02), 0]), mat: "slurryDot" });
+LAY("mSlurry", [2, 1, MX, 2.0]); [[35.8, 36.7], [39.3, 40.2]].forEach(([a, b], i) => BOX(`mSlurryB${i}`, "mSlurry", a, b, LY0, 2.7, -MZ, MZ, "slurryM"));
+// 微凸起（沿 z 拉長的三角齒）：F 新（尖）、R 重新刷粗（尖）；磨滑 G＝平滑發亮的薄片（沒有齒）
+const teeth = (w, kind, ph) => { const pitch = 0.3, n = Math.floor(w / pitch), pts = [[-w / 2, -0.03]];
+  for (let i = 0; i < n; i++) { const x0 = -w / 2 + i * pitch + (w - n * pitch) / 2, h = 0.5 * (0.75 + 0.5 * rnd()); pts.push([x0, 0.02], [x0 + pitch / 2, h], [x0 + pitch, 0.02]); }
   pts.push([w / 2, 0.02], [w / 2, -0.03]); return pts.map(([u, v]) => [R2(u), R2(v)]); };
 LANDS.forEach(([a, b], i) => { const xc = (a + b) / 2, w = b - a;
-  for (const [k, mat] of [["F", "padCream"], ["G", "padGlaze"], ["R", "padCream"]]) { LAY(`mA${k}${i}`, [w, 0.4, xc, 2.6]); P({ id: `mAsp${k}${i}`, layer: `mA${k}${i}`, shape: "poly", size: [1, 1, R2(2 * MZ)], pts: teeth(w, k, i + (k === "R" ? 3 : 0)), pos: [R2(xc), 2.5, 0], mat }); } });
-// 鑽石碟修整頭：鎳底板＋鑽石顆粒（朝下的菱形尖）＋氣缸＋旋轉軸；沿 x 來回掃
-LAY("mTool", [4, 2, 37.9, 3.4]);
-BOX("mtPlate", "mTool", 36.7, 39.1, 3.08, 3.38, -MZ - 0.1, MZ + 0.1, "ni"); BOX("mtCyl", "mTool", 37.5, 38.3, 3.38, 4.0, -0.4, 0.4, "steel2"); BOX("mtCap", "mTool", 37.2, 38.6, 4.0, 4.3, -0.6, 0.6, "dark");
-P({ id: "mtGrain", layer: "mTool", shape: "poly", size: [1, 1, 0.5], pts: [[-0.2, 0], [0.2, 0], [0, -0.5]], pos: [0, 3.08, 0], at: [-1.3, -0.65, 0, 0.65, 1.3].flatMap((dx) => [-1.5, 0, 1.5].map((z) => [R2(37.9 + dx), 0, z])), mat: "dia" });
-P({ id: "mtBond", layer: "mTool", shape: "box", size: [0.36, 0.1, 0.62], pos: [0, 3.1, 0], at: [-1.3, -0.65, 0, 0.65, 1.3].flatMap((dx) => [-1.5, 0, 1.5].map((z) => [R2(37.9 + dx), 0, z])), mat: "steel" });
-P({ id: "mtChip", layer: "mTool", shape: "sphere", size: [0.05], pos: [37.9, 2.9, 1.2], at: [[-1.4, 0.1, 0.2], [-0.5, 0.3, -0.3], [0.2, 0.05, 0.4], [0.9, 0.25, -0.2], [1.5, 0.1, 0.3], [-0.9, 0.18, -0.5]], mat: "debris" });
-BOX("mtMark", "mTool", 38.5, 39.0, 3.38, 3.46, 1.9, 2.3, "mark");
+  for (const k of ["F", "R"]) { LAY(`mA${k}${i}`, [w, 0.6, xc, 3.2]); P({ id: `mAsp${k}${i}`, layer: `mA${k}${i}`, shape: "poly", size: [1, 1, R2(2 * MZ)], pts: teeth(w, k, i + (k === "R" ? 3 : 0)), pos: [R2(xc), LTOP, 0], mat: "padCream" }); }
+  LAY(`mAG${i}`, [w, 0.2, xc, 3.05]); BOX(`mAspG${i}`, `mAG${i}`, a, b, LTOP, R2(LTOP + 0.05), -MZ, MZ, "padGlazeShine"); });
+// 鑽石碟修整頭（寬 3.2，剛好蓋住一塊陸地）：鎳底板＋鑽石顆粒（朝下的菱形尖）＋氣缸＋旋轉軸；尖端貼在磨滑的墊面上
+LAY("mTool", [4, 2, TX, 4.2]);
+BOX("mtPlate", "mTool", R2(TX - 1.6), R2(TX + 1.6), 3.55, 3.85, -MZ - 0.1, MZ + 0.1, "ni"); BOX("mtCyl", "mTool", R2(TX - 0.45), R2(TX + 0.45), 3.85, 4.6, -0.45, 0.45, "steel2"); BOX("mtCap", "mTool", R2(TX - 0.8), R2(TX + 0.8), 4.6, 4.95, -0.65, 0.65, "dark");
+P({ id: "mtGrain", layer: "mTool", shape: "poly", size: [1, 1, 0.5], pts: [[-0.2, 0], [0.2, 0], [0, -0.5]], pos: [0, 3.55, 0], at: [-1.2, -0.6, 0, 0.6, 1.2].flatMap((dx) => [-1.5, 0, 1.5].map((z) => [R2(TX + dx), 0, z])), mat: "dia" });
+P({ id: "mtBond", layer: "mTool", shape: "box", size: [0.36, 0.1, 0.62], pos: [0, 3.57, 0], at: [-1.2, -0.6, 0, 0.6, 1.2].flatMap((dx) => [-1.5, 0, 1.5].map((z) => [R2(TX + dx), 0, z])), mat: "steel" });
+P({ id: "mtChip", layer: "mTool", shape: "sphere", size: [0.06], pos: [TX, 3.3, 1.2], at: [[-1.4, 0.1, 0.2], [-0.5, 0.3, -0.3], [0.2, 0.05, 0.4], [0.9, 0.25, -0.2], [1.5, 0.1, 0.3], [-0.9, 0.18, -0.5]], mat: "debris" });
+BOX("mtMark", "mTool", R2(TX + 0.9), R2(TX + 1.3), 3.85, 3.93, 1.9, 2.3, "mark");
 
-// ═════ 站 T：新舊墊子厚度對照（s7 末）＝舊墊薄而溝槽淺、新墊厚而溝槽深 ═════
-LAY("tPlinth", [14, 1, 58, 0.5]); BOX("tPl", "tPlinth", 50.5, 65.5, 0, 0.9, -3.2, 3.2, "band"); BOX("tPlTop", "tPlinth", 50.5, 65.5, 0.9, 1.0, -3.2, 3.2, "panel2");
-for (const [nm, x0, h, mat] of [["Old", 52.0, 0.12, "padOld"], ["New", 59.2, 0.55, "padCream"]]) {
-  LAY(`t${nm}`, [5.4, 1, x0 + 2.4, 1.2]);
-  BOX(`t${nm}Sheet`, `t${nm}`, x0, x0 + 4.8, 1.0, 1.2, -2.0, 2.0, "subpad");
-  for (let i = 0; i < 3; i++) BOX(`t${nm}Land${i}`, `t${nm}`, R2(x0 + 0.2 + i * 1.55), R2(x0 + 1.3 + i * 1.55), 1.2, R2(1.2 + h), -2.0, 2.0, mat);
-  if (nm === "Old") P({ id: "tOldCrumb", layer: "tOld", shape: "sphere", size: [0.06], pos: [x0, 1.25, 2.1], at: [[0.4, 0, 0.1], [1.9, 0.02, 0.2], [3.3, 0, 0.15], [4.4, 0.02, 0.3], [2.6, 0, 0.35]], mat: "debris" });
-  LAY(`t${nm}Br`, [0.4, 1, x0 - 0.4, 1.3]);
-  BOX(`t${nm}BrV`, `t${nm}Br`, R2(x0 - 0.5), R2(x0 - 0.42), 1.0, R2(1.2 + h), 2.0, 2.08, "bracket"); BOX(`t${nm}BrT`, `t${nm}Br`, R2(x0 - 0.7), R2(x0 - 0.2), R2(1.2 + h - 0.02), R2(1.2 + h + 0.02), 2.0, 2.08, "bracket"); BOX(`t${nm}BrB`, `t${nm}Br`, R2(x0 - 0.7), R2(x0 - 0.2), 0.98, 1.02, 2.0, 2.08, "bracket");
+// ═════ 站 T：新舊墊子厚度對照（s7 開頭）＝舊墊總厚約新墊 60%、溝槽也淺；黃色括弧標總厚 ═════
+// r1：兩塊墊橫向縮窄（各 3.4 寬）、縱向加厚，站撐滿主畫面。新墊總厚 2.0（子墊 0.4＋研磨層 1.6），舊墊 1.2（子墊 0.4＋研磨層 0.8）
+LAY("tPlinth", [11, 1, 58, 0.5]); BOX("tPl", "tPlinth", 53.2, 62.8, 0, 0.9, -2.8, 2.8, "band"); BOX("tPlTop", "tPlinth", 53.2, 62.8, 0.9, 1.0, -2.8, 2.8, "panel2");
+const TH = { Old: { x0: 54.2, base: 0.4, land: 0.4, mat: "padOld" }, New: { x0: 58.4, base: 1.0, land: 0.6, mat: "padCream" } };
+for (const [nm, d] of Object.entries(TH)) {
+  const x0 = d.x0, yb = 1.4, yt = R2(yb + d.base), yl = R2(yt + d.land);
+  LAY(`t${nm}`, [4, 2.2, x0 + 1.7, 2.0]);
+  BOX(`t${nm}Sheet`, `t${nm}`, x0, R2(x0 + 3.4), 1.0, yb, -1.8, 1.8, "subpad");
+  BOX(`t${nm}Base`, `t${nm}`, x0, R2(x0 + 3.4), yb, yt, -1.8, 1.8, d.mat);
+  for (let i = 0; i < 3; i++) BOX(`t${nm}Land${i}`, `t${nm}`, R2(x0 + 0.2 + i * 1.15), R2(x0 + 1.1 + i * 1.15), yt, yl, -1.8, 1.8, d.mat);
+  if (nm === "Old") P({ id: "tOldCrumb", layer: "tOld", shape: "sphere", size: [0.07], pos: [x0, yt + 0.05, 1.9], at: [[0.4, 0, 0.1], [1.45, 0.02, 0.2], [2.6, 0, 0.15], [3.2, 0.02, 0.3], [1.9, 0, 0.35]], mat: "debris" });
+  LAY(`t${nm}Br`, [1, 3, x0 - 0.45, 2.0]);
+  BOX(`t${nm}BrV`, `t${nm}Br`, R2(x0 - 0.55), R2(x0 - 0.41), 1.0, yl, 1.8, 1.9, "bracket"); BOX(`t${nm}BrT`, `t${nm}Br`, R2(x0 - 0.85), R2(x0 - 0.11), R2(yl - 0.05), R2(yl + 0.05), 1.8, 1.9, "bracket"); BOX(`t${nm}BrB`, `t${nm}Br`, R2(x0 - 0.85), R2(x0 - 0.11), 0.95, 1.05, 1.8, 1.9, "bracket");
 }
 
 // ═════ 站 H：軟墊（順著起伏、凸凹都被碰到）vs 硬墊（只碰凸處、一顆碎屑壓出刮痕）；晶圓剖面倒扣，同 W 站的凸起 ═════
