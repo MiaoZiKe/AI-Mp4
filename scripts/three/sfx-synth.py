@@ -345,6 +345,18 @@ def frame_rms(x, hop):
     return np.sqrt((x[:, :n * hop].reshape(x.shape[0], n, hop) ** 2).mean(axis=(0, 2)) + 1e-12)
 
 
+MIN_GAP_DB = 14.0         # 硬門檻：旁白講話的每一窗，sfx 要比旁白低至少這麼多 dB（Andy 2026/11/27：「不要影響旁白聲」）
+GUARD_MARGIN_DB = 1.5     # 逐窗天花板多留的餘裕
+
+def sp_full(speech, nf):
+    # 講話窗往前後各放寬 2 窗（含壓低的 attack／release 區），這些窗也受天花板限制
+    m = speech[:nf] > 0.5
+    k = m.copy()
+    for d in (1, 2):
+        k |= np.roll(m, d) | np.roll(m, -d)
+    return k
+
+
 def cmd_mix(argv):
     voice, sfx, out = argv[0], argv[1], argv[2]
     end = float(argv[argv.index('--end') + 1]) if '--end' in argv else None
@@ -380,7 +392,26 @@ def cmd_mix(argv):
     s = np.tanh(s / cap) * cap
     sfx_rms = np.sqrt((frame_rms(s, hop)[act] ** 2).mean()) if act.any() else sfx_rms
     g = voice_rms * db(LEVEL_BELOW) / sfx_rms
-    mix = v + s * g * duck_s[None, :]
+    sd = s * g * duck_s[None, :]
+    # 硬性保護：旁白講話的每一個 20 ms 窗，sfx RMS ≤ 該窗旁白 RMS −(MIN_GAP_DB+MARGIN_DB)；
+    # 逐窗算增益上限（鄰窗取最小，再用線性內插平滑到每個樣本），撞擊聲落在講話中就被縮小。
+    nf = len(ve)
+    se = frame_rms(sd, hop)
+    ceil_ = ve * db(-(MIN_GAP_DB + GUARD_MARGIN_DB))
+    gf = np.where(sp_full(speech, nf), np.minimum(1.0, ceil_ / np.maximum(se, 1e-9)), 1.0)
+    gf = np.minimum(gf, np.minimum(np.roll(gf, 1), np.roll(gf, -1)))       # 鄰窗取最小
+    gf = np.minimum(gf, np.minimum(np.roll(gf, 2), np.roll(gf, -2)))
+    xs = (np.arange(nf) + 0.5) * hop
+    gs = np.interp(np.arange(n), xs, gf)
+    sd = sd * gs[None, :]
+    mix = v + sd
+    # 量測：講話窗逐窗最小差距（旁白 RMS 對 sfx RMS）
+    se2 = frame_rms(sd, hop); spk = speech[:nf] > 0.5
+    gap = 20 * np.log10(ve[spk] / np.maximum(se2[spk], 1e-9))
+    worst = float(gap.min()) if spk.any() else 99.0
+    print(f'講話段逐窗最小差距 {worst:.1f} dB（門檻 {MIN_GAP_DB} dB；講話窗 {int(spk.sum())} 個）')
+    if worst < MIN_GAP_DB:
+        sys.exit(f'錯誤：講話段有 sfx 只比旁白低 {worst:.1f} dB（<{MIN_GAP_DB}），不輸出')
     write_wav(out, mix)
     info = dict(voice_rms_db=round(20 * math.log10(voice_rms), 1), sfx_rms_db=round(20 * math.log10(sfx_rms * g), 1),
                 gain=round(g, 4), duck_db=DUCK_DB, level_below_db=LEVEL_BELOW)
