@@ -38,6 +38,8 @@ export const LOGOS: Record<string, LogoSpec> = {
   lam: { file: "logos/lam.svg", w: 229.748, h: 77.524, name: "科林研發 Lam Research", source: "https://commons.wikimedia.org/wiki/File:Lam_Research_logo.svg" },
   kla: { file: "logos/kla.png", w: 960, h: 214, name: "KLA 科磊", source: "https://commons.wikimedia.org/wiki/File:KLA_Corp._logo.svg" },
   gudeng: { file: "logos/gudeng.svg", w: 307.716, h: 87.038, name: "家登 Gudeng", source: "https://www.gudeng.com/img/logo.svg" },
+  gptc: { file: "logos/gptc.svg", w: 357.292, h: 72.532, name: "弘塑科技 GPTC", source: "https://www.gptc.com.tw/images/logo.svg（官網原檔）", bg: "#FFFFFF" },
+  scientech: { file: "logos/scientech.svg", w: 27.980648, h: 15.290625, labelH: 70, name: "辛耘 Scientech", source: "https://www.scientech.com.tw/sites/scientech.com.tw/files/logo.svg（官網原檔）", bg: "#FFFFFF" },
 };
 export const hasLogo = (id?: string) => !!id && !!LOGOS[id];
 export const logoLabelH = (id: string, base: number) => LOGOS[id]?.labelH ?? base;

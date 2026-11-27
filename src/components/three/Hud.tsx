@@ -49,6 +49,7 @@ import { AmatSection } from "./HudAmat";
 import { LamSection } from "./HudLam";
 import { TelSection } from "./HudTel";
 import { KlaSection } from "./HudKla";
+import { TwequipSection } from "./HudTwequip";
 import { EpiSection } from "./HudEpi";
 
 export type { HudLevel, HudSpec, ZoomKey } from "./hudLayout";
@@ -724,6 +725,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("asml-")) return <AsmlSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-asml（HudAsml.tsx）
   if (String((o as any).kind ?? "").startsWith("amat-")) return <AmatSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-amat（HudAmat.tsx）
   if (String((o as any).kind ?? "").startsWith("kla-")) return <KlaSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-kla（HudKla.tsx）
+  if (String((o as any).kind ?? "").startsWith("twequip-")) return <TwequipSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-twequip（HudTwequip.tsx）
   if (String((o as any).kind ?? "").startsWith("tel-")) return <TelSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-tel（HudTel.tsx）
   if (String((o as any).kind ?? "").startsWith("lam-")) return <LamSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-lam（HudLam.tsx）
   if (String((o as any).kind ?? "").startsWith("w2-")) return <EpiSection o={o} f={f} k={k} m={m} />; // 2026/11/23 tech-wafer2（HudEpi.tsx）
