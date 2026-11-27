@@ -145,64 +145,63 @@
      },
      {
       "at": "start",
-      "dur": 150,
+      "dur": 60,
       "x": 0,
-      "y": 1.0,
-      "d": 34,
-      "elev": 28
+      "y": 0.6,
+      "d": 32,
+      "elev": 26
+     },
+     {
+      "at": "prev-6",
+      "dur": 40,
+      "x": -1.0,
+      "y": 0.6,
+      "d": 20,
+      "elev": 10
      }
     ],
     "shift": [
      {
       "layer": "bCuB",
       "at": "s1:start-40",
-      "until": "s2:resin+4",
+      "until": "s2:cloth+2",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "bCuB",
       "at": "s1:start-40",
-      "until": "s2:resin+4",
-      "dur": 8,
-      "dy": 2.4,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "until": "s2:cloth+2",
+      "dur": 10,
+      "dx": -6.5
      },
      {
       "layer": "bPp0",
       "at": "s1:start-40",
-      "until": "s2:resin+10",
+      "until": "s2:cloth+14",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "bPp0",
       "at": "s1:start-40",
-      "until": "s2:resin+10",
-      "dur": 8,
-      "dy": 2.4,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "until": "s2:cloth+14",
+      "dur": 10,
+      "dx": -6.5
      },
      {
       "layer": "bPp1",
       "at": "s1:start-40",
-      "until": "s2:resin+16",
+      "until": "s2:resin+6",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "bPp1",
       "at": "s1:start-40",
-      "until": "s2:resin+16",
-      "dur": 8,
-      "dy": 2.4,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "until": "s2:resin+6",
+      "dur": 10,
+      "dx": -6.5
      },
      {
       "layer": "bCuT",
@@ -215,39 +214,36 @@
       "layer": "bCuT",
       "at": "s1:start-40",
       "until": "s2:cu-2",
-      "dur": 8,
-      "dy": 2.4,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "dur": 10,
+      "dx": -6.5
      },
      {
       "layer": "bPlaten",
-      "at": "s2:cu+8",
+      "at": "s2:cu+10",
       "until": "s12:start+400",
       "dur": 12,
       "dy": -3.2
      },
      {
       "layer": "cPly0",
-      "at": "s3:rebar-10",
+      "at": "s3:rc-6",
       "until": "s3:hard-6",
       "dur": 14,
-      "dy": 0.7
+      "dy": 1.0
      },
      {
       "layer": "cPly1",
-      "at": "s3:rebar-7",
+      "at": "s3:rc-3",
       "until": "s3:hard-4",
       "dur": 14,
-      "dy": 1.6
+      "dy": 2.3
      },
      {
       "layer": "cCuT",
-      "at": "s3:rebar-4",
+      "at": "s3:rc+0",
       "until": "s3:hard-2",
       "dur": 14,
-      "dy": 2.6
+      "dy": 3.6
      },
      {
       "layer": "dAbfLine",
@@ -272,91 +268,91 @@
      },
      {
       "layer": "eS1",
+      "at": "s5:much-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
+      "at": "s1:start-40",
+      "until": "s5:much-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
       "at": "s5:much+0",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS2",
+      "layer": "eS3",
       "at": "s1:start-40",
       "until": "s5:much+0",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS2",
+      "layer": "eS3",
+      "at": "s5:much+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
+      "at": "s1:start-40",
+      "until": "s5:much+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
       "at": "s5:much+4",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS3",
+      "layer": "eS5",
       "at": "s1:start-40",
       "until": "s5:much+4",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS3",
+      "layer": "eS5",
+      "at": "s5:much+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
+      "at": "s1:start-40",
+      "until": "s5:much+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
       "at": "s5:much+8",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS4",
+      "layer": "eS7",
       "at": "s1:start-40",
       "until": "s5:much+8",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "eS4",
-      "at": "s5:warp-6",
-      "until": "s12:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "eS5",
-      "at": "s1:start-40",
-      "until": "s5:warp-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "eS5",
-      "at": "s5:warp-2",
-      "until": "s12:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "eS6",
-      "at": "s1:start-40",
-      "until": "s5:warp-2",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "eS6",
-      "at": "s5:warp+2",
-      "until": "s12:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
       "layer": "eS7",
-      "at": "s1:start-40",
-      "until": "s5:warp+2",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "eS7",
-      "at": "s5:warp+6",
+      "at": "s5:much+10",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -364,7 +360,119 @@
      {
       "layer": "eS8",
       "at": "s1:start-40",
+      "until": "s5:much+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS8",
+      "at": "s5:warp-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s1:start-40",
+      "until": "s5:warp-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s5:warp-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s1:start-40",
+      "until": "s5:warp-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s5:warp-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s1:start-40",
+      "until": "s5:warp-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s5:warp+0",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s1:start-40",
+      "until": "s5:warp+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s5:warp+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s1:start-40",
+      "until": "s5:warp+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s5:warp+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s1:start-40",
+      "until": "s5:warp+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s5:warp+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s1:start-40",
       "until": "s5:warp+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s5:warp+8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s1:start-40",
+      "until": "s5:warp+8",
       "opacity": 0,
       "dur": 1
      },
@@ -399,7 +507,7 @@
      {
       "layer": "eOpen",
       "at": "s1:start-40",
-      "until": "s5:warp+12",
+      "until": "s5:warp+4",
       "opacity": 0,
       "dur": 2
      },
@@ -572,58 +680,60 @@
       "dur": 1
      },
      {
-      "layer": "gR0",
-      "at": "s7:big-8",
+      "layer": "gCart",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR0",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gR1",
-      "at": "s7:big-4",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gR2",
-      "at": "s7:big+0",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gR3",
-      "at": "s7:big+4",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gR4",
-      "at": "s7:big+8",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gR5",
-      "at": "s7:big+12",
+      "at": "s7:cloth-4",
       "until": "s12:start+400",
-      "dur": 14,
-      "dx": 15.8,
-      "dy": 0.2,
-      "dz": -5.75
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
      },
      {
       "layer": "gOut",
@@ -635,14 +745,14 @@
      {
       "layer": "hP0",
       "at": "s1:start-40",
-      "until": "s8:nitto-6",
+      "until": "s8:jp-4",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "hP0",
       "at": "s1:start-40",
-      "until": "s8:nitto-6",
+      "until": "s8:jp-4",
       "dur": 14,
       "dy": 4.0,
       "fallIn": true,
@@ -667,52 +777,52 @@
       "opacity": 0
      },
      {
-      "layer": "iBox0",
+      "layer": "iTag0",
       "at": "s1:start-40",
       "until": "s9:kin-8",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "iBox0",
+      "layer": "iTag0",
       "at": "s1:start-40",
       "until": "s9:kin-8",
-      "dur": 12,
-      "dy": 3.0,
+      "dur": 10,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
      },
      {
-      "layer": "iBox1",
+      "layer": "iTag1",
       "at": "s1:start-40",
       "until": "s9:nya-8",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "iBox1",
+      "layer": "iTag1",
       "at": "s1:start-40",
       "until": "s9:nya-8",
-      "dur": 12,
-      "dy": 3.0,
+      "dur": 10,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
      },
      {
-      "layer": "iBox2",
+      "layer": "iTag2",
       "at": "s1:start-40",
       "until": "s9:uni-8",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "iBox2",
+      "layer": "iTag2",
       "at": "s1:start-40",
       "until": "s9:uni-8",
-      "dur": 12,
-      "dy": 3.0,
+      "dur": 10,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -948,6 +1058,62 @@
       "dur": 1
      },
      {
+      "layer": "bBead",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bBead",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnifeBody",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnifeBody",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnife",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnife",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTable",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTable",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "bOven",
       "at": "s1:start-40",
       "until": "s2:voice-6",
@@ -1368,6 +1534,118 @@
       "dur": 1
      },
      {
+      "layer": "eS9",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "eArrS",
       "at": "s1:start-40",
       "until": "s5:voice-6",
@@ -1418,7 +1696,7 @@
      },
      {
       "layer": "fHeat",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1432,7 +1710,7 @@
      },
      {
       "layer": "fA0",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1446,7 +1724,7 @@
      },
      {
       "layer": "fB0",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1460,7 +1738,7 @@
      },
      {
       "layer": "fA1",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1474,7 +1752,7 @@
      },
      {
       "layer": "fB1",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1488,7 +1766,7 @@
      },
      {
       "layer": "fA2",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1502,7 +1780,7 @@
      },
      {
       "layer": "fB2",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1516,7 +1794,7 @@
      },
      {
       "layer": "fA3",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1530,7 +1808,7 @@
      },
      {
       "layer": "fB3",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1544,7 +1822,7 @@
      },
      {
       "layer": "fA4",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1558,7 +1836,7 @@
      },
      {
       "layer": "fB4",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1572,7 +1850,7 @@
      },
      {
       "layer": "fA5",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1586,7 +1864,7 @@
      },
      {
       "layer": "fB5",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1600,7 +1878,7 @@
      },
      {
       "layer": "fA6",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1614,7 +1892,7 @@
      },
      {
       "layer": "fB6",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1628,7 +1906,7 @@
      },
      {
       "layer": "fSwA",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1642,20 +1920,20 @@
      },
      {
       "layer": "fSwB",
-      "at": "s7:voice+8",
+      "at": "s7:voice+5",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "gRack",
+      "layer": "gCart",
       "at": "s1:start-40",
       "until": "s7:voice-6",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "gRack",
+      "layer": "gCart",
       "at": "s8:voice-1",
       "until": "s12:start+400",
       "opacity": 0,
@@ -1796,6 +2074,20 @@
      },
      {
       "layer": "hLoom",
+      "at": "s9:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hGear",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hGear",
       "at": "s9:voice-1",
       "until": "s12:start+400",
       "opacity": 0,
@@ -1970,6 +2262,20 @@
       "dur": 1
      },
      {
+      "layer": "iTag0",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag0",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "iBox1",
       "at": "s1:start-40",
       "until": "s9:voice-6",
@@ -1984,6 +2290,20 @@
       "dur": 1
      },
      {
+      "layer": "iTag1",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag1",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "iBox2",
       "at": "s1:start-40",
       "until": "s9:voice-6",
@@ -1992,6 +2312,20 @@
      },
      {
       "layer": "iBox2",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag2",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag2",
       "at": "s10:voice-1",
       "until": "s12:start+400",
       "opacity": 0,
@@ -2082,17 +2416,6 @@
       "until": "s2:start+6"
      }
     ],
-    "labels": [
-     {
-      "part": "aSub",
-      "text": "BT 載板（便宜、常見）",
-      "en": "BT substrate",
-      "color": "amber",
-      "at": "look",
-      "until": "prev+40",
-      "cut": true
-     }
-    ],
     "overlay": [
      {
       "type": "section",
@@ -2177,18 +2500,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 56.0,
-      "y": 4.4,
-      "d": 58,
-      "elev": 16
+      "x": 57.0,
+      "y": 3.0,
+      "d": 54,
+      "elev": 20
      },
      {
-      "at": "resin-2",
-      "dur": 26,
-      "x": 67.0,
-      "y": 4.4,
-      "d": 60,
-      "elev": 18
+      "at": "cu-12",
+      "dur": 22,
+      "x": 68.5,
+      "y": 3.4,
+      "d": 54,
+      "elev": 20
      }
     ],
     "run": [
@@ -2239,6 +2562,18 @@
       "at": "cu+10",
       "ramp": 6,
       "until": "s3:start"
+     },
+     {
+      "id": "knifeCut",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "beadPulse",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s3:start"
      }
     ],
     "labels": [
@@ -2248,7 +2583,7 @@
       "en": "Glass-fiber cloth roll",
       "color": "blue",
       "at": "voice-3",
-      "until": "resin-8",
+      "until": "bt+12",
       "cut": true
      },
      {
@@ -2256,8 +2591,8 @@
       "text": "泡樹脂（含浸）",
       "en": "Resin bath",
       "color": "amber",
-      "at": "resin-6",
-      "until": "cu-6",
+      "at": "bt+14",
+      "until": "cu-12",
       "cut": true
      },
      {
@@ -2265,7 +2600,7 @@
       "text": "疊銅箔、熱壓",
       "en": "Copper foil + hot press",
       "color": "amber",
-      "at": "cu-4",
+      "at": "cu-10",
       "until": "end",
       "cut": true
      }
@@ -2359,28 +2694,28 @@
       "at": "voice-4",
       "dur": 1,
       "x": 118.8,
-      "y": 3.4,
-      "d": 76,
-      "elev": 18
+      "y": -0.4,
+      "d": 72,
+      "elev": 20
      }
     ],
     "labels": [
      {
-      "part": "cRc",
-      "text": "鋼筋混凝土",
-      "en": "Reinforced concrete",
+      "part": "cCuT",
+      "text": "上銅箔、下銅箔",
+      "en": "Copper foil, top and bottom",
       "color": "blue",
       "at": "voice-3",
-      "until": "rebar-12",
+      "until": "rebar+6",
       "cut": true
      },
      {
       "part": "cPly",
-      "text": "布＝鋼筋（玻纖束）",
-      "en": "Cloth = rebar",
+      "text": "預浸材：布＝鋼筋",
+      "en": "Prepreg: cloth = rebar",
       "color": "amber",
-      "at": "rebar-10",
-      "until": "cement-4",
+      "at": "rebar+8",
+      "until": "cement+30",
       "cut": true
      },
      {
@@ -2388,8 +2723,8 @@
       "text": "樹脂＝水泥（包住布）",
       "en": "Resin = cement",
       "color": "amber",
-      "at": "cement-2",
-      "until": "heat+30",
+      "at": "cement+32",
+      "until": "end",
       "cut": true
      }
     ],
@@ -2490,15 +2825,15 @@
       "at": "voice-4",
       "dur": 1,
       "x": 180,
-      "y": 2.8,
-      "d": 82,
-      "elev": 16
+      "y": -2.4,
+      "d": 76,
+      "elev": 22
      }
     ],
     "labels": [
      {
       "part": "dBt",
-      "text": "BT：每層都有布、線較粗",
+      "text": "BT：每層有布、線粗",
       "en": "BT: cloth in every layer",
       "color": "amber",
       "at": "voice-3",
@@ -2507,11 +2842,11 @@
      },
      {
       "part": "dAbf",
-      "text": "味之素膜：沒布、線更細",
+      "text": "味之素膜：沒布、線細",
       "en": "ABF film: no cloth, finer lines",
       "color": "blue",
       "at": "abf-2",
-      "until": "ai+40",
+      "until": "end",
       "cut": true
      }
     ],
@@ -2615,9 +2950,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 240,
-      "y": 1.2,
-      "d": 70,
-      "elev": 12
+      "y": -2.0,
+      "d": 64,
+      "elev": 16
      }
     ],
     "run": [
@@ -2640,7 +2975,7 @@
       "text": "晶片：幾乎不脹",
       "en": "Chip: barely expands",
       "color": "blue",
-      "at": "little-4",
+      "at": "heat-6",
       "until": "much-4",
       "cut": true
      },
@@ -2650,15 +2985,15 @@
       "en": "Substrate: expands more",
       "color": "amber",
       "at": "much-2",
-      "until": "warp+8",
+      "until": "warp-6",
       "cut": true
      },
      {
       "part": "eOpen",
-      "text": "兩端錫球拉離焊墊",
+      "text": "兩端錫球離開焊墊",
       "en": "Edge balls lift off",
       "color": "amber",
-      "at": "warp+12",
+      "at": "warp-4",
       "until": "end",
       "cut": true
      }
@@ -2766,10 +3101,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 300,
-      "y": 3.2,
-      "d": 104,
-      "elev": 10
+      "x": 299.2,
+      "y": -2.0,
+      "d": 66,
+      "elev": 32
      }
     ],
     "run": [
@@ -2783,7 +3118,7 @@
     "labels": [
      {
       "part": "fA",
-      "text": "一般玻璃布：翹很多",
+      "text": "一般布：翹很多",
       "en": "Regular cloth: warps a lot",
       "color": "amber",
       "at": "less-4",
@@ -2792,11 +3127,11 @@
      },
      {
       "part": "fB",
-      "text": "低膨脹玻璃布：翹很少",
+      "text": "低膨脹布：翹很少",
       "en": "Low-CTE cloth: warps little",
       "color": "blue",
       "at": "hold+22",
-      "until": "nitto+40",
+      "until": "end",
       "cut": true
      }
     ],
@@ -2837,10 +3172,10 @@
      }
     ]
    },
-   "durationSec": 6.3,
-   "holdSec": 0.6,
+   "durationSec": 6.4,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 0.6
+   "pauseAfter": 0.7
   },
   {
    "id": "s7",
@@ -2895,18 +3230,18 @@
     "zoom": [
      {
       "to": "co",
-      "at": "voice+5",
+      "at": "voice+2",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "voice+5",
+      "at": "voice+2",
       "dur": 1,
-      "x": 359.0,
-      "y": 2.4,
-      "d": 80,
-      "elev": 30
+      "x": 361.5,
+      "y": 0.0,
+      "d": 84,
+      "elev": 26
      }
     ],
     "labels": [
@@ -2915,8 +3250,8 @@
       "text": "低膨脹玻璃布捲",
       "en": "Low-CTE cloth rolls",
       "color": "blue",
-      "at": "voice+6",
-      "until": "big-10",
+      "at": "voice+3",
+      "until": "core+6",
       "cut": true
      },
      {
@@ -2924,8 +3259,8 @@
       "text": "人工智慧載板（大店）",
       "en": "AI substrates (big shop)",
       "color": "amber",
-      "at": "big-8",
-      "until": "small-4",
+      "at": "core+8",
+      "until": "small-6",
       "cut": true
      },
      {
@@ -2933,7 +3268,7 @@
       "text": "BT 載板（小店）：斷貨",
       "en": "BT substrates: out of stock",
       "color": "amber",
-      "at": "small-2",
+      "at": "small-4",
       "until": "end",
       "cut": true
      }
@@ -2943,7 +3278,7 @@
       "type": "section",
       "kind": "bt-tglass",
       "at": "voice-3",
-      "until": "voice+6",
+      "until": "voice+3",
       "x": 64,
       "y": 1000,
       "w": 952,
@@ -2976,7 +3311,7 @@
      {
       "type": "section",
       "kind": "bt-flour",
-      "at": "voice+6",
+      "at": "voice+3",
       "until": "s8:voice-3",
       "x": 64,
       "y": 1066,
@@ -3068,10 +3403,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 423.5,
-      "y": 3.8,
-      "d": 78,
-      "elev": 18
+      "x": 416.0,
+      "y": 2.4,
+      "d": 44,
+      "elev": 28
+     },
+     {
+      "at": "jp-8",
+      "dur": 24,
+      "x": 424.0,
+      "y": 2.0,
+      "d": 70,
+      "elev": 22
      }
     ],
     "run": [
@@ -3106,6 +3449,12 @@
       "until": "s9:start+20"
      },
      {
+      "id": "gearSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s9:start+20"
+     },
+     {
       "id": "takeSpin",
       "at": "start-10",
       "ramp": 8,
@@ -3115,28 +3464,19 @@
     "labels": [
      {
       "part": "hLoom",
-      "text": "織布機（示意）",
-      "en": "Loom weaving low-CTE cloth",
+      "text": "劍桿織布機（示意）",
+      "en": "Rapier loom (schematic)",
       "color": "blue",
       "at": "voice-3",
-      "until": "expand-6",
+      "until": "jp+17",
       "cut": true
      },
      {
       "part": "hP0",
-      "text": "日東紡：日本、台灣擴廠",
-      "en": "Nittobo expands",
+      "text": "日東紡擴廠、台玻出貨",
+      "en": "Nittobo expands; Taiwan Glass ships",
       "color": "amber",
-      "at": "expand-4",
-      "until": "tg-8",
-      "cut": true
-     },
-     {
-      "part": "hP1",
-      "text": "台玻：開始出貨",
-      "en": "Taiwan Glass ships",
-      "color": "amber",
-      "at": "tg-6",
+      "at": "jp+19",
       "until": "end",
       "cut": true
      }
@@ -3241,9 +3581,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 482.0,
-      "y": 4.0,
-      "d": 100,
-      "elev": 12
+      "y": 1.6,
+      "d": 96,
+      "elev": 14
      }
     ],
     "run": [
@@ -3257,20 +3597,11 @@
     "labels": [
      {
       "part": "iPhone",
-      "text": "手機",
-      "en": "Phones",
+      "text": "手機和記憶體",
+      "en": "Phones and memory",
       "color": "blue",
-      "at": "phone-2",
-      "until": "mem-4",
-      "cut": true
-     },
-     {
-      "part": "iDimm",
-      "text": "記憶體",
-      "en": "Memory",
-      "color": "blue",
-      "at": "mem-2",
-      "until": "mem+50",
+      "at": "phone-4",
+      "until": "end",
       "cut": true
      }
     ],
@@ -3368,10 +3699,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 537.0,
-      "y": 2.8,
-      "d": 70,
-      "elev": 18
+      "x": 538.5,
+      "y": -0.6,
+      "d": 62,
+      "elev": 20
      }
     ],
     "run": [
@@ -3388,7 +3719,7 @@
       "text": "布＋樹脂的核心",
       "en": "Cloth + resin core",
       "color": "amber",
-      "at": "next-4",
+      "at": "still",
       "until": "glass-8",
       "cut": true
      },
@@ -3475,16 +3806,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 540,
-      "y": 2.8,
-      "d": 46,
+      "y": 0.4,
+      "d": 44,
       "elev": 24
      },
      {
       "at": "start",
       "dur": 90,
       "x": 540,
-      "y": 2.8,
-      "d": 54,
+      "y": 0.4,
+      "d": 50,
       "elev": 26
      }
     ],

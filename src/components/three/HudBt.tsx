@@ -50,9 +50,9 @@ const Arr: React.FC<{ x1: number; y: number; x2: number; c: string; w?: number }
 const Hook: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, ch = on(f, T(o, "cheap")), pv = on(f, T(o, "prev")), cp = on(f, T(o, "chip")), pr = on(f, T(o, "pricey"));
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
-    <rect x={30} y={CT + 40} width={150} height={150} fill={PCB} stroke={H.text2} strokeWidth={2} opacity={0.4 + 0.6 * pv} /><text x={105} y={CT + 128} textAnchor="middle" style={zh(40, "#FFFFFF", 900)} opacity={pv}>$$$</text>
+    <rect x={30} y={CT + 40} width={150} height={150} fill={PCB} stroke={H.text2} strokeWidth={2} opacity={0.4 + 0.6 * pv} /><rect x={70} y={CT + 80} width={70} height={70} fill={SI} opacity={0.4 + 0.6 * pv} />
     <rect x={210} y={CT + 120} width={90} height={70} fill="#7FA36A" stroke={H.text2} strokeWidth={2} /><text x={255} y={CT + 100} textAnchor="middle" style={zh(56, RED, 900)} opacity={ch}>？</text>
-    <text x={105} y={CT + 232} textAnchor="middle" style={zh(28, H.text2, 800)}>貴</text><text x={255} y={CT + 232} textAnchor="middle" style={zh(28, H.text2, 800)}>便宜</text>
+    <text x={105} y={CT + 232} textAnchor="middle" style={zh(28, H.text2, 800)}>ABF 載板</text><text x={255} y={CT + 232} textAnchor="middle" style={zh(28, H.text2, 800)}>BT 載板</text>
     <Sep x={334} />
     <Row x={360} y={CT + 56} t="便宜的載板長怎樣？" c={BLUE} a={ch} />
     <Row x={360} y={CT + 122} t="前一集：ABF 載板很貴" c={H.text2} a={pv} />
@@ -102,11 +102,11 @@ const Vs: React.FC<P> = ({ o, f, k }) => {
       {[0, 1, 2].map((j) => <rect key={`c${j}`} x={32 + j * 44 + (i % 2) * 14} y={CT + 70 + i * 40} width={26} height={8} fill={CU} />)}</g>)}
     <text x={89} y={CT + 196} textAnchor="middle" style={zh(28, H.text2, 800)}>BT</text>
     <g opacity={0.4 + 0.6 * ab}>{[0, 1, 2, 3, 4].map((i) => <g key={i}><rect x={180} y={CT + 40 + i * 24} width={130} height={22} fill={i === 2 ? PREPREG : ABF} stroke={H.text2} strokeWidth={1.5} />
-      {i !== 2 ? Array.from({ length: 10 }, (_, j) => <rect key={j} x={184 + j * 12.6} y={CT + 58 + i * 24} width={6} height={4} fill={CU} opacity={fi} />) : null}</g>)}</g>
+      {i !== 2 ? Array.from({ length: 10 }, (_, j) => <rect key={j} x={184 + j * 12.6} y={CT + 58 + i * 24} width={6} height={4} fill={CU} opacity={fi} />) : Array.from({ length: 6 }, (_, j) => <ellipse key={j} cx={190 + j * 22} cy={CT + 51 + i * 24} rx={7} ry={5} fill={CLOTH} />)}</g>)}</g>
     <text x={245} y={CT + 196} textAnchor="middle" style={zh(28, H.text2, 800)}>味之素膜</text>
     <Sep x={334} />
     <Row x={360} y={CT + 56} t="BT：記憶體、手機晶片" c={H.amber} a={Math.max(me, ph)} />
-    <Row x={360} y={CT + 122} t="味之素膜：沒有布" c={BLUE} a={Math.max(ab, nc)} />
+    <Row x={360} y={CT + 122} t="味之素膜沒布（核心仍有布）" c={BLUE} a={Math.max(ab, nc)} />
     <Row x={360} y={CT + 188} t="線更細，給人工智慧晶片" c={OK} a={Math.max(fi, ai)} />
   </Sv></Card>);
 };
@@ -123,7 +123,7 @@ const Cte: React.FC<P> = ({ o, f, k }) => {
     <text x={165} y={CT + 210} textAnchor="middle" style={zh(28, H.text2, 800)} opacity={0.4 + 0.6 * li}>載板 ≈15～20</text>
     <text x={165} y={CT + 242} textAnchor="middle" style={zh(28, H.text2, 700)} opacity={0.4 + 0.6 * li}>ppm/°C</text>
     <Sep x={334} />
-    <Row x={360} y={CT + 48} t="麻煩在布：會受熱伸長" c={H.text2} a={cl} />
+    <Row x={360} y={CT + 48} t="樹脂受熱伸長，一般布壓不住" c={H.text2} a={cl} />
     <Row x={360} y={CT + 104} t="晶片幾乎不脹、載板脹得多" c={BLUE} a={Math.max(li, mu)} />
     <Row x={360} y={CT + 160} t="像兩人三腳不同步" c={H.amber} a={lg} />
     <Row x={360} y={CT + 216} t="一拉就翹，焊點被拉開" c={RED} a={wp} />

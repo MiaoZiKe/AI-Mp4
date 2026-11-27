@@ -52,7 +52,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, head) in enumerate(S):
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
     nch = len(re.sub(r"[，。？！、；：\s]", "", nar))
-    hold = HOLD; dur = round(0.2 + head + nch / 5.2 + hold, 1)
+    hold = 0.7 if sid == "s6" else HOLD; dur = round(0.2 + head + nch / 5.2 + hold, 1)
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": nar,
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -133,22 +133,25 @@ def carry(sid):  # 公司卡延長：上一幕的卡片在本幕開頭再留 EXT
     return [o]
 
 # ── 站 B（s2）：含浸線一直在跑；疊料：下銅箔→兩張預浸材→上銅箔，上壓板壓下 ──
-drop("bCuB", "s2:resin+4", 2.4, 8); drop("bPp0", "s2:resin+10", 2.4, 8); drop("bPp1", "s2:resin+16", 2.4, 8); drop("bCuT", "s2:cu-2", 2.4, 8)
-VIS += [mv("bPlaten", "s2:cu+8", FAR, 12, dy=-3.2)]
+def slide(lay, at, dx=-6.5, dur=10):
+    """從左邊上料台推進壓機：at 之前停在左邊（看不見），at 出現、往右滑進去"""
+    vis(lay, [(at, FAR)], 1); VIS.append(mv(lay, T0, at, dur, dx=dx))
+slide("bCuB", "s2:cloth+2"); slide("bPp0", "s2:cloth+14"); slide("bPp1", "s2:resin+6"); slide("bCuT", "s2:cu-2")
+VIS += [mv("bPlaten", "s2:cu+10", FAR, 12, dy=-3.2)]
 # ── 站 C（s3）：核心板往上分開（爆炸分解：下銅箔不動、兩張預浸材、上銅箔依序抬起）→ 組回 ──
-for lay, dy, k in (("cPly0", 0.7, 0), ("cPly1", 1.6, 1), ("cCuT", 2.6, 2)):
-    VIS.append(mv(lay, f"s3:rebar{-10 + k * 3:+d}", f"s3:hard{-6 + k * 2:+d}", 14, dy=dy))
+for lay, dy, k in (("cPly0", 1.0, 0), ("cPly1", 2.3, 1), ("cCuT", 3.6, 2)):
+    VIS.append(mv(lay, f"s3:rc{-6 + k * 3:+d}", f"s3:hard{-6 + k * 2:+d}", 14, dy=dy))
 # ── 站 D（s4）：味之素膜的細線念到「線更細」才畫出來 ──
 vis("dAbfLine", [("s4:fine-4", FAR)], 1)
 # ── 站 E（s5）：受熱：先伸長（脹得多）再越來越彎（一拉就翹）；兩端錫球離開焊墊 ──
 ENS = INFO["ENS"]
 def stage_t(i):
-    if i <= 4: return f"s5:much{-4 + (i - 1) * 4:+d}"
-    return f"s5:warp{-6 + (i - 5) * 4:+d}"
+    if i <= 8: return f"s5:much{-4 + (i - 1) * 2:+d}"
+    return f"s5:warp{-6 + (i - 9) * 2:+d}"
 for i in range(ENS):
     a = T0 if i == 0 else stage_t(i)
     vis(f"eS{i}", [(a, FAR if i == ENS - 1 else stage_t(i + 1))], 1)
-vis("eArrC", [("s5:little-4", "s5:warp")], 2); vis("eArrS", [("s5:much-4", "s5:warp+20")], 2); vis("eOpen", [("s5:warp+12", FAR)], 2)
+vis("eArrC", [("s5:little-4", "s5:warp")], 2); vis("eArrS", [("s5:much-4", "s5:warp+20")], 2); vis("eOpen", [("s5:warp+4", FAR)], 2)
 # ── 站 F（s6）：同時受熱，一般布翹很多、低膨脹布翹很少 ──
 FNS = INFO["FNS"]
 for pre in ("fA", "fB"):
@@ -157,14 +160,13 @@ for pre in ("fA", "fB"):
         vis(f"{pre}{i}", [(a, FAR if i == FNS - 1 else f"s6:less{-6 + i * 4:+d}")], 1)
 # ── 站 G（s7）：布捲一捲捲被拉到大店（人工智慧載板），小店空架 → 斷貨 ──
 GX = INFO["GX"]
-for i in range(INFO["GN"]):
-    x0 = GX - 13.2 + i * 1.3; tx = GX + 2.6 + i * 1.3
-    VIS.append(mv(f"gR{i}", f"s7:big{-8 + i * 4:+d}", FAR, 14, dx=round(tx - x0, 3), dy=0.2, dz=-5.75))
+for lay in ["gCart"] + [f"gR{i}" for i in range(INFO["GN"])]:
+    VIS.append(mv(lay, "s7:cloth-4", FAR, 36, dx=13.0, dz=-3.2))   # 推車（含布捲）一起開到大店門口，有加減速
 vis("gOut", [("s7:out-2", FAR)], 2)
 # ── 站 H（s8）：兩個棧板念到才落下 ──
-drop("hP0", "s8:nitto-6", 4.0, 14); drop("hP1", "s8:tg-6", 4.0, 14)
+drop("hP0", "s8:jp-4", 4.0, 14); drop("hP1", "s8:tg-6", 4.0, 14)
 # ── 站 I（s9）：三只紙箱念到才落下；手機、記憶體模組念到才出現 ──
-drop("iBox0", "s9:kin-8", 3.0, 12); drop("iBox1", "s9:nya-8", 3.0, 12); drop("iBox2", "s9:uni-8", 3.0, 12)
+drop("iTag0", "s9:kin-8", 2.0, 10); drop("iTag1", "s9:nya-8", 2.0, 10); drop("iTag2", "s9:uni-8", 2.0, 10)
 drop("iPhone", "s9:phone-6", 3.0, 12); drop("iDimm", "s9:mem-6", 3.0, 12)
 # ── 站 J（s10）：上層與晶片抬起 → 布核心往左抽走 → 玻璃從右邊滑進來 → 上層落回 ──
 VIS += [mv("jTop", "s10:core-10", "s10:gs-4", 12, dy=1.8), mv("jDie", "s10:core-10", "s10:gs-4", 12, dy=1.8)]
@@ -188,61 +190,59 @@ for pre, wins in STA.items():
 # ═════ 各幕 ═════
 P = {}
 X = INFO
-P["s1"] = {"shot": [shot("start-30", X["AX"], 1.0, 40, 32, 1, yaw=0.0), shot("start", X["AX"], 1.0, 34, 28, 150)],
+P["s1"] = {"shot": [shot("start-30", X["AX"], 1.0, 40, 32, 1, yaw=0.0), shot("start", X["AX"], 0.6, 32, 26, 60), shot("prev-6", X["AX"] - 1.0, 0.6, 20, 10, 40)],
  "shift": VIS,
  "run": [run("chipGlow", "start-30", "s2:start+6", 8), run("wirePulse", "start-30", "s2:start+6", 8)],
- "labels": [lab("aSub", "BT 載板（便宜、常見）", "BT substrate", "amber", "look", "prev+40")],
  "overlay": [sec("bt-hook", "start", nxt("s1"), "系列 3・第 9 集", "示意，非實際比例", {"cheap": "cheap", "prev": "prev", "chip": "chip", "pricey": "pricey"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "line", "at": "start-8", "dur": 1}],
- "shot": [shot(CC, X["BX"] - 4.0, 4.4, 58, 16, 1), shot("resin-2", X["BX"] + 7.0, 4.4, 60, 18, 26)],
+ "shot": [shot(CC, X["BX"] - 3.0, 3.0, 54, 20, 1), shot("cu-12", X["BX"] + 8.5, 3.4, 54, 20, 22)],
  "run": [run("rollSpin", "start-10", "s3:start", 8), run("bGuideSpin", "start-10", "s3:start", 8), run("bDipSpin", "start-10", "s3:start", 8), run("bSqASpin", "start-10", "s3:start", 8), run("bSqBSpin", "start-10", "s3:start", 8),
-         run("webFlow", "start-10", "s3:start", 6), run("ovenGlow", "start-10", "s3:start", 8), run("platenHeat", "cu+10", "s3:start", 6)],
- "labels": [lab("bRoll", "玻璃纖維布捲", "Glass-fiber cloth roll", "blue", C, "resin-8"), lab("bTank", "泡樹脂（含浸）", "Resin bath", "amber", "resin-6", "cu-6"),
-            lab("bPress", "疊銅箔、熱壓", "Copper foil + hot press", "amber", "cu-4", "end")],
+         run("webFlow", "start-10", "s3:start", 6), run("ovenGlow", "start-10", "s3:start", 8), run("platenHeat", "cu+10", "s3:start", 6), run("knifeCut", "start-10", "s3:start", 6), run("beadPulse", "start-10", "s3:start", 6)],
+ "labels": [lab("bRoll", "玻璃纖維布捲", "Glass-fiber cloth roll", "blue", C, "bt+12"), lab("bTank", "泡樹脂（含浸）", "Resin bath", "amber", "bt+14", "cu-12"),
+            lab("bPress", "疊銅箔、熱壓", "Copper foil + hot press", "amber", "cu-10", "end")],
  "overlay": [card("s2", "bt-make", "骨架是玻璃纖維布", "示意", {"bt": "bt", "cloth": "cloth", "resin": "resin", "cu": "cu"})]}
 P["s3"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["CX"] - 1.2, 3.4, 76, 18, 1)],
- "labels": [lab("cRc", "鋼筋混凝土", "Reinforced concrete", "blue", C, "rebar-12"), lab("cPly", "布＝鋼筋（玻纖束）", "Cloth = rebar", "amber", "rebar-10", "cement-4"),
-            lab("cResin", "樹脂＝水泥（包住布）", "Resin = cement", "amber", "cement-2", "heat+30")],
+ "shot": [shot(CC, X["CX"] - 1.2, -0.4, 72, 20, 1)],
+ "labels": [lab("cCuT", "上銅箔、下銅箔", "Copper foil, top and bottom", "blue", C, "rebar+6"), lab("cPly", "預浸材：布＝鋼筋", "Prepreg: cloth = rebar", "amber", "rebar+8", "cement+30"),
+            lab("cResin", "樹脂＝水泥（包住布）", "Resin = cement", "amber", "cement+32", "end")],
  "overlay": [card("s3", "bt-rebar", "像鋼筋混凝土", "比喻；示意", {"rc": "rc", "rebar": "rebar", "cement": "cement", "hard": "hard", "heat": "heat"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["DX"], 2.8, 82, 16, 1)],
- "labels": [lab("dBt", "BT：每層都有布、線較粗", "BT: cloth in every layer", "amber", C, "abf-4"), lab("dAbf", "味之素膜：沒布、線更細", "ABF film: no cloth, finer lines", "blue", "abf-2", "ai+40")],
+ "shot": [shot(CC, X["DX"], -2.4, 76, 22, 1)],
+ "labels": [lab("dBt", "BT：每層有布、線粗", "BT: cloth in every layer", "amber", C, "abf-4"), lab("dAbf", "味之素膜：沒布、線細", "ABF film: no cloth, finer lines", "blue", "abf-2", "end")],
  "overlay": [card("s4", "bt-vs", "BT 和味之素膜差在哪", "示意（不標線寬）", {"mem": "mem", "phone": "phone", "abf": "abf", "nocloth": "nocloth", "fine": "fine", "ai": "ai"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["EX"], 1.2, 70, 12, 1)],
+ "shot": [shot(CC, X["EX"], -2.0, 64, 16, 1)],
  "run": [run("heatE", "heat-4", "s6:start", 8), run("openPulse", "warp+12", "s6:start", 6)],
- "labels": [lab("eDie", "晶片：幾乎不脹", "Chip: barely expands", "blue", "little-4", "much-4"), lab("eSub", "載板：脹得多", "Substrate: expands more", "amber", "much-2", "warp+8"),
-            lab("eOpen", "兩端錫球拉離焊墊", "Edge balls lift off", "amber", "warp+12", "end")],
+ "labels": [lab("eDie", "晶片：幾乎不脹", "Chip: barely expands", "blue", "heat-6", "much-4"), lab("eSub", "載板：脹得多", "Substrate: expands more", "amber", "much-2", "warp-6"),
+            lab("eOpen", "兩端錫球離開焊墊", "Edge balls lift off", "amber", "warp-4", "end")],
  "overlay": [card("s5", "bt-cte", "像兩人三腳不同步", "示意，誇大；數值見出處", {"cloth": "cloth", "heat": "heat", "little": "little", "much": "much", "legs": "legs", "warp": "warp"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["FX"], 3.2, 104, 10, 1)],
+ "shot": [shot(CC, X["FX"] - 0.8, -2.0, 66, 32, 1)],
  "run": [run("heatF", "tg-4", "s7:start+30", 8)],
- "labels": [lab("fA", "一般玻璃布：翹很多", "Regular cloth: warps a lot", "amber", "less-4", "hold+20"), lab("fB", "低膨脹玻璃布：翹很少", "Low-CTE cloth: warps little", "blue", "hold+22", "nitto+40")],
+ "labels": [lab("fA", "一般布：翹很多", "Regular cloth: warps a lot", "amber", "less-4", "hold+20"), lab("fB", "低膨脹布：翹很少", "Low-CTE cloth: warps little", "blue", "hold+22", "end")],
  "overlay": [card("s6", "bt-tglass", "低膨脹玻璃布", "媒體報導、研調估計", {"tg": "tg", "less": "less", "hold": "hold", "rep": "rep", "ninety": "ninety", "nitto": "nitto"}, h=392, y=1000)]}
 P["s7"] = {"zoom": [{"to": "co", "at": SC("s7"), "dur": 1}],
- "shot": [shot(SC("s7"), X["GX"] - 1.0, 2.4, 80, 30, 1)],
- "labels": [lab("gRack", "低膨脹玻璃布捲", "Low-CTE cloth rolls", "blue", SA("s7"), "big-10"), lab("gBig", "人工智慧載板（大店）", "AI substrates (big shop)", "amber", "big-8", "small-4"),
-            lab("gSmall", "BT 載板（小店）：斷貨", "BT substrates: out of stock", "amber", "small-2", "end")],
+ "shot": [shot(SC("s7"), X["GX"] + 1.5, 0.0, 84, 26, 1)],
+ "labels": [lab("gRack", "低膨脹玻璃布捲", "Low-CTE cloth rolls", "blue", SA("s7"), "core+6"), lab("gBig", "人工智慧載板（大店）", "AI substrates (big shop)", "amber", "core+8", "small-6"),
+            lab("gSmall", "BT 載板（小店）：斷貨", "BT substrates: out of stock", "amber", "small-4", "end")],
  "overlay": [card("s7", "bt-flour", "像大店搶光麵粉", "分析師普遍認為（高盛 2025/10）", {"ai": "ai", "core": "core", "big": "big", "small": "small", "out": "out"})]}
 P["s8"] = {"zoom": [{"to": "line", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["HX2"] + 3.5, 3.8, 78, 18, 1)],
+ "shot": [shot(CC, X["HX2"] - 4.0, 2.4, 44, 28, 1), shot("jp-8", X["HX2"] + 4.0, 2.0, 70, 22, 24)],
  "run": [run("heddleA", "start-10", "s9:start+20", 6), run("heddleB", "start-10", "s9:start+20", 6), run("reedBeat", "start-10", "s9:start+20", 6), run("rapier", "start-10", "s9:start+20", 6),
-         run("beamSpin", "start-10", "s9:start+20", 8), run("takeSpin", "start-10", "s9:start+20", 8)],
- "labels": [lab("hLoom", "織布機（示意）", "Loom weaving low-CTE cloth", "blue", C, "expand-6"), lab("hP0", "日東紡：日本、台灣擴廠", "Nittobo expands", "amber", "expand-4", "tg-8"),
-            lab("hP1", "台玻：開始出貨", "Taiwan Glass ships", "amber", "tg-6", "end")],
+         run("beamSpin", "start-10", "s9:start+20", 8), run("gearSpin", "start-10", "s9:start+20", 8), run("takeSpin", "start-10", "s9:start+20", 8)],
+ "labels": [lab("hLoom", "劍桿織布機（示意）", "Rapier loom (schematic)", "blue", C, "jp+17"), lab("hP0", "日東紡擴廠、台玻出貨", "Nittobo expands; Taiwan Glass ships", "amber", "jp+19", "end")],
  "overlay": [card("s8", "bt-expand", "擴廠與新供應商", "公司說法、媒體報導；截至 2026/11/27", {"nitto": "nitto", "jp": "jp", "tw": "tw", "expand": "expand", "tg": "tg", "ship": "ship"}, h=392, y=1000)]}
 P["s9"] = {"zoom": [{"to": "co", "at": SC("s9"), "dur": 1}],
- "shot": [shot(SC("s9"), X["IX"] + 2.0, 4.0, 100, 12, 1)],
+ "shot": [shot(SC("s9"), X["IX"] + 2.0, 1.6, 96, 14, 1)],
  "run": [run("screenPhone", "phone", "s10:start+30", 8)],
- "labels": [lab("iPhone", "手機", "Phones", "blue", "phone-2", "mem-4"), lab("iDimm", "記憶體", "Memory", "blue", "mem-2", "mem+50")],
+ "labels": [lab("iPhone", "手機和記憶體", "Phones and memory", "blue", "phone-4", "end")],
  "overlay": [card("s9", "bt-co", "台灣的 BT 載板廠", "公開資訊；截至 2026/11/27", {"tw": "tw", "kin": "kin", "nya": "nya", "uni": "uni", "phone": "phone", "mem": "mem"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "micro", "at": SC("s10"), "dur": 1}],
- "shot": [shot(SC("s10"), X["JX"] - 3.0, 2.8, 70, 18, 1)],
+ "shot": [shot(SC("s10"), X["JX"] - 1.5, -0.6, 62, 20, 1)],
  "run": [run("tgvPulse", "gs", "s12:start", 8)],
- "labels": [lab("jCore", "布＋樹脂的核心", "Cloth + resin core", "amber", "next-4", "glass-8"), lab("jGlass", "整片玻璃（穿孔銅柱）", "Solid glass core", "blue", "glass-2", "gs+40")],
+ "labels": [lab("jCore", "布＋樹脂的核心", "Cloth + resin core", "amber", "still", "glass-8"), lab("jGlass", "整片玻璃（穿孔銅柱）", "Solid glass core", "blue", "glass-2", "gs+40")],
  "overlay": [card("s10", "bt-next", "下一集：玻璃基板", "截至 2026/11/27 尚未量產", {"still": "still", "next": "next", "core": "core", "glass": "glass", "gs": "gs"})]}
-P["s11"] = {"shot": [shot(CC, X["JX"], 2.8, 46, 24, 1), shot("start", X["JX"], 2.8, 54, 26, 90)],
+P["s11"] = {"shot": [shot(CC, X["JX"], 0.4, 44, 24, 1), shot("start", X["JX"], 0.4, 50, 26, 90)],
  "overlay": [sec("bt-cta", C, "s12:start", "換你說", "截至 2026/11/27 尚未確定何時緩解", {"q": "q", "kw": "kw"}, cut=True)]}
 # 公司卡延長段：卡片留在畫面上到下一幕的 SA（延長期間下一幕鏡頭不動＝上一幕鏡頭還在）
 for sid in EXTN:
@@ -274,4 +274,12 @@ for s in scenes:
 n = sum(len(re.sub(r"[，。？！、；：\s]", "", s.get("tts") or "")) for s in scenes)
 tot = sum(s["durationSec"] for s in scenes)
 print("念稿字數", n, "問題", bad, "無聲估計片長", round(tot, 1), "秒；各幕", [s["durationSec"] for s in scenes], "公司卡延長", EXTN)
+if _tl:
+    def fr(sid, a):
+        if ":" in a: sid, a = a.split(":")
+        m = re.match(r"([a-z]+)([+-]\d+)?", a); c, o = m.group(1), int(m.group(2) or 0); t = _tl[sid]
+        b = {"start": t["startFrame"], "voice": t["voiceStartFrame"], "end": t["startFrame"] + t["durationFrames"]}.get(c)
+        return (b if b is not None else next(x["frame"] for x in t["cues"] if x["id"] == c)) + o
+    short = [(sc["id"], l["text"], fr(sc["id"], l["until"]) - fr(sc["id"], l["at"])) for sc in scenes for l in sc["props"].get("labels", [])]
+    print("標籤 <45 幀：", [x for x in short if x[2] < 45])
 open(os.path.join(HERE, "_tts.txt"), "w").write("\n\n".join(s["tts"] for s in scenes if s.get("tts")))
