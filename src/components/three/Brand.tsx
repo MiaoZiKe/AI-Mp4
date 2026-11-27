@@ -13,6 +13,9 @@ import { Img, staticFile } from "remotion";
 export type LogoSpec = { file: string; w: number; h: number; name: string; source: string; bg?: string; /** 方形、字在圖下方的 LOGO（例如 Photronics）在標籤裡要放大才看得清：標籤用這個高度（沒寫＝46） */ labelH?: number };
 /** 公司 LOGO 表（w:h＝原檔 viewBox 比例） */
 export const LOGOS: Record<string, LogoSpec> = {
+  // 2026/11/28 tech-mature（中游補充篇 M1）：Commons 原檔，未重畫、未改色（UMC＝原檔 SVG；世界先進＝Commons 自己轉出的 960px PNG，upload 伺服器限流抓不到 SVG）
+  umc: { file: "logos/umc.svg", w: 814.96063, h: 184.60629, name: "聯電 UMC", source: "https://commons.wikimedia.org/wiki/File:UMC-Logo.svg" },
+  vis: { file: "logos/vis.png", w: 960, h: 539, name: "世界先進 VIS", source: "https://commons.wikimedia.org/wiki/File:Vanguard_International_Semiconductor_logo.svg" },
   // 2026-11-24 Andy 在②聊天室提供原圖（官方 LOGO 截圖；白底只裁邊、SK Siltron 灰底換白，未改色）
   globalwafers: { file: "logos/globalwafers.png", w: 488, h: 112, name: "環球晶 GlobalWafers", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },
   sksiltron: { file: "logos/sksiltron.png", w: 190, h: 96, name: "SK Siltron", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF", labelH: 56 },
@@ -73,6 +76,15 @@ const star5 = (cx: number, cy: number, r: number) => {
   return p.join(" ");
 };
 export const FLAGS: Record<string, FlagDef> = {
+  // 2026/11/28 tech-mature：中華人民共和國國旗（GB 12982-2004：長寬 3:2，以 30×20 格繪製；大星中心 (5,5) 外接圓半徑 3，四顆小星外接圓半徑 1、一角指向大星中心；紅 #EE1C25、黃 #FFFF00）
+  CN: { name: "中國", w: 300, h: 200, draw: () => {
+    const star = (cx: number, cy: number, r: number, toward?: [number, number]) => { const a0 = toward ? Math.atan2(toward[1] - cy, toward[0] - cx) : -Math.PI / 2; const pts: string[] = [];
+      for (let i = 0; i < 10; i++) { const a = a0 + (i * Math.PI) / 5, rr = i % 2 ? r * 0.381966 : r; pts.push(`${(cx + rr * Math.cos(a)).toFixed(2)},${(cy + rr * Math.sin(a)).toFixed(2)}`); }
+      return pts.join(" "); };
+    const big: [number, number] = [50, 50];
+    return <><rect width={300} height={200} fill="#EE1C25" /><polygon points={star(50, 50, 30)} fill="#FFFF00" />
+      {([[100, 20], [120, 40], [120, 70], [100, 90]] as [number, number][]).map(([x, y], i) => <polygon key={i} points={star(x, y, 10, big)} fill="#FFFF00" />)}</>;
+  } },
   // 日本：國旗國歌法（1999）2:3、日章直徑＝旗高 3/5、置中；紅＝#BC002D（內閣府建議色）
   JP: { name: "日本", w: 3, h: 2, draw: () => <><rect width={3} height={2} fill="#FFFFFF" /><circle cx={1.5} cy={1} r={0.6} fill="#BC002D" /></> },
   // 荷蘭：2:3 紅白藍三等分；紅 #AE1C28、藍 #21468B（荷蘭政府標準色）

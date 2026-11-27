@@ -1,0 +1,1881 @@
+{
+ "slug": "tech-mature",
+ "prevEpisode": "2-22：探針卡-2（系列 1：晶圓代工）",
+ "title": "成熟與特殊製程代工（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版（tech-andy-fixes 第 34 條）；第 43 條 API 配音由 tts-pitch-take.sh"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "phone",
+    "label": "手機主機板（示意）",
+    "en": "PHONE MAINBOARD",
+    "field": "15 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "board",
+    "label": "手機主機板（示意）",
+    "en": "PHONE MAINBOARD",
+    "field": "15 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "device",
+    "label": "功率元件剖面（示意）",
+    "en": "POWER MOSFET CROSS-SECTION",
+    "field": "20 µm",
+    "ruler": "2 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "panel",
+    "label": "螢幕與晶圓（示意）",
+    "en": "PANEL AND WAFERS",
+    "field": "50 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "fab",
+    "label": "產業（示意）",
+    "en": "INDUSTRY",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "不是每顆晶片",
+   "都要 3 奈米"
+  ],
+  "sub": "成熟製程撐起一大半",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一集晶圓測完。每顆晶片都要三奈米嗎？",
+   "tts": "上一集晶圓測完。每顆晶片都要三奈米嗎？",
+   "subtitle": {
+    "zh": "上一集晶圓測完\n每顆晶片\n都要 3 奈米嗎？",
+    "en": "Last episode, the wafer was fully tested. | Does every chip | need 3 nm?"
+   },
+   "keywords": [
+    "3 奈米",
+    "先進"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "上一集"
+    },
+    {
+     "id": "chip",
+     "text": "每顆晶片"
+    },
+    {
+     "id": "nm3",
+     "text": "奈米"
+    },
+    {
+     "id": "q",
+     "text": "都要"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意，非特定手機"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：晶圓測完了",
+     "title": "都要 3 奈米？",
+     "size": 120,
+     "top": 272
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 0.5,
+      "d": 36,
+      "elev": 52
+     },
+     {
+      "at": "start",
+      "dur": 60,
+      "x": 0,
+      "y": 0.5,
+      "d": 34,
+      "elev": 50
+     },
+     {
+      "at": "q-6",
+      "dur": 40,
+      "x": 0,
+      "y": 0.5,
+      "d": 38,
+      "elev": 48
+     }
+    ],
+    "shift": [
+     {
+      "layer": "kGlow",
+      "at": "s1:start-40",
+      "until": "s1:nm3-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "kGlow",
+      "at": "s3:start",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "pDrain",
+      "at": "s3:elec-4",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 0.0
+     },
+     {
+      "layer": "pSub",
+      "at": "s3:elec-2",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 0.45
+     },
+     {
+      "layer": "pDrift",
+      "at": "s3:elec+0",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 0.9
+     },
+     {
+      "layer": "pBody",
+      "at": "s3:elec+2",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 1.35
+     },
+     {
+      "layer": "pGate",
+      "at": "s3:elec+4",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 1.8
+     },
+     {
+      "layer": "pSrcN",
+      "at": "s3:elec+6",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 2.25
+     },
+     {
+      "layer": "pMetal",
+      "at": "s3:elec+8",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 2.7
+     },
+     {
+      "layer": "pWire",
+      "at": "s3:elec+10",
+      "until": "s3:tap-4",
+      "dur": 14,
+      "dy": 3.15
+     },
+     {
+      "layer": "pChan",
+      "at": "s1:start-40",
+      "until": "s3:tap+6",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "pChan",
+      "at": "s4:start",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dRow0",
+      "at": "s1:start-40",
+      "until": "s4:pixel-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow1",
+      "at": "s1:start-40",
+      "until": "s4:pixel-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow2",
+      "at": "s1:start-40",
+      "until": "s4:pixel+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow3",
+      "at": "s1:start-40",
+      "until": "s4:pixel+3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow4",
+      "at": "s1:start-40",
+      "until": "s4:pixel+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow5",
+      "at": "s1:start-40",
+      "until": "s4:pixel+9",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow6",
+      "at": "s1:start-40",
+      "until": "s4:pixel+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow7",
+      "at": "s1:start-40",
+      "until": "s4:pixel+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dRow8",
+      "at": "s1:start-40",
+      "until": "s4:pixel+18",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dW8",
+      "at": "s1:start-40",
+      "until": "s4:w8-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dW8",
+      "at": "s1:start-40",
+      "until": "s4:w8-6",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "dW12",
+      "at": "s1:start-40",
+      "until": "s4:w12-20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dW12",
+      "at": "s1:start-40",
+      "until": "s4:w12-20",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "fFlag",
+      "at": "s1:start-40",
+      "until": "s5:tw-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fFlag",
+      "at": "s1:start-40",
+      "until": "s5:tw-6",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "fUmc",
+      "at": "s1:start-40",
+      "until": "s5:umc-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fUmc",
+      "at": "s1:start-40",
+      "until": "s5:umc-8",
+      "dur": 16,
+      "dy": 6.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "fVis",
+      "at": "s1:start-40",
+      "until": "s6:vis-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fVis",
+      "at": "s1:start-40",
+      "until": "s6:vis-8",
+      "dur": 16,
+      "dy": 6.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "fPsmc",
+      "at": "s1:start-40",
+      "until": "s6:psmc-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fPsmc",
+      "at": "s1:start-40",
+      "until": "s6:psmc-8",
+      "dur": 16,
+      "dy": 6.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "fProd",
+      "at": "s1:start-40",
+      "until": "s5:strong-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fProd",
+      "at": "s1:start-40",
+      "until": "s5:strong-6",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cFlag",
+      "at": "s1:start-40",
+      "until": "s7:cn-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFlag",
+      "at": "s1:start-40",
+      "until": "s7:cn-6",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab0",
+      "at": "s1:start-40",
+      "until": "s7:cn+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab0",
+      "at": "s1:start-40",
+      "until": "s7:cn+4",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab1",
+      "at": "s1:start-40",
+      "until": "s7:cn+14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab1",
+      "at": "s1:start-40",
+      "until": "s7:cn+14",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab2",
+      "at": "s1:start-40",
+      "until": "s7:cn+24",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab2",
+      "at": "s1:start-40",
+      "until": "s7:cn+24",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab3",
+      "at": "s1:start-40",
+      "until": "s8:fab-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab3",
+      "at": "s1:start-40",
+      "until": "s8:fab-2",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab4",
+      "at": "s1:start-40",
+      "until": "s8:fab+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab4",
+      "at": "s1:start-40",
+      "until": "s8:fab+8",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab5",
+      "at": "s1:start-40",
+      "until": "s8:stall",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab5",
+      "at": "s1:start-40",
+      "until": "s8:stall",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab6",
+      "at": "s1:start-40",
+      "until": "s8:stall+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab6",
+      "at": "s1:start-40",
+      "until": "s8:stall+10",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab7",
+      "at": "s1:start-40",
+      "until": "s8:many-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab7",
+      "at": "s1:start-40",
+      "until": "s8:many-4",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab8",
+      "at": "s1:start-40",
+      "until": "s8:many+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab8",
+      "at": "s1:start-40",
+      "until": "s8:many+6",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cSign",
+      "at": "s1:start-40",
+      "until": "s7:tf",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cSign",
+      "at": "s1:start-40",
+      "until": "s7:tf",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cPrice",
+      "at": "s8:price-2",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dy": -3.2
+     },
+     {
+      "layer": "tCar",
+      "at": "s1:start-40",
+      "until": "s8:shift+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tCar",
+      "at": "s1:start-40",
+      "until": "s8:shift+4",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tInv",
+      "at": "s1:start-40",
+      "until": "s8:shift+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tInv",
+      "at": "s1:start-40",
+      "until": "s8:shift+8",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tRack",
+      "at": "s1:start-40",
+      "until": "s8:shift+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tRack",
+      "at": "s1:start-40",
+      "until": "s8:shift+10",
+      "dur": 14,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tPsu",
+      "at": "s1:start-40",
+      "until": "s8:shift+14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tPsu",
+      "at": "s1:start-40",
+      "until": "s8:shift+14",
+      "dur": 14,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "nDimm",
+      "at": "s1:start-40",
+      "until": "s9:next-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nDimm",
+      "at": "s1:start-40",
+      "until": "s9:next-6",
+      "dur": 14,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "nSign",
+      "at": "s1:start-40",
+      "until": "s9:mem-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nSign",
+      "at": "s1:start-40",
+      "until": "s9:mem-4",
+      "dur": 12,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "kAdv",
+      "at": "nm3-6",
+      "ramp": 6,
+      "until": "s2:mature-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "kSoc",
+      "text": "處理器（先進製程）",
+      "en": "Processor (advanced node)",
+      "color": "blue",
+      "at": "chip-4",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇 M1",
+      "tag": "示意，非特定手機",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "nm3": {
+        "at": "nm3"
+       },
+       "q": {
+        "at": "q"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.1,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 2,
+   "narration": "不用。系列一講先進，二十八奈米以上叫成熟製程，像家常菜，天天少不了。",
+   "tts": "不用。系列一講先進，二十八奈米以上叫成熟製程，像家常菜，天天少不了。",
+   "subtitle": {
+    "zh": "不用，系列一講先進\n28 奈米以上\n叫成熟製程\n像家常菜\n天天少不了",
+    "en": "No. Series one covered advanced nodes; | 28 nm and above | is called a mature process, | like home cooking: | you need it every day."
+   },
+   "keywords": [
+    "成熟製程",
+    "家常菜"
+   ],
+   "cues": [
+    {
+     "id": "no",
+     "text": "不用"
+    },
+    {
+     "id": "adv",
+     "text": "講先進"
+    },
+    {
+     "id": "n28",
+     "text": "奈米以上"
+    },
+    {
+     "id": "mature",
+     "text": "成熟製程"
+    },
+    {
+     "id": "dish",
+     "text": "家常菜"
+    },
+    {
+     "id": "daily",
+     "text": "天天少不了"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce（28 奈米以上口徑）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "board",
+      "at": "start-8",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0,
+      "y": 0.5,
+      "d": 38,
+      "elev": 48
+     },
+     {
+      "at": "mature",
+      "dur": 40,
+      "x": 0,
+      "y": 0.5,
+      "d": 36,
+      "elev": 50
+     }
+    ],
+    "run": [
+     {
+      "id": "kMat",
+      "at": "mature-4",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "kAdv",
+      "at": "start",
+      "ramp": 4,
+      "until": "mature-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "kPmic",
+      "text": "電源管理晶片",
+      "en": "Power-management IC",
+      "color": "amber",
+      "at": "mature-2",
+      "until": "end",
+      "cut": true
+     },
+     {
+      "part": "kMos",
+      "text": "功率元件",
+      "en": "Power devices",
+      "color": "amber",
+      "at": "mature+2",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-dish",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "成熟製程：28 奈米以上",
+      "tag": "示意",
+      "t": {
+       "no": {
+        "at": "no"
+       },
+       "n28": {
+        "at": "n28"
+       },
+       "dish": {
+        "at": "dish"
+       },
+       "daily": {
+        "at": "daily"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "holdSec": 0.6,
+   "headSec": 0.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "因為很多晶片管的是電。功率元件像水龍頭，控制大電流；電源管理晶片像配電盤，把電分好。",
+   "tts": "因為很多晶片管的是電。功率元件像水龍頭，控制大電流；電源管理晶片像配電盤，把電分好。",
+   "subtitle": {
+    "zh": "因為很多晶片\n管的是電\n功率元件像水龍頭\n控制大電流\n電源管理晶片\n像配電盤\n把電分好",
+    "en": "Because many chips | handle power. | A power device is like a faucet, | switching big currents; | a power-management chip | is like a breaker panel, | sharing the power out."
+   },
+   "keywords": [
+    "功率元件",
+    "水龍頭",
+    "配電盤"
+   ],
+   "cues": [
+    {
+     "id": "elec",
+     "text": "管的是電"
+    },
+    {
+     "id": "pwr",
+     "text": "功率元件"
+    },
+    {
+     "id": "tap",
+     "text": "水龍頭"
+    },
+    {
+     "id": "big",
+     "text": "大電流"
+    },
+    {
+     "id": "pmic",
+     "text": "電源管理"
+    },
+    {
+     "id": "board",
+     "text": "配電盤"
+    },
+    {
+     "id": "split",
+     "text": "把電分好"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測（不標電壓、電流）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "device",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "board",
+      "at": "pmic+12",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 40.5,
+      "y": 2.6,
+      "d": 54,
+      "elev": 14
+     },
+     {
+      "at": "tap+6",
+      "dur": 30,
+      "x": 42.5,
+      "y": 2.6,
+      "d": 46,
+      "elev": 14
+     },
+     {
+      "at": "pmic+12",
+      "dur": 1,
+      "x": 1.5,
+      "y": 0.5,
+      "d": 34,
+      "elev": 52
+     }
+    ],
+    "run": [
+     {
+      "id": "pGateOn",
+      "at": "tap+2",
+      "ramp": 4,
+      "until": "pmic+12"
+     },
+     {
+      "id": "pChanOn",
+      "at": "tap+6",
+      "ramp": 4,
+      "until": "pmic+12"
+     },
+     {
+      "id": "pCur",
+      "at": "big-4",
+      "ramp": 6,
+      "until": "pmic+12"
+     },
+     {
+      "id": "pPkgCur",
+      "at": "big-4",
+      "ramp": 6,
+      "until": "pmic+12"
+     },
+     {
+      "id": "kPowIn",
+      "at": "pmic+12",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "kPowSoc",
+      "at": "board-2",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "kPowMem",
+      "at": "board+4",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "kPowDisp",
+      "at": "split-6",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pDrift",
+      "text": "漂移層：擋高電壓",
+      "en": "Drift layer blocks high voltage",
+      "color": "blue",
+      "at": "elec-2",
+      "until": "tap-9",
+      "cut": true
+     },
+     {
+      "part": "pGate",
+      "text": "閘極＝把手，一開電就往上",
+      "en": "Gate = handle: on, current flows up",
+      "color": "amber",
+      "at": "tap",
+      "until": "pmic+12",
+      "cut": true
+     },
+     {
+      "part": "kPmic",
+      "text": "電源管理晶片",
+      "en": "Power-management IC",
+      "color": "amber",
+      "at": "pmic+14",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-power",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶片管電：開關與分配",
+      "tag": "示意，不標電壓",
+      "t": {
+       "elec": {
+        "at": "elec"
+       },
+       "tap": {
+        "at": "tap"
+       },
+       "big": {
+        "at": "big"
+       },
+       "board": {
+        "at": "board"
+       },
+       "split": {
+        "at": "split"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.2,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "還有驅動晶片，叫螢幕每個小點亮起來。多在八吋、十二吋廠做。",
+   "tts": "還有驅動晶片，叫螢幕每個小點亮起來。多在八吋、十二吋廠做。",
+   "subtitle": {
+    "zh": "還有驅動晶片\n叫螢幕每個小點\n亮起來\n多在 8 吋\n12 吋廠做",
+    "en": "And driver chips | tell every tiny dot on the screen | to light up. | They're mostly made in 8-inch | and 12-inch fabs."
+   },
+   "keywords": [
+    "驅動晶片",
+    "8 吋",
+    "12 吋"
+   ],
+   "cues": [
+    {
+     "id": "ddi",
+     "text": "驅動晶片"
+    },
+    {
+     "id": "pixel",
+     "text": "小點"
+    },
+    {
+     "id": "lit",
+     "text": "亮起來"
+    },
+    {
+     "id": "w8",
+     "text": "多在"
+    },
+    {
+     "id": "w12",
+     "text": "廠做"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Evertiq 2026/5、TrendForce（轉述）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "panel",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 79.0,
+      "y": -1.2,
+      "d": 32,
+      "elev": 56
+     },
+     {
+      "at": "w8+6",
+      "dur": 30,
+      "x": 89.8,
+      "y": 0.6,
+      "d": 30,
+      "elev": 40
+     }
+    ],
+    "run": [
+     {
+      "id": "dFpcSig",
+      "at": "ddi-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "dSig",
+      "at": "pixel-6",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dDdi",
+      "text": "驅動晶片（貼在玻璃上）",
+      "en": "Driver IC on glass",
+      "color": "amber",
+      "at": "ddi-2",
+      "until": "w8+4",
+      "cut": true
+     },
+     {
+      "part": "dW8",
+      "text": "8 吋（200 mm）",
+      "en": "8-inch (200 mm)",
+      "color": "blue",
+      "at": "w8+6",
+      "until": "end",
+      "cut": true,
+      "xy": [
+       330,
+       392
+      ]
+     },
+     {
+      "part": "dW12",
+      "text": "12 吋（300 mm）",
+      "en": "12-inch (300 mm)",
+      "color": "blue",
+      "at": "w12-16",
+      "until": "end",
+      "cut": true,
+      "xy": [
+       750,
+       240
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-ddi",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "驅動晶片點亮螢幕",
+      "tag": "示意",
+      "t": {
+       "ddi": {
+        "at": "ddi"
+       },
+       "pixel": {
+        "at": "pixel"
+       },
+       "w8": {
+        "at": "w8"
+       },
+       "w12": {
+        "at": "w12"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "台灣有三家。聯電，全球第四大代工廠，強項是驅動晶片。",
+   "tts": "台灣有三家。聯電，全球第四大代工廠，強項是驅動晶片。",
+   "subtitle": {
+    "zh": "台灣有三家：聯電\n全球第四大代工廠\n強項是驅動晶片",
+    "en": "Taiwan has three. First, UMC: | the world's No. 4 foundry, | strong in driver chips."
+   },
+   "keywords": [
+    "聯電",
+    "第四大"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣有三家"
+    },
+    {
+     "id": "umc",
+     "text": "聯電"
+    },
+    {
+     "id": "fourth",
+     "text": "第四大"
+    },
+    {
+     "id": "strong",
+     "text": "強項"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce 2026/9/9（2Q26 排名）；數位時代 2026/4"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 118.5,
+      "y": -1.0,
+      "d": 60,
+      "elev": 14
+     },
+     {
+      "at": "strong",
+      "dur": 40,
+      "x": 119.0,
+      "y": -1.0,
+      "d": 62,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "fProd",
+      "text": "驅動晶片",
+      "en": "Driver ICs",
+      "color": "amber",
+      "at": "strong",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-tw",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 990,
+      "w": 952,
+      "h": 400,
+      "avoid": false,
+      "title": "台灣三家成熟製程代工",
+      "tag": "公司公布、研究機構、媒體；截至 2026/11/28",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "umc": {
+        "at": "umc"
+       },
+       "vis": {
+        "at": "s6:vis"
+       },
+       "psmc": {
+        "at": "s6:psmc"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "payoff",
+   "para": 6,
+   "narration": "世界先進，台積電也持股，專做功率和電源晶片。力積電，記憶體起家，也幫人代工。",
+   "tts": "世界先進，台積電也持股，專做功率和電源晶片。力積電，記憶體起家，也幫人代工。",
+   "subtitle": {
+    "zh": "世界先進\n台積電也持股\n專做功率和電源晶片\n力積電\n記憶體起家\n也幫人代工",
+    "en": "Vanguard (VIS), | partly owned by TSMC, | focuses on power chips. | Powerchip (PSMC) | started in memory | and also makes chips for others."
+   },
+   "keywords": [
+    "世界先進",
+    "力積電"
+   ],
+   "cues": [
+    {
+     "id": "vis",
+     "text": "世界先進"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "power",
+     "text": "功率"
+    },
+    {
+     "id": "psmc",
+     "text": "力積電"
+    },
+    {
+     "id": "mem",
+     "text": "記憶體"
+    },
+    {
+     "id": "fd",
+     "text": "代工"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "中央社 2024/10；鏡週刊 2026/10；自由財經"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 60,
+      "x": 119.5,
+      "y": -1.0,
+      "d": 62,
+      "elev": 14
+     }
+    ],
+    "labels": []
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "但中國在大擴產。據 TrendForce 估計，前十大成熟產能裡，中國廠已超過四分之一。",
+   "tts": "但中國在大擴產。據 TrendForce 估計，前十大成熟產能裡，中國廠已超過四分之一。",
+   "subtitle": {
+    "zh": "但中國在大擴產\n據 TrendForce 估計\n前十大成熟產能裡\n中國廠已超過\n四分之一",
+    "en": "But China is expanding fast. | TrendForce estimates | that of the top ten's mature capacity, | Chinese fabs already hold | over a quarter."
+   },
+   "keywords": [
+    "中國",
+    "四分之一"
+   ],
+   "cues": [
+    {
+     "id": "cn",
+     "text": "中國在大擴產"
+    },
+    {
+     "id": "tf",
+     "text": "TrendForce"
+    },
+    {
+     "id": "top",
+     "text": "前十大"
+    },
+    {
+     "id": "over",
+     "text": "已超過"
+    },
+    {
+     "id": "quarter",
+     "text": "四分之一"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce（分析預期：2025 年底超過 25%）；科技新報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 157.0,
+      "y": 0.4,
+      "d": 52,
+      "elev": 28
+     },
+     {
+      "at": "top",
+      "dur": 40,
+      "x": 158.0,
+      "y": 0.4,
+      "d": 50,
+      "elev": 30
+     }
+    ],
+    "labels": [
+     {
+      "part": "cFlag",
+      "text": "中國",
+      "en": "China",
+      "color": "amber",
+      "at": "cn",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-cn",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中國成熟製程擴產",
+      "tag": "分析預期（TrendForce）",
+      "t": {
+       "cn": {
+        "at": "cn"
+       },
+       "tf": {
+        "at": "tf"
+       },
+       "quarter": {
+        "at": "quarter"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.4,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "新廠一座座蓋，像夜市一下開好多攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
+   "tts": "新廠一座座蓋，像夜市一下開好多攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
+   "subtitle": {
+    "zh": "新廠一座座蓋\n像夜市一下\n開好多攤\n價格被壓低\n所以台廠轉向\n車用、AI 伺服器電源\n較難的晶片",
+    "en": "New fabs keep going up, | like a night market | suddenly full of stalls, | so prices get pushed down. | So Taiwan fabs are shifting | to cars and AI server power: | the harder chips."
+   },
+   "keywords": [
+    "夜市",
+    "價格",
+    "車用"
+   ],
+   "cues": [
+    {
+     "id": "fab",
+     "text": "新廠"
+    },
+    {
+     "id": "stall",
+     "text": "夜市"
+    },
+    {
+     "id": "many",
+     "text": "好多攤"
+    },
+    {
+     "id": "price",
+     "text": "價格"
+    },
+    {
+     "id": "shift",
+     "text": "台廠轉向"
+    },
+    {
+     "id": "car",
+     "text": "車用"
+    },
+    {
+     "id": "ai",
+     "text": "AI"
+    },
+    {
+     "id": "hard",
+     "text": "較難"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce、Evertiq（分析預期）；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 158.5,
+      "y": 0.4,
+      "d": 52,
+      "elev": 30
+     },
+     {
+      "at": "shift+4",
+      "dur": 1,
+      "x": 197.0,
+      "y": 1.2,
+      "d": 42,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "tInvCur",
+      "at": "car-2",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "tPsuCur",
+      "at": "ai-2",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "tLeds",
+      "at": "shift",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "tFanSpin",
+      "at": "ai-4",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cPrice",
+      "text": "價格被壓低",
+      "en": "Prices pushed down",
+      "color": "amber",
+      "at": "price-4",
+      "until": "shift+4",
+      "cut": true
+     },
+     {
+      "part": "tInv",
+      "text": "逆變器的功率模組",
+      "en": "Inverter power modules",
+      "color": "amber",
+      "at": "car-2",
+      "until": "end",
+      "cut": true
+     },
+     {
+      "part": "tPsu",
+      "text": "AI 伺服器電源",
+      "en": "AI server power supplies",
+      "color": "amber",
+      "at": "ai-2",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-market",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "新廠變多，台廠轉向",
+      "tag": "分析預期；截至 2026/11/28",
+      "t": {
+       "stall": {
+        "at": "stall"
+       },
+       "price": {
+        "at": "price"
+       },
+       "car": {
+        "at": "car"
+       },
+       "ai": {
+        "at": "ai"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "成熟製程拚品項，下一集看更拚量的記憶體製造。留言成熟製程，拿完整資料。",
+   "tts": "成熟製程拚品項，下一集看更拚量的記憶體製造。留言成熟製程，拿完整資料。",
+   "subtitle": {
+    "zh": "成熟製程拚品項\n下一集看更拚量的\n記憶體製造\n留言「成熟製程」\n拿完整資料",
+    "en": "Mature nodes compete on variety; | next, a chip that competes on volume: | memory manufacturing. | Comment \"mature process\" | for the full notes."
+   },
+   "keywords": [
+    "記憶體",
+    "成熟製程"
+   ],
+   "cues": [
+    {
+     "id": "item",
+     "text": "拚品項"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "mem",
+     "text": "記憶體製造"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "截至 2026/11/28；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 240,
+      "y": 1.4,
+      "d": 38,
+      "elev": 18
+     },
+     {
+      "at": "start",
+      "dur": 120,
+      "x": 240,
+      "y": 1.4,
+      "d": 40,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "nSig",
+      "at": "mem-4",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nDimm",
+      "text": "記憶體（下一集）",
+      "en": "Memory (next episode)",
+      "color": "blue",
+      "at": "mem-2",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "mature-next",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：記憶體製造",
+      "tag": "截至 2026/11/28",
+      "t": {
+       "item": {
+        "at": "item"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.1,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "記憶體製造",
+     "trail": [
+      "中游補充篇 M2"
+     ],
+     "comment": "成熟製程",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
