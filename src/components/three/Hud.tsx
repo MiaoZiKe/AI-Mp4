@@ -225,12 +225,13 @@ const HudHook: React.FC<{ m: Model3D; f: number; out: number }> = ({ m, f, out }
  *  2026/11/15：標籤一律放在模型外面（hudLayout.ts 的 placeLabel）：位置用標籤落定那一幀（at+8）的模型範圍算一次，之後跟著零件平移，引線拉到模型外 */
 export const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: PlacedLabel[]; enPx: number; y?: Yield }> = ({ s, f, max, placed, enPx, y: yv = ID }) => {
   const cam = useMemo(() => cameraFor(s), [s]);
-  const on = placed.filter(({ l }) => f >= l.at - 2 && f < l.until + 6).slice(-max);
+  const on = placed.filter(({ l }) => f >= ((l as any).cut ? l.at : l.at - 2) && f < l.until + ((l as any).cut ? 0 : 6)).slice(-max);
   return (
     <>
       {on.map(({ l, an, x: x0, y: y0, left }, i) => {
         const p0 = projectPoint(s, cam, an.layer, an.p), p = { x: p0.x * yv.s + yv.ox, y: p0.y * yv.s + yv.oy }, c = hudAccent(l.color);
-        const o = tween(f, l.at - 2, 5, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit));
+        // cut（2026/11/27 tech-pad）：標籤框 1 幀就位、1 幀收走（不半透明疊在別的東西上）；引線仍然畫出來
+        const cut = Boolean((l as any).cut), o = cut ? 1 : tween(f, l.at - 2, 5, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit));
         // 標籤卡整段固定在模型外的空位（hudLayout.ts 的 placeLabels），只有引線跟著零件走
         const x = x0, y = y0;
         // 引線：先拐到標籤那一側的高度再水平接上（標籤放在模型下方時，引線往下拉出模型）
@@ -246,7 +247,7 @@ export const HudLabels: React.FC<{ s: State3D; f: number; max: number; placed: P
             <div style={{ position: "absolute", left: Math.round(x), top: Math.round(y), ...(hasLogo(l.logo) || hasFlag(l.flag)
               ? (() => { const ki = tween(f, l.at + 3, 6, EASE.enter), ko = tween(f, l.until, 6, EASE.exit), sc = Math.max(0.001, ki * (1 - ko)), dx = (left ? -1 : 1) * 80 * ko;
                   return { opacity: sc > 0.02 ? 1 : 0, transform: `translate(${left ? "-100%" : "0"}, -50%) translateX(${dx.toFixed(1)}px) scale(${sc.toFixed(3)})`, transformOrigin: left ? "right center" : "left center" }; })()
-              : { opacity: tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)` }), background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
+              : { opacity: cut ? 1 : tween(f, l.at + 3, 6, EASE.enter) * (1 - tween(f, l.until, 6, EASE.exit)), transform: `translate(${left ? "-100%" : "0"}, -50%)` }), background: H.panel, border: `3px solid ${c}`, padding: "6px 22px 10px", display: "flex", flexDirection: "column", alignItems: left ? "flex-end" : "flex-start" }}>
               <div style={{ ...zh(52, c), lineHeight: 1.25, letterSpacing: "0.04em" }}>{l.text}</div>
               {hasLogo(l.logo) ? <Logo id={l.logo as string} h={logoLabelH(l.logo as string, LABEL_LOGO_H)} pad={4} style={{ margin: "4px 0 6px" }} /> : null}
               {l.en || hasFlag(l.flag) ? <div style={{ display: "flex", alignItems: "center", gap: 12, flexDirection: left ? "row-reverse" : "row" }}>

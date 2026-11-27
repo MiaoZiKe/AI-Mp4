@@ -10,7 +10,8 @@
 | 晶圓面朝下被研磨頭壓在貼著研磨墊的旋轉圓台（platen）上，研磨液夾在中間；固定環擋住晶圓 | tech-cmp research（USPTO 6796885 等專利）；[1] USPTO 6217434、6293852 | 高 |
 | 墊子為聚氨酯（polyurethane）系塑膠，表面有溝槽（專利範例：寬約 0.1～3.0 mm、深約 0.2～1.8 mm）幫助研磨液流動、排出碎屑 | [1] 專利摘要（USPTO 10625393、11053339、12344702） | 中高（專利範例值，不上片） |
 | 墊子硬度專利常見範圍：Shore D 30～90、較佳 40～70；硬度太低會「過度順著表面形狀」，局部平坦度變差 | [1] 專利摘要 | 中（專利偏好值）；「太軟磨不平」有專利語句支持 |
-| 「太硬容易刮傷」 | 業界通識，**本次沒取得來源原文** | 中低；念稿保留但審片人標註「通識」 |
+| 「太硬容易刮傷」 | USPTO 11806830、12064845：業界在「平坦化效率 vs 缺陷」之間取捨，較硬的研磨層缺陷較多，常歸因於表面凸點壓進晶圓造成刮痕；常見做法先硬墊平坦化、再軟墊拋光（2026/11/27 獨立審片查證，r1 採用） | 中高（專利語句；上片不寫數字） |
+| 多層結構（研磨層＋子墊＋背膠） | USPTO 6267659〈Stacked polish pad〉、6464576、6620036（疊層墊：上層硬研磨層、下層較軟子墊當緩衝）；也有單層墊，所以畫面寫「常見」 | 中高（專利；不是所有墊都三層） |
 | 使用中表面微結構被磨平變滑（glazing），要用鑽石碟掃過重新弄粗；鑽石太兇可能縮短（尤其軟）墊的壽命 | [1] USPTO 6945857、7815495、8597081（修整器專利） | 高（修整原理）／中（壽命） |
 | 墊子磨薄、被副產物塞滿到無法穩定拋光時，整片更換、機台重新驗證（requalify） | [1] 專利敘述 | 中高 |
 | 為何要磨平：高低差讓下一層曝光失焦 | tech-cmp research【確】 | 高 |
@@ -23,7 +24,9 @@
 | 杜邦電子事業 → **Qnity Electronics** | DuPont 2025/11/1 完成電子事業分家，Qnity（NYSE: Q）。Qnity 自稱是 CMP 研磨墊零組件的全球領導廠之一（2026/3 新聞稿）、2026/6 推 Optivision Max 軟墊系列（首款 Max 8300）、去年 10 月有 Emblem 平台。**本次未取得「IC1000」型號的第二來源**，片中不寫型號 | [2] DuPont 官網／SEC；[3] Business Wire 20260610353747、20260311679099；Q4 財報電話會摘要 | 高（分家）／中（公司自述的領導地位） |
 | 富士紡（Fujibo） | 統計狗報導把杜邦、Entegris（CMC Materials）、富士紡列為頌勝競爭對手 | [4] 統計狗 12959 | 中（單一媒體） |
 | 英特格（Entegris，2022 併購 CMC Materials） | 同上；市場報告列名 | [4][5] | 中 |
-| 其他（SK enpulse＝原 SKC 墊業、湖北鼎龍、IVT 等） | 僅市場研究摘要列名，無數字 | [5] marketresearch 摘要 | 低；不上片 |
+| 其他（SK enpulse＝原 SKC 墊業、湖北鼎龍等） | 僅市場研究摘要列名，無數字 | [5] marketresearch 摘要 | 低；不上片 |
+| **更正（r1）：智勝（IVT，IV Technologies Co., Ltd.）是頌勝的子公司，不是競爭者** | 證交所英文頁：頌勝英文名 Praise Victor Industrial Co., Ltd.（PVI）、子公司 IV Technologies；r0 把 IVT 列成「其他競爭者」是錯的 | [6] twse.com.tw/market_insights/en/detail/8a8216d69dbea9fd019dd842e3bb009f | 高 |
+| 富士紡（Fujibo Holdings，東證 3104）官方來源 | 研磨材（POLYPAS 系列）含 CMP 研磨墊；b2b 產品頁與 stockanalysis 公司資料 | stockanalysis.com/quote/tyo/3104/company；pr.mono.ipros.com/en/fujibo | 中高 |
 
 **市占**：市場研究摘要的集中度（前三 82%、前五 92.36%）口徑與年份不一，且是付費牆摘要 → **不上片**。結論：片中只說「少數幾家」，不排名。
 
@@ -52,7 +55,7 @@
 - **查不到**：市占（有名稱可信）；墊子壽命；「IC1000」型號歸屬第二來源；智勝／頌勝的台積電客戶關係；中砂市占一致數字。
 
 ## 5. 來源
-[1] USPTO：6217434、6293852、6945857、7815495、8597081、10625393、11053339、12344702、11806830（image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/<號>）。
+[1] USPTO：6217434、6293852、6945857、7815495、8597081、10625393、11053339、12344702、11806830、12064845、6267659、6464576、6620036（image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/<號>）。
 [2] dupont.com/news/dupont-completes-separation-of-qnity-electronics.html；sec.gov Qnity 8-K。
 [3] businesswire.com/news/home/20260610353747／20260311679099；finance.yahoo.com Qnity Q4 財報電話會。
 [4] statementdog.com/news/12959；udn.com 9427217。

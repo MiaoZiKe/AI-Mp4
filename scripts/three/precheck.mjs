@@ -52,7 +52,7 @@ const resolve = (tok, sid) => {
   if (m && (m[2] || m[3])) {
     const sc = m[1] ?? sid, r = range.get(sc); if (!r) return null;
     const k = m[2] ?? "start", off = Number(m[3] ?? 0);
-    const base = k === "end" || k === "exit" ? r.end : k === "voice" ? (tl.get(sc)?.voiceStartFrame != null ? r.start + tl.get(sc).voiceStartFrame : r.start) : r.start;
+    const base = k === "end" || k === "exit" ? r.end : k === "voice" ? (tl.get(sc)?.voiceStartFrame != null ? tl.get(sc).voiceStartFrame : r.start) : r.start; // voiceStartFrame 是絕對幀（2026/11/27 tech-pad 修：以前誤加了 r.start）
     return base + off;
   }
   const c = /^(?:(s\w+):)?([A-Za-z_]\w*)([+-]\d+)?$/.exec(tok.trim());
@@ -102,7 +102,9 @@ for (const s of scenes) {
 for (const s of scenes) {
   const r = range.get(s.id), p = s.props ?? {}, next = scenes[scenes.indexOf(s) + 1]; if (!next) continue;
   const chk = (what, tok) => { const f = resolve(tok, s.id); if (f != null && f > r.end + 4 && f < range.get(next.id).end - 12) add("error", "S5", s.id, `${what} 的 until「${tok}」比本幕結束晚 ${f - r.end} 幀（舊卡殘留進 ${next.id} 但沒撐滿整幕；有意跨幕就把 until 設到下一幕結束，否則淡出要在下一幕起點前收完）`, r.end); };
-  for (const o of p.overlay ?? []) chk(`疊層 ${o.kind ?? o.type}`, o.until);
+  // cut 疊層（1 幀就位、1 幀收走）的 until 若不晚於下一幕的字幕窗起點（voiceStartFrame−3）＝和上一幕字幕同一幀收走，不算殘留
+  const capNext = tl.get(next.id)?.voiceStartFrame != null ? tl.get(next.id).voiceStartFrame : null;
+  for (const o of p.overlay ?? []) { const f = resolve(o.until, s.id); if (o.cut && f != null && capNext != null && f <= capNext) continue; chk(`疊層 ${o.kind ?? o.type}`, o.until); }
   for (const l of p.labels ?? []) chk(`標籤「${l.text}」`, l.until);
   if (p.hook?.until) chk("鉤子大字", p.hook.until);
 }

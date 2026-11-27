@@ -287,7 +287,7 @@ export const visibleMain = (r: Rect | null, b: Box, is2D: boolean): Rect | null 
   return v.x1 > v.x0 && v.y1 > v.y0 ? v : null;
 };
 /** 疊層的可見範圍（進場前一幀到退場完） */
-export const visible = (o: Overlay3D, f: number) => f >= o.at - 1 && f < o.until + EXIT;
+export const visible = (o: Overlay3D, f: number) => f >= ((o as any).cut ? o.at : o.at - 1) && f < o.until + ((o as any).cut ? 0 : EXIT);
 
 /**
  * 疊層的版面整理（畫面與檢查共用）：
@@ -307,7 +307,7 @@ export const arrangeOverlays = (m: Model3D, b: Box, mainAt: (f: number) => Rect 
   for (const o of [...list].sort((p, q) => p.at - q.at)) {
     const isCard = ["compare", "bars", "card", "section"].includes(o.type);
     if ((o.type !== "stamp" && !isCard) || o.avoid === false || fixed.has(o._i)) { placed.push(o); continue; }
-    const f0 = o.at, f1 = Math.min(o.until + EXIT, m.total - 1);
+    const f0 = o.at, f1 = Math.min(o.until + ((o as any).cut ? 0 : EXIT), m.total - 1);
     const mr = modelUnion(m, mainAt, f0, f1);
     const others = [...placed, ...list.filter((p) => fixed.has(p._i) && p !== o && !placed.includes(p))];
     const obs: Rect[] = [...hudReserved(b), ...obstacles(f0, f1), ...others.filter((p) => (p.type === "stamp" || ["compare", "bars", "card", "section"].includes(p.type)) && p.at < f1 && p.until > f0 + 4) /* 舊的幾幀內就退場的不算：第 2 步會讓新的等它退完 */.map((p) => rectOf(p) as Rect), ...mainObstacles(mr)];
@@ -335,8 +335,9 @@ export const arrangeOverlays = (m: Model3D, b: Box, mainAt: (f: number) => Rect 
     for (let j = 0; j < i; j++) {
       const p = order[j], pr = rectOf(p);
       if (!pr || !hit(r, pr) || p.until >= o.until) continue; // 舊的比新的晚走（故意疊在一起的，例如蓋章疊在卡片上一直到一起退場）不動
-      if (o.at < p.until + EXIT + 1 && o.at > p.at) {
-        const d = p.until + EXIT + 1 - o.at;
+      const px = (p as any).cut ? 0 : EXIT + 1; // cut 卡（1 幀收走）沒有退場淡出，下一張同一幀接上不用延後
+      if (o.at < p.until + px && o.at > p.at) {
+        const d = p.until + px - o.at;
         const bump = (v: any): any => Array.isArray(v) ? v.map(bump) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, (k === "at" || k === "hiAt" || k === "textAt") && typeof x === "number" ? Math.max(x, o.at + d) : bump(x)])) : v;
         Object.assign(o, bump({ ...o, at: undefined }), { at: o.at + d, _delayed: d });
       }
@@ -435,7 +436,7 @@ export const planHud = (m: Model3D, b: Box, hud: HudSpec, keys: ZoomKey[], enPx:
   const hook = m.hook ? hookRect(m.hook as any, b) : null;
   const obsOf = (labels: PlacedLabel[]) => { const base = obstaclesOf(m, labels); return (f0: number, f1: number) => [...base(f0, f1), ...(hook && f0 < hookOut + EXIT ? [hook] : [])]; };
   // 標籤先讓出卡片（剖面圖、對照卡…）在腳本裡的位置
-  const cardsAt = (f0: number, f1: number) => ((m.overlays ?? []) as Overlay3D[]).filter((o) => ["compare", "bars", "card", "section"].includes(o.type) && o.at < f1 && o.until + EXIT > f0).map((o) => cardRect(o, b)!).filter(Boolean);
+  const cardsAt = (f0: number, f1: number) => ((m.overlays ?? []) as Overlay3D[]).filter((o) => ["compare", "bars", "card", "section"].includes(o.type) && o.at < f1 && o.until + ((o as any).cut ? 0 : EXIT) > f0).map((o) => cardRect(o, b)!).filter(Boolean);
   const labels = placeLabels(m, b, rawMain, enPx, (f0, f1) => [...obsOf([])(f0, f1), ...cardsAt(f0, f1)]);
   const overlays = arrangeOverlays(m, b, rawMain, obsOf(labels));
   // 卡片放不下（會蓋到主體正中央）時，主素材在卡片出現期間退成背景（不透明度降到 BACKDROP_O）

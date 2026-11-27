@@ -75,7 +75,7 @@ const What: React.FC<P> = ({ o, f, k }) => {
         <Sep x={340} />
         <Row x={366} y={CT + 52} t="答案：研磨墊" c={H.amber} a={ans} />
         <Row x={366} y={CT + 112} t="一塊有彈性的塑膠圓墊" c={BLUE} a={sf} />
-        <Row x={366} y={CT + 172} t="三層：研磨層、子墊、背膠" c={H.text2} a={pd} />
+        <Row x={366} y={CT + 172} t="常見：研磨層＋子墊＋背膠" c={H.text2} a={pd} />
         <Row x={366} y={CT + 232} t="鋪在會旋轉的圓台" c={OK} a={rd} />
       </svg>
     </Card>
@@ -215,7 +215,7 @@ const Hard: React.FC<P> = ({ o, f, k }) => {
 // ── pad-co：杜邦分家出來的電子材料公司（Qnity）、日本富士紡、台灣頌勝（上市，旗下智勝做研磨墊） ──
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 392, it = on(f, T(o, "intl")), dp = on(f, T(o, "dp")), fb = on(f, T(o, "fb")), tw = on(f, T(o, "tw")), sh = on(f, T(o, "sh"));
-  const rows: [string, string, string, string, number][] = [["US", "Qnity", "原杜邦電子事業，2025/11 分家", "美國", dp], ["JP", "富士紡 Fujibo", "日本", "", fb], ["TW", "頌勝 7768", "上市；旗下智勝做研磨墊", "台灣", sh]];
+  const rows: [string, string, string, string, number][] = [["US", "Qnity", "原杜邦電子事業，2025/11 分家", "美國", dp], ["JP", "富士紡 Fujibo", "做研磨墊", "", fb], ["TW", "頌勝 7768", "上市；旗下智勝做研磨墊", "台灣", sh]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
