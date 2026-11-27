@@ -11,8 +11,8 @@ INFO = MODEL["info"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources)
 S = [
 ("s1", "hook",
- "上一集檢查完，晶圓怎麼洗乾淨？台灣廠做哪一段？",
- ["上一集檢查完", "晶圓怎麼洗乾淨？", "台灣廠做哪一段？"],
+ "前一集檢查完，晶圓怎麼洗乾淨？台灣廠做哪一段？",
+ ["前一集檢查完", "晶圓怎麼洗乾淨？", "台灣廠做哪一段？"],
  ["Last time: inspection done.", "How does a wafer get clean?", "Which step do Taiwan's makers handle?"],
  [("prev", "檢查完"), ("q", "洗乾淨"), ("tw", "台灣廠")],
  ["洗乾淨", "台灣廠"], ["示意動畫，不是量測"]),
@@ -57,7 +57,7 @@ S = [
  ["藥液從桶子出發", "幫浦推著走", "閥門像調飲料配比例"],
  ["Liquid starts in the drums,", "pumps push it along,", "and a valve mixes the ratio like a drink."],
  [("tank", "桶子"), ("pump", "幫浦"), ("mix", "閥門")],
- ["桶子", "幫浦", "調飲料"], ["US 5882433；MKS；配比為通例"]),
+ ["桶子", "幫浦", "調飲料"], ["US 5882433；MKS；示意動畫，不是量測"]),
 ("s9", "mechanism",
  "另一種像整籃碗泡進槽裡，一次洗很多；單片逐片洗。",
  ["另一種", "像整籃碗泡進槽裡", "一次洗很多", "單片逐片洗"],

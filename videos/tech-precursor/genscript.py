@@ -12,9 +12,9 @@ INFO = MODEL["info"]
 SITES = INFO["SITES"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 無聲幕長秒, 尾端只有畫面秒數)
 S = [
-("s1", "hook", "上一集說，改用氣體原料。氣體，從哪來？",
- ["上一集說", "改用氣體原料", "氣體，從哪來？"], ["Last time: switch", "to gas raw materials.", "Where does gas come from?"],
- [("prev", "上一集"), ("q", "從哪來")], ["氣體原料", "從哪來"], ["示意動畫，不是量測"], 5.2, 1.2),
+("s1", "hook", "前一集說，改用氣體原料。氣體，從哪來？",
+ ["前一集說", "改用氣體原料", "氣體，從哪來？"], ["Last time: switch", "to gas raw materials.", "Where does gas come from?"],
+ [("prev", "前一集"), ("q", "從哪來")], ["氣體原料", "從哪來"], ["示意動畫，不是量測"], 5.2, 1.2),
 ("s2", "mechanism", "這種原料叫前驅物，像做菜前備好的醬料，裝在氣櫃裡，有液體也有固體。",
  ["這種原料叫前驅物", "像做菜前備好", "的醬料", "裝在氣櫃裡", "有液體也有固體"], ["This raw material is a precursor,", "like a sauce prepared", "before cooking,", "kept in a gas cabinet,", "as liquid or solid."],
  [("name", "前驅物"), ("sauce", "醬料"), ("cab", "氣櫃"), ("solid", "固體")], ["前驅物", "醬料", "固體"], ["默克（Merck）產品頁；Entegris 部落格；示意"], 7.4, 1.2),

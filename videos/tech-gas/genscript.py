@@ -8,10 +8,10 @@ subprocess.run(["node", os.path.join(HERE, "gen-model.mjs")], check=True)
 MODEL = json.load(open(os.path.join(HERE, "model.json"))); INFO = MODEL["info"]; X = INFO["X"]; LY = INFO["LY"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, hold秒)
 S = [
-("s1", "hook", "上一集說，原料要先變成氣。那氣本身呢？一瓶氣，怎麼安全送進廠？",
- ["上一集說", "原料要先變成氣", "那氣本身呢？", "一瓶氣", "怎麼安全送進廠？"],
+("s1", "hook", "前一集說，原料要先變成氣。那氣本身呢？一瓶氣，怎麼安全送進廠？",
+ ["前一集說", "原料要先變成氣", "那氣本身呢？", "一瓶氣", "怎麼安全送進廠？"],
  ["Last time:", "raw materials turn into gas.", "What about the gas itself?", "One bottle of gas,", "how does it reach the fab safely?"],
- [("prev", "上一集"), ("q", "那氣本身呢"), ("bot", "一瓶氣")], ["氣", "安全"], ["示意動畫，不是量測"], 0.5),
+ [("prev", "前一集"), ("q", "那氣本身呢"), ("bot", "一瓶氣")], ["氣", "安全"], ["示意動畫，不是量測"], 0.5),
 ("s2", "mechanism", "蝕刻、鍍膜、摻雜，每一步都要用氣體。",
  ["蝕刻、鍍膜", "摻雜", "每一步都要", "用氣體"], ["Etching, deposition,", "doping:", "every step needs", "gas."],
  [("etch", "蝕刻"), ("dep", "鍍膜"), ("dop", "摻雜"), ("all", "每一步")], ["蝕刻", "氣體"], ["林德、液化空氣技術說明；示意"], 0.5),
