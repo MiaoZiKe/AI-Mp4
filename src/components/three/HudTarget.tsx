@@ -51,12 +51,12 @@ const Chip: React.FC<{ x: number; y: number; w: number; t: string; a: number; do
   <g opacity={0.4 + 0.6 * a}><rect x={x} y={y} width={w} height={50} fill={a > 0.5 ? "#FFF4DA" : "#FFFFFF"} stroke={a > 0.5 ? H.amber : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 2} />
     <text x={x + w / 2} y={y + 35} textAnchor="middle" style={zh(30, H.text, 900)}>{t}</text>{done ? <Check x={x + w - 6} y={y + 62} o={a} /> : null}</g>
 );
-/** 製程站的小圖示列：精煉｜融化鑄錠｜軋延｜加工｜接合（上半卡共用） */
+/** 製程站的小圖示列：精煉｜鑄錠｜鍛造｜軋延｜退火｜加工｜接合（上半卡共用） */
 const LineChips: React.FC<{ a: number[] }> = ({ a }) => {
-  const names = ["精煉", "融化鑄錠", "軋延", "加工", "接合"], ws = [96, 156, 96, 96, 96];
+  const names = ["精煉", "鑄錠", "鍛造", "軋延", "退火", "加工", "接合"];
   let x = 30;
-  return <g>{names.map((n, i) => { const cx = x; x += ws[i] + 44; return <g key={n}><Chip x={cx} y={CT + 2} w={ws[i]} t={n} a={a[i]} />
-    {i < 4 ? <Arrow x1={cx + ws[i] + 6} y1={CT + 27} x2={cx + ws[i] + 38} y2={CT + 27} c={H.text2} w={4} o={0.4 + 0.6 * a[i + 1]} /> : null}</g>; })}</g>;
+  return <g>{names.map((n, i) => { const cx = x; x += 96 + 30; return <g key={n}><Chip x={cx} y={CT + 2} w={96} t={n} a={a[i]} />
+    {i < 6 ? <Arrow x1={cx + 99} y1={CT + 27} x2={cx + 126} y2={CT + 27} c={H.text2} w={3} o={0.4 + 0.6 * a[i + 1]} /> : null}</g>; })}</g>;
 };
 
 // ── target-hook：上集的機台在打什麼？→ 一塊要被打碎的金屬板（銅色圓盤，問號變成答案） ──
@@ -72,10 +72,10 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
         <text x={cx} y={cy + 28} textAnchor="middle" style={zh(84, H.text, 900)} opacity={q * (1 - pl)}>？</text>
         {[0, 1, 2, 3, 4, 5].map((i) => { const a = (i / 6) * Math.PI * 2 + 0.3; return <circle key={i} cx={cx + Math.cos(a) * 70} cy={cy + Math.sin(a) * 70} r={5} fill="#8C4A22" opacity={0.5 * pl} />; })}
         <Sep x={300} />
-        <Row x={330} y={CT + 56} t="上一集：台灣的設備廠" c={H.text2} a={pv} />
-        <Row x={330} y={CT + 122} t="機台在打什麼？" c={BLUE} a={q} />
-        <Row x={330} y={CT + 188} t="一塊要被打碎的金屬板" c={H.amber} a={pl} />
-        <text x={330} y={CT + 244} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pl}>它的名字叫靶材</text>
+        <Row x={330} y={CT + 56} t="前一集：說要看靶材" c={H.text2} a={pv} />
+        <Row x={330} y={CT + 122} t="靶材到底是什麼？" c={BLUE} a={q} />
+        <Row x={330} y={CT + 188} t="一顆顆被撞出原子的板" c={H.amber} a={pl} />
+        <text x={330} y={CT + 244} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pl}>原子不是整塊打碎</text>
       </svg>
     </Card>
   );
@@ -262,36 +262,33 @@ const Line: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <LineChips a={[re, Math.max(fu, ig), 0.3 * q, 0.3 * q, 0.3 * q]} />
+        <LineChips a={[re, Math.max(fu, ig), on(f, T(o, "forge")), 0.3 * q, 0.3 * q, 0.3 * q, 0.3 * q]} />
         <Row x={30} y={CT + 116} t="精煉：把雜質去掉，純度要很高" c={BLUE} a={re} />
         <Row x={30} y={CT + 176} t="真空裡融化：不讓空氣混進來" c={H.amber} a={fu} />
-        <Row x={30} y={CT + 236} t="倒成錠（一大塊金屬）" c={CU} a={ig} />
-        <Check x={880} y={CT + 226} o={ig} />
+        <Row x={30} y={CT + 236} t="倒成錠，再用鍛壓機打實" c={CU} a={Math.max(ig, on(f, T(o, "forge")))} />
       </svg>
     </Card>
   );
 };
 
-// ── target-grain：靶怎麼做（後半）：同一列小圖示，軋延／加工／接合亮起；左下：粗晶粒對照細晶粒 ──
+// ── target-grain：靶怎麼做（後半）：軋延使晶粒壓扁拉長，退火後變成細小均勻的等軸晶粒；右邊四行對應軋延、退火、加工、接合 ──
 const Grain: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330;
-  const ro = on(f, T(o, "roll")), gr = on(f, T(o, "grain")), la = on(f, T(o, "lathe")), bo = on(f, T(o, "bond"));
-  const coarse = [[0, 0, 70, 56], [70, 0, 60, 70], [130, 0, 60, 48], [0, 56, 56, 64], [56, 70, 74, 50], [130, 48, 60, 72]];
+  const ro = on(f, T(o, "roll")), an = on(f, T(o, "anneal")), gr = on(f, T(o, "grain")), la = on(f, T(o, "lathe")), bo = on(f, T(o, "bond"));
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <LineChips a={[1, 1, ro, la, bo]} />
-        <g opacity={0.4 + 0.6 * gr}>
-          <g transform={`translate(40 ${CT + 80})`}>{coarse.map(([x, y, w, h], i) => <rect key={i} x={x} y={y} width={w} height={h} fill={i % 2 ? "#C9D2E0" : "#AEBBD0"} stroke={H.text2} strokeWidth={2} />)}</g>
-          <g transform={`translate(270 ${CT + 80})`}>{Array.from({ length: 36 }, (_, i) => <rect key={i} x={(i % 6) * 32} y={Math.floor(i / 6) * 20} width={32} height={20} fill={(i + Math.floor(i / 6)) % 2 ? "#C9D2E0" : "#AEBBD0"} stroke={H.text2} strokeWidth={1.5} />)}</g>
-          <Arrow x1={238} y1={CT + 140} x2={264} y2={CT + 140} c={H.amber} w={5} o={gr} />
-        </g>
-        <text x={40} y={CT + 244} style={zh(30, H.text2, 800)} opacity={0.35 + 0.65 * gr}>粗：方向亂</text>
-        <text x={270} y={CT + 244} style={zh(30, H.text, 900)} opacity={0.35 + 0.65 * gr}>細：均勻</text>
+        <LineChips a={[1, 1, 1, ro, an, la, bo]} />
+        <g opacity={0.4 + 0.6 * ro}><g transform={`translate(40 ${CT + 68})`}>{Array.from({ length: 12 }, (_, i) => <rect key={i} x={(i % 3) * 66} y={Math.floor(i / 3) * 32} width={66} height={32} fill={i % 2 ? "#C9D2E0" : "#AEBBD0"} stroke={H.text2} strokeWidth={1.5} transform={`scale(1 1)`} />)}</g></g>
+        <g opacity={0.4 + 0.6 * gr}><g transform={`translate(270 ${CT + 68})`}>{Array.from({ length: 36 }, (_, i) => <rect key={i} x={(i % 6) * 33} y={Math.floor(i / 6) * 21} width={33} height={21} fill={(i + Math.floor(i / 6)) % 2 ? "#C9D2E0" : "#AEBBD0"} stroke={H.text2} strokeWidth={1.5} />)}</g></g>
+        <Arrow x1={246} y1={CT + 132} x2={266} y2={CT + 132} c={H.amber} w={4} o={an} />
+        <text x={40} y={CT + 236} style={zh(30, H.text2, 800)} opacity={0.35 + 0.65 * ro}>軋後：壓扁</text>
+        <text x={270} y={CT + 236} style={zh(30, H.text, 900)} opacity={0.35 + 0.65 * gr}>退火後：細均勻</text>
         <Sep x={500} y0={CT + 70} />
-        <Row x={530} y={CT + 116} t="軋得越多，晶粒越細" c={H.amber} a={gr} />
-        <Row x={530} y={CT + 176} t="車成圓盤，磨亮靶面" c={BLUE} a={la} />
-        <Row x={530} y={CT + 236} t="用焊料接到背板" c={CU} a={bo} />
+        <Row x={530} y={CT + 96} t="軋延：晶粒被壓扁" c={H.amber} a={ro} />
+        <Row x={530} y={CT + 142} t="加熱退火：重新長細" c={RED} a={Math.max(an, gr)} />
+        <Row x={530} y={CT + 188} t="車成圓盤，磨亮靶面" c={BLUE} a={la} />
+        <Row x={530} y={CT + 234} t="用焊料接到背板" c={CU} a={bo} />
       </svg>
     </Card>
   );

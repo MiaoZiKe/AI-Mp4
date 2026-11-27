@@ -46,8 +46,8 @@
  },
  "cover": {
   "title": [
-   "機台在打",
-   "什麼？"
+   "靶材",
+   "是什麼？"
   ],
   "sub": "濺鍍靶材",
   "frame": 40
@@ -58,14 +58,14 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "上一集的機台，到底在打什麼？一塊要被打碎的金屬板。",
-   "tts": "前一集的機台，到底在打什麼？一塊要被打碎的金屬板。",
+   "narration": "上一集說看靶材。靶材到底是什麼？一塊會被打掉原子的金屬板。",
+   "tts": "前一集說看靶材。靶材到底是什麼？一塊會被打掉原子的金屬板。",
    "subtitle": {
-    "zh": "上一集的機台\n到底在打什麼？\n一塊要被打碎的金屬板",
-    "en": "Last time's machines: | what are they hitting? | A metal plate, to be broken apart."
+    "zh": "上一集說看靶材\n靶材到底是什麼？\n一塊會被打掉原子\n的金屬板",
+    "en": "Last time: on to the target. | What is a target? | A metal plate whose atoms | get knocked off."
    },
    "keywords": [
-    "打碎",
+    "靶材",
     "金屬板"
    ],
    "cues": [
@@ -75,7 +75,7 @@
     },
     {
      "id": "q",
-     "text": "到底在打什麼"
+     "text": "到底是什麼"
     },
     {
      "id": "plate",
@@ -88,8 +88,8 @@
    ],
    "props": {
     "hook": {
-     "kicker": "接上集：台灣自己的設備廠",
-     "title": "機台在打什麼？",
+     "kicker": "接上集：看濺鍍靶材",
+     "title": "靶材是什麼？",
      "size": 118,
      "top": 236
     },
@@ -157,21 +157,28 @@
      },
      {
       "layer": "tgt",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
      },
      {
+      "layer": "shield",
+      "at": "s5:start+14",
+      "until": "s5:volt+10",
+      "opacity": 0.22,
+      "dur": 12
+     },
+     {
       "layer": "back",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "solder",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -185,7 +192,7 @@
      },
      {
       "layer": "ins",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -199,7 +206,7 @@
      },
      {
       "layer": "oring2",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -213,7 +220,7 @@
      },
      {
       "layer": "oring3",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -227,7 +234,7 @@
      },
      {
       "layer": "shield",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -241,7 +248,7 @@
      },
      {
       "layer": "chamber",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -255,7 +262,7 @@
      },
      {
       "layer": "gas",
-      "at": "s5:volt-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -269,7 +276,7 @@
      },
      {
       "layer": "chuck",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -283,7 +290,7 @@
      },
      {
       "layer": "wf",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -311,7 +318,7 @@
      },
      {
       "layer": "plasma",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -325,7 +332,7 @@
      },
      {
       "layer": "hitL",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -367,7 +374,7 @@
      },
      {
       "layer": "film3",
-      "at": "s8:start-6",
+      "at": "s8:start-2",
       "until": "s12:start-8",
       "opacity": 0,
       "dur": 8
@@ -375,13 +382,13 @@
      {
       "layer": "dspBase",
       "at": "s1:start-40",
-      "until": "s8:start-8",
+      "until": "s8:start-16",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "dspBase",
-      "at": "s9:start-6",
+      "at": "s9:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -389,13 +396,13 @@
      {
       "layer": "tgtDsp",
       "at": "s1:start-40",
-      "until": "s8:start-8",
+      "until": "s8:start-16",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "tgtDsp",
-      "at": "s9:start-6",
+      "at": "s9:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -403,7 +410,7 @@
      {
       "layer": "tgtD0",
       "at": "s1:start-40",
-      "until": "s8:start-8",
+      "until": "s8:start-16",
       "opacity": 0,
       "dur": 8
      },
@@ -451,7 +458,7 @@
      },
      {
       "layer": "tgtD3",
-      "at": "s9:start-6",
+      "at": "s9:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -465,7 +472,7 @@
      },
      {
       "layer": "tgtWarn",
-      "at": "s9:start-6",
+      "at": "s9:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -479,7 +486,7 @@
      },
      {
       "layer": "tgtNew",
-      "at": "s9:start-6",
+      "at": "s9:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -487,13 +494,13 @@
      {
       "layer": "rf",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rf",
-      "at": "s9:furnace-6",
+      "at": "s9:furnace+34",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -501,13 +508,13 @@
      {
       "layer": "rfElyt",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rfElyt",
-      "at": "s9:furnace-6",
+      "at": "s9:furnace+34",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -515,13 +522,13 @@
      {
       "layer": "rfCath",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rfCath",
-      "at": "s9:furnace-6",
+      "at": "s9:furnace+34",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -529,13 +536,13 @@
      {
       "layer": "rfAnode",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rfAnode",
-      "at": "s9:furnace-6",
+      "at": "s9:furnace+34",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -549,7 +556,7 @@
      },
      {
       "layer": "rfCathThick",
-      "at": "s9:furnace-6",
+      "at": "s9:furnace+34",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -557,13 +564,13 @@
      {
       "layer": "fn",
       "at": "s1:start-40",
-      "until": "s9:furnace-10",
+      "until": "s9:furnace-20",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "fn",
-      "at": "s10:start-4",
+      "at": "s9:forge+10",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -571,13 +578,13 @@
      {
       "layer": "fnCoil",
       "at": "s1:start-40",
-      "until": "s9:furnace-10",
+      "until": "s9:furnace-20",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "fnCoil",
-      "at": "s10:start-4",
+      "at": "s9:forge+10",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -585,13 +592,27 @@
      {
       "layer": "fnIngot",
       "at": "s1:start-40",
-      "until": "s9:furnace-10",
+      "until": "s9:furnace-20",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "fnIngot",
-      "at": "s10:start-4",
+      "at": "s9:forge+10",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnHot",
+      "at": "s1:start-40",
+      "until": "s9:furnace-20",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnHot",
+      "at": "s9:forge+10",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -605,21 +626,63 @@
      },
      {
       "layer": "fnPool",
-      "at": "s10:start-4",
+      "at": "s9:forge+10",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "fnHot",
+      "layer": "fg",
       "at": "s1:start-40",
-      "until": "s9:furnace-10",
+      "until": "s9:forge-24",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "fnHot",
-      "at": "s10:start-4",
+      "layer": "fg",
+      "at": "s10:roll+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgRam",
+      "at": "s1:start-40",
+      "until": "s9:forge-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgRam",
+      "at": "s10:roll+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgIng0",
+      "at": "s1:start-40",
+      "until": "s9:forge-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgIng0",
+      "at": "s9:forge+16",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgIng1",
+      "at": "s1:start-40",
+      "until": "s9:forge+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fgIng1",
+      "at": "s10:roll+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -627,13 +690,13 @@
      {
       "layer": "ml",
       "at": "s1:start-40",
-      "until": "s10:start-6",
+      "until": "s10:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ml",
-      "at": "s10:lathe-6",
+      "at": "s10:anneal+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -641,13 +704,13 @@
      {
       "layer": "mlRoll",
       "at": "s1:start-40",
-      "until": "s10:start-6",
+      "until": "s10:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "mlRoll",
-      "at": "s10:lathe-6",
+      "at": "s10:anneal+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -655,13 +718,13 @@
      {
       "layer": "mlIn",
       "at": "s1:start-40",
-      "until": "s10:start-6",
+      "until": "s10:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "mlIn",
-      "at": "s10:lathe-6",
+      "at": "s10:anneal+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -675,7 +738,63 @@
      },
      {
       "layer": "mlOut",
-      "at": "s10:lathe-6",
+      "at": "s10:anneal+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "an",
+      "at": "s1:start-40",
+      "until": "s10:anneal-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "an",
+      "at": "s10:lathe+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anPlate",
+      "at": "s1:start-40",
+      "until": "s10:anneal-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anPlate",
+      "at": "s10:lathe+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anHot",
+      "at": "s1:start-40",
+      "until": "s10:anneal-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anHot",
+      "at": "s10:anneal+120",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anElem",
+      "at": "s1:start-40",
+      "until": "s10:anneal-24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "anElem",
+      "at": "s10:lathe+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -683,13 +802,13 @@
      {
       "layer": "lt",
       "at": "s1:start-40",
-      "until": "s10:lathe-10",
+      "until": "s10:lathe-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "lt",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -697,13 +816,13 @@
      {
       "layer": "ltTab",
       "at": "s1:start-40",
-      "until": "s10:lathe-10",
+      "until": "s10:lathe-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ltTab",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -711,13 +830,13 @@
      {
       "layer": "ltTool",
       "at": "s1:start-40",
-      "until": "s10:lathe-10",
+      "until": "s10:lathe-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "ltTool",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -731,7 +850,7 @@
      },
      {
       "layer": "ltF1",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -745,7 +864,7 @@
      },
      {
       "layer": "ltF2",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -759,7 +878,7 @@
      },
      {
       "layer": "ltF3",
-      "at": "s10:bond-6",
+      "at": "s10:bond+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -767,13 +886,13 @@
      {
       "layer": "bd",
       "at": "s1:start-40",
-      "until": "s10:bond-10",
+      "until": "s10:bond-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bd",
-      "at": "s11:start-6",
+      "at": "s11:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -781,13 +900,13 @@
      {
       "layer": "bdBack",
       "at": "s1:start-40",
-      "until": "s10:bond-10",
+      "until": "s10:bond-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bdBack",
-      "at": "s11:start-6",
+      "at": "s11:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -795,13 +914,13 @@
      {
       "layer": "bdPress",
       "at": "s1:start-40",
-      "until": "s10:bond-10",
+      "until": "s10:bond-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bdPress",
-      "at": "s11:start-6",
+      "at": "s11:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -809,13 +928,13 @@
      {
       "layer": "bdHeat",
       "at": "s1:start-40",
-      "until": "s10:bond-10",
+      "until": "s10:bond-24",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "bdHeat",
-      "at": "s11:start-6",
+      "at": "s11:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -857,7 +976,7 @@
      },
      {
       "layer": "bdS2",
-      "at": "s11:start-6",
+      "at": "s11:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -865,13 +984,13 @@
      {
       "layer": "rack",
       "at": "s1:start-40",
-      "until": "s11:start-6",
+      "until": "s11:start-18",
       "opacity": 0,
       "dur": 8
      },
      {
       "layer": "rack",
-      "at": "s12:start-6",
+      "at": "s12:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -885,7 +1004,7 @@
      },
      {
       "layer": "rkJP",
-      "at": "s12:start-6",
+      "at": "s12:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -899,7 +1018,7 @@
      },
      {
       "layer": "rkUS",
-      "at": "s12:start-6",
+      "at": "s12:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -913,7 +1032,7 @@
      },
      {
       "layer": "rkTW",
-      "at": "s12:start-6",
+      "at": "s12:start-2",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
@@ -1068,7 +1187,7 @@
      }
     ]
    },
-   "durationSec": 5.0,
+   "durationSec": 5.8,
    "pauseAfter": 0.6
   },
   {
@@ -1413,15 +1532,15 @@
    "id": "s5",
    "beat": "mechanism",
    "para": 5,
-   "narration": "通入氬氣，再加高壓，氬離子被吸向靶材，一撞，金屬原子就飛出來。",
-   "tts": "通入氬氣，再加高壓，氬離子被吸向靶材，一撞，金屬原子就飛出來。",
+   "narration": "通入氬氣，再加高壓，氬氣被電成電漿，離子被吸向靶材，一撞，金屬原子就飛出來。",
+   "tts": "通入氬氣，再加高壓，氬氣被電成電漿，離子被吸向靶材，一撞，金屬原子就飛出來。",
    "subtitle": {
-    "zh": "通入氬氣\n再加高壓\n氬離子被吸向靶材\n一撞\n金屬原子就飛出來",
-    "en": "Argon gas flows in, | high voltage is applied, | argon ions are pulled toward the target, | one hit, | and metal atoms fly out."
+    "zh": "通入氬氣\n再加高壓\n氬氣被電成電漿\n離子被吸向靶材\n一撞金屬原子就飛出來",
+    "en": "Argon gas flows in, | high voltage is applied, | the gas becomes plasma, | ions are pulled to the target, | one hit and metal atoms fly out."
    },
    "keywords": [
     "氬氣",
-    "氬離子",
+    "電漿",
     "原子"
    ],
    "cues": [
@@ -1434,8 +1553,12 @@
      "text": "高壓"
     },
     {
+     "id": "pla",
+     "text": "電成電漿"
+    },
+    {
      "id": "ion",
-     "text": "氬離子"
+     "text": "離子被吸向"
     },
     {
      "id": "hit",
@@ -1456,18 +1579,18 @@
       "at": "start",
       "dur": 30,
       "x": 0.0,
-      "y": 2.6,
-      "d": 52,
-      "elev": 12,
+      "y": 2.5,
+      "d": 50,
+      "elev": 6,
       "yaw": 0.05
      },
      {
-      "at": "ion-6",
+      "at": "pla-6",
       "dur": 36,
       "x": 0.0,
-      "y": 2.2,
-      "d": 34,
-      "elev": 7
+      "y": 2.3,
+      "d": 36,
+      "elev": 4
      }
     ],
     "run": [
@@ -1490,106 +1613,184 @@
       "until": "s6:start"
      },
      {
-      "id": "plasmaGlow",
-      "at": "volt-2",
+      "id": "gas3",
+      "at": "gas-4",
       "ramp": 8,
-      "until": "s8:start"
+      "until": "s6:start"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "pla-8",
+      "ramp": 8,
+      "until": "s8:start-8"
      },
      {
       "id": "ion0",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "ion1",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "ion2",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "ion3",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "ion4",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "ion5",
       "at": "ion-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "hitGlow",
       "at": "hit-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom0",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom1",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom2",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom3",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom4",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom5",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom6",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom7",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "atom8",
       "at": "atom-2",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom9",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom10",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom11",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom12",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom13",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom14",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom15",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom16",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom17",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom18",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom19",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
+     },
+     {
+      "id": "atom20",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start-8"
      }
     ],
     "labels": [
@@ -1599,30 +1800,30 @@
       "en": "Argon in",
       "color": "blue",
       "at": "gas-2",
-      "until": "volt-4"
+      "until": "pla-14"
      },
      {
       "part": "plasma",
-      "text": "電漿輝光",
-      "en": "Plasma",
+      "text": "電漿環",
+      "en": "Plasma ring",
       "color": "amber",
-      "at": "volt-2",
-      "until": "ion+30"
+      "at": "pla-12",
+      "until": "ion+24"
      },
      {
       "part": "ion",
       "text": "氬離子",
       "en": "Ar ions",
       "color": "blue",
-      "at": "ion+32",
-      "until": "hit+20"
+      "at": "ion+26",
+      "until": "hit+30"
      },
      {
       "part": "hit",
       "text": "撞擊點",
       "en": "Impact",
       "color": "amber",
-      "at": "hit+22",
+      "at": "hit+32",
       "until": "s6:start-4"
      }
     ],
@@ -1646,6 +1847,9 @@
        "volt": {
         "at": "volt"
        },
+       "pla": {
+        "at": "pla"
+       },
        "ion": {
         "at": "ion"
        },
@@ -1659,35 +1863,35 @@
      }
     ]
    },
-   "durationSec": 7.2,
+   "durationSec": 8.2,
    "pauseAfter": 0.6
   },
   {
    "id": "s6",
    "beat": "mechanism",
    "para": 6,
-   "narration": "原子往四面八方飛，中間最多，旁邊越來越少，落到晶圓，堆成一層薄膜。",
-   "tts": "原子往四面八方飛，中間最多，旁邊越來越少，落到晶圓，堆成一層薄膜。",
+   "narration": "原子朝前方散開，正前方最多，越斜越少，落到晶圓，堆成一層薄膜。",
+   "tts": "原子朝前方散開，正前方最多，越斜越少，落到晶圓，堆成一層薄膜。",
    "subtitle": {
-    "zh": "原子往四面八方飛\n中間最多\n旁邊越來越少\n落到晶圓\n堆成一層薄膜",
-    "en": "Atoms fly in every direction, | most straight ahead, | fewer to the sides, | land on the wafer, | and build up a thin film."
+    "zh": "原子朝前方散開\n正前方最多\n越斜越少\n落到晶圓\n堆成一層薄膜",
+    "en": "Atoms spread out ahead, | most straight ahead, | fewer the more slanted, | land on the wafer, | and build up a thin film."
    },
    "keywords": [
-    "中間最多",
+    "正前方",
     "薄膜"
    ],
    "cues": [
     {
      "id": "spread",
-     "text": "四面八方"
+     "text": "散開"
     },
     {
      "id": "center",
-     "text": "中間最多"
+     "text": "正前方最多"
     },
     {
      "id": "side",
-     "text": "旁邊越來越少"
+     "text": "越斜越少"
     },
     {
      "id": "wafer",
@@ -1708,17 +1912,17 @@
       "at": "start",
       "dur": 30,
       "x": 0.0,
-      "y": 2.1,
-      "d": 30,
-      "elev": 16
+      "y": 2.0,
+      "d": 40,
+      "elev": 8
      },
      {
       "at": "wafer-6",
       "dur": 28,
       "x": 0.0,
-      "y": 1.7,
-      "d": 22,
-      "elev": 24
+      "y": 1.8,
+      "d": 36,
+      "elev": 14
      }
     ],
     "run": [
@@ -1726,7 +1930,7 @@
       "id": "atomScat",
       "at": "spread",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      }
     ],
     "labels": [
@@ -1821,9 +2025,9 @@
       "at": "start",
       "dur": 30,
       "x": 0.0,
-      "y": 2.3,
-      "d": 30,
-      "elev": 13,
+      "y": 1.9,
+      "d": 40,
+      "elev": 9,
       "yaw": -0.15
      }
     ],
@@ -1832,31 +2036,31 @@
       "id": "field0",
       "at": "race-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "field1",
       "at": "race-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "field2",
       "at": "race-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "field3",
       "at": "race-6",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      },
      {
       "id": "elec",
       "at": "elec-4",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "s8:start-8"
      }
     ],
     "labels": [
@@ -1874,7 +2078,7 @@
       "en": "Field lines",
       "color": "blue",
       "at": "race+10",
-      "until": "s8:start-4"
+      "until": "s8:start-14"
      }
     ],
     "overlay": [
@@ -1882,7 +2086,7 @@
       "type": "section",
       "kind": "target-race",
       "at": "start+24",
-      "until": "s8:start-5",
+      "until": "s8:start-14",
       "x": 64,
       "y": 1066,
       "w": 952,
@@ -1911,11 +2115,11 @@
    "id": "s8",
    "beat": "mechanism",
    "para": 8,
-   "narration": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一到四成。",
-   "tts": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一到四成。",
+   "narration": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一成半到四成。",
+   "tts": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一成半到四成。",
    "subtitle": {
-    "zh": "所以這一圈被吃出溝\n越吃越深\n快見底就得換\n一塊大約只用到一到四成",
-    "en": "So this ring wears into a groove, | deeper and deeper. | Near the bottom, it must be replaced: | roughly 15 to 40 percent gets used."
+    "zh": "所以這一圈被吃出溝\n越吃越深\n快見底就得換\n一塊大約只用到\n一成半到四成",
+    "en": "So this ring wears into a groove, | deeper and deeper. | Near the bottom, it must be replaced: | a block gets used only to about | 15 to 40 percent."
    },
    "keywords": [
     "吃出溝",
@@ -1937,7 +2141,7 @@
     },
     {
      "id": "pct",
-     "text": "一到四成"
+     "text": "一成半到四成"
     }
    ],
    "component": "ThreeScene",
@@ -1947,8 +2151,8 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 34,
+      "at": "start-4",
+      "dur": 1,
       "x": -20,
       "y": 0.4,
       "d": 40,
@@ -1997,23 +2201,23 @@
       "en": "Used target",
       "color": "amber",
       "at": "groove-2",
-      "until": "deep+23"
+      "until": "deep+22"
      },
      {
       "part": "groove",
       "text": "侵蝕溝",
       "en": "Groove",
       "color": "blue",
-      "at": "deep+25",
-      "until": "swap+14"
+      "at": "deep+24",
+      "until": "swap+15"
      },
      {
       "part": "newT",
       "text": "新靶材",
       "en": "New target",
       "color": "amber",
-      "at": "swap+16",
-      "until": "s9:start-4"
+      "at": "swap+17",
+      "until": "s9:start-14"
      }
     ],
     "overlay": [
@@ -2021,7 +2225,7 @@
       "type": "section",
       "kind": "target-groove",
       "at": "start+24",
-      "until": "s9:start-5",
+      "until": "s9:start-14",
       "x": 64,
       "y": 1066,
       "w": 952,
@@ -2046,22 +2250,23 @@
      }
     ]
    },
-   "durationSec": 7.6,
+   "durationSec": 7.8,
    "pauseAfter": 0.6
   },
   {
    "id": "s9",
    "beat": "mechanism",
    "para": 9,
-   "narration": "靶材怎麼來？先精煉，把雜質去掉，再放進真空爐融化，倒成金屬塊。",
-   "tts": "靶材怎麼來？先精煉，把雜質去掉，再放進真空爐融化，倒成金屬塊。",
+   "narration": "靶材怎麼來？先精煉，再放進真空爐融化，倒成金屬塊，用鍛壓機打實。",
+   "tts": "靶材怎麼來？先精煉，再放進真空爐融化，倒成金屬塊，用鍛壓機打實。",
    "subtitle": {
-    "zh": "靶材怎麼來？\n先精煉，把雜質去掉\n再放進真空爐融化\n倒成金屬塊",
-    "en": "Where does a target come from? | First refining, to remove impurities, | then melting in a vacuum furnace, | cast into a block."
+    "zh": "靶材怎麼來？\n先精煉\n再放進真空爐融化\n倒成金屬塊\n用鍛壓機打實",
+    "en": "Where does a target come from? | First refining, | then melting in a vacuum furnace, | cast into a block, | and forged dense."
    },
    "keywords": [
     "精煉",
-    "真空爐"
+    "真空爐",
+    "鍛壓"
    ],
    "cues": [
     {
@@ -2079,6 +2284,10 @@
     {
      "id": "ingot",
      "text": "金屬塊"
+    },
+    {
+     "id": "forge",
+     "text": "鍛壓機"
     }
    ],
    "component": "ThreeScene",
@@ -2088,8 +2297,8 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 30,
+      "at": "start-4",
+      "dur": 1,
       "x": 22.8,
       "y": 1.0,
       "d": 34,
@@ -2098,10 +2307,18 @@
      {
       "at": "furnace-8",
       "dur": 36,
-      "x": 33.6,
+      "x": 34.6,
       "y": 1.5,
       "d": 40,
       "elev": 22
+     },
+     {
+      "at": "forge-12",
+      "dur": 36,
+      "x": 46.4,
+      "y": 2.2,
+      "d": 40,
+      "elev": 20
      }
     ],
     "run": [
@@ -2109,25 +2326,25 @@
       "id": "rfIon0",
       "at": "refine",
       "ramp": 6,
-      "until": "furnace-6"
+      "until": "furnace+20"
      },
      {
       "id": "rfIon1",
       "at": "refine",
       "ramp": 6,
-      "until": "furnace-6"
+      "until": "furnace+20"
      },
      {
       "id": "rfIon2",
       "at": "refine",
       "ramp": 6,
-      "until": "furnace-6"
+      "until": "furnace+20"
      },
      {
       "id": "fnPoolGlow",
       "at": "furnace-4",
       "ramp": 8,
-      "until": "s13:start+400"
+      "until": "forge+10"
      }
     ],
     "shift": [
@@ -2144,6 +2361,20 @@
       "until": "s13:start+400",
       "dur": 66,
       "dy": -0.9
+     },
+     {
+      "layer": "fgRam",
+      "at": "forge+6",
+      "until": "forge+20",
+      "dur": 9,
+      "dy": -1.3
+     },
+     {
+      "layer": "fgRam",
+      "at": "forge+36",
+      "until": "forge+48",
+      "dur": 9,
+      "dy": -1.3
      }
     ],
     "labels": [
@@ -2153,23 +2384,23 @@
       "en": "Refining cell",
       "color": "blue",
       "at": "refine-2",
-      "until": "furnace-4"
+      "until": "furnace+14"
      },
      {
       "part": "furnace",
       "text": "真空爐",
       "en": "Vacuum furnace",
       "color": "amber",
-      "at": "furnace-2",
-      "until": "ingot-8"
+      "at": "furnace+16",
+      "until": "forge-6"
      },
      {
-      "part": "ingot",
-      "text": "金屬錠",
-      "en": "Ingot",
+      "part": "forge",
+      "text": "鍛壓機",
+      "en": "Forging press",
       "color": "blue",
-      "at": "ingot-6",
-      "until": "s10:start+8"
+      "at": "forge-4",
+      "until": "s10:start-14"
      }
     ],
     "overlay": [
@@ -2177,7 +2408,7 @@
       "type": "section",
       "kind": "target-line",
       "at": "start+24",
-      "until": "s10:start-5",
+      "until": "s10:start-14",
       "x": 64,
       "y": 1066,
       "w": 952,
@@ -2197,27 +2428,30 @@
        },
        "ingot": {
         "at": "ingot"
+       },
+       "forge": {
+        "at": "forge"
        }
       }
      }
     ]
    },
-   "durationSec": 7.0,
+   "durationSec": 9.0,
    "pauseAfter": 0.6
   },
   {
    "id": "s10",
    "beat": "mechanism",
    "para": 10,
-   "narration": "接著軋成薄板，晶粒越軋越細。再車成圓盤，最後接合到背板。",
-   "tts": "接著軋成薄板，晶粒越軋越細。再車成圓盤，最後接合到背板。",
+   "narration": "接著軋成薄板，再加熱退火，晶粒變細又均勻。再車成圓盤，最後接合到背板。",
+   "tts": "接著軋成薄板，再加熱退火，晶粒變細又均勻。再車成圓盤，最後接合到背板。",
    "subtitle": {
-    "zh": "接著軋成薄板\n晶粒越軋越細\n再車成圓盤\n最後接合到背板",
-    "en": "Next, rolled into a thin plate, | the grains get finer with each pass. | Then turned into a disc, | and finally bonded to the backing plate."
+    "zh": "接著軋成薄板\n再加熱退火\n晶粒變細又均勻\n再車成圓盤\n最後接合到背板",
+    "en": "Next, rolled into a thin plate, | then heated and annealed, | grains turn fine and even. | Then turned into a disc, | and finally bonded to the backing plate."
    },
    "keywords": [
     "軋",
-    "晶粒",
+    "退火",
     "接合"
    ],
    "cues": [
@@ -2226,8 +2460,12 @@
      "text": "軋成薄板"
     },
     {
+     "id": "anneal",
+     "text": "加熱退火"
+    },
+    {
      "id": "grain",
-     "text": "晶粒"
+     "text": "晶粒變細"
     },
     {
      "id": "lathe",
@@ -2246,16 +2484,24 @@
     "shot": [
      {
       "at": "start",
-      "dur": 34,
-      "x": 45.4,
+      "dur": 36,
+      "x": 58.4,
       "y": 2.2,
       "d": 34,
       "elev": 22
      },
      {
+      "at": "anneal-8",
+      "dur": 36,
+      "x": 71,
+      "y": 1.4,
+      "d": 36,
+      "elev": 20
+     },
+     {
       "at": "lathe-8",
       "dur": 38,
-      "x": 57.0,
+      "x": 83,
       "y": 1.8,
       "d": 30,
       "elev": 32
@@ -2263,7 +2509,7 @@
      {
       "at": "bond-8",
       "dur": 38,
-      "x": 69.0,
+      "x": 95,
       "y": 2.0,
       "d": 30,
       "elev": 22
@@ -2274,36 +2520,42 @@
       "id": "rollRU",
       "at": "roll-4",
       "ramp": 8,
-      "until": "lathe-4"
+      "until": "anneal-4"
      },
      {
       "id": "rollRL",
       "at": "roll-4",
       "ramp": 8,
-      "until": "lathe-4"
+      "until": "anneal-4"
      },
      {
       "id": "rollBU",
       "at": "roll-4",
       "ramp": 8,
-      "until": "lathe-4"
+      "until": "anneal-4"
      },
      {
       "id": "rollBL",
       "at": "roll-4",
       "ramp": 8,
-      "until": "lathe-4"
+      "until": "anneal-4"
      },
      {
       "id": "mlTable",
       "at": "roll-4",
       "ramp": 8,
-      "until": "lathe-4"
+      "until": "anneal-4"
      },
      {
       "id": "mlSpray",
       "at": "roll-4",
       "ramp": 6,
+      "until": "anneal-4"
+     },
+     {
+      "id": "anHeat",
+      "at": "anneal-6",
+      "ramp": 12,
       "until": "lathe-4"
      },
      {
@@ -2387,23 +2639,31 @@
       "en": "Rolling mill",
       "color": "amber",
       "at": "roll-2",
-      "until": "lathe-12"
+      "until": "anneal-10"
+     },
+     {
+      "part": "anneal",
+      "text": "退火爐",
+      "en": "Annealing furnace",
+      "color": "blue",
+      "at": "anneal-8",
+      "until": "lathe-14"
      },
      {
       "part": "lathe",
       "text": "立式車床",
       "en": "Vertical lathe",
-      "color": "blue",
-      "at": "lathe-10",
+      "color": "amber",
+      "at": "lathe-12",
       "until": "bond-4"
      },
      {
       "part": "bond",
       "text": "壓合台",
       "en": "Bonding press",
-      "color": "amber",
+      "color": "blue",
       "at": "bond-2",
-      "until": "s11:start-4"
+      "until": "s11:start-14"
      }
     ],
     "overlay": [
@@ -2411,7 +2671,7 @@
       "type": "section",
       "kind": "target-grain",
       "at": "start+24",
-      "until": "s11:start-5",
+      "until": "s11:start-14",
       "x": 64,
       "y": 1066,
       "w": 952,
@@ -2422,6 +2682,9 @@
       "t": {
        "roll": {
         "at": "roll"
+       },
+       "anneal": {
+        "at": "anneal"
        },
        "grain": {
         "at": "grain"
@@ -2436,7 +2699,7 @@
      }
     ]
    },
-   "durationSec": 8.5,
+   "durationSec": 11.0,
    "pauseAfter": 0.6
   },
   {
@@ -2446,8 +2709,8 @@
    "narration": "日本 JX 金屬，據報約占六成；美國有漢威聯合分出的新公司；台灣有光洋科。",
    "tts": "日本 J X 金屬，據報約占六成；美國有漢威聯合分出的新公司；台灣有光洋科。",
    "subtitle": {
-    "zh": "日本 JX 金屬\n據報約占六成\n美國有漢威聯合分出的新公司\n台灣有光洋科",
-    "en": "Japan's JX Metals, | reportedly about 60 percent; | in the US, a new company spun out of Honeywell; | in Taiwan, Solar Applied Materials."
+    "zh": "日本 JX 金屬\n據報約占六成\n美國有漢威聯合\n分出的新公司\n台灣有光洋科",
+    "en": "Japan's JX Metals, | reportedly about 60 percent; | in the US, a company | spun out of Honeywell; | in Taiwan, Solar Applied Materials."
    },
    "keywords": [
     "日本",
@@ -2479,8 +2742,8 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 30,
+      "at": "start-4",
+      "dur": 1,
       "x": 0,
       "y": 2.0,
       "d": 44,
@@ -2503,7 +2766,7 @@
       "en": "United States",
       "color": "blue",
       "at": "us-2",
-      "until": "tw-6",
+      "until": "tw-8",
       "flag": "US"
      },
      {
@@ -2511,8 +2774,8 @@
       "text": "光洋科 1785",
       "en": "Taiwan",
       "color": "amber",
-      "at": "tw-2",
-      "until": "s12:start-4",
+      "at": "tw-6",
+      "until": "s12:start-6",
       "flag": "TW"
      }
     ],
@@ -2521,7 +2784,7 @@
       "type": "section",
       "kind": "target-co",
       "at": "start+24",
-      "until": "s12:start-5",
+      "until": "s12:start-14",
       "x": 64,
       "y": 1040,
       "w": 952,
@@ -2556,8 +2819,8 @@
    "narration": "下一集，更薄的膜改用氣體原料，看前驅物。留言靶材，拿完整資料。",
    "tts": "下一集，更薄的膜改用氣體原料，看前驅物。留言靶材，拿完整資料。",
    "subtitle": {
-    "zh": "下一集\n更薄的膜改用氣體原料\n看前驅物\n留言靶材，拿完整資料",
-    "en": "Next episode: | thinner films use gas raw materials, | so we look at precursors. | Comment \"target\" for the full notes."
+    "zh": "下一集\n更薄的膜改用氣體原料\n看前驅物\n留言靶材\n拿完整資料",
+    "en": "Next episode: | thinner films use gas raw materials, | so we look at precursors. | Comment \"target\" | for the full notes."
    },
    "keywords": [
     "氣體原料",
@@ -2588,8 +2851,8 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 40,
+      "at": "start-4",
+      "dur": 1,
       "x": 0.4,
       "y": 4.4,
       "d": 74,
@@ -2612,6 +2875,12 @@
      },
      {
       "id": "gas2",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "gas3",
       "at": "gas",
       "ramp": 8,
       "until": "s13:start+400"
