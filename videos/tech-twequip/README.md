@@ -146,3 +146,5 @@
 | 10 | s4 取放節奏放回 0.75 倍；其餘以錄音後時間軸為準 |
 檢查：validate 0 error、layout-check 0 error（頂 0、底 46px）、card-overlap 0 error 0 warning、kinematics 0 error（1311 幀）、flow-check 0 error（33 條）。
 抽格：out/tech-twequip/r5/（48 張原尺寸；12 個幕界各 −4／+2／+8 幀，另 s8 的 12 格），縮圖總覽逐格看過，f1790 全解析度看過。重疊檢查：程式 2621 幀 0 筆（card-overlap 另 63 個時間點 0 筆）；人工 48 格 0 筆。
+
+- 2026-11-27 預檢修正：s1 字幕與 narration「上一集」改「前一集」（與 tts 一致，tts 一字未改）；s8 出處列「配比為通例」改「示意動畫，不是量測」（S4 警告：s8 後段由 pumpBeat／chemFlow 等 run 持續運作，非靜止，未改）；precheck／validate／layout-check／card-overlap 0 error。

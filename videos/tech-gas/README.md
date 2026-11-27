@@ -50,3 +50,5 @@ validate 0 error（129 warning）；layout-check 0 error（頂端空白 0、底�
 | 29 | s4 六步全做完，並做 VMB、雙套管、尾氣處理器爆炸 |
 
 - 2026/11/27 版面修正（card-overlap 新規則「示意卡下緣不可壓右下示意標籤」）：gas-co 公司卡原下緣 y1400 壓到標籤 4px，卡高 360→350（下緣 y1390）。念稿與其他畫面不動；card-overlap 0 error 0 warning。
+
+- 2026-11-27 預檢修正：s1 字幕與 narration「上一集」改「前一集」（與 tts 一致，tts 一字未改）；precheck／validate／layout-check／card-overlap 0 error。

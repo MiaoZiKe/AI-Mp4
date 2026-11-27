@@ -44,3 +44,5 @@
 | 檢查工具 | `scripts/three/card-overlap.mjs`＋`card-overlap-entry.tsx` 新增 (i)「示意卡 vs 右下示意標籤」檢查（error；卡外框和標籤字框相交超過 2px 即擋） | 先對舊版 script 跑出 s8、s10 共 2 個真 error，修後 0 error |
 
 檢查：validate 0 error、layout-check 0 error、card-overlap 0 error（含新檢查）、kinematics-check 0 error、flow-check 0 error。重疊檢查：程式 2388 幀（版面）、52 個時間點（示意卡）0 筆；人工 19 格原尺寸（final2：f1008、1030、1036、1044、1060、1078、1266、1444、1700、1780、1830、1998、2000、2002、2060、2165–2168）0 筆。證據影格都比 script.json 最後修改（04:54:20）晚渲（04:54:47 起）。
+
+- 2026-11-27 預檢修正：s1 字幕與 narration「上一集」改「前一集」（與 tts 一致，tts 一字未改）；precheck／validate／layout-check／card-overlap 0 error。
