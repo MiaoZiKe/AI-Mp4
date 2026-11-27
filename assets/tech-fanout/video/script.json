@@ -1,0 +1,2016 @@
+{
+ "slug": "tech-fanout",
+ "prevEpisode": "3-4：覆晶",
+ "title": "扇出型與晶圓級封裝（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "封裝",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指；Andy 在 AI Studio 錄音；本支不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "pkg",
+    "label": "封裝剖面（示意）",
+    "en": "PACKAGE CROSS-SECTION",
+    "field": "10 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "micro",
+    "label": "晶片底面（示意）",
+    "en": "CHIP UNDERSIDE",
+    "field": "10 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "wafer",
+    "label": "晶圓（示意）",
+    "en": "WAFER",
+    "field": "300 mm",
+    "ruler": "10 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "panel",
+    "label": "重組晶圓（示意）",
+    "en": "RECONSTITUTED WAFER",
+    "field": "300 mm",
+    "ruler": "10 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "扇出型封裝廠",
+    "en": "SUPPLIERS",
+    "field": "10 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "multi",
+    "label": "多晶片封裝與設備（示意）",
+    "en": "MULTI-CHIP PACKAGE",
+    "field": "100 mm",
+    "ruler": "10 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定產品"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "不用載板",
+   "線怎麼拉出去"
+  ],
+  "sub": "扇出型與晶圓級封裝",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "不用載板，線要怎麼拉出去？前一集，覆晶還得靠載板拉線。",
+   "tts": "不用載板，線要怎麼拉出去？前一集，覆晶還得靠載板拉線。",
+   "subtitle": {
+    "zh": "不用載板\n線要怎麼拉出去？\n前一集\n覆晶還得\n靠載板拉線",
+    "en": "Without a substrate, | how do the wires get out? | Last episode: | flip chip still | relies on a substrate."
+   },
+   "keywords": [
+    "載板",
+    "拉出去",
+    "覆晶"
+   ],
+   "cues": [
+    {
+     "id": "sub",
+     "text": "載板"
+    },
+    {
+     "id": "out",
+     "text": "拉出去"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "flip",
+     "text": "覆晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台積電 InFO 技術頁；示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：覆晶還得靠載板",
+     "title": "不用載板？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 8,
+      "y": 1.6,
+      "d": 48.6,
+      "elev": 28
+     },
+     {
+      "at": "prev-2",
+      "dur": 1,
+      "x": -8,
+      "y": 1.6,
+      "d": 48.6,
+      "elev": 28
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bSaw",
+      "at": "s3:uncut",
+      "until": "s10:start+400",
+      "dur": 40,
+      "dx": 20.0
+     },
+     {
+      "layer": "bSaw",
+      "at": "s3:cut-8",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 14.0
+     },
+     {
+      "layer": "bKerf0",
+      "at": "s1:start-40",
+      "until": "s3:uncut+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf1",
+      "at": "s1:start-40",
+      "until": "s3:uncut+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf2",
+      "at": "s1:start-40",
+      "until": "s3:uncut+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf3",
+      "at": "s1:start-40",
+      "until": "s3:uncut+24",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf4",
+      "at": "s1:start-40",
+      "until": "s3:uncut+28",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf5",
+      "at": "s1:start-40",
+      "until": "s3:uncut+32",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf6",
+      "at": "s1:start-40",
+      "until": "s3:uncut+37",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf7",
+      "at": "s1:start-40",
+      "until": "s3:uncut+41",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCross",
+      "at": "s1:start-40",
+      "until": "s3:uncut+40",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bCollet",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dy": 2.6
+     },
+     {
+      "layer": "bCollet",
+      "at": "s3:cut-8",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": -2.5
+     },
+     {
+      "layer": "bCollet",
+      "at": "s3:cut+8",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dy": 2.4
+     },
+     {
+      "layer": "bEject",
+      "at": "s3:cut",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": 0.3
+     },
+     {
+      "layer": "bEject",
+      "at": "s3:cut+26",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": -0.3
+     },
+     {
+      "layer": "bPick",
+      "at": "s3:cut+8",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dy": 2.4
+     },
+     {
+      "layer": "cRow0",
+      "at": "s1:start-40",
+      "until": "s2:small-4",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow1",
+      "at": "s1:start-40",
+      "until": "s2:small+2",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow2",
+      "at": "s1:start-40",
+      "until": "s2:small+8",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow3",
+      "at": "s1:start-40",
+      "until": "s2:small+14",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow4",
+      "at": "s1:start-40",
+      "until": "s2:small+20",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow5",
+      "at": "s1:start-40",
+      "until": "s2:small+26",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cRow6",
+      "at": "s1:start-40",
+      "until": "s2:small+32",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cExtra",
+      "at": "s1:start-40",
+      "until": "s2:nofit-6",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.1
+     },
+     {
+      "layer": "cExtra",
+      "at": "s2:nofit+14",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dz": 3.0,
+      "dy": -1.9,
+      "throw": 0.6
+     },
+     {
+      "layer": "cExtra",
+      "at": "s1:start-40",
+      "until": "s2:nofit-18",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cExtra",
+      "at": "s4:start",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+0",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -19.8,
+      "dz": 11.6,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+0",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -19.8
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+12",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+17",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dCarry0",
+      "at": "s5:fo+17",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0
+     },
+     {
+      "layer": "dCarry0",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+33",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dCarry0",
+      "at": "s5:fo+33",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+38",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+42",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -12.0,
+      "dz": 2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+42",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -12.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+54",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+59",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+59",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+75",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+75",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+80",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+84",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 5.2,
+      "dz": -9.4,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+84",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 5.2
+     },
+     {
+      "layer": "dMold0",
+      "at": "s1:start-40",
+      "until": "s5:fo+100",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dMold1",
+      "at": "s1:start-40",
+      "until": "s5:fo+109",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dMold2",
+      "at": "s1:start-40",
+      "until": "s5:fo+118",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dMold3",
+      "at": "s1:start-40",
+      "until": "s5:fo+127",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dDisp",
+      "at": "s1:start-40",
+      "until": "s5:fo+86",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dDisp",
+      "at": "s5:fo+140",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -12.0
+     },
+     {
+      "layer": "dChase",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dy": 2.0
+     },
+     {
+      "layer": "dChase",
+      "at": "s5:choco-6",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dy": -4.9
+     },
+     {
+      "layer": "dChase",
+      "at": "s5:new-6",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dy": 4.9
+     },
+     {
+      "layer": "dChase",
+      "at": "s1:start-40",
+      "until": "s5:fo+126",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dMold0",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.45
+     },
+     {
+      "layer": "dMold1",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.25
+     },
+     {
+      "layer": "dMold2",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.1
+     },
+     {
+      "layer": "ePi2",
+      "at": "s6:rdl-6",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 2.1
+     },
+     {
+      "layer": "eRdl",
+      "at": "s6:rdl+4",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 1.4
+     },
+     {
+      "layer": "eRdlOut",
+      "at": "s6:rdl+4",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 1.4
+     },
+     {
+      "layer": "ePi1",
+      "at": "s6:rdl+14",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 0.7
+     },
+     {
+      "layer": "eRdlOut",
+      "at": "s1:start-40",
+      "until": "s6:cord+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "eBall",
+      "at": "s1:start-40",
+      "until": "s6:outer+14",
+      "dur": 12,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "fR1",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.028
+     },
+     {
+      "layer": "fR2",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.078
+     },
+     {
+      "layer": "fR3",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.153
+     },
+     {
+      "layer": "fR4",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.253
+     },
+     {
+      "layer": "fR5",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.378
+     },
+     {
+      "layer": "fR6",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fR7",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fR8",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.903
+     },
+     {
+      "layer": "fR9",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 1.128
+     },
+     {
+      "layer": "fD1",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.028
+     },
+     {
+      "layer": "fD3",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.153
+     },
+     {
+      "layer": "fD5",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.378
+     },
+     {
+      "layer": "fD6",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fD7",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fD8",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.903
+     },
+     {
+      "layer": "fD9",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 1.128
+     },
+     {
+      "layer": "fShift",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fGhost",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fArrow",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fMiss",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fShift",
+      "at": "s7:shift",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dx": 0.95
+     },
+     {
+      "layer": "fGhost",
+      "at": "s1:start-40",
+      "until": "s7:shift-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fArrow",
+      "at": "s1:start-40",
+      "until": "s7:shift-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fArrow",
+      "at": "s7:shift+34",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fMiss",
+      "at": "s1:start-40",
+      "until": "s7:miss-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gMem",
+      "at": "s1:start-40",
+      "until": "s8:info+4",
+      "dur": 16,
+      "dy": 2.5,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     }
+    ],
+    "labels": [
+     {
+      "part": "aRdlA",
+      "text": "沒有載板：重佈線層",
+      "en": "No substrate: RDL",
+      "color": "amber",
+      "at": "sub+4",
+      "until": "sub+49",
+      "cut": true
+     },
+     {
+      "part": "aSubA",
+      "text": "載板（前一集）",
+      "en": "Substrate (last episode)",
+      "color": "blue",
+      "at": "flip-6",
+      "until": "flip+39",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 5 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "sub": {
+        "at": "sub"
+       },
+       "out": {
+        "at": "out"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "flip": {
+        "at": "flip"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "晶片越做越小，接點卻越來越多，底下塞不下錫球。",
+   "tts": "晶片越做越小，接點卻越來越多，底下塞不下錫球。",
+   "subtitle": {
+    "zh": "晶片越做越小\n接點卻越來越多\n底下塞不下錫球",
+    "en": "Chips keep shrinking, | yet contacts keep multiplying, | leaving no room for solder balls."
+   },
+   "keywords": [
+    "接點",
+    "錫球"
+   ],
+   "cues": [
+    {
+     "id": "small",
+     "text": "越做越小"
+    },
+    {
+     "id": "more",
+     "text": "越來越多"
+    },
+    {
+     "id": "nofit",
+     "text": "塞不下"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8093722、8482136；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 72,
+      "y": -1.2,
+      "d": 39.6,
+      "elev": 40
+     }
+    ],
+    "labels": [
+     {
+      "part": "cPadA",
+      "text": "焊墊越來越多",
+      "en": "More and more pads",
+      "color": "blue",
+      "at": "more-6",
+      "until": "more+39",
+      "cut": true
+     },
+     {
+      "part": "cExtraA",
+      "text": "放不下",
+      "en": "No room",
+      "color": "amber",
+      "at": "nofit+2",
+      "until": "nofit+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-fanin",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接點多、晶片小",
+      "tag": "示意",
+      "t": {
+       "small": {
+        "at": "small"
+       },
+       "more": {
+        "at": "more"
+       },
+       "nofit": {
+        "at": "nofit"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.2,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶圓級封裝，是晶圓還沒切，就先做好線路和錫球，切開就跟晶片差不多大。",
+   "tts": "晶圓級封裝，是晶圓還沒切，就先做好線路和錫球，切開就跟晶片差不多大。",
+   "subtitle": {
+    "zh": "晶圓級封裝\n是晶圓還沒切\n就先做好\n線路和錫球\n切開就跟晶片\n差不多大",
+    "en": "Wafer-level packaging: | before the wafer is cut, | it already gets | its wiring and solder balls; | once cut, it is about | the size of the chip."
+   },
+   "keywords": [
+    "晶圓級封裝",
+    "錫球",
+    "差不多大"
+   ],
+   "cues": [
+    {
+     "id": "wlp",
+     "text": "晶圓級封裝"
+    },
+    {
+     "id": "uncut",
+     "text": "還沒切"
+    },
+    {
+     "id": "balls",
+     "text": "線路和錫球"
+    },
+    {
+     "id": "cut",
+     "text": "切開"
+    },
+    {
+     "id": "same",
+     "text": "差不多大"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9576912、8624359；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 35.5,
+      "y": -2.2,
+      "d": 57.6,
+      "elev": 40
+     },
+     {
+      "at": "cut-2",
+      "dur": 20,
+      "x": 38.6,
+      "y": 1.4,
+      "d": 27.0,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "bSpin",
+      "at": "start-20",
+      "ramp": 6,
+      "until": "cut"
+     },
+     {
+      "id": "bCoolant",
+      "at": "uncut",
+      "ramp": 6,
+      "until": "cut"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bWaferA",
+      "text": "每格晶片已有錫球",
+      "en": "Balls on every die",
+      "color": "blue",
+      "at": "balls-20",
+      "until": "balls+25",
+      "cut": true
+     },
+     {
+      "part": "bPickA",
+      "text": "切開＝成品",
+      "en": "Cut = finished",
+      "color": "amber",
+      "at": "cut+20",
+      "until": "cut+65",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-wlp",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓級封裝",
+      "tag": "示意",
+      "t": {
+       "wlp": {
+        "at": "wlp"
+       },
+       "uncut": {
+        "at": "uncut"
+       },
+       "balls": {
+        "at": "balls"
+       },
+       "cut": {
+        "at": "cut"
+       },
+       "same": {
+        "at": "same"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "可是接點只能擠在晶片範圍裡，像小便條寫滿電話，很快就寫不下。",
+   "tts": "可是接點只能擠在晶片範圍裡，像小便條寫滿電話，很快就寫不下。",
+   "subtitle": {
+    "zh": "可是接點\n只能擠在晶片範圍裡\n像小便條\n寫滿電話\n很快就寫不下",
+    "en": "But the contacts | must fit inside the chip, | like a sticky note | full of phone numbers: | it soon runs out of room."
+   },
+   "keywords": [
+    "晶片範圍",
+    "小便條"
+   ],
+   "cues": [
+    {
+     "id": "only",
+     "text": "只能擠"
+    },
+    {
+     "id": "note",
+     "text": "小便條"
+    },
+    {
+     "id": "phone",
+     "text": "電話"
+    },
+    {
+     "id": "full",
+     "text": "寫不下"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8093722；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 72,
+      "y": -1.2,
+      "d": 39.6,
+      "elev": 62
+     }
+    ],
+    "run": [
+     {
+      "id": "cEdgeGlow",
+      "at": "only",
+      "ramp": 6,
+      "until": "full+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cEdgeA",
+      "text": "晶片範圍（扇入）",
+      "en": "Chip outline (fan-in)",
+      "color": "amber",
+      "at": "only",
+      "until": "only+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-note",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "小便條寫滿電話",
+      "tag": "示意",
+      "t": {
+       "only": {
+        "at": "only"
+       },
+       "note": {
+        "at": "note"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "full": {
+        "at": "full"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "扇出型先把好晶片排進載盤，再灌滿塑膠，像餅乾排進烤盤倒滿巧克力，變成一片新晶圓。",
+   "tts": "扇出型先把好晶片排進載盤，再灌滿塑膠，像餅乾排進烤盤倒滿巧克力，變成一片新晶圓。",
+   "subtitle": {
+    "zh": "扇出型先把\n好晶片排進載盤\n再灌滿塑膠\n像餅乾排進烤盤\n倒滿巧克力\n變成一片新晶圓",
+    "en": "Fan-out first places | good chips on a carrier, | then fills it with plastic, | like cookies on a tray | covered in chocolate, | making a brand-new wafer."
+   },
+   "keywords": [
+    "扇出型",
+    "餅乾",
+    "新晶圓"
+   ],
+   "cues": [
+    {
+     "id": "fo",
+     "text": "扇出型"
+    },
+    {
+     "id": "place",
+     "text": "排進載盤"
+    },
+    {
+     "id": "fill",
+     "text": "灌滿塑膠"
+    },
+    {
+     "id": "cookie",
+     "text": "餅乾"
+    },
+    {
+     "id": "choco",
+     "text": "巧克力"
+    },
+    {
+     "id": "new",
+     "text": "新晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Chip Scale Review 2022；USPTO 8772087（重組晶圓）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "panel",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 108,
+      "y": 1.0,
+      "d": 79.2,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "dPour",
+      "at": "s5:fo+96",
+      "ramp": 6,
+      "until": "s5:fo+136"
+     },
+     {
+      "id": "dHeat",
+      "at": "choco+8",
+      "ramp": 6,
+      "until": "new-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dHeadA",
+      "text": "取放頭：一顆一顆放",
+      "en": "Pick-and-place, one by one",
+      "color": "blue",
+      "at": "s5:fo+2",
+      "until": "s5:fo+47",
+      "cut": true
+     },
+     {
+      "part": "dMoldA",
+      "text": "模封料（稠，往外攤開）",
+      "en": "Mold compound flows out",
+      "color": "amber",
+      "at": "s5:fo+104",
+      "until": "s5:fo+149",
+      "cut": true
+     },
+     {
+      "part": "dChaseA",
+      "text": "上模壓下、加熱",
+      "en": "Mold press + heat",
+      "color": "blue",
+      "at": "choco-2",
+      "until": "choco+43",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-recon",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "餅乾排進烤盤倒巧克力",
+      "tag": "示意（晶片先放）",
+      "t": {
+       "place": {
+        "at": "place"
+       },
+       "fill": {
+        "at": "fill"
+       },
+       "cookie": {
+        "at": "cookie"
+       },
+       "new": {
+        "at": "new"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.6,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "再鋪重佈線層，銅線像延長線，從晶片拉到外圍，錫球就有地方放。",
+   "tts": "再鋪重佈線層，銅線像延長線，從晶片拉到外圍，錫球就有地方放。",
+   "subtitle": {
+    "zh": "再鋪重佈線層\n銅線像延長線\n從晶片拉到外圍\n錫球就有地方放",
+    "en": "Next comes a redistribution layer: | copper lines, like extension cords, | run from the chip to the edge, | so the solder balls have room."
+   },
+   "keywords": [
+    "重佈線層",
+    "延長線",
+    "外圍"
+   ],
+   "cues": [
+    {
+     "id": "rdl",
+     "text": "重佈線層"
+    },
+    {
+     "id": "cord",
+     "text": "延長線"
+    },
+    {
+     "id": "outer",
+     "text": "外圍"
+    },
+    {
+     "id": "ball",
+     "text": "錫球"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台積電 InFO 技術頁；Chip Scale Review 2022"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pkg",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 144,
+      "y": -0.2,
+      "d": 32.4,
+      "elev": 28
+     },
+     {
+      "at": "rdl-6",
+      "dur": 16,
+      "x": 144,
+      "y": 1.1,
+      "d": 36.0,
+      "elev": 28
+     },
+     {
+      "at": "outer+2",
+      "dur": 12,
+      "x": 144,
+      "y": 0.0,
+      "d": 30.6,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "eCuGrow",
+      "at": "cord+4",
+      "ramp": 6,
+      "until": "outer"
+     },
+     {
+      "id": "eCuGrow2",
+      "at": "cord+4",
+      "ramp": 6,
+      "until": "outer"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eDieA",
+      "text": "晶片埋在模封料",
+      "en": "Chip in mold",
+      "color": "blue",
+      "at": "rdl-12",
+      "until": "rdl+33",
+      "cut": true
+     },
+     {
+      "part": "ePi1A",
+      "text": "介電層＋導通孔",
+      "en": "Dielectric + vias",
+      "color": "amber",
+      "at": "rdl+35",
+      "until": "rdl+80",
+      "cut": true
+     },
+     {
+      "part": "eRdlA",
+      "text": "重佈線層（銅線）",
+      "en": "RDL copper lines",
+      "color": "amber",
+      "at": "rdl+82",
+      "until": "rdl+127",
+      "cut": true
+     },
+     {
+      "part": "eBallA",
+      "text": "球下金屬墊＋錫球（晶片外）",
+      "en": "UBM pads + balls, outside the chip",
+      "color": "blue",
+      "at": "outer+30",
+      "until": "outer+75",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-rdl",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "延長線拉到外圍",
+      "tag": "示意",
+      "t": {
+       "rdl": {
+        "at": "rdl"
+       },
+       "cord": {
+        "at": "cord"
+       },
+       "outer": {
+        "at": "outer"
+       },
+       "ball": {
+        "at": "ball"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "難處是塑膠和晶片熱脹冷縮不同，整片會翹，晶片被擠歪，線就對不準。",
+   "tts": "難處是塑膠和晶片熱脹冷縮不同，整片會翹，晶片被擠歪，線就對不準。",
+   "subtitle": {
+    "zh": "難處是塑膠和晶片\n熱脹冷縮不同\n整片會翹\n晶片被擠歪\n線就對不準",
+    "en": "The catch: plastic and chips | expand differently with heat, | so the whole wafer warps, | chips get pushed off, | and the lines miss their targets."
+   },
+   "keywords": [
+    "熱脹冷縮",
+    "翹",
+    "擠歪"
+   ],
+   "cues": [
+    {
+     "id": "cte",
+     "text": "熱脹冷縮"
+    },
+    {
+     "id": "warp",
+     "text": "會翹"
+    },
+    {
+     "id": "shift",
+     "text": "擠歪"
+    },
+    {
+     "id": "miss",
+     "text": "對不準"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Chip Scale Review 2022；USPTO 8772087"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "panel",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180.8,
+      "y": -3.4,
+      "d": 64.8,
+      "elev": 42
+     }
+    ],
+    "run": [
+     {
+      "id": "fHot",
+      "at": "cte-6",
+      "ramp": 6,
+      "until": "warp"
+     },
+     {
+      "id": "fFlow",
+      "at": "shift-12",
+      "ramp": 6,
+      "until": "shift+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fWarpA",
+      "text": "整片邊緣翹起",
+      "en": "Edges warp up",
+      "color": "amber",
+      "at": "warp-13",
+      "until": "warp+31",
+      "cut": true
+     },
+     {
+      "part": "fMissA",
+      "text": "晶片被推離原位 → 導通孔對不準",
+      "en": "Chip pushed off, via misses",
+      "color": "amber",
+      "at": "shift+2",
+      "until": "miss+37",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-warp",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱脹冷縮不同",
+      "tag": "示意（不標數字）",
+      "t": {
+       "cte": {
+        "at": "cte"
+       },
+       "warp": {
+        "at": "warp"
+       },
+       "shift": {
+        "at": "shift"
+       },
+       "miss": {
+        "at": "miss"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台積電的整合扇出型，2016 年起用在手機處理器；力成正把它做到方形面板。",
+   "tts": "台積電的整合扇出型，二零一六年起用在手機處理器；力成正把它做到方形面板。",
+   "subtitle": {
+    "zh": "台積電的\n整合扇出型\n2016 年起\n用在手機處理器\n力成正把它\n做到方形面板",
+    "en": "TSMC's | InFO (Integrated Fan-Out) | since 2016 | has been in phone processors; | Powertech is taking fan-out | to square panels."
+   },
+   "keywords": [
+    "台積電",
+    "整合扇出型",
+    "力成"
+   ],
+   "cues": [
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "info",
+     "text": "整合扇出型"
+    },
+    {
+     "id": "y2016",
+     "text": "2016"
+    },
+    {
+     "id": "phone",
+     "text": "手機處理器"
+    },
+    {
+     "id": "ptc",
+     "text": "力成"
+    },
+    {
+     "id": "panel",
+     "text": "方形面板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台積電 InFO 技術頁；Yole；經濟日報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 216,
+      "y": 0.4,
+      "d": 90.0,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "gAHot",
+      "at": "tsmc-4",
+      "ramp": 4,
+      "until": "tsmc+40"
+     },
+     {
+      "id": "gBHot",
+      "at": "ptc-4",
+      "ramp": 4,
+      "until": "ptc+40"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-co",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "扇出型封裝：台灣廠",
+      "tag": "台積電官網、Yole、經濟日報；截至 2026/11/27",
+      "t": {
+       "tsmc": {
+        "at": "tsmc"
+       },
+       "info": {
+        "at": "info"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "ptc": {
+        "at": "ptc"
+       },
+       "panel": {
+        "at": "panel"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.0,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "好幾顆晶片封在一起，需要更精密的機台。下一集，看先進封裝設備。留言扇出，拿完整資料。",
+   "tts": "好幾顆晶片封在一起，需要更精密的機台。下一集，看先進封裝設備。留言扇出，拿完整資料。",
+   "subtitle": {
+    "zh": "好幾顆晶片\n封在一起\n需要更精密的機台\n下一集\n看先進封裝設備\n留言扇出\n拿完整資料",
+    "en": "Several chips | packed together | need more precise machines. | Next episode: | advanced packaging tools. | Comment \"扇出\" | for the full notes."
+   },
+   "keywords": [
+    "精密",
+    "先進封裝設備",
+    "扇出"
+   ],
+   "cues": [
+    {
+     "id": "multi",
+     "text": "好幾顆"
+    },
+    {
+     "id": "tool",
+     "text": "機台"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言扇出"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "multi",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "hLamp",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 253,
+      "y": 0.4,
+      "d": 79.2,
+      "elev": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "hPkgA",
+      "text": "三顆晶片封在一起",
+      "en": "Three chips in one package",
+      "color": "blue",
+      "at": "multi",
+      "until": "multi+45",
+      "cut": true
+     },
+     {
+      "part": "hToolA",
+      "text": "下一集：設備",
+      "en": "Next: the tools",
+      "color": "amber",
+      "at": "next-4",
+      "until": "next+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fo-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：先進封裝設備",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       },
+       "tool": {
+        "at": "tool"
+       },
+       "multi": {
+        "at": "multi"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.5,
+   "holdSec": 0.6,
+   "headSec": 0.2
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "先進封裝設備",
+     "trail": [
+      "線做在晶圓，晶片拉得出去"
+     ],
+     "comment": "扇出",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
