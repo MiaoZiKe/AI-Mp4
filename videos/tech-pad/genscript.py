@@ -42,6 +42,8 @@ S = [
  ["墊子會壞", "腔體裡的零件", "也一樣", "下一集", "看這些耗材", "留言研磨墊", "拿完整資料"], ["Pads wear out,", "and so do the parts", "inside the chamber.", "Next episode:", "these consumables.", "Comment \"pad\"", "for the full notes."],
  [("wear", "墊子會壞"), ("cham", "腔體"), ("next", "下一集"), ("kw", "留言研磨墊")], ["耗材", "研磨墊"], ["示意動畫，不是量測"], 8.6, 0.2, 1.2),
 ]
+HOLD_CO = 0.75     # 第 40 條：公司段念完最後一家後要多停（＋s10 headSec 0.2＝0.95 秒，仍 ≤1.0）
+HOLD = 0.6          # 念完後只有畫面的秒數（＋下一幕 headSec ≤0.3 → ≤0.9 秒）
 def TTS(t):
     t = t.replace("上集", "上一集").replace("上一一集", "上一集").replace("矽", "細").replace("光罩", "光照")
     for a, b in [("上一集", "前一集"), ("量測", "測量"), ("上百片", "一百多片")]:
@@ -53,7 +55,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for z in zh: assert len(re.sub(r"[ ，。？]", "", z)) <= 11, (sid, z)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar))
+    # Andy 第 39 條（11-27 晚）：旁白之間的無聲 ≤1.0 秒＝本幕 holdSec＋下一幕 headSec；運作動畫在念的期間做完
+    head = min(head, 0.3); hold = HOLD_CO if sid == "s9" else HOLD; dur = round(0.2 + head + nch / 5.2 + hold, 1)
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -107,28 +111,28 @@ CC = "voice-4"       # 3D 鏡頭硬切與 HUD 層級切換（dur 1）要提早 1
 def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3"
 def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
-SO = 26                      # s7：先看新舊墊厚度對照（T 站），再切回機台撕墊；撕墊相關時間全部晚 SO 幀（swap＋SO）
+SO = 12                      # s7：先看新舊墊厚度對照（T 站），再切回機台撕墊；撕墊相關時間全部晚 SO 幀（swap＋SO）
 def SW(n): return f"s7:swap+{n + SO}"
-BACKHEAD = "s2:platen+56"    # 研磨頭回到墊子正上方（r2 拿掉顯微段，組回提前）
-RT = ["s6:comb+8", "s6:end+10", "s6:end+50"]     # 三塊陸地依序變回尖齒的時刻（修整頭離開那一塊的時候）
-vis("newPad", [(SW(62), FAR)])
-vis("roller", [(SW(92), SW(130))])
-vis("strand0", [(SW(10), SW(18))]); vis("strand1", [(SW(18), SW(26))]); vis("strand2", [(SW(26), SW(54))])
+BACKHEAD = "s2:platen+4"    # 研磨頭回到墊子正上方（r2 拿掉顯微段，組回提前）
+RT = ["s6:comb+8", "s6:comb+26", "s6:comb+44"]     # 三塊陸地依序變回尖齒的時刻（修整頭離開那一塊的時候）
+vis("newPad", [(SW(34), FAR)])
+vis("roller", [(SW(46), SW(64))])
+vis("strand0", [(SW(4), SW(8))]); vis("strand1", [(SW(8), SW(12))]); vis("strand2", [(SW(12), SW(24))])
 VIS += [hid("film", SW(-2), FAR, 6)]
 OLD = ["oPadAdh", "oPadSub", "oPadTop"]
-VIS += [mv(l, SW(52), FAR, 26, dx=-17.0, throw=3.2) for l in OLD] + [hid(l, SW(78), FAR, 4, 0) for l in OLD]
-for l in OLD: vis(l, [("s7:start-2", SW(78))])
+VIS += [mv(l, SW(24), FAR, 16, dx=-17.0, throw=3.2) for l in OLD] + [hid(l, SW(40), FAR, 4, 0) for l in OLD]
+for l in OLD: vis(l, [("s7:start-2", SW(40))])
 VIS += [hid(l, "s7:start-2", FAR, 2, 0) for l in ("padAdh", "padSub", "padTop")]
-VIS += [mv("head", "s7:swap+10", FAR, 22, dx=6.3)]       # 換墊前研磨頭先移開（T 站畫面中，看不到）
-VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(94), SW(124), 30, dz=8.8)]
-VIS += [{"layer": "newPad", "at": SW(62), "until": SW(68), "dur": 22, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
+VIS += [mv("head", "s7:swap+2", FAR, 10, dx=6.3)]       # 換墊前研磨頭先移開（T 站畫面中，看不到）
+VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(48), SW(62), 14, dz=8.8)]
+VIS += [{"layer": "newPad", "at": SW(34), "until": SW(38), "dur": 14, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
 # ── s2 爆炸分解（5 步：研磨頭移開 → 墊子掀起 → 三層分開 → 研磨層局部放大 → 組回）──
 VIS += [mv("head", "s2:start+4", BACKHEAD, 26, dx=6.3)]
-VIS += [mv(l, "s2:pad", "s2:platen+56", 26, dy=2.4) for l in ("padAdh", "padSub", "padTop")]
-VIS += [mv("padSub", "s2:soft+9", "s2:platen+52", 24, dy=1.2), mv("padTop", "s2:soft+9", "s2:platen+52", 24, dy=2.4)]
+VIS += [mv(l, "s2:pad", "s2:platen+6", 22, dy=2.4) for l in ("padAdh", "padSub", "padTop")]
+VIS += [mv("padSub", "s2:soft+9", "s2:platen+2", 20, dy=1.2), mv("padTop", "s2:soft+9", "s2:platen+2", 20, dy=2.4)]
 VIS += [hid("head", "s3:start", "s3:sand-6", 14, 0.32)]
 # ── 站 W：晶圓剖面（s3 後半）──
-SW3 = ["s3:bump+14", "s3:bump+58", "s3:bump+102"]
+SW3 = ["s3:bump+8", "s3:bump+30", "s3:bump+52"]
 for k in range(4):
     vis(f"wOx{k}", [(("s3:start-8" if k == 0 else SW3[k - 1]), (SW3[k] if k < 3 else FAR))])
 for k in range(3): vis(f"wB{k}", [(("s3:start-8" if k == 0 else SW3[k - 1]), SW3[k])])
@@ -144,10 +148,10 @@ for i in range(3):
 VIS += [hid("mTool", T0, "s6:rough-14", 4, 0)]
 VIS += [mv("mTool", T0, "s6:rough", 16, dy=0.9)]
 VIS += [mv("mTool", T0, "s6:comb+2", 16, dx=-3.5)]
-VIS += [mv("mTool", "s6:end+4", FAR, 16, dx=3.5)]
-VIS += [mv("mTool", "s6:end+46", FAR, 14, dy=0.9)]
+VIS += [mv("mTool", "s6:comb+20", FAR, 14, dx=3.5)]
+VIS += [mv("mTool", "s6:comb+44", FAR, 12, dy=0.9)]
 # ── 站 T、H、V、N ──
-VIS += [hid("hardPart", T0, "s8:scr-12", 4, 0), hid("hardScratch", T0, "s8:scr+16", 4, 0)]
+VIS += [hid("hardPart", T0, "s8:scr-12", 4, 0), hid("hardScratch", T0, "s8:scr+2", 4, 0)]
 VIS += [hid(l, "s11:start+14", FAR, 4, 0.0) for l in ("nPad", "nDisc", "nQuartz")]     # 三件耗材撐到片尾卡蓋上來之後才收
 
 # ═════ 各幕 ═════
@@ -164,20 +168,20 @@ P["s1"] = {"shot": [shot("start-30", AX, AY1, 44, 36, 1, yaw=0.0), shot("start",
  "overlay": [sec("pad-hook", "start", nxt("s1"), "系列 2・第 17 集", "示意，非實際比例", {"prev": "prev", "q": "q"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-14", "dur": 1}],
  "shot": [shot("start", AX, AY1, 41, 34, 1), shot("start+8", 3.2, 2.25, 40, 38, 30), shot("pad-4", 0.4, 2.55, 40, 34, 26), shot("soft+6", 0.4, 2.95, 44, 30, 24),
-          shot("s2:platen+54", 0.6, 2.6, 40, 32, 26)],
- "run": [run("slDrop", "start-4", "s2:pad-2", 4), run("padSpin", "s2:platen+84", "s3:sand-8", 10), run("headSpin", "s2:platen+84", "s3:sand-8", 10), run("headSweep", "s2:platen+84", "s3:sand-8", 10), run("slSpread", "s2:platen+84", "s3:sand-8", 4),
-         run("slDrop", "s2:platen+84", "s3:sand-8", 4), run("slOutA", "s2:platen+84", "s3:sand-8", 6), run("slOutB", "s2:platen+84", "s3:sand-8", 6)],
- "labels": [lab("head", "研磨頭", "Carrier head", "blue", "start+2", "start+48"),
+          shot("s2:platen+2", 0.6, 2.6, 40, 32, 20)],
+ "run": [run("slDrop", "start-4", "s2:pad-2", 4), run("padSpin", "s2:platen+24", "s3:sand-8", 10), run("headSpin", "s2:platen+24", "s3:sand-8", 10), run("headSweep", "s2:platen+24", "s3:sand-8", 10), run("slSpread", "s2:platen+24", "s3:sand-8", 4),
+         run("slDrop", "s2:platen+24", "s3:sand-8", 4), run("slOutA", "s2:platen+24", "s3:sand-8", 6), run("slOutB", "s2:platen+24", "s3:sand-8", 6)],
+ "labels": [lab("head", "研磨頭", "Carrier head", "blue", "start+2", "pad-2"),
             lab("padA", "研磨墊", "Polishing pad", "amber", "pad", "pad+46"),
-            lab("padTop", "研磨層", "Polishing layer", "amber", "soft+14", "platen-8"),
-            lab("platen", "圓台", "Platen", "blue", "platen", "platen+46")],
+            lab("padTop", "研磨層", "Polishing layer", "amber", "soft+6", "round+18"),
+            lab("platen", "圓台", "Platen", "blue", "round+20", "platen+28")],
  "overlay": [card("s2", "pad-what", "研磨墊：常見的疊層", "示意", {"ans": "ans", "pad": "pad", "soft": "soft", "round": "round"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "sand-6", "dur": 1}],
  "shot": [shot(C, AX, 1.8, 38, 42, 24), shot("sand-6", 18.0, 1.0, 37, 31, 1)],
- "run": [run("wGlow0", "sand-4", "bump+58", 8), run("wGlow1", "bump+58", "bump+102", 8), run("wRub", "sand-4", FAR, 8), run("wDebris", "sand", FAR, 6), run("wSlurry", "sand", FAR, 6)],
+ "run": [run("wGlow0", "sand-4", "bump+30", 8), run("wGlow1", "bump+30", "bump+52", 8), run("wRub", "sand-4", FAR, 8), run("wDebris", "sand", FAR, 6), run("wSlurry", "sand", FAR, 6)],
  "labels": [lab("wafer", "晶圓（倒扣）", "Wafer, face down", "blue", "flip", "flip+46"),
             lab("bump", "凸處壓力大", "High spot", "amber", "sand-8", "sand+37", xy=[300, 306]),
-            lab("wpad", "墊子", "Pad", "blue", "bump+24", "bump+70")],
+            lab("wpad", "墊子", "Pad", "blue", "bump+16", "bump+58")],
  "overlay": [card("s3", "pad-grind", "砂紙磨木板：凸的先磨", "示意（不標壓力數字）", {"sand": "sand", "bump": "bump", "off": "off"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 38.0, MY, MD, 33, 1), shot("pore+14", 38.2, -0.4, 27, 27, 30), shot("flow+6", 38.0, MY, MD, 33, 30)],
@@ -193,28 +197,28 @@ P["s5"] = {"shot": [shot(CC, 38.0, MY, MD, 33, 1)],
 P["s6"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "rough-10", "dur": 1}],
  "shot": [shot(CC, -1.0, 1.8, 40, 42, 1), shot("rough-10", 38.0, MY6, MD, 33, 1)],
  "run": [run("padSpin", "start-2", "rough-14", 8), run("slOutA", "start-2", "rough-14", 6), run("slOutB", "start-2", "rough-14", 6), run("condSwing", "dia-8", "rough-14", 10), run("condSpin", "dia-8", "rough-14", 10), run("condDust", "sweep", "rough-14", 6),
-         run("toolRub", "rough+14", "s6:end+48", 8), run("toolChips", "rough+14", "s6:end+48", 6), run("toolCrumb", "rough+14", "s6:end+48", 6), run("mGroove", "rough+12", FAR, 6)],
+         run("toolRub", "rough+14", "s6:comb+44", 8), run("toolChips", "rough+14", "s6:comb+44", 6), run("toolCrumb", "rough+14", "s6:comb+44", 6), run("mGroove", "rough+12", FAR, 6)],
  "labels": [lab("condDisc", "鑽石碟", "Diamond disc", "amber", "dia", "dia+46"),
             lab("grain", "鑽石顆粒", "Diamond grit", "blue", "comb-8", "comb+38")],
  "overlay": [card("s6", "pad-dress", "梳子梳起壓扁的毛", "示意", {"dia": "dia", "sweep": "sweep", "rough": "rough", "comb": "comb"})]}
-P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}, {"to": "tool", "at": "swap+22", "dur": 1}],
- "shot": [shot(CC, 58.0, TY, TD, TE, 1), shot("swap+22", 0.0, 1.7, 40, 36, 1), shot(SW(62), -0.4, 1.8, 38, 34, 30)],
- "run": [run("padPeel", SW(0), SW(60), 24), run("rollerSpin", SW(94), SW(124), 4)],
- "labels": [lab("tOld", "舊墊", "Old pad", "amber", "voice-2", "voice+43"),
-            lab("tNew", "新墊", "New pad", "blue", "voice+43", "voice+88"),
-            lab("padOld", "舊墊", "Old pad", "amber", SW(4), SW(50)),
-            lab("padNew", "新墊", "New pad", "blue", SW(86), SW(131))],
+P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}, {"to": "tool", "at": "swap+10", "dur": 1}],
+ "shot": [shot(CC, 58.0, TY, TD, TE, 1), shot("swap+10", 0.0, 1.7, 40, 36, 1), shot(SW(30), -0.4, 1.8, 38, 34, 20)],
+ "run": [run("padPeel", SW(0), SW(22), 12), run("rollerSpin", SW(48), SW(62), 4)],
+ "labels": [lab("tOld", "舊墊", "Old pad", "amber", "voice-2", "thin+12"),
+            lab("tNew", "新墊", "New pad", "blue", "thin+14", "swap+8"),
+            lab("padOld", "舊墊", "Old pad", "amber", SW(0), SW(28)),
+            lab("padNew", "新墊", "New pad", "blue", SW(36), SW(64))],
  "overlay": [card("s7", "pad-wear", "磨薄就換，機台停下來", "示意（不標壽命時數）", {"thin": "thin", "swap": "swap", "stop": "stop"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 74.0, 1.6, 37, 30, 1), shot("tough-6", 90.0, 1.6, 37, 30, 30)],
  "run": [run("hsRubSoft", "soft-6", "tough-6", 8), run("hsSoftHot", "soft-4", "tough-8", 8), run("hsRubHard", "tough-6", FAR, 8), run("hsHot", "tough-4", FAR, 8), run("hsPartDrop", "scr-12", "scr+16", 4)],
  "labels": [lab("softL", "軟墊：凹處也被碰", "Soft: touches valleys too", "amber", "soft", "soft+46"),
-            lab("hardL", "硬墊：只碰凸處", "Hard: only high spots", "blue", "tough", "tough+46"),
-            lab("scratchL", "刮痕", "Scratch", "amber", "scr+18", "scr+64")],
+            lab("hardL", "硬墊：只碰凸處", "Hard: only high spots", "blue", "tough", "scr"),
+            lab("scratchL", "刮痕", "Scratch", "amber", "scr+2", "scr+28")],
  "overlay": [card("s8", "pad-hard", "軟硬各有代價", "示意", {"soft": "soft", "flat": "flat", "tough": "tough", "scr": "scr"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, 112.0, VY, VD, VE, 1)],
- "overlay": [card("s9", "pad-co", "研磨墊供應商", "DuPont、SEC、富士紡、證交所；截至 2026/11/27", {"intl": "intl", "dp": "dp", "fb": "fb", "tw": "tw", "sh": "sh"}, h=392, y=1000)]}
+ "overlay": [sec("pad-co", C, nxt("s9"), "研磨墊供應商", "DuPont、SEC、富士紡、證交所；截至 2026/11/27", {"intl": "intl", "dp": "dp", "fb": "fb", "tw": "tw", "sh": "sh"}, h=392, y=1000, cut=True)]}   # 第 40 條：念完「頌勝」後卡片停 0.85 秒（第 39 條無聲 ≤1.0 秒＋同一幀換幕的上限，見 README r3）
 P["s10"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, 134.0, NY, ND, NE, 1)],
  "labels": [lab("nPadA", "研磨墊", "Polishing pad", "amber", "wear", "wear+46"),
