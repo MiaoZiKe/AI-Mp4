@@ -16,8 +16,9 @@ const onC = (bg: string) => (bg === H.amber ? ((H as any).onAmber ?? H.onAccent)
 type P = { o: Overlay3D; f: number; k: number; m: Model3D; s?: State3D };
 const T = (o: Overlay3D, n: string) => ((o as any).t?.[n]?.at ?? o.at) as number;
 const CT = CARD_CONTENT_TOP;
-const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; children: React.ReactNode }> = ({ o, k, W, Hh, children }) => (
-  <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: k, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
+// solid：卡裡有 LOGO／國旗時不用透明度進場（官方 LOGO 與國旗 100% 不透明），改用由下滑入
+const Card: React.FC<{ o: Overlay3D; k: number; W: number; Hh: number; solid?: boolean; children: React.ReactNode }> = ({ o, k, W, Hh, solid, children }) => (
+  <div style={{ position: "absolute", left: o.x ?? L.X, top: o.y ?? 900, width: W, height: Hh, opacity: solid ? (k > 0.02 ? 1 : 0) : k, transform: solid ? `translateY(${Math.round((1 - k) * 20)}px)` : undefined, background: H.cardCompare, border: `2px solid ${H.lineSoft}`, boxSizing: "border-box", overflow: "hidden" }}>
     {o.title ? <div style={{ ...zh(CARD_HEAD.px, onC(H.line), 800), ...cardTitleBox(), background: H.line, zIndex: 2 }}>{o.title}</div> : null}
     {o.tag ? <div style={{ position: "absolute", right: 16, top: 14, ...zh(28, H.text2, 600), zIndex: 2 }}>{o.tag}</div> : null}
     {children}
@@ -102,6 +103,7 @@ const Pool: React.FC<P> = ({ o, f, k }) => {
         <Sep x={690} />
         <Row x={716} y={CT + 56} t="多乾淨？" c={H.text2} a={q} /><Row x={716} y={CT + 122} t="一座游泳池" c={BLUE} a={pl} /><Row x={716} y={CT + 188} t="只混進一小匙" c={H.amber} a={sp} />
         <text x={24} y={CT + 232} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>紅點＝雜質，比例示意</text>
+        <text x={350} y={CT + 232} style={zh(30, H.text2, 900)} opacity={sp}>先進製程還要再少十倍以上（示意）</text>
       </svg>
     </Card>
   );
@@ -197,7 +199,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 392, ia = on(f, T(o, "intl")), ca = on(f, T(o, "chc")), ac = on(f, T(o, "acid")), sa = on(f, T(o, "sanfu")), de = on(f, T(o, "dev"));
   const rows: [string, number, string, number][] = [["US", ia, "研磨液", ia], ["TW", Math.max(ca, ac), "電子級硫酸", ac], ["TW", Math.max(sa, de), "顯影液回收再純化", de]];
   return (
-    <Card o={o} k={k} W={W} Hh={Hh}>
+    <Card o={o} k={k} W={W} Hh={Hh} solid>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <path d={twPath(60, CT + 16, 56)} fill="#E7EDF7" stroke={Math.max(ca, sa) > 0.5 ? H.amber : H.text2} strokeWidth={3} opacity={0.5 + 0.5 * Math.max(ca, sa)} />
         <Sep x={200} y2={Hh - 12} />

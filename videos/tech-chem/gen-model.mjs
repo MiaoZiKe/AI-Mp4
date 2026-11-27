@@ -298,6 +298,10 @@ LAY("cdsFrame", [16.6, 20.4, XC, 10]);
   for (const [i, x, z] of [[0, fx0, fz0], [1, fx1, fz0], [2, fx0, fz1], [3, fx1, fz1]]) BOX(`cdsFrV${i}`, "cdsFrame", x - T / 2, x + T / 2, fy0, fy1, z - T / 2, z + T / 2, "steel2");
   for (const [i, y] of [[0, fy0], [1, fy1]]) { BOX(`cdsFrX${i}a`, "cdsFrame", fx0, fx1, y - T / 2, y + T / 2, fz1 - T / 2, fz1 + T / 2, "steel2"); BOX(`cdsFrX${i}b`, "cdsFrame", fx0, fx1, y - T / 2, y + T / 2, fz0 - T / 2, fz0 + T / 2, "steel2"); BOX(`cdsFrZ${i}a`, "cdsFrame", fx0 - T / 2, fx0 + T / 2, y - T / 2, y + T / 2, fz0, fz1, "steel2"); BOX(`cdsFrZ${i}b`, "cdsFrame", fx1 - T / 2, fx1 + T / 2, y - T / 2, y + T / 2, fz0, fz1, "steel2"); } }
 BOX("cdsNameplate", "cdsWall", XC - 3, XC + 3, 18.3, 19.1, CDS.z1 - 0.04, CDS.z1 + 0.01, "steel2");
+// r2：外殼細節——門下緣百葉（通風）、左側三個鉸鍊、右上警示貼
+for (let i = 0; i < 7; i++) BOX(`cdsLv${i}`, "cdsDoor", CDS.x1 - 4.4, CDS.x1 - 0.8, 3.2 + i * 0.42, 3.2 + i * 0.42 + 0.16, CDS.z1 + 0.02, CDS.z1 + 0.2, "cabDark");
+for (const [i, y] of [[0, 3.4], [1, 10.0], [2, 16.6]]) { BOX(`cdsHg${i}`, "cdsDoor", CDS.x0 - 0.15, CDS.x0 + 0.35, y, y + 1.5, CDS.z1 - 0.1, CDS.z1 + 0.28, "steel2"); }
+BOX("cdsCaution", "cdsDoor", CDS.x1 - 3.4, CDS.x1 - 0.8, 14.6, 16.6, CDS.z1 + 0.02, CDS.z1 + 0.08, "warnY"); BOX("cdsCautionTx", "cdsDoor", CDS.x1 - 3.0, CDS.x1 - 1.2, 15.0, 16.2, CDS.z1 + 0.08, CDS.z1 + 0.11, "dark");
 P({ id: "cdsTower", layer: "cdsWall", shape: "cyl", size: [0.28, 0.5], rot: V, pos: [XC + 5.5, 20.25, -2], at: [[0, 0, 0]], mat: "lampG" }); P({ id: "cdsTowerB", layer: "cdsWall", shape: "cyl", size: [0.28, 0.5], rot: V, pos: [XC + 5.5, 20.8, -2], mat: "lampY" });
 BOX("cdsLeakTray", "cdsBase", XC - 6.8, XC + 6.8, 0.7, 1.0, -4.2, 4.2, "cabDark"); BOX("cdsLeakSens", "cdsBase", XC - 0.5, XC + 0.5, 1.0, 1.15, 3.0, 3.6, "lampR");
 // 泵：雙隔膜泵（兩個泵頭＋中間空氣室＋進氣閥＋脈衝緩衝球）
@@ -426,11 +430,17 @@ PIPE("wsDrain", "wsTank", [[XS + 2.6, 1.0, 1.6], [XS + 2.6, 0.9, 3.2], [XW - 2.6
 // ═════ S5（x＝150）：鐵管 vs 塑膠管（半透明剖視）＋檸檬與鐵杯 ═════
 const X5 = 152, Y5 = 3.6;
 LAY("ironPipe", [24, 6, X5, 2.7]); LAY("ironAcid", [22, 4, X5, 2.7]); LAY("rustA", [3, 3, X5 - 6, 2]); LAY("rustB", [3, 3, X5, 2]); LAY("rustC", [3, 3, X5 + 6, 2]);
-LAY("pfaPipe", [24, 6, X5, 8.3]); LAY("pfaAcid", [22, 4, X5, 8.3]); LAY("lemon", [8, 6, X5 - 17, 3]);
-const Z5I = 0, Z5P = 0, R5 = 2.3, YI = 2.7, YP = 8.3;   // r1：兩根管上下分開（塑膠在上、鐵在下），不再前後重疊
+LAY("pfaPipe", [24, 6, X5, 10.4]); LAY("pfaAcid", [22, 4, X5, 10.4]); LAY("lemon", [8, 6, X5 - 17, 3]);
+const Z5I = 0, Z5P = 0, R5 = 2.3, YI = 2.7, YP = 10.4;   // r1：兩根管上下分開（塑膠在上、鐵在下），不再前後重疊
 // 鐵管：不透明金屬灰；中段留一段「剖開的透明視窗」看內壁，兩端是實心鐵管（2026/11/27 r1）
-HXC("irWallL", "ironPipe", R5, X5 - 11, X5 - 5, YI, Z5I, "iron"); HXC("irWallR", "ironPipe", R5, X5 + 5, X5 + 11, YI, Z5I, "iron"); HXC("irWall", "ironPipe", R5, X5 - 5, X5 + 5, YI, Z5I, "ironGhost");
-P({ id: "irWinFr", layer: "ironPipe", shape: "tube", size: [R5 + 0.18, R5 - 0.05, 0.3], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 5, 0, 0], [X5 + 5, 0, 0]], mat: "ironDark" }); HXC("irAcid", "ironAcid", R5 - 0.15, X5 - 4.9, X5 + 4.9, YI, Z5I, "acid");
+HXC("irWallL", "ironPipe", R5, X5 - 11, X5 - 5, YI, Z5I, "iron"); HXC("irWallR", "ironPipe", R5, X5 + 5, X5 + 11, YI, Z5I, "iron");
+// r2：剖開窗＝鐵管只留後半（切掉前半），露出不透明灰色金屬內壁（不是半透明黃綠）；酸液只剩一窪（後半圓弓形）
+{ const N = 18, arc = (r, a0, a1) => Array.from({ length: N + 1 }, (_, k) => { const t = a0 + (a1 - a0) * k / N; return [R2(r * Math.cos(t)), R2(r * Math.sin(t))]; });
+  const mid = R2(X5), len = 10;
+  P({ id: "irWall", layer: "ironPipe", shape: "poly", pts: [...arc(R5, -Math.PI / 2, Math.PI / 2), ...arc(R5 - 0.16, Math.PI / 2, -Math.PI / 2)], size: [1, 1, len], rot: HX, pos: [mid, YI, Z5I], mat: "ironDark" });
+  const ra = R5 - 0.2, h0 = 0.3, t0 = Math.asin(h0 / ra);
+  P({ id: "irAcid", layer: "ironAcid", shape: "poly", pts: [[0, -ra], ...arc(ra, -Math.PI / 2, t0), [0, h0]], size: [1, 1, len - 0.2], rot: HX, pos: [mid, YI, Z5I], mat: "acid" }); }
+P({ id: "irWinFr", layer: "ironPipe", shape: "tube", size: [R5 + 0.18, R5 - 0.05, 0.3], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 5, 0, 0], [X5 + 5, 0, 0]], mat: "ironDark" });
 P({ id: "irFl", layer: "ironPipe", shape: "tube", size: [R5 + 0.7, R5 - 0.05, 0.45], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 11, 0, 0], [X5 + 11, 0, 0], [X5 - 3.7, 0, 0], [X5 + 3.7, 0, 0]], mat: "iron" });
 P({ id: "irBolt", layer: "ironPipe", shape: "cyl", size: [0.13, 0.3], rot: HX, pos: [0, YI, Z5I], at: [X5 - 11, X5 + 11, X5 - 3.7, X5 + 3.7].flatMap((xx) => Array.from({ length: 8 }, (_, i) => { const [y, z] = pol(i * 45, R5 + 0.45); return [xx, y, z]; })), mat: "ironDark" });
 P({ id: "irStand", layer: "ironPipe", shape: "box", size: [0.5, YI - R5 - 0.1, 1.2], pos: [0, (YI - R5 - 0.1) / 2, Z5I], at: [[X5 - 7, 0, 0], [X5 + 7, 0, 0]], mat: "iron" });
