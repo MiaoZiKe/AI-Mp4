@@ -141,3 +141,7 @@
 [13] Semiconductor Digest https://sst.semiconductor-digest.com/?p=35559 ；USPTO 9196557、8058098。
 [14] BioNumbers https://bionumbers.hms.harvard.edu/bionumber.aspx?id=106856 （及 id=114258、116402）；Physics Factbook https://hypertextbook.com/facts/1999/BrianLey.shtml （僅作反例：17～181 µm 出處弱）。
 [15] USPTO 11749653（NAND 階梯堆疊）；Allen Press 粗鋁線可靠度 https://meridian.allenpress.com/ism/article-abstract/2016/1/000234/187898/Reliability-of-Heavy-Gage-Aluminum-Wire-bonds 。
+
+## 13. 庫力索法（K&S）畫面國旗的依據（2026/11/27 頻道負責人指示）
+- 公司註冊地：美國賓州（Pennsylvania）；SEC 文件同列營運總部新加坡與美國賓州 Fort Washington，2014 年新加坡全球總部開幕（見 §7 來源）。信心：中高。
+- 畫面處理：2D 卡用美國國旗，名牌旁小字註「國旗＝註冊地美國」；念稿不提總部所在地。

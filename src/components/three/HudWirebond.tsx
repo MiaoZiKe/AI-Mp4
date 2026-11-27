@@ -184,7 +184,7 @@ const Cu: React.FC<P> = ({ o, f, k }) => {
 // ── wb-co：日月光、安靠、庫力索法（官方 LOGO 當天抓不到，用白底文字名牌＋國旗；100% 不透明） ──
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 392, as = on(f, T(o, "ase")), am = on(f, T(o, "amkor")), mk = on(f, T(o, "maker")), kn = on(f, T(o, "kns"));
-  const rows: [string, string, number, string][] = [["TW", "日月光", as, "封裝測試（台灣）"], ["US", "安靠", am, "封裝測試（美國）"], ["US", "庫力索法", Math.max(mk, kn), "打線機（美國、新加坡）"]];
+  const rows: [string, string, number, string][] = [["TW", "日月光", as, "封裝測試（台灣）"], ["US", "安靠", am, "封裝測試（美國）"], ["US", "庫力索法", Math.max(mk, kn), "打線機（國旗＝註冊地美國）"]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh} solid>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
