@@ -213,10 +213,11 @@ LAY("dBath", [10, 2, DX, RT + 1]);
 const PX0 = 102, PZ = 1.6, PB = [-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((d) => R2(PX0 + d)), PSUB = 2.0, PPAD = 0.08, PCU0 = 2.62, PCU1 = 3.1, PDIE0 = 3.1, PDIE1 = 3.9;
 LAY("pPlinth", [14, 1, PX0, 0.5], true); BOX("pPl", "pPlinth", PX0 - 6.8, PX0 + 6.8, 0, 0.9, -2.6, 2.6, "band"); BOX("pPlTop", "pPlinth", PX0 - 6.8, PX0 + 6.8, 0.9, 1.0, -2.6, 2.6, "panel2");
 // 載板：左右兩半（熱脹時各往外伸），內部銅層線、焊墊、底部錫球
-for (const [s, a, b] of [["L", PX0 - 5.8, PX0], ["R", PX0, PX0 + 5.8]]) {
+// 兩半在中間重疊 0.5（熱脹時各往外伸 0.38，仍連成一整塊，不會裂開）；右半略窄一點避免重疊面閃爍
+for (const [s, a, b] of [["L", PX0 - 5.8, PX0 + 0.5], ["R", PX0 - 0.5, PX0 + 5.8]]) {
   LAY(`pSub${s}`, [6, 1, (a + b) / 2, 1.5]);
-  BOX(`pSubB${s}`, `pSub${s}`, a, b, 1.0, PSUB, -PZ, PZ, "sub");
-  P({ id: `pSubCu${s}`, layer: `pSub${s}`, shape: "box", size: [R2(b - a), 0.04, 0.02], pos: [R2((a + b) / 2), 0, PZ + 0.01], at: [1.3, 1.55, 1.8].map((y) => [0, y, 0]), mat: "cu" });
+  BOX(`pSubB${s}`, `pSub${s}`, a, b, 1.0, s === "R" ? PSUB - 0.004 : PSUB, s === "R" ? -PZ + 0.004 : -PZ, s === "R" ? PZ - 0.004 : PZ, "sub");
+  P({ id: `pSubCu${s}`, layer: `pSub${s}`, shape: "box", size: [R2(b - a), 0.04, 0.02], pos: [R2((a + b) / 2), 0, R2(PZ + (s === "R" ? 0.006 : 0.012))], at: [1.3, 1.55, 1.8].map((y) => [0, y, 0]), mat: "cu" });
   P({ id: `pPad${s}`, layer: `pSub${s}`, shape: "box", size: [0.7, PPAD, R2(2 * PZ - 0.5)], pos: [0, R2(PSUB + PPAD / 2), 0], at: PB.filter((x) => (s === "L" ? x < PX0 : x > PX0)).map((x) => [x, 0, 0]), mat: "gold" });
   P({ id: `pBall${s}`, layer: `pSub${s}`, shape: "sphere", size: [0.2], pos: [0, 0.95, 0], at: [0.9, 2.1, 3.3, 4.5].map((d) => [R2(s === "L" ? PX0 - d : PX0 + d), 0, 0]), mat: "sn" });
 }

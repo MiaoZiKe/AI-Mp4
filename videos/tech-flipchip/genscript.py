@@ -12,11 +12,11 @@ S = [
  ["腳不夠用", "晶片的電怎麼接出去？", "前一集", "看完封裝材料", "這集看覆晶"], ["Not enough pins:", "how does a chip's power get out?", "Last episode:", "packaging materials.", "This one: flip chip."],
  [("q", "接出去"), ("prev", "前一集"), ("fc", "覆晶")], ["腳不夠用", "覆晶"], ["示意動畫，不是量測"], 6.6, 0.0, 1.2),
 ("s2", "mechanism", "覆晶，就是把晶片翻過來，正面朝下，像蓋印章，一次壓到載板。",
- ["覆晶", "就是把晶片翻過來", "正面朝下", "像蓋印章", "一次壓到載板"], ["Flip chip:", "turn the chip over,", "face down,", "like using a stamp,", "pressed onto the substrate at once."],
+ ["覆晶就是把晶片翻過來", "正面朝下", "像蓋印章", "一次壓到載板"], ["Flip chip: turn the chip over,", "face down,", "like using a stamp,", "pressed onto the substrate at once."],
  [("fcw", "覆晶"), ("flip", "翻過來"), ("down", "正面朝下"), ("stamp", "蓋印章"), ("press", "壓到載板")], ["翻過來", "蓋印章", "載板"], ["IBM 研究（C4 覆晶，1960 年代）；示意動畫"], 8.4, 0.2, 2.4),
 ("s3", "mechanism", "打線只能排在邊緣一圈，覆晶整面都是接點，腳多、路也短。",
- ["打線只能排在", "邊緣一圈", "覆晶整面都是接點", "腳多", "路也短"], ["Wire bonds only fit", "around the edge;", "flip chip uses the whole face,", "more pins,", "shorter paths."],
- [("wb", "打線"), ("edge", "邊緣一圈"), ("full", "整面"), ("many", "腳多"), ("short", "路也短")], ["邊緣一圈", "整面", "路也短"], ["Amkor、ASE 覆晶技術說明；示意動畫"], 7.4, 0.2, 2.4),
+ ["打線只能排在", "邊緣一圈", "覆晶整面都是接點", "腳多路也短"], ["Wire bonds only fit", "around the edge;", "flip chip uses the whole face:", "more pins, shorter paths."],
+ [("wb", "打線"), ("edge", "邊緣一圈"), ("full", "整面"), ("short", "路也短")], ["邊緣一圈", "整面", "路也短"], ["Amkor、ASE 覆晶技術說明；示意動畫"], 7.4, 0.2, 2.4),
 ("s4", "mechanism", "晶片背面朝外，沒有線擋著，直接貼散熱蓋。",
  ["晶片背面朝外", "沒有線擋著", "直接貼散熱蓋"], ["The chip's back faces out,", "no wires in the way,", "so a heat lid goes right on."],
  [("back", "背面朝外"), ("nowire", "沒有線"), ("lid", "散熱蓋")], ["背面", "散熱蓋"], ["覆晶球柵陣列封裝（FCBGA）通則；示意動畫，不是量測"], 5.8, 0.2, 2.0),
@@ -33,7 +33,7 @@ S = [
  ["所以沿邊緣點膠", "膠像紙巾吸水", "滲進縫裡", "再烤硬", "護住焊點"], ["So glue is dispensed along the edge;", "like a paper towel soaking up water,", "it wicks into the gap,", "then it's baked hard", "to protect the joints."],
  [("edge", "沿邊緣點膠"), ("wick", "紙巾吸水"), ("gap", "滲進縫裡"), ("bake", "烤硬"), ("guard", "護住焊點")], ["點膠", "紙巾吸水", "烤硬"], ["底部填充（毛細流動、固化）製程說明；示意動畫"], 8.2, 0.2, 3.0),
 ("s9", "payoff", "封裝大廠有日月光、安靠，覆晶接合機有荷蘭的 Besi。",
- ["封裝大廠有", "日月光、安靠", "覆晶接合機有", "荷蘭的 Besi"], ["Big packaging houses:", "ASE and Amkor;", "flip-chip bonders:", "Besi from the Netherlands."],
+ ["封裝大廠有", "日月光・安靠", "覆晶接合機有", "荷蘭的 Besi"], ["Big packaging houses:", "ASE and Amkor;", "flip-chip bonders:", "Besi from the Netherlands."],
  [("big", "封裝大廠"), ("ase", "日月光"), ("amk", "安靠"), ("fcb", "覆晶接合機"), ("besi", "Besi")], ["日月光", "安靠", "Besi"], ["TrendForce 2024 排名；Besi 官網（廠商說法）"], 8.3, 0.2, 3.4),
 ("s10", "cta", "覆晶還得靠載板拉線。下一集，把線直接做在晶圓，看扇出型與晶圓級封裝。",
  ["覆晶還得靠載板拉線", "下一集", "把線直接做在晶圓", "看扇出型", "與晶圓級封裝"], ["Flip chip still needs a substrate to route out.", "Next episode:", "wiring built right on the wafer,", "fan-out", "and wafer-level packaging."],
@@ -48,8 +48,8 @@ scenes = []
 for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for z in zh: assert em(z) <= 11.5, (sid, z)
-    for z in zh: assert "、" not in z or z == "日月光、安靠", ("字幕行內不放「、」", sid, z)
-    for c in cues: assert c[1] in nar and c[1] in "".join(zh), (sid, c)
+    for z in zh: assert not re.search(r"[、，；：]", z[:-1]) and len(re.sub(r"[ ，。？・]", "", z)) >= 3, ("字幕行內不放「、，」、每行 ≥3 字（字幕切分程式會在標點切開、短段併掉，中英錯位）", sid, z)
+    for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace("・", "、"), (sid, c)
     assert dur <= 10, sid
     nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
     assert hold <= 3.5, (sid, hold)
@@ -163,9 +163,9 @@ P["s3"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, I["BX"], 1.2, 30, 48, 1)],
  "run": [run("sigWire", "short-10", FAR, 6), run("sigBump", "short-10", FAR, 6)],
  "labels": [lab("wbWire", "打線：邊緣一圈", "Wire bond: edge only", "amber", "edge-4", "edge+41"), lab("fcBumpA", "覆晶：整面凸塊", "Flip chip: full array", "blue", "full", "full+45")],
- "overlay": [card("s3", "fc-vs", "邊緣一圈 vs 整面", "示意（不標腳數）", {"wb": "wb", "edge": "edge", "full": "full", "many": "many", "short": "short"})]}
+ "overlay": [card("s3", "fc-vs", "邊緣一圈 vs 整面", "示意（不標腳數）", {"wb": "wb", "edge": "edge", "full": "full", "many": "short", "short": "short"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["CX"], 1.2, 22, 42, 1)],
+ "shot": [shot(CC, I["CX"], 0.6, 22, 46, 1)],
  "run": [run("dieHot", "start", FAR, 8), run("heatUp", "lid+16", FAR, 8)],
  "labels": [lab("timA", "導熱膏", "Thermal paste", "amber", "back", "back+45"), lab("lidA", "散熱蓋", "Heat lid", "blue", "lid+2", "lid+47")],
  "overlay": [card("s4", "fc-heat", "背面朝外：熱往上走", "示意，不是量測", {"back": "back", "nowire": "nowire", "lid": "lid"})]}
@@ -175,22 +175,22 @@ P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "labels": [lab("resistA", "光阻開孔", "Resist openings", "blue", "bump+14", "bump+59"), lab("cuA", "電鍍銅柱", "Plated copper pillar", "amber", "cu+2", "cu+47"), lab("domeA", "回焊成圓頂", "Reflowed cap", "blue", "sn+62", "sn+102")],
  "overlay": [card("s5", "fc-bump", "凸塊怎麼長", "示意（不標尺寸）", {"bump": "bump", "wafer": "wafer", "cu": "cu", "sn": "sn"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["PX0"], 2.3, 25, 18, 1)],
+ "shot": [shot(CC, I["PX0"], 1.6, 21, 18, 1)],
  "run": [run("heaterOn", "place+6", "end+40", 8), run("melt", "place+10", "melt+10", 6)],
  "labels": [lab("pDieA", "放歪的晶片", "Off-center chip", "amber", "place", "place+45"), lab("pSnA", "熔錫拉正", "Molten solder pulls", "blue", "melt+10", "melt+55")],
  "overlay": [card("s6", "fc-align", "像水珠把東西拉正", "示意（錫量多時）", {"place": "place", "melt": "melt", "tension": "tension", "drop": "drop", "align": "align"})]}
 P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["PX0"], 2.3, 25, 18, 1)],
+ "shot": [shot(CC, I["PX0"], 1.6, 21, 18, 1)],
  "run": [run("heaterOn", "cte-4", "end+36", 8), run("crackP", "crack", "end+30", 4)],
  "labels": [lab("pCrackA", "焊點被扭", "Joint strained", "amber", "crack", "crack+45")],
  "overlay": [card("s7", "fc-cte", "熱脹冷縮差五倍", "文獻值；示意，變形誇大", {"but": "but", "cte": "cte", "x5": "x5", "crack": "crack"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["PX0"], 2.4, 25, 18, 1)],
+ "shot": [shot(CC, I["PX0"], 1.6, 21, 18, 1)],
  "run": [run("ufDrip", "edge", "wick+50", 6), run("heaterOn", "bake-2", FAR, 8), run("ufCureGlow", "bake+10", "bake+60", 8)],
  "labels": [lab("pNeedleA", "點膠針頭", "Dispensing needle", "amber", "edge", "edge+45"), lab("pUfA", "底部填充", "Underfill", "blue", "gap-8", "gap+37", xy=[800, 420])],
  "overlay": [card("s8", "fc-uf", "像紙巾吸水", "示意", {"edge": "edge", "wick": "wick", "gap": "gap", "bake": "bake", "guard": "guard"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}, {"to": "tool", "at": "fcb-4", "dur": 1}],
- "shot": [shot(CC, I["HX0"], 0.2, 27, 40, 1), shot("fcb-4", 0.6, 3.6, 30, 30, 1)],
+ "shot": [shot(CC, I["HX0"] + 1.0, 0.2, 31, 40, 1), shot("fcb-4", 0.6, 3.6, 30, 30, 1)],
  "run": [run("asePin", "ase-4", "fcb", 6), run("amkPin", "amk-4", "fcb", 6)],
  "labels": [lab("aseA", "日月光（高雄）", "ASE, Kaohsiung", "blue", "big", "big+45", flag="TW"),
             lab("besiA", "Besi（荷蘭）", "Besi, Netherlands", "amber", "besi-2", "besi+43"),
