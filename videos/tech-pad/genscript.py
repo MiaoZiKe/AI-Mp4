@@ -124,7 +124,8 @@ VIS += [mv(l, SW(30), FAR, 18, dx=-8.5, throw=2.0) for l in OLD] + [hid(l, SW(48
 for l in OLD: vis(l, [("s7:start-2", SW(48))])
 VIS += [hid(l, "s7:start-2", FAR, 2, 0) for l in ("padAdh", "padSub", "padTop")]
 VIS += [mv("head", "s7:thin+2", FAR, 12, dx=6.3)]
-VIS += [mv(l, "s7:thin+2", FAR, 12, dx=-2.5, dz=-4.5) for l in ("cond", "condPost")]   # r4：換墊前修整器整組往後退開（不和撕起的舊墊、落下的新墊相撞）       # 換墊前研磨頭先移開（T 站畫面中，看不到）
+VIS += [mv(l, "s7:thin+2", FAR, 12, dx=-2.5, dz=-4.5) for l in ("cond", "condPost")]
+VIS += [mv("slurry", "s7:thin+2", FAR, 12, dz=-4.5)]   # r6：研磨液臂也往後退開（新墊落下不穿過噴嘴）   # r4：換墊前修整器整組往後退開（不和撕起的舊墊、落下的新墊相撞）       # 換墊前研磨頭先移開（T 站畫面中，看不到）
 VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(66), SW(92), 26, dz=8.8)]
 VIS += [{"layer": "newPad", "at": T0, "until": SW(48), "dur": 14, "dy": 4.6, "fallIn": True, "bounce": 0.07, "opacity": 0}]
 # ── s2 爆炸分解（5 步：研磨頭移開 → 墊子掀起 → 三層分開 → 研磨層局部放大 → 組回）──
