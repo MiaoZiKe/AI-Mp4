@@ -201,7 +201,7 @@ P["s8"] = {"shot": [shot("start-4", 58.0, 0.2, 34, 40, 1, yaw=0.0), shot("one-10
             lab("tma", "鋁原料分子", "Precursor molecule", "amber", "paint+2", "one+30"),
             lab("purgeA", "吹淨", "Purge", "blue", "full+34", "full+68"),
             lab("filmA", "多一層薄片", "One more layer", "amber", "atom+30", "s9:start-14")],
- "overlay": [sec("precursor-ald", "start+24", "s9:start-5", "ALD 一圈：刷一層就停", "教學範例：鋁原料與水（示意）", {"paint": "paint", "one": "one", "full": "full", "atom": "atom"})]}
+ "overlay": [sec("precursor-ald", "start+24", "s9:start-5", "ALD 一圈：刷一層就停", "教學範例：鋁原料與水（示意）", {"paint": "paint", "one": "one", "full": "full", "atom": "atom"}, h=344)]}
 P["s9"] = {"shot": [shot("start-4", 59.6, 0.2, 26, 42, 1, yaw=0.0)],
  "run": [run("impDrop", "atom-18", "bad+30", 4), run("impGlow", "atom+10", "s10:start-6", 8)],
  "labels": [lab("impA", "雜質金屬原子", "Stray metal atom", "amber", "atom+12", "s10:start-14")],
