@@ -206,11 +206,11 @@ const Share: React.FC<P> = ({ o, f, k }) => {
         <text x={cx} y={cy + r + 48} textAnchor="middle" style={zh(40, "#1F3A5F", 900)} opacity={0.4 + 0.6 * sh}>95%+</text>
         <Sep x={270} y2={380} />
         <FlagBox code="JP" x={296} y={CT + 26} a={aj} /><NamePlate x={364} y={CT + 20} w={200} h={50} t="味之素" a={aj} />
-        <text x={584} y={CT + 56} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * aj}>超過九成五（報導）</text>
+        <text x={584} y={CT + 56} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * aj}>超過九成五</text>
         <FlagBox code="TW" x={296} y={CT + 122} a={jh} /><NamePlate x={364} y={CT + 116} w={200} h={50} t="晶化科技" a={jh} />
         <text x={584} y={CT + 152} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * ow}>自有增層膜（報導）</text>
-        <text x={296} y={CT + 236} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * hi}>高階處理器、繪圖晶片載板用</text>
-        <text x={296} y={CT + 286} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * ow}>晶化產能與客戶：查不到</text>
+        <text x={296} y={CT + 236} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * sh}>出處：日經 2025、味之素揭露</text>
+        <text x={296} y={CT + 286} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * hi}>高階處理器、繪圖晶片載板用</text>
       </svg>
     </Card>
   );
