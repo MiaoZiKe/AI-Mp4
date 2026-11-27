@@ -1,5 +1,5 @@
 """tech-cufoil 腳本產生器：python3 videos/tech-cufoil/genscript.py → script.json（自動先跑 gen-model.mjs 產 model.json）
-PCB-2：銅箔與玻纖布（科技透明圈 系列 3 第 12 集；前一集 3-11 銅箔基板；下一集 3-13 電路板怎麼做：壓合、鑽孔、電鍍）。念稿定稿於 script.md。
+PCB-2：銅箔與玻纖布（科技透明圈 系列 3 第 12 集；前一集 3-11 銅箔基板；下一集 3-13 伺服器主機板）。念稿定稿於 script.md。
 2D 卡：src/components/three/HudCufoil.tsx（cuf-*）。構造與物理：physics-spec.md；模組清單：visual-spec.md。"""
 import json, re, os, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -16,9 +16,9 @@ S = [
 ("s3", "mechanism", "貼滾筒那面光滑，另一面長滿小銅瘤，像魔鬼氈，咬住樹脂。",
  ["貼滾筒那面光滑", "另一面長滿小銅瘤", "像魔鬼氈", "咬住樹脂"], ["The drum side is smooth;", "the other side is covered in tiny nodules,", "like Velcro,", "gripping the resin."],
  [("shiny", "光滑"), ("nod", "小銅瘤"), ("velcro", "魔鬼氈"), ("bite", "咬住樹脂")], ["光滑", "小銅瘤", "魔鬼氈"], ["專利 EP1308539；示意（放大，不按比例）"]),
-("s4", "mechanism", "但伺服器訊號很快，大多擠在銅表面走，表面越粗路越彎，像在洗衣板跑步。",
- ["但伺服器訊號很快", "大多擠在銅表面走", "表面越粗路越彎", "像在洗衣板跑步"], ["But server signals are fast,", "and mostly crowd along the copper surface;", "the rougher it is, the longer the path,", "like running on a washboard."],
- [("fast", "訊號很快"), ("surf", "擠在銅表面"), ("bend", "路越彎"), ("board", "洗衣板")], ["表面", "路越彎", "洗衣板"], ["Rogers、Altium 技術文章；示意動畫，不是量測"]),
+("s4", "mechanism", "但伺服器訊號快，大多擠在表面走，越粗越繞，像在洗衣板跑步。",
+ ["但伺服器訊號快", "大多擠在表面走", "越粗越繞", "像在洗衣板跑步"], ["But server signals are fast,", "and mostly crowd along the copper surface;", "the rougher, the longer the path,", "like running on a washboard."],
+ [("fast", "訊號快"), ("surf", "擠在表面"), ("bend", "越粗越繞"), ("board", "洗衣板")], ["表面", "越繞", "洗衣板"], ["Rogers、Altium 技術文章；示意動畫，不是量測"]),
 ("s5", "twist", "所以要用低粗糙度銅箔，做得更平又要黏得牢，這最難。",
  ["所以要用", "低粗糙度銅箔", "做得更平", "又要黏得牢", "這最難"], ["So use", "low-profile copper foil:", "flatter,", "yet still firmly bonded —", "that's the hardest part."],
  [("low", "低粗糙度"), ("flat", "更平"), ("glue", "黏得牢"), ("hard", "最難")], ["低粗糙度", "更平", "黏得牢"], ["IPC 技術論文 E5&S24_01、專利 US10765010；示意"]),
@@ -28,16 +28,16 @@ S = [
 ("s7", "mechanism", "紗和空隙讓訊號快慢不一，一對訊號就對不齊。",
  ["紗和空隙", "讓訊號快慢不一", "一對訊號", "就對不齊"], ["Yarn and gaps", "make signals travel at different speeds,", "so a signal pair", "falls out of step."],
  [("yarn", "紗和空隙"), ("speed", "快慢不一"), ("pair", "一對訊號"), ("skew", "對不齊")], ["空隙", "快慢不一", "對不齊"], ["Isola、PCD&F 技術文章；示意動畫，不是量測"]),
-("s8", "twist", "所以把紗攤平，像把辮子梳開，再換低介電玻璃，訊號更快、損耗更少。",
- ["所以把紗攤平", "像把辮子梳開", "再換低介電玻璃", "訊號更快", "損耗更少"], ["So spread the yarn flat,", "like combing out a braid,", "then switch to low-Dk glass:", "faster signals,", "less loss."],
+("s8", "twist", "所以把紗攤平，像梳開辮子，再換低介電玻璃，訊號更快、損耗更少。",
+ ["所以把紗攤平", "像梳開辮子", "再換低介電玻璃", "訊號更快", "損耗更少"], ["So spread the yarn flat,", "like combing out a braid,", "then switch to low-Dk glass:", "faster signals,", "less loss."],
  [("flat", "攤平"), ("braid", "辮子"), ("lowdk", "低介電"), ("fast", "訊號更快")], ["攤平", "辮子", "低介電"], ["Isola、Intel、專利 US11191158；示意"]),
 ("s9", "payoff", "台灣金居做低粗糙度銅箔；台玻和富喬做低介電玻纖布，都在擴產。",
  ["台灣金居", "做低粗糙度銅箔", "台玻和富喬", "做低介電玻纖布", "都在擴產"], ["In Taiwan, Co-Tech", "makes low-profile copper foil;", "Taiwan Glass and Fulltech", "make low-Dk glass fabric —", "all expanding capacity."],
  [("cotech", "金居"), ("tglass", "台玻"), ("fulltech", "富喬"), ("exp", "擴產")], ["金居", "台玻", "富喬"], ["工商時報、經濟日報等報導；擴產為公司說法"]),
-("s10", "cta", "布和銅升級好，變成電路板還得壓合、鑽孔、電鍍。下一集，看電路板怎麼做。留言玻纖布，拿完整資料。",
- ["布和銅升級好", "變成電路板", "還得壓合", "鑽孔 電鍍", "下一集", "看電路板怎麼做", "留言玻纖布", "拿完整資料"],
- ["With cloth and copper upgraded,", "to become a circuit board", "they still need laminating,", "drilling and plating.", "Next time:", "how a circuit board is made.", "Comment \"glass fabric\"", "for the full notes."],
- [("up", "升級好"), ("press", "壓合"), ("drill", "鑽孔"), ("plate", "電鍍"), ("next", "下一集"), ("kw", "留言玻纖布")], ["壓合", "鑽孔", "電鍍"], ["示意動畫，不是量測"]),
+("s10", "cta", "布和銅升級好，最後做成主機板。下一集，看人工智慧伺服器主機板，為什麼越疊越多層。留言玻纖布，拿完整資料。",
+ ["布和銅升級好", "最後做成主機板", "下一集", "看人工智慧伺服器主機板", "為什麼越疊越多層", "留言玻纖布", "拿完整資料"],
+ ["With cloth and copper upgraded,", "they finally become a motherboard.", "Next time:", "the AI server motherboard —", "why it keeps adding layers.", "Comment \"glass fabric\"", "for the full notes."],
+ [("up", "升級好"), ("mb", "做成主機板"), ("next", "下一集"), ("stack", "越疊越多層"), ("kw", "留言玻纖布")], ["主機板", "多層", "玻纖布"], ["示意動畫，不是量測"]),
 ]
 def TTS(t):
     for a, b in [("上一集", "前一集"), ("量測", "測量"), ("矽", "細"), ("光罩", "光照")]:
@@ -66,7 +66,7 @@ paras = [p.strip() for p in md if p.strip()]
 assert [s["tts"] for s in scenes] == paras, ("念稿與 script.md 不同", [s["tts"] for s in scenes], paras)
 scenes[0]["props"]["hook"] = {"kicker": "接上集：樹脂換了，布和銅也得升級", "title": "銅要多光滑？", "size": 104, "top": 236}
 scenes.append({"id": "s11", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "電路板怎麼做", "trail": ["銅箔要平又黏得牢、玻纖布要攤平換低介電"], "comment": "玻纖布", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "伺服器主機板", "trail": ["銅箔要平又黏得牢、玻纖布要攤平換低介電"], "comment": "玻纖布", "logoAnim": "transparent"}}})
 
 # ═════════ 工具 ═════════
 FAR = "s11:start+400"
@@ -123,11 +123,11 @@ drop("rSmooth", "s5:low", dy=1.2, dur=12, bounce=0.04); drop("rGlue", "s5:glue",
 vis("xRound", [(T0, "s8:flat")], 8); vis("xFlat", [("s8:flat", "s8:lowdk")], 8); vis("xFlatLD", [("s8:lowdk", FAR)], 8)
 # ── 站 K：三家念到才落下 ──
 for i, c in enumerate(["cotech", "tglass", "fulltech"]): drop(f"kMod{i}", f"s9:{c}-2", dy=1.6, dur=12, bounce=0.05)
-# ── 站 N：銅／膠片×3／銅 依序落下 → 上熱板壓下（念到「壓合」）；右邊鑽孔板念到「鑽孔」才出現 ──
+# ── 站 N：銅／膠片×3／銅 依序落下 → 上熱板壓下（念完「升級好」）；右邊主機板念到「做成主機板」才落下 ──
 for i in range(5): drop(f"nL{i}", f"s10:voice+{2 + 5 * i}", dy=1.4, dur=10, bounce=0.04)
 NPRESS = round(5.0 - INFO["NSTOP"], 3)
-VIS.append(mv("nTop", "s10:press-4", FAR, 16, dy=-NPRESS))
-vis("nMb", [("s10:drill-8", FAR)], 8); vis("nDrill", [("s10:drill-8", FAR)], 8)
+VIS.append(mv("nTop", "s10:up+20", FAR, 16, dy=-NPRESS))
+drop("nMb", "s10:mb-6", dy=1.4, dur=12, bounce=0.04)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 HV = (0.0, -0.3, 36, 30)
@@ -207,10 +207,10 @@ P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "overlay": [sec(CO[0], C, nxt("s9"), CO[1], CO[2], {"cotech": "cotech", "tglass": "tglass", "fulltech": "fulltech"}, cut=True, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "next", "at": EXTC, "dur": 1}],
  "shot": [S_(EXTC, NV, 1)],
- "run": [run("nHeat", "press-6", "s11:start", 8), run("nDrillDown", "drill", "s11:start", 6), run("nBitSpin", "drill", "s11:start", 6), run("nPlate", "plate", "s11:start", 6)],
- "labels": [lab("nStack", "銅箔＋膠片＋銅箔：壓合", "Lamination", "amber", "press", "press+45"),
-            lab("nDrill", "鑽孔，孔壁再電鍍（下一集）", "Drilling and plating (next)", "blue", "drill+2", "drill+47")],
- "overlay": ([sec(CO[0], C, EXT, CO[1], CO[2], {"cotech": "s9:cotech", "tglass": "s9:tglass", "fulltech": "s9:fulltech"}, cut=True, h=392, y=1000)] if CO_N else []) + [sec("cuf-next", EXT, "s11:start", "下一集：電路板怎麼做", "留言「玻纖布」", {"up": "up", "press": "press", "drill": "drill", "plate": "plate", "next": "next", "kw": "kw"}, cut=True)]}
+ "run": [run("nHeat", "up+16", "s11:start", 8), run("nSig", "mb+8", "s11:start", 4)],
+ "labels": [lab("nStack", "銅箔＋膠片＋銅箔：壓合", "Lamination", "amber", "up+18", "mb-4"),
+            lab("nMb", "伺服器主機板：板邊越疊越多層", "Server motherboard: more layers", "blue", "stack-4", "stack+41")],
+ "overlay": ([sec(CO[0], C, EXT, CO[1], CO[2], {"cotech": "s9:cotech", "tglass": "s9:tglass", "fulltech": "s9:fulltech"}, cut=True, h=392, y=1000)] if CO_N else []) + [sec("cuf-next", EXT, "s11:start", "下一集：伺服器主機板", "留言「玻纖布」", {"up": "up", "mb": "mb", "next": "next", "stack": "stack", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
@@ -218,7 +218,7 @@ lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r
 levels = [lv("start", "銅箔基板（示意，厚度放大）", "COPPER-CLAD LAMINATE", "10 cm", "1 cm"), lv("drum", "電解銅箔機（示意）", "ED COPPER FOIL", "1 m", "10 cm"),
           lv("foil", "銅箔剖面（放大示意）", "FOIL CROSS-SECTION", "20 µm", "2 µm"), lv("skin", "訊號走銅表面（示意）", "SKIN EFFECT", "20 µm", "2 µm"),
           lv("loom", "拉絲、捻紗、織布（示意）", "GLASS FABRIC", "1 m", "10 cm"), lv("weave", "玻纖效應（示意）", "FIBER WEAVE EFFECT", "1 mm", "0.1 mm"),
-          lv("spread", "開纖與低介電玻璃（示意）", "SPREAD / LOW-DK GLASS", "1 mm", "0.1 mm"), lv("co", "銅箔與玻纖布供應商", "SUPPLIERS", "100 cm", "10 cm"), lv("next", "壓合與鑽孔（下一集）", "NEXT", "50 cm", "5 cm")]
+          lv("spread", "開纖與低介電玻璃（示意）", "SPREAD / LOW-DK GLASS", "1 mm", "0.1 mm"), lv("co", "銅箔與玻纖布供應商", "SUPPLIERS", "100 cm", "10 cm"), lv("next", "壓合與主機板（下一集）", "NEXT", "50 cm", "5 cm")]
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-cufoil", "prevEpisode": "3-11：銅箔基板", "title": "銅箔與玻纖布（科技透明圈）", "asOf": "2026/11/28", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light", "sourceFollowsCaption": True,

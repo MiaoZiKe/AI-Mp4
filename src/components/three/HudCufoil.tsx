@@ -1,6 +1,6 @@
 // 2026/11/28 tech-cufoil：銅箔與玻纖布（系列 3 第 12 集）的 2D 示意卡（overlay `section` 的 kind 以 "cuf-" 開頭，Hud.tsx 轉過來）。共用小零件照 HudCcl.tsx。
 //   cuf-hook 接上集（布多平、銅多光滑）｜cuf-drum 滾筒電鍍＝煎潤餅皮｜cuf-nod 光面／粗面銅瘤＝魔鬼氈｜cuf-skin 訊號擠在表面＝洗衣板｜cuf-hvlp 低粗糙度：平 vs 黏得牢｜
-//   cuf-weave 拉絲→捻紗→平織＝竹蓆｜cuf-skew 紗與空隙→一對訊號對不齊｜cuf-spread 開纖＋低介電｜cuf-co 台灣三家｜cuf-next 下一集電路板怎麼做＋留言。
+//   cuf-weave 拉絲→捻紗→平織＝竹蓆｜cuf-skew 紗與空隙→一對訊號對不齊｜cuf-spread 開纖＋低介電｜cuf-co 台灣三家｜cuf-next 做成主機板→下一集伺服器主機板＋留言。
 // 公司 LOGO 原檔抓不到（同 tech-ccl），用白底文字名牌＋國旗，100% 不透明。示意，不標粗糙度、介電常數數字。
 import React from "react";
 import { FONT_ZH } from "../../theme";
@@ -231,20 +231,19 @@ const Co: React.FC<P> = ({ o, f, k }) => {
       <text x={418} y={CT + 66 + i * 96} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * a}>{s}</text></g>)}
   </Sv></Card>);
 };
-// ── cuf-next：升級好 → 壓合、鑽孔、電鍍才是電路板；下一集＋留言 ──
+// ── cuf-next：布和銅升級好 → 做成主機板 → 下一集伺服器主機板（為什麼越疊越多層）＋留言 ──
 const Next: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, up = on(f, T(o, "up")), pr = on(f, T(o, "press")), dr = on(f, T(o, "drill")), pl = on(f, T(o, "plate")), nx = on(f, T(o, "next")), kw = on(f, T(o, "kw"));
+  const W = o.w ?? 952, Hh = o.h ?? 330, up = on(f, T(o, "up")), mb = on(f, T(o, "mb")), ly = on(f, T(o, "stack")), nx = on(f, T(o, "next")), kw = on(f, T(o, "kw"));
+  const n = 4 + Math.round(8 * cl01((f - T(o, "stack")) / 30));
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
-    <g opacity={0.4 + 0.6 * Math.max(up, pr)}><Lam x={30} y={CT + 60} w={128} cu={10} core={36} /></g>
-    <Cap x={94} y={CT + 160} t="壓合" />
-    <Arr x1={166} y={CT + 88} x2={190} c={H.text2} />
-    <g opacity={0.4 + 0.6 * Math.max(dr, pl)}><Lam x={196} y={CT + 60} w={116} cu={10} core={36} />
-      {[0, 1, 2].map((j) => <g key={j}><rect x={214 + j * 36} y={CT + 60} width={12} height={56} fill="#FFFFFF" opacity={dr} /><rect x={212 + j * 36} y={CT + 60} width={3} height={56} fill={CU} opacity={pl} /><rect x={225 + j * 36} y={CT + 60} width={3} height={56} fill={CU} opacity={pl} /></g>)}</g>
-    <Cap x={254} y={CT + 160} t="鑽孔＋電鍍" />
+    <g opacity={0.4 + 0.6 * Math.max(up, mb)}><MiniPcb x={30} y={CT + 30} w={150} h={110} /></g>
+    <Cap x={105} y={CT + 180} t="主機板" />
+    <g opacity={0.4 + 0.6 * ly}>{Array.from({ length: n }, (_, i) => <g key={i}><rect x={206} y={CT + 150 - i * 11} width={104} height={8} fill={PP} stroke={PPD} strokeWidth={1} /><rect x={206} y={CT + 147 - i * 11} width={104} height={3} fill={CU} /></g>)}</g>
+    <Cap x={258} y={CT + 196} t="越疊越多層" />
     <Sep x={334} />
     <Row x={360} y={CT + 48} t="布和銅升級好了" c={H.text2} a={up} />
-    <Row x={360} y={CT + 104} t="壓合、鑽孔、電鍍" c={CU} a={Math.max(pr, dr, pl)} />
-    <Row x={360} y={CT + 160} t="下一集：電路板怎麼做" c={OK} a={nx} />
+    <Row x={360} y={CT + 104} t="最後做成主機板" c={CU} a={mb} />
+    <Row x={360} y={CT + 160} t="下一集：伺服器主機板" c={OK} a={Math.max(nx, ly)} />
     <Row x={360} y={CT + 216} t="留言「玻纖布」拿資料" c={H.amber} a={kw} />
   </Sv></Card>);
 };

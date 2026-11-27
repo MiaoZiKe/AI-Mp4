@@ -112,7 +112,7 @@
    },
    {
     "id": "next",
-    "label": "壓合與鑽孔（下一集）",
+    "label": "壓合與主機板（下一集）",
     "en": "NEXT",
     "field": "50 cm",
     "ruler": "5 cm",
@@ -365,7 +365,7 @@
      },
      {
       "layer": "nTop",
-      "at": "s10:press-4",
+      "at": "s10:up+20",
       "until": "s11:start+400",
       "dur": 16,
       "dy": -2.7
@@ -373,16 +373,12 @@
      {
       "layer": "nMb",
       "at": "s1:start-40",
-      "until": "s10:drill-8",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "nDrill",
-      "at": "s1:start-40",
-      "until": "s10:drill-8",
-      "opacity": 0,
-      "dur": 8
+      "until": "s10:mb-6",
+      "dur": 12,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
      }
     ],
     "run": [
@@ -770,29 +766,29 @@
    "id": "s4",
    "beat": "mechanism",
    "para": 4,
-   "narration": "但伺服器訊號很快，大多擠在銅表面走，表面越粗路越彎，像在洗衣板跑步。",
-   "tts": "但伺服器訊號很快，大多擠在銅表面走，表面越粗路越彎，像在洗衣板跑步。",
+   "narration": "但伺服器訊號快，大多擠在表面走，越粗越繞，像在洗衣板跑步。",
+   "tts": "但伺服器訊號快，大多擠在表面走，越粗越繞，像在洗衣板跑步。",
    "subtitle": {
-    "zh": "但伺服器訊號很快\n大多擠在銅表面走\n表面越粗路越彎\n像在洗衣板跑步",
-    "en": "But server signals are fast, | and mostly crowd along the copper surface; | the rougher it is, the longer the path, | like running on a washboard."
+    "zh": "但伺服器訊號快\n大多擠在表面走\n越粗越繞\n像在洗衣板跑步",
+    "en": "But server signals are fast, | and mostly crowd along the copper surface; | the rougher, the longer the path, | like running on a washboard."
    },
    "keywords": [
     "表面",
-    "路越彎",
+    "越繞",
     "洗衣板"
    ],
    "cues": [
     {
      "id": "fast",
-     "text": "訊號很快"
+     "text": "訊號快"
     },
     {
      "id": "surf",
-     "text": "擠在銅表面"
+     "text": "擠在表面"
     },
     {
      "id": "bend",
-     "text": "路越彎"
+     "text": "越粗越繞"
     },
     {
      "id": "board",
@@ -877,7 +873,7 @@
      }
     ]
    },
-   "durationSec": 6.9,
+   "durationSec": 5.9,
    "holdSec": 0.6,
    "headSec": 0.3,
    "pauseAfter": 0.6
@@ -1329,10 +1325,10 @@
    "id": "s8",
    "beat": "twist",
    "para": 8,
-   "narration": "所以把紗攤平，像把辮子梳開，再換低介電玻璃，訊號更快、損耗更少。",
-   "tts": "所以把紗攤平，像把辮子梳開，再換低介電玻璃，訊號更快、損耗更少。",
+   "narration": "所以把紗攤平，像梳開辮子，再換低介電玻璃，訊號更快、損耗更少。",
+   "tts": "所以把紗攤平，像梳開辮子，再換低介電玻璃，訊號更快、損耗更少。",
    "subtitle": {
-    "zh": "所以把紗攤平\n像把辮子梳開\n再換低介電玻璃\n訊號更快\n損耗更少",
+    "zh": "所以把紗攤平\n像梳開辮子\n再換低介電玻璃\n訊號更快\n損耗更少",
     "en": "So spread the yarn flat, | like combing out a braid, | then switch to low-Dk glass: | faster signals, | less loss."
    },
    "keywords": [
@@ -1475,7 +1471,7 @@
      }
     ]
    },
-   "durationSec": 6.3,
+   "durationSec": 6.1,
    "holdSec": 0.6,
    "headSec": 0.3,
    "pauseAfter": 0.6
@@ -1580,16 +1576,16 @@
    "id": "s10",
    "beat": "cta",
    "para": 10,
-   "narration": "布和銅升級好，變成電路板還得壓合、鑽孔、電鍍。下一集，看電路板怎麼做。留言玻纖布，拿完整資料。",
-   "tts": "布和銅升級好，變成電路板還得壓合、鑽孔、電鍍。下一集，看電路板怎麼做。留言玻纖布，拿完整資料。",
+   "narration": "布和銅升級好，最後做成主機板。下一集，看人工智慧伺服器主機板，為什麼越疊越多層。留言玻纖布，拿完整資料。",
+   "tts": "布和銅升級好，最後做成主機板。下一集，看人工智慧伺服器主機板，為什麼越疊越多層。留言玻纖布，拿完整資料。",
    "subtitle": {
-    "zh": "布和銅升級好\n變成電路板\n還得壓合\n鑽孔 電鍍\n下一集\n看電路板怎麼做\n留言玻纖布\n拿完整資料",
-    "en": "With cloth and copper upgraded, | to become a circuit board | they still need laminating, | drilling and plating. | Next time: | how a circuit board is made. | Comment \"glass fabric\" | for the full notes."
+    "zh": "布和銅升級好\n最後做成主機板\n下一集\n看人工智慧伺服器主機板\n為什麼越疊越多層\n留言玻纖布\n拿完整資料",
+    "en": "With cloth and copper upgraded, | they finally become a motherboard. | Next time: | the AI server motherboard — | why it keeps adding layers. | Comment \"glass fabric\" | for the full notes."
    },
    "keywords": [
-    "壓合",
-    "鑽孔",
-    "電鍍"
+    "主機板",
+    "多層",
+    "玻纖布"
    ],
    "cues": [
     {
@@ -1597,20 +1593,16 @@
      "text": "升級好"
     },
     {
-     "id": "press",
-     "text": "壓合"
-    },
-    {
-     "id": "drill",
-     "text": "鑽孔"
-    },
-    {
-     "id": "plate",
-     "text": "電鍍"
+     "id": "mb",
+     "text": "做成主機板"
     },
     {
      "id": "next",
      "text": "下一集"
+    },
+    {
+     "id": "stack",
+     "text": "越疊越多層"
     },
     {
      "id": "kw",
@@ -1642,26 +1634,14 @@
     "run": [
      {
       "id": "nHeat",
-      "at": "press-6",
+      "at": "up+16",
       "ramp": 8,
       "until": "s11:start"
      },
      {
-      "id": "nDrillDown",
-      "at": "drill",
-      "ramp": 6,
-      "until": "s11:start"
-     },
-     {
-      "id": "nBitSpin",
-      "at": "drill",
-      "ramp": 6,
-      "until": "s11:start"
-     },
-     {
-      "id": "nPlate",
-      "at": "plate",
-      "ramp": 6,
+      "id": "nSig",
+      "at": "mb+8",
+      "ramp": 4,
       "until": "s11:start"
      }
     ],
@@ -1671,17 +1651,17 @@
       "text": "銅箔＋膠片＋銅箔：壓合",
       "en": "Lamination",
       "color": "amber",
-      "at": "press",
-      "until": "press+45",
+      "at": "up+18",
+      "until": "mb-4",
       "cut": true
      },
      {
-      "part": "nDrill",
-      "text": "鑽孔，孔壁再電鍍（下一集）",
-      "en": "Drilling and plating (next)",
+      "part": "nMb",
+      "text": "伺服器主機板：板邊越疊越多層",
+      "en": "Server motherboard: more layers",
       "color": "blue",
-      "at": "drill+2",
-      "until": "drill+47",
+      "at": "stack-4",
+      "until": "stack+41",
       "cut": true
      }
     ],
@@ -1721,23 +1701,20 @@
       "w": 952,
       "h": 330,
       "avoid": false,
-      "title": "下一集：電路板怎麼做",
+      "title": "下一集：伺服器主機板",
       "tag": "留言「玻纖布」",
       "t": {
        "up": {
         "at": "up"
        },
-       "press": {
-        "at": "press"
-       },
-       "drill": {
-        "at": "drill"
-       },
-       "plate": {
-        "at": "plate"
+       "mb": {
+        "at": "mb"
        },
        "next": {
         "at": "next"
+       },
+       "stack": {
+        "at": "stack"
        },
        "kw": {
         "at": "kw"
@@ -1747,7 +1724,7 @@
      }
     ]
    },
-   "durationSec": 8.6,
+   "durationSec": 9.8,
    "holdSec": 0.6,
    "headSec": 0.3
   },
@@ -1766,7 +1743,7 @@
    "sources": [],
    "props": {
     "endCard": {
-     "next": "電路板怎麼做",
+     "next": "伺服器主機板",
      "trail": [
       "銅箔要平又黏得牢、玻纖布要攤平換低介電"
      ],

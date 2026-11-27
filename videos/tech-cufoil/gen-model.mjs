@@ -2,7 +2,7 @@
 // 2026/11/27 tech-cufoil（PCB-2：銅箔與玻纖布，系列 3 第 12 集）。構造與物理照 physics-spec.md、模組清單照 visual-spec.md。
 // 單位：機台站 1＝約 10 cm；銅箔剖面、粗糙度、玻纖紗為放大示意。地板頂面 y＝0，x 向右、z 向觀眾。站點：
 //   H 銅箔基板剖面（x 0；s1）｜E 電解銅箔機（x 34；s2）｜F 銅箔剖面：光面、粗面與銅瘤（x 70；s3）｜R 訊號走銅表面：粗 vs 平（x 104；s4、s5）
-//   G 拉絲、捻紗、織布機（x 150；s6）｜W 玻纖效應：紗與空隙（x 192；s7）｜X 開纖＋低介電（x 230；s8）｜K 三家公司（x 268；s9）｜N 疊合熱壓→鑽孔電路板（預告 3-13）（x 306；s10）
+//   G 拉絲、捻紗、織布機（x 150；s6）｜W 玻纖效應：紗與空隙（x 192；s7）｜X 開纖＋低介電（x 230；s8）｜K 三家公司（x 268；s9）｜N 疊合熱壓→伺服器主機板（預告 3-13）（x 306；s10）
 //   示意：不標粗糙度、介電常數、頻率數字；非特定廠牌／型號。
 import fs from "node:fs";
 import path from "node:path";
@@ -294,7 +294,7 @@ LAY("kBase", [18, 1, KX, 0.4]); BOX("kbPl", "kBase", KX - 9, KX + 9, 0, 0.8, -3.
   const sg = SIGNM[`sign-${sid}`], sw = 3.6; P({ id: `k${i}Sign`, layer: ly, shape: "plane", size: [sw, R2(sw / sg.aspect)], pos: [x, 0.45, 3.62], uv01: true, shadow: false, mat: `t_${sid}` });
   materials[`t_${sid}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${sid}.png` }; });
 
-// ═════ 站 N：疊合熱壓（s10）：下壓板＋銅箔＋三張膠片（玻纖布浸樹脂）＋銅箔，上壓板壓下 → 右邊：鑽孔、孔壁鍍銅的電路板（預告 3-13） ═════
+// ═════ 站 N：疊合熱壓（s10）：下壓板＋銅箔＋三張膠片（玻纖布浸樹脂）＋銅箔，上壓板壓下 → 右邊：伺服器主機板（預告 3-13，板邊看得到多層） ═════
 const NX = 306, NPX = NX - 3.4, NPB = 1.2;
 LAY("nPress", [6, 8, NPX, 4]);
 BOX("npLow", "nPress", NPX - 2.6, NPX + 2.6, 0, NPB, -2.4, 2.4, "steel"); BOX("npLowHot", "nPress", NPX - 2.5, NPX + 2.5, NPB - 0.12, NPB, -2.3, 2.3, "heat");
@@ -307,21 +307,17 @@ NL.forEach(([m, t], i) => { LAY(`nL${i}`, [4.6, 0.5, NPX, ny + t / 2]); BOX(`nl$
   NLY.push(ny); ny = R2(ny + t); });
 const NSTOP = ny;
 const MBX = NX + 4.2, MBY = 0.3;
-// 右邊：預告 3-13「電路板怎麼做」：已壓好的板（上下銅＋芯板）＋一排鑽好的孔（孔壁鍍銅）＋鑽軸（主軸＋夾頭＋鑽針）往下鑽
 LAY("nMb", [8, 1.5, MBX, MBY + 0.6]);
 BOX("nmBoard", "nMb", MBX - 3.8, MBX + 3.8, 0.05, MBY, -3.0, 3.0, "board");
-BOX("nmCuT", "nMb", MBX - 3.8, MBX + 3.8, MBY, MBY + 0.03, -3.0, 3.0, "cuShiny"); BOX("nmCuB", "nMb", MBX - 3.8, MBX + 3.8, 0.02, 0.05, -3.0, 3.0, "cuShiny");
-const HOLES = []; for (let j = 0; j < 4; j++) for (let i = 0; i < 9; i++) HOLES.push([R2(MBX - 3.0 + i * 0.6), 0, R2(-1.8 + j * 1.2)]);
-P({ id: "nmRing", layer: "nMb", shape: "cyl", size: [0.17, 0.05], rot: V, pos: [0, MBY + 0.03, 0], at: HOLES, mat: "copper" });
-P({ id: "nmHole", layer: "nMb", shape: "cyl", size: [0.1, 0.07], rot: V, pos: [0, MBY + 0.04, 0], at: HOLES, mat: "dark" });
-P({ id: "nmTrace", layer: "nMb", shape: "box", size: [0.6, 0.012, 0.05], pos: [0, MBY + 0.035, 0], at: HOLES.filter((_, k) => k % 9 < 8 && k % 2 === 0).map(([x, , z]) => [R2(x + 0.3), 0, R2(z + 0.35)]), mat: "copper" });
-P({ id: "nmFid", layer: "nMb", shape: "cyl", size: [0.12, 0.04], rot: V, pos: [0, MBY + 0.03, 0], at: [[MBX - 3.5, 0, -2.7], [MBX + 3.5, 0, -2.7], [MBX - 3.5, 0, 2.7], [MBX + 3.5, 0, 2.7]], mat: "cuShiny" });
-const DRX = MBX + 2.4, DRZ = 0.6;
-LAY("nDrill", [2.4, 6, DRX, 3.6]);
-BOX("ndGantry", "nDrill", DRX - 1.0, DRX + 1.0, 6.2, 6.7, DRZ - 0.9, DRZ + 0.9, "panel2");
-VC("ndMotor", "nDrill", 0.55, 4.4, 6.2, "steel2", { x: DRX, z: DRZ }); VC("ndBand", "nDrill", 0.58, 5.6, 5.8, "band", { x: DRX, z: DRZ });
-VC("ndChuck", "nDrill", 0.22, 3.6, 4.4, "steel", { x: DRX, z: DRZ }); VC("ndFoot", "nDrill", 0.45, 3.4, 3.55, "steel2", { x: DRX, z: DRZ });
-VC("ndBit", "nDrill", 0.06, 1.0, 3.6, "steel2", { x: DRX, z: DRZ }); P({ id: "ndTip", layer: "nDrill", shape: "cone", size: [0.005, 0.06, 0.18], rot: V, pos: [DRX, 0.91, DRZ], mat: "steel2" });
+for (const dz of [-1.3, 1.3]) { BOX(`nmSock${dz > 0 ? 1 : 0}`, "nMb", MBX - 2.6, MBX - 1.2, MBY, MBY + 0.18, dz - 0.7, dz + 0.7, "slot"); BOX(`nmLid${dz > 0 ? 1 : 0}`, "nMb", MBX - 2.45, MBX - 1.35, MBY + 0.18, MBY + 0.3, dz - 0.55, dz + 0.55, "steel2"); }
+P({ id: "nmDimm", layer: "nMb", shape: "box", size: [0.08, 0.3, 1.3], pos: [0, MBY + 0.15, 0], at: [-0.6, -0.4, -0.2, 0, 0.2, 0.4].flatMap((x) => [[R2(MBX + x), 0, -1.3], [R2(MBX + x), 0, 1.3]]), mat: "slot" });
+P({ id: "nmPcie", layer: "nMb", shape: "box", size: [1.8, 0.22, 0.14], pos: [MBX + 2.4, MBY + 0.11, 0], at: [[0, 0, -2.2], [0, 0, -1.2], [0, 0, 1.2], [0, 0, 2.2]], mat: "slot" });
+P({ id: "nmChoke", layer: "nMb", shape: "box", size: [0.2, 0.2, 0.2], pos: [MBX - 3.3, MBY + 0.1, 0], at: Array.from({ length: 8 }, (_, i) => [0, 0, R2(-2.6 + i * 0.75)]), mat: "dark" });
+P({ id: "nmTrace", layer: "nMb", shape: "box", size: [2.2, 0.01, 0.04], pos: [MBX - 0.1, MBY + 0.005, 0], at: Array.from({ length: 8 }, (_, i) => [0, 0, R2(-2.4 + i * 0.25 + (i > 3 ? 3.0 : 0))]), mat: "copper" });
+// 板邊看得到多層：銅（細）與膠片（厚）交錯 12 層（示意「越疊越多層」）
+P({ id: "nmEdgeCu", layer: "nMb", shape: "box", size: [7.62, 0.012, 0.02], pos: [MBX, 0, 3.01], at: Array.from({ length: 12 }, (_, i) => [0, R2(0.06 + i * 0.02), 0]), mat: "cuShiny" });
+P({ id: "nmVia", layer: "nMb", shape: "cyl", size: [0.05, 0.02], rot: V, pos: [0, MBY + 0.01, 0], at: Array.from({ length: 16 }, (_, i) => [R2(MBX - 1.0 + (i % 8) * 0.25), 0, R2(i < 8 ? -0.3 : 0.3)]), mat: "cuShiny" });
+P({ id: "nmCap", layer: "nMb", shape: "box", size: [0.12, 0.06, 0.06], pos: [0, MBY + 0.03, 0], at: Array.from({ length: 10 }, (_, i) => [R2(MBX - 3.0 + i * 0.18), 0, R2(i % 2 ? 2.6 : 2.75)]), mat: "dark" });
 
 // ═════ 動作 ═════
 actions.hSig = { type: "flow", _說明: "訊號沿上層銅箔跑（第 0 幀就在動）", layer: "hCuTop", path: [[HX0 - 5, HTOP + 0.02, 3.42], [HX0 + 5, HTOP + 0.02, 3.42]], n: 6, size: 0.14, shape: "dot", rate: 0.3, color: "sigC", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0 };
@@ -357,9 +353,7 @@ actions.xSigA2 = { ...TRACE(0, "x", XX, TZA, 0.15, 0.15), _說明: "換低介電
 actions.xLdGlow = { type: "pulse", parts: ["xFlatLDWeft", "xFlatLDWarp"], color: "lowC", glow: 0.5, freq: 0.7, halo: 0 };
 actions.kGlow = { type: "pulse", parts: ["k0Roll", "k1Roll", "k2Roll"], color: "lampY", glow: 0.4, freq: 0.9, halo: 0 };
 actions.nHeat = { type: "pulse", _說明: "上下壓板加熱", parts: ["npLowHot", "ntHot"], color: "hotC", glow: 1, freq: 0.6, halo: 0.2, steady: true };
-actions.nDrillDown = { type: "vibrate", _說明: "鑽軸上下：往下鑽一孔再退回（示意，預告下一集）", parts: idsOf("nDrill"), axis: [0, -1, 0], amp: 0.35, freq: 0.6 };
-actions.nBitSpin = { type: "rotate", _說明: "鑽針自轉", parts: ["ndBit", "ndTip", "ndChuck"], axis: [0, 1, 0], pivot: [DRX, 0, DRZ], rps: 3 };
-actions.nPlate = { type: "pulse", _說明: "孔壁鍍銅：孔圈亮（預告）", parts: ["nmRing"], color: "lampY", glow: 0.6, freq: 0.8, halo: 0 };
+actions.nSig = { type: "flow", _說明: "主機板上的訊號沿銅線跑", layer: "nMb", path: [[MBX - 1.2, MBY + 0.03, -1.3], [MBX + 1.0, MBY + 0.03, -1.3], [MBX + 1.0, MBY + 0.03, 1.3], [MBX - 1.2, MBY + 0.03, 1.3]], n: 6, size: 0.1, shape: "dot", rate: 0.3, color: "sigC", track: true, band: 0.03, bandO: 0.3, free: true, jitter: 0 };
 
 Object.assign(anchors, {
   hCloth: A("hBoard", [HX0 - 3.0, HB + 1.0, 3.4], -150, 90), hCu: A("hCuTop", [HX0 + 3.0, HTOP, 2.0], 150, -90),
@@ -369,11 +363,11 @@ Object.assign(anchors, {
   gBush: A("gFurn", [GSX, GBY, 0.6], -150, -90), gTwist: A("gTwist", [GX - 1.4, 2.4, 1.5], -150, 90), gLoom: A("gCloth", [LCX + 2.0, LWY, 1.8], 150, -90),
   wA: A("wTrace", [WX0 + 3.0, WT + 0.14, TZA], 150, -90), wB: A("wTrace", [WX0 - 3.0, WT + 0.14, TZB], -150, 90),
   xFlat: A("xFlat", [XX + 3.0, WYC + 0.3, 2.4], 150, 90), xLd: A("xFlatLD", [XX - 3.0, WYC + 0.3, 2.4], -150, 90),
-  nStack: A("nL2", [NPX - 2.2, NLY[2] + 0.15, 2.0], -150, -90), nMb: A("nMb", [MBX - 1.2, MBY + 0.1, 1.8], 150, -90), nDrill: A("nDrill", [DRX + 0.5, 5.0, DRZ], 150, -90),
+  nStack: A("nL2", [NPX - 2.2, NLY[2] + 0.15, 2.0], -150, -90), nMb: A("nMb", [MBX + 1.0, MBY + 0.2, 2.0], 150, -90),
 });
 
 const model = {
-  name: "示意 銅箔與玻纖布：銅箔基板剖面、電解銅箔機（電解槽、鈦滾筒、弧形陽極、導輥、收卷、整流器）、銅箔剖面（光面、粗面、小銅瘤、樹脂）、訊號走銅表面（粗 vs 平）、拉絲漏板與收絲、捻紗、織布機（經軸、綜框、劍桿、筘、布軸）、玻纖效應與開纖、三家公司、疊合熱壓與鑽孔電路板（示意，非特定廠牌／型號）",
+  name: "示意 銅箔與玻纖布：銅箔基板剖面、電解銅箔機（電解槽、鈦滾筒、弧形陽極、導輥、收卷、整流器）、銅箔剖面（光面、粗面、小銅瘤、樹脂）、訊號走銅表面（粗 vs 平）、拉絲漏板與收絲、捻紗、織布機（經軸、綜框、劍桿、筘、布軸）、玻纖效應與開纖、三家公司、疊合熱壓與主機板（示意，非特定廠牌／型號）",
   unit: "示意（機台 1＝約 10 cm；銅箔剖面、粗糙度、紗束放大）",
   size: { w: 40, h: 18, r: 0.6, t: 30 },
   palette, materials,
