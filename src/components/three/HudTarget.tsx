@@ -302,10 +302,10 @@ const Co: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {rows.map(([n, c, note, cn, a], i) => { const y = CT + 2 + i * 96; return <g key={n} opacity={0.4 + 0.6 * a}>
+        {rows.map(([n, c, note, cn, a], i) => { const y = CT - 2 + i * 93; return <g key={n} opacity={0.4 + 0.6 * a}>
           <NamePlate x={30} y={y} w={250} h={50} t={n} a={a} px={i === 2 ? 30 : 32} />
           <FlagBox code={c} x={300} y={y + 7} a={a} /><text x={372} y={y + 36} style={zh(30, H.text, 900)}>{cn}</text>
-          <text x={30} y={y + 84} style={zh(30, H.text2, 800)}>{note}</text></g>; })}
+          <text x={30} y={y + 82} style={zh(30, H.text2, 800)}>{note}</text></g>; })}
       </svg>
     </Card>
   );

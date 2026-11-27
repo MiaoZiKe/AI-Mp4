@@ -34,3 +34,5 @@
 - 吸盤改淺灰金屬＋深色邊環，三支升降銷（凸出 3.4 cm）、密封環、一條線纜；s6 推近 d28。s5 開頭 24 幀淡出遮蔽環與絕緣環（22%／25%）看到背板在上、靶面朝下。s4 遮蔽環拉出後鏡頭推到 d26 停 ≥2 秒。
 - 磁鐵轉軸移離中心 0.5（偏心）；頁首 s9 改「靶材怎麼做」、s11 改「做靶材的公司」；光洋科標籤提前 8 幀收；s10 運鏡提前 9 幀。
 - 檢查：validate／layout-check／card-overlap／flow-check／kinematics 全 0 error。keyframes：out/tech-target/rounds/keyframes-r2.png。
+
+- 2026/11/27 版面修正（card-overlap 新規則「示意卡下緣不可壓右下示意標籤」）：target-co 公司卡原下緣 y1400 壓到標籤 4px，卡高 360→356（下緣 y1396），列起點上移 4px、列距 96→93、備註上移 2px（HudTarget.tsx 的 Co）。念稿與其他畫面不動；card-overlap 0 error 0 warning。
