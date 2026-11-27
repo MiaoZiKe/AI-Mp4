@@ -171,7 +171,7 @@ vis("g0S3", [("s9:flip+22", "s9:wheel+14")], 2); vis("g0S2", [("s9:flip+22", "s9
 # ── 站 V：背面矽一層層磨掉 → 銅柱露頭；V2：四層堆疊 ──
 vis("vS2", [(T0, "s10:start+2")], 2); vis("vS1", [(T0, "s10:start+20")], 2); vis("vS0", [(T0, "s10:cu-12")], 2)
 vis("vTip", [("s10:cu-12", FAR)], 2)
-VIS += [mv("vWheel", t, FAR, 8, dy=-0.8) for t in ("s10:start+2", "s10:start+20", "s10:cu-12")] + [mv("vWheel", "s10:cu-6", FAR, 14, dy=3.4)]   # 砂輪跟著矽面往下進給，最後抬起
+VIS += [mv("vWheel", t, FAR, 8, dy=-0.8) for t in ("s10:start+2", "s10:start+20", "s10:cu-12")] + [mv("vWheel", "s10:cu-6", FAR, 14, dy=2.8)]   # 砂輪跟著矽面往下進給，最後抬起
 # ── 站 P：三只紙箱念到才落下 ──
 drop("p0", "s11:jp-8", 3.0, 12); drop("p1", "s11:btl-8", 3.0, 12); drop("p2", "s11:psi-8", 3.0, 12)
 # ── 站 K：金線虛線念到「打線」才出現 ──
@@ -260,10 +260,10 @@ P["s10"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
             lab("v2Pil", "電流直通每一層", "Straight through every layer", "blue", "lift+4", "lift+50")],
  "overlay": [card("s10", "dc-tsv", "像電梯井", "示意", {"cu": "cu", "tsv": "tsv", "lift": "lift", "thru": "thru"})]}
 P["s11"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["PX"], -1.4, 74, 10, 1)],
+ "shot": [shot(CC, INFO["PX"], -2.6, 78, 10, 1)],
  "overlay": [card("s11", "dc-co", "切割與薄化：相關公司", "公開資訊；截至 2026/11/27", {"jp": "jp", "tw": "tw", "btl": "btl", "psi": "psi"}, h=392, y=1000)]}
 P["s12"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["KX"], -3.4, 50, 36, 1)],
+ "shot": [shot(CC, INFO["KX"], -3.9, 50, 36, 1)],
  "run": [run("kPadGlow", "done", FAR, 8), run("kWireGlow", "wire", FAR, 8)],
  "labels": [lab("kPad", "焊墊", "Bond pads", "amber", "done+4", "done+50"),
             lab("kWire", "金線（下一集）", "Wire bonds (next)", "blue", "wire", "wire+46")],

@@ -322,9 +322,9 @@ const SIGNS = [["dcdisco", "DISCO|迪思科"], ["dcbtl", "鈦昇|8027"], ["dcpho
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-dicing", ...SIGNS.map(([id, t]) => `text:${id}=${t}`)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
 SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
 const PX = 530, PBW = 6.4, PBH = 8.4;
-LAY("pPallet", [24, 1.2, PX, 0.5]); BOX("ppDeck", "pPallet", PX - 12, PX + 12, 0.6, 1.0, -4, 4, "cartonD");
-P({ id: "ppFoot", layer: "pPallet", shape: "box", size: [1.6, 0.6, 7.6], pos: [PX, 0.3, 0], at: [[-10.6, 0, 0], [0, 0, 0], [10.6, 0, 0]], mat: "dark" });
-P({ id: "ppSlat", layer: "pPallet", shape: "box", size: [23.6, 0.06, 0.5], pos: [PX, 1.03, 0], at: [[0, 0, -3], [0, 0, -1], [0, 0, 1], [0, 0, 3]], mat: "seam" });
+LAY("pPallet", [24, 1.2, PX, 0.5]); BOX("ppDeck", "pPallet", PX - 11.1, PX + 11.1, 0.6, 1.0, -4, 4, "cartonD");
+P({ id: "ppFoot", layer: "pPallet", shape: "box", size: [1.6, 0.6, 7.6], pos: [PX, 0.3, 0], at: [[-10.1, 0, 0], [0, 0, 0], [10.1, 0, 0]], mat: "dark" });
+P({ id: "ppSlat", layer: "pPallet", shape: "box", size: [22.0, 0.06, 0.5], pos: [PX, 1.03, 0], at: [[0, 0, -3], [0, 0, -1], [0, 0, 1], [0, 0, 3]], mat: "seam" });
 const PCOL = ["badGlow", "okGlow", "warnY"];
 SIGNS.forEach(([id], i) => { const cx = PX + (i - 1) * 7.6, ly = `p${i}`; LAY(ly, [PBW, PBH, cx, 1 + PBH / 2]);
   BOX(`${ly}Box`, ly, cx - PBW / 2, cx + PBW / 2, 1.0, 1.0 + PBH, -3.2, 3.2, "carton"); BOX(`${ly}Lid`, ly, cx - PBW / 2 - 0.05, cx + PBW / 2 + 0.05, 1.0 + PBH - 0.5, 1.0 + PBH, -3.25, 3.25, "cartonD");
