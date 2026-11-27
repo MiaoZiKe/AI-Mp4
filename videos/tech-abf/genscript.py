@@ -140,7 +140,7 @@ KDY = [0.3, 0.45, 0.6, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4, 6.0, 6.8]
 DN = "s9:done"
 VIS += [mv("kChip", "s1:sig+4", "s2:bld", 18, dy=1.2)]                                       # 步驟 1：晶片抬離載板
 for i, (l, d) in enumerate(zip(KLAY, KDY)):                                                  # 步驟 2＋3：載板離開主機板、一層層分開（由上往下依序）；步驟 5：念「膜鋪好了」時由下往上落回
-    VIS.append(mv(l, f"s2:bld-{(len(KLAY) - 1 - i) * 2}", f"{DN}+{i * 2}", 20, dy=d))
+    VIS.append(mv(l, f"s2:bld-{(len(KLAY) - 1 - i) * 2}", f"{DN}+{i}", 12, dy=d))
 # ── 站 L：膜從膜捲滑到芯板 → 撕保護膜 → 壓板下降壓平（抽真空、加熱）→ 變硬（顏色變深）→ 壓板抬起 → 撕承載膜 ──
 for l in ("lResin", "lPet", "lCover"): VIS.append(mv(l, T0, "s3:thin", 22, dx=-5.5))
 vis("lCover", [(T0, "s3:stick+24")], 4)
@@ -165,13 +165,13 @@ VIS += [hid("j1", "s7:start-6", "s8:jh-12", 6, 0.3)]
 
 KL0 = (KX, -0.4, 40, 24)            # 站 K 合起來
 KL1 = (KX, 2.0, 46, 14)            # 站 K 爆炸後
-MLc = (MX, 3.4, 40, 10)
+MLc = (MX, 2.4, 38, 10)
 LLc = (LX - 1.0, 1.4, 42, 28)
-DLc = (DX, 1.2, 27, 20)
-SLc = (SX + 2.4, 1.0, 40, 10)
-ALc = (AX - 1.2, 0.2, 58, 22)
+DLc = (DX, 2.0, 32, 18)
+SLc = (SX + 1.6, 0.6, 29, 18)
+ALc = (AX - 0.6, -0.4, 50, 22)
 JLc0 = (JX - 4.0, 1.0, 36, 14)
-JLc1 = (JX + 0.6, 0.4, 52, 14)
+JLc1 = (JX + 0.4, -0.4, 58, 14)
 NLc = (NX, -0.2, 32, 40)
 def S_(at, c, dur=1): return shot(at, c[0], c[1], c[2], c[3], dur)
 P = {}
@@ -188,14 +188,14 @@ P["s2"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}, {"to": "micro", "at": "fi
  "labels": k2,
  "overlay": [card("s2", "abf-floor", "載板像一棟大樓", "示意", {"bld": "bld", "cu": "cu", "mid": "mid", "film": "film"})]}
 P["s3"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
- "shot": [S_(CC, LLc), shot("press-10", LX + 1.0, 2.2, 28, 12, 20)],
+ "shot": [S_(CC, LLc), shot("press-10", LX + 2.0, 2.2, 33, 12, 20)],
  "run": [run("lPeelCover", "stick", "s4:voice-4", 14), run("lVacFlow", "press-6", "heat+20", 6), run("lHeatGlow", "heat-4", "s4:voice-4", 6), run("lPeelPet", "end+2", "s4:voice-4", 14),
          run("lOvFanSpin", "start-4", "s4:voice-4", 10), run("lOvHot", "start-4", "s4:voice-4", 6)],
  "labels": seq("s3", [("lRoll", "ABF 膜捲（三層）", "ABF film roll (3 layers)", "blue", "thin", 6), ("lTop", "真空壓膜機：壓平", "Vacuum laminator", "amber", "press", 37), ("lCured", "加熱變硬（固化）", "Cured by heat", "amber", "heat", 6)]),
  "overlay": [card("s3", "abf-lam", "像貼保鮮膜：貼、壓、烤", "示意（不標溫度）", {"thin": "thin", "wrap": "wrap", "stick": "stick", "press": "press", "heat": "heat"})]}
 P["s4"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
  "shot": [S_(CC, DLc)],
- "run": [run("dPlume0", "laser+4", "laser+40", 4), run("dPlume1", "hole+8", "hole+44", 4), run("dPlume2", "lift+8", "lift+44", 4), run("dLaserPulse", "laser", "s5:voice-4", 4)],
+ "run": [run("dPlume0", "laser+4", "laser+40", 4), run("dPlume1", "hole+8", "hole+44", 4), run("dPlume2", "lift+8", "lift+44", 4), run("dLaserPulse", "laser", "lift+20", 4)],
  "labels": seq("s4", [("dHead", "雷射頭：光收斂到膜面", "Laser head, focused", "blue", "laser", 2), ("dHole", "小洞＝電梯井", "Microvia = elevator shaft", "amber", "hole", 3), ("dPad", "孔底停在銅墊：兩層接通", "Stops on the copper pad", "blue", "conn", 20)]),
  "overlay": [card("s4", "abf-via", "雷射打孔，像電梯井", "示意", {"laser": "laser", "hole": "hole", "lift": "lift", "conn": "conn"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
@@ -216,7 +216,7 @@ P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "labels": seq("s8", [("j1", "晶化科技（台灣）", "Taiwan film maker", "blue", "jh", 4)]),
  "overlay": [sec("abf-share", C, "s9:voice", "超過九成五來自味之素", "報導；截至 2026/11/27", {"high": "high", "share": "share", "aji": "aji", "jh": "jh", "own": "own"}, cut=True, h=392, y=1000)]}
 P["s9"] = {"zoom": [{"to": "pkg", "at": "voice-1", "dur": 1}, {"to": "next", "at": "next-6", "dur": 1}],
- "shot": [S_("voice-1", KL1), shot("done+30", KL0[0], KL0[1], KL0[2], KL0[3], 24), S_("next-6", NLc)],
+ "shot": [S_("voice-1", KL1), shot("done+26", KL0[0], KL0[1], KL0[2], KL0[3], 14), S_("next-6", NLc)],
  "labels": seq("s9", [("nPanel", "ABF 載板（下一集）", "ABF substrate (next)", "amber", "next", -2)]),
  "overlay": [sec("abf-next", "voice", "s10:start", "接下來", "下一集：ABF 載板", {"done": "done", "how": "how", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
