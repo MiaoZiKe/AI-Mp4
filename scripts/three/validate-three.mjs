@@ -82,8 +82,13 @@ export function validateThree(script, h) {
   { const d = String(script.asOf ?? "").split("/").map(Number), newer = d.length === 3 && (d[0] * 10000 + d[1] * 100 + d[2]) >= 20261125;
     if ((script.prevEpisode || newer) && !script.seriesFirst) {
       const s1 = scenes[0], nar = String(s1.narration ?? ""), kick = String(s1.props?.hook?.kicker ?? "");
-      if (!/上一?集/.test(nar)) E(`開場銜接：第一幕旁白要先接上一集（含「上集」或「上一集」），現在是「${nar.slice(0, 24)}…」`);
-      if (!/？/.test(nar.slice(0, 30))) E("開場鉤子：第一幕旁白前 30 字內要有問句（？），3 秒內丟出問題");
+      // 2026-11-27：念稿（tts 欄，含標點）才是實際會念出來的字；「前一集」與「上一集／上集」都算接上集。問號位置用念稿估秒數（5.4 字／秒、逗號 0.25 秒、句號 0.4 秒），> 4.0 秒擋下（Andy 第 10 條：3 秒內丟問題）
+      const spoken = String(s1.tts ?? nar);
+      if (!/上一?集|前一集/.test(spoken + nar)) E(`開場銜接：第一幕旁白要接上一集（含「上集」「上一集」或「前一集」），現在是「${spoken.slice(0, 24)}…」`);
+      { const qi = spoken.indexOf("？");
+        if (qi < 0) E("開場鉤子：第一幕旁白要有問句（？），3 秒內丟出問題");
+        else { const head = spoken.slice(0, qi), chars = head.replace(/[，。？！、；：\s]/g, "").length, pause = (head.match(/[，、；：]/g) ?? []).length * 0.25 + (head.match(/[。！]/g) ?? []).length * 0.4, sec = chars / 5.4 + pause;
+          if (sec > 4.0) E(`開場鉤子：第一幕念稿問號約在 ${sec.toFixed(1)} 秒（${chars} 字加停頓），要在 4.0 秒內（目標 3 秒），請把問句提前`); } }
       if (!kick.startsWith("接上集")) E(`開場銜接：第一幕 hook.kicker 要以「接上集」開頭（現在「${kick}」）`);
     } }
   const model = checkModel(script, E, W);

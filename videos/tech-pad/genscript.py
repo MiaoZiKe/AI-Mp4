@@ -138,7 +138,7 @@ VIS += [hid("mTool", T0, "s6:rough-2", 4, 0), mv("mTool", T0, "s6:rough+10", 20,
 VIS += [hid("hardPart", T0, "s8:scr-12", 4, 0), hid("hardScratch", T0, "s8:scr+16", 4, 0)]
 VIS += [hid("sup0", "s9:start-6", "s9:dp-4", 6, 0.3), hid("sup1", "s9:start-6", "s9:fb-4", 6, 0.3), hid("sup2", "s9:start-6", "s9:sh-4", 6, 0.3)]
 VIS += [hid("nDisc", T0, "s10:next+14", 6, 0.3), hid("nQuartz", T0, "s10:cham+20", 6, 0.3)]
-VIS += [hid(l, "s11:start-34", FAR, 20, 0.0) for l in ("nPad", "nDisc", "nQuartz")]
+VIS += [hid(l, "s11:start-18", FAR, 12, 0.0) for l in ("nPad", "nDisc", "nQuartz")]
 
 # ═════════ 各幕 ═════════
 AX, AY = 0.9, 1.7      # 站 A 看向的位置
@@ -164,43 +164,43 @@ P["s3"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}, {"to": "micro", "
  "labels": [lab("wafer", "晶圓（倒扣）", "Wafer, face down", "blue", "flip", "flip+46"),
             lab("bump", "凸處壓力大", "High spot", "amber", "sand-8", "sand+37", xy=[300, 306]),
             lab("wpad", "墊子", "Pad", "blue", "bump+24", "bump+70")],
- "overlay": [sec("pad-grind", "start+16", "s4:start-5", "砂紙磨木板：凸的先磨", "示意（不標壓力數字）", {"sand": "sand", "bump": "bump", "off": "off"})]}
-P["s4"] = {"zoom": [{"to": "micro", "at": "start-4", "dur": 1}],
- "shot": [shot("start-4", 38.0, 0.4, 44, 38, 1), shot("pore+14", 36.4, 0.6, 30, 34, 30), shot("flow+6", 38.0, 0.4, 42, 38, 30)],
+ "overlay": [sec("pad-grind", "start+16", "s4:voice-5", "砂紙磨木板：凸的先磨", "示意（不標壓力數字）", {"sand": "sand", "bump": "bump", "off": "off"})]}
+P["s4"] = {"zoom": [{"to": "micro", "at": "voice-3", "dur": 1}],
+ "shot": [shot("voice-3", 38.0, 0.4, 44, 38, 1), shot("pore+14", 36.4, 0.6, 30, 34, 30), shot("flow+6", 38.0, 0.4, 42, 38, 30)],
  "run": [run("mAbrIn", "grab-6", "groove-8", 6), run("mGroove", "groove", FAR, 6), run("mGroove2", "groove", FAR, 6), run("mDebris", "flow", FAR, 6), run("mDebris2", "flow", FAR, 6)],
  "labels": [lab("pore", "細孔", "Pores", "amber", "pore", "pore+46"),
             lab("groove", "溝槽", "Groove", "blue", "groove", "groove+46")],
- "overlay": [sec("pad-pore", "start+14", "s5:start-5", "細孔抓液、溝槽排屑", "示意（不標尺寸）", {"pore": "pore", "groove": "groove", "shoe": "shoe", "chip": "chip"})]}
+ "overlay": [sec("pad-pore", "start+14", "s5:voice-5", "細孔抓液、溝槽排屑", "示意（不標尺寸）", {"pore": "pore", "groove": "groove", "shoe": "shoe", "chip": "chip"})]}
 P["s5"] = {"shot": [shot("start-4", 38.0, 0.6, 34, 34, 1)],
  "run": [run("mAbrBounce", "slick", FAR, 6)],
  "labels": [lab("glaze", "磨滑的表面", "Glazed surface", "amber", "slick", "slick+46"),
             lab("grain", "磨粒抓不住", "Grit slides off", "blue", "lose", "lose+46")],
- "overlay": [sec("pad-glaze", "start+14", "s6:start-5", "用久的抹布", "示意", {"long": "long", "slick": "slick", "rag": "rag", "lose": "lose"})]}
-P["s6"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}, {"to": "micro", "at": "rough-4", "dur": 1}],
- "shot": [shot("start-2", -1.0, 1.3, 40, 42, 1), shot("rough-4", 38.0, 0.5, 40, 36, 1)],
+ "overlay": [sec("pad-glaze", "start+14", "s6:voice-5", "用久的抹布", "示意", {"long": "long", "slick": "slick", "rag": "rag", "lose": "lose"})]}
+P["s6"] = {"zoom": [{"to": "tool", "at": "voice-3", "dur": 1}, {"to": "micro", "at": "rough-4", "dur": 1}],
+ "shot": [shot("voice-3", -1.0, 1.3, 40, 42, 1), shot("rough-4", 38.0, 0.5, 40, 36, 1)],
  "run": [run("padSpin", "start-2", "rough-8", 8), run("slOutA", "start-2", "rough-8", 6), run("slOutB", "start-2", "rough-8", 6), run("condSwing", "dia-8", "rough-8", 10), run("condSpin", "dia-8", "rough-8", 10), run("condDust", "sweep", "rough-8", 6),
          run("toolSweep", "rough+10", FAR, 8), run("toolChips", "rough+10", FAR, 6), run("mGroove", "rough+12", FAR, 6)],
  "labels": [lab("condDisc", "鑽石碟", "Diamond disc", "amber", "dia", "dia+46"),
             lab("grain", "鑽石顆粒", "Diamond grit", "blue", "rough+10", "rough+56")],
- "overlay": [sec("pad-dress", "start+14", "s7:start-5", "梳子梳起壓扁的毛", "示意", {"dia": "dia", "sweep": "sweep", "rough": "rough", "comb": "comb"})]}
-P["s7"] = {"zoom": [{"to": "micro", "at": "start-2", "dur": 1}, {"to": "tool", "at": "swap-6", "dur": 1}],
- "shot": [shot("start-2", 58.0, 0.2, 46, 34, 1), shot("swap-8", 0.0, 1.7, 40, 36, 1), shot("swap+86", -0.4, 1.8, 38, 34, 36)],
+ "overlay": [sec("pad-dress", "start+14", "s7:voice-5", "梳子梳起壓扁的毛", "示意", {"dia": "dia", "sweep": "sweep", "rough": "rough", "comb": "comb"})]}
+P["s7"] = {"zoom": [{"to": "micro", "at": "voice-3", "dur": 1}, {"to": "tool", "at": "swap-6", "dur": 1}],
+ "shot": [shot("voice-3", 58.0, 0.2, 46, 34, 1), shot("swap-8", 0.0, 1.7, 40, 36, 1), shot("swap+86", -0.4, 1.8, 38, 34, 36)],
  "run": [run("padPeel", "swap", "swap+60", 24), run("rollerSpin", "swap+118", "swap+184", 4)],
  "labels": [lab("padOld", "舊墊", "Old pad", "amber", "swap+4", "swap+50"),
             lab("padNew", "新墊", "New pad", "blue", "swap+122", "swap+168")],
- "overlay": [sec("pad-wear", "start+14", "s8:start-5", "磨薄就換，機台停下來", "示意（不標壽命時數）", {"thin": "thin", "swap": "swap", "stop": "stop"})]}
-P["s8"] = {"zoom": [{"to": "micro", "at": "start-2", "dur": 1}],
- "shot": [shot("start-2", 74.0, 1.2, 38, 30, 1), shot("tough-6", 90.0, 1.2, 38, 30, 30)],
+ "overlay": [sec("pad-wear", "start+14", "s8:voice-5", "磨薄就換，機台停下來", "示意（不標壽命時數）", {"thin": "thin", "swap": "swap", "stop": "stop"})]}
+P["s8"] = {"zoom": [{"to": "micro", "at": "voice-3", "dur": 1}],
+ "shot": [shot("voice-3", 74.0, 1.2, 38, 30, 1), shot("tough-6", 90.0, 1.2, 38, 30, 30)],
  "run": [run("hsRubSoft", "soft-6", "tough-6", 8), run("hsSoftHot", "soft-4", "tough-8", 8), run("hsRubHard", "tough-6", FAR, 8), run("hsHot", "tough-4", FAR, 8), run("hsPartDrop", "scr-12", "scr+16", 4)],
  "labels": [lab("softL", "軟墊：凹處也被碰", "Soft: touches valleys too", "amber", "soft", "soft+46"),
             lab("hardL", "硬墊：只碰凸處", "Hard: only high spots", "blue", "tough", "tough+46"),
             lab("scratchL", "刮痕", "Scratch", "amber", "scr+18", "scr+64")],
- "overlay": [sec("pad-hard", "start+14", "s9:start-5", "軟硬各有代價", "示意", {"soft": "soft", "flat": "flat", "tough": "tough", "scr": "scr"})]}
-P["s9"] = {"zoom": [{"to": "co", "at": "start-2", "dur": 1}],
- "shot": [shot("start-2", 112.0, 0.5, 44, 34, 1)],
- "overlay": [sec("pad-co", "start-2", "s10:start-5", "研磨墊供應商", "DuPont 官網、SEC、證交所；截至 2026/11/27", {"intl": "intl", "dp": "dp", "fb": "fb", "tw": "tw", "sh": "sh"}, h=392, y=1000)]}
-P["s10"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}],
- "shot": [shot("start-2", 134.0, 0.2, 40, 32, 1)],
+ "overlay": [sec("pad-hard", "start+14", "s9:voice-5", "軟硬各有代價", "示意", {"soft": "soft", "flat": "flat", "tough": "tough", "scr": "scr"})]}
+P["s9"] = {"zoom": [{"to": "co", "at": "voice-3", "dur": 1}],
+ "shot": [shot("voice-3", 112.0, 0.5, 44, 34, 1)],
+ "overlay": [sec("pad-co", "voice-2", "s10:voice-5", "研磨墊供應商", "DuPont 官網、SEC、證交所；截至 2026/11/27", {"intl": "intl", "dp": "dp", "fb": "fb", "tw": "tw", "sh": "sh"}, h=392, y=1000)]}
+P["s10"] = {"zoom": [{"to": "tool", "at": "voice-3", "dur": 1}],
+ "shot": [shot("voice-3", 134.0, 0.2, 40, 32, 1)],
  "labels": [lab("nPadA", "研磨墊", "Polishing pad", "amber", "wear", "wear+46"),
             lab("nQzA", "石英環", "Quartz ring", "amber", "cham+24", "cham+70"),
             lab("nDiscA", "鑽石碟", "Diamond disc", "blue", "next+18", "next+64")],

@@ -10,12 +10,12 @@ subprocess.run(["node", os.path.join(HERE, "gen-model.mjs")], check=True)
 MODEL = json.load(open(os.path.join(HERE, "model.json")))
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 幕長秒, 尾端只有畫面秒數)
 S = [
-("s1", "hook", "上一集看完氣體，這一集換看液體。一桶藥水，為什麼連一粒灰都不能有？",
- ["上一集看完氣體", "這一集換看液體", "一桶藥水", "為什麼連一粒灰", "都不能有？"], ["Last episode: gases.", "This episode: liquids.", "One drum of chemicals,", "why not even one speck", "of dust?"],
- [("prev", "上一集"), ("liq", "藥水"), ("dust", "一粒灰")], ["液體", "一粒灰"], ["示意動畫，不是量測"], 7.4, 1.3),
+("s1", "hook", "一桶藥水，為什麼連一粒灰都不行？前一集看完氣體，這一集換看液體。",
+ ["一桶藥水", "為什麼連一粒灰", "都不行？", "前一集看完氣體", "這一集換看液體"], ["One drum of chemicals,", "why not even one speck", "of dust?", "Last episode: gases.", "This episode: liquids."],
+ [("liq", "藥水"), ("dust", "一粒灰"), ("prev", "前一集")], ["液體", "一粒灰"], ["示意動畫，不是量測"], 7.4, 1.3),
 ("s2", "mechanism", "晶圓要洗、要蝕刻、要磨平，每一步都靠液體，統稱濕式化學品。",
  ["晶圓要洗", "要蝕刻", "要磨平", "每一步都靠液體", "統稱濕式化學品"], ["Wafers get washed,", "etched,", "and polished flat.", "Every step relies on liquids,", "called wet chemicals."],
- [("wash", "要洗"), ("etch", "蝕刻"), ("polish", "磨平"), ("name", "濕式化學品")], ["洗", "蝕刻", "磨平", "濕式化學品"], ["tech-clean、tech-cmp 查證；示意動畫"], 6.2, 1.3),
+ [("wash", "要洗"), ("etch", "蝕刻"), ("polish", "磨平"), ("name", "濕式化學品")], ["洗", "蝕刻", "磨平", "濕式化學品"], ["經濟日報（電子級化學品用途）", "科技新報〈什麼是 CMP〉", "示意動畫"], 6.2, 1.3),
 ("s3", "mechanism", "它們多乾淨？像一座游泳池，只准混進一小匙雜質。",
  ["它們多乾淨？", "像一座游泳池", "只准混進", "一小匙雜質"], ["How clean are they?", "Like a swimming pool", "allowed only", "one teaspoon of impurity."],
  [("q", "多乾淨"), ("pool", "游泳池"), ("spoon", "一小匙")], ["多乾淨", "游泳池", "一小匙"], ["比喻為自行換算；示意，不是量測"], 6.4, 2.2),
@@ -24,16 +24,16 @@ S = [
  [("tank", "大槽"), ("pipe", "管線"), ("desk", "機台旁"), ("water", "自來水廠"), ("clean", "不准掉渣")], ["大槽", "管線", "不准掉渣"], ["Air Liquide、3M 文件；示意，不是量測"], 16.2, 8.7),
 ("s5", "mechanism", "管子用塑膠，不用鐵。就像檸檬汁不裝鐵杯，酸會咬下金屬，污染晶圓。",
  ["管子用塑膠", "不用鐵", "就像檸檬汁", "不裝鐵杯", "酸會咬下金屬", "污染晶圓"], ["Pipes are plastic,", "not iron.", "Like lemon juice", "never in an iron cup,", "acid bites off metal", "and contaminates the wafer."],
- [("plastic", "塑膠"), ("iron", "不用鐵"), ("lemon", "檸檬汁"), ("cup", "鐵杯"), ("bite", "咬下金屬"), ("dirty", "污染")], ["塑膠", "檸檬汁", "咬下金屬"], ["供液系統通例；示意動畫，不是量測"], 7.6, 1.8),
+ [("plastic", "塑膠"), ("iron", "不用鐵"), ("lemon", "檸檬汁"), ("cup", "鐵杯"), ("bite", "咬下金屬"), ("dirty", "污染")], ["塑膠", "檸檬汁", "咬下金屬"], ["SEMI F57、SEMI C90", "示意動畫，不是量測"], 7.6, 1.8),
 ("s6", "mechanism", "研磨液更特別，藥水裡混著極細的磨粒，像含細砂的洗面乳，砂磨、藥水溶，一起動手。",
- ["研磨液更特別", "藥水裡混著", "極細的磨粒", "像含細砂的洗面乳", "砂磨", "藥水溶", "一起動手"], ["Slurry is special:", "tiny abrasive grains", "mixed into the liquid,", "like a scrub with fine sand.", "Grains grind,", "chemistry dissolves,", "together."],
- [("slurry", "研磨液"), ("grain", "磨粒"), ("wash", "洗面乳"), ("sand", "砂磨"), ("chem", "藥水溶"), ("both", "一起動手")], ["研磨液", "磨粒", "一起動手"], ["tech-cmp 查證；3M 研磨液應用文件；示意動畫，不是量測"], 8.4, 1.5),
+ ["研磨液更特別", "藥水裡混著", "極細的磨粒", "像含細砂的洗面乳", "砂磨藥水溶", "一起動手"], ["Slurry is special:", "tiny abrasive grains", "mixed into the liquid,", "like a scrub with fine sand.", "Grains grind, chemistry dissolves,", "together."],
+ [("slurry", "研磨液"), ("grain", "磨粒"), ("wash", "洗面乳"), ("sand", "砂磨"), ("chem", "藥水溶"), ("both", "一起動手")], ["研磨液", "磨粒", "一起動手"], ["科技新報〈什麼是 CMP〉", "3M 研磨液應用文件", "示意動畫，不是量測"], 8.4, 1.5),
 ("s7", "mechanism", "磨粒最怕結塊，會刮傷晶圓。所以槽裡一直攪動、循環過濾，像不停攪拌的豆漿，才不會沉底。",
  ["磨粒最怕結塊", "會刮傷晶圓", "所以槽裡一直攪動", "循環過濾", "像不停攪拌的豆漿", "才不會沉底"], ["Grains hate clumping,", "it scratches the wafer.", "So the tank keeps stirring,", "recirculating and filtering,", "like soy milk kept stirred", "so it never sinks."],
  [("lump", "結塊"), ("scratch", "刮傷"), ("stir", "攪動"), ("loop", "循環"), ("filter", "過濾"), ("soy", "豆漿"), ("sink", "沉底")], ["結塊", "刮傷", "攪動", "循環過濾"], ["Air Liquide、3M 文件；示意，不是量測"], 10.6, 3.0),
 ("s8", "payoff", "國際有英特格，台灣有中華化做硫酸，三福化做顯影液。",
- ["國際有英特格", "台灣有中華化", "做硫酸", "三福化", "做顯影液"], ["Internationally: Entegris.", "In Taiwan: China Chemical", "makes sulfuric acid,", "Sanfu Chemical", "makes developer."],
- [("intl", "英特格"), ("chc", "中華化"), ("acid", "硫酸"), ("sanfu", "三福化"), ("dev", "顯影液")], ["英特格", "中華化", "三福化"], ["Entegris 官網、經濟日報；截至 2026/11/27"], 5.8, 1.3),
+ ["國際有英特格", "台灣有中華化", "做硫酸", "三福化", "做顯影液"], ["Internationally: Entegris.", "In Taiwan: Chung Hwa Chemical", "makes sulfuric acid,", "San Fu Chemical", "makes developer."],
+ [("intl", "英特格"), ("chc", "中華化"), ("acid", "硫酸"), ("sanfu", "三福化"), ("dev", "顯影液")], ["英特格", "中華化", "三福化"], ["Entegris 官網、經濟日報、Yahoo 股市；截至 2026/11/27"], 5.8, 1.3),
 ("s9", "cta", "液體有了，還缺一塊把晶圓磨平的墊子。下一集，看研磨墊。留言化學品，拿完整資料。",
  ["液體有了", "還缺一塊", "把晶圓磨平的墊子", "下一集", "看研磨墊", "留言化學品", "拿完整資料"], ["Liquids are ready,", "but one piece is missing,", "the pad that polishes wafers flat.", "Next episode:", "the polishing pad.", "Comment \"chemicals\"", "for the full notes."],
  [("pad", "墊子"), ("next", "下一集"), ("pad2", "研磨墊"), ("kw", "留言")], ["研磨墊", "化學品"], ["示意動畫，不是量測"], 7.6, 1.2),
@@ -56,7 +56,6 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, tail) in enumerate(S):
           "component": "ThreeScene", "sources": src, "props": {}, "durationSec": dur, "holdSec": hold}
     if i < len(S) - 1: sc["pauseAfter"] = hold
     scenes.append(sc)
-scenes[0]["narration"] = re.sub(r"[，。]", "", scenes[0]["narration"])   # 驗證器數「前 30 字有？」用；tts 欄位（念稿）不動，仍含標點
 scenes[0]["props"]["hook"] = {"kicker": "接上集：看完氣體，換看液體", "title": "一粒灰都不行？", "size": 118, "top": 236}
 scenes.append({"id": "s10", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "研磨墊", "trail": ["把晶圓磨平的墊子"], "comment": "化學品", "logoAnim": "transparent"}}})
@@ -88,7 +87,7 @@ LAYERS = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
 VIS = []
 T0 = "s1:start-40"
 USED = set()
-def vis(lay, wins, dur=3):
+def vis(lay, wins, dur=1):
     """依「可見區間」清單產生隱藏：區間之外全藏。區間 (a, b)；a＝T0 表示一開始就看得到；b＝FAR 表示一直看到片尾"""
     assert lay in LAYERS, lay
     USED.add(lay)
@@ -179,7 +178,7 @@ P["s5"] = {"shot": [shot("start-1", 152.0, 3.8, 60, 16, 1, yaw=0.0), shot("lemon
  "run": [run("pfFlow", "start", "s6:start-4", 8), run("irFlow", "start", "s6:start-4", 8), run("lemonDrip", "lemon-4", "bite-12", 6),
          run("irBubbles", "bite", "s6:start-4", 8), run("rustFlow", "bite+20", "s6:start-4", 8), run("rustGlowA", "bite", "s6:start-4", 8)],
  "labels": [lab("pfaP", "塑膠管：乾淨", "Plastic: clean", "blue", "plastic-2", "lemon-18"), lab("cup", "鐵杯", "Iron cup", "amber", "lemon+2", "bite-14"), lab("rustP", "鐵管內壁：鏽剝落", "Iron: rust flakes off", "amber", "bite+4", "s6:start-14")],
- "overlay": [sec("chem-pipe", "start+24", "s6:start-5", "酸咬金屬", "示意：不標材質與濃度", {"plastic": "plastic", "iron": "iron", "lemon": "lemon", "bite": "bite"})]}
+ "overlay": [sec("chem-pipe", "start+24", "s6:start-5", "酸咬金屬", "示意：多數藥水管線用氟塑膠", {"plastic": "plastic", "iron": "iron", "lemon": "lemon", "bite": "bite"})]}
 # ─── s6：研磨液＝磨粒＋藥劑 ───
 P["s6"] = {"shot": [shot("start-1", 182.0, 6.4, 84, 8, 1, yaw=0.0), shot("grain-6", 183.0, 5.4, 74, 10, 36), shot("sand-12", 182.0, 5.2, 74, 14, 36)],
  "run": [run("brown", "start", "s7:stir-12", 8), run("drift", "start", "s7:stir-12", 8), run("padPress", "sand-6", "s7:stir-12", 8), run("grit", "sand+20", "s7:stir-12", 8), run("oxIn", "chem-8", "s7:stir-12", 8)],
