@@ -7016,6 +7016,20 @@
    "mat": "mapBeam"
   },
   {
+   "id": "lMapDot",
+   "layer": "lMap",
+   "shape": "sphere",
+   "size": [
+    0.13
+   ],
+   "pos": [
+    -12.35,
+    9.85,
+    0.3
+   ],
+   "mat": "lampY"
+  },
+  {
    "id": "lMapEnd",
    "layer": "lMap",
    "shape": "box",
@@ -20874,11 +20888,11 @@
    "dy": -120
   },
   "bbht": {
-   "layer": "bbT2",
+   "layer": "bbT1",
    "p": [
-    41.6,
+    38.400000000000006,
     5.2,
-    -2
+    -2.05
    ],
    "dx": 150,
    "dy": -90
@@ -22953,6 +22967,33 @@
    "track": false,
    "free": true,
    "layer": "bbT5"
+  },
+  "bbDrip": {
+   "type": "flow",
+   "_說明": "剛提起的卡匣底部滴下水珠",
+   "path": [
+    [
+     36.3,
+     6.85,
+     0.2
+    ],
+    [
+     36.3,
+     6.1,
+     0.2
+    ]
+   ],
+   "n": 2,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 0.9,
+   "color": "liqC",
+   "trail": 2,
+   "trailGap": 0.04,
+   "trailColor": "liqC",
+   "track": false,
+   "free": true,
+   "layer": "bbCass"
   },
   "bbIpa": {
    "type": "pulse",

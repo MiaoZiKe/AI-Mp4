@@ -159,6 +159,7 @@ P({ id: "dArmCup", layer: "door2Arm", shape: "cyl", size: [0.14, 0.1], rot: [0, 
 // 映射感測桿（紅光水平光束，念到映射才出現）：從晶圓盒頂掃到底，被每片晶圓邊緣擋住
 LAY("lMap", [0.2, 3.6, FX, 8.4]);
 P({ id: "lMap", layer: "lMap", shape: "cyl", size: [0.06, 3.6], rot: [90, 0, 0], pos: [FX + 1.5, 9.85, FZ[1]], mat: "mapBeam" });
+P({ id: "lMapDot", layer: "lMap", shape: "sphere", size: [0.13], pos: [FX + 1.5, 9.85, FZ[1] + 0.3], mat: "lampY" });
 P({ id: "lMapEnd", layer: "lMap", shape: "box", size: [0.2, 0.14, 0.14], pos: [FX + 1.5, 9.85, FZ[1]], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
 // 預對準器：細轉軸＋小吸盤＋馬達座＋缺口感測器（ㄈ字形，下顎發光、上顎收光，夾住晶圓邊緣）
 LAY("aligner", [2, 8.4, ALN[0], 4.2]);
@@ -552,6 +553,7 @@ actions.ebLamp = { type: "pulse", parts: ["ebDoorLamp"], color: "lampG", glow: 0
 actions.ebBlink = { type: "pulse", _說明: "控制板上的指示（箱內）", parts: ["ebToggle"], color: "lampY", glow: 0.9, freq: 1.8, halo: 0 };
 actions.ebDoorOpen = { type: "rotate", _說明: "電控箱門繞右緣鉸鍊打開（朝觀眾轉出去）", parts: ["ebDoorP", "ebDoorLv", "ebDoorHandle", "ebDoorPlate", "ebDoorLamp", "ebDoorScrew"], axis: [0, 1, 0], pivot: [EBX1, 4, EBZ1 + 0.06], pivots: Object.fromEntries(["ebDoorP", "ebDoorLv", "ebDoorHandle", "ebDoorPlate", "ebDoorLamp", "ebDoorScrew"].map((k) => [k, [EBX1, 4, EBZ1 + 0.06]])), angle: 118, chain: true };
 for (let i = 0; i < 6; i++) actions[`bbOver${i}`] = { type: "flow", _說明: "溢流：液面越過溢流堰流進外槽", path: [lpt(`bbT${i}`, [TKX(i) - 0.6, BBDECK + 0.2 + (i === 5 ? 4.0 : 3.4) + 0.05, -2.3]), lpt(`bbT${i}`, [TKX(i) - 0.6, BBDECK + 0.2 + (i === 5 ? 4.0 : 3.4) + 0.2, -2.7]), lpt(`bbT${i}`, [TKX(i) - 0.6, BBDECK + 1.0, -3.0])], n: 3, size: 0.06, shape: "dot", rate: 0.8, phase: i * 0.15, color: "liqC", trail: 2, trailGap: 0.04, trailColor: "liqC", track: false, free: true };
+actions.bbDrip = { type: "flow", _說明: "剛提起的卡匣底部滴下水珠", path: [lpt("bbCass", [TKX(0) + 0.3, 6.85, 0.2]), lpt("bbCass", [TKX(0) + 0.3, 6.1, 0.2])], n: 2, size: 0.05, shape: "dot", rate: 0.9, color: "liqC", trail: 2, trailGap: 0.04, trailColor: "liqC", track: false, free: true };
 actions.bbIpa = { type: "pulse", _說明: "乾燥槽：IPA 蒸氣", parts: ["bbLiq5"], color: "liqIpa", glow: 0.35, freq: 0.6, halo: 0 };
 
 // ── 標註點 ──
@@ -566,7 +568,7 @@ Object.assign(anchors, {
   tank: A("ccTank", [20.6, 6.3, 0.6], 140, -150), pump: A("ccPump", [22.7, 8.3, 0.7], 150, -110), filter: A("ccFilter", [22.7, 12.3, 0.7], 150, -100), mix: A("ccValve", [20.7, 16.5, 0.2], 150, -100),
   eb: A("ebIn", [EBM, 6.0, EZ0 + 0.35], -150, -100), ebpow: A("ebIn", [EBM, 2.0, EZ0 + 0.8], -150, 80),
   armCol: A("arBase", [RB[0], 8.05, 0.7], 150, -120), film: A("c1Cup", [CX1 + 0.6, YW + 0.12, 0.5], 150, -150),
-  efemTop: A("ffu", [-7.55, EH + 1.4, 3.0], -150, -100), ccTop: A("ccDoor", [20.6, 16.5, CCZ + 0.2], 150, -110), bb: A("bbT3", [TKX(3), BBDECK + 3.0, 2.3], 140, -130), cass: A("bbCass", [TKX(0), 8.7, 1.0], 150, -110), bbpump: A("bbT1", [TKX(1) - 0.6, 1.9, 0.9], -150, 110), bbweir: A("bbT1", [TKX(1) - 0.3, BBDECK + 3.7, -2.35], -150, -120), bbht: A("bbT2", [TKX(2) - 0.8, BBDECK + 2.0, -2.0], 150, -90),
+  efemTop: A("ffu", [-7.55, EH + 1.4, 3.0], -150, -100), ccTop: A("ccDoor", [20.6, 16.5, CCZ + 0.2], 150, -110), bb: A("bbT3", [TKX(3), BBDECK + 3.0, 2.3], 140, -130), cass: A("bbCass", [TKX(0), 8.7, 1.0], 150, -110), bbpump: A("bbT1", [TKX(1) - 0.6, 1.9, 0.9], -150, 110), bbweir: A("bbT1", [TKX(1) - 0.3, BBDECK + 3.7, -2.35], -150, -120), bbht: A("bbT1", [TKX(1) - 0.8, BBDECK + 2.0, -2.05], 150, -90),
 });
 function X0v() { return CX1 - CHW; }
 

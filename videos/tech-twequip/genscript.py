@@ -194,6 +194,7 @@ for j in range(7):
     a = add("s7:expand", 9 * j - 6) if j else "s7:dry+12"
     b = add("s7:expand", 9 * (j + 1) + 4) if j < 6 else "s7:mark+30"
     VIS += [hid(f"dry{j}", "s1:start-40", a, 3), hid(f"dry{j}", b, FAR, 3)]
+VIS += [hid("wfC", "s8:start+6", "s10:start-6", 8)]
 VIS += show("nzStr", "s5:stream-2", "s5:film+56", 5)
 VIS += show("ipStr", "s7:expand-8", "s7:expand+70", 5)
 
@@ -250,8 +251,8 @@ for l in ALL:
         out_ = i != 99 and l not in FSETS[i]
         if out_ and run_ is None: run_ = i
         if not out_ and run_ is not None:
-            a = "s1:start-40" if run_ == 1 else f"s{run_}:start+2"
-            b = FAR if i == 99 else f"s{i}:start+14"
+            a = "s1:start-40" if run_ == 1 else (f"s{run_}:start+6" if run_ in (8, 9, 10) else f"s{run_}:start+2")
+            b = FAR if i == 99 else (f"s{i}:start-6" if i in (8, 9, 10) else f"s{i}:start+14")
             FOCUS.append(hid(l, a, b, 10)); run_ = None
 # ═════════ 近景視窗：一段時間內只留特寫主角，其他層藏起來（主素材框才會小、鏡頭才能貼近而不被讀數帶或卡片蓋住） ═════════
 def CLOSE(keep, a, b, dur=8): return [hid(l, a, b, dur) for l in ALL if l not in keep]
@@ -259,7 +260,10 @@ CL3 = {"lp2", "foup2", "foup2Door", "door2Arm", "door2Rail", "lMap", "wfA"}
 CL4 = {"ar", "foup2", "wfA", "arZ"}
 CL8 = {"ebox", "ebDoor", "ebIn"}
 CL9 = {"bbT0", "bbT1", "bbCass"}
-WIN = CLOSE(CL3, "s3:door-14", "s4:start") + CLOSE(CL4, "s4:start", k4(80)) + CLOSE(CL8, "s8:eb-24", "s9:start") + CLOSE(CL9, "s9:one-10", "s10:start")
+CL8b = CL8 | G_BB
+CL9_BB = {l for l in G_BB if l in CL9}
+WIN = (CLOSE(CL3, "s3:door-14", "s4:start") + CLOSE(CL4, "s4:start", k4(80)) + CLOSE(CL8b, "s8:eb-24", "s9:start+6")
+       + CLOSE(CL9 | (set(ALL) - G_BB), "s9:one-10", "s10:start-6") + [hid(l, "s9:one-10", FAR, 8) for l in G_BB if l not in CL9])
 # ═════════ 各幕 props ═════════
 def lab_(part, text, en, color, at, until, **kw): return lab(part, text, en, color, at, until, **kw)
 P = {}
@@ -304,22 +308,22 @@ P["s6"] = {"shot": [shot("start", CX1 + 0.5, 9.0, 74, 28, 30, yaw=0.1)],
  "overlay": [sec("twequip-cup", "start+24", "s7:start-5", "杯內分路：一層一種藥液", "示意（SC1 歷史配比、溫度為通例）", {"split": "split", "nz": "nz", "cup": "cup", "chk": "chk", "mot": "mot"})]}
 P["s7"] = {"shot": [shot("start", CX1, 7.3, 36, 52, 30)],
  "run": [run("spinHi", "dry", FAR, 14), run("c1Air", "start", FAR, 4), run("ipSweep", "expand", FAR, 52), run("n2Glow", "expand-8", "expand+70", 4), run("ipaGlow", "expand-8", "expand+70", 4), run("nzPark", "start", FAR, 1)] + [run(f"dw{k}", "dry", "ipa-8", 6) for k in range(3)] + [run(f"dp{k}", "ipa", "mark+20", 6) for k in range(3)] + [run(f"fling{k}", "dry", "expand", 6) for k in range(6)],
- "labels": [lab_("ip", "IPA／氮氣臂：跟著乾區走", "IPA & N2 arm follows the dry front", "amber", "ipa-2", "s8:start-4")],
+ "labels": [lab_("ip", "IPA／氮氣臂：跟著乾區走", "IPA & N2 arm follows the dry front", "amber", "ipa-2", "s8:start-14")],
  "overlay": [sec("twequip-dry", "start+24", "s8:start-5", "甩乾：乾區由中心向外", "示意", {"dry": "dry", "expand": "expand", "ipa": "ipa", "mark": "mark"})]}
 P["s8"] = {"shot": [shot("start", 18.5, 5.9, 95, 22, 30, yaw=0.05), shot("eb-24", 12.2, 4.4, 40, 14, 26)],
- "run": [run("chemFlow", "tank-4", FAR, 8), run("chemFlow2", "tank+8", FAR, 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", "eb-6", "s9:start", 22), run("ebBlink", "eb", "s9:start", 6)],
- "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "tank-2", "pump-9"),
+ "run": [run("chemFlow", "tank-4", "eb-26", 8), run("chemFlow2", "tank+8", "eb-26", 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", "eb-6", "s9:start", 22), run("ebBlink", "eb", "s9:start", 6)],
+ "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "tank+8", "pump-9"),
             lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "pump-2", "mix-9"),
             lab_("mix", "混合閥島", "Mixing valve island", "blue", "mix-2", "eb-8"),
-            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", "eb", "s9:start-4")],
+            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", "eb", "s9:start-20")],
  "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（歷史配比為通例，本機不標）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": "eb"})]}
-P["s9"] = {"shot": [shot("start-20", 45, 5.2, 105, 24, 26, yaw=-0.05), shot("one-12", TKX_C, -0.5, 50, 30, 30)],
- "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(6)] + [run("bbIpa", "start", FAR, 6)],
+P["s9"] = {"shot": [shot("start-14", 45, 5.2, 105, 24, 24, yaw=-0.05), shot("one-12", TKX_C, -0.5, 50, 30, 30)],
+ "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "one+26", FAR, 6)],
  "labels": [lab_("bb", "批次酸槽（卡匣浸泡）", "Batch wet bench", "amber", "bat-2", "one-14"),
             lab_("bbweir", "溢流堰＋外槽", "Overflow weir & trough", "blue", "one-4", "one+46"),
-            lab_("bbht", "加熱棒＋下方泵與濾芯", "Pump, filter & heater", "amber", "one+54", "s10:start-4")],
+            lab_("bbht", "加熱棒＋下方泵與濾芯", "Heater, pump & filter", "amber", "one+54", "s10:start-26")],
  "overlay": [sec("twequip-batch", "start+24", "s10:start-5", "批次 vs 單片", "專利範例，不是弘塑／辛耘機台規格", {"bat": "bat", "one": "one", "sgl": "sgl", "use": "use"})]}
-P["s10"] = {"shot": [shot("start-24", 5, 8.5, 160, 22, 32, yaw=-0.2)],
+P["s10"] = {"shot": [shot("start-16", 5, 8.5, 160, 22, 28, yaw=-0.2)],
  "overlay": [sec("twequip-who", "start+24", "s11:start-5", "台灣廠負責哪一段", "媒體報導；不列市占數字", {"front": "front", "foreign": "foreign", "tw": "tw", "back": "back"})]}
 P["s11"] = {"shot": [shot("start", 5, 8.5, 150, 24, 40, yaw=-0.3)],
  "overlay": [sec("twequip-co", "gptc-6", "s12:start-5", "台灣設備與載具廠", "機台外觀為示意，非其實機", {"gptc": "gptc", "sci": "sci", "gdg": "gdg"})]}

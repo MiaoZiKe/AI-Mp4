@@ -79,7 +79,8 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
         <text x={290} y={CT + 268} style={zh(40, H.text, 900)} opacity={0.35 + 0.65 * q}>怎麼洗乾淨？</text>
         <Sep x={560} />
         <TwMap x={620} y={CT + 14} s={0.78} a={tw} />
-        <g opacity={0.35 + 0.65 * tw}><FlagBox code="TW" x={780} y={CT + 20} a={tw} /><text x={716} y={CT + 130} style={zh(30, H.text, 900)}>台灣設備廠</text>
+        <FlagBox code="TW" x={780} y={CT + 20} a={tw} />
+        <g opacity={0.35 + 0.65 * tw}><text x={716} y={CT + 130} style={zh(30, H.text, 900)}>台灣設備廠</text>
           <text x={716} y={CT + 176} style={zh(30, H.text2, 800)}>做哪一段？</text></g>
       </svg>
     </Card>
@@ -245,7 +246,7 @@ const Dry: React.FC<P> = ({ o, f, k }) => {
         <Row x={430} y={CT + 52} t="① 轉更快：甩掉大部分" c={dr > 0.5 ? H.amber : H.lineSoft} a={dr} />
         <Row x={430} y={CT + 112} t="② 乾區由中心向外擴" c={ex > 0.5 ? H.amber : H.lineSoft} a={ex} />
         <Row x={430} y={CT + 172} t="③ 異丙醇降低表面張力" c={ip > 0.5 ? H.amber : H.lineSoft} a={ip} />
-        <Row x={430} y={CT + 232} t="④ 不留水痕" c={mk > 0.5 ? H.amber : H.lineSoft} a={mk} />
+        <Row x={430} y={CT + 232} t="④ 避免水痕" c={mk > 0.5 ? H.amber : H.lineSoft} a={mk} />
         <Check x={880} y={CT + 226} o={mk} />
       </svg>
     </Card>
@@ -306,10 +307,11 @@ const Who: React.FC<P> = ({ o, f, k }) => {
           <rect x={x} y={CT + 12} width={250} height={92} fill={a > 0.5 ? "#FFF6E0" : "#FFFFFF"} stroke={a > 0.5 ? c : H.lineSoft} strokeWidth={a > 0.5 ? 5 : 2} />
           <text x={x + 125} y={CT + 58} textAnchor="middle" style={zh(32, H.text, 900)}>{t}</text><text x={x + 125} y={CT + 94} textAnchor="middle" style={zh(30, H.text2, 800)}>{s}</text>
           {i < 2 ? <Arrow x1={x + 256} y1={CT + 58} x2={x + 300} y2={CT + 58} c={H.text2} w={4} o={0.5} /> : null}</g>; })}
-        <g opacity={0.35 + 0.65 * fo}><FlagBox code="JP" x={30} y={CT + 196} a={fo} /><FlagBox code="US" x={92} y={CT + 196} a={fo} /><rect x={30} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={fo > 0.5 ? GREY : H.lineSoft} strokeWidth={fo > 0.5 ? 4 : 2} /><text x={44} y={CT + 172} style={zh(30, H.text, 900)}>日系、美系大廠</text>
+        <FlagBox code="JP" x={30} y={CT + 196} a={fo} /><FlagBox code="US" x={92} y={CT + 196} a={fo} /><FlagBox code="TW" x={530} y={CT + 144} a={tw} />
+        <g opacity={0.35 + 0.65 * fo}><rect x={30} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={fo > 0.5 ? GREY : H.lineSoft} strokeWidth={fo > 0.5 ? 4 : 2} /><text x={44} y={CT + 172} style={zh(30, H.text, 900)}>日系、美系大廠</text>
           <text x={158} y={CT + 226} style={zh(30, H.text2, 800)}>外商為主</text></g>
         <g opacity={0.35 + 0.65 * tw}><rect x={336} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={tw > 0.5 ? OK : H.lineSoft} strokeWidth={tw > 0.5 ? 4 : 2} /><text x={350} y={CT + 172} style={zh(30, H.text, 900)}>弘塑、辛耘</text>
-          <FlagBox code="TW" x={530} y={CT + 144} a={tw} /><text x={336} y={CT + 224} style={zh(30, H.text2, 800)}>濕式清洗、蝕刻</text></g>
+          <text x={336} y={CT + 224} style={zh(30, H.text2, 800)}>濕式清洗、蝕刻</text></g>
         <g opacity={0.35 + 0.65 * bk}><text x={642} y={CT + 172} style={zh(30, H.text2, 800)}>濕製程也用得到</text></g>
         <text x={30} y={CT + 272} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * tw}>媒體報導；不列市占數字</text>
       </svg>
@@ -325,9 +327,9 @@ const Co: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {rows.map(([id, nm, job, code], i) => { const y = CT + 8 + i * 84; return <g key={id} opacity={0.35 + 0.65 * a[i]}>
+        {rows.map(([id, nm, job, code], i) => { const y = CT + 8 + i * 84; return <g key={id}>
           <LogoBox id={id} x={28} y={y} h={50} a={a[i]} maxW={250} name={nm} />
-          <text x={320} y={y + 36} style={zh(32, H.text, 900)}>{job}</text><text x={672} y={y + 36} style={zh(30, H.text2, 800)}>{code}</text></g>; })}
+          <g opacity={0.35 + 0.65 * a[i]}><text x={320} y={y + 36} style={zh(32, H.text, 900)}>{job}</text><text x={672} y={y + 36} style={zh(30, H.text2, 800)}>{code}</text></g></g>; })}
         <TwMap x={772} y={CT + 6} s={0.82} a={Math.max(...a)} />
         <FlagBox code="TW" x={850} y={CT + 6} a={Math.max(...a)} />
         <text x={28} y={CT + 272} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * a[2]}>機台外觀為示意，非其實機</text>

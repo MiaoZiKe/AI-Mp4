@@ -53,3 +53,11 @@
 | 物理 7 換幕 | 12 個幕界前後 14 幀（每 4 幀一張）原尺寸：out/tech-twequip/boundary/b<幀>.png；另有 map.png、batch.png、dry.png |
 | 可改（有做） | s7 杯口再升一層對準 IPA 層、紫色液線往下流；背面噴嘴水流在 s5 啟動；s7 字幕「避免水痕」；s8「幫浦送過來，濾芯濾乾淨」；標籤統一「藥液櫃」 |
 檢查：validate 0 error、layout-check 0 error、card-overlap 0 error（1 warning）、kinematics 0 error（1302 幀）、flow-check 0 error（32 條）。念稿 334 字。
+
+## r2 修正（物理複審 r1 的 4 條必改＋2 條可改）
+- 換幕空景：s8、s9、s10 的新模組在幕界前 6 幀開始淡入、舊模組幕界後 6 幀才淡出；s8～s10 孤立晶圓（wfC）隨腔體收掉；藥液流點在電控箱特寫前停止，不再在空桌面上飄。
+- 國旗與 LOGO 一律 100% 不透明（HudTwequip.tsx 的 Flag／Logo 不再被 opacity 群組包住），文字照舊變淡。
+- 標籤在鏡頭移開前先收（電控箱標籤收在 s9 前 20 幀、批次加熱棒標籤收在 s10 前 26 幀）；加熱棒錨點改綁特寫裡看得到的第 2 槽。
+- s9 批次：溢流液點只在特寫的兩槽、從堰緣落進外槽；另加卡匣底部滴水。
+- 可改：2D 卡「避免水痕」；s3 映射光束加黃色亮點隨光束由上往下。
+- 檢查：validate／layout-check／card-overlap／kinematics／flow 全 0 error。12 個幕界前後 14 幀（每 2 幀 15 張）原尺寸在 out/tech-twequip/boundary-r2/，逐張自己看過，沒有整格空景。
