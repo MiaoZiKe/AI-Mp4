@@ -108,11 +108,15 @@ const CLAMPS = (id, layer, pts, r, step, mat = "dark") => {
   for (const ax of ["x", "y", "z"]) { const pp = at.filter((q) => q.ax === ax).map((q) => q.p); if (!pp.length) continue;
     P({ id: `${id}${ax}`, layer, shape: "tube", size: [r * 1.35, r * 0.95, 0.08], rot: ax === "x" ? HX : ax === "y" ? V : [0, 0, 0], pos: [0, 0, 0], at: pp, mat }); }
 };
+const WEAVE = (id, layer, x0, x1, yc, z, step = 0.25) => {
+  P({ id: `${id}Wp`, layer, shape: "box", size: [R2(x1 - x0), 0.022, 0.008], pos: [R2((x0 + x1) / 2), yc, z], mat: "fiber" });
+  P({ id: `${id}Wf`, layer, shape: "box", size: [R2(step * 0.8), 0.018, 0.01], pos: [0, 0, z + 0.002], at: Array.from({ length: Math.floor((x1 - x0) / step) }, (_, i) => [R2(x0 + step / 2 + i * step), R2(yc + (i % 2 ? 0.032 : -0.032)), 0]), mat: "fiber" });
+};
 const idsOf = (layer) => parts.filter((q) => q.layer === layer).map((q) => q.id);
 const SPIRAL = (a0, cx, y, r0, r1, turns = 1.1) => Array.from({ length: 12 }, (_, i) => { const u = i / 11, [x, z] = pol(a0 + u * 360 * turns, r0 + (r1 - r0) * u); return [R2(x + cx), y, z]; });
 
 // ── 貼圖：國旗、台積電 LOGO（原檔）、沒有原檔可用的公司用白底深色字名牌、電阻率表頭 ──
-const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=欣興電子|送樣中", "text:innolux=群創光電|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/27"];
+const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=欣興電子|送樣中", "text:innolux=群創光電|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:goal=量產|預計", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/27"];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-glass", ...TEX], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stdout, r.stderr); process.exit(1); } }
 const SIGN = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 const TEXMAT = (name) => { materials[`t_${name}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/${name}.png` }; return `t_${name}`; };
@@ -158,6 +162,7 @@ const kc0 = R2(ky0 + 4 * BU), kc1 = R2(kc0 + 0.6);
 LAY("kCore", [10, 0.6, KX, kc0 + 0.3]); KL.push("kCore");
 BOX("kCoreB", "kCore", KX - SW, KX + SW, kc0, kc1, -SW, SW, "core"); BOX("kCoreCuT", "kCore", KX - SW, KX + SW, kc1 - 0.03, kc1, -SW, SW, "cu"); BOX("kCoreCuB", "kCore", KX - SW, KX + SW, kc0, kc0 + 0.03, -SW, SW, "cu");
 P({ id: "kFiber", layer: "kCore", shape: "cyl", size: [0.05, 0.02], pos: [0, 0, SW + 0.01], at: Array.from({ length: 40 }, (_, i) => [R2(KX - 4.8 + (i % 20) * 0.5), R2(kc0 + 0.2 + Math.floor(i / 20) * 0.22), 0]), mat: "fiber" });
+WEAVE("kWv0", "kCore", KX - SW + 0.05, KX + SW - 0.05, R2(kc0 + 0.2), SW + 0.014); WEAVE("kWv1", "kCore", KX - SW + 0.05, KX + SW - 0.05, R2(kc0 + 0.42), SW + 0.014);
 P({ id: "kPth", layer: "kCore", shape: "box", size: [0.14, 0.6, 0.02], pos: [0, R2(kc0 + 0.3), SW + 0.012], at: [-3.6, -1.2, 1.2, 3.6].map((d) => [KX + d, 0, 0]), mat: "cuB" });
 ["kT1", "kT2", "kT3", "kT4"].forEach((id, i) => BUL(id, R2(kc1 + i * BU), true));
 const kt = R2(kc1 + 4 * BU);
@@ -182,15 +187,22 @@ const K_SIG2 = [[KX + 2.8, kci + 0.2, SW + 0.06], [KX + 2.8, kc1 - 0.015, SW + 0
 // 玻璃芯板（和樹脂芯板同一格；一開始在旁邊、念「換成一片玻璃」時滑進來）：玻璃本體＋兩面銅＋玻璃穿孔（銅柱，看得穿）
 LAY("kGlass", [10, 0.6, KX, kc0 + 0.3]);
 BOX("kGlassB", "kGlass", KX - SW, KX + SW, kc0 + 0.03, kc1 - 0.03, -SW, SW, "glassCore");
-BOX("kGlassCuT", "kGlass", KX - SW, KX + SW, kc1 - 0.03, kc1, -SW, SW, "cu"); BOX("kGlassCuB", "kGlass", KX - SW, KX + SW, kc0, kc0 + 0.03, -SW, SW, "cu");
+{ const g = Array.from({ length: 81 }, (_, i) => [R2(KX - 4.0 + (i % 9) * 1.0), 0, R2(-4.0 + Math.floor(i / 9) * 1.0)]);
+  P({ id: "kGlassPadT", layer: "kGlass", shape: "cyl", size: [0.16, 0.025], rot: V, pos: [0, R2(kc1 - 0.012), 0], at: g, mat: "cu" });
+  P({ id: "kGlassPadB", layer: "kGlass", shape: "cyl", size: [0.16, 0.025], rot: V, pos: [0, R2(kc0 + 0.012), 0], at: g, mat: "cu" });
+  P({ id: "kGlassTrT", layer: "kGlass", shape: "box", size: [0.9, 0.02, 0.06], pos: [0, R2(kc1 - 0.012), 0], at: g.filter((_, i) => i % 9 < 8 && (i * 7) % 5 < 2).map(([x, y, z]) => [R2(x + 0.5), y, z]), mat: "cu" });
+  P({ id: "kGlassTrB", layer: "kGlass", shape: "box", size: [0.06, 0.02, 0.9], pos: [0, R2(kc0 + 0.012), 0], at: g.filter((_, i) => i < 72 && (i * 3) % 4 === 1).map(([x, y, z]) => [x, y, R2(z + 0.5)]), mat: "cu" }); }
 for (const [x0, x1, z0, z1] of [[-SW, SW, SW - 0.04, SW], [-SW, SW, -SW, -SW + 0.04], [-SW, -SW + 0.04, -SW, SW], [SW - 0.04, SW, -SW, SW]]) BOX(`kGlassE${x0}${z0}`, "kGlass", KX + x0, KX + x1, kc0 + 0.03, kc1 - 0.03, z0, z1, "glassEdge");
-P({ id: "kTgv", layer: "kGlass", shape: "cyl", size: [0.07, R2(kc1 - kc0)], rot: V, pos: [0, R2((kc0 + kc1) / 2), 0], at: Array.from({ length: 81 }, (_, i) => [R2(KX - 4.0 + (i % 9) * 1.0), 0, R2(-4.0 + Math.floor(i / 9) * 1.0)]), mat: "cuB" });
+P({ id: "kTgv", layer: "kGlass", shape: "tube", size: [0.1, 0.06, R2(kc1 - kc0)], rot: V, pos: [0, R2((kc0 + kc1) / 2), 0], at: Array.from({ length: 81 }, (_, i) => [R2(KX - 4.0 + (i % 9) * 1.0), 0, R2(-4.0 + Math.floor(i / 9) * 1.0)]), mat: "cuB" });
 P({ id: "kTgvF", layer: "kGlass", shape: "box", size: [0.14, R2(kc1 - kc0), 0.02], pos: [0, R2((kc0 + kc1) / 2), SW + 0.012], at: [-3.6, -1.2, 1.2, 3.6].map((d) => [KX + d, 0, 0]), mat: "cuB" });
 
 // ═════ 站 W：加熱台（左：樹脂芯板受熱翹起；右：玻璃芯板保持平，線更細更密）═════
 const WX = 30, WT = 1.3, WS = 0.25;
 LAY("wBase", [18, 1.4, WX, 0.7]);
 BOX("wBody", "wBase", WX - 8, WX + 8, 0, 1.0, -3, 3, "steel2"); BOX("wTop", "wBase", WX - 7.6, WX + 7.6, 1.0, WT, -2.6, 2.6, "dark");
+P({ id: "wScrew", layer: "wBase", shape: "cyl", size: [0.12, 0.04], rot: V, pos: [0, R2(WT + 0.02), 0], at: [[WX - 7.3, 0, -2.3], [WX + 7.3, 0, -2.3], [WX - 7.3, 0, 2.3], [WX + 7.3, 0, 2.3], [WX, 0, -2.3], [WX, 0, 2.3]], mat: "steel" });
+P({ id: "wGrille", layer: "wBase", shape: "box", size: [0.06, 0.7, 0.02], pos: [0, 0.5, 3.01], at: Array.from({ length: 12 }, (_, i) => [R2(WX + 1.0 + i * 0.25), 0, 0]), mat: "dark" });
+PIPE("wTc", "wBase", [[WX + 7.4, R2(WT + 0.05), 2.3], [WX + 7.9, R2(WT + 0.05), 2.3], [WX + 7.9, 1.6, 0.6], [WX + 8.4, 1.6, 0.6]], 0.04, "cable");
 P({ id: "wHeat", layer: "wBase", shape: "box", size: [14.6, 0.08, 0.04], pos: [WX, 0, 2.62], at: [[0, 1.08, 0], [0, 1.2, 0]], mat: "heater" });
 P({ id: "wFoot", layer: "wBase", shape: "cyl", size: [0.25, 0.2], rot: V, pos: [0, 0.1, 0], at: [[WX - 7.4, 0, -2.6], [WX + 7.4, 0, -2.6], [WX - 7.4, 0, 2.6], [WX + 7.4, 0, 2.6]], mat: "rubber" });
 P({ id: "wVent", layer: "wBase", shape: "box", size: [0.9, 0.06, 0.02], pos: [0, 0, 3.01], at: Array.from({ length: 5 }, (_, i) => [R2(WX - 6.5 + i * 0.2), R2(0.3 + (i % 2) * 0), 0]).concat(Array.from({ length: 4 }, (_, i) => [WX - 6.5, R2(0.3 + i * 0.15), 0])), mat: "seam" });
@@ -203,10 +215,19 @@ const RX0 = WX - 6.6, RX1 = WX - 5.1, RX2 = WX - 2.1, RX3 = WX - 0.6;
 const RSEG = (id, x0, x1) => { LAY(id, [R2(x1 - x0), 0.4, R2((x0 + x1) / 2), WT + 0.15]);
   BOX(`${id}B`, id, x0, x1, WT, WT + WS, -2, 2, "core");
   P({ id: `${id}Fib`, layer: id, shape: "cyl", size: [0.045, 0.02], pos: [0, R2(WT + WS / 2), 2.01], at: Array.from({ length: Math.round((x1 - x0) / 0.25) }, (_, i) => [R2(x0 + 0.12 + i * 0.25), 0, 0]), mat: "fiber" });
-  P({ id: `${id}Ln`, layer: id, shape: "box", size: [R2(x1 - x0 - 0.1), 0.03, 0.24], pos: [R2((x0 + x1) / 2), R2(WT + WS + 0.015), 0], at: [-1.5, -0.75, 0, 0.75, 1.5].map((z) => [0, 0, z]), mat: "cu" }); };
-RSEG("wRl", RX0, RX1); RSEG("wRm", RX1, RX2); RSEG("wRr", RX2, RX3);
-LAY("wChipS", [2, 0.4, R2((RX1 + RX2) / 2), WT + 0.45]); BOX("wChipSB", "wChipS", R2((RX1 + RX2) / 2 - 0.8), R2((RX1 + RX2) / 2 + 0.8), WT + WS + 0.03, WT + WS + 0.33, -0.8, 0.8, "die2");
-LAY("wChipB", [3.2, 0.4, R2((RX1 + RX2) / 2), WT + 0.45]); BOX("wChipBB", "wChipB", R2((RX1 + RX2) / 2 - 1.4), R2((RX1 + RX2) / 2 + 1.4), WT + WS + 0.03, WT + WS + 0.36, -1.3, 1.3, "die2");
+  P({ id: `${id}Ln`, layer: id, shape: "box", size: [R2(x1 - x0 - 0.1), 0.03, 0.24], pos: [R2((x0 + x1) / 2), R2(WT + WS + 0.015), 0], at: [-1.5, -0.75, 0, 0.75, 1.5].map((z) => [0, 0, z]), mat: "cu" });
+  WEAVE(`${id}Wv`, id, x0 + 0.02, x1 - 0.02, R2(WT + WS / 2), 2.014, 0.125); };
+const SG = R2((RX1 - RX0) / 4);
+for (let k = 0; k < 4; k++) { RSEG(`wRl${k}`, R2(RX1 - (k + 1) * SG), R2(RX1 - k * SG)); RSEG(`wRr${k}`, R2(RX2 + k * SG), R2(RX2 + (k + 1) * SG)); }
+RSEG("wRm", RX1, RX2);
+const CHIP = (id, layer, cx, hw, hd) => { const y0 = WT + WS;
+  BOX(`${id}Uf`, layer, R2(cx - hw - 0.08), R2(cx + hw + 0.08), y0, R2(y0 + 0.05), R2(-hd - 0.08), R2(hd + 0.08), "abfCure");
+  P({ id: `${id}Bump`, layer, shape: "sphere", size: [0.035], pos: [0, R2(y0 + 0.03), R2(hd + 0.03)], at: Array.from({ length: Math.round(hw * 10) }, (_, i) => [R2(cx - hw + 0.1 + i * 0.2), 0, 0]), mat: "solder" });
+  BOX(`${id}B`, layer, R2(cx - hw), R2(cx + hw), R2(y0 + 0.05), R2(y0 + 0.3), -hd, hd, "die2");
+  BOX(`${id}Lid`, layer, R2(cx - hw + 0.05), R2(cx + hw - 0.05), R2(y0 + 0.3), R2(y0 + 0.36), R2(-hd + 0.05), R2(hd - 0.05), "steel");
+  BOX(`${id}Mk`, layer, R2(cx - hw * 0.5), R2(cx + hw * 0.1), R2(y0 + 0.36), R2(y0 + 0.365), R2(-hd * 0.4), R2(-hd * 0.2), "dark"); };
+LAY("wChipS", [2, 0.4, R2((RX1 + RX2) / 2), WT + 0.45]); CHIP("wChipS", "wChipS", R2((RX1 + RX2) / 2), 0.8, 0.8);
+LAY("wChipB", [3.2, 0.4, R2((RX1 + RX2) / 2), WT + 0.45]); CHIP("wChipB", "wChipB", R2((RX1 + RX2) / 2), 1.4, 1.3);
 // 玻璃芯板試片（平，線細又密，看得到穿孔銅柱）
 const GX0 = WX + 0.8, GX1 = WX + 6.8, GXc = WX + 3.8;
 LAY("wGlass", [6, 0.6, GXc, WT + 0.2]);
@@ -214,9 +235,10 @@ BOX("wGlassB", "wGlass", GX0, GX1, WT, WT + WS, -2, 2, "glassCore");
 BOX("wGlassEF", "wGlass", GX0, GX1, WT, WT + WS, 1.97, 2.0, "glassEdge");
 P({ id: "wGlassLn", layer: "wGlass", shape: "box", size: [5.9, 0.025, 0.07], pos: [GXc, R2(WT + WS + 0.012), 0], at: Array.from({ length: 13 }, (_, i) => [0, 0, R2(-1.8 + i * 0.3)]), mat: "cu" });
 P({ id: "wGlassTgv", layer: "wGlass", shape: "cyl", size: [0.05, WS], rot: V, pos: [0, R2(WT + WS / 2), 0], at: Array.from({ length: 24 }, (_, i) => [R2(GX0 + 0.5 + (i % 8) * 0.7), 0, R2(-1.2 + Math.floor(i / 8) * 1.2)]), mat: "cuB" });
-BOX("wGlassChip", "wGlass", GXc - 1.4, GXc + 1.4, WT + WS + 0.03, WT + WS + 0.36, -1.3, 1.3, "die2");
+CHIP("wGlassChip", "wGlass", GXc, 1.4, 1.3);
 // 平直尺（量平：玻璃那邊貼平，樹脂那邊兩端翹起離開直尺）
-LAY("wRule", [14, 0.2, WX, WT + 0.8]); BOX("wRuleB", "wRule", WX - 7.2, WX + 7.2, WT + 0.7, WT + 0.76, -2.3, -2.1, "steel"); P({ id: "wRuleTick", layer: "wRule", shape: "box", size: [0.02, 0.1, 0.02], pos: [0, R2(WT + 0.73), -2.09], at: Array.from({ length: 29 }, (_, i) => [R2(WX - 7 + i * 0.5), 0, 0]), mat: "dark" });
+LAY("wRule", [6.4, 0.2, GXc, WT + WS + 0.04]); BOX("wRuleB", "wRule", GX0 - 0.2, GX1 + 0.2, WT + WS, WT + WS + 0.07, -1.95, -1.65, "steel"); P({ id: "wRuleTick", layer: "wRule", shape: "box", size: [0.02, 0.01, 0.12], pos: [0, R2(WT + WS + 0.075), -1.75], at: Array.from({ length: 13 }, (_, i) => [R2(GX0 + i * 0.5), 0, 0]), mat: "dark" });
+LAY("wRule2", [6.4, 0.2, R2((RX0 + RX3) / 2), WT + WS + 0.3]); BOX("wRule2B", "wRule2", RX0 - 0.2, RX3 + 0.2, R2(WT + WS + 0.2), R2(WT + WS + 0.27), -1.95, -1.65, "steel"); P({ id: "wRule2Tick", layer: "wRule2", shape: "box", size: [0.02, 0.01, 0.12], pos: [0, R2(WT + WS + 0.275), -1.75], at: Array.from({ length: 13 }, (_, i) => [R2(RX0 + i * 0.5), 0, 0]), mat: "dark" });
 
 // ═════ 站 T：玻璃穿孔（雷射一排排改質 → 蝕刻液開孔 → 鍍銅接通）＋機械鑽玻璃小片（會裂）═════
 const TX = 60, TG0 = 1.3, TG1 = 1.7, TZR = [-1.4, 0, 1.4], TXS = Array.from({ length: 7 }, (_, i) => R2(TX - 3.6 + i * 1.2));
@@ -228,9 +250,12 @@ LAY("tGlass", [9, 0.5, TX, 1.5]); BOX("tGlassB", "tGlass", TX - 4.5, TX + 4.5, T
 for (const [x0, x1, z0, z1] of [[-4.5, 4.5, 2.46, 2.5], [-4.5, 4.5, -2.5, -2.46], [-4.5, -4.46, -2.5, 2.5], [4.46, 4.5, -2.5, 2.5]]) BOX(`tGlassE${x0}${z0}`, "tGlass", TX + x0, TX + x1, TG0, TG1, z0, z1, "glassEdge");
 TZR.forEach((z, r) => { LAY(`tMod${r}`, [9, 0.5, TX, 1.5]); P({ id: `tModL${r}`, layer: `tMod${r}`, shape: "cyl", size: [0.035, R2(TG1 - TG0)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TXS.map((x) => [x, 0, z]), mat: "modDot" }); });
 LAY("tHole", [9, 0.5, TX, 1.5]); P({ id: "tHoleC", layer: "tHole", shape: "cyl", size: [0.16, R2(TG1 - TG0 + 0.01)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "hole" });
+LAY("tCuW", [9, 0.6, TX, 1.5]); P({ id: "tCuWall", layer: "tCuW", shape: "tube", size: [0.17, 0.12, R2(TG1 - TG0 + 0.01)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cu" });
+LAY("tNo", [2, 0.6, TXS[3] - 0.6, TG1 + 0.3]); P({ id: "tNoX", layer: "tNo", shape: "box", size: [0.5, 0.05, 0.02], pos: [TXS[3], R2(TG1 + 0.35), 2.56], at: [[0, 0, 0]], rot: [0, 0, 45], mat: "lampR" }); P({ id: "tNoX2", layer: "tNo", shape: "box", size: [0.5, 0.05, 0.02], pos: [TXS[3], R2(TG1 + 0.35), 2.56], rot: [0, 0, -45], mat: "lampR" });
+P({ id: "tNoPad", layer: "tNo", shape: "box", size: [1.0, 0.03, 0.3], pos: [R2(TXS[3] - 0.7), R2(TG1 + 0.015), 2.35], mat: "cu" });
 LAY("tCu", [9, 0.6, TX, 1.5]); P({ id: "tCuC", layer: "tCu", shape: "cyl", size: [0.17, R2(TG1 - TG0 + 0.02)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cu" });
-P({ id: "tCuPadT", layer: "tCu", shape: "cyl", size: [0.26, 0.03], rot: V, pos: [0, R2(TG1 + 0.015), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cuB" });
-P({ id: "tCuPadB", layer: "tCu", shape: "cyl", size: [0.26, 0.03], rot: V, pos: [0, R2(TG0 - 0.015), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cuB" });
+P({ id: "tCuPadT", layer: "tCu", shape: "cyl", size: [0.22, 0.012], rot: V, pos: [0, R2(TG1 + 0.006), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cuB" });
+P({ id: "tCuPadB", layer: "tCu", shape: "cyl", size: [0.22, 0.012], rot: V, pos: [0, R2(TG0 - 0.006), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cuB" });
 LAY("tEtchL", [9.4, 0.7, TX, 1.5]); BOX("tEtchT", "tEtchL", TX - 4.7, TX + 4.7, TG1 + 0.01, TG1 + 0.16, -2.6, 2.6, "etchFilm"); BOX("tEtchB", "tEtchL", TX - 4.7, TX + 4.7, TG0 - 0.16, TG0 - 0.01, -2.6, 2.6, "etchFilm");
 // 雷射頭（龍門＋振鏡盒＋鏡筒＋聚焦鏡＋光錐收斂到玻璃面；沿 x 掃一排）
 LAY("tFrame", [12, 6, TX, 4]);
@@ -240,7 +265,7 @@ BOX("tBeam", "tFrame", TX - 5.6, TX + 5.6, 6.0, 6.6, -0.7, 0.3, "panel"); BOX("t
 BOX("tWarn", "tFrame", TX - 5.55, TX - 5.05, 3.0, 3.5, 0.5, 0.52, "warnY");
 LAY("tHead", [2, 3, TX, 4.5]);
 BOX("tGalvo", "tHead", TX - 0.7, TX + 0.7, 4.6, 5.9, -0.6, 0.6, "dark"); BOX("tGalvoPl", "tHead", TX - 0.5, TX + 0.1, 5.2, 5.5, 0.6, 0.62, "gold");
-VC("tBarrel", "tHead", 0.28, 3.4, 4.6, "steel2", { x: TX }); VC("tLens", "tHead", 0.22, 3.3, 3.42, "quartz", { x: TX }); VT("tLensRing", "tHead", 0.3, 0.22, 3.3, 3.42, "dark", { x: TX });
+LAY("tHeadB", [1, 1.5, TX, 4]); LAY("tHeadL", [1, 0.3, TX, 3.35]); VC("tBarrel", "tHeadB", 0.28, 3.4, 4.6, "steel2", { x: TX }); VC("tLens", "tHeadL", 0.22, 3.3, 3.42, "quartz", { x: TX }); VT("tLensRing", "tHeadL", 0.3, 0.22, 3.3, 3.42, "dark", { x: TX });
 SPH("tLed", "tHead", 0.06, TX + 0.5, 5.7, 0.62, "lampG");
 LAY("tBeamL", [0.5, 2, TX, 2.5]); P({ id: "tCone", layer: "tBeamL", shape: "cone", size: [0.04, 0.3, 1.6], rot: V, pos: [TX, R2(TG1 + 0.8), 0], mat: "laser" });
 // 蝕刻液槽（右後方，管路接到玻璃面上方的噴頭）
@@ -249,16 +274,27 @@ BOX("tTankB", "tTank", TX + 7.4, TX + 9.8, 0, 2.6, -2.6, -0.6, "tankP"); BOX("tT
 BOX("tTankPl", "tTank", TX + 7.7, TX + 9.5, 0.4, 0.8, -0.6, -0.58, "warnY"); PIPE("tTankP", "tTank", [[TX + 7.4, 2.3, -1.6], [TX + 5.0, 2.3, -1.6], [TX + 5.0, 2.3, -2.6]], 0.08, "pipeW", { jmat: "steel2" });
 // 機械鑽玻璃小片（右前）：支架、玻璃小片分左右兩半、鑽頭、裂紋
 const CPX = TX + 6.0, CPZ = 2.6, CPY = 1.6;
-LAY("tCoupS", [2.4, 1.6, CPX, 0.8]); BOX("tCoupStand", "tCoupS", CPX - 1.1, CPX + 1.1, 0, CPY - 0.02, CPZ - 0.9, CPZ + 0.9, "steel2"); P({ id: "tCoupClamp", layer: "tCoupS", shape: "box", size: [0.2, 0.15, 1.9], pos: [0, R2(CPY + 0.06), CPZ], at: [[CPX - 1.0, 0, 0], [CPX + 1.0, 0, 0]], mat: "dark" });
+LAY("tCoupS", [2.4, 1.6, CPX, 0.8]); BOX("tCoupStand", "tCoupS", CPX - 1.1, CPX + 1.1, 0, CPY - 0.02, CPZ - 0.9, CPZ + 0.9, "steel2"); BOX("tViseJL", "tCoupS", CPX - 1.15, CPX - 0.9, R2(CPY - 0.1), R2(CPY + 0.32), CPZ - 0.95, CPZ + 0.95, "dark"); BOX("tViseJR", "tCoupS", CPX + 0.9, CPX + 1.15, R2(CPY - 0.1), R2(CPY + 0.32), CPZ - 0.95, CPZ + 0.95, "dark");
+BOX("tViseJLf", "tCoupS", CPX - 0.92, CPX - 0.9, R2(CPY), R2(CPY + 0.3), CPZ - 0.9, CPZ + 0.9, "steel"); BOX("tViseJRf", "tCoupS", CPX + 0.9, CPX + 0.92, R2(CPY), R2(CPY + 0.3), CPZ - 0.9, CPZ + 0.9, "steel");
+HXC("tViseScrew", "tCoupS", 0.07, CPX + 1.15, CPX + 2.0, R2(CPY + 0.1), CPZ, "steel"); P({ id: "tViseWheel", layer: "tCoupS", shape: "tube", size: [0.3, 0.24, 0.06], rot: HX, pos: [CPX + 2.0, R2(CPY + 0.1), CPZ], mat: "dark" });
+P({ id: "tViseSpoke", layer: "tCoupS", shape: "box", size: [0.04, 0.56, 0.04], pos: [CPX + 2.0, R2(CPY + 0.1), CPZ], at: [[0, 0, 0]], mat: "steel" }); P({ id: "tViseSpoke2", layer: "tCoupS", shape: "box", size: [0.04, 0.04, 0.56], pos: [CPX + 2.0, R2(CPY + 0.1), CPZ], mat: "steel" });
+BOX("tPressBase", "tCoupS", CPX - 1.6, CPX + 1.6, 0, 0.15, CPZ - 2.2, CPZ + 1.2, "steel2"); VC("tColumn", "tCoupS", 0.16, 0.15, R2(CPY + 3.6), "steel", { x: CPX, z: CPZ - 1.6 });
+BOX("tArm", "tCoupS", CPX - 0.3, CPX + 0.3, R2(CPY + 3.0), R2(CPY + 3.4), CPZ - 1.7, CPZ - 0.4, "panel");
 LAY("tCoupL", [1, 0.2, CPX - 0.45, CPY + 0.1]); BOX("tCoupLB", "tCoupL", CPX - 0.9, CPX, CPY, CPY + 0.2, CPZ - 0.8, CPZ + 0.8, "glassCore"); BOX("tCoupLE", "tCoupL", CPX - 0.9, CPX, CPY, CPY + 0.2, CPZ + 0.77, CPZ + 0.8, "glassEdge");
 LAY("tCoupR", [1, 0.2, CPX + 0.45, CPY + 0.1]); BOX("tCoupRB", "tCoupR", CPX, CPX + 0.9, CPY, CPY + 0.2, CPZ - 0.8, CPZ + 0.8, "glassCore"); BOX("tCoupRE", "tCoupR", CPX, CPX + 0.9, CPY, CPY + 0.2, CPZ + 0.77, CPZ + 0.8, "glassEdge");
 LAY("tCrack", [1.6, 0.1, CPX, CPY + 0.21]);
 { const pts = [[0, -0.8], [0.12, -0.45], [-0.1, -0.15], [0.08, 0.2], [-0.06, 0.5], [0.05, 0.8]]; for (let i = 0; i < pts.length - 1; i++) { const [x0, z0] = pts[i], [x1, z1] = pts[i + 1], L = Math.hypot(x1 - x0, z1 - z0), a = Math.atan2(x1 - x0, z1 - z0) / D2R;
   P({ id: `tCrk${i}`, layer: "tCrack", shape: "box", size: [0.035, 0.02, R2(L)], pos: [R2(CPX + (x0 + x1) / 2), R2(CPY + 0.215), R2(CPZ + (z0 + z1) / 2)], rot: [0, R2(a), 0], mat: "crack" }); }
+  [[0.55, 0.15], [-0.5, 0.35], [0.4, -0.5], [-0.45, -0.45]].forEach(([dx, dz], i) => { const L = Math.hypot(dx, dz), a = Math.atan2(dx, dz) / D2R; P({ id: `tCrkR${i}`, layer: "tCrack", shape: "box", size: [0.025, 0.02, R2(L)], pos: [R2(CPX + dx / 2), R2(CPY + 0.216), R2(CPZ + dz / 2)], rot: [0, R2(a), 0], mat: "crack" }); });
+  BOX("tChip0", "tCrack", CPX + 0.7, CPX + 0.9, CPY + 0.1, CPY + 0.215, CPZ + 0.62, CPZ + 0.81, "crack");
   P({ id: "tCrkF", layer: "tCrack", shape: "box", size: [0.035, 0.2, 0.02], pos: [CPX + 0.05, R2(CPY + 0.1), R2(CPZ + 0.815)], mat: "crack" }); }
 LAY("tDrill", [1, 2, CPX, CPY + 1.4]);
-BOX("tChuck", "tDrill", CPX - 0.35, CPX + 0.35, CPY + 1.3, CPY + 2.1, CPZ - 0.35, CPZ + 0.35, "steel"); BOX("tMotor", "tDrill", CPX - 0.45, CPX + 0.45, CPY + 2.1, CPY + 2.9, CPZ - 0.45, CPZ + 0.45, "dark");
+VC("tChuck", "tDrill", 0.2, R2(CPY + 1.3), R2(CPY + 1.75), "steel", { x: CPX, z: CPZ }); VC("tQuill", "tDrill", 0.26, R2(CPY + 1.75), R2(CPY + 2.2), "steel2", { x: CPX, z: CPZ });
+BOX("tMotor", "tDrill", CPX - 0.55, CPX + 0.55, CPY + 2.2, CPY + 3.0, CPZ - 0.7, CPZ + 0.45, "panel"); P({ id: "tMotorGr", layer: "tDrill", shape: "box", size: [0.9, 0.04, 0.02], pos: [CPX, 0, R2(CPZ + 0.46)], at: Array.from({ length: 6 }, (_, i) => [0, R2(CPY + 2.35 + i * 0.1), 0]), mat: "dark" });
+VC("tMotorCap", "tDrill", 0.45, R2(CPY + 3.0), R2(CPY + 3.6), "dark", { x: CPX, z: CPZ - 0.15 }); HXC("tFeedHub", "tDrill", 0.12, CPX + 0.55, CPX + 0.75, R2(CPY + 2.5), CPZ - 0.1, "steel");
+[0, 120, 240].forEach((a, i) => { const [dy, dz] = pol(a, 0.45); P({ id: `tFeed${i}`, layer: "tDrill", shape: "box", size: [0.04, 0.04, 0.9], pos: [CPX + 0.7, R2(CPY + 2.5 + dy / 2), R2(CPZ - 0.1 + dz / 2)], rot: [R2(-a), 0, 0], mat: "steel" }); SPH(`tFeedK${i}`, "tDrill", 0.08, CPX + 0.7, R2(CPY + 2.5 + dy), R2(CPZ - 0.1 + dz), "dark"); });
 P({ id: "tBit", layer: "tDrill", shape: "cyl", size: [0.06, 1.0], rot: V, pos: [CPX, R2(CPY + 0.8), CPZ], mat: "needle" });
+for (let i = 0; i < 10; i++) P({ id: `tFlute${i}`, layer: "tDrill", shape: "box", size: [0.14, 0.03, 0.025], pos: [CPX, R2(CPY + 0.4 + i * 0.07), CPZ], rot: [0, i * 36, 20], mat: "steel2" });
 LAY("tChips", [1, 0.6, CPX, CPY + 0.4]);
 
 // ═════ 站 C：公司（後排三廠：英特爾、三星電機、Absolics 美國喬治亞州廠；前排台灣兩家：欣興、群創，送樣箱）═════
@@ -272,12 +308,12 @@ const FAB = (id, x, z, w, d, h, logo, logoW) => { LAY(id, [w + 1, h + 1, x, h / 
   VC(`${id}Stack`, id, 0.22, h, h + 1.4, "steel2", { x: x + w / 2 - 0.6, z: z - d / 2 + 0.6 });
   BOX(`${id}SignBg`, id, x - w / 2 + 0.3, x - w / 2 + 0.5 + logoW, 0.4, R2(0.4 + logoW * 0.42), z + d / 2, z + d / 2 + 0.04, "panel");
   PLATE(`${id}Sign`, id, logo, logoW, R2(x - w / 2 + 0.4 + logoW / 2), R2(0.4 + logoW * 0.21), R2(z + d / 2 + 0.05)); };
-FAB("cIntel", CX - 8, -2.5, 6, 3, 3.2, "sign-intel", 2.2);
-FAB("cSem", CX, -2.5, 6, 3, 3.2, "sign-samsung", 2.6);
-FAB("cAbs", CX + 8, -2.5, 6, 3, 3.2, "sign-absolics", 2.6);
-LAY("cfIntel", [1.6, 5, CX - 4.6, 2.5]); FLAGPOLE("cfIntelP", "cfIntel", "US", CX - 4.6, -1.2, 4.4, 1.2);
-LAY("cfSem", [1.6, 5, CX + 3.4, 2.5]); FLAGPOLE("cfSemP", "cfSem", "KR", CX + 3.4, -1.2, 4.4, 1.2);
-LAY("cfAbs", [3, 5, CX + 11.8, 2.5]); FLAGPOLE("cfAbsK", "cfAbs", "KR", CX + 11.4, -1.2, 4.4, 1.2); FLAGPOLE("cfAbsU", "cfAbs", "US", CX + 11.4, -3.0, 3.6, 1.2);
+FAB("cIntel", CX - 6.4, -2.5, 5.2, 3, 3.2, "sign-intel", 2.0);
+FAB("cSem", CX, -2.5, 5.2, 3, 3.2, "sign-samsung", 2.4);
+FAB("cAbs", CX + 6.4, -2.5, 5.2, 3, 3.2, "sign-absolics", 2.4);
+LAY("cfIntel", [1.6, 5, CX - 4.4, 2.5]); FLAGPOLE("cfIntelP", "cfIntel", "US", CX - 4.4, -0.4, 4.4, 1.0);
+LAY("cfSem", [1.6, 5, CX - 1.6, 2.5]); FLAGPOLE("cfSemP", "cfSem", "KR", CX - 1.6, -0.4, 4.4, 1.2);
+LAY("cfAbs", [3, 5, CX + 4.9, 2.5]); FLAGPOLE("cfAbsK", "cfAbs", "KR", CX + 4.2, -0.4, 4.4, 1.0); FLAGPOLE("cfAbsU", "cfAbs", "US", CX + 5.6, -0.4, 3.6, 1.0);
 const LAB = (id, x, logo) => { LAY(id, [4, 2.4, x, 1.2]);
   BOX(`${id}B`, id, x - 2, x + 2, 0.12, 2.0, 2.2, 4.2, "panel2"); BOX(`${id}Roof`, id, x - 2.1, x + 2.1, 2.0, 2.12, 2.1, 4.3, "roof");
   BOX(`${id}Door`, id, x + 0.9, x + 1.7, 0.12, 1.2, 4.2, 4.25, "dark"); BOX(`${id}SignBg`, id, x - 1.8, x + 0.7, 1.25, 1.85, 4.2, 4.24, "panel");
@@ -294,16 +330,22 @@ const QX = 120;
 LAY("qRoad", [20, 0.2, QX, 0.06]); BOX("qRoadB", "qRoad", QX - 10, QX + 10, 0.02, 0.08, -0.9, 0.9, "band"); P({ id: "qDash", layer: "qRoad", shape: "box", size: [0.8, 0.01, 0.1], pos: [0, 0.085, 0], at: Array.from({ length: 10 }, (_, i) => [R2(QX - 9 + i * 2), 0, 0]), mat: "warnY" });
 const POST = (id, x, sign) => { LAY(id, [3.4, 3.6, x, 1.8]); VC(`${id}P`, id, 0.08, 0, 2.6, "steel2", { x, z: -1.4 }); BOX(`${id}Bg`, id, x - 1.5, x + 1.5, 2.2, 3.5, -1.47, -1.43, "panel"); PLATE(`${id}S`, id, sign, 2.8, x, 2.85, -1.42); };
 POST("qP26", QX - 7, "sign-m26"); POST("qP27", QX, "sign-m27"); POST("qP28", QX + 7, "sign-m28");
-LAY("qCart", [2.4, 1.2, QX - 7, 0.6]);
-BOX("qCartB", "qCart", QX - 8.1, QX - 5.9, 0.35, 0.55, -0.6, 0.6, "steel2"); P({ id: "qWheel", layer: "qCart", shape: "cyl", size: [0.18, 0.12], pos: [0, 0.2, 0], at: [[QX - 7.8, 0, -0.62], [QX - 6.2, 0, -0.62], [QX - 7.8, 0, 0.62], [QX - 6.2, 0, 0.62]], mat: "rubber" });
-BOX("qCartG", "qCart", QX - 7.9, QX - 6.1, 0.55, 0.75, -0.5, 0.5, "glassCore"); P({ id: "qCartTgv", layer: "qCart", shape: "cyl", size: [0.04, 0.2], rot: V, pos: [0, 0.65, 0], at: Array.from({ length: 12 }, (_, i) => [R2(QX - 7.6 + (i % 6) * 0.28), 0, R2(-0.2 + Math.floor(i / 6) * 0.4)]), mat: "cuB" });
-P({ id: "qCartBar", layer: "qCart", shape: "cyl", size: [0.04, 0.9], rot: V, pos: [QX - 8.05, 0.95, 0], mat: "steel" });
+LAY("qCart", [4.8, 2.0, QX - 7, 1.0]);
+BOX("qCartB", "qCart", QX - 9.2, QX - 4.8, 0.55, 0.8, -1.2, 1.2, "steel2"); P({ id: "qWheel", layer: "qCart", shape: "cyl", size: [0.34, 0.2], pos: [0, 0.34, 0], at: [[QX - 8.6, 0, -1.25], [QX - 5.4, 0, -1.25], [QX - 8.6, 0, 1.25], [QX - 5.4, 0, 1.25]], mat: "rubber" });
+BOX("qCartG", "qCart", QX - 8.8, QX - 5.2, 0.8, 1.15, -1.0, 1.0, "glassCore"); P({ id: "qCartTgv", layer: "qCart", shape: "tube", size: [0.07, 0.045, 0.35], rot: V, pos: [0, 0.975, 0], at: Array.from({ length: 24 }, (_, i) => [R2(QX - 8.5 + (i % 8) * 0.43), 0, R2(-0.6 + Math.floor(i / 8) * 0.6)]), mat: "cuB" });
+VC("qCartPostL", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: -0.9 }); VC("qCartPostR", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: 0.9 }); ZC("qCartBar", "qCart", 0.06, -1.0, 1.0, QX - 9.1, 1.9, "rubber");
+// 量產目標旗（念「一延再延」時往後挪兩次）
+LAY("qGoal", [1.6, 4.4, QX + 0.6, 2.2]); VC("qGoalP", "qGoal", 0.06, 0, 4.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.25, 0, 0.12, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 1.4, QX + 1.15, 3.95, 0.02);
 LAY("qTest", [3.4, 3.4, QX + 3.2, 1.7]);
 BOX("qTestB", "qTest", QX + 1.6, QX + 4.8, 0, 3.2, 1.4, 3.6, "panel"); BOX("qTestWin", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 3.6, 3.63, "window"); BOX("qTestIn", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 2.0, 2.04, "dark");
 P({ id: "qTestRack", layer: "qTest", shape: "box", size: [1.8, 0.04, 1.2], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.6, 0], [0, 2.1, 0]], mat: "steel2" }); P({ id: "qTestPanel", layer: "qTest", shape: "box", size: [1.4, 0.06, 0.9], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.65, 0], [0, 2.15, 0]], mat: "glassCore" });
 SPH("qLampH", "qTest", 0.12, QX + 4.4, 2.9, 3.62, "lampR"); SPH("qLampC", "qTest", 0.12, QX + 4.4, 2.5, 3.62, "chill");
+BOX("qTestFrT", "qTest", QX + 1.9, QX + 4.1, 2.6, 2.7, 3.6, 3.66, "steel"); BOX("qTestFrB", "qTest", QX + 1.9, QX + 4.1, 1.1, 1.2, 3.6, 3.66, "steel"); BOX("qTestFrL", "qTest", QX + 1.9, QX + 2.0, 1.1, 2.7, 3.6, 3.66, "steel"); BOX("qTestFrR", "qTest", QX + 4.0, QX + 4.1, 1.1, 2.7, 3.6, 3.66, "steel");
+BOX("qTestHandle", "qTest", QX + 3.7, QX + 3.8, 0.9, 1.0, 3.6, 3.75, "steel"); P({ id: "qTestHinge", layer: "qTest", shape: "cyl", size: [0.06, 0.3], rot: V, pos: [0, 0, 3.62], at: [[QX + 1.65, 0.8, 0], [QX + 1.65, 2.6, 0]], mat: "steel" });
+P({ id: "qTestVent", layer: "qTest", shape: "box", size: [0.02, 0.06, 1.6], pos: [R2(QX + 4.81), 0, 2.5], at: Array.from({ length: 8 }, (_, i) => [0, R2(0.4 + i * 0.12), 0]), mat: "dark" });
+SPH("qTestStop", "qTest", 0.13, QX + 4.4, 0.8, 3.64, "lampR"); VC("qTestPort", "qTest", 0.12, 3.2, 3.4, "dark", { x: QX + 2.0, z: 2.0 });
 BOX("qTestScreen", "qTest", QX + 4.15, QX + 4.65, 1.4, 2.1, 3.6, 3.63, "screen");
-LAY("qUnk", [3.2, 1.2, QX + 3.5, 0.8]); BOX("qUnkBg", "qUnk", QX + 1.6, QX + 5.4, 0.3, 1.3, -1.8, -1.76, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 3.6, QX + 3.5, 0.8, -1.75);
+LAY("qUnk", [3.2, 2, QX + 7.6, 1.2]); VC("qUnkP", "qUnk", 0.06, 0, 1.0, "steel2", { x: QX + 7.6, z: 2.4 }); BOX("qUnkBg", "qUnk", QX + 5.8, QX + 9.4, 1.0, 2.0, 2.4, 2.44, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 3.4, QX + 7.6, 1.5, 2.45);
 
 // ═════ 站 N：下一集（銅箔基板：銅箔／浸樹脂玻纖布／銅箔，疊成一疊）═════
 const NX = 150;
@@ -323,19 +365,23 @@ actions.kSig2 = { type: "flow", layer: "kCore", path: K_SIG2, n: 7, size: 0.07, 
 actions.wHeatGlow = { type: "pulse", _說明: "加熱台發熱條", parts: ["wHeat"], color: "heaterC", glow: 1.0, freq: 1.1, halo: 0.4 };
 actions.wLampOn = { type: "pulse", parts: ["wLamp"], color: "lampR", glow: 1.0, freq: 2, halo: 0.3 };
 actions.wHotUp = { type: "flow", _說明: "熱從台面往上傳到兩片芯板", layer: "wBase", path: [[WX - 6.8, WT + 0.02, 2.1], [WX - 6.8, WT + 1.2, 2.1]], n: 3, lanes: 14, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.07, shape: "dot", rate: 0.7, phase: -3, color: "heatC", track: false, free: true, jitter: 0.04 };
+actions.wHotUpG = { type: "flow", _說明: "玻璃那片同樣受熱", layer: "wBase", path: [[GX0 + 0.3, WT + 0.3, 2.1], [GX0 + 0.3, WT + 1.3, 2.1]], n: 3, lanes: 9, laneDir: [1, 0, 0], laneGap: 0.68, size: 0.07, shape: "dot", rate: 0.7, phase: -3, color: "heatC", track: false, free: true, jitter: 0.04 };
 const wPiv = (x) => [x, WT, 0];
-actions.wWarpL = { type: "rotate", _說明: "樹脂芯板受熱，兩端往上翹（示意，不標角度）", parts: [...idsOf("wRl")], axis: [0, 0, 1], pivot: wPiv(RX1), angle: -7 };
-actions.wWarpR = { type: "rotate", parts: [...idsOf("wRr")], axis: [0, 0, 1], pivot: wPiv(RX2), angle: 7 };
-actions.wWarpL2 = { type: "rotate", _說明: "換大晶片，翹得更明顯", parts: [...idsOf("wRl")], axis: [0, 0, 1], pivot: wPiv(RX1), angle: -6 };
-actions.wWarpR2 = { type: "rotate", parts: [...idsOf("wRr")], axis: [0, 0, 1], pivot: wPiv(RX2), angle: 6 };
-actions.tScan = { type: "vibrate", _說明: "雷射頭沿 x 一排排掃過去（等速來回）", parts: [...idsOf("tHead"), ...idsOf("tBeamL")], axis: [1, 0, 0], amp: 3.6, freq: 1.0, tri: true };
+for (let k = 0; k < 4; k++) {
+  const segL = [], segR = []; for (let j = k; j < 4; j++) { segL.push(...idsOf(`wRl${j}`)); segR.push(...idsOf(`wRr${j}`)); }
+  actions[`wWarpL${k}`] = { type: "rotate", _說明: "樹脂芯板受熱，兩端往上連續彎（每個關節轉一點，示意，不標角度）", parts: segL, axis: [0, 0, 1], pivots: Object.fromEntries(segL.map((id) => [id, [R2(RX1 - k * SG), R2(WT + WS / 2), 0]])), angle: -2.2 };
+  actions[`wWarpR${k}`] = { type: "rotate", parts: segR, axis: [0, 0, 1], pivots: Object.fromEntries(segR.map((id) => [id, [R2(RX2 + k * SG), R2(WT + WS / 2), 0]])), angle: 2.2 };
+  actions[`wBigL${k}`] = { type: "rotate", _說明: "換大晶片，翹得更明顯", parts: segL, axis: [0, 0, 1], pivots: Object.fromEntries(segL.map((id) => [id, [R2(RX1 - k * SG), R2(WT + WS / 2), 0]])), angle: -1.8 };
+  actions[`wBigR${k}`] = { type: "rotate", parts: segR, axis: [0, 0, 1], pivots: Object.fromEntries(segR.map((id) => [id, [R2(RX2 + k * SG), R2(WT + WS / 2), 0]])), angle: 1.8 };
+}
+actions.tScan = { type: "vibrate", _說明: "雷射頭沿 x 一排排掃過去（等速來回）", parts: [...idsOf("tHead"), ...idsOf("tHeadB"), ...idsOf("tHeadL"), ...idsOf("tBeamL")], axis: [1, 0, 0], amp: 3.6, freq: 1.0, tri: true };
 actions.tLaserPulse = { type: "pulse", parts: ["tCone"], color: "laserC", glow: 1.2, freq: 8, halo: 0.6 };
 actions.tEtchFlow = { type: "flow", _說明: "蝕刻液沿玻璃上下表面流過，把改質的地方吃成孔", layer: "tEtchL", path: [[TX - 4.6, TG1 + 0.2, 2.62], [TX + 4.6, TG1 + 0.2, 2.62]], n: 10, size: 0.07, shape: "dot", rate: 0.6, phase: -2, color: "etchC", track: false, free: true, jitter: 0.04 };
 actions.tEtchBath = { type: "pulse", parts: ["tEtchT", "tEtchB"], color: "etchC", glow: 0.6, freq: 1.5, halo: 0.2 };
 actions.tCuIons = { type: "flow", _說明: "電鍍：銅離子往孔裡落、把孔鍍滿", layer: "tCu", path: [[TXS[0], TG1 + 1.2, 1.4], [TXS[0], TG1 + 0.02, 1.4]], n: 2, lanes: 7, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.08, shape: "dot", rate: 1.1, phase: -3, color: "ionC2", track: false, free: true, accel: true };
 actions.tSig = { type: "flow", _說明: "鍍好後上下接通：訊號從上面的銅墊經孔到下面", layer: "tCu", path: [[TXS[3] - 1.2, TG1 + 0.04, 2.55], [TXS[3], TG1 + 0.04, 2.55], [TXS[3], TG0 - 0.04, 2.55], [TXS[3] + 1.2, TG0 - 0.04, 2.55]], n: 4, size: 0.07, shape: "dot", rate: 0.6, color: "powC", track: false, free: true };
 actions.tChipsFly = { type: "flow", _說明: "機械鑽碰到玻璃：碎屑往外噴", layer: "tChips", path: [[CPX, CPY + 0.22, CPZ], [CPX + 0.6, CPY + 0.6, CPZ + 0.5], [CPX + 1.0, CPY + 0.2, CPZ + 0.9]], n: 3, lanes: 4, laneDir: [-1, 0, 0], laneGap: 0.4, size: 0.06, shape: "dot", rate: 1.3, phase: -2, color: "glassCoreC", track: false, free: true, accel: true, jitter: 0.1 };
-actions.tDrillSpin = { type: "rotate", parts: ["tBit"], axis: [0, 1, 0], pivot: [CPX, 0, CPZ], rps: 6, rampSpin: true };
+actions.tDrillSpin = { type: "rotate", parts: ["tBit", ...Array.from({ length: 10 }, (_, i) => `tFlute${i}`)], axis: [0, 1, 0], pivot: [CPX, 0, CPZ], rps: 6, rampSpin: true };
 actions.qHot = { type: "flow", _說明: "可靠性測試：冷熱循環（熱風、冷風輪流）", layer: "qTest", path: [[QX + 2.1, 2.5, 2.4], [QX + 3.9, 2.5, 2.4], [QX + 3.9, 1.3, 2.4], [QX + 2.1, 1.3, 2.4], [QX + 2.1, 2.5, 2.4]], n: 6, size: 0.08, shape: "dot", rate: 0.5, color: "heatC", track: false, free: true };
 actions.qCold = { type: "flow", layer: "qTest", path: [[QX + 2.1, 2.5, 2.5], [QX + 3.9, 2.5, 2.5], [QX + 3.9, 1.3, 2.5], [QX + 2.1, 1.3, 2.5], [QX + 2.1, 2.5, 2.5]], n: 6, size: 0.08, shape: "dot", rate: 0.5, phase: 0.5, color: "chillC", track: false, free: true };
 actions.qLampHot = { type: "pulse", parts: ["qLampH"], color: "lampR", glow: 1.0, freq: 1, halo: 0.3 };
@@ -345,10 +391,13 @@ actions.qLampCold = { type: "pulse", parts: ["qLampC"], color: "chillC", glow: 1
 Object.assign(anchors, {
   kChip: A("kChip", [KX + 1.4, kci + 0.5, 1.5], 150, -110), kCore: A("kCore", [KX - 4.6, kc0 + 0.3, SW], -150, 100), kGlass: A("kGlass", [KX - 4.6, kc0 + 0.3, SW], -150, 100), kSig: A("kCore", [KX - 0.4, kc1 + 0.4, SW + 0.06], 160, 120),
   kT4: A("kT4", [KX + 4.6, R2(kc1 + 3 * BU + 0.16), 3.5], 150, -90),
-  wRes: A("wRl", [RX0 + 0.1, WT + WS, 2.0], -140, -110), wGlass: A("wGlass", [GX1 - 0.3, WT + WS, 2.0], 140, -110), wChipB: A("wChipB", [R2((RX1 + RX2) / 2), WT + 0.6, 1.3], -120, -120), wLines: A("wGlass", [GXc + 1.6, WT + WS + 0.03, 1.2], 150, -100), wHeat: A("wBase", [WX - 3.6, 1.12, 2.62], -140, 110),
+  wRes: A("wRl3", [RX0 + 0.1, WT + WS, 2.0], -140, -110), wGlass: A("wGlass", [GX1 - 0.3, WT + WS, 2.0], 140, -110), wChipB: A("wChipB", [R2((RX1 + RX2) / 2), WT + 0.6, 1.3], -120, -120), wLines: A("wGlass", [GXc + 1.6, WT + WS + 0.03, 1.2], 150, -100), wHeat: A("wBase", [WX - 3.6, 1.12, 2.62], -140, 110),
   tMod: A("tMod1", [TXS[1], TG1, 0], -150, -110), tHole: A("tHole", [TXS[5], TG1, 1.4], 150, -110), tCu: A("tCu", [TXS[2], TG1 + 0.03, 1.4], -150, -110), tCrack: A("tCrack", [CPX, CPY + 0.22, CPZ + 0.3], 140, -100),
-  cIntel: A("cIntel", [CX - 8, 3.3, -1.0], -100, -110), cSem: A("cSem", [CX, 3.3, -1.0], 100, -110), cAbs: A("cAbs", [CX + 8, 3.3, -1.0], 100, -110), cUni: A("cUni", [CX - 5.5, 2.1, 3.2], -120, 100),
+  cIntel: A("cIntel", [CX - 6.4, 3.3, -1.0], -100, -110), cSem: A("cSem", [CX, 3.3, -1.0], 100, -110), cAbs: A("cAbs", [CX + 6.4, 3.3, -1.0], 100, -110), cUni: A("cUni", [CX - 5.5, 2.1, 3.2], -120, 100),
   qCart: A("qCart", [QX - 7, 0.75, 0], -120, -110), qTest: A("qTest", [QX + 3.2, 3.2, 2.5], 130, -110), qP27: A("qP27", [QX, 3.5, -1.42], 120, -100),
+  tGalvo: A("tHead", [TX + 0.7, 5.3, 0.6], 150, -90), tBarrel: A("tHeadB", [TX + 0.28, 4.0, 0.2], 150, 0), tLens: A("tHeadL", [TX + 0.3, 3.36, 0.2], 150, 80), tNo: A("tNo", [TXS[3], TG1 + 0.35, 2.56], -140, -110),
+  tDrillH: A("tDrill", [CPX + 0.55, CPY + 2.6, CPZ + 0.45], 140, -100), kB2: A("kB2", [KX + 4.6, R2(ky0 + 2 * BU + 0.1), 3.5], 150, 90), kBalls: A("kBalls", [KX + 3.0, 0.6, 4.5], 150, 100), kT2: A("kT2", [KX + 4.6, R2(kc1 + BU + 0.1), 3.5], 150, -90),
+  qGoal: A("qGoal", [QX + 1.15, 3.95, 0.02], 120, -100), qUnk: A("qUnk", [QX + 7.6, 1.5, 2.45], -120, -100),
   nStack: A("nTop", [NX + 3.5, 2.38, 2.0], 140, -110),
 });
 

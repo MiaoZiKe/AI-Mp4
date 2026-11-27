@@ -50,7 +50,7 @@ const Stack: React.FC<{ x: number; y: number; w: number; core: "cloth" | "glass"
 
 // ── glass-hook：接上一集（布再改還是會脹）→ 玻璃做的載板，好在哪？ ──
 const Hook: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, gl = on(f, T(o, "glass")), gd = on(f, T(o, "good")), pv = on(f, T(o, "prev")), gs = on(f, T(o, "gs"));
+  const W = o.w ?? 952, Hh = o.h ?? 330, pv = on(f, T(o, "still")), gl = on(f, T(o, "glass")), gd = gl, gs = on(f, T(o, "gs"));
   const sw = 3 + 3 * Math.sin(f / 9);
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <Stack x={24} y={CT + 30} w={130} core="cloth" bend={sw} a={0.45 + 0.55 * pv} />
@@ -59,8 +59,8 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
     <text x={258} y={CT + 22} textAnchor="middle" style={zh(40, RED, 900)} opacity={gd}>？</text>
     <text x={89} y={CT + 196} textAnchor="middle" style={zh(28, H.text2, 800)}>布核心</text><text x={258} y={CT + 196} textAnchor="middle" style={zh(28, H.text2, 800)}>玻璃核心</text>
     <Sep x={334} />
-    <Row x={360} y={CT + 56} t="玻璃做的載板，好在哪？" c={BLUE} a={Math.max(gl, gd)} />
-    <Row x={360} y={CT + 122} t="上一集：布再改還是會脹" c={H.text2} a={pv} />
+    <Row x={360} y={CT + 56} t="上一集：布再改還是會脹" c={H.text2} a={pv} />
+    <Row x={360} y={CT + 122} t="那整片換成玻璃呢？" c={BLUE} a={gl} />
     <Row x={360} y={CT + 188} t="這集：玻璃基板" c={H.amber} a={gs} />
   </Sv></Card>);
 };
@@ -105,9 +105,10 @@ const Tile: React.FC<P> = ({ o, f, k }) => {
       {Array.from({ length: 10 }, (_, i) => <line key={i} x1={34} y1={CT + 40 + i * 13} x2={34 + 120 * draw(T(o, "tile") + i)} y2={CT + 40 + i * 13} stroke={CU} strokeWidth={3} />)}</g>
     <g opacity={0.45 + 0.55 * cp}><path d={`M182,${CT + 30} Q206,${CT + 22} 230,${CT + 32} T278,${CT + 30} T318,${CT + 32} L318,${CT + 176} L182,${CT + 176} Z`} fill={CARPET} stroke={CARPETD} strokeWidth={2} />
       {Array.from({ length: 4 }, (_, i) => <path key={i} d={`M192,${CT + 56 + i * 32} Q222,${CT + 46 + i * 32} 250,${CT + 60 + i * 32} T308,${CT + 54 + i * 32}`} stroke={CU} strokeWidth={9} fill="none" strokeDasharray="140" strokeDashoffset={140 * (1 - draw(T(o, "carpet") + i * 3))} />)}</g>
-    <text x={94} y={CT + 214} textAnchor="middle" style={zh(28, H.text2, 800)}>地磚＝玻璃</text><text x={250} y={CT + 214} textAnchor="middle" style={zh(28, H.text2, 800)}>地毯＝樹脂</text>
+    {[24, 182].map((x) => <rect key={x} x={x} y={CT + 178} width={x === 24 ? 140 : 136} height={6} fill="#F07A2B" />)}
+    <text x={94} y={CT + 222} textAnchor="middle" style={zh(28, H.text2, 800)}>地磚＝玻璃</text><text x={250} y={CT + 222} textAnchor="middle" style={zh(28, H.text2, 800)}>地毯＝樹脂</text>
     <Sep x={334} />
-    <Row x={360} y={CT + 56} t="玻璃很平，受熱不太變形" c={BLUE} a={fl} />
+    <Row x={360} y={CT + 56} t="同樣加熱，玻璃不太變形" c={BLUE} a={fl} />
     <Row x={360} y={CT + 122} t="平地磚上畫線，比地毯細" c={H.amber} a={Math.max(tl, cp)} />
     <Row x={360} y={CT + 188} t="英特爾說：線路密度可到" c={H.text2} a={it} />
     <text x={384} y={CT + 244} style={zh(40, BLUE, 900)} opacity={0.3 + 0.7 * tn}>十倍（公司說法）</text>
@@ -166,7 +167,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
 // ── glass-road：量產一延再延；多數說最快 2027 年以後；截至 11/28 尚未確定 ──
 const Road: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, ms = on(f, T(o, "mass")), dl = on(f, T(o, "delay"), 24), mo = on(f, T(o, "most")), fa = on(f, T(o, "early")), un = on(f, T(o, "unk"), 8);
-  const xs = [90, 380, 670], px = 90 + 470 * ms - 230 * dl + 200 * fa;
+  const xs = [90, 380, 670], px = 60, gx = 290 + 150 * dl + 160 * fa;
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <line x1={50} y1={CT + 110} x2={900} y2={CT + 110} stroke={H.text2} strokeWidth={4} />
     {["2026｜現在", "2027｜最快", "2028 以後"].map((t, i) => (<g key={t} opacity={i === 0 ? 1 : 0.4 + 0.6 * mo}>
@@ -175,6 +176,8 @@ const Road: React.FC<P> = ({ o, f, k }) => {
     <g transform={`translate(${px},${CT + 50})`}><rect x={0} y={10} width={90} height={22} fill={GLASS} stroke={GLASSD} strokeWidth={2} />
       {[12, 34, 56, 78].map((d) => <rect key={d} x={d - 3} y={10} width={6} height={22} fill={CU} />)}
       <circle cx={18} cy={42} r={8} fill={SI} /><circle cx={72} cy={42} r={8} fill={SI} /></g>
+    <g transform={`translate(${gx},${CT + 30})`} opacity={0.4 + 0.6 * ms}><line x1={0} y1={0} x2={0} y2={80} stroke={H.text2} strokeWidth={4} /><path d="M0,0 L56,12 L0,26 Z" fill={H.amber} />
+      <text x={6} y={-8} style={zh(24, H.text, 900)}>量產</text></g>
     <text x={150} y={CT + 220} textAnchor="middle" style={zh(30, RED, 900)} opacity={0.35 + 0.65 * dl}>一延再延</text>
     <g opacity={un} transform={`rotate(-6 690 ${CT + 222})`}><rect x={540} y={CT + 192} width={300} height={56} fill="none" stroke={RED} strokeWidth={5} />
       <text x={690} y={CT + 232} textAnchor="middle" style={zh(32, RED, 900)}>截至 11/28 尚未確定</text></g>
@@ -185,9 +188,11 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, nw = on(f, T(o, "now")), nx = on(f, T(o, "next")), cc = on(f, T(o, "ccl")), kw = on(f, T(o, "kw"));
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <g opacity={0.45 + 0.55 * Math.max(nx, cc)}>
-      {[0, 1, 2].map((i) => <g key={i}><rect x={40} y={CT + 40 + i * 50} width={240} height={8} fill={CU} /><rect x={40} y={CT + 48 + i * 50} width={240} height={30} fill={PREPREG} stroke={H.text2} strokeWidth={1.5} />
-        {Array.from({ length: 10 }, (_, j) => <ellipse key={j} cx={52 + j * 24} cy={CT + 63 + i * 50} rx={8} ry={5} fill={CLOTH} />)}<rect x={40} y={CT + 78 + i * 50} width={240} height={8} fill={CU} /></g>)}</g>
-    <text x={160} y={CT + 220} textAnchor="middle" style={zh(28, H.text2, 800)}>銅箔＋浸樹脂玻纖布</text>
+      <rect x={40} y={CT + 44} width={240} height={12} fill={CU} />
+      <rect x={40} y={CT + 56} width={240} height={108} fill={PREPREG} stroke={H.text2} strokeWidth={1.5} />
+      {[0, 1, 2].map((i) => <g key={i}>{Array.from({ length: 10 }, (_, j) => <ellipse key={j} cx={52 + j * 24} cy={CT + 74 + i * 36} rx={8} ry={5} fill={CLOTH} />)}</g>)}
+      <rect x={40} y={CT + 164} width={240} height={12} fill={CU} /></g>
+    <text x={160} y={CT + 220} textAnchor="middle" style={zh(24, H.text2, 800)}>銅箔／浸樹脂玻纖布／銅箔</text>
     <Sep x={334} />
     <Row x={360} y={CT + 56} t="現在主角：樹脂芯板" c={H.text2} a={nw} />
     <Row x={360} y={CT + 122} t="下一集：銅箔基板" c={BLUE} a={Math.max(nx, cc)} />

@@ -91,11 +91,11 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "玻璃做的載板，到底好在哪？接上一集，來看玻璃基板。",
-   "tts": "玻璃做的載板，到底好在哪？接上一集，來看玻璃基板。",
+   "narration": "上一集說布還是會脹，那整片換玻璃呢？看玻璃基板。",
+   "tts": "上一集說布還是會脹，那整片換玻璃呢？看玻璃基板。",
    "subtitle": {
-    "zh": "玻璃做的載板\n到底好在哪？\n接上一集\n來看玻璃基板",
-    "en": "A substrate made of glass: | what's so good about it? | Picking up from last episode, | let's look at glass substrates."
+    "zh": "上一集說布還是會脹\n那整片換玻璃呢？\n看玻璃基板",
+    "en": "Last episode: cloth still expands. | So what if the core were solid glass? | Let's look at glass substrates."
    },
    "keywords": [
     "玻璃",
@@ -103,16 +103,12 @@
    ],
    "cues": [
     {
+     "id": "still",
+     "text": "還是會脹"
+    },
+    {
      "id": "glass",
-     "text": "玻璃做的"
-    },
-    {
-     "id": "good",
-     "text": "好在哪"
-    },
-    {
-     "id": "prev",
-     "text": "上一集"
+     "text": "整片換玻璃"
     },
     {
      "id": "gs",
@@ -125,8 +121,8 @@
    ],
    "props": {
     "hook": {
-     "kicker": "接上集：布再改還是會脹",
-     "title": "玻璃做的載板？",
+     "kicker": "接上集：BT 載板",
+     "title": "整片換成玻璃？",
      "size": 120,
      "top": 272
     },
@@ -148,7 +144,7 @@
       "elev": 26
      },
      {
-      "at": "prev-6",
+      "at": "glass-6",
       "dur": 40,
       "x": 0,
       "y": 1.4,
@@ -159,87 +155,87 @@
     "shift": [
      {
       "layer": "kT1",
-      "at": "s2:core-8",
+      "at": "s2:core-14",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 0.9
+      "dy": 0.7
      },
      {
       "layer": "kT2",
-      "at": "s2:core-7",
+      "at": "s2:core-13",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 1.02
+      "dy": 1.06
      },
      {
       "layer": "kT3",
-      "at": "s2:core-6",
+      "at": "s2:core-12",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 1.14
+      "dy": 1.42
      },
      {
       "layer": "kT4",
-      "at": "s2:core-5",
+      "at": "s2:core-11",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 1.26
+      "dy": 1.78
      },
      {
       "layer": "kSMt",
-      "at": "s2:core-4",
+      "at": "s2:core-10",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 1.38
+      "dy": 2.14
      },
      {
       "layer": "kChip",
-      "at": "s2:core-3",
+      "at": "s2:core-9",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": 1.5
+      "dy": 2.5
      },
      {
       "layer": "kB1",
-      "at": "s2:core-8",
+      "at": "s2:core-14",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -0.9
+      "dy": -0.7
      },
      {
       "layer": "kB2",
-      "at": "s2:core-7",
+      "at": "s2:core-13",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -1.02
+      "dy": -1.06
      },
      {
       "layer": "kB3",
-      "at": "s2:core-6",
+      "at": "s2:core-12",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -1.14
+      "dy": -1.42
      },
      {
       "layer": "kB4",
-      "at": "s2:core-5",
+      "at": "s2:core-11",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -1.26
+      "dy": -1.78
      },
      {
       "layer": "kSMb",
-      "at": "s2:core-4",
+      "at": "s2:core-10",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -1.38
+      "dy": -2.14
      },
      {
       "layer": "kBalls",
-      "at": "s2:core-3",
+      "at": "s2:core-9",
       "until": "s2:swap+26",
       "dur": 16,
-      "dy": -1.5
+      "dy": -2.5
      },
      {
       "layer": "kCore",
@@ -318,15 +314,46 @@
       "opacity": 0
      },
      {
-      "layer": "tMod0",
+      "layer": "wRule2",
       "at": "s1:start-40",
-      "until": "s5:ins+6",
+      "until": "s4:flat+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRule2",
+      "at": "s1:start-40",
+      "until": "s4:flat+8",
+      "dur": 12,
+      "dy": 1.5,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tNo",
+      "at": "s1:start-40",
+      "until": "s5:ins-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tNo",
+      "at": "s5:conn+2",
+      "until": "s9:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "tMod0",
-      "at": "s5:hole+14",
+      "at": "s1:start-40",
+      "until": "s5:conn-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tMod0",
+      "at": "s5:hole+2",
       "until": "s9:start+400",
       "opacity": 0,
       "dur": 1
@@ -334,13 +361,13 @@
      {
       "layer": "tMod1",
       "at": "s1:start-40",
-      "until": "s5:conn-2",
+      "until": "s5:conn+6",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "tMod1",
-      "at": "s5:hole+14",
+      "at": "s5:hole+2",
       "until": "s9:start+400",
       "opacity": 0,
       "dur": 1
@@ -348,27 +375,111 @@
      {
       "layer": "tMod2",
       "at": "s1:start-40",
-      "until": "s5:conn+10",
+      "until": "s5:conn+16",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "tMod2",
-      "at": "s5:hole+14",
+      "at": "s5:hole+2",
       "until": "s9:start+400",
       "opacity": 0,
       "dur": 1
+     },
+     {
+      "layer": "tBeamL",
+      "at": "s1:start-40",
+      "until": "s5:conn-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tBeamL",
+      "at": "s5:hole-8",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHead",
+      "at": "s1:start-40",
+      "until": "s5:conn+1",
+      "dur": 4,
+      "dz": -1.4
+     },
+     {
+      "layer": "tHead",
+      "at": "s5:conn+11",
+      "until": "s5:hole-8",
+      "dur": 4,
+      "dz": 1.4
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s1:start-40",
+      "until": "s5:conn+1",
+      "dur": 4,
+      "dz": -1.4
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s5:conn+11",
+      "until": "s5:hole-8",
+      "dur": 4,
+      "dz": 1.4
+     },
+     {
+      "layer": "tHeadL",
+      "at": "s1:start-40",
+      "until": "s5:conn+1",
+      "dur": 4,
+      "dz": -1.4
+     },
+     {
+      "layer": "tHeadL",
+      "at": "s5:conn+11",
+      "until": "s5:hole-8",
+      "dur": 4,
+      "dz": 1.4
+     },
+     {
+      "layer": "tBeamL",
+      "at": "s1:start-40",
+      "until": "s5:conn+1",
+      "dur": 4,
+      "dz": -1.4
+     },
+     {
+      "layer": "tBeamL",
+      "at": "s5:conn+11",
+      "until": "s5:hole-8",
+      "dur": 4,
+      "dz": 1.4
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s5:hole-6",
+      "until": "s5:window-2",
+      "dur": 14,
+      "dy": -0.5
+     },
+     {
+      "layer": "tHeadL",
+      "at": "s5:hole-6",
+      "until": "s5:window-2",
+      "dur": 14,
+      "dy": -1.1
      },
      {
       "layer": "tEtchL",
       "at": "s1:start-40",
-      "until": "s5:hole-2",
+      "until": "s5:hole-8",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "tEtchL",
-      "at": "s5:cu+4",
+      "at": "s5:cu-6",
       "until": "s9:start+400",
       "opacity": 0,
       "dur": 2
@@ -376,7 +487,7 @@
      {
       "layer": "tHole",
       "at": "s1:start-40",
-      "until": "s5:hole+10",
+      "until": "s5:hole-2",
       "opacity": 0,
       "dur": 2
      },
@@ -388,16 +499,23 @@
       "dur": 2
      },
      {
+      "layer": "tCuW",
+      "at": "s1:start-40",
+      "until": "s5:cu+6",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
       "layer": "tCu",
       "at": "s1:start-40",
-      "until": "s5:cu-2",
+      "until": "s5:cu+18",
       "opacity": 0,
       "dur": 2
      },
      {
       "layer": "tDrill",
       "at": "s1:start-40",
-      "until": "s5:brittle-8",
+      "until": "s5:brittle-4",
       "dur": 14,
       "dy": 0.9
      },
@@ -410,49 +528,49 @@
      },
      {
       "layer": "tFrame",
-      "at": "s5:window+8",
+      "at": "s5:window+16",
       "until": "s9:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tChips",
-      "at": "s1:start-40",
-      "until": "s5:brittle+6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tHead",
-      "at": "s5:window+8",
-      "until": "s9:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tChips",
-      "at": "s1:start-40",
-      "until": "s5:brittle+6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tBeamL",
-      "at": "s5:window+8",
-      "until": "s9:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tChips",
-      "at": "s1:start-40",
-      "until": "s5:brittle+6",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "tTank",
-      "at": "s5:window+8",
+      "at": "s5:window+16",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHead",
+      "at": "s5:window+16",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tChips",
+      "at": "s1:start-40",
+      "until": "s5:brittle+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s5:window+16",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tChips",
+      "at": "s1:start-40",
+      "until": "s5:brittle+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadL",
+      "at": "s5:window+16",
       "until": "s9:start+400",
       "opacity": 0,
       "dur": 1
@@ -680,11 +798,18 @@
       "dz": 2.2
      },
      {
-      "layer": "qCart",
-      "at": "s7:mass-4",
-      "until": "s7:delay+10",
-      "dur": 28,
-      "dx": 6.2
+      "layer": "qGoal",
+      "at": "s1:start-40",
+      "until": "s7:delay+2",
+      "dur": 16,
+      "dx": -3.9
+     },
+     {
+      "layer": "qGoal",
+      "at": "s7:early-2",
+      "until": "s9:start+400",
+      "dur": 16,
+      "dx": 3.6
      },
      {
       "layer": "qP28",
@@ -697,8 +822,8 @@
       "layer": "qP28",
       "at": "s1:start-40",
       "until": "s7:most-4",
-      "dur": 14,
-      "dy": 4.0,
+      "dur": 12,
+      "dy": 1.2,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -888,14 +1013,112 @@
       "dur": 1
      },
      {
-      "layer": "wRl",
+      "layer": "wRl0",
       "at": "s1:start-40",
       "until": "s3:voice-6",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "wRl",
+      "layer": "wRl0",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr0",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr0",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl1",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl1",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr1",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr1",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl2",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl2",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr2",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr2",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl3",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRl3",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr3",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRr3",
       "at": "s5:voice-1",
       "until": "s9:start+400",
       "opacity": 0,
@@ -910,20 +1133,6 @@
      },
      {
       "layer": "wRm",
-      "at": "s5:voice-1",
-      "until": "s9:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "wRr",
-      "at": "s1:start-40",
-      "until": "s3:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "wRr",
       "at": "s5:voice-1",
       "until": "s9:start+400",
       "opacity": 0,
@@ -980,6 +1189,20 @@
      },
      {
       "layer": "wRule",
+      "at": "s5:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRule2",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wRule2",
       "at": "s5:voice-1",
       "until": "s9:start+400",
       "opacity": 0,
@@ -1070,6 +1293,34 @@
       "dur": 1
      },
      {
+      "layer": "tCuW",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tCuW",
+      "at": "s6:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tNo",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tNo",
+      "at": "s6:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "tCu",
       "at": "s1:start-40",
       "until": "s5:voice-6",
@@ -1120,6 +1371,34 @@
      },
      {
       "layer": "tHead",
+      "at": "s6:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadB",
+      "at": "s6:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadL",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tHeadL",
       "at": "s6:voice-1",
       "until": "s9:start+400",
       "opacity": 0,
@@ -1338,7 +1617,7 @@
      {
       "layer": "qRoad",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1352,7 +1631,7 @@
      {
       "layer": "qP26",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1366,7 +1645,7 @@
      {
       "layer": "qP27",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1380,7 +1659,7 @@
      {
       "layer": "qP28",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1394,12 +1673,26 @@
      {
       "layer": "qCart",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "qCart",
+      "at": "s8:voice-1",
+      "until": "s9:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "qGoal",
+      "at": "s1:start-40",
+      "until": "s7:voice+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "qGoal",
       "at": "s8:voice-1",
       "until": "s9:start+400",
       "opacity": 0,
@@ -1408,7 +1701,7 @@
      {
       "layer": "qTest",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1422,7 +1715,7 @@
      {
       "layer": "qUnk",
       "at": "s1:start-40",
-      "until": "s7:voice+3",
+      "until": "s7:voice+8",
       "opacity": 0,
       "dur": 1
      },
@@ -1483,7 +1776,7 @@
       "en": "AI chip",
       "color": "blue",
       "at": "start+10",
-      "until": "gs",
+      "until": "end",
       "cut": true
      }
     ],
@@ -1501,14 +1794,11 @@
       "title": "系列 3・第 10 集",
       "tag": "示意，非實際比例",
       "t": {
+       "still": {
+        "at": "still"
+       },
        "glass": {
         "at": "glass"
-       },
-       "good": {
-        "at": "good"
-       },
-       "prev": {
-        "at": "prev"
        },
        "gs": {
         "at": "gs"
@@ -1576,35 +1866,62 @@
       "at": "voice-4",
       "dur": 1,
       "x": 0,
-      "y": -0.8,
-      "d": 28,
-      "elev": 12
+      "y": 0.2,
+      "d": 40,
+      "elev": 14
      },
      {
-      "at": "gs-6",
+      "at": "swap+30",
       "dur": 24,
-      "x": 1.5,
-      "y": -0.8,
-      "d": 32,
-      "elev": 12
+      "x": 0,
+      "y": 0.4,
+      "d": 34,
+      "elev": 14
      }
     ],
     "labels": [
+     {
+      "part": "kChip",
+      "text": "晶片（中介層＋HBM）",
+      "en": "Chip: interposer + HBM",
+      "color": "blue",
+      "at": "core-21",
+      "until": "core+24",
+      "cut": true
+     },
+     {
+      "part": "kT2",
+      "text": "上下增層（絕緣膜＋銅線）",
+      "en": "Build-up layers, top and bottom",
+      "color": "blue",
+      "at": "core+8",
+      "until": "core+58",
+      "cut": true
+     },
      {
       "part": "kCore",
       "text": "樹脂芯板（玻纖布＋樹脂）",
       "en": "Resin core: glass cloth + resin",
       "color": "amber",
-      "at": "core-2",
+      "at": "cloth-4",
       "until": "gs-2",
       "cut": true
      },
      {
-      "part": "kGlass",
-      "text": "玻璃芯板（穿孔鍍銅）",
-      "en": "Glass core with copper vias",
+      "part": "kBalls",
+      "text": "錫球",
+      "en": "Solder balls",
       "color": "blue",
-      "at": "swap-4",
+      "at": "gs-2",
+      "until": "gs+48",
+      "cut": true
+     },
+     {
+      "part": "kGlass",
+      "text": "玻璃芯板（穿孔孔壁鍍銅）",
+      "en": "Glass core, copper-lined vias",
+      "color": "blue",
+      "at": "swap+2",
       "until": "end",
       "cut": true
      }
@@ -1705,10 +2022,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 26.6,
-      "y": -0.4,
-      "d": 20,
-      "elev": 16
+      "x": 27.4,
+      "y": -0.6,
+      "d": 17,
+      "elev": 26
      }
     ],
     "run": [
@@ -1731,25 +2048,103 @@
       "until": "s5:start"
      },
      {
-      "id": "wWarpL",
+      "id": "wHotUpG",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpL0",
       "at": "warp-6",
       "ramp": 18,
       "until": "s5:start"
      },
      {
-      "id": "wWarpR",
+      "id": "wBigL0",
+      "at": "big+4",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpR0",
       "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigR0",
+      "at": "big+4",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpL1",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigL1",
+      "at": "big+4",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpR1",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigR1",
+      "at": "big+4",
       "ramp": 18,
       "until": "s5:start"
      },
      {
       "id": "wWarpL2",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigL2",
       "at": "big+4",
       "ramp": 18,
       "until": "s5:start"
      },
      {
       "id": "wWarpR2",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigR2",
+      "at": "big+4",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpL3",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigL3",
+      "at": "big+4",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wWarpR3",
+      "at": "warp-6",
+      "ramp": 18,
+      "until": "s5:start"
+     },
+     {
+      "id": "wBigR3",
       "at": "big+4",
       "ramp": 18,
       "until": "s5:start"
@@ -1775,7 +2170,7 @@
       "cut": true,
       "xy": [
        540,
-       330
+       900
       ]
      }
     ],
@@ -1878,18 +2273,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 30.4,
-      "y": -1.2,
-      "d": 32,
-      "elev": 18
+      "x": 31.0,
+      "y": -1.0,
+      "d": 30,
+      "elev": 28
      },
      {
       "at": "intel-6",
       "dur": 30,
       "x": 33.8,
-      "y": -0.2,
-      "d": 18,
-      "elev": 22
+      "y": -0.4,
+      "d": 17,
+      "elev": 26
      }
     ],
     "labels": [
@@ -2013,59 +2408,59 @@
       "at": "voice-4",
       "dur": 1,
       "x": 61.5,
-      "y": 0.6,
-      "d": 34,
+      "y": 0.4,
+      "d": 44,
       "elev": 22
      },
      {
-      "at": "window+6",
+      "at": "window+14",
       "dur": 26,
       "x": 66,
-      "y": 0.2,
-      "d": 20,
+      "y": 0.8,
+      "d": 22,
       "elev": 18
      }
     ],
     "run": [
      {
       "id": "tScan",
-      "at": "start",
-      "ramp": 6,
-      "until": "hole+12"
+      "at": "conn-8",
+      "ramp": 4,
+      "until": "hole-8"
      },
      {
       "id": "tLaserPulse",
-      "at": "start",
+      "at": "conn-8",
       "ramp": 4,
-      "until": "hole+12"
+      "until": "hole-8"
      },
      {
       "id": "tEtchFlow",
-      "at": "hole-2",
+      "at": "hole-8",
       "ramp": 6,
-      "until": "cu+4"
+      "until": "cu-6"
      },
      {
       "id": "tEtchBath",
-      "at": "hole-2",
+      "at": "hole-8",
       "ramp": 6,
-      "until": "s6:start"
+      "until": "cu-6"
      },
      {
       "id": "tCuIons",
-      "at": "cu-4",
+      "at": "cu+4",
       "ramp": 6,
-      "until": "window"
+      "until": "window+12"
      },
      {
       "id": "tSig",
-      "at": "cu+16",
+      "at": "cu+24",
       "ramp": 6,
       "until": "s6:start"
      },
      {
       "id": "tDrillSpin",
-      "at": "window+6",
+      "at": "window+14",
       "ramp": 8,
       "until": "s6:start"
      },
@@ -2078,34 +2473,86 @@
     ],
     "labels": [
      {
-      "part": "tMod",
-      "text": "雷射改質",
-      "en": "Laser modification",
+      "part": "tNo",
+      "text": "玻璃不導電：訊號過不去",
+      "en": "Glass blocks the signal",
       "color": "amber",
-      "at": "ins",
-      "until": "hole-4",
+      "at": "ins-14",
+      "until": "conn-4",
       "cut": true
      },
      {
-      "part": "tCu",
-      "text": "蝕刻開孔→鍍銅接通",
-      "en": "Etch holes, then plate copper",
-      "color": "blue",
-      "at": "hole-2",
-      "until": "window+4",
+      "part": "tMod",
+      "text": "雷射改質（逐排）",
+      "en": "Laser modification, row by row",
+      "color": "amber",
+      "at": "conn-4",
+      "until": "hole+7",
       "cut": true
+     },
+     {
+      "part": "tGalvo",
+      "text": "振鏡盒",
+      "en": "Galvo scanner",
+      "color": "blue",
+      "at": "hole+9",
+      "until": "window+14",
+      "cut": true,
+      "xy": [
+       860,
+       330
+      ]
+     },
+     {
+      "part": "tBarrel",
+      "text": "鏡筒",
+      "en": "Beam tube",
+      "color": "blue",
+      "at": "hole+6",
+      "until": "window+14",
+      "cut": true,
+      "xy": [
+       900,
+       470
+      ]
+     },
+     {
+      "part": "tLens",
+      "text": "聚焦鏡",
+      "en": "Focus lens",
+      "color": "blue",
+      "at": "hole+10",
+      "until": "window+14",
+      "cut": true,
+      "xy": [
+       220,
+       330
+      ]
+     },
+     {
+      "part": "tCu",
+      "text": "蝕刻開孔→孔壁鍍銅→填滿",
+      "en": "Etch, line walls, fill copper",
+      "color": "amber",
+      "at": "hole",
+      "until": "window+14",
+      "cut": true,
+      "xy": [
+       400,
+       990
+      ]
      },
      {
       "part": "tCrack",
       "text": "直接鑽：玻璃裂",
       "en": "Drilling cracks it",
       "color": "amber",
-      "at": "window+28",
+      "at": "window+36",
       "until": "end",
       "cut": true,
       "xy": [
-       790,
-       440
+       780,
+       990
       ]
      }
     ],
@@ -2194,7 +2641,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "SK 新聞；TrendForce；數位時代；截至 2026/11/28"
+    "Intel；科技新報；SK；TrendForce；截至 2026/11/28"
    ],
    "props": {
     "zoom": [
@@ -2208,10 +2655,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 90.6,
-      "y": -0.4,
-      "d": 66,
-      "elev": 28
+      "x": 90,
+      "y": -1.0,
+      "d": 52,
+      "elev": 30
      }
     ],
     "labels": [
@@ -2324,9 +2771,9 @@
      {
       "at": "voice+5",
       "dur": 1,
-      "x": 119.5,
+      "x": 120.5,
       "y": -0.4,
-      "d": 46,
+      "d": 48,
       "elev": 20
      }
     ],
@@ -2335,23 +2782,47 @@
       "id": "qHot",
       "at": "start",
       "ramp": 6,
-      "until": "s8:start"
-     },
-     {
-      "id": "qCold",
-      "at": "start",
-      "ramp": 6,
-      "until": "s8:start"
+      "until": "start+50"
      },
      {
       "id": "qLampHot",
       "at": "start",
       "ramp": 6,
+      "until": "start+50"
+     },
+     {
+      "id": "qCold",
+      "at": "start+50",
+      "ramp": 6,
+      "until": "start+100"
+     },
+     {
+      "id": "qLampCold",
+      "at": "start+50",
+      "ramp": 6,
+      "until": "start+100"
+     },
+     {
+      "id": "qHot",
+      "at": "start+100",
+      "ramp": 6,
+      "until": "start+150"
+     },
+     {
+      "id": "qLampHot",
+      "at": "start+100",
+      "ramp": 6,
+      "until": "start+150"
+     },
+     {
+      "id": "qCold",
+      "at": "start+150",
+      "ramp": 6,
       "until": "s8:start"
      },
      {
       "id": "qLampCold",
-      "at": "start",
+      "at": "start+150",
       "ramp": 6,
       "until": "s8:start"
      }
@@ -2359,19 +2830,36 @@
     "labels": [
      {
       "part": "qTest",
-      "text": "可靠性測試：冷熱循環",
-      "en": "Reliability test: thermal cycling",
+      "text": "可靠性測試（延後原因之一）",
+      "en": "Reliability tests (a reported cause)",
       "color": "blue",
-      "at": "voice+6",
+      "at": "mass+2",
       "until": "early+6",
-      "cut": true
+      "cut": true,
+      "xy": [
+       560,
+       990
+      ]
      },
      {
-      "part": "qP27",
-      "text": "多數說：最快 2027 以後",
-      "en": "Most say: 2027 at the earliest",
+      "part": "qGoal",
+      "text": "量產目標往後挪",
+      "en": "Target keeps slipping",
       "color": "amber",
-      "at": "early+8",
+      "at": "delay",
+      "until": "early+8",
+      "cut": true,
+      "xy": [
+       560,
+       400
+      ]
+     },
+     {
+      "part": "qUnk",
+      "text": "截至 11/28 還沒確定",
+      "en": "Unconfirmed as of 11/28",
+      "color": "amber",
+      "at": "unk-4",
       "until": "end",
       "cut": true
      }

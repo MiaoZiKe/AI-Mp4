@@ -11,9 +11,9 @@ INFO = MODEL["info"]
 ASOF = "2026/11/28"
 # (id, beat, 念稿（＝script.md 原文）, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 開口前只有畫面秒)
 S = [
-("s1", "hook", "玻璃做的載板，到底好在哪？接上一集，來看玻璃基板。",
- ["玻璃做的載板", "到底好在哪？", "接上一集", "來看玻璃基板"], ["A substrate made of glass:", "what's so good about it?", "Picking up from last episode,", "let's look at glass substrates."],
- [("glass", "玻璃做的"), ("good", "好在哪"), ("prev", "上一集"), ("gs", "玻璃基板")], ["玻璃", "載板"], ["Intel 新聞稿 2023/9/18；示意"], 0.0),
+("s1", "hook", "上一集說布還是會脹，那整片換玻璃呢？看玻璃基板。",
+ ["上一集說布還是會脹", "那整片換玻璃呢？", "看玻璃基板"], ["Last episode: cloth still expands.", "So what if the core were solid glass?", "Let's look at glass substrates."],
+ [("still", "還是會脹"), ("glass", "整片換玻璃"), ("gs", "玻璃基板")], ["玻璃", "載板"], ["Intel 新聞稿 2023/9/18；示意"], 0.0),
 ("s2", "you", "載板中間有塊芯板，平常是玻纖布泡樹脂做的。玻璃基板，就是把這塊換成一片玻璃。",
  ["載板中間有塊芯板", "平常是玻纖布", "泡樹脂做的", "玻璃基板", "就是把這塊", "換成一片玻璃"], ["In the middle of a substrate is a core,", "usually glass-fiber cloth", "soaked in resin.", "A glass substrate", "simply swaps that piece", "for a sheet of glass."],
  [("core", "芯板"), ("cloth", "玻纖布"), ("resin", "泡樹脂"), ("gs", "玻璃基板"), ("swap", "換成一片玻璃")], ["芯板", "玻纖布", "玻璃"], ["Intel 新聞稿 2023/9/18；示意"], 0.3),
@@ -28,7 +28,7 @@ S = [
  [("ins", "不導電"), ("conn", "接通"), ("hole", "穿孔"), ("cu", "鍍銅"), ("window", "玻璃窗"), ("brittle", "玻璃脆"), ("crack", "就裂")], ["穿孔", "鍍銅", "裂"], ["LPKF（LIDE）；MDPI Micromachines 2023；示意"], 0.3),
 ("s6", "payoff", "英特爾、三星電機都在做，還有一家南韓公司在美國蓋了專廠，台灣也有廠商在送樣。",
  ["英特爾、三星電機", "都在做", "還有一家南韓公司", "在美國蓋了專廠", "台灣也有廠商", "在送樣"], ["Intel and Samsung Electro-Mechanics", "are both working on it.", "A South Korean company", "built a dedicated plant in the US,", "and Taiwanese makers", "are sending samples."],
- [("intel", "英特爾"), ("sem", "三星電機"), ("kr", "南韓"), ("us", "美國"), ("tw", "台灣"), ("sample", "送樣")], ["英特爾", "三星電機", "送樣"], [f"SK 新聞；TrendForce；數位時代；截至 {ASOF}"], 0.3),
+ [("intel", "英特爾"), ("sem", "三星電機"), ("kr", "南韓"), ("us", "美國"), ("tw", "台灣"), ("sample", "送樣")], ["英特爾", "三星電機", "送樣"], [f"Intel；科技新報；SK；TrendForce；截至 {ASOF}"], 0.3),
 ("s7", "payoff", "可是量產一延再延，多數說最快二零二七年以後，截至十一月底還沒確定。",
  ["可是量產", "一延再延", "多數說最快", "2027 年以後", "截至十一月底", "還沒確定"], ["But mass production", "keeps slipping.", "Most say the earliest", "is 2027 or later;", "as of late November,", "nothing is confirmed."],
  [("mass", "量產"), ("delay", "一延再延"), ("most", "多數"), ("early", "最快"), ("asof", "截至"), ("unk", "還沒確定")], ["量產", "一延再延", "還沒確定"], [f"TrendForce；科技新報；分析預期，截至 {ASOF}"], 0.3),
@@ -54,7 +54,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, head) in enumerate(S):
     scenes.append(sc)
 md = open(os.path.join(HERE, "script.md")).read()
 for s in scenes: assert s["tts"] in md, ("念稿和 script.md 不一致", s["id"])
-scenes[0]["props"]["hook"] = {"kicker": "接上集：布再改還是會脹", "title": "玻璃做的載板？", "size": 120, "top": 272}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：BT 載板", "title": "整片換成玻璃？", "size": 120, "top": 272}
 scenes.append({"id": "s9", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "銅箔基板", "trail": ["電路板最常見的材料"], "comment": "玻璃基板", "logoAnim": "transparent"}}})
 
@@ -127,19 +127,27 @@ def carry(sid):
 X = INFO
 # ── 站 K（s1–s2）：爆炸剖面（上增層＋晶片往上、下增層＋錫球往下）→ 樹脂芯板往左抽走 → 玻璃芯板從右滑進來 → 合回 ──
 UP = ["kT1", "kT2", "kT3", "kT4", "kSMt", "kChip"]; DN = ["kB1", "kB2", "kB3", "kB4", "kSMb", "kBalls"]
-for i, l in enumerate(UP): VIS.append(mv(l, f"s2:core{-8 + i:+d}", "s2:swap+26", 16, dy=round(0.9 + i * 0.12, 2)))
-for i, l in enumerate(DN): VIS.append(mv(l, f"s2:core{-8 + i:+d}", "s2:swap+26", 16, dy=-round(0.9 + i * 0.12, 2)))
+for i, l in enumerate(UP): VIS.append(mv(l, f"s2:core{-14 + i:+d}", "s2:swap+26", 16, dy=round(0.7 + i * 0.36, 2)))
+for i, l in enumerate(DN): VIS.append(mv(l, f"s2:core{-14 + i:+d}", "s2:swap+26", 16, dy=-round(0.7 + i * 0.36, 2)))
 VIS.append(mv("kCore", "s2:gs-2", FAR, 18, dx=-14.0)); vis("kCore", [(T0, "s2:swap+16")], 1)
 vis("kGlass", [("s2:gs+6", FAR)], 1); VIS.append(mv("kGlass", T0, "s2:swap-8", 18, dx=14.0))
 # ── 站 W（s3–s4）：加熱；樹脂兩端翹（念「就會翹」）；換大晶片翹更多；玻璃那片一直平；直尺念「很平」才放上去 ──
 vis("wChipS", [(T0, "s3:big-2")], 1); vis("wChipB", [("s3:big-2", FAR)], 1); drop("wChipB", "s3:big-2", 0.5, 8)
-drop("wRule", "s4:flat-4", 1.5, 12)
+drop("wRule", "s4:flat-4", 1.5, 12); drop("wRule2", "s4:flat+8", 1.5, 12)
 # ── 站 T（s5）：改質線一排排出現（雷射掃過）→ 蝕刻液＋開孔 → 鍍銅；鑽頭往下 → 裂紋、兩半分開 ──
-vis("tMod0", [("s5:ins+6", "s5:hole+14")], 1); vis("tMod1", [("s5:conn-2", "s5:hole+14")], 1); vis("tMod2", [("s5:conn+10", "s5:hole+14")], 1)
-vis("tEtchL", [("s5:hole-2", "s5:cu+4")], 2); vis("tHole", [("s5:hole+10", "s5:cu+8")], 2); vis("tCu", [("s5:cu-2", FAR)], 2)
-VIS.append(mv("tDrill", T0, "s5:brittle-8", 14, dy=0.9))
+# 不導電：上面銅墊的訊號到玻璃面就停（紅叉）→ 雷射逐排改質（頭跟著換排）→ 雷射關 → 蝕刻液開孔、蝕刻液退掉露出空孔 → 孔壁鍍銅 → 填滿
+vis("tNo", [("s5:ins-4", "s5:conn+2")], 1)
+vis("tMod0", [("s5:conn-4", "s5:hole+2")], 1); vis("tMod1", [("s5:conn+6", "s5:hole+2")], 1); vis("tMod2", [("s5:conn+16", "s5:hole+2")], 1)
+vis("tBeamL", [("s5:conn-8", "s5:hole-8")], 1)
+for l in ("tHead", "tHeadB", "tHeadL", "tBeamL"):
+    VIS += [mv(l, T0, "s5:conn+1", 4, dz=-1.4), mv(l, "s5:conn+11", "s5:hole-8", 4, dz=1.4)]
+# 雷射頭拆解（蝕刻、鍍銅這段雷射沒在用）：鏡筒、聚焦鏡沿 Y 往下分開、逐件標名 → 組回
+VIS += [mv("tHeadB", "s5:hole-6", "s5:window-2", 14, dy=-0.5), mv("tHeadL", "s5:hole-6", "s5:window-2", 14, dy=-1.1)]
+vis("tEtchL", [("s5:hole-8", "s5:cu-6")], 2); vis("tHole", [("s5:hole-2", "s5:cu+8")], 2); vis("tCuW", [("s5:cu+6", FAR)], 2); vis("tCu", [("s5:cu+18", FAR)], 2)
+VIS.append(mv("tDrill", T0, "s5:brittle-4", 14, dy=0.9))
 vis("tCrack", [("s5:crack-6", FAR)], 1)
-for l in ("tFrame", "tHead", "tBeamL", "tTank"): vis(l, [(T0, "s5:window+8")], 1); vis("tChips", [("s5:brittle+6", FAR)], 1)
+for l in ("tFrame", "tTank"): vis(l, [(T0, "s5:window+16")], 1)
+for l in ("tHead", "tHeadB", "tHeadL"): vis(l, [(T0, "s5:window+16")], 1); vis("tChips", [("s5:brittle+6", FAR)], 1)
 VIS += [mv("tCoupL", "s5:crack-2", FAR, 8, dx=-0.18), mv("tCoupR", "s5:crack-2", FAR, 8, dx=0.18)]
 # ── 站 C（s6）：念到才落下（英特爾＋美國旗、三星電機＋南韓旗、南韓公司的美國廠、台灣兩家＋台灣旗）；送樣箱往前送 ──
 drop("cIntel", "s6:intel-8", 5.0, 14); drop("cfIntel", "s6:intel-2", 5.0, 14)
@@ -149,15 +157,15 @@ drop("cUni", "s6:tw-8", 4.0, 14); drop("cInno", "s6:tw-4", 4.0, 14); drop("cfTw"
 drop("cBoxU", "s6:sample-10", 2.0, 10); drop("cBoxI", "s6:sample-6", 2.0, 10)
 VIS += [mv("cBoxU", "s6:sample+8", FAR, 26, dz=2.2), mv("cBoxI", "s6:sample+12", FAR, 26, dz=2.2)]
 # ── 站 Q（s7）：推車往 2027 推（量產）→ 被推回（一延再延）→ 2028 以後路標落下；冷熱循環一直跑；「尚未確定」牌念到才落下 ──
-VIS.append(mv("qCart", "s7:mass-4", "s7:delay+10", 28, dx=6.2))
-drop("qP28", "s7:most-4", 4.0, 14); drop("qUnk", "s7:unk-6", 3.0, 12)
+VIS += [mv("qGoal", T0, "s7:delay+2", 16, dx=-3.9), mv("qGoal", "s7:early-2", FAR, 16, dx=3.6)]
+drop("qP28", "s7:most-4", 1.2, 12); drop("qUnk", "s7:unk-6", 3.0, 12)
 # ── 站 N（s8）：銅箔基板一疊，最上面一組念「銅箔基板」才蓋上；招牌念到才落下 ──
 drop("nTop", "s8:ccl-6", 2.0, 14); drop("nSign", "s8:ccl", 3.0, 12)
 
 # ── 每一站只在用到它的幕出現 ──
 def W(k): return f"s{k}:voice-6"
 def E(k): return f"s{k}:voice-1"
-STA = {"k": [(T0, E(3))], "w": [(W(3), E(5))], "t": [(W(5), E(6))], "c": [(W(6), ENDV("s6"))], "q": [(W(7) if not EXTN.get("s7") else f"s7:voice{EXTN['s7'] - 6:+d}", E(8))], "n": [(W(8), FAR)]}
+STA = {"k": [(T0, E(3))], "w": [(W(3), E(5))], "t": [(W(5), E(6))], "c": [(W(6), ENDV("s6"))], "q": [(W(7) if not EXTN.get("s7") else f"s7:voice{EXTN['s7'] - 1:+d}", E(8))], "n": [(W(8), FAR)]}
 for pre, wins in STA.items():
     for l in ALL_LAYERS:
         if re.match(rf"^{pre}[A-Z0-9]", l):
@@ -169,40 +177,44 @@ for pre, wins in STA.items():
 
 # ═════ 各幕 ═════
 P = {}
-P["s1"] = {"shot": [shot("start-30", X["KX"], 1.2, 36, 30, 1, yaw=0.0), shot("start", X["KX"], 1.0, 34, 26, 60), shot("prev-6", X["KX"], 1.4, 30, 14, 40)],
+P["s1"] = {"shot": [shot("start-30", X["KX"], 1.2, 36, 30, 1, yaw=0.0), shot("start", X["KX"], 1.0, 34, 26, 60), shot("glass-6", X["KX"], 1.4, 30, 14, 40)],
  "shift": VIS,
  "run": [run("kSig", "start-30", "s2:gs", 8), run("kSig2", "start-30", "s2:gs", 8)],
- "labels": [lab("kChip", "AI 晶片", "AI chip", "blue", "start+10", "gs")],
- "overlay": [sec("glass-hook", "start", nxt("s1"), "系列 3・第 10 集", "示意，非實際比例", {"glass": "glass", "good": "good", "prev": "prev", "gs": "gs"}, cut=True)]}
+ "labels": [lab("kChip", "AI 晶片", "AI chip", "blue", "start+10", "end")],
+ "overlay": [sec("glass-hook", "start", nxt("s1"), "系列 3・第 10 集", "示意，非實際比例", {"still": "still", "glass": "glass", "gs": "gs"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "micro", "at": "start-8", "dur": 1}],
- "shot": [shot(CC, X["KX"], -0.8, 28, 12, 1), shot("gs-6", X["KX"] + 1.5, -0.8, 32, 12, 24)],
- "labels": [lab("kCore", "樹脂芯板（玻纖布＋樹脂）", "Resin core: glass cloth + resin", "amber", "core-2", "gs-2"),
-            lab("kGlass", "玻璃芯板（穿孔鍍銅）", "Glass core with copper vias", "blue", "swap-4", "end")],
+ "shot": [shot(CC, X["KX"], 0.2, 40, 14, 1), shot("swap+30", X["KX"], 0.4, 34, 14, 24)],
+ "labels": [lab("kChip", "晶片（中介層＋HBM）", "Chip: interposer + HBM", "blue", "core-21", "core+24"), lab("kT2", "上下增層（絕緣膜＋銅線）", "Build-up layers, top and bottom", "blue", "core+8", "core+58"),
+            lab("kCore", "樹脂芯板（玻纖布＋樹脂）", "Resin core: glass cloth + resin", "amber", "cloth-4", "gs-2"), lab("kBalls", "錫球", "Solder balls", "blue", "gs-2", "gs+48"),
+            lab("kGlass", "玻璃芯板（穿孔孔壁鍍銅）", "Glass core, copper-lined vias", "blue", "swap+2", "end")],
  "overlay": [card("s2", "glass-swap", "芯板換成一片玻璃", "示意", {"core": "core", "cloth": "cloth", "resin": "resin", "gs": "gs", "swap": "swap"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["WX"] - 3.4, -0.4, 20, 16, 1)],
+ "shot": [shot(CC, X["WX"] - 2.6, -0.6, 17, 26, 1)],
  "run": [run("wHeatGlow", "start-10", "s5:start", 8), run("wLampOn", "start-10", "s5:start", 8), run("wHotUp", "start-10", "s5:start", 6),
-         run("wWarpL", "warp-6", "s5:start", 18), run("wWarpR", "warp-6", "s5:start", 18), run("wWarpL2", "big+4", "s5:start", 18), run("wWarpR2", "big+4", "s5:start", 18)],
- "labels": [lab("wRes", "樹脂芯板：受熱翹", "Resin core warps when heated", "amber", "heat-4", "big-4"), lab("wRes", "換大晶片：翹更多", "Bigger chip: more warp", "amber", "big-2", "end", xy=[540, 330])],
+         run("wHotUpG", "start-10", "s5:start", 6)] + [r for k in range(4) for sd in "LR" for r in (run(f"wWarp{sd}{k}", "warp-6", "s5:start", 18), run(f"wBig{sd}{k}", "big+4", "s5:start", 18))],
+ "labels": [lab("wRes", "樹脂芯板：受熱翹", "Resin core warps when heated", "amber", "heat-4", "big-4"), lab("wRes", "換大晶片：翹更多", "Bigger chip: more warp", "amber", "big-2", "end", xy=[540, 900])],
  "overlay": [card("s3", "glass-cookie", "樹脂受熱會翹", "示意，誇大", {"heat": "heat", "warp": "warp", "cookie": "cookie", "curl": "curl", "big": "big", "line": "line"})]}
 P["s4"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["WX"] + 0.4, -1.2, 32, 18, 1), shot("intel-6", X["WX"] + 3.8, -0.2, 18, 22, 30)],
+ "shot": [shot(CC, X["WX"] + 1.0, -1.0, 30, 28, 1), shot("intel-6", X["WX"] + 3.8, -0.4, 17, 26, 30)],
  "labels": [lab("wGlass", "玻璃芯板：貼平直尺", "Glass core stays flat", "blue", "flat-2", "intel-8"), lab("wLines", "線更細、更密", "Finer, denser lines", "blue", "intel-6", "end")],
  "overlay": [card("s4", "glass-tile", "玻璃很平，線畫得細", "英特爾 2023/9 說法；示意", {"flat": "flat", "tile": "tile", "carpet": "carpet", "intel": "intel", "ten": "ten"})]}
 P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["TX"] + 1.5, 0.6, 34, 22, 1), shot("window+6", X["CPX"], 0.2, 20, 18, 26)],
- "run": [run("tScan", "start", "hole+12", 6), run("tLaserPulse", "start", "hole+12", 4), run("tEtchFlow", "hole-2", "cu+4", 6), run("tEtchBath", "hole-2", "s6:start", 6),
-         run("tCuIons", "cu-4", "window", 6), run("tSig", "cu+16", "s6:start", 6), run("tDrillSpin", "window+6", "s6:start", 8), run("tChipsFly", "brittle+6", "crack+20", 4)],
- "labels": [lab("tMod", "雷射改質", "Laser modification", "amber", "ins", "hole-4"), lab("tCu", "蝕刻開孔→鍍銅接通", "Etch holes, then plate copper", "blue", "hole-2", "window+4"), lab("tCrack", "直接鑽：玻璃裂", "Drilling cracks it", "amber", "window+28", "end", xy=[790, 440])],
+ "shot": [shot(CC, X["TX"] + 1.5, 0.4, 44, 22, 1), shot("window+14", X["CPX"], 0.8, 22, 18, 26)],
+ "run": [run("tScan", "conn-8", "hole-8", 4), run("tLaserPulse", "conn-8", "hole-8", 4), run("tEtchFlow", "hole-8", "cu-6", 6), run("tEtchBath", "hole-8", "cu-6", 6),
+         run("tCuIons", "cu+4", "window+12", 6), run("tSig", "cu+24", "s6:start", 6), run("tDrillSpin", "window+14", "s6:start", 8), run("tChipsFly", "brittle+6", "crack+20", 4)],
+ "labels": [lab("tNo", "玻璃不導電：訊號過不去", "Glass blocks the signal", "amber", "ins-14", "conn-4"), lab("tMod", "雷射改質（逐排）", "Laser modification, row by row", "amber", "conn-4", "hole+7"),
+            lab("tGalvo", "振鏡盒", "Galvo scanner", "blue", "hole+9", "window+14", xy=[860, 330]), lab("tBarrel", "鏡筒", "Beam tube", "blue", "hole+6", "window+14", xy=[900, 470]), lab("tLens", "聚焦鏡", "Focus lens", "blue", "hole+10", "window+14", xy=[220, 330]),
+            lab("tCu", "蝕刻開孔→孔壁鍍銅→填滿", "Etch, line walls, fill copper", "amber", "hole", "window+14", xy=[400, 990]),
+            lab("tCrack", "直接鑽：玻璃裂", "Drilling cracks it", "amber", "window+36", "end", xy=[780, 990])],
  "overlay": [card("s5", "glass-tgv", "玻璃穿孔（TGV）", "示意，不標孔徑", {"ins": "ins", "conn": "conn", "hole": "hole", "cu": "cu", "window": "window", "crack": "crack"})]}
 P["s6"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["CX"] + 0.6, -0.4, 66, 28, 1)],
+ "shot": [shot(CC, X["CX"], -1.0, 52, 30, 1)],
  "labels": [lab("cUni", "台灣廠商：送樣", "Taiwan makers: sampling", "amber", "tw-2", "end")],
  "overlay": [card("s6", "glass-co", "誰在做玻璃基板", f"公司說法、媒體報導；截至 {ASOF}", {"intel": "intel", "sem": "sem", "kr": "kr", "us": "us", "tw": "tw", "sample": "sample"}, h=400, y=990)]}
 P["s7"] = {"zoom": [{"to": "co", "at": SC("s7"), "dur": 1}],
- "shot": [shot(SC("s7"), X["QX"] - 0.5, -0.4, 46, 20, 1)],
- "run": [run("qHot", "start", "s8:start", 6), run("qCold", "start", "s8:start", 6), run("qLampHot", "start", "s8:start", 6), run("qLampCold", "start", "s8:start", 6)],
- "labels": [lab("qTest", "可靠性測試：冷熱循環", "Reliability test: thermal cycling", "blue", SA("s7"), "early+6"), lab("qP27", "多數說：最快 2027 以後", "Most say: 2027 at the earliest", "amber", "early+8", "end")],
+ "shot": [shot(SC("s7"), X["QX"] + 0.5, -0.4, 48, 20, 1)],
+ "run": [run(a, b, c, 6) for i, (b, c) in enumerate([("start", "start+50"), ("start+50", "start+100"), ("start+100", "start+150"), ("start+150", "s8:start")]) for a in (("qHot", "qLampHot") if i % 2 == 0 else ("qCold", "qLampCold"))],
+ "labels": [lab("qTest", "可靠性測試（延後原因之一）", "Reliability tests (a reported cause)", "blue", "mass+2", "early+6", xy=[560, 990]), lab("qGoal", "量產目標往後挪", "Target keeps slipping", "amber", "delay", "early+8", xy=[560, 400]), lab("qUnk", "截至 11/28 還沒確定", "Unconfirmed as of 11/28", "amber", "unk-4", "end")],
  "overlay": [card("s7", "glass-road", "量產一延再延", f"分析預期；截至 {ASOF} 尚未確定", {"mass": "mass", "delay": "delay", "most": "most", "early": "early", "unk": "unk"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, X["NX"] + 1.5, -0.6, 52, 26, 1), shot("start", X["NX"] + 1.5, -0.6, 56, 28, 120)],
