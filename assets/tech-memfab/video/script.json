@@ -1,0 +1,1609 @@
+{
+ "slug": "tech-memfab",
+ "prevEpisode": "M1：成熟與特殊製程代工",
+ "title": "記憶體製造（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "記憶體晶圓（示意）",
+    "en": "MEMORY WAFER",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "kinds",
+    "label": "三種記憶體（示意）",
+    "en": "DRAM / NAND / NOR",
+    "field": "15 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "dram",
+    "label": "動態記憶體陣列放大（示意）",
+    "en": "DRAM CELL ARRAY",
+    "field": "1 µm",
+    "ruler": "0.1 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "nand",
+    "label": "儲存型快閃疊層放大（示意）",
+    "en": "3D NAND STACK",
+    "field": "10 µm",
+    "ruler": "1 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "idm",
+    "label": "整合元件製造廠（示意）",
+    "en": "IDM",
+    "field": "300 m",
+    "ruler": "30 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "global",
+    "label": "全球動態記憶體三大廠",
+    "en": "DRAM MAKERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tw",
+    "label": "台灣記憶體廠",
+    "en": "TAIWAN MAKERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "mu",
+    "label": "美光台灣（示意）",
+    "en": "MICRON TAIWAN",
+    "field": "300 m",
+    "ruler": "30 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "化合物半導體（下一集）",
+    "en": "NEXT",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "記憶體製造",
+   "另一種晶圓廠"
+  ],
+  "sub": "動態記憶體＋儲存型＋編碼型快閃",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "前一集看完成熟製程代工，記憶體又在哪做？答案是另一種晶圓廠。",
+   "tts": "前一集看完成熟製程代工，記憶體又在哪做？答案是另一種晶圓廠。",
+   "subtitle": {
+    "zh": "前一集看完\n成熟製程代工\n記憶體又在哪做？\n答案是\n另一種晶圓廠",
+    "en": "Last time we finished | mature-node foundries. | So where is memory made? | The answer: | a different kind of fab."
+   },
+   "keywords": [
+    "前一集",
+    "記憶體",
+    "晶圓廠"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "q",
+     "text": "在哪做"
+    },
+    {
+     "id": "fab",
+     "text": "另一種晶圓廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：成熟製程代工",
+     "title": "記憶體在哪做？",
+     "size": 92,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": -1.6,
+      "d": 30,
+      "elev": 42
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bBits",
+      "at": "s2:off+4",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bPwr",
+      "at": "s2:off",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bPwrOff",
+      "at": "s1:start-40",
+      "until": "s2:off",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cChg",
+      "at": "s1:start-40",
+      "until": "s4:sw+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cCell",
+      "at": "s1:start-40",
+      "until": "s4:cell-2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cCell",
+      "at": "s4:chop",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL0",
+      "at": "s1:start-40",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL1",
+      "at": "s1:start-40",
+      "until": "s5:voice+5",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL2",
+      "at": "s1:start-40",
+      "until": "s5:voice+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL3",
+      "at": "s1:start-40",
+      "until": "s5:voice+11",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL4",
+      "at": "s1:start-40",
+      "until": "s5:voice+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL5",
+      "at": "s1:start-40",
+      "until": "s5:voice+17",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL6",
+      "at": "s1:start-40",
+      "until": "s5:voice+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL7",
+      "at": "s1:start-40",
+      "until": "s5:voice+23",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL8",
+      "at": "s1:start-40",
+      "until": "s5:voice+26",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL9",
+      "at": "s1:start-40",
+      "until": "s5:voice+29",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL10",
+      "at": "s1:start-40",
+      "until": "s5:voice+32",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL11",
+      "at": "s1:start-40",
+      "until": "s5:voice+35",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL12",
+      "at": "s1:start-40",
+      "until": "s5:voice+38",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL13",
+      "at": "s1:start-40",
+      "until": "s5:voice+41",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL14",
+      "at": "s1:start-40",
+      "until": "s5:voice+44",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dL15",
+      "at": "s1:start-40",
+      "until": "s5:voice+47",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dStair",
+      "at": "s1:start-40",
+      "until": "s5:voice+52",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dHole0",
+      "at": "s1:start-40",
+      "until": "s5:drill+2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dHole1",
+      "at": "s1:start-40",
+      "until": "s5:drill+11",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dHole2",
+      "at": "s1:start-40",
+      "until": "s5:drill+20",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dFill",
+      "at": "s1:start-40",
+      "until": "s5:straw-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dStraw",
+      "at": "s1:start-40",
+      "until": "s5:straw-8",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "dStraw",
+      "at": "s5:straw+40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "nBolt",
+      "at": "s1:start-40",
+      "until": "s9:ev-2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "nCrack",
+      "at": "s1:start-40",
+      "until": "s9:si-2",
+      "opacity": 0,
+      "dur": 3
+     }
+    ],
+    "run": [
+     {
+      "id": "aSpin",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aDieA",
+      "text": "一格＝一顆記憶體晶粒",
+      "en": "Each square = one memory die",
+      "color": "amber",
+      "at": "fab-2",
+      "until": "fab+43",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇・M2",
+      "tag": "示意",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "fab": {
+        "at": "fab"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "記憶體分三種。動態記憶體像書桌，好拿，但斷電就清空。",
+   "tts": "記憶體分三種。動態記憶體像書桌，好拿，但斷電就清空。",
+   "subtitle": {
+    "zh": "記憶體分三種\n動態記憶體像書桌\n好拿 但斷電就清空",
+    "en": "Memory comes in three kinds. | DRAM is like a desk: | easy to reach, wiped when power goes."
+   },
+   "keywords": [
+    "動態記憶體",
+    "書桌",
+    "斷電"
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "分三種"
+    },
+    {
+     "id": "desk",
+     "text": "書桌"
+    },
+    {
+     "id": "off",
+     "text": "斷電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Semiconductor Engineering；專利 TWI517150B；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "kinds",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30,
+      "y": -2.2,
+      "d": 42,
+      "elev": 44
+     },
+     {
+      "at": "desk-8",
+      "dur": 26,
+      "x": 28.0,
+      "y": -1.5,
+      "d": 30,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "bBitGlow",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "aSpin",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "start"
+     },
+     {
+      "id": "bSsdGlow",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "off"
+     },
+     {
+      "id": "bSsdSteady",
+      "at": "off",
+      "ramp": 4,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bDimmA",
+      "text": "動態記憶體（DRAM）模組",
+      "en": "DRAM module",
+      "color": "blue",
+      "at": "desk-4",
+      "until": "desk+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-desk",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "動態記憶體：像書桌",
+      "tag": "示意",
+      "t": {
+       "three": {
+        "at": "three"
+       },
+       "desk": {
+        "at": "desk"
+       },
+       "off": {
+        "at": "off"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "快閃記憶體有兩種：儲存型像倉庫，斷電不消失；編碼型像便條紙，記開機指令。",
+   "tts": "快閃記憶體有兩種：儲存型像倉庫，斷電不消失；編碼型像便條紙，記開機指令。",
+   "subtitle": {
+    "zh": "快閃記憶體有兩種\n儲存型像倉庫\n斷電不消失\n編碼型像便條紙\n記開機指令",
+    "en": "Flash comes in two kinds: | NAND is like a warehouse, | data stays without power; | NOR is like a sticky note, | holding boot instructions."
+   },
+   "keywords": [
+    "儲存型",
+    "編碼型",
+    "開機"
+   ],
+   "cues": [
+    {
+     "id": "flash",
+     "text": "快閃記憶體"
+    },
+    {
+     "id": "ware",
+     "text": "倉庫"
+    },
+    {
+     "id": "keep",
+     "text": "不消失"
+    },
+    {
+     "id": "note",
+     "text": "便條紙"
+    },
+    {
+     "id": "boot",
+     "text": "開機"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiEngineering、TechTarget；示意動畫"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30,
+      "y": -3.3,
+      "d": 40,
+      "elev": 50
+     }
+    ],
+    "run": [
+     {
+      "id": "bNorGlow",
+      "at": "boot-4",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "bBoot",
+      "at": "boot-2",
+      "ramp": 4,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bSsdA",
+      "text": "儲存型快閃（NAND）：固態硬碟",
+      "en": "NAND flash: SSD",
+      "color": "amber",
+      "at": "ware-4",
+      "until": "ware+41",
+      "cut": true
+     },
+     {
+      "part": "bNorA",
+      "text": "編碼型快閃（NOR）：開機晶片",
+      "en": "NOR flash: boot chip",
+      "color": "blue",
+      "at": "note-4",
+      "until": "note+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-flash",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "快閃記憶體：斷電也不消失",
+      "tag": "示意",
+      "t": {
+       "flash": {
+        "at": "flash"
+       },
+       "ware": {
+        "at": "ware"
+       },
+       "keep": {
+        "at": "keep"
+       },
+       "note": {
+        "at": "note"
+       },
+       "boot": {
+        "at": "boot"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "動態記憶體每一格是開關配電容，電容又細又高，像一排筷子站著。",
+   "tts": "動態記憶體每一格是開關配電容，電容又細又高，像一排筷子站著。",
+   "subtitle": {
+    "zh": "動態記憶體每一格\n是開關配電容\n電容又細又高\n像一排筷子站著",
+    "en": "Each DRAM cell is | a switch plus a capacitor; | the capacitors are thin and tall, | like chopsticks standing in a row."
+   },
+   "keywords": [
+    "開關",
+    "電容",
+    "筷子"
+   ],
+   "cues": [
+    {
+     "id": "cell",
+     "text": "每一格"
+    },
+    {
+     "id": "sw",
+     "text": "開關"
+    },
+    {
+     "id": "cap",
+     "text": "又細又高"
+    },
+    {
+     "id": "chop",
+     "text": "筷子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Semiconductor Engineering；示意（放大，不按比例）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "dram",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60,
+      "y": 0.3,
+      "d": 33,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "cWLGlow",
+      "at": "sw-4",
+      "ramp": 4,
+      "until": "sw+26"
+     },
+     {
+      "id": "cFill",
+      "at": "sw+4",
+      "ramp": 4,
+      "until": "cap+6"
+     },
+     {
+      "id": "cLeak",
+      "at": "cap+6",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cCellA",
+      "text": "一格：開關＋電容",
+      "en": "One cell: transistor + capacitor",
+      "color": "amber",
+      "at": "cell",
+      "until": "cell+45",
+      "cut": true
+     },
+     {
+      "part": "cCapA",
+      "text": "電容：又細又高",
+      "en": "Tall, thin capacitors",
+      "color": "blue",
+      "at": "cap+4",
+      "until": "cap+49",
+      "cut": true
+     },
+     {
+      "part": "cWLA",
+      "text": "開關（字元線）",
+      "en": "Switch gate (word line)",
+      "color": "amber",
+      "at": "sw",
+      "until": "sw+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-cell",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "動態記憶體：一格＝開關＋電容",
+      "tag": "示意（放大，不按比例）",
+      "t": {
+       "cell": {
+        "at": "cell"
+       },
+       "sw": {
+        "at": "sw"
+       },
+       "cap": {
+        "at": "cap"
+       },
+       "chop": {
+        "at": "chop"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "儲存型則疊三百多層薄膜，再往下鑽深孔，像千層蛋糕插吸管。",
+   "tts": "儲存型則疊三百多層薄膜，再往下鑽深孔，像千層蛋糕插吸管。",
+   "subtitle": {
+    "zh": "儲存型則疊\n三百多層薄膜\n再往下鑽深孔\n像千層蛋糕插吸管",
+    "en": "NAND stacks | over three hundred thin layers, | then drills deep holes down, | like straws in a layer cake."
+   },
+   "keywords": [
+    "三百多層",
+    "鑽深孔",
+    "吸管"
+   ],
+   "cues": [
+    {
+     "id": "stack",
+     "text": "則疊"
+    },
+    {
+     "id": "n300",
+     "text": "三百多層"
+    },
+    {
+     "id": "drill",
+     "text": "鑽深孔"
+    },
+    {
+     "id": "straw",
+     "text": "吸管"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SK 海力士（321 層）、USPTO 11302706；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "nand",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90,
+      "y": 0.2,
+      "d": 33,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "dEtch0",
+      "at": "drill-2",
+      "ramp": 3,
+      "until": "drill+11"
+     },
+     {
+      "id": "dEtch1",
+      "at": "drill+11",
+      "ramp": 3,
+      "until": "drill+20"
+     },
+     {
+      "id": "dEtch2",
+      "at": "drill+20",
+      "ramp": 3,
+      "until": "straw-8"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dStackA",
+      "text": "導體層／絕緣層交錯",
+      "en": "Alternating conductor / oxide",
+      "color": "amber",
+      "at": "n300-2",
+      "until": "n300+43",
+      "cut": true
+     },
+     {
+      "part": "dHoleA",
+      "text": "由上往下鑽深孔",
+      "en": "Deep holes etched down",
+      "color": "blue",
+      "at": "drill",
+      "until": "drill+45",
+      "cut": true
+     },
+     {
+      "part": "dFillA",
+      "text": "填入儲存層＋通道",
+      "en": "Charge-trap layer + channel",
+      "color": "amber",
+      "at": "straw",
+      "until": "straw+30",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-nand",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "儲存型快閃：疊層再鑽孔",
+      "tag": "示意（畫 16 對，實際三百多層）",
+      "t": {
+       "stack": {
+        "at": "stack"
+       },
+       "n300": {
+        "at": "n300"
+       },
+       "drill": {
+        "at": "drill"
+       },
+       "straw": {
+        "at": "straw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "做法特別，大廠就自己設計自己製造。三星、SK 海力士、美光，據集邦統計包辦近九成動態記憶體。",
+   "tts": "做法特別，大廠就自己設計自己製造。三星、SK 海力士、美光，據集邦統計包辦近九成動態記憶體。",
+   "subtitle": {
+    "zh": "做法特別\n大廠就自己設計\n自己製造\n三星 SK 海力士 美光\n據集邦統計\n包辦近九成動態記憶體",
+    "en": "Because it's so specialized, | the big players design | and manufacture it themselves. | Samsung, SK hynix, Micron: | according to TrendForce, | nearly 90% of DRAM."
+   },
+   "keywords": [
+    "自己設計",
+    "自己製造",
+    "近九成"
+   ],
+   "cues": [
+    {
+     "id": "spec",
+     "text": "做法特別"
+    },
+    {
+     "id": "idm",
+     "text": "自己設計"
+    },
+    {
+     "id": "make",
+     "text": "自己製造"
+    },
+    {
+     "id": "sam",
+     "text": "三星"
+    },
+    {
+     "id": "sk",
+     "text": "海力士"
+    },
+    {
+     "id": "mu",
+     "text": "美光"
+    },
+    {
+     "id": "tf",
+     "text": "集邦"
+    },
+    {
+     "id": "n90",
+     "text": "近九成"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce 2026 Q2 營收市占；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "idm",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "global",
+      "at": "sam-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 120,
+      "y": -1.0,
+      "d": 52,
+      "elev": 30
+     },
+     {
+      "at": "sam-6",
+      "dur": 1,
+      "x": 150.0,
+      "y": -1.1,
+      "d": 37,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "eOffGlow",
+      "at": "idm-4",
+      "ramp": 6,
+      "until": "sam"
+     },
+     {
+      "id": "eHand",
+      "at": "idm+6",
+      "ramp": 4,
+      "until": "sam"
+     },
+     {
+      "id": "eFabGlow",
+      "at": "make-4",
+      "ramp": 6,
+      "until": "sam"
+     },
+     {
+      "id": "eFan0",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "sam"
+     },
+     {
+      "id": "eFan1",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "sam"
+     },
+     {
+      "id": "eFan2",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "sam"
+     },
+     {
+      "id": "eFan3",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "sam"
+     },
+     {
+      "id": "fNod",
+      "at": "sam",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eOffA",
+      "text": "設計",
+      "en": "Design",
+      "color": "blue",
+      "at": "idm-2",
+      "until": "sam-12",
+      "cut": true
+     },
+     {
+      "part": "eFbA",
+      "text": "製造（晶圓廠）",
+      "en": "Manufacturing (fab)",
+      "color": "amber",
+      "at": "make-2",
+      "until": "sam-8",
+      "cut": true,
+      "xy": [
+       640,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-idm",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "大廠：自己設計、自己製造",
+      "tag": "TrendForce 2026 Q2",
+      "t": {
+       "spec": {
+        "at": "spec"
+       },
+       "idm": {
+        "at": "idm"
+       },
+       "make": {
+        "at": "make"
+       },
+       "sam": {
+        "at": "sam"
+       },
+       "sk": {
+        "at": "sk"
+       },
+       "mu": {
+        "at": "mu"
+       },
+       "tf": {
+        "at": "tf"
+       },
+       "n90": {
+        "at": "n90"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.6,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "台灣走利基型，量小、規格特別。南亞科做動態記憶體，華邦電兩種都做，旺宏主攻快閃。",
+   "tts": "台灣走利基型，量小、規格特別。南亞科做動態記憶體，華邦電兩種都做，旺宏主攻快閃。",
+   "subtitle": {
+    "zh": "台灣走利基型\n量小 規格特別\n南亞科做動態記憶體\n華邦電兩種都做\n旺宏主攻快閃",
+    "en": "Taiwan goes niche: | small volumes, special specs. | Nanya makes DRAM, | Winbond makes both, | Macronix focuses on flash."
+   },
+   "keywords": [
+    "利基型",
+    "南亞科",
+    "華邦電"
+   ],
+   "cues": [
+    {
+     "id": "niche",
+     "text": "利基型"
+    },
+    {
+     "id": "spec",
+     "text": "規格特別"
+    },
+    {
+     "id": "nanya",
+     "text": "南亞科"
+    },
+    {
+     "id": "wb",
+     "text": "華邦電"
+    },
+    {
+     "id": "mx",
+     "text": "旺宏"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代、科技新報、工商時報等報導；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tw",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180.0,
+      "y": -1.1,
+      "d": 37,
+      "elev": 14
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-tw",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "台灣：利基型記憶體",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "niche": {
+        "at": "niche"
+       },
+       "spec": {
+        "at": "spec"
+       },
+       "nanya": {
+        "at": "nanya"
+       },
+       "wb": {
+        "at": "wb"
+       },
+       "mx": {
+        "at": "mx"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.7,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "美光在台中、桃園也有大廠，做高頻寬記憶體。",
+   "tts": "美光在台中、桃園也有大廠，做高頻寬記憶體。",
+   "subtitle": {
+    "zh": "美光在台中 桃園\n也有大廠\n做高頻寬記憶體",
+    "en": "Micron also has big fabs | in Taichung and Taoyuan, | making high-bandwidth memory."
+   },
+   "keywords": [
+    "美光",
+    "台中",
+    "高頻寬記憶體"
+   ],
+   "cues": [
+    {
+     "id": "mu",
+     "text": "美光"
+    },
+    {
+     "id": "tc",
+     "text": "台中"
+    },
+    {
+     "id": "ty",
+     "text": "桃園"
+    },
+    {
+     "id": "hbm",
+     "text": "高頻寬"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報、聯合報報導；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mu",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 209.4,
+      "y": -1.2,
+      "d": 44,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "hTsvGlow",
+      "at": "hbm-4",
+      "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "hFan0",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s9:start"
+     },
+     {
+      "id": "hFan1",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hFabA",
+      "text": "美光台灣晶圓廠（示意）",
+      "en": "Micron Taiwan fab (illustrative)",
+      "color": "blue",
+      "at": "mu",
+      "until": "ty+30",
+      "cut": true
+     },
+     {
+      "part": "hHbmA",
+      "text": "高頻寬記憶體：一疊十二層",
+      "en": "HBM: 12-high stack",
+      "color": "amber",
+      "at": "hbm-4",
+      "until": "hbm+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-mu",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "美光在台灣",
+      "tag": "公司與媒體報導；截至 2026/11/28",
+      "t": {
+       "mu": {
+        "at": "mu"
+       },
+       "tc": {
+        "at": "tc"
+       },
+       "ty": {
+        "at": "ty"
+       },
+       "hbm": {
+        "at": "hbm"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "但電動車要耐高壓，矽晶圓撐不住。下一集看碳化矽和氮化鎵。留言記憶體廠，拿完整資料。",
+   "tts": "但電動車要耐高壓，細晶圓撐不住。下一集看碳化細和氮化鎵。留言記憶體廠，拿完整資料。",
+   "subtitle": {
+    "zh": "但電動車要耐高壓\n矽晶圓撐不住\n下一集看\n碳化矽和氮化鎵\n留言記憶體廠\n拿完整資料",
+    "en": "But EVs need high voltage, | and silicon wafers can't take it. | Next episode: | silicon carbide and gallium nitride. | Comment \"memory fab\" | for the full notes."
+   },
+   "keywords": [
+    "電動車",
+    "碳化矽",
+    "氮化鎵"
+   ],
+   "cues": [
+    {
+     "id": "ev",
+     "text": "電動車"
+    },
+    {
+     "id": "si",
+     "text": "撐不住"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "sic",
+     "text": "碳化矽"
+    },
+    {
+     "id": "kw",
+     "text": "留言記憶體廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 240,
+      "y": -1.1,
+      "d": 33,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "nBoltGlow",
+      "at": "ev",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "nArc",
+      "at": "si-2",
+      "ramp": 3,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nSiA",
+      "text": "耐壓不夠（示意）",
+      "en": "Breaks down at high voltage",
+      "color": "amber",
+      "at": "si-2",
+      "until": "si+36",
+      "cut": true
+     },
+     {
+      "part": "nSiCA",
+      "text": "碳化矽",
+      "en": "Silicon carbide",
+      "color": "blue",
+      "at": "sic+2",
+      "until": "sic+47",
+      "cut": true,
+      "xy": [
+       470,
+       830
+      ]
+     },
+     {
+      "part": "nGaNA",
+      "text": "氮化鎵",
+      "en": "Gallium nitride",
+      "color": "blue",
+      "at": "sic+50",
+      "until": "sic+95",
+      "cut": true,
+      "xy": [
+       790,
+       830
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "memfab-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：碳化矽與氮化鎵",
+      "tag": "留言「記憶體廠」",
+      "t": {
+       "ev": {
+        "at": "ev"
+       },
+       "si": {
+        "at": "si"
+       },
+       "next": {
+        "at": "next"
+       },
+       "sic": {
+        "at": "sic"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.0,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "化合物半導體：碳化矽與氮化鎵",
+     "trail": [
+      "記憶體廠：自己設計、自己製造"
+     ],
+     "comment": "記憶體廠",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
