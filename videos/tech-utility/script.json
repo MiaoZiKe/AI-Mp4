@@ -1,0 +1,2119 @@
+{
+ "slug": "tech-utility",
+ "prevEpisode": "2-19：無塵室",
+ "title": "水、氣、電（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指；本支無聲版，不送 TTS（配音由頻道負責人統一做）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "use",
+    "label": "用水點（示意）",
+    "en": "POINT OF USE",
+    "field": "3 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "fab",
+    "label": "晶圓廠剖面（示意）",
+    "en": "FAB CROSS-SECTION",
+    "field": "20 m",
+    "ruler": "5 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "sys",
+    "label": "廠務系統（示意）",
+    "en": "FAB UTILITIES",
+    "field": "15 m",
+    "ruler": "2 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "廠房與供應商（示意）",
+    "en": "FABS AND SUPPLIERS",
+    "field": "25 m",
+    "ruler": "5 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "probe",
+    "label": "探針卡（下一集）",
+    "en": "PROBE CARD",
+    "field": "3 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "水、氣、電",
+   "晶圓廠的命脈"
+  ],
+  "sub": "洗晶圓的水要多乾淨？",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "洗晶圓的水，要多乾淨？前一集的無塵室，連空氣都過濾乾淨。",
+   "tts": "洗晶圓的水，要多乾淨？前一集的無塵室，連空氣都過濾乾淨。",
+   "subtitle": {
+    "zh": "洗晶圓的水\n要多乾淨？\n前一集的無塵室\n連空氣都\n過濾乾淨",
+    "en": "The water that washes wafers: | how clean must it be? | Last episode, the cleanroom | even had its air | filtered clean."
+   },
+   "keywords": [
+    "多乾淨",
+    "無塵室",
+    "空氣"
+   ],
+   "cues": [
+    {
+     "id": "wash",
+     "text": "洗晶圓"
+    },
+    {
+     "id": "clean",
+     "text": "多乾淨"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "air",
+     "text": "空氣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：無塵室連空氣都過濾乾淨",
+     "title": "水要多乾淨？",
+     "size": 120,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "use",
+      "at": "start-30",
+      "dur": 1
+     },
+     {
+      "to": "fab",
+      "at": "prev-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": -39.6,
+      "y": 2.3,
+      "d": 25,
+      "elev": 34
+     },
+     {
+      "at": "start",
+      "dur": 70,
+      "x": -39.6,
+      "y": 2.3,
+      "d": 24.0,
+      "elev": 34
+     },
+     {
+      "at": "prev-4",
+      "dur": 1,
+      "x": 0,
+      "y": 4.5,
+      "d": 54,
+      "elev": 14
+     },
+     {
+      "at": "prev+6",
+      "dur": 40,
+      "x": 0,
+      "y": 7.6,
+      "d": 64,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "fFacade",
+      "at": "s1:prev-2",
+      "until": "s10:ready+34",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "fRoof",
+      "at": "s1:prev-2",
+      "until": "s10:ready+22",
+      "dur": 22,
+      "dy": 4.4
+     },
+     {
+      "layer": "fFan",
+      "at": "s1:prev-2",
+      "until": "s10:ready+22",
+      "dur": 22,
+      "dy": 4.4
+     },
+     {
+      "layer": "fClean",
+      "at": "s1:prev+8",
+      "until": "s10:ready+14",
+      "dur": 22,
+      "dy": 2.8
+     },
+     {
+      "layer": "fPlen",
+      "at": "s1:end+4",
+      "until": "s10:ready+8",
+      "dur": 22,
+      "dy": 1.4
+     },
+     {
+      "layer": "fSubW",
+      "at": "s2:start+2",
+      "until": "s10:ready",
+      "dur": 22,
+      "dx": -1.6
+     },
+     {
+      "layer": "fSubG",
+      "at": "s2:start+2",
+      "until": "s10:ready",
+      "dur": 22,
+      "dx": 1.6
+     },
+     {
+      "layer": "gGround",
+      "at": "s8:pipe-6",
+      "until": "s8:end+40",
+      "dur": 20,
+      "dy": 1.9
+     },
+     {
+      "layer": "gGround",
+      "at": "s8:pipe-6",
+      "until": "s8:end+40",
+      "opacity": 0.35,
+      "dur": 12
+     },
+     {
+      "layer": "lBact",
+      "at": "s1:start-40",
+      "until": "s3:stop+6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tTower",
+      "at": "s7:start+4",
+      "until": "s7:end+18",
+      "dur": 22,
+      "dy": 2.0
+     },
+     {
+      "layer": "tFan",
+      "at": "s7:start+4",
+      "until": "s7:end+18",
+      "dur": 22,
+      "dy": 2.0
+     },
+     {
+      "layer": "eUPS",
+      "at": "s1:start-40",
+      "until": "s6:backup-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eUPS",
+      "at": "s1:start-40",
+      "until": "s6:backup",
+      "dur": 22,
+      "dz": -2.6
+     },
+     {
+      "layer": "eLampR",
+      "at": "s1:start-40",
+      "until": "s5:crash",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eLampR",
+      "at": "s6:start+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eLampG",
+      "at": "s5:crash",
+      "until": "s6:start+10",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "v0",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "dur": 1,
+      "dx": 1.4
+     },
+     {
+      "layer": "v2",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "dur": 1,
+      "dx": -1.2
+     },
+     {
+      "layer": "v0",
+      "at": "s9:start-6",
+      "until": "s9:org-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "v1",
+      "at": "s9:start-6",
+      "until": "s9:lh-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "v2",
+      "at": "s9:start-6",
+      "until": "s9:sf-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "pCard",
+      "at": "s10:probe",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": -0.83
+     },
+     {
+      "layer": "pHit",
+      "at": "s1:start-40",
+      "until": "s10:probe+26",
+      "opacity": 0,
+      "dur": 3
+     }
+    ],
+    "run": [
+     {
+      "id": "uSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "prev"
+     },
+     {
+      "id": "uJet",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uOutA",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uOutB",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uOutC",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uFlingA",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uFlingB",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "uFlingC",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "prev"
+     },
+     {
+      "id": "fAir",
+      "at": "prev+8",
+      "ramp": 8,
+      "until": "s2:upw+44"
+     },
+     {
+      "id": "fRet",
+      "at": "end+10",
+      "ramp": 8,
+      "until": "s2:upw+44"
+     },
+     {
+      "id": "fRet2",
+      "at": "end+10",
+      "ramp": 8,
+      "until": "s2:upw+44"
+     },
+     {
+      "id": "fFanSpin",
+      "at": "prev",
+      "ramp": 10,
+      "until": "s2:upw+44"
+     },
+     {
+      "id": "fFanSpin2",
+      "at": "prev",
+      "ramp": 10,
+      "until": "s2:upw+44"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fClean",
+      "text": "無塵室（前一集）",
+      "en": "Cleanroom (last episode)",
+      "color": "amber",
+      "at": "prev+6",
+      "until": "prev+52",
+      "cut": true
+     },
+     {
+      "part": "fPlen",
+      "text": "回風夾層",
+      "en": "Return-air plenum",
+      "color": "blue",
+      "at": "air+48",
+      "until": "air+94",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 20 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "wash": {
+        "at": "wash"
+       },
+       "clean": {
+        "at": "clean"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "air": {
+        "at": "air"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 2.4,
+   "pauseAfter": 2.4
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "這叫超純水，幾乎只剩水分子。做法像濾水壺，濾網加樹脂，把雜質一個個抓走。",
+   "tts": "這叫超純水，幾乎只剩水分子。做法像濾水壺，濾網加樹脂，把雜質一個個抓走。",
+   "subtitle": {
+    "zh": "這叫超純水\n幾乎只剩水分子\n做法像濾水壺\n濾網加樹脂\n把雜質\n一個個抓走",
+    "en": "This is ultrapure water, | almost nothing but water molecules. | It works like a filter pitcher: | membranes plus resin | pull the impurities | out one by one."
+   },
+   "keywords": [
+    "超純水",
+    "濾水壺",
+    "樹脂"
+   ],
+   "cues": [
+    {
+     "id": "upw",
+     "text": "超純水"
+    },
+    {
+     "id": "mol",
+     "text": "水分子"
+    },
+    {
+     "id": "pitcher",
+     "text": "濾水壺"
+    },
+    {
+     "id": "mem",
+     "text": "濾網"
+    },
+    {
+     "id": "resin",
+     "text": "樹脂"
+    },
+    {
+     "id": "catch",
+     "text": "抓走"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Xylem 超純水 FAQ、SEMI F63；USPTO 4879041"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "sys",
+      "at": "upw+42",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0,
+      "y": 7.6,
+      "d": 64,
+      "elev": 12
+     },
+     {
+      "at": "start+2",
+      "dur": 40,
+      "x": 0,
+      "y": 3.2,
+      "d": 62,
+      "elev": 15
+     },
+     {
+      "at": "upw+42",
+      "dur": 1,
+      "x": 39.4,
+      "y": 0.2,
+      "d": 40,
+      "elev": 38
+     },
+     {
+      "at": "mem",
+      "dur": 40,
+      "x": 40.6,
+      "y": 0.5,
+      "d": 32,
+      "elev": 34
+     }
+    ],
+    "shift": [
+     {
+      "layer": "wPre",
+      "at": "pitcher-8",
+      "until": "pitcher+38",
+      "dur": 12,
+      "dy": 1.1
+     },
+     {
+      "layer": "wRO",
+      "at": "mem+22",
+      "until": "mem+68",
+      "dur": 12,
+      "dy": 1.1
+     },
+     {
+      "layer": "wIX",
+      "at": "resin+52",
+      "until": "resin+98",
+      "dur": 12,
+      "dy": 1.1
+     },
+     {
+      "layer": "wUV",
+      "at": "catch+52",
+      "until": "catch+98",
+      "dur": 12,
+      "dy": 1.1
+     },
+     {
+      "layer": "wUF",
+      "at": "catch+52",
+      "until": "catch+98",
+      "dur": 12,
+      "dy": 1.1
+     }
+    ],
+    "run": [
+     {
+      "id": "fWRise",
+      "at": "start",
+      "ramp": 6,
+      "until": "upw+42"
+     },
+     {
+      "id": "fGRise",
+      "at": "start",
+      "ramp": 6,
+      "until": "upw+42"
+     },
+     {
+      "id": "fERise",
+      "at": "start",
+      "ramp": 6,
+      "until": "upw+42"
+     },
+     {
+      "id": "wFeed",
+      "at": "upw+42",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wImp",
+      "at": "upw+42",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wConc",
+      "at": "upw+42",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wPerm",
+      "at": "upw+42",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wHp",
+      "at": "upw+42",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wIon",
+      "at": "resin+52",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wBeadGlow",
+      "at": "resin+52",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wUvGlow",
+      "at": "catch+52",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wUvRay",
+      "at": "catch+52",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wOrg",
+      "at": "catch+52",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fSub",
+      "text": "地下廠務層：水、電、氣",
+      "en": "Sub-fab: water, power, gas",
+      "color": "blue",
+      "at": "upw-4",
+      "until": "upw+42",
+      "cut": true
+     },
+     {
+      "part": "wSand",
+      "text": "預處理（砂濾、活性碳）",
+      "en": "Pretreatment",
+      "color": "blue",
+      "at": "pitcher-8",
+      "until": "pitcher+38",
+      "cut": true
+     },
+     {
+      "part": "wRo",
+      "text": "濾網：逆滲透膜",
+      "en": "Filter: RO membranes",
+      "color": "amber",
+      "at": "mem+22",
+      "until": "mem+68",
+      "cut": true
+     },
+     {
+      "part": "wMix",
+      "text": "樹脂：離子交換",
+      "en": "Resin: ion exchange",
+      "color": "amber",
+      "at": "resin+52",
+      "until": "resin+98",
+      "cut": true
+     },
+     {
+      "part": "wUv",
+      "text": "紫外線＋超過濾",
+      "en": "UV + ultrafiltration",
+      "color": "blue",
+      "at": "catch+52",
+      "until": "catch+98",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-upw",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "超純水：像濾水壺，但更細",
+      "tag": "示意（電阻率為 25°C 規格）",
+      "t": {
+       "upw": {
+        "at": "upw"
+       },
+       "mol": {
+        "at": "mol"
+       },
+       "pitcher": {
+        "at": "pitcher"
+       },
+       "mem": {
+        "at": "mem"
+       },
+       "resin": {
+        "at": "resin"
+       },
+       "catch": {
+        "at": "catch"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.6,
+   "holdSec": 3.1,
+   "headSec": 0.3,
+   "pauseAfter": 3.1
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "它還得一直循環流動。停著不動，就會長細菌。",
+   "tts": "它還得一直循環流動。停著不動，就會長細菌。",
+   "subtitle": {
+    "zh": "它還得\n一直循環流動\n停著不動\n就會長細菌",
+    "en": "It also has to | keep circulating. | If it sits still, | bacteria grow."
+   },
+   "keywords": [
+    "循環",
+    "停著不動",
+    "細菌"
+   ],
+   "cues": [
+    {
+     "id": "loop",
+     "text": "循環"
+    },
+    {
+     "id": "stop",
+     "text": "停著"
+    },
+    {
+     "id": "bact",
+     "text": "細菌"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "sys",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 70.6,
+      "y": 0.6,
+      "d": 33,
+      "elev": 38
+     },
+     {
+      "at": "stop-6",
+      "dur": 30,
+      "x": 72.2,
+      "y": 0.8,
+      "d": 26,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "lFlow",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lPumpSpin",
+      "at": "start-4",
+      "ramp": 10,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lDrip",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lBactGrow",
+      "at": "stop+6",
+      "ramp": 8,
+      "until": "s4:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "lLoop",
+      "text": "循環主管：一直流",
+      "en": "Loop: always flowing",
+      "color": "blue",
+      "at": "loop-4",
+      "until": "loop+42",
+      "cut": true
+     },
+     {
+      "part": "lDead",
+      "text": "死水支管：長細菌",
+      "en": "Dead leg: bacteria grow",
+      "color": "amber",
+      "at": "bact-6",
+      "until": "bact+40",
+      "cut": true
+     },
+     {
+      "part": "lValve",
+      "text": "回流閥：流回儲槽",
+      "en": "Return valve",
+      "color": "blue",
+      "at": "bact+42",
+      "until": "bact+88",
+      "cut": true,
+      "xy": [
+       330,
+       340
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-loop",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "停著不動就長細菌",
+      "tag": "示意",
+      "t": {
+       "loop": {
+        "at": "loop"
+       },
+       "stop": {
+        "at": "stop"
+       },
+       "bact": {
+        "at": "bact"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "holdSec": 2.8,
+   "headSec": 0.3,
+   "pauseAfter": 2.8
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "台積電全公司一天用水，約三十多萬噸。",
+   "tts": "台積電全公司一天用水，約三十多萬噸。",
+   "subtitle": {
+    "zh": "台積電全公司\n一天用水\n約三十多萬噸",
+    "en": "TSMC, company-wide, | uses each day | over 300,000 tonnes of water."
+   },
+   "keywords": [
+    "台積電",
+    "三十多萬噸"
+   ],
+   "cues": [
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    },
+    {
+     "id": "day",
+     "text": "一天"
+    },
+    {
+     "id": "num",
+     "text": "三十多萬"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "台積電 2024 年報（每天用水為換算）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 95.0,
+      "y": 1.0,
+      "d": 42,
+      "elev": 14
+     },
+     {
+      "at": "num",
+      "dur": 50,
+      "x": 94.2,
+      "y": 1.0,
+      "d": 38,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "tIn",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s5:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tSign",
+      "text": "台積電廠房",
+      "en": "TSMC fab",
+      "color": "blue",
+      "at": "tsmc-4",
+      "until": "tsmc+42",
+      "cut": true,
+      "xy": [
+       300,
+       880
+      ]
+     },
+     {
+      "part": "tTank",
+      "text": "原水槽",
+      "en": "Raw-water tanks",
+      "color": "blue",
+      "at": "num-4",
+      "until": "num+42",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-water",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一天用水約三十多萬噸",
+      "tag": "換算，約數",
+      "t": {
+       "tsmc": {
+        "at": "tsmc"
+       },
+       "day": {
+        "at": "day"
+       },
+       "num": {
+        "at": "num"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 2.1,
+   "headSec": 0.2,
+   "pauseAfter": 2.1
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "再說電。電只要晃一下，敏感的機台就當機，要花半天調回來。",
+   "tts": "再說電。電只要晃一下，敏感的機台就當機，要花半天調回來。",
+   "subtitle": {
+    "zh": "再說電\n電只要晃一下\n敏感的機台\n就當機\n要花半天調回來",
+    "en": "Now, power. | One brief voltage dip, | and sensitive tools | crash, | taking half a day to recover."
+   },
+   "keywords": [
+    "晃一下",
+    "當機",
+    "半天"
+   ],
+   "cues": [
+    {
+     "id": "elec",
+     "text": "再說電"
+    },
+    {
+     "id": "sag",
+     "text": "晃一下"
+    },
+    {
+     "id": "tool",
+     "text": "機台"
+    },
+    {
+     "id": "crash",
+     "text": "當機"
+    },
+    {
+     "id": "half",
+     "text": "半天"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "自由時報 2021 竹科壓降報導；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "sys",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 134.0,
+      "y": 0.9,
+      "d": 33,
+      "elev": 26
+     },
+     {
+      "at": "tool-4",
+      "dur": 30,
+      "x": 136.6,
+      "y": 1.2,
+      "d": 29,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "eHvFlow",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "sag"
+     },
+     {
+      "id": "eLvFlow",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "sag"
+     },
+     {
+      "id": "eHvFlow",
+      "at": "sag+16",
+      "ramp": 6,
+      "until": "s6:mains"
+     },
+     {
+      "id": "eLvFlow",
+      "at": "crash+30",
+      "ramp": 6,
+      "until": "s6:mains"
+     },
+     {
+      "id": "eSag",
+      "at": "sag",
+      "ramp": 4,
+      "until": "sag+14"
+     },
+     {
+      "id": "eFlicker",
+      "at": "sag",
+      "ramp": 3,
+      "until": "sag+14"
+     },
+     {
+      "id": "eRedBlink",
+      "at": "crash",
+      "ramp": 6,
+      "until": "s6:start+10"
+     },
+     {
+      "id": "eTransHum",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s6:mains"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eGrid",
+      "text": "地下高壓進線",
+      "en": "High-voltage feed",
+      "color": "blue",
+      "at": "elec-6",
+      "until": "elec+40",
+      "cut": true,
+      "xy": [
+       330,
+       340
+      ]
+     },
+     {
+      "part": "eSwg",
+      "text": "電壓晃一下",
+      "en": "Voltage dip",
+      "color": "amber",
+      "at": "sag+6",
+      "until": "sag+52",
+      "cut": true
+     },
+     {
+      "part": "eTool",
+      "text": "敏感機台當機",
+      "en": "Sensitive tool trips",
+      "color": "amber",
+      "at": "crash+0",
+      "until": "crash+46",
+      "cut": true
+     },
+     {
+      "part": "eTrans",
+      "text": "變壓器",
+      "en": "Transformer",
+      "color": "blue",
+      "at": "half+32",
+      "until": "half+78",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-sag",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電只要晃一下",
+      "tag": "報導（2021 竹科壓降）",
+      "t": {
+       "elec": {
+        "at": "elec"
+       },
+       "sag": {
+        "at": "sag"
+       },
+       "tool": {
+        "at": "tool"
+       },
+       "crash": {
+        "at": "crash"
+       },
+       "half": {
+        "at": "half"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "holdSec": 2.0,
+   "headSec": 0.2,
+   "pauseAfter": 2.0
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "所以關鍵位置有備用電源。像筆電的電池，市電一晃，U P S 立刻接手。",
+   "tts": "所以關鍵位置有備用電源。像筆電的電池，市電一晃，U P S 立刻接手。",
+   "subtitle": {
+    "zh": "所以關鍵位置\n有備用電源\n像筆電的電池\n市電一晃\nUPS 立刻接手",
+    "en": "So key spots | have backup power. | Like a laptop battery: | when the grid flickers, | the UPS takes over at once."
+   },
+   "keywords": [
+    "備用電源",
+    "筆電的電池",
+    "UPS"
+   ],
+   "cues": [
+    {
+     "id": "backup",
+     "text": "備用電源"
+    },
+    {
+     "id": "laptop",
+     "text": "筆電"
+    },
+    {
+     "id": "mains",
+     "text": "市電"
+    },
+    {
+     "id": "ups",
+     "text": "接手"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "中時 2022/7/28 台積電回應；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "sys",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 135.4,
+      "y": 0.9,
+      "d": 34,
+      "elev": 28
+     },
+     {
+      "at": "laptop",
+      "dur": 40,
+      "x": 136.6,
+      "y": 1.0,
+      "d": 31,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "eSag",
+      "at": "mains",
+      "ramp": 4,
+      "until": "mains+14"
+     },
+     {
+      "id": "eFlicker",
+      "at": "mains",
+      "ramp": 3,
+      "until": "mains+14"
+     },
+     {
+      "id": "eBatt",
+      "at": "mains-2",
+      "ramp": 4,
+      "until": "s7:voice-4"
+     },
+     {
+      "id": "eUpsGlow",
+      "at": "mains",
+      "ramp": 6,
+      "until": "s7:voice-4"
+     },
+     {
+      "id": "eHvFlow",
+      "at": "mains+16",
+      "ramp": 6,
+      "until": "s7:voice-4"
+     },
+     {
+      "id": "eLvFlow",
+      "at": "mains+16",
+      "ramp": 6,
+      "until": "s7:voice-4"
+     },
+     {
+      "id": "eTransHum",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s7:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eUps",
+      "text": "不斷電系統（UPS）",
+      "en": "Uninterruptible power supply",
+      "color": "amber",
+      "at": "backup-2",
+      "until": "backup+44",
+      "cut": true
+     },
+     {
+      "part": "eBatt",
+      "text": "電池架",
+      "en": "Battery racks",
+      "color": "blue",
+      "at": "laptop+16",
+      "until": "laptop+62",
+      "cut": true
+     },
+     {
+      "part": "eTool",
+      "text": "機台照常運作",
+      "en": "Tool keeps running",
+      "color": "blue",
+      "at": "ups+0",
+      "until": "ups+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-ups",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "市電一晃，UPS 立刻接手",
+      "tag": "示意（不標撐多久）",
+      "t": {
+       "backup": {
+        "at": "backup"
+       },
+       "laptop": {
+        "at": "laptop"
+       },
+       "mains": {
+        "at": "mains"
+       },
+       "ups": {
+        "at": "ups"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.4,
+   "holdSec": 2.6,
+   "headSec": 0.2,
+   "pauseAfter": 2.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "大約每十度電，台灣就有一度被台積電用掉。",
+   "tts": "大約每十度電，台灣就有一度被台積電用掉。",
+   "subtitle": {
+    "zh": "大約每十度電\n台灣就有一度\n被台積電用掉",
+    "en": "Of about every ten units | of power in Taiwan, one | is used by TSMC."
+   },
+   "keywords": [
+    "十度電",
+    "一度",
+    "台積電"
+   ],
+   "cues": [
+    {
+     "id": "ten",
+     "text": "十度電"
+    },
+    {
+     "id": "one",
+     "text": "一度"
+    },
+    {
+     "id": "tsmc",
+     "text": "台積電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "自由財經、鉅亨（2025 為推算）、數位時代"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 103.8,
+      "y": 4.2,
+      "d": 44,
+      "elev": 16
+     },
+     {
+      "at": "one",
+      "dur": 50,
+      "x": 104.39999999999999,
+      "y": 4.5,
+      "d": 39,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "tFanSpin",
+      "at": "start-4",
+      "ramp": 12,
+      "until": "s8:voice-4"
+     },
+     {
+      "id": "tFanSpin2",
+      "at": "start-4",
+      "ramp": 12,
+      "until": "s8:voice-4"
+     },
+     {
+      "id": "tPlume",
+      "at": "start+10",
+      "ramp": 8,
+      "until": "s8:voice-4"
+     },
+     {
+      "id": "tCw",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s8:voice-4"
+     },
+     {
+      "id": "tChw",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s8:voice-4"
+     },
+     {
+      "id": "tCondHot",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s8:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tTower",
+      "text": "屋頂冷卻塔",
+      "en": "Rooftop cooling towers",
+      "color": "blue",
+      "at": "ten+0",
+      "until": "ten+46",
+      "cut": true
+     },
+     {
+      "part": "tCw",
+      "text": "冷卻水：把熱帶到塔頂",
+      "en": "Cooling water carries heat",
+      "color": "amber",
+      "at": "one+5",
+      "until": "one+51",
+      "cut": true
+     },
+     {
+      "part": "tChill",
+      "text": "冰水主機：冷凝器發熱",
+      "en": "Chiller",
+      "color": "blue",
+      "at": "tsmc+35",
+      "until": "tsmc+81",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-power",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "每十度電，一度給台積電",
+      "tag": "報導；2025 為推算",
+      "t": {
+       "ten": {
+        "at": "ten"
+       },
+       "one": {
+        "at": "one"
+       },
+       "tsmc": {
+        "at": "tsmc"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "holdSec": 2.7,
+   "headSec": 0.2,
+   "pauseAfter": 2.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "氣體也一樣。氮氣像廠裡的空氣，用管線從廠外送到每台機台，像自來水管。",
+   "tts": "氣體也一樣。氮氣像廠裡的空氣，用管線從廠外送到每台機台，像自來水管。",
+   "subtitle": {
+    "zh": "氣體也一樣\n氮氣像\n廠裡的空氣\n用管線從廠外\n送到每台機台\n像自來水管",
+    "en": "Gas works the same way. | Nitrogen is like | the fab's own air, | piped in from outside | to every tool, | like water mains."
+   },
+   "keywords": [
+    "氮氣",
+    "管線",
+    "自來水管"
+   ],
+   "cues": [
+    {
+     "id": "gas",
+     "text": "氣體"
+    },
+    {
+     "id": "n2",
+     "text": "氮氣"
+    },
+    {
+     "id": "pipe",
+     "text": "管線"
+    },
+    {
+     "id": "out",
+     "text": "廠外"
+    },
+    {
+     "id": "tool",
+     "text": "每台機台"
+    },
+    {
+     "id": "tap",
+     "text": "自來水管"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報、數位時代；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "sys",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 165.4,
+      "y": 2.2,
+      "d": 40,
+      "elev": 18
+     },
+     {
+      "at": "out-6",
+      "dur": 40,
+      "x": 169.0,
+      "y": 1.8,
+      "d": 46,
+      "elev": 18
+     },
+     {
+      "at": "tool",
+      "dur": 40,
+      "x": 175.0,
+      "y": 1.2,
+      "d": 38,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "gVapUp",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gLiqDown",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gN2c",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gN2w",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gN2t",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gMist",
+      "at": "start-4",
+      "ramp": 8,
+      "until": "s9:voice-4"
+     },
+     {
+      "id": "gLeakBlink",
+      "at": "tool",
+      "ramp": 6,
+      "until": "s9:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gN2",
+      "text": "氮氣：惰性氣體",
+      "en": "Nitrogen: inert gas",
+      "color": "blue",
+      "at": "n2-4",
+      "until": "n2+42",
+      "cut": true
+     },
+     {
+      "part": "gAsu",
+      "text": "空氣分離廠（廠外）",
+      "en": "Air separation plant",
+      "color": "blue",
+      "at": "out-8",
+      "until": "out+38",
+      "cut": true
+     },
+     {
+      "part": "gPipeU",
+      "text": "地下管線",
+      "en": "Underground pipeline",
+      "color": "amber",
+      "at": "tool+16",
+      "until": "tool+62",
+      "cut": true
+     },
+     {
+      "part": "gVmb",
+      "text": "閥箱：分給每台機台",
+      "en": "Valve box to each tool",
+      "color": "blue",
+      "at": "tap+34",
+      "until": "tap+80",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-gas",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像自來水管：壓力推著走",
+      "tag": "示意",
+      "t": {
+       "gas": {
+        "at": "gas"
+       },
+       "n2": {
+        "at": "n2"
+       },
+       "pipe": {
+        "at": "pipe"
+       },
+       "out": {
+        "at": "out"
+       },
+       "tool": {
+        "at": "tool"
+       },
+       "tap": {
+        "at": "tap"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.6,
+   "holdSec": 3.4,
+   "headSec": 0.2,
+   "pauseAfter": 3.4
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "水有日本的 Organo，氣有聯華林德和三福氣體。",
+   "tts": "水有日本的 Organo，氣有聯華林德和三福氣體。",
+   "subtitle": {
+    "zh": "水有日本的 Organo\n氣有聯華林德\n和三福氣體",
+    "en": "For water, Japan's Organo; | for gas, Linde LienHwa | and San Fu Gas."
+   },
+   "keywords": [
+    "Organo",
+    "聯華林德",
+    "三福氣體"
+   ],
+   "cues": [
+    {
+     "id": "water",
+     "text": "水有"
+    },
+    {
+     "id": "org",
+     "text": "Organo"
+    },
+    {
+     "id": "lh",
+     "text": "聯華林德"
+    },
+    {
+     "id": "sf",
+     "text": "三福"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報、自由時報；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 205.2,
+      "y": -0.6,
+      "d": 40,
+      "elev": 16
+     }
+    ],
+    "labels": [
+     {
+      "part": "v0",
+      "text": "超純水設備",
+      "en": "UPW systems",
+      "color": "blue",
+      "at": "org-2",
+      "until": "org+44",
+      "cut": true
+     },
+     {
+      "part": "v1",
+      "text": "空氣分離廠",
+      "en": "Air separation",
+      "color": "blue",
+      "at": "lh-2",
+      "until": "lh+44",
+      "cut": true
+     },
+     {
+      "part": "v2",
+      "text": "空氣分離廠",
+      "en": "Air separation",
+      "color": "blue",
+      "at": "sf+16",
+      "until": "sf+62",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-co",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "水、氣的供應商",
+      "tag": "媒體報導；截至 2026/11/27",
+      "t": {
+       "water": {
+        "at": "water"
+       },
+       "org": {
+        "at": "org"
+       },
+       "lh": {
+        "at": "lh"
+       },
+       "sf": {
+        "at": "sf"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "holdSec": 2.0,
+   "headSec": 0.2,
+   "pauseAfter": 2.0
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "水氣電備齊，晶圓做完。怎麼知道每顆晶片好不好？看探針卡。留言水氣電，拿完整資料。",
+   "tts": "水氣電備齊，晶圓做完。怎麼知道每顆晶片好不好？看探針卡。留言水氣電，拿完整資料。",
+   "subtitle": {
+    "zh": "水氣電備齊\n晶圓做完\n怎麼知道\n每顆晶片好不好？\n看探針卡\n留言水氣電\n拿完整資料",
+    "en": "With water, gas and power ready, | the wafer gets made. | But how do you know | if each chip is good? | Look at the probe card. | Comment \"utilities\" | for the full notes."
+   },
+   "keywords": [
+    "備齊",
+    "探針卡",
+    "水氣電"
+   ],
+   "cues": [
+    {
+     "id": "ready",
+     "text": "備齊"
+    },
+    {
+     "id": "how",
+     "text": "怎麼知道"
+    },
+    {
+     "id": "probe",
+     "text": "探針卡"
+    },
+    {
+     "id": "kw",
+     "text": "留言水氣電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "probe",
+      "at": "how-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0,
+      "y": 7.6,
+      "d": 64,
+      "elev": 12
+     },
+     {
+      "at": "ready+6",
+      "dur": 40,
+      "x": 0,
+      "y": 4.6,
+      "d": 56,
+      "elev": 14
+     },
+     {
+      "at": "how-4",
+      "dur": 1,
+      "x": 235,
+      "y": 1.2,
+      "d": 20,
+      "elev": 12
+     },
+     {
+      "at": "probe-6",
+      "dur": 40,
+      "x": 235,
+      "y": 1.2,
+      "d": 16,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "fAir",
+      "at": "start-4",
+      "ramp": 8,
+      "until": "how-4"
+     },
+     {
+      "id": "fFanSpin",
+      "at": "start-4",
+      "ramp": 10,
+      "until": "how-4"
+     },
+     {
+      "id": "fFanSpin2",
+      "at": "start-4",
+      "ramp": 10,
+      "until": "how-4"
+     },
+     {
+      "id": "pTest",
+      "at": "probe+26",
+      "ramp": 6,
+      "until": "s11:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fFacade",
+      "text": "水、氣、電備齊",
+      "en": "Utilities ready",
+      "color": "blue",
+      "at": "ready+4",
+      "until": "ready+50",
+      "cut": true
+     },
+     {
+      "part": "pCard",
+      "text": "探針卡（下一集）",
+      "en": "Probe card (next)",
+      "color": "amber",
+      "at": "probe-2",
+      "until": "probe+44",
+      "cut": true
+     },
+     {
+      "part": "pNeedle",
+      "text": "針尖碰到晶片接點",
+      "en": "Tips touch the pads",
+      "color": "blue",
+      "at": "probe+46",
+      "until": "probe+92",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "util-next",
+      "at": "voice-3",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：探針卡",
+      "t": {
+       "ready": {
+        "at": "ready"
+       },
+       "how": {
+        "at": "how"
+       },
+       "probe": {
+        "at": "probe"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.2,
+   "holdSec": 2.3,
+   "headSec": 0.2
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "探針卡",
+     "trail": [
+      "怎麼知道每顆晶片好不好"
+     ],
+     "comment": "水氣電",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
