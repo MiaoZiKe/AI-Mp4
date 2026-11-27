@@ -114,7 +114,7 @@ def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
 # ── 站 P：沖壓三下（每下：滑塊受重力加速落下、撞擊、回程；銅帶送一格）、蝕刻噴藥、銅片逐格被吃掉 ──
-STROKES = ["s3:press-14", "s3:press+10", "s3:press+34"]
+STROKES = ["s3:press-16", "s3:press+6", "s3:press+26"]   # 第三下撞擊在切到蝕刻線（etch−20）之前
 for t in STROKES:
     VIS.append({"layer": "pRam", "at": t, "until": off(t, 10), "dur": 8, "dy": -0.75, "fallOut": True, "bounce": 0.04, "press": ["pPress"], "pressAmt": 0.02})
     VIS.append(mv("pStrip", off(t, 18), FAR, 8, dx=0.22))
@@ -128,7 +128,8 @@ for f in FILL:
     side, k = int(f[2]), int(f[4])
     t = f"s5:mold+{4 + 4 * k}" if f.startswith("mR") else f"s5:mold+{16 + 6 * k}"
     vis(f, [(t, FAR)], 1)
-vis("mCure", [("s5:hard", FAR)], 8)
+vis("mCure", [("s5:hard-4", FAR)], 8)   # 念到「越熱越硬」就由褐轉黑
+vis("mWire", [(T0, "s5:mold+30")], 4); vis("mWireS", [("s5:mold+30", FAR)], 4)   # 沖線：膠流到時線弧往流動方向偏、留下
 # ── 站 Q：小石子掉下彈開；爆炸（外殼拿開 → 晶片與金線抬起 → 組回）──
 VIS.append({"layer": "qPebble", "at": T0, "until": "s6:hit-10", "dur": 12, "dy": 3.0, "fallIn": True, "bounce": 0.35, "opacity": 0})
 vis("qPebble", [("s6:hit-12", "s6:shell+20")], 4)
@@ -151,16 +152,16 @@ vis("fChip", [(T0, FAR)])
 
 # ═════ 各幕 ═════
 LV0 = (0.0, -1.6, 64, 40)         # 鉤子：模型壓低，讓出上方大字
-LV = (0.0, -2.6, 64, 40)          # 站 L 導線架俯視斜角（看向 x, y, 距離, 仰角）
+LV = (0.0, -3.4, 56, 40)          # 站 L 導線架俯視斜角（看向 x, y, 距離, 仰角）
 PV = (26.6, 1.0, 30, 12)          # 站 P 沖壓機近景
 PE = (36.5, -0.2, 26, 26)         # 站 P 蝕刻線近景
 M4 = (69.2, 0.6, 19, 12)          # 站 M 料餅與填料放大
-M5 = (60.0, 0.9, 28, 3)           # 站 M 模具剖面
+M5 = (60.0, 0.4, 26, 3)           # 站 M 模具剖面
 QV = (90.0, 1.4, 42, 14)         # 站 Q 封裝（爆炸）
 BJ = (118.0, 0.9, 22, 30)         # 站 B 植球近景
 BM = (128.0, 0.4, 22, 30)         # 站 B 焊到電路板近景
-TV = (150.0, 1.2, 25, 6)          # 站 T 錫點剖面
-UV = (172.0, 1.2, 25, 6)          # 站 U 底部填充剖面
+TV = (150.0, 1.2, 31, 6)          # 站 T 錫點剖面
+UV = (175.0, 1.4, 31, 6)          # 站 U 底部填充剖面
 VV = (196.0, -1.0, 39, 14)        # 站 V 供應商
 FV = (222.0, -0.2, 24, 18)        # 站 F 覆晶預告
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
@@ -185,8 +186,7 @@ P["s4"] = {"zoom": [{"to": "mold", "at": CC, "dur": 1}],
             lab("mFillerA", "放大：約八成是細砂（示意）", "Mostly silica filler", "blue", "sand", "sand+45")],
  "overlay": [card("s4", "pkg-emc", "封裝膠：環氧樹脂＋細砂", "填料約七到九成，依配方而異", {"emc": "emc", "epoxy": "epoxy", "sand": "sand"})]}
 P["s5"] = {"shot": [S_(CC, M5, 1)],
- "run": [run("mHeatGlow", "start-6", "s6:start", 8), run("mPelHot", "soft-6", "mold+30", 6), run("mFlowL", "mold", "mold+50", 6), run("mFlowR", "mold", "mold+50", 6),
-         run("mSweep", "mold+16", "mold+54", 6), run("mCurePulse", "hard", "hard+30", 8)],
+ "run": [run("mHeatGlow", "start-6", "s6:start", 8), run("mPelHot", "soft-6", "mold+30", 6), run("mFlowL", "mold", "mold+50", 6), run("mFlowR", "mold", "mold+50", 6)],
  "labels": [lab("mPotA", "料筒：柱塞往上推", "Pot & plunger", "amber", "soft", "soft+45"),
             lab("mCavA", "模穴（剖開示意）", "Mold cavity (cutaway)", "blue", "pud", "pud+45"),
             lab("mHeatA", "模具加熱，越熱越硬（約 175 度）", "Heat cures it", "amber", "hard", "hard+45")],
@@ -211,8 +211,8 @@ P["s8"] = {"zoom": [{"to": "joint", "at": CC, "dur": 1}],
  "overlay": [card("s8", "pkg-cte", "熱脹冷縮不一樣：錫點被剪", "示意，位移放大", {"cte": "cte", "crack": "crack"})]}
 P["s9"] = {"shot": [S_(CC, UV, 1)],
  "run": [run("uDrip", "uf-6", "uf+70", 4), run("uCure", "glue", "spread", 6), run("uBoardL", "spread-6", "s10:start", 8), run("uBoardR", "spread-6", "s10:start", 8), run("uShear0", "spread-6", "s10:start", 8), run("uShear1", "spread-6", "s10:start", 8), run("uShear4", "spread-6", "s10:start", 8), run("uShear5", "spread-6", "s10:start", 8), run("uHot", "spread-6", "s10:start", 8)],
- "labels": [lab("uNeedleA", "另一片：沿邊點膠", "Dispense needle", "amber", "uf", "uf+45"),
-            lab("uFillA", "毛細作用：自己吸進縫", "Capillary flow", "blue", "uf+47", "uf+92"),
+ "labels": [lab("uNeedleA", "點膠針：沿邊點膠", "Dispense needle", "amber", "uf", "uf+45"),
+            lab("uFillA", "毛細作用：自己吸進縫", "Capillary flow", "blue", "uf+47", "uf+92", xy=[420, 300]),
             lab("uBallA", "錫點只微微擺動", "Joints barely move", "amber", "spread-8", "spread+37")],
  "overlay": [card("s9", "pkg-uf", "底部填充：像茶滲進玻璃縫", "示意（不保證不裂，是分散應力）", {"uf": "uf", "tea": "tea", "glue": "glue", "spread": "spread"})]}
 P["s10"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],

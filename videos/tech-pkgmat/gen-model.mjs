@@ -183,7 +183,13 @@ P({ id: "muPin", layer: "mUp", shape: "cyl", size: [0.08, 1.6], rot: V, pos: [0,
 // 模穴裡的導線架單元（縮小 0.3，晶片＋金線）
 LAY("mUnit", [10, 0.6, MX, 2.1]);
 for (const [i, [a, b]] of CAV.entries()) { const c = (a + b) / 2; BOX(`muLF${i}`, "mUnit", a - 0.02, b + 0.02, 1.97, 2.02, MZ0 + 0.1, MZ1, "cu"); BOX(`muDie${i}`, "mUnit", c - 0.5, c + 0.5, 2.02, 2.14, MZ0 + 0.3, MZ1, "chip");
-  for (const [k, sx] of [[0, -1], [1, 1]]) { SEG(`muW${i}${k}a`, "mUnit", [c + sx * 0.45, 2.14, 0.02], [c + sx * 0.85, 2.38, 0.02], 0.03, "wire"); SEG(`muW${i}${k}b`, "mUnit", [c + sx * 0.85, 2.38, 0.02], [c + sx * 1.25, 2.03, 0.02], 0.03, "wire"); } }
+}
+// 金線：原形（mWire）與被膠流沖彎後（mWireS：線弧頂點往膠流方向偏 0.3，兩端焊點不動＝沖線，留下不回彈）
+LAY("mWire", [10, 0.6, MX, 2.2]); LAY("mWireS", [10, 0.6, MX, 2.2]);
+for (const [i, [a, b]] of CAV.entries()) { const c = (a + b) / 2, fd = c < MX ? -1 : 1;
+  for (const [k, sx] of [[0, -1], [1, 1]]) { const p0 = [c + sx * 0.45, 2.14, 0.02], p2 = [c + sx * 1.25, 2.03, 0.02];
+    SEG(`muW${i}${k}a`, "mWire", p0, [c + sx * 0.85, 2.38, 0.02], 0.03, "wire"); SEG(`muW${i}${k}b`, "mWire", [c + sx * 0.85, 2.38, 0.02], p2, 0.03, "wire");
+    const ap = [R2(c + sx * 0.85 + fd * 0.3), 2.34, 0.02]; SEG(`msW${i}${k}a`, "mWireS", p0, ap, 0.03, "wire"); SEG(`msW${i}${k}b`, "mWireS", ap, p2, 0.03, "wire"); } }
 // 料筒裡的料餅（三種高度）與柱塞
 const PELH = [0.7, 0.45, 0.2];
 for (const [k, h] of PELH.entries()) { LAY(`mPel${k}`, [1, 0.8, MX, 1.4]); BOX(`mPel${k}b`, `mPel${k}`, 59.5, 60.5, 1.0, R2(1.0 + h), MZ0 + 0.1, MZ1, k ? "emcSoft" : "emc"); }
@@ -199,7 +205,7 @@ for (const side of [0, 1]) {
 LAY("mRup", [1, 0.3, MX, 1.9]); BOX("mRupB", "mRup", 59.5, 60.5, 1.75, 2.0, MZ0 + 0.05, MZ1 - 0.01, "emcSoft");
 LAY("mCure", [10, 0.8, MX, 2.1]);
 for (const [i, [a, b]] of CAV.entries()) BOX(`mCure${i}`, "mCure", a, b, CY0, CY1, MZ0 + 0.04, MZ1 - 0.005, "emc");
-BOX("mCureR", "mCure", 59.5, 60.5, 1.0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRL", "mCure", 58.4, 59.5, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRR", "mCure", 60.5, 61.6, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc");
+BOX("mCureR", "mCure", 59.5, 60.5, 1.55, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRL", "mCure", 58.4, 59.5, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRR", "mCure", 60.5, 61.6, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc");
 // 料餅（整顆）與填料放大塊
 LAY("mPellet", [2, 1.6, 67.6, 1.3]);
 BOX("mpStand", "mPellet", 66.7, 68.5, 0, 0.5, -0.9, 0.9, "band"); VC("mpCyl", "mPellet", 0.75, 0.5, 2.1, "emc", { x: 67.6, z: 0 }); VT("mpEdge", "mPellet", 0.76, 0.7, 2.05, 2.1, "darker", { x: 67.6, z: 0 });
@@ -300,8 +306,6 @@ const spray = (x) => ({ type: "flow", layer: "pEtch", path: [[EXX + x, 2.6, 0], 
 for (const [i, x] of [-2, -1, 0, 1, 2].entries()) actions[`peSpray${i}`] = { ...spray(x), ...(i === 0 ? { _說明: "蝕刻藥水從噴嘴往下噴（受重力加速）" } : {}), phase: i * 0.2 };
 actions.mHeatGlow = { type: "pulse", _說明: "模具加熱棒發紅（約 175 度，示意）", parts: ["mlHeat", "muHeat"], color: "emcHot", glow: 0.9, freq: 0.8, halo: 0 };
 actions.mPelHot = { type: "pulse", _說明: "料餅在料筒裡受熱變軟", parts: ["mPel0b", "mPel1b", "mPel2b"], color: "emcHot", glow: 0.6, freq: 1.2, halo: 0 };
-actions.mSweep = { type: "vibrate", _說明: "膠流過時把金線往流動方向推（沖線，示意放大）", parts: idsOf("mUnit").filter((i) => i.startsWith("muW")), axis: [1, 0, 0], amp: 0.07, freq: 2.2 };
-actions.mCurePulse = { type: "pulse", _說明: "熱固化：模具熱傳進膠裡，膠由褐變黑變硬（微微發熱示意）", parts: ["mCure0", "mCure1", "mCureR", "mCureRL", "mCureRR"], color: "emcHot", glow: 0.18, freq: 0.9, halo: 0 };
 actions.mFlowL = { type: "flow", _說明: "軟化的膠從料筒沿流道往左右模穴流（示意）", layer: "mLow", path: [[60, 1.6, -0.1], [60, 2.1, -0.1], [58.6, 2.1, -0.1], [57.6, 2.1, -0.1]], n: 5, size: 0.07, shape: "dot", rate: 0.6, color: "emcHot", track: false, free: true, jitter: 0.03 };
 actions.mFlowR = { type: "flow", layer: "mLow", path: [[60, 1.6, -0.1], [60, 2.1, -0.1], [61.4, 2.1, -0.1], [62.4, 2.1, -0.1]], n: 5, size: 0.07, shape: "dot", rate: 0.6, color: "emcHot", track: false, free: true, jitter: 0.03 };
 actions.qRain = { type: "flow", _說明: "水滴受重力落到外殼、彈開滑落（不滲進去）", layer: "qBody", path: [[QX - 1.0, 6.0, 0.6], [QX - 1.0, 3.05, 0.6], [QX - 0.4, 3.5, 0.9], [QX + 0.6, 3.05, 1.3], [QX + 1.8, 3.05, 1.6]], n: 4, lanes: 3, laneDir: [1, 0, -1], laneGap: 1.1, size: 0.12, shape: "dot", rate: 0.5, color: "waterC", track: false, accel: true, free: true, jitter: 0.03 };
@@ -323,7 +327,7 @@ Object.assign(anchors, {
   lChipA: A("lChip", [1.2, 1.41, 1.2], 150, -100), lPadA: A("lLF", [-1.9, 1.05, 1.9], -150, 100), lLeadA: A("lLF", [5.4, 1.05, 0.9], 150, 100), lWireA: A("lWire", [-2.2, 1.9, 0.2], -150, -100),
   pPunchA: A("pRam", [PX + 0.6, 2.6, 0.6], -150, -100), pStripA: A("pStrip", [PX + 3.2, 1.64, 0.5], 150, 100), pEtchA: A("peResist", [EXX + 0.8, 1.29, 0.8], 150, 100), pSprayA: A("pEtch", [EXX + 1, 2.75, 0], 150, -100),
   mPelletA: A("mPellet", [67.6, 2.1, 0.6], -150, -100), mFillerA: A("mFiller", [71.2, 2.6, 1.1], 150, -100), mPotA: A("mLow", [60, 1.6, 0], -150, 100), mCavA: A("mUnit", [57.0, 2.2, -0.05], -150, -100),
-  mHeatA: A("mUp", [62.8, 3.5, 0], 150, -100), mWireA: A("mUnit", [63.85, 2.38, -0.05], 150, -100),
+  mHeatA: A("mUp", [62.8, 3.5, 0], 150, -100), mWireA: A("mWireS", [64.15, 2.34, -0.05], 150, -100),
   qBodyA: A("qBody", [QX + 2.5, 3.0, 2.5], 150, -100), qBotA: A("qBot", [QX + 3.0, 1.3, 3.9], 150, 100), qChipA: A("qChip", [QX + 1.3, 2.0, 1.3], 150, -100), qLFA: A("qLF", [QX + 4.5, 1.7, 1.2], 150, 100), qDropA: A("qBody", [QX - 1.0, 3.05, 0.6], -150, -100),
   bBallA: A("bB7", [BX + 2.1, 1.75, 1.8], 150, -100), bPCBA: A("bPCB", [BX2 + 3.8, 0.55, 2.0], 150, 100), bMountA: A("bMount", [BX2 + 2.1, 0.75, 2.1], 150, 100),
   tBallA: A("tB5", [154.5, 2.45, 0.6], 150, -100), tCrackA: A("tCrack1", [154.5, 2.86, 0.6], 150, -100), tPcbA: A("tPCBr", [155.5, 1.9, 1.2], 150, 100),

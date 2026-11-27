@@ -155,8 +155,8 @@
     "shift": [
      {
       "layer": "pRam",
-      "at": "s3:press-14",
-      "until": "s3:press-4",
+      "at": "s3:press-16",
+      "until": "s3:press-6",
       "dur": 8,
       "dy": -0.75,
       "fallOut": true,
@@ -168,15 +168,15 @@
      },
      {
       "layer": "pStrip",
-      "at": "s3:press+4",
+      "at": "s3:press+2",
       "until": "s12:start+400",
       "dur": 8,
       "dx": 0.22
      },
      {
       "layer": "pRam",
-      "at": "s3:press+10",
-      "until": "s3:press+20",
+      "at": "s3:press+6",
+      "until": "s3:press+16",
       "dur": 8,
       "dy": -0.75,
       "fallOut": true,
@@ -188,15 +188,15 @@
      },
      {
       "layer": "pStrip",
-      "at": "s3:press+28",
+      "at": "s3:press+24",
       "until": "s12:start+400",
       "dur": 8,
       "dx": 0.22
      },
      {
       "layer": "pRam",
-      "at": "s3:press+34",
-      "until": "s3:press+44",
+      "at": "s3:press+26",
+      "until": "s3:press+36",
       "dur": 8,
       "dy": -0.75,
       "fallOut": true,
@@ -208,7 +208,7 @@
      },
      {
       "layer": "pStrip",
-      "at": "s3:press+52",
+      "at": "s3:press+44",
       "until": "s12:start+400",
       "dur": 8,
       "dx": 0.22
@@ -433,9 +433,23 @@
      {
       "layer": "mCure",
       "at": "s1:start-40",
-      "until": "s5:hard",
+      "until": "s5:hard-4",
       "opacity": 0,
       "dur": 8
+     },
+     {
+      "layer": "mWire",
+      "at": "s5:mold+30",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "mWireS",
+      "at": "s1:start-40",
+      "until": "s5:mold+30",
+      "opacity": 0,
+      "dur": 4
      },
      {
       "layer": "qPebble",
@@ -755,8 +769,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 0.0,
-      "y": -2.6,
-      "d": 64,
+      "y": -3.4,
+      "d": 56,
       "elev": 40
      }
     ],
@@ -1121,8 +1135,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60.0,
-      "y": 0.9,
-      "d": 28,
+      "y": 0.4,
+      "d": 26,
       "elev": 3
      }
     ],
@@ -1150,18 +1164,6 @@
       "at": "mold",
       "ramp": 6,
       "until": "mold+50"
-     },
-     {
-      "id": "mSweep",
-      "at": "mold+16",
-      "ramp": 6,
-      "until": "mold+54"
-     },
-     {
-      "id": "mCurePulse",
-      "at": "hard",
-      "ramp": 8,
-      "until": "hard+30"
      }
     ],
     "labels": [
@@ -1521,7 +1523,7 @@
       "dur": 1,
       "x": 150.0,
       "y": 1.2,
-      "d": 25,
+      "d": 31,
       "elev": 6
      }
     ],
@@ -1661,9 +1663,9 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 172.0,
-      "y": 1.2,
-      "d": 25,
+      "x": 175.0,
+      "y": 1.4,
+      "d": 31,
       "elev": 6
      }
     ],
@@ -1726,7 +1728,7 @@
     "labels": [
      {
       "part": "uNeedleA",
-      "text": "另一片：沿邊點膠",
+      "text": "點膠針：沿邊點膠",
       "en": "Dispense needle",
       "color": "amber",
       "at": "uf",
@@ -1740,7 +1742,11 @@
       "color": "blue",
       "at": "uf+47",
       "until": "uf+92",
-      "cut": true
+      "cut": true,
+      "xy": [
+       420,
+       300
+      ]
      },
      {
       "part": "uBallA",
