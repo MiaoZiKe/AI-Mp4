@@ -128,7 +128,7 @@ BOX("dieAttach", "lfA", X0 - 3.6, X0 + 3.6, LFY + LFT, DIEY0, -3.6, 3.6, "epoxy"
 BOX("dieBody", "dieA", X0 - DH, X0 + DH, DIEY0, DIEY1 - 0.04, -DH, DH, "dieEdge");
 BOX("dieTopA", "dieA", X0 - DH + 0.05, X0 + DH - 0.05, DIEY1 - 0.04, DIEY1, -DH + 0.05, DH - 0.05, "dieTop");
 BOX("dieCoreA", "dieA", X0 - 1.8, X0 + 1.8, DIEY1, DIEY1 + 0.02, -1.8, 1.8, "die");     // 中央電路區（較亮的格紋）
-P({ id: "dieSealA", layer: "dieA", shape: "tube", size: [DH - 0.12, DH - 0.22, 0.02], rot: V, pos: [X0, DIEY1 + 0.01, 0], mat: "alPad", scale: [1, 1, 1] });
+P({ id: "dieSealA", layer: "dieA", shape: "tube", size: [DH - 0.1, DH - 0.16, 0.02], rot: V, pos: [X0, DIEY1 + 0.01, 0], mat: "alPad", scale: [1, 1, 1] });
 const SIDES = [[0, 1], [1, 0], [0, -1], [-1, 0]];   // 外法向 (nx, nz)：S、E、N、W
 const NPS = 7, PSTEP = 0.8, PAD_IN = DH - 0.5, LEAD_IN = 5.2, LEAD_MID = 6.6, LEAD_OUT = 9.0;
 const padPt = (si, k) => { const [nx, nz] = SIDES[si], t = (k - (NPS - 1) / 2) * PSTEP; return [R2(X0 + nx * PAD_IN + (nz !== 0 ? t : 0)), DIEY1 + 0.03, R2(nz * PAD_IN + (nx !== 0 ? t : 0))]; };
@@ -147,11 +147,15 @@ for (let si = 0; si < 4; si++) {
     seg(`ldIn${si}_${k}`, ...sx(LEAD_IN, LEAD_MID), t, 0.42, "lf");
     seg(`ldOut${si}_${k}`, ...sx(LEAD_MID + 0.9, LEAD_OUT), t2, 0.5, "lf");
     seg(`ldAg${si}_${k}`, ...sx(LEAD_IN, LEAD_IN + 0.75), t, 0.44, "lfAg", LFY + LFT, LFY + LFT + 0.012);
-    SEG(`ldJ${si}_${k}`, "lfA", [X0 + nx * LEAD_MID + (nz !== 0 ? t : 0), LFY + LFT / 2, nz * LEAD_MID + (nx !== 0 ? t : 0)], [X0 + nx * (LEAD_MID + 0.9) + (nz !== 0 ? t2 : 0), LFY + LFT / 2, nz * (LEAD_MID + 0.9) + (nx !== 0 ? t2 : 0)], 0.2, "lf");
+    { // 斜接段：同厚度的扁條（box 繞 y 轉），兩端跟內外段接上
+      const p0 = [X0 + nx * LEAD_MID + (nz !== 0 ? t : 0), nz * LEAD_MID + (nx !== 0 ? t : 0)], p1 = [X0 + nx * (LEAD_MID + 0.9) + (nz !== 0 ? t2 : 0), nz * (LEAD_MID + 0.9) + (nx !== 0 ? t2 : 0)];
+      const ddx = p1[0] - p0[0], ddz = p1[1] - p0[1], len = Math.hypot(ddx, ddz) + 0.42, ang = Math.atan2(-ddz, ddx) / D2R;
+      P({ id: `ldJ${si}_${k}`, layer: "lfA", shape: "box", size: [R2(len), LFT, 0.44], rot: [0, R2(ang), 0], pos: [R2((p0[0] + p1[0]) / 2), LFY + LFT / 2, R2((p0[1] + p1[1]) / 2)], mat: "lf" }); }
     const [lx, , lz] = leadPt(si, k);
     P({ id: `ldG${si}_${k}`, layer: "leadGlowA", shape: "box", size: [0.56, 0.03, 0.56], pos: [lx, LFY + LFT + 0.04, lz], mat: "spark" });
   }
 }
+for (const [nx, nz] of SIDES) { const r = 8.1, w = 11.0; nx !== 0 ? BOX(`damBar${nx}`, "lfA", X0 + nx * r - 0.15, X0 + nx * r + 0.15, LFY, LFY + LFT, -w / 2, w / 2, "lf") : BOX(`damBarZ${nz}`, "lfA", X0 - w / 2, X0 + w / 2, LFY, LFY + LFT, nz * r - 0.15, nz * r + 0.15, "lf"); }
 // 擋板（dam bar）與外框、兩側導軌與定位孔、四角連桿
 for (const [id, x0, x1, z0, z1] of [["damS", -9.4, 9.4, 9.0, 9.4], ["damN", -9.4, 9.4, -9.4, -9.0], ["damE", 9.0, 9.4, -9.0, 9.0], ["damW", -9.4, -9.0, -9.0, 9.0]]) BOX(id, "lfA", X0 + x0, X0 + x1, LFY, LFY + LFT, z0, z1, "lf");
 BOX("railS", "lfA", X0 - 15, X0 + 15, LFY, LFY + LFT, 9.4, 11.4, "lf"); BOX("railN", "lfA", X0 - 15, X0 + 15, LFY, LFY + LFT, -11.4, -9.4, "lf");
@@ -221,10 +225,13 @@ BOX("bdClampBody", "bdClamp", X1 - 0.45, X1 + 0.45, DK + 2.25, DK + 2.55, -0.65,
 BOX("bdJawL", "bdClamp", X1 - 0.32, X1 - 0.04, DK + 2.05, DK + 2.25, -0.2, 0.02, "steel"); BOX("bdJawR", "bdClamp", X1 + 0.04, X1 + 0.32, DK + 2.05, DK + 2.25, -0.2, 0.02, "steel");
 // 換能器：壓電片疊（金／灰交錯）＋變幅桿（錐形，往前收細）＋法蘭
 const HY = DK + 1.65;
-for (let i = 0; i < 6; i++) ZC(`bdPz${i}`, "bdHorn", 0.32, -2.7 + i * 0.14, -2.7 + (i + 1) * 0.14, X1, HY, i % 2 ? "piezoB" : "piezoA");
-ZC("bdBackMass", "bdHorn", 0.34, -3.15, -2.7, X1, HY, "steel"); ZC("bdHornFl", "bdHorn", 0.46, -1.86, -1.76, X1, HY, "steel");
-P({ id: "bdHornCone", layer: "bdHorn", shape: "cone", size: [0.09, 0.3, 1.85], pos: [X1, HY, -0.83], mat: "horn" });
-P({ id: "bdHornBolt", layer: "bdHorn", shape: "cyl", size: [0.04, 0.06], rot: V, pos: [X1, HY + 0.12, 0], at: [[0, 0, -0.05], [0, 0, -0.45]], mat: "dark" });
+// r1：換能器沿 x 擺（正面看得到壓電片疊與錐形變幅桿），經支架固定在焊頭前板；爆炸時沿軸線往左抽出
+for (let i = 0; i < 6; i++) HXC(`bdPz${i}`, "bdHorn", 0.32, X1 - 2.8 + i * 0.14, X1 - 2.8 + (i + 1) * 0.14, HY, 0.05, i % 2 ? "piezoB" : "piezoA");
+HXC("bdBackMass", "bdHorn", 0.34, X1 - 3.3, X1 - 2.8, HY, 0.05, "steel"); HXC("bdHornFl", "bdHorn", 0.46, X1 - 1.96, X1 - 1.86, HY, 0.05, "steel");
+P({ id: "bdHornCone", layer: "bdHorn", shape: "cone", size: [0.09, 0.3, 1.86], rot: [0, 90, 0], pos: [X1 - 0.93, HY, 0.05], mat: "horn" });
+P({ id: "bdHornBolt", layer: "bdHorn", shape: "cyl", size: [0.04, 0.06], rot: V, pos: [0, HY + 0.12, 0.05], at: [[X1 - 0.5, 0, 0], [X1 - 1.2, 0, 0]], mat: "dark" });
+P({ id: "bdPzWire", layer: "bdHorn", shape: "cyl", size: [0.03, 1.2], pos: [X1 - 2.4, HY + 0.34, -0.55], mat: "rubber" });
+BOX("bdHornMount", "bdHead", X1 - 2.1, X1 - 1.7, HY - 0.3, HY + 0.3, -1.4, -0.2, "steel2");
 // 劈刀（陶瓷，尖端朝下）
 P({ id: "bdCapB", layer: "bdCap", shape: "cyl", size: [0.07, 0.5], rot: V, pos: [X1, HY + 0.05, 0.05], mat: "cap" });
 P({ id: "bdCapT", layer: "bdCap", shape: "cone", size: [0.025, 0.07, 0.62], rot: [90, 0, 0], pos: [X1, HY - 0.51, 0.05], mat: "capTip" });
@@ -245,116 +252,127 @@ actions.bdUS = { type: "vibrate", _說明: "換能器與劈刀的超音波微振
 actions.bdHeat = { type: "pulse", _說明: "加熱台發熱（示意）", parts: ["bdHeater"], color: "heatC", glow: 0.6, steady: true, halo: 0 };
 actions.bdSpin = { type: "rotate", _說明: "線軸送線慢轉", parts: ["bdSpoolW", "bdSpoolF0", "bdSpoolF1"], axis: [1, 0, 0], pivot: [X1, SPY, SPZ], pivots: Object.fromEntries(["bdSpoolW", "bdSpoolF0", "bdSpoolF1"].map((k) => [k, [X1, SPY, SPZ]])), rps: 0.25, rampSpin: true };
 actions.bdBob = { type: "vibrate", _說明: "焊頭上下打線（每秒十幾下，示意放慢）", parts: ["bdCapB", "bdCapT", "bdHornCone", "bdWireIn"], axis: [0, 1, 0], amp: 0.12, freq: 3 };
-Object.assign(anchors, { spool: A("bdSpool", [X1 + 0.45, SPY + 0.5, SPZ], 150, -90), horn: A("bdHorn", [X1, HY + 0.2, -1.2], -150, -90), capB: A("bdCap", [X1, HY - 0.75, 0.05], 150, 90), heater: A("bdDeck", [X1 - 1.2, DK + 0.6, 0.8], -150, 100),
+Object.assign(anchors, { spool: A("bdSpool", [X1 + 0.45, SPY + 0.5, SPZ], 150, -90), horn: A("bdHorn", [X1 - 2.4, HY + 0.3, 0.3], -150, -90), capB: A("bdCap", [X1 + 0.05, HY - 0.45, 0.12], 150, 90), heater: A("bdDeck", [X1 - 1.2, DK + 0.6, 0.8], -150, 100),
   efo: A("bdEfo", [X1 + 1.2, DK + 1.2, 0.05], 150, 90), clamp: A("bdClamp", [X1 - 0.3, DK + 2.4, -0.1], -150, -90), cam: A("bdCam", [X1 + 1.0, DK + 3.2, -0.7], 150, -90), bonder: A("bdBase", [X1 - 4.0, DK - 1.0, 4.3], -150, -100) });
 
-// ═════ C 站（X2＝120）：劈刀特寫（1＝10 µm）：加熱台、晶片邊緣與焊墊、引腳、劈刀＋換能器桿＋線夾（同一組會動）、打火棒、線 ═════
+// ═════ C 站（X2＝120）：劈刀特寫（1＝10 µm，示意縮短劈刀）：加熱台、晶片邊緣與兩顆焊墊（沿 x）、引腳、劈刀＋換能器桿（沿 x）＋線夾（一起走）、打火棒、線 ═════
+// r1（機構 r0 必改 3、4、6、7、8；物理 r0 必改 3、6、7、9、10）：換能器沿 x 擺（振動同向）、劈刀縮短讓夾持環與線夾入鏡、尖端面比壓扁球寬、下一顆焊墊在畫面 x 方向、超音波圈跟著劈刀走
 const X2 = 120;
-LAY("cHeat", [30, 2, X2, 0.5]); LAY("cDie", [14, 6, X2 - 5, 3]); LAY("cLead", [12, 3, X2 + 10, 1.5]); LAY("cEfo", [10, 2, X2 + 5, 11]);
-LAY("cCap", [6, 22, X2 - 0.5, 18]); LAY("cBall", [1.2, 1.2, X2 - 0.5, 11]); LAY("cTail", [0.6, 1.4, X2 - 0.5, 11]); LAY("cBallB", [2, 1, X2 - 0.5, 5.5]); LAY("cStitch", [2, 1, X2 + 7, 2.6]);
-LAY("cSpark", [2, 2, X2 + 0.5, 10.6]); LAY("cDieBg", [18, 5, X2 - 6, 3]); LAY("cLeadBg", [12, 2, X2 + 10, 1.7]); LAY("cCapUp", [6, 16, X2 - 0.5, 24]); LAY("dNeckL", [3, 8, 170, 10]); LAY("eUp", [24, 10, 250, 20]); LAY("cJawLl", [2, 2, X2 - 1.5, 29]); LAY("cJawRl", [2, 2, X2 + 0.5, 29]); LAY("cUS", [6, 3, X2 - 0.5, 6]); LAY("cGlow", [4, 1, X2 - 0.5, 5.4]); LAY("cTail2", [0.6, 1.4, X2 + 7, 3.4]);
-// 加熱台（金屬塊＋加熱管口＋真空孔）
+LAY("cHeat", [30, 2, X2, 0.5]); LAY("cDie", [4, 1, X2 - 2, 5.3]); LAY("cDieBg", [18, 5, X2 - 6, 3]); LAY("cLead", [5, 1, X2 + 7, 2.5]); LAY("cLeadBg", [12, 2, X2 + 10, 1.7]); LAY("cEfo", [10, 2, X2 + 5, 9]);
+LAY("cCap", [2, 2, X2 - 0.5, 9.4]); LAY("cCapUp", [12, 10, X2 - 4, 16]); LAY("cBall", [1.2, 1.2, X2 - 0.5, 9.2]); LAY("cTail", [0.6, 1.4, X2 - 0.5, 9]); LAY("cBallB", [2, 1, X2 - 0.5, 5.5]); LAY("cStitch", [2, 1, X2 + 7, 2.6]);
+LAY("cSpark", [2, 2, X2 + 0.5, 8.8]); LAY("cUS", [6, 3, X2 - 0.5, 10]); LAY("cGlow", [4, 1, X2 - 0.5, 5.4]); LAY("cJawLl", [2, 2, X2 - 1.5, 18]); LAY("cJawRl", [2, 2, X2 + 0.5, 18]); LAY("cTail2", [0.6, 1.4, X2 + 7, 3.4]);
 BOX("cHeatB", "cHeat", X2 - 16, X2 + 16, 0, 1.0, -6, 6, "heatPlate"); P({ id: "cHeatHole", layer: "cHeat", shape: "cyl", size: [0.25, 0.02], rot: V, pos: [0, 1.01, 0], at: [-12, -8, 8, 12].flatMap((x) => [[X2 + x, 0, -4], [X2 + x, 0, 4]]), mat: "dark" });
-BOX("cHeatSide", "cHeat", X2 - 16, X2 + 16, 0, 1.0, 6, 6.08, "dark");
-// 導線架晶片座＋黏晶膠＋晶片（側面看得到層次）＋鈍化層＋鋁焊墊（兩顆：這一條與下一條）
-const PADX = X2 - 0.5, PADY = 5.35, LEADX = X2 + 7.2, LEADY = 2.55;
+BOX("cHeatSide", "cHeat", X2 - 16, X2 + 16, 0, 1.0, 6, 6.08, "heatPlate"); BOX("cHeatFin", "cHeat", X2 + 3.0, X2 + 16, 0.2, 0.9, 6.08, 6.14, "dark");
+const PADX = X2 - 0.5, PADY = 5.35, LEADX = X2 + 7.2, LEADY = 2.55, PAD2X = PADX - 2.6;
 BOX("cPaddle", "cDieBg", X2 - 15, X2 + 2.6, 1.0, 2.5, -6, 6, "lf"); BOX("cEpoxy", "cDieBg", X2 - 14.5, X2 + 1.6, 2.5, 2.7, -5.5, 5.5, "epoxy");
-BOX("cDieB", "cDieBg", X2 - 14, X2 + 1.4, 2.7, 5.1, -5, 5, "si"); BOX("cDieTop", "cDieBg", X2 - 14, X2 + 1.4, 5.1, 5.25, -5, 5, "dieTop");
-BOX("cPas", "cDieBg", X2 - 14, X2 + 1.4, 5.25, 5.4, -5, 5, "pas");
-P({ id: "cPad", layer: "cDie", shape: "box", size: [1.6, 0.14, 1.6], pos: [PADX, 5.32, 0], mat: "alPad" }); P({ id: "cPadN", layer: "cDieBg", shape: "box", size: [1.6, 0.14, 1.6], pos: [PADX, 5.32, 0], at: [[0, 0, -3.2], [0, 0, 3.2]], mat: "alPad" });
-// 引腳（鍍銀內端）
-BOX("cLeadB", "cLeadBg", X2 + 5.0, X2 + 16, 1.0, 2.5, -1.0, 1.0, "lf"); BOX("cLeadAg", "cLead", X2 + 5.0, X2 + 9.4, 2.5, 2.56, -0.95, 0.95, "lfAg");
+BOX("cDieB", "cDieBg", X2 - 14, X2 + 1.4, 2.7, 5.1, -5, 5, "si"); BOX("cDieTop", "cDieBg", X2 - 14, X2 + 1.4, 5.1, 5.25, -5, 5, "dieTop"); BOX("cPas", "cDieBg", X2 - 14, X2 + 1.4, 5.25, 5.4, -5, 5, "pas");
+P({ id: "cPad", layer: "cDie", shape: "box", size: [1.6, 0.14, 1.6], pos: [PADX, 5.32, 0], at: [[0, 0, 0], [PAD2X - PADX, 0, 0]], mat: "alPad" });
+P({ id: "cPadN", layer: "cDieBg", shape: "box", size: [1.6, 0.14, 1.6], pos: [PADX, 5.32, 0], at: [[-5.2, 0, 0], [-7.8, 0, 0]], mat: "alPad" });
+BOX("cLeadAg", "cLead", X2 + 5.0, X2 + 9.4, 2.5, 2.56, -0.95, 0.95, "lfAg"); BOX("cLeadB", "cLeadBg", X2 + 5.0, X2 + 16, 1.0, 2.5, -1.0, 1.0, "lf");
 for (const [i, z] of [[0, -3.2], [1, 3.2]]) { BOX(`cLeadN${i}`, "cLeadBg", X2 + 5.0, X2 + 16, 1.0, 2.5, z - 1.0, z + 1.0, "lf"); BOX(`cLeadNAg${i}`, "cLeadBg", X2 + 5.0, X2 + 9.4, 2.5, 2.56, z - 0.95, z + 0.95, "lfAg"); }
-// 劈刀＋換能器桿＋線夾＋上方的線（整組在 cCap，懸停時尖端在 HOV）
-const HOVY = 11.6, CX = PADX, R_W = 0.16;
-P({ id: "cCapCone", layer: "cCapUp", shape: "cone", size: [0.55, 1.6, 6.0], rot: [90, 0, 0], pos: [CX, HOVY + 3.0, 0], mat: "cap" });
-VC("cCapBody", "cCapUp", 1.6, HOVY + 6.0, HOVY + 15.0, "cap", { x: CX }); VT("cCapChamf", "cCap", 0.58, 0.2, HOVY, HOVY + 0.12, "capTip", { x: CX });
-P({ id: "cCapMark", layer: "cCapUp", shape: "tube", size: [1.62, 1.5, 0.12], rot: V, pos: [CX, HOVY + 12.5, 0], mat: "steel" });
-P({ id: "cHornTip", layer: "cCapUp", shape: "cone", size: [2.0, 2.4, 9], pos: [CX, HOVY + 10.5, -6.0], mat: "horn" });   // 換能器桿從後方伸過來夾住劈刀
-VT("cHornRing", "cCapUp", 2.3, 1.62, HOVY + 9.0, HOVY + 12.0, "horn", { x: CX }); P({ id: "cHornScrew", layer: "cCapUp", shape: "cyl", size: [0.35, 1.2], rot: HX, pos: [CX + 2.6, HOVY + 10.5, 0], mat: "dark" });
-BOX("cJawL", "cJawLl", CX - 1.6, CX - 0.2, HOVY + 17.0, HOVY + 18.4, -0.9, 0.9, "steel"); BOX("cJawR", "cJawRl", CX + 0.2, CX + 1.6, HOVY + 17.0, HOVY + 18.4, -0.9, 0.9, "steel");
-BOX("cJawArmL", "cJawLl", CX - 3.4, CX - 1.6, HOVY + 17.4, HOVY + 18.0, -0.5, 0.5, "dark"); BOX("cJawArmR", "cJawRl", CX + 1.6, CX + 3.4, HOVY + 17.4, HOVY + 18.0, -0.5, 0.5, "dark");
-VC("cWireUp", "cCapUp", R_W, HOVY + 15.0, HOVY + 26, "au", { x: CX });
-// 線尾（燒球前）與自由空氣球（燒球後）：跟著劈刀走
-VC("cTailW", "cTail", R_W, HOVY - 1.2, HOVY + 0.02, "au", { x: CX });
+// 劈刀（尖端面半徑 0.85＞壓扁球 0.6）＋筒身＋換能器桿（沿 −x 伸出去）＋夾持環與螺絲＋線夾兩爪＋上方的線；懸停時尖端在 HOVY
+const HOVY = 9.6, CX = PADX, R_W = 0.16, CT = 4.0, CB = 7.0, CJ = 8.4;
+P({ id: "cCapCone", layer: "cCapUp", shape: "cone", size: [0.85, 1.25, CT], rot: [90, 0, 0], pos: [CX, HOVY + CT / 2, 0], mat: "cap" });
+VC("cCapBody", "cCapUp", 1.25, HOVY + CT, HOVY + CB, "cap", { x: CX }); VT("cCapChamf", "cCap", 0.86, 0.32, HOVY, HOVY + 0.1, "capTip", { x: CX });
+P({ id: "cCapBore", layer: "cCap", shape: "cyl", size: [0.2, 0.06], rot: V, pos: [CX, HOVY + 0.02, 0], mat: "dark" });
+VT("cHornRing", "cCapUp", 1.7, 1.26, HOVY + 5.0, HOVY + 6.6, "horn", { x: CX }); P({ id: "cHornScrew", layer: "cCapUp", shape: "cyl", size: [0.32, 0.9], pos: [CX, HOVY + 5.8, 1.9], mat: "dark" });
+P({ id: "cHornTip", layer: "cCapUp", shape: "cone", size: [1.0, 1.5, 9.0], rot: [0, 90, 0], pos: [CX - 6.2, HOVY + 5.8, 0], mat: "horn" });   // +z 端（細）轉到 +x，接劈刀
+for (let i = 0; i < 5; i++) P({ id: `cPz${i}`, layer: "cCapUp", shape: "cyl", size: [1.55, 0.36], rot: HX, pos: [CX - 11.0 - i * 0.36, HOVY + 5.8, 0], mat: i % 2 ? "piezoB" : "piezoA" });
+P({ id: "cHornFl", layer: "cCapUp", shape: "cyl", size: [2.0, 0.3], rot: HX, pos: [CX - 10.6, HOVY + 5.8, 0], mat: "steel" });
+VC("cWireUp", "cCapUp", R_W, HOVY + CB, HOVY + 15, "au", { x: CX });
+BOX("cJawL", "cJawLl", CX - 1.3, CX - 0.2, HOVY + CJ, HOVY + CJ + 1.0, -0.7, 0.7, "steel"); BOX("cJawArmL", "cJawLl", CX - 3.6, CX - 1.3, HOVY + CJ + 0.25, HOVY + CJ + 0.75, -0.4, 0.4, "dark");
+BOX("cJawR", "cJawRl", CX + 0.2, CX + 1.3, HOVY + CJ, HOVY + CJ + 1.0, -0.7, 0.7, "steel"); BOX("cJawArmR", "cJawRl", CX + 1.3, CX + 3.6, HOVY + CJ + 0.25, HOVY + CJ + 0.75, -0.4, 0.4, "dark");
+VC("cTailW", "cTail", R_W, HOVY - 1.1, HOVY + 0.02, "au", { x: CX });
 SPH("cFab", "cBall", 0.46, CX, HOVY - 0.44, 0, "auHi");
-// 打火棒：絕緣座＋電極，電極尖端在線尾右邊
+// 打火棒：絕緣座＋電極，電極尖端在線尾右邊（固定在機台上，劈刀回到這裡放電）
 BOX("cEfoBase", "cEfo", X2 + 9.0, X2 + 13.0, HOVY - 1.8, HOVY + 0.2, -1.2, 1.2, "dark"); SEG("cEfoRod", "cEfo", [X2 + 9.0, HOVY - 0.8, 0], [CX + 1.4, HOVY - 0.8, 0], 0.22, "steel");
 SPH("cEfoTip", "cEfo", 0.3, CX + 1.35, HOVY - 0.8, 0, "steel");
-// 放電火花（閃一下）
-SEG("cArc0", "cSpark", [CX + 1.2, HOVY - 0.8, 0], [CX + 0.6, HOVY - 1.0, 0.1], 0.07, "sparkHot"); SEG("cArc1", "cSpark", [CX + 0.6, HOVY - 1.0, 0.1], [CX + 0.15, HOVY - 1.1, 0], 0.07, "sparkHot");
-SPH("cArcGlow", "cSpark", 0.9, CX + 0.6, HOVY - 1.0, 0, "spark");
-// 第一焊點（壓扁的球）＋第二焊點（魚尾形）
-P({ id: "cBallFlat", layer: "cBallB", shape: "sphere", size: [0.62], scale: [1, 0.42, 1], pos: [CX, PADY + 0.22, 0], mat: "auHi" });
+// 放電電弧：亮藍白鋸齒＋光暈（閃 3～4 幀）
+const ARC = [[CX + 1.2, HOVY - 0.8, 0.05], [CX + 0.95, HOVY - 0.55, 0.05], [CX + 0.7, HOVY - 0.95, 0.05], [CX + 0.45, HOVY - 0.7, 0.05], [CX + 0.2, HOVY - 1.05, 0.05]];
+for (let i = 0; i < ARC.length - 1; i++) SEG(`cArc${i}`, "cSpark", ARC[i], ARC[i + 1], 0.09, "sparkHot");
+SPH("cArcGlow", "cSpark", 0.75, CX + 0.7, HOVY - 0.85, 0, "spark"); SPH("cArcCore", "cSpark", 0.35, CX + 0.7, HOVY - 0.85, 0, "sparkHot");
+P({ id: "cBallFlat", layer: "cBallB", shape: "sphere", size: [0.6], scale: [1, 0.42, 1], pos: [CX, PADY + 0.22, 0], mat: "auHi" });
 P({ id: "cStitchF", layer: "cStitch", shape: "box", size: [1.1, 0.12, 0.7], pos: [LEADX + 0.15, LEADY + 0.08, 0], mat: "auHi" }); P({ id: "cStitchT", layer: "cStitch", shape: "box", size: [0.5, 0.1, 0.3], pos: [LEADX + 0.85, LEADY + 0.07, 0], mat: "au" });
-// 第二焊點後留下的短線尾（拉斷那一刻）
 VC("cTailBreak", "cTail2", R_W, LEADY + 0.15, LEADY + 1.25, "au", { x: LEADX });
-// 超音波：劈刀兩側的波紋＋接面的熱光
-P({ id: "cUSWave", layer: "cUS", shape: "tube", size: [0.8, 0.7, 0.06], rot: [0, 90, 0], pos: [CX, PADY + 1.2, 0], at: [[-1.4, 0, 0], [-2.2, 0, 0], [1.4, 0, 0], [2.2, 0, 0]], mat: "us" });
+// 超音波圈：定義在懸停位置（尖端上方 0.75），跟著劈刀一起走
+P({ id: "cUSWave", layer: "cUS", shape: "tube", size: [0.8, 0.7, 0.06], rot: [0, 90, 0], pos: [CX, HOVY + 0.75, 0], at: [[-1.6, 0, 0], [-2.4, 0, 0], [1.6, 0, 0], [2.4, 0, 0]], mat: "us" });
 P({ id: "cBondGlow", layer: "cGlow", shape: "cyl", size: [1.0, 0.05], rot: V, pos: [CX, PADY + 0.08, 0], mat: "heat" });
-// 線弧：控制點 → 平滑取樣，每段一層（劈刀走到才出現）
-const LOOP = smooth([[CX, PADY + 0.3, 0], [CX, PADY + 3.6, 0], [CX + 0.6, PADY + 4.6, 0], [CX + 2.6, PADY + 4.4, 0], [CX + 5.0, PADY + 1.6, 0], [LEADX, LEADY + 0.2, 0]], 2);
+// 線弧：高度不超過跨距三分之一；細分成小段（每段一層），劈刀走到才出現；沒有接點小球（不竹節）
+const LOOP = smooth([[CX, PADY + 0.3, 0], [CX, PADY + 1.9, 0], [CX + 1.1, PADY + 2.6, 0], [CX + 3.4, PADY + 2.3, 0], [CX + 5.7, LEADY + 1.5, 0], [LEADX, LEADY + 0.2, 0]], 4);
 const NL = LOOP.length - 1;
-for (let i = 0; i < NL; i++) { LAY(`cW${i}`, [2, 2, (LOOP[i][0] + LOOP[i + 1][0]) / 2, (LOOP[i][1] + LOOP[i + 1][1]) / 2]); SEG(`cWs${i}`, `cW${i}`, LOOP[i], LOOP[i + 1], R_W, "au"); if (i > 0) SPH(`cWj${i}`, `cW${i}`, R_W * 1.05, ...LOOP[i], "au"); }
-actions.cUSvib = { type: "vibrate", _說明: "超音波：劈刀尖端左右微振（示意，放大很多）", parts: ["cCapCone", "cCapChamf", "cBallFlat"], axis: [1, 0, 0], amp: 0.06, freq: 12 };
+for (let i = 0; i < NL; i++) { LAY(`cW${i}`, [1, 1, (LOOP[i][0] + LOOP[i + 1][0]) / 2, (LOOP[i][1] + LOOP[i + 1][1]) / 2]); SEG(`cWs${i}`, `cW${i}`, LOOP[i], LOOP[i + 1], R_W, "au"); }
+actions.cUSvib = { type: "vibrate", _說明: "超音波：劈刀尖端沿換能器方向（x）微振（示意，放大很多）", parts: ["cCapCone", "cCapChamf", "cBallFlat"], axis: [1, 0, 0], amp: 0.06, freq: 12 };
 actions.cUSring = { type: "pulse", parts: ["cUSWave"], color: "usC", glow: 0.9, freq: 4, halo: 0 };
-actions.cHeatOn = { type: "pulse", _說明: "加熱台發熱（約一百多度，示意）", parts: ["cHeatB"], color: "heatC", glow: 0.55, steady: true, halo: 0 };
-actions.cArcFlash = { type: "pulse", parts: ["cArcGlow", "cArc0", "cArc1"], color: "sparkC", glow: 1, freq: 6, halo: 1.2 };
+actions.cHeatOn = { type: "pulse", _說明: "加熱台發熱（約一百多度，示意）", parts: ["cHeatB", "cHeatSide"], color: "heatC", glow: 0.55, steady: true, halo: 0 };
+actions.cArcFlash = { type: "pulse", parts: ["cArcGlow", "cArcCore", ...ARC.slice(1).map((_, i) => `cArc${i}`)], color: "sparkC", glow: 1, freq: 9, halo: 1.6 };
 actions.cBondHot = { type: "pulse", parts: ["cBondGlow"], color: "heatC", glow: 1, freq: 2, halo: 0.6 };
-Object.assign(anchors, { cCapA: A("cCap", [CX + 1.4, HOVY + 4.0, 0], 150, -90), cFabA: A("cBall", [CX - 0.3, HOVY - 0.5, 0], -150, 90), cEfoA: A("cEfo", [X2 + 6.0, HOVY - 0.6, 0], 150, 90),
+Object.assign(anchors, { cCapA: A("cCapUp", [CX + 1.0, HOVY + 2.5, 0], 150, -90), cFabA: A("cBall", [CX - 0.3, HOVY - 0.5, 0], -150, 90), cEfoA: A("cSpark", [CX + 0.7, HOVY - 0.85, 0.1], 150, 90),
   cPadA: A("cDie", [CX - 0.6, PADY + 0.05, 0.6], -150, 100), cBallA: A("cBallB", [CX - 0.4, PADY + 0.25, 0.3], -150, 100), cLoopA: A(`cW${Math.floor(NL / 2)}`, LOOP[Math.floor(NL / 2)], 150, -100),
-  cStitchA: A("cStitch", [LEADX + 0.6, LEADY + 0.1, 0.3], 150, 100), cClampA: A("cJawLl", [CX - 1.0, HOVY + 18.2, 0.9], -150, -90), cLeadA2: A("cLead", [X2 + 12, LEADY, 0.8], 150, 100), cHeatA: A("cHeat", [X2 - 12, 1.0, 5], -150, 100), cLeadA2b: A("cLeadBg", [X2 + 12, LEADY, 0.8], 150, 100) });
+  cStitchA: A("cStitch", [LEADX + 0.6, LEADY + 0.1, 0.3], 150, 100), cClampA: A("cJawLl", [CX - 0.8, HOVY + CJ + 0.5, 0.7], -150, -90), cHornA: A("cCapUp", [CX - 6.0, HOVY + 6.4, 0.8], -150, -90), cHeatA: A("cHeat", [X2 + 6, 1.0, 6], 150, 100) });
 
-// ═════ D 站（X3＝170）：焊點放大剖面（1＝2 µm）：細基底、鋁焊墊、表面氧化膜（被搓碎）、壓扁的金球、接面原子互相擠進去 ═════
-const X3 = 170, DPY = 5.0;
-LAY("dSi", [26, 5, X3, 2.5]); LAY("dPad", [18, 1, X3, 4.6]); LAY("dOx", [14, 0.3, X3, 5.05]); LAY("dBall", [12, 6, X3, 8]); LAY("dImc", [10, 0.5, X3, 5.1]); LAY("dArrow", [16, 3, X3, 7]); LAY("dHeat", [26, 1, X3, 0.4]);
-BOX("dSiB", "dSi", X3 - 13, X3 + 13, 0.8, 4.2, -5, 5, "si"); BOX("dSiTop", "dSi", X3 - 13, X3 + 13, 4.2, 4.3, -5, 5, "dieTop");
-BOX("dPasL", "dSi", X3 - 13, X3 - 8.0, 4.3, 5.4, -5, 5, "pas"); BOX("dPasR", "dSi", X3 + 8.0, X3 + 13, 4.3, 5.4, -5, 5, "pas");
-BOX("dPadB", "dPad", X3 - 8.0, X3 + 8.0, 4.3, DPY, -5, 5, "alPad");
-P({ id: "dOxFlake", layer: "dOx", shape: "box", size: [1.15, 0.12, 1.1], pos: [0, DPY + 0.06, 0], at: [-6, -4.8, -3.6, -2.4, -1.2, 0, 1.2, 2.4, 3.6, 4.8, 6].flatMap((x) => [[X3 + x, 0, -2], [X3 + x, 0, 0], [X3 + x, 0, 2]]), mat: "ox" });
-P({ id: "dBallB", layer: "dBall", shape: "sphere", size: [5.2], scale: [1, 0.36, 0.9], pos: [X3, DPY + 0.2, 0], mat: "au" });
-VC("dNeck", "dNeckL", 1.4, DPY + 1.6, DPY + 9, "au", { x: X3 }); P({ id: "dNeckCone", layer: "dBall", shape: "cone", size: [1.4, 2.6, 1.6], rot: [-90, 0, 0], pos: [X3, DPY + 1.5, 0], mat: "au" });
-BOX("dImcB", "dImc", X3 - 4.6, X3 + 4.6, DPY - 0.05, DPY + 0.18, -3.8, 3.8, "imc");
+// ═════ D 站（X3＝170）：焊點剖面（1＝2 µm）：金球、鋁墊、鈍化層、細基底全部切半（剖面朝鏡頭 z＝0）；介面一條灰色氧化膜 → 搓碎往兩側擠出 → 紫色接合層＋原子只在介面薄帶互擠 ═════
+const X3 = 170, DPY = 5.0, DZ = 5.0;   // 切面在 z＝0，實體在 z∈[−DZ, 0]
+LAY("dSi", [26, 5, X3, 2.5]); LAY("dPad", [18, 1, X3, 4.6]); LAY("dOx", [12, 0.3, X3, 5.05]); LAY("dBall", [12, 3, X3, 6]); LAY("dNeckL", [3, 8, X3, 10]); LAY("dImc", [10, 0.5, X3, 5.1]); LAY("dArrow", [16, 3, X3, 8]); LAY("dHeat", [26, 1, X3, 0.4]); LAY("dAtom", [10, 1, X3, 5.1]);
+BOX("dSiB", "dSi", X3 - 13, X3 + 13, 0.8, 4.2, -DZ, 0, "si"); BOX("dSiTop", "dSi", X3 - 13, X3 + 13, 4.2, 4.3, -DZ, 0, "dieTop");
+BOX("dPasL", "dSi", X3 - 13, X3 - 7.0, 4.3, 5.4, -DZ, 0, "pas"); BOX("dPasR", "dSi", X3 + 7.0, X3 + 13, 4.3, 5.4, -DZ, 0, "pas");
+BOX("dPadB", "dPad", X3 - 7.0, X3 + 7.0, 4.3, DPY, -DZ, 0, "alPad");
+BOX("dOxL", "dOx", X3 - 6.8, X3 + 6.8, DPY, DPY + 0.14, -DZ, 0.01, "ox");   // 搓之前：介面一條連續的灰色氧化膜
+// 金球剖面（壓扁的球＋頸）：外形用多邊形擠出
+{ const N = 24, a = 5.0, b = 1.9, pts = [];
+  for (let k = 0; k <= N; k++) { const t = (Math.PI * k) / N; pts.push([R2(a * Math.cos(t)), R2(b * Math.sin(t))]); }
+  P({ id: "dBallS", layer: "dBall", shape: "poly", pts: [...pts.slice(0, 9), [1.3, 2.4], [-1.3, 2.4], ...pts.slice(16)], size: [10, 2.4, DZ], pos: [X3, DPY + 0.14, -DZ / 2], mat: "au" }); }
+BOX("dNeck", "dNeckL", X3 - 1.3, X3 + 1.3, DPY + 2.5, DPY + 9, -DZ, 0, "au");
+BOX("dImcB", "dImc", X3 - 4.8, X3 + 4.8, DPY - 0.08, DPY + 0.2, -DZ, 0.02, "imc");
+// 碎掉的氧化膜（往兩側擠出去的碎片）
+P({ id: "dOxFlake", layer: "dOx", shape: "box", size: [0.5, 0.12, 0.4], pos: [X3, DPY + 0.07, 0.2], at: [-6.6, -5.9, -5.3, 5.3, 5.9, 6.6].map((x, i) => [x, (i % 2) * 0.05, 0]), mat: "ox" });
 // 超音波方向箭頭（左右來回）與加熱
-for (const [i, s] of [[0, -1], [1, 1]]) { SEG(`dArr${i}`, "dArrow", [X3 + s * 5.8, DPY + 3.4, 2], [X3 + s * 8.2, DPY + 3.4, 2], 0.18, "us"); P({ id: `dArrH${i}`, layer: "dArrow", shape: "cone", size: [0.01, 0.45, 0.9], rot: [0, s * 90, 0], pos: [X3 + s * 8.6, DPY + 3.4, 2], mat: "us" }); }
-BOX("dHeatB", "dHeat", X3 - 13, X3 + 13, 0, 0.8, -5, 5, "heatPlate");
-actions.dScrub = { type: "vibrate", _說明: "超音波讓金球貼著焊墊左右來回搓（示意，放大很多）", parts: ["dBallB", "dNeck", "dNeckCone"], axis: [1, 0, 0], amp: 0.16, freq: 9 };
-actions.dOxBreak = { type: "flow", _說明: "表面那層氧化膜被搓碎、往球外側擠出去（灰色碎屑）", layer: "dOx", path: [[X3 - 1, DPY + 0.15, 0], [X3 - 6, DPY + 0.2, 0.5], [X3 - 9, DPY + 0.35, 1]], n: 8, size: 0.22, shape: "grit", rate: 0.5, color: "oxC", track: false, jitter: 0.6, free: true };
-actions.dOxBreakR = { type: "flow", layer: "dOx", path: [[X3 + 1, DPY + 0.15, 0], [X3 + 6, DPY + 0.2, -0.5], [X3 + 9, DPY + 0.35, -1]], n: 8, size: 0.22, shape: "grit", rate: 0.5, color: "oxC", track: false, jitter: 0.6, free: true };
-actions.dAuDown = { type: "flow", _說明: "金原子往下、鋁原子往上，在接面互相擠進去（示意）", layer: "dImc", path: [[X3 - 2.5, DPY + 1.0, 1.5], [X3 - 2.5, DPY - 0.4, 1.5]], n: 6, lanes: 4, laneDir: [1, 0, 0], laneGap: 1.5, size: 0.16, shape: "dot", rate: 0.4, color: "ballAtC", track: false, free: true };
-actions.dAlUp = { type: "flow", layer: "dImc", path: [[X3 - 1.8, DPY - 0.5, 1.5], [X3 - 1.8, DPY + 0.8, 1.5]], n: 6, lanes: 4, laneDir: [1, 0, 0], laneGap: 1.5, size: 0.16, shape: "dot", rate: 0.4, color: "alAtC", track: false, free: true };
+for (const [i, s] of [[0, -1], [1, 1]]) { SEG(`dArr${i}`, "dArrow", [X3 + s * 3.0, DPY + 4.4, 0.3], [X3 + s * 5.4, DPY + 4.4, 0.3], 0.18, "us"); P({ id: `dArrH${i}`, layer: "dArrow", shape: "cone", size: [0.01, 0.45, 0.9], rot: [0, s * 90, 0], pos: [X3 + s * 5.8, DPY + 4.4, 0.3], mat: "us" }); }
+BOX("dHeatB", "dHeat", X3 - 13, X3 + 13, 0, 0.8, -DZ, 0, "heatPlate");
+actions.dScrub = { type: "vibrate", _說明: "超音波讓金球貼著焊墊左右來回搓（示意，放大很多）", parts: ["dBallS", "dNeck"], axis: [1, 0, 0], amp: 0.14, freq: 9 };
+actions.dOxBreak = { type: "flow", _說明: "介面的氧化膜被搓碎，碎片從球的兩側邊緣被擠出去（灰色）", layer: "dOx", path: [[X3 - 2.5, DPY + 0.07, 0.25], [X3 - 5.2, DPY + 0.1, 0.25], [X3 - 7.2, DPY + 0.3, 0.25]], n: 10, size: 0.16, shape: "grit", rate: 0.6, color: "oxC", track: false, jitter: 0.25, free: true };
+actions.dOxBreakR = { type: "flow", layer: "dOx", path: [[X3 + 2.5, DPY + 0.07, 0.25], [X3 + 5.2, DPY + 0.1, 0.25], [X3 + 7.2, DPY + 0.3, 0.25]], n: 10, size: 0.16, shape: "grit", rate: 0.6, color: "oxC", track: false, jitter: 0.25, free: true };
+actions.dAuDown = { type: "flow", _說明: "金原子往下、鋁原子往上，只在介面上下一條薄帶裡互相擠進去（示意）", layer: "dAtom", path: [[X3 - 4.0, DPY + 0.45, 0.25], [X3 - 4.0, DPY - 0.3, 0.25]], n: 3, lanes: 9, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.13, shape: "dot", rate: 0.5, color: "ballAtC", track: false, free: true };
+actions.dAlUp = { type: "flow", layer: "dAtom", path: [[X3 - 3.5, DPY - 0.35, 0.25], [X3 - 3.5, DPY + 0.4, 0.25]], n: 3, lanes: 8, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.13, shape: "dot", rate: 0.5, color: "alAtC", track: false, free: true };
 actions.dHeatOn = { type: "pulse", parts: ["dHeatB"], color: "heatC", glow: 0.55, steady: true, halo: 0 };
 actions.dImcGlow = { type: "pulse", parts: ["dImcB"], color: "imcC", glow: 0.9, steady: true, halo: 0 };
-Object.assign(anchors, { dOxA: A("dOx", [X3 - 6, DPY + 0.1, 2], -150, 100), dBallA: A("dBall", [X3 + 2.5, DPY + 1.2, 1.5], 150, -90), dImcA: A("dImc", [X3 + 3.5, DPY + 0.05, 2.5], 150, 100), dPadA: A("dPad", [X3 - 7, DPY - 0.3, 5], -150, 100) });
+Object.assign(anchors, { dOxA: A("dOx", [X3 - 3.5, DPY + 0.08, 0.05], -150, 100), dBallA: A("dBall", [X3 + 2.5, DPY + 1.2, 0.05], 150, -90), dImcA: A("dImc", [X3 + 3.0, DPY + 0.05, 0.05], 150, 100), dPadA: A("dPad", [X3 - 6, DPY - 0.3, 0.05], -150, 100) });
 
-// ═════ E 站（X5＝250）：金線 vs 銅線（1＝10 µm）：兩支劈刀並排；銅那支有保護氣罩（氮氫混合氣）、球亮；沒保護就氧化變黑；銅較硬會壓裂焊墊（示意） ═════
-const X5 = 250, EY = 9.0;
-LAY("eBase", [36, 2, X5, 0.5]); LAY("eAu", [6, 16, X5 - 9, 12]); LAY("eCu", [6, 16, X5 + 9, 12]); LAY("eGas", [6, 3, X5 + 9, 8.4]); LAY("eCuOx", [2, 2, X5 + 9, 8.4]); LAY("eCrack", [4, 1, X5 + 9, 4.4]); LAY("eSpool", [36, 6, X5, 20]);
-BOX("eHeat", "eBase", X5 - 18, X5 + 18, 0, 1.0, -6, 6, "heatPlate"); BOX("eDieL", "eBase", X5 - 15, X5 - 3, 1.0, 4.2, -5, 5, "si"); BOX("eDieR", "eBase", X5 + 3, X5 + 15, 1.0, 4.2, -5, 5, "si");
-BOX("ePadL", "eBase", X5 - 10, X5 - 8, 4.2, 4.36, -1, 1, "alPad"); BOX("ePadR", "eBase", X5 + 8, X5 + 10, 4.2, 4.36, -1, 1, "alPad");
-for (const [lay, x, wm] of [["eAu", X5 - 9, "au"], ["eCu", X5 + 9, "cuW"]]) {
-  P({ id: `${lay}Cone`, layer: lay, shape: "cone", size: [0.55, 1.6, 6.0], rot: [90, 0, 0], pos: [x, EY + 3.0, 0], mat: "cap" }); VC(`${lay}Body`, "eUp", 1.6, EY + 6, EY + 14, "cap", { x });
-  VC(`${lay}Wire`, "eUp", 0.16, EY + 14, EY + 18, wm, { x }); SPH(`${lay}Fab`, lay, 0.46, x, EY - 0.44, 0, wm === "au" ? "auHi" : "cuW");
+// ═════ E 站（X5＝250）：三支劈刀：金線（亮）｜銅線沒吹保護氣（燒出來的球暗、氧化）｜銅線先開保護氣再放電（亮） ═════
+const X5 = 250, EY = 9.0, EXS = [X5 - 11, X5, X5 + 11];
+LAY("eBase", [40, 2, X5, 0.5]); LAY("eAu", [3, 2, EXS[0], EY]); LAY("eCu", [3, 2, EXS[1], EY]); LAY("eCu2", [3, 2, EXS[2], EY]); LAY("eGas", [8, 6, EXS[2], EY]); LAY("eCuOx", [2, 2, EXS[1], EY]); LAY("eCuOk", [2, 2, EXS[2], EY]); LAY("eCrack", [4, 1, EXS[1], 4.4]); LAY("eSpool", [36, 6, X5, 26]); LAY("eUp", [36, 14, X5, 18]);
+LAY("eSpk1", [2, 2, EXS[1], EY]); LAY("eSpk2", [2, 2, EXS[2], EY]);
+BOX("eHeat", "eBase", X5 - 20, X5 + 20, 0, 1.0, -6, 6, "heatPlate"); BOX("eDie", "eBase", X5 - 17, X5 + 17, 1.0, 4.2, -5, 5, "si"); BOX("eDieTop", "eBase", X5 - 17, X5 + 17, 4.2, 4.3, -5, 5, "dieTop");
+P({ id: "ePad", layer: "eBase", shape: "box", size: [2, 0.12, 2], pos: [0, 4.36, 0], at: EXS.map((x) => [x, 0, 0]), mat: "alPad" });
+for (const [i, lay, wm] of [[0, "eAu", "au"], [1, "eCu", "cuW"], [2, "eCu2", "cuW"]]) {
+  const x = EXS[i];
+  P({ id: `eCone${i}`, layer: "eUp", shape: "cone", size: [0.85, 1.25, 4.0], rot: [90, 0, 0], pos: [x, EY + 2.0, 0], mat: "cap" }); VC(`eBody${i}`, "eUp", 1.25, EY + 4, EY + 7, "cap", { x });
+  VC(`eWire${i}`, "eUp", 0.16, EY + 7, EY + 22.6, wm, { x }); VT(`eTip${i}`, lay, 0.86, 0.3, EY, EY + 0.1, "capTip", { x });
+  // 線軸在劈刀正上方支架，線從線軸往下進劈刀頂
+  HXC(`eSpW${i}`, "eSpool", 1.6, x - 1.2, x + 1.2, EY + 24.2, 0, wm); HXC(`eSpFa${i}`, "eSpool", 2.2, x - 1.5, x - 1.2, EY + 24.2, 0, "steel2"); HXC(`eSpFb${i}`, "eSpool", 2.2, x + 1.2, x + 1.5, EY + 24.2, 0, "steel2");
+  BOX(`eSpArm${i}`, "eSpool", x - 1.9, x - 1.6, EY + 21.5, EY + 24.4, -0.2, 0.2, "dark");
 }
-// 保護氣罩：一圈噴口＋淡綠氣流包住球
-VT("eGasRing", "eGas", 1.9, 1.5, EY - 1.4, EY - 1.0, "steel", { x: X5 + 9 }); SEG("eGasPipe", "eGas", [X5 + 10.9, EY - 1.2, 0], [X5 + 15, EY + 1.5, 0], 0.25, "steel");
-SPH("eGasCloud", "eGas", 1.3, X5 + 9, EY - 0.9, 0, "gas");
-SPH("eCuOxBall", "eCuOx", 0.5, X5 + 9, EY - 0.44, 0, "cuOx");
-SEG("eCr0", "eCrack", [X5 + 8.3, 4.37, 0.3], [X5 + 9.0, 4.37, -0.2], 0.05, "crack"); SEG("eCr1", "eCrack", [X5 + 9.0, 4.37, -0.2], [X5 + 9.7, 4.37, 0.4], 0.05, "crack"); SEG("eCr2", "eCrack", [X5 + 9.0, 4.37, -0.2], [X5 + 9.2, 4.37, -0.9], 0.05, "crack");
-// 兩個線軸（金、銅）
-for (const [i, x, wm] of [[0, X5 - 9, "au"], [1, X5 + 9, "cuW"]]) { HXC(`eSpW${i}`, "eSpool", 2.2, x - 1.6, x + 1.6, 21, -4, wm); HXC(`eSpF${i}a`, "eSpool", 3.0, x - 2.0, x - 1.6, 21, -4, "steel2"); HXC(`eSpF${i}b`, "eSpool", 3.0, x + 1.6, x + 2.0, 21, -4, "steel2"); }
-actions.eGasFlow = { type: "flow", _說明: "保護氣（氮氫混合）從噴口包住燒出來的銅球，不讓它氧化", layer: "eGas", path: [[X5 + 15, EY + 1.5, 0], [X5 + 10.9, EY - 1.2, 0], [X5 + 9.6, EY - 1.0, 0], [X5 + 8.4, EY - 0.6, 0]], n: 14, size: 0.14, shape: "dot", rate: 0.35, color: "gasC", track: false, jitter: 0.5, free: true };
-actions.eCrackFlash = { type: "pulse", parts: ["eCr0", "eCr1", "eCr2"], color: "crackC", glow: 1, freq: 2, halo: 0.4 };
-Object.assign(anchors, { eAuA: A("eAu", [X5 - 10.5, EY + 4, 0], -150, -90), eCuA: A("eCu", [X5 + 10.5, EY + 4, 0], 150, -90), eGasA: A("eGas", [X5 + 10.2, EY - 1.0, 0.6], 150, 90), eCrackA: A("eCrack", [X5 + 9.4, 4.4, 0.4], 150, 100) });
+SPH("eAuFab", "eAu", 0.46, EXS[0], EY - 0.44, 0, "auHi");
+P({ id: "eCuOxBall", layer: "eCuOx", shape: "sphere", size: [0.48], scale: [1.05, 0.9, 1], pos: [EXS[1], EY - 0.44, 0], mat: "cuOx" });
+SPH("eCuOkBall", "eCuOk", 0.46, EXS[2], EY - 0.44, 0, "cuW");
+for (const [lay, x] of [["eSpk1", EXS[1]], ["eSpk2", EXS[2]]]) { SPH(`${lay}G`, lay, 0.7, x + 0.6, EY - 0.8, 0, "spark"); SPH(`${lay}C`, lay, 0.3, x + 0.6, EY - 0.8, 0, "sparkHot"); }
+// 保護氣罩：環形噴口＋進氣管；氣流用大量細粒子從噴口錐狀散開、繞過劈刀尖
+VT("eGasRing", "eGas", 2.0, 1.55, EY - 1.4, EY - 1.0, "steel", { x: EXS[2] }); SEG("eGasPipe", "eGas", [EXS[2] + 2.0, EY - 1.2, 0], [EXS[2] + 5.5, EY + 1.8, 0], 0.25, "steel");
+P({ id: "eGasNozzle", layer: "eGas", shape: "cyl", size: [0.12, 0.3], rot: V, pos: [EXS[2], EY - 1.45, 0], at: [0, 60, 120, 180, 240, 300].map((d) => { const [x, z] = pol(d, 1.78); return [x, 0, z]; }), mat: "dark" });
+SEG("eCr0", "eCrack", [EXS[1] - 0.7, 4.43, 0.3], [EXS[1], 4.43, -0.2], 0.05, "crack"); SEG("eCr1", "eCrack", [EXS[1], 4.43, -0.2], [EXS[1] + 0.7, 4.43, 0.4], 0.05, "crack");
+for (const [k, sgn] of [["A", -1], ["B", 1]]) actions[`eGas${k}`] = { type: "flow", _說明: "保護氣（氮＋氫）從環形噴口錐狀往下散開、繞過劈刀尖與球（細粒子）", layer: "eGas", path: [[EXS[2] + sgn * 1.8, EY - 1.45, 0], [EXS[2] + sgn * 1.0, EY - 1.0, 0], [EXS[2] + sgn * 0.7, EY - 1.6, 0], [EXS[2] + sgn * 1.6, EY - 3.2, 0]], n: 26, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.6, size: 0.07, shape: "dot", rate: 0.55, color: "gasC", track: false, jitter: 0.35, free: true };
+actions.eGasIn = { type: "flow", layer: "eGas", path: [[EXS[2] + 5.5, EY + 1.8, 0], [EXS[2] + 2.0, EY - 1.2, 0]], n: 12, size: 0.07, shape: "dot", rate: 0.5, color: "gasC", track: false, jitter: 0.15, free: true };
+actions.eSpkF1 = { type: "pulse", parts: ["eSpk1G", "eSpk1C"], color: "sparkC", glow: 1, freq: 9, halo: 1.4 }; actions.eSpkF2 = { type: "pulse", parts: ["eSpk2G", "eSpk2C"], color: "sparkC", glow: 1, freq: 9, halo: 1.4 };
+Object.assign(anchors, { eAuA: A("eAu", [EXS[0] - 0.3, EY - 0.6, 0.4], -150, 90), eCuA: A("eCuOx", [EXS[1] - 0.3, EY - 0.6, 0.4], -150, 90), eGasA: A("eGas", [EXS[2] + 1.6, EY - 2.6, 0.4], 150, 90), eOkA: A("eCuOk", [EXS[2] + 0.3, EY - 0.6, 0.4], 150, 90) });
 
-// ═════ A 站預告：封裝膠從上方蓋下來（只蓋一半，下一集再講）＋錫球一排 ═════
+// ═════ A 站預告：封裝膠從上方蓋下來＋旁邊另一片小載板上的錫球（另一種封裝，下一集） ═════
 LAY("moldA", [20, 2, X0, 3]); LAY("ballsA", [12, 1, X0 + 14, 0.4]);
 P({ id: "moldTop", layer: "moldA", shape: "slab", size: [12.4, 1.6, 12.4], r: 0.3, pos: [X0, 2.2, 0], mat: "mold" }); P({ id: "moldDot", layer: "moldA", shape: "cyl", size: [0.4, 0.02], rot: V, pos: [X0 - 4.6, 3.01, -4.6], mat: "dark" });
-P({ id: "sBall", layer: "ballsA", shape: "sphere", size: [0.35], pos: [X0 + 14, 0.35, 3], at: Array.from({ length: 25 }, (_, i) => [R2((i % 5 - 2) * 0.9), 0, R2((Math.floor(i / 5) - 2) * 0.9)]), mat: "solder" });
+BOX("bgaSub", "ballsA", X0 + 11.4, X0 + 16.6, 0.9, 1.15, 0.4, 5.6, "board");
+P({ id: "sBall", layer: "ballsA", shape: "sphere", size: [0.35], pos: [X0 + 14, 0.6, 3], at: Array.from({ length: 25 }, (_, i) => [R2((i % 5 - 2) * 0.9), 0, R2((Math.floor(i / 5) - 2) * 0.9)]), mat: "solder" });
 LAY("floorAll", [400, 1, 150, 0], true);
 P({ id: "floorPlate", layer: "floorAll", shape: "box", size: [420, 0.05, 40], pos: [150, -0.03, 0], mat: "floor" });
 
-const BGL = new Set(["cEfo", "dSi", "cDieBg", "cLeadBg", "cJawLl", "cJawRl", "lfA", "bdBase", "bdHood", "bdLf", "bdXY", "cHeat", "cCapUp", "dHeat", "dNeckL", "eBase", "eSpool", "eUp"]);   // 背景層：支撐、機殼、往畫面外延伸的部分（版面檢查不算主素材）
+const BGL = new Set(["cLead", "cEfo", "dSi", "dHeat", "cDieBg", "cLeadBg", "cJawLl", "cJawRl", "lfA", "bdBase", "bdHood", "bdLf", "bdXY", "cHeat", "cCapUp", "dHeat", "dNeckL", "eBase", "eSpool", "eUp"]);   // 背景層：支撐、機殼、往畫面外延伸的部分（版面檢查不算主素材）
 for (const l of layers) if (BGL.has(l.id)) l.bg = true;
 const model = {
   name: "示意 封裝打線：導線架上的晶片（焊墊、引腳、28 條金線）、打線機（機殼、導軌與料匣、加熱台、XY 平台、焊頭爆炸分解：線軸、線夾、換能器、劈刀、打火棒、相機）、劈刀特寫（打火成球→第一焊點→線弧→第二焊點→拉斷）、焊點剖面（超音波磨破氧化膜、原子接合）、金線與銅線（保護氣、氧化、壓裂）（示意，非特定廠牌）",
@@ -366,7 +384,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 40, elev: 24, y: 2 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { X0, X1, X2, X3, X5, CX, HOVY, PADY, LEADX, LEADY, DK, HY, LOOP, DPY, EY },
+  info: { X0, X1, X2, X3, X5, CX, HOVY, PADY, LEADX, LEADY, PAD2X, DK, HY, LOOP, DPY, EY, EXS },
 };
 const out = path.join(path.dirname(new URL(import.meta.url).pathname), "model.json");
 fs.writeFileSync(out, JSON.stringify(model, null, 1) + "\n");
