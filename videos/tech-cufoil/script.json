@@ -247,6 +247,14 @@
       "dz": 2.6
      },
      {
+      "layer": "eAnodeL",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dy": -0.25,
+      "dz": 1.6
+     },
+     {
       "layer": "fNod",
       "at": "s1:start-40",
       "until": "s3:nod-4",
@@ -305,49 +313,49 @@
       "at": "s8:flat",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xMid0",
       "at": "s1:start-40",
       "until": "s8:flat",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xMid0",
       "at": "s8:flat+6",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xMid1",
       "at": "s1:start-40",
       "until": "s8:flat+6",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xMid1",
       "at": "s8:flat+12",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xFlat",
       "at": "s1:start-40",
       "until": "s8:flat+12",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xFlat",
       "at": "s8:lowdk",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
      },
      {
       "layer": "xFlatLD",
@@ -575,7 +583,7 @@
       "x": 33.6,
       "y": 2.6,
       "d": 62,
-      "elev": 12
+      "elev": 24
      },
      {
       "at": "grow+8",
@@ -673,7 +681,7 @@
       "text": "銅在藥水裡越長越厚",
       "en": "Copper thickens in the solution",
       "color": "amber",
-      "at": "grow+12",
+      "at": "grow+26",
       "until": "peel-2",
       "cut": true,
       "xy": [
@@ -777,8 +785,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 70.0,
-      "y": 2.2,
-      "d": 15,
+      "y": 2.3,
+      "d": 16,
       "elev": 8
      }
     ],
@@ -799,7 +807,7 @@
     "labels": [
      {
       "part": "fShiny",
-      "text": "光面：貼滾筒那面（撕下後再處理）",
+      "text": "光面：貼滾筒那面",
       "en": "Drum side: smooth",
       "color": "blue",
       "at": "shiny",
@@ -808,14 +816,14 @@
      },
      {
       "part": "fNod",
-      "text": "粗面：小銅瘤",
+      "text": "粗面：小銅瘤（後處理）",
       "en": "Matte side: nodules",
       "color": "amber",
       "at": "nod",
       "until": "bite-8",
       "cut": true,
       "xy": [
-       760,
+       580,
        330
       ]
      },
@@ -828,8 +836,8 @@
       "until": "bite+40",
       "cut": true,
       "xy": [
-       330,
-       330
+       360,
+       236
       ]
      }
     ],
@@ -929,7 +937,7 @@
       "id": "rSigR",
       "at": "fast-4",
       "ramp": 4,
-      "until": "s6:start"
+      "until": "s5:low+6"
      },
      {
       "id": "rSkin",
@@ -1034,6 +1042,12 @@
      }
     ],
     "run": [
+     {
+      "id": "rSigR",
+      "at": "low+8",
+      "ramp": 4,
+      "until": "s6:start"
+     },
      {
       "id": "rSigS",
       "at": "low+8",
@@ -1251,18 +1265,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 146.0,
-      "y": 4.4,
-      "d": 36,
+      "x": 147.0,
+      "y": 4.0,
+      "d": 38,
       "elev": 14
      },
      {
       "at": "weave-10",
       "dur": 22,
-      "x": 153.0,
+      "x": 154.0,
       "y": 3.8,
-      "d": 30,
-      "elev": 24
+      "d": 27,
+      "elev": 26
      }
     ],
     "labels": [
@@ -1273,7 +1287,11 @@
       "color": "amber",
       "at": "draw-2",
       "until": "twist-3",
-      "cut": true
+      "cut": true,
+      "xy": [
+       560,
+       262
+      ]
      },
      {
       "part": "gTwist",
@@ -1404,26 +1422,26 @@
      },
      {
       "id": "wSigA",
-      "at": "speed-4",
-      "ramp": 4,
+      "at": "start",
+      "ramp": 1,
       "until": "s8:start"
      },
      {
       "id": "wSigB",
-      "at": "speed-4",
-      "ramp": 4,
+      "at": "start",
+      "ramp": 1,
       "until": "s8:start"
      },
      {
       "id": "wLampB",
-      "at": "pair",
-      "ramp": 4,
+      "at": "start+71",
+      "ramp": 2,
       "until": "s8:start"
      },
      {
       "id": "wLampA",
-      "at": "skew",
-      "ramp": 4,
+      "at": "start+111",
+      "ramp": 2,
       "until": "s8:start"
      }
     ],
@@ -1566,13 +1584,13 @@
      {
       "id": "xSigA2",
       "at": "lowdk+6",
-      "ramp": 4,
+      "ramp": 1,
       "until": "s9:start"
      },
      {
       "id": "xSigB2",
       "at": "lowdk+6",
-      "ramp": 4,
+      "ramp": 1,
       "until": "s9:start"
      },
      {
@@ -1583,8 +1601,8 @@
      },
      {
       "id": "xLampAB",
-      "at": "braid",
-      "ramp": 4,
+      "at": "lowdk+73",
+      "ramp": 2,
       "until": "s9:start"
      }
     ],
@@ -1694,8 +1712,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 268.0,
-      "y": 1.2,
-      "d": 47,
+      "y": 0.4,
+      "d": 43,
       "elev": 26
      }
     ],
@@ -1793,9 +1811,9 @@
      {
       "at": "voice+2",
       "dur": 1,
-      "x": 307.6,
+      "x": 308.8,
       "y": 2.2,
-      "d": 54,
+      "d": 56,
       "elev": 30
      }
     ],

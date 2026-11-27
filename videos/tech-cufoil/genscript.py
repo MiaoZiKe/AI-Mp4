@@ -114,7 +114,7 @@ def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
 # ── 站 E：s2 一開口電解銅箔機拆開、逐件掛名牌，念到「長到轉動滾筒」前組回（第 17、29 條） ──
-for l, kw in [("eDrum", {"dy": 3.6}), ("eCuArc", {"dy": 3.6}), ("eFrame", {"dy": 3.6}), ("eRect", {"dx": -2.4}), ("eFoil", {"dx": 3.0}), ("eTankF", {"dz": 2.6})]:   # r2：滾筒上移超過一個半徑、槽前壁往前、整流器往左
+for l, kw in [("eDrum", {"dy": 3.6}), ("eCuArc", {"dy": 3.6}), ("eFrame", {"dy": 3.6}), ("eRect", {"dx": -2.4}), ("eFoil", {"dx": 3.0}), ("eTankF", {"dz": 2.6}), ("eAnodeL", {"dy": -0.25, "dz": 1.6})]:   # r2：滾筒上移超過一個半徑、槽前壁往前、整流器往左
     VIS.append(mv(l, "s2:voice+2", "s2:grow+10", 14, **kw))
 # ── 站 F：小銅瘤念到才長出；樹脂念到「咬住樹脂」才從上方壓下來 ──
 vis("fNod", [("s3:nod-4", FAR)], 6)
@@ -123,7 +123,7 @@ drop("fResin", "s3:bite", dy=1.2, dur=12, bounce=0.03)
 # ── 站 R：s4 只有粗銅箔；s5 念到「低粗糙度」才放上低粗糙度那片（下面），「黏得牢」才放樹脂 ──
 drop("rSmooth", "s5:low", dy=1.2, dur=12, bounce=0.04); drop("rGlue", "s5:glue", dy=0.8, dur=10, bounce=0.03); drop("rGlueEdge", "s5:glue", dy=0.8, dur=10, bounce=0.03)
 # ── 站 X：圓紗 → 攤平 → 換低介電玻璃 ──
-vis("xRound", [(T0, "s8:flat")], 6); vis("xMid0", [("s8:flat", "s8:flat+6")], 6); vis("xMid1", [("s8:flat+6", "s8:flat+12")], 6); vis("xFlat", [("s8:flat+12", "s8:lowdk")], 6); vis("xFlatLD", [("s8:lowdk", FAR)], 8)   # r2：圓→扁分四段連續壓扁（約 18 幀）
+vis("xRound", [(T0, "s8:flat")], 1); vis("xMid0", [("s8:flat", "s8:flat+6")], 1); vis("xMid1", [("s8:flat+6", "s8:flat+12")], 1); vis("xFlat", [("s8:flat+12", "s8:lowdk")], 1); vis("xFlatLD", [("s8:lowdk", FAR)], 8)   # r2：圓→扁分四段連續壓扁（約 18 幀）
 # ── 站 K：三家念到才落下 ──
 for i, c in enumerate(["cotech", "tglass", "fulltech"]): drop(f"kMod{i}", f"s9:{c}-2", dy=1.6, dur=12, bounce=0.05)
 # ── 站 N：銅／膠片×3／銅 依序落下 → 上熱板壓下（念完「升級好」）；右邊主機板念到「做成主機板」才落下 ──
@@ -134,14 +134,14 @@ drop("nMb", "s10:mb-6", dy=1.4, dur=12, bounce=0.04)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 HV = (0.0, -0.3, 36, 24)
-EV = (33.4, 1.4, 48, 10); EV2 = EV; EVX = (33.6, 2.6, 62, 12)   # r2：拆開時拉遠，整流器與上移的滾筒完整入框     # 不推近：推近時機台下半出框、主素材中心掉進卡片區
-FV = (70.0, 2.2, 15, 8)
+EV = (33.4, 1.4, 48, 10); EV2 = EV; EVX = (33.6, 2.6, 62, 24)   # r2：拆開時拉遠，整流器與上移的滾筒完整入框     # 不推近：推近時機台下半出框、主素材中心掉進卡片區
+FV = (70.0, 2.3, 16, 8)
 RV = (104.0, 4.0, 19, 6); RV2 = (104.0, 2.3, 22, 8)   # r2：s4 推近粗銅箔（展示架入框）；s5 念到「低粗糙度」稍拉遠，上下兩片都大
-GV = (146.0, 4.4, 36, 14); GV2 = (153.0, 3.8, 30, 24)   # r2：念「拉絲、捻紗」看熔爐到捻紗架，念「一經一緯」推到織布機
+GV = (147.0, 4.0, 38, 14); GV2 = (154.0, 3.8, 27, 26)   # r2：念「拉絲、捻紗」看熔爐到捻紗架，念「一經一緯」推到織布機
 WV = (192.6, 2.4, 30, 86)
 XV = (230.6, 2.4, 30, 86)
-KV = (268.0, 1.2, 47, 26)
-NV = (307.6, 2.2, 54, 30)   # r2：熱壓機（含液壓缸）與加大的主機板都入框
+KV = (268.0, 0.4, 43, 26)
+NV = (308.8, 2.2, 56, 30)   # r2：熱壓機（含液壓缸）與加大的主機板都入框
 if os.environ.get("VIEWS"): globals().update({k: tuple(v) for k, v in json.loads(os.environ["VIEWS"]).items()})   # 開發用：調鏡頭
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
@@ -164,8 +164,8 @@ P["s3"] = {"zoom": [{"to": "foil", "at": CC, "dur": 1}],
  "shot": [S_(CC, FV, 1)],
  "run": [run("fShiny", "shiny-4", "s4:start", 6), run("fNodPop", "nod-4", "s4:start", 6)],
  "labels": [lab("fShiny", "光面：貼滾筒那面", "Drum side: smooth", "blue", "shiny", "nod-2"),
-            lab("fNod", "粗面：小銅瘤（撕下後處理長出）", "Matte side: nodules", "amber", "nod", "bite-8", xy=[760, 330]),
-            lab("fResin", "樹脂被銅瘤咬住", "Resin gripped by nodules", "blue", "bite+4", "bite+40", xy=[330, 330])],
+            lab("fNod", "粗面：小銅瘤（後處理）", "Matte side: nodules", "amber", "nod", "bite-8", xy=[580, 330]),
+            lab("fResin", "樹脂被銅瘤咬住", "Resin gripped by nodules", "blue", "bite+4", "bite+40", xy=[360, 236])],
  "overlay": [card("s3", "cuf-nod", "光面與粗面：小銅瘤像魔鬼氈", "示意（放大，不按比例）", {"shiny": "shiny", "nod": "nod", "velcro": "velcro", "bite": "bite"})]}
 P["s4"] = {"zoom": [{"to": "skin", "at": CC, "dur": 1}],
  "shot": [S_(CC, RV, 1)],
@@ -180,7 +180,7 @@ P["s5"] = {"shot": [S_("low-6", RV2, 24)],
 P["s6"] = {"zoom": [{"to": "loom", "at": CC, "dur": 1}],
  "run": [run("gBush", "start-30", "s7:start", 8), run("gDraw", "start-10", "s7:start", 4), run("gBobSpin", "start-10", "s7:start", 8)] + [run(f"gTw{i}", "twist-6", "s7:start", 8) for i in range(4)] + [run("gYarnRun", "twist-6", "s7:start", 6)] + [run(x, "weave-6", "s7:start", 8) for x in ["gShedA", "gShedB", "gRapierGo", "gReedBeat", "gClothSpin", "gWarpSpin"]],
  "shot": [S_(CC, GV, 1), S_("weave-10", GV2, 22)],
- "labels": [lab("gBush", "白金漏板：熔融玻璃拉成絲", "Bushing: glass drawn into filaments", "amber", "draw-2", "twist-3"),
+ "labels": [lab("gBush", "白金漏板：熔融玻璃拉成絲", "Bushing: glass drawn into filaments", "amber", "draw-2", "twist-3", xy=[560, 262]),
             lab("gTwist", "捻紗", "Twisting", "blue", "twist", "weave-2"),
             lab("gLoom", "織布機：劍桿穿緯", "Loom: rapier inserts weft", "amber", "weave", "weave+45", xy=[540, 262])],
  "overlay": [card("s6", "cuf-weave", "玻纖布：拉絲、捻紗、平織", "示意（放大）", {"draw": "draw", "twist": "twist", "weave": "weave", "mat": "mat"})]}
