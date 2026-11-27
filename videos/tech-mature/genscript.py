@@ -118,8 +118,8 @@ drop("fFlag", "s5:tw-6", 3.0, 12); drop("fUmc", "s5:umc-8", 2.0, 14); drop("fVis
 drop("fProd", "s5:strong-6", 2.0, 12)
 # ── 站 C（s7–s8）：國旗念「中國」；新廠一座座冒出（s7 念「中國在大擴產」起 3 座，s8 念「新廠」「夜市」「好多攤」再 6 座）；價格柱念「價格」往下沉 ──
 drop("cFlag", "s7:cn-6", 1.0, 10)
-for i, at in enumerate(["s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab", "s8:stall", "s8:many"]): drop(f"cFab{i + 3}", at, 4.0, 12, 0.08)
-drop("cPrice", "s8:fab-4", 3.0, 12)
+for i, at in enumerate(["s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab", "s8:stall", "s8:many"]): drop(f"cFab{i + 3}", at, 2.0, 12, 0.08)
+drop("cPrice", "s8:fab-4", 1.0, 10)
 drop("cSign", "s7:tf", 2.0, 12)
 VIS.append(mv("cPrice", "s8:price-2", FAR, 30, dy=-3.2))
 # ── 站 T（s8 後半）：車與機櫃念「台廠轉向」才出現；逆變器電流念「車用」、電源供應器念「AI」──
@@ -164,13 +164,13 @@ P["s6"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
  "shot": [shot("start", FX, -1.8, 48, 28, 60)],
  "labels": []}
 P["s7"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 3.0, 0.0, 34, 30, 1), shot("top", CX - 3.0, 0.0, 33, 32, 40)],
+ "shot": [shot(CC, CX - 2.6, 0.0, 35, 30, 1), shot("top", CX - 2.6, 0.0, 34, 32, 40)],
  "labels": [],
  "overlay": [card("s7", "mature-cn", "中國成熟製程擴產", "分析預期（TrendForce 預估）", {"cn": "cn", "tf": "tf", "quarter": "quarter"})]}
 P["s8"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 2.8, 0.0, 34, 32, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
+ "shot": [shot(CC, CX - 2.4, 0.0, 35, 32, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
  "run": [run("tInvCur", "car-2", "s9:start", 6), run("tPsuCur", "ai-2", "s9:start", 6), run("tLeds", "shift", "s9:start", 6), run("tFanSpin", "ai-4", "s9:start", 6)],
- "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end", xy=[560, 470]),
+ "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end", xy=[490, 470]),
             lab("tPsu", "AI 伺服器電源", "AI server power supplies", "amber", "ai-2", "end", xy=[560, 300])],
  "overlay": [card("s8", "mature-market", "新廠變多，台廠轉向", f"分析預期；截至 {ASOF}", {"stall": "stall", "price": "price", "car": "car", "ai": "ai"})]}
 P["s9"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],

@@ -316,6 +316,9 @@ P({ id: "fProdDdi", layer: "fProd", shape: "box", size: [1.0, 0.12, 0.22], pos: 
 P({ id: "fProdTo", layer: "fProd", shape: "box", size: [0.4, 0.5, 0.14], pos: [0, 0.4, 1.0], at: [[FX + 4.4, 0, 0], [FX + 5.0, 0, 0], [FX + 5.6, 0, 0], [FX + 6.2, 0, 0]], mat: "chipBk" });
 P({ id: "fProdToL", layer: "fProd", shape: "box", size: [0.04, 0.3, 0.04], pos: [0, 0.05, 1.0], at: [4.4, 5.0, 5.6, 6.2].flatMap((d) => [[R2(FX + d - 0.12), 0, 0], [R2(FX + d), 0, 0], [R2(FX + d + 0.12), 0, 0]]), mat: "needle" });
 P({ id: "fProdFoup", layer: "fProd", shape: "box", size: [1.0, 0.9, 0.9], pos: [0, 0.57, -3.2], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "lampY", bevel: 0.08 });
+P({ id: "fProdFoupD", layer: "fProd", shape: "box", size: [0.86, 0.76, 0.06], pos: [0, 0.57, -2.73], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "cond" });
+P({ id: "fProdFoupL", layer: "fProd", shape: "box", size: [0.3, 0.08, 0.04], pos: [0, 0.57, -2.69], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "dark" });
+P({ id: "fProdFoupS", layer: "fProd", shape: "box", size: [0.06, 0.12, 0.4], pos: [0, 0.75, -3.2], at: [[FX + 0.08, 0, 0], [FX + 1.12, 0, 0], [FX + 1.38, 0, 0], [FX + 2.42, 0, 0]], mat: "dark" });
 P({ id: "fProdFoupH", layer: "fProd", shape: "box", size: [0.5, 0.1, 0.2], pos: [0, 1.07, -3.2], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "dark" });
 
 
@@ -332,15 +335,18 @@ for (let i = 0; i < 9; i++) { const id = `cFab${i}`, x = R2(CX - 7.5 + (i % 3) *
   BOX(`${id}Door`, id, x + 0.4, x + 1.0, 0.12, 0.8, z + 1.0, z + 1.04, "dark");
   VC(`${id}Stack`, id, 0.12, h, R2(h + 0.8), "steel2", { x: R2(x - 0.9), z: R2(z - 0.6) });
   P({ id: `${id}Hv`, layer: id, shape: "box", size: [0.6, 0.3, 0.5], pos: [R2(x + 0.5), R2(h + 0.25), R2(z - 0.3)], mat: "panel2", bevel: 0.02 });
+  P({ id: `${id}Wall`, layer: id, shape: "box", size: [3.2, 0.3, 0.08], pos: [x, 0.27, R2(z + 1.4)], mat: "panel2" });
+  P({ id: `${id}Gate`, layer: id, shape: "box", size: [0.12, 0.6, 0.12], pos: [0, 0.42, R2(z + 1.4)], at: [[R2(x + 0.15), 0, 0], [R2(x + 0.95), 0, 0]], mat: "awnR" });
+  P({ id: `${id}Bar`, layer: id, shape: "box", size: [0.8, 0.05, 0.05], pos: [R2(x + 0.55), 0.5, R2(z + 1.4)], mat: "warnY" });
   VC(`${id}Tank`, id, 0.22, 0.12, 1.1, "tankP", { x: R2(x + 1.55), z: R2(z - 0.4) }); SPH(`${id}TankT`, id, 0.22, R2(x + 1.55), 1.1, R2(z - 0.4), "tankP");
   PIPE(`${id}Gp`, id, [[R2(x + 1.55), 1.0, R2(z - 0.15)], [R2(x + 1.55), 1.3, R2(z - 0.15)], [R2(x + 1.3), 1.3, R2(z - 0.15)]], 0.05, "pipeW"); }
 LAY("cSign", [3, 1.5, CX - 3.9, 4.6]); PLATE("cSignP", "cSign", "sign-cnfab", 2.8, CX - 3.9, 4.6, -4.6);
 // 價格柱：底座＋紅色柱＋白色價格牌；往下沉＝價格被壓低（地板蓋住下半）
-LAY("cPrice", [2, 6, CX + 3.2, 3]);
-BOX("cPriceBase", "floor", CX + 2.3, CX + 4.1, 0, 0.1, -0.9, 0.9, "dark");
-BOX("cPriceCol", "cPrice", CX + 2.7, CX + 3.7, 0.1, 5.2, -0.5, 0.5, "price", { bevel: 0.04 });
-BOX("cPriceTag", "cPrice", CX + 2.4, CX + 4.0, 4.4, 5.0, 0.5, 0.56, "priceTag");
-P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, 0.52], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 3.2), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
+LAY("cPrice", [2, 6, CX + 2.4, 3]);
+BOX("cPriceBase", "floor", CX + 1.5, CX + 3.3, 0, 0.1, -5.4, -3.6, "dark");
+BOX("cPriceCol", "cPrice", CX + 1.9, CX + 2.9, 0.1, 5.2, -5.0, -4.0, "price", { bevel: 0.04 });
+BOX("cPriceTag", "cPrice", CX + 1.6, CX + 3.2, 4.4, 5.0, -4.0, -3.94, "priceTag");
+P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, -3.98], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 2.4), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
 
 // ═════ 站 T：轉向（左：電動車，底盤逆變器的功率模組；右：AI 伺服器機櫃，電源供應器）═════
 const TX = 200;
@@ -355,6 +361,11 @@ P({ id: "tArch", layer: "tCar", shape: "box", size: [1.5, 0.35, 0.06], pos: [0, 
 P({ id: "tSeam", layer: "tCar", shape: "box", size: [0.03, 1.4, 0.02], pos: [0, 1.55, 1.62], at: [[TX - 5.1, 0, 0], [TX - 3.4, 0, 0]], mat: "carD" });
 P({ id: "tHandle", layer: "tCar", shape: "box", size: [0.3, 0.06, 0.04], pos: [0, 1.35, 1.63], at: [[TX - 5.5, 0, 0], [TX - 3.8, 0, 0]], mat: "rim" });
 P({ id: "tMirror", layer: "tCar", shape: "box", size: [0.2, 0.18, 0.3], pos: [R2(TX - 3.3), 1.75, 0], at: [[0, 0, 1.7], [0, 0, -1.7]], mat: "carD" });
+BOX("tBumper", "tCar", TX - 1.5, TX - 1.2, 0.45, 0.75, -1.5, 1.5, "carD", { bevel: 0.08 });
+BOX("tGrille", "tCar", TX - 1.43, TX - 1.36, 0.85, 1.2, -0.6, 0.6, "dark");
+P({ id: "tGrilleS", layer: "tCar", shape: "box", size: [0.03, 0.03, 1.15], pos: [R2(TX - 1.34), 0, 0], at: [0.92, 1.0, 1.08, 1.16].map((y) => [0, y, 0]), mat: "rim" });
+BOX("tBumperR", "tCar", TX - 9.2, TX - 8.9, 0.45, 0.75, -1.5, 1.5, "carD", { bevel: 0.08 });
+P({ id: "tTail", layer: "tCar", shape: "box", size: [0.06, 0.18, 0.45], pos: [R2(TX - 8.98), 1.2, 0], at: [[0, 0, 1.05], [0, 0, -1.05]], mat: "lampR" });
 P({ id: "tLamp", layer: "tCar", shape: "box", size: [0.06, 0.2, 0.5], pos: [R2(TX - 1.42), 1.15, 0], at: [[0, 0, 1.0], [0, 0, -1.0]], mat: "lampY" });
 // 逆變器（車底；外殼掀開看到 6 顆功率晶片模組）＋高壓線（橘）
 LAY("tInv", [3, 1.2, TX - 5.2, 0.9]);
@@ -423,7 +434,7 @@ Object.assign(anchors, {
   dDdi: A("dDdi", [DX - 1.0, DPY + 0.24, 3.0], 140, 100), dPanel: A("dRow4", [DX - 4.5, DPY + 0.1, -1.0], -140, -100), dW8: A("dW8", [DX + 7.0, 0.7, 2.6], -120, 100), dW12: A("dW12", [DX + 12.6, 0.7, 3.6], 120, 100),
   fUmc: A("fUmc", [FX - 3.4, 4.4, 4.7], -100, -110), fVis: A("fVis", [FX + 3.4, 3.6, 1.1], 100, -110), fPsmc: A("fPsmc", [FX - 1.6, 4.0, -3.7], -100, -110),
   fProd: A("fProd", [FX - 3.6, 0.4, 5.6], -120, 100), fProdTo: A("fProd", [FX + 5.3, 0.6, 1.1], 110, 100),
-  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 3.2, 4.7, 0.56], -120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
+  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 2.4, 4.7, -3.94], 120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
   tInv: A("tInv", [TX - 5.2, 1.45, 3.2], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.0, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
   nDimm: A("nDimm", [NX + 1.0, 2.3, 0.2], 140, -110),
 });
