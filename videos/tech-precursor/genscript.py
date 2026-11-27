@@ -14,7 +14,7 @@ SITES = INFO["SITES"]
 S = [
 ("s1", "hook", "上一集說，改用氣體原料。氣體，從哪來？",
  ["上一集說", "改用氣體原料", "氣體，從哪來？"], ["Last time: switch", "to gas raw materials.", "Where does gas come from?"],
- [("prev", "上一集"), ("q", "從哪來")], ["氣體原料", "從哪來"], ["前一集（濺鍍靶材）結尾預告；示意動畫，不是量測"], 5.2, 1.2),
+ [("prev", "上一集"), ("q", "從哪來")], ["氣體原料", "從哪來"], ["示意動畫，不是量測"], 5.2, 1.2),
 ("s2", "mechanism", "這種原料叫前驅物，像做菜前備好的醬料，裝在氣櫃裡，有液體也有固體。",
  ["這種原料叫前驅物", "像做菜前備好", "的醬料", "裝在氣櫃裡", "有液體也有固體"], ["This raw material is a precursor,", "like a sauce prepared", "before cooking,", "kept in a gas cabinet,", "as liquid or solid."],
  [("name", "前驅物"), ("sauce", "醬料"), ("cab", "氣櫃"), ("solid", "固體")], ["前驅物", "醬料", "固體"], ["默克（Merck）產品頁；Entegris 部落格；示意"], 7.4, 1.2),
@@ -102,7 +102,7 @@ def vis(lay, wins, dur=3):
         prev = b
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
 BACK = "s4:start+272"       # 爆炸組回的起點（s4 尾端的遠景）
-A_ALL = ["cabBase", "cabWall", "cabDoor", "bbBase", "vshell", "liq", "lid", "dip", "jack", "mfc"]
+A_ALL = ["cabBase", "cabWall", "cabDoor", "bbBase", "vshell", "liq", "lid", "dip", "jack", "mfc", "vtrim"]
 A_WIN = [(T0, "s2:cab+16"), ("s3:start-6", "s4:start+70"), ("s4:start+242", "s6:start-2"), ("s11:start-6", FAR)]
 for l in A_ALL: vis(l, A_WIN)
 vis("gsrc", [A_WIN[1], A_WIN[2]])   # 減壓閥在 s1、s2 不入鏡（起泡器大特寫不切到左邊的閥）
@@ -132,7 +132,7 @@ VIS += [mv("cabDoor", T0, "s2:cab-2", 14, dx=-12.0), hid("cabDoor", T0, "s2:cab-
 VIS += [hid("vshell", T0, "s2:cab+14", 8, 0.2), hid("jack", T0, "s2:cab+14", 8, 0.3)]
 BACKALL = (BACK, FAR)
 # 氣櫃 s2 把門推回 → s3 拆開時滑開、外殼淡成幽靈；爆炸 6 步（門→蓋與進出氣閥→加熱套→插管→外殼剖開看液體與頂部空間）
-EXPL = [mv("cabDoor", "s3:start-8", "s6:start-2", 14, dx=-12.0), hid("cabWall", "s3:start-8", "s6:start-2", 14, 0.14),
+EXPL = [mv("cabDoor", "s3:start+48", "s6:start-2", 14, dx=-12.0), hid("cabWall", "s3:start+48", "s6:start-2", 14, 0.14),
         mv("lid", "s3:open+50", BACK, 26, dy=8.0), mv("jack", "s3:open+104", BACK, 26, dy=7.0), mv("dip", "s3:open+158", BACK, 26, dy=5.0),
         hid("vshell", "s3:open+212", BACK, 16, 0.18)]
 # s4：載氣流量控制往左拉；加熱管路保溫套逐段剝開；閥塊上抬、隔膜與彈簧分開；最後遠景一起組回
@@ -159,9 +159,9 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
  "run": [run("ampHeat", "cab+16", "s3:start-2", 10), run("sublime", "cab+44", "s3:start-2", 8), run("jackGlow", "start", "cab+14", 6)],
  "labels": [lab("amp", "固體：托盤疊層", "Solid: stacked trays", "amber", "cab+48", "s3:start-14")],
  "overlay": [sec("precursor-kinds", "start+20", "s3:start-5", "前驅物：原料的外型", "示意", {"name": "name", "sauce": "sauce", "cab": "cab", "solid": "solid"})]}
-P["s3"] = {"shot": [shot("start", 0.0, 3.9, 46, 18, 1, yaw=0.0), shot("open+52", 0.0, 8.4, 70, 22, 40)],
+P["s3"] = {"shot": [shot("start", -2.5, 4.4, 34, 10, 1, yaw=0.0), shot("start+50", 0.0, 3.9, 46, 18, 1), shot("open+52", 0.0, 7.6, 60, 22, 40), shot("open+206", 0.0, 4.6, 50, 22, 24)],
  "run": [run("bubA", "start", "open+210", 6), run("bubB", "start", "open+210", 6)],
- "labels": [lab("cab", "氣櫃", "Gas cabinet", "amber", "open-2", "open+46"),
+ "labels": [lab("cab", "氣櫃", "Gas cabinet", "amber", "start+2", "start+48"),
             lab("lid", "進出氣閥", "In/out valves", "blue", "open+56", "open+102"),
             lab("jack", "加熱套", "Heating jacket", "amber", "open+110", "open+156"),
             lab("dip", "插管", "Dip tube", "blue", "open+164", "open+210"),
@@ -169,8 +169,8 @@ P["s3"] = {"shot": [shot("start", 0.0, 3.9, 46, 18, 1, yaw=0.0), shot("open+52",
             lab("headspace", "頂部空間", "Headspace", "blue", "open+270", "open+316")],
  "overlay": [sec("precursor-bubbler", "start+20", "s4:start-5", "起泡器怎麼拆", "示意", {"cab": "open", "lid": "open+56", "jack": "open+110", "dip": "open+164", "liq": "open+218", "head": "open+270"})]}
 P["s4"] = {"shot": [shot("start", -4.0, 5.4, 52, 18, 1, yaw=0.0), shot("start+72", 13.0, 3.2, 40, 28, 1), shot("start+124", 9.5, 3.4, 38, 28, 24), shot("start+176", 24.0, 4.8, 40, 30, 1),
-                    shot("start+242", 6.0, 6.0, 120, 26, 1)],
- "run": [run("mfcLed", "start+30", FAR, 6), run("tapeGlow", "start+100", FAR, 6), run("ledA", "start+200", FAR, 6)],
+                    shot("start+242", 6.0, 6.0, 120, 26, 1), shot("start+290", 3.5, 4.5, 62, 26, 22)],
+ "run": [run("tapeGlow", "start+100", "start+296", 6), run("tapeFlash", "start+300", "start+334", 4), run("mfcLed", "start+300", FAR, 4), run("ledA", "start+200", FAR, 6)],
  "labels": [lab("mfc", "載氣流量控制", "Carrier gas MFC", "amber", "start+26", "start+72"),
             lab("hline", "加熱管路", "Heated line", "amber", "start+78", "start+124"),
             lab("pfil", "微粒過濾器", "Particle filter", "blue", "start+128", "start+174"),
@@ -205,7 +205,7 @@ P["s8"] = {"shot": [shot("start-4", 58.0, 0.2, 34, 40, 1, yaw=0.0), shot("one-10
 P["s9"] = {"shot": [shot("start-4", 59.6, 0.2, 26, 42, 1, yaw=0.0)],
  "run": [run("impDrop", "atom-18", "bad+30", 4), run("impGlow", "atom+10", "s10:start-6", 8)],
  "labels": [lab("impA", "雜質金屬原子", "Stray metal atom", "amber", "atom+12", "s10:start-14")],
- "overlay": [sec("precursor-purity", "start+24", "s10:start-5", "乾淨有兩把尺", "示意；廠商指南", {"clean": "clean", "atom": "atom", "bad": "bad"})]}
+ "overlay": [sec("precursor-purity", "start+24", "s10:start-5", "乾淨有兩把尺", "示意：要求到 ppb 等級", {"clean": "clean", "atom": "atom", "bad": "bad"})]}
 P["s10"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 40.0, 2.6, 56, 24, 1)],
  "overlay": [sec("precursor-co", "start-4", "s11:start-14", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=400, y=1000)]}
 P["s11"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-4", S1X, S1Y, S1D, 14, 1, yaw=0.0)],

@@ -56,13 +56,13 @@ const grid = (x0, x1, nx, y0, y1, ny, z) => { const o = []; for (let i = 0; i < 
 
 // ═════ 追加色票與材質 ═════
 Object.assign(palette, {
-  liqC: "#CFE6F2", liqTopC: "#E8F4FA", jackTan: "#D6B677", jackDark: "#A7844A", hotTape: "#FF8A2B", sinterC: "#9AA3AF", vapC: "#FF9A3C", crustC: "#EDE6D8", crustOr: "#E8A15C",
+  liqC: "#5FAEE6", liqTopC: "#E8F4FA", jackTan: "#D6B677", jackDark: "#A7844A", hotTape: "#FF8A2B", sinterC: "#9AA3AF", vapC: "#FF9A3C", crustC: "#EDE6D8", crustOr: "#E8A15C",
   gaugeF: "#F4F1E6", alC: "#F29A4A", meC: "#8A94A3", ohO: "#E5484D", ohH: "#F4F6FA", h2oC: "#3FC1E8", ch4C: "#98A2B3", n2C: "#B8C4D4", filmC2: "#E39A64", subC: "#9DB1D1", subD: "#6C84AC",
-  coldPipeC: "#6FA8E0", hotPipeC: "#E06A3A", bubC: "#F6FBFF", warnY: "#F2B632", boxGreen: "#2C6E55", cabC: "#EDEFF3", cabDarkC: "#B4BCC9", brassC: "#C8A24A", rubberC: "#2B2F36", meshC: "#B9C0CA", siliC: "#C44536", jkBoxC: "#7C8591",
+  coldPipeC: "#6FA8E0", hotPipeC: "#E06A3A", bubC: "#F6FBFF", warnY: "#F2B632", boxGreen: "#2C6E55", cabC: "#EDEFF3", cabDarkC: "#B4BCC9", brassC: "#C8A24A", rubberC: "#2B2F36", edgeC: "#F4FAFF", coldSlC: "#9CC4E4", hdspC: "#2A7FD6", meshC: "#B9C0CA", siliC: "#C44536", jkBoxC: "#7C8591",
 });
 Object.assign(materials, {
   liq: M("phys", "liqC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.5 }), liqTop: M("std", "liqTopC", { rough: 0.1, metal: 0.3, opacity: 0.9, env: 0.8 }),
-  jackTan: M("std", "jackTan", { rough: 0.95, metal: 0, env: 0.1 }), jackMesh: M("std", "meshC", { rough: 0.55, metal: 0.75, env: 0.5, tex: "brushed", texScale: 7 }), siliR: M("std", "siliC", { rough: 0.85, metal: 0 }), jkBox: M("std", "jkBoxC", { rough: 0.4, metal: 0.6, env: 0.4 }), jackDark: M("std", "jackDark", { rough: 0.9, metal: 0 }),
+  edge: glowM("edgeC", 0.95, 0.5), coldSleeve: M("std", "coldSlC", { rough: 0.9, metal: 0 }), hdsp: glowM("hdspC", 0.95, 0.7), jackTan: M("std", "jackTan", { rough: 0.95, metal: 0, env: 0.1 }), jackMesh: M("std", "meshC", { rough: 0.55, metal: 0.75, env: 0.5, tex: "brushed", texScale: 7 }), siliR: M("std", "siliC", { rough: 0.85, metal: 0 }), jkBox: M("std", "jkBoxC", { rough: 0.4, metal: 0.6, env: 0.4 }), jackDark: M("std", "jackDark", { rough: 0.9, metal: 0 }),
   tape: glowM("hotTape", 0.95, 0.5), sinter: M("std", "sinterC", { rough: 1, metal: 0.4, env: 0.2 }), vap: glowM("vapC", 0.9, 0.9), vapBub: glowM("vapC", 0.75, 0.7),
   crust: M("std", "crustC", { rough: 0.95, metal: 0 }), crustOr: M("std", "crustOr", { rough: 0.9, metal: 0.1 }), gaugeF: M("std", "gaugeF", { rough: 0.5, metal: 0 }),
   alM: M("std", "alC", { rough: 0.35, metal: 0.3, env: 0.5 }), meM: M("std", "meC", { rough: 0.5, metal: 0.1 }), ohO: M("std", "ohO", { rough: 0.4, metal: 0.1 }), ohH: M("std", "ohH", { rough: 0.4, metal: 0.1 }),
@@ -135,16 +135,25 @@ LAY("vshell", [3.4, 4.2, 0, 3.0]); LAY("liq", [3.0, 2.3, 0, 2.0]);
 VT("vsWall", "vshell", BR, BR - 0.07, BY0, BY1, "steel2");
 VC("vsBottom", "vshell", BR, BY0 - 0.05, BY0 + 0.08, "steel");
 VT("vsFlange", "vshell", BR + 0.0, BR - 0.3, BY1 - 0.12, BY1, "steel2");
-P({ id: "vsBolt", layer: "vshell", shape: "cyl", size: [0.07, 0.07], rot: V, pos: [0, BY1 + 0.02, 0], at: RING(8, 1.28, 22), mat: "steel" });
 VT("vsWeld", "vshell", BR + 0.015, BR - 0.02, 2.4, 2.46, "dark");
-BOX("vsPlate", "vshell", -0.75, 0.75, 3.2, 4.0, BR - 0.01, BR + 0.05, "steel2"); BOX("vsPlateText", "vshell", -0.55, 0.55, 3.45, 3.55, BR + 0.05, BR + 0.07, "dark"); BOX("vsPlateText2", "vshell", -0.55, 0.3, 3.7, 3.78, BR + 0.05, BR + 0.07, "dark");
 BOX("vsWarn", "vshell", -0.6, 0.6, 1.2, 2.0, BR - 0.01, BR + 0.04, "warnY"); BOX("vsWarnText", "vshell", -0.4, 0.4, 1.45, 1.75, BR + 0.04, BR + 0.06, "dark");
-VC("vsSightT", "vshell", 0.07, 1.1, 3.9, "bubGlass", { x: 1.7, z: 0.0 }); BOX("vsSightClampT", "vshell", 1.58, 1.82, 1.0, 1.2, -0.1, 0.1, "steel"); BOX("vsSightClampB", "vshell", 1.58, 1.82, 3.8, 4.0, -0.1, 0.1, "steel");
 // 液體與頂部空間
 VC("liqBody", "liq", BR - 0.1, BY0 + 0.1, 3.1, "liq");
 VC("liqSurf", "liq", BR - 0.1, 3.1, 3.13, "liqTop");
 P({ id: "liqSight", layer: "liq", shape: "cyl", size: [0.05, 2.0], rot: V, pos: [1.7, 2.1, 0], mat: "liq" });
 
+// 容器細節層 vtrim（外殼變幽靈時仍不透明）：玻璃壁亮邊、法蘭螺栓、液位計、銘牌、液面亮環、頂部空間虛線
+LAY("vtrim", [3.6, 4.4, 0, 3.0]);
+for (const y of [BY0 + 0.06, BY1 - 0.06]) VT(`vtEdge${y > 3 ? "T" : "B"}`, "vtrim", BR + 0.03, BR - 0.03, y - 0.04, y + 0.04, "edge");
+P({ id: "vtEdgeV", layer: "vtrim", shape: "box", size: [0.05, BY1 - BY0 - 0.1, 0.05], pos: [0, (BY0 + BY1) / 2, 0], at: RING(4, BR + 0.03, 20), mat: "edge" });
+P({ id: "vtBolt", layer: "vtrim", shape: "cyl", size: [0.09, 0.09], rot: V, pos: [0, BY1 + 0.02, 0], at: RING(8, 1.28, 22), mat: "steel" });
+BOX("vtPlate", "vtrim", -0.75, 0.75, 3.2, 4.0, BR - 0.01, BR + 0.05, "steel2"); BOX("vtPlateTx", "vtrim", -0.55, 0.55, 3.45, 3.55, BR + 0.05, BR + 0.07, "dark"); BOX("vtPlateTx2", "vtrim", -0.55, 0.3, 3.7, 3.78, BR + 0.05, BR + 0.07, "dark");
+VC("vtSight", "vtrim", 0.1, 1.1, 3.9, "bubGlass", { x: 1.74, z: 0.0 }); VC("vtSightLiq", "vtrim", 0.06, 1.1, 3.05, "liq", { x: 1.74, z: 0.0 });
+BOX("vtSightClampT", "vtrim", 1.58, 1.9, 1.0, 1.2, -0.12, 0.12, "steel"); BOX("vtSightClampB", "vtrim", 1.58, 1.9, 3.8, 4.0, -0.12, 0.12, "steel");
+for (let i = 0; i < 5; i++) BOX(`vtTick${i}`, "vtrim", 1.9, 2.05, 1.4 + i * 0.5, 1.45 + i * 0.5, -0.04, 0.04, "dark");
+VT("vtLiqRing", "vtrim", BR - 0.05, BR - 0.12, 3.08, 3.16, "edge");
+VT("vtHdspRing", "vtrim", BR - 0.06, BR - 0.11, 4.7, 4.76, "hdsp");
+P({ id: "vtHdspDash", layer: "vtrim", shape: "box", size: [0.05, 0.28, 0.05], pos: [0, 0, 0], at: RING(4, BR - 0.08, 45).flatMap(([x, , z]) => [3.4, 3.8, 4.2, 4.6].map((y) => [x, y, z])), mat: "hdsp" });
 // 蓋（頂蓋法蘭＋進氣閥＋出氣閥＋致動器＋接頭＋彎管）：爆炸時整組往上
 LAY("lid", [4.6, 4.2, 0, 7.0]);
 VC("lidFlange", "lid", BR, BY1, BY1 + 0.25, "steel2");
@@ -219,10 +228,12 @@ P({ id: "mfcMount", layer: "mfc", shape: "box", size: [0.8, 0.12, 1.0], pos: [-2
 
 // ═════ 加熱管路（氣櫃 → 閥箱）：細管、三段保溫套（可剝開）、加熱帶、熱電偶、管夾 ═════
 LAY("hline", [15.4, 5.6, 13, 4.7]);
-PIPE("hp", "hline", [[6.2, 7.2, 0], [6.2, 2.2, 0], [20.9, 2.2, 0]], 0.13, "steel");
+PIPE("hp", "hline", [[6.2, 7.2, 0], [6.2, 2.2, 0], [20.9, 2.2, 0]], 0.2, "steel2");
 P({ id: "hpVcr", layer: "hline", shape: "tube", size: [0.22, 0.12, 0.2], rot: HX, pos: [6.2, 7.2, 0], at: [[0, 0, 0]], mat: "steel2" });
 P({ id: "hpVcrB", layer: "hline", shape: "tube", size: [0.2, 0.12, 0.18], rot: HX, pos: [20.3, 2.2, 0], mat: "steel2" });
-P({ id: "hpClampV", layer: "hline", shape: "box", size: [0.4, 0.14, 0.4], pos: [6.2, 0, 0], at: [[0, 3.2, 0], [0, 4.6, 0], [0, 6.0, 0]], mat: "dark" });
+P({ id: "hpClampV", layer: "hline", shape: "tube", size: [0.34, 0.2, 0.16], rot: V, pos: [6.2, 0, 0], at: [[0, 3.2, 0], [0, 4.6, 0], [0, 6.0, 0]], mat: "steel" });
+P({ id: "hpClampArm", layer: "hline", shape: "box", size: [0.5, 0.08, 0.1], pos: [5.9, 0, 0], at: [[0, 3.2, 0], [0, 4.6, 0], [0, 6.0, 0]], mat: "steel2" });
+P({ id: "hpClampBase", layer: "hline", shape: "box", size: [0.2, 0.2, 0.7], pos: [5.55, 0, 0], at: [[0, 3.2, 0], [0, 4.6, 0], [0, 6.0, 0]], mat: "dark" });
 const SLV = [[7.2, 10.8], [11.6, 15.2], [16.0, 19.6]];
 SLV.forEach(([a, b], i) => {
   LAY(`hjk${i}`, [3.8, 0.9, (a + b) / 2, 2.2]);
@@ -306,6 +317,11 @@ VT("cExh", "chb", 0.4, 0.3, 0.6, 1.2, "steel", { x: 2.9 }); P({ id: "cExhPipe", 
 VC("cChuck", "cwf", 1.5, 0.4, 1.1, "chuckM"); VC("cWafer", "cwf", 1.25, 1.1, 1.16, "steel2"); VT("cChuckRim", "cwf", 1.52, 1.3, 1.05, 1.12, "dark");
 P({ id: "cPin", layer: "cwf", shape: "cyl", size: [0.07, 0.3], rot: V, pos: [0, 1.25, 0], at: RING(3, 1.1, 90), mat: "gold" });
 // 腔體與晶圓原本建在原點（與氣櫃重疊），移到站 C（x＝38）；排氣管 cExhPipe 本來就是絕對座標
+P({ id: "cBoltB", layer: "chb", shape: "cyl", size: [0.09, 0.1], rot: V, pos: [0, 0.66, 0], at: RING(16, 2.6), mat: "steel" });
+P({ id: "cBoltM", layer: "chb", shape: "cyl", size: [0.08, 0.1], rot: V, pos: [0, 3.26, 0], at: RING(14, 2.55, 6), mat: "steel" });
+BOX("cViewFrame", "chb", -0.9, 0.9, 1.5, 2.7, 2.66, 2.8, "steel2"); BOX("cViewGlass", "chb", -0.7, 0.7, 1.7, 2.5, 2.8, 2.84, "window"); P({ id: "cViewBolt", layer: "chb", shape: "cyl", size: [0.06, 0.06], rot: [0, 0, 0], pos: [0, 0, 2.82], at: [[-0.8, 1.6, 0], [0.8, 1.6, 0], [-0.8, 2.6, 0], [0.8, 2.6, 0]], mat: "steel" });
+VC("cPlenum", "chb", 1.45, 3.62, 3.9, "steel2"); VT("cPlenumRim", "chb", 1.5, 1.35, 3.6, 3.7, "dark"); P({ id: "cPlenumBolt", layer: "chb", shape: "cyl", size: [0.06, 0.08], rot: V, pos: [0, 3.92, 0], at: RING(10, 1.2), mat: "steel" });
+BOX("cWaferNotch", "cwf", 1.12, 1.3, 1.16, 1.2, -0.12, 0.12, "dark"); P({ id: "cChuckHole", layer: "cwf", shape: "cyl", size: [0.07, 0.06], rot: V, pos: [0, 1.12, 0], at: RING(6, 0.7, 15), mat: "dark" });
 for (const q of parts) if ((q.layer === "chb" || q.layer === "cwf") && q.id !== "cExhPipe") q.pos[0] = R2(q.pos[0] + 38);
 BOX("cpBody", "cpump", 44.2, 46.2, 0.2, 1.6, -0.9, 0.9, "steel2"); BOX("cpFins", "cpump", 44.3, 46.1, 0.35, 1.5, 0.9, 0.95, "dark");
 P({ id: "cpFin", layer: "cpump", shape: "box", size: [1.8, 0.04, 0.2], pos: [45.2, 0, 1.0], at: [[0, 0.5, 0], [0, 0.7, 0], [0, 0.9, 0], [0, 1.1, 0], [0, 1.3, 0]], mat: "steel" });
@@ -314,12 +330,19 @@ SPH("cpLed", "cpump", 0.08, 44.5, 1.4, -0.95, "lampG");
 // ═════ 比較用：s6 兩條平行管路（有加熱 vs 沒加熱，玻璃管看得到裡面），冷管出口閥座前慢慢結出凝結物 ═════
 LAY("hotCmp", [13, 1.4, 13.5, 2.4]); LAY("coldCmp", [13, 1.4, 13.5, 2.4]); LAY("crust1", [1.4, 0.8, 18, 2.3]); LAY("crust2", [1.8, 0.8, 17.6, 2.3]); LAY("crust3", [2.2, 0.8, 17.4, 2.3]); LAY("cmpValve", [2.4, 1.2, 20, 2.4]);
 const HZ = -2.4, CZ = 2.4, CMX0 = 7.4, CMX1 = 19.2;
-HXC("hcGlass", "hotCmp", 0.42, CMX0, CMX1, 2.4, HZ, "bubGlass"); P({ id: "hcTape", layer: "hotCmp", shape: "tube", size: [0.47, 0.42, 0.07], rot: HX, pos: [CMX0 + 0.3, 2.4, HZ], at: Array.from({ length: 39 }, (_, j) => [j * 0.3, 0, 0]), mat: "tape" });
+HXC("hcPipe", "hotCmp", 0.2, CMX0 - 0.6, CMX1 + 0.6, 2.4, HZ, "steel2"); HXC("hcGlass", "hotCmp", 0.42, CMX0, CMX1, 2.4, HZ, "bubGlass"); P({ id: "hcTape", layer: "hotCmp", shape: "tube", size: [0.47, 0.42, 0.07], rot: HX, pos: [CMX0 + 0.3, 2.4, HZ], at: Array.from({ length: 39 }, (_, j) => [j * 0.3, 0, 0]), mat: "tape" });
 P({ id: "hcEnd", layer: "hotCmp", shape: "tube", size: [0.5, 0.36, 0.12], rot: HX, pos: [CMX0, 2.4, HZ], at: [[0, 0, 0], [CMX1 - CMX0, 0, 0]], mat: "jackDark" });
-BOX("hcTc", "hotCmp", 12.8, 13.3, 2.92, 3.2, HZ - 0.2, HZ + 0.2, "boxGreen"); P({ id: "hcStand", layer: "hotCmp", shape: "box", size: [0.3, 0.9, 0.9], pos: [0, 1.6, HZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "dark" });
-HXC("ccGlass", "coldCmp", 0.42, CMX0, CMX1, 2.4, CZ, "bubGlass"); P({ id: "ccFrost", layer: "coldCmp", shape: "tube", size: [0.46, 0.42, 0.05], rot: HX, pos: [CMX0 + 0.6, 2.4, CZ], at: Array.from({ length: 12 }, (_, j) => [j * 0.95, 0, 0]), mat: "crust" });
+BOX("hcTc", "hotCmp", 12.8, 13.3, 2.92, 3.2, HZ - 0.2, HZ + 0.2, "boxGreen"); P({ id: "hcStand", layer: "hotCmp", shape: "box", size: [0.14, 1.2, 0.14], pos: [0, 1.5, HZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "steel" });
+P({ id: "hcStandRing", layer: "hotCmp", shape: "tube", size: [0.5, 0.4, 0.2], rot: HX, pos: [0, 2.4, HZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "steel" });
+P({ id: "hcStandBase", layer: "hotCmp", shape: "box", size: [0.9, 0.1, 0.9], pos: [0, 0.85, HZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "dark" });
+HXC("ccPipe", "coldCmp", 0.2, CMX0 - 0.6, CMX1 + 0.6, 2.4, CZ, "steel2"); HXC("ccGlass", "coldCmp", 0.42, CMX0, CMX1, 2.4, CZ, "bubGlass");
+P({ id: "ccSleeve", layer: "coldCmp", shape: "tube", size: [0.6, 0.45, 0.9], rot: HX, pos: [8.6, 2.4, CZ], at: [[0, 0, 0], [3.4, 0, 0], [6.8, 0, 0]], mat: "coldSleeve" });
+P({ id: "ccSleeveEnd", layer: "coldCmp", shape: "tube", size: [0.64, 0.5, 0.1], rot: HX, pos: [8.15, 2.4, CZ], at: [[0, 0, 0], [0.9, 0, 0], [3.4, 0, 0], [4.3, 0, 0], [6.8, 0, 0], [7.7, 0, 0]], mat: "dark" });
+ P({ id: "ccFrost", layer: "coldCmp", shape: "tube", size: [0.46, 0.42, 0.05], rot: HX, pos: [CMX0 + 0.6, 2.4, CZ], at: Array.from({ length: 12 }, (_, j) => [j * 0.95, 0, 0]), mat: "crust" });
 P({ id: "ccEnd", layer: "coldCmp", shape: "tube", size: [0.5, 0.36, 0.12], rot: HX, pos: [CMX0, 2.4, CZ], at: [[0, 0, 0], [CMX1 - CMX0, 0, 0]], mat: "dark" });
-P({ id: "ccStand", layer: "coldCmp", shape: "box", size: [0.3, 0.9, 0.9], pos: [0, 1.6, CZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "dark" });
+P({ id: "ccStand", layer: "coldCmp", shape: "box", size: [0.14, 1.2, 0.14], pos: [0, 1.5, CZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "steel" });
+P({ id: "ccStandRing", layer: "coldCmp", shape: "tube", size: [0.5, 0.4, 0.2], rot: HX, pos: [0, 2.4, CZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "steel" });
+P({ id: "ccStandBase", layer: "coldCmp", shape: "box", size: [0.9, 0.1, 0.9], pos: [0, 0.85, CZ], at: [[8.4, 0, 0], [13.2, 0, 0], [18.0, 0, 0]], mat: "dark" });
 BOX("cmpV0", "cmpValve", 19.2, 20.6, 1.8, 3.0, HZ - 0.6, HZ + 0.6, "steel2"); BOX("cmpV1", "cmpValve", 19.2, 20.6, 1.8, 3.0, CZ - 0.6, CZ + 0.6, "steel2");
 P({ id: "cmpVAct", layer: "cmpValve", shape: "cyl", size: [0.32, 0.5], rot: V, pos: [19.9, 3.25, 0], at: [[0, 0, HZ], [0, 0, CZ]], mat: "dark" });
 P({ id: "crust1a", layer: "crust1", shape: "sphere", size: [0.13], pos: [17.6, 2.15, CZ], at: [[0, 0, 0], [0.25, 0.05, 0.1], [0.55, 0, -0.08], [0.9, 0.04, 0.05], [-0.3, 0, -0.1]], mat: "crust" });
@@ -348,6 +371,7 @@ actions.jackGlow = { type: "pulse", _說明: "加熱套亮起（示意，不標�
 actions.liqWarm = { type: "pulse", _說明: "液體被加熱：微微泛暖色（示意）", parts: ["liqBody"], color: "hotC", glow: 0.35, steady: true, halo: 0 };
 actions.tapeGlow = { type: "pulse", parts: ["hjkTape0", "hjkTape1", "hjkTape2", "hcTape", "vpOutTape", "vbaseHeat", "vbaseHeat2"], color: "hotC", glow: 1, steady: true, halo: 0 };
 actions.ledA = { type: "pulse", parts: ["vledA"], color: "lampG", glow: 1, steady: true, halo: 0 };
+actions.tapeFlash = { type: "pulse", _說明: "組回後加熱帶閃一下（保溫上線）", parts: ["hjkTape0", "hjkTape1", "hjkTape2"], color: "hotC", glow: 1, freq: 2.2, halo: 0 };
 actions.mfcLed = { type: "pulse", parts: ["mfcLed"], color: "lampG", glow: 1, freq: 1.4, halo: 0 };
 // 氣泡：從燒結頭出來（小）→ 上升時先加速、很快趨近終端速度（rise）→ 越往上越帶橘色（吃進蒸氣）→ 到液面破掉；頂部空間的蒸氣比載氣密
 actions.bubA = { type: "flow", _說明: "氣泡（載氣，白）從燒結頭出來上升", layer: "liq", path: [[-0.75, 1.55, 0], [-0.75, 2.45, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.34, size: 0.17, shape: "dot", rate: 0.85, color: "bubC", track: false, rise: true, jitter: 0.18, free: true };
@@ -362,7 +386,7 @@ actions.coldFlowB = { type: "flow", _說明: "凝結物長出來之後，剩一�
 // 脈衝：A 路蒸氣一小團沿管路進腔體（前緣陡、後緣漸收）；吹淨氣把管裡沖乾淨
 const POUT = [[19.9, 2.2, 0], [22.2, 1.7, 0], [27.2, 1.7, 0], [31.5, 1.7, 0], [31.5, 5.2, 0], [38, 5.2, 0], [38, 3.5, 0], [38, 2.2, 0]];
 actions.pulseA = { type: "flow", _說明: "A 路蒸氣一小團（橘）：閥開才有，沿管路進腔體", layer: "vpipes", path: POUT, n: 8, size: 0.13, shape: "dot", rate: 0.17, color: "vapC", track: false, trail: 3, trailGap: 0.012, trailColor: "vapC", jitter: 0.06, free: true };
-actions.purgeN = { type: "flow", _說明: "吹淨氮氣（淡灰）從前方進閥塊，沿同一條管把殘氣沖走", layer: "vpipes", path: [[25.8, 1.7, BZ + 0.5]].concat(POUT.slice(2)), n: 14, size: 0.1, shape: "dot", rate: 0.2, color: "n2C", track: false, jitter: 0.12, free: true };
+actions.purgeN = { type: "flow", _說明: "吹淨氮氣（淡灰）從前方進閥塊，沿同一條管把殘氣沖走", layer: "vpipes", path: [[25.8, 1.7, BZ + 0.5]].concat(POUT.slice(2)), n: 26, size: 0.12, shape: "dot", rate: 0.2, color: "n2C", track: false, jitter: 0.12, free: true };
 actions.carrierIn = { type: "flow", _說明: "載氣（淡灰）從減壓閥經濾器、MFC 進起泡器", layer: "gsrc", path: [[-14.5, 7.3, 0], [-8.8, 7.3, 0], [-4.0, 7.3, 0], [-1.95, 7.3, 0], [-0.75, 7.3, 0], [-0.75, 5.8, 0]], n: 9, size: 0.1, shape: "dot", rate: 0.25, color: "n2C", track: false, free: true };
 // ALD 一圈：TMA（橘分子）→ 反應 → 吹淨 → 水（青分子）→ 吹淨；表面位置用完就停（後來的分子彈開）
 actions.tmaIn = { type: "flow", _說明: "鋁前驅物分子（橘）落到表面、與表面羥基反應", layer: "sub", path: [[DX0, 6.5, 0], [DX0, 1.5, 0]], n: 3, lanes: 4, laneDir: [1, 0, 0.5], laneGap: 1.6, size: 0.3, shape: "mol", rate: 0.24, color: "alC", rim: "alC", track: false, accel: true, jitter: 0.7, free: true };
@@ -407,8 +431,14 @@ for (const [i, x, band] of [[0, 36.6, "warnY"], [1, 40, "coldPipe"], [2, 43.4, "
   BOX(`sup${i}Plate`, `sup${i}`, x - 0.75, x + 0.75, 1.55, 2.75, 1.12, 1.16, "gaugeF");
   BOX(`sup${i}Band`, `sup${i}`, x - 0.75, x + 0.75, 2.35, 2.6, 1.16, 1.18, band);
   BOX(`sup${i}T1`, `sup${i}`, x - 0.55, x + 0.55, 1.95, 2.05, 1.16, 1.18, "dark"); BOX(`sup${i}T2`, `sup${i}`, x - 0.55, x + 0.2, 1.72, 1.8, 1.16, 1.18, "dark");
+  VC(`sup${i}Cap`, `sup${i}`, 0.78, 3.85, 4.0, "dark", { x }); BOX(`sup${i}Head`, `sup${i}`, x - 0.75, x + 0.75, 4.55, 4.85, -0.3, 0.3, "steel2");
+  BOX(`sup${i}Tag`, `sup${i}`, x + 0.2, x + 0.7, 3.2, 3.55, 1.1, 1.14, "warnY"); P({ id: `sup${i}Grip`, layer: `sup${i}`, shape: "tube", size: [0.12, 0.08, 0.5], rot: HX, pos: [x, 3.55, 1.05], at: [[-1.2, 0, 0], [1.2, 0, 0]].map(([a, b, c]) => [a, b, c]), mat: "steel" });
   BOX(`sup${i}Warn`, `sup${i}`, x - 0.3, x + 0.3, 0.8, 1.15, 1.12, 1.15, "warnY");
 }
+P({ id: "supBeam", layer: "supBase", shape: "box", size: [13.4, 0.22, 0.22], pos: [40, 0.24, 0], at: [[0, 0, -2.4], [0, 0, 2.4]], mat: "steel2" });
+P({ id: "supStrap", layer: "supBase", shape: "box", size: [3.0, 0.14, 0.06], pos: [0, 1.15, 1.22], at: [[36.6, 0, 0], [40, 0, 0], [43.4, 0, 0]], mat: "dark" });
+P({ id: "supStrapBuckle", layer: "supBase", shape: "box", size: [0.3, 0.22, 0.1], pos: [0, 1.15, 1.26], at: [[36.6, 0, 0], [40, 0, 0], [43.4, 0, 0]], mat: "steel2" });
+P({ id: "supCorner", layer: "supBase", shape: "box", size: [0.5, 0.7, 0.5], pos: [0, 0.85, 0], at: [[33.5, 0, -2.2], [33.5, 0, 2.2], [46.5, 0, -2.2], [46.5, 0, 2.2]], mat: "dark" });
 Object.assign(anchors, { supA: A("sup0", [36.6, 4.4, 0.3], -150, -90) });
 
 // 雜質：一顆金屬原子（金黃）落到薄膜裡，旁邊發出警示光（s9，示意）
@@ -419,7 +449,7 @@ actions.impGlow = { type: "pulse", parts: ["impRing"], color: "warnY", glow: 1, 
 
 // 標註點
 Object.assign(anchors, {
-  cab: A("cabWall", [-CW - 0.05, 8.6, 0.4], -150, -80), door: A("cabDoor", [0, 8.0, CD + 0.3], 150, -90),
+  cab: A("cabWall", [0, 5.2, CD + 0.35], -150, -80), door: A("cabDoor", [0, 8.0, CD + 0.3], 150, -90),
   jack: A("jack", [1.75, 2.6, 0.4], 150, 80), jctl: A("jack", [0.45, 2.0, 2.2], 150, 110),
   lid: A("lid", [0.75, 6.6, 0.3], 150, -90), valveIn: A("lid", [-0.75, 7.17, 0], -150, -80), valveOut: A("lid", [0.75, 7.17, 0], 150, -90),
   dip: A("dip", [-0.75, 2.8, 0], -150, 100), dipTip: A("dip", [-0.75, 1.35, 0.2], -150, 110),

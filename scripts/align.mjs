@@ -167,12 +167,16 @@ function buildV2(cs) {
     prevEnd = V3 && c.take ? (i === 0 ? audioFrame / FPS + b.tail : prevEnd + prevGap + (b.tail - b.head)) : ve;
     prevGap = pause > 0 ? pause : GAP;
     if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
+    // 選用（script.json 該幕有 holdSec 才生效；沒寫的片不變）：幕長＝人聲＋holdSec——本幕人聲後補靜音，使「本幕念完只有畫面」≥ holdSec，
+    // 加上下一幕 headSec（開口前只有畫面）；補的是靜音，不加速不移調。上限不受 GAP_MAX 限制。見 docs/three-stage.md「念完留白 holdSec」
+    if (V3 && typeof sc?.holdSec === "number" && sc.holdSec > 0) prevGap = Math.max(prevGap, sc.holdSec + (script.scenes[i + 1]?.headSec ?? 0));
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
     const ttype = TRANSITIONS[sc?.transition] ? sc.transition : "fade";
     const transition = i === 0 ? null : { type: ttype, frames: TRANS, ...TRANSITIONS[ttype], ...(ttype === "carry" && sc?.carry ? { carry: sc.carry } : {}) };
     const prevStart = out[i - 1]?.startFrame ?? -Infinity;
     // 幕尾編舞：轉場起點＝max(開口 − TRANS, 上一幕收聲 − 2)：上一幕最後一個字念完前，主體不走
-    const startFrame = i === 0 ? 0 : Math.max(prevStart + MIN_SCENE_F, voiceStartFrame - TRANS, (out[i - 1]?.voiceEndFrame ?? 0) - EXIT_AFTER_VOICE);
+    const headF = V3 && typeof sc?.headSec === "number" && sc.headSec > 0 ? Math.max(TRANS, Math.round(sc.headSec * FPS)) : TRANS;   // 開口前只有畫面（headSec）
+    const startFrame = i === 0 ? 0 : Math.max(prevStart + MIN_SCENE_F, voiceStartFrame - headF, (out[i - 1]?.voiceEndFrame ?? 0) - EXIT_AFTER_VOICE);
     // 字幕：每行、每個字（絕對幀；比聲音早 0.05 秒點亮，下一行早 0.12 秒出現）
     const subIn = i === 0 ? 0 : voiceStartFrame - SUB_LEAD;
     const af = (t, lead) => audioFrame + Math.round((t - lead) * FPS);

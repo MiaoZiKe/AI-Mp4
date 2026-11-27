@@ -90,7 +90,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "前一集（濺鍍靶材）結尾預告；示意動畫，不是量測"
+    "示意動畫，不是量測"
    ],
    "props": {
     "hook": {
@@ -324,6 +324,27 @@
      },
      {
       "layer": "mfc",
+      "at": "s6:start-2",
+      "until": "s11:start-6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "vtrim",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "vtrim",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "vtrim",
       "at": "s6:start-2",
       "until": "s11:start-6",
       "opacity": 0,
@@ -1444,14 +1465,14 @@
      },
      {
       "layer": "cabDoor",
-      "at": "s3:start-8",
+      "at": "s3:start+48",
       "until": "s6:start-2",
       "dur": 14,
       "dx": -12.0
      },
      {
       "layer": "cabWall",
-      "at": "s3:start-8",
+      "at": "s3:start+48",
       "until": "s6:start-2",
       "opacity": 0.14,
       "dur": 14
@@ -1880,18 +1901,34 @@
      {
       "at": "start",
       "dur": 1,
+      "x": -2.5,
+      "y": 4.4,
+      "d": 34,
+      "elev": 10,
+      "yaw": 0.1
+     },
+     {
+      "at": "start+50",
+      "dur": 1,
       "x": 0.0,
       "y": 3.9,
       "d": 46,
-      "elev": 18,
-      "yaw": 0.1
+      "elev": 18
      },
      {
       "at": "open+52",
       "dur": 40,
       "x": 0.0,
-      "y": 8.4,
-      "d": 70,
+      "y": 7.6,
+      "d": 60,
+      "elev": 22
+     },
+     {
+      "at": "open+206",
+      "dur": 24,
+      "x": 0.0,
+      "y": 4.6,
+      "d": 50,
       "elev": 22
      }
     ],
@@ -1915,8 +1952,8 @@
       "text": "氣櫃",
       "en": "Gas cabinet",
       "color": "amber",
-      "at": "open-2",
-      "until": "open+46"
+      "at": "start+2",
+      "until": "start+48"
      },
      {
       "part": "lid",
@@ -2073,19 +2110,33 @@
       "y": 6.0,
       "d": 120,
       "elev": 26
+     },
+     {
+      "at": "start+290",
+      "dur": 22,
+      "x": 3.5,
+      "y": 4.5,
+      "d": 62,
+      "elev": 26
      }
     ],
     "run": [
      {
-      "id": "mfcLed",
-      "at": "start+30",
-      "ramp": 6,
-      "until": "s12:start+400"
-     },
-     {
       "id": "tapeGlow",
       "at": "start+100",
       "ramp": 6,
+      "until": "start+296"
+     },
+     {
+      "id": "tapeFlash",
+      "at": "start+300",
+      "ramp": 4,
+      "until": "start+334"
+     },
+     {
+      "id": "mfcLed",
+      "at": "start+300",
+      "ramp": 4,
       "until": "s12:start+400"
      },
      {
@@ -2857,7 +2908,7 @@
       "h": 330,
       "avoid": false,
       "title": "乾淨有兩把尺",
-      "tag": "示意；廠商指南",
+      "tag": "示意：要求到 ppb 等級",
       "t": {
        "clean": {
         "at": "clean"

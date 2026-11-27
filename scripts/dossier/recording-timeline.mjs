@@ -70,7 +70,8 @@ for (const [i, s] of script.scenes.entries()) {
   const audioFrame = Math.round(vs * FPS), voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
   const p = out[i - 1];
   // cutDelayF（script.json 該幕）：這一鏡的畫面比預設晚幾幀才換進來（前一鏡最後一個標籤需要多停一下時用；聲音不動）
-  const startFrame = i === 0 ? 0 : Math.max(p.startFrame + MIN_SCENE_F, voiceStartFrame - TRANS, p.voiceEndFrame - EXIT_AFTER_VOICE) + Math.max(0, Math.round(Number(s.cutDelayF ?? 0)));
+  const headF = typeof s.headSec === "number" && s.headSec > 0 ? Math.max(TRANS, Math.round(s.headSec * FPS)) : TRANS;   // 開口前只有畫面（headSec；錄音要先用 scripts/three/pad-recording.mjs 補靜音）
+  const startFrame = i === 0 ? 0 : Math.max(p.startFrame + MIN_SCENE_F, voiceStartFrame - headF, p.voiceEndFrame - EXIT_AFTER_VOICE) + Math.max(0, Math.round(Number(s.cutDelayF ?? 0)));
   const subIn = i === 0 ? 0 : voiceStartFrame - SUB_LEAD;
   const af = (t, lead) => audioFrame + Math.round((t - lead) * FPS);
   const lines = [];
