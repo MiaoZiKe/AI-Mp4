@@ -247,8 +247,8 @@ LAY("dFilR", [1, 1, DX + 3.2, DIEB]); P({ id: "dFilRP", layer: "dFilR", shape: "
 // 點膠頭（沿晶片左緣沿 z 走）：針筒、閥、針頭、相機
 const NX = DX - 3.35, NY = DIEB + 0.5;
 LAY("dGantry", [2, 6, NX, NY + 3]);
-BOX("dgBeam", "dGantry", NX - 0.35, NX + 0.35, NY + 4.8, NY + 5.3, -3.0, 3.4, "panel"); BOX("dgRail", "dGantry", NX - 0.15, NX + 0.15, NY + 4.7, NY + 4.8, -2.8, 3.2, "steel2");
-P({ id: "dgPost", layer: "dGantry", shape: "box", size: [0.5, R2(NY + 5.3), 0.5], pos: [NX, R2((NY + 5.3) / 2), 0], at: [[0, 0, -3.2], [0, 0, 3.6]], mat: "panel2" }); BOX("dgLabel", "dGantry", NX - 0.36, NX - 0.35, NY + 4.85, NY + 5.25, 0.5, 1.6, "warnY");
+BOX("dgBeam", "dGantry", NX - 0.35, NX + 0.35, NY + 4.8, NY + 5.3, -3.45, 2.9, "panel"); BOX("dgRail", "dGantry", NX - 0.15, NX + 0.15, NY + 4.7, NY + 4.8, -2.8, 3.2, "steel2");
+P({ id: "dgPost", layer: "dGantry", shape: "box", size: [0.5, R2(NY + 5.3), 0.5], pos: [NX, R2((NY + 5.3) / 2), 0], at: [[0, 0, -3.2]], mat: "panel2" }); BOX("dgBrace", "dGantry", NX - 0.3, NX + 0.3, NY + 3.9, NY + 4.8, -3.45, -1.6, "panel2");   // 懸臂龍門：只有後柱，針頭前方不擋（r1 機台審） BOX("dgLabel", "dGantry", NX - 0.36, NX - 0.35, NY + 4.85, NY + 5.25, 0.5, 1.6, "warnY");
 for (let k = 0; k < 6; k++) { LAY(`dBead${k}`, [0.3, 0.2, DX - 3.05, DY0 + 0.75]); ZC(`dBead${k}B`, `dBead${k}`, 0.09, R2(2.0 - k * 0.6 - 0.6), R2(2.0 - k * 0.6), DX - 3.12, DY0 + 0.79, "uf"); }
 LAY("dHead", [1.5, 5, NX, NY + 2.5]);
 BOX("dhCarriage", "dHead", NX - 0.45, NX + 0.45, NY + 4.2, NY + 4.7, 1.6, 2.4, "dark"); BOX("dhZ", "dHead", NX + 0.35, NX + 0.6, NY + 1.2, NY + 4.7, 1.85, 2.15, "steel2");
