@@ -112,15 +112,18 @@ BOX("gTable", "gBase", GX - 5, GX + 5, 0, 0.9, -4.2, 4.2, "band"); BOX("gTableTo
 P({ id: "gFoot", layer: "gBase", shape: "box", size: [0.5, 0.1, 0.5], pos: [GX, 0.05, 0], at: [[-4.5, 0, -3.7], [4.5, 0, -3.7], [-4.5, 0, 3.7], [4.5, 0, 3.7]], mat: "rubber" });
 // 經紗（沿 z，固定）＋緯紗（沿 x，一根根織進去）；上下交錯
 const GN = 8, GP = 0.8, GY = 1.35, GA = 0.13, GR = 0.16;
+// 紗是扁平的一束：截面扁橢圓（寬約為厚的 2.7 倍；SEG3 先縮放再轉，局部 x＝布面內寬向、y＝厚度）
+const GS = [1.6, 0.6, 1], GSJ = [1.6, 0.6, 1.6];
 const gx = (i) => R2(GX + (i - (GN - 1) / 2) * GP), gz = (j) => R2((j - (GN - 1) / 2) * GP);
 LAY("gWarp", [7, 0.5, GX, GY]);
 const sg = (i, j) => ((i + j) % 2 === 0 ? 1 : -1);   // 交叉點：緯紗在上（+）或在下（−）
-for (let i = 0; i < GN; i++) for (let j = 0; j < GN - 1; j++) SEG3(`gW${i}_${j}`, "gWarp", [gx(i), R2(GY - GA * sg(i, j)), gz(j)], [gx(i), R2(GY - GA * sg(i, j + 1)), gz(j + 1)], GR, "yarn");
+for (let i = 0; i < GN; i++) for (let j = 0; j < GN - 1; j++) SEG3(`gW${i}_${j}`, "gWarp", [gx(i), R2(GY - GA * sg(i, j)), gz(j)], [gx(i), R2(GY - GA * sg(i, j + 1)), gz(j + 1)], GR, "yarn", { scale: GS });
 for (let j = 0; j < GN; j++) {
   const id = `gF${j}`; LAY(id, [7, 0.4, GX, GY]);
-  for (let i = 0; i < GN - 1; i++) SEG3(`${id}_${i}`, id, [gx(i), R2(GY + GA * sg(i, j)), gz(j)], [gx(i + 1), R2(GY + GA * sg(i + 1, j)), gz(j)], GR, "yarnS");
+  for (let i = 0; i < GN - 1; i++) SEG3(`${id}_${i}`, id, [gx(i), R2(GY + GA * sg(i, j)), gz(j)], [gx(i + 1), R2(GY + GA * sg(i + 1, j)), gz(j)], GR, "yarnS", { scale: GS });
+  P({ id: `${id}J`, layer: id, shape: "sphere", size: [GR], scale: GSJ, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => [gx(i), R2(GY + GA * sg(i, j)), gz(j)]), mat: "yarnS" });
 }
-P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
+P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], scale: GSJ, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
 // 一根紗拆開＝很多根玻璃絲（散開的尾端）
 LAY("gFil", [2, 1, GX + 4, GY]);
 for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.2), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.1 * t), R2(GY + 1.2 + 0.4 * u), R2(gz(GN - 1) + 2.0)], 0.05, "yarn"); }
