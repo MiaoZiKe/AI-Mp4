@@ -189,63 +189,63 @@
      {
       "layer": "fFacade",
       "at": "s1:prev-2",
-      "until": "s10:ready+6",
+      "until": "s10:ready+20",
       "opacity": 0,
       "dur": 12
      },
      {
       "layer": "fRoof",
       "at": "s1:prev-2",
-      "until": "s10:ready-2",
+      "until": "s10:ready+12",
       "dur": 20,
       "dy": 5.6
      },
      {
       "layer": "fFan",
       "at": "s1:prev-2",
-      "until": "s10:ready-2",
+      "until": "s10:ready+12",
       "dur": 20,
       "dy": 5.6
      },
      {
       "layer": "fClean",
       "at": "s1:prev+8",
-      "until": "s10:ready-8",
+      "until": "s10:ready+6",
       "dur": 20,
       "dy": 3.8
      },
      {
       "layer": "fPlen",
-      "at": "s1:end+4",
-      "until": "s10:ready-14",
+      "at": "s1:air+4",
+      "until": "s10:ready+0",
       "dur": 20,
       "dy": 2.0
      },
      {
       "layer": "fSubW",
       "at": "s2:start+2",
-      "until": "s10:ready-20",
+      "until": "s10:ready-6",
       "dur": 20,
       "dx": -2.6
      },
      {
       "layer": "fSubG",
       "at": "s2:start+2",
-      "until": "s10:ready-20",
+      "until": "s10:ready-6",
       "dur": 20,
       "dx": 2.6
      },
      {
       "layer": "gGround",
       "at": "s8:pipe-6",
-      "until": "s8:end+40",
-      "dur": 20,
+      "until": "s8:end+2",
+      "dur": 18,
       "dy": 1.9
      },
      {
       "layer": "gGround",
       "at": "s8:pipe-6",
-      "until": "s8:end+40",
+      "until": "s8:end+2",
       "opacity": 0.35,
       "dur": 12
      },
@@ -259,15 +259,15 @@
      {
       "layer": "tTower",
       "at": "s7:start+4",
-      "until": "s7:end+18",
-      "dur": 22,
+      "until": "s7:end+4",
+      "dur": 20,
       "dy": 2.0
      },
      {
       "layer": "tFan",
       "at": "s7:start+4",
-      "until": "s7:end+18",
-      "dur": 22,
+      "until": "s7:end+4",
+      "dur": 20,
       "dy": 2.0
      },
      {
@@ -307,8 +307,8 @@
      },
      {
       "layer": "eLights",
-      "at": "s5:sag+2",
-      "until": "s5:sag+26",
+      "at": "s5:sag+18",
+      "until": "s5:sag+42",
       "opacity": 0.1,
       "dur": 3
      },
@@ -470,7 +470,7 @@
       "en": "Cleanroom (last episode)",
       "color": "amber",
       "at": "prev+6",
-      "until": "prev+52",
+      "until": "prev+51",
       "cut": true
      },
      {
@@ -478,8 +478,8 @@
       "text": "回風夾層",
       "en": "Return-air plenum",
       "color": "blue",
-      "at": "air+48",
-      "until": "air+94",
+      "at": "air+6",
+      "until": "air+51",
       "cut": true
      }
     ],
@@ -514,9 +514,9 @@
      }
     ]
    },
-   "durationSec": 7.2,
-   "holdSec": 2.4,
-   "pauseAfter": 2.4
+   "durationSec": 5.52,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
   },
   {
    "id": "s2",
@@ -572,7 +572,7 @@
      },
      {
       "to": "sys",
-      "at": "upw+42",
+      "at": "upw+41",
       "dur": 1
      }
     ],
@@ -594,7 +594,7 @@
       "elev": 15
      },
      {
-      "at": "upw+42",
+      "at": "upw+41",
       "dur": 1,
       "x": 39.4,
       "y": 0.2,
@@ -610,16 +610,16 @@
       "elev": 34
      },
      {
-      "at": "resin+22",
-      "dur": 30,
+      "at": "resin-8",
+      "dur": 12,
       "x": 41.8,
       "y": -0.3,
       "d": 30,
       "elev": 34
      },
      {
-      "at": "catch-4",
-      "dur": 14,
+      "at": "resin+40",
+      "dur": 12,
       "x": 41.7,
       "y": 0.4,
       "d": 20,
@@ -630,35 +630,35 @@
      {
       "layer": "wPre",
       "at": "upw+44",
-      "until": "upw+90",
+      "until": "upw+89",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wRO",
-      "at": "mem+6",
-      "until": "mem+52",
+      "at": "upw+44",
+      "until": "upw+89",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wIX",
-      "at": "resin+36",
-      "until": "resin+82",
+      "at": "resin-22",
+      "until": "resin+23",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUV",
-      "at": "catch+36",
-      "until": "catch+82",
+      "at": "resin+25",
+      "until": "resin+70",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUF",
-      "at": "catch+36",
-      "until": "catch+82",
+      "at": "resin+25",
+      "until": "resin+70",
       "dur": 12,
       "dy": 1.1
      }
@@ -668,131 +668,131 @@
       "id": "fWRise",
       "at": "start",
       "ramp": 6,
-      "until": "upw+42"
+      "until": "upw+41"
      },
      {
       "id": "fGRise",
       "at": "start",
       "ramp": 6,
-      "until": "upw+42"
+      "until": "upw+41"
      },
      {
       "id": "fERise",
       "at": "start",
       "ramp": 6,
-      "until": "upw+42"
+      "until": "upw+41"
      },
      {
       "id": "wFeed",
-      "at": "upw+42",
+      "at": "upw+41",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wImp",
-      "at": "upw+42",
+      "at": "upw+41",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wConc",
-      "at": "upw+42",
+      "at": "upw+41",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wPerm",
-      "at": "upw+42",
+      "at": "upw+41",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wHp",
-      "at": "upw+42",
+      "at": "upw+41",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wIon",
-      "at": "resin+36",
+      "at": "resin-22",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wBeadGlow",
-      "at": "resin+36",
+      "at": "resin-22",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvGlow",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay2",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay3",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay4",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam0",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam1",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam2",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam3",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam4",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvBeam5",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 4,
       "until": "s3:voice-4"
      },
      {
       "id": "wOrg",
-      "at": "catch+36",
+      "at": "resin+25",
       "ramp": 6,
       "until": "s3:voice-4"
      }
@@ -804,25 +804,16 @@
       "en": "Sub-fab: water, power, gas",
       "color": "blue",
       "at": "upw-4",
-      "until": "upw+42",
-      "cut": true
-     },
-     {
-      "part": "wSand",
-      "text": "預處理（砂濾、活性碳）",
-      "en": "Pretreatment",
-      "color": "blue",
-      "at": "upw+44",
-      "until": "upw+90",
+      "until": "upw+41",
       "cut": true
      },
      {
       "part": "wRo",
-      "text": "濾網：逆滲透膜",
-      "en": "Filter: RO membranes",
+      "text": "預處理＋濾網（逆滲透膜）",
+      "en": "Pretreat + RO membranes",
       "color": "amber",
-      "at": "mem+6",
-      "until": "mem+52",
+      "at": "upw+44",
+      "until": "upw+89",
       "cut": true
      },
      {
@@ -830,8 +821,8 @@
       "text": "樹脂：離子交換",
       "en": "Resin: ion exchange",
       "color": "amber",
-      "at": "resin+36",
-      "until": "resin+82",
+      "at": "resin-22",
+      "until": "resin+23",
       "cut": true
      },
      {
@@ -839,8 +830,8 @@
       "text": "紫外線＋超過濾",
       "en": "UV + ultrafiltration",
       "color": "blue",
-      "at": "catch+36",
-      "until": "catch+82",
+      "at": "resin+25",
+      "until": "resin+70",
       "cut": true
      }
     ],
@@ -881,10 +872,10 @@
      }
     ]
    },
-   "durationSec": 9.6,
-   "holdSec": 3.1,
+   "durationSec": 7.16,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 3.1
+   "pauseAfter": 0.7
   },
   {
    "id": "s3",
@@ -978,7 +969,7 @@
       "en": "Loop: always flowing",
       "color": "blue",
       "at": "loop-4",
-      "until": "loop+42",
+      "until": "loop+41",
       "cut": true
      },
      {
@@ -986,22 +977,9 @@
       "text": "死水支管：長細菌",
       "en": "Dead leg: bacteria grow",
       "color": "amber",
-      "at": "bact-6",
-      "until": "bact+40",
+      "at": "stop+19",
+      "until": "stop+64",
       "cut": true
-     },
-     {
-      "part": "lValve",
-      "text": "回流閥：流回儲槽",
-      "en": "Return valve",
-      "color": "blue",
-      "at": "bact+42",
-      "until": "bact+88",
-      "cut": true,
-      "xy": [
-       330,
-       340
-      ]
      }
     ],
     "overlay": [
@@ -1032,10 +1010,10 @@
      }
     ]
    },
-   "durationSec": 6.8,
-   "holdSec": 2.8,
+   "durationSec": 4.76,
+   "holdSec": 0.8,
    "headSec": 0.3,
-   "pauseAfter": 2.8
+   "pauseAfter": 0.8
   },
   {
    "id": "s4",
@@ -1110,7 +1088,7 @@
       "en": "TSMC fab",
       "color": "blue",
       "at": "tsmc-2",
-      "until": "tsmc+44",
+      "until": "tsmc+43",
       "cut": true,
       "xy": [
        300,
@@ -1123,7 +1101,7 @@
       "en": "Raw-water tanks",
       "color": "blue",
       "at": "num-4",
-      "until": "num+42",
+      "until": "num+41",
       "cut": true
      }
     ],
@@ -1155,10 +1133,10 @@
      }
     ]
    },
-   "durationSec": 5.6,
-   "holdSec": 2.1,
+   "durationSec": 4.6,
+   "holdSec": 0.8,
    "headSec": 0.2,
-   "pauseAfter": 2.1
+   "pauseAfter": 0.8
   },
   {
    "id": "s5",
@@ -1219,20 +1197,12 @@
       "elev": 26
      },
      {
-      "at": "sag-10",
-      "dur": 14,
+      "at": "sag+8",
+      "dur": 8,
       "x": 135.6,
       "y": 0.6,
       "d": 27,
       "elev": 20
-     },
-     {
-      "at": "half",
-      "dur": 30,
-      "x": 133.0,
-      "y": -0.4,
-      "d": 40,
-      "elev": 26
      }
     ],
     "run": [
@@ -1262,9 +1232,9 @@
      },
      {
       "id": "eSag",
-      "at": "sag+2",
+      "at": "sag+18",
       "ramp": 5,
-      "until": "sag+26"
+      "until": "sag+42"
      },
      {
       "id": "eRedBlink",
@@ -1281,25 +1251,21 @@
     ],
     "labels": [
      {
-      "part": "eGrid",
-      "text": "地下高壓進線",
-      "en": "High-voltage feed",
+      "part": "eTrans",
+      "text": "變壓器：地下高壓電接進來",
+      "en": "Transformer, fed underground",
       "color": "blue",
       "at": "elec-2",
-      "until": "elec+44",
-      "cut": true,
-      "xy": [
-       330,
-       340
-      ]
+      "until": "elec+43",
+      "cut": true
      },
      {
       "part": "eSwg",
       "text": "電壓晃一下",
       "en": "Voltage dip",
       "color": "amber",
-      "at": "sag+10",
-      "until": "sag+56",
+      "at": "sag+9",
+      "until": "sag+54",
       "cut": true
      },
      {
@@ -1307,17 +1273,8 @@
       "text": "敏感機台當機",
       "en": "Sensitive tool trips",
       "color": "amber",
-      "at": "crash+4",
-      "until": "crash+50",
-      "cut": true
-     },
-     {
-      "part": "eTrans",
-      "text": "變壓器",
-      "en": "Transformer",
-      "color": "blue",
-      "at": "half+32",
-      "until": "half+78",
+      "at": "crash+1",
+      "until": "crash+46",
       "cut": true
      }
     ],
@@ -1355,10 +1312,10 @@
      }
     ]
    },
-   "durationSec": 7.0,
-   "holdSec": 2.0,
+   "durationSec": 5.82,
+   "holdSec": 0.8,
    "headSec": 0.2,
-   "pauseAfter": 2.0
+   "pauseAfter": 0.8
   },
   {
    "id": "s6",
@@ -1468,7 +1425,7 @@
       "en": "Uninterruptible power supply",
       "color": "amber",
       "at": "backup-2",
-      "until": "backup+44",
+      "until": "backup+43",
       "cut": true
      },
      {
@@ -1476,8 +1433,8 @@
       "text": "電池架",
       "en": "Battery racks",
       "color": "blue",
-      "at": "laptop+16",
-      "until": "laptop+62",
+      "at": "laptop+15",
+      "until": "laptop+60",
       "cut": true
      },
      {
@@ -1485,8 +1442,8 @@
       "text": "機台照常運作",
       "en": "Tool keeps running",
       "color": "blue",
-      "at": "ups+0",
-      "until": "ups+46",
+      "at": "mains+33",
+      "until": "mains+78",
       "cut": true
      }
     ],
@@ -1521,10 +1478,10 @@
      }
     ]
    },
-   "durationSec": 8.4,
-   "holdSec": 2.6,
+   "durationSec": 6.58,
+   "holdSec": 0.8,
    "headSec": 0.2,
-   "pauseAfter": 2.6
+   "pauseAfter": 0.8
   },
   {
    "id": "s7",
@@ -1630,7 +1587,7 @@
       "en": "Rooftop cooling towers",
       "color": "blue",
       "at": "ten+0",
-      "until": "ten+46",
+      "until": "ten+45",
       "cut": true
      },
      {
@@ -1638,17 +1595,8 @@
       "text": "冷卻水：把熱帶到塔頂",
       "en": "Cooling water carries heat",
       "color": "amber",
-      "at": "one+5",
-      "until": "one+51",
-      "cut": true
-     },
-     {
-      "part": "tChill",
-      "text": "冰水主機：冷凝器發熱",
-      "en": "Chiller",
-      "color": "blue",
-      "at": "tsmc+35",
-      "until": "tsmc+81",
+      "at": "one+4",
+      "until": "one+49",
       "cut": true
      }
     ],
@@ -1680,10 +1628,10 @@
      }
     ]
    },
-   "durationSec": 6.6,
-   "holdSec": 2.7,
+   "durationSec": 4.66,
+   "holdSec": 0.8,
    "headSec": 0.2,
-   "pauseAfter": 2.7
+   "pauseAfter": 0.8
   },
   {
    "id": "s8",
@@ -1756,16 +1704,8 @@
       "elev": 16
      },
      {
-      "at": "out+12",
-      "dur": 16,
-      "x": 168.0,
-      "y": 0.8,
-      "d": 46,
-      "elev": 18
-     },
-     {
-      "at": "tap",
-      "dur": 34,
+      "at": "tool-6",
+      "dur": 14,
       "x": 175.0,
       "y": 0.2,
       "d": 38,
@@ -1818,12 +1758,12 @@
     ],
     "labels": [
      {
-      "part": "gN2",
-      "text": "氮氣：惰性氣體",
-      "en": "Nitrogen: inert gas",
+      "part": "gAsu",
+      "text": "廠外空氣分離廠：做出氮氣",
+      "en": "Air separation plant",
       "color": "blue",
-      "at": "n2-4",
-      "until": "n2+42",
+      "at": "gas-2",
+      "until": "gas+43",
       "cut": true
      },
      {
@@ -1832,16 +1772,7 @@
       "en": "Underground pipeline",
       "color": "amber",
       "at": "pipe-2",
-      "until": "pipe+44",
-      "cut": true
-     },
-     {
-      "part": "gAsu",
-      "text": "空氣分離廠（廠外）",
-      "en": "Air separation plant",
-      "color": "blue",
-      "at": "out+28",
-      "until": "out+74",
+      "until": "pipe+43",
       "cut": true
      },
      {
@@ -1849,8 +1780,8 @@
       "text": "閥箱：分給每台機台",
       "en": "Valve box to each tool",
       "color": "blue",
-      "at": "tap+24",
-      "until": "tap+70",
+      "at": "tool+4",
+      "until": "tool+49",
       "cut": true
      }
     ],
@@ -1891,10 +1822,10 @@
      }
     ]
    },
-   "durationSec": 9.6,
-   "holdSec": 3.4,
+   "durationSec": 6.97,
+   "holdSec": 0.8,
    "headSec": 0.2,
-   "pauseAfter": 3.4
+   "pauseAfter": 0.8
   },
   {
    "id": "s9",
@@ -1958,7 +1889,7 @@
       "en": "UPW systems",
       "color": "blue",
       "at": "org-2",
-      "until": "org+44",
+      "until": "org+43",
       "cut": true
      },
      {
@@ -1967,16 +1898,7 @@
       "en": "Air separation",
       "color": "blue",
       "at": "lh-2",
-      "until": "lh+44",
-      "cut": true
-     },
-     {
-      "part": "v2",
-      "text": "空氣分離廠",
-      "en": "Air separation",
-      "color": "blue",
-      "at": "sf+16",
-      "until": "sf+62",
+      "until": "lh+43",
       "cut": true
      }
     ],
@@ -1985,7 +1907,7 @@
       "type": "section",
       "kind": "util-co",
       "at": "voice-3",
-      "until": "s10:voice-3",
+      "until": "s10:voice",
       "x": 64,
       "y": 1000,
       "w": 952,
@@ -2011,10 +1933,10 @@
      }
     ]
    },
-   "durationSec": 6.6,
-   "holdSec": 2.0,
+   "durationSec": 5.5,
+   "holdSec": 0.87,
    "headSec": 0.2,
-   "pauseAfter": 2.0
+   "pauseAfter": 0.87
   },
   {
    "id": "s10",
@@ -2057,7 +1979,7 @@
     "zoom": [
      {
       "to": "fab",
-      "at": "voice-4",
+      "at": "voice-1",
       "dur": 1
      },
      {
@@ -2068,7 +1990,7 @@
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "voice-1",
       "dur": 1,
       "x": 0,
       "y": 2.6,
@@ -2076,7 +1998,7 @@
       "elev": 12
      },
      {
-      "at": "ready+30",
+      "at": "ready+36",
       "dur": 30,
       "x": 0,
       "y": 1.2,
@@ -2133,7 +2055,7 @@
       "en": "Probe card (next)",
       "color": "amber",
       "at": "probe-2",
-      "until": "probe+44",
+      "until": "probe+43",
       "cut": true
      },
      {
@@ -2141,8 +2063,8 @@
       "text": "針尖碰到晶片接點",
       "en": "Tips touch the pads",
       "color": "blue",
-      "at": "probe+46",
-      "until": "probe+92",
+      "at": "probe+45",
+      "until": "probe+90",
       "cut": true
      }
     ],
@@ -2150,7 +2072,7 @@
      {
       "type": "section",
       "kind": "util-next",
-      "at": "voice-3",
+      "at": "voice",
       "until": "s11:start",
       "x": 64,
       "y": 1066,
@@ -2177,9 +2099,8 @@
      }
     ]
    },
-   "durationSec": 9.2,
-   "holdSec": 2.3,
-   "headSec": 0.2
+   "durationSec": 7.74,
+   "holdSec": 1.0
   },
   {
    "id": "s11",

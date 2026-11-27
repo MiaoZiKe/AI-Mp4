@@ -43,7 +43,7 @@ S = [
  ["科技新報、自由時報；截至 2026/11/27"], 6.6, 0.2, 1.8),
 ("s10", "cta", "水氣電備齊，晶圓做完。怎麼知道每顆晶片好不好？看探針卡。留言水氣電，拿完整資料。",
  ["水氣電備齊", "晶圓做完", "怎麼知道", "每顆晶片好不好？", "看探針卡", "留言水氣電", "拿完整資料"], ["With water, gas and power ready,", "the wafer gets made.", "But how do you know", "if each chip is good?", "Look at the probe card.", "Comment \"utilities\"", "for the full notes."],
- [("ready", "備齊"), ("how", "怎麼知道"), ("probe", "探針卡"), ("kw", "留言水氣電")], ["備齊", "探針卡", "水氣電"], ["示意動畫，不是量測"], 9.2, 0.2, 1.6),
+ [("ready", "備齊"), ("how", "怎麼知道"), ("probe", "探針卡"), ("kw", "留言水氣電")], ["備齊", "探針卡", "水氣電"], ["示意動畫，不是量測"], 9.2, 0.0, 1.6),
 ]
 def TTS(t):
     t = t.replace("上集", "上一集").replace("上一一集", "上一集").replace("矽", "細").replace("光罩", "光照")
@@ -56,7 +56,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for z in zh: assert len(re.sub(r"[ ，。？]", "", z)) <= 11, (sid, z)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
+    # Andy 第 39 條（11-27 晚）：旁白之間的無聲最多 1 秒 → 念完後只留 1.0 秒；幕長＝開口前＋念稿估時＋1.0（s9 公司卡另照第 40 條檢查）
+    nh = S[i + 1][9] if i + 1 < len(S) else 0.0
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(1.0 - nh - (0.13 if sid == "s9" else 0), 2); dur = round(max(4.6, head + nch / 5.2 + 0.2 + hold), 2)
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -88,7 +90,7 @@ def lab(part, text, en, color, at, until, xy=None, **kw):
     d = {"part": part, "text": text, "en": en, "color": color, "at": at, "until": until, "cut": True}
     if xy: d["xy"] = xy
     d.update(kw); return d
-LEN = 46
+LEN = 45
 def seq(sid, items):
     """items：[(part, 中文, 英文, 色, cue, 提前幀)]；依序排、每張 LEN 幀、一次一張；回傳 labels（at／until 寫成「cue+N」）"""
     out, prev_end = [], None
@@ -140,24 +142,24 @@ def card(sid, kind, title, tag, t=None, **kw): return sec(kind, C, nxt(sid), tit
 
 # ── 站 F：晶圓廠剖面爆炸分解（physics-spec §2 步驟 1、3、4、5；步驟 9 組回在 s10）──
 RD = "s10:ready"
-VIS += [hid("fFacade", "s1:prev-2", f"{RD}+6", 12, 0)]                                  # 步驟 1：外殼（正面牆）掀開，留框線（fFrame）
-VIS += [mv("fRoof", "s1:prev-2", f"{RD}-2", 20, dy=5.6), mv("fFan", "s1:prev-2", f"{RD}-2", 20, dy=5.6)]  # 步驟 1：屋頂沿垂直軸抬起
-VIS += [mv("fClean", "s1:prev+8", f"{RD}-8", 20, dy=3.8)]                                # 步驟 3：無塵室層分離
-VIS += [mv("fPlen", "s1:end+4", f"{RD}-14", 20, dy=2.0)]                                    # 步驟 4：回風夾層分離
-VIS += [mv("fSubW", "s2:start+2", f"{RD}-20", 20, dx=-2.6), mv("fSubG", "s2:start+2", f"{RD}-20", 20, dx=2.6)]   # 步驟 5：地下廠務層：水往左、氣往右拉開
+VIS += [hid("fFacade", "s1:prev-2", f"{RD}+20", 12, 0)]                                  # 步驟 1：外殼（正面牆）掀開，留框線（fFrame）
+VIS += [mv("fRoof", "s1:prev-2", f"{RD}+12", 20, dy=5.6), mv("fFan", "s1:prev-2", f"{RD}+12", 20, dy=5.6)]  # 步驟 1：屋頂沿垂直軸抬起
+VIS += [mv("fClean", "s1:prev+8", f"{RD}+6", 20, dy=3.8)]                                # 步驟 3：無塵室層分離
+VIS += [mv("fPlen", "s1:air+4", f"{RD}+0", 20, dy=2.0)]                                    # 步驟 4：回風夾層分離
+VIS += [mv("fSubW", "s2:start+2", f"{RD}-6", 20, dx=-2.6), mv("fSubG", "s2:start+2", f"{RD}-6", 20, dx=2.6)]   # 步驟 5：地下廠務層：水往左、氣往右拉開
 # ── 站 W：超純水各站沿流向逐站拉起（步驟 6；拉起時亮標籤，放回後換下一站）──
 # ── 站 G：地下管線土層掀開、廠房牆抬起露出閥箱（步驟 8）──
-VIS += [mv("gGround", "s8:pipe-6", "s8:end+40", 20, dy=1.9)]
-VIS += [hid("gGround", "s8:pipe-6", "s8:end+40", 12, 0.35)]
+VIS += [mv("gGround", "s8:pipe-6", "s8:end+2", 18, dy=1.9)]
+VIS += [hid("gGround", "s8:pipe-6", "s8:end+2", 12, 0.35)]
 # ── 站 L：死水支管的細菌只在「停著不動」之後出現 ──
 vis("lBact", [("s3:stop+6", FAR)], 8)
 # ── 站 T：s7 冷卻塔從屋頂抬起（步驟 2），講完放回 ──
-VIS += [mv("tTower", "s7:start+4", "s7:end+18", 22, dy=2.0), mv("tFan", "s7:start+4", "s7:end+18", 22, dy=2.0)]
+VIS += [mv("tTower", "s7:start+4", "s7:end+4", 20, dy=2.0), mv("tFan", "s7:start+4", "s7:end+4", 20, dy=2.0)]
 # ── 站 E：s5 沒有不斷電系統；s6 念到「備用電源」從後方推進來（步驟 7 最後一站）；紅燈只在當機時亮 ──
 VIS += [hid("eUPS", T0, "s6:backup-4", 4, 0), mv("eUPS", T0, "s6:backup", 22, dz=-2.6)]
 vis("eLampR", [("s5:crash", "s6:start+10")], 2)
 VIS += [hid("eLampG", "s5:crash", "s6:start+10", 2, 0)]
-VIS += [hid("eLights", "s5:sag+2", "s5:sag+26", 3, 0.1), hid("eLights", "s6:mains+2", "s6:mains+26", 3, 0.1)]   # 電壓晃一下：燈條一起暗
+VIS += [hid("eLights", "s5:sag+18", "s5:sag+42", 3, 0.1), hid("eLights", "s6:mains+2", "s6:mains+26", 3, 0.1)]   # 電壓晃一下：燈條一起暗
 # ── 站 V：念到哪家才從半透明變實體（三座廠往中間靠，整組一個鏡頭看得到）──
 VIS += [mv(l, T0, FAR, 1, dx=1.4) for l in ("v0", "vF0")] + [mv(l, T0, FAR, 1, dx=-1.2) for l in ("v2", "vF2")]
 VIS += [hid("v0", "s9:start-6", "s9:org-12", 6, 0.3), hid("v1", "s9:start-6", "s9:lh-12", 6, 0.3), hid("v2", "s9:start-6", "s9:sf-12", 6, 0.3)]
@@ -184,20 +186,20 @@ P["s1"] = {"zoom": [{"to": "use", "at": "start-30", "dur": 1}, {"to": "use", "at
          run("uFlingA", "start-30", "prev", 4), run("uFlingB", "start-30", "prev", 4), run("uFlingC", "start-30", "prev", 4),
          run("fAir", "prev+8", "s2:upw+44", 8), run("fRet", "end+10", "s2:upw+44", 8), run("fRet2", "end+10", "s2:upw+44", 8), run("fFanSpin", "prev", "s2:upw+44", 10), run("fFanSpin2", "prev", "s2:upw+44", 10)],
  "labels": seq("s1", [("fClean", "無塵室（前一集）", "Cleanroom (last episode)", "amber", "prev", -6),
-                      ("fPlen", "回風夾層", "Return-air plenum", "blue", "end", -6)]),
+                      ("fPlen", "回風夾層", "Return-air plenum", "blue", "air", -6)]),
  "overlay": [sec("util-hook", "start", nxt("s1"), "系列 2・第 20 集", "示意，非實際比例", {"wash": "wash", "clean": "clean", "prev": "prev", "air": "air"}, cut=True)]}
 W_SHIFT = []
 w_lab = seq("s2", [("fSub", "地下廠務層：水、電、氣", "Sub-fab: water, power, gas", "blue", "upw", 4),
-                   ("wSand", "預處理（砂濾、活性碳）", "Pretreatment", "blue", "upw", -44), ("wRo", "濾網：逆滲透膜", "Filter: RO membranes", "amber", "mem", -6),
-                   ("wMix", "樹脂：離子交換", "Resin: ion exchange", "amber", "resin", 4), ("wUv", "紫外線＋超過濾", "UV + ultrafiltration", "blue", "catch", 4),
+                   ("wRo", "預處理＋濾網（逆滲透膜）", "Pretreat + RO membranes", "amber", "upw", -44),
+                   ("wMix", "樹脂：離子交換", "Resin: ion exchange", "amber", "resin", 30), ("wUv", "紫外線＋超過濾", "UV + ultrafiltration", "blue", "resin", 100),
                    ])
 # 每站拉起的時間＝它的標籤時間（wUV、wUF 共用「紫外線＋超過濾」那張；儲槽跟著電阻率表那張）
-lift = {"wPre": w_lab[1], "wRO": w_lab[2], "wIX": w_lab[3], "wUV": w_lab[4], "wUF": w_lab[4]}
+lift = {"wPre": w_lab[1], "wRO": w_lab[1], "wIX": w_lab[2], "wUV": w_lab[3], "wUF": w_lab[3]}
 for lay, L in lift.items():
     W_SHIFT.append(mv(lay, L["at"], L["until"], 12, dy=1.1))
 WCUT = w_lab[0]["until"]          # 地下廠務層標籤結束才切到超純水站
 P["s2"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "sys", "at": WCUT, "dur": 1}],
- "shot": [S_(CC, FL1), shot("start+2", FX, 0.4, 60, 15, 40), S_(WCUT, WLc), shot("mem-8", WX - 1.2, -0.3, 27, 34, 12), shot("resin+22", WX + 1.8, -0.3, 30, 34, 30), shot("catch-4", WX + 1.7, 0.4, 20, 30, 14)],
+ "shot": [S_(CC, FL1), shot("start+2", FX, 0.4, 60, 15, 40), S_(WCUT, WLc), shot("mem-8", WX - 1.2, -0.3, 27, 34, 12), shot("resin-8", WX + 1.8, -0.3, 30, 34, 12), shot("resin+40", WX + 1.7, 0.4, 20, 30, 12)],
  "shift": W_SHIFT,
  "run": [run("fWRise", "start", WCUT, 6), run("fGRise", "start", WCUT, 6), run("fERise", "start", WCUT, 6),
          run("wFeed", WCUT, "s3:voice-4", 6), run("wImp", WCUT, "s3:voice-4", 6), run("wConc", WCUT, "s3:voice-4", 6), run("wPerm", WCUT, "s3:voice-4", 6), run("wHp", WCUT, "s3:voice-4", 6),
@@ -208,8 +210,7 @@ P["s2"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "sys", "at": WCUT,
 P["s3"] = {"zoom": [{"to": "sys", "at": CC, "dur": 1}],
  "shot": [S_(CC, LLc), shot("stop-6", LX + 0.6, 0.2, 31, 36, 30)],
  "run": [run("lFlow", "start-4", "s4:voice-4", 6), run("lPumpSpin", "start-4", "s4:voice-4", 10), run("lDrip", "start-4", "s4:voice-4", 6), run("lBactGrow", "stop+6", "s4:voice-4", 8)],
- "labels": seq("s3", [("lLoop", "循環主管：一直流", "Loop: always flowing", "blue", "loop", 4), ("lDead", "死水支管：長細菌", "Dead leg: bacteria grow", "amber", "bact", 6),
-                      ("lValve", "回流閥：流回儲槽", "Return valve", "blue", "end", 0, [330, 340])]),
+ "labels": seq("s3", [("lLoop", "循環主管：一直流", "Loop: always flowing", "blue", "loop", 4), ("lDead", "死水支管：長細菌", "Dead leg: bacteria grow", "amber", "stop", 0)]),
  "overlay": [card("s3", "util-loop", "停著不動就長細菌", "示意", {"loop": "loop", "stop": "stop", "bact": "bact"})]}
 P["s4"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, T4), shot("num", T4[0] - 0.8, T4[1], T4[2] - 4, T4[3], 50)],
@@ -217,43 +218,40 @@ P["s4"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "labels": seq("s4", [("tSign", "台積電廠房", "TSMC fab", "blue", "tsmc", 4, [300, 880]), ("tTank", "原水槽", "Raw-water tanks", "blue", "num", 4)]),
  "overlay": [card("s4", "util-water", "一天用水約三十多萬噸", "換算，約數", {"tsmc": "tsmc", "day": "day", "num": "num"})]}
 P["s5"] = {"zoom": [{"to": "sys", "at": CC, "dur": 1}],
- "shot": [S_(CC, ELc), shot("sag-10", EX + 0.6, 0.6, 27, 20, 14), shot("half", ELc[0], ELc[1], ELc[2], ELc[3], 30)],
+ "shot": [S_(CC, ELc), shot("sag+8", EX + 0.6, 0.6, 27, 20, 8)],
  "run": [run("eHvFlow", "start-4", "sag", 6), run("eLvFlow", "start-4", "sag", 6), run("eHvFlow", "sag+28", "s6:mains", 6), run("eLvFlow", "crash+30", "s6:mains", 6),
-         run("eSag", "sag+2", "sag+26", 5), run("eRedBlink", "crash", "s6:start+10", 6), run("eTransHum", "start-4", "s6:mains", 6)],
- "labels": seq("s5", [("eGrid", "地下高壓進線", "High-voltage feed", "blue", "elec", 6, [330, 340]), ("eSwg", "電壓晃一下", "Voltage dip", "amber", "sag", 2), ("eTool", "敏感機台當機", "Sensitive tool trips", "amber", "crash", 4),
-                      ("eTrans", "變壓器", "Transformer", "blue", "end", -2)]),
+         run("eSag", "sag+18", "sag+42", 5), run("eRedBlink", "crash", "s6:start+10", 6), run("eTransHum", "start-4", "s6:mains", 6)],
+ "labels": seq("s5", [("eTrans", "變壓器：地下高壓電接進來", "Transformer, fed underground", "blue", "elec", 6), ("eSwg", "電壓晃一下", "Voltage dip", "amber", "sag", -8), ("eTool", "敏感機台當機", "Sensitive tool trips", "amber", "crash", 4)]),
  "overlay": [card("s5", "util-sag", "電只要晃一下", "報導（2021 竹科壓降）", {"elec": "elec", "sag": "sag", "tool": "tool", "crash": "crash", "half": "half"})]}
 P["s6"] = {"zoom": [{"to": "sys", "at": CC, "dur": 1}],
  "shot": [S_(CC, (EX + 0.4, -0.2, 36, 28)), shot("laptop", EX + 1.6, -0.1, 33, 28, 40)],
  "run": [run("eSag", "mains+2", "mains+26", 5), run("eBatt", "mains-2", "mains+44", 4), run("eUpsGlow", "mains", "mains+44", 6),
          run("eHvFlow", "mains+28", "s7:voice-4", 6), run("eLvFlow", "mains+28", "s7:voice-4", 6), run("eTransHum", "start-4", "s7:voice-4", 6)],
  "labels": seq("s6", [("eUps", "不斷電系統（UPS）", "Uninterruptible power supply", "amber", "backup", 2), ("eBatt", "電池架", "Battery racks", "blue", "laptop", 4),
-                      ("eTool", "機台照常運作", "Tool keeps running", "blue", "ups", 0)]),
+                      ("eTool", "機台照常運作", "Tool keeps running", "blue", "mains", -32)]),
  "overlay": [card("s6", "util-ups", "市電一晃，UPS 立刻接手", "示意（不標撐多久）", {"backup": "backup", "laptop": "laptop", "mains": "mains", "ups": "ups"})]}
 P["s7"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, T7), shot("one", T7[0] + 0.6, T7[1] + 0.3, T7[2] - 5, T7[3], 50)],
  "run": [run("tFanSpin", "start-4", "s8:voice-4", 12), run("tFanSpin2", "start-4", "s8:voice-4", 12), run("tPlume", "start+10", "s8:voice-4", 8), run("tCw", "start-4", "s8:voice-4", 6),
          run("tChw", "start-4", "s8:voice-4", 6), run("tCondHot", "start-4", "s8:voice-4", 6)],
- "labels": seq("s7", [("tTower", "屋頂冷卻塔", "Rooftop cooling towers", "blue", "ten", 0), ("tCw", "冷卻水：把熱帶到塔頂", "Cooling water carries heat", "amber", "one", 0),
-                      ("tChill", "冰水主機：冷凝器發熱", "Chiller", "blue", "end", 0)]),
+ "labels": seq("s7", [("tTower", "屋頂冷卻塔", "Rooftop cooling towers", "blue", "ten", 0), ("tCw", "冷卻水：把熱帶到塔頂", "Cooling water carries heat", "amber", "one", 0)]),
  "overlay": [card("s7", "util-power", "每十度電，一度給台積電", "報導；2025 為推算", {"ten": "ten", "one": "one", "tsmc": "tsmc"})]}
 P["s8"] = {"zoom": [{"to": "sys", "at": CC, "dur": 1}],
- "shot": [S_(CC, GLc), shot("pipe-6", GX + 0.8, 0.2, 30, 16, 20), shot("out+12", GX - 2.0, 0.8, 46, 18, 16), shot("tap", GX + 5.0, 0.2, 38, 18, 34)],
+ "shot": [S_(CC, GLc), shot("pipe-6", GX + 0.8, 0.2, 30, 16, 20), shot("tool-6", GX + 5.0, 0.2, 38, 18, 14)],
  "run": [run("gVapUp", "start-4", "s9:voice-4", 6), run("gLiqDown", "start-4", "s9:voice-4", 6), run("gN2c", "start-4", "s9:voice-4", 6), run("gN2w", "start-4", "s9:voice-4", 6),
          run("gN2t", "start-4", "s9:voice-4", 6), run("gMist", "start-4", "s9:voice-4", 8), run("gLeakBlink", "tool", "s9:voice-4", 6)],
- "labels": seq("s8", [("gN2", "氮氣：惰性氣體", "Nitrogen: inert gas", "blue", "n2", 4), ("gPipeU", "地下管線：壓力推著走", "Underground pipeline", "amber", "pipe", 2),
-                      ("gAsu", "空氣分離廠（廠外）", "Air separation plant", "blue", "out", 8), ("gVmb", "閥箱：分給每台機台", "Valve box to each tool", "blue", "end", 0)]),
+ "labels": seq("s8", [("gAsu", "廠外空氣分離廠：做出氮氣", "Air separation plant", "blue", "gas", 2), ("gPipeU", "地下管線：壓力推著走", "Underground pipeline", "amber", "pipe", 2), ("gVmb", "閥箱：分給每台機台", "Valve box to each tool", "blue", "tool", -4)]),
  "overlay": [card("s8", "util-gas", "像自來水管：壓力推著走", "示意", {"gas": "gas", "n2": "n2", "pipe": "pipe", "out": "out", "tool": "tool", "tap": "tap"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, VLc)],
- "labels": seq("s9", [("v0", "超純水設備", "UPW systems", "blue", "org", 2), ("v1", "空氣分離廠", "Air separation", "blue", "lh", 2), ("v2", "空氣分離廠", "Air separation", "blue", "sf", 2)]),
- "overlay": [card("s9", "util-co", "水、氣的供應商", "媒體報導；截至 2026/11/27", {"water": "water", "org": "org", "lh": "lh", "sf": "sf"}, h=392, y=1000)]}
-P["s10"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "probe", "at": "probe-24", "dur": 1}],
- "shot": [S_(CC, FL1), shot("ready+30", FL0[0], FL0[1], FL0[2], FL0[3], 30), S_("probe-24", PLc), shot("probe+10", PX, 0.6, 16, 10, 40)],
+ "labels": seq("s9", [("v0", "超純水設備", "UPW systems", "blue", "org", 2), ("v1", "空氣分離廠", "Air separation", "blue", "lh", 2)]),
+ "overlay": [sec("util-co", C, "s10:voice", "水、氣的供應商", "媒體報導；截至 2026/11/27", {"water": "water", "org": "org", "lh": "lh", "sf": "sf"}, cut=True, h=392, y=1000)]}   # 第 40 條：念完最後一家後再停 1.0 秒（到 s10 開口才換）
+P["s10"] = {"zoom": [{"to": "fab", "at": "voice-1", "dur": 1}, {"to": "probe", "at": "probe-24", "dur": 1}],
+ "shot": [S_("voice-1", FL1), shot("ready+36", FL0[0], FL0[1], FL0[2], FL0[3], 30), S_("probe-24", PLc), shot("probe+10", PX, 0.6, 16, 10, 40)],
  "run": [run("fAir", "start-4", "probe-24", 8), run("fFanSpin", "start-4", "probe-24", 10), run("fFanSpin2", "start-4", "probe-24", 10), run("pTest", "probe+26", FAR, 6)],
  "labels": seq("s10", [("pCard", "探針卡（下一集）", "Probe card (next)", "amber", "probe", 2),
                        ("pNeedle", "針尖碰到晶片接點", "Tips touch the pads", "blue", "probe", -30)]),
- "overlay": [sec("util-next", C, "s11:start", "接下來", "下一集：探針卡", {"ready": "ready", "how": "how", "probe": "probe", "kw": "kw"}, cut=True)]}
+ "overlay": [sec("util-next", "voice", "s11:start", "接下來", "下一集：探針卡", {"ready": "ready", "how": "how", "probe": "probe", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
