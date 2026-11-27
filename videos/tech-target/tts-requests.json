@@ -104,5 +104,39 @@
    "serviceTier": "standard"
   },
   "audio": true
+ },
+ {
+  "at": "2026-11-27T02:38:04.911Z",
+  "purpose": "audition:st-system",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "status": 500,
+  "error": "{ \"error\": { \"code\": 500, \"message\": \"An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting\", \"status\": \"INTERNAL\" } } "
+ },
+ {
+  "at": "2026-11-27T02:38:17.596Z",
+  "purpose": "audition:st-parts",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 137,
+   "candidatesTokenCount": 539,
+   "totalTokenCount": 676,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 137
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 539
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
