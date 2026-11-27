@@ -218,12 +218,21 @@ P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, 112.0, VY, VD, VE, 1)],
  "overlay": [sec("pad-co", C, nxt("s9"), "研磨墊供應商", "DuPont、SEC、富士紡、證交所；截至 2026/11/27", {"intl": "intl", "dp": "dp", "fb": "fb", "tw": "tw", "sh": "sh"}, h=392, y=1000, cut=True)]}   # 第 40 條：念完「頌勝」後卡片停 0.85 秒（第 39 條無聲 ≤1.0 秒＋同一幀換幕的上限，見 README r3）
-P["s10"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, 134.0, NY, ND, NE, 1)],
+# 頻道負責人 11-27 決定（第 39／40 條衝突，照 2-19 無塵室）：念稿不改；公司卡與 s9 的鏡頭延到 s10 開頭（延長期間 s10 鏡頭不動），
+# 「頌勝」念完後卡片再停滿 1.0 秒（30 幀）、且整張卡 ≥5.1 秒（153 幀）才切到 s10。延長幀數依 timeline.json 自動算（配音後重跑本檔即重算）。
+_tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
+if "s9" in _tl and "s10" in _tl:
+    _c0, _c1 = _tl["s9"]["voiceStartFrame"] - 3, _tl["s10"]["voiceStartFrame"] - 3
+    CO_N = max(0, 153 - (_c1 - _c0), (_tl["s9"]["voiceEndFrame"] + 30) - _c1)
+else:
+    CO_N = 0
+EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
+P["s10"] = {"zoom": [{"to": "tool", "at": EXTC, "dur": 1}],
+ "shot": [shot(EXTC, 134.0, NY, ND, NE, 1)],
  "labels": [lab("nPadA", "研磨墊", "Polishing pad", "amber", "wear", "wear+46"),
             lab("nQzA", "石英環", "Quartz ring", "amber", "cham+24", "cham+70"),
             lab("nDiscA", "鑽石碟", "Diamond disc", "blue", "next+18", "next+64")],
- "overlay": [sec("pad-next", C, "s11:start", "接下來", "下一集：耗材", {"wear": "wear", "next": "next", "kw": "kw"}, cut=True)]}
+ "overlay": ([sec("pad-co", C, EXT, "研磨墊供應商", "DuPont、SEC、富士紡、證交所；截至 2026/11/27", {"intl": "s9:intl", "dp": "s9:dp", "fb": "s9:fb", "tw": "s9:tw", "sh": "s9:sh"}, h=392, y=1000, cut=True)] if CO_N else []) + [sec("pad-next", EXT, "s11:start", "接下來", "下一集：耗材", {"wear": "wear", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 

@@ -2065,13 +2065,13 @@
     "zoom": [
      {
       "to": "tool",
-      "at": "voice-4",
+      "at": "voice+0",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "voice+0",
       "dur": 1,
       "x": 134.0,
       "y": -3.6,
@@ -2111,8 +2111,39 @@
     "overlay": [
      {
       "type": "section",
-      "kind": "pad-next",
+      "kind": "pad-co",
       "at": "voice-3",
+      "until": "voice+1",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "研磨墊供應商",
+      "tag": "DuPont、SEC、富士紡、證交所；截至 2026/11/27",
+      "t": {
+       "intl": {
+        "at": "s9:intl"
+       },
+       "dp": {
+        "at": "s9:dp"
+       },
+       "fb": {
+        "at": "s9:fb"
+       },
+       "tw": {
+        "at": "s9:tw"
+       },
+       "sh": {
+        "at": "s9:sh"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "pad-next",
+      "at": "voice+1",
       "until": "s11:start",
       "x": 64,
       "y": 1066,
