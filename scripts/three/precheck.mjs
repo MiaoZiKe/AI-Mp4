@@ -8,7 +8,7 @@
 //   S5 疊層、標籤、鉤子大字的 until 超過本幕結束 >4 幀（舊卡殘留進下一幕）                                  error（>4 幀）
 //   S6 標籤 part 指到不存在的錨點或錨點的層／零件不存在（引線落空）                                           error
 // 抽幀判斷（每個幕界最多 3 幀、預設 0.5 倍解析度，用 frames-dump.mjs，一次打包；--no-frames 略過）：
-//   F1 換幕空景：幕首 start、start+2、start+4 三幀的主畫面區「偏離底色的像素比例」都低於門檻 → 只有地板／格線   error（三幀都空）／warning（僅第 1 幀空）
+//   F1 換幕空景：幕首 start、start+2、start+4 三幀的主畫面區「有彩度／深色像素比例」都低於門檻 → 只有地板／格線   error（三幀都空）／warning（僅第 1 幀空）
 // 輸出 error／warning 清單與證據幀路徑（out/<slug>/precheck/）；有 error 時結束碼 1。報告寫 out/<slug>/precheck.json。
 // 不改 validate-three.mjs，獨立一支；2026/11/27 新增。
 import fs from "node:fs";
@@ -124,9 +124,9 @@ const outDir = path.join(ROOT, "out", slug, "precheck");
 const frameStats = [];
 if (!noFrames) {
   const want = [];
-  scenes.forEach((s, i) => { if (i === 0) return; const st = range.get(s.id).start; [0, 2, 4].forEach((d) => want.push(st + d)); });
+  scenes.forEach((s, i) => { if (i === 0 || i === scenes.length - 1) return; const st = range.get(s.id).start; [0, 2, 4].forEach((d) => want.push(st + d)); });
   fs.mkdirSync(outDir, { recursive: true });
-  const r = spawnSync("node", ["scripts/three/frames-dump.mjs", slug, outDir, want.join(","), "--scale", String(scale)], { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], encoding: "utf8" });
+  const r = spawnSync("node", ["scripts/three/frames-dump.mjs", slug, outDir, want.join(","), "--scale", String(scale)], { cwd: ROOT, env: { ...process.env, FORCE: "1" }, stdio: ["ignore", "pipe", "pipe"], encoding: "utf8" });
   if (r.status !== 0) add("warning", "F1", "-", `抽幀失敗，略過換幕空景檢查：${(r.stderr || r.stdout || "").trim().split("\n").pop()}`);
   else {
     const py = `
@@ -137,26 +137,22 @@ for p in sys.argv[1:]:
     im = np.asarray(Image.open(p).convert("RGB")).astype(int)
     h, w, _ = im.shape
     reg = im[int(h*0.17):int(h*0.66), int(w*0.04):int(w*0.96)]       # 主畫面區（頁首與字幕帶之間）
-    flat = reg.reshape(-1, 3)
-    q = (flat // 16)                                                   # 量化後取眾數當底色
-    key = q[:,0]*256 + q[:,1]*16 + q[:,2]
-    vals, cnt = np.unique(key, return_counts=True)
-    top = vals[cnt.argmax()]
-    near = (np.abs(q - np.array([top//256, (top//16)%16, top%16])).sum(1) <= 2)   # 底色與相鄰量化格
-    out[p] = float(1 - near.mean())
+    chroma = (reg.max(2) - reg.min(2)) >= 30                           # 有彩度的像素（地板與格線是灰的）
+    dark = reg.mean(2) < 90                                            # 深色零件（深藍機殼等）
+    out[p] = float((chroma | dark).mean())
 print(json.dumps(out))`;
     const files = want.map((f) => path.join(outDir, `f${String(f).padStart(4, "0")}.png`)).filter((f) => fs.existsSync(f));
     const pr = spawnSync("python3", ["-I", "-c", py, ...files], { encoding: "utf8" });
     let stats = {}; try { stats = JSON.parse(pr.stdout); } catch { add("warning", "F1", "-", `像素統計失敗：${(pr.stderr || "").trim().split("\n").pop()}`); }
-    const TH = Number(process.env.PRECHECK_EMPTY ?? 0.12);           // 偏離底色的像素比例低於此值＝只剩地板／格線
-    for (const s of scenes.slice(1)) {
+    const TH = Number(process.env.PRECHECK_EMPTY ?? 0.012);          // 有彩度或深色的像素比例低於此值＝只剩灰色地板／格線（實測：真空景 <0.01，有主素材的幕首 ≥0.03）
+    for (const s of scenes.slice(1, -1)) {              // 最後一幕是片尾卡，本來就只有平面底，不檢查
       const st = range.get(s.id).start;
       const rows = [0, 2, 4].map((d) => { const f = path.join(outDir, `f${String(st + d).padStart(4, "0")}.png`); return { f: st + d, file: f, v: stats[f] }; });
       frameStats.push({ scene: s.id, frames: rows.map((x) => ({ frame: x.f, ratio: x.v != null ? +x.v.toFixed(3) : null })) });
       const known = rows.filter((x) => x.v != null); if (!known.length) continue;
       const empty = known.filter((x) => x.v < TH);
-      if (empty.length === known.length) add("error", "F1", s.id, `換幕空景：幕首 ${known.map((x) => x.f).join("／")} 三幀主畫面區偏離底色比例 ${known.map((x) => x.v.toFixed(2)).join("／")}（< ${TH}），主素材沒到位`, st, known[0].file);
-      else if (empty[0] === known[0]) add("warning", "F1", s.id, `幕首第 1 幀（${known[0].f}）主畫面區偏離底色比例僅 ${known[0].v.toFixed(2)}（< ${TH}），可能閃一格空景；後面幀正常`, st, known[0].file);
+      if (empty.length === known.length) add("error", "F1", s.id, `換幕空景：幕首 ${known.map((x) => x.f).join("／")} 三幀主畫面區有彩度／深色像素比例 ${known.map((x) => x.v.toFixed(2)).join("／")}（< ${TH}），主素材沒到位`, st, known[0].file);
+      else if (empty[0] === known[0]) add("warning", "F1", s.id, `幕首第 1 幀（${known[0].f}）主畫面區有彩度／深色像素比例僅 ${known[0].v.toFixed(2)}（< ${TH}），可能閃一格空景；後面幀正常`, st, known[0].file);
     }
   }
 }
