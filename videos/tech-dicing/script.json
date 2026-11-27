@@ -395,163 +395,204 @@
      },
      {
       "layer": "spindle",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
      },
      {
       "layer": "flangeR",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
      },
      {
       "layer": "blade",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
      },
      {
       "layer": "flangeF",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
      },
      {
       "layer": "nut",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
      },
      {
       "layer": "cover",
-      "at": "s3:start",
+      "at": "s3:start-6",
       "until": "s4:start+2",
-      "dur": 14,
-      "dy": 3.0
+      "dur": 12,
+      "dy": 6.5
+     },
+     {
+      "layer": "clamp0",
+      "at": "s3:start",
+      "until": "s3:hoop+16",
+      "dur": 8,
+      "dx": 0.778,
+      "dz": 0.778
+     },
+     {
+      "layer": "clamp1",
+      "at": "s3:start",
+      "until": "s3:hoop+16",
+      "dur": 8,
+      "dx": -0.778,
+      "dz": 0.778
+     },
+     {
+      "layer": "clamp2",
+      "at": "s3:start",
+      "until": "s3:hoop+16",
+      "dur": 8,
+      "dx": -0.778,
+      "dz": -0.778
+     },
+     {
+      "layer": "clamp3",
+      "at": "s3:start",
+      "until": "s3:hoop+16",
+      "dur": 8,
+      "dx": 0.778,
+      "dz": -0.778
      },
      {
       "layer": "cover",
-      "at": "s4:start+4",
-      "until": "s4:rpm+2",
-      "dur": 18,
-      "dy": 3.4
+      "at": "s4:start+2",
+      "until": "s4:rpm-12",
+      "dur": 16,
+      "dy": 4.2
      },
      {
       "layer": "nut",
-      "at": "s4:hair-6",
-      "until": "s4:rpm",
+      "at": "s4:hair-8",
+      "until": "s4:rpm-8",
       "dur": 18,
-      "dz": 3.6
+      "dz": 6.4
      },
      {
       "layer": "flangeF",
-      "at": "s4:hair-6",
-      "until": "s4:rpm+4",
+      "at": "s4:hair-8",
+      "until": "s4:rpm-6",
       "dur": 18,
-      "dz": 2.6
+      "dz": 4.6
      },
      {
       "layer": "blade",
-      "at": "s4:hair-6",
-      "until": "s4:rpm+8",
+      "at": "s4:hair-8",
+      "until": "s4:rpm-4",
       "dur": 18,
-      "dz": 1.5
+      "dz": 2.8
+     },
+     {
+      "layer": "flangeR",
+      "at": "s4:hair-8",
+      "until": "s4:rpm-2",
+      "dur": 18,
+      "dz": 1.2
      },
      {
       "layer": "xSaw",
       "at": "s1:start-40",
       "until": "s2:saw",
-      "dur": 16,
-      "dy": 2.6
+      "dur": 14,
+      "dy": 3.6
      },
      {
       "layer": "xCrack",
       "at": "s1:start-40",
-      "until": "s2:saw+14",
+      "until": "s2:saw+13",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "xChips",
       "at": "s1:start-40",
-      "until": "s2:saw+16",
+      "until": "s2:saw+14",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cBlade",
-      "at": "s5:thin-6",
-      "until": "s13:start+400",
-      "dur": 20,
-      "dy": -4.25
+      "at": "s1:start-40",
+      "until": "s5:start",
+      "dur": 12,
+      "dy": 4.5
      },
      {
-      "layer": "cBridge",
-      "at": "s5:thin+12",
+      "layer": "cBlade",
+      "at": "s1:start-40",
+      "until": "s5:thin",
+      "dur": 56,
+      "dx": -4.0
+     },
+     {
+      "layer": "cBlade",
+      "at": "s5:thin",
       "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
+      "dur": 56,
+      "dx": 3.5
      },
      {
       "layer": "cChip0",
-      "at": "s5:chip-6",
+      "at": "s5:thin+12",
       "until": "s13:start+400",
-      "dur": 18,
-      "dx": -1.4,
-      "dy": -0.35,
-      "dz": 0.6,
-      "throw": 0.6
+      "dur": 16,
+      "dz": 1.2,
+      "dy": -0.25,
+      "throw": 0.5
      },
      {
       "layer": "cChip1",
-      "at": "s5:chip-5",
+      "at": "s5:thin+22",
       "until": "s13:start+400",
-      "dur": 18,
-      "dx": 1.4,
-      "dy": -0.35,
-      "dz": 0.6,
-      "throw": 0.6
+      "dur": 16,
+      "dz": 1.2,
+      "dy": -0.25,
+      "throw": 0.5
      },
      {
       "layer": "cChip2",
-      "at": "s5:chip-4",
+      "at": "s5:thin+33",
       "until": "s13:start+400",
-      "dur": 18,
-      "dx": -1.4,
-      "dy": -0.35,
-      "dz": 0.6,
-      "throw": 0.6
+      "dur": 16,
+      "dz": 1.2,
+      "dy": -0.25,
+      "throw": 0.5
      },
      {
       "layer": "cChip3",
-      "at": "s5:chip-3",
+      "at": "s5:thin+42",
       "until": "s13:start+400",
-      "dur": 18,
-      "dx": 1.4,
-      "dy": -0.35,
-      "dz": 0.6,
-      "throw": 0.6
+      "dur": 16,
+      "dz": 1.2,
+      "dy": -0.25,
+      "throw": 0.5
      },
      {
       "layer": "cChip4",
-      "at": "s5:chip-2",
+      "at": "s5:thin+51",
       "until": "s13:start+400",
-      "dur": 18,
-      "dx": -1.4,
-      "dy": -0.35,
-      "dz": 0.6,
-      "throw": 0.6
+      "dur": 16,
+      "dz": 1.2,
+      "dy": -0.25,
+      "throw": 0.5
      },
      {
       "layer": "cScar",
       "at": "s1:start-40",
-      "until": "s5:chip-6",
+      "until": "s5:thin+12",
       "opacity": 0,
       "dur": 1
      },
@@ -1071,6 +1112,13 @@
       "opacity": 0
      },
      {
+      "layer": "tALidL",
+      "at": "s8:stack+6",
+      "until": "s13:start+400",
+      "dur": 8,
+      "dy": 2.0
+     },
+     {
       "layer": "tBad",
       "at": "s1:start-40",
       "until": "s8:stack+12",
@@ -1355,10 +1403,31 @@
      },
      {
       "layer": "vWheel",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "dur": 8,
+      "dy": -0.8
+     },
+     {
+      "layer": "vWheel",
+      "at": "s10:start+20",
+      "until": "s13:start+400",
+      "dur": 8,
+      "dy": -0.8
+     },
+     {
+      "layer": "vWheel",
+      "at": "s10:cu-12",
+      "until": "s13:start+400",
+      "dur": 8,
+      "dy": -0.8
+     },
+     {
+      "layer": "vWheel",
       "at": "s10:cu-6",
       "until": "s13:start+400",
       "dur": 14,
-      "dy": 3.4
+      "dy": 4.6
      },
      {
       "layer": "p0",
@@ -1371,8 +1440,8 @@
       "layer": "p0",
       "at": "s1:start-40",
       "until": "s11:jp-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 12,
+      "dy": 3.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1388,8 +1457,8 @@
       "layer": "p1",
       "at": "s1:start-40",
       "until": "s11:btl-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 12,
+      "dy": 3.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1405,8 +1474,8 @@
       "layer": "p2",
       "at": "s1:start-40",
       "until": "s11:psi-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 12,
+      "dy": 3.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1517,6 +1586,62 @@
       "dur": 1
      },
      {
+      "layer": "clamp0",
+      "at": "s2:voice-1",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp0",
+      "at": "s5:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp1",
+      "at": "s2:voice-1",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp1",
+      "at": "s5:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp2",
+      "at": "s2:voice-1",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp2",
+      "at": "s5:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp3",
+      "at": "s2:voice-1",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp3",
+      "at": "s5:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "frame",
       "at": "s2:voice-1",
       "until": "s3:voice-6",
@@ -1727,6 +1852,62 @@
       "dur": 1
      },
      {
+      "layer": "clamp0",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp0",
+      "at": "s6:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp1",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp1",
+      "at": "s6:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp2",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp2",
+      "at": "s6:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp3",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "clamp3",
+      "at": "s6:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "cBlock",
       "at": "s1:start-40",
       "until": "s5:voice-6",
@@ -1741,14 +1922,14 @@
       "dur": 1
      },
      {
-      "layer": "cBridge",
+      "layer": "cScar",
       "at": "s1:start-40",
       "until": "s5:voice-6",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "cBridge",
+      "layer": "cScar",
       "at": "s6:voice-1",
       "until": "s13:start+400",
       "opacity": 0,
@@ -1819,20 +2000,6 @@
      },
      {
       "layer": "cChip4",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cScar",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cScar",
       "at": "s6:voice-1",
       "until": "s13:start+400",
       "opacity": 0,
@@ -2693,6 +2860,20 @@
       "dur": 1
      },
      {
+      "layer": "tALidL",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tALidL",
+      "at": "s9:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
       "layer": "tBBox",
       "at": "s1:start-40",
       "until": "s8:voice-6",
@@ -2701,6 +2882,20 @@
      },
      {
       "layer": "tBBox",
+      "at": "s9:voice-1",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tBLidL",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tBLidL",
       "at": "s9:voice-1",
       "until": "s13:start+400",
       "opacity": 0,
@@ -3473,17 +3668,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60.0,
-      "y": 9.0,
-      "d": 86,
-      "elev": 16
+      "y": 7.0,
+      "d": 76,
+      "elev": 26
      },
      {
       "at": "saw+14",
       "dur": 40,
       "x": 60.0,
-      "y": 8.6,
-      "d": 78,
-      "elev": 16
+      "y": 7.0,
+      "d": 70,
+      "elev": 26
      }
     ],
     "run": [
@@ -3605,17 +3800,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 0.0,
-      "y": 6.6,
-      "d": 86,
-      "elev": 30
+      "y": 7.4,
+      "d": 90,
+      "elev": 26
      },
      {
       "at": "frame",
       "dur": 40,
       "x": 0.0,
-      "y": 6.4,
-      "d": 88,
-      "elev": 26
+      "y": 7.2,
+      "d": 92,
+      "elev": 24
      }
     ],
     "labels": [
@@ -3735,7 +3930,7 @@
       "y": 9.82,
       "d": 52,
       "elev": 6,
-      "yaw": -0.55
+      "yaw": -0.75
      },
      {
       "at": "hair",
@@ -3752,7 +3947,7 @@
       "y": 9.02,
       "d": 56,
       "elev": 8,
-      "yaw": 0.25
+      "yaw": 0.4
      }
     ],
     "run": [
@@ -3787,17 +3982,21 @@
       "text": "刀蓋與噴嘴",
       "en": "Blade cover & nozzles",
       "color": "blue",
-      "at": "start+6",
-      "until": "hair-8",
-      "cut": true
+      "at": "voice-3",
+      "until": "voice+43",
+      "cut": true,
+      "xy": [
+       740,
+       340
+      ]
      },
      {
       "part": "blade",
       "text": "鑽石刀片",
       "en": "Diamond blade",
       "color": "amber",
-      "at": "hair-4",
-      "until": "rpm-12",
+      "at": "voice+45",
+      "until": "voice+91",
       "cut": true
      },
      {
@@ -3805,8 +4004,8 @@
       "text": "法蘭（夾住刀片）",
       "en": "Flanges",
       "color": "blue",
-      "at": "rpm-10",
-      "until": "tile-12",
+      "at": "voice+93",
+      "until": "voice+136",
       "cut": true
      },
      {
@@ -3814,8 +4013,8 @@
       "text": "純水沖刀口",
       "en": "Water on the cut",
       "color": "blue",
-      "at": "tile",
-      "until": "tile+46",
+      "at": "tile+4",
+      "until": "tile+50",
       "cut": true
      }
     ],
@@ -3895,11 +4094,11 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 120.0,
-      "y": 6.4,
-      "d": 83,
-      "elev": 14,
-      "yaw": 0.3
+      "x": 123.0,
+      "y": 4.6,
+      "d": 80,
+      "elev": 12,
+      "yaw": 0.35
      }
     ],
     "run": [
@@ -3923,7 +4122,7 @@
      },
      {
       "id": "cScarGlow",
-      "at": "chip-6",
+      "at": "thin+12",
       "ramp": 8,
       "until": "s13:start+400"
      }
@@ -3934,13 +4133,9 @@
       "text": "厚：切口整齊",
       "en": "Thick: clean edge",
       "color": "blue",
-      "at": "start+4",
+      "at": "voice-3",
       "until": "chip-10",
-      "cut": true,
-      "xy": [
-       262,
-       330
-      ]
+      "cut": true
      },
      {
       "part": "cChip",
@@ -4142,7 +4337,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 240.0,
-      "y": 1.6,
+      "y": 0.8,
       "d": 81,
       "elev": 44
      }
@@ -4258,8 +4453,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 300.0,
-      "y": 3.6,
-      "d": 70,
+      "y": 0.2,
+      "d": 66,
       "elev": 12
      }
     ],
@@ -4472,9 +4667,9 @@
       "at": "voice-3",
       "until": "s10:voice-3",
       "x": 64,
-      "y": 1066,
+      "y": 1000,
       "w": 952,
-      "h": 330,
+      "h": 392,
       "avoid": false,
       "title": "先粗後細",
       "tag": "示意（DISCO 研磨機原理）",
@@ -4554,16 +4749,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 440.0,
-      "y": 7.4,
-      "d": 78,
+      "y": 2.3,
+      "d": 56,
       "elev": 16
      },
      {
       "at": "lift-2",
       "dur": 1,
       "x": 470.0,
-      "y": 2.8,
-      "d": 60,
+      "y": 1.4,
+      "d": 50,
       "elev": 14
      }
     ],
@@ -4717,8 +4912,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 530,
-      "y": 2.6,
-      "d": 60,
+      "y": -2.8,
+      "d": 66,
       "elev": 10
      }
     ],
@@ -4807,8 +5002,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 590,
-      "y": 0.6,
-      "d": 57,
+      "y": -3.4,
+      "d": 50,
       "elev": 36
      }
     ],

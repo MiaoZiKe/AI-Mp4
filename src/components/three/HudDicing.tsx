@@ -92,7 +92,7 @@ const Saw: React.FC<P> = ({ o, f, k }) => {
 
 // ── dc-hoop：刺繡框（布繃在圈裡）＝膠膜繃在鐵框、晶圓貼在中間 ──
 const Hoop: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, tp = on(f, T(o, "tape")), fm = on(f, T(o, "frame")), hp = on(f, T(o, "hoop"));
+  const W = o.w ?? 952, Hh = o.h ?? 392, tp = on(f, T(o, "tape")), fm = on(f, T(o, "frame")), hp = on(f, T(o, "hoop"));
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -228,7 +228,7 @@ const Thin: React.FC<P> = ({ o, f, k }) => {
 
 // ── dc-grind：正面貼膠帶 → 翻過來 → 鑽石砂輪磨背面，先粗後細 ──
 const Grind: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, tp = on(f, T(o, "tape")), fl = on(f, T(o, "flip"), 16), wh = on(f, T(o, "wheel")), co = on(f, T(o, "coarse")), fi = on(f, T(o, "fine"));
+  const W = o.w ?? 952, Hh = o.h ?? 392, tp = on(f, T(o, "tape")), fl = on(f, T(o, "flip"), 16), wh = on(f, T(o, "wheel")), co = on(f, T(o, "coarse")), fi = on(f, T(o, "fine"));
   const th = 44 * (1 - 0.45 * co - 0.3 * fi), y0 = CT + 200;
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
@@ -243,6 +243,7 @@ const Grind: React.FC<P> = ({ o, f, k }) => {
         <Row x={360} y={CT + 104} t="翻過來，背面朝上" c={H.text2} a={fl} />
         <Row x={360} y={CT + 160} t="鑽石砂輪磨背面" c={H.amber} a={wh} />
         <Row x={360} y={CT + 216} t="先粗磨、再細磨" c={OK} a={Math.max(co, fi)} />
+        <text x={30} y={CT + 290} style={zh(30, H.text2, 800)}>實際順序：多半先磨薄，再貼框切割（也有先切一半再磨）</text>
       </svg>
     </Card>
   );

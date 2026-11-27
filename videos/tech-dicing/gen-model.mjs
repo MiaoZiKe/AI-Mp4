@@ -140,7 +140,7 @@ BOX("camArm", "spindle", -5.4, -1.4, BCY + 2.6, BCY + 3.2, ZC0 - 0.3, ZC0 + 0.3,
 LAY("chuck", [20, 2, 0, 7]);
 VT("thTable", "chuck", 9.6, 8.9, YT, YT + 0.5, "dark"); P({ id: "thTick", layer: "chuck", shape: "box", size: [0.12, 0.08, 0.5], pos: [0, YT + 0.52, 0], at: RING(36, 9.25), mat: "steel2" });
 VC("ckBase", "chuck", 8.9, YT, YC - 0.4, "steel2"); VC("ckCer", "chuck", 8.2, YC - 0.4, YC - 0.02, "ceramic"); VT("ckRim", "chuck", 8.9, 8.2, YC - 0.4, YC - 0.05, "steel");
-P({ id: "ckClamp", layer: "chuck", shape: "box", size: [1.0, 0.5, 1.4], pos: [0, YC - 0.1, 0], at: RING(4, 10.4, 45), mat: "dark" });
+const CLAMPS = RING(4, 10.4, 45).map(([x, , z], i) => { LAY(`clamp${i}`, [1.4, 0.8, x, YC]); BOX(`ckClamp${i}`, `clamp${i}`, x - 0.55, x + 0.55, YC - 0.35, YC + 0.32, z - 0.7, z + 0.7, "dark"); BOX(`ckClampPad${i}`, `clamp${i}`, R2(x - 0.3), R2(x + 0.3), YC + 0.32, YC + 0.4, R2(z - 0.4), R2(z + 0.4), "rubber"); return { id: `clamp${i}`, x, z }; });
 // 鐵框＋膠膜＋晶圓（晶片格線、缺口）
 LAY("frame", [24, 0.4, 0, YF1]);
 VT("frRing", "frame", 11.4, 9.7, YF0, YF1, "frame"); P({ id: "frNotch", layer: "frame", shape: "box", size: [0.9, 0.2, 0.5], pos: [0, YF1 - 0.08, 0], at: [[-11.2, 0, 0], [11.2, 0, 0]], mat: "dark" });
@@ -156,50 +156,47 @@ for (let i = -7; i <= 7; i++) { const c = chord(WR - 0.15, i * PITCH); if (c < 0
 const CUTS = [-2, -1, 0, 1, 2, 3];
 CUTS.forEach((zc, k) => { LAY(`kerf${k}`, [16, 0.1, 0, YW]); const c = chord(WR, zc); BOX(`kf${k}`, `kerf${k}`, R2(-c / 2), R2(c / 2), YTP + 0.02, YW + 0.012, R2(zc - 0.07), R2(zc + 0.07), "kerf"); });
 
-// ═════ 站 X：為什麼不能用鋸子（x 60；剖面放大）═════
-const XX = 60;
+// ═════ 站 X：為什麼不能用鋸子（x 60；剖面放大）：一片連續的矽，前後兩顆晶片的電路層中間留一條沿 x 的窄走道；鋸片平面＝走道方向（x-y 平面），厚度比走道寬很多 ═════
+const XX = 60, XTOP = 8.6, XSW = 0.3;
 LAY("xBlock", [22, 5, XX, 6]);
-BOX("xBase", "xBlock", XX - 11, XX + 11, 0, 5.2, -3.6, 3.6, "steel2"); BOX("xTape", "xBlock", XX - 10.6, XX + 10.6, 5.2, 5.6, -3.2, 3.2, "tape");
-BOX("xDieL", "xBlock", XX - 10.2, XX - 0.3, 5.6, 8.6, -3, 3, "si"); BOX("xDieR", "xBlock", XX + 0.3, XX + 10.2, 5.6, 8.6, -3, 3, "si");
-BOX("xCircL", "xBlock", XX - 10.2, XX - 0.3, 8.6, 9.0, -3, 3, "circ"); BOX("xCircR", "xBlock", XX + 0.3, XX + 10.2, 8.6, 9.0, -3, 3, "circ");
-BOX("xStreet", "xBlock", XX - 0.3, XX + 0.3, 5.6, 8.9, -3, 3, "street");
-P({ id: "xPad", layer: "xBlock", shape: "box", size: [0.9, 0.12, 0.9], pos: [XX, 9.06, 0], at: [[-8.6, 0, -1.6], [-6.2, 0, -1.6], [-3.8, 0, -1.6], [-1.6, 0, -1.6], [1.6, 0, -1.6], [3.8, 0, -1.6], [6.2, 0, -1.6], [8.6, 0, -1.6], [-8.6, 0, 1.6], [-6.2, 0, 1.6], [-3.8, 0, 1.6], [-1.6, 0, 1.6], [1.6, 0, 1.6], [3.8, 0, 1.6], [6.2, 0, 1.6], [8.6, 0, 1.6]], mat: "pad" });
-const XSY = 18.6, XSR = 6.4;
+BOX("xBase", "xBlock", XX - 11, XX + 11, 0, 5.2, -4.2, 4.2, "steel2"); BOX("xTape", "xBlock", XX - 10.6, XX + 10.6, 5.2, 5.6, -3.8, 3.8, "tape");
+BOX("xSi", "xBlock", XX - 10.2, XX + 10.2, 5.6, XTOP, -3.6, 3.6, "si");
+BOX("xCircF", "xBlock", XX - 10.2, XX + 10.2, XTOP, XTOP + 0.4, XSW, 3.6, "circ"); BOX("xCircB", "xBlock", XX - 10.2, XX + 10.2, XTOP, XTOP + 0.4, -3.6, -XSW, "circ");
+BOX("xStreet", "xBlock", XX - 10.2, XX + 10.2, XTOP, XTOP + 0.02, -XSW, XSW, "street");
+P({ id: "xPad", layer: "xBlock", shape: "box", size: [0.8, 0.12, 0.8], pos: [XX, XTOP + 0.46, 0], at: [-8.6, -6.2, -3.8, -1.4, 1.4, 3.8, 6.2, 8.6].flatMap((x) => [[x, 0, -2.2], [x, 0, 2.2]]), mat: "pad" });
+const XSR = 6.4, XSY = R2(XTOP + XSR + 0.55 - 0.9);       // 鋸齒尖落到走道表面下 0.9（真的切進去）
 LAY("xSaw", [14, 14, XX, XSY]);
 ZC("xsDisc", "xSaw", XSR, -0.6, 0.6, XX, XSY, "saw"); ZC("xsArbor", "xSaw", 1.1, -1.4, 1.4, XX, XSY, "dark"); ZC("xsNut", "xSaw", 0.6, 1.4, 1.8, XX, XSY, "steel");
 BOX("xsMark", "xSaw", XX - 0.2, XX + 0.2, XSY + 2.6, XSY + 5.6, 0.6, 0.66, "mark");
 for (let i = 0; i < 30; i++) { const a = i * 12, [x, y] = pol(a, XSR + 0.3); P({ id: `xsT${i}`, layer: "xSaw", shape: "box", size: [0.9, 0.55, 1.3], pos: [R2(XX + x), R2(XSY + y), 0], rot: [0, 0, a + 30], mat: "tooth" }); }
+// 裂紋：鋸齒碰到走道的地方往前後兩顆晶片爆開（頂面）＋前切面往下裂
 LAY("xCrack", [12, 4, XX, 7]);
-const crackPath = (sx) => [[XX + sx * 0.3, 8.8], [XX + sx * 1.4, 8.0], [XX + sx * 1.0, 7.3], [XX + sx * 2.6, 6.6], [XX + sx * 3.4, 5.8]];
-for (const sx of [-1, 1]) { const pts = crackPath(sx); for (let i = 0; i < pts.length - 1; i++) { const [x0, y0] = pts[i], [x1, y1] = pts[i + 1], L = Math.hypot(x1 - x0, y1 - y0), a = Math.atan2(y1 - y0, x1 - x0) / D2R;
-  P({ id: `xCr${sx > 0 ? "R" : "L"}${i}`, layer: "xCrack", shape: "box", size: [R2(L + 0.05), 0.12, 6.1], pos: [R2((x0 + x1) / 2), R2((y0 + y1) / 2), 0], rot: [0, 0, R2(a)], mat: "crack" }); } }
-P({ id: "xCrBranch", layer: "xCrack", shape: "box", size: [1.6, 0.1, 6.1], pos: [XX - 2.2, 7.9, 0], rot: [0, 0, 25], mat: "crack" });
-P({ id: "xCrBranch2", layer: "xCrack", shape: "box", size: [1.4, 0.1, 6.1], pos: [XX + 2.0, 7.6, 0], rot: [0, 0, -30], mat: "crack" });
+const XCR = [[-0.4, 0.3, 1.4, 1, 30], [0.5, 0.3, 1.6, 1, -25], [-1.6, 1.4, 1.2, 1, 60], [1.4, 1.5, 1.3, 1, -55], [-0.4, -0.3, 1.4, -1, -30], [0.6, -0.3, 1.5, -1, 25], [1.7, -1.4, 1.2, -1, 55]];
+XCR.forEach(([dx, z0, L, sz, a], i) => P({ id: `xCr${i}`, layer: "xCrack", shape: "box", size: [0.1, 0.06, L], pos: [R2(XX + dx), XTOP + 0.43, R2(z0 + sz * L / 2)], rot: [0, a, 0], mat: "crack" }));
+const frontCrack = [[0, XTOP], [0.6, XTOP - 0.9], [-0.3, XTOP - 1.7], [0.8, XTOP - 2.7]];
+for (let i = 0; i < frontCrack.length - 1; i++) { const [x0, y0] = frontCrack[i], [x1, y1] = frontCrack[i + 1], L = Math.hypot(x1 - x0, y1 - y0), a = Math.atan2(y1 - y0, x1 - x0) / D2R;
+  P({ id: `xCf${i}`, layer: "xCrack", shape: "box", size: [R2(L + 0.05), 0.12, 0.06], pos: [R2(XX + (x0 + x1) / 2), R2((y0 + y1) / 2), 3.63], rot: [0, 0, R2(a)], mat: "crack" }); }
 LAY("xChips", [6, 3, XX, 10]);
-P({ id: "xChip", layer: "xChips", shape: "box", size: [0.45, 0.3, 0.5], pos: [XX, 9.3, 2.6], at: [[-1.2, 0, 0], [0.9, 0.3, 0], [-0.4, 0.6, 0.3], [1.6, 0.1, -0.4], [-1.9, 0.2, -0.3]], mat: "chip" });
+P({ id: "xChip", layer: "xChips", shape: "box", size: [0.45, 0.3, 0.5], pos: [XX, XTOP + 0.6, 0], at: [[-1.4, 0, 1.2], [1.1, 0, -1.0], [-2.2, 0, -1.6], [1.9, 0, 1.4], [-0.9, 0, 2.2]], mat: "chip" });
 
-// ═════ 站 C：崩角：厚晶圓切口整齊、薄晶圓背面崩角（x 120）═════
-const CX = 120;
+// ═════ 站 C：崩角（x 120；剖面：切口的一面牆朝鏡頭，前半片拿掉）：左厚（切口整齊）、右薄（背面崩角）；刀片在切口裡（x-y 平面） ═════
+const CX = 120, CTY = 6.6, CBX = CX + 6.5, CWZ = 0;
 LAY("cBlock", [26, 6, CX, 3]);
-BOX("cBase", "cBlock", CX - 13, CX + 13, 0, 5.0, -3.4, 3.4, "steel2"); BOX("cTape", "cBlock", CX - 12.6, CX + 12.6, 5.0, 5.4, -3.0, 3.0, "tape");
-// 厚：兩塊（已切開、切口整齊）
-BOX("cThickL", "cBlock", CX - 12, CX - 6.2, 5.4, 10.4, -2.8, 2.8, "si"); BOX("cThickR", "cBlock", CX - 5.8, CX - 1, 5.4, 10.4, -2.8, 2.8, "si");
-BOX("cThickCirc", "cBlock", CX - 12, CX - 6.2, 10.4, 10.7, -2.8, 2.8, "circ"); BOX("cThickCirc2", "cBlock", CX - 5.8, CX - 1, 10.4, 10.7, -2.8, 2.8, "circ");
-// 薄：左右兩塊，中間一塊「還沒切」的橋（刀切下去時消失）
-const CTY = 6.6, CBX = CX + 6.5;
-BOX("cThinL", "cBlock", CX + 1, CBX - 0.18, 5.4, CTY, -2.8, 2.8, "si"); BOX("cThinR", "cBlock", CBX + 0.18, CX + 12, 5.4, CTY, -2.8, 2.8, "si");
-BOX("cThinCirc", "cBlock", CX + 1, CBX - 0.18, CTY, CTY + 0.3, -2.8, 2.8, "circ"); BOX("cThinCirc2", "cBlock", CBX + 0.18, CX + 12, CTY, CTY + 0.3, -2.8, 2.8, "circ");
-LAY("cBridge", [1, 2, CBX, 6]); BOX("cBridgeSi", "cBridge", CBX - 0.19, CBX + 0.19, 5.4, CTY + 0.3, -2.8, 2.8, "si");
-// 薄晶圓背面切口兩側的崩角（碎片，切穿後崩下、往外掉）
-const CHIPS = [[-0.35, 5.62, 2.5], [0.35, 5.58, 2.1], [-0.42, 5.55, 0.6], [0.4, 5.6, -1.2], [-0.3, 5.6, -2.2]];
-CHIPS.forEach(([dx, y, z], i) => { LAY(`cChip${i}`, [1, 1, CBX + dx, y]); P({ id: `cCh${i}`, layer: `cChip${i}`, shape: "box", size: [0.5, 0.36, 0.55], pos: [R2(CBX + dx), y, z], rot: [0, R2(rnd() * 40), R2(rnd() * 50 - 25)], mat: "chip" }); });
-LAY("cScar", [2, 1, CBX, 5.6]); P({ id: "cScar", layer: "cScar", shape: "box", size: [0.55, 0.32, 0.6], pos: [CBX, 5.58, 0], at: CHIPS.map(([dx, , z]) => [dx * 1.05, 0, z]), mat: "bad" });
-const CBR = 4.6, CBY0 = R2(CTY + 0.3 + CBR + 2.6);
+BOX("cBase", "cBlock", CX - 13, CX + 13, 0, 5.0, -3.4, 1.6, "steel2"); BOX("cTape", "cBlock", CX - 12.6, CX + 12.6, 5.0, 5.4, -3.0, 1.2, "tape");
+BOX("cTapeKerf", "cBlock", CX - 12.6, CX + 12.6, 5.25, 5.41, CWZ, 0.5, "kerf");
+BOX("cThick", "cBlock", CX - 12, CX - 1, 5.4, 10.4, -2.8, CWZ, "si"); BOX("cThickCirc", "cBlock", CX - 12, CX - 1, 10.4, 10.7, -2.8, CWZ, "circ");
+BOX("cThin", "cBlock", CX + 1, CX + 12, 5.4, CTY, -2.8, CWZ, "si"); BOX("cThinCirc", "cBlock", CX + 1, CX + 12, CTY, CTY + 0.3, -2.8, CWZ, "circ");
+// 薄晶圓切口牆的背面（下緣）崩角：刀走過才崩下（碎片往前掉），留下紅色缺口
+const CHIPS = [[-2.4, 0.5], [-1.0, 0.4], [0.4, 0.55], [1.6, 0.35], [2.8, 0.45]];
+LAY("cScar", [8, 1, CBX, 5.6]); P({ id: "cScar", layer: "cScar", shape: "box", size: [0.7, 0.4, 0.06], pos: [CBX, 5.62, CWZ + 0.02], at: CHIPS.map(([dx]) => [dx, 0, 0]), mat: "bad" });
+CHIPS.forEach(([dx, h], i) => { LAY(`cChip${i}`, [1, 1, CBX + dx, 5.6]); P({ id: `cCh${i}`, layer: `cChip${i}`, shape: "box", size: [0.7, h, 0.4], pos: [R2(CBX + dx), R2(5.42 + h / 2), CWZ + 0.2], rot: [R2(rnd() * 20), R2(rnd() * 30), R2(rnd() * 40 - 20)], mat: "chip" }); });
+const CBR = 4.6, CBY0 = R2(5.25 + CBR), CBZ = 0.3;
 LAY("cBlade", [10, 10, CBX, CBY0]);
-ZC("cbDisc", "cBlade", CBR - 0.2, -0.16, 0.16, CBX, CBY0, "blade"); ZT("cbEdge", "cBlade", CBR, CBR - 0.22, -0.17, 0.17, CBX, CBY0, "dia");
-ZC("cbHub", "cBlade", 2.4, -0.4, 0.4, CBX, CBY0, "hub"); ZC("cbFl", "cBlade", 1.8, 0.4, 0.9, CBX, CBY0, "steel"); BOX("cbMark", "cBlade", CBX - 0.15, CBX + 0.15, CBY0 + 1.5, CBY0 + 2.3, 0.4, 0.45, "mark");
-P({ id: "cbGrit", layer: "cBlade", shape: "sphere", size: [0.09], pos: [CBX, CBY0, 0.1], at: Array.from({ length: 40 }, (_, i) => { const [x, y] = pol(i * 9, CBR - 0.1); return [x, y, 0]; }), mat: "dia" });
-LAY("cNoz", [6, 3, CBX, CBY0]); PIPE("cNz", "cNoz", [[CBX - 6.5, CBY0 + 2.5, 1.0], [CBX - 3.0, CBY0 - 2.0, 1.0]], 0.18, "steel");
+ZC("cbDisc", "cBlade", CBR - 0.2, CBZ - 0.12, CBZ + 0.12, CBX, CBY0, "blade"); ZT("cbEdge", "cBlade", CBR, CBR - 0.22, CBZ - 0.13, CBZ + 0.13, CBX, CBY0, "dia");
+ZC("cbHub", "cBlade", 2.4, CBZ + 0.13, CBZ + 0.6, CBX, CBY0, "hub"); ZC("cbFl", "cBlade", 1.8, CBZ + 0.6, CBZ + 1.0, CBX, CBY0, "steel"); BOX("cbMark", "cBlade", CBX - 0.15, CBX + 0.15, CBY0 + 1.5, CBY0 + 2.3, CBZ + 0.6, CBZ + 0.66, "mark");
+P({ id: "cbGrit", layer: "cBlade", shape: "sphere", size: [0.09], pos: [CBX, CBY0, CBZ + 0.12], at: Array.from({ length: 40 }, (_, i) => { const [x, y] = pol(i * 9, CBR - 0.1); return [x, y, 0]; }), mat: "dia" });
+ZC("cbShaft", "cBlade", 0.7, CBZ + 1.0, CBZ + 3.2, CBX, CBY0, "steel2");
+LAY("cNoz", [6, 3, CBX, CBY0]); PIPE("cNz", "cNoz", [[CBX - 7.0, CBY0 + 1.6, CBZ], [CBX - 4.4, CBY0 + 1.6, CBZ], [CBX - 3.2, 7.2, CBZ]], 0.18, "steel"); SPH("cNzTip", "cNoz", 0.26, CBX - 3.2, 7.2, CBZ, "gold");
 
 // ═════ 站 L：雷射隱形切割（x 180；晶圓剖面半透明，看得到內部）═════
 const LX = 180, LW0 = 5.4, LW1 = 8.6, LFY = 7.0;
@@ -243,7 +240,7 @@ for (const [nm, cx] of [["tA", TX - 6], ["tB", TX + 6]]) {
   LAY(`${nm}Box`, [9, 9, cx, 5]);
   BOX(`${nm}Sub`, `${nm}Box`, cx - 4, cx + 4, 0, TB, -3, 3, "sub"); P({ id: `${nm}Ball`, layer: `${nm}Box`, shape: "sphere", size: [0.3], pos: [cx, 0.25, 2.5], at: [-3, -1.8, -0.6, 0.6, 1.8, 3].map((x) => [x, 0, 0]), mat: "bump" });
   for (const [k, [x0, x1, z0, z1]] of [[0, [-4, -3.9, -3, 3]], [1, [3.9, 4, -3, 3]], [2, [-4, 4, -3, -2.9]]].map(([k, b]) => [k, b])) BOX(`${nm}Wall${k}`, `${nm}Box`, cx + x0, cx + x1, TB, TB + TH, z0, z1, "window");
-  BOX(`${nm}Lid`, `${nm}Box`, cx - 4.2, cx + 4.2, TB + TH, TB + TH + 0.12, -3.1, 3.1, "warnY"); BOX(`${nm}Post`, `${nm}Box`, cx - 4.2, cx - 3.9, TB, TB + TH, 2.9, 3.1, "warnY"); BOX(`${nm}Post2`, `${nm}Box`, cx + 3.9, cx + 4.2, TB, TB + TH, 2.9, 3.1, "warnY");
+  LAY(`${nm}LidL`, [9, 0.2, cx, TB + TH]); BOX(`${nm}Lid`, `${nm}LidL`, cx - 4.2, cx + 4.2, TB + TH, TB + TH + 0.12, -3.1, 3.1, "warnY"); BOX(`${nm}Post`, `${nm}Box`, cx - 4.2, cx - 3.9, TB, TB + TH, 2.9, 3.1, "warnY"); BOX(`${nm}Post2`, `${nm}Box`, cx + 3.9, cx + 4.2, TB, TB + TH, 2.9, 3.1, "warnY");
 }
 const THK = 2.45, THN = 0.62, TUB = 0.1;
 for (let k = 0; k < 3; k++) { const y0 = R2(TB + TUB + k * (THK + TUB)); LAY(`tK${k}`, [6, THK, TX - 6, y0 + THK / 2]);
@@ -271,11 +268,11 @@ const GPOS = [[0, GOFF], [GOFF, 0], [0, -GOFF], [-GOFF, 0]];          // 前（�
 GPOS.forEach(([dx, dz], i) => { VC(`gtCk${i}`, "gTable", GCR, GY + 0.5, GY + 0.95, "steel", { x: GX + dx, z: dz }); VC(`gtCer${i}`, "gTable", GCR - 0.3, GY + 0.95, GY + 1.0, "ceramic", { x: GX + dx, z: dz }); });
 // 晶圓（倒扣、正面貼 BG 膠帶）：前站剛放下的那片（G0，三層矽：磨一層藏一層）＋後站細磨那片（G2）
 const gWafer = (nm, dx, dz, n) => { LAY(`${nm}Tape`, [7, 0.1, GX + dx, GY + 1.03]); VC(`${nm}TapeD`, `${nm}Tape`, GWR, GY + 1.0, GY + 1.06, "bgTape", { x: GX + dx, z: dz });
-  for (let k = 0; k < n; k++) { LAY(`${nm}S${k}`, [7, 0.15, GX + dx, GY + 1.1 + k * 0.16]); VC(`${nm}S${k}D`, `${nm}S${k}`, GWR - 0.02, R2(GY + 1.06 + k * 0.16), R2(GY + 1.22 + k * 0.16), k === n - 1 ? "siTop" : "si", { x: GX + dx, z: dz }); } };
+  for (let k = 0; k < n; k++) { LAY(`${nm}S${k}`, [7, 0.15, GX + dx, GY + 1.1 + k * 0.16]); VC(`${nm}S${k}D`, `${nm}S${k}`, GWR - 0.02, R2(GY + 1.06 + k * 0.16), R2(GY + 1.22 + k * 0.16), k === 0 ? "siTop" : "si", { x: GX + dx, z: dz }); } };
 gWafer("g0", GPOS[0][0], GPOS[0][1], 4); gWafer("g2", GPOS[2][0], GPOS[2][1], 2);
 // 翻面中的那片（正面＝電路面朝上、貼 BG 膠帶 → 翻 180 度，膠帶朝下）
 LAY("gFlip", [7, 1, GX, GY + 7]); VC("gfSi", "gFlip", GWR, GY + 6.6, GY + 7.2, "si", { x: GX, z: GOFF }); VC("gfTape", "gFlip", GWR, GY + 7.2, GY + 7.28, "bgTape", { x: GX, z: GOFF });
-BOX("gfArm", "gFlip", GX - 0.4, GX + 0.4, GY + 7.3, GY + 7.7, GOFF - 8, GOFF - 2.4, "dark"); VC("gfPad", "gFlip", 1.0, GY + 7.28, GY + 7.36, "rubber", { x: GX, z: GOFF });
+BOX("gfArm", "gFlip", GX - 11, GX - 0.6, GY + 7.3, GY + 7.7, GOFF - 0.4, GOFF + 0.4, "dark"); BOX("gfArmPost", "gFlip", GX - 11.4, GX - 10.6, GY - 0.2, GY + 7.7, GOFF - 0.4, GOFF + 0.4, "steel2"); VC("gfPad", "gFlip", 1.0, GY + 7.28, GY + 7.36, "rubber", { x: GX, z: GOFF });
 // 研磨主軸（杯型鑽石砂輪：外緣一圈磨塊）：Z1 粗磨在右站、Z2 細磨在後站；輪心偏離晶圓中心＝輪緣經過晶圓中心
 const spindleG = (nm, wx, wz, segN, segMat) => { LAY(nm, [9, 12, wx, GY + 7]); const y0 = GWY + 0.15;
   VT(`${nm}Cup`, nm, GWR + 0.2, GWR - 0.7, y0 + 0.4, y0 + 1.5, "wheel", { x: wx, z: wz }); VC(`${nm}Web`, nm, GWR + 0.2, y0 + 1.5, y0 + 1.8, "wheel", { x: wx, z: wz });
@@ -304,8 +301,7 @@ const VPIL = [-7.5, -4.5, -1.5, 1.5, 4.5, 7.5];
 P({ id: "vPilLiner", layer: "vBlock", shape: "cyl", size: [0.56, R2(VTOP + 0.02 - VCI)], rot: V, pos: [VX, R2((VTOP + 0.02 + VCI) / 2), 3.02], at: VPIL.map((x) => [x, 0, 0]), mat: "liner" });
 P({ id: "vPil", layer: "vBlock", shape: "cyl", size: [0.5, R2(VTOP + 0.03 - VCI)], rot: V, pos: [VX, R2((VTOP + 0.03 + VCI) / 2), 3.12], at: VPIL.map((x) => [x, 0, 0]), mat: "copper" });
 for (let k = 0; k < 3; k++) { LAY(`vS${k}`, [20, 0.8, VX, VS[k] + 0.4]); BOX(`vS${k}B`, `vS${k}`, VX - 10, VX + 10, VS[k], VS[k + 1], -3, 3, k === 2 ? "siTop" : "si"); }
-LAY("vTip", [20, 0.3, VX, VTOP]); P({ id: "vTipG", layer: "vTip", shape: "cyl", size: [0.5, 0.08], rot: V, pos: [VX, VTOP + 0.05, 0], at: VPIL.flatMap((x) => [[x, 0, -1.5], [x, 0, 0], [x, 0, 1.5]]), mat: "copper" });
-P({ id: "vTipRing", layer: "vTip", shape: "tube", size: [0.62, 0.5, 0.06], rot: V, pos: [VX, VTOP + 0.05, 0], at: VPIL.flatMap((x) => [[x, 0, -1.5], [x, 0, 0], [x, 0, 1.5]]), mat: "liner" });
+LAY("vTip", [20, 0.3, VX, VTOP]); P({ id: "vTipG", layer: "vTip", shape: "cyl", size: [0.5, 0.06], rot: V, pos: [VX, VTOP + 0.02, 0], at: VPIL.flatMap((x) => [[x, 0, -1.5], [x, 0, 0], [x, 0, 1.5]]), mat: "copper" });
 LAY("vWheel", [10, 3, VX, 14]); BOX("vwBody", "vWheel", VX - 6, VX + 6, 13.4, 14.6, -3.4, 3.4, "wheel");
 P({ id: "vwSeg", layer: "vWheel", shape: "box", size: [1.1, 0.5, 6.6], pos: [VX, 13.15, 0], at: [-5, -3, -1, 1, 3, 5].map((x) => [x, 0, 0]), mat: "seg" });
 const V2X = 470, V2T = 1.3, V2B = 0.22, V2N = 4, V2Y0 = 2.0;
@@ -340,26 +336,25 @@ P({ id: "ksPad", layer: "kSub", shape: "box", size: [0.7, 0.08, 0.5], pos: [KX, 
 LAY("kDie", [9, 1, KX, 2]); BOX("kdSi", "kDie", KX - 4.6, KX + 4.6, 1.4, 2.4, -3.6, 3.6, "si"); BOX("kdTop", "kDie", KX - 4.5, KX + 4.5, 2.4, 2.48, -3.5, 3.5, "siTop");
 P({ id: "kdPad", layer: "kDie", shape: "box", size: [0.5, 0.06, 0.5], pos: [KX, 2.5, 0], at: [...[-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((x) => [x * 0.95, 0, -3.1]), ...[-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((x) => [x * 0.95, 0, 3.1])], mat: "pad" });
 LAY("kWire", [10, 2, KX, 3]);
-[-4.2, -1.4, 1.4, 4.2].forEach((x, i) => { const pts = [[x * 0.95, 2.52, 3.1], [x * 0.97, 3.6, 3.7], [x, 2.8, 4.6], [x, 1.5, 5.0]];
-  pts.slice(0, -1).forEach((p0, j) => { const p1 = pts[j + 1]; for (let s = 0; s < 3; s++) { const t0 = s / 3 + 0.04, t1 = (s + 1) / 3 - 0.08, q0 = p0.map((v, d) => v + (p1[d] - v) * t0), q1 = p0.map((v, d) => v + (p1[d] - v) * t1);
-    const L = Math.hypot(...q1.map((v, d) => v - q0[d])); const dir = q1.map((v, d) => (v - q0[d]) / L);
-    const yaw = Math.atan2(dir[0], dir[2]) / D2R, pitch = -Math.asin(dir[1]) / D2R;
-    P({ id: `kW${i}_${j}_${s}`, layer: "kWire", shape: "cyl", size: [0.06, R2(L)], pos: [R2(KX + (q0[0] + q1[0]) / 2), R2((q0[1] + q1[1]) / 2), R2((q0[2] + q1[2]) / 2)], rot: [R2(pitch), R2(yaw), 0], mat: "wire" }); } }); });
+const KWP = [];
+for (const side of [-1, 1]) [-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].forEach((x, i) => { const a = [x * 0.95, 2.53, side * 3.1], b = [x, 1.5, side * 5.0], c = [x * 0.97, 4.1, side * 3.8];
+  const pts = Array.from({ length: 22 }, (_, k) => { const t = k / 21, u = 1 - t; return [R2(u * u * a[0] + 2 * u * t * c[0] + t * t * b[0]), R2(u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]), R2(u * u * a[2] + 2 * u * t * c[2] + t * t * b[2])]; });
+  P({ id: `kW${side > 0 ? "F" : "B"}${i}`, layer: "kWire", shape: "sphere", size: [0.075], pos: [KX, 0, 0], at: pts, mat: "wire" }); if (side > 0) KWP.push(pts[7]); });
 
 // ═════ 動作 ═════
 const tableIds = [...idsOf("chuck"), ...idsOf("frame"), ...idsOf("tape"), ...idsOf("wafer"), ...CUTS.flatMap((_, k) => idsOf(`kerf${k}`))];
 actions.tableFeed = { type: "vibrate", _說明: "卡盤帶晶圓沿 x 直線走刀（刀片不動，桌子來回）", parts: tableIds, axis: [1, 0, 0], amp: 7.2, freq: 0.19 };
 const bladeIds = [...idsOf("blade"), ...idsOf("flangeR"), ...idsOf("flangeF"), ...idsOf("nut")];
-actions.bladeSpin = { type: "rotate", _說明: "刀片高速旋轉（示意轉速；紅色標記讓旋轉看得見），起轉加速、停轉減速", parts: bladeIds, axis: [0, 0, 1], pivot: [0, BCY, ZC0], rps: -2.4, rampSpin: true };
+actions.bladeSpin = { type: "rotate", _說明: "刀片高速旋轉（示意轉速；紅色標記讓旋轉看得見），起轉加速、停轉減速；轉向＝刀口底部往 +x，和水、矽屑被帶出的方向一致", parts: bladeIds, axis: [0, 0, 1], pivot: [0, BCY, ZC0], rps: 2.4, rampSpin: true };
 actions.water = { type: "flow", _說明: "兩側噴嘴對刀口噴純水：沿管流出、打到刀口後被刀片往後甩成拋物線、帶走矽屑", layer: "cover", path: [[NZX, NZY, ZC0 - 0.42], [-0.6, YW + 0.25, ZC0 - 0.3], [1.8, YW + 1.4, ZC0 - 0.2], [4.4, YW + 0.2, ZC0 - 0.1]], n: 12, size: 0.13, shape: "dot", rate: 0.9, color: "waterC", track: false, free: true, jitter: 0.12 };
 actions.water2 = { type: "flow", layer: "cover", path: [[NZX, NZY, ZC0 + 0.42], [-0.6, YW + 0.25, ZC0 + 0.3], [1.8, YW + 1.6, ZC0 + 0.25], [4.6, YW + 0.2, ZC0 + 0.15]], n: 12, size: 0.13, shape: "dot", rate: 0.85, color: "waterC", track: false, free: true, jitter: 0.12 };
 actions.sawDust = { type: "flow", _說明: "矽屑（灰點）隨水被甩出", layer: "cover", path: [[0.4, YW + 0.05, ZC0], [2.6, YW + 1.0, ZC0 + 0.2], [5.4, YW + 0.1, ZC0 + 0.4]], n: 8, size: 0.09, shape: "dot", rate: 0.7, color: "chipC", track: false, free: true, jitter: 0.15 };
-actions.xSawSpin = { type: "rotate", _說明: "粗齒鋸片轉動", parts: idsOf("xSaw"), axis: [0, 0, 1], pivot: [XX, XSY, 0], rps: -0.7, rampSpin: true };
-actions.xChipFly = { type: "flow", _說明: "鋸子一碰，脆的矽爆出碎片往外飛（受重力）", layer: "xBlock", path: [[XX, 9.2, 2.8], [XX - 3.2, 12.6, 3.4], [XX - 6.6, 9.6, 3.8]], n: 5, size: 0.24, shape: "dot", rate: 0.8, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
-actions.xChipFly2 = { type: "flow", layer: "xBlock", path: [[XX, 9.2, 2.8], [XX + 3.4, 12.2, 3.4], [XX + 6.8, 9.4, 3.8]], n: 5, size: 0.24, shape: "dot", rate: 0.75, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
-actions.cBladeSpin = { type: "rotate", parts: idsOf("cBlade"), axis: [0, 0, 1], pivot: [CBX, CBY0, 0], rps: -2.0, rampSpin: true };
-actions.cWater = { type: "flow", layer: "cNoz", path: [[CBX - 3.0, CBY0 - 2.0, 1.0], [CBX - 0.9, CTY + 0.6, 0.6], [CBX + 2.6, CTY + 1.8, 0.8], [CBX + 5.0, CTY + 0.4, 1.0]], n: 10, size: 0.16, shape: "dot", rate: 0.9, color: "waterC", track: false, free: true, jitter: 0.15 };
-actions.cDust = { type: "flow", layer: "cBridge", path: [[CBX, CTY + 0.3, 1.6], [CBX + 2.4, CTY + 1.6, 2.2], [CBX + 4.6, CTY + 0.3, 2.6]], n: 6, size: 0.12, shape: "dot", rate: 0.7, color: "chipC", track: false, free: true, jitter: 0.2 };
+actions.xSawSpin = { type: "rotate", _說明: "粗齒鋸片轉動（鋸片平面＝走道方向）", parts: idsOf("xSaw"), axis: [0, 0, 1], pivot: [XX, XSY, 0], rps: 0.7, rampSpin: true };
+actions.xChipFly = { type: "flow", _說明: "鋸子一碰，脆的矽爆出碎片往外飛（受重力）", layer: "xBlock", path: [[XX, XTOP + 0.5, 0.8], [XX - 1.2, XTOP + 3.2, 2.6], [XX - 2.4, XTOP + 0.9, 4.0]], n: 5, size: 0.24, shape: "dot", rate: 0.8, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
+actions.xChipFly2 = { type: "flow", layer: "xBlock", path: [[XX, XTOP + 0.5, 0.8], [XX + 3.4, XTOP + 3.0, 1.4], [XX + 6.8, XTOP + 0.7, 2.0]], n: 5, size: 0.24, shape: "dot", rate: 0.75, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
+actions.cBladeSpin = { type: "rotate", _說明: "刀片轉向＝刀口底部往 +x，水與矽屑往右甩", parts: idsOf("cBlade"), axis: [0, 0, 1], pivot: [CBX, CBY0, 0], rps: 2.0, rampSpin: true };
+actions.cWater = { type: "flow", _說明: "噴嘴從左邊對刀口噴水，被刀口帶往右甩出", layer: "cNoz", path: [[CBX - 3.2, 7.2, CBZ], [CBX - 0.6, CTY + 0.45, CBZ + 0.4], [CBX + 2.8, CTY + 1.8, CBZ + 0.7], [CBX + 5.4, CTY + 0.35, CBZ + 0.9]], n: 10, size: 0.16, shape: "dot", rate: 0.9, color: "waterC", track: false, free: true, jitter: 0.15 };
+actions.cDust = { type: "flow", layer: "cBlade", path: [[CBX + 0.3, CTY + 0.35, CBZ + 0.5], [CBX + 2.6, CTY + 1.4, CBZ + 0.8], [CBX + 4.8, CTY + 0.2, CBZ + 1.0]], n: 6, size: 0.12, shape: "dot", rate: 0.7, color: "chipC", track: false, free: true, jitter: 0.2 };
 actions.cScarGlow = { type: "pulse", parts: ["cScar"], color: "badC", glow: 0.9, freq: 1.2, halo: 0 };
 actions.lPulse = { type: "pulse", _說明: "雷射脈衝閃動（焦點在晶圓中間）", parts: ["lhFocus", "lhBeam"], color: "laserC", glow: 1, freq: 3.0, halo: 0 };
 actions.eHot = { type: "flow", _說明: "熱風收緊外圈膠膜（DDS 類擴片機：冷擴片後熱風）", layer: "eBase", path: [[EX - 10.2, EY + 1.1, -10.2], [EX - 9.6, EY + 0.3, -9.4], [EX - 8.8, EY + 0.1, -8.6]], n: 6, size: 0.16, shape: "dot", rate: 0.8, color: "lampY", track: false, free: true, jitter: 0.2 };
@@ -383,15 +378,15 @@ Object.assign(anchors, {
   blade: A("blade", [-1.6, BCY + 2.2, ZC0 + 0.2], -150, -90), bladeE: A("blade", [0, BCY - BR + 0.15, ZC0 + 0.1], 150, 100),
   wafer: A("wafer", [-4.5, YW, 3.2], -150, -100), tape: A("tape", [-8.6, YTP, 4.4], -150, 100), frame: A("frame", [7.6, YF1, 7.9], 150, 100), chuck: A("chuck", [8.4, YC - 0.3, 3.8], 150, 100),
   cover: A("cover", [2.4, BCY + 3.1, ZC0 + 0.4], 150, -90), nozzle: A("cover", [NZX, NZY + 0.6, ZC0 + 0.42], -150, -90), flange: A("flangeF", [0, BCY + 1.1, ZC0 + 0.5], 150, -90), spindle: A("spindle", [0, BCY + 1.5, ZC0 - 7], 150, -90), cam: A("spindle", [-5.4, BCY + 3.6, ZC0], -150, -90),
-  street: A("xBlock", [XX, 8.9, 3.0], 150, 100), xcrack: A("xCrack", [XX - 2.6, 6.6, 3.1], -150, 100), saw: A("xSaw", [XX - 4.5, XSY + 4.5, 0.6], -150, -90),
-  cThick: A("cBlock", [CX - 10.5, 10.7, 2.8], -40, -170), cChip: A("cScar", [CBX + 0.4, 5.58, 2.4], 150, 100), cBlade: A("cBlade", [CBX + 3, CBY0 + 3, 0.2], 150, -90),
+  street: A("xBlock", [XX + 5, XTOP + 0.02, 0], 150, 100), xcrack: A("xCrack", [XX + 0.3, XTOP - 1.3, 3.64], -150, 100), saw: A("xSaw", [XX - 4.5, XSY + 4.5, 0.6], -150, -90),
+  cThick: A("cBlock", [CX - 6, 10.7, -0.2], -40, -170), cChip: A("cScar", [CBX + 1.6, 5.62, 0.1], 150, 100), cBlade: A("cBlade", [CBX + 2, CBY0 + 3, CBZ], 150, -90),
   lHead: A("lHead", [LH0 + 1.4, 19.5, 0.6], 150, -90), lFocus: A("lHead", [LH0, LFY, 0.3], -150, 100), lDot: A("lDot4", [LH0 + 4 * 2.25, LFY, 0.3], 150, 100),
   eTape: A("eSkirt", [EX + 8.2, EY + 0.9, 3.4], 150, -100), eDie: A("eD55", [EX + 2.5 * EG, EY + 0.3, 2.5 * EG], 150, 100), eLift: A("eLift", [EX + 7.8, 2.4, 2.8], 150, 100),
   tThick: A("tK2", [TX - 6, TB + TUB + 2 * (THK + TUB) + THK, 2.4], -150, -100), tThin: A("tN7", [TX + 6, TB + TUB + 7 * (THN + TUB) + THN, 2.4], 150, -100), tBox: A("tBBox", [TX + 9.9, TB + TH, 3.1], 150, -100),
   gTape: A("gFlip", [GX + GWR, GY + 7.24, GOFF + 0.4], 150, -90), gWheel1: A("gZ1", [Z1X + GWR, GWY + 1.2, Z1Z], 150, -90), gWheel2: A("gZ2", [Z2X + GWR, GWY + 1.2, Z2Z], 150, -90), gProbe: A("gProbe", [GX + GOFF - 1.2, GWY + 2.2, 2.4], -150, -90),
   vPil: A("vBlock", [VX + 4.5, 8.0, 3.1], 150, 100), vTip: A("vTip", [VX + 1.5, VTOP + 0.1, 1.5], 150, -90), v2Pil: A("v2L3", [V2X + 4.5, V2TOP - 0.6, 2.9], 150, -90),
   p0: A("p0", [PX - 7.6, 4.1, 3.3], -150, -90), p1: A("p1", [PX, 4.1, 3.3], 150, -90), p2: A("p2", [PX + 7.6, 4.1, 3.3], 150, -90),
-  kPad: A("kDie", [KX + 4.0, 2.5, 3.1], 150, -90), kWire: A("kWire", [KX - 1.4, 3.6, 3.7], -150, -90),
+  kPad: A("kDie", [KX + 4.0, 2.5, 3.1], 150, -90), kWire: A("kWire", [R2(KX + KWP[2][0]), KWP[2][1], KWP[2][2]], -150, -90),
 });
 
 const model = {
@@ -404,7 +399,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 90, elev: 24, y: 8 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { BCY, ZC0, BR, YW, WR, CUTS, XX, XSY, CX, CBX, CBY0, LX, LH0, LFY, EX, EY, EDIE, TX, GX, GY, GOFF, Z1X, Z2Z, VX, V2X, V2TOP, PX, KX },
+  info: { CLAMPS, BCY, ZC0, BR, YW, WR, CUTS, XX, XSY, CX, CBX, CBY0, CTY, LX, LH0, LFY, EX, EY, EDIE, TX, GX, GY, GOFF, Z1X, Z2Z, VX, V2X, V2TOP, PX, KX },
 };
 const out = path.join(HERE, "model.json");
 fs.writeFileSync(out, JSON.stringify(model, null, 1) + "\n");

@@ -126,20 +126,21 @@ vis("kerf2", [(KT[0], FAR)], 1); vis("kerf3", [(KT[1], FAR)], 1); vis("kerf4", [
 # ── s3 爆炸分解①：晶圓、膠膜、鐵框沿 y 分開 → 組回 ──
 VIS += [mv("wafer", "s3:start+4", "s3:hoop+14", 18, dy=4.2), mv("tape", "s3:tape-4", "s3:hoop+10", 18, dy=2.4), mv("frame", "s3:frame-4", "s3:hoop+6", 18, dy=1.0)]
 VIS += [mv(f"kerf{k}", "s3:start+4", "s3:hoop+14", 18, dy=4.2) for k in range(6)]
-VIS += [mv(l, "s3:start", "s4:start+2", 14, dy=3.0) for l in SPG]           # 主軸先抬高讓出空間（s3 看得到）
+VIS += [mv(l, "s3:start-6", "s4:start+2", 12, dy=6.5) for l in SPG]          # 主軸先抬高到晶圓升起的高度之上（不穿模），再分開框架組
+for c in MODEL["info"]["CLAMPS"]:                                                   # 夾爪：分開前先張開，組回最後一步合上
+    VIS.append(mv(c["id"], "s3:start", "s3:hoop+16", 8, dx=round(c["x"] / 10.4 * 1.1, 3), dz=round(c["z"] / 10.4 * 1.1, 3)))
 # ── s4 爆炸分解②：刀蓋往上、螺帽／法蘭／刀片沿主軸 z 拉開 → 組回 → 起轉 → 噴水 ──
-VIS += [mv("cover", "s4:start+4", "s4:rpm+2", 18, dy=3.4)]
-VIS += [mv("nut", "s4:hair-6", "s4:rpm", 18, dz=3.6), mv("flangeF", "s4:hair-6", "s4:rpm+4", 18, dz=2.6), mv("blade", "s4:hair-6", "s4:rpm+8", 18, dz=1.5)]
+VIS += [mv("cover", "s4:start+2", "s4:rpm-12", 16, dy=4.2)]
+VIS += [mv("nut", "s4:hair-8", "s4:rpm-8", 18, dz=6.4), mv("flangeF", "s4:hair-8", "s4:rpm-6", 18, dz=4.6), mv("blade", "s4:hair-8", "s4:rpm-4", 18, dz=2.8), mv("flangeR", "s4:hair-8", "s4:rpm-2", 18, dz=1.2)]
 # ── 站 X：鋸子落下 → 裂開 ──
-VIS += [mv("xSaw", T0, "s2:saw", 16, dy=2.6)]                     # 一開始在上方，念到「鋸子」落下
-vis("xCrack", [("s2:saw+14", FAR)], 1); vis("xChips", [("s2:saw+16", FAR)], 1)
+VIS += [mv("xSaw", T0, "s2:saw", 14, dy=3.6)]                     # 一開始在上方，念到「鋸子」落下
+vis("xCrack", [("s2:saw+13", FAR)], 1); vis("xChips", [("s2:saw+14", FAR)], 1)
 # ── 站 C：刀片切下去 → 橋消失 → 背面崩角 ──
-CBD = round(5.25 - (INFO["CBY0"] - 4.6), 2)
-VIS += [mv("cBlade", "s5:thin-6", FAR, 20, dy=CBD)]
-vis("cBridge", [(T0, "s5:thin+12")], 1)
-for i in range(5):
-    VIS.append(mv(f"cChip{i}", f"s5:chip-{6 - i}", FAR, 18, dx=(1.4 if i % 2 else -1.4), dy=-0.35, dz=0.6, throw=0.6))
-vis("cScar", [("s5:chip-6", FAR)], 1)
+VIS += [mv("cBlade", T0, "s5:start", 12, dy=4.5), mv("cBlade", T0, "s5:thin", 56, dx=-4.0), mv("cBlade", "s5:thin", FAR, 56, dx=3.5)]   # 刀片先降進切口，再沿 x 走刀
+CHX = [-2.4, -1.0, 0.4, 1.6, 2.8]
+for i, dx in enumerate(CHX):                                                         # 刀口走過哪裡，那裡的背面就崩一塊（往前掉）
+    VIS.append(mv(f"cChip{i}", f"s5:thin+{round((dx + 4.0) / 7.5 * 56)}", FAR, 16, dz=1.2, dy=-0.25, throw=0.5))
+vis("cScar", [("s5:thin+12", FAR)], 1)
 # ── 站 L：雷射頭沿切割道走，改質點逐段出現，裂紋往上下延伸 ──
 LDUR = 132
 VIS += [mv("lHead", "s6:sd-4", FAR, LDUR, dx=18.0)]
@@ -153,6 +154,7 @@ vis("eSkirt", [("s7:exp+18", FAR)], 2)
 for d in INFO["EDIE"]: VIS.append(mv(d["id"], "s7:exp", FAR, 30, dx=round(d["x"] * EK, 3), dz=round(d["z"] * EK, 3), dy=1.5))
 # ── 站 T：厚晶片疊三層爆框、薄晶片疊八層剛好 ──
 for k in range(3): drop(f"tK{k}", f"s8:stack-{24 - k * 10}", 6.0)
+VIS += [mv("tALidL", "s8:stack+6", FAR, 8, dy=2.0)]                              # 第三層厚晶片把上蓋頂開（不穿過）
 vis("tBad", [("s8:stack+12", FAR)], 1)
 for k in range(8): drop(f"tN{k}", f"s8:mm+{k * 6}", 5.0, 12)
 vis("tOk", [("s8:hair+4", FAR)], 1)
@@ -165,16 +167,16 @@ vis("g0S3", [("s9:flip+22", "s9:wheel+14")], 2); vis("g0S2", [("s9:flip+22", "s9
 # ── 站 V：背面矽一層層磨掉 → 銅柱露頭；V2：四層堆疊 ──
 vis("vS2", [(T0, "s10:start+2")], 2); vis("vS1", [(T0, "s10:start+20")], 2); vis("vS0", [(T0, "s10:cu-12")], 2)
 vis("vTip", [("s10:cu-12", FAR)], 2)
-VIS += [mv("vWheel", "s10:cu-6", FAR, 14, dy=3.4)]
+VIS += [mv("vWheel", t, FAR, 8, dy=-0.8) for t in ("s10:start+2", "s10:start+20", "s10:cu-12")] + [mv("vWheel", "s10:cu-6", FAR, 14, dy=4.6)]   # 砂輪跟著矽面往下進給，最後抬起
 # ── 站 P：三只紙箱念到才落下 ──
-drop("p0", "s11:jp-8", 6.0); drop("p1", "s11:btl-8", 6.0); drop("p2", "s11:psi-8", 6.0)
+drop("p0", "s11:jp-8", 3.0, 12); drop("p1", "s11:btl-8", 3.0, 12); drop("p2", "s11:psi-8", 3.0, 12)
 # ── 站 K：金線虛線念到「打線」才出現 ──
 vis("kWire", [("s12:wire-6", FAR)], 2)
 
 # ── 每一站只在用到它的幕出現（其他時間整站藏起來：版面檢查的主素材框不會算到畫面外的站，渲染也比較快）──
 def W(k): return f"s{k}:voice-6"
 def E(k): return f"s{k}:voice-1"
-STA = {"A": (lambda l: l in ("spindle", "flangeR", "blade", "flangeF", "nut", "cover", "chuck", "frame", "tape", "wafer") or l.startswith("kerf"), [(T0, E(2)), (W(3), E(5))]),
+STA = {"A": (lambda l: l in ("spindle", "flangeR", "blade", "flangeF", "nut", "cover", "chuck", "frame", "tape", "wafer") or l.startswith("kerf") or l.startswith("clamp"), [(T0, E(2)), (W(3), E(5))]),
        "X": (lambda l: l.startswith("x"), [(W(2), E(3))]), "C": (lambda l: l.startswith("c"), [(W(5), E(6))]), "L": (lambda l: l.startswith("l"), [(W(6), E(7))]),
        "E": (lambda l: l.startswith("e"), [(W(7), E(8))]), "T": (lambda l: l.startswith("t") and l != "tape", [(W(8), E(9))]), "G": (lambda l: l.startswith("g"), [(W(9), E(10))]),
        "V": (lambda l: l.startswith("v"), [(W(10), E(11))]), "P": (lambda l: l.startswith("p"), [(W(11), E(12))]), "K": (lambda l: l.startswith("k") and not l.startswith("kerf"), [(W(12), FAR)])}
@@ -197,29 +199,29 @@ P["s1"] = {"shot": [shot("start-30", AX, AY, 109, 30, 1, yaw=0.0), shot("start",
  "run": [run("tableFeed", "start-30", "s2:start+6", 8), run("bladeSpin", "start-30", "s2:start+6", 8), run("water", "start-30", "s2:start+6", 4), run("water2", "start-30", "s2:start+6", 4), run("sawDust", "start-30", "s2:start+6", 4)],
  "overlay": [sec("dc-hook", "start", nxt("s1"), "系列 3・第 1 集", "示意，非實際比例", {"q": "q", "prev": "prev", "done": "done"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-8", "dur": 1}, {"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 60.0, 9.0, 86, 16, 1), shot("saw+14", 60.0, 8.6, 78, 16, 40)],
+ "shot": [shot(CC, 60.0, 7.0, 76, 26, 1), shot("saw+14", 60.0, 7.0, 70, 26, 40)],
  "run": [run("xSawSpin", "start-6", FAR, 8), run("xChipFly", "saw+12", "saw+60", 4), run("xChipFly2", "saw+14", "saw+60", 4)],
  "labels": [lab("xcrack", "脆：一碰就裂", "Brittle: it cracks", "amber", "hard-2", "hard+44"),
             lab("street", "走道很窄", "Narrow street", "blue", "street", "street+46")],
  "overlay": [card("s2", "dc-saw", "不能拿鋸子", "示意（不標尺寸）", {"saw": "saw", "hard": "hard", "street": "street"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, 0.0, 6.6, 86, 30, 1), shot("frame", 0.0, 6.4, 88, 26, 40)],
+ "shot": [shot(CC, 0.0, 7.4, 90, 26, 1, yaw=0.0), shot("frame", 0.0, 7.2, 92, 24, 40)],
  "labels": [lab("wafer", "晶圓", "Wafer", "blue", "start+8", "tape-6"),
             lab("tape", "膠膜", "Dicing tape", "amber", "tape-4", "tape+42"),
             lab("frame", "鐵框", "Steel frame", "blue", "frame", "frame+46"),
             lab("chuck", "卡盤（真空吸住）", "Vacuum chuck", "blue", "hoop+16", "hoop+62")],
  "overlay": [card("s3", "dc-hoop", "繃好的刺繡布", "示意", {"tape": "tape", "frame": "frame", "hoop": "hoop"})]}
-P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 52, 6, 1, yaw=-0.55), shot("hair", 0.2, INFO["BCY"] - 0.8, 49, 6, 40), shot("rpm+12", 1.0, INFO["BCY"] - 1.4, 56, 8, 24, yaw=-0.3)],
+P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 52, 6, 1, yaw=-0.75), shot("hair", 0.2, INFO["BCY"] - 0.8, 49, 6, 40), shot("rpm+12", 1.0, INFO["BCY"] - 1.4, 56, 8, 24, yaw=-0.35)],
  "run": [run("bladeSpin", "rpm+8", FAR, 30), run("water", "tile-6", FAR, 6), run("water2", "tile-6", FAR, 6), run("sawDust", "tile", FAR, 6)],
- "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", "start+6", "hair-8"),
-            lab("blade", "鑽石刀片", "Diamond blade", "amber", "hair-4", "rpm-12"),
-            lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "rpm-10", "tile-12"),
-            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile", "tile+46")],
+ "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", C, "voice+43", xy=[740, 340]),
+            lab("blade", "鑽石刀片", "Diamond blade", "amber", "voice+45", "voice+91"),
+            lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "voice+93", "voice+136"),
+            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+4", "tile+50")],
  "overlay": [card("s4", "dc-blade", "淋水切磁磚", "DISCO 官方規格：最高 60,000 min⁻¹", {"hair": "hair", "blade": "blade", "rpm": "rpm", "tile": "tile"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 120.0, 6.4, 83, 14, 1, yaw=0.0)],
- "run": [run("cBladeSpin", "start-6", FAR, 8), run("cWater", "start", FAR, 6), run("cDust", "thin+6", FAR, 6), run("cScarGlow", "chip-6", FAR, 8)],
- "labels": [lab("cThick", "厚：切口整齊", "Thick: clean edge", "blue", "start+4", "chip-10", xy=[262, 330]),
+ "shot": [shot(CC, 123.0, 4.6, 80, 12, 1, yaw=0.0)],
+ "run": [run("cBladeSpin", "start-6", FAR, 8), run("cWater", "start", FAR, 6), run("cDust", "thin+6", FAR, 6), run("cScarGlow", "thin+12", FAR, 8)],
+ "labels": [lab("cThick", "厚：切口整齊", "Thick: clean edge", "blue", C, "chip-10"),
             lab("cChip", "薄：背面崩角", "Thin: backside chipping", "amber", "chip-6", "chip+40")],
  "overlay": [card("s5", "dc-chip", "越薄越容易崩角", "示意", {"thin": "thin", "chip": "chip"})]}
 P["s6"] = {"shot": [shot(CC, 180.0, 10.0, 86, 14, 1)],
@@ -229,13 +231,13 @@ P["s6"] = {"shot": [shot(CC, 180.0, 10.0, 86, 14, 1)],
             lab("lDot", "改質層＝看不見的裂痕", "Hidden modified layer", "amber", "crack-4", "crack+42")],
  "overlay": [card("s6", "dc-stealth", "雷射隱形切割", "示意（Hamamatsu／DISCO 原理）", {"sd": "sd", "inside": "inside", "crack": "crack"})]}
 P["s7"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, 240.0, 1.6, 81, 44, 1)],
+ "shot": [shot(CC, 240.0, 0.8, 81, 44, 1)],
  "run": [run("eHot", "choc+10", FAR, 6)],
  "labels": [lab("eLift", "頂環往上頂", "Lift ring pushes up", "blue", "exp-4", "exp+40"),
             lab("eDie", "晶片沿裂痕分開", "Chips separate", "amber", "split", "split+46")],
  "overlay": [card("s7", "dc-expand", "像掰巧克力", "示意", {"exp": "exp", "split": "split", "choc": "choc"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 300.0, 3.6, 70, 12, 1)],
+ "shot": [shot(CC, 300.0, 0.2, 66, 12, 1)],
  "labels": [lab("tThick", "太厚：疊不進去", "Too thick: won't fit", "amber", "stack+14", "mm-4"),
             lab("tThin", "磨薄：放得進", "Thinned: it fits", "blue", "hair", "hair+46")],
  "overlay": [card("s8", "dc-thin", "為什麼要磨薄", "示意（片中只說量級）", {"why": "why", "stack": "stack", "mm": "mm", "hair": "hair"})]}
@@ -247,18 +249,18 @@ P["s9"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "labels": [lab("gTape", "保護膠帶（貼正面）", "Protective tape", "blue", "tape-4", "flip+20"),
             lab("gWheel1", "粗磨砂輪", "Coarse wheel", "amber", "wheel", "coarse+6"),
             lab("gWheel2", "細磨砂輪", "Fine wheel", "blue", "coarse+8", "coarse+54")],
- "overlay": [card("s9", "dc-grind", "先粗後細", "示意（DISCO 研磨機原理）", {"tape": "tape", "flip": "flip", "wheel": "wheel", "coarse": "coarse", "fine": "fine"})]}
+ "overlay": [card("s9", "dc-grind", "先粗後細", "示意（DISCO 研磨機原理）", {"tape": "tape", "flip": "flip", "wheel": "wheel", "coarse": "coarse", "fine": "fine"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 440.0, 7.4, 78, 16, 1), shot("lift-2", 470.0, 2.8, 60, 14, 1)],
+ "shot": [shot(CC, 440.0, 2.3, 56, 16, 1), shot("lift-2", 470.0, 1.4, 50, 14, 1)],
  "run": [run("vWheelRub", "start-4", "cu-6", 4), run("vDust", "start", "cu-6", 4), run("vTipGlow", "cu-10", FAR, 8)] + [run(f"v2Cur{i}", "lift", FAR, 4) for i in range(4)],
  "labels": [lab("vPil", "銅柱（矽穿孔）", "Copper via (TSV)", "amber", "cu", "tsv+30"),
             lab("v2Pil", "電流直通每一層", "Straight through every layer", "blue", "lift+4", "lift+50")],
  "overlay": [card("s10", "dc-tsv", "像電梯井", "示意", {"cu": "cu", "tsv": "tsv", "lift": "lift", "thru": "thru"})]}
 P["s11"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["PX"], 2.6, 60, 10, 1)],
+ "shot": [shot(CC, INFO["PX"], -2.8, 66, 10, 1)],
  "overlay": [card("s11", "dc-co", "切割與薄化：相關公司", "公開資訊；截至 2026/11/27", {"jp": "jp", "tw": "tw", "btl": "btl", "psi": "psi"}, h=392, y=1000)]}
 P["s12"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["KX"], 0.6, 57, 36, 1)],
+ "shot": [shot(CC, INFO["KX"], -3.4, 50, 36, 1)],
  "run": [run("kPadGlow", "done", FAR, 8), run("kWireGlow", "wire", FAR, 8)],
  "labels": [lab("kPad", "焊墊", "Bond pads", "amber", "done+4", "done+50"),
             lab("kWire", "金線（下一集）", "Wire bonds (next)", "blue", "wire", "wire+46")],
