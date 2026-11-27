@@ -1,0 +1,2199 @@
+{
+ "slug": "tech-pad",
+ "prevEpisode": "2-16：研磨液",
+ "title": "研磨墊（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B 原句；Andy 在 AI Studio 錄音；本支不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "CMP 研磨台（示意）",
+    "en": "CMP POLISHING STATION",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "micro",
+    "label": "研磨墊剖面（示意）",
+    "en": "PAD CROSS-SECTION",
+    "field": "10 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "研磨墊供應商",
+    "en": "PAD SUPPLIERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "研磨墊",
+   "怎麼磨平？"
+  ],
+  "sub": "晶圓倒扣壓在墊子上",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "誰來把晶圓真正磨平？前一集，研磨液準備好了，還缺一塊墊子。",
+   "tts": "誰來把晶圓真正磨平？前一集，研磨液準備好了，還缺一塊墊子。",
+   "subtitle": {
+    "zh": "誰來把晶圓\n真正磨平？\n前一集\n研磨液準備好了\n還缺一塊墊子",
+    "en": "Who really | flattens the wafer? | Last episode: | the slurry is ready, | still missing a pad."
+   },
+   "keywords": [
+    "誰來",
+    "磨平",
+    "研磨液"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "磨平"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：研磨液備好了",
+     "title": "誰來磨平？",
+     "size": 120,
+     "top": 272
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.9,
+      "y": 2.6,
+      "d": 44,
+      "elev": 36
+     },
+     {
+      "at": "start",
+      "dur": 140,
+      "x": 0.9,
+      "y": 2.6,
+      "d": 41,
+      "elev": 34
+     }
+    ],
+    "shift": [
+     {
+      "layer": "newPad",
+      "at": "s1:start-40",
+      "until": "s7:thin+66",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "roller",
+      "at": "s1:start-40",
+      "until": "s7:thin+82",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "roller",
+      "at": "s7:thin+114",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand0",
+      "at": "s1:start-40",
+      "until": "s7:thin+22",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand0",
+      "at": "s7:thin+28",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand1",
+      "at": "s1:start-40",
+      "until": "s7:thin+28",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand1",
+      "at": "s7:thin+34",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand2",
+      "at": "s1:start-40",
+      "until": "s7:thin+34",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "strand2",
+      "at": "s7:thin+48",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "film",
+      "at": "s7:thin+16",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "oPadAdh",
+      "at": "s7:thin+48",
+      "until": "s11:start+400",
+      "dur": 18,
+      "dx": -8.5,
+      "throw": 2.0
+     },
+     {
+      "layer": "oPadSub",
+      "at": "s7:thin+48",
+      "until": "s11:start+400",
+      "dur": 18,
+      "dx": -8.5,
+      "throw": 2.0
+     },
+     {
+      "layer": "oPadTop",
+      "at": "s7:thin+48",
+      "until": "s11:start+400",
+      "dur": 18,
+      "dx": -8.5,
+      "throw": 2.0
+     },
+     {
+      "layer": "oPadAdh",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "oPadSub",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "oPadTop",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "oPadAdh",
+      "at": "s1:start-40",
+      "until": "s7:start-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "oPadAdh",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "oPadSub",
+      "at": "s1:start-40",
+      "until": "s7:start-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "oPadSub",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "oPadTop",
+      "at": "s1:start-40",
+      "until": "s7:start-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "oPadTop",
+      "at": "s7:thin+66",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "padAdh",
+      "at": "s7:start-2",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "padSub",
+      "at": "s7:start-2",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "padTop",
+      "at": "s7:start-2",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "head",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": 6.3
+     },
+     {
+      "layer": "cond",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -2.5,
+      "dz": -4.5
+     },
+     {
+      "layer": "condPost",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -2.5,
+      "dz": -4.5
+     },
+     {
+      "layer": "slurry",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dz": -4.5
+     },
+     {
+      "layer": "roller",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "dur": 1,
+      "dz": -4.4
+     },
+     {
+      "layer": "roller",
+      "at": "s7:thin+84",
+      "until": "s7:thin+110",
+      "dur": 26,
+      "dz": 8.8
+     },
+     {
+      "layer": "newPad",
+      "at": "s1:start-40",
+      "until": "s7:thin+66",
+      "dur": 14,
+      "dy": 4.6,
+      "fallIn": true,
+      "bounce": 0.07,
+      "opacity": 0
+     },
+     {
+      "layer": "head",
+      "at": "s2:start+4",
+      "until": "s2:platen+4",
+      "dur": 26,
+      "dx": 6.3
+     },
+     {
+      "layer": "padAdh",
+      "at": "s2:pad",
+      "until": "s2:platen+6",
+      "dur": 22,
+      "dy": 2.4
+     },
+     {
+      "layer": "padSub",
+      "at": "s2:pad",
+      "until": "s2:platen+6",
+      "dur": 22,
+      "dy": 2.4
+     },
+     {
+      "layer": "padTop",
+      "at": "s2:pad",
+      "until": "s2:platen+6",
+      "dur": 22,
+      "dy": 2.4
+     },
+     {
+      "layer": "padSub",
+      "at": "s2:soft+9",
+      "until": "s2:platen+2",
+      "dur": 20,
+      "dy": 1.2
+     },
+     {
+      "layer": "padTop",
+      "at": "s2:soft+9",
+      "until": "s2:platen+2",
+      "dur": 20,
+      "dy": 2.4
+     },
+     {
+      "layer": "head",
+      "at": "s3:start",
+      "until": "s3:sand-6",
+      "opacity": 0.32,
+      "dur": 14
+     },
+     {
+      "layer": "wOx0",
+      "at": "s1:start-40",
+      "until": "s3:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx0",
+      "at": "s3:bump+8",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx1",
+      "at": "s1:start-40",
+      "until": "s3:bump+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx1",
+      "at": "s3:bump+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx2",
+      "at": "s1:start-40",
+      "until": "s3:bump+30",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx2",
+      "at": "s3:bump+52",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wOx3",
+      "at": "s1:start-40",
+      "until": "s3:bump+52",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB0",
+      "at": "s1:start-40",
+      "until": "s3:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB0",
+      "at": "s3:bump+8",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB1",
+      "at": "s1:start-40",
+      "until": "s3:bump+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB1",
+      "at": "s3:bump+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB2",
+      "at": "s1:start-40",
+      "until": "s3:bump+30",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wB2",
+      "at": "s3:bump+52",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wSi",
+      "at": "s3:bump+8",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": -0.52
+     },
+     {
+      "layer": "wSi",
+      "at": "s3:bump+30",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": -0.84
+     },
+     {
+      "layer": "wSi",
+      "at": "s3:bump+52",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": -1.05
+     },
+     {
+      "layer": "mGrains",
+      "at": "s1:start-40",
+      "until": "s4:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mGrains",
+      "at": "s5:slick",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF0",
+      "at": "s1:start-40",
+      "until": "s4:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF0",
+      "at": "s5:slick",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG0",
+      "at": "s1:start-40",
+      "until": "s5:slick",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG0",
+      "at": "s6:comb+8",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAR0",
+      "at": "s1:start-40",
+      "until": "s6:comb+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF1",
+      "at": "s1:start-40",
+      "until": "s4:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF1",
+      "at": "s5:slick",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG1",
+      "at": "s1:start-40",
+      "until": "s5:slick",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG1",
+      "at": "s6:comb+26",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAR1",
+      "at": "s1:start-40",
+      "until": "s6:comb+26",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF2",
+      "at": "s1:start-40",
+      "until": "s4:start-8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAF2",
+      "at": "s5:slick",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG2",
+      "at": "s1:start-40",
+      "until": "s5:slick",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAG2",
+      "at": "s6:comb+44",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mAR2",
+      "at": "s1:start-40",
+      "until": "s6:comb+44",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mTool",
+      "at": "s1:start-40",
+      "until": "s6:rough-14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "mTool",
+      "at": "s1:start-40",
+      "until": "s6:rough",
+      "dur": 16,
+      "dy": 0.9
+     },
+     {
+      "layer": "mTool",
+      "at": "s1:start-40",
+      "until": "s6:comb+2",
+      "dur": 16,
+      "dx": -3.5
+     },
+     {
+      "layer": "mTool",
+      "at": "s6:comb+20",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": 3.5
+     },
+     {
+      "layer": "mTool",
+      "at": "s6:comb+44",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dy": 0.9
+     },
+     {
+      "layer": "hardPart",
+      "at": "s1:start-40",
+      "until": "s8:scr-12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "hardScratch",
+      "at": "s1:start-40",
+      "until": "s8:scr+2",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "nPad",
+      "at": "s11:start+14",
+      "until": "s11:start+400",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "nDisc",
+      "at": "s11:start+14",
+      "until": "s11:start+400",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "nQuartz",
+      "at": "s11:start+14",
+      "until": "s11:start+400",
+      "opacity": 0.0,
+      "dur": 4
+     }
+    ],
+    "run": [
+     {
+      "id": "padSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "headSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "headSweep",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "slDrop",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "slSpread",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "slOutA",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "slOutB",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start+6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 17 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "答案是研磨墊，一塊有彈性的塑膠圓墊，鋪在會旋轉的圓台。",
+   "tts": "答案是研磨墊，一塊有彈性的塑膠圓墊，鋪在會旋轉的圓台。",
+   "subtitle": {
+    "zh": "答案是研磨墊\n一塊有彈性的\n塑膠圓墊\n鋪在會旋轉的\n圓台",
+    "en": "The answer: the pad, | a springy | plastic round mat, | laid on a | rotating platen."
+   },
+   "keywords": [
+    "研磨墊",
+    "彈性",
+    "圓台"
+   ],
+   "cues": [
+    {
+     "id": "ans",
+     "text": "答案"
+    },
+    {
+     "id": "pad",
+     "text": "研磨墊"
+    },
+    {
+     "id": "soft",
+     "text": "彈性"
+    },
+    {
+     "id": "round",
+     "text": "圓墊"
+    },
+    {
+     "id": "platen",
+     "text": "圓台"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 6267659、10625393、11053339；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-14",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 0.9,
+      "y": 2.6,
+      "d": 41,
+      "elev": 34
+     },
+     {
+      "at": "start+8",
+      "dur": 30,
+      "x": 3.2,
+      "y": 2.25,
+      "d": 40,
+      "elev": 38
+     },
+     {
+      "at": "pad-4",
+      "dur": 26,
+      "x": 0.4,
+      "y": 2.55,
+      "d": 40,
+      "elev": 34
+     },
+     {
+      "at": "soft+6",
+      "dur": 24,
+      "x": 0.4,
+      "y": 2.95,
+      "d": 44,
+      "elev": 30
+     },
+     {
+      "at": "s2:platen+2",
+      "dur": 20,
+      "x": 0.6,
+      "y": 2.6,
+      "d": 40,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "slDrop",
+      "at": "start-4",
+      "ramp": 4,
+      "until": "s2:pad-2"
+     },
+     {
+      "id": "padSpin",
+      "at": "s2:platen+24",
+      "ramp": 10,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "headSpin",
+      "at": "s2:platen+24",
+      "ramp": 10,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "headSweep",
+      "at": "s2:platen+24",
+      "ramp": 10,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "slSpread",
+      "at": "s2:platen+24",
+      "ramp": 4,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "slDrop",
+      "at": "s2:platen+24",
+      "ramp": 4,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "slOutA",
+      "at": "s2:platen+24",
+      "ramp": 6,
+      "until": "s3:sand-8"
+     },
+     {
+      "id": "slOutB",
+      "at": "s2:platen+24",
+      "ramp": 6,
+      "until": "s3:sand-8"
+     }
+    ],
+    "labels": [
+     {
+      "part": "padA",
+      "text": "研磨墊",
+      "en": "Polishing pad",
+      "color": "amber",
+      "at": "pad",
+      "until": "pad+46",
+      "cut": true
+     },
+     {
+      "part": "padTop",
+      "text": "研磨層",
+      "en": "Polishing layer",
+      "color": "amber",
+      "at": "soft+10",
+      "until": "round+25",
+      "cut": true
+     },
+     {
+      "part": "platen",
+      "text": "圓台",
+      "en": "Platen",
+      "color": "blue",
+      "at": "round+27",
+      "until": "platen+27",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-what",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "研磨墊：常見的疊層",
+      "tag": "示意",
+      "t": {
+       "ans": {
+        "at": "ans"
+       },
+       "pad": {
+        "at": "pad"
+       },
+       "soft": {
+        "at": "soft"
+       },
+       "round": {
+        "at": "round"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶圓倒扣壓在墊子，一起旋轉。像拿砂紙磨木板，凸的地方先被磨掉。",
+   "tts": "晶圓倒扣壓在墊子，一起旋轉。像拿砂紙磨木板，凸的地方先被磨掉。",
+   "subtitle": {
+    "zh": "晶圓倒扣\n壓在墊子\n一起旋轉\n像拿砂紙\n磨木板\n凸的地方\n先被磨掉",
+    "en": "The wafer, face down, | pressed on the pad, | spinning together. | Like sandpaper | on a wooden board, | the high spots | wear off first."
+   },
+   "keywords": [
+    "倒扣",
+    "砂紙",
+    "凸的地方"
+   ],
+   "cues": [
+    {
+     "id": "flip",
+     "text": "倒扣"
+    },
+    {
+     "id": "spin",
+     "text": "旋轉"
+    },
+    {
+     "id": "sand",
+     "text": "砂紙"
+    },
+    {
+     "id": "bump",
+     "text": "凸的地方"
+    },
+    {
+     "id": "off",
+     "text": "磨掉"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 6217434、6293852；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "sand-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-3",
+      "dur": 24,
+      "x": 0.9,
+      "y": 1.8,
+      "d": 38,
+      "elev": 42
+     },
+     {
+      "at": "sand-6",
+      "dur": 1,
+      "x": 18.0,
+      "y": 1.0,
+      "d": 37,
+      "elev": 31
+     }
+    ],
+    "run": [
+     {
+      "id": "wGlow0",
+      "at": "sand-4",
+      "ramp": 8,
+      "until": "bump+30"
+     },
+     {
+      "id": "wGlow1",
+      "at": "bump+30",
+      "ramp": 8,
+      "until": "bump+52"
+     },
+     {
+      "id": "wRub",
+      "at": "sand-4",
+      "ramp": 8,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "wDebris",
+      "at": "sand",
+      "ramp": 6,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "wSlurry",
+      "at": "sand",
+      "ramp": 6,
+      "until": "s11:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wafer",
+      "text": "晶圓（倒扣）",
+      "en": "Wafer, face down",
+      "color": "blue",
+      "at": "flip",
+      "until": "flip+46",
+      "cut": true
+     },
+     {
+      "part": "bump",
+      "text": "凸處壓力大",
+      "en": "High spot",
+      "color": "amber",
+      "at": "sand-8",
+      "until": "sand+37",
+      "cut": true,
+      "xy": [
+       300,
+       306
+      ]
+     },
+     {
+      "part": "wpad",
+      "text": "墊子",
+      "en": "Pad",
+      "color": "blue",
+      "at": "bump+12",
+      "until": "bump+58",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-grind",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "砂紙磨木板：凸的先磨",
+      "tag": "示意（不標壓力數字）",
+      "t": {
+       "sand": {
+        "at": "sand"
+       },
+       "bump": {
+        "at": "bump"
+       },
+       "off": {
+        "at": "off"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "墊子表面布滿細孔，抓住研磨液。還刻著溝槽，像鞋底紋路，讓藥水流動、帶走碎屑。",
+   "tts": "墊子表面布滿細孔，抓住研磨液。還刻著溝槽，像鞋底紋路，讓藥水流動、帶走碎屑。",
+   "subtitle": {
+    "zh": "墊子表面\n布滿細孔\n抓住研磨液\n還刻著溝槽\n像鞋底紋路\n讓藥水流動\n帶走碎屑",
+    "en": "The pad surface | is full of pores | that hold slurry. | Grooves are cut in, | like shoe treads, | letting liquid flow | and carry debris."
+   },
+   "keywords": [
+    "細孔",
+    "溝槽",
+    "鞋底紋路"
+   ],
+   "cues": [
+    {
+     "id": "pore",
+     "text": "細孔"
+    },
+    {
+     "id": "grab",
+     "text": "抓住"
+    },
+    {
+     "id": "groove",
+     "text": "溝槽"
+    },
+    {
+     "id": "shoe",
+     "text": "鞋底紋路"
+    },
+    {
+     "id": "flow",
+     "text": "流動"
+    },
+    {
+     "id": "chip",
+     "text": "碎屑"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 10625393、11053339、12344702；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 38.0,
+      "y": -0.5,
+      "d": 31.5,
+      "elev": 33
+     },
+     {
+      "at": "pore+14",
+      "dur": 30,
+      "x": 38.2,
+      "y": -0.4,
+      "d": 27,
+      "elev": 27
+     },
+     {
+      "at": "flow+6",
+      "dur": 30,
+      "x": 38.0,
+      "y": -0.5,
+      "d": 31.5,
+      "elev": 33
+     }
+    ],
+    "run": [
+     {
+      "id": "mAbrIn",
+      "at": "grab-6",
+      "ramp": 6,
+      "until": "groove-8"
+     },
+     {
+      "id": "mGroove",
+      "at": "groove",
+      "ramp": 6,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "mGroove2",
+      "at": "groove",
+      "ramp": 6,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "mDebris",
+      "at": "flow",
+      "ramp": 6,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "mDebris2",
+      "at": "flow",
+      "ramp": 6,
+      "until": "s11:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pore",
+      "text": "細孔",
+      "en": "Pores",
+      "color": "amber",
+      "at": "pore",
+      "until": "pore+46",
+      "cut": true
+     },
+     {
+      "part": "groove",
+      "text": "溝槽",
+      "en": "Groove",
+      "color": "blue",
+      "at": "groove",
+      "until": "groove+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-pore",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "細孔抓液、溝槽排屑",
+      "tag": "示意（不標尺寸）",
+      "t": {
+       "pore": {
+        "at": "pore"
+       },
+       "groove": {
+        "at": "groove"
+       },
+       "shoe": {
+        "at": "shoe"
+       },
+       "chip": {
+        "at": "chip"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "磨久了，表面會被磨滑，像用久的抹布，抓不住磨粒。",
+   "tts": "磨久了，表面會被磨滑，像用久的抹布，抓不住磨粒。",
+   "subtitle": {
+    "zh": "磨久了\n表面會被磨滑\n像用久的抹布\n抓不住磨粒",
+    "en": "After long use, | the surface glazes, | like a worn rag | that can't hold grit."
+   },
+   "keywords": [
+    "磨滑",
+    "抹布",
+    "磨粒"
+   ],
+   "cues": [
+    {
+     "id": "long",
+     "text": "磨久了"
+    },
+    {
+     "id": "slick",
+     "text": "磨滑"
+    },
+    {
+     "id": "rag",
+     "text": "抹布"
+    },
+    {
+     "id": "lose",
+     "text": "抓不住"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 6945857、7815495；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 38.0,
+      "y": -0.5,
+      "d": 31.5,
+      "elev": 33
+     }
+    ],
+    "run": [
+     {
+      "id": "mAbrBounce",
+      "at": "slick",
+      "ramp": 6,
+      "until": "s11:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "glaze",
+      "text": "磨滑的表面",
+      "en": "Glazed surface",
+      "color": "amber",
+      "at": "slick",
+      "until": "slick+46",
+      "cut": true
+     },
+     {
+      "part": "grain",
+      "text": "磨粒抓不住",
+      "en": "Grit slides off",
+      "color": "blue",
+      "at": "lose",
+      "until": "lose+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-glaze",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "用久的抹布",
+      "tag": "示意",
+      "t": {
+       "long": {
+        "at": "long"
+       },
+       "slick": {
+        "at": "slick"
+       },
+       "rag": {
+        "at": "rag"
+       },
+       "lose": {
+        "at": "lose"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "所以有鑽石碟，來回掃過墊子，把表面重新刷粗，像梳子梳起壓扁的毛。",
+   "tts": "所以有鑽石碟，來回掃過墊子，把表面重新刷粗，像梳子梳起壓扁的毛。",
+   "subtitle": {
+    "zh": "所以有鑽石碟\n來回掃過墊子\n把表面\n重新刷粗\n像梳子梳起\n壓扁的毛",
+    "en": "So a diamond disc | sweeps across the pad, | roughening | the surface again, | like a comb lifting | flattened fur."
+   },
+   "keywords": [
+    "鑽石碟",
+    "刷粗",
+    "梳子"
+   ],
+   "cues": [
+    {
+     "id": "dia",
+     "text": "鑽石碟"
+    },
+    {
+     "id": "sweep",
+     "text": "來回掃過"
+    },
+    {
+     "id": "rough",
+     "text": "重新刷粗"
+    },
+    {
+     "id": "comb",
+     "text": "梳子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 6945857、7815495；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "rough-10",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": -1.0,
+      "y": 1.8,
+      "d": 40,
+      "elev": 42
+     },
+     {
+      "at": "rough-10",
+      "dur": 1,
+      "x": 38.0,
+      "y": 0.2,
+      "d": 31.5,
+      "elev": 33
+     }
+    ],
+    "run": [
+     {
+      "id": "padSpin",
+      "at": "start-2",
+      "ramp": 8,
+      "until": "rough-14"
+     },
+     {
+      "id": "slOutA",
+      "at": "start-2",
+      "ramp": 6,
+      "until": "rough-14"
+     },
+     {
+      "id": "slOutB",
+      "at": "start-2",
+      "ramp": 6,
+      "until": "rough-14"
+     },
+     {
+      "id": "condSwing",
+      "at": "dia-8",
+      "ramp": 10,
+      "until": "rough-14"
+     },
+     {
+      "id": "condSpin",
+      "at": "dia-8",
+      "ramp": 10,
+      "until": "rough-14"
+     },
+     {
+      "id": "condDust",
+      "at": "sweep",
+      "ramp": 6,
+      "until": "rough-14"
+     },
+     {
+      "id": "toolRub",
+      "at": "rough+14",
+      "ramp": 8,
+      "until": "s6:comb+44"
+     },
+     {
+      "id": "toolChips",
+      "at": "rough+14",
+      "ramp": 6,
+      "until": "s6:comb+44"
+     },
+     {
+      "id": "toolCrumb",
+      "at": "rough+14",
+      "ramp": 6,
+      "until": "s6:comb+44"
+     },
+     {
+      "id": "mGroove",
+      "at": "rough+12",
+      "ramp": 6,
+      "until": "s11:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "condDisc",
+      "text": "鑽石碟",
+      "en": "Diamond disc",
+      "color": "amber",
+      "at": "dia",
+      "until": "dia+46",
+      "cut": true
+     },
+     {
+      "part": "grain",
+      "text": "鑽石顆粒",
+      "en": "Diamond grit",
+      "color": "blue",
+      "at": "comb-8",
+      "until": "comb+38",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-dress",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "梳子梳起壓扁的毛",
+      "tag": "示意",
+      "t": {
+       "dia": {
+        "at": "dia"
+       },
+       "sweep": {
+        "at": "sweep"
+       },
+       "rough": {
+        "at": "rough"
+       },
+       "comb": {
+        "at": "comb"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "holdSec": 0.6,
+   "headSec": 0.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "墊子還是會磨薄。磨到不行，整片換掉，機台得停下來。",
+   "tts": "墊子還是會磨薄。磨到不行，整片換掉，機台得停下來。",
+   "subtitle": {
+    "zh": "墊子還是\n會磨薄\n磨到不行\n整片換掉\n機台得\n停下來",
+    "en": "The pad still | wears thin. | When it's done, | replace the whole pad, | and the tool | has to stop."
+   },
+   "keywords": [
+    "磨薄",
+    "整片換掉",
+    "停下來"
+   ],
+   "cues": [
+    {
+     "id": "thin",
+     "text": "磨薄"
+    },
+    {
+     "id": "swap",
+     "text": "整片換掉"
+    },
+    {
+     "id": "stop",
+     "text": "停下來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 10625393 敘述；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "tool",
+      "at": "s7:thin+16",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 58.0,
+      "y": -0.9,
+      "d": 29,
+      "elev": 38
+     },
+     {
+      "at": "s7:thin+16",
+      "dur": 1,
+      "x": -0.2,
+      "y": 1.75,
+      "d": 39,
+      "elev": 35
+     }
+    ],
+    "run": [
+     {
+      "id": "padPeel",
+      "at": "s7:thin+18",
+      "ramp": 18,
+      "until": "s7:thin+44"
+     },
+     {
+      "id": "rollerSpin",
+      "at": "s7:thin+84",
+      "ramp": 4,
+      "until": "s7:thin+110"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tOld",
+      "text": "舊墊薄、新墊厚",
+      "en": "Old: thin / New: thick",
+      "color": "amber",
+      "at": "voice-2",
+      "until": "s7:thin+14",
+      "cut": true
+     },
+     {
+      "part": "padOld",
+      "text": "舊墊",
+      "en": "Old pad",
+      "color": "amber",
+      "at": "s7:thin+18",
+      "until": "s7:thin+64",
+      "cut": true
+     },
+     {
+      "part": "padNew",
+      "text": "新墊",
+      "en": "New pad",
+      "color": "blue",
+      "at": "s7:thin+66",
+      "until": "s7:thin+114",
+      "cut": true,
+      "xy": [
+       230,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-wear",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "磨薄就換，機台停下來",
+      "tag": "示意（不標壽命時數）",
+      "t": {
+       "thin": {
+        "at": "thin"
+       },
+       "swap": {
+        "at": "swap"
+       },
+       "stop": {
+        "at": "stop"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "軟硬也有學問。太軟，順著起伏磨不平；太硬，又容易刮傷。",
+   "tts": "軟硬也有學問。太軟，順著起伏磨不平；太硬，又容易刮傷。",
+   "subtitle": {
+    "zh": "軟硬也有學問\n太軟順著起伏\n磨不平\n太硬又容易刮傷",
+    "en": "Soft or hard matters too. | Too soft: it follows the bumps, | so it can't flatten. | Too hard: it scratches easily."
+   },
+   "keywords": [
+    "太軟",
+    "太硬",
+    "刮傷"
+   ],
+   "cues": [
+    {
+     "id": "hard",
+     "text": "軟硬"
+    },
+    {
+     "id": "soft",
+     "text": "太軟"
+    },
+    {
+     "id": "flat",
+     "text": "磨不平"
+    },
+    {
+     "id": "tough",
+     "text": "太硬"
+    },
+    {
+     "id": "scr",
+     "text": "刮傷"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 11806830、12064845；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 74.0,
+      "y": 1.6,
+      "d": 37,
+      "elev": 30
+     },
+     {
+      "at": "tough-6",
+      "dur": 30,
+      "x": 90.0,
+      "y": 1.6,
+      "d": 37,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "hsRubSoft",
+      "at": "soft-6",
+      "ramp": 8,
+      "until": "tough-6"
+     },
+     {
+      "id": "hsSoftHot",
+      "at": "soft-4",
+      "ramp": 8,
+      "until": "tough-8"
+     },
+     {
+      "id": "hsRubHard",
+      "at": "tough-6",
+      "ramp": 8,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "hsHot",
+      "at": "tough-4",
+      "ramp": 8,
+      "until": "s11:start+400"
+     },
+     {
+      "id": "hsPartDrop",
+      "at": "scr-12",
+      "ramp": 4,
+      "until": "scr+16"
+     }
+    ],
+    "labels": [
+     {
+      "part": "softL",
+      "text": "軟墊：凹處也被碰",
+      "en": "Soft: touches valleys too",
+      "color": "amber",
+      "at": "soft",
+      "until": "soft+46",
+      "cut": true
+     },
+     {
+      "part": "hardL",
+      "text": "硬墊：只碰凸處，易刮傷",
+      "en": "Hard: high spots only, scratches",
+      "color": "blue",
+      "at": "tough",
+      "until": "scr+28",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-hard",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "軟硬各有代價",
+      "tag": "示意",
+      "t": {
+       "soft": {
+        "at": "soft"
+       },
+       "flat": {
+        "at": "flat"
+       },
+       "tough": {
+        "at": "tough"
+       },
+       "scr": {
+        "at": "scr"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "國際有杜邦分家出來的電子材料公司、日本富士紡，台灣有頌勝。",
+   "tts": "國際有杜邦分家出來的電子材料公司、日本富士紡，台灣有頌勝。",
+   "subtitle": {
+    "zh": "國際有\n杜邦分家出來的\n電子材料公司\n日本富士紡\n台灣有頌勝",
+    "en": "Worldwide there is | Qnity, spun out | of DuPont, | Japan's Fujibo, | Taiwan's Praise Victor Industrial (PVI)."
+   },
+   "keywords": [
+    "杜邦",
+    "富士紡",
+    "頌勝"
+   ],
+   "cues": [
+    {
+     "id": "intl",
+     "text": "國際"
+    },
+    {
+     "id": "dp",
+     "text": "杜邦"
+    },
+    {
+     "id": "fb",
+     "text": "富士紡"
+    },
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "sh",
+     "text": "頌勝"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "DuPont、SEC、富士紡官網、證交所；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 112.0,
+      "y": -1.4,
+      "d": 33,
+      "elev": 38
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-co",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "研磨墊供應商",
+      "tag": "DuPont、SEC、富士紡、證交所；截至 2026/11/27",
+      "t": {
+       "intl": {
+        "at": "intl"
+       },
+       "dp": {
+        "at": "dp"
+       },
+       "fb": {
+        "at": "fb"
+       },
+       "tw": {
+        "at": "tw"
+       },
+       "sh": {
+        "at": "sh"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "holdSec": 0.75,
+   "headSec": 0.2,
+   "pauseAfter": 0.75
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "墊子會壞，腔體裡的零件也一樣。下一集，看這些耗材。留言研磨墊，拿完整資料。",
+   "tts": "墊子會壞，腔體裡的零件也一樣。下一集，看這些耗材。留言研磨墊，拿完整資料。",
+   "subtitle": {
+    "zh": "墊子會壞\n腔體裡的零件\n也一樣\n下一集\n看這些耗材\n留言研磨墊\n拿完整資料",
+    "en": "Pads wear out, | and so do the parts | inside the chamber. | Next episode: | these consumables. | Comment \"pad\" | for the full notes."
+   },
+   "keywords": [
+    "耗材",
+    "研磨墊"
+   ],
+   "cues": [
+    {
+     "id": "wear",
+     "text": "墊子會壞"
+    },
+    {
+     "id": "cham",
+     "text": "腔體"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言研磨墊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "voice+1",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+1",
+      "dur": 1,
+      "x": 134.0,
+      "y": -3.6,
+      "d": 46,
+      "elev": 50
+     }
+    ],
+    "labels": [
+     {
+      "part": "nPadA",
+      "text": "研磨墊",
+      "en": "Polishing pad",
+      "color": "amber",
+      "at": "voice+2",
+      "until": "wear+46",
+      "cut": true
+     },
+     {
+      "part": "nQzA",
+      "text": "石英環",
+      "en": "Quartz ring",
+      "color": "amber",
+      "at": "cham+24",
+      "until": "cham+70",
+      "cut": true
+     },
+     {
+      "part": "nDiscA",
+      "text": "鑽石碟",
+      "en": "Diamond disc",
+      "color": "blue",
+      "at": "next+18",
+      "until": "next+64",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pad-co",
+      "at": "voice-3",
+      "until": "voice+2",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "研磨墊供應商",
+      "tag": "DuPont、SEC、富士紡、證交所；截至 2026/11/27",
+      "t": {
+       "intl": {
+        "at": "s9:intl"
+       },
+       "dp": {
+        "at": "s9:dp"
+       },
+       "fb": {
+        "at": "s9:fb"
+       },
+       "tw": {
+        "at": "s9:tw"
+       },
+       "sh": {
+        "at": "s9:sh"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "pad-next",
+      "at": "voice+2",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：耗材",
+      "t": {
+       "wear": {
+        "at": "wear"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "holdSec": 0.6,
+   "headSec": 0.2
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "耗材",
+     "trail": [
+      "墊子會壞，零件也一樣"
+     ],
+     "comment": "研磨墊",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
