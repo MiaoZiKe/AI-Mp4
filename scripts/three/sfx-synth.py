@@ -419,6 +419,7 @@ def frame_rms(x, hop):
 MIN_GAP_DB = 14.0         # 硬門檻：旁白講話的每一窗，sfx 要比旁白低至少這麼多 dB（Andy 2026/11/27：「不要影響旁白聲」）
 VANISH_BED_DB = 40.0      # 鋪陳類（bed）講話中本來就深壓 −25～−28 dB，壓超過 40 dB 才算消失
 VANISH_DB = 20.0          # cue 在成片的殘差比設計音量低超過這麼多＝被壓到消失（④ 2026-11-27 建議）
+IMPACT_MARGIN_DB = 4.0     # 撞擊類講話中天花板的餘裕（成片解碼後仍要 ≥14 dB）
 GUARD_MARGIN_DB = 1.5     # 逐窗天花板多留的餘裕
 
 def sp_full(speech, nf):
@@ -517,7 +518,7 @@ def cmd_mix(argv):
         # 撞擊類：講話窗逐窗天花板＝旁白 −(14＋餘裕)，扣掉同窗已壓低的鋪陳聲能量；不講話的窗維持設計音量。
         # 鄰窗取最小只在講話窗之間做（④修法），不講話的窗只承接相鄰講話窗的值，避免內插時把高增益漏進講話窗。
         i2 = imp * g; ie = frame_rms(i2, hop); be = frame_rms(sd, hop)
-        ceil_ = ve * db(-(MIN_GAP_DB + GUARD_MARGIN_DB))
+        ceil_ = ve * db(-(MIN_GAP_DB + IMPACT_MARGIN_DB))   # 撞擊聲峰值尖，限幅與 AAC 會把差距吃掉約 2 dB（前驅物 11-27 實測 14.2→12.4），多留餘裕
         allow = np.sqrt(np.maximum(ceil_ ** 2 - be ** 2, 0))
         gi = np.ones(nf)
         gi[spk] = np.minimum(1.0, allow[spk] / np.maximum(ie[spk], 1e-9))
