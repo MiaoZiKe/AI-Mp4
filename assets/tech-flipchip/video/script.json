@@ -1,0 +1,2149 @@
+{
+ "slug": "tech-flipchip",
+ "prevEpisode": "3-3：封裝材料",
+ "title": "封裝-2：覆晶（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "晶片往下游走",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "依 docs/prompts/tech-旁白金手指.md；本子聊天室不配音、不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "覆晶接合機（示意）",
+    "en": "FLIP-CHIP BONDER",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "micro",
+    "label": "覆晶剖面（示意放大）",
+    "en": "FLIP-CHIP CROSS-SECTION",
+    "field": "1 mm",
+    "ruler": "100 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "誰在做（示意位置）",
+    "en": "WHO MAKES IT",
+    "field": "200 m",
+    "ruler": "50 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "下一集（預告）",
+    "en": "NEXT EPISODE",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "覆晶",
+   "晶片翻過來接"
+  ],
+  "sub": "像蓋印章一次接好",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "腳不夠用，晶片的電怎麼接出去？前一集看完封裝材料，這集看覆晶。",
+   "tts": "腳不夠用，晶片的電怎麼接出去？前一集看完封裝材料，這集看覆晶。",
+   "subtitle": {
+    "zh": "腳不夠用\n晶片的電怎麼接出去？\n前一集\n看完封裝材料\n這集看覆晶",
+    "en": "Not enough pins: | how do a chip's signals get out? | Last episode: | packaging materials. | This one: flip chip."
+   },
+   "keywords": [
+    "腳不夠用",
+    "覆晶"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "接出去"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "fc",
+     "text": "覆晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：倒過來好在哪？",
+     "title": "腳不夠用？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.4,
+      "y": 2.0,
+      "d": 42,
+      "elev": 28
+     },
+     {
+      "at": "start",
+      "dur": 160,
+      "x": 0.4,
+      "y": 2.0,
+      "d": 40,
+      "elev": 29
+     }
+    ],
+    "shift": [
+     {
+      "layer": "eject",
+      "at": "s2:flip-22",
+      "until": "s2:flip+6",
+      "dur": 6,
+      "dy": 0.12
+     },
+     {
+      "layer": "flipper",
+      "at": "s2:flip-12",
+      "until": "s2:flip+24",
+      "dur": 10,
+      "dy": 0.6
+     },
+     {
+      "layer": "flipper2",
+      "at": "s2:flip-12",
+      "until": "s2:flip+24",
+      "dur": 10,
+      "dy": 0.6
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip-12",
+      "until": "s12:start+400",
+      "dur": 10,
+      "dy": 0.6
+     },
+     {
+      "layer": "flipper",
+      "at": "s2:flip+22",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "flipper2",
+      "at": "s1:start-40",
+      "until": "s2:flip+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "head",
+      "at": "s1:start-40",
+      "until": "s12:start+400",
+      "dur": 1,
+      "dy": 0.6
+     },
+     {
+      "layer": "head",
+      "at": "s1:start-40",
+      "until": "s2:flip+16",
+      "dur": 8,
+      "dy": 1.4
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip+26",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": 0.6
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip+34",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 2.3
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip+46",
+      "until": "s2:flip+52",
+      "dur": 6,
+      "dy": -3.325
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip+58",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 3.4
+     },
+     {
+      "layer": "die",
+      "at": "s2:flip+72",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": -3.225
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+26",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": 0.6
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+34",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 2.3
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+46",
+      "until": "s2:flip+52",
+      "dur": 6,
+      "dy": -3.325
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+58",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dx": 3.4
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+72",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": -3.225
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+84",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": 1.0
+     },
+     {
+      "layer": "cover",
+      "at": "s1:q-54",
+      "until": "s1:q+70",
+      "dur": 12,
+      "dy": 1.0
+     },
+     {
+      "layer": "head",
+      "at": "s1:q-54",
+      "until": "s1:q+70",
+      "dur": 12,
+      "dx": 7.0,
+      "dy": -1.8
+     },
+     {
+      "layer": "flipper",
+      "at": "s1:q-26",
+      "until": "s1:q+66",
+      "dur": 12,
+      "dx": -2.4
+     },
+     {
+      "layer": "flipBase",
+      "at": "s1:q-26",
+      "until": "s1:q+66",
+      "dur": 12,
+      "dx": -2.4
+     },
+     {
+      "layer": "flux",
+      "at": "s1:q+20",
+      "until": "s1:q+62",
+      "dur": 10,
+      "dz": 2.4
+     },
+     {
+      "layer": "fcDie",
+      "at": "s1:start-40",
+      "until": "s3:short",
+      "dur": 20,
+      "dy": 1.0
+     },
+     {
+      "layer": "cLid",
+      "at": "s1:start-40",
+      "until": "s4:lid-4",
+      "dur": 18,
+      "dy": 2.6,
+      "fallIn": true,
+      "bounce": 0.03
+     },
+     {
+      "layer": "dUbm",
+      "at": "s1:start-40",
+      "until": "s5:bump+2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dUbm",
+      "at": "s5:sn+28",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dUbmK",
+      "at": "s1:start-40",
+      "until": "s5:bump+2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dResist",
+      "at": "s1:start-40",
+      "until": "s5:bump+14",
+      "dur": 14,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "dResist",
+      "at": "s1:start-40",
+      "until": "s5:bump+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dResist",
+      "at": "s5:sn+30",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dResist",
+      "at": "s5:sn+16",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dy": 2.6
+     },
+     {
+      "layer": "dCu0",
+      "at": "s1:start-40",
+      "until": "s5:cu-4",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dCu1",
+      "at": "s1:start-40",
+      "until": "s5:cu+4",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dCu2",
+      "at": "s1:start-40",
+      "until": "s5:cu+12",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dCu3",
+      "at": "s1:start-40",
+      "until": "s5:cu+20",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dSn0",
+      "at": "s1:start-40",
+      "until": "s5:sn-6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dSn0",
+      "at": "s5:sn+30",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dSn1",
+      "at": "s1:start-40",
+      "until": "s5:sn+0",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dSn1",
+      "at": "s5:sn+30",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dDome",
+      "at": "s1:start-40",
+      "until": "s5:sn+30",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pDie",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pSnSolid",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pHot",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pSnL",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pSnC",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pSnR",
+      "at": "s1:start-40",
+      "until": "s6:melt+6",
+      "dur": 30,
+      "dx": 0.55,
+      "dy": 0.07
+     },
+     {
+      "layer": "pSnSolid",
+      "at": "s6:melt+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pHot",
+      "at": "s1:start-40",
+      "until": "s6:place+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pHot",
+      "at": "s6:melt+10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pSnL",
+      "at": "s1:start-40",
+      "until": "s6:melt+4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pSnL",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pSnC",
+      "at": "s1:start-40",
+      "until": "s6:melt+4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pSnC",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pSnR",
+      "at": "s1:start-40",
+      "until": "s6:melt+4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pSnR",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pHeater",
+      "at": "s1:start-40",
+      "until": "s6:place+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pHeater",
+      "at": "s6:align+10",
+      "until": "s7:cte-4",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pHeater",
+      "at": "s7:crack+24",
+      "until": "s8:bake-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pSubL",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": -0.38
+     },
+     {
+      "layer": "pSubR",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": 0.38
+     },
+     {
+      "layer": "pPad0",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": -0.38
+     },
+     {
+      "layer": "pPad1",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": -0.19
+     },
+     {
+      "layer": "pPad3",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": 0.19
+     },
+     {
+      "layer": "pPad4",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": 0.38
+     },
+     {
+      "layer": "pStrain",
+      "at": "s1:start-40",
+      "until": "s7:cte+16",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pStrain",
+      "at": "s7:crack+38",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pCrack",
+      "at": "s1:start-40",
+      "until": "s7:crack",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pCrack",
+      "at": "s8:start",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pNeedle",
+      "at": "s1:start-40",
+      "until": "s8:start-6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pNeedle",
+      "at": "s8:bake+20",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf0",
+      "at": "s1:start-40",
+      "until": "s8:wick-10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf0",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf1",
+      "at": "s1:start-40",
+      "until": "s8:wick-3",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf1",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf2",
+      "at": "s1:start-40",
+      "until": "s8:wick+4",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf2",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf3",
+      "at": "s1:start-40",
+      "until": "s8:wick+11",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf3",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf4",
+      "at": "s1:start-40",
+      "until": "s8:wick+18",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf4",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf5",
+      "at": "s1:start-40",
+      "until": "s8:wick+25",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf5",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf6",
+      "at": "s1:start-40",
+      "until": "s8:wick+32",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf6",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf7",
+      "at": "s1:start-40",
+      "until": "s8:wick+39",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUf7",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUfFillet",
+      "at": "s1:start-40",
+      "until": "s8:wick+56",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUfFillet",
+      "at": "s8:bake+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pUfCure",
+      "at": "s1:start-40",
+      "until": "s8:bake+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pNeedle",
+      "at": "s8:bake+14",
+      "until": "s12:start+400",
+      "dur": 16,
+      "dy": 2.0
+     },
+     {
+      "layer": "nRdl",
+      "at": "s1:start-40",
+      "until": "s10:rdl",
+      "opacity": 0,
+      "dur": 3
+     }
+    ],
+    "run": [
+     {
+      "id": "fluxSpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s2:press+30"
+     },
+     {
+      "id": "upcamFlash",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s1:end+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "head",
+      "text": "接合頭",
+      "en": "Bond head",
+      "color": "blue",
+      "at": "q-52",
+      "until": "q-7",
+      "cut": true
+     },
+     {
+      "part": "flipper",
+      "text": "翻面單元",
+      "en": "Flip unit",
+      "color": "amber",
+      "at": "q-26",
+      "until": "q+19",
+      "cut": true
+     },
+     {
+      "part": "flux",
+      "text": "助焊劑盤",
+      "en": "Flux plate",
+      "color": "blue",
+      "at": "q+20",
+      "until": "q+65",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 4 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "fc": {
+        "at": "fc"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "覆晶，就是把晶片翻過來，正面朝下，像蓋印章，一次壓到載板。",
+   "tts": "覆晶，就是把晶片翻過來，正面朝下，像蓋印章，一次壓到載板。",
+   "subtitle": {
+    "zh": "覆晶就是把晶片翻過來\n正面朝下\n像蓋印章\n一次壓到載板",
+    "en": "Flip chip: turn the chip over, | face down, | like using a stamp, | pressed onto the substrate at once."
+   },
+   "keywords": [
+    "翻過來",
+    "蓋印章",
+    "載板"
+   ],
+   "cues": [
+    {
+     "id": "fcw",
+     "text": "覆晶"
+    },
+    {
+     "id": "flip",
+     "text": "翻過來"
+    },
+    {
+     "id": "down",
+     "text": "正面朝下"
+    },
+    {
+     "id": "stamp",
+     "text": "蓋印章"
+    },
+    {
+     "id": "press",
+     "text": "壓到載板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IBM 研究（C4 覆晶，1960 年代）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-14",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": -2.4,
+      "y": 2.6,
+      "d": 24,
+      "elev": 32
+     },
+     {
+      "at": "flip+40",
+      "dur": 40,
+      "x": 0.8,
+      "y": 2.4,
+      "d": 28,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "vac",
+      "at": "flip-16",
+      "ramp": 4,
+      "until": "flip+24"
+     },
+     {
+      "id": "vacHead",
+      "at": "flip+16",
+      "ramp": 4,
+      "until": "flip+82"
+     },
+     {
+      "id": "flip",
+      "at": "flip",
+      "ramp": 18,
+      "until": "flip+1"
+     },
+     {
+      "id": "flipBackArm",
+      "at": "flip+28",
+      "ramp": 20,
+      "until": "flip+29"
+     }
+    ],
+    "labels": [
+     {
+      "part": "flipper",
+      "text": "翻面單元",
+      "en": "Flip unit",
+      "color": "amber",
+      "at": "flip-6",
+      "until": "flip+39",
+      "cut": true
+     },
+     {
+      "part": "rail",
+      "text": "載板",
+      "en": "Substrate",
+      "color": "blue",
+      "at": "flip+60",
+      "until": "flip+105",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-stamp",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像蓋印章：一次全部接好",
+      "tag": "示意",
+      "t": {
+       "fcw": {
+        "at": "fcw"
+       },
+       "flip": {
+        "at": "flip"
+       },
+       "down": {
+        "at": "down"
+       },
+       "stamp": {
+        "at": "stamp"
+       },
+       "press": {
+        "at": "press"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "打線只能排在邊緣一圈，覆晶整面都是接點，腳多、路也短。",
+   "tts": "打線只能排在邊緣一圈，覆晶整面都是接點，腳多、路也短。",
+   "subtitle": {
+    "zh": "打線只能排在\n邊緣一圈\n覆晶整面都是接點\n腳多路也短",
+    "en": "Wire bonds only fit | around the edge; | flip chip uses the whole face: | more pins, shorter paths."
+   },
+   "keywords": [
+    "邊緣一圈",
+    "整面",
+    "路也短"
+   ],
+   "cues": [
+    {
+     "id": "wb",
+     "text": "打線"
+    },
+    {
+     "id": "edge",
+     "text": "邊緣一圈"
+    },
+    {
+     "id": "full",
+     "text": "整面"
+    },
+    {
+     "id": "short",
+     "text": "路也短"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Amkor、ASE 覆晶技術說明；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 34,
+      "y": 1.2,
+      "d": 30,
+      "elev": 48
+     }
+    ],
+    "run": [
+     {
+      "id": "sigWire",
+      "at": "short-10",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "sigBump",
+      "at": "short-10",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wbWire",
+      "text": "打線：邊緣一圈",
+      "en": "Wire bond: edge only",
+      "color": "amber",
+      "at": "edge-4",
+      "until": "edge+41",
+      "cut": true
+     },
+     {
+      "part": "fcBumpA",
+      "text": "覆晶：整面凸塊",
+      "en": "Flip chip: full array",
+      "color": "blue",
+      "at": "full",
+      "until": "full+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-vs",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "邊緣一圈 vs 整面",
+      "tag": "示意（不標腳數）",
+      "t": {
+       "wb": {
+        "at": "wb"
+       },
+       "edge": {
+        "at": "edge"
+       },
+       "full": {
+        "at": "full"
+       },
+       "many": {
+        "at": "short"
+       },
+       "short": {
+        "at": "short"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "晶片背面朝外，沒有線擋著，直接貼散熱蓋。",
+   "tts": "晶片背面朝外，沒有線擋著，直接貼散熱蓋。",
+   "subtitle": {
+    "zh": "晶片背面朝外\n沒有線擋著\n直接貼散熱蓋",
+    "en": "The chip's back faces out, | no wires in the way, | so a heat lid goes right on."
+   },
+   "keywords": [
+    "背面",
+    "散熱蓋"
+   ],
+   "cues": [
+    {
+     "id": "back",
+     "text": "背面朝外"
+    },
+    {
+     "id": "nowire",
+     "text": "沒有線"
+    },
+    {
+     "id": "lid",
+     "text": "散熱蓋"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "覆晶球柵陣列封裝（FCBGA）通則；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 56,
+      "y": 2.2,
+      "d": 30,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "dieHot",
+      "at": "start",
+      "ramp": 8,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "heatUp",
+      "at": "lid-2",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "timA",
+      "text": "導熱膏",
+      "en": "Thermal paste",
+      "color": "amber",
+      "at": "back",
+      "until": "back+45",
+      "cut": true
+     },
+     {
+      "part": "lidA",
+      "text": "散熱蓋",
+      "en": "Heat lid",
+      "color": "blue",
+      "at": "lid+5",
+      "until": "lid+36",
+      "cut": true,
+      "xy": [
+       820,
+       400
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-heat",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "背面朝外：熱往上走",
+      "tag": "示意，不是量測",
+      "t": {
+       "back": {
+        "at": "back"
+       },
+       "nowire": {
+        "at": "nowire"
+       },
+       "lid": {
+        "at": "lid"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "holdSec": 0.73,
+   "headSec": 0.3,
+   "pauseAfter": 0.73
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "接點是小凸塊，晶圓還沒切就先做好：電鍍銅柱，頂端戴一頂錫帽。",
+   "tts": "接點是小凸塊，晶圓還沒切就先做好：電鍍銅柱，頂端戴一頂錫帽。",
+   "subtitle": {
+    "zh": "接點是小凸塊\n晶圓還沒切\n就先做好\n電鍍銅柱\n頂端戴一頂錫帽",
+    "en": "The contacts are tiny bumps, | made before the wafer | is even diced: | plate copper pillars, | then top each with a solder cap."
+   },
+   "keywords": [
+    "小凸塊",
+    "銅柱",
+    "錫帽"
+   ],
+   "cues": [
+    {
+     "id": "bump",
+     "text": "小凸塊"
+    },
+    {
+     "id": "wafer",
+     "text": "晶圓還沒切"
+    },
+    {
+     "id": "cu",
+     "text": "電鍍銅柱"
+    },
+    {
+     "id": "sn",
+     "text": "錫帽"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "晶圓凸塊製程（凸塊下金屬層、電鍍、回焊）文獻；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 78,
+      "y": 2.6,
+      "d": 26,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "plate",
+      "at": "cu-6",
+      "ramp": 6,
+      "until": "sn+16"
+     }
+    ],
+    "labels": [
+     {
+      "part": "resistA",
+      "text": "光阻開孔",
+      "en": "Resist openings",
+      "color": "blue",
+      "at": "bump+14",
+      "until": "bump+59",
+      "cut": true
+     },
+     {
+      "part": "cuA",
+      "text": "電鍍銅柱",
+      "en": "Plated copper pillar",
+      "color": "amber",
+      "at": "cu+2",
+      "until": "cu+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-bump",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "凸塊怎麼長",
+      "tag": "示意（不標尺寸）",
+      "t": {
+       "bump": {
+        "at": "bump"
+       },
+       "wafer": {
+        "at": "wafer"
+       },
+       "cu": {
+        "at": "cu"
+       },
+       "sn": {
+        "at": "sn"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "放到載板加熱，錫一熔化，表面張力就像水珠，把放歪的晶片拉正。",
+   "tts": "放到載板加熱，錫一熔化，表面張力就像水珠，把放歪的晶片拉正。",
+   "subtitle": {
+    "zh": "放到載板加熱\n錫一熔化\n表面張力\n就像水珠\n把放歪的晶片拉正",
+    "en": "Placed on the substrate and heated, | the solder melts; | surface tension, | like a water drop, | pulls a crooked chip straight."
+   },
+   "keywords": [
+    "熔化",
+    "表面張力",
+    "拉正"
+   ],
+   "cues": [
+    {
+     "id": "place",
+     "text": "放到載板"
+    },
+    {
+     "id": "melt",
+     "text": "熔化"
+    },
+    {
+     "id": "tension",
+     "text": "表面張力"
+    },
+    {
+     "id": "drop",
+     "text": "水珠"
+    },
+    {
+     "id": "align",
+     "text": "拉正"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "C4 自我對位（錫量多時；細間距改熱壓接合）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 102,
+      "y": 1.5,
+      "d": 27,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "heaterOn",
+      "at": "place+6",
+      "ramp": 8,
+      "until": "align+10"
+     },
+     {
+      "id": "melt",
+      "at": "place+10",
+      "ramp": 6,
+      "until": "melt+10"
+     },
+     {
+      "id": "meltM",
+      "at": "melt+4",
+      "ramp": 8,
+      "until": "align+12"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pDieA",
+      "text": "放歪的晶片",
+      "en": "Off-center chip",
+      "color": "amber",
+      "at": "place",
+      "until": "place+45",
+      "cut": true
+     },
+     {
+      "part": "pSnA",
+      "text": "熔錫拉正",
+      "en": "Molten solder pulls",
+      "color": "blue",
+      "at": "melt+10",
+      "until": "melt+55",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-align",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像水珠把東西拉正",
+      "tag": "示意（錫量多時）",
+      "t": {
+       "place": {
+        "at": "place"
+       },
+       "melt": {
+        "at": "melt"
+       },
+       "tension": {
+        "at": "tension"
+       },
+       "drop": {
+        "at": "drop"
+       },
+       "align": {
+        "at": "align"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "可是晶片和載板熱脹冷縮差五倍，焊點會被扭壞。",
+   "tts": "可是晶片和載板熱脹冷縮差五倍，焊點會被扭壞。",
+   "subtitle": {
+    "zh": "可是晶片和載板\n熱脹冷縮差五倍\n焊點會被扭壞",
+    "en": "But the chip and substrate | expand about 5x differently, | which can twist the joints apart."
+   },
+   "keywords": [
+    "熱脹冷縮",
+    "五倍",
+    "扭壞"
+   ],
+   "cues": [
+    {
+     "id": "but",
+     "text": "可是"
+    },
+    {
+     "id": "cte",
+     "text": "熱脹冷縮"
+    },
+    {
+     "id": "x5",
+     "text": "五倍"
+    },
+    {
+     "id": "crack",
+     "text": "扭壞"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "文獻：矽約 3、有機載板約 16 ppm/°C；變形誇大示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 102,
+      "y": 1.5,
+      "d": 27,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "heaterOn",
+      "at": "cte-4",
+      "ramp": 8,
+      "until": "crack+24"
+     },
+     {
+      "id": "crackP",
+      "at": "crack",
+      "ramp": 4,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pCrackA",
+      "text": "焊點被扭",
+      "en": "Joint strained",
+      "color": "amber",
+      "at": "crack-12",
+      "until": "crack+33",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-cte",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱脹冷縮差五倍",
+      "tag": "文獻值；示意，變形誇大",
+      "t": {
+       "but": {
+        "at": "but"
+       },
+       "cte": {
+        "at": "cte"
+       },
+       "x5": {
+        "at": "x5"
+       },
+       "crack": {
+        "at": "crack"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.9,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "所以沿邊緣點膠，膠像紙巾吸水滲進縫裡，再烤硬護住焊點。",
+   "tts": "所以沿邊緣點膠，膠像紙巾吸水滲進縫裡，再烤硬護住焊點。",
+   "subtitle": {
+    "zh": "所以沿邊緣點膠\n膠像紙巾吸水\n滲進縫裡\n再烤硬\n護住焊點",
+    "en": "So glue is dispensed along the edge; | like a paper towel soaking up water, | it wicks into the gap, | then it's baked hard | to protect the joints."
+   },
+   "keywords": [
+    "點膠",
+    "紙巾吸水",
+    "烤硬"
+   ],
+   "cues": [
+    {
+     "id": "edge",
+     "text": "沿邊緣點膠"
+    },
+    {
+     "id": "wick",
+     "text": "紙巾吸水"
+    },
+    {
+     "id": "gap",
+     "text": "滲進縫裡"
+    },
+    {
+     "id": "bake",
+     "text": "烤硬"
+    },
+    {
+     "id": "guard",
+     "text": "護住焊點"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "底部填充（毛細流動、固化）製程說明；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 102,
+      "y": 1.5,
+      "d": 27,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "ufDrip",
+      "at": "edge",
+      "ramp": 6,
+      "until": "wick+50"
+     },
+     {
+      "id": "heaterOn",
+      "at": "bake-2",
+      "ramp": 8,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "ufCureGlow",
+      "at": "bake+10",
+      "ramp": 8,
+      "until": "bake+60"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pNeedleA",
+      "text": "點膠針頭",
+      "en": "Dispensing needle",
+      "color": "amber",
+      "at": "edge",
+      "until": "edge+45",
+      "cut": true
+     },
+     {
+      "part": "pUfA",
+      "text": "底部填充",
+      "en": "Underfill",
+      "color": "blue",
+      "at": "gap-8",
+      "until": "gap+37",
+      "cut": true,
+      "xy": [
+       800,
+       420
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-uf",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像紙巾吸水",
+      "tag": "示意",
+      "t": {
+       "edge": {
+        "at": "edge"
+       },
+       "wick": {
+        "at": "wick"
+       },
+       "gap": {
+        "at": "gap"
+       },
+       "bake": {
+        "at": "bake"
+       },
+       "guard": {
+        "at": "guard"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "封裝大廠有日月光、安靠，覆晶接合機有荷蘭的 Besi。",
+   "tts": "封裝大廠有日月光、安靠，覆晶接合機有荷蘭的 Besi。",
+   "subtitle": {
+    "zh": "封裝大廠有\n日月光・安靠\n覆晶接合機有\n荷蘭的 Besi",
+    "en": "Big packaging houses: | ASE and Amkor; | flip-chip bonders: | Besi from the Netherlands."
+   },
+   "keywords": [
+    "日月光",
+    "安靠",
+    "Besi"
+   ],
+   "cues": [
+    {
+     "id": "big",
+     "text": "封裝大廠"
+    },
+    {
+     "id": "ase",
+     "text": "日月光"
+    },
+    {
+     "id": "amk",
+     "text": "安靠"
+    },
+    {
+     "id": "fcb",
+     "text": "覆晶接合機"
+    },
+    {
+     "id": "besi",
+     "text": "Besi"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce 2024 排名；Besi 官網（廠商說法）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 140,
+      "y": 1.6,
+      "d": 70,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "aseOn",
+      "at": "ase-4",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "amkOn",
+      "at": "amk-4",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "besiOn",
+      "at": "besi-4",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aseA",
+      "text": "日月光（台灣）",
+      "en": "ASE, Taiwan",
+      "color": "blue",
+      "at": "big",
+      "until": "big+45",
+      "cut": true,
+      "flag": "TW"
+     },
+     {
+      "part": "besiA",
+      "text": "Besi（荷蘭）",
+      "en": "Besi, Netherlands",
+      "color": "amber",
+      "at": "besi-10",
+      "until": "besi+35",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-co",
+      "at": "voice-3",
+      "until": "s10:voice",
+      "x": 64,
+      "y": 1036,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "誰在做",
+      "tag": "TrendForce 2024；Besi 廠商說法",
+      "t": {
+       "big": {
+        "at": "big"
+       },
+       "ase": {
+        "at": "ase"
+       },
+       "amk": {
+        "at": "amk"
+       },
+       "fcb": {
+        "at": "fcb"
+       },
+       "besi": {
+        "at": "besi"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.87,
+   "headSec": 0.2,
+   "pauseAfter": 0.87
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "覆晶還得靠載板拉線。下一集，把線直接做在晶圓，看扇出型與晶圓級封裝。",
+   "tts": "覆晶還得靠載板拉線。下一集，把線直接做在晶圓，看扇出型與晶圓級封裝。",
+   "subtitle": {
+    "zh": "覆晶還得靠載板拉線\n下一集\n把線直接做在晶圓\n看扇出型\n與晶圓級封裝",
+    "en": "Flip chip still needs a substrate to route out. | Next episode: | wiring built right on the wafer, | fan-out | and wafer-level packaging."
+   },
+   "keywords": [
+    "載板",
+    "扇出型"
+   ],
+   "cues": [
+    {
+     "id": "sub",
+     "text": "載板拉線"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "rdl",
+     "text": "直接做在晶圓"
+    },
+    {
+     "id": "fo",
+     "text": "扇出型"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice",
+      "dur": 1,
+      "x": 176,
+      "y": 0.8,
+      "d": 28,
+      "elev": 52
+     }
+    ],
+    "run": [
+     {
+      "id": "rdlGlow",
+      "at": "rdl+6",
+      "ramp": 8,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "rdlA",
+      "text": "重布線（示意）",
+      "en": "Redistribution lines",
+      "color": "amber",
+      "at": "rdl+4",
+      "until": "rdl+49",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-next",
+      "at": "voice+1",
+      "until": "s11:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集",
+      "tag": "系列 3 預告",
+      "t": {
+       "sub": {
+        "at": "sub"
+       },
+       "next": {
+        "at": "next"
+       },
+       "rdl": {
+        "at": "rdl"
+       },
+       "fo": {
+        "at": "fo"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "你手機的晶片是哪一種？留言覆晶，拿完整資料。",
+   "tts": "你手機的晶片是哪一種？留言覆晶，拿完整資料。",
+   "subtitle": {
+    "zh": "你手機的晶片\n是哪一種？\n留言覆晶\n拿完整資料",
+    "en": "Which kind is | the chip in your phone? | Comment \"flip chip\" | for the full notes."
+   },
+   "keywords": [
+    "手機",
+    "覆晶"
+   ],
+   "cues": [
+    {
+     "id": "phone",
+     "text": "手機"
+    },
+    {
+     "id": "kw",
+     "text": "留言覆晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 30,
+      "x": 176,
+      "y": 0.8,
+      "d": 32,
+      "elev": 58
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fc-ask",
+      "at": "voice-3",
+      "until": "s12:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "留言",
+      "tag": "覆晶",
+      "t": {
+       "phone": {
+        "at": "phone"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.7,
+   "headSec": 0.2
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "扇出型與晶圓級封裝",
+     "trail": [
+      "線直接做在晶圓"
+     ],
+     "comment": "覆晶",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
