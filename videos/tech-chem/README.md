@@ -40,3 +40,10 @@ validate 0 error｜layout-check 0 error（頂端空白 0px、底端空白 46px�
 | s8→s9 空景 | 研磨墊 s9:start-6 先出現、桶子 s9:start-4 才收；無空地板格 | f2128–f2132（r2a） |
 | 不透明 | s8 進場第一格（f1980）3D 桶子、2D 卡、英特格 LOGO、美台國旗都是實心 | f1980 |
 | 檢查 | precheck 0／0（含幕界抽格）、validate 0 error、layout-check 0 error（頂端 0px、底端 46px）、card-overlap 0、kinematics 0、flow-check 0（31 條） | 2026/11/27 15:5x |
+
+### r2 審後修正（機構 r2 渲染前必改 2 條＋物理 r2 可改 1–3；製作人自驗）
+- 化學品管理櫃標籤改指櫃框正面上緣（`cdsTop`，不跟門滑、在 2D 卡上方、安全區內），時間 737–782；泵與閥島 795–840、過濾器 841–886、褶疊濾芯 889–934、測量 936–981（避開運鏡，layout-check 0 error）。證據 out/tech-chem/r2j f0760、f0775、f0815。
+- s7b 槽底結塊獨立一層 `slLumps`，在「槽底結塊、被抽走」標籤期間（stir+48 起 40 幀）淡掉，念到「才不會沉底」時槽底已乾淨（f1800 有、f1860 淡、f1890 無）；標籤字改「槽底結塊、被抽走」，不再和旁白「不會沉底」字面相反。
+- 大宗儲槽標籤改 tank-30～tank+15（620–665），配音後不會早於 s4；塑膠管線 676–721；運鏡改 tank+16。s2 蝕刻液改綁 etch cue。
+- s8→s9：研磨墊與鏡頭改 s9:start-1～-2 才出現，只早 1 幀。
+- 檢查：precheck 0／0、validate 0 error、layout-check 0 error、card-overlap 0、kinematics 0、flow-check 0（31 條）。

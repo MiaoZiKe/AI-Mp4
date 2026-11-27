@@ -2123,6 +2123,17 @@
    ]
   },
   {
+   "id": "slLumps",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    2.4,
+    213,
+    2.8
+   ]
+  },
+  {
    "id": "slPump",
    "z": 0,
    "k": 0,
@@ -19000,7 +19011,7 @@
   },
   {
    "id": "sedLump",
-   "layer": "slSed",
+   "layer": "slLumps",
    "shape": "box",
    "size": [
     0.7,
@@ -19053,7 +19064,7 @@
   },
   {
    "id": "sedLumpB",
-   "layer": "slSed",
+   "layer": "slLumps",
    "shape": "sphere",
    "size": [
     0.38
@@ -21609,7 +21620,7 @@
    "dy": -100
   },
   "sed": {
-   "layer": "slSed",
+   "layer": "slTankA",
    "p": [
     214.2,
     2.3,
@@ -21766,6 +21777,16 @@
     4.8
    ],
    "dx": -190,
+   "dy": -90
+  },
+  "cdsTop": {
+   "layer": "cdsFrame",
+   "p": [
+    29,
+    18.6,
+    4.8
+   ],
+   "dx": 150,
    "dy": -90
   },
   "pump": {
@@ -22617,7 +22638,7 @@
   "sedFlow": {
    "type": "flow",
    "_說明": "結塊的大顆粒（灰）被迴路從槽底抽走",
-   "layer": "slSed",
+   "layer": "slTankA",
    "path": [
     [
      211.5,

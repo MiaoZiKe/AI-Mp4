@@ -513,7 +513,7 @@ Object.assign(anchors, { slurry: A("slBlock", [X6 + 6, 6.2, 3.4], 150, -90), gra
 // ═════ S7（x＝218）：研磨液混合／循環槽組 ═════
 const X7 = 218;
 LAY("slBase", [24, 0.8, X7, 0.3]); LAY("slWall", [22, 16, X7, 8]); LAY("slDoor", [22, 15.4, X7, 8]); LAY("slTankA", [7, 11, X7 - 5, 6]); LAY("slLiq", [6, 7, X7 - 5, 5]); LAY("slLid", [7, 1.2, X7 - 5, 11.6]); LAY("slStir", [4, 9, X7 - 5, 7]);
-LAY("slTankB", [7, 11, X7 + 5, 6]); LAY("slSed", [6, 2.4, X7 - 5, 2.8]); LAY("slPump", [4, 3, X7 + 1, 2]); LAY("slFilter", [3.4, 9, X7 + 5, 6]); LAY("slFCore", [2.4, 6, X7 + 5, 6]); LAY("slTrap", [2.4, 2, X7 + 5, 4]); LAY("slPipe", [18, 12, X7, 6]); LAY("slN2", [8, 3, X7 - 5, 11.6]);
+LAY("slTankB", [7, 11, X7 + 5, 6]); LAY("slSed", [6, 2.4, X7 - 5, 2.8]); LAY("slLumps", [6, 2.4, X7 - 5, 2.8]); LAY("slPump", [4, 3, X7 + 1, 2]); LAY("slFilter", [3.4, 9, X7 + 5, 6]); LAY("slFCore", [2.4, 6, X7 + 5, 6]); LAY("slTrap", [2.4, 2, X7 + 5, 4]); LAY("slPipe", [18, 12, X7, 6]); LAY("slN2", [8, 3, X7 - 5, 11.6]);
 const SLC = CAB("sl", X7, 22, 9, 16, "slBase", "slWall", "slDoor");
 // 混合槽 A（攪拌）：透明槽身＋液體＋蓋（可掀）＋攪拌軸與葉片；槽底沉積的結塊
 const AX = X7 - 5, BX = X7 + 5;
@@ -524,8 +524,8 @@ VC("saMotor", "slLid", 0.9, 11.35, 13.4, "dark", { x: AX, z: 0 }); P({ id: "saMo
 VC("saPortN2", "slLid", 0.25, 11.35, 12.2, "steel2", { x: AX + 2.0, z: 0 }); VC("saPortIn", "slLid", 0.25, 11.35, 12.0, "steel2", { x: AX - 2.0, z: 0 });
 VC("saShaft", "slStir", 0.1, 3.4, 11.4, "steel", { x: AX, z: 0 }); P({ id: "saProp", layer: "slStir", shape: "box", size: [2.4, 0.1, 0.55], rot: [0, 0, 0], pos: [AX, 3.6, 0], mat: "steel2" }); P({ id: "saPropB", layer: "slStir", shape: "box", size: [0.55, 0.1, 2.4], pos: [AX, 3.9, 0], mat: "steel2" }); P({ id: "saHub", layer: "slStir", shape: "sphere", size: [0.3], pos: [AX, 3.75, 0], mat: "steel" });
 // 結塊：槽底幾塊灰色不規則塊（與正常磨粒對比）
-P({ id: "sedLump", layer: "slSed", shape: "box", size: [0.7, 0.55, 0.6], pos: [AX, 1.95, 0], at: [[-1.4, 0, 0.6], [-0.6, 0.05, -0.9], [0.7, 0, 0.9], [1.3, 0.02, -0.4], [0.2, 0.0, 0.1], [-1.9, 0, -0.3]], rot: [10, 25, 15], mat: "lump" });
-P({ id: "sedLumpB", layer: "slSed", shape: "sphere", size: [0.38], pos: [AX, 2.0, 0], at: [[-0.9, 0, 0.9], [1.0, 0, -0.9], [-0.2, 0.4, -0.5], [1.7, 0, 0.5]], mat: "lump" });
+P({ id: "sedLump", layer: "slLumps", shape: "box", size: [0.7, 0.55, 0.6], pos: [AX, 1.95, 0], at: [[-1.4, 0, 0.6], [-0.6, 0.05, -0.9], [0.7, 0, 0.9], [1.3, 0.02, -0.4], [0.2, 0.0, 0.1], [-1.9, 0, -0.3]], rot: [10, 25, 15], mat: "lump" });
+P({ id: "sedLumpB", layer: "slLumps", shape: "sphere", size: [0.38], pos: [AX, 2.0, 0], at: [[-0.9, 0, 0.9], [1.0, 0, -0.9], [-0.2, 0.4, -0.5], [1.7, 0, 0.5]], mat: "lump" });
 // 供應槽 B
 VT("sbWall", "slTankB", 3.0, 2.9, 1.6, 11.0, "pfaT", { x: BX, z: 0 }); VC("sbBot", "slTankB", 3.0, 1.4, 1.65, "dark", { x: BX, z: 0 }); VC("sbLiq", "slTankB", 2.88, 1.7, 6.2, "slurry", { x: BX, z: 0 }); VT("sbFoot", "slTankB", 3.2, 2.9, 0.8, 1.4, "steel2", { x: BX, z: 0 }); VC("sbLid", "slTankB", 3.1, 11.0, 11.35, "steel2", { x: BX, z: 0 });
 P({ id: "sbBolt", layer: "slTankB", shape: "cyl", size: [0.09, 0.16], rot: V, pos: [BX, 11.42, 0], at: RING(10, 2.75).map(([a, , b]) => [a, 0, b]), mat: "steel" }); VC("sbOut", "slTankB", 0.26, 11.35, 12.4, "steel2", { x: BX, z: 0 });
@@ -546,12 +546,12 @@ PIPE("sloB", "slPipe", [[FF, 9.6, 2.4], [FF, 12.0, 2.4], [AX - 2.0, 12.0, 2.4], 
 PIPE("sloSupply", "slPipe", [[BX, 12.4, 0], [BX, 14.2, 0], [BX + 7.0, 14.2, 0], [BX + 7.0, 13.4, 0]], 0.2, "pfa");
 actions.stirSpin = { type: "rotate", _說明: "攪拌槳：起轉有加速、慢速穩轉（示意）", parts: ["saShaft", "saProp", "saPropB", "saHub"], axis: [0, 1, 0], pivot: [AX, 6, 0], pivots: Object.fromEntries(["saShaft", "saProp", "saPropB", "saHub"].map((k) => [k, [AX, 6, 0]])), rps: 0.55, rampSpin: true };
 actions.suspend = { type: "flow", _說明: "槽內磨粒被攪起來、均勻懸浮（淡藍白）", layer: "slLiq", path: [[AX - 2.2, 2.6, 0.3], [AX - 2.2, 7.6, 0.3], [AX + 2.2, 7.6, 0.3], [AX + 2.2, 2.6, 0.3]], n: 14, size: 0.13, shape: "dot", rate: 0.3, color: "silicaC", track: false, jitter: 0.5, free: true, rim: "steelC" };
-actions.sedFlow = { type: "flow", _說明: "結塊的大顆粒（灰）被迴路從槽底抽走", layer: "slSed", path: [[AX - 1.5, 2.1, 0.5], [AX, 1.3, 0.1], [AX, 1.2, 2.4]], n: 5, size: 0.2, shape: "dot", rate: 0.25, color: "lumpC", track: false, jitter: 0.2, free: true, rim: "dark" };
+actions.sedFlow = { type: "flow", _說明: "結塊的大顆粒（灰）被迴路從槽底抽走", layer: "slTankA", path: [[AX - 1.5, 2.1, 0.5], [AX, 1.3, 0.1], [AX, 1.2, 2.4]], n: 5, size: 0.2, shape: "dot", rate: 0.25, color: "lumpC", track: false, jitter: 0.2, free: true, rim: "dark" };
 actions.loopA = { type: "flow", _說明: "研磨液沿迴路：槽底 → 泵 → 過濾器 → 回槽頂", layer: "slPipe", path: [[AX, 1.7, 0], [AX, 1.2, 0], [AX, 1.2, 2.4], [PP - 0.9, 1.2, 2.4], [PP + 0.9, 1.9, 2.4], [PP + 2.4, 1.9, 2.4], [PP + 2.4, 1.2, 2.4], [FF, 1.2, 2.4], [FF, 1.8, 2.4], [FF, 9.6, 2.4], [FF, 12.0, 2.4], [AX - 2.0, 12.0, 2.4], [AX - 2.0, 12.0, 0]], n: 18, size: 0.14, shape: "dot", rate: 0.17, color: "slurryC", track: false, free: true, rim: "steelC" };
 actions.n2Mist = { type: "flow", _說明: "濕氮封：槽頂液面上方淡薄霧，緩慢聚集（不等速直飛）", layer: "slN2", path: [[AX + 2.0, 13.2, 0], [AX + 2.0, 12.4, 0], [AX + 1.0, 9.6, 0.4], [AX - 0.5, 9.0, 0.2]], n: 9, size: 0.2, shape: "dot", rate: 0.18, color: "n2mistC", track: false, jitter: 0.7, free: true };
 actions.catchFx = { type: "pulse", _說明: "濾芯上卡住的大顆粒微亮", parts: ["sfTrapL"], color: "warnC", glow: 0.7, steady: true, halo: 0 };
 actions.sedWarn = { type: "pulse", parts: ["sedLump", "sedLumpB"], color: "warnC", glow: 0.45, steady: true, halo: 0 };
-Object.assign(anchors, { stir: A("slLid", [AX, 12.6, 0.5], -150, -90), loopP: A("slPump", [PP, 3.6, 2.4], -150, 90), filt: A("slFilter", [FF + 1.5, 5.4, 2.4], 150, -100), sed: A("slSed", [AX + 1.2, 2.3, 1.0], -150, 100), tankA: A("slTankA", [AX - 3.0, 8.0, 0.6], -150, -100), trap: A("slTrap", [FF + 0.6, 4.5, 2.9], 150, 100) });
+Object.assign(anchors, { stir: A("slLid", [AX, 12.6, 0.5], -150, -90), loopP: A("slPump", [PP, 3.6, 2.4], -150, 90), filt: A("slFilter", [FF + 1.5, 5.4, 2.4], 150, -100), sed: A("slTankA", [AX + 1.2, 2.3, 1.0], -150, 100), tankA: A("slTankA", [AX - 3.0, 8.0, 0.6], -150, -100), trap: A("slTrap", [FF + 0.6, 4.5, 2.9], 150, 100) });
 
 // ═════ S8（x＝258）：供應商出貨棧板（三種容器）；S9（x＝296）：研磨墊一角（預告） ═════
 const X8 = 258;
@@ -605,7 +605,7 @@ actions.tankLevel = { type: "pulse", parts: ["tkGaugeLiq"], color: "cleanC", glo
 actions.pouLed = { type: "pulse", parts: ["pouVentH"], color: "estop", glow: 0.7, freq: 0.5, halo: 0 };
 Object.assign(anchors, {
   sup: A("loopIn", [XC - 10, 1.8, ZP], 150, -90), tank: A("tankFit", [XT + 3.4, 11.0, 5.9], 150, -90), tgauge: A("tankFit", [XT + 6.4, 8.0, 0.3], 150, 90), tladder: A("tankFit", [XT - 6.5, 8.0, 0.5], -150, -100), tcpl: A("tport", [-8.3, 3.4, 0.8], -150, -90), tbund: A("berm", [XT + 9, 1.0, 7.8], 150, 100),
-  cds: A("cdsBase", [XC - 8.2, 0.4, 4.7], -150, -170), cdsDoorA: A("cdsDoor", [XC - 7.8, 12.5, 4.8], -190, -90), pump: A("cdsPump", [PX, 4.9, 0.5], -150, -100), valve: A("cdsValve", [VX, 10.8, 0.8], -150, -90), cfilter: A("cdsFilter", [FX2, 11.6, FZ2 + 1.4], 150, -100), meas: A("cdsMeas", [MX, 15.8, 1.2], -150, -90), pres: A("cdsMeas", [NX, 16.0, 0.4], 150, -100), pleats: A("cdsCore", [FX2 + 1.0, 7.5, FZ2 + 0.8], 150, 90),
+  cds: A("cdsBase", [XC - 8.2, 0.4, 4.7], -150, -170), cdsDoorA: A("cdsDoor", [XC - 7.8, 12.5, 4.8], -190, -90), cdsTop: A("cdsFrame", [XC + 3.0, 18.6, 4.8], 150, -90), pump: A("cdsPump", [PX, 4.9, 0.5], -150, -100), valve: A("cdsValve", [VX, 10.8, 0.8], -150, -90), cfilter: A("cdsFilter", [FX2, 11.6, FZ2 + 1.4], 150, -100), meas: A("cdsMeas", [MX, 15.8, 1.2], -150, -90), pres: A("cdsMeas", [NX, 16.0, 0.4], 150, -100), pleats: A("cdsCore", [FX2 + 1.0, 7.5, FZ2 + 0.8], 150, 90),
   loop: A("loopOut", [XC + 22, YR + 0.3, ZP], 150, -90), loopR: A("loopRet", [XC + 36, YB, ZP - 1.4], 150, 100), vmb: A("vmbBox", [XV, 8.4, 3.0], -150, -90), dtank: A("dtTank", [XD - 3, 10.8, 0.0], -150, -90), dstir: A("dtStir", [XD - 3, 12.2, 0.4], -150, -100), pou: A("pouShell", [XP + 1.5, 8.0, 0.4], 150, -100), poup: A("pouCore", [XP, 5.5, 1.0], 150, 100),
   spin: A("scChuck", [XS, 5.0, 3.0], 150, 100), nozz: A("scArm", [XS, 6.4, -2.5], -150, -100), upw: A("feedL", [XS + 2.0, 8.8, -3.4], 150, -100), waste: A("wsTank", [XW, 6.8, 1.7], 150, -90),
 });

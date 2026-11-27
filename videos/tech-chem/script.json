@@ -1314,14 +1314,14 @@
       "dur": 1
      },
      {
-      "layer": "slSed",
+      "layer": "slLumps",
       "at": "s1:start-40",
       "until": "s7b:start-1",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "slSed",
+      "layer": "slLumps",
       "at": "s8:start-1",
       "until": "s10:start+400",
       "opacity": 0,
@@ -1412,6 +1412,13 @@
       "dur": 1
      },
      {
+      "layer": "slLumps",
+      "at": "s7b:stir+48",
+      "until": "s8:start-1",
+      "opacity": 0,
+      "dur": 40
+     },
+     {
       "layer": "palletC",
       "at": "s1:start-40",
       "until": "s8:start-1",
@@ -1420,7 +1427,7 @@
      },
      {
       "layer": "palletC",
-      "at": "s9:start-4",
+      "at": "s9:start-1",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -1434,7 +1441,7 @@
      },
      {
       "layer": "co0",
-      "at": "s9:start-4",
+      "at": "s9:start-1",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -1448,7 +1455,7 @@
      },
      {
       "layer": "co1",
-      "at": "s9:start-4",
+      "at": "s9:start-1",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -1462,7 +1469,7 @@
      },
      {
       "layer": "co2",
-      "at": "s9:start-4",
+      "at": "s9:start-1",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -1470,35 +1477,35 @@
      {
       "layer": "pdBase",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-2",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "pdPad",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-2",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "pdRing",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-2",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "pdArm",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-2",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "pdPuddle",
       "at": "s1:start-40",
-      "until": "s9:start-6",
+      "until": "s9:start-2",
       "opacity": 0,
       "dur": 1
      },
@@ -1801,8 +1808,8 @@
       "text": "蝕刻液",
       "en": "Etch",
       "color": "amber",
-      "at": "wash+42",
-      "until": "wash+87"
+      "at": "etch+25",
+      "until": "etch+70"
      },
      {
       "part": "jugC",
@@ -2038,7 +2045,7 @@
       "elev": 14
      },
      {
-      "at": "pipe-42",
+      "at": "tank+16",
       "dur": 14,
       "x": 14.0,
       "y": 4.5,
@@ -2046,8 +2053,8 @@
       "elev": 22
      },
      {
-      "at": "s4:desk-16",
-      "dur": 26,
+      "at": "s4:desk-14",
+      "dur": 20,
       "x": 26.0,
       "y": 9.5,
       "d": 76,
@@ -2062,7 +2069,7 @@
       "elev": 22
      },
      {
-      "at": "s4:water+2",
+      "at": "s4:water+14",
       "dur": 24,
       "x": 23.5,
       "y": 7.5,
@@ -2109,8 +2116,8 @@
       "text": "大宗儲槽",
       "en": "Bulk tank",
       "color": "amber",
-      "at": "tank-40",
-      "until": "tank+5",
+      "at": "tank-30",
+      "until": "tank+15",
       "xy": [
        860,
        300
@@ -2121,16 +2128,16 @@
       "text": "塑膠管線",
       "en": "Plastic piping",
       "color": "blue",
-      "at": "pipe-26",
-      "until": "pipe+19"
+      "at": "pipe-20",
+      "until": "pipe+25"
      },
      {
-      "part": "cds",
+      "part": "cdsTop",
       "text": "化學品管理櫃",
       "en": "Chemical cabinet",
       "color": "amber",
-      "at": "s4:desk-5",
-      "until": "s4:desk+40",
+      "at": "s4:desk+4",
+      "until": "s4:desk+49",
       "xy": [
        790,
        270
@@ -2141,8 +2148,8 @@
       "text": "泵與閥島",
       "en": "Pump & valve island",
       "color": "blue",
-      "at": "s4:water+14",
-      "until": "s4:water+59",
+      "at": "s4:water+25",
+      "until": "s4:water+70",
       "xy": [
        300,
        980
@@ -2372,24 +2379,24 @@
       "text": "過濾器",
       "en": "Filter",
       "color": "amber",
-      "at": "s4:water+60",
-      "until": "s4:water+105"
+      "at": "s4:water+71",
+      "until": "s4:water+116"
      },
      {
       "part": "pleats",
       "text": "褶疊濾芯",
       "en": "Pleated membrane",
       "color": "blue",
-      "at": "s4c:clean+13",
-      "until": "s4c:clean+58"
+      "at": "s4c:clean+17",
+      "until": "s4c:clean+62"
      },
      {
       "part": "meas",
       "text": "測量",
       "en": "Metering",
       "color": "amber",
-      "at": "s4c:clean+60",
-      "until": "s4c:clean+105"
+      "at": "s4c:clean+64",
+      "until": "s4c:clean+109"
      },
      {
       "part": "loop",
@@ -2998,8 +3005,8 @@
      },
      {
       "part": "sed",
-      "text": "結塊沉底、被抽走",
-      "en": "Clumps pulled off",
+      "text": "槽底結塊、被抽走",
+      "en": "Clumps pulled off the bottom",
       "color": "amber",
       "at": "stir+44",
       "until": "stir+89",
@@ -3158,13 +3165,13 @@
     "zoom": [
      {
       "to": "tool",
-      "at": "start-2",
+      "at": "start-1",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "start-4",
+      "at": "start-1",
       "dur": 1,
       "x": 292.0,
       "y": 3.0,
