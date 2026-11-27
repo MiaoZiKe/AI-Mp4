@@ -153,7 +153,7 @@ def vis(lay, wins, dur=8):
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
 # ── 陰極總成的圖層：每一幕只留要講的（主素材框才不會被不相干的零件撐大，標籤與卡片才找得到空位） ──
 ASM = []                                         # s5 組回時只有下半截的零件回來（上半截在 s3 起就退場了，鏡頭只看下面），s12 才全部回來
-BACKALL = ("s12:start-8", FAR)
+BACKALL = ("s12:start+24", FAR)
 for l in ("hv", "lid", "oring1", "mag"): vis(l, [(T0, "s3:start-6")] + ASM + [BACKALL])
 for l in ("water", "pipes"): vis(l, [(T0, "s4:start-6")] + ASM + [BACKALL])
 vis("tgt", [(T0, "s8:start-2"), BACKALL])
@@ -185,7 +185,7 @@ for l in ("lt", "ltTab", "ltTool"): vis(l, [("s10:lathe-24", "s10:bond+40")])
 vis("ltF1", [("s10:lathe+30", "s10:bond+40")]); vis("ltF2", [("s10:lathe+62", "s10:bond+40")]); vis("ltF3", [("s10:lathe+94", "s10:bond+40")])
 for l in ("bd", "bdBack", "bdPress", "bdHeat"): vis(l, [("s10:bond-24", "s11:start-2")])
 vis("bdS0", [("s10:bond-8", "s10:bond+40")]); vis("bdS1", [("s10:bond+30", "s10:bond+60")]); vis("bdS2", [("s10:bond+52", "s11:start-2")])
-vis("rack", [("s11:start-18", "s12:start-2")]); vis("rkJP", [("s11:jx-6", "s12:start-2")]); vis("rkUS", [("s11:us-6", "s12:start-2")]); vis("rkTW", [("s11:tw-6", "s12:start-2")])
+vis("rack", [("s11:start-18", "s12:start+24")]); vis("rkJP", [("s11:jx-6", "s12:start+24")]); vis("rkUS", [("s11:us-6", "s12:start+24")]); vis("rkTW", [("s11:tw-6", "s12:start+24")])
 
 # ═════════ 爆炸分解（s2～s4）：沿軸線實際分開，一次一張標籤；s5 開頭組回 ═════════
 BACK = "s5:start+2"
@@ -258,11 +258,12 @@ P["s10"] = {"shot": [shot("start", SX["ml"] + 0.4, 2.2, 34, 22, 36), shot("annea
 P["s11"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 0, 2.0, 44, 12, 1)],
  "labels": [lab("rkJX", "JX 金屬", "Japan", "amber", "jx-2", "us-6", flag="JP"),
             lab("rkSol", "Solstice", "United States", "blue", "us-2", "tw-10", flag="US"),
-            lab("rkSolar", "光洋科 1785", "Taiwan", "amber", "tw-8", "s12:start-8", flag="TW")],
- "overlay": [sec("target-co", "start+24", "s12:start-14", "做靶材的公司", "技術新報、公司新聞稿、公司資料", {"jx": "jx", "sixty": "sixty", "us": "us", "tw": "tw"}, h=360, y=1040)]}
-P["s12"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 0.4, 4.4, 74, 24, 1, yaw=-0.2)],
+            lab("rkSolar", "光洋科 1785", "Taiwan", "amber", "tw-8", "s12:start+22", flag="TW")],
+ "overlay": [sec("target-co", "start+24", "s12:start+22", "做靶材的公司", "技術新報、公司新聞稿、公司資料", {"jx": "jx", "sixty": "sixty", "us": "us", "tw": "tw"}, h=356, y=1040)]}
+# Andy 第 40 條：公司卡延到下一幕開頭（念完光洋科後 ≥1.0 秒才換幕）；延長期間（start+24 前）s12 鏡頭、層級不動
+P["s12"] = {"zoom": [{"to": "tool", "at": "start+24", "dur": 1}], "shot": [shot("start+24", 0.4, 4.4, 74, 24, 1, yaw=-0.2)],
  "run": [run(f"gas{i}", "gas", FAR, 8) for i in range(4)],
- "overlay": [sec("target-next", "start+24", "s13:start-5", "接下來", "下一集：前驅物", {"next": "next", "gas": "gas", "pre": "pre", "kw": "kw"})]}
+ "overlay": [sec("target-next", "start+30", "s13:start-5", "接下來", "下一集：前驅物", {"next": "next", "gas": "gas", "pre": "pre", "kw": "kw"})]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
