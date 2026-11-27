@@ -354,7 +354,8 @@ LAY("tCar", [8, 3, TX - 5, 1.2]);
 BOX("tCarBody", "tCar", TX - 9, TX - 1.4, 0.55, 1.5, -1.6, 1.6, "car", { bevel: 0.3 });
 BOX("tCarCab", "tCar", TX - 7.2, TX - 3.0, 1.5, 2.4, -1.45, 1.45, "car", { bevel: 0.3 });
 BOX("tCarWin", "tCar", TX - 7.0, TX - 3.2, 1.6, 2.3, 1.46, 1.48, "carD");
-BOX("tCarWs", "tCar", TX - 3.1, TX - 3.0, 1.6, 2.3, -1.3, 1.3, "carD");
+P({ id: "tCarWs", layer: "tCar", shape: "box", size: [0.08, 0.95, 2.6], pos: [R2(TX - 2.75), 1.92, 0], rot: [0, 0, -38], mat: "carD" });
+P({ id: "tHood", layer: "tCar", shape: "box", size: [1.7, 0.08, 3.0], pos: [R2(TX - 2.25), 1.47, 0], rot: [0, 0, -6], mat: "car" });
 P({ id: "tTire", layer: "tCar", shape: "cyl", size: [0.55, 0.45], pos: [0, 0.55, 0], at: [[TX - 7.6, 0, 1.45], [TX - 2.8, 0, 1.45], [TX - 7.6, 0, -1.45], [TX - 2.8, 0, -1.45]], mat: "tire" });
 P({ id: "tRim", layer: "tCar", shape: "cyl", size: [0.32, 0.47], pos: [0, 0.55, 0], at: [[TX - 7.6, 0, 1.45], [TX - 2.8, 0, 1.45], [TX - 7.6, 0, -1.45], [TX - 2.8, 0, -1.45]], mat: "rim" });
 P({ id: "tArch", layer: "tCar", shape: "box", size: [1.5, 0.35, 0.06], pos: [0, 1.0, 0], at: [[TX - 7.6, 0, 1.62], [TX - 2.8, 0, 1.62]], mat: "carD" });
@@ -374,7 +375,18 @@ P({ id: "tInvMod", layer: "tInv", shape: "box", size: [0.5, 0.1, 0.4], pos: [0, 
 P({ id: "tInvTerm", layer: "tInv", shape: "box", size: [0.12, 0.08, 0.12], pos: [0, 1.43, 0], at: [-0.8, 0, 0.8].flatMap((d) => [[R2(TX - 5.2 + d - 0.12), 0, 2.9], [R2(TX - 5.2 + d + 0.12), 0, 3.5]]), mat: "cuTr" });
 BOX("tInvStand", "tInv", TX - 6.2, TX - 4.2, 0, 0.9, 2.6, 3.8, "stand"); BOX("tInvLid", "tInv", TX - 6.4, TX - 4.0, 1.3, 1.36, 4.0, 4.5, "inv", { rot: [-60, 0, 0] });
 P({ id: "tInvCap", layer: "tInv", shape: "cyl", size: [0.18, 0.4], rot: V, pos: [0, 1.5, 3.95], at: [[TX - 6.0, 0, 0], [TX - 5.6, 0, 0]], mat: "capTan" });
-PIPE("tHv", "tInv", [[TX - 4.0, 1.1, 3.2], [TX - 3.2, 1.1, 3.2], [TX - 3.2, 0.55, 1.7]], 0.07, "cable", { jmat: "cable" });
+PIPE("tHv", "tInv", [[TX - 4.0, 1.1, 2.6], [TX - 4.6, 1.1, 2.6], [TX - 4.6, 0.55, 1.2]], 0.07, "cable", { jmat: "cable" });
+// 車子轉 90 度（車頭朝鏡頭 +z），鏡頭略偏就是前 3/4 視角；逆變器搬到車子右側
+{ const cx = TX - 5.2, cz = 0, ROT = { box: true };
+  const rp = ([x, y, z]) => [R2(cx - (z - cz)), y, R2(cz + (x - cx))];
+  const rv = ([x, y, z]) => [R2(-z), y, R2(x)];
+  for (const q of parts.filter((q) => q.layer === "tCar")) {
+    q.pos = rp(q.pos); if (q.at) q.at = q.at.map(rv);
+    if (q.shape === "box") { q.size = [q.size[2], q.size[1], q.size[0]]; if (q.rot) q.rot = [-q.rot[2], 0, 0]; }
+    else if (q.shape === "cyl" && !q.rot) q.rot = [0, 90, 0];
+  }
+  for (const q of parts.filter((q) => q.layer === "tInv")) { q.pos = [R2(q.pos[0] + 3.2), q.pos[1], R2(q.pos[2] - 0.6)]; }
+}
 // AI 伺服器機櫃（機架＋8 台伺服器＋上面兩台電源供應器，前面有風扇與燈號）
 const RX = TX + 1.6;
 LAY("tRack", [3, 6, RX, 3]);
@@ -384,6 +396,8 @@ P({ id: "tSledLed", layer: "tRack", shape: "box", size: [0.08, 0.08, 0.04], pos:
 LAY("tPsu", [3, 1.4, RX, 5.0]);
 P({ id: "tPsuB", layer: "tPsu", shape: "box", size: [1.15, 0.55, 0.1], pos: [0, 0, 1.25], at: [[R2(RX - 0.62), 4.7, 0], [R2(RX + 0.62), 4.7, 0], [R2(RX - 0.62), 5.3, 0], [R2(RX + 0.62), 5.3, 0]], mat: "psu" });
 P({ id: "tPsuFan", layer: "tPsu", shape: "cyl", size: [0.18, 0.03], pos: [0, 0, 1.31], at: [[R2(RX - 0.85), 4.7, 0], [R2(RX + 0.39), 4.7, 0], [R2(RX - 0.85), 5.3, 0], [R2(RX + 0.39), 5.3, 0]], mat: "fan" });
+P({ id: "tPsuBladeA", layer: "tPsu", shape: "box", size: [0.32, 0.06, 0.02], pos: [0, 0, 1.33], at: [[R2(RX - 0.85), 4.7, 0], [R2(RX + 0.39), 4.7, 0], [R2(RX - 0.85), 5.3, 0], [R2(RX + 0.39), 5.3, 0]], mat: "steel2" });
+P({ id: "tPsuBladeB", layer: "tPsu", shape: "box", size: [0.06, 0.32, 0.02], pos: [0, 0, 1.33], at: [[R2(RX - 0.85), 4.7, 0], [R2(RX + 0.39), 4.7, 0], [R2(RX - 0.85), 5.3, 0], [R2(RX + 0.39), 5.3, 0]], mat: "steel2" });
 P({ id: "tPsuLed", layer: "tPsu", shape: "box", size: [0.07, 0.07, 0.03], pos: [0, 0, 1.31], at: [[R2(RX - 0.2), 4.7, 0], [R2(RX + 1.04), 4.7, 0], [R2(RX - 0.2), 5.3, 0], [R2(RX + 1.04), 5.3, 0]], mat: "ledGg" });
 
 // ═════ 站 N：下一集記憶體（DRAM 模組：綠板＋8 顆顆粒＋金手指；旁邊名牌）═════
@@ -415,10 +429,10 @@ Object.assign(actions, {
   pPkgCur: { type: "flow", _說明: "封裝外：電流從 D 腳進、S 腳出", layer: "pPkg", path: [[PPX - 5.0, 1.0, 5.0], [PPX - 5.0, 3.0, 4.0], [PPX - 4.25, 3.0, 4.0], [PPX - 4.25, 1.0, 5.0]], n: 4, size: 0.12, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
   dSig: { type: "flow", _說明: "驅動 IC 把每一行要的亮度送上去（逐列掃描點亮）", layer: "dDdi", path: [[DX - 4.66, DPY + 0.12, 2.75], [DX - 4.66, DPY + 0.12, -3.5]], n: 2, lanes: PXN, laneDir: [1, 0, 0], laneGap: PS, size: 0.07, shape: "dot", rate: 0.9, color: "ledB", track: false, free: true },
   dFpcSig: { type: "flow", _說明: "主機板經軟板送畫面資料進驅動 IC", layer: "dDdi", path: [[DX - 1.0, DPY + 0.03, 5.5], [DX - 1.0, DPY + 0.03, 3.3]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 0.36, size: 0.07, shape: "dot", rate: 0.8, color: "ledB", track: false, free: true },
-  tInvCur: { type: "flow", _說明: "電池高壓電經逆變器功率模組送到馬達", layer: "tInv", path: [[TX - 6.0, 1.5, 2.9], [TX - 4.4, 1.5, 2.9], [TX - 4.4, 1.5, 3.5], [TX - 6.0, 1.5, 3.5]], n: 5, size: 0.12, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
+  tInvCur: { type: "flow", _說明: "電池高壓電經逆變器功率模組送到馬達", layer: "tInv", path: [[TX - 2.8, 1.5, 2.3], [TX - 1.2, 1.5, 2.3], [TX - 1.2, 1.5, 2.9], [TX - 2.8, 1.5, 2.9]], n: 5, size: 0.12, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
   tPsuCur: { type: "flow", _說明: "電源供應器把電往下分給每台伺服器", layer: "tPsu", path: [[RX - 1.5, 5.0, 1.35], [RX - 1.5, 0.5, 1.35]], n: 6, size: 0.1, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
   tLeds: { type: "pulse", parts: ["tSledLed", "tPsuLed"], color: "ledB", glow: 1.0, freq: 2.0, halo: 0.2 },
-  tFanSpin: { type: "rotate", parts: ["tPsuFan"], axis: [0, 0, 1], rps: 3, rampSpin: true },
+  tFanSpin: { type: "rotate", parts: ["tPsuFan", "tPsuBladeA", "tPsuBladeB"], axis: [0, 0, 1], rps: 3, rampSpin: true },
   nSig: { type: "flow", layer: "nDimm", path: [[NX - 4.8, 0.6, 0.15], [NX + 4.8, 0.6, 0.15]], n: 6, size: 0.08, shape: "dot", rate: 0.6, color: "ledB", track: false, free: true },
 });
 for (let r = 0; r < PYN; r++) actions[`dRowOn${r}`] = { type: "pulse", parts: [0, 1, 2].map((c) => `dRow${r}${c}`), color: "pxB", glow: 0.5, steady: true, halo: 0 };
@@ -435,7 +449,7 @@ Object.assign(anchors, {
   fUmc: A("fUmc", [FX - 3.4, 4.4, 4.7], -100, -110), fVis: A("fVis", [FX + 3.4, 3.6, 1.1], 100, -110), fPsmc: A("fPsmc", [FX - 1.6, 4.0, -3.7], -100, -110),
   fProd: A("fProd", [FX - 3.6, 0.4, 5.6], -120, 100), fProdTo: A("fProd", [FX + 5.3, 0.6, 1.1], 110, 100),
   cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 2.4, 4.7, -3.94], 120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
-  tInv: A("tInv", [TX - 5.2, 1.45, 3.2], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.0, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
+  tInv: A("tInv", [TX - 2.0, 1.45, 2.6], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.2, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
   nDimm: A("nDimm", [NX + 1.0, 2.3, 0.2], 140, -110),
 });
 

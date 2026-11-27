@@ -168,7 +168,7 @@ P["s7"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
  "labels": [],
  "overlay": [card("s7", "mature-cn", "中國成熟製程擴產", "分析預期（TrendForce 預估）", {"cn": "cn", "tf": "tf", "quarter": "quarter"})]}
 P["s8"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 2.4, 0.0, 35, 32, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
+ "shot": [shot(CC, CX - 2.4, 0.0, 35, 32, 1), shot("shift+4", TX - 3.0, 1.0, 42, 20, 1)],
  "run": [run("tInvCur", "car-2", "s9:start", 6), run("tPsuCur", "ai-2", "s9:start", 6), run("tLeds", "shift", "s9:start", 6), run("tFanSpin", "ai-4", "s9:start", 6)],
  "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end", xy=[490, 470]),
             lab("tPsu", "AI 伺服器電源", "AI server power supplies", "amber", "ai-2", "end", xy=[560, 300])],
