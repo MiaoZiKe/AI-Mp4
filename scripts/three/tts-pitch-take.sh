@@ -15,7 +15,7 @@ SLUG=${1:-}; shift || true
 MAX=3
 for a in "$@"; do case $a in --max=*) MAX=${a#*=};; *) echo "不認得的參數：$a"; exit 2;; esac; done
 cd "$(dirname "$0")/../.."
-LO=120; HI=135; BASE=127.5   # 2026-11-26 Andy：「131 這音頻OK 以後可以120～135 Hz」
+LO=126; HI=136; BASE=131; IQRMIN=55   # 2026-11-27 Andy 鎖定兩奈米：「兩奈米 記得鎖住音高 語速」→ 2nm 實測 f0 131.1、IQR 63.5
 V=videos/$SLUG; [ -f $V/script.json ] || { echo "找不到 $V/script.json"; exit 2; }
 PJ=$V/tts-pitch.json
 python3 scripts/three/tts-budget.py || true   # 11-25：配音前先印額度剩幾次
@@ -24,7 +24,7 @@ RAW=public/$RAWREL
 BK=out/old-$SLUG-take; mkdir -p "$BK" out
 [ -f "$RAW" ] && cp -n "$RAW" "$BK/$(basename "$RAW").$(date +%H%M%S)"
 
-f0() { .venv/bin/python -I scripts/voice-measure.py "$1" | python3 -c "import json,sys;print(json.load(sys.stdin)['f0Median'])"; }
+f0() { .venv/bin/python -I scripts/voice-measure.py "$1" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d['f0Median'] if d.get('f0Iqr',99)>=$IQRMIN else -d['f0Median'])"; }   # 起伏太小（平板）回傳負值＝不合格
 record() { # n f0 sec accepted file note
   python3 - "$PJ" "$@" <<'PY'
 import json,os,sys,datetime

@@ -52,6 +52,8 @@ if (styled && !STYLE) { console.error("script.json 缺 voice.profile 或 voice.s
 const prompt = (text) => STYLE_TEXT ? (STYLE_MODE === "prefix" ? `${STYLE_TEXT}\n${text}` : STYLE_MODE === "profile" ? `# AUDIO PROFILE: 科技透明圈旁白\n## DIRECTOR'S NOTES\n${STYLE_TEXT.replace(/\s*直接說：\s*$/, "")}\n\n#### TRANSCRIPT\n${text}` : text) : (!styled ? text : profile ? takePrompt(profile, text) : `${STYLE}說：\n${text}`);
 // languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
 let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
+// 2026-11-27 Andy 鎖定兩奈米：兩奈米是 AI Studio 錄的，不送 languageCode → tech-b 一律不送（要送得明寫 --lang=cmn-TW）
+if (voice.profile === "tech-b" && opt.lang == null) LANG = null;
 const SR = 24000, KEEP = 0.04, FADE = 0.004, FADE_IN = 0.02, VOICE_DB = -40; // FADE_IN：每段切出後 20ms 淡入（音訊不斷續規則，2026-11-21）
 
 /** 有旁白的幕；同一個 para 接成同一行，換段空一行 */
